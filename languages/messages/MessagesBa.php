@@ -166,6 +166,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(дауамы)',
 'index-category'                 => 'Индексланған биттәр',
 'noindex-category'               => 'Индексланмаған биттәр',
+'broken-file-category'           => 'Файлға һылтанмалары эшләмәгән биттәр',
 
 'mainpagetext'      => '«MediaWiki» уңышлы рәүештә ҡоролдо.',
 'mainpagedocfooter' => 'Был вики менән эшләү тураһында мәғлүмәтте [http://meta.wikimedia.org/wiki/Ярҙам:Белешмә ошонда] табып була.
@@ -229,6 +230,7 @@ $messages = array(
 'printableversion'  => 'Ҡағыҙға баҫыу өлгөһө',
 'permalink'         => 'Даими һылтау',
 'print'             => 'Баҫыу',
+'view'              => 'Ҡарау',
 'edit'              => 'Үҙгәртеү',
 'create'            => 'Яһарға',
 'editthispage'      => 'Был мәҡәләне үҙгәртергә',
@@ -236,6 +238,7 @@ $messages = array(
 'delete'            => 'Юҡ  итергә',
 'deletethispage'    => 'Был битте юйырға',
 'undelete_short'    => '$1 {{PLURAL:$1|үҙгәртеүҙе}} тергеҙергә',
+'viewdeleted_short' => '{{PLURAL:$1|1 юйылған үҙгәртеүҙе|$1 юйылған үҙгәртеүҙе}} ҡарау',
 'protect'           => 'Һаҡларға',
 'protect_change'    => 'үҙгәртергә',
 'protectthispage'   => 'Был битте һаҡларға',
@@ -319,6 +322,8 @@ $1',
 'toc'                     => 'Эстәлеге',
 'showtoc'                 => 'күрһәтергә',
 'hidetoc'                 => 'йәшерергә',
+'collapsible-collapse'    => 'төрөргә',
+'collapsible-expand'      => 'асырға',
 'thisisdeleted'           => 'Ҡарарғамы йәки тергеҙергәме? — $1',
 'viewdeleted'             => '$1 ҡарарғамы?',
 'restorelink'             => '{{PLURAL:$1|1 юйылған үҙгәртеүҙе|$1 юйылған үҙгәртеүҙе}}',
@@ -459,6 +464,7 @@ $2',
 'createaccount'              => 'Яңы ҡатнашыусыны теркәү',
 'gotaccount'                 => "Әгәр Һеҙ теркәлеү үткән булһағыҙ? '''$1'''.",
 'gotaccountlink'             => 'Үҙегеҙ менән таныштырығыҙ',
+'userlogin-resetlink'        => 'Танылыу мәғлүмәттәрен оноттоғоҙмо?',
 'createaccountmail'          => 'эл. почта буйынса',
 'createaccountreason'        => 'Сәбәп:',
 'badretype'                  => 'Һеҙ кереткән паролдәр тап килмәйҙәр.',
@@ -515,6 +521,7 @@ $2',
 'usernamehasherror'          => 'Ҡулланыусы исемендә "#" символы була алмай',
 'login-throttled'            => 'Һеҙ системала артыҡ күп танылырға тырыштығыҙ.
 Зинһар, ҡабатламаҫтан алда бераҙ көтөгөҙ.',
+'login-abort-generic'        => 'Танылыу уңышһыҙ тамамланды',
 'loginlanguagelabel'         => 'Тел: $1',
 'suspicious-userlogout'      => 'Һеҙҙең сеансты тамамлау тураһында һорауығыҙ кире ҡағылды, сөнки ул төҙөк булмаған браузер йәки кэшлаусы прокси тарафынан ебәрелгән һорауға оҡшаған.',
 
@@ -537,6 +544,19 @@ $2',
 'resetpass-wrong-oldpass'   => 'Хаталы ваҡытлыса йәки ағымдағы пароль.
 Һеҙ, бәлки, паролегеҙҙе алмаштырғанһығыҙ йәки яңы пароль һоратҡанһығыҙ.',
 'resetpass-temp-password'   => 'Ваҡытлыса пароль',
+
+# Special:PasswordReset
+'passwordreset'              => 'Паролде ташлатыу',
+'passwordreset-text'         => 'Иҫәп яҙыуығыҙ мәғлүмәттәрен хат аша алыу өсөн киләһе форманы тултырығыҙ.',
+'passwordreset-legend'       => 'Паролде ташлатыу',
+'passwordreset-disabled'     => 'Был викила паролде ташлатыу ғәмәлдә түгел',
+'passwordreset-pretext'      => '{{PLURAL:$1||аҫта күрһәтелгән мәғлүмәттәрҙең бер киҫәген керетегеҙ}}',
+'passwordreset-username'     => 'Ҡулланыусы исеме:',
+'passwordreset-email'        => 'Электрон почта адресы:',
+'passwordreset-emailtitle'   => '{{SITENAME}} иҫәп яҙыуы мәғлүмәттәре',
+'passwordreset-emailelement' => 'Ҡулланыусы исеме: $1
+Ваҡытлыса пароль: $2',
+'passwordreset-emailsent'    => 'Электрон почта аша иҫләтеү хаты ебәрелде.',
 
 # Edit page toolbar
 'bold_sample'     => 'Ҡалын яҙылыш',
@@ -1474,22 +1494,23 @@ $1',
 'uploadstash-refresh'  => 'Файлдар исемлеген яңыртырға',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Керергә рөхсәт ителмәй',
-'img-auth-nopathinfo'   => 'PATH_INFO юҡ.
+'img-auth-accessdenied'     => 'Керергә рөхсәт ителмәй',
+'img-auth-nopathinfo'       => 'PATH_INFO юҡ.
 Һеҙҙең сервер был мәғлүмәтте ебәреү өсөн көйләнмәгән.
 Ул CGI нигеҙендә эшләй һәм img_auth ҡулланмай, булырға тейеш.
 Тулыраҡ мәғлүмәт: http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Һоралған юл көйләнгән тейәүҙәр директорияһына ҡарамай.',
-'img-auth-badtitle'     => '"$1" исеменән дөрөҫ исем төҙөп булмай.',
-'img-auth-nologinnWL'   => 'Һеҙ танылыу үтмәнегеҙ, "$1" аҡ исемлеккә кермәй.',
-'img-auth-nofile'       => '"$1" файлы юҡ.',
-'img-auth-isdir'        => 'Һеҙ "$1" директорияһына керергә тырышаһығыҙ.
+'img-auth-notindir'         => 'Һоралған юл көйләнгән тейәүҙәр директорияһына ҡарамай.',
+'img-auth-badtitle'         => '"$1" исеменән дөрөҫ исем төҙөп булмай.',
+'img-auth-nologinnWL'       => 'Һеҙ танылыу үтмәнегеҙ, "$1" аҡ исемлеккә кермәй.',
+'img-auth-nofile'           => '"$1" файлы юҡ.',
+'img-auth-isdir'            => 'Һеҙ "$1" директорияһына керергә тырышаһығыҙ.
 Файлдарҙы асырға ғына рөхсәт бар.',
-'img-auth-streaming'    => '"$1" файлын эҙмә-эҙлекле тапшырыу.',
-'img-auth-public'       => 'img_auth.php файлдарҙы ябыҡ викинан сығарыу өсөн тәғәйенләнгән.
+'img-auth-streaming'        => '"$1" файлын эҙмә-эҙлекле тапшырыу.',
+'img-auth-public'           => 'img_auth.php файлдарҙы ябыҡ викинан сығарыу өсөн тәғәйенләнгән.
 Был вики асыҡ тип көйләнгән.
 Хәүефһеҙлек маҡсаттарында img_auth.php һүндерелгән.',
-'img-auth-noread'       => 'Ҡатнашыусыға "$1" файлын уҡыу рөхсәт ителмәй.',
+'img-auth-noread'           => 'Ҡатнашыусыға "$1" файлын уҡыу рөхсәт ителмәй.',
+'img-auth-bad-query-string' => 'URL-адрестағы һоратыу юлы хаталы',
 
 # HTTP errors
 'http-invalid-url'      => 'URL адрес дөрөҫ түгел: $1',
@@ -2450,8 +2471,7 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 'import-interwiki-namespace' => 'Кәрәкле исемдәр арауығы:',
 'import-upload-filename'     => 'Файл исеме:',
 'import-comment'             => 'Иҫкәрмә:',
-'importtext'                 => 'Зинһар, файлды сығанаҡ вики проекттан [[Special:Export|махсус ҡорал]] ярҙамында сығарығыҙ.
-Артабан уны компьютерығыҙҙа һаҡлағыҙ һәм бында тейәгеҙ.',
+'importtext'                 => 'Зинһар, файлды сығанаҡ викинан [[Special:Export|махсус ҡорал]] ярҙамында сығарығыҙ. Артабан уны компьютерығыҙға һаҡлағыҙ һәм бында тейәгеҙ.',
 'importstart'                => 'Биттәрҙе тейәү...',
 'import-revision-count'      => '$1 {{PLURAL:$1|өлгө|өлгө}}',
 'importnopages'              => 'Тейәү өсөн биттәр юҡ.',
@@ -2675,7 +2695,7 @@ $1',
 'metadata-help'     => 'Файл, ғәҙәттә һанлы камералар йәки сканерҙар өҫтәгән мәғлүмәттәргә эйә. Әгәр файл яһалғандан һуң төҙәтелгән булһа, ҡайһы бер параметрҙар ағымдағы рәсем менән тап килмәҫкә мөмкин.',
 'metadata-expand'   => 'Өҫтәмә мәғлүмәттәрҙе күрһәт',
 'metadata-collapse' => 'Өҫтәмә мәғлүмәттәрҙе йәшер',
-'metadata-fields'   => 'Был исемлектә һанап кителгән мета мәғлүмәт юлдары рәсем битендә күрһәтеләсәктәр, ҡалғандары иһә йәшерелгән буласаҡтар.
+'metadata-fields'   => 'Был исемлектә һанап кителгән мета мәғлүмәт юлдары рәсем битендә күрһәтеләсәктәр, ҡалғандары иһә төрөлгән буласаҡ.
 * make
 * model
 * datetimeoriginal
@@ -2724,8 +2744,8 @@ $1',
 'exif-colorspace'                  => 'Төҫтәр киңлеге',
 'exif-componentsconfiguration'     => 'Төҫ өлөштәренең төҙөлөшө',
 'exif-compressedbitsperpixel'      => 'Рәсемде ҡыҫыу ысулы',
-'exif-pixelydimension'             => 'Рәсемдең үҙ киңлеге',
-'exif-pixelxdimension'             => 'Рәсемдең үҙ бейеклеге',
+'exif-pixelydimension'             => 'Рәсем киңлеге',
+'exif-pixelxdimension'             => 'Рәсем бейеклеге',
 'exif-usercomment'                 => 'Ҡулланыусы иҫкәрмәһе',
 'exif-relatedsoundfile'            => 'Бәйле аудио файл',
 'exif-datetimeoriginal'            => 'Төп көнө һәм ваҡыты',
@@ -2739,9 +2759,9 @@ $1',
 'exif-exposureprogram'             => 'Экспозиция режимы',
 'exif-spectralsensitivity'         => 'Спектраль һиҙгерлек',
 'exif-isospeedratings'             => 'ISO буйынса яҡтыға һиҙгерлек',
-'exif-shutterspeedvalue'           => 'Затвор тиҙлеге',
-'exif-aperturevalue'               => 'Диафрагма',
-'exif-brightnessvalue'             => 'Баҙыҡлыҡ',
+'exif-shutterspeedvalue'           => 'APEX затвор тиҙлеге',
+'exif-aperturevalue'               => 'APEX диафрагма',
+'exif-brightnessvalue'             => 'APEX баҙыҡлыҡ',
 'exif-exposurebiasvalue'           => 'Экспозиция компенсацияһы',
 'exif-maxaperturevalue'            => 'Иң ҙур диафрагма һаны',
 'exif-subjectdistance'             => 'Есемдең йыраҡлығы',

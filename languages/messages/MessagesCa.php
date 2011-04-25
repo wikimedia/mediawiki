@@ -695,6 +695,8 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'passwordreset-text'     => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
 'passwordreset-legend'   => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
+'passwordreset-username' => "Nom d'usuari:",
+'passwordreset-email'    => 'Adreça de correu electrònic:',
 
 # Edit page toolbar
 'bold_sample'     => 'Text en negreta',
@@ -3038,6 +3040,8 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 
 # EXIF attributes
 'exif-compression-1' => 'Sense compressió',
+
+'exif-copyrighted-false' => 'de domini públic',
 
 'exif-unknowndate' => 'Data desconeguda',
 

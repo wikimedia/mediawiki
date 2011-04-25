@@ -633,6 +633,14 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
 'resetpass-temp-password'   => 'Nachwilne hesło:',
 
+# Special:PasswordReset
+'passwordreset'              => 'Hesło wróćo stajić',
+'passwordreset-username'     => 'Wužiwarske mjeno:',
+'passwordreset-email'        => 'E-mejlowa adresa:',
+'passwordreset-emailtitle'   => 'Kontowe podrobnosće na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'passwordreset-emailelement' => 'Wužiwarske mjeno: $1
+Nachwilne hesło: $2',
+
 # Edit page toolbar
 'bold_sample'     => 'Tučny tekst',
 'bold_tip'        => 'Tučny tekst',
@@ -1931,6 +1939,9 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 'noemailtext'          => 'Tutón wužiwar njeje płaćiwu e-mejlowu adresu podał.',
 'nowikiemailtitle'     => 'Žana e-mejl dowolena',
 'nowikiemailtext'      => 'Tutón wužiwar nochce žane e-mejlki wot druhich wužiwarjow dóstać.',
+'emailtarget'          => 'Wužiwarske mjeno přijimowarja zapodać',
+'emailusername'        => 'Wužiwarske mjeno:',
+'emailusernamesubmit'  => 'Wotpósłać',
 'email-legend'         => 'E-mejlku druhemu wužiwarjej {{GRAMMAR:genitiw|{{SITENAME}}}} pósłać',
 'emailfrom'            => 'Wot:',
 'emailto'              => 'Komu:',
@@ -2513,7 +2524,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'import-interwiki-namespace' => 'Cilowy mjenowy rum:',
 'import-upload-filename'     => 'Datajowe mjeno:',
 'import-comment'             => 'Přičina:',
-'importtext'                 => 'Prošu eksportuj dataju ze žórłoweho wikija z pomocu [[Special:Export|Strony eksportować]]. Składuj ju na swojim ličaku a nahraj ju sem.',
+'importtext'                 => 'Prošu eksportuj dataju ze žórłoweho wikija z pomocu funkcije [[Special:Export|Strony eksportować]]. Składuj ju na swojim ličaku a nahraj ju tu.',
 'importstart'                => 'Importuju…',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}}',
 'importnopages'              => 'Žane strony za importowanje.',
@@ -2741,7 +2752,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'metadata-help'     => 'Dataja wobsahuje přidatne informacije, kotrež pochadźa z digitalneje kamery abo skenera. Jeli dataja bu wot toho změnjena je móžno, zo někotre podrobnosće z nětčišeho stawa wotchila.',
 'metadata-expand'   => 'Podrobnosće pokazać',
 'metadata-collapse' => 'Podrobnosće schować',
-'metadata-fields'   => 'Sćěhowace EXIF-metadaty so standardnje pokazuja. Druhe so po standardźe schowaja a móža so z tabele rozfałdować.
+'metadata-fields'   => 'Slědowace pola metadatow, kotrež su w tutej zdźělence podate, budu so do do stronow wopisanje wobrazowa zapřijimać, hdyž tabela metadatow je sfałdowana. Druhe so po standardźe njepokazuja.
 * make
 * model
 * datetimeoriginal
@@ -2790,8 +2801,8 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-colorspace'                  => 'Barbny rum',
 'exif-componentsconfiguration'     => 'Woznam kóždeje komponenty',
 'exif-compressedbitsperpixel'      => 'Modus wobrazoweje kompresije',
-'exif-pixelydimension'             => 'Płaćiwa šěrokosć wobraza',
-'exif-pixelxdimension'             => 'Płaćiwa wysokosć wobraza',
+'exif-pixelydimension'             => 'Šěrokosć wobraza',
+'exif-pixelxdimension'             => 'Wysokosć wobraza',
 'exif-usercomment'                 => 'Přispomjenja wužiwarja',
 'exif-relatedsoundfile'            => 'Zwjazana zynkowa dataja',
 'exif-datetimeoriginal'            => 'Datum a čas wutworjenja datow',
@@ -2805,9 +2816,9 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-exposureprogram'             => 'Naswětlenski program',
 'exif-spectralsensitivity'         => 'Spektralna cutliwosć',
 'exif-isospeedratings'             => 'Cutliwosć filma abo sensora (ISO)',
-'exif-shutterspeedvalue'           => 'Naswětlenski čas',
-'exif-aperturevalue'               => 'Zasłona',
-'exif-brightnessvalue'             => 'Swětłosć',
+'exif-shutterspeedvalue'           => 'Čas zasłonoweje zawěrki APEX',
+'exif-aperturevalue'               => 'Zasłonowa šěrokosć APEX',
+'exif-brightnessvalue'             => 'APEX-swětłosć',
 'exif-exposurebiasvalue'           => 'Naswětlenska korektura',
 'exif-maxaperturevalue'            => 'Najwjetša zasłona',
 'exif-subjectdistance'             => 'Zdalenje k předmjetej',
@@ -2869,7 +2880,17 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsareainformation'          => 'Mjeno wobwoda GPS',
 'exif-gpsdatestamp'                => 'Datum GPS',
 'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
+'exif-worldregiondest'             => 'Pokazany swětowy region',
+'exif-countrydest'                 => 'Pokazany kraj',
 'exif-objectname'                  => 'Krótki titul',
+'exif-source'                      => 'Žórło',
+'exif-writer'                      => 'Spisar',
+'exif-languagecode'                => 'Rěč',
+'exif-iimcategory'                 => 'Kategorija',
+'exif-identifier'                  => 'Identfikator',
+'exif-serialnumber'                => 'Serijowe čisło kamery',
+'exif-cameraownername'             => 'Wobsedźer kamery',
+'exif-usageterms'                  => 'Wužiwanske wuměnjenja',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekomprimowany',
@@ -3018,6 +3039,28 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Woprawdźity směr',
 'exif-gpsdirection-m' => 'Magnetiski směr',
+
+'exif-dc-contributor' => 'Sobuskutkowarjo',
+'exif-dc-date'        => 'Datumowe podaća',
+'exif-dc-rights'      => 'Prawa',
+
+'exif-iimcategory-fin' => 'Hospodarstwo a wobchody',
+'exif-iimcategory-edu' => 'Zdźěłanosć',
+'exif-iimcategory-evn' => 'Wobswět',
+'exif-iimcategory-hth' => 'Strowosć',
+'exif-iimcategory-lab' => 'Dźěło',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Nabožina a wěra',
+'exif-iimcategory-sci' => 'Wědomosć a technika',
+'exif-iimcategory-soi' => 'Socialne problemy',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Wójna, konfikty a zběžki',
+'exif-iimcategory-wea' => 'Wjedro',
+
+'exif-urgency-normal' => 'Normalna ($1)',
+'exif-urgency-low'    => 'Niska ($1)',
+'exif-urgency-high'   => 'Wysoka ($1)',
+'exif-urgency-other'  => 'Swójska priorita ($1)',
 
 # External editor support
 'edit-externally'      => 'Dataju z eksternym programom wobdźěłać',

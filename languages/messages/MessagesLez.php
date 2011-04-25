@@ -147,6 +147,7 @@ $messages = array(
 'nstab-main'      => 'Хъувун',
 'nstab-user'      => 'Ишлемишчидин чар',
 'nstab-special'   => 'КьетIен хъувун',
+'nstab-project'   => 'Порекдин чар',
 'nstab-image'     => 'Шикил',
 'nstab-mediawiki' => 'Меслят',
 'nstab-template'  => 'Таблиц',
@@ -225,6 +226,7 @@ $messages = array(
 'searchall'                 => 'вири',
 'powersearch'               => 'Ахтармишун',
 'powersearch-legend'        => 'Ахтармишун',
+'powersearch-redir'         => 'Рахъурхъунар цlарцlел',
 'powersearch-field'         => 'Идаз жагъурун',
 'powersearch-toggleall'     => 'Вири',
 
@@ -292,6 +294,7 @@ $messages = array(
 'filehist-datetime'  => 'Югъ/Заман',
 'filehist-thumb'     => 'Бицlи шикилдал',
 'filehist-user'      => 'Ишлемишчи',
+'imagelinks'         => 'Файлдин цlар',
 
 # File deletion
 'filedelete-comment' => 'Кар',
@@ -359,6 +362,7 @@ $messages = array(
 'rollbacklink' => 'авахьун далу',
 
 # Protect
+'protectlogpage'          => 'Куьмек гунин ктаб',
 'protectcomment'          => 'Кар',
 'protectexpiry'           => 'Алатна',
 'protect-default'         => ' Эхтияр гуз вири ишлемишчийриз',
@@ -386,8 +390,10 @@ $messages = array(
 # What links here
 'whatlinkshere'            => ' Гьихьтин чарар инна аватIа',
 'whatlinkshere-page'       => 'Ишлемишчи',
+'istemplate'               => 'Трансклипция',
 'whatlinkshere-next'       => '{{PLURAL:$1|next|къведай $1}}',
 'whatlinkshere-hideredirs' => '$1 массадал ракъурун',
+'whatlinkshere-filters'    => 'Филтер',
 
 # Block/unblock
 'blockip'      => 'Ишлемишзавайдан хара',
@@ -417,6 +423,7 @@ $messages = array(
 'tooltip-pt-mycontris'           => 'Куьне ктунай пулунин чар',
 'tooltip-pt-login'               => 'Квез буюрзава гьахьиз системадиз; тефейтlани жезва',
 'tooltip-pt-logout'              => 'ЭкъечIун',
+'tooltip-ca-talk'                => 'Эхтилат авун чарчикай',
 'tooltip-ca-edit'                => 'Квевай дегишариз жезва и чар.Ва сифте клигна ахпа хвена кlанда.',
 'tooltip-ca-history'             => 'Эхиремжи жуьреяр и чарчин',
 'tooltip-ca-protect'             => 'Xуьн и хъувун',
@@ -439,6 +446,7 @@ $messages = array(
 'tooltip-t-specialpages'         => 'Цlар вири герек чарfh',
 'tooltip-t-print'                => ' Акъудунин  и чарчин жуьре',
 'tooltip-ca-nstab-main'          => 'Килигун чарче авай кхьинар',
+'tooltip-ca-nstab-project'       => 'Проектин чарчиз килигун',
 'tooltip-save'                   => 'Куьн дегишунар хуьн',
 'tooltip-diff'                   => 'Къалурун,куьне вуч дегишенур авунутlа',
 
@@ -448,6 +456,13 @@ $messages = array(
 
 # Media information
 'file-info-size' => '$1 × $2 пикселар, шикилдин кьадар: $3, MIME жуьре: $4',
+
+# Bad image list
+'bad_image_list' => 'Фармат аквазва и жуьреда:
+
+Са цlар элеметрин(цlарар гатlузавай идлай*).
+Садлагьай рахъурун цlарцlел хьана кlанзава пис файлдал.
+Ва аммай рахъурунар са цlарцlел гьисабзава кьилди,ва чарар,гьина файл цlарцlел фин жеда.',
 
 # Metadata
 'metadata' => 'Мета замана югъ',

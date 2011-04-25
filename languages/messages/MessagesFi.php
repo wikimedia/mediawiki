@@ -803,7 +803,9 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 
 # Special:PasswordReset
 'passwordreset'          => 'Salasanan alustus',
+'passwordreset-legend'   => 'Salasanan vaihto',
 'passwordreset-username' => 'Käyttäjätunnus:',
+'passwordreset-email'    => 'Sähköpostiosoite',
 
 # Edit page toolbar
 'bold_sample'     => 'Lihavoitu teksti',
@@ -3019,6 +3021,9 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 # EXIF attributes
 'exif-compression-1' => 'Pakkaamaton',
 
+'exif-copyrighted-true'  => 'Tekijänoikeuksien alainen',
+'exif-copyrighted-false' => 'Vapaasti käytettävä',
+
 'exif-unknowndate' => 'Tuntematon päiväys',
 
 'exif-orientation-1' => 'Normaali',
@@ -3032,6 +3037,8 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 
 'exif-planarconfiguration-1' => 'kokkaremuoto',
 'exif-planarconfiguration-2' => 'litteämuoto',
+
+'exif-colorspace-65535' => 'Kalibroimaton',
 
 'exif-componentsconfiguration-0' => 'ei ole',
 
@@ -3143,6 +3150,10 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Itäistä pituutta',
 'exif-gpslongitude-w' => 'Läntistä pituutta',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metri|metriä}} merenpinnan yläpuolella',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metri|metriä}} merenpinnan alapuolella',
 
 'exif-gpsstatus-a' => 'Mittaus käynnissä',
 'exif-gpsstatus-v' => 'Ristiinmittaus',

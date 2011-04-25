@@ -687,17 +687,29 @@ Gortozit a-raok klask en-dro.",
 'resetpass-temp-password'   => "Ger-tremen da c'hortoz :",
 
 # Special:PasswordReset
-'passwordreset'              => 'Adderaouekaat ar ger-tremen',
-'passwordreset-text'         => "Leuniañ ar furmskrid-mañ da resev ur postel da zegas soñj deoc'h eus munudoù ho kont.",
-'passwordreset-legend'       => 'Adsevel ar ger-tremen',
-'passwordreset-disabled'     => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Merkit unan eus an tammoù roadennoù dindan}}',
-'passwordreset-username'     => 'Anv implijer :',
-'passwordreset-email'        => 'Postel :',
-'passwordreset-emailtitle'   => 'Munudoù kont war {{SITENAME}}',
-'passwordreset-emailelement' => "Anv implijer :           $1
+'passwordreset'                => 'Adderaouekaat ar ger-tremen',
+'passwordreset-text'           => "Leuniañ ar furmskrid-mañ da resev ur postel da zegas soñj deoc'h eus munudoù ho kont.",
+'passwordreset-legend'         => 'Adsevel ar ger-tremen',
+'passwordreset-disabled'       => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Merkit unan eus an tammoù roadennoù dindan}}',
+'passwordreset-username'       => 'Anv implijer :',
+'passwordreset-email'          => 'Postel :',
+'passwordreset-emailtitle'     => 'Munudoù kont war {{SITENAME}}',
+'passwordreset-emailtext-ip'   => "Unan bennak (c'hwi moarvat gant ar chomlec'h IP $1) en deus goulennet ma vefe degaset soñj dezhañ eus titouroù e gont evit {{SITENAME}} ($4). Emañ liammet {{PLURAL:$3|ar gont implijer|ar c'hontoù implijer}} da-heul gant ar chomlec'h postel-mañ :
+
+$2
+
+Mont a raio da get {{PLURAL:$3|ar ger-tremen da c'hortoz|ar gerioù-tremen da c'hortoz}} a-benn {{PLURAL:$5|un devezh|$5 deiz}}.
+Mat e vefe deoc'h kevreañ ha dibab ur ger-tremen nevez bremañ. Mard eo bet goulennet kement-se gant unan bennak all pe m'hoc'h eus soñj eus ho ker-tremen orin ha mar ne fell ket deoc'h e cheñch ken, na daolit ket evezh ouzh ar gemennadenn-mañ ha dalc'hit d'ober gant ho ker-tremen kozh.",
+'passwordreset-emailtext-user' => "Goulennet en deus an implijer $1 war  {{SITENAME}} e vefe degaset soñj dezhañ eus titouroù e gont evit {{SITENAME}} ($4). Emañ liammet {{PLURAL:$3|ar gont implijer|ar c'hontoù implijer}} da-heul gant ar chomlec'h postel-mañ :
+
+$2
+
+Mont a raio da get {{PLURAL:$3|ar ger-tremen da c'hortoz|ar gerioù-tremen da c'hortoz}} a-benn {{PLURAL:$5|un devezh|$5 deiz}}.
+Mat e vefe deoc'h kevreañ ha dibab ur ger-tremen nevez bremañ. Mard eo bet goulennet kement-se gant unan bennak all pe m'hoc'h eus soñj eus ho ker-tremen orin ha mar ne fell ket deoc'h e cheñch ken, na daolit ket evezh ouzh ar gemennadenn-mañ ha dalc'hit d'ober gant ho ker-tremen kozh.",
+'passwordreset-emailelement'   => "Anv implijer :           $1
 Ger-tremen da c'hortoz : $2",
-'passwordreset-emailsent'    => "Kaset ez eus bet ur postel da zegas soñj deoc'h.",
+'passwordreset-emailsent'      => "Kaset ez eus bet ur postel da zegas soñj deoc'h.",
 
 # Edit page toolbar
 'bold_sample'     => 'Testenn dev',

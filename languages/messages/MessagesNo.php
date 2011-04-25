@@ -359,6 +359,7 @@ $messages = array(
 'listingcontinuesabbrev'         => ' forts.',
 'index-category'                 => 'Indekserte sider',
 'noindex-category'               => 'Ikke-indekserte sider',
+'broken-file-category'           => 'SIder med brutte fillenker',
 
 'mainpagetext'      => "'''MediaWiki-programvaren er nå installert.'''",
 'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
@@ -650,6 +651,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'createaccount'              => 'Opprett konto',
 'gotaccount'                 => "Har du allerede et brukernavn? '''$1'''.",
 'gotaccountlink'             => 'Logg inn',
+'userlogin-resetlink'        => 'Har du glemt påloggingsdetaljene dine?',
 'createaccountmail'          => 'per e-post',
 'createaccountreason'        => 'Årsak:',
 'badretype'                  => 'Passordene samsvarte ikke.',
@@ -734,8 +736,38 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'resetpass-temp-password'   => 'Midlertidig passord:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Passordresetting',
-'passwordreset-username' => 'Brukernavn:',
+'passwordreset'                => 'Passordresetting',
+'passwordreset-text'           => 'Fyll ut dette skjemaet for å motta en påminnelse om kontoopplysningene dine i en e-post.',
+'passwordreset-legend'         => 'Tilbakestill passord',
+'passwordreset-disabled'       => 'Tilbakestilling av passord har blitt deaktivert på denne wikien.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Angi en av datadelene nedenfor}}',
+'passwordreset-username'       => 'Brukernavn:',
+'passwordreset-email'          => 'E-postadresse:',
+'passwordreset-emailtitle'     => 'Kontodetaljer på {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en påminnelse om dine
+kontodetaljer for {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er
+tilknyttet denne e-postadressen:
+
+$2
+
+{{PLURAL:$3|Dette midlertidige passordet|Disse midlertidige passordene}} utløper om {{PLURAL:$5|én dag|$5 dager}}.
+Du bør logge på og velge et nytt passord nå. Dersom noen andre kom med denne
+forespørselen, eller du har kommet på ditt opprinnelige passord, og ikke lenger
+ønsker å endre det, kan du ignorere denne meldingen og fortsette å bruke ditt gamle
+passord.',
+'passwordreset-emailtext-user' => 'Brukeren $1 på {{SITENAME}} ba om en påminnelse om kontodetaljene dine for {{SITENAME}}
+($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er tilknyttet denne e-postadressen:
+
+$2
+
+{{PLURAL:$3|Dette midlertidige passordet|Disse midlertidige passordene}} utløper om {{én dag|$5 dager}}.
+Du bør logge på og velge et nytt passord nå. Dersom noen andre kom med denne
+forespørselen, eller du har kommet på ditt opprinnelige passord, og ikke lenger
+ønsker å endre det, kan du ignorere denne meldingen og fortsette å bruke ditt gamle
+passord.',
+'passwordreset-emailelement'   => 'Brukernavn: $1
+Midlertidig passord: $2',
+'passwordreset-emailsent'      => 'En påminnelse har blitt sendt på e-post.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fet tekst',
@@ -1681,22 +1713,23 @@ Den kan ikke sikkerhetskontrolleres.',
 'uploadstash-refresh'  => 'Oppdater listen over filer',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Ingen tilgang',
-'img-auth-nopathinfo'   => 'PATH_INFO mangler.
+'img-auth-accessdenied'     => 'Ingen tilgang',
+'img-auth-nopathinfo'       => 'PATH_INFO mangler.
 Tjeneren din er ikke satt opp til å gi denne informasjonen.
 Den er kanskje CGI-basert og støtter ikke img_auth.
 Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Den ønskede stien finnes ikke i den oppsatte opplastingsmappa.',
-'img-auth-badtitle'     => 'Kunne ikke lage en gyldig tittel ut fra «$1».',
-'img-auth-nologinnWL'   => 'Du er ikke logget inn, og «$1» er ikke på hvitelista.',
-'img-auth-nofile'       => 'Filen «$1» finnes ikke.',
-'img-auth-isdir'        => 'Du prøver å få tilgang til mappa «$1».
+'img-auth-notindir'         => 'Den ønskede stien finnes ikke i den oppsatte opplastingsmappa.',
+'img-auth-badtitle'         => 'Kunne ikke lage en gyldig tittel ut fra «$1».',
+'img-auth-nologinnWL'       => 'Du er ikke logget inn, og «$1» er ikke på hvitelista.',
+'img-auth-nofile'           => 'Filen «$1» finnes ikke.',
+'img-auth-isdir'            => 'Du prøver å få tilgang til mappa «$1».
 Kun filtilgang tillates.',
-'img-auth-streaming'    => 'Sender «$1».',
-'img-auth-public'       => 'Funksjonen til img_auth.php er å lage filer fra en privat wiki.
+'img-auth-streaming'        => 'Sender «$1».',
+'img-auth-public'           => 'Funksjonen til img_auth.php er å lage filer fra en privat wiki.
 Denne wikien er satt opp som en offentlig wiki.
 For best mulig sikkerhet er img_auth.php slått av.',
-'img-auth-noread'       => 'Brukeren har ikke tilgang til å lese «$1».',
+'img-auth-noread'           => 'Brukeren har ikke tilgang til å lese «$1».',
+'img-auth-bad-query-string' => 'URL-en har en ugyldig spørrestreng.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ugyldig internettadresse: $1',
@@ -2051,6 +2084,7 @@ Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil
 'noemailtext'          => 'Dene brukeren har ikke oppgitt en gyldig e-postadresse.',
 'nowikiemailtitle'     => 'Ingen e-post tillatt',
 'nowikiemailtext'      => 'Denne brukeren har valgt å ikke motta e-post fra andre brukere.',
+'emailnotarget'        => 'Ikke-eksisterende eller ugyldig brukernavn for mottaker.',
 'emailtarget'          => 'Skriv inn brukernavnet på mottakeren',
 'emailusername'        => 'Brukernavn:',
 'emailusernamesubmit'  => 'Send',
@@ -3032,8 +3066,50 @@ Andre vil skjules som standard.
 'exif-gpsareainformation'          => 'Navn på GPS-område',
 'exif-gpsdatestamp'                => 'GPS-dato',
 'exif-gpsdifferential'             => 'Differentiell GPS-korreksjon',
+'exif-jpegfilecomment'             => 'JPEG-filkommentar',
 'exif-keywords'                    => 'Nøkkelord',
+'exif-worldregioncreated'          => 'Verdensregionen som bildet ble tatt i',
+'exif-countrycreated'              => 'Landet som bildet ble tatt i',
+'exif-countrycodecreated'          => 'Landskoden som bildet ble tatt i',
+'exif-provinceorstatecreated'      => 'Provinsen eller delstaten som bildet ble tatt i',
+'exif-citycreated'                 => 'Byen som bildet ble tatt i',
+'exif-sublocationcreated'          => 'Bydelen som bildet ble tatt i',
+'exif-worldregiondest'             => 'Verdensregionen vises',
+'exif-countrydest'                 => 'Landet vises',
+'exif-countrycodedest'             => 'Landskoden vises',
+'exif-provinceorstatedest'         => 'Provinsen eller delstaten vises',
+'exif-citydest'                    => 'Byen vises',
+'exif-sublocationdest'             => 'Bydelen vises',
 'exif-objectname'                  => 'Kort tittel',
+'exif-specialinstructions'         => 'Spesielle instruksjoner',
+'exif-headline'                    => 'Overskrift',
+'exif-source'                      => 'Kilde',
+'exif-editstatus'                  => 'Bildets redaksjonelle status',
+'exif-locationdest'                => 'Avbildet plass',
+'exif-locationdestcode'            => 'Avbildet plasseringskode',
+'exif-objectcycle'                 => 'Tid på dagen mediet er ment for',
+'exif-contact'                     => 'Kontaktinformasjon',
+'exif-writer'                      => 'Forfatter',
+'exif-languagecode'                => 'Språk',
+'exif-iimversion'                  => 'IIM-versjon',
+'exif-iimcategory'                 => 'Kategori',
+'exif-iimsupplementalcategory'     => 'Tilleggskategorier',
+'exif-datetimeexpires'             => 'Ikke bruk etter',
+'exif-datetimereleased'            => 'Utgitt den',
+'exif-identifier'                  => 'Identifikator',
+'exif-lens'                        => 'Objektiv',
+'exif-serialnumber'                => 'Kameraets serienummer',
+'exif-cameraownername'             => 'Kameraets eier',
+'exif-label'                       => 'Etikett',
+'exif-datetimemetadata'            => 'Dato metadata sist ble endret',
+'exif-nickname'                    => 'Bildets uformelle navn',
+'exif-rating'                      => 'Vurdering (av 5)',
+'exif-morepermissionsurl'          => 'Alternativ lisensieringsinformasjon',
+'exif-pngfilecomment'              => 'PNG-filkommentar',
+'exif-giffilecomment'              => 'GIF-filkommentar',
+'exif-event'                       => 'Avbildet hendelse',
+'exif-organisationinimage'         => 'Avbildet organisasjon',
+'exif-personinimage'               => 'Avbildet person',
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
@@ -3053,6 +3129,8 @@ Rotert 90° mot klokka og vridd vertikalt',
 
 'exif-planarconfiguration-1' => 'chunkformat',
 'exif-planarconfiguration-2' => 'planærformat',
+
+'exif-colorspace-65535' => 'Ukalibrert',
 
 'exif-componentsconfiguration-0' => 'finnes ikke',
 
@@ -3117,6 +3195,8 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-sensingmethod-7' => 'Trilineær sensor',
 'exif-sensingmethod-8' => 'Fargesekvensiell linær sensor',
 
+'exif-filesource-3' => 'Digitalt stillbildekamera',
+
 'exif-scenetype-1' => 'Direktefotografert bilde',
 
 'exif-customrendered-0' => 'Normal prosess',
@@ -3165,6 +3245,10 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-gpslongitude-e' => 'Østlig lengdegrad',
 'exif-gpslongitude-w' => 'Vestlig lengdegrad',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '{{PLURAL:$1|Én|$1}} meter over havet',
+'exif-gpsaltitude-below-sealevel' => '{{PLURAL:$1|Én|$1}} meter under havet',
+
 'exif-gpsstatus-a' => 'Måling pågår',
 'exif-gpsstatus-v' => 'Målingsinteroperabilitet',
 
@@ -3181,9 +3265,54 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Nautiske mil',
 
+'exif-gpsdop-excellent' => 'Utmerket ($1)',
+'exif-gpsdop-good'      => 'God ($1)',
+'exif-gpsdop-moderate'  => 'Moderat ($1)',
+'exif-gpsdop-fair'      => 'Middelmådig ($1)',
+'exif-gpsdop-poor'      => 'Dårlig ($1)',
+
+'exif-objectcycle-a' => 'Kun morgen',
+'exif-objectcycle-p' => 'Kun kveld',
+'exif-objectcycle-b' => 'Både morgen og kveld',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Sann retning',
 'exif-gpsdirection-m' => 'Magnetisk retning',
+
+'exif-dc-contributor' => 'Bidragsytere',
+'exif-dc-date'        => 'Dato(er)',
+'exif-dc-publisher'   => 'Utgiver',
+'exif-dc-relation'    => 'Relaterte media',
+'exif-dc-rights'      => 'Rettigheter',
+'exif-dc-source'      => 'Mediakilde',
+'exif-dc-type'        => 'Mediatype',
+
+'exif-rating-rejected' => 'Avvist',
+
+'exif-isospeedratings-overflow' => 'Større enn 65535',
+
+'exif-iimcategory-ace' => 'Kunst, kultur og underholdning',
+'exif-iimcategory-clj' => 'Kriminalitet og jura',
+'exif-iimcategory-dis' => 'Katastrofer og ulykker',
+'exif-iimcategory-fin' => 'Økonomi og næringsliv',
+'exif-iimcategory-edu' => 'Utdanning',
+'exif-iimcategory-evn' => 'Miljø',
+'exif-iimcategory-hth' => 'Helse',
+'exif-iimcategory-hum' => 'Menneskelig interesse',
+'exif-iimcategory-lab' => 'Arbeidskraft',
+'exif-iimcategory-lif' => 'Livsstil og fritid',
+'exif-iimcategory-pol' => 'Politikk',
+'exif-iimcategory-rel' => 'Religion og livssyn',
+'exif-iimcategory-sci' => 'Vitenskap og teknologi',
+'exif-iimcategory-soi' => 'Sosiale problemer',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Krig, konflikt og uro',
+'exif-iimcategory-wea' => 'Vær',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Lav ($1)',
+'exif-urgency-high'   => 'Høy ($1)',
+'exif-urgency-other'  => 'Brukerdefinert prioritet ($1)',
 
 # External editor support
 'edit-externally'      => 'Rediger denne filen med et eksternt program',

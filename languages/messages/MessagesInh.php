@@ -370,6 +370,7 @@ $messages = array(
 'revertmerge' => ' Декъа',
 
 # Diffs
+'history-title'           => '"$1" хувцамий искар',
 'lineno'                  => 'МугI $1:',
 'compareselectedversions' => 'Хьаржа доржамаша тарона тIа хьажа',
 'editundo'                => 'белгалдаккха',
@@ -485,18 +486,19 @@ $messages = array(
 'upload' => 'Паьл чуяккха',
 
 # File description page
-'file-anchor-link'    => 'Паьл',
-'filehist'            => 'Паьла искар',
-'filehist-current'    => 'xIанзара',
-'filehist-datetime'   => 'Дентаьрахь/Ха',
-'filehist-thumb'      => 'ЗIамигасуртанче',
-'filehist-user'       => 'Дакъалаьцархо',
-'filehist-dimensions' => 'ХIамана дустам',
-'filehist-filesize'   => 'Паьла юстарал',
-'filehist-comment'    => 'ХIамоалар',
-'filehist-missing'    => 'Паьла йоацаш я',
-'imagelinks'          => 'Паьла Iинкаш',
-'sharedupload'        => 'Ер паьла $1чера я, кхыча хьахьоадайтамча хьахайраде йийшайолаш я.',
+'file-anchor-link'          => 'Паьл',
+'filehist'                  => 'Паьла искар',
+'filehist-current'          => 'xIанзара',
+'filehist-datetime'         => 'Дентаьрахь/Ха',
+'filehist-thumb'            => 'ЗIамигасуртанче',
+'filehist-user'             => 'Дакъалаьцархо',
+'filehist-dimensions'       => 'ХIамана дустам',
+'filehist-filesize'         => 'Паьла юстарал',
+'filehist-comment'          => 'ХIамоалар',
+'filehist-missing'          => 'Паьла йоацаш я',
+'imagelinks'                => 'Паьла Iинкаш',
+'sharedupload'              => 'Ер паьла $1чера я, кхыча хьахьоадайтамча хьахайраде йийшайолаш я.',
+'uploadnewversion-linktext' => 'Укх паьлий керда бIаса чуяккха',
 
 # File reversion
 'filerevert-comment' => 'Бахьан:',
@@ -533,6 +535,7 @@ $messages = array(
 
 # Special:AllPages
 'allpages'       => 'Еррига оагIувнаш',
+'prevpage'       => '($1) хьалхара оагIув',
 'allarticles'    => 'Еррига оагIувнаш',
 'allpagessubmit' => 'Кхоачашде',
 
@@ -545,6 +548,9 @@ $messages = array(
 
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Керда дакъалаьцархо',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(тоабий дагарче)',
 
 # E-mail user
 'emailuser' => 'Дакъалаьцархочоа Д-фошт:',
@@ -569,6 +575,8 @@ $messages = array(
 # Delete
 'deletepage'            => 'ОагIув дIаяккха',
 'actioncomplete'        => 'Дулархам баьб',
+'deletedtext'           => '"<nowiki>$1</nowiki>" дIаяккха хиннай.
+ТIехьара дIадаьккха дагарчена хьожаргволаш/хьожаргьйолаш, $2 хьажа.',
 'deletedarticle'        => ' "[[$1]]" дIадаьккхад',
 'dellogpage'            => 'ДIадаккхара тептар',
 'deletecomment'         => 'Бахьан:',
@@ -650,6 +658,12 @@ $messages = array(
 
 # Move page
 'move-page-legend' => 'ОагIува цIи хувца',
+'movepagetalktext' => "ТIатеха дувцама оагIув, ший лоIамахь цIи хувлургья, '''ер дага а доацар, доаца:'''
+
+*Изза мо цIи йолаш яьсса дувцама оагIув я е
+*Оаш кIалхахь белгало даьдац.
+
+Из иштта дале, кулги новкъосталца оагIувнаш вIашагIатоха  е дIадехьаяккха деза шун.",
 'movearticle'      => 'ОагIува цIи хувца',
 'newtitle'         => 'Керда цIи',
 'move-watch'       => 'Ер оагIув теркама дагаршкахь чуяккха',

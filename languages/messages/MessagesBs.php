@@ -403,6 +403,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'nast.',
 'index-category'                 => 'Indeksirane stranice',
 'noindex-category'               => 'Neindeksirane stranice',
+'broken-file-category'           => 'Stranice sa neispravnim linkovima do datoteka',
 
 'mainpagetext'      => "'''MediaViki softver is uspješno instaliran.'''",
 'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
@@ -533,7 +534,7 @@ $1',
 'policy-url'           => 'Project:Pravila',
 'portal'               => 'Portal zajednice',
 'portal-url'           => 'Project:Portal_zajednice',
-'privacy'              => 'Pravila o anonimnosti',
+'privacy'              => 'Politika privatnosti',
 'privacypage'          => 'Project:Pravila o anonimnosti',
 
 'badaccess'        => 'Greška pri odobrenju',
@@ -699,6 +700,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'createaccount'              => 'Napravi nalog',
 'gotaccount'                 => "Imate nalog? '''$1'''.",
 'gotaccountlink'             => 'Prijavi se',
+'userlogin-resetlink'        => 'Zaboravili ste detalje vaše prijave?',
 'createaccountmail'          => 'e-poštom',
 'createaccountreason'        => 'Razlog:',
 'badretype'                  => 'Šifre koje ste unijeli se ne poklapaju.',
@@ -787,6 +789,17 @@ Da biste završili prijavu, morate unijeti novu šifru ovdje:',
 'resetpass-wrong-oldpass'   => 'Privremena ili trenutna šifra nije validna.
 Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privremenu šifru.',
 'resetpass-temp-password'   => 'Privremena šifra:',
+
+# Special:PasswordReset
+'passwordreset'              => 'Poništavanje šifre',
+'passwordreset-text'         => 'Ispunite ovaj obrazac da biste dobili e-mail podsjetnik o vašim detaljima računa.',
+'passwordreset-legend'       => 'Poništi šifru',
+'passwordreset-username'     => 'Korisničko ime:',
+'passwordreset-email'        => 'E-mail adresa:',
+'passwordreset-emailtitle'   => 'Detalji računa na {{SITENAME}}',
+'passwordreset-emailelement' => 'Korisničko ime: $1
+Privremena šifra: $2',
+'passwordreset-emailsent'    => 'E-mail podsjetnik je poslan.',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljan tekst',
@@ -3174,11 +3187,14 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-editstatus'                  => 'Urednički status slike',
 'exif-urgency'                     => 'Hitnost',
 'exif-fixtureidentifier'           => 'Naziv rubrike',
+'exif-contact'                     => 'Podaci za kontakt',
 'exif-writer'                      => 'Pisac',
 'exif-languagecode'                => 'Jezik',
+'exif-iimversion'                  => 'IIM verzija',
 'exif-iimcategory'                 => 'Kategorija',
 'exif-identifier'                  => 'Oznaka',
 'exif-lens'                        => 'Korišteni objektiv',
+'exif-cameraownername'             => 'Vlasnik fotoaparata',
 'exif-label'                       => 'Naslov',
 
 # EXIF attributes
