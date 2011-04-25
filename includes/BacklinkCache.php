@@ -114,7 +114,7 @@ class BacklinkCache {
 	 * @param $table String
 	 * @param $startId Integer or false
 	 * @param $endId Integer or false
-	 * @return TitleArray
+	 * @return TitleArrayFromResult
 	 */
 	public function getLinks( $table, $startId = false, $endId = false ) {
 		wfProfileIn( __METHOD__ );
@@ -272,7 +272,6 @@ class BacklinkCache {
 		$this->partitionCache[$table][$batchSize] = false;
 		$cacheEntry =& $this->partitionCache[$table][$batchSize];
 
-
 		// 2) try full result cache
 
 		if ( isset( $this->fullResultCache[$table] ) ) {
@@ -281,7 +280,6 @@ class BacklinkCache {
 
 			return $cacheEntry['batches'];
 		}
-
 
 		// 3) ... fallback to memcached ...
 
@@ -317,7 +315,7 @@ class BacklinkCache {
 
 	/**
 	 * Partition a DB result with backlinks in it into batches
-	 * @param $res database result
+	 * @param $res ResultWrapper database result
 	 * @param $batchSize integer
 	 * @return array @see 
 	 */

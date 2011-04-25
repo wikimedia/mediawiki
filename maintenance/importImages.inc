@@ -54,7 +54,7 @@ function findFiles( $dir, $exts ) {
 /**
  * Split a filename into filename and extension
  *
- * @param $filename Filename
+ * @param $filename string Filename
  * @return array
  */
 function splitFilename( $filename ) {

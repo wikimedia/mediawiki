@@ -69,7 +69,9 @@ class HTMLFileCache {
 	}
 
 	public function isFileCached() {
-		if( $this->mType === false ) return false;
+		if( $this->mType === false ) {
+			return false;
+		}
 		return file_exists( $this->fileCacheName() );
 	}
 
@@ -83,20 +85,28 @@ class HTMLFileCache {
 	 */
 	public static function useFileCache() {
 		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest, $wgLang, $wgContLang;
-		if( !$wgUseFileCache ) return false;
+		if( !$wgUseFileCache ) {
+			return false;
+		}
 		// Get all query values
 		$queryVals = $wgRequest->getValues();
 		foreach( $queryVals as $query => $val ) {
-			if( $query == 'title' || $query == 'curid' ) continue;
+			if( $query == 'title' || $query == 'curid' ) {
+				continue;
+			}
 			// Normal page view in query form can have action=view.
 			// Raw hits for pages also stored, like .css pages for example.
-			else if( $query == 'action' && ($val == 'view' || $val == 'raw') ) continue;
-			else if( $query == 'usemsgcache' && $val == 'yes' ) continue;
-			// Below are header setting params
-			else if( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' )
+			else if( $query == 'action' && ($val == 'view' || $val == 'raw') ) {
 				continue;
-			else
+			} else if( $query == 'usemsgcache' && $val == 'yes' ) {
+				continue;
+			}
+			// Below are header setting params
+			else if( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' ) {
+				continue;
+			} else {
 				return false;
+			}
 		}
 		// Check for non-standard user language; this covers uselang,
 		// and extensions for auto-detecting user language.
@@ -113,7 +123,9 @@ class HTMLFileCache {
 	public function isFileCacheGood( $timestamp = '' ) {
 		global $wgCacheEpoch;
 
-		if( !$this->isFileCached() ) return false;
+		if( !$this->isFileCached() ) {
+			return false;
+		}
 
 		$cachetime = $this->fileCacheTime();
 		$good = $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime;
