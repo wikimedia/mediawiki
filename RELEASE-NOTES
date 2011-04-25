@@ -242,6 +242,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 13172) Array type exif data (like GPS) was not being extracted from images.
 * (bug 28532) wfMsgExt() and wfMsgWikiHtml() use $wgOut->parse()
 * (bug 16129) Transcluded special pages expose strip markers when they output parsed messages
+* (bug 27249) "Installed software" table in Special:Version should always be left-to-right
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

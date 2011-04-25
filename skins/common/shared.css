@@ -671,3 +671,10 @@ th.headerSortUp {
 th.headerSortDown { 
 	background-image: url(images/sort_down.gif); 
 }
+
+/* Special:Version */
+#sv-software td {
+	/* version numbers are always ltr (and otherwise an RLE can be inserted) */
+	/* @noflip */
+	direction: ltr;
+}
