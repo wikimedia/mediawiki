@@ -455,6 +455,10 @@ return array(
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
 	),
+	'mediawiki.special.movePage' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
+		'dependencies' => 'jquery.byteLimit',
+	),
 	'mediawiki.special.upload' => array(
 		// @TODO: merge in remainder of mediawiki.legacy.upload
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',
@@ -586,7 +590,10 @@ return array(
 		'scripts' => 'common/protect.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'dependencies' => 'mediawiki.legacy.wikibits',
+		'dependencies' => array(
+			'mediawiki.legacy.wikibits',
+			'jquery.byteLimit',
+		),
 	),
 	'mediawiki.legacy.search' => array(
 		'scripts' => 'common/search.js',

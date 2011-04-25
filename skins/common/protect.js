@@ -45,6 +45,8 @@ window.ProtectionForm = {
 			check.checked = !this.areAllTypesMatching();
 			this.enableUnchainedInputs( check.checked );
 		}
+		
+		$( '#mwProtect-reason' ).byteLimit( 180 );
 
 		this.updateCascadeCheckbox();
 
