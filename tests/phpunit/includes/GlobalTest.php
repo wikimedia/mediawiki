@@ -2,19 +2,22 @@
 
 class GlobalTest extends MediaWikiTestCase {
 	function setUp() {
-		global $wgReadOnlyFile, $wgContLang, $wgLang;
+		global $wgReadOnlyFile, $wgContLang, $wgLang, $wgUrlProtocols;
 		$this->originals['wgReadOnlyFile'] = $wgReadOnlyFile;
+		$this->originals['wgUrlProtocols'] = $wgUrlProtocols;
 		$wgReadOnlyFile = tempnam( wfTempDir(), "mwtest_readonly" );
+		$wgUrlProtocols[] = 'file://';
 		unlink( $wgReadOnlyFile );
 		$wgContLang = $wgLang = Language::factory( 'en' );
 	}
 
 	function tearDown() {
-		global $wgReadOnlyFile;
+		global $wgReadOnlyFile, $wgUrlProtocols;
 		if ( file_exists( $wgReadOnlyFile ) ) {
 			unlink( $wgReadOnlyFile );
 		}
 		$wgReadOnlyFile = $this->originals['wgReadOnlyFile'];
+		$wgUrlProtocols = $this->originals['wgUrlProtocols'];
 	}
 
 	/** @dataProvider provideForWfArrayDiff2 */
@@ -813,6 +816,54 @@ class GlobalTest extends MediaWikiTestCase {
 			array( 'Fr', 'fr' ),  # France
 			array( 'va', 'va' ),  # Holy See (Vatican City State)
 		 */);
+	}
+
+	/**
+	 * @dataProvider provideMakeUrlIndex()
+	 */
+	function testMakeUrlIndex( $url, $expected ) {
+		$index = wfMakeUrlIndex( $url );
+		$this->assertEquals( $expected, $index, "wfMakeUrlIndex(\"$url\")" );
+	}
+
+	function provideMakeUrlIndex() {
+		return array(
+			array(
+				// just a regular :)
+				'https://bugzilla.wikimedia.org/show_bug.cgi?id=28627',
+				'https://org.wikimedia.bugzilla./show_bug.cgi?id=28627'
+			),
+			array(
+				// mailtos are handled special
+				// is this really right though? that final . probably belongs earlier?
+				'mailto:wiki@wikimedia.org',
+				'mailto:org.wikimedia@wiki.',
+			),
+
+			// file URL cases per bug 28627...
+			array(
+				// three slashes: local filesystem path Unix-style
+				'file:///whatever/you/like.txt',
+				'file://./whatever/you/like.txt'
+			),
+			array(
+				// three slashes: local filesystem path Windows-style
+				'file:///c:/whatever/you/like.txt',
+				'file://./c:/whatever/you/like.txt'
+			),
+			array(
+				// two slashes: UNC filesystem path Windows-style
+				'file://intranet/whatever/you/like.txt',
+				'file://intranet./whatever/you/like.txt'
+			),
+			// Multiple-slash cases that can sorta work on Mozilla
+			// if you hack it just right are kinda pathological,
+			// and unreliable cross-platform or on IE which means they're
+			// unlikely to appear on intranets.
+			//
+			// Those will survive the algorithm but with results that
+			// are less consistent.
+		);
 	}
 
 	/* TODO: many more! */
