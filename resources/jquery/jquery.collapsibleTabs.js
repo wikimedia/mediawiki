@@ -49,7 +49,7 @@
 		},
 		addData: function( $collapsible ) {
 			var $settings = $collapsible.parent().data( 'collapsibleTabsSettings' );
-			if ( typeof $settings != 'undefined' ) {
+			if ( $settings != null ) {
 				$collapsible.data( 'collapsibleTabsSettings', {
 					'expandedContainer': $settings.expandedContainer,
 					'collapsedContainer': $settings.collapsedContainer,
