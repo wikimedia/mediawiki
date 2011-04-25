@@ -15,7 +15,7 @@ function wfGetForwardedFor() {
 	$apacheHeaders = function_exists( 'apache_request_headers' ) ? apache_request_headers() : null;
 	if( is_array( $apacheHeaders ) ) {
 		// More reliable than $_SERVER due to case and -/_ folding
-		$set = array ();
+		$set = array();
 		foreach ( $apacheHeaders as $tempName => $tempValue ) {
 			$set[ strtoupper( $tempName ) ] = $tempValue;
 		}
@@ -46,7 +46,7 @@ function wfGetForwardedFor() {
 function wfGetAgent() {
 	if( function_exists( 'apache_request_headers' ) ) {
 		// More reliable than $_SERVER due to case and -/_ folding
-		$set = array ();
+		$set = array();
 		foreach ( apache_request_headers() as $tempName => $tempValue ) {
 			$set[ strtoupper( $tempName ) ] = $tempValue;
 		}
@@ -134,13 +134,8 @@ function wfGetIP() {
 function wfIsTrustedProxy( $ip ) {
 	global $wgSquidServers, $wgSquidServersNoPurge;
 
-	if ( in_array( $ip, $wgSquidServers ) ||
-		in_array( $ip, $wgSquidServersNoPurge )
-	) {
-		$trusted = true;
-	} else {
-		$trusted = false;
-	}
+	$trusted = in_array( $ip, $wgSquidServers ) ||
+		in_array( $ip, $wgSquidServersNoPurge );
 	wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
 	return $trusted;
 }

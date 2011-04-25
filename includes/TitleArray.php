@@ -14,7 +14,7 @@ abstract class TitleArray implements Iterator {
 	 * @param $res result A MySQL result including at least page_namespace and
 	 *   page_title -- also can have page_id, page_len, page_is_redirect,
 	 *   page_latest (if those will be used).  See Title::newFromRow.
-	 * @return TitleArray
+	 * @return TitleArrayFromResult
 	 */
 	static function newFromResult( $res ) {
 		$array = null;
@@ -27,6 +27,10 @@ abstract class TitleArray implements Iterator {
 		return $array;
 	}
 
+	/**
+	 * @param $res
+	 * @return TitleArrayFromResult
+	 */
 	protected static function newFromResult_internal( $res ) {
 		$array = new TitleArrayFromResult( $res );
 		return $array;

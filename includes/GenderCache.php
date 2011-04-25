@@ -91,7 +91,9 @@ class GenderCache {
 	 * @param $caller String: the calling method
 	 */
 	public function doQuery( $users, $caller = '' ) {
-		if ( count( $users ) === 0 ) return false;
+		if ( count( $users ) === 0 ) {
+			return false;
+		}
 
 		foreach ( (array) $users as $index => $value ) {
 			$users[$index] = strtr( $value, '_', ' ' );
