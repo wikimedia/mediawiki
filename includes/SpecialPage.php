@@ -27,7 +27,7 @@
  * page list.
  * @ingroup SpecialPage
  */
-class SpecialPage extends ContextSource {
+class SpecialPage {
 
 	// The canonical name of this special page
 	// Also used for the default <h1> heading, @see getDescription()
@@ -572,6 +572,16 @@ class SpecialPage extends ContextSource {
 	function getTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
 	}
+	
+	/**
+	 * Sets the context this SpecialPage is executed in
+	 * 
+	 * @param $context RequestContext
+	 * @since 1.18
+	 */
+	public function setContext( $context ) {
+		$this->mContext = $context;
+	}
 
 	/**
 	 * Gets the context this SpecialPage is executed in
@@ -580,12 +590,52 @@ class SpecialPage extends ContextSource {
 	 * @since 1.18
 	 */
 	public function getContext() {
-		if ( parent::getContext() instanceof RequestContext ) {
-			return parent::getContext();
+		if ( $this->mContext instanceof RequestContext ) {
+			return $this->mContext;
 		} else {
 			wfDebug( __METHOD__ . " called and \$mContext is null. Return RequestContext::getMain(); for sanity\n" );
 			return RequestContext::getMain();
 		}
+	}
+
+	/**
+	 * Get the WebRequest being used for this instance
+	 *
+	 * @return WebRequest
+	 * @since 1.18
+	 */
+	public function getRequest() {
+		return $this->getContext()->getRequest();
+	}
+
+	/**
+	 * Get the OutputPage being used for this instance
+	 *
+	 * @return OutputPage
+	 * @since 1.18
+	 */
+	public function getOutput() {
+		return $this->getContext()->getOutput();
+	}
+
+	/**
+	 * Shortcut to get the skin being used for this instance
+	 *
+	 * @return User
+	 * @since 1.18
+	 */
+	public function getUser() {
+		return $this->getContext()->getUser();
+	}
+
+	/**
+	 * Shortcut to get the skin being used for this instance
+	 *
+	 * @return Skin
+	 * @since 1.18
+	 */
+	public function getSkin() {
+		return $this->getContext()->getSkin();
 	}
 
 	/**
