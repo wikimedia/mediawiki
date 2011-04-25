@@ -186,7 +186,7 @@ class Revision {
 	 * Given a set of conditions, fetch a revision from
 	 * the given database connection.
 	 *
-	 * @param $db Database
+	 * @param $db DatabaseBase
 	 * @param $conditions Array
 	 * @return Revision or null
 	 */
@@ -226,7 +226,7 @@ class Revision {
 	 * which will return matching database rows with the
 	 * fields necessary to build Revision objects.
 	 *
-	 * @param $db Database
+	 * @param $db DatabaseBase
 	 * @param $conditions Array
 	 * @return ResultWrapper
 	 */
@@ -587,7 +587,6 @@ class Revision {
 	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *      Revision::RAW              get the text regardless of permissions
 	 *
-	 *
 	 * @return String
 	 */
 	public function getText( $audience = self::FOR_PUBLIC ) {
@@ -607,7 +606,7 @@ class Revision {
 	 * @return String
 	 */
 	public function revText() {
-		wfDeprecated();
+		wfDeprecated( __METHOD__ );
 		return $this->getText( self::FOR_THIS_USER );
 	}
 
@@ -942,7 +941,7 @@ class Revision {
 	 * @param $pageId Integer: ID number of the page to read from
 	 * @param $summary String: revision's summary
 	 * @param $minor Boolean: whether the revision should be considered as minor
-	 * @return Mixed: Revision, or null on error
+	 * @return Revision|null on error
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor ) {
 		wfProfileIn( __METHOD__ );
