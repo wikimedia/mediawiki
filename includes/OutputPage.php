@@ -18,7 +18,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  *
  * @todo document
  */
-class OutputPage {
+class OutputPage extends ContextSource {
 	/// Should be private. Used with addMeta() which adds <meta>
 	var $mMetatags = array();
 
@@ -220,11 +220,13 @@ class OutputPage {
 	 * a OutputPage tied to that context.
 	 */
 	function __construct( RequestContext $context = null ) {
-		if ( !isset($context) ) {
+		if ( $context === null ) {
 			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
 			wfDeprecated( __METHOD__ );
+			$this->setContext( RequestContext::getMain() );
+		} else {
+			$this->setContext( $context );
 		}
-		$this->mContext = $context;
 	}
 
 	/**
@@ -764,64 +766,12 @@ class OutputPage {
 	}
 
 	/**
-	 * Get the RequestContext used in this instance
-	 *
-	 * @return RequestContext
-	 */
-	private function getContext() {
-		if ( !isset($this->mContext) ) {
-			wfDebug( __METHOD__ . " called and \$mContext is null. Using RequestContext::getMain(); for sanity\n" );
-			$this->mContext = RequestContext::getMain();
-		}
-		return $this->mContext;
-	}
-
-	/**
-	 * Get the WebRequest being used for this instance
-	 *
-	 * @return WebRequest
-	 * @since 1.18
-	 */
-	public function getRequest() {
-		return $this->getContext()->getRequest();
-	}
-
-	/**
 	 * Set the Title object to use
 	 *
 	 * @param $t Title object
 	 */
 	public function setTitle( $t ) {
 		$this->getContext()->setTitle( $t );
-	}
-
-	/**
-	 * Get the Title object used in this instance
-	 *
-	 * @return Title
-	 */
-	public function getTitle() {
-		return $this->getContext()->getTitle();
-	}
-
-	/**
-	 * Get the User object used in this instance
-	 *
-	 * @return User
-	 * @since 1.18
-	 */
-	public function getUser() {
-		return $this->getContext()->getUser();
-	}
-
-	/**
-	 * Get the Skin object used to render this instance
-	 *
-	 * @return Skin
-	 * @since 1.18
-	 */
-	public function getSkin() {
-		return $this->getContext()->getSkin();
 	}
 
 	/**
@@ -2177,7 +2127,7 @@ class OutputPage {
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
 			$wrap = Html::rawElement( 'div', array( 'class' => "mw-{$message}" ), "\n$1\n" );
-			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getContext()->getLang()->formatNum( $lag ) ) );
+			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getLang()->formatNum( $lag ) ) );
 		}
 	}
 
@@ -2323,7 +2273,7 @@ class OutputPage {
 		$dir = wfUILang()->getDir();
 		$bodyAttrs['class'] = "mediawiki $dir";
 
-		if ( $this->getContext()->getLang()->capitalizeAllNouns() ) {
+		if ( $this->getLang()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
 			$bodyAttrs['class'] .= ' capitalize-all-nouns';
 		}

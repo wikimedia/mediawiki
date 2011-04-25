@@ -23,15 +23,11 @@
  *
  * @file
  */
-abstract class Action {
+abstract class Action extends ContextSource {
 
 	// Page on which we're performing the action
 	// @var Article
 	protected $page;
-
-	// RequestContext if specified; otherwise we'll use the Context from the Page
-	// @var RequestContext
-	protected $context;
 
 	// The fields used to create the HTMLForm
 	// @var Array
@@ -91,76 +87,13 @@ abstract class Action {
 	}
 
 	/**
-	 * Get the RequestContext in use here
-	 * @return RequestContext
-	 */
-	protected final function getContext() {
-		if ( $this->context instanceof RequestContext ) {
-			return $this->context;
-		}
-		return $this->page->getContext();
-	}
-
-	/**
-	 * Get the WebRequest being used for this instance
-	 *
-	 * @return WebRequest
-	 */
-	protected final function getRequest() {
-		return $this->getContext()->request;
-	}
-
-	/**
-	 * Get the OutputPage being used for this instance
-	 *
-	 * @return OutputPage
-	 */
-	protected final function getOutput() {
-		return $this->getContext()->output;
-	}
-
-	/**
-	 * Shortcut to get the User being used for this instance
-	 *
-	 * @return User
-	 */
-	protected final function getUser() {
-		return $this->getContext()->user;
-	}
-
-	/**
-	 * Shortcut to get the Skin being used for this instance
-	 *
-	 * @return Skin
-	 */
-	protected final function getSkin() {
-		return $this->getContext()->skin;
-	}
-
-	/**
-	 * Shortcut to get the user Language being used for this instance
-	 *
-	 * @return Skin
-	 */
-	protected final function getLang() {
-		return $this->getContext()->lang;
-	}
-
-	/**
-	 * Shortcut to get the Title object from the page
-	 * @return Title
-	 */
-	protected final function getTitle() {
-		return $this->page->getTitle();
-	}
-
-	/**
 	 * Protected constructor: use Action::factory( $action, $page ) to actually build
 	 * these things in the real world
 	 * @param Article $page
 	 */
 	protected function __construct( Article $page ) {
 		$this->page = $page;
+		$this->setContext( $page->getContext() );
 	}
 
 	/**
@@ -349,7 +282,7 @@ abstract class FormAction extends Action {
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
-			$this->context = clone $this->page->getContext();
+			$this->setContext( clone $this->page->getContext() );
 
 			// This will throw exceptions if there's a problem
 			$this->checkCanExecute( $this->getUser() );
@@ -431,10 +364,11 @@ abstract class FormlessAction extends Action {
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
-			$this->context = clone $this->page->getContext();
+			$context = clone $this->page->getContext();
 			if ( is_array( $data ) ) {
-				$this->context->setRequest( new FauxRequest( $data, false ) );
+				$context->setRequest( new FauxRequest( $data, false ) );
 			}
+			$this->setContext( $context );
 
 			// This will throw exceptions if there's a problem
 			$this->checkCanExecute( $this->getUser() );
