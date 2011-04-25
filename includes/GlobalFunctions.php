@@ -2946,7 +2946,8 @@ function wfSetupSession( $sessionId = false ) {
 			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
 	if( $wgSessionsInMemcached ) {
 		if ( !defined( 'MW_COMPILED' ) ) {
-			require_once( 'MemcachedSessions.php' );
+			global $IP;
+			require_once( "$IP/includes/cache/MemcachedSessions.php" );
 		}
 		session_set_save_handler( 'memsess_open', 'memsess_close', 'memsess_read', 
 			'memsess_write', 'memsess_destroy', 'memsess_gc' );
