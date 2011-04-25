@@ -139,6 +139,8 @@ class SquidPurgeClient {
 
 	/**
 	 * Queue a purge operation
+	 *
+	 * @param $url string
 	 */
 	public function queuePurge( $url ) {
 		$url = str_replace( "\n", '', $url );
@@ -151,6 +153,9 @@ class SquidPurgeClient {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isIdle() {
 		return strlen( $this->writeBuffer ) == 0 && $this->readState == 'idle';
 	}

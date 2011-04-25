@@ -13,6 +13,10 @@
 abstract class CdbReader {
 	/**
 	 * Open a file and return a subclass instance
+	 *
+	 * @param $fileName string
+	 *
+	 * @return CdbReader
 	 */
 	public static function open( $fileName ) {
 		if ( self::haveExtension() ) {
@@ -25,6 +29,8 @@ abstract class CdbReader {
 
 	/**
 	 * Returns true if the native extension is available
+	 *
+	 * @return bool
 	 */
 	public static function haveExtension() {
 		if ( !function_exists( 'dba_handlers' ) ) {
@@ -61,6 +67,10 @@ abstract class CdbWriter {
 	/**
 	 * Open a writer and return a subclass instance.
 	 * The user must have write access to the directory, for temporary file creation.
+	 *
+	 * @param $fileName string
+	 *
+	 * @return bool
 	 */
 	public static function open( $fileName ) {
 		if ( CdbReader::haveExtension() ) {

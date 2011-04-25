@@ -25,6 +25,11 @@ class SquidUpdate {
 		$this->urlArr = $urlArr;
 	}
 
+	/**
+	 * @param $title Title
+	 * 
+	 * @return SquidUpdate
+	 */
 	static function newFromLinksTo( &$title ) {
 		global $wgMaxSquidPurgeTitles;
 		wfProfileIn( __METHOD__ );
@@ -52,6 +57,11 @@ class SquidUpdate {
 
 	/**
 	 * Create a SquidUpdate from an array of Title objects, or a TitleArray object
+	 *
+	 * @param $titles array
+	 * @param $urlArr array
+	 *
+	 * @return SquidUpdate
 	 */
 	static function newFromTitles( $titles, $urlArr = array() ) {
 		global $wgMaxSquidPurgeTitles;
@@ -65,6 +75,11 @@ class SquidUpdate {
 		return new SquidUpdate( $urlArr );
 	}
 
+	/**
+	 * @param $title Title
+	 *
+	 * @return SquidUpdate
+	 */
 	static function newSimplePurge( &$title ) {
 		$urlArr = $title->getSquidURLs();
 		return new SquidUpdate( $urlArr );
@@ -74,11 +89,15 @@ class SquidUpdate {
 		SquidUpdate::purge( $this->urlArr );
 	}
 
-	/* Purges a list of Squids defined in $wgSquidServers.
-	$urlArr should contain the full URLs to purge as values
-	(example: $urlArr[] = 'http://my.host/something')
-	XXX report broken Squids per mail or log */
-
+	/**
+	 * Purges a list of Squids defined in $wgSquidServers.
+	 * $urlArr should contain the full URLs to purge as values
+	 * (example: $urlArr[] = 'http://my.host/something')
+	 * XXX report broken Squids per mail or log
+	 *
+	 * @param $urlArr array
+	 * @return void
+	 */
 	static function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;
 
@@ -124,7 +143,7 @@ class SquidUpdate {
 		global $wgHTCPMulticastAddress, $wgHTCPMulticastTTL, $wgHTCPPort;
 		wfProfileIn( __METHOD__ );
 
-		$htcpOpCLR = 4;                 // HTCP CLR
+		$htcpOpCLR = 4; // HTCP CLR
 
 		// FIXME PHP doesn't support these socket constants (include/linux/in.h)
 		if( !defined( "IPPROTO_IP" ) ) {
@@ -189,6 +208,8 @@ class SquidUpdate {
 	 * second internal server.
 	 *
 	 * Client functions should not need to call this.
+	 *
+	 * @param $url string
 	 *
 	 * @return string
 	 */

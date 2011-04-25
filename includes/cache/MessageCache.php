@@ -64,6 +64,8 @@ class MessageCache {
 
 	/**
 	 * Singleton instance
+	 *
+	 * @var MessageCache
 	 */
 	private static $instance;
 

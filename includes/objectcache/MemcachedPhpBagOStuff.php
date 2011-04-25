@@ -20,6 +20,8 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	 *   - compress_threshold:  The minimum size an object must be before it is compressed
 	 *   - timeout:             The read timeout in microseconds
 	 *   - connect_timeout:     The connect timeout in seconds
+	 *
+	 * @params $params array
 	 */
 	function __construct( $params ) {
 		if ( !isset( $params['servers'] ) ) {
