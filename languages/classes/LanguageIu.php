@@ -4,8 +4,10 @@
   */
 
 /*
-* Conversion script between Latin and Syllabics
-* for Inuktitut
+* Conversion script between Latin and Syllabics for Inuktitut.
+* - Syllabics -> lowercase Latin
+* - lowercase/uppercase Latin -> Syllabics
+* 
 *
 * Based on:
 *   - http://commons.wikimedia.org/wiki/Image:Inuktitut.png
@@ -17,7 +19,6 @@ require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
 
 class IuConverter extends LanguageConverter {
 	var $mToLatin = array(
-		# Lowercase
 		'ᐦ' => 'h',   'ᐃ' => 'i',    'ᐄ' => 'ii',    'ᐅ' => 'u',    'ᐆ' => 'uu',    'ᐊ' => 'a',    'ᐋ' => 'aa',
 		'ᑉ' => 'p',   'ᐱ' => 'pi',   'ᐲ' => 'pii',   'ᐳ' => 'pu',   'ᐴ' => 'puu',   'ᐸ' => 'pa',   'ᐹ' => 'paa',
 		'ᑦ' => 't',   'ᑎ' => 'ti',   'ᑏ' => 'tii',   'ᑐ' => 'tu',   'ᑑ' => 'tuu',   'ᑕ' => 'ta',   'ᑖ' => 'taa',
@@ -35,12 +36,18 @@ class IuConverter extends LanguageConverter {
 		'ᖕ' => 'ng',  'ᖏ' => 'ngi',  'ᖐ' => 'ngii',  'ᖑ' => 'ngu',  'ᖒ' => 'nguu',  'ᖓ' => 'nga',  'ᖔ' => 'ngaa',
 		'ᖖ' => 'nng', 'ᙱ' => 'nngi', 'ᙲ' => 'nngii', 'ᙳ' => 'nngu', 'ᙴ' => 'nnguu', 'ᙵ' => 'nnga', 'ᙶ' => 'nngaa',
 		'ᖦ' => 'ɫ',   'ᖠ' => 'ɫi',    'ᖡ' => 'ɫii',   'ᖢ' => 'ɫu',    'ᖣ' => 'ɫuu',   'ᖤ' => 'ɫa',    'ᖥ' => 'ɫaa',
+	);
 
-		# There is no uppercase in Syllabics
+	var $mUpperToLowerCaseLatin = array(
+		'A' => 'a',	'B' => 'b',	'C' => 'c',	'D' => 'd',	'E' => 'e',
+		'F' => 'f',	'G' => 'g',	'H' => 'h',	'I' => 'i',	'J' => 'j',
+		'K' => 'k',	'L' => 'l',	'M' => 'm',	'N' => 'n',	'O' => 'o',
+		'P' => 'p',	'Q' => 'q',	'R' => 'r',	'S' => 's',	'T' => 't',
+		'U' => 'u',	'V' => 'v',	'W' => 'w',	'X' => 'x',	'Y' => 'y',
+		'Z' => 'z',
 	);
 
 	var $mToSyllabics = array(
-		# Lowercase
 		'h' => 'ᐦ',   'i' => 'ᐃ',    'ii' => 'ᐄ',    'u' => 'ᐅ',    'uu' => 'ᐆ',    'a' => 'ᐊ',    'aa' => 'ᐋ',
 		'p' => 'ᑉ',   'pi' => 'ᐱ',   'pii' => 'ᐲ',   'pu' => 'ᐳ',   'puu' => 'ᐴ',   'pa' => 'ᐸ',   'paa' => 'ᐹ',
 		't' => 'ᑦ',   'ti' => 'ᑎ',   'tii' => 'ᑏ',   'tu' => 'ᑐ',   'tuu' => 'ᑑ',   'ta' => 'ᑕ',   'taa' => 'ᑖ',
@@ -58,28 +65,11 @@ class IuConverter extends LanguageConverter {
 		'ng' => 'ᖕ',  'ngi' => 'ᖏ',  'ngii' => 'ᖐ',  'ngu' => 'ᖑ',  'nguu' => 'ᖒ',  'nga' => 'ᖓ',  'ngaa' => 'ᖔ',
 		'nng' => 'ᖖ', 'nngi' => 'ᙱ', 'nngii' => 'ᙲ', 'nngu' => 'ᙳ', 'nnguu' => 'ᙴ', 'nnga' => 'ᙵ', 'nngaa' => 'ᙶ',
 		'ɫ' => 'ᖦ',   'ɫi' => 'ᖠ',    'ɫii' => 'ᖡ',   'ɫu' => 'ᖢ',    'ɫuu' => 'ᖣ',   'ɫa' => 'ᖤ',    'ɫaa' => 'ᖥ',
-
-		# Uppercase
-		'H' => 'ᐦ',   'I' => 'ᐃ',    'Ii' => 'ᐄ',    'U' => 'ᐅ',    'Uu' => 'ᐆ',    'A' => 'ᐊ',    'Aa' => 'ᐋ',
-		'P' => 'ᑉ',   'Pi' => 'ᐱ',   'Pii' => 'ᐲ',   'Pu' => 'ᐳ',   'Puu' => 'ᐴ',   'Pa' => 'ᐸ',   'Paa' => 'ᐹ',
-		'T' => 'ᑦ',   'Ti' => 'ᑎ',   'Tii' => 'ᑏ',   'Tu' => 'ᑐ',   'Tuu' => 'ᑑ',   'Ta' => 'ᑕ',   'Taa' => 'ᑖ',
-		'K' => 'ᒃ',   'Ki' => 'ᑭ',   'Kii' => 'ᑮ',   'Ku' => 'ᑯ',   'Kuu' => 'ᑰ',   'Ka' => 'ᑲ',   'Kaa' => 'ᑳ',
-		'G' => 'ᒡ',   'Gi' => 'ᒋ',   'Gii' => 'ᒌ',   'Gu' => 'ᒍ',   'Guu' => 'ᒎ',   'Ga' => 'ᒐ',   'Gaa' => 'ᒑ',
-		'M' => 'ᒻ',   'Mi' => 'ᒥ',   'Mii' => 'ᒦ',   'Mu' => 'ᒧ',   'Muu' => 'ᒨ',   'Ma' => 'ᒪ',   'Maa' => 'ᒫ',
-		'N' => 'ᓐ',   'Ni' => 'ᓂ',   'Nii' => 'ᓃ',   'Nu' => 'ᓄ',   'Nuu' => 'ᓅ',   'Na' => 'ᓇ',   'Naa' => 'ᓈ',
-		'S' => 'ᔅ',   'Si' => 'ᓯ',   'Sii' => 'ᓰ',   'Su' => 'ᓱ',   'Suu' => 'ᓲ',   'Sa' => 'ᓴ',   'Saa' => 'ᓵ',
-		'L' => 'ᓪ',   'Li' => 'ᓕ',   'Lii' => 'ᓖ',   'Lu' => 'ᓗ',   'Luu' => 'ᓘ',   'La' => 'ᓚ',   'Laa' => 'ᓛ',
-		'J' => 'ᔾ',   'Ji' => 'ᔨ',   'Jii' => 'ᔩ',   'Ju' => 'ᔪ',   'Juu' => 'ᔫ',   'Ja' => 'ᔭ',   'Jaa' => 'ᔮ',
-		'V' => 'ᕝ',   'Vi' => 'ᕕ',   'Vii' => 'ᕖ',   'Vu' => 'ᕗ',   'Vuu' => 'ᕘ',   'Va' => 'ᕙ',   'Vaa' => 'ᕚ',
-		'R' => 'ᕐ',   'Ri' => 'ᕆ',   'Rii' => 'ᕇ',   'Ru' => 'ᕈ',   'Ruu' => 'ᕉ',   'Ra' => 'ᕋ',   'Raa' => 'ᕌ',
-		'Q' => 'ᖅ',   'Qi' => 'ᕿ',   'Qii' => 'ᖀ',   'Qu' => 'ᖁ',   'Quu' => 'ᖂ',   'Qa' => 'ᖃ',   'Qaa' => 'ᖄ',
-		'Ng' => 'ᖕ',  'Ngi' => 'ᖏ',  'Ngii' => 'ᖐ',  'Ngu' => 'ᖑ',  'Nguu' => 'ᖒ',  'Nga' => 'ᖓ',  'Ngaa' => 'ᖔ',
-		'Nng' => 'ᖖ', 'Nngi' => 'ᙱ', 'Nngii' => 'ᙲ', 'Nngu' => 'ᙳ', 'Nnguu' => 'ᙴ', 'Nnga' => 'ᙵ', 'Nngaa' => 'ᙶ',
-#		'ɫ' => 'ᖦ',   'ɫi' => 'ᖠ',    'ɫii' => 'ᖡ',   'ɫu' => 'ᖢ',    'ɫuu' => 'ᖣ',   'ɫa' => 'ᖤ',    'ɫaa' => 'ᖥ',
 	);
 
 	function loadDefaultTables() {
 		$this->mTables = array(
+			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
 			'ike-cans' => new ReplacementArray( $this->mToSyllabics ),
 			'ike-latn' => new ReplacementArray( $this->mToLatin ),
 			'iu'    => new ReplacementArray()
@@ -159,32 +149,20 @@ class IuConverter extends LanguageConverter {
 	}
 
 	/**
-	 *  It translates text into variant, specials:
-	 *    - ommiting roman numbers
+	 *  It translates text into variant
 	 */
 	function translate( $text, $toVariant ) {
-		$breaks = '[^\w\x80-\xff]';
-
-		// regexp for roman numbers
-		$roman = 'M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})';
-
-		$reg = '/^' . $roman . '$|^' . $roman . $breaks . '|' . $breaks . $roman . '$|' . $breaks . $roman . $breaks . '/';
-
-		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
-
-		$m = array_shift( $matches );
-		if ( !isset( $this->mTables[$toVariant] ) ) {
-			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
+		// If $text is empty or only includes spaces, do nothing
+		// Otherwise translate it
+		if ( trim( $text ) ) {
+			$this->loadTables();
+			// To syllabics, first translate uppercase to lowercase Latin
+			if($toVariant == 'ike-cans') {
+				$text = $this->mTables['lowercase']->replace( $text );
+			}
+			$text = $this->mTables[$toVariant]->replace( $text );
 		}
-		$ret = $this->mTables[$toVariant]->replace( $m[0] );
-		$mstart = $m[1] + strlen( $m[0] );
-		foreach ( $matches as $m ) {
-			$ret .= substr( $text, $mstart, $m[1] -$mstart );
-			$ret .= parent::translate( $m[0], $toVariant );
-			$mstart = $m[1] + strlen( $m[0] );
-		}
-
-		return $ret;
+		return $text;
 	}
 }
 
