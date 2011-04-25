@@ -1336,7 +1336,6 @@ class EditPage {
 			// @todo move this to a cleaner conditional instead of blanking a variable
 		}
 		$wgOut->addHTML( <<<HTML
-{$toolbar}
 <form id="editform" name="editform" method="post" action="$action" enctype="multipart/form-data">
 HTML
 );
@@ -1390,6 +1389,8 @@ HTML
 		}
 
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
+		
+		$wgOut->addHTML( $toolbar );
 
 		if ( $this->isConflict ) {
 			// In an edit conflict bypass the overrideable content form method
