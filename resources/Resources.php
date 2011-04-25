@@ -15,6 +15,7 @@ return array(
 
 	'skins.vector' => array(
 		'styles' => array( 'vector/screen.css' => array( 'media' => 'screen' ) ),
+		'scripts' => 'vector/vector.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),

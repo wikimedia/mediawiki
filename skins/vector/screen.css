@@ -204,9 +204,12 @@ div#mw-head h5 {
 		float: left;
 		/* @embed */
 		background-image: url(images/arrow-down-icon.png);
-		background-position: 100% 60%;
+		background-position: 0px 60%;
 		background-repeat: no-repeat;
 		cursor: pointer;
+	}
+	div.vectorMenuFocus {
+		background-position: -22px 60%;
 	}
 	/* @noflip */
 	body.rtl div.vectorMenu {
@@ -280,7 +283,8 @@ div#mw-head h5 {
 	x:-moz-any-link {
 		margin-left: 23px;
 	}
-	div.vectorMenu:hover div.menu {
+	/* Enable forcing showing of the menu for accessibility */
+	div.vectorMenu:hover div.menu, div.vectorMenu div.menuForceShow {
 		display: block;
 	}
 	div.vectorMenu ul {

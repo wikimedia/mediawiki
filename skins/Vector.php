@@ -39,6 +39,8 @@ class SkinVector extends SkinTemplate {
 				htmlspecialchars( $wgLocalStylePath ) .
 				"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
 		);
+		
+		$out->addModuleScripts( 'skins.vector' );
 	}
 
 	/**
