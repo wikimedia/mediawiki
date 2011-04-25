@@ -14,6 +14,8 @@ class LinkCache {
 
 	/**
 	 * Get an instance of this class
+	 *
+	 * @return LinkCache
 	 */
 	static function &singleton() {
 		static $instance;
