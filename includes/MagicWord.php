@@ -35,6 +35,7 @@ class MagicWord {
 	var $mRegexStart = '';
 	var $mBaseRegex = '';
 	var $mVariableRegex = '';
+	var $mVariableStartToEndRegex = '';
 	var $mModified = false;
 	var $mFound = false;
 
