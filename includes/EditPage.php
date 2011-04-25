@@ -166,7 +166,7 @@ class EditPage {
 
 		$preload = $wgRequest->getVal( 'preload',
 			// Custom preload text for new sections
-			$section === 'new' ? 'MediaWiki:addsection-preload' : '' ); /* use $this->isNew here? */
+			$section === 'new' ? 'MediaWiki:addsection-preload' : '' );
 		$undoafter = $wgRequest->getVal( 'undoafter' );
 		$undo = $wgRequest->getVal( 'undo' );
 
@@ -233,7 +233,7 @@ class EditPage {
 					$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-norev">' . wfMsgNoTrans( 'undo-norev' ) . '</div>' );
 				}
 			} else if ( $section != '' ) {
-				if ( $section == 'new' ) { /* use $this->isNew here? */
+				if ( $section == 'new' ) {
 					$text = $this->getPreloadedText( $preload );
 				} else {
 					// Get section edit text (returns $def_text for invalid sections)
@@ -532,7 +532,7 @@ class EditPage {
 		} elseif ( $wgRequest->getVal( 'preview' ) == 'no' ) {
 			// Explicit override from request
 			return false;
-		} elseif ( $this->section == 'new' ) {  /* use $this->isNew here? */
+		} elseif ( $this->section == 'new' ) { 
 			// Nothing *to* preview for new sections
 			return false;
 		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
@@ -690,10 +690,10 @@ class EditPage {
 			$this->watchthis = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
 			$this->recreate  = false;
 
-			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) { /* use $this->isNew here? */
+			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
 				$this->summary = $request->getVal( 'preloadtitle' );
 			}
-			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) { /* use $this->isNew here? */
+			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
 				$this->summary = $request->getText( 'summary' );
 			}
 
@@ -711,7 +711,7 @@ class EditPage {
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro',
 			// Custom edit intro for new sections
-			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' ); /* use $this->isNew here? */
+			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
 
 		// Allow extensions to modify form data
 		wfRunHooks( 'EditPage::importFormData', array( $this, $request ) );
@@ -978,7 +978,7 @@ class EditPage {
 			}
 
 			$text = $this->textbox1;
-			if ( $this->section == 'new' && $this->summary != '' ) {  /* use $this->isNew here? */
+			if ( $this->section == 'new' && $this->summary != '' ) { 
 				$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
 			}
 
@@ -994,7 +994,7 @@ class EditPage {
 
 			if ( $this->mArticle->getTimestamp() != $this->edittime ) {
 				$this->isConflict = true;
-				if ( $this->section == 'new' ) { /* use $this->isNew here? */
+				if ( $this->section == 'new' ) {
 					if ( $this->mArticle->getUserText() == $wgUser->getName() &&
 						$this->mArticle->getComment() == $this->summary ) {
 						// Probably a duplicate submission of a new comment.
@@ -1060,7 +1060,7 @@ class EditPage {
 			}
 
 			# Handle the user preference to force summaries here, but not for null edits
-			if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp( $oldtext, $text )  /* use $this->isNew here? */
+			if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp( $oldtext, $text ) 
 				&& !Title::newFromRedirect( $text ) ) # check if it's not a redirect
 			{
 				if ( md5( $this->summary ) == $this->autoSumm ) {
@@ -1071,7 +1071,7 @@ class EditPage {
 			}
 
 			# And a similar thing for new sections
-			if ( $this->section == 'new' && !$this->allowBlankSummary ) {  /* use $this->isNew here? */
+			if ( $this->section == 'new' && !$this->allowBlankSummary ) { 
 				if ( trim( $this->summary ) == '' ) {
 					$this->missingSummary = true;
 					wfProfileOut( __METHOD__ );
@@ -1082,7 +1082,7 @@ class EditPage {
 			# All's well
 			wfProfileIn( __METHOD__ . '-sectionanchor' );
 			$sectionanchor = '';
-			if ( $this->section == 'new' ) {  /* use $this->isNew here? */
+			if ( $this->section == 'new' ) { 
 				if ( $this->textbox1 == '' ) {
 					$this->missingComment = true;
 					wfProfileOut( __METHOD__ . '-sectionanchor' );
@@ -1254,7 +1254,7 @@ class EditPage {
 		if ( $this->isConflict ) {
 			$wgOut->setPageTitle( wfMsg( 'editconflict', $this->getContextTitle()->getPrefixedText() ) );
 		} elseif ( $this->section != '' ) {
-			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection'; /* use $this->isNew here? */
+			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
 			$wgOut->setPageTitle( wfMsg( $msg, $this->getContextTitle()->getPrefixedText() ) );
 		} else {
 			# Use the title defined by DISPLAYTITLE magic word when present
@@ -1377,14 +1377,14 @@ HTML
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
 		if ( $this->missingSummary ||
-			( $this->section == 'new' && $this->nosummary ) ) /* use $this->isNew here? */
+			( $this->section == 'new' && $this->nosummary ) )
 				$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
 		$wgOut->addHTML( Html::hidden( 'oldid', $this->mArticle->getOldID() ) );
 
-		if ( $this->section == 'new' ) { /* use $this->isNew here? */
+		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
 			$wgOut->addHTML( $this->getSummaryPreview( true, $this->summary ) );
 		}
@@ -1451,7 +1451,7 @@ HTML
 				return false;
 			}
 
-			if ( $this->section != '' && $this->section != 'new' ) { /* use $this->isNew here? */
+			if ( $this->section != '' && $this->section != 'new' ) {
 				$matches = array();
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
 					preg_match( "/^(=+)(.+)\\1/mi", $this->textbox1, $matches );
@@ -1468,11 +1468,11 @@ HTML
 				$wgOut->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
 			}
 
-			if ( $this->missingSummary && $this->section != 'new' ) { /* use $this->isNew here? */
+			if ( $this->missingSummary && $this->section != 'new' ) {
 				$wgOut->wrapWikiMsg( "<div id='mw-missingsummary'>\n$1\n</div>", 'missingsummary' );
 			}
 
-			if ( $this->missingSummary && $this->section == 'new' ) { /* use $this->isNew here? */
+			if ( $this->missingSummary && $this->section == 'new' ) {
 				$wgOut->wrapWikiMsg( "<div id='mw-missingcommentheader'>\n$1\n</div>", 'missingcommentheader' );
 			}
 
@@ -1856,7 +1856,7 @@ HTML
 		global $wgOut, $wgUser;
 		$wgOut->addHTML( "<div class='editOptions'>\n" );
 
-		if ( $this->section != 'new' ) { /* use $this->isNew here? */
+		if ( $this->section != 'new' ) {
 			$this->showSummaryInput( false, $this->summary );
 			$wgOut->addHTML( $this->getSummaryPreview( false, $this->summary ) );
 		}
@@ -1999,7 +1999,7 @@ HTML
 
 				# If we're adding a comment, we need to show the
 				# summary as the headline
-				if ( $this->section == "new" && $this->summary != "" ) { /* use $this->isNew here? */
+				if ( $this->section == "new" && $this->summary != "" ) {
 					$toparse = "== {$this->summary} ==\n\n" . $toparse;
 				}
 
