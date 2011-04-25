@@ -209,10 +209,8 @@
 			}
 
 			function getElementText( node ) {
-				var n = $( node );
-				var sortValue = n.data('sort-value');
-				if ( typeof sortValue != 'undefined' ) {
-					return sortValue;
+				if ( node.hasAttribute && node.hasAttribute( "data-sort-value" ) ) {
+					return node.getAttribute( "data-sort-value" );
 				} else {
 					return n.text();
 				}
