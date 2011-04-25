@@ -181,7 +181,7 @@ class ApiLogin extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'This module is used to login and get the authentication tokens. ',
+			'Log in and get the authentication tokens. ',
 			'In the event of a successful log-in, a cookie will be attached',
 			'to your session. In the event of a failed log-in, you will not ',
 			'be able to attempt another log-in through this method for 5 seconds.',

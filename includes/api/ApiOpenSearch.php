@@ -116,7 +116,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'This module implements OpenSearch protocol';
+		return 'Searches the wiki using the OpenSearch protocol';
 	}
 
 	protected function getExamples() {

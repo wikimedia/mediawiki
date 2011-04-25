@@ -562,7 +562,7 @@ class ApiParse extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'This module parses wikitext and returns parser output';
+		return 'Parses wikitext and returns parser output';
 	}
 
 	public function getPossibleErrors() {

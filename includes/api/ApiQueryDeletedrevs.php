@@ -374,7 +374,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$p = $this->getModulePrefix();
 		return array(
 			'List deleted revisions.',
-			'This module operates in three modes:',
+			'Operates in three modes:',
 			' 1) List deleted revisions for the given title(s), sorted by timestamp',
 			' 2) List deleted contributions for the given user, sorted by timestamp (no titles specified)',
 			" 3) List all deleted revisions in the given namespace, sorted by title and timestamp (no titles specified, {$p}user not set)",
