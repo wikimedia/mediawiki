@@ -53,7 +53,7 @@
  *
  * TODO: Document 'section' / 'subsection' stuff
  */
-class HTMLForm {
+class HTMLForm extends ContextSource {
 
 	# A mapping of 'type' inputs onto standard HTMLFormField subclasses
 	static $typeMappings = array(
@@ -102,7 +102,6 @@ class HTMLForm {
 	protected $mSubmitText;
 	protected $mSubmitTooltip;
 
-	protected $mContext; // <! RequestContext
 	protected $mTitle;
 	protected $mMethod = 'post';
 
@@ -121,10 +120,11 @@ class HTMLForm {
 	 */
 	public function __construct( $descriptor, /*RequestContext*/ $context = null, $messagePrefix = '' ) {
 		if( $context instanceof RequestContext ){
-			$this->mContext = $context;
+			$this->setContext( $context );
 			$this->mTitle = false; // We don't need them to set a title
 			$this->mMessagePrefix = $messagePrefix;
 		} else {
+			$this->setContext( RequestContext::getMain() );
 			// B/C since 1.18
 			if( is_string( $context ) && $messagePrefix === '' ){
 				// it's actually $messagePrefix
@@ -623,38 +623,8 @@ class HTMLForm {
 	 */
 	function getTitle() {
 		return $this->mTitle === false
-			? $this->getContext()->title
+			? parent::getTitle()
 			: $this->mTitle;
-	}
-
-	/**
-	 * @return RequestContext
-	 */
-	public function getContext(){
-		return $this->mContext instanceof RequestContext
-			? $this->mContext
-			: RequestContext::getMain();
-	}
-
-	/**
-	 * @return OutputPage
-	 */
-	public function getOutput(){
-		return $this->getContext()->output;
-	}
-
-	/**
-	 * @return WebRequest
-	 */
-	public function getRequest(){
-		return $this->getContext()->request;
-	}
-
-	/**
-	 * @return User
-	 */
-	public function getUser(){
-		return $this->getContext()->user;
 	}
 
 	/**
