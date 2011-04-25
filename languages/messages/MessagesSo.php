@@ -123,7 +123,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Qeybta|Qeybaha}}',
-'category_header'                => 'Maqaalada ku jirta qeybtaan "$1"',
+'category_header'                => 'Maqaalada ku jirta qeybta "$1"',
 'subcategories'                  => 'Qeybaha hoose',
 'category-media-header'          => 'war saxaafadeeda ku jirta qeybta"$1"',
 'category-empty'                 => "''Qeybtaan hadda wax maqaal ah kuma jirto''",
@@ -173,8 +173,8 @@ $messages = array(
 'vector-action-delete'           => 'Tirtir',
 'vector-action-move'             => 'Wareeji',
 'vector-action-protect'          => 'Difaac',
-'vector-action-undelete'         => 'Ha tirtirin',
-'vector-action-unprotect'        => 'Ha difaacin',
+'vector-action-undelete'         => 'La tirtirin',
+'vector-action-unprotect'        => 'La difaacin',
 'vector-simplesearch-preference' => 'Shid kuwa ugu fiican oo kuu soo jeedinaayo raadinta  (Jirka vector kaliya)',
 'vector-view-create'             => 'Sameey',
 'vector-view-edit'               => 'Wax ka bedel',
@@ -343,14 +343,14 @@ fadlan waxyar kadib ku soo noqo.',
 Sababta neh waxaa waaye "\'\'$2\'\'".',
 
 # Virus scanner
-'virus-unknownscanner' => 'antivirus la aqoon:',
+'virus-unknownscanner' => 'ka hor tagga fayruska la aqoon:',
 
 # Login and logout pages
 'logouttext'                 => "'''Hada waad ka baxday.'''
 
 Waad sii isticmaali kartaa {{SITENAME}} adoona lagu aqoon, ama [[Special:UserLogin|gudaha gal]] adiga oo isticmaalaya magacaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogyaasha qaarkood in ay yiraahdaan wali gudaha ayaad ku jirtaa, ilaa inta aad ka nadiifineesid browsahaaga Internetka.",
-'welcomecreation'            => "== Soo dhawoow, $1! ==
-magaca aad ku isticmaaleesid waa la sameeyey.
+'welcomecreation'            => "== Ku soo dhawoow, $1! ==
+Akoon kaada  waa la sameeyay.
 Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]].",
 'yourname'                   => 'Magaca gudagalka:',
 'yourpassword'               => 'Eraysir:',
@@ -360,12 +360,12 @@ Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]
 'login'                      => 'Gudaha gal',
 'nav-login-createaccount'    => 'Gudaha gal / sameyso akoon',
 'loginprompt'                => "Waa in aad shidaa cookies'ka hadii aad rabto in aad soo gasho {{SITENAME}}.",
-'userlogin'                  => 'Gudaha gal / sameyso magac',
+'userlogin'                  => 'Gudaha gal / sameyso akoon',
 'userloginnocreate'          => 'Gudaha gal',
 'logout'                     => 'Ka bax',
 'userlogout'                 => 'Ka bax',
 'notloggedin'                => 'Gudaha kuma jirtid',
-'nologin'                    => "Akoon ma heestid? '''$1'''.",
+'nologin'                    => "Akoon ma heysatid? '''$1'''.",
 'nologinlink'                => 'Akoon sameyso',
 'createaccount'              => 'Sameey gudagale',
 'gotaccount'                 => "Waan heystaa gudagale? '''$1'''.",
@@ -497,7 +497,7 @@ Mamnuucida ugu danbeyso in oo soo galo hoostaan ee ku qorantahay',
 'userjspreview'                  => "'''Waa in aad ogaataa waxaa baroobeynoosaa/fiirinoysaa kaliya JavaScript'ka isticmaalahaaga.'''
 '''wali lama keydin!'''",
 'updated'                        => '(waa la opdate gareeyay)',
-'note'                           => "'''Waa in aad ogaatid:'''",
+'note'                           => "'''fiiro gaar:'''",
 'previewnote'                    => "'''Waxa aad aragtid waa horfiirin; wixii aad bedeshay lama keydinin!'''",
 'session_fail_preview'           => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.
 Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudagal.'''",
@@ -512,7 +512,7 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 'editingold'                     => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
 Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",
 'yourdiff'                       => 'Kaladuwanaanshaha',
-'semiprotectedpagewarning'       => "'''Ogeysiis:''' Beyjkan waa laxiray, kuwa magaca gudagal ka leh kaliya ayaa wax ka badalikara.",
+'semiprotectedpagewarning'       => "'''Fiiro gaar ah:''' Beyjkan waa laxiray, kuwa magaca gudagal ka leh kaliya ayaa wax ka badalikara.",
 'template-protected'             => '(waa la difaacay)',
 'hiddencategories'               => 'Boggaan waxoo ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:',
 'nocreate-loggedin'              => 'Laguuma ogola inaad beyjaj cusub ku sameysid {{SITENAME}}han.',
@@ -548,7 +548,7 @@ Waxaa lagayaabaa in laga tir tiray wikigan, ama magacii laga badalay.
 Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 
 # Revision deletion
-'rev-deleted-user'            => 'magaca isticmaalaha waa la tirtiray',
+'rev-deleted-user'            => '(magaca isticmaalaha waa laga saaray)',
 'rev-deleted-text-permission' => "Boggaan waa la  '''tirtiray'''.
 sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qeybta tirtirda].",
 'rev-delundel'                => "i'tus/qari",
@@ -624,8 +624,8 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'timezoneregion-arctic'     => 'Arktik',
 'timezoneregion-asia'       => 'Aasiya',
 'timezoneregion-atlantic'   => 'Badweynta Atlaantik',
-'allowemail'                => 'Ogolow in e-boosto ay kaagatimaado isticmaalayaasha kale',
-'youremail'                 => 'E-boosto *:',
+'allowemail'                => 'Ogolow in e-mail ay kaagatimaado isticmaalayaasha kale',
+'youremail'                 => 'E-mail:',
 'username'                  => 'Gudagal:',
 'uid'                       => 'Lambarka isticmaalaha:',
 'yourrealname'              => 'Magacaaga runta ah:',
@@ -819,7 +819,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'unwatch'           => 'Ha waardiyeynin',
 'unwatchthispage'   => 'Jooji waardiyeyntiisa',
 'watchlistcontains' => 'Liiskaaga waardiyeynta waxaa ku jiro $1 {{PLURAL:$1|bog|boggag}}.',
-'wlshowlast'        => 'Fiiri $1 saacadood ama $2 maalmood $3 ee ugu dambeeyay',
+'wlshowlast'        => 'Itus wixii ka danbeeyay $1 saacadood $2 maalmood $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Daawasho...',
@@ -848,7 +848,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'protect-cascade'        => 'Is daba dhiga difaacida - difaac bogga walba oo lagu daro boggaan.',
 'protect-othertime'      => 'Waqti kale:',
 'protect-othertime-op'   => 'waqti kale',
-'restriction-type'       => 'Idan:',
+'restriction-type'       => 'Ogolaasho:',
 'restriction-level'      => 'Xadka xadidaada:',
 
 # Restrictions (nouns)

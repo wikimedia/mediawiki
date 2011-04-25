@@ -11746,6 +11746,7 @@ $messages['te'] = array(
 	'config-admin-password' => 'సంకేతపదం:',
 	'config-admin-password-confirm' => 'సంకేతపదం మళ్ళీ:',
 	'config-admin-email' => 'ఈ-మెయిలు చిరునామా:',
+	'config-optional-continue' => 'నన్ను మరిన్ని ప్రశ్నలు అడుగు.',
 	'config-profile-wiki' => 'సంప్రదాయ వికీ',
 	'config-profile-no-anon' => 'ఖాతా సృష్టింపు తప్పనిసరి',
 	'config-profile-private' => 'అంతరంగిక వికీ',
@@ -11755,6 +11756,7 @@ $messages['te'] = array(
 	'config-upload-deleted' => 'తొలగించిన దస్త్రాల కొరకు సంచయం:',
 	'config-install-step-done' => 'పూర్తయింది',
 	'config-install-step-failed' => 'విఫలమైంది',
+	'config-help' => 'సహాయం',
 );
 
 /** Tagalog (Tagalog)

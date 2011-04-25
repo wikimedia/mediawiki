@@ -537,6 +537,7 @@ Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 
 # Special:PasswordReset
 'passwordreset'          => 'Parolu yenilə',
+'passwordreset-legend'   => 'Parolu yenilə',
 'passwordreset-username' => 'İstifadəçi adı:',
 'passwordreset-email'    => 'E-mail ünvanı:',
 
@@ -597,6 +598,8 @@ Belə IP ünvan bir neçə fərd tərəfindən istifadədə ola bilər.
 'noarticletext'                    => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} baxa],
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
+'blocked-notice-logextract'        => 'Bu istifadəçi hal-hazırda bloklanmışdır.
+Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'note'                             => "'''Qeyd:'''",
 'previewnote'                      => "'''Bu yalnız sınaq göstərişidir; dəyişikliklər hal-hazırda qeyd edilməmişdir!'''",
 'session_fail_preview'             => "'''Üzr istəyirik! Sizin redaktəniz saxlanılmadı. Serverdə identifikasiyanızla bağlı problemlər yaranmışdır. Lütfən bir daha təkrar edin. Problem həll olunmazsa hesabınızdan çıxın və yenidən daxil olun.'''",
@@ -608,6 +611,13 @@ və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ed�
 'storedversion'                    => 'Qeyd edilmiş versiya',
 'editingold'                       => "'''DİQQƏT! Siz bu səhifənin köhnə versiyasını redaktə edirsiniz. Məqaləni yaddaşda saxlayacağınız halda bu versiyadan sonra edilmiş hər bir dəyişiklik itiriləcək.'''",
 'yourdiff'                         => 'Fərqlər',
+'copyrightwarning'                 => 'Xahiş olunur diqqətə alasınız ki, {{SITENAME}}dakı bütün fəaliyyətləriniz $2 lisenziyasına tabe olduğu hesab edilir (təfərrüat üçün bax: $1). Əgər yazdıqlarınızın əsaslı şəkildə redaktə edilməsini və istənildiyi vaxt başqa yerə ötürülməsini istəmirsinizsə, yazılarınızı burada dərc etməyin.
+<br />
+Siz eyni zamanda söz verirsiniz ki, bu yazıları siz özünüz yazmısınız və ya onları hamıya açıq mühitdən ya da buna bənzər mənbədən köçürmüsünüz.
+
+----
+
+<div style="font-weight: bold; font-size: 110%; color:red;">MÜƏLLİF HÜQUQLARI İLƏ QORUNMUŞ HEÇ BİR İŞİ İCAZƏSİZ DƏRC ETMƏYİN!</div>',
 'semiprotectedpagewarning'         => "'''Qeyd:''' Bu səhifə mühafizəli olduğu üçün yalnız qeydiyyatdan keçmiş istifadəçilər redaktə edə bilərlər.",
 'titleprotectedwarning'            => "'''DİQQƏT! Bu səhifə mühafizəlidir, yalnız [[Special:ListGroupRights|icazəsi olan]] istifadəçilər onu redaktə edə bilərlər.'''",
 'templatesused'                    => 'Bu səhifədə istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}:',
@@ -618,6 +628,9 @@ və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ed�
 'hiddencategories'                 => 'Bu səhifə {{PLURAL:$1|1 gizli kateqoriyaya|$1 gizli kateqoriyaya}} aiddir:',
 'nocreatetitle'                    => 'Səhifə yaratma məhdudlaşdırılıb.',
 'nocreate-loggedin'                => 'Sizin yeni səhifələr yaratmaq üçün icazəniz yoxdur.',
+'sectioneditnotsupported-title'    => 'Bölüm redaktəsi dəstəklənmir',
+'sectioneditnotsupported-text'     => 'Bölüm redaktəsi bu səhifədə dəstəklənmir.',
+'permissionserrors'                => 'İcazə xətası',
 'permissionserrorstext'            => 'Siz, bunu aşağıdakı {{PLURAL:$1|səbəbə|səbəblərə}} görə edə bilməzsiniz:',
 'permissionserrorstext-withaction' => 'Aşağıdakı {{PLURAL:$1|səbəbə|səbəblərə}} görə $2 hüququnuz yoxdur:',
 'recreate-moveddeleted-warn'       => "'''Diqqət! Siz əvvəllər silinmiş səhifəni bərpa etmək istəyirsiz.'''
@@ -666,12 +679,12 @@ Açıqlama: '''(hh)''' — hal-hazırkı versiya ilə aradakı fərq, '''(son)''
 'history-feed-description'    => 'Vikidə bu səhifənin dəyişikliklər tarixçəsi',
 'history-feed-item-nocomment' => '$1-dən $2-yə',
 'history-feed-empty'          => 'Axtardığınız səhifə mövcud deyil.
-Mümkündür ki, bu səhifə silinib və ya onun adı dəyişdirilib.
-Vikidə buna bənzər səhifələr [[Special:Search|axtarmağa]] cəhd edin.',
+Çox guman ki, bu səhifə silinib və ya onun adı dəyişdirilib.
+Vikidə buna bənzər səhifələri [[Special:Search|axtarmağa]] cəhd edin.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(şərhlər silindi)',
-'rev-deleted-user'            => '(istifadəçi adı silindi)',
+'rev-deleted-user'            => '(İstifadəçi adı silindi)',
 'rev-deleted-event'           => '(qeyd silindi)',
 'rev-deleted-text-permission' => "Səhifənin bu versiyası''' silinib'''.
 Mümkündür ki, bunun səbəbi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silmə qeydlərində] göstərilmişdir.",
@@ -692,6 +705,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-legend'            => 'Məhdudiyyətləri müəyyənləşdir:',
 'revdelete-hide-text'         => 'Səhifənin bu versiyasının mətnini gizlə',
 'revdelete-hide-image'        => 'Faylın məzmununu gizlə',
+'revdelete-hide-name'         => 'Hərəkəti və məqsədi gizləmək',
 'revdelete-hide-comment'      => 'Dəyişikliklərin şərhini gizlə',
 'revdelete-hide-user'         => 'Redaktə müəllifinin istifadəçi adını/IP ünvanını gizlə',
 'revdelete-hide-restricted'   => 'Məlumatları idarəçilərdən də gizlə',
@@ -704,6 +718,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-logentry'          => '[[$1]] səhifəsinin versiyasının görünüşünü dəyişdirdi',
 'revdelete-success'           => "'''Versiyanın görünüşü yeniləndi.'''",
 'revdel-restore'              => 'Görünüşü dəyiş',
+'revdel-restore-deleted'      => 'Silinmiş redaktələr',
 'pagehist'                    => 'Səhifənin tarixçəsi',
 'deletedhist'                 => 'Silmə qeydləri',
 'revdelete-content'           => 'məzmun',
@@ -711,8 +726,10 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-uname'             => 'istifadəçi adı',
 'revdelete-restricted'        => 'məhdudiyyətlər idarəçilərə tətbiq olunur',
 'revdelete-hid'               => 'gizlət $1',
+'revdelete-unhid'             => 'göstər $1',
 'revdelete-reasonotherlist'   => 'Digər səbəb',
 'revdelete-edit-reasonlist'   => 'Silmə səbəblərini redaktə et',
+'revdelete-offender'          => 'Təftiş müəllifi:',
 
 # Suppression log
 'suppressionlog' => 'Qadağa qedi',
@@ -721,10 +738,13 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'mergehistory'                => 'Səhifə tarixçələrinin birləşdirilməsi',
 'mergehistory-box'            => 'İki səhifənin tarixçəsini birləşdir',
 'mergehistory-from'           => 'Mənbə səhifəsi:',
+'mergehistory-into'           => 'Hədəf səhifəsi:',
 'mergehistory-no-destination' => 'Mənbə səhifəsi $1 mövcud deyil.',
+'mergehistory-autocomment'    => '[[:$1]] səhifəsi [[:$2]] səhifəsinə birləşdirildi',
 'mergehistory-reason'         => 'Səbəb:',
 
 # Merge log
+'mergelog'    => 'Birləşdirmə qeydi',
 'revertmerge' => 'Ayır',
 
 # Diffs
@@ -741,7 +761,9 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'searchresulttext'               => '{{SITENAME}}-nı axtarmaqla bağlı ətraflı məlumat üçün [[{{MediaWiki:Helppage}}|{{int:kömək}}]] səhifəsinə baş çək.',
 'searchsubtitle'                 => '"[[:$1]]" üçün axtarış ([[Special:Prefixindex/$1|"$1" ilə başlayan bütün səhifələr]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" səhifəsi ilə əlaqəli olan bütün səhifələr]])',
 'searchsubtitleinvalid'          => 'Axtarılan: "$1"',
+'titlematches'                   => 'Səhifə adı eynidir',
 'notitlematches'                 => 'Uyğun gələn səhifə adı tapılmadı',
+'textmatches'                    => 'Mətn eynidir',
 'notextmatches'                  => 'Məqalələrdə uyğun məzmun tapılmadı',
 'prevn'                          => 'əvvəlki {{PLURAL:$1|$1}}',
 'nextn'                          => 'sonrakı {{PLURAL:$1|$1}}',
@@ -758,6 +780,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'searchprofile-project-tooltip'  => 'Axtarış $1',
 'searchprofile-images-tooltip'   => 'Fayllar üçün axtarış',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 söz|$2 söz}})',
+'search-result-score'            => 'Uyğunluq: $1%',
 'search-redirect'                => '(yönləndirmə $1)',
 'search-section'                 => '(bölmə $1)',
 'search-suggest'                 => 'Bəlkə, bunu nəzərdə tuturdunuz: $1',
@@ -782,7 +805,9 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'search-external'                => 'Xarici axtarış',
 
 # Quickbar
-'qbsettings-none' => 'Heç biri',
+'qbsettings-none'       => 'Heç biri',
+'qbsettings-fixedleft'  => 'Sola sabitləndi',
+'qbsettings-fixedright' => 'Sağa sabitləndi',
 
 # Preferences page
 'preferences'                  => 'Nizamlamalar',
@@ -839,9 +864,12 @@ Təsadüfi yolla seçilmiş bu paroldan istifadə edə bilərsiniz: $1',
 'timezoneregion-pacific'       => 'Sakit Okean',
 'allowemail'                   => 'Digər istifadəçilər mənə e-məktub göndərə bilər',
 'prefs-searchoptions'          => 'Axtarış kriteriyaları',
+'prefs-namespaces'             => 'Adlar fəzası',
 'defaultns'                    => 'Yaxud bu adlar fəzasında axtar:',
 'default'                      => 'boş',
 'prefs-files'                  => 'Fayllar',
+'prefs-custom-css'             => 'Xüsusi CSS',
+'prefs-custom-js'              => 'Xüsusi JavaScript',
 'prefs-emailconfirm-label'     => 'E-mailin təsdiqlənməsi:',
 'youremail'                    => 'E-məktub *',
 'username'                     => 'İstifadəçi adı:',
@@ -878,6 +906,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'editinguser'              => "Redaktə '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'İstifadəçi qruplarını redaktə et',
 'saveusergroups'           => 'İstifadəçi qrupunu qeyd et',
+'userrights-groupsmember'  => 'Daxil olduğu qruplar:',
 'userrights-reason'        => 'Səbəb:',
 
 # Groups
@@ -1005,6 +1034,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'filename'            => 'Fayl adı',
 'filedesc'            => 'Xülasə',
 'fileuploadsummary'   => 'İzahat:',
+'filereuploadsummary' => 'Fayl dəyişiklikləri:',
 'filestatus'          => 'Müəllif statusu:',
 'filesource'          => 'Mənbə:',
 'uploadedfiles'       => 'Yüklənmiş fayllar',
@@ -1030,6 +1060,10 @@ Bu səhifənin silmə qeydləri aşağıda göstərilmişdir:",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Giriş qadağandır',
+
+# HTTP errors
+'http-invalid-url' => 'Səhv URL: $1',
+'http-read-error'  => 'HTTP oxuma xətası',
 
 'license'        => 'Lisenziya',
 'license-header' => 'Lisenziya',
@@ -1064,6 +1098,8 @@ Bu səhifənin silmə qeydləri aşağıda göstərilmişdir:",
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
 
 # File reversion
+'filerevert'         => '$1 faylını əvvəlki vəziyyətinə qaytar',
+'filerevert-legend'  => 'Faylı əvvəlki vəziyyətinə qaytar',
 'filerevert-comment' => 'Səbəb:',
 'filerevert-submit'  => 'Əvvəlki vəziyyətinə',
 
@@ -1698,6 +1734,7 @@ $1',
 # Special:NewFiles
 'newimages'    => 'Yeni faylların siyahısı',
 'showhidebots' => '($1 bot redaktə)',
+'noimages'     => 'Heç nəyi görməmək.',
 'ilsubmit'     => 'Axtar',
 'bydate'       => 'tarixə görə',
 
@@ -1713,10 +1750,26 @@ Həmin sətirdəki növbəti keçidlər istisna hesab olunur. Məsələn, fayl m
 'metadata-help'     => 'Bu faylda fotoaparat və ya skanerlə əlavə olunmuş məlumatlar var. Əgər fayl sonradan redaktə olunubsa, bəzi parametrlər bu şəkildə göstərilənlərdən fərqli ola bilər.',
 'metadata-expand'   => 'Ətraflı məlumatları göstər',
 'metadata-collapse' => 'Ətraflı məlumatları gizlə',
+'metadata-fields'   => 'Bu səhifədə sıralanan EXIF metadata sahələri şəkil görünüş səhifələrində metadata cədvəli çökdüyündə istifadə edilir. Digərləri varsayılan olaraq gizlənəcəkdir.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
+'exif-imagewidth'          => 'Genişlik',
 'exif-imagelength'         => 'Hündürlük',
 'exif-artist'              => 'Müəllif',
+'exif-usercomment'         => 'İstifadəçi şərhi',
 'exif-exposuretime-format' => '$1 saniyə ($2)',
 'exif-aperturevalue'       => 'Obyektiv gözü',
 'exif-brightnessvalue'     => 'Parlaqlıq',
