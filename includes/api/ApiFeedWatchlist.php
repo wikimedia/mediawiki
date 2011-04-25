@@ -194,7 +194,7 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'This module returns a watchlist feed';
+		return 'Returns a watchlist feed';
 	}
 
 	protected function getExamples() {

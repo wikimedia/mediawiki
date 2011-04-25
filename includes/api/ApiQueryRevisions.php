@@ -633,7 +633,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	public function getDescription() {
 		return array(
 			'Get revision information',
-			'This module may be used in several ways:',
+			'May be used in several ways:',
 			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter',
 			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params',
 			' 3) Get data about a set of revisions by setting their IDs with revids parameter',

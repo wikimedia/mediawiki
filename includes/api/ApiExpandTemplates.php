@@ -100,7 +100,7 @@ class ApiExpandTemplates extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'This module expand all templates in wikitext';
+		return 'Expands all templates in wikitext';
 	}
 
 	protected function getExamples() {

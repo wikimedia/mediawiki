@@ -64,7 +64,7 @@ class ApiLogout extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'This module is used to logout and clear session data';
+		return 'Log out and clear session data';
 	}
 
 	protected function getExamples() {
