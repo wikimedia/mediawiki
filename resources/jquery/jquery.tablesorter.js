@@ -212,7 +212,7 @@
 				if ( node.hasAttribute && node.hasAttribute( "data-sort-value" ) ) {
 					return node.getAttribute( "data-sort-value" );
 				} else {
-					return n.text();
+					return $( node ).text();
 				}
 			}
 
