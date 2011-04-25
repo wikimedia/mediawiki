@@ -17,7 +17,11 @@ class Article {
 	/**@{{
 	 * @private
 	 */
-	protected $mContext;              // !< RequestContext
+
+	/**
+	 * @var RequestContext
+	 */
+	protected $mContext;
 
 	var $mContent;                    // !<
 	var $mContentLoaded = false;      // !<
@@ -28,19 +32,49 @@ class Article {
 	var $mIsRedirect = false;         // !<
 	var $mLatest = false;             // !<
 	var $mOldId;                      // !<
-	var $mPreparedEdit = false;       // !< Title object if set
-	var $mRedirectedFrom = null;      // !< Title object if set
-	var $mRedirectTarget = null;      // !< Title object if set
+	var $mPreparedEdit = false;
+
+	/**
+	 * @var Title
+	 */
+	var $mRedirectedFrom = null;
+
+	/**
+	 * @var Title
+	 */
+	var $mRedirectTarget = null;
+
+	/**
+	 * @var Title
+	 */
 	var $mRedirectUrl = false;        // !<
 	var $mRevIdFetched = 0;           // !<
-	var $mLastRevision = null;		  // !< Latest revision if set
-	var $mRevision = null;            // !< Loaded revision object if set
+
+	/**
+	 * @var Revision
+	 */
+	var $mLastRevision = null;
+
+	/**
+	 * @var Revision
+	 */
+	var $mRevision = null;
+
 	var $mTimestamp = '';             // !<
 	var $mTitle;                      // !< Title object
 	var $mTotalAdjustment = 0;        // !<
 	var $mTouched = '19700101000000'; // !<
-	var $mParserOptions;              // !< ParserOptions object
-	var $mParserOutput;               // !< ParserCache object if set
+
+	/**
+	 * @var ParserOptions
+	 */
+	var $mParserOptions;
+
+	/**
+	 * @var ParserOutput
+	 */
+	var $mParserOutput;
+
 	/**@}}*/
 
 	/**
@@ -424,7 +458,7 @@ class Article {
 
 	/**
 	 * Fetch a page record with the given conditions
-	 * @param $dbr Database object
+	 * @param $dbr DatabaseBase object
 	 * @param $conditions Array
 	 * @return mixed Database result resource, or false on failure
 	 */
@@ -444,7 +478,7 @@ class Article {
 	 * Fetch a page record matching the Title object's namespace and title
 	 * using a sanitized title string
 	 *
-	 * @param $dbr Database object
+	 * @param $dbr DatabaseBase object
 	 * @param $title Title object
 	 * @return mixed Database result resource, or false on failure
 	 */
@@ -457,7 +491,7 @@ class Article {
 	/**
 	 * Fetch a page record matching the requested ID
 	 *
-	 * @param $dbr Database
+	 * @param $dbr DatabaseBase
 	 * @param $id Integer
 	 * @return mixed Database result resource, or false on failure
 	 */
@@ -469,7 +503,7 @@ class Article {
 	 * Set the general counter, title etc data loaded from
 	 * some source.
 	 *
-	 * @param $data Database row object or "fromdb"
+	 * @param $data Object|String $res->fetchObject() object or the string "fromdb" to reload
 	 */
 	public function loadPageData( $data = 'fromdb' ) {
 		if ( $data === 'fromdb' ) {
@@ -1225,7 +1259,7 @@ class Article {
 	 * @return boolean
 	 */
 	public function showRedirectedFromHeader() {
-		global $wgOut, $wgUser, $wgRequest, $wgRedirectSources;
+		global $wgOut, $wgRequest, $wgRedirectSources;
 
 		$rdfrom = $wgRequest->getVal( 'rdfrom' );
 
@@ -1233,7 +1267,7 @@ class Article {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
 			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
-				$redir = $wgUser->getSkin()->link(
+				$redir = Linker::link(
 					$this->mRedirectedFrom,
 					null,
 					array(),
@@ -1261,7 +1295,7 @@ class Article {
 			// This is an externally redirected view, from some other wiki.
 			// If it was reported from a trusted site, supply a backlink.
 			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
-				$redir = $wgUser->getSkin()->makeExternalLink( $rdfrom, $rdfrom );
+				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
 				$s = wfMsgExt( 'redirectedfrom', array( 'parseinline', 'replaceafter' ), $redir );
 				$wgOut->setSubtitle( $s );
 
@@ -1324,7 +1358,6 @@ class Article {
 			return;
 		}
 
-		$sk = $wgUser->getSkin();
 		$token = $wgUser->editToken( $rcid );
 		$wgOut->preventClickjacking();
 
@@ -1332,7 +1365,7 @@ class Article {
 			"<div class='patrollink'>" .
 				wfMsgHtml(
 					'markaspatrolledlink',
-					$sk->link(
+					Linker::link(
 						$this->mTitle,
 						wfMsgHtml( 'markaspatrolledtext' ),
 						array(),
@@ -1550,7 +1583,7 @@ class Article {
 	 * @return string containing HMTL with redirect link
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
-		global $wgOut, $wgContLang, $wgStylePath, $wgUser;
+		global $wgOut, $wgContLang, $wgStylePath;
 
 		if ( !is_array( $target ) ) {
 			$target = array( $target );
@@ -1562,14 +1595,13 @@ class Article {
 			$wgOut->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 		}
 
-		$sk = $wgUser->getSkin();
 		// the loop prepends the arrow image before the link, so the first case needs to be outside
 		$title = array_shift( $target );
 
 		if ( $forceKnown ) {
-			$link = $sk->linkKnown( $title, htmlspecialchars( $title->getFullText() ) );
+			$link = Linker::linkKnown( $title, htmlspecialchars( $title->getFullText() ) );
 		} else {
-			$link = $sk->link( $title, htmlspecialchars( $title->getFullText() ) );
+			$link = Linker::link( $title, htmlspecialchars( $title->getFullText() ) );
 		}
 
 		$nextRedirect = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
@@ -1578,9 +1610,9 @@ class Article {
 		foreach ( $target as $rt ) {
 			$link .= Html::element( 'img', array( 'src' => $nextRedirect, 'alt' => $alt ) );
 			if ( $forceKnown ) {
-				$link .= $sk->linkKnown( $rt, htmlspecialchars( $rt->getFullText(), array(), array( 'redirect' => 'no' ) ) );
+				$link .= Linker::linkKnown( $rt, htmlspecialchars( $rt->getFullText(), array(), array( 'redirect' => 'no' ) ) );
 			} else {
-				$link .= $sk->link( $rt, htmlspecialchars( $rt->getFullText() ), array(), array( 'redirect' => 'no' ) );
+				$link .= Linker::link( $rt, htmlspecialchars( $rt->getFullText() ), array(), array( 'redirect' => 'no' ) );
 			}
 		}
 
@@ -1801,7 +1833,7 @@ class Article {
 	/**
 	 * Add row to the redirect table if this is a redirect, remove otherwise.
 	 *
-	 * @param $dbw Database
+	 * @param $dbw DatabaseBase
 	 * @param $redirectTitle Title object pointing to the redirect target,
 	 *                       or NULL if this is not a redirect
 	 * @param $lastRevIsRedirect If given, will optimize adding and
@@ -2299,7 +2331,7 @@ class Article {
 		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
 			$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
 			$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
-			$wgOut->returnToMain( false, $return );
+			$wgOut->returnToMain( null, $return );
 
 			return;
 		}
@@ -2313,7 +2345,7 @@ class Article {
 		# Inform the user
 		$wgOut->setPageTitle( wfMsg( 'markedaspatrolled' ) );
 		$wgOut->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
-		$wgOut->returnToMain( false, $return );
+		$wgOut->returnToMain( null, $return );
 	}
 
 	/**
@@ -2770,12 +2802,11 @@ class Article {
 		if ( $hasHistory && !$confirm ) {
 			global $wgLang;
 
-			$skin = $wgOut->getSkin();
 			$revisions = $this->estimateRevisionCount();
 			//FIXME: lego
 			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .
-				wfMsgHtml( 'word-separator' ) . $skin->link( $this->mTitle,
+				wfMsgHtml( 'word-separator' ) . Linker::link( $this->mTitle,
 					wfMsgHtml( 'history' ),
 					array( 'rel' => 'archives' ),
 					array( 'action' => 'history' ) ) .
@@ -2882,7 +2913,7 @@ class Article {
 
 		wfDebug( "Article::confirmDelete\n" );
 
-		$deleteBackLink = $wgOut->getSkin()->linkKnown( $this->mTitle );
+		$deleteBackLink = Linker::linkKnown( $this->mTitle );
 		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $deleteBackLink ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
@@ -2959,9 +2990,8 @@ class Article {
 			Xml::closeElement( 'form' );
 
 			if ( $wgOut->getUser()->isAllowed( 'editinterface' ) ) {
-				$skin = $wgOut->getSkin();
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
-				$link = $skin->link(
+				$link = Linker::link(
 					$title,
 					wfMsgHtml( 'delete-edit-reasonlist' ),
 					array(),
@@ -3378,7 +3408,7 @@ class Article {
 
 				if ( $current->getComment() != '' ) {
 					$wgOut->addWikiMsgArray( 'editcomment', array(
-						$wgUser->getSkin()->formatComment( $current->getComment() ) ), array( 'replaceafter' ) );
+						Linker::formatComment( $current->getComment() ) ), array( 'replaceafter' ) );
 				}
 			}
 
@@ -3417,12 +3447,12 @@ class Article {
 		if ( $current->getUserText() === '' ) {
 			$old = wfMsg( 'rev-deleted-user' );
 		} else {
-			$old = $wgUser->getSkin()->userLink( $current->getUser(), $current->getUserText() )
-				. $wgUser->getSkin()->userToolLinks( $current->getUser(), $current->getUserText() );
+			$old = Linker::userLink( $current->getUser(), $current->getUserText() )
+				. Linker::userToolLinks( $current->getUser(), $current->getUserText() );
 		}
 
-		$new = $wgUser->getSkin()->userLink( $target->getUser(), $target->getUserText() )
-			. $wgUser->getSkin()->userToolLinks( $target->getUser(), $target->getUserText() );
+		$new = Linker::userLink( $target->getUser(), $target->getUserText() )
+			. Linker::userToolLinks( $target->getUser(), $target->getUserText() );
 		$wgOut->addHTML( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 		$wgOut->returnToMain( false, $this->mTitle );
 
@@ -3630,10 +3660,10 @@ class Article {
 		$td = $wgLang->timeanddate( $timestamp, true );
 		$tddate = $wgLang->date( $timestamp, true );
 		$tdtime = $wgLang->time( $timestamp, true );
-		$sk = $wgUser->getSkin();
+
 		$lnk = $current
 			? wfMsgHtml( 'currentrevisionlink' )
-			: $sk->link(
+			: Linker::link(
 				$this->mTitle,
 				wfMsgHtml( 'currentrevisionlink' ),
 				array(),
@@ -3642,7 +3672,7 @@ class Article {
 			);
 		$curdiff = $current
 			? wfMsgHtml( 'diff' )
-			: $sk->link(
+			: Linker::link(
 				$this->mTitle,
 				wfMsgHtml( 'diff' ),
 				array(),
@@ -3654,7 +3684,7 @@ class Article {
 			);
 		$prev = $this->mTitle->getPreviousRevisionID( $oldid ) ;
 		$prevlink = $prev
-			? $sk->link(
+			? Linker::link(
 				$this->mTitle,
 				wfMsgHtml( 'previousrevision' ),
 				array(),
@@ -3666,7 +3696,7 @@ class Article {
 			)
 			: wfMsgHtml( 'previousrevision' );
 		$prevdiff = $prev
-			? $sk->link(
+			? Linker::link(
 				$this->mTitle,
 				wfMsgHtml( 'diff' ),
 				array(),
@@ -3679,7 +3709,7 @@ class Article {
 			: wfMsgHtml( 'diff' );
 		$nextlink = $current
 			? wfMsgHtml( 'nextrevision' )
-			: $sk->link(
+			: Linker::link(
 				$this->mTitle,
 				wfMsgHtml( 'nextrevision' ),
 				array(),
@@ -3691,7 +3721,7 @@ class Article {
 			);
 		$nextdiff = $current
 			? wfMsgHtml( 'diff' )
-			: $sk->link(
+			: Linker::link(
 				$this->mTitle,
 				wfMsgHtml( 'diff' ),
 				array(),
@@ -3708,20 +3738,20 @@ class Article {
 		$canHide = $wgUser->isAllowed( 'deleterevision' );
 		if ( $canHide || ( $revision->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) ) {
 			if ( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$cdel = $sk->revDeleteLinkDisabled( $canHide ); // rev was hidden from Sysops
+				$cdel = Linker::revDeleteLinkDisabled( $canHide ); // rev was hidden from Sysops
 			} else {
 				$query = array(
 					'type'   => 'revision',
 					'target' => $this->mTitle->getPrefixedDbkey(),
 					'ids'    => $oldid
 				);
-				$cdel = $sk->revDeleteLink( $query, $revision->isDeleted( File::DELETED_RESTRICTED ), $canHide );
+				$cdel = Linker::revDeleteLink( $query, $revision->isDeleted( File::DELETED_RESTRICTED ), $canHide );
 			}
 			$cdel .= ' ';
 		}
 
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
-		$userlinks = $sk->revUserTools( $revision, !$unhide );
+		$userlinks = Linker::revUserTools( $revision, !$unhide );
 
 		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
 			? 'revision-info-current'
@@ -3918,6 +3948,8 @@ class Article {
 
 	/**
 	 * Clears caches when article is deleted
+	 *
+	 * @param $title Title
 	 */
 	public static function onArticleDelete( $title ) {
 		# Update existence markers on article/talk tabs...
@@ -4284,7 +4316,7 @@ class Article {
 	/**
 	 * Updates cascading protections
 	 *
-	 * @param $parserOutput mixed ParserOptions object, or boolean false
+	 * @param $parserOutput ParserOutput object, or boolean false
 	 **/
 	protected function doCascadeProtectionUpdates( $parserOutput ) {
 		if ( !$this->isCurrent() || wfReadOnly() || !$this->mTitle->areRestrictionsCascading() ) {
@@ -4469,6 +4501,10 @@ class Article {
 }
 
 class PoolWorkArticleView extends PoolCounterWork {
+
+	/**
+	 * @var Article
+	 */
 	private $mArticle;
 
 	function __construct( $article, $key, $useParserCache, $parserOptions ) {
@@ -4503,6 +4539,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 		return $this->mArticle->tryDirtyCache();
 	}
 
+	/**
+	 * @param  $status Status
+	 */
 	function error( $status ) {
 		global $wgOut;
 
