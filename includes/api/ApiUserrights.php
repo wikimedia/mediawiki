@@ -96,11 +96,11 @@ class ApiUserrights extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'add' => array(
-				ApiBase::PARAM_TYPE => User::getAllGroups(),
+				ApiBase::PARAM_TYPE => array_values( User::getAllGroups() ),
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'remove' => array(
-				ApiBase::PARAM_TYPE => User::getAllGroups(),
+				ApiBase::PARAM_TYPE => array_values( User::getAllGroups() ),
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'token' => null,
