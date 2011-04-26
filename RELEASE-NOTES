@@ -528,6 +528,8 @@ files are used instead.
 * (bug 28306) Fix exposure of suppressed usernames in ForeignDBRepo
 * (bug 28444) Fix regression: edit-on-doubleclick retains revision id again
 * UtfNormal::cleanUp on an invalid utf-8 sequence no longer returns false if intl installed.
+* (bug 26729) Category pages should return 404 if they do not exist and have no
+  members.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
