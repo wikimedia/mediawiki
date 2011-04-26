@@ -873,6 +873,7 @@ $messages['ar'] = array(
 	'config-type-postgres' => 'بوستجر إس كيو إل',
 	'config-type-sqlite' => 'إس كيو لايت',
 	'config-type-oracle' => 'أوراكل',
+	'config-admin-email' => 'عنوان البريد الإلكتروني:',
 );
 
 /** Aramaic (ܐܪܡܝܐ)
@@ -9185,7 +9186,7 @@ Het aanmaken wordt overgeslagen.",
 	'config-install-interwiki-exists' => "'''Waarschuwing''': de interwikitabel heeft al inhoud. 
 De standaardlijst wordt overgeslagen.",
 	'config-install-stats' => 'Statistieken initialiseren',
-	'config-install-keys' => 'Geheime sleutel aanmaken',
+	'config-install-keys' => 'Bezig met aanmaken van geheime sleutels',
 	'config-insecure-keys' => "'''Waarschuwing:''' De {{PLURAL:$2|sleutel die is aangemaakt|sleutels die zijn aangemaakt}} ($1) tijdens de installatie {{PLURAL:$2|is|zijn}} niet volledig veilig. Overweeg deze handmatig te wijzigen.",
 	'config-install-sysop' => 'Gebruiker voor beheerder aanmaken',
 	'config-install-subscribe-fail' => 'Het is niet mogelijk te abonneren op mediawiki-announce',

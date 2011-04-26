@@ -577,9 +577,9 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'prevn'                          => 'Ka horeeya {{PLURAL:$1|$1}}',
 'nextn'                          => 'Ku xiga {{PLURAL:$1|$1}}',
 'viewprevnext'                   => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-legend'              => 'Doorashada raadinta',
+'searchmenu-legend'              => 'Raadi doorashooyinka',
 'searchhelp-url'                 => 'Help:Caawinaad',
-'searchprofile-articles'         => 'Mqaalada kooban',
+'searchprofile-articles'         => 'Maqaalada kooban',
 'searchprofile-everything'       => 'Wax kasto',
 'searchprofile-articles-tooltip' => 'Ka raadi $1',
 'searchprofile-project-tooltip'  => 'Ka raadi $1',
@@ -683,6 +683,7 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'recentchangestext'           => 'Dabagal isbedelada dhow ee wikiga oo ku dhacay bogaan.',
 'recentchanges-label-newpage' => 'Wax bedelkaan waxoo sameeyay bog cusub',
 'rcshowhideminor'             => '$1 bedelada yar',
+'rcshowhidebots'              => '$1 botyaalo',
 'rcshowhideliu'               => '$1 isticmaalada-soo galay',
 'rcshowhideanons'             => '$1 isticmaalada la aqoon',
 'rcshowhidepatr'              => '$1 bedelada la waardiyeeyay',
@@ -747,6 +748,7 @@ file'kaan waa  $2.",
 'deadendpages'       => 'Boggaga aanan la daba joogin',
 'deadendpagestext'   => 'Boggogaan linki lamalaha boggaga kale ee wikiga .',
 'protectedpages'     => "Boggag la'difaacay",
+'newpages'           => 'Bogyaalo cusub',
 'newpages-username'  => 'Magaca gudagalka:',
 'ancientpages'       => 'Boggaga duqoobay',
 'move'               => 'Wareeji',
@@ -780,6 +782,10 @@ file'kaan waa  $2.",
 'listusersfrom'      => "I'tus isticmaalayaasha laga bilaabo:",
 'listusers-submit'   => "I'tus",
 'listusers-noresult' => 'Lama helin isticmaale.',
+'listusers-blocked'  => '(waa la mamnuucay)',
+
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Isticmaale cusub',
 
 # E-mail user
 'mailnologin'     => "Ma'jiro cinwaan wax lagu diro",
@@ -827,7 +833,10 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Delete
 'confirm'        => 'Xaqiiji',
 'excontent'      => "qoraalka wuxuu ahaa: '$1'",
+'exbeforeblank'  => 'Intii la masaxin waxaa ku qornaa: "$1"',
 'exblank'        => 'Bogga waxba kuma jirin',
+'delete-confirm' => 'Tirtir "$1"',
+'delete-legend'  => 'Tirtir',
 'historywarning' => '<strong>Digniin:</strong> Bogga aad tirtirirabtid wuxuu leeyahay taariikkh hore:',
 'actioncomplete' => "Amarka waa la'dhamaystiray",
 
@@ -880,7 +889,8 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Contributions
 'mycontris' => 'Wax qoraalkeyga',
 
-'sp-contributions-talk' => 'Wadahadal',
+'sp-contributions-talk'   => 'Wadahadal',
+'sp-contributions-submit' => 'Raadi',
 
 # Block/unblock
 'anononlyblock'            => 'qarsoon. kaliya',
@@ -900,7 +910,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 '1movedto2_redir' => '[[$1]] waxaa loo wareejiyey [[$2]] si loo sii toosiyo',
 
 # Export
-'export-addcattext' => 'Ku dar maqaalo laga soo qaaday ereykoobka:',
+'export-addcattext' => 'Ku dar maqaalo laga soo qaaday qeybaha:',
 'export-addns'      => 'Ku dar',
 
 # Namespace 8 related
@@ -954,8 +964,13 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Info page
 'numwatchers' => 'Tirada waardiyeyaasha: $1',
 
+# Browsing diffs
+'previousdiff' => '← bedelkii ka duqsanaa',
+'nextdiff'     => 'Bedelkii ugu cusbaa →',
+
 # Special:NewFiles
 'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{PLURAL:$1|file|faylalka}} oo u kala soocan $2.",
+'ilsubmit'      => 'Raadi',
 'bydate'        => 'hab taariikheed',
 
 # EXIF tags
@@ -976,7 +991,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'table_pager_last'  => 'Bogga ugu danbeeyo',
 
 # Auto-summaries
-'autosumm-new' => 'waxaa la sameeyay bog leh: $1',
+'autosumm-new' => 'Bog cusub: $1',
 
 # Special:Version
 'version-poweredby-others' => 'kuwa kale',
@@ -990,5 +1005,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Special:SpecialPages
 'specialpages'             => 'bogaga khaaska ah',
 'specialpages-group-pages' => 'liiska maqaalada',
+
+# Special:BlankPage
+'blankpage' => 'Bog masaxan',
 
 );

@@ -11,6 +11,7 @@
  * @author Harshalhayat
  * @author Hemanshu
  * @author Hemant wikikosh1
+ * @author Htt
  * @author Kaustubh
  * @author Mahitgar
  * @author Sankalpdravid
@@ -525,6 +526,7 @@ $messages = array(
 'jumptosearch'      => 'शोधयंत्र',
 'view-pool-error'   => 'माफ करा. यावेळेस सर्व्हरवर ताण आहे.अनेक सदस्य हे पान बघण्याचा प्रयत्न करीत आहेत.पुन्हा या पानावर पोचण्यासाठी थोडा वेळ थांबुन परत प्रयत्न करा.
 $1',
+'pool-errorunknown' => 'अपरिचित त्रूटी',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} बद्दल',
@@ -767,6 +769,10 @@ $2',
 'resetpass-submit-cancel'   => 'रद्द करा',
 'resetpass-temp-password'   => 'तात्पुरता परवलीचा शब्द',
 
+# Special:PasswordReset
+'passwordreset'          => 'परवलीचा शब्द पूर्ववत करा',
+'passwordreset-username' => 'सदस्यनाव',
+
 # Edit page toolbar
 'bold_sample'     => 'ठळक मजकूर',
 'bold_tip'        => 'ठळक',
@@ -796,6 +802,7 @@ $2',
 'showlivepreview'                  => 'थेट झलक',
 'showdiff'                         => 'बदल दाखवा',
 'anoneditwarning'                  => "'''सावधानः''' तुम्ही विकिपीडियाचे सदस्य म्हणून प्रवेश (लॉग-इन) केलेला नाही. या पानाच्या संपादन इतिहासात तुमचा आय.पी. ऍड्रेस नोंदला जाईल.",
+'anonpreviewwarning'               => "\"'''सावधान:''' तुम्ही विकिपीडियाचे सदस्य म्हणून प्रवेश (लॉग-इन) केलेला नाही. या पानाच्या संपादन इतिहासात तुमचा आय.पी. अंकपत्ता (अ‍ॅड्रेस) नोंदला जाईल.\"",
 'missingsummary'                   => "'''आठवण:''' तूम्ही संपादन सारांश पुरवलेला नाही.आपण जतन करा वर पुन्हा टीचकी मारली तर तेत्या शिवाय जतन होईल.",
 'missingcommenttext'               => 'कृपया खाली प्रतिक्रीया भरा.',
 'missingcommentheader'             => "'''आठवण:'''आपण या लेखनाकरिता विषय किंवा अधोरेषा दिलेली नाही .आपण पुन्ह जतन करा अशी सुचना केली तर, तुमचे संपादन त्याशिवायच जतन होईल.",
@@ -857,6 +864,7 @@ $2',
 'userjsyoucanpreview'              => "'''टीप:'''तुमचे नवे JS जतन करण्यापूर्वी 'झलक पहा' कळ वापरा.",
 'usercsspreview'                   => "'''तुम्ही तुमच्या सी.एस.एस.ची केवळ झलक पहात आहात, ती अजून जतन केलेली नाही हे लक्षात घ्या.'''",
 'userjspreview'                    => "'''तुम्ही तुमची सदस्य जावास्क्रिप्ट तपासत आहात किंवा झलक पहात आहात ,ती अजून जतन केलेली नाही हे लक्षात घ्या!'''",
+'sitecsspreview'                   => "'''तुम्ही तुमच्या सी.एस.एस.ची केवळ झलक पहात आहात, ती अजून जतन केलेली नाही हे लक्षात घ्या.'''",
 'userinvalidcssjstitle'            => "'''सावधान:''' \"\$1\" अशी त्वचा नाही.custom .css आणि .js पाने lowercase title वापरतात हे लक्षात घ्या, उदा. {{ns:user}}:Foo/vector.css या विरूद्ध {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(बदल झाला आहे.)',
 'note'                             => "'''सूचना:'''",
@@ -914,6 +922,7 @@ $2',
 या लेखाची वगळल्याची नोंद तुमच्या संदर्भाकरीता पुढीलप्रमाणे:",
 'moveddeleted-notice'              => 'हे पान वगळण्यात आलेले आहे.
 खाली संदर्भासाठी वगळण्याची सूची दिलेली आहे.',
+'log-fulllog'                      => 'पूर्ण यादी पहा.',
 'edit-gone-missing'                => 'नविन पृष्ठ तयार करता आले नाही. पूर्वीपासून अस्तित्वात आहे.',
 'edit-conflict'                    => 'वादग्रस्त संपादन',
 

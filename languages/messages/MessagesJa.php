@@ -474,6 +474,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'の続き',
 'index-category'                 => '検索エンジンに収集されるページ',
 'noindex-category'               => '検索エンジンに収集されないページ',
+'broken-file-category'           => '壊れたファイルへのリンクがあるページ',
 
 'mainpagetext'      => "'''MediaWikiが正常にインストールされました。'''",
 'mainpagedocfooter' => 'ウィキソフトウェアの使い方に関する情報は[http://meta.wikimedia.org/wiki/Help:Contents 利用者案内]を参照してください。
@@ -772,6 +773,7 @@ $2',
 'createaccount'              => 'アカウント作成',
 'gotaccount'                 => '既にアカウントを持っている場合、$1。',
 'gotaccountlink'             => 'ログインしてください',
+'userlogin-resetlink'        => 'ログイン情報を忘れた',
 'createaccountmail'          => 'メールで送信',
 'createaccountreason'        => '理由：',
 'badretype'                  => '入力したパスワードが一致しません。',
@@ -868,6 +870,15 @@ $2',
 'resetpass-wrong-oldpass'   => '仮パスワードまたは現在のパスワードが無効です。
 すでにパスワード変更を行っているか、新しい仮パスワードの発行を依頼している可能性があります。',
 'resetpass-temp-password'   => '仮パスワード：',
+
+# Special:PasswordReset
+'passwordreset'            => 'パスワードの再設定',
+'passwordreset-legend'     => 'パスワードのリセット',
+'passwordreset-disabled'   => 'パスワードのリセットは、このウィキでは無効になっています。',
+'passwordreset-pretext'    => '{{PLURAL:$1||以下のデータのうちのひとつを入力してください。}}',
+'passwordreset-username'   => '利用者名：',
+'passwordreset-email'      => '電子メールアドレス:',
+'passwordreset-emailtitle' => '{{SITENAME}}上のアカウントの詳細',
 
 # Edit page toolbar
 'bold_sample'     => '太字',

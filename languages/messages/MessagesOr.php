@@ -158,65 +158,74 @@ $messages = array(
 'vector-view-viewsource'         => 'ଉତ୍ସ ଦେଖ',
 'namespaces'                     => 'ନେମସ୍ପେସ',
 
-'errorpagetitle'   => 'ଭୁଲ',
-'tagline'          => '{{SITENAME}} ରୁ',
-'help'             => 'ସାହାଯ୍ୟ',
-'search'           => 'ଖୋଜିବେ',
-'searchbutton'     => 'ଖୋଜିବେ',
-'go'               => 'ଯିବା',
-'searcharticle'    => 'ଯିବା',
-'history'          => 'ଫାଇଲ ଇତିହାସ',
-'history_short'    => 'ଇତିହାସ',
-'info_short'       => 'ଖବର',
-'printableversion' => 'ଛପାହୋଇପାରିବା ପୃଷ୍ଠା',
-'permalink'        => 'ସବୁଦିନିଆ ଲିଙ୍କ',
-'print'            => 'ପ୍ରିଣ୍ଟ କରିବା',
-'view'             => 'ଦେଖଣା',
-'edit'             => 'ବଦଳାଇବେ',
-'create'           => 'ତିଆରି କରିବେ',
-'editthispage'     => 'ଏହି ଫରଦଟିକୁ ବଦଳାଇବା',
-'create-this-page' => 'ଏହି ଫରଦଟି ତିଆରି କରିବା',
-'delete'           => 'ଲିଭେଇବେ',
-'deletethispage'   => 'ଏହି ଫରଦଟି ଲିଭାଇବା',
-'protect'          => 'କିଳିବେ',
-'protect_change'   => 'ବଦଳାଇବା',
-'newpage'          => 'ନୂଆ ଫରଦ',
-'talkpagelinktext' => 'କଥାଭାଷା',
-'specialpage'      => 'ବିଶେଷ ଫରଦ',
-'personaltools'    => 'ନିଜର ଟୁଲ',
-'talk'             => 'ଆଲୋଚନା',
-'views'            => 'ଦେଖା',
-'toolbox'          => 'ଜନ୍ତ୍ର ପେଡ଼ି',
-'otherlanguages'   => 'ଅଲଗା ଭାଷା',
-'redirectedfrom'   => '($1 ରୁ ଲେଉଟି ଆସିଛି)',
-'lastmodifiedat'   => 'ଏହି ଫରଦଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
-'jumpto'           => 'ଡେଇଁଯିବେ',
-'jumptonavigation' => 'ଦିଗବାରେଣିକୁ',
-'jumptosearch'     => 'ଖୋଜିବେ',
+'errorpagetitle'    => 'ଭୁଲ',
+'tagline'           => '{{SITENAME}} ରୁ',
+'help'              => 'ସାହାଯ୍ୟ',
+'search'            => 'ଖୋଜିବେ',
+'searchbutton'      => 'ଖୋଜିବେ',
+'go'                => 'ଯିବା',
+'searcharticle'     => 'ଯିବା',
+'history'           => 'ଫାଇଲ ଇତିହାସ',
+'history_short'     => 'ଇତିହାସ',
+'info_short'        => 'ଖବର',
+'printableversion'  => 'ଛପାହୋଇପାରିବା ପୃଷ୍ଠା',
+'permalink'         => 'ସବୁଦିନିଆ ଲିଙ୍କ',
+'print'             => 'ପ୍ରିଣ୍ଟ କରିବା',
+'view'              => 'ଦେଖଣା',
+'edit'              => 'ବଦଳାଇବେ',
+'create'            => 'ତିଆରି କରିବେ',
+'editthispage'      => 'ଏହି ଫରଦଟିକୁ ବଦଳାଇବା',
+'create-this-page'  => 'ଏହି ଫରଦଟି ତିଆରି କରିବା',
+'delete'            => 'ଲିଭେଇବେ',
+'deletethispage'    => 'ଏହି ଫରଦଟି ଲିଭାଇବା',
+'protect'           => 'କିଳିବେ',
+'protect_change'    => 'ବଦଳାଇବା',
+'newpage'           => 'ନୂଆ ଫରଦ',
+'talkpagelinktext'  => 'କଥାଭାଷା',
+'specialpage'       => 'ବିଶେଷ ଫରଦ',
+'personaltools'     => 'ନିଜର ଟୁଲ',
+'talk'              => 'ଆଲୋଚନା',
+'views'             => 'ଦେଖା',
+'toolbox'           => 'ଜନ୍ତ୍ର ପେଡ଼ି',
+'otherlanguages'    => 'ଅଲଗା ଭାଷା',
+'redirectedfrom'    => '($1 ରୁ ଲେଉଟି ଆସିଛି)',
+'lastmodifiedat'    => 'ଏହି ଫରଦଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
+'jumpto'            => 'ଡେଇଁଯିବେ',
+'jumptonavigation'  => 'ଦିଗବାରେଣିକୁ',
+'jumptosearch'      => 'ଖୋଜିବେ',
+'pool-errorunknown' => 'ଅଜଣା ଅସୁବିଧା',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ବାବଦରେ',
 'aboutpage'            => 'Project:ବାବଦରେ',
 'copyright'            => '$1 ରେ ସର୍ବସ୍ଵତ୍ଵ ସଂରକ୍ଷିତ',
 'copyrightpage'        => '{{ns:project}}:କପିରାଇଟ',
+'currentevents'        => 'ଏବେକାର ଘଟଣା',
+'currentevents-url'    => 'Project:ଏବେକାର ଘଟଣା',
 'disclaimers'          => 'ଆମେ ଦାୟୀ ନୋହୁଁ',
 'disclaimerpage'       => 'Project:ଆମେ ଦାୟୀ ନୋହୁଁ',
 'edithelp'             => 'ଲେଖା ସାହାଜ୍ୟ',
 'edithelppage'         => 'Help:ବଦଳାଇବା',
+'helppage'             => 'Help:ଭିତର ଚିଜ',
 'mainpage'             => 'ପ୍ରଧାନ ପୃଷ୍ଠା',
 'mainpage-description' => 'ମୂଳ ଫରଦ',
+'policy-url'           => 'Project:ନୀତି',
 'portal'               => 'କମୁନିଟି ପୋଟାଲ',
+'portal-url'           => 'Project:ଗୋଷ୍ଠୀ ଆଲୋଚନା ସଭା',
 'privacy'              => 'ଗୁମର ନୀତି',
 'privacypage'          => 'Project:ଗୁମର ନୀତି',
 
 'badaccess' => 'ଅନୁମତି ମିଳିବାରେ ଅସୁବିଧା',
 
+'ok'                      => 'ଠିକ ଅଛି',
 'retrievedfrom'           => '"$1" ରୁ ଅଣାଯାଇଅଛି',
 'youhavenewmessages'      => 'ଆପଣଙ୍କର $1 ($2).',
 'newmessageslink'         => 'ନୂଆ ମେସେଜ',
+'newmessagesdifflink'     => 'ଶେଷ ବଦଳ',
 'youhavenewmessagesmulti' => '$1 ତାରିଖରେ ନୂଆ ଚିଠିଟିଏ ଆସିଛି',
 'editsection'             => 'ବଦଳାଇବେ',
 'editold'                 => 'ବଦଳାଇବା',
+'viewsourceold'           => 'ଉତ୍ସ ଦେଖିବେ',
 'editlink'                => 'ବଦଳାଇବେ',
 'viewsourcelink'          => 'ଉତ୍ସ ଦେଖ',
 'editsectionhint'         => '$1 ଭାଗଟିକୁ ବଦଳାଇବେ',
@@ -248,7 +257,7 @@ $messages = array(
 
 ଯଦି ସେମିତି ହୋଇନଥାଏ ତେବେ ଆପଣ ଏହି ସଫଟଉଏରରେ କିଛି ଅସୁବିଧା ଖୋଜି ପାଇଛଁତି ।
 କେହି ଜଣେ ଟିକେ [[Special:ListUsers/sysop|ପରିଛା]] ଙ୍କୁ ଏହି ଇଉଆରେଲ (url) ସହ ଚିଠିଟିଏ ପଠାଇ ଦିଅଁତୁ ।',
-'viewsource'      => 'ଉତ୍ସ ଦେଖ',
+'viewsource'      => 'ଉତ୍ସ ଦେଖିବେ',
 
 # Login and logout pages
 'yourname'                => 'ଇଉଜର ନାଆଁ',
@@ -399,6 +408,7 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:ପରିଛା (ଆଡମିନ)',
 
 # Recent changes
+'nchanges'                        => '$1 {{PLURAL:$1|ବଦଳ|ବଦଳସବୁ}}',
 'recentchanges'                   => 'ନଗଦ ବଦଳ',
 'recentchanges-legend'            => 'ଏବେ କରାଯାଇଥିବା ଅଦଳବଦଳ',
 'recentchanges-feed-description'  => 'ଏହି ଫିଡ଼ଟିର ନଗଦ ବଦଳ ଦେଖାଁତୁ ।',
@@ -450,7 +460,7 @@ $messages = array(
 'filehist-datetime'   => 'ତାରିଖ/ବେଳ',
 'filehist-thumb'      => 'ନଖ ଦେଖଣା',
 'filehist-thumbtext'  => '$1 ପରିକା ସଁକଳନର ନଖଦେଖଣା',
-'filehist-user'       => 'ଇଉଜର',
+'filehist-user'       => 'ବ୍ୟବାହାରକାରୀ',
 'filehist-dimensions' => 'ଆକାର',
 'filehist-comment'    => 'ମତାମତ',
 'imagelinks'          => 'ଫାଇଲର ଲିଁକସବୁ',
@@ -490,8 +500,9 @@ $messages = array(
 'pager-older-n'        => '{{PLURAL:$1|ପୁରୁଣା 1|ପୁରୁଣା $1}}',
 
 # Book sources
-'booksources'    => 'ବହିର ମୁଳ ସ୍ରୋତ',
-'booksources-go' => 'ଯିବା',
+'booksources'               => 'ବହିର ମୁଳ ସ୍ରୋତ',
+'booksources-search-legend' => 'ବହିର ସ୍ରୋତସବୁକୁ ଖୋଜିବେ',
+'booksources-go'            => 'ଯିବା',
 
 # Special:Log
 'log' => 'ଲଗ',
@@ -499,10 +510,14 @@ $messages = array(
 # Special:AllPages
 'allpages'       => 'ସବୁ ଫରଦ',
 'alphaindexline' => '$1 ରୁ $2',
+'allpagesfrom'   => 'ଏହି ନାଆଁରେ ଆରମ୍ଭ ହେଉଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଦେଖାଇବେ:',
 'allpagessubmit' => 'ଯିବା',
 
 # Special:LinkSearch
 'linksearch-ok' => 'ଖୋଜିବା',
+
+# Special:Log/newusers
+'newuserlogpage' => 'ବ୍ୟବହାରକାରୀ ତିଆରି ଲଗ',
 
 # E-mail user
 'emailuser'           => 'ଏହି ଉଇଜରଁକୁ ଇମେଲ କର',
@@ -562,11 +577,12 @@ $messages = array(
 'blanknamespace' => '(ମୂଳ)',
 
 # Contributions
-'contributions' => 'ଇଉଜରଙ୍କ ଦାନ',
-'mycontris'     => 'ମୋ ଅବଦାନ',
-'contribsub2'   => '$1 ($2) ପାଇଁ',
-'month'         => 'ମାସରୁ (ଓ ତା ଆଗରୁ)',
-'year'          => 'ବରସରୁ (ଓ ତା ଆଗରୁ)',
+'contributions'       => 'ଇଉଜରଙ୍କ ଦାନ',
+'contributions-title' => '$1 ପାଇଁ ବ୍ୟବହାରକାରୀଙ୍କ ଦାନ',
+'mycontris'           => 'ମୋ ଅବଦାନ',
+'contribsub2'         => '$1 ($2) ପାଇଁ',
+'month'               => 'ମାସରୁ (ଓ ତା ଆଗରୁ)',
+'year'                => 'ବରସରୁ (ଓ ତା ଆଗରୁ)',
 
 'sp-contributions-talk'   => 'କଥାଭାଷା',
 'sp-contributions-submit' => 'ଖୋଜିବା',
@@ -661,6 +677,7 @@ $messages = array(
 
 # Browsing diffs
 'previousdiff' => '← ପୁରୁଣା ବଦଳ',
+'nextdiff'     => 'ନୂଆ ବଦଳ →',
 
 # Media information
 'file-info-size' => '$1 × $2 ପିକସେଲ, ଫାଇଲ ଆକାର: $3, ଏମ.ଆଇ.ଏମ.ଇର ପ୍ରକାର: $4',

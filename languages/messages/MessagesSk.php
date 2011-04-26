@@ -405,6 +405,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'pokrač.',
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'neindexované stránky',
+'broken-file-category'           => 'Stránky s poškodenými odkazmi súbor',
 
 'mainpagetext'      => "'''Softvér MediaWiki bol úspešne nainštalovaný.'''",
 'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [http://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
@@ -700,6 +701,7 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'createaccount'              => 'Vytvoriť nový účet',
 'gotaccount'                 => "Máte už vytvorený účet? '''$1'''.",
 'gotaccountlink'             => 'Prihlásiť',
+'userlogin-resetlink'        => 'Zabudli ste svoje prihlasovacie údaje?',
 'createaccountmail'          => 'e-mailom',
 'createaccountreason'        => 'Dôvod:',
 'badretype'                  => 'Zadané heslá nie sú rovnaké.',
@@ -787,6 +789,19 @@ Prosím, počkajte predtým, než to skúsite znova.',
 'resetpass-wrong-oldpass'   => 'Neplatné dočasné alebo aktuálne heslo.
 Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si vyžiadali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',
+
+# Special:PasswordReset
+'passwordreset'              => 'Reset hesla',
+'passwordreset-text'         => 'Po vyplnení tohto formulára dostanete emailom podrobnosti o vašom účte.',
+'passwordreset-legend'       => 'Obnoviť heslo',
+'passwordreset-disabled'     => 'Obnovenie hesla bolo na tejto wiki zakázané.',
+'passwordreset-pretext'      => '{{PLURAL:$1|Zadajte nižšie uvedený údaj|Zadajte jeden z nižšie uvedených údajov}}',
+'passwordreset-username'     => 'Používateľské meno:',
+'passwordreset-email'        => 'Emailová adresa:',
+'passwordreset-emailtitle'   => 'Podrobnosti o účte na {{GRAMMAR:lokál|{{SITENAME}}}}',
+'passwordreset-emailelement' => 'Používateľské meno: $1
+Dočasné heslo:$2',
+'passwordreset-emailsent'    => 'Email s heslom bol odoslaný.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',
@@ -2120,6 +2135,10 @@ Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniac
 'noemailtext'          => 'Tento používateľ neuviedol svoju platnú e-mailovú adresu.',
 'nowikiemailtitle'     => 'Posielanie emailov nie je umožnené',
 'nowikiemailtext'      => 'Tento používateľ sa rozhodol, že si neželá prijímať emaily od ostatných používateľov.',
+'emailnotarget'        => 'Neexistujúce alebo neplatné používateľské meno príjemcu.',
+'emailtarget'          => 'Zadajte používateľské meno príjemcu',
+'emailusername'        => 'Používateľské meno:',
+'emailusernamesubmit'  => 'Odoslať',
 'email-legend'         => 'Poslať email používateľovi {{GRAMMAR:genitív|{{SITENAME}}}}',
 'emailfrom'            => 'Od:',
 'emailto'              => 'Komu:',
@@ -3114,10 +3133,76 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpsareainformation'          => 'Názov GPS oblasti',
 'exif-gpsdatestamp'                => 'Dátum GPS',
 'exif-gpsdifferential'             => 'Diferenciálna korekcia GPS',
+'exif-jpegfilecomment'             => 'Komentár súboru JPEG',
+'exif-keywords'                    => 'Kľúčové slová',
+'exif-worldregioncreated'          => 'Oblasť sveta, kde snímka bola zhotovená',
+'exif-countrycreated'              => 'Krajina, v ktorej snímka bola zhotovená',
+'exif-countrycodecreated'          => 'Kód krajiny, v ktorej snímka bola zhotovená',
+'exif-provinceorstatecreated'      => 'Štát alebo región, v ktorom snímka bola zhotovená',
+'exif-citycreated'                 => 'Mesto, v ktorom snímka bola zhotovená',
+'exif-sublocationcreated'          => 'Časť mesta, v ktorej snímka bola zhotovená',
+'exif-worldregiondest'             => 'Oblasť sveta zobrazená',
+'exif-countrydest'                 => 'Krajina zobrazená',
+'exif-countrycodedest'             => 'Kód krajiny zobrazený',
+'exif-provinceorstatedest'         => 'Štát alebo región zobrazený',
+'exif-citydest'                    => 'Mesto zobrazené',
+'exif-sublocationdest'             => 'Časť mesta zobrazená',
 'exif-objectname'                  => 'Krátky názov',
+'exif-specialinstructions'         => 'Osobitné pokyny',
+'exif-headline'                    => 'Nadpis',
+'exif-credit'                      => 'Autor/poskytovateľ',
+'exif-source'                      => 'Zdroj',
+'exif-editstatus'                  => 'Redakčný stav obrázka',
+'exif-urgency'                     => 'Naliehavosť',
+'exif-fixtureidentifier'           => 'Názov pevného umiestnenia',
+'exif-locationdest'                => 'Zobrazené miesto',
+'exif-locationdestcode'            => 'Kód zobrazeného miesta',
+'exif-objectcycle'                 => 'Denná doba, pre ktorú je médium určené',
+'exif-contact'                     => 'Kontaktné informácie',
+'exif-writer'                      => 'Autor nadpisu',
+'exif-languagecode'                => 'Jazyk',
+'exif-iimversion'                  => 'Verzia IIM',
+'exif-iimcategory'                 => 'Kategória',
+'exif-iimsupplementalcategory'     => 'Doplnkové kategórie',
+'exif-datetimeexpires'             => 'Nepoužívať po',
+'exif-datetimereleased'            => 'Najskoršie uvoľnenie',
+'exif-originaltransmissionref'     => 'Pôvodný kód miesta prenosu',
+'exif-identifier'                  => 'Identifikátor',
+'exif-lens'                        => 'Použitý objektív',
+'exif-serialnumber'                => 'Sériové číslo fotoaparátu',
+'exif-cameraownername'             => 'Vlastník fotoaparátu',
+'exif-label'                       => 'Označenie',
+'exif-datetimemetadata'            => 'Dátum poslednej úpravy metadát',
+'exif-nickname'                    => 'Neformálny názov obrázka',
+'exif-rating'                      => 'Hodnotenie (z 5)',
+'exif-rightscertificate'           => 'Certifikát riadenia oprávnení',
+'exif-copyrighted'                 => 'Stav autorských práv',
+'exif-copyrightowner'              => 'Držiteľ autorských práv',
+'exif-usageterms'                  => 'Podmienky použitia',
+'exif-webstatement'                => 'Vyhlásenie o autorských právach online',
+'exif-originaldocumentid'          => 'Jedinečný identifikátor pôvodného dokumentu',
+'exif-licenseurl'                  => 'URL licencie podľa autorského práva',
+'exif-morepermissionsurl'          => 'Informácie o alternatívnom licencovaní',
+'exif-attributionurl'              => 'Pri opätovnom použití tohto diela, prosím, uvádzajte odkaz na',
+'exif-preferredattributionname'    => 'Pri opätovnom použití tohto diela, prosím, uveďte ako autora',
+'exif-pngfilecomment'              => 'Komentár súboru PNG',
+'exif-disclaimer'                  => 'Vylúčenie zodpovednosti',
+'exif-contentwarning'              => 'Upozornenie o obsahu',
+'exif-giffilecomment'              => 'Komentár súboru GIF',
+'exif-intellectualgenre'           => 'Typ položky',
+'exif-subjectnewscode'             => 'Kód predmetu',
+'exif-scenecode'                   => 'IPTC kód scény',
+'exif-event'                       => 'Zobrazená udalosť',
+'exif-organisationinimage'         => 'Zobrazená organizácia',
+'exif-personinimage'               => 'Zobrazená osoba',
+'exif-originalimageheight'         => 'Výška obrázka pred orezaním',
+'exif-originalimagewidth'          => 'Šírka obrázka pred orezaním',
 
 # EXIF attributes
 'exif-compression-1' => 'Bez kompresie',
+
+'exif-copyrighted-true'  => 'Chránené autorským právom',
+'exif-copyrighted-false' => 'Voľné dielo',
 
 'exif-unknowndate' => 'Neznámy dátum',
 
@@ -3132,6 +3217,8 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 
 'exif-planarconfiguration-1' => 'masívny formát',
 'exif-planarconfiguration-2' => 'rovinný formát',
+
+'exif-colorspace-65535' => 'Nekalibrované',
 
 'exif-componentsconfiguration-0' => 'neexistuje',
 
@@ -3196,6 +3283,8 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-sensingmethod-7' => 'Trilineárny snímač',
 'exif-sensingmethod-8' => 'Sekvenčný farebný lineárny snímač',
 
+'exif-filesource-3' => 'Digitálny fotoaparát',
+
 'exif-scenetype-1' => 'Priamo odfotený obrázok',
 
 'exif-customrendered-0' => 'Normálne spracovanie',
@@ -3244,6 +3333,10 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpslongitude-e' => 'Východná dĺžka',
 'exif-gpslongitude-w' => 'Západná dĺžka',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|metre|metrov}} nad hladinou mora',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|metre|metrov}} pod hladinou mora',
+
 'exif-gpsstatus-a' => 'Prebieha meranie',
 'exif-gpsstatus-v' => 'Interoperabilita merania',
 
@@ -3260,9 +3353,58 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpsdestdistance-m' => 'Míľ',
 'exif-gpsdestdistance-n' => 'Námorných míľ',
 
+'exif-gpsdop-excellent' => 'Vynikajúca ($1)',
+'exif-gpsdop-good'      => 'Dobrá ( $1 )',
+'exif-gpsdop-moderate'  => 'Stredná ( $1 )',
+'exif-gpsdop-fair'      => 'Dostatočná ($1)',
+'exif-gpsdop-poor'      => 'Slabá ($1)',
+
+'exif-objectcycle-a' => 'Iba dopoludnia',
+'exif-objectcycle-p' => 'Iba popoludní',
+'exif-objectcycle-b' => 'Dopoludnia aj popoludní',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Skutočný smer',
 'exif-gpsdirection-m' => 'Magnetický smer',
+
+'exif-ycbcrpositioning-1' => 'Vystrednené',
+'exif-ycbcrpositioning-2' => 'Umiestnené spolu',
+
+'exif-dc-contributor' => 'Prispievatelia',
+'exif-dc-coverage'    => 'Priestorový alebo časový rozsah média',
+'exif-dc-date'        => 'Dátum(y)',
+'exif-dc-publisher'   => 'Vydavateľ',
+'exif-dc-relation'    => 'Súvisiace médiá',
+'exif-dc-rights'      => 'Práva',
+'exif-dc-source'      => 'Zdrojové médiá',
+'exif-dc-type'        => 'Typ média',
+
+'exif-rating-rejected' => 'Odmietnuté',
+
+'exif-isospeedratings-overflow' => 'Väčšia ako 65535',
+
+'exif-iimcategory-ace' => 'Umenie, kultúra a zábava',
+'exif-iimcategory-clj' => 'Zločin a zákon',
+'exif-iimcategory-dis' => 'Katastrofy a nehody',
+'exif-iimcategory-fin' => 'Ekonómia a podnikanie',
+'exif-iimcategory-edu' => 'Vzdelávanie',
+'exif-iimcategory-evn' => 'Životné prostredie',
+'exif-iimcategory-hth' => 'Zdravie',
+'exif-iimcategory-hum' => 'Ľudské záujmy',
+'exif-iimcategory-lab' => 'Práca',
+'exif-iimcategory-lif' => 'Životný štýl a voľný čas',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Náboženstvo a viera',
+'exif-iimcategory-sci' => 'Veda a technika',
+'exif-iimcategory-soi' => 'Sociálne otázky',
+'exif-iimcategory-spo' => 'Šport',
+'exif-iimcategory-war' => 'Vojny, konflikty a nepokoje',
+'exif-iimcategory-wea' => 'Počasie',
+
+'exif-urgency-normal' => 'Normálna ($1)',
+'exif-urgency-low'    => 'Nízka ( $1 )',
+'exif-urgency-high'   => 'Vysoká ( $1 )',
+'exif-urgency-other'  => 'Používateľom definovaná priorita ($1)',
 
 # External editor support
 'edit-externally'      => 'Upraviť tento súbor pomocou externého programu',

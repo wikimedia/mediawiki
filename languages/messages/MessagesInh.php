@@ -313,6 +313,7 @@ $messages = array(
 # Edit page toolbar
 'link_sample'     => 'Iинка кертмугI',
 'link_tip'        => 'ЧураIинк',
+'extlink_sample'  => 'Iинка кертдош http://www.example.com',
 'headline_sample' => 'KертмугIa яздама',
 'headline_tip'    => '2-гIа кертмугIa лагIа',
 'nowiki_sample'   => 'Укхаза кийчаде дезаш доаца яздам оттаде',
@@ -741,6 +742,8 @@ $messages = array(
 'tooltip-ca-nstab-category'       => 'Цатега оагIув',
 'tooltip-minoredit'               => 'Ер хувцар башха доаца санна белгалде',
 'tooltip-save'                    => 'Хувцамаш кходе',
+'tooltip-preview'                 => 'ОагIув тIа хьалхе бIаргтассар, дехар да, оагIув дIаязъелаьхь, цунна теркам бе.',
+'tooltip-diff'                    => 'Яздам тIа я йола хувцамаш хьахокха',
 'tooltip-compareselectedversions' => 'Укх оагIувни шин доржамаш тIа юкъера хувцамаш зе.',
 'tooltip-watch'                   => 'Ер оагIув теркам беча каьхата тIа яккха',
 'tooltip-rollback'                => 'ГIалaтанийсадаро тIехьара я йола хувцамаш, пIелг тоIоби дIаяккха.',
