@@ -20,7 +20,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'doFKRenameDeferr' ),
 			array( 'doFunctions17' ),
 			array( 'doSchemaUpgrade17' ),
-			array( 'doInserPage0' ),
+			array( 'doInsertPage0' ),
 		);
 	}
 
@@ -81,7 +81,10 @@ class OracleUpdater extends DatabaseUpdater {
 		$this->output( "ok\n" );
 	}
 
-	protected function doInserPage0() {
+	/**
+	 * Insert page (page_id = 0) to prevent FK constraint violation
+	 */
+	protected function doInsertPage0() {
 		$this->output( "Inserting page 0 if missing ... " );
 		$row = array(
 			'page_id' => 0,
