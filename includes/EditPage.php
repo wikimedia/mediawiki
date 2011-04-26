@@ -2414,9 +2414,8 @@ HTML
 				array_map( array( 'Xml', 'encodeJsVar' ), $params ) );
 			$script .= "mw.toolbar.addButton($paramList);\n";
 		}
-		$script .= "mw.toolbar.init();\n";
 		$wgOut->addScript( Html::inlineScript(
-			"if ( window.mediaWiki ) { jQuery(function(){{$script}}); }"
+			"if ( window.mediaWiki ) {{$script}}"
 		) );
 
 		$toolbar .= "\n</div>";
