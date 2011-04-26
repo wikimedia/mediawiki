@@ -174,6 +174,7 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $p[ApiBase::PARAM_TYPE] ) ) {
 				$a['type'] = $p[ApiBase::PARAM_TYPE];
 				if ( is_array( $a['type'] ) ) {
+					$a['type'] = array_values( $a['type'] ); // to prevent sparse arrays from being serialized to JSON as objects
 					$result->setIndexedTagName( $a['type'], 't' );
 				}
 			}
