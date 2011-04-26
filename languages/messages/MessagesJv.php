@@ -535,6 +535,9 @@ Tulung nunggu dhisik sadurungé njajal manèh.',
 Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi sauntara sing anyar.',
 'resetpass-temp-password'   => 'Tembung sandi sauntara:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Jeneng panganggo:',
+
 # Edit page toolbar
 'bold_sample'     => 'Tèks iki bakal dicithak kandel',
 'bold_tip'        => 'Cithak kandel',
@@ -2460,7 +2463,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'metadata-help'     => "Berkas iki ngandhut informasi tambahan sing mbokmenawa ditambahaké déning kamera digital utawa ''scanner'' sing dipigunakaké kanggo nggawé utawa olèhé digitalisasi berkas. Yèn berkas iki wis dimodifikasi, detail sing ana mbokmenawa ora sacara kebak nuduhaké informasi saka gambar sing wis dimodifikasi iki.",
 'metadata-expand'   => 'Tuduhna detail tambahan',
 'metadata-collapse' => 'Delikna detail tambahan',
-'metadata-fields'   => 'Entri metadata EXIF sing kapacak iki bakal dituduhaké ing kaca informasi gambar yèn tabèl metadata didelikaké. Entri liyané minangka baku bakal didelikaké.
+'metadata-fields'   => 'Entri lapangan-lapangan metadata sing kapacak iki bakal dituduhaké ing kaca informasi gambar yèn tabèl metadata didhelikaké. Entri liyané minangka baku bakal didhelikaké.
 * make
 * model
 * datetimeoriginal

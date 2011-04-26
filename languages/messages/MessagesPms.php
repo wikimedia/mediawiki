@@ -1842,7 +1842,7 @@ A peul arstrenze la visualisassion an selessionand la sòrt ëd registr, lë str
 Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'categoriesfrom'                => 'Smon-e le categorìe an partend da:',
 'special-categories-sort-count' => 'ordiné për nùmer',
-'special-categories-sort-abc'   => 'òrdiné për alfabétich',
+'special-categories-sort-abc'   => 'rangé la lista an órdin alfabétich',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'Modìfiche faite da utent scancelà',
@@ -1853,7 +1853,7 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'linksearch'       => 'Anliure an sla Ragnà',
 'linksearch-pat'   => "Schema d'arsërca:",
 'linksearch-ns'    => 'Spassi nominal:',
-'linksearch-ok'    => 'Sërca',
+'linksearch-ok'    => 'Sërché',
 'linksearch-text'  => 'As peulo dovresse dij ciapatut coma "*.wikipedia.org".<br />Protocòj ch\'as peulo dovré: <tt>$1</tt>',
 'linksearch-line'  => "$1 a l'ha n'anliura ch'a-i riva dzora da $2",
 'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël servent.',
@@ -3231,20 +3231,20 @@ për scancelé la conferma dl'adrëssa ëd pòsta eletrònica:
 \$5
 
 Ës còdes ëd conferma a scadrà a \$4.",
-'confirmemail_body_set'     => 'Quaidun, miraco ti, da l\'adrëssa IP $1,
-a l\'ha ampostà l\'adrëssa ëd corel dël cont "$2" con costa adrëssa su {{SITENAME}}.
+'confirmemail_body_set'     => "Quaidun, miraco chiel, da l'adrëssa IP \$1,
+a l'ha ampostà l'adrëssa ëd pòsta eletrònica dël cont \"\$2\" con costa adrëssa su {{SITENAME}}.
 
-Për confirmé che sto cont a l\'é pròpi tò e torna ativé
-le funsion ëd corel su {{SITENAME}}, deurb sto colegament an tò browser:
+Për confirmé che sto cont a l'é pròpi sò e ativé torna
+le funsion ëd pòsta eletrònica su {{SITENAME}}, ch'a duverta cost'anliura an sò navigador:
 
-$3
+\$3
 
-Se ël cont a l\'é *pa* tò, va daré a sto colegament
-për scanselé la confirma ëd l\'adrëssa ëd corel:
+Se ël cont a l'é *pa* sò, ch'a-j vada dapress a st'anliura
+për scancelé la conferma ëd l'adrëssa ëd pòsta eletrònica:
 
-$5
+\$5
 
-Sto còdes ëd confirma a scad ai $4.',
+Cost còdes ëd conferma a scad ai \$4.",
 'confirmemail_invalidated'  => "Conferma ëd l'adrëssa e-mail scanselà",
 'invalidateemail'           => "Scansela l'e-mail ëd conferma",
 
@@ -3406,7 +3406,7 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Amzure: $3<br />Sòrt MIME: $4',
 'fileduplicatesearch-result-1'  => 'Pa gnun-a dobia për l\'archivi "$1".',
 'fileduplicatesearch-result-n'  => 'A-i {{PLURAL:$2|é \'n dobion midem|son $2 dobion midem}} ëd l\'archivi "$1".',
-'fileduplicatesearch-noresults' => 'Pa trovà gnun file ciamà "$1".',
+'fileduplicatesearch-noresults' => 'Gnun archivi ciamà "$1" trovà.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàgine Speciaj',

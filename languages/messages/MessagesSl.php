@@ -704,17 +704,38 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'resetpass-temp-password'   => 'Začasno geslo:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Ponastavitev gesla',
-'passwordreset-text'         => 'Izpolnite obrazec, da prejmete e-poštni opomnik s podrobnostmi vašega računa.',
-'passwordreset-legend'       => 'Ponastavitev gesla',
-'passwordreset-disabled'     => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
-'passwordreset-username'     => 'Uporabniško ime:',
-'passwordreset-email'        => 'E-poštni naslov:',
-'passwordreset-emailtitle'   => 'Podrobnosti računa na {{SITENAME}}',
-'passwordreset-emailelement' => 'Uporabniško ime: $1
+'passwordreset'                => 'Ponastavitev gesla',
+'passwordreset-text'           => 'Izpolnite obrazec, da prejmete e-poštni opomnik s podrobnostmi vašega računa.',
+'passwordreset-legend'         => 'Ponastavitev gesla',
+'passwordreset-disabled'       => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
+'passwordreset-username'       => 'Uporabniško ime:',
+'passwordreset-email'          => 'E-poštni naslov:',
+'passwordreset-emailtitle'     => 'Podrobnosti računa na {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval opomnik vaših
+podatkov o računu na {{SITENAME}} ($4). S tem e-poštnim naslovom
+{{PLURAL:$3|je povezan naslednji uporabniški račun|sta povezana naslednja uporabniška računa|so povezani naslednji uporabniški računi}}:
+
+$2
+
+{{PLURAL:$3|Začasno geslo bo poteklo|Začasni gesli bosta potekli|Začasna gesla bodo potekla}} v {{PLURAL:$5|enem dnevu|$5 dneh}}.
+Prijavite se in izberite novo geslo sedaj. Če je zahtevo podal
+nekdo drug ali pa ste se spomnili svojega prvotnega gesla in ga več
+ne želite spremeniti, lahko to sporočilo prezrete in nadaljujete z uporabo
+svojega starega gesla.',
+'passwordreset-emailtext-user' => 'Uporabnik $1 na {{SITENAME}} je zahteval opomnik vaših podatkov o računu na {{SITENAME}}
+($4). S tem e-poštnim naslovom {{PLURAL:$3|je povezan naslednji uporabniški račun|sta povezana naslednja uporabniška računa|so povezani naslednji uporabniški računi}}:
+
+$2
+
+{{PLURAL:$3|Začasno geslo bo poteklo|Začasni gesli bosta potekli|Začasna gesla bodo potekla}} v {{PLURAL:$5|enem dnevu|$5 dneh}}.
+Prijavite se in izberite novo geslo sedaj. Če je zahtevo podal
+nekdo drug ali pa ste se spomnili svojega prvotnega gesla in ga več
+ne želite spremeniti, lahko to sporočilo prezrete in nadaljujete z uporabo
+svojega starega gesla.',
+'passwordreset-emailelement'   => 'Uporabniško ime: $1
 Začasno geslo: $2',
-'passwordreset-emailsent'    => 'Opomnilna e-pošta je bila poslana.',
+'passwordreset-emailsent'      => 'Opomnilna e-pošta je bila poslana.',
 
 # Edit page toolbar
 'bold_sample'     => 'Krepko besedilo',
@@ -3042,13 +3063,28 @@ Druga bodo po privzetem skrita.
 'exif-gpsdifferential'             => 'Diferencialni popravek GPS',
 'exif-jpegfilecomment'             => 'Komentar datoteke JPEG',
 'exif-keywords'                    => 'Ključne besede',
+'exif-worldregioncreated'          => 'Področje sveta, v katerem je bila fotografija posneta',
+'exif-countrycreated'              => 'Država, v kateri je bila fotografija posneta',
+'exif-countrycodecreated'          => 'Šifra države, v kateri je bila fotografija posneta',
+'exif-provinceorstatecreated'      => 'Provinca ali dežela, v kateri je bila fotografija posneta',
+'exif-citycreated'                 => 'Mesto, v katerem je bila fotografija posneta',
+'exif-sublocationcreated'          => 'Podlokacija mesta, v kateri je bila fotografija posneta',
+'exif-worldregiondest'             => 'Prikazano področje sveta',
 'exif-countrydest'                 => 'Prikazana država',
+'exif-countrycodedest'             => 'Šifra prikazane države',
+'exif-provinceorstatedest'         => 'Prikazana provinca ali dežela',
 'exif-citydest'                    => 'Prikazano mesto',
+'exif-sublocationdest'             => 'Prikazana podlokacija mesta',
 'exif-objectname'                  => 'Kratek naslov',
 'exif-specialinstructions'         => 'Posebna navodila',
 'exif-headline'                    => 'Naslov',
 'exif-credit'                      => 'Zasluge/Ponudnik',
 'exif-source'                      => 'Vir',
+'exif-editstatus'                  => 'Uredniško stanje slike',
+'exif-urgency'                     => 'Nujnost',
+'exif-fixtureidentifier'           => 'Ime stalnice',
+'exif-locationdest'                => 'Upodobljena lokacija',
+'exif-locationdestcode'            => 'Šifra upodobljene lokacije',
 'exif-objectcycle'                 => 'Čas dneva, kateremu je predstavnost namenjena',
 'exif-contact'                     => 'Kontaktni podatki',
 'exif-writer'                      => 'Pisatelj',
@@ -3058,6 +3094,7 @@ Druga bodo po privzetem skrita.
 'exif-iimsupplementalcategory'     => 'Dodatne kategorije',
 'exif-datetimeexpires'             => 'Ne uporabljajte po',
 'exif-datetimereleased'            => 'Sproščeno',
+'exif-originaltransmissionref'     => 'Šifra prvotne lokacije prenosa',
 'exif-identifier'                  => 'Označevalnik',
 'exif-lens'                        => 'Uporabljen objektiv',
 'exif-serialnumber'                => 'Serijska številka fotoaparata',
@@ -3066,17 +3103,22 @@ Druga bodo po privzetem skrita.
 'exif-datetimemetadata'            => 'Datum zadnje spremembe metapodatkov',
 'exif-nickname'                    => 'Neuradno ime slike',
 'exif-rating'                      => 'Ocena (od 5)',
+'exif-rightscertificate'           => 'Certifikat upravljanja s pravicami',
 'exif-copyrighted'                 => 'Položaj avtorskih pravic',
 'exif-copyrightowner'              => 'Imetnik avtorskih pravic',
 'exif-usageterms'                  => 'Pogoji uporabe',
 'exif-webstatement'                => 'Izjava o avtorskih pravicah na spletu',
 'exif-originaldocumentid'          => 'Enoličen ID izvirnega dokumenta',
 'exif-licenseurl'                  => 'URL dovoljenja za avtorske pravice',
+'exif-morepermissionsurl'          => 'Informacije o alternativnem licenciranju',
 'exif-attributionurl'              => 'Ko ponovno uporabljate delo, prosim, dodajte povezavo do',
 'exif-preferredattributionname'    => 'Ko ponovno uporabljate delo, prosim, navedite',
 'exif-pngfilecomment'              => 'Komentar datoteke PNG',
 'exif-disclaimer'                  => 'Zanikanje odgovornosti',
+'exif-contentwarning'              => 'Opozorilo o vsebini',
 'exif-giffilecomment'              => 'Komentar datoteke GIF',
+'exif-intellectualgenre'           => 'Vrsta postavke',
+'exif-subjectnewscode'             => 'Šifra predmeta',
 'exif-scenecode'                   => 'Koda prizora IPTC',
 'exif-event'                       => 'Prikazan dogodek',
 'exif-organisationinimage'         => 'Prikazana organizacija',
@@ -3172,6 +3214,8 @@ Druga bodo po privzetem skrita.
 'exif-sensingmethod-7' => 'Trikratno tipalo',
 'exif-sensingmethod-8' => 'Zaporedno barvno črtno tipalo',
 
+'exif-filesource-3' => 'Digitalni fotoaparat',
+
 'exif-scenetype-1' => 'Neposredno fotografirana slika',
 
 'exif-customrendered-0' => 'Navaden postopek',
@@ -3254,7 +3298,11 @@ Druga bodo po privzetem skrita.
 'exif-gpsdirection-t' => 'Pravi azimut',
 'exif-gpsdirection-m' => 'Magnetni azimut',
 
+'exif-ycbcrpositioning-1' => 'Usredinjeno',
+'exif-ycbcrpositioning-2' => 'Vzporedno',
+
 'exif-dc-contributor' => 'Sodelavci',
+'exif-dc-coverage'    => 'Prostorski ali časovni okvir predstavnosti',
 'exif-dc-date'        => 'Datum(i)',
 'exif-dc-publisher'   => 'Založnik',
 'exif-dc-relation'    => 'Sorodna predstavnost',

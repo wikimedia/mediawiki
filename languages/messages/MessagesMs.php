@@ -3190,6 +3190,8 @@ Ruangan lain akan disembunyikan secara sediakala.
 'exif-gpsdirection-t' => 'Arah benar',
 'exif-gpsdirection-m' => 'Arah magnet',
 
+'exif-ycbcrpositioning-1' => 'Terpusat',
+
 'exif-dc-contributor' => 'Penyumbang',
 'exif-dc-coverage'    => 'Skop ruangan atau masa media',
 'exif-dc-date'        => 'Tarikh',

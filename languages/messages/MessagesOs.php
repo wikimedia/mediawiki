@@ -55,7 +55,7 @@ $messages = array(
 'tog-editsection'             => 'Равдис «баив æй» æрвитæн тексты алы хайы дæр',
 'tog-editsectiononrightclick' => 'Сæргондыл рахиз æркъæппæй фарсы хæйттæ ив (JavaScript)',
 'tog-showtoc'                 => 'Сæргæндты номхыгъд æвдис (æртæ сæргондæй фылдæр цы фарсы ис, уым)',
-'tog-rememberpassword'        => 'Системæ бахъуыды кæнæд мæ пароль ацы компьютерыл (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Системæ бахъуыды кæнæд мæ пароль ацы компьютерыл ($1 бонæй къаддæр æмгъуыдмæ)',
 'tog-watchcreations'          => 'Æз цы фæрстæ райдайын, уыдонмæ мæ цæст дарын мæ фæнды',
 'tog-watchdefault'            => 'Æз цы фæрстæ ивын, уыдонмæ мæ цæст дарын мæ фæнды',
 'tog-watchmoves'              => 'Æз цы фæрсты нæмттæ ивын, уыдонмæ мæ цæст дарын мæ фæнды',
@@ -147,6 +147,7 @@ $messages = array(
 'category-article-count-limited' => 'Ацы категорийы мидæг {{PLURAL:$1|$1 фарс|$1 фарсы}} ис.',
 'category-file-count-limited'    => 'Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.',
 'listingcontinuesabbrev'         => '(дарддæрдзу)',
+'index-category'                 => 'Индексгонд фæрстæ',
 
 'mainpagetext' => "'''Вики-скрипт «MediaWiki» æнтыстджынæй æвæрд æрцыд.'''",
 
@@ -171,6 +172,8 @@ $messages = array(
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
 
 # Vector skin
+'vector-action-delete'   => 'Аппар',
+'vector-action-protect'  => 'Сæхгæн',
 'vector-view-create'     => 'Скæн æй',
 'vector-view-edit'       => 'Баив æй',
 'vector-view-history'    => 'Истори',
@@ -319,7 +322,7 @@ $messages = array(
 'yourname'                => 'Архайæджы ном:',
 'yourpassword'            => 'Пароль:',
 'yourpasswordagain'       => 'Дæ пароль иу хатт ма:',
-'remembermypassword'      => 'Системæ бахъуыды кæнæд мæ пароль ацы компьютерыл (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Системæ бахъуыды кæнæд мæ пароль ацы браузеры æмæ компьютеры ($1 бонæй къаддæр æмгъуыдмæ)',
 'yourdomainname'          => 'Дæ домен:',
 'login'                   => 'Дæхи бавдис системæйæн',
 'nav-login-createaccount' => 'Системæйæн дæхи бавдис',
@@ -350,6 +353,10 @@ $messages = array(
 'resetpass-submit-loggedin' => 'Пароль баив',
 'resetpass-temp-password'   => 'Рæстæгмæ пароль:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Архайæджы ном:',
+'passwordreset-email'    => 'Электрон посты адрис:',
+
 # Edit page toolbar
 'bold_sample'     => 'Ацы текст бæзджын суыдзæн',
 'bold_tip'        => 'Бæзджын текст',
@@ -376,6 +383,7 @@ $messages = array(
 'blockedtitle'           => 'Архайæг хъодыгонд æрцыд',
 'blockednoreason'        => 'аххос амынд не ’рцыд',
 'whitelistedittitle'     => 'Ацы текст ивынмæ хъуамæ дæхи бацамонай системæйæн',
+'loginreqtitle'          => 'Хъуамæ дæхи бацамонай',
 'accmailtitle'           => 'Пароль рарвыст у.',
 'newarticle'             => '(Ног)',
 'note'                   => "'''Бафиппай:'''",

@@ -434,6 +434,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'nast.',
 'index-category'                 => 'Indeksirane stranice',
 'noindex-category'               => 'Neindeksirane stranice',
+'broken-file-category'           => 'Stranice s neispravnim poveznicama datoteka',
 
 'mainpagetext'      => "'''Softver MediaWiki je uspješno instaliran.'''",
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
@@ -722,6 +723,7 @@ Ne zaboravite prilagoditi [[Special:Preferences|{{SITENAME}} postavke]].',
 'createaccount'              => 'Otvori novi suradnički račun',
 'gotaccount'                 => "Već imate suradnički račun? '''$1'''.",
 'gotaccountlink'             => 'Prijavite se',
+'userlogin-resetlink'        => 'Zaboravili ste detalje vaše prijave?',
 'createaccountmail'          => 'poštom',
 'createaccountreason'        => 'Razlog:',
 'badretype'                  => 'Unesene lozinke nisu istovjetne.',
@@ -809,8 +811,36 @@ Možda ste već uspješno promijenili Vašu lozinku ili ste zatražili novu priv
 'resetpass-temp-password'   => 'Privremena lozinka:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Ponovno postavi lozinku',
-'passwordreset-username' => 'Suradničko ime:',
+'passwordreset'                => 'Ponovno postavi lozinku',
+'passwordreset-text'           => 'Ispunite ovaj obrazac da biste dobili e-mail podsjetnik o vašim detaljima računa.',
+'passwordreset-legend'         => 'Poništi lozinku',
+'passwordreset-disabled'       => 'Poništavanje lozinke je onemogućeno na ovom wikiju.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Unesite jedan od dijelova podataka u nastavku}}',
+'passwordreset-username'       => 'Suradničko ime:',
+'passwordreset-email'          => 'E-mail adresa:',
+'passwordreset-emailtitle'     => 'Pojedinosti o računu na {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Netko (vjerojatno Vi, s IP adrese $1) zatražio je podsjetnik za Vaše detalje računa
+za {{SITENAME}} ($4). Sljedeći {{PLURAL:$3|račun suradnika je|računi suradnika su}}
+povezani s ovom e-mail adresom:
+
+$2
+
+{{PLURAL:$3|Ova privremena lozinka|Ove privremene lozinke}} će isteći u {{PLURAL:$5|jedan dan|$5 dana}}.
+Trebate se prijaviti i odabrati novu lozinku. Ukoliko je netko drugi napravio ovaj
+zahtjev, ili ako ste sjeti Vaše izvorne lozinke, a vi je više ne želite promijeniti, 
+možete zanemariti ovu poruku i nastavite koristiti staru lozinku.',
+'passwordreset-emailtext-user' => 'Suradnik $1 na {{SITENAME}} zatražio podsjetnik o pojedinostima vašeg računa za {{SITENAME}}
+($4). Sljedeći {{PLURAL:$3|račun suradnika je|računi suradnika su}} povezani s ovom e-mail adresom:
+
+$2
+
+{{PLURAL:$3|Ova privremena lozinka|Ove privremene lozinke}} će isteći u {{PLURAL:$5|jedan dan|$5 dana}}.
+Trebate se prijaviti i odabrati novu lozinku. Ukoliko je netko drugi napravio ovaj
+zahtjev, ili ako ste sjeti Vaše izvorne lozinke, a vi je više ne želite promijeniti, 
+možete zanemariti ovu poruku i nastavite koristiti staru lozinku.',
+'passwordreset-emailelement'   => 'Suradničko ime: $1
+Privremena lozinka: $2',
+'passwordreset-emailsent'      => 'E-mail podsjetnik je poslan.',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljani tekst',
@@ -1731,22 +1761,23 @@ Ne može biti ispravno sigurnosno označena.',
 'uploadstash-refresh'  => 'Osvježi popis datoteka',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Pristup onemogućen',
-'img-auth-nopathinfo'   => 'Nedostaje PATH_INFO.
+'img-auth-accessdenied'     => 'Pristup onemogućen',
+'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš poslužitelj nije postavljen da prosljeđuje ovu informaciju.
 Možda se temelji na CGI i ne može podržavati img_auth.
 Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Zahtjevana putanja nije u direktoriju podešenom za postavljanje.',
-'img-auth-badtitle'     => 'Ne mogu stvoriti valjani naslov iz "$1".',
-'img-auth-nologinnWL'   => 'Niste prijavljeni i "$1" nije na popisu dozvoljenih.',
-'img-auth-nofile'       => 'Datoteka "$1" ne postoji.',
-'img-auth-isdir'        => 'Pokušavate pristupiti direktoriju "$1".
+'img-auth-notindir'         => 'Zahtjevana putanja nije u direktoriju podešenom za postavljanje.',
+'img-auth-badtitle'         => 'Ne mogu stvoriti valjani naslov iz "$1".',
+'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na popisu dozvoljenih.',
+'img-auth-nofile'           => 'Datoteka "$1" ne postoji.',
+'img-auth-isdir'            => 'Pokušavate pristupiti direktoriju "$1".
 Dozvoljen je samo pristup datotekama.',
-'img-auth-streaming'    => 'Tok "$1".',
-'img-auth-public'       => 'Funkcija img_auth.php služi za izlaz datoteka s privatnih wikija.
+'img-auth-streaming'        => 'Tok "$1".',
+'img-auth-public'           => 'Funkcija img_auth.php služi za izlaz datoteka s privatnih wikija.
 Ovaj wiki je postavljena kao javni wiki.
 Za optimalnu sigurnost, img_auth.php je onemogućena.',
-'img-auth-noread'       => 'Suradnik nema pristup za čitanje "$1".',
+'img-auth-noread'           => 'Suradnik nema pristup za čitanje "$1".',
+'img-auth-bad-query-string' => 'URL ima nevažeći izraz upita.',
 
 # HTTP errors
 'http-invalid-url'      => 'Nevaljan URL: $1',
@@ -2105,6 +2136,10 @@ E-mail adresa iz Vaših [[Special:Preferences|postavki]] nalazit će se u "From"
 'noemailtext'          => 'Ovaj suradnik nije odredio valjanu e-mail adresu.',
 'nowikiemailtitle'     => 'E-mail nije dozvoljen',
 'nowikiemailtext'      => 'Ovaj suradnik je odlučio ne primati e-mail od drugih suradnika.',
+'emailnotarget'        => 'Nepostojeće ili nevažeće suradničko ime za primatelja.',
+'emailtarget'          => 'Unesite suradničko ime primatelja',
+'emailusername'        => 'Suradničko ime:',
+'emailusernamesubmit'  => 'Pošalji',
 'email-legend'         => 'Pošalji elektroničku poštu drugom suradniku projekta {{SITENAME}}',
 'emailfrom'            => 'Od:',
 'emailto'              => 'Za:',
@@ -3064,10 +3099,76 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-gpsareainformation'          => 'Ime GPS područja',
 'exif-gpsdatestamp'                => 'GPS datum',
 'exif-gpsdifferential'             => 'GPS diferencijalna korekcija',
+'exif-jpegfilecomment'             => 'JPEG komentar datoteke',
+'exif-keywords'                    => 'Ključne riječi',
+'exif-worldregioncreated'          => 'Regija svijeta u kojoj je slika snimljena',
+'exif-countrycreated'              => 'Zemlja u kojoj je slika snimljena',
+'exif-countrycodecreated'          => 'Kôd za zemlju u kojoj je slika snimljena',
+'exif-provinceorstatecreated'      => 'Provincija ili država u kojoj je slika snimljena',
+'exif-citycreated'                 => 'Grad u kojem je slika snimljena',
+'exif-sublocationcreated'          => 'Podlokacija grada gdje je slika snimljena',
+'exif-worldregiondest'             => 'Prikazana regija svijeta',
+'exif-countrydest'                 => 'Prikazana zemlja',
+'exif-countrycodedest'             => 'Kôd za prikazanu zemlju',
+'exif-provinceorstatedest'         => 'Prikazana provincija ili država',
+'exif-citydest'                    => 'Prikazani grad',
+'exif-sublocationdest'             => 'Prikazana podlokacija grada',
 'exif-objectname'                  => 'Kratki naslov',
+'exif-specialinstructions'         => 'Posebne upute',
+'exif-headline'                    => 'Naslov',
+'exif-credit'                      => 'Pripisivanje/Pružatelj',
+'exif-source'                      => 'Izvor',
+'exif-editstatus'                  => 'Urednički status slike',
+'exif-urgency'                     => 'Žurnost',
+'exif-fixtureidentifier'           => 'Naziv rubrike',
+'exif-locationdest'                => 'Prikazana lokacija',
+'exif-locationdestcode'            => 'Kôd prikazane lokacije',
+'exif-objectcycle'                 => 'Doba dana za koji je medij namijenjen',
+'exif-contact'                     => 'Podaci za kontakt',
+'exif-writer'                      => 'Pisac',
+'exif-languagecode'                => 'Jezik',
+'exif-iimversion'                  => 'IIM inačica',
+'exif-iimcategory'                 => 'Kategorija',
+'exif-iimsupplementalcategory'     => 'Dopunske kategorije',
+'exif-datetimeexpires'             => 'Nemojte rabiti nakon',
+'exif-datetimereleased'            => 'Objavljeno',
+'exif-originaltransmissionref'     => 'Izvorni prijenos kôda lokacije',
+'exif-identifier'                  => 'Oznaka',
+'exif-lens'                        => 'Korišteni objektiv',
+'exif-serialnumber'                => 'Serijski broj kamere',
+'exif-cameraownername'             => 'Vlasnik kamere',
+'exif-label'                       => 'Oznaka',
+'exif-datetimemetadata'            => 'Datum zadnje promjene metapodataka',
+'exif-nickname'                    => 'Neformalni naziv slike',
+'exif-rating'                      => 'Ocjena (od 5)',
+'exif-rightscertificate'           => 'Certifikat za upravljanje pravima',
+'exif-copyrighted'                 => 'Status autorskog prava',
+'exif-copyrightowner'              => 'Nositelj autorskog prava',
+'exif-usageterms'                  => 'Uporaba pojmova',
+'exif-webstatement'                => 'Online izjava o autorskom pravu',
+'exif-originaldocumentid'          => 'Jedinstveni ID izvornog dokumenta',
+'exif-licenseurl'                  => 'URL za licenciju o autorskom pravu',
+'exif-morepermissionsurl'          => 'Informacije o alternativnom licenciranju',
+'exif-attributionurl'              => 'Kada ponovno rabite ovo djelo, molim povežite ga s',
+'exif-preferredattributionname'    => 'Kada ponovno rabite ovo djelo, molim naslovite ga',
+'exif-pngfilecomment'              => 'PNG komentar datoteke',
+'exif-disclaimer'                  => 'Odricanje od odgovornosti',
+'exif-contentwarning'              => 'Upozorenje o sadržaju',
+'exif-giffilecomment'              => 'GIF komentar datoteke',
+'exif-intellectualgenre'           => 'Vrsta stavke',
+'exif-subjectnewscode'             => 'Kôd predmeta',
+'exif-scenecode'                   => 'IPTC kôd scene',
+'exif-event'                       => 'Prikazani događaj',
+'exif-organisationinimage'         => 'Prikazana organizacija',
+'exif-personinimage'               => 'Prikazana osoba',
+'exif-originalimageheight'         => 'Visina slike prije nego što je obrezana',
+'exif-originalimagewidth'          => 'Širina slike prije nego što je obrezana',
 
 # EXIF attributes
 'exif-compression-1' => 'Nesažeto',
+
+'exif-copyrighted-true'  => 'Zaštićeno autorskim pravom',
+'exif-copyrighted-false' => 'Javno dobro',
 
 'exif-unknowndate' => 'Datum nepoznat',
 
@@ -3082,6 +3183,8 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 
 'exif-planarconfiguration-1' => 'zrnasti format',
 'exif-planarconfiguration-2' => 'planarni format',
+
+'exif-colorspace-65535' => 'Nekalibrirano',
 
 'exif-componentsconfiguration-0' => 'ne postoji',
 
@@ -3196,6 +3299,10 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-gpslongitude-e' => 'Istok',
 'exif-gpslongitude-w' => 'Zapad',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metar|metra|metara}} nadmorske visine',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metar|metra|metara}} ispod razine mora',
+
 'exif-gpsstatus-a' => 'Mjerenje u tijeku',
 'exif-gpsstatus-v' => 'Spreman za prijenos',
 
@@ -3207,9 +3314,63 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'čv',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometara',
+'exif-gpsdestdistance-m' => 'Milja',
+'exif-gpsdestdistance-n' => 'Nautičkih milja',
+
+'exif-gpsdop-excellent' => 'Odlično ($1)',
+'exif-gpsdop-good'      => 'Dobro ($1)',
+'exif-gpsdop-moderate'  => 'Umjereno ($1)',
+'exif-gpsdop-fair'      => 'U redu ($1)',
+'exif-gpsdop-poor'      => 'Loše ($1)',
+
+'exif-objectcycle-a' => 'Samo jutro',
+'exif-objectcycle-p' => 'Samo večer',
+'exif-objectcycle-b' => 'Oba jutro i večer',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Pravi sjever',
 'exif-gpsdirection-m' => 'Magnetni sjever',
+
+'exif-ycbcrpositioning-1' => 'Centrirano',
+'exif-ycbcrpositioning-2' => 'Susmještene',
+
+'exif-dc-contributor' => 'Doprinositelji',
+'exif-dc-coverage'    => 'Prostorni i vremenski opseg medija',
+'exif-dc-date'        => 'Datum(i)',
+'exif-dc-publisher'   => 'Izdavač',
+'exif-dc-relation'    => 'Povezani mediji',
+'exif-dc-rights'      => 'Prava',
+'exif-dc-source'      => 'Izvor medija',
+'exif-dc-type'        => 'Vrsta medija',
+
+'exif-rating-rejected' => 'Odbijeno',
+
+'exif-isospeedratings-overflow' => 'Veći od 65535',
+
+'exif-iimcategory-ace' => 'Umjetnost, kultura i zabava',
+'exif-iimcategory-clj' => 'Kriminal i zakon',
+'exif-iimcategory-dis' => 'Katastrofe i nesreće',
+'exif-iimcategory-fin' => 'Gospodarstvo i poslovanje',
+'exif-iimcategory-edu' => 'Obrazovanje',
+'exif-iimcategory-evn' => 'Okoliš',
+'exif-iimcategory-hth' => 'Zdravlje',
+'exif-iimcategory-hum' => 'Čovjekov interes',
+'exif-iimcategory-lab' => 'Rad',
+'exif-iimcategory-lif' => 'Životni stil i slobodno vrijeme',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Religija i vjerovanje',
+'exif-iimcategory-sci' => 'Znanost i tehnologija',
+'exif-iimcategory-soi' => 'Socijalna pitanja',
+'exif-iimcategory-spo' => 'Šport',
+'exif-iimcategory-war' => 'Rat, sukob i nemiri',
+'exif-iimcategory-wea' => 'Vrijeme',
+
+'exif-urgency-normal' => 'Normalno ($1)',
+'exif-urgency-low'    => 'Nisko ( $1 )',
+'exif-urgency-high'   => 'Visoko ($1)',
+'exif-urgency-other'  => 'Suradnički definiran prioritet ($1)',
 
 # External editor support
 'edit-externally'      => 'Uredi koristeći se vanjskom aplikacijom',

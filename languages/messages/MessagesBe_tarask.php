@@ -3144,10 +3144,13 @@ $1',
 'exif-event'                       => 'Паказаная падзея',
 'exif-organisationinimage'         => 'Паказаная арганізацыя',
 'exif-personinimage'               => 'Паказаная асоба',
+'exif-originalimageheight'         => 'Вышыня выявы да кадраваньня',
+'exif-originalimagewidth'          => 'Шырыня выявы да кадраваньня',
 
 # EXIF attributes
 'exif-compression-1' => 'Нясьціснуты',
 
+'exif-copyrighted-true'  => 'Ахоўваецца аўтарскім правам',
 'exif-copyrighted-false' => 'Грамадзкі набытак',
 
 'exif-unknowndate' => 'Невядомая дата',
@@ -3299,6 +3302,12 @@ $1',
 'exif-gpsdestdistance-m' => 'Міляў',
 'exif-gpsdestdistance-n' => 'Марскіх міляў',
 
+'exif-gpsdop-excellent' => 'Выдатная ($1)',
+'exif-gpsdop-good'      => 'Добрая ($1)',
+'exif-gpsdop-moderate'  => 'Сярэдняя ($1)',
+'exif-gpsdop-fair'      => 'Прыймальная ($1)',
+'exif-gpsdop-poor'      => 'Дрэнная ($1)',
+
 'exif-objectcycle-a' => 'Толькі ўранку',
 'exif-objectcycle-p' => 'Толькі ўвечары',
 'exif-objectcycle-b' => 'Уранку і ўвечары',
@@ -3308,8 +3317,10 @@ $1',
 'exif-gpsdirection-m' => 'магнітны кірунак',
 
 'exif-ycbcrpositioning-1' => 'Цэнтраваны',
+'exif-ycbcrpositioning-2' => 'Сумяшчоныя',
 
 'exif-dc-contributor' => 'Сааўтары',
+'exif-dc-coverage'    => 'Прасторавыя ці часавыя абмежаваньні мэдыя',
 'exif-dc-date'        => 'Дата(ы)',
 'exif-dc-publisher'   => 'Выдавец',
 'exif-dc-rights'      => 'Правы',

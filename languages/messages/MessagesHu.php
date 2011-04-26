@@ -425,6 +425,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'folyt.',
 'index-category'                 => 'Indexelt lapok',
 'noindex-category'               => 'Nem indexelt lapok',
+'broken-file-category'           => 'Hibás fájlhivatkozásokat tartalmazó lapok',
 
 'mainpagetext'      => "'''A MediaWiki telepítése sikeresen befejeződött.'''",
 'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
@@ -716,6 +717,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'createaccount'              => 'Regisztráció',
 'gotaccount'                 => "Ha már korábban regisztráltál, '''$1'''!",
 'gotaccountlink'             => 'Bejelentkezés',
+'userlogin-resetlink'        => 'Elfelejtetted a bejelentkezési adataidat?',
 'createaccountmail'          => 'e-mailben',
 'createaccountreason'        => 'Indoklás:',
 'badretype'                  => 'A megadott jelszavak nem egyeznek.',
@@ -727,6 +729,8 @@ Kérlek, válassz másikat!',
 'nocookieslogin'             => 'A wiki sütiket („cookie”) használ a szerkesztők azonosításhoz.
 Nálad ezek le vannak tiltva.
 Engedélyezd őket, majd próbáld meg újra.',
+'nocookiesfornew'            => 'A felhasználói fiók nem lett létrehozva, mivel nem sikerült megerősítenünk a forrását.
+Ellenőrizd, hogy a sütik engedélyezve vannak-e, majd frissítsd az oldalt, és próbálkozz újra.',
 'noname'                     => 'Érvénytelen szerkesztőnevet adtál meg.',
 'loginsuccesstitle'          => 'Sikeres bejelentkezés',
 'loginsuccess'               => "'''Most már be vagy jelentkezve a(z) {{SITENAME}} wikibe „$1” néven.'''",
@@ -778,6 +782,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'usernamehasherror'          => 'A felhasználónév nem tartalmazhat hash karaktereket',
 'login-throttled'            => 'Túl sok hibás bejelentkezés.
 Várj egy kicsit, mielőtt újra próbálkozol.',
+'login-abort-generic'        => 'Bejelentkezés sikertelen – megszakítva',
 'loginlanguagelabel'         => 'Nyelv: $1',
 'suspicious-userlogout'      => 'A kijelentkezési kérésed vissza lett utasítva, mert úgy tűnik, hogy egy hibás böngésző vagy gyorsítótárazó proxy küldte.',
 
@@ -803,8 +808,17 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'resetpass-temp-password'   => 'Ideiglenes jelszó:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Jelszó beállítása',
-'passwordreset-username' => 'Felhasználónév:',
+'passwordreset'              => 'Jelszó beállítása',
+'passwordreset-text'         => 'Az alábbi űrlap kitöltése után egy értesítő e-mailt kapsz a fiók adataival.',
+'passwordreset-legend'       => 'Új jelszó kérése',
+'passwordreset-disabled'     => 'Új jelszó kérése nem engedélyezett ezen a wikin.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Írd be az alábbi adatok egyikét}}',
+'passwordreset-username'     => 'Felhasználónév:',
+'passwordreset-email'        => 'E-mail cím:',
+'passwordreset-emailtitle'   => 'A(z) {{SITENAME}}-fiók adatai',
+'passwordreset-emailelement' => 'Felhaználónév: $1
+Ideiglenes jelszó: $2',
+'passwordreset-emailsent'    => 'Emlékeztető e-mail elküldve.',
 
 # Edit page toolbar
 'bold_sample'     => 'Félkövér szöveg',
@@ -938,6 +952,7 @@ Amennyiben továbbra sem sikerül, próbálj meg [[Special:UserLogout|kijelentke
 'token_suffix_mismatch'            => "'''A szerkesztésedet elutasítottuk, mert a kliensprogramod megváltoztatta a központozó karaktereket
 a szerkesztési tokenben. A szerkesztés azért lett visszautasítva, hogy megelőzzük a lap szövegének sérülését.
 Ez a probléma akkor fordulhat elő, ha hibás, web-alapú proxyszolgáltatást használsz.'''",
+'edit_form_incomplete'             => "'''A szerkesztési űrlap egyes részei nem érkeztek meg a szerverre; ellenőrizd újra, hogy a szerkesztés sértetlen-e, majd próbáld újra.'''",
 'editing'                          => '$1 szerkesztése',
 'editingsection'                   => '$1 szerkesztése (szakasz)',
 'editingcomment'                   => '$1 szerkesztése (új szakasz)',
@@ -1230,6 +1245,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'searchmenu-legend'                => 'Keresési beállítások',
 'searchmenu-exists'                => "'''A wikin már van „[[:$1]]” nevű lap'''",
 'searchmenu-new'                   => "'''Hozd létre a(z) „[[:$1]]” nevű lapot ezen a wikin!'''",
+'searchmenu-new-nocreate'          => 'A(z) „$1” érvénytelen lapcím, vagy nem hozhatod létre.',
 'searchhelp-url'                   => 'Help:Tartalom',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ilyen előtagú lapok listázása]]',
 'searchprofile-articles'           => 'Tartalmi oldalak',
@@ -1376,8 +1392,8 @@ A műveletet nem lehet visszavonni.',
 'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemalapú üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
-'prefs-help-email'              => 'Az e-mail cím megadása nem kötelező, de így kérhetsz új jelszót, ha elfelejtenéd a meglévőt.
-Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
+'prefs-help-email'              => 'Az e-mail cím megadása nem kötelező, de szükséges új jelszó kéréséhez, ha elfelejtenéd a meglévőt.',
+'prefs-help-email-others'       => 'Úgy is dönthetsz, hogy lehetővé teszed mások számára, hogy kapcsolatba lépjenek veled a felhasználói vagy vitalapodon keresztül, anélkül, hogy fel kellene fedned a személyazonosságodat.',
 'prefs-help-email-required'     => 'Meg kell adnod az e-mail címedet.',
 'prefs-info'                    => 'Alapinformációk',
 'prefs-i18n'                    => 'Nyelvi beállítások',
@@ -1630,7 +1646,7 @@ Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'minlength1'                  => 'A fájlnévnek legalább egy betűből kell állnia.',
 'illegalfilename'             => 'A „$1” lap neve olyan karaktereket tartalmaz, melyek nincsenek megengedve lapcímben. Kérlek, változtasd meg a nevet, és próbálkozz a mentéssel újra.',
 'badfilename'                 => 'A fájl új neve „$1”.',
-'filetype-mime-mismatch'      => 'A fájl kiterjesztése nem egyezik a MIME-típusával.',
+'filetype-mime-mismatch'      => 'A fájl kiterjesztése („.$1”) nem egyezik meg az észlelt MIME-típussal ($2).',
 'filetype-badmime'            => '„$1” MIME-típusú fájlokat nem lehet feltölteni.',
 'filetype-bad-ie-mime'        => 'A fájlt nem lehet feltölteni, mert az Internet Explorer „$1” típusúnak tekintené, ami tiltott és potenciálisan veszélyes fájltípus.',
 'filetype-unwanted-type'      => "A(z) '''„.$1”''' nem javasolt fájltípus.
@@ -1688,6 +1704,8 @@ Ha még mindig fel szeretnéd tölteni a fájlt, menj vissza, és adj meg egy ú
 'php-uploaddisabledtext'      => 'A PHP-s fájlfeltöltés le van tiltva. Ellenőrizd a file_uploads beállítást.',
 'uploadscripted'              => 'Ez a fájl olyan HTML- vagy parancsfájlkódot tartalmaz, melyet tévedésből egy webböngésző esetleg értelmezni próbálhatna.',
 'uploadvirus'                 => 'Ez a fájl vírust tartalmaz! A részletek: $1',
+'uploadjava'                  => 'A fájl egy ZIP-fájl, ami egy Java .class fájlt tartalmaz.
+Java fájlok feltöltése nem engedélyezett, mert segítségükkel kijátszhatóak a biztonsági korlátozások.',
 'upload-source'               => 'Forrásfájl',
 'sourcefilename'              => 'Forrásfájl neve:',
 'sourceurl'                   => 'A forrás URL-címe:',
@@ -1735,26 +1753,37 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'upload-unknown-size'       => 'Ismeretlen méretű',
 'upload-http-error'         => 'HTTP-hiba történt: $1',
 
+# ZipDirectoryReader
+'zip-file-open-error' => 'Hiba történt a ZIP fájlokon végzett ellenőrzés elindítása közben.',
+'zip-wrong-format'    => 'A fájl sérült, vagy más miatt olvashatatlan ZIP fájl.
+Nem lehet megfelelően ellenőrizni a biztonságosságát.',
+'zip-bad'             => 'A fájl sérült, vagy más miatt olvashatatlan ZIP fájl.
+Nem lehet megfelelően ellenőrizni a biztonságosságát.',
+'zip-unsupported'     => 'A fájl ZIP fájl, ami olyan ZIP funkciókat használ, melyeket nem támogat a MediaWiki.
+Nem lehet megfelelően ellenőrizni a biztonságosságát.',
+
 # Special:UploadStash
 'uploadstash-summary'  => 'Ezen a lapon lehet hozzáférni azokhoz a fájlokhoz, melyek fel lettek töltve (vagy épp feltöltés alatt vannak), de még nem lettek közzétéve a wikin. Az ilyen fájlok csak a feltöltőik számára láthatóak.',
+'uploadstash-badtoken' => 'A művelet végrehajtása sikertelen volt. Lehetséges, hogy lejártak a szerkesztést hitelesítő adataid. Próbáld újra!',
 'uploadstash-errclear' => 'A fájlok törlése nem sikerült.',
 'uploadstash-refresh'  => 'Fájlok listájának frissítése',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Hozzáférés megtagadva',
-'img-auth-nopathinfo'   => 'Hiányzó PATH_INFO.
+'img-auth-accessdenied'     => 'Hozzáférés megtagadva',
+'img-auth-nopathinfo'       => 'Hiányzó PATH_INFO.
 A szerver nincs beállítva, hogy továbbítsa ezt az információt.
 Lehet, hogy CGI-alapú, és nem támogatja az img_auth-ot.
 Lásd a http://www.mediawiki.org/wiki/Manual:Image_Authorization lapot.',
-'img-auth-notindir'     => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
-'img-auth-badtitle'     => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
-'img-auth-nologinnWL'   => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',
-'img-auth-nofile'       => 'A fájl („$1”) nem létezik.',
-'img-auth-isdir'        => 'Megpróbáltál hozzáférni a(z) „$1” könyvtárhoz, azonban csak a fájlokhoz lehet.',
-'img-auth-streaming'    => '„$1” továbbítása.',
-'img-auth-public'       => 'Az img_auth.php funkciója az, hogy fájlokat közvetítsen egy privát wikiből.
+'img-auth-notindir'         => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
+'img-auth-badtitle'         => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
+'img-auth-nologinnWL'       => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',
+'img-auth-nofile'           => 'A fájl („$1”) nem létezik.',
+'img-auth-isdir'            => 'Megpróbáltál hozzáférni a(z) „$1” könyvtárhoz, azonban csak a fájlokhoz lehet.',
+'img-auth-streaming'        => '„$1” továbbítása.',
+'img-auth-public'           => 'Az img_auth.php funkciója az, hogy fájlokat közvetítsen egy privát wikiből.
 Ez a wiki publikus, így a biztonság miatt az img_auth.php ki van kapcsolva.',
-'img-auth-noread'       => 'A szerkesztő nem jogosult a(z) „$1” olvasására.',
+'img-auth-noread'           => 'A szerkesztő nem jogosult a(z) „$1” olvasására.',
+'img-auth-bad-query-string' => 'Az URL-cím érvénytelen lekérdezést tartalmaz.',
 
 # HTTP errors
 'http-invalid-url'      => 'Érvénytelen URL-cím: $1',
@@ -1996,6 +2025,7 @@ Vedd figyelembe, hogy más weboldalak közvetlenül hivatkozhatnak egy fájl URL
 'pager-newer-n'           => '{{PLURAL:$1|1 újabb|$1 újabb}}',
 'pager-older-n'           => '{{PLURAL:$1|1 régebbi|$1 régebbi}}',
 'suppress'                => 'adatvédelmi biztos',
+'querypage-disabled'      => 'Ez a speciális lap a megfelelő teljesítmény fenntartása érdekében le van tiltva.',
 
 # Book sources
 'booksources'               => 'Könyvforrások',
@@ -2113,6 +2143,8 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'noemailtext'          => 'Ez a szerkesztő nem adott meg érvényes e-mail címet.',
 'nowikiemailtitle'     => 'Nem küldhető e-mail üzenet',
 'nowikiemailtext'      => 'Ez a szerkesztő nem kíván másoktól e-mail üzeneteket fogadni.',
+'emailnotarget'        => 'A címzett nem létezik vagy a felhasználónév érvénytelen.',
+'emailtarget'          => 'Írd be címzett felhasználónevét',
 'emailusername'        => 'Felhasználónév:',
 'emailusernamesubmit'  => 'Küldés',
 'email-legend'         => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
@@ -2429,6 +2461,7 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 # Block/unblock
 'autoblockid'                     => '$1. autoblokk',
 'block'                           => 'Felhasználó blokkolása',
+'unblock'                         => 'Felhasználó blokkolásának feloldása',
 'blockip'                         => 'Blokkolás',
 'blockip-title'                   => 'Felhasználó blokkolása',
 'blockip-legend'                  => 'Felhasználó blokkolása',
@@ -2447,6 +2480,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 ** Megfélemlítő viselkedés, zaklatás
 ** Több szerkesztői fiókkal való visszaélés
 ** Elfogadhatatlan azonosító',
+'ipb-hardblock'                   => 'Megakadályozza, hogy a bejelentkezett felhasználók erről az IP-címről szerkesszenek',
 'ipbcreateaccount'                => 'Új regisztráció megakadályozása',
 'ipbemailban'                     => 'E-mailt se tudjon küldeni',
 'ipbenableautoblock'              => 'A szerkesztő által használt IP-címek automatikus blokkolása',
@@ -2457,12 +2491,15 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipbotherreason'                  => 'Más/további ok:',
 'ipbhidename'                     => 'A felhasználónév ne jelenjen meg a szerkesztéseknél és a listákban',
 'ipbwatchuser'                    => 'A felhasználó lapjának és vitalapjának figyelése',
+'ipb-disableusertalk'             => 'Megakadályozza, hogy a felhasználó szerkeszthesse a saját vitalapját, miközben blokkolva van',
 'ipb-change-block'                => 'Blokk beállításainak megváltoztatása',
 'ipb-confirm'                     => 'Blokk megerősítése',
 'badipaddress'                    => 'Érvénytelen IP-cím',
 'blockipsuccesssub'               => 'Sikeres blokkolás',
 'blockipsuccesstext'              => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
 <br />Lásd a [[Special:IPBlockList|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
+'ipb-blockingself'                => 'Saját magad blokkolására készülsz! Biztos, hogy ezt szeretnéd tenni?',
+'ipb-confirmhideuser'             => 'Egy felhasználó blokkolására készülsz, úgy, hogy a „felhasználó elrejtése” funkció be van kapcsolva. Ez elrejti a felhasználó nevét az összes listában és naplóbejegyzésben. Biztosan ezt szeretnéd tenni?',
 'ipb-edit-dropdown'               => 'Blokkolási okok szerkesztése',
 'ipb-unblock-addr'                => '$1 blokkjának feloldása',
 'ipb-unblock'                     => 'Felhasználónév vagy IP-cím blokkolásának feloldása',
@@ -2472,10 +2509,20 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'unblockiptext'                   => 'Itt tudod visszaadni egy blokkolt felhasználónévnek vagy IP-nek a szerkesztési jogosultságot.',
 'ipusubmit'                       => 'Blokk eltávolítása',
 'unblocked'                       => '[[User:$1|$1]] blokkolása feloldva',
+'unblocked-range'                 => '$1 blokkja feloldva',
 'unblocked-id'                    => '$1 blokkolása feloldásra került',
 'blocklist'                       => 'Blokkolt felhasználók',
 'ipblocklist'                     => 'Blokkolt felhasználók',
 'ipblocklist-legend'              => 'Blokkolt felhasználó keresése',
+'blocklist-userblocks'            => 'Fiókblokkolások elrejtése',
+'blocklist-tempblocks'            => 'Ideiglenes blokkolások elrejtése',
+'blocklist-addressblocks'         => 'IP-címek blokkolásainak elrejtése',
+'blocklist-timestamp'             => 'Időbélyeg',
+'blocklist-target'                => 'Célpont',
+'blocklist-expiry'                => 'Lejárat',
+'blocklist-by'                    => 'Blokkoló adminisztrátor',
+'blocklist-params'                => 'Blokkparaméterek',
+'blocklist-reason'                => 'Ok',
 'ipblocklist-submit'              => 'Keresés',
 'ipblocklist-localblock'          => 'Helyi blokk',
 'ipblocklist-otherblocks'         => 'További {{PLURAL:$1|blokk|blokkok}}',
@@ -2514,6 +2561,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipb_already_blocked'             => '"$1" már blokkolva',
 'ipb-needreblock'                 => '$1 már blokkolva van. Meg szeretnéd változtatni a beállításokat?',
 'ipb-otherblocks-header'          => 'További {{PLURAL:$1|blokk|blokkok}}',
+'unblock-hideuser'                => 'Nem oldhatod fel a felhasználó blokkját, mivel a felhasználóneve el van rejtve.',
 'ipb_cant_unblock'                => 'Hiba: A(z) $1 blokkolási azonosító nem található. Lehet, hogy már feloldották a blokkolását.',
 'ipb_blocked_as_range'            => 'Hiba: a(z) $1 IP-cím nem blokkolható közvetlenül, és nem lehet feloldani. A(z) $2 tartomány részeként van blokkolva, amely feloldható.',
 'ip_range_invalid'                => 'Érvénytelen IP-tartomány.',
@@ -2715,7 +2763,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'import-interwiki-namespace' => 'Célnévtér:',
 'import-upload-filename'     => 'Fájlnév:',
 'import-comment'             => 'Megjegyzés:',
-'importtext'                 => 'Kérjük, hogy a fájlt a forráswikiből a Special:Export segédeszköz használatával exportáld, mentsd a lemezedre, és töltsd ide föl.',
+'importtext'                 => 'Exportáld a fájlt a forráswikiből az [[Special:Export|exportáló eszköz]] segítségével.
+Mentsd el a számítógépedre, majd töltsd fel ide.',
 'importstart'                => 'Lapok importálása...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revision|változatok}}',
 'importnopages'              => 'Nincs importálandó lap.',
@@ -2952,9 +3001,8 @@ Ugyanazon sor további hivatkozásai kivételnek tekintettek, pl. a szócikkek, 
 'metadata-help'     => 'Ez a kép járulékos adatokat tartalmaz, amelyek feltehetően a kép létrehozásához használt digitális fényképezőgép vagy lapolvasó beállításairól adnak tájékoztatást.  Ha a képet az eredetihez képest módosították, ezen adatok eltérhetnek a kép tényleges jellemzőitől.',
 'metadata-expand'   => 'További képadatok',
 'metadata-collapse' => 'További képadatok elrejtése',
-'metadata-fields'   => 'Az ebben az üznetben kilistázott EXIF metaadat mezőket
-a képlap megjelenítés a metaadat táblázat összecsukásakor
-tartalmazni fogja. A többi alapértelmezésként rejtett marad.
+'metadata-fields'   => 'Az alábbi mezőben kilistázott képmetaadat mezők láthatóak maradnak a kép leírólapján,
+míg a többi elem a táblázat összecsukása után alapértelmezett esetben rejtve marad.
 * make
 * model
 * datetimeoriginal
@@ -3082,6 +3130,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsareainformation'          => 'GPS terület neve',
 'exif-gpsdatestamp'                => 'GPS dátum',
 'exif-gpsdifferential'             => 'GPS különbözeti korrekció',
+'exif-jpegfilecomment'             => 'JPEG fájlmegjegyzés',
 'exif-keywords'                    => 'Kulcsszavak',
 'exif-worldregiondest'             => 'Ábrázolt világrész',
 'exif-countrydest'                 => 'Ábrázolt ország',
@@ -3093,14 +3142,19 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-source'                      => 'Forrás',
 'exif-urgency'                     => 'Sürgősség',
 'exif-locationdest'                => 'Ábrázolt helyszín',
+'exif-contact'                     => 'Elérhetőségi adatok',
 'exif-writer'                      => 'Író',
 'exif-languagecode'                => 'Nyelv',
+'exif-iimversion'                  => 'IIM-verzió',
 'exif-iimcategory'                 => 'Kategória',
+'exif-datetimeexpires'             => 'Nem használandó ezután',
 'exif-datetimereleased'            => 'Megjelenés ideje',
 'exif-identifier'                  => 'Azonosító',
+'exif-lens'                        => 'Használt lencse',
 'exif-serialnumber'                => 'Kamera sorozatszáma',
 'exif-cameraownername'             => 'Kamera tulajdonosa',
 'exif-label'                       => 'Címke',
+'exif-rating'                      => 'Értékelés (5-ből)',
 'exif-copyrighted'                 => 'Szerzői jogi állapot',
 'exif-copyrightowner'              => 'Szerzői jog tulajdonosa',
 'exif-usageterms'                  => 'Felhasználási feltételek',
@@ -3108,9 +3162,13 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-originaldocumentid'          => 'Eredeti dokumentum egyedi azonosítója',
 'exif-licenseurl'                  => 'Szerzői jog engedély URL-címe',
 'exif-morepermissionsurl'          => 'Alternatív licencinformáció',
+'exif-pngfilecomment'              => 'PNG fájlmegjegyzés',
+'exif-disclaimer'                  => 'Jogi nyilatkozat',
+'exif-giffilecomment'              => 'GIF fájlmegjegyzés',
 'exif-intellectualgenre'           => 'Elemtípus',
 'exif-subjectnewscode'             => 'Tárgykód',
 'exif-event'                       => 'Ábrázolt esemény',
+'exif-organisationinimage'         => 'Ábrázolt szervezet',
 'exif-personinimage'               => 'Ábrázolt személy',
 'exif-originalimageheight'         => 'Kép magassága a levágás előtt',
 'exif-originalimagewidth'          => 'Kép szélessége a levágás előtt',
@@ -3248,6 +3306,10 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpslongitude-e' => 'Keleti hosszúsági fok',
 'exif-gpslongitude-w' => 'Nyugati hosszúsági fok',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 méterrel a tengerszint felett',
+'exif-gpsaltitude-below-sealevel' => '$1 méterrel a tengerszint alatt',
+
 'exif-gpsstatus-a' => 'Mérés folyamatban',
 'exif-gpsstatus-v' => 'Mérés közbeni működőképesség',
 
@@ -3278,7 +3340,11 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsdirection-m' => 'Mágneses irány',
 
 'exif-dc-contributor' => 'Közreműködők',
+'exif-dc-coverage'    => 'A média térbeli vagy időbeli hatálya',
+'exif-dc-date'        => 'Dátum(ok)',
+'exif-dc-publisher'   => 'Kiadó',
 'exif-dc-relation'    => 'Kapcsolódó média',
+'exif-dc-rights'      => 'Jogok',
 'exif-dc-source'      => 'Forrás-adathordozó',
 'exif-dc-type'        => 'Adathordozó típusa',
 
@@ -3288,11 +3354,26 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 
 'exif-iimcategory-ace' => 'Művészetek, kultúra és szórakoztatás',
 'exif-iimcategory-clj' => 'Bűnözés és törvény',
+'exif-iimcategory-dis' => 'Katasztrófák és a balesetek',
 'exif-iimcategory-fin' => 'Gazdaság és üzlet',
 'exif-iimcategory-edu' => 'Oktatás',
 'exif-iimcategory-evn' => 'Környezet',
 'exif-iimcategory-hth' => 'Egészség',
+'exif-iimcategory-hum' => 'Emberi érdeklődés',
+'exif-iimcategory-lab' => 'Munka',
+'exif-iimcategory-lif' => 'Életmód és szabadidő',
 'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Vallás és hit',
+'exif-iimcategory-sci' => 'Tudomány és technológia',
+'exif-iimcategory-soi' => 'Társadalmi kérdések',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Háború, konfliktus és nyugtalanság',
+'exif-iimcategory-wea' => 'Időjárás',
+
+'exif-urgency-normal' => 'Normális ($1)',
+'exif-urgency-low'    => 'Alacsony ($1)',
+'exif-urgency-high'   => 'Magas ($1)',
+'exif-urgency-other'  => 'Egyedi prioritás ($1)',
 
 # External editor support
 'edit-externally'      => 'A fájl szerkesztése külső alkalmazással',
@@ -3382,11 +3463,12 @@ $1',
 'trackbackdeleteok' => 'A visszakövetés törlése sikerült.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Figyelmeztetés:''' A lapot a szerkesztés megkezdése után törölték!",
-'confirmrecreate'     => "Miután elkezdted szerkeszteni, [[User:$1|$1]] ([[User talk:$1|vita]]) törölte ezt a lapot a következő indokkal:
+'deletedwhileediting'      => "'''Figyelmeztetés:''' A lapot a szerkesztés megkezdése után törölték!",
+'confirmrecreate'          => "Miután elkezdted szerkeszteni, [[User:$1|$1]] ([[User talk:$1|vita]]) törölte ezt a lapot a következő indokkal:
 : ''$2''
 Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
-'recreate'            => 'Újraírás',
+'confirmrecreate-noreason' => '[[User:$1|$1]] ([[User talk:$1|vita]]) törölte ezt a lapot, miután elkezdtél szerkeszteni. Erősítsd meg, hogy tényleg ismét létre szeretnéd hozni a lapot.',
+'recreate'                 => 'Újraírás',
 
 # action=purge
 'confirm_purge_button' => 'OK',

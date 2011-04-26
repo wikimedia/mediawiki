@@ -3186,6 +3186,7 @@ Déi aner sinn am Standard verstoppt.
 
 'exif-dc-date'   => 'Datum(en)',
 'exif-dc-rights' => 'Rechter',
+'exif-dc-type'   => 'Medientyp',
 
 'exif-rating-rejected' => 'Refuséiert',
 

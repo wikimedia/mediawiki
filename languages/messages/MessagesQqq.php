@@ -2831,6 +2831,7 @@ Parameters:
 
 {{Identical|Export}}',
 'export-addcat'    => '{{Identical|Add}}',
+'export-addnstext' => 'Message {{msg-mw|configure-setting-wgExportFromNamespaces}} refers to this one.',
 'export-addns'     => '{{Identical|Add}}',
 'export-download'  => 'A label of checkbox option in [[Special:Export]]',
 'export-templates' => 'A label of checkbox option in [[Special:Export]]',
