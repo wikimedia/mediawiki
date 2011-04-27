@@ -425,6 +425,7 @@ pe titlul secțiunii (JavaScript)',
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Pagini indexate',
 'noindex-category'               => 'Pagini neindexate',
+'broken-file-category'           => 'Pagini cu legături invalide către fișiere',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "'''Programul Wiki a fost instalat cu succes.'''",
@@ -717,6 +718,7 @@ Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:P
 'createaccount'              => 'Creare cont',
 'gotaccount'                 => "Aveți deja un cont de utilizator? '''$1'''.",
 'gotaccountlink'             => 'Autentificați-vă',
+'userlogin-resetlink'        => 'Ați uitat datele de autentificare?',
 'createaccountmail'          => 'după e-mail',
 'createaccountreason'        => 'Motiv:',
 'badretype'                  => 'Parolele pe care le-ați introdus diferă.',
@@ -802,6 +804,8 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 
 # Special:PasswordReset
 'passwordreset'          => 'Resetare parolă',
+'passwordreset-text'     => 'Completați acest formular pentru a primi un e-mail cu datele contului dumneavoastră.',
+'passwordreset-legend'   => 'Resetare parolă',
 'passwordreset-username' => 'Nume de utilizator:',
 'passwordreset-email'    => 'Adresă de e-mail:',
 

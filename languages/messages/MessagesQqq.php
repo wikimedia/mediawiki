@@ -54,6 +54,7 @@
  * @author Lejonel
  * @author Li-sung
  * @author Lloffiwr
+ * @author MF-Warburg
  * @author Malafaya
  * @author MaxSem
  * @author McDutchie
@@ -401,7 +402,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'talk'              => 'Used as display name for the tab to all talk pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
 
 {{Identical|Discussion}}',
-'views'             => 'Subtitle for the list of available views, for the current page. In "monobook" skin the list of views are shown as tabs, so this sub-title is not shown.  To check when and where this message is displayed switch to "simple" skin.
+'views'             => 'Subtitle for the list of available views, for the current page. In "monobook" skin the list of views are shown as tabs, so this sub-title is not shown. For an example, see [http://translatewiki.net/wiki/Main_Page?useskin=simple Main Page using simple skin].
 
 \'\'\'Note:\'\'\' This is "views" as in "appearances"/"representations", \'\'\'not\'\'\' as in "visits"/"accesses".
 {{Identical|View}}',

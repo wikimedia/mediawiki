@@ -61,6 +61,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'    => '{{PLURAL:$1|Кlватlал|Кlватlалар}}',
+'category_header'   => 'Чарар кlватlалда "$1"',
 'subcategories'     => 'Кlватlалринпай',
 'hidden-categories' => '{{PLURAL:$1|Кlевнавай кlватlалрин кьадар|Кlевнавай кlватlалрин кьадар}}',
 
@@ -142,7 +143,7 @@ $messages = array(
 'editlink'           => 'Дигишарун',
 'viewsourcelink'     => 'къалурун булах',
 'editsectionhint'    => 'Дегишарун пай: $1',
-'toc'                => 'Квабур',
+'toc'                => 'Къейда',
 'showtoc'            => 'къаларун',
 'hidetoc'            => 'чуьнуьхун',
 'site-rss-feed'      => '$1 РСС Xуьрек',
@@ -305,6 +306,9 @@ $messages = array(
 'rcnote'          => "КIеник {{PLURAL:$1|is '''1''' change|эхиримжи '''$1''' дегишунар}} заманада {{PLURAL:$2|day|'''$2''' йикъар}}, икIа $5, $4",
 'rcshowhideminor' => '$1 бицlи дегишунар',
 'rcshowhidebots'  => '$1 бот',
+'rcshowhideliu'   => '$1 Системадиз гьахьнай ишлемишчияр',
+'rcshowhideanons' => '
+$1 Кlевхьанай ишлемишчи',
 'rcshowhidemine'  => '$1 зин дигишунар',
 'rclinks'         => 'Къалурун эхиримжи $1 са сятинлай $2 йикъал $3',
 'diff'            => 'тафават',
@@ -316,7 +320,8 @@ $messages = array(
 'boteditletter'   => 'б',
 
 # Recent changes linked
-'recentchangeslinked' => 'Сахьтин дегишунар',
+'recentchangeslinked'      => 'Сахьтин дегишунар',
+'recentchangeslinked-page' => 'Чарчин тlар:',
 
 # Upload
 'upload'        => 'Парвиниз шикил',
@@ -455,11 +460,13 @@ $messages = array(
 
 # What links here
 'whatlinkshere'            => ' Гьихьтин чарар инна аватIа',
+'whatlinkshere-title'      => 'Чарар, алукьунин цlар идал "$1"',
 'whatlinkshere-page'       => 'Ишлемишчи',
 'istemplate'               => 'Трансклипция',
 'whatlinkshere-next'       => '{{PLURAL:$1|next|къведай $1}}',
 'whatlinkshere-hideredirs' => '$1 массадал ракъурун',
 'whatlinkshere-hidetrans'  => '',
+'whatlinkshere-hidelinks'  => '$1 алукьунин цlар',
 'whatlinkshere-filters'    => 'Филтер',
 
 # Block/unblock
@@ -524,6 +531,7 @@ $messages = array(
 'tooltip-t-permalink'            => 'Гьамишан алукьун гьа и килиг хъувуниз',
 'tooltip-ca-nstab-main'          => 'Килигун чарче авай кхьинар',
 'tooltip-ca-nstab-user'          => 'Ишлемишчидин чарчиз клигун',
+'tooltip-ca-nstab-special'       => 'Имма далу чар,квевай чар дегиш жезатуш',
 'tooltip-ca-nstab-project'       => 'Проектин чарчиз килигун',
 'tooltip-ca-nstab-image'         => 'Шкилдиз килигу',
 'tooltip-minoredit'              => 'Марк имма сакlускьван дегишунар',

@@ -1854,8 +1854,8 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'linksearch-pat'   => "Schema d'arsërca:",
 'linksearch-ns'    => 'Spassi nominal:',
 'linksearch-ok'    => 'Sërché',
-'linksearch-text'  => 'As peulo dovresse dij ciapatut coma "*.wikipedia.org".<br />Protocòj ch\'as peulo dovré: <tt>$1</tt>',
-'linksearch-line'  => "$1 a l'ha n'anliura ch'a-i riva dzora da $2",
+'linksearch-text'  => 'As peulo dovresse dij ciapatut coma "*.wikipedia.org".<br />Protocòj ch\'as peulo dovresse: <tt>$1</tt>',
+'linksearch-line'  => "$1 a l'ha n'anliura ch'a-j riva dzora da $2",
 'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël servent.',
 
 # Special:ListUsers

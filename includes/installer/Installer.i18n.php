@@ -2779,6 +2779,7 @@ $messages['eo'] = array(
 /** Spanish (Español)
  * @author Crazymadlover
  * @author Danke7
+ * @author Od1n
  * @author Platonides
  * @author Sanbec
  * @author Translationista
@@ -2992,7 +2993,7 @@ Las bases de datos MyISAM tienden a corromperse más a menudo que las bases de d
 	'config-ns-invalid' => 'El espacio de nombre especificado "<nowiki>$1</nowiki>" no es válido.
 Especifica un espacio de nombre de proyecto diferente.',
 	'config-admin-box' => 'Cuenta de administrador',
-	'config-admin-name' => 'Tu nombre:',
+	'config-admin-name' => 'Su nombre:',
 	'config-admin-password' => 'Contraseña:',
 	'config-admin-password-confirm' => 'Repita la contraseña:',
 	'config-admin-help' => 'Escribe aquí el nombre de usuario que desees, como por ejemplo "Pedro Bloggs".
@@ -6341,6 +6342,8 @@ Anda dapat menginstal MediaWiki.',
 	'config-env-bad' => 'Kondisi telah diperiksa.
 Anda tidak dapat menginstal MediaWiki.',
 	'config-env-php' => 'PHP $1 diinstal.',
+	'config-env-php-toolow' => 'PHP $1 telah terinstal.
+Namun, MediaWiki memerlukan PHP $2 atau lebih tinggi.',
 	'config-unicode-using-utf8' => 'Menggunakan utf8_normalize.so Brion Vibber untuk normalisasi Unicode.',
 	'config-unicode-using-intl' => 'Menggunakan [http://pecl.php.net/intl ekstensi PECL intl] untuk normalisasi Unicode.',
 	'config-unicode-pure-php-warning' => "'''Peringatan''': [http://pecl.php.net/intl Ekstensi intl PECL] untuk menangani normalisasi Unicode tidak tersedia, kembali menggunakan implementasi murni PHP yang lambat. 
@@ -6421,9 +6424,16 @@ Nama tersebut tidak boleh mengandung spasi.
 
 Jika Anda menggunakan inang web bersama, penyedia inang Anda dapat memberikan Anda nama basis data khusus untuk digunakan atau mengizinkan Anda membuat basis data melalui panel kontrol.',
 	'config-db-name-oracle' => 'Skema basis data:',
+	'config-db-account-oracle-warn' => 'Ada tiga skenario yang didukung untuk instalasi Oracle sebagai basis data pendukung:
+
+Jika Anda ingin membuat akun basis data sebagai bagian dari proses instalasi, silakan masukkan akun dengan peran SYSDBA sebagai akun basis data untuk instalasi dan tentukan kredensial yang diinginkan untuk akun akses web. Jika tidak, Anda dapat membuat akun akses web secara manual dan hanya memberikan akun tersebut (jika memiliki izin yang diperlukan untuk membuat objek skema) atau memasukkan dua akun yang berbeda, satu dengan hak membuat objek dan satu dibatasi untuk akses web.
+
+Skrip untuk membuat akun dengan privilese yang diperlukan dapat ditemukan pada direktori "maintenance/oracle/" instalasi ini. Harap diingat bahwa penggunaan akun terbatas akan menonaktifkan semua kemampuan pemeliharaan dengan akun bawaan.',
 	'config-db-install-account' => 'Akun pengguna untuk instalasi',
 	'config-db-username' => 'Nama pengguna basis data:',
 	'config-db-password' => 'Kata sandi basis data:',
+	'config-db-password-empty' => 'Silakan masukkan sandi untuk pengguna basis data baru: $1.
+Meskipun dimungkinkan untuk membuat pengguna tanpa sandi, hal itu tidak aman.',
 	'config-db-install-username' => 'Masukkan nama pengguna yang akan digunakan untuk terhubung ke basis data selama proses instalasi. 
 Ini bukan nama pengguna akun MediaWiki, melainkan nama pengguna untuk basis data Anda.',
 	'config-db-install-password' => 'Masukkan sandi yang akan digunakan untuk terhubung ke basis data selama proses instalasi. 
@@ -6469,6 +6479,7 @@ Pertimbangkan untuk menempatkan basis data di tempat lain, misalnya di <code>/va
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki mendukung sistem basis data berikut: 
 
 $1
@@ -6478,10 +6489,12 @@ Jika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah i
 	'config-support-postgres' => '* $1 adalah sistem basis data sumber terbuka populer sebagai alternatif untuk MySQL ([http://www.php.net/manual/en/pgsql.installation.php cara mengompilasi PHP dengan dukungan PostgreSQL]). Mungkin ada beberapa bug terbuka dan alternatif ini tidak direkomendasikan untuk dipakai dalam lingkungan produksi.',
 	'config-support-sqlite' => '* $1 adalah sistem basis data yang ringan yang sangat baik dukungannya. ([http://www.php.net/manual/en/pdo.installation.php cara mengompilasi PHP dengan dukungan SQLite], menggunakan PDO)',
 	'config-support-oracle' => '* $1 adalah basis data komersial untuka perusahaan. ([http://www.php.net/manual/en/oci8.installation.php cara mengompilasi PHP dengan dukungan OCI8])',
+	'config-support-ibm_db2' => '* $1 adalah basis data-perusahaan komersial.',
 	'config-header-mysql' => 'Pengaturan MySQL',
 	'config-header-postgres' => 'Pengaturan PostgreSQL',
 	'config-header-sqlite' => 'Pengaturan SQLite',
 	'config-header-oracle' => 'Pengaturan Oracle',
+	'config-header-ibm_db2' => 'Pengaturan IBM DB2',
 	'config-invalid-db-type' => 'Jenis basis data tidak sah',
 	'config-missing-db-name' => 'Anda harus memasukkan nilai untuk "Nama basis data"',
 	'config-missing-db-host' => 'Anda harus memasukkan nilai untuk "Inang basis data"',
@@ -6497,6 +6510,8 @@ Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), garis bawah (_), dan tanda hu
 Periksa nama inang, pengguna, dan sandi di bawah ini dan coba lagi.',
 	'config-invalid-schema' => 'Skema MediaWiki "$1" tidak sah.
 Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
+	'config-db-sys-create-oracle' => 'Penginstal hanya mendukung penggunaan akun SYSDBA untuk membuat akun baru.',
+	'config-db-sys-user-exists-oracle' => 'Akun pengguna "$1"sudah ada. SYSDBA hanya dapat digunakan untuk membuat akun baru!',
 	'config-postgres-old' => 'PostgreSQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.',
 	'config-sqlite-name-help' => 'Pilih nama yang mengidentifikasi wiki Anda. 
 Jangan gunakan spasi atau tanda hubung. 
@@ -6564,6 +6579,7 @@ Basis data MyISAM cenderung lebih sering rusak daripada basis data InnoDB.",
 Ini lebih efisien daripada modus UTF-8 MySQL dan memungkinkan Anda untuk menggunakan ragam penuh karakter Unicode.
 
 Dalam '''modus UTF-8''', MySQL akan tahu apa set karakter data dan dapat menampilkan dan mengubahnya sesuai keperluan, tetapi tidak akan mengizinkan Anda menyimpan karakter di atas [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+	'config-ibm_db2-low-db-pagesize' => "Basis data DB2 Anda tidak memiliki pagesize yang cukup untuk tablespace bawaan. Pagesize harus sama atau lebih dari '''32K'''.",
 	'config-site-name' => 'Nama wiki:',
 	'config-site-name-help' => 'Ini akan muncul di bilah judul peramban dan di berbagai tempat lainnya.',
 	'config-site-name-blank' => 'Masukkan nama situs.',
@@ -6577,6 +6593,8 @@ Semua judul halaman dalam ruang nama ini diawali dengan prefiks tertentu yang da
 Biasanya, prefiks ini berasal dari nama wiki, tetapi tidak dapat berisi karakter tanda baca seperti "#" atau ":".',
 	'config-ns-invalid' => 'Ruang nama "<nowiki>$1</nowiki>" yang ditentukan tidak sah. 
 Berikan ruang nama proyek lain.',
+	'config-ns-conflict' => 'Ruang nama "<nowiki>$1</nowiki>" yang diberikan berkonflik dengan ruang nama bawaan MediaWiki.
+Tentukan ruang nama proyek yang berbeda.',
 	'config-admin-box' => 'Akun pengurus',
 	'config-admin-name' => 'Nama Anda:',
 	'config-admin-password' => 'Kata sandi:',
@@ -6606,23 +6624,22 @@ Anda sekarang dapat melewati sisa konfigurasi dan menginstal wiki sekarang.',
 	'config-profile-no-anon' => 'Pembuatan akun diperlukan',
 	'config-profile-fishbowl' => 'Khusus penyunting terdaftar',
 	'config-profile-private' => 'Wiki pribadi',
-	'config-profile-help' => "Wiki paling baik bekerja jika Anda membiarkan sebanyak mungkin orang untuk menyunting.
-Dengan MediaWiki, sangat mudah meninjau perubahan terbaru dan mengembalikan kerusakan yang dilakukan oleh pengguna naif atau berbahaya.
+	'config-profile-help' => "Wiki paling baik bekerja jika Anda membiarkan sebanyak mungkin orang untuk menyunting. Dengan MediaWiki, sangat mudah meninjau perubahan terbaru dan mengembalikan kerusakan yang dilakukan oleh pengguna naif atau berbahaya.
 
-Namun, berbagai kegunaan lain dari MediaWiki telah ditemukan, dan kadang tidak mudah untuk meyakinkan semua orang manfaat dari cara wiki.
-Jadi, Anda yang menentukan.
+Namun, berbagai kegunaan lain dari MediaWiki telah ditemukan, dan kadang tidak mudah untuk meyakinkan semua orang manfaat dari cara wiki. Jadi, Anda yang menentukan.
 
-'''{{int:config-profil-wiki}}''' memungkinkan setiap orang untuk menyunting, bahkan tanpa masuk.
-'''{{int:config-profil-no-anon}}''' menyediakan akuntabilitas tambahan, tetapi dapat mencegah kontributor biasa.
+'''{{int:config-profile-wiki}}''' memungkinkan setiap orang untuk menyunting, bahkan tanpa masuk.
+'''{{int:config-profile-no-anon}}''' menyediakan akuntabilitas tambahan, tetapi dapat mencegah kontributor biasa.
 
-'''{{int:config-profil-fishbowl}}''' memungkinkan pengguna yang disetujui untuk menyunting, tetapi publik dapat melihat halaman, termasuk riwayatnya.
-'''{{int:config-profil-private}}''' hanya memungkinkan pengguna yang disetujui untuk melihat dan menyunting halaman.
+'''{{int:config-profile-fishbowl}}''' memungkinkan pengguna yang disetujui untuk menyunting, tetapi publik dapat melihat halaman, termasuk riwayatnya.
+'''{{int:config-profile-private}}''' hanya memungkinkan pengguna yang disetujui untuk melihat dan menyunting halaman.
 
 Konfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [http://www.mediawiki.org/wiki/Manual:User_rights/id entri manual terkait].",
 	'config-license' => 'Hak cipta dan lisensi:',
 	'config-license-none' => 'Tidak ada lisensi',
 	'config-license-cc-by-sa' => 'Creative Commons Atribusi Berbagi Serupa',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Atribusi Non-Komersial Berbagi Serupa',
+	'config-license-cc-0' => 'Creative Commons Zero',
 	'config-license-gfdl-old' => 'Lisensi Dokumentasi Bebas GNU 1.2',
 	'config-license-gfdl-current' => 'Lisensi Dokumentasi Bebas GNU 1.3 atau versi terbaru',
 	'config-license-pd' => 'Domain Umum',
@@ -6690,22 +6707,33 @@ Situs berukuran sedang hingga besar sangat dianjurkan untuk mengaktifkan fitur i
 Harus dispesifikasikan per baris berikut porta yang akan digunakan. Contoh:
  127.0.0.1:11211
  192.168.1.25:1234',
+	'config-memcache-needservers' => 'Anda memilih Memcached sebagai jenis singgahan, tetapi tidak menentukan server apa pun.',
+	'config-memcache-badip' => 'Anda memasukkan alamat IP yang tidak sah untuk Memcached: $1 .',
+	'config-memcache-noport' => 'Anda tidak menentukan suatu porta untuk digunakan oleh server Memcached: $1.
+Jika Anda tidak tahu porta tersebut, porta bawaan adalah 11211.',
+	'config-memcache-badport' => 'Nomor porta Memcached harus antara $1 dan $2.',
 	'config-extensions' => 'Ekstensi',
 	'config-extensions-help' => 'Ekstensi yang tercantum di atas terdeteksi di direktori <code>./extensions</code>.
 
 Ekstensi tersebut mungkin memerlukan konfigurasi tambahan, tetapi Anda dapat mengaktifkannya sekarang.',
 	'config-install-alreadydone' => "'''Peringatan:''' Anda tampaknya telah menginstal MediaWiki dan mencoba untuk menginstalnya lagi.
 Lanjutkan ke halaman berikutnya.",
+	'config-install-begin' => 'Dengan menekan "{{int:config-continue}}", Anda akan memulai instalasi MediaWiki.
+Jika Anda masih ingin membuat perubahan, tekan "{{int:config-back}}".',
 	'config-install-step-done' => 'selesai',
 	'config-install-step-failed' => 'gagal',
 	'config-install-extensions' => 'Termasuk ekstensi',
-	'config-install-database' => 'Mendirikan basis data',
+	'config-install-database' => 'Menyiapkan basis data',
+	'config-install-pg-schema-not-exist' => 'Skema PostgreSQL tidak tersedia.',
 	'config-install-pg-schema-failed' => 'Pembuatan tabel gagal. 
 Pastikan bahwa pengguna "$1" dapat menulis ke skema "$2".',
 	'config-install-pg-commit' => 'Melakukan perubahan',
 	'config-install-pg-plpgsql' => 'Memeriksa bahasa PL / pgSQL',
 	'config-pg-no-plpgsql' => 'Anda perlu menginstal bahasa PL/pgSQL pada basis data $1',
+	'config-pg-no-create-privs' => 'Akun yang Anda tetapkan untuk instalasi tidak memiliki hak yang cukup untuk membuat akun.',
 	'config-install-user' => 'Membuat pengguna basis data',
+	'config-install-user-alreadyexists' => 'Pengguna "$1" sudah ada',
+	'config-install-user-create-failed' => 'Pembuatan pengguna "$1" gagal: $2',
 	'config-install-user-grant-failed' => 'Memberikan izin untuk pengguna "$1" gagal: $2',
 	'config-install-tables' => 'Membuat tabel',
 	'config-install-tables-exist' => "'''Peringatan''': Tabel MediaWiki sepertinya sudah ada.
@@ -6715,10 +6743,13 @@ Melompati pembuatan.",
 	'config-install-interwiki-list' => 'Tidak dapat menemukan berkas <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Peringatan''': Tabel antarwiki tampaknya sudah memiliki entri.
 Mengabaikan daftar bawaan.",
+	'config-install-stats' => 'Inisialisasi statistik',
 	'config-install-keys' => 'Membuat kunci rahasia',
+	'config-insecure-keys' => "'''Peringatan:''' {{PLURAL:$2|Suatu|Beberapa}} kunci aman ($1) yang dibuat selama instalasi {{PLURAL:$2|tidak|tidak}} benar-benar aman. Pertimbangkan untuk mengubah {{PLURAL:$2|kunci|kunci-kunci}} tersebut secara manual.",
 	'config-install-sysop' => 'Membuat akun pengguna pengurus',
 	'config-install-subscribe-fail' => 'Tidak dapat berlangganan mediawiki-announce',
 	'config-install-mainpage' => 'Membuat halaman utama dengan konten bawaan',
+	'config-install-extension-tables' => 'Pembuatan tabel untuk ekstensi yang diaktifkan',
 	'config-install-mainpage-failed' => 'Tidak dapat membuat halaman utama: $1',
 	'config-install-done' => "'''Selamat!'''
 Anda telah berhasil menginstal MediaWiki.
@@ -10019,7 +10050,10 @@ $messages['pms'] = array(
 	'config-localsettings-upgrade' => "A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
 Për agiorné cost'anstalassion, ch'a anserissa ël valor ëd <code>\$wgUpgradeKey</code> ant la casela sì-sota.
 A la trovrà an LocalSetting.php.",
+	'config-localsettings-cli-upgrade' => "N'archivi LocalSettings.php a l'é stàit trovà.
+Për agiorné sta instalassion, për piasì fà anvece giré update.php",
 	'config-localsettings-key' => "Ciav d'agiornament:",
+	'config-localsettings-badkey' => "La ciav ch'it l'has dàit a l'é pa giusta.",
 	'config-session-error' => 'Eror an fasend parte la session: $1',
 	'config-session-expired' => "Ij sò dat ëd session a smijo scadù.
 Le session a son configurà për na durà ëd $1.
@@ -10426,6 +10460,7 @@ A dovrà [$1 dëscarielo] e butelo ant la bas ëd l'instalassion ëd soa wiki (�
 '''Nòta''': S'a lo fa nen adess, cost archivi ëd configurassion generà a sarà pa disponìbil për chiel pi tard s'a chita l'instalassion sensa dëscarielo.
 
 Quand che a l'é stàit fàit, a peul '''[$2 intré an soa wiki]'''.",
+	'config-help' => 'agiut',
 );
 
 /** Pashto (پښتو)

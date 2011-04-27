@@ -691,10 +691,14 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'resetpass-temp-password'   => 'Laikinas slaptažodis:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Atstatyti slaptažodį',
-'passwordreset-legend'   => 'Atstatyti slaptažodį',
-'passwordreset-username' => 'Naudotojo vardas:',
-'passwordreset-email'    => 'E-pašto adresas:',
+'passwordreset'              => 'Atstatyti slaptažodį',
+'passwordreset-legend'       => 'Atstatyti slaptažodį',
+'passwordreset-disabled'     => 'Slaptažodžių atstatymai šiame wikyje išjungti.',
+'passwordreset-username'     => 'Naudotojo vardas:',
+'passwordreset-email'        => 'E-pašto adresas:',
+'passwordreset-emailelement' => 'Naudotojo vardas: $1
+Laikinas slaptažodis: $2',
+'passwordreset-emailsent'    => 'Priminimo laiškas buvo išsiųstas.',
 
 # Edit page toolbar
 'bold_sample'     => 'Paryškintas tekstas',
@@ -1116,6 +1120,7 @@ Prašome patikrinti sąrašus.',
 'searchmenu-legend'                => 'Paieškos nustatymai',
 'searchmenu-exists'                => "'''Puslapis pavadinimu „[[$1]]“ šioje wiki'''",
 'searchmenu-new'                   => "'''Sukurti puslapį „[[:$1]]“ šioje wiki!'''",
+'searchmenu-new-nocreate'          => 'Arba „$1“ yra nekorektiškas puslapio pavadinimas, arba jūs negalite tokio sukurti.',
 'searchhelp-url'                   => 'Help:Turinys',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ieškoti puslapių su šiuo priešdėliu]]',
 'searchprofile-articles'           => 'Turinio puslapiai',
@@ -1280,6 +1285,10 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'prefs-displaysearchoptions'    => 'Rodymo nuostatos',
 'prefs-displaywatchlist'        => 'Rodymo nuostatos',
 'prefs-diffs'                   => 'Skirtumai',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Panašu, kad E-pašto adresas yra teisingas',
+'email-address-validity-invalid' => 'Įveskite korektišką e-pašto adresą',
 
 # User rights
 'userrights'                   => 'Naudotojų teisių valdymas',
@@ -1606,6 +1615,9 @@ Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
 'upload-too-many-redirects' => 'URL yra per daug kartų peradresuotas',
 'upload-unknown-size'       => 'Nežinomas dydis',
 'upload-http-error'         => 'Įvyko HTTP klaida: $1',
+
+# ZipDirectoryReader
+'zip-wrong-format' => 'Nurodytas failas nėra ZIP failas.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Prieiga uždrausta',
@@ -1980,6 +1992,7 @@ El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustaty
 'noemailtext'          => 'Šis naudotojas nėra nurodęs teisingo el. pašto adreso, arba yra pasirinkęs negauti el. pašto iš kitų naudotojų.',
 'nowikiemailtitle'     => 'El. laiškai neleidžiami',
 'nowikiemailtext'      => 'Šis naudotojas yra pasirinkęs negauti elektroninių laiškų iš kitų naudotojų.',
+'emailusername'        => 'Naudotojo vardas:',
 'email-legend'         => 'Siųsti elektroninį laišką kitam {{SITENAME}} naudotojui',
 'emailfrom'            => 'Nuo:',
 'emailto'              => 'Kam:',
@@ -2288,6 +2301,8 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'whatlinkshere-filters'    => 'Filtrai',
 
 # Block/unblock
+'block'                           => 'Blokuoti naudotoją',
+'unblock'                         => 'Atblokuoti naudotoją',
 'blockip'                         => 'Blokuoti naudotoją',
 'blockip-title'                   => 'Blokuoti naudotoją',
 'blockip-legend'                  => 'Blokuoti naudotoją',
@@ -2331,8 +2346,10 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'ipusubmit'                       => 'Atblokuoti šį adresą',
 'unblocked'                       => '[[User:$1|$1]] buvo atblokuotas',
 'unblocked-id'                    => 'Blokavimas $1 buvo pašalintas',
+'blocklist'                       => 'Blokuoti naudotojai',
 'ipblocklist'                     => 'Blokuoti naudotojai',
 'ipblocklist-legend'              => 'Rasti užblokuotą naudotoją',
+'blocklist-reason'                => 'Priežastis',
 'ipblocklist-submit'              => 'Ieškoti',
 'ipblocklist-localblock'          => 'Vietinis blokavimas',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Kitas blokavimas|Kiti blokavimai}}',
@@ -2940,6 +2957,9 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsareainformation'          => 'GPS zonos pavadinimas',
 'exif-gpsdatestamp'                => 'GPS data',
 'exif-gpsdifferential'             => 'GPS diferiancialo pataisymas',
+'exif-cameraownername'             => 'Fotoaparato savininkas',
+'exif-rating'                      => 'Vertinimas (iki 5)',
+'exif-usageterms'                  => 'Naudojimo sąlygos',
 
 # EXIF attributes
 'exif-compression-1' => 'Nesuspausta',

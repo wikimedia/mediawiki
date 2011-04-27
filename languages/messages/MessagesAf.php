@@ -18,6 +18,7 @@
  * @author Reedy
  * @author SPQRobin
  * @author Spacebirdy
+ * @author Xethron
  */
 
 $namespaceNames = array(
@@ -332,6 +333,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'vervolg',
 'index-category'                 => 'Geïndekseerde bladsye',
 'noindex-category'               => 'Ongeïndekseerde bladsye',
+'broken-file-category'           => 'Bladsye met gebreekte lêer skakels',
 
 'mainpagetext'      => "'''MediaWiki is suksesvol geïnstalleer.'''",
 'mainpagedocfooter' => "Konsulteer '''[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]''' vir inligting oor hoe om die wikisagteware te gebruik.
@@ -718,7 +720,10 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 
 # Special:PasswordReset
 'passwordreset'              => 'Wagwoord herstel',
+'passwordreset-text'         => "Voltooi hierdie vorm om 'n e-pos herinnering van jou rekening besonderhede te ontvang.",
 'passwordreset-legend'       => 'Kry nuwe wagwoord',
+'passwordreset-disabled'     => 'Die herskik van U wagwoord is gedeaktiveer op hierdie wiki.',
+'passwordreset-pretext'      => '{{PLURAL:$1| | Voer een van die onderstaande velde in}}',
 'passwordreset-username'     => 'Gebruiker:',
 'passwordreset-email'        => 'E-posadres:',
 'passwordreset-emailtitle'   => 'Gebruiker se details op {{site name}}',

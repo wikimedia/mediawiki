@@ -470,7 +470,7 @@ $messages = array(
 'namespaces'               => 'नामविश्वे',
 'variants'                 => 'अस्थिर',
 
-'errorpagetitle'    => 'चुक',
+'errorpagetitle'    => 'चूक',
 'returnto'          => '$1 कडे परत चला.',
 'tagline'           => '{{SITENAME}} कडून',
 'help'              => 'सहाय्य',
@@ -485,6 +485,7 @@ $messages = array(
 'printableversion'  => 'छापण्यायोग्य आवृत्ती',
 'permalink'         => 'शाश्वत दुवा',
 'print'             => 'छापा',
+'view'              => 'दाखवा',
 'edit'              => 'संपादन',
 'create'            => 'तयार करा',
 'editthispage'      => 'हे पृष्ठ संपादित करा',
@@ -570,6 +571,8 @@ $1',
 'toc'                     => 'अनुक्रमणिका',
 'showtoc'                 => 'दाखवा',
 'hidetoc'                 => 'लपवा',
+'collapsible-collapse'    => 'लपवा',
+'collapsible-expand'      => 'विस्तार',
 'thisisdeleted'           => 'आवलोकन किंवा पूनर्स्थापन $1?',
 'viewdeleted'             => 'आवलोकन $1?',
 'restorelink'             => '{{PLURAL:$1|एक वगळलेले संपादन|$1 वगळलेली संपादने}}',
@@ -704,6 +707,7 @@ $2',
 'createaccount'              => 'नवीन खात्याची नोंदणी करा',
 'gotaccount'                 => "जुने खाते आहे? '''$1'''.",
 'gotaccountlink'             => 'प्रवेश करा',
+'userlogin-resetlink'        => 'प्रवेश तपशील विसरला आसाल तर येथे टिचकी मारा.',
 'createaccountmail'          => 'इमेल द्वारे',
 'createaccountreason'        => 'कारण:',
 'badretype'                  => 'आपला परवलीचा शब्द चुकीचा आहे.',
@@ -752,6 +756,7 @@ $2',
 'createaccount-text'         => 'तुमच्या विपत्र पत्त्याकरिता {{SITENAME}} ($4)वर "$2" नावाच्या कुणी "$3" परवलीने खाते उघडले आहे. कृपया आपण सदस्य प्रवेश करून आपला परवलीचा शब्द बदलावा.
 
 जर ही नोंदणी चुकीने झाली असेल तर तुम्ही या संदेशाकडे दुर्लक्ष करू शकता.',
+'usernamehasherror'          => 'सदस्यनामात "हॅश" वर्ण असू शकत नाहीत.',
 'loginlanguagelabel'         => 'भाषा: $1',
 
 # Change password dialog
@@ -771,7 +776,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset'          => 'परवलीचा शब्द पूर्ववत करा',
+'passwordreset-legend'   => 'परवलीचा शब्द पूर्ववत करा',
 'passwordreset-username' => 'सदस्यनाव',
+'passwordreset-email'    => 'विपत्र पत्ता',
 
 # Edit page toolbar
 'bold_sample'     => 'ठळक मजकूर',
@@ -913,6 +920,8 @@ $2',
 'nocreatetitle'                    => 'पान निर्मीतीस मर्यादा',
 'nocreatetext'                     => '{{SITENAME}}वर नवीन लेख लिहिण्यास मज्जाव करण्यात आलेला आहे. आपण परत जाऊन अस्तित्वात असलेल्या लेखांचे संपादन करू शकता अथवा [[Special:UserLogin|नवीन सदस्यत्व घ्या/ प्रवेश करा]].',
 'nocreate-loggedin'                => 'येथे तुम्हाला नवीन पाने बनवण्याची परवानगी नाही.',
+'sectioneditnotsupported-title'    => 'विभाग संपादन समर्थित नाही.',
+'sectioneditnotsupported-text'     => 'या लेखामध्ये विभाग संपादन समर्थित नाही.',
 'permissionserrors'                => 'परवानगीतील त्रूटी',
 'permissionserrorstext'            => 'खालील{{PLURAL:$1|कारणामुळे|कारणांमुळे}} तुम्हाला तसे करण्याची परवानगी नाही:',
 'permissionserrorstext-withaction' => 'तुम्हाला $2 ची परवानगी नाही, खालील {{PLURAL:$1|कारणासाठी|कारणांसाठी}}:',
@@ -925,6 +934,8 @@ $2',
 'log-fulllog'                      => 'पूर्ण यादी पहा.',
 'edit-gone-missing'                => 'नविन पृष्ठ तयार करता आले नाही. पूर्वीपासून अस्तित्वात आहे.',
 'edit-conflict'                    => 'वादग्रस्त संपादन',
+'edit-already-exists'              => 'नवीन पान तयार करता येऊ शकले नाही.
+या नावाचे पान आधीच अस्तित्वात आहे.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'इशारा: या पानावर खूप सारे खर्चिक पृथक्करण क्रिया कॉल्स आहेत.
@@ -1360,7 +1371,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'uploadnologintext'           => 'संचिका चढविण्यासाठी तुम्हाला [[Special:UserLogin|प्रवेश]] करावा लागेल.',
 'upload_directory_missing'    => 'अपलोड डिरेक्टरी ($1) सापडली नाही तसेच वेबसर्व्हर ती तयार करू शकलेला नाही.',
 'upload_directory_read_only'  => '$1 या डिरेक्टरी मध्ये सर्व्हर लिहू शकत नाही.',
-'uploaderror'                 => 'चढवण्यात चुक',
+'uploaderror'                 => 'चढवण्यात चूक',
 'uploadtext'                  => "खालील अर्ज नवीन संचिका चढविण्यासाठी वापरा.
 पूर्वी चढविलेल्या संचिका पाहण्यासाठी अथवा शोधण्यासाठी [[Special:FileList|चढविलेल्या संचिकांची यादी]] पहा. चढविलेल्या तसेच वगळलेल्या संचिकांची यादी पहाण्यासाठी [[Special:Log/upload|सूची]] पहा.
 
@@ -1735,7 +1746,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 पहार्‍याच्या सूचीतून पान काढायचे असेल तर "पहारा काढा" वर टिचकी द्या.',
 'removedwatch'         => 'पहार्‍याच्या सूचीतून वगळले',
-'removedwatchtext'     => '"[[:$1]]" पान तुमच्या पहार्‍याच्या सूचीतून वगळण्यात आले आहे.',
+'removedwatchtext'     => '"[[:$1]]" पान तुमच्या [[Special:Watchlist|पहार्‍याच्या सूची]]तून वगळण्यात आले आहे.',
 'watch'                => 'पहारा',
 'watchthispage'        => 'या पानावर बदलांसाठी लक्ष ठेवा.',
 'unwatch'              => 'पहारा काढा',

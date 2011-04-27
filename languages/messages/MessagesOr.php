@@ -76,7 +76,7 @@ $messages = array(
 'fri'           => 'ଶୁକ୍ରବାର',
 'sat'           => 'ଶନିବାର',
 'january'       => 'ଜାନୁଆରି',
-'february'      => 'ଫେବୁଆରି',
+'february'      => 'ଫେବ୍ରୁଆରି',
 'march'         => 'ମାର୍ଚ',
 'april'         => 'ଏପ୍ରିଲ',
 'may_long'      => 'ମେ',
@@ -175,9 +175,9 @@ $messages = array(
 'edit'              => 'ବଦଳାଇବେ',
 'create'            => 'ତିଆରି କରିବେ',
 'editthispage'      => 'ଏହି ଫରଦଟିକୁ ବଦଳାଇବା',
-'create-this-page'  => 'ଏହି ଫରଦଟି ତିଆରି କରିବା',
+'create-this-page'  => 'ଏହି ପୃଷ୍ଠାଟି ତିଆରିବେ',
 'delete'            => 'ଲିଭେଇବେ',
-'deletethispage'    => 'ଏହି ଫରଦଟି ଲିଭାଇବା',
+'deletethispage'    => 'ଏହି ପୃଷ୍ଠାଟି ଲିଭାଇବେ',
 'protect'           => 'କିଳିବେ',
 'protect_change'    => 'ବଦଳାଇବା',
 'newpage'           => 'ନୂଆ ଫରଦ',
@@ -189,7 +189,7 @@ $messages = array(
 'toolbox'           => 'ଜନ୍ତ୍ର ପେଡ଼ି',
 'otherlanguages'    => 'ଅଲଗା ଭାଷା',
 'redirectedfrom'    => '($1 ରୁ ଲେଉଟି ଆସିଛି)',
-'lastmodifiedat'    => 'ଏହି ଫରଦଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
+'lastmodifiedat'    => 'ଏହି ପୃଷ୍ଠାଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
 'jumpto'            => 'ଡେଇଁଯିବେ',
 'jumptonavigation'  => 'ଦିଗବାରେଣିକୁ',
 'jumptosearch'      => 'ଖୋଜିବେ',
@@ -236,7 +236,7 @@ $messages = array(
 'site-atom-feed'          => '$1 ଆଟମ ଫିଡ଼',
 'page-rss-feed'           => '$1 ଟି ଆରେସେସ ଫିଡ଼',
 'page-atom-feed'          => '$1 ଟି ଆଟମ ଫିଡ଼',
-'red-link-title'          => ' $1 (ଫରଦଟି ନାହିଁ)',
+'red-link-title'          => ' $1 (ପୃଷ୍ଠାଟି ନାହିଁ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ପୃଷ୍ଠା',
@@ -251,12 +251,12 @@ $messages = array(
 
 # General errors
 'error'           => 'ଭୁଲ',
-'missing-article' => 'ଡାଟାବେସଟି ଆପଣ ଲେଖିଥିବା "$1" $2 ଶବଦଟି ପାଇଲା ନାହିଁ । .
+'missing-article' => 'ଡାଟାବେସଟି ଆପଣ ଖୋଜିଥିବା "$1" $2 ଶବ୍ଦଟି ପାଇଲା ନାହିଁ । .
 
 ଯଦି ଆପଣ ଖୋଜିଥିବା ଫରଦଟି କେହି ଉଡ଼ାଇ ଦେଇଥାଏ ତେବେ ଏମିତି ହୋଇପାରେ ।
 
-ଯଦି ସେମିତି ହୋଇନଥାଏ ତେବେ ଆପଣ ଏହି ସଫଟଉଏରରେ କିଛି ଅସୁବିଧା ଖୋଜି ପାଇଛଁତି ।
-କେହି ଜଣେ ଟିକେ [[Special:ListUsers/sysop|ପରିଛା]] ଙ୍କୁ ଏହି ଇଉଆରେଲ (url) ସହ ଚିଠିଟିଏ ପଠାଇ ଦିଅଁତୁ ।',
+ଯଦି ସେମିତି ହୋଇନଥାଏ ତେବେ ଆପଣ ଏହି ସଫଟବେରରେ କିଛି ଅସୁବିଧା ଖୋଜି ପାଇଛନ୍ତି ।
+କେହି ଜଣେ ଟିକେ [[Special:ListUsers/sysop|ପରିଛା]] ଙ୍କୁ ଏହି ଇଉଆରେଲ (url) ସହ ଚିଠିଟିଏ ପଠାଇ ଦିଅନ୍ତୁ ।',
 'viewsource'      => 'ଉତ୍ସ ଦେଖିବେ',
 
 # Login and logout pages
@@ -286,23 +286,23 @@ $messages = array(
 'italic_sample'   => 'ତେରେଛା ଲେଖା',
 'italic_tip'      => 'ତେରେଛା ଲେଖା',
 'link_sample'     => 'ଲିଁକ ଟାଇଟଲ',
-'link_tip'        => 'ଭିତର ଲିଁକ',
+'link_tip'        => 'ଭିତର ଲିଙ୍କ',
 'extlink_sample'  => 'http://www.example.com ଲିଁକ ଟାଇଟଲ',
 'extlink_tip'     => 'ବାହାର ଲିଁକ (http:// ଆଗରେ ଲଗାଇବାକୁ ମନେରଖିଥିବେ)',
 'headline_sample' => 'ହେଡଲାଇନ ଲେଖା',
 'headline_tip'    => '୨କ ଆକାରର ମୂଳଧାଡ଼ି',
-'nowiki_sample'   => 'ଫରମାଟ ହୋଇ ନଥିବା ଲେଖା ଏଠାରେ ପୁରାଅ',
+'nowiki_sample'   => 'ଫର୍ମାଟ ହୋଇ ନଥିବା ଲେଖା ଏଠାରେ ପୁରାଇବେ',
 'nowiki_tip'      => 'ଉଇକି ଫରମାଟିଁଗକୁ ଛାଡିଦିଅ',
 'image_tip'       => 'ଏମବେଡ ହୋଇ ଥିବା ଫାଇଲ',
 'media_tip'       => 'ଫାଇଲର ଲିଁକ',
 'sig_tip'         => 'ଲେଖାର ବେଳ ସହ ଆପଣଁକ ହସ୍ତାକ୍ଷର',
-'hr_tip'          => 'ସାମାଁତରାଳ ରେଖା (ବେଳେବେଳେ ବ୍ୟ୍ଅବହାର କର)',
+'hr_tip'          => 'ସମାନ୍ତରାଳ ରେଖା (ବେଳେବେଳେ ବ୍ୟବହାର କରିବେ)',
 
 # Edit pages
 'summary'                => 'ସାରକଥା:',
 'subject'                => 'ବିଷୟ/ମୂଳ ଲେଖା',
 'minoredit'              => 'ଏହା ଖୁବ ଛୋଟ ବଦଳଟିଏ',
-'watchthis'              => 'ଏହି ଫରଦଟିକୁ ଦେଖ',
+'watchthis'              => 'ଏହି ପୃଷ୍ଠାଟିକୁ ଦେଖିବେ',
 'savearticle'            => 'ସାଇତି ରଖ',
 'preview'                => 'ସାଇତିବା ଆଗରୁ ଦେଖଣା',
 'showpreview'            => 'ଦେଖଣା',
@@ -338,7 +338,7 @@ $messages = array(
 # Revision deletion
 'rev-delundel'   => 'ଦେଖାଇବା/ଲୁଚାଇବା',
 'revdelete-log'  => 'କାରଣ:',
-'revdel-restore' => 'ଦେଖଣାକୁ ବଦଳାଇବା',
+'revdel-restore' => 'ଦେଖଣାକୁ ବଦଳାଇବେ',
 
 # History merging
 'mergehistory-reason' => 'କାରଣ:',
@@ -357,9 +357,9 @@ $messages = array(
 'searchresults'             => 'ଖୋଜିବାରୁ ମିଳିଲା',
 'searchresults-title'       => '"$1" ପାଇଁ ଖୋଜିବାରୁ ମିଳିଲା',
 'searchresulttext'          => '{{SITENAME}} ରେ ଖୋଜିବା ବାବଦରେ ଅଧିକ ଜାଣିବା ପାଇଁ,  [[{{MediaWiki:Helppage}}|{{int:help}}]] ଦେଖନ୍ତୁ',
-'searchsubtitle'            => 'ଆପଣ  \'\'\'[[:$1]]\'\'\' ପାଇଁ ([[Special:Prefixindex/$1|"$1" ରେ ଆରଭ ହୋଇଥିବା ସବୁ ଫରଦ]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" କୁ ଯୋଡ଼ାଥିବା ସବୁତକ ପୃଷ୍ଠା]])',
-'notitlematches'            => 'ଫରଦର ଟାଇଟଲ ମିଶୁନାହିଁ',
-'notextmatches'             => 'ଫରଦର ଲେଖାସବୁ ମିଶୁନାହିଁ',
+'searchsubtitle'            => 'ଆପଣ  \'\'\'[[:$1]]\'\'\' ପାଇଁ ([[Special:Prefixindex/$1|"$1" ନାଆଁରେ ଆରମ୍ଭ ହୋଇଥିବା ସବୁ ପୃଷ୍ଠା]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" କୁ ଯୋଡ଼ାଥିବା ସବୁତକ ପୃଷ୍ଠା]])',
+'notitlematches'            => 'ପୃଷ୍ଠାଟିର ନାଆଁ ମିଶୁନାହିଁ',
+'notextmatches'             => 'ପୃଷ୍ଠାଟିର ନାଆଁ ମିଶୁନାହିଁ',
 'prevn'                     => '{{PLURAL:$1|$1}}ର ଆଗରୁ',
 'nextn'                     => '{{PLURAL:$1|$1}} ପର',
 'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖ',
@@ -387,7 +387,7 @@ $messages = array(
 'qbsettings-none' => 'କିଛି ନାହିଁ',
 
 # Preferences page
-'mypreferences'            => 'ମୋ ପସଁଦସବୁ',
+'mypreferences'            => 'ମୋ ପସନ୍ଦ',
 'skin-preview'             => 'ଦେଖଣା',
 'searchresultshead'        => 'ଖୋଜିବା',
 'timezoneregion-africa'    => 'ଆଫ୍ରିକା',
@@ -439,7 +439,7 @@ $messages = array(
 'recentchangeslinked-toolbox'  => 'ଯୋଡ଼ାଥିବା ବଦଳ',
 'recentchangeslinked-title'    => '"$1" ସାଁଗରେ ଜୋଡ଼ାଥିବା ବଦଳ',
 'recentchangeslinked-noresult' => 'ଯୋଡ଼ାଯାଇଥିବା ଫରଦ ସବୁରେ ଏଇ ସମୟ ଭିତରେ କିଛି ବଦଳାଯାଇନାହିଁ ।',
-'recentchangeslinked-summary'  => "ଏଇଟି ଅଳ୍ପସମୟ ଆଗରୁ ନିର୍ଦିଷ୍ଟ ଫରଦରୁ ଲିଂକ ହୋଇଥିବା ଆଉ ବଦଳାଯାଇଥିବା (ଅବା ଗୋଟିଏ ନିର୍ଦିଷ୍ଟ ବିଭାଗର) ଫରଦସବୁର ତାଲିକା ।  [[Special:Watchlist|ମୋର ଦେଖାତାଲିକା]]ର ଫରଦ ସବୁ '''ବୋଲଡ'''।",
+'recentchangeslinked-summary'  => "ଏଇଟି କିଛିସମୟ ଆଗରୁ ନିର୍ଦ୍ଦିଷ୍ଟ ପୃଷ୍ଠାରୁ ଲିଙ୍କ ହୋଇଥିବା ଆଉ ବଦଳାଯାଇଥିବା (ଅବା ଗୋଟିଏ ନିର୍ଦ୍ଦିଷ୍ଟ ଶ୍ରେଣୀର) ପୃଷ୍ଠାସବୁର ତାଲିକା ।  [[Special:Watchlist|ମୋର ଦେଖାତାଲିକା]]ର ପୃଷ୍ଠା ସବୁ '''ବୋଲଡ଼'''।",
 'recentchangeslinked-page'     => 'ଫରଦର ନାଆଁ',
 'recentchangeslinked-to'       => 'ଦିଆଯାଇଥିବା ଫରଦରେ ଯୋଡ଼ା ବାକି ଫରଦମାନଙ୍କର ବଦଳ ସବୁ ଦେଖାନ୍ତୁ ।',
 
@@ -459,12 +459,12 @@ $messages = array(
 'filehist-current'    => 'ଏବେକାର',
 'filehist-datetime'   => 'ତାରିଖ/ବେଳ',
 'filehist-thumb'      => 'ନଖ ଦେଖଣା',
-'filehist-thumbtext'  => '$1 ପରିକା ସଁକଳନର ନଖଦେଖଣା',
+'filehist-thumbtext'  => '$1 ପରିକା ସଙ୍କଳନର ନଖଦେଖଣା',
 'filehist-user'       => 'ବ୍ୟବାହାରକାରୀ',
 'filehist-dimensions' => 'ଆକାର',
 'filehist-comment'    => 'ମତାମତ',
 'imagelinks'          => 'ଫାଇଲର ଲିଁକସବୁ',
-'linkstoimage'        => 'ଏହି ସବୁ{{PLURAL:$1|ଫରଦ|$1 ଫରଦମାନେ}} ଏହି ଫାଇଲଟିକୁ ଯୋଡ଼ିଥାନ୍ତି:',
+'linkstoimage'        => 'ଏହି ସବୁ{{PLURAL:$1|ପୃଷ୍ଠା|$1 ପୃଷ୍ଠାସବୁ}} ଏହି ଫାଇଲଟିକୁ ଯୋଡ଼ିଥାନ୍ତି:',
 'sharedupload'        => 'ଏହି ଫାଇଲଟି $1 ରୁ ଆଉ ବାକି ପ୍ରକଳ୍ପରେ ବ୍ୟବହାର କରାଯାଇପାରିବ .',
 
 # File reversion
@@ -511,13 +511,14 @@ $messages = array(
 'allpages'       => 'ସବୁ ଫରଦ',
 'alphaindexline' => '$1 ରୁ $2',
 'allpagesfrom'   => 'ଏହି ନାଆଁରେ ଆରମ୍ଭ ହେଉଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଦେଖାଇବେ:',
-'allpagessubmit' => 'ଯିବା',
+'allpagessubmit' => 'ଯିବେ',
 
 # Special:LinkSearch
 'linksearch-ok' => 'ଖୋଜିବା',
 
 # Special:Log/newusers
-'newuserlogpage' => 'ବ୍ୟବହାରକାରୀ ତିଆରି ଲଗ',
+'newuserlogpage'          => 'ବ୍ୟବହାରକାରୀ ତିଆରି ଲଗ',
+'newuserlog-create-entry' => 'ନୂଆ ବ୍ୟବହାରକାରୀଙ୍କ ଖାତା',
 
 # E-mail user
 'emailuser'           => 'ଏହି ଉଇଜରଁକୁ ଇମେଲ କର',
@@ -528,7 +529,7 @@ $messages = array(
 'watchlist'     => 'ଦେଖାତାଲିକା',
 'mywatchlist'   => 'ମୋର ଦେଖାତାଲିକା',
 'watch'         => 'ଦେଖ',
-'watchthispage' => 'ଏହି ଫରଦଟିକୁ ଦେଖ',
+'watchthispage' => 'ଏହି ପୃଷ୍ଠାଟିକୁ ଦେଖିବେ',
 'unwatch'       => 'ଦେଖନାହିଁ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -566,7 +567,7 @@ $messages = array(
 'restriction-create' => 'ତିଆରି',
 
 # Undelete
-'undeletelink'           => 'ଦେଖିବା/ଆଉଥରେ ଫେରାଇଆଣିବା',
+'undeletelink'           => 'ଦେଖିବା/ଆଉଥରେ ଫେରାଇଆଣିବେ',
 'undeleteviewlink'       => 'ଦେଖଣା',
 'undeletecomment'        => 'କାରଣ:',
 'undelete-search-submit' => 'ଖୋଜିବା',
@@ -615,7 +616,7 @@ $messages = array(
 # Move page
 'movelogpage' => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଅ',
 'movereason'  => 'କାରଣ:',
-'revertmove'  => 'ପଛକୁ ଫେରାଇନିଅ',
+'revertmove'  => 'ପଛକୁ ଫେରାଇନେବେ',
 
 # Export
 'export' => 'ଫରଦସବୁ ରପ୍ତାନି କର',
@@ -624,19 +625,21 @@ $messages = array(
 'thumbnail-more' => 'ବଡ଼କର',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'ଆପଣଁକ ଇଉଜର ଫରଦ',
-'tooltip-pt-mytalk'               => 'ଆପଣଁକ ଆଲୋଚନା ଫରଦ',
-'tooltip-pt-preferences'          => 'ମୋ ପସଁଦସବୁ',
-'tooltip-pt-watchlist'            => 'ବଦଳ ପାଇଁ ଆପଣ ଦେଖାଶୁଣା କରୁଥିବା ଫରଦଗୁଡ଼ିକର ତାଲିକା',
-'tooltip-pt-mycontris'            => 'ଆପଣଁକ ଅବଦାନ',
+'tooltip-pt-userpage'             => 'ଆପଣଙ୍କ ବ୍ୟବାହାରକାରୀ ଫରଦ',
+'tooltip-pt-mytalk'               => 'ଆପଣଙ୍କ ଆଲୋଚନା ଫରଦ',
+'tooltip-pt-preferences'          => 'ମୋ ପସନ୍ଦ',
+'tooltip-pt-watchlist'            => 'ବଦଳ ପାଇଁ ଆପଣ ଦେଖାଶୁଣା କରୁଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକର ତାଲିକା',
+'tooltip-pt-mycontris'            => 'ଆପଣଙ୍କ ଅବଦାନ',
 'tooltip-pt-login'                => 'ଆପଣଙ୍କୁ ଲଗିନ କରିବାକୁ କୁହାଯାଉଅଛି ସିନା, ବାଧ୍ୟ କରାଯାଉନାହିଁ',
-'tooltip-pt-logout'               => 'ଲଗ ଆଉଟ',
+'tooltip-pt-logout'               => 'ଲଗଆଉଟ',
 'tooltip-ca-talk'                 => 'ଏହି ପୃଷ୍ଠାଟି ଉପରେ ଆଲୋଚନା',
 'tooltip-ca-edit'                 => 'ଆପଣ ଏହି ପୃଷ୍ଠାଟିରେ ଅଦଳ ବଦଳ କରିପାରିବେ, ତେବେ ସାଇତିବା ଆଗରୁ ଦେଖଣା ଦେଖଁତୁ ।',
 'tooltip-ca-addsection'           => 'ନୂଆ ନିର୍ଘଁଟଟିଏ ଆଁରଭ କରିବା',
-'tooltip-ca-viewsource'           => 'ଏଇ ଫରଦଟି କିଳାଯାଇଛି ।
+'tooltip-ca-viewsource'           => 'ଏହି ପୃଷ୍ଠାଟି କିଳାଯାଇଛି ।
 ଆପଣ ଏହାର ମୂଳ ଦେଖିପାରିବେ',
-'tooltip-ca-history'              => 'ଏହି ଫରଦର ପୁରୁଣା ସଂସ୍କରଣ',
+'tooltip-ca-history'              => 'ଏହି ପୃଷ୍ଠାର ପୁରୁଣା ସଂସ୍କରଣ',
+'tooltip-ca-protect'              => 'ଏହି ପୃଷ୍ଠାଟିକୁ କିଳିବେ',
+'tooltip-ca-delete'               => 'ଏହି ପୃଷ୍ଠାଟି ଲିଭାଇବେ',
 'tooltip-ca-move'                 => 'ଏଇ ଫରଦଟି ଘୁଁଚାଅ',
 'tooltip-ca-watch'                => 'ଆପଣଙ୍କ ଦେଖାତାଲିକାରେ ଏଇ ଫରଦଟି ମିଶାନ୍ତୁ',
 'tooltip-ca-unwatch'              => 'ନିଜ ଦେଖଣାତାଲିକାରୁ ଏହି ଫରଦଟି ବାହାର କରିଦିଅଁତୁ',
@@ -651,20 +654,20 @@ $messages = array(
 'tooltip-n-recentchanges'         => 'ବିକିରେ ଏହିମାତ୍ର କରାଯାଇଥିବା ଅଦଳ ବଦଳ',
 'tooltip-n-randompage'            => 'ଯାହିତାହି ପୃଷ୍ଠାଟିଏ ଖୋଲ',
 'tooltip-n-help'                  => 'ଖୋଜି ପାଇବା ଭଳି ଜାଗା',
-'tooltip-t-whatlinkshere'         => 'ଏଠାରେ ଯୋଡ଼ାଯାଇଥିବା ଫରଦସବୁର ତାଲିକା',
-'tooltip-t-recentchangeslinked'   => 'ଏହି ଫରଦ ସାଗେ ଯୋଡ଼ା ଫରଦଗୁଡ଼ିକରେ ଏଇଲାଗେ କରାଯାଇଥିବା ଅଦଳବଦଳ',
+'tooltip-t-whatlinkshere'         => 'ଏଠାରେ ଯୋଡ଼ାଯାଇଥିବା ପୃଷ୍ଠାସବୁର ତାଲିକା',
+'tooltip-t-recentchangeslinked'   => 'ଏହି ପୃଷ୍ଠା ସାଗେ ଯୋଡ଼ା ଫରଦଗୁଡ଼ିକରେ ଏଇଲାଗେ କରାଯାଇଥିବା ଅଦଳବଦଳ',
 'tooltip-feed-rss'                => 'ଏହି ଫରଦଟି ପାଇଁ ଆରଏସଏସ ଫିଡ',
 'tooltip-feed-atom'               => 'ଏହି ଫରଦଟି ପାଇଁ ଆଟମ ଫିଡ',
 'tooltip-t-contributions'         => 'ଏହି ଇଉଜରଙ୍କର ଦେଇ କରାଯାଇଥିବା ସବୁଯାକ ଦାନ ଦେଖାଇବା',
 'tooltip-t-upload'                => 'ଫାଇଲ ଅପଲୋଡ଼ କର',
 'tooltip-t-specialpages'          => 'ନିଆରା ପୃଷ୍ଠା ତାଲିକା',
 'tooltip-t-print'                 => 'ଏହି ପୃଷ୍ଠାର ଛପାହୋଇପାରିବା ସଙ୍କଳନ',
-'tooltip-t-permalink'             => 'ସଁଶୋଧିତ ଏହି ଫରଦଟିର ସ୍ଥାୟି ଲିଁକ',
+'tooltip-t-permalink'             => 'ବଦଳାଯାଇଥିବା ଏହି ଫରଦଟିର ସ୍ଥାୟୀ ଲିଙ୍କ',
 'tooltip-ca-nstab-main'           => 'ସୂଚୀ ପୃଷ୍ଠାଟି ଦେଖିବା',
-'tooltip-ca-nstab-user'           => 'ଫାଇଲ ଫରଦଗୁଡ଼ିକ ଦେଖଁତୁ',
+'tooltip-ca-nstab-user'           => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
 'tooltip-ca-nstab-special'        => 'ଏଇଟି ଗୋଟିଏ ବିଶେଷ ଫରଦ, ଆପଣ ଏହାକୁ ବଦଳାଇପାରିବେ ନାହିଁ',
 'tooltip-ca-nstab-project'        => 'ପ୍ରକଳ୍ପ ଫରଦଟି ଦେଖିବା',
-'tooltip-ca-nstab-image'          => 'ଫାଇଲ ଫରଦଗୁଡ଼ିକ ଦେଖଁତୁ',
+'tooltip-ca-nstab-image'          => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
 'tooltip-ca-nstab-category'       => 'ବିଭାଗ ଫରଦଟିକୁ ଖୋଲ',
 'tooltip-minoredit'               => 'ଏହାକୁ ଛୋଟ ବଦଳ ଭାବେ ଗଣ',
 'tooltip-save'                    => 'ବଦଳଗୁଡ଼ିକ ସାଇତିବେ',
@@ -690,9 +693,9 @@ $messages = array(
 # Bad image list
 'bad_image_list' => 'ଗଢ଼ଣଟି ଏମିତି ହେବ:
 
-କେବଳ (ଯେଉଁ ଧାଡ଼ିଗୁଡ଼ିକ * ରୁ ଆରଭ ହୋଇଥାଏ) ସେହି ସବୁକୁ ହିସାବକୁ ନିଆଯିବ ।
-ଗୋଟିଏ ଧାଡ଼ିର ପ୍ରଥମ ଲିଁକଟି ଗୋଟିଏ ଖରାପ ଫାଇଲର ଲିଁକ ହୋଇଥିବା ଦରକାର ।
-ପ୍ରଥମ ଲିକ ପରର ସବୁ ଲିକକୁ ସ୍ଵତଁତ୍ର ବୋଲି ଧରାଯିବ । ମାନେ, ସେଇସବୁ ଫରଦରେ ଯେଉଁଠି ଫାଇଲଟି ଧାଡି ଭିତରେ ରହିଥିବ ।',
+କେବଳ (ଯେଉଁ ଧାଡ଼ିଗୁଡ଼ିକ * ରୁ ଆରମ୍ଭ ହୋଇଥାଏ) ସେହି ସବୁକୁ ହିସାବକୁ ନିଆଯିବ ।
+ଗୋଟିଏ ଧାଡ଼ିର ପ୍ରଥମ ଲିଙ୍କଟି ଗୋଟିଏ ଖରାପ ଫାଇଲର ଲିଙ୍କ ହୋଇଥିବା ଦରକାର ।
+ପ୍ରଥମ ଲିଙ୍କ ପରର ସବୁ ଲିଙ୍କକୁ ନିଆରା ବୋଲି ଧରାଯିବ । ମାନେ, ସେଇସବୁ ପୃଷ୍ଠାଦରେ ଯେଉଁଠି ଫାଇଲଟି ଧାଡ଼ି ଭିତରେ ରହିଥିବ ।',
 
 # Metadata
 'metadata'          => 'ମେଟାଡାଟା',
@@ -709,6 +712,9 @@ $messages = array(
 'namespacesall' => 'ସବୁ',
 'monthsall'     => 'ସବୁ',
 'limitall'      => 'ସବୁ',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'ଦେଖିବା ତାଲିକାଟିକୁ ଦେଖିବେ ଓ ବଦଳାଇବେ',
 
 # Special:FilePath
 'filepath-page' => 'ଫାଇଲ:',

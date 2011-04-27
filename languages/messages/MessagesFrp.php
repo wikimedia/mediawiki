@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Cedric31
  * @author ChrisPtDe
  * @author Reedy
  * @author לערי ריינהארט
@@ -430,6 +431,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(suita)',
 'index-category'                 => 'Pâges endèxâs',
 'noindex-category'               => 'Pâges pas endèxâs',
+'broken-file-category'           => 'Pâges avouéc des lims de fichiérs câssos',
 
 'mainpagetext'      => "'''MediaWiki at étâ enstalâ avouéc reusséta.'''",
 'mainpagedocfooter' => 'Vêde lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
@@ -729,6 +731,7 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'createaccount'              => 'Fâre un compto',
 'gotaccount'                 => "Vos avéd ja un compto ? '''$1'''.",
 'gotaccountlink'             => 'Branchiéd-vos',
+'userlogin-resetlink'        => 'Vos éd oubliâ voutros dètalys de branchement ?',
 'createaccountmail'          => 'per mèssageria èlèctronica',
 'createaccountreason'        => 'Rêson :',
 'badretype'                  => 'Los mots de pâssa que vos éd buchiês sont pas pariérs.',
@@ -800,6 +803,7 @@ Ignorâd ceti mèssâjo se cél compto at étâ fêt per èrror.',
 'usernamehasherror'          => 'Lo nom d’utilisator pôt pas contegnir des caractèros de chaplâjo',
 'login-throttled'            => 'Vos éd tentâ dèrriérement un trop grant nombro de branchements.
 Volyéd atendre devant que tornar èprovar.',
+'login-abort-generic'        => 'Voutra tentativa de branchement at pas reussia - Anulâ',
 'loginlanguagelabel'         => 'Lengoua : $1',
 'suspicious-userlogout'      => "Voutra demanda de dèbranchement at étâ refusâ perce que semble qu’el at étâ mandâ per un navigator câsso ou ben la misa en cache d’un sèrvor mandatèro (''proxy'').",
 
@@ -824,6 +828,19 @@ Por chavonar lo branchement, vos dête buchiér un mot de pâssa novél ique :',
 'resetpass-wrong-oldpass'   => 'Mot de pâssa d’ora ou ben temporèro envalido.
 Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben demandâ un mot de pâssa temporèro novél.',
 'resetpass-temp-password'   => 'Mot de pâssa temporèro :',
+
+# Special:PasswordReset
+'passwordreset'              => 'Remisa a zérô du mot de pâssa',
+'passwordreset-text'         => 'Rempléd ceti formulèro por recêvre un mèssâjo de rapèl des dètalys de voutron compto.',
+'passwordreset-legend'       => 'Remisa a zérô du mot de pâssa',
+'passwordreset-disabled'     => 'La remisa a zérô des mots de pâssa at étâ dèsactivâ sur ceti vouiqui.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Buchiéd yon des bocons de balyês ce-desot}}',
+'passwordreset-username'     => 'Nom d’utilisator :',
+'passwordreset-email'        => 'Adrèce èlèctronica :',
+'passwordreset-emailtitle'   => 'Dètalys du compto dessus {{SITENAME}}',
+'passwordreset-emailelement' => 'Nom d’utilisator : $1
+Mot de pâssa temporèro : $2',
+'passwordreset-emailsent'    => 'Un mèssâjo de rapèl at étâ mandâ.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tèxto en grâs',
@@ -1267,6 +1284,7 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'searchmenu-legend'                => 'Chouèx de rechèrche',
 'searchmenu-exists'                => "'''Y at una pâge avouéc lo titro « [[:$1]] » sur ceti vouiqui.'''",
 'searchmenu-new'                   => "'''Fâre la pâge « [[:$1|$1]] » sur ceti vouiqui !'''",
+'searchmenu-new-nocreate'          => '« $1 » est un nom de pâge envalido et pôt vêr pas étre fêt.',
 'searchhelp-url'                   => 'Help:Somèro',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Rechèrchiér les pâges que començont per ceti prèfixo]]',
 'searchprofile-articles'           => 'Pâges de contegnu',
@@ -1434,6 +1452,10 @@ Ceta enformacion serat publica.',
 'prefs-displaysearchoptions'    => 'Chouèx de visualisacion',
 'prefs-displaywatchlist'        => 'Chouèx de visualisacion',
 'prefs-diffs'                   => 'Difèrences',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'L’adrèce èlèctronica semble valida',
+'email-address-validity-invalid' => 'Buchiéd una adrèce èlèctronica valida',
 
 # User rights
 'userrights'                   => 'Administracion des drêts d’utilisator',
@@ -1788,6 +1810,10 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'upload-unknown-size'       => 'Talye encognua',
 'upload-http-error'         => 'Una èrror HTTP est arrevâ : $1',
 
+# ZipDirectoryReader
+'zip-file-open-error' => 'Una èrror est arrevâ pendent l’uvèrtura du fichiér ZIP por contrôlo.',
+'zip-wrong-format'    => 'Lo fichiér spècefiâ est pas un fichiér ZIP.',
+
 # Special:UploadStash
 'uploadstash'          => 'Cache d’importacion',
 'uploadstash-summary'  => 'Ceta pâge balye accès ux fichiérs que sont importâs (ou ben en cors d’importacion), mas sont p’oncor publeyês dens lo vouiqui. Celos fichiérs sont p’oncor visiblos, solament por l’utilisator que los at importâs.',
@@ -1798,22 +1824,23 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'uploadstash-refresh'  => 'Rafrèchir la lista des fichiérs',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accès refusâ',
-'img-auth-nopathinfo'   => 'PATH_INFO manquent.
+'img-auth-accessdenied'     => 'Accès refusâ',
+'img-auth-nopathinfo'       => 'PATH_INFO manquent.
 Voutron sèrvor est pas dèfeni por passar ceta enformacion.
 Fonccione pôt-étre en CGI et pués recognêt pas img_auth.
 Vêde http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
-'img-auth-badtitle'     => 'Empossiblo de construire un titro valido dês « $1 ».',
-'img-auth-nologinnWL'   => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
-'img-auth-nofile'       => 'Lo fichiér « $1 » ègziste pas.',
-'img-auth-isdir'        => 'Vos tâchiéd d’arrevar u rèpèrtouèro « $1 ».
+'img-auth-notindir'         => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
+'img-auth-badtitle'         => 'Empossiblo de construire un titro valido dês « $1 ».',
+'img-auth-nologinnWL'       => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
+'img-auth-nofile'           => 'Lo fichiér « $1 » ègziste pas.',
+'img-auth-isdir'            => 'Vos tâchiéd d’arrevar u rèpèrtouèro « $1 ».
 Solament l’accès ux fichiérs est pèrmês.',
-'img-auth-streaming'    => 'Lèctura en continu de « $1 ».',
-'img-auth-public'       => 'La fonccion de img_auth.php est de fâre vêre des fichiérs d’un vouiqui privâ.
+'img-auth-streaming'        => 'Lèctura en continu de « $1 ».',
+'img-auth-public'           => 'La fonccion de img_auth.php est de fâre vêre des fichiérs d’un vouiqui privâ.
 Ceti vouiqui est configurâ coment un vouiqui publico.
 Por una sècuritât parfèta, img_auth.php est dèsactivâ.',
-'img-auth-noread'       => 'L’utilisator at pas lo drêt en lèctura dessus « $1 ».',
+'img-auth-noread'           => 'L’utilisator at pas lo drêt en lèctura dessus « $1 ».',
+'img-auth-bad-query-string' => 'L’URL at una chêna de requéta envalida.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL fôssa : $1',
@@ -2180,6 +2207,10 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences
 'noemailtext'          => 'Ceti utilisator at pas spècefiâ una adrèce èlèctronica valida.',
 'nowikiemailtitle'     => 'Gins de mèssageria èlèctronica ôtorisâ',
 'nowikiemailtext'      => 'Ceti utilisator at chouèsi de pas recêvre de mèssâjo de la pârt d’ôtros utilisators.',
+'emailnotarget'        => 'Nom d’utilisator u dèstinatèro pas ègzistent ou ben envalido.',
+'emailtarget'          => 'Buchiéd lo nom d’utilisator u dèstinatèro',
+'emailusername'        => 'Nom d’utilisator :',
+'emailusernamesubmit'  => 'Sometre',
 'email-legend'         => 'Mandar un mèssâjo a un ôtro utilisator de {{SITENAME}}',
 'emailfrom'            => 'Èxpèdior :',
 'emailto'              => 'Dèstinatèro :',
@@ -3062,7 +3093,7 @@ Los ôtros lims sur la méma legne sont considèrâs coment des èxcèpcions, pe
 Se lo fichiér at étâ changiê dês son ètat originâl, quârques dètalys pôvont pas reflètar a chavon l’émâge changiê.',
 'metadata-expand'   => 'Fâre vêre les enformacions dètalyês',
 'metadata-collapse' => 'Cachiér les enformacions dètalyês',
-'metadata-fields'   => 'Los champs de mètabalyês d’EXIF listâs dens ceti mèssâjo seront encllus dens la pâge de dèscripcion de l’émâge quand la trâbla de mètabalyês serat rèduita.
+'metadata-fields'   => 'Los champs de mètabalyês d’émâge listâs dens ceti mèssâjo seront encllus dens la pâge de dèscripcion de l’émâge quand la trâbla de mètabalyês serat rèduita.
 Los ôtros champs seront cachiês per dèfôt.
 * make
 * model
@@ -3112,8 +3143,8 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-colorspace'                  => 'Èspâço colorimètrico',
 'exif-componentsconfiguration'     => 'Significacion de châque composenta',
 'exif-compressedbitsperpixel'      => 'Fôrma de comprèssion de l’émâge',
-'exif-pixelydimension'             => 'Largior d’émâge valida',
-'exif-pixelxdimension'             => 'Hôtior d’émâge valida',
+'exif-pixelydimension'             => 'Largior de l’émâge',
+'exif-pixelxdimension'             => 'Hôtior de l’émâge',
 'exif-usercomment'                 => 'Comentèros a l’utilisator',
 'exif-relatedsoundfile'            => 'Fichiér ôdiô associyê',
 'exif-datetimeoriginal'            => 'Dâta et hora de la g·ènèracion de les balyês',
@@ -3127,9 +3158,9 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-exposureprogram'             => 'Programo d’èxposicion',
 'exif-spectralsensitivity'         => 'Sensibilitât spèctrâla',
 'exif-isospeedratings'             => 'Sensibilitât ISO',
-'exif-shutterspeedvalue'           => 'Vitèsse d’ètopâ',
-'exif-aperturevalue'               => 'Uvèrtura',
-'exif-brightnessvalue'             => 'Luminositât',
+'exif-shutterspeedvalue'           => 'Vitèsse d’ètopâ de l’APEX',
+'exif-aperturevalue'               => 'Uvèrtura de l’APEX',
+'exif-brightnessvalue'             => 'Luminance APEX',
 'exif-exposurebiasvalue'           => 'Corrèccion d’èxposicion',
 'exif-maxaperturevalue'            => 'Uvèrtura la ples granta',
 'exif-subjectdistance'             => 'Distance du sujèt',
@@ -3191,10 +3222,76 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-gpsareainformation'          => 'Nom de la zona GPS',
 'exif-gpsdatestamp'                => 'Dâta GPS',
 'exif-gpsdifferential'             => 'Corrèccion difèrencièla GPS',
+'exif-jpegfilecomment'             => 'Comentèro de fichiér JPEG',
+'exif-keywords'                    => 'Mots cllâfs',
+'exif-worldregioncreated'          => 'Règ·ion du mondo que la fotô at étâ prêsa',
+'exif-countrycreated'              => 'Payis que la fotô at étâ prêsa',
+'exif-countrycodecreated'          => 'Code du payis que la fotô at étâ prêsa',
+'exif-provinceorstatecreated'      => 'Province ou ben ètat que la fotô at étâ prêsa',
+'exif-citycreated'                 => 'Vela que la fotô at étâ prêsa',
+'exif-sublocationcreated'          => 'Partia de la vela que la fotô at étâ prêsa',
+'exif-worldregiondest'             => 'Règ·ion du mondo montrâ',
+'exif-countrydest'                 => 'Payis montrâ',
+'exif-countrycodedest'             => 'Code du payis montrâ',
+'exif-provinceorstatedest'         => 'Province ou ben ètat montrâ',
+'exif-citydest'                    => 'Vela montrâ',
+'exif-sublocationdest'             => 'Partia de la vela montrâ',
 'exif-objectname'                  => 'Titro côrt',
+'exif-specialinstructions'         => 'Enstruccions spèciâles',
+'exif-headline'                    => 'Titro',
+'exif-credit'                      => 'Crèdit / fornissor',
+'exif-source'                      => 'Sôrsa',
+'exif-editstatus'                  => 'Statut èditoriâl de l’émâge',
+'exif-urgency'                     => 'Urgence',
+'exif-fixtureidentifier'           => 'Nom de l’outil',
+'exif-locationdest'                => 'Endrêt fotografiâ',
+'exif-locationdestcode'            => 'Code de l’endrêt fotografiâ',
+'exif-objectcycle'                 => 'Moment de la jornâ que ceti mèdia est dèstinâ',
+'exif-contact'                     => 'Enformacions de contacte',
+'exif-writer'                      => 'Ôtor',
+'exif-languagecode'                => 'Lengoua',
+'exif-iimversion'                  => 'Vèrsion IIM',
+'exif-iimcategory'                 => 'Catègorie',
+'exif-iimsupplementalcategory'     => 'Catègories de ples',
+'exif-datetimeexpires'             => 'Pas utilisar aprés',
+'exif-datetimereleased'            => 'Paru lo',
+'exif-originaltransmissionref'     => 'Code de l’endrêt de la transmission originâla',
+'exif-identifier'                  => 'Numerô',
+'exif-lens'                        => 'Lentelye utilisâ',
+'exif-serialnumber'                => 'Numerô de sèria de l’aparèly-fotô',
+'exif-cameraownername'             => 'Propriètèro de l’aparèly-fotô',
+'exif-label'                       => 'Lambél',
+'exif-datetimemetadata'            => 'Dâta du dèrriér changement de les mètabalyês',
+'exif-nickname'                    => 'Nom enformèl de l’émâge',
+'exif-rating'                      => 'Nota (sur 5)',
+'exif-rightscertificate'           => 'Cèrtificat d’administracion des drêts',
+'exif-copyrighted'                 => 'Statut des drêts d’ôtor',
+'exif-copyrightowner'              => 'Propriètèro du drêt d’ôtor',
+'exif-usageterms'                  => 'Condicions d’usâjo',
+'exif-webstatement'                => 'Dècllaracion des drêts d’ôtor en legne',
+'exif-originaldocumentid'          => 'Numerô solèt du document originâl',
+'exif-licenseurl'                  => 'URL de la licence',
+'exif-morepermissionsurl'          => 'Enformacions sur les licences altèrnatives',
+'exif-attributionurl'              => 'Pendent lo reusâjo de cela ôvra, volyéd liyér a',
+'exif-preferredattributionname'    => 'Pendent lo reusâjo de cela ôvra, volyéd crèditar',
+'exif-pngfilecomment'              => 'Comentèro de fichiér PNG',
+'exif-disclaimer'                  => 'Avèrtissement',
+'exif-contentwarning'              => 'Avèrtissement sur lo contegnu',
+'exif-giffilecomment'              => 'Comentèro de fichiér GIF',
+'exif-intellectualgenre'           => 'Tipo d’èlèment',
+'exif-subjectnewscode'             => 'Code du sujèt',
+'exif-scenecode'                   => 'Code de scèna IPTC',
+'exif-event'                       => 'Èvènement fotografiâ',
+'exif-organisationinimage'         => 'Organisacion fotografiâ',
+'exif-personinimage'               => 'Pèrsona fotografiâ',
+'exif-originalimageheight'         => 'Hôtior de l’émâge devant qu’el èye étâ tornâ cadrar',
+'exif-originalimagewidth'          => 'Largior de l’émâge devant qu’el èye étâ tornâ cadrar',
 
 # EXIF attributes
 'exif-compression-1' => 'Pas comprèssâ',
+
+'exif-copyrighted-true'  => 'Somês a drêt d’ôtor',
+'exif-copyrighted-false' => 'Domêno publico',
 
 'exif-unknowndate' => 'Dâta encognua',
 
@@ -3326,6 +3423,10 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-gpslongitude-e' => "Longituda levant (''èst'')",
 'exif-gpslongitude-w' => "Longituda ponant (''ouèst'')",
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 mètre{{PLURAL:$1||s}} en-d’amont du nivél de la mar',
+'exif-gpsaltitude-below-sealevel' => '$1 mètre{{PLURAL:$1||s}} en-desot du nivél de la mar',
+
 'exif-gpsstatus-a' => 'Mesera en cors',
 'exif-gpsstatus-v' => 'Entèropèrabilitât de la mesera',
 
@@ -3342,9 +3443,35 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Miles marins',
 
+'exif-gpsdop-excellent' => 'Famosa ($1)',
+'exif-gpsdop-good'      => 'Bôna ($1)',
+'exif-gpsdop-moderate'  => 'Moyena ($1)',
+'exif-gpsdop-fair'      => 'Passâbla ($1)',
+'exif-gpsdop-poor'      => 'Crouye ($1)',
+
+'exif-objectcycle-a' => 'Matin solament',
+'exif-objectcycle-p' => 'Nuet solament',
+'exif-objectcycle-b' => 'Matin et nuet',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Veré dirèccion',
 'exif-gpsdirection-m' => 'Dirèccion magnètica',
+
+'exif-ycbcrpositioning-1' => 'Centrâ',
+'exif-ycbcrpositioning-2' => 'Co-situâ',
+
+'exif-dc-contributor' => 'Contributors',
+'exif-dc-coverage'    => 'Portâ espaciâla ou ben temporèla du mèdia',
+'exif-dc-date'        => 'Dâta(/-es)',
+'exif-dc-publisher'   => 'Èditor',
+'exif-dc-relation'    => 'Mèdies liyês',
+'exif-dc-rights'      => 'Drêts',
+'exif-dc-source'      => 'Mèdia sôrsa',
+'exif-dc-type'        => 'Tipo de mèdia',
+
+'exif-rating-rejected' => 'Refusâ',
+
+'exif-isospeedratings-overflow' => 'Ples grant que 65535',
 
 # External editor support
 'edit-externally'      => 'Changiér ceti fichiér en utilisent una aplicacion de defôr',
