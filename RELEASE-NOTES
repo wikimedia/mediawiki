@@ -253,6 +253,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   parsed messages.
 * (bug 27249) "Installed software" table in Special:Version should always be
   left-to-right.
+* (bug 28719) Do not call mLinkHolders __destruct explicitly
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result.
