@@ -35,7 +35,7 @@ class SkinVector extends SkinTemplate {
 		// wait for the CSS file to load before fetching the HTC file.
 		$min = $wgRequest->getFuzzyBool( 'debug' ) ? '' : '.min';
 		$out->addHeadItem( 'csshover',
-			'<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script><!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
+			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
 				htmlspecialchars( $wgLocalStylePath ) .
 				"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
 		);
