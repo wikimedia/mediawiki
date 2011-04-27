@@ -121,14 +121,31 @@ class CliInstaller extends Installer {
 	}
 
 	public function showMessage( $msg /*, ... */ ) {
-		$params = func_get_args();
-		array_shift( $params );
+		echo $this->getMessageText( func_get_args() ) . "\n";
+		flush();
+	}
+
+	public function showError( $msg /*, ... */ ) {
+		echo "***{$this->getMessageText( func_get_args() )}***\n";
+		flush();
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getMessageText( $params ) {
+		$msg = array_shift( $params );
 
 		$text = wfMsgExt( $msg, array( 'parseinline' ), $params );
 
 		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
-		echo html_entity_decode( strip_tags( $text ), ENT_QUOTES ) . "\n";
-		flush();
+		return html_entity_decode( strip_tags( $text ), ENT_QUOTES );
+	}
+
+	/**
+	 * Dummy
+	 */
+	public function showHelpBox( $msg /*, ... */ ) {
 	}
 
 	public function showStatusMessage( Status $status ) {
