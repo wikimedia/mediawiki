@@ -2614,7 +2614,7 @@ $1被封禁的理由是：“$2”',
 'import-upload-filename'     => '文件名：',
 'import-comment'             => '注释：',
 'importtext'                 => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
-保存到您的磁盘并上传到这里。',
+保存到您的电脑并上传到这里。',
 'importstart'                => '页面导入中……',
 'import-revision-count'      => '$1个修订',
 'importnopages'              => '没有导入的页面。',
@@ -2880,8 +2880,8 @@ Variants for Chinese language
 如果此文件的源文件已经被修改，一些信息在修改后的文件中将不能完全反映出来。',
 'metadata-expand'   => '显示详细资料',
 'metadata-collapse' => '隐藏详细资料',
-'metadata-fields'   => '在本信息中所列出的 EXIF 元数据域将包含在图片显示页面,
-当元数据表损坏时只显示以下信息，其他的元数据默认为隐藏。
+'metadata-fields'   => '在本信息中所列出的 EXIF 元数据域将包含在图片显示页面，当元数据表损坏时只显示以下信息。
+其他的元数据默认为隐藏。
 * make
 * model
 * datetimeoriginal

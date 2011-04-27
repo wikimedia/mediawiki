@@ -9,6 +9,7 @@
  *
  * @author Audun
  * @author Boivie
+ * @author Brik
  * @author Byrial
  * @author Eirik
  * @author EivindJ
@@ -3083,8 +3084,11 @@ Andre vil skjules som standard.
 'exif-objectname'                  => 'Kort tittel',
 'exif-specialinstructions'         => 'Spesielle instruksjoner',
 'exif-headline'                    => 'Overskrift',
+'exif-credit'                      => 'Kreditt/Leverandør',
 'exif-source'                      => 'Kilde',
 'exif-editstatus'                  => 'Bildets redaksjonelle status',
+'exif-urgency'                     => 'Prioritet',
+'exif-fixtureidentifier'           => 'Fiksturnavn',
 'exif-locationdest'                => 'Avbildet plass',
 'exif-locationdestcode'            => 'Avbildet plasseringskode',
 'exif-objectcycle'                 => 'Tid på dagen mediet er ment for',
@@ -3096,6 +3100,7 @@ Andre vil skjules som standard.
 'exif-iimsupplementalcategory'     => 'Tilleggskategorier',
 'exif-datetimeexpires'             => 'Ikke bruk etter',
 'exif-datetimereleased'            => 'Utgitt den',
+'exif-originaltransmissionref'     => 'Opprinnelig lokasjonskode for transmisjon',
 'exif-identifier'                  => 'Identifikator',
 'exif-lens'                        => 'Objektiv',
 'exif-serialnumber'                => 'Kameraets serienummer',
@@ -3104,15 +3109,34 @@ Andre vil skjules som standard.
 'exif-datetimemetadata'            => 'Dato metadata sist ble endret',
 'exif-nickname'                    => 'Bildets uformelle navn',
 'exif-rating'                      => 'Vurdering (av 5)',
+'exif-rightscertificate'           => 'Rettighetsforvaltningssertifikat',
+'exif-copyrighted'                 => 'Opphavsrettsstatus',
+'exif-copyrightowner'              => 'Opphavsrettsinnehaver',
+'exif-usageterms'                  => 'Bruksvilkår',
+'exif-webstatement'                => 'Opphavsrettserklæring på internett',
+'exif-originaldocumentid'          => 'Unik ID for originaldokumentet',
+'exif-licenseurl'                  => 'URL for opphavsrettslisens',
 'exif-morepermissionsurl'          => 'Alternativ lisensieringsinformasjon',
+'exif-attributionurl'              => 'Ved gjenbruk av dette arbeidet, vennligst inkluder en lenke til',
+'exif-preferredattributionname'    => 'Ved gjenbruk av dette arbeidet, vennligst gi kreditt til',
 'exif-pngfilecomment'              => 'PNG-filkommentar',
+'exif-disclaimer'                  => 'Ansvarsfraskrivelse',
+'exif-contentwarning'              => 'Innholdsadvarsel',
 'exif-giffilecomment'              => 'GIF-filkommentar',
+'exif-intellectualgenre'           => 'Elementtype',
+'exif-subjectnewscode'             => 'Emnekode',
+'exif-scenecode'                   => 'IPTC-scenekode',
 'exif-event'                       => 'Avbildet hendelse',
 'exif-organisationinimage'         => 'Avbildet organisasjon',
 'exif-personinimage'               => 'Avbildet person',
+'exif-originalimageheight'         => 'Høyde på bildet før det ble beskåret',
+'exif-originalimagewidth'          => 'Bredde på bildet før det ble beskåret',
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
+
+'exif-copyrighted-true'  => 'Opphavsrettsbeskyttet',
+'exif-copyrighted-false' => 'Ikke beskyttet av opphavsrett',
 
 'exif-unknowndate' => 'Ukjent dato',
 
@@ -3279,7 +3303,11 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-gpsdirection-t' => 'Sann retning',
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
+'exif-ycbcrpositioning-1' => 'Sentrert',
+'exif-ycbcrpositioning-2' => 'Co-lokalisert',
+
 'exif-dc-contributor' => 'Bidragsytere',
+'exif-dc-coverage'    => 'Romlig eller timelig omfang av mediet',
 'exif-dc-date'        => 'Dato(er)',
 'exif-dc-publisher'   => 'Utgiver',
 'exif-dc-relation'    => 'Relaterte media',

@@ -196,6 +196,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'தொடரும்.',
 'index-category'                 => 'வரிசைபடுத்தப்பட்ட பக்கங்கள்',
 'noindex-category'               => 'வரிசைபடுத்தப்படாத பக்கங்கள்',
+'broken-file-category'           => 'அறுபட்ட கோப்பு இணைப்புகள் உள்ள பக்கங்கள்',
 
 'mainpagetext'      => "'''விக்கி மென்பொருள் வெற்றிகரமாக உள்ளிடப்பட்டது.'''",
 'mainpagedocfooter' => 'விக்கி மென்பொருளைப் பயன்படுத்துவது தொடர்பாக [http://meta.wikimedia.org/wiki/Help:Contents பயனர் வழிகாட்டியைப்] பார்க்க.
@@ -307,6 +308,7 @@ $messages = array(
 நீங்கள் மறுபடியும் இப்பக்கத்தை அணுக முயலும் முன் சற்றே பொறுக்கவும்.
 
 $1',
+'pool-queuefull'    => 'பணி வரிசையில் இடம் இல்லை',
 'pool-errorunknown' => 'அறியப்படாத தவறு',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -454,6 +456,7 @@ MySQL returned error "$3: $4".',
 கொடுக்கப்பட்டக் காரணம் ''$2''.",
 
 # Virus scanner
+'virus-scanfailed'     => 'வருடல் நடைபெறவில்லை (குறியீடு $1)',
 'virus-unknownscanner' => 'அறியப்படாத வைரசெதிர்ப்பு:',
 
 # Login and logout pages
@@ -482,6 +485,7 @@ MySQL returned error "$3: $4".',
 'createaccount'              => 'புதிய கணக்கை உருவாக்கு',
 'gotaccount'                 => "ஏற்கனவே பயனர் கணக்கு உள்ளதா? '''$1'''.",
 'gotaccountlink'             => 'புகுபதிகை',
+'userlogin-resetlink'        => 'மறந்தீர்களா உங்கள் புகுபதிகைக் குறிப்புகளை?',
 'createaccountmail'          => 'மின்னஞ்சல் மூலம்',
 'createaccountreason'        => 'காரணம்:',
 'badretype'                  => 'நீங்கள் பதிந்த கடவுச்சொல் பொருத்தமாக இல்லை.',
@@ -556,6 +560,9 @@ MySQL returned error "$3: $4".',
 'resetpass-wrong-oldpass'   => 'செல்லுபடியற்ற தற்காலிகமான அல்லது நடப்புக் கடவுச்சொல்.
 உங்கள் கடவுச் சொல்லை நீங்கள் வெற்றிகரமாக மாற்றிவிட்டீர்கள் அல்லது புதிய தற்காலிகக் கடவுச்சொல்லைக் கோரியுள்ளீர்கள்.',
 'resetpass-temp-password'   => 'தற்காலிக கடவுச்சொல்:',
+
+# Special:PasswordReset
+'passwordreset-username' => 'பயனர் பெயர்:',
 
 # Edit page toolbar
 'bold_sample'     => 'தடித்த எழுத்துக்கள்',

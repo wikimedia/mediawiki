@@ -34,6 +34,7 @@
  * @author Melos
  * @author Nemo bis
  * @author Nick1915
+ * @author Od1n
  * @author Omnipaedista
  * @author PaoloRomano
  * @author Pietrodn
@@ -669,6 +670,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'createaccount'              => 'Crea un nuovo utente',
 'gotaccount'                 => "Hai già un accesso? '''$1'''.",
 'gotaccountlink'             => 'Entra',
+'userlogin-resetlink'        => 'Hai dimenticato i tuoi dati di accesso?',
 'createaccountmail'          => 'via e-mail',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Le password inserite non coincidono tra loro.',
@@ -752,8 +754,15 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'resetpass-temp-password'   => 'Password temporanea:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Reimposta password',
-'passwordreset-username' => 'Nome utente:',
+'passwordreset'              => 'Reimposta password',
+'passwordreset-legend'       => 'Reimposta password',
+'passwordreset-disabled'     => 'La reimpostazione delle password è stata disabilitata su questa wiki',
+'passwordreset-username'     => 'Nome utente:',
+'passwordreset-email'        => 'Indirizzo e-mail:',
+'passwordreset-emailtitle'   => 'Dettagli account su {{SITENAME}}',
+'passwordreset-emailelement' => 'Nome utente: $1
+Password temporanea: $2',
+'passwordreset-emailsent'    => 'È stata inviata una e-mail di promemoria.',
 
 # Edit page toolbar
 'bold_sample'     => 'Grassetto',
@@ -2990,8 +2999,18 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsdifferential'             => 'Correzione differenziale GPS',
 'exif-keywords'                    => 'Parole chiave',
 'exif-objectname'                  => 'Titolo breve',
+'exif-contact'                     => 'Informazioni di contatto',
 'exif-languagecode'                => 'Lingua',
 'exif-iimcategory'                 => 'Categoria',
+'exif-lens'                        => 'Obiettivo utilizzato',
+'exif-serialnumber'                => 'Numero di serie della fotocamera',
+'exif-cameraownername'             => 'Proprietario della macchina fotografica',
+'exif-label'                       => 'Etichetta',
+'exif-copyrighted'                 => 'Informazioni sul copyright',
+'exif-copyrightowner'              => 'Detentore del copyright',
+'exif-personinimage'               => 'Persona raffigurata',
+'exif-originalimageheight'         => "Altezza dell'immagine prima che fosse ritagliata",
+'exif-originalimagewidth'          => "Larghezza dell'immagine prima che fosse ritagliata",
 
 # EXIF attributes
 'exif-compression-1' => 'Nessuno',
@@ -3156,9 +3175,17 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsdop-excellent' => 'Eccellente ($1)',
 'exif-gpsdop-moderate'  => 'Moderata ($1)',
 
+'exif-objectcycle-a' => 'Solo la mattina',
+'exif-objectcycle-p' => 'Solo la sera',
+'exif-objectcycle-b' => 'Mattina e sera',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzione reale',
 'exif-gpsdirection-m' => 'Direzione magnetica',
+
+'exif-ycbcrpositioning-1' => 'Centrato',
+
+'exif-dc-rights' => 'Diritti',
 
 'exif-isospeedratings-overflow' => 'Maggiore di 65535',
 

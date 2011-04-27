@@ -311,6 +311,10 @@ $messages = array(
 'mailmypassword'          => 'Керда къайладоагIа хьаэца',
 
 # Edit page toolbar
+'bold_sample'     => 'Сома яздам',
+'bold_tip'        => 'Сома яздам',
+'italic_sample'   => 'Кулга яздам',
+'italic_tip'      => 'Кулга яздам',
 'link_sample'     => 'Iинка кертмугI',
 'link_tip'        => 'ЧураIинк',
 'extlink_sample'  => 'Iинка кертдош http://www.example.com',
@@ -335,6 +339,10 @@ $messages = array(
 'anoneditwarning'    => 'Зем хила! Шо кха чудаьннадац. Шун IP-моттиг укх хийца оагIув искаречу дIаяздаь хургъе.',
 'summary-preview'    => 'Лоацам ба:',
 'newarticle'         => '(Kерда)',
+'noarticletext'      => "У сахьате укх оагIув тIа яздам доацаш да.
+[[Special:Search/{{PAGENAME}}|цу тайпара цIи дувцам кораде]] кхыдола йоазувашкахь йийша я шун, вешта
+<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тара дола таптарий йоазо карае], е
+'''[{{fullurl:{{FULLPAGENAME}}|action=edit}} изза мо цIи йоалаш оагIув ела]'''</span>.",
 'note'               => "'''ХIамоалар:'''",
 'editing'            => 'ГIалатнийсдар: $1',
 'yourtext'           => 'Хьа яздам',
@@ -381,6 +389,7 @@ $messages = array(
 'searchresults-title'       => '"$1" тахка',
 'searchresulttext'          => 'Хьахьоадайтама оагIувнаш тIа тахкамахь лаьца лоаца маIандар эца [[{{MediaWiki:Helppage}}|новкъостала декъамага]] хьажа.',
 'searchsubtitle'            => 'Хоаттамахь лаьца «[[:$1]]» ([[Special:Prefixindex/$1|цу цIерахь ювалу оагIувнаш]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|цу цIерахь Iинкаш еж йола]])',
+'searchsubtitleinvalid'     => "'''$1''' хаттара",
 'notitlematches'            => 'ОагIувни цIераш вIашагIа кхеташ яц',
 'notextmatches'             => 'ОагIувнаша ядамий вIашагIакхетараш дац',
 'prevn'                     => '{{PLURAL:$1|хьалхарча $1|хьалхарчаш $1|хьалхарчаш $1}}',
@@ -395,6 +404,8 @@ $messages = array(
 'search-interwiki-more'     => '(кха)',
 'search-mwsuggest-enabled'  => ' Хьехамашца',
 'search-mwsuggest-disabled' => ' Хьехамаш боацаш',
+'nonefound'                 => "'''Зем лаца.''' Цхьа дола цIера аренаш мара лахалац.
+''all:'' яха тIаоттарга пайдабе, массадола цIеран аренашкахь (дакъалаьцархой дуцамаш а, куцкепаш а, кхы дара а чулоацаш), е деза цIера аренаш Iочуязаде.",
 'powersearch'               => ' Доккха тахкар',
 'powersearch-legend'        => ' Доккха тахкар',
 'powersearch-ns'            => ' ЦIерий аренашкахь лахар',
@@ -489,9 +500,11 @@ $messages = array(
 # File description page
 'file-anchor-link'          => 'Паьл',
 'filehist'                  => 'Паьла искар',
+'filehist-help'             => 'Хьалхе паьла мишта хиннай хьожаpгволаш/хьожаpгйолаш, дентаьрах/сахьата тIа пIелга тIообе.',
 'filehist-current'          => 'xIанзара',
 'filehist-datetime'         => 'Дентаьрахь/Ха',
 'filehist-thumb'            => 'ЗIамигасуртанче',
+'filehist-thumbtext'        => '$1 доржаме зIамигсуртанчoa',
 'filehist-user'             => 'Дакъалаьцархо',
 'filehist-dimensions'       => 'ХIамана дустам',
 'filehist-filesize'         => 'Паьла юстарал',
@@ -548,6 +561,7 @@ $messages = array(
 'linksearch-ok' => 'Лаха',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'Дакъалаьцархоший дIаязбeнна таптар',
 'newuserlog-create-entry' => 'Керда дакъалаьцархо',
 
 # Special:ListGroupRights
@@ -747,6 +761,7 @@ $messages = array(
 'tooltip-compareselectedversions' => 'Укх оагIувни шин доржамаш тIа юкъера хувцамаш зе.',
 'tooltip-watch'                   => 'Ер оагIув теркам беча каьхата тIа яккха',
 'tooltip-rollback'                => 'ГIалaтанийсадаро тIехьара я йола хувцамаш, пIелг тоIоби дIаяккха.',
+'tooltip-undo'                    => 'Я хувцам дIаяккхи, бIаргатассар хьахокха, кара дале, дIаяккха бахьан Iочуязаде моттигаца.',
 
 # Browsing diffs
 'previousdiff' => 'Хьалхара хувцам',

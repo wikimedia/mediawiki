@@ -179,6 +179,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'निरन्तरता...',
 'index-category'                 => 'क्रमांकित पृष्ठहरु',
 'noindex-category'               => 'क्रमांकन नगरिएका पृष्ठहरु',
+'broken-file-category'           => 'टुटेको फाइल लिंकसितको पृष्ठ',
 
 'mainpagetext'      => "'''मीडिया सफलतापूर्वक कम्प्यूटरमा स्थापित भयो ।'''",
 'mainpagedocfooter' => ' विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents प्रयोगकर्ता सहायता] हेर्नुहोस्
@@ -477,6 +478,7 @@ $2',
 'createaccount'              => 'खाता खोल्नुहोस्',
 'gotaccount'                 => "के तपाईँसँग पहिले देखि नै खाता छ ? '''$1''' ।",
 'gotaccountlink'             => 'लग इन',
+'userlogin-resetlink'        => 'प्रवेश सम्बन्धी विवरणहरु बिर्सनु भयो?',
 'createaccountmail'          => 'इ-मेलबाट',
 'createaccountreason'        => 'कारण :',
 'badretype'                  => 'तपाईंले दिनुभएको पासवर्ड मिल्दैन।',
@@ -563,6 +565,12 @@ $2',
 'resetpass-wrong-oldpass'   => 'अस्थायी अथवा हा्लिएको प्रवेश शव्द अमान्य
 तपाईंले अघिबाट नैं प्रवेश शव्द सफलता पूर्वक परिवर्तन गरिसक्नु भएको हो वा नयाँ प्रवेश शव्दको निम्ति निवेदन गर्नुभएकोछ।',
 'resetpass-temp-password'   => 'अस्थाइ प्रवेशशव्द',
+
+# Special:PasswordReset
+'passwordreset'          => 'प्रवेशशव्द पुनः तय गर्ने',
+'passwordreset-text'     => 'तपाईंको खाता-विवरणको  इमेल अनुस्मारक प्राप्त गर्न यो फारम पूरा गर्नुहोस्।',
+'passwordreset-legend'   => 'प्रवेशशव्द पुनः तय गर्ने',
+'passwordreset-disabled' => 'प्रवेश शव्द पुनः निर्धारण गर्ने व्यवस्था यस विकिमा निस्क्रिय पारिएको छ।',
 
 # Edit page toolbar
 'bold_sample'     => 'गाढा अक्षर',
@@ -1557,7 +1565,7 @@ $1',
 'statistics-views-peredit'     => 'प्रति पृष्ठ सम्पादन',
 'statistics-users'             => 'दर्तागरिएको [[Special:ListUsers|प्रयोगकर्ताहरु]]',
 'statistics-users-active'      => 'सकृय प्रयोगकर्ताहरु',
-'statistics-users-active-desc' => 'प्रयोगकर्ताहरु {{PLURAL:$1|बितेको एक दिन|बितेका $1 दिन}}मा  जसले यो कार्य गरेका हुन्',
+'statistics-users-active-desc' => 'प्रयोगकर्ताहरु जो{{PLURAL:$1|बितेको एक दिन|बितेका $1 दिनहरु}}देखि  जो सक्रिय छन्',
 'statistics-mostpopular'       => 'सबैभन्दा धेरै हेरिएको पृष्ठहरु',
 
 'disambiguations'     => 'बहुविकल्पी पृष्ठहरु',
@@ -1732,7 +1740,7 @@ $1',
 
 # E-mail user
 'mailnologin'          => 'ईमेल पठाउने ठेगाना नै भएन ।',
-'mailnologintext'      => 'तपाईले अरु प्रयोगकर्ताहरुलाई ईमेल पठाउनको लागी आफु पहिले [[Special:UserLogin|प्रवेश(लगइन)गरेको]] हुनुपर्छ र [[Special:Preferences|आफ्नो रोजाइहरुमा]] यौटा वैध ईमेल ठेगाना भएको हुनुपर्छ।',
+'mailnologintext'      => 'तपाईले अरु प्रयोगकर्ताहरुलाई ईमेल पठाउनको लागि आफु पहिले [[Special:UserLogin|प्रवेश(लगइन)गरेको]] हुनुपर्छ र [[Special:Preferences|आफ्नो रोजाइहरुमा]] एउटा वैध ईमेल ठेगाना भएको हुनुपर्छ।',
 'emailuser'            => 'यो प्रयोगकर्तालाई ई-मेल पठाउनुहोस्',
 'emailpage'            => 'प्रयोगकर्तालाई इमेल गर्नुहोस्',
 'usermailererror'      => 'मेल अब्जेक्टले देखाएको त्रुटि:',
@@ -1743,7 +1751,11 @@ $1',
 'noemailtext'          => 'प्रयोगकर्ताले सही ई-मेल ठेगाना दर्शाएको छैन।',
 'nowikiemailtitle'     => 'ई-मेलको अनुमति छैन',
 'nowikiemailtext'      => 'यी प्रयोगकर्ताले अरु प्रयोगकर्ताहरुबाट ई-मेल स्वीकार नगर्ने छनोट गरेकाछन्।',
-'email-legend'         => '{{SITENAME}}का अर्का प्रयोगकर्तालाई ई-मेल पठाउनुहोस्।',
+'emailnotarget'        => 'प्राप्तकर्ताको रुपमा नभएको अथवा अमान्य प्रयोगकर्ता।',
+'emailtarget'          => 'प्राप्तकर्ताको प्रयोगकर्ता नाम हाल्नुहोस्',
+'emailusername'        => 'प्रयोगकर्ता-नाम:',
+'emailusernamesubmit'  => 'बुझाउने',
+'email-legend'         => '{{SITENAME}}का अर्का प्रयोगकर्तालाई ई-मेल पठाउने',
 'emailfrom'            => 'बाट:',
 'emailto'              => 'लाई:',
 'emailsubject'         => 'विषय:',
@@ -1777,7 +1789,7 @@ $1',
 'notanarticle'         => 'सामाग्री सहितको पेज हैन',
 'notvisiblerev'        => 'पूर्वावलोकन हटाइयो',
 'watchlist-details'    => 'तपाईको निगरानी सूचीमा रहेका{{PLURAL:$1|$1 पृष्ठ|$1 पृष्ठहरु}}वार्तालापमा पृष्ठमा गनिएका छैनन् ।',
-'wlheader-enotif'      => '* ईमेलद्वारा जानकारी गराउने तरिका enable गरियो ।',
+'wlheader-enotif'      => '* ईमेलद्वारा जानकारी गराउने तरिका सक्रिय गरियो ।',
 'wlheader-showupdated' => "* तपाइले पछिल्लो पल्ट भ्रमण गरेपछि परिवर्तन भएका पृष्ठहरूलाई '''गाढा''' गरेर देखाइएको छ ।",
 'wlnote'               => "विगत {{PLURAL:$2|घण्टामा|'''$2''' घण्टाहरुमा}} {{PLURAL:$1|गरिएको अन्तिम परिवर्तन तल दिइएकोछ|गरिएका अन्तिम  '''$1''' परिवर्तनहरु तल दिइएकाछन्}}।",
 'wlshowlast'           => 'पछिल्ला $2 दिनहरूका $3 $1 घण्टाहरूका देखाउनुहोस्',
@@ -1794,13 +1806,13 @@ $1',
 'changed'                      => 'परिवर्तन भइसकेको',
 'created'                      => 'बनाइएको',
 'enotif_subject'               => '$PAGEEDITORद्वारा {{SITENAME}} पृष्ठ $PAGETITLE $CHANGEDORCREATED गरिएको',
-'enotif_lastvisited'           => 'अघिल्लो हेराइपछिका सबै परिवर्तनहरु हेर्न हेर्नुहोस्: $1',
-'enotif_lastdiff'              => 'यो परिवर्तन हेर्न यो $1 हेर्नुहोस्',
+'enotif_lastvisited'           => 'अघिल्लो हेराइपछिका सबै परिवर्तनहरुको निम्ति हेर्नुहोस्: $1',
+'enotif_lastdiff'              => 'यस परिवर्तनको निम्ति यो $1 हेर्नुहोस्',
 'enotif_anon_editor'           => 'अज्ञात  प्रयोगकर्ता  $1',
 'enotif_body'                  => 'प्रिय $WATCHINGUSERNAME,
 
 
-$PAGEEDITDATE को दिन {{SITENAME}}को पृष्ठ $PAGETITLE  $PAGEEDITORद्वारा $CHANGEDORCREATED   गरियो,हालको संशोधनको निम्ति  हेर्नुहोस्  $PAGETITLE_URL ।
+$PAGEEDITDATE को दिन {{SITENAME}}को पृष्ठ $PAGETITLE  $PAGEEDITORद्वारा $CHANGEDORCREATED, हालको संशोधनको निम्ति  हेर्नुहोस्  $PAGETITLE_URL ।
 
 $NEWPAGE
 
@@ -1829,7 +1841,8 @@ $UNWATCHURL
 'deletepage'             => 'पृष्ठ मेट्नुहोस्',
 'confirm'                => 'सुनिश्चित गर्नुहोस्:',
 'excontent'              => "लेख थियो: '$1'",
-'exbeforeblank'          => 'खालि गरिनुभन्दा अघिको सामग्री थियो: "$1"',
+'excontentauthor'        => 'लेखेको थियो:"$1" (र  योगदान कर्ता थिए "[[Special:Contributions/$2|$2]]")',
+'exbeforeblank'          => 'खालि गर्नु भन्दा अघिको सामग्री थियो: "$1"',
 'exblank'                => 'पृष्ठ खाली छ',
 'delete-confirm'         => 'मेट्नुहोस् "$1"',
 'delete-legend'          => 'मेट्नुहोस्',
@@ -2418,8 +2431,8 @@ $1को बन्देजको कारण : "$2" हो',
 'metadata-help'     => 'यस फाइलमा अतिरिक्त जानकारीहरु छन्, यसलाई बनाउन सम्भवतः डिजिटल क्यामेरा अथवा स्क्यानर प्रयोग गरिएको हुनुपर्छ। यदि यस फाइललाई मूल अवस्थाबाट परिवर्तन गरिएको हो भनें  यस फाइलले  सम्पूर्ण विवरण प्रतिबिम्बित गर्न सक्नेछैन ।',
 'metadata-expand'   => 'लामो विबरण हेर्ने',
 'metadata-collapse' => 'लामो विवरण लुकाउने',
-'metadata-fields'   => 'EXIF मेटाडेटा तालिका ध्वस्त भएमा यस सन्देशमा सूचिकृत मेटाडेटा फिल्ड तस्वीर पृष्ठ प्रदर्शनमाथि सम्मिलित हुनेछ ।  
-अन्य डिफल्ट रुपमा लुकेर बस्नेछन् । 
+'metadata-fields'   => 'Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.
+Others will be hidden by default.
 * make
 * model
 * datetimeoriginal

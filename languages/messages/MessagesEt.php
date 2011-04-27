@@ -947,9 +947,9 @@ Sa kinnitad ka, et kirjutasid selle ise või võtsid selle kopeerimiskitsenduset
 Võid teksti hilisemaks kasutamiseks alles hoida tekstifailina.
 
 Administraator, kes andmebaasi lukustas, andis järgmise selgituse: $1",
-'protectedpagewarning'             => "'''Hoiatus: See lehekülg on lukustatud nii et ainult administraatori õigustega kasutajad saavad seda redigeerida.'''
+'protectedpagewarning'             => "'''Hoiatus: See lehekülg on lukustatud, nii et ainult administraatori õigustega kasutajad saavad seda redigeerida.'''
 Allpool on toodud uusim logisissekanne:",
-'semiprotectedpagewarning'         => "'''Märkus:''' See lehekülg on lukustatud nii et üksnes registreeritud kasutajad saavad seda muuta.
+'semiprotectedpagewarning'         => "'''Märkus:''' See lehekülg on lukustatud, nii et üksnes registreeritud kasutajad saavad seda muuta.
 Allpool on toodud uusim logisissekanne:",
 'cascadeprotectedwarning'          => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult administraatori õigustega kasutajad saavad seda redigeerida, sest lehekülg on osa {{PLURAL:$1|järgmisest|järgmisest}} kaskaadkaitsega {{PLURAL:$1|leheküljest|lehekülgedest}}:",
 'titleprotectedwarning'            => "'''Hoiatus: See lehekülg on nii lukustatud, et selle loomiseks on tarvis [[Special:ListGroupRights|eriõigusi]].'''
@@ -2637,7 +2637,7 @@ Kas kustutad selle, et luua võimalus teisaldamiseks?',
 'move-leave-redirect'          => 'Jäta maha ümbersuunamisleht',
 'protectedpagemovewarning'     => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult administraatori õigustega kasutajad saavad seda teisaldada.
 Allpool on toodud uusim logisissekanne:",
-'semiprotectedpagemovewarning' => "'''Pane tähele:''' See lehekülg on lukustatud nii et ainult registreeritud kasutajad saavad seda teisaldada.
+'semiprotectedpagemovewarning' => "'''Pane tähele:''' See lehekülg on lukustatud, nii et ainult registreeritud kasutajad saavad seda teisaldada.
 Allpool on toodud uusim logisissekanne:",
 'move-over-sharedrepo'         => '== Fail on olemas ==
 [[:$1]] on olemas jagatud failivaramus. Faili teisaldamisel selle nime alla varjatakse jagatud failivarmus olev samanimeline fail.',

@@ -3215,11 +3215,13 @@ Andra kommer att gömmas som standard
 'exif-licenseurl'                  => 'URL för upphovsrättslicens',
 'exif-morepermissionsurl'          => 'Alternativ licensinformation',
 'exif-attributionurl'              => 'När du återanvänder detta arbete, länka till',
+'exif-preferredattributionname'    => 'Vid återanvändning av detta arbete, vänligen attribuera',
 'exif-pngfilecomment'              => 'PNG-filkommentar',
 'exif-disclaimer'                  => 'Ansvarsfriskrivning',
 'exif-contentwarning'              => 'Innehållsvarning',
 'exif-giffilecomment'              => 'GIF-filkommentar',
 'exif-intellectualgenre'           => 'Typ av objekt',
+'exif-subjectnewscode'             => 'Ämneskod',
 'exif-scenecode'                   => 'IPTC-scenkod',
 'exif-event'                       => 'Avbildad händelse',
 'exif-organisationinimage'         => 'Avbildad organisation',
@@ -3311,6 +3313,8 @@ Andra kommer att gömmas som standard
 'exif-sensingmethod-5' => 'Färgsekventiell områdessensor',
 'exif-sensingmethod-7' => 'Trilinjär sensor',
 'exif-sensingmethod-8' => 'Färgsekventiell linjär sensor',
+
+'exif-filesource-3' => 'Digital stillbildskamera',
 
 'exif-scenetype-1' => 'Direkt fotograferad bild',
 

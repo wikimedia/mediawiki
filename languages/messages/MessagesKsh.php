@@ -1986,7 +1986,7 @@ Mer moß immer der Medietüp un der Ongertüp aanjevve.
 Zem Beispell: <code lang="en">image/jpeg</code>
 — kannß donoh op dä Beschrievungssigge von de Dateie loore.',
 'mimetype'           => 'MIME-Typ:',
-'download'           => 'Erungerlade',
+'download'           => 'eronger laade',
 
 # Unwatched pages
 'unwatchedpages' => 'Sigge, wo keiner drop oppass',
