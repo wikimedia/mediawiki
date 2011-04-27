@@ -248,6 +248,7 @@ files are used instead.
 * The name attribute of HTMLForm fields can now be overridden by passing a
   'name' key in the descriptor array.  Hidden field names are now treated
   consistently with other fields and, by default, prefixed with 'wp'.
+* (bug 27402) Add support for disabling MWSuggest
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
@@ -530,6 +531,24 @@ files are used instead.
 * UtfNormal::cleanUp on an invalid utf-8 sequence no longer returns false if intl installed.
 * (bug 26729) Category pages should return 404 if they do not exist and have no
   members.
+* (bug 28214) When page not found, sends malformed HTTP/1.x instead of HTTP/1.1 in header
+  of response
+* (bug 27634) TOC title appears in wrong language
+* (bug 27761) Fix regression: pages with Esperanto titles containing convertible character
+  sequences became unreachable
+* (bug 27508) SVGMetadataExtractor takes too much resources on huge svg's
+* (bug 27465) SVG thumbnail generation
+* (bug 27467) preload can leave UNIQ
+* (bug 27539) Allow attributes beginning with a digit in wiktext tag parameters
+* (bug 27328) using relative paths in CSS imports in MediaWiki:Common.css broken in 1.17
+* (bug 27333) Fix repetitive last-seen time queries on page history
+* (bug 26250, bug 23817) Fix wfObjectToArray() to descend into arrays; fixes processing of
+  JSON return values for ForeignAPIRepo when native json module not present
+* (bug 25675) Fix search suggestions for Special: pages with spaces
+* (bug 25571) Xml::encodeJsVar now passes floats natively instead of converting to strings
+* (bug 27338) Gallery in 1.17 breaks for audio/video + ogghandler
+* (bug 27302) Don't append the current timestamp for user/site modules when no user/site JS/CSS
+  is present
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
@@ -647,6 +666,7 @@ files are used instead.
 * (bug 26219) Show API limits for multi values in description
 * (bug 28070) Fix watchlist RSS for databases that store timestamps in a 
   real timestamp field.
+* (bug 27722) list=filearchive now supports revdel
 
 === Languages updated in 1.17 ===
 
@@ -666,7 +686,6 @@ changes to languages because of Bugzilla reports.
 * Rusyn (rue) (new)
 * Link trail added for sl and sh
 * (bug 27633) Add characters to linkTrail for Potuguese (pt and pt-br)
-
 * (bug 23156) Commafy and search normalization updated for Belarusian
   (Taraškievica).
 * (bug 23283) Native name for Old English -> Ænglisc.
@@ -676,6 +695,9 @@ changes to languages because of Bugzilla reports.
 * (bug 24917) Polish as fallback for Kashubia.
 * (bug 24794) Tatar link trail updated.
 * Esperanto date format corrected.
+* (bug 28159) Change interwiki name of language kbd to Къэбэрдеибзэ /
+  Qabardjajəbza
+* (bug 28184) Namespaces for the Latgalian Wikipedia
 
 == Compatibility ==
 
