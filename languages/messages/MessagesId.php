@@ -299,6 +299,20 @@ $specialPageAliases = array(
 	'ComparePages'              => array( 'Bandingkan_halaman', 'BandingkanHalaman' ),
 );
 
+$dateFormats = array(
+	'mdy time' => 'H.i',
+	'mdy date' => 'F j, Y',
+	'mdy both' => 'H.i, F j, Y',
+
+	'dmy time' => 'H.i',
+	'dmy date' => 'j F Y',
+	'dmy both' => 'j F Y H.i',
+
+	'ymd time' => 'H.i',
+	'ymd date' => 'Y F j',
+	'ymd both' => 'Y F j H.i',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Garis bawahi pranala:',
