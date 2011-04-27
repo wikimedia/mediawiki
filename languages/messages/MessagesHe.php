@@ -316,6 +316,7 @@ $specialPageAliases = array(
 	'ComparePages'              => array( 'השוואת_דפים' ),
 	'Badtitle'                  => array( 'כותרת_שגויה' ),
 	'DisableAccount'            => array( 'ביטול_חשבון' ),
+	'PasswordReset'             => array( 'איפוס_סיסמה' ),
 );
 
 $namespaceNames = array(
@@ -476,6 +477,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(המשך)',
 'index-category'                 => 'דפים המופיעים במנועי חיפוש',
 'noindex-category'               => 'דפים המוסתרים ממנועי חיפוש',
+'broken-file-category'           => 'דפים עם קישורים שבורים לקבצים',
 
 'mainpagetext'      => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
 'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
@@ -766,7 +768,8 @@ $2',
 'nologinlink'                => 'הרשמה',
 'createaccount'              => 'יצירת משתמש חדש',
 'gotaccount'                 => 'כבר נרשמתם? $1.',
-'gotaccountlink'             => 'היכנסו לחשבון',
+'gotaccountlink'             => 'כניסה לחשבון',
+'userlogin-resetlink'        => 'שכחת את פרטי הכניסה?',
 'createaccountmail'          => 'באמצעות דוא"ל',
 'createaccountreason'        => 'סיבה:',
 'badretype'                  => 'הסיסמאות שהזנתם אינן מתאימות.',
@@ -855,6 +858,39 @@ $2',
 'resetpass-wrong-oldpass'   => 'הסיסמה הזמנית או הנוכחית אינה תקינה.
 ייתכן שכבר שיניתם את סיסמתכם או שכבר ביקשתם סיסמה זמנית חדשה.',
 'resetpass-temp-password'   => 'סיסמה זמנית:',
+
+# Special:PasswordReset
+'passwordreset'                => 'איפוס סיסמה',
+'passwordreset-text'           => 'מלאו טופס זה כדי לקבל דואר אלקטרוני ובו תזכורת של פרטי החשבון.',
+'passwordreset-legend'         => 'איפוס סיסמה',
+'passwordreset-disabled'       => 'איפוסי סיסמה בוטלו באתר ויקי זה.',
+'passwordreset-pretext'        => '{{PLURAL:$1||הקלידו אחד מפריטי המידע למטה}}',
+'passwordreset-username'       => 'שם משתמש:',
+'passwordreset-email'          => 'כתובת דוא"ל:',
+'passwordreset-emailtitle'     => 'פרטי חשבון ב{{grammar:תחילית|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'   => 'מישהו (ככל הנראה אתם, מכתובת ה־IP מספר $1) ביקש תזכורת של פרטי
+החשבון שלכם ב{{grammar:תחילית|{{SITENAME}}}} ($4). {{PLURAL:$3|חשבון המשתמש הבא|חשבונות המשתמש הבאים}}
+שייכים לכתובת הדואר האלקטרוני הזו:
+
+$2
+
+{{PLURAL:$3|סיסמה זמנית זו|סיסמאות זמניות אלה}} יפקעו תוך {{PLURAL:$5|יום|$5 ימים|יומיים}}.
+עליכם להיכנס ולבחור סיסמה חדשה עכשיו. אם מישהו אחר ביצע בקשה זו, או שנזכרתם בסיסמתכם
+המקורית ואינכם רוצים עוד לשנות אותה, באפשרותכם להתעלם מהודעה זו ולהמשיך להשתמש בסיסמה
+הישנה.',
+'passwordreset-emailtext-user' => 'המשתמש $1 ב{{grammar:תחילית|{{SITENAME}}}} ביקש תזכורת של פרטי
+החשבון שלכם ב{{grammar:תחילית|{{SITENAME}}}} ($4). {{PLURAL:$3|חשבון המשתמש הבא|חשבונות המשתמש הבאים}}
+שייכים לכתובת הדואר האלקטרוני הזו:
+
+$2
+
+{{PLURAL:$3|סיסמה זמנית זו|סיסמאות זמניות אלה}} יפקעו תוך {{PLURAL:$5|יום|$5 ימים|יומיים}}.
+עליכם להיכנס ולבחור סיסמה חדשה עכשיו. אם מישהו אחר ביצע בקשה זו, או שנזכרתם בסיסמתכם
+המקורית ואינכם רוצים עוד לשנות אותה, באפשרותכם להתעלם מהודעה זו ולהמשיך להשתמש בסיסמה
+הישנה.',
+'passwordreset-emailelement'   => 'שם משתמש: $1
+סיסמה זמנית: $2',
+'passwordreset-emailsent'      => 'נשלח דואר אלקטרוני עם תזכורת.',
 
 # Edit page toolbar
 'bold_sample'     => 'טקסט מודגש',
@@ -1817,22 +1853,23 @@ $1',
 'uploadstash-refresh'  => 'רענון רשימת הקבצים',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'הגישה נדחתה',
-'img-auth-nopathinfo'   => 'PATH_INFO חסר.
+'img-auth-accessdenied'     => 'הגישה נדחתה',
+'img-auth-nopathinfo'       => 'PATH_INFO חסר.
 השרת אינו מוגדר להעברת מידע זה.
 ייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.
 ראו http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
-'img-auth-badtitle'     => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
-'img-auth-nologinnWL'   => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',
-'img-auth-nofile'       => 'הקובץ "$1" אינו קיים.',
-'img-auth-isdir'        => 'אתם מנסים לגשת לתיקייה "$1".
+'img-auth-notindir'         => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
+'img-auth-badtitle'         => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
+'img-auth-nologinnWL'       => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',
+'img-auth-nofile'           => 'הקובץ "$1" אינו קיים.',
+'img-auth-isdir'            => 'אתם מנסים לגשת לתיקייה "$1".
 רק גישה לקבצים מותרת.',
-'img-auth-streaming'    => 'מבצע הזרמה של "$1".',
-'img-auth-public'       => 'img_auth.php משמש להצגת קבצים מתוך אתר ויקי פרטי.
+'img-auth-streaming'        => 'מבצע הזרמה של "$1".',
+'img-auth-public'           => 'img_auth.php משמש להצגת קבצים מתוך אתר ויקי פרטי.
 אתר ויקי זה מוגדר כציבורי.
 כדי להשיג אבטחה מרבית, img_auth.php מבוטל.',
-'img-auth-noread'       => 'למשתמש אין הרשאה לקרוא את "$1".',
+'img-auth-noread'           => 'למשתמש אין הרשאה לקרוא את "$1".',
+'img-auth-bad-query-string' => 'לכתובת ה־URL יש מחרוזת פרמטרים בלתי תקינה.',
 
 # HTTP errors
 'http-invalid-url'      => 'כתובת URL בלתי תקינה: $1',
@@ -2194,6 +2231,10 @@ $1',
 'noemailtext'          => 'משתמש זה לא הזין כתובת דואר אלקטרוני חוקית.',
 'nowikiemailtitle'     => 'שליחת דוא"ל אינה אפשרית',
 'nowikiemailtext'      => 'משתמש זה בחר שלא לקבל דואר אלקטרוני ממשתמשים אחרים.',
+'emailnotarget'        => 'שם המשתמש של הנמען לא קיים או בלתי תקין.',
+'emailtarget'          => 'הקלידו את שם המשתמש של הנמען',
+'emailusername'        => 'שם משתמש:',
+'emailusernamesubmit'  => 'שליחה',
 'email-legend'         => 'שליחת דואר אלקטרוני למשתמש אחר של {{SITENAME}}',
 'emailfrom'            => 'מאת:',
 'emailto'              => 'אל:',
@@ -2907,31 +2948,39 @@ $1',
 'tooltip-summary'                 => 'להכנסת תקציר קצר',
 
 # Stylesheets
-'common.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על כל העיצובים */',
-'standard.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Standard בלבד */',
-'nostalgia.css'   => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Nostalgia בלבד */',
-'cologneblue.css' => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב CologneBlue בלבד */',
-'monobook.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Monobook בלבד */',
-'myskin.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב MySkin בלבד */',
-'chick.css'       => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Chick בלבד */',
-'simple.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Simple בלבד */',
-'modern.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Modern בלבד */',
-'vector.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Vector בלבד */',
-'print.css'       => '/* הסגנונות הנכתבים כאן ישפיעו על הפלט בהדפסה בלבד */',
-'handheld.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על מכשירים ניידים המבוססים על העיצוב שבהגדרה $wgHandheldStyle בלבד */',
-'noscript.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על משתמשים עם JavaScript מבוטל */',
+'common.css'              => '/* הסגנונות הנכתבים כאן ישפיעו על כל העיצובים */',
+'standard.css'            => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Standard בלבד */',
+'nostalgia.css'           => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Nostalgia בלבד */',
+'cologneblue.css'         => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב CologneBlue בלבד */',
+'monobook.css'            => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Monobook בלבד */',
+'myskin.css'              => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב MySkin בלבד */',
+'chick.css'               => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Chick בלבד */',
+'simple.css'              => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Simple בלבד */',
+'modern.css'              => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Modern בלבד */',
+'vector.css'              => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Vector בלבד */',
+'print.css'               => '/* הסגנונות הנכתבים כאן ישפיעו על הפלט בהדפסה בלבד */',
+'handheld.css'            => '/* הסגנונות הנכתבים כאן ישפיעו על מכשירים ניידים המבוססים על העיצוב שבהגדרה $wgHandheldStyle בלבד */',
+'noscript.css'            => '/* הסגנונות הנכתבים כאן ישפיעו על משתמשים עם JavaScript מבוטל */',
+'group-autoconfirmed.css' => '/* הסגנונות הנכתבים כאן ישפיעו על משתמשים ותיקים בלבד */',
+'group-bot.css'           => '/* הסגנונות הנכתבים כאן ישפיעו על בוטים בלבד */',
+'group-sysop.css'         => '/* הסגנונות הנכתבים כאן ישפיעו על מפעילי מערכת בלבד */',
+'group-bureaucrat.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על ביורוקרטים בלבד */',
 
 # Scripts
-'common.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור כל המשתמשים בכל טעינת עמוד */',
-'standard.js'    => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Standard */',
-'nostalgia.js'   => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Nostalgia */',
-'cologneblue.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב CologneBlue */',
-'monobook.js'    => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Monobook */',
-'myskin.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב MySkin */',
-'chick.js'       => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Chick */',
-'simple.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Simple */',
-'modern.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Modern */',
-'vector.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Vector */',
+'common.js'              => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור כל המשתמשים בכל טעינת עמוד */',
+'standard.js'            => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Standard */',
+'nostalgia.js'           => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Nostalgia */',
+'cologneblue.js'         => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב CologneBlue */',
+'monobook.js'            => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Monobook */',
+'myskin.js'              => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב MySkin */',
+'chick.js'               => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Chick */',
+'simple.js'              => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Simple */',
+'modern.js'              => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Modern */',
+'vector.js'              => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Vector */',
+'group-autoconfirmed.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור משתמשים ותיקים */',
+'group-bot.js'           => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור בוטים */',
+'group-sysop.js'         => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור מפעילי מערכת */',
+'group-bureaucrat.js'    => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור ביורוקרטים */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata מבוטל בשרת זה.',
