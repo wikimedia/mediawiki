@@ -249,6 +249,7 @@ files are used instead.
   'name' key in the descriptor array.  Hidden field names are now treated
   consistently with other fields and, by default, prefixed with 'wp'.
 * (bug 27402) Add support for disabling MWSuggest
+* (bug 26563) Add bytes changed per revision for stub and full article dumps
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
@@ -549,6 +550,10 @@ files are used instead.
 * (bug 27338) Gallery in 1.17 breaks for audio/video + ogghandler
 * (bug 27302) Don't append the current timestamp for user/site modules when no user/site JS/CSS
   is present
+* (bug 27016) dumpTextPass.php now consider the "output" parameter
+* (bug 22606) don't send the "someone registred an account" message when setting email address
+  (i.e. old one empty) in user preferences
+* (bug 26458) Section edit links appear on pages that user does not have right to edit
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
@@ -698,6 +703,9 @@ changes to languages because of Bugzilla reports.
 * (bug 28159) Change interwiki name of language kbd to Къэбэрдеибзэ /
   Qabardjajəbza
 * (bug 28184) Namespaces for the Latgalian Wikipedia
+* (bug 25010( Bashkir-language interwikis: linktext change from Башҡорт
+  to Башҡортса
+* (bug 26395) Change name of Cornish language to Kernowek
 
 == Compatibility ==
 
