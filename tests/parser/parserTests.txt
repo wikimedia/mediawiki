@@ -1911,7 +1911,7 @@ Plain link, capitalized
 !! input
 [[Main Page]]
 !! result
-<p><a href="/wiki/Main_Page">Main Page</a>
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 !! end
 
@@ -1920,7 +1920,7 @@ Plain link, uncapitalized
 !! input
 [[main Page]]
 !! result
-<p><a href="/wiki/Main_Page">main Page</a>
+<p><a href="/wiki/Main_Page" title="Main Page">main Page</a>
 </p>
 !! end
 
@@ -1974,7 +1974,7 @@ Link with prefix
 !! input
 xxx[[main Page]], xxx[[Main Page]], Xxx[[main Page]] XXX[[main Page]], XXX[[Main Page]]
 !! result
-<p>xxx<a href="/wiki/Main_Page">main Page</a>, xxx<a href="/wiki/Main_Page">Main Page</a>, Xxx<a href="/wiki/Main_Page">main Page</a> XXX<a href="/wiki/Main_Page">main Page</a>, XXX<a href="/wiki/Main_Page">Main Page</a>
+<p>xxx<a href="/wiki/Main_Page" title="Main Page">main Page</a>, xxx<a href="/wiki/Main_Page" title="Main Page">Main Page</a>, Xxx<a href="/wiki/Main_Page" title="Main Page">main Page</a> XXX<a href="/wiki/Main_Page" title="Main Page">main Page</a>, XXX<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 !! end
 
@@ -1983,7 +1983,7 @@ Link with suffix
 !! input
 [[Main Page]]xxx, [[Main Page]]XXX, [[Main Page]]!!!
 !! result
-<p><a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page">Main Page</a>XXX, <a href="/wiki/Main_Page">Main Page</a>!!!
+<p><a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>XXX, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>!!!
 </p>
 !! end
 
@@ -2216,7 +2216,7 @@ title=[[0]]
 !!input
 [[00]]
 !!result
-<p><a href="/wiki/00">00</a>
+<p><a href="/wiki/00" title="00">00</a>
 </p>
 !!end
 
@@ -2245,7 +2245,7 @@ language=ca
 !! input
 '''[[Main Page]]'''
 !! result
-<p><b><a href="/wiki/Main_Page">Main Page</a></b>
+<p><b><a href="/wiki/Main_Page" title="Main Page">Main Page</a></b>
 </p>
 !! end
 
@@ -2256,7 +2256,7 @@ language=ca
 !! input
 ''[[Main Page]]''
 !! result
-<p><i><a href="/wiki/Main_Page">Main Page</a></i>
+<p><i><a href="/wiki/Main_Page" title="Main Page">Main Page</a></i>
 </p>
 !! end
 
@@ -2302,7 +2302,7 @@ Inline interwiki link
 !! input
 [[MeatBall:SoftSecurity]]
 !! result
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class="extiw">MeatBall:SoftSecurity</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class="extiw" title="meatball:SoftSecurity">MeatBall:SoftSecurity</a>
 </p>
 !! end
 
@@ -2311,7 +2311,7 @@ Inline interwiki link with empty title (bug 2372)
 !! input
 [[MeatBall:]]
 !! result
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?" class="extiw">MeatBall:</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?" class="extiw" title="meatball:">MeatBall:</a>
 </p>
 !! end
 
@@ -3220,7 +3220,7 @@ Template as link source
 !! input
 [[{{linktest2}}]]
 !! result
-<p><a href="/wiki/Main_Page">Main Page</a>
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 !! end
 
@@ -3242,7 +3242,7 @@ Template infinite loop
 !! input
 {{loop1}}
 !! result
-<p><span class="error">Template loop detected: <a href="/wiki/Template:Loop1">Template:Loop1</a></span>
+<p><span class="error">Template loop detected: <a href="/wiki/Template:Loop1" title="Template:Loop1">Template:Loop1</a></span>
 </p>
 !! end
 
@@ -4065,7 +4065,7 @@ Image with frame and link
 !! input
 [[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]]]
 !! result
-<div class="thumb tleft"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">This is a test image <a href="/wiki/Main_Page">Main Page</a></div></div></div>
+<div class="thumb tleft"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
 
 !! end
 
@@ -4074,7 +4074,7 @@ Image with frame and link and explicit alt
 !! input
 [[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]|alt=Altitude]]
 !! result
-<div class="thumb tleft"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Altitude" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">This is a test image <a href="/wiki/Main_Page">Main Page</a></div></div></div>
+<div class="thumb tleft"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Altitude" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
 
 !! end
 
@@ -4274,7 +4274,7 @@ Redirected image
 !! input
 [[Image:Barfoo.jpg]]
 !! result
-<p><a href="/wiki/File:Barfoo.jpg">File:Barfoo.jpg</a>
+<p><a href="/wiki/File:Barfoo.jpg" title="File:Barfoo.jpg">File:Barfoo.jpg</a>
 </p>
 !! end
 
@@ -4285,7 +4285,7 @@ wgEnableUploads=0
 !! input
 [[Image:Foobaz.jpg]]
 !! result
-<p><a href="/wiki/File:Foobaz.jpg">File:Foobaz.jpg</a>
+<p><a href="/wiki/File:Foobaz.jpg" title="File:Foobaz.jpg">File:Foobaz.jpg</a>
 </p>
 !! end
 
@@ -4355,7 +4355,7 @@ Link to category
 !! input
 [[:Category:MediaWiki User's Guide]]
 !! result
-<p><a href="/wiki/Category:MediaWiki_User%27s_Guide">Category:MediaWiki User's Guide</a>
+<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
 </p>
 !! end
 
@@ -5025,7 +5025,7 @@ The page's name is U+05d0 U+05b7, with non-canonical form U+FB2E
 <a href="/wiki/%D7%90%D6%B7" title="אַ">&#x5d0;&#x5b7;</a>
 <a href="/wiki/%D7%90%D6%B7" title="אַ">&#x5d0;ַ</a>
 <a href="/wiki/%D7%90%D6%B7" title="אַ">א&#x5b7;</a>
-<a href="/wiki/%D7%90%D6%B7">אַ</a>
+<a href="/wiki/%D7%90%D6%B7" title="אַ">אַ</a>
 </p>
 !! end
 
@@ -5088,7 +5088,7 @@ Bug 2095: link with three closing brackets
 !! input
 [[Main Page]]]
 !! result
-<p><a href="/wiki/Main_Page">Main Page</a>]
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>]
 </p>
 !! end
 
@@ -6291,7 +6291,7 @@ Special page transclusion
 !! result
 <p><br />
 </p>
-<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx">Xyzzyx</a></td></tr></table>
+<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 
 !! end
 
@@ -6304,10 +6304,10 @@ Special page transclusion twice (bug 5021)
 !! result
 <p><br />
 </p>
-<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx">Xyzzyx</a></td></tr></table>
+<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 <p><br />
 </p>
-<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx">Xyzzyx</a></td></tr></table>
+<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 
 !! end
 
@@ -7202,7 +7202,7 @@ Special:Search page linking.
 !! input
 {{Special:search}}
 !! result
-<p><a href="/wiki/Special:Search">Special:Search</a>
+<p><a href="/wiki/Special:Search" title="Special:Search">Special:Search</a>
 </p>
 !! end
 
@@ -7316,7 +7316,7 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 </gallery>
 !! result
 <ul class="gallery" style="max-width: 202px;_width: 202px;">
-	<li class='gallerycaption'>Foo <a href="/wiki/Main_Page">Main Page</a></li>
+	<li class='gallerycaption'>Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
 			<div style="height: 70px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
@@ -7332,7 +7332,7 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
 			<div class="thumb" style="width: 90px;"><div style="margin:26px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
 			<div class="gallerytext">
-<p>some <b>caption</b> <a href="/wiki/Main_Page">Main Page</a>
+<p>some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 			</div>
 		</div></li>
@@ -7409,7 +7409,7 @@ caption
 			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">Foobar.jpg</a><br />
-some <b>caption</b> <a href="/wiki/Main_Page">Main Page</a>
+some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 			</div>
 		</div></li>
@@ -8035,7 +8035,7 @@ language=sr
 !! input
 [[Main Page]] can be written as [[Маин Паге]] same as [[Маин Паге]].
 !! result
-<p><a href="/wiki/Main_Page">Main Page</a> can be written as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a> same as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a>.
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a> can be written as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a> same as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a>.
 </p>
 !!end
 
@@ -8130,7 +8130,7 @@ language=sr variant=sr-ec
 !! input
 -{[[Main Page]]}-
 !! result
-<p><a href="/wiki/Main_Page">Main Page</a>
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 !! end
 
@@ -8637,9 +8637,9 @@ wgLinkHolderBatchSize=0
 [[meatball:2]]
 [[meatball:3]]
 !! result
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?1" class="extiw">meatball:1</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?2" class="extiw">meatball:2</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?3" class="extiw">meatball:3</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?1" class="extiw" title="meatball:1">meatball:1</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?2" class="extiw" title="meatball:2">meatball:2</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?3" class="extiw" title="meatball:3">meatball:3</a>
 </p>
 !! end
 
@@ -8756,7 +8756,7 @@ comment
 !! input
 I like the [[Main Page]] a lot
 !! result
-I like the <a href="/wiki/Main_Page">Main Page</a> a lot
+I like the <a href="/wiki/Main_Page" title="Main Page">Main Page</a> a lot
 !!end
 
 !! test
@@ -9108,26 +9108,6 @@ Special characters in embedded file links (bug 27679)
 </p>
 !! end
 
-!! article
-A
-!! text
-A
-!! endarticle
-
-!! article
-Ä
-!! text
-Ä
-!! endarticle
-
-!! test
-Bug#542 Link text shouldn't be duplicated in title attributes
-!! input
-[[A]] [[a]] [[Ä]] [[ä]]
-!! result
-<p><a href="/wiki/A">A</a> <a href="/wiki/A">a</a> <a href="/wiki/%C3%84">Ä</a> <a href="/wiki/%C3%84">ä</a>
-</p>
-!! end
 
 TODO:
 more images
