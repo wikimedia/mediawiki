@@ -21,12 +21,12 @@ jQuery( document ).ready( function( $ ) {
 		'text': showText,
 		'href': '#'
 	}).click(function() {
-		if ( $table.is( '.collapsed' ) ) {
+		if ( $table.hasClass( 'collapsed' ) ) {
 			$( this ).text( hideText );
 		} else {
 			$( this ).text( showText );
 		}
-		$table.toggleClass( 'expanded, collapsed' );
+		$table.toggleClass( 'expanded collapsed' );
 		return false;
 	});
 
