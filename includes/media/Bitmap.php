@@ -27,12 +27,12 @@ class BitmapHandler extends ImageHandler {
 		$mimeType = $image->getMimeType();
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
-		
+
 		if ( self::canRotate() ) {
 			$rotation = $this->getRotation( $image );
 			if ( $rotation == 90 || $rotation == 270 ) {
 				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotated $rotation degrees\n" );
-				
+
 				$width = $params['width'];
 				$params['width'] = $params['height'];
 				$params['height'] = $width;
@@ -136,7 +136,7 @@ class BitmapHandler extends ImageHandler {
 			wfDebug( __METHOD__ . ": Unable to create thumbnail destination directory, falling back to client scaling\n" );
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
-		
+
 		# Try a hook
 		$mto = null;
 		wfRunHooks( 'BitmapHandlerTransform', array( $this, $image, &$scalerParams, &$mto ) );
@@ -144,7 +144,7 @@ class BitmapHandler extends ImageHandler {
 			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
 			$scaler = 'hookaborted';
 		}
-		
+
 		switch ( $scaler ) {
 			case 'hookaborted':
 				# Handled by the hook above
@@ -181,16 +181,16 @@ class BitmapHandler extends ImageHandler {
 				$scalerParams['clientHeight'], $dstPath );
 		}
 	}
-	
+
 	/**
-	 * Returns which scaler type should be used. Creates parent directories 
+	 * Returns which scaler type should be used. Creates parent directories
 	 * for $dstPath and returns 'client' on error
-	 * 
+	 *
 	 * @return string client,im,custom,gd
 	 */
 	protected static function getScalerType( $dstPath, $checkDstPath = true ) {
 		global $wgUseImageResize, $wgUseImageMagick, $wgCustomConvertCommand;
-		
+
 		if ( !$dstPath && $checkDstPath ) {
 			# No output path available, client side scaling only
 			$scaler = 'client';
@@ -207,7 +207,7 @@ class BitmapHandler extends ImageHandler {
 		} else {
 			$scaler = 'client';
 		}
-		
+
 		if ( $scaler != 'client' && $dstPath ) {
 			if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
 				# Unable to create a path for the thumbnail
@@ -229,7 +229,7 @@ class BitmapHandler extends ImageHandler {
 		return new ThumbnailImage( $image, $image->getURL(),
 				$params['clientWidth'], $params['clientHeight'], $params['srcPath'] );
 	}
-	
+
 	/**
 	 * Transform an image using ImageMagick
 	 *
@@ -277,7 +277,7 @@ class BitmapHandler extends ImageHandler {
 				// We optimize the output, but -optimize is broken,
 				// use optimizeTransparency instead (bug 11822)
 				if ( version_compare( $this->getMagickVersion(), "6.3.5" ) >= 0 ) {
-					$animation_post = '-fuzz 5% -layers optimizeTransparency +map';
+					$animation_post = '-fuzz 5% -layers optimizeTransparency';
 				}
 			}
 		}
@@ -321,10 +321,10 @@ class BitmapHandler extends ImageHandler {
 
 		return false; # No error
 	}
-	
+
 	/**
 	 * Transform an image using the Imagick PHP extension
-	 * 
+	 *
 	 * @param $image File File associated with this thumbnail
 	 * @param $params array Array with scaler params
 	 *
@@ -332,11 +332,11 @@ class BitmapHandler extends ImageHandler {
 	 */
 	protected function transformImageMagickExt( $image, $params ) {
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea;
-		
+
 		try {
 			$im = new Imagick();
 			$im->readImage( $params['srcPath'] );
-	
+
 			if ( $params['mimeType'] == 'image/jpeg' ) {
 				// Sharpening, see bug 6193
 				if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
@@ -360,7 +360,7 @@ class BitmapHandler extends ImageHandler {
 					$im = $im->coalesceImages();
 				}
 			}
-			
+
 			$rotation = $this->getRotation( $image );
 			if ( $rotation == 90 || $rotation == 270 ) {
 				// We'll resize before rotation, so swap the dimensions again
@@ -368,11 +368,11 @@ class BitmapHandler extends ImageHandler {
 				$height = $params['physicalWidth'];
 			} else {
 				$width = $params['physicalWidth'];
-				$height = $params['physicalHeight'];			
+				$height = $params['physicalHeight'];
 			}
-			
+
 			$im->setImageBackgroundColor( new ImagickPixel( 'white' ) );
-			
+
 			// Call Imagick::thumbnailImage on each frame
 			foreach ( $im as $i => $frame ) {
 				if ( !$frame->thumbnailImage( $width, $height, /* fit */ false ) ) {
@@ -380,13 +380,13 @@ class BitmapHandler extends ImageHandler {
 				}
 			}
 			$im->setImageDepth( 8 );
-			
+
 			if ( $rotation ) {
 				if ( !$im->rotateImage( new ImagickPixel( 'white' ), 360 - $rotation ) ) {
 					return $this->getMediaTransformError( $params, "Error rotating $rotation degrees" );
 				}
 			}
-	
+
 			if ( $this->isAnimatedImage( $image ) ) {
 				wfDebug( __METHOD__ . ": Writing animated thumbnail\n" );
 				// This is broken somehow... can't find out how to fix it
@@ -395,16 +395,16 @@ class BitmapHandler extends ImageHandler {
 				$result = $im->writeImage( $params['dstPath'] );
 			}
 			if ( !$result ) {
-				return $this->getMediaTransformError( $params, 
+				return $this->getMediaTransformError( $params,
 					"Unable to write thumbnail to {$params['dstPath']}" );
 			}
 
 		} catch ( ImagickException $e ) {
-			return $this->getMediaTransformError( $params, $e->getMessage() ); 
+			return $this->getMediaTransformError( $params, $e->getMessage() );
 		}
-		
+
 		return false;
-		
+
 	}
 
 	/**
@@ -453,7 +453,7 @@ class BitmapHandler extends ImageHandler {
 	}
 	/**
 	 * Get a MediaTransformError with error 'thumbnail_error'
-	 * 
+	 *
 	 * @param $params array Parameter array as passed to the transform* functions
 	 * @param $errMsg string Error message
 	 * @return MediaTransformError
@@ -507,7 +507,7 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		$src_image = call_user_func( $loader, $params['srcPath'] );
-		
+
 		$rotation = function_exists( 'imagerotate' ) ? $this->getRotation( $image ) : 0;
 		if ( $rotation == 90 || $rotation == 270 ) {
 			# We'll resize before rotation, so swap the dimensions again
@@ -515,7 +515,7 @@ class BitmapHandler extends ImageHandler {
 			$height = $params['physicalWidth'];
 		} else {
 			$width = $params['physicalWidth'];
-			$height = $params['physicalHeight'];			
+			$height = $params['physicalHeight'];
 		}
 		$dst_image = imagecreatetruecolor( $width, $height );
 
@@ -538,13 +538,13 @@ class BitmapHandler extends ImageHandler {
 				$width, $height,
 				imagesx( $src_image ), imagesy( $src_image ) );
 		}
-		
+
 		if ( $rotation % 360 != 0 && $rotation % 90 == 0 ) {
 			$rot_image = imagerotate( $dst_image, $rotation, 0 );
 			imagedestroy( $dst_image );
 			$dst_image = $rot_image;
 		}
-		
+
 		imagesavealpha( $dst_image, true );
 
 		call_user_func( $saveType, $dst_image, $params['dstPath'] );
@@ -671,9 +671,9 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * Try to read out the orientation of the file and return the angle that 
+	 * Try to read out the orientation of the file and return the angle that
 	 * the file needs to be rotated to be viewed
-	 * 
+	 *
 	 * @param $file File
 	 * @return int 0, 90, 180 or 270
 	 */
@@ -701,7 +701,7 @@ class BitmapHandler extends ImageHandler {
 
 	/**
 	 * Returns whether the current scaler supports rotation (im and gd do)
-	 * 
+	 *
 	 * @return bool
 	 */
 	public static function canRotate() {
@@ -722,11 +722,11 @@ class BitmapHandler extends ImageHandler {
 				return false;
 		}
 	}
-	
+
 	/**
-	 * Rerurns whether the file needs to be rendered. Returns true if the 
+	 * Rerurns whether the file needs to be rendered. Returns true if the
 	 * file requires rotation and we are able to rotate it.
-	 * 
+	 *
 	 * @param $file File
 	 * @return bool
 	 */
