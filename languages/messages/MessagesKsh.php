@@ -792,7 +792,7 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'showpreview'                      => 'Vör-Aansich zeije',
 'showlivepreview'                  => 'Lebendije Vör-Aansich zeije',
 'showdiff'                         => 'De Ungerscheide zeije',
-'anoneditwarning'                  => 'Weil De nit aanjemeldt bes, weed Ding IP-Adress opjezeichnet wääde.',
+'anoneditwarning'                  => "'''Opjepaß:''' Weil De nit enjelogg bes, weed Ding <i lang=\"en\">IP</i>-Adräß en dä Sigg ier Leß met de Versione faßjehallde wääde.",
 'anonpreviewwarning'               => "''Weil De nit enjlogg bes, weed Ding <code lang=\"en\">IP</code>-Addräß zoamme met dä neue Version faßjehallde, wann de heh di Sigg avspeichere deihß.''",
 'missingsummary'                   => '<strong>Opjepass:</strong> Do häs nix bei „{{int:summary}}“ enjejovve. Dun noch ens op „{{int:savearticle}}“ klicke, öm Ding Änderunge ohne de Zosammefassung ze Speichere. Ävver besser jiss De do jetz tirek ens jet en!',
 'missingcommenttext'               => 'Jevv en „Koot Zosammejefass, Quell“ aan!',
@@ -1277,8 +1277,8 @@ Donn „<code>all:</code>“ för Ding Wööt saze, wan de en alle Appachtemangs
 söke wells, och Klaafsigge, Schabloone, un esu, udder nemm dä zopaß
 Appachtemangs-Name.',
 'search-nonefound'                 => 'Mer han nix zopaß jefonge för Ding Aanfrohch.',
-'powersearch'                      => 'Söke',
-'powersearch-legend'               => 'Extra Sööke',
+'powersearch'                      => 'Lohß jonn!',
+'powersearch-legend'               => 'Extra Söhke',
 'powersearch-ns'                   => 'Söök en de Apachtemangs:',
 'powersearch-redir'                => 'Ömleidunge aanzeije',
 'powersearch-field'                => 'Söök noh:',
@@ -1335,7 +1335,7 @@ dat dänne ihr Daate topaktuell sin,
 'prefs-edit-boxsize'            => 'Dat Feld zöm Schrieve sull han:',
 'rows'                          => 'Reihe:',
 'columns'                       => 'Spalte:',
-'searchresultshead'             => 'Beim Söke',
+'searchresultshead'             => 'Beim Söhke',
 'resultsperpage'                => 'Zeich Treffer pro Sigg:',
 'contextlines'                  => 'Reihe för jede Treffer:',
 'contextchars'                  => 'Zëijshe uß de Ömjävung, pro Rëij:',
@@ -1527,7 +1527,6 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-reset-passwords'       => 'Enem andere Metmaacher et Paßwoot zeröck setze',
 'right-override-export-depth' => 'Beim Sigge Expoteere de Sigge metnämme, woh Lingks drop jon — beß fönef Schredde wigk',
 'right-sendemail'             => '<i lang="en">e-mail</i> aan ander Metmaacher schecke',
-'right-disableaccount'        => 'Zohjäng för Metmaacher still lääje',
 
 # User rights log
 'rightslog'      => 'Logboch för Änderunge aan Metmaacher-Räächde',
@@ -1552,7 +1551,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'action-upload_by_url'        => 'hee di Datei fun en URL erövver trecke ze lohße',
 'action-writeapi'             => 'dat API zom Schriive ze bruche',
 'action-delete'               => 'hee di Sigg fottzeschmiiße',
-'action-deleterevision'       => 'hee di Versijon fottzeschmiiße',
+'action-deleterevision'       => 'heh di Versijon fottzeschmiiße',
 'action-deletedhistory'       => 'vun hee dä Sigg de Leß met de fottjeschmeße Versijone aanzeloore',
 'action-browsearchive'        => 'noh fottjeschmeße Sigge ze söke',
 'action-undelete'             => 'hee di fottjeschmeße Sigg widder zeröck ze holle',
@@ -1787,20 +1786,21 @@ Wann et nit flupp, verzäll et enem [[Special:ListUsers/sysop|Wiki-Köbes]].',
 'upload-http-error'         => 'Ene <i lang="en">HTTP</i>-Fäähler es opjetrodde: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Keine Zohjang',
-'img-auth-nopathinfo'   => 'De <code lang="en">PATH_INFO</code> fäählt.
+'img-auth-accessdenied'     => 'Keine Zohjang',
+'img-auth-nopathinfo'       => 'De <code lang="en">PATH_INFO</code> fäählt.
 Dä Webßööver es nit doför ennjerescht, di Ennfommazjuhn wigger ze jävve.
 Hä künnd_op <code lang="en">CGI</code> opjebout sin, un dröm <code lang="en">img_auth</code> nit ongshtöze künne. Loor onger http://www.mediawiki.org/wiki/Manual:Image_Authorization noh, wat domet es.',
-'img-auth-notindir'     => 'Dä aanjefroochte Pat is nit em enjeschtallte Verzeischneß för et Huhlaade.',
-'img-auth-badtitle'     => 'Uß „$1“ lööt sesch keine jöltijje Tittel maache.',
-'img-auth-nologinnWL'   => 'Do bes nit ennjelogg, un „$1“ es nit op dä Leß met de zohjelohße Datteiname.',
-'img-auth-nofile'       => 'En Dattei „$1“ jidd_et nit.',
-'img-auth-isdir'        => 'Do wells op et Verzeishneß „$1“ zohjriife, ävver mer darref bloß op Datteie zohjriife.',
-'img-auth-streaming'    => 'Mer sin „$1“ aam schecke.',
-'img-auth-public'       => 'Dat Projramm <code lang="en">img_auth.php</code> jitt Dateie ene ennem privaate Wiki uß.
+'img-auth-notindir'         => 'Dä aanjefroochte Pat is nit em enjeschtallte Verzeischneß för et Huhlaade.',
+'img-auth-badtitle'         => 'Uß „$1“ lööt sesch keine jöltijje Tittel maache.',
+'img-auth-nologinnWL'       => 'Do bes nit ennjelogg, un „$1“ es nit op dä Leß met de zohjelohße Datteiname.',
+'img-auth-nofile'           => 'En Dattei „$1“ jidd_et nit.',
+'img-auth-isdir'            => 'Do wells op et Verzeishneß „$1“ zohjriife, ävver mer darref bloß op Datteie zohjriife.',
+'img-auth-streaming'        => 'Mer sin „$1“ aam schecke.',
+'img-auth-public'           => 'Dat Projramm <code lang="en">img_auth.php</code> jitt Dateie ene ennem privaate Wiki uß.
 Dat Wiki heh es ävver öffentlesch.
 Dröm es <code lang="en">img_auth.php</code> zor Sisherheit heh affjeschalldt.',
-'img-auth-noread'       => 'Dä Metmaacher hät keine Zohjang, öm „$1“ ze lässe.',
+'img-auth-noread'           => 'Dä Metmaacher hät keine Zohjang, öm „$1“ ze lässe.',
+'img-auth-bad-query-string' => 'En däm <i lang="en">URL</i> es en onjöltije Aanjab henger em Froorezeishe dren.',
 
 # HTTP errors
 'http-invalid-url'      => 'Dat es en onjöltije URL: $1',
@@ -1919,7 +1919,7 @@ Mer moß immer der Medietüp un der Ongertüp aanjevve.
 Zem Beispell: <code lang="en">image/jpeg</code>
 — kannß donoh op dä Beschrievungssigge von de Dateie loore.',
 'mimetype'           => 'MIME-Typ:',
-'download'           => 'Erungerlade',
+'download'           => 'eronger laade',
 
 # Unwatched pages
 'unwatchedpages' => 'Sigge, wo keiner drop oppass',
@@ -2124,7 +2124,7 @@ eins vun all däm op eimol.',
 'linksearch'       => 'Lėngkß noh ußerhallef sööke',
 'linksearch-pat'   => 'Sök noh:',
 'linksearch-ns'    => 'Appachtemang:',
-'linksearch-ok'    => 'Sööke',
+'linksearch-ok'    => 'Söhke',
 'linksearch-text'  => 'Di {{int:nstab-special}} heh mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren enthallde sin.
 
 Beim Söke künnd_Er Shternshe aanjevve för e Shtöckshe fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit, zem Beishpöll esu: <tt>http://*.example.com</tt>
@@ -2441,7 +2441,7 @@ un widder herjehollte Sigge.',
 'undelete-header'              => 'Loor Der [[Special:Log/delete|{{LCFIRST:{{int:deletionlog}}}}]] aan, doh fengks De de och neulesch fottjeschmesse Sigge.',
 'undelete-search-box'          => 'Noh fottjeschmesse Sigge söke',
 'undelete-search-prefix'       => 'Zeisch Sigge, di aanfange met:',
-'undelete-search-submit'       => 'Sööke',
+'undelete-search-submit'       => 'Söhke',
 'undelete-no-results'          => 'Mer han em Aschiif kei Sigg, wo dä Bejreff drop paß, womet De am Söke beß.',
 'undelete-filename-mismatch'   => 'Dä Dattei ier Version fun dä Zick $1 kunnte mer nit zeröck holle: Di Datteiname paßße nit zersamme.',
 'undelete-bad-store-key'       => 'Dä Dattei ier Version fun dä Zick $1 kunnte mer nit zeröck holle: Di Datei wohr ald beim Fottschmieße ja nimmieh do.',
@@ -2451,7 +2451,7 @@ un widder herjehollte Sigge.',
 'undelete-error-long'          => 'Mer wollte en Datei widder zeröckholle, ävver dobei sin_er Fääler opjefalle:
 
 $1',
-'undelete-show-file-confirm'   => 'Wells De dä Datei „<nowiki>$1</nowiki>“ ier fottjeschmesse Version vum $2 öm $3 Uhr werklesch sinn?',
+'undelete-show-file-confirm'   => 'Wells De dä Datei „<nowiki>$1</nowiki>“ ier fottjeschmesse Version vum $2 öm $3 Uhr verhaftesch sinn?',
 'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
@@ -2484,7 +2484,7 @@ De neuste Sperr ier Enndraach em Logbooch es:',
 'sp-contributions-search'              => 'Söök noh Metmaacher ier Beidräg',
 'sp-contributions-username'            => 'Metmaachername odder <i lang="en">IP</i>-Address:',
 'sp-contributions-toponly'             => 'Bloß neuste Versione zeije',
-'sp-contributions-submit'              => 'Sööke',
+'sp-contributions-submit'              => 'Söhke',
 
 # What links here
 'whatlinkshere'            => 'Wat noh heh link',
@@ -2563,7 +2563,7 @@ un och wann De se ändere wells.',
 'ipblocklist-sh-userblocks'       => '$1 de einzel Metmaacher ier Sperre',
 'ipblocklist-sh-tempblocks'       => '$1 de Sperre op Zick',
 'ipblocklist-sh-addressblocks'    => '$1 de einzel IP-Addresse ier Sperre',
-'ipblocklist-submit'              => 'Sööke',
+'ipblocklist-submit'              => 'Söhke',
 'ipblocklist-localblock'          => 'Sperr heh em Wiki',
 'ipblocklist-otherblocks'         => 'Ander {{PLURAL:$1|Sperr|Sperre|-nix-}}',
 'blocklistline'                   => '$1, $2 hät „$3“ jesperrt ($4)',
@@ -3064,7 +3064,7 @@ $1',
 'newimages-label'       => 'Dä Dattei ier Name udder e Stöck dofun:',
 'showhidebots'          => '(Bots $1)',
 'noimages'              => 'Kein Dateie jefunge.',
-'ilsubmit'              => 'Sök',
+'ilsubmit'              => 'Söhk',
 'bydate'                => 'nohm Datum',
 'sp-newimages-showfrom' => 'Zeich de neu Dateie av däm $1 öm $2 Uhr',
 
@@ -3129,8 +3129,8 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-colorspace'                  => 'Färveroum',
 'exif-componentsconfiguration'     => 'Bedüggening fun all de enkele Komponente',
 'exif-compressedbitsperpixel'      => 'Aat fun de Kompreßjohn fun däm Beld',
-'exif-pixelydimension'             => 'Pixelle jöltije Beld-Breed',
-'exif-pixelxdimension'             => 'Pixelle jöltije Beld-Hühde',
+'exif-pixelydimension'             => 'De jöltije Beld-Breede en Pixelle',
+'exif-pixelxdimension'             => 'De jöltije Beld-Hühde en Pixelle',
 'exif-makernote'                   => 'Aanmerkong fum Hersteller',
 'exif-usercomment'                 => 'Aanmerkong fum Aanwender',
 'exif-relatedsoundfile'            => 'De Tondatei, di do bei jehööt',
@@ -3146,9 +3146,9 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-spectralsensitivity'         => 'Emfendleschkeit för et Färvespäktrom',
 'exif-isospeedratings'             => 'Dem Fillem odder Sensor sing Emfindlischkeit (als ISO Wäät)',
 'exif-oecf'                        => 'Dä Leesch-Elletronesche Ömrechnungsfaktor',
-'exif-shutterspeedvalue'           => 'Jeschwendieschkeit fum Verschoß bem Beleeschte',
-'exif-aperturevalue'               => 'De Blend iere Wäät',
-'exif-brightnessvalue'             => 'De Hellishkeit',
+'exif-shutterspeedvalue'           => 'De Jeschwendeschkeit fum Verschloß bem Beleeschte en APEX Einheite',
+'exif-aperturevalue'               => 'De Blend iere Wäät en APEX Einheite',
+'exif-brightnessvalue'             => 'De Hellishkeit en APEX Einheite',
 'exif-exposurebiasvalue'           => 'Förjejovve Beleeschtung',
 'exif-maxaperturevalue'            => 'De Jrözte Blend ier Öffnong',
 'exif-subjectdistance'             => 'Affshtand nohm Motif',
@@ -3212,7 +3212,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpsareainformation'          => 'Dä Name fum GPS-Jebeet',
 'exif-gpsdatestamp'                => 'GPS-Dattum',
 'exif-gpsdifferential'             => 'De Differenzjahl-Bereschtijong fum GPS',
-'exif-objectname'                  => 'Tittel en koot',
+'exif-objectname'                  => 'Der Tittel en koot',
 
 # EXIF attributes
 'exif-compression-1' => 'Oohne Kompressjuhn',
@@ -3303,7 +3303,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-sensingmethod-7' => 'Ene trilinejare sequenzjelle Sensor fö Färve',
 'exif-sensingmethod-8' => 'Ene linejare sequenzjelle Sensor fö Färve',
 
-'exif-filesource-3' => 'DSC',
+'exif-filesource-3' => 'Ene onbewääschlesche dijitaale Knepskaste (<i lang="en">DSC</i>)',
 
 'exif-scenetype-1' => 'Normal — e tirek fotmafeet Beld',
 
@@ -3632,7 +3632,7 @@ Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 'fileduplicatesearch-legend'   => 'Sök noh ene dubbelte Datei',
 'fileduplicatesearch-filename' => 'Dateiname:',
-'fileduplicatesearch-submit'   => 'Sööke',
+'fileduplicatesearch-submit'   => 'Söhke',
 'fileduplicatesearch-info'     => '{{PLURAL:$1|Ei Pixel|$1 Pixelle|Nit}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle|nix}} huh<br />Dateiömfang: $3<br />MIME-Tüp: <code>$4</code>',
 'fileduplicatesearch-result-1' => 'Mer han kein akoraat dubbelte Dateie för „$1“ jefonge.',
 'fileduplicatesearch-result-n' => "Vun dä Datei „$1“ ham'mer '''{{PLURAL:$2|ein|$2|kein}}''' dubbelte mem selve Enhalt jefonge.",
@@ -3710,25 +3710,12 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'htmlform-int-toolow'          => 'Dinge aanjejovve Wäät litt onger dämm winnischßde, wat müjjelesch es, un dat es $1.',
 'htmlform-int-toohigh'         => 'Dinge aanjejovve Wäät litt övver dämm hühßte, wat jeiht, un dat es $1.',
 'htmlform-required'            => 'Heh dä Wäät es nüüdesch',
-'htmlform-submit'              => 'Loß Jonn!',
+'htmlform-submit'              => 'Lohß Jonn!',
 'htmlform-reset'               => 'Änderunge retuur nämme',
 'htmlform-selectorother-other' => 'Annder',
 
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 (un kann en janze Täxte söhke)',
 'sqlite-no-fts'  => 'Version $1 (kann ävver nit en janze Täxte söhke)',
-
-# Special:DisableAccount
-'disableaccount'             => 'Enem Metmaacher singe Zohjang stell lääje',
-'disableaccount-user'        => 'Metmaacher Name:',
-'disableaccount-reason'      => 'Woröm?',
-'disableaccount-confirm'     => "Däm Metmaacher singe Zohjang op Duur stell lääje.
-Dä Metmaacher kann dann nit mieh enlogge, sing Paßwoot ändere, udder <i lang=\"en\">e-mail</i> krijje.
-Wann dä Metmaacher ööhnzwoh enjelogg es, flüsh hä tirag_eruß.
-'''Opjepaß:''' ''Ene stell jelaate Zohjang kam_mer der ohne Hölp vun enem Administrator vum ẞööver vum Wiki nit widder aan et Loufe krijje.''",
-'disableaccount-mustconfirm' => 'Do moß bestäätije, dat De däm Metmaacher singe Zohjang op Duur stell lääje wells.',
-'disableaccount-nosuchuser'  => 'Ene Metmaacher „$1“ ham_mer nit.',
-'disableaccount-success'     => 'Däm Metmaacher „$1“ singe Zohjang es op Duur stell jelaat.',
-'disableaccount-logentry'    => 'hät däm Metmaacher [[$1]] singe Zohjang op Duur stell jelaat.',
 
 );

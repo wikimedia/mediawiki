@@ -743,7 +743,7 @@ $1',
 'nocreatetitle'                    => 'د مخ جوړول بريد ټاکلی دی',
 'nocreatetext'                     => '{{SITENAME}} د نوو مخونو د جوړولو وړتيا محدوده کړې.
 تاسو بېرته پر شا تللای شی او په شته مخونو کې سمونې ترسره کولای شی، او يا هم [[Special:UserLogin|غونډال ته ننوتلای او يو ګڼون جوړولای شی]].',
-'nocreate-loggedin'                => 'تاسو د نوو مخونو د جوړولو اجازه نه لری.',
+'nocreate-loggedin'                => 'تاسې د نوو مخونو د جوړولو پرېښله نلرۍ.',
 'sectioneditnotsupported-title'    => 'د برخې د سمون ملاتړ نه کېږي',
 'sectioneditnotsupported-text'     => 'په دې مخ د برخې د سمون ملاتړ نه کېږي.',
 'permissionserrors'                => 'د اجازې ستونزې',
@@ -802,7 +802,7 @@ $1',
 تاسې په دې ويکي د اړوندو نوؤ مخونو لپاره [[Special:Search|د پلټنې هڅه وکړۍ]].',
 
 # Revision deletion
-'rev-deleted-comment'        => '(تبصره ليري شوې)',
+'rev-deleted-comment'        => '(د سمون لنډيز لرې شو)',
 'rev-deleted-user'           => '(کارن-نوم ليري شوی)',
 'rev-delundel'               => 'ښکاره کول/ پټول',
 'rev-showdeleted'            => 'ښکاره کول',
@@ -935,7 +935,7 @@ $1',
 'prefsnologin'                  => 'غونډال کې نه ياست ننوتي',
 'prefsnologintext'              => 'د دې لپاره چې خپل غوره توبونه مو وټاکی، نو پکار ده چې لومړی تاسو غونډال کې <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ننوځی]</span>.',
 'changepassword'                => 'پټنوم بدلول',
-'prefs-skin'                    => 'بڼه',
+'prefs-skin'                    => 'پوښۍ',
 'skin-preview'                  => 'مخکتنه',
 'prefs-math'                    => 'شمېرپوهنه',
 'datedefault'                   => 'هېڅ نه ټاکل',
@@ -1088,7 +1088,6 @@ $1',
 'right-userrights-interwiki' => 'په نورو ويکي ګانو د نورو کارنانو  کارن-رښتې سمول',
 'right-reset-passwords'      => 'د نورو کارنانو پټتوري بياامستل',
 'right-sendemail'            => 'نورو کارنانو ته برېښليک لېږل',
-'right-disableaccount'       => 'ګڼونونه ناچارنول',
 
 # User rights log
 'rightslog'     => 'د کارن د رښتو يادښت',
@@ -1105,6 +1104,7 @@ $1',
 'action-move'           => 'همدا مخ لېږدول',
 'action-movefile'       => 'همدا دوتنه لېږدول',
 'action-upload'         => 'همدا دوتنه پورته کول',
+'action-upload_by_url'  => 'دا دوتنه له يوه URL نه پورته کول',
 'action-delete'         => 'همدا مخ ړنګول',
 'action-deleterevision' => 'دا مخکتنه ړنګول',
 'action-deletedhistory' => 'د دې مخ ړنګ شوی پېښليک کتل',
@@ -1644,6 +1644,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 ** ډېره زياته سپام خپرونه
 ** بې ګټې سمونې او خپرونې
 ** ډېر لوستونکی مخ',
+'protect-edit-reasonlist'     => 'د ژغورنې سببونه سمول',
 'protect-expiry-options'      => '1 ساعت:1 hour,1 ورځ:1 day,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',
 'restriction-type'            => 'اجازه:',
 'restriction-level'           => 'د بنديز کچه:',
@@ -1694,6 +1695,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'sp-contributions-newbies-sub' => 'د نوو ګڼونونو لپاره',
 'sp-contributions-blocklog'    => 'د بنديز يادښت',
 'sp-contributions-deleted'     => 'د کارن ونډې ړنګې شوې',
+'sp-contributions-uploads'     => 'پورته کېدنې',
 'sp-contributions-logs'        => 'يادښتونه',
 'sp-contributions-talk'        => 'خبرې اترې',
 'sp-contributions-search'      => 'د ونډو لټون',
@@ -1754,7 +1756,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'unblockip'                  => 'کارن له بنديزه وېستل',
 'ipusubmit'                  => 'دا بنديز ليرې کول',
 'unblocked'                  => 'له [[User:$1|$1]] بنديز ليري شو',
-'ipblocklist'                => 'د بنديز لګېدلي آی پي پتو او کارن نومونو لړليک',
+'ipblocklist'                => 'بنديز لګېدلي کارنان',
 'ipblocklist-legend'         => 'يو بنديز شوی کارن موندل',
 'ipblocklist-username'       => 'کارن-نوم يا IP پته:',
 'ipblocklist-sh-userblocks'  => 'د ګڼون بنديزونه $1',
@@ -1816,8 +1818,13 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 نو په هغه وخت کې پکار ده چې د خبرواترو د مخ لېږدونه او د نوي مخ سره د يوځای کولو کړنه په لاسي توګه ترسره کړی.",
 'movearticle'             => 'مخ لېږدول',
+'moveuserpage-warning'    => "'''ګواښنه:''' تاسې د يو کارن مخ د لېږدولو په حال کې ياست. لطفاً دا مه هېروۍ چې يوازې همدا مخ به ولېږدول شي او د کارن نوم به ''نه'' بدلېږي.",
 'movenologin'             => 'غونډال کې نه ياست ننوتي',
 'movenologintext'         => 'ددې لپاره چې يو مخ ولېږدوی، نو تاسې بايد يو ثبت شوی کارن او غونډال کې [[Special:UserLogin|ننوتي]] اوسۍ.',
+'movenotallowed'          => 'تاسې د مخونو د لېږدولو پرېښله نلرۍ.',
+'movenotallowedfile'      => 'تاسې د دوتنو د لېږدولو پرېښله نلرۍ.',
+'cant-move-user-page'     => 'تاسې د کارن مخونو د لېږدولو پرېښله نلرۍ (د څېرمه مخونو نه پرته).',
+'cant-move-to-user-page'  => 'تاسې د يو کارن مخ ته د يوه بل مخ د لېږدولو پرېښله نلرۍ (د يو کارن د څېرمه مخ نه پرته).',
 'newtitle'                => 'يو نوي سرليک ته:',
 'move-watch'              => 'همدا مخ کتل',
 'movepagebtn'             => 'مخ لېږدول',
@@ -1833,6 +1840,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'movelogpage'             => 'د لېږدولو يادښت',
 'movelogpagetext'         => 'دا لاندې د لېږدول شوو مخونو لړليک دی.',
 'movesubpage'             => '{{PLURAL:$1|څېرمه مخ|څېرمه مخونه}}',
+'movesubpagetext'         => 'همدا مخ $1 {{PLURAL:$1|څېرمه مخ لري چې لاندې ښودل شوی|څېرمه مخونه لري چې لاندې ښودل شوي}}.',
 'movenosubpage'           => 'دا مخ کوم څېرمه مخونه نه لري.',
 'movereason'              => 'سبب:',
 'revertmove'              => 'په څټ ګرځول',
@@ -2044,6 +2052,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-model'              => 'د کامرې ماډل',
 'exif-software'           => 'کارېدلې ساوترۍ',
 'exif-artist'             => 'ليکوال',
+'exif-pixelydimension'    => 'د انځور سور',
 'exif-usercomment'        => 'د کارونکي تبصرې',
 'exif-datetimedigitized'  => 'د ګڼياليز کېدنې وخت او نېټه',
 'exif-fnumber'            => 'F شمېره',
@@ -2054,6 +2063,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-gpsimgdirection'    => 'د انځور لوری',
 'exif-gpsareainformation' => 'د جي پي اس د سيمې نوم',
 'exif-gpsdatestamp'       => 'د جي پي اس نېټه',
+'exif-objectname'         => 'لنډ سرليک',
 
 'exif-unknowndate' => 'نامالومه نېټه',
 
@@ -2226,6 +2236,7 @@ $5
 'version'                   => 'بڼه',
 'version-extensions'        => 'لګېدلي شاتاړي',
 'version-specialpages'      => 'ځانګړي مخونه',
+'version-skins'             => 'پوښۍ',
 'version-other'             => 'بل',
 'version-version'           => '(بڼه $1)',
 'version-license'           => 'منښتليک',
@@ -2302,18 +2313,5 @@ $5
 'htmlform-submit'              => 'سپارل',
 'htmlform-reset'               => 'بدلونونه ناکړل',
 'htmlform-selectorother-other' => 'بل',
-
-# Special:DisableAccount
-'disableaccount'             => 'د يو کارن ګڼون ناچارنول',
-'disableaccount-user'        => 'کارن-نوم:',
-'disableaccount-reason'      => 'سبب:',
-'disableaccount-confirm'     => "د کارن دا ګڼون ناچارنول.
-د دې ګڼون کارن به و نه توانېږي چې غونډال کې ننوځي، خپل پټنوم پرځاي کړي، او يا د خبراوي برېښليک ترلاسه کړي.
-که دم مهال د دې ګڼون کارن له هر ځای نه پرليکه وي، هغه به سمدلاسه د غونډال نه ووځي.
-''دا مه هېروۍ چې د يوه ګڼون ناچارنولو چاره بېرته پرشا نه ګرځي تر هاغه پورې چې د غونډال د پازوال منځګړتوب پکې نه وي.''",
-'disableaccount-mustconfirm' => 'تاسې بايد د دې چارې پخلی وکړی چې تاسې همدا ګڼون ناچارنول غواړۍ.',
-'disableaccount-nosuchuser'  => 'د "$1" کارن ګڼون نشته.',
-'disableaccount-success'     => 'د "$1" کارن ګڼون د تل لپاره ناچارن شو.',
-'disableaccount-logentry'    => 'د تل لپاره د [[$1]] د کارن ګڼون ناچارنول',
 
 );

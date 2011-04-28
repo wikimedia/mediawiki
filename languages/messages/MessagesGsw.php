@@ -11,6 +11,7 @@
  * @author Als-Holder
  * @author Hendergassler
  * @author J. 'mach' wust
+ * @author MaxSem
  * @author Melancholie
  * @author MichaelFrey
  * @author Purodha
@@ -1313,7 +1314,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-reset-passwords'       => 'S Passwort vun eme andere Benutzer zrucksetze',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
-'right-disableaccount'        => 'Benutzerkonto deaktiviere',
 
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',
@@ -2471,7 +2471,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'import-interwiki-namespace' => 'Ziilnamensruum:',
 'import-upload-filename'     => 'Dateiname:',
 'import-comment'             => 'Grund:',
-'importtext'                 => 'Bitte speicher d’Syte vum Quellwiki met em Spezial:Export-Wärkzüg ab, un lad denn di XML-Datei do uffe. („Bild lokal“ sot im Folgénde eigentle „XML-Datei“ hoiße ;-)',
+'importtext'                 => 'Bitte speicher d’Syte vum Quellwiki met em Special:Export-Wärkzüg ab, un lad denn di XML-Datei do uffe. („Bild lokal“ sot im Folgénde eigentle „XML-Datei“ hoiße ;-)',
 'importstart'                => 'Importiere Syte …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Vérsion|$1 Vérsiona}}',
 'importnopages'              => 'Es isch kei Syte doo wo mer importiere chönnt.',
@@ -3263,18 +3263,5 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 # SQLite database support
 'sqlite-has-fts' => '$1 mit Unterstitzig vu dr Volltextsuechi',
 'sqlite-no-fts'  => '$1 ohni Unterstitzig vu dr Volltextsuechi',
-
-# Special:DisableAccount
-'disableaccount'             => 'E Benutzerkonto deaktiviere',
-'disableaccount-user'        => 'Benutzername:',
-'disableaccount-reason'      => 'Grund:',
-'disableaccount-confirm'     => "Des Benutzerkonto deaktiviere.
-Dr Benutzer cha sich derno nimi aamälde, cha s Passwort nimi zrucksetze oder un keini E-Mail-Benochrichtigunge me iberchuu.
-Wänn dr Benutzer grad aagmäldet isch, wird er sofort abgmäldet.
-''Obacht: D Deaktivierig vun eme Benutzerkonto cha nume vun eme Syschtemadministrator ruckgängig gmacht wäre.''",
-'disableaccount-mustconfirm' => 'Du muesch d Deaktivierig vu däm Benutzerkonto no bstetige.',
-'disableaccount-nosuchuser'  => 'Dr Benutzer „$1“ git s nit.',
-'disableaccount-success'     => 'S Benutzerkonto „$1“ isch fir immer deaktiviert wore.',
-'disableaccount-logentry'    => 'het s Benutzerkonto [[$1]] fir immer deaktiviert',
 
 );

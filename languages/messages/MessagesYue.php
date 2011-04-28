@@ -1332,7 +1332,6 @@ $1",
 'right-reset-passwords'       => '重設其他用戶嘅密碼',
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-sendemail'             => '寄電郵畀其他用戶',
-'right-disableaccount'        => '停用戶口',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -3350,18 +3349,5 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 # SQLite database support
 'sqlite-has-fts' => '$1 有全文搜尋支援',
 'sqlite-no-fts'  => '$1 冇全文搜尋支援',
-
-# Special:DisableAccount
-'disableaccount'             => '停用一個用戶戶口',
-'disableaccount-user'        => '用戶名：',
-'disableaccount-reason'      => '原因：',
-'disableaccount-confirm'     => "停用呢個用戶戶口。
-呢位用戶唔可以再登入、重設佢嘅密碼，又或者收到電郵通知。
-如果呢位用戶而家係響任何地方緊入緊嘅，佢嘅就將會即刻登出。
-''留意停用一個戶口響無系統管理員嘅介入之下係唔可以番轉頭嘅。''",
-'disableaccount-mustconfirm' => '你一定要確認你想去停用呢個戶口。',
-'disableaccount-nosuchuser'  => '用戶戶口 "$1" 唔存在。',
-'disableaccount-success'     => '用戶戶口 "$1" 已經永久停用咗。',
-'disableaccount-logentry'    => '永久停用咗用戶戶口[[$1]]',
 
 );

@@ -1582,7 +1582,6 @@ HTMLタグを見直してください。',
 'right-reset-passwords'       => '他の利用者のパスワードを再設定する',
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
 'right-sendemail'             => '他の利用者へ電子メールを送る',
-'right-disableaccount'        => 'アカウントを無効化',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -1830,22 +1829,23 @@ $1',
 'upload-http-error'         => 'HTTPエラー発生：$1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'アクセスが拒否されました',
-'img-auth-nopathinfo'   => 'PATH_INFOが見つかりません。
+'img-auth-accessdenied'     => 'アクセスが拒否されました',
+'img-auth-nopathinfo'       => 'PATH_INFOが見つかりません。
 サーバーが、この情報を渡すように構成されていません。
 CGIベースで、img_authに対応できない可能性もあります。
 http://www.mediawiki.org/wiki/Manual:Image_Authorization を参照してください。',
-'img-auth-notindir'     => '要求されたパスは、設定済みのアップロード用ディレクトリーの中にありません。',
-'img-auth-badtitle'     => '「$1」からは有効なページ名を構築できません。',
-'img-auth-nologinnWL'   => 'ログインしておらず、さらに「$1」はホワイトリストに入っていません。',
-'img-auth-nofile'       => 'ファイル「$1」は存在しません。',
-'img-auth-isdir'        => 'ディレクトリー「$1」にアクセスしようとしています。
+'img-auth-notindir'         => '要求されたパスは、設定済みのアップロード用ディレクトリーの中にありません。',
+'img-auth-badtitle'         => '「$1」からは有効なページ名を構築できません。',
+'img-auth-nologinnWL'       => 'ログインしておらず、さらに「$1」はホワイトリストに入っていません。',
+'img-auth-nofile'           => 'ファイル「$1」は存在しません。',
+'img-auth-isdir'            => 'ディレクトリー「$1」にアクセスしようとしています。
 ファイルへのアクセスのみが許可されています。',
-'img-auth-streaming'    => '「$1」を転送中。',
-'img-auth-public'       => 'img_auth.phpの機能は非公開ウィキからファイルを出力することです。
+'img-auth-streaming'        => '「$1」を転送中。',
+'img-auth-public'           => 'img_auth.phpの機能は非公開ウィキからファイルを出力することです。
 このウィキは公開ウィキとして構成されています。
 最適なセキュリティーのため、img_auth.phpは無効化されています。',
-'img-auth-noread'       => '利用者は「$1」の読み取り権限を持っていません。',
+'img-auth-noread'           => '利用者は「$1」の読み取り権限を持っていません。',
+'img-auth-bad-query-string' => 'URLの中に無効なクエリ文字列があります。',
 
 # HTTP errors
 'http-invalid-url'      => '無効なURL：$1',
@@ -3152,8 +3152,8 @@ Variants for Chinese language
 'exif-colorspace'                  => '色空間',
 'exif-componentsconfiguration'     => '各コンポーネントの構成',
 'exif-compressedbitsperpixel'      => '画像圧縮モード',
-'exif-pixelydimension'             => '実効画像幅',
-'exif-pixelxdimension'             => '実効画像高さ',
+'exif-pixelydimension'             => '画像の幅',
+'exif-pixelxdimension'             => '画像の高さ',
 'exif-makernote'                   => 'メーカーノート',
 'exif-usercomment'                 => '利用者のコメント',
 'exif-relatedsoundfile'            => '関連音声ファイル',
@@ -3754,18 +3754,5 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # SQLite database support
 'sqlite-has-fts' => '$1（全文検索あり）',
 'sqlite-no-fts'  => '$1（全文検索なし）',
-
-# Special:DisableAccount
-'disableaccount'             => '利用者アカウントを無効化',
-'disableaccount-user'        => '利用者名：',
-'disableaccount-reason'      => '理由：',
-'disableaccount-confirm'     => "この利用者アカウントを無効化します。
-無効化された利用者は、ログインしたり、パスワードを再設定したり、電子メールの通知を受け取ることができなくなります。
-もしこの利用者がどこかで最近ログインしていた場合、それらはただちにログアウトされます。
-''アカウントの無効化は、システム管理者の助けなければ戻すことができないことに、十分注意してください。''",
-'disableaccount-mustconfirm' => 'このアカウントを本当に無効化するか確認する必要があります。',
-'disableaccount-nosuchuser'  => '利用者アカウント「$1」は存在しません。',
-'disableaccount-success'     => '利用者アカウント「$1」は、永久に無効化されています。',
-'disableaccount-logentry'    => '利用者アカウント[[$1]]を永久に無効化',
 
 );

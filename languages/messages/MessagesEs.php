@@ -568,12 +568,12 @@ $1',
 'edithelp'             => 'Ayuda de edición',
 'edithelppage'         => 'Help:Cómo se edita una página',
 'helppage'             => 'Help:Ayuda',
-'mainpage'             => 'Página Principal',
+'mainpage'             => 'Página principal',
 'mainpage-description' => 'Página Principal',
 'policy-url'           => 'Project:Políticas',
 'portal'               => 'Portal de la comunidad',
 'portal-url'           => 'Project:Portal de la comunidad',
-'privacy'              => 'Política de protección de datos',
+'privacy'              => 'Política de privacidad',
 'privacypage'          => 'Project:Política de protección de datos',
 
 'badaccess'        => 'Error de permisos',
@@ -642,9 +642,9 @@ dentro de la función «<tt>$2</tt>».
 La base de datos devolvió el error «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
 La última consulta a la base de datos que se intentó fue:
-"$1"
-desde la función "$2".
-Base de datos retornó error "$3: $4".',
+«$1»
+desde la función «$2».
+Base de datos retornó error «$3: $4».',
 'laggedslavemode'      => "'''Aviso:''' puede que falten las actualizaciones más recientes en esta página.",
 'readonly'             => 'Base de datos bloqueada',
 'enterlockreason'      => 'Explique el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo',
@@ -718,7 +718,7 @@ Tu cuenta ha sido creada.
 No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'yourname'                   => 'Nombre de usuario:',
 'yourpassword'               => 'Contraseña:',
-'yourpasswordagain'          => 'Repita la contraseña:',
+'yourpasswordagain'          => 'Confirma la contraseña:',
 'remembermypassword'         => 'Mantenerme conectado en este navegador (hasta $1 {{PLURAL:$1|día|días}})',
 'securelogin-stick-https'    => 'Permanecer conectado a HTTPS después de iniciar sesión',
 'yourdomainname'             => 'Dominio',
@@ -735,7 +735,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'nologinlink'                => 'Crear una cuenta',
 'createaccount'              => 'Cree una nueva cuenta',
 'gotaccount'                 => '¿Ya tiene una cuenta de usuario? $1.',
-'gotaccountlink'             => 'Autenticarse',
+'gotaccountlink'             => 'Entrar',
 'createaccountmail'          => 'por correo electrónico',
 'createaccountreason'        => 'Razón:',
 'badretype'                  => 'Las contraseñas no coinciden.',
@@ -1526,7 +1526,6 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'right-reset-passwords'       => 'Reajustar la contraseña de otros usuarios',
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
-'right-disableaccount'        => 'Deshabilitar cuentas',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',
@@ -2288,7 +2287,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-default'             => 'Permitir todos los usuarios',
 'protect-fallback'            => 'Necesita el permiso «$1»',
 'protect-level-autoconfirmed' => 'Bloquear usuarios nuevos y no registrados',
-'protect-level-sysop'         => 'Sólo administradores',
+'protect-level-sysop'         => 'Solo administradores',
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'caduca el $1 (UTC)',
 'protect-expiry-indefinite'   => 'indefinido',
@@ -2471,7 +2470,7 @@ Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
 'ipusubmit'                       => 'Desactivar este bloqueo',
 'unblocked'                       => '[[User:$1|$1]] ha sido {{GENDER:$1|desbloqueado|desbloqueada}}',
 'unblocked-id'                    => 'Se ha eliminado el bloqueo $1',
-'ipblocklist'                     => 'Lista de direcciones IP y nombres de usuario bloqueadas',
+'ipblocklist'                     => 'Usuarios bloqueados',
 'ipblocklist-legend'              => 'Encontrar a un usuario bloqueado',
 'ipblocklist-username'            => 'Nombre de usuario o dirección IP:',
 'ipblocklist-sh-userblocks'       => '$1 bloqueos de cuentas',
@@ -2503,7 +2502,7 @@ Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
 'blocklogtext'                    => 'Esto es un registro de bloqueos y desbloqueos de usuarios.
 Las direcciones bloqueadas automáticamente no aparecen aquí.
 Consulte la [[Special:IPBlockList|lista de direcciones IP bloqueadas]] para ver la lista de bloqueos vigente.',
-'unblocklogentry'                 => 'desbloqueó a "$1"',
+'unblocklogentry'                 => 'desbloqueó a $1',
 'block-log-flags-anononly'        => 'sólo anónimos',
 'block-log-flags-nocreate'        => 'desactivada la creación de cuentas',
 'block-log-flags-noautoblock'     => 'bloqueo automático desactivado',
@@ -3018,8 +3017,8 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-colorspace'                  => 'Espacio de color',
 'exif-componentsconfiguration'     => 'Significado de cada componente',
 'exif-compressedbitsperpixel'      => 'Modo de compresión de la imagen',
-'exif-pixelydimension'             => 'Anchura de imagen válida',
-'exif-pixelxdimension'             => 'Altura de imagen válida',
+'exif-pixelydimension'             => 'Ancho de la imagen',
+'exif-pixelxdimension'             => 'Altura de la imagen',
 'exif-makernote'                   => 'Notas del fabricante',
 'exif-usercomment'                 => 'Comentarios de usuario',
 'exif-relatedsoundfile'            => 'Archivo de audio relacionado',
@@ -3035,9 +3034,9 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-spectralsensitivity'         => 'Sensibilidad espectral',
 'exif-isospeedratings'             => 'Calificación de velocidad ISO',
 'exif-oecf'                        => 'Factor de conversión optoelectrónica',
-'exif-shutterspeedvalue'           => 'Velocidad de obturador',
-'exif-aperturevalue'               => 'Apertura',
-'exif-brightnessvalue'             => 'Luminosidad',
+'exif-shutterspeedvalue'           => 'Velocidad de obturación APEX',
+'exif-aperturevalue'               => 'Apertura APEX',
+'exif-brightnessvalue'             => 'Brillo APEX',
 'exif-exposurebiasvalue'           => 'Sesgo de exposición',
 'exif-maxaperturevalue'            => 'Valor máximo de apertura',
 'exif-subjectdistance'             => 'Distancia al sujeto',
@@ -3101,6 +3100,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpsareainformation'          => 'Nombre de la área GPS',
 'exif-gpsdatestamp'                => 'Fecha GPS',
 'exif-gpsdifferential'             => 'Corrección diferencial de GPS',
+'exif-objectname'                  => 'Título breve',
 
 # EXIF attributes
 'exif-compression-1' => 'No comprimida',
@@ -3535,18 +3535,5 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para búsqueda de texto completo',
 'sqlite-no-fts'  => '$1 sin soporte para búsqueda de texto completo',
-
-# Special:DisableAccount
-'disableaccount'             => 'Deshabilitar una cuenta de usuario',
-'disableaccount-user'        => 'Nombre de usuario:',
-'disableaccount-reason'      => 'Razón:',
-'disableaccount-confirm'     => "Deshabilitar esta cuenta de usuario.
-El usuario no podrá iniciar sesión, restablecer su contraseña o recibir notificaciones por correo electrónico.
-Si el usuario está conectado, será desconectado de inmediato.
-'' Tenga en cuenta que la desactivación de una cuenta no es reversible sin intervención del administrador de sistema ''.",
-'disableaccount-mustconfirm' => 'Tienes que confirmar que quieres desactivar esta cuenta.',
-'disableaccount-nosuchuser'  => 'La cuenta de usuario «$1» no existe.',
-'disableaccount-success'     => 'La cuenta de usuario «$1» ha sido deshabilitada definitivamente.',
-'disableaccount-logentry'    => 'desactivó permanentemente la cuenta «[[$1]]»',
 
 );

@@ -1240,7 +1240,6 @@ $1",
 'right-reset-passwords'       => 'Башҡа ҡатнашыусыларҙың паролен яңыртыу',
 'right-override-export-depth' => '5-се тәрәнлеккә тиклем бәйле биттәре менән бергә биттәрҙе сығарыу',
 'right-sendemail'             => 'Башҡа ҡатнашыусыларға электрон почта аша хат ебәреү',
-'right-disableaccount'        => 'Иҫәп яҙыуҙарын күрһәтмәҫкә',
 
 # User rights log
 'rightslog'      => 'Ҡулланыусының хоҡуҡтары көндәлеге',
@@ -1467,22 +1466,23 @@ $1',
 'upload-http-error'         => 'HTTP хата килеп сыҡты: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Керергә рөхсәт ителмәй',
-'img-auth-nopathinfo'   => 'PATH_INFO юҡ.
+'img-auth-accessdenied'     => 'Керергә рөхсәт ителмәй',
+'img-auth-nopathinfo'       => 'PATH_INFO юҡ.
 Һеҙҙең сервер был мәғлүмәтте ебәреү өсөн көйләнмәгән.
 Ул CGI нигеҙендә эшләй һәм img_auth ҡулланмай, булырға тейеш.
 Тулыраҡ мәғлүмәт: http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Һоралған юл көйләнгән тейәүҙәр директорияһына ҡарамай.',
-'img-auth-badtitle'     => '"$1" исеменән дөрөҫ исем төҙөп булмай.',
-'img-auth-nologinnWL'   => 'Һеҙ танылыу үтмәнегеҙ, "$1" аҡ исемлеккә кермәй.',
-'img-auth-nofile'       => '"$1" файлы юҡ.',
-'img-auth-isdir'        => 'Һеҙ "$1" директорияһына керергә тырышаһығыҙ.
+'img-auth-notindir'         => 'Һоралған юл көйләнгән тейәүҙәр директорияһына ҡарамай.',
+'img-auth-badtitle'         => '"$1" исеменән дөрөҫ исем төҙөп булмай.',
+'img-auth-nologinnWL'       => 'Һеҙ танылыу үтмәнегеҙ, "$1" аҡ исемлеккә кермәй.',
+'img-auth-nofile'           => '"$1" файлы юҡ.',
+'img-auth-isdir'            => 'Һеҙ "$1" директорияһына керергә тырышаһығыҙ.
 Файлдарҙы асырға ғына рөхсәт бар.',
-'img-auth-streaming'    => '"$1" файлын эҙмә-эҙлекле тапшырыу.',
-'img-auth-public'       => 'img_auth.php файлдарҙы ябыҡ викинан сығарыу өсөн тәғәйенләнгән.
+'img-auth-streaming'        => '"$1" файлын эҙмә-эҙлекле тапшырыу.',
+'img-auth-public'           => 'img_auth.php файлдарҙы ябыҡ викинан сығарыу өсөн тәғәйенләнгән.
 Был вики асыҡ тип көйләнгән.
 Хәүефһеҙлек маҡсаттарында img_auth.php һүндерелгән.',
-'img-auth-noread'       => 'Ҡатнашыусыға "$1" файлын уҡыу рөхсәт ителмәй.',
+'img-auth-noread'           => 'Ҡатнашыусыға "$1" файлын уҡыу рөхсәт ителмәй.',
+'img-auth-bad-query-string' => 'URL-адрестағы һоратыу юлы хаталы',
 
 # HTTP errors
 'http-invalid-url'      => 'URL адрес дөрөҫ түгел: $1',
@@ -2452,8 +2452,7 @@ $1 бикләнгән инде.
 'import-interwiki-namespace' => 'Кәрәкле исемдәр арауығы:',
 'import-upload-filename'     => 'Файл исеме:',
 'import-comment'             => 'Иҫкәрмә:',
-'importtext'                 => 'Зинһар, файлды сығанаҡ вики проекттан [[Special:Export|махсус ҡорал]] ярҙамында сығарығыҙ.
-Артабан уны компьютерығыҙҙа һаҡлағыҙ һәм бында тейәгеҙ.',
+'importtext'                 => 'Зинһар, файлды сығанаҡ викинан [[Special:Export|махсус ҡорал]] ярҙамында сығарығыҙ. Артабан уны компьютерығыҙға һаҡлағыҙ һәм бында тейәгеҙ.',
 'importstart'                => 'Биттәрҙе тейәү...',
 'import-revision-count'      => '$1 {{PLURAL:$1|өлгө|өлгө}}',
 'importnopages'              => 'Тейәү өсөн биттәр юҡ.',
@@ -2743,8 +2742,8 @@ $1',
 'exif-colorspace'                  => 'Төҫтәр киңлеге',
 'exif-componentsconfiguration'     => 'Төҫ өлөштәренең төҙөлөшө',
 'exif-compressedbitsperpixel'      => 'Рәсемде ҡыҫыу ысулы',
-'exif-pixelydimension'             => 'Рәсемдең үҙ киңлеге',
-'exif-pixelxdimension'             => 'Рәсемдең үҙ бейеклеге',
+'exif-pixelydimension'             => 'Рәсем киңлеге',
+'exif-pixelxdimension'             => 'Рәсем бейеклеге',
 'exif-makernote'                   => 'Етештереүсе иҫкәрмәһе',
 'exif-usercomment'                 => 'Ҡулланыусы иҫкәрмәһе',
 'exif-relatedsoundfile'            => 'Бәйле аудио файл',
@@ -2760,9 +2759,9 @@ $1',
 'exif-spectralsensitivity'         => 'Спектраль һиҙгерлек',
 'exif-isospeedratings'             => 'ISO буйынса яҡтыға һиҙгерлек',
 'exif-oecf'                        => 'Оптоэлектрик үҙгәртеү коэффициенты',
-'exif-shutterspeedvalue'           => 'Затвор тиҙлеге',
-'exif-aperturevalue'               => 'Диафрагма',
-'exif-brightnessvalue'             => 'Баҙыҡлыҡ',
+'exif-shutterspeedvalue'           => 'APEX затвор тиҙлеге',
+'exif-aperturevalue'               => 'APEX диафрагма',
+'exif-brightnessvalue'             => 'APEX баҙыҡлыҡ',
 'exif-exposurebiasvalue'           => 'Экспозиция компенсацияһы',
 'exif-maxaperturevalue'            => 'Иң ҙур диафрагма һаны',
 'exif-subjectdistance'             => 'Есемдең йыраҡлығы',
@@ -3269,18 +3268,5 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 # SQLite database support
 'sqlite-has-fts' => '$1, тулы текст буйынса эҙләү мөмкинлеге менән',
 'sqlite-no-fts'  => '$1, тулы текст буйынса эҙләү мөмкинлекһеҙ',
-
-# Special:DisableAccount
-'disableaccount'             => 'Ҡатнашыусының күрһәтелмәгән иҫәп яҙыуҙары',
-'disableaccount-user'        => 'Ҡатнашыусы исеме',
-'disableaccount-reason'      => 'Сәбәп:',
-'disableaccount-confirm'     => "Был ҡатнашыусының иҫәп яҙмаһын һүндереү.
-Ҡатнашыусы танылыу үтә, паролен үҙгәртә һәм электрон почта аша белгертеүҙәр ала алмаясаҡ.
-Әгәр ҡатнашыусы әлеге ваҡытта танылыу үткән булһа, уның сеансы шунда уҡ өҙөләсәк.
-''Иҫәп яҙмаһын һүндереүҙе система хәкимдәре ярҙамы менән генә кире алып була икәнен иҫәпкә алығыҙ.''",
-'disableaccount-mustconfirm' => 'Һеҙ был иҫәп яҙмаһын һүндерергә теләүегеҙҙе раҫларға тейешһегеҙ.',
-'disableaccount-nosuchuser'  => '"$1" иҫәп яҙмаһы юҡ.',
-'disableaccount-success'     => '"$1" иҫәп яҙмаһы һүндерелгән.',
-'disableaccount-logentry'    => '[[$1]] иҫәп яҙмаһын һүндергән',
 
 );

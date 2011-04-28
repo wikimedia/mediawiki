@@ -1266,9 +1266,9 @@ $1",
 'prefs-rc'                      => '최근 바뀜',
 'prefs-watchlist'               => '주시문서 목록',
 'prefs-watchlist-days'          => '주시문서 목록에서 볼 날짜 수:',
-'prefs-watchlist-days-max'      => '(최대 7일)',
+'prefs-watchlist-days-max'      => '최대 7일',
 'prefs-watchlist-edits'         => '주시문서 목록에서 볼 편집 수:',
-'prefs-watchlist-edits-max'     => '(최대 1000개)',
+'prefs-watchlist-edits-max'     => '최대 개수: 1000',
 'prefs-watchlist-token'         => '주시문서 토큰:',
 'prefs-misc'                    => '기타',
 'prefs-resetpass'               => '비밀번호 바꾸기',
@@ -1472,7 +1472,6 @@ $1",
 'right-reset-passwords'       => '다른 사용자의 비밀번호를 변경',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
-'right-disableaccount'        => '계정을 비활성화하기',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',
@@ -2532,7 +2531,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 이동하기 전에, 이 문서를 이동해도 문제가 없다는 것을 확인해주세요.",
 'movepagetext-noredirectfixer' => "이 양식을 이용해 문서의 이름을 바꾸고 문서의 모든 역사를 옮길 것입니다.
 이전의 제목은 새 제목으로 넘겨줄 것입니다.
-[[Special:DoubleRedirects|이중 넘겨주기]]나 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 잇는지 확인해주십시오.
+[[Special:DoubleRedirects|이중 넘겨주기]]나 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 있는지 확인해주십시오.
 당신은 넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
 
 참고로 새 제목을 가진 문서가 이미 있다면 다음 경우에 해당하지 않으면 이 문서는 옮겨지지 '''않을''' 것입니다.
@@ -2542,7 +2541,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 이는 당신이 실수로 문서를 옮겼을 때 되돌릴 수 있으며 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
 
 '''경고!'''
-방문 수나 이 문서를 향하는 링크가 많은 문서일 경우 심각한 문제를 초래할 수 잇습니다.
+방문 수나 이 문서를 향하는 링크가 많은 문서일 경우 심각한 문제를 초래할 수 있습니다.
 문서를 이동하기 전에 이러한 행동이 초래할 수 있는 결과에 대해 숙지하시기 바랍니다.",
 'movepagetalktext'             => "딸린 토론 문서도 자동으로 이동합니다. 하지만 다음의 경우는 '''이동하지 않습니다''':
 * 이동할 이름으로 된 문서가 이미 있는 경우
@@ -3495,18 +3494,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 (본문 전체 검색)',
 'sqlite-no-fts'  => '$1 (본문은 검색에서 제외)',
-
-# Special:DisableAccount
-'disableaccount'             => '계정을 비활성화하기',
-'disableaccount-user'        => '계정 이름:',
-'disableaccount-reason'      => '이유:',
-'disableaccount-confirm'     => "사용자 계정을 비활성화합니다.
-이 사용자는 로그인하거나 비밀번호를 바꿀 수 없고 이메일 알림을 받을 수 없습니다.
-만약 이 사용자가 로그인되어 있다면, 즉시 로그아웃될 것이니다.
-'''계정을 비활성화하는 것은 시스템 관리자의 도움 없이는 되돌릴 수 없습니다.'''",
-'disableaccount-mustconfirm' => '이 계정을 비활성화할 것인지 반드시 확인하여야 합니다.',
-'disableaccount-nosuchuser'  => '계정 "$1"이 존재하지 않습니다.',
-'disableaccount-success'     => '계정 "$1"이 영구히 비활성화되었습니다.',
-'disableaccount-logentry'    => '사용자 계정 [[$1]]을 영구히 비활성화함',
 
 );

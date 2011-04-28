@@ -1433,7 +1433,6 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'right-reset-passwords'       => 'Huk ruraqkunap yaykuna rimanta kutichiy',
 'right-override-export-depth' => "P'anqakunata hawaman quy, t'inkisqa p'anqakunatapas pichqa ñiqin t'inkipayasqakama",
 'right-sendemail'             => 'Huk ruraqkunaman e-chaskita kachay',
-'right-disableaccount'        => "Rakiqunakunata hark'ay",
 
 # User rights log
 'rightslog'      => 'Ruraqpa hayñinkunap hukyasqankuna',
@@ -3393,18 +3392,5 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 # SQLite database support
 'sqlite-has-fts' => "$1 hunt'a qillqa maskana yanapawan",
 'sqlite-no-fts'  => "$1 mana hunt'a qillqa maskana yanapawan",
-
-# Special:DisableAccount
-'disableaccount'             => "Ruraqpa rakiqunanta hark'ay",
-'disableaccount-user'        => 'Ruraqpa sutin:',
-'disableaccount-reason'      => 'Kayrayku:',
-'disableaccount-confirm'     => "Kay ruraqpa sutinta hark'ay.
-Ruraqqa manam yaykuyta atinqachu, manam yaykuna rimanta churamuyta atinqachu, manam e-chaski willaykunata chaskiyta atinchu.
-Maypipas yaykusqa kaspaqa, tuyllapi qarqusqam kanqa.
-''Qhawariy, ruraqpa sutinta hark'aspaykiqa manam t'ikrayta atinkichu llika kamachiq mana yanapachkaptin.''",
-'disableaccount-mustconfirm' => "Kay ruraqpa rakiqunanta hark'ayta munaspaykiqa, takyachinaykim tiyan.",
-'disableaccount-nosuchuser'  => '"$1" sutiyuq ruraqpa rakiqunanqa manam kanchu.',
-'disableaccount-success'     => '"$1" sutiyuq ruraqpa rakiqunanqa wiñaypaq hark\'asqam.',
-'disableaccount-logentry'    => "[[$1]] sutiyuq ruraqpa rakiqunanta wiñaypaq hark'an",
 
 );

@@ -1307,7 +1307,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-reset-passwords'       => 'Hesła druhich wužiwarjow wróćo stajić',
 'right-override-export-depth' => 'Strony inkluziwnje wotkazanych stronow hač do hłubokosće 5 eksportować',
 'right-sendemail'             => 'Druhim wužiwarjam e-mejl pósłać',
-'right-disableaccount'        => 'Konta znjemóžnić',
 
 # User rights log
 'rightslog'      => 'Protokol zrjadowanja wužiwarskich prawow',
@@ -2476,7 +2475,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'import-interwiki-namespace' => 'Cilowy mjenowy rum:',
 'import-upload-filename'     => 'Datajowe mjeno:',
 'import-comment'             => 'Přičina:',
-'importtext'                 => 'Prošu eksportuj dataju ze žórłoweho wikija z pomocu [[Special:Export|Strony eksportować]]. Składuj ju na swojim ličaku a nahraj ju sem.',
+'importtext'                 => 'Prošu eksportuj dataju ze žórłoweho wikija z pomocu funkcije [[Special:Export|Strony eksportować]]. Składuj ju na swojim ličaku a nahraj ju tu.',
 'importstart'                => 'Importuju…',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}}',
 'importnopages'              => 'Žane strony za importowanje.',
@@ -2766,8 +2765,8 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-colorspace'                  => 'Barbny rum',
 'exif-componentsconfiguration'     => 'Woznam kóždeje komponenty',
 'exif-compressedbitsperpixel'      => 'Modus wobrazoweje kompresije',
-'exif-pixelydimension'             => 'Płaćiwa šěrokosć wobraza',
-'exif-pixelxdimension'             => 'Płaćiwa wysokosć wobraza',
+'exif-pixelydimension'             => 'Šěrokosć wobraza',
+'exif-pixelxdimension'             => 'Wysokosć wobraza',
 'exif-makernote'                   => 'Přispomnjenki zhotowjerja',
 'exif-usercomment'                 => 'Přispomjenja wužiwarja',
 'exif-relatedsoundfile'            => 'Zwjazana zynkowa dataja',
@@ -2783,9 +2782,9 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-spectralsensitivity'         => 'Spektralna cutliwosć',
 'exif-isospeedratings'             => 'Cutliwosć filma abo sensora (ISO)',
 'exif-oecf'                        => 'Optoelektroniski přeličenski faktor (OECF)',
-'exif-shutterspeedvalue'           => 'Naswětlenski čas',
-'exif-aperturevalue'               => 'Zasłona',
-'exif-brightnessvalue'             => 'Swětłosć',
+'exif-shutterspeedvalue'           => 'Čas zasłonoweje zawěrki APEX',
+'exif-aperturevalue'               => 'Zasłonowa šěrokosć APEX',
+'exif-brightnessvalue'             => 'APEX-swětłosć',
 'exif-exposurebiasvalue'           => 'Naswětlenska korektura',
 'exif-maxaperturevalue'            => 'Najwjetša zasłona',
 'exif-subjectdistance'             => 'Zdalenje k předmjetej',
@@ -3283,18 +3282,5 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 połnotekstowe pytanje podpěruje.',
 'sqlite-no-fts'  => '$1 połnotekstowe pytanje njepodpěruje',
-
-# Special:DisableAccount
-'disableaccount'             => 'Wužiwarske konto znjemóžnić',
-'disableaccount-user'        => 'Wužiwarske mjeno:',
-'disableaccount-reason'      => 'Přičina:',
-'disableaccount-confirm'     => "Znjemóžń tute wužiwarske konto.
-Wužiwar njemóže so přizjewić, swoje hesło wróćo stajić abo e-mejlowe zdźělenki dóstać.
-Jeli wužiwar je tuchwilu druhdźe přizjewjeny, budźe so hnydom wotzjewjeć.
-''Wobkedźbuj, zo znjemóžnjenje konta njeje rewersibelne bjez zapřimowanja systemoweho administratora.''",
-'disableaccount-mustconfirm' => 'Dyrbiš wobkrućić, zo chceš tute konto znjemóžnić.',
-'disableaccount-nosuchuser'  => 'Wužiwarske konto "$1" njeeksistuje.',
-'disableaccount-success'     => 'Wužiwarske konto "$1" bu na přeco znjemóžnjene.',
-'disableaccount-logentry'    => 'je wužiwarske konto [[$1]] na přeco znjemóžnił',
 
 );

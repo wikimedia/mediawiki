@@ -895,10 +895,10 @@ tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
 'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
-*'''Mozilla, Firefox ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
-*'''Konqueror''': napsauta päivitä tai paina ''F5''
-*'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'')
-*'''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa päivitä tai paina ''Ctrl-F5''.",
+'''Mozilla, Firefox ja Safari:''' napsauta Vaihto-näppäin pohjassa Päivitä tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''Command-R'' Macintoshilla);
+'''Konqueror''': napsauta Päivitä tai paina ''F5'';
+'''Opera:''' tyhjennä välimuisti: ''Tools→Preferences'';
+'''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa Päivitä tai paina ''Ctrl-F5''.",
 'usercssyoucanpreview'             => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'userjsyoucanpreview'              => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
@@ -1204,11 +1204,11 @@ $1 {{int:pipe-separator}} $2',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Selaa sivuja tällä etuliitteellä]]',
 'searchprofile-articles'           => 'Sisältösivut',
 'searchprofile-project'            => 'Ohje- ja projektisivut',
-'searchprofile-images'             => 'Muut mediat',
+'searchprofile-images'             => 'Kuvat ja tiedostot',
 'searchprofile-everything'         => 'Kaikki',
 'searchprofile-advanced'           => 'Laajennettu',
-'searchprofile-articles-tooltip'   => 'Etsi seuraavia $1',
-'searchprofile-project-tooltip'    => 'Etsi seuraavia $1',
+'searchprofile-articles-tooltip'   => 'Hae nimiavaruuksista $1',
+'searchprofile-project-tooltip'    => 'Hae nimiavaruuksista $1',
 'searchprofile-images-tooltip'     => 'Etsi tiedostoja',
 'searchprofile-everything-tooltip' => 'Etsi kaikkialta (myös keskustelusivut)',
 'searchprofile-advanced-tooltip'   => 'Etsi määritellyistä nimiavaruuksista',
@@ -1240,7 +1240,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'powersearch-redir'                => 'Luettele ohjaukset',
 'powersearch-field'                => 'Etsi',
 'powersearch-togglelabel'          => 'Muuta valinta',
-'powersearch-toggleall'            => 'Lisää kaikki',
+'powersearch-toggleall'            => 'Valitse kaikki',
 'powersearch-togglenone'           => 'Poista kaikki',
 'search-external'                  => 'Ulkoinen haku',
 'searchdisabled'                   => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
@@ -1474,7 +1474,6 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-reset-passwords'       => 'Alustaa muiden käyttäjien salasanoja',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
-'right-disableaccount'        => 'Poistaa tunnuksia käytöstä',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -3429,18 +3428,5 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 # SQLite database support
 'sqlite-has-fts' => '$1, jossa on tuki kokotekstihaulle',
 'sqlite-no-fts'  => '$1, jossa ei ole tukea kokotekstihaulle',
-
-# Special:DisableAccount
-'disableaccount'             => 'Käyttäjätunnuksen poistaminen käytöstä',
-'disableaccount-user'        => 'Käyttäjätunnus',
-'disableaccount-reason'      => 'Syy',
-'disableaccount-confirm'     => "Poista käytöstä tämä käyttäjätunnus.
-Käyttäjä ei pysty kirjautumaan sisään, pyytämään uutta salasanaa tai vastaanottamaan sähköposti-ilmoituksia. 
-Jos käyttäjä on tällä hetkellä sisäänkirjautuneena, käyttäjä kirjataan ulos välittömästi.
-''Huomaa, että tunnuksen käytöstä poistamisen peruminen ei ole mahdollista ilman järjestelmänvalvojan toimia.''",
-'disableaccount-mustconfirm' => 'Vahvista, että haluat poistaa tämän tunnuksen.',
-'disableaccount-nosuchuser'  => 'Käyttäjätunnusta ”$1” ei ole olemassa.',
-'disableaccount-success'     => "Käyttäjätunnus ''$1'' on poistettu käytöstä pysyvästi.",
-'disableaccount-logentry'    => 'poisti pysyvästi käytöstä käyttäjätunnuksen [[$1]]',
 
 );

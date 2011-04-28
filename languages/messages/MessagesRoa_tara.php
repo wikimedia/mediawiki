@@ -1267,7 +1267,6 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-reset-passwords'       => "Azzere l'otre password de l'utinde",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
-'right-disableaccount'        => 'Disabbilete le cunde utinde',
 
 # User rights log
 'rightslog'      => "Archivie de le diritte de l'utende",
@@ -1498,22 +1497,23 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'upload-http-error'         => "S'a verificate 'n'errore HTTP: $1",
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accesse negate',
-'img-auth-nopathinfo'   => "No se iacchie PATH_INFO.
+'img-auth-accessdenied'     => 'Accesse negate',
+'img-auth-nopathinfo'       => "No se iacchie PATH_INFO.
 'U server tue non g'è 'mbostate o non ge passe st'mbormazione.
 Pò essere ca jè basate sus a 'u CGI e non ge pò supportà img_auth.
 Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
-'img-auth-badtitle'     => 'Non ge se pò costruì \'nu titele valide da "$1".',
-'img-auth-nologinnWL'   => 'Tu non ge sì collegate e "$1" non ge stè jndr\'à lista vianghe.',
-'img-auth-nofile'       => 'File "$1" non g\'esiste.',
-'img-auth-isdir'        => 'Tu ste ppruève a trasè jndr\'à cartelle "$1".
+'img-auth-notindir'         => "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
+'img-auth-badtitle'         => 'Non ge se pò costruì \'nu titele valide da "$1".',
+'img-auth-nologinnWL'       => 'Tu non ge sì collegate e "$1" non ge stè jndr\'à lista vianghe.',
+'img-auth-nofile'           => 'File "$1" non g\'esiste.',
+'img-auth-isdir'            => 'Tu ste ppruève a trasè jndr\'à cartelle "$1".
 Sulamende le file ponne trasè.',
-'img-auth-streaming'    => 'Streaming "$1".',
-'img-auth-public'       => "'A funziona de img_auth.php jè 'u resultate de le file da 'na Uicchi private.
+'img-auth-streaming'        => 'Streaming "$1".',
+'img-auth-public'           => "'A funziona de img_auth.php jè 'u resultate de le file da 'na Uicchi private.
 Sta Uicchi jè configurate cumme a 'na Uicchi pubbleche.
 Pe 'na securezze a uerre proprie, img_auth.php jè disabbilitate.",
-'img-auth-noread'       => 'L\'utende non ge tène l\'accesse pe leggere "$1".',
+'img-auth-noread'           => 'L\'utende non ge tène l\'accesse pe leggere "$1".',
+'img-auth-bad-query-string' => "L'URL tène 'na stringhe de inderrogazione invalide",
 
 # HTTP errors
 'http-invalid-url'      => 'URL invalide: $1',
@@ -2502,7 +2502,7 @@ Tutte le aziune de 'mbortaziune 'mbrà le Uicchi sonde reggistrate jndr'à l'[[S
 'import-upload-filename'     => "Nome d'u file:",
 'import-comment'             => 'Commende:',
 'importtext'                 => "Pe piacere esporte 'u file da 'a Uicchi sorgende ausanne l'[[Special:Export|utilità de esportazione]].
-Reggistrele sus a 'u combiuter tue e carechele aqquà.",
+Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'importstart'                => "'Mbortazione de le pàggene...",
 'import-revision-count'      => '$1 {{PLURAL:$1|revisione|revisiune}}',
 'importnopages'              => "Nisciuna pàgene da 'mbortà.",
@@ -2786,8 +2786,8 @@ Otre avènene scunnute pe defolt.
 'exif-colorspace'                  => "Spazie d'u culore",
 'exif-componentsconfiguration'     => 'Significate de ogne combonende',
 'exif-compressedbitsperpixel'      => "Mode de combressione de l'immaggine",
-'exif-pixelydimension'             => "Larghezze de l'immaggine valide",
-'exif-pixelxdimension'             => "Altezze de l'immaggine valide",
+'exif-pixelydimension'             => "Larghezze de l'immaggine",
+'exif-pixelxdimension'             => "Altezze de l'immaggine",
 'exif-makernote'                   => "Note d'u ccreatore",
 'exif-usercomment'                 => "Commende de l'utende",
 'exif-relatedsoundfile'            => 'File audio collegate',
@@ -2803,9 +2803,9 @@ Otre avènene scunnute pe defolt.
 'exif-spectralsensitivity'         => 'Senzitività spettrale',
 'exif-isospeedratings'             => 'Senzibbilità ISO',
 'exif-oecf'                        => 'Fattore de conversione optoelettroneche',
-'exif-shutterspeedvalue'           => 'Velocità de esposizione',
-'exif-aperturevalue'               => 'Aperture',
-'exif-brightnessvalue'             => 'Lumenosità',
+'exif-shutterspeedvalue'           => 'Velocità de esposizione APEX',
+'exif-aperturevalue'               => 'Aperture de APEX',
+'exif-brightnessvalue'             => 'Lumenosità de APEX',
 'exif-exposurebiasvalue'           => "Correzzione de l'esposizione",
 'exif-maxaperturevalue'            => 'Aperture massime',
 'exif-subjectdistance'             => "Distanze d'u soggette",
@@ -2950,6 +2950,8 @@ Otre avènene scunnute pe defolt.
 'exif-sensingmethod-5' => "Senzore d'area culore sequenziale",
 'exif-sensingmethod-7' => 'Senzore trilinèere',
 'exif-sensingmethod-8' => 'Senzore linèere de culore sequenziale',
+
+'exif-filesource-3' => 'Maghena fotografeche digitale',
 
 'exif-scenetype-1' => 'Fotografije dirette',
 
@@ -3308,18 +3310,5 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 # SQLite database support
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
-
-# Special:DisableAccount
-'disableaccount'             => "Disabbilete 'nu cunde utende",
-'disableaccount-user'        => "Nome de l'utende:",
-'disableaccount-reason'      => 'Mutive:',
-'disableaccount-confirm'     => "Disabbilete stu cunde de l'utende. <br />
-St'utende pò non ge pò trasè cchiù, azzerà 'a passuord soje, o ricevere email de notifiche. <br />
-Ce l'utende jè collegate jndr'à stu mumende, allore avène mise fore. <br />
-''Vide bbuene 'a disabbilitazione de 'nu cunde utende non g'è reversibbele senze 'n'indervende de 'n'amministratore d'u sisteme.''",
-'disableaccount-mustconfirm' => 'Tu a confermà ce vuè ccu disabbilete stu cunde utende.',
-'disableaccount-nosuchuser'  => '\'U cunde utende "$1" non g\'esiste.',
-'disableaccount-success'     => '\'U cunde utende "$1" ha state disabbilitate pe sembre.',
-'disableaccount-logentry'    => "disabbilete pe sembre 'u cunde utende [[$1]]",
 
 );

@@ -1433,6 +1433,10 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'prefs-displaywatchlist'        => 'Chouèx de visualisacion',
 'prefs-diffs'                   => 'Difèrences',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'L’adrèce èlèctronica semble valida',
+'email-address-validity-invalid' => 'Buchiéd una adrèce èlèctronica valida',
+
 # User rights
 'userrights'                   => 'Administracion des drêts d’utilisator',
 'userrights-lookup-user'       => 'Administracion a les tropes d’utilisators',
@@ -1540,7 +1544,6 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-reset-passwords'       => 'Changiér lo mot de pâssa d’ôtros utilisators',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
-'right-disableaccount'        => 'Dèsactivar des comptos',
 
 # User rights log
 'rightslog'      => 'Jornal des changements de statut d’utilisator',
@@ -1788,22 +1791,23 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'upload-http-error'         => 'Una èrror HTTP est arrevâ : $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accès refusâ',
-'img-auth-nopathinfo'   => 'PATH_INFO manquent.
+'img-auth-accessdenied'     => 'Accès refusâ',
+'img-auth-nopathinfo'       => 'PATH_INFO manquent.
 Voutron sèrvor est pas dèfeni por passar ceta enformacion.
 Fonccione pôt-étre en CGI et pués recognêt pas img_auth.
 Vêde http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
-'img-auth-badtitle'     => 'Empossiblo de construire un titro valido dês « $1 ».',
-'img-auth-nologinnWL'   => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
-'img-auth-nofile'       => 'Lo fichiér « $1 » ègziste pas.',
-'img-auth-isdir'        => 'Vos tâchiéd d’arrevar u rèpèrtouèro « $1 ».
+'img-auth-notindir'         => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
+'img-auth-badtitle'         => 'Empossiblo de construire un titro valido dês « $1 ».',
+'img-auth-nologinnWL'       => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
+'img-auth-nofile'           => 'Lo fichiér « $1 » ègziste pas.',
+'img-auth-isdir'            => 'Vos tâchiéd d’arrevar u rèpèrtouèro « $1 ».
 Solament l’accès ux fichiérs est pèrmês.',
-'img-auth-streaming'    => 'Lèctura en continu de « $1 ».',
-'img-auth-public'       => 'La fonccion de img_auth.php est de fâre vêre des fichiérs d’un vouiqui privâ.
+'img-auth-streaming'        => 'Lèctura en continu de « $1 ».',
+'img-auth-public'           => 'La fonccion de img_auth.php est de fâre vêre des fichiérs d’un vouiqui privâ.
 Ceti vouiqui est configurâ coment un vouiqui publico.
 Por una sècuritât parfèta, img_auth.php est dèsactivâ.',
-'img-auth-noread'       => 'L’utilisator at pas lo drêt en lèctura dessus « $1 ».',
+'img-auth-noread'           => 'L’utilisator at pas lo drêt en lèctura dessus « $1 ».',
+'img-auth-bad-query-string' => 'L’URL at una chêna de requéta envalida.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL fôssa : $1',
@@ -3107,8 +3111,8 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-colorspace'                  => 'Èspâço colorimètrico',
 'exif-componentsconfiguration'     => 'Significacion de châque composenta',
 'exif-compressedbitsperpixel'      => 'Fôrma de comprèssion de l’émâge',
-'exif-pixelydimension'             => 'Largior d’émâge valida',
-'exif-pixelxdimension'             => 'Hôtior d’émâge valida',
+'exif-pixelydimension'             => 'Largior de l’émâge',
+'exif-pixelxdimension'             => 'Hôtior de l’émâge',
 'exif-makernote'                   => 'Notes u fabrecant',
 'exif-usercomment'                 => 'Comentèros a l’utilisator',
 'exif-relatedsoundfile'            => 'Fichiér ôdiô associyê',
@@ -3124,9 +3128,9 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-spectralsensitivity'         => 'Sensibilitât spèctrâla',
 'exif-isospeedratings'             => 'Sensibilitât ISO',
 'exif-oecf'                        => 'Factor de convèrsion optoèlèctronico',
-'exif-shutterspeedvalue'           => 'Vitèsse d’ètopâ',
-'exif-aperturevalue'               => 'Uvèrtura',
-'exif-brightnessvalue'             => 'Luminositât',
+'exif-shutterspeedvalue'           => 'Vitèsse d’ètopâ de l’APEX',
+'exif-aperturevalue'               => 'Uvèrtura de l’APEX',
+'exif-brightnessvalue'             => 'Luminance APEX',
 'exif-exposurebiasvalue'           => 'Corrèccion d’èxposicion',
 'exif-maxaperturevalue'            => 'Uvèrtura la ples granta',
 'exif-subjectdistance'             => 'Distance du sujèt',
@@ -3704,18 +3708,5 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 # SQLite database support
 'sqlite-has-fts' => '$1 avouéc rechèrche en tèxto complèt recognua',
 'sqlite-no-fts'  => '$1 sen rechèrche en tèxto complèt recognua',
-
-# Special:DisableAccount
-'disableaccount'             => 'Dèsactivar un compto utilisator',
-'disableaccount-user'        => 'Nom d’utilisator :',
-'disableaccount-reason'      => 'Rêson :',
-'disableaccount-confirm'     => "Dèsactivar cél compto utilisator.
-L’utilisator porrat pas més sè branchiér, ni tornar inicialisar son mot de pâssa, ni recêvre des notificacions per mèssageria èlèctronica.
-Se l’utilisator est orendrêt branchiê a quârqu’un sens, serat dèbranchiê d’abôrd.
-''Notâd que la dèsactivacion d’un compto est pas revèrsibla sen entèrvencion d’un administrator sistèmo.''",
-'disableaccount-mustconfirm' => 'Vos dête confirmar que vos souhètâd dèsactivar cél compto.',
-'disableaccount-nosuchuser'  => 'Lo compto utilisator « $1 » ègziste pas.',
-'disableaccount-success'     => 'Lo compto utilisator « $1 » at étâ dèsactivâ por de bon.',
-'disableaccount-logentry'    => 'at dèsactivâ por de bon lo compto utilisator [[$1]]',
 
 );

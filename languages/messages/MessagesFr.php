@@ -40,6 +40,7 @@
  * @author McDutchie
  * @author Meithal
  * @author Moyg
+ * @author Od1n
  * @author Omnipaedista
  * @author Peter17
  * @author PieRRoMaN
@@ -1542,7 +1543,6 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-reset-passwords'       => 'Changer le mot de passe d’autres utilisateurs',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
-'right-disableaccount'        => 'Désactiver des comptes',
 
 # User rights log
 'rightslog'      => 'Journal des modifications de droits d’utilisateurs',
@@ -1778,22 +1778,23 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accès refusé',
-'img-auth-nopathinfo'   => 'PATH_INFO manquant.
+'img-auth-accessdenied'     => 'Accès refusé',
+'img-auth-nopathinfo'       => 'PATH_INFO manquant.
 Votre serveur n’est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_auth.
 Consultez http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Le chemin demandé n’est pas le répertoire de téléversement configuré.',
-'img-auth-badtitle'     => 'Impossible de construire un titre valide à partir de « $1 ».',
-'img-auth-nologinnWL'   => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
-'img-auth-nofile'       => 'Le fichier « $1 » n’existe pas.',
-'img-auth-isdir'        => 'Vous essayez d’accéder au répertoire « $1 ».
+'img-auth-notindir'         => 'Le chemin demandé n’est pas le répertoire de téléversement configuré.',
+'img-auth-badtitle'         => 'Impossible de construire un titre valide à partir de « $1 ».',
+'img-auth-nologinnWL'       => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
+'img-auth-nofile'           => 'Le fichier « $1 » n’existe pas.',
+'img-auth-isdir'            => 'Vous essayez d’accéder au répertoire « $1 ».
 Seul l’accès aux fichiers est permis.',
-'img-auth-streaming'    => 'Lecture en continu de « $1 ».',
-'img-auth-public'       => 'La fonction de img_auth.php est d’afficher des fichiers d’un wiki privé.
+'img-auth-streaming'        => 'Lecture en continu de « $1 ».',
+'img-auth-public'           => 'La fonction de img_auth.php est d’afficher des fichiers d’un wiki privé.
 Ce wiki est configuré comme un wiki public.
 Pour une sécurité optimale, img_auth.php est désactivé.',
-'img-auth-noread'       => 'L’utilisateur n’a pas le droit en lecture sur « $1 ».',
+'img-auth-noread'           => 'L’utilisateur n’a pas le droit en lecture sur « $1 ».',
+'img-auth-bad-query-string' => "L'URL a une chaîne de requête invalide.",
 
 # HTTP errors
 'http-invalid-url'      => 'URL incorrecte : $1',
@@ -3066,8 +3067,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-colorspace'                  => 'Espace colorimétrique',
 'exif-componentsconfiguration'     => 'Signification de chaque composante',
 'exif-compressedbitsperpixel'      => 'Mode de compression de l’image',
-'exif-pixelydimension'             => 'Hauteur d’image valide',
-'exif-pixelxdimension'             => 'Largeur d’image valide',
+'exif-pixelydimension'             => 'Largeur de l’image',
+'exif-pixelxdimension'             => 'Hauteur de l’image',
 'exif-makernote'                   => 'Notes du fabricant',
 'exif-usercomment'                 => 'Commentaires de l’utilisateur',
 'exif-relatedsoundfile'            => 'Fichier audio associé',
@@ -3083,9 +3084,9 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-spectralsensitivity'         => 'Sensibilité spectrale',
 'exif-isospeedratings'             => 'Sensibilité ISO',
 'exif-oecf'                        => 'Fonction de conversion opto-électronique',
-'exif-shutterspeedvalue'           => 'Vitesse d’obturation',
-'exif-aperturevalue'               => 'Ouverture',
-'exif-brightnessvalue'             => 'Luminance',
+'exif-shutterspeedvalue'           => 'vitesse d’obturation de l’APEX',
+'exif-aperturevalue'               => 'Ouverture de l’APEX',
+'exif-brightnessvalue'             => 'Luminance APEX',
 'exif-exposurebiasvalue'           => 'Correction d’exposition',
 'exif-maxaperturevalue'            => 'Ouverture maximale',
 'exif-subjectdistance'             => 'Distance du sujet',
@@ -3220,7 +3221,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-flash-return-3'   => 'le stroboscope détecte un retour de lumière',
 'exif-flash-mode-1'     => 'lumière du flash obligatoire',
 'exif-flash-mode-2'     => 'suppression du flash obligatoire',
-'exif-flash-mode-3'     => 'Mode automatique',
+'exif-flash-mode-3'     => 'mode automatique',
 'exif-flash-function-1' => 'Pas de fonction de flash',
 'exif-flash-redeye-1'   => 'Mode anti-yeux rouges',
 
@@ -3622,18 +3623,5 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 # SQLite database support
 'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',
 'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
-
-# Special:DisableAccount
-'disableaccount'             => 'Désactiver un compte utilisateur',
-'disableaccount-user'        => 'Nom d’utilisateur :',
-'disableaccount-reason'      => 'Motif :',
-'disableaccount-confirm'     => "Désactiver ce compte utilisateur.
-L’utilisateur ne pourra plus s’identifier, ni réinitialiser son mot de passe, ni recevoir des notifications par courrier électronique.
-Si l’utilisateur est actuellement identifié quelque part, il sera immédiatement déconnecté.
-''Notez que la désactivation d’un compte n’est pas réversible sans intervention d’un administrateur système.''",
-'disableaccount-mustconfirm' => 'Vous devez confirmer que vous souhaitez désactiver ce compte.',
-'disableaccount-nosuchuser'  => "Le compte utilisateur « $1 » n'existe pas.",
-'disableaccount-success'     => 'Le compte utilisateur « $1 » a été définitivement désactivé.',
-'disableaccount-logentry'    => 'a désactivé définitivement le compte utilisateur [[$1]]',
 
 );

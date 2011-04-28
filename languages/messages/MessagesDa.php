@@ -1286,7 +1286,7 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'userrights-no-interwiki'      => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
 'userrights-nodatabase'        => 'Databasen $1 eksisterer ikke lokalt.',
 'userrights-nologin'           => 'Du skal [[Special:UserLogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
-'userrights-notallowed'        => 'Din konto har ikke andgang til at ændre brugerrettigheder.',
+'userrights-notallowed'        => 'Din konto har ikke adgang til at ændre brugerrettigheder.',
 'userrights-changeable-col'    => 'Redigerbare grupper',
 'userrights-unchangeable-col'  => 'Uredigerbare grupper',
 
@@ -1375,7 +1375,6 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'right-reset-passwords'       => 'Ændre andre brugeres adgangskode',
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
-'right-disableaccount'        => 'Deaktivere konti',
 
 # User rights log
 'rightslog'      => 'Rettighedslog',
@@ -1593,22 +1592,23 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'upload-http-error'         => 'Der opstod en HTTP-fejl: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Adgang nægtet',
-'img-auth-nopathinfo'   => 'PATH_INFO mangler.
+'img-auth-accessdenied'     => 'Adgang nægtet',
+'img-auth-nopathinfo'       => 'PATH_INFO mangler.
 Din server er ikke sat op til at give denne information.
 Den bruger måske CGI og understøtter ikke img_auth.
 Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Den ønskede sti er ikke i det opsatte oplægningskatalog.',
-'img-auth-badtitle'     => 'Kan ikke lave en gyldig titel ud fra "$1".',
-'img-auth-nologinnWL'   => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',
-'img-auth-nofile'       => 'Filen "$1" findes ikke.',
-'img-auth-isdir'        => 'Du forsøger at få adgang til kataloget "$1".
+'img-auth-notindir'         => 'Den ønskede sti er ikke i det opsatte oplægningskatalog.',
+'img-auth-badtitle'         => 'Kan ikke lave en gyldig titel ud fra "$1".',
+'img-auth-nologinnWL'       => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',
+'img-auth-nofile'           => 'Filen "$1" findes ikke.',
+'img-auth-isdir'            => 'Du forsøger at få adgang til kataloget "$1".
 Kun adgang til filer tillades.',
-'img-auth-streaming'    => 'Sender "$1".',
-'img-auth-public'       => "img_auth.php's funktion er at sende filer fra en privat wiki.
+'img-auth-streaming'        => 'Sender "$1".',
+'img-auth-public'           => "img_auth.php's funktion er at sende filer fra en privat wiki.
 Denne wiki er konfigureret som en offentlig wiki.
 For optimal sikkerhed er img_auth.php deaktiveret.",
-'img-auth-noread'       => 'Brugeren har ikke rettigheder til at læse "$1".',
+'img-auth-noread'           => 'Brugeren har ikke rettigheder til at læse "$1".',
+'img-auth-bad-query-string' => 'URL-adressen har en ugyldig forespørgselsstreng.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ugyldig webadresse: $1',
@@ -2538,7 +2538,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'import-interwiki-namespace' => 'Importer til navnerum:',
 'import-upload-filename'     => 'Filnavn:',
 'import-comment'             => 'Kommentar:',
-'importtext'                 => "Eksportér filen fra kilde-wiki'en ved hjælp af værktøjet Special:Export, gem den på din harddisk og læg den op her.",
+'importtext'                 => "Eksportér filen fra kilde-wiki'en ved hjælp af [[Special:Export|eksporterings værktøjet]], gem den på din harddisk og upload den her.",
 'importstart'                => 'Importerer sider …',
 'import-revision-count'      => '– {{PLURAL:$1|1 version|$1 versioner}}',
 'importnopages'              => 'Ingen sider fundet til import.',
@@ -2833,8 +2833,8 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-colorspace'                  => 'Farverum',
 'exif-componentsconfiguration'     => 'Betydning af enkelte komponenter',
 'exif-compressedbitsperpixel'      => 'Komprimerede bits pr. pixel',
-'exif-pixelydimension'             => 'Gyldig billedbredde',
-'exif-pixelxdimension'             => 'Gyldig billedhøjde',
+'exif-pixelydimension'             => 'Billedbredde',
+'exif-pixelxdimension'             => 'Billedhøjde',
 'exif-makernote'                   => 'Producentnotits',
 'exif-usercomment'                 => 'Brugerkommentarer',
 'exif-relatedsoundfile'            => 'Tilhørende lydfil',
@@ -2850,9 +2850,9 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-spectralsensitivity'         => 'Spectral sensitivitet',
 'exif-isospeedratings'             => 'Film- eller sensorfølsomhed (ISO)',
 'exif-oecf'                        => 'Optoelektronisk omregningsfaktor',
-'exif-shutterspeedvalue'           => 'Belysningstidsværdi',
-'exif-aperturevalue'               => 'Blændeværdi',
-'exif-brightnessvalue'             => 'Lyshedsværdi',
+'exif-shutterspeedvalue'           => 'APEX lukkerhastighed',
+'exif-aperturevalue'               => 'APEX blændeåbning',
+'exif-brightnessvalue'             => 'APEX lysstyrke',
 'exif-exposurebiasvalue'           => 'Belysningsindstilling',
 'exif-maxaperturevalue'            => 'Største blænde',
 'exif-subjectdistance'             => 'Afstand',
@@ -3350,18 +3350,5 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 # SQLite database support
 'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
 'sqlite-no-fts'  => '$1 uden fuld-tekst søgnings support',
-
-# Special:DisableAccount
-'disableaccount'             => 'Deaktivere en brugerkonto',
-'disableaccount-user'        => 'Brugernavn:',
-'disableaccount-reason'      => 'Begrundelse:',
-'disableaccount-confirm'     => "Deaktiver denne brugerkonto.
-Denne bruger vil ikke være i stand til at logge ind, nulstille sit password eller modtage emailnotifikationer.
-Hvis brugeren er logget ind et sted, vil vedkommende blive logget ud øjeblikkeligt.
-''Bemærk at deaktivering af en konto ikke kan fortrydes uden systemadministrators indgriben.''",
-'disableaccount-mustconfirm' => 'Du skal bekræfte, at du ønsker at deaktivere denne konto.',
-'disableaccount-nosuchuser'  => 'Brugerkontoen "$1" findes ikke.',
-'disableaccount-success'     => 'Brugerkontoen "$1" er blevet permanent deaktiveret.',
-'disableaccount-logentry'    => 'deaktiverede brugerkontoen [[$1]] permanent',
 
 );

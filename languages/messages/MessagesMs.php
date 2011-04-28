@@ -370,7 +370,7 @@ $messages = array(
 'postcomment'       => 'Bahagian baru',
 'articlepage'       => 'Lihat laman kandungan',
 'talk'              => 'Perbincangan',
-'views'             => 'Pandangan',
+'views'             => 'Rupa',
 'toolbox'           => 'Alatan',
 'userpage'          => 'Lihat laman pengguna',
 'projectpage'       => 'Lihat laman projek',
@@ -1112,8 +1112,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'nonefound'                        => "'''Catatan''': Hanya sesetengah ruang nama dicari mengikut tetapan tersedia.
 Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbincangan, templat, dan lain-lain), atau gunakan ruang nama yang dikehendaki sebagai awalan.",
 'search-nonefound'                 => 'Tiada hasil yang sepadan dengan pertanyaan.',
-'powersearch'                      => 'Cari',
-'powersearch-legend'               => 'Carian maju',
+'powersearch'                      => 'Carian lanjutan',
+'powersearch-legend'               => 'Carian lanjutan',
 'powersearch-ns'                   => 'Cari dalam ruang nama:',
 'powersearch-redir'                => 'Termasuk lencongan',
 'powersearch-field'                => 'Cari',
@@ -1147,7 +1147,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-rc'                      => 'Perubahan terkini',
 'prefs-watchlist'               => 'Senarai pantau',
 'prefs-watchlist-days'          => 'Had bilangan hari dalam senarai pantau:',
-'prefs-watchlist-days-max'      => '(had 7 hari)',
+'prefs-watchlist-days-max'      => 'Maksimum 7 hari',
 'prefs-watchlist-edits'         => 'Had maksimum perubahan untuk ditunjukkan dalam senarai pantau penuh:',
 'prefs-watchlist-edits-max'     => 'Had: 1000',
 'prefs-watchlist-token'         => 'Token senarai pantau:',
@@ -1167,7 +1167,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'contextlines'                  => 'Bilangan baris untuk dipaparkan bagi setiap capaian:',
 'contextchars'                  => 'Bilangan askara konteks bagi setiap baris:',
 'stub-threshold'                => 'Ambang bagi pemformatan <a href="#" class="stub">pautan ke rencana ringkas</a> (bait):',
-'stub-threshold-disabled'       => 'Dilumpuhkan',
+'stub-threshold-disabled'       => 'Dimatikan',
 'recentchangesdays'             => 'Bilangan hari dalam perubahan terkini:',
 'recentchangesdays-max'         => '(had $1 hari)',
 'recentchangescount'            => 'Bilangan suntingan yang dipaparkan mengikut tetapan tersedia:',
@@ -1353,7 +1353,6 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-reset-passwords'       => 'Mengeset semula kata laluan pengguna lain',
 'right-override-export-depth' => 'Eksport laman termasuk laman dipaut sehingga kedalaman 5',
 'right-sendemail'             => 'Kirim e-mel kepada pengguna-pengguna lain',
-'right-disableaccount'        => 'Matikan akaun',
 
 # User rights log
 'rightslog'      => 'Log hak pengguna',
@@ -1476,7 +1475,7 @@ Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan s
 'filesource'                  => 'Sumber:',
 'uploadedfiles'               => 'Fail yang telah dimuat naik',
 'ignorewarning'               => 'Abaikan amaran dan simpan juga fail ini.',
-'ignorewarnings'              => 'Abaikan mana-mana amaran.',
+'ignorewarnings'              => 'Abaikan sebarang amaran',
 'minlength1'                  => 'Panjang nama fail mestilah sekurang-kurangnya satu huruf.',
 'illegalfilename'             => 'Nama fail "$1" mengandungi aksara yang tidak dibenarkan dalam tajuk laman. Sila tukar nama fail ini dan muat naik sekali lagi.',
 'badfilename'                 => 'Nama fail telah ditukar kepada "$1".',
@@ -1566,21 +1565,22 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'upload-http-error'         => 'Berlaku ralat HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Capaian ditolak',
-'img-auth-nopathinfo'   => 'Tiada PATH_INFO.
+'img-auth-accessdenied'     => 'Capaian ditolak',
+'img-auth-nopathinfo'       => 'Tiada PATH_INFO.
 Pelayan anda tidak ditetapkan untuk menyampaikan maklumat ini.
 Ia barangkali berdasarkan CGI dan tidak boleh menyokong img_auth.
 Lihat http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Laluan yang diminta tiada dalam direktori muat naik yang telah dikonfigurasikan.',
-'img-auth-badtitle'     => 'Tajuk yang sah tidak dapat dibina daripada "$1".',
-'img-auth-nologinnWL'   => 'Anda belum log masuk dan "$1" tiada dalam senarai putih.',
-'img-auth-nofile'       => 'Fail "$1" tiada.',
-'img-auth-isdir'        => 'Anda telah mencuba mencapai direktori "$1". Hanya capaian fail dibenarkan.',
-'img-auth-streaming'    => '"$1" sedang disalurkan.',
-'img-auth-public'       => 'Fungsi img_auth.php ialah mengoutput fail-fail daripada wiki peribadi.
+'img-auth-notindir'         => 'Laluan yang diminta tiada dalam direktori muat naik yang telah dikonfigurasikan.',
+'img-auth-badtitle'         => 'Tajuk yang sah tidak dapat dibina daripada "$1".',
+'img-auth-nologinnWL'       => 'Anda belum log masuk dan "$1" tiada dalam senarai putih.',
+'img-auth-nofile'           => 'Fail "$1" tiada.',
+'img-auth-isdir'            => 'Anda telah mencuba mencapai direktori "$1". Hanya capaian fail dibenarkan.',
+'img-auth-streaming'        => '"$1" sedang disalurkan.',
+'img-auth-public'           => 'Fungsi img_auth.php ialah mengoutput fail-fail daripada wiki peribadi.
 Wiki ini telah dikonfigurasikan sebagai wiki awam.
 Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
-'img-auth-noread'       => 'Pengguna tidak mempunyai capaian membaca "$1".',
+'img-auth-noread'           => 'Pengguna tidak mempunyai capaian membaca "$1".',
+'img-auth-bad-query-string' => 'URL ini ada rentetan pertanyaan yang tidak sah.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL tidak sah: $1',
@@ -2538,7 +2538,8 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'import-interwiki-namespace' => 'Ruang nama destinasi:',
 'import-upload-filename'     => 'Nama fail:',
 'import-comment'             => 'Komen:',
-'importtext'                 => 'Sila eksport fail daripada sumber wiki menggunakan kemudahan Special:Export, simpan dalam komputer anda dan muat naik di sini.',
+'importtext'                 => 'Sila eksport fail daripada sumber wiki dengan menggunakan [[Special:Export|utiliti eksport]].
+Simpan dalam komputer anda dan muat naiknya di sini.',
 'importstart'                => 'Mengimport laman...',
 'import-revision-count'      => '$1 semakan',
 'importnopages'              => 'Tiada laman untuk diimport.',
@@ -2836,9 +2837,9 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-spectralsensitivity'         => 'Kepekaan spektrum',
 'exif-isospeedratings'             => 'Penilaian kelajuan ISO',
 'exif-oecf'                        => 'Faktor penukaran optoelektronik',
-'exif-shutterspeedvalue'           => 'Kelajuan pengatup',
-'exif-aperturevalue'               => 'Bukaan',
-'exif-brightnessvalue'             => 'Kecerahan',
+'exif-shutterspeedvalue'           => 'Kelajuan pengatup APEX',
+'exif-aperturevalue'               => 'Bukaan APEX',
+'exif-brightnessvalue'             => 'Kecerahan APEX',
 'exif-exposurebiasvalue'           => 'Kecenderungan pendedahan',
 'exif-maxaperturevalue'            => 'Bukaan tanah maksimum',
 'exif-subjectdistance'             => 'Jarak subjek',
@@ -2983,6 +2984,8 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-sensingmethod-5' => 'Penderia kawasan warna berjujukan',
 'exif-sensingmethod-7' => 'Penderia trilinear',
 'exif-sensingmethod-8' => 'Penderia linear warna berjujukan',
+
+'exif-filesource-3' => 'Kamera pegun digital',
 
 'exif-scenetype-1' => 'Gambar yang diambil secara terus',
 
@@ -3253,7 +3256,7 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 # Special:FilePath
 'filepath'         => 'Laluan fail',
 'filepath-page'    => 'Fail:',
-'filepath-submit'  => 'Laluan',
+'filepath-submit'  => 'Pergi',
 'filepath-summary' => 'Laman khas ini mengembalikan laluan penuh bagi sesebuah fail.
 Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara yang berkenaan secara terus.
 
@@ -3349,18 +3352,5 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 dengan sokongan carian teks penuh',
 'sqlite-no-fts'  => '$1 tanpa sokongan carian teks penuh',
-
-# Special:DisableAccount
-'disableaccount'             => 'Lumpuhkan akaun pengguna',
-'disableaccount-user'        => 'Nama pengguna:',
-'disableaccount-reason'      => 'Sebab:',
-'disableaccount-confirm'     => "Lumpuhkan akaun pengguna ini.
-Pengguna ini tidak akan dapat log masuk, set semula kata laluannya, atau menerima makluman e-mel.
-Jika pengguna ini sedang log masuk di mana-mana, dia akan log keluar serta-merta.
-''Sila maklum bahasa tindakan melumpuhkan sesuatu akaun tidak boleh diundurkan tanpa bantuan pentadbir sistem.''",
-'disableaccount-mustconfirm' => 'Anda perlu mengesahkan bahawa anda ingin melumpuhkan akaun ini.',
-'disableaccount-nosuchuser'  => 'Akaun pengguna "$1" tidak wujud.',
-'disableaccount-success'     => 'Akaun pengguna "$1" telah dilumpuhkan selama-lamanya.',
-'disableaccount-logentry'    => 'lumpuhkan selama-lamanya akaun pengguna [[$1]]',
 
 );

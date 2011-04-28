@@ -451,7 +451,7 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 
 # General errors
 'error'                => 'Kamalian',
-'databaseerror'        => 'Kamalian sa kalipunan ng datos',
+'databaseerror'        => 'Kamalian sa kalipunan ng dato',
 'dberrortext'          => 'Nagkaroon po ng isang pagkakamali sa usisang pampalaugnayan sa kalipunan ng datos.
 Maaaring dahil ito sa depekto sa sopwer (\'\'software\'\').
 Ang huling sinubukang paguusisa sa kalipunan ng datos ay:
@@ -1368,7 +1368,6 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 'right-reset-passwords'       => 'Mulng itakda ang mga hudyat ng iba pang mga tagagamit',
 'right-override-export-depth' => 'Iluwas ang mga pahina na kabilang ang mga pahinang nakakawing magpahanggang sa isang lalim na 5',
 'right-sendemail'             => 'Magpadala ng e-liham sa ibang mga tagagamit',
-'right-disableaccount'        => 'Huwag paganahin ang mga akawnt',
 
 # User rights log
 'rightslog'      => 'Tala ng mga karapatan ng tagagamit',
@@ -1589,22 +1588,23 @@ Kapag nagpatuloy ang suliranin, makipagugnayan sa isang [[Special:ListUsers/syso
 'upload-http-error'         => 'Naganap ang isang kamaliang pang-HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Hindi pinayagan ang pagpunta',
-'img-auth-nopathinfo'   => 'Nawawalang PATH_INFO.
+'img-auth-accessdenied'     => 'Hindi pinayagan ang pagpunta',
+'img-auth-nopathinfo'       => 'Nawawalang PATH_INFO.
 Ang tagapaghain mo ay hindi nakatakdang na maipasa ang kabatirang ito.
 Maaaring pang-CGI ito at hindi makatangkilik ng img_auth.
 Tingnan ang http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Ang hiniling na daan ay wala sa loob ng isinaayos na direktoryo ng pagkarga.',
-'img-auth-badtitle'     => 'Hindi nagawang makabuo ng tanggap na pamagat mula sa "$1".',
-'img-auth-nologinnWL'   => 'Hindi ka nakalagda at ang "$1" ay wala sa puting talaan.',
-'img-auth-nofile'       => 'Hindi umiiral ang talaksang "$1".',
-'img-auth-isdir'        => 'Sinusubok mong puntahan ang direktoryong "$1".
+'img-auth-notindir'         => 'Ang hiniling na daan ay wala sa loob ng isinaayos na direktoryo ng pagkarga.',
+'img-auth-badtitle'         => 'Hindi nagawang makabuo ng tanggap na pamagat mula sa "$1".',
+'img-auth-nologinnWL'       => 'Hindi ka nakalagda at ang "$1" ay wala sa puting talaan.',
+'img-auth-nofile'           => 'Hindi umiiral ang talaksang "$1".',
+'img-auth-isdir'            => 'Sinusubok mong puntahan ang direktoryong "$1".
 Tanging ang pagpunta lang sa talaksan ang pinapayagan.',
-'img-auth-streaming'    => 'Pinapaagos ang "$1".',
-'img-auth-public'       => 'Ang tungkulin ng img_auth.php ay maglabas ng mga talaksan mula sa isang pribadong wiki.
+'img-auth-streaming'        => 'Pinapaagos ang "$1".',
+'img-auth-public'           => 'Ang tungkulin ng img_auth.php ay maglabas ng mga talaksan mula sa isang pribadong wiki.
 Isinaayos ang wiking ito bilang isang pampublikong wiki.
 Para sa pinakamatatag na kaligtasan, hindi pinagana ang img_auth.php.',
-'img-auth-noread'       => 'Hindi makakapunta ang tagagamit para mabasa ang "$1".',
+'img-auth-noread'           => 'Hindi makakapunta ang tagagamit para mabasa ang "$1".',
+'img-auth-bad-query-string' => 'Ang URL ay may isang hindi katanggap-tanggap na sinulid ng tanong.',
 
 # HTTP errors
 'http-invalid-url'      => 'Hindi tanggap na URL: $1',
@@ -2880,8 +2880,8 @@ Nakatakdang itago ang iba pa.
 'exif-colorspace'                  => 'Espasyo ng kulay',
 'exif-componentsconfiguration'     => 'Kahulugan ng bawat komponente',
 'exif-compressedbitsperpixel'      => 'Modalidad (paraan) ng pagsisiksik ng larawan',
-'exif-pixelydimension'             => 'Tanggap na lapad ng larawan',
-'exif-pixelxdimension'             => 'Tanggap na taas ng larawan',
+'exif-pixelydimension'             => 'Lapad ng larawan',
+'exif-pixelxdimension'             => 'Taas ng larawan',
 'exif-makernote'                   => 'Mga tala mula sa kumpanyang tagagawa',
 'exif-usercomment'                 => 'Mga kumento ng tagagamit',
 'exif-relatedsoundfile'            => 'Kaugnay na talaksang nadidinig (audio)',
@@ -2897,9 +2897,9 @@ Nakatakdang itago ang iba pa.
 'exif-spectralsensitivity'         => 'Sensitibidad sa ispektrum',
 'exif-isospeedratings'             => 'Grado ng bilis ng ISO',
 'exif-oecf'                        => 'Paktora ng optoelektronikong pagpapalit',
-'exif-shutterspeedvalue'           => "Bilis ng pansara (''shutter'')",
-'exif-aperturevalue'               => 'Apertura (butas na daanan ng liwanag)',
-'exif-brightnessvalue'             => 'Kaningningan',
+'exif-shutterspeedvalue'           => 'Bilis ng pansara ng APEX',
+'exif-aperturevalue'               => 'Apertura ng APEX',
+'exif-brightnessvalue'             => 'Kaningningan ng APEX',
 'exif-exposurebiasvalue'           => 'Panig ng kalantaran',
 'exif-maxaperturevalue'            => 'Pinakamataas na aperturang (daanan ng liwanag) panglupa',
 'exif-subjectdistance'             => 'Layo ng paksa',
@@ -3048,6 +3048,8 @@ Nakatakdang itago ang iba pa.
 'exif-sensingmethod-5' => "Pandama (''sensor'') sa pook na may nagsusunud-sunurang mga kulay",
 'exif-sensingmethod-7' => "Pandama (''sensor'') ng mga paligid na may tatlong guhit (''trilinear'')",
 'exif-sensingmethod-8' => 'Linear sensor na sunod-sunod na kulay',
+
+'exif-filesource-3' => 'Dihital na kamerang napapanatili',
 
 'exif-scenetype-1' => 'Isang larawang diretsong kinuha',
 
@@ -3447,18 +3449,5 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 na may suportang paghahanap ng buong teksto',
 'sqlite-no-fts'  => '$1 na walang suporta ng paghahanap ng buong teksto',
-
-# Special:DisableAccount
-'disableaccount'             => 'Huwag paganahin ang akawnt ng tagagamit',
-'disableaccount-user'        => 'Pangalan ng tagagamit:',
-'disableaccount-reason'      => 'Dahilan:',
-'disableaccount-confirm'     => "Huwag paganahin ang akawnt ng tagagamit na ito.
-Ang tagagamit ay hindi na makalalagdang papasok, makapagpapalit ng hudyat, o makatatanggap ng mga pabatid sa e-liham.
-Kung ang tagagamit ay kasalukuyang nakalagdang papasok saan man, kaagad silang ilalagdang palabas.
-''Tandaan na maibabalik lamang sa dati ang hindi pagpapagana ng isang akawnt sa pamamagitan ng tulong ng tagapangasiwa.\"",
-'disableaccount-mustconfirm' => 'Dapat mong tiyakin na nais mong huwag paganahin ang akawnt na ito.',
-'disableaccount-nosuchuser'  => 'Hindi umiiral ang akawnt ng tagagamit na "$1".',
-'disableaccount-success'     => 'Pamalagiang hindi na pinagagana ang akawnt ng tagagamit na "$1".',
-'disableaccount-logentry'    => 'pamalagiang hindi na pinagagana ang akawnt ng tagagamit na [[$1]]',
 
 );

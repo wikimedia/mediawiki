@@ -574,7 +574,7 @@ $messages = array(
 'about'         => 'عن',
 'article'       => 'صفحة محتوى',
 'newwindow'     => '(تفتح في نافذة جديدة)',
-'cancel'        => 'ألغ',
+'cancel'        => 'ألغِ',
 'moredotdotdot' => 'المزيد...',
 'mypage'        => 'صفحتي',
 'mytalk'        => 'نقاشي',
@@ -605,7 +605,7 @@ $messages = array(
 'vector-view-edit'               => 'عدل',
 'vector-view-history'            => 'اعرض التاريخ',
 'vector-view-view'               => 'اقرأ',
-'vector-view-viewsource'         => 'عرض المصدر',
+'vector-view-viewsource'         => 'اعرض المصدر',
 'actions'                        => 'أفعال',
 'namespaces'                     => 'النطاقات',
 'variants'                       => 'المتغيرات',
@@ -718,7 +718,7 @@ $1',
 'thisisdeleted'           => 'أأعرض أو أسترجع $1؟',
 'viewdeleted'             => 'أأعرض $1؟',
 'restorelink'             => '{{PLURAL:$1|$1 تعديل محذوف|تعديلا واحدا محذوفا|تعديلين محذوفين|$1 تعديلات محذوفة|$1 تعديلا محذوفا|$1 تعديلا محذوفا}}',
-'feedlinks'               => 'تلقيم:',
+'feedlinks'               => 'التغذية:',
 'feed-invalid'            => 'نوع اشتراك التلقيم غير صحيح.',
 'feed-unavailable'        => 'التلقيمات غير متوفرة',
 'site-rss-feed'           => '$1 تلقيم أر إس إس',
@@ -946,7 +946,7 @@ $2',
 'resetpass_forbidden'       => 'كلمات السر لا يمكن تغييرها',
 'resetpass-no-info'         => 'يجب أن تكون مسجل الدخول للوصول إلى هذه الصفحة مباشرة.',
 'resetpass-submit-loggedin' => 'تغيير كلمة السر',
-'resetpass-submit-cancel'   => 'ألغ',
+'resetpass-submit-cancel'   => 'ألغِ',
 'resetpass-wrong-oldpass'   => 'كلمة سر حالية أو مؤقتة غير صحيحة.
 ربما تكون غيرت كلمة السر الخاصة بك بنجاح أو طلبت كلمة سر مؤقتة جديدة.',
 'resetpass-temp-password'   => 'كلمة سر مؤقتة:',
@@ -1216,7 +1216,7 @@ $2',
 حاول [[Special:Search|البحث في الويكي]] عن صفحات جديدة ذات صلة.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(التعليق تمت إزالته)',
+'rev-deleted-comment'         => '(أزيل ملخص التعديل)',
 'rev-deleted-user'            => '(اسم المستخدم تمت إزالته)',
 'rev-deleted-event'           => '(فعل السجل تمت إزالته)',
 'rev-deleted-user-contribs'   => '[اسم المستخدم أو عنوان الأيبي تمت إزالته - التعديل مخفي من المساهمات]',
@@ -1452,7 +1452,7 @@ $1",
 'prefsnologintext'              => 'يجب أن تكون <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} مسجل الدخول]</span>  حتى تتمكن من تعديل تفضيلات المستخدم.',
 'changepassword'                => 'غير كلمة السر',
 'prefs-skin'                    => 'واجهة',
-'skin-preview'                  => 'عرض',
+'skin-preview'                  => 'عاين',
 'prefs-math'                    => 'رياضيات',
 'datedefault'                   => 'لا تفضيل',
 'prefs-datetime'                => 'وقت وتاريخ',
@@ -1460,7 +1460,7 @@ $1",
 'prefs-rc'                      => 'أحدث التغييرات',
 'prefs-watchlist'               => 'قائمة المراقبة',
 'prefs-watchlist-days'          => 'عدد الأيام للعرض في قائمة المراقبة:',
-'prefs-watchlist-days-max'      => '(حد أقصى 7 أيام)',
+'prefs-watchlist-days-max'      => '7 أيام كحد أقصى',
 'prefs-watchlist-edits'         => 'عدد التعديلات التي تعرض في قائمة المراقبة الموسعة:',
 'prefs-watchlist-edits-max'     => 'العدد الأقصى: 1000',
 'prefs-watchlist-token'         => 'مفتاح قائمة المراقبة:',
@@ -1669,7 +1669,6 @@ $1",
 'right-reset-passwords'       => 'إعادة ضبط كلمة السر للمستخدمين الآخرين',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
-'right-disableaccount'        => 'تعطيل الحسابات',
 
 # User rights log
 'rightslog'      => 'سجل صلاحيات المستخدمين',
@@ -1911,22 +1910,23 @@ $1',
 'upload-http-error'         => 'صودف خطأ HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'رفض الوصول',
-'img-auth-nopathinfo'   => 'PATH_INFO مفقودة.
+'img-auth-accessdenied'     => 'رفض الوصول',
+'img-auth-nopathinfo'       => 'PATH_INFO مفقودة.
 خادمك ليس مضبوطا لتمرير هذه المعلومات.
 ربما يكون CGI-based ولا يمكنه دعم img_auth.
 انظر http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'المسار المطلوب غير موجود في مجلد الرفع المضبوط.',
-'img-auth-badtitle'     => 'تعذر تشكيل عنوان صالح من "$1".',
-'img-auth-nologinnWL'   => 'لست والجا و"$1" ليست في القائمة البيضاء.',
-'img-auth-nofile'       => 'الملف "$1" غير موجود.',
-'img-auth-isdir'        => 'أنت تحاول الوصول إلى الدليل "$1".
+'img-auth-notindir'         => 'المسار المطلوب غير موجود في مجلد الرفع المضبوط.',
+'img-auth-badtitle'         => 'تعذر تشكيل عنوان صالح من "$1".',
+'img-auth-nologinnWL'       => 'لست والجا و"$1" ليست في القائمة البيضاء.',
+'img-auth-nofile'           => 'الملف "$1" غير موجود.',
+'img-auth-isdir'            => 'أنت تحاول الوصول إلى الدليل "$1".
 يسمح بوصول الملفات فقط.',
-'img-auth-streaming'    => 'عرض "$1".',
-'img-auth-public'       => 'وظيفة img_auth.php هي لإخراج الملفات من ويكي سري.
+'img-auth-streaming'        => 'عرض "$1".',
+'img-auth-public'           => 'وظيفة img_auth.php هي لإخراج الملفات من ويكي سري.
 هذا الويكي مضبوط كويكي علني.
 لتأمين إضافي، img_auth.php تم تعطيلها.',
-'img-auth-noread'       => 'لا يملك المستخدم صلاحية قراءة "$1".',
+'img-auth-noread'           => 'لا يملك المستخدم صلاحية قراءة "$1".',
+'img-auth-bad-query-string' => 'يحتوي المسار عبارة استعلام غير صالحة.',
 
 # HTTP errors
 'http-invalid-url'      => 'مسار غير صالح: $1',
@@ -2297,7 +2297,7 @@ $1',
 'emailto'              => 'إلى:',
 'emailsubject'         => 'الموضوع:',
 'emailmessage'         => 'الرسالة:',
-'emailsend'            => 'إرسال',
+'emailsend'            => 'أرسل',
 'emailccme'            => 'أرسل لي بنسخة من رسالتي.',
 'emailccsubject'       => 'نسخة من رسالتك إلى $1: $2',
 'emailsent'            => 'تم إرسال البريد الإلكتروني',
@@ -2495,7 +2495,7 @@ $UNWATCHURL
 'restriction-edit'   => 'التعديل',
 'restriction-move'   => 'النقل',
 'restriction-create' => 'أنشئ',
-'restriction-upload' => 'رفع',
+'restriction-upload' => 'ارفع',
 
 # Restriction levels
 'restriction-level-sysop'         => 'حماية كاملة',
@@ -2657,7 +2657,7 @@ $1',
 'ipusubmit'                       => 'ارفع هذا المنع',
 'unblocked'                       => '[[User:$1|$1]] تم رفع منعه',
 'unblocked-id'                    => 'منع $1 تم رفعه',
-'ipblocklist'                     => 'عناوين الأيبي وأسماء المستخدمين الممنوعة',
+'ipblocklist'                     => 'المستخدمون الممنوعون',
 'ipblocklist-legend'              => 'إيجاد مستخدم ممنوع',
 'ipblocklist-username'            => 'اسم المستخدم أو عنوان الأيبي:',
 'ipblocklist-sh-userblocks'       => '$1 عمليات منع الحسابات',
@@ -2909,7 +2909,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'import-interwiki-namespace' => 'النطاق الهدف:',
 'import-upload-filename'     => 'اسم الملف:',
 'import-comment'             => 'تعليق:',
-'importtext'                 => 'من فضلك صدر الملف من الويكي المصدر باستخدام [[Special:Export|أداة الاستيراد]].
+'importtext'                 => 'من فضلك صدر الملف من الويكي المصدر باستخدام [[Special:Export|أداة التصدير]].
 احفظها على حاسوبك ثم ارفعها هنا.',
 'importstart'                => 'استيراد صفحات...',
 'import-revision-count'      => '{{PLURAL:$1|لا مراجعات|مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}',
@@ -3233,8 +3233,8 @@ $1',
 'exif-colorspace'                  => 'فرق اللون',
 'exif-componentsconfiguration'     => 'معنى كل مكون',
 'exif-compressedbitsperpixel'      => 'طور ضغط الصورة',
-'exif-pixelydimension'             => 'عرض صورة صحيح',
-'exif-pixelxdimension'             => 'ارتفاع صورة صحيح',
+'exif-pixelydimension'             => 'عرض الصورة',
+'exif-pixelxdimension'             => 'ارتفاع الصورة',
 'exif-makernote'                   => 'ملاحظات المصنع',
 'exif-usercomment'                 => 'تعليقات المستخدم',
 'exif-relatedsoundfile'            => 'ملف صوتي مرتبط',
@@ -3535,17 +3535,32 @@ $3
 $5
 
 كود التفعيل هذا سينتهي في $4.',
-'confirmemail_body_changed' => 'شخص ما، من المحتمل أن يكون أنت، من عنوان الأيبي $1،
-غير عنوان البريد الإلكتروني لحساب ا "$2" إلى عنوان البريد الإلكتروني
-هذا في {{SITENAME}}.
+'confirmemail_body_changed' => 'شخص ما -من المحتمل أن يكون أنت- من عنوان الأيبي $1 غيّر عنوان البريد
+الإلكتروني للحساب "$2" إلى عنوان البريد الإلكتروني هذا في
+{{SITENAME}}.
 
-لتأكيد أن هذا الحساب ينتمي إليك فعلا وتفعيل خواص البريد الإلكتروني
-في {{SITENAME}}، افتح هذه الوصلة في متصفحك:
+لتأكيد أن هذا الحساب لك فعلا ولتفعيل خواص البريد الإلكتروني في
+{{SITENAME}}، افتح هذه الوصلة في متصفحك:
 
 $3
 
-إذا كان هذا الحساب *ليس* لك، tاتبع هذه الوصلة لإلغاء تأكيد عنوان
-البريد الإلكتروني:
+إذا كان هذا الحساب *ليس* لك، اتبع هذه الوصلة لإلغاء تأكيد عنوان البريد
+الإلكتروني:
+
+$5
+
+سينتهي رمز التفعيل هذا في $4.',
+'confirmemail_body_set'     => 'شخص ما -من المحتمل أن يكون أنت- من عنوان الأيبي $1 غيّر عنوان البريد
+الإلكتروني للحساب "$2" إلى عنوان البريد الإلكتروني هذا في
+{{SITENAME}}.
+
+لتأكيد أن هذا الحساب لك فعلا ولتفعيل خواص البريد الإلكتروني في
+{{SITENAME}}، افتح هذه الوصلة في متصفحك:
+
+$3
+
+إذا كان هذا الحساب *ليس* لك، اتبع هذه الوصلة لإلغاء تأكيد عنوان البريد
+الإلكتروني:
 
 $5
 
@@ -3567,7 +3582,7 @@ $1',
 
 # Delete conflict
 'deletedwhileediting' => "'''تحذير''': هذه الصفحة تم حذفها بعد أن بدأت أنت بتعديلها!",
-'confirmrecreate'     => "المستخدم [[User:$1|$1]] ([[User talk:$1|نقاش]]) حذف هذه الصفحة بعد أن بدأت أنت بتحريرها للسبب التالي:
+'confirmrecreate'     => "حذف المستخدم [[User:$1|$1]] ([[User talk:$1|نقاش]]) هذه الصفحة بعد أن بدأت أنت بتحريرها للسبب التالي:
 :''$2''
 الرجاء التأكد من أنك تريد إعادة إنشاء هذه الصفحة.",
 'recreate'            => 'أعد الإنشاء',
@@ -3845,18 +3860,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 بدعم البحث في كامل النص',
 'sqlite-no-fts'  => '$1 بدون دعم البحث في كامل النص',
-
-# Special:DisableAccount
-'disableaccount'             => 'تعطيل حساب مستخدم',
-'disableaccount-user'        => 'اسم المستخدم :',
-'disableaccount-reason'      => 'السبب :',
-'disableaccount-confirm'     => 'تعطيل حساب المستخدم هذا. 
-المستخدم لن يكون قادرا على تسجيل الدخول، إعادة تعيين كلمة المرور الخاصة به، أو تلقي إعلامات البريد الإلكتروني. 
-إذا تم تسجيل المستخدم حاليا في أي مكان، سيتم تسجيله على الفور. 
-«لاحظ أن تعطيل الحساب لا يمكن عكسه دون تدخل المسؤول عن النظام».',
-'disableaccount-mustconfirm' => 'يجب التأكد من أنك ترغب في تعطيل هذا الحساب.',
-'disableaccount-nosuchuser'  => 'حساب المستخدم "$1" غير موجود.',
-'disableaccount-success'     => 'تم تعطيل حساب المستخدم "$1" بشكل دائم.',
-'disableaccount-logentry'    => 'تعطيل حساب المستخدم [[$1]] بشكل دائم',
 
 );

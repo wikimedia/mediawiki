@@ -296,7 +296,7 @@ $linkTrail = '/^([a-zăâîşţșțĂÂÎŞŢȘȚ]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Subliniază legăturile',
+'tog-underline'               => 'Sublinierea legăturilor:',
 'tog-highlightbroken'         => 'Afișează <a href="" class="new">așa</a> legăturile către paginile inexistente (alternativă: așa<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Aranjează justificat paragrafele',
 'tog-hideminor'               => 'Ascunde modificările minore în schimbări recente',
@@ -695,7 +695,7 @@ Motivul invocat este ''$2''.",
 Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
 'yourname'                   => 'Nume de utilizator:',
 'yourpassword'               => 'Parolă:',
-'yourpasswordagain'          => 'Repetă parola',
+'yourpasswordagain'          => 'Repetați parola:',
 'remembermypassword'         => 'Autentificare automată de la acest calculator (expiră după {{PLURAL:$1|24 de ore|$1 zile}})',
 'securelogin-stick-https'    => 'Rămâi conectat la HTTPS după autentificare',
 'yourdomainname'             => 'Domeniul dumneavoastră:',
@@ -1494,7 +1494,6 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-reset-passwords'       => 'Resetarea parolelor altor utilizatori',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-sendemail'             => 'Trimite e-mail altor utilizatori',
-'right-disableaccount'        => 'Dezactivează conturi',
 
 # User rights log
 'rightslog'      => 'Jurnal permisiuni de utilizator',
@@ -1542,7 +1541,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'nchanges'                          => '$1 {{PLURAL:$1|modificare|modificări}}',
 'recentchanges'                     => 'Schimbări recente',
 'recentchanges-legend'              => 'Opțiuni schimbări recente',
-'recentchangestext'                 => 'Schimbări recente ... (Log)',
+'recentchangestext'                 => 'Urmăriți în această pagină cele mai recente modificări de pe site.',
 'recentchanges-feed-description'    => 'Urmărește cele mai recente schimbări folosind acest flux.',
 'recentchanges-label-newpage'       => 'Această modificare a creat o pagină nouă',
 'recentchanges-label-minor'         => 'Aceasta este o modificare minoră',
@@ -1720,22 +1719,23 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'upload-http-error'         => 'A avut loc o eroare HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acces interzis',
-'img-auth-nopathinfo'   => 'PATH_INFO lipsește.
+'img-auth-accessdenied'     => 'Acces interzis',
+'img-auth-nopathinfo'       => 'PATH_INFO lipsește.
 Serverul dumneavoastră nu a fost setat pentru a trece aceste informații.
 S-ar putea să fie bazat pe CGI și să nu suporte img_auth.
 Vedeți http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
-'img-auth-badtitle'     => 'Nu s-a putut construi un titlu valid din "$1".',
-'img-auth-nologinnWL'   => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',
-'img-auth-nofile'       => 'Fișierul "$1" nu există.',
-'img-auth-isdir'        => 'Încercați să accesați directorul "$1".
+'img-auth-notindir'         => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
+'img-auth-badtitle'         => 'Nu s-a putut construi un titlu valid din "$1".',
+'img-auth-nologinnWL'       => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',
+'img-auth-nofile'           => 'Fișierul "$1" nu există.',
+'img-auth-isdir'            => 'Încercați să accesați directorul "$1".
 Numai accesul la fișiere este permis.',
-'img-auth-streaming'    => 'Derularea continuă a "$1".',
-'img-auth-public'       => 'Funcția img_auth.php este pentru a exporta fișiere de pe un wiki privat.
+'img-auth-streaming'        => 'Derularea continuă a "$1".',
+'img-auth-public'           => 'Funcția img_auth.php este pentru a exporta fișiere de pe un wiki privat.
 Acest wiki este configurat ca unul public.
 Pentru securitate optimă, img_auth.php este dezactivat.',
-'img-auth-noread'       => 'Acest utilizator nu are acces să citească "$1".',
+'img-auth-noread'           => 'Acest utilizator nu are acces să citească "$1".',
+'img-auth-bad-query-string' => 'Adresa URL are un șir de interogare invalid.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL invalid: $1',
@@ -2604,7 +2604,7 @@ manual paginile de discuții, dacă dorești acest lucru.",
 'talkexists'                   => "'''Pagina în sine a fost mutată cu succes, dar pagina de discuții nu a putut fi mutată deoarece o alta deja există la noul titlu.
 Te rugăm să le unifici manual.'''",
 'movedto'                      => 'mutată la',
-'movetalk'                     => 'Mută pagina de discuții asociată',
+'movetalk'                     => 'Redenumește pagina de discuții asociată',
 'move-subpages'                => 'Mută subpaginile (până la $1)',
 'move-talk-subpages'           => 'Mută subpaginile paginii de discuții (până la $1)',
 'movepage-page-exists'         => 'Pagina $1 există deja și nu poate fi rescrisă automat.',
@@ -3014,8 +3014,8 @@ Altele vor fi ascunse implicit.
 'exif-colorspace'                  => 'Spațiu de culoare',
 'exif-componentsconfiguration'     => 'Semnificația componentelor',
 'exif-compressedbitsperpixel'      => 'Mod de comprimare a imaginii',
-'exif-pixelydimension'             => 'Lățimea validă a imaginii',
-'exif-pixelxdimension'             => 'Valind image height',
+'exif-pixelydimension'             => 'Lățimea imaginii',
+'exif-pixelxdimension'             => 'Înălțimea imaginii',
 'exif-makernote'                   => 'Observațiile producătorului',
 'exif-usercomment'                 => 'Comentariile utilizatorilor',
 'exif-relatedsoundfile'            => 'Fișierul audio asemănător',
@@ -3031,9 +3031,9 @@ Altele vor fi ascunse implicit.
 'exif-spectralsensitivity'         => 'Sensibilitate spectrală',
 'exif-isospeedratings'             => 'Evaluarea vitezei ISO',
 'exif-oecf'                        => 'Factorul de conversie optoelectronic',
-'exif-shutterspeedvalue'           => 'Viteza de închidere',
-'exif-aperturevalue'               => 'Diafragmă',
-'exif-brightnessvalue'             => 'Luminozitate',
+'exif-shutterspeedvalue'           => 'Viteza obturatorului în APEX',
+'exif-aperturevalue'               => 'Diafragmă în APEX',
+'exif-brightnessvalue'             => 'Luminozitate în APEX',
 'exif-exposurebiasvalue'           => 'Ajustarea expunerii',
 'exif-maxaperturevalue'            => 'Apertura maximă',
 'exif-subjectdistance'             => 'Distanța față de subiect',
@@ -3529,18 +3529,5 @@ Introdu numele fișierului fără prefixul "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 cu suport de căutare în tot textul',
 'sqlite-no-fts'  => '$1 fără suport de căutare în tot textul',
-
-# Special:DisableAccount
-'disableaccount'             => 'Dezactivare cont de utilizator',
-'disableaccount-user'        => 'Nume de utilizator:',
-'disableaccount-reason'      => 'Motiv:',
-'disableaccount-confirm'     => "Dezactivarea acestui cont de utilizator.
-Utilizatorul nu se va mai putea autentifica, nu-și va mai putea reseta parola sau primi notificări prin e-mail.
-Dacă utilizatorul este autentificat în acest moment, sesiunea sa va fi încheiată imediat.
-''Rețineți că dezactivarea unui cont de utilizator nu este reversibilă fără intervenția unui administrator de sistem.''",
-'disableaccount-mustconfirm' => 'Trebuie să confirmați că doriți dezactivarea acestui cont.',
-'disableaccount-nosuchuser'  => 'Contul de utilizator „$1” nu există.',
-'disableaccount-success'     => 'Contul de utilizator „$1” a fost definitiv dezactivat.',
-'disableaccount-logentry'    => 'a dezactivat definitiv contul de utilizator [[$1]]',
 
 );

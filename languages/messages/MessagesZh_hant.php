@@ -1379,7 +1379,6 @@ $1",
 'right-reset-passwords'       => '重設其他用戶的密碼',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
-'right-disableaccount'        => '禁用帳號',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1594,22 +1593,23 @@ $1',
 'upload-http-error'         => '已發生一個HTTP錯誤：$1',
 
 # img_auth script messages
-'img-auth-accessdenied' => '拒絕存取',
-'img-auth-nopathinfo'   => 'PATH_INFO遺失。
+'img-auth-accessdenied'     => '拒絕存取',
+'img-auth-nopathinfo'       => 'PATH_INFO遺失。
 您的伺服器還沒有設定這個資料。
 它可能是以CGI為本，不支援img_auth。
 參閱http://www.mediawiki.org/wiki/Manual:Image_Authorization。',
-'img-auth-notindir'     => '所請求的路徑不在已經設定的上載目錄。',
-'img-auth-badtitle'     => '不能夠由"$1"建立一個有效標題。',
-'img-auth-nologinnWL'   => '您而家並未登入，"$1"不在白名單上。',
-'img-auth-nofile'       => '檔案"$1"不存在。',
-'img-auth-isdir'        => '您嘗試過存取一個目錄"$1"。
+'img-auth-notindir'         => '所請求的路徑不在已經設定的上載目錄。',
+'img-auth-badtitle'         => '不能夠由"$1"建立一個有效標題。',
+'img-auth-nologinnWL'       => '您而家並未登入，"$1"不在白名單上。',
+'img-auth-nofile'           => '檔案"$1"不存在。',
+'img-auth-isdir'            => '您嘗試過存取一個目錄"$1"。
 只是可以存取檔案。',
-'img-auth-streaming'    => '串流中"$1"。',
-'img-auth-public'       => 'img_auth.php的功能是由一個公共wiki中輸出檔案。
+'img-auth-streaming'        => '串流中"$1"。',
+'img-auth-public'           => 'img_auth.php的功能是由一個公共wiki中輸出檔案。
 這個wiki是已經設定做一個公共wiki。
 基於保安最佳化，img_auth.php已經停用。',
-'img-auth-noread'       => '用戶無存取權去讀"$1"。',
+'img-auth-noread'           => '用戶無存取權去讀"$1"。',
+'img-auth-bad-query-string' => 'URL有一個無效的查詢字符串',
 
 # HTTP errors
 'http-invalid-url'      => '無效的URL：$1',
@@ -3413,17 +3413,5 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 # SQLite database support
 'sqlite-has-fts' => '帶全文搜尋的版本$1',
 'sqlite-no-fts'  => '不帶全文搜尋的版本$1',
-
-# Special:DisableAccount
-'disableaccount'             => '禁用用戶賬戶',
-'disableaccount-user'        => '用戶名：',
-'disableaccount-reason'      => '理由：',
-'disableaccount-confirm'     => "禁用此使用者帳號。
-該使用者將無法登入、重設其密碼或收到電子郵件通知。如果用戶目前仍保持登入，其帳號將會被強制登出。
-''留意若無系統管理員的干預，被禁用的帳號不可重新啟用。''",
-'disableaccount-mustconfirm' => '請確認您的確要禁用此賬戶。',
-'disableaccount-nosuchuser'  => '用戶賬戶「$1」不存在。',
-'disableaccount-success'     => '用戶賬戶「$1」已被永久禁用。',
-'disableaccount-logentry'    => '永久禁用用戶賬戶[[$1]]',
 
 );

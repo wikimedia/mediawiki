@@ -1236,7 +1236,6 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-sendemail'             => 'Duusra sadasya ke lage e-mail bhejo',
-'right-disableaccount'        => 'Sab account ke band karo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',
@@ -2890,10 +2889,5 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # HTML forms
 'htmlform-reset'               => 'Badlao ke pahile jaise karo',
 'htmlform-selectorother-other' => 'Duusra',
-
-# Special:DisableAccount
-'disableaccount-user'       => 'Sadasya ke naam:',
-'disableaccount-reason'     => 'Kaaran',
-'disableaccount-nosuchuser' => 'Sadasya account "$1" nai hae.',
 
 );

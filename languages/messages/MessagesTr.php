@@ -1029,8 +1029,8 @@ $3 tarafından verilen sebep ''$2''",
 'page_first'             => 'ilk',
 'page_last'              => 'son',
 'histlegend'             => "Fark seçimi: karşılaştırmayı istediğiniz 2 sürümün önündeki dairelere tıklayıp, enter'a basın ya da sayfanın en altında bulunan düğmeye basın.<br />
-Tanımlar: (güncel) = güncel sürümle aradaki fark,
-(önceki) = bir önceki sürümle aradaki fark, K = küçük değişiklik.",
+Tanımlar: '''({{int:cur}})''' = güncel sürümle aradaki fark,
+'''({{int:last}})''' = bir önceki sürümle aradaki fark, '''{{int:minoreditletter}}''' = küçük değişiklik.",
 'history-fieldset-title' => 'Geçmişe gözat',
 'history-show-deleted'   => 'Sadece silinenler',
 'histfirst'              => 'En eski',
@@ -1494,7 +1494,6 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-reset-passwords'       => 'Diğer kullanıcıların parolalarını sıfırla',
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
-'right-disableaccount'        => 'Hesapları devre dışı bırak',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
@@ -2434,7 +2433,7 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'ipbanononly'                     => 'Sadece anonim kullanıcıları engelle',
 'ipbcreateaccount'                => 'Hesap oluşturulmasına engel ol',
 'ipbemailban'                     => 'Kullanıcının e-posta göndermesine engel ol',
-'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişişiklik yapmaya çalıştıkları mütakip IPleri otomatik olarak engelle',
+'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişiklik yapmaya çalıştığı sonraki IP adreslerini otomatik olarak engelle',
 'ipbsubmit'                       => 'Bu kullanıcıyı engelle',
 'ipbother'                        => 'Farklı zaman',
 'ipboptions'                      => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite',
@@ -3553,18 +3552,5 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 # SQLite database support
 'sqlite-has-fts' => '$1 tam-metin arama desteği ile',
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
-
-# Special:DisableAccount
-'disableaccount'             => 'Bir kullanıcı hesabını devre dışı bırak',
-'disableaccount-user'        => 'Kullanıcı adı:',
-'disableaccount-reason'      => 'Neden:',
-'disableaccount-confirm'     => "Bu kullanıcı hesabını devre dışı bırak.
-Kullanıcı giriş yapamayacak, parolasını sıfırlayamayacak, ya da e-posta bildirimlerini alamayacak.
-Eğer kullanıcı bir yerde giriş yapmış ise, hemen çıkış yapılacak.
-''Bir hesabın devre dışı bırakılmasının sistem yöneticisinin müdahalesi olmadan geri alınamayacağına dikkat edin.''",
-'disableaccount-mustconfirm' => 'Bu hesabı devre dışı bırakmak istediğinizi onaylamalısınız.',
-'disableaccount-nosuchuser'  => '"$1" kullanıcı hesabı mevcut değil.',
-'disableaccount-success'     => '"$1" kullanıcı hesabı kalıcı olarak devre dışı bırakıldı.',
-'disableaccount-logentry'    => ', [[$1]] kullanıcı hesabını kalıcı olarak devre dışı bıraktı',
 
 );

@@ -1309,7 +1309,6 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'right-reset-passwords'       => 'Bese erabiltzaile batzuen pasahitzak berritu',
 'right-override-export-depth' => '5eko sakonerararteko loturiko orrialdeak barne esportatu',
 'right-sendemail'             => 'Beste erabiltzaileei e-posta bidali',
-'right-disableaccount'        => 'Kontuak ezgaitu',
 
 # User rights log
 'rightslog'      => 'Erabiltzaile eskubideen erregistroa',
@@ -3230,10 +3229,5 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'htmlform-submit'              => 'Bidali',
 'htmlform-reset'               => 'Aldaketak desegin',
 'htmlform-selectorother-other' => 'Beste bat',
-
-# Special:DisableAccount
-'disableaccount'        => 'Lankide-kontua ezgaitu',
-'disableaccount-user'   => 'Lankide izena:',
-'disableaccount-reason' => 'Arrazoia:',
 
 );

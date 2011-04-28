@@ -530,7 +530,7 @@ $1',
 'policy-url'           => 'Project:Pravila',
 'portal'               => 'Portal zajednice',
 'portal-url'           => 'Project:Portal_zajednice',
-'privacy'              => 'Pravila o anonimnosti',
+'privacy'              => 'Politika privatnosti',
 'privacypage'          => 'Project:Pravila o anonimnosti',
 
 'badaccess'        => 'Greška pri odobrenju',
@@ -1498,7 +1498,6 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-reset-passwords'       => 'Resetuje šifre drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
-'right-disableaccount'        => 'Onemogućavanje računa',
 
 # User rights log
 'rightslog'      => 'Zapisnik korisničkih prava',
@@ -1735,22 +1734,23 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'upload-http-error'         => 'Desila se HTTP greška: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Pristup onemogućen',
-'img-auth-nopathinfo'   => 'Nedostaje PATH_INFO.
+'img-auth-accessdenied'     => 'Pristup onemogućen',
+'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš server nije postavljen da daje ovu informaciju.
 On je zasnovan na CGI i ne može podržavati img_auth.
 Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Zahtjevana putanje nije u direktorijumu podešenom za postavljanje.',
-'img-auth-badtitle'     => 'Ne mogu napraviti valjani naslov iz "$1".',
-'img-auth-nologinnWL'   => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',
-'img-auth-nofile'       => 'Datoteka "$1" ne postoji.',
-'img-auth-isdir'        => 'Pokušavate pristupiti direktorijumu "$1".
+'img-auth-notindir'         => 'Zahtjevana putanje nije u direktorijumu podešenom za postavljanje.',
+'img-auth-badtitle'         => 'Ne mogu napraviti valjani naslov iz "$1".',
+'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',
+'img-auth-nofile'           => 'Datoteka "$1" ne postoji.',
+'img-auth-isdir'            => 'Pokušavate pristupiti direktorijumu "$1".
 Dozvoljen je samo pristup datotekama.',
-'img-auth-streaming'    => 'Tok "$1".',
-'img-auth-public'       => 'Funkcija img_auth.php služi za izlaz datoteka sa privatnih wikija.
+'img-auth-streaming'        => 'Tok "$1".',
+'img-auth-public'           => 'Funkcija img_auth.php služi za izlaz datoteka sa privatnih wikija.
 Ova wiki je postavljena kao javna wiki.
 Za optimalnu sigurnost, img_auth.php je onemogućena.',
-'img-auth-noread'       => 'Korisnik nema pristup za čitanje "$1".',
+'img-auth-noread'           => 'Korisnik nema pristup za čitanje "$1".',
+'img-auth-bad-query-string' => 'URL ima nevaljan izraz upita.',
 
 # HTTP errors
 'http-invalid-url'      => 'Nevaljan URL: $1',
@@ -3041,8 +3041,8 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-colorspace'                  => 'Prostor boje',
 'exif-componentsconfiguration'     => 'Značenje svake komponente',
 'exif-compressedbitsperpixel'      => 'Način kompresije slike',
-'exif-pixelydimension'             => 'Određena širina slike',
-'exif-pixelxdimension'             => 'Određena visina slike',
+'exif-pixelydimension'             => 'Širina slike',
+'exif-pixelxdimension'             => 'Visina slike',
 'exif-makernote'                   => 'Bilješke proizvođača',
 'exif-usercomment'                 => 'Korisnički komentari',
 'exif-relatedsoundfile'            => 'Povezana zvučna datoteka',
@@ -3058,9 +3058,9 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-spectralsensitivity'         => 'Spektralna osjetljivost',
 'exif-isospeedratings'             => 'Rejting ISO brzine',
 'exif-oecf'                        => 'Optoelektronski faktor konvezije',
-'exif-shutterspeedvalue'           => 'Brzina okidača',
-'exif-aperturevalue'               => 'Otvor blende',
-'exif-brightnessvalue'             => 'Osvijetljenost',
+'exif-shutterspeedvalue'           => 'Brzina APEX okidača',
+'exif-aperturevalue'               => 'APEX otvor',
+'exif-brightnessvalue'             => 'APEX osvijetljenost',
 'exif-exposurebiasvalue'           => 'Kompozicija ekspozicije',
 'exif-maxaperturevalue'            => 'Najveći broj otvora blende',
 'exif-subjectdistance'             => 'Udaljenost objekta',
@@ -3210,7 +3210,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-sensingmethod-7' => 'Trilinearni senzor',
 'exif-sensingmethod-8' => 'Sekvencijalni senzor boje linija',
 
-'exif-filesource-3' => 'DSC',
+'exif-filesource-3' => 'Digitalna kamera',
 
 'exif-scenetype-1' => 'Direktno fotografisana slika',
 
@@ -3630,18 +3630,5 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 # SQLite database support
 'sqlite-has-fts' => '$1 sa podrškom pretrage cijelog teksta',
 'sqlite-no-fts'  => '$1 bez podrške pretrage cijelog teksta',
-
-# Special:DisableAccount
-'disableaccount'             => 'Onemogućavanje korisničkog računa',
-'disableaccount-user'        => 'Korisničko ime:',
-'disableaccount-reason'      => 'Razlog:',
-'disableaccount-confirm'     => "Onemogući ovaj korisnički račun.
-Korisnik se neće moći prijaviti, staviti novu šifru ili primati obavještenja putem e-maila.
-Ako je korisnik negdje u međuvremenu prijavljen, bit će automatski odmah odjavljen.
-''Zapamtite da se onemogućavanje računa ne može poništiti bez intervencije sistemskog administratora.''",
-'disableaccount-mustconfirm' => 'Morate potvrditi da želite onemogućiti ovaj račun.',
-'disableaccount-nosuchuser'  => 'Korisnički račun "$1" ne postoji.',
-'disableaccount-success'     => 'Korisnički račun "$1" je trajno onemogućen.',
-'disableaccount-logentry'    => 'zauvijek je onemogućen korisnički račun [[$1]]',
 
 );

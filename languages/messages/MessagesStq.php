@@ -1221,7 +1221,6 @@ Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme,
 'right-reset-passwords'       => 'Dät Paaswoud fon n uur Benutser touräächsätte',
 'right-override-export-depth' => 'Exportier Sieden touhoope mäd ferlinkede Sieden bit tou ne Djüpte fon 5',
 'right-sendemail'             => 'E-Mails an uur Benutsere seende',
-'right-disableaccount'        => 'Benutserkonto deaktivierje.',
 
 # User rights log
 'rightslog'      => 'Gjuchte-Logbouk',
@@ -2403,7 +2402,8 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'import-interwiki-namespace' => 'Siel-Noomensruum:',
 'import-upload-filename'     => 'Doatäinoome:',
 'import-comment'             => 'Kommentoar:',
-'importtext'                 => 'Ap disse Spezioalsiede konnen uur ju [[Special:Export|Exportfunktion]] in dän Wälwiki exportierde Sieden in dit Wiki importierd wäide.',
+'importtext'                 => 'Ju Doatäi uur ju Spezioalsiede [[Special:Export|Exportfunktion]] uut dän Wällewiki exportierje.
+Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 'importstart'                => 'Sieden importierje …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versione}}',
 'importnopages'              => 'Neen Sieden toun Importierjen anweesend.',
@@ -3206,18 +3206,5 @@ Ju Iengoawe mout sunner dän Tousats „{{ns:file}}:“ geböäre.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mäd Unnerstutsenge foar ju Fultäkstsäike',
 'sqlite-no-fts'  => 'Version $1 sunner Unnerstutsenge foaar ju Fultäkstsäike',
-
-# Special:DisableAccount
-'disableaccount'             => 'N Benutserkonto deaktivierje',
-'disableaccount-user'        => 'Benutsernoome:',
-'disableaccount-reason'      => 'Gruund:',
-'disableaccount-confirm'     => "Deaktivier dit Benutserkonto.
-Die Benutser kon sik dan nit moor anmäldje, dät Paaswoud touräächsätte of E-Mail-Ättergjuchte ämfange.
-As die Benutser apstuuns anmälded is, wäd er fluks oumälded.
-''Beoachtje, dät ju Deaktivierenge fon n Benutserkonto nit moor sunner dät Iengriepen fon n Systemadministrator tourääch troald wäide kon.''",
-'disableaccount-mustconfirm' => 'Ju Deaktivierenge fon dit Benutserkonto mout nu bestäÄtiged wäide.',
-'disableaccount-nosuchuser'  => 'Dät Benutserkonto "$1" is nit deer.',
-'disableaccount-success'     => 'Dät Benutserkonto "$1" wuud duurhaft deaktivierd.',
-'disableaccount-logentry'    => 'deaktivierde dät Benutserkonto [[$1]] duurhaft',
 
 );

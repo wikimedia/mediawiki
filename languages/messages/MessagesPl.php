@@ -1287,7 +1287,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'savedprefs'                    => 'Twoje preferencje zostały zapisane.',
 'timezonelegend'                => 'Strefa czasowa',
 'localtime'                     => 'Czas lokalny',
-'timezoneuseserverdefault'      => 'Użyj domyślnego czasu serwera',
+'timezoneuseserverdefault'      => 'Użyj domyślnego ustawienia serwera',
 'timezoneuseoffset'             => 'Inna (określ różnicę czasu)',
 'timezoneoffset'                => 'Różnica¹',
 'servertime'                    => 'Czas serwera',
@@ -1465,7 +1465,6 @@ Umożliwi również innym użytkownikom skontaktowanie się z Tobą poprzez odpo
 'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
-'right-disableaccount'        => 'Wyłączanie kont',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -1705,21 +1704,22 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'upload-http-error'         => 'Wystąpił błąd protokołu HTTP – $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Odmowa dostępu',
-'img-auth-nopathinfo'   => 'Brak PATH_INFO.
+'img-auth-accessdenied'     => 'Odmowa dostępu',
+'img-auth-nopathinfo'       => 'Brak PATH_INFO.
 Serwer nie został skonfigurowany, tak aby przekazywał tę informację.
 Możliwe, że jest oparty na CGI i nie może obsługiwać img_auth.
 Zobacz http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Żądana ścieżka nie jest w obrębie katalogu skonfigurowanego do przesyłania plików.',
-'img-auth-badtitle'     => 'Nie można wygenerować prawidłowego tytuł z „$1”.',
-'img-auth-nologinnWL'   => 'Nie jesteś zalogowany, a „$1” nie jest na białej liście.',
-'img-auth-nofile'       => 'Brak pliku „$1”.',
-'img-auth-isdir'        => 'Próbujesz uzyskać dostęp do katalogu „$1”.
+'img-auth-notindir'         => 'Żądana ścieżka nie jest w obrębie katalogu skonfigurowanego do przesyłania plików.',
+'img-auth-badtitle'         => 'Nie można wygenerować prawidłowego tytuł z „$1”.',
+'img-auth-nologinnWL'       => 'Nie jesteś zalogowany, a „$1” nie jest na białej liście.',
+'img-auth-nofile'           => 'Brak pliku „$1”.',
+'img-auth-isdir'            => 'Próbujesz uzyskać dostęp do katalogu „$1”.
 Dozwolony jest wyłącznie dostęp do plików.',
-'img-auth-streaming'    => 'Strumieniowanie „$1”.',
-'img-auth-public'       => 'Funkcja img_auth.php służy do pobierania plików z prywatnej wiki.
+'img-auth-streaming'        => 'Strumieniowanie „$1”.',
+'img-auth-public'           => 'Funkcja img_auth.php służy do pobierania plików z prywatnej wiki.
 Ponieważ ta wiki została skonfigurowana jako publiczna dla zapewnienia optymalnego bezpieczeństwa img_auth.php została wyłączona.',
-'img-auth-noread'       => 'Użytkownik nie ma dostępu do odczytu „$1”.',
+'img-auth-noread'           => 'Użytkownik nie ma dostępu do odczytu „$1”.',
+'img-auth-bad-query-string' => 'Adres URL zawiera nieprawidłowe zapytanie.',
 
 # HTTP errors
 'http-invalid-url'      => 'Niepoprawny adres URL: $1',
@@ -2687,7 +2687,8 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-interwiki-namespace' => 'Docelowa przestrzeń nazw',
 'import-upload-filename'     => 'Nazwa pliku',
 'import-comment'             => 'Komentarz:',
-'importtext'                 => 'Używając narzędzia [[Special:Export|eksportu]], wyeksportuj plik ze źródłowej wiki, zapisz go na swoim dysku, a następnie prześlij go tutaj.',
+'importtext'                 => 'Korzystając na źródłowej wiki z narzędzia [[Special:Export|eksportu]] wyeksportuj plik.
+Zapisz go na swoim dysku, a następnie prześlij go tutaj.',
 'importstart'                => 'Trwa importowanie stron...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'importnopages'              => 'Brak stron do importu.',
@@ -2752,7 +2753,7 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-n-mainpage-description'  => 'Przejdź na stronę główną',
 'tooltip-n-portal'                => 'O projekcie, co możesz zrobić, gdzie możesz znaleźć informacje',
 'tooltip-n-currentevents'         => 'Informacje o aktualnych wydarzeniach',
-'tooltip-n-recentchanges'         => 'Lista ostatnich zmian na {{GRAMMAR:D.lp|{{SITENAME}}}}.',
+'tooltip-n-recentchanges'         => 'Lista ostatnich zmian na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'tooltip-n-randompage'            => 'Pokaż stronę wybraną losowo',
 'tooltip-n-help'                  => 'Tutaj możesz się wielu rzeczy dowiedzieć.',
 'tooltip-t-whatlinkshere'         => 'Pokaż listę wszystkich stron linkujących do tej strony',
@@ -3178,6 +3179,8 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-sensingmethod-7' => 'trójliniowy przetwornik obrazu',
 'exif-sensingmethod-8' => 'liniowy przetwornik obrazu z sekwencyjnym przetwarzaniem kolorów',
 
+'exif-filesource-3' => 'Cyfrowy aparat fotograficzny',
+
 'exif-scenetype-1' => 'obiekt fotografowany bezpośrednio',
 
 'exif-customrendered-0' => 'nie',
@@ -3588,18 +3591,5 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
 'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
-
-# Special:DisableAccount
-'disableaccount'             => 'Wyłącz konto użytkownika',
-'disableaccount-user'        => 'Nazwa użytkownika',
-'disableaccount-reason'      => 'Powód',
-'disableaccount-confirm'     => "Wyłącz konto użytkownika.
-Użytkownik nie będzie mógł się zalogować, zresetować hasła oraz otrzymywać powiadomień e‐mailem. 
-Jeśli użytkownik jest obecnie gdziekolwiek zalogowany, zostanie natychmiast wylogowany. 
-''Zwróć uwagę, że cofnięcie tej operacji wymagać będzie interwencji administratora systemu.''",
-'disableaccount-mustconfirm' => 'Musisz potwierdzić, że chcesz wyłączyć to konto.',
-'disableaccount-nosuchuser'  => 'Brak konta użytkownika „$1”.',
-'disableaccount-success'     => 'Konto użytkownika „$1” zostało trwale wyłączone.',
-'disableaccount-logentry'    => 'trwale wyłączył konto użytkownika [[$1]]',
 
 );

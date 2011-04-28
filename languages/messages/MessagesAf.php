@@ -1311,7 +1311,7 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'userrights-user-editname'     => 'Voer gebruikersnaam in:',
 'editusergroup'                => 'Wysig gebruikersgroepe',
 'editinguser'                  => "Besig om gebruikersregte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
-'userrights-editusergroup'     => 'wysig gebruikersgroepe',
+'userrights-editusergroup'     => 'Wysig gebruikersgroepe',
 'saveusergroups'               => 'Stoor gebruikersgroepe',
 'userrights-groupsmember'      => 'Lid van:',
 'userrights-groupsmember-auto' => 'Implisiete lid van:',
@@ -1412,7 +1412,6 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-reset-passwords'       => 'Herstel ander gebruikers se wagwoorde',
 'right-override-export-depth' => "Eksporteer bladsye insluitend geskakelde bladsye tot 'n diepte van 5",
 'right-sendemail'             => 'Stuur e-pos aan ander gebruikers',
-'right-disableaccount'        => 'Deaktiveer gebruikers',
 
 # User rights log
 'rightslog'      => 'Gebruikersregtelogboek',
@@ -2922,8 +2921,8 @@ Ander velde sal versteek wees.
 'exif-colorspace'                  => 'Kleurruimte',
 'exif-componentsconfiguration'     => 'Betekenis van elke komponent',
 'exif-compressedbitsperpixel'      => 'Beeldkompressiemetode',
-'exif-pixelydimension'             => 'Bruikbare beeldbreedte',
-'exif-pixelxdimension'             => 'Bruikbare beeldhoogte',
+'exif-pixelydimension'             => 'Beeldwydte',
+'exif-pixelxdimension'             => 'Beeldhoogte',
 'exif-makernote'                   => 'Notas van vervaardiger',
 'exif-usercomment'                 => 'Opmerkings',
 'exif-relatedsoundfile'            => 'Verwante klanklêer',
@@ -3445,18 +3444,5 @@ Verskaf die lêernaam sonder die "{{ns:file}}:" voorvoegsel.',
 # SQLite database support
 'sqlite-has-fts' => 'Weergawe $1 met ondersteuning vir vol-teks soektogte ("full-text search")',
 'sqlite-no-fts'  => 'Weergawe $1 sonder ondersteuning vir vol-teks soektogte ("full-text search")',
-
-# Special:DisableAccount
-'disableaccount'             => "Deaktiveer 'n gebruiker",
-'disableaccount-user'        => 'Gebruikernaam:',
-'disableaccount-reason'      => 'Rede:',
-'disableaccount-confirm'     => "Deaktiveer hierdie gebruiker.
-Die gebruiker sal nie langer kan aanmeld, sy wagwoord herstel, of e-pos ontvang nie.
-As die gebruiker tans aangeteken is, sal hy onmiddellik uitgeteken word.
-''Let daarop die aksie nie sonder die hulp van 'n administrateur omgekeer kan word nie.''",
-'disableaccount-mustconfirm' => 'U moet bevestig dat u hierdie gebruiker wil deaktiveer.',
-'disableaccount-nosuchuser'  => 'Die gebruiker "$1" bestaan nie.',
-'disableaccount-success'     => 'Die gebruiker "$1" is permanent gedeaktiveer.',
-'disableaccount-logentry'    => 'het die gebruiker [[$1]] permanent gedeaktiveer',
 
 );

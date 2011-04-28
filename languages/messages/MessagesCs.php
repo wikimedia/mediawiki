@@ -783,7 +783,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'password-login-forbidden'   => 'Použití tohoto uživatelského jména a hesla byla zakázáno.',
 'mailmypassword'             => 'Poslat e-mailem nové heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
-'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) požádal, abychom Vám poslali nové heslo
+'passwordremindertext'       => 'Někdo (patrně vy, z IP adresy $1) požádal, abychom o nové heslo
 pro přihlášení do {{grammar:2sg|{{SITENAME}}}} ($4). Uživateli „$2“ bylo
 proto nastaveno dočasné heslo „$3“. Pokud jste to byl(a) vy, můžete se
 nyní přihlásit a zvolit si nové heslo. Platnost tohoto dočasného hesla
@@ -1533,7 +1533,6 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-reset-passwords'       => 'Nastavování hesel jiným uživatelům',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
-'right-disableaccount'        => 'Deaktivování účtů',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',
@@ -1761,22 +1760,23 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'upload-http-error'         => 'Došlo k chybě HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Přístup odepřen',
-'img-auth-nopathinfo'   => 'Chybí PATH_INFO.
+'img-auth-accessdenied'     => 'Přístup odepřen',
+'img-auth-nopathinfo'       => 'Chybí PATH_INFO.
 Váš server není nastaven tak, aby poskytoval tuto informaci.
 Možná funguje pomocí CGI a img_auth na něm nemůže fungovat.
 Vizte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
-'img-auth-badtitle'     => 'Z „$1“ nelze vytvořit platný název stránky.',
-'img-auth-nologinnWL'   => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',
-'img-auth-nofile'       => 'Soubor „$1“ neexistuje.',
-'img-auth-isdir'        => 'Pokoušíte se zobrazit adresář „$1“.
+'img-auth-notindir'         => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
+'img-auth-badtitle'         => 'Z „$1“ nelze vytvořit platný název stránky.',
+'img-auth-nologinnWL'       => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',
+'img-auth-nofile'           => 'Soubor „$1“ neexistuje.',
+'img-auth-isdir'            => 'Pokoušíte se zobrazit adresář „$1“.
 Dovolen je pouze přístup k souborům.',
-'img-auth-streaming'    => 'Přenáší se „$1“.',
-'img-auth-public'       => 'Pomocí img_auth.php se poskytují soubory na soukromých wiki.
+'img-auth-streaming'        => 'Přenáší se „$1“.',
+'img-auth-public'           => 'Pomocí img_auth.php se poskytují soubory na soukromých wiki.
 Tato wiki je nastavena jako veřejná.
 Z bezpečnostních důvodů je img_auth.php vypnuto.',
-'img-auth-noread'       => 'Uživatel nemá oprávnění ke čtení „$1“.',
+'img-auth-noread'           => 'Uživatel nemá oprávnění ke čtení „$1“.',
+'img-auth-bad-query-string' => 'URL obsahuje neplatný dotaz.',
 
 # HTTP errors
 'http-invalid-url'      => 'Neplatné URL: $1',
@@ -3014,8 +3014,8 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-colorspace'                  => 'Barevný prostor',
 'exif-componentsconfiguration'     => 'Význam jednotlivých složek',
 'exif-compressedbitsperpixel'      => 'Komprimační režim',
-'exif-pixelydimension'             => 'Platná šířka obrazu',
-'exif-pixelxdimension'             => 'Platná výška obrazu',
+'exif-pixelydimension'             => 'Šířka obrázku',
+'exif-pixelxdimension'             => 'Výška obrázku',
 'exif-makernote'                   => 'Poznámky výrobce',
 'exif-usercomment'                 => 'Uživatelské poznámky',
 'exif-relatedsoundfile'            => 'Související zvukový soubor',
@@ -3031,9 +3031,9 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-spectralsensitivity'         => 'Spektrální citlivost',
 'exif-isospeedratings'             => 'Nastavení ISO citlivosti',
 'exif-oecf'                        => 'Optoelektronická převodní funkce (OECF)',
-'exif-shutterspeedvalue'           => 'Rychlost závěrky',
-'exif-aperturevalue'               => 'Clona',
-'exif-brightnessvalue'             => 'Světlost',
+'exif-shutterspeedvalue'           => 'Expoziční čas (APEX)',
+'exif-aperturevalue'               => 'Clona (APEX)',
+'exif-brightnessvalue'             => 'Jas (APEX)',
 'exif-exposurebiasvalue'           => 'Změna expozice',
 'exif-maxaperturevalue'            => 'Nejmenší clona',
 'exif-subjectdistance'             => 'Vzdálenost k předmětu',
@@ -3595,18 +3595,5 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',
 'sqlite-no-fts'  => '$1 bez podpory plnotextového vyhledávání',
-
-# Special:DisableAccount
-'disableaccount'             => 'Deaktivace uživatelského účtu',
-'disableaccount-user'        => 'Uživatelské jméno:',
-'disableaccount-reason'      => 'Důvod:',
-'disableaccount-confirm'     => "Deaktivovat tento uživatelský účet.
-Uživatel se nebude moci přihlásit, požádat o nové heslo, ani dostávat e-mailové notifikace.
-Pokud je uživatel kdekoli přihlášen, bude okamžitě odhlášen.
-''Uvědomte si, že deaktivaci účtu nelze vrátit zpět bez pomoci systémového administrátora.''",
-'disableaccount-mustconfirm' => 'Musíte potvrdit, že si přejete deaktivovat tento účet.',
-'disableaccount-nosuchuser'  => 'Uživatelský účet „$1“ neexistuje.',
-'disableaccount-success'     => 'Uživatelský účet „$1“ byl natrvalo deaktivován.',
-'disableaccount-logentry'    => 'natrvalo deaktivoval uživatelský účet [[$1]]',
 
 );

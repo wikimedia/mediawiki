@@ -9,6 +9,7 @@
  *
  * @author Cesco
  * @author Jim-by
+ * @author LexArt
  * @author Maksim L.
  * @author Mienski
  * @author Prima klasy4na
@@ -1113,6 +1114,9 @@ $1",
 'prefs-displaywatchlist'        => 'Паказ',
 'prefs-diffs'                   => 'Розніцы',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-invalid' => 'Увядзіце слушны адрас электроннай пошты',
+
 # User rights
 'userrights'                   => 'Распараджэнне правамі ўдзельніка',
 'userrights-lookup-user'       => 'Распараджацца групамі ўдзельнікаў',
@@ -1359,6 +1363,7 @@ $1",
 'verification-error'          => 'Гэты файл не прайшоў файлавую праверку.',
 'illegal-filename'            => 'Імя файла не дапускаецца.',
 'unknown-error'               => 'Невядомая памылка.',
+'tmp-create-error'            => 'Не атрымалася стварыць часовы файл',
 'large-file'                  => 'Рэкамендуецца, каб файлы былі не большыя за $1; гэты файл ёміць $2.',
 'largefileserver'             => "Гэты файл большага аб'ёму, чым дазваляе канфігурацыя сервера.",
 'emptyfile'                   => 'Здаецца, што файл, укладзены вамі, пусты. Магчыма, здарылася памылка ў назве файла? Праверце, ці вы сапраўды хацелі ўкласці менавіта гэты файл.',
@@ -1421,8 +1426,13 @@ $1",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Доступ забаронены',
+'img-auth-nofile'       => 'Файл " $1 "не існуе.',
+'img-auth-isdir'        => 'Вы спрабуеце атрымаць доступ да каталога "$1"
+Дазволены доступ толькі да файлаў.',
 
 # HTTP errors
+'http-request-error'    => 'Не атрымалася выканаць HTTP-запыт з-за невядомай памылкі',
+'http-read-error'       => 'Памылка чытання HTTP',
 'http-host-unreachable' => 'Не ўдалося адкрыць URL',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -3066,18 +3076,5 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 # SQLite database support
 'sqlite-has-fts' => '$1 з падтрымкай поўна-тэкставага пошуку',
 'sqlite-no-fts'  => '$1 без падтрымкі поўна-тэкставага пошуку',
-
-# Special:DisableAccount
-'disableaccount'             => 'Забараніць працу ўдзельніка',
-'disableaccount-user'        => 'Імя:',
-'disableaccount-reason'      => 'Прычына:',
-'disableaccount-confirm'     => "Забарона працы ўдзельніка.
-Удзельнік не зможа ўваходзіць у сістэму, мяняць свой пароль ці атрымліваць паведамленні з пляцоўкі праз эл.пошту.
-Калі ўдзельнік зараз ужо працуе ў сістэме, то яго сеанс працы будзе неадкладна спынены.
-''Заўважце, што забарона працы ўдзельніка можа быць скасаваная толькі ўдзельнікам з паўнамоцтвамі сістэмнага адміністратара.''",
-'disableaccount-mustconfirm' => 'Належыць пацвердзіць забарону працы гэтага ўдзельніка.',
-'disableaccount-nosuchuser'  => 'Не ўдалося знайсці ўліковыя даныя ўдзельніка "$1".',
-'disableaccount-success'     => 'Праца ўдзельніка "$1" забаронена бестэрмінова.',
-'disableaccount-logentry'    => 'бестэрмінова забараніў працу ўдзельніка [[$1]]',
 
 );

@@ -926,8 +926,4 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 # HTML forms
 'htmlform-submit' => 'Күүcедири',
 
-# Special:DisableAccount
-'disableaccount-user'       => 'Aжыглакчының ады',
-'disableaccount-nosuchuser' => '"$1" деп бүрүткел бижик чок.',
-
 );

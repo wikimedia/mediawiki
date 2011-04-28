@@ -3021,8 +3021,4 @@ $5
 'htmlform-reset'               => 'צוריקשטעלן ענדערונגען',
 'htmlform-selectorother-other' => 'אנדער',
 
-# Special:DisableAccount
-'disableaccount-user'       => 'באַניצער נאָמען:',
-'disableaccount-nosuchuser' => 'די באַניצער קאנטע "$1" עקזיסטירט נישט.',
-
 );

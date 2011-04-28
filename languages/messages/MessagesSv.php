@@ -1325,7 +1325,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'resultsperpage'                => 'Träffar per sida:',
 'contextlines'                  => 'Antal rader per träff:',
 'contextchars'                  => 'Tecken per rad:',
-'stub-threshold'                => 'Gräns för <a href="#" class="stub">stublänk</a>-formattering (byte):',
+'stub-threshold'                => 'Gräns för <a href="#" class="stub">stubblänk</a>-formatering (byte):',
 'stub-threshold-disabled'       => 'Avaktiverat',
 'recentchangesdays'             => 'Antal dygn som skall visas i "senaste ändringarna":',
 'recentchangesdays-max'         => '(maximalt $1 {{PLURAL:$1|dygn|dygn}})',
@@ -1514,7 +1514,6 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-reset-passwords'       => 'Återställa andra användares lösenord',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-sendemail'             => 'Skicka e-post till andra användare',
-'right-disableaccount'        => 'Inaktivera konton',
 
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',
@@ -1751,22 +1750,23 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'upload-http-error'         => 'Ett HTTP-fel uppstod: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Åtkomst nekad',
-'img-auth-nopathinfo'   => 'Saknad PATH_INFO.
+'img-auth-accessdenied'     => 'Åtkomst nekad',
+'img-auth-nopathinfo'       => 'Saknad PATH_INFO.
 Din server är inte inställd för att ge denna information.
 Den kan vara CGI-baserad och stöttar inte img_auth.
 Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
-'img-auth-badtitle'     => 'Kan inte skapa en giltig titel från "$1"',
-'img-auth-nologinnWL'   => 'Du är inte inloggad och "$1" finns inte i vitlistan.',
-'img-auth-nofile'       => 'Filen "$1" finns inte.',
-'img-auth-isdir'        => 'Du försöker få åtkomst till en katalog "$1".
+'img-auth-notindir'         => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
+'img-auth-badtitle'         => 'Kan inte skapa en giltig titel från "$1"',
+'img-auth-nologinnWL'       => 'Du är inte inloggad och "$1" finns inte i vitlistan.',
+'img-auth-nofile'           => 'Filen "$1" finns inte.',
+'img-auth-isdir'            => 'Du försöker få åtkomst till en katalog "$1".
 Endast åtkomst till filer är tillåten.',
-'img-auth-streaming'    => 'Strömmar "$1".',
-'img-auth-public'       => 'Funktionaliteten i img_auth.php är att skicka filer från en privat wiki.
+'img-auth-streaming'        => 'Strömmar "$1".',
+'img-auth-public'           => 'Funktionaliteten i img_auth.php är att skicka filer från en privat wiki.
 Denna wiki är konfigurerad som en publik wiki.
 För optimal säkerhet, har img_auth.php blivit avaktiverad.',
-'img-auth-noread'       => 'Användaren har inte tillåtelse att läsa "$1"',
+'img-auth-noread'           => 'Användaren har inte tillåtelse att läsa "$1"',
+'img-auth-bad-query-string' => 'URL-adressen har en ogiltig frågesträng.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ogiltig URL: $1',
@@ -2718,7 +2718,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'import-interwiki-namespace' => 'Målnamnrymd:',
 'import-upload-filename'     => 'Filnamn:',
 'import-comment'             => 'Kommentar:',
-'importtext'                 => 'Exportera filen från ursprungs-wikin genom att använda [[Special:Export|exportverktyget]], spara den till din hårddisk och ladda upp den här.',
+'importtext'                 => 'Var god exportera filen från ursprungs-wikin med hjälp av [[Special:Export|exporteringsverktyget]].
+Spara den på din dator och ladda upp den här.',
 'importstart'                => 'Importerar sidor....',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versioner}}',
 'importnopages'              => 'Det finns inga sidor att importera.',
@@ -3034,8 +3035,8 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-colorspace'                  => 'Färgrymd',
 'exif-componentsconfiguration'     => 'Komponentanalys',
 'exif-compressedbitsperpixel'      => 'Bildkomprimeringsläge',
-'exif-pixelydimension'             => 'Giltig bildbredd',
-'exif-pixelxdimension'             => 'Giltig bildhöjd',
+'exif-pixelydimension'             => 'Bildbredd',
+'exif-pixelxdimension'             => 'Bildhöjd',
 'exif-makernote'                   => 'Tillverkarkommentarer',
 'exif-usercomment'                 => 'Kommentarer',
 'exif-relatedsoundfile'            => 'Relaterad ljudfil',
@@ -3051,9 +3052,9 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-spectralsensitivity'         => 'Spektral känslighet',
 'exif-isospeedratings'             => 'Filmhastighet (ISO)',
 'exif-oecf'                        => 'Optoelektronisk konversionsfaktor',
-'exif-shutterspeedvalue'           => 'Slutarhastighet',
-'exif-aperturevalue'               => 'Bländare',
-'exif-brightnessvalue'             => 'Ljusstyrka',
+'exif-shutterspeedvalue'           => 'APEX slutarhastighet',
+'exif-aperturevalue'               => 'APEX bländare',
+'exif-brightnessvalue'             => 'APEX ljusstyrka',
 'exif-exposurebiasvalue'           => 'Exponeringsbias',
 'exif-maxaperturevalue'            => 'Maximal bländare',
 'exif-subjectdistance'             => 'Avstånd till motivet',
@@ -3198,6 +3199,8 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-sensingmethod-5' => 'Färgsekventiell områdessensor',
 'exif-sensingmethod-7' => 'Trilinjär sensor',
 'exif-sensingmethod-8' => 'Färgsekventiell linjär sensor',
+
+'exif-filesource-3' => 'Digital stillbildskamera',
 
 'exif-scenetype-1' => 'Direkt fotograferad bild',
 
@@ -3523,7 +3526,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'tags-display-header'     => 'Utseende på listor över ändringar',
 'tags-description-header' => 'Full beskrivning av betydelse',
 'tags-hitcount-header'    => 'Märkta ändringar',
-'tags-edit'               => 'redigering',
+'tags-edit'               => 'redigera',
 'tags-hitcount'           => '$1 {{PLURAL:$1|ändring|ändringar}}',
 
 # Special:ComparePages
@@ -3559,18 +3562,5 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 # SQLite database support
 'sqlite-has-fts' => '$1 med stöd för fulltextsökning',
 'sqlite-no-fts'  => '$1 utan stöd för fulltextsökning',
-
-# Special:DisableAccount
-'disableaccount'             => 'Inaktivera ett användarkonto',
-'disableaccount-user'        => 'Användarnamn:',
-'disableaccount-reason'      => 'Orsak:',
-'disableaccount-confirm'     => "Inaktivera detta användarkonto.
-Användaren kommer inte att kunna logga in, återställa sitt lösenord, eller ta emot e-postmeddelanden.
-Om användaren är inloggad någonstans, kommer den att omedelbart loggas ut.
-''Observera att inaktivering av ett konto inte är reversibelt utan ingripande av en systemadministratör.''",
-'disableaccount-mustconfirm' => 'Du måste bekräfta att du vill inaktivera detta konto.',
-'disableaccount-nosuchuser'  => 'Användarkontot "$1" existerar inte.',
-'disableaccount-success'     => 'Användarkontot "$1" har inaktiverats permanent.',
-'disableaccount-logentry'    => 'inaktivera användarkontot [[$1]] permanent',
 
 );

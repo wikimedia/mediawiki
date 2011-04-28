@@ -24,6 +24,7 @@
  * @author Li-sung
  * @author Lyzzy
  * @author MF-Warburg
+ * @author Man77
  * @author Melancholie
  * @author Meno25
  * @author Merlissimo
@@ -657,7 +658,7 @@ Siehe die [[Special:Version|Versionsseite]]',
 'nstab-special'   => 'Spezialseite',
 'nstab-project'   => 'Projektseite',
 'nstab-image'     => 'Datei',
-'nstab-mediawiki' => 'MediaWiki-Systemnachricht',
+'nstab-mediawiki' => 'Systemnachricht',
 'nstab-template'  => 'Vorlage',
 'nstab-help'      => 'Hilfeseite',
 'nstab-category'  => 'Kategorie',
@@ -712,7 +713,7 @@ Falls dies nicht  zutrifft, hast du eventuell einen Fehler in der Software gefun
 'formerror'            => 'Fehler: Die Eingaben konnten nicht verarbeitet werden.',
 'badarticleerror'      => 'Diese Aktion kann auf diese Seite nicht angewendet werden.',
 'cannotdelete'         => 'Die Seite oder Datei „$1“ kann nicht gelöscht werden.
-Möglicherweise wurde sie bereits von jemand anders gelöscht.',
+Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'badtitle'             => 'Ungültiger Titel',
 'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
@@ -1552,7 +1553,6 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-reset-passwords'       => 'Passwort eines anderen Benutzers zurücksetzen',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
-'right-disableaccount'        => 'Benutzerkonto deaktivieren',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
@@ -1788,22 +1788,23 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'upload-http-error'         => 'Ein HTTP-Fehler ist aufgetreten: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Zugriff verweigert',
-'img-auth-nopathinfo'   => 'PATH_INFO fehlt.
+'img-auth-accessdenied'     => 'Zugriff verweigert',
+'img-auth-nopathinfo'       => 'PATH_INFO fehlt.
 Dein Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
 Es könnte CGI-basiert sein und unterstützt img_auth nicht.
 Siehe http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
-'img-auth-badtitle'     => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
-'img-auth-nologinnWL'   => 'Du bist nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
-'img-auth-nofile'       => 'Datei „$1“ existiert nicht.',
-'img-auth-isdir'        => 'Du versuchst, auf ein Verzeichnis „$1“ zuzugreifen.
+'img-auth-notindir'         => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
+'img-auth-badtitle'         => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
+'img-auth-nologinnWL'       => 'Du bist nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
+'img-auth-nofile'           => 'Datei „$1“ existiert nicht.',
+'img-auth-isdir'            => 'Du versuchst, auf ein Verzeichnis „$1“ zuzugreifen.
 Nur Dateizugriff ist erlaubt.',
-'img-auth-streaming'    => 'Lade „$1“.',
-'img-auth-public'       => 'img_auth.php gibt Dateien von einem privaten Wiki aus.
+'img-auth-streaming'        => 'Lade „$1“.',
+'img-auth-public'           => 'img_auth.php gibt Dateien von einem privaten Wiki aus.
 Dieses Wiki wurde als ein öffentliches Wiki konfiguriert.
 Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
-'img-auth-noread'       => 'Benutzer hat keine Berechtigung, „$1“ zu lesen.',
+'img-auth-noread'           => 'Benutzer hat keine Berechtigung, „$1“ zu lesen.',
+'img-auth-bad-query-string' => 'Die URL weist eine ungültige Abfragezeichenfolge auf.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ungültige URL: $1',
@@ -2433,7 +2434,7 @@ $1',
 'sp-contributions-talk'                => 'Diskussion',
 'sp-contributions-userrights'          => 'Benutzerrechteverwaltung',
 'sp-contributions-blocked-notice'      => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist derzeit gesperrt. Es folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:',
-'sp-contributions-blocked-notice-anon' => 'Diese IP-Adresse ist zur Zeit gesperrt.
+'sp-contributions-blocked-notice-anon' => 'Diese IP-Adresse ist zurzeit gesperrt.
 Zur Information folgt der aktuelle Auszug aus dem Sperr-Logbuch:',
 'sp-contributions-search'              => 'Suche nach Benutzerbeiträgen',
 'sp-contributions-username'            => 'IP-Adresse oder Benutzername:',
@@ -2936,15 +2937,15 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'mw_math_mathml' => 'Sofern möglich als MathML darstellen (experimentell)',
 
 # Math errors
-'math_failure'          => 'Parser-Fehler',
+'math_failure'          => 'Fehler beim Parsen',
 'math_unknown_error'    => 'Unbekannter Fehler',
 'math_unknown_function' => 'Unbekannte Funktion ',
 'math_lexing_error'     => '„Lexing“-Fehler',
 'math_syntax_error'     => 'Syntaxfehler',
-'math_image_error'      => 'PNG-Konvertierung fehlgeschlagen; korrekte Installation von LaTeX und dvipng überprüfen (oder dvips + gs + convert)',
+'math_image_error'      => 'PNG-Konvertierung fehlgeschlagen. Bitte die korrekte Installation von LaTeX und dvipng überprüfen (oder dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Das temporäre Verzeichnis für mathematische Formeln kann nicht angelegt oder beschrieben werden.',
 'math_bad_output'       => 'Das Zielverzeichnis für mathematische Formeln kann nicht angelegt oder beschrieben werden.',
-'math_notexvc'          => 'Das texvc-Programm wurde nicht gefunden. Bitte math/README beachten.',
+'math_notexvc'          => 'Das texvc-Programm wurde nicht gefunden. Bitte zur Konfiguration die Hinweise in der Datei math/README beachten.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Als kontrolliert markieren',
@@ -3066,8 +3067,8 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-colorspace'                  => 'Farbraum',
 'exif-componentsconfiguration'     => 'Bedeutung einzelner Komponenten',
 'exif-compressedbitsperpixel'      => 'Komprimierte Bits pro Pixel',
-'exif-pixelydimension'             => 'Gültige Bildbreite',
-'exif-pixelxdimension'             => 'Gültige Bildhöhe',
+'exif-pixelydimension'             => 'Bildbreite',
+'exif-pixelxdimension'             => 'Bildhöhe',
 'exif-makernote'                   => 'Herstellernotiz',
 'exif-usercomment'                 => 'Benutzerkommentare',
 'exif-relatedsoundfile'            => 'Zugehörige Tondatei',
@@ -3083,9 +3084,9 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-spectralsensitivity'         => 'Spectral Sensitivity',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlichkeit (ISO)',
 'exif-oecf'                        => 'Optoelektronischer Umrechnungsfaktor',
-'exif-shutterspeedvalue'           => 'Belichtungszeitwert',
-'exif-aperturevalue'               => 'Blendenwert',
-'exif-brightnessvalue'             => 'Helligkeitswert',
+'exif-shutterspeedvalue'           => 'APEX-Belichtungszeitwert',
+'exif-aperturevalue'               => 'APEX-Blendenwert',
+'exif-brightnessvalue'             => 'APEX-Helligkeitswert',
 'exif-exposurebiasvalue'           => 'Belichtungsvorgabe',
 'exif-maxaperturevalue'            => 'Größte Blende',
 'exif-subjectdistance'             => 'Entfernung',
@@ -3230,6 +3231,8 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-sensingmethod-5' => 'Farbraum sequentiell Sensor',
 'exif-sensingmethod-7' => 'Trilinearer Sensor',
 'exif-sensingmethod-8' => 'Farbraum linear sequentieller Sensor',
+
+'exif-filesource-3' => 'Digitale Standbildkamera',
 
 'exif-scenetype-1' => 'Normal',
 
@@ -3464,6 +3467,17 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 'watchlisttools-edit' => 'normal bearbeiten',
 'watchlisttools-raw'  => 'Listenformat bearbeiten (Import/Export)',
 
+# Hijri month names
+'hijri-calendar-m3'  => 'Rabiʿ al-auwal',
+'hijri-calendar-m4'  => 'Rabiʿ ath-thani',
+'hijri-calendar-m5'  => 'Dschumada l-ula',
+'hijri-calendar-m6'  => 'Dschumada th-thaniyya',
+'hijri-calendar-m7'  => 'Radschab',
+'hijri-calendar-m8'  => 'Schaʿban',
+'hijri-calendar-m10' => 'Schawwal',
+'hijri-calendar-m11' => 'Dhu l-qaʿda',
+'hijri-calendar-m12' => 'Dhu l-hiddscha',
+
 # Core parser functions
 'unknown_extension_tag' => 'Unbekannter Extension-Tag „$1“',
 'duplicate-defaultsort' => 'Achtung: Der Sortierungsschlüssel „$2“ überschreibt den vorher verwendeten Schlüssel „$1“.',
@@ -3596,18 +3610,5 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',
 'sqlite-no-fts'  => 'Version $1 ohne Unterstützung für die Volltextsuche',
-
-# Special:DisableAccount
-'disableaccount'             => 'Ein Benutzerkonto deaktivieren',
-'disableaccount-user'        => 'Benutzername:',
-'disableaccount-reason'      => 'Grund:',
-'disableaccount-confirm'     => "Deaktivieren dieses Benutzerkontos.
-Der Benutzer wird nicht mehr in der Lage sein sich anzumelden, das Passwort zurückzusetzen oder E-Mail-Benachrichtigungen zu empfangen.
-Sofern der Benutzer momentan angemeldet ist, wird er umgehend abgemeldet.
-''Es ist zu beachten, das die Deaktivierung eines Benutzerkontos nicht mehr ohne das Eingreifen eines Systemadministrators rückgängig gemacht werden kann.''",
-'disableaccount-mustconfirm' => 'Die Deaktivierung dieses Benutzerkontos muss nun bestätigt werden.',
-'disableaccount-nosuchuser'  => 'Das Benutzerkonto „$1“ ist nicht vorhanden.',
-'disableaccount-success'     => 'Das Benutzerkonto „$1“ wurde dauerhaft deaktiviert.',
-'disableaccount-logentry'    => 'deaktivierte das Benutzerkonto [[$1]] dauerhaft',
 
 );

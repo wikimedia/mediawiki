@@ -397,7 +397,7 @@ $messages = array(
 'december-gen'  => 'december',
 'jan'           => 'jan',
 'feb'           => 'febr',
-'mar'           => 'már',
+'mar'           => 'márc',
 'apr'           => 'ápr',
 'may'           => 'máj',
 'jun'           => 'jún',
@@ -1499,7 +1499,6 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-reset-passwords'       => 'Más felhasználók jelszavának visszaállítása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
-'right-disableaccount'        => 'fiókok letiltása',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',
@@ -1732,20 +1731,21 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'upload-http-error'         => 'HTTP-hiba történt: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Hozzáférés megtagadva',
-'img-auth-nopathinfo'   => 'Hiányzó PATH_INFO.
+'img-auth-accessdenied'     => 'Hozzáférés megtagadva',
+'img-auth-nopathinfo'       => 'Hiányzó PATH_INFO.
 A szerver nincs beállítva, hogy továbbítsa ezt az információt.
 Lehet, hogy CGI-alapú, és nem támogatja az img_auth-ot.
 Lásd a http://www.mediawiki.org/wiki/Manual:Image_Authorization lapot.',
-'img-auth-notindir'     => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
-'img-auth-badtitle'     => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
-'img-auth-nologinnWL'   => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',
-'img-auth-nofile'       => 'A fájl („$1”) nem létezik.',
-'img-auth-isdir'        => 'Megpróbáltál hozzáférni a(z) „$1” könyvtárhoz, azonban csak a fájlokhoz lehet.',
-'img-auth-streaming'    => '„$1” továbbítása.',
-'img-auth-public'       => 'Az img_auth.php funkciója az, hogy fájlokat közvetítsen egy privát wikiből.
+'img-auth-notindir'         => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
+'img-auth-badtitle'         => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
+'img-auth-nologinnWL'       => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',
+'img-auth-nofile'           => 'A fájl („$1”) nem létezik.',
+'img-auth-isdir'            => 'Megpróbáltál hozzáférni a(z) „$1” könyvtárhoz, azonban csak a fájlokhoz lehet.',
+'img-auth-streaming'        => '„$1” továbbítása.',
+'img-auth-public'           => 'Az img_auth.php funkciója az, hogy fájlokat közvetítsen egy privát wikiből.
 Ez a wiki publikus, így a biztonság miatt az img_auth.php ki van kapcsolva.',
-'img-auth-noread'       => 'A szerkesztő nem jogosult a(z) „$1” olvasására.',
+'img-auth-noread'           => 'A szerkesztő nem jogosult a(z) „$1” olvasására.',
+'img-auth-bad-query-string' => 'Az URL-cím érvénytelen lekérdezést tartalmaz.',
 
 # HTTP errors
 'http-invalid-url'      => 'Érvénytelen URL-cím: $1',
@@ -2707,7 +2707,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'import-interwiki-namespace' => 'Célnévtér:',
 'import-upload-filename'     => 'Fájlnév:',
 'import-comment'             => 'Megjegyzés:',
-'importtext'                 => 'Kérjük, hogy a fájlt a forráswikiből a Special:Export segédeszköz használatával exportáld, mentsd a lemezedre, és töltsd ide föl.',
+'importtext'                 => 'Exportáld a fájlt a forráswikiből az [[Special:Export|exportáló eszköz]] segítségével.
+Mentsd el a számítógépedre, majd töltsd fel ide.',
 'importstart'                => 'Lapok importálása...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revision|változatok}}',
 'importnopages'              => 'Nincs importálandó lap.',
@@ -3008,8 +3009,8 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-colorspace'                  => 'Színtér',
 'exif-componentsconfiguration'     => 'Az egyes összetevők jelentése',
 'exif-compressedbitsperpixel'      => 'Képtömörítési mód',
-'exif-pixelydimension'             => 'Érvényes képszélesség',
-'exif-pixelxdimension'             => 'Érvényes képmagasság',
+'exif-pixelydimension'             => 'Képszélesség',
+'exif-pixelxdimension'             => 'Képmagasság',
 'exif-makernote'                   => 'Gyártó jegyzetei',
 'exif-usercomment'                 => 'Felhasználók megjegyzései',
 'exif-relatedsoundfile'            => 'Kapcsolódó hangfájl',
@@ -3025,9 +3026,9 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-spectralsensitivity'         => 'Színkép érzékenysége',
 'exif-isospeedratings'             => 'ISO érzékenység minősítése',
 'exif-oecf'                        => 'Optoelectronikai konverziós tényező',
-'exif-shutterspeedvalue'           => 'Zársebesség',
-'exif-aperturevalue'               => 'Lencsenyílás',
-'exif-brightnessvalue'             => 'Fényerő',
+'exif-shutterspeedvalue'           => 'APEX zársebesség',
+'exif-aperturevalue'               => 'APEX lencsenyílás',
+'exif-brightnessvalue'             => 'APEX fényerő',
 'exif-exposurebiasvalue'           => 'Expozíciós dőltség',
 'exif-maxaperturevalue'            => 'Legnagyobb földi lencsenyílás',
 'exif-subjectdistance'             => 'Tárgy távolsága',
@@ -3531,18 +3532,5 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 # SQLite database support
 'sqlite-has-fts' => '$1 teljes szöveges keresés támogatással',
 'sqlite-no-fts'  => '$1 teljes szöveges keresés támogatása nélkül',
-
-# Special:DisableAccount
-'disableaccount'             => 'Felhasználói fiók letiltása',
-'disableaccount-user'        => 'Felhasználónév:',
-'disableaccount-reason'      => 'Ok:',
-'disableaccount-confirm'     => "Felhasználói fiók letiltása.
-A felhasználó nem jelentkezhet be, nem kérhet új jelszót és nem kap e-mailes értesítéseket.
-Ha a felhasználó bárhol be van jelentkezve, ki lesz jelentkeztetve.
-''Fontos, hogy felhasználói fiók letiltása nem állítható vissza rendszeradminisztrátor közreműködése nélkül.''",
-'disableaccount-mustconfirm' => 'Meg kell erősítened, hogy biztosan le szeretnéd tiltani ezt a fiókot.',
-'disableaccount-nosuchuser'  => 'Nem létezik „$1” nevű felhasználói fiók.',
-'disableaccount-success'     => '„$1” felhasználói fiókja véglegesen le lett tiltva.',
-'disableaccount-logentry'    => 'véglegesen letiltotta [[$1]] felhasználói fiókját',
 
 );

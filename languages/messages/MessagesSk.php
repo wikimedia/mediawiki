@@ -1485,7 +1485,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-reset-passwords'       => 'Zmeniť heslo iných používateľov',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
 'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
-'right-disableaccount'        => 'Zakázať účty',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',
@@ -1721,22 +1720,23 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'upload-http-error'         => 'Vyskytla sa chyba HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Prístup zamietnutý',
-'img-auth-nopathinfo'   => 'Chýba PATH_INFO.
+'img-auth-accessdenied'     => 'Prístup zamietnutý',
+'img-auth-nopathinfo'       => 'Chýba PATH_INFO.
 Váš server nie je nastavený tak, aby poskytoval tieto informácie.
 Môže byť založený na CGI a nedokáže podporovať img_auth.
 Pozri http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Požadovaná cesta nie je v nastavenom adresári na nahrávanie.',
-'img-auth-badtitle'     => 'Nepodarilo sa zostaviť platný názov z „$1“.',
-'img-auth-nologinnWL'   => 'Nie ste prihlásený a „$1“ nie je na bielej listine.',
-'img-auth-nofile'       => 'Súbor „$1“ neexistuje.',
-'img-auth-isdir'        => 'Pokúšate sa o prístup k adresáru „$1“.
+'img-auth-notindir'         => 'Požadovaná cesta nie je v nastavenom adresári na nahrávanie.',
+'img-auth-badtitle'         => 'Nepodarilo sa zostaviť platný názov z „$1“.',
+'img-auth-nologinnWL'       => 'Nie ste prihlásený a „$1“ nie je na bielej listine.',
+'img-auth-nofile'           => 'Súbor „$1“ neexistuje.',
+'img-auth-isdir'            => 'Pokúšate sa o prístup k adresáru „$1“.
 Je povolený iba prístup k súborom.',
-'img-auth-streaming'    => 'Streamovanie „$1“.',
-'img-auth-public'       => 'Funkciou img_auth.php je výstup súborov zo súkromnej wiki.
+'img-auth-streaming'        => 'Streamovanie „$1“.',
+'img-auth-public'           => 'Funkciou img_auth.php je výstup súborov zo súkromnej wiki.
 Nastavená wiki je verejná.
 Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
-'img-auth-noread'       => 'Používateľ nemá prístup na čítanie „$1“.',
+'img-auth-noread'           => 'Používateľ nemá prístup na čítanie „$1“.',
+'img-auth-bad-query-string' => 'URL má neplatný reťazec požiadavky.',
 
 # HTTP errors
 'http-invalid-url'      => 'Neplatný URL: $1',
@@ -2442,7 +2442,7 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'ipusubmit'                       => 'Zrušiť toto blokovanie',
 'unblocked'                       => '[[User:$1|$1]] bol odblokovaný',
 'unblocked-id'                    => 'Blokovanie $1 bolo odstránené',
-'ipblocklist'                     => 'Zablokovaní používatelia/IP adresy',
+'ipblocklist'                     => 'Zablokovaní používatelia',
 'ipblocklist-legend'              => 'Nájsť zablokovaného používateľa',
 'ipblocklist-username'            => 'Používateľské meno alebo IP adresa:',
 'ipblocklist-sh-userblocks'       => '$1 zablokovaných účtov',
@@ -2697,7 +2697,8 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'import-interwiki-namespace' => 'Cieľový menný priestor:',
 'import-upload-filename'     => 'Názov súboru:',
 'import-comment'             => 'komentár:',
-'importtext'                 => 'Prosím exportujte súbor zo zdrojovej wiki použitím [[Special:Export|nástroja na export]], uložte ho na svoj disk a nahrajte sem.',
+'importtext'                 => 'Prosím, exportujte súbor zo zdrojovej wiki použitím [[Special:Export|nástroja na export]].
+Uložte ho na svoj disk a nahrajte sem.',
 'importstart'                => 'Importujú sa stránky...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revízia|revízie|revízií}}',
 'importnopages'              => 'Žiadne stránky pre import.',
@@ -3172,6 +3173,8 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-sensingmethod-7' => 'Trilineárny snímač',
 'exif-sensingmethod-8' => 'Sekvenčný farebný lineárny snímač',
 
+'exif-filesource-3' => 'Digitálny fotoaparát',
+
 'exif-scenetype-1' => 'Priamo odfotený obrázok',
 
 'exif-customrendered-0' => 'Normálne spracovanie',
@@ -3539,18 +3542,5 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou vyhľadávania v plnom texte',
 'sqlite-no-fts'  => '$1 bez podpory vyhľadávania v plnom texte',
-
-# Special:DisableAccount
-'disableaccount'             => 'Zakázať používateľský účet',
-'disableaccount-user'        => 'Používateľské meno:',
-'disableaccount-reason'      => 'Dôvod:',
-'disableaccount-confirm'     => "Zakázať tento používateľský účet.
-Používateľ sa nebude môcť prihlásiť, zmeniť svoje heslo ani dostávať upozornenia emailom.
-Ak je používateľ momentálne niekde prihlásený, bude okamžite odhlásený.
-''Pamätajte, že zakázanie používateľského účtu je nezvratné bez zásahu správcu.''",
-'disableaccount-mustconfirm' => 'Musíte potvrdiť, že chcete zakázať tento účet.',
-'disableaccount-nosuchuser'  => 'Používateľský účet „$1“ neexistuje.',
-'disableaccount-success'     => 'Používateľský účet „$1“ bol natrvalo zakázaný.',
-'disableaccount-logentry'    => 'natrvalo zakázaný používateľský účet [[$1]]',
 
 );

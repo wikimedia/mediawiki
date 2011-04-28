@@ -369,7 +369,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'חשיפת כתובת הדוא"ל שלך בהודעות דואר',
 'tog-shownumberswatching'     => 'הצגת מספר המשתמשים העוקבים אחרי הדף',
 'tog-oldsig'                  => 'תצוגה מקדימה של החתימה הקיימת:',
-'tog-fancysig'                => 'טיפול בחתימה כקוד ויקי (ללא קישור אוטומטי)',
+'tog-fancysig'                => 'לפרש את החתימה כקוד ויקי (ללא קישור אוטומטי)',
 'tog-externaleditor'          => 'שימוש בעורך חיצוני כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [http://www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
 'tog-externaldiff'            => 'שימוש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [http://www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
 'tog-showjumplinks'           => 'הצגת קישורי נגישות מסוג "קפוץ אל"',
@@ -754,7 +754,7 @@ $2',
 'nologinlink'                => 'הרשמה',
 'createaccount'              => 'יצירת משתמש חדש',
 'gotaccount'                 => 'כבר נרשמתם? $1.',
-'gotaccountlink'             => 'היכנסו לחשבון',
+'gotaccountlink'             => 'כניסה לחשבון',
 'createaccountmail'          => 'באמצעות דוא"ל',
 'createaccountreason'        => 'סיבה:',
 'badretype'                  => 'הסיסמאות שהזנתם אינן מתאימות.',
@@ -1545,7 +1545,6 @@ $1",
 'right-reset-passwords'       => 'איפוס סיסמאות של משתמשים אחרים',
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
-'right-disableaccount'        => 'ביטול חשבונות',
 
 # User rights log
 'rightslog'      => 'יומן תפקידים',
@@ -1783,22 +1782,23 @@ $1',
 'upload-http-error'         => 'התרחשה שגיאת HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'הגישה נדחתה',
-'img-auth-nopathinfo'   => 'PATH_INFO חסר.
+'img-auth-accessdenied'     => 'הגישה נדחתה',
+'img-auth-nopathinfo'       => 'PATH_INFO חסר.
 השרת אינו מוגדר להעברת מידע זה.
 ייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.
 ראו http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
-'img-auth-badtitle'     => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
-'img-auth-nologinnWL'   => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',
-'img-auth-nofile'       => 'הקובץ "$1" אינו קיים.',
-'img-auth-isdir'        => 'אתם מנסים לגשת לתיקייה "$1".
+'img-auth-notindir'         => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
+'img-auth-badtitle'         => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
+'img-auth-nologinnWL'       => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',
+'img-auth-nofile'           => 'הקובץ "$1" אינו קיים.',
+'img-auth-isdir'            => 'אתם מנסים לגשת לתיקייה "$1".
 רק גישה לקבצים מותרת.',
-'img-auth-streaming'    => 'מבצע הזרמה של "$1".',
-'img-auth-public'       => 'img_auth.php משמש להצגת קבצים מתוך אתר ויקי פרטי.
+'img-auth-streaming'        => 'מבצע הזרמה של "$1".',
+'img-auth-public'           => 'img_auth.php משמש להצגת קבצים מתוך אתר ויקי פרטי.
 אתר ויקי זה מוגדר כציבורי.
 כדי להשיג אבטחה מרבית, img_auth.php מבוטל.',
-'img-auth-noread'       => 'למשתמש אין הרשאה לקרוא את "$1".',
+'img-auth-noread'           => 'למשתמש אין הרשאה לקרוא את "$1".',
+'img-auth-bad-query-string' => 'לכתובת ה־URL יש מחרוזת פרמטרים בלתי תקינה.',
 
 # HTTP errors
 'http-invalid-url'      => 'כתובת URL בלתי תקינה: $1',
@@ -2501,9 +2501,9 @@ $1',
 'ipb-change-block'                => 'חסימת המשתמש מחדש עם הגדרות אלה',
 'badipaddress'                    => 'משתמש או כתובת IP שגויים.',
 'blockipsuccesssub'               => 'החסימה הושלמה בהצלחה',
-'blockipsuccesstext'              => 'המשתמש [[Special:Contributions/$1|$1]] נחסם.
+'blockipsuccesstext'              => "{{GENDER:$1|המשתמש|המשתמשת}} [[Special:Contributions/$1|$1]] {{GENDER:$1|נחסם|נחסמה}}.
 
-ראו את [[Special:BlockList|רשימת המשתמשים החסומים]] כדי לצפות בחסימות.',
+ר' את [[Special:IPBlockList|רשימת הכתובות החסומות]] כדי לסקור חסימות.",
 'ipb-edit-dropdown'               => 'עריכת סיבות החסימה',
 'ipb-unblock-addr'                => 'הסרת חסימה של $1',
 'ipb-unblock'                     => 'הסרת חסימה של שם משתמש או כתובת IP',
@@ -2543,9 +2543,9 @@ $1',
 'blocklog-showsuppresslog'        => 'משתמש זה נחסם והוסתר בעבר. יומן ההסתרות מוצג למטה:',
 'blocklogentry'                   => 'חסם את [[$1]] למשך $2 $3',
 'reblock-logentry'                => 'שינה את הגדרות החסימה של [[$1]] עם זמן פקיעה של $2 $3',
-'blocklogtext'                    => 'זהו יומן פעולות החסימה והשחרור של משתמשים. כתובות IP הנחסמות באופן אוטומטי אינן מופיעות.
-
-ראו גם את [[Special:BlockList|רשימת המשתמשים החסומים]] הנוכחית.',
+'blocklogtext'                    => 'זהו יומן פעולות החסימה והשחרור של משתמשים.
+כתובות IP שנחסמו אוטומטית אינן מופיעות.
+ראו גם את [[Special:IPBlockList|רשימת הכתובות החסומות]] לרשימה של החרמות וחסימות פעילות כעת.',
 'unblocklogentry'                 => 'שחרר את $1',
 'block-log-flags-anononly'        => 'משתמשים אנונימיים בלבד',
 'block-log-flags-nocreate'        => 'יצירת חשבונות נחסמה',
@@ -3087,9 +3087,9 @@ $1',
 'exif-spectralsensitivity'         => 'רגישות הספקטרום',
 'exif-isospeedratings'             => 'דירוג מהירות ה־ISO',
 'exif-oecf'                        => 'מקדם המרה אופטו־אלקטרוני',
-'exif-shutterspeedvalue'           => 'מהירות צמצם',
-'exif-aperturevalue'               => 'מִפתח',
-'exif-brightnessvalue'             => 'בהירות',
+'exif-shutterspeedvalue'           => 'מהירות צמצם ביחידות APEX',
+'exif-aperturevalue'               => 'מִפתח APEX',
+'exif-brightnessvalue'             => 'בהירות ביחידות APEX',
 'exif-exposurebiasvalue'           => 'נטיית החשיפה',
 'exif-maxaperturevalue'            => 'גודל המִפתח המרבי',
 'exif-subjectdistance'             => 'מרחק נושא הצילום',
@@ -3235,6 +3235,8 @@ $1',
 'exif-sensingmethod-5' => 'חיישן אזור עם צבע רציף',
 'exif-sensingmethod-7' => 'חיישן טריליניארי',
 'exif-sensingmethod-8' => 'חיישן עם צבע רציף ליניארי',
+
+'exif-filesource-3' => 'מצלמת תמונות ספרתית',
 
 'exif-scenetype-1' => 'תמונה שצולמה ישירות',
 
@@ -3650,18 +3652,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 עם תמיכה בחיפוש בטקסט מלא',
 'sqlite-no-fts'  => '$1 ללא תמיכה בחיפוש בטקסט מלא',
-
-# Special:DisableAccount
-'disableaccount'             => 'ביטול חשבון משתמש',
-'disableaccount-user'        => 'שם משתמש:',
-'disableaccount-reason'      => 'סיבה:',
-'disableaccount-confirm'     => "ביטול חשבון משתמש זה.
-המשתמש לא יוכל להיכנס לחשבון, לאפס את הסיסמה, או לקבל הודעות בדואר אלקטרוני.
-אם המשתמש מחובר כעת לחשבון במקום כלשהו, הוא ייצא מהחשבון מיד.
-'''שימו לב שביטול חשבון הוא פעולה בלתי הפיכה ללא התערבות של מנהל מערכת.'''",
-'disableaccount-mustconfirm' => 'עליכם לאשר שאתם רוצים לבטל חשבון זה.',
-'disableaccount-nosuchuser'  => 'חשבון המשתמש "$1" אינו קיים.',
-'disableaccount-success'     => 'חשבון המשתמש "$1" בוטל.',
-'disableaccount-logentry'    => 'ביטל את חשבון המשתמש [[$1]] לזמן בלתי מוגבל',
 
 );

@@ -2432,8 +2432,4 @@ $1',
 'htmlform-reset'               => 'Үзгәртүләрне кире кайтару',
 'htmlform-selectorother-other' => 'Башка',
 
-# Special:DisableAccount
-'disableaccount-user'   => 'Кулланучы исеме:',
-'disableaccount-reason' => 'Сәбәп:',
-
 );

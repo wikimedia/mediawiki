@@ -1944,8 +1944,4 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'htmlform-reset'               => 'Guherandinan vegerîne',
 'htmlform-selectorother-other' => 'Yên din',
 
-# Special:DisableAccount
-'disableaccount-user'   => 'Navê bikarhêner:',
-'disableaccount-reason' => 'Sedem:',
-
 );

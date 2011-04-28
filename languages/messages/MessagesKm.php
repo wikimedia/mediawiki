@@ -1282,9 +1282,9 @@ $1",
 'prefs-rc'                      => 'បំលាស់ប្ដូរថ្មីៗ',
 'prefs-watchlist'               => 'បញ្ជីតាមដាន',
 'prefs-watchlist-days'          => 'ចំនួនថ្ងៃត្រូវបង្ហាញក្នុងបញ្ជីតាមដាន៖',
-'prefs-watchlist-days-max'      => '(អតិបរមា ៧ថ្ងៃ)',
+'prefs-watchlist-days-max'      => 'អតិបរមា ៧ថ្ងៃ',
 'prefs-watchlist-edits'         => 'ចំនួនអតិបរមានៃបំលាស់ប្តូរត្រូវបង្ហាញក្នុងបញ្ជីតាមដានដែលបានពង្រីក៖',
-'prefs-watchlist-edits-max'     => '(ចំនួនអតិបរមា៖ ១០០០)',
+'prefs-watchlist-edits-max'     => 'ចំនួនអតិបរមា៖ ១០០០',
 'prefs-misc'                    => 'ផ្សេងៗ',
 'prefs-resetpass'               => 'ប្តូរពាក្យសំងាត់',
 'prefs-email'                   => '
@@ -1485,7 +1485,6 @@ $1",
 'right-siteadmin'            => 'ចាក់សោនិងបើកសោមូលដ្ឋានទិន្នន័យ',
 'right-reset-passwords'      => 'កំណត់​ឡើង​វិញ​នូវ​លេខ​សម្ងាត់​អ្នក​ប្រើប្រាស់​ដទៃ​ទៀត​',
 'right-sendemail'            => 'ផ្ញើអ៊ីមែលទៅកាន់អ្នកប្រើដទៃ',
-'right-disableaccount'       => 'បិទគណនី',
 
 # User rights log
 'rightslog'      => 'កំណត់ហេតុនៃការប្តូរសិទ្ធិអ្នកប្រើប្រាស់',
@@ -2684,7 +2683,6 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'import-upload-filename'     => 'ឈ្មោះ​ឯកសារ​​៖',
 'import-comment'             => 'យោបល់៖',
 'importtext'                 => 'សូមនាំចេញឯកសារនេះពីវិគីប្រភពដោយប្រើប្រាស់[[Special:Export|ឧបករណ៍នាំចេញ]]។
-
 រក្សាវាទុកទៅក្នុងកុំព្យូទ័ររបស់អ្នករួចផ្ទុកវាឡើងនៅទីនេះ។',
 'importstart'                => 'កំពុងនាំចូលទំព័រ...',
 'import-revision-count'      => '$1 {{PLURAL:$1|កំណែ}}',
@@ -2952,8 +2950,8 @@ $1',
 'exif-flashpixversion'             => 'បានគាំទ្រ កំណែ Flashpix',
 'exif-colorspace'                  => 'លំហពណ៌',
 'exif-compressedbitsperpixel'      => 'កម្រិតហាប់ នៃរូបភាព (ប៊ិត/ចំណុច)',
-'exif-pixelydimension'             => 'ទទឹងសមស្រប នៃរូបភាព',
-'exif-pixelxdimension'             => 'កម្ពស់សមស្រប នៃរូបភាព',
+'exif-pixelydimension'             => 'ទទឹងរូបភាព',
+'exif-pixelxdimension'             => 'កម្ពស់រូបភាព',
 'exif-makernote'                   => 'កំណត់​ត្រារបស់​អ្នកផលិត',
 'exif-usercomment'                 => 'យោបល់របស់អ្នកប្រើប្រាស់',
 'exif-relatedsoundfile'            => 'ឯកសារសំឡេងពាក់ព័ន្ធ',
@@ -2961,9 +2959,9 @@ $1',
 'exif-datetimedigitized'           => 'ពេលវេលានិងការបរិច្ឆេទធ្វើជាឌីជីថល',
 'exif-exposuretime-format'         => '$1វិនាទី($2)',
 'exif-fnumber'                     => 'លេខ F (F Number)',
-'exif-shutterspeedvalue'           => 'ល្បឿន Shutter (Shutter speed)',
-'exif-aperturevalue'               => 'អាប៉ាឆឺ​(Aperture)',
-'exif-brightnessvalue'             => 'ពន្លឺ',
+'exif-shutterspeedvalue'           => 'ល្បឿន Shutter APEX (Shutter speed)',
+'exif-aperturevalue'               => 'អាប៉ាឆឺ​ APEX (Aperture)',
+'exif-brightnessvalue'             => 'ពន្លឺ APEX',
 'exif-lightsource'                 => 'ប្រភពពន្លឺ',
 'exif-flash'                       => 'បញ្ចេញពន្លឺ',
 'exif-focallength'                 => 'ប្រវែង​កំនុំ​ឡង់ទី',
@@ -3339,21 +3337,5 @@ $1',
 'htmlform-submit'              => 'ដាក់ស្នើ',
 'htmlform-reset'               => 'ធ្វើដូចដើមវិញ',
 'htmlform-selectorother-other' => 'ផ្សេងទៀត',
-
-# Special:DisableAccount
-'disableaccount'             => 'បិទគណនីរបស់អ្នកប្រើប្រាស់',
-'disableaccount-user'        => 'អត្តនាម៖',
-'disableaccount-reason'      => 'មូលហេតុ៖',
-'disableaccount-confirm'     => 'បិទគណនីរបស់អ្នកប្រើប្រាស់នេះ។
-
-អ្នកប្រើប្រាស់នេះនឹងមិនអាចកត់ឈ្មោះចូល ប្ដូរពាក្យសំងាត់ ឬទទួលការជូនដំណឹងតាមរយៈអ៊ីមែលបានទេ។
-
-ប្រសិនបើអ្នកប្រើប្រាស់នេះបានកត់ឈ្មោះចូលនាពេលនេះ គេនឹងត្រូវអោយកត់ឈ្មោះចេញវិញជាបន្ទាន់។
-
-"គួរកត់សំគាល់ថាការបិទគណនីមួយ មិនអាចត្រលប់វិញដោយគ្មានអន្តរាគមន៍ពីអភិបាលរបស់ប្រព័ន្ធបានទេ។"',
-'disableaccount-mustconfirm' => 'អ្នកត្រូវតែអះអាងថាអ្នកពិតជាចង់បិទគណនីនេះ។',
-'disableaccount-nosuchuser'  => 'គណនីអ្នកប្រើប្រាស់ "$1" មិនមានទេ។',
-'disableaccount-success'     => 'គណនីអ្នកប្រើប្រាស់ "$1" ត្រូវបានបិទជានិរន្ដន៍។',
-'disableaccount-logentry'    => 'បិទគណនីអ្នកប្រើប្រាស់ [[$1]] ជានិរន្តន៍',
 
 );

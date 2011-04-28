@@ -2901,8 +2901,4 @@ Kirjutagat failan nimi «{{ns:file}}:»-pkefiksata.',
 # SQLite database support
 'sqlite-no-fts' => " $1 täuz'tekstaižen ecindan tügedamižeta",
 
-# Special:DisableAccount
-'disableaccount-user'   => 'Kävutajannimi:',
-'disableaccount-reason' => 'Sü:',
-
 );

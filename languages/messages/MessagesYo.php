@@ -1124,7 +1124,6 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'right-siteadmin'             => 'Ìtìpa àti ìṣí ibùdó dátà',
 'right-override-export-depth' => 'Ìkójáde àwọn ojúewé lámùúpọ̀ mọ́ àwọn ojúewé jíjápọ̀ títí dé ìbú 5',
 'right-sendemail'             => 'Fi e-mail ránṣẹ́ sí àwọn oníṣe míràn',
-'right-disableaccount'        => 'Ìdálẹ́kun àwọn àkópamọ́',
 
 # User rights log
 'rightslog'     => 'Àwọn ẹ̀tọ́ oníṣe',
@@ -2227,9 +2226,5 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'htmlform-submit'              => 'Fúnsílẹ̀',
 'htmlform-reset'               => 'Ìdápadà àwọn àtúnṣe',
 'htmlform-selectorother-other' => 'Òmíràn',
-
-# Special:DisableAccount
-'disableaccount-user'   => 'Orúkọ́ oníṣe:',
-'disableaccount-reason' => 'Ìdíẹ̀:',
 
 );

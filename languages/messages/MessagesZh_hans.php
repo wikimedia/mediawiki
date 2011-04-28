@@ -39,6 +39,7 @@
  * @author Wong128hk
  * @author Xiaomingyan
  * @author Yfdyh000
+ * @author 阿pp
  */
 
 $fallback8bitEncoding = 'windows-936';
@@ -1381,7 +1382,6 @@ $1",
 'right-reset-passwords'       => '重设其他用户的密码',
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-sendemail'             => '发电子邮件给其他用户',
-'right-disableaccount'        => '禁用账户',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -1597,16 +1597,17 @@ $1',
 'upload-http-error'         => '发生HTTP错误：$1',
 
 # img_auth script messages
-'img-auth-accessdenied' => '拒绝访问',
-'img-auth-nopathinfo'   => 'PATH_INFO遗失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。参见http://www.mediawiki.org/wiki/Manual:Image_Authorization<nowiki></nowiki>。',
-'img-auth-notindir'     => '在已设置的上传目录中找不到请求的路径。',
-'img-auth-badtitle'     => '无法为“$1”创建合法的标题。',
-'img-auth-nologinnWL'   => '您尚未登录，且“$1”不在白名单上。',
-'img-auth-nofile'       => '文件“$1”不存在。',
-'img-auth-isdir'        => '您正试图访问目录“$1”。您只能访问文件。',
-'img-auth-streaming'    => '流式化“$1”中。',
-'img-auth-public'       => 'img_auth.php的功能是从私有wiki输出文件。但本wiki已被设置为公共wiki。出于安全考虑，img_auth.php已被停用。',
-'img-auth-noread'       => '用户无权读取“$1”。',
+'img-auth-accessdenied'     => '拒绝访问',
+'img-auth-nopathinfo'       => 'PATH_INFO遗失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。参见http://www.mediawiki.org/wiki/Manual:Image_Authorization<nowiki></nowiki>。',
+'img-auth-notindir'         => '在已设置的上传目录中找不到请求的路径。',
+'img-auth-badtitle'         => '无法为“$1”创建合法的标题。',
+'img-auth-nologinnWL'       => '您尚未登录，且“$1”不在白名单上。',
+'img-auth-nofile'           => '文件“$1”不存在。',
+'img-auth-isdir'            => '您正试图访问目录“$1”。您只能访问文件。',
+'img-auth-streaming'        => '流式化“$1”中。',
+'img-auth-public'           => 'img_auth.php的功能是从私有wiki输出文件。但本wiki已被设置为公共wiki。出于安全考虑，img_auth.php已被停用。',
+'img-auth-noread'           => '用户无权读取“$1”。',
+'img-auth-bad-query-string' => 'URL 有一个无效的查询字符串。',
 
 # HTTP errors
 'http-invalid-url'      => '无效URL：$1',
@@ -2556,7 +2557,7 @@ $1已被封禁。您是否想更改封禁设置？',
 'import-upload-filename'     => '文件名：',
 'import-comment'             => '注释：',
 'importtext'                 => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
-保存到您的磁盘并上传到这里。',
+保存到您的电脑并上传到这里。',
 'importstart'                => '页面导入中……',
 'import-revision-count'      => '$1个修订',
 'importnopages'              => '没有导入的页面。',
@@ -2885,8 +2886,8 @@ Variants for Chinese language
 'exif-colorspace'                  => '颜色空间',
 'exif-componentsconfiguration'     => '每分量含义',
 'exif-compressedbitsperpixel'      => '图像压缩模式',
-'exif-pixelydimension'             => '有效图像宽度',
-'exif-pixelxdimension'             => '有效图像高度',
+'exif-pixelydimension'             => '图像宽度',
+'exif-pixelxdimension'             => '图像高度',
 'exif-makernote'                   => '制造商注释',
 'exif-usercomment'                 => '用户注释',
 'exif-relatedsoundfile'            => '相关的音频文件',
@@ -2902,9 +2903,9 @@ Variants for Chinese language
 'exif-spectralsensitivity'         => '感光',
 'exif-isospeedratings'             => 'ISO速率',
 'exif-oecf'                        => '光电转换因子',
-'exif-shutterspeedvalue'           => '快门速度',
-'exif-aperturevalue'               => '光圈',
-'exif-brightnessvalue'             => '亮度',
+'exif-shutterspeedvalue'           => 'APEX 快门速度',
+'exif-aperturevalue'               => '根尖孔',
+'exif-brightnessvalue'             => 'APEX 亮度',
 'exif-exposurebiasvalue'           => '曝光补偿',
 'exif-maxaperturevalue'            => '最大陆地光圈',
 'exif-subjectdistance'             => '物距',
@@ -3050,6 +3051,8 @@ Variants for Chinese language
 'exif-sensingmethod-5' => '连续彩色区域传感器',
 'exif-sensingmethod-7' => '三线传感器',
 'exif-sensingmethod-8' => '连续彩色线性传感器',
+
+'exif-filesource-3' => '数码相机',
 
 'exif-scenetype-1' => '直接照像图片',
 
@@ -3411,17 +3414,5 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 # SQLite database support
 'sqlite-has-fts' => '带全文搜索的版本$1',
 'sqlite-no-fts'  => '不带全文搜索的版本$1',
-
-# Special:DisableAccount
-'disableaccount'             => '禁用用户账户',
-'disableaccount-user'        => '用户名：',
-'disableaccount-reason'      => '理由：',
-'disableaccount-confirm'     => "禁用此用户账户。
-该用户将无法登录、重置其密码或收到电子邮件通知。如果用户当前仍保持登录，其账户将被强制退出。
-''留意若无系统管理员的干预，被禁用的账户不可重新启用。''",
-'disableaccount-mustconfirm' => '请确认您的确要禁用此账户。',
-'disableaccount-nosuchuser'  => '用户账户“$1”不存在。',
-'disableaccount-success'     => '用户账户“$1”已被永久禁用。',
-'disableaccount-logentry'    => '永久禁用用户账户[[$1]]',
 
 );

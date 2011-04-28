@@ -2871,9 +2871,4 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'htmlform-reset'               => 'Sädunön votükamis',
 'htmlform-selectorother-other' => 'Votik',
 
-# Special:DisableAccount
-'disableaccount-user'       => 'Gebananem:',
-'disableaccount-reason'     => 'Kod:',
-'disableaccount-nosuchuser' => 'Gebanakal: "$1" no dabinon.',
-
 );

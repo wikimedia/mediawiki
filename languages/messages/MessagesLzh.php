@@ -1177,7 +1177,6 @@ $1",
 'right-reset-passwords'       => '設他簿之符節',
 'right-override-export-depth' => '出有五層深之頁',
 'right-sendemail'             => '擬書傳予他簿',
-'right-disableaccount'        => '停簿',
 
 # User rights log
 'rightslog'  => '職權志',
@@ -2813,18 +2812,5 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 # SQLite database support
 'sqlite-has-fts' => '$1 含全文之尋',
 'sqlite-no-fts'  => '$1 不含全文之尋',
-
-# Special:DisableAccount
-'disableaccount'             => '停簿',
-'disableaccount-user'        => '簿名：',
-'disableaccount-reason'      => '因：',
-'disableaccount-confirm'     => "停此簿。
-此簿無登、重設符節，或收知電。
-若用之，乃立去。
-''意停簿無系秩之介無回也。''",
-'disableaccount-mustconfirm' => '爾須確乃認停爾之簿也。',
-'disableaccount-nosuchuser'  => '「$1」之簿無存也。',
-'disableaccount-success'     => '「$1」之簿已久停簿。',
-'disableaccount-logentry'    => '久停之簿[[$1]]',
 
 );

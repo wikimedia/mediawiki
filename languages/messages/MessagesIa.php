@@ -430,7 +430,7 @@ $1',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pagina',
 'nstab-user'      => 'Pagina de usator',
-'nstab-media'     => 'Pagina de media',
+'nstab-media'     => 'Pagina multimedia',
 'nstab-special'   => 'Pagina special',
 'nstab-project'   => 'Pagina de projecto',
 'nstab-image'     => 'File',
@@ -1370,7 +1370,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
-'right-disableaccount'        => 'Disactivar contos',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',
@@ -1612,22 +1611,23 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'upload-http-error'         => 'Un error HTTP occurreva: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accesso refusate',
-'img-auth-nopathinfo'   => 'PATH_INFO mancante.
+'img-auth-accessdenied'     => 'Accesso refusate',
+'img-auth-nopathinfo'       => 'PATH_INFO mancante.
 Le servitor non ha essite configurate pro passar iste information.
 Illo pote esser basate super CGI e non pote supportar img_auth.
 Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization .',
-'img-auth-notindir'     => 'Le cammino requestate non es in le directorio de incargamentos configurate.',
-'img-auth-badtitle'     => 'Impossibile construer un titulo valide ex "$1".',
-'img-auth-nologinnWL'   => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',
-'img-auth-nofile'       => 'File "$1" non existe.',
-'img-auth-isdir'        => 'Tu tenta acceder a un directorio "$1".
+'img-auth-notindir'         => 'Le cammino requestate non es in le directorio de incargamentos configurate.',
+'img-auth-badtitle'         => 'Impossibile construer un titulo valide ex "$1".',
+'img-auth-nologinnWL'       => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',
+'img-auth-nofile'           => 'File "$1" non existe.',
+'img-auth-isdir'            => 'Tu tenta acceder a un directorio "$1".
 Solmente le accesso a files es permittite.',
-'img-auth-streaming'    => 'Fluxo de "$1" comenciate.',
-'img-auth-public'       => 'Le function de img_auth.php es de reproducer files ex un wiki private.
+'img-auth-streaming'        => 'Fluxo de "$1" comenciate.',
+'img-auth-public'           => 'Le function de img_auth.php es de reproducer files ex un wiki private.
 Iste wiki es configurate como un wiki public.
 Pro securitate optimal, img_auth.php es disactivate.',
-'img-auth-noread'       => 'Le usator non ha accesso pro leger "$1".',
+'img-auth-noread'           => 'Le usator non ha accesso pro leger "$1".',
+'img-auth-bad-query-string' => 'Le URL include un consulta con formato invalide.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL invalide: $1',
@@ -2933,8 +2933,8 @@ Le alteres essera initialmente celate.
 'exif-colorspace'                  => 'Spatio de colores',
 'exif-componentsconfiguration'     => 'Significato de cata componente',
 'exif-compressedbitsperpixel'      => 'Modo de compression del imagine',
-'exif-pixelydimension'             => 'Latitude valide del imagine',
-'exif-pixelxdimension'             => 'Altitude valide del imagine',
+'exif-pixelydimension'             => 'Latitude del imagine',
+'exif-pixelxdimension'             => 'Altitude del imagine',
 'exif-makernote'                   => 'Notas del fabricante',
 'exif-usercomment'                 => 'Commentos del usator',
 'exif-relatedsoundfile'            => 'File audio connexe',
@@ -2950,9 +2950,9 @@ Le alteres essera initialmente celate.
 'exif-spectralsensitivity'         => 'Sensibilitate spectral',
 'exif-isospeedratings'             => 'Classification de velocitate ISO',
 'exif-oecf'                        => 'Factor de conversion optoelectronic',
-'exif-shutterspeedvalue'           => 'Velocitate del obturator',
-'exif-aperturevalue'               => 'Apertura',
-'exif-brightnessvalue'             => 'Luminositate',
+'exif-shutterspeedvalue'           => 'Velocitate del obturator in unitates APEX',
+'exif-aperturevalue'               => 'Latitude del apertura in unitates APEX',
+'exif-brightnessvalue'             => 'Luminositate in unitates APEX',
 'exif-exposurebiasvalue'           => 'Correction de exposition',
 'exif-maxaperturevalue'            => 'Apertura maxime pro terra',
 'exif-subjectdistance'             => 'Distantia del subjecto',
@@ -3097,6 +3097,8 @@ Le alteres essera initialmente celate.
 'exif-sensingmethod-5' => 'Sensor de area sequential de colores',
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor de color linear sequential',
+
+'exif-filesource-3' => 'Camera photographic digital',
 
 'exif-scenetype-1' => 'Un imagine directemente photographiate',
 
@@ -3460,18 +3462,5 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 con supporto de recerca de texto integre',
 'sqlite-no-fts'  => '$1 sin supporto de recerca de texto integre',
-
-# Special:DisableAccount
-'disableaccount'             => 'Disactivar un conto de usator',
-'disableaccount-user'        => 'Nomine de usator:',
-'disableaccount-reason'      => 'Motivo:',
-'disableaccount-confirm'     => "Disactivar iste conto de usator.
-Le usator non potera aperir session, ni reinitialisar su contrasigno, ni reciper notificationes per e-mail.
-Si le usator es actualmente authenticate alicubi, su session essera immediatemente claudite.
-''Nota que le disactivation de un conto de usator non es reversibile sin intervention de un administrator del systema.''",
-'disableaccount-mustconfirm' => 'Tu debe confirmar que tu vole disactivar iste conto.',
-'disableaccount-nosuchuser'  => 'Le conto de usator "$1" non existe.',
-'disableaccount-success'     => 'Le conto de usator "$1" ha essite disactivate permanentemente.',
-'disableaccount-logentry'    => 'disactivava permanentemente le conto de usator [[$1]]',
 
 );

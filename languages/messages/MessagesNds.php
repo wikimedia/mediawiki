@@ -3140,12 +3140,4 @@ Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 'sqlite-has-fts' => '$1 mit Stöhn för Vulltext-Söök',
 'sqlite-no-fts'  => '$1 ahn Stöhn för Vulltext-Söök',
 
-# Special:DisableAccount
-'disableaccount'            => 'Brukerkonto deaktiveren',
-'disableaccount-user'       => 'Brukernaam:',
-'disableaccount-reason'     => 'Grund:',
-'disableaccount-nosuchuser' => 'Dat Brukerkonto „$1“ gifft dat nich.',
-'disableaccount-success'    => 'Dat Brukerkonto „$1“ is nu duurhaftig deaktiveert.',
-'disableaccount-logentry'   => 'hett dat Brukerkonto [[$1]] duurhaftig deaktiveert',
-
 );

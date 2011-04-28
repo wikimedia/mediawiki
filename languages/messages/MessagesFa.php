@@ -1637,7 +1637,6 @@ $1",
 'right-reset-passwords'       => 'از نو تنظیم کردن گذرواژهٔ دیگر کاربران',
 'right-override-export-depth' => 'برون‌ریزی صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵',
 'right-sendemail'             => 'ارسال پست الکترونیک به دیگر کاربران',
-'right-disableaccount'        => 'غیر فعال کردن حساب‌ها',
 
 # User rights log
 'rightslog'      => 'سیاههٔ اختیارات کاربر',
@@ -1865,22 +1864,23 @@ $1',
 'upload-http-error'         => 'یک خطای اچ‌تی‌تی‌پی رخ داد: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'منع دسترسی',
-'img-auth-nopathinfo'   => 'PATH_INFO موجود نیست.
+'img-auth-accessdenied'     => 'منع دسترسی',
+'img-auth-nopathinfo'       => 'PATH_INFO موجود نیست.
 کارساز شما برای رد کردن این مقدار تنظیم نشده‌است.
 ممکن است کارساز مبتنی بر سی‌جی‌آی باشد و از img_auth پشتیبانی نکند.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
-'img-auth-notindir'     => 'مسیر درخواست شده در شاخهٔ بارگذاری تنظیم نشده‌است.',
-'img-auth-badtitle'     => 'امکان ایجاد یک عنوان مجاز از «$1» وجود ندارد.',
-'img-auth-nologinnWL'   => 'شما به سامانه وارد نشده‌اید و «$1» در فهرست سفید قرار ندارد.',
-'img-auth-nofile'       => 'پرونده «$1» وجود ندارد.',
-'img-auth-isdir'        => 'شما می‌خواهید به شاخهٔ «$1» دسترسی پیدا کنید.
+'img-auth-notindir'         => 'مسیر درخواست شده در شاخهٔ بارگذاری تنظیم نشده‌است.',
+'img-auth-badtitle'         => 'امکان ایجاد یک عنوان مجاز از «$1» وجود ندارد.',
+'img-auth-nologinnWL'       => 'شما به سامانه وارد نشده‌اید و «$1» در فهرست سفید قرار ندارد.',
+'img-auth-nofile'           => 'پرونده «$1» وجود ندارد.',
+'img-auth-isdir'            => 'شما می‌خواهید به شاخهٔ «$1» دسترسی پیدا کنید.
 تنها دسترسی به پرونده مجاز است.',
-'img-auth-streaming'    => 'در حال جاری ساختن «$1».',
-'img-auth-public'       => 'عملکرد img_auth.php برونداد پرونده‌ها از یک ویکی خصوصی است.
+'img-auth-streaming'        => 'در حال جاری ساختن «$1».',
+'img-auth-public'           => 'عملکرد img_auth.php برونداد پرونده‌ها از یک ویکی خصوصی است.
 این ویکی به عنوان یک ویکی عمومی تنظیم شده‌است.
 برای امنیت بهینه، img_auth.php غیر فعال است.',
-'img-auth-noread'       => 'کاربر دسترسی خواندن «$1» را ندارد.',
+'img-auth-noread'           => 'کاربر دسترسی خواندن «$1» را ندارد.',
+'img-auth-bad-query-string' => 'آدرس اینترنتی شامل یک رشتهٔ نامعتبر درخواست است.',
 
 # HTTP errors
 'http-invalid-url'      => 'نشانی نامعتبر: $1',
@@ -3133,8 +3133,8 @@ $1',
 'exif-colorspace'                  => 'فضای رنگی',
 'exif-componentsconfiguration'     => 'معنی هر یک از مؤلفه‌ها',
 'exif-compressedbitsperpixel'      => 'حالت فشرده‌سازی تصویر',
-'exif-pixelydimension'             => 'عرض تصویر معتبر',
-'exif-pixelxdimension'             => 'طول تصویر معتبر',
+'exif-pixelydimension'             => 'پهنای تصویر',
+'exif-pixelxdimension'             => 'بلندی تصویر',
 'exif-makernote'                   => 'تذکرات شرکت سازنده',
 'exif-usercomment'                 => 'توضیحات کاربر',
 'exif-relatedsoundfile'            => 'پروندهٔ صوتی مربوط',
@@ -3150,9 +3150,9 @@ $1',
 'exif-spectralsensitivity'         => 'حساسیت طیفی',
 'exif-isospeedratings'             => 'درجه‌بندی سرعت ایزو',
 'exif-oecf'                        => 'عامل تبدیل نوری‌-الکترونیک',
-'exif-shutterspeedvalue'           => 'سرعت شاتر',
-'exif-aperturevalue'               => 'اندازهٔ دیافراگم',
-'exif-brightnessvalue'             => 'روشنی',
+'exif-shutterspeedvalue'           => 'سرعت آپکس شاتر',
+'exif-aperturevalue'               => 'اندازهٔ آپکس دیافراگم',
+'exif-brightnessvalue'             => 'روشنایی آپکس',
 'exif-exposurebiasvalue'           => 'خطای نوردهی',
 'exif-maxaperturevalue'            => 'حداکثر گشادگی زمین',
 'exif-subjectdistance'             => 'فاصلهٔ سوژه',
@@ -3301,6 +3301,8 @@ $1',
 'exif-sensingmethod-5' => 'حسگر ناحیه‌ای ترتیبی رنگ‌ها',
 'exif-sensingmethod-7' => 'حسگر سه‌خطی',
 'exif-sensingmethod-8' => 'حسگر خطی ترتیبی رنگ‌ها',
+
+'exif-filesource-3' => 'دوربین عکاسی دیجیتال',
 
 'exif-scenetype-1' => 'تصویر مستقیماً عکاسی شده',
 
@@ -3720,18 +3722,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 با پشتیبانی از جستجو در متن کامل',
 'sqlite-no-fts'  => '$1 بدون پشتیبانی از جستجو در متن کامل',
-
-# Special:DisableAccount
-'disableaccount'             => 'غیر فعال کردن یک حساب کاربری',
-'disableaccount-user'        => 'نام کاربری:',
-'disableaccount-reason'      => 'دلیل:',
-'disableaccount-confirm'     => "غیر فعال کردن این حساب کاربری.
-این کاربر قادر به ورود به سامانه نخواهد بود، نمی‌تواند گذرواژه را تعویض کند و همچنین نمی‌تواند پست الکترونیکی دریافت کند. 
-اگر این کاربر در حال حاضر وارد سیستم شده باشد به سرعت از سیستم خارج می‌شود.
-''توجه داشته باشید که غیر فعال کردن یک حساب کاربری بدون دخالت مدیر سامانه قابل برگشت است.''",
-'disableaccount-mustconfirm' => 'شما باید تأیید کنید که مایل به غیر فعال کردن این حساب کاربری هستید.',
-'disableaccount-nosuchuser'  => 'حساب کاربری "$1" وجود ندارد.',
-'disableaccount-success'     => 'حساب کاربری "$1" برای همیشه غیر فعال شده است.',
-'disableaccount-logentry'    => 'حساب کاربری [[$1]] برای همیشه غیر فعال شده است',
 
 );

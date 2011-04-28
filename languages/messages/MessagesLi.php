@@ -1346,7 +1346,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'right-reset-passwords'       => 'Wachtwoorde van andere gebroekers opnieuw instelle',
 'right-override-export-depth' => "Export paazjes midin geslinkdje paazjes mit 'n deepdje ven 5",
 'right-sendemail'             => 'Versjik e-mail aan anger gebroekers',
-'right-disableaccount'        => 'Gebroekers oetsjakele',
 
 # User rights log
 'rightslog'      => 'Gebroekersrechtelogbook',
@@ -3294,18 +3293,5 @@ Gaef de bestandjsnaam zónger \'t "{{ns:file}}:" veurvoogsel.',
 # SQLite database support
 'sqlite-has-fts' => 'Zeuk versie $1 mit óngersteuning veur "full-text"',
 'sqlite-no-fts'  => 'Zeuk versie $1 zónger óngersteuning veur "fulltext"',
-
-# Special:DisableAccount
-'disableaccount'             => "'ne Gebroeker oetsjakele",
-'disableaccount-user'        => 'Gebroekersnaam:',
-'disableaccount-reason'      => 'Raej:',
-'disableaccount-confirm'     => "Deze gebroeker oetsjakele.
-De gebroeker kin neet langer aanmelde, 't wachwaord obbenuuts insjtelle of e-mails óntvange.
-Es de gebroeker op dit memènt is aangemeld, weurt heer metein aafgemeld.
-'''t Oetsjakele van 'ne gebroeker is neet trök te drejje zonger hölp van 'ne systeembeheerder''",
-'disableaccount-mustconfirm' => 'Doe mós bevestige dats doe deze gebroeker wils oetsjakele.',
-'disableaccount-nosuchuser'  => 'De gebroeker "$1" besjteit neet.',
-'disableaccount-success'     => 'De gebroeker "$1" is permanent oetgesjakeld.',
-'disableaccount-logentry'    => 'haet de gebroeker [[$1]] permanent oetgesjakeld',
 
 );

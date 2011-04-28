@@ -1324,7 +1324,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-reset-passwords'       => 'Gronidła drugich wužywarjow slědk stajiś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
 'right-sendemail'             => 'Drugim wužywarjam e-mail pósłaś',
-'right-disableaccount'        => 'Konta znjemóžniś',
 
 # User rights log
 'rightslog'      => 'Protokol wužywarskich pšawow',
@@ -3316,18 +3315,5 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Wersija $1 z pódpěru za połnotekstowe pytanje',
 'sqlite-no-fts'  => 'Wersija $1 bźez pódpěry za połnotekstowe pytanje',
-
-# Special:DisableAccount
-'disableaccount'             => 'Wužywarske konto znjemóžniś',
-'disableaccount-user'        => 'Wužywarske mě:',
-'disableaccount-reason'      => 'Pśicyna:',
-'disableaccount-confirm'     => "Znjemóžni toś to wužywarske konto.
-Wužywaŕ njamóžo se pśizjawiś, jogo gronidło slědk stajiś abo e-mailowe powěźeńki dostaś.
-Jolic wužywaŕ jo tuchylu hynźi pśizjawjony, buźo se ned wótzjawiś.
-''Źiwaj na to, až znjemóžnjanje konto njejo rewersibelne bźez zapśimowanja systemowego administratora.''",
-'disableaccount-mustconfirm' => 'Musyš wobkšuśiś, až coš toś to konto znjemóžniś.',
-'disableaccount-nosuchuser'  => 'Wužywaŕ konto "$1" njeeksistěrujo.',
-'disableaccount-success'     => 'Wužywarske konto "$1" jo se na pśecej znjemóžniło.',
-'disableaccount-logentry'    => 'jo wužywarske konto [[$1]] na pśecej znjemóžnił',
 
 );

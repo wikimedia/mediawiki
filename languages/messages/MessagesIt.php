@@ -34,6 +34,7 @@
  * @author Melos
  * @author Nemo bis
  * @author Nick1915
+ * @author Od1n
  * @author Omnipaedista
  * @author PaoloRomano
  * @author Pietrodn
@@ -1418,7 +1419,6 @@ L'operazione non può essere annullata.",
 'right-reset-passwords'       => 'Reimposta le password di altri utenti',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
-'right-disableaccount'        => 'Disabilitare gli account',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',
@@ -2880,8 +2880,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-colorspace'                  => 'Spazio dei colori',
 'exif-componentsconfiguration'     => 'Significato di ciascuna componente',
 'exif-compressedbitsperpixel'      => 'Modalità di compressione immagine',
-'exif-pixelydimension'             => 'Larghezza effettiva immagine',
-'exif-pixelxdimension'             => 'Altezza effettiva immagine',
+'exif-pixelydimension'             => 'Larghezza immagine',
+'exif-pixelxdimension'             => 'Altezza immagine',
 'exif-makernote'                   => 'Note del produttore',
 'exif-usercomment'                 => "Note dell'utente",
 'exif-relatedsoundfile'            => 'File audio collegato',
@@ -2898,8 +2898,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-isospeedratings'             => 'Sensibilità ISO',
 'exif-oecf'                        => 'Fattore di conversione optoelettronica',
 'exif-shutterspeedvalue'           => 'Tempo di esposizione',
-'exif-aperturevalue'               => 'Apertura',
-'exif-brightnessvalue'             => 'Luminosità',
+'exif-aperturevalue'               => 'Apertura APEX',
+'exif-brightnessvalue'             => 'Luminosità APEX',
 'exif-exposurebiasvalue'           => 'Correzione esposizione',
 'exif-maxaperturevalue'            => 'Apertura massima',
 'exif-subjectdistance'             => 'Distanza del soggetto',
@@ -3416,18 +3416,5 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 # SQLite database support
 'sqlite-has-fts' => '$1 con la possibilità di ricerca completa nel testo',
 'sqlite-no-fts'  => '$1 senza la possibilità di ricerca completa nel testo',
-
-# Special:DisableAccount
-'disableaccount'             => 'Disabilitare account utente',
-'disableaccount-user'        => 'Nome utente:',
-'disableaccount-reason'      => 'Motivo:',
-'disableaccount-confirm'     => "Disabilitare permanentemente questo account utente.
-L'utente non sarà in grado di accedere, reimpostare la password o ricevere notifiche via e-mail.
-Tutte le attuali connessioni dell'utente, saranno immediatamente terminate.
-''Si noti che la disattivazione di un account non è reversibile senza l'intervento dell'amministratore di sistema''.",
-'disableaccount-mustconfirm' => 'Devi confermare che vuoi disabilitare questo account.',
-'disableaccount-nosuchuser'  => 'L\'account utente "$1" non esiste.',
-'disableaccount-success'     => 'L\'account utente "$1" è stato disabilitato definitivamente.',
-'disableaccount-logentry'    => "ha disabilitato permanentemente l'account utente [[$1]]",
 
 );

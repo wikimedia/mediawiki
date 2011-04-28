@@ -3008,9 +3008,4 @@ Katrangan tampilan:
 'htmlform-reset'               => 'Batalna pangowahan',
 'htmlform-selectorother-other' => 'Liya',
 
-# Special:DisableAccount
-'disableaccount'        => 'Nonaktifaké akun panganggo',
-'disableaccount-user'   => 'Jeneng panganggo:',
-'disableaccount-reason' => 'Alesan:',
-
 );

@@ -354,8 +354,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-oldsig'                  => 'Voorvertoning van de bestaande ondertekening:',
 'tog-fancysig'                => 'Als wikitekst behandelen (zonder automatische verwijzing)',
-'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer information]).',
-'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer information]).',
+'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
+'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-showjumplinks'           => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
 'tog-uselivepreview'          => '“live voorvertoning” gebruiken (vereist JavaScript – experimenteel)',
 'tog-forceeditsummary'        => 'Een melding geven bij een lege samenvatting',
@@ -1580,7 +1580,6 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-reset-passwords'       => 'Wachtwoorden van andere gebruikers opnieuw instellen',
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
-'right-disableaccount'        => 'Gebruikers uitschakelen',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -1716,7 +1715,7 @@ Geef het bestand een andere naam, en probeer het dan opnieuw te uploaden.',
 'badfilename'                 => 'De naam van het bestand is gewijzigd in "$1".',
 'filetype-mime-mismatch'      => 'De bestandsextensie hoort niet bij het MIME-type.',
 'filetype-badmime'            => 'Het is niet toegestaan om bestanden van MIME-type "$1" te uploaden.',
-'filetype-bad-ie-mime'        => 'Dit bestand kan niet toegevoegd worden, omdat Internet Explorer het zou indentificeren als "$1", een niet toegelaten bestandstype dat potentieel schadelijk is.',
+'filetype-bad-ie-mime'        => 'Dit bestand kan niet toegevoegd worden, omdat Internet Explorer het zou identificeren als "$1", een niet toegelaten bestandstype dat potentieel schadelijk is.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is een ongewenst bestandstype.
 Aangewezen {{PLURAL:\$3|bestandstype is|bestandstypes zijn}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' is geen toegelaten bestandstype.
@@ -1758,7 +1757,7 @@ Wijzig anders de bestandsnaam.",
 'fileexists-forbidden'        => 'Er bestaat al een bestand met deze naam, en dat kan niet overschreven worden.
 Upload uw bestand onder een andere naam.
 [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Er bestaat al een bestand met deze naam bij de gedeelte bestanden.
+'fileexists-shared-forbidden' => 'Er bestaat al een bestand met deze naam bij de gedeelde bestanden.
 Als u het bestand alsnog wilt uploaden, ga dan terug en kies een andere naam.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dit bestand is indentiek aan {{PLURAL:$1|het volgende bestand|de volgende bestanden}}:',
@@ -1830,22 +1829,23 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'upload-http-error'         => 'Er is een HTTP-fout opgetreden: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Toegang geweigerd',
-'img-auth-nopathinfo'   => 'PATH_INFO mist.
+'img-auth-accessdenied'     => 'Toegang geweigerd',
+'img-auth-nopathinfo'       => 'PATH_INFO mist.
 Uw server is niet ingesteld om deze informatie door te geven.
 Misschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.
 Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.',
-'img-auth-notindir'     => 'Het opgevraagde pad is niet de ingestelde uploadmap.',
-'img-auth-badtitle'     => 'Het was niet mogelijk een geldige paginanaam te maken van "$1".',
-'img-auth-nologinnWL'   => 'U bent niet aangemeld en "$1" staat niet op de witte lijst.',
-'img-auth-nofile'       => 'Bestand "$1" bestaat niet.',
-'img-auth-isdir'        => 'U probeert de map "$1" te benaderen.
+'img-auth-notindir'         => 'Het opgevraagde pad is niet de ingestelde uploadmap.',
+'img-auth-badtitle'         => 'Het was niet mogelijk een geldige paginanaam te maken van "$1".',
+'img-auth-nologinnWL'       => 'U bent niet aangemeld en "$1" staat niet op de witte lijst.',
+'img-auth-nofile'           => 'Bestand "$1" bestaat niet.',
+'img-auth-isdir'            => 'U probeert de map "$1" te benaderen.
 Alleen toegang tot bestanden is toegestaan.',
-'img-auth-streaming'    => 'Bezig met het streamen van "$1".',
-'img-auth-public'       => 'Het doel van img_auth.php is de uitvoer van bestanden van een besloten wiki.
+'img-auth-streaming'        => 'Bezig met het streamen van "$1".',
+'img-auth-public'           => 'Het doel van img_auth.php is de uitvoer van bestanden van een besloten wiki.
 Deze wiki is ingesteld als publieke wiki.
 Om beveiligingsreden is img_auth.php uitgeschakeld.',
-'img-auth-noread'       => 'De gebruiker heeft geen leestoegang tot "$1".',
+'img-auth-noread'           => 'De gebruiker heeft geen leestoegang tot "$1".',
+'img-auth-bad-query-string' => 'De URL bevat een ongeldige querystring.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ongeldige URL: $1',
@@ -2877,11 +2877,9 @@ De tijdelijke map is niet aanwezig.',
 'tooltip-pt-anonlogin'            => 'U wordt van harte uitgenodigd om u aan te melden als gebruiker, maar dit is niet verplicht',
 'tooltip-pt-logout'               => 'Afmelden',
 'tooltip-ca-talk'                 => 'Overleg over deze pagina',
-'tooltip-ca-edit'                 => 'U kunt deze pagina bewerken.
-Gebruik de voorbeeldweergaveknop alvorens te bewaren.',
+'tooltip-ca-edit'                 => 'U kunt deze pagina bewerken. Gebruik de voorbeeldweergaveknop alvorens te bewaren.',
 'tooltip-ca-addsection'           => 'Nieuw kopje toevoegen',
-'tooltip-ca-viewsource'           => 'Deze pagina is beveiligd.
-U kunt wel de broncode bekijken.',
+'tooltip-ca-viewsource'           => 'Deze pagina is beveiligd. U kunt wel de broncode bekijken.',
 'tooltip-ca-history'              => 'Eerdere versies van deze pagina',
 'tooltip-ca-protect'              => 'Deze pagina beveiligen',
 'tooltip-ca-unprotect'            => 'De beveiliging voor deze pagina opheffen',
@@ -2892,7 +2890,7 @@ U kunt wel de broncode bekijken.',
 'tooltip-ca-unwatch'              => 'Deze pagina van mijn volglijst verwijderen',
 'tooltip-search'                  => '{{SITENAME}} doorzoeken',
 'tooltip-search-go'               => 'Naar een pagina met deze naam gaan als die bestaat',
-'tooltip-search-fulltext'         => "De pagina's voor deze tekst zoeken",
+'tooltip-search-fulltext'         => "Alle pagina's op deze tekst doorzoeken",
 'tooltip-p-logo'                  => 'Hoofdpaginalogo',
 'tooltip-n-mainpage'              => 'Ga naar de Hoofdpagina',
 'tooltip-n-mainpage-description'  => 'Ga naar de Hoofdpagina',
@@ -2923,16 +2921,14 @@ U kunt wel de broncode bekijken.',
 'tooltip-ca-nstab-category'       => 'Categoriepagina bekijken',
 'tooltip-minoredit'               => 'Deze wijziging als een kleine wijziging markeren',
 'tooltip-save'                    => 'Uw wijzigingen opslaan',
-'tooltip-preview'                 => 'Een voorvertoning maken.
-Gebruik dit!',
+'tooltip-preview'                 => 'Een voorvertoning maken. Gebruik dit!',
 'tooltip-diff'                    => 'Gemaakte wijzigingen bekijken (zoals het in de geschiedenis zal te zien zijn)',
 'tooltip-compareselectedversions' => 'De verschillen tussen de geselecteerde versies van deze pagina bekijken.',
 'tooltip-watch'                   => 'Deze pagina aan uw volglijst toevoegen',
 'tooltip-recreate'                => 'Deze pagina opnieuw aanmaken ondanks eerdere verwijdering',
 'tooltip-upload'                  => 'Uploaden',
 'tooltip-rollback'                => 'Met "terugdraaien" draait u met één klik de bewerking(en) terug van de laatste gebruiker die deze pagina heeft bewerkt.',
-'tooltip-undo'                    => 'Met "ongedaan maken" draait u deze bewerking terug en komt in het bewerkingsvenster.
-U kunt in de bewerkingssamenvatting een reden opgeven.',
+'tooltip-undo'                    => 'Met "ongedaan maken" draait u deze bewerking terug en komt in het bewerkingsvenster. U kunt in de bewerkingssamenvatting een reden opgeven.',
 'tooltip-preferences-save'        => 'Voorkeuren opslaan',
 'tooltip-summary'                 => 'Voer een korte samenvatting in',
 
@@ -3153,8 +3149,8 @@ Andere velden worden verborgen.
 'exif-colorspace'                  => 'Kleurruimte',
 'exif-componentsconfiguration'     => 'Betekenis van elke component',
 'exif-compressedbitsperpixel'      => 'Beeldcompressiemethode',
-'exif-pixelydimension'             => 'Bruikbare afbeeldingsbreedte',
-'exif-pixelxdimension'             => 'Bruikbare afbeeldingshoogte',
+'exif-pixelydimension'             => 'Afbeeldingsbreedte',
+'exif-pixelxdimension'             => 'Afbeeldingshoogte',
 'exif-makernote'                   => 'Opmerkingen fabrikant',
 'exif-usercomment'                 => 'Opmerkingen',
 'exif-relatedsoundfile'            => 'Bijbehorend audiobestand',
@@ -3170,9 +3166,9 @@ Andere velden worden verborgen.
 'exif-spectralsensitivity'         => 'Spectrale gevoeligheid',
 'exif-isospeedratings'             => 'ISO/ASA-waarde',
 'exif-oecf'                        => 'Opto-elektronische conversiefactor',
-'exif-shutterspeedvalue'           => 'Sluitersnelheid',
-'exif-aperturevalue'               => 'Diafragma',
-'exif-brightnessvalue'             => 'Helderheid',
+'exif-shutterspeedvalue'           => 'Sluitersnelheid in APEX',
+'exif-aperturevalue'               => 'Diafragma in APEX',
+'exif-brightnessvalue'             => 'Helderheid in APEX',
 'exif-exposurebiasvalue'           => 'Belichtingscompensatie',
 'exif-maxaperturevalue'            => 'Maximale diafragma-opening',
 'exif-subjectdistance'             => 'Afstand tot onderwerp',
@@ -3319,6 +3315,8 @@ Andere velden worden verborgen.
 'exif-sensingmethod-5' => 'Kleurvolgende gebiedssensor',
 'exif-sensingmethod-7' => 'Drielijnige sensor',
 'exif-sensingmethod-8' => 'Kleurvolgende lijnsensor',
+
+'exif-filesource-3' => 'Digitale fotocamera',
 
 'exif-scenetype-1' => 'Een direct gefotografeerde afbeelding',
 
@@ -3590,7 +3588,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'version-poweredby-others'         => 'anderen',
 'version-license-info'             => 'MediaWiki is vrije software; u kunt MediaWiki verspreiden en/of aanpassen onder de voorwaarden van de GNU General Public License zoals gepubliceerd door de Free Software Foundation; ofwel versie 2 van de Licentie, of - naar uw wens - enige latere versie.
 
-MediaWiki wordt verspreid in de hoop dat het nuttig is, maar ZONDER ENIGE GARANTIE; zonder zelfs de implicitiete garantie van VERKOOPBAARHEID of GESCHIKHEID VOOR ENIG DOEL IN HET BIJZONDER. Zie de GNU General Public License voor meer informatie.
+MediaWiki wordt verspreid in de hoop dat het nuttig is, maar ZONDER ENIGE GARANTIE; zonder zelfs de impliciete garantie van VERKOOPBAARHEID of GESCHIKTHEID VOOR ENIG DOEL IN HET BIJZONDER. Zie de GNU General Public License voor meer informatie.
 
 Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te hebben ontvangen; zo niet, schrijf dan naar de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees de licentie online].',
 'version-software'                 => 'Geïnstalleerde software',
@@ -3697,18 +3695,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
-
-# Special:DisableAccount
-'disableaccount'             => 'Een gebruiker uitschakelen',
-'disableaccount-user'        => 'Gebruikersnaam:',
-'disableaccount-reason'      => 'Reden:',
-'disableaccount-confirm'     => "Deze gebruiker uitschakelen.
-De gebruiker kan niet langer aanmelden, het wachtwoord opnieuw instellen of e-mails ontvangen.
-Als de gebruiker op dit moment is aangemeld, wordt deze per direct afgemeld.
-''Het uitschakelen van een gebruiker is niet terug te draaien zonder hulp van een systeembeheerder.''",
-'disableaccount-mustconfirm' => 'U moet bevestigen dat u deze gebruiker wilt uitschakelen.',
-'disableaccount-nosuchuser'  => 'De gebruiker "$1" bestaat niet.',
-'disableaccount-success'     => 'De gebruiker "$1" is permanent uitgeschakeld.',
-'disableaccount-logentry'    => 'heeft de gebruiker [[$1]] permanent uitgeschakeld',
 
 );

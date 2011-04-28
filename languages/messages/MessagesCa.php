@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aleator
+ * @author BroOk
  * @author Cedric31
  * @author Davidpar
  * @author El libre
@@ -996,7 +997,7 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 'revdelete-submit'            => 'Aplica a {{PLURAL:$1|la revisió seleccionada|les revisions seleccionades}}',
 'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
 'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
-'revdelete-success'           => "'''La visibilitat d'aquesta revissió s'ha actualitzat correctament .'''",
+'revdelete-success'           => "'''La visibilitat d'aquesta revisió s'ha actualitzat correctament.'''",
 'revdelete-failure'           => "'''La visibilitat de la revisió no ha pogut actualitzar-se:'''
 $1",
 'logdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquest element.'''",
@@ -1377,7 +1378,6 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-reset-passwords'       => "Reiniciar la contrasenya d'altres usuaris",
 'right-override-export-depth' => 'Exportar pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Enviar missatges de correu electrònic a altres usuaris',
-'right-disableaccount'        => 'Desactivar comptes',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
@@ -1594,22 +1594,23 @@ $1',
 'upload-http-error'         => 'Ha ocorregut un error HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accés denegat',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+'img-auth-accessdenied'     => 'Accés denegat',
+'img-auth-nopathinfo'       => 'Falta PATH_INFO.
 El vostre servidor no està configurat per a tractar aquesta informació.
 Pot estar basat en CGI i no soportar img_auth.
 Vegeu http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
-'img-auth-badtitle'     => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
-'img-auth-nologinnWL'   => 'No has iniciat sessió i "$1" no està a la llista blanca.',
-'img-auth-nofile'       => 'No existeix el fitxer "$1".',
-'img-auth-isdir'        => 'Esteu intentant accedir al directori «$1».
+'img-auth-notindir'         => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
+'img-auth-badtitle'         => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
+'img-auth-nologinnWL'       => 'No has iniciat sessió i "$1" no està a la llista blanca.',
+'img-auth-nofile'           => 'No existeix el fitxer "$1".',
+'img-auth-isdir'            => 'Esteu intentant accedir al directori «$1».
 Només teniu permès accedir als fitxers.',
-'img-auth-streaming'    => 'Lectura corrent de "$1".',
-'img-auth-public'       => "La funció de img_auth.php és de sortida de fitxers d'un lloc wiki privat.
+'img-auth-streaming'        => 'Lectura corrent de "$1".',
+'img-auth-public'           => "La funció de img_auth.php és de sortida de fitxers d'un lloc wiki privat.
 Aquest wiki està configurat com a wiki públic.
 Per seguretat, img_auth.php està desactivat.",
-'img-auth-noread'       => 'L\'usuari no té accés a la lectura de "$1".',
+'img-auth-noread'           => 'L\'usuari no té accés a la lectura de "$1".',
+'img-auth-bad-query-string' => 'La direcció té una cadena de consulta invàlid.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL incorrecta: $1',
@@ -2435,7 +2436,7 @@ Assegureu-vos de verificar els redireccionaments [[Special:DoubleRedirects|doble
 
 Sigueu responsable de fer que els enllaços continuen apuntant cap a on se suposa que han d'anar. 
 
-Tingueu en compte que la página '''no''' serà traslladada si ja existeix una pàgina amb el títol nou proposat, tret del cas que la página és buida o no n'hi ha un historial de redireccionaments. 
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou proposat, tret del cas que la pàgina és buida o no n'hi ha un historial de redireccionaments. 
 
 Això significa que si reanomeneu per equivocació una pàgina amb el seu nom anterior no ho podreu fer, ja que no es pot sobreescriure una pàgina existent.
  
@@ -2475,7 +2476,7 @@ Incorporeu-les manualment, si us plau.",
 'movepage-page-moved'          => 'La pàgina $1 ha estat traslladada a $2.',
 'movepage-page-unmoved'        => "La pàgina $1 no s'ha pogut moure a $2.",
 'movepage-max-pages'           => "{{PLURAL:$1|S'ha mogut una pàgina|S'han mogut $1 pàgines}} que és el nombre màxim, i per tant no se'n mourà automàticament cap més.",
-'1movedto2'                    => 'a reanomenat [[$1]] com a [[$2]]',
+'1movedto2'                    => 'ha reanomenat [[$1]] com a [[$2]]',
 '1movedto2_redir'              => 'ha reanomenat [[$1]] com a [[$2]] sobre una redirecció',
 'move-redirect-suppressed'     => 'redirecció suprimida',
 'movelogpage'                  => 'Registre de reanomenaments',
@@ -2878,9 +2879,9 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-spectralsensitivity'         => 'Sensibilitat espectral',
 'exif-isospeedratings'             => 'Sensibilitat ISO',
 'exif-oecf'                        => 'Factor de conversió optoelectrònic',
-'exif-shutterspeedvalue'           => "Temps d'exposició",
-'exif-aperturevalue'               => 'Obertura',
-'exif-brightnessvalue'             => 'Brillantor',
+'exif-shutterspeedvalue'           => "APEX velocitat d'obturació",
+'exif-aperturevalue'               => 'APEX obertura',
+'exif-brightnessvalue'             => 'APEX brillantor',
 'exif-exposurebiasvalue'           => "Correcció d'exposició",
 'exif-maxaperturevalue'            => "Camp d'obertura màxim",
 'exif-subjectdistance'             => 'Distància del subjecte',
@@ -3339,8 +3340,8 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'external_image_whitelist' => " #Deixeu aquesta línia exactament igual com està<pre>
 #Poseu fragments d'expressions regulars (regexps) (només la part entre els //) a sota
 #Aquests fragments es correspondran amb les URL d'imatges externes
-#Se'n mostraran com a imatges si coincideixen, i sinò es mostraran com a enllaços
-#Les línies que començen amb un # es tracten com a comentaris
+#Se'n mostraran com a imatges si coincideixen, i sinó es mostraran com a enllaços
+#Les línies que comencen amb un # es tracten com a comentaris
 #S'hi distingeixen majúscules i minúscules
 
 #Poseu tots els fragments regex al damunt d'aquesta línia. Deixeu aquesta línia exactament com està</pre>",
@@ -3391,18 +3392,5 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 # SQLite database support
 'sqlite-has-fts' => '$1, amb suport de búsqueda de text íntegre',
 'sqlite-no-fts'  => '$1, sense supor de búsqueda de text íntegre',
-
-# Special:DisableAccount
-'disableaccount'             => "Deshabilita un compte d'usuari/a",
-'disableaccount-user'        => "Nom d'usuari/a :",
-'disableaccount-reason'      => 'Motiu:',
-'disableaccount-confirm'     => "Desactivació d'aquest compte d'usuari.
-L'usuari no podrà entrar al seu compte, recuperar la contrasenya o rebre notificacions per correu electònic.
-Si l'usuari està fent servir el compte actualment serà immediatament desconnectat.
-''Tingueu en compte que la desactivació d'un compte no és una operació reversible sense la intervenció d'algú amb accés al servidor del sistema.''",
-'disableaccount-mustconfirm' => 'Has de confirmar que vols desactivar aquest compte.',
-'disableaccount-nosuchuser'  => 'El compte d\'usuari/a "$1" no existeix.',
-'disableaccount-success'     => 'El compte d\'usuari/a "$1" ha estat permanentment deshabilitat.',
-'disableaccount-logentry'    => "ha deshabilitat permanentment el compte de {{GENDER:$1|l'usuari|la usuària}} [[$1]]",
 
 );
