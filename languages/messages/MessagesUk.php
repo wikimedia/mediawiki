@@ -11,6 +11,7 @@
  * @author AS
  * @author Ahonc
  * @author Aleksandrit
+ * @author Alex Khimich
  * @author AlexSm
  * @author DixonD
  * @author Dubyk
@@ -1245,9 +1246,9 @@ $1",
 'prefs-rc'                      => 'Сторінка останніх редагувань',
 'prefs-watchlist'               => 'Список спостереження',
 'prefs-watchlist-days'          => 'Кількість днів, що відображаються у списку спостережень:',
-'prefs-watchlist-days-max'      => '(максимум 7 днів)',
+'prefs-watchlist-days-max'      => 'Не більше 7 днів',
 'prefs-watchlist-edits'         => 'Кількість редагувань для відображення у розширеному списку спостереження:',
-'prefs-watchlist-edits-max'     => '(максимальне число: 1000)',
+'prefs-watchlist-edits-max'     => 'Максимально: 1000',
 'prefs-watchlist-token'         => 'Позначка списку спостереження:',
 'prefs-misc'                    => 'Інші налаштування',
 'prefs-resetpass'               => 'Змінити пароль',
@@ -1669,22 +1670,23 @@ PICT # різні
 'upload-http-error'         => 'Відбулася помилка HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Відмовлено в доступі',
-'img-auth-nopathinfo'   => 'Брак PATH_INFO.
+'img-auth-accessdenied'     => 'Відмовлено в доступі',
+'img-auth-nopathinfo'       => 'Брак PATH_INFO.
 Ваш сервер не налаштований для передачі цих даних.
 Можливо, він працює на основі CGI і не підтримує img_auth.
 Глядіть http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Проханий шлях не відноситься до теки завантажень, вказаної в налаштуваннях.',
-'img-auth-badtitle'     => 'Не можна побудувати правильний заголовок з «$1».',
-'img-auth-nologinnWL'   => 'Ви не ввійшли в систему, а «$1» не входить у білий список.',
-'img-auth-nofile'       => 'Файл «$1» не існує.',
-'img-auth-isdir'        => 'Ви пробуєте отримати доступ до каталогу «$1».
+'img-auth-notindir'         => 'Проханий шлях не відноситься до теки завантажень, вказаної в налаштуваннях.',
+'img-auth-badtitle'         => 'Не можна побудувати правильний заголовок з «$1».',
+'img-auth-nologinnWL'       => 'Ви не ввійшли в систему, а «$1» не входить у білий список.',
+'img-auth-nofile'           => 'Файл «$1» не існує.',
+'img-auth-isdir'            => 'Ви пробуєте отримати доступ до каталогу «$1».
 Дозволений тільки доступ до файлів.',
-'img-auth-streaming'    => 'Потокова передача «$1».',
-'img-auth-public'       => 'Призначенням img_auth.php є добування файлів із закритих вікі.
+'img-auth-streaming'        => 'Потокова передача «$1».',
+'img-auth-public'           => 'Призначенням img_auth.php є добування файлів із закритих вікі.
 Ця вікі налаштована як загальнодоступна.
 Для оптимальної безпеки img_auth.php відключено.',
-'img-auth-noread'       => 'Користувач не має доступу до перегляду "$1".',
+'img-auth-noread'           => 'Користувач не має доступу до перегляду "$1".',
+'img-auth-bad-query-string' => 'URL-адреса містить неправильний рядок запиту.',
 
 # HTTP errors
 'http-invalid-url'      => 'Неправильний URL: $1',
@@ -2378,7 +2380,7 @@ $1',
 'ipusubmit'                       => 'Зняти це блокування',
 'unblocked'                       => '[[User:$1|$1]] розблокований',
 'unblocked-id'                    => 'Блокування $1 було зняте',
-'ipblocklist'                     => 'Список заблокованих IP-адрес та користувачів',
+'ipblocklist'                     => 'Список заблокованих адрес та користувачів',
 'ipblocklist-legend'              => 'Пошук заблокованого користувача',
 'ipblocklist-username'            => 'Користувач або IP-адреса:',
 'ipblocklist-sh-userblocks'       => '$1 блокування облікових записів',

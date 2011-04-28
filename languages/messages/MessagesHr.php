@@ -1666,22 +1666,23 @@ Ukoliko se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].
 'upload-http-error'         => 'HTTP pogreška: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Pristup onemogućen',
-'img-auth-nopathinfo'   => 'Nedostaje PATH_INFO.
+'img-auth-accessdenied'     => 'Pristup onemogućen',
+'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš poslužitelj nije postavljen da prosljeđuje ovu informaciju.
 Možda se temelji na CGI i ne može podržavati img_auth.
 Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Zahtjevana putanja nije u direktoriju podešenom za postavljanje.',
-'img-auth-badtitle'     => 'Ne mogu stvoriti valjani naslov iz "$1".',
-'img-auth-nologinnWL'   => 'Niste prijavljeni i "$1" nije na popisu dozvoljenih.',
-'img-auth-nofile'       => 'Datoteka "$1" ne postoji.',
-'img-auth-isdir'        => 'Pokušavate pristupiti direktoriju "$1".
+'img-auth-notindir'         => 'Zahtjevana putanja nije u direktoriju podešenom za postavljanje.',
+'img-auth-badtitle'         => 'Ne mogu stvoriti valjani naslov iz "$1".',
+'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na popisu dozvoljenih.',
+'img-auth-nofile'           => 'Datoteka "$1" ne postoji.',
+'img-auth-isdir'            => 'Pokušavate pristupiti direktoriju "$1".
 Dozvoljen je samo pristup datotekama.',
-'img-auth-streaming'    => 'Tok "$1".',
-'img-auth-public'       => 'Funkcija img_auth.php služi za izlaz datoteka s privatnih wikija.
+'img-auth-streaming'        => 'Tok "$1".',
+'img-auth-public'           => 'Funkcija img_auth.php služi za izlaz datoteka s privatnih wikija.
 Ovaj wiki je postavljena kao javni wiki.
 Za optimalnu sigurnost, img_auth.php je onemogućena.',
-'img-auth-noread'       => 'Suradnik nema pristup za čitanje "$1".',
+'img-auth-noread'           => 'Suradnik nema pristup za čitanje "$1".',
+'img-auth-bad-query-string' => 'URL ima nevažeći izraz upita.',
 
 # HTTP errors
 'http-invalid-url'      => 'Nevaljan URL: $1',
@@ -2890,8 +2891,8 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-colorspace'                  => 'Kolor prostor',
 'exif-componentsconfiguration'     => 'Značenje pojedinih komponenti',
 'exif-compressedbitsperpixel'      => 'Dubina boje poslije sažimanja',
-'exif-pixelydimension'             => 'Puna visina slike',
-'exif-pixelxdimension'             => 'Puna širina slike',
+'exif-pixelydimension'             => 'Važeća širina slike',
+'exif-pixelxdimension'             => 'Važeća visina slike',
 'exif-makernote'                   => 'Napomene proizvođača',
 'exif-usercomment'                 => 'Suradnički komentar',
 'exif-relatedsoundfile'            => 'Povezani zvučni zapis',
@@ -2908,7 +2909,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-isospeedratings'             => 'ISO vrijednost',
 'exif-oecf'                        => 'Optoelektronski faktor konverzije',
 'exif-shutterspeedvalue'           => 'Brzina zatvarača',
-'exif-aperturevalue'               => 'Dijafragma',
+'exif-aperturevalue'               => 'Otvor',
 'exif-brightnessvalue'             => 'Osvijetljenost',
 'exif-exposurebiasvalue'           => 'Kompenzacija ekspozicije',
 'exif-maxaperturevalue'            => 'Minimalni broj dijafragme',

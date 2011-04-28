@@ -1463,7 +1463,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recentes',
 'recentchanges-legend'              => 'Opcións dos cambios',
-'recentchangestext'                 => 'Sigue, nesta páxina, as modificacións máis recentes no wiki.',
+'recentchangestext'                 => 'Siga, nesta páxina, as modificacións máis recentes no wiki.',
 'recentchanges-feed-description'    => 'Siga os cambios máis recentes deste wiki nesta fonte de novas.',
 'recentchanges-label-legend'        => 'Lenda: $1.',
 'recentchanges-legend-newpage'      => '$1 - nova páxina',
@@ -1639,22 +1639,23 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acceso rexeitado',
-'img-auth-nopathinfo'   => 'Falta a PATH_INFO.
+'img-auth-accessdenied'     => 'Acceso rexeitado',
+'img-auth-nopathinfo'       => 'Falta a PATH_INFO.
 O seu servidor non está configurado para pasar esta información.
 Pode ser que estea baseado en CGI e non puidese soportar img_auth.
 Olle http://www.mediawiki.org/wiki/Manual:Image_Authorization para obter máis información.',
-'img-auth-notindir'     => 'A ruta solicitada non está no directorio de carga configurado.',
-'img-auth-badtitle'     => 'Non é posible construír un título válido a partir de "$1".',
-'img-auth-nologinnWL'   => 'Non accedeu ao sistema e "$1" non está na lista de branca.',
-'img-auth-nofile'       => 'O ficheiro "$1" non existe.',
-'img-auth-isdir'        => 'Está intentando acceder ao directorio "$1".
+'img-auth-notindir'         => 'A ruta solicitada non está no directorio de carga configurado.',
+'img-auth-badtitle'         => 'Non é posible construír un título válido a partir de "$1".',
+'img-auth-nologinnWL'       => 'Non accedeu ao sistema e "$1" non está na lista de branca.',
+'img-auth-nofile'           => 'O ficheiro "$1" non existe.',
+'img-auth-isdir'            => 'Está intentando acceder ao directorio "$1".
 Só se permite o acceso ao ficheiro.',
-'img-auth-streaming'    => 'Secuenciando "$1".',
-'img-auth-public'       => 'A función de img_auth.php é para ficheiros de saída desde un wiki privado.
+'img-auth-streaming'        => 'Secuenciando "$1".',
+'img-auth-public'           => 'A función de img_auth.php é para ficheiros de saída desde un wiki privado.
 Este wiki está configurado como público.
 Para unha seguridade óptima, img_auth.php está desactivado.',
-'img-auth-noread'       => 'O usuario non ten acceso á lectura de "$1".',
+'img-auth-noread'           => 'O usuario non ten acceso á lectura de "$1".',
+'img-auth-bad-query-string' => 'O enderezo URL ten unha secuencia de consulta incorrecta.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL non válido: $1',
@@ -2714,7 +2715,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 # Metadata
 'nodublincore'      => 'A opción de metadatos RDF do Dublin Core está desactivada neste servidor.',
 'nocreativecommons' => 'A opción de metadatos Creative Commons RDF está desactivada neste servidor.',
-'notacceptable'     => 'O servidor wiki non pode fornecer datos nun formato que o seu cliente poida ler.',
+'notacceptable'     => 'O servidor do wiki non pode fornecer os datos nun formato que o seu cliente poida ler.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
@@ -2896,8 +2897,8 @@ Os demais agocharanse por omisión.
 'exif-colorspace'                  => 'Espazo de cor',
 'exif-componentsconfiguration'     => 'Significado de cada compoñente',
 'exif-compressedbitsperpixel'      => 'Modo de compresión da imaxe',
-'exif-pixelydimension'             => 'Ancho de imaxe válido',
-'exif-pixelxdimension'             => 'Altura de imaxe válida',
+'exif-pixelydimension'             => 'Ancho da imaxe',
+'exif-pixelxdimension'             => 'Altura da imaxe',
 'exif-makernote'                   => 'Notas do fabricante',
 'exif-usercomment'                 => 'Comentarios do usuario',
 'exif-relatedsoundfile'            => 'Ficheiro de son relacionado',
@@ -2913,9 +2914,9 @@ Os demais agocharanse por omisión.
 'exif-spectralsensitivity'         => 'Sensibilidade espectral',
 'exif-isospeedratings'             => 'Relación da velocidade ISO',
 'exif-oecf'                        => 'Factor de conversión optoelectrónica',
-'exif-shutterspeedvalue'           => 'Velocidade de obturación electrónica',
-'exif-aperturevalue'               => 'Apertura',
-'exif-brightnessvalue'             => 'Brillo',
+'exif-shutterspeedvalue'           => 'Velocidade de obturación APEX',
+'exif-aperturevalue'               => 'Apertura APEX',
+'exif-brightnessvalue'             => 'Brillo APEX',
 'exif-exposurebiasvalue'           => 'Corrección da exposición',
 'exif-maxaperturevalue'            => 'Máxima apertura do diafragma',
 'exif-subjectdistance'             => 'Distancia do suxeito',

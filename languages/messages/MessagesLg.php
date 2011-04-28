@@ -760,9 +760,17 @@ oba ku gano agali ku lupapula luno.<br />
 'histlast'               => 'Tandikira ku bisinga obupya',
 'historysize'            => '({{PLURAL:$1|bayiti 1|bayiti $1}})',
 
+# Revision feed
+'history-feed-item-nocomment' => 'Bya $1, nga $2',
+
 # Revision deletion
-'rev-delundel'   => 'laga/kisa',
-'revdel-restore' => "tegeka ebiba biragibwa n'ebikisibwa",
+'rev-delundel'      => 'laga/kisa',
+'rev-showdeleted'   => 'laga',
+'revdelete-log'     => 'Nsonga:',
+'revdel-restore'    => "tegeka ebiba biragibwa n'ebikisibwa",
+'pagehist'          => "Ennanda y'olupapula luno",
+'revdelete-content' => 'ebirimu',
+'revdelete-uname'   => "ery'obwa memba",
 
 # Merge log
 'revertmerge' => 'Yawula ebigattidwa',
@@ -982,6 +990,7 @@ Osobola okusalawo okuba nga ab'etaaga okukutuukirira bayitira ku nfo yo ey'obwa 
 # Special:LinkSearch
 'linksearch'    => 'Ennyunzi eziggukira wabweru wa Wikipediya',
 'linksearch-ns' => 'Kuŋaanyizo:',
+'linksearch-ok' => 'Noonya',
 
 # Special:Log/newusers
 'newuserlogpage'          => "Olukalala olw'ebifudeyo mu kukolawo akawunti empya",
@@ -1070,10 +1079,11 @@ Oyinz'okukyusa okusibibwa kw'olupapula luno, naye tekijjakukyusa ebikugizo ebivu
 'restriction-move' => 'Simbuliza',
 
 # Undelete
-'undeletebtn'      => 'Luzzewo',
-'undeletelink'     => 'lukebere/luzzewo',
-'undeletecomment'  => 'Nsonga:',
-'undeletedarticle' => '"[[$1]]" luzzidwawo',
+'undeletebtn'            => 'Luzzewo',
+'undeletelink'           => 'lukebere/luzzewo',
+'undeletecomment'        => 'Nsonga:',
+'undeletedarticle'       => '"[[$1]]" luzzidwawo',
+'undelete-search-submit' => 'Noonya',
 
 # Namespace form on various pages
 'namespace'      => 'Kuŋaanyizo:',
@@ -1118,6 +1128,7 @@ Oyinz'okukyusa okusibibwa kw'olupapula luno, naye tekijjakukyusa ebikugizo ebivu
 'ipboptions'               => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
 'blockipsuccesssub'        => 'Memba agaaniddwa okuwandika',
 'ipblocklist'              => 'Abagaanidwa',
+'ipblocklist-submit'       => 'Noonya',
 'blocklink'                => 'Ono agaanibwe okuwandika',
 'unblocklink'              => 'kkiriza memba okuwandika',
 'change-blocklink'         => 'kyusa okugaanibwa',
@@ -1267,6 +1278,9 @@ Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [http://www
 'show-big-image'       => 'Laga ekifaananyi ekijjuvu',
 'show-big-image-thumb' => '<small>Okulagako kuno kwa pikiseli: $1 ku $2</small>',
 
+# Special:NewFiles
+'ilsubmit' => 'Noonya',
+
 # Bad image list
 'bad_image_list' => 'Empandika entuufu:
 
@@ -1325,6 +1339,9 @@ Ebirala biyinza butalabika okujjako ng'okiragidde.
 
 # Special:Version
 'version-specialpages' => 'Empapula enjawule',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Noonya',
 
 # Special:SpecialPages
 'specialpages' => 'Empapula enjawule',

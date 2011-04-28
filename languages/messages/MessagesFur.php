@@ -243,6 +243,7 @@ $messages = array(
 'qbpageinfo'     => 'Contest',
 'qbmyoptions'    => 'Mês pagjinis',
 'qbspecialpages' => 'Pagjinis speciâls',
+'faq'            => 'Domandis plui frecuentis',
 
 # Vector skin
 'vector-action-addsection'   => 'Gnove sezion',
@@ -261,6 +262,7 @@ $messages = array(
 'vector-view-view'           => 'Lei',
 'vector-view-viewsource'     => 'Cjale risultive',
 'actions'                    => 'Azions',
+'namespaces'                 => 'Spazis dai nons',
 'variants'                   => 'Variants',
 
 'errorpagetitle'    => 'Erôr',
@@ -398,6 +400,7 @@ Chest in gjenar al è causât dal jessi lâts daûr dal leam a une pagjine che e
 Se la cause no samee jessi cheste, tu podaressis vê cjatât un problem tal software.
 Segnalilu par plasê a un [[Special:ListUsers/sysop|administrator]], notant la URL.',
 'missingarticle-rev' => '(numar de revision: $1)',
+'filedeleteerror'    => 'No si pues eliminâ il file "$1".',
 'filenotfound'       => 'No si pues cjatâ il file "$1".',
 'badtitle'           => 'Titul sbaliât',
 'badtitletext'       => 'Il titul de pagjine che tu âs inserît nol è valit, al è vuelit, o al veve un erôr tal colegament tra wiki diviersis o tra versions in altris lenghis.
@@ -537,7 +540,9 @@ Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in
 'loginreqlink'                     => 'jentrâ',
 'loginreqpagetext'                 => 'Tu scugnis $1 par viodi lis altris pagjinis.',
 'accmailtitle'                     => 'Password mandade.',
-'accmailtext'                      => 'La password par "$1" e je stade mandade a $2.',
+'accmailtext'                      => "Une password gjenerade a câs par [[User talk:$1|$1]] e je stade mandade a $2.
+
+La password par cheste identitât e pues jessi cambiade su la pagjine ''[[Special:ChangePassword|cambie password]]'' daspò de jentrade.",
 'newarticle'                       => '(Gnûf)',
 'newarticletext'                   => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:Helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
 'anontalkpagetext'                 => "----''Cheste e je la pagjine di discussion di un utent anonim, che nol à ancjemò creât une identitât, o che no la vûl doprâ. Par identificâlu/e a doprin alore la so direzion IP. Lis direzions IP a podin però jessi condividudis di plui utents. Se tu sês un utent anonim e tu crodis che ti vedin fat coments che no si riferissin a ti, par plasê [[Special:UserLogin|cree une gnove identitâ o jentre]] cun chê che tu âs za cussì tu evitarâs in futûr di jessi confondût un altris utents anonims.''",
@@ -885,7 +890,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'uploaddisabledtext'    => 'Lis cjamadis a son disativâts su cheste wiki.',
 'sourcefilename'        => 'Non dal file origjinâl:',
 'destfilename'          => 'Non dal file di destinazion:',
-'watchthisupload'       => 'Ten di voli',
+'watchthisupload'       => 'Ten di voli chest file',
 
 'upload-unknown-size' => 'Dimension no cognossude',
 
@@ -908,7 +913,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'file-anchor-link'          => 'Figure',
 'filehist'                  => 'Storic dal file',
 'filehist-help'             => 'Frache suntune date/ore par viodi il file cemût che al jere in chel moment.',
-'filehist-current'          => 'corint',
+'filehist-current'          => 'atuâl',
 'filehist-datetime'         => 'Date/Ore',
 'filehist-thumb'            => 'Miniature',
 'filehist-thumbtext'        => 'Miniature de version dai $1',
@@ -924,7 +929,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'shared-repo-from'          => 'di $1',
 
 # File reversion
-'filerevert-comment' => 'Coment:',
+'filerevert-comment' => 'Reson:',
 
 # File deletion
 'filedelete'                  => 'Elimine $1',
@@ -1228,7 +1233,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'undeletebtn'               => 'Ripristine',
 'undeletelink'              => 'viôt/ripristine',
 'undeleteinvert'            => 'Invertìs selezion',
-'undeletecomment'           => 'Coment:',
+'undeletecomment'           => 'Reson:',
 'undeletedarticle'          => 'al à recuperât "[[$1]]"',
 'undelete-search-prefix'    => 'Mostre lis pagjinis che a scomencin cun:',
 'undelete-search-submit'    => 'Cîr',
@@ -1291,7 +1296,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'ipbsubmit'                => 'Bloche chest utent',
 'ipboptions'               => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite',
 'badipaddress'             => 'La direzion IP no je valide',
-'ipblocklist'              => 'Utents e direzions IP blocadis',
+'ipblocklist'              => 'Utents blocâts',
 'ipblocklist-submit'       => 'Cîr',
 'blocklink'                => 'bloche',
 'unblocklink'              => 'disbloche',
@@ -1361,7 +1366,8 @@ Sielç par plasê un altri non.',
 'allmessagesname'           => 'Non',
 'allmessagesdefault'        => 'Test predeterminât',
 'allmessagescurrent'        => 'Test curint',
-'allmessagestext'           => 'Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki:',
+'allmessagestext'           => 'Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki.
+Par plasê va su [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se tu vuelis contribuî ae traduzion gjeneriche di MediaWiki.',
 'allmessages-language'      => 'Lenghe:',
 'allmessages-filter-submit' => 'Va',
 
@@ -1609,7 +1615,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # Auto-summaries
 'autosumm-blank' => 'Pagjine disvuedade fûr par fûr',
-'autosumm-new'   => 'Gnove pagjine: $1',
+'autosumm-new'   => 'Creade la pagjine cun "$1"',
 
 # Live preview
 'livepreview-loading' => 'Daûr a cjamâ…',

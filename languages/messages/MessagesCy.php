@@ -1499,22 +1499,23 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'upload-http-error'         => 'Digwyddodd gwall HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Ni chaniatawyd mynediad',
-'img-auth-nopathinfo'   => "PATH_INFO yn eisiau.
+'img-auth-accessdenied'     => 'Ni chaniatawyd mynediad',
+'img-auth-nopathinfo'       => "PATH_INFO yn eisiau.
 Nid yw'ch gweinydd wedi ei osod i fedru pasio'r wybodaeth hon.
 Efallai ei fod wedi ei seilio ar CGI, ac heb fod yn gallu cynnal img_auth.
 Gweler http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
-'img-auth-badtitle'     => 'Ddim yn gallu gwneud teitl dilys o "$1".',
-'img-auth-nologinnWL'   => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
-'img-auth-nofile'       => 'Nid oes ffeil a\'r enw "$1" ar gael.',
-'img-auth-isdir'        => 'Rydych yn ceisio cyrchu cyfeiriadur o\'r enw "$1".
+'img-auth-notindir'         => "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
+'img-auth-badtitle'         => 'Ddim yn gallu gwneud teitl dilys o "$1".',
+'img-auth-nologinnWL'       => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
+'img-auth-nofile'           => 'Nid oes ffeil a\'r enw "$1" ar gael.',
+'img-auth-isdir'            => 'Rydych yn ceisio cyrchu cyfeiriadur o\'r enw "$1".
 Dim ond ffeiliau y cewch eu cyrchu.',
-'img-auth-streaming'    => 'Wrthi\'n llifo "$1".',
-'img-auth-public'       => "Gwaith img_auth.php yw allbynnu ffeiliau o wici preifat.
+'img-auth-streaming'        => 'Wrthi\'n llifo "$1".',
+'img-auth-public'           => "Gwaith img_auth.php yw allbynnu ffeiliau o wici preifat.
 Mae'r wici hwn wedi ei osod yn wici gyhoeddus.
 Er mwyn sicrhau'r diogelwch gorau posib, analluogwyd img_auth.php.",
-'img-auth-noread'       => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
+'img-auth-noread'           => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
+'img-auth-bad-query-string' => 'Mae llinyn ymholi annilys gan yr URL.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL annilys: $1',
@@ -1609,7 +1610,7 @@ Dangosir isod y disgrifiad sydd ar [$2 dudalen ddisgrifio'r ffeil] yno.",
 'filedelete-intro'            => "Rydych ar fin dileu'r ffeil '''[[Media:$1|$1]]''' ynghyd â'i holl hanes.",
 'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
 'filedelete-comment'          => 'Rheswm:',
-'filedelete-submit'           => 'Dileer',
+'filedelete-submit'           => 'Dilëir',
 'filedelete-success'          => "Mae '''$1''' wedi cael ei dileu.",
 'filedelete-success-old'      => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
 'filedelete-nofile'           => "Ni chafwyd '''$1'''.",
@@ -2725,8 +2726,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-colorspace'                  => 'Gofod lliw',
 'exif-componentsconfiguration'     => 'Ystyr pob cydran',
 'exif-compressedbitsperpixel'      => 'Modd cywasgu delwedd',
-'exif-pixelydimension'             => 'Lled delwedd dilys',
-'exif-pixelxdimension'             => 'Uchder delwedd dilys',
+'exif-pixelydimension'             => 'Lled y ddelwedd',
+'exif-pixelxdimension'             => 'Uchder y ddelwedd',
 'exif-makernote'                   => "Nodiadau'r gwneuthurwr",
 'exif-usercomment'                 => "Sylwadau'r defnyddiwr",
 'exif-relatedsoundfile'            => 'Ffeil sain cysylltiedig',
@@ -2742,9 +2743,9 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-spectralsensitivity'         => 'Sensitifedd sbectrol',
 'exif-isospeedratings'             => 'Cyfraddiad cyflymder ISO',
 'exif-oecf'                        => 'Ffactor trawsnewid optoelectronig',
-'exif-shutterspeedvalue'           => 'Cyflymder y caead',
-'exif-aperturevalue'               => 'Agorfa',
-'exif-brightnessvalue'             => 'Disgleirdeb',
+'exif-shutterspeedvalue'           => 'Cyflymder APEX y caead',
+'exif-aperturevalue'               => 'Agorfa APEX',
+'exif-brightnessvalue'             => 'Disgleirdeb APEX',
 'exif-exposurebiasvalue'           => 'Bias dinoethi',
 'exif-maxaperturevalue'            => "Maint mwyaf agorfa'r glan",
 'exif-subjectdistance'             => 'Pellter y goddrych',
@@ -3012,9 +3013,9 @@ $1",
 
 # Delete conflict
 'deletedwhileediting' => "'''Rhybudd''': Dilëwyd y dudalen wedi i chi ddechrau ei golygu!",
-'confirmrecreate'     => "Mae'r defnyddiwr [[User:$1|$1]] ([[User talk:$1|Sgwrs]]) wedi dileu'r erthygl hon ers i chi ddechrau golygu. Y rheswm oedd:
+'confirmrecreate'     => "Mae'r defnyddiwr [[User:$1|$1]] ([[User talk:$1|Sgwrs]]) wedi dileu'r dudalen hon ers i chi ddechrau ei golygu. Y rheswm a roddwyd yw:
 : ''$2''
-Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
+Cadarnhewch eich bod chi wir am ail-greu'r dudalen.",
 'recreate'            => 'Ail-greu',
 
 # action=purge

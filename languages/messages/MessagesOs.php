@@ -143,9 +143,11 @@ $messages = array(
 'hidden-category-category'       => 'Æмбæхст категоритæ',
 'category-subcat-count'          => '{{PLURAL:$2|Ацы категорийы мидæг æрмæст иу дæлкатегори и.|{{PLURAL:$1|$1 дæлкатегори æвдыст у|$1 дæлкатегорийы æвдыст сты}}, æдæппæт $2.}}',
 'category-subcat-count-limited'  => 'Ацы категорийы мидæг ис {{PLURAL:$1|$1 дæлкатегори|$1 дæлкатегорийы}}.',
+'category-article-count'         => '{{PLURAL:$2|Ацы категорийы æрмæст иу фарс и.|Ацы категорийы $2 фарсæй {{PLURAL:$1|æвдыст у $1.|æвдыст сты $1 фарсы.}}}}',
 'category-article-count-limited' => 'Ацы категорийы мидæг {{PLURAL:$1|$1 фарс|$1 фарсы}} ис.',
 'category-file-count-limited'    => 'Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.',
 'listingcontinuesabbrev'         => '(дарддæрдзу)',
+'index-category'                 => 'Индексгонд фæрстæ',
 
 'mainpagetext' => "'''Вики-скрипт «MediaWiki» æнтыстджынæй æвæрд æрцыд.'''",
 
@@ -170,6 +172,8 @@ $messages = array(
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
 
 # Vector skin
+'vector-action-delete'      => 'Аппар',
+'vector-action-protect'     => 'Сæхгæн',
 'vector-namespace-category' => 'Категори',
 'vector-namespace-image'    => 'Файл',
 'vector-namespace-main'     => 'Фарс',
@@ -338,6 +342,8 @@ $messages = array(
 'badretype'               => 'Дыууæ хатты иу пароль хъуамæ ныффыстаис',
 'loginsuccess'            => 'Ныр та Википедийы архайыс $1, зæгъгæ, ахæм номæй.',
 'nouserspecified'         => 'Дæхи бацамонын хъæуы: дæ архайæджы ном цы у.',
+'wrongpassword'           => 'Цы пароль ныффыстай, уый раст нæу.
+Лæмбынæгæй ныффысс дæ пароль',
 'wrongpasswordempty'      => 'Пароль афтид уыд. Афтæ нæ баззы, ныффыс-ма исты пароль.',
 'mailmypassword'          => 'Рарвит мæм ног пароль',
 'noemail'                 => 'Архайæг $1 йæ электрон посты адрис нæ ныууагъта.',
@@ -380,6 +386,8 @@ $messages = array(
 'summary-preview'        => 'Ивддзинады афыст уыдзæн:',
 'blockedtitle'           => 'Архайæг хъодыгонд æрцыд',
 'blockednoreason'        => 'аххос амынд не ’рцыд',
+'whitelistedittitle'     => 'Ацы текст ивынмæ хъуамæ дæхи бацамонай системæйæн',
+'loginreqtitle'          => 'Хъуамæ дæхи бацамонай',
 'accmailtitle'           => 'Пароль рарвыст у.',
 'newarticle'             => '(Ног)',
 'note'                   => "'''Бафиппай:'''",
@@ -582,6 +590,7 @@ $3',
 'uploaderror'      => 'Файл сæвæрыны рæдыд',
 'filename'         => 'Файлы ном',
 'minlength1'       => 'Файлы номы хъуамæ æппынкъаддæр иу дамгъæ уа.',
+'badfilename'      => 'Нывы ном ивд æрцыдис. Ныр хуины «$1».',
 'successfulupload' => 'Файлы сæвæрд фæрæстмæ',
 'savefile'         => 'Бавæр æй',
 'uploadvirus'      => 'Файлы разынд вирус! Кæс $1',
@@ -711,6 +720,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watch'             => 'Дæ цæст æрдар',
 'watchthispage'     => 'Ацы фарсмæ дæ цæст æрдар',
 'unwatch'           => 'Мауал дæ цæст дар',
+'watchnochange'     => 'Дæ цæст кæмæ дарыс, уыцы статьятæй иу дæр ивд не ’рцыди.',
 'watchlist-details' => '$1 фарсмæ дæ цæст дарыс, дискусситы фæстæмæ.',
 'watchlistcontains' => 'Дæ цæст $1 фарсмæ дарыс.',
 'wlnote'            => "Дæлæ афæстаг '''$2 сахаты дæргъы''' цы $1 {{PLURAL:$1|ивддзинад|ивддзинады}} æрцыди.",
@@ -733,6 +743,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Protect
 'protectedarticle'       => '«[[$1]]» — фарс æхгæд æрцыд',
+'prot_1movedto2'         => '[[$1]] хаст æрцыд [[$2]], зæгъгæ, ахæм фарсмæ',
 'protectcomment'         => 'Аххос:',
 'protectexpiry'          => 'Кæдмæ æхгæд у:',
 'protect-level-sysop'    => 'Æрмæст админтæ',
@@ -779,15 +790,19 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'ipbreason'              => 'Аххос:',
 'ipbreasonotherlist'     => 'Æндæр аххос',
 'ipbotherreason'         => 'Æндæр кæнæ уæлæмхасæн аххос:',
+'blockipsuccesstext'     => '[[Special:Contributions/$1|$1]] хъодыгонд æрцыд.<br />
+Кæс [[Special:Ipblocklist|хъодыгонд IP-адристы номхыгъд]].',
 'ipb-blocklist'          => 'Актуалон хъоды равдис',
 'ipb-blocklist-contribs' => '$1, зæгъгæ, уыцы архайæджы бавæрд',
 'ipblocklist'            => 'Хъодыгонд IP-адристæ æмæ архайджыты нæмттæ',
 'ipblocklist-legend'     => 'Хъодыгонд архайæджы ацагур',
+'blocklistline'          => '$1, $2 бахъоды кодта $3 ($4)',
 'ipblocklist-empty'      => 'Хъодыгæндты номхыгъд афтид у.',
 'blocklink'              => 'бахъоды кæн',
 'unblocklink'            => 'хъоды айс',
 'contribslink'           => 'бавæрд',
 'blocklogpage'           => 'Хъодыты лог',
+'blocklogentry'          => 'бахъоды кодта [[$1]] $2 æмгъуыдмæ $3',
 
 # Developer tools
 'lockdbsuccesssub'    => 'Бæрæггæнæнты базæ æхгæд у',
@@ -805,7 +820,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'movereason'               => 'Аххос:',
 
 # Namespace 8 related
-'allmessages' => 'Æппæт техникон фыстытæ',
+'allmessages'     => 'Æппæт техникон фыстытæ',
+'allmessagesname' => 'Ном',
 
 # Thumbnails
 'thumbnail-more' => 'Фестырдæр кæн',
@@ -921,6 +937,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'table_pager_first' => 'Фыццаг фарс',
 'table_pager_last'  => 'Фæстаг фарс',
 
+# Auto-summaries
+'autosumm-new' => 'Ног фарс, йæ код райдайы афтæ: «$1»',
+
 # Size units
 'size-bytes'     => '$1 байт(ы)',
 'size-kilobytes' => '$1 КБ',
@@ -931,8 +950,11 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'livepreview-failed' => 'Тагъд разæркастæй пайда кæнæн нæй. Хуымæтæджы разæркастæй пайда кæн.',
 
 # Watchlist editor
-'watchlistedit-noitems'      => 'Иу фарсмæ дæр нæ дарыс дæ цæст, ацы номхыгъд афтид у.',
-'watchlistedit-normal-title' => 'Дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъд ивыс',
+'watchlistedit-noitems'       => 'Иу фарсмæ дæр нæ дарыс дæ цæст, ацы номхыгъд афтид у.',
+'watchlistedit-normal-title'  => 'Дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъд ивыс',
+'watchlistedit-normal-submit' => 'Аппар фыстытæ',
+'watchlistedit-raw-titles'    => 'Фæрстæ:',
+'watchlistedit-raw-submit'    => 'Номхыгъд бафснай',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Баст ивддзинæдтæ фен',

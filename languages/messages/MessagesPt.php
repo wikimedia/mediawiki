@@ -1734,22 +1734,23 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acesso negado',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+'img-auth-accessdenied'     => 'Acesso negado',
+'img-auth-nopathinfo'       => 'Falta PATH_INFO.
 O seu servidor não está configurado para passar esta informação.
 Pode ser baseado em CGI e não consegue suportar img_auth.
 Consulte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
-'img-auth-badtitle'     => 'Não é possível construir um título válido a partir de "$1".',
-'img-auth-nologinnWL'   => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',
-'img-auth-nofile'       => 'O ficheiro "$1" não existe.',
-'img-auth-isdir'        => 'Está tentando aceder ao directório "$1".
+'img-auth-notindir'         => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
+'img-auth-badtitle'         => 'Não é possível construir um título válido a partir de "$1".',
+'img-auth-nologinnWL'       => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',
+'img-auth-nofile'           => 'O ficheiro "$1" não existe.',
+'img-auth-isdir'            => 'Está tentando aceder ao directório "$1".
 Só é permitido o acesso a ficheiros.',
-'img-auth-streaming'    => "A fazer o ''streaming'' de \"\$1\".",
-'img-auth-public'       => 'A função do img_auth.php é produzir ficheiros a partir de uma wiki privada.
+'img-auth-streaming'        => "A fazer o ''streaming'' de \"\$1\".",
+'img-auth-public'           => 'A função do img_auth.php é produzir ficheiros a partir de uma wiki privada.
 Esta wiki está configurada como uma wiki pública.
 Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
-'img-auth-noread'       => 'O utilizador não tem acesso de leitura ao ficheiro "$1".',
+'img-auth-noread'           => 'O utilizador não tem acesso de leitura ao ficheiro "$1".',
+'img-auth-bad-query-string' => 'A URL tem um texto de consulta inválido.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
@@ -1891,7 +1892,7 @@ A descrição na [$2 página de descrição] é mostrada abaixo.',
 'statistics-pages'             => 'Páginas',
 'statistics-pages-desc'        => 'Todas as páginas da wiki, incluindo páginas de discussão, redireccionamentos, etc.',
 'statistics-files'             => 'Ficheiros carregados',
-'statistics-edits'             => 'Edições de página desde que a {{SITENAME}} foi instalada',
+'statistics-edits'             => 'Edições de páginas desde que a {{SITENAME}} foi instalada',
 'statistics-edits-average'     => 'Média de edições por página',
 'statistics-views-total'       => 'Total de visionamentos',
 'statistics-views-peredit'     => 'Visionamentos por edição',
@@ -2993,8 +2994,8 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-colorspace'                  => 'Espaço de cores',
 'exif-componentsconfiguration'     => 'Significado de cada componente',
 'exif-compressedbitsperpixel'      => 'Modo de compressão da imagem',
-'exif-pixelydimension'             => 'Largura da imagem válida',
-'exif-pixelxdimension'             => 'Altura da imagem válida',
+'exif-pixelydimension'             => 'Largura válida da imagem',
+'exif-pixelxdimension'             => 'Altura válida da imagem',
 'exif-makernote'                   => 'Anotações do fabricante',
 'exif-usercomment'                 => 'Comentários de utilizadores',
 'exif-relatedsoundfile'            => 'Ficheiro áudio relacionado',
@@ -3012,7 +3013,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-oecf'                        => 'Factor de conversão optoelectrónica',
 'exif-shutterspeedvalue'           => 'Velocidade do obturador',
 'exif-aperturevalue'               => 'Abertura',
-'exif-brightnessvalue'             => 'Brilho',
+'exif-brightnessvalue'             => 'Brilho APEX',
 'exif-exposurebiasvalue'           => 'Compensação da exposição',
 'exif-maxaperturevalue'            => 'Abertura máxima',
 'exif-subjectdistance'             => 'Distância do motivo',
@@ -3157,6 +3158,8 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor linear sequencial de cores',
 
+'exif-filesource-3' => 'Câmara fotográfica digital',
+
 'exif-scenetype-1' => 'Imagem fotografada directamente',
 
 'exif-customrendered-0' => 'Processo normal',
@@ -3256,7 +3259,7 @@ Pode agora [[Special:UserLogin|autenticar-se]] e desfrutar da wiki.',
 'confirmemail_loggedin'    => 'O seu endereço de correio electrónico foi confirmado.',
 'confirmemail_error'       => 'Alguma coisa correu mal ao gravar a sua confirmação.',
 'confirmemail_subject'     => 'Confirmação de endereço de correio electrónico da {{SITENAME}}',
-'confirmemail_body'        => 'Alguém, provavelmente você com o endereço IP $1,
+'confirmemail_body'        => 'Alguém, provavelmente você a partir do endereço IP $1,
 registou uma conta "$2" com este endereço de correio electrónico na {{SITENAME}}.
 
 Para confirmar que esta conta é realmente sua e activar
@@ -3265,12 +3268,12 @@ abra o seguinte link no seu browser:
 
 $3
 
-Caso este *não* seja você, siga o seguinte link
-para cancelar a confirmação do endereço de correio electrónico:
+Se a conta *não* é sua, abra o seguinte link para cancelar
+a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar às $4.',
+Este código de confirmação irá expirar às $7 de $6.',
 'confirmemail_invalidated' => 'Confirmação de endereço de correio electrónico cancelada',
 'invalidateemail'          => 'Cancelar confirmação de correio electrónico',
 

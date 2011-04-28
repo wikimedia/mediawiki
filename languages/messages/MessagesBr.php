@@ -636,7 +636,8 @@ Gortozit a-raok klask en-dro.",
 'showpreview'                      => 'Rakwelet',
 'showlivepreview'                  => 'Rakwelet prim',
 'showdiff'                         => "Diskouez ar c'hemmoù",
-'anoneditwarning'                  => "'''Diwallit :''' N'oc'h ket kevreet. Ho chomlec'h IP eo a vo enrollet war istor kemmoù ar bajenn-mañ.",
+'anoneditwarning'                  => "'''Diwallit :''' N'oc'h ket kevreet. 
+Ho chomlec'h IP eo a vo enrollet war istor kemmoù ar bajenn-mañ.",
 'missingsummary'                   => "'''Taolit evezh:''' N'hoc'h eus ket lakaet tamm testenn diverrañ ebet evit ho kemmoù. Mar klikit war enrollañ en-dro, e vo enrollet ho testenn evel m'emañ hepmuiken.",
 'missingcommenttext'               => "Skrivit hoc'h evezhiadenn a-is.",
 'missingcommentheader'             => "'''Taolit evezh:''' N'hoc'h eus ket lakaet tamm danvez/titl ebet evit hoc'h evezhiadenn. Mar klikit war enrollañ en-dro, e vo enrollet ho testenn evel m'emañ hepmuiken.",
@@ -930,7 +931,7 @@ $1",
 'pagehist'                    => 'Istor ar bajenn',
 'deletedhist'                 => 'Diverkañ an istor',
 'revdelete-content'           => 'danvez',
-'revdelete-summary'           => 'kemmañ an diverrañ',
+'revdelete-summary'           => "diverradenn eus ar c'hemmoù",
 'revdelete-uname'             => 'anv implijer',
 'revdelete-restricted'        => 'Lakaat ar strishadurioù da dalvezout evit ar verourien',
 'revdelete-unrestricted'      => 'dilemel ar strishadurioù evit ar verourien',
@@ -1407,7 +1408,7 @@ S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'filedesc'                    => 'Deskrivadur',
 'fileuploadsummary'           => 'Diverrañ :',
 'filereuploadsummary'         => 'Kemmoù er restr :',
-'filestatus'                  => 'Statud ar gwirioù aozer:',
+'filestatus'                  => 'Statud a-fet gwirioù aozer :',
 'filesource'                  => 'Mammenn :',
 'uploadedfiles'               => 'Restroù karget',
 'ignorewarning'               => 'Na ober van ouzh an evezhiadenn hag enrollañ ar restr forzh penaos',
@@ -1459,7 +1460,7 @@ Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit 
 'php-uploaddisabledtext'      => 'Diweredekaet eo bet ar pellgargañ e PHP. Gwiriit an dibarzh arventennoù file_uploads.',
 'uploadscripted'              => "Er restr-mañ ez eus kodoù HTML pe skriptoù a c'hallfe bezañ kammgomprenet gant ur merdeer Kenrouedad.",
 'uploadvirus'                 => 'Viruzet eo ar restr! Titouroù : $1',
-'upload-source'               => 'Restr tarzh',
+'upload-source'               => 'Restr orin',
 'sourcefilename'              => 'Anv ar restr tarzh :',
 'sourceurl'                   => 'URL tarzh :',
 'destfilename'                => 'Anv ma vo enrollet ar restr :',
@@ -1502,22 +1503,23 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload-http-error'         => 'Ur fazi HTTP zo bet : $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => "Moned nac'het",
-'img-auth-nopathinfo'   => "Mankout a ra ar PATH_INFO.
+'img-auth-accessdenied'     => "Moned nac'het",
+'img-auth-nopathinfo'       => "Mankout a ra ar PATH_INFO.
 N'eo ket kefluniet ho servijer evit reiñ an titour-mañ.
 Marteze eo diazezet war CGI-based ha n'hall ket skorañ img_auth.
 Gwelet http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
-'img-auth-badtitle'     => 'Dibosupl krouiñ un titl reizh adalek "$1".',
-'img-auth-nologinnWL'   => 'N\'oc\'h ket kevreet ha n\'emañ ket "$1" war ar roll gwenn',
-'img-auth-nofile'       => 'n\'eus ket eus ar restr "$1".',
-'img-auth-isdir'        => "Klakset hoc'h eus monet d'ar c'havlec'h \"\$1\".
+'img-auth-notindir'         => "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
+'img-auth-badtitle'         => 'Dibosupl krouiñ un titl reizh adalek "$1".',
+'img-auth-nologinnWL'       => 'N\'oc\'h ket kevreet ha n\'emañ ket "$1" war ar roll gwenn',
+'img-auth-nofile'           => 'n\'eus ket eus ar restr "$1".',
+'img-auth-isdir'            => "Klakset hoc'h eus monet d'ar c'havlec'h \"\$1\".
 N'haller monet nemet d'ar restroù.",
-'img-auth-streaming'    => 'O lenn en ur dremen "$1"',
-'img-auth-public'       => "Talvezout a ra an arc'hwel img_auth.php da ezvont restroù adalek ur wiki prevez.
+'img-auth-streaming'        => 'O lenn en ur dremen "$1"',
+'img-auth-public'           => "Talvezout a ra an arc'hwel img_auth.php da ezvont restroù adalek ur wiki prevez.
 Kefluniet eo bet ar wiki-mañ evel ur wiki foran.
 Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
-'img-auth-noread'       => 'N\'eo ket aotreet an implijer da lenn "$1"',
+'img-auth-noread'           => 'N\'eo ket aotreet an implijer da lenn "$1"',
+'img-auth-bad-query-string' => 'Un neudennad goulenn direizh zo gant an URL.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL direizh : $1',
@@ -2700,7 +2702,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 
 # Metadata
 'metadata'          => 'Metaroadennoù',
-'metadata-help'     => "Titouroù ouzhpen zo er restr-mañ; bet lakaet moarvat gant ar c'hamera niverel pe ar skanner implijet evit he niverelaat. Mard eo bet cheñchet ar skeudenn e-keñver he stad orin marteze ne vo ket kenkoulz munudoù zo e-keñver ar skeudenn kemmet.",
+'metadata-help'     => "Titouroù ouzhpenn zo er restr-mañ; bet lakaet moarvat gant ar c'hamera niverel pe ar skanner implijet evit he niverelaat. Mard eo bet cheñchet ar skeudenn e-keñver he stad orin marteze ne vo ket kenkoulz munudoù zo e-keñver ar skeudenn kemmet.",
 'metadata-expand'   => 'Dispakañ ar munudoù',
 'metadata-collapse' => 'Krennañ ar munudoù',
 'metadata-fields'   => "Ensoc'het e vo ar maeziennoù metastlennoù EXIF rollet er gemennadenn-mañ e pajenn deskrivañ ar skeudenn pa vo punet taolenn ar metaroadennoù. Kuzhet e vo ar re all dre ziouer.
@@ -2748,8 +2750,8 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-colorspace'                  => "Lec'h al livioù",
 'exif-componentsconfiguration'     => 'Talvoudegezh pep parzh',
 'exif-compressedbitsperpixel'      => 'Doare gwaskañ ar skeudenn',
-'exif-pixelydimension'             => 'Ledander skeudenn gwiriek',
-'exif-pixelxdimension'             => 'Uhelder skeudenn gwiriek',
+'exif-pixelydimension'             => 'Ledander ar skeudenn',
+'exif-pixelxdimension'             => 'Sav ar skeudenn',
 'exif-makernote'                   => 'Notennoù an oberier',
 'exif-usercomment'                 => 'Evezhiadennoù',
 'exif-relatedsoundfile'            => 'Restr son stag',
@@ -2765,9 +2767,9 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-spectralsensitivity'         => 'Kizidigezh spektrel',
 'exif-isospeedratings'             => 'Kizidigezh ISO',
 'exif-oecf'                        => 'Faktor amdreiñ elektronek',
-'exif-shutterspeedvalue'           => 'Tizh klozañ',
-'exif-aperturevalue'               => 'Digorder',
-'exif-brightnessvalue'             => 'Sklêrder',
+'exif-shutterspeedvalue'           => "Tizh ar c'hlozer APEX",
+'exif-aperturevalue'               => 'Digorder APEX',
+'exif-brightnessvalue'             => 'Sklêrder APEX',
 'exif-exposurebiasvalue'           => "Reizhadenn louc'hañ",
 'exif-maxaperturevalue'            => 'Maezienn digeriñ vrasañ',
 'exif-subjectdistance'             => 'Hed ar sujed',
@@ -2911,6 +2913,8 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-sensingmethod-5' => 'Detekter takad liv kemalennek',
 'exif-sensingmethod-7' => 'Detekter teirlinennek',
 'exif-sensingmethod-8' => 'Detekter liv linennek kemalennek',
+
+'exif-filesource-3' => "Luc'hskeudennerez niverel",
 
 'exif-scenetype-1' => "Lun luc'hskeudennet war-eeun",
 

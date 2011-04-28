@@ -496,7 +496,7 @@ $messages = array(
 'otherlanguages'    => 'Ngôn ngữ khác',
 'redirectedfrom'    => '(đổi hướng từ $1)',
 'redirectpagesub'   => 'Trang đổi hướng',
-'lastmodifiedat'    => 'Lần sửa cuối : $2, $1.',
+'lastmodifiedat'    => 'Trang này được sửa đổi lần cuối lúc $2 $1.',
 'viewcount'         => 'Trang này đã được đọc {{PLURAL:$1|một|$1}} lần.',
 'protectedpage'     => 'Trang bị khóa',
 'jumpto'            => 'Bước tới:',
@@ -604,7 +604,7 @@ Cơ sở dữ liệu báo lỗi “$3: $4”',
 'enterlockreason'      => 'Nêu lý do khóa, cùng với thời hạn khóa',
 'readonlytext'         => 'Cơ sở dữ liệu hiện đã bị khóa không nhận trang mới và các điều chỉnh khác, có lẽ để bảo trì cơ sở dữ liệu định kỳ, một thời gian ngắn nữa nó sẽ trở lại bình thường.
 
-Quản lý viên khóa nó đã đưa ra lời giải thích sau: $1',
+Bảo quản viên khóa nó đã đưa ra lời giải thích sau: $1',
 'missing-article'      => 'Cơ sở dữ liệu không tìm thấy văn bản của trang lẽ ra phải có, trang      Normal   0               false   false   false      EN-US   X-NONE   X-NONE                                                     MicrosoftInternetExplorer4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     “$1” $2.
 
 Điều này thường xảy ra do nhấn vào liên kết khác biệt phiên bản đã quá lâu hoặc liên kết lịch sử của một trang đã bị xóa.
@@ -690,7 +690,7 @@ Tài khoản của bạn đã mở.
 Hãy chọn một tên khác.',
 'loginerror'                 => 'Lỗi đăng nhập',
 'createaccounterror'         => 'Không thể mở tài khoản: $1',
-'nocookiesnew'               => 'Tài khoản đã mở, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy kích hoạt nó, rồi đăng nhập lại với tên người dùng và mật khẩu mới.',
+'nocookiesnew'               => 'Bạn đã tạo tài khoản thành công, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy bật cookie lên, rồi đăng nhập lại với tên người dùng và mật khẩu mới.',
 'nocookieslogin'             => '{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.',
 'noname'                     => 'Chưa nhập tên.',
 'loginsuccesstitle'          => 'Đăng nhập thành công',
@@ -707,9 +707,9 @@ Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài k
 'password-name-match'        => 'Mật khẩu của bạn phải khác với tên người dùng của bạn.',
 'mailmypassword'             => 'Gửi mật khẩu mới qua thư điện tử',
 'passwordremindertitle'      => 'Mật khẩu tạm thời cho {{SITENAME}}',
-'passwordremindertext'       => 'Người nào đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi cho bạn mật khẩu mới của {{SITENAME}} ($4). Mật khẩu tạm cho thành viên “$2” đã được khởi tạo là “$3”. Nếu bạn chính là người đã yêu cầu mật khẩu, bạn sẽ cần phải đăng nhập và thay đổi mật khẩu ngay bây giờ. Mật khẩu tạm sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}.
+'passwordremindertext'       => 'Ai đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi mật khẩu mới của {{SITENAME}} ($4). Chúng tôi đã tạo một mật khẩu tạm “$3” cho thành viên “$2”. Nếu bạn chính là người đã yêu cầu mật khẩu, bạn cần phải đăng nhập và thay đổi mật khẩu ngay bây giờ. Mật khẩu tạm sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}.
 
-Nếu bạn không phải là người yêu cầu gửi mật khẩu, hoặc nếu bạn đã nhớ ra mật khẩu gốc của mình và không còn muốn đổi nó nữa, bạn có thể bỏ qua bức thư này và tiếp tục sử dụng mật khẩu cũ của bạn.',
+Nếu bạn không yêu cầu gửi mật khẩu mới, hoặc bạn đã nhớ ra mật khẩu cũ của mình và không còn muốn đổi nó nữa, bạn có thể bỏ qua bức thư này và tiếp tục sử dụng mật khẩu cũ của bạn.',
 'noemail'                    => 'Thành viên “$1” không đăng ký thư điện tử.',
 'noemailcreate'              => 'Bạn cần cung cấp một địa chỉ thư điện tử hợp lệ',
 'passwordsent'               => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
@@ -900,7 +900,7 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 'longpageerror'                    => "'''LỖI: Văn bạn mà bạn muốn lưu dài $1 kilobyte, dài hơn độ dài tối đa cho phép $2 kilobyte. Không thể lưu trang.'''",
 'readonlywarning'                  => "'''CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.'''
 
-Quản lý viên khi khóa dữ liệu đã đưa ra lý do: $1",
+Bảo quản viên khi khóa dữ liệu đã đưa ra lý do: $1",
 'protectedpagewarning'             => "'''Cảnh báo: Trang này đã bị khóa và chỉ có các thành viên có quyền quản lý mới có thể sửa được.'''
 Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
 'semiprotectedpagewarning'         => "'''Lưu ý:''' Trang này đã bị khóa và chỉ có các thành viên đã đăng ký mới có thể sửa đổi được.
@@ -1007,27 +1007,27 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-text-unhide'     => "Phiên bản này đã bị '''xóa'''.
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-Vì là quản lý viên, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
+Vì là bảo quản viên, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-suppressed-text-unhide'  => "Phiên bản này đã bị '''giấu'''.
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].
-Vì là quản lý viên, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
+Vì là bảo quản viên, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-deleted-text-view'       => "Phiên bản này đã bị '''xóa'''.
-Vì là quản lý viên bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Vì là bảo quản viên bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-text-view'    => "Phiên bản này đã bị '''giấu'''.
-Vì là quản lý viên bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
+Vì là bảo quản viên bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
 'rev-deleted-no-diff'         => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-no-diff'      => "Bạn không thể xem khác biệt vì một trong hai phiên bản đã bị '''xóa'''.",
 'rev-deleted-unhide-diff'     => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-Vì là quản lý viên, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
+Vì là bảo quản viên, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
 'rev-suppressed-unhide-diff'  => "Một trong các phiên bản trong lần so sánh này đã được '''ẩn giấu'''.
 Bạn có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].
-Là quản lý viên bạn vẫn có thể [$1 so sánh khác biệt] nếu bạn muốn.",
+Là bảo quản viên bạn vẫn có thể [$1 so sánh khác biệt] nếu bạn muốn.",
 'rev-deleted-diff-view'       => "Một trong những phiên bản trong khác biệt này đã bị '''xóa'''.
-Là quản lý viên bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Là bảo quản viên bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-diff-view'    => "Trong trong những phiên bản trong khác biệt này đã bị '''ẩn giấu'''.
-Là quản lý viên bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].",
+Là bảo quản viên bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].",
 'rev-delundel'                => 'hiện/ẩn',
 'rev-showdeleted'             => 'hiện',
 'revisiondelete'              => 'Xóa hay phục hồi phiên bản',
@@ -1060,7 +1060,7 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'revdelete-radio-same'        => '(không đổi)',
 'revdelete-radio-set'         => 'Có',
 'revdelete-radio-unset'       => 'Không',
-'revdelete-suppress'          => 'Che dữ liệu đối với quản lý viên cũng như các thành viên khác',
+'revdelete-suppress'          => 'Che dữ liệu đối với bảo quản viên cũng như các thành viên khác',
 'revdelete-unsuppress'        => 'Bỏ các hạn chế trên các phiên bản được phục hồi',
 'revdelete-log'               => 'Lý do:',
 'revdelete-submit'            => 'Áp dụng vào {{PLURAL:$1|phiên bản|các phiên bản}} được chọn',
@@ -1354,7 +1354,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'group'               => 'Nhóm:',
 'group-user'          => 'Thành viên thông thường',
 'group-autoconfirmed' => 'Thành viên tự xác nhận',
-'group-bot'           => 'Robot',
+'group-bot'           => 'Bot',
 'group-sysop'         => 'Bảo quản viên',
 'group-bureaucrat'    => 'Hành chính viên',
 'group-suppress'      => 'Giám sát viên',
@@ -1362,15 +1362,15 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 
 'group-user-member'          => 'thành viên',
 'group-autoconfirmed-member' => 'thành viên tự động xác nhận',
-'group-bot-member'           => 'robot',
+'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'bảo quản viên',
 'group-bureaucrat-member'    => 'Hành chính viên',
 'group-suppress-member'      => 'giám sát viên',
 
 'grouppage-user'          => '{{ns:project}}:Thành viên',
 'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự xác nhận',
-'grouppage-bot'           => '{{ns:project}}:Robot',
-'grouppage-sysop'         => '{{ns:project}}:Quản lý viên',
+'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-sysop'         => '{{ns:project}}:Bảo quản viên',
 'grouppage-bureaucrat'    => '{{ns:project}}:Hành chính viên',
 'grouppage-suppress'      => '{{ns:project}}:Giám sát viên',
 
@@ -1578,9 +1578,9 @@ Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực
 'emptyfile'                   => 'Tập tin bạn vừa mới tải lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
 'fileexists'                  => "Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại '''<tt>[[:$1]]</tt>''' nếu bạn không chắc bạn có muốn thay đổi nó hay không.
 [[$1|thumb]]",
-'filepageexists'              => "Trang miêu tả tập tin này đã tồn tại ở '''<tt>[[:\$1]]</tt>''', nhưng chưa có tập tin với tên này.
+'filepageexists'              => "Trang miêu tả của tập tin này đã được tạo tại '''<tt>[[:\$1]]</tt>''', nhưng hiện không có tập tin nào có tên như vậy.
 Những gì bạn ghi trong ô \"Tóm tắt tập tin\" sẽ không hiện ra ở trang miêu tả.
-Để làm nó hiển thị, bạn sẽ cần phải sửa đổi trang đó bằng tay.
+Để khiến nó hiển thị, bạn cần phải sửa đổi trang đó bằng tay.
 [[\$1|thumb]]",
 'fileexists-extension'        => "Hiện có một tập tin trùng tên: [[$2|thumb]]
 * Tên tập tin đang tải lên: '''<tt>[[:$1]]</tt>'''
@@ -1651,22 +1651,23 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'upload-http-error'         => 'Xảy ra lỗi HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Không cho phép truy cập',
-'img-auth-nopathinfo'   => 'Thiếu PATH_INFO.
+'img-auth-accessdenied'     => 'Không cho phép truy cập',
+'img-auth-nopathinfo'       => 'Thiếu PATH_INFO.
 Máy chủ của bạn không được thiết lập để truyền thông tin này.
 Có thể do nó dựa trên CGI và không hỗ trợ img_auth.
 Xem http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Đường dẫn yêu cầu không nằm trong thư mục cấu hình tải lên.',
-'img-auth-badtitle'     => 'Không thể tạo tựa đề hợp lệ từ “$1”.',
-'img-auth-nologinnWL'   => 'Bạn chưa đăng nhập và “$1” không nằm trong danh sách trắng.',
-'img-auth-nofile'       => 'Không tồn tại tập tin “$1”.',
-'img-auth-isdir'        => 'Bạn đang cố truy cập vào thư mục “$1”.
+'img-auth-notindir'         => 'Đường dẫn yêu cầu không nằm trong thư mục cấu hình tải lên.',
+'img-auth-badtitle'         => 'Không thể tạo tựa đề hợp lệ từ “$1”.',
+'img-auth-nologinnWL'       => 'Bạn chưa đăng nhập và “$1” không nằm trong danh sách trắng.',
+'img-auth-nofile'           => 'Không tồn tại tập tin “$1”.',
+'img-auth-isdir'            => 'Bạn đang cố truy cập vào thư mục “$1”.
 Chỉ cho phép truy cập tập tin mà thôi.',
-'img-auth-streaming'    => 'Đang truyền “$1”.',
-'img-auth-public'       => 'Chức năng của img_auth.php là xuất tập tin từ wiki cá nhân.
+'img-auth-streaming'        => 'Đang truyền “$1”.',
+'img-auth-public'           => 'Chức năng của img_auth.php là xuất tập tin từ wiki cá nhân.
 Wiki này được cấu hình là wiki công cộng.
 Vì lý do bảo mật, img_auth.php đã bị tắt.',
-'img-auth-noread'       => 'Người dùng không đủ quyền truy cập để đọc “$1”.',
+'img-auth-noread'           => 'Người dùng không đủ quyền truy cập để đọc “$1”.',
+'img-auth-bad-query-string' => 'URL có một chuỗi truy vấn không hợp lệ.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL không hợp lệ: $1',
@@ -1973,7 +1974,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'activeusers-count'      => '$1 {{PLURAL:$1|sửa đổi|sửa đổi}} trong {{PLURAL:$3|ngày|$3 ngày}} gần đây',
 'activeusers-from'       => 'Hiển thị thành viên bắt đầu từ:',
 'activeusers-hidebots'   => 'Ẩn robot',
-'activeusers-hidesysops' => 'Ẩn quản lý viên',
+'activeusers-hidesysops' => 'Ẩn bảo quản viên',
 'activeusers-noresult'   => 'Không thấy thành viên.',
 
 # Special:Log/newusers
@@ -2180,7 +2181,7 @@ hiện tại của trang '''$1''':",
 'protect-default'             => 'Cho phép mọi thành viên',
 'protect-fallback'            => 'Cần quyền “$1”',
 'protect-level-autoconfirmed' => 'Cấm thành viên mới và thành viên chưa đăng ký',
-'protect-level-sysop'         => 'Cấm mọi thành viên (trừ quản lý)',
+'protect-level-sysop'         => 'Cấm mọi thành viên (trừ bảo quản viên)',
 'protect-summary-cascade'     => 'khóa theo tầng',
 'protect-expiring'            => 'hết hạn $1 (UTC)',
 'protect-expiry-indefinite'   => 'vô thời hạn',
@@ -2232,7 +2233,7 @@ Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa
 Trong trường hợp đó, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất.',
 'undeletehistorynoadmin'       => 'Trang này đã bị xóa.
 Lý do xóa trang được hiển thị dưới đây, cùng với thông tin về những người đã sửa đổi trang này trước khi bị xóa.
-Chỉ có quản lý viên mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
+Chỉ có bảo quản viên mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
 'undelete-revision'            => 'Phiên bản đã xóa của $1 (vào lúc $4 tại $5) do $3 sửa đổi:',
 'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.',
 'undelete-nodiff'              => 'Không tìm thấy phiên bản cũ hơn.',
@@ -2725,7 +2726,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'anonymous'        => '{{PLURAL:$1|Thành viên|Thành viên}} vô danh của {{SITENAME}}',
 'siteuser'         => 'thành viên $1 của {{SITENAME}}',
 'anonuser'         => 'người vô danh $1 tại {{SITENAME}}',
-'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.',
+'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2 $1.',
 'othercontribs'    => 'Dựa trên công trình của $1.',
 'others'           => 'những người khác',
 'siteusers'        => '{{PLURAL:$2|Thành viên|Các thành viên}} $1 của {{SITENAME}}',
@@ -2935,8 +2936,8 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-colorspace'                  => 'Không gian màu',
 'exif-componentsconfiguration'     => 'Ý nghĩa thành phần',
 'exif-compressedbitsperpixel'      => 'Độ nén (bit/điểm)',
-'exif-pixelydimension'             => 'Chiều ngang hợp lệ',
-'exif-pixelxdimension'             => 'Chiều cao hợp lệ',
+'exif-pixelydimension'             => 'Chiều ngang hình',
+'exif-pixelxdimension'             => 'Chiều cao hình',
 'exif-makernote'                   => 'Ghi chú của nhà sản xuất',
 'exif-usercomment'                 => 'Lời bình của tác giả',
 'exif-relatedsoundfile'            => 'Tập tin âm thanh liên quan',
@@ -2953,9 +2954,9 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-spectralsensitivity'         => 'Độ nhạy quang phổ',
 'exif-isospeedratings'             => 'Điểm tốc độ ISO',
 'exif-oecf'                        => 'Yếu tố chuyển đổi quang điện',
-'exif-shutterspeedvalue'           => 'Tốc độ cửa chớp',
-'exif-aperturevalue'               => 'Độ mở ống kính',
-'exif-brightnessvalue'             => 'Độ sáng',
+'exif-shutterspeedvalue'           => 'Tốc độ cửa chớp (APEX)',
+'exif-aperturevalue'               => 'Độ mở ống kính (APEX)',
+'exif-brightnessvalue'             => 'Độ sáng (APEX)',
 'exif-exposurebiasvalue'           => 'Độ lệch phơi sáng',
 'exif-maxaperturevalue'            => 'Khẩu độ cực đại qua đất',
 'exif-subjectdistance'             => 'Khoảng cách vật thể',
@@ -3103,6 +3104,8 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-sensingmethod-5' => 'Cảm biến vùng màu liên tục',
 'exif-sensingmethod-7' => 'Cảm biến ba đường',
 'exif-sensingmethod-8' => 'Cảm biến đường màu liên tục',
+
+'exif-filesource-3' => 'Máy chụp hình tĩnh kỹ thuật số',
 
 'exif-scenetype-1' => 'Hình chụp thẳng',
 

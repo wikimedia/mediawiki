@@ -844,7 +844,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'language-converter-depth-warning'        => "D'Limite vun der déift vun der Sproochëmwandlung gouf iwwerschratt ($1)",
 
 # "Undo" feature
-'undo-success' => "D'Ännerung gëtt réckgängeg gemaach. Iwwerpréift w.e.g. de Verglach ënnedrënner fir nozekuckeen ob et esou richteg ass, duerno späichert w.e.g d'Ännerungen of fir dës Aktioun ofzeschléissen.",
+'undo-success' => "D'Ännerung gëtt réckgängeg gemaach. Iwwerpréift w.e.g. de Verglach ënnendrënner fir nozekuckeen ob et esou richteg ass, duerno späichert w.e.g d'Ännerungen of, fir dës Aktioun ofzeschléissen.",
 'undo-failure' => "D'Ännerung konnt net réckgängeg gemaach ginn, wëll de betraffenen Abschnitt an der Tëschenzäit geännert gouf.",
 'undo-norev'   => "D'Ännerung kann net zréckgesat ginn, well et se net gëtt oder well se scho geläscht ass.",
 'undo-summary' => 'Ännerung $1 vu(n) [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) annulléieren.',
@@ -1502,7 +1502,7 @@ Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet d
 'php-uploaddisabledtext'      => "D'Eropluede vu Fichieren ass am PHP desaktivéiert. Kuckt w.e.g. d'Astellung ''file_uploads'' no.",
 'uploadscripted'              => 'An dësem Fichier ass HTML- oder Scriptcode, dee vun engem Webbrowser falsch interpretéiert kéint ginn.',
 'uploadvirus'                 => 'An dësem Fichier ass ee Virus! Detailer: $1',
-'upload-source'               => 'Quellfichier',
+'upload-source'               => 'Quell-Fichier',
 'sourcefilename'              => 'Numm vum Originalfichier:',
 'sourceurl'                   => 'Quell-URL:',
 'destfilename'                => 'Numm ënner deem de Fichier gespäichert gëtt:',
@@ -1531,22 +1531,23 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Zougang refuséiert',
-'img-auth-nopathinfo'   => 'PATH_INFO feelt.
+'img-auth-accessdenied'     => 'Zougang refuséiert',
+'img-auth-nopathinfo'       => 'PATH_INFO feelt.
 Äre Server ass net agestallt fir déi Informatioun weiderzeginn.
 Et kann u CGI leien an datt imag_auth net ënnerstëtzt gëtt.
 Kuckt http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'De gefrote Pad ass net am Upload-Repertoire agestallt.',
-'img-auth-badtitle'     => 'Aus "$1" ka kee valabelen Titel gemaach ginn.',
-'img-auth-nologinnWL'   => 'Dir sidd net ageloggt a(n) "$1" ass net op der Wäisser Lëscht.',
-'img-auth-nofile'       => 'De Fichier "$1" gëtt et net.',
-'img-auth-isdir'        => 'Dir versicht op de Repertoire "$1" zouzegräifen.
+'img-auth-notindir'         => 'De gefrote Pad ass net am Upload-Repertoire agestallt.',
+'img-auth-badtitle'         => 'Aus "$1" ka kee valabelen Titel gemaach ginn.',
+'img-auth-nologinnWL'       => 'Dir sidd net ageloggt a(n) "$1" ass net op der Wäisser Lëscht.',
+'img-auth-nofile'           => 'De Fichier "$1" gëtt et net.',
+'img-auth-isdir'            => 'Dir versicht op de Repertoire "$1" zouzegräifen.
 Nèemmen Datenofruff ass erlaabt.',
-'img-auth-streaming'    => '"$1" lueden.',
-'img-auth-public'       => "D'Fonctioun img_auth.php erlaabt et fir Fichieren vun enger privater Wiki erauszeginn.
+'img-auth-streaming'        => '"$1" lueden.',
+'img-auth-public'           => "D'Fonctioun img_auth.php erlaabt et fir Fichieren vun enger privater Wiki erauszeginn.
 Dës Wiki ass als ëffentlech Wiki configuréiert.
 Fir eng oprimal Sécherheet ass img_auth.php ausgeschalt.",
-'img-auth-noread'       => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
+'img-auth-noread'           => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
+'img-auth-bad-query-string' => "D'URL huet eng net valabel Rei vun Zeechen.",
 
 # HTTP errors
 'http-invalid-url'      => 'Net-valabel URL: $1',
@@ -1614,7 +1615,7 @@ Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 'sharedupload-desc-there'           => "Dëse Fichier ass vu(n) $1 a kann an anere Projete benotzt ginn.
 Kuckt w.e.g. d'[$2 Säit mat der Beschreiwung vum Fichier] fir méi Informatiounen.",
 'sharedupload-desc-here'            => "Dëse Fichier ass vu(n) $1 an däerf vun anere Projete benotzt ginn.
-D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnedrënner.",
+D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnendrënner.",
 'filepage-nofile'                   => 'Et gëtt kee Fichier mat deem Numm.',
 'filepage-nofile-link'              => 'Et gëtt kee Fichier mat deem Numm, awer Dir kënnt [$1 en eroplueden].',
 'uploadnewversion-linktext'         => 'Eng nei Versioun vun dësem Fichier eroplueden',
@@ -2762,8 +2763,8 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-colorspace'                  => 'Faarfraum',
 'exif-componentsconfiguration'     => 'Bedeitung vun eenzelne Komponenten',
 'exif-compressedbitsperpixel'      => 'Kompriméiert Bite pro Pixel',
-'exif-pixelydimension'             => 'Gültëg Bildbreet',
-'exif-pixelxdimension'             => 'Gültëg Bildhéicht',
+'exif-pixelydimension'             => 'Breet vum Bild',
+'exif-pixelxdimension'             => 'Héicht vum Bild',
 'exif-makernote'                   => 'Notize vum Fabrikant',
 'exif-usercomment'                 => 'Bemierkunge vum Benotzer',
 'exif-relatedsoundfile'            => 'Tounfichier deen dozou gehéiert',
@@ -2779,9 +2780,9 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-spectralsensitivity'         => 'Spectral Sensitivitéit',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlechkeet (ISO)',
 'exif-oecf'                        => 'Optoelektroneschen Ëmrechnungsfakteur',
-'exif-shutterspeedvalue'           => 'Beliichtungszäitwäert',
-'exif-aperturevalue'               => 'Blendewäert',
-'exif-brightnessvalue'             => 'Hellegkeetswäert',
+'exif-shutterspeedvalue'           => 'APEX Beliichtungszäit',
+'exif-aperturevalue'               => 'APEX Blendewäert',
+'exif-brightnessvalue'             => 'APEX Hellegkeet',
 'exif-exposurebiasvalue'           => 'Beliichtungsvirgab',
 'exif-maxaperturevalue'            => 'Gréisste Blend',
 'exif-subjectdistance'             => 'Distanz zum Sujet',
@@ -2925,6 +2926,8 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-sensingmethod-5' => 'Sequentielle raimleche Farwsensor',
 'exif-sensingmethod-7' => 'Dräilineare Sensor',
 'exif-sensingmethod-8' => 'Sequentielle lineare Farwsensor',
+
+'exif-filesource-3' => 'Digital Kamera',
 
 'exif-scenetype-1' => "D'Bild gouf photograféiert",
 

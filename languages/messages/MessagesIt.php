@@ -32,6 +32,7 @@
  * @author Melos
  * @author Nemo bis
  * @author Nick1915
+ * @author Od1n
  * @author Omnipaedista
  * @author PaoloRomano
  * @author Pietrodn
@@ -2808,8 +2809,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-colorspace'                  => 'Spazio dei colori',
 'exif-componentsconfiguration'     => 'Significato di ciascuna componente',
 'exif-compressedbitsperpixel'      => 'Modalità di compressione immagine',
-'exif-pixelydimension'             => 'Larghezza effettiva immagine',
-'exif-pixelxdimension'             => 'Altezza effettiva immagine',
+'exif-pixelydimension'             => 'Larghezza immagine',
+'exif-pixelxdimension'             => 'Altezza immagine',
 'exif-makernote'                   => 'Note del produttore',
 'exif-usercomment'                 => "Note dell'utente",
 'exif-relatedsoundfile'            => 'File audio collegato',
@@ -2826,8 +2827,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-isospeedratings'             => 'Sensibilità ISO',
 'exif-oecf'                        => 'Fattore di conversione optoelettronica',
 'exif-shutterspeedvalue'           => 'Tempo di esposizione',
-'exif-aperturevalue'               => 'Apertura',
-'exif-brightnessvalue'             => 'Luminosità',
+'exif-aperturevalue'               => 'Apertura APEX',
+'exif-brightnessvalue'             => 'Luminosità APEX',
 'exif-exposurebiasvalue'           => 'Correzione esposizione',
 'exif-maxaperturevalue'            => 'Apertura massima',
 'exif-subjectdistance'             => 'Distanza del soggetto',

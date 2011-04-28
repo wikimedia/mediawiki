@@ -1614,22 +1614,23 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'upload-http-error'         => 'En HTTP-feil oppstod: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Ingen tilgang',
-'img-auth-nopathinfo'   => 'PATH_INFO mangler.
+'img-auth-accessdenied'     => 'Ingen tilgang',
+'img-auth-nopathinfo'       => 'PATH_INFO mangler.
 Tjeneren din er ikke satt opp til å gi denne informasjonen.
 Den er kanskje CGI-basert og støtter ikke img_auth.
 Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Den ønskede stien finnes ikke i den oppsatte opplastingsmappa.',
-'img-auth-badtitle'     => 'Kunne ikke lage en gyldig tittel ut fra «$1».',
-'img-auth-nologinnWL'   => 'Du er ikke logget inn, og «$1» er ikke på hvitelista.',
-'img-auth-nofile'       => 'Filen «$1» finnes ikke.',
-'img-auth-isdir'        => 'Du prøver å få tilgang til mappa «$1».
+'img-auth-notindir'         => 'Den ønskede stien finnes ikke i den oppsatte opplastingsmappa.',
+'img-auth-badtitle'         => 'Kunne ikke lage en gyldig tittel ut fra «$1».',
+'img-auth-nologinnWL'       => 'Du er ikke logget inn, og «$1» er ikke på hvitelista.',
+'img-auth-nofile'           => 'Filen «$1» finnes ikke.',
+'img-auth-isdir'            => 'Du prøver å få tilgang til mappa «$1».
 Kun filtilgang tillates.',
-'img-auth-streaming'    => 'Sender «$1».',
-'img-auth-public'       => 'Funksjonen til img_auth.php er å lage filer fra en privat wiki.
+'img-auth-streaming'        => 'Sender «$1».',
+'img-auth-public'           => 'Funksjonen til img_auth.php er å lage filer fra en privat wiki.
 Denne wikien er satt opp som en offentlig wiki.
 For best mulig sikkerhet er img_auth.php slått av.',
-'img-auth-noread'       => 'Brukeren har ikke tilgang til å lese «$1».',
+'img-auth-noread'           => 'Brukeren har ikke tilgang til å lese «$1».',
+'img-auth-bad-query-string' => 'URL-en har en ugyldig spørrestreng.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ugyldig internettadresse: $1',
@@ -2541,7 +2542,8 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'import-interwiki-namespace' => 'Målnavnerom:',
 'import-upload-filename'     => 'Filnavn:',
 'import-comment'             => 'Kommentar:',
-'importtext'                 => 'Importer fila fra kildewikien med [[Special:Export|eksporteringsverktøyet]], lagre den på den egen datamaskin, og last den opp hit.',
+'importtext'                 => 'Importer fila fra kildewikien med [[Special:Export|eksporteringsverktøyet]].
+Lagre den på din egen datamaskin og last den opp her.',
 'importstart'                => 'Importerer sider&nbsp;…',
 'import-revision-count'      => '({{PLURAL:$1|Én revisjon|$1 revisjoner}})',
 'importnopages'              => 'Ingen sider å importere.',
@@ -2847,8 +2849,8 @@ Andre vil skjules som standard.
 'exif-colorspace'                  => 'Fargerom',
 'exif-componentsconfiguration'     => 'Betydning av hver komponent',
 'exif-compressedbitsperpixel'      => 'Bildekompresjonsmodus',
-'exif-pixelydimension'             => 'Gyldig bildebredde',
-'exif-pixelxdimension'             => 'Gyldig bildehøyde',
+'exif-pixelydimension'             => 'Bildebredde',
+'exif-pixelxdimension'             => 'Bildehøyde',
 'exif-makernote'                   => 'Fabrikkmerknader',
 'exif-usercomment'                 => 'Brukerkommentarer',
 'exif-relatedsoundfile'            => 'Relatert lydfil',
@@ -2864,9 +2866,9 @@ Andre vil skjules som standard.
 'exif-spectralsensitivity'         => 'Spektralsensitivitet',
 'exif-isospeedratings'             => 'Filmhastighet (ISO)',
 'exif-oecf'                        => 'Optoelektronisk konversjonsfaktor',
-'exif-shutterspeedvalue'           => 'Lukkerhastighet',
-'exif-aperturevalue'               => 'Apertur',
-'exif-brightnessvalue'             => 'Lysstyrke',
+'exif-shutterspeedvalue'           => 'APEX lukkerhastighet',
+'exif-aperturevalue'               => 'APEX blenderåpning',
+'exif-brightnessvalue'             => 'APEX lysstyrke',
 'exif-exposurebiasvalue'           => 'Eksponeringsbias',
 'exif-maxaperturevalue'            => 'Maksimal blender',
 'exif-subjectdistance'             => 'Avstand til subjekt',
@@ -3012,6 +3014,8 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-sensingmethod-5' => 'Fargesekvensiell områdesensor',
 'exif-sensingmethod-7' => 'Trilineær sensor',
 'exif-sensingmethod-8' => 'Fargesekvensiell linær sensor',
+
+'exif-filesource-3' => 'Digitalt stillbildekamera',
 
 'exif-scenetype-1' => 'Direktefotografert bilde',
 

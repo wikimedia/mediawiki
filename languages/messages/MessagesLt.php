@@ -14,6 +14,7 @@
  * @author Matasg
  * @author Meno25
  * @author Pdxx
+ * @author Perkunas
  * @author Pėstininkas
  * @author Siggis
  * @author Tomasdd
@@ -202,8 +203,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Rodyti stebinčių naudotojų skaičių',
 'tog-oldsig'                  => 'Esamo parašo peržiūra:',
 'tog-fancysig'                => 'Laikyti parašą vikitekstu (be automatinių nuorodų)',
-'tog-externaleditor'          => 'Pagal nutylėjimą naudoti išorinį redaktorių',
-'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą',
+'tog-externaleditor'          => 'Pagal nutylėjimą naudoti išorinį redaktorių (skirta tik ekspertams, nes reikia atitinkamai paruošti jūsų kompiuterį. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą (tik ekspertams, nes reikia atitinkamai  paruošti jūsų kompiuterį. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks'           => 'Įjungti „peršokti į“ pasiekiamumo nuorodas',
 'tog-uselivepreview'          => 'Naudoti tiesioginę peržiūrą (JavaScript) (Eksperimentinis)',
 'tog-forceeditsummary'        => 'Klausti, kai palieku tuščią keitimo komentarą',
@@ -931,7 +932,7 @@ Jis galėjo būti ištrintas iš projekto, arba pervardintas.
 Pamėginkite [[Special:Search|ieškoti projekte]] susijusių naujų puslapių.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komentaras pašalintas)',
+'rev-deleted-comment'         => '(keitimo aprašymas pašalintas)',
 'rev-deleted-user'            => '(naudotojo vardas pašalintas)',
 'rev-deleted-event'           => '(įrašas pašalintas)',
 'rev-deleted-user-contribs'   => '[vardas arba IP adresas pašalintas - redagavimas paslėptas nuo prisidėjimų]',
@@ -1166,7 +1167,7 @@ Prašome patikrinti sąrašus.',
 'prefs-rc'                      => 'Paskutiniai keitimai',
 'prefs-watchlist'               => 'Stebimų sąrašas',
 'prefs-watchlist-days'          => 'Dienos rodomos stebimųjų sąraše:',
-'prefs-watchlist-days-max'      => '(daugiausiai 7 dienos)',
+'prefs-watchlist-days-max'      => 'Daugiausiai 7 dienos',
 'prefs-watchlist-edits'         => 'Kiek daugiausia keitimų rodyti išplėstiniame stebimųjų sąraše:',
 'prefs-watchlist-edits-max'     => 'Didžiausias skaičius: 1000',
 'prefs-watchlist-token'         => 'Stebimųjų sąrašo raktas:',
@@ -2278,7 +2279,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'ipusubmit'                       => 'Atblokuoti šį adresą',
 'unblocked'                       => '[[User:$1|$1]] buvo atblokuotas',
 'unblocked-id'                    => 'Blokavimas $1 buvo pašalintas',
-'ipblocklist'                     => 'Blokuoti IP adresai bei naudotojų vardai',
+'ipblocklist'                     => 'Blokuoti naudotojai',
 'ipblocklist-legend'              => 'Rasti užblokuotą naudotoją',
 'ipblocklist-username'            => 'Naudotojas arba IP adresas:',
 'ipblocklist-sh-userblocks'       => '$1 paskyros blokavimus',

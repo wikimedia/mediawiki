@@ -1574,22 +1574,23 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'upload-http-error'         => 'Prišlo je do napake HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Dostop zavrnjen',
-'img-auth-nopathinfo'   => 'Manjka PATH_INFO.
+'img-auth-accessdenied'     => 'Dostop zavrnjen',
+'img-auth-nopathinfo'       => 'Manjka PATH_INFO.
 Vaš strežnik ne poda te informacije.
 Morda temelji na CGI in ne more podpirati img_auth.
 Oglejte si http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Zahtevana pot ni v konfigurirani mapi za nalaganje.',
-'img-auth-badtitle'     => 'Ni mogoče sestaviti veljavnega naslova iz »$1«.',
-'img-auth-nologinnWL'   => 'Niste prijavljeni in »$1« ni na seznamu dovoljenih datotek.',
-'img-auth-nofile'       => 'Datoteka »$1« ne obstaja.',
-'img-auth-isdir'        => 'Poskušate dostopati do mape »$1«.
+'img-auth-notindir'         => 'Zahtevana pot ni v konfigurirani mapi za nalaganje.',
+'img-auth-badtitle'         => 'Ni mogoče sestaviti veljavnega naslova iz »$1«.',
+'img-auth-nologinnWL'       => 'Niste prijavljeni in »$1« ni na seznamu dovoljenih datotek.',
+'img-auth-nofile'           => 'Datoteka »$1« ne obstaja.',
+'img-auth-isdir'            => 'Poskušate dostopati do mape »$1«.
 Dovoljeno je samo dostopanje do datotek.',
-'img-auth-streaming'    => 'Pretakanje »$1«.',
-'img-auth-public'       => 'Funkcija img_auth.php je izvoz datotek iz zasebnega wikija.
+'img-auth-streaming'        => 'Pretakanje »$1«.',
+'img-auth-public'           => 'Funkcija img_auth.php je izvoz datotek iz zasebnega wikija.
 Ta wiki je konfiguriran kot javni wiki.
 Za optimalno varnost je img_auth.php onemogočen.',
-'img-auth-noread'       => 'Uporabnik nima dostopa za branje »$1«.',
+'img-auth-noread'           => 'Uporabnik nima dostopa za branje »$1«.',
+'img-auth-bad-query-string' => 'URL ima neveljavni niz poizvedbe.',
 
 # HTTP errors
 'http-invalid-url'      => 'Napačen URL: $1',
@@ -2814,8 +2815,8 @@ Druga bodo po privzetem skrita.
 'exif-colorspace'                  => 'Barvni prostor',
 'exif-componentsconfiguration'     => 'Pomen posameznih gradnikov',
 'exif-compressedbitsperpixel'      => 'Velikost točke po stiskanju (v bitih)',
-'exif-pixelydimension'             => 'Veljavna širina slike',
-'exif-pixelxdimension'             => 'Veljavna višina slike',
+'exif-pixelydimension'             => 'Širina slike',
+'exif-pixelxdimension'             => 'Višina slike',
 'exif-makernote'                   => 'Opombe proizvajalca',
 'exif-usercomment'                 => 'Uporabniške pripombe',
 'exif-relatedsoundfile'            => 'Pripadajoča zvočna datoteka',
@@ -2831,9 +2832,9 @@ Druga bodo po privzetem skrita.
 'exif-spectralsensitivity'         => 'Spektralna občutljivost',
 'exif-isospeedratings'             => 'Občutljivost filma ali tipala (ISO)',
 'exif-oecf'                        => 'Optoelektronski pretvorbeni faktor',
-'exif-shutterspeedvalue'           => 'Hitrost zaklopa',
-'exif-aperturevalue'               => 'Zaslonka',
-'exif-brightnessvalue'             => 'Svetlost',
+'exif-shutterspeedvalue'           => 'Hitrost zaklopa APEX',
+'exif-aperturevalue'               => 'Zaslonka APEX',
+'exif-brightnessvalue'             => 'Svetlost APEX',
 'exif-exposurebiasvalue'           => 'Popravek osvetlitve',
 'exif-maxaperturevalue'            => 'Največja vrednost zaslonke',
 'exif-subjectdistance'             => 'Oddaljenost predmeta',
@@ -2980,6 +2981,8 @@ Druga bodo po privzetem skrita.
 'exif-sensingmethod-5' => 'Zaporedno barvno ploskovno tipalo',
 'exif-sensingmethod-7' => 'Trikratno tipalo',
 'exif-sensingmethod-8' => 'Zaporedno barvno črtno tipalo',
+
+'exif-filesource-3' => 'Digitalni fotoaparat',
 
 'exif-scenetype-1' => 'Neposredno fotografirana slika',
 

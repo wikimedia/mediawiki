@@ -775,7 +775,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'password-name-match'        => 'Vaše heslo nesmí být stejné jako uživatelské jméno.',
 'mailmypassword'             => 'Poslat e-mailem nové heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
-'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) požádal, abychom Vám poslali nové heslo
+'passwordremindertext'       => 'Někdo (patrně vy, z IP adresy $1) požádal, abychom o nové heslo
 pro přihlášení do {{grammar:2sg|{{SITENAME}}}} ($4). Uživateli „$2“ bylo
 proto nastaveno dočasné heslo „$3“. Pokud jste to byl(a) vy, můžete se
 nyní přihlásit a zvolit si nové heslo. Platnost tohoto dočasného hesla
@@ -1713,22 +1713,23 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'upload-http-error'         => 'Došlo k chybě HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Přístup odepřen',
-'img-auth-nopathinfo'   => 'Chybí PATH_INFO.
+'img-auth-accessdenied'     => 'Přístup odepřen',
+'img-auth-nopathinfo'       => 'Chybí PATH_INFO.
 Váš server není nastaven tak, aby poskytoval tuto informaci.
 Možná funguje pomocí CGI a img_auth na něm nemůže fungovat.
 Vizte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
-'img-auth-badtitle'     => 'Z „$1“ nelze vytvořit platný název stránky.',
-'img-auth-nologinnWL'   => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',
-'img-auth-nofile'       => 'Soubor „$1“ neexistuje.',
-'img-auth-isdir'        => 'Pokoušíte se zobrazit adresář „$1“.
+'img-auth-notindir'         => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
+'img-auth-badtitle'         => 'Z „$1“ nelze vytvořit platný název stránky.',
+'img-auth-nologinnWL'       => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',
+'img-auth-nofile'           => 'Soubor „$1“ neexistuje.',
+'img-auth-isdir'            => 'Pokoušíte se zobrazit adresář „$1“.
 Dovolen je pouze přístup k souborům.',
-'img-auth-streaming'    => 'Přenáší se „$1“.',
-'img-auth-public'       => 'Pomocí img_auth.php se poskytují soubory na soukromých wiki.
+'img-auth-streaming'        => 'Přenáší se „$1“.',
+'img-auth-public'           => 'Pomocí img_auth.php se poskytují soubory na soukromých wiki.
 Tato wiki je nastavena jako veřejná.
 Z bezpečnostních důvodů je img_auth.php vypnuto.',
-'img-auth-noread'       => 'Uživatel nemá oprávnění ke čtení „$1“.',
+'img-auth-noread'           => 'Uživatel nemá oprávnění ke čtení „$1“.',
+'img-auth-bad-query-string' => 'URL obsahuje neplatný dotaz.',
 
 # HTTP errors
 'http-invalid-url'      => 'Neplatné URL: $1',
@@ -2932,8 +2933,8 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-colorspace'                  => 'Barevný prostor',
 'exif-componentsconfiguration'     => 'Význam jednotlivých složek',
 'exif-compressedbitsperpixel'      => 'Komprimační režim',
-'exif-pixelydimension'             => 'Platná šířka obrazu',
-'exif-pixelxdimension'             => 'Platná výška obrazu',
+'exif-pixelydimension'             => 'Šířka obrázku',
+'exif-pixelxdimension'             => 'Výška obrázku',
 'exif-makernote'                   => 'Poznámky výrobce',
 'exif-usercomment'                 => 'Uživatelské poznámky',
 'exif-relatedsoundfile'            => 'Související zvukový soubor',
@@ -2949,9 +2950,9 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-spectralsensitivity'         => 'Spektrální citlivost',
 'exif-isospeedratings'             => 'Nastavení ISO citlivosti',
 'exif-oecf'                        => 'Optoelektronická převodní funkce (OECF)',
-'exif-shutterspeedvalue'           => 'Rychlost závěrky',
-'exif-aperturevalue'               => 'Clona',
-'exif-brightnessvalue'             => 'Světlost',
+'exif-shutterspeedvalue'           => 'Expoziční čas (APEX)',
+'exif-aperturevalue'               => 'Clona (APEX)',
+'exif-brightnessvalue'             => 'Jas (APEX)',
 'exif-exposurebiasvalue'           => 'Změna expozice',
 'exif-maxaperturevalue'            => 'Nejmenší clona',
 'exif-subjectdistance'             => 'Vzdálenost k předmětu',

@@ -26,6 +26,7 @@
  * @author Runningfridgesrule
  * @author Srhat
  * @author Suelnur
+ * @author Szoszv
  * @author Tarikozket
  * @author Urhixidur
  * @author Uğur Başak
@@ -1017,8 +1018,8 @@ $3 tarafından verilen sebep ''$2''",
 'page_first'             => 'ilk',
 'page_last'              => 'son',
 'histlegend'             => "Fark seçimi: karşılaştırmayı istediğiniz 2 sürümün önündeki dairelere tıklayıp, enter'a basın ya da sayfanın en altında bulunan düğmeye basın.<br />
-Tanımlar: (güncel) = güncel sürümle aradaki fark,
-(önceki) = bir önceki sürümle aradaki fark, K = küçük değişiklik.",
+Tanımlar: '''({{int:cur}})''' = güncel sürümle aradaki fark,
+'''({{int:last}})''' = bir önceki sürümle aradaki fark, '''{{int:minoreditletter}}''' = küçük değişiklik.",
 'history-fieldset-title' => 'Geçmişe gözat',
 'history-show-deleted'   => 'Sadece silinenler',
 'histfirst'              => 'En eski',
@@ -2374,7 +2375,7 @@ $1',
 'ipbanononly'                     => 'Sadece anonim kullanıcıları engelle',
 'ipbcreateaccount'                => 'Hesap oluşturulmasına engel ol',
 'ipbemailban'                     => 'Kullanıcının e-posta göndermesine engel ol',
-'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişişiklik yapmaya çalıştıkları mütakip IPleri otomatik olarak engelle',
+'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişiklik yapmaya çalıştığı sonraki IP adreslerini otomatik olarak engelle',
 'ipbsubmit'                       => 'Bu kullanıcıyı engelle',
 'ipbother'                        => 'Farklı zaman',
 'ipboptions'                      => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite',

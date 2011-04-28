@@ -2340,7 +2340,8 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'import-interwiki-namespace' => 'Siel-Noomensruum:',
 'import-upload-filename'     => 'Doatäinoome:',
 'import-comment'             => 'Kommentoar:',
-'importtext'                 => 'Ap disse Spezioalsiede konnen uur ju [[Special:Export|Exportfunktion]] in dän Wälwiki exportierde Sieden in dit Wiki importierd wäide.',
+'importtext'                 => 'Ju Doatäi uur ju Spezioalsiede [[Special:Export|Exportfunktion]] uut dän Wällewiki exportierje.
+Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 'importstart'                => 'Sieden importierje …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versione}}',
 'importnopages'              => 'Neen Sieden toun Importierjen anweesend.',

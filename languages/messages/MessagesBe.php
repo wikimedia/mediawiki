@@ -9,6 +9,7 @@
  *
  * @author Cesco
  * @author Jim-by
+ * @author LexArt
  * @author Maksim L.
  * @author Mienski
  * @author Prima klasy4na
@@ -1402,8 +1403,13 @@ $1",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Доступ забаронены',
+'img-auth-nofile'       => 'Файл " $1 "не існуе.',
+'img-auth-isdir'        => 'Вы спрабуеце атрымаць доступ да каталога "$1"
+Дазволены доступ толькі да файлаў.',
 
 # HTTP errors
+'http-request-error'    => 'Не атрымалася выканаць HTTP-запыт з-за невядомай памылкі',
+'http-read-error'       => 'Памылка чытання HTTP',
 'http-host-unreachable' => 'Не ўдалося адкрыць URL',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

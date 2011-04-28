@@ -16,6 +16,8 @@
  * @author Evropi
  * @author Flyax
  * @author Geraki
+ * @author Glavkos
+ * @author Grondin
  * @author Kiriakos
  * @author Lou
  * @author MF-Warburg
@@ -1577,7 +1579,7 @@ $1",
 'rcshowhidemine'                    => '$1 των επεξεργασιών μου',
 'rclinks'                           => 'Εμφάνιση των τελευταίων $1 αλλαγών στο διάστημα των τελευταίων $2 ημερών<br />$3',
 'diff'                              => "'διαφορά'",
-'hist'                              => "'ιστορικό'",
+'hist'                              => 'ιστορικό',
 'hide'                              => 'απόκρυψη',
 'show'                              => 'εμφάνιση',
 'minoreditletter'                   => 'μ',
@@ -2661,7 +2663,7 @@ $1 είναι ήδη αποκλεισμένη. Θέλετε να αλλάξετ�
 'import-interwiki-namespace' => 'Προορισμός στην περιοχή ονομάτων:',
 'import-upload-filename'     => 'Όνομα αρχείου:',
 'import-comment'             => 'Σχόλιο:',
-'importtext'                 => 'Παρακαλούμε εξάγετε το αρχείο από το πηγαίο Wiki (χρησιμοποιώντας Special:Export), αποθηκεύστε το στο δίσκο του υπολογιστή σας και φορτώστε το από εκεί.',
+'importtext'                 => 'Παρακαλούμε εξάγετε το αρχείο από το πηγαίο βίκι (χρησιμοποιώντας το [[Special:Export|εργαλείο εξαγωγής]]), αποθηκεύστε το στον υπολογιστή σας και μεταφορτώστε το από εκεί.',
 'importstart'                => 'Η εισαγωγή των σελίδων είναι σε εξέλιξη...',
 'import-revision-count'      => '$1 {{PLURAL:$1|αναθεώρηση|αναθεωρήσεις}}',
 'importnopages'              => 'Δεν υπάρχουν σελίδες για εισαγωγή.',
@@ -2963,8 +2965,8 @@ $1',
 'exif-colorspace'                  => 'Χρωματική περιοχή',
 'exif-componentsconfiguration'     => 'Νόημα του κάθε στοιχείου',
 'exif-compressedbitsperpixel'      => 'Κατάσταση συμπίεσης εικόνας',
-'exif-pixelydimension'             => 'Έγκυρο πλάτος εικόνας',
-'exif-pixelxdimension'             => 'Έγκυρο ύψος εικόνας',
+'exif-pixelydimension'             => 'Πλάτος εικόνας',
+'exif-pixelxdimension'             => 'Ύψος εικόνας',
 'exif-makernote'                   => 'Σημειώσεις του κατασκευαστή',
 'exif-usercomment'                 => 'Σχόλια χρήστη',
 'exif-relatedsoundfile'            => 'Σχετικό αρχείο ήχου',
@@ -2980,9 +2982,9 @@ $1',
 'exif-spectralsensitivity'         => 'Ευαισθησία φάσματος',
 'exif-isospeedratings'             => 'Βαθμολόγηση ταχύτητας ISO',
 'exif-oecf'                        => 'Οπτικοηλεκτρονικός συντελεστής μετατροπής',
-'exif-shutterspeedvalue'           => 'Ταχύτητα κλείστρου',
+'exif-shutterspeedvalue'           => 'APEX ταχύτητα κλείστρου',
 'exif-aperturevalue'               => 'Διάφραγμα',
-'exif-brightnessvalue'             => 'Φωτεινότητα',
+'exif-brightnessvalue'             => 'APEX φωτεινότητα',
 'exif-exposurebiasvalue'           => 'Προτεραιότητα έκθεσης',
 'exif-maxaperturevalue'            => 'Μέγιστο διάφραγμα ξηράς',
 'exif-subjectdistance'             => 'Απόσταση αντικειμένου',

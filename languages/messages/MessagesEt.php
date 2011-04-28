@@ -305,8 +305,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Näita jälgivate kasutajate hulka',
 'tog-oldsig'                  => 'Praeguse allkirja eelvaade:',
 'tog-fancysig'                => 'Kasuta vikiteksti vormingus allkirja (ilma automaatse lingita kasutajalehele)',
-'tog-externaleditor'          => 'Kasuta vaikimisi välist redaktorit',
-'tog-externaldiff'            => 'Kasuta vaikimisi välist võrdlusvahendit (ainult ekspertidele, tarvilikud on kasutaja arvuti eriseadistused)',
+'tog-externaleditor'          => 'Kasuta vaikimisi välist redaktorit (ainult asjatundjatele, tarvis arvuti eriseadistust – [http://www.mediawiki.org/wiki/Manual:External_editors lisateave])',
+'tog-externaldiff'            => 'Kasuta vaikimisi välist võrdlusvahendit (ainult asjatundjatele, tarvis arvuti eriseadistust – [http://www.mediawiki.org/wiki/Manual:External_editors lisateave])',
 'tog-showjumplinks'           => 'Kuva lehekülje ülaservas "mine"-lingid',
 'tog-uselivepreview'          => 'Kasuta elavat eelvaadet (nõutav JavaScript) (testimisel)',
 'tog-forceeditsummary'        => 'Nõua redigeerimisel resümee välja täitmist',
@@ -928,9 +928,9 @@ Sa kinnitad ka, et kirjutasid selle ise või võtsid selle kopeerimiskitsenduset
 Võid teksti hilisemaks kasutamiseks alles hoida tekstifailina.
 
 Administraator, kes andmebaasi lukustas, andis järgmise selgituse: $1",
-'protectedpagewarning'             => "'''Hoiatus: See lehekülg on lukustatud nii et ainult administraatori õigustega kasutajad saavad seda redigeerida.'''
+'protectedpagewarning'             => "'''Hoiatus: See lehekülg on lukustatud, nii et ainult administraatori õigustega kasutajad saavad seda redigeerida.'''
 Allpool on toodud uusim logisissekanne:",
-'semiprotectedpagewarning'         => "'''Märkus:''' See lehekülg on lukustatud nii et üksnes registreeritud kasutajad saavad seda muuta.
+'semiprotectedpagewarning'         => "'''Märkus:''' See lehekülg on lukustatud, nii et üksnes registreeritud kasutajad saavad seda muuta.
 Allpool on toodud uusim logisissekanne:",
 'cascadeprotectedwarning'          => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult administraatori õigustega kasutajad saavad seda redigeerida, sest lehekülg on osa {{PLURAL:$1|järgmisest|järgmisest}} kaskaadkaitsega {{PLURAL:$1|leheküljest|lehekülgedest}}:",
 'titleprotectedwarning'            => "'''Hoiatus: See lehekülg on nii lukustatud, et selle loomiseks on tarvis [[Special:ListGroupRights|eriõigusi]].'''
@@ -1023,7 +1023,7 @@ See võib olla vikist kustutatud või ümber nimetatud.
 Ürita [[Special:Search|vikist otsida]] teemakohaseid lehekülgi.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(resümee eemaldatud)',
+'rev-deleted-comment'         => '(muudatuse resümee eemaldatud)',
 'rev-deleted-user'            => '(kasutajanimi eemaldatud)',
 'rev-deleted-event'           => '(logitoiming eemaldatud)',
 'rev-deleted-user-contribs'   => '[kasutajanimi või IP-aadress kustutatud - muudatust ei näidata]',
@@ -1261,9 +1261,9 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'prefs-rc'                      => 'Viimased muudatused',
 'prefs-watchlist'               => 'Jälgimisloend',
 'prefs-watchlist-days'          => 'Mitme päeva muudatusi näidata loendis:',
-'prefs-watchlist-days-max'      => '(Ülemmäär 7 päeva)',
+'prefs-watchlist-days-max'      => 'Ülemmäär 7 päeva',
 'prefs-watchlist-edits'         => 'Mitu muudatust näidatakse laiendatud jälgimisloendis:',
-'prefs-watchlist-edits-max'     => '(Ülemmäär: 1000)',
+'prefs-watchlist-edits-max'     => 'Ülemmäär: 1000',
 'prefs-watchlist-token'         => 'Jälgimisloendi tunnus:',
 'prefs-misc'                    => 'Muu',
 'prefs-resetpass'               => 'Muuda parooli',
@@ -2386,7 +2386,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'ipusubmit'                       => 'Eemalda see blokeering',
 'unblocked'                       => 'Kasutaja [[User:$1|$1]] blokeering on eemaldatud',
 'unblocked-id'                    => 'Blokeerimine $1 on lõpetatud',
-'ipblocklist'                     => 'Blokeeritud IP-aadresside ja kasutajakontode loend',
+'ipblocklist'                     => 'Blokeeritud kasutajad',
 'ipblocklist-legend'              => 'Leia blokeeritud kasutaja',
 'ipblocklist-username'            => 'Kasutajanimi või IP-aadress:',
 'ipblocklist-sh-userblocks'       => '$1 kasutajanimed',
@@ -2546,7 +2546,7 @@ Kas kustutad selle, et luua võimalus teisaldamiseks?',
 'move-leave-redirect'          => 'Jäta maha ümbersuunamisleht',
 'protectedpagemovewarning'     => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult administraatori õigustega kasutajad saavad seda teisaldada.
 Allpool on toodud uusim logisissekanne:",
-'semiprotectedpagemovewarning' => "'''Pane tähele:''' See lehekülg on lukustatud nii et ainult registreeritud kasutajad saavad seda teisaldada.
+'semiprotectedpagemovewarning' => "'''Pane tähele:''' See lehekülg on lukustatud, nii et ainult registreeritud kasutajad saavad seda teisaldada.
 Allpool on toodud uusim logisissekanne:",
 'move-over-sharedrepo'         => '== Fail on olemas ==
 [[:$1]] on olemas jagatud failivaramus. Faili teisaldamisel selle nime alla varjatakse jagatud failivarmus olev samanimeline fail.',
@@ -2614,7 +2614,8 @@ Kõik vikide vahelised toimingud on [[Special:Log/import|impordilogis]].',
 'import-interwiki-namespace' => 'Sihtkoha nimeruum:',
 'import-upload-filename'     => 'Failinimi:',
 'import-comment'             => 'Kommentaar:',
-'importtext'                 => 'Palun kasuta faili eksportimiseks allikaks olevast vikist [[Special:Export|ekspordi vahendit]]. Salvesta see oma arvutisse laadi siia üles.',
+'importtext'                 => 'Palun kasuta faili allikvikist eksportimiseks [[Special:Export|ekspordivahendit]].
+Salvesta see oma arvutisse ja laadi siia üles.',
 'importstart'                => 'Impordin lehekülgi...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versioon|versiooni}}',
 'importnopages'              => 'Ei olnud imporditavaid lehekülgi.',
@@ -2904,8 +2905,8 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-colorspace'                  => 'Värviruum',
 'exif-componentsconfiguration'     => 'Iga komponendi tähendus',
 'exif-compressedbitsperpixel'      => 'Pildi pakkimise meetod',
-'exif-pixelydimension'             => 'Kehtiv pildi laius',
-'exif-pixelxdimension'             => 'Kehtiv pildi kõrgus',
+'exif-pixelydimension'             => 'Pildi laius',
+'exif-pixelxdimension'             => 'Pildi kõrgus',
 'exif-makernote'                   => 'Tootja märkmed',
 'exif-usercomment'                 => 'Kasutaja kommentaarid',
 'exif-relatedsoundfile'            => 'Seotud helifail',
@@ -2920,9 +2921,9 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposureprogram'             => 'Säriprogramm',
 'exif-spectralsensitivity'         => 'Spektraalne tundlikkus',
 'exif-isospeedratings'             => 'Kiirus (ISO)',
-'exif-shutterspeedvalue'           => 'Katiku kiirus',
-'exif-aperturevalue'               => 'Avaarv',
-'exif-brightnessvalue'             => 'Heledus',
+'exif-shutterspeedvalue'           => 'APEX-säriaeg',
+'exif-aperturevalue'               => 'APEX-avaarv',
+'exif-brightnessvalue'             => 'APEX-heledus',
 'exif-exposurebiasvalue'           => 'Särituse mõju',
 'exif-subjectdistance'             => 'Subjekti kaugus',
 'exif-meteringmode'                => 'Mõõtmisviis',
@@ -2961,6 +2962,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-gpsspeed'                    => 'GPS-vastuvõtja kiirus',
 'exif-gpstrack'                    => 'Liikumise suund',
 'exif-gpsimgdirection'             => 'Pildi suund',
+'exif-gpsmapdatum'                 => 'Geodeetiline alus',
 'exif-gpsdestdistance'             => 'Sihtmärgi kaugus',
 'exif-gpsareainformation'          => 'GPS-ala nimi',
 'exif-gpsdatestamp'                => 'GPS kuupäev',

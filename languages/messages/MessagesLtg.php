@@ -593,6 +593,8 @@ Ka vāluok puordūmuosi i nagribiesi vairs puorraudzeit itū lopu, spīd iz sait
 
 # Delete
 'deletepage'            => 'Iztreit puslopu',
+'excontent'             => 'lopys turīņs beja: "$1"',
+'excontentauthor'       => 'turīņs beja: "$1" (vīneigais autors: [[Special:Contributions/$2|$2]])',
 'confirmdeletetext'     => 'Tu tagad nu datu bazys iztreisi lopu voi biļdi, kai ari tūs īprīškejuos versejis. Lyudzu, apstypryni, ka tu pa eistam tū gribi dareit, ka tu saprūt, ka tū dori i atbylstūši [[{{MediaWiki:Policy-url}}|nūsacejumim]].',
 'actioncomplete'        => 'Darbeiba pabeigta',
 'deletedtext'           => '"<nowiki>$1</nowiki>" beja iztreits.

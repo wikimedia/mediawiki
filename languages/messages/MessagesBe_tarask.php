@@ -1638,22 +1638,23 @@ $1",
 'upload-http-error'         => 'Узьнікла памылка HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Доступ забаронены',
-'img-auth-nopathinfo'   => 'Адсутнічае PATH_INFO.
+'img-auth-accessdenied'     => 'Доступ забаронены',
+'img-auth-nopathinfo'       => 'Адсутнічае PATH_INFO.
 Ваш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.
 Яна можа быць заснавана на CGI і ня можа падтрымліваць img_auth.
 Глядзіце http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Неабходнага шляху няма ў дырэкторыі загрузкі, пазначанай у канфігурацыі.',
-'img-auth-badtitle'     => 'Немагчыма стварыць слушную назву з «$1».',
-'img-auth-nologinnWL'   => 'Вы не ўвайшлі ў сыстэму, а «$1» не знаходзіцца ў белым сьпісе.',
-'img-auth-nofile'       => 'Файл «$1» не існуе.',
-'img-auth-isdir'        => 'Вы спрабуеце атрымаць доступ да дырэкторыі «$1».
+'img-auth-notindir'         => 'Неабходнага шляху няма ў дырэкторыі загрузкі, пазначанай у канфігурацыі.',
+'img-auth-badtitle'         => 'Немагчыма стварыць слушную назву з «$1».',
+'img-auth-nologinnWL'       => 'Вы не ўвайшлі ў сыстэму, а «$1» не знаходзіцца ў белым сьпісе.',
+'img-auth-nofile'           => 'Файл «$1» не існуе.',
+'img-auth-isdir'            => 'Вы спрабуеце атрымаць доступ да дырэкторыі «$1».
 Дазволены толькі доступ да файлаў.',
-'img-auth-streaming'    => 'Перадача струменя «$1».',
-'img-auth-public'       => 'Функцыя img_auth.php ужываецца для файла выхаду з прыватнай вікі.
+'img-auth-streaming'        => 'Перадача струменя «$1».',
+'img-auth-public'           => 'Функцыя img_auth.php ужываецца для файла выхаду з прыватнай вікі.
 Гэта вікі ўсталявана як публічная вікі.
 Для найлепшай бясьпекі img_auth.php выключана.',
-'img-auth-noread'       => 'Удзельнік ня мае доступу на чытаньне «$1».',
+'img-auth-noread'           => 'Удзельнік ня мае доступу на чытаньне «$1».',
+'img-auth-bad-query-string' => 'URL-адрас утрымлівае няслушны радок запыту.',
 
 # HTTP errors
 'http-invalid-url'      => 'Няслушны URL-адрас: $1',
@@ -2870,8 +2871,8 @@ $1',
 'exif-colorspace'                  => 'Колеравая прастора',
 'exif-componentsconfiguration'     => 'Канфігурацыя колеравых кампанэнтаў',
 'exif-compressedbitsperpixel'      => 'Глыбіня колеру пасьля сьцісканьня',
-'exif-pixelydimension'             => 'Дапушчальная шырыня выявы',
-'exif-pixelxdimension'             => 'Дапушчальная вышыня выявы',
+'exif-pixelydimension'             => 'Шырыня выявы',
+'exif-pixelxdimension'             => 'Вышыня выявы',
 'exif-makernote'                   => 'Заўвагі вытворцы',
 'exif-usercomment'                 => 'Камэнтары карыстальніка',
 'exif-relatedsoundfile'            => 'Датычны аўдыё-файл',
@@ -3034,6 +3035,8 @@ $1',
 'exif-sensingmethod-5' => 'Каляровы матрычны сэквэнцыйны сэнсар',
 'exif-sensingmethod-7' => 'Трохлінейны сэнсар',
 'exif-sensingmethod-8' => 'Лінейны сэнсар з пасьлядоўнай зьменай колеру',
+
+'exif-filesource-3' => 'Лічбавы фотаапарат',
 
 'exif-scenetype-1' => 'Непасрэдна сфатаграфаваная выява',
 
@@ -3211,7 +3214,7 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ваш сьпіс назіраньня ўтрымлівае $1 {{PLURAL:$1|запіс|запісы|запісаў}}, без уліку старонак абмеркаваньня.',
 'watchlistedit-noitems'        => 'Ваш сьпіс назіраньня пусты.',
-'watchlistedit-normal-title'   => 'Рэдагаваць сьпіс назіраньня',
+'watchlistedit-normal-title'   => 'Рэдагаваньне сьпісу назіраньня',
 'watchlistedit-normal-legend'  => 'Выдаленьне старонак са сьпісу назіраньня',
 'watchlistedit-normal-explain' => 'Ніжэй паданыя старонкі з Вашага сьпісу назіраньня.
 Для выдаленьня старонкі са сьпісу пазначце адпаведныя пазыцыі і націсьніце кнопку «{{int:Watchlistedit-normal-submit}}».

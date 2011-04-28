@@ -448,7 +448,7 @@ $messages = array(
 ܗܕܐ ܦܐܬܐ ܐܝܬ ܡܢ ܟܕܘ.',
 
 # "Undo" feature
-'undo-summary' => 'ܠܐ ܥܒܘܕ $1 ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܠܐ]])',
+'undo-summary' => 'ܠܐ ܬܥܒܕ $1 ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܠܐ]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ܒܪܝܐ ܕܚܘܫܒܢܐ ܠܐ ܡܬܡܨܝܢܐ',
@@ -530,7 +530,7 @@ $messages = array(
 'lineno'                   => 'ܣܪܛܐ $1:',
 'compareselectedversions'  => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
-'editundo'                 => 'ܠܐ ܥܒܘܕ',
+'editundo'                 => 'ܠܐ ܬܥܒܕ',
 
 # Search results
 'searchresults'                  => 'ܦܠܛ̈ܐ ܕܒܘܨܝܐ',
@@ -1175,6 +1175,7 @@ $messages = array(
 'nolinkshere'              => "ܠܝܬ ܦܐܬܬ̈ܐ ܐܣܪܝܢ ܥܡ '''[[:$1]]'''.",
 'nolinkshere-ns'           => "ܠܝܬ ܦܐܬܬ̈ܐ ܐܣܪܝܢ ܥܡ '''[[:$1]]''' ܒܚܩܠܐ ܓܒܝܐ.",
 'isredirect'               => 'ܦܐܬܐ ܕܨܘܝܒܐ',
+'istemplate'               => 'ܚܒܝܫܬܐ',
 'isimage'                  => 'ܐܣܘܪܐ ܕܨܘܪܬܐ',
 'whatlinkshere-prev'       => '{{PLURAL:$1|ܩܕܝܡܐ|$1 ܩܕ̈ܝܡܐ}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|ܚܕܬܐ|$1 ܚܕ̈ܬܐ}}',
@@ -1208,7 +1209,7 @@ $messages = array(
 'unblockip'                  => 'ܫܩܘܠ ܚܪܡܐ ܡܢ ܡܦܠܚܢܐ',
 'ipusubmit'                  => 'ܫܩܘܠ ܚܪܡܐ ܗܢܐ',
 'unblocked'                  => 'ܐܫܬܩܠ ܚܪܡܐ ܡܢ [[User:$1|$1]]',
-'ipblocklist'                => 'ܐܝ ܦܝ (IP) ܘܫܡܗ̈ܐ ܕܡܦܠܚܢ̈ܐ ܚܪ̈ܝܡܐ',
+'ipblocklist'                => 'ܡܦܠܚܢ̈ܐ ܡܚܪ̈ܡܐ',
 'ipblocklist-legend'         => 'ܐܫܟܚ ܡܦܠܚܢܐ ܡܚܪܡܐ',
 'ipblocklist-username'       => 'ܐܝ ܦܝ (IP) ܐܘ ܫܡܐ ܕܡܦܠܚܢܐ:',
 'ipblocklist-sh-userblocks'  => '$1 ܚܪ̈ܡܐ ܕܚܘܫܒܢܐ',
@@ -1505,7 +1506,7 @@ $1',
 
 # HTML forms
 'htmlform-submit'              => 'ܫܕܪ',
-'htmlform-reset'               => 'ܠܐ ܥܒܘܕ ܫܘܚܠܦ̈ܐ',
+'htmlform-reset'               => 'ܠܐ ܬܥܒܕ ܫܘܚܠܦ̈ܐ',
 'htmlform-selectorother-other' => 'ܐܚܪܢܐ',
 
 );

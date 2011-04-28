@@ -296,7 +296,7 @@ $linkTrail = '/^([a-zăâîşţșțĂÂÎŞŢȘȚ]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Subliniază legăturile',
+'tog-underline'               => 'Sublinierea legăturilor:',
 'tog-highlightbroken'         => 'Afișează <a href="" class="new">așa</a> legăturile către paginile inexistente (alternativă: așa<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Aranjează justificat paragrafele',
 'tog-hideminor'               => 'Ascunde modificările minore în schimbări recente',
@@ -703,7 +703,7 @@ Motivul invocat este ''$2''.",
 Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
 'yourname'                   => 'Nume de utilizator:',
 'yourpassword'               => 'Parolă:',
-'yourpasswordagain'          => 'Repetă parola',
+'yourpasswordagain'          => 'Repetați parola:',
 'remembermypassword'         => 'Reține-mi parola între sesiuni',
 'yourdomainname'             => 'Domeniul dumneavoastră:',
 'externaldberror'            => 'A fost fie o eroare de bază de date pentru o autentificare extenă sau nu aveți permisiunea să actualizați contul extern.',
@@ -1525,7 +1525,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'nchanges'                          => '$1 {{PLURAL:$1|modificare|modificări}}',
 'recentchanges'                     => 'Schimbări recente',
 'recentchanges-legend'              => 'Opțiuni schimbări recente',
-'recentchangestext'                 => 'Schimbări recente ... (Log)',
+'recentchangestext'                 => 'Urmăriți în această pagină cele mai recente modificări de pe site.',
 'recentchanges-feed-description'    => 'Urmărește cele mai recente schimbări folosind acest flux.',
 'recentchanges-label-legend'        => 'Legendă: $1.',
 'recentchanges-legend-newpage'      => '$1 - pagină nouă',
@@ -1686,22 +1686,23 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'upload-http-error'         => 'A avut loc o eroare HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acces interzis',
-'img-auth-nopathinfo'   => 'PATH_INFO lipsește.
+'img-auth-accessdenied'     => 'Acces interzis',
+'img-auth-nopathinfo'       => 'PATH_INFO lipsește.
 Serverul dumneavoastră nu a fost setat pentru a trece aceste informații.
 S-ar putea să fie bazat pe CGI și să nu suporte img_auth.
 Vedeți http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
-'img-auth-badtitle'     => 'Nu s-a putut construi un titlu valid din "$1".',
-'img-auth-nologinnWL'   => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',
-'img-auth-nofile'       => 'Fișierul "$1" nu există.',
-'img-auth-isdir'        => 'Încercați să accesați directorul "$1".
+'img-auth-notindir'         => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
+'img-auth-badtitle'         => 'Nu s-a putut construi un titlu valid din "$1".',
+'img-auth-nologinnWL'       => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',
+'img-auth-nofile'           => 'Fișierul "$1" nu există.',
+'img-auth-isdir'            => 'Încercați să accesați directorul "$1".
 Numai accesul la fișiere este permis.',
-'img-auth-streaming'    => 'Derularea continuă a "$1".',
-'img-auth-public'       => 'Funcția img_auth.php este pentru a exporta fișiere de pe un wiki privat.
+'img-auth-streaming'        => 'Derularea continuă a "$1".',
+'img-auth-public'           => 'Funcția img_auth.php este pentru a exporta fișiere de pe un wiki privat.
 Acest wiki este configurat ca unul public.
 Pentru securitate optimă, img_auth.php este dezactivat.',
-'img-auth-noread'       => 'Acest utilizator nu are acces să citească "$1".',
+'img-auth-noread'           => 'Acest utilizator nu are acces să citească "$1".',
+'img-auth-bad-query-string' => 'Adresa URL are un șir de interogare invalid.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL invalid: $1',
@@ -2542,7 +2543,7 @@ manual paginile de discuții, dacă dorești acest lucru.",
 'talkexists'                   => "'''Pagina în sine a fost mutată cu succes, dar pagina de discuții nu a putut fi mutată deoarece o alta deja există la noul titlu.
 Te rugăm să le unifici manual.'''",
 'movedto'                      => 'mutată la',
-'movetalk'                     => 'Mută pagina de discuții asociată',
+'movetalk'                     => 'Redenumește pagina de discuții asociată',
 'move-subpages'                => 'Mută subpaginile (până la $1)',
 'move-talk-subpages'           => 'Mută subpaginile paginii de discuții (până la $1)',
 'movepage-page-exists'         => 'Pagina $1 există deja și nu poate fi rescrisă automat.',
@@ -2945,8 +2946,8 @@ Altele vor fi ascunse implicit.
 'exif-colorspace'                  => 'Spațiu de culoare',
 'exif-componentsconfiguration'     => 'Semnificația componentelor',
 'exif-compressedbitsperpixel'      => 'Mod de comprimare a imaginii',
-'exif-pixelydimension'             => 'Lățimea validă a imaginii',
-'exif-pixelxdimension'             => 'Valind image height',
+'exif-pixelydimension'             => 'Lățimea imaginii',
+'exif-pixelxdimension'             => 'Înălțimea imaginii',
 'exif-makernote'                   => 'Observațiile producătorului',
 'exif-usercomment'                 => 'Comentariile utilizatorilor',
 'exif-relatedsoundfile'            => 'Fișierul audio asemănător',
@@ -2962,9 +2963,9 @@ Altele vor fi ascunse implicit.
 'exif-spectralsensitivity'         => 'Sensibilitate spectrală',
 'exif-isospeedratings'             => 'Evaluarea vitezei ISO',
 'exif-oecf'                        => 'Factorul de conversie optoelectronic',
-'exif-shutterspeedvalue'           => 'Viteza de închidere',
-'exif-aperturevalue'               => 'Diafragmă',
-'exif-brightnessvalue'             => 'Luminozitate',
+'exif-shutterspeedvalue'           => 'Viteza obturatorului în APEX',
+'exif-aperturevalue'               => 'Diafragmă în APEX',
+'exif-brightnessvalue'             => 'Luminozitate în APEX',
 'exif-exposurebiasvalue'           => 'Ajustarea expunerii',
 'exif-maxaperturevalue'            => 'Apertura maximă',
 'exif-subjectdistance'             => 'Distanța față de subiect',

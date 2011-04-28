@@ -453,7 +453,7 @@ $1',
 'ok'                      => 'Ek!',
 'retrievedfrom'           => 'Elŝutita el  "$1"',
 'youhavenewmessages'      => 'Por vi estas $1 ($2).',
-'newmessageslink'         => 'nova mesaĝo',
+'newmessageslink'         => 'novaj mesaĝoj',
 'newmessagesdifflink'     => 'ŝanĝoj kompare kun antaŭlasta versio',
 'youhavenewmessagesmulti' => 'Vi havas novajn mesaĝojn ĉe $1',
 'editsection'             => 'redakti',
@@ -1577,22 +1577,23 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload-http-error'         => 'HTTP-eraro okazis: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Atingo malpermisita',
-'img-auth-nopathinfo'   => 'Mankas PATH_INFO. (Informo pri dosiervojo.)
+'img-auth-accessdenied'     => 'Atingo malpermisita',
+'img-auth-nopathinfo'       => 'Mankas PATH_INFO. (Informo pri dosiervojo.)
 Via servilo ne estas konfigurita por sendi ĉi tiun informon.
 Eble ĝi estas CGI-bazita kaj ne subtenas img_auth.
 Vidu http://www.mediawiki.org/wiki/Manual:Image_Authorization. (angle)',
-'img-auth-notindir'     => 'Petita vojo ne estas en la konfigurita alŝuta dosierujo.',
-'img-auth-badtitle'     => 'Ne povas konstrui validan titolon de "$1".',
-'img-auth-nologinnWL'   => 'Vi ne estas ensalutita kaj "$1" ne estas en la blankalisto.',
-'img-auth-nofile'       => 'Dosiero "$1" ne ekzistas.',
-'img-auth-isdir'        => 'Vi provas atingi dosierujon "$1".
+'img-auth-notindir'         => 'Petita vojo ne estas en la konfigurita alŝuta dosierujo.',
+'img-auth-badtitle'         => 'Ne povas konstrui validan titolon de "$1".',
+'img-auth-nologinnWL'       => 'Vi ne estas ensalutita kaj "$1" ne estas en la blankalisto.',
+'img-auth-nofile'           => 'Dosiero "$1" ne ekzistas.',
+'img-auth-isdir'            => 'Vi provas atingi dosierujon "$1".
 Nur dosiera atingo estas permesita.',
-'img-auth-streaming'    => 'Elsendfluante "$1".',
-'img-auth-public'       => 'La funkcio de img_auth.php estas eligi dosierojn de privata vikio.
+'img-auth-streaming'        => 'Elsendfluante "$1".',
+'img-auth-public'           => 'La funkcio de img_auth.php estas eligi dosierojn de privata vikio.
 Ĉi tiu vikio estas konfigurita kiel publika vikio.
 Por optimuma sekureco, img_auth.php estas malŝalta.',
-'img-auth-noread'       => 'Uzanto ne havas atingon por legi "$1".',
+'img-auth-noread'           => 'Uzanto ne havas atingon por legi "$1".',
+'img-auth-bad-query-string' => 'La URL-o havas malvalidan mendan signoĉenon.',
 
 # HTTP errors
 'http-invalid-url'      => 'Malvalida URL-o: $1',
@@ -2285,7 +2286,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'ipusubmit'                       => 'Forigi ĉi tiun forbaron',
 'unblocked'                       => '[[User:$1|$1]] estas restarigita.',
 'unblocked-id'                    => 'Forbaro $1 estas forigita.',
-'ipblocklist'                     => 'Forbaritaj IP-adresoj kaj salutnomoj',
+'ipblocklist'                     => 'Forbaritaj uzantoj',
 'ipblocklist-legend'              => 'Trovi forbaritan uzanton.',
 'ipblocklist-username'            => 'Salutnomo aŭ IP-adreso:',
 'ipblocklist-sh-userblocks'       => '$1 kontaj forbaroj',
@@ -2520,7 +2521,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-interwiki-namespace' => 'Cela nomspaco:',
 'import-upload-filename'     => 'Dosiernomo:',
 'import-comment'             => 'Komento:',
-'importtext'                 => 'Bonvole eksportu la dosieron el la fonta vikio per la ilo Speciala:Export, konservu ĝin sur via disko kaj poste alŝutu ĝin tien ĉi.',
+'importtext'                 => 'Bonvolu eksporti la dosieron el la fonta vikio per la [[Special:Export|eksportilo]]. Konservu ĝin sur via persona komputilo kaj poste alŝutu ĝin tien ĉi.',
 'importstart'                => 'Importante paĝojn...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versioj}}',
 'importnopages'              => 'Neniu paĝo por importi.',
@@ -2796,8 +2797,8 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-colorspace'                  => 'Kolor-spaco',
 'exif-componentsconfiguration'     => 'Signifo de ĉiu kompono',
 'exif-compressedbitsperpixel'      => 'Reĝimo de bilda densigado',
-'exif-pixelydimension'             => 'Valida larĝeco de bildo',
-'exif-pixelxdimension'             => 'Valida alteco de bildo',
+'exif-pixelydimension'             => 'Larĝeco de bildo',
+'exif-pixelxdimension'             => 'Alteco de bildo',
 'exif-makernote'                   => 'Notoj de fabrikejo',
 'exif-usercomment'                 => 'Komentoj de uzanto',
 'exif-relatedsoundfile'            => 'Rilata son-dosiero',
@@ -2813,9 +2814,9 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-spectralsensitivity'         => 'Spektruma sensemo',
 'exif-isospeedratings'             => 'ISO sentiveco',
 'exif-oecf'                        => 'Optikelektronika konverada faktoro',
-'exif-shutterspeedvalue'           => 'Rapido de obturatoro',
-'exif-aperturevalue'               => 'Aperturo',
-'exif-brightnessvalue'             => 'Heleco',
+'exif-shutterspeedvalue'           => 'APEX-Rapido de obturatoro',
+'exif-aperturevalue'               => 'APEX-Aperturo',
+'exif-brightnessvalue'             => 'APEX-Heleco',
 'exif-exposurebiasvalue'           => 'Ekspona emo',
 'exif-maxaperturevalue'            => 'Maksimuma pejzaĝa diafragmo',
 'exif-subjectdistance'             => 'Distanco de subjekto',
