@@ -700,7 +700,7 @@ Motivul invocat este ''$2''.",
 Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
 'yourname'                   => 'Nume de utilizator:',
 'yourpassword'               => 'Parolă:',
-'yourpasswordagain'          => 'Repetă parola',
+'yourpasswordagain'          => 'Repetați parola:',
 'remembermypassword'         => 'Autentificare automată de la acest calculator (expiră după {{PLURAL:$1|24 de ore|$1 zile}})',
 'securelogin-stick-https'    => 'Rămâi conectat la HTTPS după autentificare',
 'yourdomainname'             => 'Domeniul dumneavoastră:',
@@ -803,11 +803,21 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 'resetpass-temp-password'   => 'Parolă temporară:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Resetare parolă',
-'passwordreset-text'     => 'Completați acest formular pentru a primi un e-mail cu datele contului dumneavoastră.',
-'passwordreset-legend'   => 'Resetare parolă',
-'passwordreset-username' => 'Nume de utilizator:',
-'passwordreset-email'    => 'Adresă de e-mail:',
+'passwordreset'                => 'Resetare parolă',
+'passwordreset-text'           => 'Completați acest formular pentru a primi un e-mail cu datele contului dumneavoastră.',
+'passwordreset-legend'         => 'Resetare parolă',
+'passwordreset-disabled'       => 'Resetarea parolei a fost dezactivată pe acest wiki.',
+'passwordreset-username'       => 'Nume de utilizator:',
+'passwordreset-email'          => 'Adresă de e-mail:',
+'passwordreset-emailtitle'     => 'Detalii despre cont pe {{SITENAME}}',
+'passwordreset-emailtext-user' => 'Utilizatorul $1 de pe {{SITENAME}} a solicitat o reamintire a detaliilor contului dumneavoastră pentru {{SITENAME}} ($4). Următorul utilizator are {{PLURAL:$3|contul asociat|conturile asociate}} cu această adresă de e-mail:
+
+$2
+
+{{PLURAL:$3|Această parolă temporară va|Aceste parole temporare vor}} expira {{PLURAL:$5|într-o zi|în $5 zile}}.
+Ar trebui să vă autentificați și să alegeți acum o nouă parolă. Dacă altcineva a făcut această solicitare, ori dacă v-ați reamintit parola originală și nu mai doriți modificarea ei, puteți ignora acest mesaj, continuând cu vechea parolă.',
+'passwordreset-emailelement'   => 'Nume de utilizator: $1
+Parolă temporară: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Text aldin',
@@ -2031,7 +2041,7 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 
 # Book sources
 'booksources'               => 'Surse de cărți',
-'booksources-search-legend' => 'Caută surse pentru cărți',
+'booksources-search-legend' => 'Căutare surse pentru cărți',
 'booksources-go'            => 'Salt',
 'booksources-text'          => 'Mai jos se află o listă de legături înspre alte situri care vând cărți noi sau vechi și care pot oferi informații suplimentare despre cărțile pe care le căutați:',
 'booksources-invalid-isbn'  => 'Codul ISBN oferit nu este valid; verificați dacă a fost copiat corect de la sursa originală.',
@@ -3144,9 +3154,11 @@ Altele vor fi ascunse implicit.
 'exif-urgency'                     => 'Urgență',
 'exif-contact'                     => 'Informații de contact',
 'exif-languagecode'                => 'Limbă',
+'exif-iimversion'                  => 'Versiune IIM',
 'exif-iimcategory'                 => 'Categorie',
 'exif-iimsupplementalcategory'     => 'Categorii suplimentare',
 'exif-datetimeexpires'             => 'Nu utilizați după data de',
+'exif-datetimereleased'            => 'Lansat pe',
 'exif-identifier'                  => 'Identificator',
 'exif-lens'                        => 'Obiectiv utilizat',
 'exif-serialnumber'                => 'Numărul de serie al aparatului fotografic',
@@ -3168,6 +3180,7 @@ Altele vor fi ascunse implicit.
 'exif-pngfilecomment'              => 'Comentarii la fișierul PNG',
 'exif-contentwarning'              => 'Avertisment asupra conținutului',
 'exif-giffilecomment'              => 'Comentarii la fișierul GIF',
+'exif-intellectualgenre'           => 'Tipul elementului',
 'exif-event'                       => 'Evenimentul înfățișat',
 'exif-organisationinimage'         => 'Organizația înfățișată',
 'exif-personinimage'               => 'Persoana înfățișată',

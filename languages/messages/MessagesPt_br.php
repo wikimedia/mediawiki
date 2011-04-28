@@ -3177,6 +3177,8 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor linear sequencial de cores',
 
+'exif-filesource-3' => 'Câmara fotográfica digital',
+
 'exif-scenetype-1' => 'Imagem fotografada diretamente',
 
 'exif-customrendered-0' => 'Processo normal',

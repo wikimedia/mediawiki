@@ -253,7 +253,7 @@ $messages = array(
 'error'           => 'ଭୁଲ',
 'missing-article' => 'ଡାଟାବେସଟି ଆପଣ ଖୋଜିଥିବା "$1" $2 ଶବ୍ଦଟି ପାଇଲା ନାହିଁ । .
 
-ଯଦି ଆପଣ ଖୋଜିଥିବା ଫରଦଟି କେହି ଉଡ଼ାଇ ଦେଇଥାଏ ତେବେ ଏମିତି ହୋଇପାରେ ।
+ଯଦି ଆପଣ ଖୋଜିଥିବା ପୃଷ୍ଠାଟି କେହି ଉଡ଼ାଇ ଦେଇଥାଏ ତେବେ ଏମିତି ହୋଇପାରେ ।
 
 ଯଦି ସେମିତି ହୋଇନଥାଏ ତେବେ ଆପଣ ଏହି ସଫଟବେରରେ କିଛି ଅସୁବିଧା ଖୋଜି ପାଇଛନ୍ତି ।
 କେହି ଜଣେ ଟିକେ [[Special:ListUsers/sysop|ପରିଛା]] ଙ୍କୁ ଏହି ଇଉଆରେଲ (url) ସହ ଚିଠିଟିଏ ପଠାଇ ଦିଅନ୍ତୁ ।',
@@ -324,8 +324,8 @@ $messages = array(
 # History pages
 'viewpagelogs'           => 'ଏହି ଫରଦ ପାଇଁ ଲଗଗୁଡ଼ିକୁ ଦେଖନ୍ତୁ ।',
 'currentrev-asof'        => '$1 ହୋଇଥିବା ରିଭିଜନ',
-'revisionasof'           => '$1 ଉପରେ କରାଯାଇଥିବା ବଦଳ',
-'previousrevision'       => 'ପୁରୁଣା ସଁକଳନ',
+'revisionasof'           => '$1 ଅନୁସାରେ କରାଯାଇଥିବା ବଦଳ',
+'previousrevision'       => 'ପୁରୁଣା ସଙ୍କଳନ',
 'cur'                    => 'ଦାନକର',
 'next'                   => 'ପରେ',
 'last'                   => 'ଆଗ',
@@ -362,7 +362,7 @@ $messages = array(
 'notextmatches'             => 'ପୃଷ୍ଠାଟିର ନାଆଁ ମିଶୁନାହିଁ',
 'prevn'                     => '{{PLURAL:$1|$1}}ର ଆଗରୁ',
 'nextn'                     => '{{PLURAL:$1|$1}} ପର',
-'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖ',
+'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖିବେ',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 ଶବ୍ଦ|$2 ଶବ୍ଦ}})',
 'search-redirect'           => '($1 କୁ ଆଗକୁ ବଢେଇନିଅ )',
 'search-section'            => '(ଭାଗ $1)',
@@ -444,7 +444,7 @@ $messages = array(
 'recentchangeslinked-to'       => 'ଦିଆଯାଇଥିବା ଫରଦରେ ଯୋଡ଼ା ବାକି ଫରଦମାନଙ୍କର ବଦଳ ସବୁ ଦେଖାନ୍ତୁ ।',
 
 # Upload
-'upload'            => 'ଫାଇଲ ଅପଲୋଡ଼ କର',
+'upload'            => 'ଫାଇଲ ଅପଲୋଡ଼ କରିବେ',
 'filedesc'          => 'ସାରକଥା',
 'fileuploadsummary' => 'ସାରକଥା:',
 
@@ -607,9 +607,9 @@ $messages = array(
 'ipbreason'          => 'କାରଣ:',
 'blocklist-reason'   => 'କାରଣ',
 'ipblocklist-submit' => 'ଖୋଜିବା',
-'blocklink'          => 'ଅଟକେଇ ଦିଅ',
+'blocklink'          => 'ଅଟକେଇ ଦେବେ',
 'unblocklink'        => 'ଛାଡ଼ିବା',
-'change-blocklink'   => 'ଓଗଳାକୁ ବଦଳାଇବା',
+'change-blocklink'   => 'ଓଗଳାକୁ ବଦଳାଇବେ',
 'contribslink'       => 'ଅବଦାନ',
 'blocklogpage'       => 'ଲଗଟିକୁ ଅଟକାଇଦିଅ',
 
@@ -659,7 +659,7 @@ $messages = array(
 'tooltip-feed-rss'                => 'ଏହି ଫରଦଟି ପାଇଁ ଆରଏସଏସ ଫିଡ',
 'tooltip-feed-atom'               => 'ଏହି ଫରଦଟି ପାଇଁ ଆଟମ ଫିଡ',
 'tooltip-t-contributions'         => 'ଏହି ଇଉଜରଙ୍କର ଦେଇ କରାଯାଇଥିବା ସବୁଯାକ ଦାନ ଦେଖାଇବା',
-'tooltip-t-upload'                => 'ଫାଇଲ ଅପଲୋଡ଼ କର',
+'tooltip-t-upload'                => 'ଫାଇଲ ଅପଲୋଡ଼ କରିବେ',
 'tooltip-t-specialpages'          => 'ନିଆରା ପୃଷ୍ଠା ତାଲିକା',
 'tooltip-t-print'                 => 'ଏହି ପୃଷ୍ଠାର ଛପାହୋଇପାରିବା ସଙ୍କଳନ',
 'tooltip-t-permalink'             => 'ବଦଳାଯାଇଥିବା ଏହି ଫରଦଟିର ସ୍ଥାୟୀ ଲିଙ୍କ',

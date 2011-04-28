@@ -327,6 +327,10 @@ Waxaa meeshaan ka heli kartaa liiska bogyaasha khaaska ah oo jiro  [[Special:Spe
 'databaseerror'       => 'Qalad ka dhacday database;ka',
 'laggedslavemode'     => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku kordhin.',
 'enterlockreason'     => 'Ku qor sababta loo xiraayo, kuna siidar waqtigii la soo fasaxaayo maqaalka.',
+'missingarticle-diff' => '(Kala duwanaanshaha: $1, $2)',
+'internalerror'       => 'Qalad gudaha ah',
+'fileappenderrorread' => 'Ma akhri karin "$1" markii oo ku daraayay.',
+'filenotfound'        => 'Ma oo san helin  faylka "$1".',
 'cannotdelete'        => 'Boggaan ama file\'ka "$1" mala tirtiri karo.
 waxaa laga yaabaa in oo qof kale tirtiray .',
 'badtitle'            => 'Cinwaan qaldan',
@@ -337,6 +341,8 @@ waxaa laga yaabaa in oo qof kale tirtiray .',
 fadlan waxyar kadib ku soo noqo.',
 'protectedpagetext'   => 'Boggaan  woo xiranyahay si aan wax looga bedelin.',
 'viewsourcetext'      => 'Waad fiirin kartaa waana koobi gareen kartaa ereykoodka boggaan',
+'cascadeprotected'    => 'Boggaan waxaa laga difaacay in wax laga bedelo, sababtoo ah waxoo ka midyahay  {{PLURAL:$1|bog, oo ah |bogyaalo ah, waana}}  kuwa laga difaacay "qoraalada kaskade" dooqyada neh waa la furay:
+$2',
 'namespaceprotected'  => "Ma laguu ogolo in aad wax ka bedeshid maqaalada ku jiro '''$1''' dhinaca magacyada.",
 'ns-specialprotected' => 'Bogyaasha gaarka ah wax malaga bedeli karo.',
 'titleprotected'      => 'Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.
@@ -442,9 +448,11 @@ Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qorta
 'resetpass_forbidden'       => 'ereyada sirka ah mala bedeli karo',
 'resetpass-submit-loggedin' => 'bedel ereysirka',
 'resetpass-submit-cancel'   => 'Iska xir',
+'resetpass-temp-password'   => 'Ereysir ku meel gaar ah:',
 
 # Special:PasswordReset
 'passwordreset'              => 'Bedel ereysirka',
+'passwordreset-legend'       => 'Bedel ereysirka',
 'passwordreset-username'     => 'Magaca gudagalka',
 'passwordreset-email'        => 'Ciwaanka e-mailka',
 'passwordreset-emailelement' => 'Magaca gudagalka: $1
@@ -494,6 +502,8 @@ fadlan ku dar kuna xaqiiji e-mailkaada meesha  [[Special:Preferences|dooqyada gu
 'userpage-userdoesnotexist-view' => 'Isticmaalahaan  "$1" lama diiwaan gelinin.',
 'blocked-notice-logextract'      => 'Isticmaalahaan hadda waa la mamnuucay.
 Mamnuucida ugu danbeyso in oo soo galo hoostaan ee ku qorantahay',
+'usercssyoucanpreview'           => "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso CSS'gaaga cusub intii aadan kaydin.",
+'userjsyoucanpreview'            => "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso JavaScriptigaaga cusub intii aadan kaysin.",
 'userjspreview'                  => "'''Waa in aad ogaataa waxaa baroobeynoosaa/fiirinoysaa kaliya JavaScript'ka isticmaalahaaga.'''
 '''wali lama keydin!'''",
 'updated'                        => '(waa la opdate gareeyay)',
@@ -517,6 +527,7 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",
 'hiddencategories'               => 'Boggaan waxoo ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:',
 'nocreate-loggedin'              => 'Laguuma ogola inaad beyjaj cusub ku sameysid {{SITENAME}}han.',
 'permissionserrors'              => 'Cillado ogolaashada ah',
+'edit-conflict'                  => 'Wax bedel isku dhacay',
 
 # Account creation failure
 'cantcreateaccounttitle' => "Ma' sameynkaro gudagal (akoon)",
@@ -539,6 +550,7 @@ micnaha: '''({{int:cur}})''' = kala duwanaanshaha maqaaladii ugu danbeeyay, '''(
 'history-fieldset-title' => 'Gudaha u gal taariikhda',
 'history-show-deleted'   => 'Wixii la tirtiray kaliya',
 'histfirst'              => 'Wixii ugu danbeeyay',
+'histlast'               => 'ugu cusub',
 'historyempty'           => '(waa ebar)',
 
 # Revision feed
@@ -555,6 +567,8 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'rev-showdeleted'             => 'Itusi',
 'revdelete-show-file-submit'  => 'Haa',
 'revdelete-radio-same'        => '(waxba haka bedelin)',
+'revdelete-radio-set'         => 'Haa',
+'revdelete-radio-unset'       => 'Maya',
 'revdelete-log'               => 'Sababta:',
 'pagehist'                    => 'Taariikhda bogga',
 'revdelete-content'           => 'oo kooban',
@@ -563,6 +577,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'revdelete-reasonotherlist'   => 'sabababaha kale',
 
 # History merging
+'mergehistory-from'   => 'Ereykoodka bogga:',
 'mergehistory-reason' => 'Sabab:',
 
 # Diffs
@@ -570,34 +585,39 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'editundo'   => 'ka noqo',
 
 # Search results
-'searchresults'                  => 'Raadi natiijooyinka',
-'searchresults-title'            => 'Natiijoojika raadinta ku aadan "$1"',
-'searchsubtitle'                 => 'Waxaad raadisay \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dhamaan bogyaasha ka bilaawdo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dhamaan bogyaasha la xiriiro "$1"]])',
-'searchsubtitleinvalid'          => "Waxaad raadisay '''$1'''",
-'prevn'                          => 'Ka horeeya {{PLURAL:$1|$1}}',
-'nextn'                          => 'Ku xiga {{PLURAL:$1|$1}}',
-'viewprevnext'                   => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-legend'              => 'Raadi doorashooyinka',
-'searchhelp-url'                 => 'Help:Caawinaad',
-'searchprofile-articles'         => 'Maqaalada kooban',
-'searchprofile-everything'       => 'Wax kasto',
-'searchprofile-articles-tooltip' => 'Ka raadi $1',
-'searchprofile-project-tooltip'  => 'Ka raadi $1',
-'searchprofile-images-tooltip'   => 'Maqaalo raadi',
-'search-result-size'             => '$1 ({{PLURAL:$2|1 eray|$2 erayo}})',
-'search-section'                 => '(maqaalka $1)',
-'search-suggest'                 => 'Waxaa ka waday miyaa: $1',
-'search-interwiki-more'          => '(wax kale)',
-'search-mwsuggest-enabled'       => 'soojeedin',
-'search-mwsuggest-disabled'      => 'soojeedin malahan',
-'search-relatedarticle'          => 'La xiriiro',
-'searchrelated'                  => 'La xiriiro',
-'searchall'                      => 'Dhamaan',
-'powersearch'                    => 'Sidii aad wax uugu raadin laheed',
-'powersearch-field'              => 'Raadi',
-'powersearch-togglelabel'        => 'Fiiri',
-'powersearch-toggleall'          => 'Dhamaan',
-'powersearch-togglenone'         => 'Waxna',
+'searchresults'                    => 'Raadi natiijooyinka',
+'searchresults-title'              => 'Natiijoojika raadinta ku aadan "$1"',
+'searchsubtitle'                   => 'Waxaad raadisay \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dhamaan bogyaasha ka bilaawdo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dhamaan bogyaasha la xiriiro "$1"]])',
+'searchsubtitleinvalid'            => "Waxaad raadisay '''$1'''",
+'prevn'                            => 'Ka horeeya {{PLURAL:$1|$1}}',
+'nextn'                            => 'Ku xiga {{PLURAL:$1|$1}}',
+'viewprevnext'                     => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-legend'                => 'Raadi doorashooyinka',
+'searchhelp-url'                   => 'Help:Caawinaad',
+'searchprofile-articles'           => 'Maqaalada kooban',
+'searchprofile-everything'         => 'Wax kasto',
+'searchprofile-articles-tooltip'   => 'Ka raadi $1',
+'searchprofile-project-tooltip'    => 'Ka raadi $1',
+'searchprofile-images-tooltip'     => 'Maqaalo raadi',
+'searchprofile-everything-tooltip' => 'Raadi wax kasto oo kooban ( xattaa bogga wadahadalka)',
+'searchprofile-advanced-tooltip'   => 'Ka raadi qeybta isticmaalada',
+'search-result-size'               => '$1 ({{PLURAL:$2|1 eray|$2 erayo}})',
+'search-section'                   => '(maqaalka $1)',
+'search-suggest'                   => 'Waxaa ka waday miyaa: $1',
+'search-interwiki-more'            => '(wax kale)',
+'search-mwsuggest-enabled'         => 'soojeedin',
+'search-mwsuggest-disabled'        => 'soojeedin malahan',
+'search-relatedarticle'            => 'La xiriiro',
+'searchrelated'                    => 'La xiriiro',
+'searchall'                        => 'Dhamaan',
+'powersearch'                      => 'Sidii aad wax uugu raadin laheed',
+'powersearch-field'                => 'Raadi',
+'powersearch-togglelabel'          => 'Fiiri',
+'powersearch-toggleall'            => 'Dhamaan',
+'powersearch-togglenone'           => 'Waxna',
+
+# Quickbar
+'qbsettings-none' => 'Waxna',
 
 # Preferences page
 'preferences'               => 'Dooqyada',
@@ -640,6 +660,7 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'email'                     => 'E-mail',
 'prefs-help-realname'       => 'Optional: if you choose to provide it this will be used for giving you attribution for your work.',
 'prefs-help-email'          => 'E-mailka waa wax aad xor u leedahay. laakiin waxaa u baahnaan kartaa erayga sirta ah in aad cusbooneyso, hadii aad ilaawdo eraygaaga sirta ah',
+'prefs-help-email-required' => 'Waxaa loo baahanyahay e-mail.',
 
 # User rights
 'saveusergroups' => 'Kaydi kooxaha isticmaalayaasha',
@@ -660,6 +681,7 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 
 # Rights
 'right-read'          => 'Akhri maqaalada',
+'right-edit'          => 'Wax ka bedel bogyaalo',
 'right-move'          => 'Wareeji maqaalada',
 'right-upload'        => 'Soo geli waxyaabo',
 'right-delete'        => 'Tirtir maqaalada',
@@ -671,11 +693,13 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'rightsnone' => '(waxna)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'       => 'akhri boggaan',
-'action-createpage' => 'sameey bogyaalo',
-'action-upload'     => "soo geli file'kaan",
-'action-delete'     => 'tirtir boggaan',
-'action-undelete'   => 'ha tirtirin boggaan',
+'action-read'          => 'akhri boggaan',
+'action-edit'          => 'wax ka bedel boggaan',
+'action-createpage'    => 'sameey bogyaalo',
+'action-upload'        => "soo geli file'kaan",
+'action-delete'        => 'tirtir boggaan',
+'action-browsearchive' => 'Raadi maqaalada la tirtiray',
+'action-undelete'      => 'ha tirtirin boggaan',
 
 # Recent changes
 'nchanges'                    => '$1 {{PLURAL:$1|bedelka|bedelada}}',
@@ -696,24 +720,55 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'rc_categories'               => 'Waxoo u gaar yahay qeybaha  (u kala qeybsan "|")',
 
 # Recent changes linked
-'recentchangeslinked' => "Isbedelada la'xiriira",
+'recentchangeslinked'       => "Isbedelada la'xiriira",
+'recentchangeslinked-title' => 'Wax bedelka la xiriiro "$1"',
+'recentchangeslinked-page'  => 'Magaca bogga:',
 
 # Upload
-'upload'           => 'Soo geli file',
-'uploadbtn'        => 'Soo geli file',
-'uploadnologin'    => 'Gudaha kuma jirtid',
-'filestatus'       => 'Qeybta ogolaashada koobiga:',
-'ignorewarning'    => 'Iska dhagooley digniinta ee faylka keedi',
-'ignorewarnings'   => 'Iska dhagooley digkiinwalba',
-'minlength1'       => 'Faylka magaciisa waa in uu ugu yaraan noqdaa hal xaraf.',
-'badfilename'      => 'Faylka magaciisa waxaa lagu badalay "$1".',
-'filetype-banned'  => "File'ka nuucaan waa laga mamnuucay",
-'illegal-filename' => "Magaca file'kaan lama ogola",
-'large-file'       => "waxaa loo baahanyahay in ay san file'yada ka weynaan $1;
+'upload'               => 'Soo geli file',
+'uploadbtn'            => 'Soo geli file',
+'uploadnologin'        => 'Gudaha kuma jirtid',
+'uploaderror'          => 'Qalad soo gelinta',
+'uploadlog'            => 'soo gelinta gudagalkeeda',
+'uploadlogpage'        => 'Soo gelinta gudagalkeeda',
+'filename'             => 'Magaca faylka',
+'filestatus'           => 'Qeybta ogolaashada koobiga:',
+'ignorewarning'        => 'Iska dhagooley digniinta ee faylka keedi',
+'ignorewarnings'       => 'Iska dhagooley digkiinwalba',
+'minlength1'           => 'Faylka magaciisa waa in uu ugu yaraan noqdaa hal xaraf.',
+'badfilename'          => 'Faylka magaciisa waxaa lagu badalay "$1".',
+'filetype-banned'      => "File'ka nuucaan waa laga mamnuucay",
+'illegal-filename'     => "Magaca file'kaan lama ogola",
+'unknown-error'        => 'Qalad la aqoon aa dhacay.',
+'tmp-create-error'     => 'Mala sameyn karin fayl kumeel gaar ah.',
+'large-file'           => "waxaa loo baahanyahay in ay san file'yada ka weynaan $1;
 file'kaan waa  $2.",
-'uploadwarning'    => 'Digniin waxa aad soo gelineesid',
-'savefile'         => 'Faylka kaydi',
-'watchthisupload'  => 'Boggaan waardiyey',
+'uploadwarning'        => 'Digniin waxa aad soo gelineesid',
+'savefile'             => 'Faylka kaydi',
+'uploadedimage'        => 'waxaa la soo galiyay "[[$1]]"',
+'overwroteimage'       => 'waxaa la soo galiyay nuuc cusub oo ah "[[$1]]"',
+'uploaddisabled'       => 'wax soo gelinta waa la xiray.',
+'copyuploaddisabled'   => 'wax soo gelinta dhinaca URL:ka waa la xiray',
+'uploadfromurl-queued' => 'Waxa aad soo gelineesid saf oo galay.',
+'uploaddisabledtext'   => 'soo gelinta faylyada waa la xiray',
+'uploadvirus'          => 'faylka waxaa ku jiro fayrus!
+ku saabsan: $1',
+'upload-options'       => 'Dooqyada soo gelinta',
+'watchthisupload'      => 'Boggaan waardiyey',
+'upload-failure-subj'  => 'Dhibaatada soo gelinta',
+'upload-warning-subj'  => 'Digniin waxa aad soo gelineesid',
+
+'upload-unknown-size' => 'lama yaqaano weyninka',
+
+# img_auth script messages
+'img-auth-streaming' => 'Woo dareeraa "$1".',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error28' => 'Waqtiga woo ka dhamaaday soo gelinta',
+
+'nolicense'          => 'Mala dooran',
+'license-nopreview'  => '(Hor fiirin malahan)',
+'upload_source_file' => '(Faylka kombiyutarkaada)',
 
 # File description page
 'file-anchor-link'   => 'Fayl',

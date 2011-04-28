@@ -9,6 +9,7 @@
  *
  * @author Dark Eagle
  * @author FnTmLV
+ * @author Geimeris
  * @author GreenZeb
  * @author Kikos
  * @author Knakts
@@ -173,6 +174,7 @@ $messages = array(
 'listingcontinuesabbrev'         => ' (turpinājums)',
 'index-category'                 => 'Indeksētās lapas',
 'noindex-category'               => 'Neindeksētās lapas',
+'broken-file-category'           => 'Lapas, kurās ir bojātas failu saites',
 
 'mainpagetext'      => "'''MediaWiki veiksmīgi ieinstalēts'''",
 'mainpagedocfooter' => 'Izlasi [http://meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.
@@ -211,7 +213,7 @@ $messages = array(
 'vector-action-protect'          => 'Aizsargāt',
 'vector-action-undelete'         => 'Atjaunot',
 'vector-action-unprotect'        => 'Neaizsargāt',
-'vector-simplesearch-preference' => 'Ieslēgt uzlabotās meklēšanas piedāvājumus (tikai Vector izskatā)',
+'vector-simplesearch-preference' => 'Ieslēgt uzlabotās meklēšanas piedāvājumus (tikai Vector apdarē)',
 'vector-view-create'             => 'Izveidot',
 'vector-view-edit'               => 'Rediģēt',
 'vector-view-history'            => 'Hronoloģija',
@@ -521,6 +523,10 @@ Notiek ieiešana...',
 Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis jaunu pagaidu paroli.',
 'resetpass-temp-password'   => 'Pagaidu parole:',
 
+# Special:PasswordReset
+'passwordreset'          => 'Paroles atiestatīšana',
+'passwordreset-username' => 'Lietotājvārds:',
+
 # Edit page toolbar
 'bold_sample'     => 'Teksts boldā',
 'bold_tip'        => 'Teksts treknrakstā',
@@ -759,7 +765,7 @@ Iespējams, tā ir izdzēsta vai pārdēvēta.
 Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komentārs nodzēsts)',
+'rev-deleted-comment'         => '(labojuma kopsavilkums dzēsts)',
 'rev-deleted-user'            => '(lietotāja vārds nodzēsts)',
 'rev-deleted-event'           => '(reģistra ieraksts nodzēsts)',
 'rev-deleted-user-contribs'   => '[lietotājvārds vai IP adrese ir dzēsta — izmaiņa slēpta no devuma]',
@@ -993,6 +999,7 @@ Ja vēlies, tu vari izmantot šo nejauši uzģenerēto kodu: $1',
 'prefs-files'                   => 'Attēli',
 'prefs-custom-css'              => 'Personīgais CSS',
 'prefs-custom-js'               => 'Personīgais JS',
+'prefs-common-css-js'           => 'Koplietojams CSS/JavaScript visās apdarēs:',
 'prefs-emailconfirm-label'      => 'E-pasta statuss:',
 'prefs-textboxsize'             => 'Rediģēšanas loga izmērs',
 'youremail'                     => 'Tava e-pasta adrese:',
@@ -1032,6 +1039,10 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'prefs-displaysearchoptions'    => 'Pamatuzstādījumi',
 'prefs-displaywatchlist'        => 'Pamatuzstādījumi',
 'prefs-diffs'                   => 'Izmaiņas',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-pasta adrese šķiet derīga',
+'email-address-validity-invalid' => 'Ievadi derīgu e-pasta adresi',
 
 # User rights
 'userrights'                  => 'Lietotāju tiesību pārvaldība',
@@ -1311,12 +1322,14 @@ Ja tu joprojām gribi augšuplādēt šo failu, tad mēģini vēlreiz, ar citu f
 'copyuploaddisabled'         => 'URL augšupielādes nav atļautas.',
 'uploadfromurl-queued'       => 'Tava augšupielāde tika pievienota rindā.',
 'uploaddisabledtext'         => 'Failu augšupielāde ir atslēgta.',
+'php-uploaddisabledtext'     => 'Failu augšupielāde ir atslēgta PHP.
+Lūdzu, pārbaudi file_uploads uzstādījumu.',
 'uploadscripted'             => 'Šis fails satur HTML vai skriptu kodu, kuru, interneta pārlūks, var kļūdas pēc, mēģināt interpretēt (ar potenciāli sliktām sekām).',
 'uploadvirus'                => 'Šis fails satur vīrusu! Sīkāk: $1',
 'upload-source'              => 'Augšuplādējamais fails',
 'sourcefilename'             => 'Faila adrese:',
 'sourceurl'                  => 'Avota URL:',
-'destfilename'               => 'Vajadzīgais faila nosaukums:',
+'destfilename'               => 'Mērķa faila nosaukums:',
 'upload-maxfilesize'         => 'Maksimālais faila izmērs: $1',
 'upload-description'         => 'Faila apraksts',
 'upload-options'             => 'Augšupielādes iestatījumi',
@@ -1982,7 +1995,7 @@ Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'ipusubmit'                   => 'Noņemt šo bloku',
 'unblocked'                   => '[[User:$1|$1]] tika atbloķēts',
 'unblocked-id'                => 'Bloks $1 tika noņemts',
-'ipblocklist'                 => 'Bloķētās IP adreses un lietotājvārdi',
+'ipblocklist'                 => 'Bloķētie lietotāji',
 'ipblocklist-legend'          => 'Meklēt bloķētu lietotāju',
 'ipblocklist-submit'          => 'Meklēt',
 'ipblocklist-localblock'      => 'Vietējais bloks',

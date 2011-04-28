@@ -791,17 +791,37 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 'resetpass-temp-password'   => 'Dočasné heslo:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Reset hesla',
-'passwordreset-text'         => 'Po vyplnení tohto formulára dostanete emailom podrobnosti o vašom účte.',
-'passwordreset-legend'       => 'Obnoviť heslo',
-'passwordreset-disabled'     => 'Obnovenie hesla bolo na tejto wiki zakázané.',
-'passwordreset-pretext'      => '{{PLURAL:$1|Zadajte nižšie uvedený údaj|Zadajte jeden z nižšie uvedených údajov}}',
-'passwordreset-username'     => 'Používateľské meno:',
-'passwordreset-email'        => 'Emailová adresa:',
-'passwordreset-emailtitle'   => 'Podrobnosti o účte na {{GRAMMAR:lokál|{{SITENAME}}}}',
-'passwordreset-emailelement' => 'Používateľské meno: $1
+'passwordreset'                => 'Reset hesla',
+'passwordreset-text'           => 'Po vyplnení tohto formulára dostanete emailom podrobnosti o vašom účte.',
+'passwordreset-legend'         => 'Obnoviť heslo',
+'passwordreset-disabled'       => 'Obnovenie hesla bolo na tejto wiki zakázané.',
+'passwordreset-pretext'        => '{{PLURAL:$1|Zadajte nižšie uvedený údaj|Zadajte jeden z nižšie uvedených údajov}}',
+'passwordreset-username'       => 'Používateľské meno:',
+'passwordreset-email'          => 'Emailová adresa:',
+'passwordreset-emailtitle'     => 'Podrobnosti o účte na {{GRAMMAR:lokál|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'   => 'Niekto (pravdepodobne vy z IP adresy $1) požiadal pripomenutie podrobností o vašom
+účtu na {{GRAMMAR:genitív|{{SITENAME}}}} ($4). {{PLURAL:$3|Nasledujúci používateľský účet je spojený|Nasledujúce používateľské účty sú spojené}}
+s touto emailovou adresou:
+
+$2
+
+{{PLURAL:$3|Platnosť tohto dočasného hesla vyprší|Platnosť týchto dočasných hesiel vyprší}} o {{PLURAL:$5|jeden deň|$5 dni|$5 dní}}.
+Mali by ste sa prihlásiť teraz a zvoliť nové heslo. Ak túto žiadosť podal niekto iný alebo
+ak ste si spomenuli svoje pôvodné heslo a už ho chcete zmeniť, môžete túto správu
+ignorovať a ďalej používať vaše staré heslo.',
+'passwordreset-emailtext-user' => 'Používateľ $1 na {{GRAMMAR:genitív|{{SITENAME}}}} požiadal pripomenutie podrobností o vašom
+účtu na {{GRAMMAR:genitív|{{SITENAME}}}} ($4). {{PLURAL:$3|Nasledujúci používateľský účet je spojený|Nasledujúce používateľské účty sú spojené}}
+s touto emailovou adresou:
+
+$2
+
+{{PLURAL:$3|Platnosť tohto dočasného hesla vyprší|Platnosť týchto dočasných hesiel vyprší}} o {{PLURAL:$5|jeden deň|$5 dni|$5 dní}}.
+Mali by ste sa prihlásiť teraz a zvoliť nové heslo. Ak túto žiadosť podal niekto iný alebo
+ak ste si spomenuli svoje pôvodné heslo a už ho chcete zmeniť, môžete túto správu
+ignorovať a ďalej používať vaše staré heslo.',
+'passwordreset-emailelement'   => 'Používateľské meno: $1
 Dočasné heslo:$2',
-'passwordreset-emailsent'    => 'Email s heslom bol odoslaný.',
+'passwordreset-emailsent'      => 'Email s heslom bol odoslaný.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',
@@ -3005,7 +3025,8 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'metadata-help'     => 'Tento súbor obsahuje ďalšie informácie, pravdepodobne pochádzajúce z digitálneho fotoaparátu či skenera, ktorý ho vytvoril alebo digitalizoval. Ak bol súbor zmenený, niektoré podrobnosti sa nemusia plne zhodovať so zmeneným súborom.',
 'metadata-expand'   => 'Zobraziť detaily EXIF',
 'metadata-collapse' => 'Skryť detaily EXIF',
-'metadata-fields'   => 'Polia EXIF metadát uvedených v tejto správe sa zobrazia na stránke obrázka vtedy, keď je tabuľka metadát zbalená. Ostatné sa štandardne nezobrazia.
+'metadata-fields'   => 'Metadáta obrázka uvedené v tejto správe budú zahrnuté na stránke obrázka, keď je tabuľka metadát zbalená.
+Ostatné budú predvolene skryté.
 * make
 * model
 * datetimeoriginal
@@ -3054,8 +3075,8 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-colorspace'                  => 'Farebný priestor',
 'exif-componentsconfiguration'     => 'Význam jednotlivých zložiek',
 'exif-compressedbitsperpixel'      => 'Komprimované bity na pixel',
-'exif-pixelydimension'             => 'Platná šírka obrázka',
-'exif-pixelxdimension'             => 'Platná vyška obrázka',
+'exif-pixelydimension'             => 'Šírka obrázka',
+'exif-pixelxdimension'             => 'Výška obrázka',
 'exif-usercomment'                 => 'Komentár používateľa',
 'exif-relatedsoundfile'            => 'Súvisiaci zvukový súbor',
 'exif-datetimeoriginal'            => 'Dátum a čas vytvorenia dát',
@@ -3069,9 +3090,9 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-exposureprogram'             => 'Expozičný program',
 'exif-spectralsensitivity'         => 'Spektrálna citlivosť',
 'exif-isospeedratings'             => 'Rýchlostné ohodnotenie ISO',
-'exif-shutterspeedvalue'           => 'Rýchlosť uzávierky',
-'exif-aperturevalue'               => 'Clona',
-'exif-brightnessvalue'             => 'Jas',
+'exif-shutterspeedvalue'           => 'Rýchlosť uzávierky APEX',
+'exif-aperturevalue'               => 'Clona APEX',
+'exif-brightnessvalue'             => 'Jas APEX',
 'exif-exposurebiasvalue'           => 'Expozičné skreslenie',
 'exif-maxaperturevalue'            => 'Maximálna krajinná clona',
 'exif-subjectdistance'             => 'Vzdialenosť subjektu',

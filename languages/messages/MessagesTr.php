@@ -33,6 +33,7 @@
  * @author Urhixidur
  * @author Uğur Başak
  * @author Vito Genovese
+ * @author Vugar 1981
  * @author לערי ריינהארט
  */
 
@@ -3115,6 +3116,7 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-gpsdatestamp'                => 'GPS zamanı',
 'exif-gpsdifferential'             => 'GPS differential correction',
 'exif-objectname'                  => 'Kısa başlık',
+'exif-source'                      => 'Kaynak',
 'exif-urgency'                     => 'Aciliyet',
 'exif-writer'                      => 'Yazar',
 'exif-languagecode'                => 'Dil',
@@ -3123,6 +3125,8 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
 'exif-compression-6' => 'JPEG',
+
+'exif-copyrighted-false' => 'Kamu malı',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',

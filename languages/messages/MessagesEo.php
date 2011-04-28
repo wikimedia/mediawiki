@@ -3156,6 +3156,8 @@ Aliaj estos kaŝitaj defaŭlte.
 'exif-sensingmethod-7' => 'Trilinia sensilo',
 'exif-sensingmethod-8' => 'Sensilo de laŭvicaj liniaj koloroj',
 
+'exif-filesource-3' => 'Cifereca senmova fotilo',
+
 'exif-scenetype-1' => 'Rekte fotita bildo',
 
 'exif-customrendered-0' => 'Norma proceso',

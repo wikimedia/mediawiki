@@ -477,7 +477,7 @@ $1',
 'red-link-title'          => "$1 (n'eus ket eus ar bajenn-mañ)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Page',
+'nstab-main'      => 'Pajenn',
 'nstab-user'      => 'Pajenn implijer',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Pajenn dibar',
@@ -3130,7 +3130,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-subjectdistance-value' => '$1 metr',
 
 'exif-meteringmode-0'   => 'Dianav',
-'exif-meteringmode-1'   => 'Keitat',
+'exif-meteringmode-1'   => 'Keidenn',
 'exif-meteringmode-2'   => 'Muzul kreiz keitat',
 'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Liesspot',
