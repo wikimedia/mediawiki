@@ -68,7 +68,7 @@ jQuery( function( $ ) {
 			$histForm.append( $compareLink.clone() );
 		}
 
-		function updateCompare() {
+		var updateCompare = function() {
 			var $radio = $histForm.find( 'input[type=radio]:checked' );
 			var genLink = mw.config.get( 'wgScript' )
 				+ '?title=' + mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )

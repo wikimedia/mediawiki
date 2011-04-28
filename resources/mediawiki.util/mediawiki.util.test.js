@@ -50,7 +50,7 @@
 			if ( !title ) {
 				return false;
 			}
-			escapedtitle = mw.html.escape( title ).replace( /  /g, '&nbsp;&nbsp;' );
+			var escapedtitle = mw.html.escape( title ).replace( /  /g, '&nbsp;&nbsp;' );
 			this.addedTests.push( [ 'HEADER', escapedtitle, mw.test.numberOfHeader++ ] );
 			this.$table.append( '<tr class="mw-mwutiltest-head" id="mw-mwutiltest-head'+mw.test.numberOfHeader+'"><th colspan="4">' + escapedtitle + '</th></tr>' );
 			return true;
@@ -403,14 +403,14 @@
 							}
 
 							exec = item[0];
-							shouldreturn = item[1];
-							shouldcontain = item[2];
+							var shouldreturn = item[1];
+							var shouldcontain = item[2];
 
 							numberOfTests++;
 							headNumberOfTests++;
-							doesReturn = eval( exec );
+							var doesReturn = eval( exec );
 							doesReturn = doesReturn + ' (' + typeof doesReturn + ')';
-							$thisrow = $testrows.eq( i - numberOfHeaders ); // since headers are rows as well
+							var $thisrow = $testrows.eq( i - numberOfHeaders ); // since headers are rows as well
 							$thisrow.find( '> td' ).eq(2).html( mw.html.escape( doesReturn ).replace(/  /g, '&nbsp;&nbsp;' ) );
 
 							if ( doesReturn.indexOf( shouldcontain ) !== -1 ) {
