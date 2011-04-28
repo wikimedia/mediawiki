@@ -185,6 +185,14 @@ class DatabaseOracle extends DatabaseBase {
 		wfRunHooks( 'DatabaseOraclePostInit', array( $this ) );
 	}
 
+	function __destruct() {
+		if ($this->mOpened) {
+			wfSuppressWarnings();
+			$this->close();
+			wfRestoreWarnings();
+		}
+	}
+
 	function getType() {
 		return 'oracle';
 	}
