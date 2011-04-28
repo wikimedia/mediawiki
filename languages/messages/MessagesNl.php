@@ -62,12 +62,16 @@ $namespaceAliases = array(
 	'Overleg_afbeelding' => NS_FILE_TALK,
 );
 
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ymd',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'dmy';
 
 $dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'M j, Y',
-	'mdy both' => 'M j, Y H:i',
-
 	'dmy time' => 'H:i',
 	'dmy date' => 'j M Y',
 	'dmy both' => 'j M Y H:i',
