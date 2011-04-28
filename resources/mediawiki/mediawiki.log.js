@@ -44,8 +44,10 @@
 						'height': '150px',
 						'background-color': 'white',
 						'border-top': 'solid 2px #ADADAD'
-					} )
-					.appendTo( 'body' );
+					} );
+				$( 'body' )
+					.css( 'padding-bottom', '150px' ) // don't hide anything
+					.append( $log );
 			}
 			$log.append(
 				$( '<div></div>' )
@@ -53,10 +55,11 @@
 						'border-bottom': 'solid 1px #DDDDDD',
 						'font-size': 'small',
 						'font-family': 'monospace',
+						'white-space': 'pre-wrap',
 						'padding': '0.125em 0.25em'
 					} )
 					.text( string )
-					.append( '<span style="float:right">[' + time + ']</span>' )
+					.prepend( '<span style="float:right">[' + time + ']</span>' )
 			);
 		}
 	};
