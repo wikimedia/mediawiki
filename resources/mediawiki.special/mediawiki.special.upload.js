@@ -83,6 +83,7 @@ jQuery( function( $ ) {
 			}
 			
 			img.onload = function() {
+				var width, height, x, y, dx, dy;
 				// Fit the image within the previewSizexpreviewSize box
 				if ( img.width > img.height ) {
 					width = previewSize;

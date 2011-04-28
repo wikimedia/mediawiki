@@ -106,7 +106,8 @@ var minutesToHours = function( min ) {
 var hoursToMinutes = function( hour ) {
 	var arr = hour.split( ':' );
 	arr[0] = parseInt( arr[0], 10 );
-	
+
+	var minutes;
 	if ( arr.length == 1 ) {
 		// Specification is of the form [-]XX
 		minutes = arr[0] * 60;

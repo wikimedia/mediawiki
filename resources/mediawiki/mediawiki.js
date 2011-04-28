@@ -1191,7 +1191,7 @@ window.mediaWiki = new ( function( $ ) {
 
 	/** HTML construction helper functions */
 	this.html = new ( function () {
-		function escapeCallback( s ) {
+		var escapeCallback = function( s ) {
 			switch ( s ) {
 				case "'":
 					return '&#039;';
