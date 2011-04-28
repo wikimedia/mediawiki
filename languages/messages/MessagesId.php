@@ -299,6 +299,15 @@ $specialPageAliases = array(
 	'ComparePages'              => array( 'Bandingkan_halaman', 'BandingkanHalaman' ),
 );
 
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ymd',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'dmy';
+
 $dateFormats = array(
 	'dmy time' => 'H.i',
 	'dmy date' => 'j F Y',
