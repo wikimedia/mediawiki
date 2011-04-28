@@ -3223,6 +3223,8 @@ Os demais agocharanse por omisión.
 'exif-sensingmethod-7' => 'Sensor trilineal',
 'exif-sensingmethod-8' => 'Sensor secuencial da liña de cor',
 
+'exif-filesource-3' => 'Cámara fotográfica dixital',
+
 'exif-scenetype-1' => 'Unha imaxe fotografada directamente',
 
 'exif-customrendered-0' => 'Procesamento normal',

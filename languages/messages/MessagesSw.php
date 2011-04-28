@@ -251,7 +251,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'endelea',
 'index-category'                 => 'Kurasa kuu',
 'noindex-category'               => 'Kurasa zisizokuu',
-'broken-file-category'           => 'Kurasa zinazo viungo vinavyoelekea mafaili yasiyopatikana',
+'broken-file-category'           => 'Kurasa zenye viungo vilivyovunjika',
 
 'mainpagetext'      => "'''MediaWiki imefanikiwa kuingizwa.'''",
 'mainpagedocfooter' => 'Shauriana na [http://meta.wikimedia.org/wiki/Help:Contents Mwongozo wa Mtumiaji] kwa habari juu ya utumiaji wa bidhaa pepe ya wiki.
@@ -636,8 +636,8 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'resetpass-temp-password'   => 'Neno la siri la muda:',
 
 # Special:PasswordReset
-'passwordreset'        => 'Kuweka upya neno la siri',
-'passwordreset-legend' => 'Weka upya neno la siri',
+'passwordreset'        => 'Seti upya neno la siri',
+'passwordreset-legend' => 'Seti upya neno la siri',
 
 # Edit page toolbar
 'bold_sample'     => 'Maandishi ya kooze',

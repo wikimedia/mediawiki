@@ -67,6 +67,7 @@ $messages = array(
 
 'about'      => 'Хакъиндай',
 'newwindow'  => '(акъай жеда цlийи пенжерда)',
+'cancel'     => 'Элхъуьр хъувун',
 'mypage'     => 'Зин чар',
 'mytalk'     => 'Зин ихтилатрин чар',
 'navigation' => 'Къекъуьн',
@@ -193,6 +194,7 @@ $messages = array(
 'media_tip'     => 'Файлдин цlар',
 
 # Edit pages
+'summary'        => 'Къейда:',
 'minoredit'      => 'И гъвечIи дегишарун',
 'watchthis'      => 'Гелкъуьн и хъувун',
 'savearticle'    => 'Хуьн хъувун',
@@ -456,6 +458,7 @@ $1 Кlевхьанай ишлемишчи',
 
 'sp-contributions-blocklog' => 'чинрин хара',
 'sp-contributions-talk'     => 'Рахун',
+'sp-contributions-username' => 'IP адресс ишлемичин тlарцlин',
 'sp-contributions-submit'   => 'Ахтармишун',
 
 # What links here
@@ -486,6 +489,9 @@ $1 Кlевхьанай ишлемишчи',
 'movetalk'    => 'Югъун,галкlана рахун',
 'movereason'  => 'Фагьум:',
 'revertmove'  => 'хтун',
+
+# Export
+'export' => 'Чарар ракъурун',
 
 # Namespace 8 related
 'allmessages-filter-all' => 'Вири',

@@ -355,6 +355,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 
 # Recent changes
 'recentchanges'                  => 'Mbóngwana ya nsúka',
+'recentchanges-legend'           => 'Mapɔni ma mbóngwana ya nsúka',
 'recentchanges-feed-description' => 'Kolanda mbóngwana ya nsúka ya wiki o ebale eye.',
 'rcnote'                         => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana '''1''' ya nsúka|izalí mbóngwana '''$1''' ya nsúka}} o {{PLURAL:$2|mokɔlɔ|mikɔlɔ '''$2'''}} ya nsúka, o ntángo $5 o mokɔlɔ $4.",
 'rcshowhideminor'                => '$1 mbóngwana ya mokɛ́',
@@ -362,7 +363,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'rcshowhideliu'                  => '$1 basáleli bamíkitólí',
 'rcshowhideanons'                => '$1 basáleli sóngóló',
 'rcshowhidemine'                 => '$1 mbóngwana ya ngáí',
-'rclinks'                        => 'Komɔ́nisa mbóngwana $1 ya nsúka o mikɔ́lɔ $2<br />$3',
+'rclinks'                        => 'Komɔ́nisa mbóngwana $1 ya nsúka o mikɔlɔ $2<br />$3',
 'diff'                           => 'mbó.',
 'hist'                           => 'mokóló',
 'hide'                           => 'kobomba',
@@ -478,7 +479,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'unwatch'           => 'Kolanda tɛ́',
 'watchlist-details' => '{{PLURAL:$1|Lonkásá $1 elandámí|Nkásá $1 bilandámí}}, longola nkásá ya ntembe.',
 'wlnote'            => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana ya nsúka|izalí mbóngwana '''$1''' ya nsúka}} o {{PLURAL:$2|ngonga|ngonga '''$2'''}} ya nsúka.",
-'wlshowlast'        => 'Komɔ́nisa ngónga $1 ya nsúka, mikɔ́lɔ $2 mya nsúka tǒ $3',
+'wlshowlast'        => 'Komɔ́nisa ngónga $1 ya nsúka, mikɔlɔ $2 mya nsúka tǒ $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Kolanda...',

@@ -2635,6 +2635,7 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipb-needreblock'                 => '$1 est ja blocâ.
 Voléd-vos changiér los paramètres ?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}',
+'unblock-hideuser'                => 'Vos pouede pas dèblocar cél utilisator, perce que son nom d’utilisator at étâ cachiê.',
 'ipb_cant_unblock'                => 'Èrror : numerô de blocâjo $1 pas trovâ.
 O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'ipb_blocked_as_range'            => 'Èrror : l’adrèce IP $1 est pas blocâ tot drêt et pôt vêr pas étre dèblocâ.
@@ -3473,6 +3474,29 @@ Los ôtros champs seront cachiês per dèfôt.
 
 'exif-isospeedratings-overflow' => 'Ples grant que 65535',
 
+'exif-iimcategory-ace' => 'Ârts, cultura et amusament',
+'exif-iimcategory-clj' => 'Crimo et drêt',
+'exif-iimcategory-dis' => 'Catastrofes et accidents',
+'exif-iimcategory-fin' => 'Èconomia et afâres',
+'exif-iimcategory-edu' => 'Èducacion',
+'exif-iimcategory-evn' => 'Enveronance',
+'exif-iimcategory-hth' => 'Santât',
+'exif-iimcategory-hum' => 'Entèrèt de l’homo',
+'exif-iimcategory-lab' => 'Travâly',
+'exif-iimcategory-lif' => 'Fôrma de via et pâssa-temps',
+'exif-iimcategory-pol' => 'Politica',
+'exif-iimcategory-rel' => 'Religion et creyences',
+'exif-iimcategory-sci' => 'Science et tècnolog·ie',
+'exif-iimcategory-soi' => 'Quèstions sociâles',
+'exif-iimcategory-spo' => 'Sports',
+'exif-iimcategory-war' => 'Guèrra, conflit et troblo',
+'exif-iimcategory-wea' => 'Mètèô',
+
+'exif-urgency-normal' => 'Normala ($1)',
+'exif-urgency-low'    => 'Fêbla ($1)',
+'exif-urgency-high'   => 'Hôta ($1)',
+'exif-urgency-other'  => 'Prioritât dèfenia per l’utilisator ($1)',
+
 # External editor support
 'edit-externally'      => 'Changiér ceti fichiér en utilisent una aplicacion de defôr',
 'edit-externally-help' => '(Vêde les [http://www.mediawiki.org/wiki/Manual:External_editors enstruccions d’enstalacion] por més d’enformacions)',
@@ -3509,34 +3533,46 @@ Ora, vos vos pouede [[Special:UserLogin|branchiér]] et profitar du vouiqui.',
 'confirmemail_error'        => 'Un problèmo est arrevâ pendent l’encartâjo de voutra confirmacion.',
 'confirmemail_subject'      => 'Confirmacion d’adrèce èlèctronica por {{SITENAME}}',
 'confirmemail_body'         => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
-at encartâ un compto « $2 » avouéc ceta adrèce èlèctronica sur lo seto {{SITENAME}}.
+at encartâ un compto « $2 » avouéc cela adrèce èlèctronica dessus {{SITENAME}}.
 
 Por confirmar que cél compto est franc a vos et por
 activar les fonccions de mèssageria dessus {{SITENAME}},
-volyéd siuvre ceti lim dens voutron navigator :
+volyéd uvrir ceti lim dens voutron navigator :
 
 $3
 
-Se vos éd *pas* encartâ cél compto, uvréd pas ceti lim ;
-vos pouede siuvre l’ôtro lim ce-desot por anular la
-confirmacion de voutra adrèce èlèctronica :
+Se vos éd *pas* encartâ lo compto, siude ceti lim
+por anular la confirmacion de l’adrèce èlèctronica :
 
 $5
 
 Cél code de confirmacion èxpirerat lo $4.',
-'confirmemail_body_changed' => 'Quârqu’un, probâblament vos, dês l’adrèce IP $1,
-at changiê l’adrèce èlèctronica associyê u compto « $2 » de {{SITENAME}}
-en ceta adrèce.
+'confirmemail_body_changed' => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
+at changiê l’adrèce èlèctronica du compto « $2 » a cela adrèce dessus {{SITENAME}}.
 
 Por confirmar que cél compto est franc a vos et por
 reactivar les fonccions de mèssageria dessus {{SITENAME}},
-volyéd siuvre ceti lim dens voutron navigator :
+volyéd uvrir ceti lim dens voutron navigator :
 
 $3
 
-Se vos éd *pas* encartâ cél compto, uvréd pas ceti lim ;
-vos pouede siuvre l’ôtro lim ce-desot por anular la
-confirmacion de voutra adrèce èlèctronica :
+Se lo compto est *pas* a vos, siude ceti lim
+por anular la confirmacion de l’adrèce èlèctronica :
+
+$5
+
+Cél code de confirmacion èxpirerat lo $4.',
+'confirmemail_body_set'     => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
+at changiê l’adrèce èlèctronica du compto « $2 » a cela adrèce dessus {{SITENAME}}.
+
+Por confirmar que cél compto est franc a vos et por
+reactivar les fonccions de mèssageria dessus {{SITENAME}},
+volyéd uvrir ceti lim dens voutron navigator :
+
+$3
+
+Se lo compto est *pas* a vos, siude ceti lim
+por anular la confirmacion de l’adrèce èlèctronica :
 
 $5
 
@@ -3558,11 +3594,13 @@ $1',
 'trackbackdeleteok' => 'Lo rètrolim at étâ suprimâ avouéc reusséta.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Atencion :''' ceta pâge at étâ suprimâ aprés que vos vos éte betâ a la changiér !",
-'confirmrecreate'     => "L’utilisator [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos vos érâd betâ a la changiér, por ceta rêson :
+'deletedwhileediting'      => "'''Atencion :''' ceta pâge at étâ suprimâ aprés que vos vos éte betâ a la changiér !",
+'confirmrecreate'          => "L’utilisator [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos vos érâd betâ a la changiér, por ceta rêson :
 : ''$2''
 Volyéd confirmar que vos voléd franc refâre cela pâge.",
-'recreate'            => 'Refâre',
+'confirmrecreate-noreason' => 'L’utilisator [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos vos érâd betâ a la changiér.
+Volyéd confirmar que vos voléd franc refâre cela pâge.',
+'recreate'                 => 'Refâre',
 
 # action=purge
 'confirm_purge_button' => 'Confirmar',

@@ -1113,6 +1113,7 @@ $1',
 'action-move'           => 'همدا مخ لېږدول',
 'action-movefile'       => 'همدا دوتنه لېږدول',
 'action-upload'         => 'همدا دوتنه پورته کول',
+'action-upload_by_url'  => 'دا دوتنه له يوه URL نه پورته کول',
 'action-delete'         => 'همدا مخ ړنګول',
 'action-deleterevision' => 'دا مخکتنه ړنګول',
 'action-deletedhistory' => 'د دې مخ ړنګ شوی پېښليک کتل',
@@ -1655,6 +1656,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 ** ډېره زياته سپام خپرونه
 ** بې ګټې سمونې او خپرونې
 ** ډېر لوستونکی مخ',
+'protect-edit-reasonlist'     => 'د ژغورنې سببونه سمول',
 'protect-expiry-options'      => '1 ساعت:1 hour,1 ورځ:1 day,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',
 'restriction-type'            => 'اجازه:',
 'restriction-level'           => 'د بنديز کچه:',
@@ -1705,6 +1707,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'sp-contributions-newbies-sub' => 'د نوو ګڼونونو لپاره',
 'sp-contributions-blocklog'    => 'د بنديز يادښت',
 'sp-contributions-deleted'     => 'د کارن ونډې ړنګې شوې',
+'sp-contributions-uploads'     => 'پورته کېدنې',
 'sp-contributions-logs'        => 'يادښتونه',
 'sp-contributions-talk'        => 'خبرې اترې',
 'sp-contributions-search'      => 'د ونډو لټون',
@@ -2081,7 +2084,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-serialnumber'       => 'د کامرې پرله پسې شمېره',
 'exif-cameraownername'    => 'د کامرې خاوند',
 'exif-label'              => 'نښکه',
+'exif-pngfilecomment'     => 'د PNG دوتنې تبصره',
 'exif-disclaimer'         => 'ردادعاليک',
+'exif-giffilecomment'     => 'د GIF دوتنې تبصره',
 
 'exif-unknowndate' => 'نامالومه نېټه',
 
@@ -2141,6 +2146,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-gpsdestdistance-m' => 'مايلونه',
 'exif-gpsdestdistance-n' => 'سمندري مايلونه',
 
+'exif-objectcycle-a' => 'يوازې ګهيځ',
+'exif-objectcycle-p' => 'يوازې ماښام',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'سم لوری',
 'exif-gpsdirection-m' => 'مقناطيسي لوری',
@@ -2149,6 +2157,10 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-dc-date'        => 'نېټه (نېټې)',
 'exif-dc-publisher'   => 'خپرونکی',
 'exif-dc-rights'      => 'رښتې',
+'exif-dc-source'      => 'د سرچينې رسنۍ',
+'exif-dc-type'        => 'د رسنۍ ډول',
+
+'exif-rating-rejected' => 'رد شوی',
 
 'exif-iimcategory-clj' => 'جنايت او قانون',
 'exif-iimcategory-dis' => 'غميزې او پېښې',

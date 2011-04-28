@@ -684,7 +684,7 @@ Consulta: $2',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de protecção "em cascata" activada):
 $2',
 'namespaceprotected'   => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
-'customcssjsprotected' => 'Não possui permissão para editar esta página, porque ela contém as configurações pessoais de outro utilizador.',
+'customcssjsprotected' => 'Não tem permissão de editar esta página, porque ela contém as configurações pessoais de outro utilizador.',
 'ns-specialprotected'  => 'Não é possível editar páginas especiais',
 'titleprotected'       => 'Este título foi protegido contra criação por [[User:$1|$1]].
 A justificação foi "\'\'$2\'\'".',
@@ -2327,9 +2327,9 @@ Consulte $2 para um registo de eliminações recentes.',
 ** Violação de direitos de autor
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar motivos de eliminação',
-'delete-toobig'          => 'Esta página possui um longo histórico, com mais de $1 {{PLURAL:$1|edição|edições}}.
-A eliminação de tais páginas foi restringida na {{SITENAME}}, para evitar problemas acidentais.',
-'delete-warning-toobig'  => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
+'delete-toobig'          => 'Esta página tem um histórico longo, com mais de $1 {{PLURAL:$1|edição|edições}}.
+A eliminação de páginas como esta foi restringida na {{SITENAME}}, para evitar problemas acidentais.',
+'delete-warning-toobig'  => 'Esta página tem um histórico de edições longo, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados da {{SITENAME}};
 prossiga com precaução.',
 
@@ -2375,7 +2375,7 @@ Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as p
 Esta é a configuração presente para a página '''$1''':",
 'protect-locked-dblock'       => "Não é possível alterar os níveis de protecção, porque a base de dados está bloqueada.
 Esta é a configuração actual para a página '''$1''':",
-'protect-locked-access'       => "A sua conta não possui permissões para alterar os níveis de protecção de uma página.
+'protect-locked-access'       => "A sua conta não tem permissão de alterar os níveis de protecção de uma página.
 Esta é a configuração actual da página '''$1''':",
 'protect-cascadeon'           => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com protecção em cascata.
 Pode alterar o nível de protecção desta página, mas isso não afectará a protecção em cascata.',
@@ -2470,7 +2470,7 @@ $1',
 # Namespace form on various pages
 'namespace'             => 'Espaço nominal:',
 'invert'                => 'Inverter selecção',
-'namespace_association' => 'Domínio associado',
+'namespace_association' => 'Espaço nominal associado',
 'blanknamespace'        => '(Principal)',
 
 # Contributions
