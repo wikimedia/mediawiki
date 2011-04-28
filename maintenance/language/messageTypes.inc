@@ -267,7 +267,6 @@ $wgOptionalMessages = array(
 	'exif-lightsource-21',
 	'exif-lightsource-22',
 	'exif-lightsource-23',
-	'exif-filesource-3',
 	'booksources-isbn',
 	'sp-contributions-explain',
 	'sorbs',

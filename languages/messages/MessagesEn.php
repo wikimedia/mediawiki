@@ -3686,8 +3686,8 @@ Others will be hidden by default.
 'exif-colorspace'                  => 'Color space',
 'exif-componentsconfiguration'     => 'Meaning of each component',
 'exif-compressedbitsperpixel'      => 'Image compression mode',
-'exif-pixelydimension'             => 'Valid image width',
-'exif-pixelxdimension'             => 'Valid image height',
+'exif-pixelydimension'             => 'Image width',
+'exif-pixelxdimension'             => 'Image height',
 'exif-makernote'                   => 'Manufacturer notes',
 'exif-usercomment'                 => 'User comments',
 'exif-relatedsoundfile'            => 'Related audio file',
@@ -3704,10 +3704,10 @@ Others will be hidden by default.
 'exif-spectralsensitivity'         => 'Spectral sensitivity',
 'exif-isospeedratings'             => 'ISO speed rating',
 'exif-oecf'                        => 'Optoelectronic conversion factor',
-'exif-shutterspeedvalue'           => 'Shutter speed',
-'exif-aperturevalue'               => 'Aperture',
-'exif-brightnessvalue'             => 'Brightness',
-'exif-exposurebiasvalue'           => 'Exposure bias',
+'exif-shutterspeedvalue'           => 'APEX shutter speed',
+'exif-aperturevalue'               => 'APEX aperture',
+'exif-brightnessvalue'             => 'APEX brightness',
+'exif-exposurebiasvalue'           => 'APEX exposure bias',
 'exif-maxaperturevalue'            => 'Maximum land aperture',
 'exif-subjectdistance'             => 'Subject distance',
 'exif-meteringmode'                => 'Metering mode',
@@ -3827,9 +3827,9 @@ Others will be hidden by default.
 
 'exif-meteringmode-0'   => 'Unknown',
 'exif-meteringmode-1'   => 'Average',
-'exif-meteringmode-2'   => 'CenterWeightedAverage',
+'exif-meteringmode-2'   => 'Center weighted average',
 'exif-meteringmode-3'   => 'Spot',
-'exif-meteringmode-4'   => 'MultiSpot',
+'exif-meteringmode-4'   => 'Multi-Spot',
 'exif-meteringmode-5'   => 'Pattern',
 'exif-meteringmode-6'   => 'Partial',
 'exif-meteringmode-255' => 'Other',
@@ -3878,7 +3878,7 @@ Others will be hidden by default.
 'exif-sensingmethod-7' => 'Trilinear sensor',
 'exif-sensingmethod-8' => 'Color sequential linear sensor',
 
-'exif-filesource-3' => 'DSC', # only translate this message to other languages if you have to change it
+'exif-filesource-3' => 'Digital still camera',
 
 'exif-scenetype-1' => 'A directly photographed image',
 
