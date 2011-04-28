@@ -554,6 +554,7 @@ files are used instead.
 * (bug 22606) don't send the "someone registred an account" message when setting email address
   (i.e. old one empty) in user preferences
 * (bug 26458) Section edit links appear on pages that user does not have right to edit
+* (bug 28611) Don't die in SqlBagOStuff::incr() if there's a race condition.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
