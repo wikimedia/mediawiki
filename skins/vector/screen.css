@@ -165,10 +165,6 @@ div#mw-head h5 {
 		height: 1.9em;
 		padding-left: 0.5em;
 		padding-right: 0.5em;
-		/* @embed */
-		background-image: url(images/tab-break.png);
-		background-position: bottom right;
-		background-repeat: no-repeat;
 		color: #0645ad;
 		cursor: pointer;
 		font-size: 0.8em;
@@ -176,6 +172,10 @@ div#mw-head h5 {
 	/* IGNORED BY IE6 */
 	div.vectorTabs li > a {
 		display: block;
+	}
+	div.vectorTabs li.icon a {
+		background-position: bottom right;
+		background-repeat: no-repeat;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorTabs span a  {
@@ -187,6 +187,13 @@ div#mw-head h5 {
 	div.vectorTabs span > a {
 		float: left;
 		display: block;
+	}
+	div.vectorTabs span {
+		display: inline-block;
+		/* @embed */
+		background-image: url(images/tab-break.png);
+		background-position: bottom right;
+		background-repeat: no-repeat;
 	}
 	div.vectorTabs li.selected a,
 	div.vectorTabs li.selected a:visited{
@@ -1166,10 +1173,6 @@ div#bodyContent {
 }
 
 /* Watch/Unwatch Icon Styling */
-#ca-unwatch.icon,
-#ca-watch.icon {
-	margin-right:1px;
-}
 #ca-unwatch.icon a,
 #ca-watch.icon a {
 	margin: 0;
