@@ -300,10 +300,6 @@ $specialPageAliases = array(
 );
 
 $dateFormats = array(
-	'mdy time' => 'H.i',
-	'mdy date' => 'F j, Y',
-	'mdy both' => 'H.i, F j, Y',
-
 	'dmy time' => 'H.i',
 	'dmy date' => 'j F Y',
 	'dmy both' => 'j F Y H.i',
