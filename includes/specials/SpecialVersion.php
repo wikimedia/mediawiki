@@ -470,11 +470,12 @@ class SpecialVersion extends SpecialPage {
 					<th>" . wfMsg( 'version-hook-subscribedby' ) . "</th>
 				</tr>\n";
 
-			foreach ( $myWgHooks as $hook => $hooks )
+			foreach ( $myWgHooks as $hook => $hooks ) {
 				$ret .= "<tr>
 						<td>$hook</td>
 						<td>" . $this->listToText( $hooks ) . "</td>
 					</tr>\n";
+			}
 
 			$ret .= Xml::closeElement( 'table' );
 			return $ret;
@@ -572,10 +573,11 @@ class SpecialVersion extends SpecialPage {
 		} elseif ( !is_array( $list ) ) {
 			return $list;
 		} else {
-			if( is_object( $list[0] ) )
+			if( is_object( $list[0] ) ) {
 				$class = get_class( $list[0] );
-			else
+			} else {
 				$class = $list[0];
+			}
 			return "($class, {$list[1]})";
 		}
 	}
