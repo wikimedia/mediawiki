@@ -35,7 +35,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		 * Replace with a HashBag. They would not be going to persist anyway.
 		 */
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
-		   
+
 		if( $this->needsDB() ) {
 		
 			global $wgDBprefix;

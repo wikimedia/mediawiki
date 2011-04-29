@@ -22,11 +22,18 @@ class PHPUnitMaintClass extends Maintenance {
 		parent::finalSetup();
 
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgUseDatabaseMessages;
+		global $wgLocaltimezone, $wgLocalisationCacheConf;
 
 		$wgMainCacheType = CACHE_NONE;
 		$wgMessageCacheType = CACHE_NONE;
 		$wgParserCacheType = CACHE_NONE;
+
 		$wgUseDatabaseMessages = false; # Set for future resets
+
+		// Assume UTC for testing purposes
+		$wgLocaltimezone = 'UTC';
+
+		$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
 	}
 	public function execute() { }
 	public function getDbType() {
@@ -36,11 +43,6 @@ class PHPUnitMaintClass extends Maintenance {
 
 $maintClass = 'PHPUnitMaintClass';
 require( RUN_MAINTENANCE_IF_MAIN );
-
-// Assume UTC for testing purposes
-$wgLocaltimezone = 'UTC';
-
-$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
 
 if( !in_array( '--configuration', $_SERVER['argv'] ) ) {
 	//Hack to eliminate the need to use the Makefile (which sucks ATM)
