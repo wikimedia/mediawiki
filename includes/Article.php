@@ -836,18 +836,11 @@ class Article {
 		$dbr = wfGetDB( DB_SLAVE );
 		$userTable = $dbr->tableName( 'user' );
 
-		if ( $dbr->implicitGroupby() ) {
-			$realNameField = 'user_real_name';
-		} else {
-			$realNameField = 'FIRST(user_real_name) AS user_real_name';
-		}
-
 		$tables = array( 'revision', 'user' );
 
 		$fields = array(
-			'rev_user as user_id',
+			"$userTable.*",
 			'rev_user_text AS user_name',
-			$realNameField,
 			'MAX(rev_timestamp) AS timestamp',
 		);
 
