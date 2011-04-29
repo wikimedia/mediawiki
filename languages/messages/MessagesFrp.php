@@ -771,8 +771,8 @@ l’utilisator « $2 » et est « $3 ». S’o ére voutra entencion, vos vos de
 branchiér et pués chouèsir un mot de pâssa novél.
 Voutron mot de pâssa temporèro èxpirerat dens $5 jorn{{PLURAL:$5||s}}.
 
-Se vos éte pas l’ôtor de cela demanda, ou ben se vos vos rapelâd ora
-de voutron viely mot de pâssa et que vos souhètâd pas més nen changiér, vos
+Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora
+de voutron mot de pâssa et que vos souhètâd pas més nen changiér, vos
 pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
 'noemail'                    => 'Niona adrèce èlèctronica at étâ encartâ por l’utilisator « $1 ».',
 'noemailcreate'              => 'Vos dête balyér una adrèce èlèctronica valida',
@@ -830,17 +830,29 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'resetpass-temp-password'   => 'Mot de pâssa temporèro :',
 
 # Special:PasswordReset
-'passwordreset'              => 'Remisa a zérô du mot de pâssa',
-'passwordreset-text'         => 'Rempléd ceti formulèro por recêvre un mèssâjo de rapèl des dètalys de voutron compto.',
-'passwordreset-legend'       => 'Remisa a zérô du mot de pâssa',
-'passwordreset-disabled'     => 'La remisa a zérô des mots de pâssa at étâ dèsactivâ sur ceti vouiqui.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Buchiéd yon des bocons de balyês ce-desot}}',
-'passwordreset-username'     => 'Nom d’utilisator :',
-'passwordreset-email'        => 'Adrèce èlèctronica :',
-'passwordreset-emailtitle'   => 'Dètalys du compto dessus {{SITENAME}}',
-'passwordreset-emailelement' => 'Nom d’utilisator : $1
+'passwordreset'                => 'Remisa a zérô du mot de pâssa',
+'passwordreset-text'           => 'Rempléd ceti formulèro por recêvre un mèssâjo de rapèl des dètalys de voutron compto.',
+'passwordreset-legend'         => 'Remisa a zérô du mot de pâssa',
+'passwordreset-disabled'       => 'La remisa a zérô des mots de pâssa at étâ dèsactivâ sur ceti vouiqui.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Buchiéd yon des bocons de balyês ce-desot}}',
+'passwordreset-username'       => 'Nom d’utilisator :',
+'passwordreset-email'          => 'Adrèce èlèctronica :',
+'passwordreset-emailtitle'     => 'Dètalys du compto dessus {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un rapèl des dètalys
+de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}} a cela adrèce èlèctronica :
+
+$2
+
+{{PLURAL:$3|Cél mot de pâssa temporèro èxpirerat|Celos mots de pâssa temporèros èxpireront}} dens $5 jorn{{PLURAL:$5||s}}. Ora, vos vos dête branchiér et pués chouèsir un mot de pâssa novél. Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora de voutron mot de pâssa originâl et que vos souhètâd pas més nen changiér, vos pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
+'passwordreset-emailtext-user' => 'L’utilisator $1 dessus {{SITENAME}} at demandâ un rapèl des dètalys
+de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}} a cela adrèce èlèctronica :
+
+$2
+
+{{PLURAL:$3|Cél mot de pâssa temporèro èxpirerat|Celos mots de pâssa temporèros èxpireront}} dens $5 jorn{{PLURAL:$5||s}}. Ora, vos vos dête branchiér et pués chouèsir un mot de pâssa novél. Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora de voutron mot de pâssa originâl et que vos souhètâd pas més nen changiér, vos pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
+'passwordreset-emailelement'   => 'Nom d’utilisator : $1
 Mot de pâssa temporèro : $2',
-'passwordreset-emailsent'    => 'Un mèssâjo de rapèl at étâ mandâ.',
+'passwordreset-emailsent'      => 'Un mèssâjo de rapèl at étâ mandâ.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tèxto en grâs',
@@ -980,6 +992,7 @@ Se cen tôrne pas reussir, vos volyéd [[Special:UserLogout|dèbranchiér]], et 
 'token_suffix_mismatch'            => "'''Voutron changement at pas étâ accèptâ perce que voutron navigator at mècllâ los caractèros de ponctuacion dens lo numerô de changement.'''
 Lo changement at étâ refusâ por empachiér la corrupcion du tèxto de la pâge.
 Ceti problèmo arreve quand vos utilisâd un sèrvor mandatèro (''proxy'') anonimo qu’est pas de sûr.",
+'edit_form_incomplete'             => "'''Quârques parties du formulèro de changement ont pas avengiês lo sèrvor ; controlâd que voutros changements sont entiérs et pués tornâd èprovar.'''",
 'editing'                          => 'Changement de $1',
 'editingsection'                   => 'Changement de $1 (sèccion)',
 'editingcomment'                   => 'Changement de $1 (novèla sèccion)',
@@ -1437,6 +1450,7 @@ Ceta enformacion serat publica.',
 'email'                         => 'Mèssageria èlèctronica',
 'prefs-help-realname'           => 'U chouèx : se vos lo spècefiâd, serat utilisâ por vos atribuar voutres contribucions.',
 'prefs-help-email'              => 'L’adrèce èlèctronica est u chouèx, mas el est nècèssèra por tornar inicialisar voutron mot de pâssa, se vos vegnéd a l’oubliar.',
+'prefs-help-email-others'       => 'Vos porriâd asse-ben chouèsir de lèssiér los ôtros sè veriér vers vos sur voutra pâge utilisator ou ben de discussion sen que seye nècèssèro de dèvouèlar voutra identitât.',
 'prefs-help-email-required'     => 'Una adrèce èlèctronica est nècèssèra.',
 'prefs-info'                    => 'Enformacion de bâsa',
 'prefs-i18n'                    => 'Entèrnacionalisacion',
@@ -1758,6 +1772,8 @@ Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que
 Volyéd controlar lo chouèx de configuracion « file_uploads ».',
 'uploadscripted'              => 'Cél fichiér contint de code HTML ou ben un scripte que porrêt étre entèrprètâ de façon fôssa per un navigator vouèbe.',
 'uploadvirus'                 => 'Cél fichiér contint un virus ! Por més de dètalys, vêde : $1',
+'uploadjava'                  => 'O est un fichiér ZIP que contint un fichiér Java .class.
+Lo tèlèchargement de fichiérs Java est pas ôtorisâ, perce que pôvont entrênar des rèstriccions de sècuritât.',
 'upload-source'               => 'Fichiér sôrsa',
 'sourcefilename'              => 'Nom du fichiér sôrsa :',
 'sourceurl'                   => 'URL sôrsa :',
@@ -1813,6 +1829,10 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 # ZipDirectoryReader
 'zip-file-open-error' => 'Una èrror est arrevâ pendent l’uvèrtura du fichiér ZIP por contrôlo.',
 'zip-wrong-format'    => 'Lo fichiér spècefiâ est pas un fichiér ZIP.',
+'zip-bad'             => 'Lo fichiér est un fichiér ZIP corrompu ou ben iliésiblo.
+Pôt pas étre controlâ tot drêt por la sècuritât.',
+'zip-unsupported'     => 'Lo fichiér est un fichiér ZIP qu’utilise ZIP pas recognues per MediaWiki.
+Pôt pas étre controlâ tot drêt por la sècuritât.',
 
 # Special:UploadStash
 'uploadstash'          => 'Cache d’importacion',
@@ -2552,6 +2572,7 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 ** Tentativa d’entimidacion ou ben de torment
 ** Abus d’usâjo d’un mouél de comptos
 ** Nom d’utilisator pas accèptâblo, ofensent ou ben difament',
+'ipb-hardblock'                   => 'Empache los changements des utilisators encartâs qu’utilisont cela adrèce IP',
 'ipbcreateaccount'                => 'Empachiér la crèacion de compto',
 'ipbemailban'                     => 'Empachiér l’utilisator de mandar des mèssâjos',
 'ipbenableautoblock'              => 'Blocar ôtomaticament la dèrriére adrèce IP utilisâ per l’utilisator et pués totes ses adrèces IP a vegnir que porrêt èprovar',
@@ -2562,12 +2583,15 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 'ipbotherreason'                  => 'Ôtra rêson / rêson de ples :',
 'ipbhidename'                     => 'Cachiér lo nom d’utilisator des changements et de les listes',
 'ipbwatchuser'                    => 'Siuvre les pâges utilisator et de discussion a ceti utilisator',
+'ipb-disableusertalk'             => 'Empache cél utilisator de changiér sa prôpra pâge de discussion pendent lo temps de son blocâjo',
 'ipb-change-block'                => 'Tornar blocar ceti utilisator avouéc celos paramètres',
 'ipb-confirm'                     => 'Confirmar lo blocâjo',
 'badipaddress'                    => 'L’adrèce IP est fôssa.',
 'blockipsuccesssub'               => 'Blocâjo reussi',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] at étâ blocâ.<br />
 Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs]] por revêre los blocâjos.',
+'ipb-blockingself'                => 'Vos éte prèst a vos blocar vos-mémo !  Éte-vos de sûr de lo volêr fâre ?',
+'ipb-confirmhideuser'             => 'Vos éte prèst a blocar un utilisator avouéc « cachiér l’utilisator » activâ.  Cen suprime lo nom a l’utilisator dens totes les listes et les entrâs du jornal.  Éte-vos de sûr de lo volêr fâre ?',
 'ipb-edit-dropdown'               => 'Changiér les rêsons de blocâjo',
 'ipb-unblock-addr'                => 'Dèblocar $1',
 'ipb-unblock'                     => 'Dèblocar un compto utilisator ou ben una adrèce IP',

@@ -75,6 +75,7 @@
  * @author Platonides
  * @author Prima klasy4na
  * @author Prometheus.pyrphoros
+ * @author Psubhashish
  * @author Purodha
  * @author Rancher
  * @author Raymond
@@ -737,7 +738,7 @@ Parameters:
 
 {{Identical|Reset password}}',
 'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
-'newpassword'               => '{{Identical|New password}}',
+'newpassword'               => 'ନୂଆ ପାସବାର୍ଡ଼:',
 'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit'          => 'Submit button on [[Special:ChangePassword]]',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.

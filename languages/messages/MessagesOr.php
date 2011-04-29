@@ -53,6 +53,9 @@ $namespaceNames = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-rememberpassword' => 'ଏହି ବ୍ରାଉଜରରେ (ସବୁଠୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|day|ଦିନ}}) ପାଇଁ ମୋ ଲଗଇନ ମନେ ରଖିଥିବେ',
+
 'underline-always' => 'ସବୁବେଳେ',
 'underline-never'  => 'କେବେନୁହେଁ',
 
@@ -113,7 +116,7 @@ $messages = array(
 'dec'           => 'ଡିସେଁବର',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Category|ବିଭାଗ}}',
+'pagecategories'           => '{{PLURAL:$1|Category|ଶ୍ରେଣୀସବୁ}}',
 'category_header'          => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
 'subcategories'            => 'ସାନ ଶ୍ରେଣୀସବୁ',
 'category-media-header'    => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
@@ -125,7 +128,7 @@ $messages = array(
 
 'about'         => 'ବାବଦରେ',
 'article'       => 'ସୂଚୀ ଫରଦ',
-'newwindow'     => 'ନୂଆ ଉଇଁଡୋରେ ଖୋଲିବ',
+'newwindow'     => '(ଏହା ନୂଆ ଉଇଣ୍ଡୋରେ ଖୋଲିବ)',
 'cancel'        => 'ନାକଚ କରିଦିଅ',
 'moredotdotdot' => 'ଅଧିକ...',
 'mypage'        => 'ମୋ ଫରଦ',
@@ -153,12 +156,13 @@ $messages = array(
 'vector-simplesearch-preference' => 'ଆହୁରି ଅଧିକ ଖୋଜା ମତାମତ ଗୁଡ଼ିକ ସଚଳ କରିବେ (କେବଳ ଭେକ୍ଟର ସ୍କିନ)',
 'vector-view-create'             => 'ତିଆରି',
 'vector-view-edit'               => 'ବଦଳାଇବେ',
-'vector-view-history'            => 'ଇତିହାସ ଦେଖ',
+'vector-view-history'            => 'ଇତିହାସ ଦେଖିବେ',
 'vector-view-view'               => 'ପଢ଼ିବେ',
-'vector-view-viewsource'         => 'ଉତ୍ସ ଦେଖ',
+'vector-view-viewsource'         => 'ଉତ୍ସ ଦେଖିବେ',
 'namespaces'                     => 'ନେମସ୍ପେସ',
 
 'errorpagetitle'    => 'ଭୁଲ',
+'returnto'          => '$1କୁ ଫେରିଯାନ୍ତୁ ।',
 'tagline'           => '{{SITENAME}} ରୁ',
 'help'              => 'ସାହାଯ୍ୟ',
 'search'            => 'ଖୋଜିବେ',
@@ -204,13 +208,13 @@ $messages = array(
 'currentevents-url'    => 'Project:ଏବେକାର ଘଟଣା',
 'disclaimers'          => 'ଆମେ ଦାୟୀ ନୋହୁଁ',
 'disclaimerpage'       => 'Project:ଆମେ ଦାୟୀ ନୋହୁଁ',
-'edithelp'             => 'ଲେଖା ସାହାଜ୍ୟ',
+'edithelp'             => 'ଲେଖା ସାହାଯ୍ୟ',
 'edithelppage'         => 'Help:ବଦଳାଇବା',
 'helppage'             => 'Help:ଭିତର ଚିଜ',
 'mainpage'             => 'ପ୍ରଧାନ ପୃଷ୍ଠା',
-'mainpage-description' => 'ମୂଳ ଫରଦ',
+'mainpage-description' => 'ପ୍ରଧାନ ପୃଷ୍ଠା',
 'policy-url'           => 'Project:ନୀତି',
-'portal'               => 'କମୁନିଟି ପୋଟାଲ',
+'portal'               => 'ଗୋଷ୍ଠୀ ଆଲୋଚନା ସଭା',
 'portal-url'           => 'Project:ଗୋଷ୍ଠୀ ଆଲୋଚନା ସଭା',
 'privacy'              => 'ଗୁମର ନୀତି',
 'privacypage'          => 'Project:ଗୁମର ନୀତି',
@@ -227,10 +231,10 @@ $messages = array(
 'editold'                 => 'ବଦଳାଇବା',
 'viewsourceold'           => 'ଉତ୍ସ ଦେଖିବେ',
 'editlink'                => 'ବଦଳାଇବେ',
-'viewsourcelink'          => 'ଉତ୍ସ ଦେଖ',
+'viewsourcelink'          => 'ଉତ୍ସ ଦେଖିବେ',
 'editsectionhint'         => '$1 ଭାଗଟିକୁ ବଦଳାଇବେ',
 'toc'                     => 'ଭିତର ଚିଜ',
-'showtoc'                 => 'ଦେଖାଅ',
+'showtoc'                 => 'ଦେଖାଇବେ',
 'hidetoc'                 => 'ଲୁଚାଅ',
 'site-rss-feed'           => '$1 ଆରେସେସ ଫିଡ଼',
 'site-atom-feed'          => '$1 ଆଟମ ଫିଡ଼',
@@ -247,7 +251,7 @@ $messages = array(
 'nstab-image'     => 'ଫାଇଲ',
 'nstab-mediawiki' => 'ଖବର',
 'nstab-template'  => 'ଟେଁପଲେଟ',
-'nstab-category'  => 'ବିଭାଗ',
+'nstab-category'  => 'ଶ୍ରେଣୀ:',
 
 # General errors
 'error'           => 'ଭୁଲ',
@@ -260,8 +264,15 @@ $messages = array(
 'viewsource'      => 'ଉତ୍ସ ଦେଖିବେ',
 
 # Login and logout pages
+'logouttext'              => "'''ଆପଣ ଲଗାଆଉଟ କରିଦେଲେ'''
+
+ଆପଣ ଅଜଣା ଭାବରେ {{SITENAME}}କୁ ଯାଇପାରିବେ, କିମ୍ବା [[Special:UserLogin|ଆଉଥରେ]] ଆଗର ଇଉଜର ନାଆଁରେ/ଅଲଗା ନାଆଁରେ ଲଗଇନ କରିପାରିବେ ।
+ଜାଣିରଖନ୍ତୁ, କିଛି ପୃଷ୍ଠା ଲଗାଆଉଟ କଲାପରେ ବି ଆଗପରି ଦେଖାଯାଇପାରେ, ଆପଣ ବ୍ରାଉଜର କାସକୁ ହଟାଇଲା ଯାଏଁ ଏହା ଏମିତି ରହିବ ।",
+'welcomecreation'         => '== $1!, ଆପଣଙ୍କ ଖାତାଟି ତିଆରି ହୋଇଗଲା==
+ତେବେ, ନିଜର [[Special:Preferences|{{SITENAME}} ପସନ୍ଦସବୁକୁ]] ବଦଳାଇବାକୁ ଭୁଲିବେ ନାହିଁ ।',
 'yourname'                => 'ଇଉଜର ନାଆଁ',
-'yourpassword'            => 'ପାସଉଆଡ଼',
+'yourpassword'            => 'ପାସବାର୍ଡ଼',
+'yourpasswordagain'       => 'ପାସବାର୍ଡ଼ ଆଉଥରେ:',
 'login'                   => 'ଲଗଇନ',
 'nav-login-createaccount' => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
 'loginprompt'             => "{{SITENAME}}ରେ ଲଗ ଇନ କରିବାପାଇଁ ଆପଣଙ୍କୁ '''କୁକି''' ସଚଳ କରିବାକୁ ପଡ଼ିବ ।",
@@ -274,11 +285,15 @@ $messages = array(
 'createaccount'           => 'ନୁଆ ଖାତା ଖୋଲିବା',
 'gotaccountlink'          => 'ଲଗଇନ',
 'createaccountreason'     => 'କାରଣ:',
+'loginsuccess'            => "'''ଆପଣ {{SITENAME}}ରେ \"\$1\" ଭାବରେ ଲଗଇନ କରିଛନ୍ତି ।'''",
+'emailconfirmlink'        => 'ଆପଣଙ୍କ ଇମେଲ ଆଇ.ଡି.ଟି ଠିକ ବୋଲି ଥୟ କରନ୍ତୁ',
+'accountcreatedtext'      => '$1 ପାଇଁ ନୂଆ ଖାତାଟିଏ ତିଆରି ହୋଇଗଲା ।',
 'loginlanguagelabel'      => 'ଭାଷା: $1',
 
 # Change password dialog
-'oldpassword' => 'ପୂର୍ବ ପାସଉଆଡ଼:',
-'newpassword' => 'ନୁଆ ପାସଉଆଡ଼:',
+'oldpassword' => 'ପୁରୁଣା ପାସଉଆଡ଼:',
+'newpassword' => 'ନୂଆ ପାସବାର୍ଡ଼:',
+'retypenew'   => 'ପାସବାର୍ଡ଼ ଆଉଥରେ ଦିଅନ୍ତୁ:',
 
 # Edit page toolbar
 'bold_sample'     => 'ବୋଲ୍ଡ ଲେଖା',
@@ -303,12 +318,12 @@ $messages = array(
 'subject'                => 'ବିଷୟ/ମୂଳ ଲେଖା',
 'minoredit'              => 'ଏହା ଖୁବ ଛୋଟ ବଦଳଟିଏ',
 'watchthis'              => 'ଏହି ପୃଷ୍ଠାଟିକୁ ଦେଖିବେ',
-'savearticle'            => 'ସାଇତି ରଖ',
+'savearticle'            => 'ସାଇତିବେ',
 'preview'                => 'ସାଇତିବା ଆଗରୁ ଦେଖଣା',
 'showpreview'            => 'ଦେଖଣା',
-'showdiff'               => 'ବଦଳଗୁଡିକୁ ଦେଖାଅ',
-'anoneditwarning'        => "'''ଜାଣିରଖଁତୁ:''' ଆପଣ ଲଗଇନ କରିନାହାଁତି ।
-ଏହି ଫରଦର '''ଇତିହାସ''' ଫରଦରେ ଆପଣଁକ ଆଇପି ଠିକଣାତି ସାଇତା ହୋଇଯିବ ।",
+'showdiff'               => 'ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ',
+'anoneditwarning'        => "'''ଜାଣିରଖନ୍ତୁ:''' ଆପଣ ଲଗଇନ କରିନାହାନ୍ତି ।
+ଏହି ଫରଦର '''ଇତିହାସ''' ପୃଷ୍ଠାରେ ଆପଣଙ୍କ ଆଇପି ଠିକଣାଟି ସାଇତା ହୋଇଯିବ ।",
 'loginreqlink'           => 'ଲଗଇନ',
 'newarticle'             => '(ନୁଆ)',
 'noarticletext'          => 'ଏହି ଫରଦଟିରେ କିଛି ବି ଲେଖା ନାହିଁ ।
@@ -318,6 +333,7 @@ $messages = array(
 'editing'                => '$1 କୁ ବଦଳାଉଛି',
 'editingsection'         => '$1 (ଭାଗ)କୁ ବଦଳାଇବେ',
 'templatesused'          => 'ଏହି ଫରଦରେ ବ୍ୟବହାର କରାଯାଇଥିବା {{PLURAL:$1|ଟେମ୍ପଲେଟ|ଟେମ୍ପଲେଟସବୁ}}:',
+'templatesusedpreview'   => 'ଏହି ଫରଦରେ ବ୍ୟବହାର କରାଯାଇଥିବା {{PLURAL:$1|ଟେମ୍ପଲେଟ|ଟେମ୍ପଲେଟସବୁ}}:',
 'template-protected'     => '(କିଳାଯାଇଥିବା)',
 'template-semiprotected' => '(ଅଧା କିଳାଯାଇଥିବା)',
 
@@ -347,10 +363,10 @@ $messages = array(
 'revertmerge' => 'ମିଶାଇବା ନାହିଁ',
 
 # Diffs
-'history-title'           => '"$1" ପାଇଁ ସଁକଳନ ଇତିହାସ',
+'history-title'           => '"$1" ପାଇଁ ସଙ୍କଳନ ଇତିହାସ',
 'difference'              => '(ରିଭିଜନ ଭିତରେ ଥିବା ତଫାତ)',
 'lineno'                  => '$1 କ ଧାଡ଼ି:',
-'compareselectedversions' => 'ବଛାହୋଇଥିବା ସଁକଳନ ଗୁଡ଼ିକୁ ତଉଲ',
+'compareselectedversions' => 'ବଛାହୋଇଥିବା ସଙ୍କଳନ ଗୁଡ଼ିକୁ ତଉଲ',
 'editundo'                => 'ପଛକୁ ଫେରିବା',
 
 # Search results
@@ -375,6 +391,7 @@ $messages = array(
 'searchall'                 => 'ସବୁ',
 'nonefound'                 => "'''ଦେଖଁତୁ''': ଆପଣ ଖାଲି କିଛି ନେମସ୍ପେସକୁ ଆପେ ଆପେ ଖୋଜିପାରିବେ ।
 ସବୁ ପ୍ରକାରର ଲେଖା (ଆଲୋଚନା ଫରଦ, ଟେଁପଲେଟ ହେରିକା) ଖୋଜିବା ପାଇଁ ନିଜ ପ୍ରଶ୍ନ ଆଗରେ ''all:'' ଯୋଡ଼ି ଖୋଜନ୍ତୁ, ନହେଲେ ଦରକାରି ନେମସ୍ପେସକୁ ପ୍ରିଫିକ୍ସ କରି ବ୍ୟବହାର କରନ୍ତୁ ।",
+'search-nonefound'          => 'ଆପଣ ଖୋଜିଥିବା ପ୍ରଶ୍ନ ପାଇଁ କିଛି ଫଳ ମିଳିଲା ନାହିଁ ।',
 'powersearch'               => 'ଗହିର ଖୋଜା',
 'powersearch-legend'        => 'ଗହିର ଖୋଜା',
 'powersearch-ns'            => 'ନେମସ୍ପେସରେ ଖୋଜ',
@@ -398,6 +415,7 @@ $messages = array(
 'prefs-namespaces'         => 'ନେମସ୍ପେସ',
 'prefs-files'              => 'ଫାଇଲ',
 'yourlanguage'             => 'ଭାଷା:',
+'prefs-help-email'         => 'ଇ-ମେଲ ଠିକଣାଟି ଇଚ୍ଛାଧୀନ, କିନ୍ତୁ ଆପଣ ପାସବାର୍ଡ଼ଟି ଯଦି ଭୁଲିଗଲେ ତାହା ଆଉଥରେ ତିଆରିବା ପାଇଁ ଏହା କାମରେ ଲାଗିବ ।',
 
 # User rights
 'userrights-reason' => 'କାରଣ:',
@@ -416,21 +434,21 @@ $messages = array(
 'recentchanges-label-minor'       => 'ଏହା ଗୋଟିଏ ଛୋଟ ବଦଳ',
 'recentchanges-label-bot'         => "ଏହି ବଦଳଟି ଜଣେ '''ବଟ'''ଙ୍କ ଦେଇ କରାଯାଇଥିଲା",
 'recentchanges-label-unpatrolled' => 'ଏହି ବଦଳଟିକୁ ଏ ଯାଏଁ ପରଖା ଯାଇନାହିଁ',
-'rclistfrom'                      => '$1ରୁ ଆରମ୍ଭ କରି ନୂଆ ବଦଳଗୁଡ଼ିକ ଦେଖାଅ',
+'rclistfrom'                      => '$1ରୁ ଆରମ୍ଭ କରି ନୂଆ ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ',
 'rcshowhideminor'                 => '$1 ଟି ଛୋଟମୋଟ ବଦଳ',
 'rcshowhidebots'                  => '$1 ଜଣ ବଟ',
 'rcshowhideliu'                   => '$1 ଜଣ ନାଆଁ ଲେଖାଇଥିବା ଇଉଜର',
 'rcshowhideanons'                 => '$1 ଜଣ ଅଜଣା ଇଉଜର',
 'rcshowhidemine'                  => '$1 ମୁଁ କରିଥିବା ବଦଳ',
-'rclinks'                         => 'ଗଲା $2 ଦିନର $1 ବଦଳଗୁଡ଼ିକୁ ଦେଖାଅ<br />$3',
+'rclinks'                         => 'ଗଲା $2 ଦିନର $1 ବଦଳଗୁଡ଼ିକୁ ଦେଖାଇବେ<br />$3',
 'diff'                            => 'ଅଦଳ ବଦଳ',
 'hist'                            => 'ଇତିହାସ',
 'hide'                            => 'ଲୁଚାଅ',
-'show'                            => 'ଦେଖାଅ',
+'show'                            => 'ଦେଖାଇବେ',
 'minoreditletter'                 => 'ଟିକେ',
 'newpageletter'                   => 'ନୂଆ',
 'boteditletter'                   => 'ବଟ',
-'rc-enhanced-expand'              => 'ପୁରା ଦେଖାଅ (ଜାଭାସ୍କ୍ରିପଟ ଦରକାର)',
+'rc-enhanced-expand'              => 'ପୁରା ଦେଖାଇବେ (ଜାଭାସ୍କ୍ରିପଟ ଦରକାର)',
 'rc-enhanced-hide'                => 'ବେଶି କଥାସବୁ ଲୁଚାଇଦିଅ',
 
 # Recent changes linked
@@ -474,7 +492,7 @@ $messages = array(
 'filedelete-comment' => 'କାରଣ:',
 
 # Random page
-'randompage' => 'ଯାହିତାହି ଫରଦଟିଏ',
+'randompage' => 'ଯାହିତାହି ପୃଷ୍ଠା',
 
 # Statistics
 'statistics-pages' => 'ଫରଦ',
@@ -484,13 +502,13 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'               => '$1 {{PLURAL:$1|byte|ବାଇଟ}}',
 'nmembers'             => '$1 {{PLURAL:$1|member|ସଭ୍ୟ}}',
-'wantedcategories'     => 'ଦରକାରି ବିଭାଗ',
+'wantedcategories'     => 'ଦରକାରୀ ଶ୍ରେଣୀ',
 'wantedpages'          => 'ଦରକାରି ଫରଦ',
 'wantedpages-badtitle' => '$1 ଉତ୍ତରସବୁରେ ଥିବା ଭୁଲ ଟାଇଟଲ',
 'wantedfiles'          => 'ଦରକାରି ଫାଇଲ',
 'wantedtemplates'      => 'ଦରକାରି ଟେଁପଲେଟ',
 'mostlinked'           => 'ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଫରଦ',
-'mostlinkedcategories' => 'ବେଶି ଯୋଡ଼ାଯାଇଥିବା ବିଭାଗ',
+'mostlinkedcategories' => 'ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଶ୍ରେଣୀ',
 'mostlinkedtemplates'  => 'ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଟେଁପଲେଟ',
 'mostcategories'       => 'ବେଶିବିଭାଗ ଥିବା ଫରଦ',
 'mostimages'           => 'ଫାଇଲରେ ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଥିବା',
@@ -528,7 +546,7 @@ $messages = array(
 # Watchlist
 'watchlist'     => 'ଦେଖାତାଲିକା',
 'mywatchlist'   => 'ମୋର ଦେଖାତାଲିକା',
-'watch'         => 'ଦେଖ',
+'watch'         => 'ଦେଖିବେ',
 'watchthispage' => 'ଏହି ପୃଷ୍ଠାଟିକୁ ଦେଖିବେ',
 'unwatch'       => 'ଦେଖନାହିଁ',
 
@@ -668,7 +686,7 @@ $messages = array(
 'tooltip-ca-nstab-special'        => 'ଏଇଟି ଗୋଟିଏ ବିଶେଷ ଫରଦ, ଆପଣ ଏହାକୁ ବଦଳାଇପାରିବେ ନାହିଁ',
 'tooltip-ca-nstab-project'        => 'ପ୍ରକଳ୍ପ ଫରଦଟି ଦେଖିବା',
 'tooltip-ca-nstab-image'          => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
-'tooltip-ca-nstab-category'       => 'ବିଭାଗ ଫରଦଟିକୁ ଖୋଲ',
+'tooltip-ca-nstab-category'       => 'ଶ୍ରେଣୀ ପୃଷ୍ଠାଟିକୁ ଦେଖାଇବେ',
 'tooltip-minoredit'               => 'ଏହାକୁ ଛୋଟ ବଦଳ ଭାବେ ଗଣ',
 'tooltip-save'                    => 'ବଦଳଗୁଡ଼ିକ ସାଇତିବେ',
 'tooltip-preview'                 => 'ଆପଣନ୍କ ବଦଳ ଦେଖିନିଅନ୍ତୁ, ସାଇତିବା ଆଗରୁ ଏହା ବ୍ୟ୍ଅବହାର କରନ୍ତୁ!',
@@ -712,6 +730,21 @@ $messages = array(
 'namespacesall' => 'ସବୁ',
 'monthsall'     => 'ସବୁ',
 'limitall'      => 'ସବୁ',
+
+# E-mail address confirmation
+'confirmemail_needlogin' => 'ଆପଣଙ୍କୁ ନିଜ ଇମେଲଟିକୁ ଥୟ କରିବା ପାଇଁ $1 କରିବାକୁ ପଡ଼ିବ ।',
+'confirmemail_body'      => 'କେହିଜଣେ, ବୋଧହୁଏ ଆପଣ ହିଁ $1 ଆଇ.ପି. ଠିକଣାରୁ,
+ଏହି ଇ-ମେଲ ଆଇ.ଡି.ରେ "$2" ନାଆଁରେ {{SITENAME}} ଠାରେ ଖାତାଟିଏ ଖୋଲିଛନ୍ତି ।
+
+ଏହି ଖାତାଟି ସତରେ ଆପଣଙ୍କର ବୋଲି ଥୟ କରିବା ପାଇଁ ଓ {{SITENAME}}ରେ ଇ-ମେଲ ସୁବିଧାସବୁ ସଚଳ କରିବାପାଇଁ, ଏହି ଲିଙ୍କ୍ଟିକୁ ଆପଣଙ୍କ ବ୍ରାଉଜରରେ ଖୋଲନ୍ତୁ:
+
+$3
+
+ଯଦି ଆପଣ ଖାତାଟିଏ ଆଗରୁ ଖୋଲି *ନାହାନ୍ତି* ତେବେ ଏହି ଲିଙ୍କକୁ ଯାଇ ଇ-ମେଲ ଆ.ଡି. ଥୟ କରିବାକୁ ନାକଚ କରିଦିଅନ୍ତୁ:
+
+$5
+
+ଏହି କନଫର୍ମେସନ କୋଡ଼ $4 ବେଳେ ଅଚଳ ହୋଇଯିବ ।',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'ଦେଖିବା ତାଲିକାଟିକୁ ଦେଖିବେ ଓ ବଦଳାଇବେ',

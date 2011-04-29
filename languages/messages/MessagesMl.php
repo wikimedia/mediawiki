@@ -3151,7 +3151,9 @@ $1',
 'exif-copyrightowner'              => 'പകർപ്പവകാശ ഉടമ',
 'exif-usageterms'                  => 'ഉപയോഗ നിബന്ധനകൾ',
 'exif-webstatement'                => 'ഓൺലൈൻ പകർപ്പവകാശക്കുറിപ്പ്',
+'exif-originaldocumentid'          => 'യഥാർത്ഥ രേഖയുടെ അനന്യമായ ഐ.ഡി.',
 'exif-licenseurl'                  => 'പകർപ്പവകാശ അനുമതിയുടെ യൂ.ആർ.എൽ.',
+'exif-morepermissionsurl'          => 'മറ്റ് അനുമതിനൽകൽ വിവരങ്ങൾ',
 'exif-attributionurl'              => 'ഈ കൃതി പുനരുപയോഗിക്കുമ്പോൾ, ദയവായി ഇവിടേയ്ക്ക് കണ്ണി ചേർക്കുക',
 'exif-preferredattributionname'    => 'ഈ കൃതി പുനരുപയോഗിക്കുമ്പോൾ ദയവായി കടപ്പാട് നൽകുക',
 'exif-pngfilecomment'              => 'പി.എൻ.ജി. പ്രമാണക്കുറിപ്പ്',
@@ -3301,6 +3303,7 @@ $1',
 
 # Pseudotags used for GPSAltitudeRef
 'exif-gpsaltitude-above-sealevel' => 'സമുദ്രനിരപ്പിന് {{PLURAL:$1|ഒരു മീറ്റർ|$1 മീറ്റർ}} ഉപരി',
+'exif-gpsaltitude-below-sealevel' => 'സമുദ്രനിരപ്പിന് {{PLURAL:$1|ഒരു മീറ്റർ|$1 മീറ്റർ}} താഴെ',
 
 'exif-gpsstatus-a' => 'കണക്കെടുപ്പ് പുരോഗമിക്കുന്നു',
 'exif-gpsstatus-v' => 'അളവുകളുടെ പരസ്പരപ്രയോഗക്ഷമത',
@@ -3361,6 +3364,11 @@ $1',
 'exif-iimcategory-spo' => 'കായികം',
 'exif-iimcategory-war' => 'യുദ്ധം, പോരാട്ടം, അസ്ഥിരത',
 'exif-iimcategory-wea' => 'കാലാവസ്ഥ',
+
+'exif-urgency-normal' => 'സാധാരണം ($1)',
+'exif-urgency-low'    => 'താഴ്‌ന്നത് ($1)',
+'exif-urgency-high'   => 'ഉന്നതം ($1)',
+'exif-urgency-other'  => 'ഉപയോക്തൃ-നിർവചിത മുൻഗണന ($1)',
 
 # External editor support
 'edit-externally'      => 'ഈ പ്രമാണം ഒരു ബാഹ്യ ആപ്ലിക്കേഷൻ ഉപയോഗിച്ച് തിരുത്തുക',

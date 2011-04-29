@@ -9,6 +9,7 @@
  *
  * @author Andejkendej
  * @author Cradel
+ * @author Dashohoxha
  * @author Dori
  * @author Eagleal
  * @author Ergon
@@ -2295,6 +2296,7 @@ Bllokimi i funditë është më poshtë për referencë:',
 'whatlinkshere-filters'    => 'Filtra',
 
 # Block/unblock
+'block'                           => 'Blloko përdoruesin',
 'blockip'                         => 'Blloko përdorues',
 'blockip-title'                   => 'Përdorues i Bllokuar',
 'blockip-legend'                  => 'Blloko përdoruesin',

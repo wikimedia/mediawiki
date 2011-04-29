@@ -2952,6 +2952,7 @@ $1',
 'exif-languagecode'                => 'భాష',
 'exif-iimcategory'                 => 'వర్గం',
 'exif-datetimeexpires'             => 'దీని తరువాత వాడవద్దు',
+'exif-cameraownername'             => 'కేమెరా యజమాని',
 'exif-copyrighted'                 => 'కాపీహక్కుల స్థితి',
 'exif-copyrightowner'              => 'కాపీ హక్కుదారు',
 'exif-usageterms'                  => 'వాడుక నియమాలు',
@@ -3115,6 +3116,7 @@ $1',
 'exif-dc-rights' => 'హక్కులు',
 
 'exif-iimcategory-pol' => 'రాజకీయాలు',
+'exif-iimcategory-spo' => 'క్రీడలు',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',

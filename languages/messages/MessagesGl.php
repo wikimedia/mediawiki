@@ -337,6 +337,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Páxinas indexadas',
 'noindex-category'               => 'Páxinas non indexadas',
+'broken-file-category'           => 'Páxinas con ligazóns rotas cara a ficheiros',
 
 'mainpagetext'      => "'''MediaWiki instalouse correctamente.'''",
 'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.
@@ -634,6 +635,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'createaccount'              => 'Crear unha conta nova',
 'gotaccount'                 => "Xa ten unha conta? '''$1'''.",
 'gotaccountlink'             => 'Acceda ao sistema',
+'userlogin-resetlink'        => 'Esqueceu os seus datos de rexistro?',
 'createaccountmail'          => 'Por correo electrónico',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Os contrasinais que inseriu non coinciden entre si.',
@@ -732,8 +734,17 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'resetpass-temp-password'   => 'Contrasinal temporal:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Eliminar o contrasinal',
-'passwordreset-username' => 'Nome de usuario:',
+'passwordreset'              => 'Restablecer o contrasinal',
+'passwordreset-text'         => 'Encha este formulario para recibir un recordatorio por correo electrónico cos detalles da súa conta.',
+'passwordreset-legend'       => 'Restablecer o contrasinal',
+'passwordreset-disabled'     => 'O restablecemento de contrasinais está desactivado neste wiki.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Introduza un dos datos a continuación}}',
+'passwordreset-username'     => 'Nome de usuario:',
+'passwordreset-email'        => 'Enderezo de correo electrónico:',
+'passwordreset-emailtitle'   => 'Detalles da conta de {{SITENAME}}',
+'passwordreset-emailelement' => 'Nome de usuario: $1
+Contrasinal temporal: $2',
+'passwordreset-emailsent'    => 'Enviouse o correo electrónico co recordatorio.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negra',
@@ -3105,6 +3116,7 @@ Os demais agocharanse por omisión.
 'exif-source'                      => 'Orixe',
 'exif-editstatus'                  => 'Estado editorial da imaxe',
 'exif-urgency'                     => 'Urxencia',
+'exif-fixtureidentifier'           => 'Nome do elemento habitual',
 'exif-locationdest'                => 'Localización representada',
 'exif-locationdestcode'            => 'Código da localización representada',
 'exif-objectcycle'                 => 'Hora do día para o que está destinado',
@@ -3122,17 +3134,27 @@ Os demais agocharanse por omisión.
 'exif-serialnumber'                => 'Número de serie da cámara',
 'exif-cameraownername'             => 'Propietario da cámara',
 'exif-label'                       => 'Etiqueta',
+'exif-datetimemetadata'            => 'Data da última modificación dos metadatos',
 'exif-nickname'                    => 'Nome informal da imaxe',
 'exif-rating'                      => 'Valoración (sobre 5)',
+'exif-rightscertificate'           => 'Certificado de xestión dos dereitos',
 'exif-copyrighted'                 => 'Estado dos dereitos de autor',
 'exif-copyrightowner'              => 'Propietario dos dereitos de autor',
 'exif-usageterms'                  => 'Termos de uso',
+'exif-webstatement'                => 'Declaración de dereitos de autor en liña',
+'exif-originaldocumentid'          => 'Identificación única do documento orixinal',
+'exif-licenseurl'                  => 'URL da licenza',
 'exif-morepermissionsurl'          => 'Información de licenza alternativa',
+'exif-attributionurl'              => 'Ao reusar esta obra, cómpre ligar cara a',
+'exif-preferredattributionname'    => 'Ao reusar esta obra, cómpre atribuír os dereitos a',
 'exif-pngfilecomment'              => 'Comentario do ficheiro PNG',
 'exif-disclaimer'                  => 'Advertencia',
 'exif-contentwarning'              => 'Aviso sobre o contido',
 'exif-giffilecomment'              => 'Comentario do ficheiro GIF',
 'exif-intellectualgenre'           => 'Tipo de elemento',
+'exif-subjectnewscode'             => 'Código do tema',
+'exif-scenecode'                   => 'Código de escena IPTC',
+'exif-event'                       => 'Evento representado',
 'exif-organisationinimage'         => 'Organización representada',
 'exif-personinimage'               => 'Persoa retratada',
 'exif-originalimageheight'         => 'Altura da imaxe antes de ser cortada',
@@ -3307,10 +3329,17 @@ Os demais agocharanse por omisión.
 'exif-gpsdirection-t' => 'Dirección verdadeira',
 'exif-gpsdirection-m' => 'Dirección magnética',
 
+'exif-ycbcrpositioning-1' => 'Centrado',
+'exif-ycbcrpositioning-2' => 'Co-localizados',
+
 'exif-dc-contributor' => 'Colaboradores',
+'exif-dc-coverage'    => 'Eido espacial ou temporal do contido',
 'exif-dc-date'        => 'Data(s)',
 'exif-dc-publisher'   => 'Editor',
+'exif-dc-relation'    => 'Contidos relacionados',
 'exif-dc-rights'      => 'Dereitos',
+'exif-dc-source'      => 'Imaxe de orixe',
+'exif-dc-type'        => 'Tipo de contido',
 
 'exif-rating-rejected' => 'Rexeitado',
 
@@ -3465,6 +3494,9 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'autosumm-replace' => 'O contido da páxina foi substituído por "$1"',
 'autoredircomment' => 'Redirixida cara a "[[$1]]"',
 'autosumm-new'     => 'Nova páxina: "$1"',
+
+# Size units
+'size-kilobytes' => '$1 kB',
 
 # Live preview
 'livepreview-loading' => 'Cargando...',
