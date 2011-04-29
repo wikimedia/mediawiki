@@ -366,6 +366,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28238) paraminfo: output both limits for multi param
 * (bug 27179) API: List of extension tags through meta=siteinfo
 * Get a list of function hooks through meta=siteinfo
+* Get a list of all subscribed hooks, and those subscribers
 
 === Languages updated in 1.18 ===
 
