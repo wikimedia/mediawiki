@@ -2,6 +2,8 @@
 /**
  * Group all the pieces relevant to the context of a request into one instance
  *
+ * @since 1.18
+ *
  * @author IAlex
  * @author Daniel Friesen
  * @file
