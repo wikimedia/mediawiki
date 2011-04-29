@@ -454,7 +454,7 @@ abstract class ApiBase {
 	 * value) or (parameter name) => (array with PARAM_* constants as keys)
 	 * Don't call this function directly: use getFinalParams() to allow
 	 * hooks to modify parameters as needed.
-	 * @return array
+	 * @return array or false
 	 */
 	protected function getAllowedParams() {
 		return false;
@@ -464,7 +464,7 @@ abstract class ApiBase {
 	 * Returns an array of parameter descriptions.
 	 * Don't call this functon directly: use getFinalParamDescription() to
 	 * allow hooks to modify descriptions as needed.
-	 * @return array
+	 * @return array or false
 	 */
 	protected function getParamDescription() {
 		return false;
@@ -473,7 +473,7 @@ abstract class ApiBase {
 	/**
 	 * Get final list of parameters, after hooks have had a chance to
 	 * tweak it as needed.
-	 * @return array
+	 * @return array or false
 	 */
 	public function getFinalParams() {
 		$params = $this->getAllowedParams();
