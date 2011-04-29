@@ -389,9 +389,9 @@ function wfLogProfilingData() {
 	if ( $forward ) {
 		$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
 	}
-	// Don't unstub $wgUser at this late stage just for statistics purposes
+	// Don't load $wgUser at this late stage just for statistics purposes
 	// FIXME: We can detect some anons even if it is not loaded. See User::getId()
-	if ( $wgUser->mDataLoaded && $wgUser->isAnon() ) {
+	if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
 		$forward .= ' anon';
 	}
 	$log = sprintf( "%s\t%04.3f\t%s\n",
