@@ -78,7 +78,7 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 					'type'	 => FormOptions::INT,
 					)
 			),
-			$this->object->getOptions
+			$this->object->getOptions()
 		);
 	}
 
