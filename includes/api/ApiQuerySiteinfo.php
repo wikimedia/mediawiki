@@ -94,6 +94,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'functionhooks':
 					$fit = $this->appendFunctionHooks( $p );
 					break;
+				case 'showhooks':
+					$fit = $this->appendSubscribedHooks( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -498,6 +501,26 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return "&lt;{$item}&gt;";
 	}
 
+	public function appendSubscribedHooks( $property ) {
+		global $wgHooks;
+		$myWgHooks = $wgHooks;
+		ksort( $myWgHooks );
+
+		$data = array();
+		foreach ( $myWgHooks as $hook => $hooks )  {
+			$arr = array(
+				'name' => $hook,
+				'subscribers' => $hooks,
+			);
+
+			$this->getResult()->setIndexedTagName( $arr['subscribers'], 's' );
+			$data[] = $arr;
+		}
+
+		$this->getResult()->setIndexedTagName( $data, 'hook' );
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
@@ -524,6 +547,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'skins',
 					'extensiontags',
 					'functionhooks',
+					'showhooks',
 				)
 			),
 			'filteriw' => array(
@@ -557,6 +581,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' skins                 - Returns a list of all enabled skins',
 				' extensiontags         - Returns a list of parser extension tags',
 				' functionhooks         - Returns a list of parser function hooks',
+				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)'
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
