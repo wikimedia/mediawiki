@@ -39,7 +39,7 @@ AND relname=%s
 AND attname=%s;
 SQL;
 
-		$table = $db->tableName( $table );
+		$table = $db->tableName( $table, false );
 		$res = $db->query(
 			sprintf( $q,
 				$db->addQuotes( $wgDBmwschema ),
@@ -819,7 +819,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( !$schema ) {
 			$schema = $wgDBmwschema;
 		}
-		$table = $this->tableName( $table );
+		$table = $this->tableName( $table, false );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
@@ -1002,13 +1002,21 @@ SQL;
 		}
 
 		if ( isset( $options['GROUP BY'] ) ) {
-			$preLimitTail .= ' GROUP BY ' . $options['GROUP BY'];
+			$gb = is_array( $options['GROUP BY'] )
+				? implode( ',', $options['GROUP BY'] )
+				: $options['GROUP BY'];
+			$preLimitTail .= " GROUP BY {$gb}";
 		}
+
 		if ( isset( $options['HAVING'] ) ) {
 			$preLimitTail .= " HAVING {$options['HAVING']}";
 		}
+
 		if ( isset( $options['ORDER BY'] ) ) {
-			$preLimitTail .= ' ORDER BY ' . $options['ORDER BY'];
+			$ob = is_array( $options['ORDER BY'] )
+				? implode( ',', $options['ORDER BY'] )
+				: $options['ORDER BY'];
+			$preLimitTail .= " ORDER BY {$ob}";
 		}
 
 		//if ( isset( $options['LIMIT'] ) ) {
