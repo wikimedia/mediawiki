@@ -636,8 +636,17 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'resetpass-temp-password'   => 'Neno la siri la muda:',
 
 # Special:PasswordReset
-'passwordreset'        => 'Seti upya neno la siri',
-'passwordreset-legend' => 'Seti upya neno la siri',
+'passwordreset'              => 'Seti upya neno la siri',
+'passwordreset-legend'       => 'Seti upya neno la siri',
+'passwordreset-emailtext-ip' => 'Kuna mtu (huenda wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
+
+$2
+
+{{PLURAL:$3|Neno la siri hili litakwisha|Maneno ya siri haya yatakwisha}} baada ya siku {{PLURAL:$5|$5}}.
+Tafadhali uingie sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hili, au ikiwa umekumbuka neno lako la siri na hutaki kulibadilisha tena, usijali ujumbe huu, na uendelee kutumia neno la siri lako la zamani.',
+'passwordreset-emailelement' => 'Jina la mtumiaji: $1
+Neno la siri la muda: $2',
+'passwordreset-emailsent'    => 'Barua pepe ya ukumbusho imetumwa.',
 
 # Edit page toolbar
 'bold_sample'     => 'Maandishi ya kooze',
@@ -2543,7 +2552,9 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpsdestlongitude'            => 'Longitudo ya kikomo',
 'exif-gpsdestdistance'             => 'Mbali wa kikomo',
 'exif-gpsdatestamp'                => 'Tarehe ya GPS',
+'exif-keywords'                    => 'Maneno yahusika',
 'exif-objectname'                  => 'Jina fupi',
+'exif-urgency'                     => 'Umuhimu',
 
 'exif-unknowndate' => 'Tarehe haijulikani',
 
@@ -2614,6 +2625,13 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Mwelekeo halisi',
 'exif-gpsdirection-m' => 'Mwelekeo wa sumaku',
+
+'exif-iimcategory-wea' => 'Hali ya hewa',
+
+'exif-urgency-normal' => 'Kawaida ($1)',
+'exif-urgency-low'    => 'Chini ($1)',
+'exif-urgency-high'   => 'Juu ($1)',
+'exif-urgency-other'  => 'Upaumbele uliotajwa na mtumiaji ($1)',
 
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',

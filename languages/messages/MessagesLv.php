@@ -506,6 +506,9 @@ Tādēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
 Lūdzu uzgaidi pirms mēģini vēlreiz.',
 'loginlanguagelabel'         => 'Valoda: $1',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Nezināma kļūda PHP mail() funkcijā',
+
 # Change password dialog
 'resetpass'                 => 'Mainīt paroli',
 'resetpass_header'          => 'Mainīt konta paroli',
@@ -524,8 +527,13 @@ Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis
 'resetpass-temp-password'   => 'Pagaidu parole:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Paroles atiestatīšana',
-'passwordreset-username' => 'Lietotājvārds:',
+'passwordreset'              => 'Paroles atiestatīšana',
+'passwordreset-username'     => 'Lietotājvārds:',
+'passwordreset-email'        => 'E-pasta adrese:',
+'passwordreset-emailtitle'   => 'Konta informācija {{SITENAME}}',
+'passwordreset-emailelement' => 'Lietotājvārds: $1
+Pagaidu parole: $2',
+'passwordreset-emailsent'    => 'Atgādinājuma e-pasts ir nosūtīts.',
 
 # Edit page toolbar
 'bold_sample'     => 'Teksts boldā',
@@ -714,7 +722,8 @@ Izskatās, ka lapa ir dzēsta.',
 Tā jau eksistē.',
 
 # Parser/template warnings
-'parser-template-loop-warning' => 'Veidne ir ievietota tādā pašā veidnē: [[$1]]',
+'expensive-parserfunction-category' => 'Lapas ar pārāk daudz laikietilpīgiem apstrādes funkciju izsaukumiem',
+'parser-template-loop-warning'      => 'Veidne ir ievietota tādā pašā veidnē: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'Šo izmaiņu ir iespējams atcelt.
@@ -1500,11 +1509,13 @@ Apraksts ir [$2 faila apraksta lapā], kas ir parādīta zemāk.',
 Šīs saites vajadzētu izlabot, lai tās vestu tieši uz attiecīgo lapu.<br />
 Lapu uzskata par nozīmju atdalīšanas lapu, ja tā satur veidni, uz kuru ir saite no [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Divkāršas pāradresācijas lapas',
-'doubleredirectstext'        => 'Šajā lapā ir uzskaitītas pāradresācijas lapas, kuras pāradresē uz citām pāradresācijas lapām.
+'doubleredirects'                   => 'Divkāršas pāradresācijas lapas',
+'doubleredirectstext'               => 'Šajā lapā ir uzskaitītas pāradresācijas lapas, kuras pāradresē uz citām pāradresācijas lapām.
 Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.
 <del>Nosvītrotie</del> ieraksti jau ir tikuši salaboti.',
-'double-redirect-fixed-move' => '[[$1]] bija ticis pārvietots, tas tagad ir pāradresācija uz [[$2]]',
+'double-redirect-fixed-move'        => '[[$1]] bija ticis pārvietots, tas tagad ir pāradresācija uz [[$2]]',
+'double-redirect-fixed-maintenance' => 'Labota dubultā pāradresācija no [[$1]] uz [[$2]].',
+'double-redirect-fixer'             => 'Pāradresāciju labotājs',
 
 'brokenredirects'        => 'Kļūdainas pāradresācijas',
 'brokenredirectstext'    => 'Šīs ir pāradresācijas lapas uz neesošām lapām:',
@@ -1525,6 +1536,8 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'nmembers'                => '$1 {{PLURAL:$1|lapa|lapas}}',
 'nrevisions'              => '$1 {{PLURAL:$1|versija|versijas}}',
 'nviews'                  => 'skatīta $1 {{PLURAL:$1|reizi|reizes}}',
+'nimagelinks'             => 'Izmantots $1 {{PLURAL:$1|lapā|lapās}}',
+'ntransclusions'          => 'izmantots $1 {{PLURAL:$1|lapā|lapās}}',
 'specialpage-empty'       => 'Šim ziņojumam nav rezultātu.',
 'lonelypages'             => 'Lapas bez saitēm uz tām',
 'uncategorizedpages'      => 'Nekategorizētās lapas',
@@ -1569,6 +1582,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'nopagetext'              => 'Mērķa lapa, ko Jūs norādījāt, nepastāv.',
 'pager-newer-n'           => '{{PLURAL:$1|jaunāko 1|jaunākās $1}}',
 'pager-older-n'           => '{{PLURAL:$1|senāko 1|senākās $1}}',
+'querypage-disabled'      => 'Šī īpašā lapā ir atspējota veiktspējas iemeslu dēļ.',
 
 # Book sources
 'booksources'               => 'Grāmatu avoti',
@@ -1599,6 +1613,7 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'allpagesnext'      => 'Nākošās',
 'allpagessubmit'    => 'Aiziet!',
 'allpagesprefix'    => 'Parādīt lapas ar šādu virsraksta sākumu:',
+'allpages-bad-ns'   => '{{SITENAME}} nav vārdkopas "$1".',
 
 # Special:Categories
 'categories'                    => 'Kategorijas',
@@ -1663,6 +1678,7 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'emailpage'            => 'Sūtīt e-pastu lietotājam',
 'emailpagetext'        => 'Ar šo veidni ir iespējams nosūtīt e-pastu šim lietotājam.
 Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta "From" lauciņā, tādejādi saņēmējs varēs tev atbildēt.',
+'usermailererror'      => 'Pasta objekts atgrieza kļūdu:',
 'defemailsubject'      => 'E-pasts par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'usermaildisabled'     => 'Lietotāja e-pasts atslēgts',
 'usermaildisabledtext' => 'Jūs nevarat sūtīt e-pastu citiem lietotājiem šajā viki',
@@ -1670,6 +1686,8 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 'noemailtext'          => 'Šis lietotājs nav norādījis derīgu e-pasta adresi.',
 'nowikiemailtitle'     => 'E-pasts nav atļauts',
 'nowikiemailtext'      => 'Šis lietotājs ir vēlējies nesaņemt e-pastu no citiem lietotājiem.',
+'emailusername'        => 'Lietotājvārds:',
+'emailusernamesubmit'  => 'Iesniegt',
 'email-legend'         => 'Sūtīt e-pastu citam {{SITENAME}} lietotājam',
 'emailfrom'            => 'No:',
 'emailto'              => 'Kam:',
@@ -1680,6 +1698,9 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 'emailsent'            => 'E-pasts nosūtīts',
 'emailsenttext'        => 'Tavs e-pasts ir nosūtīts.',
 'emailuserfooter'      => 'Šis e-pasts ir lietotāja $1 sūtīts lietotājam $2, izmantojot "Sūtīt e-pastu šim lietotājam" funkciju {{SITENAME}}.',
+
+# User Messenger
+'usermessage-editor' => 'Sistēmas ziņotājs',
 
 # Watchlist
 'watchlist'            => 'Mani uzraugāmie raksti',
@@ -1922,6 +1943,7 @@ $1',
 'sp-contributions-newbies-sub'         => 'Jaunie lietotāji',
 'sp-contributions-blocklog'            => 'Bloķēšanas reģistrs',
 'sp-contributions-deleted'             => 'Izdzēstais lietotāju devums',
+'sp-contributions-uploads'             => 'augšupielādes',
 'sp-contributions-logs'                => 'reģistri',
 'sp-contributions-talk'                => 'diskusija',
 'sp-contributions-userrights'          => 'Lietotāju tiesību pārvaldība',
@@ -1953,6 +1975,7 @@ Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 'whatlinkshere-filters'    => 'Filtri',
 
 # Block/unblock
+'unblock'                     => 'Atbloķēt lietotāju',
 'blockip'                     => 'Bloķēt lietotāju',
 'blockip-title'               => 'Bloķēt lietotāju',
 'blockip-legend'              => 'Bloķēt lietotāju',
@@ -1997,6 +2020,7 @@ Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'unblocked-id'                => 'Bloks $1 tika noņemts',
 'ipblocklist'                 => 'Bloķētie lietotāji',
 'ipblocklist-legend'          => 'Meklēt bloķētu lietotāju',
+'blocklist-reason'            => 'Iemesls',
 'ipblocklist-submit'          => 'Meklēt',
 'ipblocklist-localblock'      => 'Vietējais bloks',
 'ipblocklist-otherblocks'     => ' {{PLURAL:$1|Cita|Citas}} {{PLURAL:$1|bloķēšana|bloķēšanas}}',
@@ -2355,18 +2379,21 @@ $1',
 'nextdiff'     => 'Jaunāka versija →',
 
 # Media information
-'mediawarning'         => "'''Brīdinājums''': Šis faila tips var saturēt ļaunprātīgu kodu, kuru izpildot, tava datora darbība var tikt traucēta.",
-'imagemaxsize'         => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
-'thumbsize'            => 'Sīkbildes izmērs:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lapa|lapas}}',
-'file-info'            => 'faila izmērs: $1, MIME tips: $2',
-'file-info-size'       => '$1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4',
-'file-nohires'         => '<small>Augstāka izšķirtspēja nav pieejama.</small>',
-'svg-long-desc'        => 'SVG fails, definētais izmērs $1 × $2 pikseļi, faila izmērs: $3',
-'show-big-image'       => 'Pilnā izmērā',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|kadrs|kadri}}',
-'file-info-png-repeat' => 'spēlēts $1 {{PLURAL:$1|reizi|reizes}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|kadrs|kadri}}',
+'mediawarning'           => "'''Brīdinājums''': Šis faila tips var saturēt ļaunprātīgu kodu, kuru izpildot, tava datora darbība var tikt traucēta.",
+'imagemaxsize'           => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
+'thumbsize'              => 'Sīkbildes izmērs:',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|lapa|lapas}}',
+'file-info'              => 'faila izmērs: $1, MIME tips: $2',
+'file-info-size'         => '$1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4',
+'file-nohires'           => '<small>Augstāka izšķirtspēja nav pieejama.</small>',
+'svg-long-desc'          => 'SVG fails, definētais izmērs $1 × $2 pikseļi, faila izmērs: $3',
+'show-big-image'         => 'Pilnā izmērā',
+'show-big-image-preview' => '<small>Šī priekšskata izmērs: $1.</small>',
+'show-big-image-other'   => '<small>Citi izmēri: $1.</small>',
+'show-big-image-size'    => '$1 × $2 pikseļi',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|kadrs|kadri}}',
+'file-info-png-repeat'   => 'spēlēts $1 {{PLURAL:$1|reizi|reizes}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|kadrs|kadri}}',
 
 # Special:NewFiles
 'newimages'             => 'Jauno attēlu galerija',
@@ -2431,8 +2458,8 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-colorspace'                  => 'Krāsu telpa',
 'exif-componentsconfiguration'     => 'Katras sastāvdaļas nozīme',
 'exif-compressedbitsperpixel'      => 'Attēla kompresijas pakāpe',
-'exif-pixelydimension'             => 'Derīgs attēla platums',
-'exif-pixelxdimension'             => 'Valind image height',
+'exif-pixelydimension'             => 'Attēla platums',
+'exif-pixelxdimension'             => 'Attēla augstums',
 'exif-usercomment'                 => 'Lietotāja komentāri',
 'exif-relatedsoundfile'            => 'Saistītais skaņas fails',
 'exif-datetimeoriginal'            => 'Izveidošanas datums un laiks',
@@ -2444,7 +2471,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-spectralsensitivity'         => 'Spektrālā jutība',
 'exif-isospeedratings'             => 'ISO jutība',
 'exif-shutterspeedvalue'           => 'Slēdža ātrums',
-'exif-aperturevalue'               => 'Apertūra',
+'exif-aperturevalue'               => 'APEX apertūra',
 'exif-brightnessvalue'             => 'Gaišums',
 'exif-exposurebiasvalue'           => 'Ekspozīcijas nobīde',
 'exif-subjectdistance'             => 'Objekta attālums',
@@ -2496,6 +2523,14 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-gpsprocessingmethod'         => 'GPS apstrādes metodes nosaukums',
 'exif-gpsareainformation'          => 'GPS zonas nosaukums',
 'exif-gpsdatestamp'                => 'GPS datums',
+'exif-jpegfilecomment'             => 'JPEG faila komentārs',
+'exif-keywords'                    => 'Atslēgas vārdi',
+'exif-languagecode'                => 'Valoda',
+'exif-copyrighted'                 => 'Autortiesību statuss',
+'exif-copyrightowner'              => 'Autortiesību īpašnieks',
+'exif-usageterms'                  => 'Izmantošanas noteikumi',
+'exif-pngfilecomment'              => 'PNG faila komentārs',
+'exif-giffilecomment'              => 'GIF faila komentārs',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekompresēts',
@@ -2594,6 +2629,10 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-gpslongitude-e' => 'Austrumu garums',
 'exif-gpslongitude-w' => 'Rietumu garums',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metrs|metri}} virs jūras līmeņa',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metrs|metri}} zem jūras līmeņa',
+
 'exif-gpsmeasuremode-2' => 'Divdimensionāls mērījums',
 'exif-gpsmeasuremode-3' => 'Trīsdimensionāls mērījums',
 
@@ -2602,9 +2641,36 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-gpsspeed-m' => 'Jūdzes stundā',
 'exif-gpsspeed-n' => 'Mezgli',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometri',
+'exif-gpsdestdistance-m' => 'Jūdzes',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Patiesais virziens',
 'exif-gpsdirection-m' => 'Magnētiskais virziens',
+
+'exif-dc-date' => 'Datums (-i)',
+
+'exif-isospeedratings-overflow' => 'Lielāks kā 65535',
+
+'exif-iimcategory-edu' => 'Izglītība',
+'exif-iimcategory-evn' => 'Vide',
+'exif-iimcategory-hth' => 'Veselība',
+'exif-iimcategory-hum' => 'Cilvēku intereses',
+'exif-iimcategory-lab' => 'Darbs',
+'exif-iimcategory-lif' => 'Dzīvesveids un brīvā laika pavadīšana',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Reliģija un ticība',
+'exif-iimcategory-sci' => 'Zinātne un tehnoloģijas',
+'exif-iimcategory-soi' => 'Sociālie jautājumi',
+'exif-iimcategory-spo' => 'Sports',
+'exif-iimcategory-war' => 'Karš, konflikti un nemieri',
+'exif-iimcategory-wea' => 'Laika apstākļi',
+
+'exif-urgency-normal' => 'Normāla ($1)',
+'exif-urgency-low'    => 'Zema ($1)',
+'exif-urgency-high'   => 'Augsta ($1)',
+'exif-urgency-other'  => 'Lietotāja definēta prioritāte ($1)',
 
 # External editor support
 'edit-externally'      => 'Izmainīt šo failu ar ārēju programmu',
@@ -2738,11 +2804,14 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'version-extensions'               => 'Ieinstalētie paplašinājumi',
 'version-specialpages'             => 'Īpašās lapas',
 'version-variables'                => 'Mainīgie',
+'version-antispam'                 => 'Spama aizsardzība',
 'version-hooks'                    => 'Aizķeres',
 'version-skin-extension-functions' => 'Izskata paplašinājuma funkcijas',
 'version-hook-name'                => 'Aizķeres nosaukums',
 'version-version'                  => '(Versija $1)',
 'version-license'                  => 'Licence',
+'version-poweredby-credits'        => "Šis viki darbojas ar '''[http://www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
+'version-poweredby-others'         => 'citi',
 'version-software'                 => 'Instalētā programmatūra',
 'version-software-product'         => 'Produkts',
 'version-software-version'         => 'Versija',
@@ -2766,7 +2835,8 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'specialpages'                   => 'Īpašās lapas',
 'specialpages-note'              => '----
 * Normālas īpašās lapas.
-* <strong class="mw-specialpagerestricted">Ierobežotas pieejas īpašās lapas.</strong>',
+* <span class="mw-specialpagerestricted">Ierobežotas pieejas īpašās lapas.</span>
+* <span class="mw-specialpagecached">Iekešotās īpašās lapas.</span>',
 'specialpages-group-maintenance' => 'Uzturēšanas atskaites',
 'specialpages-group-other'       => 'Citas īpašās lapas',
 'specialpages-group-login'       => 'Ieiet / piereģistrēties',

@@ -9,6 +9,7 @@
  *
  * @author BrokenArrow
  * @author Candalua
+ * @author Frigotoni
  * @author Nick1915
  * @author Omnipaedista
  * @author OrbiliusMagister
@@ -273,6 +274,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Pajine indicisae',
 'noindex-category'               => 'Pajine no indicisae',
+'broken-file-category'           => "Pajine co' i link roti",
 
 'mainpagetext'      => "'''Instałasion de MediaWiki conpletà coretamente.'''",
 'mainpagedocfooter' => "Varda ła [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] par majori informasion so l'uso de sto software wiki.
@@ -417,7 +419,7 @@ $1',
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Cavà fora da "$1"',
 'youhavenewmessages'      => 'Te ghè $1 ($2).',
-'newmessageslink'         => 'dei messagi novi',
+'newmessageslink'         => 'dei mesagi novi',
 'newmessagesdifflink'     => 'ultimo canbiamento',
 'youhavenewmessagesmulti' => 'Te ghè messagi novi su $1',
 'editsection'             => 'canbia',
@@ -507,7 +509,7 @@ Se prega de dìrghelo a un [[Special:ListUsers/sysop|aministradore]] indicando l
 'badarticleerror'      => 'Operasion no consentia par sta pajina.',
 'cannotdelete'         => 'No xè sta posibiłe scansełare el file "$1".
 Podaria esare sta zà scansełà da qualcun altro.',
-'badtitle'             => 'Titolo mia giusto',
+'badtitle'             => 'Titoło mia justo',
 'badtitletext'         => "El titoło de ła pajina richiesta xè vodo, erà o con carateri no amesi opure el deriva da n'erore ne i cołegamenti tra siti wiki diversi o version en łengue diverse de ło steso sito.",
 'perfcached'           => 'Sti dati qua no i vien mia azornà in tenpo reale, ma solo na olta ogni tanto.',
 'perfcachedts'         => "Sti dati qua i xe stà azornà l'ultima olta el $1.",
@@ -568,6 +570,7 @@ Te poli sistemarte come te vol le to [[Special:Preferences|prefarense de {{SITEN
 'createaccount'              => 'Crea un utente novo',
 'gotaccount'                 => "Sito zà iscrito? '''$1'''.",
 'gotaccountlink'             => 'Entra',
+'userlogin-resetlink'        => "Desmentegà i to dati d'aceso?",
 'createaccountmail'          => 'Par e-mail',
 'createaccountreason'        => 'Motivassion:',
 'badretype'                  => 'Le do password le xe difarenti.',
@@ -588,6 +591,7 @@ Tòtene uno difarente.',
 'wrongpasswordempty'         => 'No xè sta inseria alcuna password. Riprovare.',
 'passwordtooshort'           => 'Łe password e ga da contegnere almanco {{PLURAL:$1|1 caratere|$1 carateri}}.',
 'password-name-match'        => 'Ła password a ga da esare difarente dal nome utente.',
+'password-login-forbidden'   => 'Sto nome utente e/o password i xè stai proibìi',
 'mailmypassword'             => 'Màndeme na password nova al me indirisso e-mail',
 'passwordremindertitle'      => 'Servisio Password Reminder de {{SITENAME}}',
 'passwordremindertext'       => 'Qualcheduni (probabilmente ti, da l\'indirizo IP $1) el gà domandà che ghe vegna mandà na nova password par {{SITENAME}} ($4).
@@ -672,8 +676,8 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'showpreview'                      => 'Varda anteprima',
 'showlivepreview'                  => 'Anteprima in tenpo reàl',
 'showdiff'                         => 'Mostra canbiamenti',
-'anoneditwarning'                  => "'''Ocio:''' No te sì entrà con un nome utente.
-In te la storia de la pagina restarà el to indirizo IP.",
+'anoneditwarning'                  => "'''Ocio:''' Nò te sì entrà co' un nome utente.
+In te ła storia de ła pajina restarà el to indiriso IP.",
 'anonpreviewwarning'               => '"No te ghe eseguio el login. Salvando el to indiriso IP sarà rejistrà ne ła cronołosia de sta voxe."',
 'missingsummary'                   => "'''Ocio:''' No te ghè indicà l'ogeto de la modifica. Macando de novo 'Salva la pagina' la modifica la vegnerà con l'ogeto vodo.",
 'missingcommenttext'               => 'Inserissi un comento qua soto.',
@@ -792,10 +796,10 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''",
 Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.'''
 
 L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $1",
-'protectedpagewarning'             => "'''Ocio: Sta pagina la xe sta proteta e solo i aministradori i pode modificarla.''' Sta qua la xe l'ultima operassion catà sul registro de la pagina:",
-'semiprotectedpagewarning'         => "'''Ocio:''' Sta pàxena la xe stà blocà in maniera che solo i utenti registrài i possa canbiarla. Sta qua la xe l'ultima operassion catà sul registro de la pagina:",
-'cascadeprotectedwarning'          => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
-'titleprotectedwarning'            => "'''OCIO:  Sta pàxena la xe stà blocà in modo che solo i utenti con [[Special:ListGroupRights|serti privilègi]] i la possa crear.'''  Sta qua la xe l'ultima operassion catà sul registro de la pagina:",
+'protectedpagewarning'             => "'''Ocio:''' Sta pajina ła xe sta proteta in maniera che soło i aministradori i posa canbiarla. Sta qua ła xe l'ultima operasion catà sul registro de ła pajina:",
+'semiprotectedpagewarning'         => "'''Ocio:''' Sta pajina ła xe stà proteta in maniera che soło i utenti rexistrài i posa canbiarla. Sta qua ła xe l'ultima operasion catà sul registro de ła pajina:",
+'cascadeprotectedwarning'          => "'''Ocio:''' Sta pajina ła xe stà proteta in maniera che soło i utenti co priviłegi de aministrador i posa canbiarla. Questo sucede parché ła pajina ła xe inclusa {{PLURAL:\$1|'nte ła pajina indicà de seguito, che ła xe stà proteta|ne le pagine indicà de seguito, che łe xe stae protete}} sełesionando ła protesion \"ricorsiva\":",
+'titleprotectedwarning'            => "'''Ocio:''' Sta pajina ła xe stà proteta in modo che soło i utenti co [[Special:ListGroupRights|serti privilègi]] i ła posa crear. Sta qua ła xe l'ultima operasion catà sul registro de ła pajina:",
 'templatesused'                    => '{{PLURAL:$1|Modèl doparà|Modèi doparà}} su sta pagina:',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèl|Modèi}} doparà su sta anteprima:',
 'templatesusedsection'             => '{{PLURAL:$1|Modèl|Modèi}} doparà in sta sezion:',
@@ -808,8 +812,8 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 'sectioneditnotsupported-title'    => 'Modifica de sezion mia suportà',
 'sectioneditnotsupported-text'     => 'La modifica de singole sezion no le xe mia suportà su sta pagina.',
 'permissionserrors'                => 'Eror nei permessi',
-'permissionserrorstext'            => "No te ghè i permessi necessari ad eseguir l'azion richiesta, par {{PLURAL:$1|el seguente motivo|i seguenti motivi}}:",
-'permissionserrorstext-withaction' => 'No se dispone de i parmesi nesesari par $2, par {{PLURAL:$1|el seguente modivo|i seguenti modivi}}:',
+'permissionserrorstext'            => "Nò se dispone dei parmesi nesessari ad eseguir l'asion richiesta, par {{PLURAL:$1|el seguente motivo|i seguenti motivi}}:",
+'permissionserrorstext-withaction' => 'Nò se dispone dei parmesi nesesari par $2, par {{PLURAL:$1|el seguente modivo|i seguenti modivi}}:',
 'recreate-moveddeleted-warn'       => "'''Ocio: te stè par ricrear na pagina zà scancelà precedentemente.'''
 
 Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pagina.
@@ -2183,7 +2187,7 @@ $1',
 'sp-contributions-talk'                => 'discussion',
 'sp-contributions-userrights'          => 'gestion dei parmessi relativi ai utenti',
 'sp-contributions-blocked-notice'      => "Sto utente el xe atualmente blocà. L'ultimo elemento del registro dei blochi el xè riportà qua soto par informassion:",
-'sp-contributions-blocked-notice-anon' => "Sto indiriso IP xè atualmente blocà. De seguito xè riportà l'ultimo ełemento del rejistro de i blochi:",
+'sp-contributions-blocked-notice-anon' => "Sto indiriso IP el xè atualmente blocà. De seguito xè riportà l'ultimo ełemento del rejistro de i blochi:",
 'sp-contributions-search'              => 'Serca contributi',
 'sp-contributions-username'            => 'Indirizo IP o nome utente:',
 'sp-contributions-toponly'             => "Mostra solo i contributi che i xe l'ultima revision de la pagina",

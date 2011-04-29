@@ -349,6 +349,7 @@ $2',
 Sababta neh waxaa waaye "\'\'$2\'\'".',
 
 # Virus scanner
+'virus-scanfailed'     => 'baaritaanka woo shaqeesmi waayay (koodka $1)',
 'virus-unknownscanner' => 'ka hor tagga fayruska la aqoon:',
 
 # Login and logout pages
@@ -445,7 +446,10 @@ Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qorta
 'oldpassword'               => 'Ereysirkii hore:',
 'newpassword'               => 'Ereysir cusub:',
 'retypenew'                 => 'Qor mar labaad ereysirka cusub:',
+'resetpass_success'         => 'Ereysirkaada si fiican oo kuugu bedelmay!
+Hadda gudaha ku gal',
 'resetpass_forbidden'       => 'ereyada sirka ah mala bedeli karo',
+'resetpass-no-info'         => 'Waa in aad gudaha u gashaa hadii aad rabto in aad si toos ah ugu soo gudubto boggaan.',
 'resetpass-submit-loggedin' => 'bedel ereysirka',
 'resetpass-submit-cancel'   => 'Iska xir',
 'resetpass-temp-password'   => 'Ereysir ku meel gaar ah:',
@@ -492,13 +496,24 @@ fadlan ku soo dar su'aalahaaga waxa kor ku qoran.",
 'whitelistedittext'              => 'Waa in aad $1 si aad wax uga bedeshid boggaga.',
 'confirmedittext'                => 'Waa in aad xaqiijisaa e-mailkaada inta aadan sameynin bogaga.
 fadlan ku dar kuna xaqiiji e-mailkaada meesha  [[Special:Preferences|dooqyada gudagalahaaga]].',
+'nosuchsectiontext'              => 'Waxaa baroobeyneesay in aad wax ka bedesho maqaal jirin.
+Waxaa laga yaabaa in la wareejiyay ama la tirtiray adiga oo fiirinaayo bogga.',
 'loginreqtitle'                  => 'Waxaa loo baahanyahay gudagalid',
 'loginreqlink'                   => 'Gudaha gal',
 'loginreqpagetext'               => 'Waa in aad $1 si aad u fiirisid bogyaasha kale.',
 'accmailtitle'                   => "Ereysirka waa la'diray.",
 'accmailtext'                    => 'Ereysirka "$1" waxaa loo diray $2.',
 'newarticle'                     => '(Cusub)',
+'newarticletext'                 => "Waxaa soo raacday link kula xiriiriyay bog oo hadda jirin.
+Hadii aad rabto in aad sameyso bogga, hoos ka bilaaw qoraalkaada (fiiri [[{{MediaWiki:Helppage}}|bogga caawinaada]] wax war ah oo kale).
+hadii aad meeshaan ku soo qaldantay, riix batoonka barowsahaaga  '''gadaal uuga noqo''' .",
 'anontalkpagetext'               => "----''Meeshaan waa bogga wadahadalka isticmaalayaasha aanan la aqoonsanin oo aanan weli sameysanin akoon ama aanan weli isticmaali. Si loo kala sooco isticmaalayaasha, waa in aan isticmaalnaa lambar cinwaaneedka IP:ga. Cinwaanka IP:ga waxaa suurto gal ah in ay wada isticmaalaan dad badan. Hadii aad tahay isticmaale aanan la'aqoonsanin oo aad dareemaysid in laguu gafay, fadlan ka sameyso akoon meeshaan  [[Special:UserLogin|sameyso akoon ama gudaha gal]] si aad uga dhowrsatid in laguugu qaldo isticmaalayaasha kale oo aann la'aqoonsanin.''",
+'noarticletext'                  => 'Hadda boggaan wax kuma qorno.
+Waxaa  [[Special:Search/{{PAGENAME}}|magaca boggaan]] ka raadin kartaa bogyaasha kale,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} raadi kuwo la mid ah],
+ama [{{fullurl:{{FULLPAGENAME}}|action=edit}} wax ka bedel boggaan]</span>.',
+'userpage-userdoesnotexist'      => 'Isticmaalahan  "$1" wali kama diiwaangashno.
+Fadlan fiiri hadii aad rabto in aad sameeyso/wax ka bedesho boggaan.',
 'userpage-userdoesnotexist-view' => 'Isticmaalahaan  "$1" lama diiwaan gelinin.',
 'blocked-notice-logextract'      => 'Isticmaalahaan hadda waa la mamnuucay.
 Mamnuucida ugu danbeyso in oo soo galo hoostaan ee ku qorantahay',
@@ -518,6 +533,7 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
 'editing'                        => 'Waxaa wax ka bedeloosaa $1',
 'editingsection'                 => 'Waxaa wax ka bedeloosaa $1 (qaar)',
+'editingcomment'                 => 'Waxaa wax ka bedeloosaa $1 (qaar)',
 'yourtext'                       => 'Qoraalkaaga',
 'editingold'                     => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
 Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",

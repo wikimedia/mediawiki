@@ -903,8 +903,15 @@ $messages['arc'] = array(
 $messages['az'] = array(
 	'config-page-language' => 'Dil',
 	'config-page-name' => 'Ad',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-type-ibm_db2' => 'IBM DB2',
+	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-ns-generic' => 'Layihə',
+	'config-admin-name' => 'Sizin adınız:',
+	'config-admin-password' => 'Parol:',
+	'config-admin-email' => 'E-poçt ünvanı',
+	'config-help' => 'kömək',
 );
 
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
@@ -1945,11 +1952,28 @@ Nemet eo rekis PHP $2 pe nevesoc'h evit MediaWiki.",
 	'config-unicode-using-intl' => "Oc'h implijout [http://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
 	'config-unicode-pure-php-warning' => "'''Diwallit''' : N'haller ket kaout an [http://pecl.php.net/intl intl PECL astenn] evit merañ reoladur Unicode, a zistro d'ar stumm gorrek emplementet e-PHP.
 Ma lakait da dreiñ ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammig bihan diwar-benn se war [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization]. (e saozneg)",
+	'config-unicode-update-warning' => "'''Diwallit''': ober a ra stumm staliet endalc'her skoueriekaat Unicode gant ur stumm kozh eus [http://site.icu-project.org/ levraoueg meziantoù ar raktres ICU].
+Dleout a rafec'h [http://www.mediawiki.org/wiki/Unicode_normalization_considerations hizivaat] ma seblant deoc'h bezañ pouezus ober gant Unicode.",
 	'config-no-db' => "Ne c'haller ket kavout ur sturier diaz roadennoù dereat !",
+	'config-no-db-help' => "Ret eo deoc'h staliañ ur sturier diazoù roadennoù evit PHP.
+Skoret eo an diazoù roadennoù da-heul : $1.
+
+Ma rit gant un herberc'hiañ kenrannet, goulennit digant ho herberc'hier staliañ ur sturier diaz roadennoù azas.
+Ma kempunit PHP c'hwi hoc'h-unan, adkeflugnit-eñ en ur weredekaat un arval diaz roadennoù, da skouer en ur ober gant <code>./configure --mysql</code>.
+M'hoc'h eus staliet PHP adalek ur pakad Debian pe Ubuntu, eo ret deoc'h staliañ ur vodulenn php5-mysql ivez.",
 	'config-no-fts3' => "'''Diwallit ''': Kempunet eo SQLite hep ar [http://sqlite.org/fts3.html vodulenn FTS3]; ne vo ket posupl ober gant an arc'hwelioù klask er staliadur-mañ",
 	'config-register-globals' => "'''Diwallit : Gweredekaet eo dibarzh <code>[http://php.net/register_globals register_globals]</code> PHP.'''
 '''Diweredekait anezhañ ma c'hallit.'''
 Mont a raio MediaWiki en-dro met fazioù surentez a c'hallo c'hoari war ho servijer",
+	'config-magic-quotes-runtime' => "'''Fazi groñs : gweredekaet eo [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] !'''
+Breinañ a ra an dibarzh-mañ ar roadennoù en ur mod dic'hortoz.
+N'hallit ket staliañ pe ober gant MediaWiki e-keit ha m'eo gweredekaet an dibarzh-se.",
+	'config-magic-quotes-sybase' => "'''Fazi groñs : gweredekaet eo [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] !'''
+Breinañ a ra an dibarzh-mañ ar roadennoù en ur mod dic'hortoz.
+N'hallit ket staliañ pe ober gant MediaWiki e-keit ha m'eo gweredekaet an dibarzh-se.",
+	'config-mbstring' => "'''Fazi groñs : gweredekaet eo [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] !'''
+Degas a ra an dibarzh-mañ fazioù ha gallout a ra breinañ ar roadennoù en ur mod dic'hortoz.
+N'hallit ket staliañ pe ober gant MediaWiki e-keit ha m'eo gweredekaet an dibarzh-se.",
 	'config-ze1' => "'''Fazi diremed : [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mod] zo gweredekaet !'''
 An dibarzh-mañ zo kaoz da zrein euzhus gant MediaWiki.
 Ne c'hallit ket staliañ nag implijout MediaWiki keit ha m'eo gweredekaet an dibarzh-mañ.",
@@ -1958,6 +1982,10 @@ Kudennoù a c'hall sevel abalamour da gement-se, dreist-holl ma pellgargit restr
 	'config-xml-bad' => "Mankout a ra modulenn XML PHP.
 Ezhomm en deus MediaWiki eus arc'hwelioù zo eus ar vodulenn-se ha ne'z aio ket en-dro gant ar c'hefluniadur zo.
 M'emaoc'h gant Mandrake, stailhit pakad php-xml.",
+	'config-pcre' => "Evit doare e vank ar vodulenn skorañ PCRE.
+Evit mont en-dro plaen en deus ezhomm MediaWiki eus an arc'hwelioù jediñ reoliek kenglotus gant Perl.",
+	'config-pcre-no-utf8' => "'''Fazi groñs ''': evit doare eo bet kempunet modulenn PCRE PHP hep ar skor PCRE_UTF8.
+Ezhomm en deus MediaWiki eus UTF-8 evit mont plaen en-dro.",
 	'config-memory-raised' => '<code>memory_limit</code> ar PHP zo $1, kemmet e $2.',
 	'config-memory-bad' => "'''Diwallit :''' Da $1 emañ arventenn <code>memory_limit</code> PHP.
 Re izel eo moarvat.
@@ -2051,6 +2079,9 @@ Arabat ober gant esaouennoù pe barrennigoù-stagañ.
 Implijet e vo evit ar restr roadennoù SQLite.",
 	'config-sqlite-mkdir-error' => 'Ur fazi zo bet e-ser krouiñ ar c\'havlec\'h roadennoù "$1".
 Gwiriañ al lec\'hiadur ha klask en-dro.',
+	'config-sqlite-connection-error' => "$1.
+
+Gwiriañ ar c'havlec'h roadennoù hag anv an diaz roadennoù a-is ha klaskit en-dro.",
 	'config-sqlite-readonly' => "N'haller ket skrivañ er restr <code>$1</code>.",
 	'config-sqlite-cant-create-db' => "N'haller ket krouiñ restr an diaz roadennoù <code>$1</code>.",
 	'config-upgrade-done-no-regenerate' => 'Hizivadenn kaset da benn.
@@ -2149,6 +2180,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-user' => 'O krouiñ an diaz roadennoù implijer',
 	'config-install-user-alreadyexists' => 'An implijer "$1" zo anezhañ dija',
 	'config-install-user-create-failed' => 'Fazi e-ser krouiñ an implijer "$1" : $2',
+	'config-install-user-grant-failed' => 'N\'eus ket bet gallet reiñ an aotre d\'an implijer "$1" : $2',
 	'config-install-tables' => 'Krouiñ taolennoù',
 	'config-install-tables-failed' => "'''Fazi :''' c'hwitet eo krouidigezh an daolenn gant ar fazi-mañ : $1",
 	'config-install-interwiki-list' => "Ne c'haller ket kavout ar restr <code>interwiki.list</code>.",

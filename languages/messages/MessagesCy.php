@@ -621,14 +621,22 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 'resetpass-temp-password'   => 'Cyfrinair dros dro:',
 
 # Special:PasswordReset
-'passwordreset'            => 'Ailosod cyfrinair',
-'passwordreset-text'       => "Cwblhewch y ffurflen hon er mwyn derbyn e-bost i'ch atgoffa o fanylion eich cyfrif.",
-'passwordreset-legend'     => 'Ailosod y cyfrinair',
-'passwordreset-disabled'   => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
-'passwordreset-pretext'    => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
-'passwordreset-username'   => 'Eich enw defnyddiwr:',
-'passwordreset-email'      => 'Eich cyfeiriad e-bost:',
-'passwordreset-emailtitle' => 'Manylion eich cyfrif ar {{SITENAME}}',
+'passwordreset'              => 'Ailosod cyfrinair',
+'passwordreset-text'         => "Cwblhewch y ffurflen hon er mwyn derbyn e-bost i'ch atgoffa o fanylion eich cyfrif.",
+'passwordreset-legend'       => 'Ailosod y cyfrinair',
+'passwordreset-disabled'     => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
+'passwordreset-pretext'      => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
+'passwordreset-username'     => 'Eich enw defnyddiwr:',
+'passwordreset-email'        => 'Eich cyfeiriad e-bost:',
+'passwordreset-emailtitle'   => 'Manylion eich cyfrif ar {{SITENAME}}',
+'passwordreset-emailtext-ip' => "Mae rhywun (chi yn ôl pob tebyg, o'r cyfeiriad IP $1) wedi gofyn am nodyn atgoffa o fanylion eich cyfrif ar {{SITENAME}} ($4). Mae'r {{PLURAL:$3|cyfrif|cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
+
+$2
+
+Bydd y {{PLURAL:$3||cyfrinair dros dro hwn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn}} yn dod i ben ymhen {{PLURAL:$5||un diwrnod |$5 ddiwrnod|$5 diwrnod|$5 diwrnod|$5 diwrnod}}. Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
+'passwordreset-emailelement' => "Enw'r defnyddiwr: $1
+Y cyfrinair dros dro: $2",
+'passwordreset-emailsent'    => 'Anfonwyd nodyn atgoffa drwy e-bost.',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -2902,7 +2910,9 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsareainformation'          => "Enw'r parth GPS",
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
 'exif-gpsdifferential'             => 'cywiriad differol y GPS',
+'exif-keywords'                    => 'Allweddeiriau',
 'exif-objectname'                  => 'Teitl byr',
+'exif-urgency'                     => 'Brys',
 'exif-languagecode'                => 'Iaith',
 'exif-iimcategory'                 => 'Categori',
 
@@ -3053,6 +3063,13 @@ Cuddir y meysydd eraill trwy ragosodiad.
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gwir gyfeiriad',
 'exif-gpsdirection-m' => 'Cyfeiriad magnetig',
+
+'exif-iimcategory-wea' => 'Tywydd',
+
+'exif-urgency-normal' => 'Cyffredin ($1)',
+'exif-urgency-low'    => 'Isel ($1)',
+'exif-urgency-high'   => 'Uchel ($1)',
+'exif-urgency-other'  => 'Blaenoriaeth yn ôl y defnyddiwr ($1)',
 
 # External editor support
 'edit-externally'      => 'Golygwch y ffeil gyda rhaglen allanol',

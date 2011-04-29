@@ -739,7 +739,10 @@ $2',
 'resetpass-temp-password'   => 'Временна парола:',
 
 # Special:PasswordReset
-'passwordreset-username' => 'Потребителско име:',
+'passwordreset-username'     => 'Потребителско име:',
+'passwordreset-email'        => 'Електронна поща:',
+'passwordreset-emailelement' => 'Потребителско име: $1
+Временна парола: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Получер текст',

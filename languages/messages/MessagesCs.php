@@ -858,6 +858,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'passwordreset'                => 'Reset hesla',
 'passwordreset-legend'         => 'Znovu nastavit heslo',
 'passwordreset-disabled'       => 'Znovunastavení hesla je na této wiki zakázáno.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
 'passwordreset-username'       => 'Uživatelské jméno:',
 'passwordreset-email'          => 'E-mailová adresa:',
 'passwordreset-emailtitle'     => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
@@ -881,6 +882,7 @@ poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete h
 tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
 'passwordreset-emailelement'   => 'Uživatelské jméno: $1
 Dočasné heslo: $2',
+'passwordreset-emailsent'      => 'E-mail s heslem byl odeslán.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',

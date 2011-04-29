@@ -216,6 +216,7 @@ $messages = array(
 'jumptonavigation'  => 'никътахкар',
 'jumptosearch'      => 'леха',
 'pool-queuefull'    => 'Хаттарий цIа хьалдизад',
+'pool-errorunknown' => 'Довзаш доаца гIалат',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Лоацам {{SITENAME}}',
@@ -287,12 +288,14 @@ $messages = array(
 'nosuchaction' => 'Цу тайпара дулархам бац',
 
 # General errors
+'error'           => 'ГIалат',
 'missing-article' => 'Кораде дезаш хинна оагIувни яздам корадаьдац «$1» $2.
 
 Из мо гIалат нийсалуш хула, саг тишъенна Iинкаца, дадаьккха дола оагIувни хувца искара тIа чувала гIиртача.
 
 Наггахь санна из иштта деци, шоана гIирса Iалаш деча гIалат корая хила мега.
 Дехар да, [[Special:ListUsers/sysop|мазакулгалхочоа]] хоам бе, URL хьахокхаш.',
+'badtitle'        => 'Мегаш йоаца цIи',
 'viewsource'      => 'Тахкам',
 
 # Login and logout pages
@@ -308,7 +311,12 @@ $messages = array(
 'notloggedin'             => 'Оаш шоай цIи хьааьннадац',
 'nologinlink'             => 'Лархама йоазув де',
 'gotaccountlink'          => 'Чувала',
+'createaccountreason'     => 'Бахьан:',
 'mailmypassword'          => 'Керда къайладоагIа хьаэца',
+
+# Change password dialog
+'resetpass-submit-loggedin' => 'КъайладогIа дIахувца',
+'resetpass-submit-cancel'   => 'Юхавал/ялa',
 
 # Edit page toolbar
 'bold_sample'     => 'Сома яздам',
