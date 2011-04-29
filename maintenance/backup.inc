@@ -126,7 +126,6 @@ class BackupDumper {
 					break;
 				case "filter":
 					if ( is_null( $sink ) ) {
-						$this->progress( "Warning: assuming stdout for filter output\n" );
 						$sink = new DumpOutput();
 					}
 					if ( !isset( $this->filterTypes[$val] ) ) {
