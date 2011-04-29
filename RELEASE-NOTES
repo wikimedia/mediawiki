@@ -386,7 +386,7 @@ changes to languages because of Bugzilla reports.
 * (bug 28040) Turkish: properly lower case 'I' to 'ı' (dotless i) and
   uppercase 'i' to 'İ' (dotted i).
 * Conversion script between Syllabics and Latin for the Inuktitut language.
-* Data formats for Indonedian (id) updated.
+* Date formats for Indonedian (id) updated.
 
 == Compatibility ==
 
