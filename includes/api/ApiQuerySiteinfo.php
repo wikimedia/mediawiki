@@ -88,6 +88,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'skins':
 					$fit = $this->appendSkins( $p );
 					break;
+				case 'extensiontags':
+					$fit = $this->appendExtensionTags( $p );
+					break;
+				case 'functionhooks':
+					$fit = $this->appendFunctionHooks( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -433,7 +439,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-
 	protected function appendRightsInfo( $property ) {
 		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 		$title = Title::newFromText( $wgRightsPage );
@@ -473,6 +478,26 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	public function appendExtensionTags( $property ) {
+		global $wgParser;
+		$wgParser->firstCallInit();
+		$tags = array_map( array( $this, 'formatParserTags'), $wgParser->getTags() );
+		$this->getResult()->setIndexedTagName( $tags, 't' );
+		return $this->getResult()->addValue( 'query', $property, $tags );
+	}
+
+	public function appendFunctionHooks( $property ) {
+		global $wgParser;
+		$wgParser->firstCallInit();
+		$hooks = $wgParser->getFunctionHooks();
+		$this->getResult()->setIndexedTagName( $hooks, 'h' );
+		return $this->getResult()->addValue( 'query', $property, $hooks );
+	}
+
+	private function formatParserTags( $item ) {
+		return "&lt;{$item}&gt;";
+	}
+
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
@@ -497,6 +522,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'rightsinfo',
 					'languages',
 					'skins',
+					'extensiontags',
+					'functionhooks',
 				)
 			),
 			'filteriw' => array(
@@ -528,6 +555,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' rightsinfo            - Returns wiki rights (license) information if available',
 				' languages             - Returns a list of languages MediaWiki supports',
 				' skins                 - Returns a list of all enabled skins',
+				' extensiontags         - Returns a list of parser extension tags',
+				' functionhooks         - Returns a list of parser function hooks',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
