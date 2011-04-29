@@ -267,7 +267,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param $prop Array of properties to get (in the keys)
 	 * @param $result ApiResult object
 	 * @param $thumbParams Array containing 'width' and 'height' items, or null
-	 * @param $version Version of image metadata (for things like jpeg which have different versions).
+	 * @param $version string Version of image metadata (for things like jpeg which have different versions).
 	 * @return Array: result array
 	 */
 	static function getInfo( $file, $prop, $result, $thumbParams = null, $version = 'latest' ) {

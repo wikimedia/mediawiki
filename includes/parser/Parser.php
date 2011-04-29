@@ -5057,7 +5057,6 @@ class Parser {
 	 * @param $text String
 	 * @param $frame PPFrame
 	 * @return String
-	 * @private
 	 */
 	function attributeStripCallback( &$text, $frame = false ) {
 		$text = $this->replaceVariables( $text, $frame );
@@ -5067,6 +5066,8 @@ class Parser {
 
 	/**
 	 * Accessor
+	 *
+	 * @return array
 	 */
 	function getTags() {
 		return array_merge( array_keys( $this->mTransparentTagHooks ), array_keys( $this->mTagHooks ) );
