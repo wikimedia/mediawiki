@@ -255,6 +255,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   left-to-right.
 * (bug 28719) Do not call mLinkHolders __destruct explicitly
 * (bug 21196) Article::getContributors() no longer fail on PostgreSQL.
+* (bug 28752) XCache doesn't work in CLI mode.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result.
