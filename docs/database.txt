@@ -186,3 +186,14 @@ MediaWiki does support the following other DBMSs to varying degrees.
 More information can be found about each of these databases (known issues,
 level of support, extra configuration) in the "databases" subdirectory in
 this folder.
+
+------------------------------------------------------------------------
+    Use of GROUP BY
+------------------------------------------------------------------------
+
+MySQL supports GROUP BY without checking anything in the SELECT clause. 
+Other DBMSs (especially Postgres) are stricter and require that all the 
+non-aggregate items in the SELECT clause appear in the GROUP BY. For 
+this reason, it is highly discouraged to use SELECT * with GROUP BY 
+queries.
+
