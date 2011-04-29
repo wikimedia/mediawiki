@@ -41,7 +41,7 @@
  * @ingroup Cache
  */
 abstract class BagOStuff {
-	var $debugMode = false;
+	private $debugMode = false;
 
 	public function setDebug( $bool ) {
 		$this->debugMode = $bool;
