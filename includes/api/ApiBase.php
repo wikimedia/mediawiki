@@ -285,7 +285,7 @@ abstract class ApiBase {
 	/**
 	 * Generates the parameter descriptions for this module, to be displayed in the
 	 * module's help.
-	 * @return string
+	 * @return string or false
 	 */
 	public function makeHelpMsgParameters() {
 		$params = $this->getFinalParams();
