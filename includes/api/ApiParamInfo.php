@@ -162,7 +162,10 @@ class ApiParamInfo extends ApiBase {
 			}
 			if ( isset( $p[ApiBase::PARAM_ISMULTI] ) && $p[ApiBase::PARAM_ISMULTI] ) {
 				$a['multi'] = '';
-				$a['limit'] = ApiBase::LIMIT_SML1;
+				$a['limit'] = $this->getMain()->canApiHighLimits() ?
+					ApiBase::LIMIT_SML2 :
+					ApiBase::LIMIT_SML1;
+				$a['lowlimit'] = ApiBase::LIMIT_SML1;
 				$a['highlimit'] = ApiBase::LIMIT_SML2;
 			}
 
