@@ -30,7 +30,7 @@
  * The class functions are divided into several areas of functionality:
  *
  * Module parameters: Derived classes can define getAllowedParams() to specify
- * 	which parameters to expect,h ow to parse and validate them.
+ * 	which parameters to expect, how to parse and validate them.
  *
  * Profiling: various methods to allow keeping tabs on various tasks and their
  * 	time costs
