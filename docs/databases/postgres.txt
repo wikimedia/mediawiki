@@ -92,6 +92,18 @@ in maintenance/tables.sql itself, as it is very strict in the
 format it expects things to be in. :)
 
 
+== MySQL differences ==
+
+The major differences between MySQL and Postgres are represented as 
+methods in the Database class. For example, implicitGroupby() is 
+true for MySQL and false for Postgres. This means that in those 
+places where the code does not add all the non-aggregate items 
+from the SELECT clause to the GROUP BY, we can add them in, but in 
+a conditional manner with the above method, as simply adding them 
+all in to the main query may cause performance problems with 
+MySQL.
+
+
 == Getting help ==
 
 In addition to the normal venues (MediaWiki mailing lists
