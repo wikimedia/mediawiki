@@ -14,6 +14,7 @@
  * @author Mahitgar
  * @author Naveen Sankar
  * @author Omnipaedista
+ * @author Vibhijain
  * @author రాకేశ్వర
  */
 
@@ -448,6 +449,7 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'printableversion'  => 'मुद्रणीय पाठान्तरम्',
 'permalink'         => 'स्थिरबन्धनम्',
 'print'             => 'मुद्रयतु',
+'view'              => 'दर्शाव',
 'edit'              => 'सम्पादयतु',
 'create'            => 'सृजतु',
 'editthispage'      => 'इदं पृष्ठं सम्पादयतु',
@@ -823,7 +825,10 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'randompage' => 'अविशिष्ट पृष्ठ',
 
 # Statistics
-'statistics' => 'स्थितिगणितम्',
+'statistics'              => 'स्थितिगणितम्',
+'statistics-users-active' => 'सक्रिय सदस्य',
+
+'doubleredirects' => 'दुगुनी-अनुप्रेषिते',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|बैटम्|बैटानि}}',
@@ -927,6 +932,10 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'protect-cantedit'            => 'भवान् अस्य पृष्ठस्य सुरक्षा-स्तरं परिवर्तयितुं न शक्नोति, यतो भवान् इदं पृष्ठं संपादयितुं अनुज्ञां न धारयति।',
 'restriction-type'            => 'अनुमतिः:',
 'restriction-level'           => 'सुरक्षा-स्तरः :',
+
+# Restriction levels
+'restriction-level-sysop'         => 'पूर्ण सुरक्षित',
+'restriction-level-autoconfirmed' => 'अर्ध सुरक्षित',
 
 # Undelete
 'undeletelink'     => 'दर्शयतु/पुनःस्थापयतु',

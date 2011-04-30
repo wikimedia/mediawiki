@@ -187,11 +187,13 @@ $messages = array(
 'newpassword' => 'ЦIийи куьлег:',
 
 # Edit page toolbar
-'bold_sample'   => 'Сакlус яцlу кхьин',
-'bold_tip'      => 'Сакlус яцlу кхьин',
-'italic_sample' => 'Къвалахъ алхьанай кхьин',
-'italic_tip'    => 'Къвалахъ алхьанай кхьин',
-'media_tip'     => 'Файлдин цlар',
+'bold_sample'     => 'Сакlус яцlу кхьин',
+'bold_tip'        => 'Сакlус яцlу кхьин',
+'italic_sample'   => 'Къвалахъ алхьанай кхьин',
+'italic_tip'      => 'Къвалахъ алхьанай кхьин',
+'link_sample'     => 'Алукьунин цlарцlин тlар',
+'headline_sample' => 'Кьлин кхьин',
+'media_tip'       => 'Файлдин цlар',
 
 # Edit pages
 'summary'        => 'Къейда:',
@@ -327,6 +329,7 @@ $1 Кlевхьанай ишлемишчи',
 
 # Upload
 'upload'        => 'Парвиниз шикил',
+'uploadlogpage' => 'Кхьин хъувун тlар',
 'uploadedimage' => 'Цун хъувун"[[$1]]"',
 
 # Special:ListFiles
@@ -467,6 +470,7 @@ $1 Кlевхьанай ишлемишчи',
 'whatlinkshere-page'       => 'Ишлемишчи',
 'istemplate'               => 'Трансклипция',
 'whatlinkshere-next'       => '{{PLURAL:$1|next|къведай $1}}',
+'whatlinkshere-links'      => '← цlарар',
 'whatlinkshere-hideredirs' => '$1 массадал ракъурун',
 'whatlinkshere-hidetrans'  => '',
 'whatlinkshere-hidelinks'  => '$1 алукьунин цlар',
@@ -475,6 +479,7 @@ $1 Кlевхьанай ишлемишчи',
 # Block/unblock
 'blockip'          => 'Ишлемишзавайдан хара',
 'ipboptions'       => '2 сят:2 hours,1 югъ:1 day,3 югъ:3 days,1 афте:1 week,2 афте:2 weeks,1 варз:1 month,3 варз:3 months,6 варз:6 months,1 йис:1 year,эхир авачиз:infinite',
+'ipblocklist'      => 'Ишлемишчи акьвалун',
 'blocklink'        => 'тIаб',
 'unblocklink'      => 'ахъа хъувун',
 'change-blocklink' => 'дегиш хьун блок',
@@ -488,7 +493,7 @@ $1 Кlевхьанай ишлемишчи',
 'movepagebtn' => 'Юзун хъувун',
 'movetalk'    => 'Югъун,галкlана рахун',
 'movereason'  => 'Фагьум:',
-'revertmove'  => 'хтун',
+'revertmove'  => 'хтун хъувун',
 
 # Export
 'export' => 'Чарар ракъурун',
@@ -561,7 +566,20 @@ $1 Кlевхьанай ишлемишчи',
 Ва аммай рахъурунар са цlарцlел гьисабзава кьилди,ва чарар,гьина файл цlарцlел фин жеда.',
 
 # Metadata
-'metadata' => 'Мета замана югъ',
+'metadata'        => 'Мета замана югъ',
+'metadata-fields' => 'Дугун метахуьнрин шкилрин, гьисабнавайбур и цlарцlе,къалурда шкилрин чарчел акьвалнай таблицдал метахуьнрин.Аммай дугунар ававал акьвална жеда.                                                                                                                                                 * make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-contrast' => 'Рангар',

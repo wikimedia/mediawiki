@@ -621,22 +621,29 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 'resetpass-temp-password'   => 'Cyfrinair dros dro:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Ailosod cyfrinair',
-'passwordreset-text'         => "Cwblhewch y ffurflen hon er mwyn derbyn e-bost i'ch atgoffa o fanylion eich cyfrif.",
-'passwordreset-legend'       => 'Ailosod y cyfrinair',
-'passwordreset-disabled'     => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
-'passwordreset-pretext'      => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
-'passwordreset-username'     => 'Eich enw defnyddiwr:',
-'passwordreset-email'        => 'Eich cyfeiriad e-bost:',
-'passwordreset-emailtitle'   => 'Manylion eich cyfrif ar {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Mae rhywun (chi yn ôl pob tebyg, o'r cyfeiriad IP $1) wedi gofyn am nodyn atgoffa o fanylion eich cyfrif ar {{SITENAME}} ($4). Mae'r {{PLURAL:$3|cyfrif|cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
+'passwordreset'                => 'Ailosod cyfrinair',
+'passwordreset-text'           => "Cwblhewch y ffurflen hon er mwyn derbyn e-bost i'ch atgoffa o fanylion eich cyfrif.",
+'passwordreset-legend'         => 'Ailosod y cyfrinair',
+'passwordreset-disabled'       => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
+'passwordreset-pretext'        => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
+'passwordreset-username'       => 'Eich enw defnyddiwr:',
+'passwordreset-email'          => 'Eich cyfeiriad e-bost:',
+'passwordreset-emailtitle'     => 'Manylion eich cyfrif ar {{SITENAME}}',
+'passwordreset-emailtext-ip'   => "Mae rhywun (chi yn ôl pob tebyg, o'r cyfeiriad IP $1) wedi gofyn am nodyn atgoffa o fanylion eich cyfrif ar {{SITENAME}} ($4). Mae'r {{PLURAL:$3|cyfrif|cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
 
 $2
 
-Bydd y {{PLURAL:$3||cyfrinair dros dro hwn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn}} yn dod i ben ymhen {{PLURAL:$5||un diwrnod |$5 ddiwrnod|$5 diwrnod|$5 diwrnod|$5 diwrnod}}. Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
-'passwordreset-emailelement' => "Enw'r defnyddiwr: $1
+Bydd y {{PLURAL:$3||cyfrinair dros dro hwn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn}} yn dod i ben ymhen {{PLURAL:$5||diwrnod |deuddydd|tridiau|$5 diwrnod|$5 diwrnod}}. Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
+'passwordreset-emailtext-user' => "Gofynodd y defnyddiwr $1 ar {{SITENAME}} am gael ei atgoffa o fanylion eich cyfrif ar {{SITENAME}}
+($4). Mae'r {{PLURAL:$3||cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
+
+$2
+
+Bydd y {{PLURAL:$3||cyfrinair|cyfrineiriau|cyfrineiriau|cyfrineiriau|cyfrineiriau}} dros dro hyn yn dod i ben ymhen {{PLURAL:$5||diwrnod|deuddydd|tridiau|$5 diwrnod|$5 diwrnod}}.
+Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
+'passwordreset-emailelement'   => "Enw'r defnyddiwr: $1
 Y cyfrinair dros dro: $2",
-'passwordreset-emailsent'    => 'Anfonwyd nodyn atgoffa drwy e-bost.',
+'passwordreset-emailsent'      => 'Anfonwyd nodyn atgoffa drwy e-bost.',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -1454,7 +1461,7 @@ Gweler [[Special:NewFiles|oriel y ffeiliau newydd]] i fwrw golwg drostynt.",
 'filedesc'                    => 'Crynodeb',
 'fileuploadsummary'           => 'Crynodeb:',
 'filereuploadsummary'         => "Newidiadau i'r ffeil:",
-'filestatus'                  => 'Statws hawlfraint:',
+'filestatus'                  => 'Statws yr hawlfraint:',
 'filesource'                  => 'Ffynhonnell:',
 'uploadedfiles'               => 'Ffeiliau a uwchlwythwyd',
 'ignorewarning'               => "Anwybydder y rhybudd, a rhoi'r dudalen ar gadw beth bynnag",
@@ -2910,11 +2917,21 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsareainformation'          => "Enw'r parth GPS",
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
 'exif-gpsdifferential'             => 'cywiriad differol y GPS',
+'exif-jpegfilecomment'             => 'Sylwadau ar y ffeil JPEG',
 'exif-keywords'                    => 'Allweddeiriau',
+'exif-worldregioncreated'          => 'Y parth lle y tynnwyd y llun',
+'exif-countrycreated'              => 'Y wlad lle y tynnwyd y llun',
 'exif-objectname'                  => 'Teitl byr',
 'exif-urgency'                     => 'Brys',
 'exif-languagecode'                => 'Iaith',
 'exif-iimcategory'                 => 'Categori',
+'exif-cameraownername'             => 'Perchennog y camera',
+'exif-copyrighted'                 => 'Statws yr hawlfraint:',
+'exif-copyrightowner'              => 'Perchennog yr hawlfraint',
+'exif-pngfilecomment'              => 'Sylwadau ar y ffeil PNG',
+'exif-disclaimer'                  => 'Ymwadiad',
+'exif-giffilecomment'              => 'Sylwadau ar y ffeil GIF',
+'exif-event'                       => 'Y digwyddiad a ddarlunnir',
 
 # EXIF attributes
 'exif-compression-1' => 'Heb ei gywasgu',
@@ -3060,10 +3077,43 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsdestdistance-m' => 'Milltiroedd',
 'exif-gpsdestdistance-n' => 'Milltiroedd môr',
 
+'exif-gpsdop-excellent' => 'Rhagorol ($1)',
+'exif-gpsdop-good'      => 'Da ($1)',
+'exif-gpsdop-moderate'  => 'Cymedrol ($1)',
+'exif-gpsdop-fair'      => 'Gweddol ($1)',
+'exif-gpsdop-poor'      => 'Gwael ($1)',
+
+'exif-objectcycle-a' => "Y bore'n unig",
+'exif-objectcycle-p' => "Gyda'r nos yn unig",
+'exif-objectcycle-b' => 'Bore a hwyr',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gwir gyfeiriad',
 'exif-gpsdirection-m' => 'Cyfeiriad magnetig',
 
+'exif-dc-contributor' => 'Cyfranwyr',
+'exif-dc-date'        => 'Dyddiad',
+'exif-dc-publisher'   => 'Cyhoeddwr',
+'exif-dc-rights'      => 'Hawliau',
+
+'exif-isospeedratings-overflow' => 'Mwy na 65535',
+
+'exif-iimcategory-ace' => 'Celfyddyd, diwylliant ac adloniant',
+'exif-iimcategory-clj' => "Troseddu a'r gyfraith",
+'exif-iimcategory-dis' => 'Trychinebau a damweiniau',
+'exif-iimcategory-fin' => 'Yr economi a busnes',
+'exif-iimcategory-edu' => 'Addysg',
+'exif-iimcategory-evn' => 'Yr Amgylchedd',
+'exif-iimcategory-hth' => 'Iechyd',
+'exif-iimcategory-hum' => 'O ddiddordeb dynol',
+'exif-iimcategory-lab' => 'Gwaith',
+'exif-iimcategory-lif' => 'Ffordd o fyw a hamdden',
+'exif-iimcategory-pol' => 'Gwleidyddiaeth',
+'exif-iimcategory-rel' => 'Crefydd a chred',
+'exif-iimcategory-sci' => 'Gwyddoniaeth a thechnoleg',
+'exif-iimcategory-soi' => 'Cymdeithas',
+'exif-iimcategory-spo' => 'Chwaraeon',
+'exif-iimcategory-war' => 'Rhyfel, gwrthdaro ac aflonyddwch',
 'exif-iimcategory-wea' => 'Tywydd',
 
 'exif-urgency-normal' => 'Cyffredin ($1)',

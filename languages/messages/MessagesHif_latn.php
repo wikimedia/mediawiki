@@ -142,6 +142,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'aur',
 'index-category'                 => 'Indexed panna',
 'noindex-category'               => 'Bina index karaa gais panna',
+'broken-file-category'           => 'Panna jisme tuuta file ke jorr hae',
 
 'mainpagetext'      => "'''MediaWiki ke safalta se install kar dewa gais hai.'''",
 'mainpagedocfooter' => "Wiki software ke use kare ke aur jaankari ke khatir [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.
@@ -437,19 +438,20 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'createaccount'              => 'Nawaa account banao',
 'gotaccount'                 => "Aap ke pas pahile se account hai ki nai? '''$1'''.",
 'gotaccountlink'             => 'Log in',
+'userlogin-resetlink'        => 'Ka aap aapan login kare waala jaankari ke bhulae gaya hae?',
 'createaccountmail'          => 'e-mail se',
 'createaccountreason'        => 'Kaaran:',
-'badretype'                  => 'Jon duuno password aap likha hai uu ek rakam nai hai.',
-'userexists'                 => 'Ii username aur koi ke hai.
-Duusra username choose karo.',
-'loginerror'                 => 'Login me galti hai',
+'badretype'                  => 'Jon duuno password aap likha hai uu ek rakam nai hae.',
+'userexists'                 => 'Ii username aur koi ke hae.
+Duusra username ke choose karo.',
+'loginerror'                 => 'Login me kuchh wrong hae',
 'createaccounterror'         => 'Account ke nai banae sakaa hae: $1',
-'nocookiesnew'               => 'Aap ke account banae dewa gais hai lekin aap loggen in nai hai.
-{{SITENAME}} me sadasya ke login khatir cookies hai.
-Aap cookies ke disabled karaa hai.
+'nocookiesnew'               => 'Aap ke account banae dewa gais hae lekin aap logged in nai hae.
+{{SITENAME}} me sadasya ke login khatir cookies hae.
+Aap cookies ke rok diya hae.
 Cookies ke enable kar ke, aapan nawaa username aur password se login karo.',
-'nocookieslogin'             => '{{SITENAME}} me sadasya ke login khatir cookies hai.
-Aap cookies ke disabled karaa hai.
+'nocookieslogin'             => '{{SITENAME}} me sadasya ke login khatir cookies hae.
+Aap cookies ke disabled karaa hae.
 Cookies ke enable kar ke fir se kosis karo.',
 'nocookiesfornew'            => 'Sadasya ke account ke nai banawa gais hae, kaahe ki source ke confirm nai karaa jaae sakis hae.
 Cookies ke enable kar ke, ii panna ke fir se load karo aur fir se kosis karo.',
@@ -503,6 +505,7 @@ Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
 'usernamehasherror'          => 'Sadasya ke naam me hash akchhar ke nai kaam me lawa jaae sake hae',
 'login-throttled'            => 'Aap bahut jaada dafe ii account ke password ke enter kare ke kosis karaa hai.
 Thora deri baad fir se kosis karna.',
+'login-abort-generic'        => 'Aap ke login nai chalaa - Aborted',
 'loginlanguagelabel'         => 'Bhasa: $1',
 'suspicious-userlogout'      => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
 
@@ -527,6 +530,18 @@ Login khatam kare khatir, aap ke nawaa password set kare ke parri hian:',
 'resetpass-wrong-oldpass'   => 'Temporary nai to abhi ke password valid nai hai.
 Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password ke maang karaa hoga.',
 'resetpass-temp-password'   => 'Kachcha password:',
+
+# Special:PasswordReset
+'passwordreset'              => 'Password ke badlo',
+'passwordreset-text'         => 'Aapan account ke baare me jaankari ke receive kare ke khatir ii fom ke bharo.',
+'passwordreset-legend'       => 'Password ke badlo',
+'passwordreset-disabled'     => 'II wiki me password ke badle ke ijaajat nai hae.',
+'passwordreset-username'     => 'Sadasya ke naam:',
+'passwordreset-email'        => 'E-mail ke address',
+'passwordreset-emailtitle'   => '{{SITENAME}} me account ke jaankari',
+'passwordreset-emailelement' => 'Sadasya ke naam: $1
+Kuchh din ke khatir password: $2',
+'passwordreset-emailsent'    => 'Aap ke yaad karae ke khatir ek e-mail ke bhej dewa gais hae.',
 
 # Edit page toolbar
 'bold_sample'     => 'Motaa text',
@@ -791,7 +806,7 @@ Saait iske wiki me se mitae dewa gae hoi, nai to iske naam badal dewa gae hoi.
 Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comment ke hatae dewa gais hai)',
+'rev-deleted-comment'         => '(badlao ke summary ke hatae dewa gais hae)',
 'rev-deleted-user'            => '(username ke hatae dewa gais hai)',
 'rev-deleted-event'           => '(log action ke hatae dewa gais hai)',
 'rev-deleted-user-contribs'   => '[Sadasya ke naam nai to IP address ke hatae dewa gais hae- yogdaan se badlao ke lukae dewa gais hae]',
@@ -1372,8 +1387,8 @@ Maharbaani kar ke file ke naam ke badal ke fir se upload kare ke kosis karo.',
 'filetype-bad-ie-mime'        => 'Ii file ke upload nai kare sakta hai kahe ki Internet Explorer iske "$1" ke rakam dekhi, jon ki allowed nai hai aur khatarnaat rakam ke file jaana jaae hai.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' rakam ke file ke hian nai maaga jaae hai.
 Maange waala {{PLURAL:\$3|file ke rakam hai|file ke rakam hai}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' ke rakam ke file hian pe allowed nai hai.
-Allowed {{PLURAL:\$3|rakam ke file hai|rakam ke fle hai}} \$2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\'{{PLURAL:$4| ke rakam ke file hian pe allowed nai hai.}}
+Allowed {{PLURAL:$3|rakam ke file hai|rakam ke fle hai}} $2.',
 'filetype-missing'            => 'File ke koi extension nai hai (jaise ki ".jpg").',
 'empty-file'                  => 'Aap ke bheja gais panna khaali hae.',
 'file-too-large'              => 'Aap ke bheja gais panna bahut barraa hae.',
@@ -1852,6 +1867,8 @@ Jon e-mail address aap [[Special:Preferences|your user preferences]] me enter ka
 'noemailtext'          => 'Ii sadasya thiik e-mail address nai diis hai.',
 'nowikiemailtitle'     => 'Koi e-mail ke ijajat nai hai',
 'nowikiemailtext'      => 'Ii sadasya e-mail nai le ke decide karis hai.',
+'emailtarget'          => 'Mie waala jan ke username ke enter karo',
+'emailusername'        => 'Sadasya ke naam:',
 'email-legend'         => 'Duusra {{SITENAME}} ke sadasya ke lage ek e-mail bhejo',
 'emailfrom'            => 'Iske lage se:',
 'emailto'              => 'Iske lage:',
@@ -2172,6 +2189,8 @@ Sab se nawaa roke ke suchi ke, aap ke khatir, niche dewa gais hae.',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
+'block'                           => 'Sadasya ke roko',
+'unblock'                         => 'Sadasya ke rukawat k khalaas karo',
 'blockip'                         => 'Sadasya ke roko',
 'blockip-title'                   => 'Sadasya ke roko',
 'blockip-legend'                  => 'Sadasya ke roko',
@@ -2215,8 +2234,11 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:IPBlockList|IP block list]]
 'ipusubmit'                       => 'Ii rukawat ke hatao',
 'unblocked'                       => '[[User:$1|$1]] ke rukawat ke khalaas kar dewa gais hai',
 'unblocked-id'                    => 'Roko $1 ke khalaas kar dewa gais hai',
-'ipblocklist'                     => 'Roka gais IP addresses aur usernames',
+'ipblocklist'                     => 'Roka gais sadasya',
 'ipblocklist-legend'              => 'Ek roka gais sadasya ke khojo',
+'blocklist-userblocks'            => 'Roka gais account ke lukao',
+'blocklist-expiry'                => 'Khalaas hoe hae',
+'blocklist-reason'                => 'Kaaran',
 'ipblocklist-submit'              => 'Khojo',
 'ipblocklist-localblock'          => 'Sthaniye rukawat',
 'ipblocklist-otherblocks'         => 'Duusra {{PLURAL:$1|block|blocks}}',
@@ -2663,7 +2685,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'metadata-help'     => 'Ii file me aur jaakari hai, sake hai ki digital camera nai to scanner se ii file ke banawa gais rahaa. Agar jo ii file ke original source se badal dewa gais hai tkorra kuch chij modified file se farak rahi.',
 'metadata-expand'   => 'Barrhaya gais jankari dekhao',
 'metadata-collapse' => 'Aur details ke lukae do.',
-'metadata-fields'   => 'Ii list me dewa gae jaankari file ke niche sab time dekhai. Bachaa jaankari chhupaa rahi
+'metadata-fields'   => 'Ii suchi me dewa gae jaankari file ke niche sab time dekhai. Bachaa jaankari chhupaa rahi
 * make
 * model
 * datetimeoriginal
@@ -2712,8 +2734,8 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-colorspace'                  => 'Rang ke jagha',
 'exif-componentsconfiguration'     => 'Har ek component ke matlab',
 'exif-compressedbitsperpixel'      => 'Chapa ke compression mode',
-'exif-pixelydimension'             => 'Chapa ke thik chaurrai',
-'exif-pixelxdimension'             => 'Chapa ke thik uunchai',
+'exif-pixelydimension'             => 'Chaapa ke thiik chaurrai',
+'exif-pixelxdimension'             => 'Chaapa ke thiik uunchai',
 'exif-usercomment'                 => 'Sadasysa ke bichar',
 'exif-relatedsoundfile'            => 'Saathe waala awaaj waala file',
 'exif-datetimeoriginal'            => 'Data generation ke tarik aur time',
@@ -2727,9 +2749,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-exposureprogram'             => 'Exposure Program',
 'exif-spectralsensitivity'         => 'Ketna achchhaa se ujaala ke pakrre sake hae',
 'exif-isospeedratings'             => 'ISO ke raftaar rating',
-'exif-shutterspeedvalue'           => 'Shutter ke raftaar',
-'exif-aperturevalue'               => 'Aperture',
-'exif-brightnessvalue'             => 'Chamak',
+'exif-shutterspeedvalue'           => 'APEX shutter ke raftaar',
+'exif-aperturevalue'               => 'APEX aperture',
+'exif-brightnessvalue'             => 'APEX chamak',
 'exif-exposurebiasvalue'           => 'Exposure bias',
 'exif-maxaperturevalue'            => 'Sab se jaada land aperture',
 'exif-subjectdistance'             => 'Chij se duuri',

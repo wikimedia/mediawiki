@@ -13,6 +13,7 @@
  * @author Reedy
  * @author Wisesabre
  * @author לערי ריינהארט
+ * @author سمرقندی
  * @author محبوب عالم
  */
 
@@ -98,8 +99,9 @@ $messages = array(
 'underline-default' => 'متصفح کا طے شدہ',
 
 # Font style option in Special:Preferences
-'editfont-style'   => 'خانۂ تدوین کا اندازِ تحریر:',
-'editfont-default' => 'متصفح کا طے شدہ',
+'editfont-style'     => 'خانۂ تدوین کا اندازِ تحریر:',
+'editfont-default'   => 'متصفح کا طے شدہ',
+'editfont-monospace' => 'یکفضائی نویسہ',
 
 # Dates
 'sunday'        => 'اتوار',
@@ -528,6 +530,10 @@ Warning: Page may not contain recent updates.',
 'resetpass-wrong-oldpass'   => 'عارضی یا موجودہ پارلفظ ناقص ہے.
 آپ یا تو پہلے ہی سے آپنا پارلفظ کامیابی سے تبدیل کرچکے ہیں اور یا آپ نے نئے عارضی پارلفظ کی درخواست کی ہے.',
 'resetpass-temp-password'   => 'عارضی پارلفظ:',
+
+# Special:PasswordReset
+'passwordreset'          => 'پارلفظ کی بازتعینی',
+'passwordreset-username' => 'اسمِ صارف:',
 
 # Edit page toolbar
 'bold_sample'     => 'دبیز متن',

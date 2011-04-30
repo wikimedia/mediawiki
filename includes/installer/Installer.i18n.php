@@ -1863,6 +1863,114 @@ $3
 	'config-help' => 'помощ',
 );
 
+/** Bengali (বাংলা)
+ * @author Wikitanvir
+ */
+$messages['bn'] = array(
+	'config-desc' => 'মিডিয়াউইকির জন্য ইন্সটলার',
+	'config-title' => 'মিডিয়াউইকি $1 ইন্সটলেশন',
+	'config-information' => 'তথ্যাদি',
+	'config-localsettings-key' => 'হালনাগাদ কি',
+	'config-session-error' => 'সেশন শুরুতে ত্রুটি: $1',
+	'config-your-language' => 'আপনার ভাষা:',
+	'config-your-language-help' => 'ইন্সটল করা সময় ব্যবহারের জন্য ভাষা নির্বাচন করুন।',
+	'config-wiki-language' => 'উইকি ভাষা:',
+	'config-back' => '← পেছনে',
+	'config-continue' => 'অব্যাহত →',
+	'config-page-language' => 'ভাষা',
+	'config-page-welcome' => 'মিডিয়াউইকিতে স্বাগতম!',
+	'config-page-dbconnect' => 'ডেটাবেজে সংযোগ দিন',
+	'config-page-upgrade' => 'ইতিমধ্যেই থাকা ইন্সটলেশন হালনাগাদ করুন',
+	'config-page-dbsettings' => 'ডেটাবেজ সেটিংস',
+	'config-page-name' => 'নাম',
+	'config-page-options' => 'অপশন',
+	'config-page-install' => 'ইন্সটল',
+	'config-page-complete' => 'সম্পূর্ণ!',
+	'config-page-restart' => 'পুনরায় ইন্সটল প্রক্রিয়া চালু করুন',
+	'config-page-readme' => 'এটি পড়ুন',
+	'config-page-releasenotes' => 'রিলিজ নোট',
+	'config-page-copying' => 'অনুলেপন',
+	'config-page-upgradedoc' => 'হালনাগাদকরণ',
+	'config-page-existingwiki' => 'ইতিমধ্যেই থাকা উইকি',
+	'config-restart' => 'হ্যাঁ, পুনরায় চালু করুন',
+	'config-env-php' => 'পিএইচপি $1 ইন্সটল করা হয়েছে।',
+	'config-db-type' => 'ডেটাবেজের ধরন:',
+	'config-db-host' => 'ডেটাবেজের হোস্ট:',
+	'config-db-install-account' => 'ইন্সটলের জন্য ব্যবহারকারী অ্যাকাউন্ট',
+	'config-db-username' => 'ডেটাবেজের ব্যবহারকারী নাম:',
+	'config-db-password' => 'ডেটাবেজের শব্দচাবি:',
+	'config-db-charset' => 'ডেটাবেজের অক্ষর সেট',
+	'config-db-port' => 'ডেটাবেজ পোর্ট:',
+	'config-db-schema' => 'মিডিয়াউইকির স্কিমা',
+	'config-sqlite-dir' => 'এসকিউলাইট ডেটা ডিরেক্টরি:',
+	'config-oracle-def-ts' => 'পূর্বনির্ধারিত টেবিলস্পেস',
+	'config-oracle-temp-ts' => 'সাময়কি টেবিলস্পেস:',
+	'config-type-ibm_db2' => 'আইবিএম ডিবি২',
+	'config-header-mysql' => 'মাইএসকিউএল সেটিংস',
+	'config-header-postgres' => 'পোস্টগ্রেএসকিউএল সেটিংস',
+	'config-header-sqlite' => 'এসকিউলাইট সেটিংস',
+	'config-header-oracle' => 'ওরাকল সেটিংস',
+	'config-header-ibm_db2' => 'আইবিএম ডিবি২ সেটিংস',
+	'config-invalid-db-type' => 'ডেটাবেজের ধরন অগ্রহযোগ্য',
+	'config-missing-db-name' => 'আপনাকে অবশ্যই "ডেটাবেজ নাম"-এর জন্য একটি মান প্রবেশ করাতে হবে',
+	'config-missing-db-host' => 'আপনাকে অবশ্যই "ডেটাবেজ হোস্ট"-এর জন্য একটি মান প্রবেশ করাতে হবে',
+	'config-missing-db-server-oracle' => 'আপনাকে অবশ্যই "ডেটাবেজ টিএনএস"-এর জন্য একটি মান প্রবেশ করাতে হবে',
+	'config-mysql-engine' => 'সংরক্ষণ ইঞ্জিন:',
+	'config-mysql-innodb' => 'ইনোডিবি',
+	'config-mysql-myisam' => 'মাইআইএসএএম',
+	'config-mysql-charset' => 'ডেটাবেজের অক্ষর সেট',
+	'config-mysql-binary' => 'বাইনারি',
+	'config-mysql-utf8' => 'ইউটিএফ-৮',
+	'config-site-name' => 'উইকির নাম:',
+	'config-site-name-blank' => 'একটি সাইটের নাম প্রবেশ করান।',
+	'config-project-namespace' => 'প্রকল্প নামস্থান:',
+	'config-ns-generic' => 'প্রকল্প',
+	'config-ns-site-name' => 'উইকি নামের অনুরুপ: $1',
+	'config-ns-other' => 'অন্যান্য (নির্দিষ্ট করুন)',
+	'config-ns-other-default' => 'মাইউইকি',
+	'config-admin-box' => 'প্রশাসক অ্যাকাউন্ট',
+	'config-admin-name' => 'আপনার নাম:',
+	'config-admin-password' => 'শব্দচাবি:',
+	'config-admin-password-confirm' => 'শব্দচাবি আবারও প্রবেশ করান:',
+	'config-admin-name-blank' => 'একটি প্রশাসক ব্যবহারকারী নাম প্রবেশ করান',
+	'config-admin-password-blank' => 'প্রশাসক অ্যাকাউন্টের জন্য পাসওয়ার্ড প্রবেশ করান।',
+	'config-admin-password-same' => 'পাসওয়ার্ড অবশ্যই ব্যবহারকারী নামের অনুরুপ হওয়া চলবে না।',
+	'config-admin-password-mismatch' => 'আপনি যে দুটি শব্দচাবি দিয়েছেন তারা পরস্পর মেলেনি।',
+	'config-admin-email' => 'ইমেইল ঠিকানা:',
+	'config-optional-continue' => 'আরও প্রশ্ন জিজ্ঞেস করুন।',
+	'config-optional-skip' => 'আমি ইতিমধ্যেই বিরক্ত হয়ে গেছি, উইকিটি ইন্সটল করো।',
+	'config-profile' => 'ব্যবহারকারী অধিকার প্রোফাইল:',
+	'config-profile-wiki' => 'গতানুগতিক উইকি',
+	'config-profile-no-anon' => 'অ্যাকাউন্ট তৈরি করা বাধ্যতামূলক',
+	'config-profile-fishbowl' => 'শুধুমাত্র নির্ধারিত সম্পাদকদের  জন্যই',
+	'config-profile-private' => 'ব্যক্তিগত উইকি',
+	'config-license' => 'কপিরাইট ও লাইসেন্স:',
+	'config-license-none' => 'কোনো লাইসেন্স ফুটার নেই',
+	'config-license-cc-by-sa' => 'ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন শেয়ার অ্যালাইক',
+	'config-license-cc-by-nc-sa' => 'ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন নন-কমার্শিয়াল শেয়ার অ্যালাইক',
+	'config-license-cc-0' => 'ক্রিয়েটিভ কমন্স জিরো',
+	'config-license-gfdl-old' => 'জিএনইউ ফ্রি ডকুমেন্টেশন লাইসেন্স ১.২',
+	'config-license-gfdl-current' => 'জিএনইউ ফ্রি ডকুমেন্টেশন লাইসেন্স ১.৩ ও পরবর্তী',
+	'config-license-pd' => 'পাবলিক ডোমেইন',
+	'config-license-cc-choose' => 'একটি স্বনির্ধারিত ক্রিয়েটিভ কমন্স লাইসেন্ট নির্বাচন করুন',
+	'config-email-settings' => 'ই-মেইল সেটিংস',
+	'config-email-user' => 'ব্যবহারকারী-থেকে-ব্যবহারকারী ই-মেইল সুবিধা সক্রিয় করো',
+	'config-upload-settings' => 'চিত্র এবং ফাইল আপলোড',
+	'config-upload-enable' => 'ফাইল আপলোড সক্রিয় করো',
+	'config-upload-deleted' => 'অপসারণকৃত ফাইলের ডিরেক্টরি:',
+	'config-logo' => 'লোগো ইউআরএল:',
+	'config-memcached-servers' => 'মেমক্যাশেকৃত সার্ভারসমূহ:',
+	'config-extensions' => 'এক্সটেনশন',
+	'config-install-step-done' => 'সম্পন্ন',
+	'config-install-step-failed' => 'ব্যর্থ',
+	'config-install-extensions' => 'এক্সটেনশন সহকারে',
+	'config-install-database' => 'ডেটাবেজ সেটআপ',
+	'config-install-pg-schema-not-exist' => 'পোস্টগ্রেএসকিউএল স্কিমা খুঁজে পাওয়া যায়নি।',
+	'config-install-tables' => 'টেবিল তৈরি',
+	'config-install-keys' => 'গোপন কি তৈরি',
+	'config-help' => 'সাহায্য',
+);
+
 /** Breton (Brezhoneg)
  * @author Fohanno
  * @author Fulup
@@ -1994,6 +2102,8 @@ Marteze e c'hwito ar staliadenn !",
 	'config-apc' => 'Staliet eo [http://www.php.net/apc APC]',
 	'config-eaccel' => 'Staliet eo [http://eaccelerator.sourceforge.net/ eAccelerator]',
 	'config-wincache' => 'Staliet eo [http://www.iis.net/download/WinCacheForPhp WinCache]',
+	'config-no-cache' => "'''Diwallit:''' N'eus ket bet gallet kavout [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] pe [http://www.iis.net/download/WinCacheForPhp WinCache].
+N'eo ket gweredekaet ar c'hrubuilhañ traezoù.",
 	'config-diff3-bad' => "N'eo ket bet kavet GNU diff3.",
 	'config-imagemagick' => "ImageMagick kavet : <code>$1</code>.
 Gweredekaet e vo ar bihanaat skeudennoù ma vez gweredekaet ganeoc'h ar pellgargañ restroù.",
@@ -2003,6 +2113,11 @@ Gweredekaet e vo ar bihanaat skeudennoù ma vez gweredekaet an enporzhiañ restr
 Diweredekaet e vo ar bihanaat skeudennoù.",
 	'config-no-uri' => "'''Fazi :''' N'eus ket tu da anavezout URI ar skript red.
 Staliadur nullet.",
+	'config-uploads-not-safe' => "'''Diwallit :'''Bresk eo ho kavlec'h pellgargañ dre ziouer <code>$1</code> rak gallout a ra erounit ne vern pe skript.
+ha pa vefe gwiriet gant MediaWiki an holl restroù pellgarget eo erbedet-groñs da [http://www.mediawiki.org/wiki/Manual:Security#Upload_security serriñ ar breskter surentez-mañ] a-rao gweredekaat ar pellgargañ.",
+	'config-brokenlibxml' => "Ur meskad stummoù PHP ha libxml2 dreinek a vez implijet gant ho reizhiad. Gallout a ra breinañ ar roadennoù e MediaWiki hag en arloadoù web all.
+Hizivait da PHP 5.2.9 pe nevesoc'h ha libxml2 2.7.3 pe nevesoc'h ([http://bugs.php.net/bug.php?id=45996 draet renablet gant PHP]).
+Staliadur paouezet.",
 	'config-db-type' => 'Doare an diaz roadennoù :',
 	'config-db-host' => 'Anv implijer an diaz roadennoù :',
 	'config-db-host-oracle' => 'TNS an diaz roadennoù :',
@@ -2079,6 +2194,8 @@ Arabat ober gant esaouennoù pe barrennigoù-stagañ.
 Implijet e vo evit ar restr roadennoù SQLite.",
 	'config-sqlite-mkdir-error' => 'Ur fazi zo bet e-ser krouiñ ar c\'havlec\'h roadennoù "$1".
 Gwiriañ al lec\'hiadur ha klask en-dro.',
+	'config-sqlite-dir-unwritable' => 'Dibosupl skrivañ er c\'havlec\'h "$1".
+Cheñchit ar aotreoù evit ma c\'hallfe ar servijer web skrivañ ennañ ha klaskit en-dro.',
 	'config-sqlite-connection-error' => "$1.
 
 Gwiriañ ar c'havlec'h roadennoù hag anv an diaz roadennoù a-is ha klaskit en-dro.",
@@ -2134,6 +2251,9 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-profile-private' => 'Wiki prevez',
 	'config-license' => 'Copyright hag aotre-implijout:',
 	'config-license-none' => 'Aotre ebet en traoñ pajenn',
+	'config-license-cc-by-sa' => 'Creative Commons Deroadenn Kenrannañ heñvel',
+	'config-license-cc-by-nc-sa' => 'Creative Commons Deroadenn Angenwerzhel Kenrannañ heñvel',
+	'config-license-cc-0' => 'Creative Commons Zero',
 	'config-license-gfdl-old' => 'Aotre implijout teuliaouiñ frank GNU 1.2',
 	'config-license-gfdl-current' => "Aotre implijout teuliaouiñ frank GNU 1.3 pe nevesoc'h",
 	'config-license-pd' => 'Domani foran',
@@ -2154,16 +2274,23 @@ Niverus eo ar servijerioù postel a c'houlenn da nebeutañ un [http://fr.wikiped
 	'config-upload-settings' => 'Pellgargañ skeudennoù ha restroù',
 	'config-upload-enable' => 'Gweredekaat ar pellgargañ restroù',
 	'config-upload-deleted' => "Kavlec'h evit ar restroù dilamet :",
+	'config-upload-deleted-help' => "Dibab ur c'havlec'h da ziellaouiñ ar restroù diverket.
+Ar pep gwellañ e vije ma ne vije ket tu d'e dizhout adalek ar Genrouedad.",
 	'config-logo' => 'URL al logo :',
 	'config-instantcommons' => "Gweredekaat ''InstantCommons''",
 	'config-cc-again' => 'Dibabit adarre...',
+	'config-cc-not-chosen' => 'Dibabit an aotre-implijout Creative Commons a fell deoc\'h ober gantañ ha klikit war "kenderc\'hel".',
 	'config-advanced-settings' => 'Kefluniadur araokaet',
+	'config-cache-options' => 'Arventennoù evit krubuilhañ traezoù :',
 	'config-cache-accel' => 'Krubuilhañ traezoù PHP (APC, eAccelerator, XCache pe WinCache)',
 	'config-cache-memcached' => 'Implijout Memcached (en deus ezhomm bezañ staliet ha kefluniet)',
 	'config-memcached-servers' => 'Servijerioù Memcached :',
 	'config-memcached-help' => "Roll ar chomlec'hioù IP da implijout evit Memcached.
-Ret eo dispartiañ anezho gant virgulennoù ha diferañ ar porzh da implijout (da skouer : 127.0.0.1:11211, 192.168.1.25:11211).",
+Ret eo spisaat unan dre linenn ha spisaat ar porzh da vezañ implijet. Da skouer : 
+127.0.0.1:11211
+192.168.1.25:1234",
 	'config-memcache-badip' => "Ur chomlec'h IP direizh hoc'h eus lakaet evit Memcached : $1.",
+	'config-memcache-badport' => 'Niverennoù porzh Memcached a zlefe bezañ etre $1 ha $2.',
 	'config-extensions' => 'Astennoù',
 	'config-install-alreadydone' => "'''Diwallit''': Staliet hoc'h eus MediaWiki dija war a seblant hag emaoc'h o klask e staliañ c'hoazh. 
 Kit d'ar bajenn war-lerc'h, mar plij.",
@@ -2183,6 +2310,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-user-grant-failed' => 'N\'eus ket bet gallet reiñ an aotre d\'an implijer "$1" : $2',
 	'config-install-tables' => 'Krouiñ taolennoù',
 	'config-install-tables-failed' => "'''Fazi :''' c'hwitet eo krouidigezh an daolenn gant ar fazi-mañ : $1",
+	'config-install-interwiki' => 'O leuniañ dre ziouer an daolenn etrewiki',
 	'config-install-interwiki-list' => "Ne c'haller ket kavout ar restr <code>interwiki.list</code>.",
 	'config-install-stats' => 'O sevel ar stadegoù',
 	'config-install-keys' => "Genel an alc'hwez kuzh",
@@ -8034,6 +8162,26 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
 );
 
+/** Latvian (Latviešu)
+ * @author GreenZeb
+ */
+$messages['lv'] = array(
+	'config-back' => '← Atpakaļ',
+	'config-continue' => 'Turpināt →',
+	'config-page-language' => 'Valoda',
+	'config-page-welcome' => 'Laipni lūdzam MediaWiki!',
+	'config-page-dbconnect' => 'Savienoties ar datubāzi',
+	'config-page-upgrade' => 'Atjaunināt pašreizējo instalāciju',
+	'config-page-dbsettings' => 'Datubāzes iestatījumi',
+	'config-page-name' => 'Vārds',
+	'config-page-options' => 'Iespējas',
+	'config-page-install' => 'Instalēt',
+	'config-page-complete' => 'Pabeigts!',
+	'config-page-restart' => 'Pārstartēt instalāciju',
+	'config-page-readme' => 'Lasīt mani',
+	'config-page-releasenotes' => 'Informācija par laidienu',
+);
+
 /** Malagasy (Malagasy)
  * @author Jagwar
  */
@@ -12026,6 +12174,14 @@ $messages['te'] = array(
 	'config-install-step-done' => 'పూర్తయింది',
 	'config-install-step-failed' => 'విఫలమైంది',
 	'config-help' => 'సహాయం',
+);
+
+/** Tetum (Tetun)
+ * @author MF-Warburg
+ */
+$messages['tet'] = array(
+	'config-page-language' => 'Lian',
+	'config-page-name' => 'Naran',
 );
 
 /** Tagalog (Tagalog)

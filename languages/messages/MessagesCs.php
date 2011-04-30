@@ -856,6 +856,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 
 # Special:PasswordReset
 'passwordreset'                => 'Reset hesla',
+'passwordreset-text'           => 'Pro obdržení e-mailu s detaily vašeho účtu vyplňte tento formulář.',
 'passwordreset-legend'         => 'Znovu nastavit heslo',
 'passwordreset-disabled'       => 'Znovunastavení hesla je na této wiki zakázáno.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',

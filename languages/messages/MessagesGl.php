@@ -734,17 +734,37 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'resetpass-temp-password'   => 'Contrasinal temporal:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Restablecer o contrasinal',
-'passwordreset-text'         => 'Encha este formulario para recibir un recordatorio por correo electrónico cos detalles da súa conta.',
-'passwordreset-legend'       => 'Restablecer o contrasinal',
-'passwordreset-disabled'     => 'O restablecemento de contrasinais está desactivado neste wiki.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Introduza un dos datos a continuación}}',
-'passwordreset-username'     => 'Nome de usuario:',
-'passwordreset-email'        => 'Enderezo de correo electrónico:',
-'passwordreset-emailtitle'   => 'Detalles da conta de {{SITENAME}}',
-'passwordreset-emailelement' => 'Nome de usuario: $1
+'passwordreset'                => 'Restablecer o contrasinal',
+'passwordreset-text'           => 'Encha este formulario para recibir un recordatorio por correo electrónico cos detalles da súa conta.',
+'passwordreset-legend'         => 'Restablecer o contrasinal',
+'passwordreset-disabled'       => 'O restablecemento de contrasinais está desactivado neste wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Introduza un dos datos a continuación}}',
+'passwordreset-username'       => 'Nome de usuario:',
+'passwordreset-email'          => 'Enderezo de correo electrónico:',
+'passwordreset-emailtitle'     => 'Detalles da conta de {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un recordatorio coa
+información da súa conta en {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
+a este enderezo de correo electrónico:
+
+$2
+
+{{PLURAL:$3|Este contrasinal temporal caducará|Estes contrasinais temporais caducarán}} {{PLURAL:$5|nun día|en $5 días}}.
+Debería acceder ao sistema e elixir un novo contrasinal agora. Se outro fixo esta
+solicitude ou se lembrou o seu contrasinal orixinal e xa non o quere cambiar,
+ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
+'passwordreset-emailtext-user' => 'O usuario $1 solicitou un recordatorio coa información da súa conta en {{SITENAME}}
+($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
+a este enderezo de correo electrónico:
+
+$2
+
+{{PLURAL:$3|Este contrasinal temporal caducará|Estes contrasinais temporais caducarán}} {{PLURAL:$5|nun día|en $5 días}}.
+Debería acceder ao sistema e elixir un novo contrasinal agora. Se outro fixo esta
+solicitude ou se lembrou o seu contrasinal orixinal e xa non o quere cambiar,
+ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
+'passwordreset-emailelement'   => 'Nome de usuario: $1
 Contrasinal temporal: $2',
-'passwordreset-emailsent'    => 'Enviouse o correo electrónico co recordatorio.',
+'passwordreset-emailsent'      => 'Enviouse o correo electrónico co recordatorio.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negra',

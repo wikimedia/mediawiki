@@ -2289,7 +2289,7 @@ Pogledajte [[Special:IPBlockList|zabranjene IP adrese]] za spisak trenutnih blok
 'block-log-flags-nocreate'        => 'onemogućeno otvaranje naloga',
 'block-log-flags-noautoblock'     => 'isključeno automatsko blokiranje',
 'block-log-flags-noemail'         => 'zabranjena e-pošta',
-'block-log-flags-nousertalk'      => 'ne može da izmeni sopstvenu stranu za razgovor',
+'block-log-flags-nousertalk'      => 'zabranjeno uređivanje sopstvene stranice za razgovor',
 'block-log-flags-angry-autoblock' => 'omogućen je poboljšani autoblok',
 'block-log-flags-hiddenname'      => 'korisničko ime sakriveno',
 'range_block_disabled'            => 'Administratorska mogućnost da blokira blokove IP adresa je isključena.',

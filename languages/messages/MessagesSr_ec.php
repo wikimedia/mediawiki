@@ -2146,7 +2146,7 @@ $1',
 'newuserlogpage'              => 'Историја отварања налога',
 'newuserlogpagetext'          => 'Ово је историја нових корисника.',
 'newuserlog-byemail'          => 'лозинка је послата е-поштом',
-'newuserlog-create-entry'     => '– нови корисник',
+'newuserlog-create-entry'     => 'Нови корисник',
 'newuserlog-create2-entry'    => '{{GENDER:|је отворио|је отворила|је отворио}} налог за $1',
 'newuserlog-autocreate-entry' => 'Налог је аутоматски направљен',
 
