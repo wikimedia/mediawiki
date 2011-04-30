@@ -629,7 +629,7 @@ class Linker {
 	static function makeThumbLink2( Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "" )
 	{
-		global $wgStylePath;
+		global $wgStylePath, $wgContLang;
 		$exists = $file && $file->exists();
 
 		# Shortcuts
@@ -707,11 +707,16 @@ class Linker {
 			if ( isset( $fp['framed'] ) ) {
 				$zoomIcon = "";
 			} else {
-				$zoomIcon =  '<div class="magnify">' .
-					'<a href="' . htmlspecialchars( $url ) . '" class="internal" ' .
-						'title="' . htmlspecialchars( wfMsg( 'thumbnail-more' ) ) . '">' .
-					'<img src="' . htmlspecialchars( $wgStylePath ) . '/common/images/magnify-clip.png" ' .
-						'width="15" height="11" alt="" /></a></div>';
+				$zoomIcon = Html::rawElement( 'div', array( 'class' => 'magnify' ),
+					Html::rawElement( 'a', array(
+						'href' => $url,
+						'class' => 'internal',
+						'title' => wfMsg( 'thumbnail-more' ) ),
+						Html::element( 'img', array(
+							'src' => $wgStylePath . '/common/images/magnify-clip' . ( $wgContLang->isRTL() ? '-rtl' : '' ) . '.png',
+							'width' => 15,
+							'height' => 11,
+							'alt' => "" ) ) ) );
 			}
 		}
 		$s .= '  <div class="thumbcaption">' . $zoomIcon . $fp['caption'] . "</div></div></div>";
