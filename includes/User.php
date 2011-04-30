@@ -157,10 +157,13 @@ class User {
 	/**
 	 * Bool Whether the cache variables have been loaded.
 	 */
-	var $mDataLoaded, $mAuthLoaded, $mOptionsLoaded;
+	//@{
+	var $mOptionsLoaded;
+	private $mLoadedItems = array();
+	//@}
 
 	/**
-	 * String Initialization data source if mDataLoaded==false. May be one of:
+	 * String Initialization data source if mLoadedItems!==true. May be one of:
 	 *  - 'defaults'   anonymous user initialised from class defaults
 	 *  - 'name'       initialise from mName
 	 *  - 'id'         initialise from mId
@@ -211,13 +214,13 @@ class User {
 	 * Load the user table data for this object from the source given by mFrom.
 	 */
 	function load() {
-		if ( $this->mDataLoaded ) {
+		if ( $this->mLoadedItems === true ) {
 			return;
 		}
 		wfProfileIn( __METHOD__ );
 
 		# Set it now to avoid infinite recursion in accessors
-		$this->mDataLoaded = true;
+		$this->mLoadedItems = true;
 
 		switch ( $this->mFrom ) {
 			case 'defaults':
@@ -336,6 +339,7 @@ class User {
 			$u = new User;
 			$u->mName = $name;
 			$u->mFrom = 'name';
+			$u->setItemLoaded( 'name' );
 			return $u;
 		}
 	}
@@ -350,6 +354,7 @@ class User {
 		$u = new User;
 		$u->mId = $id;
 		$u->mFrom = 'id';
+		$u->setItemLoaded( 'id' );
 		return $u;
 	}
 
@@ -390,7 +395,14 @@ class User {
 
 	/**
 	 * Create a new user object from a user row.
-	 * The row should have all fields from the user table in it.
+	 * The row should have the following fields from the user table in it:
+	 * - either user_name or user_id to load further data if needed (or both)
+	 * - user_real_name
+	 * - all other fields (email, password, etc.)
+	 * It is useless to provide the remaining fields if either user_id,
+	 * user_name and user_real_name are not provided because the whole row
+	 * will be loaded once more from the database when accessing them.
+	 *
 	 * @param $row Array A row from the user table
 	 * @return User
 	 */
@@ -847,6 +859,34 @@ class User {
 	}
 
 	/**
+	 * Return whether an item has been loaded.
+	 *
+	 * @param $item String: item to check. Current possibilities:
+	 *              - id
+	 *              - name
+	 *              - realname
+	 * @param $all String: 'all' to check if the whole object has been loaded
+	 *        or any other string to check if only the item is available (e.g.
+	 *        for optimisation)
+	 * @return Boolean
+	 */
+	public function isItemLoaded( $item, $all = 'all' ) {
+		return ( $this->mLoadedItems === true && $all === 'all' ) ||
+			( isset( $this->mLoadedItems[$item] ) && $this->mLoadedItems[$item] === true );
+	}
+
+	/**
+	 * Set that an item has been loaded
+	 *
+	 * @param $item String
+	 */
+	private function setItemLoaded( $item ) {
+		if ( is_array( $this->mLoadedItems ) ) {
+			$this->mLoadedItems[$item] = true;
+		}
+	}
+
+	/**
 	 * Load user data from the session or login cookie. If there are no valid
 	 * credentials, initialises the user as an anonymous user.
 	 * @return Bool True if the user is logged in, false otherwise.
@@ -936,7 +976,7 @@ class User {
 
 	/**
 	 * Load user and user_group data from the database.
-	 * $this::mId must be set, this is how the user is identified.
+	 * $this->mId must be set, this is how the user is identified.
 	 *
 	 * @return Bool True if the user exists, false if the user is anonymous
 	 * @private
@@ -976,25 +1016,51 @@ class User {
 	 * @param $row Array Row from the user table to load.
 	 */
 	function loadFromRow( $row ) {
-		$this->mDataLoaded = true;
+		$all = true;
+
+		if ( isset( $row->user_name ) ) {
+			$this->mName = $row->user_name;
+			$this->mFrom = 'name';
+			$this->setItemLoaded( 'name' );
+		} else {
+			$all = false;
+		}
+
+		if ( isset( $row->user_name ) ) {
+			$this->mRealName = $row->user_real_name;
+			$this->setItemLoaded( 'realname' );
+		} else {
+			$all = false;
+		}
 
 		if ( isset( $row->user_id ) ) {
 			$this->mId = intval( $row->user_id );
+			$this->mFrom = 'id';
+			$this->setItemLoaded( 'id' );
+		} else {
+			$all = false;
 		}
-		$this->mName = $row->user_name;
-		$this->mRealName = $row->user_real_name;
-		$this->mPassword = $row->user_password;
-		$this->mNewpassword = $row->user_newpassword;
-		$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
-		$this->mEmail = $row->user_email;
-		$this->decodeOptions( $row->user_options );
-		$this->mTouched = wfTimestamp(TS_MW,$row->user_touched);
-		$this->mToken = $row->user_token;
-		$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $row->user_email_authenticated );
-		$this->mEmailToken = $row->user_email_token;
-		$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
-		$this->mRegistration = wfTimestampOrNull( TS_MW, $row->user_registration );
-		$this->mEditCount = $row->user_editcount;
+
+		if ( isset( $row->user_password ) ) {
+			$this->mPassword = $row->user_password;
+			$this->mNewpassword = $row->user_newpassword;
+			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
+			$this->mEmail = $row->user_email;
+			$this->decodeOptions( $row->user_options );
+			$this->mTouched = wfTimestamp(TS_MW,$row->user_touched);
+			$this->mToken = $row->user_token;
+			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $row->user_email_authenticated );
+			$this->mEmailToken = $row->user_email_token;
+			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
+			$this->mRegistration = wfTimestampOrNull( TS_MW, $row->user_registration );
+			$this->mEditCount = $row->user_editcount;
+		} else {
+			$all = false;
+		}
+
+		if ( $all ) {
+			$this->mLoadedItems = true;
+		}
 	}
 
 	/**
@@ -1032,7 +1098,7 @@ class User {
 		$this->mOptions = null;
 
 		if ( $reloadFrom ) {
-			$this->mDataLoaded = false;
+			$this->mLoadedItems = array();
 			$this->mFrom = $reloadFrom;
 		}
 	}
@@ -1461,7 +1527,7 @@ class User {
 		&& User::isIP( $this->mName ) ) {
 			// Special case, we know the user is anonymous
 			return 0;
-		} elseif( $this->mId === null ) {
+		} elseif( !$this->isItemLoaded( 'id' ) ) {
 			// Don't load if this was initialized from an ID
 			$this->load();
 		}
@@ -1482,7 +1548,7 @@ class User {
 	 * @return String User's name or IP address
 	 */
 	function getName() {
-		if ( !$this->mDataLoaded && $this->mFrom == 'name' ) {
+		if ( $this->isItemLoaded( 'name', 'only' ) ) {
 			# Special case optimisation
 			return $this->mName;
 		} else {
@@ -1910,7 +1976,10 @@ class User {
 	 * @return String User's real name
 	 */
 	function getRealName() {
-		$this->load();
+		if ( !$this->isItemLoaded( 'realname' ) ) {
+			$this->load();
+		}
+
 		return $this->mRealName;
 	}
 
@@ -2859,6 +2928,8 @@ class User {
 	 */
 	function checkTemporaryPassword( $plaintext ) {
 		global $wgNewPasswordExpiry;
+
+		$this->load();
 		if( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
 			if ( is_null( $this->mNewpassTime ) ) {
 				return true;
@@ -3174,9 +3245,11 @@ class User {
 	 *     non-existent/anonymous user accounts.
 	 */
 	public function getRegistration() {
-		return $this->getId() > 0
-			? $this->mRegistration
-			: false;
+		if ( $this->isAnon() ) {
+			return false;
+		}
+		$this->load();
+		return $this->mRegistration;
 	}
 
 	/**
