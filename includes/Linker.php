@@ -199,7 +199,7 @@ class Linker {
 
 		$attribs = array_merge(
 			$attribs,
-			$this->linkAttribs( $target, $customAttribs, $options, $text )
+			$this->linkAttribs( $target, $customAttribs, $options )
 		);
 		if ( is_null( $text ) ) {
 			$text = $this->linkText( $target );
@@ -249,7 +249,7 @@ class Linker {
 	/**
 	 * Returns the array of attributes used when linking to the Title $target
 	 */
-	private function linkAttribs( $target, $attribs, $options, $linkText ) {
+	private function linkAttribs( $target, $attribs, $options ) {
 		wfProfileIn( __METHOD__ );
 		global $wgUser;
 		$defaults = array();
@@ -280,13 +280,12 @@ class Linker {
 		}
 
 		# Get a default title attribute.
-		$known = in_array( 'known', $options );
 		if ( $target->getPrefixedText() == '' ) {
 			# A link like [[#Foo]].  This used to mean an empty title
 			# attribute, but that's silly.  Just don't output a title.
-		} elseif ( $known && strtolower($linkText) !== strtolower($target->getPrefixedText() ) ) {
+		} elseif ( in_array( 'known', $options ) ) {
 			$defaults['title'] = $target->getPrefixedText();
-		} elseif ( !$known ) {
+		} else {
 			$defaults['title'] = wfMsg( 'red-link-title', $target->getPrefixedText() );
 		}
 

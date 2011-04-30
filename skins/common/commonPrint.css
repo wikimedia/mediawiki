@@ -44,6 +44,9 @@ div.floatleft {
 div.floatleft p {
 	font-style: italic;
 }
+div.center {
+	text-align: center;
+}
 
 /* thumbnails */
 div.thumb {
