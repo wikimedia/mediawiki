@@ -84,20 +84,11 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->tables = array_merge( $this->tables, $tables );
 		} else {
 			if ( !is_null( $alias ) ) {
-				$tables = $this->getAliasedName( $tables, $alias );
+				$this->tables[$alias] = $tables;
+			} else {
+				$this->tables[] = $tables;
 			}
-			$this->tables[] = $tables;
 		}
-	}
-
-	/**
-	 * Get the SQL for a table name with alias
-	 * @param $table string Table name
-	 * @param $alias string Alias
-	 * @return string SQL
-	 */
-	protected function getAliasedName( $table, $alias ) {
-		return $this->getDB()->tableName( $table ) . ' ' . $alias;
 	}
 
 	/**

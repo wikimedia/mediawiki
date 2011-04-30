@@ -1651,7 +1651,7 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * @private
+	 * @return string
 	 */
 	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
 		$ret = array();
