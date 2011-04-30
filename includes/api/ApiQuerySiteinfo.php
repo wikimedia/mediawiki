@@ -498,7 +498,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	private function formatParserTags( $item ) {
-		return "&lt;{$item}&gt;";
+		return "<{$item}>";
 	}
 
 	public function appendSubscribedHooks( $property ) {
