@@ -152,7 +152,7 @@ class CreditsAction extends FormlessAction {
 
 		if ( count( $anon_ips ) ) {
 			$anon = wfMessage( 'anonusers' )->rawParams( $wgLang->listToText( $anon_ips ) )->params(
-				$anon_ips )->escaped();
+				count( $anon_ips ) )->escaped();
 		} else {
 			$anon = false;
 		}
