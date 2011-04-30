@@ -89,8 +89,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$useIndex = false;
 			// Filter only users that belong to a given group
 			$this->addTables( 'user_groups', 'ug1' );
-			$ug1 = $this->getAliasedName( 'user_groups', 'ug1' );
-			$this->addJoinConds( array( $ug1 => array( 'INNER JOIN', array( 'ug1.ug_user=user_id',
+			$this->addJoinConds( array( 'ug1' => array( 'INNER JOIN', array( 'ug1.ug_user=user_id',
 					'ug1.ug_group' => $params['group'] ) ) ) );
 		}
 
@@ -107,8 +106,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$sqlLimit = $limit + $groupCount + 1;
 
 			$this->addTables( 'user_groups', 'ug2' );
-			$tname = $this->getAliasedName( 'user_groups', 'ug2' );
-			$this->addJoinConds( array( $tname => array( 'LEFT JOIN', 'ug2.ug_user=user_id' ) ) );
+			$this->addJoinConds( array( 'ug2' => array( 'LEFT JOIN', 'ug2.ug_user=user_id' ) ) );
 			$this->addFields( 'ug2.ug_group ug_group2' );
 		} else {
 			$sqlLimit = $limit + 1;
