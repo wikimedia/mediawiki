@@ -510,7 +510,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( $myWgHooks as $hook => $hooks )  {
 			$arr = array(
 				'name' => $hook,
-				'subscribers' => $hooks,
+				'subscribers' => array_map( array( 'SpecialVersion', 'arrayToString' ), $hooks ),
 			);
 
 			$this->getResult()->setIndexedTagName( $arr['subscribers'], 's' );
