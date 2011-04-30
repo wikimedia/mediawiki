@@ -214,8 +214,8 @@ $messages = array(
 'mainpage'             => 'ପ୍ରଧାନ ପୃଷ୍ଠା',
 'mainpage-description' => 'ପ୍ରଧାନ ପୃଷ୍ଠା',
 'policy-url'           => 'Project:ନୀତି',
-'portal'               => 'ଗୋଷ୍ଠୀ ଆଲୋଚନା ସଭା',
-'portal-url'           => 'Project:ଗୋଷ୍ଠୀ ଆଲୋଚନା ସଭା',
+'portal'               => 'ସଙ୍ଘ ଆଲୋଚନା ସଭା',
+'portal-url'           => 'Project:ସଙ୍ଘ ଆଲୋଚନା ସଭା',
 'privacy'              => 'ଗୁମର ନୀତି',
 'privacypage'          => 'Project:ଗୁମର ନୀତି',
 
@@ -330,8 +330,12 @@ $messages = array(
 ଆପଣ [[Special:Search/{{PAGENAME}}|ଏହି ଲେଖାଟିର ନାଆଁ]] ବାକି ଫରଦମାନଙ୍କରେ ଖୋଜି ପାରନ୍ତି,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|ଫରଦ={{FULLPAGENAMEE}}}} ରେ ଯୋଡ଼ାଯାଇଥିବା ବାକି ଫରଦସବୁକୁ ଖୋଜି ପାରନ୍ତି],
 କିମ୍ବା [{{fullurl:{{FULLPAGENAME}}|action=edit}} ଏହି ଫରଦଟିକୁ ବଦଳାଇ ପାରନ୍ତି]</span> ।',
+'previewnote'            => "'''ଜାଣିରଖନ୍ତୁ ଯେ, ଏହା କେବଳ ଏକ ଦେଖଣା ।'''
+ଆପଣ କରିଥିବା ବଦଳସବୁ ଏଯାଏଁ ସାଇତା ଯାଇନାହିଁ!",
 'editing'                => '$1 କୁ ବଦଳାଉଛି',
 'editingsection'         => '$1 (ଭାଗ)କୁ ବଦଳାଇବେ',
+'titleprotectedwarning'  => "'''ଚେତାବନୀ: ଏହି ପୃଷ୍ଠାଟି କିଳାଯାଇଅଛି ଯାହାକୁ ତିଆରିବା ପାଇଁ [[Special:ListGroupRights|ବିଶେଷ କ୍ଷମତା]] ଥିବା ବ୍ୟବାହାରକାରୀ ଲୋଡ଼ା ।'''
+ଆପଣଙ୍କ ସୁବିଧା ପାଇଁ ତଳେ ନଗଦ ଲଗ ପ୍ରବେଶ ଦିଆଗଲା:",
 'templatesused'          => 'ଏହି ଫରଦରେ ବ୍ୟବହାର କରାଯାଇଥିବା {{PLURAL:$1|ଟେମ୍ପଲେଟ|ଟେମ୍ପଲେଟସବୁ}}:',
 'templatesusedpreview'   => 'ଏହି ଫରଦରେ ବ୍ୟବହାର କରାଯାଇଥିବା {{PLURAL:$1|ଟେମ୍ପଲେଟ|ଟେମ୍ପଲେଟସବୁ}}:',
 'template-protected'     => '(କିଳାଯାଇଥିବା)',
@@ -350,6 +354,9 @@ $messages = array(
 'histfirst'              => 'ସବୁଠୁ ପୁରୁଣା',
 'histlast'               => 'ନଗଦ',
 'historyempty'           => '(ଖାଲି)',
+
+# Revision feed
+'history-feed-description' => 'ଉଇକିରେ ଏହି ପୃଷ୍ଠାଟିପାଇଁ ସଙ୍କଳନ ଇତିହାସ',
 
 # Revision deletion
 'rev-delundel'   => 'ଦେଖାଇବା/ଲୁଚାଇବା',
@@ -382,15 +389,15 @@ $messages = array(
 'search-result-size'        => '$1 ({{PLURAL:$2|1 ଶବ୍ଦ|$2 ଶବ୍ଦ}})',
 'search-redirect'           => '($1 କୁ ଆଗକୁ ବଢେଇନିଅ )',
 'search-section'            => '(ଭାଗ $1)',
-'search-suggest'            => 'ଆପଣ $1 ଭାବି ଖୋଜିଥିଲେ କି',
+'search-suggest'            => 'ଆପଣ $1 ଭାବି ଖୋଜିଥିଲେ କି?',
 'search-interwiki-caption'  => 'ସାଙ୍ଗରେ ଚାଲିଥିବା ବାକି ପ୍ରକଳ୍ପସବୁ',
 'search-interwiki-default'  => '$1 ଫଳାଫଳ:',
 'search-interwiki-more'     => '(ଅଧିକ)',
 'search-mwsuggest-enabled'  => 'ମତାମତ ସହ',
 'search-mwsuggest-disabled' => 'ମତାମତ ନାହିଁ',
 'searchall'                 => 'ସବୁ',
-'nonefound'                 => "'''ଦେଖଁତୁ''': ଆପଣ ଖାଲି କିଛି ନେମସ୍ପେସକୁ ଆପେ ଆପେ ଖୋଜିପାରିବେ ।
-ସବୁ ପ୍ରକାରର ଲେଖା (ଆଲୋଚନା ଫରଦ, ଟେଁପଲେଟ ହେରିକା) ଖୋଜିବା ପାଇଁ ନିଜ ପ୍ରଶ୍ନ ଆଗରେ ''all:'' ଯୋଡ଼ି ଖୋଜନ୍ତୁ, ନହେଲେ ଦରକାରି ନେମସ୍ପେସକୁ ପ୍ରିଫିକ୍ସ କରି ବ୍ୟବହାର କରନ୍ତୁ ।",
+'nonefound'                 => "'''ଜାଣି ରଖନ୍ତୁ''': ଆପଣ ଖାଲି କିଛି ନେମସ୍ପେସକୁ ଆପେ ଆପେ ଖୋଜିପାରିବେ ।
+ସବୁ ପ୍ରକାରର ଲେଖା (ଆଲୋଚନା ପୃଷ୍ଠା, ଟେମ୍ପଲେଟ ଆଦି) ଖୋଜିବା ପାଇଁ ନିଜ ପ୍ରଶ୍ନ ଆଗରେ ''all:'' ଯୋଡ଼ି ଖୋଜନ୍ତୁ, ନହେଲେ ଦରକାରି ନେମସ୍ପେସକୁ ଲେଖାର ନାଆଁ ଆଗରେ ଯୋଡ଼ି ବ୍ୟବହାର କରନ୍ତୁ ।",
 'search-nonefound'          => 'ଆପଣ ଖୋଜିଥିବା ପ୍ରଶ୍ନ ପାଇଁ କିଛି ଫଳ ମିଳିଲା ନାହିଁ ।',
 'powersearch'               => 'ଗହିର ଖୋଜା',
 'powersearch-legend'        => 'ଗହିର ଖୋଜା',
@@ -601,9 +608,10 @@ $messages = array(
 'mycontris'           => 'ମୋ ଅବଦାନ',
 'contribsub2'         => '$1 ($2) ପାଇଁ',
 'month'               => 'ମାସରୁ (ଓ ତା ଆଗରୁ)',
-'year'                => 'ବରସରୁ (ଓ ତା ଆଗରୁ)',
+'year'                => 'ବର୍ଷରୁ (ଆଉ ତା ଆଗରୁ)',
 
 'sp-contributions-talk'   => 'କଥାଭାଷା',
+'sp-contributions-search' => 'ଅବଦାନ ପାଇଁ ଖୋଜନ୍ତୁ',
 'sp-contributions-submit' => 'ଖୋଜିବା',
 
 # What links here
@@ -651,8 +659,8 @@ $messages = array(
 'tooltip-pt-login'                => 'ଆପଣଙ୍କୁ ଲଗିନ କରିବାକୁ କୁହାଯାଉଅଛି ସିନା, ବାଧ୍ୟ କରାଯାଉନାହିଁ',
 'tooltip-pt-logout'               => 'ଲଗଆଉଟ',
 'tooltip-ca-talk'                 => 'ଏହି ପୃଷ୍ଠାଟି ଉପରେ ଆଲୋଚନା',
-'tooltip-ca-edit'                 => 'ଆପଣ ଏହି ପୃଷ୍ଠାଟିରେ ଅଦଳ ବଦଳ କରିପାରିବେ, ତେବେ ସାଇତିବା ଆଗରୁ ଦେଖଣା ଦେଖଁତୁ ।',
-'tooltip-ca-addsection'           => 'ନୂଆ ନିର୍ଘଁଟଟିଏ ଆଁରଭ କରିବା',
+'tooltip-ca-edit'                 => 'ଆପଣ ଏହି ପୃଷ୍ଠାଟିରେ ଅଦଳ ବଦଳ କରିପାରିବେ, ତେବେ ସାଇତିବା ଆଗରୁ ଦେଖଣା ଦେଖନ୍ତୁ ।',
+'tooltip-ca-addsection'           => 'ନୂଆ ବିଭାଗଟିଏ ଆରମ୍ଭ କରିବେ',
 'tooltip-ca-viewsource'           => 'ଏହି ପୃଷ୍ଠାଟି କିଳାଯାଇଛି ।
 ଆପଣ ଏହାର ମୂଳ ଦେଖିପାରିବେ',
 'tooltip-ca-history'              => 'ଏହି ପୃଷ୍ଠାର ପୁରୁଣା ସଂସ୍କରଣ',

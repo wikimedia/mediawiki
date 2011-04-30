@@ -424,6 +424,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'daŭrigo',
 'index-category'                 => 'Indeksitaj paĝoj',
 'noindex-category'               => 'Neindeksitaj paĝoj',
+'broken-file-category'           => 'Paĝoj kun trompitaj dosierligiloj',
 
 'mainpagetext'      => "'''MediaWiki estis sukcese instalita.'''",
 'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
@@ -724,6 +725,7 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'createaccount'              => 'Krei novan konton',
 'gotaccount'                 => "Ĉu vi jam havas konton? '''$1'''.",
 'gotaccountlink'             => 'Ensaluti',
+'userlogin-resetlink'        => 'Ĉu vi forgesis ensalutajn detalojn?',
 'createaccountmail'          => 'retpoŝte',
 'createaccountreason'        => 'Kialo:',
 'badretype'                  => 'La pasvortojn kiujn vi tajpis ne egalas.',
@@ -786,6 +788,7 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'usernamehasherror'          => 'Salutnomo ne povas enhavi kriphaketaĵajn signojn',
 'login-throttled'            => 'Vi tro ofte provis eniri la pasvorton por ĉi tiu konto.
 Bonvolu ĝisatendi antaŭ retrovi.',
+'login-abort-generic'        => 'Via ensaluto malsukcesis - Ĉesigita',
 'loginlanguagelabel'         => 'Lingvo: $1',
 'suspicious-userlogout'      => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
 
@@ -811,12 +814,37 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'resetpass-temp-password'   => 'Provizora pasvorto:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Restarigo de pasvorto',
-'passwordreset-legend'       => 'Refari pasvorton',
-'passwordreset-username'     => 'Salutnomo:',
-'passwordreset-email'        => 'Retpoŝtadreso:',
-'passwordreset-emailelement' => 'Salutnomo: $1
+'passwordreset'                => 'Restarigo de pasvorto',
+'passwordreset-text'           => 'Plenumigu ĉi tiun formularon por ricevi retpoŝtan memoraĵon de viaj kontaj detaloj.',
+'passwordreset-legend'         => 'Refari pasvorton',
+'passwordreset-disabled'       => 'Pasvortaj restarigoj estis malŝaltitaj en ĉi tiu vikio.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Enigi unu el la jenaj datenoj}}',
+'passwordreset-username'       => 'Salutnomo:',
+'passwordreset-email'          => 'Retpoŝtadreso:',
+'passwordreset-emailtitle'     => 'Kontaj detaloj en {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Iu (verŝajne vi, de IP-adreso $1) petis rememoraĵo de viaj
+kontaj detaloj por {{SITENAME}} ($4). La {{PLURAL:$3|jena uzanto-konto|jenaj uzanto-kontoj}} estas
+asociita kun ĉi tiu retpoŝtadreso:
+
+$2
+
+Ĉi {{PLURAL:$3|tiu provizora pasvorto|tiuj provizoraj pasvortoj}} findatiĝos {{PLURAL:$5|unu tagon|$5 tagojn}}.
+Vi ensalutu kaj elektu novan pasvorton nun. Se iu alia petis ĉi tion,
+aŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas
+ŝanĝi ĝin, vi povas ignori ĉi tiun mesaĝon kaj plu uzi vian 
+malnovan pasvorton.',
+'passwordreset-emailtext-user' => 'Uzanto $1 de {{SITENAME}} petis rememoraĵo de viaj kontaj detaloj por {{SITENAME}}
+($4). La {{PLURAL:$3|jena uzanto-konto|jenaj uzanto-kontoj}} estas asociita kun ĉi tiu retpoŝtadreso:
+
+$2
+
+Ĉi {{PLURAL:$3|tiu provizora pasvorto|tiuj provizoraj pasvortoj}} findatiĝos {{PLURAL:$5|unu tagon|$5 tagojn}}.
+Vi devas ensaluti kaj elekti novan pasvorton nun. Se iu alia petis ĉi tion,
+aŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas ŝanĝi
+ĝin, vi povas ignori ĉi tiun mesaĝon kaj uzi vian malnovan pasvorton.',
+'passwordreset-emailelement'   => 'Salutnomo: $1
 Provizora pasvorto: $2',
+'passwordreset-emailsent'      => 'Rememoriga retpoŝto estis sendita.',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasa teksto',
@@ -1704,6 +1732,8 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'php-uploaddisabledtext'      => 'Dosiera alŝutado estas malŝalta en PHP. Bonvolu kontroli la preferon file_uploads.',
 'uploadscripted'              => 'HTML-aĵo aŭ skriptokodaĵo troviĝas en tiu ĉi tiu dosiero, kiun TTT-foliumilo eble interpretus erare.',
 'uploadvirus'                 => 'Viruso troviĝas en la dosiero! Detaloj: $1',
+'uploadjava'                  => 'La dosiero estas ZIP-dosiero kiu enhavas .class-dosieron de Java.
+Alŝutante Java-dosieron estas malpermesita, ĉar ili povas kaŭzi sekureco-limigojn esti preterpasitaj.',
 'upload-source'               => 'Fonta dosiero:',
 'sourcefilename'              => 'Fonta dosiernomo:',
 'sourceurl'                   => 'Fonta URL:',
@@ -1738,6 +1768,14 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload-too-many-redirects' => 'La URL-o enhavis tro multajn alidirektilojn',
 'upload-unknown-size'       => 'Nekonata grandeco',
 'upload-http-error'         => 'HTTP-eraro okazis: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Eraro okazis malfermante la dosieron pro ZIP-kontrolado.',
+'zip-wrong-format'    => 'La specifigita dosiero ne estis ZIP-dosiero',
+'zip-bad'             => 'La dosiero estas fuŝa aŭ alimaniere estas nelegebla ZIP-dosiero.
+Ĝi ne povas esti ĝuste kontrolita por sekureco.',
+'zip-unsupported'     => 'Ĉi tiu dosiero estas ZIP-dosiero kiu uzas ZIP-funkciojn malsubtenita de MediaWiki.
+Ĝi ne povas esti ĝuste kontrolita por sekureco.',
 
 # Special:UploadStash
 'uploadstash'          => 'Konservejo de alŝutoj',
@@ -2126,7 +2164,10 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'noemailtext'          => 'Ĉi tiu uzanto ne donis validan retadreson.',
 'nowikiemailtitle'     => 'Retpoŝto ne permesita',
 'nowikiemailtext'      => 'Ĉi tiu uzanto elektis ne ricevi retpoŝton de aliaj uzantoj.',
+'emailnotarget'        => 'Neekzistanta aŭ malvalida salutnomo por ricevanto.',
+'emailtarget'          => 'Enigi salutnomon de ricevonto',
 'emailusername'        => 'Salutnomo:',
+'emailusernamesubmit'  => 'Enigi',
 'email-legend'         => 'Sendi retpoŝton al alia {{SITENAME}}-uzanto',
 'emailfrom'            => 'De:',
 'emailto'              => 'Al:',
@@ -2380,9 +2421,10 @@ $1',
 'undelete-show-file-submit'    => 'Jes',
 
 # Namespace form on various pages
-'namespace'      => 'Nomspaco:',
-'invert'         => 'Inversigi elektaĵon',
-'blanknamespace' => '(Artikoloj)',
+'namespace'             => 'Nomspaco:',
+'invert'                => 'Inversigi elektaĵon',
+'namespace_association' => 'Asociita nomspaco',
+'blanknamespace'        => '(Artikoloj)',
 
 # Contributions
 'contributions'       => 'Kontribuoj de uzanto',
@@ -2431,6 +2473,7 @@ Jen la lasta ero de la forbara protokolo:',
 'whatlinkshere-filters'    => 'Filtriloj',
 
 # Block/unblock
+'autoblockid'                     => 'Aŭtomata forbaro #$1',
 'block'                           => 'Forbari uzanton',
 'unblock'                         => 'Malforbari uzanton',
 'blockip'                         => 'Forbari uzanton/IP-adreson',
@@ -2449,6 +2492,7 @@ Jen la lasta ero de la forbara protokolo:',
 ** Terurigema sinteno
 ** Misuzo de pluraj salutnomoj
 ** Neakceptebla uzanto-nomo',
+'ipb-hardblock'                   => 'Malpermesi ensalutitajn uzantoj de redaktante ĉi tiun IP-adreson',
 'ipbcreateaccount'                => 'Preventi kreadon de konto',
 'ipbemailban'                     => 'Malebligi al uzanto sendi retpoŝton.',
 'ipbenableautoblock'              => 'Aŭtomate forbaru la lastan IP-adreson uzitan de la uzanto, kaj ĉiajn subsekvantajn adresojn el kiuj tiu provos redakti',
@@ -2459,11 +2503,15 @@ Jen la lasta ero de la forbara protokolo:',
 'ipbotherreason'                  => 'Alia/kroma kialo:',
 'ipbhidename'                     => 'Kaŝi salutnomon de redaktoj kaj listoj',
 'ipbwatchuser'                    => 'Atenti la paĝojn por uzanto kaj diskuto de ĉi tiu uzanto.',
+'ipb-disableusertalk'             => 'Preventi ĉi tiun uzanton de redaktante ties propran diskuto-paĝon kiam forbarita',
 'ipb-change-block'                => 'Reforbari la uzanton kun ĉi tiuj preferoj',
+'ipb-confirm'                     => 'Konfirmi forbaron',
 'badipaddress'                    => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub'               => 'Oni sukcese forbaris la adreson/nomon.',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] estas forbarita. <br />
 Vidu la [[Special:IPBlockList|liston de IP-forbaroj]] por kontroli.',
+'ipb-blockingself'                => 'Vi preskaŭ forbaros vin mem! Ĉu vi certas ke vi volas fari ĉi tiel?',
+'ipb-confirmhideuser'             => 'Vi preskaŭ forbaras uzanto kun "kaŝi uzanton" ŝalta. Ĉi tiu kaŝi la nomon de uzanto en ĉiuj listoj ka protokoloj. Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-edit-dropdown'               => 'Redakti kialojn por forbaro.',
 'ipb-unblock-addr'                => 'Restarigi $1',
 'ipb-unblock'                     => 'Malforbari salutnomon aŭ IP-adreson',
@@ -2474,10 +2522,19 @@ Vidu la [[Special:IPBlockList|liston de IP-forbaroj]] por kontroli.',
 forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'ipusubmit'                       => 'Forigi ĉi tiun forbaron',
 'unblocked'                       => '[[User:$1|$1]] estas restarigita.',
+'unblocked-range'                 => '$1 estis malforbarita',
 'unblocked-id'                    => 'Forbaro $1 estas forigita.',
+'blocklist'                       => 'Forbaritaj uzantoj',
 'ipblocklist'                     => 'Forbaritaj uzantoj',
 'ipblocklist-legend'              => 'Trovi forbaritan uzanton.',
+'blocklist-userblocks'            => 'Kaŝi konto-forbarojn',
+'blocklist-tempblocks'            => 'Kaŝi provizorajn forbarojn',
+'blocklist-addressblocks'         => 'Kaŝi unuopajn IP-adresajn forbarojn',
+'blocklist-timestamp'             => 'Tempindiko',
 'blocklist-target'                => 'Celo',
+'blocklist-expiry'                => 'Eksvalidiĝas',
+'blocklist-by'                    => 'Forbaranta administranto',
+'blocklist-params'                => 'Forbarado-parametroj',
 'blocklist-reason'                => 'Kialo',
 'ipblocklist-submit'              => 'Serĉi',
 'ipblocklist-localblock'          => 'Loka forbaro',
@@ -2518,6 +2575,7 @@ La kialo donita por la forbaro de $1 estis: "$2"',
 'ipb_already_blocked'             => '"$1" estas jam forbarita',
 'ipb-needreblock'                 => '$1 estas jam forbarita. Ĉu vi volas ŝanĝi la opciojn?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Alia forbaro|Aliaj forbaroj}}',
+'unblock-hideuser'                => 'Vi ne povas malforbari ĉi tiun uzanton, pro ties salutnomo estis kaŝita.',
 'ipb_cant_unblock'                => 'Eraro: Forbar-identigo $1 ne estas trovita. Ĝi eble estis jam malforbarita.',
 'ipb_blocked_as_range'            => 'Eraro: La IP-adreso $1 ne estas forbarita rekte kaj ne povas esti malforbarita. Tamen ĝi estas forbarita kiel parto de la intervalo $2, kiu ne povas esti malforbarita.',
 'ip_range_invalid'                => 'Malvalida IP-adresa intervalo.',
@@ -2896,21 +2954,23 @@ $1',
 'nextdiff'     => 'Pli nova redakto →',
 
 # Media information
-'mediawarning'         => "'''Atenton!''': Ĉi tiu dosiero eble enhavas malican kodadon, per ĝia ruligo via sistemo povus endanĝeriĝi.",
-'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
-'thumbsize'            => 'Grandeco de bildetoj:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
-'file-info'            => 'pezo de dosiero: $1, MIME-tipo: $2',
-'file-info-size'       => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4',
-'file-nohires'         => '<small>Nenia pli granda distingivo havebla.</small>',
-'svg-long-desc'        => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
-'show-big-image'       => 'Plena distingivo',
-'show-big-image-size'  => '$1 × $2 rastrumeroj',
-'file-info-gif-looped' => 'ripeta GIF',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|ĉelo|ĉeloj}}',
-'file-info-png-looped' => 'ripetita',
-'file-info-png-repeat' => 'Ludis $1 fojo{{PLURAL:$1||j}}n',
-'file-info-png-frames' => '$1 kadro{{PLURAL:$1||j}}',
+'mediawarning'           => "'''Atenton!''': Ĉi tiu dosiero eble enhavas malican kodadon, per ĝia ruligo via sistemo povus endanĝeriĝi.",
+'imagemaxsize'           => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
+'thumbsize'              => 'Grandeco de bildetoj:',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
+'file-info'              => 'pezo de dosiero: $1, MIME-tipo: $2',
+'file-info-size'         => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4',
+'file-nohires'           => '<small>Nenia pli granda distingivo havebla.</small>',
+'svg-long-desc'          => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
+'show-big-image'         => 'Plena distingivo',
+'show-big-image-preview' => '<small>Grandeco de ĉi antaŭvido: $1.</small>',
+'show-big-image-other'   => '<small>Aliaj distingivoj: $1.</small>',
+'show-big-image-size'    => '$1 × $2 rastrumeroj',
+'file-info-gif-looped'   => 'ripeta GIF',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|ĉelo|ĉeloj}}',
+'file-info-png-looped'   => 'ripetita',
+'file-info-png-repeat'   => 'Ludis $1 fojo{{PLURAL:$1||j}}n',
+'file-info-png-frames'   => '$1 kadro{{PLURAL:$1||j}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerio de novaj dosieroj',
@@ -3065,19 +3125,76 @@ Aliaj estos kaŝitaj defaŭlte.
 'exif-gpsareainformation'          => 'Nomo de GPS areo',
 'exif-gpsdatestamp'                => 'GPS dato',
 'exif-gpsdifferential'             => 'GPS diferenca korektado',
+'exif-jpegfilecomment'             => 'Komento de JPEG-dosiero',
 'exif-keywords'                    => 'Ŝlosilvortoj',
+'exif-worldregioncreated'          => 'Monda regiono kie la foto estis fotita',
+'exif-countrycreated'              => 'Lando kie la foto estis fotita',
+'exif-countrycodecreated'          => 'Landokodo kie la foto estis fotita',
+'exif-provinceorstatecreated'      => 'Provinco aŭ subŝtato kie la foto estis fotita',
+'exif-citycreated'                 => 'Urbo kie la foto estis fotita',
+'exif-sublocationcreated'          => 'Subloko de la urbo kie la foto estis fotita',
+'exif-worldregiondest'             => 'Monda regiono montrita',
+'exif-countrydest'                 => 'Lando montrita',
+'exif-countrycodedest'             => 'ISO-kodo por lando montrita',
+'exif-provinceorstatedest'         => 'Provinco aŭ subŝtato montrita',
+'exif-citydest'                    => 'Urbo montrita',
+'exif-sublocationdest'             => 'Subloko de urbo montrita',
 'exif-objectname'                  => 'Mallonga titolo',
+'exif-specialinstructions'         => 'Speciala instrukcio',
+'exif-headline'                    => 'Titolo',
+'exif-credit'                      => 'Provizanto',
 'exif-source'                      => 'Fonto',
+'exif-editstatus'                  => 'Redaktora statuso de bildo',
+'exif-urgency'                     => 'Urĝeco',
+'exif-fixtureidentifier'           => 'Nomo de rikura kolumno',
+'exif-locationdest'                => 'Loko montrita',
+'exif-locationdestcode'            => 'Kodo de loko montrita',
+'exif-objectcycle'                 => 'Tempo de tago kiun medio estas intenciita',
+'exif-contact'                     => 'Informo por mesaĝigi',
 'exif-writer'                      => 'Aŭtoro',
 'exif-languagecode'                => 'Lingvo',
 'exif-iimversion'                  => 'IIM-versio',
 'exif-iimcategory'                 => 'Kategorio',
+'exif-iimsupplementalcategory'     => 'Aldonaj kategorioj',
+'exif-datetimeexpires'             => 'Ne uzu post',
+'exif-datetimereleased'            => 'Eldonitaj je',
+'exif-originaltransmissionref'     => 'Loko-kodo de originala komunikaĵo',
+'exif-identifier'                  => 'Identigo',
+'exif-lens'                        => 'Lenso uzita',
+'exif-serialnumber'                => 'Seria numero de fotilo',
+'exif-cameraownername'             => 'Propranto de fotilo',
 'exif-label'                       => 'Etikedo',
+'exif-datetimemetadata'            => 'Dato kiam metadatumoj estis laste modifitaj',
+'exif-nickname'                    => 'Malformala nomo de bildo',
+'exif-rating'                      => 'Taksado (el 5)',
+'exif-rightscertificate'           => 'Atestilo de rajtoj-administrado',
 'exif-copyrighted'                 => 'Aŭtorrajta statuso:',
 'exif-copyrightowner'              => 'Posedanto de la aŭtorrajto',
+'exif-usageterms'                  => 'Regularo pri uzado',
+'exif-webstatement'                => 'Interreta deklarado pri aŭtorrajtoj',
+'exif-originaldocumentid'          => 'Unika identigo de originala dokumento',
+'exif-licenseurl'                  => 'URL-o por aŭtorrajta permesilo',
+'exif-morepermissionsurl'          => 'Informo pri alternativa permesado',
+'exif-attributionurl'              => 'Kiam reuzante ĉi tiun verkon, bonvolu ligigi al:',
+'exif-preferredattributionname'    => 'Kiam reuzante ĉi tiun verkon, bonvolu mencii al:',
+'exif-pngfilecomment'              => 'Komento de PNG-dosiero',
+'exif-disclaimer'                  => 'Malgarantio',
+'exif-contentwarning'              => 'Averto pri enhavo',
+'exif-giffilecomment'              => 'Komento de GIF-dosiero',
+'exif-intellectualgenre'           => 'Tipo de aĵo',
+'exif-subjectnewscode'             => 'Temo-kodo',
+'exif-scenecode'                   => 'IPTC sceno-kodo',
+'exif-event'                       => 'Evento montrita',
+'exif-organisationinimage'         => 'Organizaĵo montrita',
+'exif-personinimage'               => 'Persono montrita',
+'exif-originalimageheight'         => 'Alto de bildo antaŭ stuco',
+'exif-originalimagewidth'          => 'Larĝo de bildo antaŭ stuco',
 
 # EXIF attributes
 'exif-compression-1' => 'Nedensigita',
+
+'exif-copyrighted-true'  => 'Sub aŭtorrajto',
+'exif-copyrighted-false' => 'Sub publika domajno',
 
 'exif-unknowndate' => 'Nekonata dato',
 
@@ -3092,6 +3209,8 @@ Aliaj estos kaŝitaj defaŭlte.
 
 'exif-planarconfiguration-1' => 'bloka formato',
 'exif-planarconfiguration-2' => 'ebena formato',
+
+'exif-colorspace-65535' => 'Nekalibrita',
 
 'exif-componentsconfiguration-0' => 'ne ekzistas',
 
@@ -3206,6 +3325,10 @@ Aliaj estos kaŝitaj defaŭlte.
 'exif-gpslongitude-e' => 'Orienta longitudo',
 'exif-gpslongitude-w' => 'Uesta longitudo',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metro|metroj}} super marnivelo',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metro|metroj}} sub marnivelo',
+
 'exif-gpsstatus-a' => 'Mezurado estanta',
 'exif-gpsstatus-v' => 'Mezurada interoperaciado',
 
@@ -3222,9 +3345,58 @@ Aliaj estos kaŝitaj defaŭlte.
 'exif-gpsdestdistance-m' => 'Mejloj',
 'exif-gpsdestdistance-n' => 'Maraj mejloj',
 
+'exif-gpsdop-excellent' => 'Bonega ($1)',
+'exif-gpsdop-good'      => 'Bona ($1)',
+'exif-gpsdop-moderate'  => 'Meza ($1)',
+'exif-gpsdop-fair'      => 'Submeza ($1)',
+'exif-gpsdop-poor'      => 'Malbona ($1)',
+
+'exif-objectcycle-a' => 'Nur mateno',
+'exif-objectcycle-p' => 'Nur vespero',
+'exif-objectcycle-b' => 'Kaj mateno kaj vespero',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Vera direkto',
 'exif-gpsdirection-m' => 'Magneta direkto',
+
+'exif-ycbcrpositioning-1' => 'Centrigita',
+'exif-ycbcrpositioning-2' => 'Multaj situoj',
+
+'exif-dc-contributor' => 'Kontribuintoj',
+'exif-dc-coverage'    => 'Spaca aŭ tempa amplekso de bildo',
+'exif-dc-date'        => 'Dato(j)',
+'exif-dc-publisher'   => 'Eldonejo',
+'exif-dc-relation'    => 'Rilata al bildo',
+'exif-dc-rights'      => 'Rajtoj',
+'exif-dc-source'      => 'Fonto de bildo',
+'exif-dc-type'        => 'Tipo de medio',
+
+'exif-rating-rejected' => 'Malakceptita',
+
+'exif-isospeedratings-overflow' => 'Pli granda ol 65535',
+
+'exif-iimcategory-ace' => 'Arto, kulturo, kaj regalado',
+'exif-iimcategory-clj' => 'Krimo kaj leĝo',
+'exif-iimcategory-dis' => 'Katastrofoj kaj akcidentoj',
+'exif-iimcategory-fin' => 'Ekonomio kaj entrepreno',
+'exif-iimcategory-edu' => 'Edukado',
+'exif-iimcategory-evn' => 'Medio',
+'exif-iimcategory-hth' => 'Sano',
+'exif-iimcategory-hum' => 'Homaj interesaĵoj',
+'exif-iimcategory-lab' => 'Laboro',
+'exif-iimcategory-lif' => 'Vivmaniero kaj ŝatokupo',
+'exif-iimcategory-pol' => 'Politiko',
+'exif-iimcategory-rel' => 'Religio kaj kreado',
+'exif-iimcategory-sci' => 'Scienco kaj teknologio',
+'exif-iimcategory-soi' => 'Sociaj aferoj',
+'exif-iimcategory-spo' => 'Sporto',
+'exif-iimcategory-war' => 'Milito, konflikto kaj malpacaĵo',
+'exif-iimcategory-wea' => 'Vetero',
+
+'exif-urgency-normal' => 'Norma ($1)',
+'exif-urgency-low'    => 'Malalta ($1)',
+'exif-urgency-high'   => 'Alta ($1)',
+'exif-urgency-other'  => 'Prioritato difinita de uzanto ($1)',
 
 # External editor support
 'edit-externally'      => 'Ŝanĝi ĉi tiun dosieron per ekstera programaro',
@@ -3313,11 +3485,13 @@ $1',
 'trackbackdeleteok' => 'La postspurado estis sukcese forigita.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Averto''': Ĉi tiu paĝo estis forigita post vi ekredaktis!",
-'confirmrecreate'     => "Uzanto [[User:$1|$1]] ([[User talk:$1|diskuto]]) forigis ĉi paĝon post vi ekredaktis ĝin kun kialo:
+'deletedwhileediting'      => "'''Averto''': Ĉi tiu paĝo estis forigita post vi ekredaktis!",
+'confirmrecreate'          => "Uzanto [[User:$1|$1]] ([[User talk:$1|diskuto]]) forigis ĉi tiun paĝon post vi ekredaktis ĝin kun kialo:
 : ''$2''
 Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
-'recreate'            => 'Rekrei',
+'confirmrecreate-noreason' => 'Uzanto [[User:$1|$1]] ([[User talk:$1|diskuto-paĝo]]) forigis ĉi tiun paĝon post vi ekredaktis ĝin.
+Bonvolu konfirmi ke vi ja volas rekrei la paĝon.',
+'recreate'                 => 'Rekrei',
 
 # action=purge
 'confirm_purge_button' => 'Ek!',

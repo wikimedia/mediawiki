@@ -544,6 +544,8 @@ $1",
 'toc'                     => 'Kontenut',
 'showtoc'                 => 'uri',
 'hidetoc'                 => 'aħbi',
+'collapsible-collapse'    => 'Aħbi',
+'collapsible-expand'      => 'Espandi',
 'thisisdeleted'           => 'Uri jew ġib lura $1?',
 'viewdeleted'             => 'Ara $1?',
 'restorelink'             => '{{PLURAL:$1|waħda mill-modifiki mħassra|$1 modifiki mħassra}}',
@@ -678,12 +680,14 @@ Tinsiex tippersonalizza l-[[Special:Preferences|preferenzi]] ta' {{SITENAME}}.",
 'gotaccount'                 => "Diġa għandhek kont? '''$1'''.",
 'gotaccountlink'             => 'Idħol',
 'createaccountmail'          => 'bil-posta elettronika',
+'createaccountreason'        => 'Raġuni:',
 'badretype'                  => 'Il-passwords li daħħalt ma jaqblux.',
 'userexists'                 => 'L-isem tal-utent li daħħalt huwa diġà meħud. Jekk jogħġbok, agħżel isem differenti.',
 'loginerror'                 => 'Problemi fil-login',
 'createaccounterror'         => 'Il-kont ma jistax jinħoloq: $1',
 'nocookiesnew'               => "Il-Kont tal-utent għal l-aċċess ġie maħluq, però ma kienx possibli li tagħmel aċċess għal {{SITENAME}} għax il-''cookies'' huma disattivati. Erġa' prova l-aċċess bl-isem tal-utent u l-password wara li tkun attivajt il-''cookies'' tal-''browser''.",
 'nocookieslogin'             => "L-aċċess għal {{SITENAME}} jagħmel użu minn ''cookies'', li bħalissa huma disattivati. Jekk jogħġbok erġa' prova idħol wara li tkun attivajt il-''cookies'' fil-browser.",
+'nocookiesfornew'            => "Il-kont ma ġiex maħluq, minħabba li ma stajniex nikkonfermaw is-sors. Assigura ruħek li l-cookies huma attivati, u erġa' tella' l-paġna biex terġa' tipprova.",
 'noname'                     => "Inti ma speċifikajtx isem ta' utent validu.",
 'loginsuccesstitle'          => "Dħalt b'suċċess",
 'loginsuccess'               => "'''Irnexxielek taqbad mas-server ta' {{SITENAME}} bl-isem tal-utent \"\$1\".'''",
@@ -700,6 +704,7 @@ Jekk jogħġbok, erġa' pprova.",
 Jekk jogħġbok, erġa' pprova.",
 'passwordtooshort'           => 'Il-password trid tkun mill-inqas {{PLURAL:$1|karattru|$1 karattri}} twila u differenti mill-isem tal-utent.',
 'password-name-match'        => 'Il-password trid tkun differenti mill-isem tal-utent tiegħek.',
+'password-login-forbidden'   => "L-użu ta' dan l-isem tal-utent u l-password huwa projbit.",
 'mailmypassword'             => 'Ibgħatli password ġdida',
 'passwordremindertitle'      => 'Password temporanju ġdid għal {{SITENAME}}',
 'passwordremindertext'       => 'Xi ħadd (probabbilment int, mill-indirizz IP $1) għamel rikjesta għal password ġdida għal {{SITENAME}} ($4). Password temporanja għall-utent "$2" ġiet maħluqa u din hi "$3".
@@ -734,6 +739,7 @@ Jekk trid tista\' ma tagħtix każ dan il-messaġġ, jekk dan il-kont ġie maħl
 'usernamehasherror'          => 'L-isem tal-utent ma jistax ikolu karattri hash',
 'login-throttled'            => "Saru ħafna tentattivi riċenti fuq il-password ta' dan il-kont.
 Jekk jogħġbok stenna qabel ma terġa' tipprova.",
+'login-abort-generic'        => 'Il-login ma kienx suċċess - Imħassar',
 'loginlanguagelabel'         => 'Lingwa: $1',
 'suspicious-userlogout'      => "Ir-rikjesta tiegħek li toħroġ barra mill-kont tiegħek ġiet miċħuda minħabba li jidher li din intbagħtet minn browser li ma jaħdimx jew minn proxy ta' caching.",
 
@@ -757,7 +763,17 @@ Jista' jkun li int diġà biddilt il-password, jew għamilt rikjesta għal passw
 'resetpass-temp-password'   => 'Password temporanja:',
 
 # Special:PasswordReset
-'passwordreset-username' => 'Isem tal-utent:',
+'passwordreset'              => 'Irrisettja l-password',
+'passwordreset-text'         => 'Imla din il-formola sabiex tirċievi notifikazzjoni permezz tal-posta elettronika tad-dettalji tal-kont tiegħek.',
+'passwordreset-legend'       => 'Irrisettja l-password',
+'passwordreset-disabled'     => 'L-irrisettjar tal-password fuq din il-wiki ġie diżattivat.',
+'passwordreset-pretext'      => "{{PLURAL:$1||Daħħal wieħed mill-biċċiet ta' informazzjoni t'hawn taħt}}",
+'passwordreset-username'     => 'Isem tal-utent:',
+'passwordreset-email'        => 'Indirizz elettroniku:',
+'passwordreset-emailtitle'   => 'Dettalji tal-kont fuq {{SITENAME}}',
+'passwordreset-emailelement' => 'Isem tal-utent: $1
+Password temporanja: $2',
+'passwordreset-emailsent'    => 'Intbagħtet ittra-e bħala tfakkira.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tipa ħoxna',
@@ -866,6 +882,8 @@ L-aħħar daħla fir-reġistru tal-imblokki hi mogħtiha hawn taħt għal refere
 'userjsyoucanpreview'              => "'''Suġġeriment:''' Uża l-buttuna \"{{int:showpreview}}\" sabiex tipprova l-JavaScript il-ġdid tiegħek qabel ma ssalvah.",
 'usercsspreview'                   => "'''Ftakar li inti qed turi dehra proviżorja tas-CSS personali. Il-modifiki li għamilt għadhom ma ġewx salvati!'''",
 'userjspreview'                    => "'''Ftakar li inti qiegħed biss tipprova/tara dehra proviżorja tal-JavaScript personali; il-modifiki li għamilt għad iridu jiġu salvati!'''",
+'sitecsspreview'                   => "'''Ftakar li din hija biss dehra proviżorja tas-CSS. Il-modifiki għadhom ma ġewx salvati!'''",
+'sitejspreview'                    => "'''Ftakar li din hija biss dehra proviżorja tal-JavaScript. Il-modifiki għadhom ma ġewx salvati!'''",
 'userinvalidcssjstitle'            => "'''Twissija:''' M'hemm l-ebda skin bl-isem \"\$1\".
 Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu żgħira, eż. {{ns:user}}:Foo/vector.css u mhux {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Aġġornata)',
@@ -881,15 +899,16 @@ Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova [[Special
 '''Jekk dan huwa attentat leġittmu ta' modifika, jekk jogħġbok erġa' pprova. Jekk tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.'''",
 'token_suffix_mismatch'            => "'''Il-modifika tiegħek ma ġietx aċċettata minħabba li klijent tiegħek tertaq l-karratri tal-ortografija fit-token tal-modifika.
 Din il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal-paġna. Dan xi kultant jiġri minħabba li qiegħed tuża servizz difettuż anonimu li huwa bbażat fuq il-web ta' prokura.'''",
+'edit_form_incomplete'             => "'''Ċerti parti tal-formola tal-modifika ma laħqux is-server; iċċekkja jekk il-modifiki tiegħek humiex intatti u erġa' pprova.'''",
 'editing'                          => "Modifika ta' $1",
 'editingsection'                   => "Modifika ta' $1 (sezzjoni)",
 'editingcomment'                   => 'Qed jiġi editjat $1 (sezzjoni ġdida)',
 'editconflict'                     => "Kunflitt t'editjar: $1",
-'explainconflict'                  => "Xi ħadd modifika din il-paġna sakemm int kont qiegħed tagħmel il-modifiki.
-Fiż-Żona tal-modifika superjuri jinsab il-kliem tal-paġna kif teżisti bħalissa, kif ġiet modifikata mill-utent l-ieħor.
-Il-Verżjoni bil-modifiki tiegħek jinsab fiż-żona ta' modifika inferjuri.
-Jekk trid il-modifiki tiegħek jiġu salvati, inti trid tgħaqqad il-modifiki tiegħek mat-test kif jeżisti bħalissa fiż-żona superjuri.
-Meta tagħfas ''Modifika'', se jiġi salvat '''biss''' it-test li jinsab fiż-żona superjuri.",
+'explainconflict'                  => "Utent ieħor biddel il-paġna meta inti kont qiegħed tagħmel il-modifiki tiegħek.
+Il-kaxxa tal-modifika ta' fuq turi t-test tal-paġna kif inhu bħalissa.
+Il-bidliet li għamilt huma fin-naħa t'isfel.
+Jekk trid il-modifiki tiegħek jiġu salvati, hemm bżonn li tgħaqqad il-modifiki personali ma' dawk eżistenti (fil-kaxxa ta' fuq)
+Meta tagħfas il-buttuna \"{{int:savearticle}}\", se jiġi salvat '''biss''' it-test li jinsab fil-kaxxa tal-modifika ta' fuq.",
 'yourtext'                         => 'It-test tiegħek',
 'storedversion'                    => 'Il-verżjoni maħżuna',
 'nonunicodebrowser'                => "'''TWISSIJA: Il-Browser tiegħek m'għandux sapport għal unicode.
@@ -1005,7 +1024,7 @@ Jista' jkun li ġiet imħassra mill-wiki, jew imsemmija mill-ġdid.
 Prova [[Special:Search|fittex fuq il-wiki]] għal paġni relevanti ġodda.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(tneħħa l-kumment)',
+'rev-deleted-comment'         => '(tneħħija tat-taqsira)',
 'rev-deleted-user'            => '(l-isem tal-utent tneħħa)',
 'rev-deleted-event'           => '(azzjoni tal-log tneħħa)',
 'rev-deleted-user-contribs'   => '[isem tal-utent jew indirizz IP imneħħi - il-modifika ġie moħbiha mill-kronoloġija]',
@@ -1020,6 +1039,8 @@ Dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FU
 Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
 'rev-suppressed-text-view'    => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Bħala amministratur inti xorta waħda tista' taraha; dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
+'rev-deleted-no-diff'         => "Mhuwiex possibbli illi tara dan il-konfront bejn verżjonijiet differenti minħabba li waħda mir-reviżjonijiet ġiet '''imħassra'''.
+Ikkonsulta r-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.",
 'rev-delundel'                => 'uri/aħbi',
 'rev-showdeleted'             => 'uri',
 'revisiondelete'              => 'Ħassar/irkupra reviżjonijiet',
@@ -1849,6 +1870,7 @@ Ara wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].',
 'listusersfrom'      => 'Uri utenti li jibdew minn:',
 'listusers-submit'   => 'Uri',
 'listusers-noresult' => 'l-Ebda utent insab għal din il-kriterja.',
+'listusers-blocked'  => '(imblukkat)',
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista tal-utenti attivi',
@@ -2094,6 +2116,7 @@ Int jista' jkollhok link ħażin, jew jista' jkun li ir-reviżjoni ġie rkuprat 
 'undelete-nodiff'              => 'L-ebda reviżjoni preċedenti ma ġiet misjuba.',
 'undeletebtn'                  => 'Irkupra',
 'undeletelink'                 => 'uri/irkupra',
+'undeleteviewlink'             => 'uri',
 'undeletereset'                => 'Irrisettja',
 'undeleteinvert'               => 'Inverti s-selezzjoni',
 'undeletecomment'              => 'Raġuni:',
@@ -2242,31 +2265,31 @@ Ara l-[[Special:IPBlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.
 'ipb_expiry_invalid'              => "Il-ħin ta' skadenza huwa invalidu.",
 'ipb_expiry_temp'                 => "Blokkijiet ta' ismijiet ta' l-utent moħbija jridu jkunu permanenti.",
 'ipb_hide_invalid'                => "Ma jistax jitneħħa l-kont; jista' jkun li għandu ħafna modifiki.",
-'ipb_already_blocked'             => 'L-utent "$1" diġà bblokkjat',
+'ipb_already_blocked'             => 'L-utent "$1" diġà imblukkat',
 'ipb-needreblock'                 => 'L-utent $1 hu diġà imblukkat. Trid tbiddel l-impostazzjonijet?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Blokk ieħor|Blokki oħra}}',
+'unblock-hideuser'                => 'Ma tistax tiżblokka lil dan l-utent, minħabba li l-isem tal-utent tagħhom ġie moħbi.',
 'ipb_cant_unblock'                => 'Problema: Impossibli ssib il-blokk bl-ID $1. L-Imblokk setgħa jkun ġa sblokkat.',
 'ipb_blocked_as_range'            => "Problema: L-Indirizz tal-IP $1 ma jistax jiġi blokkat waħdu u ma jistax jiġi sblokkat. L-Imblokk huwa attiv però f'livell ta' interval $2, li jista' jkun sblokkat.",
 'ip_range_invalid'                => "Interval ta' indirizzi ta' IP mhux validi.",
+'ip_range_toolarge'               => "Mhumiex permessi firxa ta' blokki ikbar minn /$1.",
 'blockme'                         => 'Imblukkani',
 'proxyblocker'                    => "Blokki ta' proxy miftuħa",
 'proxyblocker-disabled'           => 'Din il-funzjoni mhijiex attivata.',
-'proxyblockreason'                => "L-Indirizz tal-IP tiegħek ġie bblokkjat peress li huwa proxy miftuħ.
-Jekk jogħġbok, ikkuntattja lill-provdituri tas-servizz tal-internet jew lis-support tekniku tiegħek u informahom b'din il-problema serja ta' sigurtà.",
-'proxyblocksuccess'               => 'Blokkjat.',
-'sorbsreason'                     => "L-Indirizz tal-IP tiegħek huwa mniżżel bħala proxy miftuħ fil-DNSBL ta' {{SITENAME}}.",
-'sorbs_create_account_reason'     => 'Mhux possibli toħloq aċċessi ġodda minn dan l-indirizz tal-IP minħabba li huwa mniżżel bħala proxy miftuħ fil-DNSBL użat minn {{SITENAME}}.',
+'proxyblockreason'                => "L-indirizz IP tiegħek ġie imblukkat peress li huwa proxy miftuħ. Jekk jogħġbok, ikkuntattja lill-provdituri tas-servizz tal-internet (ISP) jew lis-''support'' tekniku tiegħek u infurmahom b'din il-problema serja ta' sigurtà.",
+'proxyblocksuccess'               => 'Blokk esegwit.',
+'sorbsreason'                     => 'L-indirizz IP tiegħek huwa mniżżel bħala proxy miftuħ fid-DNSBL użat minn {{SITENAME}}.',
+'sorbs_create_account_reason'     => 'L-indirizz IP tiegħek huwa mniżżel bħala proxy miftuħ fid-DNSBL użat minn {{SITENAME}}. Ma tistax toħloq kont.',
 'cant-block-while-blocked'        => 'Ma tistax timblokka lil utenti oħra waqt li inti mblukkat.',
-'cant-see-hidden-user'            => 'L-utent li qiegħed tipprova timblokk diġà ġie imblukkat u moħbi.
+'cant-see-hidden-user'            => 'L-utent li qiegħed tipprova timblokka diġà ġie imblukkat u moħbi.
 Minħabba li inti m\'għandikx id-dritt li "taħbi \'l-utent", ma tistax tara jew timmodifika l-blokk tal-utent.',
 'ipbblocked'                      => 'Ma tistax timblokka jew tiżblokka utenti oħra, minħabba li inti stess tinsab imblukkat',
-'ipbnounblockself'                => "M'għandex il-permess li tiżblokka lilek innifsek",
+'ipbnounblockself'                => "M'għandekx il-permess li tiżblokka lilek innifsek",
 
 # Developer tools
-'lockdb'              => 'Agħlaq id-database',
-'unlockdb'            => 'Iftaħ id-database',
-'lockdbtext'          => "Tagħlaq id-database se jisuspendi l-abbilitá ta' kull utent li jagħmlu modifiki fil-paġni, modifika l-preferenzi tagħhom, modifika l-osservazzjonijiet speċjali tagħhom, u affarijiet oħra li għadnhom bżonn modifika fid-database.
-Jekk jogħġbok konferma li dan huwa li tixtieq li tagħmel, u li se tiftaħ id-database wara li l-manteniment ikun lest.",
+'lockdb'              => 'Agħlaq id-databażi',
+'unlockdb'            => 'Iftaħ id-databażi',
+'lockdbtext'          => "L-imblukkar tad-databażi iwassal għall-interuzzjoni, għall-utenti kollha, tal-possibilità li jimmodifikaw il-paġni jew li joħolqu oħrajn ġodda, li jbiddlu l-preferenzi tagħhom u jimmodifikaw l-elenki tal-paġni taħt osservazzjoni, u ġeneralment kull operazzjoni li għandha bżonn ta' modifiki fid-databażi. Jekk jogħġbok, ikkonferma li dan jikkorispondi effettivament għall-azzjoni li ġie rikjesta għalik u li fi tmiem il-manuntenzjoni terġa' tiżblokka d-databażi.",
 'unlockdbtext'        => "Tiftaħ id-database se jirkupra l-abbilità ta' kull utent li jagħmlu modifiki mill-ġdid, jagħmlu modifiki fil-preferenzi, modifiki fl-osservazzjonijiet speċjali, u affarijiet oħra li għandhom bżonn modifika fid-database.
 Jekk jogħġbok konferma mill-ġdid li dan huwa li tixtieq li tagħmel.",
 'lockconfirm'         => 'Iva, ċert li rrid nagħlaq id-database.',
@@ -3132,10 +3155,20 @@ Daħħal l-isem tal-fajl bla l-prefiss "{{ns:file}}:".',
 'tag-filter-submit' => 'Filtru',
 'tags-edit'         => 'editja',
 
+# Special:ComparePages
+'comparepages'     => 'Qabbel il-paġni',
+'compare-selector' => "Ikkumpara reviżjonijiet ta' paġna",
+'compare-page1'    => 'Paġna 1',
+'compare-page2'    => 'Paġna 2',
+'compare-rev1'     => 'Reviżjoni 1',
+'compare-rev2'     => 'Reviżjoni 2',
+'compare-submit'   => 'Qabbel',
+
 # Database error messages
 'dberr-header'   => 'Din il-wiki għandha problema',
 'dberr-problems' => 'Jiddispjaċina! Dan is-sit għandu diffikultajiet tekniċi.',
 'dberr-again'    => "Prova stenna ftit minuti u erġa' tella' l-paġna.",
+'dberr-info'     => '(Impossibbli li jsir kuntratt mas-server tad-databażi: $1)',
 
 # HTML forms
 'htmlform-invalid-input'       => "Hemm xi problemi f'dak li daħħalt",

@@ -532,6 +532,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 'yourpassword'               => 'Neno la siri:',
 'yourpasswordagain'          => 'Andika tena neno la siri',
 'remembermypassword'         => 'Kumbuka kuingia kwangu katika kivinjari hiki (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
+'securelogin-stick-https'    => 'Endelea kushikamana na HTTPS baada ya kuingia',
 'yourdomainname'             => 'Tovuti yako:',
 'externaldberror'            => 'Huenda kulikuwa na hitilafu ya database au labda hauruhusiwi kubadilisha akaunti yako ya nje.',
 'login'                      => 'Ingia',
@@ -559,6 +560,8 @@ Tafadhali chagua jina lingine.',
 'nocookieslogin'             => '{{SITENAME}} inatumia kuki ili watumiaji waweze kuingia.
 Tarakilishi yako inakataa kupokea kuki.
 Tafadhali, ondoa kizuizi hicho, halafu jaribu tena.',
+'nocookiesfornew'            => 'Hatukuweza kugundua ombi la kuanzisha akaunti limetoka wapi, kwa hiyo akaunti haijaanzishwa.
+Hakikisha kwamba kuki zimewezeshwa kwenye tarakalishi yako, pakia ukurasa huu upya, kisha jaribu tena.',
 'noname'                     => 'Hauja dhihilisha jina la mtumiaji.',
 'loginsuccesstitle'          => 'Umefaulu kuingia',
 'loginsuccess'               => "'''Umeingia {{SITENAME}} kama \"\$1\".'''",
@@ -573,6 +576,7 @@ Jaribu tena.',
 'wrongpasswordempty'         => 'Neno la siri lilikuwa tupu. Jaribu tena.',
 'passwordtooshort'           => 'Ni lazima neno la siri liwe na {{PLURAL:$1|herufi}} $1 au zaidi.',
 'password-name-match'        => 'Neno lako la siri lazima liwe tofauti na jina lako la mtumiaji.',
+'password-login-forbidden'   => 'Imekatzwa kutumia jina hili la mtumiaji pamoja na neno hili la siri.',
 'mailmypassword'             => 'Nitume neno la siri jipya kwa barua-pepe',
 'passwordremindertitle'      => 'Neno la siri jipya la muda kwa ajili ya {{SITENAME}}',
 'passwordremindertext'       => 'Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)
@@ -636,17 +640,29 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'resetpass-temp-password'   => 'Neno la siri la muda:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Seti upya neno la siri',
-'passwordreset-legend'       => 'Seti upya neno la siri',
-'passwordreset-emailtext-ip' => 'Kuna mtu (huenda wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
+'passwordreset'                => 'Seti upya neno la siri',
+'passwordreset-text'           => 'Jaza fomu hii ili upate barua pepe inayotoa maelezo ya akaunti yako.',
+'passwordreset-legend'         => 'Seti upya neno la siri',
+'passwordreset-disabled'       => 'Kuweka neno la siri jipya kumeshitishwa katika wiki hii.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Andika moja kati ya data hizi hapo chini}}',
+'passwordreset-username'       => 'Jina la mtumiaji:',
+'passwordreset-email'          => 'Anwani ya barua pepe:',
+'passwordreset-emailtitle'     => 'Maelezo ya akaunti kwenye {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Kuna mtu (huenda wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
 
 $2
 
 {{PLURAL:$3|Neno la siri hili litakwisha|Maneno ya siri haya yatakwisha}} baada ya siku {{PLURAL:$5|$5}}.
 Tafadhali uingie sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hili, au ikiwa umekumbuka neno lako la siri na hutaki kulibadilisha tena, usijali ujumbe huu, na uendelee kutumia neno la siri lako la zamani.',
-'passwordreset-emailelement' => 'Jina la mtumiaji: $1
+'passwordreset-emailtext-user' => 'Mtumiaji $1 kwenye {{SITENAME}} aliomba akumbushwe maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
+
+$2
+
+{{PLURAL:$3|Neno la siri hili litakwisha|Maneno ya siri haya yatakwisha}} baada ya siku {{PLURAL:$5|$5}}.
+Tafadhali uingie sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hili, au ikiwa umekumbuka neno lako la siri na hutaki kulibadilisha tena, usijali ujumbe huu, na uendelee kutumia neno la siri lako la zamani.',
+'passwordreset-emailelement'   => 'Jina la mtumiaji: $1
 Neno la siri la muda: $2',
-'passwordreset-emailsent'    => 'Barua pepe ya ukumbusho imetumwa.',
+'passwordreset-emailsent'      => 'Barua pepe ya ukumbusho imetumwa.',
 
 # Edit page toolbar
 'bold_sample'     => 'Maandishi ya kooze',
@@ -779,6 +795,7 @@ Iwapo bado haifanyikazi, jaribu [[Special:UserLogout|kutoka]] na uingie tena.",
 'token_suffix_mismatch'            => "'''Uhariri wako umekataliwa kwa sababu koteja yako imeharibu herufi za ishara ya kuhariri.'''
 Haririo umekataliwa ili kuzuia uharibifu wa maandishi ya kurasa.
 Haya hutokea kwa muda ambao unatumia huduma ya seva ya wavu isiyotiwa jina na yenye hitilafu nyingi.",
+'edit_form_incomplete'             => "'''Baadhi ya fomu ya kuhariri hakufikia seva. Hakikisha kwamba haririo lako bado lipo na kisha jaribu tena.'''",
 'editing'                          => 'Kuhariri $1',
 'editingsection'                   => 'Unahariri $1 (fungu)',
 'editingcomment'                   => 'Una hariri $1 (sehemu mpya)',
@@ -1181,6 +1198,7 @@ Taarifa hii itakuwa wazi.',
 'prefs-help-realname'           => 'Jina la kweli si lazima. Ukichagua kutaja jina lako hapa, litatumiwa kuonyesha kwamba ndiyo ulifanya kazi unayochangia.',
 'prefs-help-email'              => 'Barua-pepe sio lazima, lakini inawezesha kupokea neno jipya la siri kwa kupitia barua-pepe yako endapo utakuwa umelisahau.
 Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia ukurasa wako wa mtumiaji au ule wa majadiliano bila ya kuonyesha jina la akaunti yako.',
+'prefs-help-email-others'       => 'Unaweza pia kuwezesha wengine wawasiliane nawe kwa njia ya ukurasa wako wa mtumiaji au ukurasa wako wa majadiliano tu, bila kujitambulisha.',
 'prefs-help-email-required'     => 'Barua pepe inahitajika.',
 'prefs-info'                    => 'Maelezo ya kimsingi',
 'prefs-i18n'                    => 'Lugha',
@@ -1196,6 +1214,10 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'prefs-displaysearchoptions'    => 'Mapendekezo ya kuzinza',
 'prefs-displaywatchlist'        => 'Mapendekezo ya kuzinza',
 'prefs-diffs'                   => 'Tofauti',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Inaonekana kwamba anwani wa barua pepe iko halisi',
+'email-address-validity-invalid' => 'Andika anwani halisi ya barua pepe',
 
 # User rights
 'userrights'                   => 'Usimamizi wa wezo za mtumiaji',
@@ -2144,9 +2166,14 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'whatlinkshere-filters'    => 'Machujio',
 
 # Block/unblock
+'block'                      => 'Kumzuia mtumiaji',
+'unblock'                    => 'Kuacha kumzuia mtumiaji',
 'blockip'                    => 'Zuia mtumiaji',
 'blockip-title'              => 'Kumzuia mtumiaji',
 'blockip-legend'             => 'Kumzuia mtumiaji',
+'blockiptext'                => 'Tumia fomu iliyopo chini kumzuia mtu asihariri kwa kupitia anwani fulani wa IP au kwa kutumia jina fulani la mtumiaji.
+Nia ya kumzuia mtu inatakiwa kuwa kuzuia uharibifu tu, na ifanikiwe kutokana na masharti ya [[{{MediaWiki:Policy-url}}|sera]].
+Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizoharibiwa).',
 'ipadressorusername'         => 'Anwani ya IP au jina la mtumiaji:',
 'ipbexpiry'                  => 'Itakwisha:',
 'ipbreason'                  => 'Sababu:',
@@ -2171,14 +2198,20 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'ipbhidename'                => 'Ficha jina la mtumiaji katika orodha na kuhariri',
 'ipbwatchuser'               => 'Fuatilia kurasa za mtumiaji na majadiliano ya mtumiaji huyu.',
 'ipb-disableusertalk'        => 'Kuzuia mtumiaji huu asihariri ukurasa wake mwenyewe wa majadiliano wakati amezuluiwa',
+'ipb-confirm'                => 'Uthibitishe uzuio',
 'badipaddress'               => 'Anwani batili ya IP',
 'blockipsuccesssub'          => 'Kulifaulu kumzuia',
 'ipb-edit-dropdown'          => 'Hariri sababu za kuzuia',
+'ipb-unblock-addr'           => 'Acha kumzuia $1',
+'ipb-unblock'                => 'Acha kumzuia mtumiaji au anwani wa IP',
 'ipb-blocklist-contribs'     => 'Michango ya $1',
-'ipblocklist'                => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
+'blocklist'                  => 'Watumiaji waliozuiliwa',
+'ipblocklist'                => 'Watumiaji waliozuiliwa',
+'blocklist-timestamp'        => 'Tarehe na saa',
 'blocklist-expiry'           => 'Itakwisha',
 'blocklist-reason'           => 'Sababu',
 'ipblocklist-submit'         => 'Tafuta',
+'ipblocklist-otherblocks'    => ' {{PLURAL:$1|Uzuio mwingine|Zuio zingine}}',
 'infiniteblock'              => 'milele',
 'expiringblock'              => 'inakwisha tarehe $1 saa $2',
 'emailblock'                 => 'barua pepe imezuiliwa',
@@ -2257,6 +2290,8 @@ Chagua jina lengine.',
 'movetalk'                     => 'Hamisha ukurasa wake wa majadiliano',
 'move-subpages'                => 'Hamisha kurasa ndogo (hadi $1)',
 'move-talk-subpages'           => 'Hamisha kurasa ndogo za ukurasa wa majadiliano (hadi $1)',
+'movepage-page-moved'          => 'Ukurasa wa $1 umehamishwa hadi $2.',
+'movepage-page-unmoved'        => 'Ukurasa wa $1 hakuweza kuhamishwa hadi $2.',
 '1movedto2'                    => '[[$1]] umesogezwa hapa [[$2]]',
 '1movedto2_redir'              => 'alihamisha [[$1]] kwenda [[$2]] kwa kutengeneza elekezo',
 'movelogpage'                  => 'Kumbukumbu ya uhamiaji',
@@ -2552,9 +2587,16 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpsdestlongitude'            => 'Longitudo ya kikomo',
 'exif-gpsdestdistance'             => 'Mbali wa kikomo',
 'exif-gpsdatestamp'                => 'Tarehe ya GPS',
+'exif-jpegfilecomment'             => 'Maoni juu ya faili la JPEG',
 'exif-keywords'                    => 'Maneno yahusika',
+'exif-worldregioncreated'          => 'Eneo la dunia palipopigwa picha',
+'exif-countrycreated'              => 'Nchi palipopigwa picha',
 'exif-objectname'                  => 'Jina fupi',
 'exif-urgency'                     => 'Umuhimu',
+'exif-languagecode'                => 'Lugha',
+'exif-iimcategory'                 => 'Jamii',
+'exif-pngfilecomment'              => 'Maoni juu ya faili la PNG',
+'exif-giffilecomment'              => 'Maoni juu ya faili la GIF',
 
 'exif-unknowndate' => 'Tarehe haijulikani',
 
@@ -2626,6 +2668,21 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpsdirection-t' => 'Mwelekeo halisi',
 'exif-gpsdirection-m' => 'Mwelekeo wa sumaku',
 
+'exif-dc-contributor' => 'Wengine waliochangia',
+'exif-dc-date'        => 'Tarehe',
+'exif-dc-publisher'   => 'Mchapishaji',
+'exif-dc-rights'      => 'Haki',
+
+'exif-isospeedratings-overflow' => 'Zaidi na 65535',
+
+'exif-iimcategory-edu' => 'Elimu',
+'exif-iimcategory-evn' => 'Mazingira',
+'exif-iimcategory-hth' => 'Afya',
+'exif-iimcategory-lab' => 'Kazi',
+'exif-iimcategory-pol' => 'Siasa',
+'exif-iimcategory-rel' => 'Dini na imani',
+'exif-iimcategory-sci' => 'Sayansi na teknolojia',
+'exif-iimcategory-spo' => 'Michezo',
 'exif-iimcategory-wea' => 'Hali ya hewa',
 
 'exif-urgency-normal' => 'Kawaida ($1)',
