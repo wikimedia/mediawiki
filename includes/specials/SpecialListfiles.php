@@ -188,7 +188,7 @@ class ImageListPager extends TablePager {
 		switch ( $field ) {
 			case 'thumb':
 				$file = wfLocalFile( $value );
-				$thumb = $file->transform( array( 'width' => 180 ) );
+				$thumb = $file->transform( array( 'width' => 180, 'height' => 360 ) );
 				return $thumb->toHtml( array( 'desc-link' => true ) );
 			case 'img_timestamp':
 				return htmlspecialchars( $wgLang->timeanddate( $value, true ) );
