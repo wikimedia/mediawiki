@@ -146,7 +146,7 @@ class Status {
 		foreach ( $params as $param ) {
 			$xml .= Xml::element( 'param', null, $param );
 		}
-		$xml .= "</{$this->type}>\n";
+		$xml .= "</{$item['type']}>\n";
 		return $xml;
 	}
 
