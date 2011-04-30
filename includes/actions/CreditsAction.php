@@ -89,7 +89,7 @@ class CreditsAction extends FormlessAction {
 			$d = '';
 			$t = '';
 		}
-		return wfMsgExt( 'lastmodifiedatby', 'parsemag', $d, $t, self::userLink( $user ), $user->getName() );
+		return wfMessage( 'lastmodifiedatby', $d, $t )->rawParams( self::userLink( $user ) )->params( $user->getName() )->escaped();
 	}
 
 	/**
@@ -110,7 +110,7 @@ class CreditsAction extends FormlessAction {
 		if ( $cnt > 0 && $contributors->count() > $cnt ) {
 			$others_link = $this->othersLink();
 			if ( !$showIfMax )
-				return wfMsgExt( 'othercontribs', 'parsemag', $others_link, $contributors->count() );
+				return wfMessage( 'othercontribs' )->rawParams( $others_link )->params( $contributors->count() )->escaped();
 		}
 
 		$real_names = array();
@@ -144,21 +144,15 @@ class CreditsAction extends FormlessAction {
 
 		# "ThisSite user(s) A, B and C"
 		if ( count( $user_names ) ) {
-			$user = wfMsgExt(
-				'siteusers',
-				'parsemag',
-				$wgLang->listToText( $user_names ), count( $user_names )
-			);
+			$user = wfMessage( 'siteusers' )->rawParams( $wgLang->listToText( $user_names ) )->params(
+				count( $user_names ) )->escaped();
 		} else {
 			$user = false;
 		}
 
 		if ( count( $anon_ips ) ) {
-			$anon = wfMsgExt(
-				'anonusers',
-				'parsemag',
-				$wgLang->listToText( $anon_ips ), count( $anon_ips )
-			);
+			$anon = wfMessage( 'anonusers' )->rawParams( $wgLang->listToText( $anon_ips ) )->params(
+				$anon_ips )->escaped();
 		} else {
 			$anon = false;
 		}
@@ -166,17 +160,16 @@ class CreditsAction extends FormlessAction {
 		# This is the big list, all mooshed together. We sift for blank strings
 		$fulllist = array();
 		foreach ( array( $real, $user, $anon, $others_link ) as $s ) {
-			if ( $s ) {
+			if ( $s !== false ) {
 				array_push( $fulllist, $s );
 			}
 		}
 
-		# Make the list into text...
-		$creds = $wgLang->listToText( $fulllist );
-
+		$count = count( $fulllist );
 		# "Based on work by ..."
-		return strlen( $creds )
-			? wfMsgExt( 'othercontribs', 'parsemag', $creds, count( $fulllist ) )
+		return $count
+			? wfMessage( 'othercontribs' )->rawParams(
+				$wgLang->listToText( $fulllist ) )->params( $count )->escaped()
 			: '';
 	}
 
@@ -214,7 +207,7 @@ class CreditsAction extends FormlessAction {
 			if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {
 				return $link;
 			} else {
-				return wfMsgExt( 'siteuser', 'parsemag', $link, $user->getName() );
+				return wfMessage( 'siteuser' )->rawParams( $link )->params( $user->getName() )->escaped();
 			}
 		}
 	}
