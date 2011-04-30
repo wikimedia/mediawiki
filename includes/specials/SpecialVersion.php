@@ -564,9 +564,10 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return Mixed
 	 */
-	static function arrayToString( $list ) {
-		if( is_array( $list ) && count( $list ) == 1 )
+	public static function arrayToString( $list ) {
+		if( is_array( $list ) && count( $list ) == 1 ) {
 			$list = $list[0];
+		}
 		if( is_object( $list ) ) {
 			$class = get_class( $list );
 			return "($class)";
