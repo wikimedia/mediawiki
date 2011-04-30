@@ -254,7 +254,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27249) "Installed software" table in Special:Version should always be
   left-to-right.
 * (bug 28719) Do not call mLinkHolders __destruct explicitly
-* (bug 21196) Article::getContributors() no longer fail on PostgreSQL.
+* (bug 21196) Article::getContributors() no longer fails on PostgreSQL.
 * (bug 28752) XCache doesn't work in CLI mode.
 
 === API changes in 1.18 ===
