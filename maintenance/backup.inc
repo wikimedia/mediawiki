@@ -50,6 +50,7 @@ class BackupDumper {
 	var $sink       = null; // Output filters
 	var $stubText   = false; // include rev_text_id instead of text; for 2-pass dump
 	var $dumpUploads = false;
+	var $dumpUploadFileContents = false;
 
 	function BackupDumper( $args ) {
 		$this->stderr = fopen( "php://stderr", "wt" );
@@ -187,6 +188,7 @@ class BackupDumper {
 		$db = $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, WikiExporter::STREAM, $text );
 		$exporter->dumpUploads = $this->dumpUploads;
+		$exporter->dumpUploadFileContents = $this->dumpUploadFileContents;
 
 		$wrapper = new ExportProgressFilter( $this->sink, $this );
 		$exporter->setOutputSink( $wrapper );

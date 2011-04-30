@@ -59,6 +59,7 @@ if ( isset( $options['end'] ) ) {
 $dumper->skipHeader = isset( $options['skip-header'] );
 $dumper->skipFooter = isset( $options['skip-footer'] );
 $dumper->dumpUploads = isset( $options['uploads'] );
+$dumper->dumpUploadFileContents = isset( $options['include-files'] );
 
 $textMode = isset( $options['stub'] ) ? WikiExporter::STUB : WikiExporter::TEXT;
 
@@ -96,7 +97,8 @@ Options:
   --skip-header Don't output the <mediawiki> header
   --skip-footer Don't output the </mediawiki> footer
   --stub      Don't perform old_text lookups; for 2-pass dump
-  --uploads   Include upload records (experimental)
+  --uploads   Include upload records without files
+  --include-files Include files within the XML stream
   --conf=<file> Use the specified configuration file (LocalSettings.php)
 
   --wiki=<wiki>  Only back up the specified <wiki>
