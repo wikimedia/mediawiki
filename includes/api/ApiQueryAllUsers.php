@@ -85,12 +85,33 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
+		if ( !is_null( $params['group'] ) && !is_null( $params['excludegroup'] ) ) {
+			$this->dieUsage( 'group and excludegroup cannot be used together', 'group-excludegroup' );
+		}
+
 		if ( !is_null( $params['group'] ) && count( $params['group'] ) ) {
 			$useIndex = false;
 			// Filter only users that belong to a given group
 			$this->addTables( 'user_groups', 'ug1' );
 			$this->addJoinConds( array( 'ug1' => array( 'INNER JOIN', array( 'ug1.ug_user=user_id',
 					'ug1.ug_group' => $params['group'] ) ) ) );
+		}
+
+		if ( !is_null( $params['excludegroup'] ) && count( $params['excludegroup'] ) ) {
+			$useIndex = false;
+			// Filter only users don't belong to a given group
+			$this->addTables( 'user_groups', 'ug1' );
+
+			if ( count( $params['excludegroup'] ) == 1 ) {
+				$exclude = array( 'ug1.ug_group = ' . $db->addQuotes( $params['excludegroup'][0] ) );
+			} else {
+				$exclude = array( $db->makeList( array( 'ug1.ug_group' => $params['excludegroup'] ), LIST_OR ) );
+			}
+			$this->addJoinConds( array( 'ug1' => array( 'LEFT OUTER JOIN',
+				array_merge( array( 'ug1.ug_user=user_id' ), $exclude )
+				)
+			) );
+			$this->addWhere( 'ug1.ug_user IS NULL' );
 		}
 
 		if ( $params['witheditsonly'] ) {
@@ -254,6 +275,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
+		$userGroups = User::getAllGroups();
 		return array(
 			'from' => null,
 			'to' => null,
@@ -266,7 +288,11 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				),
 			),
 			'group' => array(
-				ApiBase::PARAM_TYPE => User::getAllGroups(),
+				ApiBase::PARAM_TYPE => $userGroups,
+				ApiBase::PARAM_ISMULTI => true,
+			),
+			'excludegroup' => array(
+				ApiBase::PARAM_TYPE => $userGroups,
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'rights' => array(
@@ -303,6 +329,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'prefix' => 'Search for all users that begin with this value',
 			'dir' => 'Direction to sort in',
 			'group' => 'Limit users to given group name(s)',
+			'excludegroup' => 'Exclude users in given group name(s)',
 			'rights' => 'Limit users to given right(s)',
 			'prop' => array(
 				'What pieces of information to include.',
@@ -320,6 +347,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 	public function getDescription() {
 		return 'Enumerate all registered users';
+	}
+
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'group-excludegroup', 'info' => 'group and excludegroup cannot be used together' ),
+		) );
 	}
 
 	protected function getExamples() {
