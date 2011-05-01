@@ -622,9 +622,8 @@ abstract class Installer {
 		$this->setVar( '_CompiledDBs', $compiledDBs );
 
 		if ( !$compiledDBs ) {
-			$this->showError( 'config-no-db' );
+			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ) );
 			// FIXME: this only works for the web installer!
-			$this->showHelpBox( 'config-no-db-help', $wgLang->commaList( $allNames ) );
 			return false;
 		}
 
