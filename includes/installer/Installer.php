@@ -295,6 +295,11 @@ abstract class Installer {
 	public abstract function showMessage( $msg /*, ... */ );
 
 	/**
+	 * Same as showMessage(), but for displaying errors
+	 */
+	public abstract function showError( $msg /*, ... */ );
+
+	/**
 	 * Show a message to the installing user by using a Status object
 	 * @param $status Status
 	 */
@@ -619,7 +624,7 @@ abstract class Installer {
 		$this->setVar( '_CompiledDBs', $compiledDBs );
 
 		if ( !$compiledDBs ) {
-			$this->showMessage( 'config-no-db' );
+			$this->showError( 'config-no-db' );
 			// FIXME: this only works for the web installer!
 			$this->showHelpBox( 'config-no-db-help', $wgLang->commaList( $allNames ) );
 			return false;
@@ -649,7 +654,7 @@ abstract class Installer {
 	protected function envCheckBrokenXML() {
 		$test = new PhpXmlBugTester();
 		if ( !$test->ok ) {
-			$this->showMessage( 'config-brokenlibxml' );
+			$this->showError( 'config-brokenlibxml' );
 			return false;
 		}
 	}
@@ -662,7 +667,7 @@ abstract class Installer {
 		$test = new PhpRefCallBugTester;
 		$test->execute();
 		if ( !$test->ok ) {
-			$this->showMessage( 'config-using531', phpversion() );
+			$this->showError( 'config-using531', phpversion() );
 			return false;
 		}
 	}
@@ -672,7 +677,7 @@ abstract class Installer {
 	 */
 	protected function envCheckMagicQuotes() {
 		if( wfIniGetBool( "magic_quotes_runtime" ) ) {
-			$this->showMessage( 'config-magic-quotes-runtime' );
+			$this->showError( 'config-magic-quotes-runtime' );
 			return false;
 		}
 	}
@@ -682,7 +687,7 @@ abstract class Installer {
 	 */
 	protected function envCheckMagicSybase() {
 		if ( wfIniGetBool( 'magic_quotes_sybase' ) ) {
-			$this->showMessage( 'config-magic-quotes-sybase' );
+			$this->showError( 'config-magic-quotes-sybase' );
 			return false;
 		}
 	}
@@ -692,7 +697,7 @@ abstract class Installer {
 	 */
 	protected function envCheckMbstring() {
 		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
-			$this->showMessage( 'config-mbstring' );
+			$this->showError( 'config-mbstring' );
 			return false;
 		}
 	}
@@ -702,7 +707,7 @@ abstract class Installer {
 	 */
 	protected function envCheckZE1() {
 		if ( wfIniGetBool( 'zend.ze1_compatibility_mode' ) ) {
-			$this->showMessage( 'config-ze1' );
+			$this->showError( 'config-ze1' );
 			return false;
 		}
 	}
@@ -722,7 +727,7 @@ abstract class Installer {
 	 */
 	protected function envCheckXML() {
 		if ( !function_exists( "utf8_encode" ) ) {
-			$this->showMessage( 'config-xml-bad' );
+			$this->showError( 'config-xml-bad' );
 			return false;
 		}
 	}
@@ -732,14 +737,14 @@ abstract class Installer {
 	 */
 	protected function envCheckPCRE() {
 		if ( !function_exists( 'preg_match' ) ) {
-			$this->showMessage( 'config-pcre' );
+			$this->showError( 'config-pcre' );
 			return false;
 		}
 		wfSuppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		wfRestoreWarnings();
 		if ( $regexd != '--' ) {
-			$this->showMessage( 'config-pcre-no-utf8' );
+			$this->showError( 'config-pcre-no-utf8' );
 			return false;
 		}
 	}
@@ -845,7 +850,7 @@ abstract class Installer {
 			// Some kind soul has set it for us already (e.g. debconf)
 			return true;
 		} else {
-			$this->showMessage( 'config-no-uri' );
+			$this->showError( 'config-no-uri' );
 			return false;
 		}
 
