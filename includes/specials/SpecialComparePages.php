@@ -100,28 +100,8 @@ class SpecialComparePages extends SpecialPage {
 	}
 
 	public static function showDiff( $data ){
-
-		if( $data['Revision1'] ){
-			$rev1 = $data['Revision1'];
-		} elseif( $data['Page1'] ) {
-			$title = Title::newFromText( $data['Page1'] );
-			if( $title instanceof Title ){
-				$rev1 = $title->getLatestRevID();
-			}
-		} else {
-			$rev1 = null;
-		}
-
-		if( $data['Revision2'] ){
-			$rev2 = $data['Revision2'];
-		} elseif( $data['Page2'] ) {
-			$title = Title::newFromText( $data['Page2'] );
-			if( $title instanceof Title ){
-				$rev2 = $title->getLatestRevID();
-			}
-		} else {
-			$rev2 = null;
-		}
+		$rev1 = self::revOrTitle( $data['Revision1'], $data['Page1'] );
+		$rev2 = self::revOrTitle( $data['Revision2'], $data['Page2'] );
 
 		if( $rev1 && $rev2 ) {
 			$de = new DifferenceEngine( null,
@@ -132,5 +112,17 @@ class SpecialComparePages extends SpecialPage {
 				false );
 			$de->showDiffPage( true );
 		}
+	}
+
+	public static function revOrTitle( $revision, $title ) {
+		if( $revision ){
+			return $revision;
+		} elseif( $title ) {
+			$title = Title::newFromText( $title );
+			if( $title instanceof Title ){
+				return $title->getLatestRevID();
+			}
+		}
+		return null;
 	}
 }
