@@ -723,11 +723,14 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watching'   => 'Цæстдард фæрсты номхыгъдмæ афтауын...',
 'unwatching' => 'Цæстдард фæрсты номхыгъдæй аиуварс кæнын...',
 
-'changed' => 'ивд æрцыд',
+'enotif_newpagetext' => 'Ай у нæуæг фарс.',
+'changed'            => 'ивд æрцыд',
+'enotif_anon_editor' => 'сусæг архайæг $1',
 
 # Delete
-'deletepage'            => 'Фарс аппар',
+'deletepage'            => 'Схаф фарс',
 'exblank'               => 'фарс афтид уыдис',
+'delete-confirm'        => 'Схаф "$1"',
 'dellogpage'            => 'Аппарыны лог',
 'deletionlog'           => 'аппарыны лог',
 'deletecomment'         => 'Аххос:',

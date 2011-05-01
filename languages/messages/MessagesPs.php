@@ -412,7 +412,7 @@ $1',
 'policy-url'           => 'Project:تګلاره',
 'portal'               => 'د ټولنې تانبه',
 'portal-url'           => 'Project:د ټولنې تانبه',
-'privacy'              => 'د محرميت تګلاره',
+'privacy'              => 'د پټنتيا تګلاره',
 'privacypage'          => 'Project:د محرميت_تګلاره',
 
 'badaccess'        => 'د لاسرسۍ تېروتنه',
@@ -631,6 +631,7 @@ $1',
 'passwordreset-legend'       => 'پټنوم بياپرځايول',
 'passwordreset-username'     => 'کارن-نوم:',
 'passwordreset-email'        => 'برېښليک پته:',
+'passwordreset-emailtitle'   => 'د {{SITENAME}} د ګڼون څرګندنې',
 'passwordreset-emailelement' => 'کارن-نوم: $1
 لنډمهاله پټنوم: $2',
 
@@ -1750,7 +1751,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 ** په مخونو کې ناندرۍ راپارېدنې/د تاوتريخوالي خپرېدو ته هڅول
 ** د ګڼ شمېر ګڼونونو نه ناوړه ګټه اخيستل
 ** نه مننونکی کارن-نوم کارول',
-'ipbcreateaccount'           => 'د ګڼون جوړولو مخنيوی',
+'ipbcreateaccount'           => 'د ګڼون جوړولو مخنيول',
 'ipbsubmit'                  => 'په دې کارن بنديز لګول',
 'ipbother'                   => 'بل وخت:',
 'ipboptions'                 => '2 ساعتونه:2 hours,1 ورځ:1 day,3 ورځې:3 days,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',

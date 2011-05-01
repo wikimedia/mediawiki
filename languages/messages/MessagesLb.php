@@ -3013,6 +3013,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
 'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
+'exif-subjectnewscode'             => 'Code vum Sujet',
 'exif-organisationinimage'         => 'Organisatioun um Bild',
 'exif-personinimage'               => 'Persoun um Bild',
 'exif-originalimageheight'         => 'Héicht vum Bild virum Ofschneiden',
