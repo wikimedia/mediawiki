@@ -114,7 +114,7 @@ class Parser {
 
 	# Cleared with clearState():
 	/**
-	 * @var OutputPage
+	 * @var ParserOutput
 	 */
 	var $mOutput;
 	var $mAutonumber, $mDTopen;
@@ -988,7 +988,6 @@ class Parser {
 		return $out;
 	}
 
-
 	/**
 	 * Helper function for doTableStuff() separating the contents of cells from
 	 * attributes. Particularly useful as there's a possible bug and this action 
@@ -1620,7 +1619,6 @@ class Parser {
 		return $attribs;
 	}
 
-
 	/**
 	 * Replace unusual URL escape codes with their equivalent characters
 	 *
@@ -2127,6 +2125,8 @@ class Parser {
 	/**#@+
 	 * Used by doBlockLevels()
 	 * @private
+	 *
+	 * @return string
 	 */
 	function closeParagraph() {
 		$result = '';
@@ -2162,6 +2162,8 @@ class Parser {
 	 * These next three functions open, continue, and close the list
 	 * element appropriate to the prefix character passed into them.
 	 * @private
+	 *
+	 * @return string
 	 */
 	function openList( $char ) {
 		$result = $this->closeParagraph();
@@ -2186,6 +2188,8 @@ class Parser {
 	 * TODO: document
 	 * @param $char String
 	 * @private
+	 *
+	 * @return string
 	 */
 	function nextItem( $char ) {
 		if ( '*' === $char || '#' === $char ) {
@@ -2210,6 +2214,8 @@ class Parser {
 	 * TODO: document
 	 * @param $char String
 	 * @private
+	 *
+	 * @return string
 	 */
 	function closeList( $char ) {
 		if ( '*' === $char ) {
@@ -2585,6 +2591,9 @@ class Parser {
 	 * Return value of a magic variable (like PAGENAME)
 	 *
 	 * @private
+	 *
+	 * @param $index integer
+	 * @param $frame PPFrame
 	 */
 	function getVariableValue( $index, $frame=false ) {
 		global $wgContLang, $wgSitename, $wgServer;
@@ -2933,6 +2942,8 @@ class Parser {
 	 * dependency requirements.
 	 *
 	 * @private
+	 *
+	 * @return PPNode
 	 */
 	function preprocessToDom( $text, $flags = 0 ) {
 		$dom = $this->getPreprocessor()->preprocessToObj( $text, $flags );
@@ -2941,6 +2952,8 @@ class Parser {
 
 	/**
 	 * Return a three-element array: leading whitespace, string contents, trailing whitespace
+	 *
+	 * @return array
 	 */
 	public static function splitWhitespace( $s ) {
 		$ltrimmed = ltrim( $s );
@@ -2971,6 +2984,8 @@ class Parser {
 	 *        Providing arguments this way may be useful for extensions wishing to perform variable replacement explicitly.
 	 * @param $argsOnly Boolean: only do argument (triple-brace) expansion, not double-brace expansion
 	 * @private
+	 *
+	 * @return string
 	 */
 	function replaceVariables( $text, $frame = false, $argsOnly = false ) {
 		# Is there any text? Also, Prevent too big inclusions!
@@ -2994,7 +3009,11 @@ class Parser {
 		return $text;
 	}
 
-	# Clean up argument array - refactored in 1.9 so parserfunctions can use it, too.
+	/**
+	 * Clean up argument array - refactored in 1.9 so parserfunctions can use it, too.
+	 *
+	 * @return array
+	 */
 	static function createAssocArgs( $args ) {
 		$assocArgs = array();
 		$index = 1;
@@ -3376,6 +3395,8 @@ class Parser {
 	/**
 	 * Get the semi-parsed DOM representation of a template with a given title,
 	 * and its redirect destination title. Cached.
+	 *
+	 * @return array
 	 */
 	function getTemplateDom( $title ) {
 		$cacheTitle = $title;
@@ -3440,8 +3461,10 @@ class Parser {
 	/**
 	 * Static function to get a template
 	 * Can be overridden via ParserOptions::setTemplateCallback().
+	 *
+	 * @return array
 	 */
-	static function statelessFetchTemplate( $title, $parser=false ) {
+	static function statelessFetchTemplate( $title, $parser = false ) {
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = array();
@@ -3553,6 +3576,8 @@ class Parser {
 
 	/**
 	 * Transclude an interwiki link.
+	 *
+	 * @return string
 	 */
 	function interwikiTransclude( $title, $action ) {
 		global $wgEnableScaryTranscluding;
@@ -3569,6 +3594,10 @@ class Parser {
 		return $this->fetchScaryTemplateMaybeFromCache( $url );
 	}
 
+	/**
+	 * @param $url string
+	 * @return Mixed|String
+	 */
 	function fetchScaryTemplateMaybeFromCache( $url ) {
 		global $wgTranscludeCacheExpiry;
 		$dbr = wfGetDB( DB_SLAVE );
@@ -3593,10 +3622,14 @@ class Parser {
 		return $text;
 	}
 
-
 	/**
 	 * Triple brace replacement -- used for template arguments
 	 * @private
+	 *
+	 * @param $peice array
+	 * @param $frame PPFrame
+	 *
+	 * @return array
 	 */
 	function argSubstitution( $piece, $frame ) {
 		wfProfileIn( __METHOD__ );
@@ -3650,6 +3683,8 @@ class Parser {
 	 *     inner      Contents of extension element
 	 *     noClose    Original text did not have a close tag
 	 * @param $frame PPFrame
+	 *
+	 * @return string
 	 */
 	function extensionSubstitution( $params, $frame ) {
 		$name = $frame->expand( $params['name'] );
@@ -5236,10 +5271,10 @@ class Parser {
 	 * This function returns $oldtext after the content of the section
 	 * specified by $section has been replaced with $text.
 	 *
-	 * @param $text String: former text of the article
+	 * @param $oldtext String: former text of the article
 	 * @param $section Numeric: section identifier
 	 * @param $text String: replacing text
-	 * #return String: modified text
+	 * @return String: modified text
 	 */
 	public function replaceSection( $oldtext, $section, $text ) {
 		return $this->extractSections( $oldtext, $section, "replace", $text );
@@ -5257,7 +5292,7 @@ class Parser {
 	/**
 	 * Get the revision object for $this->mRevisionId
 	 *
-	 * @return either a Revision object or null
+	 * @return Revision|null either a Revision object or null
 	 */
 	protected function getRevisionObject() {
 		if ( !is_null( $this->mRevisionObject ) ) {
@@ -5418,6 +5453,8 @@ class Parser {
 
 	/**
 	 * strip/replaceVariables/unstrip for preprocessor regression testing
+	 *
+	 * @return string
 	 */
 	function testSrvus( $text, $title, ParserOptions $options, $outputType = self::OT_HTML ) {
 		if ( !$title instanceof Title ) {
@@ -5456,6 +5493,8 @@ class Parser {
 	 * This will call the callback function twice, with 'aaa' and 'bbb'. Those
 	 * two strings will be replaced with the value returned by the callback in
 	 * each case.
+	 *
+	 * @return string
 	 */
 	function markerSkipCallback( $s, $callback ) {
 		$i = 0;
@@ -5492,6 +5531,8 @@ class Parser {
 	 * array can later be loaded into another parser instance with
 	 * unserializeHalfParsedText(). The text can then be safely incorporated into
 	 * the return value of a parser hook.
+	 *
+	 * @return array
 	 */
 	function serializeHalfParsedText( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -5540,7 +5581,9 @@ class Parser {
 	 * serializeHalfParsedText(), is compatible with the current version of the
 	 * parser.
 	 *
-	 * @param $data Array.
+	 * @param $data Array
+	 *
+	 * @return bool
 	 */
 	function isValidHalfParsedText( $data ) {
 		return isset( $data['version'] ) && $data['version'] == self::HALF_PARSED_VERSION;
