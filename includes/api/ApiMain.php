@@ -64,6 +64,7 @@ class ApiMain extends ApiBase {
 		'help' => 'ApiHelp',
 		'paraminfo' => 'ApiParamInfo',
 		'rsd' => 'ApiRsd',
+		'compare' => 'ApiComparePages',
 
 		// Write modules
 		'purge' => 'ApiPurge',

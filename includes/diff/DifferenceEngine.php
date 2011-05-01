@@ -22,14 +22,14 @@ class DifferenceEngine {
 	/**#@+
 	 * @private
 	 */
-	var $mOldid, $mNewid, $mTitle;
+	var $mOldid, $mNewid;
 	var $mOldtitle, $mNewtitle, $mPagetitle;
 	var $mOldtext, $mNewtext;
 
 	/**
 	 * @var Title
 	 */
-	var $mOldPage, $mNewPage;
+	var $mOldPage, $mNewPage, $mTitle;
 	var $mRcidMarkPatrolled;
 
 	/**
