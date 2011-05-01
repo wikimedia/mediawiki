@@ -55,12 +55,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			parent::run( $result );
 		
 			$this->destroyDB();
-		}
-		else {
+		} else {
 			parent::run( $result );
-		
 		}
-		
 	}
 	
 	function __destruct() {
