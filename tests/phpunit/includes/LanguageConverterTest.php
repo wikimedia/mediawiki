@@ -1,10 +1,12 @@
 <?php
 
-class LanguageConverterTest extends MediaWikiTestCase {
+
+class LanguageConverterTest extends MediaWikiLangTestCase {
 	protected $lang = null;
 	protected $lc = null;
 
 	function setUp() {
+		parent::setUp();
 		global $wgMemc, $wgRequest, $wgUser, $wgContLang;
 
 		$wgUser = new User;

@@ -1,6 +1,21 @@
 <?php
 
 class XmlTest extends MediaWikiTestCase {
+	private static $oldLang;
+
+	public function setUp() {
+		global $wgLang, $wgLanguageCode;
+		
+		self::$oldLang = $wgLang;
+		$wgLanguageCode = 'en';
+		$wgLang = Language::factory( $wgLanguageCode );
+	}
+	
+	public function tearDown() {
+		global $wgContLang, $wgLanguageCode;
+		$wgLang = self::$oldLang;
+		$wgLanguageCode = $wgLang->getCode();
+	}
 
 	public function testExpandAttributes() {
 		$this->assertNull( Xml::expandAttributes(null),
