@@ -103,7 +103,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addTables( 'user_groups', 'ug1' );
 
 			if ( count( $params['excludegroup'] ) == 1 ) {
-				$exclude = array( 'ug1.ug_group = ' . $db->addQuotes( $params['excludegroup'][0] ) );
+				$exclude = array( 'ug1.ug_group' => $params['excludegroup'][0] );
 			} else {
 				$exclude = array( $db->makeList( array( 'ug1.ug_group' => $params['excludegroup'] ), LIST_OR ) );
 			}
