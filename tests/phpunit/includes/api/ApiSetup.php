@@ -1,6 +1,6 @@
 <?php
 
-abstract class ApiTestSetup extends MediaWikiTestCase {
+abstract class ApiTestSetup extends MediaWikiLangTestCase {
 	protected $user;
 	protected $sysopUser;
 	protected static $apiUrl;
@@ -8,6 +8,7 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 	function setUp() {
 		global $wgServer, $wgContLang, $wgAuth, $wgMemc, $wgRequest;
 
+		parent::setUp();
 		self::$apiUrl = $wgServer . wfScript( 'api' );
 
 		$wgMemc = new EmptyBagOStuff;

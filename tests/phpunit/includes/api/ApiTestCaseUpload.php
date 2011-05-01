@@ -20,14 +20,6 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	}
 
 	/**
-	 * Fixture -- run after every test
-	 * Clean up temporary files etc.
-	 */
-	function tearDown() {
-	}
-
-
-	/**
 	 * Helper function -- remove files and associated articles by Title
 	 * @param $title Title: title to be removed
 	 */
