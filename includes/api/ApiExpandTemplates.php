@@ -61,6 +61,10 @@ class ApiExpandTemplates extends ApiBase {
 		global $wgParser;
 		$options = new ParserOptions();
 
+		if ( $params['includecomments'] ) {
+			$options->setRemoveComments( false );
+		}
+
 		if ( $params['generatexml'] ) {
 			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
 			$dom = $wgParser->preprocessToDom( $params['text'] );
@@ -88,6 +92,7 @@ class ApiExpandTemplates extends ApiBase {
 			),
 			'text' => null,
 			'generatexml' => false,
+			'includecomments' => false,
 		);
 	}
 
@@ -96,6 +101,7 @@ class ApiExpandTemplates extends ApiBase {
 			'text' => 'Wikitext to convert',
 			'title' => 'Title of page',
 			'generatexml' => 'Generate XML parse tree',
+			'includecomments' => 'Whether to include HTML comments in the output',
 		);
 	}
 

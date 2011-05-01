@@ -371,6 +371,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * Get a list of all subscribed hooks, and those subscribers
 * (bug 28225) Allow hiding of user groups in list=allusers
 * (bug 27185) API: Add Special:ComparePages
+* (bug 28265) allow outputting of comments for action=expandtemplates
 
 === Languages updated in 1.18 ===
 
