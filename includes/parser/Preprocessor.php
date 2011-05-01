@@ -12,16 +12,28 @@ interface Preprocessor {
 	/** Create a new preprocessor object based on an initialised Parser object */
 	function __construct( $parser );
 
-	/** Create a new top-level frame for expansion of a page */
+	/**
+	 * Create a new top-level frame for expansion of a page
+	 *
+	 * @return PPFrame
+	 */
 	function newFrame();
 
-	/** Create a new custom frame for programmatic use of parameter replacement as used in some extensions */
+	/**
+	 * Create a new custom frame for programmatic use of parameter replacement as used in some extensions
+	 *
+	 * @return PPFrame
+	 */
 	function newCustomFrame( $args );
 
 	/** Create a new custom node for programmatic use of parameter replacement as used in some extensions */
 	function newPartNodeArray( $values );
 
-	/** Preprocess text to a PPNode */
+	/**
+	 * Preprocess text to a PPNode
+	 *
+	 * @return PPNode
+	 */
 	function preprocessToObj( $text, $flags = 0 );
 }
 
@@ -126,6 +138,8 @@ interface PPNode {
 
 	/**
 	 * Get the first child of a tree node. False if there isn't one.
+	 *
+	 * @return PPNode
 	 */
 	function getFirstChild();
 

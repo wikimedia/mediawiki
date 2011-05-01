@@ -264,6 +264,7 @@ class MediaWiki {
 	 * Create an Article object of the appropriate class for the given page.
 	 *
 	 * @param $title Title
+	 * @param $context RequestContext
 	 * @return Article object
 	 */
 	public static function articleFromTitle( &$title, RequestContext &$context ) {
