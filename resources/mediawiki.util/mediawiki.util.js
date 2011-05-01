@@ -201,12 +201,7 @@
 		 */
 		'wikiGetlink' : function( str ) {
 
-			// Exist check is needed since replace() can only be called on a string
-			if ( mw.config.exists( ['wgServer', 'wgArticlePath'] ) ) {
-				return mw.config.get( 'wgServer' ) + mw.config.get( 'wgArticlePath' ).replace( '$1', this.wikiUrlencode( str ) );
-			} else {
-				return false;
-			}
+			return mw.config.get( 'wgArticlePath' ).replace( '$1', this.wikiUrlencode( str ) );
 		},
 
 		/**
@@ -296,7 +291,7 @@
 
 			// Also check for the title in related namespaces ?
 			if ( typeof alsoRelated !== 'undefined' && alsoRelated === true ) {
-				var tabLink = mw.config.get( 'wgServer' ) + $( '#ca-talk' ).prev().find( 'a:first' ).attr( 'href' );
+				var tabLink = $( '#ca-talk' ).prev().find( 'a:first' ).attr( 'href' );
 				isRelatedToMainpage = tabLink === mw.util.wikiGetlink( mw.config.get( 'wgMainPageTitle' ) );
 
 				return isRelatedToMainpage || isTheMainPage;

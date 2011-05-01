@@ -2714,7 +2714,7 @@ class Language {
 
 	/**
 	 * Checks that convertPlural was given an array and pads it to requested
-	 * amound of forms by copying the last one.
+	 * amount of forms by copying the last one.
 	 *
 	 * @param $count Integer: How many forms should there be at least
 	 * @param $forms Array of forms given to convertPlural
