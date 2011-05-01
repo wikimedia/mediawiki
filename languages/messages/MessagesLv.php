@@ -528,6 +528,7 @@ Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis
 
 # Special:PasswordReset
 'passwordreset'              => 'Paroles atiestatīšana',
+'passwordreset-legend'       => 'Atiestatīt paroli',
 'passwordreset-username'     => 'Lietotājvārds:',
 'passwordreset-email'        => 'E-pasta adrese:',
 'passwordreset-emailtitle'   => 'Konta informācija {{SITENAME}}',
@@ -1365,6 +1366,10 @@ Lūdzu, sazinieties ar [[Special:ListUsers/sysop|administratoru.]]',
 'upload-unknown-size'       => 'Nezināms izmērs',
 'upload-http-error'         => 'HTTP kļūda: $1',
 
+# Special:UploadStash
+'uploadstash-errclear' => 'Failu tīrīšana bija neveiksmīga.',
+'uploadstash-refresh'  => 'Atsvaidzināt failu sarakstu',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Pieeja liegta',
 'img-auth-nologinnWL'   => 'Jūs neesat iegājis un "$1" nav baltajā sarakstā.',
@@ -2018,6 +2023,7 @@ Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'ipusubmit'                   => 'Noņemt šo bloku',
 'unblocked'                   => '[[User:$1|$1]] tika atbloķēts',
 'unblocked-id'                => 'Bloks $1 tika noņemts',
+'blocklist'                   => 'Bloķētie lietotāji',
 'ipblocklist'                 => 'Bloķētie lietotāji',
 'ipblocklist-legend'          => 'Meklēt bloķētu lietotāju',
 'blocklist-reason'            => 'Iemesls',
@@ -2526,6 +2532,8 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-jpegfilecomment'             => 'JPEG faila komentārs',
 'exif-keywords'                    => 'Atslēgas vārdi',
 'exif-languagecode'                => 'Valoda',
+'exif-serialnumber'                => 'Fotoaparāta sērijas numurs',
+'exif-cameraownername'             => 'Fotoaparāta īpašnieks',
 'exif-copyrighted'                 => 'Autortiesību statuss',
 'exif-copyrightowner'              => 'Autortiesību īpašnieks',
 'exif-usageterms'                  => 'Izmantošanas noteikumi',

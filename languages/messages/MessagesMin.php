@@ -635,6 +635,12 @@ Awak hanyo buliah lihek sumber se',
 'tooltip-rollback'                => '"Baliakkan" baraliah suntiang laman ko pado kontribusi tarakhir dalam sakali klik',
 'tooltip-undo'                    => '"Indak jadi" suntiangan ko dibaliakkan dan mambuka kotak suntiang dalam mode pratonton. Alasan dapek ditambah pado kotak ringkasan.',
 'tooltip-preferences-save'        => 'Simpan preferensi',
+'tooltip-summary'                 => 'Masuakan sabuah ringkasan pendek',
+
+# Metadata
+'nodublincore'      => 'Dublin Core RDF metadata dimatian untuak layanan ko',
+'nocreativecommons' => 'Creative Commons RDF metadata dimatian untuak layanan ko',
+'notacceptable'     => 'Layanan wiki indak manyadioan data dalam format yang dapek dibaco dek pelanggan awak.',
 
 # Browsing diffs
 'previousdiff' => '← Revisi sabalunnyo',

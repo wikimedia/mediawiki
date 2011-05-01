@@ -2592,6 +2592,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-worldregioncreated'          => 'Eneo la dunia palipopigwa picha',
 'exif-countrycreated'              => 'Nchi palipopigwa picha',
 'exif-objectname'                  => 'Jina fupi',
+'exif-specialinstructions'         => 'Maelekezo maalum',
 'exif-urgency'                     => 'Umuhimu',
 'exif-languagecode'                => 'Lugha',
 'exif-iimcategory'                 => 'Jamii',

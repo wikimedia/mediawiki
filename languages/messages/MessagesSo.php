@@ -46,12 +46,12 @@ $messages = array(
 'tog-fancysig'                => "u isticmaal saxiixa sida qoraalada wiki  (ayada oo linki auomaatik la'aan)",
 'tog-externaleditor'          => "Isticmaal qoraal wax ka bedelyaal ka madaxbanaan (La'iskuogyahay)",
 'tog-externaldiff'            => "Isticmaal qoraal wax ka bedelyaal ka madaxbanaan oo (La'iskuogyahay)",
-'tog-showjumplinks'           => 'Shid "ku bood" meelaha la geli karo',
+'tog-showjumplinks'           => 'Shid "ku bood" links-ka la geli karo',
 'tog-uselivepreview'          => 'Isticmaal horfiirinta tooska ah (JavaScript) (Wuxuu ku jiraa tijaabo)',
 'tog-forceeditsummary'        => "I'xasuusi markii uusan qoraalkeyga raacsiisnay faahfaahin gaaban",
 'tog-watchlisthideown'        => 'Maqaalada aan waxka bedelay ka qari liiska waardiyaha',
-'tog-watchlisthidebots'       => 'Ka qari botka labedelay  liiska waardiyaha',
-'tog-watchlisthideminor'      => 'Ka qari waxka bedelada yar liiska waardiyeynta',
+'tog-watchlisthidebots'       => 'Ka qari bedelyada robotka  liiska waardiyaha',
+'tog-watchlisthideminor'      => 'Ka qari  bedelyada yar liiska waardiyaha',
 'tog-watchlisthideliu'        => 'Ka qari isbedelada ee sameeyeen isticmaalada soo gelay liiska waardiyaha',
 'tog-watchlisthideanons'      => 'Ka qari isbedelada ee sameeyeen isticmaalada la aqoon liiska waardiyaha',
 'tog-watchlisthidepatrolled'  => 'Ka qari isbedelada la waardiyeeyay liiska waardiyaha',
@@ -125,7 +125,7 @@ $messages = array(
 'pagecategories'                 => '{{PLURAL:$1|Qeybta|Qeybaha}}',
 'category_header'                => 'Maqaalada ku jirta qeybta "$1"',
 'subcategories'                  => 'Qeybaha hoose',
-'category-media-header'          => 'war saxaafadeeda ku jirta qeybta"$1"',
+'category-media-header'          => 'Saxaafada ku jirta qeybta"$1"',
 'category-empty'                 => "''Qeybtaan hadda wax maqaal ah kuma jirto''",
 'hidden-categories'              => '{{PLURAL:$1|Qeybta qarsan|Qeybaha qarsan}}',
 'hidden-category-category'       => 'Qeybta qarsoon',
@@ -146,7 +146,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
-'about'         => 'Warbixin',
+'about'         => 'Ku saabsan',
 'article'       => 'Maqaalada kooban',
 'newwindow'     => '(dariishad cusub aa furmeeyso)',
 'cancel'        => 'iska xir',
@@ -159,7 +159,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Raadi',
-'qbbrowse'       => 'Ka dhax raadi',
+'qbbrowse'       => 'Ka soo raadi',
 'qbedit'         => 'Wax ka bedel',
 'qbpageoptions'  => 'Boggaan',
 'qbpageinfo'     => 'isku xiran',
@@ -246,7 +246,7 @@ Fadlan sug intii aad markale ka soo gali kartid.
 $1',
 'pool-timeout'      => 'Waqtiga woo ka dhamaaday xiritaanka',
 'pool-queuefull'    => 'Safka shaqeenta Pool woo buuxsamay',
-'pool-errorunknown' => 'Cilad oona la aqoon',
+'pool-errorunknown' => 'Qalad la aqoon',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ku saabsan {{SITENAME}}',
@@ -269,7 +269,7 @@ $1',
 'privacypage'          => 'Project:siyaasada u gaarka ah',
 
 'badaccess'        => 'Qalad dhinaca ogolaashada',
-'badaccess-group0' => 'Laguuma ogalaan in aad sameyso waxaad rabtid',
+'badaccess-group0' => 'Laguuma ogolo in aad sameyso waxaad rabtid',
 'badaccess-groups' => 'Wixii aad na weydiisay waxaa loogu tala galay isticmaaleyaashaan u gaarka ah {{PLURAL:$2|kooxdaan|qaar ka mid ah kooxdaan}}: $1.',
 
 'versionrequired'     => 'Nuuca  $1 oo MediaWiki ah aa loo baahanyahy',
@@ -280,7 +280,7 @@ fiiri [[Special:Version|nooca bogga]].',
 'retrievedfrom'           => 'Waxaa laga keenay "$1"',
 'youhavenewmessages'      => 'Waxaa kuu taala $1 ($2).',
 'newmessageslink'         => 'Fariimaha cusub',
-'newmessagesdifflink'     => 'Isbedelkii ugu dambeeyay',
+'newmessagesdifflink'     => 'bedelkii ugu dambeeyay',
 'youhavenewmessagesmulti' => '$1 waxaa kuu yaalo fariimo cusub',
 'editsection'             => 'Wax ka bedel',
 'editold'                 => 'Wax ka bedel',
@@ -297,7 +297,7 @@ fiiri [[Special:Version|nooca bogga]].',
 'viewdeleted'             => 'Fiiri $1?',
 'restorelink'             => '{{PLURAL:$1|halxabo oo bedelkii la tirtiray edit|$1 wax bedelyadii  la tirtiray}}',
 'feedlinks'               => 'Quudinta wararka:',
-'site-rss-feed'           => '$1 RSS feed',
+'site-rss-feed'           => '$1 RSS quudiye',
 'site-atom-feed'          => '$1 Atom quudiye',
 'page-rss-feed'           => '"$1" RSS quudiye',
 'page-atom-feed'          => '"$1" Atom quudiye',
@@ -306,7 +306,7 @@ fiiri [[Special:Version|nooca bogga]].',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Maqaal',
 'nstab-user'      => 'Bogga isticmaalaha',
-'nstab-media'     => 'Bogga war saxaafadeedka',
+'nstab-media'     => 'Bogga saxaafada',
 'nstab-special'   => 'Bogga khaaska ah',
 'nstab-project'   => 'Bogga mashruuca',
 'nstab-image'     => 'Fayl',
@@ -325,7 +325,7 @@ Waxaa meeshaan ka heli kartaa liiska bogyaasha khaaska ah oo jiro  [[Special:Spe
 # General errors
 'error'               => 'Qalad',
 'databaseerror'       => 'Qalad ka dhacday database;ka',
-'laggedslavemode'     => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku kordhin.',
+'laggedslavemode'     => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku soo kordhin.',
 'enterlockreason'     => 'Ku qor sababta loo xiraayo, kuna siidar waqtigii la soo fasaxaayo maqaalka.',
 'missingarticle-diff' => '(Kala duwanaanshaha: $1, $2)',
 'internalerror'       => 'Qalad gudaha ah',
@@ -343,7 +343,7 @@ fadlan waxyar kadib ku soo noqo.',
 'viewsourcetext'      => 'Waad fiirin kartaa waana koobi gareen kartaa ereykoodka boggaan',
 'cascadeprotected'    => 'Boggaan waxaa laga difaacay in wax laga bedelo, sababtoo ah waxoo ka midyahay  {{PLURAL:$1|bog, oo ah |bogyaalo ah, waana}}  kuwa laga difaacay "qoraalada kaskade" dooqyada neh waa la furay:
 $2',
-'namespaceprotected'  => "Ma laguu ogolo in aad wax ka bedeshid maqaalada ku jiro '''$1''' dhinaca magacyada.",
+'namespaceprotected'  => "Ma laguu ogolo in aad wax ka bedeshid maqaalada ku jiro '''$1''' meesha magacyada.",
 'ns-specialprotected' => 'Bogyaasha gaarka ah wax malaga bedeli karo.',
 'titleprotected'      => 'Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.
 Sababta neh waxaa waaye "\'\'$2\'\'".',
@@ -358,7 +358,7 @@ Sababta neh waxaa waaye "\'\'$2\'\'".',
 Waad sii isticmaali kartaa {{SITENAME}} adoona lagu aqoon, ama [[Special:UserLogin|gudaha gal]] adiga oo isticmaalaya magacaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogyaasha qaarkood in ay yiraahdaan wali gudaha ayaad ku jirtaa, ilaa inta aad ka nadiifineesid browsahaaga Internetka.",
 'welcomecreation'            => "== Ku soo dhawoow, $1! ==
 Akoon kaada  waa la sameeyay.
-Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]].",
+Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqyadaada]].",
 'yourname'                   => 'Magaca gudagalka:',
 'yourpassword'               => 'Eraysir:',
 'yourpasswordagain'          => 'Markale qor erayga sirta ah:',
@@ -382,7 +382,7 @@ Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]
 'badretype'                  => 'Ereyada sirta ah oo qortay ma islahan.',
 'userexists'                 => 'Magaca isticmaalaha aad qortay woo jiraa. Fadlan dooro magac kale.',
 'loginerror'                 => 'Qalad gudagalista',
-'createaccounterror'         => 'Ma sameen karin akoon: $1',
+'createaccounterror'         => 'Ma sameeyn karin akoon: $1',
 'nocookiesnew'               => "Magaca isticmaalahaan waa la sameeyay, laakiin adiga gudaha uma gelin.
 {{SITENAME}} waxoo isticmaalaa cookies si ee gudaha u galaan isticmaale yaasha.
 Adiga cookies'kaaga woo dansanyahay .
@@ -419,8 +419,8 @@ oo aadan u baahnayn in aad bedeshid, iska ilow farriintaan siina wado eraysirkaa
 'passwordsent'               => 'Eraysir oo cusub ayaa e-mail loogu diray isticmaalaha "$1".
 Fadlan gudaha u gal markii aad fariintaas heshid.',
 'blocked-mailpassword'       => 'Cinwaankaada IP:ka waxaa laga mamnuucay in oo wax bedelo, sidoo kale looma ogolo in oo bedelo ereyga sirta ah si oo uuga fakado danbiga lagu heesto',
-'eauthentsent'               => "Xaqiijin e-mail ah ayaa loo  diray e-mailkan aad dooray.
-Intii aadan wax e-mail ah loogu soo dirin akoon'kaada, waa in aad daba kacdaa waxa kuugu jiro e-mailka, si aad u xaqiijisid in aad e-mailka leedahay adi.",
+'eauthentsent'               => "Xaqiijin e-mail ah ayaa loo  diray e-mailkan aad dooratay.
+Intii aadan wax e-mail ah loogu soo dirin koontada, waa in aad daba kacdaa waxa kuugu jiro e-mailka, si aad u xaqiijisid  in aad adiga  leedahay akoon'ka.",
 'mailerror'                  => 'Waxaa dhacay qalad markii loo diraayey e-mail: $1',
 'acct_creation_throttle_hit' => "Dadka soo booqanaayo wiki:gaan oo isticmaalaayo cinwaankaaga IP:ka waxay sameeyeen {{PLURAL:$1|1 magac gudagale ah|$1 magac  gudagalayaal ah}} maalintii ugu dambeysay, taasina waa inta ugu badan ee la'ogolyahay muddadaas. Sidaas daraadeed, booqoshadayaasha isticmaalaya cinwaankaan-IP:ka hadda ma'sameysankaraan magac gudagale danbe.",
 'emailauthenticated'         => 'E-mailkaada waxaa lagu xaqiijiyay $2 markey ahayd $3.',
@@ -442,13 +442,13 @@ Fadlan waxyar sug intii aadan soo gelin.',
 'resetpass'                 => 'Bedel ereysirka',
 'resetpass_announce'        => 'waxaa ku soo geshay eraysir ku meelgaar ah  oo e-mail laguugu soo diray.
 Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qortaa eraysir oo cusub:',
-'resetpass_header'          => 'bedel  ereyga sirta ee koontada',
+'resetpass_header'          => 'bedel  ereyga sirta ee akoon-ka',
 'oldpassword'               => 'Ereysirkii hore:',
 'newpassword'               => 'Ereysir cusub:',
 'retypenew'                 => 'Qor mar labaad ereysirka cusub:',
 'resetpass_success'         => 'Ereysirkaada si fiican oo kuugu bedelmay!
 Hadda gudaha ku gal',
-'resetpass_forbidden'       => 'ereyada sirka ah mala bedeli karo',
+'resetpass_forbidden'       => 'ereyada sirta ah mala bedeli karo',
 'resetpass-no-info'         => 'Waa in aad gudaha u gashaa hadii aad rabto in aad si toos ah ugu soo gudubto boggaan.',
 'resetpass-submit-loggedin' => 'bedel ereysirka',
 'resetpass-submit-cancel'   => 'Iska xir',
@@ -504,10 +504,11 @@ Waxaa laga yaabaa in la wareejiyay ama la tirtiray adiga oo fiirinaayo bogga.',
 'accmailtitle'                   => "Ereysirka waa la'diray.",
 'accmailtext'                    => 'Ereysirka "$1" waxaa loo diray $2.',
 'newarticle'                     => '(Cusub)',
-'newarticletext'                 => "Waxaa soo raacday link kula xiriiriyay bog oo hadda jirin.
+'newarticletext'                 => "Waxaa soo raacday link kula soo xiriiriyay bog oo hadda wali la qorin.
 Hadii aad rabto in aad sameyso bogga, hoos ka bilaaw qoraalkaada (fiiri [[{{MediaWiki:Helppage}}|bogga caawinaada]] wax war ah oo kale).
 hadii aad meeshaan ku soo qaldantay, riix batoonka barowsahaaga  '''gadaal uuga noqo''' .",
-'anontalkpagetext'               => "----''Meeshaan waa bogga wadahadalka isticmaalayaasha aanan la aqoonsanin oo aanan weli sameysanin akoon ama aanan weli isticmaali. Si loo kala sooco isticmaalayaasha, waa in aan isticmaalnaa lambar cinwaaneedka IP:ga. Cinwaanka IP:ga waxaa suurto gal ah in ay wada isticmaalaan dad badan. Hadii aad tahay isticmaale aanan la'aqoonsanin oo aad dareemaysid in laguu gafay, fadlan ka sameyso akoon meeshaan  [[Special:UserLogin|sameyso akoon ama gudaha gal]] si aad uga dhowrsatid in laguugu qaldo isticmaalayaasha kale oo aann la'aqoonsanin.''",
+'anontalkpagetext'               => "----''Meeshaan waa bogga wadahadalka isticmaalayaasha la aqoon oo aanan weli sameysanin akoon ama  wali isticmaalin. 
+Sidaas darteed, waa in aan isticmaalnaa lambar cinwaaneedka IP:ga. Cinwaanka IP:ga waxaa suurto gal ah in ay wada isticmaalaan dad badan. Hadii aad tahay isticmaale aanan la'aqoonsanin oo aad dareemaysid in laguu gafay, fadlan  [[Special:UserLogin/signup|sameyso akoon]]  ama [[Special:UserLogin|gudaha gal]] si aad u dhowrsatid in hadhowdi laguugu qaldo isticmaalada kale oo aann la'aqoonsanin.''",
 'noarticletext'                  => 'Hadda boggaan wax kuma qorno.
 Waxaa  [[Special:Search/{{PAGENAME}}|magaca boggaan]] ka raadin kartaa bogyaasha kale,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} raadi kuwo la mid ah],

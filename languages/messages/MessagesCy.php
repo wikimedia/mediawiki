@@ -2921,20 +2921,56 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-keywords'                    => 'Allweddeiriau',
 'exif-worldregioncreated'          => 'Y parth lle y tynnwyd y llun',
 'exif-countrycreated'              => 'Y wlad lle y tynnwyd y llun',
+'exif-countrycodecreated'          => 'Côd y wlad lle y tynnwyd y llun',
+'exif-provinceorstatecreated'      => 'Sir neu dalaith lle y tynnwyd y llun',
+'exif-citycreated'                 => 'Y dref lle y tynnwyd y llun',
+'exif-sublocationcreated'          => 'Y fan yn y dref lle y tynnwyd y llun',
+'exif-worldregiondest'             => 'Y parth a ddangosir',
+'exif-countrydest'                 => 'Y wlad a ddangosir',
+'exif-countrycodedest'             => 'Côd y wlad a ddangosir',
+'exif-provinceorstatedest'         => 'Y sir neu dalaith a ddangosir',
+'exif-citydest'                    => 'Y dref a ddangosir',
+'exif-sublocationdest'             => 'Y fan yn y dref a ddangosir',
 'exif-objectname'                  => 'Teitl byr',
+'exif-specialinstructions'         => 'Cyfarwyddiadau arbennig',
+'exif-headline'                    => 'Egluryn byr',
+'exif-credit'                      => 'Cydnabod/Y darparwr',
+'exif-source'                      => 'Ffynhonnell',
+'exif-editstatus'                  => 'Statws golygyddol y ddelwedd',
 'exif-urgency'                     => 'Brys',
+'exif-fixtureidentifier'           => 'Y man y defnyddir y llun yn gyson',
+'exif-locationdest'                => 'Y man a ddarlunir',
+'exif-locationdestcode'            => 'Côd y man a ddarlunir',
+'exif-objectcycle'                 => "Adeg y dydd y bwriedir i'r cyfrwng gael ei ddefnyddio",
+'exif-contact'                     => 'Gwybodaeth cysylltu',
+'exif-writer'                      => 'Awdur yr egluryn',
 'exif-languagecode'                => 'Iaith',
+'exif-iimversion'                  => 'Fersiwn IIM',
 'exif-iimcategory'                 => 'Categori',
+'exif-datetimeexpires'             => "Peidier â'i ddefnyddio ar ôl",
+'exif-datetimereleased'            => 'Rhyddhawyd ar',
+'exif-originaltransmissionref'     => 'Côd y man lle y trosglwyddwyd yn wreiddiol',
+'exif-lens'                        => 'Y lens a ddefnyddiwyd',
+'exif-serialnumber'                => 'Rhif cyfresol y camera',
 'exif-cameraownername'             => 'Perchennog y camera',
+'exif-label'                       => 'Label',
 'exif-copyrighted'                 => 'Statws yr hawlfraint:',
 'exif-copyrightowner'              => 'Perchennog yr hawlfraint',
 'exif-pngfilecomment'              => 'Sylwadau ar y ffeil PNG',
 'exif-disclaimer'                  => 'Ymwadiad',
+'exif-contentwarning'              => 'Rhybudd am y cynnwys',
 'exif-giffilecomment'              => 'Sylwadau ar y ffeil GIF',
+'exif-intellectualgenre'           => 'Math yr eitem',
 'exif-event'                       => 'Y digwyddiad a ddarlunnir',
+'exif-organisationinimage'         => 'Y sefydliad a ddarlunnir',
+'exif-personinimage'               => 'Y person a ddarlunnir',
+'exif-originalimageheight'         => 'Uchder y ddelwedd cyn iddi gael ei thocio',
+'exif-originalimagewidth'          => 'Lled y ddelwedd cyn iddi gael ei thocio',
 
 # EXIF attributes
 'exif-compression-1' => 'Heb ei gywasgu',
+
+'exif-copyrighted-true' => 'Hawlfraint',
 
 'exif-unknowndate' => 'Dyddiad anhysbys',
 
@@ -3013,6 +3049,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-sensingmethod-7' => 'Synhwyrydd trillinol',
 'exif-sensingmethod-8' => 'Synhwyrydd lliw llinellol dilyniannol',
 
+'exif-filesource-3' => 'Camera digidol lluniau llonydd',
+
 'exif-scenetype-1' => "Delwedd wedi ei dynnu'n uniongyrchol",
 
 'exif-customrendered-0' => 'Proses normal',
@@ -3061,6 +3099,10 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpslongitude-e' => "Hydred i'r Dwyrain",
 'exif-gpslongitude-w' => "Hydred i'r Gorllewin",
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|medr}} uwchlaw lefel y môr',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|medr}} islaw lefel y môr',
+
 'exif-gpsstatus-a' => "Wrthi'n mesur",
 'exif-gpsstatus-v' => 'Y gallu i ryngweithredu o ran mesur',
 
@@ -3091,10 +3133,19 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsdirection-t' => 'Gwir gyfeiriad',
 'exif-gpsdirection-m' => 'Cyfeiriad magnetig',
 
+'exif-ycbcrpositioning-1' => 'Canoledig',
+'exif-ycbcrpositioning-2' => 'Cyd-leoledig',
+
 'exif-dc-contributor' => 'Cyfranwyr',
+'exif-dc-coverage'    => 'Cwmpas y cyfrwng o ran lle neu amser',
 'exif-dc-date'        => 'Dyddiad',
 'exif-dc-publisher'   => 'Cyhoeddwr',
+'exif-dc-relation'    => 'Cyfryngau cysylltiedig',
 'exif-dc-rights'      => 'Hawliau',
+'exif-dc-source'      => 'Ffynhonnell y cyfrwng',
+'exif-dc-type'        => 'Math y cyfrwng',
+
+'exif-rating-rejected' => 'Gwrthodwyd',
 
 'exif-isospeedratings-overflow' => 'Mwy na 65535',
 

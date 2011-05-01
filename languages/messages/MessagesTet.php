@@ -171,7 +171,9 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-edit' => 'Edita',
+'vector-view-create'  => 'Kria',
+'vector-view-edit'    => 'Edita',
+'vector-view-history' => 'Haree istória',
 
 'errorpagetitle'    => 'Sala',
 'returnto'          => 'Fali ba $1.',

@@ -2132,6 +2132,8 @@ $1',
 'noemailtext'          => 'Цей користувач не вказав коректної адреси електронної пошти.',
 'nowikiemailtitle'     => 'Ел. пошти не дозволено',
 'nowikiemailtext'      => 'Цей користувач вирішив не отримувати ел. пошту від інших користувачів.',
+'emailusername'        => "Ім'я користувача:",
+'emailusernamesubmit'  => 'Надіслати',
 'email-legend'         => 'Надіслати листа іншому користувачеві {{grammar:genitive|{{SITENAME}}}}',
 'emailfrom'            => 'Від кого:',
 'emailto'              => 'Кому:',
@@ -2470,6 +2472,7 @@ $1',
 'ipbhidename'                     => "Приховати ім'я користувача у редагуваннях ті списках",
 'ipbwatchuser'                    => 'Додати до списку спостереження сторінку користувача і його обговорення',
 'ipb-change-block'                => 'Переблокувати користувача з цими налаштуваннями',
+'ipb-confirm'                     => 'Підтвердити блокування',
 'badipaddress'                    => 'IP-адреса записана в невірному форматі, або користувача з таким іменем не існує.',
 'blockipsuccesssub'               => 'Блокування проведено',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|«$1»]] заблоковано.<br />
@@ -2961,6 +2964,9 @@ $1',
 'bydate'                => 'за датою',
 'sp-newimages-showfrom' => 'Показати нові зображення, починаючи з $2, $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'minutes-abbrev' => 'хв',
+
 # Bad image list
 'bad_image_list' => 'Формат має бути наступним:
 
@@ -3102,10 +3108,17 @@ $1',
 'exif-gpsareainformation'          => 'Назва області GPS',
 'exif-gpsdatestamp'                => 'Дата',
 'exif-gpsdifferential'             => 'Диференціальна поправка',
+'exif-keywords'                    => 'Ключові слова',
 'exif-objectname'                  => 'Коротка назва',
+'exif-source'                      => 'Джерело',
+'exif-languagecode'                => 'Мова',
+'exif-iimcategory'                 => 'Категорія',
+'exif-identifier'                  => 'Ідентифікатор',
 
 # EXIF attributes
 'exif-compression-1' => 'Нестиснутий',
+
+'exif-copyrighted-false' => 'Суспільне надбання',
 
 'exif-unknowndate' => 'Невідома дата',
 
@@ -3237,6 +3250,10 @@ $1',
 'exif-gpslongitude-e' => 'східної довготи',
 'exif-gpslongitude-w' => 'західної довготи',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|метр|метра|метрів}} над рівнем моря',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|метр|метра|метрів}} нижче рівня моря',
+
 'exif-gpsstatus-a' => 'Вимірювання не закінчене',
 'exif-gpsstatus-v' => 'Готовий до передачі даних',
 
@@ -3256,6 +3273,14 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'справжній',
 'exif-gpsdirection-m' => 'магнітний',
+
+'exif-iimcategory-clj' => 'Злочинність і право',
+'exif-iimcategory-edu' => 'Освіта',
+'exif-iimcategory-hth' => "Здоров'я",
+'exif-iimcategory-pol' => 'Політика',
+'exif-iimcategory-sci' => 'Наука і технології',
+'exif-iimcategory-spo' => 'Спорт',
+'exif-iimcategory-wea' => 'Погода',
 
 # External editor support
 'edit-externally'      => 'Редагувати цей файл, використовуючи зовнішню програму',

@@ -164,8 +164,9 @@ $messages = array(
 'nstab-category'  => 'КIваталар',
 
 # General errors
-'viewsource'    => 'Къаларун булах',
-'viewsourcefor' => 'идаз $1',
+'missingarticle-rev' => '(жуьре#: $1)',
+'viewsource'         => 'Къаларун булах',
+'viewsourcefor'      => 'идаз $1',
 
 # Login and logout pages
 'yourname'                => 'Ишлемишчидин тIар',
@@ -192,29 +193,37 @@ $messages = array(
 'italic_sample'   => 'Къвалахъ алхьанай кхьин',
 'italic_tip'      => 'Къвалахъ алхьанай кхьин',
 'link_sample'     => 'Алукьунин цlарцlин тlар',
+'link_tip'        => 'Кьенин алукьунар',
 'headline_sample' => 'Кьлин кхьин',
+'headline_tip'    => 'Кьадар 2 кьилин',
 'media_tip'       => 'Файлдин цlар',
 
 # Edit pages
-'summary'        => 'Къейда:',
-'minoredit'      => 'И гъвечIи дегишарун',
-'watchthis'      => 'Гелкъуьн и хъувун',
-'savearticle'    => 'Хуьн хъувун',
-'showdiff'       => 'Къаларун дегишарун',
-'loginreqlink'   => 'гьахьун',
-'newarticle'     => '(ЦIийи)',
-'editing'        => 'Дегишарун $1',
-'editingsection' => 'Дегишарун $1 (пай)',
+'summary'            => 'Къейда:',
+'subject'            => 'Тема/кьилер',
+'minoredit'          => 'И гъвечIи дегишарун',
+'watchthis'          => 'Гелкъуьн и хъувун',
+'savearticle'        => 'Хуьн хъувун',
+'showpreview'        => 'Сефте килигун',
+'showdiff'           => 'Къаларун дегишарун',
+'loginreqlink'       => 'гьахьун',
+'newarticle'         => '(ЦIийи)',
+'editing'            => 'Дегишарун $1',
+'editingsection'     => 'Дегишарун $1 (пай)',
+'template-protected' => '(хуьн)',
 
 # History pages
 'revisionasof'           => 'Килиг хъувун иниз $1',
 'previousrevision'       => '←Иски кьелун',
+'nextrevision'           => 'Цlийи жуьреяр →',
+'currentrevisionlink'    => 'Эхиремжи килигун',
 'cur'                    => 'ток',
 'next'                   => 'къведайди',
 'last'                   => 'эхиримжи',
 'page_first'             => 'сифте',
 'page_last'              => 'эхиримжи',
 'history-fieldset-title' => 'Чарчин тарих',
+'histfirst'              => 'Садлагьай',
 'histlast'               => 'Гежа',
 
 # Revision deletion
@@ -232,8 +241,9 @@ $messages = array(
 'revertmerge' => 'Къакъудунар',
 
 # Diffs
-'lineno'   => 'ЦIар $1:',
-'editundo' => 'кукlварин',
+'history-title' => 'Кьиспес $1',
+'lineno'        => 'ЦIар $1:',
+'editundo'      => 'кукlварин',
 
 # Search results
 'searchresults'             => 'Ахтурмишун эхир',
@@ -307,21 +317,24 @@ $messages = array(
 'action-edit' => 'дигишарун и чарар',
 
 # Recent changes
-'rcnote'          => "КIеник {{PLURAL:$1|is '''1''' change|эхиримжи '''$1''' дегишунар}} заманада {{PLURAL:$2|day|'''$2''' йикъар}}, икIа $5, $4",
-'rcshowhideminor' => '$1 бицlи дегишунар',
-'rcshowhidebots'  => '$1 бот',
-'rcshowhideliu'   => '$1 Системадиз гьахьнай ишлемишчияр',
-'rcshowhideanons' => '
+'nchanges'             => '$1 {{PLURAL:$1|дегиш|дегишунар}}',
+'recentchanges'        => 'Эхиримжи дегишун',
+'recentchanges-legend' => 'Туькlуьрун гилан дегишар',
+'rcnote'               => "КIеник {{PLURAL:$1|is '''1''' change|эхиримжи '''$1''' дегишунар}} заманада {{PLURAL:$2|day|'''$2''' йикъар}}, икIа $5, $4",
+'rcshowhideminor'      => '$1 бицlи дегишунар',
+'rcshowhidebots'       => '$1 бот',
+'rcshowhideliu'        => '$1 Системадиз гьахьнай ишлемишчияр',
+'rcshowhideanons'      => '
 $1 Кlевхьанай ишлемишчи',
-'rcshowhidemine'  => '$1 зин дигишунар',
-'rclinks'         => 'Къалурун эхиримжи $1 са сятинлай $2 йикъал $3',
-'diff'            => 'тафават',
-'hist'            => 'тарих',
-'hide'            => 'Чуьнуьхун',
-'show'            => 'Къаларун',
-'minoreditletter' => 'г',
-'newpageletter'   => 'ЦI',
-'boteditletter'   => 'б',
+'rcshowhidemine'       => '$1 зин дигишунар',
+'rclinks'              => 'Къалурун эхиримжи $1 са сятинлай $2 йикъал $3',
+'diff'                 => 'тафават',
+'hist'                 => 'тарих',
+'hide'                 => 'Чуьнуьхун',
+'show'                 => 'Къаларун',
+'minoreditletter'      => 'г',
+'newpageletter'        => 'ЦI',
+'boteditletter'        => 'б',
 
 # Recent changes linked
 'recentchangeslinked'      => 'Сахьтин дегишунар',
@@ -402,19 +415,23 @@ $1 Кlевхьанай ишлемишчи',
 'newuserlogpage'          => 'Туькlуьрун ишлемишчидин ктаб',
 'newuserlog-create-entry' => 'ЦIийи ишлемишчидин чин',
 
+# Special:ListGroupRights
+'listgrouprights-members' => '(цlацlидин кlватlалар)',
+
 # E-mail user
 'emailuser'    => 'Къагъаз масса ишлемишчидиз',
 'emailfrom'    => 'Идай',
 'emailmessage' => 'Хъагъаз',
 
 # Watchlist
-'watchlist'     => 'Ахтармишунин чар',
-'mywatchlist'   => 'Ахтаришунин чар',
-'addedwatch'    => 'Ктун хъувун ,ахтармишзай чарчхъ',
-'watch'         => 'Гелкъуьн',
-'watchthispage' => 'Гелкъуьн и хъувун',
-'unwatch'       => 'Ишлемиш тийизвай',
-'wlshowlast'    => 'Къалур эхирижи $1 сятинлай $2 йикъалди $3',
+'watchlist'         => 'Ахтармишунин чар',
+'mywatchlist'       => 'Ахтаришунин чар',
+'addedwatch'        => 'Ктун хъувун ,ахтармишзай чарчхъ',
+'watch'             => 'Гелкъуьн',
+'watchthispage'     => 'Гелкъуьн и хъувун',
+'unwatch'           => 'Ишлемиш тийизвай',
+'wlshowlast'        => 'Къалур эхирижи $1 сятинлай $2 йикъалди $3',
+'watchlist-options' => 'Опцидин ахтармишунар',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Килигун...',
@@ -422,6 +439,7 @@ $1 Кlевхьанай ишлемишчи',
 
 # Delete
 'deletepage'            => 'Къакъудун хъувун',
+'actioncomplete'        => 'Юзунар авуна',
 'deletedarticle'        => 'къакъудун "[[$1]]"',
 'dellogpage'            => 'Чар къакъудун',
 'deletecomment'         => 'Кар',
@@ -445,6 +463,7 @@ $1 Кlевхьанай ишлемишчи',
 'restriction-edit' => 'Дегишарун',
 
 # Undelete
+'undeletelink'              => 'ахъаюн/авайдаказ хъувун',
 'undeletecomment'           => 'Кар',
 'undelete-show-file-submit' => 'Э',
 
@@ -457,10 +476,12 @@ $1 Кlевхьанай ишлемишчи',
 'mycontris'     => 'За авунай кIвалах',
 'contribsub2'   => 'Адаз ($1):  ($2)',
 'uctop'         => '(кIукI)',
+'month'         => ' Вацралай (ва фад)',
 'year'          => 'Са йисалай (ва дериндиз):',
 
 'sp-contributions-blocklog' => 'чинрин хара',
 'sp-contributions-talk'     => 'Рахун',
+'sp-contributions-search'   => 'Жагъурун ктунай пай',
 'sp-contributions-username' => 'IP адресс ишлемичин тlарцlин',
 'sp-contributions-submit'   => 'Ахтармишун',
 
@@ -485,6 +506,7 @@ $1 Кlевхьанай ишлемишчи',
 'change-blocklink' => 'дегиш хьун блок',
 'contribslink'     => 'ктунай пай',
 'blocklogpage'     => 'Чинрин хара',
+'blocklogentry'    => 'акьвал хъувун[[$1]] вахтар алатайла $2 $3',
 
 # Move page
 'movearticle' => 'Юзун хъувун:',
@@ -545,6 +567,8 @@ $1 Кlевхьанай ишлемишчи',
 'tooltip-ca-nstab-special'       => 'Имма далу чар,квевай чар дегиш жезатуш',
 'tooltip-ca-nstab-project'       => 'Проектин чарчиз килигун',
 'tooltip-ca-nstab-image'         => 'Шкилдиз килигу',
+'tooltip-ca-nstab-template'      => 'Ахъаюн шаблон',
+'tooltip-ca-nstab-category'      => 'Ахъаюн кlватlалдин чар',
 'tooltip-minoredit'              => 'Марк имма сакlускьван дегишунар',
 'tooltip-save'                   => 'Куьн дегишунар хуьн',
 'tooltip-diff'                   => 'Къалурун,куьне вуч дегишенур авунутlа',
