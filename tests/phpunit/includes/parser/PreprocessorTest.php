@@ -137,5 +137,55 @@ class PreprocessorTest extends MediaWikiTestCase {
 			$this->markTestIncomplete( "File $expectedFilename missing. Output stored as $tempFilename" );
 		}
 	}
+
+	/**
+	 * Tests from Bug 28642 · https://bugzilla.wikimedia.org/28642
+	 */
+	function provideHeadings() {
+		return array(	/* These should become headings: */
+			array( "== h ==<!--c1-->", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment></h></root>" ),
+			array( "== h == 	<!--c1-->", "<root><h level=\"2\" i=\"1\">== h == 	<comment>&lt;!--c1--&gt;</comment></h></root>" ),
+			array( "== h ==<!--c1--> 	", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment> 	</h></root>" ),
+			array( "== h == 	<!--c1--> 	", "<root><h level=\"2\" i=\"1\">== h == 	<comment>&lt;!--c1--&gt;</comment> 	</h></root>" ),
+			array( "== h ==<!--c1--><!--c2-->", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment></h></root>" ),
+			array( "== h == 	<!--c1--><!--c2-->", "<root><h level=\"2\" i=\"1\">== h == 	<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment></h></root>" ),
+			array( "== h ==<!--c1--><!--c2--> 	", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment> 	</h></root>" ),
+			array( "== h == 	<!--c1--><!--c2--> 	", "<root><h level=\"2\" i=\"1\">== h == 	<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment> 	</h></root>" ),
+			array( "== h == 	<!--c1-->  <!--c2-->", "<root><h level=\"2\" i=\"1\">== h == 	<comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment></h></root>" ),
+			array( "== h ==<!--c1-->  <!--c2--> 	", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment> 	</h></root>" ),
+			array( "== h == 	<!--c1-->  <!--c2--> 	", "<root><h level=\"2\" i=\"1\">== h == 	<comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment> 	</h></root>" ),
+			array( "== h ==<!--c1--><!--c2--><!--c3-->", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment></h></root>" ),
+			array( "== h ==<!--c1-->  <!--c2--><!--c3-->", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment></h></root>" ),
+			array( "== h ==<!--c1--><!--c2-->  <!--c3-->", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment></h></root>" ),
+			array( "== h ==<!--c1-->  <!--c2-->  <!--c3-->", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment></h></root>" ),
+			array( "== h ==  <!--c1--><!--c2--><!--c3-->", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment></h></root>" ),
+			array( "== h ==  <!--c1-->  <!--c2--><!--c3-->", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment></h></root>" ),
+			array( "== h ==  <!--c1--><!--c2-->  <!--c3-->", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment></h></root>" ),
+			array( "== h ==  <!--c1-->  <!--c2-->  <!--c3-->", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment></h></root>" ),
+			array( "== h ==<!--c1--><!--c2--><!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+			array( "== h ==<!--c1-->  <!--c2--><!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+			array( "== h ==<!--c1--><!--c2-->  <!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+			array( "== h ==<!--c1-->  <!--c2-->  <!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+			array( "== h ==  <!--c1--><!--c2--><!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+			array( "== h ==  <!--c1-->  <!--c2--><!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+			array( "== h ==  <!--c1--><!--c2-->  <!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+			array( "== h ==  <!--c1-->  <!--c2-->  <!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+
+			/* These are not working: */
+			array( "== h ==<!--c1--> 	<!--c2-->", "<root>== h ==<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment></root>" ),
+			array( "== h == 	<!--c1--> 	<!--c2-->", "<root>== h == 	<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment></root>" ),
+			array( "== h ==<!--c1--> 	<!--c2--> 	", "<root>== h ==<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment> 	</root>" ),
+			array( "== h == x <!--c1--><!--c2--><!--c3-->  ", "<root>== h == x <comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </root>" ),
+			array( "== h ==<!--c1--> x <!--c2--><!--c3-->  ", "<root>== h ==<comment>&lt;!--c1--&gt;</comment> x <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </root>" ),
+			array( "== h ==<!--c1--><!--c2--><!--c3--> x ", "<root>== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment> x </root>" ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideHeadings
+	 */
+	function testHeadings( $wikiText, $expectedXml ) {
+		$this->assertEquals( $expectedXml, $this->mPreprocessor->preprocessToXml( $wikiText ) );
+	}
 }
 
