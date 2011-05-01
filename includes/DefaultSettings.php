@@ -2537,6 +2537,19 @@ $wgResourceLoaderMinifierMaxLineLength = 1000;
  */
 $wgIncludeLegacyJavaScript = true;
 
+/**
+ * If set to a positive number, ResourceLoader will not generate URLs whose
+ * query string is more than this many characters long, and will instead use
+ * multiple requests with shorter query strings. This degrades performance,
+ * but may be needed if your web server has a low (less than, say 1024)
+ * query string length limit or a low value for suhosin.get.max_value_length
+ * that you can't increase.
+ *
+ * If set to a negative number, ResourceLoader will assume there is no query
+ * string length limit.
+ */
+$wgResourceLoaderMaxQueryLength = -1;
+
 /** @} */ # End of resource loader settings }
 
 
