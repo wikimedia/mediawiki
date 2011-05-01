@@ -176,7 +176,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'rc_user_text', $params['user'] );
 		}
 		if ( !is_null( $params['excludeuser'] ) ) {
-			$this->addWhere( 'rc_user_text != ' . $this->getDB()->addQuotes( $params['excludeuser'] ) );
+			$this->addWhere( 'rc_user_text != ' . $db->addQuotes( $params['excludeuser'] ) );
 		}
 
 		// This is an index optimization for mysql, as done in the Special:Watchlist page
