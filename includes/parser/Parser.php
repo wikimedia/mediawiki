@@ -682,10 +682,8 @@ class Parser {
 	 * @param $matches Out parameter, Array: extracted tags
 	 * @param $uniq_prefix
 	 * @return String: stripped text
-	 *
-	 * @static
 	 */
-	public function extractTagsAndParams( $elements, $text, &$matches, $uniq_prefix = '' ) {
+	public static function extractTagsAndParams( $elements, $text, &$matches, $uniq_prefix = '' ) {
 		static $n = 1;
 		$stripped = '';
 		$matches = array();
@@ -5117,7 +5115,7 @@ class Parser {
 	function replaceTransparentTags( $text ) {
 		$matches = array();
 		$elements = array_keys( $this->mTransparentTagHooks );
-		$text = $this->extractTagsAndParams( $elements, $text, $matches, $this->mUniqPrefix );
+		$text = self::extractTagsAndParams( $elements, $text, $matches, $this->mUniqPrefix );
 
 		foreach ( $matches as $marker => $data ) {
 			list( $element, $content, $params, $tag ) = $data;
