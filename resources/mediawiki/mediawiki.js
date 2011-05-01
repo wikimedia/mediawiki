@@ -922,9 +922,38 @@ window.mediaWiki = new ( function( $ ) {
 							version = registry[groups[group][g]].version;
 						}
 					}
-					requests[requests.length] = $.extend(
-						{ 'modules': groups[group].join( '|' ), 'version': formatVersionNumber( version ) }, base
-					);
+					var reqBase = $.extend( { 'version': formatVersionNumber( version ) }, base );
+					var reqBaseLength = $.param( reqBase ).length;
+					var reqs = [];
+					var limit = mw.config.get( 'wgResourceLoaderMaxQueryLength', -1 );
+					if ( limit > 0 ) {
+						// We may need to split up the request to honor the query string length limit
+						// So build it piece by piece
+						var l = reqBaseLength + 9; // '&modules='.length == 9
+						var r = 0;
+						reqs[0] = [];
+						for ( var i = 0; i < groups[group].length; i++ ) {
+							// If the request would become too long, create a new one,
+							// but don't create empty requests
+							// '%7C'.length == 3
+							if ( reqs[r].length > 0 && l + 3 + groups[group][i].length > limit ) {
+								// This request would become too long, create a new one
+								r++;
+								reqs[r] = [];
+								l = reqBaseLength + 9;
+							}
+							reqs[r][reqs[r].length] = groups[group][i];
+							l += groups[group][i].length + 3;
+						}
+					} else {
+						// No splitting needed
+						reqs = [ groups[group] ];
+					}
+					for ( var r in reqs ) {
+						requests[requests.length] = $.extend(
+							{ 'modules': reqs[r].join( '|' ) }, reqBase
+						);
+					}
 				}
 				// Clear the batch - this MUST happen before we append the
 				// script element to the body or it's possible that the script
