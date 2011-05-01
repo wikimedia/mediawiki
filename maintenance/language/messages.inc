@@ -942,8 +942,6 @@ $wgMessageStructure = array(
 		'columns',
 		'searchresultshead',
 		'resultsperpage',
-		'contextlines',
-		'contextchars',
 		'stub-threshold',
 		'stub-threshold-disabled',
 		'recentchangesdays',

@@ -930,18 +930,6 @@ class Preferences {
 			'section' => 'searchoptions/displaysearchoptions',
 			'min' => 0,
 		);
-		$defaultPreferences['contextlines'] = array(
-			'type' => 'int',
-			'label-message' => 'contextlines',
-			'section' => 'searchoptions/displaysearchoptions',
-			'min' => 0,
-		);
-		$defaultPreferences['contextchars'] = array(
-			'type' => 'int',
-			'label-message' => 'contextchars',
-			'section' => 'searchoptions/displaysearchoptions',
-			'min' => 0,
-		);
 
 		global $wgEnableMWSuggest;
 		if ( $wgEnableMWSuggest ) {

@@ -362,14 +362,11 @@ class SearchEngine {
 	}
 
 	/**
-	 * Find snippet highlight settings for a given user
+	 * Find snippet highlight settings for all users
 	 *
-	 * @param $user User
 	 * @return Array contextlines, contextchars
 	 */
-	public static function userHighlightPrefs( &$user ) {
-		// $contextlines = $user->getOption( 'contextlines',  5 );
-		// $contextchars = $user->getOption( 'contextchars', 50 );
+	public static function userHighlightPrefs() {
 		$contextlines = 2; // Hardcode this. Old defaults sucked. :)
 		$contextchars = 75; // same as above.... :P
 		return array( $contextlines, $contextchars );
