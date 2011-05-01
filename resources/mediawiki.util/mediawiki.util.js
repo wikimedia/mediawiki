@@ -272,32 +272,12 @@
 
 		/**
 		 * Checks wether the current page is the wiki's main page.
-		 * This function requires the document to be ready!
 		 *
-		 * @param alsoRelated Boolean value, if true this function also returns true if the current page is
-		 * in an associated namespace page of the main page rather than the main page itself (eg. talk page)
 		 * @return Boolean
+		 * @deprecated to be removed in 1.18: Use wgIsMainPage in mw.config instead.
 		 */
-		'isMainPage' : function( alsoRelated ) {
-			var isRelatedToMainpage = false;
-
-			// Don't insert colon between namespace and title if the namespace is empty (eg. main namespace)
-			var namespace = mw.config.get( 'wgFormattedNamespaces' )[mw.config.get( 'wgNamespaceNumber' )];
-			namespace = namespace ? namespace + ':' : '';
-
-			// We can't use (wgMainPageTitle == wgPageName) since the latter is escaped (underscores) and has other
-			// slight variations that make comparison harder.
-			var isTheMainPage = mw.config.get( 'wgMainPageTitle' ) === ( namespace + mw.config.get( 'wgTitle' ) );
-
-			// Also check for the title in related namespaces ?
-			if ( typeof alsoRelated !== 'undefined' && alsoRelated === true ) {
-				var tabLink = $( '#ca-talk' ).prev().find( 'a:first' ).attr( 'href' );
-				isRelatedToMainpage = tabLink === mw.util.wikiGetlink( mw.config.get( 'wgMainPageTitle' ) );
-
-				return isRelatedToMainpage || isTheMainPage;
-			}
-
-			return isTheMainPage;
+		'isMainPage' : function() {
+			return mw.config.get( 'wgIsMainPage' );
 		},
 
 
