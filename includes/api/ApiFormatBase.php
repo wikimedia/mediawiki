@@ -152,7 +152,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 		if ( $isHtml ) {
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
 <?php if ( $this->mUnescapeAmps ) {
