@@ -4,21 +4,7 @@
  * @group Database
  * @group Destructive
  */
-class ArticleTablesTest extends MediaWikiTestCase {
-	
-	function setUp() {
-		global $wgLanguageCode;
-		
-		$this->languageCode = $wgLanguageCode;
-	}
-	
-	function tearDown() {
-		global $wgLanguageCode, $wgContLang, $wgLang;
-		$wgLanguageCode = $this->languageCode;
-		$wgContLang = Language::factory( $wgLanguageCode );
-		$wgLang = new StubUserLang;
-	}
-
+class ArticleTablesTest extends MediaWikiLangTestCase {
 	/**
  	 * @group Broken
 	 */

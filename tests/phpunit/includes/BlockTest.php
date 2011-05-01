@@ -3,16 +3,14 @@
 /**
  * @group Database
  */
-class BlockTest extends MediaWikiTestCase {
+class BlockTest extends MediaWikiLangTestCase {
 	
 	private $block, $madeAt;
 	
 	function setUp() {
 		global $wgContLang;
+		parent::setUp();
 		$wgContLang = Language::factory( 'en' );
-	}
-
-	function tearDown() {
 	}
 	
 	function addDBData() {

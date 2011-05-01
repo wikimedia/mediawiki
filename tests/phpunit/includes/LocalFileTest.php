@@ -7,9 +7,8 @@
 
 class LocalFileTest extends MediaWikiTestCase {
 	function setUp() {
-		global $wgContLang, $wgCapitalLinks;
+		global $wgCapitalLinks;
 
-		$wgContLang = new Language;
 		$wgCapitalLinks = true;
 		$info = array(
 			'name' => 'test',

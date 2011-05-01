@@ -1,11 +1,12 @@
 <?php 
 
-abstract class ApiTestCase extends MediaWikiTestCase {
+abstract class ApiTestCase extends MediaWikiLangTestCase {
 	public static $users;
 
 	function setUp() {
 		global $wgContLang, $wgAuth, $wgMemc, $wgRequest, $wgUser;
 
+		parent::setUp();
 		$wgMemc = new EmptyBagOStuff();
 		$wgContLang = Language::factory( 'en' );
 		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
