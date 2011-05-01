@@ -97,8 +97,7 @@ However, MediaWiki requires PHP $2 or higher.',
 If you run a high-traffic site, you should read a little on [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
 	'config-unicode-update-warning'   => "'''Warning''': The installed version of the Unicode normalization wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.
 You should [http://www.mediawiki.org/wiki/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
-	'config-no-db'                    => 'Could not find a suitable database driver!',
-	'config-no-db-help'               => 'You need to install a database driver for PHP.
+	'config-no-db'                    => 'Could not find a suitable database driver! You need to install a database driver for PHP.
 The following database types are supported: $1.
 
 If you are on shared hosting, ask your hosting provider to install a suitable database driver.
