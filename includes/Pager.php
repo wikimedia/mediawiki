@@ -829,13 +829,13 @@ abstract class TablePager extends IndexPager {
 					# Prepare a link that goes in the other sort order
 					if ( $this->mDefaultDirection ) {
 						# Descending
-						$image = 'Arr_u.png';
+						$image = 'Arr_d.png';
 						$query['asc'] = '1';
 						$query['desc'] = '';
 						$alt = htmlspecialchars( wfMsg( 'descending_abbrev' ) );
 					} else {
 						# Ascending
-						$image = 'Arr_d.png';
+						$image = 'Arr_u.png';
 						$query['asc'] = '';
 						$query['desc'] = '1';
 						$alt = htmlspecialchars( wfMsg( 'ascending_abbrev' ) );
