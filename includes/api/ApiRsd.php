@@ -47,7 +47,8 @@ class ApiRsd extends ApiBase {
 
 		$service = array( 'apis' => $this->formatRsdApiList() );
 		ApiResult::setContent( $service, 'MediaWiki', 'engineName' );
-		ApiResult::setContent( $service, 'http://www.mediawiki.org/', 'engineLink' );
+		ApiResult::setContent( $service, 'http://www.mediawiki.org/w/api.php', 'engineLink' );
+		ApiResult::setContent( $service, 'http://www.mediawiki.org/', 'homePageLink' );
 
 		$result->setIndexedTagName( $service['apis'], 'api' );
 
@@ -67,7 +68,7 @@ class ApiRsd extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Export an RSD schema';
+		return 'Export an RSD (Really Simple Discovery) schema';
 	}
 
 	protected function getExamples() {
@@ -100,7 +101,7 @@ class ApiRsd extends ApiBase {
 				'apiLink' => wfExpandUrl( wfScript( 'api' ) ),
 
 				// Docs link is optional, but recommended.
-				'docs' => 'http://mediawiki.org/wiki/API',
+				'docs' => 'http://www.mediawiki.org/wiki/API',
 
 				// Some APIs may need a blog ID, but it may be left blank.
 				'blogID' => '',
