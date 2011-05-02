@@ -41,7 +41,7 @@ function wfThumbMain() {
 	if ( isset( $params['p'] ) ) {
 		$params['page'] = $params['p'];
 	}
-	unset( $params['r'] );
+	unset( $params['r'] ); // ignore 'r' because we unconditionally pass File::RENDER
 
 	// Is this a thumb of an archived file?
 	$isOld = (isset( $params['archived'] ) && $params['archived']);

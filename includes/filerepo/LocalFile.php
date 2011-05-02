@@ -33,7 +33,7 @@ class LocalFile extends File {
 	 * @private
 	 */
 	var
-		$fileExists,       # does the file file exist on disk? (loadFromXxx)
+		$fileExists,       # does the file exist on disk? (loadFromXxx)
 		$historyLine,      # Number of line to return by nextHistoryLine() (constructor)
 		$historyRes,       # result of the query for the file's history (nextHistoryLine)
 		$width,            # \
@@ -549,8 +549,8 @@ class LocalFile extends File {
 	/** isTrustedFile inherited */
 
 	/**
-	 * Returns true if the file file exists on disk.
-	 * @return boolean Whether file file exist on disk.
+	 * Returns true if the file exists on disk.
+	 * @return boolean Whether file exist on disk.
 	 */
 	public function exists() {
 		$this->load();
