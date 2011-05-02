@@ -1258,6 +1258,14 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * @param $options array
+	 * @return string
+	 */
+	function makeInsertOptions( $options ) {
+		return implode( ' ', $options );
+	}
+
+	/**
 	 * INSERT wrapper, inserts an array into a table
 	 *
 	 * $a may be a single associative array, or an array of these with numeric keys, for
@@ -1285,6 +1293,8 @@ abstract class DatabaseBase implements DatabaseType {
 			$options = array( $options );
 		}
 
+		$options = $this->makeInsertOptions( $options );
+
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
 			$multi = true;
 			$keys = array_keys( $a[0] );
@@ -1293,7 +1303,7 @@ abstract class DatabaseBase implements DatabaseType {
 			$keys = array_keys( $a );
 		}
 
-		$sql = 'INSERT ' . implode( ' ', $options ) .
+		$sql = 'INSERT ' . $options .
 			" INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
