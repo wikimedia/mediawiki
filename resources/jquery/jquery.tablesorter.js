@@ -108,7 +108,7 @@
 						}
 
 						if (p === false) {
-								p = detectParserForColumn( table, rows, -1, i );
+							p = detectParserForColumn( table, rows, i );
 						}
 						// if ( table.config.debug ) {
 						//     console.log( "column:" + i + " parser:" + p.id + "\n" );
@@ -119,40 +119,51 @@
 				return list;
 			}
 
-			function detectParserForColumn( table, rows, rowIndex, cellIndex ) {
+			function detectParserForColumn( table, rows, cellIndex ) {
 				var l = parsers.length,
-					node = false,
-					nodeValue = false,
-					keepLooking = true;
-				while ( nodeValue == '' && keepLooking ) {
-					rowIndex++;
-					if ( rows[rowIndex] ) {
-						node = getNodeFromRowAndCellIndex( rows, rowIndex, cellIndex );
-						nodeValue = trimAndGetNodeText( node );
-						// if ( table.config.debug ) {
-						//     console.log( 'Checking if value was empty on row:' + rowIndex );
-						// }
+					nodeValue,
+					// Start with 1 because 0 is the fallback parser
+					i = 1,
+					rowIndex = 0,
+					concurrent = 0,
+					needed = (rows.length > 4 ) ? 5 : rows.length;
+				while( i<l ) {
+					nodeValue = getTextFromRowAndCellIndex( rows, rowIndex, cellIndex );
+					if ( nodeValue != '') {
+						if ( parsers[i].is( nodeValue, table ) ) {
+							concurrent++;
+							rowIndex++;
+							if (concurrent >= needed ) {
+								// Confirmed the parser for multiple cells, let's return it
+								return parsers[i];
+							}
+						} else {
+							// Check next parser, reset rows
+							i++;
+							rowIndex = 0;
+						}
 					} else {
-						keepLooking = false;
+						// Empty cell
+						rowIndex++;
+						if ( rowIndex > rows.length ) {
+							rowIndex = 0;
+							i++;
+						}
 					}
 				}
-				for ( var i = 1; i < l; i++ ) {
-					if ( parsers[i].is( nodeValue, table, node ) ) {
-						return parsers[i];
-					}
-				}
+				
 				// 0 is always the generic parser ( text )
 				return parsers[0];
 			}
-
-			function getNodeFromRowAndCellIndex( rows, rowIndex, cellIndex ) {
-				return rows[rowIndex].cells[cellIndex];
+			
+			function getTextFromRowAndCellIndex( rows, rowIndex, cellIndex ) {
+				if ( rows[rowIndex] && rows[rowIndex].cells[cellIndex] ) {
+					return $.trim( getElementText( rows[rowIndex].cells[cellIndex] ) );
+				} else {
+					return '';
+				}
 			}
-
-			function trimAndGetNodeText( node ) {
-				return $.trim( getElementText( node ) );
-			}
-
+			
 			function getParserById( name ) {
 				var l = parsers.length;
 				for ( var i = 0; i < l; i++ ) {
@@ -726,17 +737,6 @@
 	} );
 
 	ts.addParser( {
-		id: "number",
-		is: function ( s, table ) {
-			return $.tablesorter.numberRegex.test( $.trim(s ));
-		},
-		format: function (s) {
-			return $.tablesorter.formatDigit(s);
-		},
-		type: "numeric"
-	} );
-
-	ts.addParser( {
 		id: "currency",
 		is: function (s) {
 			return ts.rgx.currency[0].test(s);
@@ -842,4 +842,15 @@
 		},
 		type: "numeric"
 	} );
+	ts.addParser( {
+		id: "number",
+		is: function ( s, table ) {
+			return $.tablesorter.numberRegex.test( $.trim(s ));
+		},
+		format: function (s) {
+			return $.tablesorter.formatDigit(s);
+		},
+		type: "numeric"
+	} );
+	
 } )( jQuery );
