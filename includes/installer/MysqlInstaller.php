@@ -419,10 +419,6 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	public function setupUser() {
-		if ( !$this->getVar( '_CreateDBAccount' ) ) {
-			return Status::newGood();
-		}
-
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
@@ -436,21 +432,26 @@ class MysqlInstaller extends DatabaseInstaller {
 		$password = $this->getVar( 'wgDBpassword' );
 		$grantableNames = array();
 
-		// Before we blindly try to create a user that already has access,
-		try { // first attempt to connect to the database
-			new DatabaseMysql(
-				$server,
-				$dbUser,
-				$password,
-				false,
-				false,
-				0,
-				$this->getVar( 'wgDBprefix' )
-			);
+		if ( $this->getVar( '_CreateDBAccount' ) ) {
+			// Before we blindly try to create a user that already has access,
+			try { // first attempt to connect to the database
+				new DatabaseMysql(
+					$server,
+					$dbUser,
+					$password,
+					false,
+					false,
+					0,
+					$this->getVar( 'wgDBprefix' )
+				);
+				$grantableNames[] = $this->buildFullUserName( $dbUser, $server );
+				$tryToCreate = false;
+			} catch ( DBConnectionError $e ) {
+				$tryToCreate = true;
+			}
+		} else {
 			$grantableNames[] = $this->buildFullUserName( $dbUser, $server );
 			$tryToCreate = false;
-		} catch ( DBConnectionError $e ) {
-			$tryToCreate = true;
 		}
 
 		if( $tryToCreate ) {
