@@ -1006,12 +1006,6 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 	'config-unicode-update-warning' => "'''Папярэджаньне''': усталяваная вэрсія бібліятэкі для Unicode-нармалізацыі выкарыстоўвае састарэлую вэрсію бібліятэкі з [http://site.icu-project.org/ праекту ICU].
 Раім [http://www.mediawiki.org/wiki/Unicode_normalization_considerations абнавіць], калі ваш сайт будзе працаваць зь Unicode.",
 	'config-no-db' => 'Немагчыма знайсьці слушны драйвэр базы зьвестак!',
-	'config-no-db-help' => 'Вам трэба ўсталяваць драйвэр базы зьвестак для PHP.
-Падтрымліваюцца наступныя тыпы базаў зьвестак: $1.
-
-Калі вы выкарыстоўваеце агульны хостынг, запытайцеся ў свайго хостынг-правайдэра наконт усталяваньня патрабуемага драйвэр базы зьвестак.
-Калі Вы кампілявалі PHP самастойна, пераканфігуруйце і сабярыце яго з уключаным кліентам базаў зьвестак, напрыклад, <code>./configure --with-mysql</code>.
-Калі Вы ўсталёўвалі PHP з Debian/Ubuntu-рэпазытарыя, то вам трэба ўсталяваць дадаткова пакет <code>php5-mysql</code>',
 	'config-no-fts3' => "'''Папярэджаньне''': SQLite створаны без модуля [http://sqlite.org/fts3.html FTS3], для гэтага ўнутранага інтэрфэйсу ня будзе даступная магчымасьць пошуку.",
 	'config-register-globals' => "'''Папярэджаньне: уключаная опцыя PHP <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Адключыце яе, калі можаце.'''
@@ -2062,12 +2056,6 @@ Ma lakait da dreiñ ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammi
 	'config-unicode-update-warning' => "'''Diwallit''': ober a ra stumm staliet endalc'her skoueriekaat Unicode gant ur stumm kozh eus [http://site.icu-project.org/ levraoueg meziantoù ar raktres ICU].
 Dleout a rafec'h [http://www.mediawiki.org/wiki/Unicode_normalization_considerations hizivaat] ma seblant deoc'h bezañ pouezus ober gant Unicode.",
 	'config-no-db' => "Ne c'haller ket kavout ur sturier diaz roadennoù dereat !",
-	'config-no-db-help' => "Ret eo deoc'h staliañ ur sturier diazoù roadennoù evit PHP.
-Skoret eo an diazoù roadennoù da-heul : $1.
-
-Ma rit gant un herberc'hiañ kenrannet, goulennit digant ho herberc'hier staliañ ur sturier diaz roadennoù azas.
-Ma kempunit PHP c'hwi hoc'h-unan, adkeflugnit-eñ en ur weredekaat un arval diaz roadennoù, da skouer en ur ober gant <code>./configure --mysql</code>.
-M'hoc'h eus staliet PHP adalek ur pakad Debian pe Ubuntu, eo ret deoc'h staliañ ur vodulenn php5-mysql ivez.",
 	'config-no-fts3' => "'''Diwallit ''': Kempunet eo SQLite hep ar [http://sqlite.org/fts3.html vodulenn FTS3]; ne vo ket posupl ober gant an arc'hwelioù klask er staliadur-mañ",
 	'config-register-globals' => "'''Diwallit : Gweredekaet eo dibarzh <code>[http://php.net/register_globals register_globals]</code> PHP.'''
 '''Diweredekait anezhañ ma c'hallit.'''
@@ -2510,8 +2498,7 @@ Allerdings benötigt MediaWiki PHP $2 oder höher.',
 Sofern eine Website mit großer Benutzeranzahl betrieben wird, sollten weitere Informationen auf der Webseite [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-Normalisierung (en)] gelesen werden.",
 	'config-unicode-update-warning' => "'''Warnung:''' Die installierte Version des Unicode-Normalisierungswrappers nutzt einer ältere Version der Bibliothek [http://site.icu-project.org/ des ICU-Projekts].
 Diese sollte [http://www.mediawiki.org/wiki/Unicode_normalization_considerations aktualisiert] werden, sofern auf die Verwendung von Unicode Wert gelegt wird.",
-	'config-no-db' => 'Es konnte kein adäquater Datenbanktreiber gefunden werden!',
-	'config-no-db-help' => 'Es muss ein Datenbanktreiber für PHP installiert werden.
+	'config-no-db' => 'Es konnte kein adäquater Datenbanktreiber gefunden werden. Es muss daher ein Datenbanktreiber für PHP installiert werden.
 Die folgenden Datenbanksysteme werden unterstützt: $1
 
 Sofern ein gemeinschaftlich genutzter Server für das Hosting verwendet wird, muss der Hoster gefragt werden einen adäquaten Datenbanktreiber zu installieren.
@@ -3017,12 +3004,6 @@ Si tu web tiene un alto volumen de tráfico, te recomendamos leer acerca de  [ht
 	'config-unicode-update-warning' => "'''Warning''': La versión instalada del contenedor de normalización Unicode usa una versión anterior de la biblioteca del [http://site.icu-project.org/ proyecto ICU].
 Deberás [http://www.mediawiki.org/wiki/Unicode_normalization_considerations actualizar] si realmente deseas usar Unicode.",
 	'config-no-db' => 'No fue posible encontrar un controlador adecuado para la base de datos.',
-	'config-no-db-help' => 'Necesitará instalar un controlador de base de datos para PHP.
-Estos son los tipos de base de datos compatibles: $1.
-
-Si tu web está en un alojamiento compartido, solicita a tu proveedor la instalación de un controlador de base de datos ocmpatible.
-Si has compilado tú mismo(a) el PHP, reconfigúralo con un cliente de base de datos habilitado, por ejemplo mediante <code>./configure --with-mysql</code>.
-Si instalaste el PHP a partir de un paquete Debian o Ubuntu, entonces necesitarás instalar también el módulo php5-mysql.',
 	'config-no-fts3' => "'''Advertencia''': SQLite está compilado sin el [http://sqlite.org/fts3.html módulo FTS3]. Las funcionalidades de búsqueda no estarán disponibles en esta instalación.",
 	'config-register-globals' => "'''Advertencia: La opción de <code>[http://php.net/register_globals register_globals]</code> de PHP está habilitada.'''
 '''Desactívela si puede.'''
@@ -3395,12 +3376,6 @@ Voit asentaa MediaWikin.',
 Et voi asentaa MediaWikiä.',
 	'config-env-php' => 'PHP $1 on asennettu.',
 	'config-no-db' => 'Sopivaa tietokanta-ajuria ei löytynyt!',
-	'config-no-db-help' => 'Sinun täytyy asentaa tietokanta-ajuri PHP:lle.
-Seuraavat tietokantatyypit on tuettu: $1.
-
-Jos käytät jaettua sivutilaa, kysy palveluntarjoajalta, josko se voisi asentaa sopivan tietokanta-ajurin.
-Jos olet kääntänyt PHP:n itse, asenna se tietokantaohjelman kanssa, esimerkiksi käyttäen koodia <code>./configure --with-mysql</code>.
-Jos olet asentanut PHP:n Debian tai Ubuntu-paketista, sinun täytyy asentaa myös php5-mysql-moduuli.',
 	'config-safe-mode' => "'''Varoitus:''' PHP:n [http://www.php.net/features.safe-mode safe mode] -tila on aktiivinen.
 Se voi aiheuttaa ongelmia erityisesti tiedostojen tallentamisen ja matemaattisten kaavojen kanssa.",
 	'config-pcre' => 'PCRE-tukimoduuli puuttuu.
@@ -3563,12 +3538,6 @@ Si vous utilisez un site web très fréquenté, vous devriez lire ceci : [http:/
 	'config-unicode-update-warning' => "'''Attention''': La version installée du ''wrapper'' de normalisation Unicode utilise une vieille version de la [http://site.icu-project.org/ bibliothèque logicielle ''ICU Project''].
 Vous devriez faire une [http://www.mediawiki.org/wiki/Unicode_normalization_considerations mise à jour] (texte en anglais) si l'usage d'Unicode vous semble important.",
 	'config-no-db' => 'Impossible de trouver un pilote de base de données approprié !',
-	'config-no-db-help' => "Vous avez besoin d'installer un pilote de base de données pour PHP. 
-Les types de base de données suivants sont supportés: $1. 
-
-Si vous êtes en hébergement mutualisé, demandez à votre fournisseur d'hébergement pour installer un pilote de base de données appropriée. 
-Si vous avez compilé PHP vous-même, reconfigurez-le en activant un client de base de données, par exemple en utilisant <code>./configure --with-mysql</code>. 
-Si vous avez installé PHP à partir d'un paquet Debian ou Ubuntu, vous devez également installer le module php5-mysql.",
 	'config-no-fts3' => "'''Attention :''' SQLite est compilé sans le module [http://sqlite.org/fts3.html FTS3] ; les fonctions de recherche ne seront pas disponibles sur ce moteur.",
 	'config-register-globals' => "'''Attention : l'option <code>[http://php.net/register_globals register_globals]</code> de PHP est activée.'''
 '''Désactivez-la si vous le pouvez.'''
@@ -4067,12 +4036,6 @@ Se o seu sitio posúe un alto tráfico de visitantes, debería ler un chisco sob
 	'config-unicode-update-warning' => "'''Atención:''' A versión instalada da envoltura de normalización Unicode emprega unha versión vella da biblioteca [http://site.icu-project.org/ do proxecto ICU].
 Debería [http://www.mediawiki.org/wiki/Unicode_normalization_considerations actualizar] se o uso de Unicode é importante para vostede.",
 	'config-no-db' => 'Non se puido atopar un controlador axeitado para a base de datos!',
-	'config-no-db-help' => 'Debe instalar un controlador de base de datos para PHP.
-Os tipos de base de datos soportados son os seguintes: $1.
-
-Se está nun aloxamento compartido, pregunte ao seu provedor de hospedaxe para instalar un controlador de base de datos axeitado.
-Se compilou o PHP vostede mesmo, reconfigúreo activando un cliente de base de datos, por exemplo, usando <code>./configure --with-mysql</code>.
-Se instalou o PHP desde un paquete Debian ou Ubuntu, entón tamén necesita instalar o módulo php5-mysql.',
 	'config-no-fts3' => "'''Atención:''' O SQLite está compilado sen o [http://sqlite.org/fts3.html módulo FTS3]; as características de procura non estarán dispoñibles nesta instalación.",
 	'config-register-globals' => "'''Atención: A opción PHP <code>[http://php.net/register_globals register_globals]</code> está activada.'''
 '''Desactívea se pode.'''
@@ -4557,12 +4520,6 @@ Wänn Du ne Websyte mit ere große Bsuechrzahl bedrybsch, sottsch e weng ebis l�
 	'config-unicode-update-warning' => "'''Warnig:''' Di inschtalliert Version vum Unicode-Normalisierigswrapper verwändet e elteri Version vu dr Bibliothek vum [http://site.icu-project.org/ ICU-Projäkt].
 Du sottsch si [http://www.mediawiki.org/wiki/Unicode_normalization_considerations aktualisiere], wänn Dor d Verwändig vu Unicode wichtig isch.",
 	'config-no-db' => 'S isch kei adäquate Datebanktryyber gfunde wore!',
-	'config-no-db-help' => 'S mueß e Datebanktryyber fir PHP inschtalliert wäre.
-Die Datebanksyschtem wäre unterstitzt: $1
-
-Wänn Du ne gmeinschaftli gnutzte Server fir s Hosting bruchsch, muesch dr Hoster froge go ne adäquate Datebanktryyber inschtalliere.
-Wänn Du PHP sälber kumpiliert hesch, muesch s nej konfiguriere, dr Datebankclient mueß aktiviert wäre. Doderzue chasch zem Byschpel <code>./configure --with-mysql</code> uusfiere.
-Wänn Du PHP iber d Paketverwaltig vun ere Debian- oder Ubuntu-Inschtallation inschtalliert hesch, muesch s „php5-mysql“-Paket nooinschtalliere.',
 	'config-no-fts3' => "'''Warnig:''' SQLite isch ohni s [http://sqlite.org/fts3.html FTS3-Modul] kumpiliert wore, s stehn kei Suechfunktione z Verfiegig.",
 	'config-register-globals' => "'''Warnig: Dr Parameter <code>[http://php.net/register_globals register_globals]</code> vu PHP isch aktiviert.'''
 '''Är sott deaktiviert wäre, wänn des megli isch.'''
@@ -4694,12 +4651,6 @@ $1
 	'config-unicode-update-warning' => "'''אזהרה''': הגרסה המותקנת של מעטפת נרמול יוניקוד משתמשת בגרסה ישנה של הספרייה של [http://site.icu-project.org/ פרויקט ICU].
 כדאי [http://www.mediawiki.org/wiki/Unicode_normalization_considerations לעדכן] אם יש חשוב לכם הטיפול ביוניקוד.",
 	'config-no-db' => 'לא נמצא דרייבר מסד נתונים מתאים.',
-	'config-no-db-help' => 'יש להתקין דרייבר מסד נתונים ל־PHP.
-נתמכים הסוגים הבאים של מסדי נתונים: $1.
-
-אם אתם משתמשים באירוח משותף, בקשו מספק האירוח שלכם להתקין דרייבר מסד נתונים מתאים.
-אם קמפלתם את PHP בעצמכם, הגדירו אותו מחדש והפעילו את לקוח מסד נתונים (database client), למשל בעזרת <code>./configure --with-mysql</code>.
-אם התקנתם את PHP מחבילה של דביאן או אובונטו, יש להתקין את המודול php5-mysql.',
 	'config-no-fts3' => "'''אזהרה''': SQLite מקומפל ללא [http://sqlite.org/fts3.html מודול FTS]. יכולות חיפוש לא יהיו זמינות בהתקנה הזאת.",
 	'config-register-globals' => "'''אזהרה: האפשרות <code>[http://php.net/register_globals register_globals]</code> של PHP מופעלת.'''
 '''כבו אותה אם אתם יכולים.'''
@@ -5514,12 +5465,6 @@ azonban a MediaWikinek PHP $2, vagy újabb szükséges.',
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az Unicode normalizáláshoz szükséges [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el, helyette a lassú, PHP alapú implementáció lesz használva.
 Ha nagy látogatottságú oldalt üzemeltetsz, itt találhatsz további információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
 	'config-no-db' => 'Nem sikerült egyetlen használható adatbázismeghajtót sem találni.',
-	'config-no-db-help' => 'Telepítened kell egy adatbázis-meghajtót a PHP-hez.
-A következő adatbázistípusok támogatottak: $1.
-
-Ha megosztott tárhelyszolgáltatást használsz, kérd meg a szolgáltatódat, hogy telepítsen egy megfelelő adatbázis-meghajtót.
-Ha a PHP-t magad fordítottad, konfiguráld újra úgy, hogy engedélyezve legyen egy adatbáziskliens, pl. a <code>./configure --with-mysql</code> használatával.
-Ha a PHP-t Debian vagy Ubuntu csomaggal telepítetted, akkor szükséged lesz a php5-mysql modulra is.',
 	'config-no-fts3' => "'''Figyelmeztetés''': Az SQLite [http://sqlite.org/fts3.html FTS3 modul] nélkül lett fordítva, a keresési funkciók nem fognak működni ezen a rendszeren.",
 	'config-register-globals' => "'''Figyelmeztetés: A PHP <code>[http://php.net/register_globals register_globals]</code> beállítása engedélyezve van.'''
 '''Tiltsd le, ha van rá lehetőséged.'''
@@ -6005,11 +5950,10 @@ Nonobstante, MediaWiki require PHP $2 o plus recente.',
 Si tu sito ha un alte volumine de traffico, tu deberea informar te un poco super le [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalisation Unicode].",
 	'config-unicode-update-warning' => "'''Aviso''': Le version installate del bibliotheca inveloppante pro normalisation Unicode usa un version ancian del bibliotheca del [http://site.icu-project.org/ projecto ICU].
 Tu deberea [http://www.mediawiki.org/wiki/Unicode_normalization_considerations actualisar lo] si le uso de Unicode importa a te.",
-	'config-no-db' => 'Non poteva trovar un driver appropriate pro le base de datos!',
-	'config-no-db-help' => 'Tu debe installar un driver de base de datos pro PHP.
+	'config-no-db' => 'Non poteva trovar un driver appropriate pro le base de datos! Es necessari installar un driver de base de datos pro PHP.
 Le sequente typos de base de datos es supportate: $1.
 
-Si tu sito usa un servitor partite (shared hosting), demanda a tu providitor de installar un driver de base de datos appropriate.
+Si tu sito usa un servitor dividite (shared hosting), demanda a tu providitor de installar un driver de base de datos appropriate.
 Si tu compilava PHP tu mesme, reconfigura lo con un cliente de base de datos activate, per exemplo usante <code>./configure --with-mysql</code>.
 Si tu installava PHP ex un pacchetto Debian o Ubuntu, tu debe installar equalmente le modulo php5-mysql.',
 	'config-no-fts3' => "'''Attention''': SQLite es compilate sin [http://sqlite.org/fts3.html modulo FTS3]; functionalitate de recerca non essera disponibile in iste back-end.",
@@ -6519,11 +6463,10 @@ Namun, MediaWiki memerlukan PHP $2 atau lebih tinggi.',
 Jika Anda menjalankan situs berlalu lintas tinggi, Anda harus sedikit membaca [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalisasi Unicode].",
 	'config-unicode-update-warning' => "'''Peringatan''': Versi terinstal dari pembungkus normalisasi Unicode menggunakan versi lama pustaka [http://site.icu-project.org/ proyek ICU].
 Anda harus [http://www.mediawiki.org/wiki/Unicode_normalization_considerations memutakhirkannya] jika Anda ingin menggunakan Unicode.",
-	'config-no-db' => 'Tidak dapat menemukan pengandar basis data yang sesuai!',
-	'config-no-db-help' => 'Anda perlu menginstal pengandar basis data untuk PHP.
+	'config-no-db' => 'Pengandar basis data yang sesuai tidak ditemukan! Anda perlu menginstal pengandar basis data untuk PHP.
 Jenis basis data yang didukung: $1.
 
-Jika Anda menggunakan inang bersama, mintalah penyedia inang Anda untuk menginstal pengandar basis data yang cocok.
+Jika Anda menggunakan inang bersama, mintalah penyedia inang Anda untuk menginstal pengandar basis data yang sesuai.
 Jika Anda mengompilasi sendiri PHP, ubahlah konfigurasinya dengan mengaktifkan klien basis data, misalnya menggunakan <code>./configure --with-mysql</code>.
 Jika Anda menginstal PHP dari paket Debian atau Ubuntu, maka Anda juga perlu menginstal modul php5-mysql.',
 	'config-no-fts3' => "'''Peringatan''': SQLite dikompilasi tanpa [http://sqlite.org/fts3.html modul FTS3], fitur pencarian tidak akan tersedia pada konfigurasi ini.",
@@ -7047,12 +6990,6 @@ MediaWikiをインストール出来ません。',
 	'config-unicode-update-warning' => "'''警告'''：Unicode正規化ラッパーのインストールされているバージョンは、[http://site.icu-project.org/ ICUプロジェクト]のライブラリの古いバージョンを使用しています。
 Unicodeを少しでも利用する可能性があるなら、[http://www.mediawiki.org/wiki/Unicode_normalization_considerations 更新]する必要があります。",
 	'config-no-db' => '適切なデータベースドライバを見つけられませんでした！',
-	'config-no-db-help' => 'PHPのデータベースドライバーをインストールする必要があります。
-以下のデータベースの種類がサポートされます：$1。
-
-共有ホスト上の場合、ホスト元に適切なデータベースドライバをインストールするように依頼してください。
-PHPを自分自身でコンパイルした場合、<code>./configure --with-mysql</code>などを利用して、データベースクライアントを有効化する設定をしてください。
-DebianもしくはUbuntuパッケージからPHPをインストールした場合、php5-mysqlモジュールもインストールする必要があります。',
 	'config-no-fts3' => "'''警告'''：SQLiteは[http://sqlite.org/fts3.html FTS3]モジュール以外でコンパイルされており、検索機能はこのバックエンドで利用不可能になります。",
 	'config-register-globals' => "'''警告：PHPの<code>[http://php.net/register_globals register_globals]</code>オプションが有効になっています。'''
 '''可能なら無効化してください。'''
@@ -7547,12 +7484,6 @@ För jruuße Wikis met vill Metmaachere doht Üsch die Sigg övver et [http://ww
 	'config-unicode-update-warning' => "'''Opjepaß:''' Dat Projramm för der <i lang=\"en\">Unicode</i> zo normaliseere boud em Momang op en  ählter Version vun dä Bibliothek vum [http://site.icu-project.org/ ICU-Projäk] op.
 Doht di [http://www.mediawiki.org/wiki/Unicode_normalization_considerations op der neuste Shtand bränge], wann auf dat Wiki em Äänz <i lang=\"en\">Unicode</i> bruche sull.",
 	'config-no-db' => 'Mer kunnte kei zopaß Daatebangk-Driiverprojamm fenge.',
-	'config-no-db-help' => 'Mer bruche e Daatebangk-Driiverprojamm för PHP. Dat moß enjeresht wääde.
-Mer künne met heh dä Daatebangke ömjonn: $1.
-
-Wann De nit om eijene Rääshner bes, moß De Dinge <i lang="en">provider</i> bedde, dat hä Der ene zopaß Driiver enresht.
-Wann de PHP sellver övversaz häs, donn ene Zohjang för en Daatebangk enbenge, för e Beishpell met: <code  lang="en">./configure --with-mysql</code> op ene <i lang="en">command shell</i>.
-Wann De PHP uss enem <i lang="en">Debian</i> udder <i lang="en">Ubuntu</i> Pakätt enjeresht häs, moß De dann och noch et <code lang="en">php5-mysql</code> op Dinge Räschner bränge.',
 	'config-no-fts3' => "'''Opjepaß:''' De Projramme vum <i lang=\"en\">SQLite</i> sin der ohne et [http://sqlite.org/fts3.html FTS3-Modul] övversaz, dröm wääde de Funxjohne för et Söhke fähle.",
 	'config-register-globals' => "'''Opjepaß:''' dem PHP singe Schallder <code lang=\"en\">[http://php.net/register_globals register_globals]</code> es enjeschalldt.
 '''Donn dä ußmaache, wann De kann.'''
@@ -8037,8 +7968,15 @@ Dir kënnt MediaWiki installéieren.',
 	'config-env-bad' => 'Den Environnement gouf iwwerpréift.
 Dir kënnt MediWiki net installéieren.',
 	'config-env-php' => 'PHP $1 ass installéiert.',
+	'config-env-php-toolow' => 'PHP $1 ass installéiert.
+Awer MediaWiki brauch PHP $2 oder méi héich.',
 	'config-unicode-using-utf8' => "Fir d'Unicode-Normalisatioun gëtt dem Brion Vibber säin <code>utf8_normalize.so</code> benotzt.",
-	'config-no-db' => 'Et konnt kee passenden Datebank-Driver fonnt ginn!',
+	'config-no-db' => "Et konnt kee passenden Datebank-Driver fonnt ginn! Dir musst een Datebank-Driver fir PHP installéieren.
+Dës Datebank-Type ginn ënnerstëtzt: $1.
+
+Wann Dir op engem gesharte Server sidd, da frot Ären Hosting-Provider fir de passenden Datebank-Driver z'installéieren.
+Wann Dir PHP selwer compiléiert hutt, da reconfiguréiert en mat dem ageschalten Datebank-Client, zum Beispill an deem Dir <code>./configure --with-mysql</code> benotzt.
+Wann Dir PHP vun engem Debian oder Ubuntu Package aus installéiert hutt, da musst Dir och den php5-mysql Modul installéieren.",
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] ass installéiert',
 	'config-apc' => '[http://www.php.net/apc APC] ass installéiert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] ass installéiert',
@@ -8076,6 +8014,7 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-header-postgres' => 'PostgreSQL-Astellungen',
 	'config-header-sqlite' => 'SQLite-Astellungen',
 	'config-header-oracle' => 'Oracle-Astellungen',
+	'config-header-ibm_db2' => 'IBM DB2-Astellungen',
 	'config-invalid-db-type' => 'Net valabelen Datebank-Typ',
 	'config-missing-db-name' => 'Dir musst en Numm fir de Wäert "Numm vun der Datebank" uginn',
 	'config-missing-db-server-oracle' => 'Dir musst e Wäert fir "Datebank-TNS" uginn',
@@ -8089,6 +8028,7 @@ E gëtt fir den Numm vum SQLite Date-Fichier benotzt.',
 	'config-upgrade-done-no-regenerate' => "D'Aktualisatioun ass ofgeschloss.
 
 Dir kënnt elo [$1 ufänken Är Wiki ze benotzen]",
+	'config-regenerate' => 'LocalSettings.php regeneréieren →',
 	'config-db-web-account' => 'Datebankkont fir den Accès iwwer de Web',
 	'config-db-web-account-same' => 'Dee selwechte Kont wéi bei der Installatioun benotzen',
 	'config-db-web-create' => 'De Kont uleeë wann et e net scho gëtt',
@@ -8159,6 +8099,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-stats' => 'Initialisatioun vun de Statistiken',
 	'config-install-keys' => 'Generéiere vum Geheimschlëssel',
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
+	'config-help' => 'Hëllef',
 );
 
 /** Latvian (Latviešu)
@@ -8321,9 +8262,8 @@ $1
 Ако имате високопрометно мрежно место, тогаш ќе треба да прочитате повеќе за [http://www.mediawiki.org/wiki/Unicode_normalization_considerations уникодната нормализација].",
 	'config-unicode-update-warning' => "'''Предупредување''': Инсталираната верзија на обвивката за уникодна нормализација користи постара верзија на библиотеката на [http://site.icu-project.org/ проектот ICU].
 За да користите Уникод, ќе треба да направите [http://www.mediawiki.org/wiki/Unicode_normalization_considerations надградба].",
-	'config-no-db' => 'Не можев да пронајдам соодветен двигател за базата на податоци!',
-	'config-no-db-help' => 'Ќе треба да инсталирате двигател за базата на податоци за PHP.
-Поддржани се следниве типови на бази: $1.
+	'config-no-db' => 'Не можев да пронајдам соодветен двигател за базата на податоци! Ќе треба да инсталирате двигател за базата на податоци за PHP.
+Поддржани се следниве типови на бази $1.
 
 Ако сте на заедничко (споделено) вдомување, побарајте му на вдомителот да инсталира соодветен двигател за базата.
 Ако вие самите го составивте ова PHP, сменете ги поставките така што ќе овозможите клиент на базата - на пр. со кодот <code>./configure --with-mysql</code>.
@@ -8902,6 +8842,7 @@ $messages['mn'] = array(
  */
 $messages['ms'] = array(
 	'config-page-language' => 'Bahasa',
+	'config-page-install' => 'Pasang',
 );
 
 /** Erzya (Эрзянь)
@@ -9011,8 +8952,8 @@ MediaWiki heeft PHP $2 of hoger nodig om correct te kunnen werken.',
 Als u MediaWiki voor een website met veel verkeer installeert, lees u dan in over [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-normalisatie].",
 	'config-unicode-update-warning' => "'''Waarschuwing''': De geïnstalleerde versie van de Unicode-normalisatiewrapper maakt gebruik van een oudere versie van [http://site.icu-project.org/ de bibliotheek van het ICU-project].
 U moet [http://www.mediawiki.org/wiki/Unicode_normalization_considerations bijwerken] als Unicode voor u van belang is.",
-	'config-no-db' => 'Er kon geen geschikte databasedriver geladen worden!',
-	'config-no-db-help' => 'U moet een databasedriver installeren voor PHP.
+	'config-no-db' => 'Het was niet mogelijk een geschikte databasedriver te vinden voor PHP.
+U moet een databasedriver installeren voor PHP.
 De volgende databases worden ondersteund: $1.
 
 Als u op een gedeelde omgeving zit, vraag dan aan uw hostingprovider een geschikte databasedriver te installeren.
@@ -9557,17 +9498,16 @@ Du kan installere MediaWiki.',
 MediaWiki krever imidlertid PHP $2 eller høyere.',
 	'config-unicode-using-utf8' => 'Bruker Brion Vibbers utf8_normalize.so for Unicode-normalisering.',
 	'config-unicode-using-intl' => 'Bruker [http://pecl.php.net/intl intl PECL-utvidelsen] for Unicode-normalisering.',
-	'config-unicode-pure-php-warning' => "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen.
-Om du kjører et høy trafikksnettsted bør du lese litt om [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-normalisering].",
+	'config-unicode-pure-php-warning' => "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen, faller tilbake til en langsommere ren-PHP-implementasjon.
+Om du kjører et nettsted med høy trafikk bør du lese litt om [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-normalisering].",
 	'config-unicode-update-warning' => "'''Advarsel''': Den installerte versjonen av Unicode-normalisereren bruker en eldre versjon av [http://site.icu-project.org/ ICU-prosjektets] bibliotek.
 Du bør [http://www.mediawiki.org/wiki/Unicode_normalization_considerations oppgradere] om du er bekymret for å bruke Unicode.",
-	'config-no-db' => 'Fant ikke en passende databasedriver!',
-	'config-no-db-help' => 'Du må installere en databasedriver for PHP.
-Følgende databasetyper er støttet: $1.
+	'config-no-db' => 'Fant ikke en passende databasedriver! Du må installere en databasedriver for PHP.
+Følgende databasetyper er støttet: $1
 
-Om du er på delt tjener, spør din tjenerleverandør om å installere en passende databasedriver.
+Om du er på delt vertsskap, spør din vertsleverandør om å installere en passende databasedriver.
 Om du kompilerte PHP selv, rekonfigirer den med en aktivert databaseklient, for eksempel ved å bruke <code>./configure --with-mysql</code>.
-Om du installerte PHP fra en Debian eller Ubuntu-pakke må du også installere modulen php5-mysql.',
+Om du installerte PHP fra en Debian- eller Ubuntu-pakke må du også installere modulen php5-mysql.',
 	'config-no-fts3' => "'''Advarsel''': SQLite er kompilert uten [http://sqlite.org/fts3.html FTS3-modulen], søkefunksjoner vil ikke være tilgjengelig på dette bakstykket.",
 	'config-register-globals' => "'''Advarsel: PHPs <code>[http://php.net/register_globals register_globals]</code>-alternativ er aktivert.'''
 '''Deaktiver det om du kan.'''
@@ -9591,6 +9531,8 @@ MediaWiki krever funksjonene i denne modulen og vil ikke virke i denne konfigura
 Hvis du kjører Mandrak, installer pakken php-xml.',
 	'config-pcre' => 'PCRE-støttemodulen ser ut til å mangle.
 MediaWiki krever funksjonene for de Perl-kompatible regulære uttrykkene for å virke.',
+	'config-pcre-no-utf8' => "'''Fatal''': PHPs PCRE modul ser ut til å være kompilert uten PCRE_UTF8-støtte.
+MediaWiki krever UTF-8-støtte for å fungere riktig.",
 	'config-memory-raised' => 'PHPs <code>memory_limit</code> er $1, økt til $2.',
 	'config-memory-bad' => "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.
 Dette er sannsynligvis for lavt.
@@ -9612,6 +9554,9 @@ Bildeminiatyrisering vil være deaktivert.',
 Installasjon avbrutt.",
 	'config-uploads-not-safe' => "'''Advarsel:''' Din standardmappe for opplastinger <code>$1</code> er sårbar for kjøring av vilkårlige skript.
 Selv om MediaWiki sjekker alle opplastede filer for sikkerhetstrusler er det sterkt anbefalt å [http://www.mediawiki.org/wiki/Manual:Security#Upload_security lukke denne sikkerhetssårbarheten] før du aktiverer opplastinger.",
+	'config-using531' => 'MediaWiki kan ikke brukes med PHP $1 på grunn av en feil med referanseparametere til <code>__call()</code>.
+Oppgrader til PHP 5.3.2 eller høyere, eller nedgrader til PHP 5.3.0 for å løse dette.
+Installasjonen avbrutt.',
 	'config-db-type' => 'Databasetype:',
 	'config-db-host' => 'Databasevert:',
 	'config-db-host-help' => 'Hvis databasetjeneren er på en annen tjener, skriv inn vertsnavnet eller IP-adressen her.
@@ -9624,13 +9569,19 @@ Hvis du installerer på en Windowstjener og bruker MySQL kan det hende at «loca
 	'config-db-wiki-settings' => 'Identifiser denne wikien',
 	'config-db-name' => 'Databasenavn:',
 	'config-db-name-help' => 'Velg et navn som identifiserer wikien din.
-Det bør ikke inneholde mellomrom eller bindestreker.
+Det bør ikke inneholde mellomrom.
 
 Hvis du bruker en delt nettvert vil verten din enten gi deg et spesifikt databasenavn å bruke, eller la deg opprette databaser via kontrollpanelet.',
 	'config-db-name-oracle' => 'Databaseskjema:',
 	'config-db-install-account' => 'Brukerkonto for installasjon',
 	'config-db-username' => 'Databasebrukernavn:',
 	'config-db-password' => 'Databasepassord:',
+	'config-db-password-empty' => 'Skriv inn et passord for den nye databasebrukeren: $1.
+Det er mulig å opprette brukere uten passord, men dette er ikke sikkert.',
+	'config-db-install-username' => 'Skriv inn brukernavnet som vil bli brukt til å koble til databasen under installasjonsprosessen.
+Dette er ikke brukernavnet på MediaWiki-kontoen; dette er brukernavnet for databasen din.',
+	'config-db-install-password' => 'Skriv inn passordet som vil bli brukt til å koble til databasen under installasjonsprosessen.
+Dette er ikke passordet på MediaWiki-kontoen; dette er passordet for databasen din.',
 	'config-db-install-help' => 'Skriv inn brukernavnet og passordet som vil bli brukt for å koble til databasen under installasjonsprosessen.',
 	'config-db-account-lock' => 'Bruk det samme brukernavnet og passordet under normal drift',
 	'config-db-wiki-account' => 'Brukerkonto for normal drift',
@@ -9638,7 +9589,7 @@ Hvis du bruker en delt nettvert vil verten din enten gi deg et spesifikt databas
 Hvis kontoen ikke finnes, og installasjonskontoen har tilstrekkelige privilegier, vil denne brukerkontoen bli opprettet med et minimum av privilegier, tilstrekkelig for å operere wikien.',
 	'config-db-prefix' => 'Databasetabellprefiks:',
 	'config-db-prefix-help' => 'Hvis du trenger å dele en database mellom flere wikier, eller mellom MediaWiki og andre nettapplikasjoner, kan du velge å legge til et prefiks til alle tabellnavnene for å unngå konflikter.
-Ikke bruk mellomrom eller bindestreker.
+Ikke bruk mellomrom.
 
 Dette feltet er vanligvis tomt.',
 	'config-db-charset' => 'Databasetegnsett',
@@ -9654,8 +9605,8 @@ men det vil ikke la deg lagre tegn over «[http://en.wikipedia.org/wiki/Mapping_
 	'config-mysql-old' => 'MySQL $1 eller senere kreves, du har $2.',
 	'config-db-port' => 'Databaseport:',
 	'config-db-schema' => 'Skjema for MediaWiki',
-	'config-db-schema-help' => 'Ovennevnte skjema er som regel riktig.
-Bare endre dem hvis du vet at du trenger det.',
+	'config-db-schema-help' => 'Dette skjemaet er som regel riktig.
+Bare endre det hvis du vet at du trenger det.',
 	'config-sqlite-dir' => 'SQLite datamappe:',
 	'config-sqlite-dir-help' => "SQLite lagrer alle data i en enkelt fil.
 
@@ -9672,21 +9623,25 @@ Vurder å plassere databasen et helt annet sted, for eksempel i <code>/var/lib/m
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki støtter følgende databasesystem:
 
 $1
 
 Hvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg instruksjonene det er lenket til over for å aktivere støtte.',
 	'config-support-mysql' => '* $1 er det primære målet for MediaWiki og er best støttet ([http://www.php.net/manual/en/mysql.installation.php hvordan kompilere PHP med MySQL-støtte])',
-	'config-support-postgres' => '* $1 er et populært åpen kildekode-databasesystem som er et alternativ til MySQL ([http://www.php.net/manual/en/pgsql.installation.php hvordan kompilere PHP med PostgreSQL-støtte])',
+	'config-support-postgres' => '* $1 er et populært åpen kildekode-databasesystem som er et alternativ til MySQL ([http://www.php.net/manual/en/pgsql.installation.php hvordan kompilere PHP med PostgreSQL-støtte]). Det kan være noen små utestående feil og det anbefales ikke for bruk i et produksjonsmiljø.',
 	'config-support-sqlite' => '* $1 er et lettvekts-databasesystem som er veldig godt støttet. ([http://www.php.net/manual/en/pdo.installation.php hvordan kompilere PHP med SQLite-støtte], bruker PDO)',
 	'config-support-oracle' => '* $1 er en kommersiell bedriftsdatabase. ([http://www.php.net/manual/en/oci8.installation.php Hvordan kompilere PHP med OCI8-støtte])',
+	'config-support-ibm_db2' => '* $1 er en kommersiell bedriftsdatabase.',
 	'config-header-mysql' => 'MySQL-innstillinger',
 	'config-header-postgres' => 'PostgreSQL-innstillinger',
 	'config-header-sqlite' => 'SQLite-innstillinger',
 	'config-header-oracle' => 'Oracle-innstillinger',
+	'config-header-ibm_db2' => 'IBM DB2-innstillinger',
 	'config-invalid-db-type' => 'Ugyldig databasetype',
 	'config-missing-db-name' => 'Du må skrive inn en verdi for «Databasenavn»',
+	'config-missing-db-host' => 'Du må skrive inn en verdi for «Databasevert»',
 	'config-missing-db-server-oracle' => 'Du må skrive inn en verdi for «Database TNS»',
 	'config-invalid-db-server-oracle' => 'Ugyldig database-TNS «$1».
 Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_) og punktum (.).',
@@ -9699,6 +9654,8 @@ Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreke
 Sjekk verten, brukernavnet og passordet nedenfor og prøv igjen.',
 	'config-invalid-schema' => 'Ugyldig skjema for MediaWiki «$1».
 Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
+	'config-db-sys-create-oracle' => 'Installasjonsprogrammet støtter kun bruk av en SYSDBA-konto for opprettelse av en ny konto.',
+	'config-db-sys-user-exists-oracle' => 'Brukerkontoen «$1» finnes allerede. SYSDBA kan kun brukes for oppretting av nye kontoer!',
 	'config-postgres-old' => 'PostgreSQL $1 eller senere kreves, du har $2.',
 	'config-sqlite-name-help' => 'Velg et navn som identifiserer wikien din.
 Ikke bruk mellomrom eller bindestreker.
@@ -9740,6 +9697,9 @@ Du kan nå [$1 begynne å bruke wikien din].
 
 Hvis du ønsker å regenerere <code>LocalSettings.php</code>-filen din, klikk på knappen nedenfor.
 Dette er '''ikke anbefalt''' med mindre du har problemer med wikien din.",
+	'config-upgrade-done-no-regenerate' => 'Oppgradering fullført.
+
+Du kan nå [$1 begynne å bruke wikien din].',
 	'config-regenerate' => 'Regenerer LocalSettings.php →',
 	'config-show-table-status' => 'SHOW TABLE STATUS etterspørselen mislyktes!',
 	'config-unknown-collation' => "'''Advarsel:''' Databasen bruker en ukjent sortering.",
@@ -9764,6 +9724,7 @@ Dette er mer effektivt enn MySQLs UTF-8 modus og tillater deg å bruke hele spek
 
 I '''UTF-8 mode''' vil MySQL vite hvilket tegnsett dataene dine er i og kan presentere og konvertere det på en riktig måte,
 men det vil ikke la deg lagre tegn over «[http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes the Basic Multilingual Plane]».",
+	'config-ibm_db2-low-db-pagesize' => "DB2-databasen din har et standard tabellområde med en utilstrekkelig pagesize. Pagesize må være '''32K''' eller større.",
 	'config-site-name' => 'Navn på wiki:',
 	'config-site-name-help' => 'Dette vil vises i tittellinjen i nettleseren og diverse andre steder.',
 	'config-site-name-blank' => 'Skriv inn et nettstedsnavn.',
@@ -9777,6 +9738,8 @@ Alle sidetitler i dette navnerommet starter med et gitt prefiks som du kan angi 
 Tradisjonelt er dette prefikset avledet fra navnet på wikien, men det kan ikke innholde punkttegn som «#» eller «:».",
 	'config-ns-invalid' => 'Det angitte navnerommet «<nowiki>$1</nowiki>» er ugyldig.
 Angi et annet prosjektnavnerom.',
+	'config-ns-conflict' => 'Det angitte navnerommet «<nowiki>$1</nowiki>» er i konflikt med et standard MediaWiki-navnerom.
+Angi et annet prosjekt-navnerom.',
 	'config-admin-box' => 'Administratorkonto',
 	'config-admin-name' => 'Ditt navn:',
 	'config-admin-password' => 'Passord:',
@@ -9790,9 +9753,10 @@ Angi et annet brukernavn.',
 	'config-admin-password-same' => 'Passordet skal ikke være det samme som brukernavnet.',
 	'config-admin-password-mismatch' => 'De to passordene du skrev inn samsvarte ikke.',
 	'config-admin-email' => 'E-postadresse:',
-	'config-admin-email-help' => 'Skriv inn en e-postadresse her for at du skal kunne motta e-post fra andre brukere på wikien, tilbakestille passordet ditt, og bli varslet om endringer på sider på overvåkningslisten din.',
+	'config-admin-email-help' => 'Skriv inn en e-postadresse her for at du skal kunne motta e-post fra andre brukere på wikien, tilbakestille passordet ditt, og bli varslet om endringer på sider på overvåkningslisten din. Du kan la dette feltet stå tomt.',
 	'config-admin-error-user' => 'Intern feil ved opprettelse av en admin med navnet «<nowiki>$1</nowiki>».',
 	'config-admin-error-password' => 'Intern feil ved opprettelse av passord for admin «<nowiki>$1</nowiki>»: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Du har skrevet inn en ugyldig e-postadresse.',
 	'config-subscribe' => 'Abonner på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlisten for utgivelsesannonseringer].',
 	'config-subscribe-help' => 'Dette er en lav-volums e-postliste brukt til utgivelsesannonseringer, herunder viktige sikkerhetsannonseringer.
 Du bør abonnere på den og oppdatere MediaWikiinstallasjonen din når nye versjoner kommer ut.',
@@ -9821,6 +9785,7 @@ Mer komplekse konfigurasjoner av brukerrettigheter er tilgjengelig etter install
 	'config-license' => 'Opphavsrett og lisens:',
 	'config-license-cc-by-sa' => 'Creative Commons Navngivelse Del på samme vilkår',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Navngivelse Ikke-kommersiell Del på samme vilkår',
+	'config-license-cc-0' => 'Creative Commons Zero',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 eller nyere',
 	'config-license-pd' => 'Offentlig rom',
@@ -9872,7 +9837,11 @@ For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man 
 	'config-install-extensions' => 'Inkludert utvidelser',
 	'config-install-database' => 'Setter opp database',
 	'config-install-user' => 'Oppretter databasebruker',
+	'config-install-user-alreadyexists' => 'Brukeren «$1» finnes allerede',
+	'config-install-user-create-failed' => 'Opprettelse av brukeren «$1» mislyktes: $2',
+	'config-install-user-grant-failed' => 'Å gi tillatelse til brukeren «$1» mislyktes: $2',
 	'config-install-tables' => 'Oppretter tabeller',
+	'config-install-mainpage-failed' => 'Kunne ikke sette inn hovedside: $1',
 	'config-help' => 'hjelp',
 );
 
@@ -9966,13 +9935,6 @@ Jeśli prowadzisz stronę o dużym natężeniu ruchu, powinieneś zapoznać się
 	'config-unicode-update-warning' => "'''Uwaga''' – zainstalowana wersja normalizacji Unicode korzysta z nieaktualnej biblioteki [http://site.icu-project.org/ projektu ICU].
 Powinieneś [http://www.mediawiki.org/wiki/Unicode_normalization_considerations zrobić aktualizację] jeśli chcesz korzystać w pełni z Unicode.",
 	'config-no-db' => 'Nie można odnaleźć właściwego sterownika bazy danych!',
-	'config-no-db-help' => 'Należy zainstalować sterownik bazy danych dla PHP.
-Obsługiwane są następujące typy baz danych: $1. 
-
-Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych. 
-Jeśli skompilowałeś PHP samodzielnie, skonfiguruj je ponownie z włączonym klientem bazy danych, na przykład za pomocą polecenia
-<code>./configure --with-mysql</code>. 
-Jeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować moduł php5-mysql.',
 	'config-no-fts3' => "'''Uwaga''' – SQLite został skompilowany bez [http://sqlite.org/fts3.html modułu FTS3] – funkcje wyszukiwania nie będą dostępne.",
 	'config-register-globals' => "'''Uwaga –  w konfiguracji PHP włączona jest opcja <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Jeśli możesz, wyłącz ją.'''
@@ -10294,7 +10256,12 @@ A dovrìa avèj arseivù <doclink href=Copying>na còpia ëd la licensa pùblica
 	'config-sidebar' => "* [http://www.mediawiki.org Intrada MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Guida dl'Utent]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida dl'Aministrator]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Soens an ciamo]",
+* [http://www.mediawiki.org/wiki/Manual:FAQ Soens an ciamo]
+----
+* <doclink href=Readme>Les-me</doclink>
+* <doclink href=ReleaseNotes>Nòte ëd Release</doclink>
+* <doclink href=Copying>Copié</doclink>
+* <doclink href=UpgradeDoc>Agiorné</doclink>",
 	'config-env-good' => "L'ambient a l'é stàit controlà.
 It peule instalé MediaWiki.",
 	'config-env-bad' => "L'ambient a l'é stàit controlà.
@@ -10307,12 +10274,6 @@ S'a gestiss un sit a àut tràfich, a dovrìa lese cheicòs an sla [http://www.m
 	'config-unicode-update-warning' => "'''Avis:''' La version instalà dlë spassiador ëd normalisassion Unicode a deuvra na version veja ëd la librarìa dël [http://site.icu-project.org/ proget ICU].
 A dovrìa fé n'[http://www.mediawiki.org/wiki/Unicode_normalization_considerations agiornament] s'a l'é anteressà a dovré Unicode.",
 	'config-no-db' => 'Impossìbil tové un pilòta ëd base ëd dàit bon!',
-	'config-no-db-help' => "A dev instalé un pilòta ëd base ëd dàit për PHP.
-A son mantnùe le sòrt ëd base ëd dàit sì-dapress: $1.
-
-S'a l'é ospità ëd fasson partagià, ch'a ciama al fornidor d'ospitalità d'instalé un pilòta ëd base ëd dàit adat.
-S'a l'ha compilà chiel-midem PHP, ch'a lo configura torna con un client ëd base ëd dàit abilità, për esempi an dovrand <code>./configure --with-mysql</code>.
-S'a l'ha instalà PHP da un pachet Debian o Ubuntu, antlora a dev ëdcò instalé ël mòdul php5-mysql.",
 	'config-no-fts3' => "'''Avis''': SQLite a l'é compilà sensa ël mòdul [http://sqlite.org/fts3.html FTS3], le funsion d'arserca a saran pa disponìbij su cost motor.",
 	'config-register-globals' => "'''Avis: L'opsion <code>[http://php.net/register_globals register_globals]</code> ëd PHP a l'é abilità.'''
 '''Ch'a la disabìlita s'a peul.'''
@@ -10794,12 +10755,6 @@ Se o seu site tem alto volume de tráfego, devia informar-se um pouco sobre a [h
 	'config-unicode-update-warning' => "'''Aviso''': A versão instalada do wrapper de normalização Unicode usa uma versão mais antiga da biblioteca do [http://site.icu-project.org/ projecto ICU].
 Devia [http://www.mediawiki.org/wiki/Unicode_normalization_considerations actualizá-la] se tem quaisquer preocupações sobre o uso do Unicode.",
 	'config-no-db' => "Não foi possível encontrar um controlador ''(driver)'' apropriado para a base de dados!",
-	'config-no-db-help' => "Precisa de instalar um controlador ''(driver)'' de base de dados para o PHP.
-São suportadas as seguintes bases de dados: $1.
-
-Se o seu site está alojado num servidor partilhado, peça ao fornecedor do alojamento para instalar um controlador de base de dados apropriado.
-Se fez a compilação do PHP você mesmo, reconfigure-o com um cliente de base de dados activado, usando, por exemplo, <code>./configure --with-mysql</code>.
-Se instalou o PHP a partir de um pacote Debian ou Ubuntu, então precisa de instalar também o módulo php5-mysql.",
 	'config-no-fts3' => "'''Aviso''': O SQLite foi compilado sem o módulo [http://sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
 	'config-register-globals' => "'''Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está activada.'''
 '''Desactive-a, se puder.'''
@@ -11292,12 +11247,6 @@ Você não pode instalar o MediaWiki.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode.
 Se o seu site tem um alto volume de tráfego, devia informar-se um pouco sobre a [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalização Unicode].",
 	'config-no-db' => 'Não foi possível encontrar um driver de banco de dados adequado!',
-	'config-no-db-help' => 'Você precisa instalar um driver de banco de dados para PHP.
-Os seguintes tipos de banco de dados são suportados: $1.
-
-Se você estiver em hospedagem compartilhada, pergunte ao seu provedor de hospedagem para instalar um driver de banco de dados apropriado.
-Se você compilou o PHP você mesmo, reconfigurá-lo com um cliente de banco de dados habilitado, por exemplo, usando <code>./configure --with-mysql</code>.
-Se você instalou o PHP de um Debian ou Ubuntu package, então você também precisa instalar o módulo php5-mysql.',
 	'config-no-fts3' => "' ' 'Aviso' ' ': O SQLite foi compilado sem o módulo [http://sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
 	'config-register-globals' => "' ' 'Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está ativada.'''
 ' ' 'Desative-a, se puder.'''
@@ -11434,9 +11383,8 @@ MediaWiki распространяется в надежде, что она бу
 Если ваш сайт работает под высокой нагрузкой, вам следует больше узнать о [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормализации Юникода].",
 	'config-unicode-update-warning' => "'''Предупреждение''': установленная версия обёртки нормализации Юникода использует старую версию библиотеки [http://site.icu-project.org/ проекта ICU].
 Вы должны [http://www.mediawiki.org/wiki/Unicode_normalization_considerations обновить версию], если хотите полноценно использовать Юникод.",
-	'config-no-db' => 'Не найдено поддержки баз данных!',
-	'config-no-db-help' => 'Вам необходимо установить драйвера базы данных для PHP. 
-Поддерживаются следующие типы баз данных: $1. 
+	'config-no-db' => 'Не найдено поддержки баз данных! Вам необходимо установить драйвера базы данных для PHP. 
+Поддерживаются следующие базы данных: $1. 
 
 Если вы используете виртуальный хостинг, обратитесь к своему хостинг-провайдеру с просьбой установить подходящий драйвер базы данных. 
 Если вы скомпилировали PHP сами, сконфигурируйте его снова с включенным клиентом базы данных, например, с помощью <code>./configure --with-mysql</code>. 
@@ -12535,7 +12483,11 @@ $messages['uk'] = array(
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
 	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду. 
 Якщо ваш сайт має високий трафік, вам варто почитати про [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормалізацію Юнікоду].",
-	'config-no-db' => 'Не вдалося знайти відповідний драйвер бази даних!',
+	'config-no-db' => 'Не вдалося знайти відповідний драйвер бази даних! Вам необхідно встановити драйвер бази даних для PHP. Підтримуються такі типи баз даних: $1.
+
+Якщо ви користуєтесь віртуальним хостингом, попросіть вашого хостинг-провайдера інсталювати відповідний драйвер бази даних.
+Якщо ви скомпілювали PHP самостійно, переналаштуйте його з включенням клієнта бази даних, наприклад за допомогою <code>./configure --with-mysql</code>.
+Якщо установлено PHP з пакетів Debian або Ubuntu, тоді ви також повинні встановити php5-mysql модуль.',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] встановлено',
 	'config-apc' => '[http://www.php.net/apc APC] встановлено',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] встановлено',
@@ -12653,11 +12605,6 @@ $1',
 	'config-unicode-pure-php-warning' => "'''警告'''：[http://pecl.php.net/intl intl PECL扩展]无法处理Unicode正常化，故只能退而采用运行较慢的纯PHP实现的方法。如果您运行着一个高流量的站点，请参阅[http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode正常化]一文。",
 	'config-unicode-update-warning' => "'''警告'''：Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。如果您需要使用Unicode，请将其[http://www.mediawiki.org/wiki/Unicode_normalization_considerations 升级]。",
 	'config-no-db' => '找不到合适的数据库驱动！',
-	'config-no-db-help' => '您需要为PHP安装数据库驱动。MediaWiki支持下列数据库类型：$1
-
-如果您正在使用共享主机，请让您的主机提供商为您安装适当的数据库驱动。
-如果PHP由您自行编译，请将其重新配置以启用数据库客户端，例如使用<code>./configure --with-mysql</code>。
-如果PHP是您通过Debian或Ubuntu包安装的，那么您还需要安装php5-mysql模块。',
 	'config-no-fts3' => "'''警告'''：已编译的SQLite不包含[http://sqlite.org/fts3.html FTS3模块]，后台搜索功能将不可用。",
 	'config-register-globals' => "'''警告：PHP的<code>[http://php.net/register_globals register_globals]</code>选项被启用。请尽量禁用该功能，'''虽然不会影响MediaWiki的运行，但您的服务器会被暴露给潜在的安全漏洞。",
 	'config-magic-quotes-runtime' => "'''致命错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]被启用！'''

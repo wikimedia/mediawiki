@@ -710,8 +710,6 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'columns'                     => 'Colunnas:',
 'searchresultshead'           => 'Settaggio delle preferenze per la ricerca',
 'resultsperpage'              => 'Risultati da visualizzare per pagina',
-'contextlines'                => 'Righe di testo da mostrare per ciascun risultato',
-'contextchars'                => 'Caratteri per linea',
 'stub-threshold-disabled'     => 'Disativadu',
 'recentchangescount'          => 'Nùmeru de acontzos de amostare pro definidura:',
 'savedprefs'                  => 'Is preferèntzias tuas sunt stadas sarbadas.',

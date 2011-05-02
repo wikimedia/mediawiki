@@ -1143,8 +1143,6 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'columns'                       => 'Cołone:',
 'searchresultshead'             => 'Riserca',
 'resultsperpage'                => 'Nùmaro de risultati par pagina:',
-'contextlines'                  => 'Righe de testo par ciascun risultato',
-'contextchars'                  => 'Caratteri par linea:',
 'stub-threshold'                => 'Valor minimo par i <a href="#" class="stub">colegamenti ai stub</a>:',
 'stub-threshold-disabled'       => 'Disativà',
 'recentchangesdays'             => 'Nùmaro de giòrni da mostrar ne le ultime modifiche:',

@@ -1356,8 +1356,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'columns'                       => 'Kolumnoj:',
 'searchresultshead'             => 'Serĉi',
 'resultsperpage'                => 'Montri trovitajn po',
-'contextlines'                  => 'Montri liniojn el paĝoj po:',
-'contextchars'                  => 'Montri literojn el linioj ĝis po:',
 'stub-threshold'                => 'Ago-sojlo por formatigo de <a href="#" class="stub">ligil-ĝermo (anglalingve: "stub link")</a> (bitikoj):',
 'stub-threshold-disabled'       => 'Malebligita',
 'recentchangesdays'             => 'Tagoj montrendaj en lastaj ŝanĝoj:',

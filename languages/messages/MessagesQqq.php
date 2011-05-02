@@ -1316,8 +1316,6 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 
 {{Identical|Search}}',
 'resultsperpage'                => "Option on the 'Search options' tab of [[Special:Preferences]]",
-'contextlines'                  => "Option on the 'Search options' tab of [[Special:Preferences]]",
-'contextchars'                  => 'Used in Preferences/Search tab',
 'stub-threshold'                => 'Used in [[Special:Preferences]], tab "Misc".',
 'stub-threshold-disabled'       => 'Used in [[Special:Preferences]].',
 'recentchangesdays'             => 'Used in [[Special:Preferences]], tab "Recent changes".',

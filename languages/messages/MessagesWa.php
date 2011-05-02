@@ -660,8 +660,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'columns'               => 'Colones',
 'searchresultshead'     => 'Håynaedje des rzultats di cweraedje',
 'resultsperpage'        => 'Nombe di responses a håyner so ene pådje',
-'contextlines'          => 'Nombe di royes a håyner po ene response',
-'contextchars'          => 'Nombe di caracteres di contecse pa roye',
 'recentchangesdays'     => 'Nombe di djoûs po les dierins candjmints:',
 'recentchangescount'    => 'Nombe di tites dins les dierins candjmints',
 'savedprefs'            => 'Vos preferinces ont stî schapêyes.',

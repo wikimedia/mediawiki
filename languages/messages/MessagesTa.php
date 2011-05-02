@@ -1008,8 +1008,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'columns'                       => 'நிரல்கள்',
 'searchresultshead'             => 'தேடுக',
 'resultsperpage'                => 'ஒரு பக்கத்துக்குக் காட்டப்படவேண்டிய அடிகள்',
-'contextlines'                  => 'அடித்தலொன்றுக்குக் காட்டப்பட வேண்டிய வரிகள்:',
-'contextchars'                  => 'ஒரு வரிக்கான இடம்சார் எழுத்துக்கள்',
 'stub-threshold'                => '<a href="#" class="stub">stub link</a> சீர்படுத்தலுக்கான எல்லை (பைட்டுகள்):',
 'stub-threshold-disabled'       => 'செயலிழக்கம் செய்யப்பட்டுள்ளது',
 'recentchangesdays'             => 'அண்மைய மாற்றங்களில் காட்ட வேண்டிய நாட்களின் எண்ணிக்கை:',

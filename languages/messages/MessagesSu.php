@@ -1086,8 +1086,6 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'columns'                       => 'Kolom',
 'searchresultshead'             => 'Aturan hasil néang',
 'resultsperpage'                => 'Hasil nu ditémbongkeun per kaca',
-'contextlines'                  => 'Jumlah baris sakali némbongan',
-'contextchars'                  => 'Karakter kontéks per baris',
 'stub-threshold'                => 'Wates ambang pikeun format <a href="#" class="stub">tumbu taratas</a> (bit):',
 'stub-threshold-disabled'       => 'Tumpur',
 'recentchangesdays'             => 'Jumlah poé nu dipidangkeun dina Nu anyar robah:',

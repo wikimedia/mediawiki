@@ -1299,8 +1299,6 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'columns'                       => 'Sarakkeita',
 'searchresultshead'             => 'Haku',
 'resultsperpage'                => 'Tuloksia sivua kohti',
-'contextlines'                  => 'Rivien määrä tulosta kohti',
-'contextchars'                  => 'Sisällön merkkien määrä riviä kohden',
 'stub-threshold'                => '<a href="#" class="stub">Tynkäsivun</a> osoituskynnys',
 'stub-threshold-disabled'       => 'Ei käytössä',
 'recentchangesdays'             => 'Näytettävien päivien määrä tuoreissa muutoksissa',

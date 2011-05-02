@@ -995,7 +995,6 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'columns'                       => 'Kenu :',
 'searchresultshead'             => 'Seet',
 'resultsperpage'                => 'Limu ngérte ci xët wu ne :',
-'contextlines'                  => 'Limu rëdd ci tont wu ne :',
 'recentchangesdays'             => 'Limu bes yi nga koy wone ci coppite yu mujj yi :',
 'recentchangesdays-max'         => '(bi ëpp $1 {{PLURAL:$1|bés|bés}})',
 'recentchangescount'            => 'Limu coppite yi ngay wone ci coppite yu mujj yi cig wàccaale:',

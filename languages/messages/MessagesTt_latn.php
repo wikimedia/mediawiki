@@ -1009,8 +1009,6 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'columns'                       => 'Bağanalar:',
 'searchresultshead'             => 'Ezläw',
 'resultsperpage'                => 'Ber bitkä turı kilgän tabıldıqlar:',
-'contextlines'                  => 'Härber tabıldıqta kürsätelüçe yullar sanı:',
-'contextchars'                  => 'Ber yulğa turı kilgän tamğalar:',
 'stub-threshold'                => '<a href="#" class="stub">Yasalma sıltamalarnıñ</a> bizäleşe buyınça çikläwlär (baytlarda):',
 'stub-threshold-disabled'       => 'Yabılğan',
 'recentchangesdays'             => 'Soñğı üzgärtülärne kürsätüçe könnär sanı:',

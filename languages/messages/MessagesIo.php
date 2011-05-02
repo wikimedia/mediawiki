@@ -729,8 +729,6 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'columns'                       => 'Kolumni:',
 'searchresultshead'             => 'Preferaji di la rezultaji dil sercho',
 'resultsperpage'                => 'Trovaji po pagino:',
-'contextlines'                  => 'Linei por montrar singlarezulte:',
-'contextchars'                  => 'Tipi di kuntexto ye singla lineo:',
 'recentchangesdays'             => 'Dii montrota en la recenta chanji:',
 'recentchangesdays-max'         => 'Maximo $1 {{PLURAL:$1|dio|dii}}',
 'recentchangescount'            => 'Quanto de redakti montrota kustume:',

@@ -989,7 +989,6 @@ Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 'columns'                     => 'Àwọn ìtẹ̀lé gogoro:',
 'searchresultshead'           => 'Àwárí',
 'resultsperpage'              => 'Àwọn èsì ní ojúewé kọ̀ọ̀kan:',
-'contextlines'                => 'Ìye ìlà lórí èsì kọ̀ọ̀kan:',
 'stub-threshold-disabled'     => 'Dídálẹ́kun',
 'recentchangesdays'           => 'Iye ọjọ́ láti fihàn nínú àwọn àtúnṣe tuntun:',
 'recentchangesdays-max'       => '{{PLURAL:$1|Ọjọ́|Ọjọ́}} $1 púpọ̀jùlọ',

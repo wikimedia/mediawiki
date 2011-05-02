@@ -1325,8 +1325,6 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'columns'                       => 'Kolona',
 'searchresultshead'             => 'Podešavanja rezultata pretrage',
 'resultsperpage'                => 'Pogodaka po stranici:',
-'contextlines'                  => 'Linija po pogotku:',
-'contextchars'                  => 'Karaktera konteksta po liniji:',
 'stub-threshold'                => 'Formatiranje <a href="#" class="stub">linkova stranica u začetku</a> (bajtova):',
 'stub-threshold-disabled'       => 'Isključen/a',
 'recentchangesdays'             => 'Broj dana za prikaz u nedavnim izmjenama:',

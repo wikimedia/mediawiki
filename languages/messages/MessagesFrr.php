@@ -1136,7 +1136,7 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 # Block/unblock
 'blockip'                         => 'IP-adräs/brüker späre',
 'ipboptions'                      => '2 stüne:2 hours,1 däi:1 day,3 deege:3 days,1 wääg:1 week,2 wääge:2 weeks,1 moune:1 month,3 moune:3 months,6 moune:6 months,1 iir:1 year,suner iinje:infinite',
-'ipblocklist'                     => 'Spärd IP-adräse än brükernoome',
+'ipblocklist'                     => 'Spärd brükere',
 'expiringblock'                   => 'iinjet aw e $1 am e klook $2',
 'blocklink'                       => 'späre',
 'unblocklink'                     => 'frijeewe',
@@ -1291,7 +1291,8 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'metadata-help'     => 'Jüdeer dåtäi önjthålt widere informasjoon, jü önj e räigel foon jü digitoolamera unti di ferwånd scanner ståme. Döör eefterdräägen beårbing foon jü originooldåtäi koone hu detaile feränret wörden weese.',
 'metadata-expand'   => 'Ütbriidede detaile wise',
 'metadata-collapse' => 'Ütbriidede detaile fersteege',
-'metadata-fields'   => 'Da füliende fälje foon da EXIF-metadååte önju dideere MediaWiki-systeemtäkst wårde aw bilbeschriwingsside wist; widere standardmääsi „inklapede“ detaile koone wised wårde.
+'metadata-fields'   => 'Da füliende fälje foon da EXIF-metadååte, da önj dideere MediaWiki-systeemtäkst önjjääwen san, wårde aw bilbeschriwingsside ma inklapede metadååtetabäle wist. Widere wårde standardmääsi ai wised.
+
 * make
 * model
 * datetimeoriginal

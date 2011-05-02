@@ -753,8 +753,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'columns'                   => 'Štolpalē:',
 'searchresultshead'         => 'Paėiškuos nostatīmā',
 'resultsperpage'            => 'Rezoltatu poslapie:',
-'contextlines'              => 'Eilotiu rezoltatė:',
-'contextchars'              => 'Konteksta sėmbuoliu eilotie:',
 'stub-threshold'            => 'Minimums <a href="#" class="stub">nabėngta poslapė</a> fuormatavėmō:',
 'recentchangesdays'         => 'Ruodomas dėinas vielībūju pakeitėmu sārašė:',
 'recentchangesdays-max'     => '(daugiausē $1 {{PLURAL:$1|dėina|dėinū|dėinas}})',

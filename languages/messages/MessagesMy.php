@@ -729,7 +729,6 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'columns'                       => 'ဒေါင်လိုက်တန်း -',
 'searchresultshead'             => 'ရှာ​ဖွေ​ရန်​',
 'resultsperpage'                => 'စာတစ်မျက်နှာလျှင် ဝင်ကြည့်နှုန်း -',
-'contextlines'                  => 'စာတစ်ကြောင်းလျှင် ဝင်ကြည့်နှုန်း -',
 'stub-threshold-disabled'       => 'ပိတ်ထားသည်',
 'recentchangesdays'             => 'လတ်တလောအပြောင်းအလဲများကို ပြရန်နေ့များ -',
 'recentchangesdays-max'         => 'အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}',

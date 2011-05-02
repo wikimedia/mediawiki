@@ -1131,8 +1131,6 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'columns'                       => 'Stołpiki:',
 'searchresultshead'             => 'Pytać',
 'resultsperpage'                => 'Wuslědki za stronu:',
-'contextlines'                  => 'Rjadki na wuslědk:',
-'contextchars'                  => 'Kontekst na rjadku:',
 'stub-threshold'                => 'Wotkazowe formatowanje <a href="#" class="stub">małych stronow</a> (w bajtach):',
 'stub-threshold-disabled'       => 'Znjemóžnjeny',
 'recentchangesdays'             => 'Ličba dnjow w lisćinje aktualnych změnow:',

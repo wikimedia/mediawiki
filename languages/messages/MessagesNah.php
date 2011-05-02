@@ -656,8 +656,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prefs-editing'             => 'Tlapatlaliztli',
 'rows'                      => 'Pāntli:',
 'searchresultshead'         => 'Tlatēmoliztli',
-'contextlines'              => 'Pāntli tlahtōltechcopa:',
-'contextchars'              => 'Tlahtōltechcopa ic pāntli:',
 'recentchangesdays'         => 'Tōnaltin tiquinttāz yancuīc tlapatlalizpan:',
 'localtime'                 => 'Cāhuitl nicān:',
 'timezoneregion-africa'     => 'Africa',

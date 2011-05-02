@@ -1337,8 +1337,6 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'columns'                       => 'Colunas:',
 'searchresultshead'             => 'Pesquisa',
 'resultsperpage'                => 'Resultados por página:',
-'contextlines'                  => 'Linhas por resultado:',
-'contextchars'                  => 'Contexto por linha:',
 'stub-threshold'                => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',
 'stub-threshold-disabled'       => 'Desabilitado',
 'recentchangesdays'             => 'Dias a serem exibidos nas Mudanças recentes:',

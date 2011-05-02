@@ -703,8 +703,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'columns'                     => 'aaamida:',
 'searchresultshead'           => 'Qelleb',
 'resultsperpage'              => 'adad nataij  f sfha',
-'contextlines'                => 'adad lastor f kol natija',
-'contextchars'                => 'adad lahrof f satr:',
 'stub-threshold-disabled'     => 'makhdamch',
 'timezonelegend'              => 'lmintaqa zamaniya :',
 'localtime'                   => 'Lwaqt lmahali :',

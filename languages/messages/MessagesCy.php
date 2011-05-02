@@ -1151,8 +1151,6 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'columns'                       => 'Colofnau:',
 'searchresultshead'             => 'Chwilio',
 'resultsperpage'                => 'Cyfradd taro fesul tudalen:',
-'contextlines'                  => "Nifer y llinellau i'w dangos ar gyfer pob hit:",
-'contextchars'                  => 'Nifer y llythrennau a nodau eraill i bob llinell:',
 'stub-threshold'                => 'Trothwy ar gyfer fformatio <a href="#" class="stub">cyswllt eginyn</a> (beitiau):',
 'stub-threshold-disabled'       => 'Analluogwyd',
 'recentchangesdays'             => "Nifer y diwrnodau i'w dangos yn 'newidiadau diweddar':",
@@ -2187,7 +2185,7 @@ Os oes tudalen newydd o'r un enw wedi cael ei chreu ers y dilëad, fe ddangosir 
 'undeleterevdel'               => "Ni fydd yr adfer yn cael ei chyflawni pe byddai peth o'r diwygiad blaen i'r dudalen neu'r ffeil yn cael ei dileu oherwydd yr adfer.
 Os hynny, rhaid i chi dad-ticio'r diwygiad dilëedig diweddaraf neu ei ddatguddio.",
 'undeletehistorynoadmin'       => "Mae'r dudalen hon wedi'i dileu. Dangosir y rheswm am y dileu isod, gyda manylion o'r holl ddefnyddwyr sydd wedi golygu'r dudalen cyn y dileu. Dim ond gweinyddwyr sydd yn gallu gweld testun y diwygiadau i'r dudalen.",
-'undelete-revision'            => 'Testun y golygiad gan $3 o $1 (fel ag yr oedd am $5 ar $4), a ddilëwyd:',
+'undelete-revision'            => 'Y golygiad gan $3 o $1 (fel ag yr oedd am $5 ar $4), a ddilëwyd:',
 'undeleterevision-missing'     => "Y diwygiad yn annilys neu yn eisiau.
 Mae'n bosib bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi ei adfer neu wedi ei ddileu o'r archif.",
 'undelete-nodiff'              => 'Ni chafwyd hyd i olygiad cynharach.',
@@ -2954,6 +2952,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-serialnumber'                => 'Rhif cyfresol y camera',
 'exif-cameraownername'             => 'Perchennog y camera',
 'exif-label'                       => 'Label',
+'exif-rating'                      => 'Sgôr (allan o 5)',
 'exif-copyrighted'                 => 'Statws yr hawlfraint:',
 'exif-copyrightowner'              => 'Perchennog yr hawlfraint',
 'exif-pngfilecomment'              => 'Sylwadau ar y ffeil PNG',
@@ -2961,6 +2960,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-contentwarning'              => 'Rhybudd am y cynnwys',
 'exif-giffilecomment'              => 'Sylwadau ar y ffeil GIF',
 'exif-intellectualgenre'           => 'Math yr eitem',
+'exif-subjectnewscode'             => 'Cod y pwnc',
 'exif-event'                       => 'Y digwyddiad a ddarlunnir',
 'exif-organisationinimage'         => 'Y sefydliad a ddarlunnir',
 'exif-personinimage'               => 'Y person a ddarlunnir',
@@ -2970,7 +2970,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 # EXIF attributes
 'exif-compression-1' => 'Heb ei gywasgu',
 
-'exif-copyrighted-true' => 'Hawlfraint',
+'exif-copyrighted-true'  => 'Hawlfraint',
+'exif-copyrighted-false' => 'Parth y cyhoedd',
 
 'exif-unknowndate' => 'Dyddiad anhysbys',
 

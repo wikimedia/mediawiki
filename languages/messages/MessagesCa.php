@@ -1203,8 +1203,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'columns'                       => 'Columnes',
 'searchresultshead'             => 'Preferències de la cerca',
 'resultsperpage'                => 'Resultats a mostrar per pàgina',
-'contextlines'                  => 'Línies a mostrar per resultat',
-'contextchars'                  => 'Caràcters de context per línia',
 'stub-threshold'                => 'Límit per a formatar l\'enllaç com <a href="#" class="stub">esborrany</a> (en octets):',
 'stub-threshold-disabled'       => 'Deshabilitat',
 'recentchangesdays'             => 'Dies a mostrar en els canvis recents:',

@@ -1302,8 +1302,6 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'columns'                       => 'Veerge:',
 'searchresultshead'             => 'Otsingutulemite sätted',
 'resultsperpage'                => 'Vasteid leheküljel:',
-'contextlines'                  => 'Ridu vastes:',
-'contextchars'                  => 'Kaasteksti rea kohta:',
 'stub-threshold'                => '<a href="#" class="stub">Nii</a> lingitud lehekülje suuruse ülempiir (baitides):',
 'stub-threshold-disabled'       => 'Välja lülitatud',
 'recentchangesdays'             => 'Mitu päeva näidata viimastes muudatustes:',

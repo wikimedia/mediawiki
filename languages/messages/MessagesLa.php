@@ -894,8 +894,6 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'columns'                   => 'Columnae:',
 'searchresultshead'         => 'Figuratio eventorum investigationis',
 'resultsperpage'            => 'Eventus per paginam:',
-'contextlines'              => 'Lineae per eventum:',
-'contextchars'              => 'Litterae contexti per lineam:',
 'recentchangesdays'         => 'Quot dies in nuper mutatis monstrandi:',
 'recentchangescount'        => 'Quantum rerum in nuper mutatis, historiis et actis:',
 'savedprefs'                => 'Praeferentiae tuae servatae sunt.',

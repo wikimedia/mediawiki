@@ -1130,8 +1130,6 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'columns'                       => 'Zutabeak:',
 'searchresultshead'             => 'Bilaketa',
 'resultsperpage'                => 'Emaitza orrialdeko:',
-'contextlines'                  => 'Lerro emaitzako:',
-'contextchars'                  => 'Lerro bakoitzeko karaktere kopurua:',
 'stub-threshold'                => '<a href="#" class="stub">stub link</a> formaturako atalasea (byteak):',
 'stub-threshold-disabled'       => 'Ezgaitua',
 'recentchangesdays'             => 'Aldaketa berrietan erakutsi beharreko egun kopurua:',

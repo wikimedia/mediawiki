@@ -1248,8 +1248,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'columns'                       => 'Wachukuna:',
 'searchresultshead'             => 'Maskay',
 'resultsperpage'                => "Huk p'anqapi hayk'a tarinakuna:",
-'contextlines'                  => "Siq'ikuna taripasqaman:",
-'contextchars'                  => "Ukhunpuray sananchakuna siq'iman:",
 'stub-threshold'                => 'Kay hatun kaykamam <a href="#" class="stub">t\'una qillqasqa t\'inki</a> nisqa kachun (byte):',
 'stub-threshold-disabled'       => 'Ama nisqa',
 'recentchangesdays'             => "Ñaqha hukchasqakunapi rikuchina p'unchawkuna:",
