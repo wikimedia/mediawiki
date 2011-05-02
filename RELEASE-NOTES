@@ -494,7 +494,8 @@ files are used instead.
 * (bug 22753) Output from update.php is more clear when things changed, entries
   indicating nothing changed are now all prefixed by "..."
 * (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
-* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
+* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as
+  "Permitted file types" on the upload form
 * (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
 * (bug 26034) Make the "View / Read" tab in content_navigation style tabs remain
   selected when the action is "purge".
@@ -708,7 +709,7 @@ changes to languages because of Bugzilla reports.
 * (bug 28159) Change interwiki name of language kbd to Къэбэрдеибзэ /
   Qabardjajəbza
 * (bug 28184) Namespaces for the Latgalian Wikipedia
-* (bug 25010( Bashkir-language interwikis: linktext change from Башҡорт
+* (bug 25010) Bashkir-language interwikis: linktext change from Башҡорт
   to Башҡортса
 * (bug 26395) Change name of Cornish language to Kernowek
 
