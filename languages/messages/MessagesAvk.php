@@ -831,8 +831,6 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'columns'                   => 'Brizeem',
 'searchresultshead'         => 'Nedira va aneyaratrasikseem',
 'resultsperpage'            => 'Fuxebuon trasiksota',
-'contextlines'              => 'Fuxetrasikson conhota',
-'contextchars'              => 'Fuxeconhon orkastaota',
 'recentchangesdays'         => 'Gonedin viel se koe noeltaf betakseem :',
 'recentchangesdays-max'     => '(cugon $1 {{PLURAL:$1|viel|viel}})',
 'recentchangescount'        => 'Omavon gonedina ota va noeltaf betakseem ik buizvot ik "log" :',

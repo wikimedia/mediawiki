@@ -613,7 +613,6 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'columns'            => 'Sȳla:',
 'searchresultshead'  => 'Sōcnfintan',
 'resultsperpage'     => 'Tōhīgunga tō īewenne for tramete',
-'contextlines'       => 'Līnan tō īewenne in tōhīgunge',
 'recentchangescount' => 'Hū mæniȝ ādihtas to scēaƿenne ȝeþēaƿe:',
 'savedprefs'         => 'Þīna foreberunga ƿurdon ȝespared.',
 'timezonelegend'     => 'Tīdstell',

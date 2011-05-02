@@ -524,7 +524,6 @@ $messages = array(
 'columns'               => 'ຖັນ:',
 'searchresultshead'     => 'ຊອກຫາ',
 'resultsperpage'        => 'ຈຳນວນຜົນການຊອກເຫັນ ຕໍ່ ໜ້າ:',
-'contextlines'          => 'ຈຳນວນແຖວ ຕໍ່ ຜົນການຊອກເຫັນ:',
 'recentchangesdays'     => 'ຈຳນວນມື້ສະແດງໃນການປ່ຽນແປງຫຼ້າສຸດ:',
 'recentchangescount'    => 'ຈຳນວນການດັດແກ້ສະແດງໃນການປ່ຽນແປງຫຼ້າສຸດ:',
 'savedprefs'            => 'ການຕັ້ງຄ່າຂອງທ່ານໄດ້ຖືກບັນທຶກແລ້ວ.',

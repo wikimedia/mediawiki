@@ -802,8 +802,6 @@ Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.
 'columns'                       => 'Mga kolum:',
 'searchresultshead'             => 'Pangitaa',
 'resultsperpage'                => 'Mga hit matag panid:',
-'contextlines'                  => 'Mga linya matag hit:',
-'contextchars'                  => 'Mga konteksto matag linya:',
 'stub-threshold'                => 'Threshold para sa <a href="#" class="stub">stub link</a> formatting (bytes):',
 'recentchangesdays'             => 'Mga adlaw nga ipakita sa bag-ong giusab:',
 'recentchangesdays-max'         => 'Maximum $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}}',

@@ -1247,8 +1247,6 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'columns'                       => 'Stolpcev:',
 'searchresultshead'             => 'Nastavitve poizvedovanja',
 'resultsperpage'                => 'Prikazanih zadetkov na stran:',
-'contextlines'                  => 'Vrstic na zadetek:',
-'contextchars'                  => 'Znakov na vrstico:',
 'stub-threshold'                => 'Prag označevanja <a href="#" class="stub">škrbin</a> (v bajtih):',
 'stub-threshold-disabled'       => 'Onemogočeno',
 'recentchangesdays'             => 'Število dni prikazanih v zadnjih spremembah:',

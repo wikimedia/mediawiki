@@ -1357,8 +1357,6 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'columns'                       => 'Columnas:',
 'searchresultshead'             => 'Búsquedas',
 'resultsperpage'                => 'Resultados por página:',
-'contextlines'                  => 'Número de líneas de contexto por resultado',
-'contextchars'                  => 'Caracteres de contexto por línea',
 'stub-threshold'                => 'Límite para formato de <a href="#" class="stub">enlace a esbozo</a> (bytes):',
 'stub-threshold-disabled'       => 'Desactivado',
 'recentchangesdays'             => 'Días a mostrar en cambios recientes:',

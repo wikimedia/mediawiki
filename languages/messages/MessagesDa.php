@@ -1216,8 +1216,6 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'columns'                       => 'Kolonner',
 'searchresultshead'             => 'Søgeresultater',
 'resultsperpage'                => 'Resultater pr. side',
-'contextlines'                  => 'Linjer pr. resultat',
-'contextchars'                  => 'Tegn pr. linje i resultatet',
 'stub-threshold'                => 'Grænse for visning af henvisning som <a href="#" class="stub">artikelstump</a>:',
 'stub-threshold-disabled'       => 'Deaktiveret',
 'recentchangesdays'             => 'Antal dage som skal vises i seneste ændringer:',

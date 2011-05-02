@@ -1196,8 +1196,6 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'columns'                       => 'Lajur:',
 'searchresultshead'             => 'Cari',
 'resultsperpage'                => 'Jumlah padanan bagi setiap halaman:',
-'contextlines'                  => 'Bilangan baris untuk dipaparkan bagi setiap capaian:',
-'contextchars'                  => 'Bilangan askara konteks bagi setiap baris:',
 'stub-threshold'                => 'Ambang bagi pemformatan <a href="#" class="stub">pautan ke rencana ringkas</a> (bait):',
 'stub-threshold-disabled'       => 'Dimatikan',
 'recentchangesdays'             => 'Bilangan hari dalam perubahan terkini:',
@@ -3348,7 +3346,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'autosumm-new'     => "Mencipta laman baru dengan kandungan '$1'",
 
 # Live preview
-'livepreview-loading' => 'Memuat …',
+'livepreview-loading' => 'Sedang dimuatkan...',
 'livepreview-ready'   => 'Memuat … Sedia!',
 'livepreview-failed'  => 'Pratonton langsung gagal! Sila gunakan pratonton biasa.',
 'livepreview-error'   => 'Gagal membuat sambungan: $1 "$2". Sila gunakan pratonton biasa.',

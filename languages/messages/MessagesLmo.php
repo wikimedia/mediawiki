@@ -664,8 +664,6 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'columns'                  => 'Culònn:',
 'searchresultshead'        => 'Cerca',
 'resultsperpage'           => 'Resültaa pər pagina:',
-'contextlines'             => 'Riich pər resültaa:',
-'contextchars'             => 'Cuntèst pər riga:',
 'recentchangescount'       => "Nümer de mudifegh da mustrà per ''default'':",
 'savedprefs'               => 'I preferenz hinn stai salvaa.',
 'timezonelegend'           => 'Lucalitaa',

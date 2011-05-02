@@ -880,7 +880,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'columns'                   => 'Палманть:',
 'searchresultshead'         => 'Вешнэма',
 'resultsperpage'            => 'Зяроксть вастневи ве лопасо:',
-'contextlines'              => 'Зяро рисьметь эрьва муевкссэ:',
 'recentchangesdays-max'     => '(максимумось $1 {{PLURAL:$1|чи|чить}})',
 'timezonelegend'            => 'Шкань зонась:',
 'localtime'                 => 'Теицянь шкась:',

@@ -690,8 +690,6 @@ A kan ben trowe efu dribi.
 'columns'                   => 'Kolum:',
 'searchresultshead'         => 'Suku',
 'resultsperpage'            => 'Ris ies papira:',
-'contextlines'              => 'Lina ies ris:',
-'contextchars'              => 'Kontekst ies lina:',
 'stub-threshold'            => 'Dupolo fu seti <a href="#" class="stub">stub</a>:',
 'recentchangesdays'         => 'Teki fu dey tu libi si ini bakaseywan kenki:',
 'recentchangescount'        => 'Teki fu peprewoysi ini bakaseywan kenki:',

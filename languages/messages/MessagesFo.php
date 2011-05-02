@@ -565,8 +565,6 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'columns'               => 'Teigar:',
 'searchresultshead'     => 'Leita',
 'resultsperpage'        => 'Úrslit fyri hvørja síðu:',
-'contextlines'          => 'Linjur fyri hvørt úrslit:',
-'contextchars'          => 'Tekin fyri hvørja linju í úrslitinum:',
 'recentchangescount'    => 'Heiti í seinastu broytingum:',
 'savedprefs'            => 'Tínar innstillingar eru goymdar.',
 'timezonelegend'        => 'Lokal tíð',

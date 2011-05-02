@@ -973,8 +973,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'columns'                       => 'Simbolu skaits rindiņā:',
 'searchresultshead'             => 'Meklēšana',
 'resultsperpage'                => 'Lappusē parādāmo rezultātu skaits',
-'contextlines'                  => 'Cik rindiņas parādīt katram atrastajam rezultātam',
-'contextchars'                  => 'Konteksta simbolu skaits vienā rindiņā',
 'stub-threshold-disabled'       => 'Atslēgts',
 'recentchangesdays'             => 'Dienu skaits, kuru rādīt pēdējajās izmaiņās:',
 'recentchangesdays-max'         => 'Ne vairāk kā $1 {{PLURAL:$1|diena|dienas}}',

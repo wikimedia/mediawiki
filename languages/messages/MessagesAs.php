@@ -984,8 +984,6 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'columns'                     => 'ঠিয় শাৰী:',
 'searchresultshead'           => 'অনুসন্ধান',
 'resultsperpage'              => 'প্ৰতি পৃষ্ঠা দৰ্শন:',
-'contextlines'                => 'প্ৰতি শাৰী দৰ্শন:',
-'contextchars'                => 'প্ৰতি শাৰীত সন্দৰ্ভ:',
 'stub-threshold'              => '<a href="#" class="stub">আধাৰ সংযোগ</a> ৰ সৰ্বোচ্চ আকাৰ (বাইটত):',
 'stub-threshold-disabled'     => 'নিস্ক্ৰিয়',
 'recentchangesdays'           => 'শেহতীয়া সাল-সলনীত দেখুৱাব লগা দিন:',

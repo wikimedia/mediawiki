@@ -834,8 +834,6 @@ Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ni
 'columns'                   => 'Ding asias:',
 'searchresultshead'         => 'Maintun',
 'resultsperpage'            => 'Tinud (hits) balang bulung:',
-'contextlines'              => 'Gulis balang tinud:',
-'contextchars'              => 'Kontekstu (patulug) balang gulis:',
 'stub-threshold'            => 'Angganan ning <a href="#" class="stub">stub link</a> formatting (byte):',
 'recentchangesdays'         => 'Deng aldong ipalto king bayung mengayalili:',
 'recentchangescount'        => 'Bilang da reng me-edit a ipalto king bayung mengayalili:',

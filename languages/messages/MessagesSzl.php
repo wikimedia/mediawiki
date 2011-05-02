@@ -843,8 +843,6 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'columns'                   => 'Kůlumny:',
 'searchresultshead'         => 'Šnupańy',
 'resultsperpage'            => 'Ličba wyńikůw na zajće',
-'contextlines'              => 'Pjyrše wjerše artikla',
-'contextchars'              => 'Buchštaby kůnteksta we lińijce',
 'stub-threshold'            => 'Maksymalny rozmjar artikla uoznačanygo kej <a href="#" class="stub">stub (kůnsek)</a>',
 'recentchangesdays'         => 'Ličba dńi do pokazańo we půmjyńanych na uostatku:',
 'recentchangesdays-max'     => '(maksymalńy $1 {{PLURAL:$1|dźyń|dńi}})',

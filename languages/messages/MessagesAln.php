@@ -1019,8 +1019,6 @@ Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të
 'columns'                       => 'Kolona:',
 'searchresultshead'             => 'Kërkimi',
 'resultsperpage'                => 'Gjetje për faqe:',
-'contextlines'                  => 'Rreshta për gjetje:',
-'contextchars'                  => 'Konteksti për rresht:',
 'stub-threshold'                => 'Pragu për formatimin e <a href="#" class="stub">vegzave të cungueme</a> në (byte):',
 'recentchangesdays'             => 'Numri i ditëve për me i tregue te ndryshimet e freskëta:',
 'recentchangesdays-max'         => '(maksimum $1 {{PLURAL:$1|ditë|ditë}})',

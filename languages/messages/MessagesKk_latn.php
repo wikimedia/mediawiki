@@ -1178,8 +1178,6 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'columns'                   => 'Bağandar:',
 'searchresultshead'         => 'İzdew',
 'resultsperpage'            => 'Bet saýın nätïje sanı:',
-'contextlines'              => 'Nätïje saýın jol sanı:',
-'contextchars'              => 'Jol saýın tañba sanı:',
 'stub-threshold'            => '<a href="#" class="stub">Biteme siltemesin</a> pişimdew tabaldırığı (baýt):',
 'recentchangesdays'         => 'Jüıqtağı özgeristerinde körsetpek kün sanı:',
 'recentchangescount'        => 'Jwıqtağı özgeristerdinde, tarïx jäne jwrnal betterinde körsetpek öñdeme sanı:',

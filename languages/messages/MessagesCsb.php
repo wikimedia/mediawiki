@@ -629,8 +629,6 @@ Spróbùjë szëkbë z przëdôwkã ''all:'' dlô całowny zamkłoscë starnów 
 'columns'                   => 'Kòlumnów:',
 'searchresultshead'         => 'Szëkba',
 'resultsperpage'            => 'Rezultatów na starnã:',
-'contextlines'              => 'Régów na rezultat:',
-'contextchars'              => 'Kòntekstów na régã:',
 'stub-threshold'            => 'Greńca dlô fòrmatowaniô <a href="#" class="stub">lënków stubów</a>:',
 'recentchangesdays'         => 'Kùli dni pòkazëwac w slédnëch edicëjach:',
 'recentchangescount'        => 'Domëslnô wielëna wëskrzëniónych edicëjów',

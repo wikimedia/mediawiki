@@ -1132,8 +1132,6 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'columns'                       => 'Safu:',
 'searchresultshead'             => 'Kutafuta',
 'resultsperpage'                => 'Matokeo yanayoorodheshwa katika ukurasa mmoja:',
-'contextlines'                  => 'Mistari kwa kila tokeo:',
-'contextchars'                  => 'Herufi za muktadha kwa kila mstari:',
 'stub-threshold'                => 'Kiwango cha juu cha kuonyesha kiungo kama <a href="#" class="stub">kiungo kinachoelekea mbegu</a> (baiti):',
 'stub-threshold-disabled'       => 'Imelemazwa',
 'recentchangesdays'             => 'Ionyeshwe siku ngapi kwenye orodha ya mabadiliko ya karibuni?',

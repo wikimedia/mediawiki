@@ -1099,8 +1099,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'columns'                       => 'Columnas:',
 'searchresultshead'             => 'Mirar',
 'resultsperpage'                => "Resultaus que s'amostrarán por pachina:",
-'contextlines'                  => "Linias de contexto que s'amostrarán por resultau",
-'contextchars'                  => 'Carácters de contexto por linia',
 'stub-threshold'                => 'Branquil superior ta o formateyo de <a href="#" class="stub">vinclos ta borradors</a> (en bytes):',
 'stub-threshold-disabled'       => 'Desactivato',
 'recentchangesdays'             => "Días que s'amostrarán en ''zaguers cambeos'':",

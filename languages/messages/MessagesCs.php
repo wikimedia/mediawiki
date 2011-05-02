@@ -1384,8 +1384,6 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'columns'                       => 'Sloupce',
 'searchresultshead'             => 'Vyhledávání',
 'resultsperpage'                => 'Počet výsledků na stránku:',
-'contextlines'                  => 'Počet řádků u každého výsledku:',
-'contextchars'                  => 'Kontext na každé řádce:',
 'stub-threshold'                => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
 'stub-threshold-disabled'       => 'Vypnuto',
 'recentchangesdays'             => 'Počet dní zobrazených v posledních změnách:',

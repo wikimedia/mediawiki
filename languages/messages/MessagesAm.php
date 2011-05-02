@@ -814,8 +814,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'columns'                   => 'ስንት ዓምዶችስ?',
 'searchresultshead'         => 'ፍለጋ',
 'resultsperpage'            => 'ስንት ውጤቶች በየገጹ?',
-'contextlines'              => 'ስንት መስመሮች በየውጤቱ?',
-'contextchars'              => 'ስንት ፊደላት በየመስመሩ?',
 'recentchangesdays'         => 'በቅርቡ ለውጦች ዝርዝር ስንት ቀን ይታይ?',
 'recentchangesdays-max'     => '(እስከ $1 {{PLURAL:$1|ቀን|ቀን}} ድረስ)',
 'recentchangescount'        => 'በዝርዝርዎ ላይ ስንት ለውጥ ይታይ? (እስከ 500)',

@@ -528,8 +528,6 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 'columns'                   => 'Soofiil schbaldn',
 'searchresultshead'         => 'Suuchn',
 'resultsperpage'            => 'Broo rudsch dsajchn:',
-'contextlines'              => 'Dsajln fir jeedn fund:',
-'contextchars'              => 'Soofiil dsjachn broo dsjaln:',
 'recentchangesdays'         => 'Wiifiil dääch dsrig baj  „Ledschdn ändrungn“',
 'recentchangesdays-max'     => 'Hegschdns $1 {{PLURAL:$1|daach|dääch}}',
 'recentchangescount'        => 'Wiifiil ändrungn dsrig baj „Ledschdn ändrungn“',

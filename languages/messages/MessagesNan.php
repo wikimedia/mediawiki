@@ -419,8 +419,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'columns'               => 'Nôa',
 'searchresultshead'     => 'Chhiau-chhōe kiat-kó ê siat-tēng',
 'resultsperpage'        => '1 ia̍h hián-sī kúi kiāⁿ:',
-'contextlines'          => '1 kiāⁿ hián-sī kúi chōa:',
-'contextchars'          => '1 chōa hián-sī kúi jī ê chêng-āu-bûn:',
 'recentchangesdays'     => 'Hián-sī kúi ji̍t chòe-kīn ê kái-piàn:',
 'recentchangescount'    => 'Hián-sī kúi tiâu chòe-kīn ê kái-piàn:',
 'savedprefs'            => 'Lí ê iōng-chiá siat-tēng í-keng pó-chûn khí lâi ah.',
