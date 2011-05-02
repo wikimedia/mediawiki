@@ -21,7 +21,6 @@ abstract class Skin {
 	 */
 	var $mWatchLinkNum = 0; // Appended to end of watch link id's
 	/**#@-*/
-	protected $mRevisionId; // The revision ID we're looking at, null if not applicable.
 	protected $skinname = 'standard';
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
@@ -179,7 +178,6 @@ abstract class Skin {
 	function initPage( OutputPage $out ) {
 		wfProfileIn( __METHOD__ );
 
-		$this->mRevisionId = $out->mRevisionId;
 		$this->preloadExistence();
 		$this->setMembers();
 
@@ -218,15 +216,6 @@ abstract class Skin {
 	}
 
 	/**
-	 * Whether the revision displayed is the latest revision of the page
-	 *
-	 * @return Boolean
-	 */
-	public function isRevisionCurrent() {
-		return $this->mRevisionId == 0 || $this->mRevisionId == $this->getTitle()->getLatestRevID();
-	}
-
-	/**
 	 * Set the RequestContext used in this instance
 	 *
 	 * @param RequestContext $context
@@ -262,6 +251,25 @@ abstract class Skin {
 	 */
 	public function getUser() {
 		return $this->getContext()->getUser();
+	}
+
+	/**
+	 * Get the current revision ID
+	 *
+	 * @return Integer
+	 */
+	public function getRevisionId() {
+		return $this->getContext()->getOutput()->getRevisionId();
+	}
+
+	/**
+	 * Whether the revision displayed is the latest revision of the page
+	 *
+	 * @return Boolean
+	 */
+	public function isRevisionCurrent() {
+		$revID = $this->getRevisionId();
+		return $revID == 0 || $revID == $this->getTitle()->getLatestRevID();
 	}
 
 	/**
@@ -958,7 +966,7 @@ abstract class Skin {
 	 */
 	protected function lastModified( $article ) {
 		if ( !$this->isRevisionCurrent() ) {
-			$timestamp = Revision::getTimestampFromId( $this->getTitle(), $this->mRevisionId );
+			$timestamp = Revision::getTimestampFromId( $this->getTitle(), $this->getRevisionId() );
 		} else {
 			$timestamp = $article->getTimestamp();
 		}
@@ -1084,7 +1092,7 @@ abstract class Skin {
 		$options = array( 'action' => 'edit' );
 
 		if ( !$this->isRevisionCurrent() ) {
-			$options['oldid'] = intval( $this->mRevisionId );
+			$options['oldid'] = intval( $this->getRevisionId() );
 		}
 
 		return $options;
