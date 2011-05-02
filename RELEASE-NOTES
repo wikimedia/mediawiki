@@ -31,8 +31,6 @@ MediaWiki 1.17 ships with a ResourceLoader which combines and minifies css and
 javascript attached to the page. They are served from the new entry point load.php
 If the page is served with the &debug=true parameter, the non-minified javascript
 files are used instead.
-* (bug 27508) Add $wgSVGMetadataCutoff to limit the maximum amount of an svg we
-  look at when finding metadata to prevent excessive resource usage.
 
 === Configuration changes in 1.17 ===
 * DatabaseFunctions.php that was needed for compatibility with pre-1.3
@@ -250,6 +248,8 @@ files are used instead.
   consistently with other fields and, by default, prefixed with 'wp'.
 * (bug 27402) Add support for disabling MWSuggest
 * (bug 26563) Add bytes changed per revision for stub and full article dumps
+* (bug 27508) Add $wgSVGMetadataCutoff to limit the maximum amount of an svg we
+  look at when finding metadata to prevent excessive resource usage.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
