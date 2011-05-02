@@ -389,7 +389,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param $options array
 	 * @return string
 	 */
-	function makeInsertOptions( &$options ) {
+	function makeInsertOptions( $options ) {
 		$options = self::fixIgnore( $options );
 		return parent::makeInsertOptions( $options );
 	}
