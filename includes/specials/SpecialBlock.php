@@ -825,7 +825,7 @@ class SpecialBlock extends SpecialPage {
 			$flags[] = 'noemail';
 		}
 
-		if( $data['DisableUTEdit'] && $wgBlockAllowsUTEdit ){
+		if( $wgBlockAllowsUTEdit && $data['DisableUTEdit'] ){
 			$flags[] = 'nousertalk';
 		}
 
