@@ -91,10 +91,10 @@ class ApiComparePages extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'title1' => 'First title to compare',
-			'rev1' => 'First revision to compare',
-			'title2' => 'Second title to compare',
-			'rev2' => 'Second revision to compare',
+			'fromtitle' => 'First title to compare',
+			'fromrev' => 'First revision to compare',
+			'totitle' => 'Second title to compare',
+			'torev' => 'Second revision to compare',
 		);
 	}
 	public function getDescription() {
