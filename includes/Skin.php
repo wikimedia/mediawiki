@@ -16,11 +16,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup Skins
  */
 abstract class Skin {
-	/**#@+
-	 * @private
-	 */
-	var $mWatchLinkNum = 0; // Appended to end of watch link id's
-	/**#@-*/
 	protected $skinname = 'standard';
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
