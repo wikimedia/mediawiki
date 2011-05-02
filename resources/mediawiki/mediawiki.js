@@ -949,7 +949,7 @@ window.mediaWiki = new ( function( $ ) {
 						// No splitting needed
 						reqs = [ groups[group] ];
 					}
-					for ( var r in reqs ) {
+					for ( var r = 0; r < reqs.length; r++ ) {
 						requests[requests.length] = $.extend(
 							{ 'modules': reqs[r].join( '|' ) }, reqBase
 						);
