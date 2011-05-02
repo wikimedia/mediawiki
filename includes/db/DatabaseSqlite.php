@@ -363,21 +363,43 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
+	 * @param $options array
+	 * @return string
 	 */
-	function insert( $table, $a, $fname = 'DatabaseSqlite::insert', $options = array() ) {
-		if ( !count( $a ) ) {
-			return true;
-		}
-		if ( !is_array( $options ) ) {
-			$options = array( $options );
-		}
+	function makeUpdateOptions( $options ) {
+		$options = self::fixIgnore( $options );
+		return parent::makeUpdateOptions( $options );
+	}
 
+	/**
+	 * @param $options array
+	 * @return array
+	 */
+	static function fixIgnore( $options ) {
 		# SQLite uses OR IGNORE not just IGNORE
 		foreach ( $options as $k => $v ) {
 			if ( $v == 'IGNORE' ) {
 				$options[$k] = 'OR IGNORE';
 			}
+		}
+		return $options;
+	}
+
+	/**
+	 * @param $options array
+	 * @return string
+	 */
+	function makeInsertOptions( &$options ) {
+		$options = self::fixIgnore( $options );
+		return parent::makeInsertOptions( $options );
+	}
+
+	/**
+	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
+	 */
+	function insert( $table, $a, $fname = 'DatabaseSqlite::insert', $options = array() ) {
+		if ( !count( $a ) ) {
+			return true;
 		}
 
 		# SQLite can't handle multi-row inserts, so divide up into multiple single-row inserts
