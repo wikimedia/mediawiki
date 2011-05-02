@@ -1,6 +1,6 @@
 <?php
 /**
- * Old file in the in the oldimage table
+ * Old file in the oldimage table
  *
  * @file
  * @ingroup FileRepo
