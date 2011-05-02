@@ -139,22 +139,33 @@ class WebInstallerOutput {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getDir() {
 		global $wgLang;
-		if( !is_object( $wgLang ) || !$wgLang->isRtl() )
+		if( !is_object( $wgLang ) || !$wgLang->isRtl() ) {
 			return 'ltr';
-		else
+		} else {
 			return 'rtl';
+		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getLanguageCode() {
 		global $wgLang;
-		if( !is_object( $wgLang ) )
+		if( !is_object( $wgLang ) ) {
 			return 'en';
-		else
+		} else {
 			return $wgLang->getCode();
+		}
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getHeadAttribs() {
 		return array(
 			'dir' => $this->getDir(),

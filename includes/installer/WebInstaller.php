@@ -296,6 +296,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Start the PHP session. This may be called before execute() to start the PHP session.
+	 *
+	 * @return bool
 	 */
 	public function startSession() {
 		if( wfIniGetBool( 'session.auto_start' ) || session_id() ) {
@@ -321,6 +323,8 @@ class WebInstaller extends Installer {
 	 *
 	 * This is used by mw-config/index.php to prevent multiple installations of MW
 	 * on the same cookie domain from interfering with each other.
+	 *
+	 * @return string
 	 */
 	public function getFingerprint() {
 		// Get the base URL of the installation
@@ -386,7 +390,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a URL for submission back to the same script.
 	 *
-	 * @param $query: Array
+	 * @param $query array
 	 * @return string
 	 */
 	public function getUrl( $query = array() ) {
@@ -580,6 +584,8 @@ class WebInstaller extends Installer {
 	 * Get HTML for an error box with an icon.
 	 *
 	 * @param $text String: wikitext, get this with wfMsgNoTrans()
+	 *
+	 * @return string
 	 */
 	public function getErrorBox( $text ) {
 		return $this->getInfoBox( $text, 'critical-32.png', 'config-error-box' );
@@ -589,6 +595,8 @@ class WebInstaller extends Installer {
 	 * Get HTML for a warning box with an icon.
 	 *
 	 * @param $text String: wikitext, get this with wfMsgNoTrans()
+	 *
+	 * @return string
 	 */
 	public function getWarningBox( $text ) {
 		return $this->getInfoBox( $text, 'warning-32.png', 'config-warning-box' );
@@ -600,6 +608,8 @@ class WebInstaller extends Installer {
 	 * @param $text String: wikitext, get this with wfMsgNoTrans()
 	 * @param $icon String: icon name, file in skins/common/images
 	 * @param $class String: additional class name to add to the wrapper div
+	 *
+	 * @return string
 	 */
 	public function getInfoBox( $text, $icon = 'info-32.png', $class = false ) {
 		$s =
@@ -623,6 +633,8 @@ class WebInstaller extends Installer {
 	/**
 	 * Get small text indented help for a preceding form field.
 	 * Parameters like wfMsg().
+	 *
+	 * @return string
 	 */
 	public function getHelpBox( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -678,6 +690,8 @@ class WebInstaller extends Installer {
 	/**
 	 * Label a control by wrapping a config-input div around it and putting a
 	 * label before it.
+	 *
+	 * @return string
 	 */
 	public function label( $msg, $forId, $contents, $helpData = "" ) {
 		if ( strval( $msg ) == '' ) {
@@ -717,6 +731,8 @@ class WebInstaller extends Installer {
 	 *      controlName: The name for the input element (optional)
 	 *      value:      The current value of the variable (optional)
 	 *      help:		The html for the help text (optional)
+	 *
+	 * @return string
 	 */
 	public function getTextBox( $params ) {
 		if ( !isset( $params['controlName'] ) ) {
@@ -762,6 +778,8 @@ class WebInstaller extends Installer {
 	 *      controlName: The name for the input element (optional)
 	 *      value:      The current value of the variable (optional)
 	 *      help:		The html for the help text (optional)
+	 *
+	 * @return string
 	 */
 	public function getTextArea( $params ) {
 		if ( !isset( $params['controlName'] ) ) {
@@ -809,6 +827,8 @@ class WebInstaller extends Installer {
 	 *      controlName: The name for the input element (optional)
 	 *      value:      The current value of the variable (optional)
 	 *      help:		The html for the help text (optional)
+	 *
+	 * @return string
 	 */
 	public function getPasswordBox( $params ) {
 		if ( !isset( $params['value'] ) ) {
@@ -836,6 +856,8 @@ class WebInstaller extends Installer {
 	 *      controlName: The name for the input element (optional)
 	 *      value:      The current value of the variable (optional)
 	 *      help:		The html for the help text (optional)
+	 *
+	 * @return string
 	 */
 	public function getCheckBox( $params ) {
 		if ( !isset( $params['controlName'] ) ) {
@@ -889,6 +911,8 @@ class WebInstaller extends Installer {
 	 *      controlName:    The name for the input element (optional)
 	 *      value:          The current value of the variable (optional)
 	 *      help:		The html for the help text (optional)
+	 *
+	 * @return string
 	 */
 	public function getRadioSet( $params ) {
 		if ( !isset( $params['controlName']  ) ) {
@@ -963,6 +987,8 @@ class WebInstaller extends Installer {
 	 *
 	 * @param $varNames Array
 	 * @param $prefix String: the prefix added to variables to obtain form names
+	 *
+	 * @return array
 	 */
 	public function setVarsFromRequest( $varNames, $prefix = 'config_' ) {
 		$newValues = array();
@@ -988,6 +1014,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Helper for Installer::docLink()
+	 *
+	 * @return string
 	 */
 	protected function getDocUrl( $page ) {
 		$url = "{$_SERVER['PHP_SELF']}?page=" . urlencode( $page );
@@ -1001,6 +1029,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Extension tag hook for a documentation link.
+	 *
+	 * @return string
 	 */
 	public function docLink( $linkText, $attribs, $parser ) {
 		$url = $this->getDocUrl( $attribs['href'] );
@@ -1011,6 +1041,7 @@ class WebInstaller extends Installer {
 	
 	/**
 	 * Helper for "Download LocalSettings" link on WebInstall_Complete
+	 * 
 	 * @return String Html for download link
 	 */
 	public function downloadLinkHook( $text, $attribs, $parser  ) {

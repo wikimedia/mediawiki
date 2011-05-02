@@ -131,6 +131,8 @@ class CliInstaller extends Installer {
 	}
 
 	/**
+	 * @param $params array
+	 *
 	 * @return string
 	 */
 	protected function getMessageText( $params ) {

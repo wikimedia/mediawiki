@@ -103,6 +103,8 @@ abstract class WebInstallerPage {
 	 * Get the starting tags of a fieldset.
 	 *
 	 * @param $legend String: message name
+	 *
+	 * @return string
 	 */
 	protected function getFieldsetStart( $legend ) {
 		return "\n<fieldset><legend>" . wfMsgHtml( $legend ) . "</legend>\n";
@@ -110,6 +112,8 @@ abstract class WebInstallerPage {
 
 	/**
 	 * Get the end tag of a fieldset.
+	 *
+	 * @returns string
 	 */
 	protected function getFieldsetEnd() {
 		return "</fieldset>\n";
@@ -198,6 +202,8 @@ class WebInstaller_Language extends WebInstallerPage {
 
 	/**
 	 * Get a <select> for selecting languages.
+	 *
+	 * @return string
 	 */
 	public function getLanguageSelector( $name, $label, $selectedCode ) {
 		global $wgDummyLanguageCodes;
