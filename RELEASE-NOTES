@@ -18,6 +18,10 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+=== PHP 5.2 now required ==
+Since 1.17, the lowest supported version of MediaWiki is now 5.2.3. Please
+upgrade PHP if you have not done so prior to upgrading MediaWiki.
+
 === New installer in 1.17 ===
 MediaWiki 1.17 is shipping with a completely redesigned installer to fix
 a lot of outstanding bugs, cleanup the code quality, and make it easier to
