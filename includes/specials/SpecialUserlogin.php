@@ -658,7 +658,7 @@ class LoginForm extends SpecialPage {
 					$wgUser->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
 					$wgUser->saveSettings();
 				} else {
-					$wgUser->invalidateCache();
+					$wgUser->invalidateCache( true );
 				}
 				$wgUser->setCookies();
 				self::clearLoginToken();

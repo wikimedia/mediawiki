@@ -231,7 +231,7 @@ class UserrightsPage extends SpecialPage {
 		$newGroups = array_unique( $newGroups );
 
 		// Ensure that caches are cleared
-		$user->invalidateCache();
+		$user->invalidateCache( true );
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
