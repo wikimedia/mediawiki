@@ -365,6 +365,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a labelled text box to configure a local variable.
+	 *
+	 * @return string
 	 */
 	public function getTextBox( $var, $label, $attribs = array(), $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
@@ -385,6 +387,8 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a labelled password box to configure a local variable.
 	 * Implements password hiding.
+	 *
+	 * @return string
 	 */
 	public function getPasswordBox( $var, $label, $attribs = array(), $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
@@ -404,6 +408,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a labelled checkbox to configure a local boolean variable.
+	 *
+	 * @return string
 	 */
 	public function getCheckBox( $var, $label, $attribs = array(), $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;

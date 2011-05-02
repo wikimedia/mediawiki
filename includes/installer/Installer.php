@@ -354,6 +354,8 @@ abstract class Installer {
 
 	/**
 	 * Get a list of known DB types.
+	 *
+	 * @return array
 	 */
 	public static function getDBTypes() {
 		return self::$dbTypes;
@@ -557,6 +559,9 @@ abstract class Installer {
 		return $html;
 	}
 
+	/**
+	 * @return ParserOptions
+	 */
 	public function getParserOptions() {
 		return $this->parserOptions;
 	}
@@ -573,6 +578,10 @@ abstract class Installer {
 	/**
 	 * Install step which adds a row to the site_stats table with appropriate
 	 * initial values.
+	 *
+	 * @param $installer DatabaseInstaller
+	 *
+	 * @return Status
 	 */
 	public function populateSiteStats( DatabaseInstaller $installer ) {
 		$status = $installer->getConnection();
