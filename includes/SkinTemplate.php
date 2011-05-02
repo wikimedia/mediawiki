@@ -1186,15 +1186,15 @@ class SkinTemplate extends Skin {
 			}
 
 			// Also add a "permalink" while we're at it
-			if ( $this->mRevisionId ) {
+			$revid = $this->getRevisionId();
+			if ( $revid ) {
 				$nav_urls['permalink'] = array(
 					'text' => wfMsg( 'permalink' ),
-					'href' => $out->getTitle()->getLocalURL( "oldid=$this->mRevisionId" )
+					'href' => $out->getTitle()->getLocalURL( "oldid=$revid" )
 				);
 			}
 
-			// Copy in case this undocumented, shady hook tries to mess with internals
-			$revid = $this->mRevisionId;
+			// Use the copy of revision ID in case this undocumented, shady hook tries to mess with internals
 			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$revid, &$revid ) );
 		}
 
