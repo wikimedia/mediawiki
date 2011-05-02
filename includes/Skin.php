@@ -374,43 +374,26 @@ abstract class Skin {
 
 	/**
 	 * Generated JavaScript action=raw&gen=js
-	 * This returns MediaWiki:Common.js and MediaWiki:[Skinname].js concate-
-	 * nated together.  For some bizarre reason, it does *not* return any
-	 * custom user JS from subpages.  Huh?
+	 * This used to load MediaWiki:Common.js and the skin-specific style
+	 * before the RessourceLoader.
 	 *
-	 * There's absolutely no reason to have separate Monobook/Common JSes.
-	 * Any JS that cares can just check the skin variable generated at the
-	 * top.  For now Monobook.js will be maintained, but it should be consi-
-	 * dered deprecated.
-	 *
+	 * @deprecated Use the RessourceLoader instead. This may be removed at some
+	 * point.
 	 * @param $skinName String: If set, overrides the skin name
-	 * @return string
+	 * @return String
 	 */
 	public function generateUserJs( $skinName = null ) {
-		
-		// Stub - see ResourceLoaderSiteModule, CologneBlue, Simple and Standard skins override this
-		
 		return '';
 	}
 
 	/**
 	 * Generate user stylesheet for action=raw&gen=css
+	 *
+	 * @deprecated Use the RessourceLoader instead. This may be removed at some
+	 * point.
+	 * @return String
 	 */
 	public function generateUserStylesheet() {
-		
-		// Stub - see ResourceLoaderUserModule, CologneBlue, Simple and Standard skins override this
-		
-		return '';
-	}
-
-	/**
-	 * Split for easier subclassing in SkinSimple, SkinStandard and SkinCologneBlue
-	 * Anything in here won't be generated if $wgAllowUserCssPrefs is false.
-	 */
-	protected function reallyGenerateUserStylesheet() {
-		
-		// Stub - see  ResourceLoaderUserModule, CologneBlue, Simple and Standard skins override this
-		
 		return '';
 	}
 
