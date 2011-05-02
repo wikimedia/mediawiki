@@ -405,15 +405,16 @@
 
 			function buildTransformTable() {
 				var digits = '0123456789,.'.split('');
-
-				if ( typeof wgSeparatorTransformTable == 'undefined' || ( wgSeparatorTransformTable[0] == '' && wgDigitTransformTable[2] == '' ) ) {
+				var separatorTransformTable = mw.config.get( 'wgSeparatorTransformTable' );
+				var digitTransformTable = mw.config.get( 'wgDigitTransformTable' );
+				if ( separatorTransformTable == null || ( separatorTransformTable[0] == '' && digitTransformTable[2] == '' ) ) {
 					ts.transformTable = false;
 				} else {
 					ts.transformTable = {};
 
 					// Unpack the transform table
-					var ascii = wgSeparatorTransformTable[0].split( "\t" ).concat( wgDigitTransformTable[0].split( "\t" ) );
-					var localised = wgSeparatorTransformTable[1].split( "\t" ).concat( wgDigitTransformTable[1].split( "\t" ) );
+					var ascii = separatorTransformTable[0].split( "\t" ).concat( digitTransformTable[0].split( "\t" ) );
+					var localised = separatorTransformTable[1].split( "\t" ).concat( digitTransformTable[1].split( "\t" ) );
 
 					// Construct regex for number identification
 					for ( var i = 0; i < ascii.length; i++ ) {
@@ -438,9 +439,9 @@
 				];
 				ts.dateRegex = [];
 
-				for ( i = 1; i < 13; i++ ) {
-					ts.monthNames[0][i] = wgMonthNames[i].toLowerCase();
-					ts.monthNames[1][i] = wgMonthNamesShort[i].toLowerCase().replace( '.', '' );
+				for ( var i = 1; i < 13; i++ ) {
+					ts.monthNames[0][i] = mw.config.get( 'wgMonthNames' )[i].toLowerCase();
+					ts.monthNames[1][i] = mw.config.get( 'wgMonthNamesShort' )[i].toLowerCase().replace( '.', '' );
 					r += $.escapeRE( ts.monthNames[0][i] ) + '|';
 					r += $.escapeRE( ts.monthNames[1][i] ) + '|';
 				}
@@ -820,10 +821,10 @@
 				}
 			}
 			//Resort array depending on preferences
-			if ( wgDefaultDateFormat == "mdy" ) {
+			if ( mw.config.get( 'wgDefaultDateFormat' ) == "mdy" || mw.config.get('wgContentLanguage') == 'en' ) {
 				s.push( s.shift() );
 				s.push( s.shift() );
-			} else if ( wgDefaultDateFormat == "dmy" ) {
+			} else if ( mw.config.get( 'wgDefaultDateFormat' ) == "dmy" ) {
 				var d = s.shift();
 				s.push( s.shift() );
 				s.push(d);
