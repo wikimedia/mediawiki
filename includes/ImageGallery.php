@@ -38,7 +38,8 @@ class ImageGallery
 	 */
 	const THUMB_PADDING = 30;
 	const GB_PADDING = 5;
-	const GB_BORDERS = 6;
+	//2px borders on each side + 2px implied padding on each side
+	const GB_BORDERS = 8;
 
 	/**
 	 * Create a new image gallery object.
