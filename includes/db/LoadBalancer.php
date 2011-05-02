@@ -742,7 +742,7 @@ class LoadBalancer {
 	 * Sets the server info structure for the given index. Entry at index $i is created if it doesn't exist
 	 */
 	function setServerInfo( $i, $serverInfo ) {
-		$this->mServers[i] = $serverInfo;
+		$this->mServers[$i] = $serverInfo;
 	}
 
 	/**
