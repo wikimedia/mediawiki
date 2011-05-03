@@ -56,6 +56,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "{{Foo|=bar}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name></name>=<value>bar</value></part></template></root>" ),
 			array( "{{Foo|bar=baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>bar</name>=<value>baz</value></part></template></root>" ),
 			array( "{{Foo|1=bar|baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>1</name>=<value>bar</value></part><part><name index=\"1\" /><value>baz</value></part></template></root>" ),
+			array( "{{Foo|1=bar|2=baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>1</name>=<value>bar</value></part><part><name>2</name>=<value>baz</value></part></template></root>" ),
 			array( "{{Foo|bar|foo=baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part><part><name>foo</name>=<value>baz</value></part></template></root>" ),
 			array( "{{{1}}}", "<root><tplarg lineStart=\"1\"><title>1</title></tplarg></root>" ),
 			array( "{{{1|}}}", "<root><tplarg lineStart=\"1\"><title>1</title><part><name index=\"1\" /><value></value></part></tplarg></root>" ),
@@ -96,6 +97,8 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "{{foo|}", "<root>{{foo|}</root>"),
 			array( "{{foo|} }}", "<root><template lineStart=\"1\"><title>foo</title><part><name index=\"1\" /><value>} </value></part></template></root>"),
 			array( "{{foo|bar=|}", "<root>{{foo|bar=|}</root>"),
+			array( "{{Foo|} Bar=", "<root>{{Foo|} Bar=</root>"),
+			array( "{{Foo|} Bar=}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>} Bar</name>=<value></value></part></template></root>"),
 			/* array( file_get_contents( dirname( __FILE__ ) . '/QuoteQuran.txt' ), file_get_contents( dirname( __FILE__ ) . '/QuoteQuranExpanded.txt' ) ), */
 		);
 	}
