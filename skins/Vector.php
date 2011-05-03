@@ -177,6 +177,16 @@ class VectorTemplate extends BaseTemplate {
 				<!-- bodytext -->
 				<?php $this->html( 'bodytext' ) ?>
 				<!-- /bodytext -->
+				<?php if ( $this->data['printfooter'] ): ?>
+				<!-- printfooter -->
+				<div class="printfooter">
+				<?php $this->html( 'printfooter' ); ?>
+				</div>
+				<!-- /printfooter -->
+				<?php endif; ?>
+				<!-- debughtml -->
+				<?php $this->html('debughtml'); ?>
+				<!-- /debughtml -->
 				<?php if ( $this->data['catlinks'] ): ?>
 				<!-- catlinks -->
 				<?php $this->html( 'catlinks' ); ?>

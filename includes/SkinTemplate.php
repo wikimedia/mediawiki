@@ -452,15 +452,13 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'reporttime', wfReportTime() );
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts( $out ) );
+		$tpl->set( 'printfooter', $this->printSource() );
 
-		// @todo Give printfooter userlangattributes
-		$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
 		global $wgBetterDirectionality;
 		if ( $wgBetterDirectionality ) {
 			$realBodyAttribs = array( 'lang' => $wgLanguageCode, 'dir' => $wgContLang->getDir() );
 			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		}
-		$out->mBodytext .= $printfooter . $this->generateDebugHTML( $out );
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
 		# Language links
@@ -507,6 +505,8 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'headscripts', $out->getScript() );
 		}
+
+		$tpl->set( 'debughtml', $this->generateDebugHTML( $out ) );
 
 		// original version by hansm
 		if( !wfRunHooks( 'SkinTemplateOutputPageBeforeExec', array( &$this, &$tpl ) ) ) {
