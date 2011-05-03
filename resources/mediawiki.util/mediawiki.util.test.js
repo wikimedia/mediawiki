@@ -89,8 +89,7 @@
 						);
 
 						mw.util.addCSS(
-							'#mw-mwutiltest-table tr td { padding:0 !important; }' +	// Override wikitable padding for <td>
-							'.mw-mwutiltest-head:hover { cursor: pointer; } '			// Header-clicks hide/show the below rows
+							'#mw-mwutiltest-table tr td { padding:0 !important; }' // Override wikitable padding for <td>
 						);
 
 						mw.test.$table = $( 'table#mw-mwutiltest-table' );
@@ -150,6 +149,30 @@
 						mw.test.addTest( '$.escapeRE( "0123456789" )',
 							'0123456789 (string)' );
 
+						mw.test.addTest( '$.isDomElement( document.getElementById("mw-mwutiltest-table") )',
+							'true (boolean)' );
+
+						mw.test.addTest( '$.isDomElement( document.getElementById("not-existant-id") )',
+							'false (boolean)' ); // returns null
+
+						mw.test.addTest( '$.isDomElement( document.getElementsByClassName("wikitable") )',
+							'false (boolean)' ); // returns an array
+
+						mw.test.addTest( '$.isDomElement( document.getElementsByClassName("wikitable")[0] )',
+							'true (boolean)' );
+
+						mw.test.addTest( '$.isDomElement( jQuery( "#mw-mwutiltest-table" ) )',
+							'false (boolean)' ); // returns jQuery object
+
+						mw.test.addTest( '$.isDomElement( jQuery( "#mw-mwutiltest-table" ).get(0) )',
+							'true (boolean)' );
+
+						mw.test.addTest( '$.isDomElement( document.createElement( "div" ) )',
+							'true (boolean)' );
+
+						mw.test.addTest( '$.isDomElement( {some: "thing" } )',
+							'false (boolean)' );
+
 						mw.test.addTest( 'typeof $.isEmpty',
 							'function (string)' );
 
@@ -192,11 +215,11 @@
 						mw.test.addTest( 'mw.config.exists( ["wgSomeName", "wgTitle"] )',
 							'false (boolean)' );
 
-						mw.test.addTest( 'mw.config.get( "wgTitle" )',
-							'BlankPage (string)' );
+						mw.test.addTest( 'mw.config.get( "wgCanonicalNamespace" )',
+							'Special (string)' );
 
-						mw.test.addTest( 'var a = mw.config.get( ["wgTitle"] ); a.wgTitle',
-							'BlankPage (string)' );
+						mw.test.addTest( 'var a = mw.config.get( ["wgCanonicalNamespace"] ); a.wgCanonicalNamespace',
+							'Special (string)' );
 
 						mw.test.addTest( 'typeof mw.html',
 							'object (string)' );
@@ -246,9 +269,12 @@
 						mw.test.addTest( 'typeof mw.util.addCSS',
 							'function (string)' );
 
-						mw.test.addTest( 'var a = mw.util.addCSS( ".plainlinks { color:green; }" ); a.disabled;',
+						mw.test.addTest( 'var a = mw.util.addCSS( "#mw-js-message { background-color: #AFA !important; }" ); a.disabled;',
 							'false (boolean)',
 							'(boolean)' );
+
+						mw.test.addTest( 'typeof mw.util.toggleToc',
+							'function (string)' );
 
 						mw.test.addTest( 'typeof mw.util.wikiGetlink',
 							'function (string)' );
@@ -262,6 +288,9 @@
 						mw.test.addTest( 'mw.util.getParamValue( "foo", "http://mw.org/?foo=wrong&foo=right#&foo=bad" )',
 							'right (string)' );
 
+						mw.test.addTest( 'typeof mw.util.tooltipAccessKeyPrefix',
+							'string (string)' );
+
 						mw.test.addTest( 'mw.util.tooltipAccessKeyRegexp.constructor.name',
 							'RegExp (string)' );
 
@@ -273,6 +302,9 @@
 
 						mw.test.addTest( 'mw.util.$content.size()',
 							'1 (number)' );
+
+						mw.test.addTest( 'mw.util.isMainPage()',
+							'false (boolean)' );
 
 						mw.test.addTest( 'typeof mw.util.addPortletLink',
 							'function (string)' );
@@ -408,7 +440,11 @@
 
 							numberOfTests++;
 							headNumberOfTests++;
-							var doesReturn = eval( exec );
+							try {
+								var doesReturn = eval( exec );
+							} catch (e){
+								mw.log ('mw.util.test> ' + e );
+							}
 							doesReturn = doesReturn + ' (' + typeof doesReturn + ')';
 							var $thisrow = $testrows.eq( i - numberOfHeaders ); // since headers are rows as well
 							$thisrow.find( '> td' ).eq(2).html( mw.html.escape( doesReturn ).replace(/  /g, '&nbsp;&nbsp;' ) );
@@ -424,7 +460,7 @@
 									headNumberOfPartials++;
 								}
 							} else {
-								$thisrow.find( '> td' ).eq(3).css( 'background', '#FAA' ).text( 'ERROR' );
+								$thisrow.css( 'background', '#FAA' ).find( '> td' ).eq(3).text( 'ERROR' );
 								numberOfErrors++;
 								headNumberOfErrors++;
 							}
@@ -434,12 +470,6 @@
 							numberOfPasseds + ' passed test(s). ' + numberOfErrors + ' error(s). ' +
 							numberOfPartials + ' partially passed test(s). </p>' );
 
-						// hide all tests. TODO hide only OK?
-						mw.test.$table.find( '.mw-mwutiltest-test' ).hide();
-						// clickable header to show/hide the tests
-						mw.test.$table.find( '.mw-mwutiltest-head' ).click(function() {
-							$(this).nextUntil( '.mw-mwutiltest-head' ).toggle();
-						});
 					}
 				} );
 			}

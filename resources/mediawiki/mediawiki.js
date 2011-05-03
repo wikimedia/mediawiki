@@ -16,14 +16,8 @@ jQuery.extend({
 	escapeRE : function( str ) {
 		return str.replace ( /([\\{}()|.?*+\-^$\[\]])/g, "\\$1" );
 	},
-	// $.isDomElement( document.getElementById('content') ) === true
-	// $.isDomElement( document.getElementsByClassName('portal') ) === false (array)
-	// $.isDomElement( document.getElementsByClassName('portal')[0] ) === true
-	// $.isDomElement( $('#content') ) === false (jQuery object)
-	// $.isDomElement( $('#content').get(0) ) === true
-	// $.isDomElement( 'hello world' ) === false
 	isDomElement : function( el ) {
-		return !!el.nodeType;
+		return !!el && !!el.nodeType;
 	},
 	isEmpty : function( v ) {
 		var key;
