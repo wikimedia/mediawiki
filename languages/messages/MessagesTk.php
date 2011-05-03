@@ -536,6 +536,9 @@ Sessiýa açmaklygy tamamlamak üçin, bu ýere täze parol ýazyň:',
 Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol talap eden bolmagyňyz ahmal.',
 'resetpass-temp-password'   => 'Wagtlaýyn parol:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Ulanyjy ady:',
+
 # Edit page toolbar
 'bold_sample'     => 'Goýy tekst',
 'bold_tip'        => 'Goýy tekst',
@@ -2228,7 +2231,7 @@ Bökdeme gündeligi salgylanmak üçin aşakda berilýär:',
 'reblock-logentry'                => '[[$1]] üçin gutaryş wagtyny $2 edip, blokirleme sazlamalaryny üýtgetdi $3',
 'blocklogtext'                    => 'Ulanyjy blokirleme we blokirlemeni aýyrma gündeligi.
 Awtomatik usulda blokirlenen IP adresleri sanawda görkezilmeýär.
-Häzirki wagtda blokirlengi duran ulanyjylary [[Special:IPBlockList|IP blokirleme sanawyndan]] görüp bilersiňiz.',
+Häzirki wagtda blokirlengi duran ulanyjylary [[Special:BlockList|IP blokirleme sanawyndan]] görüp bilersiňiz.',
 'unblocklogentry'                 => '$1 ulanyjynyň blokirlemesi aýryldy',
 'block-log-flags-anononly'        => 'diňe anonim ulanyjylar',
 'block-log-flags-nocreate'        => 'hasap açmaklyk blokirlendi',

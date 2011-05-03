@@ -538,6 +538,8 @@ HTML markup cannot be used.
 'feed-atom'               => '{{optional}}',
 'feed-rss'                => '{{optional}}',
 'red-link-title'          => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
+'sort-descending'         => 'JavaScript message. Used by sortable table script.',
+'sort-ascending'          => 'JavaScript message. Used by sortable table script.',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'The name for the tab of the main namespace. Example: [[Example]]

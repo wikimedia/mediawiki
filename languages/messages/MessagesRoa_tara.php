@@ -2350,7 +2350,7 @@ L'archivije de le soppressiune 'u puè acchià aqquà sotte pe riferimende:",
 'reblock-logentry'                => "cangiate l'imbostazione de le blocche pe [[$1]] cu 'na data de scadenze de $2 $3",
 'blocklogtext'                    => "Quiste è l'archivije de l'aziune de blocche e sblocche pe l'utinde.
 L'indirizze IP automaticamende bloccate non ge stonne jndr'à liste.
-Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operaziune de ban e blocche ca stonne attive mò.",
+Vide 'a [[Special:BlockList|liste de le IP bloccate]] pa liste de le operaziune de ban e blocche ca stonne attive mò.",
 'unblocklogentry'                 => 'sblocchete $1',
 'block-log-flags-anononly'        => "sulamende l'utinde anonime",
 'block-log-flags-nocreate'        => 'ccreazione de le cunde utinde disabbilitete',

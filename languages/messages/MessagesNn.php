@@ -2421,7 +2421,7 @@ Loggføringa er synt nedanfor som referanse:',
 'blocklogentry'                   => 'Blokkerte «[[$1]]» med opphøyrstid $2 $3',
 'reblock-logentry'                => 'endra blokkeringsinnstillingar for [[$1]] med tida $2 $3',
 'blocklogtext'                    => 'Dette er ein logg over blokkeringar og oppheving av blokkeringar gjorde.
-IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:IPBlockList|blokkeringslista]] for alle aktive blokkeringar.',
+IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:BlockList|blokkeringslista]] for alle aktive blokkeringar.',
 'unblocklogentry'                 => 'oppheva blokkering av «$1»',
 'block-log-flags-anononly'        => 'berre anonyme brukarar',
 'block-log-flags-nocreate'        => 'kontooppretting slått av',

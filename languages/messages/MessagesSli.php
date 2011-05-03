@@ -1628,7 +1628,7 @@ Zur Uffhebung dar Sperre siehe ie [[Special:IPBlockList|Liste oller aktiven Sper
 'reblock-logentry'            => 'änderte de Sperre fier „[[$1]]“ fier dann Zeitraum: $2 $3',
 'blocklogtext'                => 'Dies ies doas Logbuch ieber Sperrunga und Entsperrunga vu Nutzern und IP-Atressa.
 Automatisch gesperrte IP-Atressa waan ne erfasst.
-Siehe de [[Special:IPBlockList|Liste dar gesperrta IP-Atressa und Nutzernoama]] fier olle aktiven Sperra.',
+Siehe de [[Special:BlockList|Liste dar gesperrta IP-Atressa und Nutzernoama]] fier olle aktiven Sperra.',
 'unblocklogentry'             => 'hoot de Sperre voo „$1“ uffgehoba',
 'block-log-flags-anononly'    => 'ock Anonyme',
 'block-log-flags-nocreate'    => 'Erstellung voo Benutzerkonta gesperrt',

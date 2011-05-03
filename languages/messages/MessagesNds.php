@@ -2194,7 +2194,7 @@ Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.
 'blocklogentry'                   => 'block [[$1]] för en Tiedruum vun: $2 $3',
 'reblock-logentry'                => 'hett de Sperr för „[[$1]]“ op de Tied $2 $3 ännert',
 'blocklogtext'                    => 'Dit is en Logbook över Blocks un Freegaven vun Brukern. Automatisch blockte IP-Adressen sünd nich opföhrt.
-Kiek [[Special:IPBlockList|IP-Blocklist]] för en List vun den blockten Brukern.',
+Kiek [[Special:BlockList|IP-Blocklist]] för en List vun den blockten Brukern.',
 'unblocklogentry'                 => 'Block vun $1 ophoven',
 'block-log-flags-anononly'        => 'blots anonyme Brukers',
 'block-log-flags-nocreate'        => 'Brukerkonten opstellen sperrt',

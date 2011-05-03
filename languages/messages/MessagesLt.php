@@ -2374,7 +2374,7 @@ Pateikiamas paskutinis blokavimo istorijos įrašas.',
 'reblock-logentry'                => 'pakeisti [[$1]] blokavimo nustatymai, naujas blokavimo laikas – $2 $3',
 'blocklogtext'                    => 'Čia yra naudotojų blokavimo ir atblokavimo sąrašas.
 Automatiškai blokuoti IP adresai neišvardinti.
-Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:IPBlockList|IP blokavimų sąrašą]].',
+Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:BlockList|IP blokavimų sąrašą]].',
 'unblocklogentry'                 => 'atblokavo $1',
 'block-log-flags-anononly'        => 'tik anoniminiai naudotojai',
 'block-log-flags-nocreate'        => 'paskyrų kūrimas išjungtas',

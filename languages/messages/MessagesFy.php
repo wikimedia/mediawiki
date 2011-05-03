@@ -609,6 +609,9 @@ Jo moatte efkes wachtsje foar't jo it op'e nij besykje kinne.",
 Mûglik hawwe Jo Jo wachtwurd al feroare of in nij tydlik wachtwurd oanfrege.',
 'resetpass-temp-password'   => 'Tydlik wachtwurd:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Meidoggernamme',
+
 # Edit page toolbar
 'bold_sample'     => 'Fette tekst',
 'bold_tip'        => 'Fette tekst',
@@ -1991,7 +1994,7 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 'autoblocker'         => 'Jo wiene útsletten om\'t jo ynternet-adres oerienkomt mei dat fan "[[User:$1|$1]]". Foar it útsluten fan dy meidogger waard dizze reden jûn: "$2".',
 'blocklogpage'        => 'Utslútloch',
 'blocklogentry'       => '"[[$1]]" útsletten foar $2 $3',
-'blocklogtext'        => 'Dit is in loch fan it útsluten en talitten fan meidoggers. Fansels útsletten net-adressen binne net opnaam. Sjoch de [[Special:IPBlockList|útsletlist]] foar de no jildende utslettings.',
+'blocklogtext'        => 'Dit is in loch fan it útsluten en talitten fan meidoggers. Fansels útsletten net-adressen binne net opnaam. Sjoch de [[Special:BlockList|útsletlist]] foar de no jildende utslettings.',
 'unblocklogentry'     => 'hat de blokkade fan $1 fuorthelle',
 'ipb_expiry_invalid'  => 'Tiid fan ferrinnen is net goed.',
 'ipb_already_blocked' => '"$1" is al útsluten',

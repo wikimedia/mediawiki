@@ -578,6 +578,9 @@ Stebedolös büä osteifülol nogna.',
 Ba ya evotükol benosekiko letavödi olik, u ya ebegol benosekiko letavödi nelaidüpik nulik.',
 'resetpass-temp-password'   => 'Letavöd nelaidüpik:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Gebananem:',
+
 # Edit page toolbar
 'bold_sample'     => 'Vödem bigik',
 'bold_tip'        => 'Vödem bigik',
@@ -2013,7 +2016,7 @@ $1',
 'blocklogpage'                    => 'Jenotalised blokamas',
 'blocklogentry'                   => '"[[$1]]" peblokon dü: $2 $3',
 'reblock-logentry'                => 'blokamaparamets gebana: [[$1]] pevotükons, pro dul: $2 (kod: $3)',
-'blocklogtext'                    => 'Is binon lised gebanablokamas e gebanasäblokamas. Ladets-IP itjäfidiko pebloköls no pajonons. Logolös blokamis e xilis anu lonöfölis in [[Special:IPBlockList|lised IP-blokamas]].',
+'blocklogtext'                    => 'Is binon lised gebanablokamas e gebanasäblokamas. Ladets-IP itjäfidiko pebloköls no pajonons. Logolös blokamis e xilis anu lonöfölis in [[Special:BlockList|lised IP-blokamas]].',
 'unblocklogentry'                 => '$1 pesäblokon',
 'block-log-flags-anononly'        => 'te gebans nennemik',
 'block-log-flags-nocreate'        => 'kalijaf penemögükon',

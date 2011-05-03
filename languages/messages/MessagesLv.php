@@ -1613,7 +1613,7 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'allinnamespace'    => 'Visas lapas ($1 vārdtelpa)',
 'allnotinnamespace' => 'Visas lapas (nav $1 vārdtelpa)',
 'allpagesprev'      => 'Iepriekšējās',
-'allpagesnext'      => 'Nākošās',
+'allpagesnext'      => 'Nākamās',
 'allpagessubmit'    => 'Aiziet!',
 'allpagesprefix'    => 'Parādīt lapas ar šādu virsraksta sākumu:',
 'allpages-bad-ns'   => '{{SITENAME}} nav vārdkopas "$1".',
@@ -2047,8 +2047,9 @@ Viņa bloķēšanas iemesls bija: "$2"',
 Te apakšā var apskatīties bloķēšanas reģistru:',
 'blocklogentry'               => 'nobloķēja [[$1]] uz $2 $3',
 'reblock-logentry'            => 'izmainīja bloķēšanas iestatījumus [[$1]] ar beigu termiņu $2 $3',
-'blocklogtext'                => 'Šajā lapā ir pēdējo nobloķēto un atbloķēto lietotāju un IP adrešu saraksts. Te neparādās automātiski nobloķētās IP adreses.
-Šobrīd aktīvos blokus var apskatīties [[Special:IPBlockList|bloķēto lietotāju un IP adrešu sarakstā]].',
+'blocklogtext'                => 'Šajā lapā ir pēdējo nobloķēto un atbloķēto lietotāju saraksts.
+Te neparādās automātiski nobloķētās IP adreses.
+Šobrīd aktīvos blokus var apskatīties bloķēto lietotāju [[Special:BlockList|IP adrešu sarakstā]].',
 'unblocklogentry'             => 'atbloķēja $1',
 'block-log-flags-anononly'    => 'tikai anonīmiem lietotājiem',
 'block-log-flags-nocreate'    => 'kontu veidošana atslēgta',

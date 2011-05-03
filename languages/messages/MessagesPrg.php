@@ -1924,7 +1924,7 @@ Tērpautajas $1 blōkisenes brewīnsli ast: "$2"',
 'reblock-logentry'                => 'ast kitawīdinuns blōkisenes ensadīnsnas stesse(s) [[$1]] sen blōkisnas kērdan: $2 $3',
 'blocklogtext'                    => 'Sta ast regīsterin stēisan blōkisenin be etblōkisenin stēisan tērpautajan anga IP adressin.
 Autōmatiskai blōkitas IP adressis ni ast waidīntan.
-Jaīs en [[Special:IPBlockList|IP blōkisenin listin]] ki widālai wissans tēnti aktīwans blōkisenins.',
+Jaīs en [[Special:BlockList|IP blōkisenin listin]] ki widālai wissans tēnti aktīwans blōkisenins.',
 'unblocklogentry'                 => 'ast etblōkiwuns(si) $1',
 'block-log-flags-anononly'        => 'tēr anōnimai tērpautajai',
 'block-log-flags-nocreate'        => 'rekkenas teīksna izklaūtan',

@@ -568,6 +568,9 @@ $2',
 ئىمنى ئاللىبۇرۇن ئۆزگەرتىپ بولدىڭىز ياكى يېڭى ۋاقىتلىق ئىم ئىلتىماس قىلدىڭىز.',
 'resetpass-temp-password'   => 'ۋاقىتلىق ئىم:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'ئىشلەتكۇچى ئىسمى:',
+
 # Edit page toolbar
 'bold_sample'     => 'توم خەت',
 'bold_tip'        => 'توم خەت',
@@ -2264,7 +2267,7 @@ $1',
 'reblock-logentry'                => ' [[$1]] نىڭ چەكلەش تەڭشىكىنى ئۆزگەرتىش ۋاقتى $2 $3',
 'blocklogtext'                    => 'بۇ ئىشلەتكۈچى چەكلەش ۋە چەكلەشنى بىكار قىلىش مەشغۇلاتىغا ئائىت خاتىرە.
 ئۆزلۈكىدىن چەكلەنگەن IP ئادرېس كۆرسىتىلمىدى.
- [[Special:IPBlockList|چەكلەنگەنIP تىزىملىكى]] دىن كۆرۈڭ.',
+ [[Special:BlockList|چەكلەنگەنIP تىزىملىكى]] دىن كۆرۈڭ.',
 'unblocklogentry'                 => '$1 چەكلەش بىكار قىلىنغان',
 'block-log-flags-anononly'        => 'ئىمزاسىز ئىشلەتكۈچىلا',
 'block-log-flags-nocreate'        => 'ھېسابات قۇرۇش چەكلەنگەن',

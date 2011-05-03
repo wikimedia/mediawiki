@@ -528,7 +528,7 @@ Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.'
 'usernamehasherror'          => "Un nòm utent a peul pa conten-e caràter ciapulà (''hash'')",
 'login-throttled'            => "It l'has fàit tròpi tentativ recent d'intré.
 Për piasì speta prima ëd prové torna.",
-'login-abort-generic'        => "Tò login a l'é pa riussì - Abortì",
+'login-abort-generic'        => "Sò tentitiv d'intré ant ël sistema a l'é falì - Abortì",
 'loginlanguagelabel'         => 'Lenga: $1',
 'suspicious-userlogout'      => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
 
@@ -1468,8 +1468,8 @@ A dovrìa controlé la stòria djë scancelament ëd l'archivi prima ëd carielo
 Për piasì, ch'a controla l'ampostassion file_uploads.",
 'uploadscripted'              => "St'archivi-sì a l'ha andrinta chèich-còs (dël còdes HTML ò pura un senari) che a podrìa esse travajà mal da chèich programa ëd navigassion.",
 'uploadvirus'                 => "St'archivi-sì a l'han andrinta un '''vìrus!''' Detaj: $1",
-'uploadjava'                  => "L'archivi a l'é un file ZIP ch'a conten un file Java .class.
-As peul pa cariesse file Java, përché a peulo causé che le restrission ëd sicurëssa a sio superà.",
+'uploadjava'                  => "L'archivi a l'é n'archivi ZIP ch'a conten n'archivi Java .class.
+As peulo pa cariesse dj'archivi Java, përché a peulo causé l'agirament ëd le restrission ëd sicurëssa.",
 'upload-source'               => 'Archivi sorgiss',
 'sourcefilename'              => "Nòm dl'archivi sorgiss:",
 'sourceurl'                   => "Adrëssa dl'aragnà sorgiss:",
@@ -1521,12 +1521,12 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'upload-http-error'         => "A l'é staje n'eror HTTP: $1.",
 
 # ZipDirectoryReader
-'zip-file-open-error' => "N'eror a l'é capità an dorbend ël file për ij contròj ZIP.",
-'zip-wrong-format'    => "Ël file specificà a l'é pa un file ZIP.",
-'zip-bad'             => "Ël file a l'é un file ZIP brëccà o autriment pa lesìbil.
+'zip-file-open-error' => "N'eror a l'é capità an duvertand l'archivi për ij contròj ZIP.",
+'zip-wrong-format'    => "L'archivi specificà a l'é pa n'archivi ZIP.",
+'zip-bad'             => "L'archivi a l'é n'archivi ZIP danegià o comsëssìa pa lesìbil.
+A peul pa esse controlà për da bin për la sicurëssa.",
+'zip-unsupported'     => "L'archivi a l'é n'archivi ZIP ch'a deuvra dle caraterìstiche ZIP nen mantnùe da MediaWiki.
 A peul pa esse controlà da bin për la sicurëssa.",
-'zip-unsupported'     => "Ël file a l'é un file ZIP ch'a dòvra funzion ZIP pa apogià da MediaWiki.
-A peul pa esse controlà da bin pël la sicurëssa.",
 
 # Special:UploadStash
 'uploadstash'          => "Memorisassion d'amportassion",
@@ -1854,11 +1854,11 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'linksearch-ok'    => 'Sërché',
 'linksearch-text'  => 'As peulo dovresse dij ciapatut coma "*.wikipedia.org".<br />Protocòj ch\'as peulo dovresse: <tt>$1</tt>',
 'linksearch-line'  => "$1 a l'ha n'anliura ch'a-j riva dzora da $2",
-'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël servent.',
+'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël sërvent.',
 
 # Special:ListUsers
 'listusersfrom'      => "Smon-me j'utent a parte da:",
-'listusers-submit'   => 'Smon',
+'listusers-submit'   => 'Smon-e',
 'listusers-noresult' => 'Pa gnun utent parej.',
 'listusers-blocked'  => '(blocà)',
 
@@ -2319,7 +2319,7 @@ Varda [[Special:IPBlockList|lista dj'IP blocà]] Për rivëdde ij blòch.",
 'reblock-logentry'                => 'cambià le ampostassion dël blòch për [[$1]] con un temp ëd fin ëd $2 $3',
 'blocklogtext'                    => "Sossì a l'é ël registr dij blocagi e dësblocagi dj'Utent. J'adrësse che
 a son staite blocà n'automàtich ambelessì a së s-ciàiro nen.
-Che a varda la [[Special:IPBlockList|lista dj'adrësse IP blocà]] për vëdde
+Che a varda la [[Special:BlockList|lista dj'adrësse IP blocà]] për vëdde
 coj che sio ij blocagi ativ al dì d'ancheuj.",
 'unblocklogentry'                 => "a l'ha dësblocà $1",
 'block-log-flags-anononly'        => 'mach utent anònim',
@@ -3411,7 +3411,7 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'specialpages-note'              => '----
 * Pàgine speciaj normaj.
 * <span class="mw-specialpagerestricted">Pàgine speciaj riservà.</span>
-* <span class="mw-specialpagecached">Pàgine speciaj mach an cache.</span>',
+* <span class="mw-specialpagecached">Pàgine speciaj mach an memòria local.</span>',
 'specialpages-group-maintenance' => 'Rapòrt ëd manutension',
 'specialpages-group-other'       => 'Àutre pàgine speciaj',
 'specialpages-group-login'       => 'Login / registrassion',
