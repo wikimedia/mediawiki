@@ -247,6 +247,7 @@ abstract class DatabaseUpdater {
 	 * Helper function: check if the given key is present in the updatelog table.
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
+	 * @param $key String Name of the key to check for
 	 */
 	public function updateRowExists( $key ) {
 		$row = $this->db->selectRow(
@@ -256,6 +257,21 @@ abstract class DatabaseUpdater {
 			__METHOD__
 		);
 		return (bool)$row;
+	}
+
+	/**
+	 * Helper function: Add a key to the updatelog table
+	 * Obviously, only use this for updates that occur after the updatelog table was
+	 * created!
+	 * @param $key String Name of key to insert
+	 * @param $val String [optional] value to insert along with the key
+	 */
+	public function insertUpdateRow( $key, $val = null ) {
+		$values = array( 'ul_key' => $key );
+		if( $val && $this->canUseNewUpdatelog() ) {
+			$values['ul_value'] = $val;
+		}
+		$this->db->insert( 'updatelog', $values, __METHOD__, 'IGNORE' );
 	}
 
 	/**
@@ -439,13 +455,17 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean: whether to treat $patch path as a relative or not
 	 */
 	public function modifyField( $table, $field, $patch, $fullpath = false ) {
+		$updateKey = "$table-$field-$patch";
 		if ( !$this->db->tableExists( $table ) ) {
 			$this->output( "...$table table does not exist, skipping modify field patch\n" );
 		} elseif ( !$this->db->fieldExists( $table, $field ) ) {
 			$this->output( "...$field field does not exist in $table table, skipping modify field patch\n" );
+		} elseif( $this->updateRowExists( $updateKey ) ) {
+			$this->output( "...$field in table $table already modified by patch $patch\n" );
 		} else {
 			$this->output( "Modifying $field field of table $table..." );
 			$this->applyPatch( $patch, $fullpath );
+			$this->insertUpdateRow( $updateKey );
 			$this->output( "ok\n" );
 		}
 	}

@@ -199,7 +199,7 @@ CREATE TABLE /*_*/user_properties (
   up_user int NOT NULL,
 
   -- Name of the option being saved. This is indexed for bulk lookup.
-  up_property varbinary(32) NOT NULL,
+  up_property varbinary(255) NOT NULL,
 
   -- Property value as a string.
   up_value blob
