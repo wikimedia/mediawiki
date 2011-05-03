@@ -989,6 +989,16 @@ class ApiMain extends ApiBase {
 	function getModules() {
 		return $this->mModules;
 	}
+
+	/**
+	 * Returns the list of supported formats in form ( 'format' => 'ClassName' )
+	 *
+	 * @since 1.18
+	 * @return array
+	 */
+	public function getFormats() {
+		return $this->mFormats;
+	}
 }
 
 /**
