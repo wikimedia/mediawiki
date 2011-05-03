@@ -197,11 +197,16 @@ class ImageListPager extends TablePager {
 				if ( $imgfile === null ) $imgfile = wfMsg( 'imgfile' );
 
 				$filePage = Title::makeTitle( NS_FILE, $value );
-				$link = $this->getSkin()->linkKnown( $filePage, htmlspecialchars( $filePage->getText() ) );
-				$image = wfLocalFile( $value );
-				$url = $image->getURL();
-				$download = Xml::element('a', array( 'href' => $url ), $imgfile );
-				return "$link ($download)";
+				if( $filePage ) {
+					$link = $this->getSkin()->linkKnown( $filePage, htmlspecialchars( $filePage->getText() ) );
+					$download = Xml::element( 'a',
+						array( 'href' => wfLocalFile( $filePage )->getURL() ),
+						$imgfile
+					);
+					return "$link ($download)";
+				} else {
+					return htmlspecialchars( $value );
+				}
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
 					$link = $this->getSkin()->link(
@@ -217,7 +222,7 @@ class ImageListPager extends TablePager {
 			case 'img_description':
 				return $this->getSkin()->commentBlock( $value, null, false, false );
 			case 'count':
-				return intval($value)+1;
+				return intval( $value ) + 1;
 		}
 	}
 
