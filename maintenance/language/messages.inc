@@ -338,6 +338,9 @@ $wgMessageStructure = array(
 		'anonnotice',
 		'newsectionheaderdefaultlevel',
 		'red-link-title',
+		'sort-descending',
+		'sort-ascending',
+        
 	),
 	'nstab' => array(
 		'nstab-main',

@@ -141,6 +141,7 @@
 							// Check next parser, reset rows
 							i++;
 							rowIndex = 0;
+							concurrent = 0;
 						}
 					} else {
 						// Empty cell
@@ -255,7 +256,7 @@
 				//  }
 			}
 
-			function buildHeaders( table ) {
+			function buildHeaders( table, msg ) {
 				var maxSeen = 0;
 				var longest;
 				// if ( table.config.debug ) {
@@ -289,7 +290,8 @@
 					if ( $( this ).is( '.unsortable' ) ) this.sortDisabled = true;
 
 					if ( !this.sortDisabled ) {
-						var $th = $( this ).addClass( table.config.cssHeader );
+						var $th = $( this ).addClass( table.config.cssHeader ).attr( 'title', msg[1] );
+						
 						//if ( table.config.onRenderHeader ) table.config.onRenderHeader.apply($th);
 					}
 
@@ -316,7 +318,7 @@
 				return false;
 			}
 
-			function setHeadersCss( table, $headers, list, css ) {
+			function setHeadersCss( table, $headers, list, css, msg ) {
 				// remove all header information
 				$headers.removeClass( css[0] ).removeClass( css[1] );
 
@@ -329,7 +331,7 @@
 
 				var l = list.length;
 				for ( var i = 0; i < l; i++ ) {
-					h[list[i][0]].addClass( css[list[i][1]] );
+					h[ list[i][0] ].addClass( css[ list[i][1] ] ).attr( 'title', msg[ list[i][1] ] );
 				}
 			}
 
@@ -515,8 +517,13 @@
 					$this = $( this );
 					// save the settings where they read
 					$.data( this, "tablesorter", config );
+
+					// get the css class names, could be done else where.
+					var sortCSS = [ config.cssDesc, config.cssAsc ];
+					var sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-ascending' ) ];
+
 					// build headers
-					$headers = buildHeaders( this );
+					$headers = buildHeaders( this, sortMsg );
 					// Grab and process locale settings
 					buildTransformTable();
 					buildDateTable();
@@ -526,8 +533,6 @@
 					//performance improvements in some browsers
 					cacheRegexs();
 
-					// get the css class names, could be done else where.
-					var sortCSS = [config.cssDesc, config.cssAsc];
 					// apply event handling to headers
 					// this is to big, perhaps break it out?
 					$headers.click( 
@@ -584,7 +589,7 @@
 							}
 							setTimeout( function () {
 								// set css for headers
-								setHeadersCss( $this[0], $headers, config.sortList, sortCSS );
+								setHeadersCss( $this[0], $headers, config.sortList, sortCSS, sortMsg );
 								appendToTable( 
 								$this[0], multisort( 
 								$this[0], config.sortList, cache ) );

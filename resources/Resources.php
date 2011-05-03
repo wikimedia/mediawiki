@@ -137,7 +137,8 @@ return array(
 		'scripts' => 'resources/jquery/jquery.tabIndex.js',
 	),
 	'jquery.tablesorter' => array(
-		'scripts' => 'resources/jquery/jquery.tablesorter.js'
+		'scripts' => 'resources/jquery/jquery.tablesorter.js',
+		'messages' => array( 'sort-descending', 'sort-ascending' ),
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',

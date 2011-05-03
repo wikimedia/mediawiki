@@ -933,6 +933,8 @@ See [[Special:Version|version page]].',
 'anonnotice'                   => '-', # do not translate or duplicate this message to other languages
 'newsectionheaderdefaultlevel' => '== $1 ==', # do not translate or duplicate this message to other languages
 'red-link-title'               => '$1 (page does not exist)',
+'sort-descending'              => 'Sort descending',
+'sort-ascending'               => 'Sort ascending',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
