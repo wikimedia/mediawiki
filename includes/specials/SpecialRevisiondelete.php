@@ -404,7 +404,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 						Xml::label( wfMsg( 'revdelete-otherreason' ), 'wpReason' ) .
 					'</td>' .
 					'<td class="mw-input">' .
-						Xml::input( 'wpReason', 60, $this->otherReason, array( 'id' => 'wpReason' ) ) .
+						Xml::input( 'wpReason', 60, $this->otherReason, array( 'id' => 'wpReason', 'maxlength' => 100 ) ) .
 					'</td>' .
 				"</tr><tr>\n" .
 					'<td></td>' .
