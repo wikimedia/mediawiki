@@ -561,7 +561,6 @@ class LocalFile extends File {
 	/** getUnscaledThumb inherited */
 	/** thumbName inherited */
 	/** createThumb inherited */
-	/** getThumbnail inherited */
 	/** transform inherited */
 
 	/**
