@@ -207,7 +207,6 @@ abstract class Skin {
 	 */
 	protected function setMembers() {
 		$this->userpage = $this->getContext()->getUser()->getUserPage()->getPrefixedText();
-		$this->usercss = false;
 	}
 
 	/**

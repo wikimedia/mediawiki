@@ -191,7 +191,7 @@ class SkinTemplate extends Skin {
 			$this->setupUserCss( $out );
 
 			$tpl->set( 'pagecss', $this->setupPageCss() );
-			$tpl->setRef( 'usercss', $this->usercss );
+			$tpl->set( 'usercss', false );
 
 			$this->userjs = $this->userjsprev = false;
 			# FIXME: this is the only use of OutputPage::isUserJsAllowed() anywhere; can we
