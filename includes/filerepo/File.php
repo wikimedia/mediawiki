@@ -559,30 +559,6 @@ abstract class File {
 	}
 
 	/**
-	 * As createThumb, but returns a ThumbnailImage object. This can
-	 * provide access to the actual file, the real size of the thumb,
-	 * and can produce a convenient \<img\> tag for you.
-	 *
-	 * For non-image formats, this may return a filetype-specific icon.
-	 *
-	 * @param $width Integer: maximum width of the generated thumbnail
-	 * @param $height Integer: maximum height of the image (optional)
-	 * @param $render Integer: Deprecated
-	 *
-	 * @return ThumbnailImage or null on failure
-	 *
-	 * @deprecated use transform()
-	 */
-	public function getThumbnail( $width, $height=-1, $render = true ) {
-		wfDeprecated( __METHOD__ );
-		$params = array( 'width' => $width );
-		if ( $height != -1 ) {
-			$params['height'] = $height;
-		}
-		return $this->transform( $params, 0 );
-	}
-
-	/**
 	 * Transform a media file
 	 *
 	 * @param $params Array: an associative array of handler-specific parameters.
