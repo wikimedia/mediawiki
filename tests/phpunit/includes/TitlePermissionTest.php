@@ -329,7 +329,7 @@ class TitlePermissionTest extends MediaWikiTestCase {
 	function testPermissionHooks() { }
 	function testSpecialsAndNSPermissions() {
 		$this->setUser( $this->userName );
-		global $wgUser, $wgContLang;
+		global $wgUser;
 		$wgUser = $this->user;
 
 		$this->setTitle( NS_SPECIAL );
