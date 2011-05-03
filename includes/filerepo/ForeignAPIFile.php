@@ -38,7 +38,7 @@ class ForeignAPIFile extends File {
                         'titles' => 'File:' . $title->getDBKey(),
                         'iiprop' => self::getProps(),
                         'prop' => 'imageinfo',
-			'iimetadataversion' => mediaHandler::getMetadataVersion()
+			'iimetadataversion' => MediaHandler::getMetadataVersion()
 			 ) );
 
 		$info = $repo->getImageInfo( $data );
