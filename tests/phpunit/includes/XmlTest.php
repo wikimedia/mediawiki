@@ -12,7 +12,7 @@ class XmlTest extends MediaWikiTestCase {
 	}
 	
 	public function tearDown() {
-		global $wgContLang, $wgLanguageCode;
+		global $wgLang, $wgLanguageCode;
 		$wgLang = self::$oldLang;
 		$wgLanguageCode = $wgLang->getCode();
 	}
