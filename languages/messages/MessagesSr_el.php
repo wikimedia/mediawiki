@@ -2281,7 +2281,7 @@ Dnevnik blokiranja je ponuđen ispod  kao referenca:',
 'reblock-logentry'                => 'promenjena podešavanja bloka za [[$1]] sa vremenom isteka $2 ($3)',
 'blocklogtext'                    => 'Ovo je istorija blokiranja korisnika.
 Automatski zabranjene IP adrese nisu ispisane ovde.
-Pogledajte [[Special:IPBlockList|zabranjene IP adrese]] za spisak trenutnih blokova.',
+Pogledajte [[Special:BlockList|zabranjene IP adrese]] za spisak trenutnih blokova.',
 'unblocklogentry'                 => '{{GENDER:|je deblokirao|je deblokirala|je deblokirao}} „$1“',
 'block-log-flags-anononly'        => 'samo anonimni korisnici',
 'block-log-flags-nocreate'        => 'onemogućeno otvaranje naloga',

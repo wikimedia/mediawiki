@@ -1148,7 +1148,7 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'reblock-logentry'                => 'änerd jü spär for „[[$1]]“ for di tidrüm: $2 $3',
 'blocklogtext'                    => 'Dåtdeer as dåt logbök ouer späringe än önjtspäringe foon brükere än IP-adräse.
 Automatisch spärd IP-adräse wårde ai footed.
-Sii jü [[Special:IPBlockList|list foon da spärd IP-adräse än brükernoome]] for ål da aktive späre.',
+Sii jü [[Special:BlockList|list foon da spärd IP-adräse än brükernoome]] for ål da aktive späre.',
 'unblocklogentry'                 => 'heet jü späre foon „$1“ aphääwen',
 'block-log-flags-anononly'        => 'bloot anonyme',
 'block-log-flags-nocreate'        => 'Måågen foon brükerkonte spärd',

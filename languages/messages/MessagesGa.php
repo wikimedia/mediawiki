@@ -1556,7 +1556,7 @@ Is é seo an chúis don chosc ar $1: "$2".',
 'blocklogentry'            => 'coisceadh [[$1]]; am éaga $2. $3',
 'blocklogtext'             => 'Seo é cuntas de gníomhartha coisc úsáideoirí agus míchoisc úsáideoirí. Ní cuirtear
 seoltaí IP a raibh coiscthe go huathoibríoch ar an liosta seo. Féach ar an
-[[Special:IPBlockList|Liosta coisc IP]] chun
+[[Special:BlockList|Liosta coisc IP]] chun
 liosta a fháil de coisc atá i bhfeidhm faoi láthair.',
 'unblocklogentry'          => 'díchoisceadh $1',
 'block-log-flags-nocreate' => 'cuntas chruthú díchumasaithe',

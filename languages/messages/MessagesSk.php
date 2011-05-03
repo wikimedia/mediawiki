@@ -2551,7 +2551,7 @@ Uvedený dôvod zablokovania používateľa $2 bol: „$2“',
 'reblock-logentry'                => 'zmenené voľby zablokovania používateľa [[$1]] s časom vypršania $2, $3',
 'blocklogtext'                    => 'Toto je zoznam blokovaní a odblokovaní používateľov. Automaticky
 blokované IP adresy nie sú zahrnuté. Pozri zoznam
-[[Special:IPBlockList|aktuálnych blokovaní]].',
+[[Special:BlockList|aktuálnych blokovaní]].',
 'unblocklogentry'                 => 'odblokoval/a $1',
 'block-log-flags-anononly'        => 'iba anonymní používatelia',
 'block-log-flags-nocreate'        => 'možnosť vytvoriť si účet bola vypnutá',

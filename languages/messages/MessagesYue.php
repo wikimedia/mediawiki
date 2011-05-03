@@ -646,6 +646,10 @@ $1',
 你可能已經成功咁更改你嘅密碼，又或者重新請求過一個新嘅臨時密碼。',
 'resetpass-temp-password'   => '臨時密碼:',
 
+# Special:PasswordReset
+'passwordreset'          => '密碼重設',
+'passwordreset-username' => '用戶名',
+
 # Edit page toolbar
 'bold_sample'     => '粗體字',
 'bold_tip'        => '粗體字',
@@ -2304,7 +2308,7 @@ $1',
 'blocklog-showsuppresslog'        => '呢位用戶已經響之前被封鎖同隱藏過。響下面提供咗廢止紀錄以便參考：',
 'blocklogentry'                   => '已封鎖[[$1]]，到期時間為$2 $3',
 'reblock-logentry'                => '已改[[$1]]嘅封鎖設定，到期時間為$2 $3',
-'blocklogtext'                    => '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:IPBlockList|IP封鎖名單]]睇現時生效嘅封鎖名單',
+'blocklogtext'                    => '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:BlockList|IP封鎖名單]]睇現時生效嘅封鎖名單',
 'unblocklogentry'                 => '已經解封$1',
 'block-log-flags-anononly'        => '只限匿名用戶',
 'block-log-flags-nocreate'        => '停用開新戶口',

@@ -2401,7 +2401,7 @@ De Grond dee fir d\'Spär vum $1 ugi gouf ass: "$2".',
 'reblock-logentry'                => "huet d'Spär vum [[$1]] bis den $2 $3 geännert",
 'blocklogtext'                    => "Dëst ass eng Lëscht vu Spären a vu Spären déi opgehuewe goufen.
 Automatesch gespaarten IP-Adresse sinn hei net opgelëscht.
-Kuckt d'[[Special:IPBlockList|IP Spärlëscht]] fir déi aktuell Spären.",
+Kuckt d'[[Special:BlockList|IP Spärlëscht]] fir déi aktuell Spären.",
 'unblocklogentry'                 => "huet d'Spär vum $1 opgehuewen",
 'block-log-flags-anononly'        => 'Nëmmen anonym Benotzer',
 'block-log-flags-nocreate'        => 'Schafe vu Benotzerkonte gespaart',
@@ -2996,6 +2996,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-fixtureidentifier'           => 'Numm vun der Rubrik',
 'exif-objectcycle'                 => 'Zäit vum Dag fir deen dëse Fichier geduecht ass',
 'exif-contact'                     => 'Kontaktinformatioun',
+'exif-writer'                      => 'Auteur',
 'exif-languagecode'                => 'Sprooch',
 'exif-iimversion'                  => 'IIM-Versioun',
 'exif-iimcategory'                 => 'Kategorie',

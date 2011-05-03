@@ -614,6 +614,9 @@ Tungguan heula sakeudeung, laju cobaan deui.',
 Bisa jadi anjeun geus ngaganti sandina atawa ménta sandi saheulaanan anu anyar.',
 'resetpass-temp-password'   => 'Sandi samentara:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Landihan',
+
 # Edit page toolbar
 'bold_sample'     => 'Téks kandel',
 'bold_tip'        => 'Téks kandel',
@@ -2038,7 +2041,7 @@ Alesan: "$2"',
 'blocklog-showlog'            => 'Ieu pamaké saméméhna geus kungsi dipeungpeuk.
 Pikeun rujukan, logna dipidangkeun di handap ieu:',
 'blocklogentry'               => 'meungpeuk [[$1]] nepi ka $2 $3',
-'blocklogtext'                => 'Ieu mangrupa log peta meungpeuk jeung muka peungpeuk pamaké, teu kaasup alamat IP nu dipeungpeukna otomatis. Tempo [[Special:IPBlockList|daptar peungpeuk IP]] pikeun daptar cegahan jeung peungpeuk.',
+'blocklogtext'                => 'Ieu mangrupa log peta meungpeuk jeung muka peungpeuk pamaké, teu kaasup alamat IP nu dipeungpeukna otomatis. Tempo [[Special:BlockList|daptar peungpeuk IP]] pikeun daptar cegahan jeung peungpeuk.',
 'unblocklogentry'             => 'peungpeuk dibuka "$1"',
 'block-log-flags-anononly'    => 'pamaké anonim wungkul',
 'block-log-flags-nocreate'    => 'Nyieun rekening ditumpurkeun',

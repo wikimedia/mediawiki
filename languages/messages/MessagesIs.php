@@ -698,6 +698,9 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'resetpass-submit-loggedin' => 'Breyta lykilorði',
 'resetpass-temp-password'   => 'Tímabundið lykilorð:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Notandanafn',
+
 # Edit page toolbar
 'bold_sample'     => 'Feitletraður texti',
 'bold_tip'        => 'Feitletraður texti',
@@ -1877,7 +1880,7 @@ Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'blocklogentry'               => 'bannaði „[[$1]]“; rennur út eftir: $2 $3',
 'blocklogtext'                => 'Þetta er skrá yfir bönn sem lögð hafa verið á notendur eða bönn sem hafa verið numin úr gildi.
 Vistföng sem sett hafa verið í bann sjálfvirkt birtast ekki hér.
-Sjá [[Special:IPBlockList|ítarlegri lista]] fyrir öll núgildandi bönn.',
+Sjá [[Special:BlockList|ítarlegri lista]] fyrir öll núgildandi bönn.',
 'unblocklogentry'             => 'afbannaði $1',
 'block-log-flags-anononly'    => 'bara ónefndir notendur',
 'block-log-flags-nocreate'    => 'gerð aðganga bönnuð',

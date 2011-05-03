@@ -249,6 +249,8 @@ $messages = array(
 'vector-action-delete'     => 'Elimine',
 'vector-action-move'       => 'Môf',
 'vector-action-protect'    => 'Protêç',
+'vector-action-undelete'   => 'Recupere',
+'vector-action-unprotect'  => 'No stâ protezi',
 'vector-view-create'       => 'Cree',
 'vector-view-edit'         => 'Cambie',
 'vector-view-history'      => 'Cjale il storic',
@@ -432,6 +434,7 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'createaccount'           => 'Cree une gnove identitât',
 'gotaccount'              => "Âstu za une identitât? '''$1'''.",
 'gotaccountlink'          => 'Jentre',
+'userlogin-resetlink'     => 'Dismenteât i detais par jentrâ?',
 'createaccountmail'       => 'par pueste eletroniche',
 'createaccountreason'     => 'Reson:',
 'badretype'               => 'Lis peraulis clâfs inseridis no son compagnis.',
@@ -1510,6 +1513,19 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'metadata-expand'   => 'Mostre plui detais',
 'metadata-collapse' => 'Plate detais',
 'metadata-fields'   => 'I cjamps relatîfs ai metadâts EXIF elencâts ca sot a vignaran mostrâts inte pagjine de figure cuant che la tabele dai metadâts e je mostrade inte forme curte. Par impostazion predeterminade, ducj chei altris cjamps a vignaran platâts.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude
 * make
 * model
 * datetimeoriginal

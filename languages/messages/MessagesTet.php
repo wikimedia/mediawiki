@@ -849,7 +849,10 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'ilsubmit'     => 'Buka',
 
 # EXIF tags
+'exif-make'         => 'Fabrikante kámara nian',
+'exif-model'        => 'Kámara',
 'exif-artist'       => 'Autór',
+'exif-flash'        => 'Flax',
 'exif-languagecode' => 'Lian',
 'exif-iimcategory'  => 'Kategoria',
 

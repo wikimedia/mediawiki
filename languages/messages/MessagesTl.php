@@ -2420,7 +2420,7 @@ Ang tala ng pagpigil ay ibinigay sa ibaba upang mapagsanggunian:',
 'reblock-logentry'                => 'binago ang itinakdang pagharang/paghadlang kay [[$1]] na may oras/panahon ng pagtatapos na $2 $3',
 'blocklogtext'                    => 'Tala ito ng paghaharang at pagpapawawalang bisa ng pagharang/paghadlang.
 Hindi nakatala rito ang mga awtomatiko/kusang hinarang/hinadlangang mga adres ng IP.
-Tingnan ang [[Special:IPBlockList|talaan ng mga hinarang na/hinadlangang IP]] para sa talaan ng pangkasalukuyang gumagana pang mga pinagbabawalan at mga pagharang/paghadlang.',
+Tingnan ang [[Special:BlockList|talaan ng mga hinarang na/hinadlangang IP]] para sa talaan ng pangkasalukuyang gumagana pang mga pinagbabawalan at mga pagharang/paghadlang.',
 'unblocklogentry'                 => 'tinanggal ang pagharang/paghadlang kay $1',
 'block-log-flags-anononly'        => 'mga di-kilalang tagagamit lamang',
 'block-log-flags-nocreate'        => 'Nakapatay ang paglikha ng akawnt',

@@ -1189,7 +1189,7 @@ Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
 'blocklogentry'            => "l'ha blucaa [[$1]] per un temp de $2 $3",
 'blocklogtext'             => "Quel chì l'è el register di bloch e desbloch di druvadur.
 I indirizz IP che i henn staa blucaa utumaticament i henn mía cumpres int la lista.
-Varda el [[Special:IPBlockList|register di IP blucaa]] per la lista de tüt i bloch uperaziunaj ativ.",
+Varda el [[Special:BlockList|register di IP blucaa]] per la lista de tüt i bloch uperaziunaj ativ.",
 'unblocklogentry'          => "l'ha desblucaa $1",
 'block-log-flags-anononly' => 'dumà druvadur anònim',
 'block-log-flags-nocreate' => 'blucada la creazión de cünt növ',

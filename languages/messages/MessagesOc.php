@@ -783,6 +783,10 @@ Esperatz abans d’ensajar tornamai.',
 Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl.',
 'resetpass-temp-password'   => 'Senhal temporari :',
 
+# Special:PasswordReset
+'passwordreset'          => 'Remesa a zèro del senhal',
+'passwordreset-username' => "Nom d'utilizaire :",
+
 # Edit page toolbar
 'bold_sample'     => 'Tèxte en gras',
 'bold_tip'        => 'Tèxte en gras',
@@ -2426,7 +2430,7 @@ La rason balhada per $1 es : « $2 ».',
 'blocklog-showsuppresslog'        => 'Aqueste utilizaire es estat blocat e amagat precedentament. Lo jornal de las supressions es disponible çaijós :',
 'blocklogentry'                   => 'a blocat « [[$1]] » - durada : $2 $3',
 'reblock-logentry'                => 'a modificat los parametratge de blocatge per [[$1]] amb una durada d’expiracion de $2 $3',
-'blocklogtext'                    => "Aquò es l'istoric dels blocatges e desblocatges dels utilizaires. Las adreças IP automaticament blocadas son pas listadas. Consultatz la [[Special:IPBlockList|lista dels utilizaires blocats]] per veire qui es actualament efectivament blocat.",
+'blocklogtext'                    => "Aquò es l'istoric dels blocatges e desblocatges dels utilizaires. Las adreças IP automaticament blocadas son pas listadas. Consultatz la [[Special:BlockList|lista dels utilizaires blocats]] per veire qui es actualament efectivament blocat.",
 'unblocklogentry'                 => 'a desblocat « $1 »',
 'block-log-flags-anononly'        => 'utilizaires anonims solament',
 'block-log-flags-nocreate'        => 'creacion de compte interdicha',

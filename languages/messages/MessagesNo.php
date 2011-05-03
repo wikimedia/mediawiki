@@ -29,6 +29,7 @@
  * @author Qaqqalik
  * @author Samuelsen
  * @author Simny
+ * @author Sjurhamre
  * @author Stigmj
  * @author Teak
  * @author לערי ריינהארט
@@ -529,6 +530,8 @@ $1',
 'page-rss-feed'           => '«$1» RSS-mating',
 'page-atom-feed'          => '«$1» Atom-mating',
 'red-link-title'          => '$1 (siden finnes ikke)',
+'sort-descending'         => 'Sorter i synkende rekkefølge',
+'sort-ascending'          => 'Sorter i stigende rekkefølge',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Side',
@@ -2475,7 +2478,7 @@ Blokkeringsloggen vises nedenfor.',
 Skjulingsloggen vises nedenfor.',
 'blocklogentry'                   => 'blokkerte [[$1]] med en varighet på $2 $3',
 'reblock-logentry'                => 'endret blokkeringsinnstillinger for [[$1]] med en varighet på $2 $3',
-'blocklogtext'                    => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:IPBlockList|blokkeringslisten]] for en liste over IP-adresser som er blokkert akkurat nå.',
+'blocklogtext'                    => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:BlockList|blokkeringslisten]] for en liste over IP-adresser som er blokkert akkurat nå.',
 'unblocklogentry'                 => 'opphevet blokkeringen av $1',
 'block-log-flags-anononly'        => 'kun uregistrerte brukere',
 'block-log-flags-nocreate'        => 'kontooppretting deaktivert',

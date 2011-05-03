@@ -1183,7 +1183,7 @@ Sebebê kılit-biyaena $1\'i: "$2"o',
 'reblock-logentry'                => 'kilıt-kerdena [[$1]]i hata peyê $2 $3ine vurnê',
 'blocklogtext'                    => "No jü protokolê faeliyetê kilıt- u rakerdena karberuno.
 Otomatikmen kilıt biyaiyê adresê ''IP''y lista de çinê.
-Serba men- u kilıt-biyaene nıkaêne qaytê [[Special:IPBlockList|lista kilıt-kerdena ''IP''y]] ke.",
+Serba men- u kilıt-biyaene nıkaêne qaytê [[Special:BlockList|lista kilıt-kerdena ''IP''y]] ke.",
 'unblocklogentry'                 => "kilıt-kerdena $1'i",
 'block-log-flags-anononly'        => 'teyna karberê bênamey',
 'block-log-flags-nocreate'        => 'afernaena hesabi qapan biye',

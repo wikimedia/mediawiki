@@ -578,6 +578,8 @@ $1',
 'page-rss-feed'           => '«$1» — RSS-лента',
 'page-atom-feed'          => '«$1» — Atom-лента',
 'red-link-title'          => '$1 (такой страницы не существует)',
+'sort-descending'         => 'Упорядочить по убыванию',
+'sort-ascending'          => 'Упорядочить по возрастанию',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Статья',
@@ -2563,7 +2565,7 @@ $1',
 'reblock-logentry'                => 'изменил настройки блокировки для [[$1]], истекает $2 $3',
 'blocklogtext'                    => 'Журнал блокирования и разблокирования участников.
 Автоматически блокируемые IP-адреса здесь не указываются.
-См. [[Special:IPBlockList|Список текущих запретов и блокировок]].',
+См. [[Special:BlockList|Список текущих запретов и блокировок]].',
 'unblocklogentry'                 => 'разблокировал $1',
 'block-log-flags-anononly'        => 'только анонимные пользователи',
 'block-log-flags-nocreate'        => 'запрещена регистрация учётных записей',

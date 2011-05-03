@@ -1560,7 +1560,7 @@ Baroi barrasī ba [[Special:IPBlockList|fehristi nişonahoi IP va nomhoi korbari
 'blocklogentry'               => 'basta şud [[$1]] bo vaqti saromadan $2 $3',
 'blocklogtext'                => 'In guzoriş az amali bastan va boz kardani korbaron ast.
 Nişonahoi IP-i bo tavri xudkor basta şuda, fehrist naşudaand.
-Baroi fehristi mahrumijatho va basta şudanhoi amalijoti kununī ba [[Special:IPBlockList|fehristi IP-hoi basta]] muroçiat kuned.',
+Baroi fehristi mahrumijatho va basta şudanhoi amalijoti kununī ba [[Special:BlockList|fehristi IP-hoi basta]] muroçiat kuned.',
 'unblocklogentry'             => '$1 boz şud',
 'block-log-flags-anononly'    => 'faqat korbaroni gumnom',
 'block-log-flags-nocreate'    => "qobilijati eçodi hisob ƣajrifa'ol şud",

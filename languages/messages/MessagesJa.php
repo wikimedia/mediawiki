@@ -2661,7 +2661,7 @@ $1のブロックの理由は「$2」です。',
 'reblock-logentry'                => '[[$1]]ブロック設定を$2に変更しました。ブロックの詳細$3',
 'blocklogtext'                    => 'このページは利用者のブロックと解除の記録です。
 自動的にブロックされたIPアドレスは表示されていません。
-現時点で有効なブロックは[[Special:IPBlockList|ブロックの一覧]]をご覧ください。',
+現時点で有効なブロックは[[Special:BlockList|ブロックの一覧]]をご覧ください。',
 'unblocklogentry'                 => '$1のブロックを解除しました',
 'block-log-flags-anononly'        => '匿名利用者のみ',
 'block-log-flags-nocreate'        => 'アカウント作成のブロック',
