@@ -1175,7 +1175,8 @@ class Title {
 	 *
 	 * @param $action String action that permission needs to be checked for
 	 * @param $user User to check
-	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary queries.
+	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary queries by
+	 *   skipping checks for cascading protections and user blocks.
 	 * @param $ignoreErrors Array of Strings Set this to a list of message keys whose corresponding errors may be ignored.
 	 * @return Array of arguments to wfMsg to explain permissions problems.
 	 */
@@ -1521,7 +1522,7 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkUserBlock( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		if( $short && count( $errors ) > 0 ) {
+		if( !$doExpensiveQueries ) {
 			return $errors;
 		}
 
