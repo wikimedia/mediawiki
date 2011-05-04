@@ -48,11 +48,11 @@ class MediaWiki {
 		return $default;
 	}
 
-	public function request( WebRequest &$x = null ){
+	public function request( WebRequest $x = null ){
 		return wfSetVar( $this->context->request, $x );
 	}
 
-	public function output( OutputPage &$x = null ){
+	public function output( OutputPage $x = null ){
 		return wfSetVar( $this->context->output, $x );
 	}
 
@@ -67,7 +67,7 @@ class MediaWiki {
 	 *
 	 * @param $article Article
 	 */
-	public function performRequestForTitle( &$article ) {
+	public function performRequestForTitle( $article ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->context->request->getVal( 'printable' ) === 'yes' ) {
@@ -267,7 +267,7 @@ class MediaWiki {
 	 * @param $context RequestContext
 	 * @return Article object
 	 */
-	public static function articleFromTitle( &$title, RequestContext &$context ) {
+	public static function articleFromTitle( $title, RequestContext $context ) {
 		if ( NS_MEDIA == $title->getNamespace() ) {
 			// FIXME: where should this go?
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
@@ -461,7 +461,7 @@ class MediaWiki {
 	 *
 	 * @param $article Article
 	 */
-	private function performAction( &$article ) {
+	private function performAction( $article ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( !wfRunHooks( 'MediaWikiPerformAction', array(
