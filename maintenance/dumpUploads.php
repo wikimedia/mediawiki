@@ -104,7 +104,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 	function outputItem( $name, $shared ) {
 		$file = wfFindFile( $name );
 		if ( $file && $this->filterItem( $file, $shared ) ) {
-			$filename = $file->getFullPath();
+			$filename = $file->getPath();
 			$rel = wfRelativePath( $filename, $this->mBasePath );
 			$this->output( "$rel\n" );
 		} else {

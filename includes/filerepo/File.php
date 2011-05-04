@@ -240,8 +240,11 @@ abstract class File {
 
 	/**
 	* Alias for getPath()
+	*
+	* @deprecated Use getPath().
 	*/
 	public function getFullPath() {
+		wfDeprecated( __METHOD__ );
 		return $this->getPath();
 	}
 
