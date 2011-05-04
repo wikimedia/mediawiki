@@ -545,7 +545,6 @@ class ApiParse extends ApiBase {
 				' headhtml       - Gives parsed <head> of the page',
 				' iwlinks        - Gives interwiki links in the parsed wikitext',
 				' wikitext       - Gives the original wikitext that was parsed',
-				'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present'
 			),
 			'pst' => array(
 				'Do a pre-save transform on the input before parsing it',
