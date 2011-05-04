@@ -956,7 +956,7 @@ window.mediaWiki = new ( function( $ ) {
 				// include modules which are already loaded
 				batch = [];
 				// Asynchronously append a script tag to the end of the body
-				function request() {
+				function getScriptTag() {
 					var html = '';
 					for ( var r = 0; r < requests.length; r++ ) {
 						requests[r] = sortQuery( requests[r] );
@@ -969,9 +969,9 @@ window.mediaWiki = new ( function( $ ) {
 				}
 				// Load asynchronously after documument ready
 				if ( ready ) {
-					setTimeout( function() { $( 'body' ).append( request() ); }, 0 );
+					setTimeout( function() { $( 'body' ).append( getScriptTag() ); }, 0 );
 				} else {
-					document.write( request() );
+					document.write( getScriptTag() );
 				}
 			}
 		};
