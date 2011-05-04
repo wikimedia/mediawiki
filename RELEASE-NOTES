@@ -7,16 +7,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki is now using a "continuous integration" development model with
-quarterly snapshot releases. The latest development code is always kept
-"ready to run", and in fact runs our own sites on Wikipedia.
-
-Release branches will continue to receive security updates for about a year
-from first release, but nonessential bugfixes and feature developments
-will be made on the development trunk and appear in the next quarterly release.
-
-Those wishing to use the latest code instead of a branch release can obtain
-it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+MediaWiki 1.18 is an alpha-quality branch and is not recommended for use in 
+production.
 
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
@@ -401,17 +393,24 @@ changes to languages because of Bugzilla reports.
 
 MediaWiki 1.18 requires PHP 5.2.3. PHP 4 is no longer supported.
 
-MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
-At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but 
+support for them is somewhat less mature. There is experimental support for IBM
+DB2, Oracle and Microsoft SQL Server.
+
+The supported versions are:
+
+* MySQL 4.0 or later
+* PostgreSQL 8.3 or later
+* SQLite 3
 
 == Upgrading ==
 
 1.18 has several database changes since 1.17, and will not work without schema
 updates.
 
-If upgrading from before 1.11, and you are using a wiki as a commons reposito-
-ry, make sure that it is updated as well. Otherwise, errors may arise due to
-database schema changes.
+If upgrading from before 1.11, and you are using a wiki as a commons 
+repository, make sure that it is updated as well. Otherwise, errors may arise 
+due to database schema changes.
 
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
 new database fields are filled with data.
@@ -422,29 +421,19 @@ break. Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
 
-=== Caveats ===
-
-Some output, particularly involving user-supplied inline HTML, may not
-produce 100% valid or well-formed XHTML output. Testers are welcome to
-set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
-cases, but this is not recommended on live sites. (This must be set for
-MathML to display properly in Mozilla.)
-
 For notes on 1.17.x and older releases, see HISTORY.
 
-=== Online documentation ===
+== Online documentation ==
 
-Documentation for both end-users and site administrators is currently being
-built up on MediaWiki.org, and is covered under the GNU Free Documentation
-License (except for pages that explicitly state that their contents are in
-the public domain):
+Documentation for both end-users and site administrators is available on 
+MediaWiki.org, and is covered under the GNU Free Documentation License (except 
+for pages that explicitly state that their contents are in the public domain):
 
 	http://www.mediawiki.org/wiki/Documentation
 
-=== Mailing list ===
+== Mailing list ==
 
-A MediaWiki-l mailing list has been set up distinct from the Wikipedia
-wikitech-l list:
+A mailing list is available for MediaWiki user support and discussion:
 
 	http://lists.wikimedia.org/mailman/listinfo/mediawiki-l
 
@@ -455,6 +444,6 @@ A low-traffic announcements-only list is also available:
 It's highly recommended that you sign up for one of these lists if you're
 going to run a public MediaWiki, so you can be notified of security fixes.
 
-=== IRC help ===
+== IRC help ==
 
 There's usually someone online in #mediawiki on irc.freenode.net.
