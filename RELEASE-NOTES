@@ -58,8 +58,8 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   $wgUseZhdaemon, $wgZhdaemonHost and $wgZhdaemonPort.
 * (bug 24408) The include_path is not modified in the default LocalSettings.php
 * $wgVectorExtraStyles was removed, and is no longer in use.
-* Removed $wgUpdates for database updates; extension should use
-  DatabaseUpdater::addExtensionUpdate().
+* Removed $wgUpdates for database updates; extensions should use
+  DatabaseUpdater::addExtensionUpdate() via the LoadExtensionSchemaUpdates hook
 * Removed $wgServerName. It doesn't need to be set anymore and is no longer
   available as input for other configuration items, either.
 * It's no longer necessary for LocalSettings.php to include DefaultSettings.php.
