@@ -1,4 +1,4 @@
-<?php
+f<?php
 /**
  * MediaWiki is the to-be base class for this whole project
  *
@@ -67,7 +67,7 @@ class MediaWiki {
 	 *
 	 * @param $article Article
 	 */
-	public function performRequestForTitle( $article ) {
+	public function performRequestForTitle( &$article ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->context->request->getVal( 'printable' ) === 'yes' ) {
