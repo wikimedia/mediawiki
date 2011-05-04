@@ -527,6 +527,8 @@ $1',
 'page-rss-feed'           => 'Емисия на RSS за „$1“',
 'page-atom-feed'          => 'Емисия на Atom за „$1“',
 'red-link-title'          => '$1 (страницата не съществува)',
+'sort-descending'         => 'Низходящо сортиране',
+'sort-ascending'          => 'Възходящо сортиране',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Страница',
@@ -741,6 +743,7 @@ $2',
 # Special:PasswordReset
 'passwordreset-username'     => 'Потребителско име:',
 'passwordreset-email'        => 'Електронна поща:',
+'passwordreset-emailtitle'   => 'Подробности за сметката в {{SITENAME}}',
 'passwordreset-emailelement' => 'Потребителско име: $1
 Временна парола: $2',
 

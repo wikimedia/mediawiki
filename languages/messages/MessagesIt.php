@@ -544,6 +544,8 @@ $1',
 'page-rss-feed'           => 'Feed RSS per "$1"',
 'page-atom-feed'          => 'Feed Atom per "$1"',
 'red-link-title'          => '$1 (la pagina non esiste)',
+'sort-descending'         => 'Ordinamento decrescente',
+'sort-ascending'          => 'Ordinamento crescente',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pagina',

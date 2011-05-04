@@ -506,6 +506,8 @@ $1',
 'page-rss-feed'           => 'Fonte de novas RSS de "$1"',
 'page-atom-feed'          => 'Fonte de novas Atom de "$1"',
 'red-link-title'          => '$1 (a páxina aínda non existe)',
+'sort-descending'         => 'Orde descendente',
+'sort-ascending'          => 'Orde ascendente',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artigo',

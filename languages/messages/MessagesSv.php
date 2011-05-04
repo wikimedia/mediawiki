@@ -605,6 +605,8 @@ $1',
 'page-rss-feed'           => '"$1" RSS-matning',
 'page-atom-feed'          => '"$1" Atom-matning',
 'red-link-title'          => '$1 (sidan existerar inte)',
+'sort-descending'         => 'Sortera fallande',
+'sort-ascending'          => 'Sortera stigande',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Sida',

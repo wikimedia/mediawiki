@@ -286,6 +286,7 @@ $messages = array(
 'gotaccountlink'          => 'ଲଗଇନ',
 'createaccountreason'     => 'କାରଣ:',
 'loginsuccess'            => "'''ଆପଣ {{SITENAME}}ରେ \"\$1\" ଭାବରେ ଲଗଇନ କରିଛନ୍ତି ।'''",
+'mailmypassword'          => 'ପାସବାଡ଼ଟିକୁ ଇମେଲ କରି ପଠାଇବେ',
 'emailconfirmlink'        => 'ଆପଣଙ୍କ ଇମେଲ ଆଇ.ଡି.ଟି ଠିକ ବୋଲି ଥୟ କରନ୍ତୁ',
 'accountcreatedtext'      => '$1 ପାଇଁ ନୂଆ ଖାତାଟିଏ ତିଆରି ହୋଇଗଲା ।',
 'loginlanguagelabel'      => 'ଭାଷା: $1',
@@ -324,6 +325,7 @@ $messages = array(
 'showdiff'               => 'ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ',
 'anoneditwarning'        => "'''ଜାଣିରଖନ୍ତୁ:''' ଆପଣ ଲଗଇନ କରିନାହାନ୍ତି ।
 ଏହି ଫରଦର '''ଇତିହାସ''' ପୃଷ୍ଠାରେ ଆପଣଙ୍କ ଆଇପି ଠିକଣାଟି ସାଇତା ହୋଇଯିବ ।",
+'summary-preview'        => 'ସାରକଥା ଦେଖଣା:',
 'loginreqlink'           => 'ଲଗଇନ',
 'newarticle'             => '(ନୁଆ)',
 'noarticletext'          => 'ଏହି ପୃଷ୍ଠାଟିରେ କିଛି ବି ଲେଖା ନାହିଁ ।
@@ -346,6 +348,8 @@ $messages = array(
 'currentrev-asof'        => '$1 ହୋଇଥିବା ରିଭିଜନ',
 'revisionasof'           => '$1 ଅନୁସାରେ କରାଯାଇଥିବା ବଦଳ',
 'previousrevision'       => 'ପୁରୁଣା ସଙ୍କଳନ',
+'nextrevision'           => 'ନୂଆ ସଙ୍କଳନ',
+'currentrevisionlink'    => 'ନଗଦ ସଙ୍କଳନ',
 'cur'                    => 'ଦାନକର',
 'next'                   => 'ପରେ',
 'last'                   => 'ଆଗ',
@@ -411,6 +415,7 @@ $messages = array(
 'qbsettings-none' => 'କିଛି ନାହିଁ',
 
 # Preferences page
+'preferences'              => 'ପସନ୍ଦ',
 'mypreferences'            => 'ମୋ ପସନ୍ଦ',
 'skin-preview'             => 'ଦେଖଣା',
 'searchresultshead'        => 'ଖୋଜିବା',
@@ -431,6 +436,9 @@ $messages = array(
 'group-sysop' => 'ପରିଛାଗଣ',
 
 'grouppage-sysop' => '{{ns:project}}:ପରିଛା (ଆଡମିନ)',
+
+# User rights log
+'rightslog' => 'ସଭ୍ୟଙ୍କ ଅଧିକାରର ଲଗ',
 
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|ବଦଳ|ବଦଳସବୁ}}',
@@ -478,19 +486,20 @@ $messages = array(
 'listfiles_name' => 'ନାମ',
 
 # File description page
-'file-anchor-link'    => 'ଫାଇଲ',
-'filehist'            => 'ଫାଇଲ ଇତିହାସ',
-'filehist-help'       => 'ଏହା ଫାଇଲଟି ସେତେବେଳେ ଯେମିତି ଦିଶୁଥିଲା ତାହା ଦେଖିବା ପାଇଁ ତାରିଖ/ବେଳା ଉପରେ କ୍ଲିକ କରନ୍ତୁ',
-'filehist-current'    => 'ଏବେକାର',
-'filehist-datetime'   => 'ତାରିଖ/ବେଳ',
-'filehist-thumb'      => 'ନଖ ଦେଖଣା',
-'filehist-thumbtext'  => '$1 ପରିକା ସଙ୍କଳନର ନଖଦେଖଣା',
-'filehist-user'       => 'ବ୍ୟବାହାରକାରୀ',
-'filehist-dimensions' => 'ଆକାର',
-'filehist-comment'    => 'ମତାମତ',
-'imagelinks'          => 'ଫାଇଲର ଲିଁକସବୁ',
-'linkstoimage'        => 'ଏହି ସବୁ{{PLURAL:$1|ପୃଷ୍ଠା|$1 ପୃଷ୍ଠାସବୁ}} ଏହି ଫାଇଲଟିକୁ ଯୋଡ଼ିଥାନ୍ତି:',
-'sharedupload'        => 'ଏହି ଫାଇଲଟି $1 ରୁ ଆଉ ବାକି ପ୍ରକଳ୍ପରେ ବ୍ୟବହାର କରାଯାଇପାରିବ .',
+'file-anchor-link'          => 'ଫାଇଲ',
+'filehist'                  => 'ଫାଇଲ ଇତିହାସ',
+'filehist-help'             => 'ଏହା ଫାଇଲଟି ସେତେବେଳେ ଯେମିତି ଦିଶୁଥିଲା ତାହା ଦେଖିବା ପାଇଁ ତାରିଖ/ବେଳା ଉପରେ କ୍ଲିକ କରନ୍ତୁ',
+'filehist-current'          => 'ଏବେକାର',
+'filehist-datetime'         => 'ତାରିଖ/ବେଳ',
+'filehist-thumb'            => 'ନଖ ଦେଖଣା',
+'filehist-thumbtext'        => '$1 ପରିକା ସଙ୍କଳନର ନଖଦେଖଣା',
+'filehist-user'             => 'ବ୍ୟବାହାରକାରୀ',
+'filehist-dimensions'       => 'ଆକାର',
+'filehist-comment'          => 'ମତାମତ',
+'imagelinks'                => 'ଫାଇଲର ଲିଁକସବୁ',
+'linkstoimage'              => 'ଏହି ସବୁ{{PLURAL:$1|ପୃଷ୍ଠା|$1 ପୃଷ୍ଠାସବୁ}} ଏହି ଫାଇଲଟିକୁ ଯୋଡ଼ିଥାନ୍ତି:',
+'sharedupload'              => 'ଏହି ଫାଇଲଟି $1 ରୁ ଆଉ ବାକି ପ୍ରକଳ୍ପରେ ବ୍ୟବହାର କରାଯାଇପାରିବ .',
+'uploadnewversion-linktext' => 'ଏହି ଫାଇଲର ନୂଆ ସଙ୍କଳନଟିଏ ଅପଲୋଡ଼ କରିବେ',
 
 # File reversion
 'filerevert-comment' => 'କାରଣ:',
@@ -502,6 +511,7 @@ $messages = array(
 'randompage' => 'ଯାହିତାହି ପୃଷ୍ଠା',
 
 # Statistics
+'statistics'       => 'ହିସାବ',
 'statistics-pages' => 'ପୃଷ୍ଠା',
 
 'brokenredirects-edit' => 'ବଦଳାଇବେ',
@@ -521,6 +531,7 @@ $messages = array(
 'mostimages'           => 'ଫାଇଲରେ ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଥିବା',
 'prefixindex'          => 'ଆଗରୁ କିଛି ଯୋଡ଼ା ସହ ଥିବା ସବୁ ଫରଦସବୁ',
 'move'                 => 'ଘୁଞ୍ଚାଇବେ',
+'movethispage'         => 'ଏଇ ପୃଷ୍ଠାଟିକୁ ଘୁଞ୍ଚାଇବେ',
 'pager-newer-n'        => '{{PLURAL:$1|ନୂଆ 1|ନୂଆ $1}}',
 'pager-older-n'        => '{{PLURAL:$1|ପୁରୁଣା 1|ପୁରୁଣା $1}}',
 
@@ -535,10 +546,12 @@ $messages = array(
 # Special:AllPages
 'allpages'       => 'ସବୁ ପୃଷ୍ଠା',
 'alphaindexline' => '$1 ରୁ $2',
+'prevpage'       => 'ଆଗ ପୃଷ୍ଠା ($1)',
 'allpagesfrom'   => 'ଏହି ନାଆଁରେ ଆରମ୍ଭ ହେଉଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଦେଖାଇବେ:',
 'allpagessubmit' => 'ଯିବେ',
 
 # Special:LinkSearch
+'linksearch'    => 'ବାହାର ଲିଙ୍କ',
 'linksearch-ok' => 'ଖୋଜିବା',
 
 # Special:Log/newusers
@@ -562,10 +575,17 @@ $messages = array(
 'unwatching' => 'ଦେଖୁନାହିଁ...',
 
 # Delete
-'actioncomplete' => 'କାମଟି ପୁରା ହେଲା',
-'deletedarticle' => '"[[$1]]" ଟି ଉଡ଼ିଗଲା',
-'dellogpage'     => 'ଲିଭାଇବା ଲଗ',
-'deletecomment'  => 'କାରଣ:',
+'deletepage'            => 'ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ',
+'confirmdeletetext'     => 'ଆପଣ ଗୋଟିଏ ପୃଷ୍ଠାର ଇତିହାସ ସହ ତାହାକୁ ଲିଭାଇବାକୁ ଯାଉଛନ୍ତି ।
+ଏହା ଥୟ କରନ୍ତୁ ଯେ ଆପଣ ଏହାର ପରିଣତି ଜାଣିଛନ୍ତି ଓ ଏହା [[{{MediaWiki:Policy-url}}|ମିଡ଼ିଆଉଇକିର ନିୟମ]] ଅନୁସାରେ କରୁଛନ୍ତି ।',
+'actioncomplete'        => 'କାମଟି ପୁରା ହେଲା',
+'deletedtext'           => '"<nowiki>$1</nowiki>"କୁ ଲିଭାଇ ଦିଆଗଲା ।
+ନଗଦ ଲିଭାଯାଇଥିବା ଫାଇଲର ଇତିହାସ $2ରେ ଦେଖନ୍ତୁ ।',
+'deletedarticle'        => '"[[$1]]" ଟି ଉଡ଼ିଗଲା',
+'dellogpage'            => 'ଲିଭାଇବା ଲଗ',
+'deletecomment'         => 'କାରଣ:',
+'deleteotherreason'     => 'ବାକିି କାରଣ:',
+'deletereasonotherlist' => 'ବାକିି କାରଣ',
 
 # Rollback
 'rollbacklink' => 'ପଛକୁ ଫେର',
@@ -631,19 +651,28 @@ $messages = array(
 'whatlinkshere-filters'    => 'ଫିଲଟରସବୁ',
 
 # Block/unblock
-'ipbreason'          => 'କାରଣ:',
-'blocklist-reason'   => 'କାରଣ',
-'ipblocklist-submit' => 'ଖୋଜିବା',
-'blocklink'          => 'ଅଟକେଇ ଦେବେ',
-'unblocklink'        => 'ଛାଡ଼ିବା',
-'change-blocklink'   => 'ଓଗଳାକୁ ବଦଳାଇବେ',
-'contribslink'       => 'ଅବଦାନ',
-'blocklogpage'       => 'ଲଗଟିକୁ ଅଟକାଇଦିଅ',
+'blockip'                  => 'ସଭ୍ୟଙ୍କୁ ଅଟକାଇବେ',
+'ipbreason'                => 'କାରଣ:',
+'blocklist-reason'         => 'କାରଣ',
+'ipblocklist-submit'       => 'ଖୋଜିବା',
+'blocklink'                => 'ଅଟକେଇ ଦେବେ',
+'unblocklink'              => 'ଛାଡ଼ିବା',
+'change-blocklink'         => 'ଓଗଳାକୁ ବଦଳାଇବେ',
+'contribslink'             => 'ଅବଦାନ',
+'blocklogpage'             => 'ଲଗଟିକୁ ଅଟକାଇଦିଅ',
+'unblocklogentry'          => 'କିଳାଯାଇନଥିବା $1',
+'block-log-flags-nocreate' => 'ନୂଆ ଖାତା ଖୋଲିବାକୁ ଅଚଳ କରାଯାଇଅଛି',
 
 # Move page
-'movelogpage' => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଅ',
-'movereason'  => 'କାରଣ:',
-'revertmove'  => 'ପଛକୁ ଫେରାଇନେବେ',
+'movepagetalktext' => 'ଯଦି:
+*ଗୋଟିଏ ଖାଲି ଆଲୋଚନା ପୃଷ୍ଠା ସେହି ନାଆଁରେ ଥାଏ
+*ଆପଣ ତଳ ବାକ୍ସକୁ ନ ବାଛନ୍ତି
+ତେବେ ଏହି ପ୍ରୁଷ୍ଠା ସହ ଯୋଡାଯାଇଥିବା ଆଲୋଚନା ପ୍ରୁଷ୍ଠାକୁ ଆପେ ଆପେ ଘୁଞ୍ଚାଇଦିଆଯିବ ।
+ସେହି ଯାଗାରେ, ଆପଣଙ୍କୁ ପ୍ରୁଷ୍ଠାଟିକୁ ଘୁଞ୍ଚାଇବାକୁ/ମିଶାଇବାକୁ ପଡ଼ିବ ।',
+'1movedto2_redir'  => '[[$1]]ରୁ [[$2]]କୁ ଲେଉଟାଇଦିଆଗଲା',
+'movelogpage'      => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଅ',
+'movereason'       => 'କାରଣ:',
+'revertmove'       => 'ପଛକୁ ଫେରାଇନେବେ',
 
 # Export
 'export' => 'ଫରଦସବୁ ରପ୍ତାନି କର',
@@ -667,7 +696,7 @@ $messages = array(
 'tooltip-ca-history'              => 'ଏହି ପୃଷ୍ଠାର ପୁରୁଣା ସଂସ୍କରଣ',
 'tooltip-ca-protect'              => 'ଏହି ପୃଷ୍ଠାଟିକୁ କିଳିବେ',
 'tooltip-ca-delete'               => 'ଏହି ପୃଷ୍ଠାଟି ଲିଭାଇବେ',
-'tooltip-ca-move'                 => 'ଏଇ ଫରଦଟି ଘୁଁଚାଅ',
+'tooltip-ca-move'                 => 'ଏଇ ପୃଷ୍ଠାଟିକୁ ଘୁଞ୍ଚାଇବେ',
 'tooltip-ca-watch'                => 'ଆପଣଙ୍କ ଦେଖାତାଲିକାରେ ଏଇ ଫରଦଟି ମିଶାନ୍ତୁ',
 'tooltip-ca-unwatch'              => 'ନିଜ ଦେଖଣାତାଲିକାରୁ ଏହି ଫରଦଟି ବାହାର କରିଦିଅଁତୁ',
 'tooltip-search'                  => '{{SITENAME}} ରେ ଖୋଜିବା',
@@ -695,6 +724,7 @@ $messages = array(
 'tooltip-ca-nstab-special'        => 'ଏଇଟି ଗୋଟିଏ ନିଆରା ପୃଷ୍ଠା, ଆପଣ ଏହାକୁ ବଦଳାଇପାରିବେ ନାହିଁ',
 'tooltip-ca-nstab-project'        => 'ପ୍ରକଳ୍ପ ଫରଦଟି ଦେଖିବା',
 'tooltip-ca-nstab-image'          => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
+'tooltip-ca-nstab-template'       => 'ଟେମ୍ପଲେଟଟି ଦେଖିବା',
 'tooltip-ca-nstab-category'       => 'ଶ୍ରେଣୀ ପୃଷ୍ଠାଟିକୁ ଦେଖାଇବେ',
 'tooltip-minoredit'               => 'ଏହାକୁ ଛୋଟ ବଦଳ ଭାବେ ଗଣ',
 'tooltip-save'                    => 'ବଦଳଗୁଡ଼ିକ ସାଇତିବେ',

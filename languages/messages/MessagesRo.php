@@ -3270,6 +3270,8 @@ Altele vor fi ascunse implicit.
 'exif-sensingmethod-7' => 'Senzor triliniar',
 'exif-sensingmethod-8' => 'Senzorul linear al culorii secvențiale',
 
+'exif-filesource-3' => 'Aparat de fotografiat digital',
+
 'exif-scenetype-1' => 'O imagine fotografiată direct',
 
 'exif-customrendered-0' => 'Prelucrare normală',
