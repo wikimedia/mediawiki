@@ -107,8 +107,8 @@ class Html {
 	 * features might be added, like allowing arrays for the values of
 	 * attributes like class= and media=.
 	 *
-	 * @param $element  string The element's name, e.g., 'a'
-	 * @param $attribs  array  Associative array of attributes, e.g., array(
+	 * @param $element string The element's name, e.g., 'a'
+	 * @param $attribs array  Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  See expandAttributes() for
 	 *   further documentation.
 	 * @param $contents string The raw HTML contents of the element: *not*
@@ -132,6 +132,12 @@ class Html {
 	/**
 	 * Identical to rawElement(), but HTML-escapes $contents (like
 	 * Xml::element()).
+	 *
+	 * @param $element string
+	 * @param $attribs array
+	 * @param $contents string
+	 *
+	 * @return string
 	 */
 	public static function element( $element, $attribs = array(), $contents = '' ) {
 		return self::rawElement( $element, $attribs, strtr( $contents, array(
@@ -145,6 +151,11 @@ class Html {
 	/**
 	 * Identical to rawElement(), but has no third parameter and omits the end
 	 * tag (and the self-closing '/' in XML mode for empty elements).
+	 *
+	 * @param $element string
+	 * @param $attribs array
+	 *
+	 * @return string
 	 */
 	public static function openElement( $element, $attribs = array() ) {
 		global $wgHtml5, $wgWellFormedXml;

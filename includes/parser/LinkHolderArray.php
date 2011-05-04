@@ -63,7 +63,7 @@ class LinkHolderArray {
 		unset( $nsLinks );
 		unset( $entry );
 
-		foreach ( $this->interwikis as $key => &$entry ) {
+		foreach ( $this->interwikis as &$entry ) {
 			$entry['title'] = Title::newFromText( $entry['pdbk'] );
 		}
 		unset( $entry );
