@@ -607,6 +607,10 @@ abstract class Skin {
 	 * the ->getCategories( $out ) form with whatout OutputPage is on hand
 	 */
 	function getCategories( OutputPage $out=null ) {
+		if( !$out ) {
+			global $wgOut;
+			$out = $wgOut;
+		}
 
 		$catlinks = $this->getCategoryLinks( $out );
 
