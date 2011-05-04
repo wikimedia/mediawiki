@@ -21,32 +21,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup UtfNormal
  */
-
-
-if( php_sapi_name() != 'cli' ) {
-	die( "Run me from the command line please.\n" );
-}
-
-/** */
-if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
-	dl( 'php_utfnormal.so' );
-}
-
-#ini_set( 'memory_limit', '40M' );
-
-require_once( 'PHPUnit/Runner/Version.php' );
-if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
-    # PHPUnit 3.5.0 introduced a nice autoloader based on class name
-    require_once( 'PHPUnit/Autoload.php' );
-} else {
-	# Keep the old pre PHPUnit 3.5.0 behaviour for compatibility
-	require_once 'PHPUnit/Framework.php';
-}
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once 'UtfNormal.php';
 
 /**
  * Additional tests for UtfNormal::cleanUp() function, inclusion
@@ -54,17 +29,8 @@ require_once 'UtfNormal.php';
  * Requires PHPUnit.
  *
  * @ingroup UtfNormal
- * @private
  */
-class CleanUpTest extends PHPUnit_Framework_TestCase {
-	/** @todo document */
-	function setUp() {
-	}
-
-	/** @todo document */
-	function tearDown() {
-	}
-
+class CleanUpTest extends MediaWikiTestCase {
 	/** @todo document */
 	function testAscii() {
 		$text = 'This is plain ASCII text.';
@@ -414,12 +380,3 @@ class CleanUpTest extends PHPUnit_Framework_TestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 }
-
-
-$suite = new PHPUnit_Framework_TestSuite( 'CleanUpTest' );
-$result = PHPUnit_TextUI_TestRunner::run( $suite );
-
-if( !$result->wasSuccessful() ) {
-	exit( -1 );
-}
-exit( 0 );
