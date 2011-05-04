@@ -1,40 +1,42 @@
 = MediaWiki release notes =
 
 Security reminder: MediaWiki does not require PHP's register_globals
-setting since version 1.2.0. If you have it on, turn it *off* if you can.
+setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
-== MediaWiki 1.17 ==
+== MediaWiki 1.17 beta 1 ==
 
-THIS IS NOT A RELEASE YET
+2011-05-04
 
-MediaWiki is now using a "continuous integration" development model with
-quarterly snapshot releases. The latest development code is always kept
-"ready to run", and in fact runs our own sites on Wikipedia.
+This is a beta release of the MediaWiki 1.17 branch. Please test it and let us
+know what you think of it. Beta releases are not recommended for use in
+production. 
 
-Release branches will continue to receive security updates for about a year
-from first release, but nonessential bugfixes and feature developments
-will be made on the development trunk and appear in the next quarterly release.
+=== Summary of selected changes in 1.17 ===
 
-Those wishing to use the latest code instead of a branch release can obtain
-it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+Selected changes since MediaWiki 1.16 that may be of interest:
 
-=== PHP 5.2 now required ==
-Since 1.17, the lowest supported version of MediaWiki is now 5.2.3. Please
-upgrade PHP if you have not done so prior to upgrading MediaWiki.
+* A new installer has been introduced. It has a wizard-style interface which is
+  translated into many languages. Many shortcomings in the old installer were
+  addressed with this rewrite. Note that it is no longer required for the config
+  directory to be made writable by the webserver. Instead the generated
+  LocalSettings.php file is offered as a download, which you must then upload
+  to the wiki's base directory.
 
-=== New installer in 1.17 ===
-MediaWiki 1.17 is shipping with a completely redesigned installer to fix
-a lot of outstanding bugs, cleanup the code quality, and make it easier to
-use. Notably, you can now run upgrades from the web without having to move
-LocalSettings.php. Also, configuration script directory has been renamed
-from config/ to mw-config/. The specific bugs are listed below in the
-general notes.
+* ResourceLoader, a new framework for delivering client-side resources such as
+  JavaScript and CSS, has been introduced. These resources are now delivered
+  through the new entry point script "load.php", instead of as static files 
+  served directly by the web server. This allows minification, compression and
+  client-side caching to be used more effectively, which should provide a net
+  performance improvement for most users. 
 
-=== New ResourceLoader in 1.17 ===
-MediaWiki 1.17 ships with a ResourceLoader which combines and minifies css and
-javascript attached to the page. They are served from the new entry point load.php
-If the page is served with the &debug=true parameter, the non-minified javascript
-files are used instead.
+* Category sorting has been improved. 
+** Sorting is now case insensitive.
+** Sub-categories, pages and files can now be paged separately.
+** When several pages are given the same sort key, they sort by their 
+   names instead of randomly.
+
+* The lowest supported version of MediaWiki is now 5.2.3. If necessary, please
+  upgrade PHP prior to upgrading MediaWiki.
 
 === Configuration changes in 1.17 ===
 * DatabaseFunctions.php that was needed for compatibility with pre-1.3
@@ -715,12 +717,17 @@ changes to languages because of Bugzilla reports.
 
 == Compatibility ==
 
-MediaWiki 1.17 requires PHP 5.1 (5.2 recommended). PHP 4 is no longer
-supported.
+MediaWiki 1.17 requires PHP 5.2.3 or later. PHP 4 is no longer supported.
 
-MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
-At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but 
+support for them is somewhat less mature. There is experimental support for IBM
+DB2, Oracle and Microsoft SQL Server.
 
+The supported versions are:
+
+* MySQL 4.0 or later
+* PostgreSQL 8.3 or later
+* SQLite 3
 
 == Upgrading ==
 
@@ -740,32 +747,19 @@ break. Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
 
-
-=== Caveats ===
-
-Some output, particularly involving user-supplied inline HTML, may not
-produce 100% valid or well-formed XHTML output. Testers are welcome to
-set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
-cases, but this is not recommended on live sites. (This must be set for
-MathML to display properly in Mozilla.)
-
 For notes on 1.16.x and older releases, see HISTORY.
 
+== Online documentation ==
 
-=== Online documentation ===
-
-Documentation for both end-users and site administrators is currently being
-built up on MediaWiki.org, and is covered under the GNU Free Documentation
-License (except for pages that explicitly state that their contents are in
-the public domain) :
+Documentation for both end-users and site administrators is available on 
+MediaWiki.org, and is covered under the GNU Free Documentation License (except 
+for pages that explicitly state that their contents are in the public domain):
 
 	http://www.mediawiki.org/wiki/Documentation
 
+== Mailing list ==
 
-=== Mailing list ===
-
-A MediaWiki-l mailing list has been set up distinct from the Wikipedia
-wikitech-l list:
+A mailing list is available for MediaWiki user support and discussion:
 
 	http://lists.wikimedia.org/mailman/listinfo/mediawiki-l
 
@@ -776,7 +770,6 @@ A low-traffic announcements-only list is also available:
 It's highly recommended that you sign up for one of these lists if you're
 going to run a public MediaWiki, so you can be notified of security fixes.
 
-
-=== IRC help ===
+== IRC help ==
 
 There's usually someone online in #mediawiki on irc.freenode.net
