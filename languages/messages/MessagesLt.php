@@ -13,6 +13,7 @@
  * @author Garas
  * @author Homo
  * @author Hugo.arg
+ * @author Ignas693
  * @author Matasg
  * @author Meno25
  * @author Pdxx
@@ -471,6 +472,8 @@ $1',
 'page-rss-feed'           => '„$1“ RSS prenumerata',
 'page-atom-feed'          => '„$1“ Atom prenumerata',
 'red-link-title'          => '$1 (puslapis neegzistuoja)',
+'sort-descending'         => 'Rūšiuoti mažėjimo tvarka',
+'sort-ascending'          => 'Rūšiuoti didėjimo tvarka',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Puslapis',
@@ -691,14 +694,19 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'resetpass-temp-password'   => 'Laikinas slaptažodis:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Atstatyti slaptažodį',
-'passwordreset-legend'       => 'Atstatyti slaptažodį',
-'passwordreset-disabled'     => 'Slaptažodžių atstatymai šiame wikyje išjungti.',
-'passwordreset-username'     => 'Naudotojo vardas:',
-'passwordreset-email'        => 'E-pašto adresas:',
-'passwordreset-emailelement' => 'Naudotojo vardas: $1
+'passwordreset'                => 'Atstatyti slaptažodį',
+'passwordreset-text'           => 'Užpildykite šią formą, norėdami gauti el priminimas jūsų sąskaitos informaciją.',
+'passwordreset-legend'         => 'Atstatyti slaptažodį',
+'passwordreset-disabled'       => 'Slaptažodžių atstatymai šiame wikyje išjungti.',
+'passwordreset-pretext'        => '{{PLURAL:$1| | Langelyje parašykite vieną duomenų vienetų žemiau}}',
+'passwordreset-username'       => 'Naudotojo vardas:',
+'passwordreset-email'          => 'E-pašto adresas:',
+'passwordreset-emailtitle'     => 'Paskyros informacija apie {{sitename}}',
+'passwordreset-emailtext-ip'   => 'Kažkas (tikriausiai jūs, IP adresu $1 ) paprašė informacijos priminimas jūsų! N! sąskaitą {{sitename}} ( $4 ). Šis vartotojas {{PLURAL:$3| sąskaita | sąskaitas}} N!! N!, susijusių su šiuo e-pašto adresą!: N!! $2 ! N! N! {{PLURAL:$3| Šis laikinas slaptažodis | Šie laikini slaptažodžiai}} baigsis {{PLURAL:$5| vieną dieną | $5 dienų}} slaptažodis.! N! Jūs turėtumėte prisijungti ir pasirinkti naują. Jei kažkas padarė tai! N! prašymu, arba jūs prisiminėte savo pirminį slaptažodį, ir jums nebereikia! N! nori ją pakeisti, galite ignoruoti šį pranešimą ir toliau naudotis savo senuoju! N! slaptažodį.',
+'passwordreset-emailtext-user' => 'Vartotojo $1 d. {{sitename}} prašoma informacija priminimas jūsų sąskaitos {{sitename}}! N! ( $4 ). Šis vartotojas {{PLURAL:$3| sąskaita | sąskaitas}}, susijusių su šiuo e-pašto adresą:! N! N! $2 ! N! N! {{PLURAL:$3| Šis laikinas slaptažodis | Šie laikini slaptažodžiai }} baigsis {{PLURAL:$5| vieną dieną | $5 dienų}} slaptažodis.! N! Jūs turėtumėte prisijungti ir pasirinkti naują. Jei kažkas padarė tai! N! prašymu, arba jūs prisiminėte savo pirminį slaptažodį, ir jums nebereikia! N! nori ją pakeisti, galite ignoruoti šį pranešimą ir toliau naudotis savo senuoju! N! slaptažodį.',
+'passwordreset-emailelement'   => 'Naudotojo vardas: $1
 Laikinas slaptažodis: $2',
-'passwordreset-emailsent'    => 'Priminimo laiškas buvo išsiųstas.',
+'passwordreset-emailsent'      => 'Priminimo laiškas buvo išsiųstas.',
 
 # Edit page toolbar
 'bold_sample'     => 'Paryškintas tekstas',
@@ -808,6 +816,8 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'userjsyoucanpreview'              => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį JS prieš išsaugant.",
 'usercsspreview'                   => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
 'userjspreview'                    => "'''Nepamirškite, kad jūs tik testuojat/peržiūrit savo naudotojo JavaScript, jis dar nebuvo išsaugotas!'''",
+'sitecsspreview'                   => "'''Nepamirškite, kad jūs tik peržiūrit šio CSS .'''! N!''' Tai dar nebuvo išsaugotas!'''",
+'sitejspreview'                    => "'''Nepamirškite, kad jūs tik peržiūrit šis JavaScript kodas .'''! N!''' Tai dar nebuvo išsaugotas!'''",
 'userinvalidcssjstitle'            => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/vector.css, o ne {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Atnaujinta)',
 'note'                             => "'''Pastaba:'''",
@@ -821,6 +831,7 @@ Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijung
 
 '''Jei tai teisėtas keitimo bandymas, prašome pamėginti vėl. Jei tai nepadeda, pamėginkite [[Special:UserLogout|atsijungti]] ir prisijungti atgal.'''",
 'token_suffix_mismatch'            => "'''Jūsų pakeitimas buvo atmestas, nes jūsų naršyklė iškraipė skyrybos ženklus keitimo žymėje. Keitimas buvo atmestas norint apsaugoti puslapio tekstą nuo sugadinimo. Taip kartais būna, kai jūs naudojate anoniminį tarpinio serverio paslaugą.'''",
+'edit_form_incomplete'             => "'''Kai redaguoti formos dalys nepasiekė serverio; du kartus patikrinti, kad jūsų pakeitimai yra nesugadintos ir bandykite dar kartą.'''",
 'editing'                          => 'Taisomas $1',
 'editingsection'                   => 'Taisomas $1 (skyrelis)',
 'editingcomment'                   => 'Taisomas $1 (komentaras)',
@@ -1267,7 +1278,8 @@ Jį turi sudaryti ne daugiau kaip $1 {{PLURAL:$1|simbolis|simboliai|simbolių}}.
 'email'                         => 'El. paštas',
 'prefs-help-realname'           => 'Tikrasis vardas yra neprivalomas.
 Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
-'prefs-help-email'              => 'El. pašto adresas yra neprivalomas, bet jis leidžia jums gauti naują slaptažodį, jei jūs užmiršote koks jis buvo, o taip pat jūs galite leisti kitiems pasiekti jus per jūsų naudotojo ar naudotojo aptarimo puslapį neatskleidžiant jūsų tapatybės.',
+'prefs-help-email'              => 'E-pašto adresas yra neprivalomas, tačiau reikalingas slaptažodį naujo, turi tu pamiršai savo slaptažodį.',
+'prefs-help-email-others'       => 'Taip pat galite pasirinkti, kad žmonės galėtų susisiekti su jumis per jūsų naudotojo ar naudotojo aptarimo puslapį neatskleidžiant jūsų tapatybės.',
 'prefs-help-email-required'     => 'El. pašto adresas yra būtinas.',
 'prefs-info'                    => 'Pagrindinė informacija',
 'prefs-i18n'                    => 'Kalbos nustatymai',
@@ -1615,25 +1627,38 @@ Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
 'upload-http-error'         => 'Įvyko HTTP klaida: $1',
 
 # ZipDirectoryReader
-'zip-wrong-format' => 'Nurodytas failas nėra ZIP failas.',
+'zip-file-open-error' => 'Įvyko klaida atidarant ZIP patikrinimus failą.',
+'zip-wrong-format'    => 'Nurodytas failas nėra ZIP failas.',
+'zip-bad'             => 'Šis failas yra sugadintas ar kitaip neįskaitomas ZIP failą.! N! Ji negali būti tinkamai patikrinti dėl jų saugumo.',
+'zip-unsupported'     => 'Šis failas yra ZIP failas, kurį naudoja ZIP funkcijos nepalaiko MediaWiki.! N! Ji negali būti tinkamai patikrinti dėl jų saugumo.',
+
+# Special:UploadStash
+'uploadstash'          => 'Įkelti Atlicināt',
+'uploadstash-summary'  => 'Šis puslapis suteikia prieigą prie failų, kurie yra įkeltas į serverį (arba įkelti procesas), tačiau dar nepaskelbta prie wiki. Šie failai nėra matomas visiems kitiems, bet vartotojas, kuris nusiuntė juos.',
+'uploadstash-clear'    => 'Išvalyti stashed failai',
+'uploadstash-nofiles'  => 'Jūs neturite stashed failus.',
+'uploadstash-badtoken' => 'Scenos šį ieškinį, buvo nesėkmingas, galbūt todėl, kad jūsų redagavimo įgaliojimai pasibaigė. Bandykite dar kartą.',
+'uploadstash-errclear' => 'Kliringo failai buvo nesėkmingas.',
+'uploadstash-refresh'  => 'Atnaujinti failų sąrašą',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Prieiga uždrausta',
-'img-auth-nopathinfo'   => 'Trūksta PATH_INFO.
+'img-auth-accessdenied'     => 'Prieiga uždrausta',
+'img-auth-nopathinfo'       => 'Trūksta PATH_INFO.
 Jūsų serveris nenustatytas perduoti šią informaciją.
 Tai gali būti CGI paremta ir negali palaikyti img_auth.
 Daugiau informacijos http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Užklaustas kelias nėra sukonfigūruotame įkėlimo kataloge.',
-'img-auth-badtitle'     => 'Nepavyksta padaryti leistino pavadinimo iš „$1“.',
-'img-auth-nologinnWL'   => 'Jūs nesate prisijungęs ir „$1“ nėra baltajame sąraše.',
-'img-auth-nofile'       => 'Failas „$1“ neegzistuoja.',
-'img-auth-isdir'        => 'Jūs bandote pasiekti katalogą „$1“.
+'img-auth-notindir'         => 'Užklaustas kelias nėra sukonfigūruotame įkėlimo kataloge.',
+'img-auth-badtitle'         => 'Nepavyksta padaryti leistino pavadinimo iš „$1“.',
+'img-auth-nologinnWL'       => 'Jūs nesate prisijungęs ir „$1“ nėra baltajame sąraše.',
+'img-auth-nofile'           => 'Failas „$1“ neegzistuoja.',
+'img-auth-isdir'            => 'Jūs bandote pasiekti katalogą „$1“.
 Leidžiama prieiga tik prie failų.',
-'img-auth-streaming'    => 'Siunčiamas „$1“.',
-'img-auth-public'       => 'img_auth.php paskirtis yra pateikti failus iš privačių projektų.
+'img-auth-streaming'        => 'Siunčiamas „$1“.',
+'img-auth-public'           => 'img_auth.php paskirtis yra pateikti failus iš privačių projektų.
 Šis projektas sukonfigūruotas kaip viešasis.
 Dėl saugumo, img_auth.php yra išjungtas.',
-'img-auth-noread'       => 'Naudotojas neturi teisės peržiūrėti „$1“.',
+'img-auth-noread'           => 'Naudotojas neturi teisės peržiūrėti „$1“.',
+'img-auth-bad-query-string' => 'URL neteisingas užklausos eilutę.',
 
 # HTTP errors
 'http-invalid-url'      => 'Neleistinas URL: $1',
@@ -1792,12 +1817,13 @@ Informacija iš [$2 failo aprašymo puslapio] yra pateikiama žemiau.',
 Nuorodos turėtų būti patikslintos, kad rodytų į konkretų puslapį.<br />
 Puslapis laikomas daugiaprasmiu puslapiu, jei jis naudoja šabloną, kuris yra nurodomas iš [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Dvigubi peradresavimai',
-'doubleredirectstext'        => 'Šiame puslapyje yra puslapių, kurie nukreipia į kitus peradresavimo puslapius, sąrašas.
+'doubleredirects'                   => 'Dvigubi peradresavimai',
+'doubleredirectstext'               => 'Šiame puslapyje yra puslapių, kurie nukreipia į kitus peradresavimo puslapius, sąrašas.
 Kiekvienoje eilutėje yra nuorodos į pirmąjį ir antrąjį peradresavimą, taip pat antrojo peradresavimo paskirtis, kuris paprastai yra „tikrasis“ paskirties puslapis, į kurį pirmasis peradresavimas ir turėtų rodyti.
 <del>Išbraukti</del> įrašai yra išspręsti.',
-'double-redirect-fixed-move' => '[[$1]] buvo perkeltas, dabar tai peradresavimas į [[$2]]',
-'double-redirect-fixer'      => 'Peradresavimų tvarkyklė',
+'double-redirect-fixed-move'        => '[[$1]] buvo perkeltas, dabar tai peradresavimas į [[$2]]',
+'double-redirect-fixed-maintenance' => 'Tvirtinimo dvigubas peradresavimas iš [[ $1 ]] į [[ $2 ]].',
+'double-redirect-fixer'             => 'Peradresavimų tvarkyklė',
 
 'brokenredirects'        => 'Peradresavimai į niekur',
 'brokenredirectstext'    => 'Šie peradresavimo puslapiai nurodo į neegzistuojančius puslapius:',
@@ -1874,6 +1900,7 @@ Primename, kad kitos svetainės gali turėti tiesioginę nuorodą į failą, bet
 'pager-newer-n'           => '$1 {{PLURAL:$1|naujesnis|naujesni|naujesnių}}',
 'pager-older-n'           => '$1 {{PLURAL:$1|senesnis|senesni|senesnių}}',
 'suppress'                => 'Peržiūra',
+'querypage-disabled'      => 'Šiame specialiajame puslapyje yra išjungta dėl neefektyvumo.',
 
 # Book sources
 'booksources'               => 'Knygų šaltiniai',
@@ -1990,7 +2017,10 @@ El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustaty
 'noemailtext'          => 'Šis naudotojas nėra nurodęs teisingo el. pašto adreso, arba yra pasirinkęs negauti el. pašto iš kitų naudotojų.',
 'nowikiemailtitle'     => 'El. laiškai neleidžiami',
 'nowikiemailtext'      => 'Šis naudotojas yra pasirinkęs negauti elektroninių laiškų iš kitų naudotojų.',
+'emailnotarget'        => 'Nesamas arba neteisingas vartotojo vardas gavėjui.',
+'emailtarget'          => 'Įveskite vartotojo vardą gavėjo',
 'emailusername'        => 'Naudotojo vardas:',
+'emailusernamesubmit'  => 'Pateikti',
 'email-legend'         => 'Siųsti elektroninį laišką kitam {{SITENAME}} naudotojui',
 'emailfrom'            => 'Nuo:',
 'emailto'              => 'Kam:',
@@ -2248,9 +2278,10 @@ $1',
 'undelete-show-file-submit'    => 'Taip',
 
 # Namespace form on various pages
-'namespace'      => 'Vardų sritis:',
-'invert'         => 'Žymėti priešingai',
-'blanknamespace' => '(Pagrindinė)',
+'namespace'             => 'Vardų sritis:',
+'invert'                => 'Žymėti priešingai',
+'namespace_association' => 'Susiję vardų',
+'blanknamespace'        => '(Pagrindinė)',
 
 # Contributions
 'contributions'       => 'Naudotojo įnašas',
@@ -2267,6 +2298,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Naudotojų keitimai naujoms paskyroms',
 'sp-contributions-blocklog'            => 'Blokavimų istorija',
 'sp-contributions-deleted'             => 'ištrintas naudotojo indėlis',
+'sp-contributions-uploads'             => 'nuotraukos',
 'sp-contributions-logs'                => 'Specialiųjų veiksmų istorija',
 'sp-contributions-talk'                => 'Aptarimas',
 'sp-contributions-userrights'          => 'naudotojų teisių valdymas',
@@ -2299,6 +2331,7 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'whatlinkshere-filters'    => 'Filtrai',
 
 # Block/unblock
+'autoblockid'                     => 'Autoblock # $1',
 'block'                           => 'Blokuoti naudotoją',
 'unblock'                         => 'Atblokuoti naudotoją',
 'blockip'                         => 'Blokuoti naudotoją',
@@ -2318,6 +2351,7 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 ** Gąsdinimai/Įžeidinėjimai
 ** Piktnaudžiavimas keliomis paskyromis
 ** Nepriimtinas naudotojo vardas',
+'ipb-hardblock'                   => 'Neleisti prisijungusius naudotojus nuo redagavimo iš šio IP adreso',
 'ipbcreateaccount'                => 'Neleisti kurti paskyrų',
 'ipbemailban'                     => 'Neleisti naudotojui siųsti el. pašto',
 'ipbenableautoblock'              => 'Automatiškai blokuoti šio naudotojo paskiausiai naudotą IP adresą, bei bet kokius vėlesnius IP adresus, iš kurių jie mėgina redaguoti',
@@ -2328,11 +2362,15 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'ipbotherreason'                  => 'Kita/papildoma priežastis',
 'ipbhidename'                     => 'Slėpti naudotojo vardą keitimuose bei sąrašuose',
 'ipbwatchuser'                    => 'Stebėti šio naudotojo puslapį ir jo aptarimų puslapį',
+'ipb-disableusertalk'             => 'Neleiskite šiam nuo redagavimo savo aptarimų puslapis naudotojui užblokuotas',
 'ipb-change-block'                => 'Perblokuoti šį naudotoją su šiais nustatymais',
+'ipb-confirm'                     => 'Patvirtinkite blokas',
 'badipaddress'                    => 'Neleistinas IP adresas',
 'blockipsuccesssub'               => 'Užblokavimas pavyko',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] buvo užblokuotas.<br />
 Aplankykite [[Special:IPBlockList|IP blokavimų istoriją]] norėdami jį peržiūrėti.',
+'ipb-blockingself'                => 'Jūs ruošiatės blokuoti sau! Ar tikrai norite tai padaryti?',
+'ipb-confirmhideuser'             => 'Jūs ruošiatės užblokuoti tam tikro vartotojo su "slėpti vartotojo" įjungtas. Tai bus nuslopinti vartotojo vardą visuose sąrašuose ir žurnalo įrašus. Ar tikrai norite tai padaryti?',
 'ipb-edit-dropdown'               => 'Redaguoti blokavimų priežastis',
 'ipb-unblock-addr'                => 'Atblokuoti $1',
 'ipb-unblock'                     => 'Atblokuoti naudotojo vardą arba IP adresą',
@@ -2343,10 +2381,19 @@ Aplankykite [[Special:IPBlockList|IP blokavimų istoriją]] norėdami jį perži
 ankščiau užblokuotam IP adresui ar naudotojui.',
 'ipusubmit'                       => 'Atblokuoti šį adresą',
 'unblocked'                       => '[[User:$1|$1]] buvo atblokuotas',
+'unblocked-range'                 => '$1 buvo atblokuotas',
 'unblocked-id'                    => 'Blokavimas $1 buvo pašalintas',
 'blocklist'                       => 'Blokuoti naudotojai',
 'ipblocklist'                     => 'Blokuoti naudotojai',
 'ipblocklist-legend'              => 'Rasti užblokuotą naudotoją',
+'blocklist-userblocks'            => 'Slėpti į blokus',
+'blocklist-tempblocks'            => 'Slėpti laikinus blokavimus',
+'blocklist-addressblocks'         => 'Slėpti vieną IP blokų',
+'blocklist-timestamp'             => 'Laiko žymė',
+'blocklist-target'                => 'Tikslinė',
+'blocklist-expiry'                => 'Galioja iki',
+'blocklist-by'                    => 'Blokavimo admin',
+'blocklist-params'                => 'Blokuoti duomenys',
 'blocklist-reason'                => 'Priežastis',
 'ipblocklist-submit'              => 'Ieškoti',
 'ipblocklist-localblock'          => 'Vietinis blokavimas',
@@ -2390,6 +2437,7 @@ Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:BlockList|
 'ipb_already_blocked'             => '„$1“ jau užblokuotas',
 'ipb-needreblock'                 => '$1 jau yra užblokuotas. Ar norite pakeisti nustatymus?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Kitas blokavimas|Kiti blokavimai}}',
+'unblock-hideuser'                => 'Jūs negalite atblokuoti vartotoją, nes jų vardas buvo paslėpta.',
 'ipb_cant_unblock'                => 'Klaida: Blokavimo ID $1 nerastas. Galbūt jis jau atblokuotas.',
 'ipb_blocked_as_range'            => 'Klaida: IP $1 nebuvo užblokuotas tiesiogiai, tad negali būti atblokuotas. Tačiau jis buvo užblokuotas kaip srities $2 dalis, kuri gali būti atblokuota.',
 'ip_range_invalid'                => 'Neleistina IP sritis.',
@@ -2599,7 +2647,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'import-interwiki-namespace' => 'Paskirties vardų sritis:',
 'import-upload-filename'     => 'Failo pavadinimas:',
 'import-comment'             => 'Komentaras:',
-'importtext'                 => 'Prašome eksportuoti failą iš projekto-šaltinio naudojantis {{ns:special}}:Export priemone, išsaugokite jį savo diske ir įkelkite jį čia.',
+'importtext'                 => 'Prašome eksportuoti iš projekto-šaltinio failo, naudojant [[Specialus: Export | Export.]]! N! Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 'importstart'                => 'Imporuojami puslapiai...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versija|versijos|versijų}}',
 'importnopages'              => 'Nėra puslapių importavimui.',
@@ -2787,21 +2835,24 @@ $1',
 'nextdiff'     => 'Vėlesnis pakeitimas →',
 
 # Media information
-'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą.
+'mediawarning'           => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą.
 Jį paleidus jūsų sistema gali būti pažeista.",
-'imagemaxsize'         => "Riboti paveikslėlių dydį:<br />''(failų aprašymo puslapiuose)''",
-'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
-'file-info'            => 'failo dydis: $1, MIME tipas: $2',
-'file-info-size'       => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4',
-'file-nohires'         => '<small>Geresnė raiška negalima.</small>',
-'svg-long-desc'        => 'SVG failas, formaliai $1 × $2 taškų, failo dydis: $3',
-'show-big-image'       => 'Pilna raiška',
-'file-info-gif-looped' => 'ciklinis',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|kadras|kadrai|kadrų}}',
-'file-info-png-looped' => 'ciklinis',
-'file-info-png-repeat' => 'grota $1 {{PLURAL:$1|kartą|kartus|kartų}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|kadras|kadrai|kadrų}}',
+'imagemaxsize'           => "Riboti paveikslėlių dydį:<br />''(failų aprašymo puslapiuose)''",
+'thumbsize'              => 'Sumažintų paveikslėlių dydis:',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
+'file-info'              => 'failo dydis: $1, MIME tipas: $2',
+'file-info-size'         => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4',
+'file-nohires'           => '<small>Geresnė raiška negalima.</small>',
+'svg-long-desc'          => 'SVG failas, formaliai $1 × $2 taškų, failo dydis: $3',
+'show-big-image'         => 'Pilna raiška',
+'show-big-image-preview' => '<small>Sumažintos iliustracijos dydis: $1 .</small>',
+'show-big-image-other'   => '<small>Kitos rezoliucijos: $1 .</small>',
+'show-big-image-size'    => '$1 × $2 taškų',
+'file-info-gif-looped'   => 'ciklinis',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|kadras|kadrai|kadrų}}',
+'file-info-png-looped'   => 'ciklinis',
+'file-info-png-repeat'   => 'grota $1 {{PLURAL:$1|kartą|kartus|kartų}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|kadras|kadrai|kadrų}}',
 
 # Special:NewFiles
 'newimages'             => 'Naujausių failų galerija',
@@ -2827,20 +2878,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'metadata-help'     => 'Šiame faile yra papildomos informacijos, tikriausiai pridėtos skaitmeninės kameros ar skaitytuvo, naudoto jam sukurti ar perkelti į skaitmeninį formatą. Jei failas buvo pakeistas iš pradinės versijos, kai kurios detalės gali nepilnai atspindėti naują failą.',
 'metadata-expand'   => 'Rodyti išplėstinę informaciją',
 'metadata-collapse' => 'Slėpti išplėstinę informaciją',
-'metadata-fields'   => 'EXIF metaduomenų laukai, nurodyti šiame pranešime, bus įtraukti į paveikslėlio puslapį, kai metaduomenų lentelė bus suskleista. Pagal nutylėjimą kiti laukai bus paslėpti.
-* make
-* model
-* datetimeoriginal
-* exposuretime
-* fnumber
-* isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+'metadata-fields'   => 'Vaizdo metaduomenų laukai, nurodyti šiame pranešime, bus įtraukti į paveikslėlio puslapį, kai metaduomenų lentelė bus suskleista.! N! kiti bus paslėpti.! N! * padaryti! N! * modelis! N! * datetimeoriginal! N! * exposuretime! N! * fnumber! N! * isospeedratings! N! * focallength! N! * menininko! N! * autorių! N! * imagedescription! N! * gpslatitude! N! * gpslongitude! N! * gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Plotis',
@@ -2876,8 +2914,8 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-colorspace'                  => 'Spalvų pristatymas',
 'exif-componentsconfiguration'     => 'kiekvieno komponento reikšmė',
 'exif-compressedbitsperpixel'      => 'Paveikslėlio suspaudimo režimas',
-'exif-pixelydimension'             => 'Leistinas paveikslėlio plotis',
-'exif-pixelxdimension'             => 'Leistinas paveikslėlio aukštis',
+'exif-pixelydimension'             => 'Paveikslėlio plotis',
+'exif-pixelxdimension'             => 'Vaizdo aukštis',
 'exif-usercomment'                 => 'Naudotojo komentarai',
 'exif-relatedsoundfile'            => 'Susijusi garso byla',
 'exif-datetimeoriginal'            => 'Duomenų generavimo data ir laikas',
@@ -2891,9 +2929,9 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-exposureprogram'             => 'Išlaikymo programa',
 'exif-spectralsensitivity'         => 'Spektrinis jautrumas',
 'exif-isospeedratings'             => 'ISO greitis',
-'exif-shutterspeedvalue'           => 'Užrakto greitis',
-'exif-aperturevalue'               => 'Diafragma',
-'exif-brightnessvalue'             => 'Šviesumas',
+'exif-shutterspeedvalue'           => 'APEX užrakto greičio',
+'exif-aperturevalue'               => 'APEX diafragma',
+'exif-brightnessvalue'             => 'APEX ryškumas',
 'exif-exposurebiasvalue'           => 'Išlaikymo paklaida',
 'exif-maxaperturevalue'            => 'Mažiausias lešio F numeris',
 'exif-subjectdistance'             => 'Objekto atstumas',
@@ -2955,6 +2993,17 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsareainformation'          => 'GPS zonos pavadinimas',
 'exif-gpsdatestamp'                => 'GPS data',
 'exif-gpsdifferential'             => 'GPS diferiancialo pataisymas',
+'exif-jpegfilecomment'             => 'JPEG failas komentarą',
+'exif-keywords'                    => 'Raktiniai žodžiai',
+'exif-worldregioncreated'          => 'Pasaulio regione, kad nuotrauka buvo imtasi',
+'exif-countrycreated'              => 'Šalis, kad nuotrauka buvo imtasi',
+'exif-countrycodecreated'          => 'Kodas šaliai, kad nuotrauka buvo imtasi',
+'exif-provinceorstatecreated'      => 'Provincijos ar nurodyti, kad nuotrauka buvo imtasi',
+'exif-citycreated'                 => 'Miestas, kad nuotrauka buvo imtasi',
+'exif-sublocationcreated'          => 'Sublocation miesto, kad nuotrauka buvo imtasi',
+'exif-worldregiondest'             => 'Pasaulio regionas rodomas',
+'exif-countrydest'                 => 'Šalis rodomas',
+'exif-countrycodedest'             => 'Kodas šalies rodomas',
 'exif-cameraownername'             => 'Fotoaparato savininkas',
 'exif-rating'                      => 'Vertinimas (iki 5)',
 'exif-usageterms'                  => 'Naudojimo sąlygos',

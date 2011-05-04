@@ -581,6 +581,8 @@ $1',
 'page-rss-feed'           => 'Nguồn tin RSS của “$1”',
 'page-atom-feed'          => 'Nguồn tin Atom của “$1”',
 'red-link-title'          => '$1 (trang chưa được viết)',
+'sort-descending'         => 'Sắp xếp giảm dần',
+'sort-ascending'          => 'Sắp xếp tăng dần',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Nội dung',

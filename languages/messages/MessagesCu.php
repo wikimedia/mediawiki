@@ -144,6 +144,7 @@ $messages = array(
 'pagecategories'         => '{{PLURAL:$1|Катигорі́ꙗ|Катигорі́и|Катигорі́ѩ|Катигорі́ѩ}}',
 'category_header'        => 'катигорїѩ ⁖ $1 ⁖ страницѧ',
 'subcategories'          => 'подъкатигорїѩ',
+'hidden-categories'      => '{{PLURAL:$1|съкрꙑта катигорїꙗ|съкрꙑти катигорїи|съкрꙑтꙑ катигорїѩ}}',
 'listingcontinuesabbrev' => '· вѧщє',
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
@@ -195,6 +196,7 @@ $messages = array(
 'delete'           => 'поничьжєниѥ',
 'deletethispage'   => 'си страницѧ поничьжєниѥ',
 'protect'          => 'ꙁабранѥниѥ',
+'protect_change'   => 'иꙁмѣнѥниѥ',
 'protectthispage'  => 'си страницѧ ꙁабранєниѥ',
 'unprotect'        => 'поущєниѥ',
 'newpage'          => 'нова страница',
@@ -274,6 +276,7 @@ $messages = array(
 'createaccount'           => 'съꙁижди си мѣсто',
 'gotaccount'              => 'мѣсто ти ѥстъ ли? $1',
 'gotaccountlink'          => 'въниди',
+'createaccountreason'     => 'какъ съмꙑслъ :',
 'userexists'              => 'сѫщє польꙃєватєлꙗ имѧ пьса ⁙ ино иꙁобрѧщи',
 'loginerror'              => 'въхода блаꙁна',
 'accountcreated'          => 'мѣсто сътворєно ѥстъ',
@@ -290,6 +293,7 @@ $messages = array(
 
 # Edit page toolbar
 'link_sample'    => 'съвѧꙁи имѧ',
+'link_tip'       => 'вънѫтрьнꙗ съвѧꙁь',
 'extlink_sample' => 'http://www.example.com съвѧꙁи имѧ',
 'sig_tip'        => 'твои аѵтографъ и нꙑнѣшьна врѣмѧ и дьнь',
 
@@ -336,7 +340,11 @@ $messages = array(
 'revdelete-show-file-submit' => 'да',
 'revdelete-radio-set'        => 'да',
 'revdelete-radio-unset'      => 'нѣтъ',
+'revdelete-log'              => 'какъ съмꙑслъ :',
 'revdelete-uname'            => 'польꙃєватєлꙗ имѧ',
+
+# History merging
+'mergehistory-reason' => 'какъ съмꙑслъ :',
 
 # Search results
 'searchresults'                  => 'исканиꙗ слѣдьствиѥ',
@@ -355,6 +363,7 @@ $messages = array(
 'search-interwiki-more'          => '(вѧщє)',
 'searchall'                      => 'вьсꙗ',
 'powersearch'                    => 'ищи',
+'powersearch-redir'              => 'прѣнаправлѥниꙗ',
 
 # Preferences page
 'preferences'         => 'строи',
@@ -373,6 +382,9 @@ $messages = array(
 'yournick'            => 'аѵтографъ :',
 'gender-male'         => 'мѫжъ',
 'gender-female'       => 'жєна',
+
+# User rights
+'userrights-reason' => 'какъ съмꙑслъ :',
 
 # Groups
 'group-user'       => 'польꙃєватєлє',
@@ -457,8 +469,12 @@ $messages = array(
 'imagelinks'         => 'дѣла съвѧꙁи',
 'sharedupload'       => 'сѥ дѣло въ $1 съхранѥно ѥстъ дѣла · ѥгожє дроугꙑ опꙑтьствованиѩ польꙃєвати могѫтъ',
 
+# File reversion
+'filerevert-comment' => 'какъ съмꙑслъ :',
+
 # File deletion
-'filedelete-submit' => 'поничьжєниѥ',
+'filedelete-comment' => 'какъ съмꙑслъ :',
+'filedelete-submit'  => 'поничьжєниѥ',
 
 # MIME search
 'mimetype' => 'MIME тѷпъ :',
@@ -564,11 +580,13 @@ $messages = array(
 'deletedarticle'  => '⁖ [[$1]] ⁖ поничьжєнъ ѥстъ',
 'dellogpage'      => 'поничьжєниꙗ їсторїꙗ',
 'deletionlog'     => 'поничьжєниꙗ їсторїꙗ',
+'deletecomment'   => 'какъ съмꙑслъ :',
 
 # Protect
 'protectlogpage'      => 'ꙁабранѥниꙗ їсторїꙗ',
 'protectedarticle'    => '⁖ [[$1]] ⁖ ꙁабранѥна ѥстъ',
 'prot_1movedto2'      => '⁖ [[$1]] ⁖ нарєчєнъ ⁖ [[$2]] ⁖ ѥстъ',
+'protectcomment'      => 'какъ съмꙑслъ :',
 'protect-level-sysop' => 'толико съмотритєлє',
 
 # Restrictions (nouns)
@@ -577,6 +595,7 @@ $messages = array(
 'restriction-upload' => 'положєниѥ',
 
 # Undelete
+'undeletecomment'        => 'какъ съмꙑслъ :',
 'undelete-search-submit' => 'ищи',
 
 # Namespace form on various pages
@@ -601,6 +620,7 @@ $messages = array(
 'whatlinkshere-title'      => 'страницѧ ижє съ ⁖ $1 ⁖ съвѧꙁи имѫтъ',
 'whatlinkshere-page'       => 'страница :',
 'isredirect'               => 'прѣнаправлѥниѥ',
+'istemplate'               => 'внѫтри страницѧ',
 'whatlinkshere-links'      => '← съвѧꙁи',
 'whatlinkshere-hideredirs' => '$1 прѣнаправлѥниꙗ',
 'whatlinkshere-hidelinks'  => '$1 съвѧꙁи',
@@ -608,6 +628,9 @@ $messages = array(
 # Block/unblock
 'blockip'            => 'ꙁагради польꙃєватєл҄ь',
 'ipadressorusername' => 'IP число или польꙃєватєлꙗ имѧ :',
+'ipbreason'          => 'какъ съмꙑслъ :',
+'ipblocklist'        => 'ꙁаграждєнꙑ польꙃєватєлє',
+'blocklist-reason'   => 'какъ съмꙑслъ',
 'ipblocklist-submit' => 'исканиѥ',
 'blocklink'          => 'ꙁагради',
 'contribslink'       => 'добродѣꙗниꙗ',
@@ -628,6 +651,7 @@ $messages = array(
 '1movedto2'               => '⁖ [[$1]] ⁖ нарєчєнъ ⁖ [[$2]] ⁖ ѥстъ',
 '1movedto2_redir'         => '[[$1]] нарєчєнъ [[$2]] врьхоу прѣнаправлѥниꙗ ѥстъ.',
 'movelogpage'             => 'прѣимєнованиꙗ їсторїꙗ',
+'movereason'              => 'какъ съмꙑслъ :',
 
 # Namespace 8 related
 'allmessages'     => 'сѷстимьнꙑ напьсаниꙗ',

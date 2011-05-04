@@ -615,6 +615,8 @@ $1',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (страницата не постои)',
+'sort-descending'         => 'Подреди надолно',
+'sort-ascending'          => 'Подреди нагорно',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Страница',

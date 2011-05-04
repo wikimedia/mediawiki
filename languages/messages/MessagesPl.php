@@ -541,6 +541,8 @@ $1',
 'page-rss-feed'           => 'Kanał RSS „$1”',
 'page-atom-feed'          => 'Kanał Atom „$1”',
 'red-link-title'          => '$1 (strona nie istnieje)',
+'sort-descending'         => 'Sortuj malejąco',
+'sort-ascending'          => 'Sortuj rosnąco',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Strona',

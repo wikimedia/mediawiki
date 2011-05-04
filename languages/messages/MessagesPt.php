@@ -595,6 +595,8 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'page-rss-feed'           => "''Feed'' RSS de \"\$1\"",
 'page-atom-feed'          => "''Feed'' Atom de \"\$1\"",
 'red-link-title'          => '$1 (página não existe)',
+'sort-descending'         => 'Ordenar por ordem descendente',
+'sort-ascending'          => 'Ordenar por ordem ascendente',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',

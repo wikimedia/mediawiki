@@ -647,6 +647,8 @@ $1',
 'page-rss-feed'           => 'RSS של $1',
 'page-atom-feed'          => 'Atom של $1',
 'red-link-title'          => '$1 (הדף אינו קיים)',
+'sort-descending'         => 'למיין בסדר יורד',
+'sort-ascending'          => 'למיין בסדר עולה',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'דף תוכן',

@@ -613,6 +613,8 @@ $1',
 'feed-atom'               => 'ആറ്റം',
 'feed-rss'                => 'ആർ.എസ്.എസ്.',
 'red-link-title'          => '$1 (ഇതുവരെ എഴുതപ്പെട്ടിട്ടില്ല)',
+'sort-descending'         => 'അവരോഹണമായി ക്രമപ്പെടുത്തുക',
+'sort-ascending'          => 'ആരോഹണമായി ക്രമപ്പെടുത്തുക',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ലേഖനം',

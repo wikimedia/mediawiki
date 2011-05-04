@@ -548,6 +548,8 @@ $1',
 'page-rss-feed'           => '«$1» — RSS-стужка',
 'page-atom-feed'          => '«$1» — Atom-стужка',
 'red-link-title'          => '$1 (старонка не існуе)',
+'sort-descending'         => 'Сартаваць па зьмяншэньні',
+'sort-ascending'          => 'Сартаваць па ўзрастаньні',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Старонка',

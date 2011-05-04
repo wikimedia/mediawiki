@@ -177,7 +177,7 @@ $messages = array(
 'vector-view-create'     => 'Скæн æй',
 'vector-view-edit'       => 'Баив æй',
 'vector-view-history'    => 'Истори',
-'vector-view-view'       => 'Кæс',
+'vector-view-view'       => 'Фæрс',
 'vector-view-viewsource' => 'Йæ код фен',
 
 'errorpagetitle'    => 'Рæдыд',

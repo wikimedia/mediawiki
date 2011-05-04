@@ -475,6 +475,8 @@ $1',
 'page-rss-feed'           => 'Lanv RSS evit "$1"',
 'page-atom-feed'          => 'Lanv Atom evit "$1"',
 'red-link-title'          => "$1 (n'eus ket eus ar bajenn-mañ)",
+'sort-descending'         => 'Urzhiañ war-draoñ',
+'sort-ascending'          => 'Urzhiañ war-laez',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pajenn',
