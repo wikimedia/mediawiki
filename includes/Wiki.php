@@ -1,4 +1,4 @@
-f<?php
+<?php
 /**
  * MediaWiki is the to-be base class for this whole project
  *
