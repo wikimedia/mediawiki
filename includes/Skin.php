@@ -455,6 +455,9 @@ abstract class Skin {
 
 	/**
 	 * Add skin specific stylesheets
+	 * Calling this method with an $out of anything but the same OutputPage
+	 * inside ->getContext()->getOutput() is deprecated. The $out arg is kept
+	 * for compatibility purposes with skins.
 	 * @param $out OutputPage
 	 * @delete
 	 */
@@ -505,15 +508,10 @@ abstract class Skin {
 		return $wgLogo;
 	}
 
-	/**
-	 * The format without an explicit $out argument is deprecated
-	 */
-	function getCategoryLinks( OutputPage $out=null ) {
+	function getCategoryLinks() {
 		global $wgUseCategoryBrowser, $wgContLang;
 
-		if( $out === null ){
-			$out = $this->getContext()->output;
-		}
+		$out = $this->getContext()->output;
 
 		if ( count( $out->mCategoryLinks ) == 0 ) {
 			return '';
@@ -602,17 +600,10 @@ abstract class Skin {
 		return $return;
 	}
 
-	/**
-	 * The ->getCategories() form is deprecated, please instead use
-	 * the ->getCategories( $out ) form with whatout OutputPage is on hand
-	 */
-	function getCategories( OutputPage $out=null ) {
+	function getCategories() {
+		$out = $this->getContext()->output;
 
-		if( $out === null ){
-			$out = $this->getContext()->output;
-		}
-
-		$catlinks = $this->getCategoryLinks( $out );
+		$catlinks = $this->getCategoryLinks();
 
 		$classes = 'catlinks';
 
@@ -668,11 +659,11 @@ abstract class Skin {
 	 * area.
 	 * @return String HTML containing debug data, if enabled (otherwise empty).
 	 */
-	protected function generateDebugHTML( OutputPage $out ) {
+	protected function generateDebugHTML() {
 		global $wgShowDebug;
 
 		if ( $wgShowDebug ) {
-			$listInternals = $this->formatDebugHTML( $out->mDebugtext );
+			$listInternals = $this->formatDebugHTML( $this->getContext()->getOutput()->mDebugtext );
 			return "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">" .
 				$listInternals . "</ul>\n";
 		}
@@ -781,10 +772,7 @@ abstract class Skin {
 		return '';
 	}
 
-	/**
-	 * The format without an explicit $out argument is deprecated
-	 */
-	function subPageSubtitle( OutputPage $out=null ) {
+	function subPageSubtitle() {
 		$out = $this->getContext()->getOutput();
 		$subpages = '';
 

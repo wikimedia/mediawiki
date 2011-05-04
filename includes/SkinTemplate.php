@@ -245,7 +245,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'isarticle', $out->isArticle() );
 
 		$tpl->setRef( 'thispage', $this->thispage );
-		$subpagestr = $this->subPageSubtitle( $out );
+		$subpagestr = $this->subPageSubtitle();
 		$tpl->set(
 			'subtitle', !empty( $subpagestr ) ?
 			'<span class="subpages">' . $subpagestr . '</span>' . $out->getSubtitle() :
@@ -258,7 +258,7 @@ class SkinTemplate extends Skin {
 			''
 		);
 
-		$tpl->set( 'catlinks', $this->getCategories( $out ) );
+		$tpl->set( 'catlinks', $this->getCategories() );
 		if( $out->isSyndicated() ) {
 			$feeds = array();
 			foreach( $out->getSyndicationLinks() as $format => $link ) {
@@ -506,7 +506,7 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'headscripts', $out->getScript() );
 		}
 
-		$tpl->set( 'debughtml', $this->generateDebugHTML( $out ) );
+		$tpl->set( 'debughtml', $this->generateDebugHTML() );
 
 		// original version by hansm
 		if( !wfRunHooks( 'SkinTemplateOutputPageBeforeExec', array( &$this, &$tpl ) ) ) {
