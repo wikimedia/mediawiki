@@ -662,6 +662,10 @@ class DatabaseOracle extends DatabaseBase {
 		return parent::tableName( strtoupper( $name ), $quoted );
 	}
 
+	function tableNameInternal( $name ) {
+		$name = $this->tableName( $name );
+		return preg_replace( '/.*\.(.*)/', '$1', $name);
+	}
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
 	 */
@@ -913,7 +917,7 @@ class DatabaseOracle extends DatabaseBase {
 	private function fieldInfoMulti( $table, $field ) {
 		$field = strtoupper( $field );
 		if ( is_array( $table ) ) {
-			$table = array_map( array( &$this, 'tableName' ), $table );
+			$table = array_map( array( &$this, 'tableNameInternal' ), $table );
 			$tableWhere = 'IN (';
 			foreach( $table as &$singleTable ) {
 				$singleTable = $this->removeIdentifierQuotes($singleTable);
@@ -924,7 +928,7 @@ class DatabaseOracle extends DatabaseBase {
 			}
 			$tableWhere = rtrim( $tableWhere, ',' ) . ')';
 		} else {
-			$table = $this->removeIdentifierQuotes($table);
+			$table = $this->removeIdentifierQuotes(  $this->tableNameInternal( $table ) );
 			if ( isset( $this->mFieldInfoCache["$table.$field"] ) ) {
 				return $this->mFieldInfoCache["$table.$field"];
 			}
