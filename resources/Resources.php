@@ -70,6 +70,9 @@ return array(
 	'jquery.async' => array(
 		'scripts' => 'resources/jquery/jquery.async.js',
 	),
+	'jquery.appear' => array(
+		'scripts' => 'resources/jquery/jquery.appear.js',
+	),
 	'jquery.autoEllipsis' => array(
 		'scripts' => 'resources/jquery/jquery.autoEllipsis.js',
 		'dependencies' => 'jquery.highlightText',
