@@ -3,7 +3,7 @@
 /**
  * Base class that store and restore the Language objects
  */
-class MediaWikiLangTestCase extends MediaWikiTestCase {
+abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 	private static $oldLang;
 	private static $oldContLang;
 
