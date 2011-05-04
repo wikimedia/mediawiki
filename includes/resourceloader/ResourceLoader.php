@@ -63,7 +63,7 @@ class ResourceLoader {
 		// Get file dependency information
 		$res = $dbr->select( 'module_deps', array( 'md_module', 'md_deps' ), array(
 				'md_module' => $modules,
-				'md_skin' => $context->getSkin()
+				'md_skin' => $skin
 			), __METHOD__
 		);
 
