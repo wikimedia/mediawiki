@@ -35,37 +35,22 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 ** When several pages are given the same sort key, they sort by their 
    names instead of randomly.
 
-* The lowest supported version of MediaWiki is now 5.2.3. If necessary, please
+* The lowest supported version of PHP is now 5.2.3. If necessary, please
   upgrade PHP prior to upgrading MediaWiki.
 
 === Configuration changes in 1.17 ===
-* DatabaseFunctions.php that was needed for compatibility with pre-1.3
-  extensions has been removed.
+
 * $wgLogAutocreatedAccounts controls whether autocreation of accounts is logged
   to new users log.
-* $wgAllowImageTag can be set to true to whitelist the <img> tag in wikitext.
-* (bug 12797) Add $wgGalleryOptions for adjusting of default gallery display
-  options.
-* $wgAllowUserCssPrefs option allows disabling CSS-based preferences; which can
-  improve page loading speed.
 * (bug 22858) $wgLocalStylePath is by default set to the same value as
   $wgStylePath but should never point to a different domain than the site is
   on, allowing skins to use .htc files which are not cross-domain friendly.
-* (bug 20193) Added $wgVectorShowVariantName global configuration variable
-  which causes Vector to render the variants drop-down menu with a label
-  showing the current variant name. This is off by default, pending further
-  research into its user experience implications.
-* XmlFunctions.php has been removed. Use the Xml or Html classes as appropriate.
-* Added $wgSQLMode for setting database SQL modes - either performance (null)
-  or other reasons (such as enabling stricter checks)
 * $wgFileStore has been deprecated. The only usage $wgFileStore['deleted'] has
   been turned into $wgDeletedDirectory.
 * $wgDeletedDirectory has been added to specify what directory to place deleted
   uploads in.
 * IBM DB2 database no longer uses the db specific $wgDBport_db2 variable but the
   normal $wgDBport.
-* The upload link for missing files can now be set separately from the
-  navigation link with $wgUploadMissingFileUrl.
 * $wgCategoryPrefixedDefaultSortkey was removed and is now always false.  This
   provides more sensible sorting behavior for categories.
 * Removed unused globals: $wgEnableSerializedMessages, $wgCheckSerialized,
@@ -73,46 +58,15 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   $wgUseZhdaemon, $wgZhdaemonHost and $wgZhdaemonPort.
 * (bug 24408) The include_path is not modified in the default LocalSettings.php
 * $wgVectorExtraStyles was removed, and is no longer in use.
-* $wgLoadScript was added to specify alternative locations for ResourceLoader
-  requests.
-* $wgResourceLoaderMaxage was added to specify maxage and smaxage times for
-  responses from ResourceLoader based on whether the request's URL contained a
-  version parameter or not.
-* $wgResourceLoaderDebug was added to specify the default state of debug mode;
-  this will still be overridden with the debug URL parameter a la
-  $wgLanguageCode.
-* $wgResourceLoaderInlinePrivateModules was added to specify whether private
-  modules such as user.options should be embedded in the HTML output or
-  delivered through a resource loader request, which bypasses server cache (like
-  squid) and checks the user parameter against $wgUser. The former adds more
-  data to all pages, while the latter adds a request which cannot be cached
-  server side.
 * Removed $wgUpdates for database updates; extension should use
   DatabaseUpdater::addExtensionUpdate().
 * Removed $wgServerName. It doesn't need to be set anymore and is no longer
   available as input for other configuration items, either.
-* Remove $wgRemoteUploads. It was not well supported and superseded by
-  $wgUploadNavigationUrl.
-* (bug 198) $wgUpgradeKey allows unlocking the web installer for upgrades
-  without having to move LocalSettings.php
-* The FailFunction "error handling" method has now been removed
-* $wgAdditionalMailParams added to allow setting extra options to mail() calls.
-* $wgSecureLogin to optionally login using HTTPS
-* (bug 25728) Added $wgPasswordSenderName to make the name associated
-  with $wgPasswordSender configurable
-* Sysops now have the "suppressredirect" right by default
-* (bug 22463) $wgFooterIcons added to allow configuration of the icons shown in
-  the footers of skins.
-* $wgFileCacheDepth can be used to set the depth of the subdirectory hierarchy
-  used for the file cache. Default value is 2, which matches former behavior
 * It's no longer necessary for LocalSettings.php to include DefaultSettings.php.
 * It's no longer necessary to set $wgCacheEpoch to the file modification time
   of LocalSettings.php, in LocalSettings.php itself. Instead, this is done
   automatically if $wgInvalidateCacheOnLocalSettingsChange is true (which is
   the default).
-* (bug 26253) $wgPostCommitUpdateList has been removed
-* The PHPUnit test suite has been removed from this release due to serious issues
-  which should be resolved by the 1.18 release
 * $wgCopyrightIcon is deprecated and $wgFooterIcons['copyright']['copyright'] should
   be used instead.
 * $wgSysopUserBans is deprecated, and will be made permanently true in 1.18.
@@ -123,6 +77,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   address at a time.
 
 === New features in 1.17 ===
+
 * (bug 10183) Users can now add personal styles and scripts to all skins via
   User:<name>/common.css and /common.js (if user css/js is enabled).
 * (bug 22748) Add anchors on Special:ListGroupRights.
@@ -256,8 +211,33 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 26563) Add bytes changed per revision for stub and full article dumps
 * (bug 27508) Add $wgSVGMetadataCutoff to limit the maximum amount of an svg we
   look at when finding metadata to prevent excessive resource usage.
+* (bug 198) $wgUpgradeKey allows unlocking the web installer for upgrades
+  without having to move LocalSettings.php
+* Added $wgAllowImageTag, which can be set to true to whitelist the <img> tag 
+  in wikitext.
+* (bug 12797) Add $wgGalleryOptions for adjusting of default gallery display
+  options.
+* Added the $wgAllowUserCssPrefs option which allows disabling CSS-based 
+  preferences; which can improve page loading speed.
+* Added $wgSQLMode for setting database SQL modes - either performance (null)
+  or other reasons (such as enabling stricter checks)
+* (bug 20193) Added $wgVectorShowVariantName global configuration variable
+  which causes Vector to render the variants drop-down menu with a label
+  showing the current variant name. This is off by default, pending further
+  research into its user experience implications.
+* The upload link for missing files can now be set separately from the
+  navigation link with $wgUploadMissingFileUrl.
+* $wgAdditionalMailParams added to allow setting extra options to mail() calls.
+* Added $wgSecureLogin to optionally login using HTTPS
+* (bug 25728) Added $wgPasswordSenderName to make the name associated
+  with $wgPasswordSender configurable
+* (bug 22463) $wgFooterIcons added to allow configuration of the icons shown in
+  the footers of skins.
+* $wgFileCacheDepth can be used to set the depth of the subdirectory hierarchy
+  used for the file cache. Default value is 2, which matches former behavior
 
 === Bug fixes in 1.17 ===
+
 * (bug 17560) Half-broken deletion moved image files to deletion archive
   without updating database.
 * (bug 22666) Submitting user block form with an invalid user name no longer
@@ -568,6 +548,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   parameter.
 
 === API changes in 1.17 ===
+
 * BREAKING CHANGE: action=patrol now requires POST
 * BREAKING CHANGE: patrol token is no longer the same as edit token
 * BREAKING CHANGE: Session keys returned by ApiUpload are now strings instead of integers
@@ -681,28 +662,32 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   real timestamp field.
 * (bug 27722) list=filearchive now supports revdel
 
-=== Languages updated in 1.17 ===
+=== Language support changes in 1.17 ===
 
 MediaWiki supports over 330 languages. Many localizations are updated
-regularly. Below only new and removed languages are listed, as well as
-changes to languages because of Bugzilla reports.
+regularly.
 
-* Moroccan Spoken Arabic (ary) (new)
-* Banjar (bjn) (new)
-* Danish (dk) (removed deprecated language code)
-* Fiji Hindi (Devangari script) (removed)
-* Kabardian (kdb) (new, dummy)
-* Kabardian (Cyrillic) (kbd-cyrl) (new)
-* Latgalian (ltg) (new)
-* Minangkabau (min) (new)
-* Dutch (informal) (nl-informal) (new)
-* Rusyn (rue) (new)
+The following languages were added:
+
+* Moroccan Spoken Arabic (ary)
+* Banjar (bjn)
+* Kabardian (kdb)
+* Kabardian (Cyrillic) (kbd-cyrl)
+* Latgalian (ltg)
+* Minangkabau (min)
+* Dutch (informal) (nl-informal)
+* Rusyn (rue)
+
+Other significant changes to MediaWiki's language support:
+
+* Fiji Hindi (Devangari script) was removed
+* Removed deprecated language code "dk" (Danish), use "da" instead
 * Link trail added for sl and sh
 * (bug 27633) Add characters to linkTrail for Potuguese (pt and pt-br)
 * (bug 23156) Commafy and search normalization updated for Belarusian
   (Taraškievica).
 * (bug 23283) Native name for Old English -> Ænglisc.
-* (bug 23364) Native name for Azerbaijani -> Az?rbaycanca.
+* (bug 23364) Native name for Azerbaijani -> Azərbaycanca.
 * (bug 24593) Native name for Sorani now uses only Arabic script.
 * (bug 24628) Generic translations for NS_USER/NS_USER_TALK for Esperanto.
 * (bug 24917) Polish as fallback for Kashubia.
@@ -714,6 +699,19 @@ changes to languages because of Bugzilla reports.
 * (bug 25010) Bashkir-language interwikis: linktext change from Башҡорт
   to Башҡортса
 * (bug 26395) Change name of Cornish language to Kernowek
+
+=== Other changes in 1.17 ===
+
+* DatabaseFunctions.php that was needed for compatibility with pre-1.3
+  extensions has been removed.
+* XmlFunctions.php has been removed. Use the Xml or Html classes as appropriate.
+* The FailFunction "error handling" method has now been removed
+* Sysops now have the "suppressredirect" right by default
+* Removed $wgRemoteUploads. It was not well supported and superseded by
+  $wgUploadNavigationUrl.
+* (bug 26253) $wgPostCommitUpdateList has been removed
+* The PHPUnit test suite has been removed from this release due to serious issues
+  which should be resolved by the 1.18 release.
 
 == Compatibility ==
 
