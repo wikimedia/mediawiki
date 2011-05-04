@@ -229,7 +229,6 @@ abstract class File {
 	* i.e. whether the files are all found in the same directory,
 	* or in hashed paths like /images/3/3c.
 	*
-	* May return false if the file is not locally accessible.
 	*/
 	public function getPath() {
 		if ( !isset( $this->path ) ) {
