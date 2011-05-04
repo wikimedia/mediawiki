@@ -8,6 +8,7 @@ $wgAutoloadClasses += array(
 	//PHPUnit
 	'MediaWikiTestCase' => "$testFolder/phpunit/MediaWikiTestCase.php",
 	'MediaWikiPHPUnitCommand' => "$testFolder/phpunit/MediaWikiPHPUnitCommand.php",
+	'MediaWikiLangTestCase' => "$testFolder/phpunit/MediaWikiLangTestCase.php",
 		
 		//API
 		'ApiTestSetup' => "$testFolder/phpunit/includes/api/ApiSetup.php",
