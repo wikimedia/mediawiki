@@ -229,6 +229,8 @@ abstract class File {
 	* i.e. whether the files are all found in the same directory,
 	* or in hashed paths like /images/3/3c.
 	*
+	* Most callers don't check the return value, but ForeignAPIFile::getPath
+	* returns false.
 	*/
 	public function getPath() {
 		if ( !isset( $this->path ) ) {
