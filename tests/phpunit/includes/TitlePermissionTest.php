@@ -629,8 +629,9 @@ class TitlePermissionTest extends MediaWikiTestCase {
 			$this->title->getUserPermissionsErrors( 'move-target',
 			$this->user ) );
 
-		$this->assertEquals( false,
-							 $this->title->userCan( 'move-target', $this->user ) );
+		$this->assertEquals( false, $this->title->userCan( 'move-target' ) );
+		// quickUserCan should ignore user blocks
+		$this->assertEquals( true, $this->title->quickUserCan( 'move-target' ) );
 
 		global $wgLocalTZoffset;
 		$wgLocalTZoffset = -60;
