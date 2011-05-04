@@ -1346,7 +1346,7 @@ class HTMLSelectField extends HTMLFormField {
 		# If one of the options' 'name' is int(0), it is automatically selected.
 		# because PHP sucks and thinks int(0) == 'some string'.
 		# Working around this by forcing all of them to strings.
-		foreach( $this->mParams['options'] as $key => &$opt ){
+		foreach( $this->mParams['options'] as &$opt ){
 			if( is_int( $opt ) ){
 				$opt = strval( $opt );
 			}
