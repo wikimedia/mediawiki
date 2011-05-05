@@ -1,7 +1,7 @@
 = MediaWiki release notes =
 
 Security reminder: MediaWiki does not require PHP's register_globals
-setting since version 1.2.0. If you have it on, turn it *off* if you can.
+setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.18 ==
 
