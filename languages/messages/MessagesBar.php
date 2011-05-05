@@ -399,6 +399,10 @@ Vagiss bittschee ned, daine [[Special:Preferences|{{SITENAME}}-Aistellungen]] å
 'newpassword' => 'Naichs Posswort:',
 'retypenew'   => 'Naichs Posswort (nuamoi):',
 
+# Special:PasswordReset
+'passwordreset'          => 'Passwoat zrucksetzn',
+'passwordreset-username' => 'Benutzanãm:',
+
 # Edit page toolbar
 'bold_sample'     => 'Fetter Text',
 'bold_tip'        => 'Fetter Text',
@@ -1181,13 +1185,19 @@ Darauf foignde Links auf Seitn in da söiwn Zeun definian Ausnãhmen, in denen e
 'metadata-expand'   => 'Erweitate Deteus eiblendn',
 'metadata-collapse' => "D'eaweidatn Deteus ausblendn",
 'metadata-fields'   => 'Dé foiganden Föider vo de ESIF-Metadaaten in dém MediaWiki-Systémtext wern auf de Büidlbeschraiwungssaiten åzoagt; waiderne standardmässég "aikloppte" Details kennan åzoagt wern.
-*make
-*model
-*dateimeoriginal
-*exposuretime
-*fnumber
-*isospeedratings
-*focallength',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-gpsspeed' => 'Geschwindigkeit vom GPS-Empfänger',

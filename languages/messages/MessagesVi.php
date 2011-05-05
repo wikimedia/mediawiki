@@ -3668,27 +3668,26 @@ Bạn cũng có thể [[Special:EditWatchlist|dùng trang sửa đổi bình th�
 'duplicate-defaultsort' => 'Cảnh báo: Từ khóa xếp mặc định “$2” ghi đè từ khóa trước, “$1”.',
 
 # Special:Version
-'version'                          => 'Phiên bản',
-'version-extensions'               => 'Các phần mở rộng được cài đặt',
-'version-specialpages'             => 'Trang đặc biệt',
-'version-parserhooks'              => 'Hook trong bộ xử lý',
-'version-variables'                => 'Biến',
-'version-antispam'                 => 'Chống spam',
-'version-skins'                    => 'Hình dạng',
-'version-other'                    => 'Phần mở rộng khác',
-'version-mediahandlers'            => 'Bộ xử lý phương tiện',
-'version-hooks'                    => 'Các hook',
-'version-extension-functions'      => 'Hàm mở rộng',
-'version-parser-extensiontags'     => 'Thẻ mở rộng trong bộ xử lý',
-'version-parser-function-hooks'    => 'Hook cho hàm cú pháp trong bộ xử lý',
-'version-skin-extension-functions' => 'Hàm mở rộng skin',
-'version-hook-name'                => 'Tên hook',
-'version-hook-subscribedby'        => 'Được theo dõi bởi',
-'version-version'                  => '(Phiên bản $1)',
-'version-license'                  => 'Giấy phép bản quyền',
-'version-poweredby-credits'        => "Wiki này chạy trên '''[http://www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
-'version-poweredby-others'         => 'những người khác',
-'version-license-info'             => "MediaWiki là phần mềm tự do; bạn được phép tái phân phối và/hoặc sửa đổi nó theo những điều khoản của Giấy phép Công cộng GNU do Quỹ Phần mềm Tự do xuất bản; phiên bản 2 hay bất kỳ phiên bản nào mới hơn nào của Giấy phép.
+'version'                       => 'Phiên bản',
+'version-extensions'            => 'Các phần mở rộng được cài đặt',
+'version-specialpages'          => 'Trang đặc biệt',
+'version-parserhooks'           => 'Hook trong bộ xử lý',
+'version-variables'             => 'Biến',
+'version-antispam'              => 'Chống spam',
+'version-skins'                 => 'Hình dạng',
+'version-other'                 => 'Phần mở rộng khác',
+'version-mediahandlers'         => 'Bộ xử lý phương tiện',
+'version-hooks'                 => 'Các hook',
+'version-extension-functions'   => 'Hàm mở rộng',
+'version-parser-extensiontags'  => 'Thẻ mở rộng trong bộ xử lý',
+'version-parser-function-hooks' => 'Hook cho hàm cú pháp trong bộ xử lý',
+'version-hook-name'             => 'Tên hook',
+'version-hook-subscribedby'     => 'Được theo dõi bởi',
+'version-version'               => '(Phiên bản $1)',
+'version-license'               => 'Giấy phép bản quyền',
+'version-poweredby-credits'     => "Wiki này chạy trên '''[http://www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
+'version-poweredby-others'      => 'những người khác',
+'version-license-info'          => "MediaWiki là phần mềm tự do; bạn được phép tái phân phối và/hoặc sửa đổi nó theo những điều khoản của Giấy phép Công cộng GNU do Quỹ Phần mềm Tự do xuất bản; phiên bản 2 hay bất kỳ phiên bản nào mới hơn nào của Giấy phép.
 
 MediaWiki được phân phối với hy vọng rằng nó sẽ hữu ích, nhưng '''không có bất kỳ một bảo đảm nào cả''', ngay cả những bảo đảm ngụ ý cho '''các mục đích thương mại''' hoặc cho '''một mục đích đặc biệt nào đó'''. Xem Giấy phép Công cộng GNU để biết thêm chi tiết.
 
@@ -3698,9 +3697,9 @@ Có lẽ bạn đã nhận [{{SERVER}}{{SCRIPTPATH}}/COPYING bản sao Giấy ph
  Boston, MA 02110-1301
  USA
 hoặc [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuyến].",
-'version-software'                 => 'Phần mềm được cài đặt',
-'version-software-product'         => 'Phần mềm',
-'version-software-version'         => 'Phiên bản',
+'version-software'              => 'Phần mềm được cài đặt',
+'version-software-product'      => 'Phần mềm',
+'version-software-version'      => 'Phiên bản',
 
 # Special:FilePath
 'filepath'         => 'Đường dẫn tập tin',

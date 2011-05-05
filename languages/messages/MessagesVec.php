@@ -3123,32 +3123,31 @@ Nota che te pol anca [[Special:EditWatchlist|modificar la lista con l'interfacia
 'duplicate-defaultsort' => 'Ocio: la ciave de ordinamento predefinìa "$2" la va in conflito co\' quela de prima "$1".',
 
 # Special:Version
-'version'                          => 'Version',
-'version-extensions'               => 'Estension instalè',
-'version-specialpages'             => 'Pagine speciali',
-'version-parserhooks'              => 'Hook del parser',
-'version-variables'                => 'Variabili',
-'version-other'                    => 'Altro',
-'version-mediahandlers'            => 'Gestori de contenuti multimediài',
-'version-hooks'                    => 'Hook',
-'version-extension-functions'      => 'Funzion introdote da estensioni',
-'version-parser-extensiontags'     => 'Tag riconossiùi dal parser introdoti da estensioni',
-'version-parser-function-hooks'    => 'Hook par funzioni del parser',
-'version-skin-extension-functions' => "Funzioni ligà a l'aspeto grafico (skin) introdote da estensioni",
-'version-hook-name'                => "Nome de l'hook",
-'version-hook-subscribedby'        => 'Sotoscrizioni',
-'version-version'                  => '(Version $1)',
-'version-license'                  => 'Licensa',
-'version-poweredby-credits'        => "Sta wiki la va con '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others'         => 'altri',
-'version-license-info'             => "MediaWiki xe un software lìbaro; te pol redistribuirlo e/o modificarlo secondo i termini de la Licensa Publica Zeneral GNU publicà da la Free Software Foundation; secondo la version 2 de la Licensa, o (a scelta tua) una qualunque altra version sucessiva.
+'version'                       => 'Version',
+'version-extensions'            => 'Estension instalè',
+'version-specialpages'          => 'Pagine speciali',
+'version-parserhooks'           => 'Hook del parser',
+'version-variables'             => 'Variabili',
+'version-other'                 => 'Altro',
+'version-mediahandlers'         => 'Gestori de contenuti multimediài',
+'version-hooks'                 => 'Hook',
+'version-extension-functions'   => 'Funzion introdote da estensioni',
+'version-parser-extensiontags'  => 'Tag riconossiùi dal parser introdoti da estensioni',
+'version-parser-function-hooks' => 'Hook par funzioni del parser',
+'version-hook-name'             => "Nome de l'hook",
+'version-hook-subscribedby'     => 'Sotoscrizioni',
+'version-version'               => '(Version $1)',
+'version-license'               => 'Licensa',
+'version-poweredby-credits'     => "Sta wiki la va con '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'      => 'altri',
+'version-license-info'          => "MediaWiki xe un software lìbaro; te pol redistribuirlo e/o modificarlo secondo i termini de la Licensa Publica Zeneral GNU publicà da la Free Software Foundation; secondo la version 2 de la Licensa, o (a scelta tua) una qualunque altra version sucessiva.
 
 MediaWiki el xe distribuìo sperando che el possa vegner utile, ma SENSA NISSUNA GARANSIA; sensa gnanca la garansia inplicita de COMERCIALIZASSION o de ADATAMENTO A UN USO PARTICOLARE. Varda la Licensa Publica Zeneral GNU par ulteriori detagli.
 
 Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Publica Zeneral GNU; se nò, scrìveghe a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html và a lèzartela online].",
-'version-software'                 => 'Software instalà',
-'version-software-product'         => 'Prodoto',
-'version-software-version'         => 'Version',
+'version-software'              => 'Software instalà',
+'version-software-product'      => 'Prodoto',
+'version-software-version'      => 'Version',
 
 # Special:FilePath
 'filepath'         => 'Percorso de un file',

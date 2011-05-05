@@ -151,6 +151,7 @@ $messages = array(
 
 'about'         => 'опьсаниѥ',
 'article'       => 'члѣнъ',
+'newwindow'     => '(иномь окънѣ)',
 'moredotdotdot' => 'вѧщє ···',
 'mypage'        => 'моꙗ страница',
 'mytalk'        => 'моꙗ бєсѣда',
@@ -230,6 +231,7 @@ $messages = array(
 'portal'               => 'обьщєниꙗ съвѣтъ',
 'portal-url'           => 'Project:Обьщєниꙗ съвѣтъ',
 
+'retrievedfrom'       => 'поѩто иꙁ ⁖ $1 ⁖',
 'youhavenewmessages'  => '$1 тєбѣ напьсанꙑ сѫтъ ($2)',
 'newmessageslink'     => 'нови напьсаниꙗ',
 'newmessagesdifflink' => 'послѣдьнꙗ мѣна',
@@ -466,6 +468,7 @@ $messages = array(
 'filehist-current'   => 'нꙑнѣщьн҄ь обраꙁъ',
 'filehist-datetime'  => 'дьнь / врѣмѧ',
 'filehist-user'      => 'польꙃєватєл҄ь',
+'filehist-comment'   => 'опьсаниѥ',
 'imagelinks'         => 'дѣла съвѧꙁи',
 'sharedupload'       => 'сѥ дѣло въ $1 съхранѥно ѥстъ дѣла · ѥгожє дроугꙑ опꙑтьствованиѩ польꙃєвати могѫтъ',
 
@@ -675,6 +678,7 @@ $messages = array(
 'tooltip-n-mainpage'             => 'виждь главьноу страницѫ',
 'tooltip-n-mainpage-description' => 'виждь главьноу страницѫ',
 'tooltip-n-recentchanges'        => 'послѣдьн҄ь мѣнъ каталогъ',
+'tooltip-t-contributions'        => 'виждь польꙃєватєлꙗ добродѣꙗнии каталогъ',
 'tooltip-t-upload'               => 'положєниѥ дѣлъ',
 'tooltip-t-specialpages'         => 'вьсѣѩ нарочьнъ страницѧ каталогъ',
 'tooltip-t-print'                => 'сѥѩ страницѧ пєчатьнъ обраꙁъ',

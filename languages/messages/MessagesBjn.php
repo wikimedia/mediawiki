@@ -1754,6 +1754,7 @@ Ngini wayah ini sudah diugahakan ka [[$2]].',
 'specialloguserlabel'  => 'Pamuruk:',
 'speciallogtitlelabel' => 'Judul:',
 'log'                  => 'Log',
+'all-logs-page'        => 'Samunyaan log umum',
 
 # Special:AllPages
 'allpages'          => 'Samunyaan tungkaran',
@@ -1771,6 +1772,7 @@ Ngini wayah ini sudah diugahakan ka [[$2]].',
 'allpagesprefix'    => 'Tampilakan tutungkaran bamula lawan:',
 
 # Special:Categories
+'categories'                    => 'Tutumbung',
 'special-categories-sort-count' => 'susun ulih rikinan',
 'special-categories-sort-abc'   => 'susun abjad',
 
@@ -2139,6 +2141,20 @@ Pian kada kawa maulah sabuah akun',
 'cant-block-while-blocked'    => 'Pian kada kawa mamblukir pamuruk lain parhatan Pian diblukir.',
 'cant-see-hidden-user'        => 'Pamuruk nang Pian cuba blukir sudah diblukir wan tasungkup.
 Tumatan Pian kada baisi hak mnyungkupakan pamuruk, Pian kada kawa manjanaki atawa mambabak pamblukiran pamuruk.',
+'ipbblocked'                  => 'Pian kada kawa mamblukir atau malapas blukir pamuruk lain, karana Pian surang diblukir',
+'ipbnounblockself'            => 'Pian kada dibulihakan malapas blukir Pian surang',
+
+# Developer tools
+'lockdb'              => 'Sunduk basisdata',
+'unlockdb'            => 'Lapas sunduk basisdata',
+'lockconfirm'         => "I'ih, ulun bujuran handak manyunduk basisdata.",
+'unlockconfirm'       => "I'ih, ulun bujuran handak malapas sunduk basisdata.",
+'lockbtn'             => 'Sunduk basisdata',
+'unlockbtn'           => 'Lapas sunduk basisdata',
+'locknoconfirm'       => 'Pian kada mamariksa kutak payakinan.',
+'lockdbsuccesssub'    => 'Basisdata ruhui disunduk',
+'unlockdbsuccesssub'  => 'Sunduk basisdata dibuang',
+'unlockdbsuccesstext' => 'Basisdata sudah dilapas sunduknya.',
 
 # Move page
 'move-page'                    => 'Pindahakan $1',
@@ -2349,6 +2365,16 @@ Muhun cubai pulang.',
 'anonusers'        => '{{PLURAL:$2|pamuruk|papamuruk}} kada bangaran {{SITENAME}} $1',
 'creditspage'      => 'Tungkaran kridit',
 'nocredits'        => 'Kadada panjalasan kridit tasadia gasan tungkaran ngini.',
+
+# Info page
+'infosubtitle' => 'Panjalasan gasan tungkaran',
+'numedits'     => 'Rikinan babakan (tungkaran): $1',
+
+# Patrol log
+'patrol-log-diff' => 'Ralatan $1',
+
+# Image deletion
+'deletedrevision' => 'Raralatan lawas tahapus: $1',
 
 # Browsing diffs
 'previousdiff' => '← Ralatan talawas',

@@ -1525,19 +1525,6 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude
-* make
-* model
-* datetimeoriginal
-* exposuretime
-* fnumber
-* isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
 * gpsaltitude',
 
 # EXIF tags

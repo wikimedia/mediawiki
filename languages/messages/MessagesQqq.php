@@ -3999,36 +3999,35 @@ Name of month in Hebrew calender.',
 * Parameter $1: This is the unknown extension tag name.',
 
 # Special:Version
-'version'                          => 'Name of special page displayed in [[Special:SpecialPages]]
+'version'                       => 'Name of special page displayed in [[Special:SpecialPages]]
 
 {{Identical|Version}}',
-'version-extensions'               => 'Header on [[Special:Version]].',
-'version-specialpages'             => 'Part of [[Special:Version]].
+'version-extensions'            => 'Header on [[Special:Version]].',
+'version-specialpages'          => 'Part of [[Special:Version]].
 
 {{Identical|Special pages}}',
-'version-parserhooks'              => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
-'version-variables'                => '{{Identical|Variable}}',
-'version-other'                    => '{{Identical|Other}}',
-'version-mediahandlers'            => 'Used in [[Special:Version]]. It is the title of a section for media handler extensions (e.g. [[mw:Extension:OggHandler]]).
+'version-parserhooks'           => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
+'version-variables'             => '{{Identical|Variable}}',
+'version-other'                 => '{{Identical|Other}}',
+'version-mediahandlers'         => 'Used in [[Special:Version]]. It is the title of a section for media handler extensions (e.g. [[mw:Extension:OggHandler]]).
 There are no such extensions here, so look at [[wikipedia:Special:Version]] for an example.',
-'version-hooks'                    => 'Shown in [[Special:Version]]',
-'version-extension-functions'      => 'Shown in [[Special:Version]]',
-'version-parser-function-hooks'    => 'Shown in [[Special:Version]]',
-'version-skin-extension-functions' => 'Shown in [[Special:Version]]',
-'version-hook-name'                => 'Shown in [[Special:Version]]',
-'version-hook-subscribedby'        => 'Shown in [[Special:Version]]',
-'version-version'                  => '{{Identical|Version}}',
-'version-svn-revision'             => 'This is being used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345")
+'version-hooks'                 => 'Shown in [[Special:Version]]',
+'version-extension-functions'   => 'Shown in [[Special:Version]]',
+'version-parser-function-hooks' => 'Shown in [[Special:Version]]',
+'version-hook-name'             => 'Shown in [[Special:Version]]',
+'version-hook-subscribedby'     => 'Shown in [[Special:Version]]',
+'version-version'               => '{{Identical|Version}}',
+'version-svn-revision'          => 'This is being used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345")
 
 {{Identical|Revision}}',
-'version-license'                  => '{{Identical|License}}',
-'version-poweredby-credits'        => 'Message shown on [[Special:Version]]. Parameters are:
+'version-license'               => '{{Identical|License}}',
+'version-poweredby-credits'     => 'Message shown on [[Special:Version]]. Parameters are:
 *$1: the current year
 *$2: a list of selected MediaWiki authors',
-'version-poweredby-others'         => 'Used at the very end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then the word "and" (from {{msg-mw|and}}) follows and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
-'version-license-info'             => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See http://www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
-'version-software-product'         => 'Shown in [[Special:Version]]',
-'version-software-version'         => '{{Identical|Version}}',
+'version-poweredby-others'      => 'Used at the very end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then the word "and" (from {{msg-mw|and}}) follows and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
+'version-license-info'          => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See http://www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
+'version-software-product'      => 'Shown in [[Special:Version]]',
+'version-software-version'      => '{{Identical|Version}}',
 
 # Special:FilePath
 'filepath'         => 'Legend of fieldset around input box in [[Special:FilePath]].',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Albamhandae
+ * @author Chanhee
  * @author Devunt
  * @author Ficell
  * @author Gapo
@@ -418,6 +419,7 @@ $messages = array(
 'listingcontinuesabbrev'         => ' (계속)',
 'index-category'                 => '색인된 문서',
 'noindex-category'               => '색인에서 제외되는 문서',
+'broken-file-category'           => '잘못된 링크가 있는 페이지',
 
 'mainpagetext'      => "'''미디어위키가 성공적으로 설치되었습니다.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
@@ -587,6 +589,8 @@ $1',
 'page-rss-feed'           => '‘$1’ RSS 피드',
 'page-atom-feed'          => '"$1" Atom 피드',
 'red-link-title'          => '$1 (없는 문서)',
+'sort-descending'         => '내림차순 정렬',
+'sort-ascending'          => '오름차순 정렬',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '문서',
@@ -709,6 +713,7 @@ $2',
 'createaccount'              => '계정 만들기',
 'gotaccount'                 => "계정이 이미 있다면, '''$1'''.",
 'gotaccountlink'             => '로그인하세요',
+'userlogin-resetlink'        => 'ID나 비밀번호를 잊으셨나요?',
 'createaccountmail'          => '이메일로 보내기',
 'createaccountreason'        => '이유:',
 'badretype'                  => '암호가 서로 다릅니다.',
@@ -789,6 +794,12 @@ $2',
 'resetpass-wrong-oldpass'   => '비밀번호가 잘못되었거나 현재의 비밀번호와 같습니다.
 당신은 이미 비밀번호를 성공적으로 변경하였거나 새 임시 비밀번호를 발급받았을 수 있습니다.',
 'resetpass-temp-password'   => '임시 비밀번호:',
+
+# Special:PasswordReset
+'passwordreset'          => '암호 재설정',
+'passwordreset-text'     => '이메일을 입력하여 알림을 받으세요.',
+'passwordreset-legend'   => '암호 초기화',
+'passwordreset-disabled' => '위키 암호 초기화가 중단 되었습니다.',
 
 # Edit page toolbar
 'bold_sample'     => '굵은 글씨',
@@ -3375,34 +3386,33 @@ $1',
 'duplicate-defaultsort' => '\'\'\'경고:\'\'\' 기본 정렬 키 "$2"가 이전의 기본 정렬 키 "$1"를 덮어쓰고 있습니다.',
 
 # Special:Version
-'version'                          => '버전',
-'version-extensions'               => '설치된 확장 기능',
-'version-specialpages'             => '특수 문서',
-'version-parserhooks'              => '파서 훅',
-'version-variables'                => '변수',
-'version-antispam'                 => '스팸 방지',
-'version-skins'                    => '스킨',
-'version-other'                    => '기타',
-'version-mediahandlers'            => '미디어 핸들러',
-'version-hooks'                    => '훅',
-'version-extension-functions'      => '확장 함수',
-'version-parser-extensiontags'     => '파서 확장 태그',
-'version-parser-function-hooks'    => '파서 기능 훅',
-'version-skin-extension-functions' => '스킨 확장 기능',
-'version-hook-name'                => '훅 이름',
-'version-hook-subscribedby'        => '훅이 사용된 위치',
-'version-version'                  => '(버전 $1)',
-'version-license'                  => '라이센스',
-'version-poweredby-credits'        => "이 위키는 '''[http://www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
-'version-poweredby-others'         => '그 외 다른 개발자',
-'version-license-info'             => '미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
+'version'                       => '버전',
+'version-extensions'            => '설치된 확장 기능',
+'version-specialpages'          => '특수 문서',
+'version-parserhooks'           => '파서 훅',
+'version-variables'             => '변수',
+'version-antispam'              => '스팸 방지',
+'version-skins'                 => '스킨',
+'version-other'                 => '기타',
+'version-mediahandlers'         => '미디어 핸들러',
+'version-hooks'                 => '훅',
+'version-extension-functions'   => '확장 함수',
+'version-parser-extensiontags'  => '파서 확장 태그',
+'version-parser-function-hooks' => '파서 기능 훅',
+'version-hook-name'             => '훅 이름',
+'version-hook-subscribedby'     => '훅이 사용된 위치',
+'version-version'               => '(버전 $1)',
+'version-license'               => '라이센스',
+'version-poweredby-credits'     => "이 위키는 '''[http://www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
+'version-poweredby-others'      => '그 외 다른 개발자',
+'version-license-info'          => '미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
 미디어위키가 유용하게 사용될 수 있기를 바라지만 상용으로 사용되거나 특정 목적에 맞을 것이라는 것을 보증하지 않습니다. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
 
 당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인]으로 읽어보시기 바랍니다.',
-'version-software'                 => '설치된 프로그램',
-'version-software-product'         => '제품',
-'version-software-version'         => '버전',
+'version-software'              => '설치된 프로그램',
+'version-software-product'      => '제품',
+'version-software-version'      => '버전',
 
 # Special:FilePath
 'filepath'         => '파일 경로',
