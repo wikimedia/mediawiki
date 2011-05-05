@@ -250,7 +250,9 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 		// If there is no $wgUpgradeKey, tell the user to add one to LocalSettings.php
 		if ( $vars['wgUpgradeKey'] === false ) {
 			if ( $this->getVar( 'wgUpgradeKey', false ) === false ) {
-				$this->parent->generateUpgradeKey();
+				$secretKey = $this->getVar( 'wgSecretKey' ); // preserve $wgSecretKey
+				$this->parent->generateKeys();
+				$this->setVar( 'wgSecretKey', $secretKey );
 				$this->setVar( '_UpgradeKeySupplied', true );
 			}
 			$this->startForm();
