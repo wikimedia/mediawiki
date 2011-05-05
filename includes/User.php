@@ -905,24 +905,25 @@ class User {
 			return false;
 		}
 
-		$this->mId = $sId;
-		if ( !$this->loadFromId() ) {
-			# Not a valid ID, loadFromId has switched the object to anon for us
+		$proposedUser = User::newFromId( $sId );
+		if ( !$proposedUser->isLoggedIn() ) {
+			# Not a valid ID
+			$this->loadDefaults();
 			return false;
 		}
 
 		global $wgBlockDisablesLogin;
-		if( $wgBlockDisablesLogin && $this->isBlocked() ) {
+		if( $wgBlockDisablesLogin && $proposedUser->isBlocked() ) {
 			# User blocked and we've disabled blocked user logins
 			$this->loadDefaults();
 			return false;
 		}
 
 		if ( isset( $_SESSION['wsToken'] ) ) {
-			$passwordCorrect = $_SESSION['wsToken'] == $this->mToken;
+			$passwordCorrect = $proposedUser->getToken() === $_SESSION['wsToken'];
 			$from = 'session';
 		} else if ( $wgRequest->getCookie( 'Token' ) !== null ) {
-			$passwordCorrect = $this->mToken == $wgRequest->getCookie( 'Token' );
+			$passwordCorrect = $proposedUser->getToken() === $wgRequest->getCookie( 'Token' );
 			$from = 'cookie';
 		} else {
 			# No session or persistent login cookie
@@ -930,7 +931,8 @@ class User {
 			return false;
 		}
 
-		if ( ( $sName == $this->mName ) && $passwordCorrect ) {
+		if ( ( $sName === $proposedUser->getName() ) && $passwordCorrect ) {
+			$this->loadFromUserObject( $proposedUser );
 			$_SESSION['wsToken'] = $this->mToken;
 			wfDebug( "User: logged in from $from\n" );
 			return true;
@@ -939,6 +941,18 @@ class User {
 			wfDebug( "User: can't log in from $from, invalid credentials\n" );
 			$this->loadDefaults();
 			return false;
+		}
+	}
+
+	/**
+	 * Load the data for this user object from another user object. 
+	 */
+	protected function loadFromUserObject( $user ) {
+		$user->load();
+		$user->loadGroups();
+		$user->loadOptions();
+		foreach ( self::$mCacheVars as $var ) {
+			$this->$var = $user->$var;
 		}
 	}
 
