@@ -4526,12 +4526,6 @@ $wgExportFromNamespaces = false;
 $wgExtensionFunctions = array();
 
 /**
- * Extension functions for initialisation of skins. This is called somewhat earlier
- * than $wgExtensionFunctions.
- */
-$wgSkinExtensionFunctions = array();
-
-/**
  * Extension messages files.
  *
  * Associative array mapping extension name to the filename where messages can be

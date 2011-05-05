@@ -60,6 +60,7 @@ production.
 * $wgProfiling has been removed.
 * The spyc library is now no longer included in phase3.
 * (bug 28343) Unused preferences contextlines/contextchars have been removed
+* $wgSkinExtensionFunctions has been removed. Use $wgExtensionFunctions instead.
 
 === New features in 1.18 ===
 * (bug 8130) Query pages should limit to content namespaces, not just main

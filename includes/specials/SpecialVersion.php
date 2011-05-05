@@ -261,9 +261,9 @@ class SpecialVersion extends SpecialPage {
 	 * @return String: Wikitext
 	 */
 	function getExtensionCredits() {
-		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser, $wgSkinExtensionFunctions;
+		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser;
 
-		if ( !count( $wgExtensionCredits ) && !count( $wgExtensionFunctions ) && !count( $wgSkinExtensionFunctions ) ) {
+		if ( !count( $wgExtensionCredits ) && !count( $wgExtensionFunctions ) ) {
 			return '';
 		}
 
@@ -319,11 +319,6 @@ class SpecialVersion extends SpecialPage {
 		if( count( $fhooks ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-parser-function-hooks' ), 'parser-function-hooks' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $fhooks ) . "</td></tr>\n";
-		}
-
-		if ( count( $wgSkinExtensionFunctions ) ) {
-			$out .= $this->openExtType( wfMsg( 'version-skin-extension-functions' ), 'skin-extension-functions' );
-			$out .= '<tr><td colspan="4">' . $this->listToText( $wgSkinExtensionFunctions ) . "</td></tr>\n";
 		}
 
 		$out .= Xml::closeElement( 'table' );
