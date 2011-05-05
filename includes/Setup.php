@@ -434,13 +434,6 @@ $wgDeferredUpdateList = array();
 wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
 
-# Skin setup functions
-# Entries can be added to this variable during the inclusion
-# of the extension file. Skins can then perform any necessary initialisation.
-foreach ( $wgSkinExtensionFunctions as $func ) {
-	call_user_func( $func );
-}
-
 # Extension setup functions for extensions other than skins
 # Entries should be added to this variable during the inclusion
 # of the extension file. This allows the extension to perform
