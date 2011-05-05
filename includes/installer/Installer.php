@@ -103,7 +103,8 @@ abstract class Installer {
 		'envCheckExtension',
 		'envCheckShellLocale',
 		'envCheckUploadsDirectory',
-		'envCheckLibicu'
+		'envCheckLibicu',
+		'envCheckSuhosinMaxValueLength',
 	);
 
 	/**
@@ -141,6 +142,7 @@ abstract class Installer {
 		'wgUseInstantCommons',
 		'wgUpgradeKey',
 		'wgDefaultSkin',
+		'wgResourceLoaderMaxQueryLength',
 	);
 
 	/**
@@ -965,6 +967,21 @@ abstract class Installer {
 		} else {
 			$this->showMessage( 'config-uploads-not-safe', $dir );
 		}
+	}
+	
+	/**
+	 * Checks if suhosin.get.max_value_length is set, and if so, sets
+	 * $wgResourceLoaderMaxQueryLength to that value in the generated
+	 * LocalSettings file
+	 */
+	protected function envCheckSuhosinMaxValueLength() {
+		$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
+		if ( $maxValueLength > 0 ) {
+			$this->showMessage( 'config-suhosin-max-value-length', $maxValueLength );
+		} else {
+			$maxValueLength = -1;
+		}
+		$this->setVar( 'wgResourceLoaderMaxQueryLength', $maxValueLength );
 	}
 
 	/**
