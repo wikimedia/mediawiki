@@ -1085,7 +1085,7 @@ class Parser {
 			}
 			$return .= "\n</tr>";
 
-			if ( ( !isset( $table[$i + 1] ) && !$simple ) || ( isset( $table[$i + 1] ) && ( $table[$i]['type'] != $table[$i + 1]['type'] ) ) ) {
+			if ( ( !isset( $table[$i + 1] ) && !$simple ) || ( isset( $table[$i + 1] ) && isset( $table[$i + 1]['type'] ) && $table[$i]['type'] != $table[$i + 1]['type'] ) ) {
 				$return .= '</' . $table[$i]['type'] . '>';
 			}
 			$lastSection = $table[$i]['type'];
