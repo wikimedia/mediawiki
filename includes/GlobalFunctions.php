@@ -1850,16 +1850,6 @@ function wfArrayLookup( $a, $b ) {
 }
 
 /**
- * Convenience function; returns MediaWiki timestamp for the present time.
- *
- * @return string
- */
-function wfTimestampNow() {
-	# return NOW
-	return wfTimestamp( TS_MW, time() );
-}
-
-/**
  * Reference-counted warning suppression
  *
  * @param $end Bool
@@ -2092,6 +2082,16 @@ function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
 	} else {
 		return wfTimestamp( $outputtype, $ts );
 	}
+}
+
+/**
+ * Convenience function; returns MediaWiki timestamp for the present time.
+ *
+ * @return string
+ */
+function wfTimestampNow() {
+	# return NOW
+	return wfTimestamp( TS_MW, time() );
 }
 
 /**
