@@ -199,6 +199,7 @@ class ResourceLoader {
 	 *   this may also be a ResourceLoaderModule object. Optional when using 
 	 *   multiple-registration calling style.
 	 * @throws MWException: If a duplicate module registration is attempted
+	 * @throws MWException: If a module name contains illegal characters (pipes or commas)
 	 * @throws MWException: If something other than a ResourceLoaderModule is being registered
 	 * @return Boolean: False if there were any errors, in which case one or more modules were not
 	 *     registered
@@ -222,6 +223,11 @@ class ResourceLoader {
 				'ResourceLoader duplicate registration error. ' . 
 				'Another module has already been registered as ' . $name
 			);
+		}
+		
+		// Check $name for illegal characters
+		if ( preg_match( '/[|,]/', $name ) ) {
+			throw new MWException( "ResourceLoader module name '$name' is invalid. Names may not contain pipes (|) or commas (,)" );
 		}
 
 		// Attach module
@@ -696,6 +702,31 @@ class ResourceLoader {
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
 		return Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) );
+	}
+	
+	/**
+	 * Convert an array of module names to a packed query string.
+	 * 
+	 * For example, array( 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' )
+	 * becomes 'foo.bar,baz|bar.baz,quux'
+	 * @param $modules array of module names (strings)
+	 * @return string Packed query string
+	 */
+	public static function makePackedModulesString( $modules ) {
+		$groups = array(); // array( prefix => array( suffixes ) )
+		foreach ( $modules as $module ) {
+			$pos = strrpos( $module, '.' );
+			$prefix = $pos === false ? '' : substr( $module, 0, $pos );
+			$suffix = $pos === false ? $module : substr( $module, $pos + 1 );
+			$groups[$prefix][] = $suffix;
+		}
+		
+		$arr = array();
+		foreach ( $groups as $prefix => $suffixes ) {
+			$p = $prefix === '' ? '' : $prefix . '.';
+			$arr[] = $p . implode( ',', $suffixes );
+		}
+		return implode( '|', $arr );
 	}
 	
 	/**

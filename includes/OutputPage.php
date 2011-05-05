@@ -2396,7 +2396,6 @@ class OutputPage {
 			$wgResourceLoaderInlinePrivateModules;
 		// Lazy-load ResourceLoader
 		// TODO: Should this be a static function of ResourceLoader instead?
-		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$baseQuery = array(
 			'lang' => $this->getContext()->getLang()->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
@@ -2475,7 +2474,7 @@ class OutputPage {
 				continue;
 			}
 
-			$query['modules'] = implode( '|', array_keys( $modules ) );
+			$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $modules ) );
 
 			// Support inlining of private modules if configured as such
 			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
