@@ -39,7 +39,7 @@
 // Bail on old versions of PHP.  Pretty much every other file in the codebase
 // has structures (try/catch, foo()->bar(), etc etc) which throw parse errors in PHP 4.
 // Setup.php and ObjectCache.php have structures invalid in PHP 5.0 and 5.1, respectively.
-if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.0' ) < 0 ) {
+if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.3' ) < 0 ) {
 	$phpversion = htmlspecialchars( phpversion() );
 	$errorMsg = <<<ENDL
 		<p>
