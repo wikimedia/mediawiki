@@ -28,7 +28,8 @@ class CreateAndPromote extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Create a new user account with administrator rights";
+		$this->mDescription = "Create a new user account";
+		$this->addOption( "sysop", "Grant the account sysop rights" );
 		$this->addOption( "bureaucrat", "Grant the account bureaucrat rights" );
 		$this->addArg( "username", "Username of new user" );
 		$this->addArg( "password", "Password to set" );
@@ -59,9 +60,12 @@ class CreateAndPromote extends Maintenance {
 		$user->saveSettings();
 
 		# Promote user
-		$user->addGroup( 'sysop' );
-		if ( $this->hasOption( 'bureaucrat' ) )
+		if ( $this->hasOption( 'sysop' ) ) {
 			$user->addGroup( 'bureaucrat' );
+		}
+		if ( $this->hasOption( 'bureaucrat' ) ) {
+			$user->addGroup( 'bureaucrat' );
+		}
 
 		# Increment site_stats.ss_users
 		$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
