@@ -3326,7 +3326,6 @@ $wgMessageStructure = array(
 		'version-extension-functions',
 		'version-parser-extensiontags',
 		'version-parser-function-hooks',
-		'version-skin-extension-functions',
 		'version-hook-name',
 		'version-hook-subscribedby',
 		'version-version',
