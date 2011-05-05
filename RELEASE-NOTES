@@ -126,6 +126,7 @@ production.
 * (bug 13879) Special:Emailuser asks for suitable target user if called without.
 * (bug 16956) IPTC and XMP metadata now extracted from images.
 * (bug 23816) A tracking category is now added for any pages with broken images.
+* (bug 23495) Allow createAndPromote.php to create non-sysop users
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated.
