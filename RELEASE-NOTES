@@ -1,10 +1,10 @@
 = MediaWiki release notes =
 
-== MediaWiki 1.16.4 ==
+== MediaWiki 1.16.5 ==
 
-2011-04-14
+2011-05-05
 
-This is a security and maintenance release of the MediaWiki 1.16 branch.
+This is a security release of the MediaWiki 1.16 branch.
 
 === Summary of selected changes in 1.16 ===
 
@@ -43,6 +43,13 @@ or if you want to squeeze as much performance as possible out of Mediawiki,
 set $wgCacheDirectory to a writable path on the local filesystem. Make sure 
 you have the DBA extension for PHP installed, this will improve performance 
 further.
+
+== Changes since 1.16.4
+
+* (bug 28534) Fixed XSS vulnerability for IE 6 clients. This is the third 
+  attempt at fixing bug 28235.
+* (bug 28639) Fixed potential privilege escalation when $wgBlockDisablesLogin
+  is enabled.
 
 == Changes since 1.16.3 ==
 
