@@ -51,7 +51,7 @@ class ResourceLoaderContext {
 		// Interpret request
 		// List of modules
 		$modules = $request->getVal( 'modules' );
-		$this->modules   = $modules ? explode( '|', $modules ) : array();
+		$this->modules   = $modules ? self::expandModuleNames( $modules ) : array();
 		// Various parameters
 		$this->skin      = $request->getVal( 'skin' );
 		$this->user      = $request->getVal( 'user' );
@@ -62,6 +62,34 @@ class ResourceLoaderContext {
 		if ( !$this->skin ) {
 			$this->skin = $wgDefaultSkin;
 		}
+	}
+	
+	/**
+	 * Expand a string of the form jquery.foo,bar|jquery.ui.baz,quux to
+	 * an array of module names like array( 'jquery.foo', 'jquery.bar',
+	 * 'jquery.ui.baz', 'jquery.ui.quux' )
+	 * @param $modules String Packed module name list
+	 * @return array of module names
+	 */
+	public static function expandModuleNames( $modules ) {
+		$retval = array();
+		$exploded = explode( '|', $modules );
+		foreach ( $exploded as $group ) {
+			if ( strpos( $group, ',' ) === false ) {
+				// This is not a set of modules in foo.bar,baz notation
+				// but a single module
+				$retval[] = $group;
+			} else {
+				// This is a set of modules in foo.bar,baz notation
+				$pos = strrpos( $group, '.' );
+				$prefix = substr( $group, 0, $pos ); // 'foo'
+				$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // array( 'bar', 'baz' )
+				foreach ( $suffixes as $suffix ) {
+					$retval[] = "$prefix.$suffix";
+				}
+			}
+		}
+		return $retval;
 	}
 
 	public function getResourceLoader() {
