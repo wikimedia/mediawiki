@@ -2296,7 +2296,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
 /**
  * Since wfMsg() and co suck, they don't return false if the message key they
  * looked up didn't exist but a XHTML string, this function checks for the
- * nonexistance of messages by looking at wfMsg() output
+ * nonexistance of messages by checking the MessageCache::get() result directly.
  *
  * @param $key      String: the message key looked up
  * @return Boolean True if the message *doesn't* exist.
