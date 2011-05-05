@@ -419,6 +419,10 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	public function setupUser() {
+		$dbUser = $this->getVar( 'wgDBuser' );
+		if( $dbUser == $this->getVar( '_InstallUser' ) ) {
+			return Status::newGood();
+		}
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
@@ -428,7 +432,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		$dbName = $this->getVar( 'wgDBname' );
 		$this->db->selectDB( $dbName );
 		$server = $this->getVar( 'wgDBserver' );
-		$dbUser = $this->getVar( 'wgDBuser' );
 		$password = $this->getVar( 'wgDBpassword' );
 		$grantableNames = array();
 
