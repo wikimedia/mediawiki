@@ -2224,15 +2224,14 @@ Du koast au de [[Special:EditWatchlist|Standard-Beoarbeetungsseyte]] benutza.',
 'duplicate-defaultsort' => 'Ochtiche: Dar Sortierungsschlissel „$2“ ieberschreibt dann vorher verwendeta Schlissel „$1“.',
 
 # Special:Version
-'version-specialpages'             => 'Spezialseyta',
-'version-other'                    => 'Oanderes',
-'version-hooks'                    => "Schnittstalla ''(Hooks)''",
-'version-extension-functions'      => 'Funksjonnsuffruffe',
-'version-parser-extensiontags'     => "Parser-Erweiterunga ''(tags)''",
-'version-parser-function-hooks'    => 'Parser-Funksjonna',
-'version-skin-extension-functions' => 'Skin-Erweiterungs-Funksjonna',
-'version-hook-name'                => 'Schnittstallanoame',
-'version-hook-subscribedby'        => 'Uffruff vu',
+'version-specialpages'          => 'Spezialseyta',
+'version-other'                 => 'Oanderes',
+'version-hooks'                 => "Schnittstalla ''(Hooks)''",
+'version-extension-functions'   => 'Funksjonnsuffruffe',
+'version-parser-extensiontags'  => "Parser-Erweiterunga ''(tags)''",
+'version-parser-function-hooks' => 'Parser-Funksjonna',
+'version-hook-name'             => 'Schnittstallanoame',
+'version-hook-subscribedby'     => 'Uffruff vu',
 
 # Special:FilePath
 'filepath-submit'  => 'Pfad sucha',

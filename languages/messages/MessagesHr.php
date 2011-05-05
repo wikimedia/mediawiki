@@ -2982,7 +2982,13 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -3535,34 +3541,33 @@ Također možete koristiti [[Special:EditWatchlist|standardni editor]].',
 'duplicate-defaultsort' => '\'\'\'Upozorenje:\'\'\' Razvrstavanje po "$2" poništava ranije razvrstavanje po "$1".',
 
 # Special:Version
-'version'                          => 'Inačica softvera',
-'version-extensions'               => 'Instalirana proširenja',
-'version-specialpages'             => 'Posebne stranice',
-'version-parserhooks'              => 'Kuke parsera',
-'version-variables'                => 'Varijable',
-'version-antispam'                 => 'Sprječavanje spama',
-'version-skins'                    => 'Izgledi',
-'version-other'                    => 'Ostalo',
-'version-mediahandlers'            => 'Rukovatelji medijima',
-'version-hooks'                    => 'Kuke',
-'version-extension-functions'      => 'Funkcije proširenja',
-'version-parser-extensiontags'     => 'Oznake proširenja parsera',
-'version-parser-function-hooks'    => 'Kuke funkcija parsera',
-'version-skin-extension-functions' => 'Funkcije proširenja izgleda',
-'version-hook-name'                => 'Ime kuke',
-'version-hook-subscribedby'        => 'Pretplaćeno od',
-'version-version'                  => '(Inačica $1)',
-'version-license'                  => 'Licencija',
-'version-poweredby-credits'        => "Ovaj wiki pogoni '''[http://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
-'version-poweredby-others'         => 'ostali',
-'version-license-info'             => 'MediaWiki je slobodni softver; možete ga distribuirati i/ili mijenjati pod uvjetima GNU opće javne licencije u obliku u kojem ju je objavila Free Software Foundation; bilo verzije 2 licencije, ili (Vama na izbor) bilo koje kasnije verzije.
+'version'                       => 'Inačica softvera',
+'version-extensions'            => 'Instalirana proširenja',
+'version-specialpages'          => 'Posebne stranice',
+'version-parserhooks'           => 'Kuke parsera',
+'version-variables'             => 'Varijable',
+'version-antispam'              => 'Sprječavanje spama',
+'version-skins'                 => 'Izgledi',
+'version-other'                 => 'Ostalo',
+'version-mediahandlers'         => 'Rukovatelji medijima',
+'version-hooks'                 => 'Kuke',
+'version-extension-functions'   => 'Funkcije proširenja',
+'version-parser-extensiontags'  => 'Oznake proširenja parsera',
+'version-parser-function-hooks' => 'Kuke funkcija parsera',
+'version-hook-name'             => 'Ime kuke',
+'version-hook-subscribedby'     => 'Pretplaćeno od',
+'version-version'               => '(Inačica $1)',
+'version-license'               => 'Licencija',
+'version-poweredby-credits'     => "Ovaj wiki pogoni '''[http://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
+'version-poweredby-others'      => 'ostali',
+'version-license-info'          => 'MediaWiki je slobodni softver; možete ga distribuirati i/ili mijenjati pod uvjetima GNU opće javne licencije u obliku u kojem ju je objavila Free Software Foundation; bilo verzije 2 licencije, ili (Vama na izbor) bilo koje kasnije verzije.
 
 MediaWiki je distribuiran u nadi da će biti koristan, no BEZ IKAKVOG JAMSTVA; čak i bez impliciranog jamstva MOGUĆNOSTI PRODAJE ili PRIKLADNOSTI ZA ODREĐENU NAMJENU. Pogledajte GNU opću javnu licenciju za više detalja.
 
 Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne licencije] uz ovaj program; ako ne, pišite na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, ili je [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte online].',
-'version-software'                 => 'Instalirani softver',
-'version-software-product'         => 'Proizvod',
-'version-software-version'         => 'Verzija',
+'version-software'              => 'Instalirani softver',
+'version-software-product'      => 'Proizvod',
+'version-software-version'      => 'Verzija',
 
 # Special:FilePath
 'filepath'         => 'Putanja datoteke',

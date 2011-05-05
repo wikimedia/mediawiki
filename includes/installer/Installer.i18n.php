@@ -2065,7 +2065,12 @@ Nemet eo rekis PHP $2 pe nevesoc'h evit MediaWiki.",
 Ma lakait da dreiñ ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammig bihan diwar-benn se war [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization]. (e saozneg)",
 	'config-unicode-update-warning' => "'''Diwallit''': ober a ra stumm staliet endalc'her skoueriekaat Unicode gant ur stumm kozh eus [http://site.icu-project.org/ levraoueg meziantoù ar raktres ICU].
 Dleout a rafec'h [http://www.mediawiki.org/wiki/Unicode_normalization_considerations hizivaat] ma seblant deoc'h bezañ pouezus ober gant Unicode.",
-	'config-no-db' => "Ne c'haller ket kavout ur sturier diaz roadennoù dereat !",
+	'config-no-db' => "N'eus ket bet gallet kavout ur sturier diazoù roadennoù a zere ! Ret eo deoc'h staliañ ur sturier diazoù roadennoù evit PHP.
+Skoret eo an diazoù roadennoù da-heul : $1.
+
+Ma rit gant un herberc'hiañ kenrannet, goulennit digant ho herberc'hier staliañ ur sturier diaz roadennoù azas.
+Ma kempunit PHP c'hwi hoc'h-unan, adkeflugnit-eñ en ur weredekaat un arval diaz roadennoù, da skouer en ur ober gant <code>./configure --mysql</code>.
+M'hoc'h eus staliet PHP adalek ur pakad Debian pe Ubuntu, eo ret deoc'h staliañ ar vodulenn php5-mysql ivez.",
 	'config-no-fts3' => "'''Diwallit ''': Kempunet eo SQLite hep ar [http://sqlite.org/fts3.html vodulenn FTS3]; ne vo ket posupl ober gant an arc'hwelioù klask er staliadur-mañ",
 	'config-register-globals' => "'''Diwallit : Gweredekaet eo dibarzh <code>[http://php.net/register_globals register_globals]</code> PHP.'''
 '''Diweredekait anezhañ ma c'hallit.'''
@@ -2198,6 +2203,9 @@ Cheñchit ar aotreoù evit ma c\'hallfe ar servijer web skrivañ ennañ ha klask
 Gwiriañ ar c'havlec'h roadennoù hag anv an diaz roadennoù a-is ha klaskit en-dro.",
 	'config-sqlite-readonly' => "N'haller ket skrivañ er restr <code>$1</code>.",
 	'config-sqlite-cant-create-db' => "N'haller ket krouiñ restr an diaz roadennoù <code>$1</code>.",
+	'config-sqlite-fts3-downgrade' => "N'eo ket kenglotus ar PHP gant FTS3, o lakaat an taolennoù da glotañ gant ur stumm koshoc'h",
+	'config-can-upgrade' => "Taolennoù MediaWiki zo en diaz titouroù.
+Da hizivaat anezho da VediaWiki $1, klikañ war '''Kenderc'hel'''.",
 	'config-upgrade-done-no-regenerate' => 'Hizivadenn kaset da benn.
 
 Gallout a rit [$1 kregiñ da implijout ho wiki].',
@@ -2213,12 +2221,15 @@ Gallout a rit [$1 kregiñ da implijout ho wiki].',
 	'config-mysql-binary' => 'Binarel',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Anv ar wiki :',
+	'config-site-name-help' => "Dont a raio war wel e barrenn ditl ar merdeer hag e meur a lec'h all c'hoazh.",
 	'config-site-name-blank' => "Lakait anv ul lec'hienn .",
 	'config-project-namespace' => 'Esaouenn anv ar raktres :',
 	'config-ns-generic' => 'Raktres',
 	'config-ns-site-name' => 'Hevelep anv hag hini ar wiki : $1',
 	'config-ns-other' => 'All (spisaat)',
 	'config-ns-other-default' => 'MaWiki',
+	'config-ns-invalid' => 'Direizh eo an esaouenn anv "<nowiki>$1</nowiki>" spisaet.
+Merkit un esaouenn anv disheñvel evit ar raktres.',
 	'config-admin-box' => 'Kont merour',
 	'config-admin-name' => "Hoc'h anv :",
 	'config-admin-password' => 'Ger-tremen :',
@@ -2226,8 +2237,8 @@ Gallout a rit [$1 kregiñ da implijout ho wiki].',
 	'config-admin-help' => 'Merkit hoc\'h anv implijer amañ, da skouer "Yann Vlog".
 Hemañ eo an anv a implijot evit kevreañ d\'ar wiki-mañ.',
 	'config-admin-name-blank' => 'Lakait anv ur merour.',
-	'config-admin-name-invalid' => 'Direizh eo an anv implijer diferet « <nowiki>$1</nowiki> ».
-Diferit un anv implijer all.',
+	'config-admin-name-invalid' => 'Direizh eo an anv implijer spisaet "<nowiki>$1</nowiki>".
+Merkit un anv implijer all.',
 	'config-admin-password-blank' => 'Reiñ ur ger-tremen evit kont ar merour.',
 	'config-admin-password-same' => "Ne c'hall ket ar ger-tremen bezañ heñvel ouzh anv ar gont.",
 	'config-admin-password-mismatch' => "Ne glot ket ar gerioù-tremen hoc'h eus merket an eil gant egile.",
@@ -2275,6 +2286,8 @@ Niverus eo ar servijerioù postel a c'houlenn da nebeutañ un [http://fr.wikiped
 Ar pep gwellañ e vije ma ne vije ket tu d'e dizhout adalek ar Genrouedad.",
 	'config-logo' => 'URL al logo :',
 	'config-instantcommons' => "Gweredekaat ''InstantCommons''",
+	'config-cc-error' => "N'eus deuet disoc'h ebet gant dibaber aotreoù-implijout Creative Commons.
+Merkit anv an aotre-implijout gant an dorn.",
 	'config-cc-again' => 'Dibabit adarre...',
 	'config-cc-not-chosen' => 'Dibabit an aotre-implijout Creative Commons a fell deoc\'h ober gantañ ha klikit war "kenderc\'hel".',
 	'config-advanced-settings' => 'Kefluniadur araokaet',
@@ -2286,6 +2299,7 @@ Ar pep gwellañ e vije ma ne vije ket tu d'e dizhout adalek ar Genrouedad.",
 Ret eo spisaat unan dre linenn ha spisaat ar porzh da vezañ implijet. Da skouer : 
 127.0.0.1:11211
 192.168.1.25:1234",
+	'config-memcache-needservers' => "Diuzet hoc'h eus Memcached evel seurt krubuilh met n'hoc'h eus spisaet servijer ebet.",
 	'config-memcache-badip' => "Ur chomlec'h IP direizh hoc'h eus lakaet evit Memcached : $1.",
 	'config-memcache-badport' => 'Niverennoù porzh Memcached a zlefe bezañ etre $1 ha $2.',
 	'config-extensions' => 'Astennoù',
@@ -2301,6 +2315,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-pg-commit' => "O wiriekaat ar c'hemmoù",
 	'config-install-pg-plpgsql' => 'O wiriañ ar yezh PL/pgSQL',
 	'config-pg-no-plpgsql' => "Ret eo deoc'h staliañ ar yezh PL/pgSQL en diaz roadennoù $1",
+	'config-pg-no-create-privs' => "N'eus ket gwirioù a-walc'h gant ar gont hoc'h eus merket evit ar staliadur evit gallout krouiñ ur gont.",
 	'config-install-user' => 'O krouiñ an diaz roadennoù implijer',
 	'config-install-user-alreadyexists' => 'An implijer "$1" zo anezhañ dija',
 	'config-install-user-create-failed' => 'Fazi e-ser krouiñ an implijer "$1" : $2',
@@ -9047,6 +9062,7 @@ Upgrade naar PHP 5.2.9 of hoger en libxml2 2.7.3 of hoger! De installatie wordt 
 	'config-using531' => 'PHP $1 is niet compatibel met MediaWiki vanwege een fout met betrekking tot referentieparameters met <code>__call()</code>.
 Werk uw PHP bij naar PHP 5.3.2 of hoger of werk bij naar de lagere versie PHP 5.3.0 om dit op te lossen.
 De installatie wordt afgebroken.',
+	'config-suhosin-max-value-length' => 'Suhosin is geïnstalleerd en beperkt de lengte van de GET-parameter tot $1 bytes. De ResourceLoader van MediaWiki omzeilt deze beperking, maar dat is slecht voor de prestaties. Als het mogelijk is, moet u de waarde "suhosin.get.max_value_length" in php.ini instellen op 1024 of hoger en $wgResourceLoaderMaxQueryLength in LocalSettings.php op dezelfde waarde instellen.',
 	'config-db-type' => 'Databasetype:',
 	'config-db-host' => 'Databasehost:',
 	'config-db-host-help' => 'Als uw databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.

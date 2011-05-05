@@ -64,6 +64,8 @@ $messages = array(
 'category_header'        => 'Чарар кlватlалда "$1"',
 'subcategories'          => 'Кlватlалринпай',
 'hidden-categories'      => '{{PLURAL:$1|Кlевнавай кlватlалрин кьадар|Кlевнавай кlватlалрин кьадар}}',
+'category-subcat-count'  => '{{PLURAL:$2|Кlватlалда ава са чар. |И кlватlалда ава                                                                                                       {{PLURAL:$1|кlватlалдин кьатl|$1 кlватlалдин кьатlар}}, виридакай $2 .}}',
+'category-article-count' => '{{PLURAL:$2|Кlватlалда ава са чар.|Къведай {{PLURAL:$1|чар|$1 чарчин}} кlватlалда $2 виридкай.}}',
 'listingcontinuesabbrev' => 'баш.хъувун',
 
 'about'      => 'Хакъиндай',
@@ -172,6 +174,7 @@ $messages = array(
 
 # General errors
 'missingarticle-rev' => '(жуьре#: $1)',
+'badtitletext'       => 'Жагъурзавай чар дуьз туш, ичlизва, чlурукl къалурна чlалан арада ва вики титул.                                                                               Ада жеда сад ва гзаф  кхьнар, гьабур тlарцlе ишлемиш жедач.',
 'viewsource'         => 'Къаларун булах',
 'viewsourcefor'      => 'идаз $1',
 
@@ -223,10 +226,15 @@ $messages = array(
 'preview'                          => 'Сифте',
 'showpreview'                      => 'Сефте килигун',
 'showdiff'                         => 'Къаларун дегишарун',
+'anoneditwarning'                  => "'''Дугъридан:''' Куьн хакъидайдиз гьахьнач                                                                                                                                               Куьн IP-адрес дегишунрин кьиспесдиз кхьида и чарчин.",
+'summary-preview'                  => 'Сифте килигун паталди:',
 'loginreqlink'                     => 'гьахьун',
 'newarticle'                       => '(ЦIийи)',
+'previewnote'                      => "'''Рикlел хуьх, имма сифте килигун я.'''  Дегишунар гьеле хвенач!",
 'editing'                          => 'Дегишарун $1',
 'editingsection'                   => 'Дегишарун $1 (пай)',
+'templatesused'                    => '{{PLURAL:$1|Шаблон|Шаблонар}} ишлемишзавай гьа и чарчел:',
+'templatesusedpreview'             => '{{PLURAL:$1|Шаблон|Шаблонар}},илемишзавай дуьз клигунра:',
 'template-protected'               => '(хуьн)',
 'template-semiprotected'           => '(са кlус пад кьун)',
 'hiddencategories'                 => 'И чар квайди я {{PLURAL: $1 | 1 кlевнавай кlватlал | $1 кlевнавабрин кlватlалар}}:',
@@ -374,6 +382,7 @@ $1 Кlевхьанай ишлемишчи',
 'recentchangeslinked-title'   => 'Дегинарун, галкlанавай "$1"',
 'recentchangeslinked-summary' => "Цlарар кlватlал эхиримжи дегишунар чарарал, чар алукьзавай (ва экъечlзавай къалурнавай кlватlалдай).Чарар идаз  [[Special:Watchlist|your watchlist]] жезава '''викlегь'''.",
 'recentchangeslinked-page'    => 'Чарчин тlар:',
+'recentchangeslinked-to'      => 'Къалур дегишунар и чарарал, алукьзавай къалурнай чарчел',
 
 # Upload
 'upload'        => 'Парвиниз шикил',
@@ -400,6 +409,7 @@ $1 Кlевхьанай ишлемишчи',
 'filehist-dimensions'       => 'Кьадарар',
 'filehist-comment'          => 'Рахунар',
 'imagelinks'                => 'Файлдин цlар',
+'linkstoimage'              => 'Къведай {{PLURAL: $1 | чар алукьзавай | $1 чарар алукьзава}} гьа и файлдал',
 'sharedupload'              => 'И шикил $1 масса хакъидайра ишлемишатlа жезава.',
 'uploadnewversion-linktext' => 'Хтун хъувун цlийи жюреяр и шкилдин',
 'shared-repo-from'          => 'идай $1',
@@ -472,9 +482,11 @@ $1 Кlевхьанай ишлемишчи',
 'mywatchlist'       => 'Ахтаришунин чар',
 'addedwatch'        => 'Ктун хъувун ,ахтармишзай чарчхъ',
 'removedwatch'      => 'Чlурнава ахтармишзавай цlарцlяй',
+'removedwatchtext'  => 'Чар "[[:$1]]" Идай чlурнай [[Special:Watchlist|ахтармишунин цlарар]].',
 'watch'             => 'Гелкъуьн',
 'watchthispage'     => 'Гелкъуьн и хъувун',
 'unwatch'           => 'Ишлемиш тийизвай',
+'watchlist-details' => '{{PLURAL:$1|$1 чар|$1 чарар}} куьн цlар, ихтилатрин чарар кlелтувурла.',
 'wlshowlast'        => 'Къалур эхирижи $1 сятинлай $2 йикъалди $3',
 'watchlist-options' => 'Опцидин ахтармишунар',
 
@@ -485,6 +497,7 @@ $1 Кlевхьанай ишлемишчи',
 # Delete
 'deletepage'            => 'Къакъудун хъувун',
 'actioncomplete'        => 'Юзунар авуна',
+'deletedtext'           => '"<nowiki>$1</nowiki>" чlурнайтир.                                                                                                                                                       Килиг $2 эхиримжи  чlурунар ахтармишун.',
 'deletedarticle'        => 'къакъудун "[[$1]]"',
 'dellogpage'            => 'Чар къакъудун',
 'deletecomment'         => 'Кар',
@@ -508,6 +521,8 @@ $1 Кlевхьанай ишлемишчи',
 'protect-level-sysop'         => 'Гилан къавха',
 'protect-summary-cascade'     => 'къвалагай къвалагай',
 'protect-expiring'            => 'алатиз $1 (UTC)',
+'protect-cascade'             => 'Тажум чарчин куькlуьрнава и чарчел(пат пат тажум)',
+'protect-cantedit'            => 'Кевай дегиш жедач и чар, вучиз лагьайтlа квез ахтияр авач амма дегишариз.',
 'restriction-type'            => 'Ихтияр:',
 'restriction-level'           => 'Кьадардин кьадар',
 
@@ -571,19 +586,21 @@ $1 Кlевхьанай ишлемишчи',
 'block-log-flags-nocreate' => 'ахтияр авач регистраци кьелунин кхьин',
 
 # Move page
-'movearticle'    => 'Юзун хъувун:',
-'newtitle'       => 'Цlийи тlарцlихъ:',
-'move-watch'     => 'Гелкъуьн и хъувун',
-'movepagebtn'    => 'Юзун хъувун',
-'pagemovedsub'   => 'Рахъурун хьана',
-'movepage-moved' => '\'\'"$1" рахъурнай "$2"\'\'\'',
-'articleexists'  => 'Ахьтин тlар алай чар ава, амма тlар, куьне хкянай дуьз туш.Башуьсте, масса тlар хкяй.',
-'movedto'        => 'хтана иниз',
-'movetalk'       => 'Югъун,галкlана рахун',
-'1movedto2'      => 'хъфена [[$1]] идал [[$2]]',
-'movelogpage'    => 'Дафтlардин чка дегишарун',
-'movereason'     => 'Фагьум:',
-'revertmove'     => 'хтун хъувун',
+'movearticle'     => 'Юзун хъувун:',
+'newtitle'        => 'Цlийи тlарцlихъ:',
+'move-watch'      => 'Гелкъуьн и хъувун',
+'movepagebtn'     => 'Юзун хъувун',
+'pagemovedsub'    => 'Рахъурун хьана',
+'movepage-moved'  => '\'\'"$1" рахъурнай "$2"\'\'\'',
+'articleexists'   => 'Ахьтин тlар алай чар ава, амма тlар, куьне хкянай дуьз туш.Башуьсте, масса тlар хкяй.',
+'talkexists'      => "'''Чарчин тlар дегишарна, чарчин ихтилатар дегишар жезатуш, вучиз лагьайтlа ихтилатар цlийи чарчел фена.Галкlура гълелди.'''",
+'movedto'         => 'хтана иниз',
+'movetalk'        => 'Югъун,галкlана рахун',
+'1movedto2'       => 'хъфена [[$1]] идал [[$2]]',
+'1movedto2_redir' => 'къфена [[$1]] идаз [[$2]] ракъурунар',
+'movelogpage'     => 'Дафтlардин чка дегишарун',
+'movereason'      => 'Фагьум:',
+'revertmove'      => 'хтун хъувун',
 
 # Export
 'export' => 'Чарар ракъурун',
@@ -648,6 +665,7 @@ $1 Кlевхьанай ишлемишчи',
 'tooltip-diff'                    => 'Къалурун,куьне вуч дегишенур авунутlа',
 'tooltip-compareselectedversions' => 'Акун алатунар хкягънай кьве ревизи и чарчин',
 'tooltip-watch'                   => 'Чар ктун хъувун куьне ахтармишзавай цlарцlик',
+'tooltip-rollback'                => '"Геляш" хквен хъийиз дегишариз гьа и чар, эхиримжи ни ктунатlа са тажум',
 
 # Browsing diffs
 'previousdiff' => 'Иски дегишунар',
@@ -670,7 +688,8 @@ $1 Кlевхьанай ишлемишчи',
 'metadata'          => 'Мета замана югъ',
 'metadata-expand'   => 'Къалурун дериндиз',
 'metadata-collapse' => 'Кlевун дерин къалурунар',
-'metadata-fields'   => 'Дугун метахуьнрин шкилрин, гьисабнавайбур и цlарцlе,къалурда шкилрин чарчел акьвалнай таблицдал метахуьнрин.Аммай дугунар ававал акьвална жеда.                                                                                                                                                 * make
+'metadata-fields'   => 'Дугун метахуьнрин шкилрин, гьисабнавайбур и цlарцlе,къалурда шкилрин чарчел акьвалнай таблицдал метахуьнрин.Аммай дугунар ававал акьвална жеда.
+* make
 * model
 * datetimeoriginal
 * exposuretime
@@ -692,7 +711,8 @@ $1 Кlевхьанай ишлемишчи',
 'exif-sharpness-1' => 'Жими',
 
 # External editor support
-'edit-externally' => 'Дегишарун и шкил, къецевай программа ишлемишна',
+'edit-externally'      => 'Дегишарун и шкил, къецевай программа ишлемишна',
+'edit-externally-help' => '(Килиг [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] мадни чирунар килигун паталди)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вири',

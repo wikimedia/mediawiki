@@ -2363,7 +2363,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipusubmit'                       => "Kay hark'asqata qispichiy",
 'unblocked'                       => "Hark'asqa [[User:$1|$1]] qispisqañam",
 'unblocked-id'                    => "Hark'asqa $1-qa qispisqañam",
-'ipblocklist'                     => "Hark'asqa ruraqkuna IP tiyaykunapas",
+'ipblocklist'                     => "Hark'asqa ruraqkuna",
 'ipblocklist-legend'              => "Hark'asqa ruraqta tariy",
 'ipblocklist-submit'              => 'Maskay',
 'ipblocklist-localblock'          => "Kayllapi hark'ay",
@@ -2822,7 +2822,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'metadata-help'     => "Kay willañiqipiqa aswan sapaqlla willaymi, iliktruniku rikchahap'inawanchá, iskanirwanchá icha rikcharurana wakichiwanchá yapasqa. Willañiqi chaymantapacha hukchasqa kaptinqa, huk sapaq samiqninkuna chinkasqachá.",
 'metadata-expand'   => 'Aswan sapaqlla willakunata rikuchiy',
 'metadata-collapse' => 'Sapaqlla willakunata pakay',
-'metadata-fields'   => "Kay willaypi rikuchisqa EXIF metadatapaq k'itichakunaqa rikcha p'anqapim ch'aqtasqa kanqa, metadata wachuchasqa mana rikch'akuptinpas. Huk k'itikunaqa kikinmantam pakasqa kanqa.
+'metadata-fields'   => "Kay willaypi rikuchisqa rikch'a metadatapaq k'itichakunaqa rikcha p'anqapim ch'aqtasqa kanqa, metadata wachuchasqa mana rikch'akuptinpas. Huk k'itikunaqa kikinmantam pakasqa kanqa.
 * make
 * model
 * datetimeoriginal
@@ -3253,34 +3253,33 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'duplicate-defaultsort' => 'Paqtataq: Kikinmanta allinchana llawi «$2» ñawpaq kikinmanta allinchana llawitam «$1» huknachan.',
 
 # Special:Version
-'version'                          => 'Musuqchasqa',
-'version-extensions'               => "Tiyachisqa mast'arinakuna",
-'version-specialpages'             => "Sapaq p'anqakuna",
-'version-parserhooks'              => "T'ikrana ch'iwinakuna",
-'version-variables'                => 'Hukchakuqkuna',
-'version-antispam'                 => "Spam hark'ay",
-'version-skins'                    => 'Qarakuna',
-'version-other'                    => 'Wakin',
-'version-mediahandlers'            => "Midya llamk'apuq",
-'version-hooks'                    => "Ch'iwinakuna",
-'version-extension-functions'      => "Mast'arina ruranakuna",
-'version-parser-extensiontags'     => "T'ikrana mast'arina ruranakuna",
-'version-parser-function-hooks'    => "T'ikrana rurana ch'iwinakuna",
-'version-skin-extension-functions' => "Qara mast'arina ruranakuna",
-'version-hook-name'                => "Ch'iwinap sutin",
-'version-hook-subscribedby'        => 'Kay runap mañaykusqan:',
-'version-version'                  => '(Musuqchasqa $1)',
-'version-license'                  => 'Saqillay',
-'version-poweredby-credits'        => "Kay wikitaqa '''[http://www.mediawiki.org/ MediaWiki-m]''' atichin, copyright © 2001-$1 $2.",
-'version-poweredby-others'         => 'hukkuna',
-'version-license-info'             => "MediaWiki llamp'u kaqqa qispim; mast'ariytam icha wakinchaytam atinki GNU General Public License nisqa saqillaypa kamachisqankama, Free Software Foundation nisqap uyaychasqan; saqillaypa iskay ñiqin musuqchasqan, munaspaykiqa aswan musuq musuqchasqan.
+'version'                       => 'Musuqchasqa',
+'version-extensions'            => "Tiyachisqa mast'arinakuna",
+'version-specialpages'          => "Sapaq p'anqakuna",
+'version-parserhooks'           => "T'ikrana ch'iwinakuna",
+'version-variables'             => 'Hukchakuqkuna',
+'version-antispam'              => "Spam hark'ay",
+'version-skins'                 => 'Qarakuna',
+'version-other'                 => 'Wakin',
+'version-mediahandlers'         => "Midya llamk'apuq",
+'version-hooks'                 => "Ch'iwinakuna",
+'version-extension-functions'   => "Mast'arina ruranakuna",
+'version-parser-extensiontags'  => "T'ikrana mast'arina ruranakuna",
+'version-parser-function-hooks' => "T'ikrana rurana ch'iwinakuna",
+'version-hook-name'             => "Ch'iwinap sutin",
+'version-hook-subscribedby'     => 'Kay runap mañaykusqan:',
+'version-version'               => '(Musuqchasqa $1)',
+'version-license'               => 'Saqillay',
+'version-poweredby-credits'     => "Kay wikitaqa '''[http://www.mediawiki.org/ MediaWiki-m]''' atichin, copyright © 2001-$1 $2.",
+'version-poweredby-others'      => 'hukkuna',
+'version-license-info'          => "MediaWiki llamp'u kaqqa qispim; mast'ariytam icha wakinchaytam atinki GNU General Public License nisqa saqillaypa kamachisqankama, Free Software Foundation nisqap uyaychasqan; saqillaypa iskay ñiqin musuqchasqan, munaspaykiqa aswan musuq musuqchasqan.
 
 MediaWikitaqa mast'ariyku runakunata yanapanapaqmi, ichataq MANAM FIYAKUYTA ATIYKUCHU; manapas ch'aqtasqa RURANALLA FIYAKUYTACHU manapas ima SAPAQ TUKUYNINPAQCHU. GNU General Public License nisqa saqillayta qhaway aswan yuyaykunapaq.
 
 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License nisqa saqillaymanta iskaychasqata] chaskiykiman kay wakichinawan; manaqa, kayman qillqamuwayku: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA icha [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html internet llikapi ñawiriy].",
-'version-software'                 => "Tiyachisqa llamp'u kaq",
-'version-software-product'         => 'Ruruchisqa',
-'version-software-version'         => 'Musuqchasqa',
+'version-software'              => "Tiyachisqa llamp'u kaq",
+'version-software-product'      => 'Ruruchisqa',
+'version-software-version'      => 'Musuqchasqa',
 
 # Special:FilePath
 'filepath'         => 'Willañiqi ñan',

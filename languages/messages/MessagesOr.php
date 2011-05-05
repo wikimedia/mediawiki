@@ -328,6 +328,9 @@ $messages = array(
 'summary-preview'        => 'ସାରକଥା ଦେଖଣା:',
 'loginreqlink'           => 'ଲଗଇନ',
 'newarticle'             => '(ନୁଆ)',
+'newarticletext'         => "ଆପଣ ଖୋଲିଥିବା ଲିଙ୍କଟିରେ ଏଯାଏଁ କିଛିବି ପୃଷ୍ଠା ନାହିଁ ।
+ଏହି ପୃଷ୍ଠାଟିକୁ ତିଆରି କରିବା ପାଇଁ ତଳ ବାକ୍ସରେ ଟାଇପ କରନ୍ତୁ (ଅଧିକ ଜାଣିବା ପାଇଁ [[{{MediaWiki:Helppage}}|ସାହାଯ୍ୟ ପୃଷ୍ଠା]] ଦେଖନ୍ତୁ) ।
+ଯଦି ଆପଣ ଏଠାକୁ ଭୁଲରେ ଆସିଯାଇଥାନ୍ତି ତେବେ ଆପଣଙ୍କ ବ୍ରାଉଜରର '''Back''' ପତିଟି ଦବାନ୍ତୁ ।",
 'noarticletext'          => 'ଏହି ପୃଷ୍ଠାଟିରେ କିଛି ବି ଲେଖା ନାହିଁ ।
 ଆପଣ [[Special:Search/{{PAGENAME}}|ଏହି ଲେଖାଟିର ନାଆଁ]] ବାକି ପୃଷ୍ଠାମାନଙ୍କରେ ଖୋଜି ପାରନ୍ତି,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}ରେ ଯୋଡ଼ାଯାଇଥିବା ବାକି ପୃଷ୍ଠାସବୁକୁ ଖୋଜି ପାରନ୍ତି],
@@ -385,6 +388,7 @@ $messages = array(
 'searchresults-title'       => '"$1" ପାଇଁ ଖୋଜିବାରୁ ମିଳିଲା',
 'searchresulttext'          => '{{SITENAME}} ରେ ଖୋଜିବା ବାବଦରେ ଅଧିକ ଜାଣିବା ପାଇଁ,  [[{{MediaWiki:Helppage}}|{{int:help}}]] ଦେଖନ୍ତୁ',
 'searchsubtitle'            => 'ଆପଣ  \'\'\'[[:$1]]\'\'\' ପାଇଁ ([[Special:Prefixindex/$1|"$1" ନାଆଁରେ ଆରମ୍ଭ ହୋଇଥିବା ସବୁ ପୃଷ୍ଠା]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" କୁ ଯୋଡ଼ାଥିବା ସବୁତକ ପୃଷ୍ଠା]])',
+'searchsubtitleinvalid'     => "ଆପଣ '''$1''' ଖୋଜିଥିଲେ",
 'notitlematches'            => 'ପୃଷ୍ଠାଟିର ନାଆଁ ମିଶୁନାହିଁ',
 'notextmatches'             => 'ପୃଷ୍ଠାଟିର ନାଆଁ ମିଶୁନାହିଁ',
 'prevn'                     => '{{PLURAL:$1|$1}}ର ଆଗରୁ',
@@ -564,11 +568,12 @@ $messages = array(
 'emailmessage'        => 'ଖବର:',
 
 # Watchlist
-'watchlist'     => 'ଦେଖାତାଲିକା',
-'mywatchlist'   => 'ମୋର ଦେଖାତାଲିକା',
-'watch'         => 'ଦେଖିବେ',
-'watchthispage' => 'ଏହି ପୃଷ୍ଠାଟିକୁ ଦେଖିବେ',
-'unwatch'       => 'ଦେଖନାହିଁ',
+'watchlist'         => 'ଦେଖାତାଲିକା',
+'mywatchlist'       => 'ମୋର ଦେଖାତାଲିକା',
+'watch'             => 'ଦେଖିବେ',
+'watchthispage'     => 'ଏହି ପୃଷ୍ଠାଟିକୁ ଦେଖିବେ',
+'unwatch'           => 'ଦେଖନାହିଁ',
+'watchlist-options' => 'ଦେଖଣା ବିକଳ୍ପସବୁ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ଦେଖୁଛି...',
@@ -588,10 +593,11 @@ $messages = array(
 'deletereasonotherlist' => 'ବାକିି କାରଣ',
 
 # Rollback
-'rollbacklink' => 'ପଛକୁ ଫେର',
+'rollbacklink' => 'ପୁରାପୁରି ପଛକୁ ଫେରିଯିବେ',
 
 # Protect
 'protectlogpage'              => 'କିଳିବା ଲଗ',
+'protectedarticle'            => '"[[$1]]"ଟି କିଳାଗଲା',
 'protectcomment'              => 'କାରଣ:',
 'protectexpiry'               => 'ଅଚଳ ହେବ:',
 'protect_expiry_invalid'      => 'ଅଚଳ ହେବାର ବେଳଟି ଭୁଲ.',
@@ -641,6 +647,7 @@ $messages = array(
 'whatlinkshere-page'       => 'ପୃଷ୍ଠା:',
 'linkshere'                => "ଏହି ପୃଷ୍ଠା ସବୁ  '''[[:$1]]''' ସହ ଯୋଡା ଯାଇଅଛି:",
 'isredirect'               => 'ଆଉ ପୃଷ୍ଠାଟିଏକୁ ଯୋଡ଼ିବା ପୃଷ୍ଠା',
+'istemplate'               => 'ବାହାର',
 'isimage'                  => 'ଚିତ୍ର ଲିଁକ',
 'whatlinkshere-prev'       => '{{PLURAL:$1|ଆଗ|ଆଗ $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|ପର|ପର $1}}',
@@ -653,6 +660,7 @@ $messages = array(
 # Block/unblock
 'blockip'                  => 'ସଭ୍ୟଙ୍କୁ ଅଟକାଇବେ',
 'ipbreason'                => 'କାରଣ:',
+'ipboptions'               => '୨ ଘଣ୍ଟା:2 hours,୧ ଦିନ:1 day,୩ ଦିନ:3 days,୧ ସପ୍ତାହ:1 week,୨ ସପ୍ତାହ:2 weeks,୧ ମାସ:1 month,୩ ମାସ:3 months,୬ ମାସ:6 months,୧ ବର୍ଷ:1 year,ଅସରନ୍ତି:infinite',
 'blocklist-reason'         => 'କାରଣ',
 'ipblocklist-submit'       => 'ଖୋଜିବା',
 'blocklink'                => 'ଅଟକେଇ ଦେବେ',
@@ -669,6 +677,7 @@ $messages = array(
 *ଆପଣ ତଳ ବାକ୍ସକୁ ନ ବାଛନ୍ତି
 ତେବେ ଏହି ପ୍ରୁଷ୍ଠା ସହ ଯୋଡାଯାଇଥିବା ଆଲୋଚନା ପ୍ରୁଷ୍ଠାକୁ ଆପେ ଆପେ ଘୁଞ୍ଚାଇଦିଆଯିବ ।
 ସେହି ଯାଗାରେ, ଆପଣଙ୍କୁ ପ୍ରୁଷ୍ଠାଟିକୁ ଘୁଞ୍ଚାଇବାକୁ/ମିଶାଇବାକୁ ପଡ଼ିବ ।',
+'1movedto2'        => '[[$1]]ରୁ [[$2]]କୁ ଘୁଞ୍ଚାଗଲା',
 '1movedto2_redir'  => '[[$1]]ରୁ [[$2]]କୁ ଲେଉଟାଇଦିଆଗଲା',
 'movelogpage'      => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଅ',
 'movereason'       => 'କାରଣ:',
@@ -786,7 +795,9 @@ $5
 ଏହି କନଫର୍ମେସନ କୋଡ଼ $4 ବେଳେ ଅଚଳ ହୋଇଯିବ ।',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'ଦରକାରୀ ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ',
 'watchlisttools-edit' => 'ଦେଖିବା ତାଲିକାଟିକୁ ଦେଖିବେ ଓ ବଦଳାଇବେ',
+'watchlisttools-raw'  => 'ଫାଙ୍କା ଦେଖା ତାଲିକାଟିକୁ ଦେଖିବେ ଓ ବଦଳାଇବେ',
 
 # Special:FilePath
 'filepath-page' => 'ଫାଇଲ:',

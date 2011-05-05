@@ -3065,32 +3065,31 @@ Bolanyňyzdan soňra "{{int:Watchlistedit-raw-submit}}" düwmesine basyň.
 'duplicate-defaultsort' => '\'\'\'Duýduryş\'\'\': Gaýybana "$2" sortlaýyş açary mundan ozalky "$1" sortlaýyş açaryny aradan aýyrýar.',
 
 # Special:Version
-'version'                          => 'Wersiýa',
-'version-extensions'               => 'Gurulgy giňeltmeler',
-'version-specialpages'             => 'Ýörite sahypalar',
-'version-parserhooks'              => 'Analizator ilgençekleri',
-'version-variables'                => 'Üýtgeýänler',
-'version-other'                    => 'Başga',
-'version-mediahandlers'            => 'Media işleýjiler',
-'version-hooks'                    => 'Ilgençekler',
-'version-extension-functions'      => 'Giňeltme funksiýalary',
-'version-parser-extensiontags'     => 'Analizator giňeltme bellikleri',
-'version-parser-function-hooks'    => 'Analizator funsiýasynyň ilgençekleri',
-'version-skin-extension-functions' => 'Bezeg giňeltme funksiýalary',
-'version-hook-name'                => 'Ilgençegiň ady',
-'version-hook-subscribedby'        => 'Abuna ýazylan',
-'version-version'                  => '(Wersiýa $1)',
-'version-license'                  => 'Ygtyýarnama',
-'version-poweredby-credits'        => "Bu wiki '''[http://www.mediawiki.org/ MediaWiki]''' arkaly üpjün edilýär, awtorlyk hukugy © 2001-$1 $2.",
-'version-poweredby-others'         => 'beýlekiler',
-'version-license-info'             => 'MediaWiki erkin programmadyr; MediaWiki-ni Erkin programma fondy tarapyndan çazp edilen GNU General Public License lisenziýasynyň ikini wersiýasynyň ýa-da (islegiňize görä) has täzeki bir wersiýasynyň şertlerine laýyklykda täzeden paýlap we/ýa-da üýtgedip bilersiňiz.
+'version'                       => 'Wersiýa',
+'version-extensions'            => 'Gurulgy giňeltmeler',
+'version-specialpages'          => 'Ýörite sahypalar',
+'version-parserhooks'           => 'Analizator ilgençekleri',
+'version-variables'             => 'Üýtgeýänler',
+'version-other'                 => 'Başga',
+'version-mediahandlers'         => 'Media işleýjiler',
+'version-hooks'                 => 'Ilgençekler',
+'version-extension-functions'   => 'Giňeltme funksiýalary',
+'version-parser-extensiontags'  => 'Analizator giňeltme bellikleri',
+'version-parser-function-hooks' => 'Analizator funsiýasynyň ilgençekleri',
+'version-hook-name'             => 'Ilgençegiň ady',
+'version-hook-subscribedby'     => 'Abuna ýazylan',
+'version-version'               => '(Wersiýa $1)',
+'version-license'               => 'Ygtyýarnama',
+'version-poweredby-credits'     => "Bu wiki '''[http://www.mediawiki.org/ MediaWiki]''' arkaly üpjün edilýär, awtorlyk hukugy © 2001-$1 $2.",
+'version-poweredby-others'      => 'beýlekiler',
+'version-license-info'          => 'MediaWiki erkin programmadyr; MediaWiki-ni Erkin programma fondy tarapyndan çazp edilen GNU General Public License lisenziýasynyň ikini wersiýasynyň ýa-da (islegiňize görä) has täzeki bir wersiýasynyň şertlerine laýyklykda täzeden paýlap we/ýa-da üýtgedip bilersiňiz.
 
 MediaWiki programmasy peýdaly bolar diýen umyt bilen paýlanylýar, emma onuň üçin hatda TÄJIRÇILIK GYMMATY ýa-da KESGITLENILEN MAKSADA ÝARAMLYLYK boýunça hem hiç hili KEPILLIK BERILMEÝÄR. Has giňişleýin maglumat üçin GNU General Public License lisenziýasyna serediň. 
 
 Bu programmanyň ýany bilen siz [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License lisenziýasynyň bir nusgasyny] hem edinen bolmaly. Eger edinmedik bolsaňyz, onda Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine ýazyň ýa-da  [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lisenziýasyny onlaýn okaň].',
-'version-software'                 => 'Gurlan programma üpjünçiligi',
-'version-software-product'         => 'Önüm',
-'version-software-version'         => 'Wersiýa',
+'version-software'              => 'Gurlan programma üpjünçiligi',
+'version-software-product'      => 'Önüm',
+'version-software-version'      => 'Wersiýa',
 
 # Special:FilePath
 'filepath'         => 'Faýla barýan ýol',

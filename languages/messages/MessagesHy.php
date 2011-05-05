@@ -2016,7 +2016,7 @@ $1',
 
 «[[:$1]]» անվանմամբ էջ արդեն գոյություն ունի։ Ուզո՞ւմ եք այն ջնջել՝ տեղափոխումը իրականացնելու համար։',
 'delete_and_move_confirm' => 'Այո, ջնջել էջը',
-'delete_and_move_reason'  => 'Ձնջված է՝ տեղափոխման տեղ ազատելու համար',
+'delete_and_move_reason'  => 'Ջնջված է՝ տեղափոխման տեղ ազատելու համար',
 'selfmove'                => 'Ելակետային և նոր անվանումները համընկնում են. անհնար է տեղափոխել էջը ինքն իրեն։',
 'move-leave-redirect'     => 'Թողնել վերահղում։',
 
@@ -2291,7 +2291,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Խմբագրել այս նիշքը արտաքին խմբագրիչով',
-'edit-externally-help' => '(Մանրամասնությունների համար տես [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
+'edit-externally-help' => '(Մանրամասնությունների համար տես [http://www.mediawiki.org/wiki/Manual:External_editors տեղակայման հրահանգները])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'բոլոր',

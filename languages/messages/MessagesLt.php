@@ -2878,7 +2878,20 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'metadata-help'     => 'Šiame faile yra papildomos informacijos, tikriausiai pridėtos skaitmeninės kameros ar skaitytuvo, naudoto jam sukurti ar perkelti į skaitmeninį formatą. Jei failas buvo pakeistas iš pradinės versijos, kai kurios detalės gali nepilnai atspindėti naują failą.',
 'metadata-expand'   => 'Rodyti išplėstinę informaciją',
 'metadata-collapse' => 'Slėpti išplėstinę informaciją',
-'metadata-fields'   => 'Vaizdo metaduomenų laukai, nurodyti šiame pranešime, bus įtraukti į paveikslėlio puslapį, kai metaduomenų lentelė bus suskleista.! N! kiti bus paslėpti.! N! * padaryti! N! * modelis! N! * datetimeoriginal! N! * exposuretime! N! * fnumber! N! * isospeedratings! N! * focallength! N! * menininko! N! * autorių! N! * imagedescription! N! * gpslatitude! N! * gpslongitude! N! * gpsaltitude',
+'metadata-fields'   => 'Vaizdo metaduomenų laukai, nurodyti šiame pranešime, bus įtraukti į paveikslėlio puslapį, kai metaduomenų lentelė bus suskleista.! N! kiti bus paslėpti.!
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Plotis',
@@ -3315,32 +3328,31 @@ Jūs taip pat galite [[Special:EditWatchlist|naudoti standartinį redaktorių]].
 'duplicate-defaultsort' => 'Įspėjimas: Numatytasis rikiavimo raktas „$2“ pakeičia ankstesnį numatytąjį rikiavimo raktą „$1“.',
 
 # Special:Version
-'version'                          => 'Versija',
-'version-extensions'               => 'Įdiegti priedai',
-'version-specialpages'             => 'Specialieji puslapiai',
-'version-parserhooks'              => 'Analizatoriaus gaudliai',
-'version-variables'                => 'Kintamieji',
-'version-other'                    => 'Kita',
-'version-mediahandlers'            => 'Daugialypės terpės grotuvai',
-'version-hooks'                    => 'Gaudliai',
-'version-extension-functions'      => 'Papildomos funkcijos',
-'version-parser-extensiontags'     => 'Analizatoriaus papildomosios gairės',
-'version-parser-function-hooks'    => 'Analizatoriaus funkciniai gaudliai',
-'version-skin-extension-functions' => 'Išvaizdos papildinių funkcijos',
-'version-hook-name'                => 'Gaudlio pavadinimas',
-'version-hook-subscribedby'        => 'Užsakyta',
-'version-version'                  => '(Versija $1)',
-'version-license'                  => 'Licencija',
-'version-poweredby-credits'        => "Šis projektas naudoja '''[http://www.mediawiki.org/ MediaWiki]''', autorystės teisės © 2001-$1 $2.",
-'version-poweredby-others'         => 'kiti',
-'version-license-info'             => 'MediaWiki yra nemokama programinė įranga; galite ją platinti ir/arba modifikuoti pagal GNU General Public License, kurią publikuoja Free Software Foundation; taikoma 2-oji licenzijos versija arba (Jūsų pasirinkimu) bet kuri vėlesnė versija. 
+'version'                       => 'Versija',
+'version-extensions'            => 'Įdiegti priedai',
+'version-specialpages'          => 'Specialieji puslapiai',
+'version-parserhooks'           => 'Analizatoriaus gaudliai',
+'version-variables'             => 'Kintamieji',
+'version-other'                 => 'Kita',
+'version-mediahandlers'         => 'Daugialypės terpės grotuvai',
+'version-hooks'                 => 'Gaudliai',
+'version-extension-functions'   => 'Papildomos funkcijos',
+'version-parser-extensiontags'  => 'Analizatoriaus papildomosios gairės',
+'version-parser-function-hooks' => 'Analizatoriaus funkciniai gaudliai',
+'version-hook-name'             => 'Gaudlio pavadinimas',
+'version-hook-subscribedby'     => 'Užsakyta',
+'version-version'               => '(Versija $1)',
+'version-license'               => 'Licencija',
+'version-poweredby-credits'     => "Šis projektas naudoja '''[http://www.mediawiki.org/ MediaWiki]''', autorystės teisės © 2001-$1 $2.",
+'version-poweredby-others'      => 'kiti',
+'version-license-info'          => 'MediaWiki yra nemokama programinė įranga; galite ją platinti ir/arba modifikuoti pagal GNU General Public License, kurią publikuoja Free Software Foundation; taikoma 2-oji licenzijos versija arba (Jūsų pasirinkimu) bet kuri vėlesnė versija. 
 
 MediaWiki yra platinama su viltimi, kad ji bus naudinga, bet BE JOKIOS GARANTIJOS; be jokios numanomos PARDAVIMO arba TINKAMUMO TAM TIKRAM TIKSLUI garantijos. Daugiau informacijos galite sužinoti GNU General Public License. 
 
 Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License kopiją] kartu su šia programa, jei ne, rašykite Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, JAV arba [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html perskaitykite ją internete].',
-'version-software'                 => 'Įdiegta programinė įranga',
-'version-software-product'         => 'Produktas',
-'version-software-version'         => 'Versija',
+'version-software'              => 'Įdiegta programinė įranga',
+'version-software-product'      => 'Produktas',
+'version-software-version'      => 'Versija',
 
 # Special:FilePath
 'filepath'         => 'Failo kelias',
