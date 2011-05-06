@@ -2122,6 +2122,11 @@ Hizivait da PHP 5.2.9 pe nevesoc'h ha libxml2 2.7.3 pe nevesoc'h ([http://bugs.p
 Staliadur paouezet.",
 	'config-db-type' => 'Doare an diaz roadennoù :',
 	'config-db-host' => 'Anv implijer an diaz roadennoù :',
+	'config-db-host-help' => "M'emañ ho servijer roadennoù war ur servijer disheñvel, merkit amañ an anv ostiz pe ar chomlec'h IP.
+
+Ma rit gant un herberc'hiañ kenrannet, e tlefe ho herberc'hier bezañ pourchaset deoc'h un anv ostiz reizh en teulioù titouriñ.
+
+M'emaoc'h o staliañ ur servijer Windows ha ma rit gant MySQL, marteze ne'z aio ket en-dro \"localhost\" evel anv servijer. Ma ne dro ket, klaskit ober gant \"127.0.0.1\" da chomlec'h IP lechel.",
 	'config-db-host-oracle' => 'TNS an diaz roadennoù :',
 	'config-db-wiki-settings' => 'Anavezout ar wiki-mañ',
 	'config-db-name' => 'Anv an diaz roadennoù :',
@@ -2150,6 +2155,8 @@ N'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roaden
 	'config-mysql-old' => "Rekis eo MySQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
 	'config-db-port' => 'Porzh an diaz roadennoù :',
 	'config-db-schema' => 'Brastres evit MediaWiki',
+	'config-db-schema-help' => "Peurliesañ e vo digudenn ar chema-mañ.
+Arabat cheñch anezho ma n'hoc'h eus ket ezhomm d'en ober.",
 	'config-sqlite-dir' => "Kavlec'h roadennoù SQLite :",
 	'config-oracle-def-ts' => 'Esaouenn stokañ ("tablespace") dre ziouer :',
 	'config-oracle-temp-ts' => "Esaouenn stokañ (''tablespace'') da c'hortoz :",
@@ -2211,7 +2218,9 @@ Da hizivaat anezho da VediaWiki $1, klikañ war '''Kenderc'hel'''.",
 Gallout a rit [$1 kregiñ da implijout ho wiki].',
 	'config-regenerate' => 'Adgenel LocalSettings.php →',
 	'config-show-table-status' => "C'hwitet ar reked SHOW TABLE STATUS !",
+	'config-unknown-collation' => "'''Diwallit :''' Emañ an diaz roadennoù o renkañ an traoù diouzh un urzh lizherennek dianav.",
 	'config-db-web-account' => 'Kont an diaz roadennoù evit ar voned Kenrouedad',
+	'config-db-web-help' => 'Diuzañ an anv implijer hag ar ger-tremen a vo implijet gant ar servijer web evit kevreañ ouzh ar servijer diaz roadennoù pa vez ar wiki o vont en-dro war ar pemdez.',
 	'config-db-web-account-same' => 'Ober gant an hevelep kont hag an hini implijet evit ar staliañ',
 	'config-db-web-create' => "Krouiñ ar gont ma n'eus ket anezhi c'hoazh",
 	'config-mysql-engine' => 'Lusker stokañ :',
@@ -2230,6 +2239,8 @@ Gallout a rit [$1 kregiñ da implijout ho wiki].',
 	'config-ns-other-default' => 'MaWiki',
 	'config-ns-invalid' => 'Direizh eo an esaouenn anv "<nowiki>$1</nowiki>" spisaet.
 Merkit un esaouenn anv disheñvel evit ar raktres.',
+	'config-ns-conflict' => 'Tabut zo etre an esaouenn anv spisaet "<nowiki>$1</nowiki>" hag un esaouenn anv dre ziouer eus MediaWiki.
+Spisait un anv raktres esaouenn anv all.',
 	'config-admin-box' => 'Kont merour',
 	'config-admin-name' => "Hoc'h anv :",
 	'config-admin-password' => 'Ger-tremen :',
@@ -2268,6 +2279,8 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-license-cc-choose' => 'Dibabit un aotre-implijout Creative Commons personelaet',
 	'config-email-settings' => 'Arventennoù ar postel',
 	'config-enable-email' => 'Gweredekaat ar posteloù a ya kuit',
+	'config-enable-email-help' => "Mar fell deoc'h ober gant ar posteler eo ret deoc'h [http://www.php.net/manual/en/mail.configuration.php kefluniañ arventennoù postel PHP] ervat.
+Mar ne fell ket deoc'h ober gant ar servij posteloù e c'hall bezañ diweredekaet amañ.",
 	'config-email-user' => 'Gweredekaat ar posteloù a implijer da implijer',
 	'config-email-user-help' => "Aotren a ra an holl implijerien da gas posteloù an eil d'egile mard eo bet gweredekaet an arc'hwel ganto en ho penndibaboù.",
 	'config-email-usertalk' => 'Gweredekaat kemennadur pajennoù kaozeal an implijerien',
@@ -2303,8 +2316,13 @@ Ret eo spisaat unan dre linenn ha spisaat ar porzh da vezañ implijet. Da skouer
 	'config-memcache-badip' => "Ur chomlec'h IP direizh hoc'h eus lakaet evit Memcached : $1.",
 	'config-memcache-badport' => 'Niverennoù porzh Memcached a zlefe bezañ etre $1 ha $2.',
 	'config-extensions' => 'Astennoù',
+	'config-extensions-help' => "N'eo ket bet detektet an astennoù rollet a-us en ho kavlec'h <code>./astennoù</code>.
+
+Marteze e vo ezhomm kefluniañ pelloc'h met gallout a rit o gweredekaat bremañ.",
 	'config-install-alreadydone' => "'''Diwallit''': Staliet hoc'h eus MediaWiki dija war a seblant hag emaoc'h o klask e staliañ c'hoazh. 
 Kit d'ar bajenn war-lerc'h, mar plij.",
+	'config-install-begin' => 'Pa vo bet pouezet ganeoc\'h war "{{int:config-continue}}"  e krogo staliadur MediaWiki.
+Pouezit war Kent mar fell deoc\'h cheñch tra pe dra.',
 	'config-install-step-done' => 'graet',
 	'config-install-step-failed' => "c'hwitet",
 	'config-install-extensions' => 'En ur gontañ an astennoù',
@@ -2580,6 +2598,7 @@ PHP muss auf Version 5.2.9 oder später sowie libxml2 auf die Version 2.7.3 oder
 	'config-using531' => 'MediaWiki kann nicht zusammen mit PHP $1 verwendet werden. Grund hierfür ist ein Fehler im Zusammenhang mit den Verweisparametern zu <code>__call()</code>.
 PHP muss auf Version 5.3.2 oder höher oder 5.3.0 oder niedriger aktualisiert werden, um das Problem zu beheben.
 Die Installation wurde abgebrochen.',
+	'config-suhosin-max-value-length' => 'Suhosin ist installiert, was die Länge des GET-Parameters auf $1 Bytes beschränkt. Der ResouceLoader von MediaWiki wird zwar unter diesen Bedingungen funktionieren, allerdings nur mit verminderter Leistungsfähigkeit. Sofern möglich sollte der Parameter suhosin.get.max_value_length in der Datei php.ini auf 1024 oder höher festgelegt werden. Gleichzeitig muß der Parameter $wgResourceLoaderMaxQueryLength in der Datei LocalSettings.php auf den selben Wert eingestellt werden.',
 	'config-db-type' => 'Datenbanksystem:',
 	'config-db-host' => 'Datenbankserver:',
 	'config-db-host-help' => 'Sofern sich die Datenbank auf einem anderen Server befindet, ist hier der Servername oder die entsprechende IP-Adresse anzugeben.
@@ -3386,6 +3405,7 @@ Käynnistä asennusprosessi uudelleen.',
 	'config-page-releasenotes' => 'Julkaisun tiedot',
 	'config-page-copying' => 'Kopiointi',
 	'config-page-upgradedoc' => 'Päivittäminen',
+	'config-page-existingwiki' => 'Aikaisempi asennus',
 	'config-help-restart' => 'Haluatko poistaa kaikki annetut tiedot ja aloittaa asennuksen alusta?',
 	'config-restart' => 'Kyllä',
 	'config-welcome' => '=== Ympäristön tarkistukset ===
@@ -6053,6 +6073,7 @@ Installation abortate.',
 	'config-using531' => 'MediaWiki non pote esser usate con PHP $1 a causa de un defecto concernente parametros de referentia a <code>__call()</code>.
 Actualisa a PHP 5.3.2 o plus recente, o retrograda a PHP 5.3.0 pro remediar isto.
 Installation abortate.',
+	'config-suhosin-max-value-length' => 'Suhosin es installate e limita le longitude del parametro GET a $1 bytes. Le componente ResourceLoader de MediaWiki pote contornar iste limite, ma isto degradara le rendimento. Si possibile, tu deberea mitter suhosin.get.max_value_length a 1024 o plus in php.ini , e mitter $wgResourceLoaderMaxQueryLength al mesme valor in LocalSettings.php .',
 	'config-db-type' => 'Typo de base de datos:',
 	'config-db-host' => 'Servitor de base de datos:',
 	'config-db-host-help' => 'Si tu servitor de base de datos es in un altere servitor, entra hic le nomine o adresse IP del servitor.
@@ -6565,6 +6586,7 @@ Instalasi dibatalkan.',
 	'config-using531' => 'MediaWiki tidak dapat dijalankan dengan PHP $1 karena bug yang melibatkan parameter referensi untuk <code>__call()</code> . 
 Tingkatkan ke PHP 5.3.2 atau lebih baru, atau turunkan ke PHP versi 5.3.0 untuk menyelesaikan hal ini.
 Instalasi dibatalkan.',
+	'config-suhosin-max-value-length' => 'Suhosin terpasang dan membatasi panjang parameter GET sebesar $1 bita. Komponen ResourceLoader MediaWiki akan mengatasi batasan ini, tapi penanganannya akan menurunkan kinerja. Jika memungkinkan, Anda sebaiknya menetapkan nilai suhosin.get.max_value_length menjadi 1024 atau lebih tinggi dalam php.ini dan menyetel $wgResourceLoaderMaxQueryLength dengan nilai yang sama dalam LocalSettings.php.',
 	'config-db-type' => 'Jenis basis data:',
 	'config-db-host' => 'Inang basis data:',
 	'config-db-host-help' => 'Jika server basis data Anda berada di server yang berbeda, masukkan nama inang atau alamat IP di sini. 
@@ -8369,6 +8391,7 @@ $1
 Надградете го на PHP 5.2.9 и libxml2 2.7.3 или нивни понови верзии! ПРЕКИНУВАМ ([http://bugs.php.net/bug.php?id=45996 грешката е заведена во PHP]).',
 	'config-using531' => 'МедијаВики не може да се користи со PHP $1 поради грешка кај упатните параметри за <code>__call()</code>.
 За да го решите проблемот, надградете го на PHP 5.3.2 или понова верзија, или пак користете го постариот PHP 5.3.0.',
+	'config-suhosin-max-value-length' => 'Suhosin е инсталиран и ја ограничува должината на параметарот GET на $1 bytes. Делот ResourceLoader на МедијаВики ќе ја заобиколува ова граница, но со тоа ќе се влоши делотворноста. Ако е воопшто можно, на suhosin.get.max_value_length треба да го наместите на 1024 или поевеќе во php.ini , и да му ја зададете истата вредност на $wgResourceLoaderMaxQueryLength во LocalSettings.php .',
 	'config-db-type' => 'Тип на база:',
 	'config-db-host' => 'Домаќин на базата:',
 	'config-db-host-help' => 'Ако вашата база е на друг опслужувач, тогаш тука внесете го името на домаќинот илиу IP-адресата.
@@ -10863,6 +10886,7 @@ Instalação interrompida.',
 	'config-using531' => 'O MediaWiki não pode ser usado com o PHP $1 devido a um problema que envolve parâmetros de referência para <code>__call()</code>.
 Para resolver este problema, actualize o PHP para a versão 5.3.2 ou posterior, ou reverta-o para a 5.3.0.
 Instalação interrompida.',
+	'config-suhosin-max-value-length' => 'O Suhosin está instalado e limita a $1 bytes o comprimento do parâmetro GET. O componente ResourceLoader do MediaWiki pode tornear este limite, mas prejudicando o desempenho. Se lhe for possível, deve atribuir o valor 1024 ou maior ao parâmetro suhosin.get.max_value_length no ficheiro php.ini, e definir o mesmo valor para $wgResourceLoaderMaxQueryLength no ficheiro LocalSettings.php.',
 	'config-db-type' => 'Tipo da base de dados:',
 	'config-db-host' => 'Servidor da base de dados:',
 	'config-db-host-help' => 'Se a base de dados estiver num servidor separado, introduza aqui o nome ou o endereço IP desse servidor.
@@ -11497,6 +11521,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-using531' => 'PHP $1 не совместим с MediaWiki из-за ошибки с параметрами-ссылками при вызовах <code>__call()</code>.
 Обновитесь до PHP 5.3.2 и выше, или откатитесь до PHP 5.3.0, чтобы избежать этой проблемы.
 Установка прервана.',
+	'config-suhosin-max-value-length' => 'Suhosin установлен и ограничивает длину параметра GET до $1 байт. Компонент MediaWiki ResourceLoader будет обходить это ограничение, но это снизит производительность. Если это возможно, следует установить suhosin.get.max_value_length 1024 или выше в php.ini, а также установить для $wgResourceLoaderMaxQueryLength такое же значение в LocalSettings.php.',
 	'config-db-type' => 'Тип базы данных:',
 	'config-db-host' => 'Хост базы данных:',
 	'config-db-host-help' => 'Если сервер базы данных находится на другом сервере, введите здесь его имя хоста или IP-адрес. 
