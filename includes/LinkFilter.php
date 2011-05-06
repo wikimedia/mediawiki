@@ -42,42 +42,6 @@ class LinkFilter {
 	}
 
 	/**
-	 * Make a string to go after an SQL LIKE, which will match the specified
-	 * string. There are several kinds of filter entry:
-	 *     *.domain.com    -  Produces http://com.domain.%, matches domain.com
-	 *                        and www.domain.com
-	 *     domain.com      -  Produces http://com.domain./%, matches domain.com
-	 *                        or domain.com/ but not www.domain.com
-	 *     *.domain.com/x  -  Produces http://com.domain.%/x%, matches
-	 *                        www.domain.com/xy
-	 *     domain.com/x    -  Produces http://com.domain./x%, matches
-	 *                        domain.com/xy but not www.domain.com/xy
-	 *
-	 * Asterisks in any other location are considered invalid.
-	 * 
-	 * @param $filterEntry String: domainparts
-	 * @param $prot        String: protocol
-	 * @return String
-	 * @deprecated Use makeLikeArray() and pass result to Database::buildLike() instead
-	 */
-	 public static function makeLike( $filterEntry , $prot = 'http://' ) {
-		wfDeprecated( __METHOD__ );
-
-		$like = self::makeLikeArray( $filterEntry , $prot );
-		if ( !$like ) {
-			return false;
-		}
-		$dbw = wfGetDB( DB_MASTER );
-		$s = $dbw->buildLike( $like );
-		$m = false;
-		if ( preg_match( "/^ *LIKE '(.*)' *$/", $s, $m ) ) {
-			return $m[1];
-		} else {
-			throw new MWException( __METHOD__.': this DBMS is not supported by this function.' );
-		}
-	}
-
-	/**
 	 * Make an array to be used for calls to DatabaseBase::buildLike(), which
 	 * will match the specified string. There are several kinds of filter entry:
 	 *     *.domain.com    -  Produces http://com.domain.%, matches domain.com
