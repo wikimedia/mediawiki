@@ -4986,12 +4986,6 @@ $wgSpecialPageGroups = array(
 $wgSortSpecialPages = true;
 
 /**
- * Filter for Special:Randompage. Part of a WHERE clause
- * @deprecated as of 1.16, use the SpecialRandomGetRandomTitle hook
- */
-$wgExtraRandompageSQL = false;
-
-/**
  * On Special:Unusedimages, consider images "used", if they are put
  * into a category. Default (false) is not to count those as used.
  */
