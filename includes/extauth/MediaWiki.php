@@ -74,7 +74,7 @@ class ExternalUser_MediaWiki extends ExternalUser {
 
 		$this->mDb = DatabaseBase::newFromType( $wgExternalAuthConf['DBtype'],
 			array(
-				'server'      => $wgExternalAuthConf['DBserver'],
+				'host'        => $wgExternalAuthConf['DBserver'],
 				'user'        => $wgExternalAuthConf['DBuser'],
 				'password'    => $wgExternalAuthConf['DBpassword'],
 				'dbname'      => $wgExternalAuthConf['DBname'],
