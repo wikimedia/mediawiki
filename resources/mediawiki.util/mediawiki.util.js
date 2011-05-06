@@ -271,17 +271,6 @@
 		'$content' : null,
 
 		/**
-		 * Checks wether the current page is the wiki's main page.
-		 *
-		 * @return Boolean
-		 * @deprecated to be removed in 1.18: Use wgIsMainPage in mw.config instead.
-		 */
-		'isMainPage' : function() {
-			return mw.config.get( 'wgIsMainPage' );
-		},
-
-
-		/**
 		 * Add a link to a portlet menu on the page, such as:
 		 *
 		 * p-cactions (Content actions), p-personal (Personal tools),
