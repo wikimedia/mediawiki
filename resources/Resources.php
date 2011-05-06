@@ -526,13 +526,6 @@ return array(
 		'dependencies' => 'mediawiki.legacy.wikibits',
 		'messages' => array( 'search-mwsuggest-enabled', 'search-mwsuggest-disabled' ),
 	),
-	'mediawiki.legacy.password' => array(
-		'scripts' => 'common/password.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'styles' => 'common/password.css',
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
 	'mediawiki.legacy.prefs' => array(
 		'scripts' => 'common/prefs.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
