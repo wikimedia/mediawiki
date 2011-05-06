@@ -230,7 +230,7 @@ class CategoryViewer {
 
 	/**
 	 * Add a subcategory to the internal lists, using a title object
-	 * @deprecated kept for compatibility, please use addSubcategoryObject instead
+	 * @deprecated since 1.17 kept for compatibility, please use addSubcategoryObject instead
 	 */
 	function addSubcategory( Title $title, $sortkey, $pageLength ) {
 		$this->addSubcategoryObject( Category::newFromTitle( $title ), $sortkey, $pageLength );

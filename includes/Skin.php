@@ -376,7 +376,7 @@ abstract class Skin {
 	 * This used to load MediaWiki:Common.js and the skin-specific style
 	 * before the ResourceLoader.
 	 *
-	 * @deprecated Use the ResourceLoader instead. This may be removed at some
+	 * @deprecated since 1.18 Use the ResourceLoader instead. This may be removed at some
 	 * point.
 	 * @param $skinName String: If set, overrides the skin name
 	 * @return String
@@ -388,7 +388,7 @@ abstract class Skin {
 	/**
 	 * Generate user stylesheet for action=raw&gen=css
 	 *
-	 * @deprecated Use the ResourceLoader instead. This may be removed at some
+	 * @deprecated since 1.18 Use the ResourceLoader instead. This may be removed at some
 	 * point.
 	 * @return String
 	 */

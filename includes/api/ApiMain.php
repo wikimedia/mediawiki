@@ -278,7 +278,7 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * @deprecated Private caching is now the default, so there is usually no
+	 * @deprecated since 1.17 Private caching is now the default, so there is usually no
 	 * need to call this function. If there is a need, you can use
 	 * $this->setCacheMode('private')
 	 */
@@ -306,7 +306,7 @@ class ApiMain extends ApiBase {
 	 * given URL must either always or never call this function; if it sometimes does and
 	 * sometimes doesn't, stuff will break.
 	 *
-	 * @deprecated Use setCacheMode( 'anon-public-user-private' )
+	 * @deprecated since 1.17 Use setCacheMode( 'anon-public-user-private' )
 	 */
 	public function setVaryCookie() {
 		$this->setCacheMode( 'anon-public-user-private' );

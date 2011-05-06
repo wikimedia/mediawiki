@@ -417,7 +417,7 @@ class Xml {
 	}
 
 	/**
-	 * @deprecated Synonymous to Html::hidden()
+	 * @deprecated since 1.16 Synonymous to Html::hidden()
 	 */
 	public static function hidden( $name, $value, $attribs = array() ) {
 		return Html::hidden( $name, $value, $attribs );

@@ -472,7 +472,7 @@ class LanguageConverter {
 	 *
 	 * @param $text String: the text to be converted
 	 * @return Array: variant => converted text
-	 * @deprecated Use autoConvertToAllVariants() instead
+	 * @deprecated since 1.17 Use autoConvertToAllVariants() instead
 	 */
 	public function convertLinkToAllVariants( $text ) {
 		return $this->autoConvertToAllVariants( $text );

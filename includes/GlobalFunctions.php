@@ -2849,7 +2849,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
  *
  * @param $name String
  * @param $p Array: parameters
- * @deprecated
+ * @deprecated since 1.18
  */
 function wfCreateObject( $name, $p ) {
 	return MWFunction::newObj( $name, $p );

@@ -633,7 +633,7 @@ class WebRequest {
 	/**
 	 * Return the size of the upload, or 0.
 	 *
-	 * @deprecated
+	 * @deprecated since 1.17
 	 * @param $key String:
 	 * @return integer
 	 */

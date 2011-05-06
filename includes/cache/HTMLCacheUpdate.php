@@ -155,7 +155,7 @@ class HTMLCacheUpdate
 
 	/**
 	 * Invalidate a range of pages, right now
-	 * @deprecated
+	 * @deprecated since 1.16
 	 */
 	public function invalidate( $startId = false, $endId = false ) {
 		$titleArray = $this->mCache->getLinks( $this->mTable, $startId, $endId );

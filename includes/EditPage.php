@@ -2127,7 +2127,7 @@ HTML
 	 * Produce the stock "your edit contains spam" page
 	 *
 	 * @param $match Text which triggered one or more filters
-	 * @deprecated Use method spamPageWithContent() instead
+	 * @deprecated since 1.17 Use method spamPageWithContent() instead
 	 */
 	static function spamPage( $match = false ) {
 		global $wgOut, $wgTitle;
@@ -2234,14 +2234,6 @@ HTML
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * @deprecated use $wgParser->stripSectionName()
-	 */
-	function pseudoParseSectionAnchor( $text ) {
-		global $wgParser;
-		return $wgParser->stripSectionName( $text );
 	}
 
 	/**

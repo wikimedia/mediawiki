@@ -159,19 +159,6 @@ class PageArchive {
 	}
 
 	/**
-	 * Fetch (and decompress if necessary) the stored text for the deleted
-	 * revision of the page with the given timestamp.
-	 *
-	 * @param $timestamp String
-	 * @return String
-	 * @deprecated Use getRevision() for more flexible information
-	 */
-	function getRevisionText( $timestamp ) {
-		$rev = $this->getRevision( $timestamp );
-		return $rev ? $rev->getText() : null;
-	}
-
-	/**
 	 * Return a Revision object containing data for the deleted revision.
 	 * Note that the result *may* or *may not* have a null page ID.
 	 *

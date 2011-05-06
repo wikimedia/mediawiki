@@ -753,41 +753,6 @@ class Parser {
 	}
 
 	/**
-	 * @deprecated use replaceVariables
-	 */
-	function strip( $text, $state, $stripcomments = false , $dontstrip = array() ) {
-		return $text;
-	}
-
-	/**
-	 * Restores pre, math, and other extensions removed by strip()
-	 *
-	 * always call unstripNoWiki() after this one
-	 * @private
-	 * @deprecated use $this->mStripState->unstrip()
-	 */
-	function unstrip( $text, $state ) {
-		return $state->unstripGeneral( $text );
-	}
-
-	/**
-	 * Always call this after unstrip() to preserve the order
-	 *
-	 * @private
-	 * @deprecated use $this->mStripState->unstrip()
-	 */
-	function unstripNoWiki( $text, $state ) {
-		return $state->unstripNoWiki( $text );
-	}
-
-	/**
-	 * @deprecated use $this->mStripState->unstripBoth()
-	 */
-	function unstripForHTML( $text ) {
-		return $this->mStripState->unstripBoth( $text );
-	}
-
-	/**
 	 * Add an item to the strip state
 	 * Returns the unique tag which must be inserted into the stripped text
 	 * The tag will be replaced with the original text in unstrip()
@@ -2032,18 +1997,6 @@ class Parser {
 		}
 		wfProfileOut( __METHOD__ );
 		return $holders;
-	}
-
-	/**
-	 * Make a link placeholder. The text returned can be later resolved to a real link with
-	 * replaceLinkHolders(). This is done for two reasons: firstly to avoid further
-	 * parsing of interwiki links, and secondly to allow all existence checks and
-	 * article length checks (for stub links) to be bundled into a single query.
-	 *
-	 * @deprecated
-	 */
-	function makeLinkHolder( &$nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {
-		return $this->mLinkHolders->makeHolder( $nt, $text, $query, $trail, $prefix );
 	}
 
 	/**
