@@ -3670,17 +3670,6 @@ $wgRateLimits = array(
 $wgRateLimitLog = null;
 
 /**
- * Array of groups which should never trigger the rate limiter
- *
- * @deprecated since 1.13.0, the preferred method is using
- *  $wgGroupPermissions[]['noratelimit']. However, this will still
- *  work if desired.
- *
- *  $wgRateLimitsExcludedGroups = array( 'sysop', 'bureaucrat' );
- */
-$wgRateLimitsExcludedGroups = array();
-
-/**
  * Array of IPs which should be excluded from rate limits.
  * This may be useful for whitelisting NAT gateways for conferences, etc.
  */
