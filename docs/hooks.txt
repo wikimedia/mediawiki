@@ -1128,22 +1128,6 @@ $paramArray: Array of parameters that corresponds to logging.log_params field.
 &$revert: string that is displayed in the UI, similar to $comment.
 $time: timestamp of the log entry (added in 1.12)
 
-'LogPageValidTypes': action being logged.
-DEPRECATED: Use $wgLogTypes
-&$type: array of strings
-
-'LogPageLogName': name of the logging page(s).
-DEPRECATED: Use $wgLogNames
-&$typeText: array of strings
-
-'LogPageLogHeader': strings used by wfMsg as a header.
-DEPRECATED: Use $wgLogHeaders
-&$headerText: array of strings
-
-'LogPageActionText': strings used by wfMsg as a header.
-DEPRECATED: Use $wgLogActions
-&$actionText: array of strings
-
 'MagicWordMagicWords': When defining new magic word.
 DEPRECATED: use $magicWords in a file listed in 
 $wgExtensionMessagesFiles instead.
