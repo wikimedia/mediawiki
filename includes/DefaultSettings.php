@@ -284,7 +284,7 @@ $wgAllowImageMoving = true;
 $wgIllegalFileChars = ":";
 
 /**
- * @deprecated use $wgDeletedDirectory
+ * @deprecated since 1.17 use $wgDeletedDirectory
  */
 $wgFileStore = array();
 
@@ -3599,7 +3599,7 @@ $wgSummarySpamRegex = array();
  *  - true : block it
  *  - false : let it through
  *
- * @deprecated Use hooks. See SpamBlacklist extension.
+ * @deprecated since 1.17 Use hooks. See SpamBlacklist extension.
  */
 $wgFilterCallback = false;
 
@@ -3610,7 +3610,7 @@ $wgFilterCallback = false;
 $wgEnableDnsBlacklist = false;
 
 /**
- * @deprecated Use $wgEnableDnsBlacklist instead, only kept for backward
+ * @deprecated since 1.17 Use $wgEnableDnsBlacklist instead, only kept for backward
  *  compatibility
  */
 $wgEnableSorbs = false;
@@ -3622,7 +3622,7 @@ $wgEnableSorbs = false;
 $wgDnsBlacklistUrls = array( 'http.dnsbl.sorbs.net.' );
 
 /**
- * @deprecated Use $wgDnsBlacklistUrls instead, only kept for backward
+ * @deprecated since 1.17 Use $wgDnsBlacklistUrls instead, only kept for backward
  *  compatibility
  */
 $wgSorbsUrl = array();
@@ -3672,7 +3672,7 @@ $wgRateLimitLog = null;
 /**
  * Array of groups which should never trigger the rate limiter
  *
- * @deprecated as of 1.13.0, the preferred method is using
+ * @deprecated since 1.13.0, the preferred method is using
  *  $wgGroupPermissions[]['noratelimit']. However, this will still
  *  work if desired.
  *
@@ -4426,7 +4426,7 @@ $wgLicenseTerms = false;
 
 /**
  * Set this to some HTML to override the rights icon with an arbitrary logo
- * @deprecated Use $wgFooterIcons['copyright']['copyright']
+ * @deprecated since 1.18 Use $wgFooterIcons['copyright']['copyright']
  */
 $wgCopyrightIcon = null;
 
@@ -4544,7 +4544,7 @@ $wgExtensionMessagesFiles = array();
 
 /**
  * Aliases for special pages provided by extensions.
- * @deprecated Use $specialPageAliases in a file referred to by $wgExtensionMessagesFiles
+ * @deprecated since 1.16 Use $specialPageAliases in a file referred to by $wgExtensionMessagesFiles
  */
 $wgExtensionAliasesFiles = array();
 

@@ -2839,7 +2839,7 @@ class Language {
 	 * into an array of all possible variants of the text:
 	 *  'variant' => text in that variant
 	 *
-	 * @deprecated Use autoConvertToAllVariants()
+	 * @deprecated since 1.17 Use autoConvertToAllVariants()
 	 */
 	function convertLinkToAllVariants( $text ) {
 		return $this->mConverter->convertLinkToAllVariants( $text );

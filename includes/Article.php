@@ -326,23 +326,6 @@ class Article {
 	}
 
 	/**
-	 * This function returns the text of a section, specified by a number ($section).
-	 * A section is text under a heading like == Heading == or \<h1\>Heading\</h1\>, or
-	 * the first section before any such heading (section 0).
-	 *
-	 * If a section contains subsections, these are also returned.
-	 *
-	 * @param $text String: text to look in
-	 * @param $section Integer: section number
-	 * @return string text of the requested section
-	 * @deprecated
-	 */
-	public function getSection( $text, $section ) {
-		global $wgParser;
-		return $wgParser->getSection( $text, $section );
-	}
-
-	/**
 	 * Get the text that needs to be saved in order to undo all revisions
 	 * between $undo and $undoafter. Revisions must belong to the same page,
 	 * must exist and must not be deleted

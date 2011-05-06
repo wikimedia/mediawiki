@@ -585,7 +585,7 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * @deprecated use MWNamespace::getValidNamespaces()
+	 * @deprecated since 1.17 use MWNamespace::getValidNamespaces()
 	 */
 	public static function getValidNamespaces() {
 		return MWNamespace::getValidNamespaces();

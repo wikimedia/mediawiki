@@ -1990,12 +1990,6 @@ class Linker {
 		return self::makeImageLink2( $title, $file, $frameParams, $handlerParams, $time );
 	}
 
-	/** @deprecated use Linker::makeMediaLinkObj() */
-	static function makeMediaLink( $name, $unused = '', $text = '', $time = false ) {
-		$nt = Title::makeTitleSafe( NS_FILE, $name );
-		return self::makeMediaLinkObj( $nt, $text, $time );
-	}
-
 	/**
 	 * Returns the attributes for the tooltip and access key.
 	 */
@@ -2017,14 +2011,6 @@ class Linker {
 			unset( $attribs['accesskey'] );
 		}
 		return $attribs;
-	}
-
-	/**
-	 * @deprecated since 1.14
-	 * Returns raw bits of HTML, use titleAttrib() and accesskey()
-	 */
-	public static function tooltipAndAccesskey( $name ) {
-		return Xml::expandAttributes( self::tooltipAndAccesskeyAttribs( $name ) );
 	}
 
 	/**

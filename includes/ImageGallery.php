@@ -127,9 +127,10 @@ class ImageGallery
 	 * Instruct the class to use a specific skin for rendering
 	 *
 	 * @param $skin Skin object
-	 * @deprecated Not used anymore
+	 * @deprecated since 1.18 Not used anymore
 	 */
 	function useSkin( $skin ) {
+		wfDeprecated( __METHOD__ );
 		/* no op */
 	}
 

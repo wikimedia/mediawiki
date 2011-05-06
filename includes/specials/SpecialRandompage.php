@@ -169,9 +169,9 @@ class RandomPage extends SpecialPage {
 		return $dbr->fetchObject( $res );
 	}
 
-	/* an alternative to $wgExtraRandompageSQL so subclasses
+	/** an alternative to $wgExtraRandompageSQL so subclasses
 	 * can add their own SQL by overriding this function
-	 * @deprecated, append to $this->extra instead
+	 * @deprecated since 1.16 append to $this->extra instead
 	 */
 	public function addExtraSQL() {
 		return '';
