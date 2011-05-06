@@ -261,10 +261,6 @@ if ( !$wgAllowRealName ) {
 	$wgHiddenPrefs[] = 'realname';
 }
 
-if ( !$wgAllowUserSkin ) {
-	$wgHiddenPrefs[] = 'skin';
-}
-
 # Doesn't make sense to have if disabled.
 if ( !$wgEnotifMinorEdits ) {
 	$wgHiddenPrefs[] = 'enotifminoredits';
