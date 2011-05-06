@@ -40,7 +40,7 @@ The supported versions are:
 
 == Upgrading ==
 
-1.18 has several database changes since 1.17, and will not work without schema
+1.19 has several database changes since 1.17, and will not work without schema
 updates.
 
 If upgrading from before 1.11, and you are using a wiki as a commons 
@@ -56,7 +56,7 @@ break. Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
 
-For notes on 1.17.x and older releases, see HISTORY.
+For notes on 1.15.x and older releases, see HISTORY.
 
 == Online documentation ==
 
