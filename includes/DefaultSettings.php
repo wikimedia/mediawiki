@@ -2261,12 +2261,6 @@ $wgValidateAllHtml = false;
 $wgDefaultSkin = 'vector';
 
 /**
-* Should we allow the user's to select their own skin that will override the default?
-* @deprecated in 1.16, use $wgHiddenPrefs[] = 'skin' to disable it
-*/
-$wgAllowUserSkin = true;
-
-/**
  * Specify the name of a skin that should not be presented in the list of
  * available skins.  Use for blacklisting a skin which you do not want to
  * remove from the .../skins/ directory
