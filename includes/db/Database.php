@@ -521,7 +521,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Same as new DatabaseMysql( ... ), kept for backward compatibility
-	 * @deprecated
+	 * @deprecated since 1.17
 	 */
 	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
 		wfDeprecated( __METHOD__ );
@@ -1769,7 +1769,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Backwards compatibility, identifier quoting originated in DatabasePostgres
 	 * which used quote_ident which does not follow our naming conventions
 	 * was renamed to addIdentifierQuotes.
-	 * @deprecated use addIdentifierQuotes
+	 * @deprecated since 1.18 use addIdentifierQuotes
 	 */
 	function quote_ident( $s ) {
 		wfDeprecated( __METHOD__ );
@@ -1780,7 +1780,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Escape string for safe LIKE usage.
 	 * WARNING: you should almost never use this function directly,
 	 * instead use buildLike() that escapes everything automatically
-	 * Deprecated in 1.17, warnings in 1.17, removed in ???
+	 * @deprecated since 1.17, warnings in 1.17, removed in ???
 	 */
 	public function escapeLike( $s ) {
 		wfDeprecated( __METHOD__ );
@@ -2304,24 +2304,6 @@ abstract class DatabaseBase implements DatabaseType {
 			$this->query( 'ROLLBACK', $fname, true );
 			$this->mTrxLevel = 0;
 		}
-	}
-
-	/**
-	 * Begin a transaction, committing any previously open transaction
-	 * @deprecated use begin()
-	 */
-	function immediateBegin( $fname = 'DatabaseBase::immediateBegin' ) {
-		wfDeprecated( __METHOD__ );
-		$this->begin();
-	}
-
-	/**
-	 * Commit transaction, if one is open
-	 * @deprecated use commit()
-	 */
-	function immediateCommit( $fname = 'DatabaseBase::immediateCommit' ) {
-		wfDeprecated( __METHOD__ );
-		$this->commit();
 	}
 
 	/**

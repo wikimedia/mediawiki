@@ -242,7 +242,7 @@ abstract class File {
 	/**
 	* Alias for getPath()
 	*
-	* @deprecated Use getPath().
+	* @deprecated since 1.18 Use getPath().
 	*/
 	public function getFullPath() {
 		wfDeprecated( __METHOD__ );
@@ -903,47 +903,6 @@ abstract class File {
 	 */
 	function publish( $srcPath, $flags = 0 ) {
 		$this->readOnlyError();
-	}
-
-	/**
-	 * Get an array of Title objects which are articles which use this file
-	 * Also adds their IDs to the link cache
-	 *
-	 * This is mostly copied from Title::getLinksTo()
-	 *
-	 * @deprecated Use HTMLCacheUpdate, this function uses too much memory
-	 */
-	function getLinksTo( $options = array() ) {
-		wfDeprecated( __METHOD__ );
-		wfProfileIn( __METHOD__ );
-
-		// Note: use local DB not repo DB, we want to know local links
-		if ( count( $options ) > 0 ) {
-			$db = wfGetDB( DB_MASTER );
-		} else {
-			$db = wfGetDB( DB_SLAVE );
-		}
-		$linkCache = LinkCache::singleton();
-
-		$encName = $db->addQuotes( $this->getName() );
-		$res = $db->select( array( 'page', 'imagelinks'), 
-							array( 'page_namespace', 'page_title', 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
-							array( 'page_id=il_from', 'il_to' => $encName ),
-							__METHOD__,
-							$options );
-
-		$retVal = array();
-		if ( $db->numRows( $res ) ) {
-			foreach ( $res as $row ) {
-				$titleObj = Title::newFromRow( $row );
-				if ( $titleObj ) {
-					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redirect, $row->page_latest );
-					$retVal[] = $titleObj;
-				}
-			}
-		}
-		wfProfileOut( __METHOD__ );
-		return $retVal;
 	}
 
 	function formatMetadata() {

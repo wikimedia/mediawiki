@@ -602,7 +602,7 @@ class Revision {
 	/**
 	 * Alias for getText(Revision::FOR_THIS_USER)
 	 *
-	 * @deprecated
+	 * @deprecated since 1.17
 	 * @return String
 	 */
 	public function revText() {

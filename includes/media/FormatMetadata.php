@@ -1336,7 +1336,7 @@ class FormatMetadata {
 /** For compatability with old FormatExif class
  * which some extensions use.
  *
- *@deprecated
+ * @deprecated since 1.18
  *
 **/
 class FormatExif {
