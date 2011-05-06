@@ -848,50 +848,6 @@ function wfMsgExt( $key, $options ) {
 	return $string;
 }
 
-
-/**
- * Just like exit() but makes a note of it.
- * Commits open transactions except if the error parameter is set
- *
- * @deprecated Please return control to the caller or throw an exception. Will
- *             be removed in 1.19.
- */
-function wfAbruptExit( $error = false ) {
-	static $called = false;
-	if ( $called ) {
-		exit( -1 );
-	}
-	$called = true;
-
-	wfDeprecated( __FUNCTION__ );
-	$bt = wfDebugBacktrace();
-	if( $bt ) {
-		for( $i = 0; $i < count( $bt ); $i++ ) {
-			$file = isset( $bt[$i]['file'] ) ? $bt[$i]['file'] : 'unknown';
-			$line = isset( $bt[$i]['line'] ) ? $bt[$i]['line'] : 'unknown';
-			wfDebug( "WARNING: Abrupt exit in $file at line $line\n");
-		}
-	} else {
-		wfDebug( "WARNING: Abrupt exit\n" );
-	}
-
-	wfLogProfilingData();
-
-	if ( !$error ) {
-		wfGetLB()->closeAll();
-	}
-	exit( -1 );
-}
-
-/**
- * @deprecated Please return control the caller or throw an exception. Will
- *             be removed in 1.19.
- */
-function wfErrorExit() {
-	wfDeprecated( __FUNCTION__ );
-	wfAbruptExit( true );
-}
-
 /**
  * Print an error message and die, returning nonzero to the shell if any.  Plain die()
  * fails to return nonzero to the shell if you pass a string.  Entry points may customise
@@ -2126,15 +2082,6 @@ function swap( &$x, &$y ) {
 	$z = $x;
 	$x = $y;
 	$y = $z;
-}
-
-/**
- * BC wrapper for MimeMagic::singleton()
- * @deprecated No longer needed as of 1.17 (r68836). Remove in 1.19.
- */
-function &wfGetMimeMagic() {
-	wfDeprecated( __FUNCTION__ );
-	return MimeMagic::singleton();
 }
 
 /**
