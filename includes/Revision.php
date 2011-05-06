@@ -760,8 +760,8 @@ class Revision {
 				# Upconvert on demand.
 				# ("utf8" checked for compatibility with some broken
 				#  conversion scripts 2008-12-30)
-				global $wgInputEncoding, $wgContLang;
-				$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding, $text );
+				global $wgContLang;
+				$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
 			}
 		}
 		wfProfileOut( __METHOD__ );

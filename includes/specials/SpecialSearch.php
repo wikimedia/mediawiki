@@ -193,14 +193,13 @@ class SpecialSearch extends SpecialPage {
 				wfProfileOut( __METHOD__ );
 				return;
 			}
-			global $wgInputEncoding;
 			$wgOut->addHTML(
 				Xml::openElement( 'fieldset' ) .
 				Xml::element( 'legend', null, wfMsg( 'search-external' ) ) .
 				Xml::element( 'p', array( 'class' => 'mw-searchdisabled' ), wfMsg( 'searchdisabled' ) ) .
 				wfMsg( 'googlesearch',
 					htmlspecialchars( $term ),
-					htmlspecialchars( $wgInputEncoding ),
+					htmlspecialchars( 'UTF-8' ),
 					htmlspecialchars( wfMsg( 'searchbutton' ) )
 				) .
 				Xml::closeElement( 'fieldset' )

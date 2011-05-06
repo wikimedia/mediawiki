@@ -19,14 +19,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 global $wgLanguageNames;
 require_once( dirname( __FILE__ ) . '/Names.php' );
 
-global $wgInputEncoding, $wgOutputEncoding;
-
-/**
- * These are always UTF-8, they exist only for backwards compatibility
- */
-$wgInputEncoding    = 'UTF-8';
-$wgOutputEncoding	= 'UTF-8';
-
 if ( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding( 'UTF-8' );
 }

@@ -1838,7 +1838,6 @@ class OutputPage {
 	 * the object, let's actually output it:
 	 */
 	public function output() {
-		global $wgOutputEncoding;
 		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType;
 
 		if( $this->mDoNothing ) {
@@ -1882,7 +1881,7 @@ class OutputPage {
 		# Buffer output; final headers may depend on later processing
 		ob_start();
 
-		$response->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
+		$response->header( "Content-type: $wgMimeType; charset=UTF-8" );
 		$response->header( 'Content-language: ' . $wgLanguageCode );
 
 		// Prevent framing, if requested
@@ -1919,11 +1918,11 @@ class OutputPage {
 	 * @param $ins String: the string to output
 	 */
 	public function out( $ins ) {
-		global $wgInputEncoding, $wgOutputEncoding, $wgContLang;
-		if ( 0 == strcmp( $wgInputEncoding, $wgOutputEncoding ) ) {
+		global $wgContLang;
+		if ( 0 == strcmp( 'UTF-8', 'UTF-8' ) ) {
 			$outs = $ins;
 		} else {
-			$outs = $wgContLang->iconv( $wgInputEncoding, $wgOutputEncoding, $ins );
+			$outs = $wgContLang->iconv( 'UTF-8', 'UTF-8', $ins );
 			if ( false === $outs ) {
 				$outs = $ins;
 			}
@@ -2684,7 +2683,7 @@ class OutputPage {
 	 */
 	public function getHeadLinks( Skin $sk, $addContentType = false ) {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
-			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType, $wgOutputEncoding,
+			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
 			$wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf,
 			$wgDisableLangConversion, $wgCanonicalLanguageLinks, $wgContLang,
@@ -2696,11 +2695,11 @@ class OutputPage {
 			if ( $wgHtml5 ) {
 				# More succinct than <meta http-equiv=Content-Type>, has the
 				# same effect
-				$tags[] = Html::element( 'meta', array( 'charset' => $wgOutputEncoding ) );
+				$tags[] = Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
 			} else {
 				$tags[] = Html::element( 'meta', array(
 					'http-equiv' => 'Content-Type',
-					'content' => "$wgMimeType; charset=$wgOutputEncoding"
+					'content' => "$wgMimeType; charset=UTF-8"
 				) );
 				$tags[] = Html::element( 'meta', array(  // bug 15835
 					'http-equiv' => 'Content-Style-Type',

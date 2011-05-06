@@ -155,14 +155,14 @@ class HTMLFileCache {
 
 	/* Working directory to/from output */
 	public function loadFromFileCache() {
-		global $wgOut, $wgMimeType, $wgOutputEncoding, $wgLanguageCode;
+		global $wgOut, $wgMimeType, $wgLanguageCode;
 		wfDebug( __METHOD__ . "()\n");
 		$filename = $this->fileCacheName();
 		// Raw pages should handle cache control on their own,
 		// even when using file cache. This reduces hits from clients.
 		if( $this->mType !== 'raw' ) {
 			$wgOut->sendCacheControl();
-			header( "Content-Type: $wgMimeType; charset={$wgOutputEncoding}" );
+			header( "Content-Type: $wgMimeType; charset=UTF-8" );
 			header( "Content-Language: $wgLanguageCode" );
 		}
 

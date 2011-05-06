@@ -130,9 +130,9 @@ class DifferenceEngine {
 		# we'll use the application/x-external-editor interface to call
 		# an external diff tool like kompare, kdiff3, etc.
 		if ( $wgUseExternalEditor && $wgUser->getOption( 'externaldiff' ) ) {
-			global $wgInputEncoding, $wgServer, $wgScript, $wgLang;
+			global $wgServer, $wgScript, $wgLang;
 			$wgOut->disable();
-			header ( "Content-type: application/x-external-editor; charset=" . $wgInputEncoding );
+			header ( "Content-type: application/x-external-editor; charset=UTF-8" );
 			$url1 = $this->mTitle->getFullURL( array(
 				'action' => 'raw',
 				'oldid' => $this->mOldid
