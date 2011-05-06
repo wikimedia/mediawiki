@@ -3289,6 +3289,7 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
  * @deprecated Warnings in 1.19, removal in 1.20
  */
 function wfOut( $s ) {
+	wfDeprecated( __METHOD );
 	global $wgCommandLineMode;
 	if ( $wgCommandLineMode && !defined( 'MEDIAWIKI_INSTALL' ) ) {
 		echo $s;
