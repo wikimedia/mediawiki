@@ -1975,7 +1975,7 @@ class Linker {
 			return '';
 		}
 		return Xml::expandAttributes( array(
-			'title' => self::titleAttrib( $name, $options )
+			'title' => $tooltip
 		) );
 	}
 }
