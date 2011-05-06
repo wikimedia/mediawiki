@@ -1898,45 +1898,6 @@ class Linker {
 	}
 
 	/**
-	 * Creates the HTML source for images
-	 * @deprecated since 1.16 use makeImageLink2
-	 *
-	 * @param $title Title object
-	 * @param $label String: label text
-	 * @param $alt String: alt text
-	 * @param $align String: horizontal alignment: none, left, center, right)
-	 * @param $handlerParams Array: parameters to be passed to the media handler
-	 * @param $framed Boolean: shows image in original size in a frame
-	 * @param $thumb Boolean: shows image as thumbnail in a frame
-	 * @param $manualthumb String: image name for the manual thumbnail
-	 * @param $valign String: vertical alignment: baseline, sub, super, top, text-top, middle, bottom, text-bottom
-	 * @param $time String: timestamp of the file, set as false for current
-	 * @return String
-	 */
-	static function makeImageLinkObj( $title, $label, $alt, $align = '', $handlerParams = array(),
-		$framed = false, $thumb = false, $manualthumb = '', $valign = '', $time = false )
-	{
-		$frameParams = array( 'alt' => $alt, 'caption' => $label );
-		if ( $align ) {
-			$frameParams['align'] = $align;
-		}
-		if ( $framed ) {
-			$frameParams['framed'] = true;
-		}
-		if ( $thumb ) {
-			$frameParams['thumbnail'] = true;
-		}
-		if ( $manualthumb ) {
-			$frameParams['manualthumb'] = $manualthumb;
-		}
-		if ( $valign ) {
-			$frameParams['valign'] = $valign;
-		}
-		$file = wfFindFile( $title, array( 'time' => $time ) );
-		return self::makeImageLink2( $title, $file, $frameParams, $handlerParams, $time );
-	}
-
-	/**
 	 * Returns the attributes for the tooltip and access key.
 	 */
 	public static function tooltipAndAccesskeyAttribs( $name ) {
