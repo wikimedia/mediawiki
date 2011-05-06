@@ -1299,12 +1299,7 @@ class User {
 	 * @return Bool True if rate limited
 	 */
 	public function isPingLimitable() {
-		global $wgRateLimitsExcludedGroups;
 		global $wgRateLimitsExcludedIPs;
-		if( array_intersect( $this->getEffectiveGroups(), $wgRateLimitsExcludedGroups ) ) {
-			// Deprecated, but kept for backwards-compatibility config
-			return false;
-		}
 		if( in_array( wfGetIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
