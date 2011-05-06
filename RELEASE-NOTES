@@ -15,6 +15,7 @@ production.
 === New features in 1.19 ===
 
 === Bug fixes in 1.19 ===
+* (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
 
 === API changes in 1.19 ===
 
