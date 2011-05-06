@@ -126,12 +126,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	protected function getQueryInfo( $randstr ) {
-		global $wgExtraRandompageSQL;
 		$redirect = $this->isRedirect() ? 1 : 0;
-
-		if ( $wgExtraRandompageSQL ) {
-			$this->extra[] = $wgExtraRandompageSQL;
-		}
 
 		return array(
 			'tables' => array( 'page' ),
