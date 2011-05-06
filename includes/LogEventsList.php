@@ -1064,6 +1064,8 @@ class LogReader {
 
 	/**
 	 * @param $request WebRequest: for internal use use a FauxRequest object to pass arbitrary parameters.
+	 *
+	 * @deprecated since 1.14
 	 */
 	function __construct( $request ) {
 		global $wgUser, $wgOut;
@@ -1112,6 +1114,8 @@ class LogViewer {
 	 * @param &$reader LogReader: where to get our data from
 	 * @param $flags Integer: Bitwise combination of flags:
 	 *     LogEventsList::NO_ACTION_LINK   Don't show restore/unblock/block links
+	 *
+	 * @deprecated since 1.14
 	 */
 	function __construct( &$reader, $flags = 0 ) {
 		wfDeprecated(__METHOD__);

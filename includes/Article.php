@@ -605,7 +605,7 @@ class Article {
 
 	/**
 	 * Read/write accessor to select FOR UPDATE
-	 * @FIXME: remove, does nothing
+	 * @deprecated since 1.18
 	 *
 	 * @param $x Mixed: FIXME
 	 * @return mixed value of $x, or value stored in Article::mForUpdate
