@@ -317,6 +317,8 @@ class Linker {
 	 * Default text of the links to the Title $target
 	 *
 	 * @param $target Title
+	 *
+	 * @return string
 	 */
 	private static function linkText( $target ) {
 		# We might be passed a non-Title by make*LinkObj().  Fail gracefully.
@@ -361,6 +363,8 @@ class Linker {
 	 * despite $query not being used.
 	 *
 	 * @param $nt Title
+	 *
+	 * @return string
 	 */
 	static function makeSelfLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		if ( $text == '' ) {
@@ -370,6 +374,10 @@ class Linker {
 		return "<strong class=\"selflink\">{$prefix}{$text}{$inside}</strong>{$trail}";
 	}
 
+	/**
+	 * @param $title Title
+	 * @return Title
+	 */
 	static function normaliseSpecialPage( Title $title ) {
 		if ( $title->getNamespace() == NS_SPECIAL ) {
 			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
@@ -387,6 +395,10 @@ class Linker {
 	/**
 	 * Returns the filename part of an url.
 	 * Used as alternative text for external images.
+	 *
+	 * @param $url string
+	 *
+	 * @return string
 	 */
 	static function fnamePart( $url ) {
 		$basename = strrchr( $url, '/' );
@@ -401,6 +413,11 @@ class Linker {
 	/**
 	 * Return the code for images which were added via external links,
 	 * via Parser::maybeMakeExternalImage().
+	 *
+	 * @param $url
+	 * @param $alt
+	 *
+	 * @return string
 	 */
 	static function makeExternalImage( $url, $alt = '' ) {
 		if ( $alt == '' ) {
@@ -1740,60 +1757,6 @@ class Linker {
 	/**
 	 * @deprecated since 1.16 Use link()
 	 *
-	 * This function is a shortcut to makeLinkObj(Title::newFromText($title),...). Do not call
-	 * it if you already have a title object handy. See makeLinkObj for further documentation.
-	 *
-	 * @param $title String: the text of the title
-	 * @param $text  String: link text
-	 * @param $query String: optional query part
-	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 */
-	static function makeLink( $title, $text = '', $query = '', $trail = '' ) {
-		wfProfileIn( __METHOD__ );
-		$nt = Title::newFromText( $title );
-		if ( $nt instanceof Title ) {
-			$result = self::makeLinkObj( $nt, $text, $query, $trail );
-		} else {
-			wfDebug( 'Invalid title passed to self::makeLink(): "' . $title . "\"\n" );
-			$result = $text == "" ? $title : $text;
-		}
-
-		wfProfileOut( __METHOD__ );
-		return $result;
-	}
-
-	/**
-	 * @deprecated since 1.16 Use link()
-	 *
-	 * This function is a shortcut to makeKnownLinkObj(Title::newFromText($title),...). Do not call
-	 * it if you already have a title object handy. See makeKnownLinkObj for further documentation.
-	 *
-	 * @param $title String: the text of the title
-	 * @param $text  String: link text
-	 * @param $query String: optional query part
-	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 * @param $prefix String: Optional prefix
-	 * @param $aprops String: extra attributes to the a-element
-	 */
-	static function makeKnownLink(
-		$title, $text = '', $query = '', $trail = '', $prefix = '', $aprops = ''
-	) {
-		$nt = Title::newFromText( $title );
-		if ( $nt instanceof Title ) {
-			return self::makeKnownLinkObj( $nt, $text, $query, $trail, $prefix , $aprops );
-		} else {
-			wfDebug( 'Invalid title passed to self::makeKnownLink(): "' . $title . "\"\n" );
-			return $text == '' ? $title : $text;
-		}
-	}
-
-	/**
-	 * @deprecated since 1.16 Use link()
-	 *
 	 * This function is a shortcut to makeBrokenLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeBrokenLinkObj for further documentation.
 	 *
@@ -1909,23 +1872,6 @@ class Linker {
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
-	}
-
-	/**
-	 * @deprecated since 1.16 Use link()
-	 *
-	 * Make a brown link to a short article.
-	 *
-	 * @param $nt Title object of the target page
-	 * @param $text  String: link text
-	 * @param $query String: optional query part
-	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 * @param $prefix String: Optional prefix
-	 */
-	static function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		return self::makeColouredLinkObj( $nt, 'stub', $text, $query, $trail, $prefix );
 	}
 
 	/**
