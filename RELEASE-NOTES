@@ -11,6 +11,10 @@ MediaWiki 1.19 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.19 ===
+* $wgRateLimitsExcludedGroups (deprecated in 1.13) has been removed
+* $wgInputEncoding and $wgOutputEncoding (deprecated in 1.5) have now been removed
+* $wgAllowUserSkin (deprecated in 1.16) has now been removed
+* $wgExtraRandompageSQL (deprecated in 1.16) has now been removed
 
 === New features in 1.19 ===
 
