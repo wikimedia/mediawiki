@@ -802,15 +802,6 @@ class Parser {
 	}
 
 	/**
-	 * Interface with html tidy
-	 * @deprecated Use MWTidy::tidy()
-	 */
-	public static function tidy( $text ) {
-		wfDeprecated( __METHOD__ );
-		return MWTidy::tidy( $text );
-	}
-
-	/**
 	 * parse the wiki syntax used to render tables
 	 *
 	 * @private

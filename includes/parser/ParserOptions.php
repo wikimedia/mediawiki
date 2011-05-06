@@ -93,7 +93,7 @@ class ParserOptions {
 	/** 	 
 	 * @param $title Title 	 
 	 * @return Skin 	 
-	 * @deprecated Use Linker::* instead 	 
+	 * @deprecated since 1.18 Use Linker::* instead
 	 */ 	 
 	function getSkin( $title = null ) { 	 
 		wfDeprecated( __METHOD__ );

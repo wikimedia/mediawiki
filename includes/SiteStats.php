@@ -100,14 +100,6 @@ class SiteStats {
 	}
 
 	/**
-	 * @deprecated Use self::numberingroup('sysop') instead
-	 */
-	static function admins() {
-		wfDeprecated(__METHOD__);
-		return self::numberingroup( 'sysop' );
-	}
-
-	/**
 	 * Find the number of users in a given user group.
 	 * @param $group String: name of group
 	 * @return Integer

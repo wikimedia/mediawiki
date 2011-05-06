@@ -31,6 +31,8 @@
 class WikiError {
 	/**
 	 * @param $message string
+	 *
+	 * @deprecated since 1.17
 	 */
 	function __construct( $message ) {
 		wfDeprecated( __METHOD__ );
@@ -59,6 +61,8 @@ class WikiError {
 	 *
 	 * @param $object mixed
 	 * @return bool
+	 *
+	 * @deprecated since 1.17
 	 */
 	public static function isError( $object ) {
 		wfDeprecated( __METHOD__ );
@@ -80,6 +84,8 @@ class WikiErrorMsg extends WikiError {
 	/**
 	 * @param $message String: wiki message name
 	 * @param ... parameters to pass to wfMsg()
+	 *
+	 * @deprecated since 1.17
 	 */
 	function __construct( $message/*, ... */ ) {
 		wfDeprecated( __METHOD__ );
@@ -110,6 +116,8 @@ class WikiXmlError extends WikiError {
 	 * @param $message string
 	 * @param $context
 	 * @param $offset Int
+	 *
+	 * @deprecated since 1.17
 	 */
 	function __construct( $parser, $message = 'XML parsing error', $context = null, $offset = 0 ) {
 		wfDeprecated( __METHOD__ );

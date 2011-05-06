@@ -510,6 +510,8 @@ class Exif {
 	/**
 	 * Use FormatMetadata to create formatted values for display to user
 	 * (is this ever used?)
+	 *
+	 * @deprecated since 1.18
 	 */
 	function makeFormattedData( ) {
 		wfDeprecated( __METHOD__ );
@@ -540,6 +542,8 @@ class Exif {
 	 *
 	 * This returns the data for display to user.
 	 * Its unclear if this is ever used.
+	 *
+	 * @deprecated since 1.18
 	 */
 	function getFormattedData() {
 		wfDeprecated( __METHOD__ );

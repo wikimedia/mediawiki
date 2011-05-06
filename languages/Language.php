@@ -264,15 +264,6 @@ class Language {
 	 */
 	function initContLang() { }
 
-	/**
-	 * @deprecated Use User::getDefaultOptions()
-	 * @return array
-	 */
-	function getDefaultUserOptions() {
-		wfDeprecated( __METHOD__ );
-		return User::getDefaultOptions();
-	}
-
 	function getFallbackLanguageCode() {
 		if ( $this->mCode === 'en' ) {
 			return false;
