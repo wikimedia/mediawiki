@@ -106,7 +106,6 @@ if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 $maintenance->finalSetup();
 // Some last includes
 require_once( MWInit::compiledPath( 'includes/Setup.php' ) );
-require_once( MWInit::compiledPath( 'maintenance/install-utils.inc' ) );
 
 // Much much faster startup than creating a title object
 $wgTitle = null;
