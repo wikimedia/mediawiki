@@ -212,11 +212,9 @@ class DublinCoreRdf extends RdfMetaData {
 	 * begin of the page
 	 */
 	protected function prologue() {
-		global $wgOutputEncoding;
-
 		$url = htmlspecialchars( $this->reallyFullUrl() );
 		print <<<PROLOGUE
-<?xml version="1.0" encoding="{$wgOutputEncoding}" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE rdf:RDF PUBLIC "-//DUBLIN CORE//DCMES DTD 2002/07/31//EN" "http://dublincore.org/documents/2002/07/31/dcmes-xml/dcmes-xml-dtd.dtd">
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -269,9 +267,8 @@ class CreativeCommonsRdf extends RdfMetaData {
 	}
 
 	protected function prologue() {
-		global $wgOutputEncoding;
 		echo <<<PROLOGUE
-<?xml version='1.0'  encoding="{$wgOutputEncoding}" ?>
+<?xml version='1.0'  encoding="UTF-8" ?>
 <rdf:RDF xmlns:cc="http://web.resource.org/cc/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">

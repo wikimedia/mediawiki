@@ -609,9 +609,9 @@ class Html {
 	public static function htmlHeader( $attribs = array() ) {
 		$ret = '';
 
-		global $wgMimeType, $wgOutputEncoding;
+		global $wgMimeType;
 		if ( self::isXmlMimeType( $wgMimeType ) ) {
-			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
+			$ret .= "<?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n";
 		}
 
 		global $wgHtml5, $wgHtml5Version, $wgDocType, $wgDTD;

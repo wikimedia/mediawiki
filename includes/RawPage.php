@@ -24,7 +24,7 @@ class RawPage {
 	var $mContentType, $mExpandTemplates;
 
 	function __construct( Article $article, $request = false ) {
-		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType, $wgGroupPermissions;
+		global $wgRequest, $wgSquidMaxage, $wgJsMimeType, $wgGroupPermissions;
 
 		$allowedCTypes = array( 'text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit' );
 		$this->mArticle = $article;
@@ -89,7 +89,7 @@ class RawPage {
 		} else {
 			$this->mGen = false;
 		}
-		$this->mCharset = $wgInputEncoding;
+		$this->mCharset = 'UTF-8';
 
 		# Force caching for CSS and JS raw content, default: 5 minutes
 		if( is_null( $smaxage ) && ( $ctype == 'text/css' || $ctype == $wgJsMimeType ) ) {

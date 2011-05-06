@@ -1870,11 +1870,6 @@ $wgDummyLanguageCodes = array(
 	'simple',
 );
 
-/** @deprecated Since MediaWiki 1.5, this must always be set to UTF-8. */
-$wgInputEncoding  = 'UTF-8';
-/** @deprecated Since MediaWiki 1.5, this must always be set to UTF-8. */
-$wgOutputEncoding = 'UTF-8';
-
 /**
  * Character set for use in the article edit box. Language-specific encodings
  * may be defined.

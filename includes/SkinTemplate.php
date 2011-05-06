@@ -134,7 +134,7 @@ class SkinTemplate extends Skin {
 	function outputPage( OutputPage $out ) {
 		global $wgUser, $wgLang, $wgContLang;
 		global $wgScript, $wgStylePath, $wgLanguageCode;
-		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
+		global $wgMimeType, $wgJsMimeType, $wgRequest;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
 		global $wgDisableCounters, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
@@ -274,7 +274,7 @@ class SkinTemplate extends Skin {
 
 		$tpl->setRef( 'mimetype', $wgMimeType );
 		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
-		$tpl->setRef( 'charset', $wgOutputEncoding );
+		$tpl->setRef( 'charset', 'UTF-8' );
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
 		$tpl->set( 'skinclass', get_class( $this ) );

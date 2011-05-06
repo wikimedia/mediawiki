@@ -21,10 +21,9 @@
 class ExternalEdit {
 
 	function __construct( $article, $mode ) {
-		global $wgInputEncoding;
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
-		$this->mCharset = $wgInputEncoding;
+		$this->mCharset = 'UTF-8';
 		$this->mMode = $mode;
 	}
 

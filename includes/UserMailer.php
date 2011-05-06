@@ -110,7 +110,7 @@ class UserMailer {
 	 * @return Status object
 	 */
 	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = null ) {
-		global $wgSMTP, $wgOutputEncoding, $wgEnotifImpersonal;
+		global $wgSMTP, $wgEnotifImpersonal;
 		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
 		if ( is_array( $to ) ) {
@@ -164,7 +164,7 @@ class UserMailer {
 			$headers['Date'] = date( 'r' );
 			$headers['MIME-Version'] = '1.0';
 			$headers['Content-type'] = ( is_null( $contentType ) ?
-					'text/plain; charset=' . $wgOutputEncoding : $contentType );
+					'text/plain; charset=UTF-8' : $contentType );
 			$headers['Content-transfer-encoding'] = '8bit';
 			$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>'; // FIXME
 			$headers['X-Mailer'] = 'MediaWiki mailer';
@@ -203,7 +203,7 @@ class UserMailer {
 				$endl = "\n";
 			}
 			$ctype = ( is_null( $contentType ) ?
-					'text/plain; charset=' . $wgOutputEncoding : $contentType );
+					'text/plain; charset=UTF-8' : $contentType );
 			$headers =
 				"MIME-Version: 1.0$endl" .
 				"Content-type: $ctype$endl" .
@@ -277,8 +277,7 @@ class UserMailer {
 	public static function quotedPrintable( $string, $charset = '' ) {
 		# Probably incomplete; see RFC 2045
 		if( empty( $charset ) ) {
-			global $wgInputEncoding;
-			$charset = $wgInputEncoding;
+			$charset = 'UTF-8';
 		}
 		$charset = strtoupper( $charset );
 		$charset = str_replace( 'ISO-8859', 'ISO8859', $charset ); // ?
