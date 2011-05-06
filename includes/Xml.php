@@ -417,13 +417,6 @@ class Xml {
 	}
 
 	/**
-	 * @deprecated since 1.16 Synonymous to Html::hidden()
-	 */
-	public static function hidden( $name, $value, $attribs = array() ) {
-		return Html::hidden( $name, $value, $attribs );
-	}
-
-	/**
 	 * Convenience function to build an HTML drop-down list item.
 	 * @param $text String: text for this item
 	 * @param $value String: form submission value; if empty, use text
