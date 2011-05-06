@@ -456,12 +456,6 @@ foreach ( $wgExtensionFunctions as $func ) {
 	wfProfileOut( $profName );
 }
 
-// For compatibility
-wfRunHooks( 'LogPageValidTypes', array( &$wgLogTypes ) );
-wfRunHooks( 'LogPageLogName', array( &$wgLogNames ) );
-wfRunHooks( 'LogPageLogHeader', array( &$wgLogHeaders ) );
-wfRunHooks( 'LogPageActionText', array( &$wgLogActions ) );
-
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 wfProfileOut( $fname . '-extensions' );
