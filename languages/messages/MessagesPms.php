@@ -339,6 +339,8 @@ $1",
 'page-rss-feed'           => 'Emission RSS "$1"',
 'page-atom-feed'          => 'Emission Atom "$1"',
 'red-link-title'          => "$1 (pàgina ch'a-i é ancor pa)",
+'sort-descending'         => 'Órdina an caland',
+'sort-ascending'          => 'Órdina an chërsend',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artìcol',

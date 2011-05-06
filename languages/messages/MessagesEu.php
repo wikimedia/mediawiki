@@ -636,6 +636,7 @@ Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat
 # Special:PasswordReset
 'passwordreset'          => 'Pasahitzaren berrezarpena',
 'passwordreset-username' => 'Lankide izena:',
+'passwordreset-email'    => 'E-mail helbidea:',
 
 # Edit page toolbar
 'bold_sample'     => 'Testu beltza',
@@ -2178,6 +2179,8 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 'whatlinkshere-filters'    => 'Iragazleak',
 
 # Block/unblock
+'block'                           => 'Erabiltzailea blokeatu',
+'unblock'                         => 'Erabiltzailea desblokeatu',
 'blockip'                         => 'Erabiltzailea blokeatu',
 'blockip-title'                   => 'Lankidea blokeatu',
 'blockip-legend'                  => 'Erabiltzailea blokeatu',
@@ -2219,8 +2222,9 @@ Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'ipusubmit'                       => 'Blokeoa ezabatu',
 'unblocked'                       => '[[User:$1|$1]] desblokeatu egin da',
 'unblocked-id'                    => '$1 blokeaketa ezabatu da',
-'ipblocklist'                     => 'Blokeatutako IP helbide eta erabiltzaileak',
+'ipblocklist'                     => 'Blokeatutako erabiltzaileak',
 'ipblocklist-legend'              => 'Blokeatutako erabiltzaile bat bilatu',
+'blocklist-reason'                => 'Arrazoia',
 'ipblocklist-submit'              => 'Bilatu',
 'ipblocklist-localblock'          => 'Tokiko blokeoa',
 'ipblocklist-otherblocks'         => 'Bestelako {{PLURAL:$1|blokeoa|blokeoak}}',

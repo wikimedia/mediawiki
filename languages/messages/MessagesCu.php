@@ -141,7 +141,7 @@ $messages = array(
 'dec'           => 'дє҃к',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Катигорі́ꙗ|Катигорі́и|Катигорі́ѩ|Катигорі́ѩ}}',
+'pagecategories'         => '{{PLURAL:$1|Катигорїꙗ|Катигорїи|Катигорїѩ|Катигорїѩ}}',
 'category_header'        => 'катигорїѩ ⁖ $1 ⁖ страницѧ',
 'subcategories'          => 'подъкатигорїѩ',
 'hidden-categories'      => '{{PLURAL:$1|съкрꙑта катигорїꙗ|съкрꙑти катигорїи|съкрꙑтꙑ катигорїѩ}}',
@@ -343,6 +343,9 @@ $messages = array(
 'revdelete-radio-set'        => 'да',
 'revdelete-radio-unset'      => 'нѣтъ',
 'revdelete-log'              => 'какъ съмꙑслъ :',
+'pagehist'                   => 'страницѧ їсторїꙗ',
+'deletedhist'                => 'поничьжєна їсторїꙗ',
+'revdelete-summary'          => 'мѣнꙑ опьсаниѥ',
 'revdelete-uname'            => 'польꙃєватєлꙗ имѧ',
 
 # History merging
@@ -355,6 +358,7 @@ $messages = array(
 'searchmenu-new'                 => "'''страницѫ ⁖ [[:$1]] ⁖ сътворити можєши'''",
 'searchhelp-url'                 => 'Help:Каталогъ',
 'searchprofile-articles'         => 'члѣни',
+'searchprofile-project'          => 'опꙑтьствовании и помощи страницѧ',
 'searchprofile-images'           => 'дѣла',
 'searchprofile-everything'       => 'вьсѩ страницѧ',
 'searchprofile-articles-tooltip' => 'ищи въ $1',
@@ -655,6 +659,7 @@ $messages = array(
 '1movedto2_redir'         => '[[$1]] нарєчєнъ [[$2]] врьхоу прѣнаправлѥниꙗ ѥстъ.',
 'movelogpage'             => 'прѣимєнованиꙗ їсторїꙗ',
 'movereason'              => 'какъ съмꙑслъ :',
+'move-leave-redirect'     => 'прѣнаправлѥниꙗ сътворѥниѥ',
 
 # Namespace 8 related
 'allmessages'     => 'сѷстимьнꙑ напьсаниꙗ',

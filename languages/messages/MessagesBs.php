@@ -573,6 +573,8 @@ $1',
 'page-rss-feed'           => '"$1" RSS izvor',
 'page-atom-feed'          => '"$1" Atom izvor',
 'red-link-title'          => '$1 (stranica ne postoji)',
+'sort-descending'         => 'Poredaj opadajuće',
+'sort-ascending'          => 'Poredaj rastuće',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Članak',

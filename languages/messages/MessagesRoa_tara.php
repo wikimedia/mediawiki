@@ -324,6 +324,8 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
 'red-link-title'          => "$1 (non g'esiste - addà essere scritte)",
+'sort-descending'         => 'Ordenamende ca scenne',
+'sort-ascending'          => "Ordenamende ca 'nghiane",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pàgene',

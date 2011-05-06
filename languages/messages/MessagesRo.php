@@ -595,6 +595,8 @@ $1',
 'page-rss-feed'           => '„$1” Abonare RSS',
 'page-atom-feed'          => '„$1” Abonare Atom',
 'red-link-title'          => '$1 (pagină inexistentă)',
+'sort-descending'         => 'Sortare descendentă',
+'sort-ascending'          => 'Sortare ascendentă',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pagină',
@@ -818,6 +820,7 @@ $2
 Ar trebui să vă autentificați și să alegeți acum o nouă parolă. Dacă altcineva a făcut această solicitare, ori dacă v-ați reamintit parola originală și nu mai doriți modificarea ei, puteți ignora acest mesaj, continuând cu vechea parolă.',
 'passwordreset-emailelement'   => 'Nume de utilizator: $1
 Parolă temporară: $2',
+'passwordreset-emailsent'      => 'A fost trimis un e-mail de reamintire.',
 
 # Edit page toolbar
 'bold_sample'     => 'Text aldin',

@@ -619,6 +619,8 @@ $1',
 'page-rss-feed'           => 'Umpan RSS "$1"',
 'page-atom-feed'          => 'Umpan Atom "$1"',
 'red-link-title'          => '$1 (halaman belum tersedia)',
+'sort-descending'         => 'Urutkan menurun',
+'sort-ascending'          => 'Urutkan menaik',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Halaman',

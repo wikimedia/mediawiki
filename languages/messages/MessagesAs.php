@@ -236,6 +236,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'আগলৈ',
 'index-category'                 => 'সূচীকৃত পৃষ্ঠাসমূহ',
 'noindex-category'               => 'অসূচীকৃত পৃষ্ঠাসমূহ',
+'broken-file-category'           => 'অবৈধ ফাইল সংযোগযুক্ত পৃষ্ঠাবোৰ',
 
 'mainpagetext'      => "'''মেডিয়াৱিকি সফলভাবে ইন্সটল কৰা হ'ল ।'''",
 'mainpagedocfooter' => "ৱিকি চ'ফটৱেৰ কেনেকৈ ব্যৱহাৰ কৰিব [http://meta.wikimedia.org/wiki/Help:Contents সদস্যৰ সহায়িকা] চাওঁক ।
@@ -345,6 +346,7 @@ $messages = array(
 অনুগ্ৰহ কৰি অলপ পাচত এই পৃষ্ঠা চাব প্ৰয়াস কৰক ।
 
 $1',
+'pool-timeout'      => 'লকৰ বাবে অপেক্ষা কৰি সময় উকলি গৈছে',
 'pool-queuefull'    => 'পোল কিউ (pool queue) সমূল',
 'pool-errorunknown' => 'অপৰিচিত ত্ৰুটি',
 
@@ -396,12 +398,15 @@ $1',
 'viewdeleted'             => '$1 চাওক?',
 'restorelink'             => '{{PLURAL:$1| এটা বিলুপ্ত সম্পাদনা|$1 টা বিলুপ্ত সম্পাদনা}}',
 'feedlinks'               => 'ফিড:',
+'feed-invalid'            => 'অবৈধ গ্ৰাহক ফীড প্ৰকাৰ',
 'feed-unavailable'        => 'সিন্ডিকেশন ফিড মজুত নাই',
 'site-rss-feed'           => '$1 আৰ এস এস ফিড',
 'site-atom-feed'          => '$1 এটম ফিড',
 'page-rss-feed'           => '"$1" আৰ-এচ-এচ ফীড',
 'page-atom-feed'          => '"$1" এটম ফিড',
 'red-link-title'          => '$1 (পাতটি নাই)',
+'sort-descending'         => 'ক্ৰমহ্ৰস্বমান ভাৱে ক্ৰমবদ্ধ কৰক',
+'sort-ascending'          => 'ক্ৰমবৰ্দ্ধমান ভাৱে ক্ৰমবদ্ধ কৰক',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'পৃষ্ঠা',
@@ -428,6 +433,17 @@ $1',
 # General errors
 'error'                => 'ভুল',
 'databaseerror'        => 'তথ্যকোষৰ ভুল',
+'dberrortext'          => 'এক ডাটাবেচ চিণ্টেক্স ত্ৰুটি ঘটিছে।
+ছফ্টৱেৰত থকা কোনো বাগৰ বাবে এনে হব পাৰে।
+অন্তিমবাৰ চেষ্টা কৰা ডাটাবেচ কুৱেৰীটো আছিল এনেধৰণৰ:
+<blockquote><tt>$1</tt></blockquote>
+"<tt>$2</tt>" ফাংচনৰ পৰা
+ডাটাবেচে প্ৰেৰণ কৰা ত্ৰুটি: "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'এক ডাটাবেচ চিণ্টেক্স ত্ৰুটি ঘটিছে।
+অন্তিমবাৰ চেষ্টা কৰা ডাটাবেচ কুৱেৰীটো আছিল এনেধৰণৰ:
+"$1"
+"$2" ফাংচনৰ পৰা
+ডাটাবেচে প্ৰেৰণ কৰা ত্ৰুটি "$3: $4"',
 'laggedslavemode'      => 'সাবধান: ইয়াত সাম্প্ৰতিক সাল-সলনি নাথাকিব পাৰে',
 'readonly'             => 'তথ্যকোষ বন্ধ কৰা আছে',
 'enterlockreason'      => 'বন্ধ কৰাৰ কাৰণ দিয়ক, লগতে কেতিয়ামানে খোলা হব তাকো জনাব।',

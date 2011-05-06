@@ -462,6 +462,8 @@ $1",
 'page-rss-feed'           => 'RSS-Feed fir "$1"',
 'page-atom-feed'          => 'Atom-Feed fir "$1"',
 'red-link-title'          => '$1 (Säit gëtt et net)',
+'sort-descending'         => 'Vu grouss op kleng zortéieren',
+'sort-ascending'          => 'Vu kleng op grouss zortéieren',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Säit',

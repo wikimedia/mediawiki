@@ -2388,6 +2388,7 @@ Ulihafadhi katika tarakalishi yako, halafu ulipakie hapa.',
 'importbadinterwiki'         => 'Kiungo kibovu kati za wiki',
 'importnotext'               => 'Tupu au bila maandishi',
 'importsuccess'              => 'Kuleta kumekamilishwa!',
+'import-noarticle'           => 'Hakuna kurasa za kuleta!',
 'import-token-mismatch'      => 'Data ya kipindi zilipotelewa.
 Tafadhali jaribu tena.',
 
@@ -2568,6 +2569,8 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-copyright'                   => 'Mwenye hatimiliki',
 'exif-exifversion'                 => 'Mtindo wa Exif',
 'exif-componentsconfiguration'     => 'Maana ya kila kijenzi',
+'exif-pixelydimension'             => 'Upana wa picha',
+'exif-pixelxdimension'             => 'Urefu wa picha',
 'exif-usercomment'                 => 'Maoni ya mtumiaji',
 'exif-relatedsoundfile'            => 'Faili la sauti linalohusika',
 'exif-lightsource'                 => 'Mwanga',
@@ -2584,6 +2587,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpsdestlatitude'             => 'Latitudo ya kikomo',
 'exif-gpsdestlongitude'            => 'Longitudo ya kikomo',
 'exif-gpsdestdistance'             => 'Mbali wa kikomo',
+'exif-gpsareainformation'          => 'Jina la eneo la GPS',
 'exif-gpsdatestamp'                => 'Tarehe ya GPS',
 'exif-jpegfilecomment'             => 'Maoni juu ya faili la JPEG',
 'exif-keywords'                    => 'Maneno yahusika',
@@ -2592,6 +2596,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-objectname'                  => 'Jina fupi',
 'exif-specialinstructions'         => 'Maelekezo maalum',
 'exif-urgency'                     => 'Umuhimu',
+'exif-writer'                      => 'Mwandishi',
 'exif-languagecode'                => 'Lugha',
 'exif-iimcategory'                 => 'Jamii',
 'exif-pngfilecomment'              => 'Maoni juu ya faili la PNG',
@@ -2662,6 +2667,10 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpsspeed-k' => 'Kilometa kwa saa',
 'exif-gpsspeed-m' => 'Maili kwa saa',
 'exif-gpsspeed-n' => 'Noti',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilomita',
+'exif-gpsdestdistance-m' => 'Maili',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Mwelekeo halisi',
@@ -2763,6 +2772,9 @@ Ishara hizi za uthibitisho zitaishia mnamo $4.',
 # Scary transclusion
 'scarytranscludefailed'  => '[Kuleta kigezo imeshindikana kwa ajili ya $1]',
 'scarytranscludetoolong' => '[URL ni ndefu mno]',
+
+# Trackbacks
+'trackbackremove' => '([$1 Futa])',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
