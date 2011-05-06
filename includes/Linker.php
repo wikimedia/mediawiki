@@ -1974,12 +1974,6 @@ class Linker {
 		return self::makeKnownLinkObj( $nt, $text, $query, $trail, $prefix, '', $style );
 	}
 
-	/** Obsolete alias */
-	static function makeImage( $url, $alt = '' ) {
-		wfDeprecated( __METHOD__ );
-		return self::makeExternalImage( $url, $alt );
-	}
-
 	/**
 	 * Creates the HTML source for images
 	 * @deprecated since 1.16 use makeImageLink2

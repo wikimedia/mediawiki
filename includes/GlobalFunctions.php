@@ -2210,20 +2210,6 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
 }
 
 /**
- * Encrypt a username/password.
- *
- * @param $userid Integer: ID of the user
- * @param $password String: password of the user
- * @return String: hashed password
- * @deprecated since 1.13 Use User::crypt() or User::oldCrypt() instead
- */
-function wfEncryptPassword( $userid, $password ) {
-	wfDeprecated(__FUNCTION__);
-	# Just wrap around User::oldCrypt()
-	return User::oldCrypt( $password, $userid );
-}
-
-/**
  * Appends to second array if $value differs from that in $default
  *
  * @param $key String|Int
