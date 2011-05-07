@@ -31,21 +31,21 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	# German namespaces
-	'Medium',               => NS_MEDIA,
-	'Spezial',              => NS_SPECIAL,
-	'Diskussion',           => NS_TALK,
-	'Benutzer',             => NS_USER,
-	'Benutzer_Diskussion',  => NS_USER_TALK,
-	'$1_Diskussion',        => NS_PROJECT_TALK,
-	'Datei',                => NS_FILE,
-	'Datei_Diskussion',     => NS_FILE_TALK,
-	'MediaWiki_Diskussion', => NS_MEDIAWIKI_TALK,
-	'Vorlage',              => NS_TEMPLATE,
-	'Vorlage_Diskussion',   => NS_TEMPLATE_TALK,
-	'Hilfe',                => NS_HELP,
-	'Hilfe_Diskussion',     => NS_HELP_TALK,
-	'Kategorie',            => NS_CATEGORY,
-	'Kategorie_Diskussion', => NS_CATEGORY_TALK,
+	'Medium'               => NS_MEDIA,
+	'Spezial'              => NS_SPECIAL,
+	'Diskussion'           => NS_TALK,
+	'Benutzer'             => NS_USER,
+	'Benutzer_Diskussion'  => NS_USER_TALK,
+	'$1_Diskussion'        => NS_PROJECT_TALK,
+	'Datei'                => NS_FILE,
+	'Datei_Diskussion'     => NS_FILE_TALK,
+	'MediaWiki_Diskussion' => NS_MEDIAWIKI_TALK,
+	'Vorlage'              => NS_TEMPLATE,
+	'Vorlage_Diskussion'   => NS_TEMPLATE_TALK,
+	'Hilfe'                => NS_HELP,
+	'Hilfe_Diskussion'     => NS_HELP_TALK,
+	'Kategorie'            => NS_CATEGORY,
+	'Kategorie_Diskussion' => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
