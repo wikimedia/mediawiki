@@ -1,6 +1,8 @@
 <?php
 /**
- * A few constants that might be needed during LocalSettings.php.
+ * Global constants declarations.  Do *NOT* include *anything* in this file which is
+ * not a define() declaration; this file is included in all sorts of scopes and must
+ * be parseable by PHP 4 without errors.
  *
  * Note: these constants must all be resolvable at compile time by HipHop, 
  * since this file will not be executed during request startup for a compiled
@@ -14,6 +16,14 @@
  */
 define( 'MW_VERSION', '1.19alpha' );
 define( 'MW_SPECIALPAGE_VERSION', 2 );
+
+/**
+ * Minimum version of PHP required to run; entry points will die
+ * if they try to run on a version older than this
+ */
+define( 'MW_MIN_PHP_VERSION', '5.2.3' );
+
+/**@}*/
 
 /**@{
  * Database related constants
