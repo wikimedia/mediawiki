@@ -69,7 +69,7 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => 'Medio',
 	NS_SPECIAL          => 'Especial',
 	NS_TALK             => 'Discusión',
 	NS_USER             => 'Usuario',

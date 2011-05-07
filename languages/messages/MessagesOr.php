@@ -37,19 +37,28 @@ $namespaceNames = array(
 	NS_MEDIA            => 'ମାଧ୍ୟମ',
 	NS_SPECIAL          => 'ବିଶେଷ',
 	NS_TALK             => 'ଆଲୋଚନା',
-	NS_USER             => 'ବ୍ୟବହାରକାରି',
-	NS_USER_TALK        => 'ବ୍ୟବହାରକାରିଁକ_ଆଲୋଚନା',
+	NS_USER             => 'ବ୍ୟବାହାରକାରୀ',
+	NS_USER_TALK        => 'ବ୍ୟବାହାରକାରୀଙ୍କ_ଆଲୋଚନା',
 	NS_PROJECT_TALK     => 'ଉଇକିପିଡ଼ିଆ_ଆଲୋଚନା',
 	NS_FILE             => 'ଫାଇଲ',
 	NS_FILE_TALK        => 'ଫାଇଲ_ଆଲୋଚନା',
 	NS_MEDIAWIKI        => 'ମିଡ଼ିଆଉଇକି',
 	NS_MEDIAWIKI_TALK   => 'ମିଡ଼ିଆଉଇକି_ଆଲୋଚନା',
-	NS_TEMPLATE         => 'ଟେଁପଲେଟ',
-	NS_TEMPLATE_TALK    => 'ଟେଁପଲେଟ_ଆଲୋଚନା',
+	NS_TEMPLATE         => 'ଟେମ୍ପଲେଟ',
+	NS_TEMPLATE_TALK    => 'ଟେମ୍ପଲେଟ_ଆଲୋଚନା',
 	NS_HELP             => 'ସାହାଯ୍ୟ',
 	NS_HELP_TALK        => 'ସାହାଯ୍ୟ_ଆଲୋଚନା',
-	NS_CATEGORY         => 'ବିଭାଗ',
-	NS_CATEGORY_TALK    => 'ବିଭାଗିୟ_ଆଲୋଚନା',
+	NS_CATEGORY         => 'ଶ୍ରେଣୀ',
+	NS_CATEGORY_TALK    => 'ଶ୍ରେଣୀ_ଆଲୋଚନା',
+);
+
+$namespaceAliases = array(
+	'ବ୍ୟବହାରକାରି'          => NS_USER,
+	'ବ୍ୟବହାରକାରିଁକ_ଆଲୋଚନା' => NS_USER_TALK,
+	'ଟେଁପଲେଟ'             => NS_TEMPLATE,
+	'ଟେଁପଲେଟ_ଆଲୋଚନା'     => NS_TEMPLATE_TALK,
+	'ବିଭାଗ'                => NS_CATEGORY,
+	'ବିଭାଗିୟ_ଆଲୋଚନା'      => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(

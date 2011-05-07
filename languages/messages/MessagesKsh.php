@@ -46,7 +46,7 @@ $fallback = 'de';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Medie',
-	NS_SPECIAL          => 'Spezial',
+	NS_SPECIAL          => 'Extra',
 	NS_TALK             => 'Klaaf',
 	NS_USER             => 'Metmaacher',
 	NS_USER_TALK        => 'Metmaacher_Klaaf',
@@ -65,6 +65,7 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Meedije'           => NS_MEDIA,
+	'Spezial'           => NS_SPECIAL,
 	'Shpezjal'          => NS_SPECIAL,
 	'Medmaacher'        => NS_USER,
 	'Medmaacher_Klaaf'  => NS_USER_TALK,

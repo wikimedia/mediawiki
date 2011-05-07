@@ -63,7 +63,7 @@ $namespaceNames = array(
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Обговорення_MediaWiki',
 	NS_TEMPLATE         => 'Шаблон',
-	NS_TEMPLATE_TALK    => 'Обговорення_шаблона',
+	NS_TEMPLATE_TALK    => 'Обговорення_шаблону',
 	NS_HELP             => 'Довідка',
 	NS_HELP_TALK        => 'Обговорення_довідки',
 	NS_CATEGORY         => 'Категорія',
@@ -74,7 +74,7 @@ $namespaceAliases = array(
 	'Спеціальні' => NS_SPECIAL,
 	'Зображення' => NS_FILE,
 	'Обговорення_зображення' => NS_FILE_TALK,
-	'Обговорення_шаблону' => NS_TEMPLATE_TALK,
+	'Обговорення_шаблона' => NS_TEMPLATE_TALK,
 );
 
 $dateFormats = array(
