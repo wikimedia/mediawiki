@@ -15,6 +15,7 @@ production.
 * $wgInputEncoding and $wgOutputEncoding (deprecated in 1.5) have now been removed
 * $wgAllowUserSkin (deprecated in 1.16) has now been removed
 * $wgExtraRandompageSQL (deprecated in 1.16) has now been removed
+* LogReader and LogViewer classes (deprecated in 1.14) have now been removed
 
 === New features in 1.19 ===
 
