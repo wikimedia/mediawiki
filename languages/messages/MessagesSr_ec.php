@@ -34,10 +34,10 @@ $namespaceNames = array(
 	NS_USER             => 'Корисник',
 	NS_USER_TALK        => 'Разговор_са_корисником',
 	NS_PROJECT_TALK     => 'Разговор_о_$1',
-	NS_FILE             => 'Слика',
-	NS_FILE_TALK        => 'Разговор_о_слици',
-	NS_MEDIAWIKI        => 'МедијаВики',
-	NS_MEDIAWIKI_TALK   => 'Разговор_о_МедијаВикију',
+	NS_FILE             => 'Датотека',
+	NS_FILE_TALK        => 'Разговор_о_датотеци',
+	NS_MEDIAWIKI        => 'Медијавики',
+	NS_MEDIAWIKI_TALK   => 'Разговор_о_Медијавикију',
 	NS_TEMPLATE         => 'Шаблон',
 	NS_TEMPLATE_TALK    => 'Разговор_о_шаблону',
 	NS_HELP             => 'Помоћ',
@@ -46,8 +46,8 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Разговор_о_категорији',
 );
 
-# Aliases to latin namespaces
 $namespaceAliases = array(
+        # Aliases for Latin script namespaces
 	"Medija"                  => NS_MEDIA,
 	"Posebno"                 => NS_SPECIAL,
 	"Razgovor"                => NS_TALK,
@@ -61,9 +61,14 @@ $namespaceAliases = array(
 	'Šablon'                  => NS_TEMPLATE,
 	'Razgovor_o_šablonu'      => NS_TEMPLATE_TALK,
 	'Pomoć'                   => NS_HELP,
-	'Razgovor_o_pomoći'      => NS_HELP_TALK,
+	'Razgovor_o_pomoći'       => NS_HELP_TALK,
 	'Kategorija'              => NS_CATEGORY,
 	'Razgovor_o_kategoriji'   => NS_CATEGORY_TALK,
+
+	'Слика'                   => NS_FILE,
+	'Разговор_о_слици'        => NS_FILE_TALK,
+	'МедијаВики'              => NS_MEDIAWIKI,
+	'Разговор_о_МедијаВикију' => NS_MEDIAWIKI_TALK,
 );
 
 

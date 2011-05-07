@@ -30,8 +30,8 @@ $namespaceNames = array(
 	NS_PROJECT_TALK     => '$1_müzakirəsi',
 	NS_FILE             => 'Şəkil',
 	NS_FILE_TALK        => 'Şəkil_müzakirəsi',
-	NS_MEDIAWIKI        => 'MediyaViki',
-	NS_MEDIAWIKI_TALK   => 'MediyaViki_müzakirəsi',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_müzakirəsi',
 	NS_TEMPLATE         => 'Şablon',
 	NS_TEMPLATE_TALK    => 'Şablon_müzakirəsi',
 	NS_HELP             => 'Kömək',
@@ -41,7 +41,9 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Mediya'      => NS_MEDIA,
+	'Mediya'                 => NS_MEDIA,
+	'MediyaViki'             => NS_MEDIAWIKI,
+	'MediyaViki_müzakirəsi'  => NS_MEDIAWIKI_TALK,
 );
 
 $specialPageAliases = array(
