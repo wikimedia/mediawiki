@@ -26,8 +26,6 @@ class OracleInstaller extends DatabaseInstaller {
 		'_OracleDefTS' => 'USERS',
 		'_OracleTempTS' => 'TEMP'
 	);
-	
-	public $minimumVersion = '9.0.1'; // 9iR1
 
 	protected $connError = null;
 
@@ -120,8 +118,8 @@ class OracleInstaller extends DatabaseInstaller {
 
 		// Check version
 		$version = $conn->getServerVersion();
-		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
-			return Status::newFatal( 'config-oracle-old', $this->minimumVersion, $version );
+		if ( version_compare( $version, MW_MIN_ORACLE_VERSION ) < 0 ) {
+			return Status::newFatal( 'config-oracle-old', MW_MIN_ORACLE_VERSION, $version );
 		}
 
 		return $status;
