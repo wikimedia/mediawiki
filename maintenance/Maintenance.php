@@ -21,7 +21,7 @@
  */
 
 // Include global constants, including MW_VERSION and MW_MIN_PHP_VERSION
-require_once( dirname( __FILE__ ) . '/includes/Defines.php' );
+require_once( dirname( dirname( __FILE__ ) ) . '/includes/Defines.php' );
 
 // Define this so scripts can easily find doMaintenance.php
 define( 'RUN_MAINTENANCE_IF_MAIN', dirname( __FILE__ ) . '/doMaintenance.php' );
