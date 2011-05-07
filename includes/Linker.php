@@ -1794,7 +1794,6 @@ class Linker {
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
 	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__ );
 		wfProfileIn( __METHOD__ );
 		$query = wfCgiToArray( $query );
 		list( $inside, $trail ) = self::splitTrail( $trail );
