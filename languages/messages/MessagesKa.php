@@ -123,6 +123,8 @@ $magicWords = array(
 	'img_left'              => array( '1', 'მარცხნივ', 'left' ),
 	'img_width'             => array( '1', '$1პქ', '$1px' ),
 	'img_center'            => array( '1', 'ცენტრი', 'center', 'centre' ),
+	'img_border'            => array( '1', 'საზღვარი', 'border' ),
+	'special'               => array( '0', 'სპეციალური', 'special' ),
 );
 
 $linkPrefixExtension = true;

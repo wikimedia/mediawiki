@@ -208,6 +208,7 @@ $magicWords = array(
 	'nse'                   => array( '0', 'ПИК:', 'NSE:' ),
 	'localurl'              => array( '0', 'ЛОКАЛЬНЫЙ_АДРЕС:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'ЛОКАЛЬНЫЙ_АДРЕС_2:', 'LOCALURLE:' ),
+	'articlepath'           => array( '0', 'ПУТЬ_К_СТАТЬЕ', 'ARTICLEPATH' ),
 	'server'                => array( '0', 'СЕРВЕР', 'SERVER' ),
 	'servername'            => array( '0', 'НАЗВАНИЕ_СЕРВЕРА', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'ПУТЬ_К_СКРИПТУ', 'SCRIPTPATH' ),

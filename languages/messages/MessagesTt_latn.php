@@ -61,7 +61,7 @@ $dateFormats = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#yünältü', '#REDIRECT' ),
+	'redirect'              => array( '0', '#YÜNÄLTÜ', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__ETYUQ__', '__NOTOC__' ),
 	'forcetoc'              => array( '0', '__ETTIQ__', '__FORCETOC__' ),
 	'toc'                   => array( '0', '__ET__', '__TOC__' ),

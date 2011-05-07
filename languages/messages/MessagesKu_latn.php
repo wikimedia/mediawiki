@@ -35,6 +35,7 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategorî_nîqaş',
 );
 
+
 $specialPageAliases = array(
 	'Categories'                => array( 'Dara_kategoriyan' ),
 	'DoubleRedirects'           => array( 'Redirect\'ên_ducarî' ),
@@ -50,6 +51,31 @@ $specialPageAliases = array(
 	'Version'                   => array( 'Versiyon' ),
 	'Wantedcategories'          => array( 'Kategorîyên_tên_xwestin' ),
 	'Wantedtemplates'           => array( 'Şablonên_tên_xwestin' ),
+);
+
+$magicWords = array(
+	'notoc'                 => array( '0', '_NAVEROKTUNE_', '__NOTOC__' ),
+	'nogallery'             => array( '0', '_GALERÎTUNE_', '__NOGALLERY__' ),
+	'toc'                   => array( '0', '_NAVEROK_', '__TOC__' ),
+	'noheader'              => array( '0', '_SERÎTUNE_', '__NOHEADER__' ),
+	'currentday'            => array( '1', 'ROJA_NIHA', 'CURRENTDAY' ),
+	'currentday2'           => array( '1', 'ROJA_NIHA2', 'CURRENTDAY2' ),
+	'numberofpages'         => array( '1', 'HEJMARA_RÛPELAN', 'NUMBEROFPAGES' ),
+	'numberofarticles'      => array( '1', 'HEJMARA_GOTARAN', 'NUMBEROFARTICLES' ),
+	'numberoffiles'         => array( '1', 'HEJMARA_DOSYEYAN', 'NUMBEROFFILES' ),
+	'numberofusers'         => array( '1', 'HEJMARA_BIKARHÊNERAN', 'NUMBEROFUSERS' ),
+	'numberofactiveusers'   => array( '1', 'HEJMARA_BIKARHÊNERÊN_ÇALAK', 'NUMBEROFACTIVEUSERS' ),
+	'numberofedits'         => array( '1', 'HEJMARA_GUHERANDINAN', 'NUMBEROFEDITS' ),
+	'subpagename'           => array( '1', 'BINRÛPEL', 'SUBPAGENAME' ),
+	'img_right'             => array( '1', 'rast', 'right' ),
+	'img_left'              => array( '1', 'çep', 'left' ),
+	'img_link'              => array( '1', 'lînk=$', 'link=$1' ),
+	'grammar'               => array( '0', 'RÊZIMAN.', 'GRAMMAR:' ),
+	'gender'                => array( '0', 'ZAYEND.', 'GENDER:' ),
+	'plural'                => array( '0', 'PIRRJIMAR:', 'PLURAL:' ),
+	'currentversion'        => array( '1', 'VERSIYONA_NIHA', 'CURRENTVERSION' ),
+	'numberofadmins'        => array( '1', 'HEJMARA_ADAMÎNISTRATORAN', 'NUMBEROFADMINS' ),
+	'special'               => array( '0', 'taybet', 'special' ),
 );
 
 $messages = array(
