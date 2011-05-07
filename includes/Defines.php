@@ -23,6 +23,9 @@ define( 'MW_SPECIALPAGE_VERSION', 2 );
  */
 define( 'MW_MIN_PHP_VERSION', '5.2.3' );
 
+define( 'MW_MIN_MYSQL_VERSION', '4.0.14' );
+define( 'MW_MIN_ORACLE_VERSION', '9.0.1' );
+
 /**@}*/
 
 /**@{
