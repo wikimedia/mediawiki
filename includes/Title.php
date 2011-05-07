@@ -3272,9 +3272,6 @@ class Title {
 		}
 		$nullRevId = $nullRevision->insertOn( $dbw );
 
-		$article = new Article( $this );
-		wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $wgUser ) );
-
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array(
@@ -3287,6 +3284,9 @@ class Title {
 			__METHOD__
 		);
 		$nt->resetArticleID( $oldid );
+
+		$article = new Article( $nt );
+		wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $wgUser ) );
 
 		# Recreate the redirect, this time in the other direction.
 		if ( $createRedirect || !$wgUser->isAllowed( 'suppressredirect' ) ) {
