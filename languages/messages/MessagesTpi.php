@@ -14,18 +14,18 @@
  */
 
 $specialPageAliases = array(
+	'Confirmemail'              => array( 'Orait long imel' ),
+	'Contributions'             => array( 'Ol senis bilong yusa' ),
+	'CreateAccount'             => array( 'Mekim nupela login' ),
+	'Emailuser'                 => array( 'Imel yusa' ),
+	'Preferences'               => array( 'Ol laik bilong mi' ),
+	'Randompage'                => array( 'Soim wanpela pes' ),
+	'Recentchanges'             => array( 'Nupela senis' ),
+	'Specialpages'              => array( 'Sipesol pes' ),
+	'Upload'                    => array( 'Salim media fail' ),
 	'Userlogin'                 => array( 'Yusa login' ),
 	'Userlogout'                => array( 'Yusa logaut' ),
-	'CreateAccount'             => array( 'Mekim nupela login' ),
-	'Preferences'               => array( 'Ol laik bilong mi' ),
 	'Watchlist'                 => array( 'Lukautbuk' ),
-	'Recentchanges'             => array( 'Nupela senis' ),
-	'Upload'                    => array( 'Salim media fail' ),
-	'Randompage'                => array( 'Soim wanpela pes' ),
-	'Specialpages'              => array( 'Sipesol pes' ),
-	'Contributions'             => array( 'Ol senis bilong yusa' ),
-	'Emailuser'                 => array( 'Imel yusa' ),
-	'Confirmemail'              => array( 'Orait long imel' ),
 	'Whatlinkshere'             => array( 'Ol link ikam long hia' ),
 );
 

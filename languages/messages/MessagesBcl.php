@@ -88,8 +88,8 @@ $magicWords = array(
 );
 
 $specialPageAliases = array(
-	'Upload'                    => array( 'Ikarga' ),
 	'Search'                    => array( 'Hanapon' ),
+	'Upload'                    => array( 'Ikarga' ),
 );
 
 $messages = array(

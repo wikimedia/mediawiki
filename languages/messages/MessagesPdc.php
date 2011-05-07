@@ -13,6 +13,12 @@
 
 $fallback = 'de';
 
+$specialPageAliases = array(
+	'Listadmins'                => array( 'Verwalter', 'Administratoren' ),
+	'Listbots'                  => array( 'Waddefresser', 'Bots' ),
+	'Search'                    => array( 'Uffgucke', 'Suche' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Gleecher unnerleine:',

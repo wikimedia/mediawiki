@@ -12,13 +12,13 @@
  */
 
 $specialPageAliases = array(
-	'Preferences'               => array( 'Preferenze' ),
-	'Watchlist'                 => array( 'PàggeneCondrollete' ),
-	'Recentchanges'             => array( 'UrtemeCangiaminde' ),
-	'Upload'                    => array( 'Carecaminde' ),
-	'Statistics'                => array( 'Statisteche' ),
-	'Version'                   => array( 'Versione' ),
 	'Allmessages'               => array( 'TutteLeMessagge' ),
+	'Preferences'               => array( 'Preferenze' ),
+	'Recentchanges'             => array( 'UrtemeCangiaminde' ),
+	'Statistics'                => array( 'Statisteche' ),
+	'Upload'                    => array( 'Carecaminde' ),
+	'Version'                   => array( 'Versione' ),
+	'Watchlist'                 => array( 'PàggeneCondrollete' ),
 );
 
 $messages = array(

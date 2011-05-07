@@ -55,12 +55,12 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Userlogin'                 => array( 'Antrar' ),
-	'Userlogout'                => array( 'Salir' ),
 	'CreateAccount'             => array( 'Criar Cuonta' ),
 	'Lonelypages'               => array( 'Páiginas Uorfanas' ),
 	'Uncategorizedcategories'   => array( 'Catadories sien catadories' ),
 	'Uncategorizedimages'       => array( 'Eimaiges sien catadories' ),
+	'Userlogin'                 => array( 'Antrar' ),
+	'Userlogout'                => array( 'Salir' ),
 );
 
 $magicWords = array(

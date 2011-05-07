@@ -56,20 +56,20 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Userlogin'                 => array( 'Tlacalaquiliztli', 'Registrarse' ),
-	'Upload'                    => array( 'Quetza', 'Subir' ),
-	'Shortpages'                => array( 'Zāzaniltōn', 'PáginasCortas' ),
-	'Longpages'                 => array( 'HuēiyacZāzaniltin', 'PáginasLargas' ),
-	'Newpages'                  => array( 'YancuīcZāzaniltin', 'PáginasNuevas' ),
-	'Ancientpages'              => array( 'HuēhuehZāzaniltin', 'PáginasViejas' ),
 	'Allpages'                  => array( 'MochīntīnZāzaniltin', 'TodasPáginas' ),
-	'Specialpages'              => array( 'NōncuahquīzquiĀmatl', 'PáginasEspeciales' ),
-	'Emailuser'                 => array( 'EmailTlācatl', 'CorreoUsuario' ),
+	'Ancientpages'              => array( 'HuēhuehZāzaniltin', 'PáginasViejas' ),
 	'Categories'                => array( 'Neneuhcāyōtl', 'Categorías' ),
+	'Emailuser'                 => array( 'EmailTlācatl', 'CorreoUsuario' ),
+	'Longpages'                 => array( 'HuēiyacZāzaniltin', 'PáginasLargas' ),
+	'Mycontributions'           => array( 'Notlahcuilōl', 'MisContribuciones' ),
 	'Mypage'                    => array( 'Nozāzanil', 'MiPágina' ),
 	'Mytalk'                    => array( 'Notēixnāmiquiliz', 'MiDiscusión' ),
-	'Mycontributions'           => array( 'Notlahcuilōl', 'MisContribuciones' ),
+	'Newpages'                  => array( 'YancuīcZāzaniltin', 'PáginasNuevas' ),
 	'Search'                    => array( 'Tlatēmōz', 'Buscar' ),
+	'Shortpages'                => array( 'Zāzaniltōn', 'PáginasCortas' ),
+	'Specialpages'              => array( 'NōncuahquīzquiĀmatl', 'PáginasEspeciales' ),
+	'Upload'                    => array( 'Quetza', 'Subir' ),
+	'Userlogin'                 => array( 'Tlacalaquiliztli', 'Registrarse' ),
 );
 
 $messages = array(

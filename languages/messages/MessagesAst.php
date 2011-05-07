@@ -50,9 +50,9 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Statistics'                => array( 'Estadístiques' ),
-	'Log'                       => array( 'Rexistru' ),
 	'Block'                     => array( 'Bloquiar', 'BloquiarIP', 'BloquiarUsuariu' ),
+	'Log'                       => array( 'Rexistru' ),
+	'Statistics'                => array( 'Estadístiques' ),
 );
 
 $messages = array(
