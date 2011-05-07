@@ -1119,6 +1119,14 @@ abstract class ApiBase {
 	 */
 	public function parseMsg( $error ) {
 		$key = array_shift( $error );
+
+		// Check whether the error array was nested
+		// array( array( <code>, <params> ), array( <another_code>, <params> ) )
+		if( is_array( $key ) ){
+			$error = $key;
+			$key = array_shift( $error );
+		}
+
 		if ( isset( self::$messageMap[$key] ) ) {
 			return array( 'code' =>
 				wfMsgReplaceArgs( self::$messageMap[$key]['code'], $error ),
@@ -1126,6 +1134,7 @@ abstract class ApiBase {
 				wfMsgReplaceArgs( self::$messageMap[$key]['info'], $error )
 			);
 		}
+		
 		// If the key isn't present, throw an "unknown error"
 		return $this->parseMsg( array( 'unknownerror', $key ) );
 	}
