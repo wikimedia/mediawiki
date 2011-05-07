@@ -493,7 +493,7 @@ function wfReportException( Exception $e ) {
 			if ( $cmdLine ) {
 				wfPrintError( $message );
 			} else {
-				wfDie( htmlspecialchars( $message ) ) . "\n";
+				wfDie( nl2br( htmlspecialchars( $message ) ) ) . "\n";
 			}
 		}
 	} else {
@@ -507,7 +507,7 @@ function wfReportException( Exception $e ) {
 		if ( $cmdLine ) {
 			wfPrintError( $message );
 		} else {
-			wfDie( htmlspecialchars( $message ) ) . "\n";
+			wfDie( nl2br( htmlspecialchars( $message ) ) ) . "\n";
 		}
 	}
 }
