@@ -58,10 +58,10 @@ $namespaceAliases = array(
 
 $specialPageAliases = array(
 	'Preferences'               => array( 'Келыштарымаш' ),
-	'Watchlist'                 => array( 'Эскерымаш_лӱмер' ),
 	'Recentchanges'             => array( 'Пытартыш_тӧрлатымаш-влак' ),
-	'Statistics'                => array( 'Иктешлымаш' ),
 	'Search'                    => array( 'Кычалмаш' ),
+	'Statistics'                => array( 'Иктешлымаш' ),
+	'Watchlist'                 => array( 'Эскерымаш_лӱмер' ),
 );
 
 $magicWords = array(

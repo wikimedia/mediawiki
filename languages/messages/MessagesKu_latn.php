@@ -35,6 +35,23 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategorî_nîqaş',
 );
 
+$specialPageAliases = array(
+	'Categories'                => array( 'Dara_kategoriyan' ),
+	'DoubleRedirects'           => array( 'Redirect\'ên_ducarî' ),
+	'Export'                    => array( 'Eksport' ),
+	'Listusers'                 => array( 'Lîsteya_bikarhêneran' ),
+	'Randompage'                => array( 'Rûpela_tesadufî' ),
+	'Randomredirect'            => array( 'Redirecta_tasadufî' ),
+	'Recentchanges'             => array( 'Guherandinên_dawî' ),
+	'Search'                    => array( 'Lêbigere' ),
+	'Statistics'                => array( 'Statîstîk' ),
+	'Uncategorizedcategories'   => array( 'Kategoriyên_bê_kategorî' ),
+	'Uncategorizedpages'        => array( 'Rûpelên_bê_kategorî' ),
+	'Version'                   => array( 'Versiyon' ),
+	'Wantedcategories'          => array( 'Kategorîyên_tên_xwestin' ),
+	'Wantedtemplates'           => array( 'Şablonên_tên_xwestin' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Xetekê di bin lînka çêke:',

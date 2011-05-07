@@ -37,18 +37,18 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Userlogin'                 => array( 'ÌwọléOníse' ),
-	'Userlogout'                => array( 'Ìbọ̀sódeOníṣe' ),
-	'Preferences'               => array( 'ÀwọnÌfẹ́ràn' ),
-	'Recentchanges'             => array( 'ÀwọnÀtúnṣeTuntun' ),
-	'Newpages'                  => array( 'ÀwọnOjúewéTuntun' ),
 	'Allpages'                  => array( 'GbogboÀwọnOjúewé' ),
-	'Specialpages'              => array( 'ÀwọnOjúewéPàtàkì' ),
-	'Contributions'             => array( 'ÀwọnÀfikún' ),
 	'Categories'                => array( 'ÀwọnẸ̀ka' ),
+	'Contributions'             => array( 'ÀwọnÀfikún' ),
+	'Mycontributions'           => array( 'ÀwọnÀfikúnMi' ),
 	'Mypage'                    => array( 'OjúwéMi' ),
 	'Mytalk'                    => array( 'Ọ̀rọ̀Mi' ),
-	'Mycontributions'           => array( 'ÀwọnÀfikúnMi' ),
+	'Newpages'                  => array( 'ÀwọnOjúewéTuntun' ),
+	'Preferences'               => array( 'ÀwọnÌfẹ́ràn' ),
+	'Recentchanges'             => array( 'ÀwọnÀtúnṣeTuntun' ),
+	'Specialpages'              => array( 'ÀwọnOjúewéPàtàkì' ),
+	'Userlogin'                 => array( 'ÌwọléOníse' ),
+	'Userlogout'                => array( 'Ìbọ̀sódeOníṣe' ),
 );
 
 $messages = array(

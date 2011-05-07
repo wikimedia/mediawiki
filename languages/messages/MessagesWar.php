@@ -14,23 +14,23 @@
  */
 
 $specialPageAliases = array(
-	'Watchlist'                 => array( 'Angay Timan-an' ),
-	'Upload'                    => array( 'Pagkarga' ),
-	'Statistics'                => array( 'Mga Estadistika' ),
-	'Randompage'                => array( 'Bisan Ano', 'BisanAnongaPakli' ),
-	'Mostlinked'                => array( 'Gidamo-iHinSumpay' ),
-	'Shortpages'                => array( 'HaglipotngamgaPakli' ),
-	'Longpages'                 => array( 'HaglabangamgaPakli' ),
-	'Newpages'                  => array( 'Bag-ongamgaPakli' ),
 	'Allpages'                  => array( 'NgatananngaPakli' ),
-	'Specialpages'              => array( 'MgaIspisyalngaPakli' ),
-	'Contributions'             => array( 'Mga Ámot' ),
-	'Movepage'                  => array( 'BalhinaAnPakli' ),
 	'Categories'                => array( 'Mga Kategorya' ),
-	'Version'                   => array( 'Bersyon' ),
+	'Contributions'             => array( 'Mga Ámot' ),
+	'Longpages'                 => array( 'HaglabangamgaPakli' ),
+	'Mostlinked'                => array( 'Gidamo-iHinSumpay' ),
+	'Movepage'                  => array( 'BalhinaAnPakli' ),
 	'Mypage'                    => array( 'AkonPakli' ),
 	'Mytalk'                    => array( 'AkonHiruhimangraw' ),
+	'Newpages'                  => array( 'Bag-ongamgaPakli' ),
+	'Randompage'                => array( 'Bisan Ano', 'BisanAnongaPakli' ),
 	'Search'                    => array( 'Bilnga' ),
+	'Shortpages'                => array( 'HaglipotngamgaPakli' ),
+	'Specialpages'              => array( 'MgaIspisyalngaPakli' ),
+	'Statistics'                => array( 'Mga Estadistika' ),
+	'Upload'                    => array( 'Pagkarga' ),
+	'Version'                   => array( 'Bersyon' ),
+	'Watchlist'                 => array( 'Angay Timan-an' ),
 );
 
 $messages = array(

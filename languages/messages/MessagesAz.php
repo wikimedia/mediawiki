@@ -45,23 +45,23 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'CreateAccount'             => array( 'HesabAç' ),
-	'Preferences'               => array( 'Nizamlamalar' ),
-	'Recentchanges'             => array( 'SonDəyişikliklər' ),
-	'Statistics'                => array( 'Statistika' ),
-	'Shortpages'                => array( 'QısaSəhifələr' ),
-	'Longpages'                 => array( 'UzunSəhifələr' ),
-	'Newpages'                  => array( 'YeniSəhifələr' ),
+	'Activeusers'               => array( 'Aktivİstifadəçilər' ),
 	'Allpages'                  => array( 'BütünSəhifələr' ),
-	'Specialpages'              => array( 'XüsusiSəhifələr' ),
 	'Contributions'             => array( 'Fəaliyyətlər' ),
-	'Version'                   => array( 'Versiya' ),
-	'Undelete'                  => array( 'Pozma' ),
+	'CreateAccount'             => array( 'HesabAç' ),
+	'Longpages'                 => array( 'UzunSəhifələr' ),
+	'Mycontributions'           => array( 'MənimFəaliyyətlərim' ),
 	'Mypage'                    => array( 'MənimSəhifəm' ),
 	'Mytalk'                    => array( 'MənimDanışıqlarım' ),
-	'Mycontributions'           => array( 'MənimFəaliyyətlərim' ),
+	'Newpages'                  => array( 'YeniSəhifələr' ),
+	'Preferences'               => array( 'Nizamlamalar' ),
+	'Recentchanges'             => array( 'SonDəyişikliklər' ),
 	'Search'                    => array( 'Axtar' ),
-	'Activeusers'               => array( 'Aktivİstifadəçilər' ),
+	'Shortpages'                => array( 'QısaSəhifələr' ),
+	'Specialpages'              => array( 'XüsusiSəhifələr' ),
+	'Statistics'                => array( 'Statistika' ),
+	'Undelete'                  => array( 'Pozma' ),
+	'Version'                   => array( 'Versiya' ),
 );
 
 $magicWords = array(

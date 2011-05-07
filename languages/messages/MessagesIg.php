@@ -31,19 +31,19 @@ $namespaceNames = array(
 );
 
 $specialPageAliases = array(
-	'Userlogin'                 => array( 'Ọ\'bàniféÍBànyé' ),
-	'Userlogout'                => array( 'Ọ\'bàniféÍFụtá' ),
-	'Preferences'               => array( 'Ọtúm_dọsẹrẹ_ihem' ),
-	'Upload'                    => array( 'TinyéIheNélú' ),
 	'Allpages'                  => array( 'IhüNílé' ),
-	'Specialpages'              => array( 'IhüKá' ),
+	'Blankpage'                 => array( 'HịcháIhü' ),
 	'Export'                    => array( 'MēKọFùtá' ),
-	'Undelete'                  => array( 'Ábàkàshịkwàlà' ),
+	'Filepath'                  => array( 'UzọrAkwúkwóOrünotu' ),
 	'Import'                    => array( 'BàÍfé' ),
 	'Mypage'                    => array( 'IhüNkèm' ),
 	'Mytalk'                    => array( 'OkwuNkèm' ),
-	'Filepath'                  => array( 'UzọrAkwúkwóOrünotu' ),
-	'Blankpage'                 => array( 'HịcháIhü' ),
+	'Preferences'               => array( 'Ọtúm_dọsẹrẹ_ihem' ),
+	'Specialpages'              => array( 'IhüKá' ),
+	'Undelete'                  => array( 'Ábàkàshịkwàlà' ),
+	'Upload'                    => array( 'TinyéIheNélú' ),
+	'Userlogin'                 => array( 'Ọ\'bàniféÍBànyé' ),
+	'Userlogout'                => array( 'Ọ\'bàniféÍFụtá' ),
 );
 
 $magicWords = array(

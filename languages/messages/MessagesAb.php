@@ -57,17 +57,17 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Recentchanges'             => array( 'АрҽеираҾыцқәа' ),
-	'Upload'                    => array( 'Аҭагалара' ),
-	'Newimages'                 => array( 'АфаилқәаҾыц' ),
-	'Randompage'                => array( 'Машәырлатәи' ),
-	'Newpages'                  => array( 'АдаҟьақәаҾыц' ),
-	'Specialpages'              => array( 'ЦастәиАдаҟьақәа' ),
 	'Categories'                => array( 'Акатегориақәа' ),
+	'Mycontributions'           => array( 'Архиарақәа' ),
 	'Mypage'                    => array( 'Садаҟьа' ),
 	'Mytalk'                    => array( 'Сахцәажәара' ),
-	'Mycontributions'           => array( 'Архиарақәа' ),
+	'Newimages'                 => array( 'АфаилқәаҾыц' ),
+	'Newpages'                  => array( 'АдаҟьақәаҾыц' ),
+	'Randompage'                => array( 'Машәырлатәи' ),
+	'Recentchanges'             => array( 'АрҽеираҾыцқәа' ),
 	'Search'                    => array( 'Аҧшаара' ),
+	'Specialpages'              => array( 'ЦастәиАдаҟьақәа' ),
+	'Upload'                    => array( 'Аҭагалара' ),
 );
 
 $magicWords = array(

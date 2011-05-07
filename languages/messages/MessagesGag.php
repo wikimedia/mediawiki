@@ -15,6 +15,44 @@
 
 $fallback = 'tr';
 
+$specialPageAliases = array(
+	'Allpages'                  => array( 'HepsiYazılar', 'HepsiSayfalar', 'HepsiYapraklar' ),
+	'Ancientpages'              => array( 'EskiYazılar', 'EskiSayfalar', 'EskiYapraklar' ),
+	'Categories'                => array( 'Kategoriyalar' ),
+	'Contributions'             => array( 'Katılmaklar' ),
+	'CreateAccount'             => array( 'EsapYarat', 'EsapAç' ),
+	'Deadendpages'              => array( 'BaalantısızYazılar', 'BaalantısızSayfalar', 'BaalantısızYapraklar' ),
+	'Disambiguations'           => array( 'MaanaAydınnatmak', 'MaanaAydınnatma' ),
+	'DoubleRedirects'           => array( 'İkiKeräYönnendirmäler', 'İkiKeräYönnendirmeler' ),
+	'Listadmins'                => array( 'İzmetliListası' ),
+	'Listbots'                  => array( 'BotListası' ),
+	'Listfiles'                 => array( 'DosyeListası', 'PätretListası' ),
+	'Listredirects'             => array( 'YönnedirmeListası', 'YönndermäListası' ),
+	'Listusers'                 => array( 'KullanıcıListası' ),
+	'Mycontributions'           => array( 'Katılmaklarım' ),
+	'Mytalk'                    => array( 'SözleşmäkSayfam', 'SözleşmäkYapraım' ),
+	'Newimages'                 => array( 'EniDosyeler', 'EniPätretler' ),
+	'Newpages'                  => array( 'EniYazılar', 'EniSayfalar', 'EniYapraklar' ),
+	'Popularpages'              => array( 'EnAnılmışSayfalar', 'EnAnılmışYazılar' ),
+	'Preferences'               => array( 'Seçimner' ),
+	'Prefixindex'               => array( 'Prefiksİndeksi' ),
+	'Randompage'                => array( 'Razgele', 'RazgeleYazı', 'RazgeleSayfa', 'RazgeleYaprak' ),
+	'Randomredirect'            => array( 'RazgeleYönnendirme', 'RazgeleYönndermä' ),
+	'Recentchanges'             => array( 'BitkiDiişikmäklär' ),
+	'Search'                    => array( 'Ara' ),
+	'Specialpages'              => array( 'MaasusSayfalar', 'MaasusYazılar', 'MaasusYapraklar' ),
+	'Statistics'                => array( 'İstatistikalar' ),
+	'Uncategorizedcategories'   => array( 'KategorizațiyasızKategoriyalar' ),
+	'Uncategorizedimages'       => array( 'KategorizațiyasızDosyeler', 'KategorizațiyasızPätretler' ),
+	'Uncategorizedpages'        => array( 'KategorizațiyasızYazılar', 'KategorizațiyasızSayfalar', 'KategorizațiyasızYapraklar' ),
+	'Uncategorizedtemplates'    => array( 'KategorizațiyasızŞablonnar' ),
+	'Unusedcategories'          => array( 'KullanılmayanKategoriyalar' ),
+	'Unusedimages'              => array( 'KullanılmayanDosyeler', 'KullanılmayanPätretler' ),
+	'Upload'                    => array( 'Ükle' ),
+	'Watchlist'                 => array( 'SiirListası', 'BakmaaListası' ),
+	'Withoutinterwiki'          => array( 'İntervikisiz' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Baalantıların altını çiz',

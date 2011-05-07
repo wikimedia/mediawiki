@@ -41,9 +41,9 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Shortpages'                => array( 'አጫጭር_ገጾች' ),
 	'Longpages'                 => array( 'ረጃጅም_ገጾች' ),
 	'Newpages'                  => array( 'አዳዲስ_ገጾች' ),
+	'Shortpages'                => array( 'አጫጭር_ገጾች' ),
 );
 
 $messages = array(
