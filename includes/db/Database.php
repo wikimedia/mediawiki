@@ -2970,6 +2970,13 @@ class DBConnectionError extends DBError {
 
 		$extra = $this->searchForm();
 
+		return "$text<hr />$extra";
+	}
+
+	public function reportHTML(){
+		global $wgUseFileCache;
+
+		# Check whether we can serve a file-cached copy of the page with the error underneath
 		if ( $wgUseFileCache ) {
 			try {
 				$cache = $this->fileCachedPage();
@@ -2984,15 +2991,16 @@ class DBConnectionError extends DBError {
 						'</div>';
 
 					# Output cached page with notices on bottom and re-close body
-					return "{$cache}<hr />$text<hr />$extra</body></html>";
+					echo "{$cache}<hr />{$this->getHTML()}</body></html>";
+					return;
 				}
 			} catch ( MWException $e ) {
 				// Do nothing, just use the default page
 			}
 		}
 
-		# Headers needed here - output is just the error message
-		return $this->htmlHeader() . "$text<hr />$extra" . $this->htmlFooter();
+		# We can't, cough and die in the usual fashion
+		return parent::reportHTML();
 	}
 
 	function searchForm() {
@@ -3048,10 +3056,6 @@ EOT;
 		} else {
 			return '';
 		}
-	}
-
-	function htmlBodyOnly() {
-		return true;
 	}
 }
 
