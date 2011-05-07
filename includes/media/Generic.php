@@ -655,11 +655,22 @@ abstract class ImageHandler extends MediaHandler {
 	 */
 	function getLongDesc( $file ) {
 		global $wgLang;
-		return wfMsgExt('file-info-size', 'parseinline',
-			$wgLang->formatNum( $file->getWidth() ),
-			$wgLang->formatNum( $file->getHeight() ),
-			$wgLang->formatSize( $file->getSize() ),
-			$file->getMimeType() );
+		$pages = $file->pageCount();
+		if ( $pages === false || $pages <= 1 ) {
+			$msg = wfMsgExt('file-info-size', 'parseinline',
+				$wgLang->formatNum( $file->getWidth() ),
+				$wgLang->formatNum( $file->getHeight() ),
+				$wgLang->formatSize( $file->getSize() ),
+				$file->getMimeType() );
+		} else {
+			$msg = wfMsgExt('file-info-size-pages', 'parseinline',
+				$wgLang->formatNum( $file->getWidth() ),
+				$wgLang->formatNum( $file->getHeight() ),
+				$wgLang->formatSize( $file->getSize() ),
+				$file->getMimeType(),
+				$wgLang->formatNum( $pages ) );
+		}
+		return $msg;
 	}
 
 	/**
