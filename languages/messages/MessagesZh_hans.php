@@ -71,8 +71,6 @@ $namespaceAliases = array(
 	'用户'  => NS_USER,
 	'用户对话' => NS_USER_TALK,
 	'用户讨论' => NS_USER_TALK,
-	# This has never worked so it's unlikely to annoy anyone if I disable it -- TS
-	# '{{SITENAME}}_对话' => NS_PROJECT_TALK
 	'图像' => NS_FILE,
 	'档案' => NS_FILE,
 	'文件' => NS_FILE,
@@ -192,6 +190,30 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( '监视列表' ),
 	'Whatlinkshere'             => array( '链入页面' ),
 	'Withoutinterwiki'          => array( '无跨维基链接页面' ),
+);
+
+$magicWords = array(
+	'redirect'              => array( '0', '#重定向', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__无目录__', '__NOTOC__' ),
+	'nogallery'             => array( '0', '__无画廊__', '__NOGALLERY__' ),
+	'forcetoc'              => array( '0', '__逼出目录__', '__FORCETOC__' ),
+	'toc'                   => array( '0', '__目录__', '__TOC__' ),
+	'noeditsection'         => array( '0', '__没有编辑节__', '__NOEDITSECTION__' ),
+	'currentmonth'          => array( '1', '本月', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth1'         => array( '1', '本月1', 'CURRENTMONTH1' ),
+	'currentmonthname'      => array( '1', '本月名', 'CURRENTMONTHNAME' ),
+	'currentmonthabbrev'    => array( '1', '本月短', 'CURRENTMONTHABBREV' ),
+	'currentday'            => array( '1', '今天', 'CURRENTDAY' ),
+	'currentday2'           => array( '1', '今天2', 'CURRENTDAY2' ),
+	'currentyear'           => array( '1', '本年', 'CURRENTYEAR' ),
+	'numberofpages'         => array( '1', '页数', 'NUMBEROFPAGES' ),
+	'numberofarticles'      => array( '1', '条目数', 'NUMBEROFARTICLES' ),
+	'numberoffiles'         => array( '1', '文件数', 'NUMBEROFFILES' ),
+	'numberofusers'         => array( '1', '用户数', 'NUMBEROFUSERS' ),
+	'numberofactiveusers'   => array( '1', '活跃用户数', 'NUMBEROFACTIVEUSERS' ),
+	'numberofedits'         => array( '1', '编辑数', 'NUMBEROFEDITS' ),
+	'numberofviews'         => array( '1', '访问数', 'NUMBEROFVIEWS' ),
+	'pagename'              => array( '1', '页名', 'PAGENAME' ),
 );
 
 $linkTrail = '/^()(.*)$/sD';

@@ -53,6 +53,10 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'İntervikisiz' ),
 );
 
+$magicWords = array(
+	'redirect'              => array( '0', '#YÖNNENDİRMÄKLER', '#YÖNNENDİR', '#YÖNNENDİRMÄ', '#YÖNLENDİRME', '#YÖNLENDİR', '#REDIRECT' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Baalantıların altını çiz',

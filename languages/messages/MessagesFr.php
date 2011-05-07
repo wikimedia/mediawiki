@@ -249,6 +249,7 @@ $magicWords = array(
 	'numberingroup'         => array( '1', 'NOMBREDANSGROUPE', 'NBDANSGROUPE', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__REDIRECTIONSTATIQUE__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'NIVEAUDEPROTECTION', 'PROTECTIONLEVEL' ),
+	'url_path'              => array( '0', 'CHEMIN', 'PATH' ),
 );
 
 $specialPageAliases = array(
