@@ -112,8 +112,7 @@ class Http {
 	 * @return String
 	 */
 	public static function userAgent() {
-		global $wgVersion;
-		return "MediaWiki/$wgVersion";
+		return "MediaWiki/" . MW_VERSION;
 	}
 
 	/**
