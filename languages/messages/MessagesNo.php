@@ -3457,7 +3457,7 @@ $1',
 'autosumm-new'     => 'Ny side: $1',
 
 # Live preview
-'livepreview-loading' => 'Laster&nbsp;…',
+'livepreview-loading' => 'Laster…',
 'livepreview-ready'   => 'Laster&nbsp;… Klar!',
 'livepreview-failed'  => 'Levende forhåndsvisning mislyktes. Prøv vanlig forhåndsvisning.',
 'livepreview-error'   => 'Tilkobling mislyktes: $1 «$2»

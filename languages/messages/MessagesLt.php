@@ -10,6 +10,7 @@
  * @author Auwris
  * @author Break Through Pain
  * @author Dark Eagle
+ * @author Eitvys200
  * @author Garas
  * @author Homo
  * @author Hugo.arg
@@ -3017,9 +3018,14 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-worldregiondest'             => 'Pasaulio regionas rodomas',
 'exif-countrydest'                 => 'Šalis rodomas',
 'exif-countrycodedest'             => 'Kodas šalies rodomas',
+'exif-writer'                      => 'Rašytojas',
+'exif-iimcategory'                 => 'Kategorija',
 'exif-cameraownername'             => 'Fotoaparato savininkas',
 'exif-rating'                      => 'Vertinimas (iki 5)',
 'exif-usageterms'                  => 'Naudojimo sąlygos',
+'exif-licenseurl'                  => 'Autorių teisių licencijos URL',
+'exif-pngfilecomment'              => 'JPEG failo komentaras',
+'exif-giffilecomment'              => 'GIF failo komentaras',
 
 # EXIF attributes
 'exif-compression-1' => 'Nesuspausta',
@@ -3152,6 +3158,10 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpslongitude-e' => 'Rytų ilguma',
 'exif-gpslongitude-w' => 'Vakarų ilguma',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1| metras | metrai}} virš jūros lygio',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1| metras | metrai}} žemiau jūros lygio',
+
 'exif-gpsstatus-a' => 'Matavimas vykdyme',
 'exif-gpsstatus-v' => 'Matuojamas programinis sąveikumas',
 
@@ -3168,9 +3178,31 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsdestdistance-m' => 'Mylios',
 'exif-gpsdestdistance-n' => 'Jūrmylės',
 
+'exif-gpsdop-excellent' => 'Puikus ($1)',
+'exif-gpsdop-good'      => 'Geras ( $1 )',
+'exif-gpsdop-moderate'  => 'Vidutinis ($1)',
+'exif-gpsdop-fair'      => 'Prastas ($1)',
+'exif-gpsdop-poor'      => 'Blogas ( $1 )',
+
+'exif-objectcycle-a' => 'Tik ryte',
+'exif-objectcycle-p' => 'Tik vakare',
+'exif-objectcycle-b' => 'Ir ryte ir vakare',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tikroji kryptis',
 'exif-gpsdirection-m' => 'Magnetinė kryptis',
+
+'exif-dc-date' => 'Data (-os)',
+'exif-dc-type' => 'Laikmenos tipas',
+
+'exif-rating-rejected' => 'Atmesta',
+
+'exif-iimcategory-spo' => 'Sportas',
+'exif-iimcategory-wea' => 'Oras',
+
+'exif-urgency-normal' => 'Normalus ( $1 )',
+'exif-urgency-low'    => 'Žemas ( $1 )',
+'exif-urgency-high'   => 'Aukštas ( $1 )',
 
 # External editor support
 'edit-externally'      => 'Atverti išoriniame redaktoriuje',
@@ -3363,14 +3395,15 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 Įveskite failo pavadinimą be „{{ns:file}}:“ priedėlio.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Ieškoti dublikuotų failų',
-'fileduplicatesearch-summary'  => 'Pasikartojančių failų paieška pagal jų kontrolinę sumą.',
-'fileduplicatesearch-legend'   => 'Ieškoti dublikatų',
-'fileduplicatesearch-filename' => 'Failo vardas:',
-'fileduplicatesearch-submit'   => 'Ieškoti',
-'fileduplicatesearch-info'     => '$1 × $2 pikselių<br />Failo dydis: $3<br />MIME tipas: $4',
-'fileduplicatesearch-result-1' => 'Failas „$1“ neturi identiškų dublikatų.',
-'fileduplicatesearch-result-n' => 'Šis failas „$1“ turi $2 {{PLURAL:$2|identišką dublikatą|identiškus dublikatus|identiškų dublikatų}}.',
+'fileduplicatesearch'           => 'Ieškoti dublikuotų failų',
+'fileduplicatesearch-summary'   => 'Pasikartojančių failų paieška pagal jų kontrolinę sumą.',
+'fileduplicatesearch-legend'    => 'Ieškoti dublikatų',
+'fileduplicatesearch-filename'  => 'Failo vardas:',
+'fileduplicatesearch-submit'    => 'Ieškoti',
+'fileduplicatesearch-info'      => '$1 × $2 pikselių<br />Failo dydis: $3<br />MIME tipas: $4',
+'fileduplicatesearch-result-1'  => 'Failas „$1“ neturi identiškų dublikatų.',
+'fileduplicatesearch-result-n'  => 'Šis failas „$1“ turi $2 {{PLURAL:$2|identišką dublikatą|identiškus dublikatus|identiškų dublikatų}}.',
+'fileduplicatesearch-noresults' => 'Nėra failo pavadinimu "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Specialieji puslapiai',

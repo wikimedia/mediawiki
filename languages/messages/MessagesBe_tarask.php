@@ -2030,7 +2030,7 @@ $1',
 
 # Special:Categories
 'categories'                    => 'Катэгорыі',
-'categoriespagetext'            => '{{PLURAL:$1|Наступная катэгорыя зьмяшчае|Наступныя катэгорыі зьмяшчаюць}} старонкі і/альбо мэдыя-файлы.
+'categoriespagetext'            => '{{PLURAL:$1|Наступная катэгорыя зьмяшчае|Наступныя катэгорыі зьмяшчаюць}} старонкі і/альбо мэдыяфайлы.
 Тут не паказаныя [[Special:UnusedCategories|катэгорыі, якія не выкарыстоўваюцца]].
 Глядзіце таксама [[Special:WantedCategories|сьпіс запатрабаваных катэгорыяў]].',
 'categoriesfrom'                => 'Паказаць катэгорыі, пачынаючы з:',
@@ -2805,7 +2805,7 @@ $1',
 'tooltip-t-permalink'             => 'Сталая спасылка на гэтую вэрсію старонкі',
 'tooltip-ca-nstab-main'           => 'Паказаць зьмест старонкі',
 'tooltip-ca-nstab-user'           => 'Паказаць старонку ўдзельніка',
-'tooltip-ca-nstab-media'          => 'Паказаць старонку мэдыя-файла',
+'tooltip-ca-nstab-media'          => 'Паказаць старонку мэдыяфайла',
 'tooltip-ca-nstab-special'        => 'Гэта спэцыяльная старонка, і Вы ня можаце яе рэдагаваць',
 'tooltip-ca-nstab-project'        => 'Паказаць старонку праекту',
 'tooltip-ca-nstab-image'          => 'Паказаць старонку файла',
@@ -3579,7 +3579,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'specialpages-group-other'       => 'Іншыя спэцыяльныя старонкі',
 'specialpages-group-login'       => 'Уваход / стварэньне рахунку',
 'specialpages-group-changes'     => 'Апошнія зьмены і журналы падзеяў',
-'specialpages-group-media'       => 'Справаздачы пра мэдыя-файлы і загрузка',
+'specialpages-group-media'       => 'Справаздачы пра мэдыяфайлы і загрузка',
 'specialpages-group-users'       => 'Удзельнікі і правы',
 'specialpages-group-highuse'     => 'Частаўжываныя старонкі',
 'specialpages-group-pages'       => 'Сьпісы старонак',

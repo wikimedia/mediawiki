@@ -3013,6 +3013,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-nickname'                    => 'Informellen Numm vum Bild',
 'exif-rating'                      => 'Bewäertung (vu 5)',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
+'exif-licenseurl'                  => 'URL vum Copyright (Lizenz)',
 'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
 'exif-subjectnewscode'             => 'Code vum Sujet',
@@ -3186,6 +3187,8 @@ Déi aner sinn am Standard verstoppt.
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächlech Richtung',
 'exif-gpsdirection-m' => 'Magnéitesch Richtung',
+
+'exif-ycbcrpositioning-1' => 'Zentréiert',
 
 'exif-dc-date'   => 'Datum(en)',
 'exif-dc-rights' => 'Rechter',

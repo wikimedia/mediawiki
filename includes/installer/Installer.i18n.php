@@ -1068,6 +1068,7 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-using531' => 'PHP $1 не сумяшчальнае з MediaWiki з-за памылкі ў перадачы парамэтраў па ўказальніку да <code>__call()</code>.
 Абнавіце PHP да вэрсіі 5.3.2 ці болей позьняй, ці адкаціце да вэрсіі 5.3.0 каб гэта выправіць.
 Усталяваньне перарванае.',
+	'config-suhosin-max-value-length' => 'Suhosin усталяваны і абмяжоўвае даўжыню парамэтра GET у $1 {{PLURAL:$1|байт|байты|байтаў}}. ResourceLoader для MediaWiki будзе абходзіць гэтае абмежаваньне, што, аднак, адаб’ецца на хуткадзеяньні. Калі магчыма, варта ўстанавіць suhosin.get.max_value_length роўным 1024 ці больш у php.ini, а таксама ўстанавіць тое ж значэньне для $wgResourceLoaderMaxQueryLength у LocalSettings.php.',
 	'config-db-type' => 'Тып базы зьвестак:',
 	'config-db-host' => 'Хост базы зьвестак:',
 	'config-db-host-help' => 'Калі сэрвэр Вашай базы зьвестак знаходзіцца на іншым сэрвэры, увядзіце тут імя хоста ці IP-адрас.
@@ -4139,6 +4140,7 @@ Instalación abortada.',
 	'config-using531' => 'O PHP $1 non é compatible con MediaWiki debido a un erro que afecta aos parámetros de referencia de <code>__call()</code>.
 Actualice o sistema á versión 5.3.2 ou posterior do PHP ou volva á versión 5.3.0 do PHP para arranxar o problema.
 Instalación abortada.',
+	'config-suhosin-max-value-length' => 'Suhosin está instalado e limita a lonxitude do parámetro GET a $1 bytes. O compoñente ResourceLoader de MediaWiki traballa neste límite, pero este prexudica o rendemento. Se é posible, debería establecer suhosin.get.max_value_length no valor 1024 ou superior en php.ini e establecer $wgResourceLoaderMaxQueryLength no mesmo valor en LocalSettings.php.',
 	'config-db-type' => 'Tipo de base de datos:',
 	'config-db-host' => 'Servidor da base de datos:',
 	'config-db-host-help' => 'Se o servidor da súa base de datos está nun servidor diferente, escriba o nome do servidor ou o enderezo IP aquí.
@@ -11367,6 +11369,13 @@ $messages['ro'] = array(
 	'config-missing-db-name' => 'Trebuie să introduci o valoare pentru „Numele bazei de date”',
 	'config-ns-generic' => 'Proiect',
 	'config-admin-password' => 'Parolă:',
+);
+
+/** Tarandíne (Tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'config-help' => 'ajute',
 );
 
 /** Russian (Русский)

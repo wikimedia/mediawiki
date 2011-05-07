@@ -27,6 +27,7 @@
  * @author Myildirim2007
  * @author Runningfridgesrule
  * @author Srhat
+ * @author Stultiwikia
  * @author Suelnur
  * @author Szoszv
  * @author Tarikozket
@@ -600,7 +601,7 @@ $1',
 'red-link-title'          => '$1 (sayfa mevcut değil)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Sayfa',
+'nstab-main'      => 'Madde',
 'nstab-user'      => 'Kullanıcı sayfası',
 'nstab-media'     => 'Medya sayfası',
 'nstab-special'   => 'Özel sayfa',

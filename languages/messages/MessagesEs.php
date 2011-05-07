@@ -1536,7 +1536,7 @@ Esto no se puede deshacer.',
 'right-editusercssjs'         => 'Editar las páginas de CSS y JS de otros usuarios',
 'right-editusercss'           => 'Editar las páginas de CSS de otros usuarios',
 'right-edituserjs'            => 'Editar las páginas de JS de otros usuarios',
-'right-rollback'              => 'Revertir rápidamente las ediciones del último usuario que modificó una página particular',
+'right-rollback'              => 'Revertir rápidamente las ediciones del último usuario que modificó una página en particular',
 'right-markbotedits'          => 'Marcar ediciones deshechas como ediciones de un bot',
 'right-noratelimit'           => 'No afectado por límites de frecuencia',
 'right-import'                => 'Importar páginas desde otras wikis',
@@ -1782,22 +1782,23 @@ $1',
 'uploadstash-refresh'  => 'Actualizar la lista de archivos',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acceso denegado',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+'img-auth-accessdenied'     => 'Acceso denegado',
+'img-auth-nopathinfo'       => 'Falta PATH_INFO.
 Tu servidor no está configurado para pasar esta información.
 Puede que este basado en CGI y no sea compatible con img_auth.
 Véase http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Ruta solicitad no esá en el directorio de cargas configurado',
-'img-auth-badtitle'     => 'Incapaz de construir un título válido de «$1».',
-'img-auth-nologinnWL'   => 'No has iniciado sesión y «$1» no está en la lista blanca.',
-'img-auth-nofile'       => 'El archivo «$1» no existe.',
-'img-auth-isdir'        => 'Estás tratando de acceder a un directorio «$1».
+'img-auth-notindir'         => 'Ruta solicitad no esá en el directorio de cargas configurado',
+'img-auth-badtitle'         => 'Incapaz de construir un título válido de «$1».',
+'img-auth-nologinnWL'       => 'No has iniciado sesión y «$1» no está en la lista blanca.',
+'img-auth-nofile'           => 'El archivo «$1» no existe.',
+'img-auth-isdir'            => 'Estás tratando de acceder a un directorio «$1».
 Solo se permite el acceso a los archivos.',
-'img-auth-streaming'    => 'Streaming «$1».',
-'img-auth-public'       => 'La función de img_auth.php es mostrar archivos desde una wiki privada.
+'img-auth-streaming'        => 'Streaming «$1».',
+'img-auth-public'           => 'La función de img_auth.php es mostrar archivos desde una wiki privada.
 Esta wiki está configurada como pública.
 Para óptima seguridad, img_auth.php está desactivado.',
-'img-auth-noread'       => 'El usuario no tiene acceso para leer «$1».',
+'img-auth-noread'           => 'El usuario no tiene acceso para leer «$1».',
+'img-auth-bad-query-string' => 'La dirección URL tiene una cadena de consulta no válida.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
@@ -3009,7 +3010,7 @@ Todos los demás enlaces en la misma línea se tomarán como excepciones (es dec
 'metadata-help'     => 'Este archivo contiene información adicional (metadatos), probablemente añadida por la cámara digital, el escáner o el programa usado para crearlo o digitalizarlo. Si el archivo ha sido modificado desde su estado original, pueden haberse perdido algunos detalles.',
 'metadata-expand'   => 'Mostrar datos detallados',
 'metadata-collapse' => 'Ocultar datos detallados',
-'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada.
+'metadata-fields'   => 'Los campos de metadatos que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada.
 Existen otros campos que se mantendrán ocultos por defecto.
 * make
 * model
@@ -3172,9 +3173,13 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-licenseurl'                  => 'URL para la licencia de copyright',
 'exif-morepermissionsurl'          => 'Información de licencia alternativa',
 'exif-attributionurl'              => 'Cuando reutilices este trabajo, por favor enlaza a',
+'exif-pngfilecomment'              => 'Comentario de archivo PNG',
 
 # EXIF attributes
 'exif-compression-1' => 'Sin comprimir',
+
+'exif-copyrighted-true'  => 'Copyrighted',
+'exif-copyrighted-false' => 'Dominio público',
 
 'exif-unknowndate' => 'Fecha desconocida',
 
@@ -3255,6 +3260,8 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-sensingmethod-7' => 'Sensor trilineal',
 'exif-sensingmethod-8' => 'Sensor lineal secuencial de color',
 
+'exif-filesource-3' => 'Cámara digital',
+
 'exif-scenetype-1' => 'Una imagen directamente fotografiada',
 
 'exif-customrendered-0' => 'Proceso normal',
@@ -3322,6 +3329,34 @@ Existen otros campos que se mantendrán ocultos por defecto.
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Dirección real',
 'exif-gpsdirection-m' => 'Dirección magnética',
+
+'exif-ycbcrpositioning-1' => 'Centrado',
+
+'exif-dc-contributor' => 'Colaboradores',
+
+'exif-isospeedratings-overflow' => 'Más de 65535',
+
+'exif-iimcategory-ace' => 'Arte, cultura y entretenimiento',
+'exif-iimcategory-clj' => 'Crimen y ley',
+'exif-iimcategory-dis' => 'Desastres y accidentes',
+'exif-iimcategory-fin' => 'Economía y negocios',
+'exif-iimcategory-edu' => 'Educación',
+'exif-iimcategory-evn' => 'Medio ambiente',
+'exif-iimcategory-hth' => 'Salud',
+'exif-iimcategory-hum' => 'Interés humano',
+'exif-iimcategory-lab' => 'Trabajo',
+'exif-iimcategory-lif' => 'Estilo de vida y ocio',
+'exif-iimcategory-pol' => 'Política',
+'exif-iimcategory-rel' => 'Religión y creencias',
+'exif-iimcategory-sci' => 'Ciencia y tecnología',
+'exif-iimcategory-soi' => 'Cuestiones sociales',
+'exif-iimcategory-spo' => 'Deportes',
+'exif-iimcategory-war' => 'Guerra, conflicto y disturbios',
+'exif-iimcategory-wea' => 'Clima',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Bajo ($1)',
+'exif-urgency-high'   => 'Alto ($1)',
 
 # External editor support
 'edit-externally'      => 'Editar este archivo usando una aplicación externa',
@@ -3536,7 +3571,8 @@ Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 'specialpages'                   => 'Páginas especiales',
 'specialpages-note'              => '----
 * Páginas especiales normales.
-* <strong class="mw-specialpagerestricted">Páginas especiales restringidas.</strong>',
+* <span class="mw-specialpagerestricted">Páginas especiales restringidas.</span>
+* <span class="mw-specialpagecached">Páginas especiales cacheadas.</span>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other'       => 'Otras páginas especiales',
 'specialpages-group-login'       => 'Iniciar sesión / Registrarse',
