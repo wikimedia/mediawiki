@@ -2535,14 +2535,14 @@ $UNWATCHURL కి వెళ్ళండి.
 'allmessagesname'               => 'పేరు',
 'allmessagesdefault'            => 'డీఫాల్టు పాఠ్యం',
 'allmessagescurrent'            => 'ప్రస్తుత పాఠ్యం',
-'allmessagestext'               => 'మీడియావికీ నేంస్పేసులో ఉన్న అన్ని సిస్టం సందేశాల జాబితా ఇది.
-మీరు అన్ని వికీపీడియాలకూ కలిపి ఒకేసారి అనువదించాలని అనుకుంటే, దయచేసి [http://www.mediawiki.org/wiki/Localisation మీడియావికీ అనువాదం] మరియూ [http://translatewiki.net బేటావికీ] సైట్లను చూడండి.',
+'allmessagestext'               => 'మీడియావికీ పేరుబరిలో ఉన్న అంతరవర్తి సందేశాల జాబితా ఇది.
+సాధారణ మీడియావికీ స్థానికీకరణకి మీరు తోడ్పడాలనుకుంటే, దయచేసి [http://www.mediawiki.org/wiki/Localisation మీడియావికీ స్థానికీకరణ] మరియు [http://translatewiki.net ట్రాన్స్&zwnj;లేట్&zwnj;వికీ.నెట్] సైట్లను చూడండి.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' అన్నది అచేతనం చేసి ఉన్నందువల్ల ఈ పేజీని వాడలేరు.",
 'allmessages-filter-legend'     => 'వడపోత',
 'allmessages-filter'            => 'కస్టమైజేషను స్థితిని బట్టి వడకట్టు:',
-'allmessages-filter-unmodified' => 'మార్చాబడనిది',
+'allmessages-filter-unmodified' => 'మార్చబడనివి',
 'allmessages-filter-all'        => 'అన్నీ',
-'allmessages-filter-modified'   => 'మార్చబడినది',
+'allmessages-filter-modified'   => 'మార్చబడినవి',
 'allmessages-prefix'            => 'ఉపసర్గ పై వడపోత:',
 'allmessages-language'          => 'భాష:',
 'allmessages-filter-submit'     => 'వెళ్ళు',

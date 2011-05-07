@@ -430,7 +430,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ପୃଷ୍ଠା',
-'nstab-user'      => 'ଇଉଜର ପୃଷ୍ଠା',
+'nstab-user'      => 'ବ୍ୟବାହରକାରୀଙ୍କର ପୃଷ୍ଠା',
 'nstab-media'     => 'ମେଡିଆ ପରଦ',
 'nstab-special'   => 'ନିଆରା ପୃଷ୍ଠା',
 'nstab-project'   => 'ପ୍ରକଳ୍ପ ପୃଷ୍ଠା',
@@ -456,7 +456,7 @@ $messages = array(
 ଜାଣିରଖନ୍ତୁ, କିଛି ପୃଷ୍ଠା ଲଗାଆଉଟ କଲାପରେ ବି ଆଗପରି ଦେଖାଯାଇପାରେ, ଆପଣ ବ୍ରାଉଜର କାସକୁ ହଟାଇଲା ଯାଏଁ ଏହା ଏମିତି ରହିବ ।",
 'welcomecreation'         => '== $1!, ଆପଣଙ୍କ ଖାତାଟି ତିଆରି ହୋଇଗଲା==
 ତେବେ, ନିଜର [[Special:Preferences|{{SITENAME}} ପସନ୍ଦସବୁକୁ]] ବଦଳାଇବାକୁ ଭୁଲିବେ ନାହିଁ ।',
-'yourname'                => 'ଇଉଜର ନାଆଁ',
+'yourname'                => 'ବ୍ୟବାହରକାରୀଙ୍କର ନାଆଁ:',
 'yourpassword'            => 'ପାସବାର୍ଡ଼',
 'yourpasswordagain'       => 'ପାସବାର୍ଡ଼ ଆଉଥରେ:',
 'login'                   => 'ଲଗଇନ',
@@ -481,6 +481,9 @@ $messages = array(
 'oldpassword' => 'ପୁରୁଣା ପାସଉଆଡ଼:',
 'newpassword' => 'ନୂଆ ପାସବାର୍ଡ଼:',
 'retypenew'   => 'ପାସବାର୍ଡ଼ ଆଉଥରେ ଦିଅନ୍ତୁ:',
+
+# Special:PasswordReset
+'passwordreset-username' => 'ବ୍ୟବାହରକାରୀଙ୍କର ନାଆଁ:',
 
 # Edit page toolbar
 'bold_sample'     => 'ବୋଲ୍ଡ ଲେଖା',
@@ -980,13 +983,23 @@ $5
 
 ଏହି କନଫର୍ମେସନ କୋଡ଼ $4 ବେଳେ ଅଚଳ ହୋଇଯିବ ।',
 
+# action=purge
+'confirm_purge_button' => 'ଠିକ ଅଛି',
+
+# Multipage image navigation
+'imgmultigo' => 'ଯିବା!',
+
+# Table pager
+'table_pager_limit_submit' => 'ଯିବା',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'ଦରକାରୀ ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ',
 'watchlisttools-edit' => 'ଦେଖିବା ତାଲିକାଟିକୁ ଦେଖିବେ ଓ ବଦଳାଇବେ',
 'watchlisttools-raw'  => 'ଫାଙ୍କା ଦେଖା ତାଲିକାଟିକୁ ଦେଖିବେ ଓ ବଦଳାଇବେ',
 
 # Special:FilePath
-'filepath-page' => 'ଫାଇଲ:',
+'filepath-page'   => 'ଫାଇଲ:',
+'filepath-submit' => 'ଯିବା',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'ଖୋଜିବା',

@@ -9,6 +9,7 @@
  *
  * @author Albamhandae
  * @author Chanhee
+ * @author Cwt96
  * @author Devunt
  * @author Ficell
  * @author Gapo
@@ -799,10 +800,14 @@ $2',
 'resetpass-temp-password'   => '임시 비밀번호:',
 
 # Special:PasswordReset
-'passwordreset'          => '암호 재설정',
-'passwordreset-text'     => '이메일을 입력하여 알림을 받으세요.',
-'passwordreset-legend'   => '암호 초기화',
-'passwordreset-disabled' => '위키 암호 초기화가 중단 되었습니다.',
+'passwordreset'              => '암호 재설정',
+'passwordreset-text'         => '이메일을 입력하여 알림을 받으세요.',
+'passwordreset-legend'       => '암호 초기화',
+'passwordreset-disabled'     => '위키 암호 초기화가 중단 되었습니다.',
+'passwordreset-username'     => '계정 이름:',
+'passwordreset-email'        => '이메일 주소:',
+'passwordreset-emailelement' => '계정 이름: $1
+임시 비밀번호: $2',
 
 # Edit page toolbar
 'bold_sample'     => '굵은 글씨',
@@ -2463,6 +2468,7 @@ $1',
 'blockipsuccesssub'               => '차단 완료',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:IPBlockList|여기]]에서 볼 수 있습니다.',
 'ipb-blockingself'                => '자기 자신을 차단하려고 합니다. 정말로 실행할까요?',
+'ipb-confirmhideuser'             => '당신은 사용자를 차단하면서 "계정 숨기기" 설정을 선택했습니다. 이로써 모든 기록에서 이 사용자의 계정 이름을 숨기게 됩니다. 정말로 계정을 숨기시겠습니까?',
 'ipb-edit-dropdown'               => '차단 이유 목록 편집하기',
 'ipb-unblock-addr'                => '$1 차단 해제하기',
 'ipb-unblock'                     => '사용자/IP 주소 차단 해제하기',
@@ -2472,10 +2478,19 @@ $1',
 'unblockiptext'                   => '아래의 양식에 차단 해제하려는 IP 주소나 사용자 이름을 입력하세요.',
 'ipusubmit'                       => '차단 해제',
 'unblocked'                       => '[[User:$1|$1]] 사용자 차단 해제됨',
+'unblocked-range'                 => '$1 대역이 차단 해제되었습니다.',
 'unblocked-id'                    => '차단 $1 해제됨',
 'blocklist'                       => '차단된 사용자 목록',
 'ipblocklist'                     => '현재 차단된 IP 주소/사용자 이름',
 'ipblocklist-legend'              => '차단 중인 사용자 찾기',
+'blocklist-userblocks'            => '계정에 대한 차단 숨기기',
+'blocklist-tempblocks'            => '기한이 정해진 차단을 숨기기',
+'blocklist-addressblocks'         => '당일 IP 차단을 숨기기',
+'blocklist-timestamp'             => '날짜/시각',
+'blocklist-target'                => '차단 대상',
+'blocklist-expiry'                => '차단 기한',
+'blocklist-by'                    => '차단한 관리자',
+'blocklist-params'                => '차단 설정',
 'blocklist-reason'                => '이유',
 'ipblocklist-submit'              => '찾기',
 'ipblocklist-localblock'          => '로컬 차단',
@@ -2516,6 +2531,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'ipb_already_blocked'             => '"$1" 사용자는 이미 차단됨',
 'ipb-needreblock'                 => '$1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습니까?',
 'ipb-otherblocks-header'          => '다른 {{PLURAL:$1|}}차단 기록',
+'unblock-hideuser'                => '이 계정 이름이 숨겨져 있기 때문에 이 사용자를 차단 해제할 수 없습니다.',
 'ipb_cant_unblock'                => '오류: 차단 ID $1이(가) 존재하지 않습니다.
 이미 차단 해제되었을 수 있습니다.',
 'ipb_blocked_as_range'            => '오류: IP 주소 $1은 직접 차단되지 않았기 때문에 차단 해제할 수 없습니다.
@@ -2713,7 +2729,8 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'import-interwiki-namespace' => '새 이름공간:',
 'import-upload-filename'     => '파일 이름:',
 'import-comment'             => '이유:',
-'importtext'                 => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받아서 여기에 올려주세요.',
+'importtext'                 => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받으십시오.
+그리고 당신의 컴퓨터에 저장해 둔 후 여기에 올려주세요.',
 'importstart'                => '문서를 가져오는 중...',
 'import-revision-count'      => '판 $1개',
 'importnopages'              => '가져올 문서가 없습니다.',
@@ -3087,9 +3104,12 @@ Variants for Chinese language
 'exif-gpsdatestamp'                => 'GPS 날짜',
 'exif-gpsdifferential'             => 'GPS 차이 보정',
 'exif-objectname'                  => '짧은 제목',
+'exif-languagecode'                => '언어',
 
 # EXIF attributes
 'exif-compression-1' => '압축되지 않음',
+
+'exif-copyrighted-false' => '퍼블릭 도메인',
 
 'exif-unknowndate' => '날짜를 알 수 없음',
 
@@ -3227,9 +3247,18 @@ Variants for Chinese language
 'exif-gpsspeed-m' => '마일 매 시간',
 'exif-gpsspeed-n' => '노트',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => '킬로미터',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '실제 방위',
 'exif-gpsdirection-m' => '자기 방위',
+
+'exif-dc-type' => '미디어 종류',
+
+'exif-iimcategory-edu' => '교육',
+'exif-iimcategory-evn' => '환경',
+'exif-iimcategory-sci' => '과학 기술',
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',

@@ -321,6 +321,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '續',
 'index-category'                 => '已做索引的頁面',
 'noindex-category'               => '未做索引的頁面',
+'broken-file-category'           => '有連結至已損壞文件頁的連結之頁面',
 
 'mainpagetext'      => "'''已成功安裝 MediaWiki。'''",
 'mainpagedocfooter' => '請參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟體的訊息！
@@ -489,6 +490,8 @@ $1',
 'page-rss-feed'           => '「$1」的RSS訂閱',
 'page-atom-feed'          => '「$1」的Atom訂閱',
 'red-link-title'          => '$1 （頁面未存在）',
+'sort-descending'         => '倒序排列',
+'sort-ascending'          => '升序排序',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '頁面',
@@ -613,6 +616,7 @@ $2',
 'createaccount'              => '建立新帳號',
 'gotaccount'                 => '已經擁有帳號？$1。',
 'gotaccountlink'             => '登入',
+'userlogin-resetlink'        => '忘記了你的登錄信息？',
 'createaccountmail'          => '通過電郵',
 'createaccountreason'        => '理由：',
 'badretype'                  => '您所輸入的密碼並不相同。',
@@ -670,6 +674,7 @@ $2',
 'usernamehasherror'          => '用戶名稱不可以包含切細字元',
 'login-throttled'            => '您已經嘗試多次的登入動作。
 請稍等多一會再試。',
+'login-abort-generic'        => '登入錯誤 - 中止',
 'loginlanguagelabel'         => '語言: $1',
 'suspicious-userlogout'      => '您登出的要求已經被拒絕，因為它可能是由已損壞的瀏覽器或者快取代理傳送。',
 
@@ -696,8 +701,33 @@ $2',
 'resetpass-temp-password'   => '臨時密碼:',
 
 # Special:PasswordReset
-'passwordreset'          => '重新設定密碼',
-'passwordreset-username' => '使用者名稱：',
+'passwordreset'                => '重新設定密碼',
+'passwordreset-text'           => '完成此表格以接收一個電郵以提示你的帳戶詳情。',
+'passwordreset-legend'         => '重設密碼',
+'passwordreset-disabled'       => '此維基上已禁止了重設密碼。',
+'passwordreset-pretext'        => '{{PLURAL:$1||輸入下列其中一個}}',
+'passwordreset-username'       => '使用者名稱：',
+'passwordreset-email'          => '電郵地址：',
+'passwordreset-emailtitle'     => '在{{SITENAME}}上的詳細信息',
+'passwordreset-emailtext-ip'   => '有人（可能是你，來自$1這個IP）要求發出一個在{{SITENAME}}（$4）的帳戶信
+息提示。該用戶{{PLURAL:$3|是|是}}與以下電郵地址有關：
+
+$2
+
+{{PLURAL:$3|這個臨時密碼|這些臨時密碼}}會在{{PLURAL:$5|一天|$5天}}到期。
+你應該現在登入並選擇一個新的密碼。如果不是你作出這個請求，又或你已經記
+起你原來的密碼，你可以忽略本信息並使用你原來的密碼。',
+'passwordreset-emailtext-user' => '用戶$1要求發出一個在{{SITENAME}}（$4）的帳戶信息提示。該用戶{{PLURAL:$3|是|是}}與以下
+電郵地址有關：
+
+$2
+
+{{PLURAL:$3|這個臨時密碼|這些臨時密碼}}會在{{PLURAL:$5|一天|$5天}}到期。
+你應該現在登入並選擇一個新的密碼。如果不是你作出這個請求，又或你已經記
+起你原來的密碼，你可以忽略本信息並使用你原來的密碼。',
+'passwordreset-emailelement'   => '用戶名：$1
+臨時密碼：$2',
+'passwordreset-emailsent'      => '已發送提示電郵。',
 
 # Edit page toolbar
 'bold_sample'     => '粗體文字',
@@ -947,7 +977,7 @@ $2',
 嘗試[[Special:Search|搜索本站]]獲得相關的新建頁面。',
 
 # Revision deletion
-'rev-deleted-comment'         => '（註釋已除）',
+'rev-deleted-comment'         => '（編輯摘要已除）',
 'rev-deleted-user'            => '（用戶名已移除）',
 'rev-deleted-event'           => '（日誌已除）',
 'rev-deleted-user-contribs'   => '[用戶名或IP地址已移除 - 從貢獻中隱藏編輯]',
@@ -2000,6 +2030,10 @@ Template:消除歧義',
 'noemailtext'          => '該用戶還沒有指定一個有效的e-mail地址。',
 'nowikiemailtitle'     => '不容許電子郵件',
 'nowikiemailtext'      => '這位用戶選擇不接收其他用戶的電子郵件。',
+'emailnotarget'        => '收件人不存在或無效的用戶名。',
+'emailtarget'          => '輸入收件人用戶名',
+'emailusername'        => '用戶名：',
+'emailusernamesubmit'  => '提交',
 'email-legend'         => '發一封電子郵件至另一位{{SITENAME}}用戶',
 'emailfrom'            => '發件人：',
 'emailto'              => '收件人：',
@@ -2251,9 +2285,10 @@ $1',
 'undelete-show-file-submit'    => '是',
 
 # Namespace form on various pages
-'namespace'      => '名字空間：',
-'invert'         => '反向選擇',
-'blanknamespace' => '（主）',
+'namespace'             => '名字空間：',
+'invert'                => '反向選擇',
+'namespace_association' => '關聯名字空間',
+'blanknamespace'        => '（主）',
 
 # Contributions
 'contributions'       => '用戶貢獻',
@@ -2303,6 +2338,9 @@ $1',
 'whatlinkshere-filters'    => '過濾器',
 
 # Block/unblock
+'autoblockid'                     => '自動查封 #$1',
+'block'                           => '封禁用戶',
+'unblock'                         => '解封用戶',
 'blockip'                         => '封禁用戶',
 'blockip-title'                   => '封禁用戶',
 'blockip-legend'                  => '查封用戶',
@@ -2321,6 +2359,7 @@ $1',
 ** 無禮的行為、攻擊／騷擾別人
 ** 濫用多個賬號
 ** 不能接受的用戶名',
+'ipb-hardblock'                   => '防止已登入用戶從該IP地址編輯',
 'ipbcreateaccount'                => '阻止創建新賬號',
 'ipbemailban'                     => '阻止用戶傳送電郵',
 'ipbenableautoblock'              => '自動查封此用戶最後所用的IP位址，以及後來試圖編輯所用的所有位址',
@@ -2331,11 +2370,15 @@ $1',
 'ipbotherreason'                  => '其它／附帶原因:',
 'ipbhidename'                     => '在編輯及列表中隱藏用戶名',
 'ipbwatchuser'                    => '監視這位用戶的用戶頁面以及其對話頁面',
+'ipb-disableusertalk'             => '禁止被封禁用戶編輯自己的討論頁',
 'ipb-change-block'                => '利用這些設定重新封鎖用戶',
+'ipb-confirm'                     => '確認封禁',
 'badipaddress'                    => '無效IP地址',
 'blockipsuccesssub'               => '查封成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經被查封。
 <br />參看[[Special:IPBlockList|被封IP地址列表]]以覆審查封。',
+'ipb-blockingself'                => '你要封禁自己！確認要這樣做嗎？',
+'ipb-confirmhideuser'             => '你要封禁用戶並隱藏其用戶名，這會隱藏在所有列表及日誌中涉及此用戶之用戶名。你確定要這樣做嗎？',
 'ipb-edit-dropdown'               => '編輯查封原因',
 'ipb-unblock-addr'                => '解封$1',
 'ipb-unblock'                     => '解除禁封用戶名或IP地址',
@@ -2345,9 +2388,20 @@ $1',
 'unblockiptext'                   => '用下面的表單來恢復先前被查封的IP位址或用戶的寫權限。',
 'ipusubmit'                       => '移除這個封鎖',
 'unblocked'                       => '[[User:$1|$1]] 的封禁已經解除。',
+'unblocked-range'                 => '$1已被解封',
 'unblocked-id'                    => '封禁 $1 已經被移除',
-'ipblocklist'                     => '被封IP地址列表',
+'blocklist'                       => '封禁用戶',
+'ipblocklist'                     => '被封用戶列表',
 'ipblocklist-legend'              => '搜尋一位已經被查封的用戶',
+'blocklist-userblocks'            => '隱藏用戶封禁',
+'blocklist-tempblocks'            => '隱藏臨時封禁',
+'blocklist-addressblocks'         => '隱藏單一IP封禁',
+'blocklist-timestamp'             => '時間',
+'blocklist-target'                => '目標',
+'blocklist-expiry'                => '過期',
+'blocklist-by'                    => '封禁管理員',
+'blocklist-params'                => '封禁參數',
+'blocklist-reason'                => '原因',
 'ipblocklist-submit'              => '搜尋',
 'ipblocklist-localblock'          => '本地封鎖',
 'ipblocklist-otherblocks'         => '其他{{PLURAL:$1|封鎖|封鎖}}',
@@ -2387,6 +2441,7 @@ $1被封禁的理由是“$2”',
 'ipb_already_blocked'             => '已經封鎖「$1」',
 'ipb-needreblock'                 => '$1已經被封鎖。您是否想更改這個設定？',
 'ipb-otherblocks-header'          => '其他{{PLURAL:$1|封鎖|封鎖}}',
+'unblock-hideuser'                => '由於其用戶名已隱藏，你無法解封這個用戶。',
 'ipb_cant_unblock'                => '錯誤: 找不到查封ID$1。可能已經解除封禁。',
 'ipb_blocked_as_range'            => '錯誤: 該IP $1 無直接查封，不可以解除封禁。但是它是在 $2 的查封範圍之內，該段範圍是可以解除封禁的。',
 'ip_range_invalid'                => '無效的IP範圍。',
@@ -2588,8 +2643,8 @@ $1被封禁的理由是“$2”',
 'import-interwiki-namespace' => '目的名字空間:',
 'import-upload-filename'     => '檔案名稱：',
 'import-comment'             => '註解:',
-'importtext'                 => '請使用[[Special:Export|匯出功能]]從來源 wiki 匯出檔案，
-儲存到您的磁片並上傳到這裡。',
+'importtext'                 => '請使用[[Special:Export|匯出功能]]從來源維基匯出檔案，
+儲存到您的電腦中並上傳到這裡。',
 'importstart'                => '正在匯入頁面...',
 'import-revision-count'      => '$1個修訂',
 'importnopages'              => '沒有匯入的頁面。',
@@ -2790,21 +2845,24 @@ $1',
 'nextdiff'     => '下一版本→',
 
 # Media information
-'mediawarning'         => "'''警告''': 該檔案類型可能包含惡意代碼。
+'mediawarning'           => "'''警告''': 該檔案類型可能包含惡意代碼。
 執行它可能對您的系統帶來危險。",
-'imagemaxsize'         => "影像大小限制:<br />''（用在檔案描述頁面中）''",
-'thumbsize'            => '略圖大小:',
-'widthheightpage'      => '$1×$2, $3頁',
-'file-info'            => '檔案大小: $1, MIME 類型: $2',
-'file-info-size'       => '$1 × $2 像素，檔案大小：$3，MIME類型：$4',
-'file-nohires'         => '<small>無更高解像度可提供。</small>',
-'svg-long-desc'        => 'SVG 檔案，表面大小：$1 × $2 像素，檔案大小：$3',
-'show-big-image'       => '完整解像度',
-'file-info-gif-looped' => '循環',
-'file-info-gif-frames' => '$1幀',
-'file-info-png-looped' => '循環',
-'file-info-png-repeat' => '已播放$1次',
-'file-info-png-frames' => '$1幀',
+'imagemaxsize'           => "影像大小限制:<br />''（用在檔案描述頁面中）''",
+'thumbsize'              => '略圖大小:',
+'widthheightpage'        => '$1×$2, $3頁',
+'file-info'              => '檔案大小: $1, MIME 類型: $2',
+'file-info-size'         => '$1 × $2 像素，檔案大小：$3，MIME類型：$4',
+'file-nohires'           => '<small>無更高解像度可提供。</small>',
+'svg-long-desc'          => 'SVG 檔案，表面大小：$1 × $2 像素，檔案大小：$3',
+'show-big-image'         => '完整解像度',
+'show-big-image-preview' => '<small>此預覽的大小：$1.</small>',
+'show-big-image-other'   => '<small>其他大小：$1。</small>',
+'show-big-image-size'    => '$1× $2 像素',
+'file-info-gif-looped'   => '循環',
+'file-info-gif-frames'   => '$1幀',
+'file-info-png-looped'   => '循環',
+'file-info-png-repeat'   => '已播放$1次',
+'file-info-png-frames'   => '$1幀',
 
 # Special:NewFiles
 'newimages'             => '新建圖片畫廊',
@@ -2845,8 +2903,8 @@ Variants for Chinese language
 如果此檔案的源檔案已經被修改，一些訊息在修改後的檔案中將不能完全反映出來。',
 'metadata-expand'   => '顯示詳細資料',
 'metadata-collapse' => '隱藏詳細資料',
-'metadata-fields'   => '在本訊息中所列出的 EXIF 元數據域將包含在圖片顯示頁面,
-當元數據表損壞時只顯示以下訊息，其他的元數據預設為隱藏。
+'metadata-fields'   => '在本訊息中所列出的 EXIF 元數據域將包含在圖片顯示頁面，當元數據表損壞時只顯示以下訊息。
+其他的元數據預設為隱藏。
 * make
 * model
 * datetimeoriginal
@@ -2895,8 +2953,8 @@ Variants for Chinese language
 'exif-colorspace'                  => '顏色空間',
 'exif-componentsconfiguration'     => '每分量含義',
 'exif-compressedbitsperpixel'      => '圖片壓縮模式',
-'exif-pixelydimension'             => '有效圖片寬度',
-'exif-pixelxdimension'             => '有效圖片高度',
+'exif-pixelydimension'             => '圖片寬度',
+'exif-pixelxdimension'             => '圖片高度',
 'exif-usercomment'                 => '用戶註釋',
 'exif-relatedsoundfile'            => '相關的音頻檔案',
 'exif-datetimeoriginal'            => '數據產生時間',
@@ -2910,9 +2968,9 @@ Variants for Chinese language
 'exif-exposureprogram'             => '曝光模式',
 'exif-spectralsensitivity'         => '感光',
 'exif-isospeedratings'             => 'ISO 速率',
-'exif-shutterspeedvalue'           => '快門速度',
-'exif-aperturevalue'               => '光圈',
-'exif-brightnessvalue'             => '亮度',
+'exif-shutterspeedvalue'           => 'APEX快門速度',
+'exif-aperturevalue'               => 'APEX光圈',
+'exif-brightnessvalue'             => 'APEX亮度',
 'exif-exposurebiasvalue'           => '曝光補償',
 'exif-maxaperturevalue'            => '最大陸地光圈',
 'exif-subjectdistance'             => '物距',
@@ -2974,6 +3032,18 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 區域名稱',
 'exif-gpsdatestamp'                => 'GPS 日期',
 'exif-gpsdifferential'             => 'GPS 差動修正',
+'exif-jpegfilecomment'             => 'JPEG 文件備註',
+'exif-keywords'                    => '關鍵字',
+'exif-worldregioncreated'          => '圖片拍攝地',
+'exif-countrycreated'              => '圖片拍攝國家',
+'exif-countrycodecreated'          => '拍攝的國家代碼',
+'exif-provinceorstatecreated'      => '省市',
+'exif-citycreated'                 => '照片中的城市',
+'exif-sublocationcreated'          => '該城市的子地點',
+'exif-worldregiondest'             => '世界區域顯示',
+'exif-countrydest'                 => '顯示的國家',
+'exif-countrycodedest'             => '顯示國家的代碼',
+'exif-provinceorstatedest'         => '省或狀態顯示',
 'exif-objectname'                  => '簡稱',
 
 # EXIF attributes
@@ -3055,6 +3125,8 @@ Variants for Chinese language
 'exif-sensingmethod-5' => '連續彩色區域傳感器',
 'exif-sensingmethod-7' => '三線傳感器',
 'exif-sensingmethod-8' => '連續彩色線性傳感器',
+
+'exif-filesource-3' => '數碼相機',
 
 'exif-scenetype-1' => '直接照像圖片',
 
@@ -3338,9 +3410,10 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 
 # Special:SpecialPages
 'specialpages'                   => '特殊頁面',
-'specialpages-note'              => '----
+'specialpages-note'              => '---
 * 標準特殊頁面。
-* <strong class="mw-specialpagerestricted">有限制的特殊頁面。</strong>',
+* <strong class="mw-specialpagerestricted">有限制的特殊頁面。</strong>
+* <span class="mw-specialpagecached">僅用於重新整理的特殊頁面。</span>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other'       => '其它特殊頁面',
 'specialpages-group-login'       => '登入／創建',

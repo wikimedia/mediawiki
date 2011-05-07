@@ -101,7 +101,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Desactivar la conversión de variantes',
 'tog-ccmeonemails'            => 'Mandame copies de los correos que mando a otros usuarios',
 'tog-diffonly'                => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
-'tog-showhiddencats'          => 'Amosar categoríes ocultes',
+'tog-showhiddencats'          => 'Amosar categoríes anubríes',
 'tog-norollbackdiff'          => 'Desanicier les diferencies depués de restaurar',
 
 'underline-always'  => 'Siempre',
@@ -1054,7 +1054,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'powersearch-field'                => 'Buscar',
 'powersearch-togglelabel'          => 'Comprobar:',
 'powersearch-toggleall'            => 'Toos',
-'powersearch-togglenone'           => 'Dengunu',
+'powersearch-togglenone'           => 'Dengún',
 'search-external'                  => 'Busca esterna',
 'searchdisabled'                   => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
 

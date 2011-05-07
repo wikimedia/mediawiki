@@ -30,6 +30,7 @@
  * @author Lijealso
  * @author Luckas Blade
  * @author Malafaya
+ * @author ManoDbo
  * @author McDutchie
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
@@ -2146,6 +2147,7 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'nowikiemailtext'      => 'Este usuário optou por não receber e-mail de outros usuários.',
 'emailtarget'          => 'Insira o nome de usuário do destinatário',
 'emailusername'        => 'Nome de usuário:',
+'emailusernamesubmit'  => 'Enviar',
 'email-legend'         => 'Enviar uma mensagem eletrônica para outro usuário da {{SITENAME}}',
 'emailfrom'            => 'De:',
 'emailto'              => 'Para:',
@@ -2455,6 +2457,9 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
+'autoblockid'                     => 'Autobloqueio #$1',
+'block'                           => 'Bloquear usuário',
+'unblock'                         => 'Desbloquear usuário',
 'blockip'                         => 'Bloquear usuário',
 'blockip-title'                   => 'Bloquear usuário',
 'blockip-legend'                  => 'Bloquear usuário',
@@ -2483,6 +2488,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbhidename'                     => 'Ocultar nome de usuário em edições e listas',
 'ipbwatchuser'                    => 'Vigiar a página de usuário e a página de discussão deste usuário',
 'ipb-change-block'                => 'Bloquear o usuário novamente com estes parâmetros',
+'ipb-confirm'                     => 'Confirmar bloqueio',
 'badipaddress'                    => 'Endereço de IP inválido',
 'blockipsuccesssub'               => 'Bloqueio bem sucedido',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
@@ -2497,8 +2503,10 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'ipusubmit'                       => 'Remover este bloqueio',
 'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-id'                    => 'O bloqueio de $1 foi removido com sucesso',
+'blocklist'                       => 'Usuários bloqueados',
 'ipblocklist'                     => 'Usuários bloqueados',
 'ipblocklist-legend'              => 'Procurar por um usuário bloqueado',
+'blocklist-reason'                => 'Motivo',
 'ipblocklist-submit'              => 'Pesquisar',
 'ipblocklist-localblock'          => 'Bloqueio local',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Outro bloqueio|Outros bloqueios}}',
@@ -3094,9 +3102,15 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsdatestamp'                => 'Data do GPS',
 'exif-gpsdifferential'             => 'Correção do diferencial do GPS',
 'exif-objectname'                  => 'Título curto',
+'exif-serialnumber'                => 'Número de série da câmera',
+'exif-label'                       => 'Etiqueta',
+'exif-rightscertificate'           => 'Certificado de gestão de direitos',
+'exif-intellectualgenre'           => 'Tipo de item',
 
 # EXIF attributes
 'exif-compression-1' => 'Sem compressão',
+
+'exif-copyrighted-false' => 'Domínio público',
 
 'exif-unknowndate' => 'Data desconhecida',
 
@@ -3111,6 +3125,8 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 
 'exif-planarconfiguration-1' => 'formato irregular',
 'exif-planarconfiguration-2' => 'formato plano',
+
+'exif-colorspace-65535' => 'Descalibrada',
 
 'exif-componentsconfiguration-0' => 'não existe',
 
@@ -3240,6 +3256,10 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsdestdistance-k' => 'Quilômetros',
 'exif-gpsdestdistance-m' => 'Milhas',
 'exif-gpsdestdistance-n' => 'Milhas náuticas',
+
+'exif-gpsdop-excellent' => 'Excelente ($1)',
+'exif-gpsdop-good'      => 'Bom ($1)',
+'exif-gpsdop-moderate'  => 'Satisfatório ($1)',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direção real',

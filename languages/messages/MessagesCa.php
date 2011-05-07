@@ -1526,8 +1526,8 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'filetype-unwanted-type'      => "Els fitxers del tipus «'''.$1'''» no són desitjats. {{PLURAL:$3|Es prefereix el tipus de fitxer|Els tipus de fitxer preferits són}} $2.",
 'filetype-banned-type'        => "{{PLURAL:$4|Els fitxers del tipus «'''.$1'''»|Els fitxers dels tipus '''$1'''}} no estan permesos. {{PLURAL:$3|Només s'admeten els fitxers del tipus|Els tipus de fitxer permesos són}} $2.",
 'filetype-missing'            => 'El fitxer no té extensió (com ara «.jpg»).',
-'empty-file'                  => 'El fitxer que vau submetre estava buit.',
-'file-too-large'              => 'El fitxer que vau submetre era massa gran.',
+'empty-file'                  => 'El fitxer que heu tramès està buit.',
+'file-too-large'              => 'El fitxer que heu tramès és massa gran.',
 'filename-tooshort'           => 'El nom del fitxer és massa curt.',
 'filetype-banned'             => 'Aquest tipus de fitxer està prohibit.',
 'verification-error'          => 'Aquest fitxer no ha passat la verificació de fitxers.',
@@ -3001,7 +3001,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-fixtureidentifier'           => "Nom de l'accessori",
 'exif-locationdest'                => 'Ubicació representada',
 'exif-locationdestcode'            => 'Codi de la ubicació que mostra',
-'exif-objectcycle'                 => 'Hora del dia que els mitjans estan destinats a',
+'exif-objectcycle'                 => 'Moment del dia al qual va destinat el mitjà de comunicació',
 'exif-contact'                     => 'Informació de contacte',
 'exif-writer'                      => 'Escriptor',
 'exif-languagecode'                => 'Idioma',
@@ -3035,10 +3035,16 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-giffilecomment'              => 'Comentari del fitxer GIF',
 'exif-intellectualgenre'           => "Tipus d'article",
 'exif-subjectnewscode'             => 'Codi del subjecte',
+'exif-event'                       => 'Esdeveniment representat',
+'exif-organisationinimage'         => 'Organització representada',
+'exif-personinimage'               => 'Persona representada',
+'exif-originalimageheight'         => 'Alçada de la imatge abans que fos retallada',
+'exif-originalimagewidth'          => 'Amplada de la imatge abans que fos retallada',
 
 # EXIF attributes
 'exif-compression-1' => 'Sense compressió',
 
+'exif-copyrighted-true'  => "Sotmesa a drets d'autor",
 'exif-copyrighted-false' => 'de domini públic',
 
 'exif-unknowndate' => 'Data desconeguda',
@@ -3057,6 +3063,8 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 
 'exif-xyresolution-i' => '$1 ppp',
 'exif-xyresolution-c' => '$1 ppc',
+
+'exif-colorspace-65535' => 'Sense calibrar',
 
 'exif-componentsconfiguration-0' => 'no existeix',
 
@@ -3121,6 +3129,8 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-sensingmethod-7' => 'Sensor trilineal',
 'exif-sensingmethod-8' => 'Sensor linear de color per seqüències',
 
+'exif-filesource-3' => 'Càmera fotogràfica digital',
+
 'exif-scenetype-1' => 'Una imatge fotografiada directament',
 
 'exif-customrendered-0' => 'Procés normal',
@@ -3169,6 +3179,10 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpslongitude-e' => 'Longitud est',
 'exif-gpslongitude-w' => 'Longitud oest',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metre|metres}} sobre el nivell del mar',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metre|metres}} sota el nivell del mar',
+
 'exif-gpsstatus-a' => 'Mesura en curs',
 'exif-gpsstatus-v' => 'Interoperabilitat de mesura',
 
@@ -3185,9 +3199,49 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsdestdistance-m' => 'Milles',
 'exif-gpsdestdistance-n' => 'Milles nàutiques',
 
+'exif-gpsdop-excellent' => 'Exceŀlent ($1)',
+'exif-gpsdop-good'      => 'Bona ($1)',
+'exif-gpsdop-moderate'  => 'Moderada ($1)',
+'exif-gpsdop-fair'      => 'Justa ($1)',
+'exif-gpsdop-poor'      => 'Pobra ($1)',
+
+'exif-objectcycle-a' => 'Només al matí',
+'exif-objectcycle-p' => 'Només al vespre',
+'exif-objectcycle-b' => 'Tant al matí com al vespre',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcció real',
 'exif-gpsdirection-m' => 'Direcció magnètica',
+
+'exif-ycbcrpositioning-1' => 'Centrat',
+'exif-ycbcrpositioning-2' => 'co-localitzats',
+
+'exif-dc-contributor' => 'Coŀlaboradors',
+
+'exif-isospeedratings-overflow' => 'Superior a 65535',
+
+'exif-iimcategory-ace' => 'Art, cultura i entreteniment',
+'exif-iimcategory-clj' => 'Crim i dret',
+'exif-iimcategory-dis' => 'Desastres i accidents',
+'exif-iimcategory-fin' => 'Economia i negocis',
+'exif-iimcategory-edu' => 'Educació',
+'exif-iimcategory-evn' => 'Medi ambient',
+'exif-iimcategory-hth' => 'Salut',
+'exif-iimcategory-hum' => 'Interès humà',
+'exif-iimcategory-lab' => 'Treball',
+'exif-iimcategory-lif' => "Estil de vida i d'oci",
+'exif-iimcategory-pol' => 'Política',
+'exif-iimcategory-rel' => 'Religió i creences',
+'exif-iimcategory-sci' => 'Ciència i tecnologia',
+'exif-iimcategory-soi' => 'Qüestions socials',
+'exif-iimcategory-spo' => 'Esport',
+'exif-iimcategory-war' => 'Guerra, conflictes i disturbis',
+'exif-iimcategory-wea' => 'Meteorologia',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Baixa ($1)',
+'exif-urgency-high'   => 'Alta ($1)',
+'exif-urgency-other'  => "Prioritat definida per l'usuari ($1)",
 
 # External editor support
 'edit-externally'      => 'Edita aquest fitxer fent servir una aplicació externa',
