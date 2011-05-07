@@ -3082,7 +3082,7 @@ class Title {
 		}
 
 		$dbw->begin(); # If $file was a LocalFile, its transaction would have closed our own.
-		$pageid = $this->getArticleID( GAID_FOR_UPDATE );
+		$pageid = $this->getArticleID( self::GAID_FOR_UPDATE );
 		$protected = $this->isProtected();
 		$pageCountChange = ( $createRedirect ? 1 : 0 ) - ( $nt->exists() ? 1 : 0 );
 
