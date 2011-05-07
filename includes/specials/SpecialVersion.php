@@ -158,16 +158,16 @@ class SpecialVersion extends SpecialPage {
 	 * @return mixed
 	 */
 	public static function getVersion( $flags = '' ) {
-		global $wgVersion, $IP;
+		global $IP;
 		wfProfileIn( __METHOD__ );
 
 		$info = self::getSvnInfo( $IP );
 		if ( !$info ) {
-			$version = $wgVersion;
+			$version = MW_VERSION;
 		} elseif( $flags === 'nodb' ) {
-			$version = "$wgVersion (r{$info['checkout-rev']})";
+			$version = MW_VERSION . " (r{$info['checkout-rev']})";
 		} else {
-			$version = $wgVersion . ' ' .
+			$version = MW_VERSION . ' ' .
 				wfMsg(
 					'version-svn-revision',
 					isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
@@ -186,10 +186,12 @@ class SpecialVersion extends SpecialPage {
 	 * @return mixed
 	 */
 	public static function getVersionLinked() {
-		global $wgVersion, $IP;
+		global $IP;
 		wfProfileIn( __METHOD__ );
 
 		$info = self::getSvnInfo( $IP );
+
+		$version = MW_VERSION;
 
 		if ( isset( $info['checkout-rev'] ) ) {
 			$linkText = wfMsg(
@@ -199,12 +201,10 @@ class SpecialVersion extends SpecialPage {
 			);
 
 			if ( isset( $info['viewvc-url'] ) ) {
-				$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
+				$version .= " [{$info['viewvc-url']} $linkText]";
 			} else {
-				$version = "$wgVersion $linkText";
+				$version .= " $linkText";
 			}
-		} else {
-			$version = $wgVersion;
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -680,9 +680,10 @@ class SpecialVersion extends SpecialPage {
 
 	function showEasterEgg() {
 		$rx = $rp = $xe = '';
+		$version = MW_VERSION;
 		$alpha = array("", "kbQW", "\$\n()");
 		$beta = implode( "', '", $alpha);
-		$juliet = 'echo $delta + strrev($foxtrot) - $alfa + $wgVersion . base64_decode($bravo) * $charlie';
+		$juliet = 'echo $delta + strrev($foxtrot) - $alfa + $version . base64_decode($bravo) * $charlie';
 		for ( $i = 1; $i <= 4; $i++ ) {
 			$rx .= '([^j]*)J';
 			$rp .= "+(\\$i)";

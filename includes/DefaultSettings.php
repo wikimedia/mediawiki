@@ -33,8 +33,11 @@ if ( !defined( 'MW_COMPILED' ) ) {
 $wgConf = new SiteConfiguration;
 /** @endcond */
 
-/** MediaWiki version number */
-$wgVersion = '1.19alpha';
+/**
+ * MediaWiki version number
+ * @deprecated use the constant MW_VERSION instead
+ */
+$wgVersion = MW_VERSION;
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
@@ -4310,6 +4313,16 @@ $wgUseNPPatrol = true;
 
 /** Provide syndication feeds (RSS, Atom) for, e.g., Recentchanges, Newpages */
 $wgFeed = true;
+
+/**
+ * Available feeds objects
+ * Should probably only be defined when a page is syndicated ie when
+ * $wgOut->isSyndicated() is true
+ */
+$wgFeedClasses = array(
+	'rss' => 'RSSFeed',
+	'atom' => 'AtomFeed',
+);
 
 /** Set maximum number of results to return in syndication feeds (RSS, Atom) for
  * eg Recentchanges, Newpages. */

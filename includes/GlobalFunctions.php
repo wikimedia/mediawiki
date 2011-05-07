@@ -2500,10 +2500,8 @@ function wfUsePHP( $req_ver ) {
  *                 a float
  */
 function wfUseMW( $req_ver ) {
-	global $wgVersion;
-
-	if ( version_compare( $wgVersion, (string)$req_ver, '<' ) ) {
-		throw new MWException( "MediaWiki $req_ver required--this is only $wgVersion" );
+	if ( version_compare( MW_VERSION, (string)$req_ver, '<' ) ) {
+		throw new MWException( "MediaWiki $req_ver required--this is only " . MW_VERSION );
 	}
 }
 

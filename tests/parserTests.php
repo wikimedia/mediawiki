@@ -30,8 +30,9 @@ $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 require_once( dirname( __FILE__ ) . '/../maintenance/commandLine.inc' );
 
 if ( isset( $options['help'] ) ) {
+	$version = MW_VERSION;
 	echo <<<ENDS
-MediaWiki $wgVersion parser test suite
+MediaWiki $version parser test suite
 Usage: php parserTests.php [options...]
 
 Options:
