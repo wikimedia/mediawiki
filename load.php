@@ -30,10 +30,14 @@ function wfDie( $msg = '' ) {
 	die( 1 );
 }
 
+// Load global constants, including MW_VERSION and MW_MIN_PHP_VERSION
+require_once( dirname( __FILE__ ) . '/includes/Defines.php' );
+
 // Die on unsupported PHP versions
-if( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.3' ) < 0 ){
-	$version = htmlspecialchars( $wgVersion );
-	wfDie( "MediaWiki $version requires at least PHP version 5.2.3." );
+if( !function_exists( 'version_compare' ) || version_compare( phpversion(), MW_MIN_PHP_VERSION ) < 0 ){
+	$version = htmlspecialchars( MW_VERSION );
+	$phpversion = htmlspecialchars( MW_MIN_PHP_VERSION );
+	wfDie( "MediaWiki $version requires at least PHP version $phpversion." );
 }
 
 require ( dirname( __FILE__ ) . '/includes/WebStart.php' );

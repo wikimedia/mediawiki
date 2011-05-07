@@ -20,6 +20,9 @@
  * @defgroup Maintenance Maintenance
  */
 
+// Include global constants, including MW_VERSION and MW_MIN_PHP_VERSION
+require_once( dirname( __FILE__ ) . '/includes/Defines.php' );
+
 // Define this so scripts can easily find doMaintenance.php
 define( 'RUN_MAINTENANCE_IF_MAIN', dirname( __FILE__ ) . '/doMaintenance.php' );
 define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
@@ -27,10 +30,10 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 // Make sure we're on PHP5 or better
-if ( version_compare( PHP_VERSION, '5.2.3' ) < 0 ) {
-	die ( "Sorry! This version of MediaWiki requires PHP 5.2.3; you are running " .
+if ( version_compare( PHP_VERSION, MW_MIN_PHP_VERSION ) < 0 ) {
+	die ( "Sorry! This version of MediaWiki requires PHP " . MW_MIN_PHP_VERSION . "; you are running " .
 		PHP_VERSION . ".\n\n" .
-		"If you are sure you already have PHP 5.2.3 or higher installed, it may be\n" .
+		"If you are sure you already have PHP " . MW_MIN_PHP_VERSION . " or higher installed, it may be\n" .
 		"installed in a different path from PHP " . PHP_VERSION . ". Check with your system\n" .
 		"administrator.\n" );
 }
