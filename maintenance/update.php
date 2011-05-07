@@ -26,7 +26,7 @@
  */
 
 // Include global constants, including MW_VERSION and MW_MIN_PHP_VERSION
-require_once( dirname( __FILE__ ) . '/includes/Defines.php' );
+require_once( dirname( dirname( __FILE__ ) ) . '/includes/Defines.php' );
 
 if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), MW_MIN_PHP_VERSION ) < 0 ) ) {
 	echo "You are using PHP version " . phpversion() . " but MediaWiki needs PHP " .
