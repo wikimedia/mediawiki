@@ -225,6 +225,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Set how long the response should be cached.
+	 *
+	 * @param $maxage
 	 */
 	public function setCacheMaxAge( $maxage ) {
 		$this->setCacheControl( array(
@@ -314,6 +316,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Create an instance of an output formatter by its name
+	 *
+	 * @param $format string
 	 *
 	 * @return ApiFormatBase
 	 */
@@ -676,6 +680,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Print results using the current printer
+	 *
+	 * @param $isError bool
 	 */
 	protected function printResult( $isError ) {
 		$this->getResult()->cleanUpUTF8();
@@ -706,6 +712,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * See ApiBase for description.
+	 *
+	 * @return array
 	 */
 	public function getAllowedParams() {
 		return array(
@@ -736,6 +744,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * See ApiBase for description.
+	 *
+	 * @return array
 	 */
 	public function getParamDescription() {
 		return array(
@@ -752,6 +762,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * See ApiBase for description.
+	 *
+	 * @return array
 	 */
 	public function getDescription() {
 		return array(
@@ -782,6 +794,9 @@ class ApiMain extends ApiBase {
 		);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'readonlytext' ),
@@ -794,6 +809,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Returns an array of strings with credits for the API
+	 * @return array
 	 */
 	protected function getCredits() {
 		return array(
@@ -808,8 +824,11 @@ class ApiMain extends ApiBase {
 			'or file a bug report at http://bugzilla.wikimedia.org/'
 		);
 	}
+
 	/**
 	 * Sets whether the pretty-printer should format *bold* and $italics$
+	 *
+	 * @param $help bool
 	 */
 	public function setHelp( $help = true ) {
 		$this->mPrinter->setHelp( $help );
@@ -817,6 +836,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Override the parent to generate help messages for all available modules.
+	 *
+	 * @return string
 	 */
 	public function makeHelpMsg() {
 		global $wgMemc, $wgAPICacheHelpTimeout;
@@ -838,6 +859,9 @@ class ApiMain extends ApiBase {
 		return $retval;
 	}
 
+	/**
+	 * @return mixed|string
+	 */
 	public function reallyMakeHelpMsg() {
 		$this->setHelp();
 
@@ -881,8 +905,8 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * @param  $module ApiBase
-	 * @param  $paramName String What type of request is this? e.g. action, query, list, prop, meta, format
+	 * @param $module ApiBase
+	 * @param $paramName String What type of request is this? e.g. action, query, list, prop, meta, format
 	 * @return string
 	 */
 	public static function makeHelpMsgHeader( $module, $paramName ) {
@@ -894,35 +918,7 @@ class ApiMain extends ApiBase {
 		return "* $paramName={$module->getModuleName()} $modulePrefix*";
 	}
 
-	private $mIsBot = null;
-	private $mIsSysop = null;
 	private $mCanApiHighLimits = null;
-
-	/**
-	 * Returns true if the currently logged in user is a bot, false otherwise
-	 * OBSOLETE, use canApiHighLimits() instead
-	 */
-	public function isBot() {
-		if ( !isset( $this->mIsBot ) ) {
-			global $wgUser;
-			$this->mIsBot = $wgUser->isAllowed( 'bot' );
-		}
-		return $this->mIsBot;
-	}
-
-	/**
-	 * Similar to isBot(), this method returns true if the logged in user is
-	 * a sysop, and false if not.
-	 * OBSOLETE, use canApiHighLimits() instead
-	 */
-	public function isSysop() {
-		if ( !isset( $this->mIsSysop ) ) {
-			global $wgUser;
-			$this->mIsSysop = in_array( 'sysop', $wgUser->getGroups() );
-		}
-
-		return $this->mIsSysop;
-	}
 
 	/**
 	 * Check whether the current user is allowed to use high limits
@@ -948,9 +944,11 @@ class ApiMain extends ApiBase {
 	/**
 	 * Returns the version information of this file, plus it includes
 	 * the versions for all files that are not callable proper API modules
+	 *
+	 * @return array
 	 */
 	public function getVersion() {
-		$vers = array ();
+		$vers = array();
 		$vers[] = 'MediaWiki: ' . SpecialVersion::getVersion() . "\n    http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/";
 		$vers[] = __CLASS__ . ': $Id$';
 		$vers[] = ApiBase::getBaseVersion();
@@ -975,8 +973,8 @@ class ApiMain extends ApiBase {
 	 * Add or overwrite an output format for this ApiMain. Intended for use by extending
 	 * classes who wish to add to or modify current formatters.
 	 *
-	 * @param $fmtName The identifier for this format.
-	 * @param $fmtClass The class implementing this format.
+	 * @param $fmtName string The identifier for this format.
+	 * @param $fmtClass ApiFormatBase The class implementing this format.
 	 */
 	protected function addFormat( $fmtName, $fmtClass ) {
 		$this->mFormats[$fmtName] = $fmtClass;

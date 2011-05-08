@@ -122,6 +122,9 @@ abstract class ApiBase {
 
 	/**
 	 * Get the name of the module as shown in the profiler log
+	 *
+	 * @param $db
+	 *
 	 * @return string
 	 */
 	public function getModuleProfileName( $db = false ) {
@@ -401,6 +404,8 @@ abstract class ApiBase {
 	/**
 	 * Callback for preg_replace_callback() call in makeHelpMsg().
 	 * Replaces a source file name with a link to ViewVC
+	 *
+	 * @return string
 	 */
 	public function makeHelpMsg_callback( $matches ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
@@ -597,7 +602,7 @@ abstract class ApiBase {
 	 * @param $titleObj Title the page under consideration
 	 * @param $userOption String The user option to consider when $watchlist=preferences.
 	 * 	If not set will magically default to either watchdefault or watchcreations
-	 * @returns Boolean
+	 * @return bool
 	 */
 	protected function getWatchlistValue ( $watchlist, $titleObj, $userOption = null ) {
 
@@ -1181,7 +1186,7 @@ abstract class ApiBase {
 
 	/**
 	 * Returns whether this module requires a Token to execute
-	 * @returns bool
+	 * @return bool
 	 */
 	public function needsToken() {
 		return false;
@@ -1189,17 +1194,18 @@ abstract class ApiBase {
 
 	/**
 	 * Returns the token salt if there is one, '' if the module doesn't require a salt, else false if the module doesn't need a token
-	 * @returns bool
+	 * @return bool
 	 */
 	public function getTokenSalt() {
 		return false;
 	}
 
 	/**
-	* Gets the user for whom to get the watchlist
-	*
-	* @returns User
-	*/
+	 * Gets the user for whom to get the watchlist
+	 *
+	 * @param $params array
+	 * @return User
+	 */
 	public function getWatchlistUser( $params ) {
 		global $wgUser;
 		if ( !is_null( $params['owner'] ) && !is_null( $params['token'] ) ) {
