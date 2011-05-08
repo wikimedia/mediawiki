@@ -52,7 +52,11 @@
 			}
 			var escapedtitle = mw.html.escape( title ).replace( /  /g, '&nbsp;&nbsp;' );
 			this.addedTests.push( [ 'HEADER', escapedtitle, mw.test.numberOfHeader++ ] );
-			this.$table.append( '<tr class="mw-mwutiltest-head" id="mw-mwutiltest-head'+mw.test.numberOfHeader+'"><th colspan="4">' + escapedtitle + '</th></tr>' );
+			this.$table.append(
+				'<tr class="mw-mwutiltest-head" id="mw-mwutiltest-head'
+				+ mw.test.numberOfHeader + '"><th colspan="4">'
+				+ escapedtitle + '</th></tr>'
+			);
 			return true;
 		},
 
@@ -69,27 +73,35 @@
 						// Build page
 						document.title = 'mediaWiki JavaScript library test suite - ' + mw.config.get( 'wgSiteName' );
 						$( '#firstHeading' ).text( 'mediaWiki JavaScript library test suite' );
-						var	skinLinksText = 'Test in: ',
+						var	skinLinksHtml = 'Test in: ',
 							skinLinks = [],
 							availableSkins = mw.config.get( 'wgAvailableSkins' ),
 							skincode = '';
 						for ( skincode in availableSkins ) {
-							skinLinks.push( mw.html.element( 'a', {
-								'href': mw.util.wikiGetlink( wgPageName ) + '?action=mwutiltest&debug=true&useskin=' + encodeURIComponent( skincode )
-								}, availableSkins[skincode] ) );
+							skinLinks.push(
+								mw.html.element(
+									'a', {
+									'href': mw.util.wikiGetlink( mw.config.get( 'wgPageName' ) )
+										+ '?action=mwutiltest&debug=true&useskin=' + encodeURIComponent( skincode )
+									},
+									availableSkins[skincode]
+								)
+							);
 						}
-						skinLinksText += skinLinks.join( ' | ' ) + '.';
+						skinLinksHtml += skinLinks.join( ' | ' ) + '.';
 						mw.util.$content.html(
 							'<p>Below is a list of tests to confirm proper functionality of the mediaWiki JavaScript library</p>'
-							+ '<p>' + skinLinksText + '</p>'
+							+ '<p>' + skinLinksHtml + '</p>'
 							+ '<hr />'
-							+ '<table id="mw-mwutiltest-table" class="wikitable" style="white-space:break; font-family:monospace,\'Courier New\'; width:100%;">'
+							+ '<table id="mw-mwutiltest-table" class="wikitable"'
+							+ ' style="white-space:break; font-family:monospace,\'Courier New\'; width:100%;">'
 							+ '<tr><th>Exec</th><th>Should return</th><th>Does return</th><th>Equal ?</th></tr>'
 							+ '</table>'
 						);
 
 						mw.util.addCSS(
-							'#mw-mwutiltest-table tr td { padding:0 !important; }' // Override wikitable padding for <td>
+							// Override wikitable padding for <td>
+							'#mw-mwutiltest-table tr td { padding:0 !important; }'
 						);
 
 						mw.test.$table = $( 'table#mw-mwutiltest-table' );
@@ -269,9 +281,11 @@
 						mw.test.addTest( 'typeof mw.util.addCSS',
 							'function (string)' );
 
-						mw.test.addTest( 'var a = mw.util.addCSS( "#mw-js-message { background-color: #AFA !important; }" ); a.disabled;',
-							'false (boolean)',
-							'(boolean)' );
+						mw.test.addTest( 'var a = mw.util.addCSS( "div#mw-js-message { background-color: rgb(170,255,170); }" ); a.disabled',
+							'false (boolean)' );
+
+						mw.test.addTest( 'jQuery( "#mw-js-message " ).css( "background-color" )',
+							'rgb(170, 255, 170) (string)' );
 
 						mw.test.addTest( 'typeof mw.util.toggleToc',
 							'function (string)' );
@@ -302,9 +316,6 @@
 
 						mw.test.addTest( 'mw.util.$content.size()',
 							'1 (number)' );
-
-						mw.test.addTest( 'mw.util.isMainPage()',
-							'false (boolean)' );
 
 						mw.test.addTest( 'typeof mw.util.addPortletLink',
 							'function (string)' );
@@ -447,20 +458,22 @@
 							}
 							doesReturn = doesReturn + ' (' + typeof doesReturn + ')';
 							var $thisrow = $testrows.eq( i - numberOfHeaders ); // since headers are rows as well
-							$thisrow.find( '> td' ).eq(2).html( mw.html.escape( doesReturn ).replace(/  /g, '&nbsp;&nbsp;' ) );
+							$thisrow.find( '> td' )
+								.eq(2)
+									.html( mw.html.escape( doesReturn ).replace(/  /g, '&nbsp;&nbsp;' ) );
 
 							if ( doesReturn.indexOf( shouldcontain ) !== -1 ) {
 								if ( doesReturn == shouldreturn ) {
-									$thisrow.find( '> td' ).eq(3).css( 'background', '#AFA' ).text( 'OK' );
+									$thisrow.find( '>td' ).eq(3).css( 'background', '#AFA' ).text( 'OK' );
 									numberOfPasseds++;
 									headNumberOfPasseds++;
 								} else {
-									$thisrow.find( '> td' ).eq(3).css( 'background', '#FFA' ).html( '<small>PARTIALLY</small>' );
+									$thisrow.find( '>td' ).eq(3).css( 'background', '#FFA' ).html( '<small>PARTIALLY</small>' );
 									numberOfPartials++;
 									headNumberOfPartials++;
 								}
 							} else {
-								$thisrow.css( 'background', '#FAA' ).find( '> td' ).eq(3).text( 'ERROR' );
+								$thisrow.css( 'background', '#FAA' ).find( '>td' ).eq(3).text( 'ERROR' );
 								numberOfErrors++;
 								headNumberOfErrors++;
 							}
