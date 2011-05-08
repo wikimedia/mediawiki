@@ -375,19 +375,23 @@
 					this.updateTooltipAccessKeys( $link );
 				}
 
-				// Append using DOM-element passing
-				if ( nextnode && nextnode.parentNode == $ul[0] ) {
+				// Where to put our node ?
+				// - nextnode is a DOM element (before MW 1.17, in wikibits.js, this was the only option)
+				if ( nextnode && nextnode.parentNode == $ul[0]  ) {
 					$(nextnode).before( $item );
+
+				// - nextnode is a CSS selector for jQuery
+				} else if ( typeof nextnode == 'string' && $ul.find( nextnode ).length !== 0 ) {
+					$ul.find( nextnode ).eq( 0 ).before( $item );
+
+
+				// If the jQuery selector isn't found within the <ul>,
+				// or if nextnode was invalid or not passed at all,
+				// then just append it at the end of the <ul> (this is the default behaviour)
 				} else {
-					// If the jQuery selector isn't found within the <ul>, just
-					// append it at the end
-					if ( $ul.find( nextnode ).length === 0 ) {
-						$ul.append( $item );
-					} else {
-						// Append using jQuery CSS selector
-						$ul.find( nextnode ).eq( 0 ).before( $item );
-					}
+					$ul.append( $item );
 				}
+				
 
 				return $item[0];
 			}
