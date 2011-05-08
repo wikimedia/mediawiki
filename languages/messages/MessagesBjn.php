@@ -1742,6 +1742,7 @@ Ngini wayah ini sudah diugahakan ka [[$2]].',
 'ancientpages'            => 'Tutungkaran panuhanya',
 'move'                    => 'Pindahakan',
 'movethispage'            => 'Pindahakan tungkaran ini',
+'notargettitle'           => 'Kadada tujuan',
 'pager-newer-n'           => '{{PLURAL:$1|tahanyar 1|tahanyar $1}}',
 'pager-older-n'           => '{{PLURAL:$1|talawas 1|talawas $1}}',
 
@@ -2391,7 +2392,8 @@ Muhun cubai pulang.',
 'show-big-image' => 'Ukuran hibak',
 
 # Special:NewFiles
-'ilsubmit' => 'Gagai',
+'newimages-legend' => 'Saringan',
+'ilsubmit'         => 'Gagai',
 
 # Bad image list
 'bad_image_list' => "Purmatnya nangkaya di bawah ni:

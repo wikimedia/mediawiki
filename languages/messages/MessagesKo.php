@@ -800,14 +800,29 @@ $2',
 'resetpass-temp-password'   => '임시 비밀번호:',
 
 # Special:PasswordReset
-'passwordreset'              => '암호 재설정',
-'passwordreset-text'         => '이메일을 입력하여 알림을 받으세요.',
-'passwordreset-legend'       => '암호 초기화',
-'passwordreset-disabled'     => '위키 암호 초기화가 중단 되었습니다.',
-'passwordreset-username'     => '계정 이름:',
-'passwordreset-email'        => '이메일 주소:',
-'passwordreset-emailelement' => '계정 이름: $1
+'passwordreset'                => '암호 재설정',
+'passwordreset-text'           => '이메일을 입력하여 알림을 받으세요.',
+'passwordreset-legend'         => '암호 초기화',
+'passwordreset-disabled'       => '위키 암호 초기화가 중단 되었습니다.',
+'passwordreset-pretext'        => '{{PLURAL:$1||아래에 한 가지 정보를 입력해주십시오}}',
+'passwordreset-username'       => '계정 이름:',
+'passwordreset-email'          => '이메일 주소:',
+'passwordreset-emailtitle'     => '{{SITENAME}} 계정 상세 정보',
+'passwordreset-emailtext-ip'   => 'IP 주소 $1을 사용하는 누군가(아마도 당신이), {{SITENAME}} ($4)의 비밀번호 찾기를 요청하였습니다. 이 이메일 주소와 연관된 계정의 목록입니다:
+
+$2
+
+이 {{PLURAL:$3|임시 비밀번호}}의 효력은 $5일 후 만료됩니다.
+이 비밀번호로 로그인한 후 비밀번호를 변경하십시오. 만약 당신이 아닌 다른 사람이 요청하였거나, 원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고 이전의 비밀번호를 계속 사용할 수 있습니다.',
+'passwordreset-emailtext-user' => '{{SITENAME}} ($4)의 사용자 $1이 비밀번호 찾기를 요청하였습니다. 이 이메일 주소와 연관된 계정의 목록입니다:
+
+$2
+
+이 {{PLURAL:$3|임시 비밀번호}}의 효력은 $5일 후 만료됩니다.
+이 비밀번호로 로그인한 후 비밀번호를 변경하십시오. 만약 당신이 아닌 다른 사람이 요청하였거나, 원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고 이전의 비밀번호를 계속 사용할 수 있습니다.',
+'passwordreset-emailelement'   => '계정 이름: $1
 임시 비밀번호: $2',
+'passwordreset-emailsent'      => '비밀번호 찾기 이메일을 보냈습니다.',
 
 # Edit page toolbar
 'bold_sample'     => '굵은 글씨',
@@ -1749,20 +1764,21 @@ $1',
 'uploadstash-refresh'  => '파일 목록을 새로고침',
 
 # img_auth script messages
-'img-auth-accessdenied' => '접근 거부됨',
-'img-auth-nopathinfo'   => 'PATH_INFO 가 빠졌습니다.
+'img-auth-accessdenied'     => '접근 거부됨',
+'img-auth-nopathinfo'       => 'PATH_INFO 가 빠졌습니다.
 서버에 이 정보가 설정되어 있지 않습니다.
 CGI 기반이거나 img_auth 를 지원하지 않을 수 있습니다.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
-'img-auth-notindir'     => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
-'img-auth-badtitle'     => '"$1"에서 바른 제목을 만들 수 없습니다.',
-'img-auth-nologinnWL'   => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
-'img-auth-nofile'       => '"$1" 파일이 없습니다.',
-'img-auth-isdir'        => '"$1" 디렉토리에 접근을 시도했습니다.
+'img-auth-notindir'         => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
+'img-auth-badtitle'         => '"$1"에서 바른 제목을 만들 수 없습니다.',
+'img-auth-nologinnWL'       => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
+'img-auth-nofile'           => '"$1" 파일이 없습니다.',
+'img-auth-isdir'            => '"$1" 디렉토리에 접근을 시도했습니다.
 파일에만 접근할 수 있습니다.',
-'img-auth-streaming'    => '‘$1’ 파일을 전송하는 중입니다.',
-'img-auth-public'       => 'img_auth.php는 개인 위키 파일을 외부 사이트로 전송하는 기능입니다. 이 기능은 기본적으로 공개적인 위키에서 사용하도록 설계되어 있으며, 보안적인 문제로 기본적으로 img_auth.php 기능은 비활성화되어 있습니다.',
-'img-auth-noread'       => '‘$1’ 파일을 볼 권한이 없습니다.',
+'img-auth-streaming'        => '‘$1’ 파일을 전송하는 중입니다.',
+'img-auth-public'           => 'img_auth.php는 개인 위키 파일을 외부 사이트로 전송하는 기능입니다. 이 기능은 기본적으로 공개적인 위키에서 사용하도록 설계되어 있으며, 보안적인 문제로 기본적으로 img_auth.php 기능은 비활성화되어 있습니다.',
+'img-auth-noread'           => '‘$1’ 파일을 볼 권한이 없습니다.',
+'img-auth-bad-query-string' => 'URL에 잘못된 쿼리 문자열이 있습니다.',
 
 # HTTP errors
 'http-invalid-url'      => '잘못된 URL: $1',
@@ -2124,6 +2140,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'noemailtext'          => '이 사용자는 올바른 이메일 주소를 입력하지 않았습니다.',
 'nowikiemailtitle'     => '이메일이 허용되지 않음',
 'nowikiemailtext'      => '이 사용자는 다른 사용자로부터의 이메일을 받지 않도록 설정하였습니다.',
+'emailnotarget'        => '수신자로 없는 사용자를 지정하였거나 계정 이름이 잘못되었습니다.',
+'emailtarget'          => '수신자 계정명 입력',
+'emailusername'        => '계정 이름:',
+'emailusernamesubmit'  => '확인',
 'email-legend'         => '{{SITENAME}}의 다른 사용자에게 이메일을 보내기',
 'emailfrom'            => '이메일 발신자:',
 'emailto'              => '수신자:',
@@ -2430,6 +2450,7 @@ $1',
 'whatlinkshere-filters'    => '필터',
 
 # Block/unblock
+'autoblockid'                     => '자동 차단 #$1',
 'block'                           => '사용자 차단',
 'unblock'                         => '사용자 차단 해제',
 'blockip'                         => '사용자 차단',
@@ -2930,6 +2951,7 @@ $1',
 'widthheightpage'        => '$1×$2, $3페이지',
 'file-info'              => '파일 크기: $1, MIME 종류: $2',
 'file-info-size'         => '$1 × $2 픽셀, 파일 크기: $3, MIME 종류: $4',
+'file-info-size-pages'   => '$1 × $2 픽셀, 파일 크기: $3, MIME 형식: $4, $5{{PLURAL:$5|쪽}}',
 'file-nohires'           => '<small>최대 해상도입니다.</small>',
 'svg-long-desc'          => 'SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기 $3',
 'show-big-image'         => '최대 해상도',

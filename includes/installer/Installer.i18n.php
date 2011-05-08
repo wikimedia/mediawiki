@@ -12390,14 +12390,22 @@ Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9), mga salanggu
 
 Suriin ang punong-abala, pangalan ng tagagamit at hudyat na nasa ibaba at subukan ulit.',
 	'config-postgres-old' => 'Kailangan ang PostgreSQL $1 o mas bago, mayroon kang $2.',
+	'config-sqlite-mkdir-error' => 'Kamalian sa paglikha ng direktoryo ng datong "$1".
+Suriin ang kinalalagyan at subukang muli.',
+	'config-sqlite-dir-unwritable' => 'Hindi nagawang magsulat sa direktoryong "$1".
+Baguhin ang mga kapahintulutan nito upang makapagsulat dito ang tagapaghain ng sapot, at subukang muli.',
 	'config-sqlite-connection-error' => '$1.
 
 Surrin ang direktoryo ng dato at pangalan ng kalipunan ng datong nasa ibaba at subukan uli.',
 	'config-sqlite-readonly' => 'Ang talaksang <code>$1</code> ay hindi maisusulat.',
 	'config-sqlite-cant-create-db' => 'Hindi malikha ang talaksang <code>$1</code> ng kalipunan ng dato.',
 	'config-sqlite-fts3-downgrade' => 'Nawawala ang suportang FTS3 ng PHP, ibinababa ang uri ng mga talahanayan',
+	'config-upgrade-done-no-regenerate' => 'Buo na ang pagsasapanahon.
+
+Maaari ka na ngayong [$1 magsimula sa paggamit ng wiki mo].',
 	'config-regenerate' => 'Muling likhain ang LocalSettings.php →',
 	'config-show-table-status' => 'Nabigo ang pagtatanong na IPAKITA ANG KALAGAYAN NG TALAHANAYAN!',
+	'config-unknown-collation' => "'''Babala:''' Ang kalipunan ng dato ay gumagagamit ng hindi nakikilalang pag-iipon.",
 	'config-db-web-account' => 'Akawnt ng kalipunan ng dato para sa pagpunta sa web',
 	'config-db-web-help' => 'Piliin ang pangalan ng tagagamit at hudyat na gagamitin ng tagapaghain ng web upang umugnay sa tagapaghain ng kalipunan ng dato, habang nasa pangkaraniwang pagtakbo ng wiki.',
 	'config-db-web-account-same' => 'Gamitin ang gayun din akawnt katulad ng sa pagluluklok',
