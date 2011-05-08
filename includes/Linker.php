@@ -155,19 +155,19 @@ class Linker {
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
-		$target, $text = null, $customAttribs = array(), $query = array(), $options = array()
+		$target, $html = null, $customAttribs = array(), $query = array(), $options = array()
 	) {
 		wfProfileIn( __METHOD__ );
 		if ( !$target instanceof Title ) {
 			wfProfileOut( __METHOD__ );
-			return "<!-- ERROR -->$text";
+			return "<!-- ERROR -->$html";
 		}
 		$options = (array)$options;
 
 		$dummy = new DummyLinker; // dummy linker instance for bc on the hooks
 
 		$ret = null;
-		if ( !wfRunHooks( 'LinkBegin', array( $dummy, $target, &$text,
+		if ( !wfRunHooks( 'LinkBegin', array( $dummy, $target, &$html,
 		&$customAttribs, &$query, &$options, &$ret ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return $ret;
@@ -203,13 +203,13 @@ class Linker {
 			$attribs,
 			self::linkAttribs( $target, $customAttribs, $options )
 		);
-		if ( is_null( $text ) ) {
-			$text = self::linkText( $target );
+		if ( is_null( $html ) ) {
+			$html = self::linkText( $target );
 		}
 
 		$ret = null;
-		if ( wfRunHooks( 'LinkEnd', array( $dummy, $target, $options, &$text, &$attribs, &$ret ) ) ) {
-			$ret = Html::rawElement( 'a', $attribs, $text );
+		if ( wfRunHooks( 'LinkEnd', array( $dummy, $target, $options, &$html, &$attribs, &$ret ) ) ) {
+			$ret = Html::rawElement( 'a', $attribs, $html );
 		}
 
 		wfProfileOut( __METHOD__ );
