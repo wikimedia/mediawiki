@@ -85,7 +85,7 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	/**
-	 * @param  $obj ApiBase
+	 * @param $obj ApiBase
 	 * @return ApiResult
 	 */
 	function getClassInfo( $obj ) {

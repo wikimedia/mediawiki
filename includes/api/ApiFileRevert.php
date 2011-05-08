@@ -86,8 +86,6 @@ class ApiFileRevert extends ApiBase {
 		if ( $permissionErrors ) {
 			$this->dieUsageMsg( $permissionErrors[0] );
 		}
-		
-		
 	}
 
 	/**

@@ -54,6 +54,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 *
 	 * Public caching will only be allowed if *all* the modules that supply
 	 * data for a given request return a cache mode of public.
+	 *
+	 * @return string
 	 */
 	public function getCacheMode( $params ) {
 		return 'private';
@@ -511,6 +513,9 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'invalidtitle', 'title' ),
