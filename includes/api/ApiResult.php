@@ -249,6 +249,12 @@ class ApiResult extends ApiBase {
 	 * Path is an indexed array, each element specifying the branch at which to add the new value
 	 * Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value
 	 * If $name is empty, the $value is added as a next list element data[] = $value
+	 *
+	 * @param $path
+	 * @param $name string
+	 * @param $value mixed
+	 * @param $overwrite bool
+	 *
 	 * @return bool True if $value fits in the result, false if not
 	 */
 	public function addValue( $path, $name, $value, $overwrite = false ) {
@@ -330,6 +336,8 @@ class ApiResult extends ApiBase {
 
 	/**
 	 * Callback function for cleanUpUTF8()
+	 *
+	 * @param $s string
 	 */
 	private static function cleanUp_helper( &$s ) {
 		if ( !is_string( $s ) ) {

@@ -278,6 +278,8 @@ class ApiQuery extends ApiBase {
 	 * Update a cache mode string, applying the cache mode of a new module to it.
 	 * The cache mode may increase in the level of privacy, but public modules
 	 * added to private data do not decrease the level of privacy.
+	 *
+	 * @return string
 	 */
 	protected function mergeCacheMode( $cacheMode, $modCacheMode ) {
 		if ( $modCacheMode === 'anon-public-user-private' ) {
