@@ -11,7 +11,7 @@ jQuery.extend({
 				'' : str.toString().replace( /\s+$/, '' );
 	},
 	ucFirst : function( str ) {
-		return str.substr( 0, 1 ).toUpperCase() + str.substr( 1, str.length );
+		return str.substr( 0, 1 ).toUpperCase() + str.substr( 1 );
 	},
 	escapeRE : function( str ) {
 		return str.replace ( /([\\{}()|.?*+\-^$\[\]])/g, "\\$1" );
