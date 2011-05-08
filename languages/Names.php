@@ -37,7 +37,8 @@
 	'be-tarask' => "\xE2\x80\xAAБеларуская (тарашкевіца)\xE2\x80\xAC",	# Belarusian in Taraskievica orthography
 	'be-x-old' => "\xE2\x80\xAAБеларуская (тарашкевіца)\xE2\x80\xAC",	# Belarusian in Taraskievica orthography; compat link
 	'bg' => 'Български',	# Bulgarian
-	'bh' => 'भोजपुरी',	# Bhojpuri
+	'bh' => 'भोजपुरी',	# Bihari marco language. Falls back to Bhojpuri (bho).
+	'bho' => 'भोजपुरी',	# Bhojpuri
 	'bi' => 'Bislama',		# Bislama
 	'bjn' => 'Bahasa Banjar',	# Banjarese
 	'bm' => 'Bamanankan',	# Bambara

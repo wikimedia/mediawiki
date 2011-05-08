@@ -32,6 +32,8 @@ MediaWiki supports over 330 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Bhojpuri (bho) (renamed from "bh").
+
 == Compatibility ==
 
 MediaWiki 1.19 requires PHP 5.2.3. PHP 4 is no longer supported.
