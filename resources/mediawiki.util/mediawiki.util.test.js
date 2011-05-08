@@ -326,6 +326,9 @@
 						mw.test.addTest( 'var a = mw.util.addPortletLink( "p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-rl" ); $(a).text();',
 							'MediaWiki.org (string)' );
 
+						mw.test.addTest( 'typeof mw.util.addPortletLink( "p-tb", "http://www.mediawiki.org/wiki/ResourceLoader/Default_modules", "Default modules", "t-rl", "All default modules present in MediaWiki" )',
+							'object (string)' );
+
 						mw.test.addTest( 'typeof mw.util.jsMessage',
 							'function (string)' );
 
