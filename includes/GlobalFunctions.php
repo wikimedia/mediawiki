@@ -192,7 +192,7 @@ function wfDebug( $text, $logonly = false ) {
 	if ( ( $wgDebugComments || $wgShowDebug ) && !$logonly ) {
 		$cache[] = $text;
 
-		if ( isset( $wgOut ) && StubObject::isRealObject( $wgOut ) ) {
+		if ( isset( $wgOut ) && is_object( $wgOut ) ) {
 			// add the message and any cached messages to the output
 			array_map( array( $wgOut, 'debug' ), $cache );
 			$cache = array();
