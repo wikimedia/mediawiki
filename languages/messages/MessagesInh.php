@@ -21,13 +21,13 @@ $messages = array(
 'tog-hideminor'               => 'ЗIамига хувцамаш керда дIахувцама дагаршкахь къайлаяккха',
 'tog-extendwatchlist'         => 'Шеръя теркама дагарче, массайола хувцамаш чулоацаш',
 'tog-usenewrc'                => 'Тоая керда хувцама дагаршкара пайда эца (JavaScript эша)',
-'tog-numberheadings'          => 'Кертера-деша таьрахь автоматически оттайе',
-'tog-showtoolbar'             => 'Хувцамаш еж йоа панель инструментов хьокха (JavaScript)',
-'tog-editondblclick'          => 'ОагIув хувца шозза клик йича (JavaScript)',
-'tog-editsection'             => 'ХIара дакъа "хувца" ссылк хьахьокха',
+'tog-numberheadings'          => 'Кертера-деша таьрахь ший лоIамаца оттайе',
+'tog-showtoolbar'             => 'ГIалатнийcдара юкъе лакхера гIирсий гартакх хьахокха (JavaScript)',
+'tog-editondblclick'          => 'Шозза цлицкацa oагIув хувца (JavaScript)',
+'tog-editsection'             => 'ХIара дакъа "хувца" яха Iинк хьахокха',
 'tog-editsectiononrightclick' => 'Дакъа хувца дакъа-цIерах аьтта клик йича (JavaScript)',
 'tog-showtoc'                 => 'Оглавление хьокха (цу оагIувна кхьаннена дукхагIа дакъа йеле)',
-'tog-rememberpassword'        => 'У компьютеретъ се цIи дагалаца (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => '(укх $1 {{PLURAL:$1|ден|деношкахь}}) мара са чувалара/чуялара дагалоаца дезаш дац',
 'tog-watchcreations'          => 'Аз хьаеж йоа оагIонаш со хьежача спискаех тIатоха',
 'tog-watchdefault'            => 'Аз нийсъйеж йоа оагIонаш со хьежача спискаех тIатоха',
 'tog-watchmoves'              => 'Аз цIи хийца оагIонаш со хьежача спискаех тIатоха',
@@ -35,15 +35,15 @@ $messages = array(
 'tog-minordefault'            => 'Ериг еж йоа хувцамаш лоархIаме йоацаж сен белгалде',
 'tog-previewontop'            => 'Хувцамаш еж бIарахьажа хьалха',
 'tog-previewonfirst'          => 'Эггара хьалха хувцамаш еж бIарахьажа хьалха',
-'tog-nocache'                 => 'ОагIувна кеш е дехка',
-'tog-enotifwatchlistpages'    => 'Э-майл хьадайта суна со хьежача оагIув хийцача',
+'tog-nocache'                 => 'Укхазара оагIувнаший лочкъараш дIадоаде',
+'tog-enotifwatchlistpages'    => 'ОагIувнаший хувцамахь теркама дагарчера лаьца, д-фоштаца хоам бе',
 'tog-enotifusertalkpages'     => 'Э-майл хьадайта суна аз къамял деж оагIув хийцача',
 'tog-enotifminoredits'        => 'Э-майл хьадайта суна лоархIаме йоацаж йоа хувцамаш йиеча',
 'tog-enotifrevealaddr'        => 'Хьокха са э-майл',
 'tog-shownumberswatching'     => 'Хьокха масса сег хьежаш ба',
-'tog-fancysig'                => 'Йоалача бесса кулг яздар (автоматически ссылк йоацаж)',
-'tog-externaleditor'          => 'Ший йоала редактор харжа',
-'tog-externaldiff'            => 'Диста де ший йоалла програм харжа',
+'tog-fancysig'                => 'Ший кулга яздара вики-хоамбаккхам (ший лоIаме Iинка йоацаш)',
+'tog-externaleditor'          => 'Арена гiалатнийсдарца болх бе (ший болх ховш болачара мара мегаш дац, хьамлоархара ший-тайпара оттам эша; [http://www.mediawiki.org/wiki/Manual:External_editors хьажа эша])',
+'tog-externaldiff'            => 'Арена бIасакхосса болхоагIувца болх бе (ший болх ховш болачара мара мегаш дац, хьамлоархара ший-тайпара оттам эша; [http://www.mediawiki.org/wiki/Manual:External_editors хьажа эша])',
 'tog-showjumplinks'           => '"Дехьадала" ссылк хьахьокха',
 'tog-uselivepreview'          => 'Сиха бIарахьажар (JavaScript) (Экспериментально)',
 'tog-forceeditsummary'        => 'Хоам бе суна хувцамаш малагIа ер списка йеце',
@@ -52,6 +52,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'ЛоархIаме йоацаж йоа хувцамаш со хьежача спискаех ма хьокха',
 'tog-ccmeonemails'            => 'Вуужаште аз дIадьахта э-майл суна а хьадайта',
 'tog-diffonly'                => 'Диста къал йоалаж йоа оагIувна дакъа ма хьаокха',
+'tog-showhiddencats'          => 'Къайла цатегаш хьахокха',
 
 'underline-always'  => 'Массаза',
 'underline-never'   => 'ЦIаккха',
@@ -316,6 +317,7 @@ $messages = array(
 'notloggedin'             => 'Оаш шоай цIи хьааьннадац',
 'nologinlink'             => 'Лархама йоазув де',
 'gotaccountlink'          => 'Чувала',
+'createaccountmail'       => 'Д-фоштаца',
 'createaccountreason'     => 'Бахьан:',
 'mailmypassword'          => 'Керда къайладоагIа хьаэца',
 
@@ -486,6 +488,7 @@ $messages = array(
 'userrights-groupsmember'  => 'Тоабий дакъалаьцархо:',
 
 # Groups
+'group'       => 'Тоаб:',
 'group-sysop' => 'Мазакулгалхой',
 
 'group-user-member' => 'дакъалаьцархо',
@@ -539,6 +542,14 @@ $messages = array(
 'uploadlogpage' => 'Чуяккхамий тептар',
 'uploadedimage' => '"[[$1]]" чуяккхай',
 
+# Special:ListFiles
+'listfiles_date'        => 'Денха',
+'listfiles_name'        => 'Паьла цIи',
+'listfiles_user'        => 'Дакъалаьцархо',
+'listfiles_size'        => 'Дустам',
+'listfiles_description' => 'Лоацам',
+'listfiles_count'       => 'Доржамаш',
+
 # File description page
 'file-anchor-link'          => 'Паьл',
 'filehist'                  => 'Паьла искар',
@@ -571,7 +582,8 @@ $messages = array(
 'unwatchedpages' => 'Теркамза оагIувнаш',
 
 # Statistics
-'statistics' => 'Дагара куц',
+'statistics'       => 'Дагара куц',
+'statistics-pages' => 'ОагIувний',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|бIат|бIаташ}}',
@@ -615,7 +627,7 @@ $messages = array(
 'listgrouprights-members' => '(тоабий дагарче)',
 
 # E-mail user
-'emailuser' => 'Дакъалаьцархочоа Д-фошт:',
+'emailuser' => 'Дакъалаьцархочоа д-фошт:',
 
 # Watchlist
 'watchlist'         => 'Теркама дагарче',
@@ -865,7 +877,24 @@ $messages = array(
 Цу мугIар тIа тIехьайоагIа Iинкаш, арадаккхар мо лоархаш хургья, вешта аьлча, йоазувашка чуIоттаде мегаш дола сурт санна ларха мега.',
 
 # Metadata
-'metadata' => 'МетахIамаш',
+'metadata'          => 'МетахIамаш',
+'metadata-help'     => 'Паьлас чулоаца, кхыдола хIамаш, таьрахьа суртдоаккхаргца е тIагIолладоаккхаргца чудаккхаш дола. Хьая паьл, гIалатахь мукъадаьккха хинна дале, хьахокхаш дола сурт, деррига хIамаш чулоацаргдац.',
+'metadata-expand'   => 'Кхыдола хIамаш хьахокха',
+'metadata-collapse' => 'Кхыдола хIамаш къайладаккха',
+'metadata-fields'   => 'Укх дагарченгахь дагaрадаь метахIамаша суртий мугIаш, сурт оагIув тIа хьахекха хургья, чуерзая метахIамашийца. Вож мугIанаш ха йоалаш къайла хургья.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'       => 'Шерал',
@@ -917,7 +946,14 @@ $messages = array(
 'fileduplicatesearch-filename' => 'ПаьлацIи:',
 
 # Special:SpecialPages
-'specialpages' => 'ГIулакхий оагIувнаш',
+'specialpages'                 => 'ГIулакхий оагIувнаш',
+'specialpages-group-pages'     => 'ОагIувний дагарченаш',
+'specialpages-group-pagetools' => 'ОагIувнаша гIирсаш',
+
+# Special:Tags
+'tags-title' => 'Йоазонаш',
+'tags-tag'   => 'Йоазон цIи',
+'tags-edit'  => 'хувца',
 
 # HTML forms
 'htmlform-submit'              => 'ДIадахийта',

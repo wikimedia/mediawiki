@@ -1189,7 +1189,7 @@ Milo ko nogi do mongolon tingkat tingolig diti, nga ingaa it kosimbanon montok t
 'ipusubmit'                => 'Iduo pinangantob diti',
 'unblocked'                => '[[User:$1|$1]] naantaban no.',
 'unblocked-id'             => 'Noidu no tantob di $1',
-'ipblocklist'              => 'Antabai kinoyonon IP om nogi ngaran-momomoguno',
+'ipblocklist'              => 'Antabai momomoguno',
 'ipblocklist-legend'       => 'Ihumo momomoguno naantaban',
 'ipblocklist-submit'       => 'Ihumo',
 'blocklink'                => 'antabai',
@@ -1331,7 +1331,7 @@ Awu nokohompit iri nonggo-nonggo toput suai id baris dilo, miagal do kiharo ilo 
 Nung nomodipait no ilo pail, kiharo pipiro kointalangan di awu ogonop do pootulon montok di pail nomodipait.',
 'metadata-expand'   => 'Pokitono kointalangan pinatapil',
 'metadata-collapse' => 'Polisoko kointalangan pinatapil',
-'metadata-fields'   => 'Batas pongodata EXIF it poinlis id suang pason diti maan posuango id upa bolikon pongintalangan nung olisok jodual pongodata.
+'metadata-fields'   => 'Batas pongodata it poinlis id suang pason diti maan poruhango id upa bolikon pongintalangan nung olisok jodual pongodata.
 Iri suai sinandad do poinlisok.
 * make
 * model

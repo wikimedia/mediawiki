@@ -1834,6 +1834,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'repositorio compartido',
+'filepage.css'              => '/** O CSS que se coloque aquí será incluído na páxina de descrición do ficheiro, así como nos wikis de clientes estranxeiros */',
 
 # File reversion
 'filerevert'                => 'Desfacer $1',
@@ -2949,6 +2950,7 @@ O seu sistema pode quedar comprometido se o executa.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|páxina|páxinas}}',
 'file-info'              => 'Tamaño do ficheiro: $1, tipo MIME: $2',
 'file-info-size'         => '$1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4',
+'file-info-size-pages'   => '$1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4, $5 {{PLURAL:$5|páxina|páxinas}}',
 'file-nohires'           => '<small>Non se dispón dunha resolución máis grande.</small>',
 'svg-long-desc'          => 'ficheiro SVG, nominalmente $1 × $2 píxeles, tamaño do ficheiro: $3',
 'show-big-image'         => 'Imaxe na máxima resolución',

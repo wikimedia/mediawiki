@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ashishanchinhar
  * @author Ggajendra
  * @author Manojberma77
  * @author Meno25
@@ -43,10 +44,42 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'जौं हमर ध्यानसूचीक कोनो पन्नामे परिवर्तन हुअए तँ हमरा ई-पत्र पठाउ',
 'tog-enotifusertalkpages'     => 'हमर सदस्य वार्ता पृष्ठ पर भेल परिवर्त्तनक हेतु हमरा ई-मेल करथि',
 'tog-enotifminoredits'        => 'छोट परिवर्त्तनक हेतु सेहो हमरा ई-मेल पठाऊ',
+'tog-enotifrevealaddr'        => 'हमर ई-पत्र संकेत सूचना ई-पत्रमे देखाउ',
+'tog-shownumberswatching'     => 'ध्यान राखैबला प्रयोक्ताक संख्या',
+'tog-oldsig'                  => 'अखुनका दस्खतक प्रारूप',
 'tog-fancysig'                => 'हस्ताक्षरकें विकिटेक्सटक रूपमे देखू (स्वचालित श्रृंखला हीन)',
 'tog-externaldiff'            => 'पुरान संस्करणमे अंतर देखेबाक हेतु पूर्वनिविष्ट रूपमे बाहरक परिवर्तनक प्रयोग करू',
+'tog-showjumplinks'           => 'करू "तड़पान" भेटैबला लिंक सभ',
+'tog-uselivepreview'          => 'करू चल पूर्वावलोकन (जावास्क्रिप्ट चाही) (प्रायोगिक)',
+'tog-forceeditsummary'        => 'हमरा सचेत करू जखन हम खाली सम्पादम सारांशमे जाइ',
+'tog-watchlisthideown'        => 'हमर साकांक्ष सूचीसँ हमर सम्पादन नुकाउ',
+'tog-watchlisthidebots'       => 'हमर साकांक्ष सूचीसँ स्वचालित सम्पादन हटाउ',
+'tog-watchlisthideminor'      => 'हमर साकांक्ष सूचीसँ मामूली सम्पादन नुकाउ',
+'tog-watchlisthideliu'        => 'साकांक्षसूचीसँ सम्प्रवेशित प्रयोक्ताक सम्पादन हटाउ',
+'tog-watchlisthideanons'      => 'साकांक्षसूचीसँ अनाम प्रयोक्ताक सम्पादन हटाउ',
+'tog-watchlisthidepatrolled'  => 'साकांक्ष सूचीसँ संचालित सम्पादन नुकाउ',
+'tog-ccmeonemails'            => 'हमरा द्वारा दोसर प्रयोक्ताकेँ पठाओल ई-पत्रक कॉपी पठाउ',
+'tog-showhiddencats'          => 'नुकाएल संवर्ग देखाउ',
+
+'underline-always'  => 'सदिखन',
+'underline-never'   => 'कखनो नै',
+'underline-default' => 'पूर्वन्यस्त गवेषक',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'सम्पादन क्षेत्र वर्णमुख प्रकार',
+'editfont-default'   => 'पूर्वन्यस्त गवेषक',
+'editfont-monospace' => 'समेटल वर्णमुख',
+'editfont-sansserif' => 'शीर्षक वर्णमुख',
+'editfont-serif'     => 'पाठ्य वर्णमुख',
 
 # Dates
+'sunday'        => 'रवि',
+'monday'        => 'सोम',
+'tuesday'       => 'मंगल',
+'wednesday'     => 'बुध',
+'thursday'      => 'बृहस्पति',
+'friday'        => 'शुक्र',
+'saturday'      => 'शनि',
 'sun'           => 'रवि',
 'mon'           => 'सोम',
 'tue'           => 'मंगल',
@@ -91,40 +124,120 @@ $messages = array(
 'nov'           => 'नव.',
 'dec'           => 'दिस.',
 
-'newwindow' => '(नव खिड़कीसँ खुजैछ)',
-'cancel'    => 'समाप्त',
-'mytalk'    => 'हमर वार्त्ता',
+# Categories related messages
+'pagecategories'           => '{{PLURAL:$1|खाढी|कएटा खाढी}}',
+'category_header'          => 'संवर्ग "$1" मे पन्ना सभ',
+'subcategories'            => 'उपसंवर्ग',
+'hidden-categories'        => '{{PLURAL:$1|नुकाएल वर्ग|नुकाएल वर्ग }}',
+'hidden-category-category' => 'नुकाएल संवर्ग सभ',
+'category-subcat-count'    => '{{PLURAL:$2| ऐ संवर्गक खाली ई सभ उप संवर्ग अछिइ।.|ऐ संवर्गमे ई सभ {{PLURAL:$1| उपसंवर्ग|$1 उपसंवर्ग सभ}}, ऐमे सँ $2 सभटा।}}',
+'category-article-count'   => '{{PLURAL:$2|ऐ संवर्गमे खाली ई पन्ना अछि।| ई {{PLURAL:$1|पन्ना अछि|$1 पन्ना सभ अछि}} ऐ संवर्गमे, जाइमे सँ $2 सभ।}}',
+'listingcontinuesabbrev'   => 'शेष आगाँ।',
+'index-category'           => 'क्रम कएल पन्ना सभ',
+'noindex-category'         => 'क्रम नै कएल पन्ना सभ',
+'broken-file-category'     => 'पन्ना सभ जाइमे फाइल लिंक सभ टूटल हुअए',
 
-'errorpagetitle'   => 'गलती',
-'tagline'          => 'कतयसँ {{SITENAME}}',
-'help'             => 'मदति',
-'search'           => 'ताकू',
-'searchbutton'     => 'ताकू',
-'searcharticle'    => 'जाऊ',
-'history'          => 'पन्नाक इतिहास',
-'printableversion' => 'प्रिंट करबा योग्य',
-'permalink'        => 'स्थायी लिंक',
-'edit'             => 'संपादन',
-'editthispage'     => 'एहि पृष्ठक संपादन',
-'talkpage'         => 'एहि पृष्ठ पर वार्त्तालाप',
-'talkpagelinktext' => 'कहू',
-'personaltools'    => 'व्यक्तिगत उपकरण',
-'talk'             => 'वर्त्तालाप',
-'views'            => 'दृष्टि',
-'toolbox'          => 'उपकरण-बक्सा',
-'redirectedfrom'   => '(एतयसँ बहटारल $1)',
-'jumpto'           => 'जाऊ:',
-'jumptonavigation' => 'हेलू',
-'jumptosearch'     => 'ताकू',
+'mainpagetext' => "'''मीडियाविकी नीक जकाँ प्रस्थापित भेल।'''",
+
+'about'         => 'विषयमे',
+'article'       => 'विषय सूची पन्ना',
+'newwindow'     => '(नव खिड़कीसँ खुजैछ)',
+'cancel'        => 'समाप्त',
+'moredotdotdot' => 'आर...',
+'mypage'        => 'हमर पन्ना',
+'mytalk'        => 'हमर वार्त्ता',
+'anontalk'      => 'ऐ अनिकेत पता लेल विमर्श',
+'navigation'    => 'संचार',
+'and'           => '&#32;आर',
+
+# Cologne Blue skin
+'qbfind'         => 'ताकू',
+'qbbrowse'       => 'गवेषण करू',
+'qbedit'         => 'सम्पादन करू',
+'qbpageoptions'  => 'ई पन्ना',
+'qbpageinfo'     => 'विषय',
+'qbmyoptions'    => 'हमर पन्ना सभ',
+'qbspecialpages' => 'विशेष पन्ना सभ',
+'faq'            => 'त्वरित प्रश्नोत्तरी',
+'faqpage'        => 'Project: त्वरित प्रश्नोत्तरी',
+
+# Vector skin
+'vector-action-addsection' => 'विचार-बिन्दु जोड़ू',
+'vector-action-delete'     => 'मेटाउ',
+'vector-action-move'       => 'घसकाउ',
+'vector-action-protect'    => 'रक्षण करू',
+'vector-action-undelete'   => 'आपस लाउ',
+'vector-action-unprotect'  => 'अरक्षित',
+'vector-view-create'       => 'बनाउ',
+'vector-view-edit'         => 'सम्पादन करू',
+'vector-view-history'      => 'इतिहास देखू',
+'vector-view-view'         => 'पढ़ू',
+'vector-view-viewsource'   => 'जड़ि देखू',
+'actions'                  => 'क्रिया सभ',
+'namespaces'               => 'चेन्हासी समूह सभ',
+'variants'                 => 'प्रकार सभ',
+
+'errorpagetitle'    => 'गलती',
+'returnto'          => '$1 पर घुरु।',
+'tagline'           => 'कतयसँ {{SITENAME}}',
+'help'              => 'मदति',
+'search'            => 'ताकू',
+'searchbutton'      => 'ताकू',
+'go'                => 'जाउ',
+'searcharticle'     => 'जाऊ',
+'history'           => 'पन्नाक इतिहास',
+'history_short'     => 'इतिहास',
+'updatedmarker'     => 'हमर अन्तिम आगमनसँ पहिने अद्यतन कएल',
+'info_short'        => 'सूचना',
+'printableversion'  => 'प्रिंट करबा योग्य',
+'permalink'         => 'स्थायी लिंक',
+'print'             => 'छापू',
+'view'              => 'देखू',
+'edit'              => 'संपादन',
+'create'            => 'बनाउ',
+'editthispage'      => 'एहि पृष्ठक संपादन',
+'create-this-page'  => 'ई पन्ना बनाउ',
+'delete'            => 'मेटाउ',
+'deletethispage'    => 'ई पन्ना मेटाउ',
+'undelete_short'    => 'आपस आनू  {{PLURAL:$1|एक सम्पादनt|$1 सम्पादन सभ}}',
+'viewdeleted_short' => 'देखू {{PLURAL:$1|एकटा मेटाएल सम्पादन|$1 मेटाएल सम्पादन सभ}}',
+'protect'           => 'बचाउ',
+'protect_change'    => 'बदलू',
+'protectthispage'   => 'ाइ पन्नाक रक्षा करू',
+'unprotect'         => 'रक्षा कवच हटाउ',
+'unprotectthispage' => 'ऐ पन्नासँ रक्षा कवच हटाउ',
+'newpage'           => 'नवका पन्ना',
+'talkpage'          => 'एहि पृष्ठ पर वार्त्तालाप',
+'talkpagelinktext'  => 'कहू',
+'specialpage'       => 'विशेष पन्ना',
+'personaltools'     => 'व्यक्तिगत उपकरण',
+'postcomment'       => 'नव खण्ड',
+'articlepage'       => 'विषय-सूची पन्ना देखू',
+'talk'              => 'वर्त्तालाप',
+'views'             => 'दृष्टि',
+'toolbox'           => 'उपकरण-बक्सा',
+'userpage'          => 'प्रयोक्ता पन्ना देखू',
+'projectpage'       => 'परियोजना पन्ना देखू',
+'imagepage'         => 'पन्नाक पृष्ठ देखू',
+'mediawikipage'     => 'सन्देश पन्ना देखू',
+'otherlanguages'    => 'दोसर भाषामे',
+'redirectedfrom'    => '(एतयसँ बहटारल $1)',
+'redirectpagesub'   => 'पन्नाकेँ पठाउ',
+'lastmodifiedat'    => 'ई पन्ना अंतिम बेर संवर्धित भेल $1, केँ  $2 बजे।',
+'jumpto'            => 'जाऊ:',
+'jumptonavigation'  => 'हेलू',
+'jumptosearch'      => 'ताकू',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'विषयमे {{SITENAME}}',
 'aboutpage'            => 'Project:विवरण',
+'copyright'            => '$1क अंतर्गत विषय सूची उपलब्ध अछि',
 'copyrightpage'        => '{{ns:project}}:सर्वाधिकार',
 'disclaimers'          => 'अनाधिकार घोषणा',
 'disclaimerpage'       => 'Project:अनाधिकार घोषणा',
 'edithelp'             => 'संपादन सहयोग',
 'edithelppage'         => 'Help:संपादन',
+'helppage'             => 'Help: विषय सूची',
 'mainpage'             => 'सम्मुख पन्ना',
 'mainpage-description' => 'सम्मुख पृष्ठ',
 'policy-url'           => 'कार्य-भार :निअम',
@@ -135,24 +248,53 @@ $messages = array(
 
 'badaccess' => 'आज्ञा गल्ती',
 
-'retrievedfrom'   => 'प्राप्ति स्थल "$1"',
-'editsection'     => 'संपादन करू',
-'editsectionhint' => 'संपादन शाखा: $1',
-'toc'             => 'विषय-सूची',
-'showtoc'         => 'देखाऊ',
-'hidetoc'         => 'नुकाऊ',
-'site-rss-feed'   => '$1 आरएसएस फीड',
-'site-atom-feed'  => '$1 अणु फीड',
-'red-link-title'  => 'पृष्ठ उपलब्ध नहि अछि',
+'retrievedfrom'       => 'प्राप्ति स्थल "$1"',
+'youhavenewmessages'  => 'अहाँ लग अछि $1 ($2).',
+'newmessageslink'     => 'नव संदेश सभ',
+'newmessagesdifflink' => 'अन्तिम परिवर्तन',
+'editsection'         => 'संपादन करू',
+'editold'             => 'सम्पादित करू',
+'editlink'            => 'सम्पादन करू',
+'viewsourcelink'      => 'जड़ि देखू',
+'editsectionhint'     => 'संपादन शाखा: $1',
+'toc'                 => 'विषय-सूची',
+'showtoc'             => 'देखाऊ',
+'hidetoc'             => 'नुकाऊ',
+'site-rss-feed'       => '$1 आरएसएस फीड',
+'site-atom-feed'      => '$1 अणु फीड',
+'page-rss-feed'       => '"$1" आर.एस.एस. सूचना',
+'page-atom-feed'      => '"$1" अणु सू़चना',
+'red-link-title'      => '$1 (पृष्ठ उपलब्ध नै  अछि)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'पृष्ठ',
-'nstab-user' => 'उपयोगकर्ताक पृष्ठ',
+'nstab-main'     => 'पृष्ठ',
+'nstab-user'     => 'उपयोगकर्ताक पृष्ठ',
+'nstab-special'  => 'विशिष्ट पन्ना',
+'nstab-project'  => 'परियोजना पन्ना',
+'nstab-image'    => 'फाइल',
+'nstab-template' => 'नमूना',
+'nstab-category' => 'संवर्ग',
+
+# General errors
+'missing-article'    => 'दत्तनिधि पृष्ठक वांछित पाठ्य नै ताकि सकल, माने "$1" $2
+एकर कारण कोनो पुरान फाइल चेन्हासी वा ऐतिहासिक लिंकक पाछाँ जाएब अछि, जे मेटा देल गेल छै।
+जौं ई तकर कारण नै अछि,  तखन अहाँकेँ तंत्रांशमे कोनो दोष भेटल अछि।
+एकर खबरि पहुँचाउ [[Special:ListUsers/sysop|administrator]], केँ, अपन सार्वत्रिक विभव संकेत सूचित करैत।',
+'missingarticle-rev' => '(संशोधन#: $1)',
+'badtitletext'       => 'आग्रह कएल पन्नाक शीर्षक गलत, खाली, वा गलत सम्बन्धित अन्तर-न्हाषा अन्तर विकी शीर्षक छी। ई एक वा बेशी कलाकार युक्त भऽ सकैए जे शीर्षकमे प्रयुक्त नै कएल जा सकैए।',
+'viewsource'         => 'जड़ि देखू',
 
 # Login and logout pages
+'yourname'                => 'प्रयोक्ता:',
+'yourpassword'            => 'कूटशब्द:',
+'remembermypassword'      => 'हमर सम्प्रवेश ऐ गवेषकपर मोन राखू (बेशीसँ बेशी $1 {{PLURAL:$1|दिन|दिन}})',
+'login'                   => 'सम्प्रवेश',
 'nav-login-createaccount' => 'सदस्य लॉग इन',
 'userlogin'               => 'लॉग इन / खेसरा बनाऊ',
+'logout'                  => 'निष्क्रमण',
 'userlogout'              => 'फेर आयब',
+'nologinlink'             => 'नव खाता खोलू',
+'mailmypassword'          => 'नूतन कूटशब्द ई-पत्रसँ पठाउ',
 
 # Special:PasswordReset
 'passwordreset-username'     => 'प्रयोक्तानाम',
@@ -185,106 +327,365 @@ $2
 'hr_tip'          => 'अक्षांशीय पंक्ति (अल्प उपयोग)',
 
 # Edit pages
-'summary'              => 'सारांश:',
-'subject'              => 'विषय/मुख्यपंक्ति:',
-'minoredit'            => 'अल्प संपादन',
-'watchthis'            => 'एहि पृष्ठकेँ देखू',
-'showpreview'          => 'पूर्वप्रदर्शन',
-'showdiff'             => 'परिवर्त्तन देखाऊ',
-'copyrightwarning'     => 'कृपा कय बुझू जे सभटा योगदान {{SITENAME}} ई बुझि कय देल जा रहल अछि जे ई निम्नांकितक अंतर्गत अछि $2 (देखू $1 जनकारीक हेतु). जौँ अहाँ चाहैत छी जी अहाँक रचना बिना रोकटोकक संपादित नहि हो किंवा बाँटल नहि जाय, तँ एकर योगदान एतय नहि करू। <br />
+'summary'                          => 'सारांश:',
+'subject'                          => 'विषय/मुख्यपंक्ति:',
+'minoredit'                        => 'अल्प संपादन',
+'watchthis'                        => 'एहि पृष्ठकेँ देखू',
+'savearticle'                      => 'पना रक्षण करू',
+'preview'                          => 'पूर्वावलोकन',
+'showpreview'                      => 'पूर्वप्रदर्शन',
+'showdiff'                         => 'परिवर्त्तन देखाऊ',
+'anoneditwarning'                  => "'''चेतौनी:''' अहाँ सम्प्रवेशित नै छी।
+अहाँक अनिकेत ऐ पन्नाक सम्पादन इतिहासमे दर्ज कएल जाएत।",
+'summary-preview'                  => 'सारांश पूर्वावलोकन',
+'newarticle'                       => '(नव)',
+'newarticletext'                   => 'अहाँ एहेन पन्नाक लिंकक अनुसरण कऽ आएल छी जे पन्ना अखन बनले नै अछि।
+पन्ना बनेबाक लेल नीचाँक बक्शामे टाइप केनाइ शुरू करू (देखू [[{{MediaWiki:Helppage}}| सहायता पन्ना]] विषेष जानकारी लेल)।',
+'noarticletext'                    => 'अखन ऐ पन्नापर कोनो पाठ नै अछि।
+अहाँ [[Special:Search/{{PAGENAME}}|ऐ पन्नाक शीर्षकेँ ताकू]] आन पन्नापर,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} सम्बन्धी वृत्तलेख ताकू],
+आकि [{{fullurl:{{FULLPAGENAME}}|action=edit}} ऐ पन्नाकेँ सम्पादित करू]</span>.',
+'previewnote'                      => "'''मोन राखू ई मातर पूर्वावलोकन छी।'''
+अहाँक परिवर्तन अखन धरि सँचिआएल नै गेल अछि!",
+'editing'                          => 'सम्पादन होइए $1',
+'editingsection'                   => 'सम्पादन कऽ रहल छी $1 (खण्ड)',
+'copyrightwarning'                 => 'कृपा कय बुझू जे सभटा योगदान {{SITENAME}} ई बुझि कय देल जा रहल अछि जे ई निम्नांकितक अंतर्गत अछि $2 (देखू $1 जनकारीक हेतु). जौँ अहाँ चाहैत छी जी अहाँक रचना बिना रोकटोकक संपादित नहि हो किंवा बाँटल नहि जाय, तँ एकर योगदान एतय नहि करू। <br />
 एतय अहाँ ईहो सप्पत खाइत छी जी ई अहाँक अपन रचना छी आकि अहाँ एकरा कोनो सार्वजनिक डोमेन किंवा ओह्ने कोनो मँगनीक संदर्भ-स्थलसँ कॉपी कएने छी।
 < दृढ़> सर्वाधिकार सुरक्षित कार्य एतय नहि दी।!</दृढ़>',
-'templatesusedpreview' => 'एहि पूर्वप्रदर्शनमे प्रयुक्त मास्टरफाइल:',
-'template-protected'   => '(सुरक्षित)',
+'templatesused'                    => '{{PLURAL:$1|नमूना|नमूना सभ}} ऐ पन्नापर प्रयुक्त:',
+'templatesusedpreview'             => '{{PLURAL:$1|मास्टरफाइल|सभटा मास्टरफाइल}} used in this preview:ऐ पूर्वप्रदर्शनमे प्रयुक्त :',
+'template-protected'               => '(सुरक्षित)',
+'template-semiprotected'           => '(अर्ध-रक्षित)',
+'hiddencategories'                 => 'ई पन्ना सदस्य अछि {{PLURAL:$1|1 नुकाएल संवर्ग|$1 नुकाएल संवर्ग सभ}}:',
+'permissionserrorstext-withaction' => 'अहाँके अनुमति नै अछि $2 लेल, ऐ लेल {{PLURAL:$1|कारण|कारण सभ}}:',
 
 # History pages
-'revisionasof'     => 'अंतिम परिवर्त्तन  $1',
-'previousrevision' => '←पुरान परिवर्त्तन',
-'cur'              => 'हीन',
-'last'             => 'अंतिम',
+'viewpagelogs'           => 'ऐ पन्नाक वृत्तलेख सभ देखू',
+'currentrev-asof'        => '$1 क समकालिक तखुनका संशोधन',
+'revisionasof'           => 'अंतिम परिवर्त्तन  $1',
+'previousrevision'       => '←पुरान परिवर्त्तन',
+'nextrevision'           => 'नूतन संशोधन →',
+'currentrevisionlink'    => 'नूतन संशोधन',
+'cur'                    => 'हीन',
+'last'                   => 'अंतिम',
+'histlegend'             => "फाइल तुलना तंत्रांशक चयन: संशोधन तुलनाक रेडियो बक्शाकेँ चिन्हित करू आ एन्टर बटन क्लिक करू वा सभसँ नीचाँक बटन क्लिक करू। <br />
+कहबी: '''({{int:cur}})''' = अद्यतन संशोधनसँ अन्तर, '''({{int:last}})''' = अद्यतनसँ पहिलुका संशोधनसँ अन्तर, '''{{int:minoreditletter}}''' = मामूली सम्पादन।",
+'history-fieldset-title' => 'इतिहास खंघारू',
+'histfirst'              => 'सभसँ पुरान',
+'histlast'               => 'आइ-काल्हिक',
+
+# Revision deletion
+'rev-delundel'   => 'देखाउ/ नुकाउ',
+'revdel-restore' => 'दृष्टिकुशलता बदलू',
+
+# Merge log
+'revertmerge' => 'नै मिज्झर',
 
 # Diffs
-'lineno'   => 'पंक्त्ति $1:',
-'editundo' => 'असंपादन',
+'history-title'           => '"$1" क संशोधन इतिहास',
+'difference'              => '(नव संशोधन सभक बीच अन्तर)',
+'lineno'                  => 'पंक्त्ति $1:',
+'compareselectedversions' => 'चयन कएल संशोधन सभक तुलना करू',
+'editundo'                => 'असंपादन',
 
 # Search results
-'powersearch' => 'त्वरित खोज',
+'searchresults'             => 'तकबाक फलाफल',
+'searchresults-title'       => 'तकबाक फलाफल "$1" लेल',
+'searchresulttext'          => 'तकबा लेल विशेष सूचना {{अन्तर्जालक नाम}}, देखू [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'अहाँ तकलौं ऐ लेल \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" सँ शुरू होइबला सभा पृष्ठ]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|सभ लिंक जकर लागि अछि "$1" सँ ]])',
+'searchsubtitleinvalid'     => "अहाँ तकलहुँ '''$1''' लेल",
+'notitlematches'            => 'कोनो पन्नाक शीर्ष मेल नै खाइए',
+'notextmatches'             => 'पन्नाक पाठक किछु मेल नै खाइए',
+'prevn'                     => 'पछिला {{PLURAL:$1|$1}}',
+'nextn'                     => 'आगाँ {{PLURAL:$1|$1}}',
+'viewprevnext'              => 'देखू  ($1 {{int:pipe-separator}} $2) ($3)',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्द|$2 शब्द सभ}})',
+'search-redirect'           => '(रस्ता बदलेन $1)',
+'search-section'            => '(शाखा $1)',
+'search-suggest'            => 'अहाँ मोने अछि जे:$1',
+'search-interwiki-caption'  => 'सम्बन्धित परियोजना सभ',
+'search-interwiki-default'  => '$1 सभटा परिणाम:',
+'search-interwiki-more'     => '(आर)',
+'search-mwsuggest-enabled'  => 'सलाहक संग',
+'search-mwsuggest-disabled' => 'कोनो सलाह नै',
+'nonefound'                 => "'''टिप्पणी''': मातर किछुए निर्धारक मूलभूत रूपेँ ताकल जाइए।
+सभ सामिग्रीमे (माने मंतव्य पन्ना, नमूना, इत्यादि) तकबाले अपन उत्कंठामे उपसर्ग ''all:'' लगाउ , नै तँ इच्छित निर्धारककेँ उपसर्ग सन प्रयुक्त करू।",
+'powersearch'               => 'त्वरित खोज',
+'powersearch-legend'        => 'विशेष खोज',
+'powersearch-ns'            => 'निर्धारकमे खोज',
+'powersearch-redir'         => 'रस्ता बदलेनक सूची',
+'powersearch-field'         => 'ऐ लेल ताकू',
 
 # Preferences page
 'preferences'   => 'विकल्प',
 'mypreferences' => 'हमर नीकगर',
 
+# Groups
+'group-sysop' => 'माइनजन',
+
+'grouppage-sysop' => '{{ns:project}}:माइनजन सभ',
+
+# User rights log
+'rightslog' => 'प्रयोक्ता अधिकार वृत्तलेख',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'ऐ पन्नाकेँ सम्पादित करू',
+
 # Recent changes
-'nchanges'        => '$1 {{PLURAL:$1|परिवर्त्तन|परिवर्त्तन}}',
-'rcnote'          => "नीचाँ $3 तक पहिलुका {{PLURAL:$2|'''१''' दिनमे भेल|'''$2''' दिनमे भेल}} अंतिम $1 बदलाव {{PLURAL:$1|देल अछि|देल अछि}}।",
-'rcshowhideminor' => '$1 अल्प संपादन',
-'rclinks'         => 'देखाऊ अंतिम $1 परिवर्त्तन अंतिम $2 दिनमे<br />$3',
-'diff'            => 'अंतर',
-'hist'            => 'इति.',
-'hide'            => 'नुकाऊ',
-'minoreditletter' => 'अ',
-'newpageletter'   => 'न',
-'boteditletter'   => 'ब',
+'nchanges'                       => '$1 {{PLURAL:$1|परिवर्त्तन|परिवर्त्तन}}',
+'recentchanges'                  => 'लगक परिवर्तन सभ',
+'recentchanges-legend'           => 'नव परिवर्तन सभक विकल्प सभ',
+'recentchanges-feed-description' => 'ऐ सूचना-तंत्रांशमे विकीमे भेल सभसँ लगक परिवर्तन ताकू',
+'rcnote'                         => "$5, $4 तक पहिलुका {{PLURAL:$2|'''१''' दिन|'''$2''' दिन}}मे  {{PLURAL:$1|भेल '''१''' अंतिम बदलाव इस प्रकार है| हुए '''$1''' बदलाव एना अछि}}।",
+'rclistfrom'                     => '$1 सँ शुरू भेल नव परिवर्तन देखू',
+'rcshowhideminor'                => '$1 अल्प संपादन',
+'rcshowhidebots'                 => '$1 स्वचालक सभ',
+'rcshowhideliu'                  => '$1 सम्प्रवेशित प्रयोक्ता सभ',
+'rcshowhideanons'                => '$1 अज्ञात प्रयोक्ता सभ',
+'rcshowhidemine'                 => '$1 हमर सम्पादन सभ',
+'rclinks'                        => 'देखाऊ अंतिम $1 परिवर्त्तन अंतिम $2 दिनमे<br />$3',
+'diff'                           => 'अंतर',
+'hist'                           => 'इति.',
+'hide'                           => 'नुकाऊ',
+'show'                           => 'देखाउ',
+'minoreditletter'                => 'अ',
+'newpageletter'                  => 'न',
+'boteditletter'                  => 'ब',
+'rc-enhanced-expand'             => 'वर्णन देखाउ (जावास्क्रिप्ट चाही)',
+'rc-enhanced-hide'               => 'वर्णन नुकाउ',
 
 # Recent changes linked
 'recentchangeslinked'         => 'संबंधित परिवर्त्तन',
 'recentchangeslinked-feed'    => 'संबंधित परिवर्त्तन',
 'recentchangeslinked-toolbox' => 'संबंधित परिवर्त्तन',
 'recentchangeslinked-title'   => '"$1" मे भेल परिवर्तन',
+'recentchangeslinked-summary' => "ई विशेष पन्नासँ सम्बद्ध पन्ना सभमे (आकि कोनो विशेष वर्गक समूहमे) भेल परिवर्तनक सूची छी ।
+[[Special:Watchlist|your watchlist]]  पर पन्नासभ '''गाढ़''' अछि।",
+'recentchangeslinked-page'    => 'पन्नाक नाम',
+'recentchangeslinked-to'      => 'देल पन्नाक सम्बन्धी पन्नामे परिवर्तन देखाउ',
 
 # Upload
 'upload'        => 'फाइल अपलोड करू',
 'uploadbtn'     => 'फाइल अपलोड',
+'uploadlogpage' => 'उपारोपण वृत्तलेख',
 'uploadedimage' => 'अपलोड भेल "[[$1]]"',
 
 # File description page
-'filehist'   => 'फाइल इतिहास',
-'imagelinks' => 'लिंक्स',
+'filehist'                  => 'फाइल इतिहास',
+'filehist-help'             => 'तखुनका तिथि/ समए पर क्लिक करू जखुनका फाइल देखबाक अछि',
+'filehist-current'          => 'अखुनका',
+'filehist-datetime'         => 'तिथि/ समए',
+'filehist-thumb'            => 'लघुचित्र',
+'filehist-thumbtext'        => 'तखुनका लघुचित्र $1',
+'filehist-user'             => 'प्रयोक्ता',
+'filehist-dimensions'       => 'बीम',
+'filehist-comment'          => 'समीक्षा',
+'imagelinks'                => 'फाइलक लिंक',
+'linkstoimage'              => 'ऐ {{PLURAL:$1|पन्नाक लागि |$1 पन्नाक लागि}} ऐ फाइलसँ:',
+'sharedupload'              => 'ई फाइल $1 सँ अछि आ दोसर प्रकल्प लेल प्रयोग कएल जा सकैए।',
+'uploadnewversion-linktext' => 'ऐ फाइलक नव संस्करणक उपारोपण',
 
 # Random page
 'randompage' => 'अव्यवस्थित पृष्ठ',
 
+# Statistics
+'statistics' => 'सांख्यिकी',
+
 # Miscellaneous special pages
-'nbytes'      => '$1 {{PLURAL:$1|बाइट|बाइट्स}}',
-'prefixindex' => 'लगाऊ सूची',
+'nbytes'        => '$1 {{PLURAL:$1|बाइट|बाइट्स}}',
+'nmembers'      => '$1 {{PLURAL:$1|सदस्य|सदस्य सभ}}',
+'prefixindex'   => 'उपसर्गक संग सभटा पृष्ठ',
+'newpages'      => 'नव पन्ना सभ',
+'move'          => 'हटाउ',
+'movethispage'  => 'ऐ पृष्ठकेँ घसकाउ',
+'pager-newer-n' => '{{PLURAL:$1|नव 1|नव $1}}',
+'pager-older-n' => '{{PLURAL:$1|साबिक 1|साबिक $1}}',
+
+# Book sources
+'booksources'               => 'किताबक सन्दर्भ सभ',
+'booksources-search-legend' => 'किताबक सन्दर्भक लेल ताकू',
+'booksources-go'            => 'चलू',
 
 # Special:Log
+'log'           => 'वृत्तलेख सभ',
 'all-logs-page' => 'सभटा लॉग',
 
 # Special:AllPages
+'allpages'       => 'सभ पन्ना',
 'alphaindexline' => '$1 to $2',
+'prevpage'       => 'पहिलुका पन्ना ($1)',
+'allpagesfrom'   => 'पन्ना प्रदर्शन प्रारम्भ भेल:',
+'allpagesto'     => 'एतऽ खतम होमएबला पन्नाक प्रदर्शन करू:',
+'allarticles'    => 'सभटा पन्ना',
+'allpagessubmit' => 'जाउ',
+
+# Special:LinkSearch
+'linksearch' => 'बाहरक सम्बन्ध',
+
+# Special:Log/newusers
+'newuserlogpage'          => 'प्रयोक्ता रचना वृत्तलेख',
+'newuserlog-create-entry' => 'नव प्रयोक्ता खाता',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(सदस्यक सूची)',
+
+# E-mail user
+'emailuser' => 'ऐ प्रयोक्ताकेँ ई-पत्र पठाउ',
 
 # Watchlist
-'mywatchlist' => 'हमर साकांक्ष-सूची',
-'watch'       => 'ताकिमे',
-'unwatch'     => 'छोड़ू',
+'watchlist'         => 'हमर साकांक्षसूची',
+'mywatchlist'       => 'हमर साकांक्ष-सूची',
+'addedwatch'        => 'साकांक्ष सूचीमे जोड़ू',
+'addedwatchtext'    => "पन्ना \"[[:\$1]]\" अहाँक [[Special:Watchlist|साकांक्ष सूची]] मे जोड़ल गेल।
+ऐ पन्नामे भविष्यक परिवर्तन आ एकर सम्बन्धित चौबटिया पन्ना एतए सूचीबद्ध रहत, आ पन्ना [[Special:RecentChanges|हालक परिवर्तन]]मे '''गाढ़''' देखाएत , जइसँ आसानीसँ एकरा चिन्हल जा सकत।",
+'removedwatch'      => 'साकांक्ष सूचीसँ हटाएल गेल',
+'removedwatchtext'  => 'पन्ना "[[:$1]]" हटाएल गेल [[Special:Watchlist|अहाँक साकांक्षसूची]] सँ।',
+'watch'             => 'ताकिमे',
+'watchthispage'     => 'ऐ पृष्ठपर नजरि राखू',
+'unwatch'           => 'छोड़ू',
+'watchlist-details' => '{{PLURAL:$1|$1 पन्ना|$1 पन्ना सभ}} अहाँक साकांक्षसूचीमे, चौबटिया पन्ना नै गानल गेल।',
+'wlshowlast'        => 'देखाउ अन्तिम $1 घण्टा $2 दिन $3',
+'watchlist-options' => 'साकांक्षसूचीक विकल्प सभ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ताकिमे...',
 'unwatching' => 'छोड़ल ...',
 
+# Delete
+'deletepage'            => 'पन्ना मेटाउ',
+'confirmdeletetext'     => 'अहाँ सभटा इतिहासक संग ऐ पन्नाकेँ हटाबऽ जा रहल छी।
+अहाँ ई सुनिश्चित करू जे अहाँ ई करऽ चाहै छी, अहाँकेँ एकर परिणामक अवगति अछि आ अहाँ ई ऐ [[{{MediaWiki:Policy-url}}|नीति]] क अनुसार कऽ रहल छी।',
+'actioncomplete'        => 'क्रिया पूर्ण',
+'deletedtext'           => '"<nowiki>$1</nowiki>" केँ मेटा देल गेल अछि।
+देखू $2 हालक मेटाएल सामिग्रीक अभिलेख लेल।',
+'deletedarticle'        => 'मेटाएल "[[$1]]"',
+'dellogpage'            => 'मेटाएल सामिग्रीक वृत्तलेख',
+'deletecomment'         => 'कारण:',
+'deleteotherreason'     => 'दोसर/ अतिरिक्त कारण:',
+'deletereasonotherlist' => 'दोसर कारण',
+
+# Rollback
+'rollbacklink' => 'प्रत्यावर्तन',
+
 # Protect
-'protectlogpage' => 'सुरक्षा लॉग',
-'prot_1movedto2' => '[[$1]] गेल एतय [[$2]]',
+'protectlogpage'              => 'सुरक्षा लॉग',
+'protectedarticle'            => 'रक्षित "[[$1]]"',
+'modifiedarticleprotection'   => '"[[$1]]" लेल बदलैत रक्षा स्तर',
+'prot_1movedto2'              => '[[$1]] गेल एतय [[$2]]',
+'protectcomment'              => 'कारण:',
+'protectexpiry'               => 'खतम हएत:',
+'protect_expiry_invalid'      => 'खतम हेबाक समए सही नै अछि।',
+'protect_expiry_old'          => 'खतम हेबाक समए भूतमे अछि।',
+'protect-text'                => "अहाँ पन्नाक रक्षा स्तरकेँ एतए देखि आ परिवर्तित कऽ सकै छी '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "अहाँक खाता अहाँकेँ रक्षा स्तरमे परिवर्तनक अधिकार नै दैत अछि।
+एतए '''$1'''पन्नाक वर्तमान परिस्थिति देल गेल अछि:",
+'protect-cascadeon'           => 'ई पन्ना अखन रक्षित अछि कारण ई ऐ मे सम्मिलित अछि {{PLURAL:$1|पन्ना, जे अछि|पन्ना सभ, जे सभ अछि}} तराउपड़ी रक्षण लागू।
+अहाँ ऐ पन्नाक रक्षा स्तरकेँ बदलि सकै छी, मुदा ताइ सँ तराउपड़ी रक्षापर असर नै पड़त।',
+'protect-default'             => 'सभ प्रयोक्ताकेँ अधिकार दिअ',
+'protect-fallback'            => '"$1" अनुमति चाही',
+'protect-level-autoconfirmed' => 'नव आ अपंजीकृत प्रयोक्ताकेँ प्रतिबन्धित करू',
+'protect-level-sysop'         => 'माइनजन मात्र',
+'protect-summary-cascade'     => 'तराउपड़ी',
+'protect-expiring'            => 'खतम हएत $1 (UTC)',
+'protect-cascade'             => 'रक्षित पन्ना ऐ पन्नापर संकलित अछि (तराउपड़ी रक्षा)',
+'protect-cantedit'            => 'अहाँ ऐ पन्नाक रक्षा स्तरमे परिवर्तन नै कऽ सकै छी, कारण अहाँकेँ एकरा सम्पादित करबाक अनुमति नै अछि।',
+'restriction-type'            => 'अनुमति:',
+'restriction-level'           => 'अवरोध स्तर:',
+
+# Undelete
+'undeletelink'     => 'देखू/ पहिने जकाँ',
+'undeletedarticle' => 'फेरसँ ओहिना "[[$1]]"',
 
 # Namespace form on various pages
+'namespace'      => 'चेन्हासी समूह',
+'invert'         => 'उनटा चयन',
 'blanknamespace' => '(मुख्य)',
 
 # Contributions
-'mycontris' => 'हमर योगदान',
+'contributions'       => 'प्रयोक्ताक योगदान सभ',
+'contributions-title' => '$1 लेल प्रयोक्ताक अवदान',
+'mycontris'           => 'हमर योगदान',
+'contribsub2'         => '$1 ($2) लेल',
+'uctop'               => '(शिखर)',
+'month'               => 'माससँ (आ पहिने)',
+'year'                => 'ऐ साल (आ पहिने)',
 
-'sp-contributions-talk' => 'कहू',
+'sp-contributions-newbies'  => 'नव खाताक अवदानकेँ देखाउ',
+'sp-contributions-blocklog' => 'प्रतिबन्धबला वृत्तलेख',
+'sp-contributions-talk'     => 'कहू',
+'sp-contributions-search'   => 'अवदानक लेल ताकू',
+'sp-contributions-username' => 'अनिकेत संकेत वा प्रयोक्तानाम:',
+'sp-contributions-submit'   => 'ताकू',
 
 # What links here
-'whatlinkshere'       => 'एतय कोन लिंक अछि',
-'whatlinkshere-links' => '← लिंक',
+'whatlinkshere'            => 'एतय कोन लिंक अछि',
+'whatlinkshere-title'      => '"$1" सँ सम्बन्धित पन्ना सभ',
+'whatlinkshere-page'       => 'पन्ना:',
+'linkshere'                => "ई सभ पन्ना सम्बन्धित अछि '''[[:$1]]''':",
+'isredirect'               => 'पन्नाकेँ घुराउ',
+'istemplate'               => 'परागत',
+'isimage'                  => 'सम्बन्धित चित्र',
+'whatlinkshere-prev'       => '{{PLURAL:$1|पहिलुका|पहिलुका सभ $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|अगुलका|अगुलका $1}}',
+'whatlinkshere-links'      => '← लिंक',
+'whatlinkshere-hideredirs' => '$1 घुरबैए',
+'whatlinkshere-hidetrans'  => '$1 परागत',
+'whatlinkshere-hidelinks'  => '$1 सम्बन्ध सभ',
+'whatlinkshere-filters'    => 'चलनी सभ',
 
 # Block/unblock
-'blocklink'    => 'प्रतिबंधित',
-'contribslink' => 'योगदान',
+'blockip'                  => 'प्रयोक्ताकेँ प्रतिबन्धित करू',
+'ipboptions'               => '2 घण्टा:2 hours,1 दिन:1 day,3 दिन:3 days,1 सप्ताह:1 week,2 सप्ताह:2 weeks,1 मास:1 month,3 मास:3 months,6 मास:6 months,1 साल:1 year,अनिश्चित:infinite',
+'ipblocklist'              => 'प्रतिबन्धित प्रयोक्ता सभ',
+'blocklink'                => 'प्रतिबंधित',
+'unblocklink'              => 'नै बारल',
+'change-blocklink'         => 'खण्ड बदलू',
+'contribslink'             => 'योगदान',
+'blocklogpage'             => 'प्रतिबन्धित वृत्तलेख',
+'blocklogentry'            => 'प्रतिबन्धित [[$1]] एकर अन्तिम तिथि अछि $2 $3',
+'unblocklogentry'          => 'प्रतिबन्ध हटाएल $1',
+'block-log-flags-nocreate' => 'लेखा निर्माण अशक्त कएल',
 
 # Move page
-'1movedto2' => '[[$1]] गेल एतय [[$2]]',
+'movepagetext'     => "नीचाँक फॉर्मक प्रयोग पन्नाक नाम बदलि देत, एकर सभटा इतिहासकेँ नव नामक अन्तर्गत राखि देत।
+पुरान शीर्षक नव पन्ना लेल एकटा घुरबैबला पन्ना बनि जाएत।
+अहाँ घुरबैबला पन्नाकेँ अद्यतन कऽ सकै छी जे मूल शीर्षकपर स्वचालित रूपेँ जाइत अछि।
+जौं अहाँ ई नै करबाक निर्णय करै छी, निश्चय करू तकबा लेल [[Special:DoubleRedirects|double]] वा
+[[Special:BrokenRedirects|broken redirects]]
+अहाँ ऐ लेल जिम्मीदार छी जे सम्बन्धित लिंक ओतै जाए जतए ओकरा जेबाक चाही।
+
+मोन राखू कि पन्ना '''नै''' घसकाउ जौं नव शीर्षकपर पहिनहियेसँ पन्ना अछि, आ तखने ई करू जखन ओ खाली हुअए वा ओ एकटा घुमबैबला पन्ना हुअए वा ओइ पन्नाक कोनो भूतकालक सम्पादन इतिहास नै हुअए।
+एकर माने भेल जे अहाँ कोनो पन्नाक नाम परिवर्तन कऽ पाछाँ लऽ जा सकै छी जतए एकर नाममे परिवर्तन कएल गेल रहए जौं अहाँसँ गलती भेल अछि, आ अहाँ ओइ पन्नाकेँ फेरसँ दोबारा नै लिख सकै छी।
+
+
+'''चेतौनी!'''
+ई एकटा लोकप्रिय पन्नाक लेल एकटा भयंकर आ बिना आशाक कएल परिवर्तन भऽ सकैए।
+आगाँ बढ़ैसँ पहिने अहाँ ई सुनिश्चित करू जे अहाँ एकर परिणाम बुझै छी।",
+'movepagetalktext' => "सम्बन्धित चौबटिया पन्ना स्वचालित रूपेँ घसकत एकर संग '''जौं:'''
+*एकटा खाली-नै चौबटिया पन्ना पहिनहियेसँ नव नामक संग अछि, वा
+*अहाँ नीचाँक बॉक्स टिक हटा दी।
+
+ताइ परिस्थितिमे, अहाँकेँ अपनेसँ पन्नाकेँ, आवश्यकतानुसार, घसकाबऽ वा मिज्झर करऽ पड़त।",
+'movearticle'      => 'पन्ना घसकाउ:',
+'newtitle'         => 'नव शीर्षकपर:',
+'move-watch'       => 'जड़ि पन्ना आ छीप पन्ना देखू',
+'movepagebtn'      => 'पन्ना घसकाउ',
+'pagemovedsub'     => 'घसकल',
+'movepage-moved'   => '\'\'\'"$1" घसकाएल गेल "$2"\'\'\' पर',
+'articleexists'    => 'ओइ नामक एकटा पन्ना पहिनहियेसँ अछि, वा जे नाम अहाँ चयन केने छी से वांछित नै अछि। 
+कृपा कऽ दोसर नामक चयन करू।',
+'talkexists'       => "'''ई पन्ना स्वयं घसकाएल गेल, मुदा चौबटिया पन्ना नै घसकाओल जा सकल कारण नव शीर्षकपर एकटा एहने पहिनहियेसँ अछि।
+कृपा कऽ एकरा सभकेँ अपनेसँ मिज्झर करू।'''",
+'movedto'          => 'घसकाएल गेल',
+'movetalk'         => 'सम्बन्धित चौबटिया पन्नाकेँ घसकाउ',
+'1movedto2'        => '[[$1]] गेल एतय [[$2]]',
+'1movedto2_redir'  => 'घसकाएल [[$1]] सँ [[$2]] घुरैसँ फराक',
+'movelogpage'      => 'वृत्तलेख हटाउ',
+'movereason'       => 'कारण:',
+'revertmove'       => 'फेरसँ वएह',
+
+# Export
+'export' => 'पन्ना सभकेँ पठाउ',
 
 # Thumbnails
 'thumbnail-more' => 'पैघ',
@@ -293,28 +694,69 @@ $2
 'importlogpage' => 'लॉगक आयात',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'हमर खेसरा पन्ना',
-'tooltip-pt-mytalk'       => 'हमर वार्त्ता पृष्ठ',
-'tooltip-pt-preferences'  => 'हमर मोनपसंद',
-'tooltip-pt-watchlist'    => 'पन्ना सभ जकर परिवर्त्तन पर अहाँक नजरि अछि',
-'tooltip-pt-mycontris'    => 'हमर योगदानक सूची',
-'tooltip-pt-login'        => 'लॉग इन करब नीक, परञ्च आवश्यक नहि.',
-'tooltip-pt-logout'       => 'फेर आयब',
-'tooltip-ca-talk'         => 'विषयसूचीक पन्नाक संबंधमे वर्त्तालाप',
-'tooltip-ca-edit'         => 'अहाँ एहि पन्नाकेँ संपादित कए सकैत छी। कृपया सुरक्षित करबासँ पहिने पूर्वप्रदर्शन बटम उपयोग करू।',
-'tooltip-search'          => 'ताकू {{SITENAME}}',
-'tooltip-n-mainpage'      => 'मुख्य-पृष्ठ केँ देखू',
-'tooltip-n-portal'        => 'प्रोजेक्टक विषयमे,अहाँ की कए सकैत छी,वस्तु प्राप्ति स्थल',
-'tooltip-n-currentevents' => 'लगक घटनाक विषयमे आधार सूचना प्राप्त करू।',
-'tooltip-n-recentchanges' => 'विकीमे लगक परिवर्त्तनक सूची.',
-'tooltip-n-randompage'    => 'कोनो अनिर्धारित पन्ना लोड करू',
-'tooltip-n-help'          => 'प्राप्त करबाक स्थान.',
-'tooltip-t-whatlinkshere' => 'सभटा विकी-पन्नाक सूची जकर एतय लिंक अछि',
-'tooltip-t-upload'        => 'चित्र आकि मीडिया फाइलकेँ अपलोड करू',
-'tooltip-t-specialpages'  => 'सभटा विशेष पन्नाक सूची',
-'tooltip-save'            => 'अपन परिवर्त्तनके सुरक्षित करू',
-'tooltip-preview'         => 'परिवर्त्तनक प्रदर्शन, संजोगबाक पहिने एकर प्रयोग करू!',
-'tooltip-diff'            => 'देखाऊ जे परिवर्त्तन अहाँ एहि लेखमे कएलहुँ।',
+'tooltip-pt-userpage'             => 'अहाँक खेसरा पन्ना',
+'tooltip-pt-mytalk'               => 'अहाँक वार्त्ता पृष्ठ',
+'tooltip-pt-preferences'          => 'हमर मोनपसंद',
+'tooltip-pt-watchlist'            => 'पन्ना सभ जकर परिवर्त्तन पर अहाँक नजरि अछि',
+'tooltip-pt-mycontris'            => 'अहाँक योगदानक सूची',
+'tooltip-pt-login'                => 'लॉग इन करब नीक, परञ्च आवश्यक नहि.',
+'tooltip-pt-logout'               => 'फेर आयब',
+'tooltip-ca-talk'                 => 'विषयसूचीक पन्नाक संबंधमे वर्त्तालाप',
+'tooltip-ca-edit'                 => 'अहाँ एहि पन्नाकेँ संपादित कए सकैत छी। कृपया सुरक्षित करबासँ पहिने पूर्वप्रदर्शन बटम उपयोग करू।',
+'tooltip-ca-addsection'           => 'नव खण्ड शुरू करू',
+'tooltip-ca-viewsource'           => 'ऐ पन्नापर वरदहस्त छै।
+अहाँ एकर जड़ि देख सकै छी।',
+'tooltip-ca-history'              => 'ऐ पृष्ठक पहिलुका परिवर्तन सभ',
+'tooltip-ca-protect'              => 'ऐ पन्नाकेँ बचाउ',
+'tooltip-ca-delete'               => 'ऐ पन्नाकेँ मेटाउ',
+'tooltip-ca-move'                 => 'ऐ पृष्ठकेँ हटाउ',
+'tooltip-ca-watch'                => 'आइ पन्नाकेँ अपन साकांक्षसूचीमे राखू',
+'tooltip-ca-unwatch'              => 'ऐ पन्नाकेँ हमर साकांक्ष सूचीसँ हटाउ',
+'tooltip-search'                  => 'ताकू {{SITENAME}}',
+'tooltip-search-go'               => 'पृष्ठपर जाऊ जौं एनमेन पृष्ठ रहए',
+'tooltip-search-fulltext'         => 'ऐ जानकारीले ताकू पृष्ठ सभमे ताकू',
+'tooltip-n-mainpage'              => 'मुख्य-पृष्ठ केँ देखू',
+'tooltip-n-mainpage-description'  => 'मुख्या पन्नापर जाउ',
+'tooltip-n-portal'                => 'प्रोजेक्टक विषयमे,अहाँ की कए सकैत छी,वस्तु प्राप्ति स्थल',
+'tooltip-n-currentevents'         => 'लगक घटनाक विषयमे आधार सूचना प्राप्त करू।',
+'tooltip-n-recentchanges'         => 'विकीमे लगक परिवर्त्तनक सूची.',
+'tooltip-n-randompage'            => 'कोनो अनिर्धारित पन्ना लोड करू',
+'tooltip-n-help'                  => 'प्राप्त करबाक स्थान.',
+'tooltip-t-whatlinkshere'         => 'सभटा विकी-पन्नाक सूची जकर एतय लिंक अछि',
+'tooltip-t-recentchangeslinked'   => 'ऐ पृष्ठक लागिक पन्नामे भेल नव परिवर्तन',
+'tooltip-feed-rss'                => 'ऐ पन्ना लेल आर.एस.एस. सूचना',
+'tooltip-feed-atom'               => 'ऐ पन्ना लेल अणु समदिया',
+'tooltip-t-contributions'         => 'ऐ प्रयोक्ताक योगदानक सूची देखू',
+'tooltip-t-emailuser'             => 'ऐ प्रयोक्ताकेँ ई-पत्र पठाउ',
+'tooltip-t-upload'                => 'चित्र आकि मीडिया फाइलकेँ अपलोड करू',
+'tooltip-t-specialpages'          => 'सभटा विशेष पन्नाक सूची',
+'tooltip-t-print'                 => 'ऐ पृष्ठक छपैबला रूप',
+'tooltip-t-permalink'             => 'पन्नाक ऐ संवर्धनक स्थायी लिंक',
+'tooltip-ca-nstab-main'           => 'विषय सूचीबला पन्ना देखू',
+'tooltip-ca-nstab-user'           => 'प्रयोक्ता पन्नाकेँ देखू',
+'tooltip-ca-nstab-special'        => 'ई एकटा विशिष्ट पन्ना छी, अहाँ अही पन्नाकेँ संपादित नै कऽ सकै छी',
+'tooltip-ca-nstab-project'        => 'परियोजना पन्ना देखू',
+'tooltip-ca-nstab-image'          => 'पन्नाक पृष्ठ देखू',
+'tooltip-ca-nstab-template'       => 'नमूना देखू',
+'tooltip-ca-nstab-category'       => 'संवर्ग पन्ना देखू',
+'tooltip-minoredit'               => 'एकरा मामली सम्पादन चिन्हित करू',
+'tooltip-save'                    => 'अपन परिवर्त्तनके सुरक्षित करू',
+'tooltip-preview'                 => 'परिवर्त्तनक प्रदर्शन, संजोगबाक पहिने एकर प्रयोग करू!',
+'tooltip-diff'                    => 'देखाऊ जे परिवर्त्तन अहाँ एहि लेखमे कएलहुँ।',
+'tooltip-compareselectedversions' => 'ऐ पन्नाक दू टा चयन कएल संशोधनक बीचक अन्तर देखू',
+'tooltip-watch'                   => 'ऐ पन्नाकेँ अपन साकांक्ष सूचीमे जोड़ू',
+'tooltip-rollback'                => '"प्रत्यावर्तन" ऐ पन्नाक अन्तिम योगदा करैबलाक सम्पादन (सम्पादन सभ) केँ एक क्लिकमे पुरान जगहपर लऽ जाउ',
+'tooltip-undo'                    => '"फेरसँ वएह" सम्पादनकेँ पूर्वस्थितिमे लऽ जाइए आ पूर्वावलोकन अवस्थामे सम्पादन फॉर्म खोलैए। ई सारांशमे कारण जोड़बाक विकल्प दैत अछि।',
+
+# Browsing diffs
+'previousdiff' => 'पुरान सम्पादन',
+'nextdiff'     => 'नव सम्पादन',
+
+# Media information
+'file-info-size' => '$1 × $2 चित्राणु, फाइल आकार: $3, माइम प्रकार: $4',
+'file-nohires'   => '<छोट>ऐसँ बेशी आनन्तर्य उपलब्ध नै अछि।</छोट>',
+'svg-long-desc'  => 'एस.वी.जी. फाइल, मामूली रूपमे $1 × $2 चित्रकण, फाइलक आकार: $3',
+'show-big-image' => 'पूर्ण आनन्तर्य',
 
 # Bad image list
 'bad_image_list' => 'फॉर्मेट निम्न प्रकारेँ अछि:
@@ -322,6 +764,42 @@ $2
 मात्र सूचीबद्ध सामग्री (* सँ प्रारम्भ होय बला पंक्त्ति) विचारनीय अछि। पंक्त्तिक प्रथम लिंक आवश्यक रूपसँ खराब चित्रक लिंक होयबाक चाही।
 
 ओही पंक्त्तिक कोनो आर लिंक अपवाद स्वरूप अछि, उदाहरणस्वरूप पन्ना जतय चित्र पंक्त्तिअहि पर होय।',
+
+# Metadata
+'metadata'          => 'प्रदत्तांश',
+'metadata-help'     => 'ई फाइल अतिरिक्त सूचना दैत अछि, सम्भवतः ई अंकीय कैमरा वा स्कैनर द्वारा बनाएल वा अंकण कए जोड़ल गेल अछि।
+जौं फाइलकेँ मूल रूपसँ परिवर्धित कएल गेल हएत तँ किछु विवरण पूर्ण रूपसँ परिवर्धित फाइलमे नै देखाएल गेल हएत।',
+'metadata-expand'   => 'बढ़ाओल विवरण देखाउ।',
+'metadata-collapse' => 'विस्तृत विवरण नुकाउ',
+'metadata-fields'   => 'चित्र प्रदत्तांश क्षेत्र सभ जे ऐ संदेशमे संकलित अछि चित्र पन्ना प्रदर्शनमे लेल जाएत जखन प्रदत्तांश सारणी क्षतिग्रस्त हएत।  
+आन सभ पूर्वनिधारित रूपेँ नुका जाएत।
+* बनाउ
+* प्रारूप
+* मूल समए काल
+* प्रायोगिक काल
+* एफ. संख्या
+* आइ.एस.ओ. गति प्रमाण
+* दृश्यपथ नाप
+* कलाकार
+* सर्वाधिकार
+* चित्र विवरण
+* जी.पी.एस. देशांतर
+* जी.पी.एस.अक्षांश
+* जी.पी.एस. लम्बाकार',
+
+# External editor support
+'edit-externally'      => 'ऐ फाइलकेँ बाहरी अनुप्रयोगसँ हटाउ',
+'edit-externally-help' => '(देखू [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] विषेष जानकारी लेल)',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'सभ',
+'namespacesall' => 'सभटा',
+'monthsall'     => 'सभ',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'सम्बन्धित परिवर्तन सभकेँ देखू',
+'watchlisttools-edit' => 'साकांक्षसूचीकेँ देखू आ सम्पादित करू',
+'watchlisttools-raw'  => 'काँच साकांक्षसूची संपादित करू',
 
 # Special:SpecialPages
 'specialpages' => 'विशेष पन्ना',

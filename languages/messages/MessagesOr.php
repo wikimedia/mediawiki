@@ -421,7 +421,7 @@ $messages = array(
 'editsectionhint'         => '$1 ଭାଗଟିକୁ ବଦଳାଇବେ',
 'toc'                     => 'ଭିତର ଚିଜ',
 'showtoc'                 => 'ଦେଖାଇବେ',
-'hidetoc'                 => 'ଲୁଚାଅ',
+'hidetoc'                 => 'ଲୁଚାଇବେ',
 'site-rss-feed'           => '$1 ଆରେସେସ ଫିଡ଼',
 'site-atom-feed'          => '$1 ଆଟମ ଫିଡ଼',
 'page-rss-feed'           => '$1 ଟି ଆରେସେସ ଫିଡ଼',
@@ -436,7 +436,7 @@ $messages = array(
 'nstab-project'   => 'ପ୍ରକଳ୍ପ ପୃଷ୍ଠା',
 'nstab-image'     => 'ଫାଇଲ',
 'nstab-mediawiki' => 'ଖବର',
-'nstab-template'  => 'ଟେଁପଲେଟ',
+'nstab-template'  => 'ଟେମ୍ପଲେଟ',
 'nstab-category'  => 'ଶ୍ରେଣୀ:',
 
 # General errors
@@ -459,6 +459,7 @@ $messages = array(
 'yourname'                => 'ବ୍ୟବାହରକାରୀଙ୍କର ନାଆଁ:',
 'yourpassword'            => 'ପାସବାର୍ଡ଼',
 'yourpasswordagain'       => 'ପାସବାର୍ଡ଼ ଆଉଥରେ:',
+'remembermypassword'      => 'ଏହି ବ୍ରାଉଜରରେ (ସବୁଠୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|day|ଦିନ}}) ପାଇଁ ମୋ ଲଗଇନ ମନେ ରଖିଥିବେ',
 'login'                   => 'ଲଗଇନ',
 'nav-login-createaccount' => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
 'loginprompt'             => "{{SITENAME}}ରେ ଲଗ ଇନ କରିବାପାଇଁ ଆପଣଙ୍କୁ '''କୁକି''' ସଚଳ କରିବାକୁ ପଡ଼ିବ ।",
@@ -471,6 +472,7 @@ $messages = array(
 'createaccount'           => 'ନୁଆ ଖାତା ଖୋଲିବା',
 'gotaccountlink'          => 'ଲଗଇନ',
 'createaccountreason'     => 'କାରଣ:',
+'loginsuccesstitle'       => 'ଠିକଭାବେ ଲଗଇନ ହେଲା',
 'loginsuccess'            => "'''ଆପଣ {{SITENAME}}ରେ \"\$1\" ଭାବରେ ଲଗଇନ କରିଛନ୍ତି ।'''",
 'mailmypassword'          => 'ପାସବାଡ଼ଟିକୁ ଇମେଲ କରି ପଠାଇବେ',
 'emailconfirmlink'        => 'ଆପଣଙ୍କ ଇମେଲ ଆଇ.ଡି.ଟି ଠିକ ବୋଲି ଥୟ କରନ୍ତୁ',
@@ -546,6 +548,8 @@ $messages = array(
 'next'                   => 'ପରେ',
 'last'                   => 'ଆଗ',
 'page_first'             => 'ପ୍ରଥମ',
+'histlegend'             => "ଅଲଗା ବଛା:ସଙ୍କଳନ ସବୁର ରେଡ଼ିଓ ବାକ୍ସକୁ ବାଛି ତୁଳନା କରନ୍ତୁ ଓ ଏଣ୍ଟର ଦବାନ୍ତୁ ବା ତଳେ ଥିବା ବଟନ ଦବାନ୍ତୁ ।<br />
+ସାରକଥା: '''({{int:cur}})''' = ନଗଦ ସଙ୍କଳନରେ ଥିବା ତଫାତ, '''({{int:last}})''' = ଆଗ ସଙ୍କଳନ ଭିତରେ ତଫାତ, '''{{int:minoreditletter}}''' = ଟିକେ ବଦଳ ।",
 'history-fieldset-title' => 'ଇତିହାସ ଖୋଜିବା',
 'histfirst'              => 'ସବୁଠୁ ପୁରୁଣା',
 'histlast'               => 'ନଗଦ',
@@ -583,6 +587,7 @@ $messages = array(
 'prevn'                     => '{{PLURAL:$1|$1}}ର ଆଗରୁ',
 'nextn'                     => '{{PLURAL:$1|$1}} ପର',
 'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖିବେ',
+'searchmenu-new'            => "'''\"[[:\$1]]\"ଟି ଏହି ଉଇକିରେ ତିଆରି କରିବେ!'''",
 'search-result-size'        => '$1 ({{PLURAL:$2|1 ଶବ୍ଦ|$2 ଶବ୍ଦ}})',
 'search-redirect'           => '($1 କୁ ଆଗକୁ ବଢେଇନିଅ )',
 'search-section'            => '(ଭାଗ $1)',
@@ -651,7 +656,7 @@ $messages = array(
 'rclinks'                         => 'ଗଲା $2 ଦିନର $1 ବଦଳଗୁଡ଼ିକୁ ଦେଖାଇବେ<br />$3',
 'diff'                            => 'ଅଦଳ ବଦଳ',
 'hist'                            => 'ଇତିହାସ',
-'hide'                            => 'ଲୁଚାଅ',
+'hide'                            => 'ଲୁଚାଇବେ',
 'show'                            => 'ଦେଖାଇବେ',
 'minoreditletter'                 => 'ଟିକେ',
 'newpageletter'                   => 'ନୂଆ',
@@ -716,10 +721,10 @@ $messages = array(
 'wantedpages'          => 'ଦରକାରି ପୃଷ୍ଠା',
 'wantedpages-badtitle' => '$1 ଉତ୍ତରସବୁରେ ଥିବା ଭୁଲ ଟାଇଟଲ',
 'wantedfiles'          => 'ଦରକାରି ଫାଇଲ',
-'wantedtemplates'      => 'ଦରକାରି ଟେଁପଲେଟ',
+'wantedtemplates'      => 'ଦରକାରୀ ଟେମ୍ପଲେଟ',
 'mostlinked'           => 'ଅଧିକ ଯୋଡ଼ାଯାଇଥିବା ପୃଷ୍ଠା',
 'mostlinkedcategories' => 'ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଶ୍ରେଣୀ',
-'mostlinkedtemplates'  => 'ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଟେଁପଲେଟ',
+'mostlinkedtemplates'  => 'ବେଶୀ ଯୋଡ଼ାଯାଇଥିବା ଟେମ୍ପଲେଟ',
 'mostcategories'       => 'ଅଧିକ ଶ୍ରେଣୀ ଥିବା ପୃଷ୍ଠା',
 'mostimages'           => 'ଫାଇଲରେ ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଥିବା',
 'prefixindex'          => 'ଆଗରୁ କିଛି ଯୋଡ଼ା ସହ ଥିବା ସବୁ ଫରଦସବୁ',
@@ -991,6 +996,9 @@ $5
 
 # Table pager
 'table_pager_limit_submit' => 'ଯିବା',
+
+# Auto-summaries
+'autosumm-new' => '"$1" ନାଆଁରେ ପୃଷ୍ଠାଟିଏ ତିଆରିକଲେ',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ଦରକାରୀ ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ',

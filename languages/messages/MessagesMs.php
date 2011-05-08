@@ -1829,7 +1829,7 @@ Masukan yang <del>dipotong</del> telah diselesaikan.',
 'brokenredirects'        => 'Lencongan rosak',
 'brokenredirectstext'    => 'Lencongan-lencongan berikut menuju ke laman yang tidak wujud:',
 'brokenredirects-edit'   => 'sunting',
-'brokenredirects-delete' => 'hapus',
+'brokenredirects-delete' => 'hapuskan',
 
 'withoutinterwiki'         => 'Laman tanpa pautan bahasa',
 'withoutinterwiki-summary' => 'Laman-laman berikut tidak mempunyai pautan ke versi bahasa lain:',
