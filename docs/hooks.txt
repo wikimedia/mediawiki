@@ -1040,7 +1040,7 @@ sing and return $ret.  See documentation for Linker::link() for details on the
 expected meanings of parameters.
 $skin: the Skin object
 $target: the Title that the link is pointing to
-&$text: the contents that the <a> tag should have (raw HTML); null means "de-
+&$html: the contents that the <a> tag should have (raw HTML); null means "de-
 	fault"
 &$customAttribs: the HTML attributes that the <a> tag should have, in associa-
 	tive array form, with keys and values unescaped.  Should be merged with de-
@@ -1052,13 +1052,13 @@ $target: the Title that the link is pointing to
 
 'LinkEnd': Used when generating internal and interwiki links in Linker::link(),
 just before the function returns a value.  If you return true, an <a> element
-with HTML attributes $attribs and contents $text will be returned.  If you re-
+with HTML attributes $attribs and contents $html will be returned.  If you re-
 turn false, $ret will be returned.
 $skin: the Skin object
 $target: the Title object that the link is pointing to
 $options: the options.  Will always include either 'known' or 'broken', and may
 	include 'noclasses'.
-&$text: the final (raw HTML) contents of the <a> tag, after processing.
+&$html: the final (raw HTML) contents of the <a> tag, after processing.
 &$attribs: the final HTML attributes of the <a> tag, after processing, in asso-
 	ciative array form.
 &$ret: the value to return if your hook returns false.
