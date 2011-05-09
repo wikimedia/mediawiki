@@ -315,8 +315,6 @@ class MediaWiki {
 		if ( $action === 'historysubmit' ) {
 			if ( $this->context->request->getBool( 'revisiondelete' ) ) {
 				return 'revisiondelete';
-			} elseif ( $this->context->request->getBool( 'revisionmove' ) ) {
-				return 'revisionmove';
 			} else {
 				return 'view';
 			}
