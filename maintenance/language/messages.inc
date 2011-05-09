@@ -2849,7 +2849,16 @@ $wgMessageStructure = array(
 	),
 	'exif-compression' => array(
 		'exif-compression-1',
+		'exif-compression-2',
+		'exif-compression-3',
+		'exif-compression-4',
+		'exif-compression-5',
 		'exif-compression-6',
+		'exif-compression-7',
+		'exif-compression-8',
+		'exif-compression-32773',
+		'exif-compression-32946',
+		'exif-compression-34712',
 	),
 	'exif-copyrighted' => array(
 		'exif-copyrighted-true',
