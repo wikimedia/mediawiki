@@ -874,7 +874,7 @@ window.mediaWiki = new ( function( $ ) {
 				var p = prefix === '' ? '' : prefix + '.';
 				arr.push( p + moduleMap[prefix].join( ',' ) );
 			}
-			return arr.join( '|' );
+			return arr.join( '|' ).replace( /\./g, '!' );
 		}
 		
 

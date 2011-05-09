@@ -67,12 +67,13 @@ class ResourceLoaderContext {
 	/**
 	 * Expand a string of the form jquery.foo,bar|jquery.ui.baz,quux to
 	 * an array of module names like array( 'jquery.foo', 'jquery.bar',
-	 * 'jquery.ui.baz', 'jquery.ui.quux' )
+	 * 'jquery.ui.baz', 'jquery.ui.quux' ) Also translating ! to .
 	 * @param $modules String Packed module name list
 	 * @return array of module names
 	 */
 	public static function expandModuleNames( $modules ) {
 		$retval = array();
+		$modules = str_replace( "!", ".", $modules ); # bug 28840 - IE is stupid.
 		$exploded = explode( '|', $modules );
 		foreach ( $exploded as $group ) {
 			if ( strpos( $group, ',' ) === false ) {
