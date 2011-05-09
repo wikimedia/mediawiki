@@ -2979,6 +2979,7 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|strona|strony|stron}}',
 'file-info'              => 'rozmiar pliku: $1, typ MIME: $2',
 'file-info-size'         => '$1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4',
+'file-info-size-pages'   => '$1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4, $5 {{PLURAL:$5|strona|strony|stron}}',
 'file-nohires'           => '<small>Grafika w wyższej rozdzielczości jest niedostępna.</small>',
 'svg-long-desc'          => 'Plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3',
 'show-big-image'         => 'Pełna rozdzielczość',
@@ -3219,6 +3220,9 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 # EXIF attributes
 'exif-compression-1' => 'nieskompresowany',
+'exif-compression-2' => 'CCITT Grupa 3 Jednowymiarowe zmodyfikowane kodowanie długości algorytmem Huffmana',
+'exif-compression-3' => 'CCITT Grupa 3 kodowanie faksowe',
+'exif-compression-4' => 'CCITT Grupa 4 kodowanie faksowe',
 
 'exif-copyrighted-true'  => 'Chronione prawem autorskim',
 'exif-copyrighted-false' => 'Domena publiczna',

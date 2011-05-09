@@ -3932,17 +3932,17 @@ $8', # only translate this message to other languages if you have to change it
 'exif-subjectnewscode-value'  => '$2 ($1)', # only translate this message to other languages if you have to change it
 
 # EXIF attributes
-'exif-compression-1' => 'Uncompressed',
-'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
-'exif-compression-3' => 'CCITT Group 3 fax encoding',
-'exif-compression-4' => 'CCITT Group 4 fax encoding',
-'exif-compression-5' => 'LZW',
-'exif-compression-6' => 'JPEG (old)', # only translate this message to other languages if you have to change it
-'exif-compression-7' => 'JPEG',
-'exif-compression-8' => 'Deflate (Adobe)',
-'exif-compression-32773' => 'PackBits (Macintosh RLE)',
-'exif-compression-32946' => 'Deflate (PKZIP)',
-'exif-compression-34712' => 'JPEG2000',
+'exif-compression-1'     => 'Uncompressed',
+'exif-compression-2'     => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
+'exif-compression-3'     => 'CCITT Group 3 fax encoding',
+'exif-compression-4'     => 'CCITT Group 4 fax encoding',
+'exif-compression-5'     => 'LZW', # only translate this message to other languages if you have to change it
+'exif-compression-6'     => 'JPEG (old)', # only translate this message to other languages if you have to change it
+'exif-compression-7'     => 'JPEG', # only translate this message to other languages if you have to change it
+'exif-compression-8'     => 'Deflate (Adobe)', # only translate this message to other languages if you have to change it
+'exif-compression-32773' => 'PackBits (Macintosh RLE)', # only translate this message to other languages if you have to change it
+'exif-compression-32946' => 'Deflate (PKZIP)', # only translate this message to other languages if you have to change it
+'exif-compression-34712' => 'JPEG2000', # only translate this message to other languages if you have to change it
 
 'exif-copyrighted-true'  => 'Copyrighted',
 'exif-copyrighted-false' => 'Public domain',

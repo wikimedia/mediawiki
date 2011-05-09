@@ -2724,6 +2724,7 @@ An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a 
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgine}}',
 'file-info'              => "amzura dl'archivi: $1, sòrt MIME: $2",
 'file-info-size'         => '$1 × $2 pixel, amzure: $3, sòrt MIME: $4',
+'file-info-size-pages'   => "$1 × $2 pixel, dimension ëd l'archivi: $3, sòrt MIME: $4, $5 {{PLURAL:$5|pagina|pagine}}",
 'file-nohires'           => '<small>Gnun-a risolussion pì bela disponibila.</small>',
 'svg-long-desc'          => "archivi an forma SVG, amzure nominaj $1 × $2 pixel, amzura dl'archivi: $3",
 'show-big-image'         => 'Version a amzura pijn-a',

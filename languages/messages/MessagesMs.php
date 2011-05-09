@@ -489,6 +489,8 @@ $1',
 'page-rss-feed'           => 'Suapan RSS "$1"',
 'page-atom-feed'          => 'Suapan Atom "$1"',
 'red-link-title'          => '$1 (tidak wujud)',
+'sort-descending'         => 'Isih tertib menurun',
+'sort-ascending'          => 'Isih tertib menaik',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Laman',
@@ -2819,6 +2821,7 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'widthheightpage'        => '$1×$2, $3 halaman',
 'file-info'              => 'saiz file: $1, jenis MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4',
+'file-info-size-pages'   => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4, $5 laman',
 'file-nohires'           => '<small>Tiada leraian lebih besar.</small>',
 'svg-long-desc'          => 'Fail SVG, ukuran dasar $1 × $2 piksel, saiz fail: $3',
 'show-big-image'         => 'Leraian penuh',
@@ -3221,6 +3224,7 @@ Ruangan lain akan disembunyikan secara sediakala.
 'exif-gpsdirection-m' => 'Arah magnet',
 
 'exif-ycbcrpositioning-1' => 'Terpusat',
+'exif-ycbcrpositioning-2' => 'Sama tapak',
 
 'exif-dc-contributor' => 'Penyumbang',
 'exif-dc-coverage'    => 'Skop ruangan atau masa media',

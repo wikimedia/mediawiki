@@ -2967,6 +2967,7 @@ Jika dijalankan, sistem Anda akan berisiko terserang.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
 'file-info'              => 'ukuran berkas: $1, tipe MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4',
+'file-info-size-pages'   => '$1 × $2 piksel, ukuran berkas: $3, jenis MIME: $4, $5 {{PLURAL:$5|halaman|halaman}}',
 'file-nohires'           => '<small>Tak tersedia resolusi yang lebih tinggi.</small>',
 'svg-long-desc'          => 'Berkas SVG, nominal $1 × $2 piksel, besar berkas: $3',
 'show-big-image'         => 'Resolusi penuh',
@@ -3204,6 +3205,9 @@ Data lain akan disembunyikan secara bawaan.
 
 # EXIF attributes
 'exif-compression-1' => 'Tak terkompresi',
+'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman RLE',
+'exif-compression-3' => 'CCITT Group 3 fax encoding',
+'exif-compression-4' => 'CCITT Group 4 fax encoding',
 
 'exif-copyrighted-true'  => 'Berhak cipta',
 'exif-copyrighted-false' => 'Domain publik',

@@ -9,10 +9,12 @@
  *
  * @author Akansha
  * @author Aksi great
+ * @author Bhawani Gautam
  * @author Bhawani Gautam Rhk
  * @author Charu
  * @author Dineshjk
  * @author Hemant wikikosh1
+ * @author Htt
  * @author Kaustubh
  * @author Kiranmayee
  * @author Krinkle
@@ -740,8 +742,8 @@ $2',
 'semiprotectedpagewarning'         => 'अर्ध संरक्षित पृष्ठ चेतावनी',
 'cascadeprotectedwarning'          => "'''सावधान:''' यह लेख निम्नलिखीत सुरक्षा-सीढी {{PLURAL:$1|पन्ने से|पन्नों से}} जुडा हुआ होने के कारण सुरक्षित हुआ हैं, और सिर्फ प्रबंधक ही इसमें बदलाव कर सकतें हैं:",
 'titleprotectedwarning'            => 'शीर्षक चेतावनी सुरक्षित',
-'templatesused'                    => 'पूर्वावलोकन प्रयोग साँचा',
-'templatesusedpreview'             => 'प्रयुक्त अनुभाग साँचा',
+'templatesused'                    => 'पूर्वावलोकन प्रयोग {{PLURAL:$1|साँचा|साँचे}}',
+'templatesusedpreview'             => 'प्रयुक्त अनुभाग {{PLURAL:$1|साँचा|साँचे}}',
 'templatesusedsection'             => 'प्रयुक्त अनुभाग टेम्पलेट्स',
 'template-protected'               => '(सुरक्षित)',
 'template-semiprotected'           => '(अर्ध-सुरक्षीत)',
@@ -2735,7 +2737,7 @@ $1',
 'metadata-help'     => 'इस फ़ाईलमें बढ़ाई हुई जानकारी हैं, हो सकता है कि यह फ़ाईल बनानेमें इस्तेमाल किये गए स्कैनर अथवा कैमेरा से यह प्राप्त हुई हैं । अगर यह फ़ाईल बदलदी गई हैं तो यह जानकारी नई फ़ाईलसे मेल नहीं खाने की आशंका हैं ।',
 'metadata-expand'   => 'विस्तृत जानकारियां दिखाएं',
 'metadata-collapse' => 'विस्तृत जानकारियां छिपाएं',
-'metadata-fields'   => 'जब मेटाडाटा तालिका को लघुरूप किया जाएगा तो इस सन्देश में सूचीबद्ध EXIF मेटाडाटा जानकारियां छवि प्रदर्शित होते समय सम्मिलित की जाएंगी।
+'metadata-fields'   => 'जब मेटाडाटा तालिका को लघुरूप किया जाएगा तो इस सन्देश में सूचीबद्ध इएक्सआयएफ मेटाडाटा जानकारियां छवि प्रदर्शित होते समय सम्मिलित की जाएंगी।
 अन्य डिफ़ॉल्ट रूप से छिपी रहेंगी।
 * make 
 * model

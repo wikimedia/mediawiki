@@ -3383,7 +3383,11 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => 'Ненабиена',
-'exif-compression-6' => 'JPEG',
+'exif-compression-2' => 'CCITT Група 3 1 — Димензионално изменето Хафманово шифрирање по должина на низите',
+'exif-compression-3' => 'CCITT Група 3 — Факс-шифрирање',
+'exif-compression-4' => 'CCITT Група 4 — Факс-шифрирање',
+'exif-compression-5' => 'ЛЗВ',
+'exif-compression-6' => 'JPEG (стар)',
 
 'exif-copyrighted-true'  => 'Заштитена',
 'exif-copyrighted-false' => 'Јавна сопственост',
@@ -3683,8 +3687,8 @@ $5
 'invalidateemail'           => 'Откажување на потврда на е-пошта',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Интервики трансклудирање е оневозможено]',
-'scarytranscludefailed'   => '[Неуспешно превземање на шаблонот за $1]',
+'scarytranscludedisabled' => '[Превметнувањето помеѓу викијата е оневозможено]',
+'scarytranscludefailed'   => '[Преземањето на шаблонот за $1 не успеа]',
 'scarytranscludetoolong'  => '[Премногу долго URL]',
 
 # Trackbacks

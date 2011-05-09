@@ -3064,13 +3064,35 @@ The message appears after the name of the patroller.',
 'mediawarning'         => 'Shows up on file description pages if the file type is not listed in [[mw:Manual:$wgTrustedMediaFormats|Manual:$wgTrustedMediaFormats]].',
 'imagemaxsize'         => 'This is used in Special:Preferences, under Files.',
 'widthheight'          => '{{optional}}',
-'widthheightpage'      => 'This message is used on image pages in the dimensions column in the file history section for images  with more than one page. Parameter $1 is the image width (in pixels), parameter $2 is the image height, and parameter $3 is the number of pages.',
+'widthheightpage'      => 'This message is used on image pages in the dimensions column in the file history section for images  with more than one page.
+
+Parameters:
+* $1 is the width of the image pages in pixels.
+* $2 is the height of the image pages in pixels.
+* $3 is the number of pages in the file.',
 'file-info'            => 'File info displayed on file description page.',
-'file-info-size'       => 'File info displayed on file description page.',
-'file-info-size-pages' => 'File info displayed on file description page, when the file is a multi-page document, with at least two pages. Like {{msg-mw|file-info-size}} but $5 is the total number of pages in the document.',
+'file-info-size'       => 'File info displayed on file description page.
+
+Parameters:
+* $1 is the width of the image(s) in pixels.
+* $2 is the height of the image(s) in pixels.
+* $3 is the file size as a number followed by a unit — for example: 99 KB
+* $4 is the MIME type, a formalized textual information — for example: <code>image/jpeg</code>',
+'file-info-size-pages' => 'File info displayed on file description page, when the file is a multi-page document, with at least two pages. Like {{msg-mw|file-info-size}} but $5 is the total number of pages in the document.
+
+Parameters:
+* $1 is the width of the image pages in pixels.
+* $2 is the height of the image pagess in pixels.
+* $3 is the file size as a number followed by a unit — for example: 99 KB
+* $4 is the MIME type, a formalized textual information — for example: <code>image/jpeg</code>
+* $5 is the total number of pages in the document.',
 'file-nohires'         => 'File info displayed on file description page. For example of message in use see [[:File:Mouse10.gif]].',
 'svg-long-desc'        => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].',
 'show-big-image'       => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
+'show-big-image-size'  => '
+Parameters:
+* $1 is the width of the image(s) in pixels.
+* $2 is the height of the image(s) in pixels.',
 'file-info-gif-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page. Looped means repeating in the context of an animated gif. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop. For example of message in use see [[:File:Mouse10.gif]].',
 'file-info-gif-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page.',
 'file-info-png-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/APNG .apng file] on its file description page. Looped means repeating indefinetly in the context of an animated png. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop.',
@@ -3528,10 +3550,10 @@ Note, not all fields are guaranteed to be present, some may be empty strings.',
 *$2 is one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|exif-iimcategory-spo}} for $2.',
 
 # EXIF attributes
-'exif-compression-5' => 'Lempel-Ziv & Welch algorithm {{optional}}',
-'exif-compression-6' => '{{optional}}',
-'exif-compression-7' => '{{optional}}',
-'exif-compression-8' => '{{optional}}',
+'exif-compression-5'     => 'Lempel-Ziv & Welch algorithm {{optional}}',
+'exif-compression-6'     => '{{optional}}',
+'exif-compression-7'     => '{{optional}}',
+'exif-compression-8'     => '{{optional}}',
 'exif-compression-32773' => '{{optional}}',
 'exif-compression-32946' => '{{optional}}',
 'exif-compression-34712' => '{{optional}}',
