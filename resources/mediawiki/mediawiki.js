@@ -65,8 +65,9 @@ jQuery.extend({
 				if ( objectA === objectB ) {
 					return true;
 				} else {
+					var prop;
 					// Iterate over each property
-					for ( var prop in objectA ) {
+					for ( prop in objectA ) {
 						// Check if this property is also present in the other object
 						if ( prop in objectB ) {
 							// Compare the types of the properties
@@ -103,7 +104,7 @@ jQuery.extend({
 					// This is about 15% faster (tested in Safari 5 and Firefox 3.6)
 					// ...than incrementing a count variable in the above and below loops
 					// See also: http://www.mediawiki.org/wiki/ResourceLoader/Default_modules/compareObject_test#Results
-					for ( var prop in objectB ) {
+					for ( prop in objectB ) {
 						if ( !( prop in objectA ) ) {
 							return false;
 						}
@@ -255,12 +256,12 @@ window.mediaWiki = new ( function( $ ) {
 		if ( this.format === 'escaped' ) {
 			// According to Message.php this needs {{-transformation, which is
 			// still todo
-			return mediaWiki.html.escape( text );
+			return mw.html.escape( text );
 		}
 		
 		/* This should be fixed up when we have a parser
 		if ( this.format === 'parse' && 'language' in mediaWiki ) {
-			text = mediaWiki.language.parse( text );
+			text = mw.language.parse( text );
 		}
 		*/
 		return text;
@@ -344,7 +345,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * @return mixed user name string or null if users is anonymous
 		 */
 		this.name = function() {
-			return mediaWiki.config.get( 'wgUserName' );
+			return mw.config.get( 'wgUserName' );
 		};
 
 		/**
@@ -451,15 +452,15 @@ window.mediaWiki = new ( function( $ ) {
 				}
 				version = Number( options.version );
 				// Find range
-				var range = 0;
-				for ( var k in options.buckets ) {
+				var	range = 0, k;
+				for ( k in options.buckets ) {
 					range += options.buckets[k];
 				}
 				// Select random value within range
 				var rand = Math.random() * range;
 				// Determine which bucket the value landed in
 				var total = 0;
-				for ( var k in options.buckets ) {
+				for ( k in options.buckets ) {
 					bucket = k;
 					total += options.buckets[k];
 					if ( total >= rand ) {
@@ -530,7 +531,7 @@ window.mediaWiki = new ( function( $ ) {
 		} else {
 			parameters = [];
 		}
-		return new Message( mediaWiki.messages, key, parameters );
+		return new Message( mw.messages, key, parameters );
 	};
 
 	/**
@@ -541,7 +542,7 @@ window.mediaWiki = new ( function( $ ) {
 	 * replacement
 	 */
 	this.msg = function( key, parameters ) {
-		return mediaWiki.message.apply( mediaWiki.message, arguments ).toString();
+		return mw.message.apply( mw.message, arguments ).toString();
 	};
 
 	/**
@@ -743,23 +744,23 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// Add style sheet to document
 			if ( typeof registry[module].style === 'string' && registry[module].style.length ) {
-				$marker.before( mediaWiki.html.element( 'style',
+				$marker.before( mw.html.element( 'style',
 						{ type: 'text/css' },
-						new mediaWiki.html.Cdata( registry[module].style )
+						new mw.html.Cdata( registry[module].style )
 					) );
 			} else if ( typeof registry[module].style === 'object'
 				&& !( $.isArray( registry[module].style ) ) )
 			{
 				for ( var media in registry[module].style ) {
-					$marker.before( mediaWiki.html.element( 'style',
+					$marker.before( mw.html.element( 'style',
 						{ type: 'text/css', media: media },
-						new mediaWiki.html.Cdata( registry[module].style[media] )
+						new mw.html.Cdata( registry[module].style[media] )
 					) );
 				}
 			}
 			// Add localizations to message system
 			if ( typeof registry[module].messages === 'object' ) {
-				mediaWiki.messages.set( registry[module].messages );
+				mw.messages.set( registry[module].messages );
 			}
 			// Execute script
 			try {
@@ -847,7 +848,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 			}
 			// Work the queue
-			mediaWiki.loader.work();
+			mw.loader.work();
 		}
 
 		function sortQuery(o) {
@@ -907,9 +908,9 @@ window.mediaWiki = new ( function( $ ) {
 				batch.sort();
 				// Build a list of request parameters
 				var base = {
-					'skin': mediaWiki.config.get( 'skin' ),
-					'lang': mediaWiki.config.get( 'wgUserLanguage' ),
-					'debug': mediaWiki.config.get( 'debug' )
+					'skin': mw.config.get( 'skin' ),
+					'lang': mw.config.get( 'wgUserLanguage' ),
+					'debug': mw.config.get( 'debug' )
 				};
 				// Extend request parameters with a list of modules in the batch
 				var requests = [];
@@ -976,17 +977,17 @@ window.mediaWiki = new ( function( $ ) {
 				// include modules which are already loaded
 				batch = [];
 				// Asynchronously append a script tag to the end of the body
-				function getScriptTag() {
+				var getScriptTag = function() {
 					var html = '';
 					for ( var r = 0; r < requests.length; r++ ) {
 						requests[r] = sortQuery( requests[r] );
 						// Build out the HTML
-						var src = mediaWiki.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] );
-						html += mediaWiki.html.element( 'script',
+						var src = mw.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] );
+						html += mw.html.element( 'script',
 							{ type: 'text/javascript', src: src }, '' );
 					}
 					return html;
-				}
+				};
 				// Load asynchronously after documument ready
 				if ( ready ) {
 					setTimeout( function() { $( 'body' ).append( getScriptTag() ); }, 0 );
@@ -1005,9 +1006,9 @@ window.mediaWiki = new ( function( $ ) {
 			if ( typeof module === 'object' ) {
 				for ( var m = 0; m < module.length; m++ ) {
 					if ( typeof module[m] === 'string' ) {
-						mediaWiki.loader.register( module[m] );
+						mw.loader.register( module[m] );
 					} else if ( typeof module[m] === 'object' ) {
-						mediaWiki.loader.register.apply( mediaWiki.loader, module[m] );
+						mw.loader.register.apply( mw.loader, module[m] );
 					}
 				}
 				return;
@@ -1044,7 +1045,7 @@ window.mediaWiki = new ( function( $ ) {
 		this.implement = function( module, script, style, localization ) {
 			// Automatically register module
 			if ( typeof registry[module] === 'undefined' ) {
-				mediaWiki.loader.register( module );
+				mw.loader.register( module );
 			}
 			// Validate input
 			if ( !$.isFunction( script ) ) {
@@ -1156,7 +1157,7 @@ window.mediaWiki = new ( function( $ ) {
 						} ) );
 						return true;
 					} else if ( type === 'text/javascript' || typeof type === 'undefined' ) {
-						var script = mediaWiki.html.element( 'script',
+						var script = mw.html.element( 'script',
 							{ type: 'text/javascript', src: modules }, '' );
 						if ( ready ) {
 							$( 'body' ).append( script );
@@ -1193,7 +1194,7 @@ window.mediaWiki = new ( function( $ ) {
 		 */
 		this.go = function() {
 			suspended = false;
-			mediaWiki.loader.work();
+			mw.loader.work();
 		};
 
 		/**
@@ -1205,12 +1206,12 @@ window.mediaWiki = new ( function( $ ) {
 		this.state = function( module, state ) {
 			if ( typeof module === 'object' ) {
 				for ( var m in module ) {
-					mediaWiki.loader.state( m, module[m] );
+					mw.loader.state( m, module[m] );
 				}
 				return;
 			}
 			if ( !( module in registry ) ) {
-				mediaWiki.loader.register( module );
+				mw.loader.register( module );
 			}
 			registry[module].state = state;
 		};
@@ -1247,7 +1248,7 @@ window.mediaWiki = new ( function( $ ) {
 				case '&':
 					return '&amp;';
 			}
-		}
+		};
 
 		/**
 		 * Escape a string for HTML. Converts special characters to HTML entities.
@@ -1340,5 +1341,5 @@ if ( $.isFunction( startUp ) ) {
 	delete startUp;
 }
 
-// Add jQuery Cookie to initial payload (used in mediaWiki.user)
+// Add jQuery Cookie to initial payload (used in mw.user)
 mw.loader.load( 'jquery.cookie' );
