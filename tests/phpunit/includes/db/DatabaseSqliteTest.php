@@ -141,18 +141,61 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 * @todo: currently only checks list of tables
 	 */
 	public function testUpgrades() {
-		global $IP;
+		global $IP, $wgVersion;
 
-		$versions = array( '1.13', '1.15', '1.16', '1.17' ); // SQLite wasn't included in 1.14
+		// Versions tested
+		$versions = array(
+			//'1.13', disabled for now, was totally screwed up
+			// SQLite wasn't included in 1.14
+			'1.15',
+			'1.16',
+			'1.17',
+		);
+
+		// Mismatches for these columns we can safely ignore
+		$ignoredColumns = array(
+			'user_newtalk.user_last_timestamp', // r84185
+		);
+			
 		$currentDB = new DatabaseSqliteStandalone( ':memory:' );
 		$currentDB->sourceFile( "$IP/maintenance/tables.sql" );
 		$currentTables = $this->getTables( $currentDB );
 		sort( $currentTables );
 
 		foreach ( $versions as $version ) {
+			$versions = "upgrading from $version to $wgVersion";
 			$db = $this->prepareDB( $version );
 			$tables = $this->getTables( $db );
-			$this->assertEquals( $currentTables, $tables );
+			$this->assertEquals( $currentTables, $tables, "Different tables $versions" );
+			foreach ( $tables as $table ) {
+				$currentCols = $this->getColumns( $currentDB, $table );
+				$cols = $this->getColumns( $db, $table );
+				$this->assertEquals(
+					array_keys( $currentCols ),
+					array_keys( $cols ),
+					"Mismatching columns for table $table $versions"
+				);
+				foreach ( $currentCols as $name => $column ) {
+					$fullName = "$table.$name";
+					$this->assertEquals(
+						(bool)$column->pk,
+						(bool)$cols[$name]->pk,
+						"PRIMARY KEY status does not match for column $fullName $versions"
+					);
+					if ( !in_array( $fullName, $ignoredColumns ) ) {
+						$this->assertEquals(
+							(bool)$column->notnull,
+							(bool)$cols[$name]->notnull,
+							"NOT NULL status does not match for column $fullName $versions"
+						);
+						$this->assertEquals(
+							$column->dflt_value,
+							$cols[$name]->dflt_value,
+							"Default values does not match for column $fullName $versions"
+						);
+					}
+				}
+			}
 			$db->close();
 		}
 	}
@@ -171,7 +214,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		return $db;
 	}
 
-	protected function getTables( $db ) {
+	private function getTables( $db ) {
 		$list = array_flip( $db->listTables() );
 		$excluded = array(
 			'math', // moved out of core in 1.18
@@ -189,5 +232,16 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$list = array_flip( $list );
 		sort( $list );
 		return $list;
+	}
+
+	private function getColumns( $db, $table ) {
+		$cols = array();
+		$res = $db->query( "PRAGMA table_info($table)" );
+		$this->assertNotNull( $res );
+		foreach ( $res as $col ) {
+			$cols[$col->name] = $col;
+		}
+		ksort( $cols );
+		return $cols;
 	}
 }
