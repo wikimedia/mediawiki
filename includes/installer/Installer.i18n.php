@@ -10799,7 +10799,7 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-welcome' => '=== Verificações do ambiente ===
 São realizadas verificações básicas para determinar se este ambiente é apropriado para instalação do MediaWiki.
 Se necessitar de pedir ajuda durante a instalação, deve fornecer os resultados destas verificações.',
-	'config-copyright' => "=== Direitos de autor e Termos de uso ===
+	'config-copyright' => "=== Direitos de autor e Condições de uso ===
 
 $1
 
@@ -10808,7 +10808,7 @@ Este programa é software livre; pode redistribuí-lo e/ou modificá-lo nos term
 Este programa é distribuído na esperança de que seja útil, mas '''sem qualquer garantia'''; inclusive, sem a garantia implícita da '''possibilidade de ser comercializado''' ou de '''adequação para qualquer finalidade específica'''.
 Consulte a licença GNU General Public License para mais detalhes.
 
-Em conjunto com este programa deve ter recebido <doclink href=Copying>uma cópia da licença GNU General Public License</doclink>; se não a recebeu, peça-a por escrito para Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ou [http://www.gnu.org/copyleft/gpl.html leia-a na internet].",
+Em conjunto com este programa deve ter recebido <doclink href=Copying>uma cópia da licença GNU General Public License</doclink>; se não a recebeu, peça-a por escrito a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ou [http://www.gnu.org/copyleft/gpl.html leia-a na internet].",
 	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/pt Página principal do MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
 * [http://www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
@@ -11120,8 +11120,8 @@ Uma '''{{int:config-profile-private}}''' só permite que os utilizadores aprovad
 Após a instalação, estarão disponíveis mais configurações de privilégios. Consulte [http://www.mediawiki.org/wiki/Manual:User_rights a entrada relevante no Manual].",
 	'config-license' => 'Direitos de autor e licença:',
 	'config-license-none' => 'Sem rodapé com a licença',
-	'config-license-cc-by-sa' => 'Atribuição - Partilha nos Mesmos Termos, da Creative Commons',
-	'config-license-cc-by-nc-sa' => 'Atribuição - Uso Não-Comercial - Partilha nos Mesmos Termos, da Creative Commons',
+	'config-license-cc-by-sa' => 'Creative Commons - Atribuição - Partilha nos Mesmos Termos',
+	'config-license-cc-by-nc-sa' => 'Creative Commons - Atribuição - Uso Não Comercial - Partilha nos Mesmos Termos',
 	'config-license-cc-0' => 'Creative Commons Zero',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 ou posterior',
@@ -11131,9 +11131,9 @@ Após a instalação, estarão disponíveis mais configurações de privilégios
 Isto ajuda a criar um sentido de propriedade da comunidade e encoraja as colaborações a longo prazo.
 Tal não é geralmente necessário nas wikis privadas ou corporativas.
 
-Se pretende que seja possível usar textos da Wikipédia na sua wiki e que seja possível a Wikipédia aceitar textos copiados da sua wiki, deve escolher a licença Atribuição - Partilha nos Mesmos Termos, da Creative Commons.
+Se pretende que seja possível usar textos da Wikipédia na sua wiki e que seja possível a Wikipédia aceitar textos copiados da sua wiki, deve escolher a licença Creative Commons - Atribuição - Partilha nos Mesmos Termos.
 
-A anterior licença da Wikipédia era a licença GNU Free Documentation License.
+A licença anterior da Wikipédia era a licença GNU Free Documentation License.
 A GFDL é uma licença válida, mas de difícil compreensão.
 Também é difícil reutilizar conteúdos licenciados com a GFDL.',
 	'config-email-settings' => 'Definições do correio electrónico',

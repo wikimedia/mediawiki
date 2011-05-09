@@ -2899,6 +2899,7 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 'widthheightpage'        => '$1×$2, {{PLURAL:$3|én side|$3 sider}}',
 'file-info'              => 'filstørrelse: $1, MIME-type: $2',
 'file-info-size'         => '$1 × $2 piksler, filstørrelse: $3, MIME-type: $4',
+'file-info-size-pages'   => '$1 × $2 piksler, filstørrelse: $3, MIME-type: $4, $5 {{PLURAL:$5|side|sider}}',
 'file-nohires'           => '<small>Ingen høyere oppløsning tilgjengelig.</small>',
 'svg-long-desc'          => 'SVG-fil, standardoppløsning $1 × $2 piksler, filstørrelse: $3',
 'show-big-image'         => 'Full oppløsning',
@@ -3135,6 +3136,9 @@ Andre vil skjules som standard.
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
+'exif-compression-2' => 'CCITT Gruppe 3 1-dimensjonal modifisert Huffman-kjøring lengdekoding',
+'exif-compression-3' => 'CCITT Gruppe 3 faks-koding',
+'exif-compression-4' => 'CCITT Gruppe 4 faks-koding',
 
 'exif-copyrighted-true'  => 'Opphavsrettsbeskyttet',
 'exif-copyrighted-false' => 'Ikke beskyttet av opphavsrett',

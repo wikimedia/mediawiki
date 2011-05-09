@@ -323,29 +323,39 @@ fiiri [[Special:Version|nooca bogga]].',
 Waxaa meeshaan ka heli kartaa liiska bogyaasha khaaska ah oo jiro  [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error'               => 'Qalad',
-'databaseerror'       => 'Qalad ka dhacday database;ka',
-'laggedslavemode'     => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku soo kordhin.',
-'enterlockreason'     => 'Ku qor sababta loo xiraayo, kuna siidar waqtigii la soo fasaxaayo maqaalka.',
-'missingarticle-diff' => '(Kala duwanaanshaha: $1, $2)',
-'internalerror'       => 'Qalad gudaha ah',
-'fileappenderrorread' => 'Ma akhri karin "$1" markii oo ku daraayay.',
-'filenotfound'        => 'Ma oo san helin  faylka "$1".',
-'cannotdelete'        => 'Boggaan ama file\'ka "$1" mala tirtiri karo.
+'error'                => 'Qalad',
+'databaseerror'        => 'Qalad ka dhacday database;ka',
+'laggedslavemode'      => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku soo kordhin.',
+'enterlockreason'      => 'Ku qor sababta loo xiraayo, kuna siidar waqtigii la soo fasaxaayo maqaalka.',
+'missingarticle-diff'  => '(Kala duwanaanshaha: $1, $2)',
+'internalerror'        => 'Qalad gudaha ah',
+'internalerror_info'   => 'Qalad gudaha ah: $1',
+'fileappenderrorread'  => 'Ma akhri karin "$1" markii oo ku daraayay.',
+'fileappenderror'      => 'Ma ku dari karin "$1" ilaa  "$2".',
+'filecopyerror'        => 'Ma koobi gareen karin faylka "$1" ilaa "$2".',
+'filerenameerror'      => 'Maka bedeli karin magaca faylka  "$1" ilaa "$2".',
+'filedeleteerror'      => 'Ma tirtiri karin faylka "$1".',
+'directorycreateerror' => 'Ma sameyn karin maktabad "$1".',
+'filenotfound'         => 'Ma oo san helin  faylka "$1".',
+'fileexistserror'      => 'Ma ku qori karin faylka "$1": faylkan woo jiraa.',
+'unexpected'           => 'Qiimo loo maleeneenin: "$1"="$2".',
+'badarticleerror'      => 'Shaqadaan ma lagu sameyn karo boggaan.',
+'cannotdelete'         => 'Boggaan ama file\'ka "$1" mala tirtiri karo.
 waxaa laga yaabaa in oo qof kale tirtiray .',
-'badtitle'            => 'Qoraal xun',
-'viewsource'          => 'Itusi ereykoodka',
-'viewsourcefor'       => ' ku socoto $1',
-'actionthrottled'     => 'Waala ceejiyay',
-'actionthrottledtext' => 'Hadii aan ahay ka hortaga spamka, laguuma ogolo  shaqadaan badan oo ku qabatay waqti sidaan u yar,waadna ku xad gudubtay halihii laguu oglolaa.
+'badtitle'             => 'Qoraal xun',
+'viewsource'           => 'Itusi ereykoodka',
+'viewsourcefor'        => ' ku socoto $1',
+'actionthrottled'      => 'Waala ceejiyay',
+'actionthrottledtext'  => 'Hadii aan ahay ka hortaga spamka, laguuma ogolo  shaqadaan badan oo ku qabatay waqti sidaan u yar,waadna ku xad gudubtay halihii laguu oglolaa.
 fadlan waxyar kadib ku soo noqo.',
-'protectedpagetext'   => 'Boggaan  woo xiranyahay si aan wax looga bedelin.',
-'viewsourcetext'      => 'Waad fiirin kartaa waana koobi gareen kartaa ereykoodka boggaan',
-'cascadeprotected'    => 'Boggaan waxaa laga difaacay in wax laga bedelo, sababtoo ah waxoo ka midyahay  {{PLURAL:$1|bog, oo ah |bogyaalo ah, waana}}  kuwa laga difaacay "qoraalada kaskadka ah" dooqyada woo u furanyahay:
+'protectedpagetext'    => 'Boggaan  woo xiranyahay si aan wax looga bedelin.',
+'viewsourcetext'       => 'Waad fiirin kartaa waana koobi gareen kartaa ereykoodka boggaan',
+'cascadeprotected'     => 'Boggaan waxaa laga difaacay in wax laga bedelo, sababtoo ah waxoo ka midyahay  {{PLURAL:$1|bog, oo ah |bogyaalo ah, waana}}  kuwa laga difaacay "qoraalada kaskadka ah" dooqyada woo u furanyahay:
 $2',
-'namespaceprotected'  => "Ma laguu ogolo in aad wax ka bedeshid maqaalada ku jiro '''$1''' meesha magacyada.",
-'ns-specialprotected' => 'Bogyaasha gaarka ah wax malaga bedeli karo.',
-'titleprotected'      => 'Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.
+'namespaceprotected'   => "Ma laguu ogolo in aad wax ka bedeshid maqaalada ku jiro '''$1''' meesha magacyada.",
+'customcssjsprotected' => 'Laguuma ogolo in aad wax ka bedeshid boggaan, sababtoo ah waxaa ku jiro isticmaalo kale waxyaabo u shaqsi ah.',
+'ns-specialprotected'  => 'Bogyaasha gaarka ah wax malaga bedeli karo.',
+'titleprotected'       => 'Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.
 Sababta neh waxaa waaye "\'\'$2\'\'".',
 
 # Virus scanner
@@ -427,6 +437,8 @@ Intii aadan wax e-mail ah loogu soo dirin koontada, waa in aad daba kacdaa waxa 
 'emailnotauthenticated'      => 'Ciwaankaada e-mailka weli lama xaqiijinin.
 Wax e-mail ah oo ku saabsan arrimaha soo socdo looma soo diridoono.',
 'emailconfirmlink'           => 'Soo xaqiiji ciwaankaada e-mailka',
+'invalidemailaddress'        => 'e-mailkaan lama ogolaan karo ayada oo ku ku jirto format la aqoonsan..
+Fadlan ku qor ciwaan leh format sax ah ama ebar ka dhig  meesha.',
 'accountcreated'             => "Akoon aa la'sameeyay",
 'accountcreatedtext'         => "Akoonka isticmaalaha $1 waa la'sameeyay.",
 'createaccount-title'        => 'Waxaa akoon loo sameeyay {{SITENAME}}',
@@ -436,6 +448,7 @@ Waa in aad hadda gudaha u gashaa oo bedeshaa ereygaada sirka ah.
 Waa iska dhago tiri kartaa fariintaan, hadii akoonkaan oo ku sameysmay qalad.',
 'login-throttled'            => 'wax badan ayaa isku dayday in aad soo gasho.
 Fadlan waxyar sug intii aadan soo gelin.',
+'login-abort-generic'        => 'Ma u soo gali karin gudaha - waa la noqay',
 'loginlanguagelabel'         => 'Luqada: $1',
 
 # Change password dialog
@@ -475,6 +488,7 @@ Ereysirka kumeelgaarka ah: $2',
 'showdiff'                       => 'Itus isbedelka',
 'anoneditwarning'                => "'''Digniin:''' Gudaha kuma jirtid. Cinwaankaaga IP:ga waxaa lagu diiwaangelindoonaa taariikhda bedelida bogan.",
 'anonpreviewwarning'             => "''Ma soo gelin. Hadii aad keydisid waxaa ciwaankaada  IP:ka  lagu duubaa taariikhda bedelka boggaan.''",
+'missingcommenttext'             => 'Fadlan ku qor  hoostaan  hadalkaaga.',
 'blockedtitle'                   => 'Isticmaalaha waa la mamnuucay',
 'blockedtext'                    => "'''Magacaaga gudagalaha ama ciwaanka IP'ka waa la mamnuucay.'''
 

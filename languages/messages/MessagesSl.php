@@ -3129,6 +3129,9 @@ Druga bodo po privzetem skrita.
 
 # EXIF attributes
 'exif-compression-1' => 'Nestisnjeno',
+'exif-compression-2' => 'Kodiranje CCITT skupina 3 1-razsežnostna spremenjena dolžina teka Huffman',
+'exif-compression-3' => 'Kodiranje CCITT skupina 3 faks',
+'exif-compression-4' => 'Kodiranje CCITT skupina 4 faks',
 
 'exif-copyrighted-true'  => 'Avtorsko zaščiteno',
 'exif-copyrighted-false' => 'Javna last',

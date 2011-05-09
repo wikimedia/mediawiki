@@ -3146,6 +3146,9 @@ Le alteres essera initialmente celate.
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimite',
+'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
+'exif-compression-3' => 'CCITT Group 3 codification fax',
+'exif-compression-4' => 'CCITT Group 4 codification fax',
 
 'exif-copyrighted-true'  => 'Sub copyright',
 'exif-copyrighted-false' => 'Dominio public',

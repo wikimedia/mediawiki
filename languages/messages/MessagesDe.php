@@ -3288,6 +3288,9 @@ Weitere werden standardmäßig nicht angezeigt.
 
 # EXIF attributes
 'exif-compression-1' => 'Unkomprimiert',
+'exif-compression-2' => 'CCITT Gruppe 3 1-dimensionale modifizierte Huffman-Lauflängenkodierung',
+'exif-compression-3' => 'CCITT Gruppe 3 Faxcodierung',
+'exif-compression-4' => 'CCITT Gruppe 4 Faxcodierung',
 
 'exif-copyrighted-true'  => 'Geschützt',
 'exif-copyrighted-false' => 'Gemeinfrei',

@@ -2954,8 +2954,8 @@ Permite colocar uma justificação no resumo da edição.',
 'vector.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Vector */',
 
 # Metadata
-'nodublincore'      => 'Os metadados RDF para Dublin Core foram impossibilitados neste servidor.',
-'nocreativecommons' => 'Os metadados RDF para Creative Commons foram impossibilitados neste servidor.',
+'nodublincore'      => 'O uso de metadados RDF para Dublin Core foi impossibilitado neste servidor.',
+'nocreativecommons' => 'O uso de metadados RDF da Creative Commons foi impossibilitado neste servidor.',
 'notacceptable'     => 'O servidor não pode fornecer os dados num formato que o seu cliente possa ler.',
 
 # Attribution
@@ -3250,7 +3250,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-rightscertificate'           => 'Certificado de gestão dos direitos',
 'exif-copyrighted'                 => 'Estado dos direitos de autor:',
 'exif-copyrightowner'              => 'Titular dos direitos de autor',
-'exif-usageterms'                  => 'Termos de uso',
+'exif-usageterms'                  => 'Condições de uso',
 'exif-webstatement'                => 'Declaração na internet dos direitos de autor',
 'exif-originaldocumentid'          => 'Identificação exclusiva do documento original',
 'exif-licenseurl'                  => 'URL da licença',
