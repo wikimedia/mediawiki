@@ -123,7 +123,9 @@ class FormatMetadata {
 				switch( $tag ) {
 				case 'Compression':
 					switch( $val ) {
-					case 1: case 6:
+					case 1: case 2: case 3: case 4:
+					case 5: case 6: case 7: case 8:
+					case 32773: case 32946: case 34712:
 						$val = self::msg( $tag, $val );
 						break;
 					default:

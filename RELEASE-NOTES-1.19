@@ -23,6 +23,8 @@ production.
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
 * (bug 28868) Show total pages in the subtitle of an image on the
 file description page for multi-paged documents.
+* (bug 28883) Message names for different compression types commonly
+used in Tiff files.
 
 === API changes in 1.19 ===
 
