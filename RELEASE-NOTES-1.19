@@ -25,6 +25,7 @@ production.
 file description page for multi-paged documents.
 * (bug 28883) Message names for different compression types commonly
 used in Tiff files.
+* When translcuding a special page, do not let it interpret url parameters.
 
 === API changes in 1.19 ===
 

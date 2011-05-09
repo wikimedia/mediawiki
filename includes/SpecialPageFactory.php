@@ -472,13 +472,18 @@ class SpecialPageFactory {
 	 * @return String: HTML fragment
 	 */
 	static function capturePath( &$title ) {
-		global $wgOut, $wgTitle;
+		global $wgOut, $wgTitle, $wgRequest;
 
 		$oldTitle = $wgTitle;
 		$oldOut = $wgOut;
+		$oldRequest = $wgRequest;
+
+		// Don't want special pages interpreting ?feed=atom parameters.
+		$wgRequest = new FauxRequest( array() );
 
 		$context = new RequestContext;
 		$context->setTitle( $title );
+		$context->setRequest( $wgRequest );
 		$wgOut = $context->getOutput();
 
 		$ret = self::executePath( $title, $context, true );
@@ -487,6 +492,7 @@ class SpecialPageFactory {
 		}
 		$wgTitle = $oldTitle;
 		$wgOut = $oldOut;
+		$wgRequest = $oldRequest;
 		return $ret;
 	}
 
