@@ -35,10 +35,16 @@ $.fn.makeCollapsible = function() {
 					// action must be string with 'expand' or 'collapse'
 					return;
 				}
-				if ( typeof $defaultToggle !== 'undefined' && !($defaultToggle instanceof jQuery) ) {
-					// is optional (may be undefined), but if passed it must be an instance of jQuery and nothing else
+				if ( typeof $defaultToggle == 'undefined' ) {
+					$defaultToggle = null;
+				}
+				if ( $defaultToggle !== null && !($defaultToggle instanceof jQuery) ) {
+					// is optional (may be undefined), but if defined it must be an instance of jQuery.
+					// If it's not, abort right away.
+					// After this $defaultToggle is either null or a valid jQuery instance.
 					return;
 				}
+				
 				var $containers = null;
 
 				if ( action == 'collapse' ) {
@@ -49,7 +55,7 @@ $.fn.makeCollapsible = function() {
 						// Slide doens't work with tables, but fade does as of jQuery 1.1.3
 						// http://stackoverflow.com/questions/467336#920480
 						$containers = $collapsible.find( '>tbody>tr' );
-						if ( typeof $defaultToggle !== 'undefined' && ($defaultToggle instanceof jQuery) ) { 
+						if ( $defaultToggle ) { 
 							// Exclude tablerow containing togglelink
 							$containers.not( $defaultToggle.closest( 'tr' ) ).stop(true, true).fadeOut();
 						} else {
@@ -62,7 +68,7 @@ $.fn.makeCollapsible = function() {
 	
 					} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
 						$containers = $collapsible.find( '> li' );
-						if ( $defaultToggle && $defaultToggle.jquery ) {
+						if ( $defaultToggle ) {
 							// Exclude list-item containing togglelink
 							$containers.not( $defaultToggle.parent() ).stop( true, true ).slideUp();
 						} else {
@@ -100,7 +106,7 @@ $.fn.makeCollapsible = function() {
 					// Expand the element
 					if ( $collapsible.is( 'table' ) ) {
 						$containers = $collapsible.find( '>tbody>tr' );
-						if ( $defaultToggle && $defaultToggle.jquery ) {
+						if ( $defaultToggle ) {
 							// Exclude tablerow containing togglelink
 							$containers.not( $defaultToggle.parent().parent() ).stop(true, true).fadeIn();
 						} else {
@@ -109,7 +115,7 @@ $.fn.makeCollapsible = function() {
 	
 					} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
 						$containers = $collapsible.find( '> li' );
-						if ( $defaultToggle && $defaultToggle.jquery ) {
+						if ( $defaultToggle ) {
 							// Exclude list-item containing togglelink
 							$containers.not( $defaultToggle.parent() ).stop( true, true ).slideDown();
 						} else {
@@ -140,6 +146,7 @@ $.fn.makeCollapsible = function() {
 				var	$that = $(that),
 					$collapsible = $that.closest( '.mw-collapsible.mw-made-collapsible' ).toggleClass( 'mw-collapsed' );
 				e.preventDefault();
+				e.stopPropagation();
 				
 				// It's expanded right now
 				if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
@@ -171,6 +178,7 @@ $.fn.makeCollapsible = function() {
 			toggleLinkPremade = function( $that, e ) {
 				var	$collapsible = $that.eq(0).closest( '.mw-collapsible.mw-made-collapsible' ).toggleClass( 'mw-collapsed' );
 				e.preventDefault();
+				e.stopPropagation();
 				
 				// It's expanded right now
 				if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
@@ -193,11 +201,12 @@ $.fn.makeCollapsible = function() {
 				// For the initial state call of customtogglers there is no event passed
 				if (e) {
 					e.preventDefault();
+				e.stopPropagation();
 				}
 				// Get current state and toggle to the opposite
 				var action = $collapsible.hasClass( 'mw-collapsed' ) ? 'expand' : 'collapse';
 				$collapsible.toggleClass( 'mw-collapsed' );
-				toggleElement( $collapsible, action, $that )
+				toggleElement( $collapsible, action, $that );
 				
 			};
 
@@ -242,7 +251,7 @@ $.fn.makeCollapsible = function() {
 			// Initial state
 			if ( $that.hasClass( 'mw-collapsed' ) ) {
 				$that.removeClass( 'mw-collapsed' );
-				toggleLinkCustom( $customTogglers, null, $that )
+				toggleLinkCustom( $customTogglers, null, $that );
 			}
 
 		// If this is not a custom case, do the default:
@@ -272,8 +281,9 @@ $.fn.makeCollapsible = function() {
 				// If theres no toggle link, add it
 				if ( !$toggle.size() ) {
 					// Make sure the numeral order doesn't get messed up, reset to 1 unless value-attribute is already used
-					// WebKit return '' if no value, Mozilla returns '-1' is no value
-					if ( $firstItem.attr( 'value' ) == '' || $firstItem.attr( 'value' ) == '-1' ) { // Will fail with ===
+					// WebKit return '' if no value, Mozilla returns '-1' is no value.
+					// Needs ==, will fail with ===
+					if ( $firstItem.attr( 'value' ) == '' || $firstItem.attr( 'value' ) == '-1' ) { 
 						$firstItem.attr( 'value', '1' );
 					}
 					$that.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent() );
