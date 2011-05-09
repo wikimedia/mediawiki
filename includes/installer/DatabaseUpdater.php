@@ -524,7 +524,7 @@ abstract class DatabaseUpdater {
 			"Populating log_user_text field, printing progress markers. For large\n" .
 			"databases, you may want to hit Ctrl-C and do this manually with\n" .
 			"maintenance/populateLogUsertext.php.\n" );
-		$task = new PopulateLogUsertext();
+		$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
 		$task->execute();
 		$this->output( "Done populating log_user_text field.\n" );
 	}
@@ -539,7 +539,7 @@ abstract class DatabaseUpdater {
 			"Populating log_search table, printing progress markers. For large\n" .
 			"databases, you may want to hit Ctrl-C and do this manually with\n" .
 			"maintenance/populateLogSearch.php.\n" );
-		$task = new PopulateLogSearch();
+		$task = $this->maintenance->runChild( 'PopulateLogSearch' );
 		$task->execute();
 		$this->output( "Done populating log_search table.\n" );
 	}
@@ -567,7 +567,7 @@ abstract class DatabaseUpdater {
 			return;
 		}
 
-		$task = new UpdateCollation();
+		$task = $this->maintenance->runChild( 'UpdateCollation' );
 		$task->execute();
 	}
 }
