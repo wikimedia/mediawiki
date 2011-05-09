@@ -2472,7 +2472,7 @@ function validateHTML( $text ) {
 
 	curl_close ( $ch );
 
-	$valid = ( strpos( $result, "Failed validation" ) === false ? true : false );
+	$valid = ( strpos( $result, "Failed validation" ) === false );
 
 	return array( $valid, $result );
 }
