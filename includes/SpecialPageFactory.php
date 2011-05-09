@@ -314,7 +314,7 @@ class SpecialPageFactory {
 			$rec = self::getList()->$realName;
 			if ( is_string( $rec ) ) {
 				$className = $rec;
-				self::getList()->$realName = new $className;
+				return new $className;
 			} elseif ( is_array( $rec ) ) {
 				// @deprecated, officially since 1.18, unofficially since forever
 				wfDebug( "Array syntax for \$wgSpecialPages is deprecated, define a subclass of SpecialPage instead." );
