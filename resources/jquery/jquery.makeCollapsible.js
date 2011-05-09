@@ -83,7 +83,7 @@ $.fn.makeCollapsible = function() {
 						var $collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
 						
 						// If a collapsible-content is defined, collapse it
-						if ( $collapsibleContent.size() ) {
+						if ( $collapsibleContent.length ) {
 							if ( instantHide ) {
 								$collapsibleContent.hide();
 							} else {
@@ -126,7 +126,7 @@ $.fn.makeCollapsible = function() {
 						var $collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
 						
 						// If a collapsible-content is defined, collapse it
-						if ( $collapsibleContent.size() ) {
+						if ( $collapsibleContent.length ) {
 							$collapsibleContent.slideDown();
 
 						// Otherwise assume this is a customcollapse with a remote toggle
@@ -152,7 +152,7 @@ $.fn.makeCollapsible = function() {
 				if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
 					// Change link to "Show"
 					$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
-					if ( $that.find( '> a' ).size() ) {
+					if ( $that.find( '> a' ).length ) {
 						$that.find( '> a' ).text( expandtext );
 					} else {
 						$that.text( expandtext );
@@ -164,7 +164,7 @@ $.fn.makeCollapsible = function() {
 				} else {
 					// Change link to "Hide"
 					$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
-					if ( $that.find( '> a' ).size() ) {
+					if ( $that.find( '> a' ).length ) {
 						$that.find( '> a' ).text( collapsetext );
 					} else {
 						$that.text( collapsetext );
@@ -240,7 +240,7 @@ $.fn.makeCollapsible = function() {
 			mw.log( _fn + 'Found custom collapsible: #' + thatId );
 						
 			// Double check that there is actually a customtoggle link
-			if ( $customTogglers.size() ) {
+			if ( $customTogglers.length ) {
 				$customTogglers.bind( 'click.mw-collapse', function( e ) {
 					toggleLinkCustom( $(this), e, $that );
 				} );
@@ -265,7 +265,7 @@ $.fn.makeCollapsible = function() {
 					$toggle = $firstRowCells.find( '> .mw-collapsible-toggle' );
 	
 				// If theres no toggle link, add it to the last cell
-				if ( !$toggle.size() ) {
+				if ( !$toggle.length ) {
 					$firstRowCells.eq(-1).prepend( $toggleLink );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
@@ -279,7 +279,7 @@ $.fn.makeCollapsible = function() {
 					$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 	
 				// If theres no toggle link, add it
-				if ( !$toggle.size() ) {
+				if ( !$toggle.length ) {
 					// Make sure the numeral order doesn't get messed up, reset to 1 unless value-attribute is already used
 					// WebKit return '' if no value, Mozilla returns '-1' is no value.
 					// Needs ==, will fail with ===
@@ -295,7 +295,7 @@ $.fn.makeCollapsible = function() {
 	
 			} else { // <div>, <p> etc.
 				// If a direct child .content-wrapper does not exists, create it
-				if ( !$that.find( '> .mw-collapsible-content' ).size() ) {
+				if ( !$that.find( '> .mw-collapsible-content' ).length ) {
 					$that.wrapInner( '<div class="mw-collapsible-content"></div>' );
 				}
 	
@@ -303,7 +303,7 @@ $.fn.makeCollapsible = function() {
 				var $toggle = $that.find( '> .mw-collapsible-toggle' );
 	
 				// If theres no toggle link, add it
-				if ( !$toggle.size() ) {
+				if ( !$toggle.length ) {
 					$that.prepend( $toggleLink );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
