@@ -1046,7 +1046,7 @@ class MssqlField implements Field {
 		$this->tablename = $info['TABLE_NAME'];
 		$this->default = $info['COLUMN_DEFAULT'];
 		$this->max_length = $info['CHARACTER_MAXIMUM_LENGTH'];
-		$this->nullable = ( strtolower( $info['IS_NULLABLE'] ) == 'no' ) ? false:true;
+		$this->nullable = !( strtolower( $info['IS_NULLABLE'] ) == 'no' );
 		$this->type = $info['DATA_TYPE'];
 	}
 
