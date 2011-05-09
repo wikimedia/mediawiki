@@ -28,6 +28,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
 		$this->db = new MockDatabaseSqlite();
+		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
+			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
+		}
 	}
 
 	private function replaceVars( $sql ) {
@@ -124,12 +127,67 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testEntireSchema() {
+	public function testEntireSchema() {
 		global $IP;
 
 		$result = Sqlite::checkSqlSyntax( "$IP/maintenance/tables.sql" );
 		if ( $result !== true ) {
 			$this->fail( $result );
 		}
+	}
+
+	/**
+	 * Runs upgrades of older databases and compares results with current schema
+	 * @todo: currently only checks list of tables
+	 */
+	public function testUpgrades() {
+		global $IP;
+
+		$versions = array( '1.13', '1.15', '1.16', '1.17' ); // SQLite wasn't included in 1.14
+		$currentDB = new DatabaseSqliteStandalone( ':memory:' );
+		$currentDB->sourceFile( "$IP/maintenance/tables.sql" );
+		$currentTables = $this->getTables( $currentDB );
+		sort( $currentTables );
+
+		foreach ( $versions as $version ) {
+			$db = $this->prepareDB( $version );
+			$tables = $this->getTables( $db );
+			$this->assertEquals( $currentTables, $tables );
+			$db->close();
+		}
+	}
+
+	private function prepareDB( $version ) {
+		static $maint = null;
+		if ( $maint === null ) {
+			$maint = new FakeMaintenance();
+			$maint->loadParamsAndArgs( null, array( 'quiet' => 1 ) );
+		}
+		
+		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db->sourceFile( dirname( __FILE__ ) . "/sqlite/tables-$version.sql" );
+		$updater = DatabaseUpdater::newForDB( $db, false, $maint );
+		$updater->doUpdates( array( 'core' ) );
+		return $db;
+	}
+
+	protected function getTables( $db ) {
+		$list = array_flip( $db->listTables() );
+		$excluded = array(
+			'math', // moved out of core in 1.18
+			'searchindex',
+			'searchindex_content',
+			'searchindex_segments',
+			'searchindex_segdir',
+			// FTS4 ready!!1
+			'searchindex_docsize',
+			'searchindex_stat',
+		);
+		foreach ( $excluded as $t ) {
+			unset( $list[$t] );
+		}
+		$list = array_flip( $list );
+		sort( $list );
+		return $list;
 	}
 }
