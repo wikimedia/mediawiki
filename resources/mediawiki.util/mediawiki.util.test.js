@@ -65,8 +65,8 @@
 		'init' : function() {
 			if ( this.initialised === false ) {
 				this.initialised = true;
-				// jQuery document ready
-				$( function() {
+
+				$(document).ready( function() {
 					if ( mw.config.get( 'wgCanonicalSpecialPageName' ) == 'Blankpage'
 						&& mw.util.getParamValue( 'action' ) === 'mwutiltest' ) {
 
@@ -284,9 +284,6 @@
 						mw.test.addTest( 'var a = mw.util.addCSS( "div#mw-js-message { background-color: rgb(170,255,170); }" ); a.disabled',
 							'false (boolean)' );
 
-						mw.test.addTest( 'jQuery( "#mw-js-message " ).css( "background-color" )',
-							'rgb(170, 255, 170) (string)' );
-
 						mw.test.addTest( 'typeof mw.util.toggleToc',
 							'function (string)' );
 
@@ -334,6 +331,9 @@
 
 						mw.test.addTest( 'mw.util.jsMessage( mw.config.get( "wgSiteName" ) + " is <b>Awesome</b>." )',
 							'true (boolean)' );
+
+						mw.test.addTest( 'jQuery( "#mw-js-message" ).css( "background-color" )',
+							'rgb(170, 255, 170) (string)' );
 
 						// TODO: Import tests from PHPUnit test suite for user::isValidEmailAddr
 						mw.test.addTest( 'mw.util.validateEmail( "" )',
