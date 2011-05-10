@@ -34,6 +34,7 @@ used in Tiff files.
   the user a page named [[:]] already exists.
 
 === API changes in 1.19 ===
+* (bug 27790) add query type for querymodules to action=paraminfo
 
 === Languages updated in 1.19 ===
 
