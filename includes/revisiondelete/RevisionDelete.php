@@ -1,6 +1,12 @@
 <?php
 /**
  * List for revision table items
+ *
+ * This will check both the 'revision' table for live revisions and the
+ * 'archive' table for traditionally-deleted revisions that have an
+ * ar_rev_id saved.
+ *
+ * See RevDel_RevisionItem and RevDel_ArchivedRevisionItem for items.
  */
 class RevDel_RevisionList extends RevDel_List {
 	var $currentRevId;
@@ -16,7 +22,7 @@ class RevDel_RevisionList extends RevDel_List {
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-		return $db->select( array('revision','page'), '*',
+		$live = $db->select( array('revision','page'), '*',
 			array(
 				'rev_page' => $this->title->getArticleID(),
 				'rev_id'   => $ids,
@@ -25,10 +31,49 @@ class RevDel_RevisionList extends RevDel_List {
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id DESC' )
 		);
+
+		if ( $live->numRows() >= count( $ids ) ) {
+			// All requested revisions are live, keeps things simple!
+			return $live;
+		}
+
+		// Check if any requested revisions are available fully deleted.
+		$archived = $db->select( array( 'archive' ), '*',
+			array(
+				'ar_rev_id' => $ids
+			),
+			__METHOD__,
+			array( 'ORDER BY' => 'ar_rev_id DESC' )
+		);
+
+		if ( $archived->numRows() == 0 ) {
+			return $live;
+		} else if ( $live->numRows() == 0 ) {
+			return $archived;
+		} else {
+			// Combine the two! Whee
+			$rows = array();
+			while ( $row = $live->fetchObject() ) {
+				$rows[$row->rev_id] = $row;
+			}
+			while ( $row = $archived->fetchObject() ) {
+				$rows[$row->ar_rev_id] = $row;
+			}
+			krsort( $rows );
+			return new FakeResultWrapper( array_values( $rows ) );
+		}
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_RevisionItem( $this, $row );
+		if ( isset( $row->rev_id ) ) {
+			return new RevDel_RevisionItem( $this, $row );
+		} elseif ( isset( $row->ar_rev_id ) ) {
+			return new RevDel_ArchivedRevisionItem( $this, $row );
+		} else {
+			// This shouldn't happen. :)
+			var_dump( $row );
+			throw new MWException( 'Invalid row type in RevDel_RevisionList' );
+		}
 	}
 
 	public function getCurrent() {
@@ -58,7 +103,7 @@ class RevDel_RevisionList extends RevDel_List {
 }
 
 /**
- * Item class for a revision table row
+ * Item class for a live revision table row
  */
 class RevDel_RevisionItem extends RevDel_Item {
 	var $revision;
@@ -278,6 +323,35 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 				'diff' => 'prev',
 				'timestamp' => $this->revision->getTimestamp()
 			) );
+	}
+}
+
+
+/**
+ * Item class for a archive table row by ar_rev_id -- actually
+ * used via RevDel_RevisionList.
+ */
+class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
+	public function __construct( $list, $row ) {
+		RevDel_Item::__construct( $list, $row );
+
+		$this->revision = Revision::newFromArchiveRow( $row,
+			array( 'page' => $this->list->title->getArticleId() ) );
+	}
+
+	public function getId() {
+		return $this->revision->getId();
+	}
+
+	public function setBits( $bits ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update( 'archive',
+			array( 'ar_deleted' => $bits ),
+			array( 'ar_rev_id' => $this->row->ar_rev_id,
+				   'ar_deleted' => $this->getBits()
+			),
+			__METHOD__ );
+		return (bool)$dbw->affectedRows();
 	}
 }
 
