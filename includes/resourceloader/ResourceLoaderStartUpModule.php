@@ -33,12 +33,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected function getConfig( $context ) {
-		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension, 
-			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, 
+		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension,
+			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang,
 			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax,
-			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest, 
+			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest,
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath, $wgProto,
-			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength;
+			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength, $wgLegacyJavaScriptGlobals;
 
 		// Pre-process information
 		$separatorTransTable = $wgContLang->separatorTransformTable();
@@ -85,15 +85,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgSiteName' => $wgSitename,
 			'wgFileExtensions' => array_values( $wgFileExtensions ),
 			'wgDBname' => $wgDBname,
-			// This sucks, it is only needed on Special:Upload, but I could 
+			// This sucks, it is only needed on Special:Upload, but I could
 			// not find a way to add vars only for a certain module
 			'wgFileCanRotate' => BitmapHandler::canRotate(),
 			'wgAvailableSkins' => Skin::getSkinNames(),
 			'wgExtensionAssetsPath' => $wgExtensionAssetsPath,
 			'wgProto' => $wgProto,
-			// mediawiki sets cookies to have this prefix by default
+			// MediaWiki sets cookies to have this prefix by default
 			'wgCookiePrefix' => $wgCookiePrefix,
 			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,
+			'wgLegacyJavaScriptGlobals' => $wgLegacyJavaScriptGlobals,
 		);
 		if ( $wgUseAjax && $wgEnableMWSuggest ) {
 			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
@@ -162,7 +163,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Methods */
 
 	public function getScript( ResourceLoaderContext $context ) {
-		global $IP, $wgLoadScript;
+		global $IP, $wgLoadScript, $wgLegacyJavaScriptGlobals;
 
 		$out = file_get_contents( "$IP/resources/startup.js" );
 		if ( $context->getOnly() === 'scripts' ) {
@@ -189,20 +190,21 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			);
 			// Ensure uniform query order
 			ksort( $query );
-			
+
 			// Startup function
 			$configuration = $this->getConfig( $context );
 			$registrations = self::getModuleRegistrations( $context );
-			$out .= "var startUp = function() {\n" . 
-				"\t$registrations\n" . 
-				"\t" . Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) ) . 
+			$out .= "var startUp = function() {\n" .
+				"\tmw.config = new " . Xml::encodeJsCall( 'mw.Map', array( $wgLegacyJavaScriptGlobals ) ) . "\n" .
+				"\t$registrations\n" .
+				"\t" . Xml::encodeJsCall( 'mw.config.set', array( $configuration ) ) .
 				"};\n";
-			
+
 			// Conditional script injection
 			$scriptTag = Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) );
-			$out .= "if ( isCompatible() ) {\n" . 
-				"\t" . Xml::encodeJsCall( 'document.write', array( $scriptTag ) ) . 
-				"}\n" . 
+			$out .= "if ( isCompatible() ) {\n" .
+				"\t" . Xml::encodeJsCall( 'document.write', array( $scriptTag ) ) .
+				"}\n" .
 				"delete isCompatible;";
 		}
 

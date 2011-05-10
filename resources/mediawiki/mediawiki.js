@@ -127,9 +127,6 @@ window.mediaWiki = new ( function( $ ) {
 
 	/* Constants */
 
-	// This will not change until we are 100% ready to turn off legacy globals
-	var LEGACY_GLOBALS = true;
-
 	/* Private Members */
 
 	// List of messages that have been requested to be loaded
@@ -503,9 +500,11 @@ window.mediaWiki = new ( function( $ ) {
 	/*
 	 * List of configuration values
 	 *
-	 * In legacy mode the values this object wraps will be in the global space
+	 * Dummy placeholder. Initiated in startUp module as a new instance of mw.Map().
+	 * If $wgLegacyJavaScriptGlobals is true, this Map will have its values
+	 * in the global window object.
 	 */
-	this.config = new this.Map( LEGACY_GLOBALS );
+	this.config = null;
 
 	/*
 	 * Information about the current user
