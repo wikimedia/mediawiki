@@ -2980,6 +2980,7 @@ $1',
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|страница|страницы|страниц}}',
 'file-info'              => 'размер файла: $1, MIME-тип: $2',
 'file-info-size'         => '$1 × $2 пикселов, размер файла: $3, MIME-тип: $4',
+'file-info-size-pages'   => '$1 × $2 пикселей, размер файла: $3, MIME-тип: $4, $5 {{PLURAL:$5|страница|страницы|страниц}}',
 'file-nohires'           => '<small>Нет версии с большим разрешением.</small>',
 'svg-long-desc'          => 'SVG-файл, номинально $1 × $2 пикселов, размер файла: $3',
 'show-big-image'         => 'Изображение в более высоком разрешении',
@@ -3218,6 +3219,9 @@ $1',
 
 # EXIF attributes
 'exif-compression-1' => 'Несжатый',
+'exif-compression-2' => 'CCITT Group 3, 1-мерная модификация кодирования длин серий Хаффмана',
+'exif-compression-3' => 'CCITT Group 3, факсовое кодирование',
+'exif-compression-4' => 'CCITT Group 4, факсовое кодирование',
 
 'exif-copyrighted-true'  => 'Охраняется авторским правом',
 'exif-copyrighted-false' => 'Общественное достояние',

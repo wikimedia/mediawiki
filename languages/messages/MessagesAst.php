@@ -1174,7 +1174,7 @@ Esta información sedrá pública.",
 'prefs-advancedwatchlist'       => 'Opciones avanzaes',
 'prefs-displayrc'               => 'Opciones de vista',
 'prefs-displaysearchoptions'    => 'Opciones de vista',
-'prefs-displaywatchlist'        => 'Display options',
+'prefs-displaywatchlist'        => 'Opciones de vista',
 'prefs-diffs'                   => 'Diferencies',
 
 # User preference: e-mail validation using jQuery
@@ -1536,6 +1536,19 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 # ZipDirectoryReader
 'zip-file-open-error' => "S'alcontró un fallu al abrir el ficheru pa les comprobaciones del ZIP.",
 'zip-wrong-format'    => 'El ficheru especificáu nun yera un ficheru ZIP.',
+'zip-bad'             => 'El ficheru ZIP ta corrompíu o ye imposible lleelu.
+Nun se pudo comprobar la seguridá de mou afayadizu.',
+'zip-unsupported'     => "El ficheru ye un archivu ZIP qu'usa carauterístiques ensin encontu en MediaWiki.
+Nun se pue comprobar la seguridá de mou afayadizu.",
+
+# Special:UploadStash
+'uploadstash'          => 'Ficheros na reserva',
+'uploadstash-summary'  => "Esta páxina ufre accesu a ficheros que tan xubíos (o en procesu de xubía), pero qu'entá nun s'espublizaron na wiki. Estos ficheros nun son visibles pa naide, sacante l'usuariu que los xubió.",
+'uploadstash-clear'    => 'Desaniciar los ficheros de la reserva',
+'uploadstash-nofiles'  => 'Nun tienes ficheros na reserva.',
+'uploadstash-badtoken' => 'Nun se pudo facer esa operación, seique porque caducó la identificación pa editar. Vuelvi a intentalo.',
+'uploadstash-errclear' => 'Nun se pudieron desaniciar los ficheros.',
+'uploadstash-refresh'  => 'Anovar la llista de ficheros',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesu denegáu',
@@ -2924,6 +2937,7 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-source'                      => 'Fonte',
 'exif-editstatus'                  => 'Estáu editorial de la imaxe',
 'exif-urgency'                     => 'Urxencia',
+'exif-fixtureidentifier'           => 'Nome del elementu',
 'exif-locationdest'                => 'Llugar representáu',
 'exif-locationdestcode'            => 'Códigu del llugar representáu',
 'exif-objectcycle'                 => 'Hora del día a la que se destina esti mediu',
@@ -2948,9 +2962,30 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-copyrighted'                 => 'Estáu del copyright',
 'exif-copyrightowner'              => 'Titular del copyright',
 'exif-usageterms'                  => "Términos d'usu",
+'exif-webstatement'                => "Declaración en llinia de drechos d'autor",
+'exif-originaldocumentid'          => 'ID única del documentu orixinal',
+'exif-licenseurl'                  => "URL de la llicencia de drechos d'autor",
+'exif-morepermissionsurl'          => 'Información de llicencia alternativa',
+'exif-attributionurl'              => 'Al re-usar esta obra, por favor enllazar a',
+'exif-preferredattributionname'    => 'Al re-usar esta obra, por favor atribuir a',
+'exif-pngfilecomment'              => 'Comentariu del ficheru PNG',
+'exif-disclaimer'                  => 'Avisu xeneral',
+'exif-contentwarning'              => "Avisu sobro'l conteníu",
+'exif-giffilecomment'              => 'Comentariu del ficheru GIF',
+'exif-intellectualgenre'           => "Triba d'elementu",
+'exif-subjectnewscode'             => 'Códigu del tema',
+'exif-scenecode'                   => "Códigu d'escena IPTC",
+'exif-event'                       => 'Acontecimientu representáu',
+'exif-organisationinimage'         => 'Organización representada',
+'exif-personinimage'               => 'Persona representada',
+'exif-originalimageheight'         => 'Altor de la imaxe enantes de cortase',
+'exif-originalimagewidth'          => 'Anchor de la imaxe enantes de cortase',
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimida',
+
+'exif-copyrighted-true'  => "Con drechos d'autor",
+'exif-copyrighted-false' => 'Dominiu públicu',
 
 'exif-unknowndate' => 'Fecha desconocida',
 
@@ -2965,6 +3000,8 @@ Los demás tarán anubríos de mou predetermináu.
 
 'exif-planarconfiguration-1' => 'formatu irregular',
 'exif-planarconfiguration-2' => 'formatu planu',
+
+'exif-colorspace-65535' => 'Ensin calibrar',
 
 'exif-componentsconfiguration-0' => 'nun esiste',
 
@@ -3029,6 +3066,8 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-sensingmethod-7' => 'Sensor Trillinial',
 'exif-sensingmethod-8' => 'Sensor llinial secuencial de color',
 
+'exif-filesource-3' => 'Cámara fotográfica dixital',
+
 'exif-scenetype-1' => 'Una imaxe fotografiada direutamente',
 
 'exif-customrendered-0' => 'Procesu normal',
@@ -3077,6 +3116,10 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-gpslongitude-e' => 'Lloxitú Este',
 'exif-gpslongitude-w' => 'Lloxitú Oeste',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => "$1 {{PLURAL:$1|metru|metros}} sobro'l nivel del mar",
+'exif-gpsaltitude-below-sealevel' => "$1 {{PLURAL:$1|metru|metros}} baxo'l nivel del mar",
+
 'exif-gpsstatus-a' => 'Midición en progresu',
 'exif-gpsstatus-v' => 'Interoperabilidá de la midición',
 
@@ -3088,9 +3131,63 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-gpsspeed-m' => 'Milles per hora',
 'exif-gpsspeed-n' => 'Nueyos',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilómetros',
+'exif-gpsdestdistance-m' => 'Milles',
+'exif-gpsdestdistance-n' => 'Milles náutiques',
+
+'exif-gpsdop-excellent' => 'Escelente ($1)',
+'exif-gpsdop-good'      => 'Bona ($1)',
+'exif-gpsdop-moderate'  => 'Moderada ($1)',
+'exif-gpsdop-fair'      => 'Xusta ($1)',
+'exif-gpsdop-poor'      => 'Probe ($1)',
+
+'exif-objectcycle-a' => 'Sólo pola mañana',
+'exif-objectcycle-p' => 'Sólo pola tarde',
+'exif-objectcycle-b' => 'Pola mañana y pola tarde',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direición real',
 'exif-gpsdirection-m' => 'Direición magnética',
+
+'exif-ycbcrpositioning-1' => 'Centráu',
+'exif-ycbcrpositioning-2' => 'Co-llocalizaos',
+
+'exif-dc-contributor' => 'Collaboradores',
+'exif-dc-coverage'    => 'Estensión espacial o temporal del conteníu',
+'exif-dc-date'        => 'Data(es)',
+'exif-dc-publisher'   => 'Editor',
+'exif-dc-relation'    => 'Otros medios rellacionaos',
+'exif-dc-rights'      => 'Drechos',
+'exif-dc-source'      => 'Mediu orixinal',
+'exif-dc-type'        => 'Triba de mediu',
+
+'exif-rating-rejected' => 'Refugáu',
+
+'exif-isospeedratings-overflow' => 'Mayor que 65535',
+
+'exif-iimcategory-ace' => 'Arte, cultura y entretenimientu',
+'exif-iimcategory-clj' => 'Crime y drechu',
+'exif-iimcategory-dis' => 'Desastres y accidentes',
+'exif-iimcategory-fin' => 'Economía y negocios',
+'exif-iimcategory-edu' => 'Educación',
+'exif-iimcategory-evn' => 'Mediu ambiente',
+'exif-iimcategory-hth' => 'Salú',
+'exif-iimcategory-hum' => 'Interés humanu',
+'exif-iimcategory-lab' => 'Trabayu',
+'exif-iimcategory-lif' => 'Estilu de vida y recréu',
+'exif-iimcategory-pol' => 'Política',
+'exif-iimcategory-rel' => 'Relixón y creencies',
+'exif-iimcategory-sci' => 'Ciencia y teunoloxía',
+'exif-iimcategory-soi' => 'Cuestiones sociales',
+'exif-iimcategory-spo' => 'Deportes',
+'exif-iimcategory-war' => 'Guerra, conflictos y protestes',
+'exif-iimcategory-wea' => 'Meteoroloxía',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Baxa ($1)',
+'exif-urgency-high'   => 'Alta ($1)',
+'exif-urgency-other'  => 'Prioridá definía pol usuariu ($1)',
 
 # External editor support
 'edit-externally'      => 'Editar esti ficheru usando una aplicación esterna',
@@ -3184,11 +3281,12 @@ $1',
 'trackbackdeleteok' => 'El retroenllaz esborróse correutamente.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Avisu''': ¡Esta páxina foi esborrada depués de qu'entamaras a editala!",
-'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|alderique]]) esborró esta páxina depués de qu'empecipiaras a editala pol siguiente motivu:
+'deletedwhileediting'      => "'''Avisu''': ¡Esta páxina foi esborrada depués de qu'entamaras a editala!",
+'confirmrecreate'          => "L'usuariu [[User:$1|$1]] ([[User talk:$1|alderique]]) esborró esta páxina depués de qu'empecipiaras a editala pol siguiente motivu:
 : ''$2''
 Por favor confirma que daveres quies volver a crear esta páxina.",
-'recreate'            => 'Volver a crear',
+'confirmrecreate-noreason' => "L'usuariu [[User:$1|$1]] ([[User talk:$1|talk]]) desanició esta páxina depués de que principiaras a editala.  Por favor confirma que daveres quies volver a crear esta páxina.",
+'recreate'                 => 'Volver a crear',
 
 # action=purge
 'confirm_purge_button' => 'Aceutar',
@@ -3300,14 +3398,15 @@ Tendríes d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Lli
 Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Buscar archivos duplicaos',
-'fileduplicatesearch-summary'  => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.',
-'fileduplicatesearch-legend'   => 'Buscar duplicaos',
-'fileduplicatesearch-filename' => "Nome d'archivu:",
-'fileduplicatesearch-submit'   => 'Guetar',
-'fileduplicatesearch-info'     => '$1 × $2 píxeles<br />Tamañu del archivu: $3<br />Triba MIME: $4',
-'fileduplicatesearch-result-1' => 'L\'archivu "$1" nun tien duplicáu idénticu.',
-'fileduplicatesearch-result-n' => 'L\'archivu "$1" tien {{PLURAL:$2|un duplicáu idénticu|$2 duplicaos idénticos}}.',
+'fileduplicatesearch'           => 'Buscar archivos duplicaos',
+'fileduplicatesearch-summary'   => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.',
+'fileduplicatesearch-legend'    => 'Buscar duplicaos',
+'fileduplicatesearch-filename'  => "Nome d'archivu:",
+'fileduplicatesearch-submit'    => 'Guetar',
+'fileduplicatesearch-info'      => '$1 × $2 píxeles<br />Tamañu del archivu: $3<br />Triba MIME: $4',
+'fileduplicatesearch-result-1'  => 'L\'archivu "$1" nun tien duplicáu idénticu.',
+'fileduplicatesearch-result-n'  => 'L\'archivu "$1" tien {{PLURAL:$2|un duplicáu idénticu|$2 duplicaos idénticos}}.',
+'fileduplicatesearch-noresults' => "Nun s'alcontró dengún ficheru nomáu «$1».",
 
 # Special:SpecialPages
 'specialpages'                   => 'Páxines especiales',

@@ -645,6 +645,8 @@ $1',
 'page-rss-feed'           => 'Flux RSS de « $1 »',
 'page-atom-feed'          => 'Flux Atom de « $1 »',
 'red-link-title'          => '$1 (page inexistante)',
+'sort-descending'         => 'Tri décroissant',
+'sort-ascending'          => 'Tri croissant',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',

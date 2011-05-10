@@ -2393,7 +2393,9 @@ Muhun cubai pulang.',
 
 # Special:NewFiles
 'newimages-legend' => 'Saringan',
+'noimages'         => 'Kadada nang dijanaki.',
 'ilsubmit'         => 'Gagai',
+'bydate'           => 'ulih tanggal',
 
 # Bad image list
 'bad_image_list' => "Purmatnya nangkaya di bawah ni:
@@ -2424,6 +2426,11 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 
 # EXIF tags
 'exif-jpeginterchangeformat' => 'Ofset ka JPEG SOI',
+'exif-usercomment'           => 'Kumintar pamuruk',
+'exif-writer'                => 'Panulis',
+'exif-languagecode'          => 'Bahasa',
+
+'exif-dc-rights' => 'Hak',
 
 # External editor support
 'edit-externally'      => 'Babak barakas ini puruk sabuah aplikasi luar',
@@ -2434,10 +2441,17 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'namespacesall' => 'samunyaan',
 'monthsall'     => 'samunyaan',
 
+# Trackbacks
+'trackbackremove' => '([$1 Hapus])',
+
+# Delete conflict
+'recreate' => 'Ulah pulang',
+
 # action=purge
 'confirm_purge_button' => 'OK',
 
 # Multipage image navigation
+'imgmultigo'   => 'Tulak!',
 'imgmultigoto' => 'Tulak ka tungkaran $1',
 
 # Table pager
@@ -2497,6 +2511,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'tags-edit'           => 'babak',
 
 # Special:ComparePages
+'comparepages'  => 'Tandding tutungkaran',
 'compare-page1' => 'Tungkaran 1',
 'compare-page2' => 'Tungkaran 2',
 'compare-rev1'  => 'Ralatan 1',

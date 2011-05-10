@@ -307,6 +307,9 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'resetpass_forbidden'       => 'Paesswatt iss net zu ennere',
 'resetpass-submit-loggedin' => 'Paesswatt ennere',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Yuuser-Naame:',
+
 # Edit page toolbar
 'bold_sample'     => 'Wadde fett gmarrickt',
 'bold_tip'        => 'Wadde fett gmarrickt',

@@ -11,6 +11,7 @@
  * @author FnTmLV
  * @author Geimeris
  * @author GreenZeb
+ * @author Karlis
  * @author Kikos
  * @author Knakts
  * @author Marozols
@@ -238,6 +239,7 @@ $messages = array(
 'printableversion'  => 'Drukājama versija',
 'permalink'         => 'Pastāvīgā saite',
 'print'             => 'Drukāt',
+'view'              => 'Skatīt',
 'edit'              => 'Izmainīt šo lapu',
 'create'            => 'Izveidot',
 'editthispage'      => 'Izmainīt šo lapu',
@@ -326,6 +328,8 @@ $1',
 'toc'                     => 'Satura rādītājs',
 'showtoc'                 => 'parādīt',
 'hidetoc'                 => 'paslēpt',
+'collapsible-collapse'    => 'Sakļaut',
+'collapsible-expand'      => 'Izplest',
 'thisisdeleted'           => 'Apskatīt vai atjaunot $1?',
 'viewdeleted'             => 'Skatīt $1?',
 'restorelink'             => '$1 {{PLURAL:$1|dzēsto versiju|dzēstās versijas}}',
@@ -2531,6 +2535,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-jpegfilecomment'             => 'JPEG faila komentārs',
 'exif-keywords'                    => 'Atslēgas vārdi',
 'exif-languagecode'                => 'Valoda',
+'exif-iimcategory'                 => 'Kategorija',
 'exif-serialnumber'                => 'Fotoaparāta sērijas numurs',
 'exif-cameraownername'             => 'Fotoaparāta īpašnieks',
 'exif-copyrighted'                 => 'Autortiesību statuss',
