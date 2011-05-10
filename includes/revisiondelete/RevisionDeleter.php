@@ -178,24 +178,7 @@ class RevisionDeleter {
 			// This is not going to work if some revs are deleted and some
 			//  aren't.
 			if ($key == 'revision') {
-				foreach( $Ids as $k => $id ) {
-					$existResult =
-						self::checkRevisionExistence( $title, $id );
-					
-					if ($existResult !== true) {
-						$key = 'archive';
-						$Ids[$k] = $existResult;
-					} else {
-						// Undeleted revision amidst deleted ones
-						unset($Ids[$k]);
-						$undeletedRevisions[] = $id;
-					}
-				}
-				
-				if ( $key == $originalKey ) {
-					$Ids = $undeletedRevisions;
-					$undeletedRevisions = array();
-				}
+				// Nothing to do; deleted revisions can still be looked up by ID.
 			}
 			
 			// Diff link for single rev deletions
