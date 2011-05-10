@@ -250,6 +250,7 @@ production.
 * (bug 28076) Thumbnail height limited to 360 pixels on Special:Listfiles
 * (bug 22227) Special:Listfiles no longer throws an error on bogus file entries
 * (bug 19408) user_properties.up_property: 32 bytes is not enough.
+* (bug 25262) Fix for minification of hardcoded data: URIs in CSS
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result.
