@@ -2530,6 +2530,19 @@ $wgResourceLoaderMinifierMaxLineLength = 1000;
 $wgIncludeLegacyJavaScript = true;
 
 /**
+ * Whether or not to assing configuration variables to the global window object.
+ * If this is set to false, old code using deprecated variables like:
+ * " if ( window.wgRestrictionEdit ) ..."
+ * or:
+ * " if ( wgIsArticle ) ..."
+ * will no longer work and needs to use mw.config instead. For example:
+ * " if ( mw.config.exists('wgRestrictionEdit') )"
+ * or
+ * " if ( mw.config.get('wgIsArticle') )".
+ */
+$wgLegacyJavaScriptGlobals = true;
+
+/**
  * If set to a positive number, ResourceLoader will not generate URLs whose
  * query string is more than this many characters long, and will instead use
  * multiple requests with shorter query strings. This degrades performance,
