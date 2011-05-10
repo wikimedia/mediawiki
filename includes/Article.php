@@ -27,7 +27,6 @@ class Article {
 	var $mContentLoaded = false;      // !<
 	var $mCounter = -1;               // !< Not loaded
 	var $mDataLoaded = false;         // !<
-	var $mForUpdate = false;          // !<
 	var $mGoodAdjustment = 0;         // !<
 	var $mIsRedirect = false;         // !<
 	var $mLatest = false;             // !<
@@ -263,7 +262,6 @@ class Article {
 		$this->mTimestamp = '';
 		$this->mGoodAdjustment = $this->mTotalAdjustment = 0;
 		$this->mTouched = '19700101000000';
-		$this->mForUpdate = false;
 		$this->mIsRedirect = false;
 		$this->mRevIdFetched = 0;
 		$this->mRedirectUrl = false;
@@ -587,15 +585,11 @@ class Article {
 	}
 
 	/**
-	 * Read/write accessor to select FOR UPDATE
+	 * No-op
 	 * @deprecated since 1.18
-	 *
-	 * @param $x Mixed: FIXME
-	 * @return mixed value of $x, or value stored in Article::mForUpdate
 	 */
-	public function forUpdate( $x = null ) {
+	public function forUpdate() {
 		wfDeprecated( __METHOD__ );
-		return wfSetVar( $this->mForUpdate, $x );
 	}
 
 	/**
