@@ -38,7 +38,7 @@ return array(
 	),
 	'skins.modern' => array(
 		'styles' => array( 'modern/main.css' => array( 'media' => 'screen' ),
-				   'modern/print.css' => array( 'media' => 'print' ) ),
+				'modern/print.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
@@ -131,6 +131,10 @@ return array(
 		'scripts' => 'resources/jquery/jquery.makeCollapsible.js',
 		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
 		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
+	),
+	'jquery.qunit' => array(
+		'scripts' => 'resources/jquery/jquery.qunit.js',
+		'styles' => 'resources/jquery/jquery.qunit.css',
 	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
