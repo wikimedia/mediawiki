@@ -132,10 +132,6 @@ return array(
 		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
 		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
 	),
-	'jquery.qunit' => array(
-		'scripts' => 'resources/jquery/jquery.qunit.js',
-		'styles' => 'resources/jquery/jquery.qunit.css',
-	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
 		'styles' => 'resources/jquery/jquery.suggestions.css',

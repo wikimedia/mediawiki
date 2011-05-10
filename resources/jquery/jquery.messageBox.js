@@ -35,9 +35,6 @@ $.messageBoxNew = function( options ) {
 				'display': 'none'
 			}
 		});
-		if ( $( options.parent ).length < 1 ) {
-			options.parent = 'body';
-		}
 		if ( options.insert === 'append' ) {
 			$newBox.appendTo( options.parent );
 			return $newBox;

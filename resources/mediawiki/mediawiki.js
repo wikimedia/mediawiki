@@ -186,13 +186,10 @@ window.mediaWiki = new ( function( $ ) {
 		if ( typeof selection === 'object' ) {
 			for ( var s in selection ) {
 				this.values[s] = selection[s];
-			return true;
 			}
 		} else if ( typeof selection === 'string' && typeof value !== 'undefined' ) {
 			this.values[selection] = value;
-			return true;
 		}
-		return false;
 	};
 
 	/**
