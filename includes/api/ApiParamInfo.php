@@ -70,6 +70,7 @@ class ApiParamInfo extends ApiBase {
 				$obj = new $qmodArr[$qm]( $this, $qm );
 				$a = $this->getClassInfo( $obj );
 				$a['name'] = $qm;
+				$a['querytype'] = $queryObj->getModuleType( $qm );
 				$r['querymodules'][] = $a;
 			}
 			$result->setIndexedTagName( $r['querymodules'], 'module' );
