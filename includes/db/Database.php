@@ -3248,7 +3248,12 @@ class FakeResultWrapper extends ResultWrapper {
 	}
 
 	function fetchRow() {
-		$this->currentRow = $this->result[$this->pos++];
+		if ( $this->pos < count( $this->result ) ) {
+			$this->currentRow = $this->result[$this->pos];
+		} else {
+			$this->currentRow = false;
+		}
+		$this->pos++;
 		return $this->currentRow;
 	}
 
@@ -3260,13 +3265,21 @@ class FakeResultWrapper extends ResultWrapper {
 
 	// Callers want to be able to access fields with $this->fieldName
 	function fetchObject() {
-		$this->currentRow = $this->result[$this->pos++];
-		return (object)$this->currentRow;
+		$this->fetchRow();
+		if ( $this->currentRow ) {
+			return (object)$this->currentRow;
+		} else {
+			return false;
+		}
 	}
 
 	function rewind() {
 		$this->pos = 0;
 		$this->currentRow = null;
+	}
+
+	function next() {
+		return $this->fetchObject();
 	}
 }
 
