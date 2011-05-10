@@ -18,6 +18,8 @@ production.
 * LogReader and LogViewer classes (deprecated in 1.14) have now been removed
 
 === New features in 1.19 ===
+* (bug 28916) A way to to toggle mw.config legacy globals settings from
+  LocalSettings.php has been created by introducing $wgLegacyJavaScriptGlobals.
 
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
