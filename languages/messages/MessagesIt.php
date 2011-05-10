@@ -41,6 +41,7 @@
  * @author Pinodd
  * @author Ramac
  * @author Remember the dot
+ * @author Rippitippi
  * @author S.Örvarr.S
  * @author SabineCretella
  * @author Stefano-c
@@ -2634,7 +2635,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-interwiki-namespace' => 'Namespace di destinazione:',
 'import-upload-filename'     => 'Nome file:',
 'import-comment'             => 'Oggetto:',
-'importtext'                 => 'Si prega di esportare il file dal sito wiki di origine con la funzione Special:Export, salvarlo sul proprio disco e poi caricarlo qui.',
+'importtext'                 => 'Si prega di esportare il file dal sito wiki di origine con la [[Special:Export|funzione di esportazione]], salvarlo sul proprio disco e poi caricarlo qui.',
 'importstart'                => 'Importazione delle pagine in corso...',
 'import-revision-count'      => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}}',
 'importnopages'              => 'Nessuna pagina da importare.',
@@ -2869,7 +2870,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'metadata-help'     => 'Questo file contiene informazioni aggiuntive, probabilmente aggiunte dalla fotocamera o dallo scanner usati per crearlo o digitalizzarlo. Se il file è stato modificato, alcuni dettagli potrebbero non corrispondere alla realtà.',
 'metadata-expand'   => 'Mostra dettagli',
 'metadata-collapse' => 'Nascondi dettagli',
-'metadata-fields'   => "I campi relativi ai metadati EXIF elencati in questo messaggio verranno mostrati sulla pagina dell'immagine quando la tabella dei metadati è presentata nella forma breve. Per impostazione predefinita, gli altri campi verranno nascosti.
+'metadata-fields'   => "I campi relativi ai metadati dell'immagine elencati in questo messaggio verranno mostrati sulla pagina dell'immagine quando la tabella dei metadati è presentata nella forma breve. Per impostazione predefinita, gli altri campi verranno nascosti.
 * make
 * model
 * datetimeoriginal
@@ -2998,6 +2999,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correzione differenziale GPS',
 'exif-keywords'                    => 'Parole chiave',
+'exif-provinceorstatecreated'      => 'Provincia o stato dove è stata scattata la foto',
+'exif-citycreated'                 => 'Città dove è stata scattata la foto',
 'exif-objectname'                  => 'Titolo breve',
 'exif-contact'                     => 'Informazioni di contatto',
 'exif-languagecode'                => 'Lingua',

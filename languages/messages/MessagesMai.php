@@ -147,7 +147,13 @@ $messages = array(
 'noindex-category'               => 'क्रम नै कएल पन्ना सभ',
 'broken-file-category'           => 'पन्ना सभ जाइमे फाइल लिंक सभ टूटल हुअए',
 
-'mainpagetext' => "'''मीडियाविकी नीक जकाँ प्रस्थापित भेल।'''",
+'mainpagetext'      => "'''मीडियाविकी नीक जकाँ प्रस्थापित भेल।'''",
+'mainpagedocfooter' => "सम्पर्क करू [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] विकी तंत्रांशक प्रयोगक जानकारी लेल।
+
+==प्रारम्भ कोना करी==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'         => 'विषयमे',
 'article'       => 'विषय सूची पन्ना',
@@ -172,20 +178,21 @@ $messages = array(
 'faqpage'        => 'Project: त्वरित प्रश्नोत्तरी',
 
 # Vector skin
-'vector-action-addsection' => 'विचार-बिन्दु जोड़ू',
-'vector-action-delete'     => 'मेटाउ',
-'vector-action-move'       => 'घसकाउ',
-'vector-action-protect'    => 'रक्षण करू',
-'vector-action-undelete'   => 'आपस लाउ',
-'vector-action-unprotect'  => 'अरक्षित',
-'vector-view-create'       => 'बनाउ',
-'vector-view-edit'         => 'सम्पादन करू',
-'vector-view-history'      => 'इतिहास देखू',
-'vector-view-view'         => 'पढ़ू',
-'vector-view-viewsource'   => 'जड़ि देखू',
-'actions'                  => 'क्रिया सभ',
-'namespaces'               => 'चेन्हासी समूह सभ',
-'variants'                 => 'प्रकार सभ',
+'vector-action-addsection'       => 'विचार-बिन्दु जोड़ू',
+'vector-action-delete'           => 'मेटाउ',
+'vector-action-move'             => 'घसकाउ',
+'vector-action-protect'          => 'रक्षण करू',
+'vector-action-undelete'         => 'आपस लाउ',
+'vector-action-unprotect'        => 'अरक्षित',
+'vector-simplesearch-preference' => 'परिष्कृत खोज सुझाव समर्थ करू (सदिश स्वरूप मात्र)',
+'vector-view-create'             => 'बनाउ',
+'vector-view-edit'               => 'सम्पादन करू',
+'vector-view-history'            => 'इतिहास देखू',
+'vector-view-view'               => 'पढ़ू',
+'vector-view-viewsource'         => 'जड़ि देखू',
+'actions'                        => 'क्रिया सभ',
+'namespaces'                     => 'चेन्हासी समूह सभ',
+'variants'                       => 'प्रकार सभ',
 
 'errorpagetitle'    => 'गलती',
 'returnto'          => '$1 पर घुरु।',
@@ -230,22 +237,34 @@ $messages = array(
 'projectpage'       => 'परियोजना पन्ना देखू',
 'imagepage'         => 'पन्नाक पृष्ठ देखू',
 'mediawikipage'     => 'सन्देश पन्ना देखू',
+'templatepage'      => 'नमूना पृष्ठ देखू',
 'viewhelppage'      => 'सहायता पन्ना देखू',
 'categorypage'      => 'संवर्ग पन्ना देखू',
+'viewtalkpage'      => 'गपशप देखू',
 'otherlanguages'    => 'दोसर भाषामे',
 'redirectedfrom'    => '(एतयसँ बहटारल $1)',
 'redirectpagesub'   => 'पन्नाकेँ पठाउ',
 'lastmodifiedat'    => 'ई पन्ना अंतिम बेर संवर्धित भेल $1, केँ  $2 बजे।',
+'viewcount'         => 'ई पन्ना देखल गेल {{PLURAL:$1|एक बेर|$1 एतेक बेर}}',
 'protectedpage'     => 'संरक्षित पन्ना',
 'jumpto'            => 'जाऊ:',
 'jumptonavigation'  => 'हेलू',
 'jumptosearch'      => 'ताकू',
+'view-pool-error'   => 'दुखी छी, वितरक सभ एखन व्यस्त अछि।
+बड्ड बेशी लोक ऐ पन्नाकेँ देखबामे लागल छथि।
+ऐ पन्नाकेँ फेरसँ देखबा लेल कनी बिलमू। 
+$1',
+'pool-timeout'      => 'प्रतीक्षा निगृहीत कालावसान',
+'pool-queuefull'    => 'प्रतीक्षा-पाँती पौती भरल',
+'pool-errorunknown' => 'अज्ञात भ्रम',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'विषयमे {{SITENAME}}',
 'aboutpage'            => 'Project:विवरण',
 'copyright'            => '$1क अंतर्गत विषय सूची उपलब्ध अछि',
 'copyrightpage'        => '{{ns:project}}:सर्वाधिकार',
+'currentevents'        => 'आइ-काल्हिक घटना सभ',
+'currentevents-url'    => 'Project: आइ-काल्हिक घटना सभ',
 'disclaimers'          => 'अनाधिकार घोषणा',
 'disclaimerpage'       => 'Project:अनाधिकार घोषणा',
 'edithelp'             => 'संपादन सहयोग',
@@ -259,7 +278,13 @@ $messages = array(
 'privacy'              => 'गोपनीयताक नियम',
 'privacypage'          => 'Project:गोपनीयता नियम',
 
-'badaccess' => 'आज्ञा गल्ती',
+'badaccess'        => 'आज्ञा गल्ती',
+'badaccess-group0' => 'अहाँकेँ आग्रह कएल क्रियाकेँ करबाक अनुमति नै अछि।',
+'badaccess-groups' => 'जइ क्रियाक अहाँ आग्रह केने छी से मात्र किछु प्रयोक्ता लेल सुरक्षित अछि {{PLURAL:$2|संवर्ग|संवर्ग सभमे एकटा}}: $1',
+
+'versionrequired'     => 'मीडियाविकीक संस्करण $1 चाही',
+'versionrequiredtext' => 'ऐ पन्नाक प्रयोग लेल मीडियाविकीक संस्करण $1 चाही।
+देखू ee [[Special:Version|version page]]',
 
 'ok'                      => 'ठीक अछि',
 'retrievedfrom'           => 'प्राप्ति स्थल "$1"',
@@ -399,7 +424,23 @@ $messages = array(
 'mailmypassword'           => 'नूतन कूटशब्द ई-पत्रसँ पठाउ',
 'passwordremindertitle'    => 'नव अस्थायी कूटशब्द {{अन्तर्जाल-पता}} लेल।',
 
+# Change password dialog
+'resetpass_header'          => 'खाता कूटशब्द बदलू',
+'oldpassword'               => 'पुरान कूटशब्द',
+'newpassword'               => 'नव कूटशब्द',
+'retypenew'                 => 'नव कूटशब्द फेरसँ टंकित करू',
+'resetpass_submit'          => 'कूटशब्द बनाउ आ सम्प्रवेश करू',
+'resetpass_success'         => 'अहाँक कूटशब्द सफलतासँ बदलि देल गेल!
+आब अहाँकेँ सम्प्रवेशित कऽ रहल छी...',
+'resetpass_forbidden'       => 'कूटशब्द सभ नै बदलल जा सकैए।',
+'resetpass-no-info'         => 'अहाँकेँ ऐ पन्नाकेँ पढ़बाले सम्प्रवेशित हुअए पड़त।',
+'resetpass-submit-loggedin' => 'कूटशब्द बदलू',
+'resetpass-submit-cancel'   => 'खतम करू',
+'resetpass-temp-password'   => 'तात्कालिक कूटशब्द',
+
 # Special:PasswordReset
+'passwordreset'              => 'कूटशब्द फेरसँ बनाउ',
+'passwordreset-disabled'     => 'कूटशब्द फेरसँ बनाएब ऐ विकीपर अक्षम कएल अछि।',
 'passwordreset-username'     => 'प्रयोक्तानाम',
 'passwordreset-email'        => 'ई-पत्र संकेत',
 'passwordreset-emailtitle'   => 'लेखा विवरण {{अन्तर्जालक नाम}}',

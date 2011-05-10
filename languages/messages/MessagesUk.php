@@ -3285,11 +3285,11 @@ $1',
 'exif-gpsdestdistance-m' => 'Милі',
 'exif-gpsdestdistance-n' => 'Морські милі',
 
-'exif-gpsdop-excellent' => 'Відмінна',
+'exif-gpsdop-excellent' => 'Відмінна ($1)',
 'exif-gpsdop-good'      => 'Добра',
 'exif-gpsdop-moderate'  => 'Середня',
 'exif-gpsdop-fair'      => 'Нижче середньої',
-'exif-gpsdop-poor'      => 'Низька',
+'exif-gpsdop-poor'      => 'Низька ($1)',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'справжній',

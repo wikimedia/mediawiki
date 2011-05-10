@@ -3369,6 +3369,9 @@ Andere velden worden verborgen.
 
 # EXIF attributes
 'exif-compression-1' => 'Ongecomprimeerd',
+'exif-compression-2' => 'CCITT Groep 3 1-dimensionale aangepaste "Huffman run length"-codering',
+'exif-compression-3' => 'CCITT Groep 3 faxcodering',
+'exif-compression-4' => 'CCITT Groep 4 faxcodering',
 
 'exif-copyrighted-true'  => 'Auteursrechtelijk beschermd',
 'exif-copyrighted-false' => 'Publiek domein',

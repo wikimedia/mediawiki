@@ -3150,6 +3150,9 @@ $1',
 
 # EXIF attributes
 'exif-compression-1' => 'Нясьціснуты',
+'exif-compression-2' => 'CCITT Група 3 аднамернае абноўленае кадаваньне адлегласьці Хафмана',
+'exif-compression-3' => 'CCITT Група 3 факсымільнае кадаваньне',
+'exif-compression-4' => 'CCITT Група 4 факсымільнае кадаваньне',
 
 'exif-copyrighted-true'  => 'Ахоўваецца аўтарскім правам',
 'exif-copyrighted-false' => 'Грамадзкі набытак',

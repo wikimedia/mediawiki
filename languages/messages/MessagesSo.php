@@ -587,8 +587,8 @@ micnaha: '''({{int:cur}})''' = kala duwanaanshaha maqaaladii ugu danbeeyay, '''(
 # Revision feed
 'history-feed-title' => 'Taariikhda caddadyaasha',
 'history-feed-empty' => 'Beyjka aad dooneyso majiro.
-Waxaa lagayaabaa in laga tir tiray wikigan, ama magacii laga badalay.
-Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
+Waxaa lagayaabaa in laga tirtiray wikigan, ama magacii laga badalay.
+Iskuday in aad [[Special:Search|ka raadiso wikigaan]]  Beyjajka la heli karo oo cusub.',
 
 # Revision deletion
 'rev-deleted-user'            => '(magaca isticmaalaha waa laga saaray)',

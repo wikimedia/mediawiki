@@ -5522,6 +5522,8 @@ azonban a MediaWikinek PHP $2, vagy újabb szükséges.',
 	'config-unicode-using-intl' => 'A rendszer Unicode normalizálására az [http://pecl.php.net/intl intl PECL kiterjesztést] használja.',
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az Unicode normalizáláshoz szükséges [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el, helyette a lassú, PHP alapú implementáció lesz használva.
 Ha nagy látogatottságú oldalt üzemeltetsz, itt találhatsz további információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
+	'config-unicode-update-warning' => "'''Figyelmeztetés''': Az Unicode normalizáláshoz szükséges burkolókönyvtár [http://site.icu-project.org/ ICU projekt] függvénykönyvtárának régebbi változatát használja.
+Ha ügyelni kívánsz a Unicode használatára, fontold meg a [http://www.mediawiki.org/wiki/Unicode_normalization_considerations frissítését].",
 	'config-no-db' => 'Nem sikerült egyetlen használható adatbázis-illesztőprogramot sem találni.  Telepítened kell egyet a PHP-hez.
 A következő adatbázistípusok támogatottak: $1.
 
@@ -5579,6 +5581,7 @@ Telepítés megszakítva.',
 	'config-using531' => 'A MediaWiki nem használható a PHP $1-es verziójával, mert hiba van a <code>__call()</code> függvénynek átadott referenciaparaméterekkel.
 A probléma kiküszöböléséhez frissíts a PHP 5.3.2-es verziójára, vagy használd a korábbi, 5.3.0-ásat.
 Telepítés megszakítva.',
+	'config-suhosin-max-value-length' => 'A Suhosin telepítve van, és a GET paraméter hosszát $1 bájtra korlátozza. A MediaWiki erőforrásbetöltő összetevője megkerüli a problémát, de így csökkenni fog a teljesítmény. Ha lehetséges, állítsd be a suhosin.get.max_value_length értékét legalább 1024-re a php.iniben, és állítsd be a $wgResourceLoaderMaxQueryLength változót ugyanerre az értékre a LocalSettings.php-ben.',
 	'config-db-type' => 'Adatbázis típusa:',
 	'config-db-host' => 'Adatbázis hosztneve:',
 	'config-db-host-help' => 'Ha az adatbázisszerver másik szerveren található, add meg a hosztnevét vagy az IP-címét.
@@ -5594,6 +5597,11 @@ Ne tartalmazzon szóközt.
 
 Ha megosztott webtárhelyet használsz, a szolgáltatód vagy egy konkrét adatbázisnevet ad neked használatra, vagy te magad hozhatsz létre adatbázisokat a vezérlőpulton keresztül.',
 	'config-db-name-oracle' => 'Adatbázisséma:',
+	'config-db-account-oracle-warn' => 'Oracle adatbázisba való telepítésnek három támogatott módja van:
+
+Ha a telepítési folyamat során adatbázisfiókot szeretnél létrehozni, akkor egy olyan fiókot kell használnod, mely rendelkezik SYSDBA jogosultsággal, majd meg kell adnod a létrehozandó, webes hozzáféréshez használt fiók adatait. Emellett a fiók kézzel is létrehozható, ekkor ennek az adatait kell megadni (a fióknak rendelkeznie kell megfelelő jogosul adatbázis-objektumok létrehozásához), vagy megadhatsz két fiókot: egyet a létrehozáshoz szükséges jogosultságokkal, és egy korlátozottat a webes hozzáféréshez.
+
+A megfelelő jogosultságokkal rendelkező fiók létrehozásához használható szkript a szoftver „maintenance/oracle/” könyvtárában található. Ne feledd, hogy korlátozott fiók használatakor az alapértelmezett fiókkal nem végezhetőek el a karbantartási műveletek.',
 	'config-db-install-account' => 'A telepítéshez használt felhasználói fiók adatai',
 	'config-db-username' => 'Felhasználónév:',
 	'config-db-password' => 'Jelszó:',

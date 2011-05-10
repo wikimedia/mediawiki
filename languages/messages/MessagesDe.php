@@ -1735,7 +1735,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'hookaborted'                 => 'Der Versuch, die Änderung durchzuführen, ist aufgrund eines Extension-Hooks fehlgeschlagen',
 'illegal-filename'            => 'Der Dateiname ist nicht erlaubt',
 'overwrite'                   => 'Das Überschreiben einer existierenden Datei ist nicht erlaubt',
-'unknown-error'               => 'Ein unbekannter Fehler ist aufgetreten',
+'unknown-error'               => 'Ein unbekannter Fehler ist aufgetreten.',
 'tmp-create-error'            => 'Temporäre Datei konnte nicht erstellt werden',
 'tmp-write-error'             => 'Fehler beim Schreiben der temporären Datei',
 'large-file'                  => 'Die Dateigröße sollte nach Möglichkeit $1 nicht überschreiten. Diese Datei ist $2 groß.',
@@ -2155,7 +2155,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'sp-deletedcontributions-contribs' => 'Benutzerbeiträge',
 
 # Special:LinkSearch
-'linksearch'       => 'Weblink-Suche',
+'linksearch'       => 'Weblinksuche',
 'linksearch-pat'   => 'Suchmuster:',
 'linksearch-ns'    => 'Namensraum:',
 'linksearch-ok'    => 'Suchen',
@@ -2187,7 +2187,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'newuserlog-autocreate-entry' => 'Benutzerkonto wurde automatisch erstellt',
 
 # Special:ListGroupRights
-'listgrouprights'                      => 'Benutzergruppen-Rechte',
+'listgrouprights'                      => 'Benutzergruppenrechte',
 'listgrouprights-summary'              => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und der damit verbundenen Rechte.
 Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgrouprights-helppage}}|hier]] gefunden werden.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Gewährtes Recht</span>
@@ -3720,7 +3720,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'           => 'Datei-Duplikat-Suche',
+'fileduplicatesearch'           => 'Dateiduplikatsuche',
 'fileduplicatesearch-summary'   => 'Suche nach Dateiduplikaten auf Basis ihres Hashwertes.',
 'fileduplicatesearch-legend'    => 'Suche nach Duplikaten',
 'fileduplicatesearch-filename'  => 'Dateiname:',

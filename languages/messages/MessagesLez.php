@@ -13,6 +13,11 @@
  */
 
 $messages = array(
+# User preference toggles
+'tog-enotifusertalkpages' => 'Э-пучта заз ракъурун, зи Ихтилатрин чар дегиш жедайла',
+
+'underline-always' => 'Гьамиша',
+
 # Dates
 'monday'        => 'Ислен',
 'sun'           => 'Гья',
@@ -88,7 +93,9 @@ $messages = array(
 'vector-action-undelete' => 'Къакъудун',
 'vector-view-create'     => 'Туькlуьрун',
 'vector-view-edit'       => 'Дегишарун',
+'vector-view-view'       => 'Кlелун',
 'vector-view-viewsource' => 'Къалурун булах',
+'actions'                => 'Юзун',
 'namespaces'             => 'Тlарарин гегьенш',
 
 'errorpagetitle'   => 'ГъалатI',
@@ -104,6 +111,7 @@ $messages = array(
 'printableversion' => ' Акъудунин кхьинриз жуьре',
 'permalink'        => 'Гьамишан алукьунин цlар',
 'print'            => 'Акъудун',
+'view'             => 'Ачухун',
 'edit'             => 'Дегишарун',
 'create'           => 'Туькlуьрун',
 'editthispage'     => 'дегишунар и чарар',
@@ -173,6 +181,7 @@ $messages = array(
 'nstab-category'  => 'КIваталар',
 
 # General errors
+'error'              => 'Гъалатl',
 'missing-article'    => 'Базадай жагъанач макъаладин кхьин, гьама жагъан кlанзайтир, "$1" $2.
 
 Гьама жагъанач вучиз лагьайтlа, ишлемишна иски дегишарунин дафтlар ва алукьун чlурнавай.
@@ -202,6 +211,7 @@ $messages = array(
 'loginlanguagelabel'      => 'ЧIалар: $1',
 
 # Change password dialog
+'resetpass'   => 'Куьлег дегишарун',
 'oldpassword' => 'Иски куьлег:',
 'newpassword' => 'ЦIийи куьлег:',
 
@@ -276,6 +286,7 @@ $messages = array(
 'revdel-restore'             => 'къакъудун',
 'pagehist'                   => 'Хъувун тарих',
 'revdelete-uname'            => 'ишлемишчидин тIар',
+'revdelete-offender'         => 'Автордин жуьре:',
 
 # History merging
 'mergehistory-reason' => 'Кар',

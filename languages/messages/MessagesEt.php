@@ -460,7 +460,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'history'           => 'Artikli ajalugu',
 'history_short'     => 'Ajalugu',
 'updatedmarker'     => 'uuendatud pärast viimast külastust',
-'info_short'        => 'Info',
+'info_short'        => 'Teave',
 'printableversion'  => 'Prinditav versioon',
 'permalink'         => 'Püsilink',
 'print'             => 'Prindi',
