@@ -323,6 +323,8 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	require_once( "$IP/includes/ImageFunctions.php" );
 	wfProfileOut( $fname . '-includes' );
 }
+require_once( MWInit::compiledPath( 'includes/normal/UtfNormalDefines.php' ) );
+
 wfProfileIn( $fname . '-misc1' );
 
 # Raise the memory limit if it's too low
@@ -455,8 +457,6 @@ foreach ( $wgExtensionFunctions as $func ) {
 
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
+
 wfProfileOut( $fname . '-extensions' );
-
-require_once( MWInit::compiledPath( 'includes/normal/UtfNormalDefines.php' ) );
-
 wfProfileOut( $fname );
