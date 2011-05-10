@@ -51,13 +51,10 @@ if( !in_array( '--configuration', $_SERVER['argv'] ) ) {
 }
 
 require_once( 'PHPUnit/Runner/Version.php' );
-if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
-	# PHPUnit 3.5.0 introduced a nice autoloader based on class name
-	require_once( 'PHPUnit/Autoload.php' );
-} else {
-	# Keep the old pre PHPUnit 3.5.0 behaviour for compatibility
-	require_once( 'PHPUnit/TextUI/Command.php' );
+if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '<' ) ) {
+	die( 'PHPUnit 3.5 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
 }
+require_once( 'PHPUnit/Autoload.php' );
 
 require_once( "$IP/tests/TestsAutoLoader.php" );
 MediaWikiPHPUnitCommand::main();
