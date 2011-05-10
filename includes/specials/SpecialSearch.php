@@ -370,8 +370,9 @@ class SpecialSearch extends SpecialPage {
 		global $wgOut;
 
 		// show direct page/create link if applicable
+		// Check DBkey !== '' in case of fragment link only.
 		$messageName = null;
-		if( !is_null($t) ) {
+		if( !is_null($t) && $t->getDBkey() !== '' ) {
 			if( $t->isKnown() ) {
 				$messageName = 'searchmenu-exists';
 			} elseif( $t->userCan( 'create' ) ) {

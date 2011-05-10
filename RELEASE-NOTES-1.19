@@ -28,6 +28,8 @@ used in Tiff files.
 * When translcuding a special page, do not let it interpret url parameters.
 * (bug 28887) Special page classes are no longer re-used during 1 request.
 * New title field of Special:MovePage is now length limited on client side.
+* (bug 28888) Searching for something starting with a # sign no longer tells
+  the user a page named [[:]] already exists.
 
 === API changes in 1.19 ===
 
