@@ -27,6 +27,7 @@ file description page for multi-paged documents.
 used in Tiff files.
 * When translcuding a special page, do not let it interpret url parameters.
 * (bug 28887) Special page classes are no longer re-used during 1 request.
+* New title field of Special:MovePage is now length limited on client side.
 
 === API changes in 1.19 ===
 
