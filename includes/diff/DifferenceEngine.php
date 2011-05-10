@@ -119,6 +119,47 @@ class DifferenceEngine {
 		return $this->mNewid;
 	}
 
+	/**
+	 * Look up a special:Undelete link to the given deleted revision id,
+	 * as a workaround for being unable to load deleted diffs in currently.
+	 *
+	 * @param int $id revision ID
+	 * @return mixed URL or false
+	 */
+	function deletedLink( $id ) {
+		global $wgUser;
+		if ( $wgUser->isAllowed( 'deletedhistory' ) ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$row = $dbr->selectRow('archive', '*',
+				array( 'ar_rev_id' => $id ),
+				__METHOD__ );
+			if ( $row ) {
+				$rev = Revision::newFromArchiveRow( $row );
+				$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
+				return SpecialPage::getTitleFor( 'Undelete' )->getFullURL( array(
+					'target' => $title->getPrefixedText(),
+					'timestamp' => $rev->getTimestamp()
+				));
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Build a wikitext link toward a deleted revision, if viewable.
+	 *
+	 * @param int $id revision ID
+	 * @return string wikitext fragment
+	 */
+	function deletedIdMarker( $id ) {
+		$link = $this->deletedLink( $id );
+		if ( $link ) {
+			return "[$link $id]";
+		} else {
+			return $id;
+		}
+	}
+
 	function showDiffPage( $diffOnly = false ) {
 		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
 		wfProfileIn( __METHOD__ );
@@ -165,10 +206,15 @@ CONTROL;
 
 		$wgOut->setArticleFlag( false );
 		if ( !$this->loadRevisionData() ) {
+			// Sounds like a deleted revision... Let's see what we can do.
+			$deletedLink = $this->deletedLink( $this->mNewid );
+
 			$t = $this->mTitle->getPrefixedText();
-			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
+			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ),
+					$this->deletedIdMarker( $this->mOldid ),
+					$this->deletedIdMarker( $this->mNewid ) );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", $d );
+			$wgOut->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", "<span class='plainlinks'>$d</span>" );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -520,9 +566,11 @@ CONTROL;
 		#
 		if ( ! $this->loadNewText() ) {
 			$t = $this->mTitle->getPrefixedText();
-			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
+			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ),
+					$this->deletedIdMarker( $this->mOldid ),
+					$this->deletedIdMarker( $this->mNewid ) );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", $d );
+			$wgOut->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", "<span class='plainlinks'>$d</span>" );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
