@@ -89,6 +89,8 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Close an SQLite database
+	 *
+	 * @return bool
 	 */
 	function close() {
 		$this->mOpened = false;
@@ -111,7 +113,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Check if the searchindext table is FTS enabled.
-	 * @returns false if not enabled.
+	 * @return false if not enabled.
 	 */
 	function checkForEnabledSearch() {
 		if ( self::$fulltextEnabled === null ) {
@@ -165,6 +167,8 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * @see DatabaseBase::isWriteQuery()
+	 *
+	 * @return bool
 	 */
 	function isWriteQuery( $sql ) {
 		return parent::isWriteQuery( $sql ) && !preg_match( '/^ATTACH\b/i', $sql );
@@ -489,6 +493,8 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * Get information about a given field
 	 * Returns false if the field does not exist.
+	 *
+	 * @return SQLiteField|false
 	 */
 	function fieldInfo( $table, $field ) {
 		$tableName = $this->tableName( $table );
@@ -568,6 +574,10 @@ class DatabaseSqlite extends DatabaseBase {
 		return call_user_func_array( $function, $args );
 	}
 
+	/**
+	 * @param $s string
+	 * @return string
+	 */
 	protected function replaceVars( $s ) {
 		$s = parent::replaceVars( $s );
 		if ( preg_match( '/^\s*(CREATE|ALTER) TABLE/i', $s ) ) {
@@ -612,6 +622,8 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/*
 	 * Build a concatenation list to feed into a SQL query
+	 *
+	 * @return string
 	 */
 	function buildConcat( $stringList ) {
 		return '(' . implode( ') || (', $stringList ) . ')';
@@ -641,6 +653,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 *
 	 * @param $prefix Only show tables with this prefix, e.g. mw_
 	 * @param $fname String: calling function name
+	 *
+	 * @return array
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseSqlite::listTables' ) {
 		$result = $this->select(
