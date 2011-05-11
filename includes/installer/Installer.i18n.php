@@ -391,11 +391,10 @@ More complex user rights configurations are available after installation, see th
 	'config-license'                  => 'Copyright and license:',
 	'config-license-none'             => 'No license footer',
 	'config-license-cc-by-sa'         => 'Creative Commons Attribution Share Alike',
+	'config-license-cc-by'            => 'Creative Commons Attribution',
 	'config-license-cc-by-nc-sa'      => 'Creative Commons Attribution Non-Commercial Share Alike',
-	'config-license-cc-0'             => 'Creative Commons Zero',
-	'config-license-gfdl-old'         => 'GNU Free Documentation License 1.2',
-	'config-license-gfdl-current'     => 'GNU Free Documentation License 1.3 or later',
-	'config-license-pd'               => 'Public Domain',
+	'config-license-cc-0'             => 'Creative Commons Zero (Public Domain)',
+	'config-license-gfdl'             => 'GNU Free Documentation License 1.3 or later',
 	'config-license-cc-choose'        => 'Select a custom Creative Commons license',
 	'config-license-help'             => "Many public wikis put all contributions under a [http://freedomdefined.org/Definition free license].
 This helps to create a sense of community ownership and encourages long-term contribution.
