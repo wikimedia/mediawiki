@@ -668,6 +668,8 @@ və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ed�
 'userpage-userdoesnotexist-view'   => '"$1" istifadəçi hesabı qeydiyyatda deyil',
 'blocked-notice-logextract'        => 'Bu istifadəçi hal-hazırda bloklanmışdır.
 Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
+'usercssyoucanpreview'             => "'''İpucu:''' Qeyd etmədən əvvəl \"{{int:showpreview}}\"ə klikləyərək yeni CSSinizi yoxlayın.",
+'userjsyoucanpreview'              => "'''İpucu:''' Qeyd etmədən əvvəl \"{{int:showpreview}}\"ə klikləyərək yeni JavaScriptinizi yoxlayın.",
 'usercsspreview'                   => "''Xatırladırıq ki, siz yalnız CSS-də sınaq göstərişi etmisiniz.'''
 '''Bu hələ yaddaşda saxlanılmayıb!'''",
 'userjspreview'                    => "''Xatırladırıq ki, siz yalnız JavaScript-də test/sınaq göstərişi etmisiniz.'''
@@ -797,6 +799,7 @@ Siz idarəçi olduğunuza görə silinən [$1 bu versiyanı] nəzərdən keçir�
 Siz idarəçi olduğunuza görə silinən bu versiyanı nəzərdən keçirə bilərsiniz. Mümkündür ki, silinmənin səbəbi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silmə qeydlərində] göstərilmişdir.",
 'rev-deleted-no-diff'         => "Siz versiyalar arasındakı fərqi nəzərdən keçirə bilməzsiniz. Belə ki, versiyalardan biri '''silinib'''.
 Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silmə qeydlərində] göstərilmişdir.",
+'rev-suppressed-no-diff'      => "Əvvəlki redaktələrin biri '''silinmiş''' fərqi görə bilməzsiniz.",
 'rev-delundel'                => 'göstər/gizlət',
 'rev-showdeleted'             => 'Göstər',
 'revisiondelete'              => 'Səhifənin versiyalarını sil/bərpa et',
@@ -1345,6 +1348,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Bu sətrə toxunmayın -->',
 'upload-success-subj'        => 'Yükləmə tamamlandı',
+'upload-failure-subj'        => 'Yükləmə problemi',
 'upload-failure-msg'         => 'Yüklədiyiniz [$2] forması ilə bağlı problem yaranıb:
 
 $1',
@@ -1358,15 +1362,20 @@ $1',
 'upload-http-error'         => ' HTTP xətası var : $1',
 
 # Special:UploadStash
-'uploadstash' => 'Gizli yükləmə',
+'uploadstash'         => 'Gizli yükləmə',
+'uploadstash-clear'   => 'Müvəqqəti faylları təmizlə',
+'uploadstash-refresh' => 'Fayl siyahısını yenilə',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Giriş qadağandır',
+'img-auth-nofile'       => 'Fayl "$1" mövcud deyil.',
 'img-auth-streaming'    => '"$1" axını.',
+'img-auth-noread'       => 'İstifadəçinin "$1"i oxumaq hüququ yoxdur.',
 
 # HTTP errors
 'http-invalid-url' => 'Səhv URL: $1',
 'http-read-error'  => 'HTTP oxuma xətası',
+'http-timed-out'   => 'HTTP istəyinin vaxtı bitdi.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error28' => 'Yükləmə vaxtı bitdi',
@@ -1427,6 +1436,7 @@ $1',
 'filedelete-submit'           => 'Sil',
 'filedelete-success'          => "'''$1''' silinmişdir.",
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'-nin  $3 və $2 versiyaları silinmişdir.</span>',
+'filedelete-nofile'           => "'''$1''' mövcud deyil.",
 'filedelete-otherreason'      => 'Başqa/əlavə səbəb:',
 'filedelete-reason-otherlist' => 'Başqa səbəb',
 'filedelete-reason-dropdown'  => '*Əsas silmə səbəbi
@@ -2054,12 +2064,16 @@ Bu yerdəyişmə populiyar səhifə üçün əsaslı və gözlənilməz ola bil�
 Həmin hallarda , ehtiyac yaranarsa siz səhifələri əllə birləşdirmək məcburiyyətində qalacaqsınız",
 'movearticle'                  => 'Səhifənin adını dəyişdir',
 'movenologin'                  => 'Sistemdə deyilsiniz',
+'movenotallowed'               => 'Siz səhifələrin adını dəyişə bilməzsiniz.',
+'movenotallowedfile'           => 'Siz faylların adını dəyişə bilməzsiniz.',
+'cant-move-user-page'          => 'İstifadəçi səhifələrinin adını dəyişə bilməzsiniz (başlıqlardan başqa).',
 'newtitle'                     => 'Yeni başlıq',
 'move-watch'                   => 'Bu səhifəni izlə',
 'movepagebtn'                  => 'Səhifənin adını dəyiş',
 'pagemovedsub'                 => 'Yerdəyişmə edilmişdir',
 'movepage-moved'               => '\'\'\'"$1" səhifəsi "$2" səhifəsinə yerləşdirilmişdir\'\'\'',
 'movepage-moved-redirect'      => 'Yönləndirmə yaradıldı.',
+'movepage-moved-noredirect'    => 'Yönləndirmənin yaradılmasının qarşııs alındı.',
 'articleexists'                => 'Bu adda səhifə artıq mövcuddur və ya sizin seçdiyiniz ad uyğun deyil.
 Zəhmət olmasa başqa ad seçin.',
 'talkexists'                   => "'''Səhifənin adı dəyişdi, lakin müzakirə səhifəsi yeni adla olduğu üçün dəyişə bilmir. Zəhmət olmasa, onun adını özünüz dəyişin.'''",
@@ -2071,6 +2085,7 @@ Zəhmət olmasa başqa ad seçin.',
 'movepage-page-unmoved'        => '$1 səhifəsi $2 səhifəsinə köçürülə bilinmir.',
 '1movedto2'                    => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',
 '1movedto2_redir'              => '[[$1]] adı və istiqamətləndirmə dəyişildi: [[$2]]',
+'move-redirect-suppressed'     => 'yönləndirmənin qarşısı alındı',
 'movelogpage'                  => 'Yerdəyişmə qeydləri',
 'movesubpage'                  => '{{PLURAL:$1|alt səhifə}}',
 'movenosubpage'                => 'Bu səhifənin altsəhifəsi yoxdur.',
@@ -2088,6 +2103,7 @@ Zəhmət olmasa başqa ad seçin.',
 'immobile-target-namespace-iw' => 'İntervikilər səhifə adının dəyişməsi üçün əsas ola bilməz.',
 'immobile-source-page'         => 'Bu səhifənin adı dəyişdirilə bilməz.',
 'immobile-target-page'         => 'Bu hədəf başlığına daşınmır.',
+'imageinvalidfilename'         => 'Hədəf fayl adı keçərsizdir.',
 'protectedpagemovewarning'     => "'''Xəbərdarlıq:''' Bu səhifə mühafizə edildiyi üçün onun adını yalnız idarəçilər dəyişə bilərlər.",
 
 # Export

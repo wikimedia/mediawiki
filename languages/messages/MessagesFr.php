@@ -41,6 +41,7 @@
  * @author McDutchie
  * @author Meithal
  * @author Moyg
+ * @author Nicolas Raoul
  * @author Od1n
  * @author Omnipaedista
  * @author Peter17
@@ -3042,6 +3043,7 @@ Si vous l’exécutez, votre système peut être compromis.",
 'widthheightpage'        => '$1 × $2, $3 page{{PLURAL:$3||s}}',
 'file-info'              => 'Taille du fichier : $1, type MIME : $2',
 'file-info-size'         => '$1 × $2 pixels, taille du fichier : $3, type MIME : $4',
+'file-info-size-pages'   => '$1 × $2 pixels, taille de fichier: $3, type MIME: $4, $5 {{PLURAL:$5|page|pages}}',
 'file-nohires'           => '<small>Pas de plus haute résolution disponible.</small>',
 'svg-long-desc'          => 'Fichier SVG, résolution de $1 × $2 pixels, taille : $3',
 'show-big-image'         => 'Image en plus haute résolution',

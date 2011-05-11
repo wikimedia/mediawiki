@@ -3428,7 +3428,7 @@ $1',
 'exif-xyresolution-c' => '$1 دي بي سي',
 
 'exif-colorspace-1'     => 'إس آر جي بي',
-'exif-colorspace-65535' => 'إف إف إف إف.إتش',
+'exif-colorspace-65535' => 'غير معاير',
 
 'exif-componentsconfiguration-0' => 'غير موجود',
 'exif-componentsconfiguration-1' => 'واي',
@@ -3503,7 +3503,7 @@ $1',
 'exif-sensingmethod-7' => 'مستشعر خطي ثلاثي',
 'exif-sensingmethod-8' => 'مستشعر لون خطي متتابع',
 
-'exif-filesource-3' => 'دي إس سي',
+'exif-filesource-3' => 'كاميرا رقمية واقفة',
 
 'exif-scenetype-1' => 'صورة ملتقطة بشكل مباشر',
 
@@ -3591,6 +3591,8 @@ $1',
 'exif-dc-publisher'   => 'الناشر',
 'exif-dc-relation'    => 'وسائط متعلقة',
 'exif-dc-rights'      => 'الحقوق',
+
+'exif-rating-rejected' => 'مرفوض',
 
 'exif-isospeedratings-overflow' => 'أكبر من 65535',
 
