@@ -47,7 +47,7 @@ class PhpXmlBugTester {
 
 /**
  * Test for PHP bug #50394 (PHP 5.3.x conversion to null only, not 5.2.x)
- * @see http://bugs.php.net/bug.php?id=45996
+ * @see http://bugs.php.net/bug.php?id=50394
  * @ingroup PHPBugTests
  */
 class PhpRefCallBugTester {
