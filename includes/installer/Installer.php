@@ -239,6 +239,10 @@ abstract class Installer {
 	 * @var array
 	 */
 	public $licenses = array(
+		'cc-by' => array(
+			'url' => 'http://creativecommons.org/licenses/by/3.0/',
+			'icon' => '{$wgStylePath}/common/images/cc-by.png',
+		),
 		'cc-by-sa' => array(
 			'url' => 'http://creativecommons.org/licenses/by-sa/3.0/',
 			'icon' => '{$wgStylePath}/common/images/cc-by-sa.png',
@@ -251,15 +255,7 @@ abstract class Installer {
 			'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
 			'icon' => '{$wgStylePath}/common/images/cc-0.png',
 		),
-		'pd' => array(
-			'url' => 'http://creativecommons.org/licenses/publicdomain/',
-			'icon' => '{$wgStylePath}/common/images/public-domain.png',
-		),
-		'gfdl-old' => array(
-			'url' => 'http://www.gnu.org/licenses/old-licenses/fdl-1.2.html',
-			'icon' => '{$wgStylePath}/common/images/gnu-fdl.png',
-		),
-		'gfdl-current' => array(
+		'gfdl' => array(
 			'url' => 'http://www.gnu.org/copyleft/fdl.html',
 			'icon' => '{$wgStylePath}/common/images/gnu-fdl.png',
 		),
