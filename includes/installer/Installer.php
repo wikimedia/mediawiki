@@ -255,6 +255,10 @@ abstract class Installer {
 			'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
 			'icon' => '{$wgStylePath}/common/images/cc-0.png',
 		),
+		'pd' => array(
+			'url' => '',
+			'icon' => '{$wgStylePath}/common/images/public-domain.png',
+		),
 		'gfdl' => array(
 			'url' => 'http://www.gnu.org/copyleft/fdl.html',
 			'icon' => '{$wgStylePath}/common/images/gnu-fdl.png',
