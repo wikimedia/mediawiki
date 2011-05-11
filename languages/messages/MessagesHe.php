@@ -3300,10 +3300,10 @@ $1',
 'exif-originalimagewidth'          => 'רוחב התמונה לפני קיטוע',
 
 # EXIF attributes
-'exif-compression-1'     => 'לא דחוס',
-'exif-compression-2'     => 'קידוד הופמן מואתם חד-מימדי לאורך ריצה CCITT קבוצה 3',
-'exif-compression-3'     => 'קידוד פקס CCITT קבוצה 3',
-'exif-compression-4'     => 'קידוד פקס CCITT קבוצה 4',
+'exif-compression-1' => 'לא דחוס',
+'exif-compression-2' => 'קידוד הופמן מואתם חד-מימדי לאורך ריצה CCITT קבוצה 3',
+'exif-compression-3' => 'קידוד פקס CCITT קבוצה 3',
+'exif-compression-4' => 'קידוד פקס CCITT קבוצה 4',
 
 'exif-copyrighted-true'  => 'מוגן בזכויות יוצרים',
 'exif-copyrighted-false' => 'נחלת הכלל',
