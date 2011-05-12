@@ -25,7 +25,9 @@ test( 'addCSS', function(){
 	same( a.disabled, false, 'property "disabled" is available and set to false' );
 	
 	var $b = $('#bodyContent');
-	equals( $b.css('background-color'), 'rgb(170, 255, 170)', 'Style color matches.' );
+	var match = $b.css('background-color').match(/rgb\(170,\s*255,\s*170\)/);
+	ok( match && match.length === 1, 'Style color matches.' );
+	
 
 });
 

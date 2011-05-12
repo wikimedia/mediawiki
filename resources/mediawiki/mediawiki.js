@@ -57,10 +57,10 @@ jQuery.extend({
 	compareObject : function( objectA, objectB ) {
 	
 		// Do a simple check if the types match
-		if ( typeof( objectA ) == typeof( objectB ) ) {
+		if ( typeof objectA == typeof objectB ) {
 	
 			// Only loop over the contents if it really is an object
-			if ( typeof( objectA ) == 'object' ) {
+			if ( typeof objectA == 'object' ) {
 				// If they are aliases of the same object (ie. mw and mediaWiki) return now
 				if ( objectA === objectB ) {
 					return true;
@@ -71,8 +71,8 @@ jQuery.extend({
 						// Check if this property is also present in the other object
 						if ( prop in objectB ) {
 							// Compare the types of the properties
-							var type = typeof( objectA[prop] );
-							if ( type == typeof( objectB[prop] ) ) {
+							var type = typeof objectA[prop];
+							if ( type == typeof objectB[prop] ) {
 								// Recursively check objects inside this one
 								switch ( type ) {
 									case 'object' :
