@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MediaWiki JavaScript Test Suite</title>
+
+	<!-- MediaWiki Includes -->
+	<meta name="ResourceLoaderDynamicStyles" content="" /> 
+
+	<script src="../jquery/jquery.js"></script>
+
+	<script> function startUp(){} </script>
+	<script src="../mediawiki/mediawiki.js"></script>
+	<script> mw.config = new mw.Map( false ); </script>
+
+	<script src="../jquery/jquery.checkboxShiftClick.js"></script>
+	<script src="../jquery/jquery.client.js"></script>
+	<script src="../jquery/jquery.cookie.js"></script>
+	<script src="../jquery/jquery.messageBox.js"></script>
+	<script src="../jquery/jquery.makeCollapsible.js"></script>
+	<script src="../jquery/jquery.placeholder.js"></script>
+	<script src="../jquery/jquery.tablesorter.js"></script>
+	<script src="../mediawiki.util/mediawiki.util.js"></script>
+
+	<!-- QUnit dependancies and scripts -->
+	<link rel="stylesheet" href="../jquery/jquery.qunit.css" />
+	<script src="../jquery/jquery.qunit.js"></script>
+
+	<!-- Your tests styles go here -->
+	<link rel="stylesheet" href="unit/main.css" />
+
+	<!-- Your test suites go here -->
+	<script src="unit/mediawiki/mediawiki.js"></script>
+	<script src="unit/mediawiki.util/mediawiki.util.js"></script>
+
+	<!-- TestSwarm -->
+	<!-- <script src="http://testswarm.wikimedia.org/js/inject.js"></script> -->
+</head>
+<body>
+	<h1 id="qunit-header">MediaWiki JavaScript Test Suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+
+<div id="mw-content">
+	<div id="bodyContent"></div>
+	<div id="mw-panel">
+		<div id="p-tb" class="portal">
+			<ul class="body">
+				<li id="t-specialpages"><a href="#">Special pages</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>
