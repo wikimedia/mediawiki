@@ -515,33 +515,28 @@ class PageArchive {
 			__METHOD__ );
 
 		// Was anything restored at all?
-		if( $restored == 0 )
+		if ( $restored == 0 ) {
 			return 0;
+		}
 
-		if( $revision ) {
-			// Attach the latest revision to the page...
-			$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
-			if( $newid || $wasnew ) {
-				// Update site stats, link tables, etc
-				$article->createUpdates( $revision );
-			}
+		// Attach the latest revision to the page...
+		$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
+		if ( $newid || $wasnew ) {
+			// Update site stats, link tables, etc
+			$article->createUpdates( $revision );
+		}
 
-			if( $newid ) {
-				wfRunHooks( 'ArticleUndelete', array( &$this->title, true, $comment ) );
-				Article::onArticleCreate( $this->title );
-			} else {
-				wfRunHooks( 'ArticleUndelete', array( &$this->title, false, $comment ) );
-				Article::onArticleEdit( $this->title );
-			}
-
-			if( $this->title->getNamespace() == NS_FILE ) {
-				$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
-				$update->doUpdate();
-			}
+		if( $newid ) {
+			wfRunHooks( 'ArticleUndelete', array( &$this->title, true, $comment ) );
+			Article::onArticleCreate( $this->title );
 		} else {
-			// Revision couldn't be created. This is very weird
-			wfDebug( "Undelete: unknown error...\n" );
-			return false;
+			wfRunHooks( 'ArticleUndelete', array( &$this->title, false, $comment ) );
+			Article::onArticleEdit( $this->title );
+		}
+
+		if( $this->title->getNamespace() == NS_FILE ) {
+			$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
+			$update->doUpdate();
 		}
 
 		return $restored;
