@@ -14,7 +14,7 @@ abstract class ImageQueryPage extends QueryPage {
 	 * OutputPage
 	 *
 	 * @param $out OutputPage to print to
-	 * @param $skin Skin: user skin to use
+	 * @param $skin Skin: user skin to use [unused]
 	 * @param $dbr Database (read) connection to use
 	 * @param $res Integer: result pointer
 	 * @param $num Integer: number of available result rows
@@ -23,7 +23,6 @@ abstract class ImageQueryPage extends QueryPage {
 	protected function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
 		if( $num > 0 ) {
 			$gallery = new ImageGallery();
-			$gallery->useSkin( $skin );
 
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
@@ -31,7 +30,7 @@ abstract class ImageQueryPage extends QueryPage {
 				$namespace = isset( $row->namespace ) ? $row->namespace : NS_FILE;
 				$title = Title::makeTitleSafe( $namespace, $row->title );
 				if ( $title instanceof Title && $title->getNamespace() == NS_FILE ) {
-				        $gallery->add( $title, $this->getCellHtml( $row ) );
+					$gallery->add( $title, $this->getCellHtml( $row ) );
 				}
 			}
 
