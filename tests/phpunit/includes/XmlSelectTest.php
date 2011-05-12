@@ -102,4 +102,40 @@ class XmlSelectTest extends MediaWikiTestCase {
 <option value="foo2">foo2</option></select>', $this->select->getHTML() );
 	}
 
+	public function testGetAttributes() {
+		# create some attributes
+		$this->select->setAttribute( 'dummy', 0x777 );
+		$this->select->setAttribute( 'string', 'euro €' );
+		$this->select->setAttribute( 1911, 'razor' );
+
+		# verify we can retrieve them
+		$this->assertEquals(
+			$this->select->getAttribute( 'dummy' ),
+			0x777
+		);
+		$this->assertEquals(
+			$this->select->getAttribute( 'string' ),
+			'euro €'
+		);
+		$this->assertEquals(
+			$this->select->getAttribute( 1911 ),
+			'razor'
+		);
+
+		# inexistant keys should give us 'null'
+		$this->assertEquals(
+			$this->select->getAttribute( 'I DO NOT EXIT' ),
+			null
+		);
+
+		# verify string / integer
+		$this->assertEquals(
+			$this->select->getAttribute( '1911' ),
+			'razor'	
+		);
+		$this->assertEquals(
+			$this->select->getAttribute( 'dummy' ),
+			0x777
+		);
+	}
 }
