@@ -4,9 +4,14 @@
  *  When you have many workers (threads/servers) giving service, and a 
  * cached item expensive to produce expires, you may get several workers
  * doing the job at the same time.
+ *
  *  Given enough requests and the item expiring fast (non-cacheable, 
  * lots of edits...) that single work can end up unfairly using most (all)
- * of the cpu of the pool. This is also known as 'Michael Jackson effect'.
+ * of the cpu of the pool. This is also known as 'Michael Jackson effect'
+ * since this effect triggered on the english wikipedia on the day Michael
+ * Jackson died, the biographical article got hit with several edits per
+ * minutes and hundreds of read hits.
+ *
  *  The PoolCounter provides semaphore semantics for restricting the number
  * of workers that may be concurrently performing such single task.
  *
@@ -16,15 +21,15 @@
 abstract class PoolCounter {
 	
 	/* Return codes */
-	const LOCKED = 1; 	/* Lock acquired */
+	const LOCKED   = 1; /* Lock acquired */
 	const RELEASED = 2; /* Lock released */
-	const DONE = 3;		/* Another one did the work for you */
+	const DONE     = 3; /* Another worker did the work for you */
 	
-	const ERROR = -1;		/* Indeterminate error */
-	const NOT_LOCKED = -2;	/* Called release() with no lock held */
-	const QUEUE_FULL = -3;	/* There are already maxqueue workers on this lock */
-	const TIMEOUT = -4;		/* Timeout exceeded */
-	const LOCK_HELD = -5;	/* Cannot acquire another lock while you have one lock held */
+	const ERROR      = -1; /* Indeterminate error */
+	const NOT_LOCKED = -2; /* Called release() with no lock held */
+	const QUEUE_FULL = -3; /* There are already maxqueue workers on this lock */
+	const TIMEOUT    = -4; /* Timeout exceeded */
+	const LOCK_HELD  = -5; /* Cannot acquire another lock while you have one lock held */
 
 	/**
 	 * I want to do this task and I need to do it myself.
