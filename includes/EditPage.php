@@ -1157,7 +1157,7 @@ class EditPage {
 			if ( $this->watchthis ) {
 				Action::factory( 'watch', $this->mArticle )->execute();
 			} else {
-				Action::factory( 'watch', $this->mArticle )->execute();
+				Action::factory( 'unwatch', $this->mArticle )->execute();
 			}
 			$dbw->commit();
 		}
