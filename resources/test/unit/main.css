@@ -1,0 +1,5 @@
+/* Hide mediawiki elements */
+div#mw-js-message,
+#mw-content {
+	display: none !important;
+}
