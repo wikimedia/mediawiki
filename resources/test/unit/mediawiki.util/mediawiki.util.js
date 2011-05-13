@@ -20,13 +20,12 @@ test( 'wikiUrlencode', function(){
 
 test( 'addCSS', function(){
 
-	var a = mw.util.addCSS( '#bodyContent { background-color: rgb(170, 255, 170); }' );
+	var a = mw.util.addCSS( '#bodyContent { margin-top: 5px; }' );
 	ok(  a, 'function works' );
 	same( a.disabled, false, 'property "disabled" is available and set to false' );
 	
 	var $b = $('#bodyContent');
-	var match = $b.css('background-color').match(/rgb\(170,\s*255,\s*170\)/);
-	ok( match && match.length === 1, 'Style color matches.' );
+	equals( $b.css('margin-top'), '5px', 'Added style properties are in effect.' );
 	
 
 });
