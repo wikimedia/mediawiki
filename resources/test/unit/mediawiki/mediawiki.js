@@ -129,9 +129,6 @@ test( 'mw.user', function(){
 
 test( 'mw.loader', function(){
 
-	// @TODO: More elaborate testing ?
-	// Difficult due to modules already being loaded
-	// through it at this point
 	ok( mw.loader, 'loader defined' );
 	ok( mw.loader.work, 'loader.work defined' );
 	ok( mw.loader.register, 'loader.register defined' );
