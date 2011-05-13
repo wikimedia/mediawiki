@@ -735,15 +735,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
 		
-		$calculatedSize = $row->rc_new_len - $row->rc_old_len;
-		$diffOut = ' . . ';
-		if (  $calculatedSize === 0 ) {
-			$diffOut .= "<span class='mw-plusminus-null'>($calculatedSize)</span>";
-		} elseif ( $calculatedSize > 0 ) {
-			$diffOut .= "<span class='mw-plusminus-pos'>(+$calculatedSize)</span>";
-	    } else {
-			$diffOut .= "<span class='mw-plusminus-neg'>($calculatedSize)</span>";
-		}
+		$diffOut = ' . . '.ChangesList::showCharacterDifference( $row->rc_old_len, $row->rc_new_len );
 
 		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$diffOut}{$userlink} {$comment} {$topmarktext}";
 
@@ -780,9 +772,9 @@ class ContribsPager extends ReverseChronologicalPager {
 	 */
 	function getSqlComment() {
 		if ( $this->namespace || $this->deletedOnly ) {
-			return 'contributions page filtered for namespace or RevisionDeleted edits'; // potentially slow, see CR r58153
+			return wfMsg( 'sp-contributions-filtered' ); // potentially slow, see CR r58153
 		} else {
-			return 'contributions page unfiltered';
+			return wfMsg( 'sp-contributions-unfiltered' );
 		}
 	}
 
