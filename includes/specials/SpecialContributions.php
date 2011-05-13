@@ -553,7 +553,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			'fields' => array(
 				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
 				'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
-				'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted'
+				'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted',
+				'rc_old_len', 'rc_new_len'
 			),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => array('revision' => $index) ),
@@ -572,21 +573,23 @@ class ContribsPager extends ReverseChronologicalPager {
 		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
 		return $queryInfo;
 	}
-
-	function getUserCond() {
+ 
+ 	function getUserCond() {
 		$condition = array();
 		$join_conds = array();
 		if( $this->target == 'newbies' ) {
-			$tables = array( 'user_groups', 'page', 'revision' );
+			$tables = array( 'recentchanges', 'user_groups', 'page', 'revision' );
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 			$condition[] = 'rev_user >' . (int)($max - $max / 100);
 			$condition[] = 'ug_group IS NULL';
 			$index = 'user_timestamp';
 			# FIXME: other groups may have 'bot' rights
 			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
+			$join_conds['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid" );
 		} else {
-			$tables = array( 'page', 'revision' );
+			$tables = array( 'recentchanges', 'page', 'revision' );
 			$condition['rev_user_text'] = $this->target;
+			$join_conds['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid" );
 			$index = 'usertext_timestamp';
 		}
 		if( $this->deletedOnly ) {
@@ -731,7 +734,18 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
-		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
+		
+		$calculatedSize = $row->rc_new_len - $row->rc_old_len;
+		$diffOut = ' . . ';
+		if (  $calculatedSize === 0 ) {
+			$diffOut .= "<span class='mw-plusminus-null'>($calculatedSize)</span>";
+		} elseif ( $calculatedSize > 0 ) {
+			$diffOut .= "<span class='mw-plusminus-pos'>(+$calculatedSize)</span>";
+	    } else {
+			$diffOut .= "<span class='mw-plusminus-neg'>($calculatedSize)</span>";
+		}
+
+		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$diffOut}{$userlink} {$comment} {$topmarktext}";
 
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
