@@ -111,7 +111,7 @@ class VectorTemplate extends BaseTemplate {
 						Linker::tooltip( $xmlID );
 				} else {
 					$nav[$section][$key]['key'] =
-						Linker::tooltipAndAccesskeyAttribs( $xmlID );
+						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
 				}
 			}
 		}
