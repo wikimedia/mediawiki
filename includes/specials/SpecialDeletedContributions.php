@@ -63,7 +63,7 @@ class DeletedContribsPager extends IndexPager {
 			'tables' => array( 'archive' ),
 			'fields' => array(
 				'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_timestamp', 'ar_comment', 'ar_minor_edit',
-				'ar_user', 'ar_user_text', 'ar_deleted'
+				'ar_user', 'ar_user_text', 'ar_deleted', 'ar_len'
 			),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => $index )
@@ -74,7 +74,7 @@ class DeletedContribsPager extends IndexPager {
 		$condition = array();
 
 		$condition['ar_user_text'] = $this->target;
-		$index = 'usertext_timestamp';
+		$index = array( 'archive' => 'ar_usertext_timestamp' );
 
 		return array( $index, $condition );
 	}
@@ -235,7 +235,8 @@ class DeletedContribsPager extends IndexPager {
 			wfMsg( 'parentheses', $wgLang->pipeList( array( $last, $dellog, $reviewlink ) ) )
 		);
 
-		$ret = "{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}";
+		$diffOut = ' . . '.ChangesList::showCharacterDifference( $row->ar_len, 0 );
+		$ret = "{$del}{$link} {$tools} . . {$mflag} {$diffOut} {$pagelink} {$comment}";
 
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
