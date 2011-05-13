@@ -413,7 +413,6 @@ return array(
 			'jquery.messageBox',
 			'jquery.makeCollapsible',
 			'jquery.placeholder',
-			'jquery.tablesorter',
 		),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
