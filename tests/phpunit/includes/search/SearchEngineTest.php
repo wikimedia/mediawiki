@@ -84,8 +84,7 @@ class SearchEngineTest extends MediaWikiTestCase {
 			$dbw = $this->db;
 			$title = Title::newFromText( $pageName );
 
-			$userId = 0;
-			$userText = 'WikiSysop';
+			$user = User::newFromName( 'WikiSysop' );
 			$comment = 'Search Test';
 
 			// avoid memory leak...?
@@ -93,40 +92,7 @@ class SearchEngineTest extends MediaWikiTestCase {
 			$linkCache->clear();
 
 			$article = new Article( $title );
-			$pageId = $article->getId();
-			$created = false;
-			if ( $pageId == 0 ) {
-				# must create the page...
-				$pageId = $article->insertOn( $dbw );
-				$created = true;
-			}
-
-			# FIXME: Use original rev_id optionally (better for backups)
-			# Insert the row
-			$revision = new Revision( array(
-							'page'       => $pageId,
-							'text'       => $text,
-							'comment'    => $comment,
-							'user'       => $userId,
-							'user_text'  => $userText,
-							'timestamp'  => 0,
-							'minor_edit' => false,
-			) );
-			$revId = $revision->insertOn( $dbw );
-			$changed = $article->updateIfNewerOn( $dbw, $revision );
-
-			$GLOBALS['wgTitle'] = $title;
-			if ( $created ) {
-				Article::onArticleCreate( $title );
-				$article->createUpdates( $revision );
-			} elseif ( $changed ) {
-				Article::onArticleEdit( $title );
-				$article->editUpdates(
-					$text, $comment, false, 0, $revId );
-			}
-
-			$su = new SearchUpdate( $article->getId(), $pageName, $text );
-			$su->doUpdate();
+			$article->doEdit( $text, $comment, 0, false, $user );
 
 			$this->pageList[] = array( $title, $article->getId() );
 
