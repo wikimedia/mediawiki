@@ -337,7 +337,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				' groups        - Lists groups that the user is in. This uses more server resources and may return fewer results than the limit',
 				' rights        - Lists rights that the user has',
 				' editcount     - Adds the edit count of the user',
-				' registration  - Adds the timestamp of when the user registered',
+				' registration  - Adds the timestamp of when the user registered if available (may be blank)',
 				),
 			'limit' => 'How many total user names to return',
 			'witheditsonly' => 'Only list users who have made edits',
