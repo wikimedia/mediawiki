@@ -1733,7 +1733,7 @@ class Article {
 	 * or else the record will be left in a funky state.
 	 * Best if all done inside a transaction.
 	 *
-	 * @param $dbw Database
+	 * @param $dbw DatabaseBase
 	 * @return int The newly created page_id key, or false if the title already existed
 	 * @private
 	 */

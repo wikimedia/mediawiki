@@ -16,8 +16,8 @@ class ZipDirectoryReader {
 	 * suspicious or ambiguous input, instead of emulating some standard
 	 * behaviour.
 	 *
-	 * @param $fileName The archive file name
-	 * @param $callback The callback function. It will be called for each file 
+	 * @param $fileName string The archive file name
+	 * @param $callback Array The callback function. It will be called for each file
 	 *   with a single associative array each time, with members:
 	 *
 	 *      - name: The file name. Directories conventionally have a trailing 
@@ -27,7 +27,7 @@ class ZipDirectoryReader {
 	 *
 	 *      - size: The uncompressed file size
 	 *
-	 * @param $options An associative array of read options, with the option
+	 * @param $options Array An associative array of read options, with the option
 	 *    name in the key. This may currently contain:
 	 *
 	 *      - zip64: If this is set to true, then we will emulate a 
@@ -44,7 +44,7 @@ class ZipDirectoryReader {
 	 *        valid ZIP64 file, and working out what non-ZIP64 readers will make 
 	 *        of such a file is not trivial.
 	 *
-	 * @return A Status object. The following fatal errors are defined:
+	 * @return Status object. The following fatal errors are defined:
 	 *
 	 *      - zip-file-open-error: The file could not be opened.
 	 *
@@ -119,6 +119,8 @@ class ZipDirectoryReader {
 
 	/**
 	 * Read the directory according to settings in $this.
+	 *
+	 * @return Status
 	 */
 	function execute() {
 		$this->file = fopen( $this->fileName, 'r' );

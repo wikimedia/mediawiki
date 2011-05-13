@@ -120,7 +120,7 @@ class StandardTemplate extends LegacyTemplate {
 		unset( $bar['TOOLBOX'] );
 
 		$barnumber = 1;
-		foreach ( $bar as $heading => $browseLinks ) {
+		foreach ( $bar as $browseLinks ) {
 			if ( $barnumber > 1 ) {
 				$s .= "\n<hr class='sep' />";
 			} 
