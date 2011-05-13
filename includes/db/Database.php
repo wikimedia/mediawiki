@@ -3070,7 +3070,10 @@ class DBQueryError extends DBError {
 		  "Query: $sql\n" .
 		  "Function: $fname\n" .
 		  "Error: $errno $error\n";
-
+		global $wgShowDBErrorBacktrace;
+		if( $wgShowDBErrorBacktrace ) {
+			$message .= $this->getTraceAsString();
+		}
 		parent::__construct( $db, $message );
 
 		$this->error = $error;
