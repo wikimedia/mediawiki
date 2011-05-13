@@ -56,6 +56,11 @@ if ( ini_get( 'register_globals' ) ) {
 	}
 }
 
+# bug 15461: Make IE8 turn off content sniffing. Everbody else should ignore this
+# We're adding it here so that it's *always* set, even for alternate entry
+# points and when $wgOut gets disabled or overridden.
+header( 'X-Content-Type-Options: nosniff' );
+
 $wgRequestTime = microtime(true);
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
 if ( function_exists ( 'getrusage' ) ) {
