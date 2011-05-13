@@ -122,14 +122,23 @@ class GenerateSitemap extends Maintenance {
 	var $file;
 
 	/**
+	 * Identifier to use in filenames, default $wgDBname
+	 *
+	 * @var string
+	 */
+	private $identifier;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
+		global $wgDBname;
 		$this->mDescription = "Creates a sitemap for the site";
 		$this->addOption( 'fspath', 'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory', false, true );
 		$this->addOption( 'urlpath', 'The URL path corresponding to --fspath, prepended to filenames in the index; defaults to an empty string', false, true );
 		$this->addOption( 'compress', 'Compress the sitemap files, can take value yes|no, default yes', false, true );
+		$this->addOption( 'identifier', 'What site identifier to use for the wiki, defaults to $wgDBname', false, true );
 	}
 
 	/**
@@ -144,11 +153,12 @@ class GenerateSitemap extends Maintenance {
 		if ( $this->urlpath !== "" && substr( $this->urlpath, -1 ) !== '/' ) {
 			$this->urlpath .= '/';
 		}
+		$this->identifier = $this->getOption( 'identifier', wfWikiID() );
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
 		$this->dbr = wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
-		$this->findex = fopen( "{$this->fspath}sitemap-index-" . wfWikiID() . ".xml", 'wb' );
+		$this->findex = fopen( "{$this->fspath}sitemap-index-{$this->identifier}.xml", 'wb' );
 		$this->main();
 	}
 
@@ -350,7 +360,7 @@ class GenerateSitemap extends Maintenance {
 	 */
 	function sitemapFilename( $namespace, $count ) {
 		$ext = $this->compress ? '.gz' : '';
-		return "sitemap-" . wfWikiID() . "-NS_$namespace-$count.xml$ext";
+		return "sitemap-{$this->identifier}-NS_$namespace-$count.xml$ext";
 	}
 
 	/**
