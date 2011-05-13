@@ -1,6 +1,4 @@
 <?php
-define( 'GS_MAIN', -2 );
-define( 'GS_TALK', -1 );
 /**
  * Creates a sitemap for the site
  *
@@ -31,6 +29,9 @@ define( 'GS_TALK', -1 );
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class GenerateSitemap extends Maintenance {
+	const GS_MAIN = -2;
+	const GS_TALK = -1;
+
 	/**
 	 * The maximum amount of urls in a sitemap file
 	 *
@@ -153,9 +154,9 @@ class GenerateSitemap extends Maintenance {
 
 	private function setNamespacePriorities() {
 		// Custom main namespaces
-		$this->priorities[GS_MAIN] = '0.5';
+		$this->priorities[self::GS_MAIN] = '0.5';
 		// Custom talk namesspaces
-		$this->priorities[GS_TALK] = '0.1';
+		$this->priorities[self::GS_TALK] = '0.1';
 		// MediaWiki standard namespaces
 		$this->priorities[NS_MAIN] = '1.0';
 		$this->priorities[NS_TALK] = '0.1';
@@ -234,7 +235,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return String
 	 */
 	function guessPriority( $namespace ) {
-		return MWNamespace::isMain( $namespace ) ? $this->priorities[GS_MAIN] : $this->priorities[GS_TALK];
+		return MWNamespace::isMain( $namespace ) ? $this->priorities[self::GS_MAIN] : $this->priorities[self::GS_TALK];
 	}
 
 	/**
