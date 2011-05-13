@@ -2368,6 +2368,7 @@ class OutputPage {
 		if( $this->getUser()->getBoolOption( 'editsectiononrightclick' ) ) {
 			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
 		}
+		$this->addModules( 'mediawiki.action.view.tablesorting' );
 	}
 
 	/**
