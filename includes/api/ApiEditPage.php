@@ -358,9 +358,9 @@ class ApiEditPage extends ApiBase {
 				// or DB weirdness occurred. Fall through to throw an unknown
 				// error.
 
-				// This needs fixing higher up, as Article::doEdit should be
-				// used rather than Article::updateArticle, so that specific
-				// error conditions can be returned
+				// This needs fixing higher up, as EditPage::internalAttemptSave
+				// should return the Status object, so that specific error
+				// conditions can be returned
 			default:
 				$this->dieUsageMsg( array( 'unknownerror', $retval ) );
 		}
