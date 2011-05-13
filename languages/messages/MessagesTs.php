@@ -119,12 +119,6 @@ $messages = array(
 
 'badaccess'        => 'Xihoxo hita mpfumelelo',
 'badaccess-group0' => 'U hava mpumelelo wo endla xikombelo lexi.',
-'badaccess-groups' => 'The action you have requested is limited to users in one of the groups $1.',
-
-'versionrequired'     => 'Version $1 of MediaWiki required',
-'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page.
-See [[Special:Version|version page]].',
-
 'ok'                      => 'Hiswona',
 'retrievedfrom'           => 'ku suka e "$1"',
 'youhavenewmessages'      => 'U na $1 ($2).',
@@ -141,13 +135,6 @@ See [[Special:Version|version page]].',
 'thisisdeleted'           => 'Langutisa kumbe Thlerisela $1?',
 'viewdeleted'             => 'Langutisa $1?',
 'restorelink'             => '{{PLURAL:$1|ndzulamiso lowu suriweke|$1 mindzulamiso leyi suriweke}}',
-'feedlinks'               => 'Feed:',
-'feed-invalid'            => 'Invalid subscription feed type.',
-'feed-unavailable'        => 'Syndication feeds are not available on {{SITENAME}}',
-'site-rss-feed'           => '$1 RSS Feed',
-'site-atom-feed'          => '$1 Atom Feed',
-'page-rss-feed'           => '"$1" RSS Feed',
-'page-atom-feed'          => '"$1" Atom Feed',
 'red-link-title'          => '$1 (Arisi tsariwa)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -173,23 +160,6 @@ Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error'                => 'Xihoxo',
 'databaseerror'        => 'Xihoxo xo Database',
-'dberrortext'          => 'A database query syntax error has occurred.
-This may indicate a bug in the software.
-The last attempted database query was:
-<blockquote><tt>$1</tt></blockquote>
-from within function "<tt>$2</tt>".
-MySQL returned error "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'A database query syntax error has occurred.
-The last attempted database query was:
-"$1"
-from within function "$2".
-MySQL returned error "$3: $4"',
-'laggedslavemode'      => 'Warning: Page may not contain recent updates.',
-'readonly'             => 'Database locked',
-'enterlockreason'      => 'Enter a reason for the lock, including an estimate of when the lock will be released',
-'readonlytext'         => 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
-
-The administrator who locked it offered this explanation: $1',
 'missing-article'      => 'The database did not find the text of a page that it should have found, named "$1" $2.
 
 This is usually caused by following an outdated diff or history link to a page that has been deleted.
