@@ -979,22 +979,19 @@ window.mediaWiki = new ( function( $ ) {
 				// include modules which are already loaded
 				batch = [];
 				// Asynchronously append a script tag to the end of the body
-				var getScriptTag = function() {
-					var html = '';
-					for ( var r = 0; r < requests.length; r++ ) {
-						requests[r] = sortQuery( requests[r] );
-						// Build out the HTML
-						var src = mw.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] );
-						html += mw.html.element( 'script',
-							{ type: 'text/javascript', src: src }, '' );
-					}
-					return html;
-				};
+				var html = '';
+				for ( var r = 0; r < requests.length; r++ ) {
+					requests[r] = sortQuery( requests[r] );
+					// Build out the HTML
+					var src = mw.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] );
+					html += mw.html.element( 'script',
+						{ 'type': 'text/javascript', 'src': src }, '' );
+				}
 				// Load asynchronously after documument ready
 				if ( ready ) {
-					setTimeout( function() { $( 'body' ).append( getScriptTag() ); }, 0 );
+					setTimeout( function() { $( 'body' ).append( html ); }, 0 );
 				} else {
-					document.write( getScriptTag() );
+					document.write( html );
 				}
 			}
 		};
