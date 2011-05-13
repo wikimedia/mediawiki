@@ -40,40 +40,49 @@
  * @ingroup Maintenance
  */
 
-if ( php_sapi_name() != 'cli' ) {
-	echo "Please customize the settings and run me from the command line.";
-	die( -1 );
-}
+require_once( "Maintenance.php" );
 
-/** Set these correctly! */
-$wgImportEncoding = "CP1252"; /* We convert all to UTF-8 */
-$wgRootDirectory = "/kalman/Projects/wiki2002/wiki/lib-http/db/wiki";
+class ImportUseModWiki extends Maintenance {
 
-/* On a large wiki, you might run out of memory */
-@ini_set( 'memory_limit', '40M' );
+	private $encoding, $rootDirectory = '';
 
-/* globals */
-$wgFieldSeparator = "\xb3"; # Some wikis may use different char
-	$FS = $wgFieldSeparator ;
-	$FS1 = $FS . "1" ;
-	$FS2 = $FS . "2" ;
-	$FS3 = $FS . "3" ;
+	/**
+	 * Field separators
+	 * @var String
+	 */
+	private $FS1, $FS2, $FS3 = '';
 
-# Unicode sanitization tools
-require_once( dirname( dirname( __FILE__ ) ) . '/includes/normal/UtfNormal.php' );
+	/**
+	 * @var Array
+	 */
+	private $usercache, $nowiki = array();
 
-$usercache = array();
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Import pages from UseMod wikis";
+		$this->addOption( 'encoding', 'Encoding of the imported text, default CP1252', false, true );
+		/**
+		 * If UseModWiki's New File System is used:
+		 * $NewFS  = 1;  # 1 = new multibyte $FS,  0 = old $FS
+		 * Use "\xb3";  for the Old File System
+		 * Changed with UTF-8 UseModWiki
+		 * http://www.usemod.com/cgi-bin/wiki.pl?SupportForUtf8
+		 * http://www.usemod.com/cgi-bin/wiki.pl?WikiBugs/NewFieldSeparatorWronglyTreated
+		 * http://www.meatballwiki.org/wiki/WikiEngine#Q_amp_A
+		 */	
+		$this->addOption( 'separator', 'Field separator to use, default \x1E\xFF\xFE\x1E', false, true );
+		$this->addArg( 'path', 'Path to your UseMod wiki' );
+	}
 
-importPages();
+	public function execute() {
+		$this->rootDirectory = $this->getArg();
+		$this->encoding = $this->getOption( 'encoding', 'CP1252' );
+		$sep = $this->getOption( 'separator', "\x1E\xFF\xFE\x1E" );
+		$this->FS1 = "{$sep}1";
+		$this->FS2 = "{$sep}2";
+		$this->FS3 = "{$sep}3";
 
-# ------------------------------------------------------------------------------
-
-function importPages()
-{
-	global $wgRootDirectory;
-
-	$gt = '>';
-	echo <<<XML
+		echo <<<XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.1/"
 		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -89,290 +98,278 @@ XML;
 		'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
 		'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'other' );
 	foreach ( $letters as $letter ) {
-		$dir = "$wgRootDirectory/page/$letter";
+		$dir = "{$this->rootDirectory}/page/$letter";
 		if ( is_dir( $dir ) )
-			importPageDirectory( $dir );
+			$this->importPageDirectory( $dir );
 	}
 	echo <<<XML
 </mediawiki>
 
 XML;
-}
+	}
 
-function importPageDirectory( $dir, $prefix = "" )
-{
-	echo "\n<!-- Checking page directory " . xmlCommentSafe( $dir ) . " -->\n";
-	$mydir = opendir( $dir );
-	while ( $entry = readdir( $mydir ) ) {
-		$m = array();
-		if ( preg_match( '/^(.+)\.db$/', $entry, $m ) ) {
-			echo importPage( $prefix . $m[1] );
-		} else {
-			if ( is_dir( "$dir/$entry" ) ) {
-				if ( $entry != '.' && $entry != '..' ) {
-					importPageDirectory( "$dir/$entry", "$entry/" );
-				}
+	private function importPageDirectory( $dir, $prefix = "" ) {
+		echo "\n<!-- Checking page directory " . $this->xmlCommentSafe( $dir ) . " -->\n";
+		$mydir = opendir( $dir );
+		while ( $entry = readdir( $mydir ) ) {
+			$m = array();
+			if ( preg_match( '/^(.+)\.db$/', $entry, $m ) ) {
+				echo $this->importPage( $prefix . $m[1] );
 			} else {
-				echo "<!-- File '" . xmlCommentSafe( $entry ) . "' doesn't seem to contain an article. Skipping. -->\n";
+				if ( is_dir( "$dir/$entry" ) ) {
+					if ( $entry != '.' && $entry != '..' ) {
+						$this->importPageDirectory( "$dir/$entry", "$entry/" );
+					}
+				} else {
+					echo "<!-- File '" . $this->xmlCommentSafe( $entry ) . "' doesn't seem to contain an article. Skipping. -->\n";
+				}
 			}
 		}
 	}
-}
 
-
-# ------------------------------------------------------------------------------
-
-/* fetch_ functions
-	Grab a given item from the database
-	*/
-
-function useModFilename( $title ) {
-	$c = substr( $title, 0, 1 );
-	if ( preg_match( '/[A-Z]/i', $c ) ) {
-		return strtoupper( $c ) . "/$title";
-	}
-	return "other/$title";
-}
-
-function fetchPage( $title )
-{
-	global $FS1, $FS2, $FS3, $wgRootDirectory;
-
-	$fname = $wgRootDirectory . "/page/" . useModFilename( $title ) . ".db";
-	if ( !file_exists( $fname ) ) {
-		echo "Couldn't open file '$fname' for page '$title'.\n";
-		die( -1 );
-	}
-
-	$page = splitHash( $FS1, file_get_contents( $fname ) );
-	$section = splitHash( $FS2, $page["text_default"] );
-	$text = splitHash( $FS3, $section["data"] );
-
-	return array2object( array( "text" => $text["text"] , "summary" => $text["summary"] ,
-		"minor" => $text["minor"] , "ts" => $section["ts"] ,
-		"username" => $section["username"] , "host" => $section["host"] ) );
-}
-
-function fetchKeptPages( $title )
-{
-	global $FS1, $FS2, $FS3, $wgRootDirectory;
-
-	$fname = $wgRootDirectory . "/keep/" . useModFilename( $title ) . ".kp";
-	if ( !file_exists( $fname ) ) return array();
-
-	$keptlist = explode( $FS1, file_get_contents( $fname ) );
-	array_shift( $keptlist ); # Drop the junk at beginning of file
-
-	$revisions = array();
-	foreach ( $keptlist as $rev ) {
-		$section = splitHash( $FS2, $rev );
-		$text = splitHash( $FS3, $section["data"] );
-		if ( $text["text"] && $text["minor"] != "" && ( $section["ts"] * 1 > 0 ) ) {
-			array_push( $revisions, array2object( array ( "text" => $text["text"] , "summary" => $text["summary"] ,
-				"minor" => $text["minor"] , "ts" => $section["ts"] ,
-				"username" => $section["username"] , "host" => $section["host"] ) ) );
-		} else {
-			echo "<!-- skipped a bad old revision -->\n";
+	private function useModFilename( $title ) {
+		$c = substr( $title, 0, 1 );
+		if ( preg_match( '/[A-Z]/i', $c ) ) {
+			return strtoupper( $c ) . "/$title";
 		}
+		return "other/$title";
 	}
-	return $revisions;
-}
 
-function splitHash ( $sep , $str ) {
-	$temp = explode ( $sep , $str ) ;
-	$ret = array () ;
-	for ( $i = 0; $i + 1 < count ( $temp ) ; $i++ ) {
-		$ret[$temp[$i]] = $temp[++$i] ;
+	private function fetchPage( $title ) {
+		$fname = $this->rootDirectory . "/page/" . $this->useModFilename( $title ) . ".db";
+		if ( !file_exists( $fname ) ) {
+			echo "Couldn't open file '$fname' for page '$title'.\n";
+			die( -1 );
 		}
-	return $ret ;
+
+		$page = $this->splitHash( $this->FS1, file_get_contents( $fname ) );
+		$section = $this->splitHash( $this->FS2, $page["text_default"] );
+		$text = $this->splitHash( $this->FS3, $section["data"] );
+
+		return $this->array2object( array( "text" => $text["text"] , "summary" => $text["summary"] ,
+			"minor" => $text["minor"] , "ts" => $section["ts"] ,
+			"username" => $section["username"] , "host" => $section["host"] ) );
 	}
 
+	private function fetchKeptPages( $title ) {
+		$fname = $this->rootDirectory . "/keep/" . $this->useModFilename( $title ) . ".kp";
+		if ( !file_exists( $fname ) ) return array();
 
-/* import_ functions
-	Take a fetched item and produce SQL
-	*/
+		$keptlist = explode( $this->FS1, file_get_contents( $fname ) );
+		array_shift( $keptlist ); # Drop the junk at beginning of file
 
-function checkUserCache( $name, $host )
-{
-	global $usercache;
+		$revisions = array();
+		foreach ( $keptlist as $rev ) {
+			$section = $this->splitHash( $this->FS2, $rev );
+			$text = $this->splitHash( $this->FS3, $section["data"] );
+			if ( $text["text"] && $text["minor"] != "" && ( $section["ts"] * 1 > 0 ) ) {
+				array_push( $revisions, $this->array2object( array ( "text" => $text["text"] , "summary" => $text["summary"] ,
+					"minor" => $text["minor"] , "ts" => $section["ts"] ,
+					"username" => $section["username"] , "host" => $section["host"] ) ) );
+			} else {
+				echo "<!-- skipped a bad old revision -->\n";
+			}
+		}
+		return $revisions;
+	}
 
-	if ( $name ) {
-		if ( in_array( $name, $usercache ) ) {
-			$userid = $usercache[$name];
+	private function splitHash( $sep , $str ) {
+		$temp = explode ( $sep , $str ) ;
+		$ret = array () ;
+		for ( $i = 0; $i + 1 < count ( $temp ) ; $i++ ) {
+			$ret[$temp[$i]] = $temp[++$i] ;
+			}
+		return $ret ;
+	}
+
+	private function checkUserCache( $name, $host ) {
+		if ( $name ) {
+			if ( in_array( $name, $this->usercache ) ) {
+				$userid = $this->usercache[$name];
+			} else {
+				# If we haven't imported user accounts
+				$userid = 0;
+			}
+			$username = str_replace( '_', ' ', $name );
 		} else {
-			# If we haven't imported user accounts
 			$userid = 0;
+			$username = $host;
 		}
-		$username = str_replace( '_', ' ', $name );
-	} else {
-		$userid = 0;
-		$username = $host;
+		return array( $userid, $username );
 	}
-	return array( $userid, $username );
-}
 
-function importPage( $title )
-{
-	echo "\n<!-- Importing page " . xmlCommentSafe( $title ) . " -->\n";
-	$page = fetchPage( $title );
+	private function importPage( $title ) {
+		echo "\n<!-- Importing page " . $this->xmlCommentSafe( $title ) . " -->\n";
+		$page = $this->fetchPage( $title );
 
-	$newtitle = xmlsafe( str_replace( '_', ' ', recodeText( $title ) ) );
+		$newtitle = $this->xmlsafe( str_replace( '_', ' ', $this->recodeText( $title ) ) );
 
-	$munged = mungeFormat( $page->text );
-	if ( $munged != $page->text ) {
-		/**
-		 * Save a *new* revision with the conversion, and put the
-		 * previous last version into the history.
-		 */
-		$next = array2object( array(
-			'text'     => $munged,
-			'minor'    => 1,
-			'username' => 'Conversion script',
-			'host'     => '127.0.0.1',
-			'ts'       => time(),
-			'summary'  => 'link fix',
-			) );
-		$revisions = array( $page, $next );
-	} else {
-		/**
-		 * Current revision:
-		 */
-		$revisions = array( $page );
-	}
-	$xml = <<<XML
-	<page>
-		<title>$newtitle</title>
+		$munged = $this->mungeFormat( $page->text );
+		if ( $munged != $page->text ) {
+			/**
+			 * Save a *new* revision with the conversion, and put the
+			 * previous last version into the history.
+			 */
+			$next = $this->array2object( array(
+				'text'     => $munged,
+				'minor'    => 1,
+				'username' => 'Conversion script',
+				'host'     => '127.0.0.1',
+				'ts'       => time(),
+				'summary'  => 'link fix',
+				) );
+			$revisions = array( $page, $next );
+		} else {
+			/**
+			 * Current revision:
+			 */
+			$revisions = array( $page );
+		}
+		$xml = <<<XML
+		<page>
+			<title>$newtitle</title>
 
 XML;
 
-	# History
-	$revisions = array_merge( $revisions, fetchKeptPages( $title ) );
-	if ( count( $revisions ) == 0 ) {
-		return NULL; // Was "$sql", which does not appear to be defined.
-	}
+		# History
+		$revisions = array_merge( $revisions, $this->fetchKeptPages( $title ) );
+		if ( count( $revisions ) == 0 ) {
+			return NULL; // Was "$sql", which does not appear to be defined.
+		}
 
-	foreach ( $revisions as $rev ) {
-		$text      = xmlsafe( recodeText( $rev->text ) );
-		$minor     = ( $rev->minor ? '<minor/>' : '' );
-		list( /* $userid */ , $username ) = checkUserCache( $rev->username, $rev->host );
-		$username  = xmlsafe( recodeText( $username ) );
-		$timestamp = xmlsafe( timestamp2ISO8601( $rev->ts ) );
-		$comment   = xmlsafe( recodeText( $rev->summary ) );
+		foreach ( $revisions as $rev ) {
+			$text      = $this->xmlsafe( $this->recodeText( $rev->text ) );
+			$minor     = ( $rev->minor ? '<minor/>' : '' );
+			list( /* $userid */ , $username ) = $this->checkUserCache( $rev->username, $rev->host );
+			$username  = $this->xmlsafe( $this->recodeText( $username ) );
+			$timestamp = $this->xmlsafe( $this->timestamp2ISO8601( $rev->ts ) );
+			$comment   = $this->xmlsafe( $this->recodeText( $rev->summary ) );
 
-		$xml .= <<<XML
-		<revision>
-			<timestamp>$timestamp</timestamp>
-			<contributor><username>$username</username></contributor>
-			$minor
-			<comment>$comment</comment>
-			<text>$text</text>
-		</revision>
+			$xml .= <<<XML
+			<revision>
+				<timestamp>$timestamp</timestamp>
+				<contributor><username>$username</username></contributor>
+				$minor
+				<comment>$comment</comment>
+				<text>$text</text>
+			</revision>
 
 XML;
+		}
+		$xml .= "</page>\n\n";
+		return $xml;
 	}
-	$xml .= "</page>\n\n";
-	return $xml;
-}
 
-# Whee!
-function recodeText( $string ) {
-	global $wgImportEncoding;
-	# For currently latin-1 wikis
-	$string = str_replace( "\r\n", "\n", $string );
-	$string = @iconv( $wgImportEncoding, "UTF-8", $string );
-	$string = wfMungeToUtf8( $string ); # Any old &#1234; stuff
-	return $string;
-}
+	private function recodeText( $string ) {
+		# For currently latin-1 wikis
+		$string = str_replace( "\r\n", "\n", $string );
+		$string = @iconv( $this->encoding, "UTF-8", $string );
+		$string = $this->mungeToUtf8( $string ); # Any old &#1234; stuff
+		return $string;
+	}
 
-function wfUtf8Sequence( $codepoint ) {
-	if ( $codepoint <     0x80 ) return chr( $codepoint );
-	if ( $codepoint <    0x800 ) return chr( $codepoint >>  6 & 0x3f | 0xc0 ) .
-									 chr( $codepoint       & 0x3f | 0x80 );
-	if ( $codepoint <  0x10000 ) return chr( $codepoint >> 12 & 0x0f | 0xe0 ) .
-									 chr( $codepoint >>  6 & 0x3f | 0x80 ) .
-									 chr( $codepoint       & 0x3f | 0x80 );
-	if ( $codepoint < 0x100000 ) return chr( $codepoint >> 18 & 0x07 | 0xf0 ) . # Double-check this
-									 chr( $codepoint >> 12 & 0x3f | 0x80 ) .
-									 chr( $codepoint >>  6 & 0x3f | 0x80 ) .
-									 chr( $codepoint       & 0x3f | 0x80 );
-	# Doesn't yet handle outside the BMP
-	return "&#$codepoint;";
-}
+	/**
+	 * @fixme don't use /e
+	 */
+	private function mungeToUtf8( $string ) {
+		$string = preg_replace ( '/&#([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
+		$string = preg_replace ( '/&#x([0-9a-f]+);/ie', 'wfUtf8Sequence(0x$1)', $string );
+		# Should also do named entities here
+		return $string;
+	}
 
-function wfMungeToUtf8( $string ) {
-	$string = preg_replace ( '/&#([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
-	$string = preg_replace ( '/&#x([0-9a-f]+);/ie', 'wfUtf8Sequence(0x$1)', $string );
-	# Should also do named entities here
-	return $string;
-}
+	private function timestamp2ISO8601( $ts ) {
+		# 2003-08-05T18:30:02Z
+		return gmdate( 'Y-m-d', $ts ) . 'T' . gmdate( 'H:i:s', $ts ) . 'Z';
+	}
 
-function timestamp2ISO8601( $ts ) {
-	# 2003-08-05T18:30:02Z
-	return gmdate( 'Y-m-d', $ts ) . 'T' . gmdate( 'H:i:s', $ts ) . 'Z';
-}
-
-function xmlsafe( $string ) {
 	/**
 	 * The page may contain old data which has not been properly normalized.
 	 * Invalid UTF-8 sequences or forbidden control characters will make our
 	 * XML output invalid, so be sure to strip them out.
+	 * @param String $string Text to clean up
+	 * @return String
 	 */
-	$string = UtfNormal::cleanUp( $string );
-
-	$string = htmlspecialchars( $string );
-	return $string;
-}
-
-function xmlCommentSafe( $text ) {
-	return str_replace( '--', '\\-\\-', xmlsafe( recodeText( $text ) ) );
-}
-
-
-function array2object( $arr ) {
-	$o = (object)0;
-	foreach ( $arr as $x => $y ) {
-		$o->$x = $y;
+	private function xmlsafe( $string ) {
+		$string = UtfNormal::cleanUp( $string );
+		$string = htmlspecialchars( $string );
+		return $string;
 	}
-	return $o;
+
+	private function xmlCommentSafe( $text ) {
+		return str_replace( '--', '\\-\\-', $this->xmlsafe( $this->recodeText( $text ) ) );
+	}
+
+	private function array2object( $arr ) {
+		$o = (object)0;
+		foreach ( $arr as $x => $y ) {
+			$o->$x = $y;
+		}
+		return $o;
+	}
+
+	/**
+	 * Make CamelCase and /Talk links work
+	 */
+	private function mungeFormat( $text ) {
+		$this->nowiki = array();
+		$staged = preg_replace_callback(
+			'/(<nowiki>.*?<\\/nowiki>|(?:http|https|ftp):\\S+|\[\[[^]\\n]+]])/s',
+			array( $this, 'nowikiPlaceholder' ), $text );
+
+		# This is probably not  100% correct, I'm just
+		# glancing at the UseModWiki code.
+		$upper   = "[A-Z]";
+		$lower   = "[a-z_0-9]";
+		$any     = "[A-Za-z_0-9]";
+		$camel   = "(?:$upper+$lower+$upper+$any*)";
+		$subpage = "(?:\\/$any+)";
+		$substart = "(?:\\/$upper$any*)";
+
+		$munged = preg_replace( "/(?!\\[\\[)($camel$subpage*|$substart$subpage*)\\b(?!\\]\\]|>)/",
+			'[[$1]]', $staged );
+
+		$final = preg_replace( '/' . preg_quote( $this->placeholder() ) . '/s',
+			array( $this, 'nowikiShift' ), $munged );
+		return $final;
+	}
+
+	private function placeholder( $x = null ) {
+		return '\xffplaceholder\xff';
+	}
+
+	public function nowikiPlaceholder( $matches ) {
+		$this->nowiki[] = $matches[1];
+		return $this->placeholder();
+	}
+
+	public function nowikiShift() {
+		return array_shift( $this->nowiki );
+	}
 }
 
-
-/**
- * Make CamelCase and /Talk links work
- */
-function mungeFormat( $text ) {
-	global $nowiki;
-	$nowiki = array();
-	$staged = preg_replace_callback(
-		'/(<nowiki>.*?<\\/nowiki>|(?:http|https|ftp):\\S+|\[\[[^]\\n]+]])/s',
-		'nowikiPlaceholder', $text );
-
-	# This is probably not  100% correct, I'm just
-	# glancing at the UseModWiki code.
-	$upper   = "[A-Z]";
-	$lower   = "[a-z_0-9]";
-	$any     = "[A-Za-z_0-9]";
-	$camel   = "(?:$upper+$lower+$upper+$any*)";
-	$subpage = "(?:\\/$any+)";
-	$substart = "(?:\\/$upper$any*)";
-
-	$munged = preg_replace( "/(?!\\[\\[)($camel$subpage*|$substart$subpage*)\\b(?!\\]\\]|>)/",
-		'[[$1]]', $staged );
-
-	$final = preg_replace( '/' . preg_quote( placeholder() ) . '/es',
-		'array_shift( $nowiki )', $munged );
-	return $final;
+function wfUtf8Sequence( $codepoint ) {
+	if ( $codepoint < 0x80 ) {
+		return chr( $codepoint );
+	}
+	if ( $codepoint < 0x800 ) {
+		return	chr( $codepoint >>  6 & 0x3f | 0xc0 ) .
+				chr( $codepoint       & 0x3f | 0x80 );
+	}
+	if ( $codepoint <  0x10000 ) {
+		return	chr( $codepoint >> 12 & 0x0f | 0xe0 ) .
+				chr( $codepoint >>  6 & 0x3f | 0x80 ) .
+				chr( $codepoint       & 0x3f | 0x80 );
+	}
+	if ( $codepoint < 0x100000 ) {
+		return	chr( $codepoint >> 18 & 0x07 | 0xf0 ) . # Double-check this
+				chr( $codepoint >> 12 & 0x3f | 0x80 ) .
+				chr( $codepoint >>  6 & 0x3f | 0x80 ) .
+				chr( $codepoint       & 0x3f | 0x80 );
+	}
+	# Doesn't yet handle outside the BMP
+	return "&#$codepoint;";
 }
 
-
-function placeholder( $x = null ) {
-	return '\xffplaceholder\xff';
-}
-
-function nowikiPlaceholder( $matches ) {
-	global $nowiki;
-	$nowiki[] = $matches[1];
-	return placeholder();
-}
-
-
+$maintClass = 'ImportUseModWiki';
+require_once( RUN_MAINTENANCE_IF_MAIN );
