@@ -2533,7 +2533,7 @@ abstract class DatabaseBase implements DatabaseType {
 				call_user_func( $lineCallback );
 			}
 
-			$line = trim( fgets( $fp, 1024 ) );
+			$line = trim( fgets( $fp ) );
 			$sl = strlen( $line ) - 1;
 
 			if ( $sl < 0 ) {
