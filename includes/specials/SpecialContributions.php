@@ -772,9 +772,9 @@ class ContribsPager extends ReverseChronologicalPager {
 	 */
 	function getSqlComment() {
 		if ( $this->namespace || $this->deletedOnly ) {
-			return wfMsg( 'sp-contributions-filtered' ); // potentially slow, see CR r58153
+			return 'contributions page filtered for namespace or RevisionDeleted edits'; // potentially slow, see CR r58153
 		} else {
-			return wfMsg( 'sp-contributions-unfiltered' );
+			return 'contributions page unfiltered';
 		}
 	}
 
