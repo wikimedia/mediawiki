@@ -57,9 +57,6 @@
 					/* Enable CheckboxShiftClick */
 					$( 'input[type=checkbox]:not(.noshiftselect)' ).checkboxShiftClick();
 
-					/* Enable Tablesorting */
-					$( 'table.sortable' ).tablesorter(); 
-
 					/* Emulate placeholder if not supported by browser */
 					if ( !( 'placeholder' in document.createElement( 'input' ) ) ) {
 						$( 'input[placeholder]' ).placeholder();

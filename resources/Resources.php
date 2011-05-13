@@ -439,6 +439,9 @@ return array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.metadata.js',
 		'messages' => array( 'metadata-expand', 'metadata-collapse' ),
 	),
+	'mediawiki.action.view.tablesorting' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.tablesorting.js',
+	),
 	'mediawiki.action.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
 		'dependencies' => 'mediawiki.util',
