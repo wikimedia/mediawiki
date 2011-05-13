@@ -1845,7 +1845,8 @@ This information will be public.',
 'prefs-help-realname'           => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
 'prefs-help-email'              => 'E-mail address is optional, but is needed for password resets, should you forget your password.',
-'prefs-help-email-others'       => 'You can also choose to let others contact you through your user or talk page without needing to reveal your identity.',
+'prefs-help-email-others'       => 'You can also choose to let others contact you by e-mail through a link on your user or talk page.
+Your e-mail address is not revealed when other users contact you.',
 'prefs-help-email-required'     => 'E-mail address is required.',
 'prefs-info'                    => 'Basic information',
 'prefs-i18n'                    => 'Internationalisation',
