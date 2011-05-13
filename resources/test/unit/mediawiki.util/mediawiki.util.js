@@ -20,12 +20,12 @@ test( 'wikiUrlencode', function(){
 
 test( 'addCSS', function(){
 
-	var a = mw.util.addCSS( '#bodyContent { margin-top: 5px; }' );
+	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
 	ok(  a, 'function works' );
 	same( a.disabled, false, 'property "disabled" is available and set to false' );
 	
 	var $b = $('#bodyContent');
-	equals( $b.css('margin-top'), '5px', 'Added style properties are in effect.' );
+	equals( $b.css('visibility'), 'hidden', 'Added style properties are in effect.' );
 	
 
 });
