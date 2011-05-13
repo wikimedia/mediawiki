@@ -108,3 +108,27 @@ test( 'validateEmail', function(){
 	same( mw.util.validateEmail( "userfoo@ex-ample.org" ), true, 'Hyphen' );
 
 });
+
+
+
+test( 'isIPv6Address', function(){
+
+	// Based on IPTest.php > IPv6
+	same( mw.util.isIPv6Address( "" ), false, 'Empty string is not an IP' );
+	same( mw.util.isIPv6Address( ":fc:100::" ), false, 'IPv6 starting with lone ":"' );
+	same( mw.util.isIPv6Address( "fc:100::" ), true );
+	same( mw.util.isIPv6Address( "fc:100:a:d:1:e:ac::" ), true );
+	same( mw.util.isIPv6Address( ":::" ), false );
+	same( mw.util.isIPv6Address( "::0:" ), false );
+
+});
+
+
+test( 'isIPv4Address', function(){
+
+	// Based on IPTest.php > IPv4
+	same( mw.util.isIPv4Address( "" ), false, 'Empty string is not an IP' );
+	same( mw.util.isIPv4Address( "...." ), false );
+	same( mw.util.isIPv4Address( "1.24.52.13" ), true );
+
+});
