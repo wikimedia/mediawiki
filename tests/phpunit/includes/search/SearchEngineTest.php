@@ -79,7 +79,13 @@ class SearchEngineTest extends MediaWikiTestCase {
 		return $matches;
 	}
 
-	// Modified version of WikiRevision::importOldRevision()
+	/**
+	 * Insert a new page
+	 *
+	 * @param $pageName String: page name
+	 * @param $text String: page's content
+	 * @param $n Integer: unused
+	 */
 	function insertPage( $pageName, $text, $ns ) {
 			$dbw = $this->db;
 			$title = Title::newFromText( $pageName );
