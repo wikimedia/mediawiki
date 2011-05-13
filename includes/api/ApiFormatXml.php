@@ -36,6 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiFormatXml extends ApiFormatBase {
 
 	private $mRootElemName = 'api';
+	public static $namespace = 'http://www.mediawiki.org/xml/api/';
 	private $mDoubleQuote = false;
 	private $mXslt = null;
 
@@ -66,7 +67,7 @@ class ApiFormatXml extends ApiFormatBase {
 		}
 		$this->printText(
 			self::recXmlPrint( $this->mRootElemName,
-				$this->getResultData(),
+				array( 'xmlns' => self::$namespace ) + $this->getResultData(),
 				$this->getIsHtml() ? - 2 : null,
 				$this->mDoubleQuote
 			)
