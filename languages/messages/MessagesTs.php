@@ -160,38 +160,7 @@ Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error'                => 'Xihoxo',
 'databaseerror'        => 'Xihoxo xo Database',
-'missing-article'      => 'The database did not find the text of a page that it should have found, named "$1" $2.
-
-This is usually caused by following an outdated diff or history link to a page that has been deleted.
-
-If this is not the case, you may have found a bug in the software.
-Please report this to an administrator, making note of the URL.',
-'missingarticle-rev'   => '(revision#: $1)',
-'missingarticle-diff'  => '(Diff: $1, $2)',
-'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
 'internalerror'        => 'Xihoxo xa le ndzeni',
-'internalerror_info'   => 'Internal error: $1',
-'filecopyerror'        => 'Could not copy file "$1" to "$2".',
-'filerenameerror'      => 'Could not rename file "$1" to "$2".',
-'filedeleteerror'      => 'Could not delete file "$1".',
-'directorycreateerror' => 'Could not create directory "$1".',
-'filenotfound'         => 'Could not find file "$1".',
-'fileexistserror'      => 'Unable to write to file "$1": file exists',
-'unexpected'           => 'Unexpected value: "$1"="$2".',
-'formerror'            => 'Error: could not submit form',
-'badarticleerror'      => 'This action cannot be performed on this page.',
-'cannotdelete'         => 'Could not delete the page or file specified.
-It may have already been deleted by someone else.',
-'badtitle'             => 'Bad title',
-'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
-It may contain one or more characters which cannot be used in titles.',
-'perfcached'           => 'The following data is cached and may not be up to date.',
-'perfcachedts'         => 'The following data is cached, and was last updated $1.',
-'querypage-no-updates' => 'Updates for this page are currently disabled.
-Data here will not presently be refreshed.',
-'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
-Function: $1<br />
-Query: $2',
 'viewsource'           => 'Vona tsalwa-tumbuluxa',
 
 # Login and logout pages
