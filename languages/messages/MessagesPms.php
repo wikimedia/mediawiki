@@ -2956,6 +2956,9 @@ J'àutr a saran scondù për default.
 
 # EXIF attributes
 'exif-compression-1' => 'Pa compress',
+'exif-compression-2' => "CCITT Group 3 codìfica ëd lunghëssa d'esecussion dl'1-Dimensional Modified Huffman",
+'exif-compression-3' => 'CCITT Group 3 codìfica fax',
+'exif-compression-4' => 'CCITT Group 4 codìfica fax',
 
 'exif-copyrighted-true'  => "Con drit d'autor",
 'exif-copyrighted-false' => 'Domini pùblich',

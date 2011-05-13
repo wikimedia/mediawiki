@@ -354,6 +354,8 @@ $1",
 'page-rss-feed'           => 'Canal RSS "$1"',
 'page-atom-feed'          => 'Canal Atom "$1"',
 'red-link-title'          => '$1 (la páxina nun esiste)',
+'sort-descending'         => 'Orde descendiente',
+'sort-ascending'          => 'Orde ascendiente',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Páxina',
@@ -575,17 +577,36 @@ Seique yá camudasti la clave temporal o que solicitasti otra nueva.",
 'resetpass-temp-password'   => 'Clave temporal:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Reaniciar contraseña',
-'passwordreset-text'         => 'Completa esti formulariu pa recibir un corréu que te recuerde los detalles de la to cuenta.',
-'passwordreset-legend'       => 'Reaniciar contraseña',
-'passwordreset-disabled'     => 'Los reanicios de contraseña tan desactivaos nesta wiki.',
-'passwordreset-pretext'      => "{{PLURAL:$1||Escribi una de les partes de los datos d'abaxo}}",
-'passwordreset-username'     => "Nome d'usuariu:",
-'passwordreset-email'        => 'Direición de corréu:',
-'passwordreset-emailtitle'   => 'Detalles de la cuenta en {{SITENAME}}',
-'passwordreset-emailelement' => "Nome d'usuariu: $1
+'passwordreset'                => 'Reaniciar contraseña',
+'passwordreset-text'           => 'Completa esti formulariu pa recibir un corréu que te recuerde los detalles de la to cuenta.',
+'passwordreset-legend'         => 'Reaniciar contraseña',
+'passwordreset-disabled'       => 'Los reanicios de contraseña tan desactivaos nesta wiki.',
+'passwordreset-pretext'        => "{{PLURAL:$1||Escribi una de les partes de los datos d'abaxo}}",
+'passwordreset-username'       => "Nome d'usuariu:",
+'passwordreset-email'          => 'Direición de corréu:',
+'passwordreset-emailtitle'     => 'Detalles de la cuenta en {{SITENAME}}',
+'passwordreset-emailtext-ip'   => "Dalguién (seique tu, dende la direición IP $1) pidió un recordatoriu cola
+información de la to cuenta de {{SITENAME}} ($4).
+{{PLURAL:$3|La siguiente cuenta d'usuariu ta asociada|Les siguientes cuentes d'usuariu tan asociaes}} con esta direición de corréu:
+
+$2
+
+{{PLURAL:$3|Esta contraseña temporal caducará|Estes contraseñes temporales caducarán}} {{PLURAL:$5|nun día|en $5 díes}}.
+Tendríes d'entrar al sistema y escoyer una contraseña nueva agora. Si esta
+solicitú ye d'otru o recordasti la contraseña orixinal y nun quies camudala,
+inora esti mensaxe y sigui emplegando la contraseña antigua.",
+'passwordreset-emailtext-user' => "L'usuariu $1 de {{SITENAME}} pidió un recordatoriu cola información de la to cuenta de {{SITENAME}} ($4).
+{{PLURAL:$3|La siguiente cuenta d'usuariu ta asociada|Les siguientes cuentes d'usuariu tan asociaes}} con esta direición de corréu:
+
+$2
+
+{{PLURAL:$3|Esta contraseña temporal caducará|Estes contraseñes temporales caducarán}} {{PLURAL:$5|nun día|en $5 díes}}.
+Tendríes d'entrar al sistema y escoyer una contraseña nueva agora. Si esta
+solicitú ye d'otru o recordasti la contraseña orixinal y nun quies camudala,
+inora esti mensaxe y sigui emplegando la contraseña antigua.",
+'passwordreset-emailelement'   => "Nome d'usuariu: $1
 Contraseña temporal: $2",
-'passwordreset-emailsent'    => "S'unvió un corréu de recordatoriu.",
+'passwordreset-emailsent'      => "S'unvió un corréu de recordatoriu.",
 
 # Edit page toolbar
 'bold_sample'     => 'Testu en negrina',
@@ -1427,7 +1448,7 @@ Mira la [[Special:NewFiles|galería d'archivos nuevos]] pa una güeyada más vis
 'filename-tooshort'           => 'El nome de ficheru ye demasiao curtiu.',
 'filetype-banned'             => 'Esta triba de ficheru ta torgada.',
 'verification-error'          => 'Esti ficheru nun pasó la comprobación de ficheros.',
-'hookaborted'                 => 'La conexón con una estensión albortó el cambéu que tentasti facer.',
+'hookaborted'                 => 'La conexón con una estensión encaboxó el cambéu que tentasti facer.',
 'illegal-filename'            => 'El nome de ficheru nun ta permitíu.',
 'overwrite'                   => 'Nun ta permitío sobroscribir un ficheru esistente.',
 'unknown-error'               => 'Hebo un error desconocíu.',
@@ -2501,7 +2522,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki
 '''Nota:''' Desactivóse la esportación del historial completu de páxines al traviés d'esti formulariu por motivos de rendimientu.",
 'export-submit'     => 'Esportar',
 'export-addcattext' => 'Añader páxines dende la categoría:',
-'export-addcat'     => 'Añader',
+'export-addcat'     => 'Amestar',
 'export-addnstext'  => 'Amestar páxines del espaciu de nomes:',
 'export-addns'      => 'Amestar',
 'export-download'   => 'Guardar como archivu',
@@ -2753,6 +2774,7 @@ Al executalu pues comprometer el to sistema.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|páxina|páxines}}',
 'file-info'              => "tamañu d'archivu: $1, triba MIME: $2",
 'file-info-size'         => "$1 × $2 píxeles, tamañu d'archivu: $3, triba MIME: $4",
+'file-info-size-pages'   => '$1 × $2 pixels, tamañu del ficheru: $3, triba MIME: $4, $5 {{PLURAL:$5|páxina|páxines}}',
 'file-nohires'           => '<small>Nun ta disponible con mayor resolución.</small>',
 'svg-long-desc'          => "archivu SVG, $1 × $2 píxeles nominales, tamañu d'archivu: $3",
 'show-big-image'         => 'Resolución completa',
@@ -2983,6 +3005,9 @@ Los demás tarán anubríos de mou predetermináu.
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimida',
+'exif-compression-2' => 'CCITT Grupu 3 codificación Huffman RLE con Modificación 1-Dimensional',
+'exif-compression-3' => 'Codificación de fax CCITT Grupu 3',
+'exif-compression-4' => 'Codificación de fax CCITT Grupu 4',
 
 'exif-copyrighted-true'  => "Con drechos d'autor",
 'exif-copyrighted-false' => 'Dominiu públicu',

@@ -2133,7 +2133,7 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 ** Efter forfatters ønske
 ** Overtrædelse af ophavsret
 ** Hærværk',
-'delete-edit-reasonlist' => 'Rediger sletningsårsagerrette',
+'delete-edit-reasonlist' => 'Rediger sletningsårsager',
 'delete-toobig'          => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}}. Sletning af sådanne sider er begrænset blevet for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
 'delete-warning-toobig'  => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}} versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
 

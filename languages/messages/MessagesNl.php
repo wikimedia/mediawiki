@@ -2568,7 +2568,7 @@ $1',
 'sp-contributions-userrights'          => 'gebruikersrechtenbeheer',
 'sp-contributions-blocked-notice'      => 'Deze gebruiker is op het moment geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
-'sp-contributions-blocked-notice-anon' => 'Dit IP-adres is geblokeerd.
+'sp-contributions-blocked-notice-anon' => 'Dit IP-adres is geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'sp-contributions-search'              => 'Zoeken naar bijdragen',
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',

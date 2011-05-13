@@ -686,8 +686,10 @@ $messages = array(
 
 # Upload
 'upload'            => 'ଫାଇଲ ଅପଲୋଡ଼ କରିବେ',
+'uploadlogpage'     => 'ଲଗ ଅପଲୋଡ କରିବେ',
 'filedesc'          => 'ସାରକଥା',
 'fileuploadsummary' => 'ସାରକଥା:',
+'uploadedimage'     => '"[[$1]]" ଅପଲୋଡ କରାଗଲା',
 
 # Special:ListFiles
 'imgfile'        => 'ଫାଇଲ',
@@ -757,6 +759,8 @@ $messages = array(
 'alphaindexline' => '$1 ରୁ $2',
 'prevpage'       => 'ଆଗ ପୃଷ୍ଠା ($1)',
 'allpagesfrom'   => 'ଏହି ନାଆଁରେ ଆରମ୍ଭ ହେଉଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଦେଖାଇବେ:',
+'allpagesto'     => 'ଏହି ନାଆଁରେ ଶେଷ ହେଉଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଦେଖାଇବେ:',
+'allarticles'    => 'ସବୁ ପୃଷ୍ଠା',
 'allpagessubmit' => 'ଯିବେ',
 
 # Special:LinkSearch
