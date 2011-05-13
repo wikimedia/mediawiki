@@ -2511,7 +2511,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'tags-edit'           => 'babak',
 
 # Special:ComparePages
-'comparepages'  => 'Tandding tutungkaran',
+'comparepages'  => 'Bandingakan tutungkaran',
 'compare-page1' => 'Tungkaran 1',
 'compare-page2' => 'Tungkaran 2',
 'compare-rev1'  => 'Ralatan 1',

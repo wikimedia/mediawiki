@@ -11,6 +11,7 @@
  * @author Bencmq
  * @author Biŋhai
  * @author Chenxiaoqino
+ * @author Chenzw
  * @author Chinalace
  * @author Fantasticfears
  * @author Franklsf95
@@ -544,6 +545,8 @@ $1',
 'page-rss-feed'           => '“$1”的RSS订阅',
 'page-atom-feed'          => '“$1”的Atom订阅',
 'red-link-title'          => '$1（尚未撰写）',
+'sort-descending'         => ' 降序排序',
+'sort-ascending'          => ' 升序排序',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '页面',

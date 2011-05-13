@@ -528,7 +528,7 @@ $messages = array(
 'protectedpage'     => 'सुरक्षित पृष्ठ',
 'jumpto'            => 'येथे जा:',
 'jumptonavigation'  => 'सुचालन',
-'jumptosearch'      => 'शोधयंत्र',
+'jumptosearch'      => 'शोध',
 'view-pool-error'   => 'माफ करा. यावेळेस सर्व्हरवर ताण आहे. अनेक सदस्य हे पान बघण्याचा प्रयत्न करीत आहेत. पुन्हा या पानावर पोचण्यासाठी थोडा वेळ थांबून परत प्रयत्‍न करा.
 $1',
 'pool-timeout'      => 'ताळ्यासाठी वाट पाहताना वेळ संपली',
@@ -775,6 +775,7 @@ $2',
 कृपया पुन्हा प्रयत्‍न करण्याआधी थांबा',
 'login-abort-generic'        => 'तुमचा प्रवेश अयशस्वी होऊन रद्द झाला.',
 'loginlanguagelabel'         => 'भाषा: $1',
+'suspicious-userlogout'      => 'तुमचे अदाखल होणे प्रतिबंधित झाले कारण असे दिसते की ते तुटलेल्या न्याहाळकाद्वारे पाठवले गेले.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'पीएचपीच्या विपत्र() पर्यायात अज्ञात चूक',
@@ -793,25 +794,32 @@ $2',
 'resetpass-no-info'         => 'या पानामध्ये थेट जाण्यासाठी तुम्हाला प्रवेश घ्यावा लागेल.',
 'resetpass-submit-loggedin' => 'परवलीचा शब्द बदला',
 'resetpass-submit-cancel'   => 'रद्द करा',
+'resetpass-wrong-oldpass'   => 'अवैध अस्थायी किंवा परवलीचा शब्द.
+कदाचित तुम्ही आधीच तो यशस्वीरीत्या बदलला असेल किंवा तात्पुरता परवलीचा शब्द मागवला असेल.',
 'resetpass-temp-password'   => 'तात्पुरता परवलीचा शब्द',
 
 # Special:PasswordReset
-'passwordreset'              => 'परवलीचा शब्द पूर्ववत करा',
-'passwordreset-text'         => 'तुमच्या खात्याच्या माहितीसंदर्भात विपत्राद्वारे अनुस्मारक येण्यासाठी हा अर्ज पूर्ण भरा.',
-'passwordreset-legend'       => 'परवलीचा शब्द पूर्ववत करा',
-'passwordreset-disabled'     => 'या विकीवर परवलीचा शब्द पुनर्स्थापित करता येत नाही.',
-'passwordreset-pretext'      => '{{PLURAL:$1||खालील माहितीच्या भागांपैकी एक भाग लिहा}}',
-'passwordreset-username'     => 'सदस्यनाव:',
-'passwordreset-email'        => 'विपत्र पत्ता',
-'passwordreset-emailtitle'   => '{{SITENAME}} वर खात्याची माहिती',
-'passwordreset-emailtext-ip' => 'कुणीतरी (कदाचित तुम्ही, अंकपत्ता $1 कडून) {{SITENAME}} करिता ’नवा परवलीचा शब्दांक पाठवावा’ अशी विनंती केली आहे ($4).
+'passwordreset'                => 'परवलीचा शब्द पूर्ववत करा',
+'passwordreset-text'           => 'तुमच्या खात्याच्या माहितीसंदर्भात विपत्राद्वारे अनुस्मारक येण्यासाठी हा अर्ज पूर्ण भरा.',
+'passwordreset-legend'         => 'परवलीचा शब्द पूर्ववत करा',
+'passwordreset-disabled'       => 'या विकीवर परवलीचा शब्द पुनर्स्थापित करता येत नाही.',
+'passwordreset-pretext'        => '{{PLURAL:$1||खालील माहितीच्या भागांपैकी एक भाग लिहा}}',
+'passwordreset-username'       => 'सदस्यनाव:',
+'passwordreset-email'          => 'विपत्र पत्ता',
+'passwordreset-emailtitle'     => '{{SITENAME}} वर खात्याची माहिती',
+'passwordreset-emailtext-ip'   => 'कुणीतरी (कदाचित तुम्ही, अंकपत्ता $1 कडून) {{SITENAME}} करिता ’नवा परवलीचा शब्दांक पाठवावा’ अशी विनंती केली आहे ($4).
 "$2" सदस्याकरिता परवलीचा शब्दांक "$3" झाला आहे.
 तुम्ही आता प्रवेश करा व तुमचा परवलीचा शब्दांक बदला. तुमचा अस्थायी शब्दांक {{PLURAL:$5|एका दिवसात|$5 दिवसांत}} संपेल.
 
 जर ही विनंती इतर कुणी केली असेल किंवा तुम्हाला तुमचा परवलीचा शब्दांक आठवला असेल आणि तुम्ही तो आता बदलू इच्छित नसाल तर, तुम्ही हा संदेश दुर्लक्षित करून जुना परवलीचा शब्दांक वापरत राहू शकता.',
-'passwordreset-emailelement' => 'सदस्यनाव: $1
+'passwordreset-emailtext-user' => 'कुणीतरी (कदाचित तुम्ही, सदस्य $1 कडून) {{SITENAME}} करिता ’नवा परवलीचा शब्दांक पाठवावा’ अशी विनंती केली आहे ($4).
+"$2" सदस्याकरिता परवलीचा शब्दांक "$3" झाला आहे.
+तुम्ही आता प्रवेश करा व तुमचा परवलीचा शब्दांक बदला. तुमचा अस्थायी शब्दांक {{PLURAL:$5|एका दिवसात|$5 दिवसांत}} संपेल.
+
+जर ही विनंती इतर कुणी केली असेल किंवा तुम्हाला तुमचा परवलीचा शब्दांक आठवला असेल आणि तुम्ही तो आता बदलू इच्छित नसाल तर, तुम्ही हा संदेश दुर्लक्षित करून जुना परवलीचा शब्दांक वापरत राहू शकता.',
+'passwordreset-emailelement'   => 'सदस्यनाव: $1
 अस्थायी परवलीचा शब्द: $2',
-'passwordreset-emailsent'    => 'आठवणीसाठी एक विपत्र पाठवण्यात आले आहे.',
+'passwordreset-emailsent'      => 'आठवणीसाठी एक विपत्र पाठवण्यात आले आहे.',
 
 # Edit page toolbar
 'bold_sample'     => 'ठळक मजकूर',
@@ -902,6 +910,8 @@ $2',
 किंवा हा लेख [{{fullurl:{{FULLPAGENAME}}|action=edit}} लिहू शकता]</span>.',
 'userpage-userdoesnotexist'        => '"$1" सदस्य खाते नोंदीकॄत नाही.कृपया हे पान तुम्ही संपादीत किंवा नव्याने तयार करू इच्छिता का या बद्दल विचार करा.',
 'userpage-userdoesnotexist-view'   => 'सदस्यखाते "$1"  हे नोंदलेले नाही.',
+'blocked-notice-logextract'        => 'हा सदस्य सध्या प्रतिबंधित आहे.
+सर्वांत नवीन प्रतिबंधन यादी खाली संदर्भासाठी दिली आहे:',
 'clearyourcache'                   => "'''सूचना:''' जतन केल्यानंतर, बदल पहाण्याकरिता तुम्हाला तुमच्या विचरकाची सय टाळायला लागू शकते. '''मोझील्ला/फायरफॉक्स /सफारी:''' ''Reload''करताना ''Shift''दाबून ठेवा किंवा ''Ctrl-Shift-R'' दाबा
 
 (ऍपल मॅक वर ''Cmd-shift-R'');'''IE:''' ''Refresh'' टिचकताना ''Ctrl'' दाबा,किंवा ''Ctrl-F5'' दाबा ; '''Konqueror:''': केवळ '''Reload''' टिचकवा,किवा ''F5'' दाबा; '''Opera'''उपयोगकर्त्यांना  ''Tools→Preferences'' मधील सय पूर्ण रिकामी करायला लागेल.",
@@ -925,6 +935,7 @@ $2',
 'token_suffix_mismatch'            => "'''तुमचे संपादन रद्द करण्यात आलेले आहे कारण तुमच्या क्लायंटनी तुमच्या संपादनातील उद्गारवाचक चिन्हांमध्ये (punctuation) बदल केलेले आहेत.
 पानातील मजकूर खराब होऊ नये यासाठी संपादन रद्द करण्यात आलेले आहे.
 असे कदाचित तुम्ही अनामिक proxy वापरत असल्याने होऊ शकते.'''",
+'edit_form_incomplete'             => '”’तुमच्या संपादनाचा काही भाग सर्व्हरपर्यंत पोचला नाही; तुमचे संपादन पूर्ण आहे का याची पुन्हा खात्री करा.',
 'editing'                          => '$1 चे संपादन होत आहे.',
 'editingsection'                   => '$1 (विभाग) संपादन',
 'editingcomment'                   => '$1 चे संपादन (प्रतिक्रिया)',
@@ -990,6 +1001,9 @@ $2',
 'post-expand-template-argument-warning'   => 'सूचना: या पानावर असा एकतरी साचा आहे जो वाढविल्यास खूप मोठा होईल.
 असे साचे वगळण्यात आलेले आहेत.',
 'post-expand-template-argument-category'  => 'अशी पाने ज्यांच्यामध्ये साचे वगळलेले आहेत',
+'parser-template-loop-warning'            => 'साचा चक्र मिळाले: [[$1]]',
+'parser-template-recursion-depth-warning' => 'साचा पुनरावर्तन खोली मर्यादा ओलांडली ($1)',
+'language-converter-depth-warning'        => 'भाषा रुपांतरण खोली मर्यादा ओलांडली ($1)',
 
 # "Undo" feature
 'undo-success' => 'संपादन परतवले जाऊ शकते.कृपया, आपण नेमके हेच करू इच्छीता हे खाली दिलेली तुलना पाहू निश्चीत करा,आणि नंतर संपादन परतवण्याचे काम पूर्ण करण्याकरिता इच्छीत बद्ल जतन करा.',
@@ -1042,28 +1056,41 @@ $3ने ''$2'' कारण दिले आहे.",
 'rev-deleted-comment'         => '(प्रतिक्रिया वगळली)',
 'rev-deleted-user'            => '(सदस्य नाव वगळले)',
 'rev-deleted-event'           => '(कार्य नोंद वगळली)',
+'rev-deleted-user-contribs'   => '[सदस्यनाव / अंकपत्ता वगळला]',
 'rev-deleted-text-permission' => "या पानाची आवृत्ती सार्वजनिक विदागारातून '''वगळण्यात आली आहे'''.
 
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} वगळल्याच्या नोंदीत]निर्देश असण्याची शक्यता आहे",
 'rev-deleted-text-unhide'     => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''वगळले गेले आहे'''.
 {{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते [$1पाहू शकता]; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
-'rev-suppressed-text-unhide'  => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''दाबले गेले आहे'''.
+'rev-suppressed-text-unhide'  => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''लपवले गेले आहे'''.
 {{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते [$1पाहू शकता]; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
 'rev-deleted-text-view'       => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''वगळण्यात आले आहे'''.
+{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
+'rev-suppressed-text-view'    => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''लपवण्यात आले आहे'''.
 {{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
 'rev-deleted-no-diff'         => "या पानाची आवृत्ती '''वगळण्यात आली आहे'''.
 
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} वगळल्याच्या नोंदीत]निर्देश असण्याची शक्यता आहे",
+'rev-suppressed-no-diff'      => 'तुम्ही हा फरक पाहू शकत नाही कारण या आवृत्त्यांमधील एक आवृती ”’वगळण्यात आली आहे.”’',
 'rev-deleted-unhide-diff'     => "पानाचे हे आवर्तन '''वगळले गेले आहे'''.
 {{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते [$1पाहू शकता]; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
+'rev-suppressed-unhide-diff'  => "पानाचे हे आवर्तन '''लपवले गेले आहे'''.
+{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते [$1पाहू शकता]; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
+'rev-deleted-diff-view'       => "पानाचे हे आवर्तन'''वगळण्यात आले आहे'''.
+{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
+'rev-suppressed-diff-view'    => "या फरकातील एक आवर्तन '''लपवण्यात आले आहे'''.
+{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
 'rev-delundel'                => 'दाखवा/लपवा',
 'rev-showdeleted'             => 'दाखवा',
 'revisiondelete'              => 'आवर्तने वगळा/पुनर्स्थापित करा',
 'revdelete-nooldid-title'     => 'अपेक्षीत आवृत्ती दिलेली नाही',
 'revdelete-nooldid-text'      => '!!आपण ही कृती करावयाची आवर्तने सूचीत केलेली नाहीत, दिलेले आवर्तन अस्तित्वात नाही, किंवा तुम्ही सध्याचे आवर्तन लपविण्याचा प्रयत्न करीत आहात.',
 'revdelete-nologtype-title'   => 'कोणताही यादीप्रकार दिलेला नाही',
+'revdelete-nologtype-text'    => 'ही क्रिया करण्यासाठी तुम्ही यादीप्रकार निवडला नाही.',
 'revdelete-nologid-title'     => 'अवैध यादी प्रविष्टी',
+'revdelete-nologid-text'      => 'तुम्ही हे कार्य होण्यासाठी निश्चित यादी प्रसंग निवडला नाही किंवा दिलेली प्रविष्टी अस्तित्वात नाही.',
 'revdelete-no-file'           => 'दर्शिवलेली संचिका अस्तित्वात नाही.',
+'revdelete-show-file-confirm' => 'तुम्ही "<nowiki>$1</nowiki>" या संचिकेचे $2 येथून $3 वेळी असलेले आवर्तन नक्की पहाणार आहात?',
 'revdelete-show-file-submit'  => 'होय',
 'revdelete-selected'          => "'''[[:$1]] {{PLURAL:$2|चे निवडलेले आवर्तन|ची निवडलेली आवर्तने}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|निवडलेली नोंदीकृत घटना|निवडलेल्या नोंदीकृत घटना}}:'''",
@@ -1087,6 +1114,8 @@ $3ने ''$2'' कारण दिले आहे.",
 'revdelete-logentry'          => '[[$1]]ची आवर्तन सदृश्यता बदलली.',
 'logdelete-logentry'          => '[[$1]]ची घटना सदृश्यता बदलली.',
 'revdelete-success'           => "'''आवर्तनांची दृश्यता यशस्वी पणे लाविली.'''",
+'revdelete-failure'           => "'''आवर्तन दृश्यता अद्ययावत करता येत नाही:'''
+$1",
 'logdelete-success'           => "'''घटनांची दृश्यता यशस्वी पणे लाविली.'''",
 'revdel-restore'              => 'दृश्यता बदला',
 'revdel-restore-deleted'      => 'वगळलेल्या आवृत्त्या',
@@ -1102,6 +1131,8 @@ $3ने ''$2'' कारण दिले आहे.",
 'revdelete-unhid'             => 'अनहिड $1',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|आवॄत्ती|आवृत्त्यां}}साठी $1',
 'logdelete-log-message'       => '$2 {{PLURAL:$2|घटने|घटनां}}साठी $1',
+'revdelete-hide-current'      => '$1 मधील $2 या वेळचे आवर्तन लपवता येत नाही, : ते सद्य पुनरावर्तन आहे.
+ते लपवता येत नाही.',
 'revdelete-otherreason'       => 'इतर / आणखी कारण:',
 'revdelete-reasonotherlist'   => 'इतर कारणे',
 'revdelete-edit-reasonlist'   => 'वगळण्याची कारणे संपादीत करा',
@@ -1185,6 +1216,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'searchprofile-everything-tooltip' => 'सर्व पाने शोधा (चर्चापानांसहित)',
 'searchprofile-advanced-tooltip'   => 'निवडलेल्या नामविश्वांमध्ये शोधा:',
 'search-result-size'               => '$1 ({{PLURAL:$2|१ शब्द|$2 शब्द}})',
+'search-result-category-size'      => '{{PLURAL:$1|१ सदस्य|$1 सदस्य}} ({{PLURAL:$2|१ उपवर्ग|$2 उपउपवर्ग}}, {{PLURAL:$3|1 संचिका|$3 संचिका}})',
 'search-result-score'              => 'जुळणी: $1%',
 'search-redirect'                  => '(पुनर्निर्देशन $1)',
 'search-section'                   => '(विभाग $1)',
@@ -1265,6 +1297,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'timezonelegend'                => 'वेळक्षेत्र',
 'localtime'                     => 'स्थानिक वेळ:',
 'timezoneuseserverdefault'      => 'सर्व्हर मूलस्थिती वापरा',
+'timezoneuseoffset'             => 'इतर (वेळेतील अंतर लिहा)',
 'timezoneoffset'                => 'समासफरक¹:',
 'servertime'                    => 'विदागारदात्याची वेळ',
 'guesstimezone'                 => 'विचरकातून भरा',
@@ -1459,6 +1492,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'action-deletedhistory'       => 'या पानाचा वगळलेला इतिहास पहा',
 'action-browsearchive'        => 'वगळलेली पाने शोधा',
 'action-undelete'             => 'वगळ्लेले पृष्ठ पुन्हा आणा',
+'action-suppressrevision'     => 'लपलेले पुनरावर्तन पहा व सद्यस्थितीत आणा',
 'action-suppressionlog'       => 'ही खासगी यादी पहा',
 'action-block'                => 'या सदस्यास संपादन करण्यापासून प्रतिबंधित करा',
 'action-protect'              => 'या पानाशाठी सुरक्षापातळी बदला',
@@ -1590,6 +1624,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'uploadedimage'               => '"[[$1]]" ही संचिका चढवली',
 'overwroteimage'              => '"[[$1]]" या संचिकेची नवीन आवृत्ती चढविली.',
 'uploaddisabled'              => 'संचिका चढविण्यास बंदी घालण्यात आलेली आहे.',
+'copyuploaddisabled'          => 'आंतरजालपत्त्याद्वारे चढवणे प्रतिबंधित आहे.',
 'uploadfromurl-queued'        => 'तुमचे चढवणे नोंदवण्यात आले आहे',
 'uploaddisabledtext'          => '{{SITENAME}} वर संचिका चढविण्यास बंदी घालण्यात आलेली आहे.',
 'uploadscripted'              => 'या संचिकेत HTML किंवा स्क्रिप्ट कोडचा आंतर्भाव आहे, त्याचा एखाद्या विचरकाकडून विचीत्र अर्थ लावला जाऊ शकतो.',
@@ -1628,15 +1663,23 @@ $3ने ''$2'' कारण दिले आहे.",
 
 # Special:UploadStash
 'uploadstash'         => 'चढवणे लपवा',
+'uploadstash-clear'   => 'लपवलेल्या संचिका काढा',
 'uploadstash-nofiles' => 'तुमच्याकडे लपवलेल्या संचिका नाहीत.',
 
 # img_auth script messages
-'img-auth-nofile'    => '"$1" ही संचिका अस्तित्वात नाही.',
-'img-auth-streaming' => 'स्ट्रीमिंग "$1".',
-'img-auth-noread'    => 'तुम्हाला "$1" वाचण्याची परवानगी नाही',
+'img-auth-accessdenied' => 'परवानगी नाही',
+'img-auth-nopathinfo'   => 'PATH_INFO आढळले नाही.
+आपला सर्व्हर ही माहिती पोचवू शकत नाही.
+तो सीजीआय-आधारित व img_auth ला समर्थन न देऊ शकणारा असू शकतो.
+http://www.mediawiki.org/wiki/Manual:Image_Authorization पहा.',
+'img-auth-badtitle'     => '"$1" पासून वैध शीर्षक बनवण्यात अयशस्वी.',
+'img-auth-nofile'       => '"$1" ही संचिका अस्तित्वात नाही.',
+'img-auth-streaming'    => 'स्ट्रीमिंग "$1".',
+'img-auth-noread'       => 'तुम्हाला "$1" वाचण्याची परवानगी नाही',
 
 # HTTP errors
 'http-invalid-url'      => 'अवैध आंतरजालपत्ता: $1',
+'http-read-error'       => 'एचटीटीपी वाचन त्रुटी.',
 'http-host-unreachable' => 'आंतरजाल पत्त्यापाशी पोहोचले नाही',
 'http-bad-status'       => 'एचटीटीपी मागणीदरम्यान एक चूक उद्भवली: $1 $2',
 
@@ -1919,6 +1962,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 # Special:ActiveUsers
 'activeusers'            => 'कार्यरत सदस्यांची यादी',
 'activeusers-count'      => 'शेवटच्या {{PLURAL:$3|दिवसात|$3 दिवसांत}} $1 {{PLURAL:$1|संपादन|संपादने}}',
+'activeusers-from'       => 'पुढील शब्दापासुन सुरू होणारे सदस्य दाखवा:',
 'activeusers-hidebots'   => 'सांगकामे लपवा',
 'activeusers-hidesysops' => 'प्रचालक लपवा',
 'activeusers-noresult'   => 'एकही सदस्य सापडला नाही.',
@@ -2213,18 +2257,22 @@ $1',
 'month'               => 'या महिन्यापासून (आणि पूर्वीचे):',
 'year'                => 'या वर्षापासून (आणि पूर्वीचे):',
 
-'sp-contributions-newbies'       => 'केवळ नवीन सदस्य खात्यांचे योगदान दाखवा',
-'sp-contributions-newbies-sub'   => 'नवशिक्यांसाठी',
-'sp-contributions-newbies-title' => 'नवीन खात्यांसाठी सदस्य योगदान',
-'sp-contributions-blocklog'      => 'ब्लॉक यादी',
-'sp-contributions-deleted'       => 'वगळलेली सदस्य संपादने',
-'sp-contributions-uploads'       => 'चढवलेल्या संचिका',
-'sp-contributions-logs'          => 'नोंदी',
-'sp-contributions-talk'          => 'चर्चा',
-'sp-contributions-userrights'    => 'सदस्य अधिकार व्यवस्थापन',
-'sp-contributions-search'        => 'योगदान शोधयंत्र',
-'sp-contributions-username'      => 'आंतरजाल अंकपत्ता किंवा सदस्यनाम:',
-'sp-contributions-submit'        => 'शोध',
+'sp-contributions-newbies'             => 'केवळ नवीन सदस्य खात्यांचे योगदान दाखवा',
+'sp-contributions-newbies-sub'         => 'नवशिक्यांसाठी',
+'sp-contributions-newbies-title'       => 'नवीन खात्यांसाठी सदस्य योगदान',
+'sp-contributions-blocklog'            => 'ब्लॉक यादी',
+'sp-contributions-deleted'             => 'वगळलेली सदस्य संपादने',
+'sp-contributions-uploads'             => 'चढवलेल्या संचिका',
+'sp-contributions-logs'                => 'नोंदी',
+'sp-contributions-talk'                => 'चर्चा',
+'sp-contributions-userrights'          => 'सदस्य अधिकार व्यवस्थापन',
+'sp-contributions-blocked-notice'      => 'हा सदस्य सध्या प्रतिबंधित आहे.
+सर्वांत नवीन प्रतिबंधन यादी खाली संदर्भासाठी दिली आहे:',
+'sp-contributions-blocked-notice-anon' => 'हा अंकपत्ता सध्या प्रतिबंधित आहे.
+सर्वांत नवीन प्रतिबंधन यादी खाली संदर्भासाठी दिली आहे:',
+'sp-contributions-search'              => 'योगदान शोधयंत्र',
+'sp-contributions-username'            => 'आंतरजाल अंकपत्ता किंवा सदस्यनाम:',
+'sp-contributions-submit'              => 'शोध',
 
 # What links here
 'whatlinkshere'            => 'येथे काय जोडले आहे',
@@ -2837,7 +2885,9 @@ $1',
 'exif-cameraownername'             => 'छायाचित्रकाचा मालक',
 'exif-copyrighted'                 => 'प्रताधिकार स्थिती',
 'exif-copyrightowner'              => 'प्रताधिकार धारक',
+'exif-pngfilecomment'              => 'पीएनजी संचिका टिप्पणी',
 'exif-disclaimer'                  => 'परवाना',
+'exif-giffilecomment'              => 'जीआयएफ संचिका टिप्पणी',
 
 # EXIF attributes
 'exif-compression-1' => 'अनाकुंचीत',
@@ -3210,9 +3260,11 @@ $1',
 'blankpage' => 'रिकामे पान',
 
 # Special:Tags
-'tag-filter-submit' => 'गाळक',
-'tags-edit'         => 'संपादन करा',
-'tags-hitcount'     => '$1 {{PLURAL:$1|बदल|बदल}}',
+'tag-filter-submit'       => 'गाळक',
+'tags-description-header' => 'अर्थाची पूर्ण माहिती',
+'tags-hitcount-header'    => 'खुणा केलेले बदल',
+'tags-edit'               => 'संपादन करा',
+'tags-hitcount'           => '$1 {{PLURAL:$1|बदल|बदल}}',
 
 # Special:ComparePages
 'comparepages'     => 'पानांची तुलना करा',

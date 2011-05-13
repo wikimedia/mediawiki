@@ -119,6 +119,7 @@ $messages = array(
 
 'badaccess'        => 'Xihoxo hita mpfumelelo',
 'badaccess-group0' => 'U hava mpumelelo wo endla xikombelo lexi.',
+
 'ok'                      => 'Hiswona',
 'retrievedfrom'           => 'ku suka e "$1"',
 'youhavenewmessages'      => 'U na $1 ($2).',
@@ -158,10 +159,10 @@ $messages = array(
 Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error'                => 'Xihoxo',
-'databaseerror'        => 'Xihoxo xo Database',
-'internalerror'        => 'Xihoxo xa le ndzeni',
-'viewsource'           => 'Vona tsalwa-tumbuluxa',
+'error'         => 'Xihoxo',
+'databaseerror' => 'Xihoxo xo Database',
+'internalerror' => 'Xihoxo xa le ndzeni',
+'viewsource'    => 'Vona tsalwa-tumbuluxa',
 
 # Login and logout pages
 'yourpassword'            => 'Vito-mpfungulo:',

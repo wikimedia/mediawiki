@@ -3051,13 +3051,17 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-urgency'                     => 'Utqana',
 'exif-fixtureidentifier'           => 'Takya kaqpa sutin',
 'exif-locationdest'                => 'Rikuchisqa tiyay, maypim kan',
+'exif-locationdestcode'            => 'Rikuchisqa tiyaypaq tuyrun',
 'exif-objectcycle'                 => "P'unchawpi mayqin pachapaq kay rikch'a",
 'exif-contact'                     => 'Ruraqwan willanakunapaq',
 'exif-writer'                      => 'Qillqaq',
 'exif-languagecode'                => 'Rimay',
+'exif-iimversion'                  => 'IIM musuqchasqa',
 'exif-iimcategory'                 => 'Katiguriya',
+'exif-iimsupplementalcategory'     => 'Yapana katiguriyakuna',
 'exif-datetimeexpires'             => "Ama llamk'achiychu kaymanta qhipaq pacha",
 'exif-datetimereleased'            => 'Kacharisqa',
+'exif-originaltransmissionref'     => 'Qallariy karpana tiyay tuyru',
 'exif-identifier'                  => 'Kikinchaq',
 'exif-lens'                        => "Llamk'achisqa linti",
 'exif-serialnumber'                => "Rikch'a hap'inap sinri huchhan",
@@ -3066,9 +3070,14 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-datetimemetadata'            => "Hayk'ap metadata qhipaqta hukchasqa karqan",
 'exif-nickname'                    => "Rikch'ap chutu sutin",
 'exif-rating'                      => 'Chaninchay (pichqamanta)',
+'exif-rightscertificate'           => 'Hayñi kamachina illu',
 'exif-copyrighted'                 => 'Ima hina iskaychay hayñiyuq',
 'exif-copyrightowner'              => "Ruraqpa hayñinkunata hap'iq",
 'exif-usageterms'                  => "Llamk'achina phatakuna",
+'exif-webstatement'                => 'Llikapi iskaychay hayñi willay',
+'exif-originaldocumentid'          => 'Qallariy qillqarimap sapaqlla kikinchakuynin',
+'exif-licenseurl'                  => 'Iskaychay hayñi saqillaypaq URL',
+'exif-morepermissionsurl'          => 'Wakin kaq saqillay willay',
 'exif-attributionurl'              => "Kayta musuqmanta llamk'achispa kayman t'inkimuy:",
 'exif-preferredattributionname'    => "Kayta musuqmanta llamk'achispa kaymanta willay:",
 'exif-pngfilecomment'              => 'PNG willañiqi rimapuy',
@@ -3086,6 +3095,9 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 
 # EXIF attributes
 'exif-compression-1' => "Mana mat'isqa",
+'exif-compression-2' => 'CCITT Huñu 3 1-tupu wakinchasqa Huffman purina suni llawiy',
+'exif-compression-3' => 'CCITT Huñu 3 tilifaks llawiy',
+'exif-compression-4' => 'CCITT Huñu 4 tilifaks llawiy',
 
 'exif-copyrighted-true'  => 'Iskaychay hayñi kan',
 'exif-copyrighted-false' => 'Sapsi kapuy',
@@ -3103,6 +3115,8 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 
 'exif-planarconfiguration-1' => 'muyuqhawa chanta',
 'exif-planarconfiguration-2' => "p'allta chanta",
+
+'exif-colorspace-65535' => 'Mana kaliwrasqa',
 
 'exif-componentsconfiguration-0' => 'manam kachkanchu',
 
@@ -3166,6 +3180,8 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-sensingmethod-5' => 'Qatiqlla llimphi suyu musyachiq',
 'exif-sensingmethod-7' => "Kimsantin siq'i musyachiq",
 'exif-sensingmethod-8' => "Qatiqlla siq'i llimphi musyachiq",
+
+'exif-filesource-3' => "Ruk'aqta sayaq rikch'a hap'ina",
 
 'exif-scenetype-1' => "Chiqalla hap'isqa rikcha",
 
@@ -3250,8 +3266,10 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-gpsdirection-m' => 'Maqnitiku puririy',
 
 'exif-ycbcrpositioning-1' => 'Chawpichasqa',
+'exif-ycbcrpositioning-2' => 'Kuska saywachasqa',
 
 'exif-dc-contributor' => "Llamk'apuqkuna",
+'exif-dc-coverage'    => "Maykamapas hayk'apkamapas midya haywakun",
 'exif-dc-date'        => "P'unchaw(kuna)",
 'exif-dc-publisher'   => 'Uyaychaq',
 'exif-dc-relation'    => 'Ninachisqa midyakuna',

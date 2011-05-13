@@ -1743,9 +1743,9 @@ $1
 	'config-license' => 'Авторски права и лиценз:',
 	'config-license-none' => 'Без лиценз',
 	'config-license-cc-by-sa' => 'Криейтив Комънс Признание-Споделяне на споделеното',
+	'config-license-cc-by' => 'Криейтив Комънс Признание',
 	'config-license-cc-by-nc-sa' => 'Криейтив Комънс Признание-Некомерсиално-Споделяне на споделеното',
-	'config-license-gfdl-old' => 'Лиценз за свободна документация на GNU 1.2',
-	'config-license-gfdl-current' => 'Лиценз за свободна документация на GNU 1.3 или по-нов',
+	'config-license-gfdl' => 'Лиценз за свободна документация на GNU 1.3 или по-нов',
 	'config-license-pd' => 'Обществено достояние',
 	'config-license-cc-choose' => 'Избиране на друг лиценз от Криейтив Комънс',
 	'config-license-help' => "Много публични уикита поставят всички приноси под [http://freedomdefined.org/Definition/Bg свободен лиценз].
@@ -3579,7 +3579,11 @@ Cependant, MediaWiki requiert PHP $2 ou plus haut.',
 Si vous utilisez un site web très fréquenté, vous devriez lire ceci : [http://www.mediawiki.org/wiki/Unicode_normalization_considerations ''Unicode normalization''] (en anglais).",
 	'config-unicode-update-warning' => "'''Attention''': La version installée du ''wrapper'' de normalisation Unicode utilise une vieille version de la [http://site.icu-project.org/ bibliothèque logicielle ''ICU Project''].
 Vous devriez faire une [http://www.mediawiki.org/wiki/Unicode_normalization_considerations mise à jour] (texte en anglais) si l'usage d'Unicode vous semble important.",
-	'config-no-db' => 'Impossible de trouver un pilote de base de données approprié !',
+	'config-no-db' => "Impossible de trouver un pilote de base de données approprié ! Vous devez installer un pilote pour PHP. Ces types de bases de données sont reconnus : $1.
+
+Si vous êtes sur un site partagé, demandez à votre hébergeur d'installer un pilote de base de données approprié. Si vous avez compilé PHP, le configurer avec client de base de données activé, par exemple en insérant la directive <code>./configure --with-mysql</code>.
+
+Si vous avez installé PHP d'une distribution Debian ou Ubuntu, vous devez aussi installer le module <code>php5-mysql</code>.",
 	'config-no-fts3' => "'''Attention :''' SQLite est compilé sans le module [http://sqlite.org/fts3.html FTS3] ; les fonctions de recherche ne seront pas disponibles sur ce moteur.",
 	'config-register-globals' => "'''Attention : l'option <code>[http://php.net/register_globals register_globals]</code> de PHP est activée.'''
 '''Désactivez-la si vous le pouvez.'''
@@ -3632,6 +3636,7 @@ Installation interrompue.',
 	'config-using531' => 'MediaWiki ne peut pas être utilisé avec PHP $1 à cause d’un bogue affectant les paramètres passés par référence à <code>__call()</code>.
 Veuillez mettre à jour votre système vers PHP 5.3.2 ou plus récent ou revenir à PHP 5.3.0 pour résoudre ce problème.
 Installation interrompue.',
+	'config-suhosin-max-value-length' => 'Suhosin est installé et limite la longueur du paramètre GET à $1 octets. Le <code>ResourceLoader</code> de MediaWiki va répondre en respectant cette limite, mais ses performances seront dégradées. Si possible, vous devriez définir <code>suhosin.get.max_value_length</code> à 1024 ou plus dans le fichier <code>php.ini</code>, et fixer <code>$wgResourceLoaderMaxQueryLength</code> à la même valeur dans <code>LocalSettings.php</code>.',
 	'config-db-type' => 'Type de base de données :',
 	'config-db-host' => 'Nom d’hôte de la base de données :',
 	'config-db-host-help' => "Si votre serveur de base de données est sur un serveur différent, saisissez ici son nom d’hôte ou son adresse IP.
@@ -3860,8 +3865,10 @@ Des configurations de droits d’utilisateurs plus complexes sont disponibles ap
 	'config-license' => "Droits d'auteur et licence :",
 	'config-license-none' => 'Aucune licence en bas de page',
 	'config-license-cc-by-sa' => "Creative Commons attribution partage à l'identique",
+	'config-license-cc-by' => 'Creative Commons Attribution',
 	'config-license-cc-by-nc-sa' => "Creative Commons attribution non commercial partage à l'identique",
-	'config-license-cc-0' => 'Creative Commons Zero',
+	'config-license-cc-0' => 'Creative Commons Zero (domaine public)',
+	'config-license-gfdl' => 'GNU Free Documentation License 1.3 ou ultérieure',
 	'config-license-pd' => 'Domaine public',
 	'config-license-cc-choose' => 'Sélectionner une licence Creative Commons personnalisée',
 	'config-license-help' => "Beaucoup de wikis publics mettent l'ensemble des contributions sous [http://freedomdefined.org/Definition/Fr licence libre].
@@ -5797,8 +5804,10 @@ Telepítés után jóval összetettebb jogosultságrendszer állítható össze,
 	'config-license' => 'Szerzői jog és licenc:',
 	'config-license-none' => 'Nincs licencjelzés',
 	'config-license-cc-by-sa' => 'Creative Commons Nevezd meg! - Így add tovább!',
+	'config-license-cc-by' => 'Creative Commons Nevezd meg!',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Nevezd meg! - Ne add el! - Így add tovább!',
-	'config-license-cc-0' => 'Creative Commons Zero',
+	'config-license-cc-0' => 'Creative Commons Zero (közkincs)',
+	'config-license-gfdl' => 'GNU Szabad Dokumentációs Licenc 1.3 vagy újabb',
 	'config-license-pd' => 'Közkincs',
 	'config-license-cc-choose' => 'Creative Commons-licenc választása',
 	'config-license-help' => "A legtöbb wiki valamilyen [http://freedomdefined.org/Definition szabad licenc] alatt teszi közzé a szerkesztéseit.
@@ -6816,8 +6825,10 @@ Konfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [
 	'config-license' => 'Hak cipta dan lisensi:',
 	'config-license-none' => 'Tidak ada lisensi',
 	'config-license-cc-by-sa' => 'Creative Commons Atribusi Berbagi Serupa',
+	'config-license-cc-by' => 'Creative Commons Atribusi',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Atribusi Non-Komersial Berbagi Serupa',
-	'config-license-cc-0' => 'Creative Commons Zero',
+	'config-license-cc-0' => 'Creative Commons Zero (Domain Publik)',
+	'config-license-gfdl' => 'Lisensi Dokumentasi Bebas GNU 1.3 atau versi terbaru',
 	'config-license-pd' => 'Domain Umum',
 	'config-license-cc-choose' => 'Pilih lisensi Creative Commons kustom',
 	'config-license-help' => "Banyak wiki publik melisensikan semua kontribusi di bawah [http://freedomdefined.org/Definition lisensi bebas]. 
@@ -6958,7 +6969,23 @@ $messages['ig'] = array(
  * @author Beta16
  */
 $messages['it'] = array(
+	'config-desc' => 'Il programma di installazione per MediaWiki',
+	'config-title' => 'Installazione MediaWiki $1',
 	'config-information' => 'Informazioni',
+	'config-localsettings-upgrade' => 'È stato rilevato un file <code>LocalSettings.php</code>.
+Per aggiornare questa installazione, si prega di inserire il valore di <code>$wgUpgradeKey</code> nella casella qui sotto.
+Lo potete trovare in LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'È stato rilevato un file LocalSettings.php.
+Per aggiornare questa installazione, eseguire update.php',
+	'config-localsettings-key' => 'Chiave di aggiornamento:',
+	'config-localsettings-badkey' => 'La chiave che hai fornito non è corretta.',
+	'config-upgrade-key-missing' => "È stata rilevata un'installazione esistente di MediaWiki.
+Per aggiornare questa installazione, si prega di inserire la seguente riga nella parte inferiore del tuo LocalSettings.php:
+
+$1",
+	'config-localsettings-incomplete' => 'Il file LocalSettings.php esistente sembra essere incompleto.
+La variabile $1 non è impostata.
+Cambia LocalSettings.php in modo che questa variabile sia impostata e fai clic su "Continua".',
 	'config-back' => '← Indietro',
 	'config-continue' => 'Continua →',
 	'config-page-language' => 'Lingua',
@@ -11112,8 +11139,10 @@ Após a instalação, estarão disponíveis mais configurações de privilégios
 	'config-license' => 'Direitos de autor e licença:',
 	'config-license-none' => 'Sem rodapé com a licença',
 	'config-license-cc-by-sa' => 'Creative Commons - Atribuição - Partilha nos Mesmos Termos',
+	'config-license-cc-by' => 'Creative Commons - Atribuição',
 	'config-license-cc-by-nc-sa' => 'Creative Commons - Atribuição - Uso Não Comercial - Partilha nos Mesmos Termos',
-	'config-license-cc-0' => 'Creative Commons Zero',
+	'config-license-cc-0' => 'Creative Commons Zero (Domínio Público)',
+	'config-license-gfdl' => 'GNU Free Documentation License 1.3 ou posterior',
 	'config-license-pd' => 'Domínio Público',
 	'config-license-cc-choose' => 'Seleccione uma licença personalizada da Creative Commons',
 	'config-license-help' => 'Muitas wikis de acesso público licenciam todas as colaborações com uma [http://freedomdefined.org/Definition licença livre].
@@ -12053,8 +12082,9 @@ Sedaj lahko preskočite preostalo konfiguriranje in zdaj namestite wiki.',
 	'config-license' => 'Avtorske pravice in dovoljenje:',
 	'config-license-none' => 'Brez noge dovoljenja',
 	'config-license-cc-by-sa' => 'Creative Commons Priznanje avtorstva-Deljenje pod enakimi pogoji',
+	'config-license-cc-by' => 'Creative Commons Priznanje avtorstva',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Priznanje avtorstva-Nekomercialno-Deljenje pod enakimi pogoji',
-	'config-license-cc-0' => 'Creative Commons Zero',
+	'config-license-cc-0' => 'Creative Commons Zero (javna last)',
 	'config-license-pd' => 'Javna last',
 	'config-license-cc-choose' => 'Izberite dovoljenje Creative Commons po meri',
 	'config-email-settings' => 'Nastavitve e-pošte',

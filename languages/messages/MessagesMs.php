@@ -1555,7 +1555,7 @@ Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan s
 'filename-tooshort'           => 'Nama fail ini terlalu pendek.',
 'filetype-banned'             => 'Fail jenis ini adalah dilarang.',
 'verification-error'          => 'Fail ini tidak lulus pengesahan fail.',
-'hookaborted'                 => 'Pengubahsuaian yang anda buat telah disekat oleh sebuah cangkuk penyambung.',
+'hookaborted'                 => 'Pengubahsuaian yang anda buat telah disekat oleh sebuah cangkuk sambungan.',
 'illegal-filename'            => 'Nama fail tidak dibenarkan.',
 'overwrite'                   => 'Menulis ganti fail yang telah wujud adalah tidak dibenarkan.',
 'unknown-error'               => 'Berlaku ralat yang tidak diketahui.',

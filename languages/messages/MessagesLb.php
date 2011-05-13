@@ -2984,6 +2984,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-worldregioncreated'          => "Welt-Regioun an där d'Bild gemaach gouf",
 'exif-countrycreated'              => "Land an deem d'Bild gemaach gouf",
 'exif-countrycodecreated'          => "Code fir d'Land an deem d'Bild gemaach gouf",
+'exif-provinceorstatecreated'      => "Provënz oder Staat an deem d'Bild gemaach gouf",
 'exif-citycreated'                 => "Stad an där d'Bild gemaach gouf",
 'exif-sublocationcreated'          => "Deel vun der Stad an deem d'Bild gemaach gouf",
 'exif-worldregiondest'             => 'Gewise Welt-Regioun',
@@ -3016,6 +3017,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
 'exif-licenseurl'                  => 'URL vum Copyright (Lizenz)',
 'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
+'exif-contentwarning'              => 'Warnung iwwer den Inhalt',
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
 'exif-subjectnewscode'             => 'Code vum Sujet',
 'exif-organisationinimage'         => 'Organisatioun um Bild',
@@ -3191,9 +3193,10 @@ Déi aner sinn am Standard verstoppt.
 
 'exif-ycbcrpositioning-1' => 'Zentréiert',
 
-'exif-dc-date'   => 'Datum(en)',
-'exif-dc-rights' => 'Rechter',
-'exif-dc-type'   => 'Medientyp',
+'exif-dc-date'      => 'Datum(en)',
+'exif-dc-publisher' => 'Editeur',
+'exif-dc-rights'    => 'Rechter',
+'exif-dc-type'      => 'Medientyp',
 
 'exif-rating-rejected' => 'Refuséiert',
 

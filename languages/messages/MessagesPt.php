@@ -2150,7 +2150,7 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'listusersfrom'      => 'Mostrar utilizadores começando por:',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'Não foram encontrados utilizadores.',
-'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
+'listusers-blocked'  => '(bloqueado)',
 
 # Special:ActiveUsers
 'activeusers'            => 'Utilizadores activos',
@@ -2960,7 +2960,7 @@ Permite colocar uma justificação no resumo da edição.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizador anónimo|Utilizadores anónimos}} da {{SITENAME}}',
-'siteuser'         => '{{GENDER:$2|um utilizador|uma utilizadora|um utilizador}} da {{SITENAME}} ($1)',
+'siteuser'         => '$1 da {{SITENAME}}',
 'anonuser'         => 'utilizador anónimo $1 da {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.',
 'othercontribs'    => 'Baseado no trabalho de $1.',
@@ -3040,6 +3040,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'              => 'tamanho: $1, tipo MIME: $2',
 'file-info-size'         => '$1 × $2 pixels, tamanho: $3, tipo MIME: $4',
+'file-info-size-pages'   => '$1 × $2 pixels, tamanho do ficheiro: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',
 'file-nohires'           => '<small>Sem resolução maior disponível.</small>',
 'svg-long-desc'          => 'ficheiro SVG, de $1 × $2 pixels, tamanho: $3',
 'show-big-image'         => 'Resolução completa',
@@ -3259,7 +3260,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-preferredattributionname'    => 'Ao reutilizar esta obra, faça a atribuição a',
 'exif-pngfilecomment'              => 'Comentário de ficheiro PNG',
 'exif-disclaimer'                  => 'Exoneração de responsabilidade',
-'exif-contentwarning'              => 'Aviso cobre o conteúdo',
+'exif-contentwarning'              => 'Aviso sobre o conteúdo',
 'exif-giffilecomment'              => 'Comentário de ficheiro GIF',
 'exif-intellectualgenre'           => 'Género de conteúdo',
 'exif-subjectnewscode'             => 'Código do tema',
@@ -3272,6 +3273,9 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 
 # EXIF attributes
 'exif-compression-1' => 'Descomprimido',
+'exif-compression-2' => 'CCITT Grupo 3 1-D Codificação Unidimensional Huffman Modificado e Run Length Encoding',
+'exif-compression-3' => 'CCITT Grupo 3 codificação de fax',
+'exif-compression-4' => 'CCITT Grupo 4 codificação de fax',
 
 'exif-copyrighted-true'  => 'Direitos de autor reservados',
 'exif-copyrighted-false' => 'Domínio público',
@@ -3526,7 +3530,7 @@ a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar às $7 de $6.',
+Este código de confirmação expira a $4.',
 'confirmemail_body_changed' => 'Alguém, provavelmente você a partir do endereço IP $1,
 alterou o endereço de correio electrónico da conta "$2" para este na {{SITENAME}}.
 
@@ -3541,7 +3545,7 @@ para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar às $7 de $6.',
+Este código de confirmação expira a $4.',
 'confirmemail_body_set'     => 'Alguém, provavelmente você a partir do endereço IP $1,
 definiu o seu endereço de correio electrónico como correio da conta "$2" na {{SITENAME}}.
 
@@ -3556,7 +3560,7 @@ para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar às $7 de $6.',
+Este código de confirmação expira a $4.',
 'confirmemail_invalidated'  => 'Confirmação de endereço de correio electrónico cancelada',
 'invalidateemail'           => 'Cancelar confirmação de correio electrónico',
 
