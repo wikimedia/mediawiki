@@ -90,6 +90,34 @@ class DatabaseTest extends MediaWikiTestCase {
 			$sql );
 	}
 
+	function testMakeNotInList() {
+		$this->assertEquals(
+			$this->db->makeList( array(
+				'field' => array( 0, 1 )
+			) ),
+			"field IN ('0','1')"
+		);
+		$this->assertEquals(
+			$this->db->makeList( array(
+				'field!' => array( 0, 1 )
+			) ),
+			"field NOT IN ('0','1')"
+		);
+
+		// make sure an array with only one value use = or !=
+		$this->assertEquals(
+			$this->db->makeList( array(
+				'field' => array( 777 )
+			) ),
+			"field = 777"
+		);
+		$this->assertEquals(
+			$this->db->makeList( array(
+				'field!' => array( 888 )
+			) ),
+			"field != 888"
+		);
+	}
 }
 
 
