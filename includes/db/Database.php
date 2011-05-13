@@ -1382,6 +1382,13 @@ abstract class DatabaseBase implements DatabaseType {
 	 *        LIST_SET           - comma separated with field names, like a SET clause
 	 *        LIST_NAMES         - comma separated field names
 	 *
+	 * In LIST_AND or LIST_OR modes, you can suffix a field with an exclamation
+	 * mark to generate a 'NOT IN' structure.
+	 * Example:
+	 *  $db->makeList( array( 'field!' => array( 1,2,3 ) );
+	 *  outputs:
+	 *    'field' NOT IN ('1', '2', '3' );
+
 	 * @return string
 	 */
 	function makeList( $a, $mode = LIST_COMMA ) {
@@ -1405,6 +1412,13 @@ abstract class DatabaseBase implements DatabaseType {
 				$first = false;
 			}
 
+			// Support 'NOT IN' by suffixing fieldname with an exclamation mark
+			$not = false; 
+			if( substr($field,-1) == '!' ) {
+				$not = true;
+				$field = substr($field, 0, -1 );
+			}
+
 			if ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_numeric( $field ) ) {
 				$list .= "($value)";
 			} elseif ( ( $mode == LIST_SET ) && is_numeric( $field ) ) {
@@ -1417,9 +1431,12 @@ abstract class DatabaseBase implements DatabaseType {
 					// Don't necessarily assume the single key is 0; we don't
 					// enforce linear numeric ordering on other arrays here.
 					$value = array_values( $value );
-					$list .= $field . " = " . $this->addQuotes( $value[0] );
+
+					$operator = $not ? ' != ' : ' = ';
+					$list .= $field . $operator . $this->addQuotes( $value[0] );
 				} else {
-					$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
+					$operator = $not ? ' NOT IN ' : ' IN ';
+					$list .= $field . $operator . " (" . $this->makeList( $value ) . ") ";
 				}
 			} elseif ( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
