@@ -879,7 +879,26 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return arr.join( '|' ).replace( /\./g, '!' );
 		}
-		
+
+		/**
+		 * Adds a script tag to the body, either using document.write or low-level DOM manipulation,
+		 * depending on whether document-ready has occured yet.
+		 */
+		function addScript( src ) {
+			if ( ready ) {
+				// jQuery's getScript method is NOT better than doing this the old-fassioned way
+				// because jQuery will eval the script's code, and errors will not have sane
+				// line numbers.
+				var script = document.createElement( 'script' );
+				script.setAttribute( 'src', src );
+				script.setAttribute( 'type', 'text/javascript' );
+				document.body.appendChild( script );
+			} else {
+				document.write( mw.html.element(
+					'script', { 'type': 'text/javascript', 'src': src }, ''
+				) );
+			}
+		}
 
 		/* Public Methods */
 
@@ -979,23 +998,14 @@ window.mediaWiki = new ( function( $ ) {
 				// include modules which are already loaded
 				batch = [];
 				// Asynchronously append a script tag to the end of the body
-				var html = '';
 				for ( var r = 0; r < requests.length; r++ ) {
 					requests[r] = sortQuery( requests[r] );
-					// Build out the HTML
 					var src = mw.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] );
-					html += mw.html.element( 'script',
-						{ 'type': 'text/javascript', 'src': src }, '' );
-				}
-				// Load asynchronously after documument ready
-				if ( ready ) {
-					setTimeout( function() { $( 'body' ).append( html ); }, 0 );
-				} else {
-					document.write( html );
+					addScript( src );
 				}
 			}
 		};
-
+		
 		/**
 		 * Registers a module, letting the system know about it and its
 		 * dependencies. loader.js files contain calls to this function.
@@ -1156,13 +1166,7 @@ window.mediaWiki = new ( function( $ ) {
 						} ) );
 						return true;
 					} else if ( type === 'text/javascript' || typeof type === 'undefined' ) {
-						var script = mw.html.element( 'script',
-							{ type: 'text/javascript', src: modules }, '' );
-						if ( ready ) {
-							$( 'body' ).append( script );
-						} else {
-							document.write( script );
-						}
+						addScript( modules );
 						return true;
 					}
 					// Unknown type
@@ -1321,7 +1325,6 @@ window.mediaWiki = new ( function( $ ) {
 			return s;
 		};
 	} )();
-
 
 	/* Extension points */
 
