@@ -113,7 +113,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$wgOut->setPagetitle( wfMsg( 'move-page', $this->oldTitle->getPrefixedText() ) );
 		$skin->setRelevantTitle( $this->oldTitle );
-		
+
 		$wgOut->addModules( 'mediawiki.special.movePage' );
 
 		$newTitle = $this->newTitle;
@@ -414,7 +414,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			DoubleRedirectJob::fixRedirects( 'move', $ot, $nt );
 		}
 
-		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ot , &$nt ) )	;
+		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this, &$ot, &$nt ) );
 
 		$wgOut->setPagetitle( wfMsg( 'pagemovedsub' ) );
 
