@@ -148,18 +148,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
 			$wgOut->setPageTitle( wfMsg( 'emailsent' ) );
 			$wgOut->addWikiMsg( 'emailsenttext' );
-			if ( $status->successCount > 1 ) $wgOut->addWikiMsg( 'emailyougotcopy' );
-		} elseif ( $result instanceof Status ) {
-			if ( $status->successCount == 0 ) {
-				$wgOut->setPageTitle( wfMsg( 'emailnotsent' ) );
-				$wgOut->addWikiMsg( $result->getWikiText( 'emailfailed' ) );
-			} elseif ( $status->failCount ) {
-				$wgOut->setPageTitle( wfMsg( 'emailsent' ) );
-				$wgOut->addWikiMsg( 'emailsenttext' );
-				$wgOut->addWikiMsg( $result->getWikiText( 'emailccfailed' ) );
-			}
+			$wgOut->returnToMain( false, $this->mTargetObj->getUserPage() );
 		}
-		$wgOut->returnToMain( false, $this->mTargetObj->getUserPage() );
 	}
 
 	/**
@@ -313,8 +303,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if( !$status->isGood() ) {
 			return $status;
 		} else {
-			$status->successCount++;
-			
 			// if the user requested a copy of this mail, do this now,
 			// unless they are emailing themselves, in which case one
 			// copy of the message is sufficient.
@@ -326,11 +314,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				);
 				wfRunHooks( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text ) );
 				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $text );
-				if ( $ccStatus->isGood() ) {
-					$ccStatus->successCount++;
-				} else {
-					$ccStatus->failCount++;
-				}
 				$status->merge( $ccStatus );
 			}
 
