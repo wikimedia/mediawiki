@@ -516,6 +516,7 @@ table.rimage {
 	padding-right: 18px;
 }
 #bodyContent a.external[href ^="irc://"],
+#bodyContent a.external[href ^="ircs://"],
 .link-irc {
 	/* @embed */
 	background: url(discussionitem_icon.gif) center right no-repeat;

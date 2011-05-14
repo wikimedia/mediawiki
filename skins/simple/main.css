@@ -224,6 +224,8 @@ h1.firstHeading, h2 {
 }
 #bodyContent a[href ^="irc://"],
 #bodyContent a.extiw[href ^="irc://"],
+#bodyContent a[href ^="ircs://"],
+#bodyContent a.extiw[href ^="ircs://"],
 .link-irc {
     background: url("discussionitem_icon.gif")  center right no-repeat;
     padding-right: 18px;
