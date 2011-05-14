@@ -2580,9 +2580,7 @@ class OutputPage {
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) .
-					// the go() call is unnecessary if we inserted top modules, but we don't know for sure that we did
-					Xml::encodeJsCall( 'mw.loader.go', array() )
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
 				)
 			);
 		}
