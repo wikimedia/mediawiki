@@ -61,7 +61,7 @@ class CreateAndPromote extends Maintenance {
 
 		# Promote user
 		if ( $this->hasOption( 'sysop' ) ) {
-			$user->addGroup( 'bureaucrat' );
+			$user->addGroup( 'sysop' );
 		}
 		if ( $this->hasOption( 'bureaucrat' ) ) {
 			$user->addGroup( 'bureaucrat' );
