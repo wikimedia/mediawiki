@@ -226,8 +226,8 @@ class ResourceLoader {
 		}
 		
 		// Check $name for illegal characters
-		if ( preg_match( '/[|,]/', $name ) ) {
-			throw new MWException( "ResourceLoader module name '$name' is invalid. Names may not contain pipes (|) or commas (,)" );
+		if ( preg_match( '/[|,!]/', $name ) ) {
+			throw new MWException( "ResourceLoader module name '$name' is invalid. Names may not contain pipes (|), commas (,) or exclamation marks (!)" );
 		}
 
 		// Attach module
