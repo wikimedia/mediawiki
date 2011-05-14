@@ -34,6 +34,7 @@ used in Tiff files.
 * (bug 28888) Searching for something starting with a # sign no longer tells
   the user a page named [[:]] already exists.
 * (bug 28960) Added more messages to Special:EmailUser.
+* (bug 23002) Imagelinks table not updated after imagemove.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
