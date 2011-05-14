@@ -765,16 +765,8 @@ p {
 	margin: .4em 0 .5em 0;
 	line-height: 1.5em;
 }
-	p img {
-		margin: 0;
-	}
-abbr,
-acronym,
-.explain {
-	border-bottom: 1px dotted black;
-	color: black;
-	background: none;
-	cursor: help;
+p img {
+	margin: 0;
 }
 q {
 	font-family: Times, "Times New Roman", serif;
