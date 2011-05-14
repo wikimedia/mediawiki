@@ -3508,8 +3508,6 @@ class Parser {
 		# Register the file as a dependency...
 		$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
 		if ( $file && !$title->equals( $file->getTitle() ) ) {
-			# We fetched a rev from a different title; register it too...
-			$this->mOutput->addImage( $file->getTitle()->getDBkey(), $time, $sha1 );
 			# Update fetched file title 
 			$title = $file->getTitle();
 		}

@@ -140,7 +140,6 @@ class ImagePage extends Article {
 		$this->imageDupes();
 		# TODO! FIXME! For some freaky reason, we can't redirect to foreign images.
 		# Yet we return metadata about the target. Definitely an issue in the FileRepo
-		$this->imageRedirects();
 		$this->imageLinks();
 		
 		# Allow extensions to add something after the image links
@@ -660,21 +659,45 @@ EOT
 		}
 	}
 
+	protected function queryImageLinks( $target, $limit ) {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		return $dbr->select(
+			array( 'imagelinks', 'page' ),
+			array( 'page_namespace', 'page_title', 'page_is_redirect', 'il_to' ),
+			array( 'il_to' => $target, 'il_from = page_id' ),
+			__METHOD__,
+			array( 'LIMIT' => $limit + 1 )
+		);		
+	}
+	
 	protected function imageLinks() {
 		global $wgUser, $wgOut, $wgLang;
 
 		$limit = 100;
+		
+		$res = $this->queryImageLinks( $this->mTitle->getDbKey(), $limit + 1);
+		$rows = array();
+		$redirects = array();
+		foreach ( $res as $row ) {
+			if ( $row->page_is_redirect ) {
+				$redirects[$row->page_title] = array();
+			}
+			$rows[] = $row;
+		}
+		$count = count( $rows );
+		
+		$hasMore = $count > $limit;
+		if ( !$hasMore && count( $redirects ) ) {
+			$res = $this->queryImageLinks( array_keys( $redirects ), 
+				$limit - count( $rows ) + 1 );
+			foreach ( $res as $row ) {
+				$redirects[$row->il_to][] = $row;
+				$count++;
+			}
+			$hasMore = ( $res->numRows() + count( $rows ) ) > $limit;
+		}
 
-		$dbr = wfGetDB( DB_SLAVE );
-
-		$res = $dbr->select(
-			array( 'imagelinks', 'page' ),
-			array( 'page_namespace', 'page_title' ),
-			array( 'il_to' => $this->mTitle->getDBkey(), 'il_from = page_id' ),
-			__METHOD__,
-			array( 'LIMIT' => $limit + 1 )
-		);
-		$count = $dbr->numRows( $res );
 		if ( $count == 0 ) {
 			$wgOut->wrapWikiMsg(
 				Html::rawElement( 'div',
@@ -685,7 +708,7 @@ EOT
 		}
 		
 		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
-		if ( $count <= $limit - 1 ) {
+		if ( !$hasMore ) {
 			$wgOut->addWikiMsg( 'linkstoimage', $count );
 		} else {
 			// More links than the limit. Add a link to [[Special:Whatlinkshere]]
@@ -701,25 +724,44 @@ EOT
 		);
 		$sk = $wgUser->getSkin();
 		$count = 0;
-		$elements = array();
-		foreach ( $res as $s ) {
-			$count++;
-			if ( $count <= $limit ) {
-				// We have not yet reached the extra one that tells us there is more to fetch
-				$elements[] =  $s;
-			}
-		}
 
 		// Sort the list by namespace:title
-		usort( $elements, array( $this, 'compare' ) );
+		usort( $rows, array( $this, 'compare' ) );
 
 		// Create links for every element
-		foreach( $elements as $element ) {    
+		$currentCount = 0;
+		foreach( $rows as $element ) {
+			$currentCount++;
+			if ( $currentCount > $limit ) {
+				break;
+			}
+			    
 			$link = $sk->linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
+			if ( !isset( $redirects[$element->page_title] ) ) {
+				$liContents = $link;
+			} else {
+				$ul = "<ul class='mw-imagepage-redirectstofile'>\n";
+				foreach ( $redirects[$element->page_title] as $row ) {
+					$currentCount++;
+					if ( $currentCount > $limit ) {
+						break;
+					}
+					
+					$link2 = $sk->linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
+					$ul .= Html::rawElement(
+						'li',
+						array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
+						$link2
+						) . "\n";
+				}
+				$ul .= '</ul>';
+				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams( 
+					$link, $ul )->parse();
+			}
 			$wgOut->addHTML( Html::rawElement(
 					'li',
 					array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
-					$link
+					$liContents
 				) . "\n"
 			);
 
@@ -732,34 +774,6 @@ EOT
 			$wgOut->addWikiMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() );
 		}
 		$wgOut->addHTML( Html::closeElement( 'div' ) . "\n" );
-	}
-	
-	protected function imageRedirects() {
-		global $wgUser, $wgOut, $wgLang;
-
-		$redirects = $this->getTitle()->getRedirectsHere( NS_FILE );
-		if ( count( $redirects ) == 0 ) {
-			return;
-		}
-
-		$wgOut->addHTML( "<div id='mw-imagepage-section-redirectstofile'>\n" );
-		$wgOut->addWikiMsg( 'redirectstofile',
-			$wgLang->formatNum( count( $redirects ) )
-		);
-		$wgOut->addHTML( "<ul class='mw-imagepage-redirectstofile'>\n" );
-
-		$sk = $wgUser->getSkin();
-		foreach ( $redirects as $title ) {
-			$link = $sk->link(
-				$title,
-				null,
-				array(),
-				array( 'redirect' => 'no' ),
-				array( 'known', 'noclasses' )
-			);
-			$wgOut->addHTML( "<li>{$link}</li>\n" );
-		}
-		$wgOut->addHTML( "</ul></div>\n" );
 	}
 
 	protected function imageDupes() {

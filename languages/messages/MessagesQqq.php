@@ -1901,8 +1901,10 @@ Example: [[:Image:Addon-icn.png]]',
 
 * $1: limit. At the moment hardcoded at 100
 * $2: filename',
+'linkstoimage-redirect'				=> 'Item in the "the following pages link to this file" section on a file page if the item is a redirect.
+* $1: an HTML link to the file
+* $2: the list of files that link to the redirect (may be empty)',
 'nolinkstoimage'                    => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
-'redirectstofile'                   => 'Used on file description pages after the list of pages which used this file',
 'duplicatesoffile'                  => 'Shown on file description pages when a file is duplicated
 
 * $1: Number of identical files

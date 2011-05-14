@@ -2333,7 +2333,7 @@ The following list shows the {{PLURAL:$1|first page link|first $1 page links}} t
 A [[Special:WhatLinksHere/$2|full list]] is available.',
 'nolinkstoimage'                    => 'There are no pages that link to this file.',
 'morelinkstoimage'                  => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
-'redirectstofile'                   => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
+'linkstoimage-redirect'				=> '$1 (file redirect) $2',
 'duplicatesoffile'                  => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
 'sharedupload'                      => 'This file is from $1 and may be used by other projects.',
 'sharedupload-desc-there'           => 'This file is from $1 and may be used by other projects.
