@@ -171,27 +171,33 @@ return array(
 			),
 		),
 		'dependencies' => 'jquery',
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.widget' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.widget.js',
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.mouse' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.mouse.js',
 		'dependencies' => 'jquery.ui.widget',
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.position' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.position.js',
+		'group' => 'jquery.ui',
 	),
 	// Interactions
 	'jquery.ui.draggable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.draggable.js',
 		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget' ),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.droppable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.droppable.js',
 		'dependencies' => array(
 			'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget', 'jquery.ui.draggable',
 		),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.resizable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.resizable.js',
@@ -200,6 +206,7 @@ return array(
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.resizable.css',
 		),
 		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse' ),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.selectable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.selectable.js',
@@ -208,10 +215,12 @@ return array(
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.selectable.css',
 		),
 		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse' ),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.sortable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.sortable.js',
 		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse' ),
+		'group' => 'jquery.ui',
 	),
 	// Widgets
 	'jquery.ui.accordion' => array(
@@ -221,6 +230,7 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.accordion.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.accordion.css',
 		),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.autocomplete' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.autocomplete.js',
@@ -229,6 +239,7 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.autocomplete.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.autocomplete.css',
 		),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.button' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.button.js',
@@ -237,6 +248,7 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.button.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.button.css',
 		),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.datepicker' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.datepicker.js',
@@ -299,6 +311,7 @@ return array(
 			'zh-hk' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-zh-HK.js',
 			'zh-tw' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-zh-TW.js',
 		),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.dialog' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.dialog.js',
@@ -315,6 +328,7 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.dialog.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.dialog.css',
 		),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.progressbar' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.progressbar.js',
@@ -323,6 +337,7 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.progressbar.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.progressbar.css',
 		),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.slider' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.slider.js',
@@ -331,6 +346,7 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.slider.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.slider.css',
 		),
+		'group' => 'jquery.ui',
 	),
 	'jquery.ui.tabs' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.tabs.js',
@@ -339,59 +355,73 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.tabs.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.tabs.css',
 		),
+		'group' => 'jquery.ui',
 	),
 	// Effects
 	'jquery.effects.core' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.core.js',
 		'dependencies' => 'jquery',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.blind' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.blind.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.bounce' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.bounce.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.clip' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.clip.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.drop' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.drop.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.explode' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.explode.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.fold' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.fold.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.highlight' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.highlight.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.pulsate' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.pulsate.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.scale' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.scale.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.shake' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.shake.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.slide' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.slide.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 	'jquery.effects.transfer' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.transfer.js',
 		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
 	),
 
 	/* MediaWiki */
