@@ -27,7 +27,6 @@ class Article {
 	var $mContentLoaded = false;      // !<
 	var $mCounter = -1;               // !< Not loaded
 	var $mDataLoaded = false;         // !<
-	var $mGoodAdjustment = 0;         // !<
 	var $mIsRedirect = false;         // !<
 	var $mLatest = false;             // !<
 	var $mOldId;                      // !<
@@ -61,7 +60,6 @@ class Article {
 
 	var $mTimestamp = '';             // !<
 	var $mTitle;                      // !< Title object
-	var $mTotalAdjustment = 0;        // !<
 	var $mTouched = '19700101000000'; // !<
 
 	/**
@@ -260,7 +258,6 @@ class Article {
 		$this->mRedirectTarget = null; # Title object if set
 		$this->mLastRevision = null; # Latest revision
 		$this->mTimestamp = '';
-		$this->mGoodAdjustment = $this->mTotalAdjustment = 0;
 		$this->mTouched = '19700101000000';
 		$this->mIsRedirect = false;
 		$this->mRevIdFetched = 0;
@@ -644,15 +641,43 @@ class Article {
 	 * Determine whether a page would be suitable for being counted as an
 	 * article in the site_stats table based on the title & its content
 	 *
-	 * @param $text String: text to analyze
-	 * @return bool
+	 * @param $editInfo Object or false: object returned by prepareTextForEdit(),
+	 *        if false, the current database state will be used
+	 * @return Boolean
 	 */
-	public function isCountable( $text ) {
-		global $wgUseCommaCount;
+	public function isCountable( $editInfo = false ) {
+		global $wgArticleCountMethod;
 
-		$token = $wgUseCommaCount ? ',' : '[[';
+		if ( !$this->mTitle->isContentPage() ) {
+			return false;
+		}
 
-		return $this->mTitle->isContentPage() && !$this->isRedirect( $text ) && in_string( $token, $text );
+		$text = $editInfo ? $editInfo->pst : false;
+
+		if ( $this->isRedirect( $text ) ) {
+			return false;
+		}
+
+		switch ( $wgArticleCountMethod ) {
+		case 'any':
+			return true;
+		case 'comma':
+			if ( $text === false ) {
+				$text = $this->getRawText();
+			}
+			return in_string( ',', $text );
+		case 'link':
+			if ( $editInfo ) {
+				// ParserOutput::getLinks() is a 2D array of page links, so
+				// to be really correct we would need to recurse in the array
+				// but the main array should only have items in it if there are
+				// links.
+				return (bool)count( $editInfo->output->getLinks() );
+			} else {
+				return (bool)wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
+					array( 'pl_from' => $this->getId() ), __METHOD__ );
+			}
+		}
 	}
 
 	/**
@@ -2067,10 +2092,6 @@ class Article {
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
 
 			if ( $changed ) {
-				$this->mGoodAdjustment = (int)$this->isCountable( $text )
-				  - (int)$this->isCountable( $oldtext );
-				$this->mTotalAdjustment = 0;
-
 				if ( !$this->mLatest ) {
 					# Article gone missing
 					wfDebug( __METHOD__ . ": EDIT_UPDATE specified but article doesn't exist\n" );
@@ -2165,12 +2186,6 @@ class Article {
 			# Create new article
 			$status->value['new'] = true;
 
-			# Set statistics members
-			# We work out if it's countable after PST to avoid counter drift
-			# when articles are created with {{subst:}}
-			$this->mGoodAdjustment = (int)$this->isCountable( $text );
-			$this->mTotalAdjustment = 1;
-
 			$dbw->begin();
 
 			# Add the page record; stake our claim on this title!
@@ -2226,7 +2241,7 @@ class Article {
 			$dbw->commit();
 
 			# Update links, etc.
-			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, true, $user );
+			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, true, $user, true );
 
 			# Clear caches
 			Article::onArticleCreate( $this->mTitle );
@@ -3064,7 +3079,7 @@ class Article {
 			return false;
 		}
 
-		$u = new SiteStatsUpdate( 0, 1, - (int)$this->isCountable( $this->getRawText() ), -1 );
+		$u = new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 );
 		array_push( $wgDeferredUpdateList, $u );
 
 		// Bitfields to further suppress the content
@@ -3511,8 +3526,11 @@ class Article {
 	 * @param $newid Integer: rev_id value of the new revision
 	 * @param $changed Boolean: Whether or not the content actually changed
 	 * @param $user User object: User doing the edit
+	 * @param $created Boolean: Whether the edit created the page
 	 */
-	public function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid, $changed = true, User $user = null ) {
+	public function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid,
+		$changed = true, User $user = null, $created = false )
+	{
 		global $wgDeferredUpdateList, $wgUser, $wgEnableParserCache;
 
 		wfProfileIn( __METHOD__ );
@@ -3564,10 +3582,19 @@ class Article {
 			return;
 		}
 
-		$u = new SiteStatsUpdate( 0, 1, $this->mGoodAdjustment, $this->mTotalAdjustment );
-		array_push( $wgDeferredUpdateList, $u );
-		$u = new SearchUpdate( $id, $title, $text );
-		array_push( $wgDeferredUpdateList, $u );
+		if ( !$changed ) {
+			$good = 0;
+			$total = 0;
+		} elseif ( $created ) {
+			$good = (int)$this->isCountable( $editInfo );
+			$total = 1;
+		} else {
+			$good = (int)$this->isCountable( $editInfo ) - (int)$this->isCountable();
+			$total = 0;
+		}
+
+		$wgDeferredUpdateList[] = new SiteStatsUpdate( 0, 1, $good, $total );
+		$wgDeferredUpdateList[] = new SearchUpdate( $id, $title, $text );
 
 		# If this is another user's talk page, update newtalk
 		# Don't do this if $changed = false otherwise some idiot can null-edit a
@@ -3608,10 +3635,8 @@ class Article {
 	 * anymore.
 	 */
 	public function createUpdates( $rev ) {
-		$this->mGoodAdjustment = $this->isCountable( $rev->getText() );
-		$this->mTotalAdjustment = 1;
 		$this->editUpdates( $rev->getText(), $rev->getComment(),
-			$rev->isMinor(), wfTimestamp(), $rev->getId(), true );
+			$rev->isMinor(), wfTimestamp(), $rev->getId(), true, null, true );
 	}
 
 	/**

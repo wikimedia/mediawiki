@@ -1027,25 +1027,25 @@ class WikiRevision {
 		$tempTitle = $GLOBALS['wgTitle'];
 		$GLOBALS['wgTitle'] = $this->title;
 
-		if( $created ) {
+		if ( $created ) {
 			wfDebug( __METHOD__ . ": running onArticleCreate\n" );
 			Article::onArticleCreate( $this->title );
-
-			wfDebug( __METHOD__ . ": running create updates\n" );
-			$article->createUpdates( $revision );
-
 		} elseif( $changed ) {
 			wfDebug( __METHOD__ . ": running onArticleEdit\n" );
 			Article::onArticleEdit( $this->title );
-
-			wfDebug( __METHOD__ . ": running edit updates\n" );
-			$article->editUpdates(
-				$this->getText(),
-				$this->getComment(),
-				$this->minor,
-				$this->timestamp,
-				$revId );
 		}
+
+		wfDebug( __METHOD__ . ": running updates\n" );
+		$article->editUpdates(
+			$this->getText(),
+			$this->getComment(),
+			$this->minor,
+			$this->timestamp,
+			$revId,
+			true,
+			null,
+			$created );
+
 		$GLOBALS['wgTitle'] = $tempTitle;
 
 		return true;

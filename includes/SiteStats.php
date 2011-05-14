@@ -285,18 +285,24 @@ class SiteStatsInit {
 	 * @return Integer
 	 */
 	public function articles() {
-		global $wgUseCommaCount;
+		global $wgArticleCountMethod;
 
 		$tables = array( 'page' );
 		$conds = array(
 			'page_namespace' => MWNamespace::getContentNamespaces(),
 			'page_is_redirect' => 0,
-			'page_len > 0'
 		);
 
-		if ( !$wgUseCommaCount ) {
+		if ( $wgArticleCountMethod == 'link' ) {
 			$tables[] = 'pagelinks';
 			$conds[] = 'pl_from=page_id';
+		} elseif ( $wgArticleCountMethod == 'comma' ) {
+			// To make a correct check for this, we would need, for each page,
+			// to load the text, maybe uncompress it, maybe decode it and then
+			// check if there's one comma.
+			// But one thing we are sure is that if the page is empty, it can't
+			// contain a comma :)
+			$conds[] = 'page_len > 0';
 		}
 
 		$this->mArticles = $this->db->selectField( $tables, 'COUNT(DISTINCT page_id)',
