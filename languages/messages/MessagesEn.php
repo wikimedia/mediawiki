@@ -2696,7 +2696,11 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'emailccme'            => 'E-mail me a copy of my message.',
 'emailccsubject'       => 'Copy of your message to $1: $2',
 'emailsent'            => 'E-mail sent',
+'emailnotsent'         => 'E-mail not sent',
 'emailsenttext'        => 'Your e-mail message has been sent.',
+'emailyougotcopy'      => 'A copy of the e-mail has been sent to you.',
+'emailfailed'          => 'The e-mail could not be sent: $1',
+'emailccfailed'        => 'Your e-mail copy could not be sent: $1',
 'emailuserfooter'      => 'This e-mail was sent by $1 to $2 by the "E-mail user" function at {{SITENAME}}.',
 
 # User Messenger
