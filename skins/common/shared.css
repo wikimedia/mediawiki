@@ -326,7 +326,7 @@ table.collapsed tr.collapsable {
 	font-size: larger;
 }
 .warning {
-	color: yellow;
+	color: #FFA500; /* orange */
 	font-size: larger;
 }
 .error {
@@ -346,8 +346,8 @@ table.collapsed tr.collapsable {
 	background-color: #fff2f2;
 }
 .warningbox {
-	border-color: yellow;
-	background-color: #ffd;
+	border-color: #FF8C00; /* darkorange */
+	background-color: #FFFFC0;
 }
 .successbox {
 	border-color: green;
