@@ -361,6 +361,23 @@ table.collapsed tr.collapsable {
 	border: none;
 }
 
+/* general info/warning box for SP */
+.mw-infobox {
+	border: 2px solid #ff7f00;
+	margin: 0.4em;
+	clear: left;
+}
+
+.mw-infobox-left {
+	margin: 7px;
+	float: left;
+	width: 35px;
+}
+
+.mw-infobox-right {
+	margin: 0.5em 0.5em 0.5em 49px;
+}
+
 /* Note on preview page */
 .previewnote {
 	color: #c00;

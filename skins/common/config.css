@@ -72,22 +72,6 @@
 	clear: left;
 }
 
-.config-warning-box {
-	border: 2px solid #ff7f00;
-	margin: 0.4em;
-	clear: left;
-}
-
-.config-info-left {
-	margin: 7px;
-	float: left;
-	width: 35px;
-}
-
-.config-info-right {
-	margin: 0.5em 0.5em 0.5em 49px;
-}
-
 .config-page-current {
 	font-weight: bold;
 }
