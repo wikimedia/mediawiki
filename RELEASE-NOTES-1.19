@@ -44,6 +44,8 @@ used in Tiff files.
 * (bug 11868) If using links to count articles, the checking will now be based
   on the real presence of an internal link instead of the "[[" string
 * (bug 28287) The "your changes" box for edit conflicts is now read-only.
+* (bug 28940) When making a thumb of an SVG, and only specifying the height
+  make the width be the max SVG size, not the natrual width of the SVG.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
