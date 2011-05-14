@@ -507,7 +507,14 @@ class Linker {
 			$fp['align']   = 'none';
 		}
 		if ( $file && !isset( $hp['width'] ) ) {
-			$hp['width'] = $file->getWidth( $page );
+			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
+				// If its a vector image, and user only specifies height
+				// we don't want it to be limited by its "normal" width.
+				global $wgSVGMaxSize;
+				$hp['width'] = $wgSVGMaxSize;
+			} else { 
+				$hp['width'] = $file->getWidth( $page );
+			}
 
 			if ( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
 				global $wgThumbLimits, $wgThumbUpright;
