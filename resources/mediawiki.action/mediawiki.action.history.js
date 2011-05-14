@@ -57,17 +57,21 @@ jQuery( function( $ ) {
 		if ( !$buttons.length ) {
 			return false;
 		}
-
-		var buttonText = $buttons.remove().first().val(),
-		  $compareLink = $( '<a></a>', {
+		var copyAttrs = ['title', 'accesskey'];
+		$buttons.each(function() {
+			var $button = $(this),
+				$compareLink= $( '<a></a>', {
 				'class': 'compare-link',
-				'text': buttonText
+				'text': $button.val()
 			}).button();
-		$histForm.prepend( $compareLink );
-		if ( $buttons.length == 2 ) {
-			$histForm.append( $compareLink.clone() );
-		}
-
+			$.each(copyAttrs, function(i, name) {
+				var val = $button.attr(name);
+				if (val) {
+					$compareLink.attr(name, val);
+				}
+			});
+			$button.replaceWith($compareLink);
+		});
 		var updateCompare = function() {
 			var $radio = $histForm.find( 'input[type=radio]:checked' );
 			var genLink = mw.config.get( 'wgScript' )
