@@ -2992,6 +2992,8 @@ The latest block log entry is provided below for reference:',
 'sp-contributions-search'              => 'Search for contributions',
 'sp-contributions-username'            => 'IP address or username:',
 'sp-contributions-toponly'             => 'Only show edits that are latest revisions',
+'sp-contributions-showsizediff'        => 'Display difference in page size',
+'sp-contributions-showsizediff-warn'   => 'This instance has recent changes log limited to $1 . If you use this option, pages not in this log will not be displayed',
 'sp-contributions-submit'              => 'Search',
 'sp-contributions-explain'             => '', # only translate this message to other languages if you have to change it
 'sp-contributions-footer'              => '-', # do not translate or duplicate this message to other languages
