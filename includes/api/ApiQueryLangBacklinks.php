@@ -86,7 +86,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		$this->addWhere( 'll_from = page_id' );
 
 		$this->addFields( array( 'page_id', 'page_title', 'page_namespace', 'page_is_redirect',
-			'll_from', 'iwl_lang', 'll_title' ) );
+			'll_from', 'll_lang', 'll_title' ) );
 
 		if ( isset( $params['lang'] ) ) {
 			$this->addWhereFld( 'll_lang', $params['lang'] );
@@ -129,11 +129,11 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 				}
 
 				if ( $lllang ) {
-					$entry['iwprefix'] = $row->ll_lang;
+					$entry['lllang'] = $row->ll_lang;
 				}
 
 				if ( $lltitle ) {
-					$entry['iwtitle'] = $row->ll_title;
+					$entry['lltitle'] = $row->ll_title;
 				}
 
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $entry );
@@ -209,8 +209,8 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=query&list=llbacklinks&lbltitle=Test&lbllang=fr',
-			'api.php?action=query&generator=llbacklinks&glbltitle=Test&lbllang=fr&prop=info'
+			'api.php?action=query&list=langbacklinks&lbltitle=Test&lbllang=fr',
+			'api.php?action=query&generator=langbacklinks&glbltitle=Test&lbllang=fr&prop=info'
 		);
 	}
 
