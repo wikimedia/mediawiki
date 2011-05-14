@@ -1428,7 +1428,7 @@ $wgMessageStructure = array(
 		'linkstoimage-more',
 		'nolinkstoimage',
 		'morelinkstoimage',
-		'redirectstofile',
+		'linkstoimage-redirect',
 		'duplicatesoffile',
 		'sharedupload',
 		'sharedupload-desc-there',
