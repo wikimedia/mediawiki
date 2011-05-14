@@ -611,23 +611,11 @@ class WebInstaller extends Installer {
 	 *
 	 * @return string
 	 */
-	public function getInfoBox( $text, $icon = 'info-32.png', $class = false ) {
-		$s =
-			"<div class=\"config-info $class\">\n" .
-				"<div class=\"config-info-left\">\n" .
-				Html::element( 'img',
-					array(
-						'src' => '../skins/common/images/' . $icon,
-						'alt' => wfMsg( 'config-information' ),
-					)
-				) . "\n" .
-				"</div>\n" .
-				"<div class=\"config-info-right\">\n" .
-					$this->parse( $text, true ) . "\n" .
-				"</div>\n" .
-				"<div style=\"clear: left;\"></div>\n" .
-			"</div>\n";
-		return $s;
+	public function getInfoBox( $text, $icon = false, $class = false ) {
+		$text = $this->parse( $text, true );
+		$icon = ( $icon == false ) ? '../skins/common/images/info-32.png' : '../skins/common/images/'.$icon;
+		$alt = wfMsg( 'config-information' );
+		return Xml::infoBox( $text, $icon, $alt, $class, false );
 	}
 
 	/**
