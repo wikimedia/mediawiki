@@ -2974,14 +2974,30 @@ $wgTranscludeCacheExpiry = 3600;
  */
 
 /**
- * Under which condition should a page in the main namespace be counted
- * as a valid article? If $wgUseCommaCount is set to true, it will be
- * counted if it contains at least one comma. If it is set to false
- * (default), it will only be counted if it contains at least one [[wiki
- * link]]. See http://www.mediawiki.org/wiki/Manual:Article_count
+ * Method used to determine if a page in a content namespace should be counted
+ * as a valid article.
  *
- * Retroactively changing this variable will not affect
- * the existing count (cf. maintenance/recount.sql).
+ * Redirect pages will never be counted as valid articles.
+ *
+ * This variable can have the following values:
+ * - 'any': all pages as considered as valid articles
+ * - 'comma': the page must contain a comma to be considered valid
+ * - 'link': the page must contain a [[wiki link]] to be considered valid
+ * - null: the value will be set at run time depending on $wgUseCommaCount:
+ *         if $wgUseCommaCount is false, it will be 'link', if it is true
+ *         it will be 'comma'
+ *
+ * See also See http://www.mediawiki.org/wiki/Manual:Article_count
+ *
+ * Retroactively changing this variable will not affect the existing count,
+ * to update it, you will need to run the maintenance/updateArticleCount.php
+ * script.
+ */
+$wgArticleCountMethod = null;
+
+/**
+ * Backward compatibility setting, will set $wgArticleCountMethod if it is null.
+ * @deprecated in 1.19; use $wgArticleCountMethod instead
  */
 $wgUseCommaCount = false;
 

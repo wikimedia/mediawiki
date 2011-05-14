@@ -245,7 +245,7 @@ class DeleteAction extends Action {
 			return false;
 		}
 
-		$updates = new SiteStatsUpdate( 0, 1, - (int)$page->isCountable( $page->getRawText() ), -1 );
+		$updates = new SiteStatsUpdate( 0, 1, - (int)$page->isCountable(), -1 );
 		array_push( $wgDeferredUpdateList, $updates );
 
 		// Bitfields to further suppress the content

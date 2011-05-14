@@ -16,11 +16,15 @@ production.
 * $wgAllowUserSkin (deprecated in 1.16) has now been removed
 * $wgExtraRandompageSQL (deprecated in 1.16) has now been removed
 * LogReader and LogViewer classes (deprecated in 1.14) have now been removed
+* (bug 26033) Added $wgArticleCountMethod to select the method to use to say
+  whether a page is an article or not. $wgUseCommaCount is now deprecated.
 
 === New features in 1.19 ===
 * (bug 28916) A way to to toggle mw.config legacy globals settings from
   LocalSettings.php has been created by introducing $wgLegacyJavaScriptGlobals.
 * (bug 28503) Support for ircs:// URL protocols
+* (bug 26033) It is now possible to count all non-redirect pages in content
+  namespaces as articles
 
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
@@ -38,6 +42,8 @@ used in Tiff files.
 * (bug 27864) Transcluding {{Special:Prefix}} with empty prefix now lists all
   pages.
 * (bug 18803) JPEG2000 images can no longer be uploaded as JPEG image.
+* (bug 11868) If using links to count articles, the checking will now be based
+  on the real presence of an internal link instead of the "[[" string
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
