@@ -594,13 +594,10 @@ return array(
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.diff' => array(
-		'scripts' => 'common/diff.js',
 		'styles' => 'common/diff.css',
 		'group' => 'mediawiki.action.history',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'dependencies' => 'mediawiki.legacy.wikibits',
-		'position' => 'top',
 	),
 	'mediawiki.legacy.edit' => array(
 		'scripts' => 'common/edit.js',
