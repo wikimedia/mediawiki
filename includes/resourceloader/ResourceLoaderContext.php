@@ -83,10 +83,16 @@ class ResourceLoaderContext {
 			} else {
 				// This is a set of modules in foo.bar,baz notation
 				$pos = strrpos( $group, '.' );
-				$prefix = substr( $group, 0, $pos ); // 'foo'
-				$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // array( 'bar', 'baz' )
-				foreach ( $suffixes as $suffix ) {
-					$retval[] = "$prefix.$suffix";
+				if ( $pos === false ) {
+					// Prefixless modules, i.e. without dots
+					$retval = explode( ',', $group );
+				} else {
+					// We have a prefix and a bunch of suffixes
+					$prefix = substr( $group, 0, $pos ); // 'foo'
+					$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // array( 'bar', 'baz' )
+					foreach ( $suffixes as $suffix ) {
+						$retval[] = "$prefix.$suffix";
+					}
 				}
 			}
 		}
