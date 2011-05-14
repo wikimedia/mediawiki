@@ -235,7 +235,7 @@ class DeletedContribsPager extends IndexPager {
 			wfMsg( 'parentheses', $wgLang->pipeList( array( $last, $dellog, $reviewlink ) ) )
 		);
 
-		$diffOut = ' . . '.ChangesList::showCharacterDifference( $row->ar_len, 0 );
+		$diffOut = Linker::formatRevisionSize( $row->ar_len );
 		$ret = "{$del}{$link} {$tools} . . {$mflag} {$diffOut} {$pagelink} {$comment}";
 
 		# Denote if username is redacted for this edit
