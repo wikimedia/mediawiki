@@ -441,6 +441,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 #mw_content a[href ^="irc://"],
 #mw_content a.extiw[href ^="irc://"],
+#mw_content a[href ^="ircs://"],
+#mw_content a.extiw[href ^="ircs://"],
 .link-irc {
 	/* @embed */
 	background: url(discussionitem_icon.gif) center right no-repeat;

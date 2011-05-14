@@ -2810,6 +2810,7 @@ $wgUrlProtocols = array(
 	'https://',
 	'ftp://',
 	'irc://',
+	'ircs://',  // @bug 28503
 	'gopher://',
 	'telnet://', // Well if we're going to support the above.. -ævar
 	'nntp://', // @bug 3808 RFC 1738

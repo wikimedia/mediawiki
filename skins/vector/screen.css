@@ -1082,6 +1082,8 @@ div#content a[href ^="ftp://"],
 }
 div#content a[href ^="irc://"],
 div#content a.extiw[href ^="irc://"],
+div#content a[href ^="ircs://"],
+div#content a.extiw[href ^="ircs://"],
 .link-irc {
 	/* @embed */
 	background: url(images/talk-icon.png) center right no-repeat;
