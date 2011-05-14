@@ -96,8 +96,8 @@ class MWNamespaceTest extends PHPUnit_Framework_TestCase {
 	 * @expectedException MWException
 	 */
 	public function testGetTalkExceptions() {
-		$this->assertNull( MWNamespace::getAssociated( NS_MEDIA ) );
-		$this->assertNull( MWNamespace::getAssociated( NS_SPECIAL ) );
+		$this->assertNull( MWNamespace::getTalk( NS_MEDIA ) );
+		$this->assertNull( MWNamespace::getTalk( NS_SPECIAL ) );
 	}
 
 	/**
