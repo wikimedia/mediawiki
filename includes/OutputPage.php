@@ -1912,22 +1912,12 @@ class OutputPage {
 	}
 
 	/**
-	 * Actually output something with print(). Performs an iconv to the
-	 * output encoding, if needed.
+	 * Actually output something with print().
 	 *
 	 * @param $ins String: the string to output
 	 */
 	public function out( $ins ) {
-		global $wgContLang;
-		if ( 0 == strcmp( 'UTF-8', 'UTF-8' ) ) {
-			$outs = $ins;
-		} else {
-			$outs = $wgContLang->iconv( 'UTF-8', 'UTF-8', $ins );
-			if ( false === $outs ) {
-				$outs = $ins;
-			}
-		}
-		print $outs;
+		print $ins;
 	}
 
 	/**
