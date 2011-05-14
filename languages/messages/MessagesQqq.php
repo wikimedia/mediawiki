@@ -2330,15 +2330,6 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 {{Identical|Send}}',
 'emailccme'           => 'Used at [[Special:Preferences]] > E-mail',
 'emailccsubject'      => 'Subject of the carbon-copied  email for the sender sent through MediaWiki.',
-'emailsent'           => 'Title of Special:Emailuser when it says you it sent an email',
-'emailnotsent'        => 'Title of Special:Emailuser when it says you it did not sent the email',
-'emailsenttext'       => 'When you send an e-mail, Special:Emailuser says you this (Your email has been sent).',
-'emailyougotcopy'     => 'Shown below emailsenttext when \'e-mail em a copy\' was chosen.',
-'emailfailed'         => 'Error message when sending of the main e-mail failed (cc one is not even tried). The actual error is given as parameter.',
-'emailccfailed'       => 'Error message when the e-mail was sent but the user copy was not. The actual error is given as parameter.',
-
-
-'emailyougotcopy'     => 'Shown below emailsenttext if you chose "send me a copy".',
 'emailuserfooter'     => 'This message is appended to every email sent through the "Email user" function.
 
 * $1: username of the sender
