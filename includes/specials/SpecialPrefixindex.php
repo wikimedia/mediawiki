@@ -56,7 +56,10 @@ class SpecialPrefixindex extends SpecialAllpages {
 		);
 
 		$showme = '';
-		if( isset( $par ) ){
+		if ( $this->including() && ( $par == '' ) ) {
+			// Bug 27864: if transcluded, show all pages instead of the form
+			$showme = ' ';
+		} elseif( isset( $par ) ){
 			$showme = $par;
 		} elseif( $prefix != '' ){
 			$showme = $prefix;
@@ -201,8 +204,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					<td>' .
 						$nsForm .
 					'</td>
-					<td id="mw-prefixindex-nav-form">' .
-						$sk->linkKnown( $self, wfMsgHtml( 'allpages' ) );
+					<td id="mw-prefixindex-nav-form">';
 
 			if( isset( $res ) && $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 				$query = array(
