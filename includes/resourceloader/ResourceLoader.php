@@ -471,14 +471,15 @@ class ResourceLoader {
 		foreach ( $modules as $name => $module ) {
 			wfProfileIn( __METHOD__ . '-' . $name );
 			try {
-				// Scripts
 				$scripts = '';
 				if ( $context->shouldIncludeScripts() ) {
-					// bug 27054: Append semicolon to prevent weird bugs
-					// caused by files not terminating their statements right
-					$scripts .= $module->getScript( $context ) . ";\n";
+					$scripts = $module->getScript( $context );
+					if ( is_string( $scripts ) ) {
+						// bug 27054: Append semicolon to prevent weird bugs
+						// caused by files not terminating their statements right
+						$scripts .= ";\n";
+					}
 				}
-
 				// Styles
 				$styles = array();
 				if ( $context->shouldIncludeStyles() ) {
@@ -491,7 +492,11 @@ class ResourceLoader {
 				// Append output
 				switch ( $context->getOnly() ) {
 					case 'scripts':
-						$out .= $scripts;
+						if ( is_string( $scripts ) ) {
+							$out .= $scripts;
+						} else if ( is_array( $scripts ) ) {
+							$out .= self::makeLoaderImplementScript( $name, $scripts, array(), array() );
+						}
 						break;
 					case 'styles':
 						$out .= self::makeCombinedStyles( $styles );
@@ -504,7 +509,9 @@ class ResourceLoader {
 						// (unless in debug mode)
 						if ( !$context->getDebug() ) {
 							foreach ( $styles as $media => $style ) {
-								$styles[$media] = $this->filter( 'minify-css', $style );
+								if ( is_string( $style ) ) {
+									$styles[$media] = $this->filter( 'minify-css', $style );
+								}
 							}
 						}
 						$out .= self::makeLoaderImplementScript( $name, $scripts, $styles,
@@ -556,22 +563,24 @@ class ResourceLoader {
 	 * given properties.
 	 *
 	 * @param $name Module name
-	 * @param $scripts Array: List of JavaScript code snippets to be executed after the 
-	 *     module is loaded
-	 * @param $styles Array: List of CSS strings keyed by media type
+	 * @param $scripts Mixed: List of URLs to JavaScript files or String of JavaScript code
+	 * @param $styles Mixed: List of CSS strings keyed by media type, or list of lists of URLs to
+	 * CSS files keyed by media type
 	 * @param $messages Mixed: List of messages associated with this module. May either be an 
 	 *     associative array mapping message key to value, or a JSON-encoded message blob containing
 	 *     the same data, wrapped in an XmlJsCode object.
 	 */
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
-		if ( is_array( $scripts ) ) {
-			$scripts = implode( $scripts, "\n" );
+		if ( is_string( $scripts ) ) {
+			$scripts = new XmlJsCode( "function( $ ) {{$scripts}}" );
+		} else if ( !is_array( $scripts ) ) {
+			throw MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
 		return Xml::encodeJsCall( 
 			'mw.loader.implement', 
 			array(
 				$name,
-				new XmlJsCode( "function( $ ) {{$scripts}}" ),
+				$scripts,
 				(object)$styles,
 				(object)$messages
 			) );

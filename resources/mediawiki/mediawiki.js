@@ -733,7 +733,7 @@ window.mediaWiki = new ( function( $ ) {
 		 *
 		 * @param module string module name to execute
 		 */
-		function execute( module ) {
+		function execute( module, callback ) {
 			var _fn = 'mw.loader::execute> ';
 			if ( typeof registry[module] === 'undefined' ) {
 				throw new Error( 'Module has not been registered yet: ' + module );
@@ -744,30 +744,74 @@ window.mediaWiki = new ( function( $ ) {
 			} else if ( registry[module].state === 'ready' ) {
 				throw new Error( 'Module has already been loaded: ' + module );
 			}
-			// Add style sheet to document
-			if ( typeof registry[module].style === 'string' && registry[module].style.length ) {
-				$marker.before( mw.html.element( 'style',
-						{ type: 'text/css' },
-						new mw.html.Cdata( registry[module].style )
-					) );
-			} else if ( typeof registry[module].style === 'object'
-				&& !( $.isArray( registry[module].style ) ) )
-			{
+			// Add styles
+			if ( $.isPlainObject( registry[module].style ) ) {
 				for ( var media in registry[module].style ) {
-					$marker.before( mw.html.element( 'style',
-						{ type: 'text/css', media: media },
-						new mw.html.Cdata( registry[module].style[media] )
-					) );
+					var style = registry[module].style[media];
+					if ( $.isArray( style ) ) {
+						for ( var i = 0; i < style.length; i++ ) {
+							$marker.before( mw.html.element( 'link', {
+								'type': 'text/css',
+								'rel': 'stylesheet',
+								'href': style[i]
+							} ) );
+						}
+					} else if ( typeof style === 'string' ) {
+						$marker.before( mw.html.element(
+							'style',
+							{ 'type': 'text/css', 'media': media },
+							new mw.html.Cdata( style )
+						) );
+					}
 				}
 			}
 			// Add localizations to message system
-			if ( typeof registry[module].messages === 'object' ) {
+			if ( $.isPlainObject( registry[module].messages ) ) {
 				mw.messages.set( registry[module].messages );
 			}
 			// Execute script
 			try {
-				registry[module].script( jQuery );
-				registry[module].state = 'ready';
+				var script = registry[module].script;
+				if ( $.isArray( script ) ) {
+					var done = 0;
+					for ( var i = 0; i < script.length; i++ ) {
+						registry[module].state = 'loading';
+						addScript( script[i], function() {
+							if ( ++done == script.length ) {
+								registry[module].state = 'ready';
+								handlePending();
+								if ( $.isFunction( callback ) ) {
+									callback();
+								}
+							}
+						} );
+					}
+				} else if ( $.isFunction( script ) ) {
+					script( jQuery );
+					registry[module].state = 'ready';
+					handlePending();
+					if ( $.isFunction( callback ) ) {
+						callback();
+					}
+				}
+			} catch ( e ) {
+				// This needs to NOT use mw.log because these errors are common in production mode
+				// and not in debug mode, such as when a symbol that should be global isn't exported
+				if ( window.console && typeof window.console.log === 'function' ) {
+					console.log( _fn + 'Exception thrown by ' + module + ': ' + e.message );
+					console.log( e );
+				}
+				registry[module].state = 'error';
+			}
+		}
+
+		/**
+		 * Automatically executes jobs and modules which are pending with satistifed dependencies.
+		 * 
+		 * This is used when dependencies are satisfied, such as when a module is executed.
+		 */
+		function handlePending() {
+			try {
 				// Run jobs who's dependencies have just been met
 				for ( var j = 0; j < jobs.length; j++ ) {
 					if ( compare(
@@ -793,13 +837,6 @@ window.mediaWiki = new ( function( $ ) {
 					}
 				}
 			} catch ( e ) {
-				// This needs to NOT use mw.log because these errors are common in production mode
-				// and not in debug mode, such as when a symbol that should be global isn't exported
-				if ( window.console && typeof window.console.log === 'function' ) {
-					console.log( _fn + 'Exception thrown by ' + module + ': ' + e.message );
-					console.log( e );
-				}
-				registry[module].state = 'error';
 				// Run error callbacks of jobs affected by this condition
 				for ( var j = 0; j < jobs.length; j++ ) {
 					if ( $.inArray( module, jobs[j].dependencies ) !== -1 ) {
@@ -883,8 +920,11 @@ window.mediaWiki = new ( function( $ ) {
 		/**
 		 * Adds a script tag to the body, either using document.write or low-level DOM manipulation,
 		 * depending on whether document-ready has occured yet.
+		 * 
+		 * @param src String: URL to script, will be used as the src attribute in the script tag
+		 * @param callback Function: Optional callback which will be run when the script is done
 		 */
-		function addScript( src ) {
+		function addScript( src, callback ) {
 			if ( ready ) {
 				// jQuery's getScript method is NOT better than doing this the old-fassioned way
 				// because jQuery will eval the script's code, and errors will not have sane
@@ -892,11 +932,18 @@ window.mediaWiki = new ( function( $ ) {
 				var script = document.createElement( 'script' );
 				script.setAttribute( 'src', src );
 				script.setAttribute( 'type', 'text/javascript' );
+				if ( $.isFunction( callback ) ) {
+					script.onload = script.onreadystatechange = callback;
+				}
 				document.body.appendChild( script );
 			} else {
 				document.write( mw.html.element(
 					'script', { 'type': 'text/javascript', 'src': src }, ''
 				) );
+				if ( $.isFunction( callback ) ) {
+					// Document.write is synchronous, so this is called when it's done
+					callback();
+				}
 			}
 		}
 
@@ -1050,27 +1097,36 @@ window.mediaWiki = new ( function( $ ) {
 		 * Implements a module, giving the system a course of action to take
 		 * upon loading. Results of a request for one or more modules contain
 		 * calls to this function.
+		 * 
+		 * All arguments are required.
+		 * 
+		 * @param module String: Name of module
+		 * @param script Mixed: Function of module code or String of URL to be used as the src
+		 * attribute when adding a script element to the body
+		 * @param style Object: Object of CSS strings keyed by media-type or Object of lists of URLs
+		 * keyed by media-type
+		 * as the href attribute when adding a link element to the head
+		 * @param msgs Object: List of key/value pairs to be passed through mw.messages.set
 		 */
-		this.implement = function( module, script, style, localization ) {
+		this.implement = function( module, script, style, msgs ) {
+			// Validate input
+			if ( typeof module !== 'string' ) {
+				throw new Error( 'module must be a string, not a ' + typeof module );
+			}
+			if ( !$.isFunction( script ) && !$.isArray( script ) ) {
+				throw new Error( 'script must be a function or an array, not a ' + typeof script );
+			}
+			if ( !$.isPlainObject( style ) ) {
+				throw new Error( 'style must be a object or a string, not a ' + typeof style );
+			}
+			if ( !$.isPlainObject( msgs ) ) {
+				throw new Error( 'msgs must be an object, not a ' + typeof msgs );
+			}
 			// Automatically register module
 			if ( typeof registry[module] === 'undefined' ) {
 				mw.loader.register( module );
 			}
-			// Validate input
-			if ( !$.isFunction( script ) ) {
-				throw new Error( 'script must be a function, not a ' + typeof script );
-			}
-			if ( typeof style !== 'undefined'
-				&& typeof style !== 'string'
-				&& typeof style !== 'object' )
-			{
-				throw new Error( 'style must be a string or object, not a ' + typeof style );
-			}
-			if ( typeof localization !== 'undefined'
-				&& typeof localization !== 'object' )
-			{
-				throw new Error( 'localization must be an object, not a ' + typeof localization );
-			}
+			// Check for duplicate implementation
 			if ( typeof registry[module] !== 'undefined'
 				&& typeof registry[module].script !== 'undefined' )
 			{
@@ -1080,14 +1136,8 @@ window.mediaWiki = new ( function( $ ) {
 			registry[module].state = 'loaded';
 			// Attach components
 			registry[module].script = script;
-			if ( typeof style === 'string'
-				|| typeof style === 'object' && !( style instanceof Array ) )
-			{
-				registry[module].style = style;
-			}
-			if ( typeof localization === 'object' ) {
-				registry[module].messages = localization;
-			}
+			registry[module].style = style;
+			registry[module].messages = msgs;
 			// Execute or queue callback
 			if ( compare(
 				filter( ['ready'], registry[module].dependencies ),

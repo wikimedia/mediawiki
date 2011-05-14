@@ -215,21 +215,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return String: JavaScript code for $context
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$files = array_merge(
-			$this->scripts,
-			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
-			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' )
-		);
-		if ( $context->getDebug() ) {
-			$files = array_merge( $files, $this->debugScripts );
-			if ( $this->debugRaw ) {
-				$script = '';
-				foreach ( $files as $file ) {
-					$path = $this->getRemotePath( $file );
-					$script .= "\n\t" . Xml::encodeJsCall( 'mw.loader.load', array( $path ) );
-				}
-				return $script;
+		$files = $this->getScriptFiles( $context );
+		if ( $context->getDebug() && $this->debugRaw ) {
+			$urls = array();
+			foreach ( $this->getScriptFiles( $context ) as $file ) {
+				$urls[] = $this->getRemotePath( $file );
 			}
+			return $urls;
 		}
 		return $this->readScriptFiles( $files );
 	}
@@ -253,19 +245,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return String: CSS code for $context
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		// Merge general styles and skin specific styles, retaining media type collation
-		$styles = $this->readStyleFiles( $this->styles, $this->getFlip( $context ) );
-		$skinStyles = $this->readStyleFiles( 
-			self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ),
+		$styles = $this->readStyleFiles(
+			$this->getStyleFiles( $context ),
 			$this->getFlip( $context )
 		);
-		
-		foreach ( $skinStyles as $media => $style ) {
-			if ( isset( $styles[$media] ) ) {
-				$styles[$media] .= $style;
-			} else {
-				$styles[$media] = $style;
+		if ( !$context->getOnly() && $context->getDebug() && $this->debugRaw ) {
+			$urls = array();
+			foreach ( $this->getStyleFiles( $context ) as $mediaType => $list ) {
+				$urls[$mediaType] = array();
+				foreach ( $list as $file ) {
+					$urls[$mediaType][] = $this->getRemotePath( $file );
+				}
 			}
+			return $urls;
 		}
 		// Collect referenced files
 		$this->localFileRefs = array_unique( $this->localFileRefs );
@@ -381,7 +373,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return $this->modifiedTime[$context->getHash()];
 	}
 
-	/* Protected Members */
+	/* Protected Methods */
 
 	protected function getLocalPath( $path ) {
 		return "{$this->localBasePath}/$path";
@@ -443,6 +435,39 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Gets a list of file paths for all scripts in this module, in order of propper execution.
+	 * 
+	 * @param $context ResourceLoaderContext: Context
+	 * @return Array: List of file paths
+	 */
+	protected function getScriptFiles( ResourceLoaderContext $context ) {
+		$files = array_merge(
+			$this->scripts,
+			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
+			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' )
+		);
+		if ( $context->getDebug() ) {
+			$files = array_merge( $files, $this->debugScripts );
+		}
+		return $files;
+	}
+
+	/**
+	 * Gets a list of file paths for all styles in this module, in order of propper inclusion.
+	 * 
+	 * @param $context ResourceLoaderContext: Context
+	 * @return Array: List of file paths
+	 */
+	protected function getStyleFiles( ResourceLoaderContext $context ) {
+		return array_merge_recursive(
+			self::collateFilePathListByOption( $this->styles, 'media', 'all' ),
+			self::collateFilePathListByOption(
+				self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ), 'media', 'all'
+			)
+		);
+	}
+
+	/**
 	 * Gets the contents of a list of JavaScript files.
 	 * 
 	 * @param $scripts Array: List of file paths to scripts to read, remap and concetenate
@@ -467,7 +492,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets the contents of a list of CSS files.
 	 * 
-	 * @param $styles Array: List of file paths to styles to read, remap and concetenate
+	 * @param $styles Array: List of media type/list of file paths pairs, to read, remap and
+	 * concetenate
 	 * @return Array: List of concatenated and remapped CSS data from $styles, 
 	 *     keyed by media type
 	 */
@@ -475,7 +501,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( empty( $styles ) ) {
 			return array();
 		}
-		$styles = self::collateFilePathListByOption( $styles, 'media', 'all' );
 		foreach ( $styles as $media => $files ) {
 			$uniqueFiles = array_unique( $files );
 			$styles[$media] = implode(
