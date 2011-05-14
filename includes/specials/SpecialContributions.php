@@ -571,7 +571,8 @@ class ContribsPager extends ReverseChronologicalPager {
 		$fields = array(
 			'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
 			'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
-			'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted'
+			'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted',
+			'rev_len'
 		);
 		if ( $this->showSizeDiff && !$wgMiserMode ) {
 			$fields = array_merge( $fields,  array( 'rc_old_len', 'rc_new_len' ) );
@@ -761,7 +762,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
 		
 		
-		$diffOut = ( $this->showSizeDiff ) ? ' . . '.ChangesList::showCharacterDifference( $row->rc_old_len, $row->rc_new_len ) : '';
+		$diffOut = ( $this->showSizeDiff ) ? ' . . '.ChangesList::showCharacterDifference( $row->rc_old_len, $row->rc_new_len ) : ' . . '.Linker::formatRevisionSize( $row->rev_len );
 
 		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$diffOut}{$userlink} {$comment} {$topmarktext}";
 
