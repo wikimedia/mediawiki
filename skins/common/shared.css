@@ -325,11 +325,15 @@ table.collapsed tr.collapsable {
 	color: green;
 	font-size: larger;
 }
+.warning {
+	color: yellow;
+	font-size: larger;
+}
 .error {
 	color: red;
 	font-size: larger;
 }
-.errorbox, .successbox {
+.errorbox, .warningbox, .successbox {
 	font-size: larger;
 	border: 2px solid;
 	padding: .5em 1em;
@@ -341,11 +345,15 @@ table.collapsed tr.collapsable {
 	border-color: red;
 	background-color: #fff2f2;
 }
+.warningbox {
+	border-color: yellow;
+	background-color: #ffd;
+}
 .successbox {
 	border-color: green;
 	background-color: #dfd;
 }
-.errorbox h2, .successbox h2 {
+.errorbox h2, .warningbox h2, .successbox h2 {
 	font-size: 1em;
 	font-weight: bold;
 	display: inline;
