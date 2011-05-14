@@ -1110,9 +1110,14 @@ abstract class ApiBase {
 
 	/**
 	 * Output the error message related to a certain array
-	 * @param $error array Element of a getUserPermissionsErrors()-style array
+	 * @param $error (array|string) Element of a getUserPermissionsErrors()-style array
 	 */
 	public function dieUsageMsg( $error ) {
+		# most of the time we send a 1 element, so we might as well send it as
+		# a string and make this an array here.
+		if( is_string( $error ) ) {
+			$error = array( $error );
+		}
 		$parsed = $this->parseMsg( $error );
 		$this->dieUsage( $parsed['info'], $parsed['code'] );
 	}
