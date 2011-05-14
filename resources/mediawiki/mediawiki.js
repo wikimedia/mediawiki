@@ -933,7 +933,26 @@ window.mediaWiki = new ( function( $ ) {
 				script.setAttribute( 'src', src );
 				script.setAttribute( 'type', 'text/javascript' );
 				if ( $.isFunction( callback ) ) {
-					script.onload = script.onreadystatechange = callback;
+					var done = false;
+					// Attach handlers for all browsers -- this is based on jQuery.getScript
+					script.onload = script.onreadystatechange = function() {
+						if (
+							!done
+							&& (
+								!this.readyState
+								|| this.readyState === "loaded"
+								|| this.readyState === "complete"
+							)
+						) {
+							done = true;
+							callback();
+							// Handle memory leak in IE
+							script.onload = script.onreadystatechange = null;
+							if ( script.parentNode ) {
+								script.parentNode.removeChild( script );
+							}
+						}
+					};
 				}
 				document.body.appendChild( script );
 			} else {
