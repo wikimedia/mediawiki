@@ -381,11 +381,15 @@ class ApiQuery extends ApiBase {
 
 		// Show redirect information
 		$redirValues = array();
-		foreach ( $pageSet->getRedirectTitles() as $titleStrFrom => $titleStrTo ) {
-			$redirValues[] = array(
+		foreach ( $pageSet->getRedirectTitles() as $titleStrFrom => $titleTo ) {
+			$r = array(
 				'from' => strval( $titleStrFrom ),
-				'to' => $titleStrTo
+				'to' => $titleTo->getPrefixedText(),
 			);
+			if ( $titleTo->getFragment() !== '' ) {
+				$r['tofragment'] = $titleTo->getFragment();
+			}
+			$redirValues[] = $r;
 		}
 
 		if ( count( $redirValues ) ) {
