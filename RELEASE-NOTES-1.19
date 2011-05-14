@@ -37,6 +37,7 @@ used in Tiff files.
 * (bug 23002) Imagelinks table not updated after imagemove.
 * (bug 27864) Transcluding {{Special:Prefix}} with empty prefix now lists all
   pages.
+* (bug 18803) JPEG2000 images can no longer be uploaded as JPEG image.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
