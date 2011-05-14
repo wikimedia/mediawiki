@@ -128,7 +128,9 @@ test( 'mw.user', function(){
 });
 
 test( 'mw.loader', function(){
-	expect(1);
+	expect(2);
+	
+	ok( location.href.match(/[^#\?]*/) && location.href.match(/[^#\?]*/)[0], true, 'Extracting file path from location' );
 
 	stop();
 	
