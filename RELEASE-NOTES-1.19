@@ -43,6 +43,7 @@ used in Tiff files.
 * (bug 18803) JPEG2000 images can no longer be uploaded as JPEG image.
 * (bug 11868) If using links to count articles, the checking will now be based
   on the real presence of an internal link instead of the "[[" string
+* (bug 28287) The "your changes" box for edit conflicts is now read-only.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo

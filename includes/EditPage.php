@@ -1740,7 +1740,7 @@ HTML
 	}
 
 	protected function showTextbox2() {
-		$this->showTextbox( $this->textbox2, 'wpTextbox2', array( 'tabindex' => 6 ) );
+		$this->showTextbox( $this->textbox2, 'wpTextbox2', array( 'tabindex' => 6, 'readonly' ) );
 	}
 
 	protected function showTextbox( $content, $name, $customAttribs = array() ) {
