@@ -1124,7 +1124,6 @@ window.mediaWiki = new ( function( $ ) {
 		 * attribute when adding a script element to the body
 		 * @param style Object: Object of CSS strings keyed by media-type or Object of lists of URLs
 		 * keyed by media-type
-		 * as the href attribute when adding a link element to the head
 		 * @param msgs Object: List of key/value pairs to be passed through mw.messages.set
 		 */
 		this.implement = function( module, script, style, msgs ) {
@@ -1136,7 +1135,7 @@ window.mediaWiki = new ( function( $ ) {
 				throw new Error( 'script must be a function or an array, not a ' + typeof script );
 			}
 			if ( !$.isPlainObject( style ) ) {
-				throw new Error( 'style must be a object or a string, not a ' + typeof style );
+				throw new Error( 'style must be an object or a string, not a ' + typeof style );
 			}
 			if ( !$.isPlainObject( msgs ) ) {
 				throw new Error( 'msgs must be an object, not a ' + typeof msgs );
