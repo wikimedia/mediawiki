@@ -36,6 +36,7 @@ used in Tiff files.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
+* (bug 28963) add langbacklinks module to api
 
 === Languages updated in 1.19 ===
 
