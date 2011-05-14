@@ -146,12 +146,6 @@ select {
 	color: black;
 	vertical-align: top;
 }
-abbr, acronym, .explain {
-	border-bottom: 1px dotted black;
-	color: black;
-	background: none;
-	cursor: help;
-}
 q {
 	font-family: Times, "Times New Roman", serif;
 	font-style: italic;
