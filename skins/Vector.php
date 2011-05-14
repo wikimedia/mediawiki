@@ -83,22 +83,22 @@ class VectorTemplate extends BaseTemplate {
 		
 		if ( $wgVectorUseIconWatch ) {
 			$mode = $this->skin->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
-			if ( isset($nav['actions'][$mode]) ) {
+			if ( isset( $nav['actions'][$mode] ) ) {
 				$nav['views'][$mode] = $nav['actions'][$mode];
-				$nav['views'][$mode]['class'] = rtrim('icon ' . $nav['views'][$mode]['class'], ' ');
+				$nav['views'][$mode]['class'] = rtrim( 'icon ' . $nav['views'][$mode]['class'], ' ' );
 				$nav['views'][$mode]['primary'] = true;
-				unset($nav['actions'][$mode]);
+				unset( $nav['actions'][$mode] );
 			}
 		}
 
 		$xmlID = '';
 		foreach ( $nav as $section => $links ) {
 			foreach ( $links as $key => $link ) {
-				if ( $section == "views" && !(isset($link["primary"]) && $link["primary"]) ) {
-					$link['class'] = rtrim('collapsible ' . $link['class'], ' ');
+				if ( $section == 'views' && !( isset( $link['primary'] ) && $link['primary'] ) ) {
+					$link['class'] = rtrim( 'collapsible ' . $link['class'], ' ' );
 				}
 				
-				$xmlID = isset($link["id"]) ? $link["id"] : 'ca-' . $xmlID;
+				$xmlID = isset( $link['id'] ) ? $link['id'] : 'ca-' . $xmlID;
 				$nav[$section][$key]['attributes'] =
 					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
 				if ( $link['class'] ) {
@@ -106,7 +106,7 @@ class VectorTemplate extends BaseTemplate {
 						' class="' . htmlspecialchars( $link['class'] ) . '"';
 					unset( $nav[$section][$key]['class'] );
 				}
-				if ( isset($link['tooltiponly']) && $link['tooltiponly'] ) {
+				if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
 					$nav[$section][$key]['key'] =
 						Linker::tooltip( $xmlID );
 				} else {
@@ -135,9 +135,9 @@ class VectorTemplate extends BaseTemplate {
 		<div id="mw-page-base" class="noprint"></div>
 		<div id="mw-head-base" class="noprint"></div>
 		<!-- content -->
-		<div id="content"<?php $this->html('specialpageattributes') ?>>
+		<div id="content"<?php $this->html( 'specialpageattributes' ) ?>>
 			<a id="top"></a>
-			<div id="mw-js-message" style="display:none;"<?php $this->html('userlangattributes') ?>></div>
+			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<?php if ( $this->data['sitenotice'] ): ?>
 			<!-- sitenotice -->
 			<div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
@@ -154,14 +154,14 @@ class VectorTemplate extends BaseTemplate {
 				<!-- /tagline -->
 				<?php endif; ?>
 				<!-- subtitle -->
-				<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html( 'subtitle' ) ?></div>
+				<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
 				<!-- /subtitle -->
 				<?php if ( $this->data['undelete'] ): ?>
 				<!-- undelete -->
 				<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
 				<!-- /undelete -->
 				<?php endif; ?>
-				<?php if($this->data['newtalk'] ): ?>
+				<?php if( $this->data['newtalk'] ): ?>
 				<!-- newtalk -->
 				<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
 				<!-- /newtalk -->
@@ -185,7 +185,7 @@ class VectorTemplate extends BaseTemplate {
 				<!-- /printfooter -->
 				<?php endif; ?>
 				<!-- debughtml -->
-				<?php $this->html('debughtml'); ?>
+				<?php $this->html( 'debughtml' ); ?>
 				<!-- /debughtml -->
 				<?php if ( $this->data['catlinks'] ): ?>
 				<!-- catlinks -->
@@ -222,7 +222,7 @@ class VectorTemplate extends BaseTemplate {
 			</div>
 		<!-- /panel -->
 		<!-- footer -->
-		<div id="footer"<?php $this->html('userlangattributes') ?>>
+		<div id="footer"<?php $this->html( 'userlangattributes' ) ?>>
 			<?php foreach( $this->getFooterLinks() as $category => $links ): ?>
 				<ul id="footer-<?php echo $category ?>">
 					<?php foreach( $links as $link ): ?>
@@ -234,7 +234,7 @@ class VectorTemplate extends BaseTemplate {
 			if ( count( $footericons ) > 0 ): ?>
 				<ul id="footer-icons" class="noprint">
 <?php			foreach ( $footericons as $blockName => $footerIcons ): ?>
-					<li id="footer-<?php echo htmlspecialchars($blockName); ?>ico">
+					<li id="footer-<?php echo htmlspecialchars( $blockName ); ?>ico">
 <?php				foreach ( $footerIcons as $icon ): ?>
 						<?php echo $this->skin->makeFooterIcon( $icon ); ?>
 
@@ -247,7 +247,7 @@ class VectorTemplate extends BaseTemplate {
 		</div>
 		<!-- /footer -->
 		<!-- fixalpha -->
-		<script type="<?php $this->text('jsmimetype') ?>"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<script type="<?php $this->text( 'jsmimetype' ) ?>"> if ( window.isMSIE55 ) fixalpha(); </script>
 		<!-- /fixalpha -->
 		<?php $this->printTrail(); ?>
 
@@ -261,9 +261,15 @@ class VectorTemplate extends BaseTemplate {
 	 */
 	private function renderPortals( $portals ) {
 		// Force the rendering of the following portals
-		if ( !isset( $portals['SEARCH'] ) ) $portals['SEARCH'] = true;
-		if ( !isset( $portals['TOOLBOX'] ) ) $portals['TOOLBOX'] = true;
-		if ( !isset( $portals['LANGUAGES'] ) ) $portals['LANGUAGES'] = true;
+		if ( !isset( $portals['SEARCH'] ) ) {
+			$portals['SEARCH'] = true;
+		}
+		if ( !isset( $portals['TOOLBOX'] ) ) {
+			$portals['TOOLBOX'] = true;
+		}
+		if ( !isset( $portals['LANGUAGES'] ) ) {
+			$portals['LANGUAGES'] = true;
+		}
 		// Render portals
 		foreach ( $portals as $name => $content ) {
 			echo "\n<!-- {$name} -->\n";
@@ -271,39 +277,39 @@ class VectorTemplate extends BaseTemplate {
 				case 'SEARCH':
 					break;
 				case 'TOOLBOX':
-					$this->renderPortal( "tb", $this->getToolbox(), "toolbox", "SkinTemplateToolboxEnd" );
+					$this->renderPortal( 'tb', $this->getToolbox(), 'toolbox', 'SkinTemplateToolboxEnd' );
 					break;
 				case 'LANGUAGES':
 					if ( $this->data['language_urls'] ) {
-						$this->renderPortal("lang", $this->data['language_urls'], "otherlanguages");
+						$this->renderPortal( 'lang', $this->data['language_urls'], 'otherlanguages' );
 					}
 					break;
 				default:
-					$this->renderPortal($name, $content);
+					$this->renderPortal( $name, $content );
 				break;
 			}
 			echo "\n<!-- /{$name} -->\n";
 		}
 	}
 
-	private function renderPortal($name, $content, $msg=null, $hook=null) {
-		if ( !isset($msg) ) {
+	private function renderPortal( $name, $content, $msg = null, $hook = null ) {
+		if ( !isset( $msg ) ) {
 			$msg = $name;
 		}
 		?>
 <div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo Linker::tooltip( 'p-' . $name ) ?>>
-	<h5<?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $msg ); if ( wfEmptyMsg( $msg ) ) echo htmlspecialchars( $msg ); else echo htmlspecialchars( $out ); ?></h5>
+	<h5<?php $this->html( 'userlangattributes' ) ?>><?php $out = wfMsg( $msg ); if ( wfEmptyMsg( $msg ) ) echo htmlspecialchars( $msg ); else echo htmlspecialchars( $out ); ?></h5>
 	<div class="body">
 <?php
 		if ( is_array( $content ) ): ?>
 		<ul>
 <?php
 			foreach( $content as $key => $val ): ?>
-			<?php echo $this->makeListItem($key, $val); ?>
+			<?php echo $this->makeListItem( $key, $val ); ?>
 
 <?php
 			endforeach;
-			if ( isset($hook) ) {
+			if ( isset( $hook ) ) {
 				wfRunHooks( $hook, array( &$this ) );
 			}
 			?>
@@ -330,7 +336,7 @@ class VectorTemplate extends BaseTemplate {
 		if ( !is_array( $elements ) ) {
 			$elements = array( $elements );
 		// If there's a series of elements, reverse them when in RTL mode
-		} else if ( wfUILang()->isRTL() ) {
+		} elseif ( wfUILang()->isRTL() ) {
 			$elements = array_reverse( $elements );
 		}
 		// Render elements
@@ -340,9 +346,9 @@ class VectorTemplate extends BaseTemplate {
 				case 'NAMESPACES':
 ?>
 <div id="p-namespaces" class="vectorTabs<?php if ( count( $this->data['namespace_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
-	<h5><?php $this->msg('namespaces') ?></h5>
-	<ul<?php $this->html('userlangattributes') ?>>
-		<?php foreach ($this->data['namespace_urls'] as $link ): ?>
+	<h5><?php $this->msg( 'namespaces' ) ?></h5>
+	<ul<?php $this->html( 'userlangattributes' ) ?>>
+		<?php foreach ( $this->data['namespace_urls'] as $link ): ?>
 			<li <?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></span></li>
 		<?php endforeach; ?>
 	</ul>
@@ -361,9 +367,9 @@ class VectorTemplate extends BaseTemplate {
 		<?php endforeach; ?>
 		</h4>
 	<?php endif; ?>
-	<h5><span><?php $this->msg('variants') ?></span><a href="#"></a></h5>
+	<h5><span><?php $this->msg( 'variants' ) ?></span><a href="#"></a></h5>
 	<div class="menu">
-		<ul<?php $this->html('userlangattributes') ?>>
+		<ul<?php $this->html( 'userlangattributes' ) ?>>
 			<?php foreach ( $this->data['variant_urls'] as $link ): ?>
 				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 			<?php endforeach; ?>
@@ -392,10 +398,10 @@ class VectorTemplate extends BaseTemplate {
 				case 'ACTIONS':
 ?>
 <div id="p-cactions" class="vectorMenu<?php if ( count( $this->data['action_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
-	<h5><span><?php $this->msg('actions') ?></span><a href="#"></a></h5>
+	<h5><span><?php $this->msg( 'actions' ) ?></span><a href="#"></a></h5>
 	<div class="menu">
-		<ul<?php $this->html('userlangattributes') ?>>
-			<?php foreach ($this->data['action_urls'] as $link ): ?>
+		<ul<?php $this->html( 'userlangattributes' ) ?>>
+			<?php foreach ( $this->data['action_urls'] as $link ): ?>
 				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 			<?php endforeach; ?>
 		</ul>
@@ -406,10 +412,10 @@ class VectorTemplate extends BaseTemplate {
 				case 'PERSONAL':
 ?>
 <div id="p-personal" class="<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
-	<h5><?php $this->msg('personaltools') ?></h5>
-	<ul<?php $this->html('userlangattributes') ?>>
-<?php			foreach($this->getPersonalTools() as $key => $item) { ?>
-		<?php echo $this->makeListItem($key, $item); ?>
+	<h5><?php $this->msg( 'personaltools' ) ?></h5>
+	<ul<?php $this->html( 'userlangattributes' ) ?>>
+<?php			foreach( $this->getPersonalTools() as $key => $item ) { ?>
+		<?php echo $this->makeListItem( $key, $item ); ?>
 
 <?php			} ?>
 	</ul>
@@ -419,23 +425,23 @@ class VectorTemplate extends BaseTemplate {
 				case 'SEARCH':
 ?>
 <div id="p-search">
-	<h5<?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
+	<h5<?php $this->html( 'userlangattributes' ) ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
 	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 		<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
 		<?php if ( $wgVectorUseSimpleSearch && $wgUser->getOption( 'vector-simplesearch' ) ): ?>
 		<div id="simpleSearch">
 			<?php if ( $this->data['rtl'] ): ?>
-			<?php echo $this->makeSearchButton("image", array( "id" => "searchButton", "src" => $this->skin->getSkinStylePath('images/search-rtl.png') )); ?>
+			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->skin->getSkinStylePath( 'images/search-rtl.png' ) ) ); ?>
 			<?php endif; ?>
-			<?php echo $this->makeSearchInput(array( "id" => "searchInput", "type" => "text" )); ?>
+			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'text' ) ); ?>
 			<?php if ( !$this->data['rtl'] ): ?>
-			<?php echo $this->makeSearchButton("image", array( "id" => "searchButton", "src" => $this->skin->getSkinStylePath('images/search-ltr.png') )); ?>
+			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->skin->getSkinStylePath( 'images/search-ltr.png' ) ) ); ?>
 			<?php endif; ?>
 		</div>
 		<?php else: ?>
-		<?php echo $this->makeSearchInput(array( "id" => "searchInput" )); ?>
-		<?php echo $this->makeSearchButton("go", array( "id" => "searchGoButton", "class" => "searchButton" )); ?>
-		<?php echo $this->makeSearchButton("fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" )); ?>
+		<?php echo $this->makeSearchInput( array( 'id' => 'searchInput' ) ); ?>
+		<?php echo $this->makeSearchButton( 'go', array( 'id' => 'searchGoButton', 'class' => 'searchButton' ) ); ?>
+		<?php echo $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton' ) ); ?>
 		<?php endif; ?>
 	</form>
 </div>
