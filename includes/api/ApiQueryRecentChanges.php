@@ -252,6 +252,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $params['toponly'] || $showRedirects ) {
 			$this->addTables( 'page' );
 			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN', array( 'rc_namespace=page_namespace', 'rc_title=page_title' ) ) ) );
+			$this->addFields( 'page_is_redirect' );
 
 			if ( $params['toponly'] ) {
 				$this->addWhere( 'rc_this_oldid = page_latest' );
