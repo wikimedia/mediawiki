@@ -128,16 +128,18 @@ test( 'mw.user', function(){
 });
 
 test( 'mw.loader', function(){
+	expect(1);
 
-	ok( mw.loader, 'loader defined' );
-	ok( mw.loader.work, 'loader.work defined' );
-	ok( mw.loader.register, 'loader.register defined' );
-	ok( mw.loader.implement, 'loader.implement defined' );
-	ok( mw.loader.using, 'loader.using defined' );
-	ok( mw.loader.load, 'loader.load defined' );
-	ok( mw.loader.go, 'loader.go defined' );
-	ok( mw.loader.state, 'loader.state defined' );
-	ok( mw.loader.version, 'loader.version defined' );
+	stop();
+	
+	mw.loader.implement( 'is.awesome', [location.href.match(/[^#\?]*/)[0] + 'sample/awesome.js'], {}, {} );
+	mw.loader.using( 'is.awesome', function(){
+		start();
+		same( window.awesome, true, 'Implementing a module, is the callback timed properly ?');
+	}, function(){
+		start();
+		same( 'mw.loader.using error callback fired', true, 'Implementing a module, is the callback timed properly ?');
+	});
 
 });
 

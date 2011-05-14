@@ -109,8 +109,6 @@ test( 'validateEmail', function(){
 
 });
 
-
-
 test( 'isIPv6Address', function(){
 
 	// Based on IPTest.php > IPv6
@@ -122,7 +120,6 @@ test( 'isIPv6Address', function(){
 	same( mw.util.isIPv6Address( "::0:" ), false );
 
 });
-
 
 test( 'isIPv4Address', function(){
 
