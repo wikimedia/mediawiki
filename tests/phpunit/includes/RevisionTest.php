@@ -9,8 +9,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$globalSet = array(
 			'wgLegacyEncoding' => false,
 			'wgCompressRevisions' => false,
-			'wgInputEncoding' => 'utf-8',
-			'wgOutputEncoding' => 'utf-8' );
+		);
 		foreach ( $globalSet as $var => $data ) {
 			$this->saveGlobals[$var] = $GLOBALS[$var];
 			$GLOBALS[$var] = $data;
