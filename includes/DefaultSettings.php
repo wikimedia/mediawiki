@@ -1537,6 +1537,7 @@ $wgObjectCaches = array(
 	'xcache' => array( 'class' => 'XCacheBagOStuff' ),
 	'wincache' => array( 'class' => 'WinCacheBagOStuff' ),
 	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff' ),
+	'hash' => array( 'class' => 'HashBagOStuff' ),
 );
 
 /**
