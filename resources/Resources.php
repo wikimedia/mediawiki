@@ -444,7 +444,6 @@ return array(
 			'jquery.makeCollapsible',
 			'jquery.placeholder',
 		),
-		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
 	'mediawiki.util.jpegmeta' => array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.jpegmeta.js',
