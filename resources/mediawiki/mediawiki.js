@@ -1298,9 +1298,27 @@ window.mediaWiki = new ( function( $ ) {
 		 *
 		 * @param module string name of module to get version for
 		 */
-		this.version = function( module ) {
+		this.getVersion = function( module ) {
 			if ( module in registry && 'version' in registry[module] ) {
 				return formatVersionNumber( registry[module].version );
+			}
+			return null;
+		};
+		/**
+		* @deprecated use mw.loader.getVersion() instead
+		*/
+		this.version = function() {
+			return mediaWiki.loader.getVersion.apply( mediaWiki.loader, arguments );
+		}
+
+		/**
+		 * Gets the state of a module
+		 *
+		 * @param module string name of module to get state for
+		 */
+		this.getState = function( module ) {
+			if ( module in registry && 'state' in registry[module] ) {
+				return registry[module].state;
 			}
 			return null;
 		};
