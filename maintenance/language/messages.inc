@@ -1282,6 +1282,7 @@ $wgMessageStructure = array(
 		'large-file',
 		'largefileserver',
 		'emptyfile',
+		'windows-nonascii-filename',
 		'fileexists',
 		'filepageexists',
 		'fileexists-extension',

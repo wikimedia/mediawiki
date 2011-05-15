@@ -49,6 +49,8 @@ used in Tiff files.
 * (bug 28287) The "your changes" box for edit conflicts is now read-only.
 * (bug 28940) When making a thumb of an SVG, and only specifying the height
   make the width be the max SVG size, not the natrual width of the SVG.
+* (bug 1780) Uploading files with non-ascii characters are now forbidden on
+  Windows.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
