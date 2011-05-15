@@ -275,7 +275,9 @@ class CheckSyntax extends Maintenance {
 		}
 
 		$text = file_get_contents( $file );
+		$tokens = token_get_all( $text );
 
+		$this->checkEvilToken( $file, $tokens, '@', 'Error supression operator (@)');
 		$this->checkRegex( $file, $text, '/^[\s\r\n]+<\?/', 'leading whitespace' );
 		$this->checkRegex( $file, $text, '/\?>[\s\r\n]*$/', 'trailing ?>' );
 		$this->checkRegex( $file, $text, '/^[\xFF\xFE\xEF]/', 'byte-order mark' );
@@ -283,6 +285,18 @@ class CheckSyntax extends Maintenance {
 
 	private function checkRegex( $file, $text, $regex, $desc ) {
 		if ( !preg_match( $regex, $text ) ) {
+			return;
+		}
+
+		if ( !isset( $this->mWarnings[$file] ) ) {
+			$this->mWarnings[$file] = array();
+		}
+		$this->mWarnings[$file][] = $desc;
+		$this->output( "Warning in file $file: $desc found.\n" );
+	}
+
+	private function checkEvilToken( $file, $tokens, $evilToken, $desc ) {
+		if ( !in_array( $evilToken, $tokens ) ) {
 			return;
 		}
 
