@@ -2110,17 +2110,7 @@ $wgLocaltimezone = null;
  * This setting is used for most date/time displays in the software, and is
  * overrideable in user preferences. It is *not* used for signature timestamps.
  *
- * You can set it to match the configured server timezone like this:
- *   $wgLocalTZoffset = date("Z") / 60;
- *
- * If your server is not configured for the timezone you want, you can set
- * this in conjunction with the signature timezone and override the PHP default
- * timezone like so:
- *   $wgLocaltimezone="Europe/Berlin";
- *   date_default_timezone_set( $wgLocaltimezone );
- *   $wgLocalTZoffset = date("Z") / 60;
- *
- * Leave at NULL to show times in universal time (UTC/GMT).
+ * By default, this will be set to match $wgLocaltimezone.
  */
 $wgLocalTZoffset = null;
 

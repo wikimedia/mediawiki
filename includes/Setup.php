@@ -346,8 +346,13 @@ wfMemoryLimit();
  * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
  */
 wfSuppressWarnings();
-date_default_timezone_set( date_default_timezone_get() );
+if(!isset($wgLocaltimezone)) $wgLocaltimezone = date_default_timezone_get();
 wfRestoreWarnings();
+
+date_default_timezone_set( $wgLocaltimezone );
+if(!isset($wgLocalTZoffset)) {
+	$wgLocalTZoffset = date('Z') / 60;
+}
 
 # Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
 $wgRequest = new WebRequest;
