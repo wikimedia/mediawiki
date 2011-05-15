@@ -37,9 +37,6 @@
 // So extensions (and other code) can check whether they're running in API mode
 define( 'MW_API', true );
 
-// Include global constants, including MW_VERSION and MW_MIN_PHP_VERSION
-require_once( dirname( __FILE__ ) . '/includes/Defines.php' );
-
 // We want a plain message on catastrophic errors that machines can identify
 function wfDie( $msg = '' ) {
 	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
@@ -48,10 +45,9 @@ function wfDie( $msg = '' ) {
 }
 
 // Die on unsupported PHP versions
-if( !function_exists( 'version_compare' ) || version_compare( phpversion(), MW_MIN_PHP_VERSION ) < 0 ){
-	$version = htmlspecialchars( MW_VERSION );
-	$phpversion = htmlspecialchars( MW_MIN_PHP_VERSION );
-	wfDie( "MediaWiki $version requires at least PHP version $phpversion." );
+if( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.3' ) < 0 ){
+	$version = htmlspecialchars( $wgVersion );
+	wfDie( "MediaWiki $version requires at least PHP version 5.2.3." );
 }
 
 // Initialise common code.

@@ -24,8 +24,7 @@
 abstract class Installer {
 
 	// This is the absolute minimum PHP version we can support
-	// @deprecated since 1.18
-	const MINIMUM_PHP_VERSION = MW_MIN_PHP_VERSION;
+	const MINIMUM_PHP_VERSION = '5.2.3';
 
 	/**
 	 * @var array
@@ -379,11 +378,11 @@ abstract class Installer {
 	 */
 	public function doEnvironmentChecks() {
 		$phpVersion = phpversion();
-		if( version_compare( $phpVersion, MW_MIN_PHP_VERSION, '>=' ) ) {
+		if( version_compare( $phpVersion, self::MINIMUM_PHP_VERSION, '>=' ) ) {
 			$this->showMessage( 'config-env-php', $phpVersion );
 			$good = true;
 		} else {
-			$this->showMessage( 'config-env-php-toolow', $phpVersion, MW_MIN_PHP_VERSION );
+			$this->showMessage( 'config-env-php-toolow', $phpVersion, self::MINIMUM_PHP_VERSION );
 			$good = false;
 		}
 

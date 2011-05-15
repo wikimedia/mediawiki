@@ -23,7 +23,6 @@ $fname = 'Setup.php';
 wfProfileIn( $fname );
 
 // Check to see if we are at the file scope
-// FIXME: use a different test here, maybe a constant defined at the top of DefaultSettings.php?
 if ( !isset( $wgVersion ) ) {
 	echo "Error, Setup.php must be included from the file scope, after DefaultSettings.php\n";
 	die( 1 );
