@@ -1768,7 +1768,6 @@ La tièra seguenta aficha {{PLURAL:$1|lo primièr ligam de pagina|los $1 primiè
 Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'nolinkstoimage'            => 'Cap de pagina compòrta pas de ligam cap a aqueste imatge.',
 'morelinkstoimage'          => 'Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] cap a aqueste imatge.',
-'redirectstofile'           => '{{PLURAL:$1|Lo fichièr seguent redirigís|Los fichièrs seguents redirigisson}} cap a aqueste fichièr :',
 'duplicatesoffile'          => "{{PLURAL:$1|Lo fichièr seguent es un duplicata|Los fichièrs seguents son de duplicatas}} d'aqueste fichièr ([[Special:FileDuplicateSearch/$2|mai de detalhs]]):",
 'sharedupload'              => 'Aqueste fichièr proven de $1 e pòt èsser utilizat per d’autres projèctes.',
 'sharedupload-desc-there'   => "Aqueste fichièr proven de $1 e pòt èsser utilizat per d'autres projèctes. Vejatz [$2 sa pagina de descripcion] per mai d'entresenhas.",

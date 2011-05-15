@@ -1842,7 +1842,7 @@ Poniższa lista pokazuje jedynie {{PLURAL:$1|pierwszy link|pierwsze $1 linki|pie
 Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'nolinkstoimage'            => 'Żadna strona nie odwołuje się do tego pliku.',
 'morelinkstoimage'          => 'Pokaż [[Special:WhatLinksHere/$1|więcej odnośników]] do tego pliku.',
-'redirectstofile'           => '{{PLURAL:$1|Następujący plik przekierowuje|Następujące pliki przekierowują}} do tego pliku:',
+'linkstoimage-redirect'     => '$1 (przekierowanie do pliku) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Następujący plik jest kopią|Następujące pliki są kopiami}} pliku ([[Special:FileDuplicateSearch/$2|więcej informacji]]):',
 'sharedupload'              => 'Ten plik znajduje się na $1 i może być używany w innych projektach.',
 'sharedupload-desc-there'   => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
@@ -2436,6 +2436,8 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'sp-contributions-username'            => 'Adres IP lub nazwa użytkownika',
 'sp-contributions-toponly'             => 'Pokaż wyłącznie ostatnie wersje',
 'sp-contributions-submit'              => 'Szukaj',
+'sp-contributions-showsizediff'        => 'Wyświetl różnice w wielkości strony',
+'sp-contributions-showsizediff-warn'   => 'Ta instancja ma ograniczoną do $1 wielkość rejestru ostatnich zmian. Jeśli użyjesz tej opcji, strony które nie są w tym rejestrze nie zostaną wyświetlone',
 
 # What links here
 'whatlinkshere'            => 'Linkujące',

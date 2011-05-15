@@ -1853,7 +1853,6 @@ A következő lista csak az {{PLURAL:$1|első linket|első $1 linket}} tartalmaz
 A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'nolinkstoimage'            => 'Erre a fájlra nem hivatkozik lap.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|További hivatkozások]] megtekintése',
-'redirectstofile'           => 'A következő {{PLURAL:$1|fájl|$1 fájl}} van átirányítva erre a névre:',
 'duplicatesoffile'          => 'A következő {{PLURAL:$1|fájl|$1 fájl}} ennek a fájlnak a duplikátuma ([[Special:FileDuplicateSearch/$2|további részletek]]):',
 'sharedupload'              => 'Ez a fájl a(z) $1 megosztott tárhelyről származik, és más projektek is használhatják.',
 'sharedupload-desc-there'   => 'Ez a fájl a $1 megosztott tárhelyről származik, és más projektek is használhatják.

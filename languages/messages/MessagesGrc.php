@@ -506,6 +506,9 @@ $2',
 'resetpass-submit-cancel'   => 'Ἀκυροῦν',
 'resetpass-temp-password'   => 'Προσωρινὸν σύνθημα:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Ὄνομα χρωμένου:',
+
 # Edit page toolbar
 'bold_sample'     => 'Γράμματα παχέα',
 'bold_tip'        => 'Γράμματα παχέα',
@@ -1280,7 +1283,6 @@ $1",
 Ἡ [[Special:WhatLinksHere/$2|πλήρης διαλογὴ]] διαθέσιμός ἐστιν.',
 'nolinkstoimage'            => 'Οὐδένα ἐστὶ προσάγον τόδε τὸ φορτίον.',
 'morelinkstoimage'          => 'Ὁρᾶν [[Special:WhatLinksHere/$1|πλείονας συνδέσμους]] πρὸς τήνδε τὴν δέλτον.',
-'redirectstofile'           => '{{PLURAL:$1|Τὸ ἀκόλουθον ἀρχεῖον ἀναδιευθύνεται|$1 Τὰ ἀκόλουθα ἀρχεῖα ἀναδιευθύνονται}} πρὸς τόδε τὸ ἀρχεῖον:',
 'duplicatesoffile'          => '{{PLURAL:$1|Τὸ ἀκόλουθον ἀρχεῖον διπλότυπον ἐστὶ|$1 Τὰ ἀκόλουθα ἀρχεῖα διπλότυπα εἰσὶ}} τοῦδε τοῦ ἀρχείου ([[Special:FileDuplicateSearch/$2|πλείω]]):',
 'sharedupload'              => 'Τόδε τὸ ἀρχεῖον ἀπὸ τὴν $1 ἐστὶ καὶ δύνασαι χρῆσθαι τούτῳ εἰς ἕτερα σχέδια ἐξἴσου.',
 'filepage-nofile'           => 'Οὐδέν ἐστὶν ἀρχεῖον ἔχον τόδε τὸ ὄνομα.',

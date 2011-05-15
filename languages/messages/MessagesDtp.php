@@ -1013,7 +1013,6 @@ Bobolikon id [[Special:Watchlist|lis pintangannu]] nopo nga '''pinakapal'''.",
 'linkstoimage'              => 'Iti kiharo {{PLURAL:$1|bolikon poingoput|$1 bobolikon poingoput}} id pail diti:',
 'nolinkstoimage'            => 'Ingaa bobolikon it poingoput id pail diti.',
 'morelinkstoimage'          => 'Intaai [[Special:WhatLinksHere/$1|tongotoput]] pail diti.',
-'redirectstofile'           => 'Iti sumusuhut {{PLURAL:$1|pail pinotilombus|$1 tangapail pinotilombus}} kuma id pail:',
 'sharedupload'              => 'Pail diti mantad $1 om kaanto nogi do gunoon doid purujik suai.',
 'sharedupload-desc-there'   => 'Pail diti mantad $1 om gunoon nogi do tongopurujik suai.
 Intaai [$2 bolikon pongowowoyoon pail] montok pongintalangan.',

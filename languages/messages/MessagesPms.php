@@ -1620,7 +1620,6 @@ La lista sì-sota a smon mach {{PLURAL:$1|la prima pàgina ch'a l'ha|le prime $1
 A l'é disponìbil na [[Special:WhatLinksHere/$2|lista completa]].",
 'nolinkstoimage'                    => "Pa gnun-a pàgina che a l'abia n'anliura a sta figura-sì.",
 'morelinkstoimage'                  => "Vëdde [[Special:WhatLinksHere/$1|d'àutri colegament]] a s'archivi.",
-'redirectstofile'                   => "Sì-sota a-i {{PLURAL:$1|é n'archivi|son $1 archivi}} ch'a armando a cost-sì:",
 'duplicatesoffile'                  => "{{PLURAL:$1|L'archivi sì-dapress a l'é un|Ij $1 archivi sì-dapress a son dij}} duplicà ëd s'archivi ([[Special:FileDuplicateSearch/$2|pì ëd detaj]]):",
 'sharedupload'                      => "St'archivi-sì a ven da $1 e a peul esse dovrà da d'àutri proget.",
 'sharedupload-desc-there'           => "Cost archivi a riva da $1 e a peul esse dovrà da d'àutri proget.

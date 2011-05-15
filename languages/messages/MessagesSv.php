@@ -1882,7 +1882,6 @@ Följande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}}
 Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'nolinkstoimage'            => 'Inga sidor länkar till den här filen.',
 'morelinkstoimage'          => 'Visa [[Special:WhatLinksHere/$1|fler länkar]] till den här filen.',
-'redirectstofile'           => 'Följande {{PLURAL:$1|fil är en omdirigering|filer är omdirigeringar}} till den här filen:',
 'duplicatesoffile'          => 'Följande {{PLURAL:$1|fil är en dubblett|filer är dubbletter}} till den här filen ([[Special:FileDuplicateSearch/$2|mer detaljer]]):',
 'sharedupload'              => 'Den här filen är från $1 och kan användas av andra projekt.',
 'sharedupload-desc-there'   => 'Den här filen är från $1 och kan användas av andra projekt.

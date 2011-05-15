@@ -1867,7 +1867,6 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 [[Special:WhatLinksHere/$2|Plena listo]] estas atingebla.',
 'nolinkstoimage'            => 'Neniu paĝo ligas al ĉi tiu dosiero.',
 'morelinkstoimage'          => 'Rigardi [[Special:WhatLinksHere/$1|pliajn ligilojn]] al ĉi tiu dosiero.',
-'redirectstofile'           => 'Jen {{PLURAL:$1|dosiero liganta|dosieroj ligantaj}} al ĉi tiu dosiero:',
 'duplicatesoffile'          => 'La {{PLURAL:$1|jena dosiero estas duplikato|jenaj dosieroj estas duplikatoj}} de ĉi tiu dosiero ([[Special:FileDuplicateSearch/$2|pluaj detaloj]]):',
 'sharedupload'              => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla de aliaj projektoj.',
 'sharedupload-desc-there'   => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla en aliaj projektoj.

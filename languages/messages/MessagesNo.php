@@ -1793,7 +1793,7 @@ Følgende liste viser {{PLURAL:$1|den første siden|de $1 første sidene}}.
 En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'nolinkstoimage'            => 'Det er ingen sider som bruker denne fila.',
 'morelinkstoimage'          => 'Vis [[Special:WhatLinksHere/$1|flere lenker]] til denne filen.',
-'redirectstofile'           => 'Følgende {{PLURAL:$1|fil er en omdirigering|filer er omdirigeringer}} til denne filen:',
+'linkstoimage-redirect'     => '$1 (filomdirigering) $2',
 'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublett|filer er dubletter}} av denne filen ([[Special:FileDuplicateSearch/$2|fler detaljer]]):',
 'sharedupload'              => 'Denne filen er fra $1 og kan bli brukt av andre prosjekter.',
 'sharedupload-desc-there'   => 'Denne fila er fra $1 og kan brukes på andre prosjekter.
@@ -2371,6 +2371,8 @@ Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
 'sp-contributions-username'            => 'IP-adresse eller brukernavn:',
 'sp-contributions-toponly'             => 'Vis kun endringer som er gjeldende revisjoner',
 'sp-contributions-submit'              => 'Søk',
+'sp-contributions-showsizediff'        => 'Vis forskjellen i sidestørrelse',
+'sp-contributions-showsizediff-warn'   => 'Denne instansen har begrenset loggen for siste endringer til $1. Hvis du bruker dette alternativet vil ikke sider som ikke er i loggen vises',
 
 # What links here
 'whatlinkshere'            => 'Lenker hit',

@@ -1597,7 +1597,6 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 [[Special:WhatLinksHere/$2|Zerrenda osoa]] ere eskuragarri dago.',
 'nolinkstoimage'            => 'Ez dago fitxategi honetara lotura egiten duen orrialderik.',
 'morelinkstoimage'          => 'Ikusi fitxategi honen [[Special:WhatLinksHere/$1|lotura gehiago]].',
-'redirectstofile'           => 'Honako {{PLURAL:$1|artxiboak fitxategi honetara birzuzentzen du:|$1 artxiboek fitxategi honetara birzuzentzen dute:}}',
 'duplicatesoffile'          => 'Ondorengo fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}} ([[Special:FileDuplicateSearch/$2|zehaztasun gehiago]]):',
 'sharedupload'              => 'Elkarbanatutako fitxategi hau $1-(e)ko igoera bat da eta beste proiektuek ere erabil dezakete.',
 'filepage-nofile'           => 'Izen horrekin ez dago fitxategirik.',

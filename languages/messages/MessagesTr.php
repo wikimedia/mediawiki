@@ -1844,7 +1844,6 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 [[Special:WhatLinksHere/$2|Tam bir liste]] mevcuttur.",
 'nolinkstoimage'            => 'Bu görüntü dosyasına bağlanan sayfa yok.',
 'morelinkstoimage'          => 'Bu dosyaya [[Special:WhatLinksHere/$1|daha fazla bağlantıları]] gör.',
-'redirectstofile'           => 'Şu {{PLURAL:$1|dosya|$1 dosya}}, bu dosyaya yönlendiriyor:',
 'duplicatesoffile'          => 'Şu {{PLURAL:$1|dosya|$1 dosya}}, bu dosyanın kopyası ([[Special:FileDuplicateSearch/$2|daha fazla ayrıntı]]):',
 'sharedupload'              => 'Bu dosya $1 deposundan ve diğer projelerde kullanılıyor olabilir.',
 'sharedupload-desc-there'   => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir. Daha fazla bilgi için lütfen [$2 dosya açıklama sayfasına] bakın.',

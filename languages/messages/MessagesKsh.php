@@ -1932,7 +1932,6 @@ De Liß hee dronger zeisch nur {{PLURAL:$1|der eetse Link|de eetste $1 Links|kei
 Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'nolinkstoimage'            => 'Nix link op hee die Datei.',
 'morelinkstoimage'          => 'Belohr Der [[Special:WhatLinksHere/$1|de Links]] op di Datei.',
-'redirectstofile'           => 'Di {{PLURAL:$1|Datei heenoh leid|$1 Dateie leide}} op he di Datei öm:',
 'duplicatesoffile'          => 'Mer hann_er {{PLURAL:$1|en dubbelte Datei|$1 dubbelte Dateie|kei dubbelte Dateije}} fon he dä Datei, di {{PLURAL:$1|hät|han all|han}} dersellve Enhalldt ([[Special:FileDuplicateSearch/$2|mieh Einzelheite]]):',
 'sharedupload'              => 'De Datei es för diverse ungerscheidlije Projekte parat jelaht. Se kütt fun $1.',
 'sharedupload-desc-there'   => 'Di Datei kütt vun $1 un kann en andere Projekte jebruch wäde.

@@ -1503,7 +1503,6 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 [[Special:WhatLinksHere/$2|pêroyê liste]] mevcud o.',
 'nolinkstoimage'            => 'Pelanê ser ena dosyayê link biyê çin o.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Linkanê zafyerî]] ena pele ra link biyo bivîne.',
-'redirectstofile'           => 'Eno {{PLURAL:$1|dosya redireksiyon keno |$1 dosyayî redireksiyonî kenê}} ena dosya:',
 'duplicatesoffile'          => 'a {{PLURAL:$1|dosya|$1 dosya}}, kopyayê na dosyayi ([[Special:FileDuplicateSearch/$2|teferruati]]):',
 'sharedupload'              => 'Ena dosya $1 ra u belki projeyê binan dı hewitiyeno.',
 'sharedupload-desc-there'   => 'depoyê $1 u projeyê bini na dosyayi xebıtneni. qey teferruati bıewnê [$2 teferruati dosyayi].',

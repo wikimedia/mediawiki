@@ -9,6 +9,7 @@
  *
  * @author .anaconda
  * @author Airon90
+ * @author Amire80
  * @author Andria
  * @author Beta16
  * @author Blaisorblade
@@ -375,6 +376,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Pagine indicizzate',
 'noindex-category'               => 'Pagine non indicizzate',
+'broken-file-category'           => 'Pagine con link danneggiati',
 
 'mainpagetext'      => "'''Installazione di MediaWiki completata correttamente.'''",
 'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
@@ -1757,7 +1759,6 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 È disponibile un [[Special:WhatLinksHere/$2|elenco completo]].',
 'nolinkstoimage'            => 'Nessuna pagina contiene collegamenti al file.',
 'morelinkstoimage'          => 'Visualizza [[Special:WhatLinksHere/$1|altri link]] a questo file.',
-'redirectstofile'           => '{{PLURAL:$1|Il seguente|I seguenti $1}} file {{PLURAL:$1|è|sono}} un redirect a questo file:',
 'duplicatesoffile'          => '{{PLURAL:$1|Il seguente file è un duplicato|I seguenti $1 file sono duplicati}} di questo file ([[Special:FileDuplicateSearch/$2|ulteriori dettagli]]):',
 'sharedupload'              => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.',
 'sharedupload-desc-there'   => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.

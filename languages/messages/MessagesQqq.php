@@ -138,7 +138,9 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-nocache'                 => "[[Special:Preferences]], tab 'Misc.'. Offers the user the option of disabling caching of pages in the browser",
 'tog-enotifwatchlistpages'    => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'tog-enotifusertalkpages'     => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'tog-enotifminoredits'        => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
+'tog-enotifminoredits'        => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
+
+Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwatchlistpages}} are shown.',
 'tog-enotifrevealaddr'        => 'Toggle option used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'tog-shownumberswatching'     => 'Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages.',
 'tog-oldsig'                  => 'Used in [[Special:Preferences]], tab User profile.',
@@ -1901,10 +1903,10 @@ Example: [[:Image:Addon-icn.png]]',
 
 * $1: limit. At the moment hardcoded at 100
 * $2: filename',
-'linkstoimage-redirect'				=> 'Item in the "the following pages link to this file" section on a file page if the item is a redirect.
+'nolinkstoimage'                    => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
+'linkstoimage-redirect'             => 'Item in the "the following pages link to this file" section on a file page if the item is a redirect.
 * $1: an HTML link to the file
 * $2: the list of files that link to the redirect (may be empty)',
-'nolinkstoimage'                    => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
 'duplicatesoffile'                  => 'Shown on file description pages when a file is duplicated
 
 * $1: Number of identical files
@@ -2330,6 +2332,8 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 {{Identical|Send}}',
 'emailccme'           => 'Used at [[Special:Preferences]] > E-mail',
 'emailccsubject'      => 'Subject of the carbon-copied  email for the sender sent through MediaWiki.',
+'emailsent'           => 'Title of Special:Emailuser when it says you it sent an email',
+'emailsenttext'       => 'When you send an e-mail, Special:Emailuser says you this (Your email has been sent).',
 'emailuserfooter'     => 'This message is appended to every email sent through the "Email user" function.
 
 * $1: username of the sender

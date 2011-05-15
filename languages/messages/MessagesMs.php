@@ -1728,7 +1728,6 @@ Yang berikut ialah {{PLURAL:$1||$1}} pautan pertama ke fail ini.
 Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'nolinkstoimage'            => 'Tiada laman yang mengandungi pautan ke fail ini.',
 'morelinkstoimage'          => 'Lihat [[Special:WhatLinksHere/$1|semua pautan]] ke fail ini.',
-'redirectstofile'           => '{{PLURAL:$1|Fail|$1 buah fail}} berikut melencong ke fail ini:',
 'duplicatesoffile'          => '{{PLURAL:$1|Fail|$1 buah fail}} berikut adalah salinan bagi fail ini ([[Special:FileDuplicateSearch/$2|butiran lanjut]]):',
 'sharedupload'              => 'Fail ini daripada $1 dan boleh digunakan oleh projek lain.',
 'sharedupload-desc-there'   => 'Fail ini dari $1 dan mungkin digunakan oleh projek lain.

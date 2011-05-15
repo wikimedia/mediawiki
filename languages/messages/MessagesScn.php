@@ -1484,7 +1484,6 @@ Di sècutu sunnu alincati sulu {{PLURAL:$1|la prima pàggina ca punta|li primi $
 È dispunìbbilu nu [[Special:WhatLinksHere/$2|alencu cumpretu]].',
 'nolinkstoimage'            => 'Nudda pàggina cunteni sta mmàggini.',
 'morelinkstoimage'          => 'Visualizza [[Special:WhatLinksHere/$1|àutri link]] a stu file.',
-'redirectstofile'           => '{{PLURAL:$1|Chistu|Chisti $1}} file {{PLURAL:$1|è|sunnu}} nu redirect a stu file:',
 'duplicatesoffile'          => '{{PLURAL:$1|Chistu|Chisti $1}} file {{PLURAL:$1|è nu dupppiuni|sunnu duppiuni}} di stu file ([[Special:FileDuplicateSearch/$2|cchiù dittagli]]):',
 'sharedupload'              => 'Stu file veni di $1 e pò èssiri utilizzatu di àutri pruggetti wiki.',
 'sharedupload-desc-there'   => "Stu file pruvieni da $1 e pò èssiri usatu da l'autri prugetti.

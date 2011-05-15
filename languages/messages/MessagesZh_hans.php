@@ -1735,7 +1735,6 @@ $1',
 一个[[Special:WhatLinksHere/$2|完整的列表]]可以提供。',
 'nolinkstoimage'                    => '没有页面链接到本文件。',
 'morelinkstoimage'                  => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多链接]]。',
-'redirectstofile'                   => '以下的$1个文件重新定向到这个文件：',
 'duplicatesoffile'                  => '以下的$1个文件跟这个文件重复（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
 'sharedupload'                      => '该文件来自于$1，它可能在其它计划项目中被应用。',
 'sharedupload-desc-there'           => '该文件来自于$1，它可能在其它计划项目中被应用。

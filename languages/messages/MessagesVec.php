@@ -1622,7 +1622,6 @@ De seguito xe elencà solo {{PLURAL:$1|la prima pagina che ponta|le prime $1 pag
 Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'nolinkstoimage'            => 'Nissuna pàxena la punta a sto file.',
 'morelinkstoimage'          => 'Varda i [[Special:WhatLinksHere/$1|altri colegamenti]] verso sto file.',
-'redirectstofile'           => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} redirige verso sto file:',
 'duplicatesoffile'          => '{{PLURAL:$1|El file seguente el xe un dopion|I $1 file seguenti i xe dei dopioni}} de sto file ([[Special:FileDuplicateSearch/$2|ulteriori detagli]]):',
 'sharedupload'              => 'Sto file el vien da $1 e se pole dopararlo anca su altri progeti.',
 'sharedupload-desc-there'   => 'Sto file el vien da $1 e se pode dopararlo su altri projeti.

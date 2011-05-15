@@ -872,7 +872,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'linkstoimage'              => 'Dagiti sumaganad a panid ket nakasilpo itoy a file:',
 'nolinkstoimage'            => 'Awan ti pampanid a nakasilpo iti daytoy a file.',
 'morelinkstoimage'          => 'Kitaen ti [[Special:WhatLinksHere/$1|ad-adu pay a panilpo]] kadaytoy a file.',
-'redirectstofile'           => 'Dagiti sumaganad a files ket ag-redirect iti daytoy a file:',
 'duplicatesoffile'          => 'Dagiti sumaganad a files ket duplikado daytoy a file:',
 'sharedupload'              => 'Daytoy a file ket pagraranudan nga upload ket mabalin nga aramaten ti sabsabali pay a projectos.',
 'uploadnewversion-linktext' => 'Mangipan iti kabarbaro a version daytoy a file',

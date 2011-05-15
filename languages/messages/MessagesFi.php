@@ -1783,7 +1783,6 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 [[Special:WhatLinksHere/$2|Koko lista]] on saatavilla.',
 'nolinkstoimage'            => 'Tähän tiedostoon ei ole linkkejä miltään sivulta.',
 'morelinkstoimage'          => 'Näytä [[Special:WhatLinksHere/$1|lisää linkkejä]] tähän tiedostoon.',
-'redirectstofile'           => '{{PLURAL:$1|Seuraava tiedosto ohjaa|Seuraavat $1 tiedostoa ohjaavat}} tähän tiedostoon:',
 'duplicatesoffile'          => '{{PLURAL:$1|Seuraava tiedosto on tämän tiedoston kaksoiskappale|Seuraavat $1 tiedostoa ovat tämän tiedoston kaksoiskappaleita}} ([[Special:FileDuplicateSearch/$2|lisätietoja]]):',
 'sharedupload'              => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.',
 'sharedupload-desc-there'   => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.

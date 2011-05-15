@@ -1649,7 +1649,6 @@ De volgende lies göf allein de eerste {{PLURAL:$1|verwiezing|$1 verwiezinge}} n
 d'r Is ouch ne [[Special:WhatLinksHere/$2|volledige lies]].",
 'nolinkstoimage'            => 'Gein inkel pagina gebroek dit plaetje.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mier verwijzinge]] naor dit bestaand bekèèke.',
-'redirectstofile'           => 'De volgende bestaande {{PLURAL:$1|verwèès|verwèèze}} door naor dit bestaand:',
 'duplicatesoffile'          => "{{PLURAL:$1|'t Nègsvóggendj bestandj is|De $1 nègsvóggendje bestenj zeen}} identiek aan dit bestandj ([[Special:FileDuplicateSearch/$2|deper]]):",
 'sharedupload'              => 'Dit besjtandj kump van $1 en kin ouch door anger projekte gebroek waere.',
 'sharedupload-desc-there'   => 'Dit besjtandj kump van $1 en kin ouch in anger projekte gebroek waere.

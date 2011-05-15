@@ -1854,7 +1854,6 @@ A lista a seguir mostra apenas {{PLURAL:$1|o primeiro link|os $1 primeiros links
 Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 'nolinkstoimage'            => 'Nenhuma página aponta para este arquivo.',
 'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|mais links]] para este arquivo.',
-'redirectstofile'           => '{{PLURAL:$1|O seguinte arquivo redireciona|Os seguintes arquivos redirecionam}} para este arquivo:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte arquivo é duplicado|Os seguintes arquivos são duplicados}} deste arquivo ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
 'sharedupload'              => 'Este arquivo é do $1 e pode ser usado por outros projetos.',
 'sharedupload-desc-there'   => 'Este arquivo é do $1 e pode ser utilizado por outros projetos.

@@ -25,8 +25,8 @@ $messages = array(
 'tog-showtoolbar'             => 'ГIалатнийcдара юкъе лакхера гIирсий гартакх хьахокха (JavaScript)',
 'tog-editondblclick'          => 'Шозза цлицкацa oагIув хувца (JavaScript)',
 'tog-editsection'             => 'ХIара дакъа "хувца" яха Iинк хьахокха',
-'tog-editsectiononrightclick' => 'Дакъа хувца дакъа-цIерах аьтта клик йича (JavaScript)',
-'tog-showtoc'                 => 'Оглавление хьокха (цу оагIувна кхьаннена дукхагIа дакъа йеле)',
+'tog-editsectiononrightclick' => 'Декъам хувца кертмугIа аьтта цлицка я (JavaScript)',
+'tog-showtoc'                 => 'Кортанче хьокха (кхьаннена дукхагIа кертмугIанаш йoлa оагIувна)',
 'tog-rememberpassword'        => '(укх $1 {{PLURAL:$1|ден|деношкахь}}) мара са чувалара/чуялара дагалоаца дезаш дац',
 'tog-watchcreations'          => 'Аз хьаеж йоа оагIонаш со хьежача спискаех тIатоха',
 'tog-watchdefault'            => 'Аз нийсъйеж йоа оагIонаш со хьежача спискаех тIатоха',
@@ -259,7 +259,7 @@ $messages = array(
 'viewsourceold'           => 'xьадоагIа къайладоагIа тIа бIаргтасса',
 'editlink'                => 'хувца',
 'viewsourcelink'          => 'xьадоагIа къайладоагIа тIа бIаргтасса',
-'editsectionhint'         => ' Тоабдакъа хувца: $1',
+'editsectionhint'         => 'Декъам хувца: $1',
 'toc'                     => 'Чулоацам',
 'showtoc'                 => 'хьахокха',
 'hidetoc'                 => 'къайладаккха',
@@ -404,6 +404,8 @@ $messages = array(
 'revdelete-radio-unset'      => 'A',
 'revdelete-log'              => 'Бахьан',
 'revdel-restore'             => ' БIасанче хувца',
+'revdel-restore-deleted'     => 'дIадаьккха доржамаш',
+'revdel-restore-visible'     => 'бIаргагушдола доржамаш',
 'pagehist'                   => 'ОагIува искар',
 'revdelete-uname'            => 'дакъалаьцархочунна цIи',
 
@@ -415,36 +417,52 @@ $messages = array(
 'difference'              => '(Доржамашкахь юкъера къоастамаш)',
 'lineno'                  => 'МугI $1:',
 'compareselectedversions' => 'Хьаржа доржамаша тарона тIа хьажа',
-'editundo'                => 'белгалдаккха',
+'editundo'                => 'юхавала/яла',
 
 # Search results
-'searchresults'             => 'Тахкама гIулакххилар',
-'searchresults-title'       => '"$1" тахка',
-'searchresulttext'          => 'Хьахьоадайтама оагIувнаш тIа тахкамахь лаьца лоаца маIандар эца [[{{MediaWiki:Helppage}}|новкъостала декъамага]] хьажа.',
-'searchsubtitle'            => 'Хоаттамахь лаьца «[[:$1]]» ([[Special:Prefixindex/$1|цу цIерахь ювалу оагIувнаш]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|цу цIерахь Iинкаш еж йола]])',
-'searchsubtitleinvalid'     => "'''$1''' хаттара",
-'notitlematches'            => 'ОагIувни цIераш вIашагIа кхеташ яц',
-'notextmatches'             => 'ОагIувнаша ядамий вIашагIакхетараш дац',
-'prevn'                     => '{{PLURAL:$1|хьалхарча $1|хьалхарчаш $1|хьалхарчаш $1}}',
-'nextn'                     => '{{PLURAL:$1|тlехьайоагlар $1|тlехьайоагlараш $1|тlехьайоагlараш $1}}',
-'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) хьажа',
-'searchhelp-url'            => 'Help:Чулоацам',
-'search-result-size'        => ' $1 ({{PLURAL:$2|1 дош|$2 дешаш}})',
-'search-redirect'           => '($1 дехьачуяккхар)',
-'search-section'            => ' (дакъа $1)',
-'search-suggest'            => 'Iа лохар из хила мега: $1',
-'search-interwiki-caption'  => 'Гаргалона хьахьоадайтамаш',
-'search-interwiki-default'  => '$1 толамчаш:',
-'search-interwiki-more'     => '(кха)',
-'search-mwsuggest-enabled'  => ' Хьехамашца',
-'search-mwsuggest-disabled' => ' Хьехамаш боацаш',
-'nonefound'                 => "'''Зем лаца.''' Цхьа дола цIера аренаш мара лахалац.
+'searchresults'                    => 'Тахкама гIулакххилар',
+'searchresults-title'              => '"$1" тахка',
+'searchresulttext'                 => 'Хьахьоадайтама оагIувнаш тIа тахкамахь лаьца лоаца маIандар эца [[{{MediaWiki:Helppage}}|новкъостала декъамага]] хьажа.',
+'searchsubtitle'                   => 'Хоаттамахь лаьца «[[:$1]]» ([[Special:Prefixindex/$1|цу цIерахь ювалу оагIувнаш]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|цу цIерахь Iинкаш еж йола]])',
+'searchsubtitleinvalid'            => "'''$1''' хаттара",
+'notitlematches'                   => 'ОагIувни цIераш вIашагIа кхеташ яц',
+'notextmatches'                    => 'ОагIувнаша ядамий вIашагIакхетараш дац',
+'prevn'                            => '{{PLURAL:$1|хьалхарча $1|хьалхарчаш $1|хьалхарчаш $1}}',
+'nextn'                            => '{{PLURAL:$1|тlехьайоагlар $1|тlехьайоагlараш $1|тlехьайоагlараш $1}}',
+'prevn-title'                      => '{{PLURAL:$1|$1 хьалхара йоазув|$1 хьалхара йоазувнаш}}',
+'nextn-title'                      => '{{PLURAL:$1|$1 тIехьара йоазув|$1 тIехьара йоазувнаш}}',
+'shown-title'                      => 'Укх оагIувни $1 {{PLURAL:$1|йоазув|йоазувнаш}} хьахокха',
+'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) хьажа',
+'searchmenu-new'                   => "'''Укх \"[[:\$1]]\" вики-хьахьоадайтамчоахь оагIув де!'''",
+'searchhelp-url'                   => 'Help:Чулоацам',
+'searchprofile-articles'           => 'ЛардоагIувнаш',
+'searchprofile-project'            => 'Дагарчеи хьахьоадайтамеи оагIувнаш',
+'searchprofile-images'             => 'Медифаг',
+'searchprofile-everything'         => 'Массана',
+'searchprofile-advanced'           => 'Шера я',
+'searchprofile-articles-tooltip'   => '$1чу лахар',
+'searchprofile-project-tooltip'    => '$1чу лахар',
+'searchprofile-images-tooltip'     => 'Паьлий лахар',
+'searchprofile-everything-tooltip' => 'Массадола оагIувний лахар (дувцама оагIувнаш чулоацаш)',
+'searchprofile-advanced-tooltip'   => 'Iочуязья цIераренашкахь лаха',
+'search-result-size'               => ' $1 ({{PLURAL:$2|1 дош|$2 дешаш}})',
+'search-redirect'                  => '($1 дехьачуяккхар)',
+'search-section'                   => ' (дакъа $1)',
+'search-suggest'                   => 'Iа лохар из хила мега: $1',
+'search-interwiki-caption'         => 'Гаргалона хьахьоадайтамаш',
+'search-interwiki-default'         => '$1 толамчаш:',
+'search-interwiki-more'            => '(кха)',
+'search-mwsuggest-enabled'         => ' Хьехамашца',
+'search-mwsuggest-disabled'        => ' Хьехамаш боацаш',
+'searchall'                        => 'деррига',
+'showingresultsheader'             => "{{PLURAL:$5|'''$1''' толамче укх '''$3''' долачарахь|'''$1 — $2''' толамчаш укх '''$3''' долачарахь}} '''$4'''а",
+'nonefound'                        => "'''Зем лаца.''' Цхьа дола цIера аренаш мара лахалац.
 ''all:'' яха тIаоттарга пайдабе, массадола цIеран аренашкахь (дакъалаьцархой дуцамаш а, куцкепаш а, кхы дара а чулоацаш), е деза цIера аренаш Iочуязаде.",
-'powersearch'               => ' Доккха тахкар',
-'powersearch-legend'        => ' Доккха тахкар',
-'powersearch-ns'            => ' ЦIерий аренашкахь лахар',
-'powersearch-redir'         => 'ДIа-хьа оагIувнаш гойта',
-'powersearch-field'         => 'Лахар',
+'powersearch'                      => ' Доккха тахкар',
+'powersearch-legend'               => ' Доккха тахкар',
+'powersearch-ns'                   => ' ЦIерий аренашкахь лахар',
+'powersearch-redir'                => 'ДIа-хьа оагIувнаш гойта',
+'powersearch-field'                => 'Лахар',
 
 # Preferences page
 'preferences'               => 'Оттамаш',
@@ -531,6 +549,7 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'         => 'Гаргалона хувцамаш',
+'recentchangeslinked-toolbox' => 'Гаргалона хувцамаш',
 'recentchangeslinked-title'   => '$1ца хьалаьца хувцамаш',
 'recentchangeslinked-summary' => "Ер, Iинк я йола оагIув (е укх цатегачу чуйоагIараш), дукха ха йоацаш хьийца оагIувнашки дагарче я.
 [[Special:Watchlist|Шун теркама дагаршкахь]] чуйоагIа оагIувнаш '''белгалъя я'''.",
@@ -580,6 +599,9 @@ $messages = array(
 
 # Unwatched pages
 'unwatchedpages' => 'Теркамза оагIувнаш',
+
+# Random page
+'randompage' => 'Дагадоаца йоазув',
 
 # Statistics
 'statistics'       => 'Дагара куц',
@@ -694,6 +716,7 @@ $messages = array(
 
 # Undelete
 'undeletelink'     => 'БIаргтасса/юхаметтаоттаде',
+'undeleteviewlink' => 'бIаргтасса',
 'undeletedarticle' => '"[[$1]]" юха оттая я',
 
 # Namespace form on various pages
@@ -807,8 +830,8 @@ $messages = array(
 'tooltip-pt-preferences'          => ' Шун оттамаш',
 'tooltip-pt-watchlist'            => 'Оаш хувцамаш тIа бIарглакха оагIувнаша дагарче',
 'tooltip-pt-mycontris'            => 'Шун хувцамаш',
-'tooltip-pt-login'                => 'Укхаза хьай цIи аьле чувала йийша я, амма чуцаваьлача хIамма а дац',
-'tooltip-pt-logout'               => 'Аравала',
+'tooltip-pt-login'                => 'Укхаза хьай цIи аьле чувала/чуяла йийша я, амма чуцаваьлача/чуцаялача хIамма а дац',
+'tooltip-pt-logout'               => 'Аравала/яла',
 'tooltip-ca-talk'                 => 'ОагIува чулоацамий дувцам',
 'tooltip-ca-edit'                 => 'Ер оагIув хувца йийшйолаш я. Дехар да, Iалаш елаьхь, хьалхе бIаргтассама оагIув тIа бIаргтасса.',
 'tooltip-ca-addsection'           => 'Керда декъам хьаде',
@@ -822,6 +845,7 @@ $messages = array(
 'tooltip-search'                  => ' Цу тайпара дош лаха {{SITENAME}}',
 'tooltip-search-go'               => ' Изза мо цIи йолаш оагIув тIa дехьавала',
 'tooltip-search-fulltext'         => ' Изза мо яздам долаш оагIувнаш лаха',
+'tooltip-p-logo'                  => 'Кертера оагIув тIа дехьавала',
 'tooltip-n-mainpage'              => 'Кертера оагIув тIа дехьавала',
 'tooltip-n-mainpage-description'  => 'Кертера оагIув тIа дехьавала',
 'tooltip-n-portal'                => 'Хьахьоадайтамахь лаьца, хьа де йийшдар, фа а мичча а йоала',
@@ -854,6 +878,7 @@ $messages = array(
 'tooltip-watch'                   => 'Ер оагIув теркам беча каьхата тIа яккха',
 'tooltip-rollback'                => 'ГIалaтанийсадаро тIехьара я йола хувцамаш, пIелг тоIоби дIаяккха.',
 'tooltip-undo'                    => 'Я хувцам дIаяккхи, бIаргатассар хьахокха, кара дале, дIаяккха бахьан Iочуязаде моттигаца.',
+'tooltip-summary'                 => 'Лоаца чулоацам Iочуязаде',
 
 # Browsing diffs
 'previousdiff' => '← Хьалхара хувцам',

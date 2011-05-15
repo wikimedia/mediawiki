@@ -1499,7 +1499,6 @@ PICT # misc.
 یک [[Special:WhatLinksHere/$2|لیست کامل]] موجودنت.',
 'nolinkstoimage'            => 'هچ صفحه ای نیست که به ای فایل لینک بوت.',
 'morelinkstoimage'          => 'View [[Special:WhatLinksHere/$1|گیشتر لینکان]]به ای فایل',
-'redirectstofile'           => 'جهلیگین {{PLURAL:$1|فایل غیر مستقیم بنت|$1 فایلان غیر مستقیم بنت.}} به ای فایل',
 'duplicatesoffile'          => 'جهلیگین {{PLURAL:$1|فایل یک کپی انت|$2 فایلان کپی انت}} چه هی فایل ([[Special:FileDuplicateSearch/$2|گیشترین اطلاعات]]):',
 'sharedupload'              => 'ای فایل چه $1 انت و شاید گون دگه پروژه یان استفاده بیت.',
 'sharedupload-desc-there'   => 'ای پرونده در $1 انت و ممکن انت ته دگه پروژه‌ها هم استفاده ببیت.

@@ -1855,7 +1855,6 @@ Slijedeći spisak pokazuje samo {{PLURAL:$1|prvu stranicu povezanu|prve $1 stran
 Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
 'nolinkstoimage'            => 'Nema stranica koje koriste ovu sliku.',
 'morelinkstoimage'          => 'Vidi [[Special:WhatLinksHere/$1|ostale linkove]] prema ovoj datoteci.',
-'redirectstofile'           => '{{PLURAL:$1|Slijedeća datoteka|Slijedeće $1 datoteke|Slijedećih $1 datoteka}} preusmjerava prema ovoj datoteci:',
 'duplicatesoffile'          => '{{PLURAL:$1|Slijedeća datoteka je dvojnik|Slijedeće $1 datoteke su dvojnici}} ove datoteke ([[Special:FileDuplicateSearch/$2|detaljnije]]):',
 'sharedupload'              => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.',
 'sharedupload-desc-there'   => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.

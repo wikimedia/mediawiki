@@ -1942,6 +1942,15 @@ $1',
 'ipbexpiry'                       => 'Bitmə müddəti:',
 'ipbreason'                       => 'Səbəb:',
 'ipbreasonotherlist'              => 'Digər səbəb',
+'ipbreason-dropdown'              => '*Bloklama səbəbləri:
+** Yalan məlumatların əlavə edilməsi
+** Səhifənin məzmununun silinməsi
+** Xarici saytlara spam-keçidlər
+** Səhifəyə mənasız və yararsız əlavələrə görə
+** Hədə və təqiblərə görə
+** Təhqirə görə
+** Çoxsaylı hesabdan sui istifadəyə görə
+** Qadağan olunmuş istifadəçi adına görə',
 'ipbcreateaccount'                => 'Hesab açmanı məhdudlaşdır',
 'ipbsubmit'                       => 'Bu istifadəçini blokla',
 'ipbother'                        => 'Başqa vaxt',
@@ -2585,9 +2594,16 @@ Variants for Chinese language
 'exif-focalplaneresolutionunit-2' => 'düymlər',
 
 'exif-sensingmethod-1' => 'Tanınmadı',
+'exif-sensingmethod-2' => 'Birkristallı matrisli rəngli sensor',
+'exif-sensingmethod-3' => 'İkikristallı matrisli rəngli sensor',
+'exif-sensingmethod-4' => 'Üçkristallı matrisli rəngli sensor',
+'exif-sensingmethod-5' => 'Rəngin ardıcıl ölçülməsilə birlikdə matrisli sensor',
+'exif-sensingmethod-7' => 'Üçrəngli xətti sensor',
 'exif-sensingmethod-8' => 'Rəngin ardıcıl ölçülməsilə birlikdə xətti sensor',
 
 'exif-filesource-3' => 'Rəqəmsal fotoapparat',
+
+'exif-scenetype-1' => 'Foto-təsvir birbaşa çəkilmişdir',
 
 'exif-customrendered-0' => 'Normal proses',
 'exif-customrendered-1' => 'Xüsusi proses',
@@ -2673,6 +2689,7 @@ Variants for Chinese language
 'exif-ycbcrpositioning-2' => 'Co-sited',
 
 'exif-dc-contributor' => 'Həmmüəlliflər',
+'exif-dc-coverage'    => 'Mediyanın məkan və zaman çərçivəsi',
 'exif-dc-date'        => 'Tarix(lər)',
 'exif-dc-publisher'   => 'Naşir',
 'exif-dc-relation'    => 'Əlaqəli media',
@@ -2705,6 +2722,7 @@ Variants for Chinese language
 'exif-urgency-normal' => 'Normal ($1)',
 'exif-urgency-low'    => 'Aşağı ($1)',
 'exif-urgency-high'   => 'Yüksək ($1)',
+'exif-urgency-other'  => 'İstifadəçi tərəfindən müəyyən olunmuş birincilik ($1)',
 
 # External editor support
 'edit-externally'      => 'Bu faylı kənar proqram vasitəsilə redaktə et.',
@@ -2729,7 +2747,8 @@ Variants for Chinese language
 'invalidateemail'          => 'E-mail təsdiqlənməsindən imtina',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[URL uzundur]',
+'scarytranscludedisabled' => '[«Interwiki transcluding»dən çıxılmışdır]',
+'scarytranscludetoolong'  => '[URL uzundur]',
 
 # Trackbacks
 'trackbackremove'   => '([$1 Sil])',
@@ -2776,10 +2795,12 @@ Variants for Chinese language
 'watchlistedit-normal-title'  => 'İzlədiyim səhifələri redaktə et',
 'watchlistedit-normal-legend' => 'İzləmə siyahısından başlıqların silinməsi',
 'watchlistedit-normal-submit' => 'Başlığın silinməsi',
+'watchlistedit-normal-done'   => '{{PLURAL:$1|$1 səhifə}} izləmə səhifələrinizdən silindi:',
 'watchlistedit-raw-title'     => 'Mətn kimi redaktə et',
 'watchlistedit-raw-legend'    => 'Mətn kimi redaktə et',
 'watchlistedit-raw-titles'    => 'Başlıqlar:',
 'watchlistedit-raw-submit'    => 'İzlədiyim səhifələrin siyahısının yenilənməsi',
+'watchlistedit-raw-done'      => 'İzləmə səhifələriniz qeyd olundu.',
 'watchlistedit-raw-added'     => '{{PLURAL:$1|1 title was|$1 başlıq}} əlavə edildi:',
 'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 title was|$1 başlıq}} çıxarıldı:',
 
@@ -2793,6 +2814,7 @@ Variants for Chinese language
 
 # Special:Version
 'version'                     => 'Versiya',
+'version-extensions'          => 'NIzamlanmış genişlənmələr',
 'version-specialpages'        => 'Xüsusi səhifələr',
 'version-variables'           => 'Dəyişkənlər',
 'version-antispam'            => 'Spam önləmə',

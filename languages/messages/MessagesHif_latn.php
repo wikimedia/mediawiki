@@ -1569,7 +1569,6 @@ Niche ke suchi dekhae hai {{PLURAL:$1|pahila panna ke jorr|pahila $1 panna ke jo
 Ek [[Special:WhatLinksHere/$2|Puura suchi]] available hai.',
 'nolinkstoimage'            => 'Ii file se koi panna nai jurre hai.',
 'morelinkstoimage'          => 'Dekho [[Special:WhatLinksHere/$1|more links]] ii file se.',
-'redirectstofile'           => 'Niche waala file ii file {{PLURAL:$1|file redirects|$1 files redirect}} se redirect hoe hai:',
 'duplicatesoffile'          => 'Niche ke suchi waala {{PLURAL:$1|file ke dui copy hai|$1 files ke dui copy hai}} ii file ke ([[Special:FileDuplicateSearch/$2|more details]]):',
 'sharedupload'              => 'Ii file $1 se aais hai aur duusra project me bhi kaam lawa jaae sake hai.',
 'sharedupload-desc-there'   => 'Ii file $1 se aais hai aur duusra projects me bhi kaam me lawa jaae sake hai.

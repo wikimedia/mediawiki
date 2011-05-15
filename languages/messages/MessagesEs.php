@@ -1864,7 +1864,6 @@ La lista siguiente sólo muestra {{PLURAL:$1|la primera página que enlaza|las p
 También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 'nolinkstoimage'            => 'No hay páginas que enlacen a esta imagen.',
 'morelinkstoimage'          => 'Vea [[Special:WhatLinksHere/$1|más enlaces]] a este archivo.',
-'redirectstofile'           => '{{PLURAL:$1|El siguiente fichero redirige|Los siguientes $1 ficheros redirigen}} a este:',
 'duplicatesoffile'          => '{{PLURAL:$1|El siguiente archivo es un duplicado|Los siguientes $1 archivos son duplicados}} de éste ([[Special:FileDuplicateSearch/$2|más detalles]]):',
 'sharedupload'              => 'Este archivo es de $1 y puede ser usado por otros proyectos.',
 'sharedupload-desc-there'   => 'Este archivo es de $1 y puede ser usado por otros proyectos.

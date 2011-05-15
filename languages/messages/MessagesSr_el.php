@@ -1616,7 +1616,6 @@ Sledeći spisak pokazuje stranice koje se vežu za ovaj fajl
 [[Special:WhatLinksHere/$2|Potpuni spisak]] je dostupan takođe.',
 'nolinkstoimage'            => 'Nema stranica koje koriste ovaj fajl.',
 'morelinkstoimage'          => 'Vidi [[Special:WhatLinksHere/$1|više veza]] prema ovom fajlu.',
-'redirectstofile'           => 'Sledeći {{PLURAL:$1|fajl se preusmerava|$1 fajla se preusmeravaju|$1 fajlova se preusmerava}} na ovaj fajl:',
 'duplicatesoffile'          => 'Sledeći {{PLURAL:$1|fajl je duplikat|$1 fajla su duplikati|$1 fajlova su duplikati}} ovog fajla ([[Special:FileDuplicateSearch/$2|više detalja]]):',
 'sharedupload'              => 'Ovaj fajl je sa $1, i može se koristiti na drugim projektima.',
 'filepage-nofile'           => 'Ne postoji fajl pod tim imenom.',

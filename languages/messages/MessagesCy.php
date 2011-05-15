@@ -1364,7 +1364,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'action-upload'               => "uwchlwytho'r ffeil",
 'action-reupload'             => 'trosysgrifo ffeil sydd eisoes ar gael',
 'action-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil yn y storfa gyfrannol",
-'action-upload_by_url'        => "uuchlwytho'r ffeil o gyfeiriad URL",
+'action-upload_by_url'        => "uwchlwytho'r ffeil o gyfeiriad URL",
 'action-writeapi'             => "defnyddio'r API i ysgrifennu a thrin y tudalennau",
 'action-delete'               => "dileu'r dudalen",
 'action-deleterevision'       => "dileu'r golygiad",
@@ -1666,7 +1666,6 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 Mae'r rhestr canlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil hon yn unig. Mae [[Special:WhatLinksHere/$2|rhestr lawn]] ar gael.",
 'nolinkstoimage'                    => 'Nid oes cyswllt ar unrhyw dudalen yn arwain at y ffeil hon.',
 'morelinkstoimage'                  => 'Gweld [[Special:WhatLinksHere/$1|rhagor o gysylltiadau]] at y ffeil hon.',
-'redirectstofile'                   => "Mae'r {{PLURAL:$1||ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn ailgyfeirio at y ffeil hon:",
 'duplicatesoffile'                  => "Mae'r {{PLURAL:$1||ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn union debyg i'r ffeil hon ([[Special:FileDuplicateSearch/$2|rhagor o fanylion]]):",
 'sharedupload'                      => 'Daw y ffeil hon o $1, felly gall fod ar waith ar brosiectau eraill.',
 'sharedupload-desc-there'           => "Daw'r ffeil hon o $1 a gellir ei defnyddio gan brosiectau eraill.
@@ -1759,7 +1758,8 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 
 'disambiguations'      => 'Tudalennau gwahaniaethu',
 'disambiguationspage'  => 'Template:Gwahaniaethu',
-'disambiguations-text' => "Mae'r tudalennau canlynol yn cysylltu â thudalennau gwahaniaethu. Yn hytrach dylent gysylltu'n syth â'r erthygl briodol.<br />Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
+'disambiguations-text' => "Mae'r tudalennau canlynol yn cynnwys un neu ragor o gysylltau wici, sydd yn cysylltu â '''thudalennau gwahaniaethu'''. Yn hytrach dylent arwain yn syth at yr erthygl briodol.<br />
+Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
 
 'doubleredirects'                   => 'Ailgyfeiriadau dwbl',
 'doubleredirectstext'               => "Mae pob rhes yn cynnwys cysylltiad i'r ddau ail-gyfeiriad cyntaf, ynghyd â chyrchfan yr ail ailgyfeiriad. Fel arfer bydd hyn yn rhoi'r gwir dudalen y dylai'r tudalennau cynt gyfeirio ati.

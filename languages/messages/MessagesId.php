@@ -1869,7 +1869,6 @@ Daftar berikut menampilkan {{PLURAL:$1|halaman dengan pranala langsung|$1 halama
 Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
 'nolinkstoimage'            => 'Tidak ada halaman yang memiliki pranala ke berkas ini.',
 'morelinkstoimage'          => 'Lihat [[Special:WhatLinksHere/$1|pranala lainnya]] ke berkas ini.',
-'redirectstofile'           => 'Berkas berikut {{PLURAL:$1|dialihkan|$1 dialihkan}} ke berkas ini:',
 'duplicatesoffile'          => '{{PLURAL:$1|Ada satu berkas yang|Sebanyak $1 berkas berikut}} merupakan duplikat dari berkas ini ([[Special:FileDuplicateSearch/$2|rincian lebih lanjut]]):',
 'sharedupload'              => 'Berkas ini berasal dari $1 dan mungkin digunakan oleh proyek-proyek lain.',
 'sharedupload-desc-there'   => 'Berkas ini berasal dari $1 dan mungkin digunakan oleh proyek-proyek lain.

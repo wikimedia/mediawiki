@@ -1793,7 +1793,6 @@ PICT # misc.
 [[Special:WhatLinksHere/$2|قائمة كاملة]] متوفرة.',
 'nolinkstoimage'                    => 'مافيش صفحات بتوصل للفايل ده.',
 'morelinkstoimage'                  => 'عرض [[Special:WhatLinksHere/$1|لينكات اكتر]] للملف دا.',
-'redirectstofile'                   => '{{PLURAL:$1| الملف|ال$1 ملف}} اللى جاى  بيحول للملف دا:',
 'duplicatesoffile'                  => '{{PLURAL:$1| الملف|ال$1 ملف اللى بعده}} متكررين من الملف ده:
 ([[Special:FileDuplicateSearch/$2| تفاصيل اكتر]]):',
 'sharedupload'                      => 'الملف دا من  $1 و ممكن تستعمله مشاريع تانيه.',

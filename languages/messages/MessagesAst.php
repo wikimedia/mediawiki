@@ -1652,7 +1652,6 @@ La llista siguiente amuesa{{PLURAL:$1|'l primer enllaz de páxina| los primeros 
 Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'nolinkstoimage'            => "Nun hai páxines qu'enllacien a esti archivu.",
 'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|más enllaces]] a esti archivu.',
-'redirectstofile'           => '{{PLURAL:$1|El siguiente archivu redirixe|Los siguientes $1 archivos redirixen}} a esti archivu:',
 'duplicatesoffile'          => "{{PLURAL:$1|El siguiente archivu ye un duplicáu|Los siguientes $1 archivos son duplicaos}} d'esti archivu ([[Special:FileDuplicateSearch/$2|más detalles]]):",
 'sharedupload'              => 'El ficheru ye de $1 y pueden que tean usandolu otros proyeutos.',
 'sharedupload-desc-there'   => 'Esti ficheru ye de $1 y puen usalu otros proyeutos.

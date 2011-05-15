@@ -1901,7 +1901,6 @@ Následující seznam zobrazuje pouze {{PLURAL:$1|tu první|první $1|prvních $
 Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',
 'nolinkstoimage'            => 'Na tento soubor neodkazuje žádná stránka.',
 'morelinkstoimage'          => 'Zobrazit [[Special:WhatLinksHere/$1|další odkazy]] na tento soubor.',
-'redirectstofile'           => '{{plural:$1|Následující soubor přesměrovává|Následující $1 soubory přesměrovávají|Následujících $1 souborů přesměrovává}} na tento soubor:',
 'duplicatesoffile'          => '{{plural:$1|Následující soubor je duplikát|Následující $1 soubory jsou duplikáty|Následujících $1 souborů jsou duplikáty}} tohoto souboru ([[Special:FileDuplicateSearch/$2|podrobnosti]]):',
 'sharedupload'              => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.',
 'sharedupload-desc-there'   => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.

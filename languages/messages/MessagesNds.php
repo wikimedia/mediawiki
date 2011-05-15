@@ -1556,7 +1556,6 @@ Disse List wiest blot {{PLURAL:$1|den eersten Lenk|de eersten $1 Lenken}} op dis
 En [[Special:WhatLinksHere/$2|kumplette List]] gifft dat ok.',
 'nolinkstoimage'            => 'Kene Siet bruukt dat Bild.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mehr Verwiesen]] för disse Datei.',
-'redirectstofile'           => 'Disse {{PLURAL:$1|Datei is|Datein sünd}} en Redirect op disse Datei:',
 'duplicatesoffile'          => 'Disse {{PLURAL:$1|Datei is|Datein sünd}} jüst de {{PLURAL:$1|glieke|glieken}} as disse Datei hier ([[Special:FileDuplicateSearch/$2|mehr Infos]]):',
 'sharedupload'              => 'Disse Datei is as gemeensam bruukte Datei op $1 hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.',
 'sharedupload-desc-there'   => 'Disse Datei is as gemeensam bruukte Datei op $1 hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.

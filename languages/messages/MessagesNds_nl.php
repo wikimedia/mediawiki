@@ -1820,7 +1820,6 @@ De volgende lieste geef allinnig de eerste {{PLURAL:$1|verwiezing|$1 verwiezinge
 De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'nolinkstoimage'            => 'Ofbeelding is neet in gebruuk.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Meer verwiezingen]] naor dit bestaand bekieken.',
-'redirectstofile'           => "{{PLURAL:$1|'t Volgende bestaand verwies|De volgende $1 bestanen verwiezen}} deur naor dit bestaand:",
 'duplicatesoffile'          => "{{PLURAL:$1|'t Volgende bestaand is|De volgende $1 bestanen bin}} liekeleens as dit bestaand ([[Special:FileDuplicateSearch/$2|meer infermasie]]):",
 'sharedupload'              => 'Dit is een edeeld bestaand op $1 en ku-j oek gebruken veur aandere prejekken.',
 'sharedupload-desc-there'   => "Dit is een edeeld bestaand op $1 en ku-j oek gebruken veur aandere prejekken. Bekiek de [$2 beschrieving van 't bestaand] veur meer infermasie.",

@@ -1859,7 +1859,6 @@ Nasledovný zoznam zobrazuje {{PLURAL:$1|prvú stránku odkazujúcu|prvé $1 str
 Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'nolinkstoimage'            => 'Žiadne stránky neobsahujú odkazy na tento obrázok.',
 'morelinkstoimage'          => 'Zobraziť [[Special:WhatLinksHere/$1|ďalšie odkazy]] na tento súbor.',
-'redirectstofile'           => '{{PLURAL:$1|Nasledujúci súbor presmerúva|Nasledujúce $1 súbory presmerúvajú|Nasledujúcich $1 súborov presmerúva}} na tento súbor:',
 'duplicatesoffile'          => '{{PLURAL:$1|Nasledujúci súbor je duplikát|Nasledujúce $1 súbory sú duplikáty||Nasledujúcich $1 súborov sú duplikáty}} tohto súboru ([[Special:FileDuplicateSearch/$2|podrobnosti]]):',
 'sharedupload'              => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch.',
 'sharedupload-desc-there'   => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch. Ďalšie informácie nájdete na [$2 popisnej stránke súboru].',

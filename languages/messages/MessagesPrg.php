@@ -1327,7 +1327,6 @@ Zemmaisi listi waidinna tēr {{PLURAL:$1|pirman autengīnsenin|pirmans $1 auteng
 Preiēiminan ast dīgi [[Special:WhatLinksHere/$2|pilna listi]].',
 'nolinkstoimage'            => 'Nist pāusai autengīntai prei šin zūrbrukin.',
 'morelinkstoimage'          => 'Waidinnais [[Special:WhatLinksHere/$1|tūls autengīnsenins]] prēi šin zūrbrukin.',
-'redirectstofile'           => '{{PLURAL:$1|Šis zūrbrukis|Šai zūrbrukei}} prawedda prei šin zūrbrukin:',
 'duplicatesoffile'          => '{{PLURAL:$1|Šis zūrbrukis ast kōpija|Šai zūrbrukei ast kōpijas}} stesse zūrbrukin ([[Special:FileDuplicateSearch/$2|tūls informaciōnis]]):',
 'sharedupload'              => 'Šis zūrbrukis ast en $1 be mazzi būtwei tērpautan en kitēimans prōjaktans.',
 'filepage-nofile'           => 'Zūrbrukis sen stawīdan pabilīsnan ni ekzistijja.',

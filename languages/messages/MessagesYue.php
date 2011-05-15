@@ -1651,7 +1651,6 @@ $1',
 一個[[Special:WhatLinksHere/$2|完整嘅表]]可以提供。',
 'nolinkstoimage'            => '冇個頁面連結到呢個檔案。',
 'morelinkstoimage'          => '去睇連到呢個檔案嘅[[Special:WhatLinksHere/$1|更多連結]]。',
-'redirectstofile'           => '下面嘅$1個檔案跳轉到呢個檔案:',
 'duplicatesoffile'          => '下面嘅$1個檔案係同呢個檔案重覆 ([[Special:FileDuplicateSearch/$2|更多細節]]):',
 'sharedupload'              => '呢個檔案係出自$1，可以喺其他計劃中使用。',
 'sharedupload-desc-there'   => '呢個檔案係出自$1，可以喺其他計劃中使用。

@@ -614,7 +614,6 @@ Dii lisdn undn dsajch dâfâu nôr äärschd môôl {{PLURAL:$1|an|$1}} fârwajs
 S'gajd awâr aa â [[Special:WhatLinksHere/$2|lisdn mid alâ fârwajs]].",
 'nolinkstoimage'            => 'Diâ dadaj wärd närchends benudsd.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Diâ folchende]] fârwajs uf diâ dadaj.',
-'redirectstofile'           => 'Diâ {{PLURAL:$1|folchende dadaj schigd|folchende $1 dadajâ schigâ}} uf diâ dadaj wajdâr:',
 'duplicatesoffile'          => 'Dii {{PLURAL:$1|folchende dadaj is â dublighaad|folchende $1 dadajâ sn dublighaade}} fon dâr dadaj ([[Special:FileDuplicateSearch/$2|wajdâre ôôndlshajdâ]]):',
 'sharedupload'              => 'Dii dadaj ghumd fo $1, un mär däf se fär annäre brojägd aa ´heernemâ.',
 'sharedupload-desc-there'   => 'Dii dadaj ghumd fon $1, un mr däf se fir andârâ brojägd aa nemâ. Genauârs schded uf dr [$2 beschrajwungssajdâ fon dr dadaj].',
