@@ -270,7 +270,8 @@ class WebInstallerOutput {
 	}
 
 	public function outputTitle() {
-		echo htmlspecialchars( wfMsg( 'config-title', MW_VERSION ) );
+		global $wgVersion;
+		echo htmlspecialchars( wfMsg( 'config-title', $wgVersion ) );
 	}
 
 	public function getJQuery() {

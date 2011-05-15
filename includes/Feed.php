@@ -301,6 +301,7 @@ class RSSFeed extends ChannelFeed {
 	 * Ouput an RSS 2.0 header
 	 */
 	function outHeader() {
+		global $wgVersion;
 
 		$this->outXmlHeader();
 		?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -309,7 +310,7 @@ class RSSFeed extends ChannelFeed {
 		<link><?php print $this->getUrl() ?></link>
 		<description><?php print $this->getDescription() ?></description>
 		<language><?php print $this->getLanguage() ?></language>
-		<generator>MediaWiki <?php print MW_VERSION ?></generator>
+		<generator>MediaWiki <?php print $wgVersion ?></generator>
 		<lastBuildDate><?php print $this->formatTime( wfTimestampNow() ) ?></lastBuildDate>
 <?php
 	}
@@ -360,6 +361,8 @@ class AtomFeed extends ChannelFeed {
 	 * Outputs a basic header for Atom 1.0 feeds.
 	 */
 	function outHeader() {
+		global $wgVersion;
+
 		$this->outXmlHeader();
 		?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="<?php print $this->getLanguage() ?>">
 		<id><?php print $this->getFeedId() ?></id>
@@ -368,7 +371,7 @@ class AtomFeed extends ChannelFeed {
 		<link rel="alternate" type="text/html" href="<?php print $this->getUrl() ?>"/>
 		<updated><?php print $this->formatTime( wfTimestampNow() ) ?>Z</updated>
 		<subtitle><?php print $this->getDescription() ?></subtitle>
-		<generator>MediaWiki <?php print MW_VERSION ?></generator>
+		<generator>MediaWiki <?php print $wgVersion ?></generator>
 
 <?php
 	}

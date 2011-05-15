@@ -2672,7 +2672,7 @@ class OutputPage {
 	 */
 	public function getHeadLinks( Skin $sk, $addContentType = false ) {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
-			$wgSitename, $wgHtml5, $wgMimeType,
+			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
 			$wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf,
 			$wgDisableLangConversion, $wgCanonicalLanguageLinks, $wgContLang,
@@ -2699,7 +2699,7 @@ class OutputPage {
 
 		$tags[] = Html::element( 'meta', array(
 			'name' => 'generator',
-			'content' => "MediaWiki " . MW_VERSION,
+			'content' => "MediaWiki $wgVersion",
 		) );
 
 		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";

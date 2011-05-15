@@ -406,7 +406,8 @@ class XmlDumpWriter {
 	}
 
 	function generator() {
-		return Xml::element( 'generator', array(), "MediaWiki " . MW_VERSION );
+		global $wgVersion;
+		return Xml::element( 'generator', array(), "MediaWiki $wgVersion" );
 	}
 
 	function homelink() {

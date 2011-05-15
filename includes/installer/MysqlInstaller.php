@@ -31,6 +31,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public $supportedEngines = array( 'InnoDB', 'MyISAM' );
 
+	public $minimumVersion = '4.0.14';
+
 	public $webUserPrivs = array(
 		'DELETE',
 		'INSERT',
@@ -102,8 +104,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		// Check version
 		$version = $conn->getServerVersion();
-		if ( version_compare( $version, MW_MIN_MYSQL_VERSION ) < 0 ) {
-			return Status::newFatal( 'config-mysql-old', MW_MIN_MYSQL_VERSION, $version );
+		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
+			return Status::newFatal( 'config-mysql-old', $this->minimumVersion, $version );
 		}
 
 		return $status;

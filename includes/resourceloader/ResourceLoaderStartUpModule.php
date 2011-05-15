@@ -35,7 +35,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	protected function getConfig( $context ) {
 		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension,
 			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang,
-			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax,
+			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion, 
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest,
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath, $wgProto,
 			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength, $wgLegacyJavaScriptGlobals;
@@ -71,7 +71,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgServer' => $wgServer,
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $wgContLang->getCode(),
-			'wgVersion' => MW_VERSION,
+			'wgVersion' => $wgVersion,
 			'wgEnableAPI' => $wgEnableAPI,
 			'wgEnableWriteAPI' => $wgEnableWriteAPI,
 			'wgDefaultDateFormat' => $wgContLang->getDefaultDateFormat(),

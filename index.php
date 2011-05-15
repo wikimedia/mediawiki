@@ -36,18 +36,14 @@
  * @file
  */
 
-// Load global constants, including MW_VERSION and MW_MIN_PHP_VERSION
-require_once( dirname( __FILE__ ) . '/includes/Defines.php' );
-
 // Bail on old versions of PHP.  Pretty much every other file in the codebase
 // has structures (try/catch, foo()->bar(), etc etc) which throw parse errors in PHP 4.
 // Setup.php and ObjectCache.php have structures invalid in PHP 5.0 and 5.1, respectively.
-if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), MW_MIN_PHP_VERSION ) < 0 ) {
+if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.3' ) < 0 ) {
 	$phpversion = htmlspecialchars( phpversion() );
-	$reqVersion = htmlspecialchars( MW_MIN_PHP_VERSION );
 	$errorMsg = <<<ENDL
 		<p>
-			MediaWiki requires PHP $reqVersion or higher. You are running PHP $phpversion.
+			MediaWiki requires PHP 5.2.3 or higher. You are running PHP $phpversion.
 		</p>
 		<p>
 			Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
@@ -164,8 +160,11 @@ $mediaWiki->restInPeace();
  * @param $errorMsg String fully-escaped HTML
  */
 function wfDie( $errorMsg ){
-	global $wgLogo;
-	$version = htmlspecialchars( MW_VERSION );
+	// Use the version set in DefaultSettings if possible, but don't rely on it
+	global $wgVersion, $wgLogo;
+	$version = isset( $wgVersion ) && $wgVersion
+		? htmlspecialchars( $wgVersion )
+		: '';
 	$logo = isset( $wgLogo ) && $wgLogo
 		? $wgLogo
 		: 'http://upload.wikimedia.org/wikipedia/commons/1/1c/MediaWiki_logo.png';

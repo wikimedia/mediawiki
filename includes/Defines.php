@@ -1,8 +1,6 @@
 <?php
 /**
- * Global constants declarations.  Do *NOT* include *anything* in this file which is
- * not a define() declaration; this file is included in all sorts of scopes and must
- * be parseable by PHP 4 without errors.
+ * A few constants that might be needed during LocalSettings.php.
  *
  * Note: these constants must all be resolvable at compile time by HipHop, 
  * since this file will not be executed during request startup for a compiled
@@ -11,22 +9,10 @@
  * @file
  */
 
-/**@{
+/**
  * Version constants for the benefit of extensions
  */
-define( 'MW_VERSION', '1.19alpha' );
 define( 'MW_SPECIALPAGE_VERSION', 2 );
-
-/**
- * Minimum version of PHP required to run; entry points will die
- * if they try to run on a version older than this
- */
-define( 'MW_MIN_PHP_VERSION', '5.2.3' );
-
-define( 'MW_MIN_MYSQL_VERSION', '4.0.14' );
-define( 'MW_MIN_ORACLE_VERSION', '9.0.1' );
-
-/**@}*/
 
 /**@{
  * Database related constants
@@ -98,6 +84,16 @@ define( 'NS_CATEGORY_TALK', 15 );
 define( 'NS_IMAGE', NS_FILE );
 define( 'NS_IMAGE_TALK', NS_FILE_TALK );
 /**@}*/
+
+/**
+ * Available feeds objects
+ * Should probably only be defined when a page is syndicated ie when
+ * $wgOut->isSyndicated() is true
+ */
+$wgFeedClasses = array(
+	'rss' => 'RSSFeed',
+	'atom' => 'AtomFeed',
+);
 
 /**@{
  * Cache type
