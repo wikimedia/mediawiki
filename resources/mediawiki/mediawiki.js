@@ -584,10 +584,25 @@ window.mediaWiki = new ( function( $ ) {
 		var jobs = [];
 		// Flag inidicating that document ready has occured
 		var ready = false;
-		// Marker element for adding dynamic styles
-		var $marker = $( 'head meta[name=ResourceLoaderDynamicStyles]' );
+		// Selector cache for the marker element. Use getMarker() to get/use the marker!
+		var $marker = null;
 
 		/* Private Methods */
+
+		function getMarker(){
+			// Cached ?
+			if ( $marker ) {
+				return $marker;
+			} else {
+				//mw.log( 'getMarker> Caching marker' );
+				$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
+				if ( $marker.length ) {
+					return $marker;
+				}
+				mw.log( 'getMarker> No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically.' );
+				return $marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+			}
+		}
 
 		function compare( a, b ) {
 			if ( a.length != b.length ) {
@@ -748,14 +763,14 @@ window.mediaWiki = new ( function( $ ) {
 					var style = registry[module].style[media];
 					if ( $.isArray( style ) ) {
 						for ( var i = 0; i < style.length; i++ ) {
-							$marker.before( mw.html.element( 'link', {
+							getMarker().before( mw.html.element( 'link', {
 								'type': 'text/css',
 								'rel': 'stylesheet',
 								'href': style[i]
 							} ) );
 						}
 					} else if ( typeof style === 'string' ) {
-						$marker.before( mw.html.element(
+						getMarker().before( mw.html.element(
 							'style',
 							{ 'type': 'text/css', 'media': media },
 							new mw.html.Cdata( style )
@@ -1134,7 +1149,7 @@ window.mediaWiki = new ( function( $ ) {
 				throw new Error( 'script must be a function or an array, not a ' + typeof script );
 			}
 			if ( !$.isPlainObject( style ) ) {
-				throw new Error( 'style must be an object or a string, not a ' + typeof style );
+				throw new Error( 'style must be an object, not a ' + typeof style );
 			}
 			if ( !$.isPlainObject( msgs ) ) {
 				throw new Error( 'msgs must be an object, not a ' + typeof msgs );
