@@ -137,7 +137,7 @@ class ParserOptions {
 	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x); }
 	function setSkin( $x )                      { $this->mSkin = $x; }
 	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
-	function setTargetLanguage( $x )            { return wfSetVar( $this->mTargetLanguage, $x); }
+	function setTargetLanguage( $x )            { return wfSetVar( $this->mTargetLanguage, $x, true ); }
 	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
 	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
 	function setMaxTemplateDepth( $x )          { return wfSetVar( $this->mMaxTemplateDepth, $x ); }
