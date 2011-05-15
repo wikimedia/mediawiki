@@ -40,13 +40,24 @@ class MakeHipHop extends Maintenance {
 			"}\n"
 		);
 
+		# Generate the file list from the autoloader
+		global $wgAutoloadLocalClasses;
+		$files = array_merge(
+			array_values( $wgAutoloadLocalClasses ),
+			array_map( 'trim', file( "$sourceDir/extra-files" ) )
+		);
+		$files = array_unique( $files );
+		file_put_contents(
+			"$buildDir/file-list",
+			implode( "\n", $files ) . "\n" );
+
 		# Generate the C++
 		passthru(
 			'hphp' .
 			' --target=cpp' .
 			' --format=file' .
 			' --input-dir=' . wfEscapeShellArg( $IP ) .
-			' --input-list=' . wfEscapeShellArg( "$sourceDir/file-list.small" ) .
+			' --input-list=' . wfEscapeShellArg( "$buildDir/file-list" ) .
 			' --inputs=' . wfEscapeShellArg( "$buildDir/HipHopCompilerVersion.php" ) .
 			' -c ' . wfEscapeShellArg( "$sourceDir/compiler.conf" ) .
 			' --parse-on-demand=false' .
