@@ -345,12 +345,14 @@ wfMemoryLimit();
  * that happens whenever you use a date function without the timezone being
  * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
  */
-wfSuppressWarnings();
-if(!isset($wgLocaltimezone)) $wgLocaltimezone = date_default_timezone_get();
-wfRestoreWarnings();
+if ( is_null( $wgLocaltimezone) ) {
+	wfSuppressWarnings();
+	$wgLocaltimezone = date_default_timezone_get();
+	wfRestoreWarnings();
+}
 
 date_default_timezone_set( $wgLocaltimezone );
-if(!isset($wgLocalTZoffset)) {
+if( is_null( $wgLocalTZoffset ) ) {
 	$wgLocalTZoffset = date('Z') / 60;
 }
 
