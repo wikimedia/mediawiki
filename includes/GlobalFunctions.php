@@ -8,10 +8,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-if ( !defined( 'MW_COMPILED' ) ) {
-	require_once( dirname( __FILE__ ) . '/normal/UtfNormalUtil.php' );
-}
-
 // Hide compatibility functions from Doxygen
 /// @cond
 

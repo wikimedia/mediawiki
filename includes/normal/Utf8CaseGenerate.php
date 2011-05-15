@@ -29,6 +29,7 @@ if( php_sapi_name() != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 
+require_once 'UtfNormalDefines.php';
 require_once 'UtfNormalUtil.php';
 
 $in = fopen("UnicodeData.txt", "rt" );
