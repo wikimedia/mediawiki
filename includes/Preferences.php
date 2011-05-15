@@ -1180,9 +1180,16 @@ class Preferences {
 	static function getTimezoneOptions() {
 		$opt = array();
 
-		global $wgLocalTZoffset;
-
-		$opt[wfMsg( 'timezoneuseserverdefault' )] = "System|$wgLocalTZoffset";
+		global $wgLocalTZoffset, $wgLocaltimezone;
+		// Check that $wgLocalTZoffset is the same as $wgLocaltimezone
+		if ( $wgLocalTZoffset == date('Z') / 60 ) {
+			$server_tz_msg = wfMsg( 'timezoneuseserverdefault', $wgLocaltimezone );
+		}
+		else {
+		 	$tzstring = sprintf( '%+03d:%02d', floor( $wgLocalTZoffset / 60 ), abs( $wgLocalTZoffset ) % 60 );
+			$server_tz_msg = wfMsg( 'timezoneuseserverdefault', $tzstring );
+		}
+		$opt[$server_tz_msg] = "System|$wgLocalTZoffset";
 		$opt[wfMsg( 'timezoneuseoffset' )] = 'other';
 		$opt[wfMsg( 'guesstimezone' )] = 'guess';
 
