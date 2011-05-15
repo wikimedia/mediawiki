@@ -134,7 +134,8 @@ class ApiParse extends ApiBase {
 						$main = new ApiMain( $req );
 						$main->execute();
 						$data = $main->getResultData();
-						$redirValues = @$data['query']['redirects'];
+						$redirValues = isset( $data['query']['redirects'] )
+							? $data['query']['redirects'] : array();
 						$to = $page;
 						foreach ( (array)$redirValues as $r ) {
 							$to = $r['to'];

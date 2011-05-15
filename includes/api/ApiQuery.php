@@ -316,9 +316,8 @@ class ApiQuery extends ApiBase {
 	 * @param $moduleList Array array(modulename => classname)
 	 */
 	private function instantiateModules( &$modules, $param, $moduleList ) {
-		$list = @$this->params[$param];
-		if ( !is_null ( $list ) ) {
-			foreach ( $list as $moduleName ) {
+		if ( isset( $this->params[$param] ) ) {
+			foreach ( $this->params[$param] as $moduleName ) {
 				$modules[] = new $moduleList[$moduleName] ( $this, $moduleName );
 			}
 		}
