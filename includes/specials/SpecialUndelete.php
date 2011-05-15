@@ -1195,7 +1195,7 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	private function formatRevisionRow( $row, $earliestLiveTime, $remaining, $sk ) {
-		global $wgUser, $wgLang;
+		global $wgLang;
 
 		$rev = Revision::newFromArchiveRow( $row,
 			array( 'page' => $this->mTargetObj->getArticleId() ) );
