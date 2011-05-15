@@ -1957,7 +1957,6 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 [[Special:WhatLinksHere/$2|完全な一覧]]も参照してください。',
 'nolinkstoimage'                    => 'このファイルへリンクしているページはありません。',
 'morelinkstoimage'                  => 'このファイルへの[[Special:WhatLinksHere/$1|リンク元を更に]]を表示する。',
-'redirectstofile'                   => '以下の{{PLURAL:$1|ファイル|$1ファイル}}は、このファイルへのリダイレクトです：',
 'duplicatesoffile'                  => '以下の$1ファイルが、このファイルと内容が同一です（[[Special:FileDuplicateSearch/$2|詳細]]）：',
 'sharedupload'                      => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。',
 'sharedupload-desc-there'           => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。

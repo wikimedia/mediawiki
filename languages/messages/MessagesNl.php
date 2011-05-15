@@ -1971,7 +1971,6 @@ De volgende lijst geeft alleen de eerste {{PLURAL:$1|verwijzing|$1 verwijzingen}
 Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 'nolinkstoimage'                    => 'Geen enkele pagina gebruikt dit bestand.',
 'morelinkstoimage'                  => '[[Special:WhatLinksHere/$1|Meer verwijzingen]] naar dit bestand bekijken.',
-'redirectstofile'                   => '{{PLURAL:$1|Het volgende bestand verwijst|De volgende $1 bestanden verwijzen}} door naar dit bestand:',
 'duplicatesoffile'                  => '{{PLURAL:$1|Het volgende bestand is|De volgende $1 bestanden zijn}} identiek aan dit bestand ([[Special:FileDuplicateSearch/$2|meer details]]):',
 'sharedupload'                      => 'Dit bestand komt van $1 en kan ook door andere projecten gebruikt worden.',
 'sharedupload-desc-there'           => 'Dit bestand komt van $1 en kan ook in andere projecten gebruikt worden.

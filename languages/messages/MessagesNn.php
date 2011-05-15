@@ -1766,7 +1766,6 @@ Følgjande liste viser {{PLURAL:$1|den første sida|dei $1 første sidene}}.
 Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'nolinkstoimage'            => 'Det finst ikkje noka side med lenkje til denne fila.',
 'morelinkstoimage'          => 'Vis [[Special:WhatLinksHere/$1|fleire lenkjer]] til denne fila.',
-'redirectstofile'           => 'Følgjande {{PLURAL:$1|fil er ei omdirigering|filer er omdirigeringar}} til denne fila:',
 'duplicatesoffile'          => 'Følgjande {{PLURAL:$1|fil er ein dublett|filer er dublettar}} av denne fila ([[Special:FileDuplicateSearch/$2|fleire detaljar]]):',
 'sharedupload'              => 'Denne fila er frå $1 og kan verta brukt av andre prosjekt.',
 'sharedupload-desc-there'   => 'Denne fila er frå $1 og kan verta nytta av andre prosjekt.

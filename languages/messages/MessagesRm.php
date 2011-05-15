@@ -545,6 +545,9 @@ Ti vegns annunzià…',
 Eventualmain has ti gia midà cun success tes pled-clav u dumandà per in nov pled-clav temporar.',
 'resetpass-temp-password'   => 'Pled-clav temporar:',
 
+# Special:PasswordReset
+'passwordreset-username' => "Num d'utilisader:",
+
 # Edit page toolbar
 'bold_sample'     => 'Text grass',
 'bold_tip'        => 'Text grass',
@@ -1413,7 +1416,6 @@ In clic sin il titel d'ina colona mida la successiun da zavrar.",
 'imagelinks'                => 'Paginas che cuntegnan la datoteca',
 'linkstoimage'              => '{{PLURAL:$1|La suandanta pagina è colliada|Las suandantas $1 paginas èn colliadas}} cun questa datoteca:',
 'nolinkstoimage'            => 'Naginas paginas mussan sin questa datoteca.',
-'redirectstofile'           => '{{PLURAL:$1|Suandanta datoteca renviescha|Suandantas $1 datotecas renvieschan}} a questa datoteca:',
 'sharedupload'              => 'Quai è ina datoteca da $1 e vegn eventualmain utilisada dad auters projects.',
 'filepage-nofile'           => "I n'exista nagina datoteca cun quest num.",
 'filepage-nofile-link'      => "I n'exista nagina datoteca cun quest num, ti la pos dentant [$1 chargiar si].",

@@ -1659,7 +1659,6 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 [[Special:WhatLinksHere/$2|Dopołna lisćina]] stoj k dispoziciji.',
 'nolinkstoimage'            => 'Žedne boki njewótkazuju na toś tu dataju.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Dalšne wótkazy]] k toś tej dataji wobglědaś.',
-'redirectstofile'           => '{{PLURAL:$1|Slědujuca dataja dalej pósrědnja|Slědujucej $1 dataji dalej pósrědnjatej|slědujuce $1 dataje dalej póšrědnjaju|Slědujucych $1 datajow dalej pósrědnja}} k toś tej dataji:',
 'duplicatesoffile'          => '{{PLURAL:$1|Slědujuca dataja jo duplikat|Slědujucej $1 dataji stej duplikata|Slědujuce dataje $1 su duplikaty|Slědujucych $1 datajow jo duplikaty}} toś teje dataje ([[Special:FileDuplicateSearch/$2|dalšne drobnostki]])::',
 'sharedupload'              => 'Toś ta dataja jo z $1 a dajo se pśez druge projekty wužywaś.',
 'sharedupload-desc-there'   => 'Toś ta dataja jo z $1 a dajo se pśez druge projekty wužywaś. Pšosym glědaj [$2 bok datajowego wopisanja] za dalšne informacije.',

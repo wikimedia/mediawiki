@@ -1452,7 +1452,6 @@ De folgjende list jout allinne de earste {{PLURAL:$1|ferwizing|$1 ferwizings}} n
 Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'nolinkstoimage'            => 'Der binne gjin siden oan dit ôfbyld keppele.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mear ferwizings]] nei dizze triem besjen.',
-'redirectstofile'           => '{{PLURAL:$1|De folgjende triem ferwiist|De folgjende $1 triemmen ferwize}} troch nei dizze triem:',
 'duplicatesoffile'          => '{{PLURAL:$1|De folgjende triem is|De folgjende $1 triemmen binne}} idintyk oan dizze triem:',
 'sharedupload'              => 'Dizze triem is in dielde oanbieding en kin ek troch oare projekten brûkt wurde.',
 'filepage-nofile'           => "Der bestiet gjin triem mei sa'n namme.",

@@ -1633,7 +1633,6 @@ Ce cazze sus a 'a testate d'a colonne cange l'arrengamende.",
 'Na [[Special:WhatLinksHere/$2|liste comblete]] è disponibbele.",
 'nolinkstoimage'            => 'Non ge stonne pàggene ca appodene a stu fail.',
 'morelinkstoimage'          => 'Vide [[Special:WhatLinksHere/$1|cchiù collegaminde]] a stu file.',
-'redirectstofile'           => "{{PLURAL:$1|'U seguende file se ridirezione|Le seguende $1 file se ridirezionane}} a stu file:",
 'duplicatesoffile'          => "{{PLURAL:$1|'U seguende file ète 'nu|Le seguende $1 file sonde}} duplicate de stu file ([[Special:FileDuplicateSearch/$2|cchiù 'mbormaziune]]):",
 'sharedupload'              => 'Stu file avène da $1 e pò essere ausate da otre pruggette.',
 'sharedupload-desc-there'   => "Stu file è da $1 e pò essere ausate pe otre pruggette.<br />

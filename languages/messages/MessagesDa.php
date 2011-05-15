@@ -308,6 +308,7 @@ $messages = array(
 'listingcontinuesabbrev'         => ' forts.',
 'index-category'                 => 'Indekserede sider',
 'noindex-category'               => 'Ikke-indekserede sider',
+'broken-file-category'           => 'Sider med brudte filhenvisninger',
 
 'mainpagetext'      => "'''MediaWiki er nu installeret.'''",
 'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
@@ -471,6 +472,8 @@ $1',
 'page-rss-feed'           => '"$1" RSS-feed',
 'page-atom-feed'          => '"$1" Atom-feed',
 'red-link-title'          => '$1 (siden er ikke skrevet endnu)',
+'sort-descending'         => 'Sorter aftagende',
+'sort-ascending'          => 'Sorter stigende',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Side',
@@ -1719,7 +1722,6 @@ Den følgende liste viser kun {{PLURAL:$1|den første henvisning|de $1 første h
 En [[Special:WhatLinksHere/$2|komplet liste]] er tilgængelig.',
 'nolinkstoimage'            => 'Der er ingen sider der henviser til denne fil.',
 'morelinkstoimage'          => 'Se [[Special:WhatLinksHere/$1|flere henvisninger]] til denne fil.',
-'redirectstofile'           => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er en omdirigering til denne fil:',
 'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublet|filer er dubletter}} af denne fil ([[Special:FileDuplicateSearch/$2|flere detaljer]]):',
 'sharedupload'              => 'Denne fil er fra $1 og kan bruges af andre projekter.',
 'sharedupload-desc-there'   => 'Denne fil er fra $1 og kan bruges på andre projekter.
@@ -2976,13 +2978,22 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-citycreated'                 => 'By, som billedet blev taget i',
 'exif-sublocationcreated'          => 'Bydel, som billedet blev taget i',
 'exif-worldregiondest'             => 'Den viste verdensregion',
+'exif-countrydest'                 => 'Afbildet land',
+'exif-countrycodedest'             => 'Kode for afbildet land',
+'exif-provinceorstatedest'         => 'Afbildet provins eller delstat',
+'exif-citydest'                    => 'Afbildet by',
+'exif-sublocationdest'             => 'Afbildet bydel eller område i by',
 'exif-objectname'                  => 'Kort titel',
 'exif-specialinstructions'         => 'Særlige instruktioner',
 'exif-headline'                    => 'Overskrift',
+'exif-credit'                      => 'Tilskrivning/leverandør',
 'exif-source'                      => 'Kilde',
+'exif-editstatus'                  => 'Billedets redaktionelle status',
 'exif-urgency'                     => 'Uopsættelighed',
+'exif-fixtureidentifier'           => 'Navn på fast bestanddel',
 'exif-locationdest'                => 'Afbildet sted',
 'exif-locationdestcode'            => 'Kode for det afbildede sted',
+'exif-objectcycle'                 => 'Tid på dagen, som mediet er tiltænkt',
 'exif-contact'                     => 'Kontaktoplysninger',
 'exif-writer'                      => 'Forfatter',
 'exif-languagecode'                => 'Sprog',
@@ -2991,6 +3002,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-iimsupplementalcategory'     => 'Supplerende kategorier',
 'exif-datetimeexpires'             => 'Brug ikke efter',
 'exif-datetimereleased'            => 'Frigivet den',
+'exif-originaltransmissionref'     => 'Stedkode for oprindelig transmission',
 'exif-identifier'                  => 'Identifikation',
 'exif-lens'                        => 'Anvendt objektiv',
 'exif-serialnumber'                => 'Kameraets serienummer',
@@ -2998,6 +3010,8 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-label'                       => 'Mærke',
 'exif-datetimemetadata'            => 'Dato for seneste redigering af metadata',
 'exif-nickname'                    => 'Uformelt navn på billede',
+'exif-rating'                      => 'Vurdering (af 5)',
+'exif-rightscertificate'           => 'Rettighedsforvaltningscertifikat',
 'exif-copyrighted'                 => 'Ophavsretsstatus',
 'exif-copyrightowner'              => 'Indehaver af ​​ophavsretten',
 'exif-usageterms'                  => 'Betingelser for anvendelse',
@@ -3105,6 +3119,8 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-sensingmethod-7' => 'Triliniær sensor',
 'exif-sensingmethod-8' => 'Farvesekventiel liniarsensor',
 
+'exif-filesource-3' => 'Digitalt stillbilledekamera',
+
 'exif-scenetype-1' => 'Normal',
 
 'exif-customrendered-0' => 'Standard',
@@ -3190,9 +3206,13 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-ycbcrpositioning-1' => 'Centreret',
 
 'exif-dc-contributor' => 'Bidragsydere',
+'exif-dc-coverage'    => 'Rumlig eller tidslig afgrænsning for mediet',
 'exif-dc-date'        => 'Dato(er)',
 'exif-dc-publisher'   => 'Udgiver',
+'exif-dc-relation'    => 'Relaterede media',
 'exif-dc-rights'      => 'Rettigheder',
+'exif-dc-source'      => 'Kildemediet',
+'exif-dc-type'        => 'Medietype',
 
 'exif-rating-rejected' => 'Afvist',
 

@@ -1839,7 +1839,6 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 [[Special:WhatLinksHere/$2|Ovdje se nalazi]] potpuni popis.',
 'nolinkstoimage'            => 'Nijedna stranica ne povezuje na ovu sliku.',
 'morelinkstoimage'          => 'Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.',
-'redirectstofile'           => '{{PLURAL:$1|Sljedeća datoteka preusmjerava|$1 Sljedeće datoteke preusmjeravaju}} na ovu datoteku:',
 'duplicatesoffile'          => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 sljedeće datoteke su kopije|$1 sljedećih datoteka su kopije}} ove datoteke ([[Special:FileDuplicateSearch/$2|više detalja]]):',
 'sharedupload'              => 'Ova je datoteka postavljena na $1 i mogu je koristiti ostali projekti.',
 'sharedupload-desc-there'   => 'Ova datoteka je s $1 i mogu je koristiti drugi projekti. Pogledajte [$2 stranicu s opisom datoteke] za dodatne informacije.',

@@ -1082,7 +1082,6 @@ De folgende Liste zeigt ock {{PLURAL:$1|dann erschta Link|de erschta $1 Links}} 
 Anne [[Special:WhatLinksHere/$2|vullständige Liste]] ies verfiegbar.',
 'nolinkstoimage'            => 'Kenne Seyte nutzt diese Datei.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Weitere Links]] fier diese Datei.',
-'redirectstofile'           => 'De {{PLURAL:$1|folgende Datei leitet|folgenda $1 Dateien leiten}} uff diese Datei wetter:',
 'duplicatesoffile'          => 'De {{PLURAL:$1|folgende Datei ies a Duplikat|folgenda $1 Dateien sein Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|wettere Details]]):',
 'sharedupload'              => 'Diese Datei stommt ous $1 on dorf voo andern Projekta verwendet waan.',
 'filepage-nofile-link'      => 'Is existiert kenne Datei mit diesem Noama, oaber du koast [$1 diese Datei huchloada].',

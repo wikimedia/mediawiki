@@ -1434,7 +1434,6 @@ Dhaftar ing ngisor nuduhaké {{PLURAL:$1|kaca pisanan kanthi pranala langsung|$1
 [[Special:WhatLinksHere/$2|dhaftar pepak]] uga ana.',
 'nolinkstoimage'            => 'Ora ana kaca sing nyambung menyang berkas iki.',
 'morelinkstoimage'          => 'Ndeleng [[Special:WhatLinksHere/$1|luwih akèh pranala]] menyang berkas iki.',
-'redirectstofile'           => '{{PLURAL:$1|berkas kaalihaké|$1 berkas-berkas kaalihaké}} menyang berkas iki:',
 'duplicatesoffile'          => '{{PLURAL:$1|berkas ing ngisor arupa duplikat|$1 berkas ing ngisor arupa duplikat}} saka berkas iki ([[Special:FileDuplicateSearch/$2|luwih rinci]]):',
 'sharedupload'              => 'Berkas iki saka $1 lan bisa digunakaké déning proyèk liya.',
 'sharedupload-desc-there'   => 'Berkas iki asal saka $1 lan bisa dipigunakaké déning proyèk liya.

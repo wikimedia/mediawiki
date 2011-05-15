@@ -1650,7 +1650,6 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'linkstoimage'              => '{{PLURAL:$1|Il-Paġna segwenti għandha|Il-$1 paġni segwenti għandhom}} links għal-fajl:',
 'nolinkstoimage'            => "M'hemmx paġni li huma relatati ma' dan il-fajl.",
 'morelinkstoimage'          => 'Uri [[Special:WhatLinksHere/$1|aktar links]] għal dan il-fajl.',
-'redirectstofile'           => '{{PLURAL:$1|Il-fajl segwenti huwa rindirizzat|Il-$1 fajls segwenti huma rindirizzati}} għal dan il-fajl.',
 'duplicatesoffile'          => "{{PLURAL:$1|Il-fajl segwenti huwa duplikat|Il-$1 fajls segwenti huma duplikati}} ta' dan il-fajl ([[Special:FileDuplicateSearch/$2|aktar dettalji]]):",
 'sharedupload'              => "Dan il-fajl ġej minn $1 u jista' jiġi wżat minn proġetti oħra.",
 'uploadnewversion-linktext' => "Tella' verżjoni ġdida ta' dan il-fajl",

@@ -1549,7 +1549,6 @@ Aşakdaky sanaw diňe şu faýla çykgyt berýän {{PLURAL:$1|ilkinji faýly |il
 [[Special:WhatLinksHere/$2|Doly sanaw]] bardyr.',
 'nolinkstoimage'            => 'Bu faýla çykgyt berýän hiçhili sahypa ýok.',
 'morelinkstoimage'          => 'Bu faýla [[Special:WhatLinksHere/$1|has köp çykgyt]] görkez.',
-'redirectstofile'           => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu faýla gönükdirýar:',
 'duplicatesoffile'          => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu faýlyň dublikatydyr ([[Special:FileDuplicateSearch/$2|jikme-jik maglumat]]):',
 'sharedupload'              => 'Bu faýl $1 ammaryndan, özem beýleki taslamalarda ulanylýan bolmagy ahmal.',
 'sharedupload-desc-there'   => 'Bu faýl $1 ammaryndan, özem beýleki taslamalarda ulanylýan bolmagy ahmal.

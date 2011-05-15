@@ -1678,7 +1678,6 @@ $1',
 ดูเพิ่มได้ที่[[Special:WhatLinksHere/$2|รายชื่อเต็ม]]',
 'nolinkstoimage'            => 'ไม่มีหน้าที่ใช้ภาพนี้',
 'morelinkstoimage'          => 'ดู[[Special:WhatLinksHere/$1|หน้าที่ลิงก์]]มายังไฟล์นี้เพิ่มเติม',
-'redirectstofile'           => '{{PLURAL:$1|ไฟล์|$1 ไฟล์}}ดังต่อไปนี้เปลี่ยนทางมาที่ไฟล์นี้:',
 'duplicatesoffile'          => '{{PLURAL:$1|ไฟล์|$1 ไฟล์}}ต่อไปนี้ เป็นไฟล์เดียวกับไฟล์นี้ ([[Special:FileDuplicateSearch/$2|รายละเอียดเพิ่ม]]):',
 'sharedupload'              => 'ไฟล์นี้มาจาก $1 และอาจมีการใช้ในโครงการอื่น',
 'sharedupload-desc-there'   => 'ไฟล์นี้มาจาก $1 และอาจถูกใช้บนโครงการอื่น ๆ

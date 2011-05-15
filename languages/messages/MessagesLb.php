@@ -683,6 +683,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'passwordreset-text'         => 'Fëllt dëse Formulaire aus fir eng E-Mail Erënnerung vun den Detailer vun Ärem Benotzerkont ze kréien.',
 'passwordreset-legend'       => 'Passwuert zrécksetzen',
 'passwordreset-disabled'     => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
+'passwordreset-pretext'      => '{{PLURAL:$1||Gitt eng vun dësen Donnéeën an}}',
 'passwordreset-username'     => 'Benotzernumm:',
 'passwordreset-email'        => 'E-Mailadress:',
 'passwordreset-emailtitle'   => 'Detailer vum Benotzerkont op{{SITENAME}}',
@@ -1491,8 +1492,8 @@ Gitt op d'[[Special:FileList|Lëscht vun den eropgeluedene Fichieren]], fir no F
 
 Fir e '''Bild''' op enger Säit zu benotzen, schreift amplaz vum Bild eng vun dëse Formelen:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.jpg]]</nowiki></tt>''' fir déi ganz Versioun vum Fichier ze benotzen
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></tt>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénkse Rand mat 'alt text' als Beschreiwung
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></tt>''' fir e Fichier direk ze verlinken ouni de Fichier ze weisen",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></tt>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénke Rand mat 'alt text' als Beschreiwung
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></tt>''' fir e Fichier direkt ze verlinken ouni de Fichier ze weisen",
 'upload-permitted'            => 'Erlaabte Formater vun de Fichieren: $1.',
 'upload-preferred'            => 'Fichierszorten déi am beschte funktionéieren: $1.',
 'upload-prohibited'           => 'Verbuede Fichiers Formater: $1.',
@@ -1705,7 +1706,7 @@ Dës Lëscht weist nëmmen {{PLURAL:$1|den éischte Link|déi éischt $1 Linken}
 Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 'nolinkstoimage'                    => 'Keng Säit benotzt dëse Fichier.',
 'morelinkstoimage'                  => 'Weis [[Special:WhatLinksHere/$1|méi Linken]] op dëse Fichier.',
-'redirectstofile'                   => '{{PLURAL:$1|De Fichier leet|Dës Fichiere leede}} virun op de Fichier:',
+'linkstoimage-redirect'             => '$1 (Fichier-Viruleedung) $2',
 'duplicatesoffile'                  => '{{PLURAL:$1|De Fichier ass een Doublon|Dës Fichiere sinn Doublone}} vum Fichier ([[Special:FileDuplicateSearch/$2|méi Detailer]]):',
 'sharedupload'                      => 'Dëse Fichier ass vu(n) $1 a ka vun anere Projete benotzt ginn.',
 'sharedupload-desc-there'           => "Dëse Fichier ass vu(n) $1 a kann an anere Projete benotzt ginn.

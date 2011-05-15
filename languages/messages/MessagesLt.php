@@ -1723,7 +1723,6 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas]].',
 'nolinkstoimage'                    => 'Į failą nenurodo joks puslapis.',
 'morelinkstoimage'                  => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
-'redirectstofile'                   => '{{PLURAL:$1|Šis failas|$1 failai}} peradresuoja į šį failą:',
 'duplicatesoffile'                  => 'Šis failas turi {{PLURAL:$1|$1 dublikatą|$1 dublikatus|$1 dublikatų}} ([[Special:FileDuplicateSearch/$2|daugiau informacijos]]):',
 'sharedupload'                      => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.',
 'sharedupload-desc-there'           => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.

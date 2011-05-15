@@ -1604,7 +1604,6 @@ Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}
 [[Special:WhatLinksHere/$2|Orodha nzima]] inapatikana.',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
 'morelinkstoimage'          => 'Tazama [[Special:WhatLinksHere/$1|viungo vingine]] vinavyoelekeza faili hili.',
-'redirectstofile'           => '{{PLURAL:$1|Faili linalofuata linaelekeza|Mafaili $1 yanayofuata yanaelekeza}} faili hili:',
 'duplicatesoffile'          => '{{PLURAL:$1|Faili linalofuata ni nakala ya|Mafaili $1 yanayofuata ni nakala za}} faili hili ([[Special:FileDuplicateSearch/$2|maelezo mengine]]):',
 'sharedupload'              => 'Faili hili linatoka $1 na linaweza kushirikiwa na miradi mingine.',
 'sharedupload-desc-there'   => 'Faili hili linatoka $1 na huenda likawa limetumika na miradi mingine.

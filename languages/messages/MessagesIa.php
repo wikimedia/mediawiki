@@ -1757,7 +1757,7 @@ Le sequente lista monstra le {{PLURAL:$1|prime pagina|prime $1 paginas}} que pun
 Un [[Special:WhatLinksHere/$2|lista complete]] es disponibile.',
 'nolinkstoimage'            => 'Nulle pagina usa iste file.',
 'morelinkstoimage'          => 'Vider [[Special:WhatLinksHere/$1|plus ligamines]] a iste file.',
-'redirectstofile'           => 'Le sequente {{PLURAL:$1|file|$1 files}} se redirige a iste file:',
+'linkstoimage-redirect'     => '$1 (redirection de file) $2',
 'duplicatesoffile'          => 'Le sequente {{PLURAL:$1|file es un duplicato|$1 files es duplicatos}} de iste file ([[Special:FileDuplicateSearch/$2|plus detalios]]):',
 'sharedupload'              => 'Iste file proveni de $1 e pote esser usate per altere projectos.',
 'sharedupload-desc-there'   => 'Iste file proveni de $1 e pote esser usate per altere projectos.
@@ -2364,6 +2364,8 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 'sp-contributions-username'            => 'Adresse IP o nomine de usator:',
 'sp-contributions-toponly'             => 'Monstrar solmente le versiones recente',
 'sp-contributions-submit'              => 'Cercar',
+'sp-contributions-showsizediff'        => 'Monstrar differentia in dimension de pagina',
+'sp-contributions-showsizediff-warn'   => 'Iste instantia ha le registro de modificationes recente limitate a $1. Si tu usa iste option, le paginas non presente in iste registro non essera monstrate.',
 
 # What links here
 'whatlinkshere'            => 'Referentias a iste pagina',

@@ -853,7 +853,6 @@ $1',
 'imagelinks'                => 'ܐܣܘܪ̈ܐ ܕܠܦܦܐ',
 'linkstoimage'              => '{{PLURAL:$1|ܦܐܬܐ ܗܕܐ ܐܣܪ|$1 ܦܐܬܬ̈ܐ ܗܠܝܢ ܐܣܪܝܢ}} ܥܡ ܗܢܐ ܠܦܦܐ:',
 'nolinkstoimage'            => 'ܠܝܬ ܦܐܬܐ ܕܐܣܪ ܠܗܢܐ ܠܦܦܐ.',
-'redirectstofile'           => '{{PLURAL:$1|ܠܦܦܐ|$1 ܠܦܦ̈ܐ}} ܕܐܬܐ ܐܣܪ ܠܗܢܐ ܠܦܦܐ:',
 'uploadnewversion-linktext' => 'ܐܣܩ ܨܚܚܐ ܚܕܬܐ ܡܢ ܗܢܐ ܠܦܦܐ',
 'shared-repo-from'          => 'ܡܢ $1',
 

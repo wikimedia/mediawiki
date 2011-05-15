@@ -2041,7 +2041,6 @@ $1',
 [[Special:WhatLinksHere/$2|قائمة كاملة]] متوفرة.',
 'nolinkstoimage'                    => 'لا توجد صفحات تصل لهذا الملف.',
 'morelinkstoimage'                  => 'عرض [[Special:WhatLinksHere/$1|المزيد من الوصلات]] إلى هذا الملف.',
-'redirectstofile'                   => '{{PLURAL:$1|الملف|ال$1 ملف}} التالي يحول إلى هذا الملف:',
 'duplicatesoffile'                  => '{{PLURAL:$1|الملف التالي مكرر|ال$1 ملف التالي مكررات}} لهذا الملف
 ([[Special:FileDuplicateSearch/$2|المزيد من التفاصيل]]):',
 'sharedupload'                      => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.',

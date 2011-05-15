@@ -4373,8 +4373,10 @@ Hai dispoñibles configuracións de dereitos de usuario máis complexas despois 
 	'config-license' => 'Dereitos de autor e licenza:',
 	'config-license-none' => 'Sen licenza ao pé',
 	'config-license-cc-by-sa' => 'Creative Commons recoñecemento compartir igual',
+	'config-license-cc-by' => 'Creative Commons recoñecemento',
 	'config-license-cc-by-nc-sa' => 'Creative Commons recoñecemento non comercial compartir igual',
 	'config-license-cc-0' => 'Creative Commons Zero (dominio público)',
+	'config-license-gfdl' => 'Licenza de documentación libre de GNU 1.3 ou posterior',
 	'config-license-pd' => 'Dominio público',
 	'config-license-cc-choose' => 'Seleccione unha licenza Creative Commons personalizada',
 	'config-license-help' => "Moitos wikis públicos liberan todas as súas contribucións baixo unha [http://freedomdefined.org/Definition/Gl licenza libre].

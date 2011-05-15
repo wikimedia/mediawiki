@@ -1555,7 +1555,6 @@ Ju foulgjende Lieste wiest bloot {{PLURAL:$1|dän eerste Link|do eerste $1 Linke
 Ne [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.',
 'nolinkstoimage'            => 'Naan Artikkel benutset disse Bielde.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Wiedere Ferbiendengen]] foar disse Doatäi.',
-'redirectstofile'           => '{{PLURAL:$1|Ju foulgjende Doatäi laitet|Do foulgjende $1 Doatäie laitje}} ap disse Doatäi fääre:',
 'duplicatesoffile'          => '{{PLURAL:$1|Ju foulgjende Doatäi is n Duplikoat|Do foulgjende $1 Doatäie sunt Duplikoate}} fon disse Doatäi ([[Special:FileDuplicateSearch/$2|wiedere Details]]):',
 'sharedupload'              => 'Disse Doatäi stamt uut $1 un duur fon uur Projekte ferwoand wäide.',
 'sharedupload-desc-there'   => 'Disse Doatäi stamt uut $1 un duur fon uur Projekte ferwoand wäide. Sjuch ap ju [$2 Doatäibeskrieuwengssiede] ätter wiedere Informatione.',

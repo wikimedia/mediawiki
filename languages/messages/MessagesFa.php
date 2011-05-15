@@ -2001,7 +2001,6 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 [[Special:WhatLinksHere/$2|فهرست کامل]] نیز موجود است.',
 'nolinkstoimage'            => 'هیچ صفحه‌ای به این تصویر پیوند ندارد.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|پیوندهای دیگر]] به این پرونده را ببینید.',
-'redirectstofile'           => '{{PLURAL:$1|پروندهٔ|پرونده‌های}} زیر به این صفحه تغییر مسیر {{PLURAL:$1|می‌دهد|می‌دهند}}:',
 'duplicatesoffile'          => '{{PLURAL:$1|پروندهٔ|پرونده‌های}} زیر نسخهٔ تکراری این پرونده {{PLURAL:$1|است|هستند}} ([[Special:FileDuplicateSearch/$2|اطلاعات بیشتر]]):',
 'sharedupload'              => 'این پرونده در $1 قرار دارد و ممکن است در دیگر پروژه‌ها هم استفاده شود.',
 'sharedupload-desc-there'   => 'این پرونده در $1 قرار دارد و ممکن است در دیگر پروژه‌ها هم استفاده شود.
@@ -2259,7 +2258,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'سیاههٔ ایجاد کاربر',
-'newuserlogpagetext'          => 'این سیاهه‌ای از نامهای کاربریِ تازه‌ساخته‌شده است',
+'newuserlogpagetext'          => 'این سیاهه‌ای از نام‌های کاربری تازه‌ساخته‌شده است.',
 'newuserlog-byemail'          => 'گذرواژه با پست الکترونیکی ارسال شد',
 'newuserlog-create-entry'     => 'کاربر جدید',
 'newuserlog-create2-entry'    => 'حساب کاربری جدید $1 را ایجاد کرد',
@@ -3084,7 +3083,7 @@ $1',
 'patrol-log-header'    => 'این سیاهه‌ای از ویرایش‌های گشت‌خورده است.',
 'patrol-log-line'      => 'به $1 از $2 برچسب گشت زد $3',
 'patrol-log-auto'      => '(خودکار)',
-'patrol-log-diff'      => 'نسخه $1',
+'patrol-log-diff'      => 'نسخهٔ $1',
 'log-show-hide-patrol' => 'سیاههٔ گشت‌زنی $1',
 
 # Image deletion

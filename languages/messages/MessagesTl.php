@@ -1723,7 +1723,6 @@ Ipinapakita sa sumusunod na talaan ang {{PLURAL:$1|unang pahina lamang|unang $1 
 Mayroong makukuhang [[Special:WhatLinksHere/$2|buong talaan]].',
 'nolinkstoimage'            => 'Walang pahinang nakakawing sa talaksang ito.',
 'morelinkstoimage'          => 'Tingnan ang [[Special:WhatLinksHere/$1|mas marami pang mga kawing]] para sa pahinang ito.',
-'redirectstofile'           => 'Tumuturo ang sumusunod na {{PLURAL:$1|talaksan|$1 mga talaksan}} patungo sa talaksang ito:',
 'duplicatesoffile'          => 'Ang sumusunod na {{PLURAL:$1|file is a duplicate|$1 mga talaksan ay mga kapareho}} ng talaksang ito ([[Special:FileDuplicateSearch/$2|mas marami pang mga detalye]]):',
 'sharedupload'              => 'Ang talaksang ito ay nagmula sa $1 at maaaring gamitin ng iba pang mga proyekto.',
 'sharedupload-desc-there'   => 'Ang talaksang ito ay nagmula sa $1 at maaaring gamitin sa ibang mga proyekto.

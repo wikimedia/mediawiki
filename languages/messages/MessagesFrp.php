@@ -1927,7 +1927,6 @@ Ceta lista montre ren que {{PLURAL:$1|la premiére pâge qu’utilise|les $1 pre
 Una [[Special:WhatLinksHere/$2|lista complèta]] est disponibla.',
 'nolinkstoimage'            => 'Niona pâge utilise ceti fichiér.',
 'morelinkstoimage'          => 'Vêde [[Special:WhatLinksHere/$1|més de lims]] de vers ceti fichiér.',
-'redirectstofile'           => '{{PLURAL:$1|Ceti fichiér redirige|Cetos fichiérs redirijont}} vers ceti :',
 'duplicatesoffile'          => '{{PLURAL:$1|Ceti fichiér est un doblo|Cetos fichiérs sont des doblos}} de ceti ([[Special:FileDuplicateSearch/$2|més de dètalys]]) :',
 'sharedupload'              => 'Ceti fichiér vint de $1 et pôt étre utilisâ per d’ôtros projèts.',
 'sharedupload-desc-there'   => 'Ceti fichiér vint de $1 et pôt étre utilisâ per d’ôtros projèts.

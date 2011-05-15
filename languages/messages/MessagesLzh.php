@@ -1451,7 +1451,6 @@ $1',
 [[Special:WhatLinksHere/$2|整表]]可供之閱也。',
 'nolinkstoimage'                    => '無頁連本檔也。',
 'morelinkstoimage'                  => '閱檔[[Special:WhatLinksHere/$1|接]]。',
-'redirectstofile'                   => '下檔轉到此檔有$1：',
 'duplicatesoffile'                  => '下檔重此檔有$1（[[Special:FileDuplicateSearch/$2|詳]]）：',
 'sharedupload'                      => '此檔為$1之共傳，可另項用也。',
 'sharedupload-desc-there'           => '此檔為$1之共傳，可另項用也。

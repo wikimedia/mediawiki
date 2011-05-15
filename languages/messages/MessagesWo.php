@@ -1347,7 +1347,6 @@ Lim bii di toftal moo lay won {{PLURAL:$1|xët wi ñu njëkk a|xët yi ñu njëk
 Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'nolinkstoimage'            => 'Amul wenn xët wu ëmb bii dencukaay.',
 'morelinkstoimage'          => 'Xool [[Special:WhatLinksHere/$1|yeneeni lëkkalekaay]] yuy jëme ci bii dencukaay.',
-'redirectstofile'           => '{{PLURAL:$1|dencukaay bii di toftal ab|$1 dencukaay yii di toftal ay}} jubluwaat {{PLURAL:$1|la buy|lañu yuy}} jëme ci dencukaay bii:',
 'duplicatesoffile'          => '{{PLURAL:$1|Dencukaay bii|$1 Dencukaay  yii}} di toftal {{PLURAL:$1|ab duppitu|ay duppitu}} bii {{PLURAL:$2|la|lañu}} ([[Special:FileDuplicateSearch/$2|yeneeni faramfacce]])::',
 'sharedupload'              => 'Dencukaay bii $1 la bàyyikoo, te man nañu koo jëfandikoo ci yeneen sémb.',
 'sharedupload-desc-there'   => 'Dencukaay bii $1 la bàyyikoo te man nañu koo jëfandikoo ci yeneen sémb.

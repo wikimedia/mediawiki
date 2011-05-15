@@ -1691,7 +1691,6 @@ Lista e mëposhtme tregon {{PLURAL:$1|lidhjen e parë të faqes|lidhjet e para $
 Një [[Special:WhatLinksHere/$2|listë e plotë]] është e mundur.',
 'nolinkstoimage'            => 'Asnjë faqe nuk lidhet tek kjo skedë.',
 'morelinkstoimage'          => 'Shikoni [[Special:WhatLinksHere/$1|më shumë lidhje]] tek kjo skedë.',
-'redirectstofile'           => 'Skeda vijuese {{PLURAL:$1|file redirects|$1 ridrejtohet}} tek kjo skedë:',
 'duplicatesoffile'          => 'Në vijim {{PLURAL:$1|skeda është identike|$1 janë idnetike}} me këtë skedë
 ([[Special:FileDuplicateSearch/$2|më shumë detaje]]):',
 'sharedupload'              => 'Kjo skedë është nga $1 dhe mund të përdoret në projekte të tjera.',

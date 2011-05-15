@@ -2137,6 +2137,7 @@ this file is $2.',
 'emptyfile'                   => 'The file you uploaded seems to be empty.
 This might be due to a typo in the file name.
 Please check whether you really want to upload this file.',
+'windows-nonascii-filename'   => 'The server does not support filenames with special characters.',
 'fileexists'                  => "A file with this name exists already, please check '''<tt>[[:$1]]</tt>''' if you are not sure if you want to change it.
 [[$1|thumb]]",
 'filepageexists'              => "The description page for this file has already been created at '''<tt>[[:$1]]</tt>''', but no file with this name currently exists.
@@ -2163,7 +2164,6 @@ If you still want to upload your file, please go back and use a new name.
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => "A file identical to this file ([[:$1]]) has previously been deleted.
 You should check that file's deletion history before proceeding to re-upload it.",
-'windows-nonascii-filename'   => 'The server does not support filenames with special characters.',
 'uploadwarning'               => 'Upload warning',
 'uploadwarning-text'          => 'Please modify the file description below and try again.',
 'savefile'                    => 'Save file',
@@ -2334,7 +2334,7 @@ The following list shows the {{PLURAL:$1|first page link|first $1 page links}} t
 A [[Special:WhatLinksHere/$2|full list]] is available.',
 'nolinkstoimage'                    => 'There are no pages that link to this file.',
 'morelinkstoimage'                  => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
-'linkstoimage-redirect'				=> '$1 (file redirect) $2',
+'linkstoimage-redirect'             => '$1 (file redirect) $2',
 'duplicatesoffile'                  => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
 'sharedupload'                      => 'This file is from $1 and may be used by other projects.',
 'sharedupload-desc-there'           => 'This file is from $1 and may be used by other projects.
@@ -2989,12 +2989,12 @@ The latest block log entry is provided below for reference:',
 'sp-contributions-search'              => 'Search for contributions',
 'sp-contributions-username'            => 'IP address or username:',
 'sp-contributions-toponly'             => 'Only show edits that are latest revisions',
-'sp-contributions-showsizediff'        => 'Display difference in page size',
-'sp-contributions-showsizediff-warn'   => 'This instance has recent changes log limited to $1 . If you use this option, pages not in this log will not be displayed',
 'sp-contributions-submit'              => 'Search',
 'sp-contributions-explain'             => '', # only translate this message to other languages if you have to change it
 'sp-contributions-footer'              => '-', # do not translate or duplicate this message to other languages
 'sp-contributions-footer-anon'         => '-', # do not translate or duplicate this message to other languages
+'sp-contributions-showsizediff'        => 'Display difference in page size',
+'sp-contributions-showsizediff-warn'   => 'This instance has recent changes log limited to $1 . If you use this option, pages not in this log will not be displayed',
 
 # What links here
 'whatlinkshere'            => 'What links here',

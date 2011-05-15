@@ -1929,7 +1929,6 @@ $1',
 ניתן לצפות ב[[Special:WhatLinksHere/$2|רשימה המלאה]].',
 'nolinkstoimage'                    => 'אין דפים המשתמשים בקובץ זה.',
 'morelinkstoimage'                  => 'ראו [[Special:WhatLinksHere/$1|דפים נוספים]] המשתמשים בקובץ זה.',
-'redirectstofile'                   => '{{PLURAL:$1|הדף הבא הוא דף הפניה|הדפים הבאים הם דפי הפניה}} לקובץ זה:',
 'duplicatesoffile'                  => '{{PLURAL:$1|הקובץ הבא זהה|הקבצים הבאים זהים}} לקובץ זה ([[Special:FileDuplicateSearch/$2|לפרטים נוספים]]):',
 'sharedupload'                      => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.',
 'sharedupload-desc-there'           => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.

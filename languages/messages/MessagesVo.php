@@ -1397,7 +1397,6 @@ Lised dono jonon {{PLURAL:$1|padayümi balid|padayümis balid $1}} te lü ragiv 
 [[Special:WhatLinksHere/$2|Lised lölöfik]] gebidon.',
 'nolinkstoimage'            => 'Pads nonik peyümons ad ragiv at.',
 'morelinkstoimage'          => 'Logolös [[Special:WhatLinksHere/$1|yümis pluik]] ad ragiv at.',
-'redirectstofile'           => '{{PLURAL:$1|Ragiv sököl lüodükon|Ragivs sököl $1 lüodükons}} ad ragiv at:',
 'duplicatesoffile'          => '{{Plural:$1|Ragiv fovik leigon|Ragivs fovik $1 leigons}} ko ragiv at ([[Special:FileDuplicateSearch/$2|nüns pluik]]):',
 'sharedupload'              => 'Ragiv at binon se $1 e kanon pagebön fa proyegs votik.',
 'uploadnewversion-linktext' => 'Löpükön fomami nulik ragiva at',

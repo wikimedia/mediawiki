@@ -1303,7 +1303,7 @@ Velaquí un valor xerado ao chou que pode usar: $1',
 'savedprefs'                    => 'Gardáronse as súas preferencias.',
 'timezonelegend'                => 'Zona horaria:',
 'localtime'                     => 'Hora local:',
-'timezoneuseserverdefault'      => 'Usar a hora do servidor por defecto',
+'timezoneuseserverdefault'      => 'Usar a hora do servidor por defecto ($1)',
 'timezoneuseoffset'             => 'Outra (especifique o desprazamento)',
 'timezoneoffset'                => 'Desprazamento¹:',
 'servertime'                    => 'Hora do servidor:',
@@ -1632,6 +1632,7 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro.
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
+'windows-nonascii-filename'   => 'O servidor non soporta os nomes de ficheiros con caracteres especiais.',
 'fileexists'                  => "Xa existe un ficheiro con ese nome. Por favor, comprobe '''<tt>[[:$1]]</tt>''' se non está seguro de querer cambialo.
 [[$1|thumb]]",
 'filepageexists'              => "A páxina de descrición deste ficheiro xa foi creada en '''<tt>[[:$1]]</tt>''', pero polo de agora non existe ningún ficheiro con este nome.
@@ -1822,7 +1823,7 @@ A seguinte lista só amosa {{PLURAL:$1|a primeira páxina que liga|as primeiras 
 Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 'nolinkstoimage'            => 'Ningunha páxina liga con este ficheiro.',
 'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|máis ligazóns]] cara a este ficheiro.',
-'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirixe|Os seguintes $1 ficheiros redirixen}} cara a este:',
+'linkstoimage-redirect'     => '$1 (redirección de ficheiro) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} destoutro ([[Special:FileDuplicateSearch/$2|máis detalles]]):',
 'sharedupload'              => 'Este ficheiro é de $1 e pode ser usado por outros proxectos.',
 'sharedupload-desc-there'   => 'Este ficheiro é de $1 e pode ser usado por outros proxectos.
@@ -2415,6 +2416,8 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'sp-contributions-username'            => 'Enderezo IP ou nome de usuario:',
 'sp-contributions-toponly'             => 'Mostrar só as últimas revisións',
 'sp-contributions-submit'              => 'Procurar',
+'sp-contributions-showsizediff'        => 'Mostrar a diferenza no tamaño da páxina',
+'sp-contributions-showsizediff-warn'   => 'Esta instancia ten un rexistro de modificacións recente limitado a $1. Se emprega esta opción, as páxinas que non estean neste rexistro non se mostrarán',
 
 # What links here
 'whatlinkshere'            => 'Páxinas que ligan con esta',
@@ -3195,6 +3198,9 @@ Os demais agocharanse por omisión.
 
 # EXIF attributes
 'exif-compression-1' => 'Sen comprimir',
+'exif-compression-2' => 'CCITT Grupo 3 Lonxitude de codificación unidimensional Huffman modificada',
+'exif-compression-3' => 'CCITT Grupo 3 codificación de fax',
+'exif-compression-4' => 'CCITT Grupo 4 codificación de fax',
 'exif-compression-6' => 'JPEG (vello)',
 
 'exif-copyrighted-true'  => 'Con dereitos de autor',

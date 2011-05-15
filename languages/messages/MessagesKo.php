@@ -1843,7 +1843,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 이 파일을 가리키는 모든 문서를 보려면 [[Special:WhatLinksHere/$2|여기]]를 참고해 주십시오.',
 'nolinkstoimage'                    => '이 파일을 사용하는 문서가 없습니다.',
 'morelinkstoimage'                  => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
-'redirectstofile'                   => '다음 파일 $1개가 이 파일로 넘겨주고 있습니다:',
+'linkstoimage-redirect'             => '$1 (파일 넘겨주기) $2',
 'duplicatesoffile'                  => '다음 파일 $1개가 이 파일과 중복됩니다 ([[Special:FileDuplicateSearch/$2|자세한 정보]]):',
 'sharedupload'                      => '이 파일은 $1으로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
 'sharedupload-desc-there'           => '이 파일은 $1에 있으며, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.
@@ -2429,6 +2429,7 @@ $1',
 'sp-contributions-username'            => 'IP 주소 혹은 계정 이름:',
 'sp-contributions-toponly'             => '최신판만 보기',
 'sp-contributions-submit'              => '찾기',
+'sp-contributions-showsizediff'        => '문서 크기 비교 표시하기',
 
 # What links here
 'whatlinkshere'            => '여기를 가리키는 문서',
@@ -2997,7 +2998,8 @@ Variants for Chinese language
 'metadata-help'     => '이 파일은 카메라/스캐너에서 기록한 부가 정보를 가지고 있습니다. 프로그램에서 파일을 편집할 경우, 새로 저장한 그림 파일에 일부 부가 정보가 빠질 수 있습니다.',
 'metadata-expand'   => '자세한 정보 보이기',
 'metadata-collapse' => '자세한 정보 숨기기',
-'metadata-fields'   => 'EXIF 메타데이터 표가 접혀 있을 때, 다음의 속성값만이 기본적으로 보이게 됩니다. 나머지 값은 자동적으로 숨겨집니다.
+'metadata-fields'   => '파일 메타데이터 표가 접혀 있을 때, 이 메시지에 올라와 있는 다음 속성값만이 기본적으로 보이게 됩니다.
+나머지 값은 자동적으로 숨겨집니다.
 * make
 * model
 * datetimeoriginal

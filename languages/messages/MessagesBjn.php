@@ -1595,7 +1595,6 @@ Daptar barikut manampaiakan {{PLURAL:$1|tautan panambaian tungkaran|$1 panambaia
 Sabuah [[Special:WhatLinksHere/$2|daptar hibak]] tasadia.',
 'nolinkstoimage'            => 'Kadada tutungkaran nang bataut ka barakas ngini.',
 'morelinkstoimage'          => 'Tiringi [[Special:WhatLinksHere/$1|tautan lagi]] ka barakas ngini.',
-'redirectstofile'           => 'Barakas barikut {{PLURAL:$1|diugahakan|$1 diugahakan}} ka barakas ngini:',
 'sharedupload'              => 'Barakas ini matan $1 wan mungkin dipuruk rangka-rangka gawian lain.',
 'filepage-nofile'           => 'Kadada barakas bangaran ngini.',
 'filepage-nofile-link'      => 'Kadada barakas bangaran ngini tasadia, tagal Pian kawa [$1 mahunggah ngini].',
@@ -1881,6 +1880,7 @@ Parubahan-parubahan salanjutnya pada tungkaran ini dan tungkaran pamandiran tara
 'notanarticle'      => 'Lainan sabuah tungkaran isi',
 'notvisiblerev'     => 'Ralatan tauncit ulih saurang pamuruk babida sudah dihapus',
 'watchlist-details' => '{{PLURAL:$1|$1 tungkaran|$1 tungkaran}} dalam daptar itihan Pian, kada mahitung tungkaran pamandiran.',
+'wlheader-enotif'   => 'Suril pamadahan dipajahi.',
 'wlshowlast'        => 'Tampaiakan $1 jam $2 hari pahabisan $3',
 'watchlist-options' => 'Pilihan daptar itihan',
 

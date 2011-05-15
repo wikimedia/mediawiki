@@ -1782,7 +1782,6 @@ Kay qatiq sutisuyupiqa {{PLURAL:$1|ñawpaqllam t'inkita|ñawpaqllam $1 t'inkikun
 Munaspaykiqa, [[Special:WhatLinksHere/$2|hunt'a sutisuyuta]] qhaway.",
 'nolinkstoimage'            => "Kay rikchamanqa manam ima p'anqakunachu t'inkimun.",
 'morelinkstoimage'          => "Kay willañiqiman [[Special:WhatLinksHere/$1|aswan t'inkimuqkunata]] qhaway.",
-'redirectstofile'           => "Kay qatiq {{PLURAL:$1|p'anqam|$1 p'anqakunam}} kay willañiqiman pusampun:",
 'duplicatesoffile'          => 'Kay willañiqimanta iskaychasqa {{PLURAL:$1|willañiqim|$1 willañiqikunam}} kay qatiqpi ([[Special:FileDuplicateSearch/$2|astawan willachikuy]]):',
 'sharedupload'              => "Kay p'anqaqa $1 nisqamantam. Huk ruraykamaykunapipas llamk'achinapaq kanman.",
 'sharedupload-desc-there'   => "Kay p'anqaqa $1 nisqamantam. Huk ruraykamaykunapipas llamk'achinapaq kanman.

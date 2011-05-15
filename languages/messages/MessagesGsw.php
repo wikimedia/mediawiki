@@ -1640,7 +1640,6 @@ Die Lischt zeigt nume {{PLURAL:$1|dr erscht Gleich|di erschte $1 Gleicher}} uf d
 E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'nolinkstoimage'            => 'Kei Artikel verwändet des Bild.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Meh Gleicher]] fir die Datei.',
-'redirectstofile'           => 'Die {{PLURAL:$1|Datei leitet|$1 Dateie leite}} uf die Datei wyter:',
 'duplicatesoffile'          => 'Die {{PLURAL:$1|Datei isch e Duplikat|$1 Dateie sin Duplikat}} vu däre Datei ([[Special:FileDuplicateSearch/$2|meh Detail]]):',
 'sharedupload'              => 'Die Datei isch vu $1. S cha syy, ass si vu andere Projekt brucht wird.',
 'sharedupload-desc-there'   => 'Die Datei isch vu $1 un derf vu andere Projäkt bruucht wäre. Lueg uf dr [$2 Dateibschryybigssyte] no wytere Informatione.',

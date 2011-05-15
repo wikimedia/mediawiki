@@ -1705,7 +1705,6 @@ La següent llista només mostra {{PLURAL:$1|la primera d'elles|les primeres $1 
 Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 'nolinkstoimage'            => 'No hi ha pàgines que enllacin aquesta imatge.',
 'morelinkstoimage'          => 'Visualitza [[Special:WhatLinksHere/$1|més enllaços]] que porten al fitxer.',
-'redirectstofile'           => '{{PLURAL:$1|El fitxer següent redirigeix cap aquest fitxer|Els següents $1 fitxers redirigeixen cap aquest fitxer:}}',
 'duplicatesoffile'          => "{{PLURAL:$1|Aquest fitxer és un duplicat del que apareix a continuació|A continuació s'indiquen els $1 duplicats d'aquest fitxer}} ([[Special:FileDuplicateSearch/$2|vegeu-ne més detalls]]):",
 'sharedupload'              => 'Aquest fitxer prové de $1 i pot ser utilitzat per altres projectes.',
 'sharedupload-desc-there'   => 'Aquest fitxer prové de $1 i pot ser utilitzat per altres projectes.

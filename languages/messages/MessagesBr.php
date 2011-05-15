@@ -1741,7 +1741,6 @@ Ne laka ar roll-mañ war wel nemet {{PLURAL:$1|ar bajenn gentañ liammet ouzh|an
 Ur [[Special:WhatLinksHere/$2|roll klok]] a c'haller da gaout.",
 'nolinkstoimage'            => "N'eus liamm ebet war-du ar skeudenn-mañ war pajenn ebet.",
 'morelinkstoimage'          => 'Gwelet [[Special:WhatLinksHere/$1|liammoù ouzhpenn]] war-du ar restr-mañ.',
-'redirectstofile'           => 'Adkas a ra ar{{PLURAL:$1|restr-mañ|$1 restr-mañ}} war-du homañ :',
 'duplicatesoffile'          => "Un eil eus ar restr-mañ eo {{PLURAL:$1|ar restr da-heul|ar restroù da-heul}}, ([[Special:FileDuplicateSearch/$2|evit gouzout hiroc'h]]) :",
 'sharedupload'              => 'Dont a ra ar restr-mañ eus $1 ha gallout a ra bezañ implijet evit raktresoù all.',
 'sharedupload-desc-there'   => "Tennet eo ar restr-mañ eus $1 ha gallout a ra bezañ implijet evit raktresoù all.

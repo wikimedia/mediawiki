@@ -790,6 +790,8 @@ Agumenti ezo sistemu tezikozesezza.",
 'currentrevisionlink'    => 'Oluwandika oluliwo kakati',
 'cur'                    => 'ebiriwo',
 'last'                   => 'ebyasookawo bino',
+'page_first'             => 'Olusooka',
+'page_last'              => 'Olusembayo',
 'histlegend'             => "'''Ebyokugerageranizibwa:''' nyiga obutonnyeze ku likooda zoyagala okugerageranya olyoke onyige eppeesa erya 'Enter'<br />
 oba ku gano agali ku lupapula luno.<br />
 '''Ebigambo:''' (erw) = enjawulo ku ebiriwo, (eku) = enjawulo ku egikulembera, N = enkyukakyuka entono.",

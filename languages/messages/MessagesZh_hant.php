@@ -1730,7 +1730,6 @@ $1',
 一個[[Special:WhatLinksHere/$2|完整的清單]]可以提供。',
 'nolinkstoimage'                    => '沒有頁面連接到本檔案。',
 'morelinkstoimage'                  => '檢視連接到這個檔案的[[Special:WhatLinksHere/$1|更多連結]]。',
-'redirectstofile'                   => '以下的$1個檔案重新定向到這個檔案:',
 'duplicatesoffile'                  => '以下的$1個檔案跟這個檔案重覆（[[Special:FileDuplicateSearch/$2|更多細節]]）：',
 'sharedupload'                      => '該檔案來自於$1，它可能在其它計劃項目中被應用。',
 'sharedupload-desc-there'           => '該檔案來自於$1，它可能在其它計劃項目中被應用。

@@ -1588,7 +1588,6 @@ A lista siguient nomás amuestra {{PLURAL:$1|a primer pachina con vinclos|as pri
 Tamién puetz consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'nolinkstoimage'            => 'Garra pachina tiene un vinclo ta ista imachen.',
 'morelinkstoimage'          => 'Amostrar [[Special:WhatLinksHere/$1|más vinclos]] ta iste fichero.',
-'redirectstofile'           => '{{PLURAL:$1|O siguient fichero reendreza|Os siguients $1 fichers reendrezan}} enta iste fichero:',
 'duplicatesoffile'          => "{{PLURAL:$1|O siguient fichero ye un duplicato|Os siguients $1 fichers son duplicatos}} d'iste fichero ([[Special:FileDuplicateSearch/$2|más detalles]]):",
 'sharedupload'              => 'Iste fichero provién de $1 y talment siga emplegato en atros prochectos.',
 'sharedupload-desc-there'   => "Iste fichero ye de $1 y puet estar emplegau por atros prochectos.

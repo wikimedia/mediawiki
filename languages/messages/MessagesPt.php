@@ -1908,7 +1908,7 @@ A lista abaixo apresenta apenas {{PLURAL:$1|a primeira página|as primeiras $1 p
 Encontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].',
 'nolinkstoimage'            => 'Nenhuma página contém links para este ficheiro.',
 'morelinkstoimage'          => 'Ver a [[Special:WhatLinksHere/$1|lista completa]] de páginas que contêm links para este ficheiro.',
-'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirecciona|Os seguintes ficheiros redireccionam}} para este ficheiro:',
+'linkstoimage-redirect'     => '$1 (redireccionamento de ficheiro) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é duplicado|Os seguintes $1 ficheiros são duplicados}} deste ficheiro ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
 'sharedupload'              => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.',
 'sharedupload-desc-there'   => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.
@@ -2500,6 +2500,8 @@ Para sua referência, encontra abaixo a entrada mais recente no registo de bloqu
 'sp-contributions-username'            => 'Endereço IP ou utilizador:',
 'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
+'sp-contributions-showsizediff'        => 'Mostrar a diferença no tamanho da página',
+'sp-contributions-showsizediff-warn'   => 'O registo de mudanças recentes desta wiki está limitado a $1 entradas. Se usar esta opção, as páginas que não estão no registo não serão apresentadas.',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',

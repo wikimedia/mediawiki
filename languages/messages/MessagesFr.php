@@ -1913,7 +1913,7 @@ La liste suivante affiche seulement {{PLURAL:$1|la première page qui utilise|le
 Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'nolinkstoimage'                    => 'Aucune page n’utilise ce fichier.',
 'morelinkstoimage'                  => 'Voir [[Special:WhatLinksHere/$1|plus de liens]] vers ce fichier.',
-'redirectstofile'                   => '{{PLURAL:$1|Le fichier suivant redirige|Les fichiers suivants redirigent}} vers celui-ci :',
+'linkstoimage-redirect'             => '$1 (redirection de fichier) $2',
 'duplicatesoffile'                  => '{{PLURAL:$1|Le fichier suivant est un duplicata|Les fichiers suivants sont des duplicatas}} de celui-ci ([[Special:FileDuplicateSearch/$2|plus de détails]]) :',
 'sharedupload'                      => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.',
 'sharedupload-desc-there'           => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.
@@ -2509,6 +2509,8 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 'sp-contributions-username'            => 'Adresse IP ou nom d’utilisateur :',
 'sp-contributions-toponly'             => 'Ne montrer que les articles dont je suis le dernier contributeur',
 'sp-contributions-submit'              => 'Rechercher',
+'sp-contributions-showsizediff'        => 'Afficher la différence dans la taille de la page',
+'sp-contributions-showsizediff-warn'   => 'Cette instance a un journal de modifications récentes limité à $1. Si vous utilisez cette option, les pages absentes de ce journal ne seront pas affichées.',
 
 # What links here
 'whatlinkshere'            => 'Pages liées',
@@ -3274,6 +3276,9 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 # EXIF attributes
 'exif-compression-1' => 'Non compressé',
+'exif-compression-2' => 'CCITT Groupe 3 Longueur du codage Huffman modifié de dimension 1',
+'exif-compression-3' => 'CCITT Groupe 3 codage du fax',
+'exif-compression-4' => 'CCITT Groupe 4 codage du fax',
 
 'exif-copyrighted-true'  => 'Soumis à droit d’auteur',
 'exif-copyrighted-false' => 'Domaine public',

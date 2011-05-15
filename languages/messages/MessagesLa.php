@@ -1194,7 +1194,6 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'linkstoimage'                      => '{{PLURAL:$1|Haec pagina ad hunc fasciculum nectit:|Paginae sequentes ad hunc fasciculum nectunt:}}',
 'nolinkstoimage'                    => 'Nullae paginae ad hunc fasciculum nectunt.',
 'morelinkstoimage'                  => 'Videre [[Special:WhatLinksHere/$1|plures nexus]] ad hunc fasciculum.',
-'redirectstofile'                   => '{{PLURAL:$1|Fasciculus sequens ad hunc fasciculum redirigit:|Hae $1 fasciculi sequentes ad hunc fasciculum redirigunt:}}',
 'sharedupload'                      => 'Hic fasciculus apud {{grammar:accusative|$1}} iacet; in aliis inceptis adhiberi potest.',
 'sharedupload-desc-there'           => 'Hic fasciculus apud {{grammar:accusative|$1}} iacet; in aliis inceptis adhiberi potest.
 Vide [$2 paginam descriptionis fasciculi].',
