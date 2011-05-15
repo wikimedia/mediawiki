@@ -68,7 +68,7 @@ class Profiler {
 			} elseif( $wgProfiler instanceof Profiler ) {
 				self::$__instance = $wgProfiler; // back-compat
 			} else {
-				throw new MWException( '$wgProfiler set to bogus value' );
+				self::$__instance = new ProfilerStub;
 			}
 			
 		}
