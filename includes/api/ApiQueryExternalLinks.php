@@ -70,7 +70,8 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		if ( !is_null( $params['offset'] ) ) {
+		$offset = isset( $params['offset'] ) ? $params['offset'] : 0;
+		if ( $offset ) {
 			$this->addOption( 'OFFSET', $params['offset'] );
 		}
 
@@ -81,14 +82,14 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'offset', @$params['offset'] + $params['limit'] );
+				$this->setContinueEnumParameter( 'offset', $offset + $params['limit'] );
 				break;
 			}
 			$entry = array();
 			ApiResult::setContent( $entry, $row->el_to );
 			$fit = $this->addPageSubItem( $row->el_from, $entry );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'offset', @$params['offset'] + $count - 1 );
+				$this->setContinueEnumParameter( 'offset', $offset + $count - 1 );
 				break;
 			}
 		}

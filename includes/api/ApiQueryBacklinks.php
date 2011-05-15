@@ -305,7 +305,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					}
 
 					$hasRedirs = false;
-					foreach ( (array)@$arr['redirlinks'] as $key => $redir ) {
+					$redirLinks = isset( $arr['redirlinks'] ) ? $arr['redirlinks'] : array();
+					foreach ( (array)$redirLinks as $key => $redir ) {
 						$fit = $this->getResult()->addValue(
 							array( 'query', $this->getModuleName(), $pageID, 'redirlinks' ),
 							$key, $redir );
