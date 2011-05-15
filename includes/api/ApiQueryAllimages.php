@@ -109,12 +109,18 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 		$sha1 = false;
 		if ( isset( $params['sha1'] ) ) {
+			if ( !self::validateSha1Hash( $params['sha1'] ) ) {
+				$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
+			}
 			$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
 		} elseif ( isset( $params['sha1base36'] ) ) {
 			$sha1 = $params['sha1base36'];
+			if ( !self::validateSha1Base36Hash( $sha1 ) ) {
+				$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
+			}
 		}
 		if ( $sha1 ) {
-			$this->addWhere( 'img_sha1=' . $db->addQuotes( $sha1 ) );
+			$this->addWhereFld( 'img_sha1', $sha1 );
 		}
 
 		if ( !is_null( $params['mime'] ) ) {
@@ -173,6 +179,22 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
+	}
+
+	/**
+	 * @param $hash string
+	 * @return bool
+	 */
+	public static function validateSha1Hash( $hash ) {
+		return preg_match( '/[a-f0-9]{40}/', $hash );
+	}
+
+	/**
+	 * @param $hash string
+	 * @return bool
+	 */
+	public static function validateSha1Base36Hash( $hash ) {
+		return preg_match( '/[a-z0-9]{31}/', $hash );
 	}
 
 	public function getAllowedParams() {
@@ -238,6 +260,8 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			array( 'code' => 'params', 'info' => 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator' ),
 			array( 'code' => 'unsupportedrepo', 'info' => 'Local file repository does not support querying all images' ),
 			array( 'code' => 'mimeearchdisabled', 'info' => 'MIME search disabled in Miser Mode' ),
+			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
+			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
 		) );
 	}
 
