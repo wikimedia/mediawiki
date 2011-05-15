@@ -137,7 +137,7 @@ class CheckSyntax extends Maintenance {
 		// Don't just put $IP, because the recursive dir thingie goes into all subdirs
 		$dirs = array(
 			$IP . '/includes',
-			$IP . '/config',
+			$IP . '/mw-config',
 			$IP . '/languages',
 			$IP . '/maintenance',
 			$IP . '/skins',
