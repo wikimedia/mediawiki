@@ -28,8 +28,6 @@
  * @defgroup UtfNormal UtfNormal
  */
 
-require_once dirname(__FILE__).'/UtfNormalUtil.php';
-
 /**
  * For using the ICU wrapper
  */

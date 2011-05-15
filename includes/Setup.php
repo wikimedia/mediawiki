@@ -326,6 +326,7 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	wfProfileOut( $fname . '-exception' );
 
 	wfProfileIn( $fname . '-includes' );
+	require_once( "$IP/includes/normal/UtfNormalUtil.php" );
 	require_once( "$IP/includes/GlobalFunctions.php" );
 	require_once( "$IP/includes/Hooks.php" );
 	require_once( "$IP/includes/ProxyTools.php" );

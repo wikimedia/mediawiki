@@ -26,6 +26,8 @@
  */
 
 /** */
+
+require_once 'UtfNormalDefines.php';
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormal.php';
 mb_internal_encoding( "utf-8" );
