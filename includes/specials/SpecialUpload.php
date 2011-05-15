@@ -583,6 +583,10 @@ class SpecialUpload extends SpecialPage {
 				$this->showRecoverableUploadError( wfMsgExt( 'filetype-missing',
 					'parseinline' ) );
 				break;
+			case UploadBase::WINDOWS_NONASCII_FILENAME:
+				$this->showRecoverableUploadError( wfMsgExt( 'windows-nonascii-filename',
+					'parseinline' ) );
+				break;
 
 			/** Statuses that require reuploading **/
 			case UploadBase::EMPTY_FILE:

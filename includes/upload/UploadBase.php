@@ -36,6 +36,7 @@ abstract class UploadBase {
 	const UPLOAD_VERIFICATION_ERROR = 11;
 	const HOOK_ABORTED = 11;
 	const FILE_TOO_LARGE = 12;
+	const WINDOWS_NONASCII_FILENAME = 13;
 
 	const SESSION_VERSION = 2;
 	const SESSION_KEYNAME = 'wsUploadData';
@@ -54,6 +55,7 @@ abstract class UploadBase {
 								self::OVERWRITE_EXISTING_FILE => 'overwrite',
 								self::VERIFICATION_ERROR => 'verification-error',
 								self::HOOK_ABORTED =>  'hookaborted',
+								self::WINDOWS_NONASCII_FILENAME => 'windows-nonascii-filename',
 		);
 		if( isset( $code_to_status[$error] ) ) {
 			return $code_to_status[$error];
@@ -656,6 +658,12 @@ abstract class UploadBase {
 					!$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) ) {
 			$this->mBlackListedExtensions = $blackListedExtensions;
 			$this->mTitleError = self::FILETYPE_BADTYPE;
+			return $this->mTitle = null;
+		}
+		
+		// Windows may be broken with special characters, see bug XXX
+		if ( wfIsWindows() && !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() ) ) {
+			$this->mTitleError = self::WINDOWS_NONASCII_FILENAME;
 			return $this->mTitle = null;
 		}
 

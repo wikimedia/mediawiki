@@ -294,6 +294,9 @@ class ApiUpload extends ApiBase {
 			case UploadBase::FILETYPE_MISSING:
 				$this->dieRecoverableError( 'filetype-missing', 'filename' );
 				break;
+			case UploadBase::WINDOWS_NONASCII_FILENAME:
+				$this->dieRecoverableError( 'windows-nonascii-filename', 'filename' );
+				break;
 			
 			// Unrecoverable errors
 			case UploadBase::EMPTY_FILE:
