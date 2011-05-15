@@ -55,10 +55,10 @@ jQuery.extend({
 		return true;
 	},
 	compareObject : function( objectA, objectB ) {
-	
+
 		// Do a simple check if the types match
 		if ( typeof objectA == typeof objectB ) {
-	
+
 			// Only loop over the contents if it really is an object
 			if ( typeof objectA == 'object' ) {
 				// If they are aliases of the same object (ie. mw and mediaWiki) return now
@@ -249,7 +249,7 @@ window.mediaWiki = new ( function( $ ) {
 			var index = parseInt( match, 10 ) - 1;
 			return index in parameters ? parameters[index] : '$' + match;
 		} );
-		
+
 		if ( this.format === 'plain' ) {
 			return text;
 		}
@@ -258,7 +258,7 @@ window.mediaWiki = new ( function( $ ) {
 			// still todo
 			return mw.html.escape( text );
 		}
-		
+
 		/* This should be fixed up when we have a parser
 		if ( this.format === 'parse' && 'language' in mediaWiki ) {
 			text = mw.language.parse( text );
@@ -286,10 +286,10 @@ window.mediaWiki = new ( function( $ ) {
 		this.format = 'plain';
 		return this.toString();
 	};
-	
+
 	/**
 	 * Changes the format to html escaped and converts message to string
-	 * 
+	 *
 	 * @return {string} String form of html escaped message
 	 */
 	Message.prototype.escaped = function() {
@@ -323,10 +323,10 @@ window.mediaWiki = new ( function( $ ) {
 
 		/**
 		 * Generates a random user session ID (32 alpha-numeric characters).
-		 * 
+		 *
 		 * This information would potentially be stored in a cookie to identify a user during a
 		 * session or series of sessions. It's uniqueness should not be depended on.
-		 * 
+		 *
 		 * @return string random set of 32 alpha-numeric characters
 		 */
 		function generateId() {
@@ -341,7 +341,7 @@ window.mediaWiki = new ( function( $ ) {
 
 		/**
 		 * Gets the current user's name.
-		 * 
+		 *
 		 * @return mixed user name string or null if users is anonymous
 		 */
 		this.name = function() {
@@ -350,7 +350,7 @@ window.mediaWiki = new ( function( $ ) {
 
 		/**
 		 * Checks if the current user is anonymous.
-		 * 
+		 *
 		 * @return boolean
 		 */
 		this.anonymous = function() {
@@ -359,14 +359,14 @@ window.mediaWiki = new ( function( $ ) {
 
 		/**
 		 * Gets a random session ID automatically generated and kept in a cookie.
-		 * 
+		 *
 		 * This ID is ephemeral for everyone, staying in their browser only until they close
 		 * their browser.
-		 * 
+		 *
 		 * Do not use this method before the first call to mw.loader.go(), it depends on
 		 * jquery.cookie, which is added to the first pay-load just after mediaWiki is defined, but
 		 * won't be loaded until the first call to go().
-		 * 
+		 *
 		 * @return string user name or random session ID
 		 */
 		this.sessionId = function () {
@@ -380,15 +380,15 @@ window.mediaWiki = new ( function( $ ) {
 
 		/**
 		 * Gets the current user's name or a random ID automatically generated and kept in a cookie.
-		 * 
+		 *
 		 * This ID is persistent for anonymous users, staying in their browser up to 1 year. The
 		 * expiration time is reset each time the ID is queried, so in most cases this ID will
 		 * persist until the browser's cookies are cleared or the user doesn't visit for 1 year.
-		 * 
+		 *
 		 * Do not use this method before the first call to mw.loader.go(), it depends on
 		 * jquery.cookie, which is added to the first pay-load just after mediaWiki is defined, but
 		 * won't be loaded until the first call to go().
-		 * 
+		 *
 		 * @return string user name or random session ID
 		 */
 		this.id = function() {
@@ -407,7 +407,7 @@ window.mediaWiki = new ( function( $ ) {
 
 		/**
 		 * Gets the user's bucket, placing them in one at random based on set odds if needed.
-		 * 
+		 *
 		 * @param key String: Name of bucket
 		 * @param options Object: Bucket configuration options
 		 * @param options.buckets Object: List of bucket-name/relative-probability pairs (required,
@@ -419,7 +419,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * @param options.expires Number: Length of time (in days) until the user gets rebucketed
 		 * (optional, default: 30)
 		 * @return String: Bucket name - the randomly chosen key of the options.buckets object
-		 * 
+		 *
 		 * @example
 		 *     mw.user.bucket( 'test', {
 		 *         'buckets': { 'ignored': 50, 'control': 25, 'test': 25 },
@@ -820,7 +820,7 @@ window.mediaWiki = new ( function( $ ) {
 
 		/**
 		 * Automatically executes jobs and modules which are pending with satistifed dependencies.
-		 * 
+		 *
 		 * This is used when dependencies are satisfied, such as when a module is executed.
 		 */
 		function handlePending() {
@@ -916,7 +916,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return sorted;
 		}
-		
+
 		/**
 		 * Converts a module map of the form { foo: [ 'bar', 'baz' ], bar: [ 'baz, 'quux' ] }
 		 * to a query string of the form foo.bar,baz|bar.baz,quux
@@ -933,7 +933,7 @@ window.mediaWiki = new ( function( $ ) {
 		/**
 		 * Adds a script tag to the body, either using document.write or low-level DOM manipulation,
 		 * depending on whether document-ready has occured yet.
-		 * 
+		 *
 		 * @param src String: URL to script, will be used as the src attribute in the script tag
 		 * @param callback Function: Optional callback which will be run when the script is done
 		 */
@@ -1051,7 +1051,7 @@ window.mediaWiki = new ( function( $ ) {
 					var bytesAdded = prefix in reqs[r] ?
 						suffix.length + 3 : // '%2C'.length == 3
 						groups[group][i].length + 3; // '%7C'.length == 3
-					
+
 					// If the request would become too long, create a new one,
 					// but don't create empty requests
 					if ( limit > 0 &&  reqs[r] != {} && l + bytesAdded > limit ) {
@@ -1085,7 +1085,7 @@ window.mediaWiki = new ( function( $ ) {
 				addScript( src );
 			}
 		};
-		
+
 		/**
 		 * Registers a module, letting the system know about it and its
 		 * dependencies. loader.js files contain calls to this function.
@@ -1107,7 +1107,7 @@ window.mediaWiki = new ( function( $ ) {
 				throw new Error( 'module must be a string, not a ' + typeof module );
 			}
 			if ( typeof registry[module] !== 'undefined' ) {
-				throw new Error( 'module already implemeneted: ' + module );
+				throw new Error( 'module already implemented: ' + module );
 			}
 			// List the module as registered
 			registry[module] = {
@@ -1130,9 +1130,9 @@ window.mediaWiki = new ( function( $ ) {
 		 * Implements a module, giving the system a course of action to take
 		 * upon loading. Results of a request for one or more modules contain
 		 * calls to this function.
-		 * 
+		 *
 		 * All arguments are required.
-		 * 
+		 *
 		 * @param module String: Name of module
 		 * @param script Mixed: Function of module code or String of URL to be used as the src
 		 * attribute when adding a script element to the body
