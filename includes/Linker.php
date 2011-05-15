@@ -760,34 +760,33 @@ class Linker {
 	 */
 	public static function makeBrokenImageLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '', $time = false ) {
 		global $wgEnableUploads, $wgUploadMissingFileUrl;
-		if ( $title instanceof Title ) {
-			wfProfileIn( __METHOD__ );
-			$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
+		if ( ! $title instanceof Title ) {
+			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+		}
+		wfProfileIn( __METHOD__ );
+		$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
 
-			list( $inside, $trail ) = self::splitTrail( $trail );
-			if ( $text == '' )
-				$text = htmlspecialchars( $title->getPrefixedText() );
+		list( $inside, $trail ) = self::splitTrail( $trail );
+		if ( $text == '' )
+			$text = htmlspecialchars( $title->getPrefixedText() );
 
-			if ( ( $wgUploadMissingFileUrl || $wgEnableUploads ) && !$currentExists ) {
-				$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
+		if ( ( $wgUploadMissingFileUrl || $wgEnableUploads ) && !$currentExists ) {
+			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
 
-				if ( $redir ) {
-					wfProfileOut( __METHOD__ );
-					return self::linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
-				}
-
-				$href = self::getUploadUrl( $title, $query );
-
-				wfProfileOut( __METHOD__ );
-				return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
-					htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
-					"$prefix$text$inside</a>$trail";
-			} else {
+			if ( $redir ) {
 				wfProfileOut( __METHOD__ );
 				return self::linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
 			}
+
+			$href = self::getUploadUrl( $title, $query );
+
+			wfProfileOut( __METHOD__ );
+			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
+				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
+				"$prefix$text$inside</a>$trail";
 		} else {
-			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+			wfProfileOut( __METHOD__ );
+			return self::linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
 		}
 	}
 
