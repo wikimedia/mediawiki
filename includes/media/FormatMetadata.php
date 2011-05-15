@@ -847,9 +847,9 @@ class FormatMetadata {
 		* languages, we don't want to show them all by default
 		*/
 		else {
+			global $wgContLang;
 			switch( $type ) {
 			case 'lang':
-				global $wgContLang;
 				// Display default, followed by ContLang,
 				// followed by the rest in no particular
 				// order.
