@@ -504,7 +504,6 @@ $wgAutoloadLocalClasses = array(
 	'CSSMin' => 'includes/libs/CSSMin.php',
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
-	'Spyc' => 'includes/libs/spyc.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
