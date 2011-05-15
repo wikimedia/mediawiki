@@ -776,10 +776,10 @@ class Xml {
 	 *
 	 * @return string
 	 */
-	static function infoBox( $text, $icon, $alt, $class = false, $useStypePath = true ) {
+	static function infoBox( $text, $icon, $alt, $class = false, $useStylePath = true ) {
 		global $wgStylePath;
 		
-		if ( $useStypePath ) {
+		if ( $useStylePath ) {
 			$icon = $wgStylePath.'/common/images/'.$icon;
 		}
 		
