@@ -342,29 +342,33 @@ class ApiUpload extends ApiBase {
 
 		if ( !$this->mParams['ignorewarnings'] ) {
 			$warnings = $this->mUpload->checkWarnings();
-			if ( $warnings ) {
-				// Add indices
-				$this->getResult()->setIndexedTagName( $warnings, 'warning' );
+		}
+		return $this->transformWarnings( $warnings );
+	}
+			
+	protected function transformWarnings( $warnings ) {
+		if ( $warnings ) {
+			// Add indices
+			$this->getResult()->setIndexedTagName( $warnings, 'warning' );
 
-				if ( isset( $warnings['duplicate'] ) ) {
-					$dupes = array();
-					foreach ( $warnings['duplicate'] as $dupe ) {
-						$dupes[] = $dupe->getName();
-					}
-					$this->getResult()->setIndexedTagName( $dupes, 'duplicate' );
-					$warnings['duplicate'] = $dupes;
+			if ( isset( $warnings['duplicate'] ) ) {
+				$dupes = array();
+				foreach ( $warnings['duplicate'] as $dupe ) {
+					$dupes[] = $dupe->getName();
 				}
+				$this->getResult()->setIndexedTagName( $dupes, 'duplicate' );
+				$warnings['duplicate'] = $dupes;
+			}
 
-				if ( isset( $warnings['exists'] ) ) {
-					$warning = $warnings['exists'];
-					unset( $warnings['exists'] );
-					$warnings[$warning['warning']] = $warning['file']->getName();
-				}
+			if ( isset( $warnings['exists'] ) ) {
+				$warning = $warnings['exists'];
+				unset( $warnings['exists'] );
+				$warnings[$warning['warning']] = $warning['file']->getName();
 			}
 		}
-
 		return $warnings;
 	}
+
 
 	/**
 	 * Perform the actual upload. Returns a suitable result array on success;
