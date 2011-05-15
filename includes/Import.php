@@ -177,6 +177,9 @@ class WikiImporter {
 	public function setImageBasePath( $dir ) {
 		$this->mImageBasePath = $dir;
 	}
+	public function setImportUploads( $import ) {
+		$this->mImportUploads = $import;
+	}
 
 	/**
 	 * Default per-revision callback, performs the import.
@@ -612,6 +615,7 @@ class WikiImporter {
 				$encoding = $this->reader->getAttribute( 'encoding' );
 				if ( $encoding === 'base64' ) {
 					$uploadInfo['fileSrc'] = $this->dumpTemp( base64_decode( $contents ) );
+					$uploadInfo['isTempSrc'] = true;
 				}
 			} elseif ( $tag != '#text' ) {
 				$this->warn( "Unhandled upload XML tag $tag" );
@@ -623,6 +627,7 @@ class WikiImporter {
 			$path = "{$this->mImageBasePath}/{$uploadInfo['rel']}";
 			if ( file_exists( $path ) ) {
 				$uploadInfo['fileSrc'] = $path;
+				$uploadInfo['isTempSrc'] = false;
 			}
 		}
 
@@ -652,7 +657,11 @@ class WikiImporter {
 		}
 		$revision->setSrc( $uploadInfo['src'] );
 		if ( isset( $uploadInfo['fileSrc'] ) ) {
-			$revision->setFileSrc( $uploadInfo['fileSrc'] );
+			$revision->setFileSrc( $uploadInfo['fileSrc'],
+				!empty( $uploadInfo['isTempSrc'] ) );
+		}
+		if ( isset( $uploadInfo['sha1base36'] ) ) {
+			$revision->setSha1Base36( $uploadInfo['sha1base36'] );
 		}
 		$revision->setSize( intval( $uploadInfo['size'] ) );
 		$revision->setComment( $uploadInfo['comment'] );
@@ -836,6 +845,8 @@ class WikiRevision {
 	var $action = "";
 	var $params = "";
 	var $fileSrc = '';
+	var $sha1base36 = false;
+	var $isTemp = false;
 	var $archiveName = '';
 
 	function setTitle( $title ) {
@@ -880,8 +891,12 @@ class WikiRevision {
 	function setSrc( $src ) {
 		$this->src = $src;
 	}
-	function setFileSrc( $src ) {
+	function setFileSrc( $src, $isTemp ) {
 		$this->fileSrc = $src;
+		$this->fileIsTemp = $isTemp;
+	}
+	function setSha1Base36( $sha1base36 ) { 
+		$this->sha1base36 = $sha1base36;
 	}
 
 	function setFilename( $filename ) {
@@ -941,8 +956,17 @@ class WikiRevision {
 	function getSrc() {
 		return $this->src;
 	}
+	function getSha1() {
+		if ( $this->sha1base36 ) {
+			return wfBaseConvert( $this->sha1base36, 36, 16 );
+		}
+		return false;
+	}
 	function getFileSrc() {
 		return $this->fileSrc;
+	}
+	function isTempSrc() {
+		return $this->isTemp;
 	}
 
 	function getFilename() {
@@ -1118,11 +1142,18 @@ class WikiRevision {
 		
 		# Get the file source or download if necessary
 		$source = $this->getFileSrc();
+		$flags = $this->isTempSrc() ? File::DELETE_SOURCE : 0;
 		if ( !$source ) {
 			$source = $this->downloadSource();
+			$flags |= File::DELETE_SOURCE;
 		}
 		if( !$source ) {
 			wfDebug( __METHOD__ . ": Could not fetch remote file.\n" );
+			return false;
+		}
+		$sha1 = $this->getSha1();
+		if ( $sha1 && ( $sha1 !== sha1_file( $source ) ) ) {
+			wfDebug( __METHOD__ . ": Corrupt file $source.\n" );
 			return false;
 		}
 
@@ -1131,10 +1162,10 @@ class WikiRevision {
 		# Do the actual upload
 		if ( $archiveName ) {
 			$status = $file->uploadOld( $source, $archiveName, 
-				$this->getTimestamp(), $this->getComment(), $user, File::DELETE_SOURCE );
+				$this->getTimestamp(), $this->getComment(), $user, $flags );
 		} else {
 			$status = $file->upload( $source, $this->getComment(), $this->getComment(), 
-				File::DELETE_SOURCE, false, $this->getTimestamp(), $user );
+				$flags, false, $this->getTimestamp(), $user );
 		}
 		
 		if ( $status->isGood() ) {
