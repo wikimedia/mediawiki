@@ -574,7 +574,7 @@ class ResourceLoader {
 		if ( is_string( $scripts ) ) {
 			$scripts = new XmlJsCode( "function( $ ) {{$scripts}}" );
 		} else if ( !is_array( $scripts ) ) {
-			throw MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
+			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
 		return Xml::encodeJsCall( 
 			'mw.loader.implement', 
