@@ -25,6 +25,9 @@ production.
 * (bug 28503) Support for ircs:// URL protocols
 * (bug 26033) It is now possible to count all non-redirect pages in content
   namespaces as articles
+* Images can now be embedded in an XML dump stream using backupDump.php 
+  --include-files and can be imported using importDump.php --uploads; 
+  furthermore, it can import files from the filesystem using --image-base-path
 
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.

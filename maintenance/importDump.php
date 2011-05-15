@@ -38,6 +38,7 @@ class BackupReader {
 	var $dryRun    = false;
 	var $debug     = false;
 	var $uploads   = false;
+	var $imageBasePath = false;
 	var $nsFilter  = false;
 
 	function __construct() {
@@ -201,6 +202,12 @@ class BackupReader {
 			array( &$this, 'handleUpload' ) );
 		$this->logItemCallback = $importer->setLogItemCallback(
 			array( &$this, 'handleLogItem' ) );
+		if ( $this->uploads ) {
+			$importer->setImportUploads( true );
+		}
+		if ( $this->imageBasePath ) {
+			$importer->setImageBasePath( $this->imageBasePath );
+		}
 
 		if ( $this->dryRun ) {
 			$importer->setPageOutCallback( null );
@@ -230,6 +237,7 @@ class BackupReader {
 		echo "  --dry-run  Parse dump without actually importing pages.\n";
 		echo "  --debug    Output extra verbose debug information\n";
 		echo "  --uploads  Process file upload data if included (experimental)\n";
+		echo "  --image-base-path=path  Import files from a specified path\n";
 		echo "\n";
 		echo "Compressed XML files may be read directly:\n";
 		echo "  .gz $gz\n";
@@ -258,6 +266,9 @@ if ( isset( $options['debug'] ) ) {
 }
 if ( isset( $options['uploads'] ) ) {
 	$reader->uploads = true; // experimental!
+}
+if ( isset( $options['image-base-path'] ) ) {
+	$reader->imageBasePath = $options['image-base-path'];
 }
 if ( isset( $options['namespaces'] ) ) {
 	$reader->setNsfilter( explode( '|', $options['namespaces'] ) );
