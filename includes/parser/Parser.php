@@ -3044,7 +3044,8 @@ class Parser {
 		# *** FIXME if piece['parts'] is null then the call to getLength() below won't work b/c this $args isn't an object
 		$args = ( null == $piece['parts'] ) ? array() : $piece['parts'];
 		wfProfileOut( __METHOD__.'-setup' );
-
+		wfProfileIn( __METHOD__."-title-$originalTitle" );
+		
 		# SUBST
 		wfProfileIn( __METHOD__.'-modifiers' );
 		if ( !$found ) {
@@ -3262,6 +3263,7 @@ class Parser {
 		# Recover the source wikitext and return it
 		if ( !$found ) {
 			$text = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
+			wfProfileOut( __METHOD__."-title-$originalTitle" );
 			wfProfileOut( __METHOD__ );
 			return array( 'object' => $text );
 		}
@@ -3330,6 +3332,7 @@ class Parser {
 			$ret = array( 'text' => $text );
 		}
 
+		wfProfileOut( __METHOD__."-title-$originalTitle" );
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
