@@ -984,6 +984,10 @@ window.mediaWiki = new ( function( $ ) {
 					}
 				}
 			}
+			// Early exit if there's nothing to load
+			if ( !batch.length ) {
+				return;
+			}
 			// Clean up the queue
 			queue = [];
 			// Always order modules alphabetically to help reduce cache
