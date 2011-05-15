@@ -51,6 +51,7 @@ used in Tiff files.
   make the width be the max SVG size, not the natrual width of the SVG.
 * (bug 1780) Uploading files with non-ascii characters are now forbidden on
   Windows.
+* (bug 23464) File: prefixes are now chopped off during uploading.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo

@@ -599,13 +599,23 @@ abstract class UploadBase {
 		if ( $this->mTitle !== false ) {
 			return $this->mTitle;
 		}
+		
+		/* Assume that if a user specified File:Something.jpg, this is an error
+		 * and that the namespace prefix needs to be stripped of.
+		 */
+		$title = Title::newFromText( $this->mDesiredDestName );
+		if ( $title->getNamespace() == NS_FILE ) {
+			$this->mFilteredName = $title->getDBkey();
+		} else {
+			$this->mFilteredName = $this->mDesiredDestName;
+		}
 
 		/**
 		 * Chop off any directories in the given filename. Then
 		 * filter out illegal characters, and try to make a legible name
 		 * out of it. We'll strip some silently that Title would die on.
 		 */
-		$this->mFilteredName = wfStripIllegalFilenameChars( $this->mDesiredDestName );
+		$this->mFilteredName = wfStripIllegalFilenameChars( $this->mFilteredName );
 		/* Normalize to title form before we do any further processing */
 		$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
 		if( is_null( $nt ) ) {
