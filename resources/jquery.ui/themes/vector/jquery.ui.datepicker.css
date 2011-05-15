@@ -35,17 +35,17 @@
 .ui-datepicker-row-break { clear:both; width:100%; }
 
 /* RTL support */
-.ui-datepicker-rtl { direction: rtl; }
-.ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
-.ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
-.ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
-.ui-datepicker-rtl .ui-datepicker-next:hover { left: 1px; right: auto; }
-.ui-datepicker-rtl .ui-datepicker-buttonpane { clear:right; }
-.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left; }
-.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
-.ui-datepicker-rtl .ui-datepicker-group { float:right; }
-.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
-.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+/* @noflip */ .ui-datepicker-rtl { direction: rtl; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-next:hover { left: 1px; right: auto; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-buttonpane { clear:right; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-group { float:right; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+/* @noflip */ .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
 
 /* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
 .ui-datepicker-cover {
