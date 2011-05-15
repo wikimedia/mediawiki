@@ -78,7 +78,6 @@ $.fn.autoEllipsis = function( options ) {
 				if ( options.tooltip ) {
 					$container.attr( 'title', text );
 				}
-				console.log("YAY CACHE HIT");
 				return;
 			}
 		}
