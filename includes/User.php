@@ -1653,9 +1653,8 @@ class User {
 	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
 	 * @param $fromMaster Bool true to fetch from the master, false for a slave
 	 * @return Bool True if the user has new messages
-	 * @private
 	 */
-	function checkNewtalk( $field, $id, $fromMaster = false ) {
+	protected function checkNewtalk( $field, $id, $fromMaster = false ) {
 		if ( $fromMaster ) {
 			$db = wfGetDB( DB_MASTER );
 		} else {
@@ -1671,9 +1670,8 @@ class User {
 	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
 	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
 	 * @return Bool True if successful, false otherwise
-	 * @private
 	 */
-	function updateNewtalk( $field, $id ) {
+	protected function updateNewtalk( $field, $id ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'user_newtalk',
 			array( $field => $id ),
@@ -1693,9 +1691,8 @@ class User {
 	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
 	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
 	 * @return Bool True if successful, false otherwise
-	 * @private
 	 */
-	function deleteNewtalk( $field, $id ) {
+	protected function deleteNewtalk( $field, $id ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'user_newtalk',
 			array( $field => $id ),
