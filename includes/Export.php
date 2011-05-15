@@ -602,8 +602,8 @@ class XmlDumpWriter {
 	 */
 	function writeUploads( $row, $dumpContents = false ) {
 		if ( $row->page_namespace == NS_IMAGE ) {
-			$img = wfFindFile( $row->page_title );
-			if ( $img ) {
+			$img = wfLocalFile( $row->page_title );
+			if ( $img && $img->exists() ) {
 				$out = '';
 				foreach ( array_reverse( $img->getHistory() ) as $ver ) {
 					$out .= $this->writeUpload( $ver, $dumpContents );
