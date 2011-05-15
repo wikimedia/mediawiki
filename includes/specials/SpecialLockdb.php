@@ -109,7 +109,10 @@ class SpecialLockdb extends SpecialPage {
 			$this->showForm( wfMsg( 'locknoconfirm' ) );
 			return;
 		}
-		$fp = @fopen( $wgReadOnlyFile, 'w' );
+
+		wfSuppressWarnings();
+		$fp = fopen( $wgReadOnlyFile, 'w' );
+		wfRestoreWarnings();
 
 		if ( false === $fp ) {
 			# This used to show a file not found error, but the likeliest reason for fopen()

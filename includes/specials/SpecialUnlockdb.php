@@ -104,7 +104,12 @@ class SpecialUnlockdb extends SpecialPage {
 			$this->showForm( wfMsg( 'locknoconfirm' ) );
 			return;
 		}
-		if ( @!unlink( $wgReadOnlyFile ) ) {
+
+		wfSuppressWarnings();
+		$res = unlink( $wgReadOnlyFile );
+		wfRestoreWarnings();
+
+		if ( !$res ) {
 			$wgOut->showFileDeleteError( $wgReadOnlyFile );
 			return;
 		}
