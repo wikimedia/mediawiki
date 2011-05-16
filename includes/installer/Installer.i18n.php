@@ -435,7 +435,7 @@ Then enable this option.",
 	'config-upload-deleted-help'      => 'Choose a directory in which to archive deleted files.
 Ideally, this should not be accessible from the web.',
 	'config-logo'                     => 'Logo URL:',
-	'config-logo-help'                => "MediaWiki's default skin includes space for a 135x160 pixel logo in the top left corner.
+	'config-logo-help'                => "MediaWiki's default skin includes space for a 135x160 pixel logo above the sidebar menu.
 Upload an image of the appropriate size, and enter the URL here.
 
 If you do not want a logo, leave this box blank.",
