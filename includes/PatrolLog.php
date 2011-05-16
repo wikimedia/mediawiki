@@ -39,6 +39,8 @@ class PatrolLog {
 	 * @return String
 	 */
 	public static function makeActionText( $title, $params, $skin ) {
+		global $wgLang;
+
 		list( $cur, /* $prev */, $auto ) = $params;
 		if( is_object( $skin ) ) {
 			# Standard link to the page in question
@@ -52,7 +54,7 @@ class PatrolLog {
 
 				$diff = $skin->link(
 					$title,
-					htmlspecialchars( wfMsg( 'patrol-log-diff', $cur ) ),
+					htmlspecialchars( wfMsg( 'patrol-log-diff', $wgLang->formatNum( $cur, true ) ) ),
 					array(),
 					$query,
 					array( 'known', 'noclasses' )
