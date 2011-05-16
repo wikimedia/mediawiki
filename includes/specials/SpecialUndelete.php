@@ -526,18 +526,21 @@ class PageArchive {
 			return 0;
 		}
 
+		$created = (bool)$newid;
+
 		// Attach the latest revision to the page...
 		$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
-		if ( $newid || $wasnew ) {
+		if ( $created || $wasnew ) {
 			// Update site stats, link tables, etc
-			$article->createUpdates( $revision );
+			$article->editUpdates( $revision->getText(), $revision->getComment(),
+				$revision->isMinor(), wfTimestamp(), $revision->getId(), true, null, $created );
 		}
 
-		if( $newid ) {
-			wfRunHooks( 'ArticleUndelete', array( &$this->title, true, $comment ) );
+		wfRunHooks( 'ArticleUndelete', array( &$this->title, $created, $comment ) );
+
+		if( $created ) {
 			Article::onArticleCreate( $this->title );
 		} else {
-			wfRunHooks( 'ArticleUndelete', array( &$this->title, false, $comment ) );
 			Article::onArticleEdit( $this->title );
 		}
 
