@@ -53,8 +53,79 @@ test( 'wikiGetlink', function(){
 
 test( 'getParamValue', function(){
 
-	equals( mw.util.getParamValue( 'foo', 'http://mediawiki.org/?foo=wrong&foo=right#&foo=bad' ), 'right', 'Use latest one, ignore hash' );
-	same( mw.util.getParamValue( 'bar', 'http://mediawiki.org/?foo=right' ), null, 'Return null when not found' );
+	var url = 'http://mediawiki.org/?foo=wrong&foo=right#&foo=bad';
+
+	equal( mw.util.getParamValue( 'foo', url ), 'right', 'Use latest one, ignore hash' );
+	deepEqual( mw.util.getParamValue( 'bar', url ), null, 'Return null when not found' );
+
+});
+
+test( 'getActionFrom', function(){
+
+	// Example urls
+	var	urlA = 'http://mediawiki.org/wiki/Article',
+		urlB = 'http://mediawiki.org/w/index.php?title=Article&action=edit',
+		urlC = 'http://mediawiki.org/edit/Article',
+		urlD = 'http://mediawiki.org/w/index.php/Article';
+
+	// Common settings
+	mw.config.set( {
+		'wgActionPaths': [],
+		'wgArticlePath': '/wiki/$1'
+	});
+
+	equal( mw.util.getActionFrom( urlA ), 'view', 'wgArticlePath (/wiki/$1) support' );
+	equal( mw.util.getActionFrom( urlB ), 'edit', 'action-parameter support' );
+
+	// Custom settings
+	mw.config.set( 'wgActionPaths', {
+		'view': '/view/$1',
+		'edit': '/edit/$1'
+	});
+
+	equal( mw.util.getActionFrom( urlC ), 'edit', 'wgActionPaths support' );
+
+	// Default settings
+	mw.config.set( {
+		'wgActionPaths': [],
+		'wgArticlePath': '/w/index.php/$1' 
+	});
+	equal( mw.util.getActionFrom( urlD ), 'view', 'wgArticlePath (/index.php/$1) support' );
+
+});
+
+test( 'getTitleFrom', function(){
+
+	// Example urls
+	var	urlA = 'http://mediawiki.org/wiki/Article',
+		urlB = 'http://mediawiki.org/w/index.php?title=Article&action=edit',
+		urlC = 'http://mediawiki.org/edit/Article',
+		urlD = 'http://mediawiki.org/w/index.php/Article';
+
+	// Common settings
+	mw.config.set( {
+		'wgActionPaths': [],
+		'wgArticlePath': '/wiki/$1'
+	});
+
+	equal( mw.util.getTitleFrom( urlA ), 'Article', 'wgArticlePath (/wiki/$1) support' );
+	equal( mw.util.getTitleFrom( urlB ), 'Article', 'action-parameter support' );
+
+	// Custom settings
+	mw.config.set( 'wgActionPaths', {
+		'view': '/view/$1',
+		'edit': '/edit/$1'
+	});
+
+	equal( mw.util.getTitleFrom( urlC ), 'Article', 'wgActionPaths support' );
+
+	// Default settings
+	mw.config.set( {
+		'wgActionPaths': [],
+		'wgArticlePath': '/w/index.php/$1' 
+	});
+
+	equal( mw.util.getTitleFrom( urlD ), 'Article', 'wgArticlePath (/index.php/$1) support' );
 
 });
 
