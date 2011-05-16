@@ -434,6 +434,12 @@ return array(
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 	),
+	'mediawiki.user' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.user.js',
+		'dependencies' => array(
+			'jquery.cookie',
+		),
+	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
 		'dependencies' => array(

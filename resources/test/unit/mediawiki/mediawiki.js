@@ -109,24 +109,6 @@ test( 'mw.message / mw.msg / mw.messages', function(){
 // params, toString, parse, plain, escaped, exists
 });
 
-test( 'mw.user', function(){
-
-	ok( mw.user, 'user defined' );
-	ok( mw.user.options instanceof mw.Map, 'user.options instance of mw.Map' );
-
-	same( mw.user.name(), null, 'user.name() Anonymous' );
-	ok( mw.user.anonymous(), 'user.anonymous() Anonymous' );
-
-	// Not part of startUp module
-	mw.config.set( 'wgUserName', 'John' );
-
-	equals( mw.user.name(), 'John', 'user.name() Logged-in' );
-	ok( !mw.user.anonymous(), 'user.anonymous() Logged-in' );
-
-	equals( mw.user.id(), 'John', 'user.id() Logged-in' );
-
-});
-
 test( 'mw.loader', function(){
 	expect(2);
 	
