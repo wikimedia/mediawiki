@@ -60,7 +60,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 		return $diff / 1024;
 	}
 
-	function getOutput() {
+	function logData() {
 		print "<!-- \n {$this->trace} \n -->";
 	}
 }
