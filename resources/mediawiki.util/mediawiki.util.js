@@ -226,55 +226,58 @@
 		},
 
 		/** 
-		 * Try to find the wiki action for a given URL with actions paths support
+		 * Try to find the wiki action for a given URL with actions paths support.
+		 * Defaults to 'view'.
 		 *
 		 * @param url URL to search for a wiki action
+		 * @return Action
 		 */
 		'getActionFrom' : function( url ) {
 			// attempt to get the action from the parameter [&?]action=
 			var action = mw.util.getParamValue( 'action', url );
-			if( action !== null ) {
+			if ( action !== null ) {
 				return action;
 			}
 
 			// now from the action paths
 			var actionPaths = mw.config.get( 'wgActionPaths' );
-			if( actionPaths.length == 0 ) {
-				actionPaths['view'] = mw.config.get( 'wgArticlePath' );
+			if ( actionPaths.length === 0 ) {
+				actionPaths.view = mw.config.get( 'wgArticlePath' );
 			}
-			var action = '';
+			var actionRe;
 			for ( action in actionPaths ) {
-				var actionRe = new RegExp( actionPaths[action].replace( '$1', '.*?' ) );
-				if( url.match( actionRe ) ) {
+				actionRe = new RegExp( actionPaths[action].replace( '$1', '.*?' ) );
+				if ( url.match( actionRe ) ) {
 					return action;
 				}
 			}
 
-			return null;
+			return 'view';
 		},
 
 		/**
 		 * Try to find the wiki title for a given URL with actions paths support
 		 *
 		 * @param url URL to search for a title
+		 * @return Title or null.
 		 */
 		'getTitleFrom' : function( url ) {
 			// attempt to get the title from the parameter [&?]title=
 			var title = mw.util.getParamValue( 'title', url );
-			if( title !== null ) {
+			if ( title !== null ) {
 				return title;
 			}
 
 			// now from the action paths	
 			var actionPaths = mw.config.get( 'wgActionPaths' );
-			if( actionPaths.length == 0 ) {
-				actionPaths['view'] = mw.config.get( 'wgArticlePath' );
+			if ( actionPaths.length === 0 ) {
+				actionPaths.view = mw.config.get( 'wgArticlePath' );
 			}
-			var action = '';
+			var action, actionRe;
 			for ( action in actionPaths ) {
-				var actionRe = new RegExp( '.*' + actionPaths[action].replace( '$1', '([^&?#]+)' ) );
-				var title = url.match( actionRe );
-				if( title !== null ) {
+				actionRe = new RegExp( '.*' + actionPaths[action].replace( '$1', '([^&?#]+)' ) );
+				title = url.match( actionRe );
+				if ( title !== null ) {
 					return title[1];
 				}
 			}
