@@ -19,49 +19,6 @@ class MediaWikiTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test case insentiveness for get / set
-	 */
-	public function testSetGetValKeyInsentiveness() {
-
-		// set with lower case key 
-		$value = 'SomeValue';
-		$this->object->setVal( 'foobar', $value );
-
-		$this->assertEquals(
-			$this->object->getVal( 'foobar' ), 'SomeValue',
-			'lower case key set, getting lower case key'
-		);
-		$this->assertEquals(
-			$this->object->getVal( 'FOOBAR' ), 'SomeValue',
-			'lower case key set, getting upper case key'
-		);
-
-		// set with Mixed case key 
-		$value = 'SomeValue2';
-		$this->object->setVal( 'FooBar', $value );
-
-		$this->assertEquals(
-			$this->object->getVal( 'foobar' ), 'SomeValue2',
-			'mixed case key set, getting lower case key'
-		);
-		$this->assertEquals(
-			$this->object->getVal( 'FOOBAR' ), 'SomeValue2',
-			'mixed case key set, getting upper case key'
-		);
-	}
-
-	public function testGetValWithDefault() {
-		$this->assertEmpty(
-			$this->object->getVal( 'NonExistent' ),
-			'Non existent key return empty string'
-		);
-		$this->assertEquals(
-			$this->object->getVal( 'NonExistent2', 'Default Value' ), 'Default Value',
-			'Non existent key with default given, should give default'
-		);
-	}
-
-	/**
 	 * @todo Implement testPerformRequestForTitle().
 	 */
 	public function testPerformRequestForTitle() {

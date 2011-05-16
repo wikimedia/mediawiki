@@ -7,46 +7,10 @@
 class MediaWiki {
 
 	/**
-	 * Array of options which may or may not be used
-	 * FIXME: this seems currently to be a messy halfway-house between globals
-	 *     and a config object.  Pick one and run with it
-	 * @var array
-	 */
-	private $params = array();
-
-	/**
 	 * TODO: fold $output, etc, into this
 	 * @var RequestContext
 	 */
 	private $context;
-
-	/**
-	 * Stores key/value pairs to circumvent global variables
-	 * Note that keys are case-insensitive!
-	 *
-	 * @param $key String: key to store
-	 * @param $value Mixed: value to put for the key
-	 */
-	public function setVal( $key, &$value ) {
-		$key = strtolower( $key );
-		$this->params[$key] =& $value;
-	}
-
-	/**
-	 * Retrieves key/value pairs to circumvent global variables
-	 * Note that keys are case-insensitive!
-	 *
-	 * @param $key String: key to get
-	 * @param $default string default value, defaults to empty string
-	 * @return $default Mixed: default value if if the key doesn't exist
-	 */
-	public function getVal( $key, $default = '' ) {
-		$key = strtolower( $key );
-		if ( isset( $this->params[$key] ) ) {
-			return $this->params[$key];
-		}
-		return $default;
-	}
 
 	public function request( WebRequest $x = null ){
 		return wfSetVar( $this->context->request, $x );
@@ -180,6 +144,8 @@ class MediaWiki {
 	 * @return bool true if the request is already executed
 	 */
 	private function handleSpecialCases() {
+		global $wgServer, $wgUsePathInfo;
+
 		wfProfileIn( __METHOD__ );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
@@ -198,7 +164,7 @@ class MediaWiki {
 				$url = $this->context->title->getFullURL( $query );
 			}
 			// Check for a redirect loop
-			if ( !preg_match( '/^' . preg_quote( $this->getVal( 'Server' ), '/' ) . '/', $url ) && $this->context->title->isLocal() ) {
+			if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url ) && $this->context->title->isLocal() ) {
 				// 301 so google et al report the target as the actual url.
 				$this->context->output->redirect( $url, 301 );
 			} else {
@@ -225,7 +191,7 @@ class MediaWiki {
 					"requested; this sometimes happens when moving a wiki " .
 					"to a new server or changing the server configuration.\n\n";
 
-				if ( $this->getVal( 'UsePathInfo' ) ) {
+				if ( $wgUsePathInfo ) {
 					$message .= "The wiki is trying to interpret the page " .
 						"title from the URL path portion (PATH_INFO), which " .
 						"sometimes fails depending on the web server. Try " .
@@ -332,6 +298,8 @@ class MediaWiki {
 	 * @return mixed an Article, or a string to redirect to another URL
 	 */
 	private function initializeArticle() {
+		global $wgDisableHardRedirects;
+
 		wfProfileIn( __METHOD__ );
 
 		$action = $this->context->request->getVal( 'action', 'view' );
@@ -364,7 +332,7 @@ class MediaWiki {
 				// Is the target already set by an extension?
 				$target = $target ? $target : $article->followRedirect();
 				if ( is_string( $target ) ) {
-					if ( !$this->getVal( 'DisableHardRedirects' ) ) {
+					if ( !$wgDisableHardRedirects ) {
 						// we'll need to redirect
 						wfProfileOut( __METHOD__ );
 						return $target;
@@ -460,6 +428,9 @@ class MediaWiki {
 	 * @param $article Article
 	 */
 	private function performAction( $article ) {
+		global $wgSquidMaxage, $wgUseExternalEditor,
+			$wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
+
 		wfProfileIn( __METHOD__ );
 
 		if ( !wfRunHooks( 'MediaWikiPerformAction', array(
@@ -481,7 +452,7 @@ class MediaWiki {
 
 		switch( $act ) {
 			case 'view':
-				$this->context->output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
+				$this->context->output->setSquidMaxage( $wgSquidMaxage );
 				$article->view();
 				break;
 			case 'raw': // includes JS/CSS
@@ -502,7 +473,7 @@ class MediaWiki {
 				$article->$act();
 				break;
 			case 'dublincore':
-				if ( !$this->getVal( 'EnableDublinCoreRdf' ) ) {
+				if ( !$wgEnableDublinCoreRdf ) {
 					wfHttpError( 403, 'Forbidden', wfMsg( 'nodublincore' ) );
 				} else {
 					$rdf = new DublinCoreRdf( $article );
@@ -510,7 +481,7 @@ class MediaWiki {
 				}
 				break;
 			case 'creativecommons':
-				if ( !$this->getVal( 'EnableCreativeCommonsRdf' ) ) {
+				if ( !$wgEnableCreativeCommonsRdf ) {
 					wfHttpError( 403, 'Forbidden', wfMsg( 'nocreativecommons' ) );
 				} else {
 					$rdf = new CreativeCommonsRdf( $article );
@@ -529,11 +500,11 @@ class MediaWiki {
 					$external = $this->context->request->getVal( 'externaledit' );
 					$section = $this->context->request->getVal( 'section' );
 					$oldid = $this->context->request->getVal( 'oldid' );
-					if ( !$this->getVal( 'UseExternalEditor' ) || $act == 'submit' || $internal ||
+					if ( !$wgUseExternalEditor || $act == 'submit' || $internal ||
 					   $section || $oldid || ( !$this->context->user->getOption( 'externaleditor' ) && !$external ) ) {
 						$editor = new EditPage( $article );
 						$editor->submit();
-					} elseif ( $this->getVal( 'UseExternalEditor' ) && ( $external || $this->context->user->getOption( 'externaleditor' ) ) ) {
+					} elseif ( $wgUseExternalEditor && ( $external || $this->context->user->getOption( 'externaleditor' ) ) ) {
 						$mode = $this->context->request->getVal( 'mode' );
 						$extedit = new ExternalEdit( $article, $mode );
 						$extedit->edit();
@@ -542,7 +513,7 @@ class MediaWiki {
 				break;
 			case 'history':
 				if ( $this->context->request->getFullRequestURL() == $this->context->title->getInternalURL( 'action=history' ) ) {
-					$this->context->output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
+					$this->context->output->setSquidMaxage( $wgSquidMaxage );
 				}
 				$history = new HistoryPage( $article );
 				$history->history();
