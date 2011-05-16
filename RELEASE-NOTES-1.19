@@ -7,7 +7,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.19 is an alpha-quality branch and is not recommended for use in 
+MediaWiki 1.19 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.19 ===
@@ -25,8 +25,8 @@ production.
 * (bug 28503) Support for ircs:// URL protocols
 * (bug 26033) It is now possible to count all non-redirect pages in content
   namespaces as articles
-* Images can now be embedded in an XML dump stream using backupDump.php 
-  --include-files and can be imported using importDump.php --uploads; 
+* Images can now be embedded in an XML dump stream using backupDump.php
+  --include-files and can be imported using importDump.php --uploads;
   furthermore, it can import files from the filesystem using --image-base-path
 * Three new hooks in Special:Undelete, 'UndeleteForm::showHistory',
   'UndeleteForm::showRevision' and 'UndeleteForm::undelete', so that extensions
@@ -56,7 +56,10 @@ used in Tiff files.
 * (bug 1780) Uploading files with non-ascii characters are now forbidden on
   Windows.
 * (bug 23464) File: prefixes are now chopped off during uploading.
-* (bug 28174) Message config-logo-help amended to not explicitly assume any LTR/RTL screen layout.
+* (bug 28174) Message config-logo-help amended to not explicitly assume any
+  LTR/RTL screen layout.
+* (bug 28992) Revision numbers in the patrol log are transformed in the user
+  language.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
@@ -75,7 +78,7 @@ changes to languages because of Bugzilla reports.
 
 MediaWiki 1.19 requires PHP 5.2.3. PHP 4 is no longer supported.
 
-MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but 
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
 support for them is somewhat less mature. There is experimental support for IBM
 DB2, Oracle and Microsoft SQL Server.
 
@@ -90,8 +93,8 @@ The supported versions are:
 1.19 has several database changes since 1.17, and will not work without schema
 updates.
 
-If upgrading from before 1.11, and you are using a wiki as a commons 
-repository, make sure that it is updated as well. Otherwise, errors may arise 
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
 due to database schema changes.
 
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
@@ -107,8 +110,8 @@ For notes on 1.15.x and older releases, see HISTORY.
 
 == Online documentation ==
 
-Documentation for both end-users and site administrators is available on 
-MediaWiki.org, and is covered under the GNU Free Documentation License (except 
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
 for pages that explicitly state that their contents are in the public domain):
 
 	http://www.mediawiki.org/wiki/Documentation
