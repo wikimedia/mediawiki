@@ -8,13 +8,13 @@ test( '-- Initial check', function(){
 
 test( 'rawurlencode', function(){
 
-	equals( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
+	equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 
 });
 
 test( 'wikiUrlencode', function(){
 
-	equals( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
+	equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 
 });
 
@@ -22,10 +22,10 @@ test( 'addCSS', function(){
 
 	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
 	ok(  a, 'function works' );
-	same( a.disabled, false, 'property "disabled" is available and set to false' );
+	deepEqual( a.disabled, false, 'property "disabled" is available and set to false' );
 	
 	var $b = $('#bodyContent');
-	equals( $b.css('visibility'), 'hidden', 'Added style properties are in effect.' );
+	equal( $b.css('visibility'), 'hidden', 'Added style properties are in effect.' );
 	
 
 });
@@ -43,11 +43,11 @@ test( 'wikiGetlink', function(){
 
 	var hrefA = mw.util.wikiGetlink( 'Sandbox' );
 	
-	equals( hrefA, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
+	equal( hrefA, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
 
 	var hrefB = mw.util.wikiGetlink( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
 	
-	equals( hrefB, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage', 'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
+	equal( hrefB, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage', 'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
 
 });
 
@@ -131,7 +131,7 @@ test( 'getTitleFrom', function(){
 
 test( 'tooltipAccessKey', function(){
 
-	equals( typeof mw.util.tooltipAccessKeyPrefix, 'string', 'mw.util.tooltipAccessKeyPrefix must be a string' );
+	equal( typeof mw.util.tooltipAccessKeyPrefix, 'string', 'mw.util.tooltipAccessKeyPrefix must be a string' );
 	ok( mw.util.tooltipAccessKeyRegexp instanceof RegExp, 'mw.util.tooltipAccessKeyRegexp instance of RegExp' );
 	ok( mw.util.updateTooltipAccessKeys, 'mw.util.updateTooltipAccessKeys' );
 
@@ -140,7 +140,7 @@ test( 'tooltipAccessKey', function(){
 test( '$content', function(){
 
 	ok( mw.util.$content instanceof jQuery, 'mw.util.$content instance of jQuery' );
-	same( mw.util.$content.length, 1, 'mw.util.$content must have length of 1' );
+	deepEqual( mw.util.$content.length, 1, 'mw.util.$content must have length of 1' );
 
 });
 
@@ -152,8 +152,8 @@ test( 'addPortletLink', function(){
 	
 	var b = mw.util.addPortletLink( "p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-rl" );
 	
-	equals( $(a).text(), 'ResourceLoader', 'Link contains correct text' );
-	equals( $(b).next().text(), 'ResourceLoader', 'Link was inserted in correct nextnode position' );
+	equal( $(a).text(), 'ResourceLoader', 'Link contains correct text' );
+	equal( $(b).next().text(), 'ResourceLoader', 'Link was inserted in correct nextnode position' );
 
 });
 
@@ -167,36 +167,36 @@ test( 'jsMessage', function(){
 
 test( 'validateEmail', function(){
 
-	same( mw.util.validateEmail( "" ), null, 'Empty string should return null' );
-	same( mw.util.validateEmail( "user@localhost" ), true );
+	deepEqual( mw.util.validateEmail( "" ), null, 'Empty string should return null' );
+	deepEqual( mw.util.validateEmail( "user@localhost" ), true );
 
 	// testEmailWithCommasAreInvalids
-	same( mw.util.validateEmail( "user,foo@example.org" ), false, 'Comma' );
-	same( mw.util.validateEmail( "userfoo@ex,ample.org" ), false, 'Comma' );
+	deepEqual( mw.util.validateEmail( "user,foo@example.org" ), false, 'Comma' );
+	deepEqual( mw.util.validateEmail( "userfoo@ex,ample.org" ), false, 'Comma' );
 
 	// testEmailWithHyphens
-	same( mw.util.validateEmail( "user-foo@example.org" ), true, 'Hyphen' );
-	same( mw.util.validateEmail( "userfoo@ex-ample.org" ), true, 'Hyphen' );
+	deepEqual( mw.util.validateEmail( "user-foo@example.org" ), true, 'Hyphen' );
+	deepEqual( mw.util.validateEmail( "userfoo@ex-ample.org" ), true, 'Hyphen' );
 
 });
 
 test( 'isIPv6Address', function(){
 
 	// Based on IPTest.php > IPv6
-	same( mw.util.isIPv6Address( "" ), false, 'Empty string is not an IP' );
-	same( mw.util.isIPv6Address( ":fc:100::" ), false, 'IPv6 starting with lone ":"' );
-	same( mw.util.isIPv6Address( "fc:100::" ), true );
-	same( mw.util.isIPv6Address( "fc:100:a:d:1:e:ac::" ), true );
-	same( mw.util.isIPv6Address( ":::" ), false );
-	same( mw.util.isIPv6Address( "::0:" ), false );
+	deepEqual( mw.util.isIPv6Address( "" ), false, 'Empty string is not an IP' );
+	deepEqual( mw.util.isIPv6Address( ":fc:100::" ), false, 'IPv6 starting with lone ":"' );
+	deepEqual( mw.util.isIPv6Address( "fc:100::" ), true );
+	deepEqual( mw.util.isIPv6Address( "fc:100:a:d:1:e:ac::" ), true );
+	deepEqual( mw.util.isIPv6Address( ":::" ), false );
+	deepEqual( mw.util.isIPv6Address( "::0:" ), false );
 
 });
 
 test( 'isIPv4Address', function(){
 
 	// Based on IPTest.php > IPv4
-	same( mw.util.isIPv4Address( "" ), false, 'Empty string is not an IP' );
-	same( mw.util.isIPv4Address( "...." ), false );
-	same( mw.util.isIPv4Address( "1.24.52.13" ), true );
+	deepEqual( mw.util.isIPv4Address( "" ), false, 'Empty string is not an IP' );
+	deepEqual( mw.util.isIPv4Address( "...." ), false );
+	deepEqual( mw.util.isIPv4Address( "1.24.52.13" ), true );
 
 });
