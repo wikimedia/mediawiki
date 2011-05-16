@@ -380,11 +380,7 @@ class SpecialContributions extends SpecialPage {
 					Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
 					Xml::namespaceSelector( $this->opts['namespace'], '' )
 				);
-			$fShowDiff = Xml::infoBox( 
-					Xml::checkLabel( wfMsg( 'sp-contributions-showsizediff' ), 'showSizeDiff', 'mw-show-size-diff', $this->opts['showSizeDiff'] ) . '<br />'.
-					wfMsgReplaceArgs ( wfMsg( 'sp-contributions-showsizediff-warn' ),  array( $wgContLang->formatTimePeriod( $wgRCMaxAge ) ) )
-					, 'warning-32.png', wfMsg( 'sp-contributions-showsizediff' )
-				);
+			$fShowDiff = Xml::checkLabel( wfMsg( 'sp-contributions-showsizediff' ), 'showSizeDiff', 'mw-show-size-diff', $this->opts['showSizeDiff'] );
 		}
 
 		$f .= 	Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
