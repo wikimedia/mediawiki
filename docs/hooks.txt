@@ -1706,6 +1706,23 @@ $user: user who did the move
 $pageid: database ID of the page that's been moved
 $redirid: database ID of the created redirect
 
+'UndeleteForm::showHistory': called in UndeleteForm::showHistory, after a
+PageArchive object has been created but before any further processing is done.
+&$archive: PageArchive object
+$title: Title object of the page that we're viewing
+
+'UndeleteForm::showRevision': called in UndeleteForm::showRevision, after a
+PageArchive object has been created but before any further processing is done.
+&$archive: PageArchive object
+$title: Title object of the page that we're viewing
+
+'UndeleteForm::undelete': called un UndeleteForm::undelete, after checking that
+the site is not in read-only mode, that the Title object is not null and after
+a PageArchive object has been constructed but before performing any further
+processing.
+&$archive: PageArchive object
+$title: Title object of the page that we're about to undelete
+
 'UndeleteShowRevision': called when showing a revision in Special:Undelete
 $title: title object related to the revision
 $rev: revision (object) that will be viewed

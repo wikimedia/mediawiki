@@ -28,6 +28,10 @@ production.
 * Images can now be embedded in an XML dump stream using backupDump.php 
   --include-files and can be imported using importDump.php --uploads; 
   furthermore, it can import files from the filesystem using --image-base-path
+* Three new hooks in Special:Undelete, 'UndeleteForm::showHistory',
+  'UndeleteForm::showRevision' and 'UndeleteForm::undelete', so that extensions
+  may override the usage of PageArchive class and replace it with their own
+  class that extends PageArchive
 
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.

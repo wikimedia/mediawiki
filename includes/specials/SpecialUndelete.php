@@ -769,6 +769,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$archive = new PageArchive( $this->mTargetObj );
+		wfRunHooks( 'UndeleteForm::showRevision', array( &$archive, $this->mTargetObj ) );
 		$rev = $archive->getRevision( $timestamp );
 
 		if( !$rev ) {
@@ -1062,6 +1063,7 @@ class SpecialUndelete extends SpecialPage {
 		);
 
 		$archive = new PageArchive( $this->mTargetObj );
+		wfRunHooks( 'UndeleteForm::showHistory', array( &$archive, $this->mTargetObj ) );
 		/*
 		$text = $archive->getLastRevisionText();
 		if( is_null( $text ) ) {
@@ -1421,6 +1423,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 		if( !is_null( $this->mTargetObj ) ) {
 			$archive = new PageArchive( $this->mTargetObj );
+			wfRunHooks( 'UndeleteForm::undelete', array( &$archive, $this->mTargetObj ) );
 			$ok = $archive->undelete(
 				$this->mTargetTimestamp,
 				$this->mComment,
