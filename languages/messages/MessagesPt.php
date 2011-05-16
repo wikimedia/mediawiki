@@ -1060,7 +1060,7 @@ Devia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLU
 Estes argumentos foram omitidos.',
 'post-expand-template-argument-category'  => 'Páginas com omissão de argumentos para predefinições',
 'parser-template-loop-warning'            => 'Ciclo de predefinições detectado: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Atingido o limite de profundidade de recursividade de predefinição ($1)',
+'parser-template-recursion-depth-warning' => 'Foi excedido o limite da profundidade de recursividade nas predefinições ($1)',
 'language-converter-depth-warning'        => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
 
 # "Undo" feature
@@ -1386,7 +1386,7 @@ Eis um valor gerado aleatoriamente, que pode usar: $1",
 'savedprefs'                    => 'As suas preferências foram gravadas.',
 'timezonelegend'                => 'Fuso horário:',
 'localtime'                     => 'Hora local:',
-'timezoneuseserverdefault'      => 'Usar padrão do servidor',
+'timezoneuseserverdefault'      => 'Usar padrão da wiki ($1)',
 'timezoneuseoffset'             => 'Outro (especificar diferença)',
 'timezoneoffset'                => 'Diferença horária¹:',
 'servertime'                    => 'Hora do servidor:',
@@ -1719,6 +1719,7 @@ este tem $2.',
 'emptyfile'                   => 'O ficheiro que enviou parece estar vazio.
 Isto pode dever-se a um erro no nome do ficheiro.
 Verifique se é realmente este o ficheiro que deseja carregar, por favor.',
+'windows-nonascii-filename'   => 'O servidor não aceita nomes de ficheiros com caracteres especiais.',
 'fileexists'                  => "Já existe um ficheiro com este nome.
 Verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza de que quer alterar o ficheiro actual, por favor.
 [[$1|thumb]]",
@@ -2501,7 +2502,6 @@ Para sua referência, encontra abaixo a entrada mais recente no registo de bloqu
 'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
 'sp-contributions-showsizediff'        => 'Mostrar a diferença no tamanho da página',
-'sp-contributions-showsizediff-warn'   => 'O registo de mudanças recentes desta wiki está limitado a $1 entradas. Se usar esta opção, as páginas que não estão no registo não serão apresentadas.',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',

@@ -1341,7 +1341,7 @@ Bất cứ ai biết được khóa trong ô này cũng có thể đọc đượ
 'savedprefs'                    => 'Đã lưu các tùy chọn cá nhân.',
 'timezonelegend'                => 'Múi giờ:',
 'localtime'                     => 'Giờ hiện tại:',
-'timezoneuseserverdefault'      => 'Sử dụng giờ mặc định của máy chủ',
+'timezoneuseserverdefault'      => 'Sử dụng giờ mặc định của wiki ($1)',
 'timezoneuseoffset'             => 'Khác (cần ghi số giờ chênh lệch)',
 'timezoneoffset'                => 'Chênh giờ¹:',
 'servertime'                    => 'Giờ máy chủ:',
@@ -1670,6 +1670,7 @@ Chỉ chấp nhận {{PLURAL:$3|loại tập tin|các loại tập tin}} sau: $2
 'large-file'                  => 'Các tập tin được khuyến cáo không được lớn hơn $1; tập tin này lớn đến $2.',
 'largefileserver'             => 'Tập tin này quá lớn so với khả năng phục vụ của máy chủ.',
 'emptyfile'                   => 'Tập tin bạn vừa mới tải lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
+'windows-nonascii-filename'   => 'Máy chủ này không hỗ trợ ký tự đặc biệt trong tên tập tin.',
 'fileexists'                  => "Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại '''<tt>[[:$1]]</tt>''' nếu bạn không chắc bạn có muốn thay đổi nó hay không.
 [[$1|thumb]]",
 'filepageexists'              => "Trang miêu tả của tập tin này đã được tạo tại '''<tt>[[:\$1]]</tt>''', nhưng hiện không có tập tin nào có tên như vậy.
@@ -2441,7 +2442,6 @@ $1',
 'sp-contributions-toponly'             => 'Chỉ hiện các phiên bản gần đây',
 'sp-contributions-submit'              => 'Tìm kiếm',
 'sp-contributions-showsizediff'        => 'Hiện khác biệt về kích thước trang',
-'sp-contributions-showsizediff-warn'   => 'Nhật trình thay đổi gần đây được hạn chế chỉ hiện $1. Nếu bạn sử dụng tùy chọn này, các trang không có trong nhật trình này sẽ không được hiển thị.',
 
 # What links here
 'whatlinkshere'            => 'Các liên kết đến đây',

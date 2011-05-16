@@ -1592,6 +1592,7 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 'emptyfile'                   => 'Kaže, da je aložena datoteka prazna.
 Do tega bi lahko prišlo zaradi tipkarske napake v imenu.
 Ali datoteko resnično želite naložiti?',
+'windows-nonascii-filename'   => 'Strežnik ne podpira imen datotek s posebnimi znaki.',
 'fileexists'                  => "Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran '''<tt>[[:$1]]</tt>'''.
 [[$1|thumb]]",
 'filepageexists'              => "Opisna stran za to datoteko je bila že ustvarjena na '''<tt>[[:$1]]</tt>''', vendar datoteka s tem imenom trenutno ne obstaja.
@@ -2384,7 +2385,6 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'sp-contributions-toponly'             => 'Prikaži samo vrhnje redakcije',
 'sp-contributions-submit'              => 'Išči',
 'sp-contributions-showsizediff'        => 'Prikaži razliko v velikosti strani',
-'sp-contributions-showsizediff-warn'   => 'Ta primer ima dnevnik zadnjih sprememb omejen na $1. Če uporabite to možnost, strani, ki niso v tem dnevniku, ne bodo prikazane.',
 
 # What links here
 'whatlinkshere'            => 'Kaj se povezuje sem',

@@ -1343,7 +1343,7 @@ Aici se află o combinație generată întâmplător pe care o puteți folosi: $
 'savedprefs'                    => 'Preferințele dumneavoastră au fost salvate.',
 'timezonelegend'                => 'Fus orar:',
 'localtime'                     => 'Ora locală:',
-'timezoneuseserverdefault'      => 'Folosește ora server-ului',
+'timezoneuseserverdefault'      => 'Folosește ora implicită a wikiului ($1)',
 'timezoneuseoffset'             => 'Altul (specifică diferența)',
 'timezoneoffset'                => 'Diferența¹:',
 'servertime'                    => 'Ora serverului:',

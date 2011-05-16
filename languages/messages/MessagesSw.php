@@ -1144,7 +1144,7 @@ Hapo kuna ufunguo uliotolewa na programu kwa kubahatisha, ambao unaweza kuutumia
 'savedprefs'                    => 'Mapendekezo yako yamehifadhiwa.',
 'timezonelegend'                => 'Ukanda saa:',
 'localtime'                     => 'Saa ya kwetu:',
-'timezoneuseserverdefault'      => 'Tumia saa ya seva',
+'timezoneuseserverdefault'      => 'Tumia saa linalokubali na wiki yenyewe ($1)',
 'timezoneuseoffset'             => 'Nyingine (weka tofauti ya saa)',
 'timezoneoffset'                => 'Tofauti ya saa¹:',
 'servertime'                    => 'Saa ya seva:',
@@ -2142,6 +2142,7 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'sp-contributions-search'              => 'Tafuta michango',
 'sp-contributions-username'            => 'Anwani ya IP au jina la mtumiaji:',
 'sp-contributions-submit'              => 'Tafuta',
+'sp-contributions-showsizediff'        => 'Onyesha tofauti ya ukubwa wa ukurasa',
 
 # What links here
 'whatlinkshere'            => 'Viungo viungavyo ukurasa huu',

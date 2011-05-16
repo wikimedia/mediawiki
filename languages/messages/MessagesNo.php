@@ -2372,7 +2372,6 @@ Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
 'sp-contributions-toponly'             => 'Vis kun endringer som er gjeldende revisjoner',
 'sp-contributions-submit'              => 'Søk',
 'sp-contributions-showsizediff'        => 'Vis forskjellen i sidestørrelse',
-'sp-contributions-showsizediff-warn'   => 'Denne instansen har begrenset loggen for siste endringer til $1. Hvis du bruker dette alternativet vil ikke sider som ikke er i loggen vises',
 
 # What links here
 'whatlinkshere'            => 'Lenker hit',

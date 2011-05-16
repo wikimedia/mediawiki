@@ -1314,7 +1314,7 @@ Siin on juhuslik väärtus, mida saad kasutada: $1',
 'savedprefs'                    => 'Sinu eelistused on salvestatud.',
 'timezonelegend'                => 'Ajavöönd:',
 'localtime'                     => 'Kohalik aeg:',
-'timezoneuseserverdefault'      => 'Kasuta serveri vaikesätet',
+'timezoneuseserverdefault'      => 'Kasuta serveri vaikesätet ($1)',
 'timezoneuseoffset'             => 'Muu (määra ajavahe)',
 'timezoneoffset'                => 'Ajavahe¹:',
 'servertime'                    => 'Serveri aeg:',
@@ -2359,9 +2359,10 @@ $1',
 'undelete-show-file-submit'    => 'Jah',
 
 # Namespace form on various pages
-'namespace'      => 'Nimeruum:',
-'invert'         => 'Näita kõiki peale valitud nimeruumi',
-'blanknamespace' => '(Artiklid)',
+'namespace'             => 'Nimeruum:',
+'invert'                => 'Näita kõiki peale valitud nimeruumi',
+'namespace_association' => 'Seonduv nimeruum',
+'blanknamespace'        => '(Artiklid)',
 
 # Contributions
 'contributions'       => 'Kasutaja kaastöö',
@@ -2390,7 +2391,6 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'sp-contributions-toponly'             => 'Ainult uusimad redaktsioonid',
 'sp-contributions-submit'              => 'Otsi',
 'sp-contributions-showsizediff'        => 'Kuva lehekülje suuruse erinevus',
-'sp-contributions-showsizediff-warn'   => 'Antud juhul on viimaste muudatuste logile seatud ajapiirang $1. Kui kasutad seda suvandit, ei kuvata sellest logist välja jäävaid lehekülgi.',
 
 # What links here
 'whatlinkshere'            => 'Lingid siia',

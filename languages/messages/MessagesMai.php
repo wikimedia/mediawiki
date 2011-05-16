@@ -11,6 +11,7 @@
  * @author Ggajendra
  * @author Manojberma77
  * @author Meno25
+ * @author Priyanka.rachna.jha
  * @author Rajesh
  * @author Umeshberma
  */
@@ -569,6 +570,8 @@ $2
 अहाँक परिवर्तन अखन धरि सँचिआएल नै गेल अछि!",
 'editing'                          => 'सम्पादन होइए $1',
 'editingsection'                   => 'सम्पादन कऽ रहल छी $1 (खण्ड)',
+'editingcomment'                   => 'सम्पादन कऽ रहल छी $1 (नव खण्ड)',
+'editconflict'                     => 'सम्पादन अन्तर: $1',
 'yourtext'                         => 'अहाँक पाठ',
 'storedversion'                    => 'पेटारमे राखल संशोधन',
 'yourdiff'                         => 'फराक',
@@ -580,7 +583,14 @@ $2
 'template-protected'               => '(सुरक्षित)',
 'template-semiprotected'           => '(अर्ध-रक्षित)',
 'hiddencategories'                 => 'ई पन्ना सदस्य अछि {{PLURAL:$1|1 नुकाएल संवर्ग|$1 नुकाएल संवर्ग सभ}}:',
+'sectioneditnotsupported-title'    => 'खंड सम्पादन समर्थन नै',
+'sectioneditnotsupported-text'     => 'खंड सम्पादनक ऐ पन्नापर  समर्थन नै',
+'permissionserrors'                => 'आज्ञा गल्ती',
+'permissionserrorstext'            => 'अहाँके ऐ लेल अनुमति नै अछि, ऐ ले {{PLURAL:$1|कारण|कारण सभ}}:',
 'permissionserrorstext-withaction' => 'अहाँके अनुमति नै अछि $2 लेल, ऐ लेल {{PLURAL:$1|कारण|कारण सभ}}:',
+'log-fulllog'                      => 'सभटा वृत्तलेख देखू',
+'edit-hook-aborted'                => 'सम्पादन नोकसीसँ खतम भेल।
+ई कोनो कारण नै देलक।',
 'edit-conflict'                    => 'सम्पादन अन्तर',
 
 # Account creation failure

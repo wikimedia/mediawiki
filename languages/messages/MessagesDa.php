@@ -1231,7 +1231,7 @@ Her er en tilfældig genereret værdi som du kan bruge: $1',
 'savedprefs'                    => 'Dine indstillinger er blevet gemt.',
 'timezonelegend'                => 'Tidszone:',
 'localtime'                     => 'Lokaltid:',
-'timezoneuseserverdefault'      => 'Brug serverens tid',
+'timezoneuseserverdefault'      => "Brug wiki'ens standardindstilling ($1)",
 'timezoneuseoffset'             => 'Anden (angiv forskel)',
 'timezoneoffset'                => 'Forskel¹:',
 'servertime'                    => 'Serverens tid:',
@@ -1554,6 +1554,7 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'large-file'                  => 'Filstørrelsen skal så vidt muligt ikke overstige $1. Denne fil er $2 stor.',
 'largefileserver'             => 'Filen er større end den på serveren indstillede maksimale størrelse.',
 'emptyfile'                   => 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
+'windows-nonascii-filename'   => 'Serveren understøtter ikke filnavne, der indeholder specialtegn.',
 'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst [[:$1]] om du er sikker på du vil ændre den.
 [[$1|thumb]]',
 'filepageexists'              => "Siden med beskrivelse af denne fil er allerede oprettet på '''<tt>[[:$1]]</tt>''', men der eksisterer ikke en fil med dette navn.
@@ -2302,6 +2303,7 @@ Den seneste post i blokeringsloggen vises nedenfor:',
 'sp-contributions-username'            => 'IP-adresse eller brugernavn:',
 'sp-contributions-toponly'             => 'Vis kun redigeringer, der er aktuelle versioner',
 'sp-contributions-submit'              => 'Søg',
+'sp-contributions-showsizediff'        => 'Vis forskel i sidestørrelse',
 
 # What links here
 'whatlinkshere'            => 'Hvad henviser hertil',
@@ -2803,6 +2805,7 @@ Du kan beskadige dit system hvis du udfører den.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
 'file-info'              => 'Filstørrelse: $1, MIME-Type: $2',
 'file-info-size'         => '$1 × $2 punkter, filstørrelse: $3, MIME-Type: $4',
+'file-info-size-pages'   => '$1 × $2 punkter, filstørrelse: $3, MIME-type: $4, $5 {{PLURAL:$5|side|sider}}',
 'file-nohires'           => '<small>Ingen højere opløsning fundet.</small>',
 'svg-long-desc'          => 'SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3',
 'show-big-image'         => 'Version i større opløsning',
@@ -3204,6 +3207,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
 'exif-ycbcrpositioning-1' => 'Centreret',
+'exif-ycbcrpositioning-2' => 'Sammenfaldende',
 
 'exif-dc-contributor' => 'Bidragsydere',
 'exif-dc-coverage'    => 'Rumlig eller tidslig afgrænsning for mediet',
@@ -3397,7 +3401,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'watchlisttools-raw'  => 'Rediger rå overvågningsliste',
 
 # Core parser functions
-'unknown_extension_tag' => 'Unknown extension tag "$1"',
+'unknown_extension_tag' => 'Ukendt tag "$1"',
 'duplicate-defaultsort' => 'Advarsel: Standardsorteringsnøglen "$2" tilsidesætter den tidligere sorteringsnøgle "$1".',
 
 # Special:Version

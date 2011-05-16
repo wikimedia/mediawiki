@@ -1236,7 +1236,7 @@ Ecce un valor aleatorimente generate que tu pote usar: $1',
 'savedprefs'                    => 'Tu preferentias ha essite confirmate.',
 'timezonelegend'                => 'Fuso horari:',
 'localtime'                     => 'Hora local:',
-'timezoneuseserverdefault'      => 'Usar le hora del servitor',
+'timezoneuseserverdefault'      => 'Usar le valor predefinite del wiki ($1)',
 'timezoneuseoffset'             => 'Altere (specifica le differentia)',
 'timezoneoffset'                => 'Differentia¹:',
 'servertime'                    => 'Hora del servitor:',
@@ -1567,6 +1567,7 @@ iste file occupa $2.',
 'emptyfile'                   => 'Le file que tu incargava pare esser vacue.
 Isto pote esser debite a un error in le nomine del file.
 Per favor verifica que tu realmente vole incargar iste file.',
+'windows-nonascii-filename'   => 'Le servitor non supporta nomines de file con characteres special.',
 'fileexists'                  => "Un file con iste nomine existe ja.
 Per favor verifica '''<tt>[[:$1]]</tt>''' si tu non es secur de voler cambiar lo.
 [[$1|thumb]]",
@@ -2365,7 +2366,6 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 'sp-contributions-toponly'             => 'Monstrar solmente le versiones recente',
 'sp-contributions-submit'              => 'Cercar',
 'sp-contributions-showsizediff'        => 'Monstrar differentia in dimension de pagina',
-'sp-contributions-showsizediff-warn'   => 'Iste instantia ha le registro de modificationes recente limitate a $1. Si tu usa iste option, le paginas non presente in iste registro non essera monstrate.',
 
 # What links here
 'whatlinkshere'            => 'Referentias a iste pagina',
