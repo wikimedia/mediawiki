@@ -2994,7 +2994,6 @@ The latest block log entry is provided below for reference:',
 'sp-contributions-footer'              => '-', # do not translate or duplicate this message to other languages
 'sp-contributions-footer-anon'         => '-', # do not translate or duplicate this message to other languages
 'sp-contributions-showsizediff'        => 'Display difference in page size',
-'sp-contributions-showsizediff-warn'   => 'This instance has recent changes log limited to $1 . If you use this option, pages not in this log will not be displayed',
 
 # What links here
 'whatlinkshere'            => 'What links here',
