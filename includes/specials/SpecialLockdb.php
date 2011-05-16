@@ -122,8 +122,13 @@ class SpecialLockdb extends SpecialPage {
 			return;
 		}
 		fwrite( $fp, $this->reason );
-		fwrite( $fp, "\n<p>(by " . $wgUser->getName() . " at " .
-		  $wgContLang->timeanddate( wfTimestampNow() ) . ")</p>\n" );
+		fwrite( $fp, "\n<p>" . wfMsgExt(
+			'lockedbyandtime',
+			'content',
+			$wgUser->getName(),
+			$wgContLang->date( wfTimestampNow() ),
+			$wgContLang->time( wfTimestampNow() )
+		) . "</p>\n" );
 		fclose( $fp );
 
 		$wgOut->redirect( $this->getTitle()->getFullURL( 'action=success' ) );
