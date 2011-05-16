@@ -1398,7 +1398,7 @@ Můžete použít tuto náhodně vygenerovanou hodnotu: $1',
 'savedprefs'                    => 'Vaše nastavení bylo uloženo.',
 'timezonelegend'                => 'Časové pásmo:',
 'localtime'                     => 'Místní čas:',
-'timezoneuseserverdefault'      => 'Použít nastavení serveru',
+'timezoneuseserverdefault'      => 'Použít časové pásmo wiki ($1)',
 'timezoneuseoffset'             => 'Jiné (zadejte posun)',
 'timezoneoffset'                => 'Posun¹:',
 'servertime'                    => 'Čas na serveru:',
@@ -1720,6 +1720,7 @@ Pro vložení obrázku do stránky použijte jeden z následujících způsobů 
 'large-file'                  => 'Doporučuje se, aby délka souboru nepřesahovala $1, tento soubor má $2.',
 'largefileserver'             => 'Velikost tohoto souboru překračuje limit nastavený na serveru.',
 'emptyfile'                   => 'Soubor, který jste vložili, se zdá být prázdný. Mohl to způsobit překlep v názvu souboru. Prosím zkontrolujte, zda jste opravdu chtěli vložit tento soubor.',
+'windows-nonascii-filename'   => 'Tento server nepodporuje názvy souborů obsahující zvláštní znaky.',
 'fileexists'                  => "Soubor s tímto jménem již existuje, prosím podívejte se na '''<tt>[[:$1]]</tt>''', pokud nevíte jistě, zda chcete tento soubor nahradit.
 [[$1|thumb]]",
 'filepageexists'              => "Popisná stránka pro soubor s tímto jménem již byla na '''<tt>[[:$1]]</tt>''' založena, avšak odpovídající soubor dosud neexistuje.
@@ -1901,6 +1902,7 @@ Následující seznam zobrazuje pouze {{PLURAL:$1|tu první|první $1|prvních $
 Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',
 'nolinkstoimage'            => 'Na tento soubor neodkazuje žádná stránka.',
 'morelinkstoimage'          => 'Zobrazit [[Special:WhatLinksHere/$1|další odkazy]] na tento soubor.',
+'linkstoimage-redirect'     => '$1 (přesměrování) $2',
 'duplicatesoffile'          => '{{plural:$1|Následující soubor je duplikát|Následující $1 soubory jsou duplikáty|Následujících $1 souborů jsou duplikáty}} tohoto souboru ([[Special:FileDuplicateSearch/$2|podrobnosti]]):',
 'sharedupload'              => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.',
 'sharedupload-desc-there'   => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.
@@ -2473,6 +2475,7 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'sp-contributions-username'            => 'IP adresa nebo uživatelské jméno:',
 'sp-contributions-toponly'             => 'Zobrazit pouze aktuální revize',
 'sp-contributions-submit'              => 'Zobrazit',
+'sp-contributions-showsizediff'        => 'Zobrazit rozdíl ve velikosti stránky',
 
 # What links here
 'whatlinkshere'            => 'Odkazuje sem',

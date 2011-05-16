@@ -88,7 +88,7 @@ $messages = array(
 'february'      => 'Febraayo',
 'march'         => 'Maarso',
 'april'         => 'Abriil',
-'may_long'      => 'Maajo',
+'may_long'      => 'May',
 'june'          => 'Juun',
 'july'          => 'Luuliyo',
 'august'        => 'Agoosto',
@@ -100,7 +100,7 @@ $messages = array(
 'february-gen'  => 'Febraayo',
 'march-gen'     => 'Maarso',
 'april-gen'     => 'Abriil',
-'may-gen'       => 'Maajo',
+'may-gen'       => 'May',
 'june-gen'      => 'Juun',
 'july-gen'      => 'Luuliyo',
 'august-gen'    => 'Agoosto',
@@ -112,7 +112,7 @@ $messages = array(
 'feb'           => 'Feb',
 'mar'           => 'Maar',
 'apr'           => 'Abr',
-'may'           => 'Maj',
+'may'           => 'May',
 'jun'           => 'Juun',
 'jul'           => 'Luu',
 'aug'           => 'Ago',
@@ -327,7 +327,7 @@ Waxaa meeshaan ka heli kartaa liiska bogyaasha khaaska ah oo jiro  [[Special:Spe
 'databaseerror'        => 'Qalad ka dhacday database;ka',
 'laggedslavemode'      => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku soo kordhin.',
 'enterlockreason'      => 'Ku qor sababta loo xiraayo, kuna siidar waqtigii la soo fasaxaayo maqaalka.',
-'missingarticle-diff'  => '(Duwanaan: $1, $2)',
+'missingarticle-diff'  => '(Kala duwanaan: $1, $2)',
 'internalerror'        => 'Qalad gudaha ah',
 'internalerror_info'   => 'Qalad gudaha ah: $1',
 'fileappenderrorread'  => 'Ma akhri karin "$1" markii oo ku daraayay.',
@@ -585,7 +585,7 @@ micnaha: '''({{int:cur}})''' = kala duwanaanshaha maqaaladii ugu danbeeyay, '''(
 'history-show-deleted'   => 'Wixii la tirtiray kaliya',
 'histfirst'              => 'Kuwii ugu dhawaa',
 'histlast'               => 'Kuwii ugu cusbaa',
-'historyempty'           => '(wax kuma jiro)',
+'historyempty'           => '(waa ebar)',
 
 # Revision feed
 'history-feed-title' => 'Taariikhda caddadyaasha',
@@ -748,6 +748,7 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'recentchanges'               => 'Isbedelada dhow',
 'recentchangestext'           => 'Dabagal isbedelada dhow ee wikiga oo ku dhacay bogaan.',
 'recentchanges-label-newpage' => 'Wax bedelkaan waxoo sameeyay bog cusub',
+'rclistfrom'                  => 'Itus isbedelada cusub ka bilaabato $1',
 'rcshowhideminor'             => '$1 bedelada yar',
 'rcshowhidebots'              => '$1 botyaalo',
 'rcshowhideliu'               => '$1 isticmaalada-soo galay',
@@ -887,6 +888,7 @@ ku saabsan: $1',
 'special-categories-sort-count' => 'xisaabi marka aad tirisid',
 
 # Special:LinkSearch
+'linksearch-ns' => 'Meesha magacyada:',
 'linksearch-ok' => 'Raadi',
 
 # Special:ListUsers
@@ -896,6 +898,7 @@ ku saabsan: $1',
 'listusers-blocked'  => '(waa la mamnuucay)',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'Isticmaalaha la sameeyay oo soo galay',
 'newuserlog-create-entry' => 'Isticmaale cusub',
 
 # E-mail user

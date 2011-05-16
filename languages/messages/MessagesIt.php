@@ -2052,6 +2052,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'nowikiemailtitle'     => 'E-mail non permessa',
 'nowikiemailtext'      => 'Questo utente ha scelto di non ricevere messaggi di posta elettronica dagli altri utenti.',
 'emailusername'        => 'Nome utente:',
+'emailusernamesubmit'  => 'Invia',
 'email-legend'         => 'Invia un messaggio e-mail a un altro utente di {{SITENAME}}',
 'emailfrom'            => 'Da:',
 'emailto'              => 'A:',
@@ -3003,6 +3004,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-provinceorstatecreated'      => 'Provincia o stato dove è stata scattata la foto',
 'exif-citycreated'                 => 'Città dove è stata scattata la foto',
 'exif-objectname'                  => 'Titolo breve',
+'exif-urgency'                     => 'Urgenza',
+'exif-locationdest'                => 'Località raffigurata',
 'exif-contact'                     => 'Informazioni di contatto',
 'exif-languagecode'                => 'Lingua',
 'exif-iimcategory'                 => 'Categoria',
@@ -3012,6 +3015,9 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-label'                       => 'Etichetta',
 'exif-copyrighted'                 => 'Informazioni sul copyright',
 'exif-copyrightowner'              => 'Detentore del copyright',
+'exif-usageterms'                  => 'Termini di utilizzo',
+'exif-morepermissionsurl'          => 'Informazioni sulle licenze alternative',
+'exif-disclaimer'                  => 'Avvertenze',
 'exif-personinimage'               => 'Persona raffigurata',
 'exif-originalimageheight'         => "Altezza dell'immagine prima che fosse ritagliata",
 'exif-originalimagewidth'          => "Larghezza dell'immagine prima che fosse ritagliata",
@@ -3189,7 +3195,11 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 
 'exif-ycbcrpositioning-1' => 'Centrato',
 
-'exif-dc-rights' => 'Diritti',
+'exif-dc-contributor' => 'Collaboratori',
+'exif-dc-date'        => 'Data (e)',
+'exif-dc-rights'      => 'Diritti',
+
+'exif-rating-rejected' => 'Rifiutato',
 
 'exif-isospeedratings-overflow' => 'Maggiore di 65535',
 

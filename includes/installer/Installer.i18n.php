@@ -598,7 +598,7 @@ Parameters:
 * {{msg-mw|config-profile-fishbowl}}
 * {{msg-mw|config-profile-private}}',
 	'config-upload-help' => 'The word "mode" here refers to the access rights given to various user groups when attempting to create and store files and/or subdiretories in the said directory on the server. It also refers to the <code>mode</code> command used to maipulate said right mask under Unix, Linux, and similar operating systems. A less operating-system-centric translation is fine.',
-	'config-logo-help' => '{{doc-important|For languages with right-to-left script, translate "top left corner" as "top right corner".}}',
+	'config-logo-help' => '',
 	'config-cc-not-chosen' => 'Do not translate the <code>"proceed".</code> part.
 This message refers to a block of HTML being embedded into the installer page. It comes from the Creative Commons Web site. The block is in the English language. It is a scripted license chooser. When an individual license has been selected, it asks you to klick "proceed" so as to return to the MediaWiki installer page.',
 	'config-extensions' => '{{Identical|Extension}}',
@@ -2869,7 +2869,7 @@ Hernach kann diese Option aktiviert werden.',
 	'config-upload-deleted-help' => 'Bitte ein Verzeichnis auswählen, in dem gelöschte Dateien archiviert werden sollen.
 Idealerweise sollte es nicht über das Internet zugänglich sein.',
 	'config-logo' => 'URL des Logos:',
-	'config-logo-help' => 'Die Standardoberfläche von MediaWiki verfügt, in der oberen linken Ecke, über Platz für eine Logo mit den Maßen 135x160 Pixel.
+	'config-logo-help' => 'Die Standardoberfläche von MediaWiki verfügt links oberhalb der Seitenleiste über Platz für eine Logo mit den Maßen 135x160 Pixel.
 Bitte ein Logo in entsprechender Größe hochladen und die zugehörige URL an dieser Stelle angeben.
 
 Sofern kein Logo benötigt wird, kann dieses Datenfeld leer bleiben.',
@@ -4417,8 +4417,8 @@ A continuación, active esta opción.',
 	'config-upload-deleted-help' => 'Escolla un directorio no que arquivar os ficheiros borrados.
 O ideal é que non sexa accesible desde a web.',
 	'config-logo' => 'URL do logo:',
-	'config-logo-help' => 'A aparencia de MediaWiki por defecto inclúe espazo para un logo de 135x160 píxeles no recuncho superior esquerdo.
-Cargue unha imaxe do tamaño axeitado e introduza o URL aquí.
+	'config-logo-help' => 'A aparencia de MediaWiki por defecto inclúe espazo para un logo de 135x160 píxeles por riba do menú lateral.
+Cargue unha imaxe do tamaño axeitado e introduza o enderezo URL aquí.
 
 Se non quere un logo, deixe esta caixa en branco.',
 	'config-instantcommons' => 'Activar Instant Commons',
@@ -6359,7 +6359,7 @@ Postea activa iste option.',
 	'config-upload-deleted-help' => 'Selige un directorio in le qual archivar le files delite.
 Idealmente, isto non debe esser accessibile ab le web.',
 	'config-logo' => 'URL del logotypo:',
-	'config-logo-help' => 'Le apparentia predefinite de MediaWiki include spatio pro un logotypo de 135×160 pixeles in le angulo superior sinistre.
+	'config-logo-help' => 'Le apparentia predefinite de MediaWiki include spatio pro un logotypo de 135×160 pixels supra le menu del barra lateral.
 Incarga un imagine con le dimensiones appropriate, e entra le URL hic.
 
 Si tu non vole un logotypo, lassa iste quadro vacue.',
@@ -7349,8 +7349,6 @@ MediaWikiでは、最近の更新を確認し、神経質な、もしくは悪�
 	'config-license-none' => 'ライセンスのフッターを付けない',
 	'config-license-cc-by-sa' => 'クリエイティブ・コモンズ 表示-継承',
 	'config-license-cc-by-nc-sa' => 'クリエイティブ・コモンズ 表示-非営利-継承',
-	'config-license-gfdl-old' => 'GNUフリー文書利用許諾契約書 1.2',
-	'config-license-gfdl-current' => 'GNUフリー文書利用許諾契約書 1.3 またはそれ以降',
 	'config-license-pd' => 'パブリック・ドメイン',
 	'config-license-cc-choose' => 'その他のクリエイティブ・コモンズ・ライセンスを選択する',
 	'config-license-help' => "多くの公開ウィキでは、すべての寄稿物が[http://freedomdefined.org/Definition フリーライセンス]の元に置かれています。
@@ -8691,7 +8689,7 @@ chmod a+w $3</pre>',
 	'config-upload-deleted-help' => 'Одберете во која папка да се архивираат избришаните податотеки.
 Најдобро би било ако таа не е достапна преку интернет.',
 	'config-logo' => 'URL за логото:',
-	'config-logo-help' => 'Матичното руво на МедијаВики има простор за лого од 135x160 пиксели во горниот лев агол.
+	'config-logo-help' => 'Матичното руво на МедијаВики има простор за лого од 135 x 160 пиксели над страничната лента.
 Подигнете слика со соодветна големина, и тука внесете ја URL-адресата.
 
 Ако не сакате да имате лого, тогаш оставете го ова поле празно.',
@@ -8884,8 +8882,6 @@ $1
 	'config-license' => 'പകർപ്പവകാശവും അനുമതിയും:',
 	'config-license-cc-by-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ ഷെയർ എലൈക്',
 	'config-license-cc-by-nc-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ നോൺ-കൊമേഴ്സ്യൽ ഷെയർ എലൈക്',
-	'config-license-gfdl-old' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.2',
-	'config-license-gfdl-current' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.3 അഥവാ പുതിയത്',
 	'config-license-pd' => 'പൊതുസഞ്ചയം',
 	'config-email-settings' => 'ഇമെയിൽ സജ്ജീകരണങ്ങൾ',
 	'config-enable-email-help' => "ഇമെയിൽ പ്രവർത്തിക്കണമെങ്കിൽ, [http://www.php.net/manual/en/mail.configuration.php PHP's മെയിൽ സജ്ജീകരണങ്ങൾ] ശരിയായി ക്രമീകരിക്കേണ്ടതുണ്ട്.
@@ -10617,8 +10613,6 @@ Configurassion ëd drit d'utent pi complicà a son disponìbij apress l'instalas
 	'config-license-none' => 'Gnun-a licensa an nòta an bass',
 	'config-license-cc-by-sa' => 'Creative Commons atribussion an part uguaj',
 	'config-license-cc-by-nc-sa' => 'Creative Commons atribussion nen comersial an part uguaj',
-	'config-license-gfdl-old' => 'Licensa ëd documentassion lìbera GNU 1.2',
-	'config-license-gfdl-current' => 'Licensa ëd documentassion lìbera GNU 1.3 o pi recenta',
 	'config-license-pd' => 'Domini Pùblich',
 	'config-license-cc-choose' => 'Selessioné na licensa Creative Commons përsonalisà',
 	'config-license-help' => "Vàire wiki pùbliche a buto tute le contribussion sota na [http://freedomdefined.org/Definition licensa lìbera]. Sòn a giuta a creé un sens d'apartenensa a la comunità e a ancoragia ëd contribussion ëd longa durà.
@@ -12936,8 +12930,6 @@ chmod a+w $3</pre>',
 	'config-license-none' => '页脚无许可证',
 	'config-license-cc-by-sa' => '知识共享署名-相同方式分享',
 	'config-license-cc-by-nc-sa' => '知识共享署名-非商业性使用-相同方式共享',
-	'config-license-gfdl-old' => 'GNU自由文档许可证 1.2',
-	'config-license-gfdl-current' => 'GNU自由文档许可证 1.3或更高版本',
 	'config-license-pd' => '公有领域',
 	'config-license-cc-choose' => '选择自定义的知识共享许可证',
 	'config-license-help' => "许多公共wiki会以[http://freedomdefined.org/Definition 自由许可证]的方式释放出编者的所有贡献。这有助于构建社区的主人翁意识，并能鼓励长期贡献。对于非公共wiki或公司wiki，这并非必要条件。

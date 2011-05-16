@@ -1927,6 +1927,7 @@ Ceta lista montre ren que {{PLURAL:$1|la premiére pâge qu’utilise|les $1 pre
 Una [[Special:WhatLinksHere/$2|lista complèta]] est disponibla.',
 'nolinkstoimage'            => 'Niona pâge utilise ceti fichiér.',
 'morelinkstoimage'          => 'Vêde [[Special:WhatLinksHere/$1|més de lims]] de vers ceti fichiér.',
+'linkstoimage-redirect'     => '$1 (redirèccion de fichiér) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Ceti fichiér est un doblo|Cetos fichiérs sont des doblos}} de ceti ([[Special:FileDuplicateSearch/$2|més de dètalys]]) :',
 'sharedupload'              => 'Ceti fichiér vint de $1 et pôt étre utilisâ per d’ôtros projèts.',
 'sharedupload-desc-there'   => 'Ceti fichiér vint de $1 et pôt étre utilisâ per d’ôtros projèts.
@@ -2529,6 +2530,7 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'sp-contributions-username'            => 'Adrèce IP ou ben nom d’utilisator :',
 'sp-contributions-toponly'             => 'Montrar ren que les novèles vèrsions',
 'sp-contributions-submit'              => 'Rechèrchiér',
+'sp-contributions-showsizediff'        => 'Fâre vêre la difèrence dens la talye de la pâge',
 
 # What links here
 'whatlinkshere'            => 'Pâges liyês',
@@ -3314,6 +3316,9 @@ Los ôtros champs seront cachiês per dèfôt.
 
 # EXIF attributes
 'exif-compression-1' => 'Pas comprèssâ',
+'exif-compression-2' => 'CCITT tropa 3 longior du codâjo Huffman changiê de dimension 1',
+'exif-compression-3' => 'CCITT tropa 3 codâjo du faxe',
+'exif-compression-4' => 'CCITT tropa 4 codâjo du faxe',
 
 'exif-copyrighted-true'  => 'Somês a drêt d’ôtor',
 'exif-copyrighted-false' => 'Domêno publico',

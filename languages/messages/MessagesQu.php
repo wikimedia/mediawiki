@@ -1297,7 +1297,7 @@ Pi kay k'itichapi llawiykita riqsiqpas watiqasqaykikunata ñawiriytam atinqa. Ch
 'savedprefs'                    => "Allinkachinaykikunaqa hallch'asqañam.",
 'timezonelegend'                => "Pacha t'urpi:",
 'localtime'                     => 'Tiyaylla pacha:',
-'timezoneuseserverdefault'      => 'Sirwiqpa kikinmanta',
+'timezoneuseserverdefault'      => "Wikip kikinmanta pachanta llamk'achiy ($1)",
 'timezoneuseoffset'             => 'Huk pacha (pachap wakin kayninta willay)',
 'timezoneoffset'                => 'Huk kay¹:',
 'servertime'                    => 'Sirwiqpa pachan:',
@@ -1619,6 +1619,7 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 'large-file'                  => 'Kamalliykiku, willañiqikunaqa ama $1-manta aswan hatun kachunchu; kay willañiqiqa $2 hatunmi.',
 'largefileserver'             => 'Kay willañiqiqa sirwiqpi allinkachisqakama saqillasqa chhikanmanta aswan hatunmi.',
 'emptyfile'                   => "Churkusqayki willañiqiqa ch'usaqmi rikch'akun. Pantasqa sutinchá. Ama hina kaspa, llanchiy, churkuyman munasqayki willañiqichu.",
+'windows-nonascii-filename'   => "Kay wikiqa sapaq sananchayuq willañiqi sutikunata manam q'iminchu.",
 'fileexists'                  => "Kachkanñam kay sutiyuq willañiqi.
 Ama hina kaspa, '''<tt>[[:$1]]</tt>''' nisqata llanchiy, huknachanaykimanta mana allin yachaspaykiqa.
 [[$1|thumb]]",
@@ -1782,6 +1783,7 @@ Kay qatiq sutisuyupiqa {{PLURAL:$1|ñawpaqllam t'inkita|ñawpaqllam $1 t'inkikun
 Munaspaykiqa, [[Special:WhatLinksHere/$2|hunt'a sutisuyuta]] qhaway.",
 'nolinkstoimage'            => "Kay rikchamanqa manam ima p'anqakunachu t'inkimun.",
 'morelinkstoimage'          => "Kay willañiqiman [[Special:WhatLinksHere/$1|aswan t'inkimuqkunata]] qhaway.",
+'linkstoimage-redirect'     => '$1 (willañiqi pusapuna) $2',
 'duplicatesoffile'          => 'Kay willañiqimanta iskaychasqa {{PLURAL:$1|willañiqim|$1 willañiqikunam}} kay qatiqpi ([[Special:FileDuplicateSearch/$2|astawan willachikuy]]):',
 'sharedupload'              => "Kay p'anqaqa $1 nisqamantam. Huk ruraykamaykunapipas llamk'achinapaq kanman.",
 'sharedupload-desc-there'   => "Kay p'anqaqa $1 nisqamantam. Huk ruraykamaykunapipas llamk'achinapaq kanman.
@@ -2353,6 +2355,7 @@ Qhipaq hark'ay hallch'a yaykuchisqatam kay qatiqpi rikunki:",
 'sp-contributions-username'            => 'IP huchha icha ruraqpa sutin:',
 'sp-contributions-toponly'             => 'Pata musuqchasqakunallata rikuchiy',
 'sp-contributions-submit'              => 'Maskay',
+'sp-contributions-showsizediff'        => "P'anqakunap hatun kayninpi wakin kayta rikuchiy",
 
 # What links here
 'whatlinkshere'            => "Kayman t'inkimuq",

@@ -800,7 +800,7 @@ Contrasinal temporal: $2',
 'showpreview'                      => 'Mostrar a vista previa',
 'showlivepreview'                  => 'Vista previa',
 'showdiff'                         => 'Mostrar os cambios',
-'anoneditwarning'                  => "'''Aviso:''' non accedeu ao sistema.
+'anoneditwarning'                  => "'''Aviso:''' Non accedeu ao sistema.
 O seu enderezo IP quedará rexistrado no historial de revisións desta páxina.",
 'anonpreviewwarning'               => "''Non accedeu ao sistema. Se garda a páxina, o seu enderezo IP quedará rexistrado no historial de edicións.''",
 'missingsummary'                   => "'''Aviso:''' esqueceu incluír o texto do campo resumo.
@@ -2417,7 +2417,6 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'sp-contributions-toponly'             => 'Mostrar só as últimas revisións',
 'sp-contributions-submit'              => 'Procurar',
 'sp-contributions-showsizediff'        => 'Mostrar a diferenza no tamaño da páxina',
-'sp-contributions-showsizediff-warn'   => 'Esta instancia ten un rexistro de modificacións recente limitado a $1. Se emprega esta opción, as páxinas que non estean neste rexistro non se mostrarán',
 
 # What links here
 'whatlinkshere'            => 'Páxinas que ligan con esta',

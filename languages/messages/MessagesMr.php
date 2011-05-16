@@ -1097,6 +1097,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'revdelete-text'              => "'''वगळलेल्या नोंदी आणि घटना अजूनही पानाच्या इतिहासात आणि नोंदीत आढळेल,परंतु मजकुराचा भाग सार्वजनिक स्वरूपात उपलब्ध राहणार नाही.'''
 
 अजून इतर  प्रतिबंध घातल्या शिवाय {{SITENAME}}चे इतर प्रबंधक झाकलेला मजकुर याच दुव्याने परतवू शकतील.",
+'revdelete-confirm'           => 'कृपया याची खात्री करा की तुम्ही हे करत आहात, त्याचे परिणाम जाणत आहात, आणि ते [[{{MediaWiki:Policy-url}}|मीडियाविकीच्या नीती]]नुसार आहे का?',
 'revdelete-suppress-text'     => "लपवण्याचा वापर '''फक्त''' पुढील गोष्टी असल्यासाठी होतो:
 * अनुपयोगी माहिती
 * अयोग्य व्यक्तिगत माहिती
@@ -1139,7 +1140,14 @@ $1",
 'logdelete-log-message'       => '$2 {{PLURAL:$2|घटने|घटनां}}साठी $1',
 'revdelete-hide-current'      => '$1 मधील $2 या वेळचे आवर्तन लपवता येत नाही, : ते सद्य पुनरावर्तन आहे.
 ते लपवता येत नाही.',
+'revdelete-show-no-access'    => '$2, $1 ची वस्तू दाखवताना अडचण: ती "प्रतिबंधित" खूण असलेली आहे.
+तुम्ही तिच्यापर्यंत पोचू शकत नाही.',
+'revdelete-modify-no-access'  => '$2, $1 ची वस्तू संपादताना अडचण: ती "प्रतिबंधित" खूण असलेली आहे.
+तुम्ही तिच्यापर्यंत पोचू शकत नाही.',
 'revdelete-modify-missing'    => 'वस्तू क्र. $1 ला संपादताना त्रुटी: ती माहितीकोषात नाही!',
+'revdelete-no-change'         => "'''सूचना:''' $2, $1 च्या वस्तूने अगोदरच दृश्यता रुपरेषा मागितल्या आहेत.",
+'revdelete-concurrent-change' => '$2, $1 ची वस्तू संपादताना चूक: तुम्ही तिला संपादताना दुसर्‍या व्यक्तिने वस्तूस संपादले असावे.
+कृपया याद्या तपासा.',
 'revdelete-reason-dropdown'   => '*सामान्य वगळण्याची कारणे
 ** प्रताधिकार उल्लंघन
 ** अयोग्य व्यक्तिगत माहिती
@@ -1307,7 +1315,7 @@ $1",
 'savedprefs'                    => 'तुमच्या पसंती जतन केल्या आहेत.',
 'timezonelegend'                => 'वेळक्षेत्र',
 'localtime'                     => 'स्थानिक वेळ:',
-'timezoneuseserverdefault'      => 'सर्व्हर मूलस्थिती वापरा',
+'timezoneuseserverdefault'      => 'सर्व्हर मूलस्थिती वापरा ($1)',
 'timezoneuseoffset'             => 'इतर (वेळेतील अंतर लिहा)',
 'timezoneoffset'                => 'समासफरक¹:',
 'servertime'                    => 'विदागारदात्याची वेळ',
@@ -1511,6 +1519,7 @@ $1",
 'action-import'               => 'दुसर्‍या विकीवरुन हे पान आयात करा',
 'action-importupload'         => 'चढविलेल्या संचिकेतून पान आयात करा',
 'action-patrol'               => 'इतरांची संपादने तपासलेली म्हणून जतन करा',
+'action-unwatchedpages'       => 'न पाहिलेल्या पानांची यादी पहा',
 'action-trackback'            => 'एक विपरित पथ पाठवा',
 'action-mergehistory'         => 'पानाचा इतिहास विलीन करा',
 'action-userrights'           => 'सर्व सदस्यांचे अधिकार संपादा',
@@ -1634,6 +1643,7 @@ $1",
 'fileexists-shared-forbidden' => 'हे नाव असलेली एक संचिका शेअर्ड संचिका कोशात आधी पासून आहे; कृपया परत फिरा आणि नविन(वेगळ्या) नावाने ही संचिका पुन्हा चढवा.[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'ही संचिका खालील {{PLURAL:$1|संचिकेची|संचिकांची}} प्रत आहे:',
 'uploadwarning'               => 'चढवताना सूचना',
+'uploadwarning-text'          => 'कृपया खालील संचिका वर्णन संपादून पुनर्प्रयत्न करा.',
 'savefile'                    => 'संचिका जतन करा',
 'uploadedimage'               => '"[[$1]]" ही संचिका चढवली',
 'overwroteimage'              => '"[[$1]]" या संचिकेची नवीन आवृत्ती चढविली.',
@@ -1664,6 +1674,7 @@ $1",
 
 $1',
 'upload-warning-subj'         => 'चढवताना सूचना',
+'upload-warning-msg'          => 'तुमच्या चढवण्यात [$2] येथून चूक झाली. तुम्ही [[Special:Upload/stash/$1|चढवण्याचा अर्ज]] पुन्हा भरुन ही चूक दूर करू शकता.',
 
 'upload-proto-error'        => 'चूकीचा संकेत',
 'upload-proto-error-text'   => 'दूरस्थ चढवण्याच्या क्रियेत <code>http://</code>पासून किंवा <code>ftp://</code>पासून सूरू होणारी URL लागतात.',
@@ -1677,12 +1688,15 @@ $1',
 
 # ZipDirectoryReader
 'zip-wrong-format' => 'ही संचिका "झिप" प्रकारची नाही.',
+'zip-bad'          => 'ही संचिका दूषित किंवा न वाचता येणारी झिप संचिका आहे.
+ती सुरक्षिततेसाठी नीट तपासता आली नाही.',
 
 # Special:UploadStash
-'uploadstash'         => 'चढवणे लपवा',
-'uploadstash-clear'   => 'लपवलेल्या संचिका काढा',
-'uploadstash-nofiles' => 'तुमच्याकडे लपवलेल्या संचिका नाहीत.',
-'uploadstash-refresh' => 'संचिकांची यादी ताजीतवानी करा',
+'uploadstash'          => 'चढवणे लपवा',
+'uploadstash-clear'    => 'लपवलेल्या संचिका काढा',
+'uploadstash-nofiles'  => 'तुमच्याकडे लपवलेल्या संचिका नाहीत.',
+'uploadstash-errclear' => 'संचिका स्वच्छ करणे अयशस्वी.',
+'uploadstash-refresh'  => 'संचिकांची यादी ताजीतवानी करा',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'परवानगी नाही',
@@ -1698,6 +1712,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization पहा.',
 
 # HTTP errors
 'http-invalid-url'      => 'अवैध आंतरजालपत्ता: $1',
+'http-request-error'    => 'एचटीटीपी मागणी अज्ञात कारणामुळे अयशस्वी.',
 'http-read-error'       => 'एचटीटीपी वाचन त्रुटी.',
 'http-curl-error'       => 'आंतरजालपत्ता पकडताना चूक: $1',
 'http-host-unreachable' => 'आंतरजाल पत्त्यापाशी पोहोचले नाही',
@@ -2174,6 +2189,7 @@ $NEWPAGE
 'protectedarticle'            => '"[[$1]]" सुरक्षित केला',
 'modifiedarticleprotection'   => '"[[$1]]"करिता सुरक्षापातळी बदलली',
 'unprotectedarticle'          => '"[[$1]]" असुरक्षित केला.',
+'movedarticleprotection'      => 'सुरक्षापातळी "[[$2]]" येथून "[[$1]]" येथे हलवली.',
 'protect-title'               => '"$1" सुरक्षित करत आहे',
 'prot_1movedto2'              => '"[[$1]]" हे पान "[[$2]]" मथळ्याखाली स्थानांतरित केले.',
 'protect-legend'              => 'सुरक्षापातळीतील बदल निर्धारित करा',
@@ -2421,6 +2437,7 @@ $1',
 'proxyblocksuccess'           => 'झाले.',
 'sorbsreason'                 => '{{SITENAME}}ने वापरलेल्या DNSBL मध्ये तुमच्या अंकपत्त्याची नोंद उघड-उघड प्रतिनिधी म्हणून सूचित केली आहे.',
 'sorbs_create_account_reason' => '{{SITENAME}}च्या DNSBLने तुमचा अंकपत्ता उघड-उघड प्रतिनिधी म्हणून सूचित केला आहे.तुम्ही खाते उघडू शकत नाही',
+'cant-block-while-blocked'    => 'तुम्ही स्वतः प्रतिबंधित असताना इतरांना प्रतिबंधित करू शकत नाही.',
 'ipbnounblockself'            => 'तुम्ही स्वतः अप्रतिबंधित करू शकत नाही',
 
 # Developer tools
@@ -2531,6 +2548,7 @@ $1',
 'export-submit'     => 'निर्यात करा',
 'export-addcattext' => 'वर्गीकरणातून पाने भरा:',
 'export-addcat'     => 'भर',
+'export-addnstext'  => 'नामविश्वातून पाने वाढवा:',
 'export-addns'      => 'वाढवा',
 'export-download'   => 'संचिका म्हणून जतन करा',
 'export-templates'  => 'साचे आंतरभूत करा',
@@ -2546,6 +2564,7 @@ $1',
 'allmessages-filter-unmodified' => 'असंपादित',
 'allmessages-filter-all'        => 'सर्व',
 'allmessages-filter-modified'   => 'संपादित',
+'allmessages-prefix'            => 'उपसर्गाने गाळा:',
 'allmessages-language'          => 'भाषा:',
 'allmessages-filter-submit'     => 'चला',
 
@@ -2557,6 +2576,7 @@ $1',
 'djvu_no_xml'              => 'DjVu संचिकेकरिता XML ओढण्यात असमर्थ',
 'thumbnail_invalid_params' => 'इवल्याशाचित्राचा अयोग्य परिचय',
 'thumbnail_dest_directory' => 'लक्ष्य धारिकेच्या निर्मितीस असमर्थ',
+'thumbnail_image-missing'  => 'संचिका सापडत नाही: $1',
 
 # Special:Import
 'import'                     => 'पाने आयात करा',
@@ -2566,6 +2586,7 @@ $1',
 सर्व आंतरविकि आयात क्रिया [[Special:Log/import|आयात नोंदीत]] दाखल केल्या आहेत.',
 'import-interwiki-source'    => 'स्रोत विकी / पान:',
 'import-interwiki-history'   => 'या पानाकरिताची सार्‍या इतिहास आवर्तनांची नक्कल करा',
+'import-interwiki-templates' => 'साचे आंतरभूत करा',
 'import-interwiki-submit'    => 'आयात',
 'import-interwiki-namespace' => 'पाने नामविश्वात स्थानांतरीत करा:',
 'import-upload-filename'     => 'संचिकानाव:',
@@ -2574,6 +2595,7 @@ $1',
 'importstart'                => 'पाने आयात करत आहे...',
 'import-revision-count'      => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
 'importnopages'              => 'आयातीकरिता पाने नाहीत.',
+'imported-log-entries'       => '{{PLURAL:$1|आयात केलेली|आयात केलेल्या}} $1 {{PLURAL:$1|यादी प्रविष्टी|यादी प्रविष्ट्या}}.',
 'importfailed'               => 'अयशस्वी आयात: $1',
 'importunknownsource'        => 'आयात स्रोत प्रकार अज्ञात',
 'importcantopen'             => 'आयातीत संचिका उघडणे जमले नाही',
@@ -2591,6 +2613,8 @@ $1',
 'import-nonewrevisions'      => 'सारी आवर्तने पूर्वी आयात केली होती.',
 'xml-error-string'           => '$1 ओळ $2मध्ये , स्तंभ $3 (बाईट $4): $5',
 'import-upload'              => 'XML डाटा चढवा',
+'import-token-mismatch'      => 'अधिवेशन माहितीची हानी.
+कृपया पुन्हा प्रयत्न करा.',
 
 # Import log
 'importlogpage'                    => 'ईम्पोर्ट सूची',
@@ -2759,13 +2783,16 @@ $1',
 'show-big-image-preview' => '<small>या झलकेचा आकार: $1. पिक्सेल</small>',
 'show-big-image-other'   => '<small>इतर रिझॉल्युशन्स: $1.</small>',
 'show-big-image-size'    => '$1 × $2 पिक्सेल',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|चौकट|चौकटी}}',
 'file-info-png-repeat'   => '$1 {{PLURAL:$1|वेळा दाखवले|वेळा दाखवले}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|चौकट|चौकटी}}',
 
 # Special:NewFiles
 'newimages'             => 'नवीन संचिकांची यादी',
 'imagelisttext'         => "खाली '''$1''' संचिका {{PLURAL:$1|दिली आहे.|$2 क्रमाने दिल्या आहेत.}}",
 'newimages-summary'     => 'हे विशेष पान शेवटी चढविलेल्या संचिका दर्शविते.',
 'newimages-legend'      => 'गाळक',
+'newimages-label'       => 'संचिकानाम (किंवा त्याचा भाग):',
 'showhidebots'          => '(सांगकामे $1)',
 'noimages'              => 'बघण्यासारखे येथे काही नाही.',
 'ilsubmit'              => 'शोधा',
@@ -2913,6 +2940,7 @@ $1',
 'exif-gpsdifferential'             => 'GPS डिफरेंशीअल सुधारणा',
 'exif-jpegfilecomment'             => 'जेपीईजी संचिका टिप्पणी',
 'exif-keywords'                    => 'लघुशब्द',
+'exif-countrycreated'              => 'देश ज्याच्यात चित्र घेतले',
 'exif-objectname'                  => 'लघुशीर्षक',
 'exif-headline'                    => 'मथळा',
 'exif-source'                      => 'स्रोत',

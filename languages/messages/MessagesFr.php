@@ -1402,7 +1402,7 @@ Voici une valeur générée aléatoirement que vous pouvez utiliser : $1',
 'savedprefs'                    => 'Les préférences ont été sauvegardées.',
 'timezonelegend'                => 'Fuseau horaire :',
 'localtime'                     => 'Heure locale :',
-'timezoneuseserverdefault'      => 'Utiliser la valeur du serveur',
+'timezoneuseserverdefault'      => 'Utiliser la valeur par défaut du wiki ($1)',
 'timezoneuseoffset'             => 'Autre (spécifier le décalage)',
 'timezoneoffset'                => 'Décalage horaire¹ :',
 'servertime'                    => 'Heure du serveur :',
@@ -1729,6 +1729,7 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'emptyfile'                   => 'Le fichier que vous voulez téléverser semble vide.
 Ceci peut être dû à une erreur dans le nom du fichier.
 Veuillez vérifier que vous désirez vraiment téléverser ce fichier.',
+'windows-nonascii-filename'   => 'Le serveur ne supporte pas les noms de fichiers avec des caractères spéciaux.',
 'fileexists'                  => "Un fichier existe déjà sous ce nom.
 Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n’êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
 [[$1|thumb]]",
@@ -2510,7 +2511,6 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 'sp-contributions-toponly'             => 'Ne montrer que les articles dont je suis le dernier contributeur',
 'sp-contributions-submit'              => 'Rechercher',
 'sp-contributions-showsizediff'        => 'Afficher la différence dans la taille de la page',
-'sp-contributions-showsizediff-warn'   => 'Cette instance a un journal de modifications récentes limité à $1. Si vous utilisez cette option, les pages absentes de ce journal ne seront pas affichées.',
 
 # What links here
 'whatlinkshere'            => 'Pages liées',
