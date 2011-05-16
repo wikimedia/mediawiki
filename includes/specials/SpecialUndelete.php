@@ -109,7 +109,10 @@ class PageArchive {
 	function listRevisions() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'archive',
-			array( 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text', 'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id' ),
+			array(
+				'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
+				'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id'
+			),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 				   'ar_title' => $this->title->getDBkey() ),
 			'PageArchive::listRevisions',
@@ -254,7 +257,7 @@ class PageArchive {
 		if( is_null( $row->ar_text_id ) ) {
 			// An old row from MediaWiki 1.4 or previous.
 			// Text is embedded in this row in classic compression format.
-			return Revision::getRevisionText( $row, "ar_" );
+			return Revision::getRevisionText( $row, 'ar_' );
 		} else {
 			// New-style: keyed to the text storage backend.
 			$dbr = wfGetDB( DB_SLAVE );
@@ -265,7 +268,6 @@ class PageArchive {
 			return Revision::getRevisionText( $text );
 		}
 	}
-
 
 	/**
 	 * Fetch (and decompress if necessary) the stored text of the most
@@ -300,7 +302,7 @@ class PageArchive {
 		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
 			array( 'ar_namespace' => $this->title->getNamespace(),
 				   'ar_title' => $this->title->getDBkey() ) );
-		return ($n > 0);
+		return ( $n > 0 );
 	}
 
 	/**
@@ -363,11 +365,12 @@ class PageArchive {
 			return false;
 		}
 
-		if( trim( $comment ) != '' )
+		if( trim( $comment ) != '' ) {
 			$reason .= wfMsgForContent( 'colon-separator' ) . $comment;
+		}
 		$log->addEntry( 'restore', $this->title, $reason );
 
-		return array($textRestored, $filesRestored, $reason);
+		return array( $textRestored, $filesRestored, $reason );
 	}
 
 	/**
@@ -382,8 +385,9 @@ class PageArchive {
 	 * @return Mixed: number of revisions restored or false on failure
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
-		if ( wfReadOnly() )
+		if ( wfReadOnly() ) {
 			return false;
+		}
 		$restoreAll = empty( $timestamps );
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -458,7 +462,7 @@ class PageArchive {
 		$ret = $dbw->resultObject( $result );
 		$rev_count = $dbw->numRows( $result );
 		if( !$rev_count ) {
-			wfDebug( __METHOD__.": no revisions to restore\n" );
+			wfDebug( __METHOD__ . ": no revisions to restore\n" );
 			return false; // ???
 		}
 
@@ -468,7 +472,7 @@ class PageArchive {
 
 		if( $makepage ) {
 			// Check the state of the newest to-be version...
-			if( !$unsuppress && ($row->ar_deleted & Revision::DELETED_TEXT) ) {
+			if( !$unsuppress && ( $row->ar_deleted & Revision::DELETED_TEXT ) ) {
 				return false; // we can't leave the current revision like this!
 			}
 			// Safe to insert now...
@@ -478,7 +482,7 @@ class PageArchive {
 			// Check if a deleted revision will become the current revision...
 			if( $row->ar_timestamp > $previousTimestamp ) {
 				// Check the state of the newest to-be version...
-				if( !$unsuppress && ($row->ar_deleted & Revision::DELETED_TEXT) ) {
+				if( !$unsuppress && ( $row->ar_deleted & Revision::DELETED_TEXT ) ) {
 					return false; // we can't leave the current revision like this!
 				}
 			}
@@ -490,8 +494,11 @@ class PageArchive {
 		foreach ( $ret as $row ) {
 			// Check for key dupes due to shitty archive integrity.
 			if( $row->ar_rev_id ) {
-				$exists = $dbw->selectField( 'revision', '1', array('rev_id' => $row->ar_rev_id), __METHOD__ );
-				if( $exists ) continue; // don't throw DB errors
+				$exists = $dbw->selectField( 'revision', '1',
+					array( 'rev_id' => $row->ar_rev_id ), __METHOD__ );
+				if( $exists ) {
+					continue; // don't throw DB errors
+				}
 			}
 			// Insert one revision at a time...maintaining deletion status
 			// unless we are specifically removing all restrictions...
@@ -594,7 +601,7 @@ class SpecialUndelete extends SpecialPage {
 		} elseif ( $wgUser->isAllowed( 'deletedtext' ) ) {
 			$this->mAllowed = false; // user cannot restore
 			$this->mCanView = true; // user can view content
-		}  else { // user can only view the list of revisions
+		} else { // user can only view the list of revisions
 			$this->mAllowed = false;
 			$this->mCanView = false;
 			$this->mTimestamp = '';
@@ -632,9 +639,9 @@ class SpecialUndelete extends SpecialPage {
 		$this->loadRequest();
 
 		if ( $this->mAllowed ) {
-			$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+			$wgOut->setPageTitle( wfMsg( 'undeletepage' ) );
 		} else {
-			$wgOut->setPagetitle( wfMsg( "viewdeletedpage" ) );
+			$wgOut->setPageTitle( wfMsg( 'viewdeletedpage' ) );
 		}
 
 		if( $par != '' ) {
@@ -648,7 +655,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if( is_null( $this->mTargetObj ) ) {
-		# Not all users can just browse every deleted page from the list
+			# Not all users can just browse every deleted page from the list
 			if( $wgUser->isAllowed( 'browsearchive' ) ) {
 				$this->showSearchForm();
 
@@ -685,7 +692,7 @@ class SpecialUndelete extends SpecialPage {
 				return $this->showFile( $this->mFile );
 			}
 		}
-		if( $this->mRestore && $this->mAction == "submit" ) {
+		if( $this->mRestore && $this->mAction == 'submit' ) {
 			global $wgUploadMaintenance;
 			if( $wgUploadMaintenance && $this->mTargetObj && $this->mTargetObj->getNamespace() == NS_FILE ) {
 				$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n", array( 'filedelete-maintenance' ) );
@@ -693,8 +700,8 @@ class SpecialUndelete extends SpecialPage {
 			}
 			return $this->undelete();
 		}
-		if( $this->mInvert && $this->mAction == "submit" ) {
-			return $this->showHistory( );
+		if( $this->mInvert && $this->mAction == 'submit' ) {
+			return $this->showHistory();
 		}
 		return $this->showHistory();
 	}
@@ -757,7 +764,9 @@ class SpecialUndelete extends SpecialPage {
 
 		$skin = $wgUser->getSkin();
 
-		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
+		if( !preg_match( '/[0-9]{14}/', $timestamp ) ) {
+			return 0;
+		}
 
 		$archive = new PageArchive( $this->mTargetObj );
 		$rev = $archive->getRevision( $timestamp );
@@ -767,8 +776,8 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
-		if( $rev->isDeleted(Revision::DELETED_TEXT) ) {
-			if( !$rev->userCan(Revision::DELETED_TEXT) ) {
+		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
 				return;
 			} else {
@@ -826,7 +835,7 @@ class SpecialUndelete extends SpecialPage {
 		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 
 		if( $this->mPreview ) {
-			//Hide [edit]s
+			// Hide [edit]s
 			$popts = $wgOut->parserOptions();
 			$popts->setEditSection( false );
 			$wgOut->parserOptions( $popts );
@@ -881,7 +890,7 @@ class SpecialUndelete extends SpecialPage {
 	function revDeleteLink( $rev ) {
 		global $wgUser;
 		$canHide = $wgUser->isAllowed( 'deleterevision' );
-		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' )) ) {
+		if( $canHide || ( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) ) {
 			$skin = $wgUser->getSkin();
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$revdlink = $skin->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
@@ -948,7 +957,7 @@ class SpecialUndelete extends SpecialPage {
 
 	/**
 	 * @param $rev Revision
-	 * @param  $prefix
+	 * @param $prefix
 	 * @return string
 	 */
 	private function diffHeader( $rev, $prefix ) {
@@ -970,7 +979,7 @@ class SpecialUndelete extends SpecialPage {
 		// Add show/hide deletion links if available
 		$del .= $this->revDeleteLink( $rev );
 		return
-			'<div id="mw-diff-'.$prefix.'title1"><strong>' .
+			'<div id="mw-diff-' . $prefix . 'title1"><strong>' .
 				$sk->link(
 					$targetPage,
 					wfMsgHtml(
@@ -1004,7 +1013,7 @@ class SpecialUndelete extends SpecialPage {
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array(
 				'method' => 'POST',
-				'action' => $this->getTitle()->getLocalUrl(
+				'action' => $this->getTitle()->getLocalURL(
 					'target=' . urlencode( $this->mTarget ) .
 					'&file=' . urlencode( $key ) .
 					'&token=' . urlencode( $wgUser->editToken( $key ) ) )
@@ -1037,32 +1046,35 @@ class SpecialUndelete extends SpecialPage {
 		wfStreamFile( $path );
 	}
 
-	private function showHistory( ) {
+	private function showHistory() {
 		global $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 		if( $this->mAllowed ) {
-			$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+			$wgOut->setPageTitle( wfMsg( 'undeletepage' ) );
 		} else {
-			$wgOut->setPagetitle( wfMsg( 'viewdeletedpage' ) );
+			$wgOut->setPageTitle( wfMsg( 'viewdeletedpage' ) );
 		}
 
-		$wgOut->wrapWikiMsg(  "<div class='mw-undelete-pagetitle'>\n$1\n</div>\n", array ( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() ) );
+		$wgOut->wrapWikiMsg(
+			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
+			array( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() )
+		);
 
 		$archive = new PageArchive( $this->mTargetObj );
 		/*
 		$text = $archive->getLastRevisionText();
 		if( is_null( $text ) ) {
-			$wgOut->addWikiMsg( "nohistory" );
+			$wgOut->addWikiMsg( 'nohistory' );
 			return;
 		}
 		*/
 		$wgOut->addHTML( '<div class="mw-undelete-history">' );
 		if ( $this->mAllowed ) {
-			$wgOut->addWikiMsg( "undeletehistory" );
-			$wgOut->addWikiMsg( "undeleterevdel" );
+			$wgOut->addWikiMsg( 'undeletehistory' );
+			$wgOut->addWikiMsg( 'undeleterevdel' );
 		} else {
-			$wgOut->addWikiMsg( "undeletehistorynoadmin" );
+			$wgOut->addWikiMsg( 'undeletehistorynoadmin' );
 		}
 		$wgOut->addHTML( '</div>' );
 
@@ -1117,12 +1129,12 @@ class SpecialUndelete extends SpecialPage {
 					"<tr>
 						<td>&#160;</td>
 						<td class='mw-input'>" .
-							Xml::checkLabel( wfMsg('revdelete-unsuppress'), 'wpUnsuppress',
+							Xml::checkLabel( wfMsg( 'revdelete-unsuppress' ), 'wpUnsuppress',
 								'mw-undelete-unsuppress', $this->mUnsuppress ).
 						"</td>
 					</tr>";
 			} else {
-				$unsuppressBox = "";
+				$unsuppressBox = '';
 			}
 			$table =
 				Xml::fieldset( wfMsg( 'undelete-fieldset-title' ) ) .
@@ -1159,7 +1171,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if( $haveRevisions ) {
 			# The page's stored (deleted) history:
-			$wgOut->addHTML("<ul>");
+			$wgOut->addHTML( '<ul>' );
 			$remaining = $revisions->numRows();
 			$earliestLiveTime = $this->mTargetObj->getEarliestRevTime();
 
@@ -1168,19 +1180,19 @@ class SpecialUndelete extends SpecialPage {
 				$wgOut->addHTML( $this->formatRevisionRow( $row, $earliestLiveTime, $remaining, $sk ) );
 			}
 			$revisions->free();
-			$wgOut->addHTML("</ul>");
+			$wgOut->addHTML( '</ul>' );
 		} else {
-			$wgOut->addWikiMsg( "nohistory" );
+			$wgOut->addWikiMsg( 'nohistory' );
 		}
 
 		if( $haveFiles ) {
 			$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'filehist' ) ) . "\n" );
-			$wgOut->addHTML( "<ul>" );
+			$wgOut->addHTML( '<ul>' );
 			foreach ( $files as $row ) {
 				$wgOut->addHTML( $this->formatFileRow( $row, $sk ) );
 			}
 			$files->free();
-			$wgOut->addHTML( "</ul>" );
+			$wgOut->addHTML( '</ul>' );
 		}
 
 		if ( $this->mAllowed ) {
@@ -1205,7 +1217,7 @@ class SpecialUndelete extends SpecialPage {
 		if( $this->mAllowed ) {
 			if( $this->mInvert ) {
 				if( in_array( $ts, $this->mTargetTimestamp ) ) {
-					$checkBox = Xml::check( "ts$ts");
+					$checkBox = Xml::check( "ts$ts" );
 				} else {
 					$checkBox = Xml::check( "ts$ts", true );
 				}
@@ -1221,12 +1233,12 @@ class SpecialUndelete extends SpecialPage {
 			# Last link
 			if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 				$pageLink = htmlspecialchars( $wgLang->timeanddate( $ts, true ) );
-				$last = wfMsgHtml('diff');
-			} else if( $remaining > 0 || ($earliestLiveTime && $ts > $earliestLiveTime) ) {
+				$last = wfMsgHtml( 'diff' );
+			} else if( $remaining > 0 || ( $earliestLiveTime && $ts > $earliestLiveTime ) ) {
 				$pageLink = $this->getPageLink( $rev, $titleObj, $ts, $sk );
 				$last = $sk->linkKnown(
 					$titleObj,
-					wfMsgHtml('diff'),
+					wfMsgHtml( 'diff' ),
 					array(),
 					array(
 						'target' => $this->mTargetObj->getPrefixedText(),
@@ -1236,16 +1248,17 @@ class SpecialUndelete extends SpecialPage {
 				);
 			} else {
 				$pageLink = $this->getPageLink( $rev, $titleObj, $ts, $sk );
-				$last = wfMsgHtml('diff');
+				$last = wfMsgHtml( 'diff' );
 			}
 		} else {
 			$pageLink = htmlspecialchars( $wgLang->timeanddate( $ts, true ) );
-			$last = wfMsgHtml('diff');
+			$last = wfMsgHtml( 'diff' );
 		}
 		// User links
 		$userLink = $sk->revUserTools( $rev );
 		// Revision text size
-		if( !is_null($size = $row->ar_len) ) {
+		$size = $row->ar_len;
+		if( !is_null( $size ) ) {
 			$stxt = $sk->formatRevisionSize( $size );
 		}
 		// Edit summary
@@ -1262,7 +1275,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$ts = wfTimestamp( TS_MW, $row->fa_timestamp );
 		if( $this->mAllowed && $row->fa_storage_key ) {
-			$checkBox = Xml::check( "fileid" . $row->fa_id );
+			$checkBox = Xml::check( 'fileid' . $row->fa_id );
 			$key = urlencode( $row->fa_storage_key );
 			$pageLink = $this->getFileLink( $file, $this->getTitle(), $ts, $key, $sk );
 		} else {
@@ -1323,8 +1336,9 @@ class SpecialUndelete extends SpecialPage {
 					'timestamp' => $ts
 				)
 			);
-			if( $rev->isDeleted(Revision::DELETED_TEXT) )
+			if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$link = '<span class="history-deleted">' . $link . '</span>';
+			}
 			return $link;
 		}
 	}
@@ -1352,8 +1366,9 @@ class SpecialUndelete extends SpecialPage {
 					'token' => $wgUser->editToken( $key )
 				)
 			);
-			if( $file->isDeleted(File::DELETED_FILE) )
+			if( $file->isDeleted( File::DELETED_FILE ) ) {
 				$link = '<span class="history-deleted">' . $link . '</span>';
+			}
 			return $link;
 		}
 	}
@@ -1371,8 +1386,9 @@ class SpecialUndelete extends SpecialPage {
 		} else {
 			$link = $sk->userLink( $file->getRawUser(), $file->getRawUserText() ) .
 				$sk->userToolLinks( $file->getRawUser(), $file->getRawUserText() );
-			if( $file->isDeleted( File::DELETED_USER ) )
+			if( $file->isDeleted( File::DELETED_USER ) ) {
 				$link = '<span class="history-deleted">' . $link . '</span>';
+			}
 			return $link;
 		}
 	}
@@ -1386,11 +1402,13 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	function getFileComment( $file, $sk ) {
 		if( !$file->userCan( File::DELETED_COMMENT ) ) {
-			return '<span class="history-deleted"><span class="comment">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span></span>';
+			return '<span class="history-deleted"><span class="comment">' .
+				wfMsgHtml( 'rev-deleted-comment' ) . '</span></span>';
 		} else {
 			$link = $sk->commentBlock( $file->getRawDescription() );
-			if( $file->isDeleted(File::DELETED_COMMENT) )
+			if( $file->isDeleted( File::DELETED_COMMENT ) ) {
 				$link = '<span class="history-deleted">' . $link . '</span>';
+			}
 			return $link;
 		}
 	}
@@ -1409,17 +1427,18 @@ class SpecialUndelete extends SpecialPage {
 				$this->mFileVersions,
 				$this->mUnsuppress );
 
-			if( is_array($ok) ) {
-				if ( $ok[1] ) // Undeleted file count
+			if( is_array( $ok ) ) {
+				if ( $ok[1] ) { // Undeleted file count
 					wfRunHooks( 'FileUndeleteComplete', array(
 						$this->mTargetObj, $this->mFileVersions,
-						$wgUser, $this->mComment) );
+						$wgUser, $this->mComment ) );
+				}
 
 				$skin = $wgUser->getSkin();
 				$link = $skin->linkKnown( $this->mTargetObj );
 				$wgOut->addWikiMsgArray( 'undeletedpage', array( $link ), array( 'replaceafter' ) );
 			} else {
-				$wgOut->showFatalError( wfMsg( "cannotundelete" ) );
+				$wgOut->showFatalError( wfMsg( 'cannotundelete' ) );
 				$wgOut->addWikiMsg( 'undeleterevdel' );
 			}
 
@@ -1429,7 +1448,7 @@ class SpecialUndelete extends SpecialPage {
 				$wgOut->addWikiText( $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) );
 			}
 		} else {
-			$wgOut->showFatalError( wfMsg( "cannotundelete" ) );
+			$wgOut->showFatalError( wfMsg( 'cannotundelete' ) );
 		}
 		return false;
 	}
