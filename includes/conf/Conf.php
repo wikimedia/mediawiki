@@ -57,6 +57,20 @@ abstract class Conf {
 		// @todo implement this:
 		// $this->initExtensionDefaults();
 		$this->initChangedSettings();
+		if( isset( $confConfig['exposeGlobals'] ) ) {
+			$this->exposeGlobals();
+		}
+	}
+
+	/**
+	 * Expose all config variables as globals for back-compat. Ewwww.
+	 */
+	private function exposeGlobals() {
+		$allVars = $this->defaults + $this->extensionDefaults + $this->values;
+		foreach( $allVars as $name => $value ) {
+			$var = 'wg' . ucfirst( $name );
+			$GLOBALS[$var] = $value;
+		}
 	}
 
 	/**
