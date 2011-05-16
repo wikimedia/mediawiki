@@ -9,8 +9,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
  *
  * @ingroup Media
  */
-class ImageGallery
-{
+class ImageGallery {
 	var $mImages, $mShowBytes, $mShowFilename;
 	var $mCaption = false;
 
@@ -38,13 +37,13 @@ class ImageGallery
 	 */
 	const THUMB_PADDING = 30;
 	const GB_PADDING = 5;
-	//2px borders on each side + 2px implied padding on each side
+	// 2px borders on each side + 2px implied padding on each side
 	const GB_BORDERS = 8;
 
 	/**
 	 * Create a new image gallery object.
 	 */
-	function __construct( ) {
+	function __construct() {
 		global $wgGalleryOptions;
 		$this->mImages = array();
 		$this->mShowBytes = $wgGalleryOptions['showBytes'];
@@ -96,7 +95,7 @@ class ImageGallery
 	 * invalid numbers will be rejected
 	 */
 	public function setPerRow( $num ) {
-		if ($num >= 0) {
+		if ( $num >= 0 ) {
 			$this->mPerRow = (int)$num;
 		}
 	}
@@ -107,7 +106,7 @@ class ImageGallery
 	 * @param $num Integer > 0; invalid numbers will be ignored
 	 */
 	public function setWidths( $num ) {
-		if ($num > 0) {
+		if ( $num > 0 ) {
 			$this->mWidths = (int)$num;
 		}
 	}
@@ -118,7 +117,7 @@ class ImageGallery
 	 * @param $num Integer > 0; invalid numbers will be ignored
 	 */
 	public function setHeights( $num ) {
-		if ($num > 0) {
+		if ( $num > 0 ) {
 			$this->mHeights = (int)$num;
 		}
 	}
@@ -147,7 +146,7 @@ class ImageGallery
 			$title = $title->getTitle();
 		}
 		$this->mImages[] = array( $title, $html, $alt );
-		wfDebug( "ImageGallery::add " . $title->getText() . "\n" );
+		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
 	}
 
 	/**
@@ -157,14 +156,13 @@ class ImageGallery
 	* @param $html  String: Additional HTML text to be shown. The name and size of the image are always shown.
 	* @param $alt   String: Alt text for the image
 	*/
-	function insert( $title, $html='', $alt='' ) {
+	function insert( $title, $html = '', $alt = '' ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
 		array_unshift( $this->mImages, array( &$title, $html, $alt ) );
 	}
-
 
 	/**
 	 * isEmpty() returns true if the gallery contains no images
@@ -221,7 +219,7 @@ class ImageGallery
 
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING + self::GB_BORDERS );
-			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : ""; 
+			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : ''; 
 			# _width is ignored by any sane browser. IE6 doesn't know max-width so it uses _width instead
 			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
 		}
@@ -234,7 +232,10 @@ class ImageGallery
 			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
 		}
 
-		$params = array( 'width' => $this->mWidths, 'height' => $this->mHeights );
+		$params = array(
+			'width' => $this->mWidths,
+			'height' => $this->mHeights
+		);
 		# Output each image...
 		foreach ( $this->mImages as $pair ) {
 			$nt = $pair[0];
@@ -260,11 +261,11 @@ class ImageGallery
 
 			if( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.(self::THUMB_PADDING + $this->mHeights).'px;">'
+				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
 			} elseif( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.(self::THUMB_PADDING + $this->mHeights).'px;">' .
+				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">' .
 					Linker::link(
 						$nt,
 						htmlspecialchars( $nt->getText() ),
@@ -275,14 +276,13 @@ class ImageGallery
 					'</div>';
 			} elseif( !( $thumb = $img->transform( $params ) ) ) {
 				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.(self::THUMB_PADDING + $this->mHeights).'px;">'
+				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				# We get layout problems with the margin, if the image is smaller 
 				# than the line-height (17), so we add less margin in these cases.
 				$minThumbHeight =  $thumb->height > 17 ? $thumb->height : 17;
-				$vpad = floor(( self::THUMB_PADDING + $this->mHeights - $minThumbHeight ) /2);
-				
+				$vpad = floor( ( self::THUMB_PADDING + $this->mHeights - $minThumbHeight ) /2 );
 
 				$imageParameters = array(
 					'desc-link' => true,
@@ -295,12 +295,12 @@ class ImageGallery
 				}
 
 				# Set both fixed width and min-height.
-				$thumbhtml = "\n\t\t\t".
-					'<div class="thumb" style="width: ' .($this->mWidths + self::THUMB_PADDING).'px;">'
+				$thumbhtml = "\n\t\t\t" .
+					'<div class="thumb" style="width: ' . ( $this->mWidths + self::THUMB_PADDING ) . 'px;">'
 					# Auto-margin centering for block-level elements. Needed now that we have video
 					# handlers since they may emit block-level elements as opposed to simple <img> tags.
 					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
-					. '<div style="margin:'.$vpad.'px auto;">'
+					. '<div style="margin:' . $vpad . 'px auto;">'
 					. $thumb->toHtml( $imageParameters ) . '</div></div>';
 
 				// Call parser transform hook
