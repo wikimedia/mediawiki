@@ -43,8 +43,8 @@ if ( $wgArticlePath === false ) {
 
 if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
 	# 'view' is assumed the default action path everywhere in the code
-	# but is rarely filled in $wgActionPaths 
-	$wgActionPaths['view'] = $wgArticlePath ;
+	# but is rarely filled in $wgActionPaths
+	$wgActionPaths['view'] = $wgArticlePath;
 }
 
 if ( $wgStylePath === false ) $wgStylePath = "$wgScriptPath/skins";
@@ -353,7 +353,7 @@ if ( is_null( $wgLocaltimezone) ) {
 
 date_default_timezone_set( $wgLocaltimezone );
 if( is_null( $wgLocalTZoffset ) ) {
-	$wgLocalTZoffset = date('Z') / 60;
+	$wgLocalTZoffset = date( 'Z' ) / 60;
 }
 
 # Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
