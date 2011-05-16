@@ -2167,6 +2167,7 @@ $wgMessageStructure = array(
 		'unlockdbsuccesstext',
 		'lockfilenotwritable',
 		'databasenotlocked',
+		'lockedbyandtime',
 	),
 	'movepage' => array(
 		'move-page',
