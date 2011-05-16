@@ -133,15 +133,6 @@ if ( $wgUseFileCache && $wgTitle !== null ) {
 	wfProfileOut( 'index.php-filecache' );
 }
 
-# Setting global variables in mediaWiki
-$mediaWiki->setVal( 'DisableHardRedirects', $wgDisableHardRedirects );
-$mediaWiki->setVal( 'EnableCreativeCommonsRdf', $wgEnableCreativeCommonsRdf );
-$mediaWiki->setVal( 'EnableDublinCoreRdf', $wgEnableDublinCoreRdf );
-$mediaWiki->setVal( 'Server', $wgServer );
-$mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
-$mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
-$mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
-
 $mediaWiki->performRequestForTitle( $wgArticle );
 $mediaWiki->finalCleanup();
 
