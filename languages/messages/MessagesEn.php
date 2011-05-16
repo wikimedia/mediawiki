@@ -2137,7 +2137,7 @@ this file is $2.',
 'emptyfile'                   => 'The file you uploaded seems to be empty.
 This might be due to a typo in the file name.
 Please check whether you really want to upload this file.',
-'windows-nonascii-filename'   => 'The server does not support filenames with special characters.',
+'windows-nonascii-filename'   => 'This wiki does not support filenames with special characters.',
 'fileexists'                  => "A file with this name exists already, please check '''<tt>[[:$1]]</tt>''' if you are not sure if you want to change it.
 [[$1|thumb]]",
 'filepageexists'              => "The description page for this file has already been created at '''<tt>[[:$1]]</tt>''', but no file with this name currently exists.
