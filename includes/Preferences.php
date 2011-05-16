@@ -1182,10 +1182,9 @@ class Preferences {
 
 		global $wgLocalTZoffset, $wgLocaltimezone;
 		// Check that $wgLocalTZoffset is the same as $wgLocaltimezone
-		if ( $wgLocalTZoffset == date('Z') / 60 ) {
+		if ( $wgLocalTZoffset == date( 'Z' ) / 60 ) {
 			$server_tz_msg = wfMsg( 'timezoneuseserverdefault', $wgLocaltimezone );
-		}
-		else {
+		} else {
 		 	$tzstring = sprintf( '%+03d:%02d', floor( $wgLocalTZoffset / 60 ), abs( $wgLocalTZoffset ) % 60 );
 			$server_tz_msg = wfMsg( 'timezoneuseserverdefault', $tzstring );
 		}
