@@ -2335,8 +2335,8 @@ class OutputPage {
 			$wgUseAjax, $wgAjaxWatch, $wgEnableMWSuggest;
 
 		// Add base resources
-		$this->addModules( 'mediawiki.util' );
-		if( $wgIncludeLegacyJavaScript ){
+		$this->addModules( array( 'mediawiki.user', 'mediawiki.util', 'mediawiki.action.view.tablesorting' ) );
+		if ( $wgIncludeLegacyJavaScript ){
 			$this->addModules( 'mediawiki.legacy.wikibits' );
 		}
 
@@ -2358,7 +2358,6 @@ class OutputPage {
 		if( $this->getUser()->getBoolOption( 'editsectiononrightclick' ) ) {
 			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
 		}
-		$this->addModules( 'mediawiki.action.view.tablesorting' );
 	}
 
 	/**
