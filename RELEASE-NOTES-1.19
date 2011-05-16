@@ -52,6 +52,7 @@ used in Tiff files.
 * (bug 1780) Uploading files with non-ascii characters are now forbidden on
   Windows.
 * (bug 23464) File: prefixes are now chopped off during uploading.
+* (bug 28174) Message amended to not explicitly refer to LTR/RTL screen layout.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
