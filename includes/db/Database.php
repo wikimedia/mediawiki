@@ -2963,7 +2963,7 @@ class DBConnectionError extends DBError {
 	}
 
 	function getHTML() {
-		global $wgUseFileCache, $wgShowDBErrorBacktrace;
+		global $wgShowDBErrorBacktrace;
 
 		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', 'Sorry! This site is experiencing technical difficulties.' ) );
 		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
