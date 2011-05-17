@@ -3211,32 +3211,33 @@ function wfDeprecated( $function ) {
  * $wgDevelopmentWarnings
  *
  * @param $msg String: message to send
- * @param $callerOffset Integer: number of itmes to go back in the backtrace to
+ * @param $callerOffset Integer: number of items to go back in the backtrace to
  *        find the correct caller (1 = function calling wfWarn, ...)
  * @param $level Integer: PHP error level; only used when $wgDevelopmentWarnings
  *        is true
  */
 function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
+	global $wgDevelopmentWarnings;
+
 	$callers = wfDebugBacktrace();
-	if( isset( $callers[$callerOffset + 1] ) ){
+	if ( isset( $callers[$callerOffset + 1] ) ) {
 		$callerfunc = $callers[$callerOffset + 1];
 		$callerfile = $callers[$callerOffset];
-		if( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ) {
+		if ( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ) {
 			$file = $callerfile['file'] . ' at line ' . $callerfile['line'];
 		} else {
 			$file = '(internal function)';
 		}
 		$func = '';
-		if( isset( $callerfunc['class'] ) ) {
+		if ( isset( $callerfunc['class'] ) ) {
 			$func .= $callerfunc['class'] . '::';
 		}
-		if( isset( $callerfunc['function'] ) ) {
+		if ( isset( $callerfunc['function'] ) ) {
 			$func .= $callerfunc['function'];
 		}
 		$msg .= " [Called from $func in $file]";
 	}
 
-	global $wgDevelopmentWarnings;
 	if ( $wgDevelopmentWarnings ) {
 		trigger_error( $msg, $level );
 	} else {
