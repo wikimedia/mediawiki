@@ -1719,7 +1719,7 @@ este tem $2.',
 'emptyfile'                   => 'O ficheiro que enviou parece estar vazio.
 Isto pode dever-se a um erro no nome do ficheiro.
 Verifique se é realmente este o ficheiro que deseja carregar, por favor.',
-'windows-nonascii-filename'   => 'O servidor não aceita nomes de ficheiros com caracteres especiais.',
+'windows-nonascii-filename'   => 'A wiki não aceita nomes de ficheiros com caracteres especiais.',
 'fileexists'                  => "Já existe um ficheiro com este nome.
 Verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza de que quer alterar o ficheiro actual, por favor.
 [[$1|thumb]]",

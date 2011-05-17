@@ -1208,7 +1208,7 @@ Hei ass een zoufälleg generéierte Wäert deen Dir benotze kënnt: $1',
 'savedprefs'                    => 'Är Astellunge goufe gespäichert.',
 'timezonelegend'                => 'Zäitzon:',
 'localtime'                     => 'Lokalzäit:',
-'timezoneuseserverdefault'      => 'De Standardwert vum Server benotzen',
+'timezoneuseserverdefault'      => 'De Standardwäert vun der Wiki ($1) benotzen',
 'timezoneuseoffset'             => 'Aner (Differenz uginn)',
 'timezoneoffset'                => 'Zäit-Differenz¹:',
 'servertime'                    => 'Serverzäit:',
@@ -1535,6 +1535,7 @@ Erlaabt {{PLURAL:$3|ass|sinn}}: $2.',
 'large-file'                  => "D'Fichiere sollen no Méiglechkeet net méi grouss wéi $1 sinn. Dëse Fichier huet $2.",
 'largefileserver'             => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
 'emptyfile'                   => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
+'windows-nonascii-filename'   => "Dës Wiki ënnerstëtzt d'Spezialzeechen an de Fichiersnimm net.",
 'fileexists'                  => "Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g.
 '''<tt>[[:$1]]</tt>''' wann Dir net sécher sidd, ob Dir den Numm ännere wëllt.
 [[$1|thumb]]",
@@ -2295,6 +2296,7 @@ $1',
 'sp-contributions-username'            => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-toponly'             => 'Nëmmen Ännerunge weisen déi déi lescht Versioun sinn',
 'sp-contributions-submit'              => 'Sichen',
+'sp-contributions-showsizediff'        => 'Ënnerscheed vun der Gréisst vun der Säit weisen',
 
 # What links here
 'whatlinkshere'            => 'Linken op dës Säit',
@@ -2459,6 +2461,7 @@ Denkt drun [[Special:UnlockDB|d'Spär erëm ewechzehuele]] soubaal d'Maintenance
 'lockfilenotwritable' => "De Fichier mat de Späre vun der Datebank kann net geännert ginn.
 Fir d'Datebank ze spären oder fir d'Spär opzehiewen muss dëse Fichier vum Webserver geännert kënne ginn.",
 'databasenotlocked'   => "D'Datebank ass net gespaart.",
+'lockedbyandtime'     => '(vum $1 de(n) $2 ëm $3 Auer)',
 
 # Move page
 'move-page'                    => 'Réckel $1',

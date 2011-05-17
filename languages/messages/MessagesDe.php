@@ -2308,6 +2308,8 @@ Es werden dir solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du 
              Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
+Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{fullurl:{{#special:Preferences}}}}
+
 Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{fullurl:{{#special:Watchlist}}/edit}}
 
 Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL
@@ -2667,6 +2669,7 @@ Siehe die [[Special:BlockList|Liste der gesperrten IP-Adressen und Benutzernamen
 'unlockdbsuccesstext' => 'Die {{SITENAME}}-Datenbank wurde freigegeben.',
 'lockfilenotwritable' => 'Die Datenbank-Sperrdatei ist nicht beschreibbar. Zum Sperren oder Freigeben der Datenbank muss diese für den Webserver beschreibbar sein.',
 'databasenotlocked'   => 'Die Datenbank ist nicht gesperrt.',
+'lockedbyandtime'     => '(von $1 am $2 um $3 Uhr)',
 
 # Move page
 'move-page'                    => 'Verschieben von „$1“',

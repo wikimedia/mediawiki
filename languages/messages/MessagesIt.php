@@ -2133,14 +2133,17 @@ Non verranno inviate altre notifiche in caso di ulteriori cambiamenti, a meno ch
              Il sistema di notifica di {{SITENAME}}, al tuo servizio
 
 --
-Per modificare le impostazioni della lista degli osservati speciali, visita
-{{fullurl:Special:Watchlist/edit}}
+Per modificare le impostazioni delle notifiche via e-mail, visita 
+{{fullurl:{{#special:Preferences}}}}
 
-Per cancellare la pagina della lista degli osservati speciali, visita
+Per modificare la lista degli osservati speciali, visita 
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Per rimuovere la pagina dalla lista degli osservati speciali, visita
 $UNWATCHURL
 
-Per dare il tuo feedback e ricevere ulteriore assistenza:
-{{fullurl:Help:Aiuto}}',
+Per commentare e ricevere aiuto:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Cancella pagina',

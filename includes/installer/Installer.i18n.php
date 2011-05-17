@@ -5034,7 +5034,7 @@ chmod a+w $3</pre></div>',
 	'config-upload-deleted-help' => 'בחרו את התיקייה לארכוב קבצים מחוקים.
 כדאי שזה לא יהיה נגיש לכל העולם דרך הרשת.',
 	'config-logo' => 'כתובת הסמל:',
-	'config-logo-help' => 'המראה ההתחלתי של מדיה־ויקי מכיל מקום לסמל של 135 על 160 פיקסלים בפינה השמאלית העליונה (ימנית עבור שפות שנכתבות מימין לשמאל).
+	'config-logo-help' => 'המראה ההתחלתי של מדיה־ויקי מכיל מקום לסמל של 135 על 160 פיקסלים בפינה העליונה מעל תפריט הצד.
 יש להעלות תמונה בגודל מתאים ולהכניס את הכתובת כאן.
 
 אם אינכם רוצים סמל, השאירו את התיבה הזאת ריקה.',
@@ -5563,7 +5563,7 @@ Ez az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
 	'config-eaccel' => 'Az [http://eaccelerator.sourceforge.net/ eAccelerator] telepítve van',
 	'config-wincache' => 'A [http://www.iis.net/download/WinCacheForPhp WinCache] telepítve van',
 	'config-no-cache' => "'''Figyelmeztetés:''' Nem található [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] és [http://www.iis.net/download/WinCacheForPhp WinCache] sem.
-Az objektum-gyorsítótárazás nem lesz engedélyezve.",
+Objektum-gyorsítótárazás nem lesz engedélyezve.",
 	'config-diff3-bad' => 'GNU diff3 nem található.',
 	'config-imagemagick' => 'Az ImageMagick megtalálható a rendszeren: <code>$1</code>.
 A bélyegképek készítése engedélyezve lesz a feltöltések engedélyezése esetén.',
@@ -5850,9 +5850,9 @@ A fájlfeltöltés engedélyezéséhez változtasd meg a MediaWiki gyökérköny
 Normális esetben ennek nem szabad elérhetőnek lennie az internetről.',
 	'config-logo' => 'A logó URL-címe:',
 	'config-logo-help' => 'A MediaWiki alapértelmezett felülete helyet ad egy 135×160 pixeles logónak a bal felső sarokban.
-Töltsd fel a képet a megfelelő méretben, majd írd be az URL-címét ide.
+Tölts fel egy megfelelő méretű képet, majd írd be ide az URL-címét!
 
-Ha nem szeretnél logót használni, hagyd üresen ezt a mezőt.',
+Ha nem szeretnél logót használni, egyszerűen hagyd üresen a mezőt.',
 	'config-instantcommons' => 'Instant Commons engedélyezése',
 	'config-instantcommons-help' => 'Az [http://www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [http://commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.
 A használatához a MediaWikinek internethozzáférésre van szüksége. 
@@ -9385,7 +9385,7 @@ Daarmee wordt deze functie ingeschakeld.",
 	'config-upload-deleted-help' => 'Kies een map waarin verwijderde bestanden gearchiveerd kunnen worden.
 Idealiter is deze map niet via het web te benaderen.',
 	'config-logo' => 'URL voor logo:',
-	'config-logo-help' => 'Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x160 pixels in de linker bovenhoek.
+	'config-logo-help' => 'Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x160 pixels boven het menu.
 Upload een afbeelding met de juiste afmetingen en voer de URL hier in.
 
 Als u geen logo wilt gebruiken, kunt u dit veld leeg laten.',
@@ -11179,8 +11179,8 @@ Depois active esta opção.',
 	'config-upload-deleted-help' => 'Escolha um directório onde serão arquivados os ficheiros apagados.
 O ideal é que este directório não possa ser directamente acedido a partir da internet.',
 	'config-logo' => 'URL do logótipo:',
-	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logótipo de 135x160 pixels no canto superior esquerdo.
-Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
+	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logótipo de 135x160 pixels acima do menu da barra lateral.
+Coloque na wiki uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
 
 Se não pretende usar um logótipo, deixe este campo em branco.',
 	'config-instantcommons' => 'Activar a funcionalidade Instant Commons',
@@ -11818,7 +11818,7 @@ GFDL может быть использована, но она сложна дл
 	'config-upload-deleted-help' => 'Выберите каталог, в котором будут храниться архивы удалённых файлов.
 В идеальном случае, в этот каталог не должно быть доступа из сети Интернет.',
 	'config-logo' => 'URL логотипа:',
-	'config-logo-help' => 'Тема по умолчанию для MediaWiki включает пространство для логотипа размером 135x160 в левом верхнем углу. 
+	'config-logo-help' => 'Стандартная тема оформления MediaWiki содержит над боковой панелью пространство для логотипа размером 135x160 пикселей.
 Загрузите изображение соответствующего размера, и введите его URL здесь. 
 
 Если вам не нужен логотип, оставьте это поле пустым.',

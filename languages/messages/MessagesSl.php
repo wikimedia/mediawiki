@@ -1592,7 +1592,7 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 'emptyfile'                   => 'Kaže, da je aložena datoteka prazna.
 Do tega bi lahko prišlo zaradi tipkarske napake v imenu.
 Ali datoteko resnično želite naložiti?',
-'windows-nonascii-filename'   => 'Strežnik ne podpira imen datotek s posebnimi znaki.',
+'windows-nonascii-filename'   => 'Ta wiki ne podpira imen datotek s posebnimi znaki.',
 'fileexists'                  => "Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran '''<tt>[[:$1]]</tt>'''.
 [[$1|thumb]]",
 'filepageexists'              => "Opisna stran za to datoteko je bila že ustvarjena na '''<tt>[[:$1]]</tt>''', vendar datoteka s tem imenom trenutno ne obstaja.

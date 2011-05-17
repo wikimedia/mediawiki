@@ -1729,7 +1729,7 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'emptyfile'                   => 'Le fichier que vous voulez téléverser semble vide.
 Ceci peut être dû à une erreur dans le nom du fichier.
 Veuillez vérifier que vous désirez vraiment téléverser ce fichier.',
-'windows-nonascii-filename'   => 'Le serveur ne supporte pas les noms de fichiers avec des caractères spéciaux.',
+'windows-nonascii-filename'   => 'Ce wiki ne supporte pas les noms de fichiers avec des caractères spéciaux.',
 'fileexists'                  => "Un fichier existe déjà sous ce nom.
 Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n’êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
 [[$1|thumb]]",
@@ -2294,6 +2294,9 @@ Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pa
              Votre système de notification de {{SITENAME}}
 
 --
+Pour modifier les paramètres de notification par courriel, visitez
+{{fullurl:{{#special:Preferences}}}}
+
 Pour modifier les paramètres de votre liste de suivi, visitez
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2678,6 +2681,7 @@ N’oubliez pas de la [[Special:UnlockDB|déverrouiller]] lorsque vous aurez ter
 'lockfilenotwritable' => 'Le fichier de verrouillage de la base de données n’est pas inscriptible.
 Pour bloquer ou débloquer la base de données, il doit être accessible par le serveur web.',
 'databasenotlocked'   => 'La base de données n’est pas verrouillée.',
+'lockedbyandtime'     => '(par $1 le $2 à $3)',
 
 # Move page
 'move-page'                    => 'Renommer $1',

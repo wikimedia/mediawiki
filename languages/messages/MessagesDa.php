@@ -1554,7 +1554,7 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'large-file'                  => 'Filstørrelsen skal så vidt muligt ikke overstige $1. Denne fil er $2 stor.',
 'largefileserver'             => 'Filen er større end den på serveren indstillede maksimale størrelse.',
 'emptyfile'                   => 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
-'windows-nonascii-filename'   => 'Serveren understøtter ikke filnavne, der indeholder specialtegn.',
+'windows-nonascii-filename'   => 'Denne wiki understøtter ikke filnavne, der indeholder specialtegn.',
 'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst [[:$1]] om du er sikker på du vil ændre den.
 [[$1|thumb]]',
 'filepageexists'              => "Siden med beskrivelse af denne fil er allerede oprettet på '''<tt>[[:$1]]</tt>''', men der eksisterer ikke en fil med dette navn.
@@ -1723,6 +1723,7 @@ Den følgende liste viser kun {{PLURAL:$1|den første henvisning|de $1 første h
 En [[Special:WhatLinksHere/$2|komplet liste]] er tilgængelig.',
 'nolinkstoimage'            => 'Der er ingen sider der henviser til denne fil.',
 'morelinkstoimage'          => 'Se [[Special:WhatLinksHere/$1|flere henvisninger]] til denne fil.',
+'linkstoimage-redirect'     => '$1 (filomdirigering) $2',
 'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublet|filer er dubletter}} af denne fil ([[Special:FileDuplicateSearch/$2|flere detaljer]]):',
 'sharedupload'              => 'Denne fil er fra $1 og kan bruges af andre projekter.',
 'sharedupload-desc-there'   => 'Denne fil er fra $1 og kan bruges på andre projekter.
@@ -2098,6 +2099,9 @@ På din overvågningsliste kan du også nulstille alle markeringer på de sider,
              Med venlig hilsen {{SITENAME}}s informationssystem
 
 --
+For at ændre dine indstillinger for e-mail-notifikationer, besøg
+{{fullurl:{{#special:Preferences}}}}
+
 For at ændre indstillingerne for din overvågningsliste, besøg
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2463,6 +2467,7 @@ Skjulningsloggen vises nedenfor som reference:',
 'unlockdbsuccesstext' => 'Mediawikidatabasen er låst op.',
 'lockfilenotwritable' => 'Database-spærrefilen kan ikke ændres. Hvis databasen skal spærres eller frigives, skal webserveren kunne skrive i denne fil.',
 'databasenotlocked'   => 'Databasen er ikke spærret.',
+'lockedbyandtime'     => '(af $1 den $2 kl. $3)',
 
 # Move page
 'move-page'                    => 'Flyt $1',
@@ -3039,6 +3044,9 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimeret',
+'exif-compression-2' => 'CCITT Gruppe 3 1-dimensionel modificeret Huffman run length encoding',
+'exif-compression-3' => 'CCITT Gruppe 3 fax-kodning',
+'exif-compression-4' => 'CCITT Gruppe 4 fax-kodning',
 
 'exif-copyrighted-true'  => 'Ophavsretligt beskyttet',
 'exif-copyrighted-false' => 'Offentlig ejendom',

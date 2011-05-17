@@ -883,7 +883,7 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 <br />Faic [[Special:IPBlockList|Liosta nan IP baicte]] na bacaidhean a dh'ath-sgrùdadh.",
 'unblockip'                => 'Neo-bhac an cleachdaiche',
 'ipusubmit'                => 'Thoir air falbh am bacadh seo',
-'ipblocklist'              => 'Liosta de sheòlaidhean IP is ainmean chleachdaichean a chaidh a bhacadh',
+'ipblocklist'              => 'Cleachdaichean a chaidh a bhacadh',
 'blocklink'                => 'bac',
 'unblocklink'              => 'neo-bhac',
 'change-blocklink'         => 'mùth bacadh',
@@ -1050,7 +1050,7 @@ Thathar a' coimhead air ceangal sam bith eile san loidhne sin mar eisgeachdan, '
 Ma chaidh am faidhle tùsail atharrachadh, faodaidh nach eil cuid dhen fhiosrachadh ceart a thaobh an fhaidhle atharraichte tuilleadh.",
 'metadata-expand'   => 'Seall am fiosrachadh a bharrachd',
 'metadata-collapse' => 'Cuir am fiosrachadh a bharrachd am falach',
-'metadata-fields'   => "Thèid raointean EXIF metadata a tha ainmichte san teachdaireachd seo a ghabhail a-steach air duilleag an deilbh nuair a bhios clàr a' mhetadata air a dhùmhlachadh.
+'metadata-fields'   => "Thèid raointean meata-dhàta nan dealbhan a tha ainmichte san teachdaireachd seo a ghabhail a-steach air duilleag an deilbh nuair a bhios clàr a' mheata-dàta air a dhùmhlachadh.
 Bidh an fheadhainn eile falaichte a ghnàth.
 * make
 * model
