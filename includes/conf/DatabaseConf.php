@@ -24,10 +24,29 @@
  * @ingroup Config
  */
 class DatabaseConf extends Conf {
+	/**
+	 * @see Conf::initChangedSettings()
+	 */
 	protected function initChangedSettings() {
 		$res = wfGetDB( DB_MASTER )->select( 'config', '*', array(), __METHOD__ );
 		foreach( $res as $row ) {
-			$this->values[$row->cf_name] = $row->cf_value;
+			$this->values[$row->cf_name] = unserialize( $row->cf_value );
 		}
+	}
+
+	/**
+	 * @see Conf::writeSetting()
+	 */
+	protected function writeSetting( $name, $value ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$value = serialize( $value );
+		if( $dbw->selectRow( 'config', 'cf_name', array( 'cf_name' => $name ), __METHOD__ ) ) {
+			$dbw->update( 'config', array( 'cf_value' => $value ),
+				array( 'cf_name' => $name ), __METHOD__ );
+		} else {
+			$dbw->insert( 'config',
+				array( 'cf_name' => $name, 'cf_value' => $value ), __METHOD__ );
+		}
+		return (bool)$db->affectedRows();
 	}
 }
