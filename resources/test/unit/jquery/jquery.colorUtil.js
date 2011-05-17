@@ -22,12 +22,12 @@ test( 'getRGB', function(){
 	deepEqual( jQuery.colorUtil.getRGB( '#eEe' ), [238, 238, 238], 'Hex string: 3 char mixed' );
 	deepEqual( jQuery.colorUtil.getRGB( 'rgba(0, 0, 0, 0)' ), [255, 255, 255], 'Zero rgba for Safari 3; Transparent (whitespace)' );
 	// Perhaps this is a bug in colorUtil, but it is the current behaviour so, let's keep track
-	// would that ever chnge
+	// would that ever change
 	equal( typeof jQuery.colorUtil.getRGB( 'rgba(0,0,0,0)' ), 'undefined', 'Zero rgba without whitespace' );
 	
 	deepEqual( jQuery.colorUtil.getRGB( 'lightGreen' ), [144, 238, 144], 'Color names (lightGreen)' );
 	deepEqual( jQuery.colorUtil.getRGB( 'lightGreen' ), [144, 238, 144], 'Color names (transparent)' );
-	equal( typeof jQuery.colorUtil.getRGB( 'mediaWiki' ), 'undefined', 'Inexisting Color name' );
+	equal( typeof jQuery.colorUtil.getRGB( 'mediaWiki' ), 'undefined', 'Inexisting color name' );
 
 });
 
