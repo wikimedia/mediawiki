@@ -132,6 +132,9 @@ return array(
 		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
 		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
 	),
+	'jquery.mwPrototypes' => array(
+		'scripts' => 'resources/jquery/jquery.mwPrototypes.js',
+	),
 	'jquery.qunit' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.js',
 		'styles' => 'resources/jquery/jquery.qunit.css',
@@ -448,6 +451,7 @@ return array(
 			'jquery.cookie',
 			'jquery.messageBox',
 			'jquery.makeCollapsible',
+			'jquery.mwPrototypes',
 			'jquery.placeholder',
 		),
 	),
