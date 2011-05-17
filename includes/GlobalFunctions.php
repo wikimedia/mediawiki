@@ -610,7 +610,7 @@ function wfMsgForContentNoTrans( $key ) {
 /**
  * Get a message from the language file, for the UI elements
  *
- * @deprecated in 1.18; use wfMessage()
+ * @deprecated since 1.18; use wfMessage()
  */
 function wfMsgNoDB( $key ) {
 	wfDeprecated( __FUNCTION__ );
@@ -622,7 +622,7 @@ function wfMsgNoDB( $key ) {
 /**
  * Get a message from the language file, for the content
  *
- * @deprecated in 1.18; use wfMessage()
+ * @deprecated since 1.18; use wfMessage()
  */
 function wfMsgNoDBForContent( $key ) {
 	wfDeprecated( __FUNCTION__ );
@@ -660,7 +660,7 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
 /**
  * This function provides the message source for messages to be edited which are *not* stored in the database.
  *
- * @deprecated in 1.18; use wfMessage()
+ * @deprecated since 1.18; use wfMessage()
  * @param $key String
  */
 function wfMsgWeirdKey( $key ) {
@@ -3174,7 +3174,7 @@ function wfBoolToStr( $value ) {
 /**
  * Load an extension messages file
  *
- * @deprecated in 1.16, warnings in 1.18, remove in 1.20
+ * @deprecated since 1.16, warnings in 1.18, remove in 1.20
  * @codeCoverageIgnore
  */
 function wfLoadExtensionMessages() {
@@ -3268,7 +3268,7 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
 
 /**
  * Used to be used for outputting text in the installer/updater
- * @deprecated Warnings in 1.19, removal in 1.20
+ * @deprecated since 1.18, warnings in 1.19, remove in 1.20
  */
 function wfOut( $s ) {
 	wfDeprecated( __METHOD__ );

@@ -369,7 +369,8 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
-	 * @deprecated No modern skin generates langlinks this way, please use langlinks data to generate your own html
+	 * @deprecated since 1.18 No modern skin generates language links this way, please use language links
+	 *                        data to generate your own HTML.
 	 */
 	private function languagesHtml( $languages ) {
 		global $wgContLang, $wgHideInterlanguageLinks;

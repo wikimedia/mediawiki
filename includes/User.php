@@ -2355,8 +2355,8 @@ class User {
 	/**
 	 * Get the current skin, loading it if required
 	 * @return Skin The current skin
-	 * @todo: FIXME : need to check the old failback system [AV]
-	 * @deprecated Use ->getSkin() in the most relevant outputting context you have
+	 * @todo FIXME : need to check the old failback system [AV]
+	 * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
 	 */
 	function getSkin() {
 		return RequestContext::getMain()->getSkin();
