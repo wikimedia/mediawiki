@@ -47,6 +47,6 @@ class DatabaseConf extends Conf {
 			$dbw->insert( 'config',
 				array( 'cf_name' => $name, 'cf_value' => $value ), __METHOD__ );
 		}
-		return (bool)$db->affectedRows();
+		return (bool)$dbw->affectedRows();
 	}
 }
