@@ -1670,7 +1670,7 @@ Chỉ chấp nhận {{PLURAL:$3|loại tập tin|các loại tập tin}} sau: $2
 'large-file'                  => 'Các tập tin được khuyến cáo không được lớn hơn $1; tập tin này lớn đến $2.',
 'largefileserver'             => 'Tập tin này quá lớn so với khả năng phục vụ của máy chủ.',
 'emptyfile'                   => 'Tập tin bạn vừa mới tải lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
-'windows-nonascii-filename'   => 'Máy chủ này không hỗ trợ ký tự đặc biệt trong tên tập tin.',
+'windows-nonascii-filename'   => 'Wiki này không hỗ trợ ký tự đặc biệt trong tên tập tin.',
 'fileexists'                  => "Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại '''<tt>[[:$1]]</tt>''' nếu bạn không chắc bạn có muốn thay đổi nó hay không.
 [[$1|thumb]]",
 'filepageexists'              => "Trang miêu tả của tập tin này đã được tạo tại '''<tt>[[:\$1]]</tt>''', nhưng hiện không có tập tin nào có tên như vậy.
@@ -3252,7 +3252,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-compression-2' => 'CCITT Nhóm 3: mã hóa thời gian chạy Huffman sửa một chiều',
 'exif-compression-3' => 'CCITT Nhóm 3: mã hóa fax',
 'exif-compression-4' => 'CCITT Nhóm 4: mã hóa fax',
-'exif-compression-6' => 'JPEG',
+'exif-compression-6' => 'JPEG (cũ)',
 
 'exif-copyrighted-true'  => 'Dưới bản quyền',
 'exif-copyrighted-false' => 'Phạm vi công cộng',

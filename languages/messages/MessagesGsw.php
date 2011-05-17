@@ -535,6 +535,7 @@ Vergiss nid, dyni [[Special:Preferences|{{SITENAME}}-Yystellige]] aazpasse.',
 'createaccount'              => 'Nöis Benutzerkonto aalege',
 'gotaccount'                 => "Du häsch scho a Konto? '''$1'''",
 'gotaccountlink'             => '»Login fir Benutzer, wu scho aagmäldet sin«',
+'userlogin-resetlink'        => 'Hesch Dyy Aamäldedate vergässe?',
 'createaccountmail'          => 'iber E-Mail',
 'createaccountreason'        => 'Grund:',
 'badretype'                  => 'Di beidi Passwörter stimme nid zämme.',
@@ -2284,7 +2285,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'unblocked-range'                 => 'D Sperri fir $1 isch ufghobe',
 'unblocked-id'                    => 'Sperr-ID $1 isch freijgee wore',
 'blocklist'                       => 'Gsperrti Benutzernäme un IP-Adrässe',
-'ipblocklist'                     => 'Liste vo blockierten IP-Adrässen u Benutzernäme',
+'ipblocklist'                     => 'Gsperrti Benutzer',
 'ipblocklist-legend'              => 'Suech no eme gsperrte Benutzer',
 'blocklist-userblocks'            => 'Benutzersperrine uusblände',
 'blocklist-tempblocks'            => 'Befrischteti Sperrine uusblände',
@@ -2720,8 +2721,9 @@ Wyteri Links uf der glyche Zyle wärden als Usnahme behandlet, wo die Datei trot
 We die Datei isch veränderet worde, de cha's sy, das die zuesätzlechi Information für di verändereti Datei nümm richtig zuetrifft.",
 'metadata-expand'   => 'Erwytereti Details azeige',
 'metadata-collapse' => 'Erwytereti Details verstecke',
-'metadata-fields'   => 'Die EXIF-Metadate wärden ir Bildbeschrybig ou denn azeigt, we d Metadate-Tabälle versteckt isch.
-Anderi Metadate sy standardmäßig versteckt.
+'metadata-fields'   => 'Die Fälder vu dr EXIF-Metadate, wu in däm MediaWiki-Systemtext aagee sin, wäre uf Bildbschrybigssyte mit ere yyklappte Metadatetabälle aazeigt.
+Andri wäre standardmäßig nit aazeigt.
+
 * make
 * model
 * datetimeoriginal

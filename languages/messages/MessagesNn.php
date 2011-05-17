@@ -411,6 +411,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'vidare',
 'index-category'                 => 'Indekserte sider',
 'noindex-category'               => 'Ikkje-indekserte sider',
+'broken-file-category'           => 'Sider med brotne fillenkjer',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "'''MediaWiki er no installert.'''",
@@ -1017,7 +1018,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'history-feed-empty'          => 'Den etterspurde sida finst ikkje. Ho kan vere sletta frå wikien, eller vere flytta. Prøv å [[Special:Search|søke på wikien]] for relevante nye sider.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(samandraget er fjerna)',
+'rev-deleted-comment'         => '(endringssamandrag fjerna)',
 'rev-deleted-user'            => '(brukarnamnet er fjerna)',
 'rev-deleted-event'           => '(fjerna loggoppføring)',
 'rev-deleted-user-contribs'   => 'brukarnamn eller IP-adresse er fjerna - endringa er skjult i bidraga',
@@ -1611,6 +1612,7 @@ For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
 'large-file'                  => 'Det er tilrådd at filene ikkje er større enn $1, denne fila er $2.',
 'largefileserver'             => 'Denne fila er større enn det tenaren tillèt.',
 'emptyfile'                   => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
+'windows-nonascii-filename'   => 'Wikien stør ikkje filnamn med spesialteikn.',
 'fileexists'                  => "Ei fil med dette namnet finst allereie, sjekk '''<tt>[[:$1]]</tt>''' om du ikkje er sikker på om du vil endre namnet.
 [[$1|thumb]]",
 'filepageexists'              => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.
@@ -1637,6 +1639,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'uploadedimage'               => 'Lasta opp «[[$1]]»',
 'overwroteimage'              => 'lasta opp ein ny versjon av «[[$1]]»',
 'uploaddisabled'              => 'Beklagar, funksjonen for opplasting er deaktivert på denne nettenaren.',
+'copyuploaddisabled'          => 'Opplasting gjennom URL er slege av.',
 'uploaddisabledtext'          => 'Filopplasting er slått av.',
 'php-uploaddisabledtext'      => 'PHP-filopplasting er deaktivert. Sjå innstillinga for file_uploads.',
 'uploadscripted'              => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
@@ -2828,6 +2831,8 @@ $1',
 'file-nohires'         => '<small>Høgare oppløysing er ikkje tilgjengeleg.</small>',
 'svg-long-desc'        => 'SVG-fil, standardoppløysing: $1 × $2 pikslar, filstorleik: $3',
 'show-big-image'       => 'Full oppløysing',
+'show-big-image-other' => '<small>Andre oppløysingar: $1.</small>',
+'show-big-image-size'  => '$1 × $2 pikslar',
 'file-info-gif-looped' => 'gjentatt',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|rame|ramer}}',
 'file-info-png-looped' => '↓oppatteke',
@@ -3006,6 +3011,7 @@ Dei andre felta er gøymde som standard.
 'exif-headline'                    => 'Overskrift',
 'exif-credit'                      => 'Opphavrettseigar/filgjevar',
 'exif-source'                      => 'Kjelde',
+'exif-languagecode'                => 'Språk',
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',

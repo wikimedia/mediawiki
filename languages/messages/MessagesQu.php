@@ -2154,6 +2154,9 @@ Kay p\'anqata mana musuqmanta watukamuptiykiqa, manam huk hukchasqakunamanta wil
              Tukuy sunquwan, {{SITENAME}}pa e-chaski musyachina llikan
 
 --
+E-chaski willaykuy allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
+{{fullurl:{{#special:Preferences}}}} 
+
 Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2512,6 +2515,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'unlockdbsuccesstext' => '{{SITENAME}}pi willañiqintinqa paskasqam.',
 'lockfilenotwritable' => "Willañiqintinqa manam qillqanapaqchu. Willañiqintinta hark'anapaqqa icha paskanapaqqa, sirwiqpa qillqananpaq kananmi tiyan.",
 'databasenotlocked'   => "Willañiqintinqa manam hark'asqachu.",
+'lockedbyandtime'     => "($1 sutiyuq $2 p'unchawpi $3 pachapi)",
 
 # Move page
 'move-page'                    => '$1-ta astay',

@@ -1148,6 +1148,7 @@ $1",
 'revdelete-no-change'         => "'''सूचना:''' $2, $1 च्या वस्तूने अगोदरच दृश्यता रुपरेषा मागितल्या आहेत.",
 'revdelete-concurrent-change' => '$2, $1 ची वस्तू संपादताना चूक: तुम्ही तिला संपादताना दुसर्‍या व्यक्तिने वस्तूस संपादले असावे.
 कृपया याद्या तपासा.',
+'revdelete-only-restricted'   => '$2, $1 ची वस्तू लपवताना चूक: तुम्ही इतर दृश्यता पर्यायांना निवडल्याशिवाय प्रचालकांपासून वस्तू लपवू शकत नाही.',
 'revdelete-reason-dropdown'   => '*सामान्य वगळण्याची कारणे
 ** प्रताधिकार उल्लंघन
 ** अयोग्य व्यक्तिगत माहिती
@@ -1846,6 +1847,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'statistics-edits'             => '{{SITENAME}} च्या सुरुवातीपासूनची पानांची संपादने',
 'statistics-edits-average'     => 'प्रतिपान सरासरी संपादने',
 'statistics-views-total'       => 'सर्व दाखवते',
+'statistics-views-peredit'     => 'प्रति संपादनामागे पाहणे',
 'statistics-users'             => 'नोंदणीकृत [[Special:ListUsers|सदस्य]]',
 'statistics-users-active'      => 'कार्यरत सदस्य',
 'statistics-users-active-desc' => '{{PLURAL:$1|शेवटच्या दिवसात|शेवटच्या $1 दिवसांत}} एकतरी संपादन केलेले सदस्य',
@@ -2576,6 +2578,7 @@ $1',
 'djvu_no_xml'              => 'DjVu संचिकेकरिता XML ओढण्यात असमर्थ',
 'thumbnail_invalid_params' => 'इवल्याशाचित्राचा अयोग्य परिचय',
 'thumbnail_dest_directory' => 'लक्ष्य धारिकेच्या निर्मितीस असमर्थ',
+'thumbnail_image-type'     => 'चित्रप्रकार समर्थित नाही',
 'thumbnail_image-missing'  => 'संचिका सापडत नाही: $1',
 
 # Special:Import
@@ -3360,11 +3363,16 @@ $1',
 
 # HTML forms
 'htmlform-invalid-input'       => 'तुम्ही दिलेल्या माहितीत काहीतरी गडबड आहे',
+'htmlform-float-invalid'       => 'तुम्ही दिलेली किंमत आकडा नाही.',
 'htmlform-int-toolow'          => '$1 किंवा मोठा आकडा द्या.',
 'htmlform-int-toohigh'         => '$1 किंवा त्याहून छोटा आकडा द्या.',
 'htmlform-required'            => 'ही किंमत आवश्यक आहे',
 'htmlform-submit'              => 'पाठवा',
 'htmlform-reset'               => 'बदल उलटवा',
 'htmlform-selectorother-other' => 'इतर',
+
+# SQLite database support
+'sqlite-has-fts' => 'पूर्ण-मजकूर शोध समर्थनासहित $1',
+'sqlite-no-fts'  => 'पूर्ण-मजकूर शोध समर्थनाविरहित $1',
 
 );

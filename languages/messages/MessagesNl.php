@@ -1441,7 +1441,7 @@ Hier volgt een willekeurig gegenereerde waarde die u kunt gebruiken: $1',
 'savedprefs'                    => 'Uw voorkeuren zijn opgeslagen.',
 'timezonelegend'                => 'Tijdzone:',
 'localtime'                     => 'Plaatselijke tijd:',
-'timezoneuseserverdefault'      => 'Servertijd gebruiken',
+'timezoneuseserverdefault'      => 'Wikistandaard gebruiken ($1)',
 'timezoneuseoffset'             => 'Anders (tijdverschil aangeven)',
 'timezoneoffset'                => 'Tijdsverschil¹:',
 'servertime'                    => 'Servertijd:',
@@ -1777,6 +1777,7 @@ Aangewezen {{PLURAL:\$3|bestandstype is|bestandstypes zijn}} \$2.",
 'emptyfile'                   => 'Het bestand dat u hebt geüpload lijkt leeg te zijn.
 Dit zou kunnen komen door een typefout in de bestandsnaam.
 Ga na of u dit bestand werkelijk bedoelde te uploaden.',
+'windows-nonascii-filename'   => 'Deze wiki ondersteunt geen bestandsnamen met speciale tekens.',
 'fileexists'                  => "Er bestaat al een bestand met deze naam.
 Controleer '''<tt>[[:$1]]</tt>''' als u niet zeker weet of u het huidige bestand wilt overschrijven.
 [[$1|thumb]]",
@@ -1971,6 +1972,7 @@ De volgende lijst geeft alleen de eerste {{PLURAL:$1|verwijzing|$1 verwijzingen}
 Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 'nolinkstoimage'                    => 'Geen enkele pagina gebruikt dit bestand.',
 'morelinkstoimage'                  => '[[Special:WhatLinksHere/$1|Meer verwijzingen]] naar dit bestand bekijken.',
+'linkstoimage-redirect'             => '$1 (bestandsdoorverwijzing) $2',
 'duplicatesoffile'                  => '{{PLURAL:$1|Het volgende bestand is|De volgende $1 bestanden zijn}} identiek aan dit bestand ([[Special:FileDuplicateSearch/$2|meer details]]):',
 'sharedupload'                      => 'Dit bestand komt van $1 en kan ook door andere projecten gebruikt worden.',
 'sharedupload-desc-there'           => 'Dit bestand komt van $1 en kan ook in andere projecten gebruikt worden.
@@ -2573,6 +2575,7 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
 'sp-contributions-toponly'             => 'Alleen nieuwste versies weergeven',
 'sp-contributions-submit'              => 'Bekijken',
+'sp-contributions-showsizediff'        => 'Verschil in paginagrootte weergeven',
 
 # What links here
 'whatlinkshere'            => 'Verwijzingen naar deze pagina',
@@ -2745,6 +2748,7 @@ Vergeet niet de [[Special:UnlockDB|database vrij te geven]] zodra u klaar bent m
 'lockfilenotwritable' => 'Geen schrijfrechten op het databaselockbestand.
 Om de database te kunnen blokkeren of vrij te geven, dient de webserver schrijfrechten op dit bestand te hebben.',
 'databasenotlocked'   => 'De database is niet geblokkeerd.',
+'lockedbyandtime'     => '(door $1 om $3 op $2)',
 
 # Move page
 'move-page'                    => '"$1" hernoemen',

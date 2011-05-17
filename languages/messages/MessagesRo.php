@@ -2222,7 +2222,7 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'enotif_anon_editor'           => 'utilizator anonim $1',
 'enotif_body'                  => 'Domnule/Doamnă $WATCHINGUSERNAME,
 
-Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED la $PAGEEDITDATE de către $PAGEEDITOR. Vedeți la $PAGETITLE_URL versiunea curentă.
+Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED în data de $PAGEEDITDATE de către $PAGEEDITOR. Vedeți la $PAGETITLE_URL versiunea curentă.
 
 $NEWPAGE
 
@@ -2232,15 +2232,19 @@ Puteți contacta utilizatorul:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Nu veți mai primi notificări în cazul unor viitoare modificări în afara cazului în care vizitați pagina. Puteți de asemenea reseta notificările pentru alte pagini urmărite.
+Nu veți mai primi notificări în cazul unor viitoare modificări până când nu veți vizitați pagina. 
+Puteți de asemenea reseta notificările pentru toate pagini pe care le urmăriți.
 
-             Al dvs. amic, sistemul de notificare de la {{SITENAME}}
+             Al dumneavoastră amic, sistemul de notificare de la {{SITENAME}}
 
 --
-Pentru a modifica preferințele listei de urmărire vizitați
+Pentru a modifica setările notificării prin e-mail, vizitați
+{{fullurl:{{#special:Preferences}}}}
+
+Pentru a modifica setările listei de pagini urmărite, vizitați
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Pentru a nu mai urmări pagina vizitați
+Pentru a nu mai urmări pagina, vizitați
 $UNWATCHURL
 
 Asistență și suport:

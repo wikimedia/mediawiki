@@ -1567,7 +1567,7 @@ iste file occupa $2.',
 'emptyfile'                   => 'Le file que tu incargava pare esser vacue.
 Isto pote esser debite a un error in le nomine del file.
 Per favor verifica que tu realmente vole incargar iste file.',
-'windows-nonascii-filename'   => 'Le servitor non supporta nomines de file con characteres special.',
+'windows-nonascii-filename'   => 'Iste wiki non supporta nomines de file con characteres special.',
 'fileexists'                  => "Un file con iste nomine existe ja.
 Per favor verifica '''<tt>[[:$1]]</tt>''' si tu non es secur de voler cambiar lo.
 [[$1|thumb]]",
@@ -2135,7 +2135,7 @@ $NEWPAGE
 
 Summario del redactor: $PAGESUMMARY $PAGEMINOREDIT
 
-Contactar le redactor:
+Pro contactar le redactor:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
@@ -2144,8 +2144,11 @@ Como alternativa tu pote reinitialisar le optiones de notification pro tote le p
 
              Le systema de notification de {{SITENAME}}, a tu servicio
 
---
-Pro cambiar le configuration de tu observatorio, visita
+-- 
+Pro configurar le notification per e-mail, visita
+{{fullurl:{{#special:Preferences}}}}
+
+Pro configurar le observatorio, visita
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Pro retirar le pagina de tu observatorio, visita
@@ -2541,6 +2544,7 @@ Per favor confirma que isto es tu intention.',
 'lockfilenotwritable' => 'Impossibile scriber al file de blocada del base de datos.
 Pro blocar o disblocar le base de datos, le servitor web debe poter scriber a iste file.',
 'databasenotlocked'   => 'Le base de datos non es blocate.',
+'lockedbyandtime'     => '(per $1 le $2 a $3)',
 
 # Move page
 'move-page'                    => 'Renominar $1',

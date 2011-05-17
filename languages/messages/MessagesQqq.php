@@ -2775,6 +2775,10 @@ Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking o
 
 {{Identical|Unlock database}}',
 'lockfilenotwritable' => "'No longer needed' on wikipedia.",
+'lockedbyandtime'     => 'Used as part of the message when a database is locked through [[Special:LockDB]]. Parameters:
+* $1 is the user that locked the database.
+* $2 is the date on which the lock was made
+* $3 is the time at which the lock was made',
 
 # Move page
 'move-page'                    => 'Header of the special page to move pages. $1 is the name of the page to be moved.',

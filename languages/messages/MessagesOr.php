@@ -310,6 +310,7 @@ $messages = array(
 'hidden-categories'        => '{{PLURAL:$1|Hidden category|ଲୁଚିଥିବା ବିଭାଗ}}',
 'hidden-category-category' => 'ଲୁଚିରହିଥିବା ଶ୍ରେଣୀ',
 'category-subcat-count'    => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀଟିରେ କେବଳ ତଳେଥିବା ସାନ ଶ୍ରେଣୀଗୁଡିକ ଅଛନ୍ତି । |ଏହି ଶ୍ରେଣୀଟିରେ ସର୍ବମୋଟ $2 ରୁ ତଳେଥିବା ଏହି {{PLURAL:$1|subcategory|$1 ଶ୍ରେଣୀଗୁଡିକ}} ଅଛନ୍ତି  । }}',
+'category-article-count'   => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀରେ ତଳେଥିବ ପୃଷ୍ଠାସବୁ ଅଛି ।|ସର୍ବମୋଟ $2 ରୁ ଏହି ଶ୍ରେଣୀ ଭିତରେ {{PLURAL:$1|ଟି ପୃଷ୍ଠା|$1ଟି ପୃଷ୍ଠା}} ଅଛି ।}}',
 'listingcontinuesabbrev'   => 'ଆହୁରି ଅଛି..',
 
 'about'         => 'ବାବଦରେ',
@@ -843,7 +844,7 @@ $messages = array(
 'blanknamespace' => '(ମୂଳ)',
 
 # Contributions
-'contributions'       => 'ଇଉଜରଙ୍କ ଦାନ',
+'contributions'       => 'ବ୍ୟବହାରକାରିଙ୍କ ଦାନ',
 'contributions-title' => '$1 ପାଇଁ ବ୍ୟବହାରକାରୀଙ୍କ ଦାନ',
 'mycontris'           => 'ମୋ ଅବଦାନ',
 'contribsub2'         => '$1 ($2) ପାଇଁ',

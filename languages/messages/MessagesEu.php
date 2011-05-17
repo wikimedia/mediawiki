@@ -545,6 +545,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 'createaccount'              => 'Kontua sortu',
 'gotaccount'                 => "Baduzu erabiltzaile kontua? '''$1'''.",
 'gotaccountlink'             => 'Saioa hasi',
+'userlogin-resetlink'        => 'Saioa hasteko datuak ahaztu dituzu?',
 'createaccountmail'          => 'e-postaz',
 'createaccountreason'        => 'Arrazoia:',
 'badretype'                  => 'Idatzitako pasahitzak ez dira berdinak.',
@@ -1892,6 +1893,7 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 # Watchlist
 'watchlist'            => 'Nire jarraipen zerrenda',
 'mywatchlist'          => 'Nire jarraipen zerrenda',
+'watchlistfor2'        => '$1 ($2)',
 'nowatchlist'          => 'Zure jarraipen zerrenda hutsik dago.',
 'watchlistanontext'    => 'Mesedez $1 zure jarraipen zerrendako orrialdeak ikusi eta aldatu ahal izateko.',
 'watchnologin'         => 'Saioa hasi gabe',
@@ -2664,7 +2666,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'metadata-help'     => 'Fitxategi honek informazio gehigarri dauka, ziurrenik kamera digital edo eskanerrak egiterako momentuan gehitutakoa. Hori dela-eta, jatorrizko fitxategi hori aldatu egin bada, baliteke xehetasun batzuek errealitatearekin bat ez egitea.',
 'metadata-expand'   => 'Xehetasunak erakutsi',
 'metadata-collapse' => 'Xehetasunak ezkutatu',
-'metadata-fields'   => 'Mezu honetan zerrendatutako EXIF metadatu eremuak irudiaren orrialdean erakutsiko dira. Gainontzekoak ezkutatu egindako dira lehenetsi bezala.
+'metadata-fields'   => 'Mezu honetan zerrendatutako irudi metadatu eremuak irudiaren orrialdean erakutsiko dira. Gainontzekoak ezkutatu egingo dira lehenetsiz.
 * make
 * model
 * datetimeoriginal
