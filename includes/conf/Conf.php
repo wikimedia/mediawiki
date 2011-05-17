@@ -29,6 +29,15 @@
  */
 abstract class Conf {
 	/**
+	 * A special value to return when default config items do not exist. Use
+	 * this to differentiate from 'null' which may be a valid config value.
+	 *
+	 * Please don't ever make this a default (or accepted) value for your
+	 * configuration. It's liable to Break Something.
+	 */
+	const NO_SUCH_DEFAULT_CONFIG = 'mw-no-such-default-config';
+
+	/**
 	 * The Wiki ID (usually $wgDBname)
 	 * @var String
 	 */
@@ -79,6 +88,13 @@ abstract class Conf {
 	abstract protected function initChangedSettings();
 
 	/**
+	 * Apply a setting to the backend store
+	 * @param $name String Name of the setting
+	 * @param $value mixed Value to store
+	 */
+	abstract protected function writeSetting( $name, $value );
+
+	/**
 	 * Initialize a new child class based on a configuration array
 	 * @param $conf Array of configuration settings, see $wgConfiguration
 	 *   for details
@@ -123,11 +139,12 @@ abstract class Conf {
 
 	/**
 	 * Actually get the setting, checking overrides, extensions, then core.
-	 * On failure, 
+	 *
 	 * @param $name String Name of setting to get
 	 * @return mixed
 	 */
 	public function retrieveSetting( $name ) {
+		// isset() is ok here, because the default is to return null anyway.
 		if( isset( $this->values[$name] ) ) {
 			return $this->values[$name];
 		} elseif( isset( $this->extensionDefaults[$name] ) ) {
@@ -137,6 +154,39 @@ abstract class Conf {
 		} else {
 			wfDebug( __METHOD__ . " called for unknown configuration item '$name'\n" );
 			return null;
+		}
+	}
+
+	/**
+	 * Apply a setting to the configuration object.
+	 * @param $name String Name of the config item
+	 * @param $value mixed Any value to use for the key
+	 * @param $write bool Whether to write to the static copy (db, file, etc)
+	 */
+	public function applySetting( $name, $value, $write = false ) {
+		$this->values[$name] = $value;
+		if( $write && ( $value !== $this->getDefaultSetting( $name ) ) ) {
+			$this->writeSetting( $name, $value );
+		}
+	}
+
+	/**
+	 * Get the default for a given setting name. Check core and then extensions.
+	 * Will return NO_SUCH_DEFAULT_CONFIG if the config item does not exist.
+	 *
+	 * @param $name String Name of setting
+	 * @return mixed
+	 */
+	public function getDefaultSetting( $name ) {
+		// Use array_key_exists() here, to make sure we return a default
+		// that's really set to null.
+		if( array_key_exists( $name, $this->defaults ) ) {
+			return $this->defaults[$name];
+		} elseif( array_key_exists( $name, $this->extensionDefaults ) ) {
+			return $this->extensionDefaults[$name];
+		} else {
+			wfDebug( __METHOD__ . " called for unknown configuration item '$name'\n" );
+			return self::NO_SUCH_DEFAULT_CONFIG;
 		}
 	}
 
