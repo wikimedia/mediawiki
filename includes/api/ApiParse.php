@@ -1,7 +1,5 @@
 <?php
 /**
- *
- *
  * Created on Dec 01, 2007
  *
  * Copyright © 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
@@ -33,7 +31,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup API
  */
 class ApiParse extends ApiBase {
-
 	private $section, $text, $pstText = null;
 
 	public function __construct( $main, $action ) {
@@ -81,7 +78,6 @@ class ApiParse extends ApiBase {
 		$redirValues = null;
 
 		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
-
 			if ( !is_null( $oldid ) ) {
 				// Don't use the parser cache
 				$rev = Revision::newFromID( $oldid );
@@ -102,7 +98,6 @@ class ApiParse extends ApiBase {
 
 					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid,
 						 isset( $prop['wikitext'] ) ) ;
-
 				} else { // This is an old revision, so get the text differently
 					$this->text = $rev->getText( Revision::FOR_THIS_USER );
 
@@ -114,9 +109,7 @@ class ApiParse extends ApiBase {
 
 					$p_result = $wgParser->parse( $this->text, $titleObj, $popts );
 				}
-
 			} else { // Not $oldid
-
 				if ( !is_null ( $pageid ) ) {
 					$titleObj = Title::newFromID( $pageid );
 
@@ -124,7 +117,6 @@ class ApiParse extends ApiBase {
 						$this->dieUsageMsg( array( 'nosuchpageid', $pageid ) );
 					}
 				} else { // $page
-
 					if ( $params['redirects'] ) {
 						$req = new FauxRequest( array(
 							'action' => 'query',
@@ -158,7 +150,6 @@ class ApiParse extends ApiBase {
 				$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid,
 					 isset( $prop['wikitext'] ) ) ;
 			}
-
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
 
 			$this->text = $text;
@@ -275,7 +266,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['iwlinks'] ) ) {
 			$result_array['iwlinks'] = $this->formatIWLinks( $p_result->getInterwikiLinks() );
 		}
-		
+
 		if ( isset( $prop['wikitext'] ) ) {
 			$result_array['wikitext'] = array();
 			$result->setContent( $result_array['wikitext'], $this->text );
@@ -349,7 +340,7 @@ class ApiParse extends ApiBase {
 			$entry = array();
 			$bits = explode( ':', $link, 2 );
 			$title = Title::newFromText( $link );
-			
+
 			$entry['lang'] = $bits[0];
 			if ( $title ) {
 				$entry['url'] = $title->getFullURL();
