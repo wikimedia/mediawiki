@@ -4051,17 +4051,10 @@ class Article {
 
 		if ( !$this->mTitle->exists() ) {
 			$wgOut->addHTML( '<div class="noarticletext">' );
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				// This doesn't quite make sense; the user is asking for
-				// information about the _page_, not the message... -- RC
-				$wgOut->addHTML( htmlspecialchars( $this->mTitle->getDefaultMessageText() ) );
-			} else {
-				$msg = $wgUser->isLoggedIn()
-					? 'noarticletext'
-					: 'noarticletextanon';
-				$wgOut->addWikiMsg( $msg );
-			}
-
+			$msg = $wgUser->isLoggedIn()
+				? 'noarticletext'
+				: 'noarticletextanon';
+			$wgOut->addWikiMsg( $msg );
 			$wgOut->addHTML( '</div>' );
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
@@ -4077,8 +4070,7 @@ class Article {
 			$pageInfo = $this->pageCountInfo( $page );
 			$talkInfo = $this->pageCountInfo( $page->getTalkPage() );
 
-
-			//FIXME: unescaped messages
+			// @todo FIXME: unescaped messages
 			$wgOut->addHTML( "<ul><li>" . wfMsg( "numwatchers", $wgLang->formatNum( $numwatchers ) ) . '</li>' );
 			$wgOut->addHTML( "<li>" . wfMsg( 'numedits', $wgLang->formatNum( $pageInfo['edits'] ) ) . '</li>' );
 
