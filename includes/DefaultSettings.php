@@ -2985,7 +2985,7 @@ $wgArticleCountMethod = null;
 
 /**
  * Backward compatibility setting, will set $wgArticleCountMethod if it is null.
- * @deprecated in 1.19; use $wgArticleCountMethod instead
+ * @deprecated since 1.19; use $wgArticleCountMethod instead
  */
 $wgUseCommaCount = false;
 
@@ -3138,7 +3138,7 @@ $wgDefaultUserOptions = array(
 
 /**
  * Whether or not to allow and use real name fields.
- * @deprecated in 1.16, use $wgHiddenPrefs[] = 'realname' below to disable real
+ * @deprecated since 1.16, use $wgHiddenPrefs[] = 'realname' below to disable real
  * names
  */
 $wgAllowRealName = true;

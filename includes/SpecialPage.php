@@ -109,7 +109,7 @@ class SpecialPage {
 	 * an associative record to $wgSpecialPages. This avoids autoloading SpecialPage.
 	 *
 	 * @param $page SpecialPage
-	 * @deprecated in 1.7, warnings in 1.17, might be removed in 1.20
+	 * @deprecated since 1.7, warnings in 1.17, might be removed in 1.20
 	 */
 	static function addPage( &$page ) {
 		wfDeprecated( __METHOD__ );
