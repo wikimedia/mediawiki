@@ -31,14 +31,16 @@ production.
 * Three new hooks in Special:Undelete, 'UndeleteForm::showHistory',
   'UndeleteForm::showRevision' and 'UndeleteForm::undelete', so that extensions
   may override the usage of PageArchive class and replace it with their own
-  class that extends PageArchive
+  class that extends PageArchive.
+* (bug 28915) Implement QUnit test suite for MediaWiki JavaScript.
+  Also built-in support for distribution through a TestSwarm instance.
 
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
 * (bug 28868) Show total pages in the subtitle of an image on the
-file description page for multi-paged documents.
+  file description page for multi-paged documents.
 * (bug 28883) Message names for different compression types commonly
-used in Tiff files.
+  used in Tiff files.
 * When translcuding a special page, do not let it interpret url parameters.
 * (bug 28887) Special page classes are no longer re-used during 1 request.
 * New title field of Special:MovePage is now length limited on client side.
@@ -60,6 +62,10 @@ used in Tiff files.
   LTR/RTL screen layout.
 * (bug 28992) Revision numbers in the patrol log are transformed in the user
   language.
+* (bug 27073) ResourceLoaderDynamicStyles should be dynamically appended to
+  the document if it doesn't exist.
+* (bug 27023) After dom ready event, using mediawiki.loader.using will
+  call callback too early.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
