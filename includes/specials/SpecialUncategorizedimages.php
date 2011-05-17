@@ -27,7 +27,7 @@
  *
  * @ingroup SpecialPage
  */
-// FIXME: Use an instance of UncategorizedPagesPage or something
+// @todo FIXME: Use an instance of UncategorizedPagesPage or something
 class UncategorizedImagesPage extends ImageQueryPage {
 
 	function __construct( $name = 'Uncategorizedimages' ) {

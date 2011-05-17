@@ -150,7 +150,7 @@ class ImageCleanup extends TableCleanup {
 			$this->output( "DRY RUN: would rename $path to $finalPath\n" );
 		} else {
 			$this->output( "renaming $path to $finalPath\n" );
-			// XXX: should this use File::move()?  FIXME?
+			// @todo FIXME: Should this use File::move()?
 			$db->begin();
 			$db->update( 'image',
 				array( 'img_name' => $final ),

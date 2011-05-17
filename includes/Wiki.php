@@ -235,7 +235,7 @@ class MediaWiki {
 	 */
 	public static function articleFromTitle( $title, RequestContext $context ) {
 		if ( NS_MEDIA == $title->getNamespace() ) {
-			// FIXME: where should this go?
+			// @todo FIXME: Where should this go?
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 		}
 

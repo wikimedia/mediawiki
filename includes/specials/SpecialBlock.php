@@ -709,7 +709,7 @@ class SpecialBlock extends SpecialPage {
 
 	/**
 	 * Get an array of suggested block durations from MediaWiki:Ipboptions
-	 * FIXME: this uses a rather odd syntax for the options, should it be converted
+	 * @todo FIXME: This uses a rather odd syntax for the options, should it be converted
 	 *     to the standard "**<duration>|<displayname>" format?
 	 * @return Array
 	 */

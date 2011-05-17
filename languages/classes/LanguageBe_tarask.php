@@ -24,7 +24,7 @@ class LanguageBe_tarask extends Language {
 		// if no number with word, then use $form[0] for singular and $form[1] for plural or zero
 		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
 
-		// FIXME: CLDR defines 4 plural forms instead of 3
+		// @todo FIXME: CLDR defines 4 plural forms instead of 3
 		//        http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
 		$forms = $this->preConvertPlural( $forms, 3 );
 

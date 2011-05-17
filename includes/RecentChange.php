@@ -201,7 +201,7 @@ class RecentChange {
 				$editor = ($wgUser->getName() == $this->mAttribs['rc_user_text']) ? 
 					$wgUser : User::newFromName( $this->mAttribs['rc_user_text'], false );
 			}
-			# FIXME: this would be better as an extension hook
+			# @todo FIXME: This would be better as an extension hook
 			$enotif = new EmailNotification();
 			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
 			$enotif->notifyOnPageChange( $editor, $title,

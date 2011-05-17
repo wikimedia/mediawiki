@@ -98,7 +98,7 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	require_once( "$IP/includes/AutoLoader.php" );
 
 	# Start profiler
-	# FIXME: rewrite wfProfileIn/wfProfileOut so that they can work in compiled mode
+	# @todo FIXME: Rewrite wfProfileIn/wfProfileOut so that they can work in compiled mode
 	require_once( "$IP/includes/profiler/Profiler.php" );
 	if ( file_exists( "$IP/StartProfiler.php" ) ) {
 		require_once( "$IP/StartProfiler.php" );

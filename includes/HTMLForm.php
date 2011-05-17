@@ -582,7 +582,8 @@ class HTMLForm {
 
 	/**
 	 * Set the id for the submit button.
-	 * @param $t String.  FIXME: Integrity is *not* validated
+	 * @param $t String.
+	 * @todo FIXME: Integrity of $t is *not* validated
 	 */
 	function setSubmitID( $t ) {
 		$this->mSubmitID = $t;
@@ -1535,7 +1536,8 @@ class HTMLMultiSelectField extends HTMLFormField {
 			# field, is it because the user has not yet submitted the form, or that they
 			# have submitted it with all the options unchecked? We will have to assume the
 			# latter, which basically means that you can't specify 'positive' defaults
-			# for GET forms.  FIXME...
+			# for GET forms.
+			# @todo FIXME...
 			return $request->getArray( $this->mName, array() );
 		}
 	}
@@ -1562,7 +1564,7 @@ class HTMLMultiSelectField extends HTMLFormField {
  * Plus a text field underneath for an additional reason.  The 'value' of the field is
  * ""<select>: <extra reason>"", or "<extra reason>" if nothing has been selected in the
  * select dropdown.
- * FIXME: If made 'required', only the text field should be compulsory.
+ * @todo FIXME: If made 'required', only the text field should be compulsory.
  */
 class HTMLSelectAndOtherField extends HTMLSelectField {
 

@@ -37,7 +37,7 @@ class WantedPagesPage extends WantedQueryPage {
 		if ( $inc ) {
 			@list( $limit, $nlinks ) = explode( '/', $par, 2 );
 			$this->limit = (int)$limit;
-			// FIXME: nlinks is ignored
+			// @todo FIXME: nlinks is ignored
 			$nlinks = $nlinks === 'nlinks';
 			$this->offset = 0;
 		} else {

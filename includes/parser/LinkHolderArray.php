@@ -227,7 +227,7 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * FIXME: update documentation. makeLinkObj() is deprecated.
+	 * @todo FIXME: Update documentation. makeLinkObj() is deprecated.
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 * Placeholders created in Skin::makeLinkObj()
 	 * Returns an array of link CSS classes, indexed by PDBK.
@@ -322,7 +322,7 @@ class LinkHolderArray {
 				$pdbk = $title->getPrefixedDBkey();
 				$linkCache->addGoodLinkObj( $s->page_id, $title, $s->page_len, $s->page_is_redirect, $s->page_latest );
 				$output->addLink( $title, $s->page_id );
-				# FIXME: convoluted data flow
+				# @todo FIXME: Convoluted data flow
 				# The redirect status and length is passed to getLinkColour via the LinkCache
 				# Use formal parameters instead
 				$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
@@ -523,7 +523,7 @@ class LinkHolderArray {
 						$entry['pdbk'] = $varPdbk;
 
 						// set pdbk and colour
-						# FIXME: convoluted data flow
+						# @todo FIXME: Convoluted data flow
 						# The redirect status and length is passed to getLinkColour via the LinkCache
 						# Use formal parameters instead
 						$colours[$varPdbk] = Linker::getLinkColour( $variantTitle, $threshold );

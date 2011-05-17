@@ -517,7 +517,7 @@ class Parser {
 	 */
 	public function uniqPrefix() {
 		if ( !isset( $this->mUniqPrefix ) ) {
-			# @todo Fixme: this is probably *horribly wrong*
+			# @todo FIXME: This is probably *horribly wrong*
 			# LanguageConverter seems to want $wgParser's uniqPrefix, however
 			# if this is called for a parser cache hit, the parser may not
 			# have ever been initialized in the first place.
@@ -1964,7 +1964,7 @@ class Parser {
 			}
 
 			# NS_MEDIA is a pseudo-namespace for linking directly to a file
-			# FIXME: Should do batch file existence checks, see comment below
+			# @todo FIXME: Should do batch file existence checks, see comment below
 			if ( $ns == NS_MEDIA ) {
 				wfProfileIn( __METHOD__."-media" );
 				# Give extensions a chance to select the file revision for us
@@ -1984,7 +1984,7 @@ class Parser {
 			# Some titles, such as valid special pages or files in foreign repos, should
 			# be shown as bluelinks even though they're not included in the page table
 			#
-			# FIXME: isAlwaysKnown() can be expensive for file links; we should really do
+			# @todo FIXME: isAlwaysKnown() can be expensive for file links; we should really do
 			# batch file existence checks for NS_FILE and NS_MEDIA
 			if ( $iw == '' && $nt->isAlwaysKnown() ) {
 				$this->mOutput->addLink( $nt );
@@ -2276,7 +2276,7 @@ class Parser {
 					$output .= $this->openList( $char );
 
 					if ( ';' === $char ) {
-						# FIXME: This is dupe of code above
+						# @todo FIXME: This is dupe of code above
 						if ( $this->findColonNoLinks( $t, $term, $t2 ) !== false ) {
 							$t = $t2;
 							$output .= $term . $this->nextItem( ':' );
@@ -3041,7 +3041,7 @@ class Parser {
 		$originalTitle = $part1;
 
 		# $args is a list of argument nodes, starting from index 0, not including $part1
-		# *** FIXME if piece['parts'] is null then the call to getLength() below won't work b/c this $args isn't an object
+		# @todo FIXME: If piece['parts'] is null then the call to getLength() below won't work b/c this $args isn't an object
 		$args = ( null == $piece['parts'] ) ? array() : $piece['parts'];
 		wfProfileOut( __METHOD__.'-setup' );
 		wfProfileIn( __METHOD__."-title-$originalTitle" );
@@ -3770,7 +3770,7 @@ class Parser {
 		}
 		# (bug 8068) Allow control over whether robots index a page.
 		#
-		# FIXME (bug 14899): __INDEX__ always overrides __NOINDEX__ here!  This
+		# @todo FIXME: Bug 14899: __INDEX__ always overrides __NOINDEX__ here!  This
 		# is not desirable, the last one on the page should win.
 		if ( isset( $this->mDoubleUnderscores['noindex'] ) && $this->mTitle->canUseNoindex() ) {
 			$this->mOutput->setIndexPolicy( 'noindex' );
@@ -4026,7 +4026,7 @@ class Parser {
 			# HTML names must be case-insensitively unique (bug 10721).
 			# This does not apply to Unicode characters per
 			# http://dev.w3.org/html5/spec/infrastructure.html#case-sensitivity-and-string-comparison
-			# FIXME: We may be changing them depending on the current locale.
+			# @todo FIXME: We may be changing them depending on the current locale.
 			$arrayKey = strtolower( $safeHeadline );
 			if ( $legacyHeadline === false ) {
 				$legacyArrayKey = false;
@@ -4380,7 +4380,7 @@ class Parser {
 			return $text;
 		}
 
-		# FIXME: regex doesn't respect extension tags or nowiki
+		# @todo FIXME: Regex doesn't respect extension tags or nowiki
 		#  => Move this logic to braceSubstitution()
 		$substWord = MagicWord::get( 'subst' );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
@@ -4632,7 +4632,7 @@ class Parser {
 	}
 
 	/**
-	 * FIXME: update documentation. makeLinkObj() is deprecated.
+	 * @todo FIXME: Update documentation. makeLinkObj() is deprecated.
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 * Placeholders created in Skin::makeLinkObj()
 	 * Returns an array of link CSS classes, indexed by PDBK.
@@ -4882,7 +4882,7 @@ class Parser {
 						switch( $paramName ) {
 						case 'manualthumb':
 						case 'alt':
-							# @todo Fixme: possibly check validity here for
+							# @todo FIXME: Possibly check validity here for
 							# manualthumb? downstream behavior seems odd with
 							# missing manual thumbs.
 							$validated = true;
@@ -5381,7 +5381,8 @@ class Parser {
 		$text = preg_replace( '/\[\[:?([^[|]+)\|([^[]+)\]\]/', '$2', $text );
 		$text = preg_replace( '/\[\[:?([^[]+)\|?\]\]/', '$1', $text );
 
-		# Strip external link markup (FIXME: Not Tolerant to blank link text
+		# Strip external link markup
+		# @todo FIXME: Not tolerant to blank link text
 		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
 		$text = preg_replace( '/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/', '$2', $text );

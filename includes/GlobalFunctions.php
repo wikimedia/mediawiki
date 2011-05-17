@@ -386,7 +386,7 @@ function wfLogProfilingData() {
 		$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
 	}
 	// Don't load $wgUser at this late stage just for statistics purposes
-	// FIXME: We can detect some anons even if it is not loaded. See User::getId()
+	// @todo FIXME: We can detect some anons even if it is not loaded. See User::getId()
 	if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
 		$forward .= ' anon';
 	}
@@ -1060,7 +1060,7 @@ function wfShowingResultsNum( $offset, $limit, $num ) {
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	global $wgLang;
 	$fmtLimit = $wgLang->formatNum( $limit );
-	// FIXME: Why on earth this needs one message for the text and another one for tooltip??
+	// @todo FIXME: Why on earth this needs one message for the text and another one for tooltip?
 	# Get prev/next link display text
 	$prev = wfMsgExt( 'prevn', array( 'parsemag', 'escape' ), $fmtLimit );
 	$next = wfMsgExt( 'nextn', array( 'parsemag', 'escape' ), $fmtLimit );
@@ -1134,7 +1134,7 @@ function wfNumLink( $offset, $limit, $title, $query = '' ) {
 
 /**
  * @todo document
- * @todo FIXME: we may want to blacklist some broken browsers
+ * @todo FIXME: We may want to blacklist some broken browsers
  *
  * @param $force Bool
  * @return bool Whereas client accept gzip compression
@@ -1144,7 +1144,7 @@ function wfClientAcceptsGzip( $force = false ) {
 	if ( $result === null || $force ) {
 		$result = false;
 		if( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
-			# FIXME: we may want to blacklist some broken browsers
+			# @todo FIXME: We may want to blacklist some broken browsers
 			$m = array();
 			if( preg_match(
 				'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
@@ -1699,7 +1699,7 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	$parts = explode( ',', $accept );
 
 	foreach( $parts as $part ) {
-		# FIXME: doesn't deal with params like 'text/html; level=1'
+		# @todo FIXME: Doesn't deal with params like 'text/html; level=1'
 		@list( $value, $qpart ) = explode( ';', trim( $part ) );
 		$match = array();
 		if( !isset( $qpart ) ) {
@@ -1749,7 +1749,7 @@ function mimeTypeMatch( $type, $avail ) {
  * @param $sprefs Array: server's offered types
  * @return string
  *
- * @todo FIXME: doesn't handle params like 'text/plain; charset=UTF-8'
+ * @todo FIXME: Doesn't handle params like 'text/plain; charset=UTF-8'
  * XXX: generalize to negotiate other stuff
  */
 function wfNegotiateType( $cprefs, $sprefs ) {
@@ -2613,7 +2613,7 @@ function wfMergeErrorArrays( /*...*/ ) {
 	$out = array();
 	foreach ( $args as $errors ) {
 		foreach ( $errors as $params ) {
-			# FIXME: sometimes get nested arrays for $params,
+			# @todo FIXME: Sometimes get nested arrays for $params,
 			# which leads to E_NOTICEs
 			$spec = implode( "\t", $params );
 			$out[$spec] = $params;

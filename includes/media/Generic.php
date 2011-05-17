@@ -280,7 +280,7 @@ abstract class MediaHandler {
 	 */
 
 	/**
-	 * FIXME: I don't really like this interface, it's not very flexible
+	 * @todo FIXME: I don't really like this interface, it's not very flexible
 	 * I think the media handler should generate HTML instead. It can do
 	 * all the formatting according to some standard. That makes it possible
 	 * to do things like visual indication of grouped and chained streams

@@ -151,7 +151,7 @@ class BacklinkCache {
 			return $ta;
 		}
 
-		// FIXME : make this a function?
+		// @todo FIXME: Make this a function?
 		if ( !isset( $this->fullResultCache[$table] ) ) {
 			wfDebug( __METHOD__ . ": from DB\n" );
 			$res = $this->getDB()->select(
@@ -200,7 +200,7 @@ class BacklinkCache {
 	protected function getConditions( $table ) {
 		$prefix = $this->getPrefix( $table );
 
-		// FIXME imagelinks and categorylinks do not rely on getNamespace,
+		// @todo FIXME: imagelinks and categorylinks do not rely on getNamespace,
 		// they could be moved up for nicer case statements
 		switch ( $table ) {
 			case 'pagelinks':

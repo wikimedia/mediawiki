@@ -269,10 +269,9 @@ class DatabasePostgres extends DatabaseBase {
 			$res = $res->result;
 		}
 		@$row = pg_fetch_object( $res );
-		# FIXME: HACK HACK HACK HACK debug
+		# @todo FIXME: HACK HACK HACK HACK debug
 
-		# TODO:
-		# hashar : not sure if the following test really trigger if the object
+		# @todo hashar: not sure if the following test really trigger if the object
 		#          fetching failed.
 		if( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
@@ -541,7 +540,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * Source items may be literals rather then field names, but strings should be quoted with Database::addQuotes()
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
-	 * @todo FIXME: implement this a little better (seperate select/insert)?
+	 * @todo FIXME: Implement this a little better (seperate select/insert)?
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabasePostgres::insertSelect',
 		$insertOptions = array(), $selectOptions = array() )

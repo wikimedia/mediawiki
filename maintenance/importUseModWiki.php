@@ -269,7 +269,7 @@ XML;
 	}
 
 	/**
-	 * @fixme don't use /e
+	 * @todo FIXME: Don't use /e
 	 */
 	private function mungeToUtf8( $string ) {
 		$string = preg_replace ( '/&#([0-9]+);/e', 'wfUtf8Sequence($1)', $string );

@@ -2063,18 +2063,18 @@ class api extends pageTest {
 
 	// API watchlist feed mode.
 	private static function feedwatchlistMode() {
-		// FIXME: add "wikiFuzz::makeFuzz(2)" as possible value below?
+		// @todo FIXME: Add "wikiFuzz::makeFuzz(2)" as possible value below?
 		return array ( "feedformat"    => wikiFuzz::chooseInput( array( "rss", "atom" ) ) );
 	}
 
 	// API query mode.
 	private static function queryMode() {
-		// FIXME: add "wikiFuzz::makeFuzz(2)" as possible params for the elements below?
+		// @todo FIXME: Add "wikiFuzz::makeFuzz(2)" as possible params for the elements below?
 		//        Suspect this will stuff up the tests more, but need to check.
 		$params = array (
-					 // FIXME: More titles.
+					 // @todo FIXME: More titles.
 					 "titles"        => wikiFuzz::chooseInput( array( "Main Page" ) ),
-					 // FIXME: More pageids.
+					 // @todo FIXME: More pageids.
 					 "pageids"       => 1,
 					 "prop"          => wikiFuzz::chooseInput( array( "info", "revisions", "watchlist" ) ),
 					 "list"          => wikiFuzz::chooseInput( array( "allpages", "logevents", "watchlist", "usercontribs", "recentchanges", "backlinks", "embeddedin", "imagelinks" ) ),
@@ -2168,7 +2168,7 @@ class api extends pageTest {
 		$this->params["action"] = $action;
 
 		// Set the cookie:
-		// FIXME: need to get this cookie dynamically set, rather than hard-coded.
+		// @todo FIXME: Need to get this cookie dynamically set, rather than hard-coded.
 		$this->cookie = "wikidbUserID=10001; wikidbUserName=Test; wikidb_session=178df0fe68c75834643af65dec9ec98a; wikidbToken=1adc6753d62c44aec950c024d7ae0540";
 
 		// Output format

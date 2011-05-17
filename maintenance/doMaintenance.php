@@ -84,8 +84,8 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	MWFunction::call( MW_CONFIG_CALLBACK );
 } elseif ( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
 	// Load settings, using wikimedia-mode if needed
-	// Fixme: replace this hack with general farm-friendly code
-	# TODO FIXME! Wikimedia-specific stuff needs to go away to an ext
+	// @todo FIXME: Replace this hack with general farm-friendly code
+	# @todo FIXME: Wikimedia-specific stuff needs to go away to an ext
 	# Maybe a hook?
 	global $cluster;
 	$wgWikiFarm = true;

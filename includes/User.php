@@ -1267,7 +1267,7 @@ class User {
 		wfProfileIn( __METHOD__ );
 
 		$found = false;
-		// FIXME: IPv6 ???  (http://bugs.php.net/bug.php?id=33170)
+		// @todo FIXME: IPv6 ???  (http://bugs.php.net/bug.php?id=33170)
 		if( IP::isIPv4( $ip ) ) {
 			# Reverse IP, bug 21255
 			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
@@ -2355,7 +2355,7 @@ class User {
 	/**
 	 * Get the current skin, loading it if required
 	 * @return Skin The current skin
-	 * @todo FIXME : need to check the old failback system [AV]
+	 * @todo FIXME: Need to check the old failback system [AV]
 	 * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
 	 */
 	function getSkin() {
@@ -3836,7 +3836,7 @@ class User {
 	 * actually just returns array() unconditionally at the moment.  May as
 	 * well keep it around for when the browser bugs get fixed, though.
 	 *
-	 * FIXME : This does not belong here; put it in Html or Linker or somewhere
+	 * @todo FIXME: This does not belong here; put it in Html or Linker or somewhere
 	 *
 	 * @return array Array of HTML attributes suitable for feeding to
 	 *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
@@ -3853,7 +3853,7 @@ class User {
 		# Note that the pattern requirement will always be satisfied if the
 		# input is empty, so we need required in all cases.
 		#
-		# FIXME (bug 23769): This needs to not claim the password is required
+		# @todo FIXME: Bug 23769: This needs to not claim the password is required
 		# if e-mail confirmation is being used.  Since HTML5 input validation
 		# is b0rked anyway in some browsers, just return nothing.  When it's
 		# re-enabled, fix this code to not output required for e-mail

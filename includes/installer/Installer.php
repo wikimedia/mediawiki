@@ -634,7 +634,7 @@ abstract class Installer {
 
 		if ( !$compiledDBs ) {
 			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ) );
-			// FIXME: this only works for the web installer!
+			// @todo FIXME: This only works for the web installer!
 			return false;
 		}
 
@@ -870,7 +870,7 @@ abstract class Installer {
 	 * Environment check for setting the preferred PHP file extension.
 	 */
 	protected function envCheckExtension() {
-		// FIXME: detect this properly
+		// @todo FIXME: Detect this properly
 		if ( defined( 'MW_INSTALL_PHP5_EXT' ) ) {
 			$ext = 'php5';
 		} else {

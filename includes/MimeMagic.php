@@ -564,7 +564,8 @@ class MimeMagic {
 	private function doGuessMimeType( $file, $ext ) { // TODO: remove $ext param
 		// Read a chunk of the file
 		wfSuppressWarnings();
-		$f = fopen( $file, 'rt' ); // FIXME: Shouldn't this be rb?
+		// @todo FIXME: Shouldn't this be rb?
+		$f = fopen( $file, 'rt' );
 		wfRestoreWarnings();
 		
 		if( !$f ) {
@@ -632,7 +633,7 @@ class MimeMagic {
 		 * heuristic, and won't match a file with a lot of non-PHP before.  It
 		 * will also match text files which could be PHP. :)
 		 *
-		 * FIXME: For this reason, the check is probably useless -- an attacker
+		 * @todo FIXME: For this reason, the check is probably useless -- an attacker
 		 * could almost certainly just pad the file with a lot of nonsense to
 		 * circumvent the check in any case where it would be a security
 		 * problem.  On the other hand, it causes harmful false positives (bug
@@ -856,7 +857,7 @@ class MimeMagic {
 
 		$m = null;
 		if ( $wgMimeDetectorCommand ) {
-			// FIXME: Use wfShellExec
+			// @todo FIXME: Use wfShellExec
 			$fn = wfEscapeShellArg( $file );
 			$m = `$wgMimeDetectorCommand $fn`;
 		} elseif ( function_exists( "finfo_open" ) && function_exists( "finfo_file" ) ) {

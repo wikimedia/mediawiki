@@ -54,7 +54,7 @@ class BitmapHandler extends ImageHandler {
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
 		# an exception for it.
-		# FIXME: This actually only applies to ImageMagick
+		# @todo FIXME: This actually only applies to ImageMagick
 		if ( $mimeType !== 'image/jpeg' &&
 			$srcWidth * $srcHeight > $wgMaxImageArea )
 		{

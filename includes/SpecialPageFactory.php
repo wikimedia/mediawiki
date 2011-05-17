@@ -405,7 +405,7 @@ class SpecialPageFactory {
 	public static function executePath( Title &$title, RequestContext &$context, $including = false ) {
 		wfProfileIn( __METHOD__ );
 
-		// FIXME: redirects broken due to this call
+		// @todo FIXME: Redirects broken due to this call
 		$bits = explode( '/', $title->getDBkey(), 2 );
 		$name = $bits[0];
 		if ( !isset( $bits[1] ) ) { // bug 2087

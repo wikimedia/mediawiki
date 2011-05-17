@@ -969,14 +969,14 @@ class SpecialUndelete extends SpecialPage {
 		$sk = $wgUser->getSkin();
 		$isDeleted = !( $rev->getId() && $rev->getTitle() );
 		if( $isDeleted ) {
-			/// @todo Fixme: $rev->getTitle() is null for deleted revs...?
+			/// @todo FIXME: $rev->getTitle() is null for deleted revs...?
 			$targetPage = $this->getTitle();
 			$targetQuery = array(
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'timestamp' => wfTimestamp( TS_MW, $rev->getTimestamp() )
 			);
 		} else {
-			/// @todo Fixme getId() may return non-zero for deleted revs...
+			/// @todo FIXME: getId() may return non-zero for deleted revs...
 			$targetPage = $rev->getTitle();
 			$targetQuery = array( 'oldid' => $rev->getId() );
 		}

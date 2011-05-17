@@ -39,7 +39,7 @@ class MWNamespaceTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testIsMovable() {
 		$this->assertFalse( MWNamespace::isMovable( NS_CATEGORY ) );
-		# FIXME : write more tests!!
+		# @todo FIXME: Write more tests!!
 	}
 
 	/**
@@ -233,7 +233,7 @@ class MWNamespaceTest extends PHPUnit_Framework_TestCase {
 		// Tests that user defined namespace #252 is not content:
 		$this->assertFalse( MWNamespace::isContent( 252 ) );
 
-		# FIXME: is global saving really required for PHPUnit?
+		# @todo FIXME: Is global saving really required for PHPUnit?
 		// Bless namespace # 252 as a content namespace
 		global $wgContentNamespaces;
 		$savedGlobal = $wgContentNamespaces;

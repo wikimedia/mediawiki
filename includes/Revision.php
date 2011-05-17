@@ -65,7 +65,7 @@ class Revision {
 	/**
 	 * Make a fake revision object from an archive table row. This is queried
 	 * for permissions or even inserted (as in Special:Undelete)
-	 * @todo Fixme: should be a subclass for RevisionDelete. [TS]
+	 * @todo FIXME: Should be a subclass for RevisionDelete. [TS]
 	 */
 	public static function newFromArchiveRow( $row, $overrides = array() ) {
 		$attribs = $overrides + array(

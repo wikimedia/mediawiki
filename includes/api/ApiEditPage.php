@@ -267,7 +267,7 @@ class ApiEditPage extends ApiBase {
 		$oldRevId = $articleObj->getRevIdFetched();
 		$result = null;
 		// Fake $wgRequest for some hooks inside EditPage
-		// FIXME: This interface SUCKS
+		// @todo FIXME: This interface SUCKS
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 

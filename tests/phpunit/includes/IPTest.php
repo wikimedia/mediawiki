@@ -262,7 +262,7 @@ class IPTest extends MediaWikiTestCase {
 	 * @covers IP::toUnsigned
 	 */
 	public function testip2longWrapper() {
-		// fixme : add more tests ?
+		// @todo FIXME: Add more tests ?
 		$this->assertEquals( pow(2,32) - 1, IP::toUnsigned( '255.255.255.255' ));
 		$i = 'IN.VA.LI.D';
 		$this->assertFalse( IP::toUnSigned( $i ) );
@@ -349,7 +349,7 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertEquals( array( 0, 0 ), IP::parseCIDR('0.0.0.0/0') );
 		$this->assertEquals( array( 0, 0 ), IP::parseCIDR('255.255.255.255/0') );
 
-		// FIXME : add more tests.
+		// @todo FIXME: Add more tests.
 
 		# This part test network shifting
 		$this->assertNet( '192.0.0.0'  , '192.0.0.2/24'   );

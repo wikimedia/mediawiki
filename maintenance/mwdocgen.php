@@ -238,7 +238,8 @@ case 6:
 $versionNumber = getSvnRevision( $input );
 if ( $versionNumber === false ) { # Not using subversion ?
 	$svnstat = ''; # Not really useful if subversion not available
-	$version = 'trunk'; # FIXME
+	# @todo FIXME
+	$version = 'trunk';
 } else {
 	$version = "trunk (r$versionNumber)";
 }

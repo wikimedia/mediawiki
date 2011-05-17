@@ -39,7 +39,7 @@ class Linker {
 	static function getInterwikiLinkAttributes( $title, $unused = null, $class = 'external' ) {
 		global $wgContLang;
 
-		# FIXME: We have a whole bunch of handling here that doesn't happen in
+		# @todo FIXME: We have a whole bunch of handling here that doesn't happen in
 		# getExternalLinkAttributes, why?
 		$title = urldecode( $title );
 		$title = $wgContLang->checkTitleEncoding( $title );
@@ -353,7 +353,7 @@ class Linker {
 
 		$threshold = $wgUser->getStubThreshold();
 		$colour = ( $size < $threshold ) ? 'stub' : '';
-		// FIXME: replace deprecated makeColouredLinkObj by link()
+		// @todo FIXME: Replace deprecated makeColouredLinkObj by link()
 		return self::makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
 	}
 
@@ -1148,7 +1148,7 @@ class Linker {
 	 * Formats wiki links and media links in text; all other wiki formatting
 	 * is ignored
 	 *
-	 * @todo Fixme: doesn't handle sub-links as in image thumb texts like the main parser
+	 * @todo FIXME: Doesn't handle sub-links as in image thumb texts like the main parser
 	 * @param $comment String: text to format links in
 	 * @param $title An optional title object used to links to sections
 	 * @param $local Boolean: whether section links should refer to local page
@@ -1716,7 +1716,7 @@ class Linker {
 		} else {
 			$accesskey = $message->plain();
 			if ( $accesskey === '' || $accesskey === '-' ) {
-				# FIXME: Per standard MW behavior, a value of '-' means to suppress the
+				# @todo FIXME: Per standard MW behavior, a value of '-' means to suppress the
 				# attribute, but this is broken for accesskey: that might be a useful
 				# value.
 				$accesskey = false;
@@ -1909,7 +1909,7 @@ class Linker {
 		global $wgEnableTooltipsAndAccesskeys;
 		if ( !$wgEnableTooltipsAndAccesskeys )
 			return array();
-		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
+		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
 		# would be three lines.
 		$attribs = array(
@@ -1933,7 +1933,7 @@ class Linker {
 		global $wgEnableTooltipsAndAccesskeys;
 		if ( !$wgEnableTooltipsAndAccesskeys )
 			return '';
-		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
+		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
 		# would be two lines.
 		$tooltip = self::titleAttrib( $name, $options );

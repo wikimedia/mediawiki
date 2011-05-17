@@ -46,7 +46,7 @@ class MagicVariableTest extends PHPUnit_Framework_TestCase {
 	}
 
 	############### TESTS #############################################
-	# FIXME:
+	# @todo FIXME:
 	#  - those got copy pasted, we can probably make them cleaner
 	#  - tests are lacking useful messages
 

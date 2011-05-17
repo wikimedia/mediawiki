@@ -50,7 +50,7 @@ class SearchMySQL extends SearchEngine {
 		$searchon = '';
 		$this->searchTerms = array();
 
-		# FIXME: This doesn't handle parenthetical expressions.
+		# @todo FIXME: This doesn't handle parenthetical expressions.
 		$m = array();
 		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 			  $filteredText, $m, PREG_SET_ORDER ) ) {

@@ -109,7 +109,7 @@ class ForeignAPIRepo extends FileRepo {
 				$results[$k] = true;
 				unset( $files[$k] );
 			} elseif( self::isVirtualUrl( $f ) ) {
-				# TODO! FIXME! We need to be able to handle virtual
+				# @todo FIXME: We need to be able to handle virtual
 				# URLs better, at least when we know they refer to the
 				# same repo.
 				$results[$k] = false;
@@ -295,7 +295,7 @@ class ForeignAPIRepo extends FileRepo {
 			}
 		}
 
-		# FIXME: Delete old thumbs that aren't being used. Maintenance script?
+		# @todo FIXME: Delete old thumbs that aren't being used. Maintenance script?
 		wfSuppressWarnings();
 		if( !file_put_contents( $localFilename, $thumb ) ) {
 			wfRestoreWarnings();

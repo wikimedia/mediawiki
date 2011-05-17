@@ -144,7 +144,7 @@ class XmlTest extends MediaWikiTestCase {
 			"Date menu next month is 11 months ago"
 		);
 
-		# FIXME: please note there is no year there!
+		# @todo FIXME: Please note there is no year there!
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>
 <option value="1">January</option>

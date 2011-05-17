@@ -141,7 +141,7 @@ class SeleniumServerManager {
 
 		$output = array();
 		$user = $_ENV['USER'];
-		// @fixme this should be a little more generalized :)
+		// @todo FIXME: This should be a little more generalized :)
 		if (PHP_OS == 'Darwin') {
 			// Mac OS X's ps barfs on the 'w' param, but doesn't need it.
 			$ps = "ps -U %s";

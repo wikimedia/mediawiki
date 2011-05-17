@@ -421,7 +421,7 @@ abstract class Skin {
 		// Per-user custom styles
 		if ( $wgAllowUserCss ) {
 			if ( $this->getTitle()->isCssSubpage() && $this->userCanPreview( $this->getContext()->getRequest()->getVal( 'action' ) ) ) {
-				// @FIXME: properly escape the cdata!
+				// @todo FIXME: Properly escape the cdata!
 				$out->addInlineStyle( $this->getContext()->getRequest()->getText( 'wpTextbox1' ) );
 			} else {
 				$out->addModuleStyles( 'user' );

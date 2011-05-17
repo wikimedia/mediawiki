@@ -76,7 +76,7 @@ class LanguageRu extends Language {
 		// if no number with word, then use $form[0] for singular and $form[1] for plural or zero
 		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
 
-		// FIXME: CLDR defines 4 plural forms. Form with decimals missing.
+		// @todo FIXME: CLDR defines 4 plural forms. Form with decimals missing.
 		// See http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#ru
 		$forms = $this->preConvertPlural( $forms, 3 );
 

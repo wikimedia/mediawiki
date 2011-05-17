@@ -44,7 +44,7 @@ interface DatabaseType {
 
 	/**
 	 * The DBMS-dependent part of query()
-	 * @todo Fixme: Make this private someday
+	 * @todo FIXME: Make this private someday
 	 *
 	 * @param  $sql String: SQL query.
 	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure

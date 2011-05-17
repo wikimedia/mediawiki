@@ -29,7 +29,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 
 		# Filter out rc_timestamp conditions which depends on the test runtime
 		# This condition is not needed as of march 2, 2011 -- hashar
-		# FIXME: find a way to generate the correct rc_timestamp
+		# @todo FIXME: Find a way to generate the correct rc_timestamp
 		$queryConditions = array_filter(
 			$this->rc->buildMainQueryConds( $formOptions ),
 			'SpecialRecentchangesTest::filterOutRcTimestampCondition'

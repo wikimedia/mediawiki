@@ -418,7 +418,7 @@ class AtomFeed extends ChannelFeed {
 		<?php if( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor() ?></name></author><?php }?>
 	</entry>
 
-<?php /* FIXME need to add comments
+<?php /* @todo FIXME: Need to add comments
 	<?php if( $item->getComments() ) { ?><dc:comment><?php print $item->getComments() ?></dc:comment><?php }?>
 	  */
 	}

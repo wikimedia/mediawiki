@@ -549,9 +549,9 @@ class CoreParserFunctions {
 	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
 	 * expensive parser function and can't be called too many times per page.
 	 *
-	 * @todo Fixme: This doesn't work correctly on preview for getting the size
+	 * @todo FIXME: This doesn't work correctly on preview for getting the size
 	 *   of the current page.
-	 * @todo Fixme: Title::getLength() documentation claims that it adds things
+	 * @todo FIXME: Title::getLength() documentation claims that it adds things
 	 *   to the link cache, so the local cache here should be unnecessary, but
 	 *   in fact calling getLength() repeatedly for the same $page does seem to
 	 *   run one query for each call?

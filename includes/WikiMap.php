@@ -142,7 +142,7 @@ class WikiReference {
 	/**
 	 * Helper function for getUrl()
 	 *
-	 * @todo FIXME: this may be generalized...
+	 * @todo FIXME: This may be generalized...
 	 * @param $page String: page name (must be normalised before calling this function!)
 	 * @return String: Url fragment
 	 */

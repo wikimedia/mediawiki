@@ -164,7 +164,7 @@ class WikiImporter {
 			// Don't override namespaces
 			$this->mTargetNamespace = null;
 		} elseif( $namespace >= 0 ) {
-			// FIXME: Check for validity
+			// @todo FIXME: Check for validity
 			$this->mTargetNamespace = intval( $namespace );
 		} else {
 			return false;
@@ -1026,14 +1026,14 @@ class WikiRevision {
 				__METHOD__
 			);
 			if( $prior ) {
-				// FIXME: this could fail slightly for multiple matches :P
+				// @todo FIXME: This could fail slightly for multiple matches :P
 				wfDebug( __METHOD__ . ": skipping existing revision for [[" .
 					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
 				return false;
 			}
 		}
 
-		# FIXME: Use original rev_id optionally (better for backups)
+		# @todo FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row
 		$revision = new Revision( array(
 			'page'       => $pageId,
@@ -1077,14 +1077,14 @@ class WikiRevision {
 
 	function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
-		# FIXME: this will not record autoblocks
+		# @todo FIXME: This will not record autoblocks
 		if( !$this->getTitle() ) {
 			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " .
 				$this->timestamp . "\n" );
 			return;
 		}
 		# Check if it exists already
-		// FIXME: use original log ID (better for backups)
+		// @todo FIXME: Use original log ID (better for backups)
 		$prior = $dbw->selectField( 'logging', '1',
 			array( 'log_type' => $this->getType(),
 				'log_action'    => $this->getAction(),
@@ -1096,7 +1096,7 @@ class WikiRevision {
 				'log_params'    => $this->params ),
 			__METHOD__
 		);
-		// FIXME: this could fail slightly for multiple matches :P
+		// @todo FIXME: This could fail slightly for multiple matches :P
 		if( $prior ) {
 			wfDebug( __METHOD__ . ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp " .
 				$this->timestamp . "\n" );
@@ -1190,7 +1190,7 @@ class WikiRevision {
 			return false;
 		}
 
-		// @todo Fixme!
+		// @todo FIXME!
 		$src = $this->getSrc();
 		$data = Http::get( $src );
 		if( !$data ) {

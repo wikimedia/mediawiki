@@ -78,8 +78,9 @@ class ApiLogin extends ApiBase {
 				$wgUser->setOption( 'rememberpassword', 1 );
 				$wgUser->setCookies( $this->getMain()->getRequest() );
 
-				// Run hooks. FIXME: split back and frontend from this hook.
-				// FIXME: This hook should be placed in the backend
+				// Run hooks.
+				// @todo FIXME: Split back and frontend from this hook.
+				// @todo FIXME: This hook should be placed in the backend
 				$injected_html = '';
 				wfRunHooks( 'UserLoginComplete', array( &$wgUser, &$injected_html ) );
 

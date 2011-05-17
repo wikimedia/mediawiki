@@ -307,7 +307,7 @@ class ParserOptions {
 			$confstr .= '!*';
 
 		// add in language specific options, if any
-		// FIXME: This is just a way of retrieving the url/user preferred variant
+		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
 		$confstr .= $wgContLang->getExtraHashOptions();
 
 		$confstr .= $wgRenderHashAppend;

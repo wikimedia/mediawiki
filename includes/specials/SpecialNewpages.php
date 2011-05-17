@@ -169,7 +169,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		);
 
 		// Disable some if needed
-		# FIXME: throws E_NOTICEs if not set; and doesn't obey hooks etc.
+		# @todo FIXME: Throws E_NOTICEs if not set; and doesn't obey hooks etc.
 		if ( $wgGroupPermissions['*']['createpage'] !== true ) {
 			unset( $filters['hideliu'] );
 		}

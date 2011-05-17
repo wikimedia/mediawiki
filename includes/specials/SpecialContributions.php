@@ -184,7 +184,7 @@ class SpecialContributions extends SpecialPage {
 	 * @param $nt Title object for the target
 	 * @param $id Integer: User ID for the target
 	 * @return String: appropriately-escaped HTML to be output literally
-	 * @todo Fixme: almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
+	 * @todo FIXME: Almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
 	 */
 	protected function contributionsSub( $nt, $id ) {
 		global $wgLang, $wgUser, $wgOut;
@@ -606,7 +606,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$condition[] = 'rev_user >' . (int)($max - $max / 100);
 			$condition[] = 'ug_group IS NULL';
 			$index = 'user_timestamp';
-			# FIXME: other groups may have 'bot' rights
+			# @todo FIXME: Other groups may have 'bot' rights
 			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
 		} else {
 			$tables = array( 'page', 'revision' );

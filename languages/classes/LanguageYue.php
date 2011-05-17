@@ -12,7 +12,7 @@ class LanguageYue extends Language {
 	/**
 	 * Eventually this should be a word segmentation;
 	 * for now just treat each character as a word.
-	 * @todo Fixme: only do this for Han characters...
+	 * @todo FIXME: Only do this for Han characters...
 	 */
 	function segmentByWord( $string ) {
 		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";

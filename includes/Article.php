@@ -80,7 +80,7 @@ class Article {
 	 * @param $oldId Integer revision ID, null to fetch from request, zero for current
 	 */
 	public function __construct( Title $title, $oldId = null ) {
-		// FIXME: does the reference play any role here?
+		// @todo FIXME: Does the reference play any role here?
 		$this->mTitle =& $title;
 		$this->mOldId = $oldId;
 	}
@@ -91,7 +91,7 @@ class Article {
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
-		# FIXME: doesn't inherit right
+		# @todo FIXME: Doesn't inherit right
 		return $t == null ? null : new self( $t );
 		# return $t == null ? null : new static( $t ); // PHP 5.3
 	}
@@ -246,7 +246,7 @@ class Article {
 
 	/**
 	 * Clear the object
-	 * FIXME: shouldn't this be public?
+	 * @todo FIXME: Shouldn't this be public?
 	 * @private
 	 */
 	public function clear() {
@@ -564,7 +564,7 @@ class Article {
 			}
 		}
 
-		// FIXME: Horrible, horrible! This content-loading interface just plain sucks.
+		// @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
 		// We should instead work with the Revision object when we need it...
 		$this->mContent   = $revision->getText( Revision::FOR_THIS_USER ); // Loads if user is allowed
 
@@ -833,7 +833,7 @@ class Article {
 	 * @return UserArray
 	 */
 	public function getContributors() {
-		# FIXME: this is expensive; cache this info somewhere.
+		# @todo FIXME: This is expensive; cache this info somewhere.
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$userTable = $dbr->tableName( 'user' );
@@ -2213,7 +2213,8 @@ class Article {
 			$revisionId = $revision->insertOn( $dbw );
 
 			$this->mTitle->resetArticleID( $newid );
-			# Update the LinkCache. Resetting the Title ArticleID means it will rely on having that already cached (FIXME?)
+			# Update the LinkCache. Resetting the Title ArticleID means it will rely on having that already cached
+			# @todo FIXME?
 			LinkCache::singleton()->addGoodLinkObj( $newid, $this->mTitle, strlen( $text ), (bool)Title::newFromRedirect( $text ), $revisionId );
 
 			# Update the page record with revision data
@@ -2437,7 +2438,7 @@ class Article {
 		// Take this opportunity to purge out expired restrictions
 		Title::purgeExpiredRestrictions();
 
-		# FIXME: Same limitations as described in ProtectionForm.php (line 37);
+		# @todo FIXME: Same limitations as described in ProtectionForm.php (line 37);
 		# we expect a single selection, but the schema allows otherwise.
 		$current = array();
 		$updated = Article::flattenRestrictions( $limit );
@@ -2802,7 +2803,7 @@ class Article {
 			global $wgLang;
 
 			$revisions = $this->estimateRevisionCount();
-			//FIXME: lego
+			// @todo FIXME: i18n issue/patchwork message
 			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .
 				wfMsgHtml( 'word-separator' ) . Linker::link( $this->mTitle,
@@ -2904,7 +2905,7 @@ class Article {
 
 	/**
 	 * Output deletion confirmation dialog
-	 * FIXME: Move to another file?
+	 * @todo FIXME: Move to another file?
 	 * @param $reason String: prefilled reason
 	 */
 	public function confirmDelete( $reason ) {

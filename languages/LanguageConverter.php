@@ -885,7 +885,7 @@ class LanguageConverter {
 		if ( strpos( $code, '/' ) === false ) {
 			$txt = MessageCache::singleton()->get( 'Conversiontable', true, $code );
 			if ( $txt === false ) {
-				# FIXME: this method doesn't seem to be expecting
+				# @todo FIXME: This method doesn't seem to be expecting
 				# this possible outcome...
 				$txt = '&lt;Conversiontable&gt;';
 			}

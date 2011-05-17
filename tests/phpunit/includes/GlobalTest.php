@@ -327,7 +327,7 @@ class GlobalTest extends MediaWikiTestCase {
 			wfTimestamp( TS_RFC2822, '0117-08-09 12:34:56'),
 			'Death of Roman Emperor [[Trajan]]');
 
-		/* FIXME: 00 to 101 years are taken as being in [1970-2069] */
+		/* @todo FIXME: 00 to 101 years are taken as being in [1970-2069] */
 
 		$this->assertEquals( 'Sun, 01 Jan 0101 00:00:00 GMT',
 			wfTimestamp( TS_RFC2822, '-58979923200'),
@@ -499,7 +499,8 @@ class GlobalTest extends MediaWikiTestCase {
 		
 		$old_log_file = $wgDebugLogFile;
 		$wgDebugLogFile = tempnam( wfTempDir(), 'mw-' );
-		$wgDebugTimestamps = false; # FIXME: this setting should be tested
+		# @todo FIXME: This setting should be tested
+		$wgDebugTimestamps = false;
 		
 		
 		
@@ -807,7 +808,8 @@ class GlobalTest extends MediaWikiTestCase {
 		/*	
 			// ISO 15924 :
 			array( 'sr-Cyrl', 'sr-Cyrl' ),
-			array( 'SR-lATN', 'sr-Latn' ), # FIXME fix our function?
+			# @todo FIXME: Fix our function?
+			array( 'SR-lATN', 'sr-Latn' ),
 			array( 'fr-latn', 'fr-Latn' ),
 			// Use lowercase for single segment
 			// ISO 3166-1-alpha-2 code
