@@ -409,9 +409,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', '_badcontinue' );
 		}
 		$this->contID = $contID;
-		$redirID = intval( @$continueList[3] );
+		$id2 = isset( $continueList[3] ) ? $continueList[3] : null;
+		$redirID = intval( $id2 );
 
-		if ( $redirID === 0 && @$continueList[3] !== '0' ) {
+		if ( $redirID === 0 && $id2 !== '0' ) {
 			// This one isn't required
 			return;
 		}
