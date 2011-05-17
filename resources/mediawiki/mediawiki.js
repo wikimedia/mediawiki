@@ -489,7 +489,7 @@ window.mediaWiki = new ( function( $ ) {
 						addScript( script[i], function() {
 							if ( ++done == script.length ) {
 								registry[module].state = 'ready';
-								handlePending();
+								handlePending( module );
 								if ( $.isFunction( callback ) ) {
 									callback();
 								}
@@ -499,7 +499,7 @@ window.mediaWiki = new ( function( $ ) {
 				} else if ( $.isFunction( script ) ) {
 					script( jQuery );
 					registry[module].state = 'ready';
-					handlePending();
+					handlePending( module );
 					if ( $.isFunction( callback ) ) {
 						callback();
 					}
@@ -520,7 +520,7 @@ window.mediaWiki = new ( function( $ ) {
 		 *
 		 * This is used when dependencies are satisfied, such as when a module is executed.
 		 */
-		function handlePending() {
+		function handlePending( module ) {
 			try {
 				// Run jobs who's dependencies have just been met
 				for ( var j = 0; j < jobs.length; j++ ) {
