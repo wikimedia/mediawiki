@@ -1780,11 +1780,7 @@ $wgMessageStructure = array(
 		'emailccme',
 		'emailccsubject',
 		'emailsent',
-		'emailnotsent',
 		'emailsenttext',
-		'emailyougotcopy',
-		'emailfailed',
-		'emailccfailed',
 		'emailuserfooter',
 	),
 	'usermessage' => array(
