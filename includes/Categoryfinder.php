@@ -42,6 +42,7 @@ class Categoryfinder {
 	 * @param $article_ids Array of article IDs
 	 * @param $categories FIXME
 	 * @param $mode String: FIXME, default 'AND'.
+	 * @todo FIXME: $categories/$mode
 	 */
 	function seed( $article_ids, $categories, $mode = 'AND' ) {
 		$this->articles = $article_ids;

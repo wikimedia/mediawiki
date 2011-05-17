@@ -110,7 +110,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 		$dbName = $this->getVar( 'wgDBname' );
 		try {
-			# FIXME: need more sensible constructor parameters, e.g. single associative array
+			# @todo FIXME: Need more sensible constructor parameters, e.g. single associative array
 			# Setting globals kind of sucks
 			$wgSQLiteDataDir = $dir;
 			$db = new DatabaseSqlite( false, false, false, $dbName );

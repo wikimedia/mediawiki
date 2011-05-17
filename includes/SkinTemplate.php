@@ -194,7 +194,7 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'usercss', false );
 
 			$this->userjs = $this->userjsprev = false;
-			# FIXME: this is the only use of OutputPage::isUserJsAllowed() anywhere; can we
+			# @todo FIXME: This is the only use of OutputPage::isUserJsAllowed() anywhere; can we
 			# get rid of it?  For that matter, why is any of this here at all?
 			$this->setupUserJs( $out->isUserJsAllowed() );
 			$tpl->setRef( 'userjs', $this->userjs );
@@ -671,11 +671,13 @@ class SkinTemplate extends Skin {
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
 				$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL() );
 				$login_url['href']  = $https_url;
-				$login_url['class'] = 'link-https';  # FIXME class depends on skin
+				# @todo FIXME: Class depends on skin
+				$login_url['class'] = 'link-https';
 				if ( isset($createaccount_url) ) {
 					$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL("type=signup") );
 					$createaccount_url['href']  = $https_url;
-					$createaccount_url['class'] = 'link-https';  # FIXME class depends on skin
+					# @todo FIXME: Class depends on skin
+					$createaccount_url['class'] = 'link-https';
 				}
 			}
 
@@ -1279,7 +1281,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * @private
-	 * FIXME: why is this duplicated in/from OutputPage::getHeadScripts()??
+	 * @todo FIXME: Why is this duplicated in/from OutputPage::getHeadScripts()??
 	 */
 	function setupUserJs( $allowUserJs ) {
 		global $wgRequest, $wgJsMimeType;

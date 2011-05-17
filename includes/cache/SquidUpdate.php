@@ -145,7 +145,7 @@ class SquidUpdate {
 
 		$htcpOpCLR = 4; // HTCP CLR
 
-		// FIXME PHP doesn't support these socket constants (include/linux/in.h)
+		// @todo FIXME: PHP doesn't support these socket constants (include/linux/in.h)
 		if( !defined( "IPPROTO_IP" ) ) {
 			define( "IPPROTO_IP", 0 );
 			define( "IP_MULTICAST_LOOP", 34 );

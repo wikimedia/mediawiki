@@ -389,7 +389,7 @@ class SpecialPage {
 		return $this->mFile;
 	}
 
-	// FIXME: decide which syntax to use for this, and stick to it
+	// @todo FIXME: Decide which syntax to use for this, and stick to it
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
 	 * @since r3583 (v1.3)
@@ -929,7 +929,7 @@ class SpecialListBots extends SpecialRedirectToSpecial {
 
 /**
  * CreateAccount --> UserLogin/signup
- * FIXME: this (and the rest of the login frontend) needs to die a horrible painful death
+ * @todo FIXME: This (and the rest of the login frontend) needs to die a horrible painful death
  */
 class SpecialCreateAccount extends SpecialRedirectToSpecial {
 	function __construct(){

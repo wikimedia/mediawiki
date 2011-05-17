@@ -166,7 +166,8 @@ class UserMailer {
 			$headers['Content-type'] = ( is_null( $contentType ) ?
 					'text/plain; charset=UTF-8' : $contentType );
 			$headers['Content-transfer-encoding'] = '8bit';
-			$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>'; // FIXME
+			// @todo FIXME
+			$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>';
 			$headers['X-Mailer'] = 'MediaWiki mailer';
 
 			wfSuppressWarnings();

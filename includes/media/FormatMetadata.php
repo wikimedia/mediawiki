@@ -842,10 +842,10 @@ class FormatMetadata {
 			wfDebug( __METHOD__ . ' metadata array with 0 elements!' );
 			return ""; // paranoia. This should never happen
 		}
-		/* Fixme: This should hide some of the list entries if there are
-		* say more than four. Especially if a field is translated into 20
-		* languages, we don't want to show them all by default
-		*/
+		/* @todo FIXME: This should hide some of the list entries if there are
+		 * say more than four. Especially if a field is translated into 20
+		 * languages, we don't want to show them all by default
+		 */
 		else {
 			global $wgContLang;
 			switch( $type ) {

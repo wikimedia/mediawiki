@@ -1558,7 +1558,7 @@ class Sanitizer {
 
 			$host = preg_replace( $strip, '', $host );
 
-			// @todo Fixme: validate hostnames here
+			// @todo FIXME: Validate hostnames here
 
 			return $protocol . $host . $rest;
 		} else {

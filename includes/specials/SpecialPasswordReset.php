@@ -210,7 +210,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		if ( $result->isGood() ) {
 			return true;
 		} else {
-			// FIXME: The email didn't send, but we have already set the password throttle
+			// @todo FIXME: The email didn't send, but we have already set the password throttle
 			// timestamp, so they won't be able to try again until it expires...  :(
 			return array( array( 'mailerror', $result->getMessage() ) );
 		}

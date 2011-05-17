@@ -352,7 +352,7 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @param $nt Title object for the target
 	 * @param $id Integer: User ID for the target
 	 * @return String: appropriately-escaped HTML to be output literally
-	 * @todo Fixme: almost the same as contributionsSub in SpecialContributions.php. Could be combined.
+	 * @todo FIXME: Almost the same as contributionsSub in SpecialContributions.php. Could be combined.
 	 */
 	function getSubTitle( $nt, $id ) {
 		global $wgLang, $wgUser, $wgOut;

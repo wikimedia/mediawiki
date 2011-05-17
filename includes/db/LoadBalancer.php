@@ -165,7 +165,7 @@ class LoadBalancer {
 	function getReaderIndex( $group = false, $wiki = false ) {
 		global $wgReadOnly, $wgDBClusterTimeout, $wgDBAvgStatusPoll, $wgDBtype;
 
-		# FIXME: For now, only go through all this for mysql databases
+		# @todo FIXME: For now, only go through all this for mysql databases
 		if ($wgDBtype != 'mysql') {
 			return $this->getWriterIndex();
 		}

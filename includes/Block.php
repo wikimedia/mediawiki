@@ -54,7 +54,7 @@ class Block {
 
 	/**
 	 * Constructor
-	 * FIXME: Don't know what the best format to have for this constructor is, but fourteen
+	 * @todo FIXME: Don't know what the best format to have for this constructor is, but fourteen
 	 * optional parameters certainly isn't it.
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
@@ -1059,7 +1059,7 @@ class Block {
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
 	 * @return array( User|String, Block::TYPE_ constant )
-	 * FIXME: this should be an integral part of the Block member variables
+	 * @todo FIXME: This should be an integral part of the Block member variables
 	 */
 	public function getTargetAndType() {
 		return array( $this->getTarget(), $this->getType() );

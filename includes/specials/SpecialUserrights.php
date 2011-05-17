@@ -98,7 +98,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		if( !$this->userCanChangeRights( $wgUser, true ) ) {
-			// fixme... there may be intermediate groups we can mention.
+			// @todo FIXME: There may be intermediate groups we can mention.
 			$wgOut->showPermissionsErrorPage( array( array(
 				$wgUser->isAnon()
 					? 'userrights-nologin'

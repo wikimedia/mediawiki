@@ -66,8 +66,8 @@ class SpecialImport extends SpecialPage {
 			return $wgOut->permissionRequired( 'import' );
 		}
 
-		# TODO: allow Title::getUserPermissionsErrors() to take an array
-		# FIXME: Title::checkSpecialsAndNSPermissions() has a very wierd expectation of what
+		# @todo Allow Title::getUserPermissionsErrors() to take an array
+		# @todo FIXME: Title::checkSpecialsAndNSPermissions() has a very wierd expectation of what
 		# getUserPermissionsErrors() might actually be used for, hence the 'ns-specialprotected'
 		$errors = wfMergeErrorArrays(
 			$this->getTitle()->getUserPermissionsErrors(

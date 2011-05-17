@@ -13,7 +13,7 @@ class LanguageMl extends Language {
 	 * bug 9413. Also fixes miscellaneous problems due to mishandling of ZWJ,
 	 * e.g. bug 11162.
 	 *
-	 * FIXME: This is language-specific for now only to avoid the negative
+	 * @todo FIXME: This is language-specific for now only to avoid the negative
 	 * performance impact of enabling it for all languages.
 	 */
 	function normalize( $s ) {

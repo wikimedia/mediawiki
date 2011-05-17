@@ -49,7 +49,7 @@ class DisambiguationsPage extends PageQueryPage {
 		$dp = Title::newFromText($dMsgText);
 		if( $dp ) {
 			if( $dp->getNamespace() != NS_TEMPLATE ) {
-				# FIXME we assume the disambiguation message is a template but
+				# @todo FIXME: We assume the disambiguation message is a template but
 				# the page can potentially be from another namespace :/
 				wfDebug("Mediawiki:disambiguationspage message does not refer to a template!\n");
 			}
@@ -78,7 +78,7 @@ class DisambiguationsPage extends PageQueryPage {
 			wfDebug("Mediawiki:disambiguationspage message does not link to any templates!\n");
 		}
 
-		// FIXME: What are pagelinks and p2 doing here?
+		// @todo FIXME: What are pagelinks and p2 doing here?
 		return array (
 			'tables' => array( 'templatelinks', 'p1' => 'page', 'pagelinks', 'p2' => 'page' ),
 			'fields' => array( 'p1.page_namespace AS namespace',

@@ -11,7 +11,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * This class is used to prepare the final rendering. A skin is then
  * applied to the output parameters (links, javascript, html, categories ...).
  *
- * Another class (fixme) handles sending the whole page to the client.
+ * @todo FIXME: Another class handles sending the whole page to the client.
  *
  * Some comments comes from a pairing session between Zak Greant and Ashar Voultoiz
  * in November 2010.
@@ -115,11 +115,11 @@ class OutputPage {
 	/// Array of elements in <head>. Parser might add its own headers!
 	var $mHeadItems = array();
 
-	// Next variables probably comes from the resource loader @todo FIXME
+	// @todo FIXME: Next variables probably comes from the resource loader
 	var $mModules = array(), $mModuleScripts = array(), $mModuleStyles = array(), $mModuleMessages = array();
 	var $mResourceLoader;
 
-	/** @fixme is this still used ?*/
+	/** @todo FIXME: Is this still used ?*/
 	var $mInlineMsg = array();
 
 	var $mTemplateIds = array();
@@ -1594,7 +1594,7 @@ class OutputPage {
 	 *
 	 * @param $header String: header name
 	 * @param $option Array|null
-	 * @fixme Document the $option parameter; it appears to be for
+	 * @todo FIXME: Document the $option parameter; it appears to be for
 	 *        X-Vary-Options but what format is acceptable?
 	 */
 	public function addVaryHeader( $header, $option = null ) {
@@ -2604,7 +2604,7 @@ class OutputPage {
 				# XXX: additional security check/prompt?
 				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {
-				# FIXME: this means that User:Me/Common.js doesn't load when previewing
+				# @todo FIXME: This means that User:Me/Common.js doesn't load when previewing
 				# User:Me/Vector.js, and vice versa (bug26283)
 				$userScripts[] = 'user';
 			}

@@ -441,7 +441,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Show some introductory text
-	 * FIXME Wikimedia-specific policy text
+	 * @todo FIXME: Wikimedia-specific policy text
 	 */
 	protected function addUsageText() {
 		global $wgOut, $wgUser;

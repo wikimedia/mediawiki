@@ -164,7 +164,7 @@ class CategoryViewer {
 		if ( $r == '' ) {
 			// If there is no category content to display, only
 			// show the top part of the navigation links.
-			// FIXME: cannot be completely suppressed because it
+			// @todo FIXME: Cannot be completely suppressed because it
 			//        is unknown if 'until' or 'from' makes this
 			//        give 0 results.
 			$r = $r . $this->getCategoryTop();
@@ -425,7 +425,7 @@ class CategoryViewer {
 		# Don't show articles section if there are none.
 		$r = '';
 
-		# FIXME, here and in the other two sections: we don't need to bother
+		# @todo FIXME: Here and in the other two sections: we don't need to bother
 		# with this rigamarole if the entire category contents fit on one page
 		# and have already been retrieved.  We can just use $rescnt in that
 		# case and save a query and some logic.

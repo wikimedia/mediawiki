@@ -59,6 +59,7 @@ class DifferenceEngine {
 	 * @param $titleObj Title object that the diff is associated with
 	 * @param $old Integer: old ID we want to show and diff with.
 	 * @param $new String: either 'prev' or 'next'.
+	 * @todo FIXME: $rcid ???
 	 * @param $rcid Integer: ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs

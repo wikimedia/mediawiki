@@ -89,7 +89,7 @@ class ProtectionForm {
 		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade', $this->mCascade );
 
 		foreach( $this->mApplicableTypes as $action ) {
-			// Fixme: this form currently requires individual selections,
+			// @todo FIXME: This form currently requires individual selections,
 			// but the db allows multiples separated by commas.
 			
 			// Pull the actual restriction from the DB
@@ -166,7 +166,7 @@ class ProtectionForm {
 				return false;
 			}
 
-			// Fixme: non-qualified absolute times are not in users specified timezone
+			// @todo FIXME: Non-qualified absolute times are not in users specified timezone
 			// and there isn't notice about it in the ui
 			$time = wfTimestamp( TS_MW, $unix );
 		}

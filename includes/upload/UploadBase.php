@@ -896,7 +896,7 @@ abstract class UploadBase {
 
 		$chunk = trim( $chunk );
 
-		# FIXME: convert from UTF-16 if necessarry!
+		# @todo FIXME: Convert from UTF-16 if necessarry!
 		wfDebug( __METHOD__ . ": checking for embedded scripts and HTML stuff\n" );
 
 		# check for HTML doctype

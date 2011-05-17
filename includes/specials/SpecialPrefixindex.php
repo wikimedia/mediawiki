@@ -139,7 +139,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 			list( $namespace, $prefixKey, $prefix ) = $prefixList;
 			list( /* $fromNS */, $fromKey, ) = $fromList;
 
-			### FIXME: should complain if $fromNs != $namespace
+			### @todo FIXME: Should complain if $fromNs != $namespace
 
 			$dbr = wfGetDB( DB_SLAVE );
 
@@ -158,7 +158,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 				)
 			);
 
-			### FIXME: side link to previous
+			### @todo FIXME: Side link to previous
 
 			$n = 0;
 			if( $res->numRows() > 0 ) {

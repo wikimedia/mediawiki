@@ -48,9 +48,8 @@
  * $escaped = wfMessage( 'key' )->rawParams( 'apple' )->escaped();
  * </pre>
  *
- * TODO:
+ * @todo
  * - test, can we have tests?
- * - sort out the details marked with fixme
  *
  * @since 1.17
  * @author Niklas Laxström
@@ -355,7 +354,7 @@ class Message {
 	/**
 	 * Check whether a message does not exist, or is an empty string
 	 * @return Bool: true if is is and false if not
-	 * @todo Merge with isDisabled()?
+	 * @todo FIXME: Merge with isDisabled()?
 	 */
 	public function isBlank() {
 		$message = $this->fetchMessage();

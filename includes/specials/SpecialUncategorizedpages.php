@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-// FIXME: Make $requestedNamespace selectable, unify all subclasses into one
+// @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
 class UncategorizedPagesPage extends PageQueryPage {
 	protected $requestedNamespace = false;
 

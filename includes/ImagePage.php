@@ -96,7 +96,7 @@ class ImagePage extends Article {
 		$this->showRedirectedFromHeader();
 
 		if ( $wgShowEXIF && $this->displayImg->exists() ) {
-			// FIXME: bad interface, see note on MediaHandler::formatMetadata().
+			// @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 			$formattedMetadata = $this->displayImg->formatMetadata();
 			$showmeta = $formattedMetadata !== false;
 		} else {
@@ -138,7 +138,7 @@ class ImagePage extends Article {
 			array( 'id' => 'filelinks' ),
 			wfMsg( 'imagelinks' ) ) . "\n" );
 		$this->imageDupes();
-		# TODO! FIXME! For some freaky reason, we can't redirect to foreign images.
+		# @todo FIXME: For some freaky reason, we can't redirect to foreign images.
 		# Yet we return metadata about the target. Definitely an issue in the FileRepo
 		$this->imageLinks();
 		
@@ -261,7 +261,7 @@ class ImagePage extends Article {
 	/**
 	 * Make a table with metadata to be shown in the output page.
 	 *
-	 * FIXME: bad interface, see note on MediaHandler::formatMetadata().
+	 * @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 	 *
 	 * @param $metadata Array: the array containing the EXIF data
 	 * @return String The metadata table. This is treated as Wikitext (!)
@@ -272,7 +272,7 @@ class ImagePage extends Article {
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata\">\n";
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
-				# FIXME, why is this using escapeId for a class?!
+				# @todo FIXME: Why is this using escapeId for a class?!
 				$class = Sanitizer::escapeId( $v['id'] );
 				if ( $type == 'collapsed' ) {
 					$class .= ' collapsable';

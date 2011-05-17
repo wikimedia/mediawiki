@@ -980,7 +980,7 @@ class UploadForm extends HTMLForm {
 				'label-message' => 'destfilename',
 				'size' => 60,
 				'default' => $this->mDestFile,
-				# FIXME: hack to work around poor handling of the 'default' option in HTMLForm
+				# @todo FIXME: Hack to work around poor handling of the 'default' option in HTMLForm
 				'nodata' => strval( $this->mDestFile ) !== '',
 			),
 			'UploadDescription' => array(

@@ -93,7 +93,7 @@ class TitleTest extends MediaWikiTestCase {
 			array( '/wiki/edit/Recentchanges?foo=A&bar=1', 'Recentchanges', 'foo=A&action=edit&bar=1' ),
 			array( '/wiki/edit/Recentchanges?foo=A&bar=1', 'Recentchanges', 'action=edit&foo=A&bar=1' ),
 
-			# FIXME The next two are equals but need investigation:
+			# @todo FIXME: The next two are equals but need investigation:
 			array( '/wiki/edit/Recentchanges', 'Recentchanges', 'action=view&action=edit' ),
 			array( '/wiki/view/Recentchanges?action=edit&action=view', 'Recentchanges', 'action=edit&action=view' ),
 		);
@@ -105,7 +105,7 @@ class TitleTest extends MediaWikiTestCase {
 	 */
 	function testGetLocalUrlWithVariantArticlePaths( $expected, $dbkey, $query )
 	{
-		# FIXME find a language with variants!
+		# @todo FIXME: Find a language with variants!
 		$this->markTestIncomplete();
 
 		$actions = array( 'edit' => '/wiki/edit/$1' );

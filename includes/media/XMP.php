@@ -290,7 +290,7 @@ class XMPReader {
 	 * @return Boolean If it succeeded.
 	 */
 	public function parseExtended( $content ) {
-		// FIXME: This is untested. Hard to find example files
+		// @todo FIXME: This is untested. Hard to find example files
 		// or programs that make such files..
 		$guid = substr( $content, 0, 32 );
 		if ( !isset( $this->results['xmp-special']['HasExtendedXMP'] )

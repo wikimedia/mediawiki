@@ -353,7 +353,7 @@ class PNGMetadataExtractor {
 					continue;
 				}
 
-				// fixme: currently timezones are ignored.
+				// @todo FIXME: Currently timezones are ignored.
 				// possibly should be wfTimestamp's
 				// responsibility. (at least for numeric TZ)
 				$formatted = wfTimestamp( TS_EXIF, $value );

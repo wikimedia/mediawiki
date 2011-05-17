@@ -63,7 +63,7 @@ class SpecialExport extends SpecialPage {
 				$t = Title::makeTitleSafe( NS_MAIN, $catname );
 				if ( $t ) {
 					/**
-					 * @todo Fixme: this can lead to hitting memory limit for very large
+					 * @todo FIXME: This can lead to hitting memory limit for very large
 					 * categories. Ideally we would do the lookup synchronously
 					 * during the export in a single query.
 					 */
@@ -464,7 +464,7 @@ class SpecialExport extends SpecialPage {
 
 			if( $title ) {
 				$pageSet[$title->getPrefixedText()] = true;
-				/// @todo Fixme: May or may not be more efficient to batch these
+				/// @todo FIXME: May or may not be more efficient to batch these
 				///        by namespace when given multiple input pages.
 				$result = $dbr->select(
 					array( 'page', $table ),

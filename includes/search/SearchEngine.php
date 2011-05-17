@@ -660,7 +660,7 @@ class SearchResultTooMany {
 
 
 /**
- * @todo Fixme: This class is horribly factored. It would probably be better to
+ * @todo FIXME: This class is horribly factored. It would probably be better to
  * have a useful base class to which you pass some standard information, then
  * let the fancy self-highlighters extend that.
  * @ingroup Search
@@ -941,7 +941,7 @@ class SearchHighlighter {
 			2 => '/(\[\[)|(\]\])/', // image
 			3 => "/(\n\\{\\|)|(\n\\|\\})/" ); // table
 
-		// FIXME: this should prolly be a hook or something
+		// @todo FIXME: This should prolly be a hook or something
 		if ( function_exists( 'wfCite' ) ) {
 			$spat .= '|(<ref>)'; // references via cite extension
 			$endPatterns[4] = '/(<ref>)|(<\/ref>)/';
@@ -1027,7 +1027,7 @@ class SearchHighlighter {
 		$anyterm = implode( '|', $terms );
 		$phrase = implode( "$wgSearchHighlightBoundaries+", $terms );
 
-		// FIXME: a hack to scale contextchars, a correct solution
+		// @todo FIXME: A hack to scale contextchars, a correct solution
 		// would be to have contextchars actually be char and not byte
 		// length, and do proper utf-8 substrings and lengths everywhere,
 		// but PHP is making that very hard and unclean to implement :(
@@ -1400,7 +1400,7 @@ class SearchHighlighter {
 
 /**
  * Dummy class to be used when non-supported Database engine is present.
- * @todo Fixme: dummy class should probably try something at least mildly useful,
+ * @todo FIXME: Dummy class should probably try something at least mildly useful,
  * such as a LIKE search through titles.
  * @ingroup Search
  */

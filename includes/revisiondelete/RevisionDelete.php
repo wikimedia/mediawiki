@@ -464,7 +464,7 @@ class RevDel_FileItem extends RevDel_Item {
 
 	public function setBits( $bits ) {
 		# Queue the file op
-		# FIXME: move to LocalFile.php
+		# @todo FIXME: Move to LocalFile.php
 		if ( $this->isDeleted() ) {
 			if ( $bits & File::DELETED_FILE ) {
 				# Still deleted

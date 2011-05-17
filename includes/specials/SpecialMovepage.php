@@ -405,7 +405,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Do the actual move.
 		$error = $ot->moveTo( $nt, true, $this->reason, $createRedirect );
 		if ( $error !== true ) {
-			# FIXME: show all the errors in a list, not just the first one
+			# @todo FIXME: Show all the errors in a list, not just the first one
 			$this->showForm( reset( $error ) );
 			return;
 		}
@@ -449,10 +449,10 @@ class MovePageForm extends UnlistedSpecialPage {
 		#
 		# If the target namespace doesn't allow subpages, moving with subpages
 		# would mean that you couldn't move them back in one operation, which
-		# is bad.  FIXME: A specific error message should be given in this
-		# case.
+		# is bad.
+		# @todo FIXME: A specific error message should be given in this case.
 
-		// FIXME: Use Title::moveSubpages() here
+		// @todo FIXME: Use Title::moveSubpages() here
 		$dbr = wfGetDB( DB_MASTER );
 		if( $this->moveSubpages && (
 			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
@@ -568,7 +568,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		# Re-clear the file redirect cache, which may have been polluted by
 		# parsing in messages above. See CR r56745.
-		# FIXME: needs a more robust solution inside FileRepo.
+		# @todo FIXME: Needs a more robust solution inside FileRepo.
 		if( $ot->getNamespace() == NS_FILE ) {
 			RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $ot );
 		}

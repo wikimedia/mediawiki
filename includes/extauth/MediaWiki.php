@@ -117,7 +117,7 @@ class ExternalUser_MediaWiki extends ExternalUser {
 	}
 
 	public function getPref( $pref ) {
-		# FIXME: Return other prefs too.  Lots of global-riddled code that does 
+		# @todo FIXME: Return other prefs too.  Lots of global-riddled code that does 
 		# this normally.
 		if ( $pref === 'emailaddress'
 		&& $this->row->user_email_authenticated !== null ) {
@@ -127,7 +127,7 @@ class ExternalUser_MediaWiki extends ExternalUser {
 	}
 
 	public function getGroups() {
-		# FIXME: Untested.
+		# @todo FIXME: Untested.
 		$groups = array();
 		$res = $this->mDb->select(
 			'user_groups',

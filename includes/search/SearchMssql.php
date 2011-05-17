@@ -159,7 +159,7 @@ class SearchMssql extends SearchEngine {
 		$lc = SearchEngine::legalSearchChars();
 		$this->searchTerms = array();
 
-		# FIXME: This doesn't handle parenthetical expressions.
+		# @todo FIXME: This doesn't handle parenthetical expressions.
 		$m = array();
 		$q = array();
 

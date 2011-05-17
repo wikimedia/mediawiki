@@ -96,7 +96,7 @@ class Exif {
 	 * Constructor
 	 *
 	 * @param $file String: filename.
-	 * @fixme the following are broke:
+	 * @todo FIXME: The following are broke:
 	 * SubjectArea. Need to test the more obscure tags.
 	 *
 	 * DigitalZoomRatio = 0/0 is rejected. need to determine if that's valid.

@@ -437,7 +437,8 @@ class Html {
 				# Apparently we need to entity-encode \n, \r, \t, although the
 				# spec doesn't mention that.  Since we're doing strtr() anyway,
 				# and we don't need <> escaped here, we may as well not call
-				# htmlspecialchars().  FIXME: verify that we actually need to
+				# htmlspecialchars().
+				# @todo FIXME: Verify that we actually need to
 				# escape \n\r\t here, and explain why, exactly.
 				#
 				# We could call Sanitizer::encodeAttribute() for this, but we
@@ -452,8 +453,8 @@ class Html {
 				);
 				if ( $wgWellFormedXml ) {
 					# This is allowed per spec: <http://www.w3.org/TR/xml/#NT-AttValue>
-					# But reportedly it breaks some XML tools?  FIXME: is this
-					# really true?
+					# But reportedly it breaks some XML tools?
+					# @todo FIXME: Is this really true?
 					$map['<'] = '&lt;';
 				}
 				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;

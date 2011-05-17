@@ -712,7 +712,8 @@ class Title {
 	 * @return String the prefixed title, with spaces
 	 */
 	public function getPrefixedText() {
-		if ( empty( $this->mPrefixedText ) ) { // FIXME: bad usage of empty() ?
+		// @todo FIXME: Bad usage of empty() ?
+		if ( empty( $this->mPrefixedText ) ) {
 			$s = $this->prefix( $this->mTextform );
 			$s = str_replace( '_', ' ', $s );
 			$this->mPrefixedText = $s;
@@ -894,7 +895,7 @@ class Title {
 				}
 			}
 
-			// FIXME: this causes breakage in various places when we
+			// @todo FIXME: This causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
 			if ( $wgRequest->getVal( 'action' ) == 'render' ) {
 				$url = $wgServer . $url;
@@ -920,7 +921,7 @@ class Title {
 		global $wgActionPaths;
 		if( !array_key_exists( 'action', $queryArray ) ) {
 			// Makes the default action 'view' and points to $wgArticlePath
-			// FIXME: this should be handled in Setup or Wiki!
+			// @todo FIXME: This should be handled in Setup or Wiki!
 			global $wgArticlePath;
 			$url = str_replace( '$1', $dbkey, $wgArticlePath );
 		} elseif( isset( $wgActionPaths[$queryArray['action']] ) ) {
@@ -1189,7 +1190,7 @@ class Title {
 	/**
 	 * Can $user perform $action on this page?
 	 *
-	 * FIXME: This *does not* check throttles (User::pingLimiter()).
+	 * @todo FIXME: This *does not* check throttles (User::pingLimiter()).
 	 *
 	 * @param $action String action that permission needs to be checked for
 	 * @param $user User to check
@@ -3113,7 +3114,7 @@ class Title {
 		// Do the actual move
 		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
 		if ( is_array( $err ) ) {
-			# FIXME: What about the File we have already moved?
+			# @todo FIXME: What about the File we have already moved?
 			$dbw->rollback();
 			return $err;
 		}
@@ -3164,7 +3165,8 @@ class Title {
 			if ( $reason ) {
 				$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
 			}
-			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ) ); // FIXME: $params?
+			// @todo FIXME: $params?
+			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ) );
 		}
 
 		# Update watchlists
