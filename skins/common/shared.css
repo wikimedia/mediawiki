@@ -298,6 +298,11 @@ a.feedlink {
 	background: none !important;
 	padding: 0 !important;
 }
+/* External URLs should always be treated as LTR (bug 4330) */
+/* @noflip */ .rtl a.external {
+	direction: ltr;
+	unicode-bidi: embed;
+}
 
 /* wikitable class for skinning normal tables
  * keep on sync with commonPrint.css
