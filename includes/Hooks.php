@@ -229,7 +229,7 @@ class Hooks {
 			 * problem here.
 			 */
 			$retval = null;
-			set_error_handler( array( 'Hooks', 'hookErrorHandler' ) );
+			set_error_handler( 'Hooks::hookErrorHandler' );
 			wfProfileIn( $func );
 			try {
 				$retval = call_user_func_array( $callback, $hook_args );

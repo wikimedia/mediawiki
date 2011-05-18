@@ -219,7 +219,7 @@ class UserMailer {
 			self::$mErrorString = '';
 			$html_errors = ini_get( 'html_errors' );
 			ini_set( 'html_errors', '0' );
-			set_error_handler( array( 'UserMailer', 'errorHandler' ) );
+			set_error_handler( 'UserMailer::errorHandler' );
 
 			if ( !is_array( $to ) ) {
 				$to = array( $to );
