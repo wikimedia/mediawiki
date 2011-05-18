@@ -291,7 +291,6 @@ window.mediaWiki = new ( function( $ ) {
 			if ( $marker ) {
 				return $marker;
 			} else {
-				//mw.log( 'getMarker> Caching marker' );
 				$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
 				if ( $marker.length ) {
 					return $marker;
