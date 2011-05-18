@@ -787,6 +787,7 @@ $messages = array(
 'watch'             => 'ଦେଖିବେ',
 'watchthispage'     => 'ଏହି ପୃଷ୍ଠାଟିକୁ ଦେଖିବେ',
 'unwatch'           => 'ଦେଖନାହିଁ',
+'watchlist-details' => 'ଆପଣଙ୍କ ଦେଖଣା ତାଲିକାରେ ଆଲୋଚନା ପୃଷ୍ଠାକୁ ଛାଡ଼ି {{PLURAL:$1|$1 ଟି ପୃଷ୍ଠା|$1 ଟି ପୃଷ୍ଠା}} ଅଛି ।',
 'watchlist-options' => 'ଦେଖଣା ବିକଳ୍ପସବୁ',
 
 # Displayed when you click the "watch" button and it is in the process of watching

@@ -2233,10 +2233,13 @@ Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả cá
               Hệ thống báo tin {{SITENAME}} thân thiện của bạn
 
 --
-Để thay đổi các thiết lập danh sách theo dõi, mời xem
+Để thay đổi các thiết lập thư điện tử thông báo, mời xem:
+{{fullurl:{{#special:Preferences}}}}
+
+Để thay đổi các thiết lập danh sách theo dõi, mời xem:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem
+Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem:
 $UNWATCHURL
 
 Phản hồi và cần sự hỗ trợ:
@@ -2606,6 +2609,7 @@ Xin hãy xác nhận đây là điều bạn định làm.',
 'unlockdbsuccesstext' => 'Cơ sở dữ liệu đã được mở khóa.',
 'lockfilenotwritable' => 'Tập tin khóa của cơ sở dữ liệu không cho phép ghi. Để khóa hay mở khóa cơ sở dữ liệu, máy chủ web phải có khả năng ghi tập tin.',
 'databasenotlocked'   => 'Cơ sở dữ liệu không bị khóa.',
+'lockedbyandtime'     => '($1 khóa vào $2 lúc $3)',
 
 # Move page
 'move-page'                    => 'Di chuyển $1',

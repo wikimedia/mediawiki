@@ -1377,7 +1377,7 @@ Cualquiera que conozca la clave en este campo será capaz de leer tu lista de se
 'savedprefs'                    => 'Tus preferencias han sido guardadas.',
 'timezonelegend'                => 'Zona horaria:',
 'localtime'                     => 'Hora local:',
-'timezoneuseserverdefault'      => 'Usar la hora del servidor',
+'timezoneuseserverdefault'      => 'Usar la hora del servidor ($1)',
 'timezoneuseoffset'             => 'Otra (especifica la diferencia horaria)',
 'timezoneoffset'                => 'Diferencia¹:',
 'servertime'                    => 'Hora del servidor:',

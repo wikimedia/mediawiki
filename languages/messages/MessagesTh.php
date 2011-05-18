@@ -10,6 +10,7 @@
  * @author Ans
  * @author Harley Hartwell
  * @author Horus
+ * @author Korrawit
  * @author LMNOP at Thai Wikipedia (manop@itshee.com) since July 2007
  * @author Manop
  * @author Mopza
@@ -2508,9 +2509,9 @@ $1',
 'allmessagesnotsupportedDB'     => "หน้านี้ไม่สามารถใช้งานได้เนื่องจาก '''\$wgUseDatabaseMessages''' ถูกระงับการใช้งาน",
 'allmessages-filter-legend'     => 'กรอง',
 'allmessages-filter'            => 'กรองตามสถานะที่เลือก:',
-'allmessages-filter-unmodified' => 'มีการแก้ไข',
+'allmessages-filter-unmodified' => 'ไม่มีการแก้ไข',
 'allmessages-filter-all'        => 'ทั้งหมด',
-'allmessages-filter-modified'   => 'ไม่มีการแก้ไข',
+'allmessages-filter-modified'   => 'มีการแก้ไข',
 'allmessages-prefix'            => 'กรองด้วยคำข้างหน้า:',
 'allmessages-language'          => 'ภาษา:',
 'allmessages-filter-submit'     => 'ไป',

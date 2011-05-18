@@ -2273,7 +2273,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'enotif_body'                  => 'Caro(a) $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
+A página $PAGETITLE da {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para ver a versão actual.
 
 $NEWPAGE
 
@@ -2283,19 +2283,22 @@ Contacte o editor:
 correio electrónico: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Até que visite esta página, não haverá lugar a mais notificações no caso de alterações futuras.
-Pode também reactivar as notificações para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
+Até que visite esta página, não receberá mais notificações das alterações futuras.
+Pode também reactivar as notificações para todas páginas na sua lista de páginas vigiadas.
 
              O seu sistema de notificação amigável da {{SITENAME}}
 
 --
-Para alterar as suas preferências da lista de páginas vigiadas, visite
+Para alterar as suas preferências das notificações por correio electrónico, visite
+{{fullurl:{{#special:Preferences}}}}
+
+Para alterar as suas preferências das páginas vigiadas, visite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Para retirar a página da sua lista de páginas vigiadas, visite
+Para retirar a página da lista de páginas vigiadas, visite
 $UNWATCHURL
 
-Contacto e assistência:
+Para comentários e pedidos de ajuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2665,6 +2668,7 @@ Lembre-se de [[Special:UnlockDB|remover o bloqueio]] após a manutenção.',
 'lockfilenotwritable' => 'O ficheiro de bloqueio da base de dados não pode ser escrito.
 Para bloquear ou desbloquear a base de dados, este precisa de poder ser escrito pelo servidor de internet.',
 'databasenotlocked'   => 'A base de dados não está bloqueada.',
+'lockedbyandtime'     => '(por $1 em $2 às $3)',
 
 # Move page
 'move-page'                    => 'Mover $1',

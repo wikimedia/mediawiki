@@ -1345,9 +1345,9 @@ chmod a+w $3</pre>',
 У ідэальным выпадку, яна не павінна мець доступу з Інтэрнэту.',
 	'config-logo' => 'URL-адрас лягатыпу:',
 	'config-logo-help' => 'Афармленьне MediaWiki па змоўчваньні уключае прастору для лягатыпу памерам 135×160 піксэляў у верхнім левым куце.
-Загрузіце выяву адпаведнага памеру, і увядзіце тут URL-адрас.
+Загрузіце выяву адпаведнага памеру і увядзіце тут URL-адрас.
 
-Калі Вы не жадаеце мець ніякага лягатыпу, пакіньце гэтае поле пустым.',
+Калі Вы не жадаеце мець ніякага лягатыпу, пакіньце поле пустым.',
 	'config-instantcommons' => 'Дазволіць Instant Commons',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] — магчымасьць, якая дазваляе вікі выкарыстоўваць выявы, гукі і іншыя мэдыя, якія знаходзяцца на сайце [http://commons.wikimedia.org/ Wikimedia Commons].
 Каб гэта зрабіць, MediaWiki патрабуе доступу да Інтэрнэту. 
@@ -1513,7 +1513,12 @@ $1
 	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за нормализация на Уникод.',
 	'config-unicode-pure-php-warning' => "'''Предупреждение''': [http://pecl.php.net/intl Разширението intl PECL] не е налично за справяне с нормализацията на Уникод, превключване към по-бавното изпълнение на чист PHP.
 Ако сайтът е с голям трафик, препоръчително е запознаването с [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормализацията на Уникод].",
-	'config-no-db' => 'Не може да бъде открит подходящ драйвер за база от данни!',
+	'config-no-db' => 'Не може да бъде открит подходящ драйвер за база от данни! Необходимо е да се инсталира драйвер за база от данни за PHP.
+Поддържат се следните типове базни от данни: $1.
+
+Ако използвате споделен хостинг, помолете доставчика на услугата да инсталира подходящ драйвер за база от данни.
+Ако сами сте компилирали PHP, преконфигурирайте го с включен клиент за база от данни, например чрез използване на <code>./configure --with-mysql</code>.
+Ако сте инсталирали PHP от пакет за Debian или Убунту, необходимо е, също така, да инсталирате и модула php5-mysql.',
 	'config-no-fts3' => "'''Предупреждение''': SQLite е компилирана без [http://sqlite.org/fts3.html модула FTS3], затова възможностите за търсене няма да са достъпни.",
 	'config-register-globals' => "'''Предупреждение: Настройката на PHP <code>[http://php.net/register_globals register_globals]</code> е включена.'''
 '''При възможност е препоръчително тя да бъде изключена.'''
@@ -1785,10 +1790,10 @@ $1
 	'config-upload-deleted-help' => 'Избиране на директория, в която ще се складират изтритите файлове.
 В най-добрия случай тя не трябва да е достъпна през уеб.',
 	'config-logo' => 'Адрес на логото:',
-	'config-logo-help' => 'Обликът по подразбиране на МедияУики вклчва място с размери 135х160 пиксела за лого в горния ляв ъгъл.
+	'config-logo-help' => 'Обликът по подразбиране на МедияУики вклчва място с размери 135х160 пиксела за лого над страничното меню.
 Ако има наличен файл с подходящ размер, неговият адрес може да бъде посочен тук.
 
-Ако не е необходимо лого, полето се оставя празно.',
+Ако не е необходимо лого, полето може да се остави празно.',
 	'config-instantcommons' => 'Включване на Instant Commons',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] е функционалност, която позволява на уикитата да използват картинки, звуци и друга медиа от сайта на Уикимедия [http://commons.wikimedia.org/ Общомедия].
 За да е възможно това, МедияУики изисква достъп до Интернет.
@@ -6871,7 +6876,7 @@ Kemudian aktifkan opsi ini.',
 	'config-upload-deleted-help' => 'Pilih direktori tempat mengarsipkan berkas yang dihapus.
 Idealnya, direktori ini tidak boleh dapat diakses dari web.',
 	'config-logo' => 'URL logo:',
-	'config-logo-help' => 'Kulit bawaan MediaWiki memberikan ruang untuk logo ukuran 135x160 pixel di sudut kiri atas. 
+	'config-logo-help' => 'Kulit bawaan MediaWiki memberikan ruang untuk logo berukuran 135x160 piksel di atas menu bilah samping.
 Unggah gambar dengan ukuran yang sesuai, lalu masukkan URL di sini. 
 
 Jika Anda tidak ingin menyertakan logo, biarkan kotak ini kosong.',

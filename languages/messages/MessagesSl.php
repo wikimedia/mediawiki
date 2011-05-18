@@ -2168,6 +2168,9 @@ Na spisku nadzorov lahko tudi ponastavite zastavice obveščanj za vse spremljan
              Vaš opozorilni sistem {{GRAMMAR:rodilnik|{{SITENAME}}}}
 
 --
+Za spremembo nastavitev e-poštnih obvestil obiščite
+{{fullurl:{{#special:Preferences}}}}
+
 Za spremembo nastavitev spiska nadzorov obiščite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2553,6 +2556,7 @@ Ne pozabite je [[Special:UnlockDB|odkleniti]], ko boste končali z vzdrževanjem
 'lockfilenotwritable' => 'Datoteka zaklepanja zbirke podatkov ni zapisljiva.
 Za zaklepanje in odklepanje zbirke podatkov mora biti ta datoteka zapisljiva s strani spletnega strežnika.',
 'databasenotlocked'   => 'Zbirka podatkov ni zaklenjena.',
+'lockedbyandtime'     => '($1 dne $2 ob $3)',
 
 # Move page
 'move-page'                    => 'Prestavi $1',
