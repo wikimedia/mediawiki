@@ -106,10 +106,10 @@ class UserMailer {
 	 * @param $subject String: email's subject.
 	 * @param $body String: email's text.
 	 * @param $replyto MailAddress: optional reply-to email (default: null).
-	 * @param $contentType String: optional custom Content-Type
+	 * @param $contentType String: optional custom Content-Type (default: text/plain; charset=UTF-8)
 	 * @return Status object
 	 */
-	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = null ) {
+	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = 'text/plain; charset=UTF-8') {
 		global $wgSMTP, $wgEnotifImpersonal;
 		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
@@ -192,9 +192,6 @@ class UserMailer {
 			wfRestoreWarnings();
 			return Status::newGood();
 		} else	{
-			# In the following $headers = expression we removed "Reply-To: {$from}\r\n" , because it is treated differently
-			# (fifth parameter of the PHP mail function, see some lines below)
-
 			# Line endings need to be different on Unix and Windows due to
 			# the bug described at http://trac.wordpress.org/ticket/2603
 			if ( wfIsWindows() ) {
@@ -203,17 +200,19 @@ class UserMailer {
 			} else {
 				$endl = "\n";
 			}
-			$ctype = ( is_null( $contentType ) ?
-					'text/plain; charset=UTF-8' : $contentType );
-			$headers =
-				"MIME-Version: 1.0$endl" .
-				"Content-type: $ctype$endl" .
-				"Content-Transfer-Encoding: 8bit$endl" .
-				"X-Mailer: MediaWiki mailer$endl" .
-				'From: ' . $from->toString();
+
+			$headers = array(
+				"MIME-Version: 1.0",
+				"Content-type: $contentType", 
+				"Content-Transfer-Encoding: 8bit",
+				"X-Mailer: MediaWiki mailer",
+				"From: " . $from->toString(),
+			);
 			if ( $replyto ) {
-				$headers .= "{$endl}Reply-To: " . $replyto->toString();
+				$headers[] = "Reply-To: " . $replyto->toString();
 			}
+
+			$headers = implode( $endl, $headers );
 
 			wfDebug( "Sending mail via internal mail() function\n" );
 
