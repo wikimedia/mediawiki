@@ -1135,6 +1135,11 @@ div#content a.external:visited {
 div#content a.external:active {
 	color: #b63;
 }
+/* External URLs should always be treated as LTR (bug 4330) */
+div#content .rtl a.external {
+	direction: ltr;
+	unicode-bidi: embed;
+}
 
 
 div#content .printfooter {
