@@ -25,23 +25,25 @@ test( 'Position right', function() {
 	var origText = 'This is a really long random string and there is no way it fits in 100 pixels.';
 	var $wrapper = createWrappedDiv( origText );
 	$( 'body' ).append( $wrapper );
-	// Autoellipse it
 	$wrapper.autoEllipsis( { position: 'right' } );
-	// Turn on word wrapping
-	var $span = $wrapper.find( 'span' );
+
+	// Verify that, and only one, span element was created
+	var $span = $wrapper.find( '> span' );
+	deepEqual( $span.length, 1, 'autoEllipsis wrapped the contents in a span element' );
+
+	// Check that the text fits by turning on word wrapping
 	$span.css( 'whiteSpace', 'nowrap' );
-	
-	// Check that the text fits
-	ok( $span.width() <= $span.parent().width(), "text fits (span's width is no larger than its parent's width)" );
-	
+	ok( $span.width() <= $span.parent().width(), "Text fits (span's width is no larger than its parent's width)" );
+
 	// Add one character using scary black magic
 	var spanText = $span.text();
 	var d = findDivergenceIndex( origText, spanText );
 	spanText = spanText.substr( 0, d ) + origText[d] + '...';
-	
+
 	// Put this text in the span and verify it doesn't fit
 	$span.text( spanText );
-	ok( $span.width() > $span.parent().width(), "fit is maximal (adding one character makes it not fit any more)" );
-	
+	ok( $span.width() > $span.parent().width(), 'Fit is maximal (adding one character makes it not fit any more)' );
+
+	// Clean up
 	$wrapper.remove();
 });

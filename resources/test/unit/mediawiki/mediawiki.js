@@ -71,6 +71,10 @@ test( 'mw.loader', function(){
 	mw.loader.using( 'is.awesome', function(){
 		start();
 		deepEqual( window.awesome, true, 'Implementing a module, is the callback timed properly ?');
+
+		// Clean up
+		delete window.awesome;
+
 	}, function(){
 		start();
 		deepEqual( 'mw.loader.using error callback fired', true, 'Implementing a module, is the callback timed properly ?');
