@@ -742,7 +742,7 @@ class SpecialBlock extends SpecialPage {
 	public static function parseExpiryInput( $expiry ) {
 		static $infinity;
 		if( $infinity == null ){
-			$infinity = wfGetDB( DB_READ )->getInfinity();
+			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 		if ( $expiry == 'infinite' || $expiry == 'indefinite' ) {
 			$expiry = $infinity;

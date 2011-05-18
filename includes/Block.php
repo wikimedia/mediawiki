@@ -612,7 +612,7 @@ class Block {
 		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
 
-		$dbr = wfGetDB( DB_READ );
+		$dbr = wfGetDB( DB_SLAVE );
 		if ( $this->mTimestamp == $dbr->getInfinity() ) {
 			# Original block was indefinite, start an autoblock now
 			$autoblock->mExpiry = Block::getAutoblockExpiry( wfTimestampNow() );

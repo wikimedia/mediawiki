@@ -84,7 +84,7 @@ class SpecialProtectedpages extends SpecialPage {
 
 		if( is_null( $skin ) ){
 			$skin = $wgUser->getSkin();
-			$infinity = wfGetDB( DB_READ )->getInfinity();
+			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 
 		$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
