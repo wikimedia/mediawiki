@@ -191,10 +191,10 @@
 		},
 
 		/**
-		 * Get the full URL to a page name
+		 * Get the link to a page name (relative to wgServer)
 		 *
-		 * @param str Page name to link to
-		 * @return Full URL for page with name of 'str' or false on error
+		 * @param str Page name to get the link for.
+		 * @return string Location for a page with name of 'str' or boolean false on error.
 		 */
 		'wikiGetlink' : function( str ) {
 
