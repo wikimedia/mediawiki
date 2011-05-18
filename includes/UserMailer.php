@@ -221,19 +221,11 @@ class UserMailer {
 			ini_set( 'html_errors', '0' );
 			set_error_handler( array( 'UserMailer', 'errorHandler' ) );
 
-			// We need to check for safe_mode, because mail() throws an E_NOTICE
-			// on the 5th parameter when it's turned on
-			$sm = wfIniGetBool( 'safe_mode' );
-
 			if ( !is_array( $to ) ) {
 				$to = array( $to );
 			}
 			foreach ( $to as $recip ) {
-				if( $sm ) {
-					$sent = mail( $recip->toString(), self::quotedPrintable( $subject ), $body, $headers );
-				} else {
-					$sent = mail( $recip->toString(), self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
-				}
+				$sent = mail( $recip->toString(), self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
 			}
 
 			restore_error_handler();
