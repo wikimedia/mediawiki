@@ -645,7 +645,7 @@ img.thumbborder {
 	color: #36b;
 }
 /* External URLs should always be treated as LTR (bug 4330) */
-div#content .rtl a.external {
+#mw_content .rtl a.external {
 	direction: ltr;
 	unicode-bidi: embed;
 }
