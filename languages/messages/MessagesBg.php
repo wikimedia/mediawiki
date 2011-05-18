@@ -1595,7 +1595,7 @@ $1",
 'large-file'                  => 'Не се препоръчва файловете да се по-големи от $1; този файл е $2.',
 'largefileserver'             => 'Файлът е по-голям от допустимия от сървъра размер.',
 'emptyfile'                   => 'Каченият от вас файл е празен. Това може да е предизвикано от грешка в името на файла. Уверете се дали наистина желаете да го качите.',
-'windows-nonascii-filename'   => 'Сървърът не поддържа имена на файлове със специални знаци.',
+'windows-nonascii-filename'   => 'Уикито не поддържа имена на файлове със специални знаци.',
 'fileexists'                  => "Вече съществува файл с това име! Прегледайте '''<tt>[[:$1]]</tt>''', ако не сте сигурни, че желаете да го промените.
 [[$1|thumb]]",
 'filepageexists'              => "Описателната страница за този файл вече е създадена на '''<tt>[[:$1]]</tt>''', въпреки че файл с това име в момента не съществува. Въведеното от вас резюме няма да се появи на описателната страница. За целта, страницата трябва да бъде редактирана ръчно.
@@ -2107,7 +2107,7 @@ $1',
 'enotif_anon_editor'           => 'анонимен потребител $1',
 'enotif_body'                  => 'Уважаеми(а) $WATCHINGUSERNAME,
 
-Страницата $PAGETITLE в {{SITENAME}} е била $CHANGEDORCREATED на $PAGEEDITDATE от $PAGEEDITOR. За текущата версия на страницата вижте $PAGETITLE_URL.
+Страницата $PAGETITLE в {{SITENAME}} е била $CHANGEDORCREATED на $PAGEEDITDATE от $PAGEEDITOR. За текущата версия на страницата, вижте $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -2123,6 +2123,9 @@ $NEWPAGE
              Системата за известяване на {{SITENAME}}
 
 --
+За да промените настройките си за известявания чрез електронна поща, посетете
+{{fullurl:{{#special:Preferences}}}}
+
 За да промените настройките на списъка си за наблюдение, посетете
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2343,6 +2346,7 @@ $1',
 'whatlinkshere-filters'    => 'Филтри',
 
 # Block/unblock
+'autoblockid'                     => 'Автоматично блокиране #$1',
 'block'                           => 'Блокиране на потребител',
 'unblock'                         => 'Отблокиране на потребител',
 'blockip'                         => 'Блокиране',
@@ -3003,6 +3007,7 @@ $1',
 'exif-cameraownername'             => 'Собственик на фотоапарата',
 'exif-nickname'                    => 'Неформално име на изображението',
 'exif-rating'                      => 'Рейтинг (от 5)',
+'exif-usageterms'                  => 'Условия за използване',
 'exif-originaldocumentid'          => 'Уникален номер на оригиналния документ',
 
 # EXIF attributes
@@ -3166,11 +3171,13 @@ $1',
 'exif-dc-rights' => 'Права',
 
 'exif-iimcategory-ace' => 'Изкуствa, култура и забавление',
+'exif-iimcategory-clj' => 'Престъпност и право',
 'exif-iimcategory-dis' => 'Бедствия и аварии',
 'exif-iimcategory-fin' => 'Икономика и бизнес',
 'exif-iimcategory-edu' => 'Образование',
 'exif-iimcategory-evn' => 'Околна среда',
 'exif-iimcategory-hth' => 'Здраве',
+'exif-iimcategory-hum' => 'Човешки интереси',
 'exif-iimcategory-lab' => 'Труд',
 'exif-iimcategory-lif' => 'Начин на живот и отдих',
 'exif-iimcategory-pol' => 'Политика',
@@ -3180,6 +3187,10 @@ $1',
 'exif-iimcategory-spo' => 'Спорт',
 'exif-iimcategory-war' => 'Война, конфликти и безредици',
 'exif-iimcategory-wea' => 'Време',
+
+'exif-urgency-normal' => 'Нормална ($1)',
+'exif-urgency-low'    => 'Ниска ($1)',
+'exif-urgency-high'   => 'Висока ($1)',
 
 # External editor support
 'edit-externally'      => 'Редактиране на файла чрез външно приложение',

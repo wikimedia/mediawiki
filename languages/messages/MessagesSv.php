@@ -1045,7 +1045,7 @@ Antalet anrop får vara högst $2, nu görs {{PLURAL:$#|$1 anrop}}.',
 'expensive-parserfunction-category'       => 'Sidor med för många resurskrävande parserfunktioner',
 'post-expand-template-inclusion-warning'  => 'Varning: Den här sidan innehåller för mycket mallinklusioner.
 Några av mallarna kommer inte att inkluderas.',
-'post-expand-template-inclusion-category' => 'Sidor som inkluderar för mycket mallar',
+'post-expand-template-inclusion-category' => 'Sidor som inkluderar för mycket mallkod',
 'post-expand-template-argument-warning'   => 'Varning: Sidan innehåller en eller flera mallparametrar som blir för långa när de expanderas.
 Dessa parametrar har uteslutits.',
 'post-expand-template-argument-category'  => 'Sidor med uteslutna mallparametrar',
@@ -2260,6 +2260,9 @@ Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i di
              Hälsningar från {{SITENAME}}s meddelandesystem
 
 --
+För att ändra inställningarna för dina uppdateringar via e-post, besök
+{{fullurl:{{#special:Preferences}}}}
+
 För att ändra inställningarna i din bevakningslista, besök
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2631,6 +2634,7 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'unlockdbsuccesstext' => 'Databasen är upplåst.',
 'lockfilenotwritable' => 'Det går inte att skriva till databasens låsfil. För att låsa eller låsa upp databasen, så måste webbservern kunna skriva till den filen.',
 'databasenotlocked'   => 'Databasen är inte låst.',
+'lockedbyandtime'     => '(av $1 den $2 kl. $3)',
 
 # Move page
 'move-page'                    => 'Flytta $1',
@@ -3238,6 +3242,9 @@ Andra kommer att gömmas som standard
 
 # EXIF attributes
 'exif-compression-1' => 'Inte komprimerad',
+'exif-compression-2' => 'CCITT Grupp 3 1-dimensionell modifierad Huffman-skurlängdskodning',
+'exif-compression-3' => 'CCITT Grupp 3 fax-kodning',
+'exif-compression-4' => 'CCITT Grupp 4 fax-kodning',
 
 'exif-copyrighted-true'  => 'Upphovsrättsskyddat',
 'exif-copyrighted-false' => 'Allmän egendom',

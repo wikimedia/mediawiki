@@ -1632,7 +1632,7 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro.
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
-'windows-nonascii-filename'   => 'O servidor non soporta os nomes de ficheiros con caracteres especiais.',
+'windows-nonascii-filename'   => 'Este wiki non soporta os nomes de ficheiros con caracteres especiais.',
 'fileexists'                  => "Xa existe un ficheiro con ese nome. Por favor, comprobe '''<tt>[[:$1]]</tt>''' se non está seguro de querer cambialo.
 [[$1|thumb]]",
 'filepageexists'              => "A páxina de descrición deste ficheiro xa foi creada en '''<tt>[[:$1]]</tt>''', pero polo de agora non existe ningún ficheiro con este nome.
@@ -2204,6 +2204,10 @@ Pode borrar os indicadores de aviso de notificación para o conxunto das páxina
              O sistema de aviso de {{SITENAME}}
 
 --
+Para cambiar as notificacións por correo electrónico, visite
+{{fullurl:{{#special:Preferences}}}}
+
+
 Para cambiar a súa lista de vixilancia, visite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2581,6 +2585,7 @@ Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu manteme
 'unlockdbsuccesstext' => 'A base de datos foi desbloqueada.',
 'lockfilenotwritable' => 'Non se pode escribir no ficheiro de bloqueo da base de datos. Para bloquear ou desbloquear a base de datos, o servidor web ten que poder escribir neste ficheiro.',
 'databasenotlocked'   => 'A base de datos non está bloqueada.',
+'lockedbyandtime'     => '(por $1 o $2 ás $3)',
 
 # Move page
 'move-page'                    => 'Mover "$1"',

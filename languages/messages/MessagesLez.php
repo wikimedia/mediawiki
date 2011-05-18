@@ -75,6 +75,7 @@ $messages = array(
 'category-subcat-count'  => '{{PLURAL:$2|Кlватlалда ава са чар. |И кlватlалда ава                                                                                                       {{PLURAL:$1|кlватlалдин кьатl|$1 кlватlалдин кьатlар}}, виридакай $2 .}}',
 'category-article-count' => '{{PLURAL:$2|Кlватlалда ава са чар.|Къведай {{PLURAL:$1|чар|$1 чарчин}} кlватlалда $2 виридкай.}}',
 'listingcontinuesabbrev' => 'баш.хъувун',
+'noindex-category'       => 'Noindexed чарар',
 
 'about'      => 'Хакъиндай',
 'newwindow'  => '(акъай жеда цlийи пенжерда)',
@@ -214,6 +215,7 @@ $messages = array(
 'remembermypassword'      => 'Рекlел хуьн Гьахун и браузердиз(артух тушиз 1$ {{PLURAL:$1|югъ|йикъар}})',
 'login'                   => 'Гьахьун',
 'nav-login-createaccount' => 'Чарчел фин / цIийи чар туькIуьрун',
+'loginprompt'             => 'Куьне куькlуьрна кlанзава куки гьахьна  {{SITENAME}}.',
 'userlogin'               => 'Чарчел фин / цlийи чар туькlуьрун',
 'userloginnocreate'       => 'Гьахьун',
 'logout'                  => 'ЭкъечIун',
@@ -311,6 +313,7 @@ $messages = array(
 'rev-delundel'               => 'къалур/кIевун',
 'revdelete-show-file-submit' => 'Э',
 'revdelete-log'              => 'Кар',
+'revdelete-logentry'         => 'Дегишарна акунвал "[[$1]]"',
 'revdel-restore'             => 'къакъудун',
 'revdel-restore-deleted'     => 'Чlурна дегишунар',
 'revdel-restore-visible'     => 'Аквазай дегишунар',
@@ -348,6 +351,7 @@ $messages = array(
 'nextn-title'                      => 'Къведай $1 {{PLURAL:$1|къайда|къайдаяр}}',
 'shown-title'                      => 'Къалурун $1 {{PLURAL:$1|Дарамат|Дарамат}} чарчел',
 'viewprevnext'                     => 'Къаларун ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-new'                   => "'''Туькlуьрун чар \"[[:\$1]]\" и викида!'''",
 'searchprofile-articles'           => 'Чарчин идаратар',
 'searchprofile-project'            => 'Чар кхьинрин ва хакъидайрин',
 'searchprofile-images'             => 'Шикилдин мавзу',
@@ -403,6 +407,7 @@ $messages = array(
 'yourlanguage'              => 'ЧIалар',
 'gender-female'             => 'Фамили',
 'email'                     => 'E-mail',
+'prefs-help-email'          => 'Электрон почтунин адрес герек туш, амма герекзава куьлег ракъурун паталди, куьлег рикlелай алатайтlа',
 
 # User rights
 'userrights-reason' => 'Кар',
@@ -435,6 +440,7 @@ $messages = array(
 'recentchanges-label-bot'         => 'Дегишунар авуна ботди',
 'recentchanges-label-unpatrolled' => 'И ишлемишчи ахтармишзач',
 'rcnote'                          => "КIеник {{PLURAL:$1|is '''1''' change|эхиримжи '''$1''' дегишунар}} заманада {{PLURAL:$2|day|'''$2''' йикъар}}, икIа $5, $4",
+'rcnotefrom'                      => "Кlеник къалурна дегишунар идлай '''$2''' (идалди '''$1''' къалурна).",
 'rclistfrom'                      => 'Къалурун дегишунар идай:  $1',
 'rcshowhideminor'                 => '$1 бицlи дегишунар',
 'rcshowhidebots'                  => '$1 бот',
@@ -513,6 +519,8 @@ $1 Кlевхьанай ишлемишчи',
 
 # Statistics
 'statistics' => 'Статистика',
+
+'disambiguationspage' => 'emplate:disambig',
 
 'brokenredirects-edit'   => 'дегишарун',
 'brokenredirects-delete' => 'къакъудун',
@@ -664,6 +672,7 @@ $1 Кlевхьанай ишлемишчи',
 'whatlinkshere-title'      => 'Чарар, алукьунин цlар идал "$1"',
 'whatlinkshere-page'       => 'Ишлемишчи',
 'linkshere'                => "Къведай цlар алукьзава '''[[:$1]]''':",
+'nolinkshere'              => "Къведай чарар алукьзава '''[[:$1]]'''.",
 'isredirect'               => 'Ракъур хъувунин чар',
 'istemplate'               => 'Трансклипция',
 'isimage'                  => 'алукьун и шкилдиз',

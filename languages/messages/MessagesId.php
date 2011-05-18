@@ -2244,16 +2244,19 @@ Hubungi penyunting:
 surel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Tidak akan ada pemberitahuan lainnya dalam rangka perubahan lebih lanjut kecuali anda mengunjungi halaman ini.
-Anda juga dapat menset ulang tanda pemberitahuan untuk semua halaman pantauan anda pada daftar pantauan anda.
+Kami tidak akan mengirim pemberitahuan lain bila ada perubahan lebih lanjut sampai Anda mengunjungi halaman ini.
+Anda juga dapat menyetel ulang tanda pemberitahuan untuk semua halaman pantauan pada daftar pantauan Anda.
 
-             Sistem pemberitahuan anda di {{SITENAME}}
+             Sistem pemberitahuan situs {{SITENAME}}
 
 --
-Untuk mengubah preferensi daftar pantauan anda, kunjungi
+Untuk mengubah setelan pemberitahuan surel, kunjungi
+{{fullurl:{{#special:Preferences}}}}
+
+Untuk mengubah setelan daftar pantauan, kunjungi
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Untuk menghapus halaman dari daftar pantauan anda, kunjungi
+Untuk menghapus halaman dari daftar pantauan, kunjungi
 $UNWATCHURL
 
 Umpan balik dan bantuan lebih lanjut:
@@ -2614,6 +2617,7 @@ Pastikan Anda [[Special:UnlockDB|membuka kuncinya]] setelah pemeliharaan selesai
 'unlockdbsuccesstext' => 'Kunci basis data telah dibuka.',
 'lockfilenotwritable' => 'Berkas kunci basis data tidak dapat ditulis. Untuk mengunci atau membuka basis data, berkas ini harus dapat ditulis oleh server web.',
 'databasenotlocked'   => 'Basis data tidak terkunci.',
+'lockedbyandtime'     => '(oleh $1 pada $2 $3)',
 
 # Move page
 'move-page'                    => 'Pindahkan $1',
