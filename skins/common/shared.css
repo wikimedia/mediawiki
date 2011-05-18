@@ -299,7 +299,7 @@ a.feedlink {
 	padding: 0 !important;
 }
 /* External URLs should always be treated as LTR (bug 4330) */
-/* @noflip */ .rtl a.external {
+/* @noflip */ .rtl a.external.free, .rtl a.external.autonumber {
 	direction: ltr;
 	unicode-bidi: embed;
 }
