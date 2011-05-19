@@ -3693,6 +3693,8 @@ class User {
 	 *
 	 * @param $byEmail Boolean: account made by email?
 	 * @param $reason String: user supplied reason
+	 *
+	 * @return true
 	 */
 	public function addNewUserLogEntry( $byEmail = false, $reason = '' ) {
 		global $wgUser, $wgContLang, $wgNewUserLog;
@@ -3726,6 +3728,8 @@ class User {
 	/**
 	 * Add an autocreate newuser log entry for this user
 	 * Used by things like CentralAuth and perhaps other authplugins.
+	 *
+	 * @return true
 	 */
 	public function addNewUserLogEntryAutoCreate() {
 		global $wgNewUserLog;

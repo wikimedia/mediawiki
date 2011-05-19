@@ -514,7 +514,7 @@ class LogPage {
 	/**
 	 * Translate a block log flag if possible
 	 *
-	 * @param $flag Flag to translate
+	 * @param $flag int Flag to translate
 	 * @param $forContent Whether to localize the message depending of the user
 	 *                    language
 	 * @return String
