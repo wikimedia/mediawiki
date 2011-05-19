@@ -229,6 +229,7 @@ $messages = array(
 'helppage'             => 'Help:Каталогъ',
 'mainpage'             => 'главьна страница',
 'mainpage-description' => 'главьна страница',
+'policy-url'           => 'Project:Полїтїка',
 'portal'               => 'обьщєниꙗ съвѣтъ',
 'portal-url'           => 'Project:Обьщєниꙗ съвѣтъ',
 
@@ -275,6 +276,7 @@ $messages = array(
 'userloginnocreate'       => 'въниди',
 'logout'                  => 'ис̾ходъ',
 'userlogout'              => 'ис̾ходъ',
+'nologin'                 => 'мѣсто ти нѣстъ ли ? $1',
 'nologinlink'             => 'съꙁижди си мѣсто',
 'createaccount'           => 'съꙁижди си мѣсто',
 'gotaccount'              => 'мѣсто ти ѥстъ ли? $1',

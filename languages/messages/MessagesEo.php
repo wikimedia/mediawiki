@@ -12,6 +12,7 @@
  * @author Amikeco
  * @author ArnoLagrange
  * @author Castelobranco
+ * @author Iketsi
  * @author Jens Liebenau
  * @author Lucas
  * @author LyzTyphone
@@ -584,7 +585,7 @@ $1',
 'showtoc'                 => 'montri',
 'hidetoc'                 => 'kaŝi',
 'collapsible-collapse'    => 'kaŝi',
-'collapsible-expand'      => 'etendi',
+'collapsible-expand'      => 'Etendi',
 'thisisdeleted'           => 'Vidi aŭ restarigi $1?',
 'viewdeleted'             => 'Ĉu rigardi $1?',
 'restorelink'             => '{{PLURAL:$1|unu forigitan version|$1 forigitajn versiojn}}',
@@ -1822,7 +1823,7 @@ Por optimuma sekureco, img_auth.php estas malŝalta.',
 'upload-curl-error28-text' => 'La retejo atendas tro sen respondo. Bonvolu verigi ke la retejo ankoraŭ funkcias kaj reprovi. Vi eble volus trovi dum malpli okupa tempo.',
 
 'license'            => 'Permesiloj:',
-'license-header'     => 'Licencado:',
+'license-header'     => 'Permesiloj:',
 'nolicense'          => 'Neniu elektita',
 'license-nopreview'  => '(Antaŭvido ne montrebla)',
 'upload_source_url'  => ' (valida, publike atingebla URL-o)',
@@ -1845,7 +1846,7 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 
 # File description page
 'file-anchor-link'          => 'Dosiero',
-'filehist'                  => 'Historio de dosiero',
+'filehist'                  => 'Dosiera historio',
 'filehist-help'             => 'Klaku daton/tempon por rigardi la dosieron kiel ĝin ŝajnitan tiame.',
 'filehist-deleteall'        => 'forigi ĉiujn',
 'filehist-deleteone'        => 'forigi',

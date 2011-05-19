@@ -2922,9 +2922,27 @@ $1',
 'exif-webstatement'                => 'Интэриниэккэ тарҕаныытын туһунан',
 'exif-originaldocumentid'          => 'Оригинаалын идентификатора',
 'exif-licenseurl'                  => 'Бас билии лисиэнсийэтин URL-ла',
+'exif-morepermissionsurl'          => 'Лиссиэнсийэ туһунан атын информация',
+'exif-attributionurl'              => 'Бу үлэни туһанаргытыгар, бука диэн, манна сигэнээриҥ:',
+'exif-preferredattributionname'    => 'Бу үлэни туһанаргытыгар, бука диэн, маны ыйаарыҥ:',
+'exif-pngfilecomment'              => 'PNG-билэ быһаарыыта',
+'exif-disclaimer'                  => 'Бүк охсунуу',
+'exif-contentwarning'              => 'Сэрэтии',
+'exif-giffilecomment'              => 'GIF-билэ быһаарыыта',
+'exif-intellectualgenre'           => 'Көрүҥэ',
+'exif-subjectnewscode'             => 'Тиэмэ куода',
+'exif-scenecode'                   => 'IPTC куода',
+'exif-event'                       => 'Ойууламмыт түбэлтэ',
+'exif-organisationinimage'         => 'Ойууламмыт тэрилтэ',
+'exif-personinimage'               => 'Ойууламмыт киһи',
+'exif-originalimageheight'         => 'Ойуу быһылла илигинээҕи үрдүгэ',
+'exif-originalimagewidth'          => 'Ойуу быһылла илигинээҕи кэтитэ',
 
 # EXIF attributes
 'exif-compression-1' => 'Хам тутуллубатах',
+
+'exif-copyrighted-true'  => 'Ааптар быраабынан араҥаччыланар',
+'exif-copyrighted-false' => 'Бар-дьон бас билиитэ',
 
 'exif-unknowndate' => 'Күнэ-ыйа биллибэт',
 
@@ -2939,6 +2957,8 @@ $1',
 
 'exif-planarconfiguration-1' => '"chunky" формат',
 'exif-planarconfiguration-2' => '"planar" формат',
+
+'exif-colorspace-65535' => 'Калибрдамматах',
 
 'exif-componentsconfiguration-0' => 'суох',
 
@@ -3003,6 +3023,8 @@ $1',
 'exif-sensingmethod-7' => 'Үс өҥнөөх линейнай сенсор',
 'exif-sensingmethod-8' => 'Линейный сенсор с последовательным измерением цвета',
 
+'exif-filesource-3' => 'Цифровой фотоаппарат',
+
 'exif-scenetype-1' => 'Объект бэйэтин хаартыскаҕа түһэриллибит',
 
 'exif-customrendered-0' => 'Оҥоһуллубатах',
@@ -3051,6 +3073,10 @@ $1',
 'exif-gpslongitude-e' => 'Илиҥҥи усталааһын',
 'exif-gpslongitude-w' => 'Арҕааҥы усталааһын',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => 'Муора таһымыттан  {{PLURAL:$1|биир миэтэрэ|$1 миэтэрэ}} үрдүк',
+'exif-gpsaltitude-below-sealevel' => 'Муора таһымыттан {{PLURAL:$1|биир миэтэрэ|$1 миэтэрэ}} намыһах',
+
 'exif-gpsstatus-a' => 'Кээмэйдээһин бүтэ илик',
 'exif-gpsstatus-v' => 'Кээмэйдээһин бэлэм',
 
@@ -3067,9 +3093,53 @@ $1',
 'exif-gpsdestdistance-m' => 'Миилэ',
 'exif-gpsdestdistance-n' => 'Байҕал миилэтэ',
 
+'exif-gpsdop-excellent' => 'Уһулуччу ($1)',
+'exif-gpsdop-good'      => 'Үчүгэй ($1)',
+'exif-gpsdop-moderate'  => 'Орто ($1)',
+'exif-gpsdop-fair'      => 'Орто аннынан ($1)',
+'exif-gpsdop-poor'      => 'Мөлтөх ($1)',
+
+'exif-objectcycle-a' => 'Сарсыарда эрэ',
+'exif-objectcycle-p' => 'Киэһэ эрэ',
+'exif-objectcycle-b' => 'Сарсыарда уонна киэһэ',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Дьиҥнээх',
 'exif-gpsdirection-m' => 'Магнитнай',
+
+'exif-ycbcrpositioning-1' => 'Кииннэммит',
+'exif-ycbcrpositioning-2' => 'Co-sited',
+
+'exif-dc-contributor' => 'Оҥорсооччулар',
+'exif-dc-date'        => 'Күнэ-дьыла',
+'exif-dc-publisher'   => 'Бэчээттээччи',
+'exif-dc-rights'      => 'Бырааптар',
+'exif-dc-type'        => 'Медиа көрүҥэ',
+
+'exif-rating-rejected' => 'Бигэргэтиллибэтэх',
+
+'exif-isospeedratings-overflow' => '65535 тахса',
+
+'exif-iimcategory-ace' => 'Ускуустуба, култуура уонна саататыы',
+'exif-iimcategory-clj' => 'Түөкүннээһин уонна сокуон',
+'exif-iimcategory-dis' => 'Саахал',
+'exif-iimcategory-fin' => 'Экэниэмикэ уонна урбаан',
+'exif-iimcategory-edu' => 'Үөрэх',
+'exif-iimcategory-evn' => 'Тулалыыр эйгэ',
+'exif-iimcategory-hth' => 'Эт-хаан туруга',
+'exif-iimcategory-lab' => 'Үлэ',
+'exif-iimcategory-lif' => 'Олоххо сыһыан уонна иллэҥ кэм',
+'exif-iimcategory-pol' => 'Бэлиитикэ',
+'exif-iimcategory-rel' => 'Итэҕэл уонна кут-сүр',
+'exif-iimcategory-sci' => 'Билим уонна тиэхинньикэ',
+'exif-iimcategory-soi' => 'Уопсастыбаҕа сыһыаннар',
+'exif-iimcategory-spo' => 'Күрэс',
+'exif-iimcategory-war' => 'Сэрии уонна утарыта туруу',
+'exif-iimcategory-wea' => 'Халлаан туруга',
+
+'exif-urgency-normal' => 'Көннөрү ($1)',
+'exif-urgency-low'    => 'Намыһах ($1)',
+'exif-urgency-high'   => 'Үрдүк ($1)',
 
 # External editor support
 'edit-externally'      => 'Бу билэни таһынааҕы бырагыраамма көмөтүнэн уларытарга',

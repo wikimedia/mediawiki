@@ -2372,7 +2372,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'enotif_anon_editor'           => 'کاربر ناشناس $1',
 'enotif_body'                  => '$WATCHINGUSERNAME گرامی،
 
-صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATE به دست $PAGEEDITOR $CHANGEDORCREATED است. برای دیدن نسخهٔ کنونی به $PAGETITLE_URL بروید.
+صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATE به‌دست $PAGEEDITOR $CHANGEDORCREATED است. برای دیدن نسخهٔ کنونی $PAGETITLE_URL را ببینید.
 
 $NEWPAGE
 
@@ -2385,17 +2385,17 @@ $NEWPAGE
 تا هنگامی که به صفحه سر نزده‌اید، در صورت رخ‌دادنِ احتمالیِ تغییراتِ بیشتر، اعلانیه‌ای برای شما فرستاده نخواهد شد.
 شما همچنین می‌توانید در صفحهٔ پی‌گیری‌های خود پرچم‌های مربوط به آگاهی‌رسانی پستی را صفر کنید.
 
-خاکسار شما،
-
-سامانهٔ آگاهی‌رسانی  {{SITENAME}}.
+             خاکسار شما، سامانهٔ آگاهی‌رسانی {{SITENAME}}
 
 --
+برای تغییر تنظیمات فهرست آگاهی‌رسانی رایانامه‌ای شما به {{fullurl:{{#special:Watchlist}}/edit}} بروید.
+
 برای تغییر تنظیمات فهرست پی‌گیری‌هایتان به {{fullurl:{{#special:Watchlist}}/edit}} بروید.
 
 برای حذف صفحه از فهرصت پی‌گیری‌هایتان به $UNWATCHURL بروید.
 
 بازخورد و کمک بیشتر:
-{{fullurl:{{ns:help}}:Contents}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'حذف صفحه',
@@ -3348,6 +3348,9 @@ $1',
 
 # EXIF attributes
 'exif-compression-1' => 'غیرفشرده',
+'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
+'exif-compression-3' => 'CCITT Group 3 fax encoding',
+'exif-compression-4' => 'CCITT Group 4 fax encoding',
 
 'exif-copyrighted-true'  => 'دارای حق تکثیر',
 'exif-copyrighted-false' => 'مالکیت عمومی',

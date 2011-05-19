@@ -141,6 +141,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Naka-index nga mga panid',
 'noindex-category'               => 'Wala naka-index nga mga panid',
+'broken-file-category'           => 'Mga panid nga may guba nga link sang hilera',
 
 'mainpagetext'      => "'''Ang MediaWiki madinalag-on nga na-instala.'''",
 'mainpagedocfooter' => " Magkonsulta sa [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa mga impormasyon sa paggamit sang wiki nga software.
@@ -310,6 +311,8 @@ Lantawa ang [[Special:Version|panid sang mga bersiyon]].',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
 'red-link-title'          => '$1 (wala pa ini nahimo nga pahina)',
+'sort-descending'         => 'Himuson nga nagapanaog',
+'sort-ascending'          => 'Himuson nga nagapasaka',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pahina',
@@ -440,6 +443,7 @@ Indi pagkalimti ang pag-ilis sang imo mga [[Special:Preferences|{{SITENAME}} pag
 'createaccount'              => 'Maghimo Account',
 'gotaccount'                 => 'May yara ka na sang akawnt? $1.',
 'gotaccountlink'             => 'Mag sulod',
+'userlogin-resetlink'        => 'Nalipatan mo bala ang mga detalye sang imo pagsulod?',
 'createaccountmail'          => 'Paagi sa e-mail',
 'createaccountreason'        => 'Rason:',
 'badretype'                  => 'Ang mga pasword nga imo gintum-ok wala naga-santo.',
@@ -538,6 +542,38 @@ Ginapasulod ka na...',
 'resetpass-wrong-oldpass'   => 'Sala nga temporaryo ukon subong nga pasword.
 Mahimo nga madinalag-on mo nga nga gin-ilisan ang imo pasword ukon nagpangabay ka na sang bag-o nga temporaryo nga pasword.',
 'resetpass-temp-password'   => 'Temporaryo nga pasword:',
+
+# Special:PasswordReset
+'passwordreset'                => 'Liwaton ang pasword',
+'passwordreset-text'           => 'Taposon ang ini nga formas agod nga makabaton sang e-mail nga nagapahanumdom sang mga detalye sang imo akawnt.',
+'passwordreset-legend'         => 'Liwaton ang pasword',
+'passwordreset-disabled'       => 'Ang mga pagliwat sang pasword gin-untat sa sini nga wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Magbutang sang isa sang mga datos sa idalom}}',
+'passwordreset-username'       => 'Ngalan sang Manog-gamit"',
+'passwordreset-email'          => 'Adres sang e-mail:',
+'passwordreset-emailtitle'     => 'Ang mga detalye sang akawnt sa {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'May tawo nga (mahimo ikaw, halin sa IP adres nga $1) nagpangabay sang pahanumdom sang mga detalye
+sang imo akawnt para sa {{SITENAME}} ($4). Ang masunod nga {{PLURAL:$3|akawnt|mga akawnt}} sang manuggamit
+may kabahin sa sini nga adres sang e-mail:
+
+$2
+
+{{PLURAL:$3|Ang ini nga temporaryo nga pasword|Ang mga ini nga temporaryo nga pasword}} indi na magamit sa {{PLURAL:$5|isa ka adlaw|$5 ka adlaw}}.
+Kinahanglan mo nga magsulod kag magpili sang bag-o nga pasword subong. Kon lain nga tawo ang nagbuhat sini
+nga pagpangabay, ukon nadumduman mo na ang imo pasword, kag indi mo na kinahanglan nga ini
+paga-ilisan, mahimo mo nga pabay-an ang ini nga pahanumdom kag magpadayon sa paggamit sang imo daan nga pasword.',
+'passwordreset-emailtext-user' => 'Ang manuggamit nga si $1 sa {{SITENAME}} nagpangabay sang pahanumdom sang mga detalye sang imo akawnt para sa {{SITENAME}} 
+($4). Ang masunod nga {{PLURAL:$3|akawnt|mga akawnt}} sang manuggamit may kabahin sa sini nga adres sang e-mail:
+
+$2
+
+{{PLURAL:$3|Ang ini nga temporaryo nga pasword|Ang mga ini nga temporaryo nga pasword}} indi na magamit sa {{PLURAL:$5|isa ka adlaw|$5 ka adlaw}}.
+Kinahanglan mo nga magsulod kag magpili sang bag-o nga pasword subong. Kon lain nga tawo ang nagbuhat sini
+nga pagpangabay, ukon nadumduman mo na ang imo pasword, kag indi mo na kinahanglan nga ini
+paga-ilisan, mahimo mo nga pabay-an ang ini nga pahanumdom kag magpadayon sa paggamit sang imo daan nga pasword.',
+'passwordreset-emailelement'   => 'Gamit-pangalan: $1
+Temporaryo nga pasword: $2',
+'passwordreset-emailsent'      => 'May pahanumdom nga e-mail nga ginpadala.',
 
 # Edit page toolbar
 'bold_sample'     => 'Dukot nga teksto',
@@ -905,6 +941,35 @@ Indi ka mahimo nga magsulod diri.',
 'revdelete-no-change'         => "'''Pahibalo:''' ang bagay nga may petsa $2, $1 nagpangabay na sang mga siting sa pagpakita.",
 'revdelete-concurrent-change' => 'May sala sa pagbag-o sang bagay nga may petsa nga $2, $1: ang iya kahimtangan nagaguwa nga gin-ilisan sang iban samtang ginatuyo mo ini nga bag-uhon.
 Palihog sekyar sang mga logs.',
+'revdelete-only-restricted'   => 'May sala sa pagtago sang bagay nga may petsa nga $2, $1: indi mo makakas ang mga bagay nga makita sang mga administrador kon wala ka man nagpili sang isa sa mga pililian sa pagkakita.',
+'revdelete-reason-dropdown'   => '*Masami nga rason sang pagdula
+** Paglapas sang kinamatarong-kontra-pagkopya
+** Indi nagakadapat nga impormasyon pangkaugalingon
+** Mahimo nagapangguba-kinamatarong nga impormasyon',
+'revdelete-otherreason'       => 'Iban/dugang nga rason:',
+'revdelete-reasonotherlist'   => 'Iban nga rason',
+'revdelete-edit-reasonlist'   => 'Ilisan ang pagdula sang mga rason',
+'revdelete-offender'          => 'Ang nagbuhat sang pagbag-o:',
+
+# Suppression log
+'suppressionlog'     => 'Log sang pagkakas',
+'suppressionlogtext' => 'Sa idalom isa ka lista sang mga gindula kag pagpugong nga naga-dala sang mga unod nga gintago halin sa mga administrador.
+Lantawa ang [[Special:BlockList|lista sang mga ginpunggan nga IP]] para sa lista sang mga naga-eksister nga pagdula kag pagpugong.',
+
+# History merging
+'mergehistory'        => 'Isugpon ang mga kasaysayan sang panid',
+'mergehistory-header' => 'Ang ini nga panid nagapasugpon sa imo sang mga pagbag-o sang kasaysayan sang isa ka panid nga ginhalinan pakadto sa mas bag-o nga panid.
+Palihog seguraduhon nga ang ini nga pagbag-o magapabilin sang pagpadayon sang panid sang kasaysayan.',
+'mergehistory-box'    => 'Isugpon ang mga pagbag-o sang duha ka panid:',
+'mergehistory-from'   => 'Gihalinan nga panid:',
+'mergehistory-into'   => 'Pakadtuan nga panid:',
+'mergehistory-list'   => 'Mahimo masugpon nga kasaysayan sang pagbag-o',
+'mergehistory-merge'  => 'Ang masunod nga mga pagbag-o sang [[:$1]] mahimo masugpon sa [[:$2]].
+Gamita ang mga buton nga radio sa pagsugpon lamang sa mga pagbag-o nga gintuga sa kag bag-o ang tion nga ginbutang.
+Tandai nga ang paggamit sang mga link sa pagnabigar magaliwat sining hilera.',
+'mergehistory-go'     => 'Ipakita ang mga mahimo masugpon nga mga pagbag-o',
+'mergehistory-submit' => 'Isugpon ang mga pagbag-o',
+'mergehistory-empty'  => 'Wala sing pagbag-o nga mahimo masugpon.',
 
 # Merge log
 'revertmerge' => 'Di pag-upod',

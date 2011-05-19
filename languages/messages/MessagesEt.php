@@ -2180,6 +2180,9 @@ Abivalmilt
 {{GRAMMAR:genitive|{{SITENAME}}}} teavitussüsteem
 
 --
+E-kirjatsi saabuvate teavituste sätteid saad muuta leheküljel
+{{fullurl:{{#special:Preferences}}}}.
+
 Oma jälgimisloendi sätete muutmiseks mine leheküljele
 {{fullurl:Special:Watchlist/edit}}.
 

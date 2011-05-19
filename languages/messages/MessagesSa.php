@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bharata
+ * @author Bhawani Gautam
  * @author Hemant wikikosh1
  * @author Hrishikesh.kb
  * @author Htt
@@ -714,36 +715,39 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'editundo'                => 'अकरोतु',
 
 # Search results
-'searchresults'             => 'अन्वेषण फलानि',
-'searchresults-title'       => '"$1" इत्यस्य कृते अन्वेषण-फलानि',
-'searchresulttext'          => '{{SITENAME}} इत्यस्मिन् अन्वेषणे सहाय्यार्थम् [[{{MediaWiki:Helppage}}|{{int:help}}]] इत्येतत् पश्यतु ।',
-'searchsubtitle'            => 'भवान् \'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|सर्वाणि "$1" इत्यस्माद् आरभमन्तः पृष्ठाणि]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|सर्वाणि "$1" इत्येतत्प्रति संबद्धानि पृष्ठाणि]]) इत्यस्य कृते अन्विष्टवान्।',
-'searchsubtitleinvalid'     => "भवता '''$1''' इत्यस्य कृते अन्वेषणं कृतम्",
-'notitlematches'            => 'न कस्यापि पृष्ठस्य शीर्षकम् अस्य समम्।',
-'notextmatches'             => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
-'prevn'                     => 'पूर्वतनानि {{PLURAL:$1|$1}}',
-'nextn'                     => 'आगामि{{PLURAL:$1|$1}}',
-'viewprevnext'              => 'दर्शयतु ($1 {{int:pipe-separator}} $2) ($3)',
-'searchprofile-everything'  => 'सर्वम्',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
-'search-redirect'           => '($1 इतीदं अनुप्रेषितम्)',
-'search-section'            => '(विभागः $1)',
-'search-suggest'            => 'किं भवतः आशयः एवमस्ति : $1',
-'search-interwiki-caption'  => 'बन्धु-प्रकल्पाः',
-'search-interwiki-default'  => '$1 परिणामाः :',
-'search-interwiki-more'     => '(अधिकानि)',
-'search-mwsuggest-enabled'  => 'उपक्षेपेभ्यः सह',
-'search-mwsuggest-disabled' => 'नात्र उपक्षेपाः',
-'searchall'                 => 'सर्वाणि',
-'nonefound'                 => "'''सूचना''': स्वतः अत्र केषुचिदेव नामाकाशेषु अन्वेषणं क्रियते।
+'searchresults'                  => 'अन्वेषण फलानि',
+'searchresults-title'            => '"$1" इत्यस्य कृते अन्वेषण-फलानि',
+'searchresulttext'               => '{{SITENAME}} इत्यस्मिन् अन्वेषणे सहाय्यार्थम् [[{{MediaWiki:Helppage}}|{{int:help}}]] इत्येतत् पश्यतु ।',
+'searchsubtitle'                 => 'भवान् \'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|सर्वाणि "$1" इत्यस्माद् आरभमन्तः पृष्ठाणि]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|सर्वाणि "$1" इत्येतत्प्रति संबद्धानि पृष्ठाणि]]) इत्यस्य कृते अन्विष्टवान्।',
+'searchsubtitleinvalid'          => "भवता '''$1''' इत्यस्य कृते अन्वेषणं कृतम्",
+'notitlematches'                 => 'न कस्यापि पृष्ठस्य शीर्षकम् अस्य समम्।',
+'notextmatches'                  => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
+'prevn'                          => 'पूर्वतनानि {{PLURAL:$1|$1}}',
+'nextn'                          => 'आगामि{{PLURAL:$1|$1}}',
+'shown-title'                    => 'प्रत्येक पृष्ठे $1 {{PLURAL:$1|परिणामं|परिणामान्}}प्रदर्शयतु',
+'viewprevnext'                   => 'दर्शयतु ($1 {{int:pipe-separator}} $2) ($3)',
+'searchprofile-everything'       => 'सर्वम्',
+'searchprofile-articles-tooltip' => '$1 स्थले अन्वेशयतु',
+'searchprofile-images-tooltip'   => 'सञ्चिकान् अन्वेशयतु',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
+'search-redirect'                => '($1 इतीदं अनुप्रेषितम्)',
+'search-section'                 => '(विभागः $1)',
+'search-suggest'                 => 'किं भवतः आशयः एवमस्ति : $1',
+'search-interwiki-caption'       => 'बन्धु-प्रकल्पाः',
+'search-interwiki-default'       => '$1 परिणामाः :',
+'search-interwiki-more'          => '(अधिकानि)',
+'search-mwsuggest-enabled'       => 'उपक्षेपेभ्यः सह',
+'search-mwsuggest-disabled'      => 'नात्र उपक्षेपाः',
+'searchall'                      => 'सर्वाणि',
+'nonefound'                      => "'''सूचना''': स्वतः अत्र केषुचिदेव नामाकाशेषु अन्वेषणं क्रियते।
 
 सकले घटके अन्वेषणं कर्तुं स्व अन्वेषणपदेभ्यः पूर्वं ''all:'' इति योजयतु, अथवा इष्टं नामाकाशं पूर्वलग्नरूपेण योजयतु।",
-'powersearch'               => 'प्रगतम् अन्वेषणम्',
-'powersearch-legend'        => 'प्रगतम् अन्वेषणम्',
-'powersearch-ns'            => 'नामाकाशेषु अन्विष्यतु :',
-'powersearch-redir'         => 'अनुप्रेषणानां सूचिकां दर्शयतु।',
-'powersearch-field'         => 'इत्यस्मै अन्विष्यतु',
-'powersearch-toggleall'     => 'सर्वम्',
+'powersearch'                    => 'प्रगतम् अन्वेषणम्',
+'powersearch-legend'             => 'प्रगतम् अन्वेषणम्',
+'powersearch-ns'                 => 'नामाकाशेषु अन्विष्यतु :',
+'powersearch-redir'              => 'अनुप्रेषणानां सूचिकां दर्शयतु।',
+'powersearch-field'              => 'इत्यस्मै अन्विष्यतु',
+'powersearch-toggleall'          => 'सर्वम्',
 
 # Preferences page
 'preferences'   => 'इष्टतमानि',
