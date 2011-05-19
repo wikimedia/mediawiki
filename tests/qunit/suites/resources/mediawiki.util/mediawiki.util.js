@@ -23,10 +23,10 @@ test( 'addCSS', function(){
 	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
 	ok(  a, 'function works' );
 	deepEqual( a.disabled, false, 'property "disabled" is available and set to false' );
-	
+
 	var $b = $('#bodyContent');
 	equal( $b.css('visibility'), 'hidden', 'Added style properties are in effect.' );
-	
+
 
 });
 
@@ -42,11 +42,11 @@ test( 'wikiGetlink', function(){
 	mw.config.set( 'wgArticlePath', '/wiki/$1' );
 
 	var hrefA = mw.util.wikiGetlink( 'Sandbox' );
-	
+
 	equal( hrefA, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
 
 	var hrefB = mw.util.wikiGetlink( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
-	
+
 	equal( hrefB, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage', 'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
 
 });
@@ -88,7 +88,7 @@ test( 'getActionFrom', function(){
 	// Default settings
 	mw.config.set( {
 		'wgActionPaths': [],
-		'wgArticlePath': '/w/index.php/$1' 
+		'wgArticlePath': '/w/index.php/$1'
 	});
 	equal( mw.util.getActionFrom( urlD ), 'view', 'wgArticlePath (/index.php/$1) support' );
 
@@ -122,7 +122,7 @@ test( 'getTitleFrom', function(){
 	// Default settings
 	mw.config.set( {
 		'wgActionPaths': [],
-		'wgArticlePath': '/w/index.php/$1' 
+		'wgArticlePath': '/w/index.php/$1'
 	});
 
 	equal( mw.util.getTitleFrom( urlD ), 'Article', 'wgArticlePath (/index.php/$1) support' );
@@ -146,14 +146,25 @@ test( '$content', function(){
 
 test( 'addPortletLink', function(){
 
-	var a = mw.util.addPortletLink( 'p-tb', 'http://mediawiki.org/wiki/ResourceLoader', 'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l', '#t-specialpages' );
-	
-	ok( $.isDomElement(a), 'addPortletLink returns a DomElement' );
-	
-	var b = mw.util.addPortletLink( "p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-rl" );
-	
-	equal( $(a).text(), 'ResourceLoader', 'Link contains correct text' );
-	equal( $(b).next().text(), 'ResourceLoader', 'Link was inserted in correct nextnode position' );
+	var A = mw.util.addPortletLink( 'p-tb', 'http://mediawiki.org/wiki/ResourceLoader',
+		'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l', '#t-specialpages' );
+
+	ok( $.isDomElement( A ), 'addPortletLink returns a valid DOM Element according to $.isDomElement' );
+
+	var B = mw.util.addPortletLink( "p-tb", "http://mediawiki.org/",
+		"MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", A );
+
+	equal( $( B ).attr( 'id' ), 't-mworg', 'Link has correct ID set' );
+	equal( $( B ).closest( '.portal' ).attr( 'id' ), 'p-tb', 'Link was inserted within correct portlet' );
+	equal( $( B ).next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing nextnode)' );
+
+	var C = mw.util.addPortletLink( "p-tb", "http://mediawiki.org/wiki/RL/DM",
+		"Default modules", "t-rldm", "List of all default modules ", "d", "#t-rl" );
+
+	equal( $( C ).next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing CSS selector)' );
+
+	// Clean up
+	$( [A, B, C] ).remove();
 
 });
 
@@ -161,7 +172,10 @@ test( 'jsMessage', function(){
 
 	var a = mw.util.jsMessage( "MediaWiki is <b>Awesome</b>." );
 
-	ok( a, 'Basic return value checking' );
+	ok( a, 'Basic checking of return value' );
+
+	// Clean up
+	$( '#mw-js-message' ).remove();
 
 });
 
