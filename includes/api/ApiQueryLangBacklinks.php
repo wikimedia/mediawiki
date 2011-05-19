@@ -79,7 +79,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		}
 
 		$prop = array_flip( $params['prop'] );
-		$lllang = isset( $prop['llang'] );
+		$lllang = isset( $prop['lllang'] );
 		$lltitle = isset( $prop['lltitle'] );
 
 		$this->addTables( array( 'langlinks', 'page' ) );
@@ -157,7 +157,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		return array(
-			'prefix' => null,
+			'lang' => null,
 			'title' => null,
 			'continue' => null,
 			'limit' => array(
@@ -181,7 +181,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 	public function getParamDescription() {
 		return array(
 			'lang' => 'Language for the language link',
-			'title' => "Language link to search for. Must be used with {$this->getModulePrefix()}prefix",
+			'title' => "Language link to search for. Must be used with {$this->getModulePrefix()}lang",
 			'continue' => 'When more results are available, use this to continue',
 			'prop' => array(
 				'Which properties to get',
