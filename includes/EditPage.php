@@ -1723,6 +1723,10 @@ HTML
 				# Then it must be protected based on static groups (regular)
 				$classes[] = 'mw-textarea-protected';
 			}
+			# Is the title cascade-protected?
+			if ( $this->mTitle->isCascadeProtected() ) {
+				$classes[] = 'mw-textarea-cprotected';
+			}
 		}
 		$attribs = array( 'tabindex' => 1 );
 		if ( is_array($customAttribs) )

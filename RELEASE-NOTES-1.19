@@ -34,6 +34,8 @@ production.
   class that extends PageArchive.
 * (bug 28915) Implement QUnit test suite for MediaWiki JavaScript.
   Also built-in support for distribution through a TestSwarm instance.
+* (bug 29036) For cascade-protected pages, the mw-textarea-cprotected class is
+  added to the textarea on the edit form.
 
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
