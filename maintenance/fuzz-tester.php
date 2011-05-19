@@ -1403,7 +1403,7 @@ class specialAllmessagesTest extends pageTest {
 /**
  ** a page test for "Special:Newpages".
  */
-class specialNewpages extends pageTest {
+class specialNewpagesPageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Newpages";
 
@@ -1531,7 +1531,7 @@ class specialMovePage extends pageTest {
 /**
  ** a page test for "Special:Undelete"
  */
-class specialUndelete extends pageTest {
+class specialUndeletePageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Undelete";
 
@@ -1558,7 +1558,7 @@ class specialUndelete extends pageTest {
 /**
  ** a page test for "Special:Unlockdb"
  */
-class specialUnlockdb extends pageTest {
+class specialUnlockdbPageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Unlockdb";
 
@@ -1579,7 +1579,7 @@ class specialUnlockdb extends pageTest {
 /**
  ** a page test for "Special:Lockdb"
  */
-class specialLockdb extends pageTest {
+class specialLockdbPageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Lockdb";
 
@@ -1732,7 +1732,7 @@ class pageDeletion extends pageTest {
 /**
  ** a test for Revision Deletion.
  */
-class specialRevisionDelete extends pageTest {
+class specialRevisionDeletePageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Revisiondelete";
 
@@ -1763,7 +1763,7 @@ class specialRevisionDelete extends pageTest {
 /**
  ** a test for Special:Import.
  */
-class specialImport extends pageTest {
+class specialImportPageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Import";
 
@@ -1861,7 +1861,7 @@ class profileInfo extends pageTest {
 /**
  ** a test for Special:Cite (extension Special page).
  */
-class specialCite extends pageTest {
+class specialCitePageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Cite";
 
@@ -1880,7 +1880,7 @@ class specialCite extends pageTest {
 /**
  ** a test for Special:Filepath (extension Special page).
  */
-class specialFilepath extends pageTest {
+class specialFilepathPageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Filepath";
 
@@ -1940,7 +1940,7 @@ class specialMakesysop extends pageTest {
 /**
  ** a test for Special:Renameuser (extension Special page).
  */
-class specialRenameuser extends pageTest {
+class specialRenameuserPageTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Renameuser";
 
@@ -2257,31 +2257,31 @@ function selectPageTest( $count ) {
 		case 15: return new contributionsTest();
 		case 16: return new viewPageTest();
 		case 17: return new specialAllmessagesTest();
-		case 18: return new specialNewpages();
+		case 18: return new specialNewpagesPageTest();
 		case 19: return new searchTest();
 		case 20: return new redirectTest();
 		case 21: return new confirmEmail();
 		case 22: return new watchlistTest();
 		case 23: return new specialBlockmeTest();
-		case 24: return new specialUndelete();
+		case 24: return new specialUndeletePageTest();
 		case 25: return new specialMovePage();
-		case 26: return new specialUnlockdb();
-		case 27: return new specialLockdb();
+		case 26: return new specialUnlockdbPageTest();
+		case 27: return new specialLockdbPageTest();
 		case 28: return new specialUserrights();
 		case 29: return new pageProtectionForm();
 		case 30: return new specialBlockip();
 		case 31: return new imagepageTest();
 		case 32: return new pageDeletion();
-		case 33: return new specialRevisionDelete();
-		case 34: return new specialImport();
+		case 33: return new specialRevisionDeletePageTest();
+		case 34: return new specialImportPageTest();
 		case 35: return new thumbTest();
 		case 36: return new trackbackTest();
 		case 37: return new profileInfo();
-		case 38: return new specialCite();
-		case 39: return new specialFilepath();
+		case 38: return new specialCitePageTest();
+		case 39: return new specialFilepathPageTest();
 		case 40: return new specialMakebot();
 		case 41: return new specialMakesysop();
-		case 42: return new specialRenameuser();
+		case 42: return new specialRenameuserPageTest();
 		case 43: return new specialLinksearch();
 		case 44: return new specialCategoryTree();
 		case 45: return new api();
