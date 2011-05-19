@@ -293,7 +293,7 @@ abstract class ExternalUser {
 	 * @return Mixed User if the account is linked, Null otherwise.
 	 */
 	public final function getLocalUser(){
-		$dbr = wfGetDb( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			'external_user',
 			'*',

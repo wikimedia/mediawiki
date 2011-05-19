@@ -90,7 +90,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 					'LEFT JOIN', 'll_from = page_id' ) )
 		);
 		if ( $this->prefix ) {
-			$dbr = wfGetDb( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix, $dbr->anyString() );
 		}
 		return $query;

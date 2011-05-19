@@ -38,7 +38,7 @@ class BatchedQueryRunner extends Maintenance {
 		$query = $this->getArg();
 		$wait = $this->getOption( 'wait', 5 );
 		$n = 1;
-		$dbw = wfGetDb( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		do {
 			$this->output( "Batch $n: " );
 			$n++;
