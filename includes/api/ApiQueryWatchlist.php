@@ -147,7 +147,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					|| ( isset ( $show['patrolled'] ) && isset ( $show['!patrolled'] ) )
 			)
 			{
-				$this->dieUsageMsg( array( 'show' ) );
+				$this->dieUsageMsg( 'show' );
 			}
 
 			// Check permissions.

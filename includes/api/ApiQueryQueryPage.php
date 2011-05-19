@@ -82,7 +82,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 		$qp = new $this->qpMap[$params['page']]();
 		if ( !$qp->userCanExecute( $wgUser ) ) {
-			$this->dieUsageMsg( array( 'specialpage-cantexecute' ) );
+			$this->dieUsageMsg( 'specialpage-cantexecute' );
 		}
 
 		$r = array( 'name' => $params['page'] );

@@ -50,7 +50,7 @@ class ApiUpload extends ApiBase {
 
 		// Check whether upload is enabled
 		if ( !UploadBase::isEnabled() ) {
-			$this->dieUsageMsg( array( 'uploaddisabled' ) );
+			$this->dieUsageMsg( 'uploaddisabled' );
 		}
 
 		// Parameter handling
@@ -208,7 +208,7 @@ class ApiUpload extends ApiBase {
 			// Upload stashed in a previous request
 			$sessionData = $request->getSessionData( UploadBase::getSessionKeyName() );
 			if ( !UploadFromStash::isValidSessionKey( $this->mParams['sessionkey'], $sessionData ) ) {
-				$this->dieUsageMsg( array( 'invalid-session-key' ) );
+				$this->dieUsageMsg( 'invalid-session-key' );
 			}
 
 			$this->mUpload = new UploadFromStash();
@@ -225,7 +225,7 @@ class ApiUpload extends ApiBase {
 		} elseif ( isset( $this->mParams['url'] ) ) {
 			// Make sure upload by URL is enabled:
 			if ( !UploadFromUrl::isEnabled() ) {
-				$this->dieUsageMsg( array( 'copyuploaddisabled' ) );
+				$this->dieUsageMsg( 'copyuploaddisabled' );
 			}
 
 			$async = false;
@@ -265,7 +265,7 @@ class ApiUpload extends ApiBase {
 			if ( !$user->isLoggedIn() ) {
 				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
 			} else {
-				$this->dieUsageMsg( array( 'badaccess-groups' ) );
+				$this->dieUsageMsg( 'badaccess-groups' );
 			}
 		}
 	}

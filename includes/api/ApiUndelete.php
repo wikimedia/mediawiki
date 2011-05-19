@@ -43,11 +43,11 @@ class ApiUndelete extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		if ( !$wgUser->isAllowed( 'undelete' ) ) {
-			$this->dieUsageMsg( array( 'permdenied-undelete' ) );
+			$this->dieUsageMsg( 'permdenied-undelete' );
 		}
 
 		if ( $wgUser->isBlocked() ) {
-			$this->dieUsageMsg( array( 'blockedtext' ) );
+			$this->dieUsageMsg( 'blockedtext' );
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );
@@ -69,7 +69,7 @@ class ApiUndelete extends ApiBase {
 		$pa = new PageArchive( $titleObj );
 		$retval = $pa->undelete( ( isset( $params['timestamps'] ) ? $params['timestamps'] : array() ), $params['reason'] );
 		if ( !is_array( $retval ) ) {
-			$this->dieUsageMsg( array( 'cannotundelete' ) );
+			$this->dieUsageMsg( 'cannotundelete' );
 		}
 
 		if ( $retval[1] ) {

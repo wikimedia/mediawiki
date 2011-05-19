@@ -104,7 +104,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) ) {
-			$this->dieUsageMsg( array( 'show' ) );
+			$this->dieUsageMsg( 'show' );
 		}
 		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) )
 		{

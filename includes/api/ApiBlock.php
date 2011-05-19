@@ -58,7 +58,7 @@ class ApiBlock extends ApiBase {
 		}
 
 		if ( !$wgUser->isAllowed( 'block' ) ) {
-			$this->dieUsageMsg( array( 'cantblock' ) );
+			$this->dieUsageMsg( 'cantblock' );
 		}
 		# bug 15810: blocked admins should have limited access here
 		if ( $wgUser->isBlocked() ) {
@@ -68,10 +68,10 @@ class ApiBlock extends ApiBase {
 			}
 		}
 		if ( $params['hidename'] && !$wgUser->isAllowed( 'hideuser' ) ) {
-			$this->dieUsageMsg( array( 'canthide' ) );
+			$this->dieUsageMsg( 'canthide' );
 		}
 		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $wgUser ) ) {
-			$this->dieUsageMsg( array( 'cantblock-email' ) );
+			$this->dieUsageMsg( 'cantblock-email' );
 		}
 
 		$data = array(

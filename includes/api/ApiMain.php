@@ -568,7 +568,7 @@ class ApiMain extends ApiBase {
 			} else {
 				global $wgUser;
 				if ( !$wgUser->matchEditToken( $moduleParams['token'], $salt, $this->getMain()->getRequest() ) ) {
-					$this->dieUsageMsg( array( 'sessionfailure' ) );
+					$this->dieUsageMsg( 'sessionfailure' );
 				}
 			}
 		}
@@ -611,14 +611,14 @@ class ApiMain extends ApiBase {
 		if ( $module->isReadMode() && !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) &&
 			!$wgUser->isAllowed( 'read' ) )
 		{
-			$this->dieUsageMsg( array( 'readrequired' ) );
+			$this->dieUsageMsg( 'readrequired' );
 		}
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
-				$this->dieUsageMsg( array( 'writedisabled' ) );
+				$this->dieUsageMsg( 'writedisabled' );
 			}
 			if ( !$wgUser->isAllowed( 'writeapi' ) ) {
-				$this->dieUsageMsg( array( 'writerequired' ) );
+				$this->dieUsageMsg( 'writerequired' );
 			}
 			if ( wfReadOnly() ) {
 				$this->dieReadOnly();

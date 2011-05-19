@@ -61,7 +61,7 @@ class ApiMove extends ApiBase {
 		}
 
 		if ( !$fromTitle->exists() ) {
-			$this->dieUsageMsg( array( 'notanarticle' ) );
+			$this->dieUsageMsg( 'notanarticle' );
 		}
 		$fromTalk = $fromTitle->getTalkPage();
 
@@ -76,9 +76,9 @@ class ApiMove extends ApiBase {
 			&& wfFindFile( $toTitle ) )
 		{
 			if ( !$params['ignorewarnings'] && $wgUser->isAllowed( 'reupload-shared' ) ) {
-				$this->dieUsageMsg( array( 'sharedfile-exists' ) );
+				$this->dieUsageMsg( 'sharedfile-exists' );
 			} elseif ( !$wgUser->isAllowed( 'reupload-shared' ) ) {
-				$this->dieUsageMsg( array( 'cantoverwrite-sharedfile' ) );
+				$this->dieUsageMsg( 'cantoverwrite-sharedfile' );
 			}
 		}
 

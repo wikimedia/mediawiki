@@ -73,10 +73,10 @@ class ApiProtect extends ApiBase {
 			$protections[$p[0]] = ( $p[1] == 'all' ? '' : $p[1] );
 
 			if ( $titleObj->exists() && $p[0] == 'create' ) {
-				$this->dieUsageMsg( array( 'create-titleexists' ) );
+				$this->dieUsageMsg( 'create-titleexists' );
 			}
 			if ( !$titleObj->exists() && $p[0] != 'create' ) {
-				$this->dieUsageMsg( array( 'missingtitle-createonly' ) );
+				$this->dieUsageMsg( 'missingtitle-createonly' );
 			}
 
 			if ( !in_array( $p[0], $restrictionTypes ) && $p[0] != 'create' ) {

@@ -101,14 +101,14 @@ class ApiFileRevert extends ApiBase {
 		// Check if the file really exists
 		$this->file = wfLocalFile( $title );
 		if ( !$this->file->exists() ) {
-			$this->dieUsageMsg( array( 'notanarticle' ) );
+			$this->dieUsageMsg( 'notanarticle' );
 		}
 
 		// Check if the archivename is valid for this file
 		$this->archiveName = $this->params['archivename'];
 		$oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $this->archiveName );
 		if ( !$oldFile->exists() ) {
-			$this->dieUsageMsg( array( 'filerevert-badversion' ) );
+			$this->dieUsageMsg( 'filerevert-badversion' );
 		}
 	}
 
