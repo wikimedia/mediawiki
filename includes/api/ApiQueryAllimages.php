@@ -186,7 +186,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	 * @return bool
 	 */
 	public static function validateSha1Hash( $hash ) {
-		return preg_match( '/[a-f0-9]{40}/', $hash );
+		return preg_match( '/[a-fA-F0-9]{40}/', $hash );
 	}
 
 	/**
@@ -194,7 +194,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	 * @return bool
 	 */
 	public static function validateSha1Base36Hash( $hash ) {
-		return preg_match( '/[a-z0-9]{31}/', $hash );
+		return preg_match( '/[a-zA-Z0-9]{31}/', $hash );
 	}
 
 	public function getAllowedParams() {
