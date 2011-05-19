@@ -158,7 +158,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					|| ( isset( $show['redirect'] ) && isset( $show['!redirect'] ) )
 					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
 			) {
-				$this->dieUsageMsg( array( 'show' ) );
+				$this->dieUsageMsg( 'show' );
 			}
 
 			// Check permissions

@@ -65,7 +65,7 @@ class ApiDelete extends ApiBase {
 			}
 		}
 		if ( !$titleObj->exists() ) {
-			$this->dieUsageMsg( array( 'notanarticle' ) );
+			$this->dieUsageMsg( 'notanarticle' );
 		}
 
 		$reason = ( isset( $params['reason'] ) ? $params['reason'] : null );

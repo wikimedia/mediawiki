@@ -66,7 +66,7 @@ class ApiWatch extends ApiBase {
 			$success = Action::factory( 'watch', $article )->execute();
 		}
 		if ( !$success ) {
-			$this->dieUsageMsg( array( 'hookaborted' ) );
+			$this->dieUsageMsg( 'hookaborted' );
 		}
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}

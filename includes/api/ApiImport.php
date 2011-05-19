@@ -48,7 +48,7 @@ class ApiImport extends ApiBase {
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
 			if ( !$wgUser->isAllowed( 'import' ) ) {
-				$this->dieUsageMsg( array( 'cantimport' ) );
+				$this->dieUsageMsg( 'cantimport' );
 			}
 			if ( !isset( $params['interwikipage'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'interwikipage' ) );
@@ -62,7 +62,7 @@ class ApiImport extends ApiBase {
 		} else {
 			$isUpload = true;
 			if ( !$wgUser->isAllowed( 'importupload' ) ) {
-				$this->dieUsageMsg( array( 'cantimport-upload' ) );
+				$this->dieUsageMsg( 'cantimport-upload' );
 			}
 			$source = ImportStreamSource::newFromUpload( 'xml' );
 		}
