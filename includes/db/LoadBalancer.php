@@ -27,8 +27,7 @@ class LoadBalancer {
 	 *    masterWaitTimeout Replication lag wait timeout
 	 *    loadMonitor       Name of a class used to fetch server lag and load.
 	 */
-	function __construct( $params )
-	{
+	function __construct( $params ) {
 		if ( !isset( $params['servers'] ) ) {
 			throw new MWException( __CLASS__.': missing servers parameter' );
 		}

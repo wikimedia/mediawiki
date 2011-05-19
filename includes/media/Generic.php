@@ -349,7 +349,7 @@ abstract class MediaHandler {
 	 * @param &$array Array An array containing elements for each type of visibility
 	 * and each of those elements being an array of metadata items. This function adds
 	 * a value to that array.
-	 * @param $visibility String ('visible' or 'collapsed') if this value is hidden
+	 * @param $visibility string ('visible' or 'collapsed') if this value is hidden
 	 * by default.
 	 * @param $type String type of metadata tag (currently always 'exif')
 	 * @param $id String the name of the metadata tag (like 'artist' for example).
@@ -361,8 +361,6 @@ abstract class MediaHandler {
 	 * interface.
 	 * @param $param String value to pass to the message for the name of the field
 	 * as $1. Currently this parameter doesn't seem to ever be used.
-	 *
-	 * @return Array $array but with the new metadata field added.
 	 *
 	 * Note, everything here is passed through the parser later on (!)
 	 */

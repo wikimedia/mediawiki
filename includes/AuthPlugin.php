@@ -131,6 +131,8 @@ class AuthPlugin {
 	 * and use the same keys. 'Realname' 'Emailaddress' and 'Nickname'
 	 * all reference this.
 	 *
+	 * @param $prop string
+	 *
 	 * @return Boolean
 	 */
 	public function allowPropChange( $prop = '' ) {
@@ -254,6 +256,8 @@ class AuthPlugin {
 	 * Get an instance of a User object
 	 *
 	 * @param $user User
+	 *
+	 * @return AuthPluginUser
 	 */
 	public function getUserInstance( User &$user ) {
 		return new AuthPluginUser( $user );

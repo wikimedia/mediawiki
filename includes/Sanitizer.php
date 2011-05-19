@@ -1282,7 +1282,7 @@ class Sanitizer {
 	 * return the UTF-8 encoding of that character. Otherwise, returns
 	 * pseudo-entity source (eg &foo;)
 	 *
-	 * @param $name Strings
+	 * @param $name String
 	 * @return String
 	 */
 	static function decodeEntity( $name ) {

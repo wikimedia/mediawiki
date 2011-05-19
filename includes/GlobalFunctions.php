@@ -3305,7 +3305,7 @@ function wfCountDown( $n ) {
  * Generate a random 32-character hexadecimal token.
  * @param $salt Mixed: some sort of salt, if necessary, to add to random
  *              characters before hashing.
- * @return Array
+ * @return string
  * @codeCoverageIgnore
  */
 function wfGenerateToken( $salt = '' ) {
