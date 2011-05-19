@@ -154,7 +154,7 @@ $messages = array(
 'mypage'        => 'Boggeyga',
 'mytalk'        => 'Wadahadalkeyga',
 'anontalk'      => 'Wadahadalka ciwaanka IP:kaan',
-'navigation'    => 'Navigation',
+'navigation'    => 'Jihada',
 'and'           => '&#32;iyo',
 
 # Cologne Blue skin
@@ -233,7 +233,7 @@ $messages = array(
 'viewtalkpage'      => 'Fiiri bogga wadahadalka',
 'otherlanguages'    => 'Luqadaha kale',
 'redirectedfrom'    => '(Waxaa laga soo wareejiyay $1)',
-'redirectpagesub'   => 'Bogga la soo wareejiyay',
+'redirectpagesub'   => 'Bogga loo  wareejiyay',
 'lastmodifiedat'    => 'Boggan waxaa markii ugu dambeysay wax laga bedelay $2, $1.',
 'viewcount'         => 'Boggaan waxaa soo booqday {{PLURAL:$1|mar|$1 jeer}}.',
 'protectedpage'     => "Bog la'difaacay",

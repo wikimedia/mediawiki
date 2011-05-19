@@ -1338,7 +1338,7 @@ Ovdje su navedene neke nasumično odabrane vrijednosti koje možete koristiti: $
 'savedprefs'                    => 'Vaša podešavanja su sačuvana.',
 'timezonelegend'                => 'Vremenska zona:',
 'localtime'                     => 'Lokalno vrijeme:',
-'timezoneuseserverdefault'      => 'Koristi postavke servera',
+'timezoneuseserverdefault'      => 'Koristi postavke wikija ($1)',
 'timezoneuseoffset'             => 'Ostalo (odredi odstupanje)',
 'timezoneoffset'                => 'Odstupanje¹:',
 'servertime'                    => 'Vrijeme na serveru:',
@@ -2222,30 +2222,33 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'enotif_anon_editor'           => 'anonimni korisnik $1',
 'enotif_body'                  => 'Poštovani $WATCHINGUSERNAME,
 
-{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATE od strane $PAGEEDITOR,
-pogledajte $PAGETITLE_URL za trenutnu verziju.
+
+Stranica {{SITENAME}} sa naslovom $PAGETITLE je bila $CHANGEDORCREATED dana $PAGEEDITDATE od strane $PAGEEDITOR, pogledajte $PAGETITLE_URL za trenutnu reviziju.
 
 $NEWPAGE
 
-Sažetak editora: $PAGESUMMARY $PAGEMINOREDIT
+Sažetak urednika: $PAGESUMMARY $PAGEMINOREDIT
 
-Kontaktirajte editora:
-pošta: $PAGEEDITOR_EMAIL
+Kontaktirajte urednika:
+mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Neće biti drugih obaviještenja u slučaju daljih izmjena ukoliko ne posjetite ovu stranu.
-Također možete da resetujete zastavice za obaviještenja za sve Vaše praćene stranice na vašem spisku praćenih članaka.
+Neće biti drugih obavještenja u slučaju daljnjih izmjena osima ako posjetite stranicu.
+Također možete poništiti oznake obavijesti za sve praćene stranice koje imate na vašem spisku praćenja.
 
-             Vaš prijateljski {{SITENAME}} sistem obaviještavanja
+             Vaš prijateljski {{SITENAME}} sistem obavještavanja
 
 --
-Da promjenite podešavanja vezana za spisak praćenih članaka posjetite
+Za promjenu vaših postavki e-mail obavijesti, posjetite
+{{fullurl:{{#special:Preferences}}}}
+
+Za promjenu postavki vašeg praćenja, posjetite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Da obrišete stranicu iz Vašeg spiska praćenja posjetite
+Da obrišete stranicu sa vašeg spiska praćenja, posjetite
 $UNWATCHURL
 
-Fidbek i dalja pomoć:
+Povratne informacije i daljnja pomoć:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
