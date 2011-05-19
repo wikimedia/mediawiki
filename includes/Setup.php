@@ -449,7 +449,7 @@ $wgDeferredUpdateList = array();
 
 // We need to check for safe_mode, because mail() willl throws an E_NOTICE
 // on additional parameters
-if( !is_null($wgAdditionalMailParams) && wgIniGetBool('safe_mode') ) {
+if( !is_null($wgAdditionalMailParams) && wfIniGetBool('safe_mode') ) {
 	$wgAdditionalMailParams = null;
 }
 
