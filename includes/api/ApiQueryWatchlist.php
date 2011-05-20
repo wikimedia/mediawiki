@@ -115,17 +115,21 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		$this->addTables( array(
+			'recentchanges',
 			'watchlist',
 			'page',
-			'recentchanges'
 		) );
 
 		$userId = $user->getId();
+		$this->addJoinConds( array( 'watchlist' => array('INNER JOIN',
+			array(
+				'wl_user' => $userId,
+				'wl_namespace=rc_namespace',
+				'wl_title=rc_title'
+		) ) ) );
+		$this->addJoinConds( array( 'page' => array( 'LEFT JOIN','rc_cur_id=page_id' ) ) );
+
 		$this->addWhere( array(
-			'wl_namespace = rc_namespace',
-			'wl_title = rc_title',
-			'rc_cur_id = page_id',
-			'wl_user' => $userId,
 			'rc_deleted' => 0,
 		) );
 		
