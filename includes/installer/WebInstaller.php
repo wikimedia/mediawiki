@@ -1026,10 +1026,10 @@ class WebInstaller extends Installer {
 			htmlspecialchars( $linkText ) .
 			'</a>';
 	}
-	
+
 	/**
 	 * Helper for "Download LocalSettings" link on WebInstall_Complete
-	 * 
+	 *
 	 * @return String Html for download link
 	 */
 	public function downloadLinkHook( $text, $attribs, $parser  ) {

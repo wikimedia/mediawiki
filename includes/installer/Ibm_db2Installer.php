@@ -62,8 +62,8 @@ class Ibm_db2Installer extends DatabaseInstaller {
 	 */
 	public function submitConnectForm() {
 		// Get variables from the request
-		$newValues = $this->setVarsFromRequest( 
-			array( 'wgDBserver', 'wgDBport', 'wgDBname', 
+		$newValues = $this->setVarsFromRequest(
+			array( 'wgDBserver', 'wgDBport', 'wgDBname',
 				'wgDBmwschema', 'wgDBuser', 'wgDBpassword' ) );
 
 		// Validate them
@@ -144,7 +144,7 @@ class Ibm_db2Installer extends DatabaseInstaller {
 		$dbName = $this->getVar( 'wgDBname' );
 		if( !$conn->selectDB( $dbName ) ) {
 			$conn->query( "CREATE DATABASE "
-				. $conn->addIdentifierQuotes( $dbName ) 
+				. $conn->addIdentifierQuotes( $dbName )
 				. " AUTOMATIC STORAGE YES"
 				. " USING CODESET UTF-8 TERRITORY US COLLATE USING SYSTEM"
 				. " PAGESIZE 32768", __METHOD__ );

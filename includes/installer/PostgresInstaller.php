@@ -230,7 +230,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		} else {
 			$conn->query( "ALTER DATABASE $safedb OWNER TO $safeuser", __METHOD__ );
 		}
-		
+
 		// Now that we've established the real database exists, connect to it
 		// Because we do not want the same connection, forcibly expire the existing conn
 		$this->db = null;
