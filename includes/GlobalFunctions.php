@@ -104,6 +104,151 @@ function wfArrayDiff2_cmp( $a, $b ) {
 }
 
 /**
+ * Array lookup
+ * Returns an array where the values in the first array are replaced by the
+ * values in the second array with the corresponding keys
+ *
+ * @param $a Array
+ * @param $b Array
+ * @return array
+ */
+function wfArrayLookup( $a, $b ) {
+	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
+}
+
+/**
+ * Appends to second array if $value differs from that in $default
+ *
+ * @param $key String|Int
+ * @param $value Mixed
+ * @param $default Mixed
+ * @param $changed Array to alter
+ */
+function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
+	if ( is_null( $changed ) ) {
+		throw new MWException( 'GlobalFunctions::wfAppendToArrayIfNotDefault got null' );
+	}
+	if ( $default[$key] !== $value ) {
+		$changed[$key] = $value;
+	}
+}
+
+/**
+ * Backwards array plus for people who haven't bothered to read the PHP manual
+ * XXX: will not darn your socks for you.
+ *
+ * @param $array1 Array
+ * @param [$array2, [...]] Arrays
+ * @return Array
+ */
+function wfArrayMerge( $array1/* ... */ ) {
+	$args = func_get_args();
+	$args = array_reverse( $args, true );
+	$out = array();
+	foreach ( $args as $arg ) {
+		$out += $arg;
+	}
+	return $out;
+}
+
+/**
+ * Merge arrays in the style of getUserPermissionsErrors, with duplicate removal
+ * e.g.
+ *	wfMergeErrorArrays(
+ *		array( array( 'x' ) ),
+ *		array( array( 'x', '2' ) ),
+ *		array( array( 'x' ) ),
+ *		array( array( 'y') )
+ *	);
+ * returns:
+ * 		array(
+ *   		array( 'x', '2' ),
+ *   		array( 'x' ),
+ *   		array( 'y' )
+ *   	)
+ * @param varargs
+ * @return Array
+ */
+function wfMergeErrorArrays( /*...*/ ) {
+	$args = func_get_args();
+	$out = array();
+	foreach ( $args as $errors ) {
+		foreach ( $errors as $params ) {
+			# @todo FIXME: Sometimes get nested arrays for $params,
+			# which leads to E_NOTICEs
+			$spec = implode( "\t", $params );
+			$out[$spec] = $params;
+		}
+	}
+	return array_values( $out );
+}
+
+/**
+ * Insert array into another array after the specified *KEY*
+ *
+ * @param $array Array: The array.
+ * @param $insert Array: The array to insert.
+ * @param $after Mixed: The key to insert after
+ * @return Array
+ */
+function wfArrayInsertAfter( $array, $insert, $after ) {
+	// Find the offset of the element to insert after.
+	$keys = array_keys( $array );
+	$offsetByKey = array_flip( $keys );
+
+	$offset = $offsetByKey[$after];
+
+	// Insert at the specified offset
+	$before = array_slice( $array, 0, $offset + 1, true );
+	$after = array_slice( $array, $offset + 1, count( $array ) - $offset, true );
+
+	$output = $before + $insert + $after;
+
+	return $output;
+}
+
+/**
+ * Recursively converts the parameter (an object) to an array with the same data
+ *
+ * @param $objOrArray Object|Array
+ * @param $recursive Bool
+ * @return Array
+ */
+function wfObjectToArray( $objOrArray, $recursive = true ) {
+	$array = array();
+	if( is_object( $objOrArray ) ) {
+		$objOrArray = get_object_vars( $objOrArray );
+	}
+	foreach ( $objOrArray as $key => $value ) {
+		if ( $recursive && ( is_object( $value ) || is_array( $value ) ) ) {
+			$value = wfObjectToArray( $value );
+		}
+
+		$array[$key] = $value;
+	}
+
+	return $array;
+}
+
+/**
+ * Wrapper around array_map() which also taints variables
+ *
+ * @param  $function Callback
+ * @param  $input Array
+ * @return Array
+ */
+function wfArrayMap( $function, $input ) {
+	$ret = array_map( $function, $input );
+	foreach ( $ret as $key => $value ) {
+		$taint = istainted( $input[$key] );
+		if ( $taint ) {
+			taint( $ret[$key], $taint );
+		}
+	}
+	return $ret;
+}
+
+/**
  * Get a random decimal value between 0 and 1, in a way
  * not likely to give duplicate values for any realistic
  * number of articles.
@@ -1789,19 +1934,6 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 }
 
 /**
- * Array lookup
- * Returns an array where the values in the first array are replaced by the
- * values in the second array with the corresponding keys
- *
- * @param $a Array
- * @param $b Array
- * @return array
- */
-function wfArrayLookup( $a, $b ) {
-	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
-}
-
-/**
  * Reference-counted warning suppression
  *
  * @param $end Bool
@@ -2206,23 +2338,6 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
 }
 
 /**
- * Appends to second array if $value differs from that in $default
- *
- * @param $key String|Int
- * @param $value Mixed
- * @param $default Mixed
- * @param $changed Array to alter
- */
-function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
-	if ( is_null( $changed ) ) {
-		throw new MWException( 'GlobalFunctions::wfAppendToArrayIfNotDefault got null' );
-	}
-	if ( $default[$key] !== $value ) {
-		$changed[$key] = $value;
-	}
-}
-
-/**
  * Since wfMsg() and co suck, they don't return false if the message key they
  * looked up didn't exist but a XHTML string, this function checks for the
  * nonexistance of messages by checking the MessageCache::get() result directly.
@@ -2570,56 +2685,6 @@ function wfRelativePath( $path, $from ) {
 	array_push( $pieces, wfBaseName( $path ) );
 
 	return implode( DIRECTORY_SEPARATOR, $pieces );
-}
-
-/**
- * Backwards array plus for people who haven't bothered to read the PHP manual
- * XXX: will not darn your socks for you.
- *
- * @param $array1 Array
- * @param [$array2, [...]] Arrays
- * @return Array
- */
-function wfArrayMerge( $array1/* ... */ ) {
-	$args = func_get_args();
-	$args = array_reverse( $args, true );
-	$out = array();
-	foreach ( $args as $arg ) {
-		$out += $arg;
-	}
-	return $out;
-}
-
-/**
- * Merge arrays in the style of getUserPermissionsErrors, with duplicate removal
- * e.g.
- *	wfMergeErrorArrays(
- *		array( array( 'x' ) ),
- *		array( array( 'x', '2' ) ),
- *		array( array( 'x' ) ),
- *		array( array( 'y') )
- *	);
- * returns:
- * 		array(
- *   		array( 'x', '2' ),
- *   		array( 'x' ),
- *   		array( 'y' )
- *   	)
- * @param varargs
- * @return Array
- */
-function wfMergeErrorArrays( /*...*/ ) {
-	$args = func_get_args();
-	$out = array();
-	foreach ( $args as $errors ) {
-		foreach ( $errors as $params ) {
-			# @todo FIXME: Sometimes get nested arrays for $params,
-			# which leads to E_NOTICEs
-			$spec = implode( "\t", $params );
-			$out[$spec] = $params;
-		}
-	}
-	return array_values( $out );
 }
 
 /**
@@ -3333,53 +3398,6 @@ function wfStripIllegalFilenameChars( $name ) {
 }
 
 /**
- * Insert array into another array after the specified *KEY*
- *
- * @param $array Array: The array.
- * @param $insert Array: The array to insert.
- * @param $after Mixed: The key to insert after
- * @return Array
- */
-function wfArrayInsertAfter( $array, $insert, $after ) {
-	// Find the offset of the element to insert after.
-	$keys = array_keys( $array );
-	$offsetByKey = array_flip( $keys );
-
-	$offset = $offsetByKey[$after];
-
-	// Insert at the specified offset
-	$before = array_slice( $array, 0, $offset + 1, true );
-	$after = array_slice( $array, $offset + 1, count( $array ) - $offset, true );
-
-	$output = $before + $insert + $after;
-
-	return $output;
-}
-
-/**
- * Recursively converts the parameter (an object) to an array with the same data
- *
- * @param $objOrArray Object|Array
- * @param $recursive Bool
- * @return Array
- */
-function wfObjectToArray( $objOrArray, $recursive = true ) {
-	$array = array();
-	if( is_object( $objOrArray ) ) {
-		$objOrArray = get_object_vars( $objOrArray );
-	}
-	foreach ( $objOrArray as $key => $value ) {
-		if ( $recursive && ( is_object( $value ) || is_array( $value ) ) ) {
-			$value = wfObjectToArray( $value );
-		}
-
-		$array[$key] = $value;
-	}
-
-	return $array;
-}
-
-/**
  * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit;
  *
  * @return Integer value memory was set to.
@@ -3469,25 +3487,6 @@ function wfBCP47( $code ) {
 	$langCode = implode( '-', $codeBCP );
 	return $langCode;
 }
-
-/**
- * Wrapper around array_map() which also taints variables
- *
- * @param  $function Callback
- * @param  $input Array
- * @return Array
- */
-function wfArrayMap( $function, $input ) {
-	$ret = array_map( $function, $input );
-	foreach ( $ret as $key => $value ) {
-		$taint = istainted( $input[$key] );
-		if ( $taint ) {
-			taint( $ret[$key], $taint );
-		}
-	}
-	return $ret;
-}
-
 
 /**
  * Get a cache object.
