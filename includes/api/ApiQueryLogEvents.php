@@ -198,13 +198,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	/**
 	 * @param $result ApiResult
-	 * @param $vals
-	 * @param $params
-	 * @param $type
+	 * @param $vals array
+	 * @param $params string
+	 * @param $type string
+	 * @param $action string
 	 * @param $ts
 	 * @return array
 	 */
-	public static function addLogParams( $result, &$vals, $params, $type, $ts ) {
+	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts ) {
 		$params = explode( "\n", $params );
 		switch ( $type ) {
 			case 'move':
@@ -234,6 +235,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$params = null;
 				break;
 			case 'block':
+				if ( $action == 'unblock' ) {
+					break;
+				}
 				$vals2 = array();
 				list( $vals2['duration'], $vals2['flags'] ) = $params;
 
@@ -283,8 +287,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$vals['actionhidden'] = '';
 			} else {
 				self::addLogParams(
-					$this->getResult(), $vals,
-					$row->log_params, $row->log_type,
+					$this->getResult(),
+					$vals,
+					$row->log_params,
+					$row->log_type,
+					$row->log_action,
 					$row->log_timestamp
 				);
 			}
