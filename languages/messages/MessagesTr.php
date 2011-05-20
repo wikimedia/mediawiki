@@ -2989,6 +2989,7 @@ Takip eden bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya, sa
 'metadata-collapse' => 'Ayrıntıları gösterme',
 'metadata-fields'   => 'Bu sayfada listelenen EXIF metadata alanları resim görüntü sayfalarında metadata tablosu gizlendiğinde kullanılır.
 Diğerleri varsayılan olarak gizlenecektir.
+* make
 * model
 * datetimeoriginal
 * exposuretime

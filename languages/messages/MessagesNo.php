@@ -1288,7 +1288,7 @@ Her er et tilfeldig tall du kan bruke: $1',
 'savedprefs'                    => 'Innstillingene ble lagret.',
 'timezonelegend'                => 'Tidssone:',
 'localtime'                     => 'Lokaltid:',
-'timezoneuseserverdefault'      => 'Bruk serverens standardinnstillinger',
+'timezoneuseserverdefault'      => 'Bruk wikistandard ($1)',
 'timezoneuseoffset'             => 'Annet (spesifiser forskjell)',
 'timezoneoffset'                => 'Forskjell¹:',
 'servertime'                    => 'Serverens tid er nå:',
@@ -1614,6 +1614,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'large-file'                  => 'Det er anbefalt at filen ikke er større enn $1; denne filen er $2.',
 'largefileserver'             => 'Denne fila er større enn det tjeneren er satt opp til å tillate.',
 'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',
+'windows-nonascii-filename'   => 'Denne wikien støtter ikke filnavn med spesialtegn.',
 'fileexists'                  => "Ei fil med dette navnet finnes allerede.
 Sjekk '''<tt>[[:$1]]</tt>''' hvis du ikke er sikker på at du vil forandre den.
 [[$1|thumb]]",
@@ -2153,6 +2154,7 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 'enotif_anon_editor'           => 'anonym bruker $1',
 'enotif_body'                  => 'Kjære $WATCHINGUSERNAME,
 
+
 {{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED den $PAGEEDITDATE av $PAGEEDITOR, se $PAGETITLE_URL for den nåværende revisjonen.
 
 $NEWPAGE
@@ -2163,20 +2165,22 @@ Kontakt brukeren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Det vil ikke komme flere påminnelser om endringer på denne siden med mindre du besøker den.
-Du kan også fjerne påminnelsesflagg for alle sider i overvåkningslisten din.
+Det vil ikke komme flere varsler om endringer på denne siden med mindre du besøker den.
+Du kan også fjerne varslingsflagg for alle overvåkede sider i overvåkningslisten din.
 
-Med vennlig hilsen,
-{{SITENAME}}s påminnelsessystem
+             Ditt vennlige varslingssystem for {{SITENAME}}
 
 --
-For å endre innstillingene i overvåkningslisten din, besøk
+For å endre innstillingene for e-postvarsler, se
+{{fullurl:{{#special:Preferences}}}}
+
+For å endre innstillingene for overvåkningslisten, se
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-For å slette siden fra overvåkningslisten din, besøk
+For å slette en side fra overvåkningssiden, se
 $UNWATCHURL
 
-Tilbakemeldinger og videre assistanse:
+Tilbakemelding og videre assistanse:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2535,6 +2539,7 @@ Bekreft at du har til hensikt å gjøre dette.',
 'unlockdbsuccesstext' => 'Databasen er låst opp.',
 'lockfilenotwritable' => 'Kan ikke skrive til databasen. For å låse eller åpne databasen, må denne kunne skrives til av tjeneren.',
 'databasenotlocked'   => 'Databasen er ikke låst.',
+'lockedbyandtime'     => '(av $1 den $2, kl $3)',
 
 # Move page
 'move-page'                    => 'Flytt $1',

@@ -1230,7 +1230,7 @@ Setu aze un dalvoudenn ganet dre zegouezh hag a c'hallfec'h implijout : $1",
 'savedprefs'                    => 'Enrollet eo bet ar penndibaboù.',
 'timezonelegend'                => 'Takad eur :',
 'localtime'                     => "Eur lec'hel :",
-'timezoneuseserverdefault'      => 'Ober gant talvoudenn ar servijer',
+'timezoneuseserverdefault'      => 'Ober gant talvoudenn dre ziouer ar wiki ($1)',
 'timezoneuseoffset'             => 'Arall (resisaat al linkadur)',
 'timezoneoffset'                => 'Linkadur eur¹ :',
 'servertime'                    => 'Eur ar servijer :',
@@ -1550,12 +1550,13 @@ S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'hookaborted'                 => "Ar c'hemm hoc'h eus klasket degas zo bet harzet gant ur c'hrog astenn.",
 'illegal-filename'            => "N'eo ket aotreet anv ar restr.",
 'overwrite'                   => "N'eo ket aotreet frikañ ur restr zo anezhi c'hoazh.",
-'unknown-error'               => 'Ur gudenn dizanv a zo bet.',
+'unknown-error'               => "C'hoarvezet ez eus ur gudenn dianav.",
 'tmp-create-error'            => 'Dibosupl eo krouiñ ur restr padennek.',
 'tmp-write-error'             => 'Ur gudenn skrivañ a zo bet evit ar restr padennek.',
 'large-file'                  => "Erbediñ a reer ne vefe ket brasoc'h ar restroù eget $1; $2 eo ment ar restr-mañ.",
 'largefileserver'             => "Brasoc'h eo ar restr-mañ eget ar pezh a c'hall ar servijer aotren.",
 'emptyfile'                   => "Evit doare eo goullo ar restr bet karget ganeoc'h. Moarvat eo abalamour d'an tipo en anv ar restr. Gwiriit mat e fell deoc'h pellgargañ ar restr-mañ.",
+'windows-nonascii-filename'   => "N'eo ket skoret anvioù ar restroù enno arouezennoù dibar gant ar wiki-mañ.",
 'fileexists'                  => "Ur restr all gant an anv-se zo c'hoazh.
 Trugarez da wiriañ '''<tt>[[:$1]]</tt>''' ma n'oc'h ket sur e fell deoc'h kemmañ anezhi.
 [[$1|thumb]]",
@@ -1741,6 +1742,7 @@ Ne laka ar roll-mañ war wel nemet {{PLURAL:$1|ar bajenn gentañ liammet ouzh|an
 Ur [[Special:WhatLinksHere/$2|roll klok]] a c'haller da gaout.",
 'nolinkstoimage'            => "N'eus liamm ebet war-du ar skeudenn-mañ war pajenn ebet.",
 'morelinkstoimage'          => 'Gwelet [[Special:WhatLinksHere/$1|liammoù ouzhpenn]] war-du ar restr-mañ.',
+'linkstoimage-redirect'     => '$1 (adkas restr) $2',
 'duplicatesoffile'          => "Un eil eus ar restr-mañ eo {{PLURAL:$1|ar restr da-heul|ar restroù da-heul}}, ([[Special:FileDuplicateSearch/$2|evit gouzout hiroc'h]]) :",
 'sharedupload'              => 'Dont a ra ar restr-mañ eus $1 ha gallout a ra bezañ implijet evit raktresoù all.',
 'sharedupload-desc-there'   => "Tennet eo ar restr-mañ eus $1 ha gallout a ra bezañ implijet evit raktresoù all.
@@ -2108,7 +2110,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'enotif_anon_editor'           => 'implijer dizanv $1',
 'enotif_body'                  => '$WATCHINGUSERNAME ker,
 
-$CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATE, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
+$CHANGEDORCREATED eo bet pajenn $PAGETITLE {{SITENAME}} gant $PAGEEDITOR d\'an $PAGEEDITDATE gwelet $PAGETITLE_URL evit gwelet ar stumm red.
 
 $NEWPAGE
 
@@ -2124,6 +2126,9 @@ Gallout a rit nevesaat doare ar pennadoù evezhiet ganeoc\'h en ho rollad evezhi
             Ho reizhiad kemenn {{SITENAME}} muiañ karet
 
 --
+A-benn kemmañ arventennoù ho kemennoù dre bostel, sellit ouzh
+{{fullurl:{{#special:Preferences}}}}
+
 A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2331,6 +2336,7 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'sp-contributions-username'            => "Anv implijer pe chomlec'h IP :",
 'sp-contributions-toponly'             => 'Na ziskouez nemet an adweladennoù diwezhañ',
 'sp-contributions-submit'              => 'Klask',
+'sp-contributions-showsizediff'        => "Diskwel an diforc'h e ment ar bajenn",
 
 # What links here
 'whatlinkshere'            => 'Pajennoù liammet',
@@ -2495,6 +2501,7 @@ Kadarnait, mar plij, eo se hoc'h eus c'hoant da ober.",
 'unlockdbsuccesstext' => 'Dibrennet eo bank roadennoù {{SITENAME}}.',
 'lockfilenotwritable' => "N'haller ket skrivañ war restr prennañ ar bank roadennoù. A-benn prennañ-dibrennañ ar bank e rankit bezañ aotreet da skrivañ war ar servijer Kenrouedad.",
 'databasenotlocked'   => "N'eo ket prennet ar bank titouroù.",
+'lockedbyandtime'     => "(gant $1 d'an $2 da $3)",
 
 # Move page
 'move-page'                    => "Dilec'hiañ $1",
@@ -3094,6 +3101,9 @@ Kuzhet e vo ar re all dre ziouer.
 
 # EXIF attributes
 'exif-compression-1' => 'Hep gwaskañ',
+'exif-compression-2' => 'CCITT Strollad 3 1 Hirder kodañ Huffman kemmet a vent 1',
+'exif-compression-3' => 'CCITT Strollad 3 kodañ ar pelleiler',
+'exif-compression-4' => 'CCITT Strollad 4 kodañ ar pelleiler',
 
 'exif-copyrighted-true'  => 'Pep gwir miret strizh',
 'exif-copyrighted-false' => 'Domani foran',

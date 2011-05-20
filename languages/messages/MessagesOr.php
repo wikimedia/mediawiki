@@ -307,7 +307,7 @@ $messages = array(
 'subcategories'            => 'ସାନ ଶ୍ରେଣୀସବୁ',
 'category-media-header'    => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
 'category-empty'           => "''ଏହି ଶ୍ରେଣୀ ଭିତରେ କିଛି ପୃଷ୍ଠା ବା ମାଧ୍ୟମ ନାହିଁ ।''",
-'hidden-categories'        => '{{PLURAL:$1|Hidden category|ଲୁଚିଥିବା ବିଭାଗ}}',
+'hidden-categories'        => '{{PLURAL:$1|Hidden category|ଲୁଚିଥିବା ଶ୍ରେଣୀ}}',
 'hidden-category-category' => 'ଲୁଚିରହିଥିବା ଶ୍ରେଣୀ',
 'category-subcat-count'    => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀଟିରେ କେବଳ ତଳେଥିବା ସାନ ଶ୍ରେଣୀଗୁଡିକ ଅଛନ୍ତି । |ଏହି ଶ୍ରେଣୀଟିରେ ସର୍ବମୋଟ $2 ରୁ ତଳେଥିବା ଏହି {{PLURAL:$1|subcategory|$1 ଶ୍ରେଣୀଗୁଡିକ}} ଅଛନ୍ତି  । }}',
 'category-article-count'   => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀରେ ତଳେଥିବ ପୃଷ୍ଠାସବୁ ଅଛି ।|ସର୍ବମୋଟ $2 ରୁ ଏହି ଶ୍ରେଣୀ ଭିତରେ {{PLURAL:$1|ଟି ପୃଷ୍ଠା|$1ଟି ପୃଷ୍ଠା}} ଅଛି ।}}',
@@ -346,7 +346,9 @@ $messages = array(
 'vector-view-history'            => 'ଇତିହାସ ଦେଖିବେ',
 'vector-view-view'               => 'ପଢ଼ିବେ',
 'vector-view-viewsource'         => 'ଉତ୍ସ ଦେଖିବେ',
+'actions'                        => 'କାମ',
 'namespaces'                     => 'ନେମସ୍ପେସ',
+'variants'                       => 'ନିଆରା',
 
 'errorpagetitle'    => 'ଭୁଲ',
 'returnto'          => '$1କୁ ଫେରିଯାନ୍ତୁ ।',
@@ -476,8 +478,11 @@ $messages = array(
 'createaccount'           => 'ନୁଆ ଖାତା ଖୋଲିବା',
 'gotaccountlink'          => 'ଲଗଇନ',
 'createaccountreason'     => 'କାରଣ:',
+'loginerror'              => 'ଲଗ‌‌ଇନ ଭୁଲ',
 'loginsuccesstitle'       => 'ଠିକଭାବେ ଲଗଇନ ହେଲା',
 'loginsuccess'            => "'''ଆପଣ {{SITENAME}}ରେ \"\$1\" ଭାବରେ ଲଗଇନ କରିଛନ୍ତି ।'''",
+'wrongpasswordempty'      => 'ଦିଆଯାଇଥିବା ପାସବାର୍ଡ଼ଟି ଖାଲି ଛଡ଼ାଯାଇଛି ।</br>
+ଦୟାକରି ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ ।',
 'mailmypassword'          => 'ପାସବାର୍ଡ଼ଟିକୁ ଇମେଲ କରି ପଠାଇବେ',
 'emailconfirmlink'        => 'ଆପଣଙ୍କ ଇମେଲ ଆଇ.ଡି.ଟି ଠିକ ବୋଲି ଥୟ କରନ୍ତୁ',
 'accountcreatedtext'      => '$1 ପାଇଁ ନୂଆ ଖାତାଟିଏ ତିଆରି ହୋଇଗଲା ।',
@@ -597,6 +602,7 @@ $messages = array(
 'notextmatches'             => 'ପୃଷ୍ଠାଟିର ନାଆଁ ମିଶୁନାହିଁ',
 'prevn'                     => '{{PLURAL:$1|$1}}ର ଆଗରୁ',
 'nextn'                     => '{{PLURAL:$1|$1}} ପର',
+'shown-title'               => '$1 ପ୍ରତି ପୃଷ୍ଠାର {{PLURAL:$1|ଫଳାଫଳ|ଫଳାଫଳ}} ଦେଖାଇବେ ।',
 'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖିବେ',
 'searchmenu-new'            => "'''\"[[:\$1]]\"ଟି ଏହି ଉଇକିରେ ତିଆରି କରିବେ!'''",
 'search-result-size'        => '$1 ({{PLURAL:$2|1 ଶବ୍ଦ|$2 ଶବ୍ଦ}})',
@@ -768,6 +774,9 @@ $messages = array(
 'allarticles'    => 'ସବୁ ପୃଷ୍ଠା',
 'allpagessubmit' => 'ଯିବେ',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'ଲିଭାଇ ଦିଆଯାଇଥିବା ସଭ୍ୟଙ୍କ ଅବଦାନ',
+
 # Special:LinkSearch
 'linksearch'    => 'ବାହାର ଲିଙ୍କ',
 'linksearch-ok' => 'ଖୋଜିବା',
@@ -852,9 +861,11 @@ $messages = array(
 'month'               => 'ମାସରୁ (ଓ ତା ଆଗରୁ)',
 'year'                => 'ବର୍ଷରୁ (ଆଉ ତା ଆଗରୁ)',
 
+'sp-contributions-newbies'  => 'କେବଳ ନୂଆ ସଭ୍ୟମାନଙ୍କର ଅବଦାନ ଦେଖାଇବେ',
 'sp-contributions-talk'     => 'କଥାଭାଷା',
 'sp-contributions-search'   => 'ଅବଦାନ ପାଇଁ ଖୋଜନ୍ତୁ',
 'sp-contributions-username' => 'ବ୍ୟବାହରକାରୀଙ୍କର ଆଇ.ପି. ଠିକଣା',
+'sp-contributions-toponly'  => 'ନଗଦ ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ',
 'sp-contributions-submit'   => 'ଖୋଜିବା',
 
 # What links here

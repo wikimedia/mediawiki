@@ -2272,11 +2272,15 @@ Uživatele, který změnu provedl, můžete kontaktovat:
 e-mailem: $PAGEEDITOR_EMAIL
 na wiki: $PAGEEDITOR_WIKI
 
-Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky, případně si můžete vynulovat příznaky ve svém seznamu sledovaných stránek.
+Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky.
+Případně si můžete vynulovat příznaky ve svém seznamu sledovaných stránek.
 
 	S pozdravem váš zasílač hlášení {{grammar:2sg|{{SITENAME}}}}
 
 --
+Změnit nastavení e-mailových oznámení můžete na
+{{fullurl:{{#special:Preferences}}}}
+
 Nastavení sledovaných stránek může změnit na
 {{fullurl:Special:Watchlist/edit}}
 
@@ -3394,6 +3398,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-ycbcrpositioning-2' => 'U sebe',
 
 'exif-dc-contributor' => 'Přispěvatelé',
+'exif-dc-coverage'    => 'Místní nebo časový rozsah média',
 'exif-dc-date'        => 'Datum (data)',
 'exif-dc-publisher'   => 'Vydavatel',
 'exif-dc-relation'    => 'Související média',

@@ -1242,7 +1242,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'savedprefs'                    => 'Keutamaan anda disimpan.',
 'timezonelegend'                => 'Zon waktu:',
 'localtime'                     => 'Waktu tempatan:',
-'timezoneuseserverdefault'      => 'Gunakan tetapan sediakala pelayan',
+'timezoneuseserverdefault'      => 'Gunakan tetapan sediaan wiki ($1)',
 'timezoneuseoffset'             => 'Lain-lain (nyatakan imbangan)',
 'timezoneoffset'                => 'Imbangan¹:',
 'servertime'                    => 'Waktu pelayan:',
@@ -1564,6 +1564,7 @@ Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan s
 'large-file'                  => 'Saiz fail ini ialah $2. Anda dinasihati supaya memuat naik fail yang tidak melebihi $1.',
 'largefileserver'             => 'Fail ini telah melebihi had muat naik pelayan web.',
 'emptyfile'                   => 'Fail yang dimuat naik adalah kosong. Ini mungkin disebabkan oleh kesilapan menaip nama fail. Sila pastikan bahawa anda betul-betul mahu memuat naik fail ini.',
+'windows-nonascii-filename'   => 'Wiki ini tidak menyokong nama fail yang mengandungi aksara khas.',
 'fileexists'                  => "Sebuah fail dengan nama ini telah pun wujud.
 Sila semak '''<tt>[[:$1]]</tt>''' sekiranya anda tidak pasti bahawa anda mahu menukarnya atau tidak.
 [[$1|thumb]]",
@@ -1728,6 +1729,7 @@ Yang berikut ialah {{PLURAL:$1||$1}} pautan pertama ke fail ini.
 Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'nolinkstoimage'            => 'Tiada laman yang mengandungi pautan ke fail ini.',
 'morelinkstoimage'          => 'Lihat [[Special:WhatLinksHere/$1|semua pautan]] ke fail ini.',
+'linkstoimage-redirect'     => '$1 (lencongan fail) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Fail|$1 buah fail}} berikut adalah salinan bagi fail ini ([[Special:FileDuplicateSearch/$2|butiran lanjut]]):',
 'sharedupload'              => 'Fail ini daripada $1 dan boleh digunakan oleh projek lain.',
 'sharedupload-desc-there'   => 'Fail ini dari $1 dan mungkin digunakan oleh projek lain.
@@ -2091,14 +2093,14 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'enotif_lastvisited'           => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir anda.',
 'enotif_lastdiff'              => 'Rujuk $1 untuk melihat perubahan ini.',
 'enotif_anon_editor'           => 'pengguna tanpa nama $1',
-'enotif_body'                  => 'Saudara/saudari $WATCHINGUSERNAME,
+'enotif_body'                  => '$WATCHINGUSERNAME,
 
 
-Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR, sila lihat $PAGETITLE_URL untuk versi semasa.
+Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR; sila lihat $PAGETITLE_URL untuk semakan terkini.
 
 $NEWPAGE
 
-Ringkasan: $PAGESUMMARY $PAGEMINOREDIT
+Ringkasan penyunting: $PAGESUMMARY $PAGEMINOREDIT
 
 Hubungi penyunting tersebut:
 mel: $PAGEEDITOR_EMAIL
@@ -2107,13 +2109,16 @@ wiki: $PAGEEDITOR_WIKI
 Tiada pemberitahuan lain akan dikirim berkaitan perubahan selanjutnya melainkan anda mengunjungi laman tersebut.
 Anda juga boleh menetapkan semula penanda pemberitahuan bagi semua laman dalam senarai pantau anda.
 
-         Sistem pemberitahuan {{SITENAME}} anda yang ramah
+         Sistem pemberitahuan {{SITENAME}} anda yang ramah mesra
 
 --
+Untuk mengubah tetapan pemberitahuan e-mel anda, lawati
+{{fullurl:{{#special:Preferences}}}}
+
 Untuk mengubah tetapan senarai pantau anda, lawati
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Untuk memadam laman ini dari senarai pantau anda, lawati
+Untuk menghapuskan laman ini dari senarai pantau anda, lawati
 $UNWATCHURL
 
 Maklum balas dan bantuan:
@@ -2315,6 +2320,7 @@ $1',
 'sp-contributions-username'            => 'Alamat IP atau nama pengguna:',
 'sp-contributions-toponly'             => 'Hanya paparkan suntingan yang merupakan semakan terkini',
 'sp-contributions-submit'              => 'Cari',
+'sp-contributions-showsizediff'        => 'Paparkan perbezaan saiz laman',
 
 # What links here
 'whatlinkshere'            => 'Pautan ke laman ini',
@@ -2486,6 +2492,7 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 'unlockdbsuccesstext' => 'Kunci pangkalan data {{SITENAME}} telah dibuka.',
 'lockfilenotwritable' => 'Fail kunci pangkalan data tidak boleh ditulis. Untuk mengunci atau membuka kunci pangkalan data, fail ini perlu diubah suai supaya boleh ditulis oleh pelayan web ini.',
 'databasenotlocked'   => 'Pangkalan data tidak dikunci.',
+'lockedbyandtime'     => '(oleh $1 di $2 pada $3)',
 
 # Move page
 'move-page'                    => 'Pindah $1',
@@ -3055,6 +3062,9 @@ Ruangan lain akan disembunyikan secara sediakala.
 
 # EXIF attributes
 'exif-compression-1' => 'Tidak dimampat',
+'exif-compression-2' => 'Pengekodan panjang jalan Huffman Terubahsuai 1-Dimensi Kumpulan 3 CCITT',
+'exif-compression-3' => 'Pengekodan faks Kumpulan 3 CCITT',
+'exif-compression-4' => 'Pengekodan faks Kumpulan 4 CCITT',
 
 'exif-copyrighted-true'  => 'Berhak cipta',
 'exif-copyrighted-false' => 'Domain awam',
