@@ -155,7 +155,7 @@ class ApiParse extends ApiBase {
 			$this->text = $text;
 			$titleObj = Title::newFromText( $title );
 			if ( !$titleObj ) {
-				$titleObj = Title::newFromText( 'API' );
+				$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 			}
 			$wgTitle = $titleObj;
 
@@ -565,6 +565,7 @@ class ApiParse extends ApiBase {
 			array( 'code' => 'missingtitle', 'info' => 'The page you specified doesn\'t exist' ),
 			array( 'code' => 'nosuchsection', 'info' => 'There is no section sectionnumber in page' ),
 			array( 'nosuchpageid' ),
+			array( 'invalidtitle', 'title' ),
 		) );
 	}
 
