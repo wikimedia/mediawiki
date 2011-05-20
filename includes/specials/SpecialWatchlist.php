@@ -39,7 +39,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		// Add feed links
 		$wlToken = $wgUser->getOption( 'watchlisttoken' );
-		if (!$wlToken) {
+		if ( !$wlToken ) {
 			$wlToken = sha1( mt_rand() . microtime( true ) );
 			$wgUser->setOption( 'watchlisttoken', $wlToken );
 			$wgUser->saveSettings();
@@ -82,7 +82,8 @@ class SpecialWatchlist extends SpecialPage {
 		);
 		$wgOut->setSubtitle( $sub );
 
-		if( ( $mode = SpecialEditWatchlist::getMode( $wgRequest, $par ) ) !== false ) {
+		$mode = SpecialEditWatchlist::getMode( $wgRequest, $par );
+		if( $mode !== false ) {
 			# TODO: localise?
 			switch( $mode ){
 				case SpecialEditWatchlist::EDIT_CLEAR:
@@ -100,7 +101,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 
 		$uid = $wgUser->getId();
-		if( ($wgEnotifWatchlist || $wgShowUpdatedMarker) && $wgRequest->getVal( 'reset' ) &&
+		if( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $wgRequest->getVal( 'reset' ) &&
 			$wgRequest->wasPosted() )
 		{
 			$wgUser->clearAllNotifications( $uid );
@@ -172,7 +173,7 @@ class SpecialWatchlist extends SpecialPage {
 				$days = $defaults['days']; # default cutoff for shortlisters
 			}
 		} else {
-			$days = floatval($days);
+			$days = floatval( $days );
 		}
 
 		// Dump everything here
@@ -284,7 +285,7 @@ class SpecialWatchlist extends SpecialPage {
 		if ( $usePage || $rollbacker ) {
 			$tables[] = 'page';
 			$join_conds['page'] = array('LEFT JOIN','rc_cur_id=page_id');
-			if ($rollbacker) {
+			if ( $rollbacker ) {
 				$fields[] = 'page_latest';
 			}
 		}
@@ -309,7 +310,7 @@ class SpecialWatchlist extends SpecialPage {
 		} elseif( $days > 0 ) {
 			$wlInfo = wfMsgExt( 'wlnote', 'parseinline',
 					$wgLang->formatNum( $numRows ),
-					$wgLang->formatNum( round($days*24) )
+					$wgLang->formatNum( round( $days * 24 ) )
 				) . '<br />';
 		}
 
@@ -396,7 +397,7 @@ class SpecialWatchlist extends SpecialPage {
 				$updated = false;
 			}
 
-			if ($wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
+			if ( $wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' ) ) {
 				$rc->numberofWatchingusers = $dbr->selectField( 'watchlist',
 					'COUNT(*)',
 					array(
@@ -434,7 +435,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		$sk = $wgUser->getSkin();
 		$title = Title::newFromText( $wgContLang->specialPage( $page ) );
-		$options['days'] = ($h / 24.0);
+		$options['days'] = ( $h / 24.0 );
 
 		return $sk->linkKnown(
 			$title,
@@ -450,7 +451,7 @@ class SpecialWatchlist extends SpecialPage {
 		$sk = $wgUser->getSkin();
 		$title = Title::newFromText( $wgContLang->specialPage( $page ) );
 		$options['days'] = $d;
-		$message = ($d ? $wgLang->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) );
+		$message = ( $d ? $wgLang->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) );
 
 		return $sk->linkKnown(
 			$title,
@@ -462,6 +463,8 @@ class SpecialWatchlist extends SpecialPage {
 
 	/**
 	 * Returns html
+	 *
+	 * @return string
 	 */
 	protected static function cutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
 		global $wgLang;
