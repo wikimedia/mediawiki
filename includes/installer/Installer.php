@@ -1150,7 +1150,13 @@ abstract class Installer {
 					break;
 				}
 
-				$text = Http::get( $url . $file, array( 'timeout' => 3 ) );
+				try {
+					$text = Http::get( $url . $file, array( 'timeout' => 3 ) );
+				}
+				catch( MWException $e ) {
+					// Http::get throws with allow_url_fopen = false and no curl extension.
+					$text = null;
+				}
 				unlink( $dir . $file );
 
 				if ( $text == 'exec' ) {
