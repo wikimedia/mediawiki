@@ -398,13 +398,14 @@ MediaWiki 1.18 requires PHP 5.2.3. PHP 4 is no longer supported.
 
 MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but 
 support for them is somewhat less mature. There is experimental support for IBM
-DB2, Oracle and Microsoft SQL Server.
+DB2 and Microsoft SQL Server.
 
 The supported versions are:
 
 * MySQL 4.0 or later
 * PostgreSQL 8.3 or later
 * SQLite 3
+* Oracle 9.0.1 or later
 
 == Upgrading ==
 
