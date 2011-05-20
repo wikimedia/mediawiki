@@ -1502,7 +1502,7 @@ $1",
 'savedprefs'                    => 'ترجیحات شما ذخیره شد.',
 'timezonelegend'                => 'منطقهٔ زمانی:',
 'localtime'                     => 'زمان محلی:',
-'timezoneuseserverdefault'      => 'استفاده از پیش‌فرض کارگزار ($1)',
+'timezoneuseserverdefault'      => 'استفاده از پیش‌فرض ویکی ($1)',
 'timezoneuseoffset'             => 'دیگر (اختلاف را مشخص کنید)',
 'timezoneoffset'                => 'اختلاف¹:',
 'servertime'                    => 'زمان کارگزار:',
@@ -2004,7 +2004,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 [[Special:WhatLinksHere/$2|فهرست کامل]] نیز موجود است.',
 'nolinkstoimage'            => 'هیچ صفحه‌ای به این تصویر پیوند ندارد.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|پیوندهای دیگر]] به این پرونده را ببینید.',
-'linkstoimage-redirect'     => '$1 (تغییر مسیر رده) $2',
+'linkstoimage-redirect'     => '$1 (تغییر مسیر پرونده) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|پروندهٔ|پرونده‌های}} زیر نسخهٔ تکراری این پرونده {{PLURAL:$1|است|هستند}} ([[Special:FileDuplicateSearch/$2|اطلاعات بیشتر]]):',
 'sharedupload'              => 'این پرونده در $1 قرار دارد و ممکن است در دیگر پروژه‌ها هم استفاده شود.',
 'sharedupload-desc-there'   => 'این پرونده در $1 قرار دارد و ممکن است در دیگر پروژه‌ها هم استفاده شود.
@@ -2365,7 +2365,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'enotif_newpagetext'           => 'این یک صفحهٔ تازه‌است.',
 'enotif_impersonal_salutation' => 'کاربر {{SITENAME}}',
 'changed'                      => 'تغییر یافته',
-'created'                      => 'ایجاد شد',
+'created'                      => 'ایجاد شده',
 'enotif_subject'               => 'صفحهٔ «$PAGETITLE» {{SITENAME}} به دست $PAGEEDITOR $CHANGEDORCREATED‌است.',
 'enotif_lastvisited'           => 'برای دیدن همهٔ تغییرات از آخرین باری که سر زده‌اید $1 را ببینید.',
 'enotif_lastdiff'              => 'برای نمایش این تغییر $1 را ببینید.',
@@ -2385,7 +2385,7 @@ $NEWPAGE
 تا هنگامی که به صفحه سر نزده‌اید، در صورت رخ‌دادنِ احتمالیِ تغییراتِ بیشتر، اعلانیه‌ای برای شما فرستاده نخواهد شد.
 شما همچنین می‌توانید در صفحهٔ پی‌گیری‌های خود پرچم‌های مربوط به آگاهی‌رسانی پستی را صفر کنید.
 
-             خاکسار شما، سامانهٔ آگاهی‌رسانی {{SITENAME}}
+             دوستدار شما، سامانهٔ آگاهی‌رسانی {{SITENAME}}
 
 --
 برای تغییر تنظیمات فهرست آگاهی‌رسانی رایانامه‌ای شما به {{fullurl:{{#special:Watchlist}}/edit}} بروید.
@@ -2763,7 +2763,7 @@ $1',
 'unlockdbsuccesstext' => 'پایگاه داده از قفل در آمد.',
 'lockfilenotwritable' => 'قفل پایگاه داده نوشتنی نیست. برای این که بتوانید پایگاه داده را قفل یا باز کنید، باید این پرونده نوشتنی باشد.',
 'databasenotlocked'   => 'پایگاه داده قفل نیست.',
-'lockedbyandtime'     => '(به وسیلهٔ $1 در $2 در $3)',
+'lockedbyandtime'     => '(به وسیلهٔ $1 در $2 ساعت $3)',
 
 # Move page
 'move-page'                    => 'انتقال $1',
@@ -3348,9 +3348,9 @@ $1',
 
 # EXIF attributes
 'exif-compression-1' => 'غیرفشرده',
-'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
-'exif-compression-3' => 'CCITT Group 3 fax encoding',
-'exif-compression-4' => 'CCITT Group 4 fax encoding',
+'exif-compression-2' => 'رمزگذاری سی‌سی‌آی‌تی‌تی گروه ۳ یک بعدی به روش هافمن تغییریافته روی طول',
+'exif-compression-3' => 'رمزگذاری نمابر سی‌سی‌آی‌تی‌تی گروه ۳',
+'exif-compression-4' => 'رمزگذاری نمابر سی‌سی‌آی‌تی‌تی گروه ۴',
 
 'exif-copyrighted-true'  => 'دارای حق تکثیر',
 'exif-copyrighted-false' => 'مالکیت عمومی',

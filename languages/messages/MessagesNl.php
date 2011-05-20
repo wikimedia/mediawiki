@@ -2358,6 +2358,9 @@ Tenzij u deze pagina bezoekt, komen er geen verdere berichten. Op uw volglijst k
              Groet van uw {{SITENAME}} waarschuwingssysteem.
 
 --
+U kunt uw e-mailinstellingen wijzigen op:
+{{fullurl:{{#special:Preferences}}}}
+
 U kunt uw volglijstinstellingen wijzigen op:
 {{fullurl:Special:Watchlist/edit}}
 

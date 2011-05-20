@@ -957,19 +957,24 @@ Palihog sekyar sang mga logs.',
 Lantawa ang [[Special:BlockList|lista sang mga ginpunggan nga IP]] para sa lista sang mga naga-eksister nga pagdula kag pagpugong.',
 
 # History merging
-'mergehistory'        => 'Isugpon ang mga kasaysayan sang panid',
-'mergehistory-header' => 'Ang ini nga panid nagapasugpon sa imo sang mga pagbag-o sang kasaysayan sang isa ka panid nga ginhalinan pakadto sa mas bag-o nga panid.
+'mergehistory'                => 'Isugpon ang mga kasaysayan sang panid',
+'mergehistory-header'         => 'Ang ini nga panid nagapasugpon sa imo sang mga pagbag-o sang kasaysayan sang isa ka panid nga ginhalinan pakadto sa mas bag-o nga panid.
 Palihog seguraduhon nga ang ini nga pagbag-o magapabilin sang pagpadayon sang panid sang kasaysayan.',
-'mergehistory-box'    => 'Isugpon ang mga pagbag-o sang duha ka panid:',
-'mergehistory-from'   => 'Gihalinan nga panid:',
-'mergehistory-into'   => 'Pakadtuan nga panid:',
-'mergehistory-list'   => 'Mahimo masugpon nga kasaysayan sang pagbag-o',
-'mergehistory-merge'  => 'Ang masunod nga mga pagbag-o sang [[:$1]] mahimo masugpon sa [[:$2]].
+'mergehistory-box'            => 'Isugpon ang mga pagbag-o sang duha ka panid:',
+'mergehistory-from'           => 'Gihalinan nga panid:',
+'mergehistory-into'           => 'Pakadtuan nga panid:',
+'mergehistory-list'           => 'Mahimo masugpon nga kasaysayan sang pagbag-o',
+'mergehistory-merge'          => 'Ang masunod nga mga pagbag-o sang [[:$1]] mahimo masugpon sa [[:$2]].
 Gamita ang mga buton nga radio sa pagsugpon lamang sa mga pagbag-o nga gintuga sa kag bag-o ang tion nga ginbutang.
 Tandai nga ang paggamit sang mga link sa pagnabigar magaliwat sining hilera.',
-'mergehistory-go'     => 'Ipakita ang mga mahimo masugpon nga mga pagbag-o',
-'mergehistory-submit' => 'Isugpon ang mga pagbag-o',
-'mergehistory-empty'  => 'Wala sing pagbag-o nga mahimo masugpon.',
+'mergehistory-go'             => 'Ipakita ang mga mahimo masugpon nga mga pagbag-o',
+'mergehistory-submit'         => 'Isugpon ang mga pagbag-o',
+'mergehistory-empty'          => 'Wala sing pagbag-o nga mahimo masugpon.',
+'mergehistory-success'        => '$3 {{PLURAL:$3|ka pagbag-o|ka mga pagbag-o}} sang [[:$1]] madinalag-on nga ginsugpon sa [[:$2]].',
+'mergehistory-fail'           => 'Wala mahuman ang pagsugpon sang kasaysayan, palihog lantawa liwat ang panid kag ang parametro sang tion.',
+'mergehistory-no-source'      => 'Ang ginhalin nga panid nga $1 wala naga-eksister.',
+'mergehistory-no-destination' => 'Ang tuyo lab-oton nga panid nga $1 wala naga-eksister.',
+'mergehistory-invalid-source' => 'Kinahanglan nga ang ginhalinan nga panid matood-tood nga titulo.',
 
 # Merge log
 'revertmerge' => 'Di pag-upod',
