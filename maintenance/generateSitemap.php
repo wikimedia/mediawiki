@@ -133,7 +133,6 @@ class GenerateSitemap extends Maintenance {
 	 */
 	public function __construct() {
 		parent::__construct();
-		global $wgDBname;
 		$this->mDescription = "Creates a sitemap for the site";
 		$this->addOption( 'fspath', 'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory', false, true );
 		$this->addOption( 'urlpath', 'The URL path corresponding to --fspath, prepended to filenames in the index; defaults to an empty string', false, true );

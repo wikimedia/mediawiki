@@ -176,6 +176,14 @@ class ApiImport extends ApiBase {
 class ApiImportReporter extends ImportReporter {
 	private $mResultArr = array();
 
+	/**
+	 * @param $title Title
+	 * @param $origTitle Title
+	 * @param $revisionCount int
+	 * @param $successCount int
+	 * @param $pageInfo
+	 * @return void
+	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry
 		$r = array();

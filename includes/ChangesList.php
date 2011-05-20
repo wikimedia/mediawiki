@@ -37,7 +37,10 @@ class ChangesList {
 	 * @var Skin
 	 */
 	public $skin;
+
 	protected $watchlist = false;
+
+	protected $message = array();
 	
 	/**
 	* Changeslist contructor
@@ -53,7 +56,7 @@ class ChangesList {
 	 * Some users might want to use an enhanced list format, for instance
 	 *
 	 * @param $user User to fetch the list class for
-	 * @return ChangesList derivative
+	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
 	 */
 	public static function newFromUser( $user ) {
 		global $wgRequest;
@@ -111,7 +114,7 @@ class ChangesList {
 	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",
 	 * "!" respectively, plus it will have an appropriate title and class.
 	 *
-	 * @param $key String: 'newpage', 'unpatrolled', 'minor', or 'bot'
+	 * @param $flag String: 'newpage', 'unpatrolled', 'minor', or 'bot'
 	 * @return String: Raw HTML
 	 */
 	public static function flag( $flag ) {
@@ -160,7 +163,7 @@ class ChangesList {
 	 * Show formatted char difference
 	 * @param $old Integer: bytes
 	 * @param $new Integer: bytes
-	 * @returns String
+	 * @return String
 	 */
 	public static function showCharacterDifference( $old, $new ) {
 		global $wgRCChangedSizeThreshold, $wgLang, $wgMiserMode;
@@ -638,6 +641,9 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 *
 	 * @param $baseRC RecentChange
+	 * @param $watched bool
+	 *
+	 * @return string
 	 */
 	public function recentChangesLine( &$baseRC, $watched = false ) {
 		global $wgLang, $wgUser;
@@ -1201,6 +1207,8 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * If enhanced RC is in use, this function takes the previously cached
 	 * RC lines, arranges them, and outputs the HTML
+	 *
+	 * @return string
 	 */
 	protected function recentChangesBlock() {
 		if( count ( $this->rc_cache ) == 0 ) {

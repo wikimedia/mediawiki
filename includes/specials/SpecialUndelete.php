@@ -80,6 +80,11 @@ class PageArchive {
 		return self::listPages( $dbr, $conds );
 	}
 
+	/**
+	 * @param $dbr DatabaseBase
+	 * @param $condition
+	 * @return bool|ResultWrapper
+	 */
 	protected static function listPages( $dbr, $condition ) {
 		return $dbr->resultObject(
 			$dbr->select(
@@ -981,7 +986,7 @@ class SpecialUndelete extends SpecialPage {
 			$targetQuery = array( 'oldid' => $rev->getId() );
 		}
 		// Add show/hide deletion links if available
-		$del .= $this->revDeleteLink( $rev );
+		$del = $this->revDeleteLink( $rev );
 		return
 			'<div id="mw-diff-' . $prefix . 'title1"><strong>' .
 				$sk->link(

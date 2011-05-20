@@ -88,7 +88,7 @@ class languages {
 	/**
 	 * Load the language file.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 */
 	protected function loadFile( $code ) {
 		if ( isset( $this->mRawMessages[$code] ) &&
