@@ -48,7 +48,7 @@ class SpecialWatchlist extends SpecialPage {
 		global $wgFeedClasses;
 		$apiParams = array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
 							'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken );
-		$feedTemplate = wfScript('api').'?';
+		$feedTemplate = wfScript('api') . '?';
 
 		foreach( $wgFeedClasses as $format => $class ) {
 			$theseParams = $apiParams + array( 'feedformat' => $format );
@@ -56,7 +56,7 @@ class SpecialWatchlist extends SpecialPage {
 			$wgOut->addFeedLink( $format, $url );
 		}
 
-		$skin = $wgUser->getSkin();
+		$skin = $this->getSkin();
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		# Anons don't get a watchlist
@@ -74,11 +74,11 @@ class SpecialWatchlist extends SpecialPage {
 
 		$wgOut->setPageTitle( wfMsg( 'watchlist' ) );
 
-		$sub  = wfMsgExt(
+		$sub = wfMsgExt(
 			'watchlistfor2',
 			array( 'parseinline', 'replaceafter' ),
 			$wgUser->getName(),
-			SpecialEditWatchlist::buildTools( $wgUser->getSkin() )
+			SpecialEditWatchlist::buildTools( $skin )
 		);
 		$wgOut->setSubtitle( $sub );
 
@@ -144,10 +144,11 @@ class SpecialWatchlist extends SpecialPage {
 		$invert = $wgRequest->getIntOrNull( 'invert' );
 		if( !is_null( $nameSpace ) ) {
 			$nameSpace = intval( $nameSpace );
-			if( $invert && $nameSpace !== 'all' )
+			if( $invert && $nameSpace !== 'all' ) {
 				$nameSpaceClause = "rc_namespace != $nameSpace";
-			else
+			} else {
 				$nameSpaceClause = "rc_namespace = $nameSpace";
+			}
 		} else {
 			$nameSpace = '';
 			$nameSpaceClause = '';
@@ -160,11 +161,11 @@ class SpecialWatchlist extends SpecialPage {
 			array( 'wl_user' => $uid ), __METHOD__ );
 		// Adjust for page X, talk:page X, which are both stored separately,
 		// but treated together
-		$nitems = floor($watchlistCount / 2);
+		$nitems = floor( $watchlistCount / 2 );
 
-		if( is_null($days) || !is_numeric($days) ) {
+		if( is_null( $days ) || !is_numeric( $days ) ) {
 			$big = 1000; /* The magical big */
-			if($nitems > $big) {
+			if( $nitems > $big ) {
 				# Set default cutoff shorter
 				$days = $defaults['days'] = (12.0 / 24.0); # 12 hours...
 			} else {
@@ -230,19 +231,21 @@ class SpecialWatchlist extends SpecialPage {
 		}
 
 		# Toggle watchlist content (all recent edits or just the latest)
-		if( $wgUser->getOption( 'extendwatchlist' )) {
+		if( $wgUser->getOption( 'extendwatchlist' ) ) {
 			$limitWatchlist = intval( $wgUser->getOption( 'wllimit' ) );
 			$usePage = false;
 		} else {
-		# Top log Ids for a page are not stored
+			# Top log Ids for a page are not stored
 			$conds[] = 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG;
 			$limitWatchlist = 0;
 			$usePage = true;
 		}
 
 		# Show a message about slave lag, if applicable
-		if( ( $lag = $dbr->getLag() ) > 0 )
+		$lag = $dbr->getLag();
+		if( $lag > 0 ) {
 			$wgOut->showLagWarning( $lag );
+		}
 
 		# Create output form
 		$form  = Xml::fieldset( wfMsg( 'watchlist-options' ), false, array( 'id' => 'mw-watchlist-options' ) );
@@ -281,8 +284,9 @@ class SpecialWatchlist extends SpecialPage {
 		if ( $usePage || $rollbacker ) {
 			$tables[] = 'page';
 			$join_conds['page'] = array('LEFT JOIN','rc_cur_id=page_id');
-			if ($rollbacker)
+			if ($rollbacker) {
 				$fields[] = 'page_latest';
+			}
 		}
 
 		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
@@ -335,16 +339,21 @@ class SpecialWatchlist extends SpecialPage {
 		$form .= Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $invert ) . '&#160;';
 		$form .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</p>';
 		$form .= Html::hidden( 'days', $days );
-		if( $hideMinor )
+		if( $hideMinor ) {
 			$form .= Html::hidden( 'hideMinor', 1 );
-		if( $hideBots )
+		}
+		if( $hideBots ) {
 			$form .= Html::hidden( 'hideBots', 1 );
-		if( $hideAnons )
+		}
+		if( $hideAnons ) {
 			$form .= Html::hidden( 'hideAnons', 1 );
-		if( $hideLiu )
+		}
+		if( $hideLiu ) {
 			$form .= Html::hidden( 'hideLiu', 1 );
-		if( $hideOwn )
+		}
+		if( $hideOwn ) {
 			$form .= Html::hidden( 'hideOwn', 1 );
+		}
 		$form .= Xml::closeElement( 'form' );
 		$form .= Xml::closeElement( 'fieldset' );
 		$wgOut->addHTML( $form );
@@ -420,7 +429,6 @@ class SpecialWatchlist extends SpecialPage {
 		return wfMsgHtml( $message, $skin->linkKnown( $title, $label, array(), $options ) );
 	}
 
-
 	public static function hoursLink( $h, $page, $options = array() ) {
 		global $wgUser, $wgLang, $wgContLang;
 
@@ -428,14 +436,12 @@ class SpecialWatchlist extends SpecialPage {
 		$title = Title::newFromText( $wgContLang->specialPage( $page ) );
 		$options['days'] = ($h / 24.0);
 
-		$s = $sk->linkKnown(
+		return $sk->linkKnown(
 			$title,
 			$wgLang->formatNum( $h ),
 			array(),
 			$options
 		);
-
-		return $s;
 	}
 
 	public static function daysLink( $d, $page, $options = array() ) {
@@ -446,14 +452,12 @@ class SpecialWatchlist extends SpecialPage {
 		$options['days'] = $d;
 		$message = ($d ? $wgLang->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) );
 
-		$s = $sk->linkKnown(
+		return $sk->linkKnown(
 			$title,
 			$message,
 			array(),
 			$options
 		);
-
-		return $s;
 	}
 
 	/**
@@ -496,8 +500,9 @@ class SpecialWatchlist extends SpecialPage {
 		$count = $row->count;
 
 		# Halve to remove talk pages if needed
-		if( !$talk )
+		if( !$talk ) {
 			$count = floor( $count / 2 );
+		}
 
 		return( $count );
 	}
