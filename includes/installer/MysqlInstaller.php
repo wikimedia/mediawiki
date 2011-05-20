@@ -318,13 +318,33 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !in_array( $this->getVar( '_MysqlEngine' ), $engines ) ) {
 			$this->setVar( '_MysqlEngine', reset( $engines ) );
 		}
+
+		$s .= Xml::openElement( 'div', array(
+			'id' => 'dbMyisamWarning'
+		));
+		$s .= $this->parent->getWarningBox( wfMsg( 'config-mysql-myisam-dep' ) );
+		$s .= Xml::closeElement( 'div' );
+
+		if( $this->getVar( '_MysqlEngine' ) != 'MyISAM' ) {
+			$s .= Xml::openElement( 'script', array( 'type' => 'text/javascript' ) );
+			$s .= '$(\'#dbMyisamWarning\').hide();';
+			$s .= Xml::closeElement( 'script' );
+		}
+
 		if ( count( $engines ) >= 2 ) {
 			$s .= $this->getRadioSet( array(
 				'var' => '_MysqlEngine',
 				'label' => 'config-mysql-engine',
 				'itemLabelPrefix' => 'config-mysql-',
-				'values' => $engines
-			));
+				'values' => $engines,
+				'itemAttribs' => array(
+					'MyISAM' => array(
+						'class' => 'showHideRadio',
+						'rel'   => 'dbMyisamWarning'),
+					'InnoDB' => array(
+						'class' => 'hideShowRadio',
+						'rel'   => 'dbMyisamWarning')
+			)));
 			$s .= $this->parent->getHelpBox( 'config-mysql-engine-help' );
 		}
 
