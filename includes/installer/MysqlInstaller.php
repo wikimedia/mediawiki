@@ -538,7 +538,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		} catch( DBQueryError $dqe ) {
 			return false;
 		}
-		
+
 	}
 
 	/**

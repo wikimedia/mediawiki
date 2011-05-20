@@ -968,7 +968,7 @@ abstract class Installer {
 			$this->showMessage( 'config-uploads-not-safe', $dir );
 		}
 	}
-	
+
 	/**
 	 * Checks if suhosin.get.max_value_length is set, and if so, sets
 	 * $wgResourceLoaderMaxQueryLength to that value in the generated
@@ -1225,7 +1225,7 @@ abstract class Installer {
 		 */
 		global $wgAutoloadClasses;
 		$wgAutoloadClasses = array();
-		
+
 		require( "$IP/includes/DefaultSettings.php" );
 
 		foreach( $exts as $e ) {
