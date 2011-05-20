@@ -377,6 +377,7 @@ table.collapsed tr.collapsable {
 	border: 2px solid #ff7f00;
 	margin: 0.4em;
 	clear: left;
+	overflow: hidden;
 }
 
 .mw-infobox-left {
