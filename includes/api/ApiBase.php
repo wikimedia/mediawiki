@@ -347,7 +347,9 @@ abstract class ApiBase {
 						switch ( $type ) {
 							case 'namespace':
 								// Special handling because namespaces are type-limited, yet they are not given
-								$desc .= $paramPrefix . $prompt . implode( ', ', MWNamespace::getValidNamespaces() );
+								$desc .= $paramPrefix . $prompt;
+								$desc .= wordwrap( implode( ', ', MWNamespace::getValidNamespaces() ),
+									100, $descWordwrap );
 								break;
 							case 'limit':
 								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]}";
