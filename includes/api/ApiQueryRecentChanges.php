@@ -437,8 +437,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$vals['logaction'] = $row->rc_log_action;
 			ApiQueryLogEvents::addLogParams(
 				$this->getResult(),
-				$vals, $row->rc_params,
-				$row->rc_log_type, $row->rc_timestamp
+				$vals,
+				$row->rc_params,
+				$row->rc_log_action,
+				$row->rc_log_type,
+				$row->rc_timestamp
 			);
 		}
 
