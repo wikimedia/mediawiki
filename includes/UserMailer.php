@@ -429,7 +429,9 @@ class EmailNotification {
 					wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
 				} elseif ( $targetUser->getId() == $editor->getId() ) {
 					wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
-				} elseif ( $targetUser->getOption( 'enotifusertalkpages' ) ) {
+				} elseif ( $targetUser->getOption( 'enotifusertalkpages' ) &&
+					( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) ) )
+				{
 					if ( $targetUser->isEmailConfirmed() ) {
 						wfDebug( __METHOD__ . ": sending talk page update notification\n" );
 						$this->compose( $targetUser );
