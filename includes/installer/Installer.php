@@ -1198,11 +1198,14 @@ abstract class Installer {
 		}
 
 		$exts = array();
-		$dir = $this->getVar( 'IP' ) . '/extensions';
-		$dh = opendir( $dir );
+		$extDir = $this->getVar( 'IP' ) . '/extensions';
+		$dh = opendir( $extDir );
 
 		while ( ( $file = readdir( $dh ) ) !== false ) {
-			if( file_exists( "$dir/$file/$file.php" ) ) {
+			if( !is_dir( "$extDir/$file" ) ) {
+				continue;
+			}
+			if( file_exists( "$extDir/$file/$file.php" ) ) {
 				$exts[] = $file;
 			}
 		}
