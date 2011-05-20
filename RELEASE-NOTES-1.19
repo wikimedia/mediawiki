@@ -70,6 +70,8 @@ production.
   call callback too early.
 * (bug 4330) External URLs without custom title should be treated as LTR,
   also in RTL text.
+* (bug 29055) Make don't send email on minor edits preference apply to
+  changes to talk page in addition to watchlist edits.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
