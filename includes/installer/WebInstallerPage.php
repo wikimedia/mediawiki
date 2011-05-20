@@ -205,9 +205,12 @@ class WebInstaller_Language extends WebInstallerPage {
 	 *
 	 * @return string
 	 */
-	public function getLanguageSelector( $name, $label, $selectedCode ) {
+	public function getLanguageSelector( $name, $label, $selectedCode, $helpHtml = '' ) {
 		global $wgDummyLanguageCodes;
-		$s = Html::openElement( 'select', array( 'id' => $name, 'name' => $name ) ) . "\n";
+
+		$s = $helpHtml;
+
+		$s .= Html::openElement( 'select', array( 'id' => $name, 'name' => $name ) ) . "\n";
 
 		$languages = Language::getLanguageNames();
 		ksort( $languages );
