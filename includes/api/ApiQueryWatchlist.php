@@ -51,7 +51,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	private $fld_ids = false, $fld_title = false, $fld_patrol = false, $fld_flags = false,
 			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
-			$fld_notificationtimestamp = false, $fld_userid = false;
+			$fld_notificationtimestamp = false, $fld_userid = false, $fld_loginfo = false;
 
 	/**
 	 * @param $resultPageSet ApiPageSet
@@ -78,6 +78,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_sizes = isset( $prop['sizes'] );
 			$this->fld_patrol = isset( $prop['patrol'] );
 			$this->fld_notificationtimestamp = isset( $prop['notificationtimestamp'] );
+			$this->fld_loginfo = isset( $prop['loginfo'] );
 
 			if ( $this->fld_patrol ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
@@ -89,7 +90,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->addFields( array(
 			'rc_namespace',
 			'rc_title',
-			'rc_timestamp'
+			'rc_timestamp',
+			'rc_type',
 		) );
 
 		if ( is_null( $resultPageSet ) ) {
@@ -108,6 +110,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addFieldsIf( 'rc_old_len', $this->fld_sizes );
 			$this->addFieldsIf( 'rc_new_len', $this->fld_sizes );
 			$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
+			$this->addFieldsIf( 'rc_logid', $this->fld_loginfo );
+			$this->addFieldsIf( 'rc_log_type', $this->fld_loginfo );
+			$this->addFieldsIf( 'rc_log_action', $this->fld_loginfo );
+			$this->addFieldsIf( 'rc_params', $this->fld_loginfo );
 		} elseif ( $params['allrev'] ) {
 			$this->addFields( 'rc_this_oldid' );
 		} else {
@@ -139,7 +145,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$db->timestamp( $params['start'] ), 
 			$db->timestamp( $params['end'] ) );
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
-		$this->addWhereIf( 'rc_this_oldid=page_latest', !$params['allrev'] );
+		$this->addWhereIf( 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG, !$params['allrev'] );
 
 		if ( !is_null( $params['show'] ) ) {
 			$show = array_flip( $params['show'] );
@@ -294,6 +300,17 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->rc_comment, $title );
 		}
 
+		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
+			$vals['logid'] = intval( $row->rc_logid );
+			$vals['logtype'] = $row->rc_log_type;
+			$vals['logaction'] = $row->rc_log_action;
+			ApiQueryLogEvents::addLogParams(
+				$this->getResult(),
+				$vals, $row->rc_params,
+				$row->rc_log_type, $row->rc_timestamp
+			);
+		}
+
 		return $vals;
 	}
 
@@ -344,7 +361,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'timestamp',
 					'patrol',
 					'sizes',
-					'notificationtimestamp'
+					'notificationtimestamp',
+					'loginfo',
 				)
 			),
 			'show' => array(
@@ -393,6 +411,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				' patrol                 - Tags edits that are patrolled',
 				' size                   - Adds the old and new lengths of the page',
 				' notificationtimestamp  - Adds timestamp of when the user was last notified about the edit',
+				' loginfo                - Adds log information where appropriate',
 			),
 			'show' => array(
 				'Show only items that meet this criteria.',
