@@ -323,7 +323,7 @@ The account you specify here must already exist.',
 * the MediaWiki codebase does not always handle MyISAM as it should
 
 If your MySQL installation supports InnoDB, it is highly recommended that you choose that instead.
-If your MySQL installation does not support InnoDB, maybe its time for an upgrade.",
+If your MySQL installation does not support InnoDB, maybe it's time for an upgrade.",
 	'config-mysql-engine-help'        => "'''InnoDB''' is almost always the best option, since it has good concurrency support.
 
 '''MyISAM''' may be faster in single-user or read-only installations.
