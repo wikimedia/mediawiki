@@ -118,6 +118,7 @@ $( document ).ready( function() {
 			'action': 'watch',
 			'format': 'json',
 			'title': $link.data( 'target' ),
+			'token': mw.user.tokens.get( 'watchToken' ),
 			// API return contains a localized data.watch.message string.
 			'uselang': mw.config.get( 'wgUserLanguage' )
 		};
