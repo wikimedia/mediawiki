@@ -71,8 +71,20 @@ class ApiWatch extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
+	public function mustBePosted() {
+		return true;
+	}
+
 	public function isWriteMode() {
 		return true;
+	}
+
+	public function needsToken() {
+		return true;
+	}
+
+	public function getTokenSalt() {
+		return 'watch';
 	}
 
 	public function getAllowedParams() {
@@ -81,8 +93,8 @@ class ApiWatch extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-
 			'unwatch' => false,
+			'token' => null,
 		);
 	}
 
@@ -90,6 +102,7 @@ class ApiWatch extends ApiBase {
 		return array(
 			'title' => 'The page to (un)watch',
 			'unwatch' => 'If set the page will be unwatched rather than watched',
+			'token' => 'A token previously acquired via prop=info',
 		);
 	}
 

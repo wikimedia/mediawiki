@@ -83,6 +83,7 @@ production.
 * (bug 28578) API's parse module should not silently override invalid
   title inputs
 * (bug 20699) API watchlist should list log-events
+* (bug 29070) Add token to action=watch
 
 === Languages updated in 1.19 ===
 

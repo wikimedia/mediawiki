@@ -98,6 +98,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'unblock' => array( 'ApiQueryInfo', 'getUnblockToken' ),
 			'email' => array( 'ApiQueryInfo', 'getEmailToken' ),
 			'import' => array( 'ApiQueryInfo', 'getImportToken' ),
+			'watch' => array( 'ApiQueryInfo', 'getWatchToken'),
 		);
 		wfRunHooks( 'APIQueryInfoTokens', array( &$this->tokenFunctions ) );
 		return $this->tokenFunctions;
@@ -215,6 +216,21 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$cachedImportToken = $wgUser->editToken();
 		return $cachedImportToken;
+	}
+
+	public static function getWatchToken( $pageid, $title ) {
+		global $wgUser;
+		if ( !$wgUser->isLoggedIn() ) {
+			return false;
+		}
+
+		static $cachedWatchToken = null;
+		if ( !is_null( $cachedWatchToken ) ) {
+			return $cachedWatchToken;
+		}
+
+		$cachedWatchToken = $wgUser->editToken( 'watch' );
+		return $cachedWatchToken;
 	}
 
 	public function execute() {
