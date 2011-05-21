@@ -184,9 +184,6 @@ class VectorTemplate extends BaseTemplate {
 				</div>
 				<!-- /printfooter -->
 				<?php endif; ?>
-				<!-- debughtml -->
-				<?php $this->html( 'debughtml' ); ?>
-				<!-- /debughtml -->
 				<?php if ( $this->data['catlinks'] ): ?>
 				<!-- catlinks -->
 				<?php $this->html( 'catlinks' ); ?>
@@ -198,6 +195,9 @@ class VectorTemplate extends BaseTemplate {
 				<!-- /dataAfterContent -->
 				<?php endif; ?>
 				<div class="visualClear"></div>
+				<!-- debughtml -->
+				<?php $this->html( 'debughtml' ); ?>
+				<!-- /debughtml -->
 			</div>
 			<!-- /bodyContent -->
 		</div>
