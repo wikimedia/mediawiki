@@ -14,9 +14,7 @@ a.new {
 }
 
 #toc {
-	border: 1px solid #aaaaaa;
-	background-color: #f9f9f9;
-	padding: 5px;
+   display: none;
 }
 .tocindent {
 	margin-left: 2em;
