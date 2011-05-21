@@ -2615,7 +2615,7 @@ class OutputPage {
 		// Legacy Scripts
 		$scripts .= "\n" . $this->mScripts;
 
-		$userScripts = array( 'user.options' );
+		$userScripts = array( 'user.options', 'user.tokens' );
 
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
