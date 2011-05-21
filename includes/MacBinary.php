@@ -31,6 +31,8 @@ class MacBinary {
 		$this->loadHeader();
 	}
 
+	private $valid, $version, $filename, $dataLength, $resourceLength, $handle;
+
 	/**
 	 * The file must be seekable, such as local filesystem.
 	 * Remote URLs probably won't work.

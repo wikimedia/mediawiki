@@ -13,6 +13,13 @@ class StringUtils {
 	 * Compared to delimiterReplace(), this implementation is fast but memory-
 	 * hungry and inflexible. The memory requirements are such that I don't
 	 * recommend using it on anything but guaranteed small chunks of text.
+	 *
+	 * @param $startDelim
+	 * @param $endDelim
+	 * @param $replace
+	 * @param $subject
+	 *
+	 * @return string
 	 */
 	static function hungryDelimiterReplace( $startDelim, $endDelim, $replace, $subject ) {
 		$segments = explode( $startDelim, $subject );
@@ -36,17 +43,19 @@ class StringUtils {
 	 * This implementation is slower than hungryDelimiterReplace but uses far less
 	 * memory. The delimiters are literal strings, not regular expressions.
 	 *
+	 * If the start delimiter ends with an initial substring of the end delimiter,
+	 * e.g. in the case of C-style comments, the behaviour differs from the model
+	 * regex. In this implementation, the end must share no characters with the
+	 * start, so e.g. /*\/ is not considered to be both the start and end of a
+	 * comment. /*\/xy/*\/ is considered to be a single comment with contents /xy/.
+	 *
 	 * @param $startDelim String: start delimiter
 	 * @param $endDelim String: end delimiter
 	 * @param $callback Callback: function to call on each match
 	 * @param $subject String
 	 * @param $flags String: regular expression flags
+	 * @return string
 	 */
-	# If the start delimiter ends with an initial substring of the end delimiter,
-	# e.g. in the case of C-style comments, the behaviour differs from the model
-	# regex. In this implementation, the end must share no characters with the
-	# start, so e.g. /*/ is not considered to be both the start and end of a
-	# comment. /*/xy/*/ is considered to be a single comment with contents /xy/.
 	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback, $subject, $flags = '' ) {
 		$inputPos = 0;
 		$outputPos = 0;
@@ -180,6 +189,9 @@ class StringUtils {
 	/**
 	 * Workalike for explode() with limited memory usage.
 	 * Returns an Iterator
+	 * @param $separator
+	 * @param $subject
+	 * @return \ArrayIterator|\ExplodeIterator
 	 */
 	static function explode( $separator, $subject ) {
 		if ( substr_count( $subject, $separator ) > 1000 ) {
