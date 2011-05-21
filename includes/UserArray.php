@@ -1,6 +1,11 @@
 <?php
 
 abstract class UserArray implements Iterator {
+
+	/**
+	 * @param $res
+	 * @return UserArrayFromResult
+	 */
 	static function newFromResult( $res ) {
 		$userArray = null;
 		if ( !wfRunHooks( 'UserArrayFromResult', array( &$userArray, $res ) ) ) {
@@ -12,11 +17,16 @@ abstract class UserArray implements Iterator {
 		return $userArray;
 	}
 
+	/**
+	 * @param $ids array
+	 * @return UserArrayFromResult
+	 */
 	static function newFromIDs( $ids ) {
 		$ids = array_map( 'intval', (array)$ids ); // paranoia
-		if ( !$ids )
+		if ( !$ids ) {
 			// Database::select() doesn't like empty arrays
 			return new ArrayIterator(array());
+		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'user', '*', array( 'user_id' => $ids ),
 			__METHOD__ );
