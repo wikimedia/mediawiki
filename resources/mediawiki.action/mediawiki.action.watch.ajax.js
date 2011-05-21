@@ -2,12 +2,10 @@
  * Animate watch/unwatch links to use asynchronous API requests to
  * watch pages, rather than clicking on links. Requires jQuery.
  */
+( function( $ ) {
+var $links;
 
-if ( typeof wgAjaxWatch === 'undefined' || !wgAjaxWatch ) {
-	window.wgAjaxWatch = { };
-}
-
-wgAjaxWatch.setLinkText = function( $link, action ) {
+var setLinkText = function( $link, action ) {
 	if ( action == 'watch' || action == 'unwatch' ) {
 		// save the accesskey from the title
 		var keyCommand = $link.attr( 'title' ).match( /\[.*?\]$/ ) ? $link.attr( 'title' ).match( /\[.*?\]$/ )[0] : '';
@@ -25,26 +23,26 @@ wgAjaxWatch.setLinkText = function( $link, action ) {
 	}
 };
 
-wgAjaxWatch.processResult = function( response, $link ) {
-	response = response.watch;
+var processResult = function( response, $link ) {
+	watchResponse = response.watch;
 
 	// To ensure we set the same status for all watch links with the
 	// same target we trigger a custom event on *all* watch links.
-	if( response.watched !== undefined ) {
-		wgAjaxWatch.$links.trigger( 'mw-ajaxwatch', [response.title, 'watch', $link] );
-	} else if ( response.unwatched !== undefined ) {
-		wgAjaxWatch.$links.trigger( 'mw-ajaxwatch', [response.title, 'unwatch', $link] );
+	if ( watchResponse.watched !== undefined ) {
+		$links.trigger( 'mw-ajaxwatch', [watchResponse.title, 'watch', $link] );
+	} else if ( watchResponse.unwatched !== undefined ) {
+		$links.trigger( 'mw-ajaxwatch', [watchResponse.title, 'unwatch', $link] );
 	} else {
 		// Either we got an error code or it just plain broke.
 		window.location.href = $link[0].href;
 		return;
 	}
 
-	mw.util.jsMessage( response.message, 'watch' );
+	mw.util.jsMessage( watchResponse.message, 'watch' );
 
 	// Bug 12395 - update the watch checkbox on edit pages when the
 	// page is watched or unwatched via the tab.
-	if( response.watched !== undefined ) {
+	if ( watchResponse.watched !== undefined ) {
 		$( '#wpWatchthis' ).attr( 'checked', 'checked' );
 	} else {
 		$( '#wpWatchthis' ).removeAttr( 'checked' );
@@ -52,7 +50,7 @@ wgAjaxWatch.processResult = function( response, $link ) {
 };
 
 $( document ).ready( function() {
-	var $links = $( '.mw-watchlink a, a.mw-watchlink' );
+	$links = $( '.mw-watchlink a, a.mw-watchlink' );
 	// BC with older skins
 	$links = $links
 		.add( '#ca-watch a, #ca-unwatch a, a#mw-unwatch-link1, ' +
@@ -73,15 +71,15 @@ $( document ).ready( function() {
 	$links.click( function( event ) {
 		var $link = $( this );
 
-		if( wgAjaxWatch.supported === false || !mw.config.get( 'wgEnableWriteAPI' ) ) {
+		if ( !mw.config.get( 'wgEnableWriteAPI' ) ) {
 			// Lazy initialization so we don't toss up
 			// ActiveX warnings on initial page load
 			// for IE 6 users with security settings.
-			wgAjaxWatch.$links.unbind( 'click' );
+			$links.unbind( 'click' );
 			return true;
 		}
 
-		wgAjaxWatch.setLinkText( $link, $link.data( 'action' ) + 'ing' );
+		setLinkText( $link, $link.data( 'action' ) + 'ing' );
 		
 		var reqData = {
 			'action': 'watch',
@@ -95,7 +93,7 @@ $( document ).ready( function() {
 				+ '/api' + mw.config.get( 'wgScriptExtension' ),
 			reqData,
 			function( data, textStatus, xhr ) {
-				wgAjaxWatch.processResult( data, $link );
+				processResult( data, $link );
 			}
 		);
 
@@ -106,19 +104,19 @@ $( document ).ready( function() {
 	// on *all* watch links, so they can be updated if necessary
 	$links.bind( 'mw-ajaxwatch', function( event, target, action, $link ) {
 		var foo = $link.data( 'target' );
-		if( $link.data( 'target' ) == target ) {
+		if ( $link.data( 'target' ) == target ) {
 			var otheraction = action == 'watch'
 				? 'unwatch'
 				: 'watch';
 
 			$link.data( 'action', otheraction );
-			wgAjaxWatch.setLinkText( $link, otheraction );
+			setLinkText( $link, otheraction );
 			$link.attr( 'href',
 				mw.config.get( 'wgScript' )
 				+ '?title=' + mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )
 				+ '&action=' + otheraction
 			);
-			if( $link.closest( 'li' ).attr( 'id' ) == 'ca-' + action ) {
+			if ( $link.closest( 'li' ).attr( 'id' ) == 'ca-' + action ) {
 				$link.closest( 'li' ).attr( 'id', 'ca-' + otheraction );
 				// update the link text with the new message
 				$link.text( mw.msg( otheraction ) );
@@ -128,5 +126,6 @@ $( document ).ready( function() {
 		return false;
 	});
 
-	wgAjaxWatch.$links = $links;
 });
+
+})( jQuery );
