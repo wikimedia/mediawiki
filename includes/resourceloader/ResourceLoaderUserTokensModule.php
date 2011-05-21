@@ -41,7 +41,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 
 		return array(
 			'editToken' => $wgUser->edittoken(),
-			'watchToken' => ApiQueryInfo::getWatchToken(),
+			'watchToken' => ApiQueryInfo::getWatchToken(null, null),
 		);
 	}
 
