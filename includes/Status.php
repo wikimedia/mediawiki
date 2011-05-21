@@ -127,6 +127,10 @@ class Status {
 		$this->cleanCallback = false;
 	}
 
+	/**
+	 * @param $params array
+	 * @return array
+	 */
 	protected function cleanParams( $params ) {
 		if ( !$this->cleanCallback ) {
 			return $params;
@@ -138,6 +142,10 @@ class Status {
 		return $cleanParams;
 	}
 
+	/**
+	 * @param $item
+	 * @return string
+	 */
 	protected function getItemXML( $item ) {
 		$params = $this->cleanParams( $item['params'] );
 		$xml = "<{$item['type']}>\n" .
@@ -152,6 +160,7 @@ class Status {
 
 	/**
 	 * Get the error list as XML
+	 * @return string
 	 */
 	function getXML() {
 		$xml = "<errors>\n";
@@ -324,6 +333,8 @@ class Status {
 	 * destination message, but keep the same parameters as in the original error.
 	 *
 	 * Return true if the replacement was done, false otherwise.
+	 *
+	 * @return bool
 	 */
 	function replaceMessage( $source, $dest ) {
 		$replaced = false;

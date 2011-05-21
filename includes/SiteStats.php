@@ -13,6 +13,9 @@ class SiteStats {
 		self::load( true );
 	}
 
+	/**
+	 * @param $recache bool
+	 */
 	static function load( $recache = false ) {
 		if ( self::$loaded && !$recache ) {
 			return;
@@ -32,6 +35,9 @@ class SiteStats {
 		self::$loaded = true;
 	}
 
+	/**
+	 * @return Bool|ResultWrapper
+	 */
 	static function loadAndLazyInit() {
 		wfDebug( __METHOD__ . ": reading site_stats from slave\n" );
 		$row = self::doLoad( wfGetDB( DB_SLAVE ) );
@@ -60,40 +66,65 @@ class SiteStats {
 		return $row;
 	}
 
+	/**
+	 * @param $db DatabaseBase
+	 * @return Bool|ResultWrapper
+	 */
 	static function doLoad( $db ) {
 		return $db->selectRow( 'site_stats', '*', false, __METHOD__ );
 	}
 
+	/**
+	 * @return int
+	 */
 	static function views() {
 		self::load();
 		return self::$row->ss_total_views;
 	}
 
+	/**
+	 * @return int
+	 */
 	static function edits() {
 		self::load();
 		return self::$row->ss_total_edits;
 	}
 
+	/**
+	 * @return int
+	 */
 	static function articles() {
 		self::load();
 		return self::$row->ss_good_articles;
 	}
 
+	/**
+	 * @return int
+	 */
 	static function pages() {
 		self::load();
 		return self::$row->ss_total_pages;
 	}
 
+	/**
+	 * @return int
+	 */
 	static function users() {
 		self::load();
 		return self::$row->ss_users;
 	}
 
+	/**
+	 * @return int
+	 */
 	static function activeUsers() {
 		self::load();
 		return self::$row->ss_active_users;
 	}
 
+	/**
+	 * @return int
+	 */
 	static function images() {
 		self::load();
 		return self::$row->ss_images;
@@ -124,6 +155,9 @@ class SiteStats {
 		return self::$groupMemberCounts[$group];
 	}
 
+	/**
+	 * @return int
+	 */
 	static function jobs() {
 		if ( !isset( self::$jobs ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
@@ -136,6 +170,11 @@ class SiteStats {
 		return self::$jobs;
 	}
 
+	/**
+	 * @param $ns int
+	 *
+	 * @return int
+	 */
 	static function pagesInNs( $ns ) {
 		wfProfileIn( __METHOD__ );
 		if( !isset( self::$pageCount[$ns] ) ) {
@@ -151,7 +190,13 @@ class SiteStats {
 		return $pageCount[$ns];
 	}
 
-	/** Is the provided row of site stats sane, or should it be regenerated? */
+	/**
+	 * Is the provided row of site stats sane, or should it be regenerated?
+	 *
+	 * @param $row
+	 *
+	 * @return bool
+	 */
 	private static function isSane( $row ) {
 		if(
 			$row === false
@@ -174,7 +219,6 @@ class SiteStats {
 	}
 }
 
-
 /**
  *
  */
@@ -190,6 +234,11 @@ class SiteStatsUpdate {
 		$this->mUsers = $users;
 	}
 
+	/**
+	 * @param $sql
+	 * @param $field
+	 * @param $delta
+	 */
 	function appendUpdate( &$sql, $field, $delta ) {
 		if ( $delta ) {
 			if ( $sql ) {
@@ -225,6 +274,10 @@ class SiteStatsUpdate {
 		}
 	}
 
+	/**
+	 * @param $dbw DatabaseBase
+	 * @return bool|mixed
+	 */
 	public static function cacheUpdate( $dbw ) {
 		global $wgActiveUserDays;
 		$dbr = wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow' ) );

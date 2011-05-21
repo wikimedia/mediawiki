@@ -792,6 +792,10 @@ class Sanitizer {
 		return $value;
 	}
 
+	/**
+	 * @param $matches array
+	 * @return String
+	 */
 	static function cssDecodeCallback( $matches ) {
 		if ( $matches[1] !== '' ) {
 			// Line continuation
@@ -1093,6 +1097,10 @@ class Sanitizer {
 				Sanitizer::normalizeCharReferences( $text ) ) );
 	}
 
+	/**
+	 * @param $text string
+	 * @return mixed
+	 */
 	private static function normalizeWhitespace( $text ) {
 		return preg_replace(
 			'/\r\n|[\x20\x0d\x0a\x09]/',
@@ -1176,6 +1184,10 @@ class Sanitizer {
 		}
 	}
 
+	/**
+	 * @param $codepoint
+	 * @return null|string
+	 */
 	static function decCharReference( $codepoint ) {
 		$point = intval( $codepoint );
 		if( Sanitizer::validateCodepoint( $point ) ) {
@@ -1185,6 +1197,10 @@ class Sanitizer {
 		}
 	}
 
+	/**
+	 * @param $codepoint
+	 * @return null|string
+	 */
 	static function hexCharReference( $codepoint ) {
 		$point = hexdec( $codepoint );
 		if( Sanitizer::validateCodepoint( $point ) ) {
@@ -1523,6 +1539,10 @@ class Sanitizer {
 		return $out;
 	}
 
+	/**
+	 * @param $url string
+	 * @return mixed|string
+	 */
 	static function cleanUrl( $url ) {
 		# Normalize any HTML entities in input. They will be
 		# re-escaped by makeExternalLink().
@@ -1566,6 +1586,10 @@ class Sanitizer {
 		}
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	static function cleanUrlCallback( $matches ) {
 		return urlencode( $matches[0] );
 	}
