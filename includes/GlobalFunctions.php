@@ -2910,9 +2910,10 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
  *
  * @param $name String
  * @param $p Array: parameters
- * @deprecated since 1.18
+ * @deprecated since 1.18, warnings in 1.19, removal in 1.20
  */
 function wfCreateObject( $name, $p ) {
+	wfDeprecated( __FUNCTION__ );
 	return MWFunction::newObj( $name, $p );
 }
 
