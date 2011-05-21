@@ -61,13 +61,39 @@ test( 'mw.message / mw.msg / mw.messages', function(){
 });
 
 test( 'mw.loader', function(){
-	expect(2);
-	
-	ok( location.href.match(/[^#\?]*/) && location.href.match(/[^#\?]*/)[0], true, 'Extracting file path from location' );
+	expect(5);
+
+	// Regular expression to extract the path for the QUnit tests 	
+	// Takes into account that tests could be run from a file:// URL
+	// by excluding the 'index.html' part from the URL
+	var rePath = /(?:[^#\?](?!index.html))*\/?/;
+
+	// Four assertions to test the above regular expression:
+	equal(
+		rePath.exec( 'http://path/to/tests/?foobar' )[0],
+		"http://path/to/tests/",
+		"Extracting path from http URL with query"
+		);
+	equal(
+		rePath.exec( 'http://path/to/tests/#frag' )[0],
+		"http://path/to/tests/",
+		"Extracting path from http URL with fragment"
+		);
+	equal(
+		rePath.exec( 'file://path/to/tests/index.html?foobar' )[0],
+		"file://path/to/tests/",
+		"Extracting path from local URL (file://) with query"
+		);
+	equal(
+		rePath.exec( 'file://path/to/tests/index.html#frag' )[0],
+		"file://path/to/tests/",
+		"Extracting path from local URL (file://) with fragment"
+		);
 
 	stop();
-	
-	mw.loader.implement( 'is.awesome', [location.href.match(/[^#\?]*/)[0] + 'sample/awesome.js'], {}, {} );
+
+	var tests_path = rePath.exec( location.href ); // Extract path
+	mw.loader.implement( 'is.awesome', [tests_path + 'sample/awesome.js'], {}, {} );
 	mw.loader.using( 'is.awesome', function(){
 		start();
 		deepEqual( window.awesome, true, 'Implementing a module, is the callback timed properly ?');
