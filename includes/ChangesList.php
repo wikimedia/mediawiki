@@ -40,7 +40,7 @@ class ChangesList {
 
 	protected $watchlist = false;
 
-	protected $message = array();
+	protected $message;
 	
 	/**
 	* Changeslist contructor
