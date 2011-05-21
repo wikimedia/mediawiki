@@ -1820,7 +1820,8 @@ $wgMessageStructure = array(
 	),
 	'watching' => array(
 		'watching',
-		'unwatching',
+		'watching',
+		'watcherrortext',
 	),
 	'enotif' => array(
 		'enotif_mailer',

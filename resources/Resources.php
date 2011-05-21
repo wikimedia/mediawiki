@@ -482,7 +482,15 @@ return array(
 	),
 	'mediawiki.action.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
-		'dependencies' => 'mediawiki.util',
+		'messages' => array(
+			'watch',
+			'unwatch',
+			'watching',
+			'unwatching',
+			'tooltip-ca-watch',
+			'tooltip-ca-unwatch',
+			'watcherrortext',
+		),
 	),
 
 	/* Special pages */
@@ -580,14 +588,6 @@ return array(
 		'scripts' => 'common/ajax.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'messages' => array(
-			'watch',
-			'unwatch',
-			'watching',
-			'unwatching',
-			'tooltip-ca-watch',
-			'tooltip-ca-unwatch',
-		),
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.commonPrint' => array(

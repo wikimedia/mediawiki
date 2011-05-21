@@ -23,8 +23,40 @@ var setLinkText = function( $link, action ) {
 	}
 };
 
+var errorHandler = function( $link ) {
+
+	// Reset link text to whatever it was before we switching it to the '(un)watch'+ing message.
+	setLinkText( $link, $link.data( 'action' ) );
+
+	// Format error message
+	var cleanTitle = mw.config.get( 'wgPageName' ).replace( /_/g, ' ' );
+	var link = mw.html.element(
+		'a', {
+			'href': mw.util.wikiGetlink( mw.config.get( 'wgPageName' ) ),
+			'title': cleanTitle
+		}, cleanTitle
+	);
+	var msg = mw.msg( 'watcherrortext', link );
+
+	// Report to user about the error
+	mw.util.jsMessage( msg, 'watch' );
+};
+
+/**
+ * Process the result of the API watch action.
+ *
+ * @param response Data object from API request.
+ * @param $link jQuery object of the watch link.
+ * @return Boolean true on success, false otherwise.
+ */
 var processResult = function( response, $link ) {
-	watchResponse = response.watch;
+
+	if ( ( 'error' in response ) || !response.watch ) {
+		errorHandler( $link );
+		return false;
+	}
+
+	var watchResponse = response.watch;
 
 	// To ensure we set the same status for all watch links with the
 	// same target we trigger a custom event on *all* watch links.
@@ -35,7 +67,7 @@ var processResult = function( response, $link ) {
 	} else {
 		// Either we got an error code or it just plain broke.
 		window.location.href = $link[0].href;
-		return;
+		return false;
 	}
 
 	mw.util.jsMessage( watchResponse.message, 'watch' );
@@ -47,6 +79,7 @@ var processResult = function( response, $link ) {
 	} else {
 		$( '#wpWatchthis' ).removeAttr( 'checked' );
 	}
+	return true;
 };
 
 $( document ).ready( function() {
@@ -88,15 +121,23 @@ $( document ).ready( function() {
 			// API return contains a localized data.watch.message string.
 			'uselang': mw.config.get( 'wgUserLanguage' )
 		};
+
 		if ( $link.data( 'action' ) == 'unwatch' ) {
 			reqData.unwatch = '';
 		}
-		$.getJSON( mw.util.wikiScript( 'api' ),
-			reqData,
-			function( data, textStatus, xhr ) {
+
+		$.ajax({
+			url: mw.util.wikiScript( 'api' ),
+			dataType: 'json',
+			type: 'POST',
+			data: reqData,
+			success: function( data, textStatus, xhr ) {
 				processResult( data, $link );
+			},
+			error: function(){
+				processResult( {}, $link );
 			}
-		);
+		});
 
 		return false;
 	});
