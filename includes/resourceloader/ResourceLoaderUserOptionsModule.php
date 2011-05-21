@@ -33,6 +33,10 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 	/* Methods */
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array|int|Mixed
+	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$hash = $context->getHash();
 		if ( isset( $this->modifiedTime[$hash] ) ) {
@@ -66,11 +70,19 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		}
 	}
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return string
+	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall( 'mw.user.options.set', 
 			array( $this->contextUserOptions( $context ) ) );
 	}
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array
+	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		global $wgAllowUserCssPrefs;
 
@@ -111,6 +123,9 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		return array();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getGroup() {
 		return 'private';
 	}

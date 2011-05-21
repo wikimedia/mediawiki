@@ -569,6 +569,8 @@ class ResourceLoader {
 	 * @param $messages Mixed: List of messages associated with this module. May either be an 
 	 *     associative array mapping message key to value, or a JSON-encoded message blob containing
 	 *     the same data, wrapped in an XmlJsCode object.
+	 *
+	 * @return string
 	 */
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_string( $scripts ) ) {
@@ -591,6 +593,8 @@ class ResourceLoader {
 	 *
 	 * @param $messages Mixed: Either an associative array mapping message key to value, or a
 	 *     JSON-encoded message blob containing the same data, wrapped in an XmlJsCode object.
+	 *
+	 * @return string
 	 */
 	public static function makeMessageSetScript( $messages ) {
 		return Xml::encodeJsCall( 'mw.messages.set', array( (object)$messages ) );
@@ -601,6 +605,8 @@ class ResourceLoader {
 	 * single stylesheet with @media blocks.
 	 *
 	 * @param $styles Array: List of CSS strings keyed by media type
+	 *
+	 * @return string
 	 */
 	public static function makeCombinedStyles( array $styles ) {
 		$out = '';
@@ -630,6 +636,11 @@ class ResourceLoader {
 	 *
 	 *    - ResourceLoader::makeLoaderStateScript( array( $name => $state, ... ) ):
 	 *         Set the state of modules with the given names to the given states
+	 *
+	 * @param $name string
+	 * @param $state
+	 *
+	 * @return string
 	 */
 	public static function makeLoaderStateScript( $name, $state = null ) {
 		if ( is_array( $name ) ) {
@@ -650,6 +661,8 @@ class ResourceLoader {
 	 * @param $dependencies Array: List of module names on which this module depends
 	 * @param $group String: Group which the module is in.
 	 * @param $script String: JavaScript code
+	 *
+	 * @return string
 	 */
 	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
@@ -679,6 +692,8 @@ class ResourceLoader {
 	 * @param $version Integer: Module version number as a timestamp
 	 * @param $dependencies Array: List of module names on which this module depends
 	 * @param $group String: group which the module is in.
+	 *
+	 * @return string
 	 */
 	public static function makeLoaderRegisterScript( $name, $version = null, 
 		$dependencies = null, $group = null ) 
@@ -697,6 +712,8 @@ class ResourceLoader {
 	 * present.
 	 *
 	 * @param $script String: JavaScript code
+	 *
+	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
@@ -708,11 +725,13 @@ class ResourceLoader {
 	 * the given value.
 	 *
 	 * @param $configuration Array: List of configuration values keyed by variable name
+	 *
+	 * @return string
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
 		return Xml::encodeJsCall( 'mw.config.set', array( $configuration ) );
 	}
-	
+
 	/**
 	 * Convert an array of module names to a packed query string.
 	 * 
@@ -730,7 +749,7 @@ class ResourceLoader {
 			$suffix = $pos === false ? $module : substr( $module, $pos + 1 );
 			$groups[$prefix][] = $suffix;
 		}
-		
+
 		$arr = array();
 		foreach ( $groups as $prefix => $suffixes ) {
 			$p = $prefix === '' ? '' : $prefix . '.';
@@ -739,7 +758,7 @@ class ResourceLoader {
 		$str = implode( '|', $arr );
 		return str_replace( ".", "!", $str ); # bug 28840
 	}
-	
+
 	/**
 	 * Determine whether debug mode was requested
 	 * Order of priority is 1) request param, 2) cookie, 3) $wg setting
@@ -748,8 +767,9 @@ class ResourceLoader {
 	public static function inDebugMode() {
 		global $wgRequest, $wgResourceLoaderDebug;
 		static $retval = null;
-		if ( !is_null( $retval ) )
+		if ( !is_null( $retval ) ) {
 			return $retval;
+		}
 		return $retval = $wgRequest->getFuzzyBool( 'debug',
 			$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ) );
 	}
