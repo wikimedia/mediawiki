@@ -2360,6 +2360,7 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 'addedwatchtext'       => 'Explanation shown when clicking on the {{msg|watch}} tab. See also {{msg|addedwatch}}.',
 'removedwatch'         => 'Page title displayed when clicking on {{msg|unwatch}} tab (only when not using the AJAX feauture which allows watching a page without reloading the page or such). See also {{msg|removedwatchtext}}.',
 'removedwatchtext'     => "After a page has been removed from a user's watchlist by clicking the {{msg|unwatch}} tab at the top of an article, this message appears just below the title of the article. $1 is the title of the article. See also {{msg|removedwatch}} and {{msg|addedwatchtext}}.",
+'watcherrortext'       => "When a user clicked the watch/unwatch tab and the action did not succeed, this message is displayed. See also {{msg|addedwatchtext}}. and {{msg|addedwatchtext}}. This message is used raw and should not contain wikitext.",
 'watch'                => 'Name of the Watch tab. Should be in the imperative mood.',
 'watchthispage'        => '{{Identical|Watch this page}}',
 'unwatch'              => 'Label of "Unwatch" tab.',

@@ -2718,6 +2718,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
 'removedwatch'         => 'Removed from watchlist',
 'removedwatchtext'     => 'The page "[[:$1]]" has been removed from [[Special:Watchlist|your watchlist]].',
+'watcherrortext'       => 'An error occurred while changing your watchlist settings for "$1".',
 'watch'                => 'Watch',
 'watchthispage'        => 'Watch this page',
 'unwatch'              => 'Unwatch',
