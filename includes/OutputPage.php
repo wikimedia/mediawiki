@@ -391,6 +391,7 @@ class OutputPage {
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
 	 * @param $modules Array
 	 * @param $position String if not null, only return modules with this position
+	 * @param $type string
 	 * @return Array
 	 */
 	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ){
@@ -413,6 +414,7 @@ class OutputPage {
 	 *
 	 * @param $filter Bool whether to filter out insufficiently trustworthy modules
 	 * @param $position String if not null, only return modules with this position
+	 * @param $param string
 	 * @return Array of module names
 	 */
 	public function getModules( $filter = false, $position = null, $param = 'mModules' ) {
@@ -435,6 +437,10 @@ class OutputPage {
 
 	/**
 	 * Get the list of module JS to include on this page
+	 *
+	 * @param $filter
+	 * @param $position
+	 *
 	 * @return array of module names
 	 */
 	public function getModuleScripts( $filter = false, $position = null ) {
@@ -455,6 +461,9 @@ class OutputPage {
 	/**
 	 * Get the list of module CSS to include on this page
 	 *
+	 * @param $filter
+	 * @param $position
+	 * 
 	 * @return Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
@@ -474,6 +483,9 @@ class OutputPage {
 
 	/**
 	 * Get the list of module messages to include on this page
+	 *
+	 * @param $filter
+	 * @param $position
 	 *
 	 * @return Array of module names
 	 */
@@ -560,6 +572,8 @@ class OutputPage {
 	 * any future call to OutputPage->output() have no effect.
 	 *
 	 * Side effect: sets mLastModified for Last-Modified header
+	 *
+	 * @param $timestamp string
 	 *
 	 * @return Boolean: true iff cache-ok headers was sent.
 	 */
@@ -724,6 +738,8 @@ class OutputPage {
 	/**
 	 * "HTML title" means the contents of <title>.
 	 * It is stored as plain, unescaped text and will be run through htmlspecialchars in the skin file.
+	 *
+	 * @param $name string
 	 */
 	public function setHTMLTitle( $name ) {
 		$this->mHTMLtitle = $name;
@@ -743,6 +759,8 @@ class OutputPage {
 	 * This function allows good tags like \<sup\> in the \<h1\> tag, but not bad tags like \<script\>.
 	 * This function automatically sets \<title\> to the same content as \<h1\> but with all tags removed.
 	 * Bad tags that were escaped in \<h1\> will still be escaped in \<title\>, and good tags like \<i\> will be dropped entirely.
+	 *
+	 * @param $name string
 	 */
 	public function setPageTitle( $name ) {
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
@@ -1526,7 +1544,9 @@ class OutputPage {
 	/**
 	 * Use enableClientCache(false) to force it to send nocache headers
 	 *
-	 * @param $state ??
+	 * @param $state bool
+	 *
+	 * @return bool
 	 */
 	public function enableClientCache( $state ) {
 		return wfSetVar( $this->mEnableClientCache, $state );
@@ -1678,6 +1698,8 @@ class OutputPage {
 	 *
 	 * This is the default for special pages. If you display a CSRF-protected
 	 * form on an ordinary view page, then you need to call this function.
+	 *
+	 * @param $enable bool
 	 */
 	public function preventClickjacking( $enable = true ) {
 		$this->mPreventClickjacking = $enable;
@@ -1696,6 +1718,8 @@ class OutputPage {
 	 * Get the X-Frame-Options header value (without the name part), or false
 	 * if there isn't one. This is used by Skin to determine whether to enable
 	 * JavaScript frame-breaking, for clients that don't support X-Frame-Options.
+	 *
+	 * @return string
 	 */
 	public function getFrameOptions() {
 		global $wgBreakFrames, $wgEditPageFrameOptions;
@@ -2203,7 +2227,7 @@ class OutputPage {
 	 * Add a "return to" link pointing to a specified title
 	 *
 	 * @param $title Title to link
-	 * @param $query String: query string
+	 * @param $query String query string
 	 * @param $text String text of the link (input is not escaped)
 	 */
 	public function addReturnTo( $title, $query = array(), $text = null ) {
@@ -2564,6 +2588,10 @@ class OutputPage {
 	/**
 	 * JS stuff to put at the bottom of the <body>: modules marked with position 'bottom',
 	 * legacy scripts ($this->mScripts), user preferences, site JS and user JS
+	 *
+	 * @param $sk Skin
+	 *
+	 * @return string
 	 */
 	function getBottomScripts( Skin $sk ) {
 		global $wgUseSiteJs, $wgAllowUserJs;
@@ -2667,6 +2695,9 @@ class OutputPage {
 	}
 
 	/**
+	 * @param $sk Skin
+	 * @param $addContentType bool
+	 *
 	 * @return string HTML tag links to be put in the header.
 	 */
 	public function getHeadLinks( Skin $sk, $addContentType = false ) {
@@ -2970,6 +3001,8 @@ class OutputPage {
 	 * Build a set of <link>s for the stylesheets specified in the $this->styles array.
 	 * These will be applied to various media & IE conditionals.
 	 * @param $sk Skin object
+	 *
+	 * @return string
 	 */
 	public function buildCssLinks( $sk ) {
 		$ret = '';
@@ -3117,6 +3150,10 @@ class OutputPage {
 	 * instead of a variable argument list.
 	 *
 	 * $options is passed through to wfMsgExt(), see that function for details.
+	 *
+	 * @param $name string
+	 * @param $args array
+	 * @param $options array
 	 */
 	public function addWikiMsgArray( $name, $args, $options = array() ) {
 		$options[] = 'parse';
@@ -3147,6 +3184,8 @@ class OutputPage {
 	 *    $wgOut->addWikiText( "<div class='error'>\n" . wfMsgNoTrans( 'some-error' ) . "\n</div>" );
 	 *
 	 * The newline after opening div is needed in some wikitext. See bug 19226.
+	 *
+	 * @param $wrap string
 	 */
 	public function wrapWikiMsg( $wrap /*, ...*/ ) {
 		$msgSpecs = func_get_args();
