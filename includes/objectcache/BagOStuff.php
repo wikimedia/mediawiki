@@ -64,7 +64,7 @@ abstract class BagOStuff {
 	 */
 	abstract public function set( $key, $value, $exptime = 0 );
 
-	/*
+	/**
 	 * Delete an item.
 	 * @param $key string
 	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)

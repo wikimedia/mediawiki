@@ -80,7 +80,7 @@ abstract class LBFactory {
 	 */
 	abstract function getMainLB( $wiki = false );
 
-	/*
+	/**
 	 * Create a new load balancer for external storage. The resulting object will be
 	 * untracked, not chronology-protected, and the caller is responsible for
 	 * cleaning it up.
@@ -90,7 +90,7 @@ abstract class LBFactory {
 	 */
 	abstract function newExternalLB( $cluster, $wiki = false );
 
-	/*
+	/**
 	 * Get a cached (tracked) load balancer for external storage
 	 *
 	 * @param $cluster String: external storage cluster, or false for core

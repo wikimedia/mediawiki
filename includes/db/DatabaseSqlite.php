@@ -620,7 +620,7 @@ class DatabaseSqlite extends DatabaseBase {
 		return $s;
 	}
 
-	/*
+	/**
 	 * Build a concatenation list to feed into a SQL query
 	 *
 	 * @return string

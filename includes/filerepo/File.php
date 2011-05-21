@@ -930,6 +930,7 @@ abstract class File {
 	function getRepoName() {
 		return $this->repo ? $this->repo->getName() : 'unknown';
 	}
+
 	/*
 	 * Returns the repository
 	 */

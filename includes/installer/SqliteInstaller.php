@@ -45,7 +45,7 @@ class SqliteInstaller extends DatabaseInstaller {
 			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-sqlite-name-help' ) );
 	}
 
-	/*
+	/**
 	 * Safe wrapper for PHP's realpath() that fails gracefully if it's unable to canonicalize the path.
 	 */
 	private static function realpath( $path ) {

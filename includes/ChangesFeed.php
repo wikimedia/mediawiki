@@ -61,11 +61,11 @@ class ChangesFeed {
 
 		FeedUtils::checkPurge( $timekey, $key );
 
-		/*
-		* Bumping around loading up diffs can be pretty slow, so where
-		* possible we want to cache the feed output so the next visitor
-		* gets it quick too.
-		*/
+		/**
+		 * Bumping around loading up diffs can be pretty slow, so where
+		 * possible we want to cache the feed output so the next visitor
+		 * gets it quick too.
+		 */
 		$cachedFeed = $this->loadFromCache( $lastmod, $timekey, $key );
 		if( is_string( $cachedFeed ) ) {
 			wfDebug( "RC: Outputting cached feed\n" );
@@ -110,12 +110,12 @@ class ChangesFeed {
 		$feedLastmod = $messageMemc->get( $timekey );
 
 		if( ( $wgFeedCacheTimeout > 0 ) && $feedLastmod ) {
-			/*
-			* If the cached feed was rendered very recently, we may
-			* go ahead and use it even if there have been edits made
-			* since it was rendered. This keeps a swarm of requests
-			* from being too bad on a super-frequently edited wiki.
-			*/
+		    /**
+			 * If the cached feed was rendered very recently, we may
+			 * go ahead and use it even if there have been edits made
+			 * since it was rendered. This keeps a swarm of requests
+			 * from being too bad on a super-frequently edited wiki.
+			 */
 
 			$feedAge = time() - wfTimestamp( TS_UNIX, $feedLastmod );
 			$feedLastmodUnix = wfTimestamp( TS_UNIX, $feedLastmod );

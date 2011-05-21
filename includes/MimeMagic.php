@@ -157,11 +157,11 @@ class MimeMagic {
 	private static $extensionLoaded = false;
 
 	/** Initializes the MimeMagic object. This is called by MimeMagic::singleton().
-	*
-	* This constructor parses the mime.types and mime.info files and build internal mappings.
-	*/
+	 *
+	 * This constructor parses the mime.types and mime.info files and build internal mappings.
+	 */
 	function __construct() {
-		/*
+		/**
 		*   --- load mime.types ---
 		*/
 
@@ -244,9 +244,9 @@ class MimeMagic {
 			}
 		}
 
-		/*
-		*   --- load mime.info ---
-		*/
+		/**
+		 *   --- load mime.info ---
+		 */
 
 		global $wgMimeInfoFile;
 		if ( $wgMimeInfoFile == 'includes/mime.info' ) {
@@ -628,7 +628,7 @@ class MimeMagic {
 			return "image/webp";
 		}
 
-		/*
+		/**
 		 * Look for PHP.  Check for this before HTML/XML...  Warning: this is a
 		 * heuristic, and won't match a file with a lot of non-PHP before.  It
 		 * will also match text files which could be PHP. :)
@@ -652,7 +652,7 @@ class MimeMagic {
 			return 'application/x-php';
 		}
 
-		/*
+		/**
 		 * look for XML formats (XHTML and SVG)
 		 */
 		$xml = new XmlTypeCheck( $file );
@@ -665,7 +665,7 @@ class MimeMagic {
 			}
 		}
 
-		/*
+		/**
 		 * look for shell scripts
 		 */
 		$script_type = null;

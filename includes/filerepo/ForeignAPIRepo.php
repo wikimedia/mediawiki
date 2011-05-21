@@ -216,7 +216,7 @@ class ForeignAPIRepo extends FileRepo {
 		}
 	}
 
-	/*
+	/**
 	 * Return the imageurl from cache if possible
 	 *
 	 * If the url has been requested today, get it from cache

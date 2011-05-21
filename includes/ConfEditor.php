@@ -472,7 +472,7 @@ class ConfEditor {
 		return $extraPath;
 	}
 
-	/*
+	/**
 	 * Find the path name of first element in the array.
 	 * If the array is empty, this will return the \@extra interstitial element.
 	 * If the specified path is not found or is not an array, it will return false.

@@ -67,11 +67,10 @@ class SearchPostgres extends SearchEngine {
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
-
-	/*
+	/**
 	 * Transform the user's search string into a better form for tsearch2
 	 * Returns an SQL fragment consisting of quoted text to search for.
-	*/
+	 */
 	function parseQuery( $term ) {
 
 		wfDebug( "parseQuery received: $term \n" );

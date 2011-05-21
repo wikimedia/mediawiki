@@ -40,7 +40,7 @@ class XMPReader {
 
 	protected $items;
 
-	/*
+	/**
 	* These are various mode constants.
 	* they are used to figure out what to do
 	* with an element when its encountered.

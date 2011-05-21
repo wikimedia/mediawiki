@@ -150,7 +150,7 @@ abstract class FileRepo {
 		return false;
 	}
 
-	/*
+	/**
 	 * Find many files at once.
 	 * @param $items An array of titles, or an array of findFile() options with
 	 *    the "title" option giving the title. Example:

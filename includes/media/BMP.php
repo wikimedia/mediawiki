@@ -23,7 +23,7 @@ class BmpHandler extends BitmapHandler {
 		return array( 'png', 'image/png' );
 	}
 
-	/*
+	/**
 	 * Get width and height from the bmp header.
 	 */
 	function getImageSize( $image, $filename ) {
