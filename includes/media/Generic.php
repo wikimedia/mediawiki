@@ -48,7 +48,7 @@ abstract class MediaHandler {
 	 */
 	abstract function getParamMap();
 
-	/*
+	/**
 	 * Validate a thumbnail parameter at parse time.
 	 * Return true to accept the parameter, and false to reject it.
 	 * If you return false, the parser will do something quiet and forgiving.

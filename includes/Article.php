@@ -2703,7 +2703,7 @@ class Article {
 	}
 
 
-	/*
+	/**
 	 * UI entry point for page deletion
 	 */
 	public function delete() {

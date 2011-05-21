@@ -442,10 +442,11 @@ class CoreParserFunctions {
 			return '';
 		return wfUrlencode( $t->getSubjectNsText() );
 	}
-	/*
+
+	/**
 	 * Functions to get and normalize pagenames, corresponding to the magic words
 	 * of the same names
-	*/
+	 */
 	static function pagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) )

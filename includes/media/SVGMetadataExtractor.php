@@ -83,14 +83,14 @@ class SVGReader {
 		wfRestoreWarnings();
 	}
 
-	/*
+	/**
 	 * @return Array with the known metadata
 	 */
 	public function getMetadata() {
 		return $this->metadata;
 	}
 
-	/*
+	/**
 	 * Read the SVG
 	 */
 	public function read() {
@@ -142,7 +142,7 @@ class SVGReader {
 		return true;
 	}
 
-	/*
+	/**
 	 * Read a textelement from an element
 	 *
 	 * @param String $name of the element that we are reading from
@@ -179,7 +179,7 @@ class SVGReader {
 		$this->reader->next();
 	}
 
-	/*
+	/**
 	 * Filter all children, looking for animate elements
 	 *
 	 * @param String $name of the element that we are reading from
@@ -238,7 +238,7 @@ class SVGReader {
 		wfDebug( "SVGReader WARN: $data\n" );
 	}
 
-	/*
+	/**
 	 * Parse the attributes of an SVG element
 	 *
 	 * The parser has to be in the start element of <svg>

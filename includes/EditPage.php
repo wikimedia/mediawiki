@@ -287,7 +287,7 @@ class EditPage {
 		return '';
 	}
 
-	/*
+	/**
 	 * Check if a page was deleted while the user was editing it, before submit.
 	 * Note that we rely on the logging table, which hasn't been always there,
 	 * but that doesn't matter, because this only applies to brand new
@@ -1882,7 +1882,7 @@ HTML
 		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
 	}
 
-	/*
+	/**
 	 * Show an edit conflict. textbox1 is already shown in showEditForm().
 	 * If you want to use another entry point to this function, be careful.
 	 */

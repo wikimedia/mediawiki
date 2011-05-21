@@ -1770,7 +1770,7 @@ class Title {
 				# Not a public wiki, so no shortcut
 				$useShortcut = false;
 			} elseif ( !empty( $wgRevokePermissions ) ) {
-				/*
+				/**
 				 * Iterate through each group with permissions being revoked (key not included since we don't care
 				 * what the group name is), then check if the read permission is being revoked. If it is, then
 				 * we don't use the shortcut below since the user might not be able to read, even though anon

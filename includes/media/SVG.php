@@ -105,7 +105,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
-	/*
+	/**
 	* Transform an SVG file to PNG
 	* This function can be called outside of thumbnail contexts
 	* @param string $srcPath
