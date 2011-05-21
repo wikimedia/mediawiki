@@ -38,7 +38,7 @@ test( 'wikiScript', function(){
 	mw.config.set({
 		'wgScript': '/w/index.php',
 		'wgScriptPath': '/w',
-		'wgScriptExtension': '.php',
+		'wgScriptExtension': '.php'
 	});
 
 	equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ), 'Defaults to index.php and is equal to wgScript.' );
