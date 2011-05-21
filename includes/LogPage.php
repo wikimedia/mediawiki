@@ -56,6 +56,9 @@ class LogPage {
 		$this->sendToUDP = ( $udp == 'UDP' );
 	}
 
+	/**
+	 * @return bool|int|null
+	 */
 	protected function saveContent() {
 		global $wgLogRestrictions;
 

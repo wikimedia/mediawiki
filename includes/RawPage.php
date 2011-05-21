@@ -223,6 +223,10 @@ class RawPage {
 		return $this->parseArticleText( $text );
 	}
 
+	/**
+	 * @param $text
+	 * @return string
+	 */
 	function parseArticleText( $text ) {
 		if( $text === '' ) {
 			return '';
