@@ -2621,7 +2621,7 @@ Sofern auf einem Windows-Server installiert und MySQL genutzt wird, funktioniert
 	'config-db-name' => 'Datenbankname:',
 	'config-db-name-help' => 'Bitte einen Namen angeben, mit dem das Wiki identifiziert werden kann.
 Dabei sollten keine Leerzeichen verwendet werden.
-
+ 
 Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster den Datenbanknamen angegeben oder aber die Erstellung einer Datenbank über ein entsprechendes Interface gestattet haben.',
 	'config-db-name-oracle' => 'Datenbankschema:',
 	'config-db-account-oracle-warn' => 'Es gibt drei von MediaWiki unterstützte Möglichkeiten Oracle als Datenbank einzurichten:
@@ -2768,6 +2768,13 @@ Das hier angegebene Konto muss bereits vorhanden sein.',
 	'config-mysql-engine' => 'Speicher-Engine:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''Warnung:''' Es wurde MyISAM als Speicher-Engine für MySQL ausgewählt, die aus folgenden Gründen nicht die für den Einsatz mit MediaWiki empfohlene ist:
+* sie unterstützt aufgrund von Tabellensperrungen kaum die nebenläufige Ausführung von Aktionen
+* sie ist anfälliger für Datenprobleme
+* sie wird von MediaWiki nicht immer adäquat unterstützt
+
+Sofern die vorhandene MySQL-Installation die Speicher-Engine InnoDB unterstützt, wird deren Verwendung eindringlich empfohlen.
+Sofern sie sie nicht unterstützt, sollte eine entsprechende Aktualisierung nunmehr Erwägung gezogen werden.",
 	'config-mysql-engine-help' => "'''InnoDB''' ist fast immer die bessere Wahl, da es gleichzeitige Zugriffe gut unterstützt.
 
 '''MyISAM''' ist in Einzelnutzerumgebungen sowie bei schreibgeschützten Wikis schneller.
@@ -2887,7 +2894,7 @@ Bitte ein Logo in entsprechender Größe hochladen und die zugehörige URL an di
 Sofern kein Logo benötigt wird, kann dieses Datenfeld leer bleiben.',
 	'config-instantcommons' => '„InstantCommons“ aktivieren',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons InstantCommons] ist eine Funktion, die es Wikis ermöglicht, Bild-, Klang- und andere Mediendateien zu nutzen, die auf der Website [http://commons.wikimedia.org/ Wikimedia Commons] verfügbar sind.
-Um diese Funktion zu nutzen, muss MediaWiki eine Verbindung ins Internet herstellen können.
+Um diese Funktion zu nutzen, muss MediaWiki eine Verbindung ins Internet herstellen können. 
 
 Weitere Informationen zu dieser Funktion, einschließlich der Anleitung, wie andere Wikis als Wikimedia Commons eingerichtet werden können, gibt es im [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbuch].',
 	'config-cc-error' => 'Der Creativ-Commons-Lizenzassistent konnte keine Lizenz ermitteln.
@@ -6255,6 +6262,13 @@ Le conto que tu specifica hic debe jam exister.',
 	'config-mysql-engine' => 'Motor de immagazinage:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "* '''Attention:''' Tu ha seligite MyISAM como motor de immagazinage pro MySQL, lo que non es recommendate pro uso con MediaWiki, perque:
+* illo a pena supporta le processamento simultanee a causa del blocada le tabulas
+* illo es plus susceptibile al corruption que altere motores
+* le base de codice de MediaWiki non sempre manea MyISAM como illo deberea
+
+Si tu installation de MySQL supporta InnoDB, es multo recommendate que tu selige iste in su loco.
+Si tu installation de MySQL non supporta InnoDB, forsan isto es un bon occasion pro actualisar lo.",
 	'config-mysql-engine-help' => "'''InnoDB''' es quasi sempre le melior option, post que illo ha bon supporto pro simultaneitate.
 
 '''MyISAM''' pote esser plus rapide in installationes a usator singule o a lectura solmente.
@@ -6377,7 +6391,7 @@ Incarga un imagine con le dimensiones appropriate, e entra le URL hic.
 Si tu non vole un logotypo, lassa iste quadro vacue.',
 	'config-instantcommons' => 'Activar "Instant Commons"',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] es un function que permitte a wikis de usar imagines, sonos e altere multimedia trovate in le sito [http://commons.wikimedia.org/ Wikimedia Commons].
-Pro poter facer isto, MediaWiki require accesso a Internet.
+Pro poter facer isto, MediaWiki require accesso a Internet. 
 
 Pro plus information super iste function, includente instructiones super como configurar lo pro wikis altere que Wikimedia Commons, consulta [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos le manual].',
 	'config-cc-error' => 'Le selector de licentia Creative Commons non dava un resultato.
@@ -8585,6 +8599,13 @@ chmod a+w $3</pre>',
 	'config-mysql-engine' => 'Складишен погон:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''Предупредување''': Го одбравте MyISAM како складишен погон за MySQL. Но тој не се препорачува за МедијаВики бидејќи:
+* одвај поддржува едновременост поради заклучување на табелите
+* поподложен на расипување од другите погони
+* кодната база на МедијаВики не секогаш може да работи со MyISAM како што треба
+
+Ако вашата инсталација на MySQL поддржува InnoDB, тогаш сериозно препорачуваме да го користите него наместо MyISAM.
+Ако вашата инсталација на MySQL не поддржува InnoDB, веројатно дошло време за надградба.",
 	'config-mysql-engine-help' => "'''InnoDB''' речиси секогаш е најдобар избор, бидејќи има добра поддршка за едновременост.
 
 '''MyISAM''' може да е побрз кај инсталациите наменети за само еден корисник или незаписни инсталации (само читање).
@@ -8707,7 +8728,7 @@ chmod a+w $3</pre>',
 Ако не сакате да имате лого, тогаш оставете го ова поле празно.',
 	'config-instantcommons' => 'Овозможи Instant Commons',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] е функција која им овозможува на викијата да користат слики, звучни записи и други мултимедијални содржини од [http://commons.wikimedia.org/ Заедничката Ризница].
-За да може ова да работи, МедијаВики бара пристап до интернет.
+За да може ова да работи, МедијаВики бара пристап до интернет. 
 
 За повеќе информации за оваа функција и напатствија за нејзино поставување на вики (сите други освен Ризницата), коносултирајте го [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos прирачникот].',
 	'config-cc-error' => 'Изборникот на Creative Commons лиценца не даде резултати.
@@ -10789,7 +10810,7 @@ $1',
 	'config-localsettings-incomplete' => 'O ficheiro LocalSettings.php existente parece estar incompleto.
 A variável $1 não está definida.
 Por favor defina esta variável no LocalSettings.php e clique "Continuar".',
-	'config-localsettings-connection-error' => 'Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no LocalSettings.php ou AdminSettings.php. Por favor corrija essas configurações e tente novamente.
+	'config-localsettings-connection-error' => 'Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no LocalSettings.php ou AdminSettings.php. Por favor corrija essas configurações e tente novamente. 
 
 $1',
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
@@ -10849,7 +10870,7 @@ Pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
 Não pode instalar o MediaWiki.',
 	'config-env-php' => 'O PHP $1 está instalado.',
-	'config-env-php-toolow' => 'O PHP $1 está instalado.
+	'config-env-php-toolow' => 'O PHP $1 está instalado. 
 No entanto, o MediaWiki requer o PHP $2 ou superior.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, por Brian Viper, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'A usar a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
@@ -10931,7 +10952,7 @@ O nome não deve conter espaços.
 
 Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve poder fornecer-lhe o nome de uma base de dados que possa usar, ou permite-lhe criar bases de dados através de um painel de controle.',
 	'config-db-name-oracle' => "Esquema ''(schema)'' da base de dados:",
-	'config-db-account-oracle-warn' => "Há três cenários suportados na instalação do servidor de base de dados Oracle:
+	'config-db-account-oracle-warn' => "Há três cenários suportados na instalação do servidor de base de dados Oracle: 
 
 Se pretende criar a conta de acesso pela internet na base de dados durante o processo de instalação, forneça como conta para a instalação uma conta com o papel de SYSDBA na base de dados e especifique as credenciais desejadas para a conta de acesso pela internet. Se não pretende criar a conta de acesso pela internet durante a instalação, pode criá-la manualmente e fornecer só essa conta para a instalação (se ela tiver as permissões necessárias para criar os objectos do esquema ''(schema)''). A terceira alternativa é fornecer duas contas diferentes; uma com privilégios de criação e outra com privilégios limitados para o acesso pela internet.
 
@@ -11074,6 +11095,13 @@ A conta que especificar aqui já tem de existir.',
 	'config-mysql-engine' => 'Motor de armazenamento:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''Aviso''': Seleccionou o MyISAM para motor de armazenamento do MySQL, uma combinação desaconselhada para usar com o MediaWiki porque:
+* praticamente não permite acessos simultâneos, devido aos bloqueios de tabelas
+* o MyISAM é mais susceptível a perdas da integridade dos dados do que outros motores
+* o código do MediaWiki não trabalha devidamente com o MyISAM
+
+Se a sua instalação do MySQL suporta InnoDB, é altamente recomendado que o escolha em vez do MyISAM.
+Se não suporta o InnoDB, talvez esta seja uma boa altura para fazer a actualização para a versão mais recente do MySQL.",
 	'config-mysql-engine-help' => "'''InnoDB''' é quase sempre a melhor opção, porque suporta bem acessos simultâneos ''(concurrency)''.
 
 '''MyISAM''' pode ser mais rápido no modo de utilizador único ou em instalações somente para leitura.
@@ -11197,7 +11225,7 @@ Coloque na wiki uma imagem com estas dimensões e introduza aqui a URL dessa ima
 Se não pretende usar um logótipo, deixe este campo em branco.',
 	'config-instantcommons' => 'Activar a funcionalidade Instant Commons',
 	'config-instantcommons-help' => 'O [http://www.mediawiki.org/wiki/InstantCommons Instant Commons] é uma funcionalidade que permite que as wikis usem imagens, áudio e outros ficheiros multimédia disponíveis no site [http://commons.wikimedia.org/ Wikimedia Commons].
-Para poder usá-los, o MediaWiki necessita de acesso à internet.
+Para poder usá-los, o MediaWiki necessita de acesso à internet. 
 
 Para mais informações sobre esta funcionalidade, incluindo instruções sobre como configurá-la para usar outras wikis em vez da Wikimedia Commons, consulte o [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Manual Técnico].',
 	'config-cc-error' => 'O auxiliar de escolha de licenças da Creative Commons não produziu resultados.
@@ -11227,7 +11255,7 @@ Se não sabe qual é a porta, a predefinida é a 11211.',
 Estas talvez necessitem de configurações adicionais, mas pode activá-las agora',
 	'config-install-alreadydone' => "'''Aviso:''' Parece que já instalou o MediaWiki e está a tentar instalá-lo novamente.
 Passe para a próxima página, por favor.",
-	'config-install-begin' => 'Ao clicar "{{int:config-continue}}", vai iniciar a instalação do MediaWiki.
+	'config-install-begin' => 'Ao clicar "{{int:config-continue}}", vai iniciar a instalação do MediaWiki. 
 Se quiser fazer mais alterações, clique Voltar.',
 	'config-install-step-done' => 'terminado',
 	'config-install-step-failed' => 'falhou',

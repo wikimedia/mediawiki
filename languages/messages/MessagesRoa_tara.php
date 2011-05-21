@@ -1122,7 +1122,7 @@ Aqquà ste 'nu valore generate a uecchije ca tu puè ausà: $1",
 'savedprefs'                    => 'Le preferenze tue onne state aggiornete.',
 'timezonelegend'                => "Orarie d'a zone:",
 'localtime'                     => 'Orarie lochele:',
-'timezoneuseserverdefault'      => "Ause 'u valore de default d'u server",
+'timezoneuseserverdefault'      => "Ause 'u valore de default de uicchi ($1)",
 'timezoneuseoffset'             => "Otre (specifiche 'a distanze)",
 'timezoneoffset'                => 'Distanze¹:',
 'servertime'                    => "Orarie d'u server:",
@@ -1456,6 +1456,7 @@ Stu file jè $2.",
 'emptyfile'                   => "'U file ca tu è carecate pare ca è vacande.
 Pò essere ca è scritte male 'u nome d'u file e n'à carecate 'n'otre.
 Pe piacere condrolle ce tu avveramende vuè cu careche stu file.",
+'windows-nonascii-filename'   => 'Sta Uicchi non ge supporte le nome de le file cu le carattere speciale.',
 'fileexists'                  => "'Nu file cu stu nome esiste già, pe piacere verifiche '''<tt>[[:$1]]</tt>''' ce tu non ge sì secure no 'u sce cangianne.
 [[$1|thumb]]",
 'filepageexists'              => "'A pàgene de descrizione pe stu file ha state già ccreiate 'u '''<tt>[[:$1]]</tt>''', ma nisciune file cu stu nome osce a die esiste.
@@ -1633,6 +1634,7 @@ Ce cazze sus a 'a testate d'a colonne cange l'arrengamende.",
 'Na [[Special:WhatLinksHere/$2|liste comblete]] è disponibbele.",
 'nolinkstoimage'            => 'Non ge stonne pàggene ca appodene a stu fail.',
 'morelinkstoimage'          => 'Vide [[Special:WhatLinksHere/$1|cchiù collegaminde]] a stu file.',
+'linkstoimage-redirect'     => "$1 (redirezionamende d'u file) $2",
 'duplicatesoffile'          => "{{PLURAL:$1|'U seguende file ète 'nu|Le seguende $1 file sonde}} duplicate de stu file ([[Special:FileDuplicateSearch/$2|cchiù 'mbormaziune]]):",
 'sharedupload'              => 'Stu file avène da $1 e pò essere ausate da otre pruggette.',
 'sharedupload-desc-there'   => "Stu file è da $1 e pò essere ausate pe otre pruggette.<br />
@@ -2001,7 +2003,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_body'                  => 'Care $WATCHINGUSERNAME,
 
 
-\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATE da $PAGEEDITOR, vide $PAGETITLE_URL pa versiona corrende.
+\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATE da $PAGEEDITOR, vide $PAGETITLE_URL pa revisione corrende.
 
 $NEWPAGE
 
@@ -2012,12 +2014,15 @@ mail: $PAGEEDITOR_EMAIL
 uicchi: $PAGEEDITOR_WIKI
 
 Non ge stonne otre notifiche ce tu face otre cangiaminde senza ca tu visite sta pàgene.
-Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollete jndr\'à lista toje.
+Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollate jndr\'à lista toje.
 
              Statte Bbuene, \'u sisteme de notificaziune de {{SITENAME}}
 
 --
-Pe cangià le \'mbostaziune d\'a liste de le pàggene condrollete tue, vè vide
+Pe cangià le \'mbostaziune de notifeche de l\'email toje, vè vide
+{{fullurl:{{#special:Preferences}}}}
+
+Pe cangià le \'mbostaziune de l\'elenghe de le pàggene condrollate tune, vè vide
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Pe scangellà \'a pàgene da \'a liste de le pàggene condrollate, vè vide
@@ -2238,6 +2243,7 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'sp-contributions-username'            => "Indirizze IP o nome de l'utende:",
 'sp-contributions-toponly'             => "Sulamende facenne vedè le cangiaminde de l'urteme revisiune",
 'sp-contributions-submit'              => 'Cirche',
+'sp-contributions-showsizediff'        => "Fa fedè le differenze sus 'a dimenzione d'a pàgene",
 
 # What links here
 'whatlinkshere'            => 'Appondene aqquà',
@@ -2409,6 +2415,7 @@ Arrecuerdete de [[Special:UnlockDB|luvà 'u blocche]] apprrisse ca 'a manutenzio
 'lockfilenotwritable' => "'U blocche sus a le file d'u database non g'è scrivibbile.
 Pe bloccà o sbloccà 'u database quiste abbesogne de essere scritte da 'nu web server.",
 'databasenotlocked'   => "'U database non g'è blocchete.",
+'lockedbyandtime'     => "(de $1 'u $2 a le $3)",
 
 # Move page
 'move-page'                    => 'Spuèste $1',
@@ -2987,6 +2994,9 @@ Otre avènene scunnute pe defolt.
 
 # EXIF attributes
 'exif-compression-1' => 'No combresse',
+'exif-compression-2' => "Gruppe CCITT 3 Decodifeche de Esecuzione d'a lunghezze 1-Dimenzionale Cangiate de Huffman",
+'exif-compression-3' => "Gruppe CCITT 3 de decodifeche d'u fax",
+'exif-compression-4' => "Gruppe CCITT 4 de decodifeche d'u fax",
 
 'exif-copyrighted-true'  => 'Sotte copyright',
 'exif-copyrighted-false' => 'Pubbleche dominie',

@@ -1429,7 +1429,7 @@ $1",
 'savedprefs'                    => '個人設定を保存しました。',
 'timezonelegend'                => '時間帯：',
 'localtime'                     => '現地時間：',
-'timezoneuseserverdefault'      => 'サーバーの既定を使用',
+'timezoneuseserverdefault'      => '既定を使用 ($1)',
 'timezoneuseoffset'             => 'その他（時差を指定）',
 'timezoneoffset'                => '時差¹：',
 'servertime'                    => 'サーバーの時間：',
@@ -1762,6 +1762,7 @@ HTMLタグを見直してください。',
 'emptyfile'                   => 'アップロードしたファイルは内容が空のようです。
 ファイル名の指定が間違っている可能性があります。
 本当にこのファイルをアップロードしたいのか、確認してください。',
+'windows-nonascii-filename'   => 'このwikiでは、ファイル名に特殊文字を使うことができません。',
 'fileexists'                  => "この名前のファイルは既に存在しています。置き換えたいか確信がもてない場合は、'''<tt>[[:$1]]</tt>'''を確認してください。
 [[$1|thumb]]",
 'filepageexists'              => "このファイルのための説明ページは既に'''<tt>[[:$1]]</tt>'''に作成されていますが、現在、この名前のファイルは存在していません。
@@ -1957,6 +1958,7 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 [[Special:WhatLinksHere/$2|完全な一覧]]も参照してください。',
 'nolinkstoimage'                    => 'このファイルへリンクしているページはありません。',
 'morelinkstoimage'                  => 'このファイルへの[[Special:WhatLinksHere/$1|リンク元を更に]]を表示する。',
+'linkstoimage-redirect'             => '$1 (リダイレクト) $2',
 'duplicatesoffile'                  => '以下の$1ファイルが、このファイルと内容が同一です（[[Special:FileDuplicateSearch/$2|詳細]]）：',
 'sharedupload'                      => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。',
 'sharedupload-desc-there'           => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。
@@ -2553,6 +2555,7 @@ $1',
 'sp-contributions-username'            => 'IPアドレスまたは利用者名：',
 'sp-contributions-toponly'             => '最新版の編集のみを表示',
 'sp-contributions-submit'              => '検索',
+'sp-contributions-showsizediff'        => 'ページサイズの違いを表示',
 
 # What links here
 'whatlinkshere'            => 'リンク元',
@@ -2724,6 +2727,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'lockfilenotwritable' => 'データベースのロックファイルは書き込み不可です。
 データベースをロックまたは解除するには、ウェブサーバーにより書き込み可能である必要があります。',
 'databasenotlocked'   => 'データベースはロックされていません。',
+'lockedbyandtime'     => '($1 が $2 $3 から)',
 
 # Move page
 'move-page'                    => '「$1」の移動',
@@ -3100,6 +3104,7 @@ $1',
 'widthheightpage'        => '$1×$2、$3ページ',
 'file-info'              => 'ファイルサイズ：$1、MIMEタイプ：$2',
 'file-info-size'         => '$1×$2ピクセル、ファイルサイズ：$3、MIMEタイプ：$4',
+'file-info-size-pages'   => '$1 × $2 ピクセル、ファイルサイズ: $3、MIMEタイプ: $4、$5ページ{{PLURAL:$5}}。',
 'file-nohires'           => '<small>高解像度版はありません。</small>',
 'svg-long-desc'          => 'SVGファイル、$1×$2ピクセル、ファイルサイズ：$3',
 'show-big-image'         => '高解像度での画像',
