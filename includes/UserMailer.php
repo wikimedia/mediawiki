@@ -31,7 +31,7 @@
  */
 class MailAddress {
 	/**
-	 * @param $address Mixed: string with an email address, or a User object
+	 * @param $address string|User string with an email address, or a User object
 	 * @param $name String: human-readable name if a string address is given
 	 * @param $realName String: human-readable real name if a string address is given
 	 */
@@ -82,6 +82,13 @@ class UserMailer {
 
 	/**
 	 * Send mail using a PEAR mailer
+	 *
+	 * @param $mailer
+	 * @param $dest
+	 * @param $headers
+	 * @param $body
+	 *
+	 * @return Status
 	 */
 	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
 		$mailResult = $mailer->send( $dest, $headers, $body );
@@ -138,15 +145,18 @@ class UserMailer {
 			require_once( 'Mail.php' );
 
 			$msgid = str_replace( " ", "_", microtime() );
-			if ( function_exists( 'posix_getpid' ) )
+			if ( function_exists( 'posix_getpid' ) ) {
 				$msgid .= '.' . posix_getpid();
+			}
 
 			if ( is_array( $to ) ) {
 				$dest = array();
-				foreach ( $to as $u )
+				foreach ( $to as $u ) {
 					$dest[] = $u->address;
-			} else
+				}
+			} else {
 				$dest = $to->address;
+			}
 
 			$headers['From'] = $from->toString();
 
@@ -256,6 +266,8 @@ class UserMailer {
 
 	/**
 	 * Converts a string into a valid RFC 822 "phrase", such as is used for the sender name
+	 * @param $phrase string
+	 * @return string
 	 */
 	public static function rfc822Phrase( $phrase ) {
 		$phrase = strtr( $phrase, array( "\r" => '', "\n" => '', '"' => '' ) );
@@ -332,8 +344,9 @@ class EmailNotification {
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid = false ) {
 		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
-		if ( $title->getNamespace() < 0 )
+		if ( $title->getNamespace() < 0 ) {
 			return;
+		}
 
 		// Build a list of users to notfiy
 		$watchers = array();
@@ -385,7 +398,7 @@ class EmailNotification {
 
 	}
 
-	/*
+	/**
 	 * Immediate version of notifyOnPageChange().
 	 *
 	 * Send emails corresponding to the user $editor editing the page $title.
@@ -505,7 +518,7 @@ class EmailNotification {
 		}
 
 		if ( $wgEnotifImpersonal && $this->oldid ) {
-			/*
+			/**
 			 * For impersonal mail, show a diff link to the last
 			 * revision.
 			 */

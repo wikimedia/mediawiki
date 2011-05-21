@@ -34,11 +34,16 @@ class XmlTypeCheck {
 	
 	/**
 	 * Get the root element. Simple accessor to $rootElement
+	 *
+	 * @return string
 	 */
 	public function getRootElement() {
 		return $this->rootElement;
 	}
 
+	/**
+	 * @param $fname
+	 */
 	private function run( $fname ) {
 		$parser = xml_parser_create_ns( 'UTF-8' );
 
@@ -65,6 +70,11 @@ class XmlTypeCheck {
 		xml_parser_free( $parser );
 	}
 
+	/**
+	 * @param $parser
+	 * @param $name
+	 * @param $attribs
+	 */
 	private function rootElementOpen( $parser, $name, $attribs ) {
 		$this->rootElement = $name;
 		
@@ -76,7 +86,12 @@ class XmlTypeCheck {
 			xml_set_element_handler( $parser, false, false );
 		}
 	}
-	
+
+	/**
+	 * @param $parser
+	 * @param $name
+	 * @param $attribs
+	 */
 	private function elementOpen( $parser, $name, $attribs ) {
 		if( call_user_func( $this->filterCallback, $name, $attribs ) ) {
 			// Filter hit!
