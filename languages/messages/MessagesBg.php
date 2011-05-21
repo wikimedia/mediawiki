@@ -357,6 +357,7 @@ $messages = array(
 'listingcontinuesabbrev'         => ' продълж.',
 'index-category'                 => 'Индексирани страници',
 'noindex-category'               => 'Неиндексирани страници',
+'broken-file-category'           => 'Страници с неработещи препратки към файлове',
 
 'mainpagetext'      => "'''Уикито беше успешно инсталирано.'''",
 'mainpagedocfooter' => 'Разгледайте [http://meta.wikimedia.org/wiki/Help:Contents ръководството] за подробна информация относно използването на софтуера.
@@ -2486,6 +2487,7 @@ $1',
 'unlockdbsuccesstext' => 'Базата от данни на {{SITENAME}} беше отключена.',
 'lockfilenotwritable' => 'Няма права за писане върху файла за заключване на базата данни. За да заключи или отключи базата данни, уеб-сървърът трябва да има тези права.',
 'databasenotlocked'   => 'Базата от данни не е заключена.',
+'lockedbyandtime'     => '(от $1 на $2 в $3)',
 
 # Move page
 'move-page'                    => 'Преместване на $1',
