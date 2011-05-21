@@ -88,6 +88,8 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 * Bhojpuri (bho) (renamed from "bh").
+* (bug 29031) When translating block log entries, indefinite, infinite, and
+  infinity are now considered the same.
 
 == Compatibility ==
 

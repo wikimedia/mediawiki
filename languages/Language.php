@@ -2719,11 +2719,25 @@ class Language {
 	 * @see LanguageFi.php for example implementation
 	 */
 	function translateBlockExpiry( $str ) {
-		foreach( SpecialBlock::getSuggestedDurations( $this ) as $show => $value ){
+		$duration = SpecialBlock::getSuggestedDurations( $this );
+		foreach( $duration as $show => $value ){
 			if ( strcmp( $str, $value ) == 0 ) {
 				return htmlspecialchars( trim( $show ) );
 			}
 		}
+
+		// Since usually only infinite or indefinite is only on list, so try
+		// equivalents if still here.
+		$indefs = array( 'infinite', 'infinity', 'indefinite' );
+		if ( in_array( $str, $indefs ) ) {
+			foreach( $indefs as $val ) {
+				$show = array_search( $val, $duration, true );
+				if ( $show !== false ) {
+					return htmlspecialchars( trim( $show ) );
+				}
+			}
+		}
+		// If all else fails, return the original string.
 		return $str;
 	}
 
