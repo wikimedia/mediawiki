@@ -28,6 +28,10 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	/* Protected Methods */
 	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array
+	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		if ( $context->getUser() ) {
 			$username = $context->getUser();
@@ -42,9 +46,12 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 		}
 		return array();
 	}
-	
+
 	/* Methods */
-	
+
+	/**
+	 * @return string
+	 */
 	public function getGroup() {
 		return 'user';
 	}

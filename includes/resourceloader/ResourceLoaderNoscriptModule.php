@@ -30,7 +30,9 @@ class ResourceLoaderNoscriptModule extends ResourceLoaderWikiModule {
 	/**
 	 * Gets list of pages used by this module.  Obviously, it makes absolutely no
 	 * sense to include JavaScript files here... :D
-	 * 
+	 *
+	 * @param $context ResourceLoaderContext
+	 *
 	 * @return Array: List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {

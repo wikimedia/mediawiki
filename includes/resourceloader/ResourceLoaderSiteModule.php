@@ -29,7 +29,9 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 
 	/**
 	 * Gets list of pages used by this module
-	 * 
+	 *
+	 * @param $context ResourceLoaderContext
+	 *
 	 * @return Array: List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {

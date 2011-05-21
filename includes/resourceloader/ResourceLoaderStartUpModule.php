@@ -162,6 +162,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 	/* Methods */
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return string
+	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP, $wgLoadScript, $wgLegacyJavaScriptGlobals;
 
@@ -211,6 +215,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return $out;
 	}
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array|mixed
+	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		global $IP, $wgCacheEpoch;
 
@@ -235,9 +243,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 		return $this->modifiedTime[$hash] = $time;
 	}
-	
+
 	/* Methods */
-	
+
+	/**
+	 * @return string
+	 */
 	public function getGroup() {
 		return 'startup';
 	}

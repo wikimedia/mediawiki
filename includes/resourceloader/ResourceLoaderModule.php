@@ -99,7 +99,7 @@ abstract class ResourceLoaderModule {
 	 * Set this module's origin. This is called by ResourceLodaer::register()
 	 * when registering the module. Other code should not call this.
 	 *
-	 * @param $name Int origin
+	 * @param $origin Int origin
 	 */
 	public function setOrigin( $origin ) {
 		$this->origin = $origin;
@@ -164,6 +164,8 @@ abstract class ResourceLoaderModule {
 	 * Where on the HTML page should this module's JS be loaded?
 	 * 'top': in the <head>
 	 * 'bottom': at the bottom of the <body>
+	 *
+	 * @return string
 	 */
 	public function getPosition() {
 		return 'bottom';

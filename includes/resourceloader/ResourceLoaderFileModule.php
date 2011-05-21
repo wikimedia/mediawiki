@@ -292,7 +292,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function getGroup() {
 		return $this->group;
 	}
-	
+
+	/**
+	 * @return string
+	 */
 	public function getPosition() {
 		return $this->position;
 	}
@@ -375,10 +378,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/* Protected Methods */
 
+	/**
+	 * @param $path string
+	 * @return string
+	 */
 	protected function getLocalPath( $path ) {
 		return "{$this->localBasePath}/$path";
 	}
-	
+
+	/**
+	 * @param $path string
+	 * @return string
+	 */
 	protected function getRemotePath( $path ) {
 		return "{$this->remoteBasePath}/$path";
 	}
@@ -494,6 +505,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 
 	 * @param $styles Array: List of media type/list of file paths pairs, to read, remap and
 	 * concetenate
+	 *
+	 * @param $flip bool
+	 *
 	 * @return Array: List of concatenated and remapped CSS data from $styles, 
 	 *     keyed by media type
 	 */
@@ -521,6 +535,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * This method can be used as a callback for array_map()
 	 * 
 	 * @param $path String: File path of script file to read
+	 * @param $flip bool
+	 *
 	 * @return String: CSS data in script file
 	 */
 	protected function readStyleFile( $path, $flip ) {	

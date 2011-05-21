@@ -66,6 +66,10 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	
 	/* Methods */
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return string
+	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$scripts = '';
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
@@ -87,6 +91,10 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		return $scripts;
 	}
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array
+	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		global $wgScriptPath;
 		
@@ -119,6 +127,10 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		return $styles;
 	}
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return int|mixed
+	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
 		$mtimes = $this->getTitleMtimes( $context );
@@ -127,7 +139,11 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 		return $modifiedTime;
 	}
-	
+
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return bool
+	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
 		return count( $this->getTitleMtimes( $context ) ) == 0;
 	}
