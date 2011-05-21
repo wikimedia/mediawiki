@@ -83,6 +83,7 @@ test( 'getActionFrom', function(){
 		'edit': '/edit/$1'
 	});
 
+	equal( mw.util.getActionFrom( urlB ), 'edit', 'action-parameter support with action path' );
 	equal( mw.util.getActionFrom( urlC ), 'edit', 'wgActionPaths support' );
 
 	// Default settings
@@ -90,6 +91,7 @@ test( 'getActionFrom', function(){
 		'wgActionPaths': [],
 		'wgArticlePath': '/w/index.php/$1'
 	});
+	equal( mw.util.getActionFrom( urlB ), 'edit', 'action-parameter support with default settings' );
 	equal( mw.util.getActionFrom( urlD ), 'view', 'wgArticlePath (/index.php/$1) support' );
 
 });
@@ -109,14 +111,15 @@ test( 'getTitleFrom', function(){
 	});
 
 	equal( mw.util.getTitleFrom( urlA ), 'Article', 'wgArticlePath (/wiki/$1) support' );
-	equal( mw.util.getTitleFrom( urlB ), 'Article', 'action-parameter support' );
+	equal( mw.util.getTitleFrom( urlB ), 'Article', 'title-parameter support' );
 
 	// Custom settings
 	mw.config.set( 'wgActionPaths', {
 		'view': '/view/$1',
 		'edit': '/edit/$1'
 	});
-
+	
+	equal( mw.util.getTitleFrom( urlB ), 'Article', 'title-parameter support with action path' );
 	equal( mw.util.getTitleFrom( urlC ), 'Article', 'wgActionPaths support' );
 
 	// Default settings
@@ -125,6 +128,7 @@ test( 'getTitleFrom', function(){
 		'wgArticlePath': '/w/index.php/$1'
 	});
 
+	equal( mw.util.getTitleFrom( urlB ), 'Article', 'title-parameter support with default settings' );
 	equal( mw.util.getTitleFrom( urlD ), 'Article', 'wgArticlePath (/index.php/$1) support' );
 
 });
