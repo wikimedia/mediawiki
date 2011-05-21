@@ -36,6 +36,8 @@ production.
   Also built-in support for distribution through a TestSwarm instance.
 * (bug 29036) For cascade-protected pages, the mw-textarea-cprotected class is
   added to the textarea on the edit form.
+* mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
+
 
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
@@ -72,6 +74,7 @@ production.
   also in RTL text.
 * (bug 29055) Make don't send email on minor edits preference apply to
   changes to talk page in addition to watchlist edits.
+* (bug 29071) mediawiki.action.watch.ajax.js should pass uselang to API.
 
 === API changes in 1.19 ===
 * (bug 27790) add query type for querymodules to action=paraminfo
