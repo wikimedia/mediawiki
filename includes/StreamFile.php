@@ -63,7 +63,11 @@ function wfStreamFile( $fname, $headers = array() ) {
 	readfile( $fname );
 }
 
-/** */
+/**
+ * @param $filename string
+ * @param $safe bool
+ * @return null|string
+ */
 function wfGetType( $filename, $safe = true ) {
 	global $wgTrivialMimeDetection;
 

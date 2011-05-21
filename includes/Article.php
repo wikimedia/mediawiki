@@ -110,7 +110,7 @@ class Article {
 	 *
 	 * The target will be fetched from the redirect table if possible.
 	 * If this page doesn't have an entry there, call insertRedirect()
-	 * @return mixed Title object, or null if this page is not a redirect
+	 * @return Title|mixed object, or null if this page is not a redirect
 	 */
 	public function getRedirectTarget() {
 		if ( !$this->mTitle->isRedirect() ) {
