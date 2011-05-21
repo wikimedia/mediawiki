@@ -22,27 +22,74 @@
  * @ingroup Maintenance
  */
 
-$optionsWithArgs = array( 'report', 'namespaces' );
-
-require_once( dirname( __FILE__ ) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
  * @ingroup Maintenance
- * @todo port to Maintenance class
  */
-class BackupReader {
+class BackupReader extends Maintenance {
 	var $reportingInterval = 100;
-	var $reporting = true;
 	var $pageCount = 0;
 	var $revCount  = 0;
 	var $dryRun    = false;
-	var $debug     = false;
 	var $uploads   = false;
 	var $imageBasePath = false;
 	var $nsFilter  = false;
 
 	function __construct() {
+		parent::__construct();
+		$gz = in_array('compress.zlib', stream_get_wrappers()) ? 'ok' : '(disabled; requires PHP zlib module)';
+		$bz2 = in_array('compress.bzip2', stream_get_wrappers()) ? 'ok' : '(disabled; requires PHP bzip2 module)';
+
+		$this->mDescription = <<<TEXT
+This script reads pages from an XML file as produced from Special:Export or
+dumpBackup.php, and saves them into the current wiki.
+
+Compressed XML files may be read directly:
+  .gz $gz
+  .bz2 $bz2
+  .7z (if 7za executable is in PATH)
+
+Note that for very large data sets, importDump.php may be slow; there are
+alternate methods which can be much faster for full site restoration:
+<http://www.mediawiki.org/wiki/Manual:Importing_XML_dumps>
+TEXT;
 		$this->stderr = fopen( "php://stderr", "wt" );
+		$this->addOption( 'report',
+			'Report position and speed after every n pages processed', false, true );
+		$this->addOption( 'namespaces', 
+			'Import only the pages from namespaces belonging to the list of ' .
+			'pipe-separated namespace names or namespace indexes', false, true );
+		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
+		$this->addOption( 'debug', 'Output extra verbose debug information' );
+		$this->addOption( 'uploads', 'Process file upload data if included (experimental)' );
+		$this->addOption( 'image-base-path', 'Import files from a specified path', false, true );
+		$this->addArg( 'file', 'Dump file to import [else use stdin]', false );
+	}
+
+	public function execute() {
+		if( wfReadOnly() ) {
+			$this->error( "Wiki is in read-only mode; you'll need to disable it for import to work.", true );
+		}
+
+		$this->reportingInterval = intval( $this->getOption( 'report', 100 ) );
+		$this->dryRun = $this->hasOption( 'dry-run' );
+		$this->uploads = $this->hasOption( 'uploads' ); // experimental!
+		if ( $this->hasOption( 'image-base-path' ) ) {
+			$this->imageBasePath = $this->getOption( 'image-base-path' );
+		}
+		if ( $this->hasOption( 'namespaces' ) ) {
+			$this->setNsfilter( explode( '|', $this->getOption( 'namespaces' ) ) );
+		}
+
+		if( $this->hasArg() ) {
+			$result = $this->importFromFile( $this->getArg() );
+		} else {
+			$result = $this->importFromStdin();
+		}
+
+		$this->output( "Done!\n" );
+		$this->output( "You might want to run rebuildrecentchanges.php to regenerate RecentChanges\n" );
 	}
 
 	function setNsfilter( array $namespaces ) {
@@ -62,7 +109,7 @@ class BackupReader {
 		if ( strval( $ns ) === $namespace && $wgContLang->getNsText( $ns ) !== false ) {
 			return $ns;
 		}
-		wfDie( "Unknown namespace text / index specified: $namespace\n" );
+		$this->error( "Unknown namespace text / index specified: $namespace", true );
 	}
 
 	private function skippedNamespace( $obj ) {
@@ -74,7 +121,7 @@ class BackupReader {
 			$ns = $obj->title->getNamespace();
 		} else {
 			echo wfBacktrace();
-			wfDie( "Cannot get namespace of object in " . __METHOD__ . "\n" );
+			$this->error( "Cannot get namespace of object in " . __METHOD__, true );
 		}
 		return is_array( $this->nsFilter ) && !in_array( $ns, $this->nsFilter );
 	}
@@ -139,7 +186,7 @@ class BackupReader {
 	}
 
 	function showReport() {
-		if ( $this->reporting ) {
+		if ( $this->mQuiet ) {
 			$delta = wfTime() - $this->startTime;
 			if ( $delta ) {
 				$rate = sprintf( "%.2f", $this->pageCount / $delta );
@@ -182,8 +229,7 @@ class BackupReader {
 	function importFromStdin() {
 		$file = fopen( 'php://stdin', 'rt' );
 		if( posix_isatty( $file ) ) {
-			$this->showHelp();
-			exit();
+			$this->maybeHelp( true );
 		}
 		return $this->importFromHandle( $file );
 	}
@@ -194,7 +240,9 @@ class BackupReader {
 		$source = new ImportStreamSource( $handle );
 		$importer = new WikiImporter( $source );
 
-		$importer->setDebug( $this->debug );
+		if( $this->hasOption( 'debug' ) ) {
+			$importer->setDebug( true );
+		}
 		$importer->setPageCallback( array( &$this, 'reportPage' ) );
 		$this->importCallback =  $importer->setRevisionCallback(
 			array( &$this, 'handleRevision' ) );
@@ -215,74 +263,7 @@ class BackupReader {
 
 		return $importer->doImport();
 	}
-
-	function showHelp() {
-		$gz = in_array('compress.zlib', stream_get_wrappers()) ? 'ok' : '(disabled; requires PHP zlib module)';
-		$bz2 = in_array('compress.bzip2', stream_get_wrappers()) ? 'ok' : '(disabled; requires PHP bzip2 module)';
-		echo "This script reads pages from an XML file as produced from Special:Export\n";
-		echo "or dumpBackup.php, and saves them into the current wiki.\n";
-		echo "\n";
-		echo "Note that for very large data sets, importDump.php may be slow; there are\n";
-		echo "alternate methods which can be much faster for full site restoration:\n";
-		echo "http://www.mediawiki.org/wiki/Manual:Importing_XML_dumps\n";
-		echo "\n";
-		echo "Usage: php importDump.php [<options>] [<file>]\n";
-		echo "If no file is listed, input may be piped from stdin.\n";
-		echo "\n";
-		echo "Options:\n";
-		echo "  --quiet    Don't dump status reports to stderr.\n";
-		echo "  --report=n Report position and speed after every n pages processed.\n";
-		echo "  --namespaces=a|b|..|z Import only the pages from namespaces belonging to\n";
-		echo "    the list of pipe-separated namespace names or namespace indexes\n";
-		echo "  --dry-run  Parse dump without actually importing pages.\n";
-		echo "  --debug    Output extra verbose debug information\n";
-		echo "  --uploads  Process file upload data if included (experimental)\n";
-		echo "  --image-base-path=path  Import files from a specified path\n";
-		echo "\n";
-		echo "Compressed XML files may be read directly:\n";
-		echo "  .gz $gz\n";
-		echo "  .bz2 $bz2\n";
-		echo "  .7z (if 7za executable is in PATH)\n";
-		echo "\n";
-	}
 }
 
-if ( wfReadOnly() ) {
-	wfDie( "Wiki is in read-only mode; you'll need to disable it for import to work.\n" );
-}
-
-$reader = new BackupReader();
-if ( isset( $options['quiet'] ) ) {
-	$reader->reporting = false;
-}
-if ( isset( $options['report'] ) ) {
-	$reader->reportingInterval = intval( $options['report'] );
-}
-if ( isset( $options['dry-run'] ) ) {
-	$reader->dryRun = true;
-}
-if ( isset( $options['debug'] ) ) {
-	$reader->debug = true;
-}
-if ( isset( $options['uploads'] ) ) {
-	$reader->uploads = true; // experimental!
-}
-if ( isset( $options['image-base-path'] ) ) {
-	$reader->imageBasePath = $options['image-base-path'];
-}
-if ( isset( $options['namespaces'] ) ) {
-	$reader->setNsfilter( explode( '|', $options['namespaces'] ) );
-}
-
-if ( isset( $options['help'] ) ) {
-	$reader->showHelp();
-	exit();
-} elseif ( isset( $args[0] ) ) {
-	$result = $reader->importFromFile( $args[0] );
-} else {
-	$result = $reader->importFromStdin();
-}
-
-echo "Done!\n";
-echo "You might want to run rebuildrecentchanges.php to regenerate\n";
-echo "the recentchanges page.\n";
+$maintClass = 'BackupReader';
+require_once( RUN_MAINTENANCE_IF_MAIN );
