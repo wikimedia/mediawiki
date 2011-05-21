@@ -17,6 +17,8 @@
 
 		this.options = new mw.Map();
 
+		this.tokens = new mw.Map();
+
 		/* Public Methods */
 
 		/**
