@@ -18,6 +18,33 @@ test( 'wikiUrlencode', function(){
 
 });
 
+test( 'wikiGetlink', function(){
+
+	// Not part of startUp module
+	mw.config.set( 'wgArticlePath', '/wiki/$1' );
+
+	var hrefA = mw.util.wikiGetlink( 'Sandbox' );
+
+	equal( hrefA, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
+
+	var hrefB = mw.util.wikiGetlink( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
+
+	equal( hrefB, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage', 'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
+
+});
+
+test( 'wikiScript', function(){
+
+	mw.config.set({
+		'wgScript': '/w/index.php',
+		'wgScriptPath': '/w',
+		'wgScriptExtension': '.php',
+	});
+
+	equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ), 'Defaults to index.php and is equal to wgScript.' );
+
+});
+
 test( 'addCSS', function(){
 
 	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
@@ -33,21 +60,6 @@ test( 'addCSS', function(){
 test( 'toggleToc', function(){
 
 	ok( mw.util.toggleToc );
-
-});
-
-test( 'wikiGetlink', function(){
-
-	// Not part of startUp module
-	mw.config.set( 'wgArticlePath', '/wiki/$1' );
-
-	var hrefA = mw.util.wikiGetlink( 'Sandbox' );
-
-	equal( hrefA, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
-
-	var hrefB = mw.util.wikiGetlink( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
-
-	equal( hrefB, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage', 'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
 
 });
 

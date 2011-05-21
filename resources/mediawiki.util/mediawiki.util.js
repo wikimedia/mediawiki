@@ -138,6 +138,28 @@
 		},
 
 		/**
+		 * Get the link to a page name (relative to wgServer)
+		 *
+		 * @param str Page name to get the link for.
+		 * @return string Location for a page with name of 'str' or boolean false on error.
+		 */
+		'wikiGetlink' : function( str ) {
+
+			return mw.config.get( 'wgArticlePath' ).replace( '$1', this.wikiUrlencode( str ) );
+		},
+
+		/**
+		 * Get address to a script in the wiki root.
+		 * For index.php use mw.config.get( 'wgScript' )
+		 *
+		 * @param str Name of script (eg. 'api'), defaults to 'index'
+		 * @return str Address to script (eg. '/w/api.php' )
+		 */
+		'wikiScript' : function( str ) {
+			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) + mw.config.get( 'wgScriptExtension' );
+		},
+
+		/**
 		 * Append a new style block to the head
 		 *
 		 * @param text String CSS to be appended
@@ -188,17 +210,6 @@
 			} else {
 				return false;
 			}
-		},
-
-		/**
-		 * Get the link to a page name (relative to wgServer)
-		 *
-		 * @param str Page name to get the link for.
-		 * @return string Location for a page with name of 'str' or boolean false on error.
-		 */
-		'wikiGetlink' : function( str ) {
-
-			return mw.config.get( 'wgArticlePath' ).replace( '$1', this.wikiUrlencode( str ) );
 		},
 
 		/**

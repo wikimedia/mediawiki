@@ -80,17 +80,18 @@ $( document ).ready( function() {
 		}
 
 		setLinkText( $link, $link.data( 'action' ) + 'ing' );
-		
+
 		var reqData = {
 			'action': 'watch',
 			'format': 'json',
-			'title': $link.data( 'target' )
+			'title': $link.data( 'target' ),
+			// API return contains a localized data.watch.message string.
+			'uselang': mw.config.get( 'wgUserLanguage' )
 		};
 		if ( $link.data( 'action' ) == 'unwatch' ) {
-			reqData['unwatch'] = '';
+			reqData.unwatch = '';
 		}
-		$.getJSON( mw.config.get( 'wgScriptPath' )
-				+ '/api' + mw.config.get( 'wgScriptExtension' ),
+		$.getJSON( mw.util.wikiScript( 'api' ),
 			reqData,
 			function( data, textStatus, xhr ) {
 				processResult( data, $link );
