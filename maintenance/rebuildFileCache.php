@@ -31,6 +31,9 @@ class RebuildFileCache extends Maintenance {
 		$this->setBatchSize( 100 );
 	}
 
+	/**
+	 * @todo MAKE $wgArticle GO AWAY! This is the absolute LAST use in core
+	 */
 	public function execute() {
 		global $wgUseFileCache, $wgDisableCounters, $wgContentNamespaces, $wgRequestTime;
 		global $wgTitle, $wgArticle, $wgOut;

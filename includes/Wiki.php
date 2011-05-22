@@ -150,7 +150,6 @@ class MediaWiki {
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( $this->context->title instanceof BadTitle ) {
-			// Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 
 		// Interwiki redirects
@@ -292,7 +291,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * Initialize the object to be known as $wgArticle for "standard" actions
+	 * Initialize the main Article object for "standard" actions (view, etc)
 	 * Create an Article object for the page, following redirects if needed.
 	 *
 	 * @return mixed an Article, or a string to redirect to another URL
