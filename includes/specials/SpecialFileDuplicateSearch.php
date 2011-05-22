@@ -118,7 +118,7 @@ class FileDuplicateSearchPage extends QueryPage {
 
 		if( $this->file ) {
 			$this->hash = $this->file->getSha1();
-		} else {
+		} elseif( $this->filename !== '' ) {
 			$wgOut->wrapWikiMsg(
 				"<p class='mw-fileduplicatesearch-noresults'>\n$1\n</p>",
 				array( 'fileduplicatesearch-noresults', wfEscapeWikiText( $this->filename ) )

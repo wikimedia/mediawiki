@@ -76,6 +76,7 @@ production.
   changes to talk page in addition to watchlist edits.
 * (bug 29071) mediawiki.action.watch.ajax.js should pass uselang to API.
 * (bug 28272) Special:Allmessages should have only one "Go" button
+* (bug 29101) Special:FileDuplicateSearch shows silly message
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
