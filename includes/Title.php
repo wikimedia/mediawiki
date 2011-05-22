@@ -890,6 +890,8 @@ class Title {
 					}
 					#$url = "{$wgScript}?title={$dbkey}&{$query}";
 					# forge a nice URL (ex: /wiki/Special:Foo?q=1&r=2 )
+					// @todo FIXME: This causes a 403 error for action=raw
+					// which disallows wgArticlePath access (bug 29088)
 					$baseurl = str_replace( '$1', $dbkey, $wgArticlePath );
 					$url = wfAppendQuery( $baseurl, $query );
 				}
