@@ -51,8 +51,8 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	protected function getContent( $title ) {
 		if ( $title->getNamespace() === NS_MEDIAWIKI ) {
-			$dbkey = $title->getDBkey();
-			return wfEmptyMsg( $dbkey ) ? '' : wfMsgExt( $dbkey, 'content' );
+			$message = wfMessage( $title->getDBkey() )->inContentLanguage();
+			return $message->exists() ? $message->plain() : '';
 		}
 		if ( !$title->isCssJsSubpage() ) {
 			return null;
