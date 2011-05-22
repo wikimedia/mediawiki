@@ -77,6 +77,8 @@ production.
 * (bug 29071) mediawiki.action.watch.ajax.js should pass uselang to API.
 
 === API changes in 1.19 ===
+
+* BREAKING CHANGE: action=watch now requires POST and token.
 * (bug 27790) add query type for querymodules to action=paraminfo
 * (bug 28963) add langbacklinks module to api
 * (bug 27593) API: add error message when sha1/sha1base36 is invalid
