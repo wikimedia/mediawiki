@@ -34,7 +34,7 @@
  * Globals used:
  *    objects:   $wgLang, $wgContLang
  *
- * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
+ * NOT $wgUser or $wgTitle. Keep them away!
  *
  * settings:
  *  $wgUseDynamicDates*, $wgInterwikiMagic*,

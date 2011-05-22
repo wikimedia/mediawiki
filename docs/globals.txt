@@ -45,9 +45,6 @@ For a description of the classes, see design.txt.
 $wgTitle
 	Title object created from the request URL.
 
-$wgArticle
-	Article object corresponding to $wgTitle.
-
 $wgOut
 	OutputPage object for HTTP response.
 

@@ -443,11 +443,10 @@ if ( !is_object( $wgAuth ) ) {
 
 # Placeholders in case of DB error
 $wgTitle = null;
-$wgArticle = null;
 
 $wgDeferredUpdateList = array();
 
-// We need to check for safe_mode, because mail() willl throws an E_NOTICE
+// We need to check for safe_mode, because mail() will throw an E_NOTICE
 // on additional parameters
 if( !is_null($wgAdditionalMailParams) && wfIniGetBool('safe_mode') ) {
 	$wgAdditionalMailParams = null;
