@@ -12,15 +12,20 @@ test( 'firstTabIndex', function(){
 	var testEnvironment = 
 '<form>\
 	<input tabindex="7" />\
-	<input tabindex="2" />\
-	<textarea tabindex="9">Foobar</textarea>\
+	<input tabindex="9" />\
+	<textarea tabindex="2">Foobar</textarea>\
+	<textarea tabindex="5">Foobar</textarea>\
 </form>';
-	var $test = $( '<div />' ).html( testEnvironment ).appendTo( 'body' );
+	var $testA = $( '<div />' ).html( testEnvironment ).appendTo( 'body' );
 
-	deepEqual( $test.firstTabIndex(), 2, 'First tabindex should be 2 within this context.' );
+	deepEqual( $testA.firstTabIndex(), 2, 'First tabindex should be 2 within this context.' );
+
+	var $testB = $( '<div />' );
+
+	deepEqual( $testB.firstTabIndex(), null, 'Return null if none available.' );
 
 	// Clean up
-	$test.remove();
+	$testA.add( $testB).remove();
 });
 
 test( 'lastTabIndex', function(){
@@ -28,13 +33,18 @@ test( 'lastTabIndex', function(){
 	var testEnvironment = 
 '<form>\
 	<input tabindex="7" />\
-	<input tabindex="2" />\
-	<textarea tabindex="9">Foobar</textarea>\
+	<input tabindex="9" />\
+	<textarea tabindex="2">Foobar</textarea>\
+	<textarea tabindex="5">Foobar</textarea>\
 </form>';
-	var $test = $( '<div />' ).html( testEnvironment ).appendTo( 'body' );
+	var $testA = $( '<div />' ).html( testEnvironment ).appendTo( 'body' );
 
-	deepEqual( $test.lastTabIndex(), 9, 'Last tabindex should be 9 within this context.' );
+	deepEqual( $testA.lastTabIndex(), 9, 'Last tabindex should be 9 within this context.' );
+
+	var $testB = $( '<div />' );
+
+	deepEqual( $testB.lastTabIndex(), null, 'Return null if none available.' );
 
 	// Clean up
-	$test.remove();
+	$testA.add( $testB).remove();
 });
