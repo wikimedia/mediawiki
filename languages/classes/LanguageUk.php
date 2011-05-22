@@ -79,7 +79,7 @@ class LanguageUk extends Language {
 		}
 	}
 
-	/*
+	/**
 	 * Ukrainian numeric format is "12 345,67" but "1234,56"
 	 */
 	function commafy( $_ ) {

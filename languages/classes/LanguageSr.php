@@ -77,7 +77,7 @@ class SrConverter extends LanguageConverter {
 		return $carray;
 	}
 
-	/*
+	/**
 	 * A function wrapper:
 	 *   - if there is no selected variant, leave the link
 	 *     names as they were
@@ -97,7 +97,7 @@ class SrConverter extends LanguageConverter {
 			$link = $oldlink;
 	}
 
-	/*
+	/**
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
 	 */
@@ -107,7 +107,7 @@ class SrConverter extends LanguageConverter {
 		return $text;
 	}
 
-	/*
+	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
 	 */

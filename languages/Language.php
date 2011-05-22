@@ -2478,7 +2478,7 @@ class Language {
 		return $string;
 	}
 
-	/*
+	/**
 	 * Truncate a string of valid HTML to a specified length in bytes,
 	 * appending an optional string (e.g. for ellipses), and return valid HTML
 	 *
@@ -2610,7 +2610,7 @@ class Language {
 		return $skipCount;
 	}
 
-	/*
+	/**
 	 * truncateHtml() helper function
 	 * (a) push or pop $tag from $openTags as needed
 	 * (b) clear $tag value

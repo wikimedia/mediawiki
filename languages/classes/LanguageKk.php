@@ -211,7 +211,7 @@ class KkConverter extends LanguageConverter {
 		return $carray;
 	}
 
-	/*
+	/**
 	 * A function wrapper:
 	 *  - if there is no selected variant, leave the link
 	 *    names as they were
@@ -231,7 +231,7 @@ class KkConverter extends LanguageConverter {
 			$link = $oldlink;
 	}
 
-	/*
+	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
 	 */
@@ -337,7 +337,7 @@ class KkConverter extends LanguageConverter {
 		}
 	}
 
-	/*
+	/**
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
 	 */
@@ -395,9 +395,8 @@ class LanguageKk extends LanguageKk_cyrl {
 		}
 	}
 
-	/*
+	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
-	 *
 	 */
 	function ucfirst ( $string ) {
 		$variant = $this->getPreferredVariant();
@@ -409,9 +408,8 @@ class LanguageKk extends LanguageKk_cyrl {
 		return $string;
 	}
 
-	/*
+	/**
 	 * It fixes issue with  lcfirst for transforming 'I' to 'ı'
-	 *
 	 */
 	function lcfirst ( $string ) {
 		$variant = $this->getPreferredVariant();
