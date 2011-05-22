@@ -38,7 +38,6 @@ production.
   added to the textarea on the edit form.
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
 
-
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
 * (bug 28868) Show total pages in the subtitle of an image on the
@@ -75,9 +74,9 @@ production.
 * (bug 29055) Make don't send email on minor edits preference apply to
   changes to talk page in addition to watchlist edits.
 * (bug 29071) mediawiki.action.watch.ajax.js should pass uselang to API.
+* (bug 28272) Special:Allmessages should have only one "Go" button
 
 === API changes in 1.19 ===
-
 * BREAKING CHANGE: action=watch now requires POST and token.
 * (bug 27790) add query type for querymodules to action=paraminfo
 * (bug 28963) add langbacklinks module to api
