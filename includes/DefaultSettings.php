@@ -3366,7 +3366,7 @@ $wgGroupPermissions['sysop']['editinterface']    = true;
 $wgGroupPermissions['sysop']['editusercss']      = true;
 $wgGroupPermissions['sysop']['edituserjs']       = true;
 $wgGroupPermissions['sysop']['import']           = true;
-$wgGroupPermissions['sysop']['importupload']     = true;
+$wgGroupPermissions['sysop']['importupload']     = false;
 $wgGroupPermissions['sysop']['move']             = true;
 $wgGroupPermissions['sysop']['move-subpages']    = true;
 $wgGroupPermissions['sysop']['move-rootuserpages'] = true;
@@ -3947,7 +3947,7 @@ $wgDebugProfiling = false;
 /** Output debug message on every wfProfileIn/wfProfileOut */
 $wgDebugFunctionEntry = 0;
 
-/*
+/**
  * Destination for wfIncrStats() data...
  * 'cache' to go into the system cache, if enabled (memcached)
  * 'udp' to be sent to the UDP profiler (see $wgUDPProfilerHost)
