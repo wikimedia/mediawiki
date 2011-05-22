@@ -116,10 +116,10 @@ class HTMLFileCache {
 		return !$wgShowIPinHeader && !$wgUser->getId() && !$wgUser->getNewtalk() && $ulang == $clang;
 	}
 
-	/* 
-	* Check if up to date cache file exists
-	* @param $timestamp string
-	*/
+	/**
+	 * Check if up to date cache file exists
+	 * @param $timestamp string
+	 */
 	public function isFileCacheGood( $timestamp = '' ) {
 		global $wgCacheEpoch;
 
