@@ -198,17 +198,17 @@ class SpecialStatistics extends SpecialPage {
 				continue;
 			}
 			$groupname = htmlspecialchars( $group );
-			$msg = wfMsg( 'group-' . $groupname );
-			if ( wfEmptyMsg( 'group-' . $groupname ) || $msg == '' ) {
+			$msg = wfMessage( 'group-' . $groupname );
+			if ( $msg->isBlank() ) {
 				$groupnameLocalized = $groupname;
 			} else {
-				$groupnameLocalized = $msg;
+				$groupnameLocalized = $msg->text();
 			}
-			$msg = wfMsgForContent( 'grouppage-' . $groupname );
-			if ( wfEmptyMsg( 'grouppage-' . $groupname ) || $msg == '' ) {
+			$msg = wfMessage( 'grouppage-' . $groupname )->inContentLanguage();
+			if ( $msg->isBlank() ) {
 				$grouppageLocalized = MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname;
 			} else {
-				$grouppageLocalized = $msg;
+				$grouppageLocalized = $msg->text();
 			}
 			$linkTarget = Title::newFromText( $grouppageLocalized );
 			$grouppage = $sk->link(
