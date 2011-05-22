@@ -31,12 +31,9 @@ class RebuildFileCache extends Maintenance {
 		$this->setBatchSize( 100 );
 	}
 
-	/**
-	 * @todo MAKE $wgArticle GO AWAY! This is the absolute LAST use in core
-	 */
 	public function execute() {
 		global $wgUseFileCache, $wgDisableCounters, $wgContentNamespaces, $wgRequestTime;
-		global $wgTitle, $wgArticle, $wgOut;
+		global $wgTitle, $wgOut;
 		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
@@ -83,9 +80,9 @@ class RebuildFileCache extends Maintenance {
 					continue; // broken title?
 				}
 				$wgOut = $context->output; // set display title
-				$wgArticle = new Article( $wgTitle );
+				$article = new Article( $wgTitle );
 				// If the article is cacheable, then load it
-				if ( $wgArticle->isFileCacheable() ) {
+				if ( $article->isFileCacheable() ) {
 					$cache = new HTMLFileCache( $wgTitle );
 					if ( $cache->isFileCacheGood() ) {
 						if ( $overwrite ) {
@@ -96,8 +93,8 @@ class RebuildFileCache extends Maintenance {
 						}
 					}
 					ob_start( array( &$cache, 'saveToFileCache' ) ); // save on ob_end_clean()
-					$wgUseFileCache = false; // hack, we don't want $wgArticle fiddling with filecache
-					$wgArticle->view();
+					$wgUseFileCache = false; // hack, we don't want $article fiddling with filecache
+					$article->view();
 					@$wgOut->output(); // header notices
 					$wgUseFileCache = true;
 					ob_end_clean(); // clear buffer
@@ -119,8 +116,6 @@ class RebuildFileCache extends Maintenance {
 		// Remove these to be safe
 		if ( isset( $wgTitle ) )
 			unset( $wgTitle );
-		if ( isset( $wgArticle ) )
-			unset( $wgArticle );
 	}
 }
 
