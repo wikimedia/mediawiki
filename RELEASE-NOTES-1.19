@@ -37,6 +37,7 @@ production.
 * (bug 29036) For cascade-protected pages, the mw-textarea-cprotected class is
   added to the textarea on the edit form.
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
+* (bug 28904) Update jQuery version from 1.4.4 to 1.5.2 (the latest update to 1.5)
 
 === Bug fixes in 1.19 ===
 * (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
