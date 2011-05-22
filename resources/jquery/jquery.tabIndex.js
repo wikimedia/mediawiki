@@ -8,10 +8,12 @@
  * @return number Lowest tabindex on the page
  */
 $.fn.firstTabIndex = function() {
-	var minTabIndex = 0;
-	$(this).find( '[tabindex]' ).each( function() {
+	var minTabIndex = null;
+	$(this).find( '[tabindex]' ).each( function( i ) {
 		var tabIndex = parseInt( $(this).attr( 'tabindex' ), 10 );
-		if ( tabIndex > minTabIndex ) {
+		if ( i === 0 ) {
+			minTabIndex = tabIndex;
+		} else if ( tabIndex < minTabIndex ) {
 			minTabIndex = tabIndex;
 		}
 	} );
@@ -24,10 +26,12 @@ $.fn.firstTabIndex = function() {
  * @return number Highest tabindex on the page
  */
 $.fn.lastTabIndex = function() {
-	var maxTabIndex = 0;
-	$(this).find( '[tabindex]' ).each( function() {
+	var maxTabIndex = null;
+	$(this).find( '[tabindex]' ).each( function( i ) {
 		var tabIndex = parseInt( $(this).attr( 'tabindex' ), 10 );
-		if ( tabIndex > maxTabIndex ) {
+		if ( i === 0 ) {
+			maxTabIndex = tabIndex;
+		} else if ( tabIndex > maxTabIndex ) {
 			maxTabIndex = tabIndex;
 		}
 	} );
