@@ -11,12 +11,12 @@
 
 class LanguageBe_tarask extends Language {
 	/**
-	* Plural form transformations
-	*
-	* $wordform1 - singular form (for 1, 21, 31, 41...)
-	* $wordform2 - plural form (for 2, 3, 4, 22, 23, 24, 32, 33, 34...)
-	* $wordform3 - plural form (for 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 26...)
-	*/
+	 * Plural form transformations
+	 *
+	 * $wordform1 - singular form (for 1, 21, 31, 41...)
+	 * $wordform2 - plural form (for 2, 3, 4, 22, 23, 24, 32, 33, 34...)
+	 * $wordform3 - plural form (for 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 26...)
+	 */
 
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
@@ -41,7 +41,7 @@ class LanguageBe_tarask extends Language {
 		}
 	}
 
-	/*
+	/**
 	 * The Belarusian language uses apostrophe sign,
 	 * but the characters used for this could be both U+0027 and U+2019.
 	 * This function unifies apostrophe sign in search index values
@@ -62,7 +62,7 @@ class LanguageBe_tarask extends Language {
 		return $s;
 	}
 
-	/*
+	/**
 	 * Four-digit number should be without group commas (spaces)
 	 * So "1 234 567", "12 345" but "1234"
 	 */

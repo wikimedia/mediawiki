@@ -93,7 +93,7 @@ class LanguageRu extends Language {
 		}
 	}
 
-	/*
+	/**
 	 * Four-digit number should be without group commas (spaces)
 	 * See manual of style at http://ru.wikipedia.org/wiki/Википедия:Оформление_статей
 	 * So "1 234 567", "12 345" but "1234"

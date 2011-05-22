@@ -19,9 +19,9 @@ class LanguageKaa extends Language {
 		/* Full code of function convertGrammar() is in development. Updates coming soon. */
 		return $word;
 	}
-	/*
+
+	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
-	 *
 	 */
 	function ucfirst ( $string ) {
 		if ( substr( $string, 0, 1 ) === 'i' ) {
@@ -31,9 +31,8 @@ class LanguageKaa extends Language {
 		}
 	}
 
-	/*
+	/**
 	 * It fixes issue with  lcfirst for transforming 'I' to 'ı'
-	 *
 	 */
 	function lcfirst ( $string ) {
 		if ( substr( $string, 0, 1 ) === 'I' ) {
