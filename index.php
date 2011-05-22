@@ -124,7 +124,7 @@ function wfIndexMain() {
 					$cache->loadFromFileCache();
 				}
 				# Do any stats increment/watchlist stuff
-				$article = MediaWiki::articleFromTitle( $wgTitle, $context );
+				$article = Article::newFromTitle( $wgTitle, $context );
 				$article->viewUpdates();
 				# Tell OutputPage that output is taken care of
 				$context->output->disable();

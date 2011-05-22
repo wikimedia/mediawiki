@@ -177,7 +177,7 @@ class SearchEngine {
 
 			# See if it still otherwise has content is some sane sense
 			$context->setTitle( $title );
-			$article = MediaWiki::articleFromTitle( $title, $context );
+			$article = Article::newFromTitle( $title, $context );
 			if ( $article->hasViewableContent() ) {
 				return $title;
 			}

@@ -86,6 +86,40 @@ class Article {
 	}
 
 	/**
+	 * Create an Article object of the appropriate class for the given page.
+	 *
+	 * @param $title Title
+	 * @param $context RequestContext
+	 * @return Article object
+	 */
+	public static function newFromTitle( $title, RequestContext $context ) {
+		if ( NS_MEDIA == $title->getNamespace() ) {
+			// FIXME: where should this go?
+			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
+		}
+
+		$article = null;
+		wfRunHooks( 'ArticleFromTitle', array( &$title, &$article ) );
+		if ( $article ) {
+			$article->setContext( $context );
+			return $article;
+		}
+
+		switch( $title->getNamespace() ) {
+			case NS_FILE:
+				$page = new ImagePage( $title );
+				break;
+			case NS_CATEGORY:
+				$page = new CategoryPage( $title );
+				break;
+			default:
+				$page = new Article( $title );
+		}
+		$page->setContext( $context );
+		return $page;
+	}
+
+	/**
 	 * Constructor from an page id
 	 * @param $id Int article ID to load
 	 */
