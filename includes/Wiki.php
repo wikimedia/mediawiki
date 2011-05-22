@@ -228,34 +228,13 @@ class MediaWiki {
 	/**
 	 * Create an Article object of the appropriate class for the given page.
 	 *
+	 * @deprecated in 1.19; use Article::newFromTitle() instead
 	 * @param $title Title
 	 * @param $context RequestContext
 	 * @return Article object
 	 */
 	public static function articleFromTitle( $title, RequestContext $context ) {
-		if ( NS_MEDIA == $title->getNamespace() ) {
-			// @todo FIXME: Where should this go?
-			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
-		}
-
-		$article = null;
-		wfRunHooks( 'ArticleFromTitle', array( &$title, &$article ) );
-		if ( $article ) {
-			return $article;
-		}
-
-		switch( $title->getNamespace() ) {
-			case NS_FILE:
-				$page = new ImagePage( $title );
-				break;
-			case NS_CATEGORY:
-				$page = new CategoryPage( $title );
-				break;
-			default:
-				$page = new Article( $title );
-		}
-		$page->setContext( $context );
-		return $page;
+		return Article::newFromTitle( $title, $context );
 	}
 
 	/**
@@ -302,7 +281,7 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$action = $this->context->request->getVal( 'action', 'view' );
-		$article = self::articleFromTitle( $this->context->title, $this->context );
+		$article = Article::newFromTitle( $this->context->title, $this->context );
 		// NS_MEDIAWIKI has no redirects.
 		// It is also used for CSS/JS, so performance matters here...
 		if ( $this->context->title->getNamespace() == NS_MEDIAWIKI ) {
@@ -339,7 +318,7 @@ class MediaWiki {
 				}
 				if ( is_object( $target ) ) {
 					// Rewrite environment to redirected article
-					$rarticle = self::articleFromTitle( $target, $this->context );
+					$rarticle = Article::newFromTitle( $target, $this->context );
 					$rarticle->loadPageData();
 					if ( $rarticle->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
 						$rarticle->setRedirectedFrom( $this->context->title );
