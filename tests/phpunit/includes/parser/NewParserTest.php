@@ -302,7 +302,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$GLOBALS['wgLang'] = $context->lang;
 
 		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
-		$GLOBALS['wgOut'] = new $context->output;
+		$GLOBALS['wgOut'] = $context->output;
 
 		global $wgHooks;
 
