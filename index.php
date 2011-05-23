@@ -88,7 +88,7 @@ function wfIndexMain() {
 			} else {
 				echo "Waiting for a database server: $lag seconds lagged\n";
 			}
-			exit;
+			return;
 		}
 	}
 
@@ -108,7 +108,7 @@ function wfIndexMain() {
 		$dispatcher->performAction();
 		wfProfileOut( 'index.php' );
 		$mediaWiki->restInPeace();
-		exit;
+		return;
 	}
 
 	if ( $wgUseFileCache && $wgTitle !== null ) {
@@ -132,7 +132,7 @@ function wfIndexMain() {
 				$mediaWiki->finalCleanup();
 				wfProfileOut( 'index.php' );
 				$mediaWiki->restInPeace();
-				exit;
+				return;
 			}
 		}
 		wfProfileOut( 'index.php-filecache' );
