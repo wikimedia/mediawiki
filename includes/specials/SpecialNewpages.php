@@ -460,6 +460,14 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return $title;
 	}
 
+	function getUser() {
+		static $user = null;
+		if ( $user === null ) {
+			$user = $this->mForm->getUser();
+		}
+		return $user;
+	}
+
 	function getQueryInfo() {
 		global $wgEnableNewpagesUserFilter, $wgGroupPermissions;
 		$conds = array();
