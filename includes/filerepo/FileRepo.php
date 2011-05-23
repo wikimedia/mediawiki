@@ -429,7 +429,8 @@ abstract class FileRepo {
 
 
 	/**
-	 * Append the contents of the source path to the given file.
+	 * Append the contents of the source path to the given file, OR queue
+	 * the appending operation in anticipation of a later appendFinish() call.
 	 * @param $srcPath String: location of the source file
 	 * @param $toAppendPath String: path to append to.
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
@@ -437,6 +438,13 @@ abstract class FileRepo {
 	 * @return mixed Status or false
 	 */
 	abstract function append( $srcPath, $toAppendPath, $flags = 0 );
+
+	/**
+	 * Finish the append operation.
+	 * @param $toAppendPath String: path to append to.
+	 * @return mixed Status or false
+	 */
+	abstract function appendFinish( $toAppendPath );
 
 	/**
 	 * Remove a temporary file or mark it for garbage collection
