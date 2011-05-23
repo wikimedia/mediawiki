@@ -96,8 +96,8 @@ $( document ).ready( function() {
 		var link = this;
 		$link
 			.data( 'icon', $link.closest( 'li' ).hasClass( 'icon' ) )
-			.data( 'action', mw.util.getActionFrom( link.href ) == 'unwatch' ? 'unwatch' : 'watch' );
-		var title = mw.util.getTitleFrom( link.href );
+			.data( 'action', mw.util.getParamValue( 'action', link.href ) == 'unwatch' ? 'unwatch' : 'watch' );
+		var title = mw.util.getParamValue( 'title', link.href );
 		$link.data( 'target', title.replace( /_/g, ' ' ) );
 	});
 

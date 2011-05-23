@@ -215,12 +215,6 @@
 		/**
 		 * Grab the URL parameter value for the given parameter.
 		 * Returns null if not found.
-		 * Beware! When action paths are enabled (wgActionPaths) using this function
-		 * to retrieve the 'action' or 'title' parameter will probably fail since
-		 * those parameters are hidden in the path.
-		 * To safely query for:
-		 *   'action' use getActionFrom( url )
-		 *   'title'  use getTitleFrom( url )
 		 *
 		 * @param param The parameter name
 		 * @param url URL to search through (optional)
@@ -233,66 +227,6 @@
 			if ( m && m.length > 1 ) {
 				return decodeURIComponent( m[1] );
 			}
-			return null;
-		},
-
-		/** 
-		 * Try to find the wiki action for a given URL with actions paths support.
-		 * Defaults to 'view'.
-		 *
-		 * @param url URL to search for a wiki action
-		 * @return Action
-		 */
-		'getActionFrom' : function( url ) {
-			// attempt to get the action from the parameter [&?]action=
-			var action = mw.util.getParamValue( 'action', url );
-			if ( action !== null ) {
-				return action;
-			}
-
-			// now from the action paths
-			var actionPaths = mw.config.get( 'wgActionPaths' );
-			if ( actionPaths.length === 0 ) {
-				actionPaths.view = mw.config.get( 'wgArticlePath' );
-			}
-			var actionRe;
-			for ( action in actionPaths ) {
-				actionRe = new RegExp( actionPaths[action].replace( '$1', '.*?' ) );
-				if ( url.match( actionRe ) ) {
-					return action;
-				}
-			}
-
-			return 'view';
-		},
-
-		/**
-		 * Try to find the wiki title for a given URL with actions paths support
-		 *
-		 * @param url URL to search for a title
-		 * @return Title or null.
-		 */
-		'getTitleFrom' : function( url ) {
-			// attempt to get the title from the parameter [&?]title=
-			var title = mw.util.getParamValue( 'title', url );
-			if ( title !== null ) {
-				return title;
-			}
-
-			// now from the action paths	
-			var actionPaths = mw.config.get( 'wgActionPaths' );
-			if ( actionPaths.length === 0 ) {
-				actionPaths.view = mw.config.get( 'wgArticlePath' );
-			}
-			var action, actionRe;
-			for ( action in actionPaths ) {
-				actionRe = new RegExp( '.*' + actionPaths[action].replace( '$1', '([^&?#]+)' ) );
-				title = url.match( actionRe );
-				if ( title !== null ) {
-					return title[1];
-				}
-			}
-
 			return null;
 		},
 
