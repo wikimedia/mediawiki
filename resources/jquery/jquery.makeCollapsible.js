@@ -294,13 +294,14 @@ $.fn.makeCollapsible = function() {
 				}
 	
 			} else { // <div>, <p> etc.
+	
+				// The toggle-link will be the first child of the element
+				var $toggle = $that.find( '> .mw-collapsible-toggle' );
+
 				// If a direct child .content-wrapper does not exists, create it
 				if ( !$that.find( '> .mw-collapsible-content' ).length ) {
 					$that.wrapInner( '<div class="mw-collapsible-content"></div>' );
 				}
-	
-				// The toggle-link will be the first child of the element
-				var $toggle = $that.find( '> .mw-collapsible-toggle' );
 	
 				// If theres no toggle link, add it
 				if ( !$toggle.length ) {

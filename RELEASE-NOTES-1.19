@@ -100,7 +100,7 @@ changes to languages because of Bugzilla reports.
 * Bhojpuri (bho) (renamed from "bh").
 * (bug 29031) When translating block log entries, indefinite, infinite, and
   infinity are now considered the same.
-  
+
 === Other changes in 1.19 ===
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
 

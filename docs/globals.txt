@@ -9,7 +9,7 @@ in a much more flexible way. Consider the elegance of:
     # Generate the article HTML as if viewed by a web request
     $article = new Article( Title::newFromText( $t ) );
     $article->view();
-
+ 
 versus
 
     # Save current globals
@@ -29,13 +29,13 @@ Some of the current MediaWiki developers have an idle fantasy that some day,
 globals will be eliminated from MediaWiki entirely, replaced by an application
 object which would be passed to constructors. Whether that would be an
 efficient, convenient solution remains to be seen, but certainly PHP 5 makes
-such object-oriented programming  models easier than they were in previous
+such object-oriented programming models easier than they were in previous
 versions.
 
 For the time being though, MediaWiki programmers will have to work in an
 environment with some global context. At the time of writing, 418 globals were
-initialised on startup by  MediaWiki. 304 of these were configuration settings,
-which are documented in DefaultSettings.php. There is no  comprehensive
+initialised on startup by MediaWiki. 304 of these were configuration settings,
+which are documented in DefaultSettings.php. There is no comprehensive
 documentation for the remaining 114 globals, however some of the most important
 ones are listed below. They are typically initialised either in index.php or in
 Setup.php.
