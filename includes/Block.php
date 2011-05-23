@@ -1007,9 +1007,9 @@ class Block {
 		# We may have been through this before
 		if( $target instanceof User ){
 			if( IP::isValid( $target->getName() ) ){
-				return self::TYPE_IP;
+				return array( $target, self::TYPE_IP );
 			} else {
-				return self::TYPE_USER;
+				return array( $target, self::TYPE_USER );
 			}
 		} elseif( $target === null ){
 			return array( null, null );
