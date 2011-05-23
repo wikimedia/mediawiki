@@ -2095,8 +2095,9 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'watchlist-options'    => 'Dibarzhioù ar roll evezhiañ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Heuliet...',
-'unwatching' => 'Paouez da evezhiañ...',
+'watching'       => 'Heuliet...',
+'unwatching'     => 'Paouez da evezhiañ...',
+'watcherrortext' => 'Ur gudenn zo bet en ur gemmañ arventennoù ho roll evezhiañ evit "$1".',
 
 'enotif_mailer'                => 'Posteler Kemenn {{SITENAME}}',
 'enotif_reset'                 => 'Merkañ an holl bajennoù evel gwelet',

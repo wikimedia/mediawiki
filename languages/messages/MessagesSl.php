@@ -2136,8 +2136,9 @@ Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tuk
 'watchlist-options'    => 'Možnosti spiska nadzorov',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Nadziranje ...',
-'unwatching' => 'Nenadziranje ...',
+'watching'       => 'Nadziranje ...',
+'unwatching'     => 'Nenadziranje ...',
+'watcherrortext' => 'Med spreminjanjem vaših nastavitev spiska nadzora za »$1« je prišlo do napake.',
 
 'enotif_mailer'                => 'Obvestilni poštar {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'enotif_reset'                 => 'Označi vse strani kot prebrane',

@@ -2235,7 +2235,7 @@ O endereço de correio que introduziu nas suas [[Special:Preferences|preferênci
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua lista de [[Special:Watchlist|páginas vigiadas]], onde serão indicadas quaisquer
 modificações futuras desta página e da respectiva página de discussão.
-O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:RecentChanges|mudanças recentes]] para que a encontre facilmente.",
+O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:RecentChanges|mudanças recentes]], para que a encontre facilmente.",
 'removedwatch'         => 'Removida da lista de páginas vigiadas',
 'removedwatchtext'     => 'A página "[[:$1]]" foi removida da sua lista de [[Special:Watchlist|páginas vigiadas]].',
 'watch'                => 'Vigiar',
@@ -2257,8 +2257,9 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'watchlist-options'    => 'Opções da lista de páginas vigiadas',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'A vigiar...',
-'unwatching' => 'Deixando de vigiar...',
+'watching'       => 'A vigiar...',
+'unwatching'     => 'Deixando de vigiar...',
+'watcherrortext' => 'Ocorreu um erro ao alterar a configuração da sua lista de páginas vigiadas para "$1".',
 
 'enotif_mailer'                => 'Gerador de Notificações da {{SITENAME}}',
 'enotif_reset'                 => 'Marcar todas as páginas como visitadas',

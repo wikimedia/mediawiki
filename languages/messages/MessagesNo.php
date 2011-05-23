@@ -2139,8 +2139,9 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 'watchlist-options'    => 'Alternativ for overvåkningslisten',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Overvåker…',
-'unwatching' => 'Fjerner fra overvåkningsliste…',
+'watching'       => 'Overvåker…',
+'unwatching'     => 'Fjerner fra overvåkningsliste…',
+'watcherrortext' => 'Det oppsto en feil under endring av overvåkningsinnstillingene dine for «$1».',
 
 'enotif_mailer'                => '{{SITENAME}}s påminnelsessystem',
 'enotif_reset'                 => 'Merk alle sider som besøkt',

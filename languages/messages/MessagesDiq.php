@@ -2162,7 +2162,9 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 'blocklog-showsuppresslog'        => 'verniyê no/na karberi cıwa ver geriyayo/ya.',
 'blocklogentry'                   => '[[$1]] block kerd, hetani $2 $3',
 'reblock-logentry'                => 'qey [[$1]]i tarixê qediyayişi $2 $3 pa ninan a eyarê ver-grewtışan vurna.',
-'blocklogtext'                    => 'tiya de listeya ver-grewtışê cıresayişê karberani esta. verniyê IP adres ê ke otomatik geriyayê tiya de çinê. ê karberi yê ke cıresayişê inani bıriyayê [[Special:BlockList|listeya ver-grewtışê IP]]yan no pel de şıma eşkeni bıvini.',
+'blocklogtext'                    => 'No kuliyatê kılitkerdış u rakerdışê fealiyetê karberano.
+Adresê IPyê ke otomatikmen kılit biyê lista de çıniyê.
+Seba lista karberanê ke heta nıka kılit biyê [[Special:BlockList|lista kılitkerdışê IPy]] bıvênên.',
 'unblocklogentry'                 => '$1 ake',
 'block-log-flags-anononly'        => 'teyna karberê anonîmî',
 'block-log-flags-nocreate'        => 'akerdışê hesabi qapan bi',

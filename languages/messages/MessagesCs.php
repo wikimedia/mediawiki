@@ -2247,8 +2247,9 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'watchlist-options'    => 'Možnosti sledovaných stránek',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Přidávám na seznam sledovaných stránek…',
-'unwatching' => 'Odebírám ze seznamu sledovaných stránek…',
+'watching'       => 'Přidávám na seznam sledovaných stránek…',
+'unwatching'     => 'Odebírám ze seznamu sledovaných stránek…',
+'watcherrortext' => 'Při změně sledování stránky „$1“ došlo k chybě.',
 
 'enotif_mailer'                => 'Zasílač hlášení {{grammar:2sg|{{SITENAME}}}}',
 'enotif_reset'                 => 'Označit vše jako navštívené',

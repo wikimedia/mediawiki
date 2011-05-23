@@ -2068,8 +2068,9 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'watchlist-options'    => 'Indstillinger for overvågningslisten',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Tilføjer overvågning …',
-'unwatching' => 'Fjerner overvågning …',
+'watching'       => 'Tilføjer overvågning …',
+'unwatching'     => 'Fjerner overvågning …',
+'watcherrortext' => 'Der opstod en fejl under forsøget på at ændre dine overvågningsindstillinger for "$1".',
 
 'enotif_mailer'                => '{{SITENAME}} informationsmail',
 'enotif_reset'                 => 'Marker alle sider som besøgt',

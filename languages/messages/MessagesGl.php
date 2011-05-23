@@ -2172,8 +2172,9 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watchlist-options'    => 'Opcións de vixilancia',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Vixiando...',
-'unwatching' => 'Deixando de vixiar...',
+'watching'       => 'Vixiando...',
+'unwatching'     => 'Deixando de vixiar...',
+'watcherrortext' => 'Houbo un erro ao cambiar as súas opcións de vixilancia para a páxina "$1".',
 
 'enotif_mailer'                => 'Correo de aviso de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar todas as páxinas como visitadas',

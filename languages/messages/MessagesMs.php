@@ -2080,8 +2080,9 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'watchlist-options'    => 'Pilihan senarai pantau',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Memantau...',
-'unwatching' => 'Menyahpantau...',
+'watching'       => 'Memantau...',
+'unwatching'     => 'Menyahpantau...',
+'watcherrortext' => 'Ralat berlaku ketika menukar tetapan senarai pantau anda untuk "$1".',
 
 'enotif_mailer'                => 'Sistem Pemberitahuan {{SITENAME}}',
 'enotif_reset'                 => 'Tandakan semua laman sebagai telah dikunjungi',

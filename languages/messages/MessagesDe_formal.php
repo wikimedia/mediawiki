@@ -584,7 +584,7 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 
 # Namespace 8 related
 'allmessagestext' => 'Dies ist eine Liste der MediaWiki-Systemtexte.
-Besuchen Sie die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], wenn Sie sich an der Lokalisierung von MediaWiki beteiligen möchten.',
+Bitte besuchen Sie die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], sofern Sie sich an der Lokalisierung von MediaWiki beteiligen möchten.',
 
 # Special:Import
 'import-interwiki-text' => 'Wählen Sie ein Wiki und eine Seite zum Importieren aus.

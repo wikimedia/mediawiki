@@ -56,6 +56,7 @@
  * @author Lloffiwr
  * @author MF-Warburg
  * @author Malafaya
+ * @author MarkvA
  * @author MaxSem
  * @author McDutchie
  * @author Meno25
@@ -1329,6 +1330,9 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 'prefs-help-watchlist-token'    => 'Used in [[Special:Preferences]], tab Watchlist.',
 'savedprefs'                    => 'This message appears after saving changes to your user preferences.',
 'timezonelegend'                => '{{Identical|Time zone}}',
+'timezoneuseserverdefault'      => '[[Special:Preferences]] > Date and time > Time zone
+
+This option lets your time zone setting use the one that is used on the wiki (often UTC).',
 'timezoneoffset'                => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
 'allowemail'                    => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions'           => '{{Identical|Search options}}',

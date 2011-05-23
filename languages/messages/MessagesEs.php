@@ -1475,7 +1475,7 @@ Esto no se puede deshacer.',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burócratas',
-'group-suppress'      => 'Supresores',
+'group-suppress'      => 'Supresores de ediciones',
 'group-all'           => '(todos)',
 
 'group-user-member'          => 'usuario',
@@ -1483,7 +1483,7 @@ Esto no se puede deshacer.',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administrador',
 'group-bureaucrat-member'    => 'burócrata',
-'group-suppress-member'      => 'supresor',
+'group-suppress-member'      => 'supresor de ediciones',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
@@ -2040,7 +2040,7 @@ Por favor note que otros sitios web pueden vincular a un archivo con un URL dire
 'nopagetext'              => 'La página destino que ha especificado no existe.',
 'pager-newer-n'           => '{{PLURAL:$1|1 siguiente|$1 siguientes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
-'suppress'                => 'Supervisor',
+'suppress'                => 'Supresor de ediciones',
 'querypage-disabled'      => 'Esta página especial está deshabilitada por motivos de rendimiento.',
 
 # Book sources
@@ -3438,9 +3438,10 @@ $1",
 'trackbackdeleteok' => 'El trackback se borró correctamente.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Aviso''': ¡Esta página fue borrada después de que usted empezara a editar!",
-'confirmrecreate'     => "El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró este artículo después de que tú empezaces a editarlo y dio esta razón: ''$2'' Por favor, confirma que realmente deseas crear de nuevo el artículo.",
-'recreate'            => 'Crear de nuevo',
+'deletedwhileediting'      => "'''Aviso''': ¡Esta página fue borrada después de que usted empezara a editar!",
+'confirmrecreate'          => "El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró este artículo después de que tú empezaces a editarlo y dio esta razón: ''$2'' Por favor, confirma que realmente deseas crear de nuevo el artículo.",
+'confirmrecreate-noreason' => 'El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta página después de que comenzaras a editarla. Por favor confirma que realmente quieres recrear esta página.',
+'recreate'                 => 'Crear de nuevo',
 
 # action=purge
 'confirm_purge_button' => 'Aceptar',

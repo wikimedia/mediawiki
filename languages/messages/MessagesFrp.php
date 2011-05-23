@@ -1399,7 +1399,7 @@ Vê-que una valor fêta per hasârd que vos pouede utilisar : $1',
 'savedprefs'                    => 'Les prèferences ont étâ encartâs.',
 'timezonelegend'                => 'Fus horèro :',
 'localtime'                     => 'Hora locala :',
-'timezoneuseserverdefault'      => 'Utilisar la valor du sèrvor',
+'timezoneuseserverdefault'      => 'Utilisar la valor per dèfôt du vouiqui ($1)',
 'timezoneuseoffset'             => 'Ôtro (spècefiar lo dècalâjo)',
 'timezoneoffset'                => 'Dècalâjo horèro¹ :',
 'servertime'                    => 'Hora du sèrvor :',
@@ -1452,7 +1452,7 @@ Ceta enformacion serat publica.',
 'prefs-help-email'              => 'L’adrèce èlèctronica est u chouèx, mas el est nècèssèra por tornar inicialisar voutron mot de pâssa, se vos vegnéd a l’oubliar.',
 'prefs-help-email-others'       => 'Vos porriâd asse-ben chouèsir de lèssiér los ôtros sè veriér vers vos sur voutra pâge utilisator ou ben de discussion sen que seye nècèssèro de dèvouèlar voutra identitât.',
 'prefs-help-email-required'     => 'Una adrèce èlèctronica est nècèssèra.',
-'prefs-info'                    => 'Enformacion de bâsa',
+'prefs-info'                    => 'Enformacions de bâsa',
 'prefs-i18n'                    => 'Entèrnacionalisacion',
 'prefs-signature'               => 'Signatura',
 'prefs-dateformat'              => 'Format de les dâtes',
@@ -1732,6 +1732,7 @@ cél fichiér fât $2.',
 'emptyfile'                   => 'Lo fichiér que vos voléd tèlèchargiér semble vouedo.
 Cen pôt étre diu a una èrror dedens lo nom du fichiér.
 Volyéd controlar que vos voléd franc tèlèchargiér cél fichiér.',
+'windows-nonascii-filename'   => 'Ceti vouiqui recognêt pas los noms de fichiérs avouéc des caractèros spèciâls.',
 'fileexists'                  => "Un fichiér avouéc cél nom ègziste ja.
 Volyéd controlar '''<tt>[[:$1]]</tt>'''.
 Éte-vos de sûr de lo volêr changiér ? [[$1|thumb]]",
@@ -2279,8 +2280,9 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 'watchlist-options'    => 'Chouèx de la lista de survelyence',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Survelyence...',
-'unwatching' => 'Fin de la survelyence...',
+'watching'       => 'Survelyence...',
+'unwatching'     => 'Fin de la survelyence...',
+'watcherrortext' => 'Una èrror est arrevâ pendent lo changement des paramètres de voutra lista de survelyence por « $1 ».',
 
 'enotif_mailer'                => 'Sistèmo de notificacion per mèssageria èlèctronica de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar totes les pâges coment visitâs',
@@ -2311,6 +2313,9 @@ Vos pouede asse-ben tornar inicialisar los drapéls de notificacion por totes le
              Voutron sistèmo de notificacion de {{SITENAME}}
 
 --
+Por changiér los paramètres de notificacion per mèssageria èlèctronica, visitâd
+{{fullurl:{{#special:Preferences}}}}
+
 Por changiér los paramètres de voutra lista de survelyence, visitâd
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2701,6 +2706,7 @@ Oubliâd pas de [[Special:UnlockDB|la dèvèrrolyér]] quand vos aréd chavonâ 
 'lockfilenotwritable' => 'Lo fichiér de vèrrolyâjo de la bâsa de balyês est pas enscriptiblo.
 Por vèrrolyér ou ben dèvèrrolyér la bâsa de balyês, dêt étre accèssiblo en ècritura dês lo sèrvor vouèbe.',
 'databasenotlocked'   => 'La bâsa de balyês est pas vèrrolyê.',
+'lockedbyandtime'     => '(per $1 lo $2 a $3)',
 
 # Move page
 'move-page'                    => 'Renomar $1',

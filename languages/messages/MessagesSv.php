@@ -2229,8 +2229,9 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchlist-options'    => 'Alternativ för bevakningslistan',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Bevakar...',
-'unwatching' => 'Avbevakar...',
+'watching'       => 'Bevakar...',
+'unwatching'     => 'Avbevakar...',
+'watcherrortext' => 'Ett fel inträffade när du ändrade dina bevakningsinställningarna för " $1 ".',
 
 'enotif_mailer'                => '{{SITENAME}}s system för att få meddelanden om förändringar per e-post',
 'enotif_reset'                 => 'Markera alla sidor som besökta',
