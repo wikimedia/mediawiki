@@ -421,7 +421,7 @@ class MediaWiki {
 
 		$act = $this->getAction();
 
-		$action = Action::factory( $this->getAction(), $article );
+		$action = Action::factory( $act, $article );
 		if( $action instanceof Action ){
 			$action->show();
 			wfProfileOut( __METHOD__ );
