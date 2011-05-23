@@ -166,8 +166,9 @@ class ParserTest {
 
 		// $wgContLang = new StubContLang;
 		$wgUser = new User;
-		$wgLang = new StubUserLang;
-		$wgOut = new StubObject( 'wgOut', 'OutputPage' );
+		$context = new RequestContext;
+		$wgLang = $context->getLang();
+		$wgOut = $context->getOutput();
 		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 		$wgRequest = new WebRequest;
 
@@ -678,13 +679,14 @@ class ParserTest {
 			$GLOBALS[$var] = $val;
 		}
 
-		$langObj = Language::factory( $lang );
-		$GLOBALS['wgContLang'] = $langObj;
+		$GLOBALS['wgContLang'] = Language::factory( $lang );
+		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
+
 		$context = new RequestContext();
 		$GLOBALS['wgLang'] = $context->getLang();
+		$GLOBALS['wgOut'] = $context->getOutput();
 
-		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
-		$GLOBALS['wgOut'] = new $context->output;
+		$GLOBALS['wgUser'] = new User();
 
 		global $wgHooks;
 
@@ -693,9 +695,6 @@ class ParserTest {
 		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
 
 		MagicWord::clearCache();
-
-		global $wgUser;
-		$wgUser = new User();
 	}
 
 	/**
