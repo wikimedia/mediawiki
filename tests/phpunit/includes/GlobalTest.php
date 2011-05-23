@@ -523,8 +523,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$old_wgOut = $wgOut;
 		$old_wgShowDebug = $wgShowDebug;
 		
-		$wgOut = new StubObject( 'wgOut', 'MockOutputPage' );
-		$wgOut->doNothing(); //just to unstub it
+		$wgOut = new MockOutputPage;
 		
 		$wgShowDebug = true;
 		
@@ -879,7 +878,5 @@ class MockOutputPage {
 	function debug( $message ) {
 		$this->message = "JAJA is a stupid error message. Anyway, here's your message: $message";
 	}
-	
-	function doNothing() {}
 }
 

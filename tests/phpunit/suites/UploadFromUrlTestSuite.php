@@ -48,8 +48,9 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 		// $wgContLang = new StubContLang;
 		$wgUser = new User;
-		$wgLang = new StubUserLang;
-		$wgOut = new StubObject( 'wgOut', 'OutputPage' );
+		$context = new RequestContext;
+		$wgLang = $context->lang;
+		$wgOut = $context->output;
 		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 		$wgRequest = new WebRequest;
 
