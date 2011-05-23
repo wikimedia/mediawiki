@@ -23,6 +23,9 @@ class NullRepo extends FileRepo {
 	function append( $srcPath, $toAppendPath, $flags = 0 ){
 		return false;
 	}
+	function appendFinish( $toAppendPath ){
+		return false;
+	}
 	function publishBatch( $triplets, $flags = 0 ) {
 		return false;
 	}

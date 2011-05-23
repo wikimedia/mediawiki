@@ -328,6 +328,9 @@ class FSRepo extends FileRepo {
 		return $status;
 	}
 
+    /* We can actually append to the files, so no-op needed here. */
+	function appendFinish( $toAppendPath ) {}
+
 	/**
 	 * Checks existence of specified array of files.
 	 *
