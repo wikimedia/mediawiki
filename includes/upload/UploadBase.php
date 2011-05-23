@@ -216,6 +216,19 @@ abstract class UploadBase {
 	}
 
 	/**
+	 * Finish appending to the Repo file
+	 *
+	 * @param $toAppendPath String: path to the Repo file that will be appended to.
+	 * @return Status Status
+	 */
+	protected function appendFinish( $toAppendPath ) {
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		$status = $repo->appendFinish( $toAppendPath );
+		return $status;
+	}
+
+
+	/**
 	 * @param $srcPath String: the source path
 	 * @return the real path if it was a virtual URL
 	 */
