@@ -1215,7 +1215,7 @@ A continuació es mostra un valor generat de forma aleatòria que podeu fer serv
 'savedprefs'                    => "S'han desat les vostres preferències",
 'timezonelegend'                => 'Fus horari:',
 'localtime'                     => 'Hora local:',
-'timezoneuseserverdefault'      => 'Usa hora del servidor',
+'timezoneuseserverdefault'      => 'Usa hora del servidor ($1)',
 'timezoneuseoffset'             => 'Altres (especifiqueu la diferència)',
 'timezoneoffset'                => 'Diferència¹:',
 'servertime'                    => 'Hora del servidor:',

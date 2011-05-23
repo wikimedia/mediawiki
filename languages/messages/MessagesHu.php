@@ -1677,6 +1677,7 @@ ez a fájl $2.',
 'emptyfile'                   => 'Az általad feltöltött fájl üresnek tűnik.
 Ez valószínűleg azért van, mert hibásan adtad meg a feltöltendő fájl nevét.
 Ellenőrizd, hogy valóban fel akarod-e tölteni ezt a fájlt.',
+'windows-nonascii-filename'   => 'A wiki nem támogatja a speciális karaktereket tartalmazó fájlneveket.',
 'fileexists'                  => "'''<tt>[[:$1]]</tt>''' névvel már létezik egy állomány.
 Ellenőrizd, hogy biztosan felül akarod-e írni! [[$1|thumb]]",
 'filepageexists'              => "Ehhez a fájlnévhez már létezik leírás a '''<tt>[[:$1]]</tt>''' lapon, de jelenleg nincs feltöltve ilyen nevű fájl.
@@ -1769,7 +1770,10 @@ Nem lehet megfelelően ellenőrizni a biztonságosságát.',
 Nem lehet megfelelően ellenőrizni a biztonságosságát.',
 
 # Special:UploadStash
+'uploadstash'          => 'Feltöltéstároló',
 'uploadstash-summary'  => 'Ezen a lapon lehet hozzáférni azokhoz a fájlokhoz, melyek fel lettek töltve (vagy épp feltöltés alatt vannak), de még nem lettek közzétéve a wikin. Az ilyen fájlok csak a feltöltőik számára láthatóak.',
+'uploadstash-clear'    => 'Tárolt fájlok törlése',
+'uploadstash-nofiles'  => 'Nincsenek tárolt fájljaid.',
 'uploadstash-badtoken' => 'A művelet végrehajtása sikertelen volt. Lehetséges, hogy lejártak a szerkesztést hitelesítő adataid. Próbáld újra!',
 'uploadstash-errclear' => 'A fájlok törlése nem sikerült.',
 'uploadstash-refresh'  => 'Fájlok listájának frissítése',
@@ -1853,6 +1857,7 @@ A következő lista csak az {{PLURAL:$1|első linket|első $1 linket}} tartalmaz
 A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'nolinkstoimage'            => 'Erre a fájlra nem hivatkozik lap.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|További hivatkozások]] megtekintése',
+'linkstoimage-redirect'     => '$1 (fájlátirányítás) $2',
 'duplicatesoffile'          => 'A következő {{PLURAL:$1|fájl|$1 fájl}} ennek a fájlnak a duplikátuma ([[Special:FileDuplicateSearch/$2|további részletek]]):',
 'sharedupload'              => 'Ez a fájl a(z) $1 megosztott tárhelyről származik, és más projektek is használhatják.',
 'sharedupload-desc-there'   => 'Ez a fájl a $1 megosztott tárhelyről származik, és más projektek is használhatják.
@@ -2443,6 +2448,7 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'sp-contributions-username'            => 'IP-cím vagy felhasználónév:',
 'sp-contributions-toponly'             => 'Csak a jelenleg utolsónak számító változtatásokat mutassa',
 'sp-contributions-submit'              => 'Keresés',
+'sp-contributions-showsizediff'        => 'Lapméretek közötti eltérés megjelenítése',
 
 # What links here
 'whatlinkshere'            => 'Mi hivatkozik erre',
@@ -2607,6 +2613,7 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 'unlockdbsuccesstext' => 'Az adatbázis kinyitása kész.',
 'lockfilenotwritable' => 'Az adatbázist zároló fájl nem írható. Az adatbázis zárolásához vagy kinyitásához ennek a webkiszolgáló által írhatónak kell lennie.',
 'databasenotlocked'   => 'Az adatbázis nincs lezárva.',
+'lockedbyandtime'     => '($1 zárta le $2 $3-kor)',
 
 # Move page
 'move-page'                    => '$1 átnevezése',
@@ -2971,6 +2978,7 @@ A futtatása során kárt tehet a számítógépedben.",
 'widthheightpage'        => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
 'file-info'              => 'fájlméret: $1, MIME-típus: $2',
 'file-info-size'         => '$1 × $2 képpont, fájlméret: $3, MIME-típus: $4',
+'file-info-size-pages'   => '$1 × $2 képpont, fájlméret: $3, MIME típus: $4, $5 oldal',
 'file-nohires'           => '<small>Nem érhető el nagyobb felbontású változat.</small>',
 'svg-long-desc'          => 'SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3',
 'show-big-image'         => 'A kép nagyfelbontású változata',
@@ -3152,6 +3160,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-languagecode'                => 'Nyelv',
 'exif-iimversion'                  => 'IIM-verzió',
 'exif-iimcategory'                 => 'Kategória',
+'exif-iimsupplementalcategory'     => 'Kiegészítő kategóriák',
 'exif-datetimeexpires'             => 'Nem használandó ezután',
 'exif-datetimereleased'            => 'Megjelenés ideje',
 'exif-identifier'                  => 'Azonosító',

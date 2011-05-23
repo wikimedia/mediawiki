@@ -2357,8 +2357,9 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'watchlist-options'    => 'گزینه‌های پیگیری',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'پی‌گیری...',
-'unwatching' => 'توقف پی‌گیری...',
+'watching'       => 'پی‌گیری...',
+'unwatching'     => 'توقف پی‌گیری...',
+'watcherrortext' => 'ایرادی در هنگام عوض کردن تنظیمات فهرست پیگیرتان برای «$1» رخ داد.',
 
 'enotif_mailer'                => 'پست الکترونیکی اطلاع‌رسانی {{SITENAME}}',
 'enotif_reset'                 => 'علامت‌گذاری همهٔ صفحه‌ها به عنوان بازدید شده',
@@ -2711,7 +2712,7 @@ $1',
 برای فهرست محرومیت‌ها و بسته‌شدن‌های عملیاتی در لحظهٔ حاضر، به [[Special:BlockList|فهرست آی‌پی‌های بسته]] مراجعه کنید.',
 'unblocklogentry'                 => '«$1» را باز کرد',
 'block-log-flags-anononly'        => 'فقط کاربران گمنام',
-'block-log-flags-nocreate'        => 'قابلیت ایجاد حساب غیرفعال شد.',
+'block-log-flags-nocreate'        => 'قابلیت ایجاد حساب غیرفعال شد',
 'block-log-flags-noautoblock'     => 'قطع دسترسی خودکار غیرفعال شد',
 'block-log-flags-noemail'         => 'پست الکترونیکی مسدود شد',
 'block-log-flags-nousertalk'      => 'صفحهٔ بحث خود را نمی‌تواند ویرایش کند',
@@ -3046,10 +3047,10 @@ $1',
 'nocredits'        => 'اطلاعات سازندگان این صفحه موجود نیست.',
 
 # Spam protection
-'spamprotectiontitle' => 'پالایه هرزنگاری‌ها',
+'spamprotectiontitle' => 'پالایهٔ هرزنگاری‌ها',
 'spamprotectiontext'  => 'از ذخیره کردن صفحه توسط صافی هرزنگاری‌ها جلوگیری شد.
 معمولاً این اتفاق زمانی می‌افتد که متن جدید صفحه، حاوی پیوندی به یک نشانی وب خارجی باشد.',
-'spamprotectionmatch' => 'متن زیر چیزی‌است که پالایه هرزه‌نگاری ما را به کارانداخت: $1',
+'spamprotectionmatch' => 'متن زیر چیزی‌است که پالایهٔ هرزه‌نگاری ما را به کارانداخت: $1',
 'spambot_username'    => 'هرزه‌تمیزکارِ مدیاویکی',
 'spam_reverting'      => 'واگردانی به آخرین نسخه‌ای که پیوندی به $1 ندارد.',
 'spam_blanking'       => 'تمام نسخه‌ها حاوی پیوند به $1 بود، در حال خالی کردن',

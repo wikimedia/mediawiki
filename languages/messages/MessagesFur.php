@@ -738,7 +738,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'savedprefs'                  => 'Lis preferencis a son stadis salvadis',
 'timezonelegend'              => 'Fûs orari:',
 'localtime'                   => 'Ore locâl:',
-'timezoneuseserverdefault'    => 'Dopre la ore dal servidôr',
+'timezoneuseserverdefault'    => 'Dopre la ore dal servidôr ($1)',
 'timezoneuseoffset'           => 'Altri (inserìs la difarence)',
 'timezoneoffset'              => 'Difarence¹:',
 'servertime'                  => 'Ore dal servidôr:',

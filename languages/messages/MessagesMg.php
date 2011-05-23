@@ -341,6 +341,7 @@ $messages = array(
 'listingcontinuesabbrev'         => ' manaraka.',
 'index-category'                 => 'pejy voasokajy',
 'noindex-category'               => 'Pejy tsy voasikajy',
+'broken-file-category'           => 'Pejy misy rohin-drakitra tapaka',
 
 'mainpagetext'      => "'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''",
 'mainpagedocfooter' => "Vangio ny [http://meta.wikimedia.org/wiki/Aide:Contenu Fanoroana ho an'ny mpampiasa] ra te hitady fanoroana momba ny fampiasan'ity rindrankajy ity.
@@ -512,6 +513,8 @@ Mitaky version $1-n'i MediaWiki",
 'page-rss-feed'           => 'Topa RSS ny « $1 »',
 'page-atom-feed'          => 'Topa Atom ny « $1 »',
 'red-link-title'          => '$1 (mbola tsy misy)',
+'sort-descending'         => 'Fandaharana miiba',
+'sort-ascending'          => 'Fandaharana miabo',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Lahatsoratra',
@@ -640,6 +643,7 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'createaccount'              => 'Hamorona kaonty',
 'gotaccount'                 => "Efa manana kaonty? '''$1'''.",
 'gotaccountlink'             => 'Midira',
+'userlogin-resetlink'        => "Adinonavo ve ny antsipihan'ny fidiranao ?",
 'createaccountmail'          => "amin'ny imailaka",
 'createaccountreason'        => 'Antony :',
 'badretype'                  => 'Tsy mitovy ny tenimiafina nampidirinao.',
@@ -651,6 +655,8 @@ Mampiasa cookies ny {{SITENAME}} ho an'ny fidirana amin'ny kaonty.
 Tsy avelanao mandeha ny cookies.
 Avelao mandeha ny fampidirana cookies, ary midira amin'ny kaontinao.",
 'nocookieslogin'             => 'Mampiasa cookies i {{SITENAME}} nefa ny mpiteti-tranonkalanao no tsy manaiky na mandà azy. Ovay mba hanaiky cookies aloha ny mpiteti-tranonkalanao dia aveo manandrama mihiditra ato indray.',
+'nocookiesfornew'            => "Tsy mbola noforonina ilay kaontim-pikambana, satria tsy afaka marinanay ilay loharanony.
+Marino tsara raha mahazo mametraka cookie ao amin'ny kompioteranao ny sehata, dia havaozy ilay pejy",
 'noname'                     => 'Tsy nanome solonanarana mety ianao.',
 'loginsuccesstitle'          => 'Tafiditra soa aman-tsara',
 'loginsuccess'               => "'''Tafiditra amin'ny {{SITENAME}} ianao ry \"\$1\".'''",
@@ -704,6 +710,7 @@ Aza mijery ity hafatra ity ianao raha voaforona an-tsifetezana ilay kaonty io.",
 'usernamehasherror'          => 'Ny anaram-pikambana dia tsy afaka manana soratra fanaovana hash.',
 'login-throttled'            => "Im-betsaka loatra ianao no nanandrana tenimiafina teo amin'io kaonty io.
 Andraso kely ary andramo indray.",
+'login-abort-generic'        => 'Tsy nahomby ny fanandramanao niditra',
 'loginlanguagelabel'         => 'fiteny : $1',
 'suspicious-userlogout'      => "Ny fangataham-pialanao dia tsy nekena satria ohatry ny nalfan'ny mpizahan-tsehatra simba izy na kasy ny proxy.",
 
@@ -726,6 +733,11 @@ Andraso kely ary andramo indray.",
 'resetpass-wrong-oldpass'   => 'Tsy izy ny tenimiafinao (tsotra na miserana)
 Mety efa nanova tenimiafina na nanontany tenimiafina miserana angamba ianao.',
 'resetpass-temp-password'   => 'Tenimiafina miserana :',
+
+# Special:PasswordReset
+'passwordreset'        => 'Famafana ary famerenana ny tenimiafina',
+'passwordreset-text'   => "Fenoy ity formilera ity ho an'ny fahaozana ny fampahalalana mahakasika ny kaontinao amin'ny imailaka.",
+'passwordreset-legend' => 'Famafana ary famerenana ny tenimiafina',
 
 # Edit page toolbar
 'bold_sample'     => 'Soratra matavy',
@@ -1978,6 +1990,7 @@ adiresin'ny mpandefa izany imailaka izany, koa afaka hovaliany izay hafatra alef
 na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'nowikiemailtitle'     => 'Tsy manaiky imailaka alefa ho azy',
 'nowikiemailtext'      => "Ity mpikambana ity dia te-hahazo imailaka avy amin'ny mpikambana hafa.",
+'emailusernamesubmit'  => 'Alefa',
 'email-legend'         => "Handefa imailaka any amin'ny mpikambana hafa an'i {{SITENAME}}",
 'emailfrom'            => "Avy tamin'i",
 'emailto'              => "Ho an'i",
@@ -1992,6 +2005,7 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 
 # User Messenger
 'usermessage-summary' => 'Namela hafatra rindrankajy',
+'usermessage-editor'  => 'Mpampita hafatry ny rindrankajy',
 
 # Watchlist
 'watchlist'            => 'Narahiko maso',

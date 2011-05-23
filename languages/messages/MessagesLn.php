@@ -24,7 +24,7 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $messages = array(
 # User preference toggles
-'tog-underline'        => 'Kotíya sulimá na bikangisi :',
+'tog-underline'        => 'Kotíya sulimá na bikangisi:',
 'tog-rememberpassword' => 'Komíkundola bokitoli na molúki (ekosúkisa na {{PLURAL:$1|mokɔlɔ|mikɔlɔ}} $1)',
 
 # Dates
@@ -123,6 +123,7 @@ $messages = array(
 'searcharticle'     => 'Kokɛndɛ',
 'history'           => 'Mokóló mwa lonkásá',
 'history_short'     => 'Mokóló',
+'info_short'        => 'Liyébisi',
 'printableversion'  => 'Mpɔ̂ na kofínela',
 'permalink'         => 'Ekangeli ya ntángo yɔ́nsɔ',
 'print'             => 'kobimisa nkomá',
@@ -177,21 +178,22 @@ $messages = array(
 'privacypage'          => 'Project:Politíki ya viplívɛ',
 
 'ok'                 => 'Nandimi',
-'retrievedfrom'      => 'Ezwámí úta « $1 »',
+'retrievedfrom'      => 'Ezwámí úta «$1»',
 'youhavenewmessages' => 'Ozweí $1 ($2).',
 'newmessageslink'    => 'nsango ya sika',
 'editsection'        => 'kobɔngisa',
 'editold'            => 'kobɔngisa',
 'editlink'           => 'kobɔngisa',
 'viewsourcelink'     => 'komɔ́nisa mosólo',
-'editsectionhint'    => 'Kokoma sɛksíɔ : $1',
+'editsectionhint'    => 'Kokoma sɛksíɔ: $1',
 'toc'                => 'Etápe',
 'showtoc'            => 'komɔ́nisa',
 'hidetoc'            => 'kobomba',
+'feedlinks'          => 'Ebale:',
 'site-rss-feed'      => 'Ebale RSS ya $1',
-'site-atom-feed'     => 'Ebale Atom ya « $1 »',
-'page-rss-feed'      => 'Ebale RSS ya « $1 »',
-'page-atom-feed'     => 'Ebale Atom ya « $1 »',
+'site-atom-feed'     => 'Ebale Atom ya «$1»',
+'page-rss-feed'      => 'Ebale RSS ya «$1»',
+'page-atom-feed'     => 'Ebale Atom ya «$1»',
 'red-link-title'     => '$1 (lonkásá  ezalí tɛ̂)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -216,31 +218,43 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # General errors
 'error'              => 'Mbéba',
 'databaseerror'      => 'Zíko ya litákoli ya kabo',
-'laggedslavemode'    => "'''Likébisi''' : lonkásá óyo ekokí kokwa mbóngwana ya nsúka nyɔ́nsɔ tɛ̂",
+'laggedslavemode'    => "'''Likébisi''': lonkásá óyo ekokí kokwa mbóngwana ya nsúka nyɔ́nsɔ tɛ̂",
 'readonly'           => 'Litákoli ya kabo efúngámí',
 'enterlockreason'    => 'Ópésa ntína mpé ntángo ya kokanisa ya bofúngi ya litákoli ya kabo',
 'internalerror'      => 'Zíko ya káti',
-'internalerror_info' => 'Zíko ya káti : $1',
+'internalerror_info' => 'Zíko ya káti: $1',
 'perfcached'         => 'Bipeseli byangó bizalí o mobómbisi-lombángu mpé bikokí kozala ya lɛlɔ́ tɛ̂.',
 'perfcachedts'       => 'Bipeseli byangó bizalí o mobómbisi-lombángu mpé bikokí kozala ya lɛlɔ́ tɛ̂. Bizalí bya $1.',
 'viewsource'         => 'Komɔ́nisa mosólo',
 'viewsourcefor'      => 'na $1',
 
 # Login and logout pages
-'yourname'                => 'Nkómbó ya mosáleli :',
+'yourname'                => 'Nkómbó ya mosáleli:',
 'yourpassword'            => 'Banda nayó:',
-'yourpasswordagain'       => 'Banda naíno :',
+'yourpasswordagain'       => 'Banda naíno:',
 'remembermypassword'      => 'Mɛ́i-komíkitola na molúki moye mbala ilandí (ekosúkisa na {{PLURAL:$1|mokɔlɔ|mikɔlɔ}} $1)',
 'login'                   => 'komíkitola (log in)',
 'nav-login-createaccount' => 'Komíkomisa tǒ kokɔtɔ',
 'userlogin'               => 'Komíkomisa tǒ komíkitola',
+'userloginnocreate'       => 'komíkitola (log in)',
 'logout'                  => 'kolongwa',
 'userlogout'              => 'Kolongwa',
 'nologin'                 => "Omíkomísí naíno tɛ̂? '''$1'''.",
 'nologinlink'             => 'Míkomísá yɔ̌-mɛ́i',
 'gotaccount'              => "Omíkomísí naíno ? '''$1'''.",
+'gotaccountlink'          => 'komíkitola (log in)',
 'createaccountmail'       => 'na mokánda',
 'mailmypassword'          => 'Kotíndisa liloba-nzelá lya sika na mɛ́lɛ',
+'loginlanguagelabel'      => 'Lokótá: $1',
+
+# Change password dialog
+'oldpassword'             => 'Banda kala',
+'newpassword'             => 'Banda sika',
+'resetpass-submit-cancel' => 'Kozóngela',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Nkómbó ya mosáleli:',
+'passwordreset-email'    => 'Adɛlɛ́sɛ-ímɛ́lɛ:',
 
 # Edit page toolbar
 'bold_sample'     => 'Nkomá ya mbinga',
@@ -266,12 +280,12 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'showpreview'            => 'Kotála yambo',
 'showdiff'               => 'Komɔ́nisa mbóngwana',
 'newarticle'             => '(Sika)',
-'editing'                => 'Kokoma « $1 »',
-'editingsection'         => 'Bobɔngisi ya « $1 » (sɛksió)',
-'editingcomment'         => 'Bobɔngisi ya « $1 » (sɛksió ya sika)',
+'editing'                => 'Kokoma «$1»',
+'editingsection'         => 'Bobɔngisi ya «$1» (sɛksió)',
+'editingcomment'         => 'Bobɔngisi ya «$1» (sɛksió ya sika)',
 'yourtext'               => 'Nkomá na yɔ̌',
-'templatesused'          => '{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o lonkásá óyo :',
-'templatesusedpreview'   => '{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o botáli boye :',
+'templatesused'          => '{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o lonkásá óyo:',
+'templatesusedpreview'   => '{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o botáli boye:',
 'template-protected'     => '(na bobáteli)',
 'template-semiprotected' => '(na bobáteli ya ndámbo)',
 
@@ -385,7 +399,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'uploadbtn'     => 'Kotíya nkásá mɔ̌kɔ́',
 'uploadlogpage' => 'Zuluná ya botómbisi likoló',
 'savefile'      => 'kobómbisa kásá-kásá',
-'uploadedimage' => '« [[$1]] » etómbísámí likoló',
+'uploadedimage' => '«[[$1]]» etómbísámí likoló',
 
 # Special:ListFiles
 'listfiles_date' => 'Mokɔlɔ',
@@ -472,7 +486,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'watchlist'         => 'Nkásá nalandí',
 'mywatchlist'       => 'Nkásá nalandí',
 'addedwatch'        => 'Ebakísámí na nkásá olandí',
-'addedwatchtext'    => "Lonkásá « [[:$1]] » lobakísámí na [[Special:Watchlist|nkásá olandí]]. Mbóngwana o lonkásá loye mpé o lonkásá la ntembe ikomɔ́nisama áwa, ikokɔ́mana '''mbinga''' o [[Special:RecentChanges|Lístɛ ya mbóngwana ya nsúka]] mpɔ̂ na mpási tɛ̂.",
+'addedwatchtext'    => "Lonkásá «[[:$1]]» lobakísámí na [[Special:Watchlist|nkásá olandí]]. Mbóngwana o lonkásá loye mpé o lonkásá la ntembe ikomɔ́nisama áwa, ikokɔ́mana '''mbinga''' o [[Special:RecentChanges|Lístɛ ya mbóngwana ya nsúka]] mpɔ̂ na mpási tɛ̂.",
 'removedwatch'      => 'Elongólámí na nkásá olandí',
 'watch'             => 'Kolanda',
 'watchthispage'     => 'Kolanda lonkásá óyo',

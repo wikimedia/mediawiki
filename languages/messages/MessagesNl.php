@@ -19,6 +19,7 @@
  * @author Hamaryns
  * @author Jens Liebenau
  * @author Krinkle
+ * @author MarkvA
  * @author McDutchie
  * @author Mihxil
  * @author Multichill
@@ -2328,8 +2329,9 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'watchlist-options'    => 'Opties voor volglijst',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Bezig met plaatsen op volglijst…',
-'unwatching' => 'Bezig met verwijderen van volglijst…',
+'watching'       => 'Bezig met plaatsen op volglijst…',
+'unwatching'     => 'Bezig met verwijderen van volglijst…',
+'watcherrortext' => 'Er is een fout opgetreden tijdens het wijzigen van uw volglijstinstellingen voor "$1".',
 
 'enotif_mailer'                => '{{SITENAME}} waarschuwingssysteem',
 'enotif_reset'                 => "Alle pagina's markeren als bezocht",

@@ -2216,8 +2216,9 @@ $1',
 'watchlist-options'    => 'Настройки списка наблюдения',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Добавление в список наблюдения…',
-'unwatching' => 'Удаление из списка наблюдения…',
+'watching'       => 'Добавление в список наблюдения…',
+'unwatching'     => 'Удаление из списка наблюдения…',
+'watcherrortext' => 'Произошла ошибка при изменении настройки наблюдения для «$1».',
 
 'enotif_mailer'                => '{{SITENAME}} Служба извещений по почте',
 'enotif_reset'                 => 'Отметить все страницы как просмотренные',

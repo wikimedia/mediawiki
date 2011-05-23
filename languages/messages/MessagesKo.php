@@ -1335,7 +1335,7 @@ $1",
 'savedprefs'                    => '설정을 저장했습니다.',
 'timezonelegend'                => '시간대:',
 'localtime'                     => '현지 시각:',
-'timezoneuseserverdefault'      => '서버 기본값을 사용',
+'timezoneuseserverdefault'      => '위키 기본값($1)을 사용',
 'timezoneuseoffset'             => '기타 (시차를 입력해주세요)',
 'timezoneoffset'                => '시차¹:',
 'servertime'                    => '서버 시각:',
@@ -1660,6 +1660,7 @@ $1",
 'emptyfile'                   => '올리려는 파일이 빈 파일입니다.
 파일 이름을 잘못 입력했을 수도 있습니다.
 올리려는 파일을 다시 한 번 확인해 주시기 바랍니다.',
+'windows-nonascii-filename'   => '이 위키에서는 특수 문자가 포함된 파일 이름을 지원하지 않습니다.',
 'fileexists'                  => "같은 이름의 파일이 이미 있습니다.
 파일을 바꾸고 싶지 않다면 '''<tt>[[:$1]]</tt>''' 파일을 확인해 주세요.
 [[$1|thumb]]",
@@ -2591,6 +2592,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'unlockdbsuccesstext' => '데이터베이스 잠금 상태가 해제되었습니다.',
 'lockfilenotwritable' => '데이터베이스 잠금 파일에 쓰기 권한이 없습니다. 데이터베이스를 잠그거나 잠금 해제하려면, 웹 서버에서 이 파일의 쓰기 권한을 설정해야 합니다.',
 'databasenotlocked'   => '데이터베이스가 잠겨 있지 않습니다.',
+'lockedbyandtime'     => '($1이 $2 $3에 잠금)',
 
 # Move page
 'move-page'                    => '이동 $1',

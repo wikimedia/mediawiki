@@ -2201,8 +2201,9 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'watchlist-options'    => 'Tùy chọn về danh sách theo dõi',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Đang theo dõi…',
-'unwatching' => 'Đang ngừng theo dõi…',
+'watching'       => 'Đang theo dõi…',
+'unwatching'     => 'Đang ngừng theo dõi…',
+'watcherrortext' => 'Lỗi xảy ra khi theo dõi hoặc ngừng theo dõi “$1”.',
 
 'enotif_mailer'                => 'Thông báo của {{SITENAME}}',
 'enotif_reset'                 => 'Đánh dấu đã xem mọi trang',

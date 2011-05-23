@@ -2290,8 +2290,9 @@ $1',
 'watchlist-options'    => 'Поставки за список на набљудувања',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Набљудување...',
-'unwatching' => 'Отстранувам од набљудувани...',
+'watching'       => 'Набљудување...',
+'unwatching'     => 'Отстранувам од набљудувани...',
+'watcherrortext' => 'Се појави грешка при менувањето на вашите нагодувања списокот на набљудувања за „$1“.',
 
 'enotif_mailer'                => '{{SITENAME}} Систем за известување',
 'enotif_reset'                 => 'Означи ги сите страници како посетени',

@@ -2113,8 +2113,9 @@ render lo plus facile de deteger.",
 'watchlist-options'    => 'Optiones del observatorio',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Observation in curso...',
-'unwatching' => 'Disobservation in curso...',
+'watching'       => 'Observation in curso...',
+'unwatching'     => 'Disobservation in curso...',
+'watcherrortext' => 'Un error occurreva durante le modification del configuration de tu observatorio pro "$1".',
 
 'enotif_mailer'                => 'Systema de notification via e-mail de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar tote le paginas como visitate',

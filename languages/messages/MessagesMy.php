@@ -84,6 +84,7 @@ $messages = array(
 'tog-enotifrevealaddr'       => ' အသိပေးချက်အီးမေးများတွင် ကျွန်ုပ်၏ အီးမေးလိပ်စာကို ဖော်ပြရန်',
 'tog-shownumberswatching'    => 'စောင့်ကြည့်နေသော အသုံးပြုသူအရေအတွက်ကို ပြရန်',
 'tog-oldsig'                 => 'ရှိနှင့်ပြီးသား လက်မှတ်၏ နမူနာ -',
+'tog-forceeditsummary'       => 'တည်းဖြတ်အတိုချုပ် ဗလာဖြစ်နေလျှင် သတိပေးရန်',
 'tog-watchlisthideown'       => 'ကျွန်ုပ်၏ တည်းဖြတ်မှုများကို စောင့်ကြည့်စာရင်းမှ ဝှက်ထားရန်',
 'tog-watchlisthidebots'      => 'ဘော့တည်းဖြတ်မှုများကို စောင့်ကြည့်စာရင်းမှ ဝှက်ထားရန်',
 'tog-watchlisthideminor'     => 'အရေးမကြီးသော တည်းဖြတ်မှုများကို စောင့်ကြည့်စာရင်းမှ ဝှက်ထားရန်',
@@ -170,6 +171,7 @@ $messages = array(
 'listingcontinuesabbrev'   => 'ပံ့ပိုး',
 'index-category'           => 'အက္ခရာစဉ် စာမျက်နှာများ',
 'noindex-category'         => 'အက္ခရာစဉ် စာမျက်နှာများမရှိ',
+'broken-file-category'     => 'ကျိုးပျက်နေသော ဖိုင်လင့်များပါသည့် စာမျက်နှာများ',
 
 'mainpagetext' => "'''မီဒီယာဝီကီကို အောင်မြင်စွာ သွင်းပြီးပါပြီ။'''",
 
@@ -291,6 +293,10 @@ $messages = array(
 
 'badaccess' => 'ခွင့်ပြုချက်မှ အမှား',
 
+'versionrequired'     => 'မီဒီယာဝီကီဗာရှင်း $1 လိုအပ်သည်',
+'versionrequiredtext' => 'ဤစာမျက်နှာကို ကြည့်ရန် မီဒီယာဝီကီဗာရှင်း $1 လိုအပ်သည်။
+[[Special:Version|ဗားရှင်းစာမျက်နှာ]]ကို ကြည့်ပါ။',
+
 'ok'                      => 'အိုကေ',
 'retrievedfrom'           => '"$1" မှ ရယူရန်',
 'youhavenewmessages'      => 'သင့်တွင် $1 ($2) ရှိသည်။',
@@ -316,6 +322,8 @@ $messages = array(
 'page-rss-feed'           => 'RSS feed "$1" ခု',
 'page-atom-feed'          => 'Atom feed "$1" ခု',
 'red-link-title'          => '$1 (ဤစာမျက်နှာ မရှိပါ)',
+'sort-descending'         => 'အစဉ်လိုက်စီရန်',
+'sort-ascending'          => 'အစဉ်လိုက် ပြောင်းပြန်စီရန်',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'စာ​မျက်​နှာ​',
@@ -384,6 +392,7 @@ $messages = array(
 'createaccount'            => 'အကောင့်လုပ်ရန်',
 'gotaccount'               => 'အကောင့်ရှိပြီးသားလား။ $1။',
 'gotaccountlink'           => 'Log in ဝင်ရန်',
+'userlogin-resetlink'      => 'Login ဝင်သည့် အသေးစိတ်တို့ကို မေ့သွားပါသလား?',
 'createaccountmail'        => 'အီးမေးဖြင့်',
 'createaccountreason'      => 'အ​ကြောင်း​ပြ​ချက် -',
 'badretype'                => 'သင်ထည့်သွင်းလိုက်သော စကားဝှက်များ ကိုက်ညီမှု မရှိပါ။',

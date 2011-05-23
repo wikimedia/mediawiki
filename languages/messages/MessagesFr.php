@@ -2263,8 +2263,9 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchlist-options'    => 'Options de la liste de suivi',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Suivi…',
-'unwatching' => 'Fin du suivi…',
+'watching'       => 'Suivi…',
+'unwatching'     => 'Fin du suivi…',
+'watcherrortext' => "Une erreur s'est produite lors de la modification des paramètres de votre liste de suivi pour « $1 ».",
 
 'enotif_mailer'                => 'Système de notification par courriel de {{SITENAME}}',
 'enotif_reset'                 => 'Marquer toutes les pages comme visitées',

@@ -396,6 +396,7 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'listingcontinuesabbrev'         => 'आगामि.',
 'index-category'                 => 'सूचकांकितानि पृष्ठाणि',
 'noindex-category'               => 'असूचकांकितानि पृष्ठाणि',
+'broken-file-category'           => 'भग्नेभ्यः संबन्धनेभ्यः युक्तानि पृष्ठाणि',
 
 'mainpagetext' => 'मीडियाविकि तु सफलतया अन्तःस्थापितमस्ति',
 
@@ -422,20 +423,21 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'faqpage'        => 'Project:बहुधा पृष्टव्याः प्रश्नाः',
 
 # Vector skin
-'vector-action-addsection' => 'विषयं योजयतु',
-'vector-action-delete'     => 'अपाकरोतु',
-'vector-action-move'       => 'चालयतु',
-'vector-action-protect'    => 'सुरक्षितं करोतु',
-'vector-action-undelete'   => 'अपाकरणस्य निरसनम्',
-'vector-action-unprotect'  => 'सुरक्षितीकरणस्य निरसनम्',
-'vector-view-create'       => 'सृजतु',
-'vector-view-edit'         => 'सम्पादयतु',
-'vector-view-history'      => 'इतिहासं दर्शयतु',
-'vector-view-view'         => 'पठतु',
-'vector-view-viewsource'   => 'स्रोतसं दर्शयतु',
-'actions'                  => 'क्रियाः',
-'namespaces'               => 'नामाकाशानि',
-'variants'                 => 'प्रकीर्णत्वेन',
+'vector-action-addsection'       => 'विषयं योजयतु',
+'vector-action-delete'           => 'अपाकरोतु',
+'vector-action-move'             => 'चालयतु',
+'vector-action-protect'          => 'सुरक्षितं करोतु',
+'vector-action-undelete'         => 'अपाकरणस्य निरसनम्',
+'vector-action-unprotect'        => 'सुरक्षितीकरणस्य निरसनम्',
+'vector-simplesearch-preference' => 'संवर्धिताः अन्वेषणोपक्षेपाः समर्थीकरोतु। (केवलं वैक्टर-स्किन् इत्यस्यार्थे)',
+'vector-view-create'             => 'सृजतु',
+'vector-view-edit'               => 'सम्पादयतु',
+'vector-view-history'            => 'इतिहासं दर्शयतु',
+'vector-view-view'               => 'पठतु',
+'vector-view-viewsource'         => 'स्रोतसं दर्शयतु',
+'actions'                        => 'क्रियाः',
+'namespaces'                     => 'नामाकाशानि',
+'variants'                       => 'प्रकीर्णत्वेन',
 
 'errorpagetitle'    => 'विभ्रमः',
 'returnto'          => '$1 इत्येतद् प्रति निवर्तताम्।',
@@ -493,6 +495,13 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'jumpto'            => 'कूर्दयतु अत्र :',
 'jumptonavigation'  => 'सुचलनम्',
 'jumptosearch'      => 'अन्वेषणम्',
+'view-pool-error'   => 'क्षम्यताम्, परिवेषणयन्त्राणि अतिभारितानि अस्मिन् समये।
+बहवः प्रयोक्तारः एतत् पृष्ठं द्रष्टुं प्रयतमानाः सन्ति।
+कृपया किंचित्कालं प्रतीक्षताम् भवान्, तदा क्रियताम् प्रयासः।
+$1',
+'pool-timeout'      => 'कालावधिः समाप्ता, यन्त्रणस्यार्थे प्रतीक्षते',
+'pool-queuefull'    => 'कुण्डपंक्तिः (पूल् क्यू इत्येषा) पूर्णा अस्ति।',
+'pool-errorunknown' => 'अज्ञाता त्रुटिः',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} इत्यस्य विषये',
@@ -514,9 +523,12 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'privacy'              => 'नैजता-नीतिः',
 'privacypage'          => 'Project:नैजता-नीतिः',
 
-'badaccess' => 'अनुज्ञा-विभ्रमः',
+'badaccess'        => 'अनुज्ञा-विभ्रमः',
+'badaccess-group0' => 'भवदर्थम्, अत्र प्रार्थिता क्रिया प्रवर्तितुं न अनुमतम्।',
+'badaccess-groups' => 'भवता प्रार्थिता क्रिया केवले {{PLURAL:$2|अस्मिन् समूहे|एतेषु समूहेषु}} अनुमता अस्ति: $1।',
 
-'versionrequired' => 'मीडीयाविके: $1 संस्करण आवश्यकः ।',
+'versionrequired'     => 'मीडीयाविके: $1 संस्करण आवश्यकः ।',
+'versionrequiredtext' => 'एतत्पृष्ठं प्रयोक्तुं मीडियाविकि इत्येतस्य $1तमा आवृत्तिः आवश्यकी। पश्यतु [[Special:Version|आवृत्ति-सूचिका]]',
 
 'ok'                      => 'आम्',
 'pagetitle'               => '',
@@ -534,6 +546,8 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'toc'                     => 'अन्तर्विषयाः',
 'showtoc'                 => 'दर्शयतु',
 'hidetoc'                 => 'गोपयतु',
+'collapsible-expand'      => 'विस्तारयतु',
+'thisisdeleted'           => '$1 दर्शयेत् वा प्रत्यानयेत् वा?',
 'viewdeleted'             => '$1 पश्यतु?',
 'feedlinks'               => 'अनुबन्ध:',
 'site-rss-feed'           => '$1 आरएसएस पूरणम्',
@@ -541,6 +555,8 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'page-rss-feed'           => '"$1" आरएसएस-पूरणम्',
 'page-atom-feed'          => '"$1" ऍटम अनुबन्ध',
 'red-link-title'          => '$1 (पृष्ठं इदानीं यावत् न रचितम्)',
+'sort-descending'         => 'अवरोहिक्रमेण सज्जयतु',
+'sort-ascending'          => 'आरोहिक्रमेण सज्जयतु',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'पृष्ठम्',
@@ -559,22 +575,30 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'nosuchspecialpage' => 'एतादृश विशेष पृष्टम् नास्ति',
 
 # General errors
-'error'               => 'विभ्रम',
-'databaseerror'       => 'दत्ताधार-विभ्रमः',
-'readonly'            => 'डाटाबेस बन्धितमस्ति',
-'missing-article'     => 'दत्ताधारेण(डाटाबेस् इत्यनेन) "$1" $2 इतिनामकं पृष्ठं नैव प्राप्तम्, यत्तु प्राप्तीभवितव्यमासीत्।
+'error'                => 'विभ्रम',
+'databaseerror'        => 'दत्ताधार-विभ्रमः',
+'readonly'             => 'डाटाबेस बन्धितमस्ति',
+'missing-article'      => 'दत्ताधारेण(डाटाबेस् इत्यनेन) "$1" $2 इतिनामकं पृष्ठं नैव प्राप्तम्, यत्तु प्राप्तीभवितव्यमासीत्।
 
 कदाचित् एवं तु अवसिते सति अंतरे अथवा अपाकृतस्य पृष्ठस्य इतिहास-संबंधनात् भवति।
 
 
 यदि न एवं विद्यते, तदा भवता क्रमादेश-कीटकं अन्विष्टम्।
 कृपया केनचित् [[Special:ListUsers/sysop|प्रचालकेन]] सह अस्य पृष्ठस्य URL इत्येतद्- ज्ञापनपूर्वकं संभाषताम्।',
-'missingarticle-rev'  => '(आवृत्तिः# :$1)',
-'missingarticle-diff' => '(व्यतिरेक: $1, $2)',
-'unexpected'          => 'अप्रतीक्षितमूल्यम् : "$1"="$2"।',
-'badtitletext'        => 'प्रार्थितं पृष्ठ-शीर्षकं अमान्यं वा, रिक्तं वा, अथवा अशुद्धतया संबंद्धं आंतर्भाषिकं, आंतर्विकीयं वा शीर्षकमस्ति। अस्मिन् एकं एकाधिकानि वा एतादृशाणि अक्षराणि विद्यन्ते येषां प्रयोगं शीर्षकेषु अशक्यम्।',
-'viewsource'          => 'स्रोतः दर्शयतु',
-'viewsourcefor'       => '$1 कृते',
+'missingarticle-rev'   => '(आवृत्तिः# :$1)',
+'missingarticle-diff'  => '(व्यतिरेक: $1, $2)',
+'internalerror'        => 'आन्तरिका त्रुटिः',
+'internalerror_info'   => 'आन्तरिका त्रुटिः: $1',
+'directorycreateerror' => '$1 इति निर्देशिकां स्रष्टुं न अपारयत्',
+'unexpected'           => 'अप्रतीक्षितमूल्यम् : "$1"="$2"।',
+'formerror'            => 'त्रुटिः : प्रारूपं समर्पयितुं न अपारयत्',
+'badarticleerror'      => 'अस्मिन् पृष्ठे एषा क्रिया कर्तुं न शक्या।',
+'badtitletext'         => 'प्रार्थितं पृष्ठ-शीर्षकं अमान्यं वा, रिक्तं वा, अथवा अशुद्धतया संबंद्धं आंतर्भाषिकं, आंतर्विकीयं वा शीर्षकमस्ति। अस्मिन् एकं एकाधिकानि वा एतादृशाणि अक्षराणि विद्यन्ते येषां प्रयोगं शीर्षकेषु अशक्यम्।',
+'viewsource'           => 'स्रोतः दर्शयतु',
+'viewsourcefor'        => '$1 कृते',
+
+# Virus scanner
+'virus-unknownscanner' => 'अज्ञातं विषाणुप्रतिकारकम्:',
 
 # Login and logout pages
 'welcomecreation'         => '==स्वागतम्‌, $1!==
@@ -595,8 +619,10 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'createaccount'           => 'लेखां रचयतु',
 'gotaccountlink'          => 'प्रविशतु',
 'createaccountreason'     => 'कारणम्',
+'createaccounterror'      => '$1 इति लेखां स्रष्टुं न अपारयत्',
 'loginsuccesstitle'       => 'सुस्वागतम्‌। प्रवेशः सिद्धः।',
 'mailmypassword'          => 'नूतनं रहस्यवाक् विद्युत्पत्रेण प्रेषयतु',
+'accountcreated'          => 'खाता निर्मित',
 'loginlanguagelabel'      => 'भाषा : $1',
 
 # Change password dialog

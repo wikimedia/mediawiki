@@ -3000,6 +3000,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-worldregiondest'             => 'Gewise Welt-Regioun',
 'exif-countrydest'                 => 'Gewisent Land',
 'exif-countrycodedest'             => 'Code vum gewisene Land',
+'exif-provinceorstatedest'         => 'Gewise Provënz oder Deel vun engem Land',
 'exif-citydest'                    => 'Gewise Stad',
 'exif-sublocationdest'             => 'Gewisenen Deel vun der Stad',
 'exif-objectname'                  => 'Kuerzen Titel',
