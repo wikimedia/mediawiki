@@ -216,12 +216,12 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$barnumber = 1;
 		foreach ( $bar as $heading => $browseLinks ) {
-			$heading_text = wfMsg ( $heading );
 			if ( $barnumber > 1 ) {
-				if ( wfEmptyMsg( $heading, $heading_text ) ) {
-					$h = $heading;
+				$headingMsg = wfMessage( $heading );
+				if ( $headingMsg->exists() ) {
+					$h = $headingMsg->text();
 				} else {
-					$h = $heading_text;
+					$h = $heading;
 				}
 				$s .= "\n<h6>" . htmlspecialchars( $h ) . "</h6>";
 			}
@@ -231,7 +231,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 						htmlspecialchars( $link['text'] ) . '</a>' . $sep;
 				}
 			}
-			$barnumber = $barnumber + 1;
+			$barnumber++;
 		}
 
 		if ( $wgOut->isArticle() ) {

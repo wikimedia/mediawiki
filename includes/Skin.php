@@ -1253,20 +1253,22 @@ abstract class Skin {
 				if ( strpos( $line, '|' ) !== false ) { // sanity check
 					$line = MessageCache::singleton()->transform( $line, false, null, $this->getTitle() );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
-					$link = wfMsgForContent( $line[0] );
 
-					if ( $link == '-' ) {
-						continue;
-					}
-
-					$text = wfMsgExt( $line[1], 'parsemag' );
-
-					if ( wfEmptyMsg( $line[1] ) ) {
-						$text = $line[1];
-					}
-
-					if ( wfEmptyMsg( $line[0] ) ) {
+					$msgLink = wfMessage( $line[0] )->inContentLanguage();
+					if ( $msgLink->exists() ) {
+						$link = $msgLink->text();
+						if ( $link == '-' ) {
+							continue;
+						}
+					} else {
 						$link = $line[0];
+					}
+
+					$msgText = wfMessage( $line[1] );
+					if ( $msgText->exists() ) {
+						$text = $msgText->text();
+					} else {
+						$text = $line[1];
 					}
 
 					if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $link ) ) {
