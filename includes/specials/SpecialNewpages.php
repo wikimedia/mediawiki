@@ -34,6 +34,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @var FormOptions
 	 */
 	protected $opts;
+	protected $customFilters;
 
 	// Some internal settings
 	protected $showNavigation = false;
@@ -58,6 +59,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'username', '' );
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
+
+		$this->customFilters = array();
+		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
+		foreach( $this->customFilters as $key => $params ) {
+			$opts->add( $key, $params['default'] );
+		}
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
@@ -167,13 +174,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 			'hidebots' => 'rcshowhidebots',
 			'hideredirs' => 'whatlinkshere-hideredirs'
 		);
+		foreach ( $this->customFilters as $key => $params ) {
+			$filters[$key] = $params['msg'];
+		}
 
 		// Disable some if needed
 		# @todo FIXME: Throws E_NOTICEs if not set; and doesn't obey hooks etc.
 		if ( $wgGroupPermissions['*']['createpage'] !== true ) {
 			unset( $filters['hideliu'] );
 		}
-
 		if ( !$this->getUser()->useNPPatrol() ) {
 			unset( $filters['hidepatrolled'] );
 		}
@@ -507,21 +516,23 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
   
 		// Allow changes to the New Pages query
-		wfRunHooks( 'SpecialNewpagesConditions', array( &$this, $this->opts, &$conds ) );
+		$tables = array( 'recentchanges', 'page' );
+		$fields = array(
+			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
+			'rc_comment', 'rc_timestamp', 'rc_patrolled','rc_id', 'rc_deleted',
+			'page_len AS length', 'page_latest AS rev_id', 'ts_tags'
+		);
+		$join_conds = array( 'page' => array( 'INNER JOIN', 'page_id=rc_cur_id' ) );
+
+		wfRunHooks( 'SpecialNewpagesConditions',
+			array( &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ) );
 
 		$info = array(
-			'tables' => array( 'recentchanges', 'page' ),
-			'fields' => array(
-				'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user',
-				'rc_user_text', 'rc_comment', 'rc_timestamp', 'rc_patrolled',
-				'rc_id', 'rc_deleted', 'page_len AS length', 'page_latest AS rev_id',
-				'ts_tags'
-			),
-			'conds' => $conds,
-			'options' => array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) ),
-			'join_conds' => array(
-				'page' => array( 'INNER JOIN', 'page_id=rc_cur_id' ),
-			),
+			'tables' 	 => $tables,
+			'fields' 	 => $fields,
+			'conds' 	 => $conds,
+			'options' 	 => array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) ),
+			'join_conds' => $join_conds
 		);
 
 		// Empty array for fields, it'll be set by us anyway.

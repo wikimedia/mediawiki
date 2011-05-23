@@ -21,6 +21,7 @@
  * @ingroup SpecialPage Watchlist
  */
 class SpecialWatchlist extends SpecialPage {
+	protected $customFilters;
 
 	/**
 	 * Constructor
@@ -109,6 +110,7 @@ class SpecialWatchlist extends SpecialPage {
 			return;
 		}
 
+		// @TODO: use FormOptions!
 		$defaults = array(
 		/* float */ 'days'      => floatval( $wgUser->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
 		/* bool  */ 'hideMinor' => (int)$wgUser->getBoolOption( 'watchlisthideminor' ),
@@ -120,6 +122,11 @@ class SpecialWatchlist extends SpecialPage {
 		/* ?     */ 'namespace' => 'all',
 		/* ?     */ 'invert'    => false,
 		);
+		$this->customFilters = array();
+		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
+		foreach( $this->customFilters as $key => $params ) {
+			$defaults[$key] = $params['msg'];
+		}
 
 		# Extract variables from the request, falling back to user preferences or
 		# other default values if these don't exist
@@ -132,20 +139,24 @@ class SpecialWatchlist extends SpecialPage {
 		$prefs['hidepatrolled' ] = $wgUser->getBoolOption( 'watchlisthidepatrolled' );
 
 		# Get query variables
-		$days      = $wgRequest->getVal(  'days'     , $prefs['days'] );
-		$hideMinor = $wgRequest->getBool( 'hideMinor', $prefs['hideminor'] );
-		$hideBots  = $wgRequest->getBool( 'hideBots' , $prefs['hidebots'] );
-		$hideAnons = $wgRequest->getBool( 'hideAnons', $prefs['hideanons'] );
-		$hideLiu   = $wgRequest->getBool( 'hideLiu'  , $prefs['hideliu'] );
-		$hideOwn   = $wgRequest->getBool( 'hideOwn'  , $prefs['hideown'] );
-		$hidePatrolled   = $wgRequest->getBool( 'hidePatrolled'  , $prefs['hidepatrolled'] );
+		$values = array();
+		$values['days']      	 = $wgRequest->getVal( 'days', $prefs['days'] );
+		$values['hideMinor'] 	 = (int)$wgRequest->getBool( 'hideMinor', $prefs['hideminor'] );
+		$values['hideBots']  	 = (int)$wgRequest->getBool( 'hideBots' , $prefs['hidebots'] );
+		$values['hideAnons'] 	 = (int)$wgRequest->getBool( 'hideAnons', $prefs['hideanons'] );
+		$values['hideLiu']   	 = (int)$wgRequest->getBool( 'hideLiu'  , $prefs['hideliu'] );
+		$values['hideOwn']   	 = (int)$wgRequest->getBool( 'hideOwn'  , $prefs['hideown'] );
+		$values['hidePatrolled'] = (int)$wgRequest->getBool( 'hidePatrolled', $prefs['hidepatrolled'] );
+		foreach( $this->customFilters as $key => $params ) {
+			$values[$key] = (int)$wgRequest->getBool( $key );
+		}
 
 		# Get namespace value, if supplied, and prepare a WHERE fragment
 		$nameSpace = $wgRequest->getIntOrNull( 'namespace' );
 		$invert = $wgRequest->getIntOrNull( 'invert' );
-		if( !is_null( $nameSpace ) ) {
-			$nameSpace = intval( $nameSpace );
-			if( $invert && $nameSpace !== 'all' ) {
+		if ( !is_null( $nameSpace ) ) {
+			$nameSpace = intval( $nameSpace ); // paranioa
+			if ( $invert ) {
 				$nameSpaceClause = "rc_namespace != $nameSpace";
 			} else {
 				$nameSpaceClause = "rc_namespace = $nameSpace";
@@ -154,6 +165,8 @@ class SpecialWatchlist extends SpecialPage {
 			$nameSpace = '';
 			$nameSpaceClause = '';
 		}
+		$values['namespace'] = $nameSpace;
+		$values['invert'] = $invert;
 
 		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 		$recentchanges = $dbr->tableName( 'recentchanges' );
@@ -164,29 +177,23 @@ class SpecialWatchlist extends SpecialPage {
 		// but treated together
 		$nitems = floor( $watchlistCount / 2 );
 
-		if( is_null( $days ) || !is_numeric( $days ) ) {
+		if( is_null( $values['days'] ) || !is_numeric( $values['days'] ) ) {
 			$big = 1000; /* The magical big */
 			if( $nitems > $big ) {
 				# Set default cutoff shorter
-				$days = $defaults['days'] = (12.0 / 24.0); # 12 hours...
+				$values['days'] = $defaults['days'] = (12.0 / 24.0); # 12 hours...
 			} else {
-				$days = $defaults['days']; # default cutoff for shortlisters
+				$values['days'] = $defaults['days']; # default cutoff for shortlisters
 			}
 		} else {
-			$days = floatval( $days );
+			$values['days'] = floatval( $values['days'] );
 		}
 
 		// Dump everything here
 		$nondefaults = array();
-
-		wfAppendToArrayIfNotDefault( 'days'     , $days          , $defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'hideMinor', (int)$hideMinor, $defaults, $nondefaults );
-		wfAppendToArrayIfNotDefault( 'hideBots' , (int)$hideBots , $defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'hideAnons', (int)$hideAnons, $defaults, $nondefaults );
-		wfAppendToArrayIfNotDefault( 'hideLiu'  , (int)$hideLiu  , $defaults, $nondefaults );
-		wfAppendToArrayIfNotDefault( 'hideOwn'  , (int)$hideOwn  , $defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'namespace', $nameSpace     , $defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'hidePatrolled', (int)$hidePatrolled, $defaults, $nondefaults );
+		foreach ( $defaults as $name => $defValue ) {
+			wfAppendToArrayIfNotDefault( $name, $values[$name], $defaults, $nondefaults );
+		}
 
 		if( $nitems == 0 ) {
 			$wgOut->addWikiMsg( 'nowatchlist' );
@@ -196,8 +203,8 @@ class SpecialWatchlist extends SpecialPage {
 		# Possible where conditions
 		$conds = array();
 
-		if( $days > 0 ) {
-			$conds[] = "rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
+		if( $values['days'] > 0 ) {
+			$conds[] = "rc_timestamp > '".$dbr->timestamp( time() - intval( $values['days'] * 86400 ) )."'";
 		}
 
 		# If the watchlist is relatively short, it's simplest to zip
@@ -209,25 +216,25 @@ class SpecialWatchlist extends SpecialPage {
 		# Up estimate of watched items by 15% to compensate for talk pages...
 
 		# Toggles
-		if( $hideOwn ) {
+		if( $values['hideOwn'] ) {
 			$conds[] = "rc_user != $uid";
 		}
-		if( $hideBots ) {
+		if( $values['hideBots'] ) {
 			$conds[] = 'rc_bot = 0';
 		}
-		if( $hideMinor ) {
+		if( $values['hideMinor'] ) {
 			$conds[] = 'rc_minor = 0';
 		}
-		if( $hideLiu ) {
+		if( $values['hideLiu'] ) {
 			$conds[] = 'rc_user = 0';
 		}
-		if( $hideAnons ) {
+		if( $values['hideAnons'] ) {
 			$conds[] = 'rc_user != 0';
 		}
-		if ( $wgUser->useRCPatrol() && $hidePatrolled ) {
+		if ( $wgUser->useRCPatrol() && $values['hidePatrolled'] ) {
 			$conds[] = 'rc_patrolled != 1';
 		}
-		if( $nameSpaceClause ) {
+		if ( $nameSpaceClause ) {
 			$conds[] = $nameSpaceClause;
 		}
 
@@ -299,34 +306,45 @@ class SpecialWatchlist extends SpecialPage {
 		/* Start bottom header */
 
 		$wlInfo = '';
-		if( $days >= 1 ) {
+		if( $values['days'] >= 1 ) {
 			$wlInfo = wfMsgExt( 'rcnote', 'parseinline',
 					$wgLang->formatNum( $numRows ),
-					$wgLang->formatNum( $days ),
+					$wgLang->formatNum( $values['days'] ),
 					$wgLang->timeAndDate( wfTimestampNow(), true ),
 					$wgLang->date( wfTimestampNow(), true ),
 					$wgLang->time( wfTimestampNow(), true )
 				) . '<br />';
-		} elseif( $days > 0 ) {
+		} elseif( $values['days'] > 0 ) {
 			$wlInfo = wfMsgExt( 'wlnote', 'parseinline',
 					$wgLang->formatNum( $numRows ),
-					$wgLang->formatNum( round( $days * 24 ) )
+					$wgLang->formatNum( round( $values['days'] * 24 ) )
 				) . '<br />';
 		}
 
-		$cutofflinks = "\n" . self::cutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n";
+		$cutofflinks = "\n" . self::cutoffLinks( $values['days'], 'Watchlist', $nondefaults ) . "<br />\n";
 
 		$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
 
 		# Spit out some control panel links
-		$links[] = self::showHideLink( $nondefaults, 'rcshowhideminor', 'hideMinor', $hideMinor );
-		$links[] = self::showHideLink( $nondefaults, 'rcshowhidebots', 'hideBots', $hideBots );
-		$links[] = self::showHideLink( $nondefaults, 'rcshowhideanons', 'hideAnons', $hideAnons );
-		$links[] = self::showHideLink( $nondefaults, 'rcshowhideliu', 'hideLiu', $hideLiu );
-		$links[] = self::showHideLink( $nondefaults, 'rcshowhidemine', 'hideOwn', $hideOwn );
+		$filters = array(
+			'hideMinor' 	=> 'rcshowhideminor',
+			'hideBots' 		=> 'rcshowhidebots',
+			'hideAnons' 	=> 'rcshowhideanons',
+			'hideLiu' 		=> 'rcshowhideliu',
+			'hideOwn' 		=> 'rcshowhidemine',
+			'hidePatrolled' => 'rcshowhidepatr'
+		);
+		foreach ( $this->customFilters as $key => $params ) {
+			$filters[$key] = $params['msg'];
+		}
+		// Disable some if needed
+		if ( !$wgUser->useNPPatrol() ) {
+			unset( $filters['hidePatrolled'] );
+		}
 
-		if( $wgUser->useRCPatrol() ) {
-			$links[] = self::showHideLink( $nondefaults, 'rcshowhidepatr', 'hidePatrolled', $hidePatrolled );
+		$links = array();
+		foreach( $filters as $name => $msg ) {
+			$links[] = self::showHideLink( $nondefaults, $msg, $name, $values[$name] );
 		}
 
 		# Namespace filter and put the whole form together.
@@ -339,21 +357,11 @@ class SpecialWatchlist extends SpecialPage {
 		$form .= Xml::namespaceSelector( $nameSpace, '' ) . '&#160;';
 		$form .= Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $invert ) . '&#160;';
 		$form .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</p>';
-		$form .= Html::hidden( 'days', $days );
-		if( $hideMinor ) {
-			$form .= Html::hidden( 'hideMinor', 1 );
-		}
-		if( $hideBots ) {
-			$form .= Html::hidden( 'hideBots', 1 );
-		}
-		if( $hideAnons ) {
-			$form .= Html::hidden( 'hideAnons', 1 );
-		}
-		if( $hideLiu ) {
-			$form .= Html::hidden( 'hideLiu', 1 );
-		}
-		if( $hideOwn ) {
-			$form .= Html::hidden( 'hideOwn', 1 );
+		$form .= Html::hidden( 'days', $values['days'] );
+		foreach ( $filters as $key => $msg ) {
+			if ( $values[$key] ) {
+				$form .= Html::hidden( $key, 1 );
+			}
 		}
 		$form .= Xml::closeElement( 'form' );
 		$form .= Xml::closeElement( 'fieldset' );

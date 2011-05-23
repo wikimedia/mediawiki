@@ -28,6 +28,7 @@
  */
 class SpecialRecentChanges extends IncludableSpecialPage {
 	var $rcOptions, $rcSubpage;
+	protected $customFilters;
 
 	public function __construct( $name = 'Recentchanges' ) {
 		parent::__construct( $name );
@@ -71,6 +72,13 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		global $wgRequest, $wgRCMaxAge;
 
 		$opts = $this->getDefaultOptions();
+
+		$this->customFilters = array();
+		wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
+		foreach( $this->customFilters as $key => $params ) {
+			$opts->add( $key, $params['default'] );
+		}
+
 		$opts->fetchValuesFromRequest( $wgRequest );
 		$opts->validateIntBounds( 'days', 1, $wgRCMaxAge / ( 3600 * 24 ) );
 
@@ -789,28 +797,28 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		// show/hide links
 		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
-		$minorLink = $this->makeOptionsLink( $showhide[1 - $options['hideminor']],
-			array( 'hideminor' => 1-$options['hideminor'] ), $nondefaults );
-		$botLink = $this->makeOptionsLink( $showhide[1 - $options['hidebots']],
-			array( 'hidebots' => 1-$options['hidebots'] ), $nondefaults );
-		$anonsLink = $this->makeOptionsLink( $showhide[ 1 - $options['hideanons'] ],
-			array( 'hideanons' => 1 - $options['hideanons'] ), $nondefaults );
-		$liuLink   = $this->makeOptionsLink( $showhide[1 - $options['hideliu']],
-			array( 'hideliu' => 1-$options['hideliu'] ), $nondefaults );
-		$patrLink  = $this->makeOptionsLink( $showhide[1 - $options['hidepatrolled']],
-			array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults );
-		$myselfLink = $this->makeOptionsLink( $showhide[1 - $options['hidemyself']],
-			array( 'hidemyself' => 1-$options['hidemyself'] ), $nondefaults );
-
-		$links[] = wfMsgHtml( 'rcshowhideminor', $minorLink );
-		$links[] = wfMsgHtml( 'rcshowhidebots', $botLink );
-		$links[] = wfMsgHtml( 'rcshowhideanons', $anonsLink );
-		$links[] = wfMsgHtml( 'rcshowhideliu', $liuLink );
-		if( $this->getUser()->useRCPatrol() ) {
-			$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
+		$filters = array(
+			'hideminor' 	=> 'rcshowhideminor',
+			'hidebots'  	=> 'rcshowhidebots',
+			'hideanons' 	=> 'rcshowhideanons',
+			'hideliu'		=> 'rcshowhideliu',
+			'hidepatrolled' => 'rcshowhidepatr',
+			'hidemyself'	=> 'rcshowhidemine'
+		);
+		foreach ( $this->customFilters as $key => $params ) {
+			$filters[$key] = $params['msg'];
 		}
-		$links[] = wfMsgHtml( 'rcshowhidemine', $myselfLink );
-		$hl = $wgLang->pipeList( $links );
+		// Disable some if needed
+		if ( !$this->getUser()->useRCPatrol() ) {
+			unset( $filters['hidepatrolled'] );
+		}
+
+		$links = array();
+		foreach ( $filters as $key => $msg ) {
+			$link = $this->makeOptionsLink( $showhide[1 - $options[$key]],
+				array( $key => 1-$options[$key] ), $nondefaults );
+			$links[] = wfMsgHtml( $msg, $link );
+		}
 
 		// show from this onward link
 		$now = $wgLang->timeanddate( wfTimestampNow(), true );
@@ -819,7 +827,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		);
 
 		$rclinks = wfMsgExt( 'rclinks', array( 'parseinline', 'replaceafter' ),
-			$cl, $dl, $hl );
+			$cl, $dl, $wgLang->pipeList( $links ) );
 		$rclistfrom = wfMsgExt( 'rclistfrom', array( 'parseinline', 'replaceafter' ), $tl );
 		return "{$note}$rclinks<br />$rclistfrom";
 	}

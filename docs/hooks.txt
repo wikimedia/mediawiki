@@ -1610,6 +1610,14 @@ $newTitle: new title (object)
 &$special: NewPagesPager object (subclass of ReverseChronologicalPager)
 $opts: FormOptions object containing special page options
 &$conds: array of WHERE conditionals for query
+&tables: array of tables to be queried
+&$fields: array of columns to select
+&$join_conds: join conditions for the tables
+
+'SpecialNewPagesFilters': called after building form options at NewPages
+$special: the special page object
+&$filters: associative array of filter definitions. The keys are the HTML name/URL parameters.
+Each key maps to an associative array with a 'msg' (message key) and a 'default' value.
 
 'SpecialPage_initList': called when setting up SpecialPage::$mList, use this
 hook to remove a core special page
@@ -1624,6 +1632,11 @@ use this to change some selection criteria or substitute a different title
 &$title: If the hook returns false, a Title object to use instead of the
 result from the normal query
 
+'SpecialRecentChangesFilters': called after building form options at RecentChanges
+$special: the special page object
+&$filters: associative array of filter definitions. The keys are the HTML name/URL parameters.
+Each key maps to an associative array with a 'msg' (message key) and a 'default' value.
+
 'SpecialRecentChangesPanel': called when building form options in
 SpecialRecentChanges
 &$extraOpts: array of added items, to which can be added
@@ -1636,7 +1649,7 @@ SpecialRecentChanges and SpecialRecentChangesLinked
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
 &$query_options: array of options for the database request
-&$select: String '*' or array of columns to select
+&$select: Array of columns to select
 
 'SpecialSearchGo': called when user clicked the "Go"
 &$title: title object generated from the text entered by the user
@@ -1682,6 +1695,11 @@ $form: The SpecialUpload object
 'SpecialVersionExtensionTypes': called when generating the extensions credits,
 use this to change the tables headers
 $extTypes: associative array of extensions types
+
+'SpecialWatchlistFilters': called after building form options at Watchlist
+$special: the special page object
+&$filters: associative array of filter definitions. The keys are the HTML name/URL parameters.
+Each key maps to an associative array with a 'msg' (message key) and a 'default' value.
 
 'SpecialWatchlistQuery': called when building sql query for SpecialWatchlist
 &$conds: array of WHERE conditionals for query
