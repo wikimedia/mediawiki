@@ -905,7 +905,7 @@ class SkinTemplate extends Skin {
 					( $action == 'edit' || $action == 'submit' ) &&
 					( $section != 'new' )
 				);
-				$msgKey = $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && !wfEmptyMsg( $title->getText() ) ) ?
+				$msgKey = $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && $title->getDefaultMessageText() !== false ) ?
 					"edit" : "create";
 				$content_navigation['views']['edit'] = array(
 					'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
