@@ -990,6 +990,18 @@ function wfMsgExt( $key, $options ) {
 }
 
 /**
+ * Since wfMsg() and co suck, they don't return false if the message key they
+ * looked up didn't exist but a XHTML string, this function checks for the
+ * nonexistance of messages by checking the MessageCache::get() result directly.
+ *
+ * @param $key      String: the message key looked up
+ * @return Boolean True if the message *doesn't* exist.
+ */
+function wfEmptyMsg( $key ) {
+	return MessageCache::singleton()->get( $key, /*useDB*/true, /*content*/false ) === false;
+}
+
+/**
  * Print an error message and die, returning nonzero to the shell if any.  Plain die()
  * fails to return nonzero to the shell if you pass a string.  Entry points may customise
  * this function to return a prettier error message, but implementations must not assume
@@ -2335,18 +2347,6 @@ function wfIncrStats( $key, $count = 1 ) {
 function wfPercent( $nr, $acc = 2, $round = true ) {
 	$ret = sprintf( "%.${acc}f", $nr );
 	return $round ? round( $ret, $acc ) . '%' : "$ret%";
-}
-
-/**
- * Since wfMsg() and co suck, they don't return false if the message key they
- * looked up didn't exist but a XHTML string, this function checks for the
- * nonexistance of messages by checking the MessageCache::get() result directly.
- *
- * @param $key      String: the message key looked up
- * @return Boolean True if the message *doesn't* exist.
- */
-function wfEmptyMsg( $key ) {
-	return MessageCache::singleton()->get( $key, /*useDB*/true, /*content*/false ) === false;
 }
 
 /**
