@@ -47,6 +47,12 @@ if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
 	$wgActionPaths['view'] = $wgArticlePath;
 }
 
+if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
+	# 'view' is assumed the default action path everywhere in the code
+	# but is rarely filled in $wgActionPaths 
+	$wgActionPaths['view'] = $wgArticlePath ;
+}
+
 if ( $wgStylePath === false ) $wgStylePath = "$wgScriptPath/skins";
 if ( $wgLocalStylePath === false ) $wgLocalStylePath = "$wgScriptPath/skins";
 if ( $wgStyleDirectory === false ) $wgStyleDirectory   = "$IP/skins";
