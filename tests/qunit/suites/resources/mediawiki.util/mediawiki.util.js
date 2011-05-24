@@ -57,6 +57,9 @@ test( 'addCSS', function(){
 
 });
 
+/**
+ * @fixme this seems to only test for the existence of the function, and does not confirm that it works
+ */
 test( 'toggleToc', function(){
 
 	ok( mw.util.toggleToc );
