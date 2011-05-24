@@ -90,20 +90,22 @@ test( 'mw.loader', function(){
 		"Extracting path from local URL (file://) with fragment"
 		);
 
+	// Asynchronous ahead
 	stop();
 
-	var tests_path = rePath.exec( location.href ); // Extract path
-	mw.loader.implement( 'is.awesome', [tests_path + 'sample/awesome.js'], {}, {} );
-	mw.loader.using( 'is.awesome', function(){
-		start();
-		deepEqual( window.awesome, true, 'Implementing a module, is the callback timed properly ?');
+	// Extract path
+	var tests_path = rePath.exec( location.href );
 
-		// Clean up
-		delete window.awesome;
+	mw.loader.implement( 'is.awesome', [tests_path + 'sample/awesome.js'], {}, {} );
+
+	mw.loader.using( 'is.awesome', function(){
+
+		// awesome.js declares this function
+		mw.loader.testCallback();
 
 	}, function(){
 		start();
-		deepEqual( 'mw.loader.using error callback fired', true, 'Implementing a module, is the callback timed properly ?');
+		deepEqual( true, false, 'Implementing a module, error callback fired!');
 	});
 
 });
