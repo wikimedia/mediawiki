@@ -481,27 +481,30 @@ window.mediaWiki = new ( function( $ ) {
 			// Execute script
 			try {
 				var script = registry[module].script;
-				if ( $.isArray( script ) ) {
-					var done = 0;
-					for ( var i = 0; i < script.length; i++ ) {
-						registry[module].state = 'loading';
-						addScript( script[i], function() {
-							if ( ++done == script.length ) {
-								registry[module].state = 'ready';
-								handlePending( module );
-								if ( $.isFunction( callback ) ) {
-									callback();
-								}
-							}
-						} );
-					}
-				} else if ( $.isFunction( script ) ) {
-					script( jQuery );
+				var markModuleReady = function() {
 					registry[module].state = 'ready';
 					handlePending( module );
 					if ( $.isFunction( callback ) ) {
 						callback();
 					}
+				};
+				if ( $.isArray( script ) ) {
+					var done = 0;
+					if (script.length == 0 ) {
+						// No scripts in this module? Let's dive out early.
+						markModuleReady();
+					}
+					for ( var i = 0; i < script.length; i++ ) {
+						registry[module].state = 'loading';
+						addScript( script[i], function() {
+							if ( ++done == script.length ) {
+								markModuleReady();
+							}
+						} );
+					}
+				} else if ( $.isFunction( script ) ) {
+					script( jQuery );
+					markModuleReady();
 				}
 			} catch ( e ) {
 				// This needs to NOT use mw.log because these errors are common in production mode
