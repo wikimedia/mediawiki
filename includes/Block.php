@@ -184,7 +184,7 @@ class Block {
 	 *     2) A rangeblock encompasing the given IP (smallest first)
 	 *     3) An autoblock on the given IP
 	 * @param $vagueTarget User|String also search for blocks affecting this target.  Doesn't
-	 *     make any sense to use TYPE_AUTO / TYPE_ID here
+	 *     make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
 	 * @return Bool whether a relevant block was found
 	 */
 	protected function newLoad( $vagueTarget = null ) {
@@ -198,7 +198,8 @@ class Block {
 			$conds = array( 'ipb_address' => array() );
 		}
 
-		if( $vagueTarget !== null ){
+		# Be aware that the != '' check is explicit, since empty values will be passed by some callers.
+		if( $vagueTarget != ''){
 			list( $target, $type ) = self::parseTarget( $vagueTarget );
 			switch( $type ) {
 				case self::TYPE_USER:
@@ -962,7 +963,7 @@ class Block {
 	 *     1.2.3.4 will not select 1.2.0.0/16 or even 1.2.3.4/32)
 	 * @param $vagueTarget String|User|Int as above, but we will search for *any* block which
 	 *     affects that target (so for an IP address, get ranges containing that IP; and also
-	 *     get any relevant autoblocks)
+	 *     get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
 	 * @param $fromMaster Bool whether to use the DB_MASTER database
 	 * @return Block|null (null if no relevant block could be found).  The target and type
 	 *     of the returned Block will refer to the actual block which was found, which might
@@ -979,8 +980,9 @@ class Block {
 		if( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ){
 			return Block::newFromID( $target );
 
-		} elseif( $target === null && $vagueTarget === null ){
+		} elseif( $target === null && $vagueTarget == '' ){
 			# We're not going to find anything useful here
+			# Be aware that the == '' check is explicit, since empty values will be passed by some callers.
 			return null;
 
 		} elseif( in_array( $type, array( Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ) ) ) {
