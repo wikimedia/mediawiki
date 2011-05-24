@@ -90,6 +90,7 @@ production.
   title inputs
 * (bug 20699) API watchlist should list log-events
 * (bug 29070) Add token to action=watch
+* (bug 29120) ApiQueryLogEvents: let letype accept multiple values
 
 === Languages updated in 1.19 ===
 
