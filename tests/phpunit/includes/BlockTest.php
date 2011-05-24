@@ -48,5 +48,38 @@ class BlockTest extends MediaWikiLangTestCase {
 		
 	}
 
+	/**
+	 * This is the method previously used to load block info in CheckUser etc
+	 * passing an empty value (empty string, null, etc) as the ip parameter bypasses IP lookup checks.
+	 *
+	 * This stopped working with r84475 and friends: regression being fixed for bug 29116.
+	 *
+	 * @dataProvider dataBug29116
+	 */
+	function testBug29116LoadWithEmptyIp( $vagueTarget ) {
+		$block = new Block();
+		$block->load( $vagueTarget, 'UTBlockee' );
+		$this->assertTrue( $this->block->equals( Block::newFromTarget('UTBlockee', $vagueTarget) ), "Block->load() returns the same block as the one that was made when given empty ip param " . var_export( $vagueTarget, true ) );
+	}
+
+	/**
+	 * CheckUser since being changed to use Block::newFromTarget started failing
+	 * because the new function didn't accept empty strings like Block::load()
+	 * had. Regression bug 29116.
+	 *
+	 * @dataProvider dataBug29116
+	 */
+	function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
+		$block = Block::newFromTarget('UTBlockee', $vagueTarget);
+		$this->assertTrue( $this->block->equals( $block ), "newFromTarget() returns the same block as the one that was made when given empty vagueTarget param " . var_export( $vagueTarget, true ) );
+	}
+
+	function dataBug29116() {
+		return array(
+			array( null ),
+			array( '' ),
+			array( false )
+		);
+	}
 }
 
