@@ -973,23 +973,20 @@ abstract class HTMLFormField {
 		$helptext = null;
 
 		if ( isset( $this->mParams['help-message'] ) ) {
-			$msg = $this->mParams['help-message'];
-			$helptext = wfMsgExt( $msg, 'parseinline' );
-			if ( wfEmptyMsg( $msg ) ) {
-				# Never mind
-				$helptext = null;
+			$msg = wfMessage( $this->mParams['help-message'] );
+			if ( $msg->exists() ) {
+				$helptext = $msg->parse();
 			}
 		} elseif ( isset( $this->mParams['help-messages'] ) ) {
 			# help-message can be passed a message key (string) or an array containing
 			# a message key and additional parameters. This makes it impossible to pass
 			# an array of message key
-			foreach( $this->mParams['help-messages'] as $msg ) {
-				$candidate = wfMsgExt( $msg, 'parseinline' );
-				if( wfEmptyMsg( $msg ) ) {
-					$candidate = null;
+			foreach( $this->mParams['help-messages'] as $name ) {
+				$msg = wfMessage( $name );
+				if( $msg->exists() ) {
+					$helptext .= $msg->parse(); // append message
 				}
-				$helptext .= $candidate; // append message
-			}	
+			}
 		} elseif ( isset( $this->mParams['help'] ) ) {
 			$helptext = $this->mParams['help'];
 		}

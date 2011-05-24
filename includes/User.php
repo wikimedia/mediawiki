@@ -3610,10 +3610,8 @@ class User {
 	 */
 	static function getRightDescription( $right ) {
 		$key = "right-$right";
-		$name = wfMsg( $key );
-		return $name == '' || wfEmptyMsg( $key )
-			? $right
-			: $name;
+		$msg = wfMessage( $key );
+		return $msg->isBlank() ? $right : $msg->text();
 	}
 
 	/**
