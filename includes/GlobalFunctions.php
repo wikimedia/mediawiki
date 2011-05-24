@@ -3117,6 +3117,9 @@ function wfSplitWikiID( $wiki ) {
  * will always return the same object, unless the underlying connection or load
  * balancer is manually destroyed.
  *
+ * Note 2: use $this->getDB() in maintenance scripts that may be invoked by
+ * updater to ensure that a proper database is being updated.
+ *
  * @return DatabaseBase
  */
 function &wfGetDB( $db, $groups = array(), $wiki = false ) {

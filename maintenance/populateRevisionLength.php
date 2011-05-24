@@ -30,7 +30,7 @@ class PopulateRevisionLength extends Maintenance {
 	}
 
 	public function execute() {
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'revision' ) ) {
 			$this->error( "revision table does not exist", true );
 		}

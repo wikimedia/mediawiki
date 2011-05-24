@@ -108,6 +108,9 @@ abstract class Maintenance {
 	// Generic options which might or not be supported by the script
 	private $mDependantParameters = array();
 
+	// Used by getDD() / setDB()
+	private $mDb = null;
+
 	/**
 	 * List of all the core maintenance scripts. This is added
 	 * to scripts added by extensions in $wgMaintenanceScripts
@@ -448,6 +451,9 @@ abstract class Maintenance {
 
 		$child = new $maintClass();
 		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
+		if ( !is_null( $this->mDb ) ) {
+			$child->setDB( $this->mDb );
+		}
 		return $child;
 	}
 
@@ -958,7 +964,7 @@ abstract class Maintenance {
 	 */
 	public function purgeRedundantText( $delete = true ) {
 		# Data should come off the master, wrapped in a transaction
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$dbw->begin();
 
 		$tbl_arc = $dbw->tableName( 'archive' );
@@ -1059,6 +1065,30 @@ abstract class Maintenance {
 			}
 		}
 		return self::$mCoreScripts;
+	}
+
+	/**
+	 * Returns a database to be used by current maintenance script. It can be set by setDB().
+	 * If not set, wfGetDB() will be used.
+	 * This function has the same parameters as wfGetDB()
+	 *
+	 * @return DatabaseBase
+	 */
+	protected function &getDB( $db, $groups = array(), $wiki = false ) {
+		if ( is_null( $this->mDb ) ) {
+			return wfGetDB( $db, $groups, $wiki );
+		} else {
+			return $this->mDb;
+		}
+	}
+
+	/**
+	 * Sets database object to be returned by getDB().
+	 *
+	 * @param $db DatabaseBase: Database object to be used
+	 */
+	public function setDB( &$db ) {
+		$this->mDb = $db;
 	}
 
 	/**
