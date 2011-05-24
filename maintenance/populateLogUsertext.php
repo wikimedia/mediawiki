@@ -33,7 +33,7 @@ class PopulateLogUsertext extends Maintenance {
 	}
 
 	public function execute() {
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 		$start = $db->selectField( 'logging', 'MIN(log_id)', false, __METHOD__ );
 		if ( !$start ) {
 			$this->output( "Nothing to do.\n" );

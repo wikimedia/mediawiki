@@ -60,7 +60,7 @@ TEXT;
 	public function execute() {
 		global $wgCategoryCollation, $wgMiserMode;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$force = $this->getOption( 'force' );
 
 		$options = array( 'LIMIT' => self::BATCH_SIZE );
