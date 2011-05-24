@@ -542,6 +542,7 @@ $messages = array(
 'currentrev'             => 'နောက်ဆုံးမူ',
 'currentrev-asof'        => '$1 က နောက်ဆုံး တည်းဖြတ်မူ',
 'revisionasof'           => '$1 ရက်နေ့က မူ',
+'revision-info'          => '$1 နေ့က $2 တည်းဖြတ်သည့်မူ',
 'previousrevision'       => 'မူဟောင်း',
 'nextrevision'           => 'ပိုသစ်သော တည်းဖြတ်မူ →',
 'currentrevisionlink'    => 'နောက်ဆုံး မူ',
@@ -1418,6 +1419,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'sp-contributions-userrights'  => 'အသုံးပြုသူ၏ အခွင့်အရေးများကို စီမံခန့်ခွဲခြင်း',
 'sp-contributions-search'      => 'ပံ့ပိုးမှုများကို ရှာရန်',
 'sp-contributions-username'    => 'အိုင်ပီလိပ်စာ သို့ အသုံးပြုသူအမည် :',
+'sp-contributions-toponly'     => 'နောက်ဆုံးတည်းဖြတ်မူများသာပြရန်',
 'sp-contributions-submit'      => 'ရှာ​ဖွေ​ရန်​',
 
 # What links here

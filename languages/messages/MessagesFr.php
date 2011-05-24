@@ -3638,7 +3638,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'size-gigabytes' => '$1 Go',
 
 # Live preview
-'livepreview-loading' => 'Chargement…',
+'livepreview-loading' => 'Chargement...',
 'livepreview-ready'   => 'Chargement … terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',

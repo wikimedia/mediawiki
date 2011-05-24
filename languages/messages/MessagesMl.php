@@ -2209,8 +2209,9 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'watchlist-options'    => 'ശ്രദ്ധിക്കുന്ന താളുകളുടെ സജ്ജീകരണങ്ങൾ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'ശ്രദ്ധിക്കുന്നു...',
-'unwatching' => 'അവഗണിക്കുന്നു...',
+'watching'       => 'ശ്രദ്ധിക്കുന്നു...',
+'unwatching'     => 'അവഗണിക്കുന്നു...',
+'watcherrortext' => '"$1" എന്ന താൾ ശ്രദ്ധിക്കുന്നതിന്റെ സ്ഥിതിയിൽ മാറ്റം വരുത്തിയപ്പോൾ ഒരു പിഴവുണ്ടായിരിക്കുന്നു.',
 
 'enotif_mailer'                => '{{SITENAME}} വിജ്ഞാപന മെയിലർ',
 'enotif_reset'                 => 'എല്ലാ താളുകളും സന്ദർശിച്ചതായി രേഖപ്പെടുത്തുക',

@@ -40,6 +40,7 @@
  * @author Jens Liebenau
  * @author Jurock
  * @author Lin linao
+ * @author Linterweb
  * @author Locos epraix
  * @author Mahadeva
  * @author Manuelt15
@@ -2282,7 +2283,7 @@ Véase $2 para un registro de los borrados recientes.',
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar razones de borrado',
 'delete-toobig'          => 'Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.',
-'delete-warning-toobig'  => 'Esta página tiene un historial de más de {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
+'delete-warning-toobig'  => 'Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
 
 # Rollback
 'rollback'          => 'Revertir ediciones',

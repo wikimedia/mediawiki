@@ -8,6 +8,7 @@
  * @file
  *
  * @author Angpradesh
+ * @author Vinitutpal
  */
 
 $fallback = 'hi';
@@ -40,7 +41,16 @@ $messages = array(
 'tog-enotifusertalkpages'     => 'हमरॊ सदस्य वार्ता पृष्ठ पर बदलाव होला सॆं हमरा इ-मेल करॊ',
 'tog-enotifminoredits'        => 'तनी-मनी बदलावॊ लेली भी हमरा इ-मेल भेजॊ',
 
+'underline-never' => 'कहियो नै',
+
 # Dates
+'sunday'        => 'रविवार',
+'monday'        => 'सोमवार',
+'tuesday'       => 'मंगलवार',
+'wednesday'     => 'बुधवार',
+'thursday'      => 'गुरुवार',
+'friday'        => 'शुक्रवार',
+'saturday'      => 'शनिचर',
 'january'       => 'जनवरी',
 'february'      => 'फ़रवरी',
 'march'         => 'मार्च',

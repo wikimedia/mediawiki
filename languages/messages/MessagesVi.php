@@ -412,7 +412,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại hiện hành.',
 'listingcontinuesabbrev'         => 'tiếp',
 'index-category'                 => 'Trang được ghi chỉ mục',
-'noindex-category'               => 'Trang không ghi chỉ mục',
+'noindex-category'               => 'Trang không hiển thị trong bộ máy tìm kiếm',
 'broken-file-category'           => 'Trang nhúng tập tin không tồn tại',
 
 'mainpagetext'      => "'''MediaWiki đã được cài đặt thành công.'''",
