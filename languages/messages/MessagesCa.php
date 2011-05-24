@@ -1215,7 +1215,7 @@ A continuació es mostra un valor generat de forma aleatòria que podeu fer serv
 'savedprefs'                    => "S'han desat les vostres preferències",
 'timezonelegend'                => 'Fus horari:',
 'localtime'                     => 'Hora local:',
-'timezoneuseserverdefault'      => 'Usa hora del servidor ($1)',
+'timezoneuseserverdefault'      => "Utilitza l'hora per defecte del wiki ($1)",
 'timezoneuseoffset'             => 'Altres (especifiqueu la diferència)',
 'timezoneoffset'                => 'Diferència¹:',
 'servertime'                    => 'Hora del servidor:',
@@ -1705,6 +1705,7 @@ La següent llista només mostra {{PLURAL:$1|la primera d'elles|les primeres $1 
 Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 'nolinkstoimage'            => 'No hi ha pàgines que enllacin aquesta imatge.',
 'morelinkstoimage'          => 'Visualitza [[Special:WhatLinksHere/$1|més enllaços]] que porten al fitxer.',
+'linkstoimage-redirect'     => '$1 (fitxer redirigit) $2',
 'duplicatesoffile'          => "{{PLURAL:$1|Aquest fitxer és un duplicat del que apareix a continuació|A continuació s'indiquen els $1 duplicats d'aquest fitxer}} ([[Special:FileDuplicateSearch/$2|vegeu-ne més detalls]]):",
 'sharedupload'              => 'Aquest fitxer prové de $1 i pot ser utilitzat per altres projectes.',
 'sharedupload-desc-there'   => 'Aquest fitxer prové de $1 i pot ser utilitzat per altres projectes.
@@ -2463,6 +2464,7 @@ Recordeu-vos de [[Special:UnlockDB|treure el bloqueig]] quan hàgiu acabat el ma
 'unlockdbsuccesstext' => "S'ha desbloquejat la base de dades del projecte {{SITENAME}}.",
 'lockfilenotwritable' => 'No es pot modificar el fitxer de la base de dades de bloquejos. Per a blocar o desblocar la base de dades, heu de donar-ne permís de modificació al servidor web.',
 'databasenotlocked'   => 'La base de dades no està bloquejada.',
+'lockedbyandtime'     => '(per $1 el $2 a les $3)',
 
 # Move page
 'move-page'                    => 'Mou $1',
@@ -2810,6 +2812,7 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgines}}',
 'file-info'              => 'mida: $1, tipus MIME: $2',
 'file-info-size'         => '$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4',
+'file-info-size-pages'   => '$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4, $5 {{PLURAL:$5|pàgina|pàgines}}',
 'file-nohires'           => '<small>No hi ha cap versió amb una resolució més gran.</small>',
 'svg-long-desc'          => 'fitxer SVG, nominalment $1 × $2 píxels, mida del fitxer: $3',
 'show-big-image'         => 'Imatge en màxima resolució',
@@ -3034,6 +3037,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-giffilecomment'              => 'Comentari del fitxer GIF',
 'exif-intellectualgenre'           => "Tipus d'article",
 'exif-subjectnewscode'             => 'Codi del subjecte',
+'exif-scenecode'                   => "Codi d'escena IPTC",
 'exif-event'                       => 'Esdeveniment representat',
 'exif-organisationinimage'         => 'Organització representada',
 'exif-personinimage'               => 'Persona representada',
@@ -3216,6 +3220,11 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-ycbcrpositioning-2' => 'co-localitzats',
 
 'exif-dc-contributor' => 'Coŀlaboradors',
+'exif-dc-date'        => 'Data(es)',
+'exif-dc-rights'      => 'Drets',
+'exif-dc-type'        => 'Tipus de contingut',
+
+'exif-rating-rejected' => 'Rebutjat',
 
 'exif-isospeedratings-overflow' => 'Superior a 65535',
 

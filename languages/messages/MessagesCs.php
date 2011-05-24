@@ -858,7 +858,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 
 # Special:PasswordReset
 'passwordreset'                => 'Reset hesla',
-'passwordreset-text'           => 'Pro obdržení e-mailu s detaily vašeho účtu vyplňte tento formulář.',
+'passwordreset-text'           => 'Pro obdržení e-mailu s připomenutím detailů vašeho účtu vyplňte tento formulář.',
 'passwordreset-legend'         => 'Znovu nastavit heslo',
 'passwordreset-disabled'       => 'Znovunastavení hesla je na této wiki zakázáno.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
@@ -2639,6 +2639,7 @@ Zde je pro přehled zobrazen výpis z knihy zablokování:',
 'unlockdbsuccesstext' => 'Databáze {{grammar:2sg|{{SITENAME}}}} je odemčena.',
 'lockfilenotwritable' => 'Do souboru zámku databáze nelze zapisovat. Pro zamčení či odemčení databáze musí mít webový server právo zápisu do tohoto souboru.',
 'databasenotlocked'   => 'Databáze není uzamčena.',
+'lockedbyandtime'     => '({{gender:$1|zamkl|zamkla|zamkl}} $1 $2 v $3)',
 
 # Move page
 'move-page'                    => 'Přesunout „$1“',
@@ -3184,8 +3185,11 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-objectname'                  => 'Krátký název',
 'exif-specialinstructions'         => 'Zvláštní pokyny',
 'exif-headline'                    => 'Nadpis',
+'exif-credit'                      => 'Zdroj/poskytovatel',
 'exif-source'                      => 'Zdroj',
+'exif-editstatus'                  => 'Redakční stav obrázku',
 'exif-urgency'                     => 'Spěšnost',
+'exif-fixtureidentifier'           => 'Název pořadu',
 'exif-locationdest'                => 'Zobrazené místo',
 'exif-locationdestcode'            => 'Kód zobrazeného místa',
 'exif-objectcycle'                 => 'Denní doba, pro kterou je soubor určen',
@@ -3197,6 +3201,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-iimsupplementalcategory'     => 'Doplňkové kategorie',
 'exif-datetimeexpires'             => 'Nepoužívat po',
 'exif-datetimereleased'            => 'K použití od',
+'exif-originaltransmissionref'     => 'Kód pro dohledání původního přenosu',
 'exif-identifier'                  => 'Identifikátor',
 'exif-lens'                        => 'Použitý objektiv',
 'exif-serialnumber'                => 'Sériové číslo přístroje',
@@ -3205,6 +3210,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-datetimemetadata'            => 'Datum poslední úpravy metadat',
 'exif-nickname'                    => 'Neformální název obrázku',
 'exif-rating'                      => 'Hodnocení (1–5)',
+'exif-rightscertificate'           => 'Certifikát řízení práv',
 'exif-copyrighted'                 => 'Stav autorských práv',
 'exif-copyrightowner'              => 'Držitel autorských práv',
 'exif-usageterms'                  => 'Podmínky užití',
@@ -3229,7 +3235,11 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 
 # EXIF attributes
 'exif-compression-1' => 'Nekomprimovaný',
+'exif-compression-2' => '1-rozměrné modifikované Huffmanovo kódování délky běhu CCITT Group 3',
+'exif-compression-3' => 'Kódování faxů CCITT Group 3',
+'exif-compression-4' => 'Kódování faxů CCITT Group 4',
 
+'exif-copyrighted-true'  => 'Chráněno autorským právem',
 'exif-copyrighted-false' => 'Volné dílo',
 
 'exif-unknowndate' => 'neznámé datum',

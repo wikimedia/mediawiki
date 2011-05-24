@@ -617,7 +617,9 @@ $1',
 S-ar putea să fi introdus greșit URL-ul, sau să fi urmat o legătură incorectă.
 Aceasta s-ar putea să indice și un bug în programul folosit de {{SITENAME}}.',
 'nosuchspecialpage' => 'Această pagină specială nu există',
-'nospecialpagetext' => 'Ai cerut o [[Special:SpecialPages|pagină specială]] care nu este recunoscută de {{SITENAME}}.',
+'nospecialpagetext' => '<strong>Ați cerut o [[Special:SpecialPages|pagină specială]] invalidă.</strong>
+
+O listă cu paginile speciale valide se poate găsi la [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Eroare',
