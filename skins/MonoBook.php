@@ -141,8 +141,18 @@ class MonoBookTemplate extends BaseTemplate {
 ?>
 </div><!-- end of the left (by default at least) column -->
 <div class="visualClear"></div>
+<?php
+	$validFooterIcons = $this->getFooterIcons( "icononly" );
+	$validFooterLinks = $this->getFooterLinks( "flat" ); // Additional footer links
+
+	if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) { ?>
 <div id="footer"<?php $this->html('userlangattributes') ?>>
-<?php foreach ( $this->getFooterIcons("icononly") as $blockName => $footerIcons ) { ?>
+<?php
+		$footerEnd = '</div>';
+	} else {
+		$footerEnd = '';
+	}
+	foreach ( $validFooterIcons as $blockName => $footerIcons ) { ?>
 	<div id="f-<?php echo htmlspecialchars($blockName); ?>ico">
 <?php foreach ( $footerIcons as $icon ) { ?>
 		<?php echo $this->skin->makeFooterIcon( $icon ); ?>
@@ -152,21 +162,19 @@ class MonoBookTemplate extends BaseTemplate {
 	</div>
 <?php }
 
-		// Generate additional footer links
-		$validFooterLinks = $this->getFooterLinks("flat");
 		if ( count( $validFooterLinks ) > 0 ) {
 ?>	<ul id="f-list">
 <?php
 			foreach( $validFooterLinks as $aLink ) { ?>
 		<li id="<?php echo $aLink ?>"><?php $this->html($aLink) ?></li>
-
 <?php
 			}
 ?>
 	</ul>
 <?php	}
+echo $footerEnd;
 ?>
-</div>
+
 </div>
 <?php
 		$this->printTrail();
