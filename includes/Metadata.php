@@ -1,6 +1,6 @@
 <?php
 /**
- * Provides DublinCore and CreativeCommons metadata
+ * Provides CreativeCommons metadata
  *
  * Copyright 2004, Evan Prodromou <evan@wikitravel.org>.
  *
@@ -195,42 +195,6 @@ abstract class RdfMetaData {
 		  array('de', 're', 'di', 'no', 'sa', 'sc');
 
 		return $knownLicenses;
-	}
-}
-
-class DublinCoreRdf extends RdfMetaData {
-
-	public function show(){
-		if( $this->setup() ){
-			$this->prologue();
-			$this->basics();
-			$this->epilogue();
-		}
-	}
-
-	/**
-	 * begin of the page
-	 */
-	protected function prologue() {
-		$url = htmlspecialchars( $this->reallyFullUrl() );
-		print <<<PROLOGUE
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE rdf:RDF PUBLIC "-//DUBLIN CORE//DCMES DTD 2002/07/31//EN" "http://dublincore.org/documents/2002/07/31/dcmes-xml/dcmes-xml-dtd.dtd">
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:dc="http://purl.org/dc/elements/1.1/">
-	<rdf:Description rdf:about="{$url}">
-
-PROLOGUE;
-	}
-
-	/**
-	 * end of the page
-	 */
-	protected function epilogue() {
-		print <<<EPILOGUE
-	</rdf:Description>
-</rdf:RDF>
-EPILOGUE;
 	}
 }
 

@@ -2703,7 +2703,7 @@ class OutputPage {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
 			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
-			$wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf,
+			$wgEnableCreativeCommonsRdf,
 			$wgDisableLangConversion, $wgCanonicalLanguageLinks, $wgContLang,
 			$wgRightsPage, $wgRightsUrl;
 
@@ -2842,15 +2842,6 @@ class OutputPage {
 					'title' => 'Creative Commons',
 					'type' => 'application/rdf+xml',
 					'href' => $this->getTitle()->getLocalURL( 'action=creativecommons' ) )
-				);
-			}
-
-			if ( $wgEnableDublinCoreRdf ) {
-				$tags[] = Html::element( 'link', array(
-					'rel' => $this->getMetadataAttribute(),
-					'title' => 'Dublin Core',
-					'type' => 'application/rdf+xml',
-					'href' => $this->getTitle()->getLocalURL( 'action=dublincore' ) )
 				);
 			}
 		}
