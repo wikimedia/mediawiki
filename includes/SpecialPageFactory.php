@@ -25,6 +25,7 @@
 /**
  * Factory for handling the special page list and generating SpecialPage objects
  * @ingroup SpecialPage
+ * @since 1.17
  */
 class SpecialPageFactory {
 
@@ -507,6 +508,7 @@ class SpecialPageFactory {
 	static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
 		$aliases = $wgContLang->getSpecialPageAliases();
+		
 		if ( isset( $aliases[$name][0] ) ) {
 			$name = $aliases[$name][0];
 		} else {
