@@ -179,7 +179,7 @@ class SiteStats {
 		wfProfileIn( __METHOD__ );
 		if( !isset( self::$pageCount[$ns] ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$pageCount[$ns] = (int)$dbr->selectField(
+			self::$pageCount[$ns] = (int)$dbr->selectField(
 				'page',
 				'COUNT(*)',
 				array( 'page_namespace' => $ns ),
@@ -187,7 +187,7 @@ class SiteStats {
 			);
 		}
 		wfProfileOut( __METHOD__ );
-		return $pageCount[$ns];
+		return self::$pageCount[$ns];
 	}
 
 	/**
