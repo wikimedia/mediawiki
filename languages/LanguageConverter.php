@@ -531,9 +531,9 @@ class LanguageConverter {
 			$text = '';
 		} else {
 			// first let's check if a message has given us a converted name
-			$nsConvKey = 'conversion-ns' . $index;
-			if ( !wfEmptyMsg( $nsConvKey ) ) {
-				$text = wfMsgForContentNoTrans( $nsConvKey );
+			$nsConvMsg = wfMessage( 'conversion-ns' . $index )->inContentLanguage();
+			if ( $nsConvMsg->exists() ) {
+				$text = $nsConvMsg->plain();
 			} else {
 				// the message does not exist, try retrieve it from the current
 				// variant's namespace names.
