@@ -301,6 +301,8 @@ $messages = array(
 Наггахь санна из иштта деци, шоана гIирса Iалаш деча гIалат корая хила мега.
 Дехар да, [[Special:ListUsers/sysop|мазакулгалхочоа]] хоам бе, URL хьахокхаш.',
 'missingarticle-rev' => '(бIаргоагIув № $1)',
+'internalerror'      => 'Чура гIалат',
+'internalerror_info' => 'Чура гIалат: $1',
 'badtitle'           => 'Мегаш йоаца цIи',
 'badtitletext'       => 'Дехаш дола оагIувни цIи, нийса яц, яьсса я е меттаюкъара е викиюкъара цIи харцахь я. ЦIера юкъе мегаш доаца харакъаш нийсадена хила мегаш да.',
 'viewsource'         => 'Тахкам',
@@ -310,6 +312,7 @@ $messages = array(
 'yourpassword'            => 'КъайладоагIа:',
 'yourpasswordagain'       => 'КъайладоагIа юха Iоязаде:',
 'remembermypassword'      => '(укх $1 {{PLURAL:$1|ден|деношкахь}}) мара са чувалара/чуялара дагалоаца дезаш дац',
+'yourdomainname'          => 'Шун цIеноагIув:',
 'login'                   => 'Чувала/яла',
 'nav-login-createaccount' => 'ЦIи яккха/Ший oагIув ела',
 'loginprompt'             => 'Укх болхaоагIуваца доттагIал лаца, шун "cookies" йийла хьалдеза.',
@@ -370,6 +373,11 @@ $messages = array(
 'showdiff'                         => 'Даь хувцамаш',
 'anoneditwarning'                  => 'Зем хила! Шо кха чудаьннадац. Шун IP-моттиг укх хийца оагIув искаречу дIаяздаь хургъе.',
 'summary-preview'                  => 'Лоацам ба:',
+'subject-preview'                  => 'Кортяздам:',
+'blockedtitle'                     => 'Дакъалаьцархо чIега бела ва/я',
+'blockednoreason'                  => 'бахьан доацаш да',
+'loginreqlink'                     => 'чувала/яла',
+'accmailtitle'                     => 'КъайладоагI дIадахатад',
 'newarticle'                       => '(Kерда)',
 'newarticletext'                   => 'Шо йоаца оагIув тIа Iинкаца дехьадаьннад.
 Из хьае, кIалхагIа доала корачу яздам очуязаде (кхета хала дале [[{{MediaWiki:Helppage}}|новкъостала оагIув тIа]] бIаргтасса).
@@ -384,6 +392,8 @@ $messages = array(
 'previewnote'                      => "'''Хьалхе бIаргтассам мара бац, яздам кха яздаь дац!'''",
 'editing'                          => 'ГIалатнийсдар: $1',
 'editingsection'                   => 'ГIалатнийсдар $1 (оагIувдакъа)',
+'editingcomment'                   => 'ГIалатнийсдар $1 (керда декъам)',
+'editconflict'                     => 'ГIалатнийсдара кховсам: $1',
 'yourtext'                         => 'Хьа яздам',
 'copyrightwarning'                 => "Теркам бе, $2 ($1 хьажа) бокъонаца лорадеш, тIахьежама кIала уллаш, оаш мел чуяккхаш дола хоамаш, яздамаш долга.
 Наггахь санна шоай яздамаш пурам доацаш мала волашву саго хувца е кхы дола моттиге яздердолаш, безам беци, укхаз Iочуцаяздеча, дикаьгIа да.<br />
@@ -401,6 +411,8 @@ $messages = array(
 КIалхагIа укх оагIуви дIадаккхамeи цIи хувцамeи тептараш хьекха да.",
 'moveddeleted-notice'              => 'Ер оагIув дIаяккха хиннай.
 Новкъостала, кIалха дIадаккхама а хувцама а тептарашкера нийсама йоазувнаш хьахьекха я.',
+'log-fulllog'                      => 'Деррига таптара бIаргтасса',
+'edit-conflict'                    => 'Хувцамий кховсам.',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning'  => 'Зембакхам: дагара куцкепаш чулоаца дустам геттара доккха да.
@@ -1031,6 +1043,17 @@ $messages = array(
 'exif-scenecapturetype-1' => 'ЛаьттабIаса',
 'exif-scenecapturetype-2' => 'Сурт',
 
+'exif-iimcategory-edu' => 'Дешар',
+'exif-iimcategory-evn' => 'Арена буне',
+'exif-iimcategory-hth' => 'Могар',
+'exif-iimcategory-hum' => 'Адамий искараш',
+'exif-iimcategory-rel' => 'Динеи тешареи',
+'exif-iimcategory-sci' => 'Iилмеи кулгболхеи',
+'exif-iimcategory-soi' => 'Сагий хаттараш',
+'exif-iimcategory-spo' => 'Нидзоамал',
+'exif-iimcategory-war' => 'ТIомаш, кховсамашеи латтарашеи',
+'exif-iimcategory-wea' => 'Хаоттам',
+
 # External editor support
 'edit-externally'      => 'Йола болхоагIувца паьла гIалатахь мукъаяккха',
 'edit-externally-help' => '(ма даррачунга хьажа [http://www.mediawiki.org/wiki/Manual:External_editors хьаоттама кулгалхо])',
@@ -1040,6 +1063,9 @@ $messages = array(
 'namespacesall' => 'деррига',
 'monthsall'     => 'деррига',
 'limitall'      => 'деррига',
+
+# action=purge
+'confirm_purge_button' => 'ХIаа',
 
 # Multipage image navigation
 'imgmultigo'   => 'Дехьавала!',
@@ -1057,8 +1083,10 @@ $messages = array(
 'duplicate-defaultsort' => 'Зем бе. Сатийна дIа-хьа хьоржама доагI "$2" хьалхара сатийна дIа-хьа хьоржама доагI "$1" хьахьоржа.',
 
 # Special:Version
-'version'              => 'Доржам',
-'version-specialpages' => 'ГIулакхий оагIувнаш',
+'version'                  => 'Доржам',
+'version-specialpages'     => 'ГIулакхий оагIувнаш',
+'version-version'          => '(Доржам $1)',
+'version-software-version' => 'Доржам',
 
 # Special:FilePath
 'filepath'        => 'Паьлачу никъ',
@@ -1067,9 +1095,11 @@ $messages = array(
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'ПаьлацIи:',
+'fileduplicatesearch-submit'   => 'Лаха',
 
 # Special:SpecialPages
 'specialpages'                 => 'ГIулакхий оагIувнаш',
+'specialpages-group-users'     => 'Дакъалаьцархой, цара бокъо',
 'specialpages-group-pages'     => 'ОагIувний дагарченаш',
 'specialpages-group-pagetools' => 'ОагIувнаша гIирсаш',
 
@@ -1084,10 +1114,20 @@ $messages = array(
 #Каст-каста оаламаш укх мугIа лакхе дIаязаде. Из мугI ший долаш тайпара дита<pre>',
 
 # Special:Tags
-'tag-filter' => '[[Special:Tags|Йоазоний]] цIенаярг:',
-'tags-title' => 'Йоазонаш',
-'tags-tag'   => 'Йоазон цIи',
-'tags-edit'  => 'хувца',
+'tag-filter'    => '[[Special:Tags|Йоазоний]] цIенаярг:',
+'tags-title'    => 'Йоазонаш',
+'tags-tag'      => 'Йоазон цIи',
+'tags-edit'     => 'хувца',
+'tags-hitcount' => '$1 {{PLURAL:$1|хувцам|хувцамаш}}',
+
+# Special:ComparePages
+'compare-page1' => '1. ОагIув',
+'compare-page2' => '2. ОагIув',
+'compare-rev1'  => '1. Доржам',
+'compare-rev2'  => '2. Доржам',
+
+# Database error messages
+'dberr-header' => 'Укх викис халонаш ловш латта',
 
 # HTML forms
 'htmlform-submit'              => 'ДIадахийта',

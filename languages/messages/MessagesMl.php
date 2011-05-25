@@ -464,7 +464,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'കണ്ടെത്തുക',
-'qbbrowse'       => 'പരതുക',
+'qbbrowse'       => 'ബ്രൗസ്',
 'qbedit'         => 'തിരുത്തുക',
 'qbpageoptions'  => 'ഈ താൾ',
 'qbpageinfo'     => 'സന്ദർഭം',
