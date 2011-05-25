@@ -179,6 +179,8 @@ class LBFactory_Multi extends LBFactory {
 
 	/**
 	 * Make a server array as expected by LoadBalancer::__construct, using a template and load array
+	 *
+	 * @return array
 	 */
 	function makeServerArray( $template, $loads, $groupLoads ) {
 		$servers = array();

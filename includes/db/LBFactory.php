@@ -28,6 +28,8 @@ abstract class LBFactory {
 
 	/**
 	 * Get an LBFactory instance
+	 *
+	 * @return LBFactory
 	 */
 	static function &singleton() {
 		if ( is_null( self::$instance ) ) {
@@ -52,6 +54,8 @@ abstract class LBFactory {
 
 	/**
 	 * Set the instance to be the given object
+	 *
+	 * @param $instance LBFactory
 	 */
 	static function setInstance( $instance ) {
 		self::destroyInstance();
@@ -151,6 +155,10 @@ class LBFactory_Simple extends LBFactory {
 		$this->chronProt = new ChronologyProtector;
 	}
 
+	/**
+	 * @param $wiki
+	 * @return LoadBalancer
+	 */
 	function newMainLB( $wiki = false ) {
 		global $wgDBservers, $wgMasterWaitTimeout;
 		if ( $wgDBservers ) {
@@ -174,6 +182,10 @@ class LBFactory_Simple extends LBFactory {
 		));
 	}
 
+	/**
+	 * @param $wiki
+	 * @return LoadBalancer
+	 */
 	function getMainLB( $wiki = false ) {
 		if ( !isset( $this->mainLB ) ) {
 			$this->mainLB = $this->newMainLB( $wiki );
@@ -183,6 +195,12 @@ class LBFactory_Simple extends LBFactory {
 		return $this->mainLB;
 	}
 
+	/**
+	 * @throws MWException
+	 * @param $cluster
+	 * @param $wiki
+	 * @return LoadBalancer
+	 */
 	function newExternalLB( $cluster, $wiki = false ) {
 		global $wgExternalServers;
 		if ( !isset( $wgExternalServers[$cluster] ) ) {
@@ -193,6 +211,11 @@ class LBFactory_Simple extends LBFactory {
 		));
 	}
 
+	/**
+	 * @param $cluster
+	 * @param $wiki
+	 * @return array
+	 */
 	function &getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );

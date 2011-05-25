@@ -67,7 +67,7 @@ interface DatabaseType {
 	 * Fetch the next row from the given result object, in associative array
 	 * form.  Fields are retrieved with $row['fieldname'].
 	 *
-	 * @param $res SQL result object as returned from DatabaseBase::query(), etc.
+	 * @param $res ResultWrapper result object as returned from DatabaseBase::query(), etc.
 	 * @return Row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -255,6 +255,8 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Turns buffering of SQL result sets on (true) or off (false).
 	 * Default is "on" and it should not be changed without good reasons.
+	 *
+	 * @return bool
 	 */
 	function bufferResults( $buffer = null ) {
 		if ( is_null( $buffer ) ) {
@@ -309,6 +311,11 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 	}
 
+	/**
+	 * @param $name
+	 * @param $value
+	 * @return void
+	 */
 	function setLBInfo( $name, $value = null ) {
 		if ( is_null( $value ) ) {
 			$this->mLBInfo = $name;
@@ -402,20 +409,28 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Return the last query that went through DatabaseBase::query()
 	 * @return String
 	 */
-	function lastQuery() { return $this->mLastQuery; }
+	function lastQuery() {
+		return $this->mLastQuery;
+	}
 
 
 	/**
 	 * Returns true if the connection may have been used for write queries.
 	 * Should return true if unsure.
+	 *
+	 * @return bool
 	 */
-	function doneWrites() { return $this->mDoneWrites; }
+	function doneWrites() {
+		return $this->mDoneWrites;
+	}
 
 	/**
 	 * Is a connection to the database open?
 	 * @return Boolean
 	 */
-	function isOpen() { return $this->mOpened; }
+	function isOpen() {
+		return $this->mOpened;
+	}
 
 	/**
 	 * Set a flag for this connection
@@ -459,6 +474,9 @@ abstract class DatabaseBase implements DatabaseType {
 		return $this->$name;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getWikiID() {
 		if ( $this->mTablePrefix ) {
 			return "{$this->mDBname}-{$this->mTablePrefix}";
@@ -469,6 +487,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Return a path to the DBMS-specific schema, otherwise default to tables.sql
+	 *
+	 * @return string
 	 */
 	public function getSchema() {
 		global $IP;
@@ -522,6 +542,8 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Same as new DatabaseMysql( ... ), kept for backward compatibility
 	 * @deprecated since 1.17
+	 *
+	 * @return DatabaseMysql
 	 */
 	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
 		wfDeprecated( __METHOD__ );
@@ -620,6 +642,8 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Determine whether a query writes to the DB.
 	 * Should return true if unsure.
+	 *
+	 * @return bool
 	 */
 	function isWriteQuery( $sql ) {
 		return !preg_match( '/^(?:SELECT|BEGIN|COMMIT|SET|SHOW|\(SELECT)\b/i', $sql );
@@ -780,6 +804,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * ! = raw SQL bit (a function for instance)
 	 * & = filename; reads the file and inserts as a blob
 	 *     (we don't use this though...)
+	 *
+	 * @return array
 	 */
 	function prepare( $sql, $func = 'DatabaseBase::prepare' ) {
 		/* MySQL doesn't support prepared statements (yet), so just
@@ -796,6 +822,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Execute a prepared query with the various arguments
 	 * @param $prepared String: the prepared sql
 	 * @param $args Mixed: Either an array here, or put scalars as varargs
+	 *
+	 * @return ResultWrapper
 	 */
 	function execute( $prepared, $args = null ) {
 		if ( !is_array( $args ) ) {
@@ -814,6 +842,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * in the appropriate places.
 	 * @param $query String
 	 * @param $args ...
+	 *
+	 * @return ResultWrapper
 	 */
 	function safeQuery( $query, $args = null ) {
 		$prepared = $this->prepare( $query, 'DatabaseBase::safeQuery' );
@@ -890,6 +920,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * This function exists for historical reasons, DatabaseBase::update() has a more standard
 	 * calling convention and feature set
+	 *
+	 * @return bool
 	 */
 	function set( $table, $var, $value, $cond, $fname = 'DatabaseBase::set' ) {
 		$table = $this->tableName( $table );
@@ -1211,6 +1243,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Determines whether an index exists
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns NULL on failure
+	 *
+	 * @return bool|null
 	 */
 	function indexExists( $table, $index, $fname = 'DatabaseBase::indexExists' ) {
 		$info = $this->indexInfo( $table, $index, $fname );
@@ -1223,6 +1257,10 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Query whether a given table exists
+	 *
+	 * @string table
+	 *
+	 * @return bool
 	 */
 	function tableExists( $table ) {
 		$table = $this->tableName( $table );
@@ -1246,6 +1284,11 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Determines if a given index is unique
+	 *
+	 * @param $table string
+	 * @param $index string
+	 *
+	 * @return bool
 	 */
 	function indexUnique( $table, $index ) {
 		$indexInfo = $this->indexInfo( $table, $index );
@@ -1375,7 +1418,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Makes an encoded list of strings from an array
 	 * @param $a Array
-	 * @param $mode
+	 * @param $mode int
 	 *        LIST_COMMA         - comma separated, no field names
 	 *        LIST_AND           - ANDed WHERE clause (without the WHERE)
 	 *        LIST_OR            - ORed WHERE clause (without the WHERE)
@@ -1488,14 +1531,28 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Bitwise operations
 	 */
 
+	/**
+	 * @param $field
+	 * @return string
+	 */
 	function bitNot( $field ) {
 		return "(~$field)";
 	}
 
+	/**
+	 * @param $fieldLeft
+	 * @param $fieldRight
+	 * @return string
+	 */
 	function bitAnd( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft & $fieldRight)";
 	}
 
+	/**
+	 * @param  $fieldLeft
+	 * @param  $fieldRight
+	 * @return string
+	 */
 	function bitOr( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft | $fieldRight)";
 	}
@@ -1731,6 +1788,10 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get the name of an index in a given table
+	 *
+	 * @param $index
+	 *
+	 * @return string
 	 */
 	function indexName( $index ) {
 		// Backwards-compatibility hack
@@ -1750,6 +1811,10 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * If it's a string, adds quotes and backslashes
 	 * Otherwise returns as-is
+	 *
+	 * @param $s string
+	 *
+	 * @return string
 	 */
 	function addQuotes( $s ) {
 		if ( $s === null ) {
@@ -1768,6 +1833,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * MySQL uses `backticks` while basically everything else uses double quotes.
 	 * Since MySQL is the odd one out here the double quotes are our generic
 	 * and we implement backticks in DatabaseMysql.
+	 *
+	 * @return string
 	 */
 	public function addIdentifierQuotes( $s ) {
 		return '"' . str_replace( '"', '""', $s ) . '"';
@@ -1776,6 +1843,9 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Returns if the given identifier looks quoted or not according to 
 	 * the database convention for quoting identifiers .
+	 *
+	 * @param $name string
+	 *
 	 * @return boolean
 	 */
 	public function isQuotedIdentifier( $name ) {
@@ -1787,6 +1857,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * which used quote_ident which does not follow our naming conventions
 	 * was renamed to addIdentifierQuotes.
 	 * @deprecated since 1.18 use addIdentifierQuotes
+	 *
+	 * @return string
 	 */
 	function quote_ident( $s ) {
 		wfDeprecated( __METHOD__ );
@@ -1846,6 +1918,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Returns a token for buildLike() that denotes a '_' to be used in a LIKE query
+	 *
+	 * @return LikeMatch
 	 */
 	function anyChar() {
 		return new LikeMatch( '_' );
@@ -1853,6 +1927,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Returns a token for buildLike() that denotes a '%' to be used in a LIKE query
+	 *
+	 * @rerturn LikeMatch
 	 */
 	function anyString() {
 		return new LikeMatch( '%' );
@@ -2008,6 +2084,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Source items may be literals rather than field names, but strings should be quoted with DatabaseBase::addQuotes()
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
+	 *
+	 * @return ResultWrapper
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabaseBase::insertSelect',
 		$insertOptions = array(), $selectOptions = array() )
@@ -2060,6 +2138,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $sql String: SQL query we will append the limit too
 	 * @param $limit Integer: the SQL limit
 	 * @param $offset Integer the SQL offset (default false)
+	 *
+	 * @return string
 	 */
 	function limitResult( $sql, $limit, $offset = false ) {
 		if ( !is_numeric( $limit ) ) {
@@ -2117,6 +2197,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $orig String: column to modify
 	 * @param $old String: column to seek
 	 * @param $new String: column to replace with
+	 *
+	 * @return string
 	 */
 	function strreplace( $orig, $old, $new ) {
 		return "REPLACE({$orig}, {$old}, {$new})";
@@ -2125,6 +2207,8 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Determines if the last failure was due to a deadlock
 	 * STUB
+	 *
+	 * @return bool
 	 */
 	function wasDeadlock() {
 		return false;
@@ -2134,6 +2218,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Determines if the last query error was something that should be dealt
 	 * with by pinging the connection and reissuing the query.
 	 * STUB
+	 *
+	 * @return bool
 	 */
 	function wasErrorReissuable() {
 		return false;
@@ -2142,6 +2228,8 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Determines if the last failure was due to the database being read-only.
 	 * STUB
+	 *
+	 * @return bool
 	 */
 	function wasReadOnlyError() {
 		return false;
@@ -2257,6 +2345,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get the position of the master from SHOW SLAVE STATUS
+	 *
+	 * @return MySQLMasterPos|false
 	 */
 	function getSlavePos() {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
@@ -2278,6 +2368,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get the position of the master from SHOW MASTER STATUS
+	 *
+	 * @return MySQLMasterPos|false
 	 */
 	function getMasterPos() {
 		if ( $this->mFakeMaster ) {
@@ -2353,6 +2445,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Return MW-style timestamp used for MySQL schema
+	 *
+	 * @return string
 	 */
 	function timestamp( $ts = 0 ) {
 		return wfTimestamp( TS_MW, $ts );
@@ -2360,6 +2454,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Local database timestamp format or null
+	 *
+	 * @return string
 	 */
 	function timestampOrNull( $ts = null ) {
 		if ( is_null( $ts ) ) {
@@ -2371,6 +2467,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * @todo document
+	 *
+	 * @return ResultWrapper
 	 */
 	function resultObject( $result ) {
 		if ( empty( $result ) ) {
@@ -2413,6 +2511,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get status information from SHOW STATUS in an associative array
+	 *
+	 * @return array
 	 */
 	function getStatus( $which = "%" ) {
 		$res = $this->query( "SHOW STATUS LIKE '{$which}'" );
@@ -2427,6 +2527,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Return the maximum number of items allowed in a list, or 0 for unlimited.
+	 *
+	 * return int
 	 */
 	function maxListLen() {
 		return 0;

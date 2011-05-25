@@ -21,6 +21,10 @@ class DBError extends MWException {
 		parent::__construct( $error );
 	}
 
+	/**
+	 * @param $html string
+	 * @return string
+	 */
 	protected function getContentMessage( $html ) {
 		if ( $html ) {
 			return nl2br( htmlspecialchars( $this->getMessage() ) );
@@ -29,6 +33,9 @@ class DBError extends MWException {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function getText() {
 		global $wgShowDBErrorBacktrace;
 
@@ -41,6 +48,9 @@ class DBError extends MWException {
 		return $s;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getHTML() {
 		global $wgShowDBErrorBacktrace;
 
@@ -95,11 +105,17 @@ class DBConnectionError extends DBError {
 		return false;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getPageTitle() {
 		global $wgSitename;
 		return htmlspecialchars( $this->msg( 'dberr-header', "$wgSitename has a problem" ) );
 	}
 
+	/**
+	 * @return string
+	 */
 	function getHTML() {
 		global $wgShowDBErrorBacktrace;
 
@@ -158,6 +174,9 @@ class DBConnectionError extends DBError {
 		return parent::reportHTML();
 	}
 
+	/**
+	 * @return string
+	 */
 	function searchForm() {
 		global $wgSitename, $wgServer;
 
@@ -192,6 +211,9 @@ EOT;
 		return $trygoogle;
 	}
 
+	/**
+	 * @return string
+	 */
 	private function fileCachedPage() {
 		global $wgTitle, $wgOut;
 
@@ -237,6 +259,10 @@ class DBQueryError extends DBError {
 		$this->fname = $fname;
 	}
 
+	/**
+	 * @param $html string
+	 * @return string
+	 */
 	function getContentMessage( $html ) {
 		if ( $this->useMessageCache() ) {
 			$msg = $html ? 'dberrortext' : 'dberrortextcl';
@@ -251,6 +277,9 @@ class DBQueryError extends DBError {
 		}
 	}
 
+	/**
+	 * @return String
+	 */
 	function getSQL() {
 		global $wgShowSQLErrors;
 
@@ -266,6 +295,9 @@ class DBQueryError extends DBError {
 		return false;
 	}
 
+	/**
+	 * @return String
+	 */
 	function getPageTitle() {
 		return $this->msg( 'databaseerror', 'Database error' );
 	}
