@@ -72,9 +72,19 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		$this->parent = $parent;
 	}
 
+	/**
+	 * @param $loads
+	 * @param $group bool
+	 * @param $wiki bool
+	 */
 	function scaleLoads( &$loads, $group = false, $wiki = false ) {
 	}
 
+	/**
+	 * @param $serverIndexes
+	 * @param $wiki
+	 * @return array
+	 */
 	function getLagTimes( $serverIndexes, $wiki ) {
 		wfProfileIn( __METHOD__ );
 		$expiry = 5;

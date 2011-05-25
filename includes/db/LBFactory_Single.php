@@ -14,18 +14,30 @@ class LBFactory_Single extends LBFactory {
 		$this->lb = new LoadBalancer_Single( $conf );
 	}
 
+	/**
+	 * @return LoadBalancer_Single
+	 */
 	function newMainLB( $wiki = false ) {
 		return $this->lb;
 	}
 
+	/**
+	 * @return LoadBalancer_Single
+	 */
 	function getMainLB( $wiki = false ) {
 		return $this->lb;
 	}
 
+	/**
+	 * @return LoadBalancer_Single
+	 */
 	function newExternalLB( $cluster, $wiki = false ) {
 		return $this->lb;
 	}
 
+	/**
+	 * @return LoadBalancer_Single
+	 */
 	function &getExternalLB( $cluster, $wiki = false ) {
 		return $this->lb;
 	}
@@ -55,6 +67,9 @@ class LoadBalancer_Single extends LoadBalancer {
 		) ) ) );
 	}
 
+	/**
+	 * @return DatabaseBase
+	 */
 	function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		return $this->db;
 	}

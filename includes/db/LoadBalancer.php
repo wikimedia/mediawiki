@@ -89,6 +89,10 @@ class LoadBalancer {
 	/**
 	 * Given an array of non-normalised probabilities, this function will select
 	 * an element and return the appropriate key
+	 *
+	 * @param $weights
+	 *
+	 * @return int
 	 */
 	function pickRandom( $weights ) {
 		if ( !is_array( $weights ) || count( $weights ) == 0 ) {
@@ -116,6 +120,11 @@ class LoadBalancer {
 		return $i;
 	}
 
+	/**
+	 * @param $loads
+	 * @param $wiki bool
+	 * @return bool|int|string
+	 */
 	function getRandomNonLagged( $loads, $wiki = false ) {
 		# Unset excessively lagged servers
 		$lags = $this->getLagTimes( $wiki );
@@ -160,6 +169,9 @@ class LoadBalancer {
 	 * always return a consistent index during a given invocation
 	 *
 	 * Side effect: opens connections to databases
+	 * @param $group bool
+	 * @param $wiki bool
+	 * @return bool|int|string
 	 */
 	function getReaderIndex( $group = false, $wiki = false ) {
 		global $wgReadOnly, $wgDBClusterTimeout, $wgDBAvgStatusPoll, $wgDBtype;
@@ -517,8 +529,8 @@ class LoadBalancer {
 	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
 	 *
-	 * @param $i Integer: server index
-	 * @param $wiki String: wiki ID to open
+	 * @param $i Integer server index
+	 * @param $wiki String wiki ID to open
 	 * @return DatabaseBase
 	 *
 	 * @access private
@@ -626,6 +638,7 @@ class LoadBalancer {
 	 *
 	 * @param $index Integer: server index
 	 * @access private
+	 * @return bool
 	 */
 	function isOpen( $index ) {
 		if( !is_integer( $index ) ) {
@@ -638,6 +651,8 @@ class LoadBalancer {
 	 * Really opens a connection. Uncached.
 	 * Returns a Database object whether or not the connection was successful.
 	 * @access private
+	 *
+	 * @return DatabaseBase
 	 */
 	function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		if( !is_array( $server ) ) {
@@ -693,6 +708,8 @@ class LoadBalancer {
 
 	/**
 	 * Returns true if the specified index is a valid server index
+	 *
+	 * @return bool
 	 */
 	function haveIndex( $i ) {
 		return array_key_exists( $i, $this->mServers );
@@ -700,6 +717,8 @@ class LoadBalancer {
 
 	/**
 	 * Returns true if the specified index is valid and has non-zero load
+	 *
+	 * @return bool
 	 */
 	function isNonZeroLoad( $i ) {
 		return array_key_exists( $i, $this->mServers ) && $this->mLoads[$i] != 0;
@@ -707,6 +726,8 @@ class LoadBalancer {
 
 	/**
 	 * Get the number of defined servers (not the number of open connections)
+	 *
+	 * @return int
 	 */
 	function getServerCount() {
 		return count( $this->mServers );
@@ -787,6 +808,8 @@ class LoadBalancer {
 
 	/**
 	 * Deprecated function, typo in function name
+	 *
+	 * @deprecated in 1.18
 	 */
 	function closeConnecton( $conn ) {
 		$this->closeConnection( $conn );
@@ -796,7 +819,7 @@ class LoadBalancer {
 	 * Close a connection
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
-	 * @param  $conn
+	 * @param $conn
 	 * @return void
 	 */
 	function closeConnection( $conn ) {
@@ -831,7 +854,9 @@ class LoadBalancer {
 		}
 	}
 
-	/* Issue COMMIT only on master, only if queries were done on connection */
+	/**
+	 *  Issue COMMIT only on master, only if queries were done on connection
+	 */
 	function commitMasterChanges() {
 		// Always 0, but who knows.. :)
 		$masterIndex = $this->getWriterIndex();
@@ -856,10 +881,11 @@ class LoadBalancer {
 	}
 
 	/* Disables/enables lag checks */
-	function allowLagged($mode=null) {
-		if ($mode===null)
+	function allowLagged( $mode = null ) {
+		if ( $mode === null) {
 			return $this->mAllowLagged;
-		$this->mAllowLagged=$mode;
+		}
+		$this->mAllowLagged = $mode;
 	}
 
 	function pingAll() {
