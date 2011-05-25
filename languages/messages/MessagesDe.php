@@ -2306,7 +2306,7 @@ Wiki: $PAGEEDITOR_WIKI
 
 Es werden dir solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die Seite wieder besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarkierungen zusammen zurücksetzen.
 
-             Dein freundliches {{SITENAME}}-Benachrichtigungssystem
+			 Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
 Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{fullurl:{{#special:Preferences}}}}
@@ -2948,7 +2948,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 #p-personal ul,
 #p-cactions li a,
 #preftoc a {
-    text-transform: none;
+	text-transform: none;
 }',
 'vector.css'              => '/* Das folgende CSS wird für Benutzer der Vector-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'print.css'               => '/* Das folgende CSS wird in der Druckausgabe geladen. */',

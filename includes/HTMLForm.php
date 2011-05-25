@@ -318,9 +318,9 @@ class HTMLForm {
 	 * Add header text, inside the form.
 	 * @param $msg String complete text of message to display
 	 */
-	function addHeaderText( $msg, $section = null ) { 
+	function addHeaderText( $msg, $section = null ) {
 		if ( is_null( $section ) ) {
-			$this->mHeader .= $msg; 
+			$this->mHeader .= $msg;
 		} else {
 			if ( !isset( $this->mSectionHeaders[$section] ) ) {
 				$this->mSectionHeaders[$section] = '';
@@ -333,14 +333,14 @@ class HTMLForm {
 	 * Add footer text, inside the form.
 	 * @param $msg String complete text of message to display
 	 */
-	function addFooterText( $msg, $section = null ) { 
+	function addFooterText( $msg, $section = null ) {
 		if ( is_null( $section ) ) {
-			$this->mFooter .= $msg; 
+			$this->mFooter .= $msg;
 		} else {
 			if ( !isset( $this->mSectionFooters[$section] ) ) {
 				$this->mSectionFooters[$section] = '';
 			}
-			$this->mSectionFooters[$section] .= $msg;			
+			$this->mSectionFooters[$section] .= $msg;
 		}
 	}
 
@@ -693,11 +693,11 @@ class HTMLForm {
 				$legend = $this->getLegend( $key );
 				if ( isset( $this->mSectionHeaders[$key] ) ) {
 					$section = $this->mSectionHeaders[$key] . $section;
-				} 
+				}
 				if ( isset( $this->mSectionFooters[$key] ) ) {
 					$section .= $this->mSectionFooters[$key];
 				}
-				$subsectionHtml .= Xml::fieldset( $legend, $section ) . "\n";					
+				$subsectionHtml .= Xml::fieldset( $legend, $section ) . "\n";
 			}
 		}
 
@@ -1886,8 +1886,8 @@ class HTMLEditTools extends HTMLFormField {
 			}
 		}
 		$msg->inContentLanguage();
-		
-		
+
+
 		return '<tr><td></td><td class="mw-input">'
 			. '<div class="mw-editTools">'
 			. $msg->parseAsBlock()

@@ -25,7 +25,7 @@ class Revision {
 	public static function newFromId( $id ) {
 		return Revision::newFromConds(
 			array( 'page_id=rev_page',
-			       'rev_id' => intval( $id ) ) );
+				   'rev_id' => intval( $id ) ) );
 	}
 
 	/**
@@ -38,8 +38,8 @@ class Revision {
 	 * @return Revision or null
 	 */
 	public static function newFromTitle( $title, $id = 0 ) {
-		$conds = array( 
-			'page_namespace' => $title->getNamespace(), 
+		$conds = array(
+			'page_namespace' => $title->getNamespace(),
 			'page_title' => $title->getDBkey()
 		);
 		if ( $id ) {
@@ -100,7 +100,7 @@ class Revision {
 	public static function loadFromId( $db, $id ) {
 		return Revision::loadFromConds( $db,
 			array( 'page_id=rev_page',
-			       'rev_id' => intval( $id ) ) );
+				   'rev_id' => intval( $id ) ) );
 	}
 
 	/**
@@ -142,9 +142,9 @@ class Revision {
 		return Revision::loadFromConds(
 			$db,
 			array( "rev_id=$matchId",
-			       'page_id=rev_page',
-			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDBkey() ) );
+				   'page_id=rev_page',
+				   'page_namespace' => $title->getNamespace(),
+				   'page_title'     => $title->getDBkey() ) );
 	}
 
 	/**
@@ -161,9 +161,9 @@ class Revision {
 		return Revision::loadFromConds(
 			$db,
 			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
-			       'page_id=rev_page',
-			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDBkey() ) );
+				   'page_id=rev_page',
+				   'page_namespace' => $title->getNamespace(),
+				   'page_title'     => $title->getDBkey() ) );
 	}
 
 	/**
@@ -216,9 +216,9 @@ class Revision {
 		return Revision::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
 			array( 'rev_id=page_latest',
-			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDBkey(),
-			       'page_id=rev_page' ) );
+				   'page_namespace' => $title->getNamespace(),
+				   'page_title'     => $title->getDBkey(),
+				   'page_id=rev_page' ) );
 	}
 
 	/**
@@ -264,9 +264,9 @@ class Revision {
 			'rev_parent_id'
 		);
 	}
-	
+
 	/**
-	 * Return the list of text fields that should be selected to read the 
+	 * Return the list of text fields that should be selected to read the
 	 * revision text
 	 */
 	static function selectTextFields() {
@@ -412,11 +412,11 @@ class Revision {
 			array( 'page', 'revision' ),
 			array( 'page_namespace', 'page_title' ),
 			array( 'page_id=rev_page',
-			       'rev_id' => $this->mId ),
+				   'rev_id' => $this->mId ),
 			'Revision::getTitle' );
 		if( $row ) {
 			$this->mTitle = Title::makeTitle( $row->page_namespace,
-			                                  $row->page_title );
+											  $row->page_title );
 		}
 		return $this->mTitle;
 	}
@@ -441,7 +441,7 @@ class Revision {
 
 	/**
 	 * Fetch revision's user id if it's available to the specified audience.
-	 * If the specified audience does not have access to it, zero will be 
+	 * If the specified audience does not have access to it, zero will be
 	 * returned.
 	 *
 	 * @param $audience Integer: one of:
@@ -473,7 +473,7 @@ class Revision {
 
 	/**
 	 * Fetch revision's username if it's available to the specified audience.
-	 * If the specified audience does not have access to the username, an 
+	 * If the specified audience does not have access to the username, an
 	 * empty string will be returned.
 	 *
 	 * @param $audience Integer: one of:
@@ -504,7 +504,7 @@ class Revision {
 
 	/**
 	 * Fetch revision comment if it's available to the specified audience.
-	 * If the specified audience does not have access to the comment, an 
+	 * If the specified audience does not have access to the comment, an
 	 * empty string will be returned.
 	 *
 	 * @param $audience Integer: one of:
@@ -539,7 +539,7 @@ class Revision {
 	public function isMinor() {
 		return (bool)$this->mMinorEdit;
 	}
-	
+
 	/**
 	 * @return Integer rcid of the unpatrolled row, zero if there isn't one
 	 */
@@ -579,7 +579,7 @@ class Revision {
 
 	/**
 	 * Fetch revision text if it's available to the specified audience.
-	 * If the specified audience does not have the ability to view this 
+	 * If the specified audience does not have the ability to view this
 	 * revision, an empty string will be returned.
 	 *
 	 * @param $audience Integer: one of:
@@ -753,8 +753,8 @@ class Revision {
 			}
 
 			global $wgLegacyEncoding;
-			if( $text !== false && $wgLegacyEncoding 
-				&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags ) ) 
+			if( $text !== false && $wgLegacyEncoding
+				&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags ) )
 			{
 				# Old revisions kept around in a legacy encoding?
 				# Upconvert on demand.

@@ -783,7 +783,7 @@ class Parser {
 
 			# empty line, go to next line,
 			# but only append \n if outside of table
-			if ( $line === '') { 
+			if ( $line === '') {
 				$output .= $outLine . "\n";
 				continue;
 			}
@@ -870,7 +870,7 @@ class Parser {
 				// a table caption, but only proceed if there isn't one already
 				if ( !isset ( $table['caption'] ) ) {
 					$line = substr ( $line , 2 );
-					
+
 					$c = $this->getCellAttr( $line , 'caption' );
 					$table['caption'] = array();
 					$table['caption']['content'] = $c[0];
@@ -944,7 +944,7 @@ class Parser {
 
 	/**
 	 * Helper function for doTableStuff() separating the contents of cells from
-	 * attributes. Particularly useful as there's a possible bug and this action 
+	 * attributes. Particularly useful as there's a possible bug and this action
 	 * is repeated twice.
 	 *
 	 * @private
@@ -3511,7 +3511,7 @@ class Parser {
 		# Register the file as a dependency...
 		$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
 		if ( $file && !$title->equals( $file->getTitle() ) ) {
-			# Update fetched file title 
+			# Update fetched file title
 			$title = $file->getTitle();
 		}
 		return array( $file, $title );
@@ -4729,14 +4729,14 @@ class Parser {
 				# Bogus title. Ignore these so we don't bomb out later.
 				continue;
 			}
-			
+
 			$label = '';
 			$alt = '';
 			if ( isset( $matches[3] ) ) {
 				// look for an |alt= definition while trying not to break existing
 				// captions with multiple pipes (|) in it, until a more sensible grammar
 				// is defined for images in galleries
-				
+
 				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
 				$altmatches = StringUtils::explode('|', $matches[3]);
 				$magicWordAlt = MagicWord::get( 'img_alt' );

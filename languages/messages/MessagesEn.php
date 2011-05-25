@@ -1722,16 +1722,16 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 You can search via Google in the meantime.
 Note that their indexes of {{SITENAME}} content may be out of date.',
 'googlesearch'                     => '<form method="get" action="http://www.google.com/search" id="googlesearch">
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
+	<input type="hidden" name="domains" value="{{SERVER}}" />
+	<input type="hidden" name="num" value="50" />
+	<input type="hidden" name="ie" value="$2" />
+	<input type="hidden" name="oe" value="$2" />
 
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="$3" />
+	<input type="text" name="q" size="31" maxlength="255" value="$1" />
+	<input type="submit" name="btnG" value="$3" />
   <div>
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
+	<input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
+	<input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
   </div>
 </form>', # do not translate or duplicate this message to other languages
 
@@ -2767,7 +2767,7 @@ wiki: $PAGEEDITOR_WIKI
 There will be no other notifications in case of further changes unless you visit this page.
 You could also reset the notification flags for all your watched pages on your watchlist.
 
-             Your friendly {{SITENAME}} notification system
+			 Your friendly {{SITENAME}} notification system
 
 --
 To change your email notification settings, visit

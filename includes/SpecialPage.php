@@ -572,10 +572,10 @@ class SpecialPage {
 	function getTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
 	}
-	
+
 	/**
 	 * Sets the context this SpecialPage is executed in
-	 * 
+	 *
 	 * @param $context RequestContext
 	 * @since 1.18
 	 */
@@ -585,7 +585,7 @@ class SpecialPage {
 
 	/**
 	 * Gets the context this SpecialPage is executed in
-	 * 
+	 *
 	 * @return RequestContext
 	 * @since 1.18
 	 */
@@ -651,7 +651,7 @@ class SpecialPage {
 	/**
 	 * Wrapper around wfMessage that sets the current context. Currently this
 	 * is only the title.
-	 * 
+	 *
 	 * @see wfMessage
 	 */
 	public function msg( /* $args */ ) {
@@ -832,7 +832,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 
 	// Query parameteres added by redirects
 	protected $mAddedRedirectParams = array();
-	
+
 	public function execute( $par ){
 		$redirect = $this->getRedirect( $par );
 		$query = $this->getRedirectQuery();

@@ -66,7 +66,7 @@ abstract class RevDel_List {
 		return $this->authorNameField;
 	}
 	/**
-	 * Set the visibility for the revisions in this list. Logging and 
+	 * Set the visibility for the revisions in this list. Logging and
 	 * transactions are done here.
 	 *
 	 * @param $params Associative array of parameters. Members are:
@@ -127,7 +127,7 @@ abstract class RevDel_List {
 				$status->warning( 'revdelete-only-restricted', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
-			} 
+			}
 
 			// Update the revision
 			$ok = $item->setBits( $newBits );
@@ -158,7 +158,7 @@ abstract class RevDel_List {
 			return $status;
 		}
 
-		// Save success count 
+		// Save success count
 		$successCount = $status->successCount;
 
 		// Move files, if there are any
@@ -171,9 +171,9 @@ abstract class RevDel_List {
 
 		// Log it
 		$this->updateLog( array(
-			'title' => $this->title, 
-			'count' => $successCount, 
-			'newBits' => $newBits, 
+			'title' => $this->title,
+			'count' => $successCount,
+			'newBits' => $newBits,
 			'oldBits' => $oldBits,
 			'comment' => $comment,
 			'ids' => $idsForLog,
@@ -200,7 +200,7 @@ abstract class RevDel_List {
 	 * Record a log entry on the action
 	 * @param $params Associative array of parameters:
 	 *     newBits:         The new value of the *_deleted bitfield
-	 *     oldBits:         The old value of the *_deleted bitfield. 
+	 *     oldBits:         The old value of the *_deleted bitfield.
 	 *     title:           The target title
 	 *     ids:             The ID list
 	 *     comment:         The log comment
@@ -265,7 +265,7 @@ abstract class RevDel_List {
 	}
 
 	/**
-	 * Start iteration. This must be called before current() or next(). 
+	 * Start iteration. This must be called before current() or next().
 	 * @return First list item
 	 */
 	public function reset() {
@@ -293,7 +293,7 @@ abstract class RevDel_List {
 		$this->initCurrent();
 		return $this->current;
 	}
-	
+
 	/**
 	 * Get the number of items in the list.
 	 */
@@ -312,7 +312,7 @@ abstract class RevDel_List {
 	public function clearFileOps() {
 	}
 
-	/** 
+	/**
 	 * A hook for setVisibility(): do batch updates pre-commit.
 	 * STUB
 	 * @return Status
@@ -322,9 +322,9 @@ abstract class RevDel_List {
 	}
 
 	/**
-	 * A hook for setVisibility(): do any necessary updates post-commit. 
+	 * A hook for setVisibility(): do any necessary updates post-commit.
 	 * STUB
-	 * @return Status 
+	 * @return Status
 	 */
 	public function doPostCommitUpdates() {
 		return Status::newGood();
@@ -361,7 +361,7 @@ abstract class RevDel_Item {
 	/** The DB result row */
 	var $row;
 
-	/** 
+	/**
 	 * @param $list RevDel_List
 	 * @param $row DB result row
 	 */
@@ -402,10 +402,10 @@ abstract class RevDel_Item {
 		$field = $this->list->getTimestampField();
 		return wfTimestamp( TS_MW, $this->row->$field );
 	}
-	
+
 	/**
 	 * Get the author user ID
-	 */	
+	 */
 	public function getAuthorId() {
 		$field = $this->list->getAuthorIdField();
 		return intval( $this->row->$field );
@@ -413,13 +413,13 @@ abstract class RevDel_Item {
 
 	/**
 	 * Get the author user name
-	 */	
+	 */
 	public function getAuthorName() {
 		$field = $this->list->getAuthorNameField();
 		return strval( $this->row->$field );
 	}
 
-	/** 
+	/**
 	 * Returns true if the item is "current", and the operation to set the given
 	 * bits can't be executed for that reason
 	 * STUB
@@ -432,7 +432,7 @@ abstract class RevDel_Item {
 	 * Returns true if the current user can view the item
 	 */
 	abstract public function canView();
-	
+
 	/**
 	 * Returns true if the current user can view the item text/file
 	 */
@@ -453,8 +453,8 @@ abstract class RevDel_Item {
 	 * Set the visibility of the item. This should do any necessary DB queries.
 	 *
 	 * The DB update query should have a condition which forces it to only update
-	 * if the value in the DB matches the value fetched earlier with the SELECT. 
-	 * If the update fails because it did not match, the function should return 
+	 * if the value in the DB matches the value fetched earlier with the SELECT.
+	 * If the update fails because it did not match, the function should return
 	 * false. This prevents concurrency problems.
 	 *
 	 * @return boolean success

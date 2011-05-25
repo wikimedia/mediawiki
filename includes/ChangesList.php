@@ -41,7 +41,7 @@ class ChangesList {
 	protected $watchlist = false;
 
 	protected $message;
-	
+
 	/**
 	* Changeslist contructor
 	* @param $skin Skin
@@ -70,7 +70,7 @@ class ChangesList {
 			return $list;
 		}
 	}
-	
+
 	/**
 	 * Sets the list to use a <li class="watchlist-(namespace)-(page)"> tag
 	 * @param $value Boolean
@@ -120,11 +120,11 @@ class ChangesList {
 	public static function flag( $flag ) {
 		static $messages = null;
 		if ( is_null( $messages ) ) {
-			$messages = array( 
+			$messages = array(
 				'newpage' => array( 'newpageletter', 'recentchanges-label-newpage' ),
 				'minoredit' => array( 'minoreditletter', 'recentchanges-label-minor' ),
 				'botedit' => array( 'boteditletter', 'recentchanges-label-bot' ),
-				'unpatrolled' => array( 'unpatrolledletter', 'recentchanges-label-unpatrolled' ), 
+				'unpatrolled' => array( 'unpatrolledletter', 'recentchanges-label-unpatrolled' ),
 			);
 			foreach( $messages as &$value ) {
 				$value[0] = wfMsgExt( $value[0], 'escapenoentities' );
@@ -158,7 +158,7 @@ class ChangesList {
 		$this->rclistOpen = false;
 		return '';
 	}
-	
+
 	/**
 	 * Show formatted char difference
 	 * @param $old Integer: bytes
@@ -174,29 +174,29 @@ class ChangesList {
 		if ( !isset($fastCharDiff[$code]) ) {
 			$fastCharDiff[$code] = $wgMiserMode || wfMsgNoTrans( 'rc-change-size' ) === '$1';
 		}
-			
+
 		$formatedSize = $wgLang->formatNum($szdiff);
 
 		if ( !$fastCharDiff[$code] ) {
 			$formatedSize = wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape' ), $formatedSize );
 		}
-			
+
 		if( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
 			$tag = 'strong';
 		} else {
-		    $tag = 'span';
+			$tag = 'span';
 		}
 		if( $szdiff === 0 ) {
 			return "<$tag class='mw-plusminus-null'>($formatedSize)</$tag>";
 		} elseif( $szdiff > 0 ) {
 			return "<$tag class='mw-plusminus-pos'>(+$formatedSize)</$tag>";
-	    } else {
+		} else {
 			return "<$tag class='mw-plusminus-neg'>($formatedSize)</$tag>";
 		}
 	}
 
 	/**
- 	 * Returns text for the end of RC
+	 * Returns text for the end of RC
 	 * @return String
 	 */
 	public function endRecentChangesList() {
@@ -370,7 +370,7 @@ class ChangesList {
 	 */
 	public function insertTimestamp( &$s, $rc ) {
 		global $wgLang;
-		$s .= $this->message['semicolon-separator'] . 
+		$s .= $this->message['semicolon-separator'] .
 			$wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
@@ -474,7 +474,7 @@ class ChangesList {
 			return '<span class="mw-rc-unwatched">' . $link . '</span>';
 		}
 	}
-	
+
 	/** Inserts a rollback link
 	 *
 	 * @param $s
@@ -509,7 +509,7 @@ class ChangesList {
 	public function insertTags( &$s, &$rc, &$classes ) {
 		if ( empty($rc->mAttribs['ts_tags']) )
 			return;
-			
+
 		list($tagSummary, $newClasses) = ChangeTags::formatSummaryRow( $rc->mAttribs['ts_tags'], 'changeslist' );
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;
@@ -568,11 +568,11 @@ class OldChangesList extends ChangesList {
 		} else {
 			$this->insertDiffHist( $s, $rc, $unpatrolled );
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$s .= $this->recentChangesFlags( 
+			$s .= $this->recentChangesFlags(
 				array(
 					'newpage' => $rc->mAttribs['rc_new'],
 					'minor' => $rc->mAttribs['rc_minor'],
-					'unpatrolled' => $unpatrolled, 
+					'unpatrolled' => $unpatrolled,
 					'bot' => $rc->mAttribs['rc_bot']
 				),
 				''
@@ -600,17 +600,17 @@ class OldChangesList extends ChangesList {
 		$this->insertRollback( $s, $rc );
 		# For subclasses
 		$this->insertExtra( $s, $rc, $classes );
-		
+
 		# How many users watch this page
 		if( $rc->numberofWatchingusers > 0 ) {
-			$s .= ' ' . wfMsgExt( 'number_of_watching_users_RCview', 
+			$s .= ' ' . wfMsgExt( 'number_of_watching_users_RCview',
 				array( 'parsemag', 'escape' ), $wgLang->formatNum( $rc->numberofWatchingusers ) );
 		}
-		
+
 		if( $this->watchlist ) {
 			$classes[] = Sanitizer::escapeClass( 'watchlist-'.$rc->mAttribs['rc_namespace'].'-'.$rc->mAttribs['rc_title'] );
 		}
-		
+
 		wfRunHooks( 'OldChangesListRecentChangesLine', array(&$this, &$s, $rc) );
 
 		wfProfileOut( __METHOD__ );
@@ -647,7 +647,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	public function recentChangesLine( &$baseRC, $watched = false ) {
 		global $wgLang, $wgUser;
-		
+
 		wfProfileIn( __METHOD__ );
 
 		# Create a specialised object
@@ -668,7 +668,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Should patrol-related stuff be shown?
 		if( $wgUser->useRCPatrol() ) {
-		  	$rc->unpatrolled = !$rc->mAttribs['rc_patrolled'];
+			$rc->unpatrolled = !$rc->mAttribs['rc_patrolled'];
 		} else {
 			$rc->unpatrolled = false;
 		}
@@ -691,7 +691,7 @@ class EnhancedChangesList extends ChangesList {
 		} else if( $type == RC_LOG ) {
 			if( $logType ) {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
-				$clink = '(' . $this->skin->linkKnown( $logtitle, 
+				$clink = '(' . $this->skin->linkKnown( $logtitle,
 					LogPage::logName( $logType ) ) . ')';
 			} else {
 				$clink = $this->skin->link( $rc->getTitle() );
@@ -874,7 +874,7 @@ class EnhancedChangesList extends ChangesList {
 			array_push( $users, $text );
 		}
 
-		$users = ' <span class="changedby">[' . 
+		$users = ' <span class="changedby">[' .
 			implode( $this->message['semicolon-separator'], $users ) . ']</span>';
 
 		# Title for <a> tags
@@ -893,7 +893,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '<td class="mw-enhanced-rc">' . $this->recentChangesFlags( array(
 			'newpage' => $isnew,
 			'minor' => false,
-			'unpatrolled' => $unpatrolled, 
+			'unpatrolled' => $unpatrolled,
 			'bot' => $bot ,
 		) );
 
@@ -930,7 +930,7 @@ class EnhancedChangesList extends ChangesList {
 				$params = $queryParams;
 				$params['diff'] = $currentRevision;
 				$params['oldid'] = $oldid;
-				
+
 				$r .= $this->skin->link(
 					$block[0]->getTitle(),
 					$nchanges[$n],
@@ -997,7 +997,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $rcObj->mAttribs['rc_new'],
 				'minor' => $rcObj->mAttribs['rc_minor'],
-				'unpatrolled' => $rcObj->unpatrolled, 
+				'unpatrolled' => $rcObj->unpatrolled,
 				'bot' => $rcObj->mAttribs['rc_bot'],
 			) );
 			$r .= '&#160;</td><td class="mw-enhanced-rc-nested"><span class="mw-enhanced-rc-time">';
@@ -1142,7 +1142,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $type == RC_NEW,
 				'mino' => $rcObj->mAttribs['rc_minor'],
-				'unpatrolled' => $rcObj->unpatrolled, 
+				'unpatrolled' => $rcObj->unpatrolled,
 				'bot' => $rcObj->mAttribs['rc_bot'],
 			) );
 		}
@@ -1232,7 +1232,7 @@ class EnhancedChangesList extends ChangesList {
 	}
 
 	/**
- 	 * Returns text for the end of RC
+	 * Returns text for the end of RC
 	 * If enhanced RC is in use, returns pretty much all the text
 	 */
 	public function endRecentChangesList() {

@@ -58,7 +58,7 @@ if( isset( $_SERVER['SERVER_NAME'] )
 	# additionially, for requests made directly to an IPv6 address we have
 	# to make sure the server enclose it in either [] or nothing at all
 	&& (strpos($_SERVER['SERVER_NAME'], '[')
-	    xor strpos( $_SERVER['SERVER_NAME'], ']'))
+		xor strpos( $_SERVER['SERVER_NAME'], ']'))
 	) {
 	$serverName = $_SERVER['SERVER_NAME'];
 } elseif( isset( $_SERVER['HOSTNAME'] ) ) {
@@ -552,8 +552,8 @@ $wgMimeTypeBlacklist = array(
 
 /**
  * Allow Java archive uploads.
- * This is not recommended for public wikis since a maliciously-constructed 
- * applet running on the same domain as the wiki can steal the user's cookies. 
+ * This is not recommended for public wikis since a maliciously-constructed
+ * applet running on the same domain as the wiki can steal the user's cookies.
  */
 $wgAllowJavaUploads = false;
 
@@ -676,7 +676,7 @@ $wgSVGConverterPath = '';
 $wgSVGMaxSize = 2048;
 /** Don't read SVG metadata beyond this point.
  * Default is 1024*256 bytes */
-$wgSVGMetadataCutoff = 262144; 
+$wgSVGMetadataCutoff = 262144;
 
 /**
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic browsers which can't
@@ -1483,7 +1483,7 @@ $wgCacheDirectory = false;
  *   - CACHE_DBA:        Use PHP's DBA extension to store in a DBM-style
  *                       database. This is slow, and is not recommended for
  *                       anything other than debugging.
- *   - (other):          A string may be used which identifies a cache 
+ *   - (other):          A string may be used which identifies a cache
  *                       configuration in $wgObjectCaches.
  *
  * @see $wgMessageCacheType, $wgParserCacheType
@@ -1509,13 +1509,13 @@ $wgParserCacheType = CACHE_ANYTHING;
 /**
  * Advanced object cache configuration.
  *
- * Use this to define the class names and constructor parameters which are used 
- * for the various cache types. Custom cache types may be defined here and 
+ * Use this to define the class names and constructor parameters which are used
+ * for the various cache types. Custom cache types may be defined here and
  * referenced from $wgMainCacheType, $wgMessageCacheType or $wgParserCacheType.
  *
- * The format is an associative array where the key is a cache identifier, and 
+ * The format is an associative array where the key is a cache identifier, and
  * the value is an associative array of parameters. The "class" parameter is the
- * class name which will be used. Alternatively, a "factory" parameter may be 
+ * class name which will be used. Alternatively, a "factory" parameter may be
  * given, giving a callable function which will generate a suitable cache object.
  *
  * The other parameters are dependent on the class used.
@@ -3956,7 +3956,7 @@ $wgDebugFunctionEntry = 0;
 $wgStatsMethod = 'cache';
 
 /**
- * When $wgStatsMethod is 'udp', setting this to a string allows statistics to 
+ * When $wgStatsMethod is 'udp', setting this to a string allows statistics to
  * be aggregated over more than one wiki. The string will be used in place of
  * the DB name in outgoing UDP packets. If this is set to false, the DB name
  * will be used.
@@ -4639,15 +4639,15 @@ $wgJobClasses = array(
 );
 
 /**
- * Extensions of "thumbnails" that are very expensive to regenerate and should be 
- * excluded from normal action=purge thumbnail removal. 
+ * Extensions of "thumbnails" that are very expensive to regenerate and should be
+ * excluded from normal action=purge thumbnail removal.
  */
 $wgExcludeFromThumbnailPurge = array();
 
 /**
 
  * Jobs that must be explicitly requested, i.e. aren't run by job runners unless special flags are set.
- * 
+ *
  * These can be:
  * - Very long-running jobs.
  * - Jobs that you would never want to run as part of a page rendering request.
