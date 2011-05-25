@@ -27,7 +27,7 @@
 		 * This information would potentially be stored in a cookie to identify a user during a
 		 * session or series of sessions. It's uniqueness should not be depended on.
 		 *
-		 * @return string random set of 32 alpha-numeric characters
+		 * @return String: Random set of 32 alpha-numeric characters
 		 */
 		function generateId() {
 			var id = '';
@@ -42,7 +42,7 @@
 		/**
 		 * Gets the current user's name.
 		 *
-		 * @return mixed user name string or null if users is anonymous
+		 * @return Mixed: User name string or null if users is anonymous
 		 */
 		this.name = function() {
 			return mw.config.get( 'wgUserName' );
@@ -51,7 +51,7 @@
 		/**
 		 * Checks if the current user is anonymous.
 		 *
-		 * @return boolean
+		 * @return Boolean
 		 */
 		this.anonymous = function() {
 			return that.name() ? false : true;
@@ -63,11 +63,7 @@
 		 * This ID is ephemeral for everyone, staying in their browser only until they close
 		 * their browser.
 		 *
-		 * Do not use this method before the first call to mw.loader.go(), it depends on
-		 * jquery.cookie, which is added to the first pay-load just after mediaWiki is defined, but
-		 * won't be loaded until the first call to go().
-		 *
-		 * @return string user name or random session ID
+		 * @return String: User name or random session ID
 		 */
 		this.sessionId = function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
@@ -85,11 +81,7 @@
 		 * expiration time is reset each time the ID is queried, so in most cases this ID will
 		 * persist until the browser's cookies are cleared or the user doesn't visit for 1 year.
 		 *
-		 * Do not use this method before the first call to mw.loader.go(), it depends on
-		 * jquery.cookie, which is added to the first pay-load just after mediaWiki is defined, but
-		 * won't be loaded until the first call to go().
-		 *
-		 * @return string user name or random session ID
+		 * @return String: User name or random session ID
 		 */
 		this.id = function() {
 			var name = that.name();
