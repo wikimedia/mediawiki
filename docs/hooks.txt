@@ -648,6 +648,10 @@ etc.
 'DatabaseOraclePostInit': Called after initialising an Oracle database
 &$db: the DatabaseOracle object
 
+'Debug': called when outputting a debug log line via wfDebug() or wfDebugLog()
+$text: plaintext string to be output
+$group: null or a string naming a logging group (as defined in $wgDebugLogGroups)
+
 'NewDifferenceEngine': Called when a new DifferenceEngine object is made
 $title: the diff page title (nullable)
 &$oldId: the actual old Id to use in the diff
