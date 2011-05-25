@@ -217,7 +217,7 @@ class SvgHandler extends ImageHandler {
 
 	function unpackMetadata( $metadata ) {
 		wfSuppressWarnings();
-		$unser = @unserialize( $metadata );
+		$unser = unserialize( $metadata );
 		wfRestoreWarnings();
 		if ( isset( $unser['version'] ) && $unser['version'] == self::SVG_METADATA_VERSION ) {
 			return $unser;
