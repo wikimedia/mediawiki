@@ -1,18 +1,19 @@
 <?php
-/******************************************************************************
- * Error classes
- *****************************************************************************/
 
 /**
  * Database error base class
  * @ingroup Database
  */
 class DBError extends MWException {
+
+	/**
+	 * @var DatabaseBase
+	 */
 	public $db;
 
 	/**
 	 * Construct a database error
-	 * @param $db Database object which threw the error
+	 * @param $db DatabaseBase object which threw the error
 	 * @param $error String A simple error message to be used for debugging
 	 */
 	function __construct( DatabaseBase &$db, $error ) {
