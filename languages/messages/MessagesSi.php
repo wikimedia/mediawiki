@@ -722,7 +722,7 @@ $2',
 # Special:PasswordReset
 'passwordreset'              => 'මුරපදය වෙනස් කරන්න',
 'passwordreset-text'         => 'ඔබගේ ගිණුම් තොරතුරුවල විද්‍යුත් තැපැල් මතක්කිරීමක් ලබා ගැනීම සදහා මෙම ආකෘතිපත්‍රය සම්පූර්ණ කරන්න.',
-'passwordreset-legend'       => 'මුර-පදය යළි පිහිටුවන්න',
+'passwordreset-legend'       => 'මුරපදය යළි පිහිටුවන්න',
 'passwordreset-disabled'     => 'මෙම විකියෙහි මුර පද ප්‍රත්‍යාරම්භ කිරීම් අක්‍රීය කොට ඇත.',
 'passwordreset-pretext'      => '{{PLURAL:$1||පහත දැක්වෙන දත්ත කණ්ඩ වලින් එකක් ඇතුල් කරන්න}}',
 'passwordreset-username'     => 'පරිශීලක නාමය:',

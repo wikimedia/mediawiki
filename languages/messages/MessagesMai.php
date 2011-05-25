@@ -2381,12 +2381,17 @@ $1',
 'movepagebtn'                  => 'पन्ना घसकाउ',
 'pagemovedsub'                 => 'घसकल',
 'movepage-moved'               => '\'\'\'"$1" घसकाएल गेल "$2"\'\'\' पर',
+'movepage-moved-redirect'      => 'एकटा पुनर्निर्देशन बनाओल गेल छै.',
+'movepage-moved-noredirect'    => 'पुनर्निर्देशन नहि बनाओल गेल छै.',
 'articleexists'                => 'ओइ नामक एकटा पन्ना पहिनहियेसँ अछि, वा जे नाम अहाँ चयन केने छी से वांछित नै अछि। 
 कृपा कऽ दोसर नामक चयन करू।',
+'cantmove-titleprotected'      => 'नब शीर्षक बनाबै  सें रोकहि के कारण, अहां अहि ठाम पर कोनो आन पृष्ठक ठाम बदलि नहि सकब.',
 'talkexists'                   => "'''ई पन्ना स्वयं घसकाएल गेल, मुदा चौबटिया पन्ना नै घसकाओल जा सकल कारण नव शीर्षकपर एकटा एहने पहिनहियेसँ अछि।
 कृपा कऽ एकरा सभकेँ अपनेसँ मिज्झर करू।'''",
 'movedto'                      => 'घसकाएल गेल',
 'movetalk'                     => 'सम्बन्धित चौबटिया पन्नाकेँ घसकाउ',
+'move-subpages'                => 'उपपृष्ठ सेहो लेल जाऊ ($1 धरि)',
+'move-talk-subpages'           => 'वार्ता पृष्ठक उपपृष्ठ लेने जाऊ ($1 धरि)',
 '1movedto2'                    => '[[$1]] गेल एतय [[$2]]',
 '1movedto2_redir'              => 'घसकाएल [[$1]] सँ [[$2]] घुरैसँ फराक',
 'movelogpage'                  => 'वृत्तलेख हटाउ',
@@ -2395,6 +2400,7 @@ $1',
 'delete_and_move'              => 'मेटाउ आ हटू',
 'delete_and_move_confirm'      => 'हँ, पन्ना मेटाउ',
 'delete_and_move_reason'       => 'घसकेबा लेल जगह बनेबा लेल मेटाएल गेल',
+'immobile-source-page'         => 'अहि पृष्ठ के अहां कतौ नहि ल जा सकब',
 
 # Export
 'export'            => 'पन्ना सभकेँ पठाउ',
@@ -2520,10 +2526,12 @@ $1',
 'tooltip-t-permalink'             => 'पन्नाक ऐ संवर्धनक स्थायी लिंक',
 'tooltip-ca-nstab-main'           => 'विषय सूचीबला पन्ना देखू',
 'tooltip-ca-nstab-user'           => 'प्रयोक्ता पन्नाकेँ देखू',
+'tooltip-ca-nstab-media'          => 'मीडिया पृष्ठ देखू',
 'tooltip-ca-nstab-special'        => 'ई एकटा विशिष्ट पन्ना छी, अहाँ अही पन्नाकेँ संपादित नै कऽ सकै छी',
 'tooltip-ca-nstab-project'        => 'परियोजना पन्ना देखू',
 'tooltip-ca-nstab-image'          => 'पन्नाक पृष्ठ देखू',
 'tooltip-ca-nstab-template'       => 'नमूना देखू',
+'tooltip-ca-nstab-help'           => 'सहायता पृष्ठ देखू',
 'tooltip-ca-nstab-category'       => 'संवर्ग पन्ना देखू',
 'tooltip-minoredit'               => 'एकरा मामली सम्पादन चिन्हित करू',
 'tooltip-save'                    => 'अपन परिवर्त्तनके सुरक्षित करू',
@@ -2543,6 +2551,11 @@ $1',
 'others'        => 'दोसर, आन',
 'nocredits'     => 'अहि पन्नाक लेल क्रेडिट ज़ानकारी नहि अछि',
 
+# Info page
+'infosubtitle' => 'पृष्ठक लेल नब गप',
+'numedits'     => 'सम्पादनक संख्या (पृष्ठ) :  $1',
+'numauthors'   => 'अलग लेखकक संख्या (पृष्ठ): $1',
+
 # Patrol log
 'patrol-log-line' => 'चेन्हासी देल $2 क $1 संचालित $3',
 'patrol-log-diff' => 'संशोधन $1',
@@ -2556,6 +2569,10 @@ $1',
 'file-nohires'   => '<छोट>ऐसँ बेशी आनन्तर्य उपलब्ध नै अछि।</छोट>',
 'svg-long-desc'  => 'एस.वी.जी. फाइल, मामूली रूपमे $1 × $2 चित्रकण, फाइलक आकार: $3',
 'show-big-image' => 'पूर्ण आनन्तर्य',
+
+# Special:NewFiles
+'ilsubmit' => 'ताकू',
+'bydate'   => 'तारीख सं',
 
 # Bad image list
 'bad_image_list' => 'फॉर्मेट निम्न प्रकारेँ अछि:
@@ -2586,6 +2603,102 @@ $1',
 * जी.पी.एस.अक्षांश
 * जी.पी.एस. लम्बाकार',
 
+# EXIF tags
+'exif-imagewidth'       => 'चौड़ाई',
+'exif-imagelength'      => 'ऊँच',
+'exif-orientation'      => 'अभिविन्यास',
+'exif-imagedescription' => 'चित्र शीर्षक',
+
+'exif-meteringmode-0'   => 'अज्ञात',
+'exif-meteringmode-1'   => 'औसत',
+'exif-meteringmode-3'   => 'ठाम',
+'exif-meteringmode-4'   => 'ठामे -ठाम',
+'exif-meteringmode-5'   => 'प्रतिमान',
+'exif-meteringmode-6'   => 'आंशिक',
+'exif-meteringmode-255' => 'आन',
+
+'exif-scenecapturetype-0' => 'मानक',
+'exif-scenecapturetype-1' => 'परिदृश्य',
+'exif-scenecapturetype-2' => 'चित्र',
+'exif-scenecapturetype-3' => 'रात्रिक दृश्य',
+
+'exif-gaincontrol-0' => 'कोनो नै',
+
+'exif-contrast-0' => 'सामान्य',
+'exif-contrast-1' => 'नरम',
+'exif-contrast-2' => 'पखठायल',
+
+'exif-saturation-0' => 'सामान्य',
+
+'exif-sharpness-0' => 'सामान्य',
+'exif-sharpness-1' => 'नरम',
+'exif-sharpness-2' => 'पखठायल',
+
+'exif-subjectdistancerange-0' => 'अज्ञात',
+'exif-subjectdistancerange-2' => 'लग सें देखू',
+'exif-subjectdistancerange-3' => 'दूर सें देखू',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'उत्तरबरिया अक्षांश',
+'exif-gpslatitude-s' => 'दखिनबरिया अक्षांश',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'पुबरिया रेखांश',
+'exif-gpslongitude-w' => 'पछबरिया  रेखांश',
+
+'exif-gpsstatus-a' => 'नापी चलि रहल छै',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'कि.मी. प्रति घंटा',
+'exif-gpsspeed-m' => 'माईल प्रति घंटा',
+'exif-gpsspeed-n' => 'गिरह',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'किलोमीटर',
+'exif-gpsdestdistance-m' => 'माइल',
+
+'exif-gpsdop-excellent' => 'श्रेष्ठ',
+'exif-gpsdop-good'      => 'बढ़िया',
+
+'exif-objectcycle-a' => 'भोरमभोर टा',
+'exif-objectcycle-p' => 'सांझे टा',
+'exif-objectcycle-b' => 'भोर अ साँझ दुनू',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'असल दिश',
+
+'exif-ycbcrpositioning-1' => 'केन्द्रित',
+
+'exif-dc-contributor' => 'योगदान दै बला लोक',
+'exif-dc-date'        => 'तारीख',
+'exif-dc-publisher'   => 'प्रकाशित करहि बला',
+'exif-dc-relation'    => 'संबंधित मीडिया',
+'exif-dc-rights'      => 'अधिकार',
+'exif-dc-source'      => 'स्रोत बला माध्यम',
+'exif-dc-type'        => 'माध्यमक प्रकार',
+
+'exif-rating-rejected' => 'अस्वीकृत',
+
+'exif-iimcategory-ace' => 'कला, संस्कृति आ मनोरंजन',
+'exif-iimcategory-clj' => 'अपराध आ कानून',
+'exif-iimcategory-dis' => 'आपदा आ दुर्घटना',
+'exif-iimcategory-fin' => 'अर्थव्यवस्था आ व्यापार',
+'exif-iimcategory-edu' => 'शिक्षा',
+'exif-iimcategory-evn' => 'वातावरण',
+'exif-iimcategory-hth' => 'स्वास्थ्य',
+'exif-iimcategory-hum' => 'मनुखक अनुराग',
+'exif-iimcategory-lab' => 'श्रम',
+'exif-iimcategory-lif' => 'जीवन शैली आ अवकाश',
+'exif-iimcategory-pol' => 'राजनीति',
+'exif-iimcategory-rel' => 'धर्म आ विश्वास',
+'exif-iimcategory-sci' => 'विज्ञान आ तकनीक',
+'exif-iimcategory-soi' => 'सामाजिक मुद्दा',
+'exif-iimcategory-spo' => 'खेलकूद',
+'exif-iimcategory-war' => 'युद्ध, संघर्ष आ अशांति',
+'exif-iimcategory-wea' => 'मौसम',
+
+'exif-urgency-normal' => 'सामान्य ($1)',
+
 # External editor support
 'edit-externally'      => 'ऐ फाइलकेँ बाहरी अनुप्रयोगसँ हटाउ',
 'edit-externally-help' => '(देखू [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] विषेष जानकारी लेल)',
@@ -2594,6 +2707,21 @@ $1',
 'watchlistall2' => 'सभ',
 'namespacesall' => 'सभटा',
 'monthsall'     => 'सभ',
+
+# action=purge
+'confirm_purge_button' => 'ठीक अछि',
+
+# Multipage image navigation
+'imgmultipageprev' => 'पहिलुका पृष्ठ',
+'imgmultipagenext' => 'अगुलका पृष्ठ',
+'imgmultigo'       => 'जाऊ',
+'imgmultigoto'     => '$1 पृष्ठ पर जाऊ',
+
+# Table pager
+'table_pager_limit_submit' => 'जाऊ',
+
+# Watchlist editor
+'watchlistedit-raw-titles' => 'शीर्षक',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'सम्बन्धित परिवर्तन सभकेँ देखू',
@@ -2604,9 +2732,19 @@ $1',
 'duplicate-defaultsort' => '\'\'\'चेतौनी:\'\'\' पूर्वनिर्धारित विन्यास चाभी "$2" पहिलुका पूर्वनिर्धारित विन्यास चाभी "$1" केँ खतम करैए।',
 
 # Special:Version
-'version'              => 'संस्करण',
-'version-extensions'   => 'संस्करणक आगाँ',
-'version-specialpages' => 'खास पन्ना',
+'version'                  => 'संस्करण',
+'version-extensions'       => 'संस्करणक आगाँ',
+'version-specialpages'     => 'खास पन्ना',
+'version-other'            => 'आन',
+'version-software-product' => 'उत्पाद',
+'version-software-version' => 'संस्करण',
+
+# Special:FilePath
+'filepath-page'   => 'संचिका',
+'filepath-submit' => 'जाऊ',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'ताकू',
 
 # Special:SpecialPages
 'specialpages'                   => 'विशेष पन्ना',

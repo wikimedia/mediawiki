@@ -790,12 +790,35 @@ $1',
 'powersearch-redir'                => 'अनुप्रेषणानां सूचिकां दर्शयतु।',
 'powersearch-field'                => 'इत्यस्मै अन्विष्यतु',
 'powersearch-toggleall'            => 'सर्वम्',
+'powersearch-togglenone'           => 'नास्ति',
+'search-external'                  => 'वाह्य अन्वेषणम्',
+'searchdisabled'                   => '{{SITENAME}} अन्वेषणं निष्क्रियम्
+अश्मिन् समये भवान् गूगल माध्यमेन अन्वेषणं कर्तुं शक्नोति
+स्मरयतु यत् {{SITENAME}} इति स्थलस्य क्रमाङ्का नैव अद्यातना  इति सोच्यते।',
+
+# Quickbar
+'qbsettings'            => 'शीघ्रपट',
+'qbsettings-none'       => 'नास्ति',
+'qbsettings-fixedleft'  => 'बामे स्थापितः',
+'qbsettings-fixedright' => 'दक्षिणे स्थापितः',
 
 # Preferences page
-'preferences'   => 'इष्टतमानि',
-'mypreferences' => 'मम वरीयांसि',
-'yourlanguage'  => 'भाषा:',
-'email'         => 'विद्युत्पत्रव्यवस्था',
+'preferences'              => 'इष्टतमानि',
+'mypreferences'            => 'मम वरीयांसि',
+'prefs-edits'              => 'सम्पादनानां सख्याः',
+'prefsnologin'             => 'नैव प्रविष्ट',
+'changepassword'           => 'प्रवेश शव्दं परिवर्तयतु',
+'prefs-skin'               => 'त्वचा',
+'skin-preview'             => 'प्राग्दृश्यम्',
+'datedefault'              => 'वरीयांसि नास्ति',
+'prefs-datetime'           => 'दिनांक तथा समय',
+'prefs-personal'           => 'योजकः व्यक्तिरेखा',
+'prefs-rc'                 => 'नवतमानि परिवर्तनानि',
+'prefs-watchlist'          => 'दृष्टि सूची',
+'prefs-watchlist-days'     => 'दृष्टि सूची दर्शनार्थे  दिवसानि',
+'prefs-watchlist-days-max' => 'अधिकतम ७ दिवसानि',
+'yourlanguage'             => 'भाषा:',
+'email'                    => 'विद्युत्पत्रव्यवस्था',
 
 # Groups
 'group-sysop' => 'प्रबंधकाः',

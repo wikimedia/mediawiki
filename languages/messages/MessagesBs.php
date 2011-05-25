@@ -3198,6 +3198,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-fixtureidentifier'           => 'Naziv rubrike',
 'exif-locationdest'                => 'Lokacija prikazana',
 'exif-locationdestcode'            => 'Kod prikazane lokacije',
+'exif-objectcycle'                 => 'Doba dana za koje je namijenjena medija',
 'exif-contact'                     => 'Podaci za kontakt',
 'exif-writer'                      => 'Pisac',
 'exif-languagecode'                => 'Jezik',
@@ -3371,6 +3372,10 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpsdestdistance-k' => 'Kilometara',
 'exif-gpsdestdistance-m' => 'Milja',
 'exif-gpsdestdistance-n' => 'Nautičkih milja',
+
+'exif-objectcycle-a' => 'Samo jutro',
+'exif-objectcycle-p' => 'Samo navečer',
+'exif-objectcycle-b' => 'I ujutro i navečer',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Stvarni pravac',

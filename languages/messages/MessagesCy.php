@@ -1489,7 +1489,7 @@ Gweler [[Special:NewFiles|oriel y ffeiliau newydd]] i fwrw golwg drostynt.",
 'large-file'                  => "Argymhellir na ddylai ffeil fod yn fwy na $1. Mae'r ffeil hwn yn $2 o faint.",
 'largefileserver'             => "Mae'r ffeil yn fwy na'r hyn mae'r gweinydd yn ei ganiatau.",
 'emptyfile'                   => "Ymddengys fod y ffeil a uwchlwythwyd yn wag. Efallai bod gwall teipio yn enw'r ffeil. Sicrhewch eich bod wir am uwchlwytho'r ffeil.",
-'windows-nonascii-filename'   => "Nid yw'r gweinydd yn cynnal enwau ffeiliau sy'n cynnwys nodau arbennig.",
+'windows-nonascii-filename'   => "Nid yw'r wici hwn yn cynnal enwau ffeiliau sy'n cynnwys nodau arbennig.",
 'fileexists'                  => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; gwiriwch '''<tt>[[:$1]]</tt>''' os nad ydych yn sicr bod angen ei newid.
 [[$1|thumb]]",
 'filepageexists'              => "Mae tudalen ddisgrifiad ar gyfer y ffeil hon eisoes ar gael ar '''<tt>[[:$1]]</tt>''', ond nid oes ffeil o'r enw hwn ar gael ar hyn o bryd.
@@ -2017,8 +2017,9 @@ Os ydych am ddiddymu'r dudalen o'r rhestr wylio, cliciwch ar \"Stopio gwylio\" y
 'watchlist-options'    => 'Dewisiadau ar gyfer y rhestr wylio',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => "Wrthi'n ychwanegu...",
-'unwatching' => "Wrthi'n tynnu...",
+'watching'       => "Wrthi'n ychwanegu...",
+'unwatching'     => "Wrthi'n tynnu...",
+'watcherrortext' => 'Cafwyd gwall wrth newid y gosodiadau ar restr wylio "$1".',
 
 'enotif_mailer'                => 'Sustem hysbysu {{SITENAME}}',
 'enotif_reset'                 => 'Ystyried bod pob tudalen wedi cael ymweliad',
@@ -2418,6 +2419,7 @@ Cofiwch [[Special:UnlockDB|ddatgloi'r]] databas pan fydd y gwaith cynnal ar ben.
 'lockfilenotwritable' => "Ni ellir ysgrifennu'r ffeil cloi'r databas.
 Er mwyn cloi'r databas neu ei ddatgloi, mae'n rhaid i'r gweinydd gwe allu ysgrifennu'r ffeil.",
 'databasenotlocked'   => "Nid yw'r databas ar glo.",
+'lockedbyandtime'     => '(gan $1 ar $2 am $3)',
 
 # Move page
 'move-page'                    => 'Symud $1',

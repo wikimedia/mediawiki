@@ -1194,8 +1194,7 @@ Haiwezi kuzidi {{PLURAL:$1|tarakimu|tarakimu}} $1.',
 Taarifa hii itakuwa wazi.',
 'email'                         => 'Barua pepe',
 'prefs-help-realname'           => 'Jina la kweli si lazima. Ukichagua kutaja jina lako hapa, litatumiwa kuonyesha kwamba ndiyo ulifanya kazi unayochangia.',
-'prefs-help-email'              => 'Barua-pepe sio lazima, lakini inawezesha kupokea neno jipya la siri kwa kupitia barua-pepe yako endapo utakuwa umelisahau.
-Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia ukurasa wako wa mtumiaji au ule wa majadiliano bila ya kuonyesha jina la akaunti yako.',
+'prefs-help-email'              => 'Barua-pepe sio lazima, lakini inawezesha kupokea neno jipya la siri kwa kupitia barua-pepe yako endapo utakuwa umelisahau.',
 'prefs-help-email-others'       => 'Unaweza pia kuwezesha wengine wawasiliane nawe kwa njia ya ukurasa wako wa mtumiaji au ukurasa wako wa majadiliano tu, bila kujitambulisha.',
 'prefs-help-email-required'     => 'Barua pepe inahitajika.',
 'prefs-info'                    => 'Maelezo ya kimsingi',
@@ -2241,6 +2240,7 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 Kumbuka [[Special:UnlockDB|kuifungua tena]] baada ya kumaliza kuitengeneza.',
 'unlockdbsuccesstext' => 'Hifadhidata imefunguliwa.',
 'databasenotlocked'   => 'Hifadhidata haijafunguliwa.',
+'lockedbyandtime'     => '(kwa $1 saa $3 tarehe $2)',
 
 # Move page
 'move-page'                    => 'Hamisha $1',
