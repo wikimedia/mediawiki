@@ -4531,6 +4531,7 @@ class Parser {
 
 	/**
 	 * Remove a specific tag hook. Should not be called on $wgParser.
+	 * Does not change the strip list.
 	 *
 	 * @param string $tag
 	 * @return void
@@ -4538,10 +4539,6 @@ class Parser {
 	function clearTagHook( $tag ) {
 		if ( isset( $this->mTagHooks[$tag] ) ) {
 			unset( $this->mTagHooks[$tag] );
-			$key = array_search( $tag, $this->mStripList );
-			if ( $key !== false ) {
-				unset( $this->mStripList[$key] );
-			}
 		}
 	}
 
