@@ -3,7 +3,7 @@
  */
 ( function( $, mw ) {
 
-	mw.util = {
+	mw.util = $.extend( mw.util || {}, {
 
 		/* Initialisation */
 		'initialised' : false,
