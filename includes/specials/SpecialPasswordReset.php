@@ -76,6 +76,10 @@ class SpecialPasswordReset extends FormSpecialPage {
 		return $a;
 	}
 
+	public function alterForm( HTMLForm $form ) {
+		$form->setSubmitText( wfMessage( "mailmypassword" ) );
+	}
+
 	protected function preText() {
 		global $wgPasswordResetRoutes;
 		$i = 0;
