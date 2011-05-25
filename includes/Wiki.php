@@ -407,7 +407,7 @@ class MediaWiki {
 	 */
 	private function performAction( $article ) {
 		global $wgSquidMaxage, $wgUseExternalEditor,
-			$wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
+			$wgEnableCreativeCommonsRdf;
 
 		wfProfileIn( __METHOD__ );
 
@@ -449,14 +449,6 @@ class MediaWiki {
 			case 'render':
 			case 'deletetrackback':
 				$article->$act();
-				break;
-			case 'dublincore':
-				if ( !$wgEnableDublinCoreRdf ) {
-					wfHttpError( 403, 'Forbidden', wfMsg( 'nodublincore' ) );
-				} else {
-					$rdf = new DublinCoreRdf( $article );
-					$rdf->show();
-				}
 				break;
 			case 'creativecommons':
 				if ( !$wgEnableCreativeCommonsRdf ) {

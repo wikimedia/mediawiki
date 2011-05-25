@@ -4407,7 +4407,6 @@ $wgUseTagFilter = true;
  */
 
 /** RDF metadata toggles */
-$wgEnableDublinCoreRdf = false;
 $wgEnableCreativeCommonsRdf = false;
 
 /** Override for copyright metadata.
@@ -5040,7 +5039,7 @@ $wgActions = array(
 );
 
 /**
- * Array of disabled article actions, e.g. view, edit, dublincore, delete, etc.
+ * Array of disabled article actions, e.g. view, edit, delete, etc.
  * @deprecated since 1.18; just set $wgActions['action'] = false instead
  */
 $wgDisabledActions = array();
