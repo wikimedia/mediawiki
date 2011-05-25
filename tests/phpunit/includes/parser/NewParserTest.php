@@ -152,11 +152,22 @@ class NewParserTest extends MediaWikiTestCase {
 				   'iw_api'    => '',
 				   'iw_wikiid' => '',
 				   'iw_local'  => 1 ),
-			) );
+			/**
+			 * @todo Fixme! Why are we inserting duplicate data here? Shouldn't
+			 * need this IGNORE or shouldn't need the insert at all.
+			 */
+			), __METHOD__, array( 'IGNORE' ) );
 
 
 		# Update certain things in site_stats
-		$this->db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
+		$this->db->insert( 'site_stats', 
+			array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ),
+			__METHOD__,
+			/**
+			 * @todo Fixme! Same as above!
+			 */
+			array( 'IGNORE' )
+		);
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
