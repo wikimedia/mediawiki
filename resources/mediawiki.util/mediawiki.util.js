@@ -552,7 +552,7 @@
 				&& address.search( /::/ ) != -1 && address.search( /::.*::/ ) == -1;
 		}
 
-	};
+	} );
 
 	mw.util.init();
 
