@@ -12,7 +12,7 @@
  */
 
 /** */
-class MagicVariableTest extends PHPUnit_Framework_TestCase {
+class MagicVariableTest extends MediaWikiTestCase {
 	/** Will contains a parser object*/
 	private $testParser = null;
 
