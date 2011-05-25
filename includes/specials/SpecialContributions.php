@@ -403,8 +403,8 @@ class SpecialContributions extends SpecialPage {
 				Xml::dateMenu( $this->opts['year'], $this->opts['month'] ) . ' ' .
 				Xml::submitButton( wfMsg( 'sp-contributions-submit' ) )
 			) . ' ';
-		$explain = wfMsgExt( 'sp-contributions-explain', 'parseinline' );
-		if( !wfEmptyMsg( 'sp-contributions-explain' ) ) {
+		$explain = wfMessage( 'sp-contributions-explain' );
+		if ( $explain->exists() ) {
 			$f .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";
 		}
 		$f .= Xml::closeElement('fieldset' ) .
