@@ -1164,6 +1164,51 @@ function wfBacktrace() {
 	return $msg;
 }
 
+/**
+ * Get the name of the function which called this function
+ *
+ * @param $level Int
+ * @return Bool|string
+ */
+function wfGetCaller( $level = 2 ) {
+	$backtrace = wfDebugBacktrace();
+	if ( isset( $backtrace[$level] ) ) {
+		return wfFormatStackFrame( $backtrace[$level] );
+	} else {
+		$caller = 'unknown';
+	}
+	return $caller;
+}
+
+/**
+ * Return a string consisting of callers in the stack. Useful sometimes
+ * for profiling specific points.
+ *
+ * @param $limit The maximum depth of the stack frame to return, or false for
+ *               the entire stack.
+ * @return String
+ */
+function wfGetAllCallers( $limit = 3 ) {
+	$trace = array_reverse( wfDebugBacktrace() );
+	if ( !$limit || $limit > count( $trace ) - 1 ) {
+		$limit = count( $trace ) - 1;
+	}
+	$trace = array_slice( $trace, -$limit - 1, $limit );
+	return implode( '/', array_map( 'wfFormatStackFrame', $trace ) );
+}
+
+/**
+ * Return a string representation of frame
+ *
+ * @param $frame Array
+ * @return Bool
+ */
+function wfFormatStackFrame( $frame ) {
+	return isset( $frame['class'] ) ?
+		$frame['class'] . '::' . $frame['function'] :
+		$frame['function'];
+}
+
 
 /* Some generic result counters, pulled out of SearchEngine */
 
@@ -2993,51 +3038,6 @@ function wfGetPrecompiledData( $name ) {
 		}
 	}
 	return false;
-}
-
-/**
- * Get the name of the function which called this function
- *
- * @param $level Int
- * @return Bool|string
- */
-function wfGetCaller( $level = 2 ) {
-	$backtrace = wfDebugBacktrace();
-	if ( isset( $backtrace[$level] ) ) {
-		return wfFormatStackFrame( $backtrace[$level] );
-	} else {
-		$caller = 'unknown';
-	}
-	return $caller;
-}
-
-/**
- * Return a string consisting of callers in the stack. Useful sometimes
- * for profiling specific points.
- *
- * @param $limit The maximum depth of the stack frame to return, or false for
- *               the entire stack.
- * @return String
- */
-function wfGetAllCallers( $limit = 3 ) {
-	$trace = array_reverse( wfDebugBacktrace() );
-	if ( !$limit || $limit > count( $trace ) - 1 ) {
-		$limit = count( $trace ) - 1;
-	}
-	$trace = array_slice( $trace, -$limit - 1, $limit );
-	return implode( '/', array_map( 'wfFormatStackFrame', $trace ) );
-}
-
-/**
- * Return a string representation of frame
- *
- * @param $frame Array
- * @return Bool
- */
-function wfFormatStackFrame( $frame ) {
-	return isset( $frame['class'] ) ?
-		$frame['class'] . '::' . $frame['function'] :
-		$frame['function'];
 }
 
 /**
