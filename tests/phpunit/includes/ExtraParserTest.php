@@ -9,8 +9,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 		global $wgMemc;
 		global $wgContLang;
 		global $wgShowDBErrorBacktrace;
+		global $wgLanguageCode;
 
 		$wgShowDBErrorBacktrace = true;
+		$wgLanguageCode = 'en';
 		$wgContLang = new Language( 'en' );
 		$wgMemc = new EmptyBagOStuff;
 		

@@ -2,12 +2,13 @@
 
 class GlobalTest extends MediaWikiTestCase {
 	function setUp() {
-		global $wgReadOnlyFile, $wgContLang, $wgLang, $wgUrlProtocols;
+		global $wgReadOnlyFile, $wgContLang, $wgLang, $wgUrlProtocols, $wgLanguageCode;
 		$this->originals['wgReadOnlyFile'] = $wgReadOnlyFile;
 		$this->originals['wgUrlProtocols'] = $wgUrlProtocols;
 		$wgReadOnlyFile = tempnam( wfTempDir(), "mwtest_readonly" );
 		$wgUrlProtocols[] = 'file://';
 		unlink( $wgReadOnlyFile );
+		$wgLanguageCode = 'en';
 		$wgContLang = $wgLang = Language::factory( 'en' );
 	}
 
