@@ -227,7 +227,7 @@ class Parser_LinkHooks extends Parser {
 		wfProfileOut( __METHOD__."-misc" );
 		# Make title object
 		wfProfileIn( __METHOD__."-title" );
-		$title = Title::newFromText( $this->mStripState->unstripNoWiki($titleText) );
+		$title = Title::newFromText( $this->mStripState->unstripNoWiki( $titleText ) );
 		if( !$title ) {
 			wfProfileOut( __METHOD__."-title" );
 			wfProfileOut( __METHOD__ );
@@ -239,7 +239,7 @@ class Parser_LinkHooks extends Parser {
 		# Default for Namespaces is a default link
 		# ToDo: Default for patterns is plain wikitext
 		$return = true;
-		if( isset($this->mLinkHooks[$ns]) ) {
+		if( isset( $this->mLinkHooks[$ns] ) ) {
 			list( $callback, $flags ) = $this->mLinkHooks[$ns];
 			if( $flags & SLH_PATTERN ) {
 				$args = array( $parser, $holders, $markers, $titleText, &$paramText, &$leadingColon );
@@ -248,7 +248,7 @@ class Parser_LinkHooks extends Parser {
 			}
 			# Workaround for PHP bug 35229 and similar
 			if ( !is_callable( $callback ) ) {
-				throw new MWException( "Tag hook for $name is not callable\n" );
+				throw new MWException( "Tag hook for namespace $ns is not callable\n" );
 			}
 			$return = call_user_func_array( $callback, $args );
 		}
