@@ -176,7 +176,7 @@ abstract class File {
 	 * @return Title
 	 */
 	public function getTitle() { return $this->title; }
-	
+
 	/**
 	 * Return the title used to find this file
 	 */
@@ -288,8 +288,8 @@ abstract class File {
 	}
 
 	/**
-         *  Return true if the file is vectorized
-         */
+	 *  Return true if the file is vectorized
+	 */
 	public function isVectorized() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
@@ -318,7 +318,7 @@ abstract class File {
 		$handler = $this->getHandler();
 		if ( !is_array( $metadata ) ) {
 			//just to make the return type consistant
-			$metadata = unserialize( $metadata ); 
+			$metadata = unserialize( $metadata );
 		}
 		if ( $handler ) {
 			return $handler->convertMetadataVersion( $metadata, $version );
@@ -517,7 +517,7 @@ abstract class File {
 	function thumbName( $params ) {
 		return $this->generateThumbName( $this->getName(), $params );
 	}
-	
+
 	/**
 	 * Generate a thumbnail file name from a name and specified parameters
 	 *
@@ -612,8 +612,8 @@ abstract class File {
 			if ( file_exists( $thumbPath )) {
 				$thumbTime = filemtime( $thumbPath );
 				if ( $thumbTime !== FALSE &&
-				     gmdate( 'YmdHis', $thumbTime ) >= $wgThumbnailEpoch ) { 
-	
+					gmdate( 'YmdHis', $thumbTime ) >= $wgThumbnailEpoch ) {
+
 					$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 					break;
 				}
@@ -629,9 +629,9 @@ abstract class File {
 					$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 				}
 			}
-			
-			// Purge. Useful in the event of Core -> Squid connection failure or squid 
-			// purge collisions from elsewhere during failure. Don't keep triggering for 
+
+			// Purge. Useful in the event of Core -> Squid connection failure or squid
+			// purge collisions from elsewhere during failure. Don't keep triggering for
 			// "thumbs" which have the main image URL though (bug 13776)
 			if ( $wgUseSquid && ( !$thumb || $thumb->isError() || $thumb->getUrl() != $this->getURL()) ) {
 				SquidUpdate::purge( array( $thumbUrl ) );
@@ -953,11 +953,11 @@ abstract class File {
 	function isDeleted( $field ) {
 		return false;
 	}
-	
+
 	/**
 	 * Return the deletion bitfield
 	 * STUB
-	 */	
+	 */
 	function getVisibility() {
 		return 0;
 	}
@@ -1025,8 +1025,8 @@ abstract class File {
 	}
 
 	/**
-	 * Returns 'true' if this file is a type which supports multiple pages, 
-	 * e.g. DJVU or PDF. Note that this may be true even if the file in 
+	 * Returns 'true' if this file is a type which supports multiple pages,
+	 * e.g. DJVU or PDF. Note that this may be true even if the file in
 	 * question only has a single page.
 	 *
 	 * @return Bool
@@ -1096,7 +1096,7 @@ abstract class File {
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug("Attempting to get the description from cache...");
-				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $wgLang->getCode(), 
+				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $wgLang->getCode(),
 									$this->getName() );
 				$obj = $wgMemc->get($key);
 				if ($obj) {
@@ -1153,7 +1153,7 @@ abstract class File {
 		}
 		$ext = $this->getExtension();
 		$dotExt = $ext === '' ? '' : ".$ext";
-		return $hash . $dotExt;				
+		return $hash . $dotExt;
 	}
 
 	/**
@@ -1288,7 +1288,7 @@ abstract class File {
 	function getRedirected() {
 		return $this->redirected;
 	}
-	
+
 	function getRedirectedTitle() {
 		if ( $this->redirected ) {
 			if ( !$this->redirectTitle ) {

@@ -78,7 +78,7 @@ class RevDel_RevisionList extends RevDel_List {
 	public function getCurrent() {
 		if ( is_null( $this->currentRevId ) ) {
 			$dbw = wfGetDB( DB_MASTER );
-			$this->currentRevId = $dbw->selectField( 
+			$this->currentRevId = $dbw->selectField(
 				'page', 'page_latest', $this->title->pageCond(), __METHOD__ );
 		}
 		return $this->currentRevId;
@@ -115,7 +115,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	public function canView() {
 		return $this->revision->userCan( Revision::DELETED_RESTRICTED );
 	}
-	
+
 	public function canViewContent() {
 		return $this->revision->userCan( Revision::DELETED_TEXT );
 	}
@@ -129,8 +129,8 @@ class RevDel_RevisionItem extends RevDel_Item {
 		// Update revision table
 		$dbw->update( 'revision',
 			array( 'rev_deleted' => $bits ),
-			array( 
-				'rev_id' => $this->revision->getId(), 
+			array(
+				'rev_id' => $this->revision->getId(),
 				'rev_page' => $this->revision->getPage(),
 				'rev_deleted' => $this->getBits()
 			),
@@ -142,7 +142,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 		}
 		// Update recentchanges table
 		$dbw->update( 'recentchanges',
-			array( 
+			array(
 				'rc_deleted' => $bits,
 				'rc_patrolled' => 1
 			),
@@ -161,7 +161,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function isHideCurrentOp( $newBits ) {
-		return ( $newBits & Revision::DELETED_TEXT ) 
+		return ( $newBits & Revision::DELETED_TEXT )
 			&& $this->list->getCurrent() == $this->getId();
 	}
 
@@ -177,7 +177,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 		}
 		return $this->special->skin->link(
 			$this->list->title,
-			$date, 
+			$date,
 			array(),
 			array(
 				'oldid' => $this->revision->getId(),
@@ -194,9 +194,9 @@ class RevDel_RevisionItem extends RevDel_Item {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return wfMsgHtml('diff');
 		} else {
-			return 
-				$this->special->skin->link( 
-					$this->list->title, 
+			return
+				$this->special->skin->link(
+					$this->list->title,
 					wfMsgHtml('diff'),
 					array(),
 					array(
@@ -281,7 +281,7 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 		# Convert DB timestamp to MW timestamp
 		return $this->revision->getTimestamp();
 	}
-	
+
 	public function setBits( $bits ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'archive',
@@ -315,8 +315,8 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return wfMsgHtml( 'diff' );
 		}
-		$undelete = SpecialPage::getTitleFor( 'Undelete' );		
-		return $this->special->skin->link( $undelete, wfMsgHtml('diff'), array(), 
+		$undelete = SpecialPage::getTitleFor( 'Undelete' );
+		return $this->special->skin->link( $undelete, wfMsgHtml('diff'), array(),
 			array(
 				'target' => $this->list->title->getPrefixedText(),
 				'diff' => 'prev',
@@ -452,7 +452,7 @@ class RevDel_FileItem extends RevDel_Item {
 	public function canView() {
 		return $this->file->userCan( File::DELETED_RESTRICTED );
 	}
-	
+
 	public function canViewContent() {
 		return $this->file->userCan( File::DELETED_FILE );
 	}
@@ -484,12 +484,12 @@ class RevDel_FileItem extends RevDel_Item {
 			$dstRel = $this->file->repo->getDeletedHashPath( $key ) . $key;
 			$this->list->deleteBatch[] = array( $this->file->getRel(), $dstRel );
 		}
-		
+
 		# Do the database operations
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'oldimage',
 			array( 'oi_deleted' => $bits ),
-			array( 
+			array(
 				'oi_name' => $this->row->oi_name,
 				'oi_timestamp' => $this->row->oi_timestamp,
 				'oi_deleted' => $this->getBits()
@@ -504,20 +504,20 @@ class RevDel_FileItem extends RevDel_Item {
 	}
 
 	/**
-	 * Get the link to the file. 
+	 * Get the link to the file.
 	 * Overridden by RevDel_ArchivedFileItem.
 	 */
 	protected function getLink() {
 		global $wgLang, $wgUser;
-		$date = $wgLang->timeanddate( $this->file->getTimestamp(), true  );		
+		$date = $wgLang->timeanddate( $this->file->getTimestamp(), true  );
 		if ( $this->isDeleted() ) {
 			# Hidden files...
 			if ( !$this->canViewContent() ) {
 				$link = $date;
 			} else {
-				$link = $this->special->skin->link( 
-					$this->special->getTitle(), 
-					$date, array(), 
+				$link = $this->special->skin->link(
+					$this->special->getTitle(),
+					$date, array(),
 					array(
 						'target' => $this->list->title->getPrefixedText(),
 						'file'   => $this->file->getArchiveName(),
@@ -568,14 +568,14 @@ class RevDel_FileItem extends RevDel_Item {
 
 	public function getHTML() {
 		global $wgLang;
-		$data = 
+		$data =
 			wfMsg(
-				'widthheight', 
+				'widthheight',
 				$wgLang->formatNum( $this->file->getWidth() ),
-				$wgLang->formatNum( $this->file->getHeight() ) 
+				$wgLang->formatNum( $this->file->getHeight() )
 			) .
-			' (' . 
-			wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $this->file->getSize() ) ) . 
+			' (' .
+			wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $this->file->getSize() ) ) .
 			')';
 
 		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
@@ -715,7 +715,7 @@ class RevDel_LogItem extends RevDel_Item {
 	public function canView() {
 		return LogEventsList::userCan( $this->row, Revision::DELETED_RESTRICTED );
 	}
-	
+
 	public function canViewContent() {
 		return true; // none
 	}
@@ -727,9 +727,9 @@ class RevDel_LogItem extends RevDel_Item {
 	public function setBits( $bits ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'recentchanges',
-			array( 
-				'rc_deleted' => $bits, 
-				'rc_patrolled' => 1 
+			array(
+				'rc_deleted' => $bits,
+				'rc_patrolled' => 1
 			),
 			array(
 				'rc_logid' => $this->row->log_id,

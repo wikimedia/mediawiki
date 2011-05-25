@@ -152,14 +152,14 @@ class Language {
 		static $recursionLevel = 0;
 
 		// Protect against path traversal below
-		if ( !Language::isValidCode( $code ) 
-			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) ) 
+		if ( !Language::isValidCode( $code )
+			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
 		{
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 
 		if ( !Language::isValidBuiltInCode( $code ) ) {
-			// It's not possible to customise this code with class files, so 
+			// It's not possible to customise this code with class files, so
 			// just return a Language object. This is to support uselang= hacks.
 			$lang = new Language;
 			$lang->setCode( $code );
@@ -198,18 +198,18 @@ class Language {
 	}
 
 	/**
-	 * Returns true if a language code string is of a valid form, whether or 
-	 * not it exists. This includes codes which are used solely for 
+	 * Returns true if a language code string is of a valid form, whether or
+	 * not it exists. This includes codes which are used solely for
 	 * customisation via the MediaWiki namespace.
 	 */
 	public static function isValidCode( $code ) {
-		return 
+		return
 			strcspn( $code, ":/\\\000" ) === strlen( $code )
 			&& !preg_match( Title::getTitleInvalidRegex(), $code );
 	}
 
 	/**
-	 * Returns true if a language code is of a valid form for the purposes of 
+	 * Returns true if a language code is of a valid form for the purposes of
 	 * internal customisation of MediaWiki, via Messages*.php.
 	 */
 	public static function isValidBuiltInCode( $code ) {
@@ -590,15 +590,15 @@ class Language {
 	function getMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mMonthMsgs[$key - 1] );
 	}
-	
+
 	function getMonthNamesArray() {
 		$monthNames = array( '' );
-		for ( $i=1; $i < 13; $i++ ) { 
+		for ( $i=1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthName( $i );
 		}
 		return $monthNames;
 	}
-	
+
 	function getMonthNameGen( $key ) {
 		return $this->getMessageFromDB( self::$mMonthGenMsgs[$key - 1] );
 	}
@@ -606,15 +606,15 @@ class Language {
 	function getMonthAbbreviation( $key ) {
 		return $this->getMessageFromDB( self::$mMonthAbbrevMsgs[$key - 1] );
 	}
-	
+
 	function getMonthAbbreviationsArray() {
 		$monthNames = array('');
-		for ( $i=1; $i < 13; $i++ ) { 
+		for ( $i=1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthAbbreviation( $i );
 		}
 		return $monthNames;
 	}
-	
+
 	function getWeekdayName( $key ) {
 		return $this->getMessageFromDB( self::$mWeekdayMsgs[$key - 1] );
 	}
@@ -2427,7 +2427,7 @@ class Language {
 		}
 		# Do not truncate if the ellipsis makes the string longer/equal (bug 22181).
 		# This check is *not* redundant if $adjustLength, due to the single case where
-		# LEN($ellipsis) > ABS($limit arg); $stringOriginal could be shorter than $string. 
+		# LEN($ellipsis) > ABS($limit arg); $stringOriginal could be shorter than $string.
 		if ( strlen( $string ) < strlen( $stringOriginal ) ) {
 			return $string;
 		} else {
@@ -2918,12 +2918,12 @@ class Language {
 	 */
 	static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
 		// Protect against path traversal
-		if ( !Language::isValidCode( $code ) 
-			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) ) 
+		if ( !Language::isValidCode( $code )
+			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
 		{
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
-		
+
 		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
 	}
 

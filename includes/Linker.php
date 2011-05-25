@@ -879,7 +879,7 @@ class Linker {
 			$class .= " {$attribs['class']}";
 		}
 		$attribs['class'] = $class;
-		
+
 		if ( $escape ) {
 			$text = htmlspecialchars( $text );
 		}
@@ -1329,7 +1329,7 @@ class Linker {
 			$formatted = self::formatComment( $comment, $title, $local );
 			if ( $embraced ) {
 				$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
-			} 
+			}
 			return Html::rawElement( 'span', array( 'class' => 'comment' ), $formatted );
 		}
 	}
@@ -1534,12 +1534,12 @@ class Linker {
 			$query['bot'] = '1';
 			$query['hidediff'] = '1'; // bug 15999
 		}
-		return self::link( 
-			$title, 
+		return self::link(
+			$title,
 			wfMsgHtml( 'rollbacklink' ),
 			array( 'title' => wfMsg( 'tooltip-rollback' ) ),
-			$query,	
-			array( 'known', 'noclasses' ) 
+			$query,
+			array( 'known', 'noclasses' )
 		);
 	}
 
@@ -1947,7 +1947,7 @@ class Linker {
 }
 
 class DummyLinker {
-	
+
 	/**
 	 * Use PHP's magic __call handler to transform instance calls to a dummy instance
 	 * into static calls to the new Linker for backwards compatibility.
