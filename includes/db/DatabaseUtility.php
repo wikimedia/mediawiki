@@ -191,6 +191,9 @@ class FakeResultWrapper extends ResultWrapper {
 		$this->result = $array;
 	}
 
+	/**
+	 * @return int
+	 */
 	function numRows() {
 		return count( $this->result );
 	}
