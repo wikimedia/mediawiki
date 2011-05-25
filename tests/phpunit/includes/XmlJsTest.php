@@ -1,5 +1,5 @@
 <?php
-class XmlJs extends PHPUnit_Framework_TestCase {
+class XmlJs extends MediaWikiTestCase {
 	public function testConstruction() {
 		$obj = new XmlJsCode( null );
 		$this->assertNull( $obj->value );
