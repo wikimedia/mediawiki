@@ -682,7 +682,9 @@ class BitmapHandler extends ImageHandler {
 		if ( !$data ) {
 			return 0;
 		}
+		wfSuppressWarnings();
 		$data = unserialize( $data );
+		wfRestoreWarnings();
 		if ( isset( $data['Orientation'] ) ) {
 			# See http://sylvana.net/jpegcrop/exif_orientation.html
 			switch ( $data['Orientation'] ) {
