@@ -2576,8 +2576,7 @@ class OutputPage {
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) .
-					Xml::encodeJsCall( 'mw.loader.go', array() )
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
 				)
 			);
 		}
