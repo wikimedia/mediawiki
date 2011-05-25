@@ -24,21 +24,17 @@ UtfNormalData.inc : UtfNormalGenerate.php UtfNormalUtil.php UnicodeData.txt Comp
 Utf8Case.php : Utf8CaseGenerate.php UtfNormalUtil.php UnicodeData.txt
 	$(PHP) Utf8CaseGenerate.php
 
-test : testutf8 testclean UtfNormalTest.php UtfNormalData.inc NormalizationTest.txt
+test : testutf8 UtfNormalTest.php UtfNormalData.inc NormalizationTest.txt
 	$(PHP) UtfNormalTest.php
 
 testutf8 : Utf8Test.php UTF-8-test.txt
 	$(PHP) Utf8Test.php
-
-testclean : CleanUpTest.php
-	$(PHP) CleanUpTest.php
 
 bench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/young.txt testdata/bulgakov.txt
 	$(PHP) UtfNormalBench.php
 
 icutest : UtfNormalData.inc NormalizationTest.txt
 	$(PHP) Utf8Test.php --icu
-	$(PHP) CleanUpTest.php --icu
 	$(PHP) UtfNormalTest.php --icu
 
 icubench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/young.txt testdata/bulgakov.txt
