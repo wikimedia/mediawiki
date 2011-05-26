@@ -1370,6 +1370,12 @@ abstract class Installer {
 	protected function createSysop() {
 		$name = $this->getVar( '_AdminName' );
 		$user = User::newFromName( $name );
+		$status = $this->getDBInstaller()->getConnection();
+		if( $status->isOK() ) {
+			$db = $status->value;
+		} else {
+			return Status::newFatal( 'config-admin-error-user', $name );
+		}
 
 		if ( !$user ) {
 			// We should've validated this earlier anyway!
@@ -1377,7 +1383,7 @@ abstract class Installer {
 		}
 
 		if ( $user->idForName() == 0 ) {
-			$user->addToDatabase();
+			$user->addToDatabase( $db );
 
 			try {
 				$user->setPassword( $this->getVar( '_AdminPassword' ) );
@@ -1385,12 +1391,12 @@ abstract class Installer {
 				return Status::newFatal( 'config-admin-error-password', $name, $pwe->getMessage() );
 			}
 
-			$user->addGroup( 'sysop' );
-			$user->addGroup( 'bureaucrat' );
+			$user->addGroup( 'sysop', $db );
+			$user->addGroup( 'bureaucrat', $db );
 			if( $this->getVar( '_AdminEmail' ) ) {
 				$user->setEmail( $this->getVar( '_AdminEmail' ) );
 			}
-			$user->saveSettings();
+			$user->saveSettings( $db );
 
 			// Update user count
 			$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );

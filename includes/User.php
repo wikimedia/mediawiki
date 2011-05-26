@@ -2161,8 +2161,8 @@ class User {
 	 * This takes immediate effect.
 	 * @param $group \string Name of the group to add
 	 */
-	function addGroup( $group ) {
-		$dbw = wfGetDB( DB_MASTER );
+	function addGroup( $group, $dbw = null ) {
+		if( $dbw === null ) $dbw = wfGetDB( DB_MASTER );
 		if( $this->getId() ) {
 			$dbw->insert( 'user_groups',
 				array(
@@ -2563,7 +2563,7 @@ class User {
 			), __METHOD__
 		);
 
-		$this->saveOptions();
+		$this->saveOptions( $dbw );
 
 		wfRunHooks( 'UserSaveSettings', array( $this ) );
 		$this->clearSharedCache();
@@ -2640,9 +2640,9 @@ class User {
 	/**
 	 * Add this existing user object to the database
 	 */
-	function addToDatabase() {
+	function addToDatabase( $dbw = null ) {
 		$this->load();
-		$dbw = wfGetDB( DB_MASTER );
+		if( $dbw === null ) $dbw = wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 		$dbw->insert( 'user',
 			array(
@@ -2665,7 +2665,7 @@ class User {
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
 
-		$this->saveOptions();
+		$this->saveOptions( $dbw );
 	}
 
 	/**
@@ -3683,13 +3683,13 @@ class User {
 		wfRunHooks( 'UserLoadOptions', array( $this, &$this->mOptions ) );
 	}
 
-	protected function saveOptions() {
+	protected function saveOptions( $dbw = null ) {
 		global $wgAllowPrefChange;
 
 		$extuser = ExternalUser::newFromUser( $this );
 
 		$this->loadOptions();
-		$dbw = wfGetDB( DB_MASTER );
+		if( $dbw === null ) $dbw = wfGetDB( DB_MASTER );
 
 		$insert_rows = array();
 
