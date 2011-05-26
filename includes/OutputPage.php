@@ -307,7 +307,7 @@ class OutputPage {
 	 *
 	 * @return String
 	 */
-	private function getMetadataAttribute() {
+	public function getMetadataAttribute() {
 		# note: buggy CC software only reads first "meta" link
 		static $haveMeta = false;
 		if ( $haveMeta ) {
