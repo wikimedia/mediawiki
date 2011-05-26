@@ -321,8 +321,7 @@ class MediaWiki {
 		$this->context->output->output();
 		// Do any deferred jobs
 		wfDoUpdates( 'commit' );
-		// Close the session so that jobs don't access the current session
-		session_write_close();
+
 		$this->doJobs();
 		wfProfileOut( __METHOD__ );
 	}
@@ -345,6 +344,10 @@ class MediaWiki {
 		} else {
 			$n = intval( $wgJobRunRate );
 		}
+		
+		// Close the session so that jobs don't access the current session
+		$this->shutdownLBFactory();
+		session_write_close();
 
 		while ( $n-- && false != ( $job = Job::pop() ) ) {
 			$output = $job->toString() . "\n";
@@ -367,11 +370,20 @@ class MediaWiki {
 	public function restInPeace() {
 		MessageCache::logMessages();
 		wfLogProfilingData();
+		$this->shutdownLBFactory();
+		wfDebug( "Request ended normally\n" );
+	}
+
+	/**
+	 * Commit pending master changes, shutdown the current loadbalancer 
+	 * factory and destroys the factory instance.
+	 */
+	private function shutdownLBFactory() {
 		// Commit and close up!
-		$factory = wfGetLBFactory();
+		$factory = LBFactory::singleton();
 		$factory->commitMasterChanges();
 		$factory->shutdown();
-		wfDebug( "Request ended normally\n" );
+		LBFactory::destroyInstance();
 	}
 
 	/**
