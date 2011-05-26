@@ -27,9 +27,9 @@
  * @ingroup Maintenance
  */
  
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/dumpIterator.php' );
 
-class CompareParsers extends Maintenance {
+class CompareParsers extends DumpIterator {
 
 	private $count = 0;
 	private $startTime;
@@ -40,9 +40,6 @@ class CompareParsers extends Maintenance {
 		$this->mDescription = "Run a file or dump with several parsers";
 		$this->addOption( 'parser1', 'The first parser to compare.', true, true );
 		$this->addOption( 'parser2', 'The second parser to compare.', true, true );
-		$this->addOption( 'file', 'File with text to run.', false, true );
-		$this->addOption( 'dump', 'XML dump to execute all revisions.', false, true );
-		$this->addOption( 'from', 'Article from XML dump to start from.', false, true );
 		$this->addOption( 'tidy', 'Run tidy on the articles.', false, false );
 		$this->addOption( 'save-failed', 'Folder in which articles which differ will be stored.', false, true );
 		$this->addOption( 'show-diff', 'Show a diff of the two renderings.', false, false );
@@ -51,11 +48,7 @@ class CompareParsers extends Maintenance {
 		$this->addOption( 'show-parsed-output', 'Show the parsed html if both Parsers give the same output.', false, false );
 	}
 
-	public function execute() {
-		if (! ( $this->hasOption('file') ^ $this->hasOption('dump') ) ) {
-			$this->error("You must provide file or dump", true);
-		}
-
+	public function checkOptions() {
 		if ( $this->hasOption('save-failed') ) {
 			$this->saveFailed = $this->getOption('save-failed');
 		}
@@ -83,41 +76,13 @@ class CompareParsers extends Maintenance {
 			$this->options->setTidy( true );
 		}
 		
-		if ( $this->hasOption('file') ) {
-			$revision = new WikiRevision;
-			
-			$revision->setText( file_get_contents( $this->getOption('file') ) );
-			$revision->setTitle( Title::newFromText( rawurldecode( basename( $this->getOption('file'), '.txt' ) ) ) );
-			$this->handleRevision( $revision );
-			return;
-		}
-		
-		$this->startTime = wfTime();
-
-		if ( $this->getOption('dump') == '-' ) {
-			$source = new ImportStreamSource( $this->getStdin() );
-		} else {
-			$this->error("Sorry, I don't support dump filenames yet. Use - and provide it on stdin on the meantime.", true);
-		}
-		$importer = new WikiImporter( $source );
-
-		$importer->setRevisionCallback(
-			array( &$this, 'handleRevision' ) );
-		
-		$this->from = $this->getOption( 'from', null );
-		$this->count = 0;
 		$this->failed = 0;
-		$importer->doImport();
-		
+	}
+	
+	public function conclusions() {	
 		$this->error( "{$this->failed} failed revisions out of {$this->count}" );
 		if ($this->count > 0)
 			$this->output( " (" . ( $this->failed / $this->count ) . "%)\n" );
-			
-		$delta = wfTime() - $this->startTime;
-		$this->error( "Compared {$this->count} pages in " . round($delta, 2) . " seconds " );
-		if ($delta > 0)
-			$this->error( round($this->count / $delta, 2) . " pages/sec" );
-		$this->error( "\n" );
 	}
 	
 	function stripParameters( $text ) {
@@ -131,25 +96,9 @@ class CompareParsers extends Maintenance {
 	 * Callback function for each revision, parse with both parsers and compare
 	 * @param $rev Revision
 	 */
-	public function handleRevision( $rev ) {
+	public function processRevision( $rev ) {
 		$title = $rev->getTitle();
-		if ( !$title ) {
-			$this->error( "Got bogus revision with null title!" );
-			return;
-		}
-		
-		$this->count++;
-		if ( isset( $this->from ) ) {
-			if ( $this->from != $title )
-				return;
-			$this->output( "Skipped " . ($this->count - 1) . " pages\n" );
-			
-			$this->count = 1;
-			$this->from = null;
-		}
-		
-		
-
+				
 		$parser1Name = $this->getOption( 'parser1' );
 		$parser2Name = $this->getOption( 'parser2' );
 		
@@ -191,4 +140,4 @@ class CompareParsers extends Maintenance {
 }
 
 $maintClass = "CompareParsers";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require( RUN_MAINTENANCE_IF_MAIN );
