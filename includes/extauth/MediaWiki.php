@@ -50,8 +50,17 @@
  * @ingroup ExternalUser
  */
 class ExternalUser_MediaWiki extends ExternalUser {
-	private $mRow, $mDb;
+	private $mRow;
 
+	/**
+	 * @var DatabaseBase
+	 */
+	private $mDb;
+
+	/**
+	 * @param $name string
+	 * @return bool
+	 */
 	protected function initFromName( $name ) {
 		# We might not need the 'usable' bit, but let's be safe.  Theoretically 
 		# this might return wrong results for old versions, but it's probably 
@@ -65,10 +74,18 @@ class ExternalUser_MediaWiki extends ExternalUser {
 		return $this->initFromCond( array( 'user_name' => $name ) );
 	}
 
+	/**
+	 * @param $id int
+	 * @return bool
+	 */
 	protected function initFromId( $id ) {
 		return $this->initFromCond( array( 'user_id' => $id ) );
 	}
 
+	/**
+	 * @param $cond array
+	 * @return bool
+	 */
 	private function initFromCond( $cond ) {
 		global $wgExternalAuthConf;
 
@@ -105,6 +122,9 @@ class ExternalUser_MediaWiki extends ExternalUser {
 		return $this->mRow->user_id;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() {
 		return $this->mRow->user_name;
 	}
@@ -126,6 +146,9 @@ class ExternalUser_MediaWiki extends ExternalUser {
 		return null;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getGroups() {
 		# @todo FIXME: Untested.
 		$groups = array();

@@ -10,7 +10,10 @@ class GenderCache {
 	protected $default;
 	protected $misses = 0;
 	protected $missLimit = 1000;
-	
+
+	/**
+	 * @return GenderCache
+	 */
 	public static function singleton() {
 		static $that = null;
 		if ( $that === null ) {
@@ -34,7 +37,7 @@ class GenderCache {
 
 	/**
 	 * Returns the gender for given username.
-	 * @param $users String: username
+	 * @param $username String: username
 	 * @param $caller String: the calling method
 	 * @return String
 	 */
@@ -70,6 +73,9 @@ class GenderCache {
 
 	/**
 	 * Wrapper for doQuery that processes raw LinkBatch data.
+	 *
+	 * @param $data
+	 * @param $caller
 	 */
 	public function doLinkBatch( $data, $caller = '' ) {
 		$users = array();
@@ -82,7 +88,6 @@ class GenderCache {
 		}
 
 		$this->doQuery( array_keys( $users ), $caller );
-
 	}
 
 	/**

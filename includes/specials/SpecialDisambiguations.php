@@ -102,7 +102,9 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 
 	/**
-	 * Fetch  links and cache their existence
+	 * Fetch links and cache their existence
+	 *
+	 * @param $db DatabaseBase
 	 */
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
