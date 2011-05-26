@@ -1,6 +1,5 @@
 <?php
 /**
- * Provides CreativeCommons metadata
  *
  * Copyright 2004, Evan Prodromou <evan@wikitravel.org>.
  *
@@ -35,9 +34,6 @@ abstract class RdfMetaData {
 
 	public abstract function show();
 
-	/**
-	 *
-	 */
 	protected function setup() {
 		global $wgOut, $wgRequest;
 
@@ -55,9 +51,6 @@ abstract class RdfMetaData {
 		}
 	}
 
-	/**
-	 *
-	 */
 	protected function reallyFullUrl() {
 		return $this->mArticle->getTitle()->getFullURL();
 	}
