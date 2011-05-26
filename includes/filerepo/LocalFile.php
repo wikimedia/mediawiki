@@ -1947,6 +1947,13 @@ class LocalFileRestoreBatch {
 		return $status;
 	}
 	
+	/**
+	 * Cleanup a failed batch. The batch was only partially successful, so 
+	 * rollback by removing all items that were succesfully copied.
+	 * 
+	 * @param Status $storeStatus
+	 * @param array $storeBatch
+	 */
 	function cleanupFailedBatch( $storeStatus, $storeBatch ) {
 		$cleanupBatch = array(); 
 		
