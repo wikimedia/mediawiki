@@ -626,7 +626,7 @@ window.mediaWiki = new ( function( $ ) {
 				var p = prefix === '' ? '' : prefix + '.';
 				arr.push( p + moduleMap[prefix].join( ',' ) );
 			}
-			return arr.join( '|' ).replace( /\./g, '!' );
+			return arr.join( '|' );
 		}
 
 		/**
@@ -780,7 +780,8 @@ window.mediaWiki = new ( function( $ ) {
 			// Asynchronously append a script tag to the end of the body
 			for ( var r = 0; r < requests.length; r++ ) {
 				requests[r] = sortQuery( requests[r] );
-				var src = mw.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] );
+				// Append &* to avoid triggering the IE6 extension check
+				var src = mw.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] ) + '&*';
 				addScript( src );
 			}
 		};

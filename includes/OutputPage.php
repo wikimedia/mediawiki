@@ -2522,6 +2522,9 @@ class OutputPage {
 			ksort( $query );
 
 			$url = wfAppendQuery( $wgLoadScript, $query );
+			// Prevent the IE6 extension check from being triggered (bug 28840)
+			// by appending a character that's invalid in Windows extensions ('*')
+			$url .= '&*';
 			if ( $useESI && $wgResourceLoaderUseESI ) {
 				$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
@@ -2532,9 +2535,9 @@ class OutputPage {
 			} else {
 				// Automatically select style/script elements
 				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
-					$link = Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) );
+					$link = Html::linkedStyle( $url );
 				} else {
-					$link = Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) );
+					$link = Html::linkedScript( $url );
 				}
 			}
 
