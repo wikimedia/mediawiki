@@ -18,7 +18,7 @@ class Status {
 
 	/** Counters for batch operations */
 	public $successCount = 0, $failCount = 0;
-	/** Array to indicate which items of the batch operations failed */
+	/** Array to indicate which items of the batch operations were successful */
 	public $success = array();
 
 	/*semi-private*/ var $errors = array();
