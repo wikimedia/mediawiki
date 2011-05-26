@@ -319,7 +319,7 @@ class SpecialContributions extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	protected function getForm() {
-		global $wgScript, $wgMiserMode, $wgRCMaxAge, $wgContLang;
+		global $wgScript, $wgMiserMode;
 
 		$this->opts['title'] = $this->getTitle()->getPrefixedText();
 		if( !isset( $this->opts['target'] ) ) {

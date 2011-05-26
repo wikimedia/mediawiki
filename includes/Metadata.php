@@ -88,10 +88,11 @@ abstract class RdfMetaData {
 	}
 
 	protected function pageOrString( $name, $page, $str ) {
-		if( $page instanceof Title )
+		if( $page instanceof Title ) {
 			$nt = $page;
-		else
+		} else {
 			$nt = Title::newFromText( $page );
+		}
 
 		if( !$nt || $nt->getArticleID() == 0 ){
 			$this->element( $name, $str );
