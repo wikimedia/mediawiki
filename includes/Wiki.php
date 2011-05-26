@@ -189,8 +189,8 @@ class MediaWiki {
 				$this->performAction( $article );
 				wfProfileOut( __METHOD__ );
 				return $article;
-			} elseif ( is_string( $new_article ) ) {
-				$this->context->output->redirect( $new_article );
+			} elseif ( is_string( $article ) ) {
+				$this->context->output->redirect( $article );
 			} else {
 				wfProfileOut( __METHOD__ );
 				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
