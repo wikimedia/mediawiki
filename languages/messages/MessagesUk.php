@@ -2862,9 +2862,7 @@ IP-адреси, що блокуються автоматично тут не в
 'common.js' => '/* Розміщений тут код JavaScript буде завантажений всім користувачам при зверненні до будь-якої сторінки */',
 
 # Metadata
-'nodublincore'      => 'Метадані Dublin Core RDF заборонені для цього сервера.',
-'nocreativecommons' => 'Метадані Creative Commons RDF заборонені для цього сервера.',
-'notacceptable'     => "Вікі-сервер не може подати дані в форматі, який міг би прочитати ваш браузер.<br />
+'notacceptable' => "Вікі-сервер не може подати дані в форматі, який міг би прочитати ваш браузер.<br />
 The wiki server can't provide data in a format your client can read.",
 
 # Attribution

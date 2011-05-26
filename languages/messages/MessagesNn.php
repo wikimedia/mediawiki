@@ -2745,9 +2745,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'modern.js'      => '* Javascript i denne fila vil gjelde for brukarar av drakta Modern */',
 
 # Metadata
-'nodublincore'      => 'Funksjonen for Dublin Core RDF metadata er deaktivert på denne tenaren.',
-'nocreativecommons' => 'Funksjonen for Creative Commons RDF er deaktivert på denne tenaren.',
-'notacceptable'     => 'Wikitenaren kan ikkje gje data i noko format som programmet ditt kan lesa.',
+'notacceptable' => 'Wikitenaren kan ikkje gje data i noko format som programmet ditt kan lesa.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|anonym brukar|anonyme brukarar}} av {{SITENAME}}',

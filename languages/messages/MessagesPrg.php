@@ -2202,9 +2202,7 @@ Pirzdau enpeisāsnan, tērpaus pirmādiras knuppan.',
 Sta preiwērpja enpeisātun brewīnslin en kitawīdisnan ebpeisāseņu.',
 
 # Metadata
-'nodublincore'      => 'Metadātan preitarīngi prei Dublin  Core RDF pastāi izklaūtan per šin sērwerin.',
-'nocreativecommons' => 'Metadātan preitarīngi prei Creative Commons RDF pastāi izklaūtan per šin sērwerin.',
-'notacceptable'     => 'Wiki sērwerin ni mazzi preistatīntun dātan en fōrmatu palaīpsitasmu pra twajjan lasātlin.',
+'notacceptable' => 'Wiki sērwerin ni mazzi preistatīntun dātan en fōrmatu palaīpsitasmu pra twajjan lasātlin.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anōnims tērpautajs|Anōnimai tērpautajai}} stesse {{SITENAME}}',

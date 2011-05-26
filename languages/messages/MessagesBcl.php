@@ -1729,9 +1729,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'monobook.js' => '/* Deprecado; gamiton an [[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => "Pigpopogolan an Dublin Core RDF na metadata para sa ''server'' na ini.",
-'nocreativecommons' => "Pigpopogolan an Creative Commons RDF na metadata para sa ''server'' na ini.",
-'notacceptable'     => "Dai pwedeng magtao nin datos an ''wiki server'' sa ''format'' na pwedeng basahon kan kompyuter mo.",
+'notacceptable' => "Dai pwedeng magtao nin datos an ''wiki server'' sa ''format'' na pwedeng basahon kan kompyuter mo.",
 
 # Attribution
 'anonymous'        => '(Mga)paragamit na anónimo kan {{SITENAME}}',

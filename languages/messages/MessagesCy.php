@@ -2685,9 +2685,7 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 'tooltip-summary'                 => 'Rhowch grynodeb byr',
 
 # Metadata
-'nodublincore'      => "Mae metadata RDF 'Dublin Core' wedi cael ei analluogi ar y gwasanaethwr hwn.",
-'nocreativecommons' => "Mae metadata RDF 'Creative Commons' wedi'i analluogi ar y gwasanaethwr hwn.",
-'notacceptable'     => "Dydy gweinydd y wici ddim yn medru rhoi'r data mewn fformat darllenadwy i'ch cleient.",
+'notacceptable' => "Dydy gweinydd y wici ddim yn medru rhoi'r data mewn fformat darllenadwy i'ch cleient.",
 
 # Attribution
 'anonymous'        => 'chan {{PLURAL:$1|defnyddiwr|ddefnyddiwr|ddefnyddwyr|ddefnyddwyr|ddefnyddwyr|ddefnyddwyr}} anhysbys {{SITENAME}}',

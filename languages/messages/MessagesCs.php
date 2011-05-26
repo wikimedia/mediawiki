@@ -2920,9 +2920,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'vector.js'      => '/* JavaScript pro uživatele používající vzhled „Vektor“ */',
 
 # Metadata
-'nodublincore'      => 'Na tomto serveru je vypnuto generování metadat Dublin Core RDF.',
-'nocreativecommons' => 'Na tomto serveru je vypnuto generování metadat Creative Commons RDF.',
-'notacceptable'     => 'Tento wiki server není schopen poskytnout data ve formátu, který by váš klient byl schopen přečíst.',
+'notacceptable' => 'Tento wiki server není schopen poskytnout data ve formátu, který by váš klient byl schopen přečíst.',
 
 # Attribution
 'anonymous'        => 'anonymní {{PLURAL:$1|uživatel|uživatelé|uživatelé}} {{GRAMMAR:2sg|{{SITENAME}}}}',

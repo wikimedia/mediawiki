@@ -2796,9 +2796,7 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'modern.js'      => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas ''Modern skin'' nisqa qarata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata nisqamanqa kay sirwiqpi ama nisqam.',
-'nocreativecommons' => 'Creative Commons RDF metadata nisqamanqa kay sirwiqpi ama nisqam.',
-'notacceptable'     => "Wiki sirwiqqa manam willakunata quyta atinchu mink'akuqniykip (wamp'unaykip) hap'iyta atisqan chantapi.",
+'notacceptable' => "Wiki sirwiqqa manam willakunata quyta atinchu mink'akuqniykip (wamp'unaykip) hap'iyta atisqan chantapi.",
 
 # Attribution
 'anonymous'        => '{{SITENAME}}pi sutinnaq {{PLURAL:$1|ruraq|ruraqkuna}}',

@@ -2306,7 +2306,7 @@ Wiki: $PAGEEDITOR_WIKI
 
 Es werden dir solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die Seite wieder besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarkierungen zusammen zurücksetzen.
 
-			 Dein freundliches {{SITENAME}}-Benachrichtigungssystem
+             Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
 Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{fullurl:{{#special:Preferences}}}}
@@ -2434,9 +2434,8 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'viewdeletedpage'              => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'             => 'Die {{PLURAL:$1|folgende Seite wurde gelöscht und kann|folgenden $1 Seiten wurden gelöscht und können}} von Administratoren wiederhergestellt werden:',
 'undelete-fieldset-title'      => 'Wiederherstellen',
-'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, wähle keine Version aus, gib eine Begründung an und klicke auf „{{int:undeletebtn}}“.
-* Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln anhand der Markierungen aus, gib eine Begründung an und klicke dann auf „{{int:undeletebtn}}“.
-* „{{int:undeletereset}}“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
+'undeleteextrahelp'            => '* Um die Seite mitsamt aller Versionen wiederherzustellen, wähle keine Version aus, gib eine Begründung an und klicke dann auf „{{int:undeletebtn}}“.
+* Um lediglich bestimmte Versionen der Seite wiederherzustellen, wähle die betreffenden Versionen einzeln aus, gib eine Begründung an und klicke dann auf „{{int:undeletebtn}}“.',
 'undeleterevisions'            => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
 'undeletehistory'              => 'Wenn du diese Seite wiederherstellst, werden auch alle alten Versionen wiederhergestellt.
 Wenn seit der Löschung eine neue Seite gleichen Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.',
@@ -2451,7 +2450,7 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletebtn'                  => 'Wiederherstellen',
 'undeletelink'                 => 'ansehen/wiederherstellen',
 'undeleteviewlink'             => 'ansehen',
-'undeletereset'                => 'Abbrechen',
+'undeletereset'                => 'Zurücksetzen',
 'undeleteinvert'               => 'Auswahl umkehren',
 'undeletecomment'              => 'Grund:',
 'undeletedarticle'             => 'hat „[[$1]]“ wiederhergestellt',
@@ -2724,7 +2723,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'cantmove-titleprotected'      => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
 'talkexists'                   => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussionsseite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
 'movedto'                      => 'verschoben nach',
-'movetalk'                     => 'Die Diskussionsseite mitverschieben, wenn möglich',
+'movetalk'                     => 'Sofern möglich die Diskussionsseite mitverschieben',
 'move-subpages'                => 'Unterseiten verschieben (bis zu $1)',
 'move-talk-subpages'           => 'Unterseiten der Diskussionsseite verschieben (bis zu $1)',
 'movepage-page-exists'         => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
@@ -2948,7 +2947,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 #p-personal ul,
 #p-cactions li a,
 #preftoc a {
-	text-transform: none;
+    text-transform: none;
 }',
 'vector.css'              => '/* Das folgende CSS wird für Benutzer der Vector-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'print.css'               => '/* Das folgende CSS wird in der Druckausgabe geladen. */',
@@ -2976,9 +2975,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'group-bureaucrat.js'    => '/* Das folgende JavaScript wird nur für Bürokraten geladen. */',
 
 # Metadata
-'nodublincore'      => 'Dublin-Core-RDF-Metadaten sind auf diesem Server deaktiviert.',
-'nocreativecommons' => 'Creative-Commons-RDF-Metadaten sind auf diesem Server deaktiviert.',
-'notacceptable'     => 'Der Wiki-Server kann die Daten nicht für dein Ausgabegerät aufbereiten.',
+'notacceptable' => 'Der Wiki-Server kann die Daten nicht für dein Ausgabegerät aufbereiten.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Unangemeldeter Benutzer|Unangemeldete Benutzer}} auf {{SITENAME}}',

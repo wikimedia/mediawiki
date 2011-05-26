@@ -1567,9 +1567,7 @@ Lejon dhânien e arsyes në përmbledhje.',
 'vector.js'      => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Vector */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata nuk janë aktivizue në këtë server.',
-'nocreativecommons' => 'Creative Commons RDF metadata nuk janë aktivizue në këtë server.',
-'notacceptable'     => 'Serveri i wikit nuk mundet me i ofrue të dhânat në formatin që kish mujtë me i lexue klienti juej.',
+'notacceptable' => 'Serveri i wikit nuk mundet me i ofrue të dhânat në formatin që kish mujtë me i lexue klienti juej.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Përdorues|Përdorues}} anonim të {{SITENAME}}',

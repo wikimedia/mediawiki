@@ -2191,8 +2191,9 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'watchlist-options'    => 'Opcje obserwowanych',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Dodaję do obserwowanych...',
-'unwatching' => 'Przestaję obserwować...',
+'watching'       => 'Dodaję do obserwowanych...',
+'unwatching'     => 'Przestaję obserwować...',
+'watcherrortext' => 'Wystąpił błąd podczas zmiany obecności „$1” na liście obserwowanych.',
 
 'enotif_mailer'                => 'Powiadomienie z {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'enotif_reset'                 => 'Zaznacz wszystkie strony jako odwiedzone',
@@ -2356,9 +2357,8 @@ Obecne ustawienia dla strony '''$1''' to:",
 'undeletepagetext'             => '{{PLURAL:$1|Następująca strona została usunięta, ale jej|Następujące $1 strony zostały usunięte, ale ich}} kopia wciąż znajduje się w archiwum.
 Archiwum co jakiś czas może być oczyszczane.',
 'undelete-fieldset-title'      => 'Odtwarzanie wersji',
-'undeleteextrahelp'            => "Jeśli chcesz odtworzyć całą stronę, pozostaw wszystkie pola niezaznaczone i kliknij '''''Odtwórz'''''.
-Częściowe odtworzenie możesz wykonać, zaznaczając odpowiednie pola, odpowiadające wersjom, które będą odtworzone, a następnie klikając '''''Odtwórz'''''.
-Naciśnięcie '''''Wyczyść''''' usunie wszystkie zaznaczenia i wyczyści pole komentarza.",
+'undeleteextrahelp'            => "Jeśli chcesz odtworzyć całą historię edycji strony, pozostaw wszystkie pola niezaznaczone i kliknij '''''{{int:undeletebtn}}'''''.
+Wybiórcze odtworzenie możesz wykonać, zaznaczając pola odpowiadające wersjom, które mają zostać odtworzone, a następnie klikając '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|zarchiwizowana wersja|zarchiwizowane wersje|zarchiwizowanych wersji}}',
 'undeletehistory'              => 'Odtworzenie strony spowoduje przywrócenie także jej wszystkich poprzednich wersji.
 Jeśli od czasu usunięcia ktoś utworzył nową stronę o tej samej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.',
@@ -2894,9 +2894,7 @@ Pozwala na wpisanie powodu w opisie zmian.',
 'vector.js'      => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Wektor */',
 
 # Metadata
-'nodublincore'      => 'Metadane zgodne z Dublin Core RDF zostały wyłączone dla tego serwera.',
-'nocreativecommons' => 'Metadane zgodne z Creative Commons RDF zostały wyłączone dla tego serwera.',
-'notacceptable'     => 'Serwer wiki nie może dostarczyć danych w formacie, którego Twoja przeglądarka oczekuje.',
+'notacceptable' => 'Serwer wiki nie może dostarczyć danych w formacie, którego Twoja przeglądarka oczekuje.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonimowy użytkownik|Anonimowi użytkownicy}} {{GRAMMAR:D.lp|{{SITENAME}}}}',

@@ -2533,9 +2533,7 @@ Mazmun üçin bir sebäp goşmaga rugsat berýär',
 'tooltip-summary'                 => 'Gysgaça düşündiriş giriziň',
 
 # Metadata
-'nodublincore'      => 'Bu serwer üçin Dublin Core RDF metamaglumatlary ýapyldy.',
-'nocreativecommons' => 'Bu serwer üçin Creative Commons RDF metamaglumatlary ýapyldy.',
-'notacceptable'     => 'Bu wiki serweri brauzeriňiziň okap biljek formatynda maglumat üpjün edip bilmeýär.',
+'notacceptable' => 'Bu wiki serweri brauzeriňiziň okap biljek formatynda maglumat üpjün edip bilmeýär.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} anonim {{PLURAL:$1|ulanyjysy|ulanyjylary}}',

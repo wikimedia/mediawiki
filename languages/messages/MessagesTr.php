@@ -2861,9 +2861,7 @@ Geçici dosya kayıp.',
 'common.js' => '/* Buraya konulacak JavaScript kodu sitedeki her kullanıcı için her sayfa yüklendiğinde çalışacaktır */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF üstverisi bu sunucu için devre dışı bırakıldı.',
-'nocreativecommons' => 'Creative Commons RDF üstverisi bu sunucu için devre dışı bırakıldı.',
-'notacceptable'     => 'Bu viki sunucusu istemcinizin okuyabileceği formatta bir veri sağlayamıyor.',
+'notacceptable' => 'Bu viki sunucusu istemcinizin okuyabileceği formatta bir veri sağlayamıyor.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} sitesinin anonim {{PLURAL:$1|kullanıcısı|kullanıcıları}}',

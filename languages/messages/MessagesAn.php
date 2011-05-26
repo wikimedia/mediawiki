@@ -2539,9 +2539,7 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'tooltip-summary'                 => 'Escribir un breu resumen',
 
 # Metadata
-'nodublincore'      => 'Metadatos Dublin Core RDF desactivatos en iste servidor.',
-'nocreativecommons' => 'Metadatos Creative Commons RDF desactivatos en iste servidor.',
-'notacceptable'     => 'O servidor wiki no puede ufrir os datos en un formato que o suyo client (navegador) pueda leyer.',
+'notacceptable' => 'O servidor wiki no puede ufrir os datos en un formato que o suyo client (navegador) pueda leyer.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',

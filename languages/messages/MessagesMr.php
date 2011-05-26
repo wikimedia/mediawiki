@@ -2696,9 +2696,7 @@ $1',
 'tooltip-summary'                 => 'लहान सारांश लिहा',
 
 # Metadata
-'nodublincore'      => 'या विदादात्याकरिता Dublin Core RDF metadata अनुपलब्ध केला आहे.',
-'nocreativecommons' => 'या विदादात्याकरिता Creative Commons RDF metadata अनुपलब्ध आहे.',
-'notacceptable'     => 'विकि विदादाता तुमचा घेता वाचू शकेल अशा स्वरूपात(संरचनेत) विदा पुरवू शकत नाही.',
+'notacceptable' => 'विकि विदादाता तुमचा घेता वाचू शकेल अशा स्वरूपात(संरचनेत) विदा पुरवू शकत नाही.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} वरील अनामिक {{PLURAL:$1|सदस्य|सदस्य}}',

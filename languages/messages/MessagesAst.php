@@ -2698,9 +2698,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'vector.js'      => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Vector */',
 
 # Metadata
-'nodublincore'      => 'Metadatos RDF Dublin Core desactivaos pa esti sirvidor.',
-'nocreativecommons' => 'Metadatos RDF Creative Commons desactivaos pa esti sirvidor.',
-'notacceptable'     => 'El sirvidor de la wiki nun pue suplir los datos nun formatu llexible pol to navegador.',
+'notacceptable' => 'El sirvidor de la wiki nun pue suplir los datos nun formatu llexible pol to navegador.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuariu anónimu|Usuarios anónimos}} de {{SITENAME}}',

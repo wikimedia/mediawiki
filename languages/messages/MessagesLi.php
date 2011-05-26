@@ -2608,9 +2608,7 @@ Doe kans in de bewirkingssamevatting \'n reej opgaeve.',
 'tooltip-summary'                 => "Veur 'n kórte samevatting in",
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata is oetgesjakeld op deze server.',
-'nocreativecommons' => 'Creative Commons RDF metadata is oetgesjakeld op deze server.',
-'notacceptable'     => "De wikiserver kin de gegaeves neet levere in  'ne vorm dae diene client kin laeze.",
+'notacceptable' => "De wikiserver kin de gegaeves neet levere in  'ne vorm dae diene client kin laeze.",
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonieme gebroeker|Anoniem gebroekers}} ven {{SITENAME}}',

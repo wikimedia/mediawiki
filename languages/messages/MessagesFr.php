@@ -2965,9 +2965,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'modern.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
 
 # Metadata
-'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',
-'nocreativecommons' => 'Les métadonnées « Creative Commons RDF » sont désactivées sur ce serveur.',
-'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client soit capable de lire.',
+'notacceptable' => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client soit capable de lire.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} sur {{SITENAME}}',

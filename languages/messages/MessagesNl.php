@@ -3053,9 +3053,7 @@ De tijdelijke map is niet aanwezig.',
 'group-bureaucrat.js'    => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op bureaucraten */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF-metadata is uitgeschakeld op deze server.',
-'nocreativecommons' => 'Creative Commons RDF-metadata is uitgeschakeld op deze server.',
-'notacceptable'     => 'De wikiserver kan de gegevens niet leveren in een vorm die uw browser kan lezen.',
+'notacceptable' => 'De wikiserver kan de gegevens niet leveren in een vorm die uw browser kan lezen.',
 
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',

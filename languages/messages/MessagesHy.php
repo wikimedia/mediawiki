@@ -2159,9 +2159,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'monobook.js' => '/* Հնացած է. օգտագործեք [[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF մետատվյալները արգելված են այս սերվերում։',
-'nocreativecommons' => 'Creative Commons RDF մետատվյալները արգելված են այս սերվերում։',
-'notacceptable'     => 'Վիքի-սպասարկիչը չի կարող տվյլաները տրամադրել ձեր զննարկիչի կողմից կարդացվող ֆորմատով։',
+'notacceptable' => 'Վիքի-սպասարկիչը չի կարող տվյլաները տրամադրել ձեր զննարկիչի կողմից կարդացվող ֆորմատով։',
 
 # Attribution
 'anonymous'        => '{{grammar:genitive|{{SITENAME}}}} անանուն մասնակիցները',

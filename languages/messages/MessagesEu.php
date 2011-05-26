@@ -2571,9 +2571,7 @@ Laburpenean arrazoi bat gehitzea baimentzen du',
 'common.js' => '/* Hemen idatzitako JavaScript kode oro erabiltzaile guztiek edozein orrialde irekitzerakoan kargatuko da. */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadatuak ezgaitu egin dira zerbitzari honetarako.',
-'nocreativecommons' => 'Creative Commons RDF metadatuak ezgaitu egin dira zerbitzari honetarako.',
-'notacceptable'     => 'Wiki zerbitzariak ezin ditu datuak zure bezeroak irakur ditzakeen formatu batean eskaini.',
+'notacceptable' => 'Wiki zerbitzariak ezin ditu datuak zure bezeroak irakur ditzakeen formatu batean eskaini.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}(e)ko lankide {{PLURAL:$1|anonimoa|anonimoak}}',

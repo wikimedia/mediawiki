@@ -2278,9 +2278,7 @@ Zəhmət olmasa başqa ad seçin.',
 'group-bureaucrat.js'    => '/* Burada istənilən JavaScript yalnız bürokratlar üçün yüklənəcək */',
 
 # Metadata
-'nodublincore'      => 'Bu server üçün Dublin Core RDF metaməlumatları qadağandır.',
-'nocreativecommons' => 'Bu server üçün Creative Commons RDF metaməlumatları qadağandır.',
-'notacceptable'     => 'Viki-server məlumatları brauzerinizin oxuya biləcəyi formatda təqdim edə bilmir.',
+'notacceptable' => 'Viki-server məlumatları brauzerinizin oxuya biləcəyi formatda təqdim edə bilmir.',
 
 # Attribution
 'anonymous'     => '{{SITENAME}} saytının anonim {{PLURAL:$1|istifadəçisi|istifadəçiləri}}',

@@ -2767,9 +2767,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'modern.js'      => '/* Tämän sivun JavaScript-koodi liitetään Moderni-tyyliin */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF-metatieto on poissa käytöstä tällä palvelimella.',
-'nocreativecommons' => 'Creative Commonsin RDF-metatieto on poissa käytöstä tällä palvelimella.',
-'notacceptable'     => 'Wikipalvelin ei voi näyttää tietoja muodossa, jota ohjelmasi voisi lukea.',
+'notacceptable' => 'Wikipalvelin ei voi näyttää tietoja muodossa, jota ohjelmasi voisi lukea.',
 
 # Attribution
 'anonymous'        => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$1|anonyymi käyttäjä|anonyymit käyttäjät}}',

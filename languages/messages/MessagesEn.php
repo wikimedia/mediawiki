@@ -3541,9 +3541,7 @@ You can view its source',
 'group-bureaucrat.js'    => '/* Any JavaScript here will be loaded for bureaucrats only */', # only translate this message to other languages if you have to change it
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata disabled for this server.',
-'nocreativecommons' => 'Creative Commons RDF metadata disabled for this server.',
-'notacceptable'     => 'The wiki server cannot provide data in a format your client can read.',
+'notacceptable' => 'The wiki server cannot provide data in a format your client can read.',
 
 # Attribution
 'anonymous'        => 'Anonymous {{PLURAL:$1|user|users}} of {{SITENAME}}',

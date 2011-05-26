@@ -1868,9 +1868,7 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 'tooltip-undo'                    => 'Moacht lediglich diese eene Änderung rieckgängig on zeigt doas Resultat ei dar Vorschau oa, damit ei dar Zusommafassungszeile eene Begründung angegeba waan koan.',
 
 # Metadata
-'nodublincore'      => 'Dublin-Core-RDF-Metadaten sein fier diesen Server deaktiviert.',
-'nocreativecommons' => 'Creative-Commons-RDF-Metadaten sein fier diesen Server deaktiviert.',
-'notacceptable'     => 'Dar Wiki-Server koan de Daten ne fier dei Ausgabegerät uffbereita.',
+'notacceptable' => 'Dar Wiki-Server koan de Daten ne fier dei Ausgabegerät uffbereita.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymer Nutzer|Anonyme Nutzer}} uff {{SITENAME}}',

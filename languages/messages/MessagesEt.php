@@ -2822,9 +2822,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'common.js' => '/* Siinne JavaScript laaditakse igale kasutajatele igal laaditud leheküljel. */',
 
 # Metadata
-'nodublincore'      => "Dublin Core'i RDF-meta-andmed ei ole selles serveris lubatud.",
-'nocreativecommons' => 'Creative Commonsi RDF-meta-andmed ei ole selles serveris lubatud.',
-'notacceptable'     => 'Viki server ei saa esitada andmeid formaadis, mida sinu veebiklient lugeda suudab.',
+'notacceptable' => 'Viki server ei saa esitada andmeid formaadis, mida sinu veebiklient lugeda suudab.',
 
 # Attribution
 'anonymous'        => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$1|anonüümne kasutaja|anonüümsed kasutajad}}',

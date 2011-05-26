@@ -2472,9 +2472,7 @@ Tı eşkeno yew sebeb bınus.',
 'tooltip-summary'                 => 'Yew xulasaya kilm binuse',
 
 # Metadata
-'nodublincore'      => 'medadatayi Dublin Core RDFyi qey ıney pêşkeşwani teber de verdiyayo.',
-'nocreativecommons' => 'medadatayi Creative Commons RDFyi qey ıney pêşkeşwani teber de verdiyayo.',
-'notacceptable'     => "formatê ma'lumati no peşkeşwanê wikiyi nêweniyeno.",
+'notacceptable' => "formatê ma'lumati no peşkeşwanê wikiyi nêweniyeno.",
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|karberê|karberê}} anonimi yê keyepelê {{SITENAME}}i',

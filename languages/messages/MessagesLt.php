@@ -2760,9 +2760,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'monobook.js' => '/* Šis JavaScript bus įkeltas tik „MonoBook“ išvaizdos naudotojams. */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metaduomenys yra išjungti šiame serveryje.',
-'nocreativecommons' => 'Creative Commons RDF metaduomenys yra išjungti šiame serveryje.',
-'notacceptable'     => 'Projekto serveris negali pateikti duomenų formatu, kurį jūsų klientas galėtų skaityti.',
+'notacceptable' => 'Projekto serveris negali pateikti duomenų formatu, kurį jūsų klientas galėtų skaityti.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} {{PLURAL:$1|anoniminis naudotojas|anoniminiai naudotojai}}',

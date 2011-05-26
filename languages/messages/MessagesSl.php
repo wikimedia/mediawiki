@@ -2309,8 +2309,7 @@ Stopnjo zaščite te strani lahko spremenite, vendar to ne bo vplivalo na kaskad
 Arhiv je treba občasno počistiti.',
 'undelete-fieldset-title'      => 'Obnovi redakcije',
 'undeleteextrahelp'            => "Da bi obnovili celotno stran z vso njeno zgodovino, pustite vsa potrditvena polja prazna in kliknite '''''Obnovi'''''.
-Če želite obnoviti le določene redakcije strani, pred klikom gumba '''''Obnovi''''' označite ustrezna potrditvena polja.
-Klik gumba '''''Ponastavi''''' bo izpraznil polje za vnos razloga in vsa potrditvena polja.",
+Če želite obnoviti le določene redakcije strani, pred klikom gumba '''''Obnovi''''' označite ustrezna potrditvena polja.",
 'undeleterevisions'            => '{{PLURAL:$1|Arhivirana je|Arhivirani sta|Arhivirane so|Arhiviranih je|Arhiviranih ni}} $1 {{PLURAL:$1|redakcija|redakciji|redakcije|redakcij|redakcij}}',
 'undeletehistory'              => 'Če obnovite stran, bodo v zgodovino obnovljene vse redakcije.
 Če je bila po brisanju ustvarjena nova stran z enakim imenom, bodo obnovljene redakcije prikazane v prejšnji zgodovini.',
@@ -2825,9 +2824,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'tooltip-summary'                 => 'Vnesite kratek povzetek',
 
 # Metadata
-'nodublincore'      => 'Metapodatki Dublin Core RDF so na tem strežniku onemogočeni.',
-'nocreativecommons' => 'Metapodatki Creative Commons RDF so za ta strežnik onemogočeni.',
-'notacceptable'     => 'V obliki, ki jo lahko bere vaš odjemalec, wikistrežnik podatkov ne more ponuditi.',
+'notacceptable' => 'V obliki, ki jo lahko bere vaš odjemalec, wikistrežnik podatkov ne more ponuditi.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Brezimni uporabnik|Brezimna uporabnika|Brezimni uporabniki}} {{GRAMMAR:rodilnik|{{SITENAME}}}}',

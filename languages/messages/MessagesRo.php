@@ -2374,7 +2374,8 @@ Puteți schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'viewdeletedpage'              => 'Vezi paginile șterse',
 'undeletepagetext'             => '{{PLURAL:$1|Următoarea pagină a fost ștearsă, dar încă se află în arhivă și poate fi recuperată|Următoarele $1 pagini au fost șterse, dar încă se află în arhivă și pot fi recuperate}}. Reține că arhiva se poate șterge din timp în timp.',
 'undelete-fieldset-title'      => 'Recuperează versiuni',
-'undeleteextrahelp'            => "Pentru a recupera întreaga pagină lăsați toate căsuțele nebifate și apăsați butonul '''''Recuperează'''''. Pentru a realiza o recuperare selectivă bifați versiunile pe care doriți să le recuperați și apăsați butonul '''''Recuperează'''''. Butonul '''''Resetează'''''  va șterge comentariul și toate bifările.",
+'undeleteextrahelp'            => "Pentru a restaura întregul istoric al paginii lăsați toate căsuțele nebifate și apăsați butonul '''''{{int:undeletebtn}}'''''.
+Pentru a realiza o recuperare selectivă bifați versiunile pe care doriți să le recuperați și apăsați butonul '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|versiune arhivată|versiuni arhivate}}',
 'undeletehistory'              => 'Dacă recuperați pagina, toate versiunile asociate vor fi adăugate retroactiv în istorie. Dacă o pagină nouă cu același nume a fost creată de la momentul ștergerii acesteia, versiunile recuperate vor apărea în istoria paginii, iar versiunea curentă a paginii nu va fi înlocuită automat de către versiunea recuperată.',
 'undeleterevdel'               => 'Restaurarea unui revizii nu va fi efectuată dacă ea va apărea în capul listei de revizii parțial șterse.
@@ -2896,9 +2897,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'print.css'       => '/* CSS plasate aici vor afecta modul în care paginile vor fi imprimate */',
 
 # Metadata
-'nodublincore'      => 'Metadatele Dublin Core RDF sunt dezactivate pentru acest server.',
-'nocreativecommons' => 'Metadatele Creative Commons RDF dezactivate pentru acest server.',
-'notacceptable'     => 'Serverul wiki nu poate oferi date într-un format pe care clientul tău să-l poată citi.',
+'notacceptable' => 'Serverul wiki nu poate oferi date într-un format pe care clientul tău să-l poată citi.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizator anonim|Utilizatori anonimi}} ai {{SITENAME}}',

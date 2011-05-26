@@ -2930,9 +2930,7 @@ $1',
 'vector.js'      => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Vector skin */',
 
 # Metadata
-'nodublincore'      => 'Τα μεταδεδομένα RDF που αφορούν στο Dublin Core έχουν απενεργοποιηθεί σε αυτό τον server.',
-'nocreativecommons' => 'Τα μεταδεδομένα RDF που αφορούν στο Creative Commons έχουν απενεργοποιηθεί σε αυτό τον server.',
-'notacceptable'     => 'Ο server του Wiki δεν μπορεί να αποδώσει δεδομένα σε μορφή που να μπορεί να διαβάσει ο client σας.',
+'notacceptable' => 'Ο server του Wiki δεν μπορεί να αποδώσει δεδομένα σε μορφή που να μπορεί να διαβάσει ο client σας.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Ανώνυμος χρήστης|Ανώνυμοι χρήστες}} του {{SITENAME}}',

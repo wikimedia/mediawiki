@@ -1739,9 +1739,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'monobook.js' => '/* 伓再使用；请用[[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata到个只服务器用伓正。',
-'nocreativecommons' => 'Creative Commons RDF metadata到个只服务器用伓正。',
-'notacceptable'     => '个只网站服务器提供伓正倷𠮶用户端认得𠮶格式。',
+'notacceptable' => '个只网站服务器提供伓正倷𠮶用户端认得𠮶格式。',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}𠮶匿名用户',

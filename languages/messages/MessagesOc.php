@@ -2749,9 +2749,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'vector.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Vector unicament. */',
 
 # Metadata
-'nodublincore'      => 'Las metadonadas « Dublin Core RDF » son desactivadas sus aqueste servidor.',
-'nocreativecommons' => 'Las metadonadas « Creative Commons RDF » son desactivadas sus aqueste servidor.',
-'notacceptable'     => 'Aqueste servidor wiki pòt pas fornir las donadas dins un format que vòstre client es capable de legir.',
+'notacceptable' => 'Aqueste servidor wiki pòt pas fornir las donadas dins un format que vòstre client es capable de legir.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizaire anonim|Utilizaires anonims}} de {{SITENAME}}',

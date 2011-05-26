@@ -2328,9 +2328,7 @@ Tas atļauj pievienot iemeslu kopsavilkumā.',
 'tooltip-summary'                 => 'Ievadiet īsu kopsavilkumu',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadati šim serverim atslēgti.',
-'nocreativecommons' => 'Creative Commons RDF metadati šim serverim atslēgti.',
-'notacceptable'     => 'Vikipēdijas serveris nevar sniegt datus Jūsu klientam nolasāmā formātā.',
+'notacceptable' => 'Vikipēdijas serveris nevar sniegt datus Jūsu klientam nolasāmā formātā.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonīmais {{grammar:ģenitīvs|{{SITENAME}}}} lietotājs|Anonīmie {{grammar:ģenitīvs|{{SITENAME}}}} lietotāji}}',

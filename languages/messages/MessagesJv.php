@@ -2359,9 +2359,7 @@ Simpenen ing cakram padhet (''harddisk'') panjenengan lan unggahna ing kéné.",
 'tooltip-undo'                    => 'Mbalèkaké révisi iki lan mbukak kothak panyuntingan jroning mode pratayang. Wènèhi kasempatan kanggo ngisi alesan ing kothak ringkesan.',
 
 # Metadata
-'nodublincore'      => 'Metadata Dublin Core RDF dipatèni ing server iki.',
-'nocreativecommons' => 'Metadata Creative Commons RDF dipatèni ing server iki.',
-'notacceptable'     => 'Server wiki ora bisa nyedyakaké data sajroning format sing bisa diwaca déning klièn panjenengan.',
+'notacceptable' => 'Server wiki ora bisa nyedyakaké data sajroning format sing bisa diwaca déning klièn panjenengan.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Panganggo|panganggo}} anon ing {{SITENAME}}.',

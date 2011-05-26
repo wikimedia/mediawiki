@@ -1767,9 +1767,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'monobook.js' => '/* 伓再使用；請用[[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata到箇隻服務器用伓正。',
-'nocreativecommons' => 'Creative Commons RDF metadata到箇隻服務器用伓正。',
-'notacceptable'     => '箇隻網站服務器提供伓正倷嗰用戶端認得嗰格式。',
+'notacceptable' => '箇隻網站服務器提供伓正倷嗰用戶端認得嗰格式。',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}嗰匿名用戶',

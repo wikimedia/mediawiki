@@ -2289,9 +2289,8 @@ Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le
 'undeletepagetext'             => 'Le {{PLURAL:$1|pagina|paginas}} sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
 Le archivo pote esser vacuate periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar versiones',
-'undeleteextrahelp'            => "Pro restaurar le historia integre del pagina, lassa tote le quadratos dismarcate e clicca '''''Restaurar'''''.
-Pro executar un restauration selective, marca le quadratos correspondente al versiones pro restaurar, e clicca '''''Restaurar'''''.
-Le button '''''Reinitialisar''''' face rader le campo de commento e tote le quadratos.",
+'undeleteextrahelp'            => "Pro restaurar le historia integre del pagina, lassa tote le quadratos dismarcate e clicca super '''''{{int:undeletebtn}}'''''.
+Pro executar un restauration selective, marca le quadratos correspondente al versiones a restaurar, e clicca super '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versiones}} archivate',
 'undeletehistory'              => 'Si tu restaura un pagina, tote le versiones essera restaurate al historia.
 Si un nove pagina con le mesme nomine ha essite create post le deletion, le versiones
@@ -2834,9 +2833,7 @@ Es possibile adder un motivo in le summario.',
 'vector.js'      => '/* Omne JavaScript hic se executara pro le usatores del apparentia Vector */',
 
 # Metadata
-'nodublincore'      => 'Le metadatos Dublin Core RDF ha essite disactivate in iste servitor.',
-'nocreativecommons' => 'Le metadatos Creative Commons RDF ha essite disactivate in iste servitor.',
-'notacceptable'     => 'Le servitor wiki non pote provider datos in un formato que tu cliente sape leger.',
+'notacceptable' => 'Le servitor wiki non pote provider datos in un formato que tu cliente sape leger.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usator|Usatores}} anonyme de {{SITENAME}}',

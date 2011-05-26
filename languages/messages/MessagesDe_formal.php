@@ -496,9 +496,8 @@ Bitte gehen Sie zurück und versuchen Sie den Vorgang erneut auszuführen.',
 'protect-cantedit'       => 'Sie können die Sperre dieser Seite nicht ändern, da Sie keine Berechtigung zum Bearbeiten der Seite haben.',
 
 # Undelete
-'undeleteextrahelp'          => '* Um die Seite komplett mit allen Versionen wiederherzustellen, wählen Sie keine Version aus, geben Sie eine Begründung an und klicken Sie auf „{{int:undeletebtn}}“.
-* Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln anhand der Markierungen aus, geben eine Begründung an und klicken dann auf „{{int:undeletebtn}}“.
-* „{{int:undeletereset}}“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
+'undeleteextrahelp'          => '* Um die Seite mitsamt aller Versionen wiederherzustellen, wählen Sie keine Version aus, geben eine Begründung an und klicken dann auf „{{int:undeletebtn}}“.
+* Um lediglich bestimmte Versionen der Seite wiederherzustellen, wählen Sie die betreffenden Versionen einzeln aus, geben eine Begründung an und klicken dann auf „{{int:undeletebtn}}“.',
 'undeletehistory'            => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten Versionen wiederhergestellt.
 Wenn seit der Löschung eine neue Seite gleichen Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.',
 'undeleterevdel'             => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.

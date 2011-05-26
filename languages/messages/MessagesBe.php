@@ -2419,9 +2419,7 @@ $1',
 'monobook.js' => '/* Any JavaScript here will be loaded for users using the MonoBook skin */',
 
 # Metadata
-'nodublincore'      => 'Метаданыя ў схеме Dublin Core RDF на гэтым серверы не дазволены.',
-'nocreativecommons' => 'Метаданыя Creative Commons RDF на гэтым серверы не апрацоўваюцца.',
-'notacceptable'     => 'Сервер Вікі не можа прапанаваць даных у фармаце, зразумелым для вашай кліенцкай праграмы.',
+'notacceptable' => 'Сервер Вікі не можа прапанаваць даных у фармаце, зразумелым для вашай кліенцкай праграмы.',
 
 # Attribution
 'anonymous'        => 'Ананімны{{PLURAL:$1| ўдзельнік|я ўдзельнікі}} на пляцоўцы {{SITENAME}}',

@@ -2879,9 +2879,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-summary'                 => 'Enigu mallongan resumon',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadatumo estas malebligita por ĉi servilo.',
-'nocreativecommons' => 'RDF metadatenoj de la Krea Komunaĵo estas malpermesitaj por ĉi tiu servilo.',
-'notacceptable'     => 'La viki-servilo ne povas doni datumon en formato kiun via kliento povas legi.',
+'notacceptable' => 'La viki-servilo ne povas doni datumon en formato kiun via kliento povas legi.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonima uzanto|Anonimaj uzantoj}} de {{SITENAME}}',

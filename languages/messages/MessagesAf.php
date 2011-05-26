@@ -2780,9 +2780,7 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 'common.css' => '/** Gemeenskaplike CSS vir alle omslae */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF-metadata is afgeskakel op hierdie bediener.',
-'nocreativecommons' => 'Creative Commons RDF-metadata is afgeskakel op hierdie bediener.',
-'notacceptable'     => "Die wikibediener kan nie data in 'n formaat wat jou kliënt kan lees verskaf nie.",
+'notacceptable' => "Die wikibediener kan nie data in 'n formaat wat jou kliënt kan lees verskaf nie.",
 
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',

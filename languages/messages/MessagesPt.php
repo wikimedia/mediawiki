@@ -2961,9 +2961,7 @@ Permite colocar uma justificação no resumo da edição.',
 'vector.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Vector */',
 
 # Metadata
-'nodublincore'      => 'O uso de metadados RDF para Dublin Core foi impossibilitado neste servidor.',
-'nocreativecommons' => 'O uso de metadados RDF da Creative Commons foi impossibilitado neste servidor.',
-'notacceptable'     => 'O servidor não pode fornecer os dados num formato que o seu cliente possa ler.',
+'notacceptable' => 'O servidor não pode fornecer os dados num formato que o seu cliente possa ler.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizador anónimo|Utilizadores anónimos}} da {{SITENAME}}',

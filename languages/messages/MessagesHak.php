@@ -1522,9 +1522,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'monobook.js' => '/* Yí-kîn put-chai sṳ́-yung; chhiáng-yung [[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF ngièn su-kí chhai ke-fu̍k-vu hi put-hí-khó sṳ́-yung.',
-'nocreativecommons' => 'Creative Commons RDF ngièn su-kí chhai ke-fu̍k-vu hi put-hí-khó sṳ́-yung.',
-'notacceptable'     => 'Ke-mióng-chham fu̍k-vu-hi put-nèn thì-kiûng ngì-ke hak-fu tôn-nèn sṳt-phe̍t ke su-kí kak-sṳt.',
+'notacceptable' => 'Ke-mióng-chham fu̍k-vu-hi put-nèn thì-kiûng ngì-ke hak-fu tôn-nèn sṳt-phe̍t ke su-kí kak-sṳt.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} ke ngia̍k-miàng yung-fu',

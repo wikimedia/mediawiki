@@ -2583,9 +2583,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-summary'                 => 'Inserissi un breve riassunto',
 
 # Metadata
-'nodublincore'      => 'Metadati Dublin Core RDF non ativi su sto server.',
-'nocreativecommons' => 'Metadati Commons RDF non ativi su sto server.',
-'notacceptable'     => "El server wiki no'l xè in grado di fornire i dati in un formato łeggibiłe dal client utilixà.",
+'notacceptable' => "El server wiki no'l xè in grado di fornire i dati in un formato łeggibiłe dal client utilixà.",
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utente anonimo|Utenti anonimi}} de {{SITENAME}}',

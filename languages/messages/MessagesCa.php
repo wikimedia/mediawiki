@@ -2732,9 +2732,7 @@ Permet afegir un motiu al resum.',
 'common.js' => "/* Es carregarà per a tots els usuaris, i per a qualsevol pàgina, el codi JavaScript que hi haja després d'aquesta línia. */",
 
 # Metadata
-'nodublincore'      => "S'han inhabilitat les metadades RDF de Dublin Core del servidor.",
-'nocreativecommons' => "S'han inhabilitat les metadades RDF de Creative Commons del servidor.",
-'notacceptable'     => 'El servidor wiki no pot oferir dades en un format que el client no pot llegir.',
+'notacceptable' => 'El servidor wiki no pot oferir dades en un format que el client no pot llegir.',
 
 # Attribution
 'anonymous'        => 'Usuari{{PLURAL:$1| anònim|s anònims}} del projecte {{SITENAME}}',

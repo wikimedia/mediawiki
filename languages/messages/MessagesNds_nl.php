@@ -2825,9 +2825,7 @@ Je kunnen in de bewarkingssamenvatting een reden opgeven.',
 'tooltip-summary'                 => 'Voer een korte samenvatting in',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF-metadata is uut-eschakeld op disse server.',
-'nocreativecommons' => 'Creative Commons RDF-metadata is uut-eschakeld op disse server.',
-'notacceptable'     => 'De wikiserver kan de gegevens neet leveren in een vorm dee joew cliënt kan lezen.',
+'notacceptable' => 'De wikiserver kan de gegevens neet leveren in een vorm dee joew cliënt kan lezen.',
 
 # Attribution
 'anonymous'        => 'Annenieme {{PLURAL:$1|gebruker|gebrukers}} van {{SITENAME}}',
