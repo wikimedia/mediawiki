@@ -84,11 +84,22 @@ abstract class DumpIterator extends Maintenance {
 		$this->error( "Memory peak usage of " . memory_get_peak_usage() . " bytes\n" );
 	}
 	
-	function stripParameters( $text ) {
-		if ( !$this->stripParametersEnabled ) {
-			return $text;
+	public function finalSetup() {
+		parent::finalSetup();
+
+		if ( $this->getDbType() == Maintenance::DB_NONE ) {
+			global $wgUseDatabaseMessages, $wgLocalisationCacheConf, $wgHooks;
+			$wgUseDatabaseMessages = false;
+			$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
+			$wgHooks['InterwikiLoadPrefix'][] = 'DumpIterator::disableInterwikis';
 		}
-		return preg_replace( '/(<a) [^>]+>/', '$1>', $text );
+	}
+
+	static function disableInterwikis( $prefix, &$data ) {
+		# Title::newFromText will check on each namespaced article if it's an interwiki.
+		# We always answer that it is not.
+
+		return false;
 	}
 	
 	/**
@@ -138,6 +149,10 @@ class SearchDump extends DumpIterator {
 		$this->addOption( 'regex', 'Searching regex', true, true );
 	}
 	
+	public function getDbType() {
+		return Maintenance::DB_NONE;
+	}
+		
 	public function processRevision( $rev ) {
 		if ( preg_match( $this->getOption( 'regex' ), $rev->getText() ) ) {
 			$this->output( $rev->getTitle() . " matches at edit from " . $rev->getTimestamp() . "\n" );

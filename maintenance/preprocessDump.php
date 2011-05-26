@@ -48,22 +48,6 @@ class PreprocessDump extends DumpIterator {
 		return Maintenance::DB_NONE;
 	}
 
-	public function finalSetup() {
-		parent::finalSetup();
-
-		global $wgUseDatabaseMessages, $wgLocalisationCacheConf, $wgHooks;
-		$wgUseDatabaseMessages = false;
-		$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
-		$wgHooks['InterwikiLoadPrefix'][] = 'PreprocessDump::disableInterwikis';
-	}
-
-	static function disableInterwikis( $prefix, &$data ) {
-		# Title::newFromText will check on each namespaced article if it's an interwiki.
-		# We always answer that it is not.
-
-		return false;
-	}
-
 	public function checkOptions() {
 		global $wgParser, $wgParserConf, $wgPreprocessorCacheThreshold;
 
