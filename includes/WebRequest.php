@@ -785,17 +785,10 @@ class WebRequest {
 	public function isPathInfoBad() {
 		global $wgScriptExtension;
 
-		if ( isset( $_SERVER['QUERY_STRING'] ) 
-			&& preg_match( '/\.[^\\/:*?"<>|%]+(#|\?|$)/i', $_SERVER['QUERY_STRING'] ) )
+		if ( isset( $_SERVER['QUERY_STRING'] ) )
 		{
 			// Bug 28235
-			// Block only Internet Explorer, and requests with missing UA 
-			// headers that could be IE users behind a privacy proxy.
-			if ( !isset( $_SERVER['HTTP_USER_AGENT'] ) 
-				|| preg_match( '/; *MSIE/', $_SERVER['HTTP_USER_AGENT'] ) )
-			{
-				return true;
-			}
+			return strval( self::findIE6Extension( $_SERVER['QUERY_STRING'] ) ) !== '';
 		}
 
 		if ( !isset( $_SERVER['PATH_INFO'] ) ) {
@@ -808,6 +801,69 @@ class WebRequest {
 		}
 		$ext = substr( $pi, $dotPos );
 		return !in_array( $ext, array( $wgScriptExtension, '.php', '.php5' ) );
+	}
+	
+	/**
+	 * Determine what extension IE6 will infer from a certain query string.
+	 * If the URL has an extension before the question mark, IE6 will use
+	 * that and ignore the query string, but per the comment at
+	 * isPathInfoBad() we don't have a reliable way to determine the URL,
+	 * so isPathInfoBad() just passes in the query string for $url.
+	 * All entry points have safe extensions (php, php5) anyway, so
+	 * checking the query string is possibly overly paranoid but never
+	 * insecure.
+	 *
+	 * The criteria for finding an extension are as follows:
+	 * * a possible extension is a dot followed by one or more characters not in <>\"/:|?.#
+	 * * if we find a possible extension followed by the end of the string or a #, that's our extension
+	 * * if we find a possible extension followed by a ?, that's our extension
+	 * ** UNLESS it's exe, dll or cgi, in which case we ignore it and continue searching for another possible extension
+	 * * if we find a possible extension followed by a dot or another illegal character, we ignore it and continue searching
+	 * 
+	 * @param $url string URL
+	 * @return mixed Detected extension (string), or false if none found
+	 */
+	public static function findIE6Extension( $url ) {
+		$remaining = $url;
+		while ( $remaining !== '' ) {
+			// Skip ahead to the next dot
+			$pos = strcspn( $remaining, '.' );
+			if ( $pos === strlen( $remaining ) || $remaining[$pos] === '#' ) {
+				// End of string, we're done
+				return false;
+			}
+			
+			// We found a dot. Skip past it
+			$remaining = substr( $remaining, $pos + 1 );
+			// Check for illegal characters in our prospective extension,
+			// or for another dot, or for a hash sign
+			$pos = strcspn( $remaining, "<>\\\"/:|?*.#" );
+			if ( $pos === strlen( $remaining ) ) {
+				// No illegal character or next dot or hash
+				// We have our extension
+				return $remaining;
+			}
+			if ( $remaining[$pos] === '#' ) {
+				// We've found a legal extension followed by a hash
+				// Trim the hash and everything after it, then return that
+				return substr( $remaining, 0, $pos );
+			}
+			if ( $remaining[$pos] === '?' ) {
+				// We've found a legal extension followed by a question mark
+				// If the extension is NOT exe, dll or cgi, return it
+				$extension = substr( $remaining, 0, $pos );
+				if ( strcasecmp( $extension, 'exe' ) && strcasecmp( $extension, 'dll' ) &&
+					strcasecmp( $extension, 'cgi' ) )
+				{
+					return $extension;
+				}
+				// Else continue looking
+			}
+			// We found an illegal character or another dot
+			// Skip to that character and continue the loop
+			$remaining = substr( $remaining, $pos );
+		}
+		return false;
 	}
 
 	/**

@@ -736,8 +736,7 @@ class ResourceLoader {
 	 * Convert an array of module names to a packed query string.
 	 * 
 	 * For example, array( 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' )
-	 * becomes 'foo!bar,baz|bar!baz,quux'
-	 * The ! is for IE6 being stupid with extensions.
+	 * becomes 'foo.bar,baz|bar.baz,quux'
 	 * @param $modules array of module names (strings)
 	 * @return string Packed query string
 	 */
@@ -756,7 +755,7 @@ class ResourceLoader {
 			$arr[] = $p . implode( ',', $suffixes );
 		}
 		$str = implode( '|', $arr );
-		return str_replace( ".", "!", $str ); # bug 28840
+		return $str;
 	}
 
 	/**
