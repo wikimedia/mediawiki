@@ -2877,10 +2877,10 @@ class OutputPage {
 		# Feeds
 		if ( $wgFeed ) {
 			foreach( $this->getSyndicationLinks() as $format => $link ) {
-				# Use the page name for the title (accessed through $wgTitle since
-				# there's no other way).  In principle, this could lead to issues
-				# with having the same name for different feeds corresponding to
-				# the same page, but we can't avoid that at this low a level.
+				# Use the page name for the title.  In principle, this could
+				# lead to issues with having the same name for different feeds
+				# corresponding to the same page, but we can't avoid that at
+				# this low a level.
 
 				$tags[] = $this->feedLink(
 					$format,
