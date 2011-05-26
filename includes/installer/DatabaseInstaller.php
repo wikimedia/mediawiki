@@ -102,7 +102,7 @@ abstract class DatabaseInstaller {
 	 *
 	 * @return Status
 	 */
-	public abstract function openConnection();
+	public abstract function openConnection( $dbName = null );
 
 	/**
 	 * Create the database and return a Status object indicating success or
@@ -121,11 +121,14 @@ abstract class DatabaseInstaller {
 	 *
 	 * @return Status
 	 */
-	public function getConnection() {
-		if ( $this->db ) {
+	public function getConnection( $dbName = null ) {
+		if ( isset($this->db) && $this->db ) { /* Weirdly get E_STRICT
+												* errors without the
+												* isset */
 			return Status::newGood( $this->db );
 		}
-		$status = $this->openConnection();
+
+		$status = $this->openConnection( $dbName );
 		if ( $status->isOK() ) {
 			$this->db = $status->value;
 			// Enable autocommit
