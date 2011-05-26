@@ -435,7 +435,7 @@ class SpecialPageFactory {
 			// generate self-links without being aware that their default name has
 			// changed.
 			if ( $name != $page->getLocalName() && !$context->request->wasPosted() ) {
-				$query = $_GET;
+				$query = $context->request->getQueryValues();
 				unset( $query['title'] );
 				$query = wfArrayToCGI( $query );
 				$title = $page->getTitle( $par );

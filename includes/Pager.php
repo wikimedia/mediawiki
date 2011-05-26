@@ -415,8 +415,10 @@ abstract class IndexPager implements Pager {
 	 * @return Associative array
 	 */
 	function getDefaultQuery() {
+		global $wgRequest;
+
 		if ( !isset( $this->mDefaultQuery ) ) {
-			$this->mDefaultQuery = $_GET;
+			$this->mDefaultQuery = $wgRequest->getQueryValues();
 			unset( $this->mDefaultQuery['title'] );
 			unset( $this->mDefaultQuery['dir'] );
 			unset( $this->mDefaultQuery['offset'] );
@@ -1025,14 +1027,16 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * Get <input type="hidden"> elements for use in a method="get" form.
-	 * Resubmits all defined elements of the $_GET array, except for a
+	 * Resubmits all defined elements of the query string, except for a
 	 * blacklist, passed in the $blacklist parameter.
 	 *
 	 * @return String: HTML fragment
 	 */
 	function getHiddenFields( $blacklist = array() ) {
+		global $wgRequest;
+
 		$blacklist = (array)$blacklist;
-		$query = $_GET;
+		$query = $wgRequest->getQueryValues();
 		foreach ( $blacklist as $name ) {
 			unset( $query[$name] );
 		}
