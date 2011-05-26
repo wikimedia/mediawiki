@@ -2682,9 +2682,7 @@ Ju lutemi provoni përsëri.',
 'monobook.css' => '/* redaktoni këtë faqe për të përshtatur pamjen Monobook për tëra faqet tuaja */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata nuk është i mundshëm për këtë server.',
-'nocreativecommons' => 'Creative Commons RDF metadata nuk është i mundshëm për këtë server.',
-'notacceptable'     => 'Wiki server nuk mundet ti përgatit të dhënat për klintin tuaj.',
+'notacceptable' => 'Wiki server nuk mundet ti përgatit të dhënat për klintin tuaj.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Përdoruesi anonim|Përdoruesit anonimë}} të {{SITENAME}}',

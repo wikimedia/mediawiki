@@ -2822,9 +2822,7 @@ Du kan se på kildeteksten',
 'modern.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF-metadata er slått av på denne tjeneren.',
-'nocreativecommons' => 'Create Commons RDF-metadata er slått av på denne tjeneren.',
-'notacceptable'     => 'Tjeneren har ingen mulige måter å vise data i din nettleser.',
+'notacceptable' => 'Tjeneren har ingen mulige måter å vise data i din nettleser.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym bruker|Anonyme brukere}} av {{SITENAME}}',

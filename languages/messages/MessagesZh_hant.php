@@ -2770,9 +2770,7 @@ $1被封禁的理由是“$2”',
 'vector.js'      => '/* 此處的JavaScript將載入於使用Vector面板的用戶 */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF 元數據在該伺服器不可使用。',
-'nocreativecommons' => 'Creative Commons RDF 元數據在該伺服器不可使用。',
-'notacceptable'     => '該網站伺服器不能提供您的客戶端能識別的數據格式。',
+'notacceptable' => '該網站伺服器不能提供您的客戶端能識別的數據格式。',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}的匿名{{PLURAL:$1|用戶|用戶}}',

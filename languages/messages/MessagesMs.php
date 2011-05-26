@@ -2749,9 +2749,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'tooltip-summary'                 => 'Masukkan ringkasan pendek',
 
 # Metadata
-'nodublincore'      => 'Metadata RDF Dublin Core dipadamkan bagi pelayan ini.',
-'nocreativecommons' => 'Metadata RDF Creative Commons RDF dipadamkan bagi pelayan ini.',
-'notacceptable'     => 'Pelayan wiki ini tidak mampu menyediakan data dalam format yang boleh dibaca oleh pelanggan anda.',
+'notacceptable' => 'Pelayan wiki ini tidak mampu menyediakan data dalam format yang boleh dibaca oleh pelanggan anda.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Pengguna|Pengguna-pengguna}} {{SITENAME}} tanpa nama',

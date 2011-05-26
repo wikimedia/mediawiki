@@ -581,6 +581,7 @@ Sababta neh waxaa qoray $3 waa ''$2''",
 
 # History pages
 'currentrev'             => 'Cadadka cusub',
+'currentrev-asof'        => 'Kala duwanaanshihii ugu danbeeyay oo dhacay $1',
 'previousrevision'       => '←Caddad ka duqsanŠ',
 'nextrevision'           => 'Caddad ka cusub→',
 'currentrevisionlink'    => 'Caddadka hada muuqda',
@@ -614,6 +615,8 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'revdelete-radio-set'         => 'Haa',
 'revdelete-radio-unset'       => 'Maya',
 'revdelete-log'               => 'Sababta:',
+'revdel-restore'              => 'badal muuqaalka',
+'revdel-restore-deleted'      => 'kuwii la tirtiray badalyadooda',
 'pagehist'                    => 'Taariikhda bogga',
 'revdelete-content'           => 'oo kooban',
 'revdelete-uname'             => 'Magaca isticmaalaha',
@@ -665,6 +668,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-relatedarticle'            => 'La xiriiro',
 'searchrelated'                    => 'La xiriiro',
 'searchall'                        => 'Dhamaan',
+'showingresultsheader'             => "{{PLURAL:$5|Natiijada '''$1''' of '''$3'''|Natiijooyinka '''$1 - $2''' of '''$3'''}}  ee  '''$4'''",
 'powersearch'                      => 'Sidii aad wax uugu raadin laheed',
 'powersearch-legend'               => 'Sidii aad wax uugu raadin laheed',
 'powersearch-ns'                   => 'ka raadi meesha magacyada:',
@@ -791,6 +795,8 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'recentchangeslinked'         => "Isbedelada la'xiriira",
 'recentchangeslinked-toolbox' => "Isbedelada la'xiriira",
 'recentchangeslinked-title'   => 'Wax bedelka la xiriiro "$1"',
+'recentchangeslinked-summary' => "Liiskaan waa badalyada mardhow lagu sameeyay bogyaasha la xiriiray boggaga khaaska ah  (ama ka mid ahaa qeybaha khaaska ah).
+Boggaga ku jiro  [[Special:Watchlist|liiskaaga waardiyaha]] waa '''butac'''.",
 'recentchangeslinked-page'    => 'Magaca bogga:',
 
 # Upload
@@ -853,6 +859,7 @@ ku saabsan: $1',
 'filehist-user'      => 'Isticmaale',
 'filehist-comment'   => "Ra'yigaaga dhiibo",
 'imagelinks'         => 'Faylka la xiriira',
+'linkstoimage'       => 'Halahaan  {{PLURAL:$1|bog waxey la xiriiraan|$1 boggag ah waxey la xiriiraan}} faylkan:',
 'nolinkstoimage'     => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
 
 # File reversion
@@ -893,6 +900,7 @@ ku saabsan: $1',
 'ancientpages'       => 'Boggaga duqoobay',
 'move'               => 'Wareeji',
 'pager-newer-n'      => '{{PLURAL:$1|ka cusub 1|ka cusub $1}}',
+'pager-older-n'      => '{{PLURAL:$1|ka duqsan 1|ka duqsan $1}}',
 
 # Book sources
 'booksources-go' => 'Soco',
@@ -917,8 +925,9 @@ ku saabsan: $1',
 'special-categories-sort-count' => 'xisaabi marka aad tirisid',
 
 # Special:LinkSearch
-'linksearch-ns' => 'Meesha magacyada:',
-'linksearch-ok' => 'Raadi',
+'linksearch-ns'   => 'Meesha magacyada:',
+'linksearch-ok'   => 'Raadi',
+'linksearch-line' => '$1 waxoo ka socdaa $2',
 
 # Special:ListUsers
 'listusersfrom'      => "I'tus isticmaalayaasha laga bilaabo:",
@@ -1024,6 +1033,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'undeletepage'             => "Fiiri dibna u sooceli boggaga la'tirtiray",
 'viewdeletedpage'          => "Fiiri boggaga la'tirtiray",
 'undeletebtn'              => 'Sooceli',
+'undeletelink'             => 'fiiri/mar kale sameey',
 'undeleteviewlink'         => 'itusi',
 'undeletereset'            => 'Dib u habeey',
 'undeletedarticle'         => 'La\' sooceliyey "[[$1]]"',
@@ -1053,6 +1063,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 
 # What links here
 'whatlinkshere'       => 'Maxaa meeshaan la xiriiro',
+'whatlinkshere-title' => 'Boggaga la xiriiro "$1"',
 'whatlinkshere-page'  => 'Bogga:',
 'linkshere'           => "Bogyaashaan waxey la xiriiraan  '''[[:$1]]''':",
 'whatlinkshere-prev'  => '{{PLURAL:$1|kii ka horeeyay|kii ka horeeyay $1}}',
@@ -1123,6 +1134,7 @@ Waxaa fiiri kartaa cadaadkiisa',
 'tooltip-n-mainpage'              => 'Soo booqo bogga hore',
 'tooltip-n-mainpage-description'  => 'Booqo bogga hore',
 'tooltip-n-portal'                => 'Faahfaahinta mashruuca, waxaad ku caawinkartid, xageed ka helikartaa waxaad u baahantahay',
+'tooltip-n-currentevents'         => 'Soo raadi war ku saabsan hadda waxa dhacaayo',
 'tooltip-n-recentchanges'         => 'tirada Intii ugu danbeysay oo wax laga bedelay wiki',
 'tooltip-n-randompage'            => 'Ku nasiibso bog',
 'tooltip-n-help'                  => 'Meesha lagu ogaan karo',
@@ -1158,6 +1170,9 @@ Waxaa fiiri kartaa cadaadkiisa',
 # Browsing diffs
 'previousdiff' => '← bedelkii ka duqsanaa',
 'nextdiff'     => 'Bedelkii ugu cusbaa →',
+
+# Media information
+'file-info-size' => '$1 × $2 pixels, weyninka faylka : $3, nuuca MIME: $4',
 
 # Special:NewFiles
 'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{PLURAL:$1|file|faylalka}} oo u kala soocan $2.",

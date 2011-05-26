@@ -2455,9 +2455,8 @@ Vos pouede changiér lo nivél de protèccion de ceta pâge sen que cen afècte 
 'undeletepagetext'             => '{{PLURAL:$1|Ceta pâge at étâ suprimâ et sè trove|Cetes pâges ont étâ suprimâs et sè trovont}} dens les arch·ives, de yô que pô{{PLURAL:$1||von}}t adés étre refêt{{PLURAL:$1|a|es}}.
 Les arch·ives pôvont étre èfaciês règuliérement.',
 'undelete-fieldset-title'      => 'Refâre les vèrsions',
-'undeleteextrahelp'            => "Por refâre l’historico complèt de cela pâge, lèssiéd totes les câses pas pouentâs et pués clicâd dessus '''''Refâre'''''.
-Por fâre una rèstoracion encomplèta, pouentâd les câses que corrèspondont a les vèrsions a refâre, et pués clicâd dessus '''''Refâre'''''.
-Clicar dessus '''''Tornar inicialisar''''' èfacierat la bouèta de rèsumâ et tornerat inicialisar totes les câses a pouentar.",
+'undeleteextrahelp'            => "Por refâre l’historico complèt de la pâge, lèssiéd totes les câses pas pouentâs et pués clicâd dessus '''''{{int:undeletebtn}}'''''.
+Por fâre una rèstoracion encomplèta, pouentâd les câses que corrèspondont a les vèrsions a refâre, et pués clicâd dessus '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|vèrsion arch·ivâ|vèrsions arch·ivâs}}',
 'undeletehistory'              => 'Se vos reféte la pâge, totes les vèrsions seront replaciês dens l’historico.
 S’una pâge novèla avouéc lo mémo nom at étâ fêta dês la suprèssion, les vèrsions refêtes aparètront dens l’historico devant et la vèrsion d’ora serat pas remplaciê ôtomaticament.',
@@ -3002,9 +3001,7 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 'vector.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Vèctor ». */',
 
 # Metadata
-'nodublincore'      => 'Les mètabalyês « Dublin Core RDF » sont dèsactivâs sur ceti sèrvor.',
-'nocreativecommons' => 'Les mètabalyês « Creative Commons RDF » sont dèsactivâs sur ceti sèrvor.',
-'notacceptable'     => 'Lo sèrvor vouiqui pôt pas balyér les balyês dens un format que voutron cliant est capâblo de liére.',
+'notacceptable' => 'Lo sèrvor vouiqui pôt pas balyér les balyês dens un format que voutron cliant est capâblo de liére.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilisator pas encartâ|Utilisators pas encartâs}} dessus {{SITENAME}}',
@@ -3500,7 +3497,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-dc-coverage'    => 'Portâ espaciâla ou ben temporèla du mèdia',
 'exif-dc-date'        => 'Dâta(/-es)',
 'exif-dc-publisher'   => 'Èditor',
-'exif-dc-relation'    => 'Mèdies liyês',
+'exif-dc-relation'    => 'Mèdias liyês',
 'exif-dc-rights'      => 'Drêts',
 'exif-dc-source'      => 'Mèdia sôrsa',
 'exif-dc-type'        => 'Tipo de mèdia',

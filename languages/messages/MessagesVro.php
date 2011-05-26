@@ -1801,9 +1801,7 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'monobook.js' => '/* Olõi soovitõt; pruugiq [[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Taan serverin olõ-i Dublin Core RDF-metateedüst tüüle pant.',
-'nocreativecommons' => 'Taan serverin olõ-i Creative Commonsi RDF-metateedüst tüüle pant.',
-'notacceptable'     => 'Wikiserver saa-i näüdädäq teedüst sääntsen moodun, midä su programm saasiq lukõq.',
+'notacceptable' => 'Wikiserver saa-i näüdädäq teedüst sääntsen moodun, midä su programm saasiq lukõq.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} {{PLURAL:$1|nimeldä pruukja|nimeldä pruukjaq}}',

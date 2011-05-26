@@ -2852,9 +2852,7 @@ Snimite je na svoje računalo i postavite je ovdje.',
 'monobook.js' => '/* Ne rabi se više; molimo rabite [[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metapodaci su isključeni na ovom serveru.',
-'nocreativecommons' => 'Creative Commons RDF metapodaci su isključeni na ovom serveru.',
-'notacceptable'     => 'Wiki server ne može dobaviti podatke u obliku kojega Vaš preglednik može pročitati.',
+'notacceptable' => 'Wiki server ne može dobaviti podatke u obliku kojega Vaš preglednik može pročitati.',
 
 # Attribution
 'anonymous'        => 'Neprijavljeni {{PLURAL:$1|suradnik|suradnici}} projekta {{SITENAME}}',

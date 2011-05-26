@@ -1811,9 +1811,7 @@ Pas onro ba kompjuteraton zaxira karda inço borguzorī kuned.",
 In imkoni ilova kardani jak sababero dar xulosa medihad.',
 
 # Metadata
-'nodublincore'      => "Metadoda Dublin Core RDF baroi in korguzor ƣajri fa'ol şudaast.",
-'nocreativecommons' => "Metadodai Creative Commons RDF baroi in korguzor ƣajri fa'ol şudaast.",
-'notacceptable'     => 'Korguzori in viki az irsoli doda ba şakle ki barnomai şumo bitavonad namoiş dihad, peşkaş karda nametavonad.',
+'notacceptable' => 'Korguzori in viki az irsoli doda ba şakle ki barnomai şumo bitavonad namoiş dihad, peşkaş karda nametavonad.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|korbari|korbaroni}} gumnomī {{SITENAME}}',

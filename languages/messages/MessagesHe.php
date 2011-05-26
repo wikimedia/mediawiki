@@ -2988,9 +2988,7 @@ $1',
 'group-bureaucrat.js'    => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור ביורוקרטים */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata מבוטל בשרת זה.',
-'nocreativecommons' => 'Creative Commons RDF metadata מבוטל בשרת זה.',
-'notacceptable'     => 'האתר לא יכול לספק מידע בפורמט שתוכנת הלקוח יכולה לקרוא.',
+'notacceptable' => 'האתר לא יכול לספק מידע בפורמט שתוכנת הלקוח יכולה לקרוא.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|משתמש אנונימי|משתמשים אנונימיים}} של {{SITENAME}}',

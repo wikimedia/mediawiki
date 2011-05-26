@@ -628,7 +628,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'externaldberror'            => 'Ou ben se produciu un erro da base de datos na autenticación externa ou ben non se lle permite actualizar a súa conta externa.',
 'login'                      => 'Acceder ao sistema',
 'nav-login-createaccount'    => 'Rexistro',
-'loginprompt'                => "Debe habilitar as ''cookies'' para acceder a {{SITENAME}}.",
+'loginprompt'                => 'Debe habilitar as cookies para acceder a {{SITENAME}}.',
 'userlogin'                  => 'Rexistro',
 'userloginnocreate'          => 'Rexistro',
 'logout'                     => 'Saír ao anonimato',
@@ -2345,9 +2345,8 @@ Pode mudar o nivel de protección da páxina pero iso non afectará á protecci�
 'undeletepagetext'             => '{{PLURAL:$1|A seguinte páxina foi borrada|As seguintes páxinas foron borradas}}, pero aínda {{PLURAL:$1|está|están}} no arquivo e {{PLURAL:$1|pode|poden}} ser {{PLURAL:$1|restaurada|restauradas}}.
 O arquivo será limpado periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar as revisións',
-'undeleteextrahelp'            => "Para restaurar o historial dunha páxina ao completo, deixe todas as caixas sen marcar e prema en '''''Restaurar'''''.
-Para realizar unha recuperación parcial, marque só aquelas caixas que correspondan ás revisións que se queiran recuperar e prema en '''''Restaurar'''''.
-Ao premer en '''''Limpar''''', bórranse o campo do comentario e todas as caixas.",
+'undeleteextrahelp'            => "Para restaurar o historial dunha páxina ao completo, deixe todas as caixas sen marcar e prema en '''''{{int:undeletebtn}}'''''.
+Para realizar unha recuperación parcial, marque só aquelas caixas que correspondan ás revisións que se queiran recuperar e prema en '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión arquivada|revisións arquivadas}}',
 'undeletehistory'              => 'Se restaura a páxina, todas as revisións van ser restauradas no historial.
 Se se creou unha páxina nova co mesmo nome desde o seu borrado, as revisións restauradas van aparecer no historial anterior.',
@@ -2882,9 +2881,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'group-bureaucrat.js'    => '/* Calquera JavaScript que haxa aquí será cargado soamente para os burócratas */',
 
 # Metadata
-'nodublincore'      => 'A opción de metadatos RDF do Dublin Core está desactivada neste servidor.',
-'nocreativecommons' => 'A opción de metadatos Creative Commons RDF está desactivada neste servidor.',
-'notacceptable'     => 'O servidor do wiki non pode fornecer os datos nun formato que o seu cliente poida ler.',
+'notacceptable' => 'O servidor do wiki non pode fornecer os datos nun formato que o seu cliente poida ler.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',

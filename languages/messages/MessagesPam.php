@@ -1934,9 +1934,7 @@ Paintulutan na ing pamandagdag king sangkan king sampulung (''summary'').",
 'common.js' => '/* Agiang nanung JavaScript a atiu keni misampa la kareng eganaganang gagamit balang misampang bulung. */',
 
 # Metadata
-'nodublincore'      => 'Makapatda ya ing Dublin Core RDF metadata para king server a ini.',
-'nocreativecommons' => 'Makapatda ya ing Creative Commons RDF metadata para king server a ini.',
-'notacceptable'     => 'E makapamieng data king ayus (format) a abasa ning kekang client ing wiki server.',
+'notacceptable' => 'E makapamieng data king ayus (format) a abasa ning kekang client ing wiki server.',
 
 # Attribution
 'anonymous'        => 'Ing/Deng gagamit king {{SITENAME}} a e pepakilala.',

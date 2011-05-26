@@ -2547,9 +2547,7 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'modern.js'      => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''Modern''*/",
 
 # Metadata
-'nodublincore'      => "''Dublin Core RDF metadata'' ġie mneħħi għal dan is-server.",
-'nocreativecommons' => "''Creative Commons RDF metadata'' ġie mneħħi għal dan is-server. .",
-'notacceptable'     => "Is-Server tal-wiki m'għandux format li l-klijent tiegħek ikun jista' jaqra.",
+'notacceptable' => "Is-Server tal-wiki m'għandux format li l-klijent tiegħek ikun jista' jaqra.",
 
 # Attribution
 'anonymous'        => "{{PLURAL:$1|Utent anonimu|Utenti anonimi}} ta' {{SITENAME}}",

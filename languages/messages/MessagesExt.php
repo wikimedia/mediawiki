@@ -1962,9 +1962,7 @@ Pol favol, gasta el botón "previsoreal" enantis d\'emburacal.',
 'monobook.js' => '/* Antigu; gasta [[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Metadatus RDF Dublin Core desativaus pa esti sirviol.',
-'nocreativecommons' => 'Metadatus RDF Creative Commons desativaus pa esti sirviol.',
-'notacceptable'     => 'El sirviol de la güiqui nu puei chambal los datus a un hormatu leibri pol tu escrucaol.',
+'notacceptable' => 'El sirviol de la güiqui nu puei chambal los datus a un hormatu leibri pol tu escrucaol.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Ussuáriu anónimu|Ussuárius anónimus}} en {{SITENAME}}',

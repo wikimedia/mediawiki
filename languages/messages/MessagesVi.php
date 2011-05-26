@@ -2897,9 +2897,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'vector.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài Vectơ */',
 
 # Metadata
-'nodublincore'      => 'Máy chủ không hỗ trợ siêu dữ liệu Dublin Core RDF.',
-'nocreativecommons' => 'Máy chủ không hỗ trợ siêu dữ liệu Creative Commons RDF.',
-'notacceptable'     => 'Máy chủ không thể cho ra định dạng dữ liệu tương thích với phần mềm của bạn.',
+'notacceptable' => 'Máy chủ không thể cho ra định dạng dữ liệu tương thích với phần mềm của bạn.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Thành viên|Thành viên}} vô danh của {{SITENAME}}',

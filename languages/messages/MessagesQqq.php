@@ -200,24 +200,36 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'thu'           => 'Abbreviation for Thursday, a day of the week.',
 'fri'           => 'Abbreviation for Friday, a day of the week.',
 'sat'           => 'Abbreviation for Saturday, a day of the week.',
-'january'       => 'The first month of the Gregorian calendar',
-'february'      => 'The second month of the Gregorian calendar',
-'march'         => 'The third month of the Gregorian calendar',
-'april'         => 'The fourth month of the Gregorian calendar',
-'may_long'      => 'The fifth month of the Gregorian calendar',
-'june'          => 'The sixth month of the Gregorian calendar',
+'january'       => 'The first month of the Gregorian calendar
+{{Identical|January}}',
+'february'      => 'The second month of the Gregorian calendar
+{{Identical|February}}',
+'march'         => 'The third month of the Gregorian calendar
+{{Identical|March}}',
+'april'         => 'The fourth month of the Gregorian calendar
+{{Identical|April}}',
+'may_long'      => 'The fifth month of the Gregorian calendar
+{{Identical|May}}',
+'june'          => 'The sixth month of the Gregorian calendar
+{{Identical|June}}',
 'july'          => 'The seventh month of the Gregorian calendar',
 'august'        => 'The eighth month of the Gregorian calendar',
 'september'     => 'The ninth month of the Gregorian calendar',
 'october'       => 'The tenth month of the Gregorian calendar',
 'november'      => 'The eleventh month of the Gregorian calendar',
 'december'      => 'The twelfth month of the Gregorian calendar',
-'january-gen'   => 'The first month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'february-gen'  => 'The second month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'march-gen'     => 'The third month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'april-gen'     => 'The fourth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'may-gen'       => 'The fifth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'june-gen'      => 'The sixth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
+'january-gen'   => 'The first month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|January}}',
+'february-gen'  => 'The second month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|February}}',
+'march-gen'     => 'The third month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|March}}',
+'april-gen'     => 'The fourth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|April}}',
+'may-gen'       => 'The fifth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|May}}',
+'june-gen'      => 'The sixth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|June}}',
 'july-gen'      => 'The seventh month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
 'august-gen'    => 'The eighth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
 'september-gen' => 'The nineth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',

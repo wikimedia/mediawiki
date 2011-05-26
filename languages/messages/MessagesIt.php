@@ -2769,9 +2769,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'vector.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Vector */',
 
 # Metadata
-'nodublincore'      => 'Metadati Dublin Core RDF non attivi su questo server.',
-'nocreativecommons' => 'Metadati Creative Commons RDF non attivi su questo server.',
-'notacceptable'     => 'Il server wiki non è in grado di fornire i dati in un formato leggibile dal client.',
+'notacceptable' => 'Il server wiki non è in grado di fornire i dati in un formato leggibile dal client.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utente anonimo|Utenti anonimi}} di {{SITENAME}}',

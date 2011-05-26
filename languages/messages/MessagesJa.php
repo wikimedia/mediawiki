@@ -2318,8 +2318,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'changed'                      => '変更',
 'created'                      => '作成',
 'enotif_subject'               => '{{SITENAME}}のページ「$PAGETITLE」が$PAGEEDITORによって$CHANGEDORCREATEDされました',
-'enotif_lastvisited'           => '最後に閲覧した後に行なわれた全てのの変更は、$1で見ることができます。',
-'enotif_lastdiff'              => 'この変更内容を表示するには$1をご覧ください。',
+'enotif_lastvisited'           => '最後に閲覧した後に行なわれた全ての変更は、 $1 で見ることができます。',
+'enotif_lastdiff'              => 'この変更内容を表示するには $1 をご覧ください。',
 'enotif_anon_editor'           => '匿名利用者：$1',
 'enotif_body'                  => '$WATCHINGUSERNAMEさん
 
@@ -2339,9 +2339,14 @@ $NEWPAGE
                          {{SITENAME}}通知システム
 
 --
-ウォッチリストの設定は、{{fullurl:{{#special:Watchlist}}/edit}}で変更できます。
+メール通知の設定は、次のページから変更してください。
+{{fullurl:{{#special:Preferences}}}}
 
-このページをウォッチリストから除去するには$UNWATCHURLをご覧ください。
+ウォッチリストの設定は、次のページから変更して下さい。
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+このページは、次のページでウォッチリストから除去することが出来ます。
+$UNWATCHURL
 
 ご意見、お問い合わせ：
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3018,9 +3023,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'vector.js'      => '/* ここにあるすべてのJavaScriptは、ベクター外装を使用している利用者に対して読み込まれます */',
 
 # Metadata
-'nodublincore'      => 'このサーバーではDublin Core RDFメタデータが無効になっています。',
-'nocreativecommons' => 'このサーバーではクリエイティブ・コモンズのRDFメタデータが無効化されています。',
-'notacceptable'     => 'ウィキサーバーは、使用中のクライアントが読める形式での情報を、提供できません。',
+'notacceptable' => 'ウィキサーバーは、使用中のクライアントが読める形式での情報を、提供できません。',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}の匿名{{PLURAL:$1|利用者}}',

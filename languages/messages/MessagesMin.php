@@ -638,9 +638,7 @@ Awak hanyo buliah lihek sumber se',
 'tooltip-summary'                 => 'Masuakan sabuah ringkasan pendek',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata dimatian untuak layanan ko',
-'nocreativecommons' => 'Creative Commons RDF metadata dimatian untuak layanan ko',
-'notacceptable'     => 'Layanan wiki indak manyadioan data dalam format yang dapek dibaco dek pelanggan awak.',
+'notacceptable' => 'Layanan wiki indak manyadioan data dalam format yang dapek dibaco dek pelanggan awak.',
 
 # Browsing diffs
 'previousdiff' => '← Revisi sabalunnyo',

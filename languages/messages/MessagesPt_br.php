@@ -2855,9 +2855,7 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'vector.js'      => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Vector */',
 
 # Metadata
-'nodublincore'      => 'Os metadados RDF para Dublin Core estão desabilitados neste servidor.',
-'nocreativecommons' => 'Os metadados RDF para Creative Commons estão desabilitados neste servidor.',
-'notacceptable'     => 'O servidor não pode fornecer os dados em um formato que o seu cliente possa ler.',
+'notacceptable' => 'O servidor não pode fornecer os dados em um formato que o seu cliente possa ler.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuário anônimo|Usuários anônimos}} da {{SITENAME}}',

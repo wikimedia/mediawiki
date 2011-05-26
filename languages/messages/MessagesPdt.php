@@ -574,9 +574,7 @@ Dee Grunt es: "$2"',
 'modern.js'      => '/* Daut neachste JavaScript woat fe Brucka mett Modern-Skin jelode. */',
 
 # Metadata
-'nodublincore'      => 'Dublin-Core-RDF-Metadote send fe disem Server nich aktiv.',
-'nocreativecommons' => 'Creative-Commons-RDF-Metadote send fe disem Server nich aktiv.',
-'notacceptable'     => 'Dee Wiki-Server kaun dee Dote nich soo reedmoake, daut dien Jereetschauft dee lese kaun.',
+'notacceptable' => 'Dee Wiki-Server kaun dee Dote nich soo reedmoake, daut dien Jereetschauft dee lese kaun.',
 
 # Attribution
 'anonymous'        => 'Onbekaunda Brucka {{PLURAL:$1|user|users}} von {{SITENAME}}',

@@ -2739,9 +2739,7 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'common.js' => '/* All JavaScript hei gëtt fir all Benotzer beim Luede vun all Säit gelueden. */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF Metadata ass op dësem Server ausgeschalt.',
-'nocreativecommons' => 'Creative Commons RDF Metadata ass op dësem Server ausgeschalt.',
-'notacceptable'     => "De Wiki-Server kann d'Donnéeë net an engem Format liwweren déi vun ärem Apparat geliest kënne ginn.",
+'notacceptable' => "De Wiki-Server kann d'Donnéeë net an engem Format liwweren déi vun ärem Apparat geliest kënne ginn.",
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonyme Benotzer|Anonym Benotzer}} op {{SITENAME}}',

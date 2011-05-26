@@ -8,6 +8,7 @@
  * @file
  *
  * @author -iNu-
+ * @author ArdWar
  * @author Bennylin
  * @author Borgx
  * @author Farras
@@ -2218,8 +2219,9 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'watchlist-options'    => 'Opsi daftar pantauan',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Memantau...',
-'unwatching' => 'Menghilangkan pemantauan...',
+'watching'       => 'Memantau...',
+'unwatching'     => 'Menghilangkan pemantauan...',
+'watcherrortext' => 'Terjadi kesalahan saat mengubah preferensi daftar pantauan Anda untuk " $1 ".',
 
 'enotif_mailer'                => 'Pengirim Notifikasi {{SITENAME}}',
 'enotif_reset'                 => 'Tandai semua halaman sebagai telah dikunjungi',
@@ -2897,9 +2899,7 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'vector.js'      => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Vector */',
 
 # Metadata
-'nodublincore'      => 'Metadata Dublin Core RDF dimatikan di server ini.',
-'nocreativecommons' => 'Metadata Creative Commons RDF dimatikan di server ini.',
-'notacceptable'     => 'Server wiki tidak dapat menyediakan data dalam format yang dapat dibaca oleh client Anda.',
+'notacceptable' => 'Server wiki tidak dapat menyediakan data dalam format yang dapat dibaca oleh client Anda.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|pengguna|para pengguna}} anonim {{SITENAME}}',

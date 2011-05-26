@@ -3121,9 +3121,7 @@ $1',
 'group-bureaucrat.js'    => '/* أي جافاسكريبت هنا سيتم تحميلها للبيروقراطيين فقط */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata معطلة لهذا الخادوم.',
-'nocreativecommons' => 'Creative Commons RDF metadata معطلة لهذا الخادوم.',
-'notacceptable'     => 'لا يمكن لخادوم الويكي تزويدك ببيانات بصيغة يستطيع عميلك قراءتها.',
+'notacceptable' => 'لا يمكن لخادوم الويكي تزويدك ببيانات بصيغة يستطيع عميلك قراءتها.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|مستخدم مجهول|مستخدمون مجهولون}} ل{{SITENAME}}',

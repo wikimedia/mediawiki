@@ -2639,9 +2639,7 @@ $1',
 'vector.js'      => '/* 響每一次個頁面載入時，用域達畫面嘅用戶都會載入呢度任何嘅JavaScript */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata 已經喺呢一個伺服器上停用。',
-'nocreativecommons' => 'Creative Commons RDF metadata 已經喺呢一個伺服器上停用。',
-'notacceptable'     => '呢個 wiki 伺服器唔能夠畀一個可以讀嘅資料畀個客。',
+'notacceptable' => '呢個 wiki 伺服器唔能夠畀一個可以讀嘅資料畀個客。',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}嘅匿名{{PLURAL:$1|用戶|用戶}}',

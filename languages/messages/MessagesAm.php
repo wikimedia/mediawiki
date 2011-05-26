@@ -1863,10 +1863,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-rollback'                => 'ROLLBACK የመጨረሻውን አዛጋጅ ለውጦች በፍጥነት ይገልበጣል።',
 'tooltip-undo'                    => '"መልስ" ይህን ቅድመ እይታ ወደ ቀድሞው የእርማት ቦታው መልስ። ማጠቃለያው ላይ ምክንያታችንን ለማስገባት ይፈቅድልናል።',
 
-# Metadata
-'nodublincore'      => 'Dublin Core RDF metadata ለዚህ ሰርቨር እንደማይሠራ ተደርጓል።',
-'nocreativecommons' => 'Creative Commons RDF metadata ለዚህ ሰርቨር እንደማይሠራ ተደርጓል።',
-
 # Attribution
 'anonymous'        => 'የ{{SITENAME}} ቁ. አድራሻ ተጠቃሚ(ዎች)',
 'siteuser'         => '{{SITENAME}} ተጠቃሚ $1',

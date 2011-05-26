@@ -2590,9 +2590,7 @@ Molimo Vas da opet pokušate.',
 'monobook.css' => '/* CSS stavljen ovde će se odnositi na korisnike Monobuk kože */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metapodaci onemogućeni za ovaj server.',
-'nocreativecommons' => 'Creative Commons RDF metapodaci onemogućeni za ovaj server.',
-'notacceptable'     => 'Viki server ne može da pruži podatke u onom formatu koji vaš klijent može da pročita.',
+'notacceptable' => 'Viki server ne može da pruži podatke u onom formatu koji vaš klijent može da pročita.',
 
 # Attribution
 'anonymous'        => 'Anonimni {{PLURAL:$1|korisnik|korisnici}} na {{SITENAME}}',

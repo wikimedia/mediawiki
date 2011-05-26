@@ -2902,9 +2902,7 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 'vector.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadáta pre tento server vypnuté.',
-'nocreativecommons' => 'Creative Commons RDF metadata pre tento server vypnuté.',
-'notacceptable'     => 'Wiki server nedokáže poskytovať dáta vo formáte, v akom ich váš klient vie čítať.',
+'notacceptable' => 'Wiki server nedokáže poskytovať dáta vo formáte, v akom ich váš klient vie čítať.',
 
 # Attribution
 'anonymous'        => '$1 {{PLURAL:$1|anonymný používateľ|anonymní používatelia|anonymných používateľov}} {{GRAMMAR:genitív|{{SITENAME}}}}',

@@ -1811,9 +1811,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'monobook.css' => '/* monobook temasınıñ ayarlarını (nastroykalarını) deñiştirmek içün bu yerini deñiştiriñiz. Bütün saytta tesirli olur. */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF meta malümatı bu server içün yasaqlı.',
-'nocreativecommons' => 'Creative Commons RDF meta malümatı bu server içün yasaqlı.',
-'notacceptable'     => 'Viki-server brauzeriñiz oqup olacaq formatında malümat beralmay.',
+'notacceptable' => 'Viki-server brauzeriñiz oqup olacaq formatında malümat beralmay.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} saytınıñ {{PLURAL:$1|1|$1}} qaydsız (anonim) qullanıcıları',

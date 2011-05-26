@@ -2685,9 +2685,7 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 'tooltip-summary'                 => "Mitte 'nu riepileghe piccinne",
 
 # Metadata
-'nodublincore'      => "'U metadata ''Dublin Core RDF'' ète disabbilitate pe stu server.",
-'nocreativecommons' => "'U metadata ''Creative Commons RDF'' ète disabilitate pe stu server.",
-'notacceptable'     => "'U server Uicchi non ge pò vedè le date jndr'à 'u formate ca 'u cliende tue pò leggere.",
+'notacceptable' => "'U server Uicchi non ge pò vedè le date jndr'à 'u formate ca 'u cliende tue pò leggere.",
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|utende|utinde}} anonime de {{SITENAME}}',

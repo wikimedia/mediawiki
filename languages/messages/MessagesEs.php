@@ -2888,9 +2888,7 @@ Permite añadir una razón al resumen de edición.',
 'vector.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector. */',
 
 # Metadata
-'nodublincore'      => 'Metadatos Dublin Core RDF deshabilitados en este servidor.',
-'nocreativecommons' => 'Metadatos Creative Commons RDF deshabilitados en este servidor.',
-'notacceptable'     => 'El servidor wiki no puede proveer los datos en un formato que su cliente (navegador) pueda entender.',
+'notacceptable' => 'El servidor wiki no puede proveer los datos en un formato que su cliente (navegador) pueda entender.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',

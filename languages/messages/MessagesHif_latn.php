@@ -2575,9 +2575,7 @@ Ii summary me ek kaaran jorre ke ijajat de hai.',
 'tooltip-summary'                 => 'Thora sabd me likho',
 
 # Metadata
-'nodublincore'      => 'Ii server ke khatir Dublin Core RDF metadata ke disable kar dewa gais hai',
-'nocreativecommons' => 'Ii server ke khatir Creative Commons RDF metadata ke disable kar dewa gais hai.',
-'notacceptable'     => 'Wiki server uu rakam se data nai dewe sake hai jisse ki aap ke client parrhe sake.',
+'notacceptable' => 'Wiki server uu rakam se data nai dewe sake hai jisse ki aap ke client parrhe sake.',
 
 # Attribution
 'anonymous'        => 'Anonymous {{PLURAL:$1|sadasya|sadasya}} {{SITENAME}} ke',

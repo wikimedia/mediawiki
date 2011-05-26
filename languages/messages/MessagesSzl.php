@@ -2080,9 +2080,7 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 Dozwalo na naszkryflańy powodu we uopiśe půmjyńań.',
 
 # Metadata
-'nodublincore'      => 'Metadane zgodne s Dublin Core RDF zostouy wůuůnčůne do tygo serwera.',
-'nocreativecommons' => 'Metadane zgodne s Creative Commons RDF zostouy wůuůnčůne do tygo serwera.',
-'notacceptable'     => 'Serwer wiki ńy je w stańy dostarčyć danych we formaće, kerygo Twoja přyglůndarka uočekuje.',
+'notacceptable' => 'Serwer wiki ńy je w stańy dostarčyć danych we formaće, kerygo Twoja přyglůndarka uočekuje.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anůńimowy użytkowńik|Anůńimowe użytkowńiki}} {{SITENAME}}',

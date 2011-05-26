@@ -2638,9 +2638,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'monobook.js' => '/* डिप्रिकेटेड;[[MediaWiki:common.js]] का इस्तेमाल करें */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata इस सर्वर के लिये प्राप्त नहीं हैं।',
-'nocreativecommons' => 'Creative Commons RDF metadata इस सर्वर के लिये प्राप्त नहीं हैं।',
-'notacceptable'     => 'विकि सर्वर आपके क्लायंटको जिस प्रकारसे डाटा चाहिये उस प्रकारसे नहीं दे सकता।',
+'notacceptable' => 'विकि सर्वर आपके क्लायंटको जिस प्रकारसे डाटा चाहिये उस प्रकारसे नहीं दे सकता।',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} के {{PLURAL:$1||}} बेनामी सदस्य',

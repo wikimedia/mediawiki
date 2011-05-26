@@ -2383,9 +2383,7 @@ Visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [ht
 'monobook.js' => "/* Lu còdici JavaScript nzirutu ccà veni carricatu di l'utenti c'ùsanu la skin MonoBook */",
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata disabbilitatu pi stu server.',
-'nocreativecommons' => 'Creative Commons RDF metadata disabbilitatu pi stu server.',
-'notacceptable'     => 'Lu server wiki nun pò furniri dati nta un furmatu liggìbbili dû tò client.',
+'notacceptable' => 'Lu server wiki nun pò furniri dati nta un furmatu liggìbbili dû tò client.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utenti anònimu|Utenti anònimi}} di {{SITENAME}}',

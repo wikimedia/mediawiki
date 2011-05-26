@@ -2668,9 +2668,7 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'monobook.css' => "/* Ovay ity rakitra ity raha hampiasa takilan'angaly (stylesheet) anao manokana amin'ny wiki iray manontolo */",
 
 # Metadata
-'nodublincore'      => "Tsy nalefa ny metadata « Dublin Core RDF » eto amin'ity lohamilina ity.",
-'nocreativecommons' => "Tsy alefa eto amin'ity lohamilina ity ny metadata « Dublin Core RDF ».",
-'notacceptable'     => "Tsy afaka manome données amin'ny format zakan'ny navigateur-nao ny serveur wiki.",
+'notacceptable' => "Tsy afaka manome données amin'ny format zakan'ny navigateur-nao ny serveur wiki.",
 
 # Attribution
 'anonymous'        => "Mpikambana {{PLURAL:$1}} tsy mitonona anarana eto amin'ny {{SITENAME}}",

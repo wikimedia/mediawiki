@@ -1794,9 +1794,7 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'tooltip-undo'                    => "\"Annulla\"  pilmitti d'annullà chistha mudifigga e abbri lu modulu di mudifigga d'antiprimma. Pilmitti d'insirì una mutibazioni i' l'oggettu di la mudifigga.",
 
 # Metadata
-'nodublincore'      => "Metadati Dublin Core RDF nò attibi i' chisthu server.",
-'nocreativecommons' => "Metadati Commons RDF nò attibi i' chisthu server.",
-'notacceptable'     => "Lu server wiki nò è bonu a frunì li dati i' un fuimmaddu liggìbiri da lu nabiggadori utirizaddu.",
+'notacceptable' => "Lu server wiki nò è bonu a frunì li dati i' un fuimmaddu liggìbiri da lu nabiggadori utirizaddu.",
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utenti anonimu|utenti anonimi}} di {{SITENAME}}',

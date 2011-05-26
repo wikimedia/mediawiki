@@ -1868,9 +1868,7 @@ Va [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] is [http:
 Ise va bazera va lazava ko vildeks nover.',
 
 # Metadata
-'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',
-'nocreativecommons' => 'Les données méta « Creative Commons RDF » sont désactivées sur ce serveur.',
-'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
+'notacceptable' => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
 
 # Attribution
 'anonymous'        => 'Yoltiskaf {{PLURAL:$1|favesik|favesik}} va {{SITENAME}}',

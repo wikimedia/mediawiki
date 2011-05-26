@@ -2735,9 +2735,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'tooltip-summary'                 => 'ટૂંક સારાંશ ઉમેરો',
 
 # Metadata
-'nodublincore'      => 'સર્વર માટે Dublin Core RDF metadata નિષ્ક્રીય કરાયો.',
-'nocreativecommons' => 'આ સર્વર માટે કલાકૃતિ Commons RDF metadata નિષ્ક્રીય કરાયો.',
-'notacceptable'     => 'તમારા ગ્રાહક સમજી શકે તે રીતે વિકિ માહિતી નહીં આપી શકે',
+'notacceptable' => 'તમારા ગ્રાહક સમજી શકે તે રીતે વિકિ માહિતી નહીં આપી શકે',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} ના અ‍જ્ઞાત {{PLURAL:$1|સભ્ય|સભ્યો}}',

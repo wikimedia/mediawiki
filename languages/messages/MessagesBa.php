@@ -2584,9 +2584,7 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 'tooltip-summary'                 => 'Ҡыҫҡаса тасуирлама керетегеҙ',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF мета-мәғлүмәт был сервер өсөн рөхсәт ителмәй.',
-'nocreativecommons' => 'Creative Commons RDF мета-мәғлүмәт был сервер өсөн рөхсәт ителмәй.',
-'notacceptable'     => 'Вики-сервер мәғлүмәтте һеҙҙең браузер уҡый алырлыҡ форматта ҡайтара алмай.<br />
+'notacceptable' => 'Вики-сервер мәғлүмәтте һеҙҙең браузер уҡый алырлыҡ форматта ҡайтара алмай.<br />
 The wiki server cannot provide data in a format your client can read.',
 
 # Attribution

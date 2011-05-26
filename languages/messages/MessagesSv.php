@@ -2928,9 +2928,7 @@ Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
 'vector.js'      => '/* JavaScript här kommer att laddas för dem som använder skalet Vector */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata avstängt på den här servern.',
-'nocreativecommons' => 'Creative Commons RDF metadata avstängd på denna server.',
-'notacceptable'     => 'Den här wiki-servern kan inte erbjuda data i ett format som din klient kan läsa.',
+'notacceptable' => 'Den här wiki-servern kan inte erbjuda data i ett format som din klient kan läsa.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym användare|Anonyma användare}} på {{SITENAME}}',

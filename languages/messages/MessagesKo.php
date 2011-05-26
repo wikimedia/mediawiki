@@ -2869,9 +2869,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다. */',
 
 # Metadata
-'nodublincore'      => '더블린 코어 RDF 메타데이터 기능은 비활성되어 있습니다.',
-'nocreativecommons' => '크리에이티브 커먼즈 RDF 메타데이터 기능은 비활성되어 있습니다.',
-'notacceptable'     => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
+'notacceptable' => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1}}{{SITENAME}} 익명 사용자',

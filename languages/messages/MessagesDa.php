@@ -2230,9 +2230,8 @@ og den seneste version af $2 er gendannet.',
 'viewdeletedpage'              => 'Vis slettede sider',
 'undeletepagetext'             => '{{PLURAL:$1|Den følgende side er slettet, men den|De følgende sider er slettede, men de}} findes fortsat i arkivet og kan gendannes. Arkivet bliver periodevis slettet.',
 'undelete-fieldset-title'      => 'Gendan versioner',
-'undeleteextrahelp'            => "For at gendanne siden komplet med alle versioner skal du lade alle afkrydsningsfelterne forblive tomme og klikke på '''''Gendan'''''.
-For at gendanne bestemte versioner, vælges disse enkeltvis i afkrydsningsfelterne før der klikkes '''''Gendan'''''.
-Et klik på '''''Afbryd''''' tømmer kommentarfeltet og fjerner alle markeringer ved versionerne.",
+'undeleteextrahelp'            => "For at gendanne siden komplet med alle versioner skal du lade alle afkrydsningsfelterne forblive tomme og klikke på '''''{{int:undeletebtn}}'''''.
+For at gendanne bestemte versioner vælges disse enkeltvis i afkrydsningsfelterne før der klikkes '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisioner}} arkiveret',
 'undeletehistory'              => 'Hvis du gendanner siden, vil alle tidligere versioner blive gendannet i historikken.
 Hvis en ny side med det samme navn er oprettet efter sletningen, så vil de gendannede versioner dukke op i historikken.',
@@ -2726,9 +2725,7 @@ Det giver mulighed for at tilføje en begrundelse i beskrivelsen.',
 'monobook.js' => '/* Udgået; brug [[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF-metadata er slået fra på denne server.',
-'nocreativecommons' => 'Creative Commons RDF-metadata er slået fra på denne server.',
-'notacceptable'     => 'Wiki-serveren kan ikke levere data i et format, som din klient understøtter.',
+'notacceptable' => 'Wiki-serveren kan ikke levere data i et format, som din klient understøtter.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym bruger|Anonyme brugere}} på {{SITENAME}}',

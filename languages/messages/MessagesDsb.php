@@ -2649,9 +2649,7 @@ W zespominanju dajo se pśicyna pódaś.',
 'monobook.js' => '/* Slědujucy JavaScript zacytajo se za wužywarjow, kótarež skin MonoBook wužywaju */',
 
 # Metadata
-'nodublincore'      => 'Metadaty Dublin Core RDF su za toś ten serwer deaktiwěrowane.',
-'nocreativecommons' => 'Metadaty Creative Commons RDF su za toś ten serwer deaktiwěrowane.',
-'notacceptable'     => 'Wiki-serwer njamóžo daty za twój klient wobźěłaś.',
+'notacceptable' => 'Wiki-serwer njamóžo daty za twój klient wobźěłaś.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymny wužywaŕ|Anonymnej wužywarja|Anonymne wužywarje}} na {{SITENAME}}',

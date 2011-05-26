@@ -2476,9 +2476,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'monobook.css' => '/* disse Datei ännern üm de Monobook-Stilvörlaag för de ganze Siet antopassen */',
 
 # Metadata
-'nodublincore'      => 'Dublin-Core-RDF-Metadaten sünd för dissen Server nich aktiveert.',
-'nocreativecommons' => 'Creative-Commons-RDF-Metadaten sünd för dissen Server nich aktiveert.',
-'notacceptable'     => 'Dat Wiki-Server kann kene Daten in enen Format levern, dat dien Klient lesen kann.',
+'notacceptable' => 'Dat Wiki-Server kann kene Daten in enen Format levern, dat dien Klient lesen kann.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym Bruker|Anonyme Brukers}} vun {{SITENAME}}',

@@ -2552,9 +2552,7 @@ Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 'monobook.js' => '/* Ferallerd; benutsje insteede deerfon [[MediaWiki:common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Dublin-Core-RDF-Metadoaten sunt foar dissen Server deaktivierd.',
-'nocreativecommons' => 'Creative-Commons-RDF-Metadoaten sunt foar dissen Server deaktivierd.',
-'notacceptable'     => 'Die Wiki-Server kon do Doaten foar dien Uutgoawe-Reewe nit apberaitje.',
+'notacceptable' => 'Die Wiki-Server kon do Doaten foar dien Uutgoawe-Reewe nit apberaitje.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymen Benutser|Anonyme Benutsere}} ap {{SITENAME}}',

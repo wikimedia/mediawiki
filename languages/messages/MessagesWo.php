@@ -2138,9 +2138,7 @@ Dafay tax nga man a bind ngirte li ci boyotu tënk bi.',
 'modern.js'      => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Modern keppa koy yeb */',
 
 # Metadata
-'nodublincore'      => 'Jégginjoxe yu « Dublin Core RDF » dooxuñu ci joxekaay bii.',
-'nocreativecommons' => 'Jégginjoxe yu « Creative Commons RDF » doxuñu ci joxekaay bii.',
-'notacceptable'     => 'Bii joxekaay bu wiki manuta jébbal ay njoxe cib kem bu sa client mana jàng.',
+'notacceptable' => 'Bii joxekaay bu wiki manuta jébbal ay njoxe cib kem bu sa client mana jàng.',
 
 # Attribution
 'anonymous'        => 'Benn walla ay jëfandikukat yu binduwul yu {{SITENAME}}',

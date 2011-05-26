@@ -2797,9 +2797,7 @@ $1',
 'vector.js'      => '/* اى جافاسكريبت هنا حتتحمل لكل يوزر بيستخدم واجهة فكتور */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata متعطلة للسيرفر دا.',
-'nocreativecommons' => 'Creative Commons RDF metadata متعطلة  للسيرفر دا.',
-'notacceptable'     => 'السيرفر بتاع الويكى مش ممكن يديلك بيانات بصيغة ممكن عميلك يقراها.',
+'notacceptable' => 'السيرفر بتاع الويكى مش ممكن يديلك بيانات بصيغة ممكن عميلك يقراها.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|يوزر مجهول|يوزرز مجهولين}} ل {{SITENAME}}',
