@@ -85,6 +85,9 @@ class LinkCache {
 			'revision' => intval( $revision ) );
 	}
 
+	/**
+	 * @param $title Title
+	 */
 	public function addBadLinkObj( $title ) {
 		$dbkey = $title->getPrefixedDbKey();
 		if ( !$this->isBadLink( $dbkey ) ) {
@@ -96,6 +99,9 @@ class LinkCache {
 		unset( $this->mBadLinks[$title] );
 	}
 
+	/**
+	 * @param $title Title
+	 */
 	public function clearLink( $title ) {
 		$dbkey = $title->getPrefixedDbKey();
 		if( isset($this->mBadLinks[$dbkey]) ) {

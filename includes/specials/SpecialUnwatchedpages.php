@@ -60,6 +60,11 @@ class UnwatchedpagesPage extends QueryPage {
 		return array( 'page_namespace', 'page_title' );
 	}
 
+	/**
+	 * @param $skin Skin
+	 * @param $result
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 

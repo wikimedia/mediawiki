@@ -61,6 +61,11 @@ class ShortPagesPage extends QueryPage {
 		return array( 'page_len' );
 	}
 
+	/**
+	 * @param $db DatabaseBase
+	 * @param $res
+	 * @return void
+	 */
 	function preprocessResults( $db, $res ) {
 		# There's no point doing a batch check if we aren't caching results;
 		# the page must exist for it to have been pulled out of the table

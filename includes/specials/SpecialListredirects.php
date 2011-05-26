@@ -63,6 +63,8 @@ class ListredirectsPage extends QueryPage {
 
 	/**
 	 * Cache page existence for performance
+	 *
+	 * @param $db DatabaseBase
 	 */
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;

@@ -48,6 +48,11 @@ class PopularPagesPage extends QueryPage {
 					'page_namespace' => MWNamespace::getContentNamespaces() ) );
 	}
 
+	/**
+	 * @param $skin Skin
+	 * @param $result
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 		$title = Title::makeTitle( $result->namespace, $result->title );

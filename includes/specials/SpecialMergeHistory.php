@@ -35,6 +35,10 @@ class SpecialMergeHistory extends SpecialPage {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
 	}
 
+	/**
+	 * @param $request WebRequest
+	 * @return void
+	 */
 	private function loadRequestParams( $request ) {
 		global $wgUser;
 

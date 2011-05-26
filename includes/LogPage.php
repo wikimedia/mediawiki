@@ -38,7 +38,18 @@ class LogPage {
 	const SUPPRESSED_USER = 12;
 	const SUPPRESSED_ACTION = 9;
 	/* @access private */
-	var $type, $action, $comment, $params, $target, $doer;
+	var $type, $action, $comment, $params;
+
+	/**
+	 * @var User
+	 */
+	var $doer;
+
+	/**
+	 * @var Title
+	 */
+	var $target;
+
 	/* @acess public */
 	var $updateRecentChanges, $sendToUDP;
 
