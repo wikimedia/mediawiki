@@ -49,7 +49,6 @@ $wgAutoloadLocalClasses = array(
 	'ConfEditorToken' => 'includes/ConfEditor.php',
 	'Cookie' => 'includes/Cookie.php',
 	'CookieJar' => 'includes/Cookie.php',
-	'CreativeCommonsRdf' => 'includes/Metadata.php',
 	'DiffHistoryBlob' => 'includes/HistoryBlob.php',
 	'DjVuImage' => 'includes/DjVuImage.php',
 	'DoubleReplacer' => 'includes/StringUtils.php',
