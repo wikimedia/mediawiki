@@ -1166,7 +1166,6 @@ class SpecialUndelete extends SpecialPage {
 						<td>&#160;</td>
 						<td class='mw-submit'>" .
 							Xml::submitButton( wfMsg( 'undeletebtn' ), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) . ' ' .
-							Xml::element( 'input', array( 'type' => 'reset', 'value' => wfMsg( 'undeletereset' ), 'id' => 'mw-undelete-reset' ) ) . ' ' .
 							Xml::submitButton( wfMsg( 'undeleteinvert' ), array( 'name' => 'invert', 'id' => 'mw-undelete-invert' ) ) .
 						"</td>
 					</tr>" .
