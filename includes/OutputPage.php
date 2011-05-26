@@ -2703,7 +2703,6 @@ class OutputPage {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
 			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
-			$wgEnableCreativeCommonsRdf,
 			$wgDisableLangConversion, $wgCanonicalLanguageLinks, $wgContLang,
 			$wgRightsPage, $wgRightsUrl;
 
@@ -2826,24 +2825,6 @@ class OutputPage {
 				'type' => 'application/rsd+xml',
 				'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ) ),
 			) );
-		}
-
-		# Metadata links
-		# - Creative Commons
-		#   See http://wiki.creativecommons.org/Extend_Metadata.
-		# - Dublin Core
-		#   Use hreflang to specify canonical and alternate links
-		#   See http://www.google.com/support/webmasters/bin/answer.py?answer=189077
-		if ( $this->isArticleRelated() ) {
-			# note: buggy CC software only reads first "meta" link
-			if ( $wgEnableCreativeCommonsRdf ) {
-				$tags[] = Html::element( 'link', array(
-					'rel' => $this->getMetadataAttribute(),
-					'title' => 'Creative Commons',
-					'type' => 'application/rdf+xml',
-					'href' => $this->getTitle()->getLocalURL( 'action=creativecommons' ) )
-				);
-			}
 		}
 
 		# Language variants

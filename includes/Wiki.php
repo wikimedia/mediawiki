@@ -406,8 +406,7 @@ class MediaWiki {
 	 * @param $article Article
 	 */
 	private function performAction( $article ) {
-		global $wgSquidMaxage, $wgUseExternalEditor,
-			$wgEnableCreativeCommonsRdf;
+		global $wgSquidMaxage, $wgUseExternalEditor;
 
 		wfProfileIn( __METHOD__ );
 
@@ -449,14 +448,6 @@ class MediaWiki {
 			case 'render':
 			case 'deletetrackback':
 				$article->$act();
-				break;
-			case 'creativecommons':
-				if ( !$wgEnableCreativeCommonsRdf ) {
-					wfHttpError( 403, 'Forbidden', wfMsg( 'nocreativecommons' ) );
-				} else {
-					$rdf = new CreativeCommonsRdf( $article );
-					$rdf->show();
-				}
 				break;
 			case 'submit':
 				if ( session_id() == '' ) {

@@ -2489,7 +2489,6 @@ $wgMessageStructure = array(
 		'group-bureaucrat.js',
 	),
 	'metadata_cc' => array(
-		'nocreativecommons',
 		'notacceptable',
 	),
 	'attribution' => array(

@@ -4406,9 +4406,6 @@ $wgUseTagFilter = true;
  * @{
  */
 
-/** RDF metadata toggles */
-$wgEnableCreativeCommonsRdf = false;
-
 /** Override for copyright metadata.
  * TODO: these options need documentation
  */
