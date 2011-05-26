@@ -109,7 +109,14 @@ class Parser {
 	var $mImageParamsMagicArray = array();
 	var $mMarkerIndex = 0;
 	var $mFirstCall = true;
-	var $mVariables, $mSubstWords; # Initialised by initialiseVariables()
+
+	# Initialised by initialiseVariables()
+	var $mVariables;
+
+	/**
+	 * @var MagicWordArray
+	 */
+	var $mSubstWords;
 	var $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
 
 	# Cleared with clearState():
@@ -125,7 +132,12 @@ class Parser {
 	var $mStripState;
 
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
-	var $mLinkHolders, $mLinkID;
+	/**
+	 * @var LinkHolderArray
+	 */
+	var $mLinkHolders;
+
+	var $mLinkID;
 	var $mIncludeSizes, $mPPNodeCount, $mDefaultSort;
 	var $mTplExpandCache; # empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
@@ -3518,6 +3530,9 @@ class Parser {
 	/**
 	 * Transclude an interwiki link.
 	 *
+	 * @param $title Title
+	 * @param $action
+	 *
 	 * @return string
 	 */
 	function interwikiTransclude( $title, $action ) {
@@ -5010,6 +5025,11 @@ class Parser {
 		return $ret;
 	}
 
+	/**
+	 * @param $caption
+	 * @param $holders LinkHolderArray
+	 * @return mixed|String
+	 */
 	protected function stripAltText( $caption, $holders ) {
 		# Strip bad stuff out of the title (tooltip).  We can't just use
 		# replaceLinkHoldersText() here, because if this function is called

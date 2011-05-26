@@ -24,10 +24,17 @@ class Preprocessor_Hash implements Preprocessor {
 		$this->parser = $parser;
 	}
 
+	/**
+	 * @return PPFrame_Hash
+	 */
 	function newFrame() {
 		return new PPFrame_Hash( $this );
 	}
 
+	/**
+	 * @param $args
+	 * @return PPCustomFrame_Hash
+	 */
 	function newCustomFrame( $args ) {
 		return new PPCustomFrame_Hash( $this, $args );
 	}
@@ -1231,6 +1238,13 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	var $numberedArgs, $namedArgs, $parent;
 	var $numberedExpansionCache, $namedExpansionCache;
 
+	/**
+	 * @param $preprocessor
+	 * @param $parent
+	 * @param $numberedArgs array
+	 * @param $namedArgs array
+	 * @param $title Title
+	 */
 	function __construct( $preprocessor, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
 		parent::__construct( $preprocessor );
 
@@ -1267,11 +1281,16 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 	/**
 	 * Returns true if there are no arguments in this frame
+	 *
+	 * @return bool
 	 */
 	function isEmpty() {
 		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getArguments() {
 		$arguments = array();
 		foreach ( array_merge(
@@ -1282,6 +1301,9 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		return $arguments;
 	}
 
+	/**
+	 * @return array
+	 */
 	function getNumberedArguments() {
 		$arguments = array();
 		foreach ( array_keys($this->numberedArgs) as $key ) {
@@ -1290,6 +1312,9 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		return $arguments;
 	}
 
+	/**
+	 * @return array
+	 */
 	function getNamedArguments() {
 		$arguments = array();
 		foreach ( array_keys($this->namedArgs) as $key ) {

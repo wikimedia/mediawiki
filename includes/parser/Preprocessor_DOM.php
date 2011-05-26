@@ -1157,6 +1157,8 @@ class PPFrame_DOM implements PPFrame {
 	/**
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
+	 *
+	 * @return array
 	 */
 	function virtualImplode( $sep /*, ... */ ) {
 		$args = array_slice( func_get_args(), 1 );
@@ -1424,6 +1426,9 @@ class PPNode_DOM implements PPNode {
 		$this->node = $node;
 	}
 
+	/**
+	 * @return DOMXPath
+	 */
 	function getXPath() {
 		if ( $this->xpath === null ) {
 			$this->xpath = new DOMXPath( $this->node->ownerDocument );
@@ -1443,22 +1448,39 @@ class PPNode_DOM implements PPNode {
 		return $s;
 	}
 
+	/**
+	 * @return bool|PPNode_DOM
+	 */
 	function getChildren() {
 		return $this->node->childNodes ? new self( $this->node->childNodes ) : false;
 	}
 
+	/**
+	 * @return bool|PPNode_DOM
+	 */
 	function getFirstChild() {
 		return $this->node->firstChild ? new self( $this->node->firstChild ) : false;
 	}
 
+	/**
+	 * @return bool|PPNode_DOM
+	 */
 	function getNextSibling() {
 		return $this->node->nextSibling ? new self( $this->node->nextSibling ) : false;
 	}
 
+	/**
+	 * @param $type
+	 *
+	 * @return bool|PPNode_DOM
+	 */
 	function getChildrenOfType( $type ) {
 		return new self( $this->getXPath()->query( $type, $this->node ) );
 	}
 
+	/**
+	 * @return int
+	 */
 	function getLength() {
 		if ( $this->node instanceof DOMNodeList ) {
 			return $this->node->length;
@@ -1467,11 +1489,18 @@ class PPNode_DOM implements PPNode {
 		}
 	}
 
+	/**
+	 * @param $i
+	 * @return bool|PPNode_DOM
+	 */
 	function item( $i ) {
 		$item = $this->node->item( $i );
 		return $item ? new self( $item ) : false;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getName() {
 		if ( $this->node instanceof DOMNodeList ) {
 			return '#nodelist';
@@ -1485,6 +1514,8 @@ class PPNode_DOM implements PPNode {
 	 *    name          PPNode name
 	 *    index         String index
 	 *    value         PPNode value
+	 *
+	 * @return array
 	 */
 	function splitArg() {
 		$xpath = $this->getXPath();
@@ -1504,6 +1535,8 @@ class PPNode_DOM implements PPNode {
 	/**
 	 * Split an <ext> node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
+	 *
+	 * @return array
 	 */
 	function splitExt() {
 		$xpath = $this->getXPath();
