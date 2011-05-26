@@ -138,15 +138,14 @@ function wfIndexMain() {
 		wfProfileOut( 'index.php-filecache' );
 	}
 
-	$mediaWiki->performRequestForTitle( $article );
-
 	/**
 	 * $wgArticle is deprecated, do not use it. This will possibly be removed
 	 * entirely in 1.20 or 1.21
 	 * @deprecated since 1.19
 	 */
 	global $wgArticle;
-	$wgArticle = $article;
+
+	$wgArticle = $mediaWiki->performRequest();
 
 	$mediaWiki->finalCleanup();
 

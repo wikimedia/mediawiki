@@ -26,57 +26,6 @@ class MediaWiki {
 	}
 
 	/**
-	 * Initialization of ... everything
-	 * Performs the request too
-	 *
-	 * @param $article Article
-	 */
-	public function performRequestForTitle( &$article ) {
-		wfProfileIn( __METHOD__ );
-
-		if ( $this->context->request->getVal( 'printable' ) === 'yes' ) {
-			$this->context->output->setPrintable();
-		}
-
-		wfRunHooks( 'BeforeInitialize', array(
-			&$this->context->title,
-			&$article,
-			&$this->context->output,
-			&$this->context->user,
-			$this->context->request,
-			$this
-		) );
-
-		// If the user is not logged in, the Namespace:title of the article must be in
-		// the Read array in order for the user to see it. (We have to check here to
-		// catch special pages etc. We check again in Article::view())
-		if ( !is_null( $this->context->title ) && !$this->context->title->userCanRead() ) {
-			$this->context->output->loginToUse();
-			$this->finalCleanup();
-			$this->context->output->disable();
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-
-		// Call handleSpecialCases() to deal with all special requests...
-		if ( !$this->handleSpecialCases() ) {
-			// ...otherwise treat it as an article view. The article
-			// may be a redirect to another article or URL.
-			$new_article = $this->initializeArticle();
-			if ( is_object( $new_article ) ) {
-				$article = $new_article;
-				$this->performAction( $article );
-			} elseif ( is_string( $new_article ) ) {
-				$this->context->output->redirect( $new_article );
-			} else {
-				wfProfileOut( __METHOD__ );
-				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
-			}
-		}
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
 	 * Parse $request to get the Title object
 	 *
 	 * @return Title object to be $wgTitle
@@ -135,23 +84,42 @@ class MediaWiki {
 	}
 
 	/**
-	 * Initialize some special cases:
+	 * Performs the request.
 	 * - bad titles
+	 * - read restriction
 	 * - local interwiki redirects
 	 * - redirect loop
 	 * - special pages
+	 * - normal pages
 	 *
-	 * @return bool true if the request is already executed
+	 * @return Article object
 	 */
-	private function handleSpecialCases() {
+	public function performRequest() {
 		global $wgServer, $wgUsePathInfo;
 
 		wfProfileIn( __METHOD__ );
 
+		if ( $this->context->request->getVal( 'printable' ) === 'yes' ) {
+			$this->context->output->setPrintable();
+		}
+
+		wfRunHooks( 'BeforeInitialize', array(
+			&$this->context->title,
+			null,
+			&$this->context->output,
+			&$this->context->user,
+			$this->context->request,
+			$this
+		) );
+
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( $this->context->title instanceof BadTitle ) {
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
-
+		// If the user is not logged in, the Namespace:title of the article must be in
+		// the Read array in order for the user to see it. (We have to check here to
+		// catch special pages etc. We check again in Article::view())
+		} else if ( !$this->context->title->userCanRead() ) {
+			$this->context->output->loginToUse();
 		// Interwiki redirects
 		} else if ( $this->context->title->getInterwiki() != '' ) {
 			$rdfrom = $this->context->request->getVal( 'rdfrom' );
@@ -205,8 +173,6 @@ class MediaWiki {
 						"to true.";
 				}
 				wfHttpError( 500, "Internal error", $message );
-				wfProfileOut( __METHOD__ );
-				return false;
 			} else {
 				$this->context->output->setSquidMaxage( 1200 );
 				$this->context->output->redirect( $targetUrl, '301' );
@@ -216,13 +182,21 @@ class MediaWiki {
 			// actions that need to be made when we have a special pages
 			SpecialPageFactory::executePath( $this->context->title, $this->context );
 		} else {
-			// No match to special cases
-			wfProfileOut( __METHOD__ );
-			return false;
+			// ...otherwise treat it as an article view. The article
+			// may be a redirect to another article or URL.
+			$article = $this->initializeArticle();
+			if ( is_object( $article ) ) {
+				$this->performAction( $article );
+				wfProfileOut( __METHOD__ );
+				return $article;
+			} elseif ( is_string( $new_article ) ) {
+				$this->context->output->redirect( $new_article );
+			} else {
+				wfProfileOut( __METHOD__ );
+				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
+			}
 		}
-		// Did match a special case
 		wfProfileOut( __METHOD__ );
-		return true;
 	}
 
 	/**
