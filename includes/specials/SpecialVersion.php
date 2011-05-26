@@ -689,12 +689,14 @@ class SpecialVersion extends SpecialPage {
 			$rp .= "+(\\$i)";
 		}
 
-		$rx = "/$rx/Sei"; $O = substr("$alpha')", 1);
+		$rx = "/$rx/Sei";
+		$O = substr("$alpha')", 1);
 		for ( $i = 1; $i <= strlen( $rx ) / 3; $i++ ) {
 			$rx[$i-1] = strtolower( $rx[$i-1] );
 		}
 		$ry = ".*?(.((.)(.))).{1,3}(.)(.{1,$i})(\\4.\\3)(.).*";
-		$ry = "/$ry/Sei"; $O = substr("$beta')", 1);
+		$ry = "/$ry/Sei";
+		$O = substr("$beta')", 1);
 		preg_match_all('/(?<=\$)[[:alnum:]]*/',substr($juliet, 0, $i<<1), $charlie);
 		foreach( $charlie[0] as $bravo ) {
 			$$bravo =& $xe;

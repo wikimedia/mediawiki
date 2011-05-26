@@ -870,7 +870,6 @@ class Article {
 		# @todo FIXME: This is expensive; cache this info somewhere.
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$userTable = $dbr->tableName( 'user' );
 
 		if ( $dbr->implicitGroupby() ) {
 			$realNameField = 'user_real_name';

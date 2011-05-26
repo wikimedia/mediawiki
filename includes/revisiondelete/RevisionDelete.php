@@ -53,10 +53,10 @@ class RevDel_RevisionList extends RevDel_List {
 		} else {
 			// Combine the two! Whee
 			$rows = array();
-			while ( $row = $live->fetchObject() ) {
+			foreach ( $live as $row ) {
 				$rows[$row->rev_id] = $row;
 			}
-			while ( $row = $archived->fetchObject() ) {
+			foreach ( $archived as $row ) {
 				$rows[$row->ar_rev_id] = $row;
 			}
 			krsort( $rows );

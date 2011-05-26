@@ -731,7 +731,6 @@ class WebInstaller_Name extends WebInstallerPage {
 
 		// Validate password
 		$msg = false;
-		$valid = false;
 		$pwd = $this->getVar( '_AdminPassword' );
 		$user = User::newFromName( $cname );
 		$valid = $user && $user->getPasswordValidity( $pwd );

@@ -950,7 +950,6 @@ class Parser {
 	 * @private
 	 */
 	function getCellAttr ( $cell, $tagName ) {
-		$content = null;
 		$attributes = null;
 
 		$cell = trim ( $cell );
@@ -965,8 +964,7 @@ class Parser {
 		}
 		else if ( count ( $cellData ) == 1 ) {
 			$content = trim ( $cellData[0] );
-		}
-		else {
+		} else {
 			$attributes = $this->mStripState->unstripBoth( $cellData[0] );
 			$attributes = Sanitizer::fixTagAttributes( $attributes , $tagName );
 
