@@ -12,6 +12,10 @@
  * @ingroup Media
  */
 class DjVuHandler extends ImageHandler {
+
+	/**
+	 * @return bool
+	 */
 	function isEnabled() {
 		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
 		if ( !$wgDjvuRenderer || ( !$wgDjvuDump && !$wgDjvuToXML ) ) {
@@ -22,9 +26,25 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
-	function mustRender( $file ) { return true; }
-	function isMultiPage( $file ) { return true; }
+	/**
+	 * @param $file
+	 * @return bool
+	 */
+	function mustRender( $file ) {
+		return true;
+	}
 
+	/**
+	 * @param $file
+	 * @return bool
+	 */
+	function isMultiPage( $file ) {
+		return true;
+	}
+
+	/**
+	 * @return array
+	 */
 	function getParamMap() {
 		return array(
 			'img_width' => 'width',
@@ -32,6 +52,11 @@ class DjVuHandler extends ImageHandler {
 		);
 	}
 
+	/**
+	 * @param $name
+	 * @param $value
+	 * @return bool
+	 */
 	function validateParam( $name, $value ) {
 		if ( in_array( $name, array( 'width', 'height', 'page' ) ) ) {
 			if ( $value <= 0 ) {
@@ -44,6 +69,10 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
+	/**
+	 * @param $params
+	 * @return bool|string
+	 */
 	function makeParamString( $params ) {
 		$page = isset( $params['page'] ) ? $params['page'] : 1;
 		if ( !isset( $params['width'] ) ) {
@@ -52,6 +81,10 @@ class DjVuHandler extends ImageHandler {
 		return "page{$page}-{$params['width']}px";
 	}
 
+	/**
+	 * @param $str
+	 * @return array|bool
+	 */
 	function parseParamString( $str ) {
 		$m = false;
 		if ( preg_match( '/^page(\d+)-(\d+)px$/', $str, $m ) ) {
@@ -61,6 +94,10 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
+	/**
+	 * @param $params
+	 * @return array
+	 */
 	function getScriptParams( $params ) {
 		return array(
 			'width' => $params['width'],
@@ -133,6 +170,8 @@ class DjVuHandler extends ImageHandler {
 
 	/**
 	 * Cache an instance of DjVuImage in an Image object, return that instance
+	 *
+	 * @return DjVuImage
 	 */
 	function getDjVuImage( $image, $path ) {
 		if ( !$image ) {

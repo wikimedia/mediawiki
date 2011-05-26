@@ -41,6 +41,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		'CREATE TEMPORARY TABLES',
 	);
 
+	/**
+	 * @return string
+	 */
 	public function getName() {
 		return 'mysql';
 	}
@@ -49,14 +52,23 @@ class MysqlInstaller extends DatabaseInstaller {
 		parent::__construct( $parent );
 	}
 
+	/**
+	 * @return Bool
+	 */
 	public function isCompiled() {
 		return self::checkExtension( 'mysql' );
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getGlobalDefaults() {
 		return array();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getConnectForm() {
 		return
 			$this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
@@ -111,6 +123,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
+	/**
+	 * @return Status
+	 */
 	public function openConnection() {
 		$status = Status::newGood();
 		try {
@@ -187,6 +202,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	/**
 	 * Get a list of storage engines that are available and supported
+	 *
+	 * @return array
 	 */
 	public function getEngines() {
 		$engines = array( 'InnoDB', 'MyISAM' );
@@ -215,6 +232,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	/**
 	 * Get a list of character sets that are available and supported
+	 *
+	 * @return array
 	 */
 	public function getCharsets() {
 		$status = $this->getConnection();
@@ -231,6 +250,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	/**
 	 * Return true if the install user can create accounts
+	 *
+	 * @return bool
 	 */
 	public function canCreateAccounts() {
 		$status = $this->getConnection();
@@ -304,6 +325,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getSettingsForm() {
 		if ( $this->canCreateAccounts() ) {
 			$noCreateMsg = false;
@@ -368,6 +392,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		return $s;
 	}
 
+	/**
+	 * @return Status
+	 */
 	public function submitSettingsForm() {
 		$this->setVarsFromRequest( array( '_MysqlEngine', '_MysqlCharset' ) );
 		$status = $this->submitWebUserBox();
@@ -423,6 +450,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		$this->parent->addInstallStep( $callback, 'tables' );
 	}
 
+	/**
+	 * @return Status
+	 */
 	public function setupDatabase() {
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
@@ -438,6 +468,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
+	/**
+	 * @return Status
+	 */
 	public function setupUser() {
 		$dbUser = $this->getVar( 'wgDBuser' );
 		if( $dbUser == $this->getVar( '_InstallUser' ) ) {
@@ -580,6 +613,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	/**
 	 * Get variables to substitute into tables.sql and the SQL patch files.
+	 *
+	 * @return array
 	 */
 	public function getSchemaVars() {
 		return array(

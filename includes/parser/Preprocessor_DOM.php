@@ -27,10 +27,17 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 	}
 
+	/**
+	 * @return PPFrame_DOM
+	 */
 	function newFrame() {
 		return new PPFrame_DOM( $this );
 	}
 
+	/**
+	 * @param $args
+	 * @return PPCustomFrame_DOM
+	 */
 	function newCustomFrame( $args ) {
 		return new PPCustomFrame_DOM( $this, $args );
 	}

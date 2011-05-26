@@ -64,10 +64,18 @@ class BrokenRedirectsPage extends PageQueryPage {
 		);
 	}
 
+	/**
+	 * @return array
+	 */
 	function getOrderFields() {
 		return array ( 'rd_namespace', 'rd_title', 'rd_from' );
 	}
 
+	/**
+	 * @param $skin Skin
+	 * @param $result
+	 * @return String
+	 */
 	function formatResult( $skin, $result ) {
 		global $wgUser, $wgContLang, $wgLang;
 
@@ -101,7 +109,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 			array(),
 			array( 'action' => 'edit' )
 		);
-		$to   = $skin->link(
+		$to = $skin->link(
 			$toObj,
 			null,
 			array(),

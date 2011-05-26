@@ -109,7 +109,7 @@ class EditPage {
 
 	/**
 	 * @todo document
-	 * @param $article
+	 * @param $article Article
 	 */
 	function __construct( $article ) {
 		$this->mArticle =& $article;
@@ -128,6 +128,9 @@ class EditPage {
 		$this->mPreloadText = "";
 	}
 
+	/**
+	 * @return Article
+	 */
 	function getArticle() {
 		return $this->mArticle;
 	}
