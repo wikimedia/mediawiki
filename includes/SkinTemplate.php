@@ -1420,6 +1420,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 *
+	 * @return bool
 	 */
 	function haveMsg( $str ) {
 		$msg = $this->translator->translate( $str );

@@ -251,7 +251,7 @@ class MagicWord {
 	/**
 	 * Get a MagicWordArray of double-underscore entities
 	 *
-	 * @return array
+	 * @return MagicWordArray
 	 */
 	static function getDoubleUnderscoreArray() {
 		if ( is_null( self::$mDoubleUnderscoreArray ) ) {

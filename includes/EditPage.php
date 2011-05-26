@@ -74,7 +74,12 @@ class EditPage {
 	var $autoSumm = '';
 	var $hookError = '';
 	#var $mPreviewTemplates;
+
+	/**
+	 * @var ParserOutput
+	 */
 	var $mParserOutput;
+
 	var $mBaseRevision = false;
 	var $mShowSummaryField = true;
 
@@ -2046,10 +2051,15 @@ HTML
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}
 
+	/**
+	 * @return Array
+	 */
 	function getTemplates() {
 		if ( $this->preview || $this->section != '' ) {
 			$templates = array();
-			if ( !isset( $this->mParserOutput ) ) return $templates;
+			if ( !isset( $this->mParserOutput ) ) {
+				return $templates;
+			}
 			foreach( $this->mParserOutput->getTemplates() as $ns => $template) {
 				foreach( array_keys( $template ) as $dbk ) {
 					$templates[] = Title::makeTitle($ns, $dbk);
@@ -2617,6 +2627,11 @@ HTML
 			: $text;
 	}
 
+	/**
+	 * @param $request WebRequest
+	 * @param $text string
+	 * @return string
+	 */
 	function safeUnicodeText( $request, $text ) {
 		$text = rtrim( $text );
 		return $request->getBool( 'safemode' )
