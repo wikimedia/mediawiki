@@ -6,10 +6,6 @@
 class FakeTitle extends Title {
 	function error() { throw new MWException( "Attempt to call member function of FakeTitle\n" ); }
 
-	// PHP 5.1 method overload
-	function __call( $name, $args ) { $this->error(); }
-
-	// PHP <5.1 compatibility
 	function isLocal() { $this->error(); }
 	function isTrans() { $this->error(); }
 	function getText() { $this->error(); }
@@ -33,7 +29,7 @@ class FakeTitle extends Title {
 	function getSubpageText() { $this->error(); }
 	function getSubpageUrlForm() { $this->error(); }
 	function getPrefixedURL() { $this->error(); }
-	function getFullURL( $query = '', $variant = false ) {$this->error(); }
+	function getFullURL( $query = '', $variant = false ) { $this->error(); }
 	function getLocalURL( $query = '', $variant = false ) { $this->error(); }
 	function getLinkUrl( $query = array(), $variant = false ) { $this->error(); }
 	function escapeLocalURL( $query = '' ) { $this->error(); }
