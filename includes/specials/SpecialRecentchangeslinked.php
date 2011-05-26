@@ -220,6 +220,9 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		return $extraOpts;
 	}
 
+	/**
+	 * @return Title
+	 */
 	function getTargetTitle() {
 		if ( $this->rclTargetTitle === null ) {
 			$opts = $this->getOptions();

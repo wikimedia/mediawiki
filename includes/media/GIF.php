@@ -27,6 +27,10 @@ class GIFHandler extends BitmapHandler {
 		return serialize($parsedGIFMetadata);
 	}
 
+	/**
+	 * @param $image File
+	 * @return array|bool
+	 */
 	function formatMetadata( $image ) {
 		$meta = $image->getMetadata();
 

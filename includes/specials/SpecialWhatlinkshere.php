@@ -28,8 +28,17 @@
  */
 class SpecialWhatLinksHere extends SpecialPage {
 
-	// Stored objects
-	protected $opts, $target, $selfTitle;
+	/**
+	 * @var FormOptions
+	 */
+	protected $opts;
+
+	protected $selfTitle;
+
+	/**
+	 * @var Title
+	 */
+	protected $target;
 
 	protected $limits = array( 20, 50, 100, 250, 500 );
 

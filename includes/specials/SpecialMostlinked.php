@@ -57,6 +57,9 @@ class MostlinkedPage extends QueryPage {
 
 	/**
 	 * Pre-fill the link cache
+	 *
+	 * @param $db DatabaseBase
+	 * @param $res
 	 */
 	function preprocessResults( $db, $res ) {
 		if( $db->numRows( $res ) > 0 ) {

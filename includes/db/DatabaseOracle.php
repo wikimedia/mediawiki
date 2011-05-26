@@ -34,6 +34,11 @@ class ORAResult {
 		return $array_out;
 	}
 
+	/**
+	 * @param $db DatabaseBase
+	 * @param $stmt
+	 * @param bool $unique
+	 */
 	function __construct( &$db, $stmt, $unique = false ) {
 		$this->db =& $db;
 

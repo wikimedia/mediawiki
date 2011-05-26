@@ -48,6 +48,11 @@ class WantedCategoriesPage extends WantedQueryPage {
 		);
 	}
 
+	/**
+	 * @param $skin Skin
+	 * @param $result
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 

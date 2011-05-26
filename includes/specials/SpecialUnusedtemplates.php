@@ -54,6 +54,11 @@ class UnusedtemplatesPage extends QueryPage {
 		);
 	}
 
+	/**
+	 * @param $skin Skin
+	 * @param $result
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_TEMPLATE, $result->title );
 		$pageLink = $skin->linkKnown(

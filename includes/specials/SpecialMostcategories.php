@@ -52,6 +52,11 @@ class MostcategoriesPage extends QueryPage {
 		);
 	}
 
+	/**
+	 * @param $skin Skin
+	 * @param $result
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		global $wgLang;
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
