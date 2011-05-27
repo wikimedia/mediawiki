@@ -66,7 +66,11 @@ ENDL;
 # does *not* load $wgTitle
 require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 
-wfIndexMain();
+try {
+	wfIndexMain();
+} catch ( Exception $e ) {
+	wfExceptionHandler( $e );
+}
 
 function wfIndexMain() {
 	global $wgRequest, $wgShowHostnames, $mediaWiki, $wgTitle, $wgUseAjax, $wgUseFileCache;

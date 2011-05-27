@@ -337,9 +337,9 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	require_once( "$IP/includes/Hooks.php" );
 	require_once( "$IP/includes/ProxyTools.php" );
 	require_once( "$IP/includes/ImageFunctions.php" );
+	require_once( "$IP/includes/normal/UtfNormalDefines.php" );
 	wfProfileOut( $fname . '-includes' );
 }
-require_once( MWInit::compiledPath( 'includes/normal/UtfNormalDefines.php' ) );
 
 wfProfileIn( $fname . '-misc1' );
 

@@ -863,9 +863,13 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		$this->mMaxUploadSize['file'] = min(
-			wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ),
-			UploadBase::getMaxUploadSize( 'file' ) );
+		$this->mMaxUploadSize['file'] = UploadBase::getMaxUploadSize( 'file' );
+		# Limit to upload_max_filesize unless we are running under HipHop and 
+		# that setting doesn't exist
+		if ( !wfIsHipHop() ) {
+			$this->mMaxUploadSize['file'] = min( $this->mMaxUploadSize['file'],
+				wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ) );
+		}
 
 		$descriptor['UploadFile'] = array(
 			'class' => 'UploadSourceField',
