@@ -55,10 +55,10 @@ $wgServer = '';
 
 /** @cond file_level_code */
 if( isset( $_SERVER['SERVER_NAME'] )
-	# additionially, for requests made directly to an IPv6 address we have
-	# to make sure the server enclose it in either [] or nothing at all
-	&& (strpos($_SERVER['SERVER_NAME'], '[')
-		xor strpos( $_SERVER['SERVER_NAME'], ']'))
+	# KLUGE: lighttpd 1.4.28 truncates IPv6 addresses at the first colon,
+	# giving bogus hostnames like "[2001"; check for presence of both
+	# brackets to detect this.
+	&& ($_SERVER['SERVER_NAME'][0] !== '[' || substr($_SERVER['SERVER_NAME'], -1) === ']')
 	) {
 	$serverName = $_SERVER['SERVER_NAME'];
 } elseif( isset( $_SERVER['HOSTNAME'] ) ) {
