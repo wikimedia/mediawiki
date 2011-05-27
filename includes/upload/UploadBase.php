@@ -70,15 +70,13 @@ abstract class UploadBase {
 	 */
 	public static function isEnabled() {
 		global $wgEnableUploads;
+
 		if ( !$wgEnableUploads ) {
 			return false;
 		}
 
 		# Check php's file_uploads setting
-		if( !wfIsHipHop() && !wfIniGetBool( 'file_uploads' ) ) {
-			return false;
-		}
-		return true;
+		return wfIsHipHop() || wfIniGetBool( 'file_uploads' );
 	}
 
 	/**
