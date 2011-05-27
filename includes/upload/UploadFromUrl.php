@@ -105,41 +105,62 @@ class UploadFromUrl extends UploadBase {
 	protected function makeTemporaryFile() {
 		return tempnam( wfTempDir(), 'URL' );
 	}
+
 	/**
-	 * Save the result of a HTTP request to the temporary file
+	 * Callback: save a chunk of the result of a HTTP request to the temporary file
 	 *
-	 * @param $req MWHttpRequest
-	 * @return Status
+	 * @param $req mixed
+	 * @param $buffer string
+	 * @return int number of bytes handled
 	 */
-	private function saveTempFile( $req ) {
-		if ( $this->mTempPath === false ) {
-			return Status::newFatal( 'tmp-create-error' );
-		}
-		if ( file_put_contents( $this->mTempPath, $req->getContent() ) === false ) {
-			return Status::newFatal( 'tmp-write-error' );
+	public function saveTempFileChunk( $req, $buffer ) {
+		$nbytes = fwrite( $this->mTmpHandle, $buffer );
+
+		if ( $nbytes == strlen( $buffer ) ) {
+			$this->mFileSize += $nbytes;
+		} else {
+			// Well... that's not good!
+			fclose( $this->mTmpHandle );
+			$this->mTmpHandle = false;
 		}
 
-		$this->mFileSize = filesize( $this->mTempPath );
-
-		return Status::newGood();
+		return $nbytes;
 	}
+
 	/**
 	 * Download the file, save it to the temporary file and update the file
 	 * size and set $mRemoveTempFile to true.
 	 */
 	protected function reallyFetchFile() {
+		if ( $this->mTempPath === false ) {
+			return Status::newFatal( 'tmp-create-error' );
+		}
+
+		// Note the temporary file should already be created by makeTemporaryFile()
+		$this->mTmpHandle = fopen( $this->mTempPath, 'wb' );
+		if ( !$this->mTmpHandle ) {
+			return Status::newFatal( 'tmp-create-error' );
+		}
+
+		$this->mRemoveTempFile = true;
+		$this->mFileSize = 0;
+
 		$req = MWHttpRequest::factory( $this->mUrl );
+		$req->setCallback( array( $this, 'saveTempFileChunk' ) );
 		$status = $req->execute();
+
+		if ( $this->mTmpHandle ) {
+			// File got written ok...
+			fclose( $this->mTmpHandle );
+			$this->mTmpHandle = null;
+		} else {
+			// We encountered a write error during the download...
+			return Status::newFatal( 'tmp-write-error' );
+		}
 
 		if ( !$status->isOk() ) {
 			return $status;
 		}
-
-		$status = $this->saveTempFile( $req );
-		if ( !$status->isGood() ) {
-			return $status;
-		}
-		$this->mRemoveTempFile = true;
 
 		return $status;
 	}

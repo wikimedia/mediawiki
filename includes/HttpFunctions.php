@@ -316,11 +316,26 @@ class MWHttpRequest {
 	}
 
 	/**
-	 * Set the callback
+	 * Set a read callback to accept data read from the HTTP request.
+	 * By default, data is appended to an internal buffer which can be
+	 * retrieved through $req->getContent().
+	 *
+	 * To handle data as it comes in -- especially for large files that
+	 * would not fit in memory -- you can instead set your own callback,
+	 * in the form function($resource, $buffer) where the first parameter
+	 * is the low-level resource being read (implementation specific),
+	 * and the second parameter is the data buffer.
+	 *
+	 * You MUST return the number of bytes handled in the buffer; if fewer
+	 * bytes are reported handled than were passed to you, the HTTP fetch
+	 * will be aborted.
 	 *
 	 * @param $callback Callback
 	 */
 	public function setCallback( $callback ) {
+		if ( !is_callable( $callback ) ) {
+			throw new MWException( 'Invalid MwHttpRequest callback' );
+		}
 		$this->callback = $callback;
 	}
 
