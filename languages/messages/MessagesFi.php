@@ -727,6 +727,7 @@ Käyttäjätunnuksesi on luotu.
 'createaccount'              => 'Luo uusi käyttäjätunnus',
 'gotaccount'                 => "Jos sinulla on jo tunnus, voit '''$1'''.",
 'gotaccountlink'             => 'kirjautua sisään',
+'userlogin-resetlink'        => 'Unohditko salasanasi?',
 'createaccountmail'          => 'sähköpostitse',
 'createaccountreason'        => 'Syy',
 'badretype'                  => 'Syöttämäsi salasanat ovat erilaiset.',
