@@ -1455,10 +1455,11 @@ abstract class Installer {
 			$params['language'] = $myLang;
 		}
 
-		$res = Http::post( $this->mediaWikiAnnounceUrl, array( 'postData' => $params ) );
-		if( !$res ) {
-			$s->warning( 'config-install-subscribe-fail' );
-		}
+		$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
+			array( 'method' => 'POST', 'postData' => $params ) )->execute();
+		if( !$res->isOK() ) {
+			$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
+ 		}
 	}
 
 	/**
