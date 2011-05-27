@@ -185,6 +185,9 @@ class Preprocessor_DOM implements Preprocessor {
 			if ( strpos( $text, '<onlyinclude>' ) !== false && strpos( $text, '</onlyinclude>' ) !== false ) {
 				$enableOnlyinclude = true;
 			}
+		} else if ( $this->parser->ot['wiki'] ) {
+			$ignoredTags = array( 'noinclude', '/noinclude', 'onlyinclude', '/onlyinclude', 'includeonly', '/includeonly' );
+			$ignoredElements = array();
 		} else {
 			$ignoredTags = array( 'noinclude', '/noinclude', 'onlyinclude', '/onlyinclude' );
 			$ignoredElements = array( 'includeonly' );
