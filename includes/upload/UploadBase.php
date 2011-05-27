@@ -75,7 +75,7 @@ abstract class UploadBase {
 		}
 
 		# Check php's file_uploads setting
-		if( !wfIniGetBool( 'file_uploads' ) ) {
+		if( !wfIsHipHop() && !wfIniGetBool( 'file_uploads' ) ) {
 			return false;
 		}
 		return true;

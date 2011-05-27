@@ -606,7 +606,7 @@ abstract class FileRepo {
 	function newFatal( $message /*, parameters...*/ ) {
 		$params = func_get_args();
 		array_unshift( $params, $this );
-		return call_user_func_array( array( 'FileRepoStatus', 'newFatal' ), $params );
+		return MWInit::callStaticMethod( 'FileRepoStatus', 'newFatal', $params );
 	}
 
 	/**

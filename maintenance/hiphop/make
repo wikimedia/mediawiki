@@ -4,7 +4,6 @@
 require( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class MakeHipHop extends Maintenance {
-
 	function execute() {
 		$startTime = time();
 
@@ -63,12 +62,20 @@ class MakeHipHop extends Maintenance {
 			' --parse-on-demand=false' .
 			' --program=mediawiki-hphp' .
 			' --output-dir=' . wfEscapeShellArg( $outDir ) .
-			' --log=3' );
+			' --log=3', $ret );
+
+		if ( $ret ) {
+			$this->error( "hphp hit an error. Stopping build.\n" );
+			exit( 1 );
+		}
 
 		# Sanity check, quickly make sure we've got an output directory
 		if( !is_dir( $outDir ) ) {
 			$this->error( "No output directory", true );
 		}
+
+		# Warn about volatile classes
+		$this->checkVolatileClasses( $outDir );
 
 		# Copy the generated C++ files into the source directory for cmake
 		$iter = new RecursiveIteratorIterator( 
@@ -140,7 +147,7 @@ class MakeHipHop extends Maintenance {
 			}
 
 			$cmd = 'cmake' .
-				' -D CMAKE_BUILD_TYPE:string=Debug' .
+				" -D CMAKE_BUILD_TYPE:string=" . wfEscapeShellArg( $GLOBALS['wgHipHopBuildType'] ) .
 				' -D PROGRAM_NAME:string=mediawiki-hphp';
 			
 			if ( file_exists( '/usr/bin/ccache' ) ) {
@@ -155,19 +162,7 @@ class MakeHipHop extends Maintenance {
 
 		# Determine appropriate make concurrency
 		# Compilation can take a lot of memory, let's assume that that is limiting.
-		$mem = false;
-		foreach ( file( '/proc/meminfo' ) as $line ) {
-			if ( preg_match( '/^MemTotal:\s+(\d+)\s+kB/', $line, $m ) ) {
-				$mem = intval( $m[1] );
-				break;
-			}
-		}
-		if ( $mem ) {
-			$procs = floor( $mem / 1000000 );
-			$procs = $procs >= 1 ? $procs : 1; // No less than 1
-		} else {
-			$procs = 1;
-		}
+		$procs = $this->getNumProcs();
 		
 		# Run make. This is the slow step.
 		passthru( 'make -j' . wfEscapeShellArg( $procs ) );
@@ -187,6 +182,47 @@ class MakeHipHop extends Maintenance {
 		}
 		echo $elapsed . "s\n";
 		echo "The MediaWiki executable is at build/persistent/mediawiki-hphp\n";
+	}
+
+	function checkVolatileClasses( $dir ) {
+		$lines = file( "$dir/sys/dynamic_table_class.cpp" );
+		$classes = array();
+		foreach ( $lines as $line ) {
+			if ( preg_match( '/^\s+\(const char \*\)"([^"]*)", \(const char \*\)-1/', $line, $m ) ) {
+				$classes[] = $m[1];
+			}
+		}
+		if ( !count( $classes ) ) {
+			print "No volatile classes found\n";
+			return;
+		}
+		sort( $classes );
+		$classes = array_unique( $classes );
+		print "WARNING: The following classes are volatile: " . implode( ', ', $classes ) . "\n";
+	}
+
+	function getNumProcs() {
+		global $wgHipHopCompilerProcs;
+		if ( $wgHipHopCompilerProcs !== 'detect' ) {
+			return intval( $wgHipHopCompilerProcs );
+		}
+
+		if ( !file_exists( '/proc/meminfo' ) ) {
+			return 1;
+		}
+		$mem = false;
+		foreach ( file( '/proc/meminfo' ) as $line ) {
+			if ( preg_match( '/^MemTotal:\s+(\d+)\s+kB/', $line, $m ) ) {
+				$mem = intval( $m[1] );
+				break;
+			}
+		}
+		if ( $mem ) {
+			// At least one process
+			return max( 1, floor( $mem / 1000000 ) );
+		} else {
+			return 1;
+		}
 	}
 }
 

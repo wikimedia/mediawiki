@@ -5309,6 +5309,25 @@ $wgUpdateRowsPerQuery = 100;
 /** @} */ # End job queue }
 
 /************************************************************************//**
+ * @name   HipHop compilation
+ * @{
+ */
+
+/**
+ * The HipHop build type. Can be either "Debug" or "Release".
+ */
+$wgHipHopBuildType = 'Debug';
+
+/**
+ * Number of parallel processes to use during HipHop compilation, or "detect"
+ * to guess from system properties.
+ */
+$wgHipHopCompilerProcs = 'detect';
+
+/** @} */ # End of HipHop compilation }
+
+
+/************************************************************************//**
  * @name   Miscellaneous
  * @{
  */

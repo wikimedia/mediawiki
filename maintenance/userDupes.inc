@@ -174,7 +174,7 @@ class UserDupes {
 	 * @access private
 	 */
 	function newSchema() {
-		return class_exists( 'Revision' );
+		return MWInit::classExists( 'Revision' );
 	}
 
 	/**

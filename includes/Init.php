@@ -90,4 +90,13 @@ class MWInit {
 		}
 		return $r !== false;
 	}
+
+	/**
+	 * Call a static method of a class with variable arguments without causing 
+	 * it to become volatile.
+	 */
+	static function callStaticMethod( $className, $methodName, $args ) {
+		$r = new ReflectionMethod( $className, $methodName );
+		return $r->invokeArgs( null, $args );
+	}
 }

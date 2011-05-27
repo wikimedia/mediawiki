@@ -254,8 +254,8 @@ class Parser_LinkHooks extends Parser {
 		}
 		if( $return === true ) {
 			# True (treat as plain link) was returned, call the defaultLinkHook
-			$args = array( $parser, $holders, $markers, $title, $titleText, &$paramText, &$leadingColon );
-			$return = call_user_func_array( array( 'CoreLinkFunctions', 'defaultLinkHook' ), $args );
+			$return = CoreLinkFunctions::defaultLinkHook( $parser, $holders, $markers, $title, 
+				$titleText, $paramText, $leadingColon );
 		}
 		if( $return === false ) {
 			# False (no link) was returned, output plain wikitext
