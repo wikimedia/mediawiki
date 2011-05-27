@@ -340,7 +340,7 @@ class MessageBlobStore {
 			}
 			// Update the module's blobs if the set of messages changed or if the blob is
 			// older than $wgCacheEpoch
-			if ( array_keys( FormatJson::decode( $row->mr_blob, true ) ) !== $module->getMessages() ||
+			if ( array_keys( FormatJson::decode( $row->mr_blob, true ) ) !== array_values( array_unique( $module->getMessages() ) ) ||
 					wfTimestamp( TS_MW, $row->mr_timestamp ) <= $wgCacheEpoch ) {
 				$retval[$row->mr_resource] = self::updateModule( $row->mr_resource, $module, $lang );
 			} else {
