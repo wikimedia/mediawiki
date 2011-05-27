@@ -1667,6 +1667,7 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 Mae'r rhestr canlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil hon yn unig. Mae [[Special:WhatLinksHere/$2|rhestr lawn]] ar gael.",
 'nolinkstoimage'                    => 'Nid oes cyswllt ar unrhyw dudalen yn arwain at y ffeil hon.',
 'morelinkstoimage'                  => 'Gweld [[Special:WhatLinksHere/$1|rhagor o gysylltiadau]] at y ffeil hon.',
+'linkstoimage-redirect'             => "$1 (tudalen ffeil sy'n ailgyfeirio) $2",
 'duplicatesoffile'                  => "Mae'r {{PLURAL:$1||ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn union debyg i'r ffeil hon ([[Special:FileDuplicateSearch/$2|rhagor o fanylion]]):",
 'sharedupload'                      => 'Daw y ffeil hon o $1, felly gall fod ar waith ar brosiectau eraill.',
 'sharedupload-desc-there'           => "Daw'r ffeil hon o $1 a gellir ei defnyddio gan brosiectau eraill.
@@ -2048,10 +2049,13 @@ Os digwydd mwy o olygiadau i\'r dudalen cyn i chi ymweld â hi, ni chewch ragor 
              Sustem hysbysu {{SITENAME}}
 
 --
-I newid eich gosodiadau gwylio, ymwelwch â
+I newid eich gosodiadau negeseuon hysbysu, ewch i 
+{{fullurl:{{#special:Preferences}}}}
+
+I newid eich gosodiadau gwylio, ewch i
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-I dynnu\'r dudalen oddi ar eich rhestr wylio, ewch at
+I dynnu\'r dudalen oddi ar eich rhestr wylio, ewch i
 $UNWATCHURL
 
 Am fwy o gymorth ac adborth:
@@ -2182,7 +2186,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 'undeletepagetext'             => "Mae'r {{PLURAL:$1|tudalennau|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} isod wedi cael eu dileu ond mae cofnod ohonynt o hyd yn yr archif, felly mae'n bosibl eu hadfer.
 Gall yr archif gael ei glanhau o dro i dro.",
 'undelete-fieldset-title'      => 'Dewis ac adfer diwygiadau',
-'undeleteextrahelp'            => "I adfer hanes gyfan y dudalen, gadewch pob blwch ticio'n wag a phwyswch y botwm '''''Adfer'''''. I adfer rhai diwygiadau'n unig, ticiwch y blychau ar gyfer y diwygiadau yr ydych am eu hadfer, yna pwyswch ar '''''Adfer'''''. Os y pwyswch ar '''''Ailosod''''' bydd y blwch sylwadau a phob blwch ticio yn gwacáu.",
+'undeleteextrahelp'            => "I adfer hanes gyfan y dudalen, gadewch pob blwch ticio'n wag a phwyswch y botwm '''''{{int:undeletebtn}}'''''. I adfer rhai diwygiadau'n unig, ticiwch y blychau ar gyfer y diwygiadau yr ydych am eu hadfer, yna pwyswch ar '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => 'Gosodwyd $1 {{PLURAL:$1|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn}} yn yr archif',
 'undeletehistory'              => "Os adferwch y dudalen, fe fydd yr holl ddiwygiadau yn cael eu hadfer hefyd yn hanes y dudalen.
 Os oes tudalen newydd o'r un enw wedi cael ei chreu ers y dilëad, fe ddangosir y diwygiadau cynt yn yr hanes, heb ddisodli'r dudalen bresennol.",
