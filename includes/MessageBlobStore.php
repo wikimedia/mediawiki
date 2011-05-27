@@ -117,49 +117,37 @@ class MessageBlobStore {
 	}
 
 	/**
-	 * Update all message blobs for a given module.
+	 * Update the message blob for a given module in a given language
 	 *
 	 * @param $name String: module name
 	 * @param $module ResourceLoaderModule object
-	 * @param $lang String: language code (optional)
-	 * @return Mixed: if $lang is set, the new message blob for that language is 
-	 *    returned if present. Otherwise, null is returned.
+	 * @param $lang String: language code
+	 * @return String Regenerated message blob, or null if there was no blob for the given module/language pair
 	 */
-	public static function updateModule( $name, ResourceLoaderModule $module, $lang = null ) {
-		$retval = null;
-
-		// Find all existing blobs for this module
+	public static function updateModule( $name, ResourceLoaderModule $module, $lang ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->select( 'msg_resource',
-			array( 'mr_lang', 'mr_blob' ),
-			array( 'mr_resource' => $name ),
+		$row = $dbw->selectRow( 'msg_resource', 'mr_blob',
+			array( 'mr_resource' => $name, 'mr_lang' => $lang ),
 			__METHOD__
 		);
-
-		// Build the new msg_resource rows
-		$newRows = array();
-		$now = $dbw->timestamp();
-		// Save the last-processed old and new blobs for later
-		$oldBlob = $newBlob = null;
-
-		foreach ( $res as $row ) {
-			$oldBlob = $row->mr_blob;
-			$newBlob = self::generateMessageBlob( $module, $row->mr_lang );
-
-			if ( $row->mr_lang === $lang ) {
-				$retval = $newBlob;
-			}
-			$newRows[] = array(
-				'mr_resource' => $name,
-				'mr_lang' => $row->mr_lang,
-				'mr_blob' => $newBlob,
-				'mr_timestamp' => $now
-			);
+		if ( !$row ) {
+			return null;
 		}
+
+		// Save the old and new blobs for later
+		$oldBlob = $row->mr_blob;
+		$newBlob = self::generateMessageBlob( $module, $lang );
+		
+		$newRow = array(
+			'mr_resource' => $name,
+			'mr_lang' => $lang,
+			'mr_blob' => $newBlob,
+			'mr_timestamp' => $dbw->timestamp()
+		);
 
 		$dbw->replace( 'msg_resource',
 			array( array( 'mr_resource', 'mr_lang' ) ),
-			$newRows, __METHOD__
+			$newRow, __METHOD__
 		);
 
 		// Figure out which messages were added and removed
@@ -192,7 +180,7 @@ class MessageBlobStore {
 			);
 		}
 
-		return $retval;
+		return $newBlob;
 	}
 
 	/**
