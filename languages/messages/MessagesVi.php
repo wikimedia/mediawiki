@@ -2369,8 +2369,8 @@ hiện tại của trang '''$1''':",
 'viewdeletedpage'              => 'Xem các trang bị xóa',
 'undeletepagetext'             => '{{PLURAL:$1|Trang sau|$1 trang sau}} đã bị xóa nhưng vẫn nằm trong kho lưu trữ và có thể phục hồi được. Kho lưu trữ sẽ được xóa định kỳ.',
 'undelete-fieldset-title'      => 'Phục hồi phiên bản',
-'undeleteextrahelp'            => "Để phục hồi toàn bộ lịch sử trang, hãy để trống các hộp kiểm và bấm nút '''''Phục hồi'''''.
-Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi, rồi bấm nút '''''Phục hồi'''''.
+'undeleteextrahelp'            => "Để phục hồi toàn bộ lịch sử trang, hãy để trống các hộp kiểm và bấm nút '''''{{int:undeletebtn}}'''''.
+Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi, rồi bấm nút '''''{{int:undeletebtn}}'''''.
 Bấm nút '''''Tẩy trống''''' sẽ tẩy trống ô lý do và tất cả các hộp kiểm.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|bản|bản}} đã được lưu',
 'undeletehistory'              => 'Nếu bạn phục hồi trang này, tất cả các phiên bản của nó cũng sẽ được phục hồi vào lịch sử của trang.

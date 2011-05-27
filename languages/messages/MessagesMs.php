@@ -2247,7 +2247,7 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 'viewdeletedpage'              => 'Lihat laman yang dihapuskan',
 'undeletepagetext'             => '{{PLURAL:$1|Laman|$1 laman}} berikut telah dihapuskan tetapi masih disimpan dalam arkib dan masih boleh dipulihkan. Arkib tersebut akan dibersihkan dari semasa ke semasa.',
 'undelete-fieldset-title'      => 'Pulihkan semakan',
-'undeleteextrahelp'            => "Untuk memulihkan keseluruhan laman, biarkan semua kotak semak dan klik '''''Pulih'''''. Untuk melaksanakan pemulihan tertentu, tanda di setiap kotak yang bersebelahan dengan semakan untuk dipulihkan dan klik '''''Pulih'''''. Klik '''''Set semula''''' untuk mengosongkan ruangan komen dan membuang tanda semua kotak.",
+'undeleteextrahelp'            => "Untuk memulihkan keseluruhan sejarah laman, biarkan semua kotak semak tak tertanda dan klik '''''{{int:undeletebtn}}'''''. Untuk melaksanakan pemulihan tertentu, tandai setiap kotak yang bersebelahan dengan semakan untuk dipulihkan dan klik '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 semakan telah diarkibkan.',
 'undeletehistory'              => 'Jika anda memulihkan laman tersebut, semua semakan akan dipulihkan kepada sejarahnya. Jika sebuah laman baru yang mempunyai nama yang sama telah dicipta sejak penghapusan, semakan yang dipulihkan akan muncul dalam sejarah terdahulu.',
 'undeleterevdel'               => 'Penyahhapusan tidak akan dilaksanakan sekiranya ia menyebabkan sebahagian semakan puncak dihapuskan.
@@ -3390,7 +3390,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'autosumm-new'     => "Mencipta laman baru dengan kandungan '$1'",
 
 # Live preview
-'livepreview-loading' => 'Sedang dimuatkan...',
+'livepreview-loading' => 'Memuatkan...',
 'livepreview-ready'   => 'Memuat … Sedia!',
 'livepreview-failed'  => 'Pratonton langsung gagal! Sila gunakan pratonton biasa.',
 'livepreview-error'   => 'Gagal membuat sambungan: $1 "$2". Sila gunakan pratonton biasa.',

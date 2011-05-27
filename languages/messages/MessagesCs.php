@@ -2410,7 +2410,8 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 'undeletepagetext'             => '{{PLURAL:$1|Následující stránka byla smazána, ale je dosud v archivu, takže je možno ji obnovit|Následující $1 stránky byly smazány, ale jsou dosud v archivu, takže je možno je obnovit|Následujících $1 stránek bylo smazáno, ale jsou dosud v archivu, takže je možno je obnovit}}.
 Archiv může být pravidelně vyprazdňován.',
 'undelete-fieldset-title'      => 'Obnovit revize',
-'undeleteextrahelp'            => "Pro úplné obnovení stránky s kompletní historií ponechte všechny čtverečky nezaškrtnuté a klikněte na '''''Obnovit'''''. Pro částečné obnovení zaškrtněte čtverečky u obnovovaných revizí a klikněte na '''''Obnovit'''''. Kliknutí na '''''Reset''''' vyprázdní komentář a zruší všechna zaškrtnutí.",
+'undeleteextrahelp'            => "Pokud chcete obnovit kompletní historii stránky, ponechte všechny čtverečky nezaškrtnuté a klikněte na '''''{{int:undeletebtn}}'''''.
+Pro částečné obnovení zaškrtněte čtverečky u obnovovaných revizí a klikněte na '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|verze je archivována|verze jsou archivovány|verzí je archivováno}}',
 'undeletehistory'              => 'Pokud stránku obnovíte, budou  v historii obnoveny všechny verze. Pokud byla vytvořena nová stránka se stejným jménem jako smazaná, obnovené verze se zapíší na starší místo v historii novější stránky.',
 'undeleterevdel'               => 'Obnovení nebude provedeno, pokud by vedlo k částečnému odstranění aktuální verze stránky. V takovém případě musíte odznačit nebo odkrýt nejnovější smazanou verzi.',

@@ -2228,9 +2228,8 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'viewdeletedpage'              => 'Geläschte Säite weisen',
 'undeletepagetext'             => "Dës {{PLURAL:$1|Säit gouf |Säite goufe}} geläscht mee sinn nach ëmmer am Archiv a kënne vun Administrateure restauréiert ginn. D'Archiv gëtt periodesch eidel gemaach.",
 'undelete-fieldset-title'      => 'Versioune restauréieren',
-'undeleteextrahelp'            => "Fir d'Säit komplett mat alle Versiounen ze retabléieren, markéiert keng vun den eenzelne Casë mat engem Krop a klickt op '''''Restauréieren'''''.
-Fir nëmmen eng bestëmmte Versioun vun der Säit ze restauréieren, markéiert d'Case vun der gewënschter Versioun mat engem Krop, a klickt duerno op '''''Restauréieren'''''.
-Klickt op '''''Reset''''' fir d'Kommentarfeld eidel ze maachen an d'Kreep aus all de Casen ewechzehuelen.",
+'undeleteextrahelp'            => "Fir d'Säit komplett mat alle Versiounen ze restauréieren, markéiert keng vun den eenzelne Casë mat engem Krop a klickt op '''''{{int:undeletebtn}}'''''.
+Fir nëmmen eng bestëmmte Versioun vun der Säit ze restauréieren, markéiert d'Case vun der gewënschter Versioun mat engem Krop, a klickt duerno op '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '{{PLURAL:$1|1 Versioun|$1 Versiounen}} archivéiert',
 'undeletehistory'              => 'Wann Dir dës Säit restauréiert, ginn och all déi al Versioune restauréiert.
 Wann zënter dem Läschen eng nei Säit mat dem selwechten Numm ugeluecht gouf, ginn déi restauréiert Versioune chronologesch an den Historique agedroen.',

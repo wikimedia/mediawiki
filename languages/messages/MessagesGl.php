@@ -1180,8 +1180,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'compareselectedversions'  => 'Comparar as versións seleccionadas',
 'showhideselectedversions' => 'Mostrar/Agochar as versións seleccionadas',
 'editundo'                 => 'desfacer',
-'diff-multi'               => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$2|feita por un usuario|feitas por $2 usuarios}}.)',
-'diff-multi-manyusers'     => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$2|feita por máis dun usuario|feitas por máis de $2 usuarios}}.)',
+'diff-multi'               => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por {{PLURAL:$2|un usuario|$2 usuarios}}.)',
+'diff-multi-manyusers'     => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por máis {{PLURAL:$2|dun usuario|de $2 usuarios}}.)',
 
 # Search results
 'searchresults'                    => 'Resultados da procura',

@@ -212,12 +212,18 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 {{Identical|May}}',
 'june'          => 'The sixth month of the Gregorian calendar
 {{Identical|June}}',
-'july'          => 'The seventh month of the Gregorian calendar',
-'august'        => 'The eighth month of the Gregorian calendar',
-'september'     => 'The ninth month of the Gregorian calendar',
-'october'       => 'The tenth month of the Gregorian calendar',
-'november'      => 'The eleventh month of the Gregorian calendar',
-'december'      => 'The twelfth month of the Gregorian calendar',
+'july'          => 'The seventh month of the Gregorian calendar
+{{Identical|July}}',
+'august'        => 'The eighth month of the Gregorian calendar
+{{Identical|August}}',
+'september'     => 'The ninth month of the Gregorian calendar
+{{Identical|September}}',
+'october'       => 'The tenth month of the Gregorian calendar
+{{Identical|October}}',
+'november'      => 'The eleventh month of the Gregorian calendar
+{{Identical|November}}',
+'december'      => 'The twelfth month of the Gregorian calendar
+{{Identical|December}}',
 'january-gen'   => 'The first month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
 {{Identical|January}}',
 'february-gen'  => 'The second month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
@@ -230,12 +236,18 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 {{Identical|May}}',
 'june-gen'      => 'The sixth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
 {{Identical|June}}',
-'july-gen'      => 'The seventh month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'august-gen'    => 'The eighth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'september-gen' => 'The nineth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'october-gen'   => 'The tenth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'november-gen'  => 'The eleventh month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
-'december-gen'  => 'The twelfth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.',
+'july-gen'      => 'The seventh month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|July}}',
+'august-gen'    => 'The eighth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|August}}',
+'september-gen' => 'The nineth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|September}}',
+'october-gen'   => 'The tenth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|October}}',
+'november-gen'  => 'The eleventh month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|November}}',
+'december-gen'  => 'The twelfth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
+{{Identical|December}}',
 'jan'           => 'Abbreviation of January, the first month of the Gregorian calendar',
 'feb'           => 'Abbreviation of February, the second month of the Gregorian calendar',
 'mar'           => 'Abbreviation of March, the thrird month of the Gregorian calendar',
