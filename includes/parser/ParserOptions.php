@@ -60,9 +60,8 @@ class ParserOptions {
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
 	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
-	function getEditSection()                   { return $this->mEditSection; }
-	function getNumberHeadings()                { $this->optionUsed('numberheadings');
-												  return $this->mNumberHeadings; }
+	function getEditSection()                   { $this->optionUsed('editsection');	return $this->mEditSection; }
+	function getNumberHeadings()                { $this->optionUsed('numberheadings'); return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
@@ -76,17 +75,13 @@ class ParserOptions {
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
-	function getMath()                          { $this->optionUsed('math');
-												  return $this->mMath; }
-	function getThumbSize()                     { $this->optionUsed('thumbsize');
-												  return $this->mThumbSize; }
-	function getStubThreshold()                 { $this->optionUsed('stubthreshold');
-												  return $this->mStubThreshold; }
+	function getMath()                          { $this->optionUsed('math'); return $this->mMath; }
+	function getThumbSize()                     { $this->optionUsed('thumbsize'); return $this->mThumbSize; }
+	function getStubThreshold()                 { $this->optionUsed('stubthreshold'); return $this->mStubThreshold; }
 
 	function getIsPreview()                     { return $this->mIsPreview; }
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
-	function getIsPrintable()                   { $this->optionUsed('printable');
-												  return $this->mIsPrintable; }
+	function getIsPrintable()                   { $this->optionUsed('printable'); return $this->mIsPrintable; }
 	function getUser()                          { return $this->mUser; }
 	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
 
