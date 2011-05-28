@@ -28,6 +28,8 @@ class Licenses extends HTMLFormField {
 
 	/**
 	 * Constructor
+	 *
+	 * @param $params array
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
@@ -38,7 +40,7 @@ class Licenses extends HTMLFormField {
 		$this->makeLicenses();
 	}
 
-	/**#@+
+	/**
 	 * @private
 	 */
 	protected function makeLicenses() {
@@ -46,9 +48,9 @@ class Licenses extends HTMLFormField {
 		$lines = explode( "\n", $this->msg );
 
 		foreach ( $lines as $line ) {
-			if ( strpos( $line, '*' ) !== 0 )
+			if ( strpos( $line, '*' ) !== 0 ) {
 				continue;
-			else {
+			} else {
 				list( $level, $line ) = $this->trimStars( $line );
 
 				if ( strpos( $line, '|' ) !== false ) {
@@ -68,19 +70,34 @@ class Licenses extends HTMLFormField {
 		}
 	}
 
+	/**
+	 * @param $str
+	 * @return array
+	 */
 	protected function trimStars( $str ) {
 		$numStars = strspn( $str, '*' );
 		return array( $numStars, ltrim( substr( $str, $numStars ), ' ' ) );
 	}
 
+	/**
+	 * @param $list
+	 * @param $path
+	 * @param $item
+	 */
 	protected function stackItem( &$list, $path, $item ) {
 		$position =& $list;
-		if ( $path )
-			foreach( $path as $key )
+		if ( $path ) {
+			foreach( $path as $key ) {
 				$position =& $position[$key];
+			}
+		}
 		$position[] = $item;
 	}
 
+	/**
+	 * @param $tagset
+	 * @param $depth int
+	 */
 	protected function makeHtml( $tagset, $depth = 0 ) {
 		foreach ( $tagset as $key => $val )
 			if ( is_array( $val ) ) {
@@ -102,6 +119,13 @@ class Licenses extends HTMLFormField {
 			}
 	}
 
+	/**
+	 * @param $text
+	 * @param $value
+	 * @param $attribs null
+	 * @param $depth int
+	 * @return string
+	 */
 	protected function outputOption( $text, $value, $attribs = null, $depth = 0 ) {
 		$attribs['value'] = $value;
 		if ( $value === $this->selected )
@@ -122,10 +146,14 @@ class Licenses extends HTMLFormField {
 	 *
 	 * @return array
 	 */
-	public function getLicenses() { return $this->licenses; }
+	public function getLicenses() {
+		return $this->licenses;
+	}
 
 	/**
 	 * Accessor for $this->html
+	 *
+	 * @param $value bool
 	 *
 	 * @return string
 	 */
@@ -140,8 +168,9 @@ class Licenses extends HTMLFormField {
 			'name' => $this->mName,
 			'id' => $this->mID
 		);
-		if ( !empty( $this->mParams['disabled'] ) )
+		if ( !empty( $this->mParams['disabled'] ) ) {
 			$attibs['disabled'] = 'disabled';
+		}
 
 		return Html::rawElement( 'select', $attribs, $this->html );
 	}

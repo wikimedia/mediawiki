@@ -20,6 +20,11 @@ class DatabaseSqlite extends DatabaseBase {
 	var $mName;
 
 	/**
+	 * @var PDO
+	 */
+	protected $mConn;
+
+	/**
 	 * Constructor.
 	 * Parameters $server, $user and $password are not used.
 	 */
@@ -35,14 +40,21 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function getType() {
 		return 'sqlite';
 	}
 
 	/**
 	 * @todo: check if it should be true like parent class
+	 *
+	 * @return bool
 	 */
-	function implicitGroupby()   { return false; }
+	function implicitGroupby() {
+		return false;
+	}
 
 	/** Open an SQLite database and return a resource handle to it
 	 *  NOTE: only $dbName is used, the other parameters are irrelevant for SQLite databases
@@ -61,7 +73,10 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Opens a database file
-	 * @return SQL connection or false if failed
+	 *
+	 * @param $fileName string
+	 *
+	 * @return PDO|false SQL connection or false if failed
 	 */
 	function openFile( $fileName ) {
 		$this->mDatabaseFile = $fileName;
@@ -152,9 +167,12 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * Attaches external database to our connection, see http://sqlite.org/lang_attach.html
 	 * for details.
+	 *
 	 * @param $name String: database name to be used in queries like SELECT foo FROM dbname.table
 	 * @param $file String: database file name. If omitted, will be generated using $name and $wgSQLiteDataDir
 	 * @param $fname String: calling function name
+	 *
+	 * @return ResultWrapper
 	 */
 	function attachDatabase( $name, $file = false, $fname = 'DatabaseSqlite::attachDatabase' ) {
 		global $wgSQLiteDataDir;
@@ -168,6 +186,8 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * @see DatabaseBase::isWriteQuery()
 	 *
+	 * @param $sql string
+	 *
 	 * @return bool
 	 */
 	function isWriteQuery( $sql ) {
@@ -176,6 +196,10 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * SQLite doesn't allow buffered results or data seeking etc, so we'll use fetchAll as the result
+	 *
+	 * @param $sql string
+	 *
+	 * @return ResultWrapper
 	 */
 	function doQuery( $sql ) {
 		$res = $this->mConn->query( $sql );
@@ -189,6 +213,9 @@ class DatabaseSqlite extends DatabaseBase {
 		return $res;
 	}
 
+	/**
+	 * @param $res ResultWrapper
+	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res->result = null;
@@ -197,6 +224,10 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @param $res ResultWrapper
+	 * @return
+	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$r =& $res->result;
@@ -219,6 +250,10 @@ class DatabaseSqlite extends DatabaseBase {
 		return false;
 	}
 
+	/**
+	 * @param $res ResultWrapper
+	 * @return bool|mixed
+	 */
 	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$r =& $res->result;
@@ -235,37 +270,60 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * The PDO::Statement class implements the array interface so count() will work
+	 *
+	 * @param $res ResultWrapper
+	 *
+	 * @return int
 	 */
 	function numRows( $res ) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 		return count( $r );
 	}
 
+	/**
+	 * @param $res ResultWrapper
+	 * @return int
+	 */
 	function numFields( $res ) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 		return is_array( $r ) ? count( $r[0] ) : 0;
 	}
 
+	/**
+	 * @param $res ResultWrapper
+	 * @param $n 
+	 * @return bool
+	 */
 	function fieldName( $res, $n ) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 		if ( is_array( $r ) ) {
 			$keys = array_keys( $r[0] );
 			return $keys[$n];
 		}
-		return  false;
+		return false;
 	}
 
 	/**
 	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
+	 *
+	 * @param $name
+	 * @param bool $quoted
+	 * @return string
 	 */
 	function tableName( $name, $quoted = true ) {
 		// table names starting with sqlite_ are reserved
-		if ( strpos( $name, 'sqlite_' ) === 0 ) return $name;
+		if ( strpos( $name, 'sqlite_' ) === 0 ) {
+			return $name;
+		}
 		return str_replace( '"', '', parent::tableName( $name, $quoted ) );
 	}
 
 	/**
 	 * Index names have DB scope
+	 *
+	 * @param $index string
+	 *
+	 * @return string
 	 */
 	function indexName( $index ) {
 		return $index;
@@ -273,11 +331,17 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * This must be called after nextSequenceVal
+	 *
+	 * @return int
 	 */
 	function insertId() {
 		return $this->mConn->lastInsertId();
 	}
 
+	/**
+	 * @param $res ResultWrapper
+	 * @param $row
+	 */
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
 			$r =& $res->result;
@@ -292,6 +356,9 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function lastError() {
 		if ( !is_object( $this->mConn ) ) {
 			return "Cannot return last error, no db connection";
@@ -300,6 +367,9 @@ class DatabaseSqlite extends DatabaseBase {
 		return isset( $e[2] ) ? $e[2] : '';
 	}
 
+	/**
+	 * @return string
+	 */
 	function lastErrno() {
 		if ( !is_object( $this->mConn ) ) {
 			return "Cannot return last error, no db connection";
@@ -309,6 +379,9 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	function affectedRows() {
 		return $this->mAffectedRows;
 	}
@@ -317,6 +390,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Returns information about an index
 	 * Returns false if the index does not exist
 	 * - if errors are explicitly ignored, returns NULL on failure
+	 *
+	 * @return array
 	 */
 	function indexInfo( $table, $index, $fname = 'DatabaseSqlite::indexExists' ) {
 		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
@@ -334,6 +409,12 @@ class DatabaseSqlite extends DatabaseBase {
 		return $info;
 	}
 
+	/**
+	 * @param $table
+	 * @param $index
+	 * @param $fname string
+	 * @return bool|null
+	 */
 	function indexUnique( $table, $index, $fname = 'DatabaseSqlite::indexUnique' ) {
 		$row = $this->selectRow( 'sqlite_master', '*',
 			array(
@@ -356,6 +437,10 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Filter the options used in SELECT statements
+	 *
+	 * @param $options array
+	 *
+	 * @return array
 	 */
 	function makeSelectOptions( $options ) {
 		foreach ( $options as $k => $v ) {
@@ -421,6 +506,13 @@ class DatabaseSqlite extends DatabaseBase {
 		return $ret;
 	}
 
+	/**
+	 * @param $table
+	 * @param $uniqueIndexes
+	 * @param $rows
+	 * @param $fname string
+	 * @return bool|ResultWrapper
+	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseSqlite::replace' ) {
 		if ( !count( $rows ) ) return true;
 
@@ -442,28 +534,47 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * Returns the size of a text field, or -1 for "unlimited"
 	 * In SQLite this is SQLITE_MAX_LENGTH, by default 1GB. No way to query it though.
+	 *
+	 * @return int
 	 */
 	function textFieldSize( $table, $field ) {
 		return -1;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function unionSupportsOrderAndLimit() {
 		return false;
 	}
 
+	/**
+	 * @param $sqls
+	 * @param $all
+	 * @return string
+	 */
 	function unionQueries( $sqls, $all ) {
 		$glue = $all ? ' UNION ALL ' : ' UNION ';
 		return implode( $glue, $sqls );
 	}
 
+	/**
+	 * @return bool
+	 */
 	function wasDeadlock() {
 		return $this->lastErrno() == 5; // SQLITE_BUSY
 	}
 
+	/**
+	 * @return bool
+	 */
 	function wasErrorReissuable() {
 		return $this->lastErrno() ==  17; // SQLITE_SCHEMA;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function wasReadOnlyError() {
 		return $this->lastErrno() == 8; // SQLITE_READONLY;
 	}
@@ -509,35 +620,58 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	function begin( $fname = '' ) {
-		if ( $this->mTrxLevel == 1 ) $this->commit();
+		if ( $this->mTrxLevel == 1 ) {
+			$this->commit();
+		}
 		$this->mConn->beginTransaction();
 		$this->mTrxLevel = 1;
 	}
 
 	function commit( $fname = '' ) {
-		if ( $this->mTrxLevel == 0 ) return;
+		if ( $this->mTrxLevel == 0 ) {
+			return;
+		}
 		$this->mConn->commit();
 		$this->mTrxLevel = 0;
 	}
 
 	function rollback( $fname = '' ) {
-		if ( $this->mTrxLevel == 0 ) return;
+		if ( $this->mTrxLevel == 0 ) {
+			return;
+		}
 		$this->mConn->rollBack();
 		$this->mTrxLevel = 0;
 	}
 
+	/**
+	 * @param  $sql
+	 * @param  $num
+	 * @return string
+	 */
 	function limitResultForUpdate( $sql, $num ) {
 		return $this->limitResult( $sql, $num );
 	}
 
+	/**
+	 * @param $s string
+	 * @return string
+	 */
 	function strencode( $s ) {
 		return substr( $this->addQuotes( $s ), 1, - 1 );
 	}
 
+	/**
+	 * @param $b
+	 * @return Blob
+	 */
 	function encodeBlob( $b ) {
 		return new Blob( $b );
 	}
 
+	/**
+	 * @param $b Blob|string
+	 * @return string
+	 */
 	function decodeBlob( $b ) {
 		if ( $b instanceof Blob ) {
 			$b = $b->fetch();
@@ -545,6 +679,10 @@ class DatabaseSqlite extends DatabaseBase {
 		return $b;
 	}
 
+	/**
+	 * @param $s Blob|string
+	 * @return string
+	 */
 	function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			return "x'" . bin2hex( $s->fetch() ) . "'";
@@ -553,6 +691,9 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function buildLike() {
 		$params = func_get_args();
 		if ( count( $params ) > 0 && is_array( $params[0] ) ) {
@@ -561,6 +702,9 @@ class DatabaseSqlite extends DatabaseBase {
 		return parent::buildLike( $params ) . "ESCAPE '\' ";
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getSearchEngine() {
 		return "SearchSqlite";
 	}
@@ -623,12 +767,22 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * Build a concatenation list to feed into a SQL query
 	 *
+	 * @param $stringList array
+	 *
 	 * @return string
 	 */
 	function buildConcat( $stringList ) {
 		return '(' . implode( ') || (', $stringList ) . ')';
 	}
 
+	/**
+	 * @throws MWException
+	 * @param $oldName
+	 * @param $newName
+	 * @param $temporary bool
+	 * @param $fname string
+	 * @return bool|ResultWrapper
+	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseSqlite::duplicateTableStructure' ) {
 		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name=" . $this->addQuotes( $oldName ) . " AND type='table'", $fname );
 		$obj = $this->fetchObject( $res );
@@ -722,6 +876,9 @@ class SQLiteField implements Field {
 		return $this->info->dflt_value;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isNullable() {
 		return !$this->info->notnull;
 	}
