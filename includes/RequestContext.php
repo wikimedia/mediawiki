@@ -10,12 +10,36 @@
  */
 
 class RequestContext {
-	private $mRequest; // / WebRequest object
-	private $mTitle;   // / Title object
-	private $mOutput;  // / OutputPage object
-	private $mUser;    // / User object
-	private $mLang;    // / Language object
-	private $mSkin;    // / Skin object
+
+	/**
+	 * @var WebRequest
+	 */
+	private $mRequest;
+
+	/**
+	 * @var Title
+	 */
+	private $mTitle;
+
+	/**
+	 * @var OutputPage
+	 */
+	private $mOutput;
+
+	/**
+	 * @var User
+	 */
+	private $mUser;
+
+	/**
+	 * @var Language
+	 */
+	private $mLang;
+
+	/**
+	 * @var Skin
+	 */
+	private $mSkin;
 
 	/**
 	 * Set the WebRequest object
@@ -189,6 +213,10 @@ class RequestContext {
 	 * Make these C#-style accessors, so you can do $context->user->getName() which is
 	 * internally mapped to $context->__get('user')->getName() which is mapped to
 	 * $context->getUser()->getName()
+	 *
+	 * @param $name string
+	 *
+	 * @return string
 	 */
 	public function __get( $name ) {
 		if ( in_array( $name, array( 'request', 'title', 'output', 'user', 'lang', 'skin' ) ) ) {
@@ -198,6 +226,11 @@ class RequestContext {
 		trigger_error( "Undefined property {$name}", E_NOTICE );
 	}
 
+	/**
+	 * @param $name string
+	 * @param $value
+	 * @return string
+	 */
 	public function __set( $name, $value ) {
 		if ( in_array( $name, array( 'request', 'title', 'output', 'user', 'lang', 'skin' ) ) ) {
 			$fname = 'set' . ucfirst( $name );
