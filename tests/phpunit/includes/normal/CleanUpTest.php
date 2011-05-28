@@ -140,8 +140,8 @@ class CleanUpTest extends MediaWikiTestCase {
 	 * @todo document
 	 */
 	function doTestDoubleBytes( $head, $tail ) {
-		for( $first = 0xc0; $first < 0x100; $first++ ) {
-			for( $second = 0x80; $second < 0x100; $second++ ) {
+		for( $first = 0xc0; $first < 0x100; $first+=2 ) {
+			for( $second = 0x80; $second < 0x100; $second+=2 ) {
 				$char = $head . chr( $first ) . chr( $second ) . $tail;
 				$clean = UtfNormal::cleanUp( $char );
 				$x = sprintf( "%02X,%02X", $first, $second );
@@ -184,8 +184,8 @@ class CleanUpTest extends MediaWikiTestCase {
 
 	/** @todo document */
 	function doTestTripleBytes( $head, $tail ) {
-		for( $first = 0xc0; $first < 0x100; $first++ ) {
-			for( $second = 0x80; $second < 0x100; $second++ ) {
+		for( $first = 0xc0; $first < 0x100; $first+=2 ) {
+			for( $second = 0x80; $second < 0x100; $second+=2 ) {
 				#for( $third = 0x80; $third < 0x100; $third++ ) {
 				for( $third = 0x80; $third < 0x81; $third++ ) {
 					$char = $head . chr( $first ) . chr( $second ) . chr( $third ) . $tail;
