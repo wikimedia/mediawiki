@@ -299,7 +299,8 @@ $messages = array(
 'nstab-category'  => 'Цатег',
 
 # Main script and global functions
-'nosuchaction' => 'Цу тайпара дулархам бац',
+'nosuchaction'      => 'Цу тайпара дулархам бац',
+'nosuchspecialpage' => 'Изза мо гIооагIув яц',
 
 # General errors
 'error'              => 'ГIалат',
@@ -474,6 +475,13 @@ $messages = array(
 'revdelete-hid'              => 'къайла я $1',
 'revdelete-log-message'      => '$1ара $2чунна  {{PLURAL:$2|доржама|доржамий}}',
 
+# History merging
+'mergehistory-list'   => 'ВIашагIатоха хувцамий искар',
+'mergehistory-go'     => 'ВIашагIатоха хувцамаш хьахьокха',
+'mergehistory-submit' => 'Хувцамаш вIашагIатоха',
+'mergehistory-empty'  => 'ВIашагIатохара хувцамаш кораяяц',
+'mergehistory-reason' => 'Бахьан:',
+
 # Merge log
 'revertmerge' => ' Декъа',
 
@@ -534,6 +542,11 @@ $messages = array(
 'powersearch-ns'                   => ' ЦIерий аренашкахь лахар',
 'powersearch-redir'                => 'ДIа-хьа оагIувнаш гойта',
 'powersearch-field'                => 'Лахар',
+'powersearch-toggleall'            => 'Деррига',
+'powersearch-togglenone'           => 'Цхьаккха',
+
+# Quickbar
+'qbsettings-none' => 'Цхьаккха',
 
 # Preferences page
 'preferences'               => 'Оттамаш',
@@ -544,6 +557,10 @@ $messages = array(
 'skin-preview'              => 'Хьажа',
 'prefs-datetime'            => 'Таьрахьеи сахьатеи',
 'prefs-personal'            => 'Хьа хьай далам',
+'prefs-rc'                  => 'Керда хувцамаш',
+'prefs-watchlist'           => 'Теркама дагарче',
+'prefs-watchlist-days'      => 'Ден дукхал',
+'prefs-resetpass'           => 'КъайладогIа хувца',
 'prefs-rendering'           => 'ТIера бIаса',
 'saveprefs'                 => 'Дита',
 'prefs-editing'             => 'ГIалатнийсдар',
@@ -568,35 +585,48 @@ $messages = array(
 'yourlanguage'              => 'Мотт:',
 'gender-male'               => 'МаIа',
 'gender-female'             => 'Кхал',
+'email'                     => 'Д-фошт',
 'prefs-help-email'          => 'Д-фоштий моттиг ала эшаш дац, амма новка даца, наггах санна къайладоагIа шоан дийцалой, цу тIа хьатIадайтаргда.',
 'prefs-help-email-others'   => 'Кхыбола дакъалаьцархоша шоаца бувзам я йийшхургья шун оагIува тIа гIолла, д-фошт хьаела ца езаш.',
 'prefs-signature'           => 'Кулгяздар',
 
 # User rights
-'userrights-user-editname' => 'Дакъалаьцархочунна цIи Iоязаде',
-'editusergroup'            => 'Дакъалаьцархочунна тоабаш хувца',
-'saveusergroups'           => 'Дакъалаьцархочунна тоабаш дита',
-'userrights-groupsmember'  => 'Тоабий дакъалаьцархо:',
+'userrights-user-editname'    => 'Дакъалаьцархочунна цIи Iоязаде',
+'editusergroup'               => 'Дакъалаьцархочунна тоабаш хувца',
+'saveusergroups'              => 'Дакъалаьцархочунна тоабаш дита',
+'userrights-groupsmember'     => 'Тоабий дакъалаьцархо:',
+'userrights-reason'           => 'Бахьан:',
+'userrights-changeable-col'   => 'Оаш хувца мегаш йола тоабаш',
+'userrights-unchangeable-col' => 'Оаш хувца мегаш йоаца тоабаш',
 
 # Groups
 'group'       => 'Тоаб:',
+'group-user'  => 'Дакъалаьцархой',
+'group-bot'   => 'БIаташ',
 'group-sysop' => 'Мазакулгалхой',
 'group-all'   => '(деррига)',
 
-'group-user-member' => 'дакъалаьцархо',
+'group-user-member'  => 'дакъалаьцархо',
+'group-bot-member'   => 'бIат',
+'group-sysop-member' => 'мазакулгалхо',
 
 'grouppage-user'  => '{{ns:project}}:Дакъалаьцархой',
+'grouppage-bot'   => '{{ns:project}}:БIаташ',
 'grouppage-sysop' => '{{ns:project}}:Мазакулгалхой',
 
 # Rights
-'right-read' => 'ОагIувнаш деша',
-'right-edit' => 'ОагIувнаш хувца',
+'right-read'       => 'ОагIувнаш деша',
+'right-edit'       => 'ОагIувнаш хувца',
+'right-createtalk' => 'дувцама оагIувний хьакхоллам',
+'right-move'       => 'ОагIувний цIи хувца',
+'right-movefile'   => 'Паьлий цIи хувца',
 
 # User rights log
 'rightslog'  => 'Дакъалаьцархочунна бокъона тептар',
 'rightsnone' => '(а)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read' => 'Укх оагIуви дешам',
 'action-edit' => 'Ер оагIув хувца',
 
 # Recent changes
@@ -650,6 +680,8 @@ $messages = array(
 'license-header' => 'ЦIийяздар',
 
 # Special:ListFiles
+'imgfile'               => 'паьл',
+'listfiles'             => 'Паьлий дагарче',
 'listfiles_date'        => 'Денха',
 'listfiles_name'        => 'Паьла цIи',
 'listfiles_user'        => 'Дакъалаьцархо',
@@ -683,8 +715,9 @@ $messages = array(
 'filerevert-comment' => 'Бахьан:',
 
 # File deletion
-'filedelete-comment' => 'Бахьан:',
-'filedelete-submit'  => 'ДIадаккха',
+'filedelete-comment'          => 'Бахьан:',
+'filedelete-submit'           => 'ДIадаккха',
+'filedelete-reason-otherlist' => 'Кхыдола бахьан',
 
 # MIME search
 'download' => 'хьачуяккха',

@@ -308,7 +308,7 @@ $messages = array(
 'index-category'                 => 'หน้าที่มีดัชนี',
 'noindex-category'               => 'หน้าที่ไม่มีดัชนี',
 
-'mainpagetext'      => "'''ซอฟต์แวร์มีเดียวิกิได้ถูกติดตั้งเรียบร้อย'''",
+'mainpagetext'      => "'''ติดตั้งซอฟต์แวร์มีเดียวิกิเรียบร้อย'''",
 'mainpagedocfooter' => 'ศึกษา[http://meta.wikimedia.org/wiki/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ
 
 == เริ่มต้น ==
@@ -476,6 +476,8 @@ $1',
 'page-rss-feed'           => 'ฟีดอาร์เอสเอส "$1"',
 'page-atom-feed'          => 'ฟีดอะตอม "$1"',
 'red-link-title'          => '$1 (หน้านี้ไม่มี)',
+'sort-descending'         => 'เรียงจากมากไปน้อย',
+'sort-ascending'          => 'เรียงจากน้อยไปมาก',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'เนื้อหา',
@@ -1481,7 +1483,7 @@ $1",
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' เพื่อใช้รูปขนาดเต็ม
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|ข้อความอธิบาย]]</nowiki></tt>''' เพื่อใช้รูปย่อขนาดกว้าง 200 พิกเซลในกล่องที่จัดชิดซ้าย โดยมี \"ข้อความอธิบาย\" เป็นคำบรรยายใต้ภาพ
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' สำหรับการเชื่อมโยงไฟล์โดยตรง โดยไม่ปรากฏไฟล์นั้นออกมา",
-'upload-permitted'            => 'ชนิดชองไฟล์ที่อนุญาตให้ใช้ได้: $1',
+'upload-permitted'            => 'ชนิดของไฟล์ที่อนุญาตให้ใช้ได้: $1',
 'upload-preferred'            => 'ชนิดของไฟล์ที่ควรใช้: $1',
 'upload-prohibited'           => 'ชนิดของไฟล์ที่ไม่อนุญาตให้ใช้: $1',
 'uploadlog'                   => 'บันทึกการอัปโหลด',
@@ -1629,7 +1631,7 @@ $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'ไม่สามารถติดต่อยูอาร์แอลได้',
-'upload-curl-error6-text'  => 'ยูอาร์แอลที่ใส่ค่ามาไม่สามารถติดต่อได กรุณาตรวจสอบอีกครั้งว่ายูอาร์แอลนั้นถูกต้อง และเว็บไซต์นั้นยังใช้งานได้ตามปกติ',
+'upload-curl-error6-text'  => 'ยูอาร์แอลที่ใส่ค่ามาไม่สามารถติดต่อได้ กรุณาตรวจสอบอีกครั้งว่ายูอาร์แอลนั้นถูกต้อง และเว็บไซต์นั้นยังใช้งานได้ตามปกติ',
 'upload-curl-error28'      => 'เวลาอัปโหลดถูกตัด',
 'upload-curl-error28-text' => 'เว็บไซต์นี้ใช้เวลานานเกินไปในการเชื่อมต่อ กรุณาตรวจสอบว่าเว็บนี้ยังใช้งานได้ตามปกติ หรืออาจจะรอสักครู่แล้วลองอัปโหลดใหม่',
 

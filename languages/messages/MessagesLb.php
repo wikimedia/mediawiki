@@ -3036,6 +3036,8 @@ Déi aner sinn am Standard verstoppt.
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',
 
+'exif-copyrighted-false' => 'Ëffentlechen Domaine',
+
 'exif-unknowndate' => 'Onbekannten Datum',
 
 'exif-orientation-1' => 'Normal',

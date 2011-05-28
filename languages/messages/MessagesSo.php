@@ -483,6 +483,7 @@ Ereysirka kumeelgaarka ah: $2',
 'italic_tip'      => 'Farta caatada ah',
 'link_sample'     => 'Qoraalka linkiga',
 'headline_sample' => 'Qoraalka madaxa hore',
+'image_tip'       => 'Fayl la soo galiyay',
 'media_tip'       => 'Linkiga file-ka',
 
 # Edit pages
@@ -571,6 +572,10 @@ Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
 'hiddencategories'               => 'Boggaan waxoo ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:',
 'nocreate-loggedin'              => 'Ma laguu ogolo in aad sameyso boggag cusub.',
 'permissionserrors'              => 'Cillado ogolaashada ah',
+'recreate-moveddeleted-warn'     => "'''Digniin: waxaa dib u sameyn rabtaa bog mar hore la tirtiray.'''
+
+Waa in aad si fiican uuga  fikirtaa in ee habboontahay sii socoshada bedelaadka boggaan.
+Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa meeshaan:",
 'edit-conflict'                  => 'Wax bedel isku dhacay',
 
 # Account creation failure
@@ -648,6 +653,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'viewprevnext'                     => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Raadi doorashooyinka',
 'searchmenu-new'                   => "'''Ku sameey bogga  \"[[:\$1]]\" wikigaan! '''",
+'searchmenu-new-nocreate'          => '"$1" waa bog magaceed oo la aqoonsan ama adiga ma sameyn kartid.',
 'searchhelp-url'                   => 'Help:Caawinaad',
 'searchprofile-articles'           => 'Maqaalada kooban',
 'searchprofile-project'            => 'Caawin iyo Bogga mashruuca',
@@ -773,6 +779,7 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'recentchanges-legend'        => 'Dooqyada isbedelada dhow',
 'recentchangestext'           => 'Dabagal isbedelada dhow ee wikiga oo ku dhacay bogaan.',
 'recentchanges-label-newpage' => 'Wax bedelkaan waxoo sameeyay bog cusub',
+'recentchanges-label-minor'   => 'Kan waa bedel yar',
 'recentchanges-label-bot'     => 'Badalkaan waxaa sameeyay bot',
 'rclistfrom'                  => 'Itus isbedelada cusub ka bilaabato $1',
 'rcshowhideminor'             => '$1 bedelada yar',
@@ -895,6 +902,7 @@ ku saabsan: $1',
 'deadendpages'       => 'Boggaga aanan la daba joogin',
 'deadendpagestext'   => 'Boggogaan linki lamalaha boggaga kale ee wikiga .',
 'protectedpages'     => "Boggag la'difaacay",
+'usercreated'        => 'Waxoo sameeyay $1 at $2',
 'newpages'           => 'Bogyaalo cusub',
 'newpages-username'  => 'Magaca gudagalka:',
 'ancientpages'       => 'Boggaga duqoobay',
@@ -991,6 +999,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'delete-legend'  => 'Tirtir',
 'historywarning' => '<strong>Digniin:</strong> Bogga aad tirtirirabtid wuxuu leeyahay taariikkh hore:',
 'actioncomplete' => "Amarka waa la'dhamaystiray",
+'actionfailed'   => 'Shaqada waad ku guul dareesatay',
 'deletedarticle' => 'waxoo tirtiray "[[$1]]"',
 'dellogpage'     => 'Tirtiraha guda galaheeda',
 
@@ -1053,22 +1062,27 @@ waxoo dib ugu celiyay bedelaadka $2.',
 # Contributions
 'contributions' => 'Isticmaalada wax ku darsaday',
 'mycontris'     => 'Wax qoraalkeyga',
+'uctop'         => '(kor)',
 'month'         => 'Bisha (iyo wixii ka horeeyay):',
 'year'          => 'Sanadka  (iyo wixii ka horeeyay):',
 
 'sp-contributions-blocklog' => 'mamnuucyada',
 'sp-contributions-talk'     => 'Wadahadal',
 'sp-contributions-search'   => 'Raadi si aad wax uugu darsatid',
+'sp-contributions-username' => 'Ciwaanka IP:ga  ama  magaca isticmaalaha:',
 'sp-contributions-submit'   => 'Raadi',
 
 # What links here
-'whatlinkshere'       => 'Maxaa meeshaan la xiriiro',
-'whatlinkshere-title' => 'Boggaga la xiriiro "$1"',
-'whatlinkshere-page'  => 'Bogga:',
-'linkshere'           => "Bogyaashaan waxey la xiriiraan  '''[[:$1]]''':",
-'whatlinkshere-prev'  => '{{PLURAL:$1|kii ka horeeyay|kii ka horeeyay $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|kan ku xiga|kan ku xiga $1}}',
-'whatlinkshere-links' => '← kuwa la xiriiro',
+'whatlinkshere'            => 'Maxaa meeshaan la xiriiro',
+'whatlinkshere-title'      => 'Boggaga la xiriiro "$1"',
+'whatlinkshere-page'       => 'Bogga:',
+'linkshere'                => "Bogyaashaan waxey la xiriiraan  '''[[:$1]]''':",
+'nolinkshere'              => "Boggag la xiriiro   '''[[:$1]]''' ma jirto.",
+'isredirect'               => 'bogga loo wareejiyay',
+'whatlinkshere-prev'       => '{{PLURAL:$1|kii ka horeeyay|kii ka horeeyay $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|kan ku xiga|kan ku xiga $1}}',
+'whatlinkshere-links'      => '← kuwa la xiriiro',
+'whatlinkshere-hideredirs' => '$1 la wareejiyay',
 
 # Block/unblock
 'ipboptions'               => '2 saacadood:2 hours,1 maalin:1 day,3 maalmood:3 days,1 isbuuc:1 week,2 isbuuc:2 weeks,1 bil:1 month,3 bilood:3 months,6 bilood:6 months,1 sano:1 year,waligeed:infinite',
@@ -1109,6 +1123,9 @@ Fadlan booqo [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' la'ma isticmaalikaro, '''\$wgUseDatabaseMessages''' oo dansan daraadeed.",
 'allmessages-language'      => 'Luqad:',
 'allmessages-filter-submit' => 'Soco',
+
+# Thumbnails
+'thumbnail-more' => 'Weyneey',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Bogeyga isticmaalaha',
@@ -1155,6 +1172,8 @@ Waxaa fiiri kartaa cadaadkiisa',
 'tooltip-ca-nstab-category'       => 'Itusi qeybta bogga',
 'tooltip-minoredit'               => 'Calaamadeey kan in oo yahay bedel yar',
 'tooltip-save'                    => 'kaydso badalyadaada',
+'tooltip-preview'                 => 'Feerinta wixii aad bedeshay, fadlan kan isticmaal intii aadan kaydinin!',
+'tooltip-diff'                    => 'Fiiri waxa aad ka badashay qoraalka',
 'tooltip-compareselectedversions' => 'Fiiri sida ee u kala duwanyihiin  bedelaadka labada aad ka dooratay boggaan',
 'tooltip-watch'                   => 'Boggaan ku dar liiskaaga waardiyaha',
 

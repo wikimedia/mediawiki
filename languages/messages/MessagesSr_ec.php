@@ -695,6 +695,8 @@ $1',
 'page-atom-feed'          => '„$1“ Атом довод',
 'feed-atom'               => 'Атом',
 'red-link-title'          => '$1 (страница не постоји)',
+'sort-descending'         => 'Поређај опадајуће',
+'sort-ascending'          => 'Поређај растуће',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Чланак',
@@ -1484,7 +1486,7 @@ $1",
 'savedprefs'                    => 'Ваша подешавања су сачувана.',
 'timezonelegend'                => 'Временска зона:',
 'localtime'                     => 'Локално време:',
-'timezoneuseserverdefault'      => 'подразумеване вредности',
+'timezoneuseserverdefault'      => 'подразумеване вредности ($1)',
 'timezoneuseoffset'             => 'друго (унесите одступање)',
 'timezoneoffset'                => 'Одступање¹:',
 'servertime'                    => 'Време на серверу:',
@@ -1817,6 +1819,7 @@ $1",
 'emptyfile'                   => 'Датотека коју сте послали је празна.
 Узрок може бити грешка у називу датотеке.
 Проверите да ли заиста желите да је пошаљете.',
+'windows-nonascii-filename'   => 'Овај вики не подржава називе датотека с посебним знацима.',
 'fileexists'                  => "Датотека с овим називом већ постоји. Погледајте '''<tt>[[:$1]]</tt>''' ако нисте сигурни да ли желите да је промените.
 [[$1|thumb]]",
 'filepageexists'              => "Опис странице за ову датотеку је већ направљен овде '''<tt>[[:$1]]</tt>''', иако датотека не постоји.
@@ -1998,6 +2001,7 @@ $1',
 Доступан је и [[Special:WhatLinksHere/$2|потпуни списак]].',
 'nolinkstoimage'            => 'Нема страница које користе ову датотеку.',
 'morelinkstoimage'          => 'Погледајте [[Special:WhatLinksHere/$1|више веза]] до ове датотеке.',
+'linkstoimage-redirect'     => '$1 (преусмерење датотеке) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Следећа датотека је дупликат|Следеће $1 датотеке су дупликати|Следећих $1 датотека су дупликати}} ове датотеке ([[Special:FileDuplicateSearch/$2|детаљније]]):',
 'sharedupload'              => 'Ова датотека се налази на $1 и може се користити и на другим пројектима.',
 'sharedupload-desc-there'   => 'Ова датотека се налази на $1 и може се користити и на другим пројектима.
@@ -2349,8 +2353,9 @@ $1',
 'watchlist-options'    => 'Поставке списка надгледања',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Надгледање…',
-'unwatching' => 'Прекидање надгледања…',
+'watching'       => 'Надгледање…',
+'unwatching'     => 'Прекидање надгледања…',
+'watcherrortext' => 'Дошло је до грешке при промени поставки вашег списка надгледања за „$1“.',
 
 'enotif_mailer'                => '{{SITENAME}} е-обавештење',
 'enotif_reset'                 => 'Означи све странице као посећене',
@@ -2365,23 +2370,25 @@ $1',
 'enotif_body'                  => 'Поштовани $WATCHINGUSERNAME,
 
 
-Страница $PAGETITLE на викију {{SITENAME}} је $CHANGEDORCREATED дана $PAGEEDITDATE од стране $PAGEEDITOR.
-Погледајте $PAGETITLE_URL за текућу измену.
+Страница $PAGETITLE на викију {{SITENAME}} је $CHANGEDORCREATED дана $PAGEEDITDATE од стране {{GENDER:$PAGEEDITOR|корисника|кориснице|корисника}} $PAGEEDITOR. Погледајте $PAGETITLE_URL за текућу измену.
 
 $NEWPAGE
 
-Сажетак уредника: $PAGESUMMARY $PAGEMINOREDIT
+Сажетак: $PAGESUMMARY $PAGEMINOREDIT
 
-Контактирајте уредника:
+Контакт:
 е-адреса: $PAGEEDITOR_EMAIL
 вики: $PAGEEDITOR_WIKI
 
 Неће бити других обавештења у случају даљих измена уколико не посетите ову страницу.
-Можете и поништити поставке обавештења за све странице у вашем списку надгледања.
+Можете и да поништите поставке обавештења за све странице у вашем списку надгледања.
 
-             Срдачан поздрав, {{SITENAME}}
+Срдачан поздрав, {{SITENAME}}
 
 --
+Да бисте променили поставке у вези с е-обавештењима, посетите
+{{fullurl:{{#special:Preferences}}}}
+
 Да бисте променили поставке у вези са списком надгледања, посетите
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2519,8 +2526,7 @@ $UNWATCHURL
 Архива се повремено чисти од оваквих страница.',
 'undelete-fieldset-title'      => 'Враћање измена',
 'undeleteextrahelp'            => "Да бисте вратили целу историју странице, оставите све кућице неозначене и кликните на дугме '''''{{int:undeletebtn}}'''''.
-Ако желите да вратите одређене измене, означите их и кликните на '''''{{int:undeletebtn}}'''''.
-Дугме '''''{{int:undeletereset}}''''' ће очистити поље за коментар и све кућице.",
+Ако желите да вратите одређене измене, означите их и кликните на '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|измена је архивирана|измене су архивиране|измена је архивирано}}',
 'undeletehistory'              => 'Ако вратите страницу, све измене ће бити враћене њеној историји.
 Ако је у међувремену направљена нова страница с истим називом, враћене измене ће се појавити у ранијом историји.',
@@ -2598,6 +2604,7 @@ $1',
 'sp-contributions-username'            => 'IP адреса или корисничко име:',
 'sp-contributions-toponly'             => 'Прикажи само најновије измене',
 'sp-contributions-submit'              => 'Претражи',
+'sp-contributions-showsizediff'        => 'Прикажи разлике у величини странице',
 
 # What links here
 'whatlinkshere'            => 'Шта је повезано овде',
@@ -2773,6 +2780,7 @@ $1',
 'unlockdbsuccesstext' => 'База података је откључана.',
 'lockfilenotwritable' => 'По фајлу за закључавање базе података не може да се пише. Да бисте закључали или откључали базу, по овом фајлу мора да буде омогућено писање од стране веб сервера.',
 'databasenotlocked'   => 'База података није закључана.',
+'lockedbyandtime'     => '(од $1 дана $2 у $3)',
 
 # Move page
 'move-page'                    => 'Премештање „$1“',
@@ -3114,6 +3122,7 @@ $1',
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|страница|странице|страница}}',
 'file-info'              => 'величина: $1, MIME тип: $2',
 'file-info-size'         => '$1×$2 пиксела, величина: $3, MIME тип: $4',
+'file-info-size-pages'   => '$1 × $2 пиксела, величина: $3, MIME врста: $4, $5 {{PLURAL:$5|страница|странице|страница}}',
 'file-nohires'           => '<small>Није доступна већа величина.</small>',
 'svg-long-desc'          => 'SVG датотека, номинално $1×$2 тачака, величина: $3',
 'show-big-image'         => 'Пуна величина',
@@ -3351,6 +3360,9 @@ $1',
 
 # EXIF attributes
 'exif-compression-1' => 'Несажето',
+'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
+'exif-compression-3' => 'CCITT Group 3 fax encoding',
+'exif-compression-4' => 'CCITT Group 4 fax encoding',
 'exif-compression-6' => 'JPEG',
 
 'exif-copyrighted-true'  => 'Заштићено ауторским правом',

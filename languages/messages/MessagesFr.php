@@ -24,6 +24,7 @@
  * @author Grondin
  * @author Guillom
  * @author Hercule
+ * @author Houcinee1
  * @author Hégésippe Cormier
  * @author IAlex
  * @author Jagwar
@@ -2436,8 +2437,7 @@ Voici les réglages actuels de la page '''$1''' :",
 L’archive peut être nettoyée périodiquement.',
 'undelete-fieldset-title'      => 'Restaurer les versions',
 'undeleteextrahelp'            => "Pour restaurer l’historique complet de cette page, laissez toutes les cases décochées et cliquez sur '''''Restaurer'''''.
-Pour effectuer une restauration partielle, cochez les cases correspondant aux versions à rétablir, puis cliquez sur '''''Restaurer'''''.
-Cliquer sur '''''Réinitialiser''''' effacera la boîte de commentaire et réinitialisera toutes les cases à cocher.",
+Pour effectuer une restauration partielle, cochez les cases correspondant aux versions à rétablir, puis cliquez sur '''''Restaurer'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version archivée|versions archivées}}',
 'undeletehistory'              => 'Si vous restaurez la page, toutes les versions seront replacées dans l’historique.
 Si une nouvelle page avec le même nom a été créée depuis la suppression, les versions restaurées apparaîtront dans l’historique antérieur et la version courante ne sera pas automatiquement remplacée.',
