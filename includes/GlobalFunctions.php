@@ -3536,3 +3536,13 @@ function wfGetParserCacheStorage() {
 	return ObjectCache::getInstance( $wgParserCacheType );
 }
 
+/**
+ * Call hook functions defined in $wgHooks
+ *
+ * @param $event String: event name
+ * @param $args Array: parameters passed to hook functions
+ * @return Boolean
+ */
+function wfRunHooks( $event, $args = array() ) {
+	return Hooks::run( $event, $args );
+}

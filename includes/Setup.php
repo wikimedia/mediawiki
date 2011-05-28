@@ -334,7 +334,6 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	wfProfileIn( $fname . '-includes' );
 	require_once( "$IP/includes/normal/UtfNormalUtil.php" );
 	require_once( "$IP/includes/GlobalFunctions.php" );
-	require_once( "$IP/includes/Hooks.php" );
 	require_once( "$IP/includes/ProxyTools.php" );
 	require_once( "$IP/includes/ImageFunctions.php" );
 	require_once( "$IP/includes/normal/UtfNormalDefines.php" );
