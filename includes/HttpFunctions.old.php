@@ -7,6 +7,7 @@
  * http://www.php.net/manual/en/class.httprequest.php
  *
  * This is for backwards compatibility.
+ * @since 1.17
  */
 
 class HttpRequest extends MWHttpRequest { }

@@ -17,13 +17,24 @@
  */
 class MWTidyWrapper {
 
-	protected $mTokens, $mUniqPrefix;
+	/**
+	 * @var ReplacementArray
+	 */
+	protected $mTokens;
+
+	protected $mUniqPrefix;
+
+	protected $mMarkerIndex;
 
 	public function __construct() {
 		$this->mTokens = null;
 		$this->mUniqPrefix = null;
 	}
 
+	/**
+	 * @param $text string
+	 * @return string
+	 */
 	public function getWrapped( $text ) {
 		$this->mTokens = new ReplacementArray;
 		$this->mUniqPrefix = "\x7fUNIQ" .
@@ -40,7 +51,9 @@ class MWTidyWrapper {
 	}
 
 	/**
-	 * @private
+	 * @param $m array
+	 *
+	 * @return string
 	 */
 	function replaceEditSectionLinksCallback( $m ) {
 		$marker = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}" . Parser::MARKER_SUFFIX;
@@ -49,6 +62,10 @@ class MWTidyWrapper {
 		return $marker;
 	}
 
+	/**
+	 * @param $text string
+	 * @return string
+	 */
 	public function postprocess( $text ) {
 		return $this->mTokens->replace( $text );
 	}
@@ -187,6 +204,12 @@ class MWTidy {
 	 * saving the overhead of spawning a new process.
 	 *
 	 * 'pear install tidy' should be able to compile the extension module.
+	 *
+	 * @param $text
+	 * @param $stderr
+	 * @param $retval
+	 *
+	 * @return string
 	 */
 	private static function execInternalTidy( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgDebugTidy;

@@ -58,6 +58,10 @@ class DependencyWrapper {
 
 	/**
 	 * Store the wrapper to a cache
+	 *
+	 * @param $cache BagOStuff
+	 * @param $key
+	 * @param $expiry
 	 */
 	function storeToCache( $cache, $key, $expiry = 0 ) {
 		$this->initialiseDeps();
@@ -69,7 +73,7 @@ class DependencyWrapper {
 	 * it will be generated with the callback function (if present), and the newly
 	 * calculated value will be stored to the cache in a wrapper.
 	 *
-	 * @param $cache Object: a cache object such as $wgMemc
+	 * @param $cache BagOStuff a cache object such as $wgMemc
 	 * @param $key String: the cache key
 	 * @param $expiry Integer: the expiry timestamp or interval in seconds
 	 * @param $callback Mixed: the callback for generating the value, or false
@@ -156,6 +160,9 @@ class FileDependency extends CacheDependency {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isExpired() {
 		if ( !file_exists( $this->filename ) ) {
 			if ( $this->timestamp === false ) {
@@ -204,11 +211,16 @@ class TitleDependency extends CacheDependency {
 
 	/**
 	 * Get rid of bulky Title object for sleep
+	 *
+	 * @return array
 	 */
 	function __sleep() {
 		return array( 'ns', 'dbk', 'touched' );
 	}
 
+	/**
+	 * @return Title
+	 */
 	function getTitle() {
 		if ( !isset( $this->titleObj ) ) {
 			$this->titleObj = Title::makeTitle( $this->ns, $this->dbk );
@@ -217,6 +229,9 @@ class TitleDependency extends CacheDependency {
 		return $this->titleObj;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isExpired() {
 		$touched = $this->getTitle()->getTouched();
 
@@ -292,6 +307,9 @@ class TitleListDependency extends CacheDependency {
 		$this->timestamps = $this->calculateTimestamps();
 	}
 
+	/**
+	 * @return array
+	 */
 	function __sleep() {
 		return array( 'timestamps' );
 	}
@@ -304,6 +322,9 @@ class TitleListDependency extends CacheDependency {
 		return $this->linkBatch;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isExpired() {
 		$newTimestamps = $this->calculateTimestamps();
 
@@ -345,6 +366,9 @@ class GlobalDependency extends CacheDependency {
 		$this->value = $GLOBALS[$name];
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isExpired() {
 		return $GLOBALS[$this->name] != $this->value;
 	}
@@ -361,6 +385,9 @@ class ConstantDependency extends CacheDependency {
 		$this->value = constant( $name );
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isExpired() {
 		return constant( $this->name ) != $this->value;
 	}
