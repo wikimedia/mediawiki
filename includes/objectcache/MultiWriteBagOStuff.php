@@ -14,6 +14,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *   - caches:   This should have a numbered array of cache parameter 
 	 *               structures, in the style required by $wgObjectCaches. See
 	 *               the documentation of $wgObjectCaches for more detail.
+	 *
+	 * @param $params array
 	 */
 	public function __construct( $params ) {
 		if ( !isset( $params['caches'] ) ) {

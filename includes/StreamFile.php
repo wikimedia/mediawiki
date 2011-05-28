@@ -5,7 +5,10 @@
  * @file
  */
 
-/** */
+/**
+ * @param $fname string
+ * @param $headers array
+ */
 function wfStreamFile( $fname, $headers = array() ) {
 	$stat = @stat( $fname );
 	if ( !$stat ) {

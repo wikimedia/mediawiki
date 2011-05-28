@@ -8,7 +8,7 @@ class Autopromote {
 	/**
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
-	 * @param $user The user to get the groups for
+	 * @param $user User The user to get the groups for
 	 * @return array Array of groups to promote to.
 	 */
 	public static function getAutopromoteGroups( User $user ) {

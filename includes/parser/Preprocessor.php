@@ -22,6 +22,8 @@ interface Preprocessor {
 	/**
 	 * Create a new custom frame for programmatic use of parameter replacement as used in some extensions
 	 *
+	 * @param $args array
+	 * 
 	 * @return PPFrame
 	 */
 	function newCustomFrame( $args );
@@ -51,6 +53,8 @@ interface PPFrame {
 
 	/**
 	 * Create a child frame
+	 *
+	 * @return PPFrame
 	 */
 	function newChild( $args = false, $title = false );
 

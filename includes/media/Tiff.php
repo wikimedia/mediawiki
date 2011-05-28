@@ -16,6 +16,8 @@ class TiffHandler extends JpegOrTiffHandler {
 	/**
 	 * Conversion to PNG for inline display can be disabled here...
 	 * Note scaling should work with ImageMagick, but may not with GD scaling.
+	 *
+	 * @return bool
 	 */
 	function canRender( $file ) {
 		global $wgTiffThumbnailType;
@@ -25,29 +27,42 @@ class TiffHandler extends JpegOrTiffHandler {
 	/**
 	 * Browsers don't support TIFF inline generally...
 	 * For inline display, we need to convert to PNG.
+	 *
+	 * @return bool
 	 */
 	function mustRender( $file ) {
 		return true;
 	}
 
+	/**
+	 * @param  $ext
+	 * @param  $mime
+	 * @param null $params
+	 * @return bool
+	 */
 	function getThumbType( $ext, $mime, $params = null ) {
 		global $wgTiffThumbnailType;
 		return $wgTiffThumbnailType;
 	}
 
-        function getMetadata( $image, $filename ) {
-                global $wgShowEXIF;
-                if ( $wgShowEXIF && file_exists( $filename ) ) {
-                        $exif = new Exif( $filename );
-                        $data = $exif->getFilteredData();
-                        if ( $data ) {
-                                $data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
-                                return serialize( $data );
-                        } else {
-                                return JpegOrTiffHandler::BROKEN_FILE;
-                        }
-                } else {
-                        return '';
-                }
-        }
+	/**
+	 * @param $image
+	 * @param $filename
+	 * @return string
+	 */
+	function getMetadata( $image, $filename ) {
+		global $wgShowEXIF;
+		if ( $wgShowEXIF && file_exists( $filename ) ) {
+			$exif = new Exif( $filename );
+			$data = $exif->getFilteredData();
+			if ( $data ) {
+				$data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
+				return serialize( $data );
+			} else {
+				return JpegOrTiffHandler::BROKEN_FILE;
+			}
+		} else {
+			return '';
+		}
+	}
 }
