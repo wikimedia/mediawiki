@@ -1484,7 +1484,7 @@ abstract class DatabaseBase implements DatabaseType {
 					$list .= $field . $operator . $this->addQuotes( $value[0] );
 				} else {
 					$operator = $not ? ' NOT IN ' : ' IN ';
-					$list .= $field . $operator . " (" . $this->makeList( $value ) . ") ";
+					$list .= $field . $operator . "(" . $this->makeList( $value ) . ")";
 				}
 			} elseif ( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
