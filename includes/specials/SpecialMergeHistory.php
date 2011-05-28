@@ -29,6 +29,10 @@
  */
 class SpecialMergeHistory extends SpecialPage {
 	var $mAction, $mTarget, $mDest, $mTimestamp, $mTargetID, $mDestID, $mComment;
+
+	/**
+	 * @var Title
+	 */
 	var $mTargetObj, $mDestObj;
 
 	public function __construct() {

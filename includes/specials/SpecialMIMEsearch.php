@@ -107,6 +107,10 @@ class MIMEsearchPage extends QueryPage {
 		return "($download) $plink . . $dimensions . . $bytes . . $user . . $time";
 	}
 
+	/**
+	 * @param $type string
+	 * @return bool
+	 */
 	protected static function isValidType( $type ) {
 		// From maintenance/tables.sql => img_major_mime
 		$types = array(

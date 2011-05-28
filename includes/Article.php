@@ -864,7 +864,7 @@ class Article {
 	/**
 	 * Get a list of users who have edited this article, not including the user who made
 	 * the most recent revision, which you can get from $article->getUser() if you want it
-	 * @return UserArray
+	 * @return UserArrayFromResult
 	 */
 	public function getContributors() {
 		# @todo FIXME: This is expensive; cache this info somewhere.

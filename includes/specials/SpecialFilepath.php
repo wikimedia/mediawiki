@@ -70,6 +70,9 @@ class SpecialFilepath extends SpecialPage {
 		}
 	}
 
+	/**
+	 * @param $title Title
+	 */
 	function showForm( $title ) {
 		global $wgOut, $wgScript;
 

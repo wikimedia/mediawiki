@@ -63,8 +63,8 @@ class SpecialTags extends SpecialPage {
 	}
 
 	function doTagRow( $tag, $hitcount ) {
-		static $sk=null, $doneTags=array();
-		if (!$sk) {
+		static $sk = null, $doneTags = array();
+		if ( !$sk ) {
 			global $wgUser;
 			$sk = $wgUser->getSkin();
 		}
