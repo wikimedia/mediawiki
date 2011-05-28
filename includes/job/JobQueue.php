@@ -46,6 +46,10 @@ abstract class Job {
 	 * Pop a job of a certain type.  This tries less hard than pop() to
 	 * actually find a job; it may be adversely affected by concurrent job
 	 * runners.
+	 *
+	 * @param $type string
+	 *
+	 * @return Job
 	 */
 	static function pop_type( $type ) {
 		wfProfilein( __METHOD__ );

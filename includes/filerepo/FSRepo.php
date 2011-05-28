@@ -65,6 +65,10 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Get the local directory corresponding to one of the three basic zones
+	 *
+	 * @param $zone string
+	 *
+	 * @return string
 	 */
 	function getZonePath( $zone ) {
 		switch ( $zone ) {
@@ -83,6 +87,10 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * @see FileRepo::getZoneUrl()
+	 *
+	 * @param $zone string
+	 *
+	 * @return url
 	 */
 	function getZoneUrl( $zone ) {
 		switch ( $zone ) {
@@ -103,6 +111,10 @@ class FSRepo extends FileRepo {
 	 * Get a URL referring to this repository, with the private mwrepo protocol.
 	 * The suffix, if supplied, is considered to be unencoded, and will be
 	 * URL-encoded before being returned.
+	 *
+	 * @param $suffix string
+	 *
+	 * @return string
 	 */
 	function getVirtualUrl( $suffix = false ) {
 		$path = 'mwrepo://' . $this->name;
@@ -114,6 +126,10 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Get the local path corresponding to a virtual URL
+	 *
+	 * @param $url string
+	 *
+	 * @return string
 	 */
 	function resolveVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {

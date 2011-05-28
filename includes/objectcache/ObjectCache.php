@@ -79,6 +79,8 @@ class ObjectCache {
 
 	/**
 	 * Factory function referenced from DefaultSettings.php for CACHE_ACCEL.
+	 *
+	 * @return ObjectCache
 	 */
 	static function newAccelerator( $params ) {
 		if ( function_exists( 'eaccelerator_get' ) ) {

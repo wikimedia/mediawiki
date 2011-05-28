@@ -31,6 +31,8 @@ class SqlBagOStuff extends BagOStuff {
 	 *                  reciprocal of the probability of purging on any given 
 	 *                  request. If this is set to zero, purging will never be 
 	 *                  done.
+	 *
+	 * @param $params array
 	 */
 	public function __construct( $params ) {
 		if ( isset( $params['server'] ) ) {

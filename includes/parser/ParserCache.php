@@ -134,6 +134,11 @@ class ParserCache {
 	/**
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
+	 *
+	 * @param $article Article
+	 * @param $popts ParserOptions
+	 * @param $useOutdated
+	 *
 	 * @return ParserOutput|false
 	 */
 	public function get( $article, $popts, $useOutdated = false ) {

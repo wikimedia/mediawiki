@@ -82,6 +82,11 @@ class Linker {
 
 	/**
 	 * Common code for getLinkAttributesX functions
+	 *
+	 * @param $title string
+	 * @param $class string
+	 *
+	 * @return string
 	 */
 	private static function getLinkAttributesInternal( $title, $class ) {
 		$title = htmlspecialchars( $title );
@@ -143,7 +148,7 @@ class Linker {
 	 * @param $query         array  The query string to append to the URL
 	 *   you're linking to, in key => value array form.  Query keys and values
 	 *   will be URL-encoded.
-	 * @param $options       mixed  String or array of strings:
+	 * @param $options string|array  String or array of strings:
 	 *     'known': Page is known to exist, so don't check if it does.
 	 *     'broken': Page is known not to exist, so don't check if it does.
 	 *     'noclasses': Don't add any classes automatically (includes "new",

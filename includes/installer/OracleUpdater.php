@@ -104,6 +104,8 @@ class OracleUpdater extends DatabaseUpdater {
 
 	/**
 	 * Overload: after this action field info table has to be rebuilt
+	 *
+	 * @param $what array
 	 */
 	public function doUpdates( $what = array( 'core', 'extensions', 'purge' ) ) {
 		parent::doUpdates( $what );

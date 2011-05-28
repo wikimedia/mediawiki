@@ -25,6 +25,8 @@ class MWInit {
 	/**
 	 * Returns true if we are running under HipHop, whether in compiled or 
 	 * interpreted mode.
+	 *
+	 * @return bool
 	 */
 	static function isHipHop() {
 		return function_exists( 'hphp_thread_set_warmup_enabled' );
@@ -33,7 +35,11 @@ class MWInit {
 	/**
 	 * Get a fully-qualified path for a source file relative to $IP. Including
 	 * such a path under HipHop will force the file to be interpreted. This is
-	 * useful for configuration files. 
+	 * useful for configuration files.
+	 *
+	 * @param $file string
+	 *
+	 * @return string
 	 */
 	static function interpretedPath( $file ) {
 		global $IP;
@@ -46,6 +52,10 @@ class MWInit {
 	 * it will converted to a fully qualified path. It is necessary to use a 
 	 * path which is relative to $IP in order to make HipHop use its compiled 
 	 * code.
+	 *
+	 * @param $file string
+	 *
+	 * @return string
 	 */
 	static function compiledPath( $file ) {
 		global $IP;
@@ -68,6 +78,10 @@ class MWInit {
 	 * "volatile", which means (as of March 2011) that the class is broken and 
 	 * can't be used at all. So don't do that. See 
 	 * https://github.com/facebook/hiphop-php/issues/314
+	 *
+	 * @param $class string
+	 *
+	 * @return bool
 	 */
 	static function classExists( $class ) {
 		try {
@@ -81,6 +95,10 @@ class MWInit {
 	/**
 	 * Determine whether a function exists, using a method which works under 
 	 * HipHop.
+	 *
+	 * @param $function string
+	 * 
+	 * @return bool
 	 */
 	static function functionExists( $function ) {
 		try {

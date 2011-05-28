@@ -35,6 +35,11 @@ class LocalRepo extends FSRepo {
 		}
 	}
 
+	/**
+	 * @param $title
+	 * @param $archiveName
+	 * @return OldLocalFile
+	 */
 	function newFromArchiveName( $title, $archiveName ) {
 		return OldLocalFile::newFromArchiveName( $title, $this, $archiveName );
 	}
