@@ -30,7 +30,9 @@ class ApiBlockTest extends ApiTestSetup {
 
 	function removeDBData() {
 		$block = Block::newFromTarget('UTBlockee');
-		$block->delete();	
+		if( $block ) {
+			$block->delete();
+		}
 	}	
 
 	
