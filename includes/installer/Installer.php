@@ -1173,6 +1173,8 @@ abstract class Installer {
 
 	/**
 	 * ParserOptions are constructed before we determined the language, so fix it
+	 *
+	 * @param $lang Language
 	 */
 	public function setParserLanguage( $lang ) {
 		$this->parserOptions->setTargetLanguage( $lang );

@@ -1111,7 +1111,7 @@ class EditPage {
 				$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
 				# we can't deal with anchors, includes, html etc in the header for now,
 				# headline would need to be parsed to improve this
-				if ( $hasmatch and strlen( $matches[2] ) > 0 ) {
+				if ( $hasmatch && strlen( $matches[2] ) > 0 ) {
 					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $matches[2] );
 				}
 			}

@@ -1067,6 +1067,9 @@ class Linker {
 		return $comment;
 	}
 
+	/**
+	 * @var Title
+	 */
 	static $autocommentTitle;
 	static $autocommentLocal;
 

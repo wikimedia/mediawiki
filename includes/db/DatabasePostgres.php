@@ -929,6 +929,10 @@ SQL;
 		return $sql;
 	}
 
+	/**
+	 * @param $b
+	 * @return Blob
+	 */
 	function encodeBlob( $b ) {
 		return new Blob( pg_escape_bytea( $this->mConn, $b ) );
 	}
@@ -944,6 +948,10 @@ SQL;
 		return pg_escape_string( $this->mConn, $s );
 	}
 
+	/**
+	 * @param $s null|bool|Blob
+	 * @return int|string
+	 */
 	function addQuotes( $s ) {
 		if ( is_null( $s ) ) {
 			return 'NULL';
