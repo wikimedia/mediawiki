@@ -26,6 +26,9 @@ class RepoGroup {
 	var $localInfo, $foreignInfo;
 	var $cache;
 
+	/**
+	 * @var RepoGroup
+	 */
 	protected static $instance;
 	const MAX_CACHE_SIZE = 1000;
 
@@ -53,6 +56,8 @@ class RepoGroup {
 
 	/**
 	 * Set the singleton instance to a given object
+	 *
+	 * @param $instance RepoGroup
 	 */
 	static function setSingleton( $instance ) {
 		self::$instance = $instance;
@@ -77,8 +82,8 @@ class RepoGroup {
 	 * Search repositories for an image.
 	 * You can also use wfFindFile() to do this.
 	 *
-	 * @param $title Mixed: Title object or string
-	 * @param $options Associative array of options:
+	 * @param $title Title|string Title object or string
+	 * @param $options array Associative array of options:
 	 *     time:           requested time for an archived image, or false for the
 	 *                     current version. An image object will be returned which was
 	 *                     created at the specified time.

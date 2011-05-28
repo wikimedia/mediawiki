@@ -24,6 +24,8 @@ abstract class MediaHandler {
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
 	 *
+	 * @param $type string
+	 *
 	 * @return MediaHandler
 	 */
 	static function getHandler( $type ) {
@@ -52,16 +54,23 @@ abstract class MediaHandler {
 	 * Validate a thumbnail parameter at parse time.
 	 * Return true to accept the parameter, and false to reject it.
 	 * If you return false, the parser will do something quiet and forgiving.
+	 *
+	 * @param $name
+	 * @param $value
 	 */
 	abstract function validateParam( $name, $value );
 
 	/**
 	 * Merge a parameter array into a string appropriate for inclusion in filenames
+	 *
+	 * @param $params array
 	 */
 	abstract function makeParamString( $params );
 
 	/**
 	 * Parse a param string made with makeParamString back into an array
+	 *
+	 * @param $str string
 	 */
 	abstract function parseParamString( $str );
 
@@ -69,6 +78,8 @@ abstract class MediaHandler {
 	 * Changes the parameter array as necessary, ready for transformation.
 	 * Should be idempotent.
 	 * Returns false if the parameters are unacceptable and the transform should fail
+	 * @param $image
+	 * @param $params
 	 */
 	abstract function normaliseParams( $image, &$params );
 
@@ -137,6 +148,8 @@ abstract class MediaHandler {
 
 	/**
 	 * Get a string describing the type of metadata, for display purposes.
+	 *
+	 * @return string
 	 */
 	function getMetadataType( $image ) { return false; }
 

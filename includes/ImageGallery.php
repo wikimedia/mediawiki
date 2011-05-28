@@ -58,6 +58,8 @@ class ImageGallery {
 
 	/**
 	 * Register a parser object
+	 *
+	 * @param $parser Parser
 	 */
 	function setParser( $parser ) {
 		$this->mParser = $parser;

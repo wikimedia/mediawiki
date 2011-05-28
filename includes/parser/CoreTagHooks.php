@@ -53,9 +53,9 @@ class CoreTagHooks {
 	 *
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
 	 *
-	 * @param string $content
-	 * @param array $attribs
-	 * @param Parser $parser
+	 * @param $content string
+	 * @param $attribs array
+	 * @param $parser Parser
 	 * @return array
 	 */
 	static function html( $content, $attributes, $parser ) {
@@ -74,9 +74,9 @@ class CoreTagHooks {
 	 *
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
 	 *
-	 * @param string $content
-	 * @param array $attribs
-	 * @param Parser $parser
+	 * @param $content string
+	 * @param  $attribs array
+	 * @param $parser Parser
 	 * @return array
 	 */
 	static function nowiki( $content, $attributes, $parser ) {

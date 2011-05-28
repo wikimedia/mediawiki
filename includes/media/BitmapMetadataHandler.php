@@ -39,10 +39,14 @@ class BitmapMetadataHandler {
 	}
 
 
-	/** get exif info using exif class.
-	* Basically what used to be in BitmapHandler::getMetadata().
-	* Just calls stuff in the Exif class.
-	*/
+	/**
+	 *
+	 * get exif info using exif class.
+	 * Basically what used to be in BitmapHandler::getMetadata().
+	 * Just calls stuff in the Exif class.
+	 *
+	 * @param $filename string
+	 */
 	function getExif ( $filename ) {
 		if ( file_exists( $filename ) ) {
 			$exif = new Exif( $filename );

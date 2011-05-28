@@ -63,6 +63,12 @@ class LocalFile extends File {
 	 * Do not call this except from inside a repo class.
 	 *
 	 * Note: $unused param is only here to avoid an E_STRICT
+	 *
+	 * @param $title
+	 * @param $repo
+	 * @param $unused
+	 *
+	 * @return LocalFile
 	 */
 	static function newFromTitle( $title, $repo, $unused = null ) {
 		return new self( $title, $repo );
@@ -71,6 +77,11 @@ class LocalFile extends File {
 	/**
 	 * Create a LocalFile from a title
 	 * Do not call this except from inside a repo class.
+	 *
+	 * @param $row
+	 * @param $repo
+	 *
+	 * @return LocalFile
 	 */
 	static function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_FILE, $row->img_name );
@@ -83,9 +94,12 @@ class LocalFile extends File {
 	/**
 	 * Create a LocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
-	 * @param $sha1
+	 *
+	 * @param $sha1 string
 	 * @param $repo LocalRepo
-	 * @param $timestamp
+	 * @param $timestamp string
+	 *
+	 * @return LocalFile
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
 		$conds = array( 'img_sha1' => $sha1 );

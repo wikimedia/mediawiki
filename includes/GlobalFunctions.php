@@ -85,6 +85,7 @@ if ( !function_exists( 'istainted' ) ) {
 function wfArrayDiff2( $a, $b ) {
 	return array_udiff( $a, $b, 'wfArrayDiff2_cmp' );
 }
+
 function wfArrayDiff2_cmp( $a, $b ) {
 	if ( !is_array( $a ) ) {
 		return strcmp( $a, $b );

@@ -137,6 +137,8 @@ class LocalisationCache {
 	 * Constructor.
 	 * For constructor parameters, see the documentation in DefaultSettings.php
 	 * for $wgLocalisationCacheConf.
+	 *
+	 * @param $conf Array
 	 */
 	function __construct( $conf ) {
 		global $wgCacheDirectory;
