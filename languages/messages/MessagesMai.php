@@ -2118,8 +2118,7 @@ $2 केर संपादित आखिरी अवतरण क पुन
 ई जोगाएल पेटार बीच-बीचमे साफ करबाक चाही।',
 'undelete-fieldset-title'      => 'संशोधन सभकेँ घुराउ',
 'undeleteextrahelp'            => "'''''{{int:undeletebtn}}''''' केँ क्लिक करू पन्नाक पूर्ण इतिहास अनबा लेल, सभटा विकल्पबक्सासँ चेन्ह हटाउ।
-'''''{{int:undeletebtn}}''''' क्लिक करू छाँटल मौलिक आकारमे अनबा लेल, संशोधन सभकेँ अनबा लेल सम्बन्धित बक्सा सभमे चेन्ह लगाउ।
-'''''{{int:undeletereset}}''''' एकरा क्लिक केलापर टिप्पणी क्षेत्र साफ भऽ जाएत आ संगे सभटा टिक करैबला बक्सा सेहो।",
+'''''{{int:undeletebtn}}''''' क्लिक करू छाँटल मौलिक आकारमे अनबा लेल, संशोधन सभकेँ अनबा लेल सम्बन्धित बक्सा सभमे चेन्ह लगाउ।",
 'undeleterevisions'            => '$1{{PLURAL:$1|संशोधन|संशोधन सभ}} पेटारमे जोगाएल',
 'undeletehistory'              => 'जँ अहाँ पन्नाकेँ फेरसँ अनै छी, सभटा संशोधन पुरान स्तरपर संशोधित भऽ जाएत।
 मेटेलाक बाद जँ एकटा नव पन्ना ओही नामसँ बनाएल गेल, आनल संशोधन सभ पुरान इतिहासमे आएत।',
@@ -2565,14 +2564,25 @@ $1',
 'nextdiff'     => 'नव सम्पादन',
 
 # Media information
-'file-info-size' => '$1 × $2 चित्राणु, फाइल आकार: $3, माइम प्रकार: $4',
-'file-nohires'   => '<छोट>ऐसँ बेशी आनन्तर्य उपलब्ध नै अछि।</छोट>',
-'svg-long-desc'  => 'एस.वी.जी. फाइल, मामूली रूपमे $1 × $2 चित्रकण, फाइलक आकार: $3',
-'show-big-image' => 'पूर्ण आनन्तर्य',
+'file-info-size'       => '$1 × $2 चित्राणु, फाइल आकार: $3, माइम प्रकार: $4',
+'file-nohires'         => '<छोट>ऐसँ बेशी आनन्तर्य उपलब्ध नै अछि।</छोट>',
+'svg-long-desc'        => 'एस.वी.जी. फाइल, मामूली रूपमे $1 × $2 चित्रकण, फाइलक आकार: $3',
+'show-big-image'       => 'पूर्ण आनन्तर्य',
+'file-info-gif-looped' => 'घुरियाएल',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|खाका |खाका  सभ }}',
+'file-info-png-looped' => 'घुरियाएल',
+'file-info-png-repeat' => 'छुअल  $1 {{PLURAL:$1|बेर|बेर}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|खाका |खाका  सभ }}',
 
 # Special:NewFiles
-'ilsubmit' => 'ताकू',
-'bydate'   => 'तारीख सं',
+'newimages'             => 'नव संचिका सबहक पेटार',
+'newimages-legend'      => 'चलनी',
+'newimages-label'       => 'संचिका नाम (वा ओकर अंश):',
+'showhidebots'          => '($1 स्वचालक सभ)',
+'noimages'              => 'किछु देखबा योग्य नै |',
+'ilsubmit'              => 'ताकू',
+'bydate'                => 'तारीख सं',
+'sp-newimages-showfrom' => '$2, $१ सं शुरू होइबला नव संचिका देखाउ',
 
 # Bad image list
 'bad_image_list' => 'फॉर्मेट निम्न प्रकारेँ अछि:
@@ -2604,10 +2614,16 @@ $1',
 * जी.पी.एस. लम्बाकार',
 
 # EXIF tags
-'exif-imagewidth'       => 'चौड़ाई',
-'exif-imagelength'      => 'ऊँच',
-'exif-orientation'      => 'अभिविन्यास',
-'exif-imagedescription' => 'चित्र शीर्षक',
+'exif-imagewidth'                => 'चौड़ाई',
+'exif-imagelength'               => 'ऊँच',
+'exif-bitspersample'             => 'प्रति भाग अष्टक',
+'exif-compression'               => 'घोकचेनाइक पद्धति',
+'exif-photometricinterpretation' => 'वर्ण बिंदु प्रकार',
+'exif-orientation'               => 'अभिविन्यास',
+'exif-samplesperpixel'           => 'खंडक प्रकार',
+'exif-planarconfiguration'       => 'दतांश सचियाएब',
+'exif-ycbcrpositioning'          => 'Y आ Cक स्थान',
+'exif-imagedescription'          => 'चित्र शीर्षक',
 
 'exif-meteringmode-0'   => 'अज्ञात',
 'exif-meteringmode-1'   => 'औसत',

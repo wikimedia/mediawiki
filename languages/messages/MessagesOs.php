@@ -334,7 +334,7 @@ $messages = array(
 'yourpasswordagain'       => 'Дæ пароль иу хатт ма:',
 'remembermypassword'      => 'Системæ бахъуыды кæнæд мæ пароль ацы браузеры ($1 бонæй къаддæр æмгъуыдмæ)',
 'yourdomainname'          => 'Дæ домен:',
-'login'                   => 'Дæхи бавдис системæйæн',
+'login'                   => 'Бахизын',
 'nav-login-createaccount' => 'Системæйæн дæхи бавдис',
 'userlogin'               => 'Бахизын / регистраци кæнын',
 'logout'                  => 'Номсусæг суын',
@@ -343,6 +343,8 @@ $messages = array(
 'nologin'                 => "Регистрацигонд нæма дæ? '''$1'''.",
 'nologinlink'             => 'Регистраци',
 'createaccount'           => 'Регистраци кæнын',
+'gotaccount'              => 'Регистрацигонд дæ? $1.',
+'gotaccountlink'          => 'Бахизын',
 'userlogin-resetlink'     => 'Ферох дæ сты дæ бахизæнтæ?',
 'createaccountmail'       => 'адрисмæ гæсгæ',
 'badretype'               => 'Дыууæ хатты иу пароль хъуамæ ныффыстаис',
@@ -480,6 +482,7 @@ $messages = array(
 'searchprofile-images-tooltip'     => 'Агурын файлтæ',
 'searchprofile-everything-tooltip' => 'Агурын алыран дæр (дискуссийы фæрсты дæр)',
 'search-result-size'               => '$1 ({{PLURAL:$2|$2 дзырд|$2 дзырды}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 уæнг|$1 уæнгы}} ({{PLURAL:$2|1 дæлкатегори|$2 дæлкатегорийы}}, {{PLURAL:$3|1 файл|$3 файлы}})',
 'search-redirect'                  => '(рарвыст ардыгæй: $1)',
 'search-section'                   => '(хай $1)',
 'search-suggest'                   => 'Кæд мыййаг агурыс: $1',
@@ -762,11 +765,11 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchthispage'     => 'Ацы фарсмæ дæ цæст æрдар',
 'unwatch'           => 'Мауал дар цæст',
 'watchnochange'     => 'Дæ цæст кæмæ дарыс, уыцы статьятæй иу дæр ивд не ’рцыди.',
-'watchlist-details' => '$1 фарсмæ дæ цæст дарыс, дискусситы фæстæмæ.',
+'watchlist-details' => '{{PLURAL:$1|$1 фарсмæ|$1 фарсмæ}} дæ цæст дарыс, дискусситы нæ нымайгæйæ.',
 'watchlistcontains' => 'Дæ цæст $1 фарсмæ дарыс.',
 'wlnote'            => "Дæлæ афæстаг '''$2 сахаты дæргъы''' цы $1 {{PLURAL:$1|ивддзинад|ивддзинады}} æрцыди.",
 'wlshowlast'        => 'Фæстæг $1 сахаты, $2 боны дæргъы; $3.',
-'watchlist-options' => 'Дæстдард рæгъы фадæттæ',
+'watchlist-options' => 'Цæстдард рæгъы фадæттæ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Цæстдард фæрсты номхыгъдмæ афтауын...',
@@ -843,6 +846,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'whatlinkshere-links'      => '← æрвитæнтæ',
 'whatlinkshere-hideredirs' => '$1 рарвыстытæ',
 'whatlinkshere-hidelinks'  => '$1 æрвитæнтæ',
+'whatlinkshere-hideimages' => '$1 нывмæ æрвитæнтæ',
 'whatlinkshere-filters'    => 'Фильтртæ',
 
 # Block/unblock
@@ -953,6 +957,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'skinname-monobook'    => 'Моно-чиныг',
 'skinname-myskin'      => 'Мæхи',
 'skinname-chick'       => 'Карк',
+
+# Patrol log
+'patrol-log-auto' => '(автоматон)',
+'patrol-log-diff' => 'ивд $1',
 
 # Browsing diffs
 'previousdiff' => '← Раздæры ивд',
