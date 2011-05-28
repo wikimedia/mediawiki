@@ -16,6 +16,10 @@ class CdbFunctions {
 	/**
 	 * Take a modulo of a signed integer as if it were an unsigned integer.
 	 * $b must be less than 0x40000000 and greater than 0
+	 *
+	 * @param $a
+	 * @param $b
+	 *
 	 * @return int
 	 */
 	public static function unsignedMod( $a, $b ) {
@@ -48,6 +52,7 @@ class CdbFunctions {
 	 * The CDB hash function.
 	 * 
 	 * @param $s
+	 *
 	 * @return
 	 */
 	public static function hash( $s ) {
@@ -116,6 +121,10 @@ class CdbReader_PHP extends CdbReader {
 		unset( $this->handle );
 	}
 
+	/**
+	 * @param $key
+	 * @return bool|string
+	 */
 	public function get( $key ) {
 		// strval is required
 		if ( $this->find( strval( $key ) ) ) {
@@ -327,6 +336,11 @@ class CdbWriter_PHP extends CdbWriter {
 		$this->pos = $newpos;
 	}
 
+	/**
+	 * @param $keylen
+	 * @param $datalen
+	 * @param $h
+	 */
 	protected function addend( $keylen, $datalen, $h ) {
 		$this->hplist[] = array(
 			'h' => $h,
@@ -355,6 +369,9 @@ class CdbWriter_PHP extends CdbWriter {
 		$this->write( $buf );
 	}
 
+	/**
+	 * @throws MWException
+	 */
 	protected function finish() {
 		// Hack for DBA cross-check
 		$this->hplist = array_reverse( $this->hplist );

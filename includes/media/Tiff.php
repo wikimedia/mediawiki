@@ -17,6 +17,8 @@ class TiffHandler extends JpegOrTiffHandler {
 	 * Conversion to PNG for inline display can be disabled here...
 	 * Note scaling should work with ImageMagick, but may not with GD scaling.
 	 *
+	 * @param $file
+	 *
 	 * @return bool
 	 */
 	function canRender( $file ) {
@@ -28,6 +30,8 @@ class TiffHandler extends JpegOrTiffHandler {
 	 * Browsers don't support TIFF inline generally...
 	 * For inline display, we need to convert to PNG.
 	 *
+	 * @param $file
+	 *
 	 * @return bool
 	 */
 	function mustRender( $file ) {
@@ -35,9 +39,9 @@ class TiffHandler extends JpegOrTiffHandler {
 	}
 
 	/**
-	 * @param  $ext
-	 * @param  $mime
-	 * @param null $params
+	 * @param $ext
+	 * @param $mime
+	 * @param $params
 	 * @return bool
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {

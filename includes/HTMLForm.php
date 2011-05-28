@@ -861,7 +861,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Initialise the object
-	 * @param $params Associative Array. See HTMLForm doc for syntax.
+	 * @param $params array Associative Array. See HTMLForm doc for syntax.
 	 */
 	function __construct( $params ) {
 		$this->mParams = $params;
