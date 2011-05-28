@@ -55,6 +55,8 @@ abstract class CdbReader {
 
 	/**
 	 * Get a value with a given key. Only string values are supported.
+	 *
+	 * @param $key string
 	 */
 	abstract public function get( $key );
 }

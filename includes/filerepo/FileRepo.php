@@ -52,6 +52,10 @@ abstract class FileRepo {
 
 	/**
 	 * Determine if a string is an mwrepo:// URL
+	 *
+	 * @param $url string
+	 *
+	 * @return bool
 	 */
 	static function isVirtualUrl( $url ) {
 		return substr( $url, 0, 9 ) == 'mwrepo://';
@@ -93,7 +97,7 @@ abstract class FileRepo {
 	 * version control should return false if the time is specified.
 	 *
 	 * @param $title Mixed: Title object or string
-	 * @param $options Associative array of options:
+	 * @param $options array Associative array of options:
 	 *     time:           requested time for an archived image, or false for the
 	 *                     current version. An image object will be returned which was
 	 *                     created at the specified time.
@@ -103,6 +107,8 @@ abstract class FileRepo {
 	 *     private:        If true, return restricted (deleted) files if the current
 	 *                     user is allowed to view them. Otherwise, such files will not
 	 *                     be found.
+	 *
+	 * @return File|false
 	 */
 	function findFile( $title, $options = array() ) {
 		$time = isset( $options['time'] ) ? $options['time'] : false;

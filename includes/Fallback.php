@@ -37,8 +37,8 @@ class Fallback {
 			return utf8_encode( $string );
 		}
 		return $string;
-	}	
-	
+	}
+
 	/**
 	 * Fallback implementation for mb_substr, hardcoded to UTF-8.
 	 * Attempts to be at least _moderately_ efficient; best optimized
@@ -48,8 +48,14 @@ class Fallback {
 	 * Larger offsets are still fairly efficient for Latin text, but
 	 * can be up to 100x slower than native if the text is heavily
 	 * multibyte and we have to slog through a few hundred kb.
+	 * 
+	 * @param $str
+	 * @param $start
+	 * @param $count string
+	 *
+	 * @return string
 	 */
-	public static function mb_substr( $str, $start, $count='end' ) {
+	public static function mb_substr( $str, $start, $count = 'end' ) {
 		if( $start != 0 ) {
 			$split = self::mb_substr_split_unicode( $str, intval( $start ) );
 			$str = substr( $str, $split );

@@ -51,8 +51,8 @@ class CreditsAction extends FormlessAction {
 	}
 
 	/**
-	 * Get a list of contributors of $article
-	 * @param $article Article object
+	 * Get a list of contributors
+	 *
 	 * @param $cnt Int: maximum list of contributors to show
 	 * @param $showIfMax Bool: whether to contributors if there more than $cnt
 	 * @return String: html

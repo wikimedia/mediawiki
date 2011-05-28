@@ -75,6 +75,8 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * Per docs in FileRepo, this needs to return false if we don't support versioned
 	 * files. Well, we don't.
+	 *
+	 * @return File
 	 */
 	function newFile( $title, $time = false ) {
 		if ( $time ) {
@@ -83,24 +85,30 @@ class ForeignAPIRepo extends FileRepo {
 		return parent::newFile( $title, $time );
 	}
 
-/**
- * No-ops
- */
+	/**
+	 * No-ops
+	 */
+
 	function storeBatch( $triplets, $flags = 0 ) {
 		return false;
 	}
+
 	function storeTemp( $originalName, $srcPath ) {
 		return false;
 	}
+
 	function append( $srcPath, $toAppendPath, $flags = 0 ){
 		return false;
 	}
+
 	function appendFinish( $toAppendPath ){
 		return false;
 	}
+
 	function publishBatch( $triplets, $flags = 0 ) {
 		return false;
 	}
+
 	function deleteBatch( $sourceDestPairs ) {
 		return false;
 	}
