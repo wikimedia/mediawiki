@@ -434,7 +434,7 @@ $wgCacheSharedUploads = true;
 $wgAllowCopyUploads = false;
 /**
  * Allow asynchronous copy uploads.
- * This feature is experimental is broken as of r81612.
+ * This feature is experimental and broken as of r81612.
  */
 $wgAllowAsyncCopyUploads = false;
 
