@@ -27,7 +27,11 @@ class ApiBlockTest extends ApiTestSetup {
 			$user->saveSettings();
 		}
 	}
-	
+
+	function removeDBData() {
+		$block = Block::newFromTarget('UTBlockee');
+		$block->delete();	
+	}	
 
 	
 	function testMakeNormalBlock() {
