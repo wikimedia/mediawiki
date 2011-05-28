@@ -12,23 +12,66 @@ test( '-- Initial check', function(){
 
 });
 
-test( 'mw.Map / mw.config', function(){
+test( 'mw.Map', function(){
 
-	ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
-	ok( mw.config.get, 'get' );
-	ok( mw.config.set, 'set' );
-	ok( mw.config.exists, 'exists' );
+	ok( mw.Map, 'mw.Map defined' );
+	ok( mw.Map.prototype.get, 'get prototype defined' );
+	ok( mw.Map.prototype.set, 'set prototype defined' );
+	ok( mw.Map.prototype.exists, 'exists prototype defined' );
 
-	ok( !mw.config.exists( 'lipsum' ), 'exists: lipsum (inexistant)' );
-	ok( mw.config.set( 'lipsum', 'Lorem ipsum' ), 'set: lipsum' );
-	ok( mw.config.exists( 'lipsum' ), 'exists: lipsum (existant)' );
+	var conf = new mw.Map();
 
-	equal( mw.config.get( 'lipsum' ), 'Lorem ipsum', 'get: lipsum' );
-	equal( mw.config.get( ['lipsum'] ).lipsum, 'Lorem ipsum', 'get: lipsum (multiple)' );
+	var funky = function(){};
+	var arry = [];
+	var nummy = 7;
 
+	deepEqual( conf.get( 'inexistantKey' ), null, 'Map.get() returns null if selection was a string and the key was not found.' );
+	deepEqual( conf.set( 'myKey', 'myValue' ), true, 'Map.set() returns boolean true if a value was set for a valid key string.' );
+	deepEqual( conf.set( funky, 'Funky' ), false, 'Map.set() returns boolean false if key was invalid (Function).' );
+	deepEqual( conf.set( arry, 'Arry' ), false, 'Map.set() returns boolean false if key was invalid (Array).' );
+	deepEqual( conf.set( nummy, 'Nummy' ), false, 'Map.set() returns boolean false if key was invalid (Number).' );
+	equal( conf.get( 'myKey' ), 'myValue', 'Map.get() returns a single value value correctly.' );
+
+	var someValues = {
+		'foo': 'bar',
+		'lorem': 'ipsum',
+		'MediaWiki': true
+	};
+	deepEqual( conf.set( someValues ), true, 'Map.set() returns boolean true if multiple values were set by passing an object.' );
+	deepEqual( conf.get( ['foo', 'lorem'] ), {
+		'foo': 'bar',
+		'lorem': 'ipsum'
+	}, 'Map.get() returns multiple values correctly as an object.' );
+
+	deepEqual( conf.get( ['foo', 'notExist'] ), {
+		'foo': 'bar',
+		'notExist': null
+	}, 'Map.get() return includes keys that were not found as null values' );
+
+	deepEqual( conf.exists( 'foo' ), true, 'Map.exists() returns boolean true if a key exists.' );
+	deepEqual( conf.exists( 'notExist' ), false, 'Map.exists() returns boolean false if a key does not exists.' );
+	deepEqual( conf.get() === conf.values, true, 'Map.get() returns the entire values object by reference (if called without arguments).' );
+
+	conf.set( 'globalMapChecker', 'Hi' );
+
+	deepEqual( 'globalMapChecker' in window, false, 'new mw.Map() did not store its values in the global window object by default.' );
+	ok( !window.globalMapChecker, 'new mw.Map() did not store its values in the global window object by default.' );
+
+	var globalConf = new mw.Map( true );
+	globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
+
+	deepEqual( 'anotherGlobalMapChecker' in window, true, 'new mw.Map( true ) did store its values in the global window object.' )
+	ok( window.anotherGlobalMapChecker, 'new mw.Map( true ) did store its values in the global window object.' )
+
+	// Clean up
+	delete window.anotherGlobalMapChecker;
 });
 
-test( 'mw.message / mw.msg / mw.messages', function(){
+test( 'mw.config', function(){
+	deepEqual( mw.config instanceof mw.Map, true, 'mw.config instance of mw.Map' );
+});
+
+test( 'mw.messages / mw.message / mw.msg', function(){
 	ok( mw.message, 'mw.message defined' );
 	ok( mw.msg, 'mw.msg defined' );
 	ok( mw.messages, 'messages defined' );
@@ -36,34 +79,44 @@ test( 'mw.message / mw.msg / mw.messages', function(){
 	ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 
 	var hello = mw.message( 'hello' );
-	ok( hello, 'hello: Instance of Message' );
 
-	equal( hello.format, 'parse', 'Message property "format" (default value)' );
+	equal( hello.format, 'parse', 'Message property "format" defaults to "parse".' );
+	deepEqual( hello.map === mw.messages, true, 'Message property "map" defaults to the global instance in mw.messages' );
 	equal( hello.key, 'hello', 'Message property "key" (currect key)' );
-	deepEqual( hello.parameters, [], 'Message property "parameters" (default value)' );
+	deepEqual( hello.parameters, [], 'Message property "parameters" defaults to an empty array.' );
 
+	// Todo
+	ok( hello.params, 'Message prototype "params".' );
 
-	ok( hello.params, 'Message prototype "params"');
-	ok( hello.toString, 'Message prototype "toString"');
-	ok( hello.parse, 'Message prototype "parse"');
-	ok( hello.plain, 'Message prototype "plain"');
-	ok( hello.escaped, 'Message prototype "escaped"');
-	ok( hello.exists, 'Message prototype "exists"');
+	hello.format = 'plain';
+	equal( hello.toString(), 'Hello <b>awesome</b> world', 'Message.toString() returns the message as a string with the current "format".' );
 
-	equal( hello.toString(), 'Hello <b>awesome</b> world', 'Message.toString() test');
-	equal( hello.escaped(), 'Hello &lt;b&gt;awesome&lt;/b&gt; world', 'Message.escaped() test');
-	deepEqual( hello.exists(), true, 'Message.exists() test');
+	equal( hello.escaped(), 'Hello &lt;b&gt;awesome&lt;/b&gt; world', 'Message.escaped() returns the escaped message.' );
+	equal( hello.format, 'escaped', 'Message.escaped() correctly updated the "format" property.' );
 
-	equal( mw.msg( 'random' ), '<random>', 'square brackets around inexistant messages' );
-	equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'get message with default options' );
-	
-// params, toString, parse, plain, escaped, exists
+	hello.parse()
+	equal( hello.format, 'parse', 'Message.parse() correctly updated the "format" property.' );
+
+	hello.plain();
+	equal( hello.format, 'plain', 'Message.plain() correctly updated the "format" property.' );
+
+	deepEqual( hello.exists(), true, 'Message.exists() returns true for existing messages.' );
+
+	var goodbye = mw.message( 'goodbye' );
+	deepEqual( goodbye.exists(), false, 'Message.exists() returns false for inexisting messages.' );
+
+	equal( goodbye.toString(), '<goodbye>', 'Message.toString() returns <key> if key does not exist.' );
+});
+
+test( 'mw.msg', function(){
+	equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
+	equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (inexisting message).' );
 });
 
 test( 'mw.loader', function(){
 	expect(5);
 
-	// Regular expression to extract the path for the QUnit tests 	
+	// Regular expression to extract the path for the QUnit tests
 	// Takes into account that tests could be run from a file:// URL
 	// by excluding the 'index.html' part from the URL
 	var rePath = /(?:[^#\?](?!index.html))*\/?/;
@@ -105,7 +158,7 @@ test( 'mw.loader', function(){
 
 	}, function(){
 		start();
-		deepEqual( true, false, 'Implementing a module, error callback fired!');
+		deepEqual( true, false, 'Implementing a module, error callback fired!' );
 	});
 
 });
@@ -113,23 +166,23 @@ test( 'mw.loader', function(){
 test( 'mw.html', function(){
 
 	equal( mw.html.escape( '<mw awesome="awesome" value=\'test\' />' ),
-	 '&lt;mw awesome=&quot;awesome&quot; value=&#039;test&#039; /&gt;', 'html.escape()' );
+		'&lt;mw awesome=&quot;awesome&quot; value=&#039;test&#039; /&gt;', 'html.escape()' );
 
 	equal( mw.html.element( 'div' ), '<div/>', 'mw.html.element() DIV (simple)' );
 
 	equal( mw.html.element( 'div',
-	 { id: 'foobar' } ),
-	 '<div id="foobar"/>',
-	 'mw.html.element() DIV (attribs)' );
+			{ id: 'foobar' } ),
+		'<div id="foobar"/>',
+		'mw.html.element() DIV (attribs)' );
 
 	equal( mw.html.element( 'div',
-	 null, 'a' ),
-	 '<div>a</div>',
-	 'mw.html.element() DIV (content)' );
+			null, 'a' ),
+		'<div>a</div>',
+		'mw.html.element() DIV (content)' );
 
 	equal( mw.html.element( 'a',
-	  { href: 'http://mediawiki.org/w/index.php?title=RL&action=history' }, 'a' ),
-	  '<a href="http://mediawiki.org/w/index.php?title=RL&amp;action=history">a</a>',
-	  'mw.html.element() DIV (attribs + content)' );
+			{ href: 'http://mediawiki.org/w/index.php?title=RL&action=history' }, 'a' ),
+		'<a href="http://mediawiki.org/w/index.php?title=RL&amp;action=history">a</a>',
+		'mw.html.element() DIV (attribs + content)' );
 
 });

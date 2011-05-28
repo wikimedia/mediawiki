@@ -5,36 +5,45 @@
 // Attach to window
 window.mediaWiki = new ( function( $ ) {
 
-	/* Constants */
-
 	/* Private Members */
 
-	// List of messages that have been requested to be loaded
+	/**
+	 * @var object List of messages that have been requested to be loaded.
+	 */
 	var messageQueue = {};
 
-	/* Prototypes */
+	/* Object constructors */
 
 	/**
-	 * An object which allows single and multiple get/set/exists functionality
-	 * on a list of key / value pairs.
+	 * Map
 	 *
-	 * @param {boolean} global Whether to get/set/exists values on the window
-	 *   object or a private object
+	 * Creates an object that can be read from or written to from prototype functions
+	 * that allow both single and multiple variables at once.
+	 *
+	 * @param global boolean Whether to store the values in the global window
+	 * object or a exclusively in the object property 'values'.
+	 * @return Map
 	 */
 	function Map( global ) {
 		this.values = ( global === true ) ? window : {};
+		return this;
 	}
 
 	/**
-	 * Gets the value of a key, or a list of key/value pairs for an array of keys.
+	 * Get the value of one or multiple a keys.
 	 *
 	 * If called with no arguments, all values will be returned.
 	 *
-	 * @param selection mixed Key or array of keys to get values for
-	 * @param fallback mixed Value to use in case key(s) do not exist (optional)
+	 * @param selection mixed String key or array of keys to get values for.
+	 * @param fallback mixed Value to use in case key(s) do not exist (optional).
+	 * @return mixed If selection was a string returns the value or null,
+	 * If selection was an array, returns an object of key/values (value is null if not found),
+	 * If selection was not passed or invalid, will return the 'values' object member (be careful as
+	 * objects are always passed by reference in JavaScript!).
+	 * @return Map
 	 */
 	Map.prototype.get = function( selection, fallback ) {
-		if ( typeof selection === 'object' ) {
+		if ( $.isArray( selection ) ) {
 			selection = $.makeArray( selection );
 			var results = {};
 			for ( var i = 0; i < selection.length; i++ ) {
@@ -42,7 +51,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return results;
 		} else if ( typeof selection === 'string' ) {
-			if ( typeof this.values[selection] === 'undefined' ) {
+			if ( this.values[selection] === undefined ) {
 				if ( typeof fallback !== 'undefined' ) {
 					return fallback;
 				}
@@ -56,11 +65,12 @@ window.mediaWiki = new ( function( $ ) {
 	/**
 	 * Sets one or multiple key/value pairs.
 	 *
-	 * @param selection mixed Key or object of key/value pairs to set
+	 * @param selection mixed String key or array of keys to set values for.
 	 * @param value mixed Value to set (optional, only in use when key is a string)
+	 * @return bool This returns true on success, false on failure.
 	 */
 	Map.prototype.set = function( selection, value ) {
-		if ( typeof selection === 'object' ) {
+		if ( $.isPlainObject( selection ) ) {
 			for ( var s in selection ) {
 				this.values[s] = selection[s];
 			}
@@ -75,7 +85,7 @@ window.mediaWiki = new ( function( $ ) {
 	/**
 	 * Checks if one or multiple keys exist.
 	 *
-	 * @param selection mixed Key or array of keys to check
+	 * @param selection mixed String key or array of keys to check
 	 * @return boolean Existence of key(s)
 	 */
 	Map.prototype.exists = function( selection ) {
@@ -92,31 +102,41 @@ window.mediaWiki = new ( function( $ ) {
 	};
 
 	/**
-	 * Message object, similar to Message in PHP
+	 * Message
+	 *
+	 * Object constructor for messages,
+	 * similar to the Message class in MediaWiki PHP.
+	 *
+	 * @param map Map Instance of mw.Map
+	 * @param key String
+	 * @param parameters Array
+	 * @return Message
 	 */
 	function Message( map, key, parameters ) {
 		this.format = 'parse';
 		this.map = map;
 		this.key = key;
 		this.parameters = typeof parameters === 'undefined' ? [] : $.makeArray( parameters );
+		return this;
 	}
 
 	/**
-	 * Appends parameters for replacement
+	 * Appends (does not replace) parameters for replacement to the .parameters property.
 	 *
-	 * @param parameters mixed First in a list of variadic arguments to append as message parameters
+	 * @param parameters Array
+	 * @return Message
 	 */
 	Message.prototype.params = function( parameters ) {
 		for ( var i = 0; i < parameters.length; i++ ) {
-			this.parameters[this.parameters.length] = parameters[i];
+			this.parameters.push( parameters[i] );
 		}
 		return this;
 	};
 
 	/**
-	 * Converts message object to it's string form based on the state of format
+	 * Converts message object to it's string form based on the state of format.
 	 *
-	 * @return {string} String form of message
+	 * @return string Message as a string in the current form or <key> if key does not exist.
 	 */
 	Message.prototype.toString = function() {
 		if ( !this.map.exists( this.key ) ) {
@@ -190,7 +210,7 @@ window.mediaWiki = new ( function( $ ) {
 
 	/*
 	 * Dummy function which in debug mode can be replaced with a function that
-	 * does something clever
+	 * emulates console.log in console-less environments. 
 	 */
 	this.log = function() { };
 
@@ -219,12 +239,13 @@ window.mediaWiki = new ( function( $ ) {
 	 * Gets a message object, similar to wfMessage()
 	 *
 	 * @param key string Key of message to get
-	 * @param parameters mixed First argument in a list of variadic arguments, each a parameter for $
-	 * replacement
+	 * @param parameters mixed First argument in a list of variadic arguments,
+	 * each a parameter for $N replacement in messages.
+	 * @return Message
 	 */
-	this.message = function( key, parameters ) {
+	this.message = function( key, parameter_1 /* [, parameter_2] */ ) {
 		// Support variadic arguments
-		if ( typeof parameters !== 'undefined' ) {
+		if ( parameter_1 !== undefined ) {
 			parameters = $.makeArray( arguments );
 			parameters.shift();
 		} else {
@@ -237,8 +258,9 @@ window.mediaWiki = new ( function( $ ) {
 	 * Gets a message string, similar to wfMsg()
 	 *
 	 * @param key string Key of message to get
-	 * @param parameters mixed First argument in a list of variadic arguments, each a parameter for $
-	 * replacement
+	 * @param parameters mixed First argument in a list of variadic arguments,
+	 * each a parameter for $N replacement in messages.
+	 * @return String.
 	 */
 	this.msg = function( key, parameters ) {
 		return mw.message.apply( mw.message, arguments ).toString();
