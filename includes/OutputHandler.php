@@ -7,7 +7,9 @@
 
 /**
  * Standard output handler for use with ob_start
- *
+ * 
+ * @param $s string
+ * 
  * @return string
  */
 function wfOutputHandler( $s ) {

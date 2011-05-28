@@ -13,6 +13,10 @@
 class FileRepoStatus extends Status {
 	/**
 	 * Factory function for fatal errors
+	 *
+	 * @param $repo FileRepo
+	 *
+	 * @return FileRepoStatus
 	 */
 	static function newFatal( $repo /*, parameters...*/ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -22,6 +26,11 @@ class FileRepoStatus extends Status {
 		return $result;
 	}
 
+	/**
+	 * @param $repo FileRepo
+	 * @param $value
+	 * @return FileRepoStatus
+	 */
 	static function newGood( $repo = false, $value = null ) {
 		$result = new self( $repo );
 		$result->value = $value;

@@ -15,7 +15,7 @@
  *      i.e. articles where the image may occur inline.
  *
  * @param $name string the image name to check
- * @param $contextTitle Title: the page on which the image occurs, if known
+ * @param $contextTitle Title the page on which the image occurs, if known
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false ) {

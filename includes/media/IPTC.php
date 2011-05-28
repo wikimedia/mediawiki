@@ -12,7 +12,7 @@ class IPTC {
 	*
 	* @see http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
 	*
-	* @param String $data app13 block from jpeg containing iptc/iim data
+	* @param $rawData String app13 block from jpeg containing iptc/iim data
 	* @return Array iptc metadata array
 	*/
 	static function parse( $rawData ) {

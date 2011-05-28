@@ -111,6 +111,10 @@ class Parser {
 	var $mFirstCall = true;
 
 	# Initialised by initialiseVariables()
+
+	/**
+	 * @var MagicWordArray
+	 */
 	var $mVariables;
 
 	/**
@@ -167,6 +171,11 @@ class Parser {
 	var $mRevisionTimestamp; # The timestamp of the specified revision ID
 	var $mRevisionUser; # Userto display in {{REVISIONUSER}} tag
 	var $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
+
+	/**
+	 * @var string
+	 */
+	var $mUniqPrefix;
 
 	/**
 	 * Constructor
@@ -507,6 +516,8 @@ class Parser {
 
 	/**
 	 * Get a random string
+	 *
+	 * @return string
 	 */
 	static public function getRandomString() {
 		return dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
@@ -542,6 +553,8 @@ class Parser {
 
 	/**
 	 * Set the context title
+	 *
+	 * @param $t Title
 	 */
 	function setTitle( $t ) {
 		if ( !$t || $t instanceof FakeTitle ) {
@@ -630,10 +643,16 @@ class Parser {
 		return wfSetVar( $this->mOptions, $x );
 	}
 
+	/**
+	 * @return int
+	 */
 	function nextLinkID() {
 		return $this->mLinkID++;
 	}
 
+	/**
+	 * @param $id int
+	 */
 	function setLinkID( $id ) {
 		$this->mLinkID = $id;
 	}
@@ -689,10 +708,10 @@ class Parser {
 	 *     array( 'param' => 'x' ),
 	 *     '<element param="x">tag content</element>' ) )
 	 *
-	 * @param $elements list of element names. Comments are always extracted.
-	 * @param $text Source text string.
-	 * @param $matches Out parameter, Array: extracted tags
-	 * @param $uniq_prefix
+	 * @param $elements array list of element names. Comments are always extracted.
+	 * @param $text string Source text string.
+	 * @param $matches array Out parameter, Array: extracted tags
+	 * @param $uniq_prefix string
 	 * @return String: stripped text
 	 */
 	public static function extractTagsAndParams( $elements, $text, &$matches, $uniq_prefix = '' ) {
@@ -759,6 +778,8 @@ class Parser {
 
 	/**
 	 * Get a list of strippable XML-like elements
+	 *
+	 * @return array
 	 */
 	function getStripList() {
 		return $this->mStripList;
@@ -960,6 +981,9 @@ class Parser {
 	 * is repeated twice.
 	 *
 	 * @private
+	 * @param $cell
+	 * @param $tagName
+	 * @return array
 	 */
 	function getCellAttr ( $cell, $tagName ) {
 		$attributes = null;
@@ -1176,6 +1200,11 @@ class Parser {
 		return $text;
 	}
 
+	/**
+	 * @throws MWException
+	 * @param $m array
+	 * @return HTML|string
+	 */
 	function magicLinkCallback( $m ) {
 		if ( isset( $m[1] ) && $m[1] !== '' ) {
 			# Skip anchor

@@ -19,6 +19,8 @@ class ZhClient {
 
 	/**
 	 * Check if connection to zhdaemon is successful
+	 *
+	 * @return bool
 	 */
 	function isconnected() {
 		return $this->mConnected;
@@ -28,6 +30,8 @@ class ZhClient {
 	 * Establish conncetion
 	 *
 	 * @access private
+	 *
+	 * @return bool
 	 */
 	function connect() {
 		wfSuppressWarnings();
