@@ -10,6 +10,22 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 	 * @dataProvider providerSvgFiles
 	 */
 	function testGetMetadata( $infile, $expected ) {
+		$this->assertMetadata( $infile, $expected );
+	}
+	
+	/**
+	 * @dataProvider providerSvgFilesWithXMLMetadata
+	 */
+	function testGetXMLMetadata( $infile, $expected ) {
+		$r = new XMLReader();
+		if( !method_exists( $r, 'readInnerXML()' ) ) {
+			$this->markTestSkipped( 'XMLReader::readInnerXML() does not exist (libxml >2.6.20 needed).' );
+			return;
+		}
+		$this->assertMetadata( $infile, $expected );
+	}
+
+	function assertMetadata( $infile, $expected ) {
 		try {
 			$data = SVGMetadataExtractor::getMetadata( $infile );
 			$this->assertEquals( $expected, $data, 'SVG metadata extraction test' );
@@ -46,6 +62,12 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'height' => 60
 				)
 			),
+		);
+	}
+
+	function providerSvgFilesWithXMLMetadata() {
+		$base = dirname( __FILE__ );
+		return array(
 			array(
 				"$base/US_states_by_total_state_tax_revenue.svg",
 				array(
