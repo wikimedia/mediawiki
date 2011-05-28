@@ -95,6 +95,10 @@ class JpegOrTiffHandler extends BitmapHandler {
 		return self::METADATA_GOOD;
 	}
 
+	/**
+	 * @param $image File
+	 * @return array|bool
+	 */
 	function formatMetadata( $image ) {
 		$metadata = $image->getMetadata();
 		if ( !$metadata ||
@@ -116,8 +120,8 @@ class JpegOrTiffHandler extends BitmapHandler {
 		return $this->formatMetadataHelper( $exif );
 	}
 
-        function getMetadataType( $image ) {
-                return 'exif';
-        }
+	function getMetadataType( $image ) {
+		return 'exif';
+	}
 }
 

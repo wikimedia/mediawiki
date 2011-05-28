@@ -119,6 +119,8 @@ class HTMLFileCache {
 	/**
 	 * Check if up to date cache file exists
 	 * @param $timestamp string
+	 *
+	 * @return bool
 	 */
 	public function isFileCacheGood( $timestamp = '' ) {
 		global $wgCacheEpoch;

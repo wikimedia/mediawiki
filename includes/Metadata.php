@@ -101,6 +101,10 @@ abstract class RdfMetaData {
 		}
 	}
 
+	/**
+	 * @param $name string
+	 * @param $title Title
+	 */
 	protected function page( $name, $title ) {
 		$this->url( $name, $title->getFullUrl() );
 	}
