@@ -43,6 +43,9 @@
 abstract class BagOStuff {
 	private $debugMode = false;
 
+	/**
+	 * @param $bool bool
+	 */
 	public function setDebug( $bool ) {
 		$this->debugMode = $bool;
 	}
@@ -53,6 +56,8 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
+	 *
+	 * @return bool|Object
 	 */
 	abstract public function get( $key );
 

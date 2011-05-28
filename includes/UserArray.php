@@ -1,9 +1,8 @@
 <?php
 
 abstract class UserArray implements Iterator {
-
 	/**
-	 * @param $res
+	 * @param $res ResultWrapper
 	 * @return UserArrayFromResult
 	 */
 	static function newFromResult( $res ) {
@@ -33,22 +32,36 @@ abstract class UserArray implements Iterator {
 		return self::newFromResult( $res );
 	}
 
+	/**
+	 * @param $res
+	 * @return UserArrayFromResult
+	 */
 	protected static function newFromResult_internal( $res ) {
-		$userArray = new UserArrayFromResult( $res );
-		return $userArray;
+		return new UserArrayFromResult( $res );
 	}
 }
 
 class UserArrayFromResult extends UserArray {
+
+	/**
+	 * @var ResultWrapper
+	 */
 	var $res;
 	var $key, $current;
 
+	/**
+	 * @param $res ResultWrapper
+	 */
 	function __construct( $res ) {
 		$this->res = $res;
 		$this->key = 0;
 		$this->setCurrent( $this->res->current() );
 	}
 
+	/**
+	 * @param  $row
+	 * @return void
+	 */
 	protected function setCurrent( $row ) {
 		if ( $row === false ) {
 			$this->current = false;
@@ -57,6 +70,9 @@ class UserArrayFromResult extends UserArray {
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	public function count() {
 		return $this->res->numRows();
 	}
@@ -81,6 +97,9 @@ class UserArrayFromResult extends UserArray {
 		$this->setCurrent( $this->res->current() );
 	}
 
+	/**
+	 * @return bool
+	 */
 	function valid() {
 		return $this->current !== false;
 	}

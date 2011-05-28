@@ -21,7 +21,7 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	 *   - timeout:             The read timeout in microseconds
 	 *   - connect_timeout:     The connect timeout in seconds
 	 *
-	 * @params $params array
+	 * @param $params array
 	 */
 	function __construct( $params ) {
 		if ( !isset( $params['servers'] ) ) {
@@ -48,42 +48,90 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 		$this->client->set_debug( $params['debug'] );
 	}
 
+	/**
+	 * @param $debug bool
+	 */
 	public function setDebug( $debug ) {
 		$this->client->set_debug( $debug );
 	}
 
+	/**
+	 * @param $key string
+	 * @return Mixed
+	 */
 	public function get( $key ) {
 		return $this->client->get( $this->encodeKey( $key ) );
 	}
-	
+
+	/**
+	 * @param $key string
+	 * @param $value
+	 * @param $exptime int
+	 * @return bool
+	 */
 	public function set( $key, $value, $exptime = 0 ) {
 		return $this->client->set( $this->encodeKey( $key ), $value, $exptime );
 	}
 
+	/**
+	 * @param $key string
+	 * @param $time int
+	 * @return bool
+	 */
 	public function delete( $key, $time = 0 ) {
 		return $this->client->delete( $this->encodeKey( $key ), $time );
 	}
 
+	/**
+	 * @param $key
+	 * @param $timeout int
+	 * @return
+	 */
 	public function lock( $key, $timeout = 0 ) {
 		return $this->client->lock( $this->encodeKey( $key ), $timeout );
 	}
 
+	/**
+	 * @param $key string
+	 * @return Mixed
+	 */
 	public function unlock( $key ) {
 		return $this->client->unlock( $this->encodeKey( $key ) );
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value int
+	 * @return Mixed
+	 */
 	public function add( $key, $value, $exptime = 0 ) {
 		return $this->client->add( $this->encodeKey( $key ), $value, $exptime );
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value int
+	 * @param $exptime
+	 * @return Mixed
+	 */
 	public function replace( $key, $value, $exptime = 0 ) {
 		return $this->client->replace( $this->encodeKey( $key ), $value, $exptime );
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value int
+	 * @return Mixed
+	 */
 	public function incr( $key, $value = 1 ) {
 		return $this->client->incr( $this->encodeKey( $key ), $value );
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value int
+	 * @return Mixed
+	 */
 	public function decr( $key, $value = 1 ) {
 		return $this->client->decr( $this->encodeKey( $key ), $value );
 	}
@@ -91,6 +139,8 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	/**
 	 * Get the underlying client object. This is provided for debugging 
 	 * purposes.
+	 *
+	 * @return MemCachedClientforWiki
 	 */
 	public function getClient() {
 		return $this->client;
@@ -116,6 +166,10 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	/**
 	 * Decode a key encoded with encodeKey(). This is provided as a convenience 
 	 * function for debugging.
+	 *
+	 * @param $key string
+	 *
+	 * @return string
 	 */
 	public function decodeKey( $key ) {
 		return urldecode( $key );
