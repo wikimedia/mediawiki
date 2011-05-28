@@ -9108,6 +9108,67 @@ Special characters in embedded file links (bug 27679)
 </p>
 !! end
 
+!! article
+Template:Bug93a
+!! text
+*a<b>c
+*<nowiki>d<b>e</nowiki>
+</b>
+*<includeonly>f<b>g</includeonly>
+*<includeonly><nowiki>h<b>i</nowiki></includeonly>
+!! endarticle
+
+!! article
+Template:Bug93b
+!! text
+*a<b>c
+*<nowiki>d<b>e</nowiki>
+</b>
+*<noinclude>j<b>k</noinclude>
+*<noinclude><nowiki>l<b>m</nowiki></noinclude>
+!! endarticle
+
+!! article
+Template:Bug93c
+!! text
+*a<b>c
+*<nowiki>d<b>e</nowiki>
+</b>
+*<onlyinclude>n<b>o</onlyinclude>
+*<onlyinclude><nowiki>p<b>q</nowiki></onlyinclude>
+!! endarticle
+
+!! test
+Signature expansion in nowiki tags. (bug 93)
+!! input
+{{Bug93a}}
+one
+{{Bug93b}}
+two
+{{Bug93c}}
+!! result
+<ul><li>a<b>c
+</li><li>d&lt;b&gt;e
+</li></ul>
+<p></b>
+</p>
+<ul><li>f<b>g
+</li><li>h&lt;b&gt;i
+</li></ul>
+<p>one
+</p>
+<ul><li>a&lt;b&gt;c
+</li><li>d&lt;b&gt;e
+</li></ul>
+<p></b>
+</p>
+<ul><li>
+</li><li>
+</li></ul>
+<p>two
+n<b>op&lt;b&gt;q</b>
+</p>
+!! end
 
 TODO:
 more images
