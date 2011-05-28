@@ -290,6 +290,8 @@ class HistoryBlobCurStub {
 	/**
 	 * Sets the location (cur_id) of the main object to which this object
 	 * points
+	 *
+	 * @param $id int
 	 */
 	function setLocation( $id ) {
 		$this->mCurId = $id;
@@ -482,6 +484,11 @@ class DiffHistoryBlob implements HistoryBlob {
 		}
 	}
 
+	/**
+	 * @param $t1
+	 * @param $t2
+	 * @return string
+	 */
 	function diff( $t1, $t2 ) {
 		# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
 		# "String is not zero-terminated"
@@ -491,6 +498,11 @@ class DiffHistoryBlob implements HistoryBlob {
 		return $diff;
 	}
 
+	/**
+	 * @param $base
+	 * @param $diff
+	 * @return bool|string
+	 */
 	function patch( $base, $diff ) {
 		if ( function_exists( 'xdiff_string_bpatch' ) ) {
 			wfSuppressWarnings();
@@ -561,6 +573,9 @@ class DiffHistoryBlob implements HistoryBlob {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	function __sleep() {
 		$this->compress();
 		if ( !count( $this->mItems ) ) {
@@ -626,6 +641,8 @@ class DiffHistoryBlob implements HistoryBlob {
 	/**
 	 * Helper function for compression jobs
 	 * Returns true until the object is "full" and ready to be committed
+	 *
+	 * @return bool
 	 */
 	function isHappy() {
 		return $this->mSize < $this->mMaxSize 

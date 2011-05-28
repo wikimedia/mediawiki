@@ -15,6 +15,8 @@ class LBFactory_Single extends LBFactory {
 	}
 
 	/**
+	 * @param $wiki
+	 *
 	 * @return LoadBalancer_Single
 	 */
 	function newMainLB( $wiki = false ) {
@@ -22,6 +24,8 @@ class LBFactory_Single extends LBFactory {
 	}
 
 	/**
+	 * @param $wiki
+	 *
 	 * @return LoadBalancer_Single
 	 */
 	function getMainLB( $wiki = false ) {
@@ -29,6 +33,9 @@ class LBFactory_Single extends LBFactory {
 	}
 
 	/**
+	 * @param $cluster
+	 * @param $wiki
+	 *
 	 * @return LoadBalancer_Single
 	 */
 	function newExternalLB( $cluster, $wiki = false ) {
@@ -36,12 +43,19 @@ class LBFactory_Single extends LBFactory {
 	}
 
 	/**
+	 * @param $cluster
+	 * @param $wiki
+	 *
 	 * @return LoadBalancer_Single
 	 */
 	function &getExternalLB( $cluster, $wiki = false ) {
 		return $this->lb;
 	}
 
+	/**
+	 * @param $callback string|array
+	 * @param $params array
+	 */
 	function forEachLB( $callback, $params = array() ) {
 		call_user_func_array( $callback, array_merge( array( $this->lb ), $params ) );
 	}
@@ -57,6 +71,9 @@ class LoadBalancer_Single extends LoadBalancer {
 	 */
 	var $db;
 
+	/**
+	 * @param $params array
+	 */
 	function __construct( $params ) {
 		$this->db = $params['connection'];
 		parent::__construct( array( 'servers' => array( array(
