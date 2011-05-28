@@ -59,6 +59,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->addDBData();
 			
 			parent::run( $result );
+
+			$this->removeDBData();
+
 		} else {
 			parent::run( $result );
 		}
@@ -84,6 +87,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * implement this method and do so
 	 */
 	function addDBData() {}
+
+	/**
+	 * Stub. If a test needs to remove data from the database. Called after
+	 * test run.
+	 */
+	function removeDBData() {}
 	
 	private function addCoreDBData() {
 
