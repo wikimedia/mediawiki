@@ -570,8 +570,13 @@ class PageArchive {
  * @ingroup SpecialPage
  */
 class SpecialUndelete extends SpecialPage {
-	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mTargetObj, $mFile;
+	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mFile;
 	var $mTargetTimestamp, $mAllowed, $mCanView, $mComment, $mToken, $mRequest;
+
+	/**
+	 * @var Title
+	 */
+	var $mTargetObj;
 
 	function __construct( $request = null ) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
@@ -734,7 +739,12 @@ class SpecialUndelete extends SpecialPage {
 		);
 	}
 
-	// Generic list of deleted pages
+	/**
+	 * Generic list of deleted pages
+	 *
+	 * @param $result ResultWrapper
+	 * @return bool
+	 */
 	private function showList( $result ) {
 		global $wgLang, $wgUser, $wgOut;
 

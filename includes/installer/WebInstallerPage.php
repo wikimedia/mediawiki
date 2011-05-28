@@ -924,6 +924,9 @@ class WebInstaller_Options extends WebInstallerPage {
 		$this->endForm();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getCCPartnerUrl() {
 		global $wgServer;
 		$exitUrl = $wgServer . $this->parent->getUrl( array(
@@ -1112,6 +1115,10 @@ class WebInstaller_Install extends WebInstallerPage {
 		}
 	}
 
+	/**
+	 * @param $step
+	 * @param $status Status
+	 */
 	public function endStage( $step, $status ) {
 		if ( $step == 'extension-tables' ) {
 			$this->endLiveBox();

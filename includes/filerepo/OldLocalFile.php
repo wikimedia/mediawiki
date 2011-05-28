@@ -218,6 +218,8 @@ class OldLocalFile extends LocalFile {
 	 * @param $srcPath string File system path of the source file
 	 * @param $archiveName string Full archive name of the file, in the form 
 	 * 	$timestamp!$filename, where $filename must match $this->getName()
+	 *
+	 * @return FileRepoStatus
 	 */
 	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user, $flags = 0 ) {
 		$this->lock();

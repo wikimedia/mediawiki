@@ -953,6 +953,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Output an error or warning box using a Status object.
+	 *
+	 * @param $status Status
 	 */
 	public function showStatusBox( $status ) {
 		if( !$status->isGood() ) {

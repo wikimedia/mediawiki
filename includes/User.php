@@ -1066,7 +1066,9 @@ class User {
 	}
 
 	/**
-	 * Load the data for this user object from another user object. 
+	 * Load the data for this user object from another user object.
+	 *
+	 * @param $user User
 	 */
 	protected function loadFromUserObject( $user ) {
 		$user->load();
