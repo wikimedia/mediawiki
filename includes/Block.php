@@ -122,7 +122,10 @@ class Block {
 	/**
 	 * Check if two blocks are effectively equal.  Doesn't check irrelevant things like
 	 * the blocking user or the block timestamp, only things which affect the blocked user	 *
-	 * @return Boolean
+	 *
+	 * @param $block Block
+	 *
+	 * @return bool
 	 */
 	public function equals( Block $block ) {
 		return (

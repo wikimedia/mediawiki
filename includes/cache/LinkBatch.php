@@ -27,14 +27,15 @@ class LinkBatch {
 	 * Use ->setCaller( __METHOD__ ) to indicate which code is using this
 	 * class. Only used in debugging output.
 	 * @since 1.17
+	 *
+	 * @param $caller
 	 */
 	public function setCaller( $caller ) {
 		$this->caller = $caller;
 	}
 
 	/**
-	 * @param  $title Title
-	 * @return void
+	 * @param $title Title
 	 */
 	public function addObj( $title ) {
 		if ( is_object( $title ) ) {

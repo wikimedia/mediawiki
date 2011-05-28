@@ -76,7 +76,7 @@ class Article {
 
 	/**
 	 * Constructor and clear the article
-	 * @param $title Reference to a Title object.
+	 * @param $title Title Reference to a Title object.
 	 * @param $oldId Integer revision ID, null to fetch from request, zero for current
 	 */
 	public function __construct( Title $title, $oldId = null ) {

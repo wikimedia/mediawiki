@@ -123,7 +123,7 @@ abstract class ApiBase {
 	/**
 	 * Get the name of the module as shown in the profiler log
 	 *
-	 * @param $db
+	 * @param $db DatabaseBase
 	 *
 	 * @return string
 	 */

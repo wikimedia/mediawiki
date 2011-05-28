@@ -91,6 +91,8 @@ class BacklinkCache {
 
 	/**
 	 * Set the Database object to use
+	 *
+	 * @param $db DatabaseBase
 	 */
 	public function setDB( $db ) {
 		$this->db = $db;

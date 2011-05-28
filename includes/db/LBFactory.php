@@ -91,6 +91,8 @@ abstract class LBFactory {
 	 *
 	 * @param $cluster String: external storage cluster, or false for core
 	 * @param $wiki String: wiki ID, or false for the current wiki
+	 *
+	 * @return LoadBalancer
 	 */
 	abstract function newExternalLB( $cluster, $wiki = false );
 
@@ -99,6 +101,8 @@ abstract class LBFactory {
 	 *
 	 * @param $cluster String: external storage cluster, or false for core
 	 * @param $wiki String: wiki ID, or false for the current wiki
+	 *
+	 * @return LoadBalancer
 	 */
 	abstract function &getExternalLB( $cluster, $wiki = false );
 

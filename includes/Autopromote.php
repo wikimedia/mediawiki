@@ -40,7 +40,7 @@ class Autopromote {
 	 * self::checkCondition for evaluation of the latter type.
 	 *
 	 * @param $cond Mixed: a condition, possibly containing other conditions
-	 * @param $user The user to check the conditions against
+	 * @param $user User The user to check the conditions against
 	 * @return bool Whether the condition is true
 	 */
 	private static function recCheckCondition( $cond, User $user ) {
@@ -101,7 +101,7 @@ class Autopromote {
 	 * ates them.
 	 *
 	 * @param $cond Array: A condition, which must not contain other conditions
-	 * @param $user The user to check the condition against
+	 * @param $user User The user to check the condition against
 	 * @return bool Whether the condition is true for the user
 	 */
 	private static function checkCondition( $cond, User $user ) {

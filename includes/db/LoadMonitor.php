@@ -47,6 +47,11 @@ interface LoadMonitor {
 
 	/**
 	 * Return an estimate of replication lag for each server
+	 *
+	 * @param $serverIndexes
+	 * @param $wiki
+	 * 
+	 * @return array
 	 */
 	function getLagTimes( $serverIndexes, $wiki );
 }

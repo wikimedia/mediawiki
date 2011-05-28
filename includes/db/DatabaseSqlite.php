@@ -27,6 +27,11 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * Constructor.
 	 * Parameters $server, $user and $password are not used.
+	 * @param $server string
+	 * @param $user string
+	 * @param $password string
+	 * @param $dbName string
+	 * @param $flags int
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false, $flags = 0 ) {
 		$this->mName = $dbName;
@@ -58,6 +63,13 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/** Open an SQLite database and return a resource handle to it
 	 *  NOTE: only $dbName is used, the other parameters are irrelevant for SQLite databases
+	 *
+	 * @param $server
+	 * @param $user
+	 * @param $pass
+	 * @param $dbName
+	 *
+	 * @return PDO
 	 */
 	function open( $server, $user, $pass, $dbName ) {
 		global $wgSQLiteDataDir;

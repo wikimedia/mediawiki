@@ -136,7 +136,7 @@ class ApiUpload extends ApiBase {
 	 * Stash the file and return the session key
 	 * Also re-raises exceptions with slightly more informative message strings (useful for API)
 	 * @throws MWException
-	 * @return {String} session key
+	 * @return String session key
 	 */
 	function performStash() {
 		try {

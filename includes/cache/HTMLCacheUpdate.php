@@ -90,6 +90,8 @@ class HTMLCacheUpdate
 	 * Partition the current range given by $this->mStart and $this->mEnd,
 	 * using a pre-calculated title array which gives the links in that range.
 	 * Queue the resulting jobs.
+	 *
+	 * @param $titleArray array
 	 */
 	protected function insertJobsFromTitles( $titleArray ) {
 		# We make subpartitions in the sense that the start of the first job

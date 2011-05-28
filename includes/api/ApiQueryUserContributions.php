@@ -121,6 +121,8 @@ class ApiQueryContributions extends ApiQueryBase {
 	/**
 	 * Validate the 'user' parameter and set the value to compare
 	 * against `revision`.`rev_user_text`
+	 *
+	 * @param $user string
 	 */
 	private function prepareUsername( $user ) {
 		if ( !is_null( $user ) && $user !== '' ) {

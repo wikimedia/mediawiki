@@ -99,7 +99,7 @@ class LBFactory_Multi extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki
+	 * @param $wiki string
 	 * @return LoadBalancer
 	 */
 	function newMainLB( $wiki = false ) {

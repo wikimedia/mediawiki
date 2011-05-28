@@ -78,7 +78,7 @@ class ExternalStore {
 	 * Store a data item to an external store, identified by a partial URL
 	 * The protocol part is used to identify the class, the rest is passed to the
 	 * class itself as a parameter.
-	 * @return The URL of the stored data item, or false on error
+	 * @return string The URL of the stored data item, or false on error
 	 */
 	static function insert( $url, $data, $params = array() ) {
 		list( $proto, $params ) = explode( '://', $url, 2 );
@@ -97,7 +97,7 @@ class ExternalStore {
 	 *
 	 * @param $data String
 	 * @param $storageParams Array: associative array of parameters for the ExternalStore object.
-	 * @return The URL of the stored data item, or false on error
+	 * @return string The URL of the stored data item, or false on error
 	 */
 	public static function insertToDefault( $data, $storageParams = array() ) {
 		global $wgDefaultExternalStore;
@@ -136,7 +136,12 @@ class ExternalStore {
 		}
 	}
 	
-	/** Like insertToDefault, but inserts on another wiki */
+	/**
+	 * @param $data
+	 * @param $wiki
+	 *
+	 * @return string
+	 */
 	public static function insertToForeignDefault( $data, $wiki ) {
 		return self::insertToDefault( $data, array( 'wiki' => $wiki ) );
 	}

@@ -36,6 +36,11 @@ class DatabaseConf extends Conf {
 
 	/**
 	 * @see Conf::writeSetting()
+	 *
+	 * @param $name
+	 * @param $value
+	 * 
+	 * @return bool
 	 */
 	protected function writeSetting( $name, $value ) {
 		$dbw = wfGetDB( DB_MASTER );

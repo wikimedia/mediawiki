@@ -948,6 +948,10 @@ class LoadBalancer {
 	/**
 	 * Get lag time for each server
 	 * Results are cached for a short time in memcached, and indefinitely in the process cache
+	 *
+	 * @param $wiki
+	 * 
+	 * @return array
 	 */
 	function getLagTimes( $wiki = false ) {
 		# Try process cache

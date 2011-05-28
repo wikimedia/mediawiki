@@ -85,6 +85,10 @@ class LoadBalancer_Single extends LoadBalancer {
 	}
 
 	/**
+	 *
+	 * @param $server
+	 * @param $dbNameOverride
+	 *
 	 * @return DatabaseBase
 	 */
 	function reallyOpenConnection( $server, $dbNameOverride = false ) {
