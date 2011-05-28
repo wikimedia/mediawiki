@@ -25,9 +25,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param $user User
-	 * @param $output OutputPage
-	 * @param $request WebRequest
 	 * @param $mode int
 	 */
 	public function execute( $mode ) {

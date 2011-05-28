@@ -123,18 +123,22 @@ class SearchOracle extends SearchEngine {
 
 	/**
 	 * Return a LIMIT clause to limit results on the query.
+	 *
+	 * @param string
+	 *
 	 * @return String
 	 */
-	function queryLimit($sql) {
+	function queryLimit( $sql ) {
 		return $this->db->limitResult($sql, $this->limit, $this->offset);
 	}
 
 	/**
 	 * Does not do anything for generic search engine
 	 * subclasses may define this though
+	 *
 	 * @return String
 	 */
-	function queryRanking($filteredTerm, $fulltext) {
+	function queryRanking( $filteredTerm, $fulltext ) {
 		return ' ORDER BY score(1)';
 	}
 

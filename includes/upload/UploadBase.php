@@ -102,6 +102,7 @@ abstract class UploadBase {
 	 * Create a form of UploadBase depending on wpSourceType and initializes it
 	 *
 	 * @param $request WebRequest
+	 * @param $type
 	 */
 	public static function createFromRequest( &$request, $type = null ) {
 		$type = $type ? $type : $request->getVal( 'wpSourceType', 'File' );

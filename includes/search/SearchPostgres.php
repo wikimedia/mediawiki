@@ -70,6 +70,10 @@ class SearchPostgres extends SearchEngine {
 	/**
 	 * Transform the user's search string into a better form for tsearch2
 	 * Returns an SQL fragment consisting of quoted text to search for.
+	 *
+	 * @param $term string
+	 *
+	 * @return string
 	 */
 	function parseQuery( $term ) {
 

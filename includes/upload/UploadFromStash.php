@@ -82,8 +82,9 @@ class UploadFromStash extends UploadBase {
 	 * There is no need to stash the image twice
 	 */
 	public function stashSession( $key = null ) {
-		if ( !empty( $this->mSessionKey ) )
+		if ( !empty( $this->mSessionKey ) ) {
 			return $this->mSessionKey;
+		}
 		return parent::stashSession();
 	}
 

@@ -114,6 +114,8 @@ class LinkSearchPage extends QueryPage {
 
 	/**
 	 * Return an appropriately formatted LIKE query and the clause
+	 *
+	 * @return array
 	 */
 	static function mungeQuery( $query, $prot ) {
 		$field = 'el_index';

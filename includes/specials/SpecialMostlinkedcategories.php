@@ -54,6 +54,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 	 * Fetch user page links and cache their existence
 	 *
 	 * @param $db DatabaseBase
+	 * @param $res DatabaseResult
 	 */
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;

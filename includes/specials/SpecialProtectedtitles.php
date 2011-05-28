@@ -70,6 +70,8 @@ class SpecialProtectedtitles extends SpecialPage {
 
 	/**
 	 * Callback function to output a restriction
+	 *
+	 * @return string
 	 */
 	function formatRow( $row ) {
 		global $wgUser, $wgLang;

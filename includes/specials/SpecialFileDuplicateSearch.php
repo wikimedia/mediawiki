@@ -59,7 +59,7 @@ class FileDuplicateSearchPage extends QueryPage {
 
 	/**
 	 *
-	 * @param Array of File objects $dupes
+	 * @param $dupes Array of File objects
 	 */
 	function showList( $dupes ) {
 		global $wgUser, $wgOut;

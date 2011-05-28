@@ -25,23 +25,38 @@ class UploadFromFile extends UploadBase {
 			
 		return $this->initialize( $desiredDestName, $upload );
 	}
-	
+
 	/**
 	 * Initialize from a filename and a WebRequestUpload
+	 * @param $name
+	 * @param $webRequestUpload
 	 */
 	function initialize( $name, $webRequestUpload ) {
 		$this->mUpload = $webRequestUpload;
 		return $this->initializePathInfo( $name, 
 			$this->mUpload->getTempName(), $this->mUpload->getSize() );
 	}
+
+	/**
+	 * @param $request
+	 * @return bool
+	 */
 	static function isValidRequest( $request ) {
 		# Allow all requests, even if no file is present, so that an error
 		# because a post_max_size or upload_max_filesize overflow
 		return true;
 	}
-	
-	public function getSourceType() { return 'file'; }
-	
+
+	/**
+	 * @return string
+	 */
+	public function getSourceType() {
+		return 'file';
+	}
+
+	/**
+	 * @return array
+	 */
 	public function verifyUpload() {
 		# Check for a post_max_size or upload_max_size overflow, so that a 
 		# proper error can be shown to the user

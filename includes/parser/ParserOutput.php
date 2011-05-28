@@ -21,10 +21,12 @@ class CacheTime {
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
-	
-	/** 
-	 * setCacheTime() sets the timestamp expressing when the page has been rendered. 
+
+	/**
+	 * setCacheTime() sets the timestamp expressing when the page has been rendered.
 	 * This doesn not control expiry, see updateCacheExpiry() for that!
+	 * @param $t string
+	 * @return string
 	 */
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
 
@@ -35,6 +37,8 @@ class CacheTime {
 	 * the new call has no effect. The value returned by getCacheExpiry is smaller
 	 * or equal to the smallest number that was provided as an argument to 
 	 * updateCacheExpiry().
+	 *
+	 * @param $seconds number
 	 */
 	function updateCacheExpiry( $seconds ) { 
 		$seconds = (int)$seconds;

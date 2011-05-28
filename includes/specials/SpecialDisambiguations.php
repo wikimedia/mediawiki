@@ -105,6 +105,7 @@ class DisambiguationsPage extends PageQueryPage {
 	 * Fetch links and cache their existence
 	 *
 	 * @param $db DatabaseBase
+	 * @param $res
 	 */
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
@@ -119,7 +120,6 @@ class DisambiguationsPage extends PageQueryPage {
 			$db->dataSeek( $res, 0 );
 		}
 	}
-
 
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
