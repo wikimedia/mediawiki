@@ -23,25 +23,6 @@
  * @file
  */
 
-/**
- * Call hook functions defined in $wgHooks
- *
- * Because programmers assign to $wgHooks, we need to be very
- * careful about its contents. So, there's a lot more error-checking
- * in here than would normally be necessary.
- *
- * @param $event String: event name
- * @param $args Array: parameters passed to hook functions
- * @return Boolean
- */
-function wfRunHooks( $event, $args = array() ) {
-	return Hooks::run( $event, $args );
-}
-
-function hookErrorHandler( $errno, $errstr ) {
-	return Hooks::hookErrorHandler( $errno, $errstr );
-}
-
 class MWHookException extends MWException {}
 
 /**
