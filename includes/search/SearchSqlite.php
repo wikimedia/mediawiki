@@ -26,6 +26,12 @@
  * @ingroup Search
  */
 class SearchSqlite extends SearchEngine {
+
+	/**
+	 * @var DatabaseSqlite
+	 */
+	protected $db;
+
 	/**
 	 * Creates an instance of this class
 	 * @param $db DatabaseSqlite: database object

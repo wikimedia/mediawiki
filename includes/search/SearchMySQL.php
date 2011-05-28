@@ -43,6 +43,8 @@ class SearchMySQL extends SearchEngine {
 	/** 
 	 * Parse the user's query and transform it into an SQL fragment which will 
 	 * become part of a WHERE clause
+	 *
+	 * @return string
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;

@@ -133,6 +133,11 @@ class WatchedItem {
 
 	/**
 	 * Handle duplicate entries. Backend for duplicateEntries().
+	 *
+	 * @param $ot Title
+	 * @param $nt Title
+	 *
+	 * @return bool
 	 */
 	private static function doDuplicateEntries( $ot, $nt ) {	
 		$oldnamespace = $ot->getNamespace();

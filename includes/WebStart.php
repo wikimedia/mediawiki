@@ -12,6 +12,8 @@
  * Detect compiled mode by looking for a function that only exists if compiled 
  * in. Note that we can't use function_exists(), because it is terribly broken 
  * under HipHop due to the "volatile" feature.
+ *
+ * @return bool
  */
 function wfDetectCompiledMode() {
 	try {

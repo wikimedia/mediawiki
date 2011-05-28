@@ -128,6 +128,8 @@ interface PPFrame {
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
 	 *
+	 * @param $title
+	 *
 	 * @return bool
 	 */
 	function loopCheck( $title );

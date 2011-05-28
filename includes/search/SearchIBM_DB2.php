@@ -91,7 +91,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * Return a LIMIT clause to limit results on the query.
 	 * @return String
 	 */
-	function queryLimit($sql) {
+	function queryLimit( $sql ) {
 		return $this->db->limitResult($sql, $this->limit, $this->offset);
 	}
 

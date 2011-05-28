@@ -67,6 +67,11 @@ abstract class PoolCounter {
 	
 	/**
 	 * Create a Pool counter. This should only be called from the PoolWorks.
+	 *
+	 * @param $type
+	 * @param $key
+	 *
+	 * @return PoolCounter
 	 */
 	public static function factory( $type, $key ) {
 		global $wgPoolCounterConf;
@@ -88,18 +93,28 @@ abstract class PoolCounter {
 }
 
 class PoolCounter_Stub extends PoolCounter {
+
+	/**
+	 * @return Status
+	 */
 	function acquireForMe() {
 		return Status::newGood( PoolCounter::LOCKED );
 	}
 
+	/**
+	 * @return Status
+	 */
 	function acquireForAnyone() {
 		return Status::newGood( PoolCounter::LOCKED );
 	}
 
+	/**
+	 * @return Status
+	 */
 	function release() {
 		return Status::newGood( PoolCounter::RELEASED );
 	}
-	
+
 	public function __construct() {
 		/* No parameters needed */
 	}

@@ -91,8 +91,9 @@ class SearchMssql extends SearchEngine {
 	/**
 	 * Return a LIMIT clause to limit results on the query.
 	 *
+	 * @param $sql string
+	 *
 	 * @return String
-	 * @private
 	 */
 	function queryLimit( $sql ) {
 		return $this->db->limitResult( $sql, $this->limit, $this->offset );
@@ -103,7 +104,6 @@ class SearchMssql extends SearchEngine {
 	 * subclasses may define this though
 	 *
 	 * @return String
-	 * @private
 	 */
 	function queryRanking( $filteredTerm, $fulltext ) {
 		return ' ORDER BY ftindex.[RANK] DESC'; // return ' ORDER BY score(1)';
@@ -115,7 +115,6 @@ class SearchMssql extends SearchEngine {
 	 *
 	 * @param $filteredTerm String
 	 * @param $fulltext Boolean
-	 * @private
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit( $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
@@ -123,7 +122,6 @@ class SearchMssql extends SearchEngine {
 			$this->queryNamespaces() . ' ' .
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' );
 	}
-
 
 	/**
 	 * Picks which field to index on, depending on what type of query.

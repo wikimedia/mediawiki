@@ -98,7 +98,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 	 * @param $limit  int     Number of entries to display
 	 * @param $from   Title   Display from this article ID
 	 * @param $back   Title   Display from this article ID at backwards scrolling
-	 * @private
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		global $wgMaxRedirectLinksRetrieved;
