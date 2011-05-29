@@ -35,6 +35,10 @@ class LanguageKaa extends Language {
 
 	/**
 	 * It fixes issue with  lcfirst for transforming 'I' to 'ı'
+	 *
+	 * @param $string string
+	 *
+	 * @return string
 	 */
 	function lcfirst ( $string ) {
 		if ( substr( $string, 0, 1 ) === 'I' ) {
@@ -46,6 +50,10 @@ class LanguageKaa extends Language {
 
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
+	 *
+	 * @param $_ string
+	 *
+	 * @return string
 	 */
 	function commafy( $_ ) {
 		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {

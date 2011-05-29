@@ -8,7 +8,11 @@ class LanguageLn extends Language {
 	/**
 	 * Use singular form for zero
 	 * http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#ln
-
+	 *
+	 * @param $count int
+	 * @param $forms array
+	 *
+	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }

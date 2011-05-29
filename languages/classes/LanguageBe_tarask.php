@@ -52,6 +52,10 @@ class LanguageBe_tarask extends Language {
 	 * but the characters used for this could be both U+0027 and U+2019.
 	 * This function unifies apostrophe sign in search index values
 	 * to enable seach using both apostrophe signs.
+	 *
+	 * @param $string string
+	 *
+	 * @return string
 	 */
 	function normalizeForSearch( $string ) {
 		wfProfileIn( __METHOD__ );
@@ -71,6 +75,10 @@ class LanguageBe_tarask extends Language {
 	/**
 	 * Four-digit number should be without group commas (spaces)
 	 * So "1 234 567", "12 345" but "1234"
+	 *
+	 * @param $_ string
+	 *
+	 * @return string
 	 */
 	function commafy( $_ ) {
 		if ( preg_match( '/^-?\d{1,4}(\.\d*)?$/', $_ ) ) {

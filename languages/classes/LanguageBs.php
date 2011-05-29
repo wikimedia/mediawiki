@@ -34,6 +34,11 @@ class LanguageBs extends Language {
 	# Invoked with {{GRAMMAR:case|word}}
 	/**
 	 * Cases: genitiv, dativ, akuzativ, vokativ, instrumental, lokativ
+	 *
+	 * @param $word string
+	 * @param $case string
+	 *
+	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
