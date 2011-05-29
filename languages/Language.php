@@ -202,6 +202,8 @@ class Language {
 	 * not it exists. This includes codes which are used solely for
 	 * customisation via the MediaWiki namespace.
 	 *
+	 * @param $code string
+	 *
 	 * @return bool
 	 */
 	public static function isValidCode( $code ) {
@@ -213,6 +215,10 @@ class Language {
 	/**
 	 * Returns true if a language code is of a valid form for the purposes of
 	 * internal customisation of MediaWiki, via Messages*.php.
+	 *
+	 * @param $code string
+	 *
+	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
 		return preg_match( '/^[a-z0-9-]*$/i', $code );
@@ -258,6 +264,9 @@ class Language {
 	 */
 	function initContLang() { }
 
+	/**
+	 * @return array|bool
+	 */
 	function getFallbackLanguageCode() {
 		if ( $this->mCode === 'en' ) {
 			return false;
@@ -345,6 +354,8 @@ class Language {
 	 * getNsText() except with '_' changed to ' ', useful for
 	 * producing output.
 	 *
+	 * @param $index string
+	 *
 	 * @return array
 	 */
 	function getFormattedNsText( $index ) {
@@ -389,6 +400,9 @@ class Language {
 		return isset( $ids[$lctext] ) ? $ids[$lctext] : false;
 	}
 
+	/**
+	 * @return array
+	 */
 	function getNamespaceAliases() {
 		if ( is_null( $this->namespaceAliases ) ) {
 			$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceAliases' );
@@ -416,6 +430,9 @@ class Language {
 		return $this->namespaceAliases;
 	}
 
+	/**
+	 * @return array
+	 */
 	function getNamespaceIds() {
 		if ( is_null( $this->mNamespaceIds ) ) {
 			global $wgNamespaceAliases;
@@ -466,6 +483,10 @@ class Language {
 		return $this->getMessageFromDB( "variantname-$code" );
 	}
 
+	/**
+	 * @param $name string
+	 * @return string
+	 */
 	function specialPage( $name ) {
 		$aliases = $this->getSpecialPageAliases();
 		if ( isset( $aliases[$name][0] ) ) {
@@ -474,6 +495,9 @@ class Language {
 		return $this->getNsText( NS_SPECIAL ) . ':' . $name;
 	}
 
+	/**
+	 * @return array
+	 */
 	function getQuickbarSettings() {
 		return array(
 			$this->getMessage( 'qbsettings-none' ),
@@ -484,14 +508,23 @@ class Language {
 		);
 	}
 
+	/**
+	 * @return array
+	 */
 	function getDatePreferences() {
 		return self::$dataCache->getItem( $this->mCode, 'datePreferences' );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getDateFormats() {
 		return self::$dataCache->getItem( $this->mCode, 'dateFormats' );
 	}
 
+	/**
+	 * @return array|string
+	 */
 	function getDefaultDateFormat() {
 		$df = self::$dataCache->getItem( $this->mCode, 'defaultDateFormat' );
 		if ( $df === 'dmy or mdy' ) {
@@ -502,22 +535,39 @@ class Language {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	function getDatePreferenceMigrationMap() {
 		return self::$dataCache->getItem( $this->mCode, 'datePreferenceMigrationMap' );
 	}
 
+	/**
+	 * @param  $image
+	 * @return array|null
+	 */
 	function getImageFile( $image ) {
 		return self::$dataCache->getSubitem( $this->mCode, 'imageFiles', $image );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getDefaultUserOptionOverrides() {
 		return self::$dataCache->getItem( $this->mCode, 'defaultUserOptionOverrides' );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getExtraUserToggles() {
 		return self::$dataCache->getItem( $this->mCode, 'extraUserToggles' );
 	}
 
+	/**
+	 * @param  $tog
+	 * @return string
+	 */
 	function getUserToggle( $tog ) {
 		return $this->getMessageFromDB( "tog-$tog" );
 	}
@@ -525,6 +575,10 @@ class Language {
 	/**
 	 * Get language names, indexed by code.
 	 * If $customisedOnly is true, only returns codes with a messages file
+	 *
+	 * @param $customisedOnly bool
+	 *
+	 * @return array
 	 */
 	public static function getLanguageNames( $customisedOnly = false ) {
 		global $wgExtraLanguageNames;
@@ -581,6 +635,10 @@ class Language {
 		return wfMsgExt( $msg, array( 'parsemag', 'language' => $this ) );
 	}
 
+	/**
+	 * @param $code string
+	 * @return string
+	 */
 	function getLanguageName( $code ) {
 		$names = self::getLanguageNames();
 		if ( !array_key_exists( $code, $names ) ) {
@@ -589,10 +647,17 @@ class Language {
 		return $names[$code];
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mMonthMsgs[$key - 1] );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getMonthNamesArray() {
 		$monthNames = array( '' );
 		for ( $i=1; $i < 13; $i++ ) {
@@ -601,42 +666,77 @@ class Language {
 		return $monthNames;
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getMonthNameGen( $key ) {
 		return $this->getMessageFromDB( self::$mMonthGenMsgs[$key - 1] );
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getMonthAbbreviation( $key ) {
 		return $this->getMessageFromDB( self::$mMonthAbbrevMsgs[$key - 1] );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getMonthAbbreviationsArray() {
-		$monthNames = array('');
+		$monthNames = array( '' );
 		for ( $i=1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthAbbreviation( $i );
 		}
 		return $monthNames;
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getWeekdayName( $key ) {
 		return $this->getMessageFromDB( self::$mWeekdayMsgs[$key - 1] );
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getWeekdayAbbreviation( $key ) {
 		return $this->getMessageFromDB( self::$mWeekdayAbbrevMsgs[$key - 1] );
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getIranianCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mIranianCalendarMonthMsgs[$key - 1] );
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getHebrewCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mHebrewCalendarMonthMsgs[$key - 1] );
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getHebrewCalendarMonthNameGen( $key ) {
 		return $this->getMessageFromDB( self::$mHebrewCalendarMonthGenMsgs[$key - 1] );
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getHijriCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mHijriCalendarMonthMsgs[$key - 1] );
 	}
@@ -772,6 +872,8 @@ class Language {
 	 *      YYYYMMDDHHMMSS
 	 *      01234567890123
 	 * @todo handling of "o" format character for Iranian, Hebrew, Hijri & Thai?
+	 *
+	 * @return string
 	 */
 	function sprintfDate( $format, $ts ) {
 		$s = '';
@@ -1084,6 +1186,7 @@ class Language {
 
 	private static $GREG_DAYS = array( 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 );
 	private static $IRANIAN_DAYS = array( 31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29 );
+
 	/**
 	 * Algorithm by Roozbeh Pournader and Mohammad Toossi to convert
 	 * Gregorian dates to Iranian dates. Originally written in C, it
@@ -1091,6 +1194,10 @@ class Language {
 	 * License. Conversion to PHP was performed by Niklas Laxström.
 	 *
 	 * Link: http://www.farsiweb.info/jalali/jalali.c
+	 *
+	 * @param $ts string
+	 *
+	 * @return string
 	 */
 	private static function tsToIranian( $ts ) {
 		$gy = substr( $ts, 0, 4 ) -1600;
@@ -1146,6 +1253,10 @@ class Language {
 	 * Based on a PHP-Nuke block by Sharjeel which is released under GNU/GPL license
 	 *
 	 * @link http://phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
+	 *
+	 * @param $ts string
+	 *
+	 * @return string
 	 */
 	private static function tsToHijri( $ts ) {
 		$year = substr( $ts, 0, 4 );
@@ -1193,6 +1304,10 @@ class Language {
 	 *
 	 * The months are counted from Tishrei = 1. In a leap year, Adar I is 13
 	 * and Adar II is 14. In a non-leap year, Adar is 6.
+	 *
+	 * @param $ts string
+	 *
+	 * @return string
 	 */
 	private static function tsToHebrew( $ts ) {
 		# Parse date
@@ -1330,6 +1445,10 @@ class Language {
 	 * This calculates the Hebrew year start, as days since 1 September.
 	 * Based on Carl Friedrich Gauss algorithm for finding Easter date.
 	 * Used for Hebrew date.
+	 *
+	 * @param $year int
+	 *
+	 * @return string
 	 */
 	private static function hebrewYearStart( $year ) {
 		$a = intval( ( 12 * ( $year - 1 ) + 17 ) % 19 );
@@ -1443,6 +1562,10 @@ class Language {
 
 	/**
 	 * Roman number formatting up to 3000
+	 *
+	 * @param $num int
+	 *
+	 * @return string
 	 */
 	static function romanNumeral( $num ) {
 		static $table = array(
@@ -1469,6 +1592,10 @@ class Language {
 
 	/**
 	 * Hebrew Gematria number formatting up to 9999
+	 *
+	 * @param $num int
+	 *
+	 * @return string
 	 */
 	static function hebrewNumeral( $num ) {
 		static $table = array(
@@ -1646,14 +1773,27 @@ class Language {
 		return $this->sprintfDate( $df, $ts );
 	}
 
+	/**
+	 * @param $key string
+	 * @return array|null
+	 */
 	function getMessage( $key ) {
 		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getAllMessages() {
 		return self::$dataCache->getItem( $this->mCode, 'messages' );
 	}
 
+	/**
+	 * @param $in
+	 * @param $out
+	 * @param $string
+	 * @return string
+	 */
 	function iconv( $in, $out, $string ) {
 		# This is a wrapper for iconv in all languages except esperanto,
 		# which does some nasty x-conversions beforehand
@@ -1669,28 +1809,53 @@ class Language {
 	}
 
 	// callback functions for uc(), lc(), ucwords(), ucwordbreaks()
+
+	/**
+	 * @param $matches array
+	 * @return mixed|string
+	 */
 	function ucwordbreaksCallbackAscii( $matches ) {
 		return $this->ucfirst( $matches[1] );
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	function ucwordbreaksCallbackMB( $matches ) {
 		return mb_strtoupper( $matches[0] );
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	function ucCallback( $matches ) {
 		list( $wikiUpperChars ) = self::getCaseMaps();
 		return strtr( $matches[1], $wikiUpperChars );
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	function lcCallback( $matches ) {
 		list( , $wikiLowerChars ) = self::getCaseMaps();
 		return strtr( $matches[1], $wikiLowerChars );
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	function ucwordsCallbackMB( $matches ) {
 		return mb_strtoupper( $matches[0] );
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	function ucwordsCallbackWiki( $matches ) {
 		list( $wikiUpperChars ) = self::getCaseMaps();
 		return strtr( $matches[0], $wikiUpperChars );
@@ -1698,6 +1863,10 @@ class Language {
 
 	/**
 	 * Make a string's first character uppercase
+	 *
+	 * @param $str string
+	 *
+	 * @return string
 	 */
 	function ucfirst( $str ) {
 		$o = ord( $str );
@@ -1713,6 +1882,11 @@ class Language {
 
 	/**
 	 * Convert a string to uppercase
+	 *
+	 * @param $str string
+	 * @param $first bool
+	 *
+	 * @return string
 	 */
 	function uc( $str, $first = false ) {
 		if ( function_exists( 'mb_strtoupper' ) ) {
@@ -1739,6 +1913,10 @@ class Language {
 		}
 	}
 
+	/**
+	 * @param $str string
+	 * @return mixed|string
+	 */
 	function lcfirst( $str ) {
 		$o = ord( $str );
 		if ( !$o ) {
@@ -1753,6 +1931,11 @@ class Language {
 		}
 	}
 
+	/**
+	 * @param $str string
+	 * @param $first bool
+	 * @return mixed|string
+	 */
 	function lc( $str, $first = false ) {
 		if ( function_exists( 'mb_strtolower' ) ) {
 			if ( $first ) {
@@ -1778,10 +1961,18 @@ class Language {
 		}
 	}
 
+	/**
+	 * @param $str string
+	 * @return bool
+	 */
 	function isMultibyte( $str ) {
 		return (bool)preg_match( '/[\x80-\xff]/', $str );
 	}
 
+	/**
+	 * @param $str string
+	 * @return mixed|string
+	 */
 	function ucwords( $str ) {
 		if ( $this->isMultibyte( $str ) ) {
 			$str = $this->lc( $str );
@@ -1808,7 +1999,12 @@ class Language {
 		}
 	}
 
-	# capitalize words at word breaks
+	/**
+	 * capitalize words at word breaks
+	 *
+	 * @param $str string
+	 * @return mixed
+	 */
 	function ucwordbreaks( $str ) {
 		if ( $this->isMultibyte( $str ) ) {
 			$str = $this->lc( $str );
@@ -1851,11 +2047,19 @@ class Language {
 	 * Do *not* perform any other normalisation in this function. If a caller
 	 * uses this function when it should be using a more general normalisation
 	 * function, then fix the caller.
+	 *
+	 * @param $s string
+	 *
+	 * @return string
 	 */
 	function caseFold( $s ) {
 		return $this->uc( $s );
 	}
 
+	/**
+	 * @param $s string
+	 * @return string
+	 */
 	function checkTitleEncoding( $s ) {
 		if ( is_array( $s ) ) {
 			wfDebugDieBacktrace( 'Given array to checkTitleEncoding.' );
@@ -1887,6 +2091,8 @@ class Language {
 	 * Some languages such as Chinese don't conventionally do this,
 	 * which requires special handling when breaking up words for
 	 * searching etc.
+	 *
+	 * @return bool
 	 */
 	function hasWordBreaks() {
 		return true;
@@ -1917,6 +2123,10 @@ class Language {
 	/**
 	 * convert double-width roman characters to single-width.
 	 * range: ff00-ff5f ~= 0020-007f
+	 *
+	 * @param $string string
+	 *
+	 * @return string
 	 */
 	protected static function convertDoubleWidth( $string ) {
 		static $full = null;
@@ -1933,12 +2143,21 @@ class Language {
 		return $string;
 	}
 
+	/**
+	 * @param $string string
+	 * @param $pattern string
+	 * @return string
+	 */
 	protected static function insertSpace( $string, $pattern ) {
 		$string = preg_replace( $pattern, " $1 ", $string );
 		$string = preg_replace( '/ +/', ' ', $string );
 		return $string;
 	}
 
+	/**
+	 * @param $termsArray array
+	 * @return array
+	 */
 	function convertForSearchResult( $termsArray ) {
 		# some languages, e.g. Chinese, need to do a conversion
 		# in order for search results to be displayed correctly
@@ -2010,6 +2229,10 @@ class Language {
 		# an override to the defaults can be set here on startup.
 	}
 
+	/**
+	 * @param $s string
+	 * @return string
+	 */
 	function recodeForEdit( $s ) {
 		# For some languages we'll want to explicitly specify
 		# which characters make it into the edit box raw
@@ -2025,6 +2248,10 @@ class Language {
 		}
 	}
 
+	/**
+	 * @param $s string
+	 * @return string
+	 */
 	function recodeInput( $s ) {
 		# Take the previous into account.
 		global $wgEditEncoding;
@@ -2046,6 +2273,10 @@ class Language {
 	 * to the modern Unicode equivalent.
 	 *
 	 * This is language-specific for performance reasons only.
+	 *
+	 * @param $s string
+	 *
+	 * @return string
 	 */
 	function normalize( $s ) {
 		global $wgAllUnicodeFixes;
@@ -2065,6 +2296,11 @@ class Language {
 	 *
 	 * The data is cached in process memory. This will go faster if you have the
 	 * FastStringSearch extension.
+	 *
+	 * @param $file string
+	 * @param $string string
+	 *
+	 * @return string
 	 */
 	function transformUsingPairFile( $file, $string ) {
 		if ( !isset( $this->transformData[$file] ) ) {
@@ -2169,7 +2405,11 @@ class Language {
 		wfProfileOut( 'LanguageGetMagic' );
 	}
 
-	# Fill a MagicWord object with data from here
+	/**
+	 * Fill a MagicWord object with data from here
+	 *
+	 * @param $mw
+	 */
 	function getMagic( $mw ) {
 		$this->doMagicHook();
 
@@ -2194,6 +2434,8 @@ class Language {
 
 	/**
 	 * Add magic words to the extension array
+	 *
+	 * @param $newWords array
 	 */
 	function addMagicWordsByLang( $newWords ) {
 		$code = $this->getCode();
@@ -2284,6 +2526,10 @@ class Language {
 		return $number;
 	}
 
+	/**
+	 * @param $number string
+	 * @return string
+	 */
 	function parseFormattedNumber( $number ) {
 		$s = $this->digitTransformTable();
 		if ( $s ) {
@@ -2309,10 +2555,16 @@ class Language {
 		return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 	}
 
+	/**
+	 * @return array
+	 */
 	function digitTransformTable() {
 		return self::$dataCache->getItem( $this->mCode, 'digitTransformTable' );
 	}
 
+	/**
+	 * @return array
+	 */
 	function separatorTransformTable() {
 		return self::$dataCache->getItem( $this->mCode, 'separatorTransformTable' );
 	}
@@ -2607,8 +2859,17 @@ class Language {
 		return $ret;
 	}
 
-	// truncateHtml() helper function
-	// like strcspn() but adds the skipped chars to $ret
+	/**
+	 * truncateHtml() helper function
+	 * like strcspn() but adds the skipped chars to $ret
+	 *
+	 * @param $ret
+	 * @param $text
+	 * @param $search
+	 * @param $start
+	 * @param $len
+	 * @return int
+	 */
 	private function truncate_skip( &$ret, $text, $search, $start, $len = null ) {
 		if ( $len === null ) {
 			$len = -1; // -1 means "no limit" for strcspn
@@ -2669,6 +2930,11 @@ class Language {
 	 * but only in (some) interface messages; otherwise default gender is used.
 	 * If second or third parameter are not specified, masculine is used.
 	 * These details may be overriden per language.
+	 *
+	 * @param $gender string
+	 * @param $forms array
+	 *
+	 * @return string
 	 */
 	function gender( $gender, $forms ) {
 		if ( !count( $forms ) ) {
@@ -2775,27 +3041,52 @@ class Language {
 		return $text;
 	}
 
-	# convert text to all supported variants
+	/**
+	 * convert text to all supported variants
+	 *
+	 * @param $text string
+	 * @return array
+	 */
 	function autoConvertToAllVariants( $text ) {
 		return $this->mConverter->autoConvertToAllVariants( $text );
 	}
 
-	# convert text to different variants of a language.
+	/**
+	 * convert text to different variants of a language.
+	 *
+	 * @param $text string
+	 * @return string
+	 */
 	function convert( $text ) {
 		return $this->mConverter->convert( $text );
 	}
 
-	# Convert a Title object to a string in the preferred variant
+
+	/**
+	 * Convert a Title object to a string in the preferred variant
+	 *
+	 * @param $title Title
+	 * @return string
+	 */
 	function convertTitle( $title ) {
 		return $this->mConverter->convertTitle( $title );
 	}
 
-	# Check if this is a language with variants
+	/**
+	 * Check if this is a language with variants
+	 *
+	 * @return bool
+	 */
 	function hasVariants() {
 		return sizeof( $this->getVariants() ) > 1;
 	}
 
-	# Put custom tags (e.g. -{ }-) around math to prevent conversion
+	/**
+	 * Put custom tags (e.g. -{ }-) around math to prevent conversion
+	 *
+	 * @param $text string
+	 * @return string
+	 */
 	function armourMath( $text ) {
 		return $this->mConverter->armourMath( $text );
 	}
@@ -2872,6 +3163,10 @@ class Language {
 	 *  'variant' => text in that variant
 	 *
 	 * @deprecated since 1.17 Use autoConvertToAllVariants()
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	function convertLinkToAllVariants( $text ) {
 		return $this->mConverter->convertLinkToAllVariants( $text );
@@ -2903,7 +3198,7 @@ class Language {
 	 * various functions in the Parser
 	 *
 	 * @param $text String: text to be tagged for no conversion
-	 * @param $noParse
+	 * @param $noParse bool
 	 * @return string the tagged text
 	 */
 	function markNoConversion( $text, $noParse = false ) {
@@ -2929,11 +3224,16 @@ class Language {
 
 	/**
 	 * Get the RFC 3066 code for this language object
+	 *
+	 * @return string
 	 */
 	function getCode() {
 		return $this->mCode;
 	}
 
+	/**
+	 * @param $code string
+	 */
 	function setCode( $code ) {
 		$this->mCode = $code;
 	}
@@ -2994,6 +3294,8 @@ class Language {
 	/**
 	 * Get the fallback for a given language
 	 *
+	 * @param $code string
+	 *
 	 * @return false|string
 	 */
 	static function getFallbackFor( $code ) {
@@ -3008,6 +3310,10 @@ class Language {
 	/**
 	 * Get all messages for a given language
 	 * WARNING: this may take a long time
+	 *
+	 * @param $code string
+	 *
+	 * @return array
 	 */
 	static function getMessagesFor( $code ) {
 		return self::getLocalisationCache()->getItem( $code, 'messages' );
@@ -3015,11 +3321,20 @@ class Language {
 
 	/**
 	 * Get a message for a given language
+	 *
+	 * @param $key string
+	 * @param $code string
+	 *
+	 * @return string
 	 */
 	static function getMessageFor( $key, $code ) {
 		return self::getLocalisationCache()->getSubitem( $code, 'messages', $key );
 	}
 
+	/**
+	 * @param $talk
+	 * @return mixed
+	 */
 	function fixVariableInNamespace( $talk ) {
 		if ( strpos( $talk, '$1' ) === false ) {
 			return $talk;
@@ -3037,10 +3352,18 @@ class Language {
 		return str_replace( ' ', '_', $talk );
 	}
 
+	/**
+	 * @param $m string
+	 * @return string
+	 */
 	function replaceGrammarInNamespace( $m ) {
 		return $this->convertGrammar( trim( $m[2] ), trim( $m[1] ) );
 	}
 
+	/**
+	 * @throws MWException
+	 * @return array
+	 */
 	static function getCaseMaps() {
 		static $wikiUpperChars, $wikiLowerChars;
 		if ( isset( $wikiUpperChars ) ) {
@@ -3087,7 +3410,7 @@ class Language {
 
 	/**
 	 * @todo Document
-	 * @param  $seconds String
+	 * @param $seconds String
 	 * @return string
 	 */
 	function formatTimePeriod( $seconds ) {
@@ -3122,6 +3445,10 @@ class Language {
 		}
 	}
 
+	/**
+	 * @param $bps int
+	 * @return string
+	 */
 	function formatBitrate( $bps ) {
 		$units = array( 'bps', 'kbps', 'Mbps', 'Gbps' );
 		if ( $bps <= 0 ) {
@@ -3172,6 +3499,8 @@ class Language {
 
 	/**
 	 * Get the conversion rule title, if any.
+	 *
+	 * @return string
 	 */
 	function getConvRuleTitle() {
 		return $this->mConverter->getConvRuleTitle();
