@@ -53,6 +53,8 @@ class Http {
 	/**
 	 * Simple wrapper for Http::request( 'GET' )
 	 * @see Http::request()
+	 *
+	 * @return string
 	 */
 	public static function get( $url, $timeout = 'default', $options = array() ) {
 		$options['timeout'] = $timeout;
@@ -62,6 +64,8 @@ class Http {
 	/**
 	 * Simple wrapper for Http::request( 'POST' )
 	 * @see Http::request()
+	 *
+	 * @return string
 	 */
 	public static function post( $url, $options = array() ) {
 		return Http::request( 'POST', $url, $options );

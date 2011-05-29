@@ -39,6 +39,8 @@ class DeleteAction extends Action {
 	 * check that the page is not too big and has not already been deleted.
 	 * @throws ErrorPageError
 	 * @see Action::checkCanExecute
+	 *
+	 * @param $user User
 	 */
 	protected function checkCanExecute( User $user ){
 

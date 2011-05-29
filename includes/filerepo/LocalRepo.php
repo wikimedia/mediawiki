@@ -49,13 +49,16 @@ class LocalRepo extends FSRepo {
 	 * filearchive table. This needs to be done in the repo because it needs to
 	 * interleave database locks with file operations, which is potentially a
 	 * remote operation.
+	 *
+	 * @param $storageKeys array
+	 *
 	 * @return FileRepoStatus
 	 */
 	function cleanupDeletedBatch( $storageKeys ) {
 		$root = $this->getZonePath( 'deleted' );
 		$dbw = $this->getMasterDB();
 		$status = $this->newGood();
-		$storageKeys = array_unique($storageKeys);
+		$storageKeys = array_unique( $storageKeys );
 		foreach ( $storageKeys as $key ) {
 			$hashPath = $this->getDeletedHashPath( $key );
 			$path = "$root/$hashPath$key";

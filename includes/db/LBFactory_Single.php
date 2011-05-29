@@ -86,8 +86,8 @@ class LoadBalancer_Single extends LoadBalancer {
 
 	/**
 	 *
-	 * @param $server
-	 * @param $dbNameOverride
+	 * @param $server string
+	 * @param $dbNameOverride bool
 	 *
 	 * @return DatabaseBase
 	 */

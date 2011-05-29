@@ -109,11 +109,11 @@ class BitmapMetadataHandler {
 	}
 
 	/** Main entry point for jpeg's.
-	*
-	* @param string $file filename (with full path)
-	* @return metadata result array.
-	* @throws MWException on invalid file.
-	*/
+	 *
+	 * @param $filename string filename (with full path)
+	 * @return metadata result array.
+	 * @throws MWException on invalid file.
+	 */
 	static function Jpeg ( $filename ) {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 		$meta = new self();
@@ -143,14 +143,15 @@ class BitmapMetadataHandler {
 		}
 		return $meta->getMetadataArray();
 	}
+
 	/** Entry point for png
-	* At some point in the future this might
-	* merge the png various tEXt chunks to that
-	* are interesting, but for now it only does XMP
-	*
-	* @param $filename String full path to file
-	* @return Array Array for storage in img_metadata.
-	*/
+	 * At some point in the future this might
+	 * merge the png various tEXt chunks to that
+	 * are interesting, but for now it only does XMP
+	 *
+	 * @param $filename String full path to file
+	 * @return Array Array for storage in img_metadata.
+	 */
 	static public function PNG ( $filename ) {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 

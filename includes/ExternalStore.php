@@ -78,7 +78,10 @@ class ExternalStore {
 	 * Store a data item to an external store, identified by a partial URL
 	 * The protocol part is used to identify the class, the rest is passed to the
 	 * class itself as a parameter.
-	 * @return string The URL of the stored data item, or false on error
+	 * @param $url
+	 * @param $data
+	 * @param $params array
+	 * @return string|false The URL of the stored data item, or false on error
 	 */
 	static function insert( $url, $data, $params = array() ) {
 		list( $proto, $params ) = explode( '://', $url, 2 );

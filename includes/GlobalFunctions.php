@@ -86,6 +86,11 @@ function wfArrayDiff2( $a, $b ) {
 	return array_udiff( $a, $b, 'wfArrayDiff2_cmp' );
 }
 
+/**
+ * @param $a
+ * @param $b
+ * @return int
+ */
 function wfArrayDiff2_cmp( $a, $b ) {
 	if ( !is_array( $a ) ) {
 		return strcmp( $a, $b );
