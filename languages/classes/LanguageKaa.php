@@ -10,6 +10,8 @@ class LanguageKaa extends Language {
 	# Invoked with {{GRAMMAR:case|word}}
 	/**
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
+	 *
+	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
