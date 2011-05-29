@@ -505,7 +505,7 @@ class LogEventsList {
 				# Fall back to a blue contributions link
 				$revert = $this->skin->userToolLinks( 1, $title->getDBkey() );
 			}
-			if( $row->log_timestamp < '20080129000000' ) {
+			if( wfTimestamp( TS_MW, $row->log_timestamp ) < '20080129000000' ) {
 				# Suppress $comment from old entries (before 2008-01-29),
 				# not needed and can contain incorrect links
 				$comment = '';
