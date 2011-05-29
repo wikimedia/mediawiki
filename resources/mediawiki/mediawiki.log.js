@@ -15,7 +15,7 @@
 	 * @author Trevor Parscal <tparscal@wikimedia.org>
 	 * @param logmsg string Message to output to console.
 	 */
-	mw.log = function( msg ) {
+	mw.log = function( logmsg ) {
 		// Allow log messages to use a configured prefix to identify the source window (ie. frame)
 		if ( mw.config.exists( 'mw.log.prefix' ) ) {
 			logmsg = mw.config.get( 'mw.log.prefix' ) + '> ' + logmsg;
