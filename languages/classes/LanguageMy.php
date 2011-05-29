@@ -7,6 +7,11 @@
  * @author Niklas Laxström, 2008
  */
 class LanguageMy extends Language {
+
+	/**
+	 * @param $_ string
+	 * @return string
+	 */
 	function commafy( $_ ) {
 		/* NO-op. Cannot use
 		 * $separatorTransformTable = array( ',' => '' )

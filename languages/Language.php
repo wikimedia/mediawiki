@@ -1875,6 +1875,9 @@ class Language {
 		return $this->iconv( $this->fallback8bitEncoding(), 'utf-8', $s );
 	}
 
+	/**
+	 * @return array
+	 */
 	function fallback8bitEncoding() {
 		return self::$dataCache->getItem( $this->mCode, 'fallback8bitEncoding' );
 	}
@@ -2124,6 +2127,9 @@ class Language {
 		return $this->isRTL() ? "\xE2\x80\x8F" : "\xE2\x80\x8E";
 	}
 
+	/**
+	 * @return array
+	 */
 	function capitalizeAllNouns() {
 		return self::$dataCache->getItem( $this->mCode, 'capitalizeAllNouns' );
 	}
@@ -2146,6 +2152,9 @@ class Language {
 		return self::$dataCache->getItem( $this->mCode, 'linkPrefixExtension' );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getMagicWords() {
 		return self::$dataCache->getItem( $this->mCode, 'magicWords' );
 	}
@@ -2802,6 +2811,10 @@ class Language {
 		return htmlspecialchars( $this->convert( $text, $isTitle ) );
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function convertCategoryKey( $key ) {
 		return $this->mConverter->convertCategoryKey( $key );
 	}
@@ -2816,14 +2829,23 @@ class Language {
 		return $this->mConverter->getVariants();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getPreferredVariant() {
 		return $this->mConverter->getPreferredVariant();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getDefaultVariant() {
 		return $this->mConverter->getDefaultVariant();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getURLVariant() {
 		return $this->mConverter->getURLVariant();
 	}
@@ -2898,6 +2920,9 @@ class Language {
 		return self::$dataCache->getItem( $this->mCode, 'linkTrail' );
 	}
 
+	/**
+	 * @return Language
+	 */
 	function getLangObj() {
 		return $this;
 	}
@@ -2948,11 +2973,19 @@ class Language {
 		return str_replace( '_', '-', strtolower( $m[1] ) );
 	}
 
+	/**
+	 * @param $code string
+	 * @return string
+	 */
 	static function getMessagesFileName( $code ) {
 		global $IP;
 		return self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
 	}
 
+	/**
+	 * @param $code string
+	 * @return string
+	 */
 	static function getClassFileName( $code ) {
 		global $IP;
 		return self::getFileName( "$IP/languages/classes/Language", $code, '.php' );
@@ -2960,6 +2993,8 @@ class Language {
 
 	/**
 	 * Get the fallback for a given language
+	 *
+	 * @return false|string
 	 */
 	static function getFallbackFor( $code ) {
 		if ( $code === 'en' ) {
