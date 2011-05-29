@@ -456,8 +456,8 @@ return array(
 			'jquery.placeholder',
 		),
 	),
-	'mediawiki.util.jpegmeta' => array(
-		'scripts' => 'resources/mediawiki.util/mediawiki.util.jpegmeta.js',
+	'mediawiki.libs.jpegmeta' => array(
+		'scripts' => 'resources/mediawiki.libs/mediawiki.libs.jpegmeta.js',
 	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
@@ -529,7 +529,7 @@ return array(
 			'size-gigabytes',
 			'largefileserver',
 		),
-		'dependencies' => array( 'mediawiki.util.jpegmeta' ),
+		'dependencies' => array( 'mediawiki.libs.jpegmeta' ),
 	),
 
 	'mediawiki.language' => array(

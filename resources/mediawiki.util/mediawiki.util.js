@@ -3,7 +3,7 @@
  */
 ( function( $, mw ) {
 
-	mw.util = $.extend( mw.util || {}, {
+	mw.util = {
 
 		/* Initialisation */
 		/**
@@ -586,7 +586,7 @@
 				&& address.search( /::/ ) != -1 && address.search( /::.*::/ ) == -1;
 		}
 
-	} );
+	};
 
 	mw.util.init();
 

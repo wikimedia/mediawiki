@@ -214,12 +214,12 @@ window.mediaWiki = new ( function( $ ) {
 	 */
 	this.log = function() { };
 
-	/*
-	 * Make the Map-class publicly available
+	/**
+	 * @var constructor Make the Map-class publicly available.
 	 */
 	this.Map = Map;
 
-	/*
+	/**
 	 * List of configuration values
 	 *
 	 * Dummy placeholder. Initiated in startUp module as a new instance of mw.Map().
@@ -227,6 +227,13 @@ window.mediaWiki = new ( function( $ ) {
 	 * in the global window object.
 	 */
 	this.config = null;
+
+	/**
+	 * @var object
+	 *
+	 * Empty object that plugins can be installed in.
+	 */
+	this.libs = {};
 
 	/*
 	 * Localization system
