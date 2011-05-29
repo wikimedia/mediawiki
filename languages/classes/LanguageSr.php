@@ -58,11 +58,17 @@ class SrConverter extends LanguageConverter {
 		);
 	}
 
-	/* rules should be defined as -{ekavian | iyekavian-} -or-
-		-{code:text | code:text | ...}-
-		update: delete all rule parsing because it's not used
-		        currently, and just produces a couple of bugs
-	*/
+	/**
+	 * rules should be defined as -{ekavian | iyekavian-} -or-
+	 * -{code:text | code:text | ...}-
+	 *
+	 * update: delete all rule parsing because it's not used
+	 * currently, and just produces a couple of bugs
+	 *
+	 * @param $rule string
+	 * @param $flags array
+	 * @return array
+	 */
 	function parseManualRule( $rule, $flags = array() ) {
 		if ( in_array( 'T', $flags ) ) {
 			return parent::parseManualRule( $rule, $flags );
@@ -82,6 +88,10 @@ class SrConverter extends LanguageConverter {
 	 *   - if there is no selected variant, leave the link
 	 *     names as they were
 	 *   - do not try to find variants for usernames
+	 *
+	 * @param $link string
+	 * @param $nt Title
+	 * @param $ignoreOtherCond bool
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
@@ -101,6 +111,9 @@ class SrConverter extends LanguageConverter {
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
 	 *
+	 * @param $text string
+	 * @param $noParse bool
+	 *
 	 * @return string
 	 */
 	function markNoConversion( $text, $noParse = false ) {
@@ -112,6 +125,9 @@ class SrConverter extends LanguageConverter {
 	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
+	 *
+	 * @param $text string
+	 * @param $toVariant bool
 	 *
 	 * @return string
 	 */
@@ -127,6 +143,9 @@ class SrConverter extends LanguageConverter {
 	/**
 	 *  It translates text into variant, specials:
 	 *    - ommiting roman numbers
+	 *
+	 * @param $text string
+	 * @param $toVariant string
 	 *
 	 * @return string
 	 */
@@ -160,6 +179,9 @@ class SrConverter extends LanguageConverter {
 	 *
 	 * @author Nikola Smolenski <smolensk@eunet.rs>
 	 * @since 1.18
+	 *
+	 * @param $text string
+	 * @param $variant string
 	 *
 	 * @return bool
 	 */

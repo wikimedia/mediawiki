@@ -8,6 +8,14 @@ require_once( dirname( __FILE__ ) . '/LanguageZh_hans.php' );
  */
 class ZhConverter extends LanguageConverter {
 
+	/**
+	 * @param $langobj Language
+	 * @param $maincode string
+	 * @param $variants array
+	 * @param $variantfallbacks array
+	 * @param $flags array
+	 * @param $manualLevel array
+	 */
 	function __construct( $langobj, $maincode,
 								$variants = array(),
 								$variantfallbacks = array(),
@@ -58,14 +66,24 @@ class ZhConverter extends LanguageConverter {
 		$this->mTables['zh-tw']->merge( $this->mTables['zh-hant'] );
 	}
 
-	/* there shouldn't be any latin text in Chinese conversion, so no need
-	   to mark anything.
-	   $noParse is there for compatibility with LanguageConvert::markNoConversion
+	/**
+	 * there shouldn't be any latin text in Chinese conversion, so no need
+	 * to mark anything.
+	 * $noParse is there for compatibility with LanguageConvert::markNoConversion
+	 *
+	 * @param $text string
+	 * @param $noParse bool
+	 *
+	 * @return string
 	 */
 	function markNoConversion( $text, $noParse = false ) {
 		return $text;
 	}
 
+	/**
+	 * @param $key string
+	 * @return String
+	 */
 	function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'zh' );
 	}
@@ -110,13 +128,22 @@ class LanguageZh extends LanguageZh_hans {
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 
-	# this should give much better diff info
+	/**
+	 * this should give much better diff info
+	 *
+	 * @param $text string
+	 * @return string
+	 */
 	function segmentForDiff( $text ) {
 		return preg_replace(
 			"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 			"' ' .\"$1\"", $text );
 	}
 
+	/**
+	 * @param $text string
+	 * @return string
+	 */
 	function unsegmentForDiff( $text ) {
 		return preg_replace(
 			"/ ([\\xc0-\\xff][\\x80-\\xbf]*)/e",
@@ -145,6 +172,10 @@ class LanguageZh extends LanguageZh_hans {
 
 	}
 
+	/**
+	 * @param $termsArray array
+	 * @return array
+	 */
 	function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );
 		$terms = self::convertDoubleWidth( $terms );
