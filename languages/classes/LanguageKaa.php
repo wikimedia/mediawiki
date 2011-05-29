@@ -11,6 +11,9 @@ class LanguageKaa extends Language {
 	/**
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
 	 *
+	 * @param $word string
+	 * @param $case string
+	 *
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
@@ -24,6 +27,8 @@ class LanguageKaa extends Language {
 
 	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
+	 *
+	 * @param $string string
 	 *
 	 * @return string
 	 */

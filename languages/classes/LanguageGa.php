@@ -5,8 +5,15 @@
  * @ingroup Language
  */
 class LanguageGa extends Language {
-	# Convert day names
-	# Invoked with {{GRAMMAR:transformation|word}}
+
+	/**
+	 * Convert day names
+	 * Invoked with {{GRAMMAR:transformation|word}}
+	 *
+	 * @param $word string
+	 * @param $case string
+	 * @return string
+	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['ga'][$case][$word] ) ) {

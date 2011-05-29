@@ -8,6 +8,14 @@ require_once( dirname( __FILE__ ) . '/LanguageZh.php' );
  */
 class GanConverter extends LanguageConverter {
 
+	/**
+	 * @param $langobj Language
+	 * @param $maincode string
+	 * @param $variants array
+	 * @param $variantfallbacks array
+	 * @param $flags array
+	 * @param $manualLevel array
+	 */
 	function __construct( $langobj, $maincode,
 								$variants = array(),
 								$variantfallbacks = array(),
@@ -37,14 +45,24 @@ class GanConverter extends LanguageConverter {
 		);
 	}
 
-	/* there shouldn't be any latin text in Chinese conversion, so no need
-	   to mark anything.
-	   $noParse is there for compatibility with LanguageConvert::markNoConversion
+	/**
+	 * there shouldn't be any latin text in Chinese conversion, so no need
+	 * to mark anything.
+	 * $noParse is there for compatibility with LanguageConvert::markNoConversion
+	 *
+	 * @param $text string
+	 * @param $noParse bool
+	 *
+	 * @return string
 	 */
 	function markNoConversion( $text, $noParse = false ) {
 		return $text;
 	}
 
+	/**
+	 * @param $key string
+	 * @return String
+	 */
 	function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'gan' );
 	}
@@ -80,25 +98,44 @@ class LanguageGan extends LanguageZh {
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 
-	# this should give much better diff info
+	/**
+	 * this should give much better diff info
+	 *
+	 * @param $text string
+	 * @return string
+	 */
 	function segmentForDiff( $text ) {
 		return preg_replace(
 			"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 			"' ' .\"$1\"", $text );
 	}
 
+	/**
+	 * @param $text string
+	 * @return string
+	 */
 	function unsegmentForDiff( $text ) {
 		return preg_replace(
 			"/ ([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 			"\"$1\"", $text );
 	}
 
-	// word segmentation
+	/**
+	 * word segmentation
+	 *
+	 * @param $string string
+	 * @param $autoVariant string
+	 * @return String
+	 */
 	function normalizeForSearch( $string, $autoVariant = 'gan-hans' ) {
 		// LanguageZh::normalizeForSearch
 		return parent::normalizeForSearch( $string, $autoVariant );
 	}
 
+	/**
+	 * @param $termsArray array
+	 * @return array
+	 */
 	function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );
 		$terms = self::convertDoubleWidth( $terms );

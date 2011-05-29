@@ -236,6 +236,11 @@ class LanguageKk_cyrl extends Language {
 		return $word;
 	}
 
+	/**
+	 * @param $word string
+	 * @param $case string
+	 * @return string
+	 */
 	function convertGrammarKk_latn( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['kk-tr'][$case][$word] ) ) {
@@ -456,6 +461,11 @@ class LanguageKk_cyrl extends Language {
 		return $word;
 	}
 
+	/**
+	 * @param $word string
+	 * @param $case string
+	 * @return string
+	 */
 	function convertGrammarKk_arab( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['kk-cn'][$case][$word] ) ) {
@@ -676,6 +686,11 @@ class LanguageKk_cyrl extends Language {
 		return $word;
 	}
 
+	/**
+	 * @param $word string
+	 * @param $allVowels array
+	 * @return array
+	 */
 	function lastLetter( $word, $allVowels ) {
 		$lastLetter = array();
 

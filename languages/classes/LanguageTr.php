@@ -40,7 +40,7 @@ class LanguageTr extends Language {
 	 * @see bug 28040
 	 *
 	 * @param $string string
-	 * @param $first string
+	 * @param $first string|bool
 	 *
 	 * @return string
 	 */
@@ -53,7 +53,7 @@ class LanguageTr extends Language {
 	 * @see bug 28040
 	 *
 	 * @param $string string
-	 * @param $first string
+	 * @param $first string|bool
 	 *
 	 * @return string
 	 */

@@ -137,6 +137,10 @@ class KuConverter extends LanguageConverter {
 	 *   - if there is no selected variant, leave the link
 	 *     names as they were
 	 *   - do not try to find variants for usernames
+	 *
+	 * @param $link string
+	 * @param $nt Title
+	 * @param $ignoreOtherCond bool
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
@@ -156,6 +160,9 @@ class KuConverter extends LanguageConverter {
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
 	 *
+	 * @param $text string
+	 * @param $noParse bool
+	 *
 	 * @return string
 	 */
 	function markNoConversion( $text, $noParse = false ) {
@@ -167,6 +174,9 @@ class KuConverter extends LanguageConverter {
 	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
+	 *
+	 * @param $text string
+	 * @param $toVariant bool
 	 *
 	 * @return string
 	 */
@@ -182,6 +192,9 @@ class KuConverter extends LanguageConverter {
 	/**
 	 *  It translates text into variant, specials:
 	 *    - ommiting roman numbers
+	 *
+	 * @param $text string
+	 * @param $toVariant bool
 	 *
 	 * @return string
 	 */

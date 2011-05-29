@@ -6,9 +6,14 @@
  */
 class LanguageDsb extends Language {
 
-	# Convert from the nominative form of a noun to some other case
-	# Invoked with {{GRAMMAR:case|word}}
-
+	/**
+	 * Convert from the nominative form of a noun to some other case
+	 * Invoked with {{grammar:case|word}}
+	 *
+	 * @param $word string
+	 * @param $case string
+	 * @return string
+	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['dsb'][$case][$word] ) ) {

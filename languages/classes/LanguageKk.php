@@ -20,6 +20,13 @@ class KkConverter extends LanguageConverter {
 
 	protected $mCyrl2Latn, $mLatn2Cyrl, $mCyLa2Arab;
 
+	/**
+	 * @param $langobj Language
+	 * @param $maincode string
+	 * @param $variants array
+	 * @param $variantfallbacks array
+	 * @param $flags array
+	 */
 	function __construct( $langobj, $maincode,
 								$variants = array(),
 								$variantfallbacks = array(),
@@ -192,11 +199,17 @@ class KkConverter extends LanguageConverter {
 		);
 	}
 
-	/* rules should be defined as -{ekavian | iyekavian-} -or-
-		-{code:text | code:text | ...}-
-		update: delete all rule parsing because it's not used
-				currently, and just produces a couple of bugs
-	*/
+	/**
+	 * rules should be defined as -{ekavian | iyekavian-} -or-
+	 * -{code:text | code:text | ...}-
+	 *
+	 * update: delete all rule parsing because it's not used
+	 *      currently, and just produces a couple of bugs
+	 *
+	 * @param $rule string
+	 * @param $flags array
+	 * @return array
+	 */
 	function parseManualRule( $rule, $flags = array() ) {
 		if ( in_array( 'T', $flags ) ) {
 			return parent::parseManualRule( $rule, $flags );
@@ -216,6 +229,10 @@ class KkConverter extends LanguageConverter {
 	 *  - if there is no selected variant, leave the link
 	 *    names as they were
 	 *  - do not try to find variants for usernames
+	 *
+	 * @param $link string
+	 * @param $nt Title
+	 * @param bool $ignoreOtherCond
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
@@ -235,6 +252,9 @@ class KkConverter extends LanguageConverter {
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
 	 *
+	 * @param $text string
+	 * @param $toVariant bool
+	 *
 	 * @return string
 	 */
 	function autoConvert( $text, $toVariant = false ) {
@@ -248,6 +268,9 @@ class KkConverter extends LanguageConverter {
 
 	/**
 	 *  It translates text into variant
+	 *
+	 * @param $text string
+	 * @param $toVariant string
 	 *
 	 * @return string
 	 */
@@ -289,6 +312,11 @@ class KkConverter extends LanguageConverter {
 		return $ret;
 	}
 
+	/**
+	 * @param $text string
+	 * @param $toVariant string
+	 * @return mixed|string
+	 */
 	function regsConverter( $text, $toVariant ) {
 		if ( $text == '' ) {
 			return $text;
@@ -344,6 +372,9 @@ class KkConverter extends LanguageConverter {
 	/**
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
+	 *
+	 * @param $text string
+	 * @param $noParse string|bool
 	 *
 	 * @return string
 	 */

@@ -17,6 +17,9 @@
 */
 require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
 
+/**
+ *
+ */
 class IuConverter extends LanguageConverter {
 	var $mToLatin = array(
 		'ᐦ' => 'h',   'ᐃ' => 'i',    'ᐄ' => 'ii',    'ᐅ' => 'u',    'ᐆ' => 'uu',    'ᐊ' => 'a',    'ᐋ' => 'aa',
@@ -76,11 +79,16 @@ class IuConverter extends LanguageConverter {
 		);
 	}
 
-	/* rules should be defined as -{Syllabic | Latin-} -or-
-		-{code:text | code:text | ...}-
-		update: delete all rule parsing because it's not used
-		        currently, and just produces a couple of bugs
-	*/
+	/**
+	 * rules should be defined as -{Syllabic | Latin-} -or-
+	 * -{code:text | code:text | ...}-
+	 * update: delete all rule parsing because it's not used
+	 * currently, and just produces a couple of bugs
+	 *
+	 * @param $rule string
+	 * @param $flags array
+	 * @return array
+	 */
 	function parseManualRule( $rule, $flags = array() ) {
 		if ( in_array( 'T', $flags ) ) {
 			return parent::parseManualRule( $rule, $flags );
@@ -95,7 +103,13 @@ class IuConverter extends LanguageConverter {
 		return $carray;
 	}
 
-	// Do not convert content on talk pages
+	/**
+	 * Do not convert content on talk pages
+	 *
+	 * @param $text string
+	 * @param $parser Parser
+	 * @return string
+	 */
 	function parserConvert( $text, &$parser ) {
 		if ( is_object( $parser->getTitle() ) && $parser->getTitle()->isTalkPage() )
 			$this->mDoContentConvert = false;
@@ -110,6 +124,10 @@ class IuConverter extends LanguageConverter {
 	 *   - if there is no selected variant, leave the link
 	 *     names as they were
 	 *   - do not try to find variants for usernames
+	 *
+	 * @param $link string
+	 * @param $nt Title
+	 * @param $ignoreOtherCond bool
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		 // check for user namespace
@@ -129,6 +147,9 @@ class IuConverter extends LanguageConverter {
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
 	 *
+	 * @param $text string
+	 * @param $noParse bool
+	 *
 	 * @return string
 	 */
 	function markNoConversion( $text, $noParse = false ) {
@@ -140,6 +161,9 @@ class IuConverter extends LanguageConverter {
 	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
+	 *
+	 * @param $text string
+	 * @param $toVariant bool
 	 *
 	 * @return string
 	 */
@@ -154,6 +178,9 @@ class IuConverter extends LanguageConverter {
 
 	/**
 	 * It translates text into variant
+	 *
+	 * @param $text string
+	 * @param $toVariant bool
 	 *
 	 * @return string
 	 */
