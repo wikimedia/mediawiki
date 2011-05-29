@@ -1,7 +1,7 @@
 module( 'jquery.autoEllipsis.js' );
 
 test( '-- Initial check', function(){
-
+	expect(1);
 	ok( jQuery.fn.autoEllipsis, 'jQuery.fn.autoEllipsis defined' );
 });
 
@@ -21,6 +21,8 @@ function findDivergenceIndex( a, b ) {
 }
 
 test( 'Position right', function() {
+	expect(3);
+
 	// We need this thing to be visible, so append it to the DOM
 	var origText = 'This is a really long random string and there is no way it fits in 100 pixels.';
 	var $wrapper = createWrappedDiv( origText );
@@ -33,7 +35,7 @@ test( 'Position right', function() {
 
 	// Check that the text fits by turning on word wrapping
 	$span.css( 'whiteSpace', 'nowrap' );
-	ok( $span.width() <= $span.parent().width(), "Text fits (span's width is no larger than its parent's width)" );
+	deepEqual( $span.width() <= $span.parent().width(), true, "Text fits (span's width is no larger than its parent's width)" );
 
 	// Add one character using scary black magic
 	var spanText = $span.text();
@@ -42,7 +44,7 @@ test( 'Position right', function() {
 
 	// Put this text in the span and verify it doesn't fit
 	$span.text( spanText );
-	ok( $span.width() > $span.parent().width(), 'Fit is maximal (adding one character makes it not fit any more)' );
+	deepEqual( $span.width() > $span.parent().width(), true, 'Fit is maximal (adding one character makes it not fit any more)' );
 
 	// Clean up
 	$wrapper.remove();

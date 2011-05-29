@@ -34,6 +34,7 @@ test( 'wikiGetlink', function(){
 });
 
 test( 'wikiScript', function(){
+	expect(2);
 
 	mw.config.set({
 		'wgScript': '/w/index.php',
@@ -41,28 +42,58 @@ test( 'wikiScript', function(){
 		'wgScriptExtension': '.php'
 	});
 
-	equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ), 'Defaults to index.php and is equal to wgScript.' );
+	equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ), 'Defaults to index.php and is equal to wgScript' );
+	deepEqual( mw.util.wikiScript( 'api' ), '/w/api.php' );
 
 });
 
 test( 'addCSS', function(){
+	expect(3);
 
-	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
+	window.a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
 	ok(  a, 'function works' );
 	deepEqual( a.disabled, false, 'property "disabled" is available and set to false' );
 
 	var $b = $('#bodyContent');
-	equal( $b.css('visibility'), 'hidden', 'Added style properties are in effect.' );
-
+	equal( $b.css('visibility'), 'hidden', 'Added style properties are in effect' );
 
 });
 
-/**
- * @fixme this seems to only test for the existence of the function, and does not confirm that it works
- */
 test( 'toggleToc', function(){
+	expect(3);
 
-	ok( mw.util.toggleToc );
+	deepEqual( mw.util.toggleToc(), null, 'Return null if there is no table of contents on the page.' );
+
+	var tocHtml =
+	'<table id="toc" class="toc"><tr><td>' +
+		'<div id="toctitle">' +
+			'<h2>Contents</h2>' +
+			'<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Hide</a>&nbsp;]</span>' +
+		'</div>' +
+		'<ul><li></li></ul>' +
+	'</td></tr></table>';	
+	var $toc = $(tocHtml).appendTo( 'body' );
+	var $toggleLink = $( '#togglelink' );
+
+	// Toggle animation is asynchronous
+	// QUnit should not finish this test() untill they are all done
+	stop();
+
+	var actionC = function(){
+		start();
+
+		// Clean up
+		$toc.remove();
+	};
+	var actionB = function(){
+		deepEqual( mw.util.toggleToc( $toggleLink, actionC ), true, 'Return boolean true if the TOC is now visible.' );
+	};
+	var actionA = function(){
+		deepEqual( mw.util.toggleToc( $toggleLink, actionB ), false, 'Return boolean false if the TOC is now hidden.' );
+	};
+	
+	actionA();
+
 
 });
 
@@ -126,21 +157,23 @@ test( 'jsMessage', function(){
 });
 
 test( 'validateEmail', function(){
+	expect(6);
 
-	deepEqual( mw.util.validateEmail( "" ), null, 'Empty string should return null' );
-	deepEqual( mw.util.validateEmail( "user@localhost" ), true );
+	deepEqual( mw.util.validateEmail( "" ), null, 'Should return null for empty string ' );
+	deepEqual( mw.util.validateEmail( "user@localhost" ), true, 'Return true for a valid e-mail address' );
 
 	// testEmailWithCommasAreInvalids
-	deepEqual( mw.util.validateEmail( "user,foo@example.org" ), false, 'Comma' );
-	deepEqual( mw.util.validateEmail( "userfoo@ex,ample.org" ), false, 'Comma' );
+	deepEqual( mw.util.validateEmail( "user,foo@example.org" ), false, 'Emails with commas are invalid' );
+	deepEqual( mw.util.validateEmail( "userfoo@ex,ample.org" ), false, 'Emails with commas are invalid' );
 
 	// testEmailWithHyphens
-	deepEqual( mw.util.validateEmail( "user-foo@example.org" ), true, 'Hyphen' );
-	deepEqual( mw.util.validateEmail( "userfoo@ex-ample.org" ), true, 'Hyphen' );
+	deepEqual( mw.util.validateEmail( "user-foo@example.org" ), true, 'Emails may contain a hyphen' );
+	deepEqual( mw.util.validateEmail( "userfoo@ex-ample.org" ), true, 'Emails may contain a hyphen' );
 
 });
 
 test( 'isIPv6Address', function(){
+	expect(6);
 
 	// Based on IPTest.php > IPv6
 	deepEqual( mw.util.isIPv6Address( "" ), false, 'Empty string is not an IP' );
@@ -153,6 +186,7 @@ test( 'isIPv6Address', function(){
 });
 
 test( 'isIPv4Address', function(){
+	expect(3);
 
 	// Based on IPTest.php > IPv4
 	deepEqual( mw.util.isIPv4Address( "" ), false, 'Empty string is not an IP' );

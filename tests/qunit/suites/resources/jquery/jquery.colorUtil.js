@@ -1,11 +1,12 @@
 module( 'jquery.colorUtil.js' );
 
 test( '-- Initial check', function(){
-
+	expect(1);
 	ok( jQuery.colorUtil, 'jQuery.colorUtil defined' );
 });
 
 test( 'getRGB', function(){
+	expect(18);
 
 	equal( typeof jQuery.colorUtil.getRGB(), 'undefined', 'No arguments' );
 	equal( typeof jQuery.colorUtil.getRGB( '' ), 'undefined', 'Empty string' );
@@ -32,6 +33,8 @@ test( 'getRGB', function(){
 });
 
 test( 'rgbToHsl', function(){
+	expect(4);
+
 	var hsl = jQuery.colorUtil.rgbToHsl( 144, 238, 144 );
 	var dualDecimals = function(a,b){
 		return Math.round(a*100)/100;
@@ -45,6 +48,8 @@ test( 'rgbToHsl', function(){
 });
 
 test( 'hslToRgb', function(){
+	expect(4);
+
 	var rgb = jQuery.colorUtil.hslToRgb( 0.3, 0.7, 0.8 );
 
 	ok( rgb, 'Basic return evaluation' );
@@ -55,6 +60,7 @@ test( 'hslToRgb', function(){
 });
 
 test( 'getColorBrightness', function(){
+	expect(2);
 
 	var a = jQuery.colorUtil.getColorBrightness( 'red', +0.1 );
 

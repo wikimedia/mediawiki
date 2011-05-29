@@ -210,7 +210,7 @@ window.mediaWiki = new ( function( $ ) {
 
 	/*
 	 * Dummy function which in debug mode can be replaced with a function that
-	 * emulates console.log in console-less environments. 
+	 * emulates console.log in console-less environments.
 	 */
 	this.log = function() { };
 
@@ -318,7 +318,8 @@ window.mediaWiki = new ( function( $ ) {
 					return $marker;
 				}
 				mw.log( 'getMarker> No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically.' );
-				return $marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+				$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+				return $marker;
 			}
 		}
 
@@ -512,7 +513,7 @@ window.mediaWiki = new ( function( $ ) {
 				};
 				if ( $.isArray( script ) ) {
 					var done = 0;
-					if (script.length == 0 ) {
+					if ( script.length === 0 ) {
 						// No scripts in this module? Let's dive out early.
 						markModuleReady();
 					}
@@ -534,8 +535,8 @@ window.mediaWiki = new ( function( $ ) {
 				if ( window.console && typeof window.console.log === 'function' ) {
 					console.log( _fn + 'Exception thrown by ' + module + ': ' + e.message );
 				}
-				throw e;
 				registry[module].state = 'error';
+				throw e;
 			}
 		}
 
@@ -674,8 +675,8 @@ window.mediaWiki = new ( function( $ ) {
 							!done
 							&& (
 								!this.readyState
-								|| this.readyState === "loaded"
-								|| this.readyState === "complete"
+								|| this.readyState === 'loaded'
+								|| this.readyState === 'complete'
 							)
 						) {
 							done = true;
@@ -1031,7 +1032,7 @@ window.mediaWiki = new ( function( $ ) {
 		*/
 		this.version = function() {
 			return mediaWiki.loader.getVersion.apply( mediaWiki.loader, arguments );
-		}
+		};
 
 		/**
 		 * Gets the state of a module
@@ -1120,7 +1121,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// Regular open tag
 			s += '>';
-			if ( typeof contents === 'string') {
+			if ( typeof contents === 'string' ) {
 				// Escaped
 				s += this.escape( contents );
 			} else if ( contents instanceof this.Raw ) {
