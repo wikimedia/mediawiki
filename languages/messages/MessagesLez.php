@@ -10,6 +10,7 @@
  * @author Amikeco
  * @author Andrijko Z.
  * @author Namik
+ * @author Reedy
  */
 
 $messages = array(
@@ -277,7 +278,7 @@ $messages = array(
 'noarticletext'                    => 'Исята ава кхьинар гьа и чарчел.
 Квевай жезва [[Special:Search/{{PAGENAME}}|жагъуриз тlар лугьузавай лакlаб]] масса макъалайра,
 <span class="plainlinks"> [{{fullurl: {{# къайдадин: Фин}} | чар = {{FULLPAGENAMEE}}}} жагъуриз кьетхвер кхьинар дафтlара],
-ва [{{fullurl: {{FULLPAGENAME}} | юзунар = Дегиш}} туькlуьрун чар] </ SPAN>.',
+ва [{{fullurl: {{FULLPAGENAME}} | юзунар = Дегиш}} туькlуьрун чар] </span>.',
 'noarticletext-nopermission'       => 'Ава алай вахтунда кхьин чарчел.
 Квевай жезва [[Special:Search/{{PAGENAME}}| жагъуриз гьа тlар]] масса макъалара,
 амма <span class="plainlinks">[{{fullurl:{{#Special:Рак}}|чарар={{FULLPAGENAMEE}}}} жагъуриз ухшар кхьинар дафтlара]</span>.',
