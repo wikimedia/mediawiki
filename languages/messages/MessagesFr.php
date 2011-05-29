@@ -3043,7 +3043,7 @@ $1',
 # Media information
 'mediawarning'           => "'''Attention :''' ce type de fichier peut contenir du code malveillant.
 Si vous l’exécutez, votre système peut être compromis.",
-'imagemaxsize'           => "Taille maximale des images :<br />''(pour les pages de description de fichiers)''",
+'imagemaxsize'           => "Taille maximale des images :<br />''(pour les pages de description de fichier)''",
 'thumbsize'              => 'Taille de la miniature :',
 'widthheightpage'        => '$1 × $2, $3 page{{PLURAL:$3||s}}',
 'file-info'              => 'Taille du fichier : $1, type MIME : $2',

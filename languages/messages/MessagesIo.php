@@ -258,7 +258,9 @@ $messages = array(
 'vector-view-history'      => 'Vidar versionaro',
 'vector-view-view'         => 'Lektar',
 'vector-view-viewsource'   => 'Vidar fonto',
+'actions'                  => 'Agi',
 'namespaces'               => 'Nomari',
+'variants'                 => 'Varianti',
 
 'errorpagetitle'    => 'Eroro',
 'returnto'          => 'Retrovenar a $1.',
@@ -633,6 +635,8 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'revdelete-radio-unset'      => 'No',
 'revdelete-log'              => 'Motivo:',
 'revdel-restore'             => 'chanjar videbleso',
+'revdel-restore-deleted'     => 'efacita revizadi',
+'revdel-restore-visible'     => 'videbla revizadi',
 'pagehist'                   => 'Pagino-versionaro',
 'deletedhist'                => 'Efacita versionaro',
 'revdelete-content'          => 'kontenajo',
@@ -671,8 +675,9 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'nextn'                          => 'sequanta {{PLURAL:$1|$1}}',
 'viewprevnext'                   => 'Vidar ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-new'                 => "'''Kreez la pagino \"[[:\$1]]\" in ca wiki!'''",
+'searchmenu-new-nocreate'        => '"$1" esas ne-valida pagino-nomo od vu ne permisas krear ol.',
 'searchhelp-url'                 => 'Help:Helpo',
-'searchprofile-articles'         => 'Artikli',
+'searchprofile-articles'         => 'Temala pagini',
 'searchprofile-project'          => 'Helpo',
 'searchprofile-images'           => "''Media''",
 'searchprofile-everything'       => 'Omno',
@@ -829,6 +834,7 @@ Ol mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.',
 'recentchangestext'           => 'Regardez la maxim recenta chanji en Wiki per ica pagino.',
 'recentchanges-label-newpage' => 'Ca redaktajo kreis nova pagino',
 'recentchanges-label-minor'   => 'Ica es mikra redaktajo',
+'recentchanges-label-bot'     => 'Ta chanjo facita da bot',
 'rcnote'                      => "Infre esas la lasta {{PLURAL:$1|'''1''' chanjo|'''$1''' chanji}} dum la lasta {{PLURAL:$2|dio|'''$2''' dii}} ye $5, $4.",
 'rcnotefrom'                  => "Infre esas la lasta chanji depos '''$2''' (montrita til '''$1''').",
 'rclistfrom'                  => 'Montrar nova chanji startante de $1',
@@ -888,6 +894,8 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'uploaddisabled'      => 'Pardonez, la adkargo esas desaktiva.',
 'watchthisupload'     => 'Surveyar ica arkivo',
 'upload-success-subj' => 'Adcharjo sucesoza',
+
+'license-header' => 'Licencizo',
 
 # Special:ListFiles
 'imgfile'         => 'arkivo',
@@ -1183,6 +1191,7 @@ restauris ad lasta versiono da $2.',
 'undeleterevisions'         => '$1 {{PLURAL:$1|revizo|revizi}} konservita',
 'undeletebtn'               => 'Restaurar',
 'undeletelink'              => 'vidar/restaurar',
+'undeleteviewlink'          => 'videz',
 'undeletecomment'           => 'Komento:',
 'undeletedarticle'          => 'restaurita "[[$1]]"',
 'undelete-search-box'       => 'Serchez efacita pagini',
@@ -1407,6 +1416,7 @@ Voluntez vizitar [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokizado]
 'tooltip-rollback'                => '"Retrorular" desfacas omna chanji ad ca pagino da la lasta kontributanto per un kliko',
 'tooltip-undo'                    => '"Desfacez" nuligas ca versiono e apertas la redakto-pagino en prevido-modo.
 Vu darfos adjuntar kauso en la rezumo.',
+'tooltip-summary'                 => 'Skribez kurta rezumo',
 
 # Metadata
 'notacceptable' => 'La servanto di {{SITENAME}} ne povas provizar datumi en formato quan vua kliento povas komprenar.',
@@ -1429,6 +1439,7 @@ Vu darfos adjuntar kauso en la rezumo.',
 
 # Patrol log
 'patrol-log-auto' => '(automata)',
+'patrol-log-diff' => 'revizado $1',
 
 # Browsing diffs
 'previousdiff' => '← Plu anciena versiono',
@@ -1484,6 +1495,9 @@ Vu darfos adjuntar kauso en la rezumo.',
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometri per horo',
 'exif-gpsspeed-m' => 'Milii per horo',
+
+# External editor support
+'edit-externally' => 'Chanjez ta arkivo per externa programo',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omna',

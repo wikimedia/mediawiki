@@ -13,6 +13,7 @@
  * @author Devunt
  * @author Ficell
  * @author Gapo
+ * @author Gjue
  * @author IRTC1015
  * @author ITurtle
  * @author Klutzy
@@ -297,7 +298,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => '링크에 밑줄치기:',
+'tog-underline'               => '링크 걸기:',
 'tog-highlightbroken'         => '없는 문서로 연결된 링크를 <a href="" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
 'tog-justify'                 => '문단 정렬하기',
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
@@ -453,7 +454,7 @@ $messages = array(
 'qbpageinfo'     => '문서 정보',
 'qbmyoptions'    => '내 문서',
 'qbspecialpages' => '특수 문서',
-'faq'            => 'FAQ',
+'faq'            => '자주 묻는 질문',
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
@@ -3130,6 +3131,11 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 구역 이름',
 'exif-gpsdatestamp'                => 'GPS 날짜',
 'exif-gpsdifferential'             => 'GPS 차이 보정',
+'exif-jpegfilecomment'             => 'JPEG 파일의 주석',
+'exif-keywords'                    => '핵심단어(키워드)',
+'exif-worldregioncreated'          => '이 사진이 찍힌 지역에 대한 정보',
+'exif-countrycreated'              => '이 사진이 찍힌 국가와 이 사진에 묘사된 것을 기입하십시오.',
+'exif-countrycodecreated'          => '이 사진이 찍힌 나라의 ISO코드를 입력하십시오.',
 'exif-objectname'                  => '짧은 제목',
 'exif-languagecode'                => '언어',
 

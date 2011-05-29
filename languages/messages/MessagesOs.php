@@ -454,6 +454,9 @@ $messages = array(
 # History merging
 'mergehistory-reason' => 'Аххос:',
 
+# Merge log
+'revertmerge' => 'Ахицæн кæнын',
+
 # Diffs
 'difference' => '(Дыууæ верситы ’хсæн хъауджы)',
 'lineno'     => 'Рæнхъ $1:',
@@ -505,7 +508,7 @@ $messages = array(
 'qbsettings-floatingleft' => 'Рахизырдыгæй ленккæнгæ',
 
 # Preferences page
-'mypreferences'             => 'Æрмадз',
+'mypreferences'             => 'Мæ фадæттæ',
 'prefsnologin'              => 'Системæйæн дæхи нæ бацамыдтай',
 'changepassword'            => 'Пароль баив',
 'skin-preview'              => 'Разæркаст',

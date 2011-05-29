@@ -812,6 +812,7 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 'passwordreset-text'           => 'Completați acest formular pentru a primi un e-mail cu datele contului dumneavoastră.',
 'passwordreset-legend'         => 'Resetare parolă',
 'passwordreset-disabled'       => 'Resetarea parolei a fost dezactivată pe acest wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1| | Introduceți mai jos o parte din informații}}',
 'passwordreset-username'       => 'Nume de utilizator:',
 'passwordreset-email'          => 'Adresă de e-mail:',
 'passwordreset-emailtitle'     => 'Detalii despre cont pe {{SITENAME}}',
@@ -1677,6 +1678,7 @@ Vezi [[Special:NewFiles|galeria fișierelor noi]] pentru o mai bună vizualizare
 'large-file'                  => 'Este recomandat ca fișierele să nu fie mai mari de $1; acest fișier are $2.',
 'largefileserver'             => 'Fișierul este mai mare decât este configurat serverul să permită.',
 'emptyfile'                   => 'Fișierul pe care l-ați încărcat pare a fi gol. Aceasta poate fi datorită unei greșeli în numele fișierului. Verificați dacă într-adevăr doriți să încărcați acest fișier.',
+'windows-nonascii-filename'   => 'Acest wiki nu acceptă nume de fișiere care conțin caractere speciale.',
 'fileexists'                  => "Un fișier cu același nume există deja, vă rugăm verificați '''<tt>[[:$1]]</tt>''' dacă nu sunteți sigur dacă doriți să îl modificați.
 [[$1|thumb]]",
 'filepageexists'              => "Pagina cu descrierea fișierului a fost deja creată la '''<tt>[[:$1]]</tt>''', dar niciun fișier cu acest nume nu există în acest moment.
@@ -1851,6 +1853,7 @@ Următoarea listă arată {{PLURAL:$1|prima legătură|primele $1 legături}} c�
 O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'nolinkstoimage'            => 'Nici o pagină nu utilizează această imagine.',
 'morelinkstoimage'          => 'Vedeți [[Special:WhatLinksHere/$1|mai multe legături]] către acest fișier.',
+'linkstoimage-redirect'     => '$1 (redirecționare de fișier) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Fișierul următor este duplicat|Următoarele $1 fișiere sunt duplicate}} ale acestui fișier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):',
 'sharedupload'              => 'Acest fișier provine de la $1 și poate fi folosit și de alte proiecte.',
 'sharedupload-desc-there'   => 'Fișierul acesta este de la $1 și poate fi folosit de alte proiecte.
@@ -2209,8 +2212,9 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'watchlist-options'    => 'Opțiuni listă de pagini urmărite',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Se urmărește...',
-'unwatching' => 'Așteptați...',
+'watching'       => 'Se urmărește...',
+'unwatching'     => 'Așteptați...',
+'watcherrortext' => 'A apărut o eroare în timp ce se modificau setările listei de pagini urmărite pentru „$1”.',
 
 'enotif_mailer'                => 'Sistemul de notificare {{SITENAME}}',
 'enotif_reset'                 => 'Marchează toate paginile vizitate',
@@ -2618,6 +2622,7 @@ Nu uitați să o [[Special:UnlockDB|deblocați]] la terminarea operațiilor admi
 'lockfilenotwritable' => 'Fișierul bazei de date închise nu poate fi scris.
 Pentru a închide sau deschide baza de date, acesta trebuie să poată fi scris de serverul web.',
 'databasenotlocked'   => 'Baza de date nu este blocată.',
+'lockedbyandtime'     => '(de $1, pe $2, la $3 )',
 
 # Move page
 'move-page'                    => 'Mută $1',
@@ -3396,6 +3401,7 @@ Altele vor fi ascunse implicit.
 'exif-urgency-normal' => 'Normal ($1)',
 'exif-urgency-low'    => 'Scăzut ($1)',
 'exif-urgency-high'   => 'Ridicat ($1)',
+'exif-urgency-other'  => 'Prioritate definită de utilizator ($1)',
 
 # External editor support
 'edit-externally'      => 'Editează acest fișier folosind o aplicație externă.',
