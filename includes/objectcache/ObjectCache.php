@@ -34,6 +34,10 @@ class ObjectCache {
 
 	/**
 	 * Create a new cache object of the specified type.
+	 *
+	 * @param $id
+	 *
+	 * @return ObjectCache
 	 */
 	static function newFromId( $id ) {
 		global $wgObjectCaches;
@@ -50,6 +54,8 @@ class ObjectCache {
 	 * Create a new cache object from parameters
 	 *
 	 * @param $params array
+	 *
+	 * @return ObjectCache
 	 */
 	static function newFromParams( $params ) {
 		if ( isset( $params['factory'] ) ) {

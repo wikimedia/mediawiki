@@ -44,6 +44,9 @@ class SearchMySQL extends SearchEngine {
 	 * Parse the user's query and transform it into an SQL fragment which will 
 	 * become part of a WHERE clause
 	 *
+	 * @param $filteredText string
+	 * @param $fullText string
+	 *
 	 * @return string
 	 */
 	function parseQuery( $filteredText, $fulltext ) {

@@ -54,7 +54,7 @@ class CoreTagHooks {
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
 	 *
 	 * @param $content string
-	 * @param $attribs array
+	 * @param $attributes array
 	 * @param $parser Parser
 	 * @return array
 	 */
@@ -75,7 +75,7 @@ class CoreTagHooks {
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
 	 *
 	 * @param $content string
-	 * @param  $attribs array
+	 * @param $attributes array
 	 * @param $parser Parser
 	 * @return array
 	 */
