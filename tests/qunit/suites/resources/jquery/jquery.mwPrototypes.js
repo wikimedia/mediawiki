@@ -54,5 +54,5 @@ test( 'Comparison functions', function(){
 	ok( $j.compareObject( { foo: 1 }, { foo: 1 } ), 'compareObject: Two the same objects' );
 	ok( !$j.compareObject( { bar: true }, { baz: false } ),
 	 'compareObject: Two different objects (false)' );
-	
+
 });

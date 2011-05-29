@@ -13,16 +13,16 @@
 	 *
 	 * @author Michael Dale <mdale@wikimedia.org>
 	 * @author Trevor Parscal <tparscal@wikimedia.org>
-	 * @param {string} string Message to output to console
+	 * @param logmsg string Message to output to console.
 	 */
-	mw.log = function( string ) {
+	mw.log = function( msg ) {
 		// Allow log messages to use a configured prefix to identify the source window (ie. frame)
 		if ( mw.config.exists( 'mw.log.prefix' ) ) {
-			string = mw.config.get( 'mw.log.prefix' ) + '> ' + string;
+			logmsg = mw.config.get( 'mw.log.prefix' ) + '> ' + logmsg;
 		}
 		// Try to use an existing console
-		if ( typeof window.console !== 'undefined' && typeof window.console.log == 'function' ) {
-			console.log( string );
+		if ( window.console !== undefined && $.isFunction( window.console.log ) ) {
+			window.console.log( logmsg );
 		} else {
 			// Set timestamp
 			var d = new Date();
@@ -58,7 +58,7 @@
 						'white-space': 'pre-wrap',
 						'padding': '0.125em 0.25em'
 					} )
-					.text( string )
+					.text( logmsg )
 					.prepend( '<span style="float:right">[' + time + ']</span>' )
 			);
 		}

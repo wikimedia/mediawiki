@@ -3,15 +3,27 @@
  */
 ( function( $ ) { 
 
-// Fade or snap depending on argument
+/**
+ * jQuery plugin to fade or snap to visible state.
+ *
+ * @param boolean instantToggle (optional)
+ * @return jQuery
+ */
 $.fn.goIn = function( instantToggle ) {
-	if ( typeof instantToggle != 'undefined' && instantToggle === true ) {
+	if ( instantToggle !== undefined && instantToggle === true ) {
 		return $(this).show();
 	}
 	return $(this).stop( true, true ).fadeIn();
 };
+
+/**
+ * jQuery plugin to fade or snap to hiding state.
+ *
+ * @param boolean instantToggle (optional)
+ * @return jQuery
+ */
 $.fn.goOut = function( instantToggle ) {
-	if ( typeof instantToggle != 'undefined' && instantToggle === true ) {
+	if ( instantToggle !== undefined && instantToggle === true ) {
 		return $(this).hide();
 	}
 	return $(this).stop( true, true ).fadeOut();
@@ -34,12 +46,12 @@ $.fn.liveAndTestAtStart = function( callback ){
 // Document ready:
 $( function() {
 
-	// animate the SelectOrOther fields, to only show the text field when
-	// 'other' is selected
+	// Animate the SelectOrOther fields, to only show the text field when
+	// 'other' is selected.
 	$( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function( instant ) {
 		var $other = $( '#' + $(this).attr( 'id' ) + '-other' );
 		$other = $other.add( $other.siblings( 'br' ) );
-		if ( $(this).val() == 'other' ) {
+		if ( $(this).val() === 'other' ) {
 			$other.goIn( instant );
 		} else {
 			$other.goOut( instant );

@@ -723,11 +723,11 @@
 	};
 	
 	/* JsJpegMeta ends here */
-	
+
 	mw.util = $.extend( mw.util || {}, {
 		jpegmeta: function( fileReaderResult, fileName ) {
 			return new JpegMeta.JpegFile( fileReaderResult, fileName );
 		}
 	} );
-	
+
 } )( jQuery, mediaWiki );

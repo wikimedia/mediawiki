@@ -6,6 +6,9 @@
 	mw.util = $.extend( mw.util || {}, {
 
 		/* Initialisation */
+		/**
+		 * @var boolean Wether or not already initialised
+		 */
 		'initialised' : false,
 		'init' : function() {
 			if ( this.initialised === false ) {
@@ -93,9 +96,11 @@
 					// Only add it if there is a TOC and there is no toggle added already
 					if ( $tocContainer.size() && $tocTitle.size() && !$tocToggleLink.size() ) {
 						var	hideTocCookie = $.cookie( 'mw_hidetoc' );
-							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink">' ).text( mw.msg( 'hidetoc' ) ).click( function(e){
-								e.preventDefault();
-								mw.util.toggleToc( $(this) );
+							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink">' )
+								.text( mw.msg( 'hidetoc' ) )
+								.click( function(e){
+									e.preventDefault();
+									mw.util.toggleToc( $(this) );
 							} );
 						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
 
@@ -116,7 +121,7 @@
 		/**
 		 * Encode the string like PHP's rawurlencode
 		 *
-		 * @param str String to be encoded
+		 * @param str string String to be encoded
 		 */
 		'rawurlencode' : function( str ) {
 			str = ( str + '' ).toString();
@@ -130,7 +135,7 @@
 		 * We want / and : to be included as literal characters in our title URLs
 		 * as they otherwise fatally break the title
 		 *
-		 * @param str String to be encoded
+		 * @param str string String to be encoded
 		 */
 		'wikiUrlencode' : function( str ) {
 			return this.rawurlencode( str )
@@ -140,7 +145,7 @@
 		/**
 		 * Get the link to a page name (relative to wgServer)
 		 *
-		 * @param str Page name to get the link for.
+		 * @param str string Page name to get the link for.
 		 * @return string Location for a page with name of 'str' or boolean false on error.
 		 */
 		'wikiGetlink' : function( str ) {
@@ -152,8 +157,8 @@
 		 * Get address to a script in the wiki root.
 		 * For index.php use mw.config.get( 'wgScript' )
 		 *
-		 * @param str Name of script (eg. 'api'), defaults to 'index'
-		 * @return str Address to script (eg. '/w/api.php' )
+		 * @param str string Name of script (eg. 'api'), defaults to 'index'
+		 * @return string Address to script (eg. '/w/api.php' )
 		 */
 		'wikiScript' : function( str ) {
 			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) + mw.config.get( 'wgScriptExtension' );
@@ -162,8 +167,8 @@
 		/**
 		 * Append a new style block to the head
 		 *
-		 * @param text String CSS to be appended
-		 * @return CSSStyleSheet object
+		 * @param text string CSS to be appended
+		 * @return CSSStyleSheet
 		 */
 		'addCSS' : function( text ) {
 			var s = document.createElement( 'style' );
@@ -174,24 +179,27 @@
 			} else {
 				s.appendChild( document.createTextNode( text + '' ) ); // Safari sometimes borks on null
 			}
-			document.getElementsByTagName("head")[0].appendChild( s );
+			document.getElementsByTagName('head')[0].appendChild( s );
 			return s.sheet || s;
 		},
 
 		/**
 		 * Hide/show the table of contents element
 		 *
-		 * @param $toggleLink jQuery object of the toggle link
-		 * @return String boolean visibility of the toc (true means it's visible)
+		 * @param $toggleLink jQuery A jQuery object of the toggle link.
+		 * @param callback function Function to be called after the toggle is
+		 * completed (including the animation) (optional)
+		 * @return mixed Boolean visibility of the toc (true if it's visible)
+		 * or Null if there was no table of contents.
 		 */
-		'toggleToc' : function( $toggleLink ) {
+		'toggleToc' : function( $toggleLink, callback ) {
 			var $tocList = $( '#toc ul:first' );
 
 			// This function shouldn't be called if there's no TOC,
 			// but just in case...
 			if ( $tocList.size() ) {
 				if ( $tocList.is( ':hidden' ) ) {
-					$tocList.slideDown( 'fast' );
+					$tocList.slideDown( 'fast', callback );
 					$toggleLink.text( mw.msg( 'hidetoc' ) );
 					$.cookie( 'mw_hidetoc', null, {
 						expires: 30,
@@ -199,7 +207,7 @@
 					} );
 					return true;
 				} else {
-					$tocList.slideUp( 'fast' );
+					$tocList.slideUp( 'fast', callback );
 					$toggleLink.text( mw.msg( 'showtoc' ) );
 					$.cookie( 'mw_hidetoc', '1', {
 						expires: 30,
@@ -208,7 +216,7 @@
 					return false;
 				}
 			} else {
-				return false;
+				return null;
 			}
 		},
 
@@ -216,8 +224,9 @@
 		 * Grab the URL parameter value for the given parameter.
 		 * Returns null if not found.
 		 *
-		 * @param param The parameter name
-		 * @param url URL to search through (optional)
+		 * @param param string The parameter name.
+		 * @param url string URL to search through (optional)
+		 * @return mixed Parameter value or null.
 		 */
 		'getParamValue' : function( param, url ) {
 			url = url ? url : document.location.href;
@@ -230,12 +239,17 @@
 			return null;
 		},
 
-		// Access key prefix.
-		// Will be re-defined based on browser/operating system detection in
-		// mw.util.init().
+		/**
+		 * @var string
+		 * Access key prefix. Will be re-defined based on browser/operating system
+		 * detection in mw.util.init().
+		 */
 		'tooltipAccessKeyPrefix' : 'alt-',
 
-		// Regex to match accesskey tooltips
+		/**
+		 * @var RegExp
+		 * Regex to match accesskey tooltips.
+		 */
 		'tooltipAccessKeyRegexp': /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/,
 
 		/**
@@ -244,7 +258,7 @@
 		 * otherwise, all the nodes that will probably have accesskeys by
 		 * default are updated.
 		 *
-		 * @param nodeList jQuery object, or array of elements
+		 * @param nodeList mixed A jQuery object, or array of elements to update.
 		 */
 		'updateTooltipAccessKeys' : function( nodeList ) {
 			var $nodes;
@@ -274,8 +288,11 @@
 			} );
 		},
 
-		// jQuery object that refers to the page-content element
-		// Populated by init()
+		/*
+		 * @var jQuery
+		 * A jQuery object that refers to the page-content element
+		 * Populated by init().
+		 */
 		'$content' : null,
 
 		/**
@@ -284,8 +301,8 @@
 		 * p-cactions (Content actions), p-personal (Personal tools),
 		 * p-navigation (Navigation), p-tb (Toolbox)
 		 *
-		 * The first three paramters are required, others are optionals. Though
-		 * providing an id and tooltip is recommended.
+		 * The first three paramters are required, the others are optional and
+		 * may be null. Though providing an id and tooltip is recommended.
 		 *
 		 * By default the new link will be added to the end of the list. To
 		 * add the link before a given existing item, pass the DOM node
@@ -297,21 +314,21 @@
 		 *	 'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
 		 * )
 		 *
-		 * @param portlet ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
-		 * @param href Link URL
-		 * @param text Link text
-		 * @param id ID of the new item, should be unique and preferably have
-		 *	 the appropriate prefix ( 'ca-', 'pt-', 'n-' or 't-' )
-		 * @param tooltip Text to show when hovering over the link, without accesskey suffix
-		 * @param accesskey Access key to activate this link (one character, try
-		 *	 to avoid conflicts. Use $( '[accesskey=x]' ).get() in the console to
-		 *	 see if 'x' is already used.
-		 * @param nextnode DOM node or jQuery-selector string of the item that the new
-		 *	 item should be added before, should be another item in the same
-		 *	 list, it will be ignored otherwise
+		 * @param portlet string ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
+		 * @param href string Link URL
+		 * @param text string Link text
+		 * @param id string ID of the new item, should be unique and preferably have
+		 * the appropriate prefix ( 'ca-', 'pt-', 'n-' or 't-' )
+		 * @param tooltip string Text to show when hovering over the link, without accesskey suffix
+		 * @param accesskey string Access key to activate this link (one character, try
+		 * to avoid conflicts. Use $( '[accesskey=x]' ).get() in the console to
+		 * see if 'x' is already used.
+		 * @param nextnode mixed DOM Node or jQuery-selector string of the item that the new
+		 * item should be added before, should be another item in the same
+		 * list, it will be ignored otherwise
 		 *
-		 * @return The DOM node of the new item (a LI element, or A element for
-		 *	 older skins) or null.
+		 * @return mixed The DOM Node of the added item (a ListItem or Anchor element,
+		 * depending on the skin) or null if no element was added to the document.
 		 */
 		'addPortletLink' : function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 
@@ -399,7 +416,7 @@
 				} else {
 					$ul.append( $item );
 				}
-				
+
 
 				return $item[0];
 			}
@@ -412,8 +429,8 @@
 		 *
 		 * @param message mixed The DOM-element or HTML-string to be put inside the message box.
 		 * @param className	string Used in adding a class; should be different for each call
-		 *                         to allow CSS/JS to hide different boxes. null = no class used.
-		 * @return boolean True on success, false on failure
+		 * to allow CSS/JS to hide different boxes. null = no class used.
+		 * @return boolean True on success, false on failure.
 		 */
 		'jsMessage' : function( message, className ) {
 
@@ -457,7 +474,11 @@
 		 * according to HTML5 specification. Please note the specification
 		 * does not validate a domain with one character.
 		 *
-		 * FIXME: should be moved to or replaced by a JavaScript validation module.
+		 * @todo FIXME: should be moved to or replaced by a JavaScript validation module.
+		 *
+		 * @param mailtxt string E-mail address to be validated.
+		 * @return mixed Null if mailtxt was an empty string, otherwise true/false
+		 * is determined by validation.
 		 */
 		'validateEmail' : function( mailtxt ) {
 			if( mailtxt === '' ) {
@@ -525,14 +546,27 @@
 				);
 			return (null !== mailtxt.match( HTML5_email_regexp ) );
 		},
-		// Note: borrows from IP::isIPv4
+
+		/**
+		 * Note: borrows from IP::isIPv4
+		 *
+		 * @param address string
+		 * @param allowBlock boolean
+		 * @return boolean
+		 */
 		'isIPv4Address' : function( address, allowBlock ) {
 			var block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
 			var RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])';
 			var RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
 			return address.search( new RegExp( '^' + RE_IP_ADD + block + '$' ) ) != -1;
 		},
-		// Note: borrows from IP::isIPv6
+		/**
+		 * Note: borrows from IP::isIPv6
+		 *
+		 * @param address string
+		 * @param allowBlock boolean
+		 * @return boolean
+		 */
 		'isIPv6Address' : function( address, allowBlock ) {
 			var block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
 			var RE_IPV6_ADD =
