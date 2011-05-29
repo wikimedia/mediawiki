@@ -34,6 +34,8 @@ class UploadStash {
 	/**
 	 * Represents the session which contains temporarily stored files.
 	 * Designed to be compatible with the session stashing code in UploadBase (should replace it eventually)
+	 *
+	 * @param $repo FileRepo
 	 */
 	public function __construct( $repo ) {
 

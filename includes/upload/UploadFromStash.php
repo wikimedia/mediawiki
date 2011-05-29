@@ -73,6 +73,8 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * File has been previously verified so no need to do so again.
+	 *
+	 * @return bool
 	 */
 	protected function verifyFile() {
 		return true;

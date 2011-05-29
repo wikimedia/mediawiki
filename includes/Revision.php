@@ -67,6 +67,9 @@ class Revision {
 	 * for permissions or even inserted (as in Special:Undelete)
 	 * @todo FIXME: Should be a subclass for RevisionDelete. [TS]
 	 *
+	 * @param $row
+	 * @param $overrides array
+	 *
 	 * @return Revision
 	 */
 	public static function newFromArchiveRow( $row, $overrides = array() ) {

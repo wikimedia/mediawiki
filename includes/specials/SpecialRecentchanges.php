@@ -66,6 +66,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Create a FormOptions object with options as specified by the user
 	 *
+	 * @param $parameters array
+	 *
 	 * @return FormOptions
 	 */
 	public function setup( $parameters ) {

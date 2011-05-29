@@ -51,6 +51,8 @@ class SearchSqlite extends SearchEngine {
 	/**
 	 * Parse the user's query and transform it into an SQL fragment which will
 	 * become part of a WHERE clause
+	 *
+	 * @return string
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
@@ -72,7 +74,9 @@ class SearchSqlite extends SearchEngine {
 					$quote = '"';
 				}
 
-				if( $searchon !== '' ) $searchon .= ' ';
+				if( $searchon !== '' ) {
+					$searchon .= ' ';
+				}
 
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.

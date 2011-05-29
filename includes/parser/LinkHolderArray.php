@@ -94,7 +94,7 @@ class LinkHolderArray {
 	 * strings will be returned.
 	 *
 	 * @param $other LinkHolderArray
-	 * @param $text Array of strings
+	 * @param $texts Array of strings
 	 * @return Array
 	 */
 	function mergeForeign( $other, $texts ) {

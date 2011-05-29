@@ -124,8 +124,7 @@ class SpecialStatistics extends SpecialPage {
 					" ($descriptionText)" );
 			}
 		}
-		return
-		Html::rawElement( 'tr', $trExtraParams,
+		return Html::rawElement( 'tr', $trExtraParams,
 			Html::rawElement( 'td', array(), $text ) .
 			Html::rawElement( 'td', array( 'class' => 'mw-statistics-numbers' ), $number )
 		);
