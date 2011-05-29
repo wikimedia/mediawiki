@@ -305,9 +305,9 @@ class LanguageConverter {
 	 * If you want to parse rules, try to use convert() or
 	 * convertTo().
 	 *
-	 * @param $text String: the text to be converted
-	 * @param $toVariant String: the target language code
-	 * @return String: the converted text
+	 * @param $text String the text to be converted
+	 * @param $toVariant bool|string the target language code
+	 * @return String the converted text
 	 */
 	public function autoConvert( $text, $toVariant = false ) {
 		wfProfileIn( __METHOD__ );
@@ -481,7 +481,7 @@ class LanguageConverter {
 	/**
 	 * Apply manual conversion rules.
 	 *
-	 * @param $convRule Object: Object of ConverterRule
+	 * @param $convRule ConverterRule Object of ConverterRule
 	 */
 	protected function applyManualConv( $convRule ) {
 		// Use syntax -{T|zh-cn:TitleCN; zh-tw:TitleTw}- to custom
@@ -521,7 +521,7 @@ class LanguageConverter {
 	 * Auto convert a Title object to a readable string in the
 	 * preferred variant.
 	 *
-	 * @param $title Object: a object of Title
+	 * @param $title Title a object of Title
 	 * @return String: converted title text
 	 */
 	public function convertTitle( $title ) {
@@ -622,7 +622,9 @@ class LanguageConverter {
 	 *
 	 * @param $text String: text to be converted
 	 * @param $variant String: the target variant code
+	 * @param $startPos int
 	 * @param $depth Integer: depth of recursion
+	 *
 	 * @return String: converted text
 	 */
 	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
@@ -993,6 +995,10 @@ class LanguageConverter {
 	/**
 	 * Convert the sorting key for category links. This should make different
 	 * keys that are variants of each other map to the same key.
+	 *
+	 * @param $key string
+	 *
+	 * @return string
 	 */
 	function convertCategoryKey( $key ) {
 		return $key;
@@ -1003,7 +1009,7 @@ class LanguageConverter {
 	 * MediaWiki:Conversiontable* is updated.
 	 * @private
 	 *
-	 * @param $article Object: Article object
+	 * @param $article Article object
 	 * @param $user Object: User object for the current user
 	 * @param $text String: article text (?)
 	 * @param $summary String: edit summary of the edit
@@ -1260,6 +1266,8 @@ class ConverterRule {
 	 * Parse rules conversion.
 	 * @private
 	 *
+	 * @param $variant
+	 *
 	 * @return string
 	 */
 	function getRuleConvertedStr( $variant ) {
@@ -1486,6 +1494,7 @@ class ConverterRule {
 
 	/**
 	 * Return how deal with conversion rules.
+	 * @return string
 	 */
 	public function getRulesAction() {
 		return $this->mRulesAction;
@@ -1494,6 +1503,7 @@ class ConverterRule {
 	/**
 	 * Get conversion table. (bidirectional and unidirectional
 	 * conversion table)
+	 * @return array
 	 */
 	public function getConvTable() {
 		return $this->mConvTable;
@@ -1501,6 +1511,7 @@ class ConverterRule {
 
 	/**
 	 * Get conversion rules string.
+	 * @return string
 	 */
 	public function getRules() {
 		return $this->mRules;
@@ -1508,6 +1519,7 @@ class ConverterRule {
 
 	/**
 	 * Get conversion flags.
+	 * @return array
 	 */
 	public function getFlags() {
 		return $this->mFlags;
