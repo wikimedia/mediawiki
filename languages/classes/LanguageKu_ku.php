@@ -8,6 +8,10 @@ class LanguageKu_ku extends Language {
 
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
+	 *
+	 * @param $_ string
+	 *
+	 * @return string
 	 */
 	function commafy( $_ ) {
 

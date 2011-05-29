@@ -10,6 +10,11 @@ class LanguageKk_cyrl extends Language {
 	# Invoked with {{GRAMMAR:case|word}}
 	/**
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
+	 *
+	 * @param $word string
+	 * @param $case stirng
+	 *
+	 * @return string
 	 */
 	function convertGrammarKk_cyrl( $word, $case ) {
 		global $wgGrammarForms;
@@ -707,6 +712,10 @@ class LanguageKk_cyrl extends Language {
 
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
+	 *
+	 * @param $_ string
+	 *
+	 * @return string
 	 */
 	function commafy( $_ ) {
 		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {

@@ -347,6 +347,10 @@ class KkConverter extends LanguageConverter {
 		return $text;
 	}
 
+	/**
+	 * @param $key string
+	 * @return String
+	 */
 	function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'kk' );
 	}
@@ -397,6 +401,10 @@ class LanguageKk extends LanguageKk_cyrl {
 
 	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
+	 *
+	 * @param $string string
+	 *
+	 * @return string
 	 */
 	function ucfirst ( $string ) {
 		$variant = $this->getPreferredVariant();
@@ -410,6 +418,10 @@ class LanguageKk extends LanguageKk_cyrl {
 
 	/**
 	 * It fixes issue with  lcfirst for transforming 'I' to 'ı'
+	 *
+	 * @param $string string
+	 *
+	 * @return string
 	 */
 	function lcfirst ( $string ) {
 		$variant = $this->getPreferredVariant();
@@ -421,6 +433,11 @@ class LanguageKk extends LanguageKk_cyrl {
 		return $string;
 	}
 
+	/**
+	 * @param $word string
+	 * @param $case string
+	 * @return string
+	 */
 	function convertGrammar( $word, $case ) {
 		wfProfileIn( __METHOD__ );
 

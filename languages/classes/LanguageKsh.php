@@ -64,6 +64,8 @@ class LanguageKsh extends Language {
 	 *
 	 * @param $word String
 	 * @param $case String
+	 *
+	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
 		$lord = strtolower( $word );
@@ -144,6 +146,10 @@ class LanguageKsh extends Language {
 
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
+	 *
+	 * @param $_ string
+	 *
+	 * @return string
 	 */
 	public function commafy( $_ ) {
 		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {
