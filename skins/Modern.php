@@ -21,6 +21,9 @@ class SkinModern extends SkinTemplate {
 	var $skinname = 'modern', $stylename = 'modern',
 		$template = 'ModernTemplate', $useHeadElement = true;
 
+	/**
+	 * @param $out OutputPage
+	 */
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles ('skins.modern');
