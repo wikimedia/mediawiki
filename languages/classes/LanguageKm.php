@@ -6,6 +6,11 @@
  * @author Niklas Laxström
  */
 class LanguageKm extends Language {
+
+	/**
+	 * @param $_ string
+	 * @return string
+	 */
 	function commafy( $_ ) {
 		/* NO-op for Khmer. Cannot use
 		 * $separatorTransformTable = array( ',' => '' )

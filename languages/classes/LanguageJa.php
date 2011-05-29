@@ -6,6 +6,11 @@
  * @ingroup Language
  */
 class LanguageJa extends Language {
+
+	/**
+	 * @param $string string
+	 * @return string
+	 */
 	function segmentByWord( $string ) {
 		// Strip known punctuation ?
 		// $s = preg_replace( '/\xe3\x80[\x80-\xbf]/', '', $s ); # U3000-303f
@@ -23,8 +28,13 @@ class LanguageJa extends Language {
 		return $s;
 	}
 
-	# Italic is not appropriate for Japanese script
-	# Unfortunately most browsers do not recognise this, and render <em> as italic
+	/**
+	 * Italic is not appropriate for Japanese script
+	 * Unfortunately most browsers do not recognise this, and render <em> as italic
+	 *
+	 * @param $text string
+	 * @return string
+	 */
 	function emphasize( $text ) {
 		return $text;
 	}

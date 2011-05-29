@@ -5,6 +5,12 @@
  * @ingroup Language
  */
 class LanguageMo extends Language {
+
+	/**
+	 * @param $count int
+	 * @param $forms array
+	 * @return string
+	 */
 	function convertPlural( $count, $forms ) {
 		// Plural rules per
 		// http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#mo
