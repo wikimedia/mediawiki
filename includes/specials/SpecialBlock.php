@@ -633,7 +633,7 @@ class SpecialBlock extends SpecialPage {
 		$status = $block->insert();
 		if( !$status ) {
 			# Show form unless the user is already aware of this...
-			if( ( $data['PreviousTarget'] != htmlspecialchars( $block->getTarget() ) ) || !$data['Confirm'] ) {
+			if( ( array_key_exists('PreviousTarget', $data ) && $data['PreviousTarget'] != htmlspecialchars( $block->getTarget() ) ) || !$data['Confirm'] ) {
 				return array( array( 'ipb_already_blocked', $block->getTarget() ) );
 			# Otherwise, try to update the block...
 			} else {
