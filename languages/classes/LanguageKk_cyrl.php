@@ -11,7 +11,6 @@ class LanguageKk_cyrl extends Language {
 	/**
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
 	 */
-
 	function convertGrammarKk_cyrl( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['kk-kz'][$case][$word] ) ) {

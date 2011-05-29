@@ -155,6 +155,11 @@ class LanguageKsh extends Language {
 
 	/**
 	 * Handle cases of (1, other, 0) or (1, other)
+	 *
+	 * @param $count int
+	 * @param $forms array
+	 *
+	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }

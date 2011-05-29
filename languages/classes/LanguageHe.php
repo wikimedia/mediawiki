@@ -17,6 +17,8 @@ class LanguageHe extends Language {
 	 *
 	 * @param $word String: the word to convert
 	 * @param $case String: the case
+	 *
+	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;

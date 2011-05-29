@@ -7,6 +7,11 @@
 class LanguageFr extends Language {
 	/**
 	 * Use singular form for zero (see bug 7309)
+	 *
+	 * @param $count int
+	 * @param $forms array
+	 *
+	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }

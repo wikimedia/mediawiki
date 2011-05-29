@@ -201,6 +201,8 @@ class Language {
 	 * Returns true if a language code string is of a valid form, whether or
 	 * not it exists. This includes codes which are used solely for
 	 * customisation via the MediaWiki namespace.
+	 *
+	 * @return bool
 	 */
 	public static function isValidCode( $code ) {
 		return
@@ -1564,8 +1566,10 @@ class Language {
 
 	/**
 	 * Get a format string for a given type and preference
-	 * @param $type May be date, time or both
-	 * @param $pref The format name as it appears in Messages*.php
+	 * @param $type string May be date, time or both
+	 * @param $pref string The format name as it appears in Messages*.php
+	 *
+	 * @return string
 	 */
 	function getDateFormatString( $type, $pref ) {
 		if ( !isset( $this->dateFormatStrings[$type][$pref] ) ) {
@@ -2932,7 +2936,7 @@ class Language {
 	 * @param $filename string $prefix . $languageCode . $suffix
 	 * @param $prefix string Prefix before the language code
 	 * @param $suffix string Suffix after the language code
-	 * @return Language code, or false if $prefix or $suffix isn't found
+	 * @return string Language code, or false if $prefix or $suffix isn't found
 	 */
 	static function getCodeFromFileName( $filename, $prefix = 'Language', $suffix = '.php' ) {
 		$m = null;
