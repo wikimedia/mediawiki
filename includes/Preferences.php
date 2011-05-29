@@ -1176,9 +1176,9 @@ class Preferences {
 	}
 
 	/**
-	 * @param $signature
-	 * @param $alldata
-	 * @return
+	 * @param $signature string
+	 * @param $alldata array
+	 * @return string
 	 */
 	static function cleanSignature( $signature, $alldata ) {
 		global $wgParser;

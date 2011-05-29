@@ -424,6 +424,10 @@ class MimeMagic {
 	/** 
 	 * Returns true if the mime type is known to represent an image format 
 	 * supported by the PHP GD library.
+	 *
+	 * @param $mime string
+	 * 
+	 * @return bool
 	 */
 	public function isPHPImageType( $mime ) {
 		// As defined by imagegetsize and image_type_to_mime
