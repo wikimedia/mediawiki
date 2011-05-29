@@ -67,9 +67,11 @@ class LanguageRu extends Language {
 	 *     "Сделано $1 {{PLURAL:$1|изменение|изменения|изменений}}"
 	 *   message without number
 	 *     "Действие не может быть выполнено по {{PLURAL:$1|следующей причине|следующим причинам}}:"
+	 * @param $count int
+	 * @param $forms array
 	 *
+	 * @return string
 	 */
-
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
 

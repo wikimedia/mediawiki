@@ -22,6 +22,8 @@ class LanguageKaa extends Language {
 
 	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
+	 *
+	 * @return string
 	 */
 	function ucfirst ( $string ) {
 		if ( substr( $string, 0, 1 ) === 'i' ) {

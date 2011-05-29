@@ -19,6 +19,10 @@ class LanguageGd extends Language {
 	 * $forms[4] - 3-10, 13-19
 	 * $forms[5] - 0, 20, rest
 	 *
+	 * @param $count int
+	 * @param $forms array
+	 *
+	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }

@@ -20,6 +20,10 @@ class LanguageYue extends Language {
 		return $s;
 	}
 
+	/**
+	 * @param $string
+	 * @return string
+	 */
 	function normalizeForSearch( $string ) {
 		wfProfileIn( __METHOD__ );
 

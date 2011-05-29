@@ -21,6 +21,10 @@ class LanguageZh_hans extends Language {
 		return $s;
 	}
 
+	/**
+	 * @param $s
+	 * @return string
+	 */
 	function normalizeForSearch( $s ) {
 		wfProfileIn( __METHOD__ );
 
