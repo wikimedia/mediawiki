@@ -118,7 +118,8 @@ class Preprocessor_DOM implements Preprocessor {
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
 		$xml = false;
-		$cacheable = $wgPreprocessorCacheThreshold !== false && strlen( $text ) > $wgPreprocessorCacheThreshold;
+		$cacheable = ( $wgPreprocessorCacheThreshold !== false
+			&& strlen( $text ) > $wgPreprocessorCacheThreshold );
 		if ( $cacheable ) {
 			wfProfileIn( __METHOD__.'-cacheable' );
 
