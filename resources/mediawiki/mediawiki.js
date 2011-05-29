@@ -246,11 +246,12 @@ window.mediaWiki = new ( function( $ ) {
 	 * Gets a message object, similar to wfMessage()
 	 *
 	 * @param key string Key of message to get
-	 * @param parameters mixed First argument in a list of variadic arguments,
+	 * @param parameter_1 mixed First argument in a list of variadic arguments,
 	 * each a parameter for $N replacement in messages.
 	 * @return Message
 	 */
 	this.message = function( key, parameter_1 /* [, parameter_2] */ ) {
+		var parameters;
 		// Support variadic arguments
 		if ( parameter_1 !== undefined ) {
 			parameters = $.makeArray( arguments );

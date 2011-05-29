@@ -64,8 +64,8 @@ test( 'mw.Map', function(){
 	deepEqual( 'anotherGlobalMapChecker' in window, true, 'new mw.Map( true ) did store its values in the global window object' );
 	ok( window.anotherGlobalMapChecker, 'new mw.Map( true ) did store its values in the global window object' );
 
-	// Clean up
-	delete window.anotherGlobalMapChecker;
+	// Whitelist this global variable for QUnit 'noglobal' mode
+	QUnit.config.pollution.push( 'anotherGlobalMapChecker' );
 });
 
 test( 'mw.config', function(){
@@ -111,6 +111,7 @@ test( 'mw.messages / mw.message / mw.msg', function(){
 	deepEqual( goodbye.exists(), false, 'Message.exists() returns false for inexisting messages' );
 
 	equal( goodbye.toString(), '<goodbye>', 'Message.toString() returns <key> if key does not exist' );
+
 });
 
 test( 'mw.msg', function(){
