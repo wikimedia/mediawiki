@@ -128,6 +128,8 @@ class IuConverter extends LanguageConverter {
 	/**
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
+	 *
+	 * @return string
 	 */
 	function markNoConversion( $text, $noParse = false ) {
 		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
@@ -138,6 +140,8 @@ class IuConverter extends LanguageConverter {
 	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
+	 *
+	 * @return string
 	 */
 	function autoConvert( $text, $toVariant = false ) {
 		global $wgTitle;
@@ -149,7 +153,9 @@ class IuConverter extends LanguageConverter {
 	}
 
 	/**
-	 *  It translates text into variant
+	 * It translates text into variant
+	 *
+	 * @return string
 	 */
 	function translate( $text, $toVariant ) {
 		// If $text is empty or only includes spaces, do nothing

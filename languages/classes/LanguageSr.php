@@ -100,6 +100,8 @@ class SrConverter extends LanguageConverter {
 	/**
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
+	 *
+	 * @return string
 	 */
 	function markNoConversion( $text, $noParse = false ) {
 		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
@@ -110,6 +112,8 @@ class SrConverter extends LanguageConverter {
 	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
+	 *
+	 * @return string
 	 */
 	function autoConvert( $text, $toVariant = false ) {
 		global $wgTitle;
@@ -123,6 +127,8 @@ class SrConverter extends LanguageConverter {
 	/**
 	 *  It translates text into variant, specials:
 	 *    - ommiting roman numbers
+	 *
+	 * @return string
 	 */
 	function translate( $text, $toVariant ) {
 		$breaks = '[^\w\x80-\xff]';
@@ -154,6 +160,8 @@ class SrConverter extends LanguageConverter {
 	 *
 	 * @author Nikola Smolenski <smolensk@eunet.rs>
 	 * @since 1.18
+	 *
+	 * @return bool
 	 */
 	public function guessVariant( $text, $variant ) {
 		$numCyrillic = preg_match_all("/[шђчћжШЂЧЋЖ]/u", $text, $dummy);
@@ -166,9 +174,7 @@ class SrConverter extends LanguageConverter {
 		} else {
 			return false;
 		}
-
 	}
-
 }
 
 /**

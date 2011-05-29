@@ -9,6 +9,11 @@ class LanguageSl extends Language {
 	# Invoked with {{GRAMMAR:case|word}}
 	/**
 	 * Cases: rodilnik, dajalnik, tožilnik, mestnik, orodnik
+	 *
+	 * @param $word string
+	 * @param $case string
+	 *
+	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;

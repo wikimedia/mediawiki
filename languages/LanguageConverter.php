@@ -766,6 +766,8 @@ class LanguageConverter {
 
 	/**
 	 * Returns language specific hash options.
+	 *
+	 * @return string
 	 */
 	public function getExtraHashOptions() {
 		$variant = $this->getPreferredVariant();
@@ -870,6 +872,8 @@ class LanguageConverter {
 	 * @param $code String: language code
 	 * @param $subpage String: subpage name
 	 * @param $recursive Boolean: parse subpages recursively? Defaults to true.
+	 *
+	 * @return array
 	 */
 	function parseCachedTable( $code, $subpage = '', $recursive = true ) {
 		static $parsed = array();
@@ -1233,6 +1237,8 @@ class ConverterRule {
 
 	/**
 	 * @private
+	 *
+	 * @return string
 	 */
 	function getRulesDesc() {
 		$codesep = $this->mConverter->mDescCodeSep;
@@ -1253,6 +1259,8 @@ class ConverterRule {
 	/**
 	 * Parse rules conversion.
 	 * @private
+	 *
+	 * @return string
 	 */
 	function getRuleConvertedStr( $variant ) {
 		$bidtable = $this->mBidtable;
@@ -1462,6 +1470,7 @@ class ConverterRule {
 
 	/**
 	 * Get display text on markup -{...}-
+	 * @return string
 	 */
 	public function getDisplay() {
 		return $this->mRuleDisplay;
@@ -1469,6 +1478,7 @@ class ConverterRule {
 
 	/**
 	 * Get converted title.
+	 * @return string
 	 */
 	public function getTitle() {
 		return $this->mRuleTitle;

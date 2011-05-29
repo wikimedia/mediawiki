@@ -234,6 +234,8 @@ class KkConverter extends LanguageConverter {
 	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
+	 *
+	 * @return string
 	 */
 	function autoConvert( $text, $toVariant = false ) {
 		global $wgTitle;
@@ -246,6 +248,8 @@ class KkConverter extends LanguageConverter {
 
 	/**
 	 *  It translates text into variant
+	 *
+	 * @return string
 	 */
 	function translate( $text, $toVariant ) {
 		global $wgLanguageCode;
@@ -340,6 +344,8 @@ class KkConverter extends LanguageConverter {
 	/**
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
+	 *
+	 * @return string
 	 */
 	function markNoConversion( $text, $noParse = false ) {
 		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
