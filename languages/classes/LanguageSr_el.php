@@ -6,6 +6,12 @@
  * @ingroup Language
  */
 class LanguageSr_el extends Language {
+
+	/**
+	 * @param $count int
+	 * @param $forms array
+	 * @return string
+	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 3 );

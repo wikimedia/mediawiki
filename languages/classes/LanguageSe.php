@@ -5,6 +5,12 @@
  * @ingroup Language
  */
 class LanguageSe extends Language {
+
+	/**
+	 * @param $count int
+	 * @param $forms array
+	 * @return string
+	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
 

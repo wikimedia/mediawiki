@@ -197,6 +197,12 @@ class LanguageSr extends LanguageSr_ec {
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 
+	/**
+	 * @param $count int
+	 * @param $forms array
+	 *
+	 * @return string
+	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) {
 			return '';
