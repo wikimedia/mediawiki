@@ -6,6 +6,11 @@
 
 class LanguageHr extends Language {
 
+	/**
+	 * @param $count int
+	 * @param $forms array
+	 * @return string
+	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
 		// @todo FIXME: CLDR defines 4 plural forms instead of 3. Plural for for decimals is missing.

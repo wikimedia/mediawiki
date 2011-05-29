@@ -6,6 +6,12 @@
  * @author Niklas Laxström
  */
 class LanguageAr extends Language {
+
+	/**
+	 * @param $count int
+	 * @param $forms array
+	 * @return string
+	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 6 );
@@ -32,6 +38,10 @@ class LanguageAr extends Language {
 	 *
 	 * @todo FIXME: This is language-specific for now only to avoid the negative
 	 * performance impact of enabling it for all languages.
+	 *
+	 * @param $s string
+	 *
+	 * @return string
 	 */
 	function normalize( $s ) {
 		global $wgFixArabicUnicode;

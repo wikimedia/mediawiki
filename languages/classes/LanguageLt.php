@@ -10,6 +10,13 @@ class LanguageLt extends Language {
 		2 - trys (3) lapai
 		3 - penkiolika (15) lapų
 	*/
+
+	/**
+	 * @param $count int
+	 * @param $forms array
+	 *
+	 * @return string
+	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
 
