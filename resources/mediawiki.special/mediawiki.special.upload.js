@@ -131,7 +131,7 @@ jQuery( function( $ ) {
 			img.src = dataURL;
 		}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
 			try {
-				meta = mw.util.jpegmeta( data, file.fileName );
+				meta = mw.libs.jpegmeta( data, file.fileName );
 				meta._binary_data = null;
 			} catch ( e ) {
 				meta = null;
