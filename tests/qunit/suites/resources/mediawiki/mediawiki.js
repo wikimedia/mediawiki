@@ -65,7 +65,9 @@ test( 'mw.Map', function(){
 	ok( window.anotherGlobalMapChecker, 'new mw.Map( true ) did store its values in the global window object' );
 
 	// Whitelist this global variable for QUnit 'noglobal' mode
-	QUnit.config.pollution.push( 'anotherGlobalMapChecker' );
+	if ( QUnit.config.noglobals ) {
+		QUnit.config.pollution.push( 'anotherGlobalMapChecker' );
+	}
 });
 
 test( 'mw.config', function(){
