@@ -158,7 +158,7 @@ class LoginForm extends SpecialPage {
 		global $wgOut;
 
 		if ( $this->mEmail == '' ) {
-			$this->mainLoginForm( wfMsgExt( 'noemail', array( 'parsemag', 'escape' ), $this->mUsername ) );
+			$this->mainLoginForm( wfMsgExt( 'noemailcreate', array( 'parsemag', 'escape' ), $this->mUsername ) );
 			return;
 		}
 
