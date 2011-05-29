@@ -316,7 +316,7 @@ $wgImgAuthPublicTest = true;
  *   - class            The class name for the repository. May come from the core or an extension.
  *                      The core repository classes are LocalRepo, ForeignDBRepo, FSRepo.
  *
- *   - name	            A unique name for the repository.
+ *   - name	            A unique name for the repository (but $wgLocalFileRepo should be 'local').
  *
  * For most core repos:
  *   - url              Base public URL

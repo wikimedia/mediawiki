@@ -133,7 +133,7 @@ class FSRepo extends FileRepo {
 	 */
 	function resolveVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
-			throw new MWException( __METHOD__.': unknown protoocl' );
+			throw new MWException( __METHOD__.': unknown protocol' );
 		}
 
 		$bits = explode( '/', substr( $url, 9 ), 3 );
@@ -311,34 +311,34 @@ class FSRepo extends FileRepo {
 		$status = $this->newGood();
 
 		// Resolve the virtual URL
-		if ( self::isVirtualUrl( $srcPath ) ) {
-			$srcPath = $this->resolveVirtualUrl( $srcPath );
+		if ( self::isVirtualUrl( $toAppendPath ) ) {
+			$toAppendPath = $this->resolveVirtualUrl( $toAppendPath );
 		}
 		// Make sure the files are there
-		if ( !is_file( $srcPath ) )
-			$status->fatal( 'filenotfound', $srcPath );
-
 		if ( !is_file( $toAppendPath ) )
 			$status->fatal( 'filenotfound', $toAppendPath );
+
+		if ( !is_file( $srcPath ) )
+			$status->fatal( 'filenotfound', $srcPath );
 
 		if ( !$status->isOk() ) return $status;
 
 		// Do the append
-		$chunk = file_get_contents( $toAppendPath );
+		$chunk = file_get_contents( $srcPath );
 		if( $chunk === false ) {
-			$status->fatal( 'fileappenderrorread', $toAppendPath );
+			$status->fatal( 'fileappenderrorread', $srcPath );
 		}
 
 		if( $status->isOk() ) {
-			if ( file_put_contents( $srcPath, $chunk, FILE_APPEND ) ) {
-				$status->value = $srcPath;
+			if ( file_put_contents( $toAppendPath, $chunk, FILE_APPEND ) ) {
+				$status->value = $toAppendPath;
 			} else {
-				$status->fatal( 'fileappenderror', $toAppendPath,  $srcPath);
+				$status->fatal( 'fileappenderror', $srcPath,  $toAppendPath);
 			}
 		}
 
 		if ( $flags & self::DELETE_SOURCE ) {
-			unlink( $toAppendPath );
+			unlink( $srcPath );
 		}
 
 		return $status;
