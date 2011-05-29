@@ -1721,7 +1721,7 @@ class Language {
 	 * @param $adj Bool: whether to adjust the time output according to the
 	 *             user configured offset ($timecorrection)
 	 * @param $format Mixed: true to use user's date format preference
-	 * @param $timecorrection String: the time offset as returned by
+	 * @param $timecorrection String|bool the time offset as returned by
 	 *                        validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
@@ -1740,7 +1740,7 @@ class Language {
 	 * @param $adj Bool: whether to adjust the time output according to the
 	 *             user configured offset ($timecorrection)
 	 * @param $format Mixed: true to use user's date format preference
-	 * @param $timecorrection String: the time offset as returned by
+	 * @param $timecorrection String|bool the time offset as returned by
 	 *                        validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
@@ -1760,7 +1760,7 @@ class Language {
 	 *             user configured offset ($timecorrection)
 	 * @param $format Mixed: what format to return, if it's false output the
 	 *                default one (default true)
-	 * @param $timecorrection String: the time offset as returned by
+	 * @param $timecorrection String|bool the time offset as returned by
 	 *                        validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
@@ -2756,7 +2756,7 @@ class Language {
 	 * @param string $text HTML string to truncate
 	 * @param int $length (zero/positive) Maximum length (including ellipses)
 	 * @param string $ellipsis String to append to the truncated text
-	 * @returns string
+	 * @return string
 	 */
 	function truncateHtml( $text, $length, $ellipsis = '...' ) {
 		# Use the localized ellipsis character
