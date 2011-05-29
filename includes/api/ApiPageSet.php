@@ -59,6 +59,7 @@ class ApiPageSet extends ApiQueryBase {
 	 * Constructor
 	 * @param $query ApiQuery
 	 * @param $resolveRedirects bool Whether redirects should be resolved
+	 * @param $convertTitles bool
 	 */
 	public function __construct( $query, $resolveRedirects = false, $convertTitles = false ) {
 		parent::__construct( $query, 'query' );

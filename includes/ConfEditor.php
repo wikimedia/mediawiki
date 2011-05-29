@@ -84,6 +84,10 @@ class ConfEditor {
 
 	/**
 	 * Simple entry point for command-line testing
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	static function test( $text ) {
 		try {

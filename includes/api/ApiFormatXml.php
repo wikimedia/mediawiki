@@ -86,6 +86,13 @@ class ApiFormatXml extends ApiFormatBase {
 	 *
 	 * If neither key is found, all keys become element names, and values become element content.
 	 * The method is recursive, so the same rules apply to any sub-arrays.
+	 * 
+	 * @param $elemName
+	 * @param $elemValue
+	 * @param $indent
+	 * @param $doublequote bool
+	 *
+	 * @return string
 	 */
 	public static function recXmlPrint( $elemName, $elemValue, $indent, $doublequote = false ) {
 		$retval = '';

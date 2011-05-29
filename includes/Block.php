@@ -94,7 +94,6 @@ class Block {
 	 *
 	 * @param $address String: IP address of user/anon
 	 * @param $user Integer: user id of user
-	 * @param $killExpired Boolean: delete expired blocks on load
 	 * @return Block Object
 	 * @deprecated since 1.18
 	 */

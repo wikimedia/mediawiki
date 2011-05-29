@@ -39,7 +39,7 @@ class WikiImporter {
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
-	*/
+	 */
 	function __construct( $source ) {
 		$this->reader = new XMLReader();
 

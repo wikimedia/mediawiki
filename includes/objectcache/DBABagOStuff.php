@@ -27,6 +27,8 @@ class DBABagOStuff extends BagOStuff {
 
 	/**
 	 * Encode value and expiry for storage
+	 * @param $value
+	 * @param $expiry
 	 *
 	 * @return string
 	 */
