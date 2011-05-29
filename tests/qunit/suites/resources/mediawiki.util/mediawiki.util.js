@@ -50,7 +50,7 @@ test( 'wikiScript', function(){
 test( 'addCSS', function(){
 	expect(3);
 
-	window.a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
+	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
 	ok(  a, 'function works' );
 	deepEqual( a.disabled, false, 'property "disabled" is available and set to false' );
 
