@@ -287,6 +287,8 @@ abstract class File {
 	 *
 	 * STUB
 	 * Overridden by LocalFile, UnregisteredLocalFile
+	 *
+	 * @return false|number
 	 */
 	public function getHeight( $page = 1 ) {
 		return false;
@@ -297,8 +299,10 @@ abstract class File {
 	 * STUB
 	 *
 	 * @param $type string 'text' or 'id'
+	 *
+	 * @return string|int
 	 */
-	public function getUser( $type='text' ) {
+	public function getUser( $type = 'text' ) {
 		return null;
 	}
 
@@ -317,9 +321,9 @@ abstract class File {
 	}
 
 	/**
-	 *  Return true if the file is vectorized
+	 * Return true if the file is vectorized
 	 *
-	 * @retur bool
+	 * @return bool
 	 */
 	public function isVectorized() {
 		$handler = $this->getHandler();
@@ -335,7 +339,9 @@ abstract class File {
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
 	 */
-	public function getMetadata() { return false; }
+	public function getMetadata() {
+		return false;
+	}
 
 	/**
 	* get versioned metadata
@@ -362,14 +368,18 @@ abstract class File {
 	 * Overridden by LocalFile
 	 * STUB
 	 */
-	public function getBitDepth() { return 0; }
+	public function getBitDepth() {
+		return 0;
+	}
 
 	/**
 	 * Return the size of the image file, in bytes
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
 	 */
-	public function getSize() { return false; }
+	public function getSize() {
+		return false;
+	}
 
 	/**
 	 * Returns the mime type of the file.
@@ -378,7 +388,9 @@ abstract class File {
 	 *
 	 * @return string
 	 */
-	function getMimeType() { return 'unknown/unknown'; }
+	function getMimeType() {
+		return 'unknown/unknown';
+	}
 
 	/**
 	 * Return the type of the media in the file.
@@ -457,12 +469,20 @@ abstract class File {
 		return $this->isSafeFile;
 	}
 
-	/** Accessor for __get() */
+	/**
+	 * Accessor for __get()
+	 * 
+	 * @return bool
+	 */
 	protected function getIsSafeFile() {
 		return $this->isSafeFile();
 	}
 
-	/** Uncached accessor */
+	/**
+	 * Uncached accessor
+	 *
+	 * @return bool
+	 */
 	protected function _getIsSafeFile() {
 		if ( $this->allowInlineDisplay() ) {
 			return true;
@@ -890,7 +910,7 @@ abstract class File {
 	 * @return string
 	 */
 	function getArchivePath( $suffix = false ) {
-		return $this->repo->getZonePath('public') . '/' . $this->getArchiveRel( $suffix );
+		return $this->repo->getZonePath( 'public' ) . '/' . $this->getArchiveRel( $suffix );
 	}
 
 	/**
@@ -901,7 +921,7 @@ abstract class File {
 	 * @return string
 	 */
 	function getThumbPath( $suffix = false ) {
-		$path = $this->repo->getZonePath('thumb') . '/' . $this->getRel();
+		$path = $this->repo->getZonePath( 'thumb' ) . '/' . $this->getRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . $suffix;
 		}
@@ -943,7 +963,7 @@ abstract class File {
 	/**
 	 * Get the virtual URL for an archive file or directory
 	 *
-	 * @param $suffix string
+	 * @param bool|string $suffix
 	 *
 	 * @return string
 	 */
@@ -994,6 +1014,9 @@ abstract class File {
 		return $this->repo->isHashed();
 	}
 
+	/**
+	 * @throws MWException
+	 */
 	function readOnlyError() {
 		throw new MWException( get_class($this) . ': write operations are not supported' );
 	}

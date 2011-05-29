@@ -262,6 +262,10 @@ class Linker {
 	 * Returns the array of attributes used when linking to the Title $target
 	 *
 	 * @param $target Title
+	 * @param $attribs
+	 * @param $options
+	 * 
+	 * @return array
 	 */
 	private static function linkAttribs( $target, $attribs, $options ) {
 		wfProfileIn( __METHOD__ );
@@ -834,7 +838,7 @@ class Linker {
 	 * This will make a broken link if $file is false.
 	 *
 	 * @param $title Title object.
-	 * @param $file mixed File object or false
+	 * @param $file File|false mixed File object or false
 	 * @param $text String: pre-sanitized HTML
 	 * @return String: HTML
 	 *
@@ -857,12 +861,16 @@ class Linker {
 	}
 
 	/**
-	 *  Make a link to a special page given its name and, optionally,
+	 * Make a link to a special page given its name and, optionally,
 	 * a message key from the link text.
 	 * Usage example: $skin->specialLink( 'recentchanges' )
+	 *
+	 * @return bool
 	 */
 	static function specialLink( $name, $key = '' ) {
-		if ( $key == '' ) { $key = strtolower( $name ); }
+		if ( $key == '' ) {
+			$key = strtolower( $name );
+		}
 
 		return self::linkKnown( SpecialPage::getTitleFor( $name ) , wfMsg( $key ) );
 	}
@@ -1103,6 +1111,10 @@ class Linker {
 		return $comment;
 	}
 
+	/**
+	 * @param $match
+	 * @return string
+	 */
 	private static function formatAutocommentsCallback( $match ) {
 		$title = self::$autocommentTitle;
 		$local = self::$autocommentLocal;
@@ -1149,6 +1161,9 @@ class Linker {
 		return $comment;
 	}
 
+	/**
+	 * @var Title
+	 */
 	static $commentContextTitle;
 	static $commentLocal;
 
@@ -1174,6 +1189,10 @@ class Linker {
 		return $html;
 	}
 
+	/**
+	 * @param $match
+	 * @return mixed
+	 */
 	protected static function formatLinksInCommentCallback( $match ) {
 		global $wgContLang;
 
@@ -1369,6 +1388,10 @@ class Linker {
 		return $block;
 	}
 
+	/**
+	 * @param $size
+	 * @return string
+	 */
 	public static function formatRevisionSize( $size ) {
 		if ( $size == 0 ) {
 			$stxt = wfMsgExt( 'historyempty', 'parsemag' );
@@ -1383,6 +1406,8 @@ class Linker {
 
 	/**
 	 * Add another level to the Table of Contents
+	 *
+	 * @return string
 	 */
 	static function tocIndent() {
 		return "\n<ul>";
@@ -1390,6 +1415,8 @@ class Linker {
 
 	/**
 	 * Finish one or more sublevels on the Table of Contents
+	 *
+	 * @return string
 	 */
 	static function tocUnindent( $level ) {
 		return "</li>\n" . str_repeat( "</ul>\n</li>\n", $level > 0 ? $level : 0 );
@@ -1397,11 +1424,14 @@ class Linker {
 
 	/**
 	 * parameter level defines if we are on an indentation level
+	 *
+	 * @return string
 	 */
 	static function tocLine( $anchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
 		$classes = "toclevel-$level";
-		if ( $sectionIndex !== false )
+		if ( $sectionIndex !== false ) {
 			$classes .= " tocsection-$sectionIndex";
+		}
 		return "\n<li class=\"$classes\"><a href=\"#" .
 			$anchor . '"><span class="tocnumber">' .
 			$tocnumber . '</span> <span class="toctext">' .

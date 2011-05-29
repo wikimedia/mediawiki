@@ -917,7 +917,7 @@ class DatabaseOracle extends DatabaseBase {
 	 *
 	 * @param $table Array
 	 * @param $field String
-	 * @return ORAField
+	 * @return ORAField|ORAResult
 	 */
 	private function fieldInfoMulti( $table, $field ) {
 		$field = strtoupper( $field );

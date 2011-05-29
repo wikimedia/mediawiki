@@ -13,6 +13,14 @@
  * @since 1.17
  */
 class OracleUpdater extends DatabaseUpdater {
+
+	/**
+	 * Handle to the database subclass
+	 *
+	 * @var DatabaseOracle
+	 */
+	protected $db;
+
 	protected function getCoreUpdateList() {
 		return array(
 			// 1.16
