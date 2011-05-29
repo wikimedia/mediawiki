@@ -814,7 +814,6 @@ class LocalFile extends File {
 	/** getRel inherited */
 	/** getUrlRel inherited */
 	/** getArchiveRel inherited */
-	/** getThumbRel inherited */
 	/** getArchivePath inherited */
 	/** getThumbPath inherited */
 	/** getArchiveUrl inherited */
