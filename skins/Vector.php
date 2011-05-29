@@ -108,7 +108,7 @@ class VectorTemplate extends BaseTemplate {
 				}
 				if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
 					$nav[$section][$key]['key'] =
-						Linker::tooltip( $xmlID );
+						Linker::titleAttrib( $xmlID );
 				} else {
 					$nav[$section][$key]['key'] =
 						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
@@ -258,6 +258,8 @@ class VectorTemplate extends BaseTemplate {
 
 	/**
 	 * Render a series of portals
+	 *
+	 * @params $portals array
 	 */
 	private function renderPortals( $portals ) {
 		// Force the rendering of the following portals
@@ -297,7 +299,7 @@ class VectorTemplate extends BaseTemplate {
 			$msg = $name;
 		}
 		?>
-<div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo Linker::tooltip( 'p-' . $name ) ?>>
+<div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo Linker::titleAttrib( 'p-' . $name ) ?>>
 	<h5<?php $this->html( 'userlangattributes' ) ?>><?php $msgObj = wfMessage( $msg ); echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $msg ); ?></h5>
 	<div class="body">
 <?php
@@ -327,6 +329,8 @@ class VectorTemplate extends BaseTemplate {
 	/**
 	 * Render one or more navigations elements by name, automatically reveresed
 	 * when UI is in RTL mode
+	 *
+	 * @param $elements array
 	 */
 	private function renderNavigation( $elements ) {
 		global $wgVectorUseSimpleSearch, $wgVectorShowVariantName, $wgUser;

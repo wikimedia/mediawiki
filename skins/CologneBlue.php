@@ -19,6 +19,9 @@ class SkinCologneBlue extends SkinLegacy {
 	var $skinname = 'cologneblue', $stylename = 'cologneblue',
 		$template = 'CologneBlueTemplate';
 
+	/**
+	 * @param $out OutputPage
+	 */
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'skins.cologneblue' );
@@ -55,6 +58,9 @@ class SkinCologneBlue extends SkinLegacy {
 
 class CologneBlueTemplate extends LegacyTemplate {
 
+	/**
+	 * @return string
+	 */
 	function doBeforeContent() {
 		$mainPageObj = Title::newMainPage();
 
@@ -95,6 +101,9 @@ class CologneBlueTemplate extends LegacyTemplate {
 		return $s;
 	}
 
+	/**
+	 * @return string
+	 */
 	function doAfterContent(){
 		global $wgLang;
 
@@ -136,6 +145,9 @@ class CologneBlueTemplate extends LegacyTemplate {
 		return $s;
 	}
 
+	/**
+	 * @return string
+	 */
 	function sysLinks() {
 		global $wgUser, $wgLang;
 		$li = SpecialPage::getTitleFor( 'Userlogin' );
@@ -194,6 +206,8 @@ class CologneBlueTemplate extends LegacyTemplate {
 	/**
 	 * Compute the sidebar
 	 * @access private
+	 *
+	 * @return string
 	 */
 	function quickBar(){
 		global $wgOut, $wgUser;
@@ -347,11 +361,19 @@ class CologneBlueTemplate extends LegacyTemplate {
 		return $s;
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function menuHead( $key ) {
 		$s = "\n<h6>" . wfMsg( $key ) . "</h6>";
 		return $s;
 	}
 
+	/**
+	 * @param $label string
+	 * @return string
+	 */
 	function searchForm( $label = '' ) {
 		global $wgRequest, $wgUseTwoButtonsSearchForm;
 
