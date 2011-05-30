@@ -2,7 +2,7 @@
 
 <!-- colors don't work on Windows! -->
 <phpunit bootstrap="./bootstrap.php"
-         colors="true"
+         colors="false"
          backupGlobals="false"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
