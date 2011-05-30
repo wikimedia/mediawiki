@@ -3871,6 +3871,80 @@ pst title=[[Ns:Somearticle (IGNORED), Context]]
 [[Ns:Article, Context|Article]]
 !! end
 
+!! test
+pre-save transform: trim trailing empty lines
+!! options
+pst
+!! input
+Empty lines are trimmed
+
+
+
+
+!! result
+Empty lines are trimmed
+!! end
+
+!! test
+pre-save transform: Signature expansion
+!! options
+pst
+!! input
+* ~~~
+* <noinclude>~~~</noinclude>
+* <includeonly>~~~</includeonly>
+* <onlyinclude>~~~</onlyinclude>
+!! result
+* [[Special:Contributions/127.0.0.1|127.0.0.1]]
+* <noinclude>[[Special:Contributions/127.0.0.1|127.0.0.1]]</noinclude>
+* <includeonly>[[Special:Contributions/127.0.0.1|127.0.0.1]]</includeonly>
+* <onlyinclude>[[Special:Contributions/127.0.0.1|127.0.0.1]]</onlyinclude>
+!! end
+
+
+!! test
+pre-save transform: Signature expansion in nowiki tags (bug 93)
+!! options
+pst
+!! input
+Shall not expand:
+
+<nowiki>~~~~</nowiki>
+
+<includeonly><nowiki>~~~~</nowiki></includeonly>
+
+<noinclude><nowiki>~~~~</nowiki></noinclude>
+
+<onlyinclude><nowiki>~~~~</nowiki></onlyinclude>
+
+{{subst:Foo}} shall be converted to FOO
+
+As well as inside noinclude/onlyinclude
+<noinclude>{{subst:Foo}}</noinclude>
+<onlyinclude>{{subst:Foo}}</onlyinclude>
+
+But not inside includeonly
+<includeonly>{{subst:Foo}}</includeonly>
+!! result
+Shall not expand:
+
+<nowiki>~~~~</nowiki>
+
+<includeonly><nowiki>~~~~</nowiki></includeonly>
+
+<noinclude><nowiki>~~~~</nowiki></noinclude>
+
+<onlyinclude><nowiki>~~~~</nowiki></onlyinclude>
+
+FOO shall be converted to FOO
+
+As well as inside noinclude/onlyinclude
+<noinclude>FOO</noinclude>
+<onlyinclude>FOO</onlyinclude>
+
+But not inside includeonly
+<includeonly>{{subst:Foo}}</includeonly>
+!! end
 
 ###
 ### Message transform tests
@@ -9108,67 +9182,6 @@ Special characters in embedded file links (bug 27679)
 </p>
 !! end
 
-!! article
-Template:Bug93a
-!! text
-*a<b>c
-*<nowiki>d<b>e</nowiki>
-</b>
-*<includeonly>f<b>g</includeonly>
-*<includeonly><nowiki>h<b>i</nowiki></includeonly>
-!! endarticle
-
-!! article
-Template:Bug93b
-!! text
-*a<b>c
-*<nowiki>d<b>e</nowiki>
-</b>
-*<noinclude>j<b>k</noinclude>
-*<noinclude><nowiki>l<b>m</nowiki></noinclude>
-!! endarticle
-
-!! article
-Template:Bug93c
-!! text
-*a<b>c
-*<nowiki>d<b>e</nowiki>
-</b>
-*<onlyinclude>n<b>o</onlyinclude>
-*<onlyinclude><nowiki>p<b>q</nowiki></onlyinclude>
-!! endarticle
-
-!! test
-Signature expansion in nowiki tags. (bug 93)
-!! input
-{{Bug93a}}
-one
-{{Bug93b}}
-two
-{{Bug93c}}
-!! result
-<ul><li>a<b>c
-</li><li>d&lt;b&gt;e
-</li></ul>
-<p></b>
-</p>
-<ul><li>f<b>g
-</li><li>h&lt;b&gt;i
-</li></ul>
-<p>one
-</p>
-<ul><li>a&lt;b&gt;c
-</li><li>d&lt;b&gt;e
-</li></ul>
-<p></b>
-</p>
-<ul><li>
-</li><li>
-</li></ul>
-<p>two
-n<b>op&lt;b&gt;q</b>
-</p>
-!! end
 
 TODO:
 more images
