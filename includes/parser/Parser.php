@@ -5461,9 +5461,6 @@ class Parser {
 	 * @return string
 	 */
 	function testSrvus( $text, $title, ParserOptions $options, $outputType = self::OT_HTML ) {
-		if ( !$title instanceof Title ) {
-			$title = Title::newFromText( $title );
-		}
 		$this->startParse( $title, $options, $outputType, true );
 
 		$text = $this->replaceVariables( $text );
@@ -5473,17 +5470,10 @@ class Parser {
 	}
 
 	function testPst( $text, $title, $options ) {
-		global $wgUser;
-		if ( !$title instanceof Title ) {
-			$title = Title::newFromText( $title );
-		}
-		return $this->preSaveTransform( $text, $title, $wgUser, $options );
+		return $this->preSaveTransform( $text, $title, $options->getUser(), $options );
 	}
 
 	function testPreprocess( $text, $title, $options ) {
-		if ( !$title instanceof Title ) {
-			$title = Title::newFromText( $title );
-		}
 		return $this->testSrvus( $text, $title, $options, self::OT_PREPROCESS );
 	}
 
