@@ -541,13 +541,13 @@ class DatabaseMysql extends DatabaseBase {
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseMysql::listTables' ) {
 		$result = $this->query( "SHOW TABLES", $fname);
-		
+
 		$endArray = array();
-		
-		foreach( $result as $table ) {	
+
+		foreach( $result as $table ) {
 			$vars = get_object_vars($table);
 			$table = array_pop( $vars );
-			
+
 			if( !$prefix || strpos( $table, $prefix ) === 0 ) {
 				$endArray[] = $table;
 			}
