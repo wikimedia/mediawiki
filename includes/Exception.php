@@ -284,6 +284,7 @@ class ErrorPageError extends MWException {
 /**
  * Show an error when a user tries to do something they do not have the necessary
  * permissions for.
+ * @ingroup Exception
  */
 class PermissionsError extends ErrorPageError {
 	public $permission;
@@ -319,6 +320,7 @@ class PermissionsError extends ErrorPageError {
 /**
  * Show an error when the wiki is locked/read-only and the user tries to do
  * something that requires write access
+ * @ingroup Exception
  */
 class ReadOnlyError extends ErrorPageError {
 	public function __construct(){
@@ -332,6 +334,7 @@ class ReadOnlyError extends ErrorPageError {
 
 /**
  * Show an error when the user hits a rate limit
+ * @ingroup Exception
  */
 class ThrottledError extends ErrorPageError {
 	public function __construct(){
@@ -349,6 +352,7 @@ class ThrottledError extends ErrorPageError {
 
 /**
  * Show an error when the user tries to do something whilst blocked
+ * @ingroup Exception
  */
 class UserBlockedError extends ErrorPageError {
 	public function __construct( Block $block ){
@@ -385,6 +389,7 @@ class UserBlockedError extends ErrorPageError {
 
 /**
  * Handler class for MWExceptions
+ * @ingroup Exception
  */
 class MWExceptionHandler {
 	/**
