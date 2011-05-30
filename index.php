@@ -69,7 +69,7 @@ require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 try {
 	wfIndexMain();
 } catch ( Exception $e ) {
-	wfExceptionHandler( $e );
+	MWExceptionHandler::handle( $e );
 }
 
 function wfIndexMain() {

@@ -327,8 +327,7 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	}
 
 	wfProfileIn( $fname . '-exception' );
-	require_once( "$IP/includes/Exception.php" );
-	wfInstallExceptionHandler();
+	MWExceptionHandler::installHandler();
 	wfProfileOut( $fname . '-exception' );
 
 	wfProfileIn( $fname . '-includes' );

@@ -23,7 +23,6 @@ class MWException extends Exception {
 		return $this->useMessageCache() &&
 			!empty( $GLOBALS['wgFullyInitialised'] ) &&
 			!empty( $GLOBALS['wgOut'] ) &&
-			!$GLOBALS['wgOut']->isArticleRelated() &&
 			!empty( $GLOBALS['wgTitle'] );
 	}
 
@@ -166,7 +165,6 @@ class MWException extends Exception {
 	/** Output the exception report using HTML */
 	function reportHTML() {
 		global $wgOut;
-
 		if ( $this->useOutputPage() ) {
 			$wgOut->setPageTitle( $this->getPageTitle() );
 			$wgOut->setRobotPolicy( "noindex,nofollow" );
@@ -210,74 +208,10 @@ class MWException extends Exception {
 		}
 
 		if ( self::isCommandLine() ) {
-			wfPrintError( $this->getText() );
+			MWExceptionHandler::printError( $this->getText() );
 		} else {
 			$this->reportHTML();
 		}
-	}
-
-	/**
-	 * Send headers and output the beginning of the html page if not using
-	 * $wgOut to output the exception.
-	 * @deprecated since 1.18 call wfDie() if you need to die immediately
-	 */
-	function htmlHeader() {
-		global $wgLogo, $wgLang;
-
-		if ( !headers_sent() ) {
-			header( 'HTTP/1.0 500 Internal Server Error' );
-			header( 'Content-type: text/html; charset=UTF-8' );
-			/* Don't cache error pages!  They cause no end of trouble... */
-			header( 'Cache-control: none' );
-			header( 'Pragma: nocache' );
-		}
-
-		$head = Html::element( 'title', null, $this->getPageTitle() ) . "\n";
-		$head .= Html::inlineStyle( <<<ENDL
-	body {
-		color: #000;
-		background-color: #fff;
-		font-family: sans-serif;
-		padding: 2em;
-		text-align: center;
-	}
-	p, img, h1 {
-		text-align: left;
-		margin: 0.5em 0;
-	}
-	h1 {
-		font-size: 120%;
-	}
-ENDL
-		);
-
-		$dir = 'ltr';
-		$code = 'en';
-
-		if ( $wgLang instanceof Language ) {
-			$dir = $wgLang->getDir();
-			$code = $wgLang->getCode();
-		}
-
-		$header = Html::element( 'img', array(
-			'src' => $wgLogo,
-			'alt' => '' ) );
-
-		$attribs = array( 'dir' => $dir, 'lang' => $code );
-
-		return
-			Html::htmlHeader( $attribs ) .
-			Html::rawElement( 'head', null, $head ) . "\n".
-			Html::openElement( 'body' ) . "\n" .
-			$header . "\n";
-	}
-
-	/**
-	 * print the end of the html page if not using $wgOut.
-	 * @deprecated since 1.18
-	 */
-	function htmlFooter() {
-		return Html::closeElement( 'body' ) . Html::closeElement( 'html' );
 	}
 
 	static function isCommandLine() {
@@ -450,100 +384,105 @@ class UserBlockedError extends ErrorPageError {
 }
 
 /**
- * Install an exception handler for MediaWiki exception types.
+ * Handler class for MWExceptions
  */
-function wfInstallExceptionHandler() {
-	set_exception_handler( 'wfExceptionHandler' );
-}
+class MWExceptionHandler {
+	/**
+	 * Install an exception handler for MediaWiki exception types.
+	 */
+	public static function installHandler() {
+		set_exception_handler( array( 'MWExceptionHandler', 'handle' ) );
+	}
 
-/**
- * Report an exception to the user
- */
-function wfReportException( Exception $e ) {
-	global $wgShowExceptionDetails;
+	/**
+	 * Report an exception to the user
+	 */
+	protected static function report( Exception $e ) {
+		global $wgShowExceptionDetails;
 
-	$cmdLine = MWException::isCommandLine();
+		$cmdLine = MWException::isCommandLine();
 
-	if ( $e instanceof MWException ) {
-		try {
-			// Try and show the exception prettily, with the normal skin infrastructure
-			$e->report();
-		} catch ( Exception $e2 ) {
-			// Exception occurred from within exception handler
-			// Show a simpler error message for the original exception,
-			// don't try to invoke report()
-			$message = "MediaWiki internal error.\n\n";
+		if ( $e instanceof MWException ) {
+			try {
+				// Try and show the exception prettily, with the normal skin infrastructure
+				$e->report();
+			} catch ( Exception $e2 ) {
+				// Exception occurred from within exception handler
+				// Show a simpler error message for the original exception,
+				// don't try to invoke report()
+				$message = "MediaWiki internal error.\n\n";
+
+				if ( $wgShowExceptionDetails ) {
+					$message .= 'Original exception: ' . $e->__toString() . "\n\n" .
+						'Exception caught inside exception handler: ' . $e2->__toString();
+				} else {
+					$message .= "Exception caught inside exception handler.\n\n" .
+						"Set \$wgShowExceptionDetails = true; at the bottom of LocalSettings.php " .
+						"to show detailed debugging information.";
+				}
+
+				$message .= "\n";
+
+				if ( $cmdLine ) {
+					self::printError( $message );
+				} else {
+					wfDie( nl2br( htmlspecialchars( $message ) ) ) . "\n";
+				}
+			}
+		} else {
+			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"\n" .
+				$e->__toString() . "\n";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= 'Original exception: ' . $e->__toString() . "\n\n" .
-					'Exception caught inside exception handler: ' . $e2->__toString();
-			} else {
-				$message .= "Exception caught inside exception handler.\n\n" .
-					"Set \$wgShowExceptionDetails = true; at the bottom of LocalSettings.php " .
-					"to show detailed debugging information.";
+				$message .= "\n" . $e->getTraceAsString() . "\n";
 			}
 
-			$message .= "\n";
-
 			if ( $cmdLine ) {
-				wfPrintError( $message );
+				self::printError( $message );
 			} else {
 				wfDie( nl2br( htmlspecialchars( $message ) ) ) . "\n";
 			}
 		}
-	} else {
-		$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"\n" .
-			$e->__toString() . "\n";
+	}
 
-		if ( $wgShowExceptionDetails ) {
-			$message .= "\n" . $e->getTraceAsString() . "\n";
-		}
-
-		if ( $cmdLine ) {
-			wfPrintError( $message );
+	/**
+	 * Print a message, if possible to STDERR.
+	 * Use this in command line mode only (see isCommandLine)
+	 */
+	public static function printError( $message ) {
+		# NOTE: STDERR may not be available, especially if php-cgi is used from the command line (bug #15602).
+		#      Try to produce meaningful output anyway. Using echo may corrupt output to STDOUT though.
+		if ( defined( 'STDERR' ) ) {
+			fwrite( STDERR, $message );
 		} else {
-			wfDie( nl2br( htmlspecialchars( $message ) ) ) . "\n";
+			echo( $message );
 		}
 	}
-}
 
-/**
- * Print a message, if possible to STDERR.
- * Use this in command line mode only (see isCommandLine)
- */
-function wfPrintError( $message ) {
-	# NOTE: STDERR may not be available, especially if php-cgi is used from the command line (bug #15602).
-	#      Try to produce meaningful output anyway. Using echo may corrupt output to STDOUT though.
-	if ( defined( 'STDERR' ) ) {
-		fwrite( STDERR, $message );
-	} else {
-		echo( $message );
+	/**
+	 * Exception handler which simulates the appropriate catch() handling:
+	 *
+	 *   try {
+	 *       ...
+	 *   } catch ( MWException $e ) {
+	 *       $e->report();
+	 *   } catch ( Exception $e ) {
+	 *       echo $e->__toString();
+	 *   }
+	 */
+	public static function handle( $e ) {
+		global $wgFullyInitialised;
+
+		self::report( $e );
+
+		// Final cleanup
+		if ( $wgFullyInitialised ) {
+			try {
+				wfLogProfilingData(); // uses $wgRequest, hence the $wgFullyInitialised condition
+			} catch ( Exception $e ) {}
+		}
+
+		// Exit value should be nonzero for the benefit of shell jobs
+		exit( 1 );
 	}
-}
-
-/**
- * Exception handler which simulates the appropriate catch() handling:
- *
- *   try {
- *       ...
- *   } catch ( MWException $e ) {
- *       $e->report();
- *   } catch ( Exception $e ) {
- *       echo $e->__toString();
- *   }
- */
-function wfExceptionHandler( $e ) {
-	global $wgFullyInitialised;
-
-	wfReportException( $e );
-
-	// Final cleanup
-	if ( $wgFullyInitialised ) {
-		try {
-			wfLogProfilingData(); // uses $wgRequest, hence the $wgFullyInitialised condition
-		} catch ( Exception $e ) {}
-	}
-
-	// Exit value should be nonzero for the benefit of shell jobs
-	exit( 1 );
 }
