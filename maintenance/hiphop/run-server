@@ -1,12 +1,72 @@
-#!/bin/bash
+#!/usr/bin/hphpi -f
+<?php
 
-sourceDir=`dirname "$0"`
-sourceRoot=`readlink -f "$sourceDir/../.."`
+require( dirname( __FILE__ ) . '/../Maintenance.php' );
 
-"$sourceDir"/build/persistent/mediawiki-hphp \
-	-c "$sourceDir/server.conf" \
-	-v Server.SourceRoot="$sourceRoot" \
-	--mode=server \
-	--port=8080
+class RunHipHopServer extends Maintenance {
+	function __construct() {
+		parent::__construct();
+		$this->addOption( 'interpret', 'Run in interpreted mode' );
+	}
 
+	function execute() {
+		if ( $this->hasOption( 'interpret' ) ) {
+			$this->runInterpreted();
+		} else {
+			$this->runCompiled();
+		}
+	}
 
+	function runCompiled() {
+		global $wgHipHopBuildDirectory;
+		$thisDir = realpath( dirname( __FILE__ ) );
+		$IP = realpath( "$thisDir/../.." );
+		if ( strval( $wgHipHopBuildDirectory ) !== '' ) {
+			$buildDir = $wgHipHopBuildDirectory;
+		} else {
+			$buildDir = "$thisDir/build";
+		}
+
+		if ( file_exists( "$buildDir/source" ) ) {
+			$sourceBase = "$buildDir/source";
+		} else {
+			$sourceBase = realpath( "$IP/.." );
+		}
+
+		passthru( 
+			'cd ' . wfEscapeShellArg( $sourceBase ) . " && " .
+			'MW_INSTALL_PATH=' . wfEscapeShellArg( $IP ) . ' ' .
+			wfEscapeShellArg( 
+				"$buildDir/persistent/mediawiki-hphp",
+				'-c', "$thisDir/server.conf",
+				'-v', "Server.SourceRoot=$sourceBase",
+				'-v', "Server.IncludeSearchPaths.0=$sourceBase",
+				'--mode=server',
+				'--port=8080'
+			),
+			$ret
+		);
+		exit( $ret );
+	}
+
+	function runInterpreted() {
+		$thisDir = realpath( dirname( __FILE__ ) );
+		$IP = realpath( "$thisDir/../.." );
+		$sourceBase = realpath( "$IP/.." );
+
+		passthru(
+			wfEscapeShellArg(
+				'hphpi',
+				'-c', "$thisDir/server.conf",
+				'-v', "Server.SourceRoot=$sourceBase",
+				'-v', "Server.IncludeSearchPaths.0=$sourceBase",
+				'--mode=server',
+				'--port=8080'
+			),
+			$ret
+		);
+		exit( $ret );
+	}
+}
+$maintClass = 'RunHipHopServer';
+require_once( RUN_MAINTENANCE_IF_MAIN );

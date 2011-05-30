@@ -36,7 +36,12 @@ if( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2
 	wfDie( "MediaWiki $version requires at least PHP version 5.2.3." );
 }
 
-require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
+	require ( 'phase3/includes/WebStart.php' );
+} else {
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+}
+
 wfProfileIn( 'load.php' );
 
 // URL safety checks

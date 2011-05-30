@@ -64,7 +64,11 @@ ENDL;
 # Initialise common code.  This gives us access to GlobalFunctions, the AutoLoader, and
 # the globals $wgRequest, $wgOut, $wgUser, $wgLang and $wgContLang, amongst others; it
 # does *not* load $wgTitle
-require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
+	require ( 'phase3/includes/WebStart.php' );
+} else {
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+}
 
 try {
 	wfIndexMain();

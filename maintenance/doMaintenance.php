@@ -54,18 +54,10 @@ $maintenance->setup();
 $self = $maintenance->getName();
 
 // Detect compiled mode
-try {
-	$r = new ReflectionFunction( 'wfHipHopCompilerVersion' );
-} catch ( ReflectionException $e ) {
-	$r = false;
-}
-
-if ( $r ) {
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	define( 'MW_COMPILED', 1 );
-}
-
-# Get the MWInit class
-if ( !defined( 'MW_COMPILED' ) ) {
+} else {
+	# Get the MWInit class
 	require_once( "$IP/includes/Init.php" );
 	require_once( "$IP/includes/AutoLoader.php" );
 }
@@ -77,7 +69,7 @@ require_once( MWInit::compiledPath( 'includes/profiler/Profiler.php' ) );
 if ( !defined( 'MW_COMPILED' ) ) {
 	require_once( "$IP/includes/Defines.php" );
 }
-require_once( "$IP/includes/DefaultSettings.php" );
+require_once( MWInit::compiledPath( 'includes/DefaultSettings.php' ) );
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki

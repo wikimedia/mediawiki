@@ -8,22 +8,6 @@
  * @file
  */
 
-/**
- * Detect compiled mode by looking for a function that only exists if compiled 
- * in. Note that we can't use function_exists(), because it is terribly broken 
- * under HipHop due to the "volatile" feature.
- *
- * @return bool
- */
-function wfDetectCompiledMode() {
-	try {
-		$r = new ReflectionFunction( 'wfHipHopCompilerVersion' );
-	} catch ( ReflectionException $e ) {
-		$r = false;
-	}
-	return $r !== false;
-}
-
 # Protect against register_globals
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {
@@ -88,11 +72,9 @@ if ( $IP === false ) {
 	$IP = realpath( '.' );
 }
 
-if ( wfDetectCompiledMode() ) {
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	define( 'MW_COMPILED', 1 );
-}
-
-if ( !defined( 'MW_COMPILED' ) ) {
+} else {
 	# Get MWInit class
 	require_once( "$IP/includes/Init.php" );
 

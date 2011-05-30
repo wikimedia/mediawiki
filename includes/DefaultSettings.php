@@ -5314,6 +5314,12 @@ $wgUpdateRowsPerQuery = 100;
  */
 
 /**
+ * The build directory for HipHop compilation. 
+ * Defaults to $IP/maintenance/hiphop/build.
+ */
+$wgHipHopBuildDirectory = false;
+
+/**
  * The HipHop build type. Can be either "Debug" or "Release".
  */
 $wgHipHopBuildType = 'Debug';
@@ -5323,6 +5329,31 @@ $wgHipHopBuildType = 'Debug';
  * to guess from system properties.
  */
 $wgHipHopCompilerProcs = 'detect';
+
+/**
+ * Filesystem extensions directory. Defaults to $IP/../extensions.
+ *
+ * To compile extensions with HipHop, set $wgExtensionsDirectory correctly, 
+ * and use code like:
+ *    
+ *    require( MWInit::extensionSetupPath( 'Extension/Extension.php' ) );
+ *
+ * to include the extension setup file from LocalSettings.php. It is not 
+ * necessary to set this variable unless you use MWInit::extensionSetupPath().
+ */
+$wgExtensionsDirectory = false;
+
+/**
+ * A list of files that should be compiled into a HipHop build, in addition to 
+ * those listed in $wgAutoloadClasses. Add to this array in an extension setup 
+ * file in order to add files to the build. 
+ *
+ * The files listed here must either be either absolute paths under $IP or 
+ * under $wgExtensionsDirectory, or paths relative to the virtual source root
+ * "$IP/..", i.e. starting with "phase3" for core files, and "extensions" for 
+ * extension files.
+ */
+$wgCompiledFiles = array();
 
 /** @} */ # End of HipHop compilation }
 
