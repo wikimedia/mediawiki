@@ -1231,7 +1231,7 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 'revdelete-unsuppress'        => 'Beperkingen op teruggezette wijzigingen verwijderen',
 'revdelete-log'               => 'Reden:',
 'revdelete-submit'            => 'Toepassen op de geselecteerde {{PLURAL:$1|bewerking|bewerkingen}}',
-'revdelete-logentry'          => 'wijzigde zichtbaarheid van bewerkingen voor [[$1]]',
+'revdelete-logentry'          => 'heeft zichtbaarheid van bewerkingen voor [[$1]] gewijzigd',
 'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
 'revdelete-success'           => "'''De zichtbaarheid van de wijziging is bijgewerkt.'''",
 'revdelete-failure'           => "'''De zichtbaarheid van de wijziging kon niet bijgewerkt worden:'''
@@ -2500,8 +2500,8 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'viewdeletedpage'              => "Verwijderde pagina's bekijken",
 'undeletepagetext'             => "Hieronder {{PLURAL:$1|staat de pagina die verwijderd is|staan pagina's die zijn verwijderd}} en vanuit het archief teruggeplaatst {{PLURAL:$1|kan|kunnen}} worden.",
 'undelete-fieldset-title'      => 'Versies terugplaatsen',
-'undeleteextrahelp'            => "Om de hele pagina inclusief alle eerdere versies terug te plaatsen: laat alle hokjes onafgevinkt en klik op '''''Terugplaatsen'''''.
-Om slechts bepaalde versies terug te zetten: vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen'''''.",
+'undeleteextrahelp'            => "Laat alle vakjess leeg en klik op '''''Terugplaatsen''''' om de hele pagina inclusief alle eerdere versies terug te plaatsen.
+Vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen''''' om bepaalde versies terug te plaatsen.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|versie|versies}} gearchiveerd',
 'undeletehistory'              => 'Als u een pagina terugplaatst, worden alle versies hersteld.
 Als er al een nieuwe pagina met dezelfde naam is aangemaakt sinds de pagina is verwijderd, worden de eerder verwijderde versies teruggeplaatst en blijft de huidige versie intact.',

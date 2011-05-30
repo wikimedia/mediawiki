@@ -1423,7 +1423,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'sp-contributions-submit'      => 'ရှာ​ဖွေ​ရန်​',
 
 # What links here
-'whatlinkshere'            => '',
+'whatlinkshere'            => 'ဘယ်ကလင့်ခ်ထားလဲ',
 'whatlinkshere-title'      => '"$1" ကို လင့်ထားသော စာမျက်နှာများ',
 'whatlinkshere-page'       => 'စာမျက်နှာ -',
 'linkshere'                => "အောက်ပါစာမျက်နှာများသည် '''[[:$1]]''' သို့ လင့်ထားသည် -",
