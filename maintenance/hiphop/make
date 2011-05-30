@@ -5,19 +5,37 @@ require( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class MakeHipHop extends Maintenance {
 	function execute() {
+		global $wgHipHopBuildDirectory;
+
 		$startTime = time();
 
-		$sourceDir = realpath( dirname( __FILE__ ) );
-		$IP = realpath( "$sourceDir/../.." );
-		$buildDir = "$sourceDir/build";
+		$thisDir = realpath( dirname( __FILE__ ) );
+		$IP = realpath( "$thisDir/../.." );
+		if ( strval( $wgHipHopBuildDirectory ) !== '' ) {
+			$buildDir = $wgHipHopBuildDirectory;
+		} else {
+			$buildDir = "$thisDir/build";
+		}
+		$extensionsDir = realpath( MWInit::getExtensionsDirectory() );
 		$outDir = "$buildDir/hiphop-output";
-		$persistentDir = "$buildDir/persistent" ;
+		$persistentDir = "$buildDir/persistent";
 
 		if ( !is_dir( $buildDir ) ) {
 			mkdir( $buildDir, 0777, true );
 		}
 		if ( !is_dir( $persistentDir ) ) {
 			mkdir( $persistentDir, 0777, true );
+		}
+
+		if ( realpath( "$IP/../phase3" ) !== $IP
+			|| realpath( "$IP/../extensions" ) !== $extensionsDir )
+		{
+			# Set up a fake source directory with the correct layout
+			$sourceBase = "$buildDir/source";
+			$this->setupFakeSourceBase( $IP, $extensionsDir, $sourceBase );
+		} else {
+			$sourceBase = realpath( "$IP/.." );
+			unlink( "$buildDir/source" );
 		}
 
 		# With the CentOS RPMs, you just get g++44, no g++, so we have to 
@@ -39,13 +57,8 @@ class MakeHipHop extends Maintenance {
 			"}\n"
 		);
 
-		# Generate the file list from the autoloader
-		global $wgAutoloadLocalClasses;
-		$files = array_merge(
-			array_values( $wgAutoloadLocalClasses ),
-			array_map( 'trim', file( "$sourceDir/extra-files" ) )
-		);
-		$files = array_unique( $files );
+		# Generate the file list
+		$files = $this->getFileList();
 		file_put_contents(
 			"$buildDir/file-list",
 			implode( "\n", $files ) . "\n" );
@@ -55,10 +68,10 @@ class MakeHipHop extends Maintenance {
 			'hphp' .
 			' --target=cpp' .
 			' --format=file' .
-			' --input-dir=' . wfEscapeShellArg( $IP ) .
+			' --input-dir=' . wfEscapeShellArg( $sourceBase ) .
 			' --input-list=' . wfEscapeShellArg( "$buildDir/file-list" ) .
 			' --inputs=' . wfEscapeShellArg( "$buildDir/HipHopCompilerVersion.php" ) .
-			' -c ' . wfEscapeShellArg( "$sourceDir/compiler.conf" ) .
+			' -c ' . wfEscapeShellArg( "$thisDir/compiler.conf" ) .
 			' --parse-on-demand=false' .
 			' --program=mediawiki-hphp' .
 			' --output-dir=' . wfEscapeShellArg( $outDir ) .
@@ -181,7 +194,7 @@ class MakeHipHop extends Maintenance {
 			$elapsed -= $minutes * 60;
 		}
 		echo $elapsed . "s\n";
-		echo "The MediaWiki executable is at build/persistent/mediawiki-hphp\n";
+		echo "The MediaWiki executable is at $buildDir/persistent/mediawiki-hphp\n";
 	}
 
 	function checkVolatileClasses( $dir ) {
@@ -222,6 +235,71 @@ class MakeHipHop extends Maintenance {
 			return max( 1, floor( $mem / 1000000 ) );
 		} else {
 			return 1;
+		}
+	}
+
+	function setupFakeSourceBase( $phase3, $extensions, $dest ) {
+		if ( !file_exists( $dest ) ) {
+			mkdir( $dest, 0777, true );
+		}
+
+		$this->forceCreateLink( "$dest/phase3", $phase3 );
+		$this->forceCreateLink( "$dest/extensions", $extensions );
+	}
+
+	function forceCreateLink( $target, $link ) {
+		if ( file_exists( $target ) ) {
+			if ( readlink( $target ) === $link ) {
+				return;
+			}
+			unlink( $target );
+		}
+		symlink( $target, $link );
+	}
+
+	function getFileList() {
+		global $wgAutoloadClasses, $wgAutoloadLocalClasses, $wgCompiledFiles;
+		$inputFiles = array_merge(
+			array_values( $wgAutoloadClasses ),
+			array_values( $wgAutoloadLocalClasses ),
+			$wgCompiledFiles
+		);
+		$processedFiles = array();
+		foreach ( $inputFiles as $file ) {
+			if ( substr( $file, 0, 1 ) === '/' ) {
+				$processedFiles[] = $this->absoluteToRelative( $file );
+			} elseif ( preg_match( '/^extensions/', $file ) ) {
+				$processedFiles[] = $file;
+			} else {
+				$processedFiles[] = "phase3/$file";
+			}
+		}
+
+		$extraCoreFiles = array_map( 'trim', file( dirname( __FILE__ ) . '/extra-files' ) );
+		foreach ( $extraCoreFiles as $file ) {
+			if ( $file === '' ) {
+				continue;
+			}
+			$processedFiles[] = "phase3/$file";
+		}
+		return array_unique( $processedFiles );
+	}
+
+	function absoluteToRelative( $file ) {
+		global $IP;
+
+		$coreBase = realpath( $IP ) . '/';
+		$extBase = realpath( MWInit::getExtensionsDirectory() ) . '/';
+		$file = realpath( $file );
+
+		if ( substr( $file, 0, strlen( $extBase ) ) === $extBase ) {
+			return 'extensions/' . substr( $file, strlen( $extBase ) );
+		} elseif ( substr( $file, 0, strlen( $coreBase ) ) === $coreBase ) {
+			return 'phase3/' . substr( $file, strlen( $coreBase ) );
+		} else {
+			$this->error( "The following file is registered for compilation but is not in \$IP or " .
+				"\$wgExtensionsDirectory: $file \n" );
+			exit( 1 );
 		}
 	}
 }

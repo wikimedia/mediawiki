@@ -26,7 +26,11 @@
  **/
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
-require_once( dirname( __FILE__ ) . '/includes/WebStart.php' );
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
+	require ( 'phase3/includes/WebStart.php' );
+} else {
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+}
 wfProfileIn( 'img_auth.php' );
 require_once( dirname( __FILE__ ) . '/includes/StreamFile.php' );
 

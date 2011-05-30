@@ -5,7 +5,11 @@
  * @ingroup SpecialPage
  */
 
-require_once( './includes/WebStart.php' );
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
+	require ( 'phase3/includes/WebStart.php' );
+} else {
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+}
 
 class TrackBack {
 

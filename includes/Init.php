@@ -61,10 +61,60 @@ class MWInit {
 		global $IP;
 
 		if ( defined( 'MW_COMPILED' ) ) {
-			return $file;
+			return "phase3/$file";
 		} else {
 			return "$IP/$file";
 		}
+	}
+
+	/**
+	 * The equivalent of MWInit::interpretedPath() but for files relative to the
+	 * extensions directory.
+	 */
+	static function extInterpretedPath( $file ) {
+		return getExtensionsDirectory() . '/' . $file;
+	}
+
+	/**
+	 * The equivalent of MWInit::compiledPath() but for files relative to the 
+	 * extensions directory. Any files referenced in this way must be registered
+	 * for compilation by including them in $wgCompiledFiles.
+	 */
+	static function extCompiledPath( $file ) {
+		if ( defined( 'MW_COMPILED' ) ) {
+			return "extensions/$file";
+		} else {
+			return getExtensionsDirectory() . '/' . $file;
+		}
+	}
+
+	/**
+	 * Register an extension setup file and return its path for compiled 
+	 * inclusion. Use this function in LocalSettings.php to add extensions
+	 * to the build. For example:
+	 *
+	 *    require( MWInit::extSetupPath( 'ParserFunctions/ParserFunctions.php' ) );
+	 *
+	 * @param $path The path relative to the extensions directory, as defined by 
+	 *   $wgExtensionsDirectory.
+	 */
+	static function extSetupPath( $extRel ) {
+		$baseRel = "extensions/$extRel";
+		if ( defined( 'MW_COMPILED' ) ) {
+			return $baseRel;
+		} else {
+			global $wgCompiledFiles;
+			$wgCompiledFiles[] = $baseRel;
+			return self::getExtensionsDirectory() . '/' . $extRel;
+		}
+	}
+
+	static function getExtensionsDirectory() {
+		global $wgExtensionsDirectory, $IP;
+		if ( $wgExtensionsDirectory === false ) {
+			$wgExtensionsDirectory = "$IP/../extensions";
+		}
+		return $wgExtensionsDirectory;
 	}
 
 	/**

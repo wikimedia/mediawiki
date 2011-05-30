@@ -9,7 +9,11 @@ define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
 chdir( dirname( dirname( __FILE__ ) ) );
-require( dirname( dirname( __FILE__ ) ) . '/includes/WebStart.php' );
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
+	require ( 'phase3/includes/WebStart.php' );
+} else {
+	require( dirname( dirname( __FILE__ ) ) . '/includes/WebStart.php' );
+}
 
 wfInstallerMain();
 

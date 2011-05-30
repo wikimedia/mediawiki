@@ -7,7 +7,11 @@
  * @ingroup Media
  */
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
-require_once( './includes/WebStart.php' );
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
+	require ( 'phase3/includes/WebStart.php' );
+} else {
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+}
 
 $wgTrivialMimeDetection = true; //don't use fancy mime detection, just check the file extension for jpg/gif/png.
 

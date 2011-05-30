@@ -28,8 +28,12 @@
 ini_set( 'zlib.output_compression', 'off' );
 
 $wgEnableProfileInfo = $wgProfileToDatabase = false;
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
+	require ( 'phase3/includes/WebStart.php' );
+} else {
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+}
 
-require_once( './includes/WebStart.php' );
 
 header( 'Content-Type: text/html; charset=utf-8' );
 

@@ -51,7 +51,11 @@ if( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2
 }
 
 // Initialise common code.
-require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+if ( isset( $_SERVER['MW_COMPILED'] ) ) {
+	require ( 'phase3/includes/WebStart.php' );
+} else {
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+}
 
 wfProfileIn( 'api.php' );
 $starttime = microtime( true );
