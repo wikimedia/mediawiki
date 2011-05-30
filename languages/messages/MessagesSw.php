@@ -865,7 +865,7 @@ Ukurasa wa jina hilo unapatikana tayari.',
 Baadhi ya vigezo havitaweza kuingizwa.",
 'post-expand-template-inclusion-category' => 'Kurasa ambapo vigezo vinajumlisha ukubwa uliozidi',
 'post-expand-template-argument-warning'   => "'''Ilani:'''Ukurasa huu una agumeni ya kigezo moja au zaidi, ambayo ukubwa wake wa kupanuliwa unazidi mpaka. Agumeni hizi hazikutumika.",
-'post-expand-template-argument-category'  => 'Kurasa zenye vigezo vilivyoruka mzozo',
+'post-expand-template-argument-category'  => 'Kurasa zenye vigezo vilivyoruka agumeni',
 
 # "Undo" feature
 'undo-success' => 'Sahihisho linaweza kutenguliwa.
