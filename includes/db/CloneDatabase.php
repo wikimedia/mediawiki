@@ -65,7 +65,7 @@ class CloneDatabase {
 	 * @param $dropCurrentTables bool
 	 */
 	public function __construct( DatabaseBase $db, array $tablesToClone,
-		$newTablePrefix = 'parsertest', $oldTablePrefix = '', $dropCurrentTables = true )
+		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true )
 	{
 		$this->db = $db;
 		$this->tablesToClone = $tablesToClone;
