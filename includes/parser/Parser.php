@@ -793,8 +793,6 @@ class Parser {
 	 * Add an item to the strip state
 	 * Returns the unique tag which must be inserted into the stripped text
 	 * The tag will be replaced with the original text in unstrip()
-	 *
-	 * @private
 	 */
 	function insertStripItem( $text ) {
 		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
