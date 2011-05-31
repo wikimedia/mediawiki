@@ -1,10 +1,8 @@
 <?php
 
-require_once( dirname( __FILE__ ) . '/includes/profiler/ProfilerStub.php' );
-
 /**
  * To use a profiler, copy this file to StartProfiler.php,
- * delete the PHP line above, and add something like this:
+ * and add something like this:
  *
  *   $wgProfiler['class'] = 'Profiler';
  *

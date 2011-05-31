@@ -8,20 +8,14 @@
  */
 
 /**
- * Default profiling configuration. Permitted keys are:
- *   class   : Name of Profiler or subclass to use for profiling
- *   visible : Whether to output the profile info [ProfilerSimpleText only]
- */
-$wgProfiler = array(
-	'class' => 'ProfilerStub',
-);
-
-/**
  * Begin profiling of a function
  * @param $functionname String: name of the function we will profile
  */
 function wfProfileIn( $functionname ) {
-	Profiler::instance()->profileIn( $functionname );
+	global $wgProfiler;
+	if ( isset( $wgProfiler['class'] ) ) {
+		Profiler::instance()->profileIn( $functionname );
+	}
 }
 
 /**
@@ -29,7 +23,10 @@ function wfProfileIn( $functionname ) {
  * @param $functionname String: name of the function we have profiled
  */
 function wfProfileOut( $functionname = 'missing' ) {
-	Profiler::instance()->profileOut( $functionname );
+	global $wgProfiler;
+	if ( isset( $wgProfiler['class'] ) ) {
+		Profiler::instance()->profileOut( $functionname );
+	}
 }
 
 /**
@@ -40,11 +37,12 @@ class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
 	var $mCalls = array (), $mTotals = array ();
 	var $mTemplated = false;
+	var $mTimeMetric = 'wall';
 	private $mCollateDone = false;
 	protected $mProfileID = false;
 	private static $__instance = null;
 
-	function __construct() {
+	function __construct( $params ) {
 		// Push an entry for the pre-profile setup time onto the stack
 		global $wgRequestTime;
 		if ( !empty( $wgRequestTime ) ) {
@@ -52,6 +50,9 @@ class Profiler {
 			$this->mStack[] = array( '-setup', 1, $wgRequestTime, 0, microtime(true), 0 );
 		} else {
 			$this->profileIn( '-total' );
+		}
+		if ( isset( $params['timeMetric'] ) ) {
+			$this->mTimeMetric = $params['timeMetric'];
 		}
 	}
 
@@ -63,14 +64,13 @@ class Profiler {
 		if( is_null( self::$__instance ) ) {
 			global $wgProfiler;
 			if( is_array( $wgProfiler ) ) {
-				$class = $wgProfiler['class'];
+				$class = isset( $wgProfiler['class'] ) ? $wgProfiler['class'] : 'ProfilerStub';
 				self::$__instance = new $class( $wgProfiler );
 			} elseif( $wgProfiler instanceof Profiler ) {
 				self::$__instance = $wgProfiler; // back-compat
 			} else {
 				self::$__instance = new ProfilerStub;
 			}
-			
 		}
 		return self::$__instance;
 	}
@@ -253,8 +253,11 @@ class Profiler {
 	}
 
 	function getTime() {
-		return microtime(true);
-		#return $this->getUserTime();
+		if ( $this->mTimeMetric === 'user' ) {
+			return $this->getUserTime();
+		} else {
+			return microtime(true);
+		}
 	}
 
 	function getUserTime() {
@@ -474,7 +477,7 @@ class Profiler {
 	 * @param $s String to output
 	 */
 	function debug( $s ) {
-		if( function_exists( 'wfDebug' ) ) {
+		if( defined( 'MW_COMPILED' ) || function_exists( 'wfDebug' ) ) {
 			wfDebug( $s );
 		}
 	}
