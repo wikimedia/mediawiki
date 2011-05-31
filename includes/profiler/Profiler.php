@@ -42,7 +42,7 @@ class Profiler {
 	protected $mProfileID = false;
 	private static $__instance = null;
 
-	function __construct( $params ) {
+	function __construct( $params = null ) {
 		// Push an entry for the pre-profile setup time onto the stack
 		global $wgRequestTime;
 		if ( !empty( $wgRequestTime ) ) {
