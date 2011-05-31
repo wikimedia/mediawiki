@@ -197,13 +197,11 @@ class MagicWord {
 	 * @return MagicWord
 	 */
 	static function &get( $id ) {
-		wfProfileIn( __METHOD__ );
 		if ( !isset( self::$mObjects[$id] ) ) {
 			$mw = new MagicWord();
 			$mw->load( $id );
 			self::$mObjects[$id] = $mw;
 		}
-		wfProfileOut( __METHOD__ );
 		return self::$mObjects[$id];
 	}
 
@@ -275,6 +273,7 @@ class MagicWord {
 	 */
 	function load( $id ) {
 		global $wgContLang;
+		wfProfileIn( __METHOD__ );
 		$this->mId = $id;
 		$wgContLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
@@ -282,6 +281,7 @@ class MagicWord {
 			#throw new MWException( "Error: invalid magic word '$id'" );
 			wfDebugLog( 'exception', "Error: invalid magic word '$id'\n" );
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
