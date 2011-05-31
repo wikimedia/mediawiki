@@ -331,8 +331,7 @@ function wfDebug( $text, $logonly = false ) {
 	static $cache = array(); // Cache of unoutputted messages
 	$text = wfDebugTimer() . $text;
 
-	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
-	if ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' && !$wgDebugRawPage ) {
+	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
 	}
 
@@ -354,6 +353,28 @@ function wfDebug( $text, $logonly = false ) {
 			wfErrorLog( $text, $wgDebugLogFile );
 		}
 	}
+}
+
+/**
+ * Returns true if debug logging should be suppressed if $wgDebugRawPage = false
+ */
+function wfIsDebugRawPage() {
+	static $cache;
+	if ( $cache !== null ) {
+		return $cache;
+	}
+	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
+	if ( ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' )
+		|| ( 
+			isset( $_SERVER['SCRIPT_NAME'] ) 
+			&& substr( $_SERVER['SCRIPT_NAME'], -8 ) == 'load.php' 
+		) )	
+	{
+		$cache = true;
+	} else {
+		$cache = false;
+	}
+	return $cache;
 }
 
 /**
@@ -523,7 +544,7 @@ function wfLogProfilingData() {
 	$profiler->logData();
 
 	// Check whether this should be logged in the debug file.
-	if ( $wgDebugLogFile == '' || ( $wgRequest->getVal( 'action' ) == 'raw' && !$wgDebugRawPage ) ) {
+	if ( $wgDebugLogFile == '' || ( !$wgDebugRawPage && wfIsDebugRawPage() ) ) {
 		return;
 	}
 
