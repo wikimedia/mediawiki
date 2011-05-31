@@ -1,9 +1,11 @@
 <?php
 
 /**
+ * Although marked as a stub, can work independently.
+ *
  * @group Database
  * @group Parser
- * @group Stub (can also work independently)
+ * @group Stub
  */
 class NewParserTest extends MediaWikiTestCase {
 
