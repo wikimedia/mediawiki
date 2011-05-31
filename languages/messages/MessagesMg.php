@@ -735,9 +735,26 @@ Mety efa nanova tenimiafina na nanontany tenimiafina miserana angamba ianao.',
 'resetpass-temp-password'   => 'Tenimiafina miserana :',
 
 # Special:PasswordReset
-'passwordreset'        => 'Famafana ary famerenana ny tenimiafina',
-'passwordreset-text'   => "Fenoy ity formilera ity ho an'ny fahaozana ny fampahalalana mahakasika ny kaontinao amin'ny imailaka.",
-'passwordreset-legend' => 'Famafana ary famerenana ny tenimiafina',
+'passwordreset'                => 'Famafana ary famerenana ny tenimiafina',
+'passwordreset-text'           => "Fenoy ity formilera ity ho an'ny fahaozana ny fampahalalana mahakasika ny kaontinao amin'ny imailaka.",
+'passwordreset-legend'         => 'Famafana ary famerenana ny tenimiafina',
+'passwordreset-username'       => 'Anaram-pikambana :',
+'passwordreset-email'          => 'Adiresy imailaka :',
+'passwordreset-emailtitle'     => "Antsipirihan'ny kaonty eo amin'i {{SITENAME}}",
+'passwordreset-emailtext-ip'   => "Nisy olona (mety ianao ihany angamba, avy amin'ity adiresy IP ity: $1) nangataka fampahalalana manokana mikasika ny kaontinao eo amin'i {{SITENAME}} ($4). {{PLURAL:$3|Ity|Ireto}} adiresy imailaka {{PLURAL:$3|Ity|Ireto}} dia mampiasa ity adiresy imailaka ity :
+
+$2
+
+{{PLURAL:$3|Io|Ireo}} ny tenimiafina miserana mitsahatra afaka {{PLURAL:$5|iray andro|$5 andro}}.
+Tokony miditra ianao ary misafidy ny tenimiafinao. Raha olon-kafa no nanao ity hataka ity, na efa tadidinao ny tenimiafinao taloha, ary raha tsy tia hanova azy intony ianao, azonao tsy raharahiana ity hafatra ity ary mbola azonao ampiasaina ilay tenimiafinao taloha.",
+'passwordreset-emailtext-user' => "Nisy mpikambana mitondra anarana $1 eo amin'i {{SITENAME}} nangataka fampatsiahivana mikasika ny kaontinao eo amin'i {{SITENAME}} ($4). Manana io adiresy imailaka {{PLURAL:$3|io kaontim-pikambana io|ireo kaontim-pikambana ireo}} :
+
+$2
+
+Hitsahatra afaka {{PLURAL:$5|iray|$5}} andro {{PLURAL:$3|io|ireo}} tenimiafina {{PLURAL:$3|io|ireo}}. Mila miditra dien'izao ianao izao ary mifidy tenimiafina vaovao. Raha tsy avy aminao ity hataka ity na efa nahatadidy ny tenimiafinao taloha ianao, ary raha tsy tianao hovaina intsony ilay tenimiafinao, dia azonao tsy raharahiana ity hafatra ity ary mampiasa ny tenimiafinao taloha.",
+'passwordreset-emailelement'   => 'Anaram-pikambana : $1
+Tenimiafina miserana : $2',
+'passwordreset-emailsent'      => 'Nalefa ny imailaka fampatsiahivana.',
 
 # Edit page toolbar
 'bold_sample'     => 'Soratra matavy',
@@ -1990,6 +2007,8 @@ adiresin'ny mpandefa izany imailaka izany, koa afaka hovaliany izay hafatra alef
 na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'nowikiemailtitle'     => 'Tsy manaiky imailaka alefa ho azy',
 'nowikiemailtext'      => "Ity mpikambana ity dia te-hahazo imailaka avy amin'ny mpikambana hafa.",
+'emailnotarget'        => "Anaram-pikamban'ny mpandray hafatra tsy misy na diso.",
+'emailusername'        => 'Anaram-pikambana :',
 'emailusernamesubmit'  => 'Alefa',
 'email-legend'         => "Handefa imailaka any amin'ny mpikambana hafa an'i {{SITENAME}}",
 'emailfrom'            => "Avy tamin'i",
@@ -2331,8 +2350,15 @@ mihatra amin'ny adiresy IP na solonanarana iray.",
 'ipusubmit'                       => 'Esory ny sakana',
 'unblocked'                       => "voaala ny sakan'i [[User:$1|$1]]",
 'unblocked-id'                    => "Niala ny sakan'i $1",
+'blocklist'                       => 'Mpikambana voasakana',
 'ipblocklist'                     => 'Lisitry ny adiresy IP sy mpikambana voasakana',
 'ipblocklist-legend'              => 'Hitady mpikambana voasakana',
+'blocklist-timestamp'             => 'Daty sy ora',
+'blocklist-target'                => 'Tanjona',
+'blocklist-expiry'                => 'Daty fitsaharana :',
+'blocklist-by'                    => 'Mpandrindra nanakana',
+'blocklist-params'                => 'Parametatry ny sakana',
+'blocklist-reason'                => 'Antony',
 'ipblocklist-submit'              => 'Fikarohana',
 'ipblocklist-localblock'          => 'Fanakanana eo an-toerana',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1}}sakana hafa',
@@ -2791,6 +2817,7 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-samplesperpixel'           => 'Mpandahatra isaky ny piksely',
 'exif-planarconfiguration'       => 'Fandaminana ny data',
 'exif-ycbcrpositioning'          => 'Fipetraky ny Y sy C',
+'exif-yresolution'               => 'Isan-teboka mijidina',
 'exif-stripoffsets'              => "Toerana isian'ny datan'ny sary",
 'exif-rowsperstrip'              => "Isan'ny andininy isaky ny bandy",
 'exif-stripbytecounts'           => "Haben'ny bandy amin'ny oktety",
@@ -2810,10 +2837,15 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-pixelxdimension'           => 'Halalan-tsary ekena',
 'exif-usercomment'               => 'Diniky ny mpikambana',
 'exif-relatedsoundfile'          => 'Rakitra audio miaraka',
+'exif-datetimeoriginal'          => 'Daty fangalana niaviana',
+'exif-datetimedigitized'         => 'Daty nanaovana numerisation',
+'exif-subsectime'                => 'Daty nanovana',
 'exif-exposuretime-format'       => '$1 s ($2 s)',
 'exif-fnumber'                   => 'Isa F',
 'exif-isospeedratings'           => 'ISO',
 'exif-aperturevalue'             => 'Sanasana',
+'exif-lightsource'               => 'Loharanon-kazavana',
+'exif-flashenergy'               => "Angôvon'akonkazavana",
 'exif-filesource'                => 'Fangon-drakitra',
 'exif-imageuniqueid'             => "ID an'io sary io manokana",
 'exif-gpslatituderef'            => 'Laharam-pehintany avaratra na atsimo',
@@ -2822,11 +2854,16 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-gpslongitude'              => 'Laharan-jarahasina',
 'exif-gpsaltituderef'            => 'Haambo tsiahy',
 'exif-gpsaltitude'               => 'Haambo',
+'exif-gpstimestamp'              => 'Ora GPS (famantaranandro atômika)',
+'exif-gpsmeasuremode'            => 'Fomba fandrefesana',
+'exif-gpsdop'                    => 'Hatsiko ny fandrefesana',
 'exif-gpsspeedref'               => 'Mari-drefi-kafainganana',
+'exif-gpsspeed'                  => 'Hafaingam-pandray GPS',
 'exif-gpsimgdirection'           => "Fitodihan'ny sary",
 'exif-gpsdestlatitude'           => 'Laharam-pehintany tanjona',
 'exif-gpsareainformation'        => 'Anaram-paritra GPS',
 'exif-gpsdatestamp'              => 'Daty GPS',
+'exif-countrycreated'            => 'Firenena nangalana ilay sary',
 
 'exif-unknowndate' => 'Daty tsy fantatra',
 

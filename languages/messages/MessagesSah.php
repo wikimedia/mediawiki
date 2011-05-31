@@ -166,6 +166,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(салгыыта)',
 'index-category'                 => 'Индекстаммыт сирэйдэр',
 'noindex-category'               => 'Индексктаммыт сирэйдэр суохтар',
+'broken-file-category'           => 'Билэҕэ сигэлэрэ алҕастаах сирэйдэр',
 
 'mainpagetext'      => "'''«MediaWiki» сөпкө туруорулунна.'''",
 'mainpagedocfooter' => 'Биики программатын туһунан [http://meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.

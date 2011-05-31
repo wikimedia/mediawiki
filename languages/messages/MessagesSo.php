@@ -487,18 +487,19 @@ Ereysirka kumeelgaarka ah: $2',
 'media_tip'       => 'Linkiga file-ka',
 
 # Edit pages
-'minoredit'                      => 'Kan waa wax ka bedel yar',
-'watchthis'                      => 'Boggaan waardiyey',
-'savearticle'                    => 'Bogga kaydi',
-'preview'                        => 'Horfiiri',
-'showpreview'                    => 'Itus horfiirinta',
-'showlivepreview'                => 'Horfiirin toos ah',
-'showdiff'                       => 'Itus isbedelka',
-'anoneditwarning'                => "'''Digniin:''' Gudaha kuma jirtid. Cinwaankaaga IP:ga waxaa lagu diiwaangelindoonaa taariikhda bedelida bogan.",
-'anonpreviewwarning'             => "''Ma soo gelin. Hadii aad keydisid waxaa ciwaankaada  IP:ka  lagu duubaa taariikhda bedelka boggaan.''",
-'missingcommenttext'             => 'Fadlan ku qor  hoostaan  hadalkaaga.',
-'blockedtitle'                   => 'Isticmaalaha waa la mamnuucay',
-'blockedtext'                    => "'''Magacaaga gudagalaha ama ciwaanka IP'ka waa la mamnuucay.'''
+'summary'                          => 'Qoraal kooban:',
+'minoredit'                        => 'Kan waa wax ka bedel yar',
+'watchthis'                        => 'Boggaan waardiyey',
+'savearticle'                      => 'Bogga kaydi',
+'preview'                          => 'Horfiiri',
+'showpreview'                      => 'Itus horfiirinta',
+'showlivepreview'                  => 'Horfiirin toos ah',
+'showdiff'                         => 'Itus isbedelka',
+'anoneditwarning'                  => "'''Digniin:''' Gudaha kuma jirtid. Cinwaankaaga IP:ga waxaa lagu diiwaangelindoonaa taariikhda bedelida bogan.",
+'anonpreviewwarning'               => "''Ma soo gelin. Hadii aad keydisid waxaa ciwaankaada  IP:ka  lagu duubaa taariikhda bedelka boggaan.''",
+'missingcommenttext'               => 'Fadlan ku qor  hoostaan  hadalkaaga.',
+'blockedtitle'                     => 'Isticmaalaha waa la mamnuucay',
+'blockedtext'                      => "'''Magacaaga gudagalaha ama ciwaanka IP'ka waa la mamnuucay.'''
 
 Mamnuucida waxaa sameeyay  $1.
 Sababta neh waxaa waaye  ''$2''.
@@ -511,72 +512,73 @@ Waxaa la  xiriiri kartaa $1 ama mid ka mid ah  [[{{MediaWiki:Grouppage-sysop}}|m
 Ma isticmaali kartid 'e-mailka isticmaalahaan' soo diray hadii aad heesato maa hinee ciwaan e-mail oo kuugu jiro  [[Special:Preferences|koontadaada]] oona lagaa mamnuucin in aad isticmaasho.
 Ciwaankaada  IP'ka waa $3, gudagalahaaga la mamnuucay neh waa  #$5.
 fadlan ku soo dar su'aalahaaga waxa kor ku qoran.",
-'blockednoreason'                => 'wax sabab ah kama bixin',
-'blockedoriginalsource'          => "Xogta '''$1''' hoos aad ka arki kartaa:",
-'blockededitsource'              => "Qoraalkii '''aad waxkaga bedashay''' '''$1''' waxaad ku arkikartaa hoos:",
-'whitelistedittitle'             => 'Waxaa loo baahanyahay gudagal si aad wax uga bedeshid',
-'whitelistedittext'              => 'Waa in aad $1 si aad wax uga bedeshid boggaga.',
-'confirmedittext'                => 'Waa in aad xaqiijisaa e-mailkaada inta aadan bogaga wax ka bedelin.
+'blockednoreason'                  => 'wax sabab ah kama bixin',
+'blockedoriginalsource'            => "Xogta '''$1''' hoos aad ka arki kartaa:",
+'blockededitsource'                => "Qoraalkii '''aad waxkaga bedashay''' '''$1''' waxaad ku arkikartaa hoos:",
+'whitelistedittitle'               => 'Waxaa loo baahanyahay gudagal si aad wax uga bedeshid',
+'whitelistedittext'                => 'Waa in aad $1 si aad wax uga bedeshid boggaga.',
+'confirmedittext'                  => 'Waa in aad xaqiijisaa e-mailkaada inta aadan bogaga wax ka bedelin.
 fadlan ku dar kuna xaqiiji e-mailkaada meesha  [[Special:Preferences|dooqyada gudagalahaaga]].',
-'nosuchsectiontext'              => 'Waxaa baroobeysay in aad wax ka bedesho maqaal jirin.
+'nosuchsectiontext'                => 'Waxaa baroobeysay in aad wax ka bedesho maqaal jirin.
 Waxaa laga yaabaa in la wareejiyay ama la tirtiray adiga oo fiirinaayo bogga.',
-'loginreqtitle'                  => 'Waxaa loo baahanyahay gudagalid',
-'loginreqlink'                   => 'Gudaha gal',
-'loginreqpagetext'               => 'Waa in aad $1 si aad u fiirisid bogyaasha kale.',
-'accmailtitle'                   => "Ereysirka waa la'diray.",
-'accmailtext'                    => 'Ereysirka "$1" waxaa loo diray $2.',
-'newarticle'                     => '(Cusub)',
-'newarticletext'                 => "Waxaa soo raacday link kula soo xiriiriyay bog oo hadda wali jirin.
+'loginreqtitle'                    => 'Waxaa loo baahanyahay gudagalid',
+'loginreqlink'                     => 'Gudaha gal',
+'loginreqpagetext'                 => 'Waa in aad $1 si aad u fiirisid bogyaasha kale.',
+'accmailtitle'                     => "Ereysirka waa la'diray.",
+'accmailtext'                      => 'Ereysirka "$1" waxaa loo diray $2.',
+'newarticle'                       => '(Cusub)',
+'newarticletext'                   => "Waxaa soo raacday link kula soo xiriiriyay bog oo hadda wali jirin.
 Hadii aad rabto in aad sameyso bogga, hoos ka bilaaw qoraalkaada (fiiri [[{{MediaWiki:Helppage}}|bogga caawinaada]] wax war ah oo kale).
 hadii aad meeshaan ku soo qaldantay, riix batoonka barowsahaaga  '''gadaal uuga noqo''' .",
-'anontalkpagetext'               => "----''Meeshaan waa bogga wadahadalka isticmaalayaasha la aqoon oo aanan weli sameysanin akoon, ama  wali isticmaalin. 
+'anontalkpagetext'                 => "----''Meeshaan waa bogga wadahadalka isticmaalayaasha la aqoon oo aanan weli sameysanin akoon, ama  wali isticmaalin. 
 Sidaas darteed, waa in aan isticmaalnaa lambar cinwaaneedka IP:ga. Cinwaanka IP:ga waxaa suurto gal ah in ay wada isticmaalaan dad badan. Hadii aad tahay isticmaale aanan la'aqoonsanin oo aad dareemaysid in laguu gafay, fadlan  [[Special:UserLogin/signup|sameyso akoon]]  ama [[Special:UserLogin|gudaha gal]] si aad u dhowrsatid in hadhowdi laguugu qaldo isticmaalada kale oo aann la'aqoonsanin.''",
-'noarticletext'                  => 'Hadda boggaan wax qoraal ah kuma qorno.
+'noarticletext'                    => 'Boggaan hadda wax qoraal ah kuma qorno.
 Waxaa  [[Special:Search/{{PAGENAME}}|magaca boggaan]] ka raadin kartaa bogyaasha kale,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} raadi kuwo la mid ah],
 ama [{{fullurl:{{FULLPAGENAME}}|action=edit}} wax ka bedel boggaan]</span>.',
-'noarticletext-nopermission'     => 'Hadda boggaan wax qoraal ah kuma qorno.
+'noarticletext-nopermission'       => 'Hadda boggaan wax qoraal ah kuma qorno.
 Waxaa  [[Special:Search/{{PAGENAME}}|magaca boggaan ka raadin kartaa]] boggaga kale ama <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ka raadi gudagalayaasha kale]</span>.',
-'userpage-userdoesnotexist'      => 'Isticmaalahan  "$1" ma diiwaangashno.
+'userpage-userdoesnotexist'        => 'Isticmaalahan  "$1" ma diiwaangashno.
 Fadlan fiiri hadii aad rabto in aad sameeyso/wax ka bedesho boggaan.',
-'userpage-userdoesnotexist-view' => 'Isticmaalahaan  "$1" ma diiwaangashno.',
-'blocked-notice-logextract'      => 'Isticmaalahaan hadda waa la mamnuucay.
+'userpage-userdoesnotexist-view'   => 'Isticmaalahaan  "$1" ma diiwaangashno.',
+'blocked-notice-logextract'        => 'Isticmaalahaan hadda waa la mamnuucay.
 Mamnuucida ugu danbeyso in oo soo galo hoostaan ee ku qorantahay',
-'usercssyoucanpreview'           => "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso CSS'gaaga cusub intii aadan kaydin.",
-'userjsyoucanpreview'            => "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso JavaScriptigaaga cusub intii aadan kaydin.",
-'userjspreview'                  => "'''Waa in aad ogaataa waxaa baroobeynoosaa/fiirinoysaa kaliya JavaScript'ka isticmaalahaaga.'''
+'usercssyoucanpreview'             => "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso CSS'gaaga cusub intii aadan kaydin.",
+'userjsyoucanpreview'              => "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso JavaScriptigaaga cusub intii aadan kaydin.",
+'userjspreview'                    => "'''Waa in aad ogaataa waxaa baroobeynoosaa/fiirinoysaa kaliya JavaScript'ka isticmaalahaaga.'''
 '''wali lama keydin!'''",
-'updated'                        => '(waa la opdate gareeyay)',
-'note'                           => "'''fiiro gaar ah:'''",
-'previewnote'                    => "'''Waxa aad aragtid waa horfiirin; wixii aad bedeshay lama keydinin!'''",
-'session_fail_preview'           => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.
+'updated'                          => '(waa la opdate gareeyay)',
+'note'                             => "'''fiiro gaar ah:'''",
+'previewnote'                      => "'''Waxa aad aragtid waa horfiirin; wixii aad bedeshay lama keydinin!'''",
+'session_fail_preview'             => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.
 Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudagal.'''",
-'session_fail_preview_html'      => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.'''
+'session_fail_preview_html'        => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.'''
 
 ''Sababtoo ah {{SITENAME}}han wuxuu leeyahay HTML ceyriin ah, horfiirintiisa waxaa loo qariyey si looga hortago weerar ka yimaada JavaScriptga.''
 
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
-'editing'                        => 'Waxaa wax ka badaloosaa $1',
-'editingsection'                 => 'Waxaa wax ka badaloosaa $1 (qeyb yar)',
-'editingcomment'                 => 'Waxaa wax ka badaloosaa $1 (qeyb yar)',
-'editconflict'                   => 'Isku dhac badalaadka: $1',
-'yourtext'                       => 'Qoraalkaaga',
-'editingold'                     => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
+'editing'                          => 'Waxaa wax ka badaloosaa $1',
+'editingsection'                   => 'Waxaa wax ka badaloosaa $1 (qeyb yar)',
+'editingcomment'                   => 'Waxaa wax ka badaloosaa $1 (qeyb yar)',
+'editconflict'                     => 'Isku dhac badalaadka: $1',
+'yourtext'                         => 'Qoraalkaaga',
+'editingold'                       => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
 Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",
-'yourdiff'                       => 'Kala duwanaanshaha',
-'protectedpagewarning'           => "'''Digniin: Boggaan waa la difaacay si ee isticmaalada heesto maamulnimada kaliya wax uuga badali karaan'''
+'yourdiff'                         => 'Kala duwanaanshaha',
+'protectedpagewarning'             => "'''Digniin: Boggaan waa la difaacay si ee isticmaalada heesto maamulnimada kaliya wax uuga badali karaan'''
 Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
-'semiprotectedpagewarning'       => "'''Fiiro gaar ah:''' Beyjkan waa laxiray, kuwa magaca gudagal ka leh kaliya ayaa wax ka badalikara.",
-'template-protected'             => '(waa la difaacay)',
-'template-semiprotected'         => '(difaaca-fudud)',
-'hiddencategories'               => 'Boggaan waxoo ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:',
-'nocreate-loggedin'              => 'Ma laguu ogolo in aad sameyso boggag cusub.',
-'permissionserrors'              => 'Cillado ogolaashada ah',
-'recreate-moveddeleted-warn'     => "'''Digniin: waxaa dib u sameyn rabtaa bog mar hore la tirtiray.'''
+'semiprotectedpagewarning'         => "'''Fiiro gaar ah:''' Beyjkan waa laxiray, kuwa magaca gudagal ka leh kaliya ayaa wax ka badalikara.",
+'template-protected'               => '(waa la difaacay)',
+'template-semiprotected'           => '(difaaca-fudud)',
+'hiddencategories'                 => 'Boggaan waxoo ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:',
+'nocreate-loggedin'                => 'Ma laguu ogolo in aad sameyso boggag cusub.',
+'permissionserrors'                => 'Cillado ogolaashada ah',
+'permissionserrorstext-withaction' => 'Ma laguu ogolo in aad $2, ku sameysid  {{PLURAL:$1| sabab|sababahaan }} la xiriiro:',
+'recreate-moveddeleted-warn'       => "'''Digniin: waxaa dib u sameyn rabtaa bog mar hore la tirtiray.'''
 
-Waa in aad si fiican uuga  fikirtaa in ee habboontahay sii socoshada bedelaadka boggaan.
+Waa in aad si fiican uuga  fikirtaa hadii ee habboontahay sii socoshada bedelaadka boggaan.
 Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa meeshaan:",
-'edit-conflict'                  => 'Wax bedel isku dhacay',
+'edit-conflict'                    => 'Wax bedel isku dhacay',
 
 # Account creation failure
 'cantcreateaccounttitle' => "Ma' sameynkaro gudagal (akoon)",
@@ -585,8 +587,10 @@ Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa meeshaan:",
 Sababta neh waxaa qoray $3 waa ''$2''",
 
 # History pages
+'viewpagelogs'           => 'Fiiri guadagalayaasha boggaan',
 'currentrev'             => 'Cadadka cusub',
 'currentrev-asof'        => 'Kala duwanaanshihii ugu danbeeyay oo dhacay $1',
+'revisionasof'           => 'Muuqaalkii $1',
 'previousrevision'       => '←Caddad ka duqsanŠ',
 'nextrevision'           => 'Caddad ka cusub→',
 'currentrevisionlink'    => 'Caddadka hada muuqda',
@@ -652,12 +656,14 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'shown-title'                      => 'Itusi $1 {{PLURAL:$1|natiijo|natiijooyinka}} halkii bog',
 'viewprevnext'                     => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Raadi doorashooyinka',
-'searchmenu-new'                   => "'''Ku sameey bogga  \"[[:\$1]]\" wikigaan! '''",
+'searchmenu-exists'                => "'''Wikigaan woo ku jiraa bog la dhoho  \"[[:\$1]]\" .'''",
+'searchmenu-new'                   => "'''Wikigaan ku sameey bogga  \"[[:\$1]]\" . '''",
 'searchmenu-new-nocreate'          => '"$1" waa bog magaceed oo la aqoonsan ama adiga ma sameyn kartid.',
 'searchhelp-url'                   => 'Help:Caawinaad',
 'searchprofile-articles'           => 'Maqaalada kooban',
 'searchprofile-project'            => 'Caawin iyo Bogga mashruuca',
 'searchprofile-everything'         => 'Wax kasto',
+'searchprofile-advanced'           => 'La talin',
 'searchprofile-articles-tooltip'   => 'Ka raadi $1',
 'searchprofile-project-tooltip'    => 'Ka raadi $1',
 'searchprofile-images-tooltip'     => 'Raadi faylyada',
@@ -674,7 +680,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-relatedarticle'            => 'La xiriiro',
 'searchrelated'                    => 'La xiriiro',
 'searchall'                        => 'Dhamaan',
-'showingresultsheader'             => "{{PLURAL:$5|Natiijada '''$1''' of '''$3'''|Natiijooyinka '''$1 - $2''' of '''$3'''}}  ee  '''$4'''",
+'showingresultsheader'             => "{{PLURAL:$5|Natiijada '''$4''' waa  '''$1''' ilaa '''$3'''|Natiijooyinka '''$3''' waa '''$1 - $2''' }}",
 'powersearch'                      => 'Sidii aad wax uugu raadin laheed',
 'powersearch-legend'               => 'Sidii aad wax uugu raadin laheed',
 'powersearch-ns'                   => 'ka raadi meesha magacyada:',
@@ -730,6 +736,9 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'email'                     => 'E-mail',
 'prefs-help-realname'       => 'Optional: if you choose to provide it this will be used for giving you attribution for your work.',
 'prefs-help-email'          => 'E-mailka waa wax aad xor u leedahay. laakiin waxaa u baahnaan kartaa erayga sirta ah in aad cusbooneyso, hadii aad ilaawdo eraygaaga sirta ah',
+'prefs-help-email-others'   => 'Waxaa xattaa dooran kartaa in ee dadka kale kugula soo xiriiraan emailka ayaga oo isticmaalaayo linkiga isticmaalahaada ama bogga wadahadalka.
+E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.
+Your e-mail address is not revealed when other users contact you.',
 'prefs-help-email-required' => 'Waxaa loo baahanyahay e-mail.',
 
 # User rights
@@ -774,29 +783,32 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'action-block'         => 'ka mamnuuc isticmaalahaan in oo wax badalo',
 
 # Recent changes
-'nchanges'                    => '$1 {{PLURAL:$1|bedelka|bedelada}}',
-'recentchanges'               => 'Isbedelada dhow',
-'recentchanges-legend'        => 'Dooqyada isbedelada dhow',
-'recentchangestext'           => 'Dabagal isbedelada dhow ee wikiga oo ku dhacay bogaan.',
-'recentchanges-label-newpage' => 'Wax bedelkaan waxoo sameeyay bog cusub',
-'recentchanges-label-minor'   => 'Kan waa bedel yar',
-'recentchanges-label-bot'     => 'Badalkaan waxaa sameeyay bot',
-'rclistfrom'                  => 'Itus isbedelada cusub ka bilaabato $1',
-'rcshowhideminor'             => '$1 bedelada yar',
-'rcshowhidebots'              => '$1 botyaalo',
-'rcshowhideliu'               => '$1 isticmaalada-soo galay',
-'rcshowhideanons'             => '$1 isticmaalada la aqoon',
-'rcshowhidepatr'              => '$1 bedelada la waardiyeeyay',
-'rcshowhidemine'              => '$1 bedelaadeyda',
-'rclinks'                     => 'Itusi isbadeladii  $1 ee ugu danbeeyay oo dhacay wixii ka danbeeyay $2 maalmood<br />$3',
-'diff'                        => 'duwanaan',
-'hist'                        => 'taariikh',
-'hide'                        => 'Qari',
-'show'                        => 'Itus',
-'minoreditletter'             => 'by',
-'newpageletter'               => 'BC',
-'boteditletter'               => 'b',
-'rc_categories'               => 'Waxoo u gaar yahay qeybaha  (u kala qeybsan "|")',
+'nchanges'                        => '$1 {{PLURAL:$1|bedelka|bedelada}}',
+'recentchanges'                   => 'Isbedelada dhow',
+'recentchanges-legend'            => 'Dooqyada isbedelada dhow',
+'recentchangestext'               => 'Dabagal isbedelada dhow ee wikiga oo ku dhacay bogaan.',
+'recentchanges-label-newpage'     => 'Wax bedelkaan waxoo sameeyay bog cusub',
+'recentchanges-label-minor'       => 'Kan waa bedel yar',
+'recentchanges-label-bot'         => 'Badalkaan waxaa sameeyay bot',
+'recentchanges-label-unpatrolled' => 'bedelkaan hadda wali lama waardiyeen',
+'rclistfrom'                      => 'Itusi isbedelada cusub oo ka bilaabaneyso $1',
+'rcshowhideminor'                 => '$1 bedelada yar',
+'rcshowhidebots'                  => '$1 botyaalo',
+'rcshowhideliu'                   => '$1 isticmaalada-soo galay',
+'rcshowhideanons'                 => '$1 isticmaalada la aqoon',
+'rcshowhidepatr'                  => '$1 bedelada la waardiyeeyay',
+'rcshowhidemine'                  => '$1 bedelaadeyda',
+'rclinks'                         => 'Itusi isbadeladii  $1 ee ugu danbeeyay oo dhacay wixii ka danbeeyay $2 maalmood<br />$3',
+'diff'                            => 'duwanaan',
+'hist'                            => 'taariikh',
+'hide'                            => 'Qari',
+'show'                            => 'Itus',
+'minoreditletter'                 => 'by',
+'newpageletter'                   => 'BC',
+'boteditletter'                   => 'b',
+'rc_categories'                   => 'Waxoo u gaar yahay qeybaha  (u kala qeybsan "|")',
+'rc-enhanced-expand'              => 'Itus ka hadalka (waxaa loo baahanyahay JavaScript)',
+'rc-enhanced-hide'                => 'Qari ka hadalka',
 
 # Recent changes linked
 'recentchangeslinked'         => "Isbedelada la'xiriira",
@@ -814,6 +826,7 @@ Boggaga ku jiro  [[Special:Watchlist|liiskaaga waardiyaha]] waa '''butac'''.",
 'uploadlog'            => 'gudagalaha soo galiyay',
 'uploadlogpage'        => 'Gudagalaha soo galiyay',
 'filename'             => 'Magaca faylka',
+'filedesc'             => 'Qoraal kooban',
 'filestatus'           => 'Qaabka ogolaashada koobiga:',
 'ignorewarning'        => 'Iska dhagooleey digniinta faylka neh  keydi',
 'ignorewarnings'       => 'Iska dhagooley digniin walba',
@@ -849,6 +862,7 @@ ku saabsan: $1',
 'upload-curl-error28' => 'Waqtiga woo ka dhamaaday soo gelinta',
 
 'license'            => 'Laysinka:',
+'license-header'     => 'Laysinka',
 'nolicense'          => 'Mala dooran',
 'license-nopreview'  => '(Hor fiirin malahan)',
 'upload_source_file' => '(Faylka kombiyutarkaada)',
@@ -859,12 +873,14 @@ ku saabsan: $1',
 # File description page
 'file-anchor-link'   => 'Fayl',
 'filehist'           => 'Taariikhda faylka',
+'filehist-help'      => 'Riix bish/waqtiga si aad u argto faylka sida oo ahaa markiisa hore.',
 'filehist-deleteall' => 'dirtir dhamaantood',
 'filehist-deleteone' => 'tirtir',
+'filehist-revert'    => 'soo celin',
 'filehist-current'   => 'waxa hadda jiro',
 'filehist-datetime'  => 'Taariikhda/Waqtiga',
 'filehist-user'      => 'Isticmaale',
-'filehist-comment'   => "Ra'yigaaga dhiibo",
+'filehist-comment'   => 'Ka hadalka',
 'imagelinks'         => 'Faylka la xiriira',
 'linkstoimage'       => 'Halahaan  {{PLURAL:$1|bog waxey la xiriiraan|$1 boggag ah waxey la xiriiraan}} faylkan:',
 'nolinkstoimage'     => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
@@ -911,7 +927,9 @@ ku saabsan: $1',
 'pager-older-n'      => '{{PLURAL:$1|ka duqsan 1|ka duqsan $1}}',
 
 # Book sources
-'booksources-go' => 'Soco',
+'booksources'               => 'Xogta buuga',
+'booksources-search-legend' => 'Raadi xogta buuga',
+'booksources-go'            => 'Soco',
 
 # Special:AllPages
 'allpages'          => 'Dhamaan boggaga',
@@ -944,8 +962,11 @@ ku saabsan: $1',
 'listusers-blocked'  => '(waa la mamnuucay)',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Isticmaale la sameeyay',
+'newuserlogpage'          => 'Isticmaalaha la sameeyay guda galaheeda',
 'newuserlog-create-entry' => 'Isticmaale cusub',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(Inta ka mid ah liiskooda)',
 
 # E-mail user
 'mailnologin'     => "Ma'jiro cinwaan wax lagu diro",
@@ -1063,10 +1084,12 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'contributions' => 'Isticmaalada wax ku darsaday',
 'mycontris'     => 'Wax qoraalkeyga',
 'uctop'         => '(kor)',
-'month'         => 'Bisha (iyo wixii ka horeeyay):',
-'year'          => 'Sanadka  (iyo wixii ka horeeyay):',
+'month'         => 'Bilaawga bisha (iyo wixii ka danbeeyay):',
+'year'          => 'Bilaawga sanadka  (iyo wixii ka danbeeyay):',
 
+'sp-contributions-newbies'  => 'Itus akoonada cusub kaliya oo wax ku darsaday',
 'sp-contributions-blocklog' => 'mamnuucyada',
+'sp-contributions-logs'     => 'Guda galayaasha',
 'sp-contributions-talk'     => 'Wadahadal',
 'sp-contributions-search'   => 'Raadi si aad wax uugu darsatid',
 'sp-contributions-username' => 'Ciwaanka IP:ga  ama  magaca isticmaalaha:',
@@ -1083,9 +1106,11 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'whatlinkshere-next'       => '{{PLURAL:$1|kan ku xiga|kan ku xiga $1}}',
 'whatlinkshere-links'      => '← kuwa la xiriiro',
 'whatlinkshere-hideredirs' => '$1 la wareejiyay',
+'whatlinkshere-hidelinks'  => '$1 waxoo la xiriiraa',
 
 # Block/unblock
 'ipboptions'               => '2 saacadood:2 hours,1 maalin:1 day,3 maalmood:3 days,1 isbuuc:1 week,2 isbuuc:2 weeks,1 bil:1 month,3 bilood:3 months,6 bilood:6 months,1 sano:1 year,waligeed:infinite',
+'ipblocklist'              => 'isticmaalada la mamnuucay',
 'ipblocklist-submit'       => 'Raadi',
 'anononlyblock'            => 'qarsoon. kaliya',
 'blocklink'                => 'mamnuuc',
@@ -1093,6 +1118,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'change-blocklink'         => 'wax ka bedel mamnuucida',
 'contribslink'             => 'ku darsasho',
 'autoblocker'              => 'Waxaa automaatik u xirista keenay in mudo dhow uu cinwaanka IP:ga isticmaalay "[[User:$1|$1]]". Sababta keentay in loo xiro $1 waa: "\'\'\'$2\'\'\'"',
+'blocklogpage'             => 'Mamnuucida guda galaheeda',
 'blocklogentry'            => 'waxoo mamnuucay  [[$1]] waxoona mamnuucida ku egyahay $2 $3',
 'unblocklogentry'          => 'lama mamnuucin $1',
 'block-log-flags-anononly' => "Isticmaalayaasha aanan la'aqoonsanin oo kaliya",
@@ -1107,9 +1133,11 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'movetalk'        => "Wareejiyey bogga wadahadalka la'xiriira",
 '1movedto2'       => '[[$1]] waxaa loo wareejiyey [[$2]]',
 '1movedto2_redir' => '[[$1]] waxaa loo wareejiyey [[$2]] si loo sii toosiyo',
+'movelogpage'     => 'Wareejinta guda galaheeda',
 'revertmove'      => 'soo celin',
 
 # Export
+'export'            => 'Dhoofi boggag',
 'export-addcattext' => 'Ku dar maqaalo laga soo qaaday qeybaha:',
 'export-addns'      => 'Ku dar',
 
@@ -1144,6 +1172,7 @@ Waxaa fiiri kartaa cadaadkiisa',
 'tooltip-ca-undelete'             => "Sooceli qoraaladii lagu sameeyay boggaan intii aanan la'tirtirin ka hor",
 'tooltip-ca-move'                 => 'Wareeji boggaan',
 'tooltip-ca-watch'                => 'Boggaan ku dar liiskaaga waardiyaha',
+'tooltip-ca-unwatch'              => 'Boggaan ka saar liiskaaga waardiyaha',
 'tooltip-search'                  => 'Ka raadi {{SITENAME}}',
 'tooltip-search-go'               => 'Aad bog oo magacaan ku qoran hadii oo jiro',
 'tooltip-search-fulltext'         => 'Qoraalkaan ka raadi bogyaasha',
@@ -1156,10 +1185,12 @@ Waxaa fiiri kartaa cadaadkiisa',
 'tooltip-n-randompage'            => 'Ku nasiibso bog',
 'tooltip-n-help'                  => 'Meesha lagu ogaan karo',
 'tooltip-t-whatlinkshere'         => 'Liiska inta bog oo wiki ah oo meeshaan la xiriiro',
+'tooltip-t-recentchangeslinked'   => 'Isbedelada dhow ee boggaga oo laga soo xiriiriyay boggaan',
 'tooltip-feed-atom'               => 'Atom aa quudiyo boggaan',
 'tooltip-t-emailuser'             => 'E-mail u dir isticmaalahaan',
 'tooltip-t-upload'                => 'Soo geli fayl',
 'tooltip-t-specialpages'          => 'Liiska boggaga qaaska ah oo dhan',
+'tooltip-t-permalink'             => 'Linkiga daaimka ah ee  bedelaadka boggaan',
 'tooltip-ca-nstab-main'           => 'Itusi bogga qoraaka kooban',
 'tooltip-ca-nstab-user'           => 'Fiiri bogga isticmaalaha',
 'tooltip-ca-nstab-media'          => 'Fiiri bogga saxaafada',
@@ -1176,6 +1207,8 @@ Waxaa fiiri kartaa cadaadkiisa',
 'tooltip-diff'                    => 'Fiiri waxa aad ka badashay qoraalka',
 'tooltip-compareselectedversions' => 'Fiiri sida ee u kala duwanyihiin  bedelaadka labada aad ka dooratay boggaan',
 'tooltip-watch'                   => 'Boggaan ku dar liiskaaga waardiyaha',
+'tooltip-rollback'                => '"Dib u soo celi" waxoo gadaal u soo celinaa bedel (yadii) boogaan oo sameeyay kii ugu danbeeyay oo  ku darsaday adiga oo isticmaalaaya hal riix',
+'tooltip-summary'                 => 'ku qor qoraal kooban',
 
 # Attribution
 'anonymous'        => "{{PLURAL:$1|Isticmaalaha|Isticmaaleyaasa}} aanan la'aqoonsanin ee {{SITENAME}}",
@@ -1197,6 +1230,22 @@ Waxaa fiiri kartaa cadaadkiisa',
 'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{PLURAL:$1|file|faylalka}} oo u kala soocan $2.",
 'ilsubmit'      => 'Raadi',
 'bydate'        => 'hab taariikheed',
+
+# Metadata
+'metadata-fields' => 'Sawirka qeybihiisa metadata oo ku tixan fariintaan waxaa lagu dari doonaa bogga sawirka meesha laga arko markii miiska metadata la qariyo.Kuwa kale waxaa loo qarinaa sida default.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-iimcategory' => 'Qeybta',
