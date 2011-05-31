@@ -81,15 +81,17 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	# Start the autoloader, so that extensions can derive classes from core files
 	require_once( "$IP/includes/AutoLoader.php" );
 
-	# Start profiler
-	# @todo FIXME: Rewrite wfProfileIn/wfProfileOut so that they can work in compiled mode
+	# Load the profiler
 	require_once( "$IP/includes/profiler/Profiler.php" );
-	if ( file_exists( "$IP/StartProfiler.php" ) ) {
-		require_once( "$IP/StartProfiler.php" );
-	}
 
 	# Load up some global defines.
 	require_once( "$IP/includes/Defines.php" );
+}
+
+# Start the profiler
+$wgProfiler = array();
+if ( file_exists( "$IP/StartProfiler.php" ) ) {
+	require( "$IP/StartProfiler.php" );
 }
 
 wfProfileIn( 'WebStart.php-conf' );
