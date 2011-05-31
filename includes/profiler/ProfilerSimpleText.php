@@ -22,7 +22,7 @@ class ProfilerSimpleText extends ProfilerSimple {
 		if( isset( $profileConfig['visible'] ) && $profileConfig['visible'] ) {
 			$this->visible = true;
 		}
-		parent::__construct();
+		parent::__construct( $profileConfig );
 	}
 
 	public function logData() {
