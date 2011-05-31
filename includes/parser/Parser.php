@@ -1197,7 +1197,7 @@ class Parser {
 					(?: [0-9]  [\ \-]? ){9} # 9 digits with opt. delimiters
 					[0-9Xx]                 # check digit
 					\b)
-			)!x', array( &$this, 'magicLinkCallback' ), $text );
+			)!xS', array( &$this, 'magicLinkCallback' ), $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
