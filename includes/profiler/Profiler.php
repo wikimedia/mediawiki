@@ -42,7 +42,7 @@ class Profiler {
 	protected $mProfileID = false;
 	private static $__instance = null;
 
-	function __construct( $params = null ) {
+	function __construct( $params ) {
 		// Push an entry for the pre-profile setup time onto the stack
 		global $wgRequestTime;
 		if ( !empty( $wgRequestTime ) ) {
@@ -69,7 +69,7 @@ class Profiler {
 			} elseif( $wgProfiler instanceof Profiler ) {
 				self::$__instance = $wgProfiler; // back-compat
 			} else {
-				self::$__instance = new ProfilerStub;
+				self::$__instance = new ProfilerStub( $wgProfiler );
 			}
 		}
 		return self::$__instance;
