@@ -41,6 +41,7 @@ class RunHipHopServer extends Maintenance {
 				'-c', "$thisDir/server.conf",
 				'-v', "Server.SourceRoot=$sourceBase",
 				'-v', "Server.IncludeSearchPaths.0=$sourceBase",
+				'-v', 'ServerVariables.MW_COMPILED=1',
 				'--mode=server',
 				'--port=8080'
 			),
@@ -55,6 +56,8 @@ class RunHipHopServer extends Maintenance {
 		$sourceBase = realpath( "$IP/.." );
 
 		passthru(
+			'cd ' . wfEscapeShellArg( $sourceBase ) . " && " .
+			'MW_INSTALL_PATH=' . wfEscapeShellArg( $IP ) . ' ' .
 			wfEscapeShellArg(
 				'hphpi',
 				'-c', "$thisDir/server.conf",

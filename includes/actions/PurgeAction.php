@@ -57,7 +57,7 @@ class PurgeAction extends FormAction {
 	}
 
 	/**
-	 * purge is slightly wierd because it can be either formed or formless depending
+	 * purge is slightly weird because it can be either formed or formless depending
 	 * on user permissions
 	 */
 	public function show() {
