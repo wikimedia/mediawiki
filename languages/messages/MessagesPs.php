@@ -782,6 +782,10 @@ $1',
 'edit-already-exists'              => 'په دې نوم يو نوی مخ جوړ نه شو.
 پدې نوم د پخوا نه يو مخ شته.',
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning' => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
+ځينې کينډۍ به په کې ګډې نه شي.",
+
 # "Undo" feature
 'undo-norev' => 'دا سمون ناکړ کېدلای نه شي دا ځکه چې دا سمون نشته او يا هم ړنګ شوی.',
 
@@ -911,6 +915,7 @@ $1',
 'searchprofile-project-tooltip'    => 'په $1 کې پلټل',
 'searchprofile-images-tooltip'     => 'د دوتنو پلټنه',
 'searchprofile-everything-tooltip' => 'د ټولې مېنځپانګې پلټنه (د خبرو اترو مخونو سره)',
+'searchprofile-advanced-tooltip'   => 'د خپل خوښې په نوم-تشيالونو کې پلټل',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 ويی|$2 وييونه}})',
 'search-result-category-size'      => '{{PLURAL:$1|1 غړی|$1 غړي}} ({{PLURAL:$2|1 څېرمه وېشنيزه|$2 څېرمه وېشنيزې}}، {{PLURAL:$3|1 دوتنه|$3 دوتنې}})',
 'search-result-score'              => 'اړوندتوب: $1%',
@@ -1347,7 +1352,8 @@ $1',
 'statistics-users-active'  => 'فعاله کارنان',
 'statistics-mostpopular'   => 'تر ټولو ډېر کتل شوي مخونه',
 
-'disambiguations' => 'د څرګندونې مخونه',
+'disambiguations'     => 'د څرګندونې مخونه',
+'disambiguationspage' => 'Template:ناجوت',
 
 'doubleredirects' => 'دوه ځلي ورګرځېدنې',
 
@@ -1720,6 +1726,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'sp-contributions-talk'        => 'خبرې اترې',
 'sp-contributions-search'      => 'د ونډو لټون',
 'sp-contributions-username'    => 'IP پته يا کارن-نوم:',
+'sp-contributions-toponly'     => 'يوازې هغه سمونونه چې تر ټولو تازه بڼې لري ښکاره کول',
 'sp-contributions-submit'      => 'پلټل',
 
 # What links here
@@ -2020,7 +2027,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'show-big-image'  => 'بشپړ بېلن نښې',
 
 # Special:NewFiles
-'newimages'             => 'د نوو دوتنو نندارتون',
+'newimages'             => 'د نوو دوتنو انځورتون',
 'imagelisttext'         => "دلته لاندې د '''$1''' {{PLURAL:$1|دوتنه|دوتنې}} يو لړليک دی چې اوډل شوي $2.",
 'newimages-summary'     => 'همدا ځانګړی مخ، وروستنۍ پورته شوې دوتنې ښکاره کوي.',
 'newimages-legend'      => 'چاڼګر',

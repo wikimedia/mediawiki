@@ -18,6 +18,7 @@ $messages = array(
 'tog-enotifusertalkpages' => 'Э-пучта заз ракъурун, зи Ихтилатрин чар дегиш жедайла',
 
 'underline-always' => 'Гьамиша',
+'underline-never'  => 'Садрани',
 
 # Dates
 'sunday'        => 'Гьяд',
