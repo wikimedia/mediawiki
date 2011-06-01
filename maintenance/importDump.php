@@ -83,9 +83,9 @@ TEXT;
 		}
 
 		if( $this->hasArg() ) {
-			$result = $this->importFromFile( $this->getArg() );
+			$this->importFromFile( $this->getArg() );
 		} else {
-			$result = $this->importFromStdin();
+			$this->importFromStdin();
 		}
 
 		$this->output( "Done!\n" );

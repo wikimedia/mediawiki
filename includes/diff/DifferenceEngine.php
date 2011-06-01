@@ -57,10 +57,9 @@ class DifferenceEngine {
 	/**
 	 * Constructor
 	 * @param $titleObj Title object that the diff is associated with
-	 * @param $old Integer: old ID we want to show and diff with.
-	 * @param $new String: either 'prev' or 'next'.
-	 * @todo FIXME: $rcid ???
-	 * @param $rcid Integer: ??? FIXME (default 0)
+	 * @param $old Integer old ID we want to show and diff with.
+	 * @param $new String either 'prev' or 'next'.
+	 * @param $rcid Integer ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
 	 */
@@ -100,22 +99,37 @@ class DifferenceEngine {
 		$this->unhide = $unhide;
 	}
 
+	/**
+	 * @param $value bool
+	 */
 	function setReducedLineNumbers( $value = true ) {
 		$this->mReducedLineNumbers = $value;
 	}
 
+	/**
+	 * @return Title
+	 */
 	function getTitle() {
 		return $this->mTitle;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function wasCacheHit() {
 		return $this->mCacheHit;
 	}
 
+	/**
+	 * @return int
+	 */
 	function getOldid() {
 		return $this->mOldid;
 	}
 
+	/**
+	 * @return Bool|int
+	 */
 	function getNewid() {
 		return $this->mNewid;
 	}
@@ -626,6 +640,8 @@ CONTROL;
 	/**
 	 * Get the diff text, send it to $wgOut
 	 * Returns false if the diff could not be generated, otherwise returns true
+	 *
+	 * @return bool
 	 */
 	function showDiff( $otitle, $ntitle, $notice = '' ) {
 		global $wgOut;
@@ -915,6 +931,8 @@ CONTROL;
 
 	/**
 	 * Add the header to a diff body
+	 *
+	 * @return string
 	 */
 	static function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
 		$header = "<table class='diff'>";
@@ -965,6 +983,8 @@ CONTROL;
 	 * If oldid is false, leave the corresponding revision object set
 	 * to false. This is impossible via ordinary user input, and is provided for
 	 * API convenience.
+	 *
+	 * @return bool
 	 */
 	function loadRevisionData() {
 		global $wgLang, $wgUser;
@@ -979,8 +999,9 @@ CONTROL;
 		$this->mNewRev = $this->mNewid
 			? Revision::newFromId( $this->mNewid )
 			: Revision::newFromTitle( $this->mTitle );
-		if ( !$this->mNewRev instanceof Revision )
+		if ( !$this->mNewRev instanceof Revision ) {
 			return false;
+		}
 
 		// Update the new revision ID in case it was 0 (makes life easier doing UI stuff)
 		$this->mNewid = $this->mNewRev->getId();
@@ -1094,6 +1115,8 @@ CONTROL;
 
 	/**
 	 * Load the text of the revisions, as well as revision data.
+	 *
+	 * @return bool
 	 */
 	function loadText() {
 		if ( $this->mTextLoaded == 2 ) {
@@ -1123,6 +1146,8 @@ CONTROL;
 
 	/**
 	 * Load the text of the new revision, not the old one
+	 *
+	 * @return bool
 	 */
 	function loadNewText() {
 		if ( $this->mTextLoaded >= 1 ) {
