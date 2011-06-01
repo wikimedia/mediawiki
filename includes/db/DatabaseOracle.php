@@ -733,15 +733,23 @@ class DatabaseOracle extends DatabaseBase {
 		foreach ( $rows as $row ) {
 			# Delete rows which collide
 			if ( $uniqueIndexes ) {
-				$condsDelete = array();
-				foreach ( $uniqueIndexes as $index ) {
-					$condsDelete[$index] = $row[$index];
+				$deleteConds = array();
+				foreach ( $uniqueIndexes as $key=>$index ) {
+					if ( is_array( $index ) ) {
+						$deleteConds2 = array();
+						foreach ( $index as $col ) {
+							$deleteConds2[$col] = $row[$col];
+						}
+						$deleteConds[$key] = $this->makeList( $deleteConds2, LIST_AND );
+					} else {
+						$deleteConds[$index] = $row[$index];
+					}
 				}
-				if ( count( $condsDelete ) > 0 ) {
-					$this->delete( $table, $condsDelete, $fname );
-				}
+				$deleteConds = array( $this->makeList( $deleteConds, LIST_OR ) );
+				$this->delete( $table, $deleteConds, $fname );
 			}
 
+			
 			if ( $sequenceData !== false && !isset( $row[$sequenceData['column']] ) ) {
 				$row[$sequenceData['column']] = $this->nextSequenceValue( $sequenceData['sequence'] );
 			}
@@ -1143,28 +1151,41 @@ class DatabaseOracle extends DatabaseBase {
 		return strpos($s, '/*Q*/') !== FALSE;
 	}
 
-	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
+	private function wrapFieldForWhere( $table, &$col, &$val ) {
 		global $wgContLang;
-
-		if ($conds != null) {
-			$conds2 = array();
-			$conds = ( !is_array( $conds ) ) ? array( $conds ) : $conds;
-			foreach ( $conds as $col => $val ) {
-				$col_info = $this->fieldInfoMulti( $table, $col );
-				$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
-				if ( $col_type == 'CLOB' ) {
-					$conds2['TO_CHAR(' . $col . ')'] = $wgContLang->checkTitleEncoding( $val );
-				} elseif ( $col_type == 'VARCHAR2' && !mb_check_encoding( $val ) ) {
-					$conds2[$col] = $wgContLang->checkTitleEncoding( $val );
-				} else {
-					$conds2[$col] = $val;
-				}
-			}
-
-			return parent::selectRow( $table, $vars, $conds2, $fname, $options, $join_conds );
-		} else {
-			return parent::selectRow( $table, $vars, $conds, $fname, $options, $join_conds );
+		
+		$col_info = $this->fieldInfoMulti( $table, $col );
+		$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
+		if ( $col_type == 'CLOB' ) {
+			$col = 'TO_CHAR(' . $col . ')';
+			$val = $wgContLang->checkTitleEncoding( $val );
+		} elseif ( $col_type == 'VARCHAR2' && !mb_check_encoding( $val ) ) {
+			$val = $wgContLang->checkTitleEncoding( $val );
 		}
+	}
+
+	private function wrapConditionsForWhere ( $table, $conds, $parentCol = null ) {
+		$conds2 = array();
+		foreach ( $conds as $col => $val ) {
+			if ( is_array( $val ) ) {
+				$conds2[$col] = $this->wrapConditionsForWhere ( $table, $val, $col );
+			} else {
+				if ( is_numeric( $col ) && $parentCol != null ) {
+					$this->wrapFieldForWhere ( $table, $parentCol, $val );
+				} else {
+					$this->wrapFieldForWhere ( $table, $col, $val );
+				}
+				$conds2[$col] = $val;
+			}
+		}
+		return $conds2;
+	}
+
+	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
+		if ( is_array($conds) ) {
+			$conds = $this->wrapConditionsForWhere( $table, $conds );
+		}
+		return parent::selectRow( $table, $vars, $conds, $fname, $options, $join_conds );
 	}
 
 	/**
@@ -1211,32 +1232,10 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
-		global $wgContLang;
-
-		if ( $wgContLang != null && $conds != null && $conds != '*' ) {
-			$conds2 = array();
-			$conds = ( !is_array( $conds ) ) ? array( $conds ) : $conds;
-			foreach ( $conds as $col => $val ) {
-				$col_info = $this->fieldInfoMulti( $table, $col );
-				$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
-				if ( $col_type == 'CLOB' ) {
-					$conds2['TO_CHAR(' . $col . ')'] = $wgContLang->checkTitleEncoding( $val );
-				} else {
-					if ( is_array( $val ) ) {
-						$conds2[$col] = $val;
-						foreach ( $conds2[$col] as &$val2 ) {
-							$val2 = $wgContLang->checkTitleEncoding( $val2 );
-						}
-					} else {
-						$conds2[$col] = $wgContLang->checkTitleEncoding( $val );
-					}
-				}
-			}
-
-			return parent::delete( $table, $conds2, $fname );
-		} else {
-			return parent::delete( $table, $conds, $fname );
+		if ( is_array($conds) ) {
+			$conds = $this->wrapConditionsForWhere( $table, $conds );
 		}
+		return parent::delete( $table, $conds, $fname );
 	}
 
 	function update( $table, $values, $conds, $fname = 'DatabaseOracle::update', $options = array() ) {
@@ -1259,6 +1258,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		if ( $conds != '*' ) {
+			$conds = $this->wrapConditionsForWhere( $table, $conds );
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
 
