@@ -16,6 +16,7 @@
  * @author RIPENDIL
  * @author Reedy
  * @author Samritmaity
+ * @author Usarker
  * @author Wikitanvir
  * @author Zaheen
  * @author לערי ריינהארט
@@ -821,6 +822,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'rev-deleted-comment'         => '(সম্পাদনা সারাংশ অপসারিত)',
 'rev-deleted-user'            => '(ব্যবহারকারীর নাম সরিয়ে নেওয়া হয়েছে)',
 'rev-deleted-event'           => '(লগ অ্যাকশন সরানো হয়েছে)',
+'rev-deleted-user-contribs'   => 'ব্যবহারকারীর নাম অথবা আইপি ঠিকানা অপসারিত হয়েছে - অবদান থেকে সম্পাদনা আড়াল করা হয়েছে',
 'rev-deleted-text-permission' => "পাতার এই সংস্করণটি '''অপসারিত''' হয়েছে।
 বিস্তারিত কারণ এর [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অপসারণ লগে] পাওয়া যেতে পারে।",
 'rev-deleted-text-unhide'     => "পাতার এই সংস্করণটি '''অপসারিত''' হয়েছে।
@@ -918,6 +920,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 # Diffs
 'history-title'            => '"$1" এর সংশোধনের ইতিহাস',
 'difference'               => '(সংস্করণগুলোর মধ্যে পার্থক্য)',
+'difference-multipage'     => 'পাতাগুলোর মধ্যে পার্থক্য',
 'lineno'                   => '$1 নং লাইন:',
 'compareselectedversions'  => 'নির্বাচিত সংস্করণগুলো তুলনা করো',
 'showhideselectedversions' => 'নির্বাচিত সংশোধনগুলো দেখাও/লুকাও',
@@ -930,6 +933,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'searchresulttext'                 => '{{SITENAME}} এ অনুসন্ধানের ব্যাপারে আরও তথ্যের জন্য [[{{MediaWiki:Helppage}}|{{int:help}}]] দেখুন।',
 'searchsubtitle'                   => 'আপনি অনুসন্ধান করেছেন \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" দিয়ে শুরু হওয়া সকল পাতাসমূহ]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" এর সাথে সংযুক্ত সকল পাতা]])',
 'searchsubtitleinvalid'            => "আপনি অনুসন্ধান করেছেন '''$1'''",
+'toomanymatches'                   => 'একই রকম অনেকগুলো উত্তর এসেছে, অনুগ্রহ করে অন্য কোন কুয়েরি দিন',
 'titlematches'                     => 'নিবন্ধের শিরোনাম মিলেছে',
 'notitlematches'                   => 'কোন পাতার শিরোনামের সাথে মিলে নেই',
 'textmatches'                      => 'পাতার লেখার সাথে মিলেছে',
@@ -1032,6 +1036,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'recentchangesdays-max'         => 'সর্বোচ্চ $1 {{PLURAL:$1|দিন|দিন}}',
 'recentchangescount'            => 'সাম্প্রতিক পরিবর্তনে প্রদর্শিত সম্পাদনার সংখ্যা:',
 'prefs-help-recentchangescount' => 'এতে সাম্প্রতিক পরিবর্তনসমূহ, পাতার ইতিহাস এবং লগ অন্তর্ভুক্ত।',
+'prefs-help-watchlist-token'    => 'এই ঘরটি একটি গোপন শব্দ চাবি দ্বারা পূরণ করলে আপনার নজর তালিকার জন্য একটি আরএসএস ফিড তৈরী হবে। যারা এই ঘরের চাবি জানবে তারা আপনার নজর তালিকা দেখতে পারবে, তাই একটি গোপন মান ব্যবহার করুন। এখানে এলোমেলোভাবে তৈরী একটি মান দেখানো হয়েছে যা আপনি ব্যবহার করতে পারেন: $1',
 'savedprefs'                    => 'আপনার পছন্দগুলো সংরক্ষণ করা হয়েছে।',
 'timezonelegend'                => 'সময় বলয়:',
 'localtime'                     => 'স্থানীয় সময়:',
@@ -1058,6 +1063,9 @@ $3-এর দেয়া কারণ হল ''$2''",
 'prefs-files'                   => 'ফাইল',
 'prefs-custom-css'              => 'স্বনির্ধারিত CSS',
 'prefs-custom-js'               => 'স্বনির্ধারিত JS',
+'prefs-common-css-js'           => 'সকল ক্ষেত্রের জন্য সিএসএস/জাভাস্ক্রিপ্ট',
+'prefs-reset-intro'             => 'আপনি এই পাতা ব্যবহার করে আপনার পছন্দসমূহকে সাইটের পূর্বপ্রদত্ত সেটিংসে পরিবর্তন করতে পারেন।
+পরিবর্তন করার পর এটা  আর ফিরিয়ে আনা যাবে না।',
 'prefs-emailconfirm-label'      => 'ই-মেইল নিশ্চিতকরণ:',
 'prefs-textboxsize'             => 'সম্পাদনা উইন্ডোর আকার',
 'youremail'                     => 'ইমেইল *',
@@ -1102,25 +1110,26 @@ $3-এর দেয়া কারণ হল ''$2''",
 'email-address-validity-invalid' => 'সঠিক ইমেই ঠিকানা প্রদান করুন',
 
 # User rights
-'userrights'                  => 'ব্যবহারকারী অধিকার ব্যবস্থাপনা',
-'userrights-lookup-user'      => 'ব্যবহারকারী দল ব্যবস্থাপনা করুন',
-'userrights-user-editname'    => 'ব্যবহারকারীর নাম লিখুন:',
-'editusergroup'               => 'ব্যবহারকারীর দল সম্পাদনা করো',
-'editinguser'                 => "ব্যবহারকারী সম্পাদনা করছেন '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'ব্যবহারকারীর দল সম্পাদনা করো',
-'saveusergroups'              => 'ব্যবহারকারীর দল সংরক্ষণ করো',
-'userrights-groupsmember'     => 'সদস্য:',
-'userrights-groups-help'      => 'আপনি এই ব্যবহারকারীর বর্তমান দল পরিবর্তন করতে পারবেন:
+'userrights'                   => 'ব্যবহারকারী অধিকার ব্যবস্থাপনা',
+'userrights-lookup-user'       => 'ব্যবহারকারী দল ব্যবস্থাপনা করুন',
+'userrights-user-editname'     => 'ব্যবহারকারীর নাম লিখুন:',
+'editusergroup'                => 'ব্যবহারকারীর দল সম্পাদনা করো',
+'editinguser'                  => "ব্যবহারকারী সম্পাদনা করছেন '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'ব্যবহারকারীর দল সম্পাদনা করো',
+'saveusergroups'               => 'ব্যবহারকারীর দল সংরক্ষণ করো',
+'userrights-groupsmember'      => 'সদস্য:',
+'userrights-groupsmember-auto' => 'শর্তহীন সদস্য',
+'userrights-groups-help'       => 'আপনি এই ব্যবহারকারীর বর্তমান দল পরিবর্তন করতে পারবেন:
 * টিক চিহ্ন দেওয়া ঘরের অর্থ ব্যবহারকারী এখন ঐ দলের অন্তর্ভুক্ত।
 * টিক চিহ্ন বিহীন ঘরের অর্থ ব্যবহারকারী ঐ দলের অন্তর্ভুক্ত নন।
 * একটি তারকা চিহ্ন (*) দ্বারা বোঝানো হচ্ছে এই দলের অন্তর্ভুক্তির পর আপনি আর তা বাতিল করতে পারবেন না।',
-'userrights-reason'           => 'কারণ:',
-'userrights-no-interwiki'     => 'আপনার অন্য উইকিতে ব্যবহারকারী অধিকার সম্পাদনা করার অনুমতি নেই।',
-'userrights-nodatabase'       => '$1 ডাটাবেজটির হয় কোন অস্তিত্ব নেই অথবা এটি স্থানীয় ডাটাবেজ নয়।',
-'userrights-nologin'          => 'ব্যবহারকারী অধিকার প্রযুক্ত করতে হলে আপনাকে কোন প্রশাসকের অ্যাকাউন্টে [[Special:UserLogin|প্রবেশ]] করতে হবে।',
-'userrights-notallowed'       => 'আপনার অ্যাকাউন্ট থেকে ব্যবহারকারী অধিকার প্রযুক্ত করার অনুমতি নেই।',
-'userrights-changeable-col'   => 'দল যা আপনি পরিবর্তন করতে পারেন',
-'userrights-unchangeable-col' => 'দল যা আপনি পরিবর্তন করতে পারবেন না',
+'userrights-reason'            => 'কারণ:',
+'userrights-no-interwiki'      => 'আপনার অন্য উইকিতে ব্যবহারকারী অধিকার সম্পাদনা করার অনুমতি নেই।',
+'userrights-nodatabase'        => '$1 ডাটাবেজটির হয় কোন অস্তিত্ব নেই অথবা এটি স্থানীয় ডাটাবেজ নয়।',
+'userrights-nologin'           => 'ব্যবহারকারী অধিকার প্রযুক্ত করতে হলে আপনাকে কোন প্রশাসকের অ্যাকাউন্টে [[Special:UserLogin|প্রবেশ]] করতে হবে।',
+'userrights-notallowed'        => 'আপনার অ্যাকাউন্ট থেকে ব্যবহারকারী অধিকার প্রযুক্ত করার অনুমতি নেই।',
+'userrights-changeable-col'    => 'দল যা আপনি পরিবর্তন করতে পারেন',
+'userrights-unchangeable-col'  => 'দল যা আপনি পরিবর্তন করতে পারবেন না',
 
 # Groups
 'group'               => 'দল:',
@@ -1190,6 +1199,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'right-mergehistory'          => 'পাতার ইতিহাস একীকরণ করুন।',
 'right-userrights'            => 'সকল ব্যবহারকারী অধিকার সম্পাদনা করুন',
 'right-userrights-interwiki'  => 'অন্যান্য উইকির ব্যবহারকারীদের অধিকারসমূহ সম্পাদনা করুন।',
+'right-siteadmin'             => 'ডাটাবেজ বন্ধ এবং খুলুন',
 'right-reset-passwords'       => 'অন্য ব্যবহারকারীদের শব্দচাবি পুনরায় নির্ধারণ করুন',
 'right-override-export-depth' => '৫ম স্তর পর্যন্ত সংযুক্তিসহ একটি পাতা রপ্তানী করুন',
 'right-sendemail'             => 'অন্য ব্যবহারকারীকে ইমেইল পাঠান',

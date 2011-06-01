@@ -567,7 +567,7 @@ $1',
 'nstab-media'     => 'Մեդիա էջ',
 'nstab-special'   => 'Սպասարկող էջ',
 'nstab-project'   => 'Նախագծի էջ',
-'nstab-image'     => 'Ֆայլ',
+'nstab-image'     => 'Նիշք',
 'nstab-mediawiki' => 'Ուղերձ',
 'nstab-template'  => 'Կաղապար',
 'nstab-help'      => 'Օգնության էջ',
@@ -1382,7 +1382,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'listfiles_count'       => 'Տարբերակ',
 
 # File description page
-'file-anchor-link'          => 'Ֆայլ',
+'file-anchor-link'          => 'Նիշք',
 'filehist'                  => 'Նիշքի պատմություն',
 'filehist-help'             => 'Մատնահարեք օրվան/ժամին՝ նիշքի այդ պահին տեսքը դիտելու համար։',
 'filehist-deleteall'        => 'ջնջել բոլորը',
@@ -2047,7 +2047,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Thumbnails
 'thumbnail-more'           => 'Ընդարձակել',
-'filemissing'              => 'Նման ֆայլ չկա',
+'filemissing'              => 'Նման նիշք չկա',
 'thumbnail_error'          => 'Պատկերիկի ստեղծման սխալ. $1',
 'djvu_page_error'          => 'DjVu էջը լայնույթից դուրս է',
 'djvu_no_xml'              => 'Չհաջողվեց ստեղծել XML DjVu նիշքի համար',

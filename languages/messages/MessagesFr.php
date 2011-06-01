@@ -1507,7 +1507,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 
 'group-user-member'          => 'utilisateur',
 'group-autoconfirmed-member' => 'utilisateur enregistré',
-'group-bot-member'           => 'bot',
+'group-bot-member'           => 'robot',
 'group-sysop-member'         => 'administrateur',
 'group-bureaucrat-member'    => 'bureaucrate',
 'group-suppress-member'      => 'superviseur',
@@ -3620,7 +3620,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'table_pager_last'         => 'Dernière page',
 'table_pager_limit'        => 'Afficher $1 éléments par page',
 'table_pager_limit_label'  => 'Résultats par page :',
-'table_pager_limit_submit' => 'Accéder',
+'table_pager_limit_submit' => 'Envoyer',
 'table_pager_empty'        => 'Aucun résultat',
 
 # Auto-summaries
