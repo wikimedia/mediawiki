@@ -185,7 +185,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 			// Build load query for StartupModules 
 			$query = array(
-				'modules' => implode( '|',  $modules ),
+				'modules' => ResourceLoader::makePackedModulesString( $modules ),
 				'only' => 'scripts',
 				'lang' => $context->getLanguage(),
 				'skin' => $context->getSkin(),
