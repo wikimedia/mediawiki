@@ -884,7 +884,7 @@ class WebRequest {
 		}
 
 		$extension = self::findIE6Extension( $_SERVER['QUERY_STRING'] );
-		if ( $extension === '' ) {
+		if ( strval( $extension ) === '' ) {
 			return false;
 		}
 
