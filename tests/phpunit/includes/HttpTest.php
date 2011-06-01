@@ -316,29 +316,43 @@ class HttpTest extends MediaWikiTestCase {
 	function testIsValidUrl() {
 	}
 
-	function testValidateCookieDomain() {
-		$this->assertFalse( Cookie::validateCookieDomain( "co.uk" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( ".co.uk" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "gov.uk" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( ".gov.uk" ) );
-		$this->assertTrue( Cookie::validateCookieDomain( "supermarket.uk" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "uk" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( ".uk" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "127.0.0." ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "127." ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "127.0.0.1." ) );
-		$this->assertTrue( Cookie::validateCookieDomain( "127.0.0.1" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "333.0.0.1" ) );
-		$this->assertTrue( Cookie::validateCookieDomain( "example.com" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "example.com." ) );
-		$this->assertTrue( Cookie::validateCookieDomain( ".example.com" ) );
+	/**
+	 * @dataProvider cookieDomains
+	 */
+	function testValidateCookieDomain( $expected, $domain, $origin=null ) {
+		if ( $origin ) {
+			$ok = Cookie::validateCookieDomain( $domain, $origin );
+			$msg = "$domain against origin $origin";
+		} else {
+			$ok = Cookie::validateCookieDomain( $domain );
+			$msg = "$domain";
+		}
+		$this->assertEquals( $expected, $ok, $msg );
+	}
+	
+	function cookieDomains() {
+		return array(
+			array( false, "co.uk" ),
+			array( false, ".co.uk" ),
+			array( false, "gov.uk" ),
+			array( false, ".gov.uk" ),
+			array( true, "supermarket.uk" ),
+			array( false, "uk" ),
+			array( false, ".uk" ),
+			array( false, "127.0.0." ),
+			array( false, "127." ),
+			array( false, "127.0.0.1." ),
+			array( true, "127.0.0.1" ),
+			array( false, "333.0.0.1" ),
+			array( true, "example.com" ),
+			array( false, "example.com." ),
+			array( true, ".example.com" ),
 
-		$this->assertTrue( Cookie::validateCookieDomain( ".example.com", "www.example.com" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "example.com", "www.example.com" ) );
-		$this->assertTrue( Cookie::validateCookieDomain( "127.0.0.1", "127.0.0.1" ) );
-		$this->assertFalse( Cookie::validateCookieDomain( "127.0.0.1", "localhost" ) );
-
-
+			array( true, ".example.com", "www.example.com" ),
+			array( false, "example.com", "www.example.com" ),
+			array( true, "127.0.0.1", "127.0.0.1" ),
+			array( false, "127.0.0.1", "localhost" ),
+		);
 	}
 
 	function testSetCooke() {
