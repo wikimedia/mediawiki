@@ -115,11 +115,11 @@ class HttpTest extends MediaWikiTestCase {
 							  "Request took less than {$timeout}s via " . Http::$httpEngine );
 		$this->assertEquals( $r, false, "false -- what we get on error from Http::get()" );
 
-		$r = Http::get( "http://www.example.com/this-file-does-not-exist", $timeout );
+		$r = Http::get( "http://www.mediawiki.org/xml/made-up-url", $timeout );
 		$this->assertFalse( $r, "False on 404s" );
 
 
-		$r = MWHttpRequest::factory( "http://www.example.com/this-file-does-not-exist" );
+		$r = MWHttpRequest::factory( "http://www.mediawiki.org/xml/made-up-url" );
 		$er = $r->execute();
 		if ( $r instanceof PhpHttpRequest && version_compare( '5.2.10', phpversion(), '>' ) ) {
 			$this->assertRegexp( "/HTTP request failed/", $er->getWikiText() );
