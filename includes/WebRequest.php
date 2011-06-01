@@ -877,6 +877,8 @@ class WebRequest {
 	 * Check for a bad query string, which IE 6 will use as a potentially 
 	 * insecure cache file extension. See bug 28235. Returns true if the 
 	 * request should be disallowed.
+	 * 
+	 * @return Boolean
 	 */
 	public function isQueryStringBad() {
 		if ( !isset( $_SERVER['QUERY_STRING'] ) ) {
@@ -885,9 +887,17 @@ class WebRequest {
 
 		$extension = self::findIE6Extension( $_SERVER['QUERY_STRING'] );
 		if ( strval( $extension ) === '' ) {
+			/* No extension or empty extension (false/'') */
 			return false;
 		}
 
+		/* Only consider the extension understood by IE to be potentially 
+		 * dangerous if it is made of normal characters (so it is more 
+		 * likely to be registered with an application)
+		 * Compromise with api.php convenience. Considers for instance 
+		 * that no sane application will register a dangerous file type
+		 * in an extension containing an ampersand.
+		 */
 		return (bool)preg_match( '/^[a-zA-Z0-9_-]+$/', $extension );
 	}
 
