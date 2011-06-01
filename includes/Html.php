@@ -191,15 +191,18 @@ class Html {
 				'button',
 				'search',
 			);
+
 			if ( isset( $attribs['type'] )
 			&& !in_array( $attribs['type'], $validTypes ) ) {
 				unset( $attribs['type'] );
 			}
+
 			if ( isset( $attribs['type'] ) && $attribs['type'] == 'search'
 			&& !$wgHtml5 ) {
 				unset( $attribs['type'] );
 			}
 		}
+
 		if ( !$wgHtml5 && $element == 'textarea' && isset( $attribs['maxlength'] ) ) {
 			unset( $attribs['maxlength'] );
 		}
@@ -475,12 +478,15 @@ class Html {
 		global $wgHtml5, $wgJsMimeType, $wgWellFormedXml;
 
 		$attrs = array();
+
 		if ( !$wgHtml5 ) {
 			$attrs['type'] = $wgJsMimeType;
 		}
+
 		if ( $wgWellFormedXml && preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
+
 		return self::rawElement( 'script', $attrs, $contents );
 	}
 
@@ -495,9 +501,11 @@ class Html {
 		global $wgHtml5, $wgJsMimeType;
 
 		$attrs = array( 'src' => $url );
+
 		if ( !$wgHtml5 ) {
 			$attrs['type'] = $wgJsMimeType;
 		}
+
 		return self::element( 'script', $attrs );
 	}
 
@@ -516,6 +524,7 @@ class Html {
 		if ( $wgWellFormedXml && preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
+
 		return self::rawElement( 'style', array(
 			'type' => 'text/css',
 			'media' => $media,
@@ -587,15 +596,19 @@ class Html {
 	 */
 	public static function textarea( $name, $value = '', $attribs = array() ) {
 		global $wgHtml5;
+
 		$attribs['name'] = $name;
+
 		if ( !$wgHtml5 ) {
 			if ( !isset( $attribs['cols'] ) ) {
 				$attribs['cols'] = "";
 			}
+
 			if ( !isset( $attribs['rows'] ) ) {
 				$attribs['rows'] = "";
 			}
 		}
+
 		return self::element( 'textarea', $attribs, $value );
 	}
 
@@ -611,29 +624,37 @@ class Html {
 		$ret = '';
 
 		global $wgMimeType;
+
 		if ( self::isXmlMimeType( $wgMimeType ) ) {
 			$ret .= "<?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n";
 		}
 
 		global $wgHtml5, $wgHtml5Version, $wgDocType, $wgDTD;
 		global $wgXhtmlNamespaces, $wgXhtmlDefaultNamespace;
+
 		if ( $wgHtml5 ) {
 			$ret .= "<!DOCTYPE html>\n";
+
 			if ( $wgHtml5Version ) {
 				$attribs['version'] = $wgHtml5Version;
 			}
 		} else {
 			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
 			$attribs['xmlns'] = $wgXhtmlDefaultNamespace;
+
 			foreach ( $wgXhtmlNamespaces as $tag => $ns ) {
 				$attribs["xmlns:$tag"] = $ns;
 			}
 		}
+
 		$html = Html::openElement( 'html', $attribs );
+
 		if ( $html ) {
 			$html .= "\n";
 		}
+
 		$ret .= $html;
+
 		return $ret;
 	}
 
@@ -653,7 +674,7 @@ class Html {
 				return false;
 		}
 	}
-	
+
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
@@ -667,14 +688,13 @@ class Html {
 	 */
 	static function infoBox( $text, $icon, $alt, $class = false, $useStylePath = true ) {
 		global $wgStylePath;
-		
+
 		if ( $useStylePath ) {
 			$icon = $wgStylePath.'/common/images/'.$icon;
 		}
-		
-		
+
 		$s  = Xml::openElement( 'div', array( 'class' => "mw-infobox $class") );
-		
+
 		$s .= Xml::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ).
 				Html::element( 'img',
 					array(
@@ -692,8 +712,7 @@ class Html {
 		$s .= Xml::closeElement( 'div' );
 
 		$s .= Xml::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
-		
+
 		return $s;
 	}
-	
 }
