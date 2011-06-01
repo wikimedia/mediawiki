@@ -173,6 +173,18 @@ test( 'mw.loader', function(){
 
 });
 
+test( 'mw.loader.bug29107' , function() {
+	expect( 1 );
+
+	mw.loader.implement( 'bug29107.messages-only', [], {}, {'bug29107': 'loaded'} );
+	mw.loader.using( 'bug29107.messages-only', function() {
+		ok( mw.messages.exists( 'bug29107' ), 'Bug 29107: messages-only module should load ok' );
+	}, function(){
+		start();
+		deepEqual( true, false, 'Implementing a module, error callback fired!' );
+	});
+});
+
 test( 'mw.html', function(){
 
 	equal( mw.html.escape( '<mw awesome="awesome" value=\'test\' />' ),
