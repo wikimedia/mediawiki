@@ -64,9 +64,7 @@ class ApiQueryTags extends ApiQueryBase {
 		$this->addTables( 'change_tag' );
 		$this->addFields( 'ct_tag' );
 
-		if ( $this->fld_hitcount ) {
-			$this->addFields( 'count(*) AS hitcount' );
-		}
+		$this->addFieldsIf( 'count(*) AS hitcount', $this->fld_hitcount );
 
 		$this->addOption( 'LIMIT', $this->limit + 1 );
 		$this->addOption( 'GROUP BY', 'ct_tag' );

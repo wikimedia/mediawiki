@@ -224,22 +224,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 
 			/* Add fields to our query if they are specified as a needed parameter. */
-			$this->addFieldsIf( 'rc_id', $this->fld_ids );
-			$this->addFieldsIf( 'rc_this_oldid', $this->fld_ids );
-			$this->addFieldsIf( 'rc_last_oldid', $this->fld_ids );
+			$this->addFieldsIf( array( 'rc_id', 'rc_this_oldid', 'rc_last_oldid' ), $this->fld_ids );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_user', $this->fld_user );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user || $this->fld_userid );
-			$this->addFieldsIf( 'rc_minor', $this->fld_flags );
-			$this->addFieldsIf( 'rc_bot', $this->fld_flags );
-			$this->addFieldsIf( 'rc_new', $this->fld_flags );
-			$this->addFieldsIf( 'rc_old_len', $this->fld_sizes );
-			$this->addFieldsIf( 'rc_new_len', $this->fld_sizes );
+			$this->addFieldsIf( array( 'rc_minor', 'rc_new', 'rc_bot' ) , $this->fld_flags );
+			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
-			$this->addFieldsIf( 'rc_logid', $this->fld_loginfo );
-			$this->addFieldsIf( 'rc_log_type', $this->fld_loginfo );
-			$this->addFieldsIf( 'rc_log_action', $this->fld_loginfo );
-			$this->addFieldsIf( 'rc_params', $this->fld_loginfo );
+			$this->addFieldsIf( array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ), $this->fld_loginfo );
 			$showRedirects = $this->fld_redirect || isset( $show['redirect'] ) || isset( $show['!redirect'] );
 		}
 

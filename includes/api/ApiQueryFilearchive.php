@@ -69,21 +69,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFields( array( 'fa_name', 'fa_deleted' ) );
 		$this->addFieldsIf( 'fa_storage_key', $fld_sha1 );
 		$this->addFieldsIf( 'fa_timestamp', $fld_timestamp );
-
-		if ( $fld_user ) {
-			$this->addFields( array( 'fa_user', 'fa_user_text' ) );
-		}
-
-		if ( $fld_dimensions || $fld_size ) {
-			$this->addFields( array( 'fa_height', 'fa_width', 'fa_size' ) );
-		}
-
+		$this->addFieldsIf( array( 'fa_user', 'fa_user_text' ), $fld_user );
+		$this->addFieldsIf( array( 'fa_height', 'fa_width', 'fa_size' ), $fld_dimensions || $fld_size );
 		$this->addFieldsIf( 'fa_description', $fld_description );
-
-		if ( $fld_mime ) {
-			$this->addFields( array( 'fa_major_mime', 'fa_minor_mime' ) );
-		}
-
+		$this->addFieldsIf( array( 'fa_major_mime', 'fa_minor_mime' ), $fld_mime );
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
 		$this->addFieldsIf( 'fa_bits', $fld_bitdepth );
 

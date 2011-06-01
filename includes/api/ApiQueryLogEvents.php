@@ -86,13 +86,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_deleted',
 		) );
 
-		$this->addFieldsIf( 'log_id', $this->fld_ids );
-		$this->addFieldsIf( 'page_id', $this->fld_ids );
-		$this->addFieldsIf( 'log_user', $this->fld_user );
-		$this->addFieldsIf( 'user_name', $this->fld_user );
+		$this->addFieldsIf( array( 'log_id', 'page_id' ), $this->fld_ids );
+		$this->addFieldsIf( array( 'log_user', 'user_name' ), $this->fld_user );
 		$this->addFieldsIf( 'user_id', $this->fld_userid );
-		$this->addFieldsIf( 'log_namespace', $this->fld_title || $this->fld_parsedcomment );
-		$this->addFieldsIf( 'log_title', $this->fld_title || $this->fld_parsedcomment );
+		$this->addFieldsIf( array( 'log_namespace', 'log_title' ), $this->fld_title || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_params', $this->fld_details );
 
