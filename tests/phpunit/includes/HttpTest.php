@@ -17,7 +17,9 @@ class HttpTest extends MediaWikiTestCase {
 	static $has_proxy = false;
 	static $proxy = "http://hulk:8080/";
 	var $test_geturl = array(
+		"ftp://ftp.kernel.org/",
 		"http://www.example.com/",
+		"https://secure.wikimedia.org/",
 		"http://pecl.php.net/feeds/pkg_apc.rss",
 		"http://toolserver.org/~jan/poll/dev/main.php?page=wiki_output&id=3",
 		"http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw",
@@ -540,7 +542,7 @@ class HttpTest extends MediaWikiTestCase {
 		return array(
 			array( false, '¿non sens before!! http://a', 'Allow anything before URI' ),
 
-			# (ftp|http|https) - only three schemes allowed 
+			# (ftp|http|https) - only three schemes allowed
 			array( true,  'http://www.example.org/' ),
 			array( true,  'https://www.example.org/' ),
 			array( true,  'ftp://www.example.org/' ),
