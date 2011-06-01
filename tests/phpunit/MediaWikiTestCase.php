@@ -12,6 +12,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $oldTablePrefix;
 	protected $useTemporaryTables = true;
 	private static $dbSetup = false;
+	private static $dbTables = null;
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -191,18 +192,21 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function listTables() {
 		global $wgDBprefix;
 
-		$tables = $this->db->listTables( $wgDBprefix, __METHOD__ );
-		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
+		if( is_null( self::$dbTables ) ) {
+			$tables = $this->db->listTables( $wgDBprefix, __METHOD__ );
+			$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
 
-		if ( $this->db->getType() == 'sqlite' ) {
-			$tables = array_flip( $tables );
-			// these are subtables of searchindex and don't need to be duped/dropped separately
-			unset( $tables['searchindex_content'] );
-			unset( $tables['searchindex_segdir'] );
-			unset( $tables['searchindex_segments'] );
-			$tables = array_flip( $tables );
+			if ( $this->db->getType() == 'sqlite' ) {
+				$tables = array_flip( $tables );
+				// these are subtables of searchindex and don't need to be duped/dropped separately
+				unset( $tables['searchindex_content'] );
+				unset( $tables['searchindex_segdir'] );
+				unset( $tables['searchindex_segments'] );
+				$tables = array_flip( $tables );
+			}
+			self::$dbTables = $tables;
 		}
-		return $tables;
+		return self::$dbTables;
 		
 	}
 	

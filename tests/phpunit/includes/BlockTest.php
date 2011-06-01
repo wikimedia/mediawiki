@@ -2,6 +2,7 @@
 
 /**
  * @group Database
+ * @group Broken
  */
 class BlockTest extends MediaWikiLangTestCase {
 	
