@@ -134,6 +134,7 @@ class User {
 		'suppressredirect',
 		'suppressrevision',
 		'trackback',
+		'unblockself',
 		'undelete',
 		'unwatchedpages',
 		'upload',
