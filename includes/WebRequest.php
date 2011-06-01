@@ -814,44 +814,52 @@ class WebRequest {
 	 * insecure.
 	 *
 	 * The criteria for finding an extension are as follows:
-	 * * a possible extension is a dot followed by one or more characters not in <>\"/:|?.#
-	 * * if we find a possible extension followed by the end of the string or a #, that's our extension
-	 * * if we find a possible extension followed by a ?, that's our extension
-	 * ** UNLESS it's exe, dll or cgi, in which case we ignore it and continue searching for another possible extension
-	 * * if we find a possible extension followed by a dot or another illegal character, we ignore it and continue searching
+	 * - a possible extension is a dot followed by one or more characters not 
+	 *   in <>\"/:|?.#
+	 * - if we find a possible extension followed by the end of the string or 
+	 *   a #, that's our extension
+	 * - if we find a possible extension followed by a ?, that's our extension
+	 *    - UNLESS it's exe, dll or cgi, in which case we ignore it and continue 
+	 *      searching for another possible extension
+	 * - if we find a possible extension followed by a dot or another illegal 
+	 *   character, we ignore it and continue searching
 	 * 
 	 * @param $url string URL
 	 * @return mixed Detected extension (string), or false if none found
 	 */
 	public static function findIE6Extension( $url ) {
-		$remaining = $url;
-		while ( $remaining !== '' ) {
+		$pos = 0;
+		$hashPos = strpos( $url, '#' );
+		if ( $hashPos !== false ) {
+			$urlLength = $hashPos;
+		} else {
+			$urlLength = strlen( $url );
+		}
+		$remainingLength = $urlLength;
+		while ( $remainingLength > 0 ) {
 			// Skip ahead to the next dot
-			$pos = strcspn( $remaining, '.' );
-			if ( $pos === strlen( $remaining ) || $remaining[$pos] === '#' ) {
+			$pos += strcspn( $url, '.', $pos, $remainingLength );
+			if ( $pos >= $urlLength ) {
 				// End of string, we're done
 				return false;
 			}
 			
 			// We found a dot. Skip past it
-			$remaining = substr( $remaining, $pos + 1 );
+			$pos++;
+			$remainingLength = $urlLength - $pos;
+
 			// Check for illegal characters in our prospective extension,
-			// or for another dot, or for a hash sign
-			$pos = strcspn( $remaining, "<>\\\"/:|?*.#" );
-			if ( $pos === strlen( $remaining ) ) {
-				// No illegal character or next dot or hash
+			// or for another dot
+			$nextPos = $pos + strcspn( $url, "<>\\\"/:|?*.", $pos, $remainingLength );
+			if ( $nextPos >= $urlLength ) {
+				// No illegal character or next dot
 				// We have our extension
-				return $remaining;
+				return substr( $url, $pos, $urlLength - $pos );
 			}
-			if ( $remaining[$pos] === '#' ) {
-				// We've found a legal extension followed by a hash
-				// Trim the hash and everything after it, then return that
-				return substr( $remaining, 0, $pos );
-			}
-			if ( $remaining[$pos] === '?' ) {
+			if ( $url[$nextPos] === '?' ) {
 				// We've found a legal extension followed by a question mark
 				// If the extension is NOT exe, dll or cgi, return it
-				$extension = substr( $remaining, 0, $pos );
+				$extension = substr( $url, $pos, $nextPos - $pos );
 				if ( strcasecmp( $extension, 'exe' ) && strcasecmp( $extension, 'dll' ) &&
 					strcasecmp( $extension, 'cgi' ) )
 				{
@@ -861,7 +869,8 @@ class WebRequest {
 			}
 			// We found an illegal character or another dot
 			// Skip to that character and continue the loop
-			$remaining = substr( $remaining, $pos );
+			$pos = $nextPos + 1;
+			$remainingLength = $urlLength - $pos;
 		}
 		return false;
 	}
