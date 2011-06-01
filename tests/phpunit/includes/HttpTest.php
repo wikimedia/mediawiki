@@ -17,11 +17,9 @@ class HttpTest extends MediaWikiTestCase {
 	static $has_proxy = false;
 	static $proxy = "http://hulk:8080/";
 	var $test_geturl = array(
-		"ftp://ftp.kernel.org/",
-		"http://www.example.com/",
+		"http://en.wikipedia.org/robots.txt",
 		"https://secure.wikimedia.org/",
 		"http://pecl.php.net/feeds/pkg_apc.rss",
-		"http://toolserver.org/~jan/poll/dev/main.php?page=wiki_output&id=3",
 		"http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw",
 		"http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:MediaWiki_hooks&format=php",
 	);
