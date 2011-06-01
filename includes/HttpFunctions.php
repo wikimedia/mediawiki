@@ -125,6 +125,9 @@ class Http {
 	 * protocols, because we only want protocols that both cURL
 	 * and php support.
 	 *
+	 * @fixme this is wildly inaccurate and fails to actually check most stuff
+	 * @fixme do we actually intend to have FTP support here? Does it work consistently?
+	 *
 	 * @param $uri Mixed: URI to check for validity
 	 * @returns Boolean
 	 */
