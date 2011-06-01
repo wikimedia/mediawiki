@@ -46,7 +46,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->db = wfGetDB( DB_MASTER );
 			
 			$this->checkDbIsSupported();
-			
+
 			$this->oldTablePrefix = $wgDBprefix;
 
 			if( !self::$dbSetup ) {
@@ -54,22 +54,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				self::$dbSetup = true;
 			}
 
-			$this->resetDB();
 			$this->addCoreDBData();
 			$this->addDBData();
 			
 			parent::run( $result );
 
-			$this->removeDBData();
-
+			$this->resetDB();
 		} else {
 			parent::run( $result );
-		}
-	}
-	
-	function __destruct() {
-		if( $this->needsDB() ) {
-			$this->destroyDB();
 		}
 	}
 
@@ -87,12 +79,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * implement this method and do so
 	 */
 	function addDBData() {}
-
-	/**
-	 * Stub. If a test needs to remove data from the database. Called after
-	 * test run.
-	 */
-	function removeDBData() {}
 	
 	private function addCoreDBData() {
 
@@ -129,6 +115,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$dbClone = new CloneDatabase( $this->db, $this->listTables(), $this->dbPrefix() );
 		$dbClone->useTemporaryTables( $this->useTemporaryTables );
 		$dbClone->cloneTableStructure();
+
+		if ( $this->db->getType() == 'oracle' ) {
+			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+
+			# Insert 0 user to prevent FK violations
+			# Anonymous user
+			$this->db->insert( 'user', array(
+				'user_id' 		=> 0,
+				'user_name'   	=> 'Anonymous' ) );
+		}
 	}
 
 	/**
@@ -137,48 +133,33 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private function resetDB() {
 		if( $this->db ) {
 			foreach( $this->listTables() as $tbl ) {
+				if( $tbl == 'interwiki' || $tbl == 'user' ) continue;
 				$this->db->delete( $tbl, '*', __METHOD__ );
-			}
-
-			if ( $this->db->getType() == 'oracle' ) {
-				$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
-
-				# Insert 0 user to prevent FK violations
-				# Anonymous user
-				$this->db->insert( 'user', array(
-					'user_id' 		=> 0,
-					'user_name'   	=> 'Anonymous' ) );
 			}
 		}
 	}
-	
+
 	protected function destroyDB() {
-		
-		if ( $this->useTemporaryTables ) {
+		if ( $this->useTemporaryTables || is_null( $this->db ) ) {
 			# Don't need to do anything
-			//return;
-			//Temporary tables seem to be broken ATM, delete anyway
-		}
-		
-		if( is_null( $this->db ) ) {
 			return;
 		}
-		
+
 		$tables = $this->db->listTables( $this->dbPrefix(), __METHOD__ );
-		
+
 		foreach ( $tables as $table ) {
 			try {
 				$sql = $this->db->getType() == 'oracle' ? "DROP TABLE $table CASCADE CONSTRAINTS PURGE" : "DROP TABLE `$table`";
 				$this->db->query( $sql, __METHOD__ );
-			} catch( Exception $e ) {
-			}
+			} catch( MWException $mwe ) {}
 		}
-		
+
 		if ( $this->db->getType() == 'oracle' )
 			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;', __METHOD__ );
-		
+
 		CloneDatabase::changePrefix( $this->oldTablePrefix );
 	}
+
 
 	function __call( $func, $args ) {
 		static $compatibility = array(
@@ -209,7 +190,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	protected function listTables() {
 		global $wgDBprefix;
-		
+
 		$tables = $this->db->listTables( $wgDBprefix, __METHOD__ );
 		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
 
