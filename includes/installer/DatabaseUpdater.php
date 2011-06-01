@@ -67,6 +67,7 @@ abstract class DatabaseUpdater {
 		}
 		$this->maintenance->setDB( $db );
 		$this->initOldGlobals();
+		$this->initIncludedExtensions();
 		wfRunHooks( 'LoadExtensionSchemaUpdates', array( $this ) );
 	}
 
@@ -86,6 +87,28 @@ abstract class DatabaseUpdater {
 		$wgExtPGAlteredFields = array(); // table, column, new type, conversion method; for PostgreSQL
 		$wgExtNewIndexes = array(); // table, index, dir
 		$wgExtModifiedFields = array(); // table, index, dir
+	}
+
+	/**
+	 * Try to include extensions from LocalSettings so their LocalExtensionSchemaChanges hooks can be run
+	 */
+	private function initIncludedExtensions() {
+		global $IP, $wgHooks, $wgAutoloadClasses;
+		$ls = file_get_contents( "$IP/LocalSettings.php" );
+		if ( $ls === false ) return;
+		$matches = array();
+		preg_match_all( '/[[:blank:]]*(?:require|include){1}(?:_once)?[[:blank:]]*\([[:blank:]]*"\$IP\/extensions\/([^\/].*)\/\1\.php"[[:blank:]]*\);[[:blank:]]*/i',
+						$ls, $matches, PREG_SET_ORDER );
+		unset( $ls );
+
+		if ( !isset( $wgHooks ) ) 
+			$wgHooks = array();
+		if ( !isset( $wgAutoloadClasses ) ) 
+			$wgAutoloadClasses = array();
+
+		foreach ( $matches as $match ) {
+			include_once ( "$IP/extensions/{$match[1]}/{$match[1]}.php" );
+		}
 	}
 
 	/**
