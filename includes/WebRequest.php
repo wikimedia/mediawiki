@@ -785,10 +785,8 @@ class WebRequest {
 	public function isPathInfoBad() {
 		global $wgScriptExtension;
 
-		if ( isset( $_SERVER['QUERY_STRING'] ) )
-		{
-			// Bug 28235
-			return strval( self::findIE6Extension( $_SERVER['QUERY_STRING'] ) ) !== '';
+		if ( $this->isQueryStringBad() ) {
+			return true;
 		}
 
 		if ( !isset( $_SERVER['PATH_INFO'] ) ) {
@@ -873,6 +871,24 @@ class WebRequest {
 			$remainingLength = $urlLength - $pos;
 		}
 		return false;
+	}
+
+	/**
+	 * Check for a bad query string, which IE 6 will use as a potentially 
+	 * insecure cache file extension. See bug 28235. Returns true if the 
+	 * request should be disallowed.
+	 */
+	public function isQueryStringBad() {
+		if ( !isset( $_SERVER['QUERY_STRING'] ) ) {
+			return false;
+		}
+
+		$extension = self::findIE6Extension( $_SERVER['QUERY_STRING'] );
+		if ( $extension === '' ) {
+			return false;
+		}
+
+		return (bool)preg_match( '/^[a-zA-Z0-9_-]+$/', $extension );
 	}
 
 	/**
