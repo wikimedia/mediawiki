@@ -97,7 +97,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( is_null( $resultPageSet ) ) {
 			$this->addFields( array(
 				'rc_cur_id',
-				'rc_this_oldid'
+				'rc_this_oldid',
+				'rc_last_oldid',
 			) );
 
 			$this->addFieldsIf( 'rc_new', $this->fld_flags );
@@ -237,6 +238,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( $this->fld_ids ) {
 			$vals['pageid'] = intval( $row->rc_cur_id );
 			$vals['revid'] = intval( $row->rc_this_oldid );
+			$vals['old_revid'] = intval( $row->rc_last_oldid );
 		}
 
 		$title = Title::makeTitle( $row->rc_namespace, $row->rc_title );
