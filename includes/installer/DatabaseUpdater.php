@@ -65,7 +65,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->maintenance = new FakeMaintenance;
 		}
-		$maintenance->setDB( $db );
+		$this->maintenance->setDB( $db );
 		$this->initOldGlobals();
 		wfRunHooks( 'LoadExtensionSchemaUpdates', array( $this ) );
 	}
