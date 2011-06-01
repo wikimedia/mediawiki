@@ -693,25 +693,25 @@ class Html {
 			$icon = $wgStylePath.'/common/images/'.$icon;
 		}
 
-		$s  = Xml::openElement( 'div', array( 'class' => "mw-infobox $class") );
+		$s  = Html::openElement( 'div', array( 'class' => "mw-infobox $class") );
 
-		$s .= Xml::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ).
+		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ).
 				Html::element( 'img',
 					array(
 						'src' => $icon,
 						'alt' => $alt,
 					)
 				).
-				Xml::closeElement( 'div' );
+				Html::closeElement( 'div' );
 
-		$s .= Xml::openElement( 'div', array( 'class' => 'mw-infobox-right' ) ).
+		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-right' ) ).
 				$text.
-				Xml::closeElement( 'div' );
-		$s .= Xml::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
+				Html::closeElement( 'div' );
+		$s .= Html::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
 
-		$s .= Xml::closeElement( 'div' );
+		$s .= Html::closeElement( 'div' );
 
-		$s .= Xml::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
+		$s .= Html::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
 
 		return $s;
 	}
