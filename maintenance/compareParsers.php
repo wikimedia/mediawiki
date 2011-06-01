@@ -32,7 +32,6 @@ require_once( dirname( __FILE__ ) . '/dumpIterator.php' );
 class CompareParsers extends DumpIterator {
 
 	private $count = 0;
-	private $startTime;
 
 	public function __construct() {
 		parent::__construct();
