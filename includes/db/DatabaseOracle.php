@@ -824,7 +824,8 @@ class DatabaseOracle extends DatabaseBase {
 			$listWhere = ' AND table_name LIKE \''.strtoupper($prefix).'%\'';
 		}
 		
-		$result = $this->doQuery( "SELECT table_name FROM user_tables WHERE table_name NOT LIKE '%!_IDX$_' ESCAPE '!' $listWhere" );
+		$owner = strtoupper( $this->mDBname );
+		$result = $this->doQuery( "SELECT table_name FROM all_tables WHERE owner='$owner' AND table_name NOT LIKE '%!_IDX$_' ESCAPE '!' $listWhere" );
 
 		// dirty code ... i know
 		$endArray = array();
