@@ -332,6 +332,10 @@ class HttpTest extends MediaWikiTestCase {
 	
 	function cookieDomains() {
 		return array(
+			array( false, "org"),
+			array( false, ".org"),
+			array( true, "wikipedia.org"),
+			array( true, ".wikipedia.org"),
 			array( false, "co.uk" ),
 			array( false, ".co.uk" ),
 			array( false, "gov.uk" ),
