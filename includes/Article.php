@@ -699,7 +699,7 @@ class Article {
 			if ( $text === false ) {
 				$text = $this->getRawText();
 			}
-			return in_string( ',', $text );
+			return strpos( $text,  ',' ) !== false;
 		case 'link':
 			if ( $editInfo ) {
 				// ParserOutput::getLinks() is a 2D array of page links, so
