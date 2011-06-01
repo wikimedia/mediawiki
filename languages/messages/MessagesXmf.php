@@ -23,12 +23,21 @@ $fallback = 'ka';
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'რცხიეფს თუდო ქუდუჸნე ღოზი:',
-'tog-highlightbroken' => 'ქააძირი ვაარარსებულ ბუნილეფ <a href="" class="new">მუჭოთ თენა</a> (ალტერნატივა: მუჭოთ თენა<a href="" class="internal">?</a>).',
-'tog-justify'         => 'გაასწორი პარაგრაფეფ',
-'tog-hideminor'       => 'დოფული ჭიჭე რედაქტირაფეფი ეკონია თირაფეფს',
-'tog-showtoolbar'     => 'რედაქტირაფაშ ინსტრუმენტეფიშ ძირაფა (ჯავასკრიპტ)',
-'tog-showhiddencats'  => 'ქაძირი ფულირი კატეგორიეფი',
+'tog-underline'               => 'რცხუეფიშ ათოღაზუა:',
+'tog-highlightbroken'         => 'ქაძირი მესოფილ რცხუეფი <a href="" class="new">მუჭოთ თენა</a> (ალტერნატივა: მუჭოთ თენა<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'გამანგი აბზაცეფი',
+'tog-hideminor'               => 'დოფული ციქა რედაქტირაფა ეკონია თირაფეფს',
+'tog-hidepatrolled'           => 'დოფულით პატრულირებულ რედაქტირაფეფი ასერდეიან თირაფეფს',
+'tog-newpageshidepatrolled'   => 'დოფულით პატრულირებულ ხასჷლეფი ახალ ხასჷლეფიშ ერკებულშე',
+'tog-extendwatchlist'         => 'გოფაჩი ოთოჸუჯე ერკებული არძო თირაფეფიშ ოძირაფალო, ამარდეიან თირაფეფიშ მეკოროცხილო',
+'tog-usenewrc'                => 'გეგმირინე ეკონია თირაფეფიშ უჯგუში ერკებული (ითხინს JavaScript-ის)',
+'tog-numberheadings'          => 'ავტომატურო დონომერე დუდჯოხოეფი',
+'tog-showtoolbar'             => 'რედაქტირაფაშ ხეჭკუდეფიშ ძირაფა (ითხინს JavaScript-ის)',
+'tog-editondblclick'          => 'ხასჷლეფიშ რედაქტირაფა ჟირმანგი გეწკანტაფათ (ითხინს JavaScript-ის)',
+'tog-editsection'             => 'ჩართი სექციაშ რედაქტირაფა [რედაქტირაფაშ] რცხუეფით',
+'tog-editsectiononrightclick' => 'ჩართი სექციაშ რედაქტირაფა სექციაშ ჯოხოშა მარძგვან გეწკანტაფათ (ითხინს JavaScript-ის)"',
+'tog-showtoc'                 => 'ქაძირი გჷშაგორალი (სუმშე უმოს დუდჯოხოამ ხასჷლეფშო)',
+'tog-showhiddencats'          => 'ქაძირი ფულირი კატეგორიეფი',
 
 'underline-always' => 'ირო',
 'underline-never'  => 'შურო',
