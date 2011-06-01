@@ -23,6 +23,7 @@ CREATE TABLE &mw_prefix.mwuser ( -- replace reserved word 'user'
 ALTER TABLE &mw_prefix.mwuser ADD CONSTRAINT &mw_prefix.mwuser_pk PRIMARY KEY (user_id);
 CREATE UNIQUE INDEX &mw_prefix.mwuser_u01 ON &mw_prefix.mwuser (user_name);
 CREATE INDEX &mw_prefix.mwuser_i01 ON &mw_prefix.mwuser (user_email_token);
+CREATE INDEX &mw_prefix.mwuser_i02 ON &mw_prefix.mwuser (user_email, user_name);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.mwuser
@@ -47,7 +48,7 @@ CREATE INDEX &mw_prefix.user_newtalk_i02 ON &mw_prefix.user_newtalk (user_ip);
 
 CREATE TABLE &mw_prefix.user_properties (
   up_user NUMBER NOT NULL,
-  up_property VARCHAR2(32) NOT NULL,
+  up_property VARCHAR2(255) NOT NULL,
   up_value CLOB
 );
 CREATE UNIQUE INDEX &mw_prefix.user_properties_u01 on &mw_prefix.user_properties (up_user,up_property);
@@ -635,6 +636,14 @@ CREATE TABLE &mw_prefix.module_deps (
   md_deps BLOB NOT NULL
 );
 CREATE UNIQUE INDEX &mw_prefix.module_deps_u01 ON &mw_prefix.module_deps (md_module, md_skin);
+
+CREATE TABLE &mw_prefix.config (
+  cf_name VARCHAR2(255) NOT NULL,
+  cf_value blob NOT NULL
+);
+ALTER TABLE &mw_prefix.config ADD CONSTRAINT &mw_prefix.config_pk PRIMARY KEY (cf_name);
+-- leaving index out for now ... 
+
 
 -- do not prefix this table as it breaks parserTests
 CREATE TABLE wiki_field_info_full (

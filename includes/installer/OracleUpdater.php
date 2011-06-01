@@ -23,12 +23,20 @@ class OracleUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return array(
-			// 1.16
+			// 1.17
 			array( 'doNamespaceDefaults' ),
 			array( 'doFKRenameDeferr' ),
 			array( 'doFunctions17' ),
 			array( 'doSchemaUpgrade17' ),
 			array( 'doInsertPage0' ),
+			
+			//1.18
+			array( 'addIndex',	'user',          'i02',       'patch-user_email_index.sql' ),
+			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
+
+			// 1.19
+			array( 'addTable', 'config', 'patch-config.sql' ),
+			
 		);
 	}
 

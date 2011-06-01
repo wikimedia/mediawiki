@@ -894,11 +894,14 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	/**
-	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
+	 * Query whether a given index exists
 	 */
-	function tableExists( $table ) {
-		$table = $this->removeIdentifierQuotes($table);
-		$SQL = "SELECT 1 FROM user_tables WHERE table_name='$table'";
+	function indexExists( $table, $index, $fname = 'DatabaseOracle::indexExists' ) {
+		$table = $this->tableName( $table );
+		$table = strtoupper( $this->removeIdentifierQuotes( $table ) );
+		$index = strtoupper( $index );
+		$owner = strtoupper( $this->mDBname );
+		$SQL = "SELECT 1 FROM all_indexes WHERE owner='$owner' AND index_name='{$table}_{$index}'";
 		$res = $this->doQuery( $SQL );
 		if ( $res ) {
 			$count = $res->numRows();
@@ -906,7 +909,25 @@ class DatabaseOracle extends DatabaseBase {
 		} else {
 			$count = 0;
 		}
-		return $count;
+		return $count != 0;
+	}
+
+	/**
+	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
+	 */
+	function tableExists( $table ) {
+		$table = $this->tableName( $table );
+		$table = strtoupper( $this->removeIdentifierQuotes( $table ) );
+		$owner = strtoupper( $this->mDBname );
+		$SQL = "SELECT 1 FROM all_tables WHERE owner='$owner' AND table_name='$table'";
+		$res = $this->doQuery( $SQL );
+		if ( $res ) {
+			$count = $res->numRows();
+			$res->free();
+		} else {
+			$count = 0;
+		}
+		return $count != 0;
 	}
 
 	/**
