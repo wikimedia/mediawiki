@@ -653,4 +653,47 @@ class Html {
 				return false;
 		}
 	}
+	
+	/**
+	 * Get HTML for an info box with an icon.
+	 *
+	 * @param $text String: wikitext, get this with wfMsgNoTrans()
+	 * @param $icon String: icon name, file in skins/common/images
+	 * @param $alt String: alternate text for the icon
+	 * @param $class String: additional class name to add to the wrapper div
+	 * @param $useStylePath
+	 *
+	 * @return string
+	 */
+	static function infoBox( $text, $icon, $alt, $class = false, $useStylePath = true ) {
+		global $wgStylePath;
+		
+		if ( $useStylePath ) {
+			$icon = $wgStylePath.'/common/images/'.$icon;
+		}
+		
+		
+		$s  = Xml::openElement( 'div', array( 'class' => "mw-infobox $class") );
+		
+		$s .= Xml::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ).
+				Html::element( 'img',
+					array(
+						'src' => $icon,
+						'alt' => $alt,
+					)
+				).
+				Xml::closeElement( 'div' );
+
+		$s .= Xml::openElement( 'div', array( 'class' => 'mw-infobox-right' ) ).
+				$text.
+				Xml::closeElement( 'div' );
+		$s .= Xml::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
+
+		$s .= Xml::closeElement( 'div' );
+
+		$s .= Xml::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
+		
+		return $s;
+	}
+	
 }
