@@ -101,20 +101,14 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				'rc_last_oldid',
 			) );
 
-			$this->addFieldsIf( 'rc_new', $this->fld_flags );
-			$this->addFieldsIf( 'rc_minor', $this->fld_flags );
-			$this->addFieldsIf( 'rc_bot', $this->fld_flags );
+			$this->addFieldsIf( array( 'rc_new', 'rc_minor', 'rc_bot' ), $this->fld_flags );
 			$this->addFieldsIf( 'rc_user', $this->fld_user || $this->fld_userid );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrol );
-			$this->addFieldsIf( 'rc_old_len', $this->fld_sizes );
-			$this->addFieldsIf( 'rc_new_len', $this->fld_sizes );
+			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
 			$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
-			$this->addFieldsIf( 'rc_logid', $this->fld_loginfo );
-			$this->addFieldsIf( 'rc_log_type', $this->fld_loginfo );
-			$this->addFieldsIf( 'rc_log_action', $this->fld_loginfo );
-			$this->addFieldsIf( 'rc_params', $this->fld_loginfo );
+			$this->addFieldsIf( array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ), $this->fld_loginfo );
 		} elseif ( $params['allrev'] ) {
 			$this->addFields( 'rc_this_oldid' );
 		} else {

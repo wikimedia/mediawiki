@@ -70,33 +70,17 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addTables( 'ipblocks' );
 		$this->addFields( 'ipb_auto' );
 
-		if ( $fld_id ) {
-			$this->addFields( 'ipb_id' );
-		}
-		if ( $fld_user || $fld_userid ) {
-			$this->addFields( array( 'ipb_address', 'ipb_user' ) );
-		}
-		if ( $fld_by ) {
-			$this->addFields( 'ipb_by_text' );
-		}
-		if ( $fld_byid ) {
-			$this->addFields( 'ipb_by' );
-		}
-		if ( $fld_timestamp ) {
-			$this->addFields( 'ipb_timestamp' );
-		}
-		if ( $fld_expiry ) {
-			$this->addFields( 'ipb_expiry' );
-		}
-		if ( $fld_reason ) {
-			$this->addFields( 'ipb_reason' );
-		}
-		if ( $fld_range ) {
-			$this->addFields( array( 'ipb_range_start', 'ipb_range_end' ) );
-		}
-		if ( $fld_flags ) {
-			$this->addFields( array( 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock', 'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ) );
-		}
+		$this->addFieldsIf ( 'ipb_id', $fld_id );
+		$this->addFieldsIf( array( 'ipb_address', 'ipb_user' ), $fld_user || $fld_userid );
+		$this->addFieldsIf( 'ipb_by_text', $fld_by );
+		$this->addFieldsIf( 'ipb_by', $fld_byid );
+		$this->addFieldsIf( 'ipb_timestamp', $fld_timestamp );
+		$this->addFieldsIf( 'ipb_expiry', $fld_expiry );
+		$this->addFieldsIf( 'ipb_reason', $fld_reason );
+		$this->addFieldsIf( array( 'ipb_range_start', 'ipb_range_end' ), $fld_range );
+		$this->addFieldsIf( array( 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock',
+									'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ),
+							$fld_flags );
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addWhereRange( 'ipb_timestamp', $params['dir'], $params['start'], $params['end'] );

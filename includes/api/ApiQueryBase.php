@@ -111,7 +111,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of fields to select to the internal array
-	 * @param $value mixed Field name or array of field names
+	 * @param $value array|string Field name or array of field names
 	 */
 	protected function addFields( $value ) {
 		if ( is_array( $value ) ) {
@@ -123,7 +123,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Same as addFields(), but add the fields only if a condition is met
-	 * @param $value mixed See addFields()
+	 * @param $value array|string See addFields()
 	 * @param $condition bool If false, do nothing
 	 * @return bool $condition
 	 */
