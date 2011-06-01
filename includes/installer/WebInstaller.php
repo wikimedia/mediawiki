@@ -615,7 +615,7 @@ class WebInstaller extends Installer {
 		$text = $this->parse( $text, true );
 		$icon = ( $icon == false ) ? '../skins/common/images/info-32.png' : '../skins/common/images/'.$icon;
 		$alt = wfMsg( 'config-information' );
-		return Xml::infoBox( $text, $icon, $alt, $class, false );
+		return Html::infoBox( $text, $icon, $alt, $class, false );
 	}
 
 	/**
