@@ -131,7 +131,6 @@ class FileDeleteForm {
 					$status = $file->delete( $reason, $suppress );
 					if( $status->ok ) {
 						$dbw->commit();
-						wfRunHooks( 'ArticleDeleteComplete', array( &$article, &$wgUser, $reason, $id ) );
 					} else {
 						$dbw->rollback();
 					}
