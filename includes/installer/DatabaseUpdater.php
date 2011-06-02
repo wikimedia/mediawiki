@@ -251,7 +251,7 @@ abstract class DatabaseUpdater {
 			$this->runUpdates( $this->getOldGlobalUpdates(), false );
 			$this->runUpdates( $this->getExtensionUpdates(), true );
 			foreach ( $this->getExtensionUpdaters() as $updaterClass ) {
-				$eupdater = new $updaterClass(this);
+				$eupdater = new $updaterClass( $this );
 				$eupdater->doUpdates();
 			}
 		}
