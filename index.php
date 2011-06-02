@@ -96,6 +96,8 @@ function wfIndexMain() {
 			} else {
 				echo "Waiting for a database server: $lag seconds lagged\n";
 			}
+			wfProfileOut( 'index.php-setup' );
+			wfProfileOut( 'index.php' );
 			return;
 		}
 	}
