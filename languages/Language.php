@@ -2237,9 +2237,6 @@ class Language {
 		# For some languages we'll want to explicitly specify
 		# which characters make it into the edit box raw
 		# or are converted in some way or another.
-		# Note that if wgOutputEncoding is different from
-		# wgInputEncoding, this text will be further converted
-		# to wgOutputEncoding.
 		global $wgEditEncoding;
 		if ( $wgEditEncoding == '' || $wgEditEncoding == 'UTF-8' ) {
 			return $s;
