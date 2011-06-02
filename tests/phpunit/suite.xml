@@ -9,7 +9,7 @@
          convertWarningsToExceptions="true"
          stopOnFailure="false"
          strict="true"
-		 verbose="false">
+		 verbose="true">
 	<testsuites>
 		<testsuite name="includes">
 			<directory>./includes</directory>
