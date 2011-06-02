@@ -147,6 +147,10 @@ class WebInstaller extends Installer {
 			);
 
 			$ls = new LocalSettingsGenerator( $this );
+			$rightsProfile = $this->rightsProfiles[$this->getVar( '_RightsProfile' )];
+			foreach( $rightsProfile as $group => $rightsArr ) {
+				$ls->setGroupRights( $group, $rightsArr );
+			}
 			echo $ls->getText();
 			return $this->session;
 		}
