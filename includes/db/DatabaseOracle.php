@@ -818,12 +818,12 @@ class DatabaseOracle extends DatabaseBase {
 		$newName = strtoupper( $newName );
 		$oldName = strtoupper( $oldName );
 
-		$tabName = $this->addIdentifierQuotes( substr( $newName, strlen( $wgDBprefix ) ) );
-		$oldPrefix = $this->addIdentifierQuotes( substr( $oldName, 0, strlen( $oldName ) - strlen( $tabName ) ) );
-		$newPrefix = $this->addIdentifierQuotes( $wgDBprefix );
+		$tabName = substr( $newName, strlen( $wgDBprefix ) );
+		$oldPrefix = substr( $oldName, 0, strlen( $oldName ) - strlen( $tabName ) );
+		$newPrefix = strtoupper( $wgDBprefix );
 
 		$this->clearFlag( DBO_DDLMODE );
-		return $this->doQuery( "BEGIN DUPLICATE_TABLE( $tabName, $oldPrefix, $newPrefix, $temporary ); END;" );
+		return $this->doQuery( "BEGIN DUPLICATE_TABLE( '$tabName', '$oldPrefix', '$newPrefix', $temporary ); END;" );
 	}
 
 	function listTables( $prefix = null, $fname = 'DatabaseOracle::listTables' ) {
@@ -833,7 +833,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 		
 		$owner = strtoupper( $this->mDBname );
-		$result = $this->doQuery( "SELECT table_name FROM all_tables WHERE owner='$owner' AND table_name NOT LIKE '%!_IDX$_' ESCAPE '!' $listWhere" );
+		$result = $this->doQuery( "SELECT table_name FROM all_tables WHERE owner='$owner' AND table_name NOT LIKE '%!_IDX\$_' ESCAPE '!' $listWhere" );
 
 		// dirty code ... i know
 		$endArray = array();
