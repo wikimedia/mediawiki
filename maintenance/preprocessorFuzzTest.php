@@ -102,7 +102,6 @@ class PPFuzzTester {
 				file_put_contents( $filename, "Input:\n$testReport\n" );*/
 			}
 		}
-		wfLogProfilingData();
 	}
 
 	function makeInputText( $max = false ) {
