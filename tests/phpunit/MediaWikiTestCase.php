@@ -18,7 +18,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	const DB_PREFIX = 'unittest_';
 	const ORA_DB_PREFIX = 'ut_';
-	
+
 	protected $supportedDBs = array(
 		'mysql',
 		'sqlite',
@@ -31,7 +31,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
 	}
-	
+
 	function run( PHPUnit_Framework_TestResult $result = NULL ) {
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
@@ -40,11 +40,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
 
 		if( $this->needsDB() ) {
-		
+
 			global $wgDBprefix;
-			
+
 			$this->db = wfGetDB( DB_MASTER );
-			
+
 			$this->checkDbIsSupported();
 
 			$this->oldTablePrefix = $wgDBprefix;
@@ -56,7 +56,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			$this->addCoreDBData();
 			$this->addDBData();
-			
+
 			parent::run( $result );
 
 			$this->resetDB();
@@ -68,7 +68,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	function dbPrefix() {
 		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
 	}
-	
+
 	function needsDB() {
 		$rc = new ReflectionClass( $this );
 		return strpos( $rc->getDocComment(), '@group Database' ) !== false;
@@ -79,14 +79,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * implement this method and do so
 	 */
 	function addDBData() {}
-	
+
 	private function addCoreDBData() {
 
 		User::resetIdByNameCache();
 
 		//Make sysop user
 		$user = User::newFromName( 'UTSysop' );
-		
+
 		if ( $user->idForName() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTSysopPassword' );
@@ -96,7 +96,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$user->saveSettings();
 		}
 
-		
+
 		//Make 1 page with 1 revision
 		$article = new Article( Title::newFromText( 'UTPage' ) );
 		$article->doEdit( 'UTContent',
@@ -105,7 +105,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 							false,
 							User::newFromName( 'UTSysop' ) );
 	}
-	
+
 	private function initDB() {
 		global $wgDBprefix;
 		if ( $wgDBprefix === $this->dbPrefix() ) {
@@ -182,7 +182,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private function assertEmpty2( $value, $msg ) {
 		return $this->assertTrue( $value == '', $msg );
 	}
-	
+
 	static private function unprefixTable( $tableName ) {
 		global $wgDBprefix;
 		return substr( $tableName, strlen( $wgDBprefix ) );
@@ -211,25 +211,25 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 		return $tables;
 	}
-	
+
 	protected function checkDbIsSupported() {
 		if( !in_array( $this->db->getType(), $this->supportedDBs ) ) {
 			throw new MWException( $this->db->getType() . " is not currently supported for unit testing." );
 		}
 	}
-	
+
 	public function getCliArg( $offset ) {
-	
+
 		if( isset( MediaWikiPHPUnitCommand::$additionalOptions[$offset] ) ) {
 			return MediaWikiPHPUnitCommand::$additionalOptions[$offset];
 		}
-		
+
 	}
-	
+
 	public function setCliArg( $offset, $value ) {
-	
+
 		MediaWikiPHPUnitCommand::$additionalOptions[$offset] = $value;
-		
+
 	}
 }
 
