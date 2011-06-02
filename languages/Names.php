@@ -276,10 +276,11 @@
 	'rmy' => 'Romani',	# Vlax Romany
 	'rn' => 'Kirundi',		# Rundi/Kirundi/Urundi
 	'ro' => 'Română',	# Romanian
-	'roa-rup' => 'Armãneashce', # Aromanian
+	'roa-rup' => 'Armãneashce', # Aromanian (deprecated code, 'rup' exists in ISO 693-3)
 	'roa-tara' => 'Tarandíne',	# Tarantino
 	'ru' => 'Русский',	# Russian
 	'rue' => 'Русиньскый',	# Rusyn
+	'rup' => 'Armãneashce', # Aromanian
 	'ruq' => 'Vlăheşte',	# Megleno-Romanian (multiple scripts - defaults to Latin)
 	'ruq-cyrl' => 'Влахесте',	# Megleno-Romanian (Cyrillic script)
 	# 'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
