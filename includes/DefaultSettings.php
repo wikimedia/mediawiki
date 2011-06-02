@@ -1868,6 +1868,7 @@ $wgDummyLanguageCodes = array(
 	'iu',
 	'nb',
 	'qqq',
+	'roa-rup',
 	'simple',
 );
 
