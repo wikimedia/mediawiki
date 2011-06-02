@@ -3878,7 +3878,7 @@ pst
 !! test
 pre-save transform: Signature expansion in nowiki tags (bug 93)
 !! options
-pst
+pst disabled
 !! input
 Shall not expand:
 
