@@ -188,11 +188,18 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return substr( $tableName, strlen( $wgDBprefix ) );
 	}
 
+	static private function isNotUnittest( $table ) {
+		return strpos( $table, 'unittest_' ) !== 0;
+	}
+
 	protected function listTables() {
 		global $wgDBprefix;
 
 		$tables = $this->db->listTables( $wgDBprefix, __METHOD__ );
 		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
+
+		// Don't duplicate test tables from the previous fataled run
+		$tables = array_filter( $tables, array( __CLASS__, 'isNotUnittest' ) );
 
 		if ( $this->db->getType() == 'sqlite' ) {
 			$tables = array_flip( $tables );
