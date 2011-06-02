@@ -48,7 +48,7 @@ class SpecialBlock extends SpecialPage {
 
 	/// @var Bool
 	protected $alreadyBlocked;
-	
+
 	/// @var Array
 	protected $preErrors = array();
 

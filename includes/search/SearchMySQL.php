@@ -40,8 +40,8 @@ class SearchMySQL extends SearchEngine {
 		parent::__construct( $db );
 	}
 
-	/** 
-	 * Parse the user's query and transform it into an SQL fragment which will 
+	/**
+	 * Parse the user's query and transform it into an SQL fragment which will
 	 * become part of a WHERE clause
 	 *
 	 * @param $filteredText string
@@ -419,7 +419,7 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Check MySQL server's ft_min_word_len setting so we know
 	 * if we need to pad short words...
-	 * 
+	 *
 	 * @return int
 	 */
 	protected function minSearchLength() {
