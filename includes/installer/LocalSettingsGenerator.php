@@ -16,6 +16,7 @@ class LocalSettingsGenerator {
 
 	private $extensions = array();
 	private $values = array();
+	private $groupPermissions = array();
 	private $dbSettings = '';
 	private $safeMode = false;
 
@@ -74,6 +75,16 @@ class LocalSettingsGenerator {
 		$this->dbSettings = $db->getLocalSettings();
 		$this->safeMode = $installer->getVar( '_SafeMode' );
 		$this->values['wgEmergencyContact'] = $this->values['wgPasswordSender'];
+	}
+
+	/**
+	 * For $wgGroupPermissions, set a given ['group']['permission'] value.
+	 * @param $group String Group name
+	 * @param $rightsArr Array An array of permissions, in the form of:
+	 *   array( 'right' => true, 'right2' => false )
+	 */
+	public function setGroupRights( $group, $rightsArr ) {
+		$this->groupPermissions[$group] = $rightsArr;
 	}
 
 	/**
@@ -176,11 +187,24 @@ class LocalSettingsGenerator {
 			$locale = '';
 		}
 
-		$rights = $this->values['wgRightsUrl'] ? '' : '#';
+		$rightsUrl = $this->values['wgRightsUrl'] ? '' : '#';
 		$hashedUploads = $this->safeMode ? '' : '#';
 		$metaNamespace = '';
 		if( $this->values['wgMetaNamespace'] !== $this->values['wgSitename'] ) {
 			$metaNamespace = "\$wgMetaNamespace = \"{$this->values['wgMetaNamespace']}\";\n";
+		}
+
+		$groupRights = '';
+		if( $this->groupPermissions ) {
+			$groupRights .= "# The following permissions were set based on your choice in the installer\n";
+			foreach( $this->groupPermissions as $group => $rightArr ) {
+				$group = self::escapePhpString( $group );
+				foreach( $rightArr as $right => $perm ) {
+					$right = self::escapePhpString( $right );
+					$groupRights .= "\$wgGroupPermissions['$group']['$right'] = " .
+						wfBoolToStr( $perm ) . "\n";
+				}
+			}
 		}
 
 		switch( $this->values['wgMainCacheType'] ) {
@@ -298,7 +322,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
-{$rights}\$wgEnableCreativeCommonsRdf = true;
+{$rightsUrl}\$wgEnableCreativeCommonsRdf = true;
 \$wgRightsPage = \"\"; # Set to the title of a wiki page that describes your license/copyright
 \$wgRightsUrl  = \"{$this->values['wgRightsUrl']}\";
 \$wgRightsText = \"{$this->values['wgRightsText']}\";
@@ -313,7 +337,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 # or if you have suhosin.get.max_value_length set in php.ini (then set it to
 # that value)
 \$wgResourceLoaderMaxQueryLength = {$this->values['wgResourceLoaderMaxQueryLength']};
-";
+
+{$groupRights}";
 	}
 
 }
