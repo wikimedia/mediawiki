@@ -98,7 +98,7 @@ function wfIndexMain() {
 			}
 			wfProfileOut( 'index.php-setup' );
 			wfProfileOut( 'index.php' );
-			return;
+			exit;
 		}
 	}
 
@@ -118,7 +118,7 @@ function wfIndexMain() {
 		$dispatcher->performAction();
 		wfProfileOut( 'index.php' );
 		$mediaWiki->restInPeace();
-		return;
+		exit;
 	}
 
 	if ( $wgUseFileCache && $wgTitle !== null ) {
@@ -142,7 +142,7 @@ function wfIndexMain() {
 				$mediaWiki->finalCleanup();
 				wfProfileOut( 'index.php' );
 				$mediaWiki->restInPeace();
-				return;
+				exit;
 			}
 		}
 		wfProfileOut( 'index.php-filecache' );
