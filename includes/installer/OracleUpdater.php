@@ -36,6 +36,10 @@ class OracleUpdater extends DatabaseUpdater {
 
 			// 1.19
 			array( 'addTable', 'config', 'patch-config.sql' ),
+
+
+			// till 2.0 i guess
+			array( 'doRebuildDuplicateFunction' ),
 			
 		);
 	}
@@ -115,6 +119,16 @@ class OracleUpdater extends DatabaseUpdater {
 			'page_len' => 0
 		);
 		$this->db->insert( 'page', $row, 'OracleUpdater:doInserPage0', array( 'IGNORE' ) );
+		$this->output( "ok\n" );
+	}
+
+
+	/**
+	 * rebuilding of the function that duplicates tables for tests
+	 */
+	protected function doRebuildDuplicateFunction() {
+		$this->output( "Rebuilding duplicate function ... " );
+		$this->applyPatch( 'patch_rebuild_dupfunc.sql', false );
 		$this->output( "ok\n" );
 	}
 

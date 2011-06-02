@@ -756,22 +756,30 @@ BEGIN
               WHERE table_name = p_oldprefix || p_tabname
                 AND constraint_type = 'P') LOOP
     l_temp_ei_sql := SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE') - 1);
-    l_temp_ei_sql := SUBSTR(l_temp_ei_sql, 1, INSTR(l_temp_ei_sql, ')', INSTR(l_temp_ei_sql, 'PRIMARY KEY')+1)+1);
-    EXECUTE IMMEDIATE l_temp_ei_sql;
+    l_temp_ei_sql := SUBSTR(l_temp_ei_sql,
+                            1,
+                            INSTR(l_temp_ei_sql,
+                                  ')',
+                                  INSTR(l_temp_ei_sql, 'PRIMARY KEY') + 1) + 1);
+    IF nvl(length(l_temp_ei_sql), 0) > 0 THEN
+      EXECUTE IMMEDIATE l_temp_ei_sql;
+    END IF;
   END LOOP;
   IF (NOT p_temporary) THEN
-  FOR rc IN (SELECT REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('REF_CONSTRAINT',
-                                                                  constraint_name),
-                                            32767,
-                                            1),
-                            USER || '"."' || p_oldprefix,
-                            USER || '"."' || p_newprefix) DDLVC2,
-                    constraint_name
-               FROM user_constraints uc
-              WHERE table_name = p_oldprefix || p_tabname
-                AND constraint_type = 'R') LOOP
-    EXECUTE IMMEDIATE rc.ddlvc2;
-  END LOOP;
+    FOR rc IN (SELECT REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('REF_CONSTRAINT',
+                                                                    constraint_name),
+                                              32767,
+                                              1),
+                              USER || '"."' || p_oldprefix,
+                              USER || '"."' || p_newprefix) DDLVC2,
+                      constraint_name
+                 FROM user_constraints uc
+                WHERE table_name = p_oldprefix || p_tabname
+                  AND constraint_type = 'R') LOOP
+      IF nvl(length(l_temp_ei_sql), 0) > 0 THEN
+        EXECUTE IMMEDIATE l_temp_ei_sql;
+      END IF;
+    END LOOP;
   END IF;
   FOR rc IN (SELECT REPLACE(REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('INDEX',
                                                                           index_name),
@@ -792,8 +800,15 @@ BEGIN
                       WHERE table_name = ui.table_name
                         AND constraint_name = ui.index_name)) LOOP
     l_temp_ei_sql := SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE') - 1);
-    l_temp_ei_sql := SUBSTR(l_temp_ei_sql, 1, INSTR(l_temp_ei_sql, ')', INSTR(l_temp_ei_sql, '"' || USER || '"."' || p_newprefix || '"')+1)+1);
-    EXECUTE IMMEDIATE l_temp_ei_sql;
+    l_temp_ei_sql := SUBSTR(l_temp_ei_sql,
+                            1,
+                            INSTR(l_temp_ei_sql,
+                                  ')',
+                                  INSTR(l_temp_ei_sql,
+                                        '"' || USER || '"."' || p_newprefix || '"') + 1) + 1);
+    IF nvl(length(l_temp_ei_sql), 0) > 0 THEN
+      EXECUTE IMMEDIATE l_temp_ei_sql;
+    END IF;
   END LOOP;
   FOR rc IN (SELECT REPLACE(REPLACE(UPPER(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('TRIGGER',
                                                                                 trigger_name),
@@ -807,7 +822,9 @@ BEGIN
                FROM user_triggers
               WHERE table_name = p_oldprefix || p_tabname) LOOP
     l_temp_ei_sql := SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'ALTER ') - 1);
-    EXECUTE IMMEDIATE l_temp_ei_sql;
+    IF nvl(length(l_temp_ei_sql), 0) > 0 THEN
+      EXECUTE IMMEDIATE l_temp_ei_sql;
+    END IF;
   END LOOP;
 END;
 /*$mw$*/
