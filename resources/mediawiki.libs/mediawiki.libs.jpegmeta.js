@@ -1,7 +1,7 @@
 /* This is JsJpegMeta 1.0, ported to MediaWiki ResourceLoader by Bryan Tong Minh */
 /* The following lines where changed with respect to the original: 54, 625-627 */
 
-( function( $, mw ) {
+(function( $ ) {
 
 	/* JsJpegMeta starts here */
 	
@@ -724,10 +724,8 @@
 	
 	/* JsJpegMeta ends here */
 
-	mw.util = $.extend( mw.util || {}, {
-		jpegmeta: function( fileReaderResult, fileName ) {
-			return new JpegMeta.JpegFile( fileReaderResult, fileName );
-		}
-	} );
+	mw.libs.jpegmeta = function( fileReaderResult, fileName ) {
+		return new JpegMeta.JpegFile( fileReaderResult, fileName );
+	};
 
-} )( jQuery, mediaWiki );
+} )( jQuery );
