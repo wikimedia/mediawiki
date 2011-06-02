@@ -201,6 +201,7 @@
 				if ( $tocList.is( ':hidden' ) ) {
 					$tocList.slideDown( 'fast', callback );
 					$toggleLink.text( mw.msg( 'hidetoc' ) );
+					$( '#toc' ).removeClass( 'tochidden' );
 					$.cookie( 'mw_hidetoc', null, {
 						expires: 30,
 						path: '/'
@@ -209,6 +210,7 @@
 				} else {
 					$tocList.slideUp( 'fast', callback );
 					$toggleLink.text( mw.msg( 'showtoc' ) );
+					$( '#toc' ).addClass( 'tochidden' );
 					$.cookie( 'mw_hidetoc', '1', {
 						expires: 30,
 						path: '/'
