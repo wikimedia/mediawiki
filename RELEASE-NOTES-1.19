@@ -44,7 +44,6 @@ production.
 * (bug 29067) Creating "user.tokens" module (like user.options) in ResourceLoader.
 
 === Bug fixes in 1.19 ===
-* (bug 10154) Don't allow user to specify days beyond $wgRCMaxAge.
 * (bug 28868) Show total pages in the subtitle of an image on the
   file description page for multi-paged documents.
 * (bug 28883) Message names for different compression types commonly

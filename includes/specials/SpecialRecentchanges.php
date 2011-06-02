@@ -71,7 +71,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return FormOptions
 	 */
 	public function setup( $parameters ) {
-		global $wgRequest, $wgRCMaxAge;
+		global $wgRequest;
 
 		$opts = $this->getDefaultOptions();
 
@@ -82,7 +82,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		$opts->fetchValuesFromRequest( $wgRequest );
-		$opts->validateIntBounds( 'days', 1, $wgRCMaxAge / ( 3600 * 24 ) );
 
 		// Give precedence to subpage syntax
 		if( $parameters !== null ) {
