@@ -1984,6 +1984,9 @@ class Linker {
 	}
 }
 
+/**
+ * @since 1.19
+ */
 class DummyLinker {
 
 	/**
