@@ -1,5 +1,5 @@
 <?php
-/** Aromanian (Armãneashce)
+/** Aromanian (ArmÃ£neashce)
  *
  * ISO 639-3 code 'rup' should be used. This is code is maintained for backward
  * compatilibity.
