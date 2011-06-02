@@ -111,7 +111,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			list( $type, $action ) = explode( '/', $params['action'] );
 			$this->addWhereFld( 'log_type', $type );
 			$this->addWhereFld( 'log_action', $action );
-		} else if ( !is_null( $params['type'] ) ) {
+		}
+		else if ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'log_type', $params['type'] );
 			$index['logging'] = 'type_time';
 		}
@@ -370,8 +371,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				)
 			),
 			'type' => array(
-				ApiBase::PARAM_TYPE => $wgLogTypes,
-				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => $wgLogTypes
 			),
 			'action' => array(
 				ApiBase::PARAM_TYPE => array_keys( $wgLogActions )
