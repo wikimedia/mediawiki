@@ -42,6 +42,7 @@ production.
   added to the textarea on the edit form.
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
 * (bug 29067) Creating "user.tokens" module (like user.options) in ResourceLoader.
+* New 'Debug' hook used by wfDebug() and wfDebugLog()
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
