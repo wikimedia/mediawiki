@@ -72,7 +72,7 @@ class MWInit {
 	 * extensions directory.
 	 */
 	static function extInterpretedPath( $file ) {
-		return getExtensionsDirectory() . '/' . $file;
+		return self::getExtensionsDirectory() . '/' . $file;
 	}
 
 	/**
@@ -84,7 +84,7 @@ class MWInit {
 		if ( defined( 'MW_COMPILED' ) ) {
 			return "extensions/$file";
 		} else {
-			return getExtensionsDirectory() . '/' . $file;
+			return self::getExtensionsDirectory() . '/' . $file;
 		}
 	}
 
