@@ -118,22 +118,8 @@ class RawPage {
 	function view() {
 		global $wgOut, $wgRequest;
 
-		if( $wgRequest->isPathInfoBad() ) {
-			# Internet Explorer will ignore the Content-Type header if it
-			# thinks it sees a file extension it recognizes. Make sure that
-			# all raw requests are done through the script node, which will
-			# have eg '.php' and should remain safe.
-			#
-			# We used to redirect to a canonical-form URL as a general
-			# backwards-compatibility / good-citizen nice thing. However
-			# a lot of servers are set up in buggy ways, resulting in
-			# redirect loops which hang the browser until the CSS load
-			# times out.
-			#
-			# Just return a 403 Forbidden and get it over with.
-			wfHttpError( 403, 'Forbidden',
-				'Invalid file extension found in PATH_INFO or QUERY_STRING. ' .
-				'Raw pages must be accessed through the primary script entry point.' );
+		if( !$wgRequest->checkUrlExtension() ) {
+			$wgOut->disable();
 			return;
 		}
 
