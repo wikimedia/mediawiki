@@ -414,7 +414,7 @@ scrollToCaretPosition: function( options ) {
 				'ownline': false, // Put the inserted text on a line of its own
 				'replace': false, // If there is a selection, replace it with peri instead of leaving it alone
 				'selectPeri': true, // Select the peri text if it was inserted (but not if there was a selection and replace==false)
-				'splitlines': true // If multiple lines are selected, encapsulate each line individually
+				'splitlines': false // If multiple lines are selected, encapsulate each line individually
 			}, options );
 			break;
 		case 'getCaretPosition':
