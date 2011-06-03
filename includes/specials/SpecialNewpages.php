@@ -379,12 +379,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		global $wgFeed, $wgFeedClasses, $wgFeedLimit;
 
 		if ( !$wgFeed ) {
-			$wgOut->addWikiMsg( 'feed-unavailable' );
+			$this->getOutput()->addWikiMsg( 'feed-unavailable' );
 			return;
 		}
 
 		if( !isset( $wgFeedClasses[$type] ) ) {
-			$this->getOut()->addWikiMsg( 'feed-invalid' );
+			$this->getOutput()->addWikiMsg( 'feed-invalid' );
 			return;
 		}
 
