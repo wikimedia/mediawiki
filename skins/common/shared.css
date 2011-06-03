@@ -715,3 +715,16 @@ th.headerSortDown {
 	/* @noflip */
 	direction: ltr;
 }
+
+/* LTR content in RTL layout, e.g. SQL queries inside DB error messages */
+div.ltr {
+	/* @noflip */
+	direction: ltr;
+}
+
+div.ltr {
+	/* @noflip */
+	direction: ltr;
+	unicode-bidi: embed;RE	
+}
+
