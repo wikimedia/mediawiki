@@ -5,8 +5,6 @@
  * @file
  */
 
-require_once dirname(dirname(__FILE__)). '/bootstrap.php';
-
 /** Tests for MediaWiki languages/LanguageTr.php */
 class LanguageTrTest extends MediaWikiTestCase {
 	private $lang;
