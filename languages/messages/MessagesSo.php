@@ -388,6 +388,7 @@ Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqyadaa
 'createaccount'              => 'Sameey gudagale',
 'gotaccount'                 => "Waan heystaa gudagale? '''$1'''.",
 'gotaccountlink'             => 'Gudaha gal',
+'userlogin-resetlink'        => 'Ma ilaawday tafaasiisha gudagalahaada?',
 'createaccountmail'          => 'E-mail ahaan',
 'createaccountreason'        => 'Sababta:',
 'badretype'                  => 'Ereyada sirta ah oo qortay ma islahan.',
@@ -591,6 +592,7 @@ Sababta neh waxaa qoray $3 waa ''$2''",
 'currentrev'             => 'Cadadka cusub',
 'currentrev-asof'        => 'Kala duwanaanshihii ugu danbeeyay oo dhacay $1',
 'revisionasof'           => 'Muuqaalkii $1',
+'revision-info'          => 'Nuucii ahaa $1 ee $2',
 'previousrevision'       => '←Caddad ka duqsanŠ',
 'nextrevision'           => 'Caddad ka cusub→',
 'currentrevisionlink'    => 'Caddadka hada muuqda',
@@ -670,6 +672,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'searchprofile-everything-tooltip' => 'Raadi wax kasto oo kooban ( xattaa bogga wadahadalka)',
 'searchprofile-advanced-tooltip'   => 'Ka raadi qeybta isticmaalada',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 eray|$2 erayo}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 ka mid ah|$1 ka mid ah}} ({{PLURAL:$2|1 qeybta hoose|$2 qeybaha hoose}}, {{PLURAL:$3|1 fayl|$3 fayl-yo}})',
 'search-redirect'                  => '(waxaa loo wareejiyay $1)',
 'search-section'                   => '(maqaalka $1)',
 'search-suggest'                   => 'Waxaa ka waday miyaa: $1',
@@ -680,7 +683,8 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-relatedarticle'            => 'La xiriiro',
 'searchrelated'                    => 'La xiriiro',
 'searchall'                        => 'Dhamaan',
-'showingresultsheader'             => "{{PLURAL:$5|Natiijada '''$4''' waa  '''$1''' ilaa '''$3'''|Natiijooyinka '''$3''' waa '''$1 - $2''' }}",
+'showingresultsheader'             => "{{PLURAL:$5|Natiijada  '''$1''' ee '''$3'''|Natiijooyinka '''$1 - $2'''  ee  '''$3'''}} oo ah '''$4'''",
+'search-nonefound'                 => 'Wax natiijo oo ka soo baxay ma jirto wixii aad raadisay',
 'powersearch'                      => 'Sidii aad wax uugu raadin laheed',
 'powersearch-legend'               => 'Sidii aad wax uugu raadin laheed',
 'powersearch-ns'                   => 'ka raadi meesha magacyada:',
@@ -791,13 +795,14 @@ Your e-mail address is not revealed when other users contact you.',
 'recentchanges-label-minor'       => 'Kan waa bedel yar',
 'recentchanges-label-bot'         => 'Badalkaan waxaa sameeyay bot',
 'recentchanges-label-unpatrolled' => 'bedelkaan hadda wali lama waardiyeen',
+'rcnotefrom'                      => "Hoostaan waa isbedaladii dhacay  '''$2''' (waxaad arkoosaa ilaa '''$1''' ).",
 'rclistfrom'                      => 'Itusi isbedelada cusub oo ka bilaabaneyso $1',
 'rcshowhideminor'                 => '$1 bedelada yar',
 'rcshowhidebots'                  => '$1 botyaalo',
 'rcshowhideliu'                   => '$1 isticmaalada-soo galay',
 'rcshowhideanons'                 => '$1 isticmaalada la aqoon',
 'rcshowhidepatr'                  => '$1 bedelada la waardiyeeyay',
-'rcshowhidemine'                  => '$1 bedelaadeyda',
+'rcshowhidemine'                  => '$1 wax badalkeyga',
 'rclinks'                         => 'Itusi isbadeladii  $1 ee ugu danbeeyay oo dhacay wixii ka danbeeyay $2 maalmood<br />$3',
 'diff'                            => 'duwanaan',
 'hist'                            => 'taariikh',
@@ -817,6 +822,7 @@ Your e-mail address is not revealed when other users contact you.',
 'recentchangeslinked-summary' => "Liiskaan waa badalyada mardhow lagu sameeyay bogyaasha la xiriiray boggaga khaaska ah  (ama ka mid ahaa qeybaha khaaska ah).
 Boggaga ku jiro  [[Special:Watchlist|liiskaaga waardiyaha]] waa '''butac'''.",
 'recentchangeslinked-page'    => 'Magaca bogga:',
+'recentchangeslinked-to'      => 'Itusi isbedelada boggaga la xiriiro bogga aan ku siiyay',
 
 # Upload
 'upload'               => 'Soo geli file',
@@ -873,7 +879,7 @@ ku saabsan: $1',
 # File description page
 'file-anchor-link'   => 'Fayl',
 'filehist'           => 'Taariikhda faylka',
-'filehist-help'      => 'Riix bish/waqtiga si aad u argto faylka sida oo ahaa markiisa hore.',
+'filehist-help'      => 'Riix taariikhda/waqtiga si aad u argto faylka sida oo ahaa markiisa hore.',
 'filehist-deleteall' => 'dirtir dhamaantood',
 'filehist-deleteone' => 'tirtir',
 'filehist-revert'    => 'soo celin',
@@ -913,6 +919,7 @@ ku saabsan: $1',
 'lonelypages'        => 'Boggaga agoonta ah',
 'uncategorizedpages' => 'Maqaalada aan la aruurin',
 'popularpages'       => 'Boggaga caanka ah',
+'prefixindex'        => 'Dhamaan boggaga leh qoraalka hore',
 'shortpages'         => 'Boggaga gaaban',
 'longpages'          => 'Boggaga dhaadheer',
 'deadendpages'       => 'Boggaga aanan la daba joogin',
@@ -930,6 +937,9 @@ ku saabsan: $1',
 'booksources'               => 'Xogta buuga',
 'booksources-search-legend' => 'Raadi xogta buuga',
 'booksources-go'            => 'Soco',
+
+# Special:Log
+'log' => 'Guda galayaasha',
 
 # Special:AllPages
 'allpages'          => 'Dhamaan boggaga',
@@ -962,7 +972,7 @@ ku saabsan: $1',
 'listusers-blocked'  => '(waa la mamnuucay)',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Isticmaalaha la sameeyay guda galaheeda',
+'newuserlogpage'          => 'Gudagalaha Isticmaale sameeyay',
 'newuserlog-create-entry' => 'Isticmaale cusub',
 
 # Special:ListGroupRights
@@ -1007,6 +1017,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'unwatchthispage'   => 'Jooji waardiyeyntiisa',
 'watchlistcontains' => 'Liiskaaga waardiyeynta waxaa ku jiro $1 {{PLURAL:$1|bog|boggag}}.',
 'wlshowlast'        => 'Itus wixii ka danbeeyay $1 saacadood $2 maalmood $3',
+'watchlist-options' => 'Dooqyada liiska waardiyaha',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Daawasho...',
@@ -1081,14 +1092,16 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'blanknamespace' => '(Muhiim)',
 
 # Contributions
-'contributions' => 'Isticmaalada wax ku darsaday',
-'mycontris'     => 'Wax qoraalkeyga',
-'uctop'         => '(kor)',
-'month'         => 'Bilaawga bisha (iyo wixii ka danbeeyay):',
-'year'          => 'Bilaawga sanadka  (iyo wixii ka danbeeyay):',
+'contributions'       => 'Isticmaalada wax ku darsaday',
+'contributions-title' => 'Waxa oo ku darsaday isticmaalaha $1',
+'mycontris'           => 'Wax qoraalkeyga',
+'uctop'               => '(kor)',
+'month'               => 'Bilaawga bisha (iyo wixii ka danbeeyay):',
+'year'                => 'Bilaawga sanadka  (iyo wixii ka danbeeyay):',
 
 'sp-contributions-newbies'  => 'Itus akoonada cusub kaliya oo wax ku darsaday',
 'sp-contributions-blocklog' => 'mamnuucyada',
+'sp-contributions-uploads'  => 'kuwa la soo geliyay',
 'sp-contributions-logs'     => 'Guda galayaasha',
 'sp-contributions-talk'     => 'Wadahadal',
 'sp-contributions-search'   => 'Raadi si aad wax uugu darsatid',
@@ -1107,6 +1120,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'whatlinkshere-links'      => '← kuwa la xiriiro',
 'whatlinkshere-hideredirs' => '$1 la wareejiyay',
 'whatlinkshere-hidelinks'  => '$1 waxoo la xiriiraa',
+'whatlinkshere-hideimages' => '$1 sawirka inta oo la xiriiro',
 
 # Block/unblock
 'ipboptions'               => '2 saacadood:2 hours,1 maalin:1 day,3 maalmood:3 days,1 isbuuc:1 week,2 isbuuc:2 weeks,1 bil:1 month,3 bilood:3 months,6 bilood:6 months,1 sano:1 year,waligeed:infinite',
@@ -1187,6 +1201,7 @@ Waxaa fiiri kartaa cadaadkiisa',
 'tooltip-t-whatlinkshere'         => 'Liiska inta bog oo wiki ah oo meeshaan la xiriiro',
 'tooltip-t-recentchangeslinked'   => 'Isbedelada dhow ee boggaga oo laga soo xiriiriyay boggaan',
 'tooltip-feed-atom'               => 'Atom aa quudiyo boggaan',
+'tooltip-t-contributions'         => 'Itusi liiska inta wax oo ku darsaday isticmaalahaan',
 'tooltip-t-emailuser'             => 'E-mail u dir isticmaalahaan',
 'tooltip-t-upload'                => 'Soo geli fayl',
 'tooltip-t-specialpages'          => 'Liiska boggaga qaaska ah oo dhan',
@@ -1218,6 +1233,10 @@ Waxaa fiiri kartaa cadaadkiisa',
 
 # Info page
 'numwatchers' => 'Tirada waardiyeyaasha: $1',
+
+# Patrol log
+'patrol-log-line' => 'waxa la calaamadeeyay  $1 ee  $2 waxaa la waardiyeeyay $3',
+'patrol-log-diff' => 'bedelaadka $1',
 
 # Browsing diffs
 'previousdiff' => '← bedelkii ka duqsanaa',
@@ -1271,6 +1290,10 @@ Waxaa fiiri kartaa cadaadkiisa',
 
 # Auto-summaries
 'autosumm-new' => 'Bog cusub: $1',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Fiiri iyo wax ka badal liiska waardiyaha',
+'watchlisttools-raw'  => 'Badal liiska waardiyeenta ceeriinka ah',
 
 # Special:Version
 'version-poweredby-others' => 'kuwa kale',

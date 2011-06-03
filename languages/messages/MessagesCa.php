@@ -1531,7 +1531,7 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'filename-tooshort'           => 'El nom del fitxer és massa curt.',
 'filetype-banned'             => 'Aquest tipus de fitxer està prohibit.',
 'verification-error'          => 'Aquest fitxer no ha passat la verificació de fitxers.',
-'hookaborted'                 => "La modificació que vau tractar de fer ha estat cancel.lada per un lligam d'extensió.",
+'hookaborted'                 => "La modificació que vau tractar de fer ha estat canceŀlada per un lligam d'extensió.",
 'illegal-filename'            => 'El nom del fitxer no està permès.',
 'overwrite'                   => 'No es permet sobreescriure un fitxer existent.',
 'unknown-error'               => "S'ha produït un error desconegut.",

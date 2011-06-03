@@ -629,6 +629,7 @@ $messages = array(
 'search-mwsuggest-disabled'        => 'ମତାମତ ନାହିଁ',
 'searchall'                        => 'ସବୁ',
 'showingresults'                   => "ତଳେ {{PLURAL:$1|'''୧''' ଟି ଫଳ ଦେଖାଉଛୁ|'''$1'''ଟି ଫଳ}} ଯାହା #'''$2'''ରେ ଆରମ୍ଭ ହୋଇଅଛି ।",
+'showingresultsheader'             => "'''$4''' ପାଇଁ {{PLURAL:$5|'''$3'''ର '''$1''' ଫଳ |'''$3'''ର '''$1 - $2''' ଫଳ }}",
 'nonefound'                        => "'''ଜାଣି ରଖନ୍ତୁ''': ଆପଣ ଖାଲି କିଛି ନେମସ୍ପେସକୁ ଆପେ ଆପେ ଖୋଜିପାରିବେ ।
 ସବୁ ପ୍ରକାରର ଲେଖା (ଆଲୋଚନା ପୃଷ୍ଠା, ଟେମ୍ପଲେଟ ଆଦି) ଖୋଜିବା ପାଇଁ ନିଜ ପ୍ରଶ୍ନ ଆଗରେ ''all:'' ଯୋଡ଼ି ଖୋଜନ୍ତୁ, ନହେଲେ ଦରକାରି ନେମସ୍ପେସକୁ ଲେଖାର ନାଆଁ ଆଗରେ ଯୋଡ଼ି ବ୍ୟବହାର କରନ୍ତୁ ।",
 'search-nonefound'                 => 'ଆପଣ ଖୋଜିଥିବା ପ୍ରଶ୍ନ ପାଇଁ କିଛି ଫଳ ମିଳିଲା ନାହିଁ ।',
@@ -1062,10 +1063,14 @@ $5
 'imgmultigo' => 'ଯିବା!',
 
 # Table pager
+'table_pager_next'         => 'ନୂଆ ପୃଷ୍ଠା',
 'table_pager_limit_submit' => 'ଯିବା',
 
 # Auto-summaries
 'autosumm-new' => '"$1" ନାଆଁରେ ପୃଷ୍ଠାଟିଏ ତିଆରିକଲେ',
+
+# Watchlist editor
+'watchlistedit-raw-titles' => 'ନାଆଁ:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ଦରକାରୀ ବଦଳଗୁଡ଼ିକ ଦେଖାଇବେ',
