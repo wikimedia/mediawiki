@@ -128,12 +128,11 @@ encapsulateSelection: function( options ) {
 				selText = selText.replace( /\r?\n/g, "\r\n" );
 				post = post.replace( /\r?\n/g, "\r\n" );
 			}
-			if ( isSample && options.selectPeri ) {
+			if ( isSample && options.selectPeri && !options.splitlines ) {
 				this.selectionStart = startPos + pre.length;
 				this.selectionEnd = startPos + pre.length + selText.length;
 			} else {
-				this.selectionStart = startPos + pre.length + selText.length +
-					post.length;
+				this.selectionStart = startPos + insertText.length;
 				this.selectionEnd = this.selectionStart;
 			}
 		} else if ( document.selection && document.selection.createRange ) {
@@ -413,7 +412,7 @@ scrollToCaretPosition: function( options ) {
 				'post': '', // Text to insert after the cursor/selection
 				'ownline': false, // Put the inserted text on a line of its own
 				'replace': false, // If there is a selection, replace it with peri instead of leaving it alone
-				'selectPeri': true, // Select the peri text if it was inserted (but not if there was a selection and replace==false)
+				'selectPeri': true, // Select the peri text if it was inserted (but not if there was a selection and replace==false, or if splitlines==true)
 				'splitlines': false // If multiple lines are selected, encapsulate each line individually
 			}, options );
 			break;
