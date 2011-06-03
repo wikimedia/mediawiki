@@ -23,8 +23,7 @@ class SearchDbTest extends SearchEngineTest {
 		$this->insertSearchData();
 
 		$this->insertSearchData();
-		$searchType = preg_replace( "/Database/", "Search",
-								   get_class( $this->db ) );
+		$searchType = $this->db->getSearchEngine();
 		$this->search = new $searchType( $this->db );
 	}
 
