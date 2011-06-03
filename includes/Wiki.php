@@ -4,25 +4,19 @@
  *
  * @internal documentation reviewed 15 Mar 2010
  */
-class MediaWiki {
-
-	/**
-	 * TODO: fold $output, etc, into this
-	 * @var RequestContext
-	 */
-	private $context;
+class MediaWiki extends ContextSource {
 
 	public function request( WebRequest $x = null ){
-		return wfSetVar( $this->context->request, $x );
+		return wfSetVar( $this->getRequest(), $x );
 	}
 
 	public function output( OutputPage $x = null ){
-		return wfSetVar( $this->context->output, $x );
+		return wfSetVar( $this->getOutput(), $x );
 	}
 
 	public function __construct( RequestContext $context ){
-		$this->context = $context;
-		$this->context->setTitle( $this->parseTitle() );
+		$this->setContext( $context );
+		$this->getContext()->setTitle( $this->parseTitle() );
 	}
 
 	/**
@@ -33,10 +27,10 @@ class MediaWiki {
 	private function parseTitle() {
 		global $wgContLang;
 
-		$curid = $this->context->request->getInt( 'curid' );
-		$title = $this->context->request->getVal( 'title' );
+		$curid = $this->getRequest()->getInt( 'curid' );
+		$title = $this->getRequest()->getVal( 'title' );
 
-		if ( $this->context->request->getCheck( 'search' ) ) {
+		if ( $this->getRequest()->getCheck( 'search' ) ) {
 			// Compatibility with old search URLs which didn't use Special:Search
 			// Just check for presence here, so blank requests still
 			// show the search page when using ugly URLs (bug 8054).
@@ -57,8 +51,8 @@ class MediaWiki {
 		// For non-special titles, check for implicit titles
 		if ( is_null( $ret ) || $ret->getNamespace() != NS_SPECIAL ) {
 			// We can have urls with just ?diff=,?oldid= or even just ?diff=
-			$oldid = $this->context->request->getInt( 'oldid' );
-			$oldid = $oldid ? $oldid : $this->context->request->getInt( 'diff' );
+			$oldid = $this->getRequest()->getInt( 'oldid' );
+			$oldid = $oldid ? $oldid : $this->getRequest()->getInt( 'diff' );
 			// Allow oldid to override a changed or missing title
 			if ( $oldid ) {
 				$rev = Revision::newFromId( $oldid );
@@ -77,10 +71,10 @@ class MediaWiki {
 	 * @return Title
 	 */
 	public function getTitle(){
-		if( $this->context->title === null ){
-			$this->context->title = $this->parseTitle();
+		if( $this->getContext()->getTitle() === null ){
+			$this->getContext()->setTitle( $this->parseTitle() );
 		}
-		return $this->context->title;
+		return $this->getContext()->getTitle();
 	}
 
 	/**
@@ -99,60 +93,60 @@ class MediaWiki {
 
 		wfProfileIn( __METHOD__ );
 
-		if ( $this->context->request->getVal( 'printable' ) === 'yes' ) {
-			$this->context->output->setPrintable();
+		if ( $this->getRequest()->getVal( 'printable' ) === 'yes' ) {
+			$this->getOutput()->setPrintable();
 		}
 
 		wfRunHooks( 'BeforeInitialize', array(
-			&$this->context->title,
+			$this->getTitle(),
 			null,
-			&$this->context->output,
-			&$this->context->user,
-			$this->context->request,
+			$this->getOutput(),
+			$this->getUser(),
+			$this->getRequest(),
 			$this
 		) );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
-		if ( $this->context->title instanceof BadTitle ) {
+		if ( $this->getTitle() instanceof BadTitle ) {
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 		// If the user is not logged in, the Namespace:title of the article must be in
 		// the Read array in order for the user to see it. (We have to check here to
 		// catch special pages etc. We check again in Article::view())
-		} else if ( !$this->context->title->userCanRead() ) {
-			$this->context->output->loginToUse();
+		} else if ( !$this->getTitle()->userCanRead() ) {
+			$this->getOutput()->loginToUse();
 		// Interwiki redirects
-		} else if ( $this->context->title->getInterwiki() != '' ) {
-			$rdfrom = $this->context->request->getVal( 'rdfrom' );
+		} else if ( $this->getTitle()->getInterwiki() != '' ) {
+			$rdfrom = $this->getRequest()->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
-				$url = $this->context->title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
+				$url = $this->getTitle()->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
 			} else {
-				$query = $this->context->request->getValues();
+				$query = $this->getRequest()->getValues();
 				unset( $query['title'] );
-				$url = $this->context->title->getFullURL( $query );
+				$url = $this->getTitle()->getFullURL( $query );
 			}
 			// Check for a redirect loop
-			if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url ) && $this->context->title->isLocal() ) {
+			if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url ) && $this->getTitle()->isLocal() ) {
 				// 301 so google et al report the target as the actual url.
-				$this->context->output->redirect( $url, 301 );
+				$this->getOutput()->redirect( $url, 301 );
 			} else {
-				$this->context->title = new BadTitle;
+				$this->getContext()->setTitle( new BadTitle );
 				wfProfileOut( __METHOD__ );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
-		} else if ( $this->context->request->getVal( 'action', 'view' ) == 'view' && !$this->context->request->wasPosted()
-			&& ( $this->context->request->getVal( 'title' ) === null || $this->context->title->getPrefixedDBKey() != $this->context->request->getVal( 'title' ) )
-			&& !count( array_diff( array_keys( $this->context->request->getValues() ), array( 'action', 'title' ) ) ) )
+		} else if ( $this->getRequest()->getVal( 'action', 'view' ) == 'view' && !$this->getRequest()->wasPosted()
+			&& ( $this->getRequest()->getVal( 'title' ) === null || $this->getTitle()->getPrefixedDBKey() != $this->getRequest()->getVal( 'title' ) )
+			&& !count( array_diff( array_keys( $this->getRequest()->getValues() ), array( 'action', 'title' ) ) ) )
 		{
-			if ( $this->context->title->getNamespace() == NS_SPECIAL ) {
-				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $this->context->title->getDBkey() );
+			if ( $this->getTitle()->getNamespace() == NS_SPECIAL ) {
+				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $this->getTitle()->getDBkey() );
 				if ( $name ) {
-					$this->context->title = SpecialPage::getTitleFor( $name, $subpage );
+					$this->getContext()->setTitle( SpecialPage::getTitleFor( $name, $subpage ) );
 				}
 			}
-			$targetUrl = $this->context->title->getFullURL();
+			$targetUrl = $this->getTitle()->getFullURL();
 			// Redirect to canonical url, make it a 301 to allow caching
-			if ( $targetUrl == $this->context->request->getFullRequestURL() ) {
+			if ( $targetUrl == $this->getRequest()->getFullRequestURL() ) {
 				$message = "Redirect loop detected!\n\n" .
 					"This means the wiki got confused about what page was " .
 					"requested; this sometimes happens when moving a wiki " .
@@ -174,13 +168,13 @@ class MediaWiki {
 				}
 				wfHttpError( 500, "Internal error", $message );
 			} else {
-				$this->context->output->setSquidMaxage( 1200 );
-				$this->context->output->redirect( $targetUrl, '301' );
+				$this->getOutput()->setSquidMaxage( 1200 );
+				$this->getOutput()->redirect( $targetUrl, '301' );
 			}
 		// Special pages
-		} else if ( NS_SPECIAL == $this->context->title->getNamespace() ) {
+		} else if ( NS_SPECIAL == $this->getTitle()->getNamespace() ) {
 			// actions that need to be made when we have a special pages
-			SpecialPageFactory::executePath( $this->context->title, $this->context );
+			SpecialPageFactory::executePath( $this->getTitle(), $this->getContext() );
 		} else {
 			// ...otherwise treat it as an article view. The article
 			// may be a redirect to another article or URL.
@@ -190,7 +184,7 @@ class MediaWiki {
 				wfProfileOut( __METHOD__ );
 				return $article;
 			} elseif ( is_string( $article ) ) {
-				$this->context->output->redirect( $article );
+				$this->getOutput()->redirect( $article );
 			} else {
 				wfProfileOut( __METHOD__ );
 				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
@@ -221,7 +215,7 @@ class MediaWiki {
 	public function getAction() {
 		global $wgDisabledActions;
 
-		$action = $this->context->request->getVal( 'action', 'view' );
+		$action = $this->getRequest()->getVal( 'action', 'view' );
 
 		// Check for disabled actions
 		if ( in_array( $action, $wgDisabledActions ) ) {
@@ -231,7 +225,7 @@ class MediaWiki {
 		// Workaround for bug #20966: inability of IE to provide an action dependent
 		// on which submit button is clicked.
 		if ( $action === 'historysubmit' ) {
-			if ( $this->context->request->getBool( 'revisiondelete' ) ) {
+			if ( $this->getRequest()->getBool( 'revisiondelete' ) ) {
 				return 'revisiondelete';
 			} else {
 				return 'view';
@@ -254,21 +248,21 @@ class MediaWiki {
 
 		wfProfileIn( __METHOD__ );
 
-		$action = $this->context->request->getVal( 'action', 'view' );
-		$article = Article::newFromTitle( $this->context->title, $this->context );
+		$action = $this->getRequest()->getVal( 'action', 'view' );
+		$article = Article::newFromTitle( $this->getTitle(), $this->getContext() );
 		// NS_MEDIAWIKI has no redirects.
 		// It is also used for CSS/JS, so performance matters here...
-		if ( $this->context->title->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) {
 			wfProfileOut( __METHOD__ );
 			return $article;
 		}
 		// Namespace might change when using redirects
 		// Check for redirects ...
-		$file = ( $this->context->title->getNamespace() == NS_FILE ) ? $article->getFile() : null;
+		$file = ( $this->getTitle()->getNamespace() == NS_FILE ) ? $article->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
-			&& !$this->context->request->getVal( 'oldid' ) &&    // ... and are not old revisions
-			!$this->context->request->getVal( 'diff' ) &&    // ... and not when showing diff
-			$this->context->request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
+			&& !$this->getRequest()->getVal( 'oldid' ) &&    // ... and are not old revisions
+			!$this->getRequest()->getVal( 'diff' ) &&    // ... and not when showing diff
+			$this->getRequest()->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
 			// ... and the article is not a non-redirect image page with associated file
 			!( is_object( $file ) && $file->exists() && !$file->getRedirected() ) )
 		{
@@ -276,7 +270,7 @@ class MediaWiki {
 			$ignoreRedirect = $target = false;
 
 			wfRunHooks( 'InitializeArticleMaybeRedirect',
-				array( &$this->context->title, &$this->context->request, &$ignoreRedirect, &$target, &$article ) );
+				array( $this->getTitle(), $this->getRequest(), &$ignoreRedirect, &$target, &$article ) );
 
 			// Follow redirects only for... redirects.
 			// If $target is set, then a hook wanted to redirect.
@@ -292,16 +286,16 @@ class MediaWiki {
 				}
 				if ( is_object( $target ) ) {
 					// Rewrite environment to redirected article
-					$rarticle = Article::newFromTitle( $target, $this->context );
+					$rarticle = Article::newFromTitle( $target, $this->getContext() );
 					$rarticle->loadPageData();
 					if ( $rarticle->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
-						$rarticle->setRedirectedFrom( $this->context->title );
+						$rarticle->setRedirectedFrom( $this->getTitle() );
 						$article = $rarticle;
-						$this->context->title = $target;
+						$this->getContext()->setTitle( $target );
 					}
 				}
 			} else {
-				$this->context->title = $article->getTitle();
+				$this->getContext()->setTitle( $article->getTitle() );
 			}
 		}
 		wfProfileOut( __METHOD__ );
@@ -318,7 +312,7 @@ class MediaWiki {
 		$factory = wfGetLBFactory();
 		$factory->commitMasterChanges();
 		// Output everything!
-		$this->context->output->output();
+		$this->getOutput()->output();
 		// Do any deferred jobs
 		wfDoUpdates( 'commit' );
 
@@ -397,8 +391,8 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		if ( !wfRunHooks( 'MediaWikiPerformAction', array(
-				$this->context->output, $article, $this->context->title,
-				$this->context->user, $this->context->request, $this ) ) )
+				$this->getOutput(), $article, $this->getTitle(),
+				$this->getUser(), $this->getRequest(), $this ) ) )
 		{
 			wfProfileOut( __METHOD__ );
 			return;
@@ -415,7 +409,7 @@ class MediaWiki {
 
 		switch( $act ) {
 			case 'view':
-				$this->context->output->setSquidMaxage( $wgSquidMaxage );
+				$this->getOutput()->setSquidMaxage( $wgSquidMaxage );
 				$article->view();
 				break;
 			case 'raw': // includes JS/CSS
@@ -442,25 +436,25 @@ class MediaWiki {
 				}
 				// Continue...
 			case 'edit':
-				if ( wfRunHooks( 'CustomEditor', array( $article, $this->context->user ) ) ) {
-					$internal = $this->context->request->getVal( 'internaledit' );
-					$external = $this->context->request->getVal( 'externaledit' );
-					$section = $this->context->request->getVal( 'section' );
-					$oldid = $this->context->request->getVal( 'oldid' );
+				if ( wfRunHooks( 'CustomEditor', array( $article, $this->getUser() ) ) ) {
+					$internal = $this->getRequest()->getVal( 'internaledit' );
+					$external = $this->getRequest()->getVal( 'externaledit' );
+					$section = $this->getRequest()->getVal( 'section' );
+					$oldid = $this->getRequest()->getVal( 'oldid' );
 					if ( !$wgUseExternalEditor || $act == 'submit' || $internal ||
-					   $section || $oldid || ( !$this->context->user->getOption( 'externaleditor' ) && !$external ) ) {
+					   $section || $oldid || ( !$this->getUser()->getOption( 'externaleditor' ) && !$external ) ) {
 						$editor = new EditPage( $article );
 						$editor->submit();
-					} elseif ( $wgUseExternalEditor && ( $external || $this->context->user->getOption( 'externaleditor' ) ) ) {
-						$mode = $this->context->request->getVal( 'mode' );
+					} elseif ( $wgUseExternalEditor && ( $external || $this->getUser()->getOption( 'externaleditor' ) ) ) {
+						$mode = $this->getRequest()->getVal( 'mode' );
 						$extedit = new ExternalEdit( $article, $mode );
 						$extedit->edit();
 					}
 				}
 				break;
 			case 'history':
-				if ( $this->context->request->getFullRequestURL() == $this->context->title->getInternalURL( 'action=history' ) ) {
-					$this->context->output->setSquidMaxage( $wgSquidMaxage );
+				if ( $this->getRequest()->getFullRequestURL() == $this->getTitle()->getInternalURL( 'action=history' ) ) {
+					$this->getOutput()->setSquidMaxage( $wgSquidMaxage );
 				}
 				$history = new HistoryPage( $article );
 				$history->history();
@@ -472,7 +466,7 @@ class MediaWiki {
 				break;
 			default:
 				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
-					$this->context->output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
+					$this->getOutput()->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
 		wfProfileOut( __METHOD__ );
