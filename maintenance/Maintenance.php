@@ -929,9 +929,8 @@ abstract class Maintenance {
 	 * @return String
 	 */
 	public function loadSettings() {
-		global $wgWikiFarm, $wgCommandLineMode, $IP;
+		global $wgCommandLineMode, $IP;
 
-		$wgWikiFarm = false;
 		if ( isset( $this->mOptions['conf'] ) ) {
 			$settingsFile = $this->mOptions['conf'];
 		} else if ( defined("MW_CONFIG_FILE") ) {
