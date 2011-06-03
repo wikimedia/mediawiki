@@ -126,7 +126,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	/**
 	 * @return Status
 	 */
-	public function openConnection() {
+	public function openConnection( $dbName = null ) {
 		$status = Status::newGood();
 		try {
 			$db = new DatabaseMysql(

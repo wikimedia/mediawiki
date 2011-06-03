@@ -79,7 +79,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'logging',       'log_id',               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('logging_log_id_seq')" ),
 			array( 'addPgField', 'logging',       'log_params',           'TEXT' ),
 			array( 'addPgField', 'mwuser',        'user_editcount',       'INTEGER' ),
-			array( 'addPgField', 'mwuser',        'user_hidden',          'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'mwuser',        'user_newpass_time',    'TIMESTAMPTZ' ),
 			array( 'addPgField', 'oldimage',      'oi_deleted',           'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'oldimage',      'oi_major_mime',        "TEXT NOT NULL DEFAULT 'unknown'" ),

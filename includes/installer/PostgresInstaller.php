@@ -101,22 +101,31 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function openConnection() {
+	public function openConnection( $dbName = null ) {
 		$status = Status::newGood();
 		try {
 			if ( $this->useAdmin ) {
+				if ( $dbName === null ) $dbName = 'postgres';
+
 				$db = new DatabasePostgres(
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
-					'postgres' );
+					$dbName );
 			} else {
+				if ( $dbName === null ) $dbName = $this->getVar( 'wgDBname' );
+
 				$db = new DatabasePostgres(
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( 'wgDBuser' ),
 					$this->getVar( 'wgDBpassword' ),
-					$this->getVar( 'wgDBname' ) );
+					$dbName );
 			}
+
+			if( $db === null ) throw new DBConnectionError("Unknown problem while connecting.");
+			$safeschema = $db->addIdentifierQuotes( $this->getVar( 'wgDBmwschema' ) );
+			if( $db->schemaExists( $this->getVar( 'wgDBmwschema' ) ) ) $db->query( "SET search_path = $safeschema" );
+
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
@@ -134,15 +143,15 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$superuser = $this->getVar( '_InstallUser' );
 
-		$rights = $conn->selectField( 'pg_catalog.pg_user',
-			'CASE WHEN usesuper IS TRUE THEN
-				CASE WHEN usecreatedb IS TRUE THEN 3 ELSE 1 END
-				ELSE CASE WHEN usecreatedb IS TRUE THEN 2 ELSE 0 END
-				END AS rights',
-			array( 'usename' => $superuser ), __METHOD__
+		$rights = $conn->selectField( 'pg_catalog.pg_roles',
+			'CASE WHEN rolsuper then 1
+				  WHEN rolcreatedb then 2
+				  ELSE 3
+			 END as rights',
+			array( 'rolname' => $superuser ), __METHOD__
 		);
 
-		if( !$rights || ( $rights != 1 && $rights != 3 ) ) {
+		if( !$rights || $rights == 3 ) {
 			return false;
 		}
 
@@ -226,9 +235,10 @@ class PostgresInstaller extends DatabaseInstaller {
 		$rows = $conn->numRows( $conn->query( $SQL ) );
 		$safedb = $conn->addIdentifierQuotes( $dbName );
 		if( !$rows ) {
-			$conn->query( "CREATE DATABASE $safedb OWNER $safeuser", __METHOD__ );
+			$conn->query( "CREATE DATABASE $safedb", __METHOD__ );
+			$conn->query( "GRANT ALL ON DATABASE $safedb to $safeuser", __METHOD__ );
 		} else {
-			$conn->query( "ALTER DATABASE $safedb OWNER TO $safeuser", __METHOD__ );
+			$conn->query( "GRANT ALL ON DATABASE $safedb TO $safeuser", __METHOD__ );
 		}
 
 		// Now that we've established the real database exists, connect to it
@@ -287,17 +297,18 @@ class PostgresInstaller extends DatabaseInstaller {
 		$safeschema = $this->db->addIdentifierQuotes( $schema );
 
 		$rows = $this->db->numRows(
-			$this->db->query( "SELECT 1 FROM pg_catalog.pg_shadow WHERE usename = $safeusercheck" )
+			$this->db->query( "SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = $safeusercheck" )
 		);
 		if ( $rows < 1 ) {
-			$res = $this->db->query( "CREATE USER $safeuser NOCREATEDB PASSWORD $safepass", __METHOD__ );
+			$res = $this->db->query( "CREATE ROLE $safeuser NOCREATEDB LOGIN PASSWORD $safepass", __METHOD__ );
 			if ( $res !== true && !( $res instanceOf ResultWrapper ) ) {
 				$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $res );
 			}
 			if( $status->isOK() ) {
-				$this->db->query("ALTER USER $safeuser SET search_path = $safeschema");
+				$this->db->query("ALTER ROLE $safeuser LOGIN");
 			}
 		}
+		$this->db->query("ALTER ROLE $safeuser SET search_path = $safeschema, public");
 
 		return $status;
 	}
@@ -337,12 +348,11 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$this->db->begin( __METHOD__ );
 
+		// getConnection() should have already selected the schema if it exists
 		if( !$this->db->schemaExists( $schema ) ) {
 			$status->error( 'config-install-pg-schema-not-exist' );
 			return $status;
 		}
-		$safeschema = $this->db->addIdentifierQuotes( $schema );
-		$this->db->query( "SET search_path = $safeschema" );
 		$error = $this->db->sourceFile( $this->db->getSchema() );
 		if( $error !== true ) {
 			$this->db->reportQueryError( $error, 0, '', __METHOD__ );
@@ -359,12 +369,18 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	public function setupPLpgSQL() {
+		$this->db = null;
 		$this->useAdmin = true;
-		$status = $this->getConnection();
+		$dbName = $this->getVar( 'wgDBname' );
+		$status = $this->getConnection( $dbName );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		$this->db = $status->value;
 
+		/* Admin user has to be connected to the db it just
+		   created to satisfy ownership requirements for
+		   "CREATE LANGAUGE" */
 		$rows = $this->db->numRows(
 			$this->db->query( "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'" )
 		);
@@ -373,7 +389,6 @@ class PostgresInstaller extends DatabaseInstaller {
 			$SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
 				"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
 			$rows = $this->db->numRows( $this->db->query( $SQL ) );
-			$dbName = $this->getVar( 'wgDBname' );
 			if ( $rows >= 1 ) {
 				$result = $this->db->query( 'CREATE LANGUAGE plpgsql' );
 				if ( !$result ) {

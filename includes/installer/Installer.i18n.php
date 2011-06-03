@@ -256,7 +256,7 @@ Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-
 Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-).',
 	'config-connection-error'         => '$1.
 
-Check the host, username and password below and try again.',
+Check the host, username and password and try again.',
 	'config-invalid-schema'           => 'Invalid schema for MediaWiki "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-db-sys-create-oracle' => 'Installer only supports using a SYSDBA account for creating a new account.',

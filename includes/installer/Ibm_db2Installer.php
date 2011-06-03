@@ -113,7 +113,7 @@ class Ibm_db2Installer extends DatabaseInstaller {
 	 * Open a DB2 database connection
 	 * @return Status
 	 */
-	public function openConnection() {
+	public function openConnection( $dbName = null ) {
 		$status = Status::newGood();
 		try {
 			$db = new DatabaseIbm_db2(
