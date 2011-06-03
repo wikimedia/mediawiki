@@ -80,8 +80,6 @@ function wfGetIP() {
 		return $ip;
 	}
 
-	$ipchain = array();
-
 	/* collect the originating ips */
 	# Client connecting to this webserver
 	if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
@@ -89,30 +87,29 @@ function wfGetIP() {
 	} elseif( $wgCommandLineMode ) {
 		$ip = '127.0.0.1';
 	}
-	if( $ip ) {
-		$ipchain[] = $ip;
-	}
 
-	# Append XFF on to $ipchain
+	# Append XFF
 	$forwardedFor = wfGetForwardedFor();
-	if ( isset( $forwardedFor ) ) {
-		$xff = array_map( 'trim', explode( ',', $forwardedFor ) );
-		$xff = array_reverse( $xff );
-		$ipchain = array_merge( $ipchain, $xff );
-	}
+	if ( $forwardedFor !== null ) {
+		$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
+		$ipchain = array_reverse( $ipchain );
+		if ( $ip ) {
+			array_unshift( $ipchain, $ip );
+		}
 
-	# Step through XFF list and find the last address in the list which is a trusted server
-	# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
-	foreach ( $ipchain as $i => $curIP ) {
-		$curIP = IP::canonicalize( $curIP );
-		if ( wfIsTrustedProxy( $curIP ) ) {
-			if ( isset( $ipchain[$i + 1] ) ) {
-				if( $wgUsePrivateIPs || IP::isPublic( $ipchain[$i + 1 ] ) ) {
-					$ip = $ipchain[$i + 1];
+		# Step through XFF list and find the last address in the list which is a trusted server
+		# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
+		foreach ( $ipchain as $i => $curIP ) {
+			$curIP = IP::canonicalize( $curIP );
+			if ( wfIsTrustedProxy( $curIP ) ) {
+				if ( isset( $ipchain[$i + 1] ) ) {
+					if( $wgUsePrivateIPs || IP::isPublic( $ipchain[$i + 1 ] ) ) {
+						$ip = $ipchain[$i + 1];
+					}
 				}
+			} else {
+				break;
 			}
-		} else {
-			break;
 		}
 	}
 
