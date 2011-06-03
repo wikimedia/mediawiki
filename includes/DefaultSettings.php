@@ -3824,9 +3824,8 @@ $wgDebugLogPrefix       = '';
 $wgDebugRedirects		= false;
 
 /**
- * If true, log debugging data from action=raw and load.php.
- * This is normally false to avoid overlapping debug entries due to gen=css and
- * gen=js requests.
+ * If true, log debugging data from and load.php.
+ * This is normally false to avoid overlapping debug entries
  */
 $wgDebugRawPage         = false;
 
