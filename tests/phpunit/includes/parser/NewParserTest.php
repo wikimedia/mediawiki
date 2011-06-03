@@ -79,8 +79,8 @@ class NewParserTest extends MediaWikiTestCase {
 		// $tmpGlobals['wgContLang'] = new StubContLang;
 		$tmpGlobals['wgUser'] = new User;
 		$context = new RequestContext();
-		$tmpGlobals['wgLang'] = $context->lang;
-		$tmpGlobals['wgOut'] = $context->output;
+		$tmpGlobals['wgLang'] = $context->getLang();
+		$tmpGlobals['wgOut'] = $context->getOutput();
 		$tmpGlobals['wgParser'] = new StubObject( 'wgParser', $GLOBALS['wgParserConf']['class'], array( $GLOBALS['wgParserConf'] ) );
 		$tmpGlobals['wgRequest'] = new WebRequest;
 
@@ -312,10 +312,10 @@ class NewParserTest extends MediaWikiTestCase {
 		$langObj = Language::factory( $lang );
 		$GLOBALS['wgContLang'] = $langObj;
 		$context = new RequestContext();
-		$GLOBALS['wgLang'] = $context->lang;
+		$GLOBALS['wgLang'] = $context->getLang();
 
 		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
-		$GLOBALS['wgOut'] = $context->output;
+		$GLOBALS['wgOut'] = $context->getOutput();
 
 		global $wgHooks;
 

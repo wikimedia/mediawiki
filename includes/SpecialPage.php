@@ -873,8 +873,8 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 		$params = array();
 
 		foreach( $this->mAllowedRedirectParams as $arg ) {
-			if( $this->getContext()->request->getVal( $arg, null ) !== null ){
-				$params[$arg] = $this->getContext()->request->getVal( $arg );
+			if( $this->getRequest()->getVal( $arg, null ) !== null ){
+				$params[$arg] = $this->getRequest()->getVal( $arg );
 			}
 		}
 

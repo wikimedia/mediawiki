@@ -236,7 +236,7 @@ class DeleteAction extends Action {
 		$data['Reason'] = (array)$data['Reason'];
 
 		$error = null;
-		if ( !wfRunHooks( 'ArticleDelete', array( &$page, &$context->user, &$data['Reason'][0], &$error ) ) ) {
+		if ( !wfRunHooks( 'ArticleDelete', array( &$page, $context->getUser(), &$data['Reason'][0], &$error ) ) ) {
 			return $error;
 		}
 
@@ -376,7 +376,7 @@ class DeleteAction extends Action {
 			$dbw->commit();
 		}
 
-		wfRunHooks( 'ArticleDeleteComplete', array( &$page, &$context->user, $data['Reason'][0], $id ) );
+		wfRunHooks( 'ArticleDeleteComplete', array( &$page, $context->getUser(), $data['Reason'][0], $id ) );
 		return true;
 	}
 
