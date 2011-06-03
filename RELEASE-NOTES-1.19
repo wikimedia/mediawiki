@@ -86,8 +86,6 @@ production.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
-* BREAKING CHANGE: index.php?action=raw has been removed. You should be using
-  load.php or api.php for CSS/JS or raw page text requests, respectively.
 * (bug 27790) add query type for querymodules to action=paraminfo
 * (bug 28963) add langbacklinks module to api
 * (bug 27593) API: add error message when sha1/sha1base36 is invalid
