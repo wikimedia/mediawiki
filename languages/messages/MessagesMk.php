@@ -3241,7 +3241,7 @@ Variants for Chinese language
 'exif-compressedbitsperpixel'      => 'Режим на набивање на сликата',
 'exif-pixelydimension'             => 'Ширина на сликата',
 'exif-pixelxdimension'             => 'Висина на сликата',
-'exif-usercomment'                 => 'Коментар на корисникот',
+'exif-usercomment'                 => 'Кориснички коментари',
 'exif-relatedsoundfile'            => 'Поврзана аудиоснимка',
 'exif-datetimeoriginal'            => 'Датум и време на сликање',
 'exif-datetimedigitized'           => 'Датум и време на дигитализација',

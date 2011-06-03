@@ -1014,7 +1014,7 @@ Used in History and [[Special:Contributions]].',
 * '''$4''' - time.",
 
 # Revision deletion
-'rev-deleted-user-contribs'   => 'ব্যবহারকারীর নাম অথবা আইপি ঠিকানা মুছে ফেলা হয়েছে - সম্পাদনা অবদান থেকে আড়াল করা হয়েছে',
+'rev-deleted-user-contribs'   => 'Part of revision deletion.',
 'rev-deleted-text-unhide'     => 'This message is very similar to {{msg-mw|rev-suppressed-unhide-diff}}. Parameters:
 * $1 is a HTML link to the diff',
 'rev-suppressed-unhide-diff'  => 'This message is very similar to {{msg-mw|rev-deleted-unhide-diff}} and to {{msg-mw|rev-suppressed-text-unhide}}. Parameters:

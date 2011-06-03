@@ -36,6 +36,7 @@
  * @author Nemo bis
  * @author Nick1915
  * @author Od1n
+ * @author Oile11
  * @author Omnipaedista
  * @author PaoloRomano
  * @author Pietrodn
@@ -759,15 +760,32 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'resetpass-temp-password'   => 'Password temporanea:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Reimposta password',
-'passwordreset-legend'       => 'Reimposta password',
-'passwordreset-disabled'     => 'La reimpostazione delle password è stata disabilitata su questa wiki',
-'passwordreset-username'     => 'Nome utente:',
-'passwordreset-email'        => 'Indirizzo e-mail:',
-'passwordreset-emailtitle'   => 'Dettagli account su {{SITENAME}}',
-'passwordreset-emailelement' => 'Nome utente: $1
+'passwordreset'                => 'Reimposta password',
+'passwordreset-text'           => 'Completa questo modulo per ricevere i dettagli del tuo account via e-mail.',
+'passwordreset-legend'         => 'Reimposta password',
+'passwordreset-disabled'       => 'La reimpostazione delle password è stata disabilitata su questa wiki',
+'passwordreset-username'       => 'Nome utente:',
+'passwordreset-email'          => 'Indirizzo e-mail:',
+'passwordreset-emailtitle'     => 'Dettagli account su {{SITENAME}}',
+'passwordreset-emailtext-ip'   => "Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
+
+$2
+
+{{PLURAL:$3|Questa password temporanea scadrà|Queste password temporanee scadranno}} dopo {{PLURAL:$5|un giorno|$5 giorni}}.
+Dovresti accedere e scegliere una nuova password ora. 
+
+Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password originale e non vuoi più cambiarla, puoi ignorare questo messaggio e continuare al utilizzare la tua vecchia password.",
+'passwordreset-emailtext-user' => "L'utente $1 di {{SITENAME}} ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
+
+$2
+
+{{PLURAL:$3|Questa password temporanea scadrà|Queste password temporanee scadranno}} dopo {{PLURAL:$5|un giorno|$5 giorni}}.
+Dovresti accedere e scegliere una nuova password ora. 
+
+Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password originale e non vuoi più cambiarla, puoi ignorare questo messaggio e continuare al utilizzare la tua vecchia password.",
+'passwordreset-emailelement'   => 'Nome utente: $1
 Password temporanea: $2',
-'passwordreset-emailsent'    => 'È stata inviata una e-mail di promemoria.',
+'passwordreset-emailsent'      => 'È stata inviata una e-mail di promemoria.',
 
 # Edit page toolbar
 'bold_sample'     => 'Grassetto',
@@ -2052,6 +2070,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'noemailtext'          => 'Questo utente non ha indicato un indirizzo e-mail valido.',
 'nowikiemailtitle'     => 'E-mail non permessa',
 'nowikiemailtext'      => 'Questo utente ha scelto di non ricevere messaggi di posta elettronica dagli altri utenti.',
+'emailtarget'          => 'Inserisci il nome utente del destinatario',
 'emailusername'        => 'Nome utente:',
 'emailusernamesubmit'  => 'Invia',
 'email-legend'         => 'Invia un messaggio e-mail a un altro utente di {{SITENAME}}',
@@ -2941,7 +2960,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-exposureprogram'             => 'Programma di esposizione',
 'exif-spectralsensitivity'         => 'Sensibilità spettrale',
 'exif-isospeedratings'             => 'Sensibilità ISO',
-'exif-shutterspeedvalue'           => 'Tempo di esposizione',
+'exif-shutterspeedvalue'           => "Velocità dell'otturatore APEX",
 'exif-aperturevalue'               => 'Apertura APEX',
 'exif-brightnessvalue'             => 'Luminosità APEX',
 'exif-exposurebiasvalue'           => 'Correzione esposizione',
@@ -3005,24 +3024,35 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsareainformation'          => 'Nome della zona GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correzione differenziale GPS',
+'exif-jpegfilecomment'             => 'Commento del file JPEG',
 'exif-keywords'                    => 'Parole chiave',
 'exif-provinceorstatecreated'      => 'Provincia o stato dove è stata scattata la foto',
 'exif-citycreated'                 => 'Città dove è stata scattata la foto',
 'exif-objectname'                  => 'Titolo breve',
+'exif-source'                      => 'Fonte',
 'exif-urgency'                     => 'Urgenza',
 'exif-locationdest'                => 'Località raffigurata',
 'exif-contact'                     => 'Informazioni di contatto',
+'exif-writer'                      => 'Scrittore',
 'exif-languagecode'                => 'Lingua',
 'exif-iimcategory'                 => 'Categoria',
+'exif-datetimeexpires'             => 'Non utilizzare dopo',
+'exif-datetimereleased'            => 'Rilasciato il',
+'exif-identifier'                  => 'Identificativo',
 'exif-lens'                        => 'Obiettivo utilizzato',
 'exif-serialnumber'                => 'Numero di serie della fotocamera',
 'exif-cameraownername'             => 'Proprietario della macchina fotografica',
 'exif-label'                       => 'Etichetta',
+'exif-rating'                      => 'Valutazione (su 5)',
 'exif-copyrighted'                 => 'Informazioni sul copyright',
 'exif-copyrightowner'              => 'Detentore del copyright',
 'exif-usageterms'                  => 'Termini di utilizzo',
+'exif-originaldocumentid'          => 'ID univoco del documento originale',
+'exif-licenseurl'                  => 'URL per la licenza del copyright',
 'exif-morepermissionsurl'          => 'Informazioni sulle licenze alternative',
+'exif-pngfilecomment'              => 'Commento del file PNG',
 'exif-disclaimer'                  => 'Avvertenze',
+'exif-giffilecomment'              => 'Commento del file GIF',
 'exif-personinimage'               => 'Persona raffigurata',
 'exif-originalimageheight'         => "Altezza dell'immagine prima che fosse ritagliata",
 'exif-originalimagewidth'          => "Larghezza dell'immagine prima che fosse ritagliata",
@@ -3190,7 +3220,10 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsdestdistance-n' => 'Miglia nautiche',
 
 'exif-gpsdop-excellent' => 'Eccellente ($1)',
+'exif-gpsdop-good'      => 'Buono ($1)',
 'exif-gpsdop-moderate'  => 'Moderata ($1)',
+'exif-gpsdop-fair'      => 'Discreto ($1)',
+'exif-gpsdop-poor'      => 'Scarso ($1)',
 
 'exif-objectcycle-a' => 'Solo la mattina',
 'exif-objectcycle-p' => 'Solo la sera',
@@ -3204,13 +3237,18 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 
 'exif-dc-contributor' => 'Collaboratori',
 'exif-dc-date'        => 'Data (e)',
+'exif-dc-publisher'   => 'Editore',
+'exif-dc-relation'    => 'File correlati',
 'exif-dc-rights'      => 'Diritti',
+'exif-dc-source'      => 'Fonte del file',
+'exif-dc-type'        => 'Tipologia di file',
 
 'exif-rating-rejected' => 'Rifiutato',
 
 'exif-isospeedratings-overflow' => 'Maggiore di 65535',
 
 'exif-iimcategory-ace' => 'Arte, cultura e spettacolo',
+'exif-iimcategory-clj' => 'Criminalità e diritto',
 'exif-iimcategory-dis' => 'Disastri e incidenti',
 'exif-iimcategory-fin' => 'Economia e affari',
 'exif-iimcategory-edu' => 'Istruzione',
@@ -3229,6 +3267,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-urgency-normal' => 'Normale ($1)',
 'exif-urgency-low'    => 'Bassa ($1)',
 'exif-urgency-high'   => 'Alta ($1)',
+'exif-urgency-other'  => "Priorità definite dal'utente ($1)",
 
 # External editor support
 'edit-externally'      => 'Modifica questo file usando un programma esterno',
