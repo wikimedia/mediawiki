@@ -417,10 +417,10 @@ class SpecialPageFactory {
 		$page = self::getPage( $name );
 		// Nonexistent?
 		if ( !$page ) {
-			$context->output->setArticleRelated( false );
-			$context->output->setRobotPolicy( 'noindex,nofollow' );
-			$context->output->setStatusCode( 404 );
-			$context->output->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
+			$context->getOutput()->setArticleRelated( false );
+			$context->getOutput()->setRobotPolicy( 'noindex,nofollow' );
+			$context->getOutput()->setStatusCode( 404 );
+			$context->getOutput()->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -434,17 +434,17 @@ class SpecialPageFactory {
 			// the request. Such POST requests are possible for old extensions that
 			// generate self-links without being aware that their default name has
 			// changed.
-			if ( $name != $page->getLocalName() && !$context->request->wasPosted() ) {
-				$query = $context->request->getQueryValues();
+			if ( $name != $page->getLocalName() && !$context->getRequest()->wasPosted() ) {
+				$query = $context->getRequest()->getQueryValues();
 				unset( $query['title'] );
 				$query = wfArrayToCGI( $query );
 				$title = $page->getTitle( $par );
 				$url = $title->getFullUrl( $query );
-				$context->output->redirect( $url );
+				$context->getOutput()->redirect( $url );
 				wfProfileOut( __METHOD__ );
 				return $title;
 			} else {
-				$context->title = $page->getTitle();
+				$context->setTitle( $page->getTitle() );
 			}
 
 		} elseif ( !$page->isIncludable() ) {
