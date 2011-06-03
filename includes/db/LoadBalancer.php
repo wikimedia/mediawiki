@@ -921,10 +921,13 @@ class LoadBalancer {
 	 * This is useful for maintenance scripts that need to throttle their updates.
 	 * May attempt to open connections to slaves on the default DB.
 	 * @param $wiki string Wiki ID, or false for the default database
+	 *
+	 * @return array ( host, max lag, index of max lagged host )
 	 */
 	function getMaxLag( $wiki = false ) {
 		$maxLag = -1;
 		$host = '';
+		$maxIndex = 0;
 		foreach ( $this->mServers as $i => $conn ) {
 			$conn = false;
 			if ( $wiki === false ) {
@@ -940,9 +943,10 @@ class LoadBalancer {
 			if ( $lag > $maxLag ) {
 				$maxLag = $lag;
 				$host = $this->mServers[$i]['host'];
+				$maxIndex = $i;
 			}
 		}
-		return array( $host, $maxLag );
+		return array( $host, $maxLag, $maxIndex );
 	}
 
 	/**
