@@ -725,6 +725,6 @@ div.ltr {
 div.ltr {
 	/* @noflip */
 	direction: ltr;
-	unicode-bidi: embed;RE	
+	unicode-bidi: embed;
 }
 
