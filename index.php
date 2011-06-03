@@ -130,14 +130,14 @@ function wfIndexMain() {
 			$cache = new HTMLFileCache( $wgTitle, $action );
 			if ( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
 				/* Check incoming headers to see if client has this cached */
-				if ( !$context->getOutput()->checkLastModified( $cache->fileCacheTime() ) ) {
+				if ( !$context->output->checkLastModified( $cache->fileCacheTime() ) ) {
 					$cache->loadFromFileCache();
 				}
 				# Do any stats increment/watchlist stuff
 				$article = Article::newFromTitle( $wgTitle, $context );
 				$article->viewUpdates();
 				# Tell OutputPage that output is taken care of
-				$context->getOutput()->disable();
+				$context->output->disable();
 				wfProfileOut( 'index.php-filecache' );
 				$mediaWiki->finalCleanup();
 				wfProfileOut( 'index.php' );
