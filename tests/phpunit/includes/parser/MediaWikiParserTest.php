@@ -2,7 +2,6 @@
 
 require_once( dirname( __FILE__ ) . '/ParserHelpers.php' );
 require_once( dirname( __FILE__ ) . '/NewParserTest.php' );
-require_once( dirname(dirname(dirname( __FILE__ ))) . '/bootstrap.php' );
 
 /**
  * The UnitTest must be either a class that inherits from PHPUnit_Framework_TestCase 
