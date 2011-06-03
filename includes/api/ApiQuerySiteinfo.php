@@ -298,12 +298,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendDbReplLagInfo( $property, $includeAll ) {
 		global $wgShowHostnames;
 		$data = array();
+		$lb = wfGetLB();
 		if ( $includeAll ) {
 			if ( !$wgShowHostnames ) {
 				$this->dieUsage( 'Cannot view all servers info unless $wgShowHostnames is true', 'includeAllDenied' );
 			}
 
-			$lb = wfGetLB();
 			$lags = $lb->getLagTimes();
 			foreach ( $lags as $i => $lag ) {
 				$data[] = array(
@@ -312,9 +312,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				);
 			}
 		} else {
-			list( $host, $lag ) = wfGetLB()->getMaxLag();
+			list( $host, $lag, $index ) = $lb->getMaxLag();
 			$data[] = array(
-				'host' => $wgShowHostnames ? $host : '',
+				'host' => $wgShowHostnames
+						? $lb->getServerName( $index )
+						: '',
 				'lag' => intval( $lag )
 			);
 		}

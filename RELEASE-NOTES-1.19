@@ -94,6 +94,7 @@ production.
 * (bug 20699) API watchlist should list log-events
 * (bug 29070) Add token to action=watch
 * (bug 29221) Expose oldrevid in watchlist output
+* (bug 29267) always give the servername for meta=siteinfo&siprop=dbrepllag
 
 === Languages updated in 1.19 ===
 
