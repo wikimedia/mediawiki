@@ -189,7 +189,9 @@ class MessageCache {
 
 		fwrite( $file, $hash . $serialized );
 		fclose( $file );
-		@chmod( $filename, 0666 );
+		wfSuppressWarnings();
+		chmod( $filename, 0666 );
+		wfRestoreWarnings();
 	}
 
 	function saveToScript( $array, $hash, $code ) {
