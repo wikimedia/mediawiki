@@ -80,7 +80,6 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# @todo FIXME: Wikimedia-specific stuff needs to go away to an ext
 	# Maybe a hook?
 	global $cluster;
-	$wgWikiFarm = true;
 	$cluster = 'pmtpa';
 	require_once( MWInit::compiledPath( 'includes/SiteConfiguration.php' ) );
 	require( MWInit::interpretedPath( 'wmf-config/wgConf.php' ) );
