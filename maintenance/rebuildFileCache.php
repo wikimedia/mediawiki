@@ -79,7 +79,7 @@ class RebuildFileCache extends Maintenance {
 					$this->output( "Page {$row->page_id} has bad title\n" );
 					continue; // broken title?
 				}
-				$wgOut = $context->output; // set display title
+				$wgOut = $context->getOutput(); // set display title
 				$article = new Article( $wgTitle );
 				// If the article is cacheable, then load it
 				if ( $article->isFileCacheable() ) {

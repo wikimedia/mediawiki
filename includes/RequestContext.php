@@ -219,6 +219,7 @@ class RequestContext implements IContextSource {
 	 * @return string
 	 */
 	public function __get( $name ) {
+		wfDeprecated( 'RequestContext::__get() is deprecated; use $context->getFoo() instead' );
 		if ( in_array( $name, array( 'request', 'title', 'output', 'user', 'lang', 'skin' ) ) ) {
 			$fname = 'get' . ucfirst( $name );
 			return $this->$fname();
@@ -232,6 +233,7 @@ class RequestContext implements IContextSource {
 	 * @return string
 	 */
 	public function __set( $name, $value ) {
+		wfDeprecated( 'RequestContext::__set() is deprecated; use $context->setFoo() instead' );
 		if ( in_array( $name, array( 'request', 'title', 'output', 'user', 'lang', 'skin' ) ) ) {
 			$fname = 'set' . ucfirst( $name );
 			return $this->$fname( $value );
