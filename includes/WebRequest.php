@@ -767,6 +767,69 @@ class WebRequest {
 	}
 
 	/**
+	 * Check if Internet Explorer will detect an incorrect cache extension in 
+	 * PATH_INFO or QUERY_STRING. If the request can't be allowed, show an error
+	 * message or redirect to a safer URL. Returns true if the URL is OK, and
+	 * false if an error message has been shown and the request should be aborted.
+	 */
+	public function checkUrlExtension() {
+		$query = isset( $_SERVER['QUERY_STRING'] ) ? $_SERVER['QUERY_STRING'] : '';
+		if ( self::isUrlExtensionBad( $query ) ) {
+			if ( !$this->wasPosted() ) {
+				if ( $this->attemptExtensionSecurityRedirect() ) {
+					return false;
+				}
+			}
+			wfHttpError( 403, 'Forbidden',
+				'Invalid file extension found in the query string.' );
+			
+			return false;
+		}
+
+		if ( $this->isPathInfoBad() ) {
+			wfHttpError( 403, 'Forbidden',
+				'Invalid file extension found in PATH_INFO.' );
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Attempt to redirect to a URL with a QUERY_STRING that's not dangerous in 
+	 * IE 6. Returns true if it was successful, false otherwise.
+	 */
+	protected function attemptExtensionSecurityRedirect() {
+		$url = self::fixUrlForIE6( $this->getFullRequestURL() );
+		if ( $url === false ) {
+			return false;
+		}
+
+		header( 'Location: ' . $url );
+		header( 'Content-Type: text/html' );
+		$encUrl = htmlspecialchars( $url );
+		echo <<<HTML
+<html>
+<head>
+<title>Security redirect</title>
+</head>
+<body>
+<h1>Security redirect</h1>
+<p>
+We can't serve non-HTML content from the URL you have requested, because 
+Internet Explorer would interpret it as an incorrect and potentially dangerous
+content type.</p>
+<p>Instead, please use <a href="$encUrl">this URL</a>, which is the same as the URL you have requested, except that 
+"&amp;*" is appended. This prevents Internet Explorer from seeing a bogus file 
+extension.
+</p>
+</body>
+</html>
+HTML;
+		echo "\n";
+		return true;
+	}
+
+	/**
 	 * Returns true if the PATH_INFO ends with an extension other than a script
 	 * extension. This could confuse IE for scripts that send arbitrary data which
 	 * is not HTML but may be detected as such.
@@ -884,8 +947,18 @@ class WebRequest {
 		if ( !isset( $_SERVER['QUERY_STRING'] ) ) {
 			return false;
 		}
+		return self::isUrlExtensionBad( $_SERVER['QUERY_STRING'] );
+	}
 
-		$extension = self::findIE6Extension( $_SERVER['QUERY_STRING'] );
+	/**
+	 * The same as WebRequest::isQueryStringBad() except as a static function.
+	 */
+	public static function isUrlExtensionBad( $query ) {
+		if ( strval( $query ) === '' ) {
+			return false;
+		}
+
+		$extension = self::findIE6Extension( $query );
 		if ( strval( $extension ) === '' ) {
 			/* No extension or empty extension (false/'') */
 			return false;
@@ -899,6 +972,31 @@ class WebRequest {
 		 * in an extension containing an ampersand.
 		 */
 		return (bool)preg_match( '/^[a-zA-Z0-9_-]+$/', $extension );
+	}
+
+	/**
+	 * Returns a variant of $url which will pass isUrlExtensionBad() but has the 
+	 * same GET parameters, or false if it can't figure one out.
+	 */
+	public static function fixUrlForIE6( $url ) {
+		$questionPos = strpos( $url, '?' );
+		if ( $questionPos === false || $questionPos === strlen( $url ) - 1 ) {
+			return $url;
+		}
+
+		$beforeQuery = substr( $url, 0, $questionPos + 1 );
+		$query = substr( $url, $questionPos + 1 );
+		// Multiple question marks cause problems. Encode the second and 
+		// subsequent question mark.
+		$query = str_replace( '?', '%3E', $query );
+		// Append an invalid path character so that IE6 won't see the end of the
+		// query string as an extension
+		$query .= '&*';
+		if ( self::isUrlExtensionBad( $query ) ) {
+			// Avoid a redirect loop
+			return false;
+		}
+		return $beforeQuery . $query;
 	}
 
 	/**

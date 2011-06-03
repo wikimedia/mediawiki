@@ -45,17 +45,7 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 wfProfileIn( 'load.php' );
 
 // URL safety checks
-//
-// See RawPage.php for details; summary is that MSIE can override the
-// Content-Type if it sees a recognized extension on the URL, such as
-// might be appended via PATH_INFO after 'load.php'.
-//
-// Some resources can contain HTML-like strings (e.g. in messages)
-// which will end up triggering HTML detection and execution.
-//
-if ( $wgRequest->isPathInfoBad() ) {
-	wfHttpError( 403, 'Forbidden',
-		'Invalid file extension found in PATH_INFO or QUERY_STRING.' );
+if ( !$wgRequest->checkUrlExtension() ) {
 	return;
 }
 
