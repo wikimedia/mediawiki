@@ -318,7 +318,7 @@ function wfUrlencode( $s ) {
  * Controlling globals:
  * $wgDebugLogFile - points to the log file
  * $wgProfileOnly - if set, normal debug messages will not be recorded.
- * $wgDebugRawPage - if false, 'action=raw' hits will not result in debug output.
+ * $wgDebugRawPage - if false, 'load.php' hits will not result in debug output.
  * $wgDebugComments - if on, some debug items may appear in comments in the HTML output.
  *
  * @param $text String
@@ -363,12 +363,9 @@ function wfIsDebugRawPage() {
 	if ( $cache !== null ) {
 		return $cache;
 	}
-	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
-	if ( ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' )
-		|| ( 
-			isset( $_SERVER['SCRIPT_NAME'] ) 
-			&& substr( $_SERVER['SCRIPT_NAME'], -8 ) == 'load.php' 
-		) )	
+
+	if(	isset( $_SERVER['SCRIPT_NAME'] )
+		&& substr( $_SERVER['SCRIPT_NAME'], -8 ) == 'load.php' )	
 	{
 		$cache = true;
 	} else {
