@@ -2,9 +2,10 @@
 
 /**
  * @group Database
- * @group Broken
  */
-class BlockTest extends MediaWikiLangTestCase {
+class BlockTest extends MediaWikiTestCase {
+
+	const REASON = "Some reason";
 	
 	private $block, $madeAt;
 
@@ -29,7 +30,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 		
 		$this->block = new Block( 'UTBlockee', 1, 0,
-			'Parce que'
+			self::REASON
 		);
 		$this->madeAt = wfTimestamp( TS_MW );
 
@@ -55,7 +56,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		// $this->dumpBlocks();
 
 		$this->assertTrue( $this->block->equals( Block::newFromTarget('UTBlockee') ), "newFromTarget() returns the same block as the one that was made");
-		
+
 		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made");
 		
 	}
