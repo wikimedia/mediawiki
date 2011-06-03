@@ -1382,7 +1382,7 @@ abstract class Installer {
 			return Status::newFatal( 'config-admin-error-user', $name );
 		}
 
-		if ( $user->idForName() == 0 ) {
+		if ( $user->idForName( $db ) == 0 ) {
 			$user->addToDatabase( $db );
 
 			try {

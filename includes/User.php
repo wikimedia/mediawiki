@@ -2537,14 +2537,14 @@ class User {
 	 * Save this user's settings into the database.
 	 * @todo Only rarely do all these fields need to be set!
 	 */
-	function saveSettings() {
+	function saveSettings( $dbw = null ) {
 		$this->load();
 		if ( wfReadOnly() ) { return; }
 		if ( 0 == $this->mId ) { return; }
 
 		$this->mTouched = self::newTouchedTimestamp();
 
-		$dbw = wfGetDB( DB_MASTER );
+		if( $dbw === null ) $dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
@@ -2574,11 +2574,11 @@ class User {
 	/**
 	 * If only this user's username is known, and it exists, return the user ID.
 	 */
-	function idForName() {
+	function idForName( $dbr = null ) {
 		$s = trim( $this->getName() );
 		if ( $s === '' ) return 0;
 
-		$dbr = wfGetDB( DB_SLAVE );
+		if( $dbr == null ) $dbr = wfGetDB( DB_SLAVE );
 		$id = $dbr->selectField( 'user', 'user_id', array( 'user_name' => $s ), __METHOD__ );
 		if ( $id === false ) {
 			$id = 0;
