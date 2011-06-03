@@ -2445,7 +2445,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname String: calling function name
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseBase::listTables' ) {
-		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
+		global $IP;
+		//throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
+		$tables = file_get_contents( "$IP/maintenance/tables.sql" );
+		preg_match_all('/create table \/\*_\*\/([a-z0-9_]*)/i', $tables, $matches, PREG_PATTERN_ORDER);
+		
+		return $matches[1];
 	}
 
 	/**
