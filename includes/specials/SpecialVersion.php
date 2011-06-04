@@ -146,7 +146,7 @@ class SpecialVersion extends SpecialPage {
 		foreach( $software as $name => $version ) {
 			$out .= "<tr>
 					<td>" . $name . "</td>
-					<td>" . $version . "</td>
+					<td class=\"ltr\">" . $version . "</td>
 				</tr>\n";
 		}
 
