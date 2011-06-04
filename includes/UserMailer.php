@@ -658,9 +658,11 @@ class EmailNotification {
 
 		$body = str_replace(
 				array( '$WATCHINGUSERNAME',
-					'$PAGEEDITDATE' ),
+					'$PAGEEDITDATE',
+					'$PAGEEDITTIME' ),
 				array( wfMsgForContent( 'enotif_impersonal_salutation' ),
-					$wgContLang->timeanddate( $this->timestamp, true, false, false ) ),
+					$wgContLang->timeanddate( $this->timestamp, true, false, false ),
+					$wgContLang->time( $this->timestamp, true, false, $timecorrection ) ),
 				$this->body );
 
 		return UserMailer::send( $addresses, $this->from, $this->subject, $body, $this->replyto );
