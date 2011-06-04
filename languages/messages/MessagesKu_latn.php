@@ -475,6 +475,7 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'resetpass_forbidden'       => 'Şîfre nikanin werin guhartin',
 'resetpass-submit-loggedin' => 'Şîfre biguherîne',
 'resetpass-submit-cancel'   => 'Betal',
+'resetpass-temp-password'   => 'Şîfreya niha:',
 
 # Edit page toolbar
 'bold_sample'     => 'Nivîsa estûr',
@@ -716,6 +717,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'searchhelp-url'                 => 'Help:Alîkarî',
 'searchprofile-articles'         => 'Rûpelên naverokê',
 'searchprofile-project'          => 'Rûpelên alîkariyê û projeyê',
+'searchprofile-images'           => 'Multimedia',
 'searchprofile-everything'       => 'Hemî',
 'searchprofile-advanced'         => 'Pêşketî',
 'searchprofile-articles-tooltip' => 'Di $1 da lêbigere',
@@ -807,7 +809,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'prefs-help-realname'       => 'Ne gereke. Tu dikarî navî xwe binivisînê, ew ê bi karkirên te were nivîsandin.',
 'prefs-help-email'          => 'Adrêsa te yê e-nameyan ne gereke were nivîsandin, lê ew qebûldike, ku bikarhênerên din vê naskirinê te kanibin e-nameyan ji te ra bişînin.',
 'prefs-help-email-required' => 'Adrêsa e-nameyan gereke.',
-'prefs-signature'           => 'Îmza',
+'prefs-signature'           => 'Îmze',
 
 # User rights
 'userrights'                  => 'Îdarekirina mafên bikarhêneran',
@@ -856,6 +858,8 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'right-browsearchive' => 'Li rûpelên jêbirî bigerre',
 'right-undelete'      => 'Jêbirinê betal bike',
 'right-import'        => 'Rûpelan ji wikiyên din împort bike',
+'right-userrights'    => 'Hemû mafên bikarhêner biguherîne',
+'right-sendemail'     => 'Ji bikarhênerên di re e-name bişîne',
 
 # User rights log
 'rightslog'      => 'Reşahîya mafên bikarhêneran',

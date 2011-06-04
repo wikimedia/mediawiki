@@ -2250,7 +2250,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'ipusubmit'                       => 'Die Sperri useneh',
 'unblocked'                       => '[[User:$1|$1]] isch frejgee wore',
 'unblocked-id'                    => 'Sperr-ID $1 isch freijgee wore',
-'ipblocklist'                     => 'Liste vo blockierten IP-Adrässen u Benutzernäme',
+'ipblocklist'                     => 'Gsperrti Benutzer',
 'ipblocklist-legend'              => 'Suech no eme gsperrte Benutzer',
 'ipblocklist-username'            => 'Benutzername oder IP-Adräss:',
 'ipblocklist-sh-userblocks'       => 'Benutzersperrine $1',

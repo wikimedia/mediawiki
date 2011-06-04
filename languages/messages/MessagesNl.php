@@ -19,6 +19,7 @@
  * @author Hamaryns
  * @author Jens Liebenau
  * @author Krinkle
+ * @author MarkvA
  * @author McDutchie
  * @author Multichill
  * @author Mwpnl
@@ -1188,7 +1189,7 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 'revdelete-unsuppress'        => 'Beperkingen op teruggezette wijzigingen verwijderen',
 'revdelete-log'               => 'Reden:',
 'revdelete-submit'            => 'Toepassen op de geselecteerde {{PLURAL:$1|bewerking|bewerkingen}}',
-'revdelete-logentry'          => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
+'revdelete-logentry'          => 'heeft zichtbaarheid van bewerkingen voor [[$1]] gewijzigd',
 'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
 'revdelete-success'           => "'''De zichtbaarheid van de wijziging is bijgewerkt.'''",
 'revdelete-failure'           => "'''De zichtbaarheid van de wijziging kon niet bijgewerkt worden:'''
@@ -2292,6 +2293,9 @@ Tenzij u deze pagina bezoekt, komen er geen verdere berichten. Op uw volglijst k
              Groet van uw {{SITENAME}} waarschuwingssysteem.
 
 --
+U kunt uw e-mailinstellingen wijzigen op:
+{{fullurl:{{#special:Preferences}}}}
+
 U kunt uw volglijstinstellingen wijzigen op:
 {{fullurl:Special:Watchlist/edit}}
 
@@ -2502,7 +2506,7 @@ $1',
 'sp-contributions-userrights'          => 'gebruikersrechtenbeheer',
 'sp-contributions-blocked-notice'      => 'Deze gebruiker is op het moment geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
-'sp-contributions-blocked-notice-anon' => 'Dit IP-adres is geblokeerd.
+'sp-contributions-blocked-notice-anon' => 'Dit IP-adres is geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'sp-contributions-search'              => 'Zoeken naar bijdragen',
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',

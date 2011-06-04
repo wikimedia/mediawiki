@@ -737,6 +737,7 @@ Je kunnen neet anmelden.',
 'wrongpasswordempty'         => "Gien wachwoord in-evoerd. Prebeer 't opniej.",
 'passwordtooshort'           => 'Wachwoorden mutten uut teminsen {{PLURAL:$1|$1 teken|$1 tekens}} bestaon.',
 'password-name-match'        => 'Joew wachwoord en gebrukersnaam maggen neet liekeleens ween.',
+'password-login-forbidden'   => "'t Gebruuk van disse gebrukersnaam mit dit wachwoord is neet toe-estaon.",
 'mailmypassword'             => 'Niej wachwoord opsturen',
 'passwordremindertitle'      => 'Niej tiedelijk wachwoord veur {{SITENAME}}',
 'passwordremindertext'       => 'Der hef der ene evreugen, vanof \'t IP-adres $1 (werschienlijk jie zelf),
@@ -775,6 +776,9 @@ Negeer dit berich as disse gebruker zonder joew toestemming an-emaak is.',
 Je mutten effen wachen veurda-j 't opniej preberen kunnen.",
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => "Joew verzeuk um of te melden is of-ewezen umdat 't dernaor uutziet dat 't verstuurd is deur een kepotte webkieker of tussenopslagbuffer",
+
+# E-mail sending
+'php-mail-error-unknown' => 'Der was een onbekende fout mit de mail()-functie van PHP',
 
 # Password reset dialog
 'resetpass'                 => 'Wachwoord wiezigen',
@@ -903,6 +907,10 @@ De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 'usercsspreview'                   => "'''Dit is allinnig een controle van joew persoonlijke CSS.'''
 ''''t Is nog neet op-esleugen!'''",
 'userjspreview'                    => "'''Denk deran da-j joew persoonlijke JavaScript allinnig nog mar an 't bekieken bin, 't is nog neet op-esleugen!'''",
+'sitecsspreview'                   => "'''Je bin allinnig mer de CSS an 't naokieken.'''
+''''t Is nog neet op-esleugen!'''",
+'sitejspreview'                    => "'''Je bin allinnig mer de JavaScript-code an 't naokieken.'''
+''''t Is nog neet op-esleugen!'''",
 'userinvalidcssjstitle'            => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet neet dat joew eigen .css- en .js-pagina's beginnen mit een kleine letter, bv. \"{{ns:user}}:Naam/'''v'''ector\" in plaose van \"{{ns:user}}:Naam/'''V'''ector.css\".",
 'updated'                          => '(Bewark)',
 'note'                             => "'''Opmarking:'''",
@@ -1185,6 +1193,7 @@ Kiek de logboeken nao.",
 'showhideselectedversions' => 'Ekeuzen versies weergeven/verbargen',
 'editundo'                 => 'weerummedreien',
 'diff-multi'               => '(Hier {{PLURAL:$1|zit nog 1 versie|zitten nog $1 versies}} van {{PLURAL:$2|1 gebruker|$2 gebrukers}} tussen dee der neet bie staon.)',
+'diff-multi-manyusers'     => '($1 tussenliggende versies deur meer as $2 gebrukers staon der neet bie)',
 
 # Search results
 'searchresults'                    => 'Zeukrisseltaoten',
@@ -1371,6 +1380,10 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'prefs-displaysearchoptions'    => 'Weergave-instellingen',
 'prefs-displaywatchlist'        => 'Weergave-instellingen',
 'prefs-diffs'                   => 'Verschillen',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Geldig netposadres',
+'email-address-validity-invalid' => 'Geef een geldig netposadres op',
 
 # User rights
 'userrights'                   => 'Gebrukersrechenbeheer',
@@ -1747,6 +1760,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'listfiles_search_for'  => 'Zeuk op ofbeeldingnaam:',
 'imgfile'               => 'bestaand',
 'listfiles'             => 'Ofbeeldingenlieste',
+'listfiles_thumb'       => 'Ofbeeldingsoverzichte',
 'listfiles_date'        => 'Daotum',
 'listfiles_name'        => 'Naam',
 'listfiles_user'        => 'Gebruker',
@@ -1896,6 +1910,8 @@ Meestentieds is leste pagina de gewunste doelpagina, waor oek de eerste pagina h
 'nmembers'                => '$1 {{PLURAL:$1|onderwarp|onderwarpen}}',
 'nrevisions'              => '$1 {{PLURAL:$1|versie|versies}}',
 'nviews'                  => '{{PLURAL:$1|1 keer|$1 keer}} bekeken',
+'nimagelinks'             => "Wönnen op {{PLURAL:$1|één pagina|$1 pagina's}} gebruuk",
+'ntransclusions'          => "wönnen op {{PLURAL:$1|één pagina|$1 pagina's}} gebruuk",
 'specialpage-empty'       => 'Disse pagina is leeg.',
 'lonelypages'             => "Weespagina's",
 'lonelypagestext'         => "Naor disse pagina's wönnen neet verwezen vanuut {{SITENAME}} en ze bin oek nargens in-evoeg.",
@@ -2343,6 +2359,7 @@ $1",
 'sp-contributions-newbies-title'       => 'Biedragen van anwas',
 'sp-contributions-blocklog'            => 'blokkeerlogboek',
 'sp-contributions-deleted'             => 'vort-edaone gebrukersbiedragen',
+'sp-contributions-uploads'             => 'nieje bestanen',
 'sp-contributions-logs'                => 'logboeken',
 'sp-contributions-talk'                => 'overleg',
 'sp-contributions-userrights'          => 'gebrukersrechenbeheer',
@@ -2419,7 +2436,7 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'ipusubmit'                       => 'Blokkering derof haolen',
 'unblocked'                       => '[[User:$1|$1]] is edeblokeerd',
 'unblocked-id'                    => 'Blokkering $1 is op-eheven',
-'ipblocklist'                     => 'Lieste van IP-adressen en gebrukers dee eblokkeerd bin',
+'ipblocklist'                     => 'Gebrukers dee eblokkeerd bin',
 'ipblocklist-legend'              => 'Een eblokkeren gebruker zeuken',
 'ipblocklist-username'            => 'Gebrukersnaam of IP-adres:',
 'ipblocklist-sh-userblocks'       => 'gebrukersblokkeringen $1',
@@ -2520,6 +2537,17 @@ Dit betekent da-j een pagina weer naor de ouwe naam kunnen herneumen, a-j bieveu
 
 '''WAORSCHUWING!'''
 Veur populaire pagina's kan 't herneumen drastische en onveurziene gevolgen hemmen.
+Zörg derveur da-j de gevolgen overzien veurda-j veerder gaon.",
+'movepagetext-noredirectfixer' => "Mit dit formelier ku-j de pagina een nieje naam geven, de geschiedenisse geet dan vanzelf mee.
+De ouwe naam zal autematisch een deurverwiezing wönnen naor de nieje pagina.
+Kiek oek effen nao of der gien [[Special:DoubleRedirects|dubbele]] of [[Special:BrokenRedirects|ebreuken deurverwiezingen]] bin ontstaon.
+'t Is an joe um derveur te zörgen dat de deurverwiezingen naor de goeie naam gaon.
+
+Een pagina kan '''allinnig''' herneumd wönnen as de nieje naam neet besteet of 't een deurverwiezing is zonder veerdere geschiedenisse.
+Dit betekent da-j een pagina weer naor de ouwe naam kunnen herneumen, a-j bieveurbeeld een fout emaak hemmen, zonder da-j de bestaonde pagina overschrieven.
+
+'''WAORSCHUWING!'''
+Veur popelaire pagina's kan 't herneumen drastische en onveurziene gevolgen hemmen.
 Zörg derveur da-j de gevolgen overzien veurda-j veerder gaon.",
 'movepagetalktext'             => "De overlegpagina dee derbie heurt krig oek een nieje titel, mar '''neet''' in de volgende gevallen:
 * As de pagina in een aandere naamruumte eplaos wönnen
@@ -2648,7 +2676,8 @@ Alle transwiki-invoerhaandelingen wönnen op-esleugen in 't [[Special:Log/import
 'import-interwiki-namespace' => 'Doelnaamruumte:',
 'import-upload-filename'     => 'Bestaansnaam:',
 'import-comment'             => 'Opmarkingen:',
-'importtext'                 => "Gebruuk de Special:Export-optie in de wiki waor de infermasie vandaonkump, slao 't op joew eigen systeem op, en stuur 't daornao hier op.",
+'importtext'                 => "Gebruuk de [[Special:Export|uutvoerfunctie]] in de wiki waor de infermasie vandaon kump.
+Slao 't op joew eigen systeem op, en stuur 't daornao hier op.",
 'importstart'                => "Pagina's an 't invoeren...",
 'import-revision-count'      => '$1 {{PLURAL:$1|versie|versies}}',
 'importnopages'              => "Der bin gien pagina's um in te voeren.",
@@ -2935,8 +2964,8 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-colorspace'                  => 'Kleurruumte',
 'exif-componentsconfiguration'     => 'Betekenisse van elk compenent',
 'exif-compressedbitsperpixel'      => 'Beeldcompressiemethode',
-'exif-pixelydimension'             => 'Bruukbaore ofbeeldingsbreedte',
-'exif-pixelxdimension'             => 'Bruukbaore ofbeeldingsheugte',
+'exif-pixelydimension'             => 'Ofbeeldingsbreedte',
+'exif-pixelxdimension'             => 'Ofbeeldingsheugte',
 'exif-makernote'                   => 'Opmarkingen van de fabrikaant',
 'exif-usercomment'                 => 'Opmarkingen',
 'exif-relatedsoundfile'            => 'Biebeheurend geluudsbestaand',
@@ -2952,9 +2981,9 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-spectralsensitivity'         => 'Spectrale geveuligheid',
 'exif-isospeedratings'             => 'ISO-weerde.',
 'exif-oecf'                        => 'Opto-elektronische conversiefactor',
-'exif-shutterspeedvalue'           => 'Slutersnelheid',
-'exif-aperturevalue'               => 'Diafragma',
-'exif-brightnessvalue'             => 'Helderheid',
+'exif-shutterspeedvalue'           => 'Slutersnelheid in APEX',
+'exif-aperturevalue'               => 'Diafragma in APEX',
+'exif-brightnessvalue'             => 'Helderheid in APEX',
 'exif-exposurebiasvalue'           => 'Belochtingscompensasie',
 'exif-maxaperturevalue'            => 'Maximale diafragmaweerde van de lenze',
 'exif-subjectdistance'             => 'Ofstaand tot onderwarp',
@@ -3018,6 +3047,7 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-gpsareainformation'          => "Naam van 't GPS-gebied",
 'exif-gpsdatestamp'                => 'GPS-daotum',
 'exif-gpsdifferential'             => 'Differentiële GPS-correctie',
+'exif-objectname'                  => 'Korte naam',
 
 # EXIF attributes
 'exif-compression-1' => 'Neet ecomprimeerd',
@@ -3098,6 +3128,8 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-sensingmethod-5' => 'Kleurvolgende gebiedssensor',
 'exif-sensingmethod-7' => 'Dreeliendige sensor',
 'exif-sensingmethod-8' => 'Kleurvolgende liendesensor',
+
+'exif-filesource-3' => 'Digitale fotocamera',
 
 'exif-scenetype-1' => 'Een drek efotograferen ofbeelding',
 
@@ -3314,6 +3346,7 @@ Je kunnen oek [[Special:Watchlist/edit|'t standardbewarkingsscharm gebruken]].",
 'version-specialpages'             => "Speciale pagina's",
 'version-parserhooks'              => 'Parserhooks',
 'version-variables'                => 'Variabelen',
+'version-skins'                    => 'Vormgevingen',
 'version-other'                    => 'Overige',
 'version-mediahandlers'            => 'Mediaverwarkers',
 'version-hooks'                    => 'Hooks',
@@ -3325,6 +3358,7 @@ Je kunnen oek [[Special:Watchlist/edit|'t standardbewarkingsscharm gebruken]].",
 'version-hook-subscribedby'        => 'In-eschreven deur',
 'version-version'                  => '(Versie $1)',
 'version-license'                  => 'Licentie',
+'version-poweredby-credits'        => "Disse wiki wönnen an-estuurd deur '''[http://www.mediawiki.org/ MediaWiki]''', kopierech © 2001-$1 $2.",
 'version-poweredby-others'         => 'aanderen',
 'version-software'                 => 'Pregrammetuur dee eïnstalleerd is',
 'version-software-product'         => 'Preduk',
@@ -3424,5 +3458,9 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'htmlform-submit'              => 'Opslaon',
 'htmlform-reset'               => 'Wiezigingen ongedaonmaken',
 'htmlform-selectorother-other' => 'Aanders',
+
+# SQLite database support
+'sqlite-has-fts' => 'Versie $1 mit ondersteuning veur "full-text" zeuken',
+'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning veur "full-text" zeuken',
 
 );

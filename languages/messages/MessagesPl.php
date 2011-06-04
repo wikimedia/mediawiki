@@ -2155,8 +2155,6 @@ wiki – $PAGEEDITOR_WIKI
 W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony.
 Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
 
-$NEWPAGE
-
 	Wiadomość z systemu powiadomień {{GRAMMAR:D.lp|{{SITENAME}}}}
 
 --

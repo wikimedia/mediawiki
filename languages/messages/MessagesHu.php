@@ -725,7 +725,7 @@ Nálad ezek le vannak tiltva.
 Engedélyezd őket, majd próbáld meg újra.',
 'noname'                     => 'Érvénytelen szerkesztőnevet adtál meg.',
 'loginsuccesstitle'          => 'Sikeres bejelentkezés',
-'loginsuccess'               => "'''Most már be vagy jelentkezve a(z) {{SITENAME}} wikibe „$1” néven.'''",
+'loginsuccess'               => "'''Sikeresen bejelentkeztél a(z) {{SITENAME}} wikibe „$1” néven.'''",
 'nosuchuser'                 => 'Nem létezik „$1” nevű szerkesztő.
 A szerkesztőnevek kis- és nagybetű-érzékenyek.
 Ellenőrizd, hogy helyesen írtad-e be, vagy [[Special:UserLogin/signup|hozz létre egy új fiókot]].',
@@ -1201,7 +1201,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'compareselectedversions'  => 'Kiválasztott változatok összehasonlítása',
 'showhideselectedversions' => 'Kiválasztott változatok láthatóságának beállítása',
 'editundo'                 => 'visszavonás',
-'diff-multi'               => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)',
+'diff-multi'               => '({{PLURAL:$2|egy|$2}} szerkesztő {{PLURAL:$1|egy|$1}} közbeeső változata nincs mutatva)',
 'diff-multi-manyusers'     => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)',
 
 # Search results
@@ -2122,7 +2122,7 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
 'mywatchlist'          => 'Figyelőlistám',
-'watchlistfor2'        => '$1 felhasználó $2 eszközei',
+'watchlistfor2'        => '$1 részére $2',
 'nowatchlist'          => 'Nincs lap a figyelőlistádon.',
 'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
 'watchnologin'         => 'Nem vagy bejelentkezve',
@@ -3173,6 +3173,8 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-sensingmethod-5' => 'Színsorrendi területérzékelő',
 'exif-sensingmethod-7' => 'Háromvonalas érzékelő',
 'exif-sensingmethod-8' => 'Színsorrendi vonalas érzékelő',
+
+'exif-filesource-3' => 'Digitális fényképezőgép',
 
 'exif-scenetype-1' => 'Egy közvetlenül lefotózott kép',
 

@@ -347,6 +347,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Kirimkan saya salinan surel yang saya kirimkan ke orang lain',
 'tog-diffonly'                => 'Jangan tampilkan isi halaman di bawah perbedaan suntingan',
 'tog-showhiddencats'          => 'Tampilkan kategori tersembunyi',
+'tog-noconvertlink'           => 'Matikan konversi judul pranala',
 'tog-norollbackdiff'          => 'Jangan tampilkan perbedaan setelah melakukan pengembalian',
 
 'underline-always'  => 'Selalu',
@@ -593,6 +594,7 @@ $1',
 'site-atom-feed'          => 'Umpan Atom $1',
 'page-rss-feed'           => 'Umpan RSS "$1"',
 'page-atom-feed'          => 'Umpan Atom "$1"',
+'feed-atom'               => 'Atom',
 'red-link-title'          => '$1 (halaman belum tersedia)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1801,6 +1803,7 @@ Deskripsi dari [$2 halaman deskripsinya] ditunjukkan di bawah ini.',
 'uploadnewversion-linktext' => 'Muatkan versi yang lebih baru dari berkas ini',
 'shared-repo-from'          => 'dari $1',
 'shared-repo'               => 'suatu repositori bersama',
+'filepage.css'              => '/* CSS yang ditempatkan di sini disertakan pada halaman deskripsi berkas, juga disertakan pada klien wiki asing */',
 
 # File reversion
 'filerevert'                => 'Kembalikan $1',
@@ -1845,7 +1848,7 @@ Deskripsi dari [$2 halaman deskripsinya] ditunjukkan di bawah ini.',
 
 # Unused templates
 'unusedtemplates'     => 'Templat yang tak digunakan',
-'unusedtemplatestext' => 'Daftar berikut adalah semua halaman pada ruang nama {{ns:template}} yang tidak dipakai di halaman manapun.
+'unusedtemplatestext' => 'Daftar berikut adalah semua halaman pada ruang nama {{ns:template}} yang tidak dipakai di halaman mana pun.
 Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'unusedtemplateswlh'  => 'pranala lain',
 
@@ -1914,7 +1917,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'ntransclusions'          => 'digunakan pada $1 {{PLURAL:$1|halaman|halaman}}',
 'specialpage-empty'       => 'Tak ada yang perlu dilaporkan.',
 'lonelypages'             => 'Halaman tanpa pranala balik',
-'lonelypagestext'         => 'Halaman-halaman berikut tidak memiliki pranala dari atau ditransklusikan ke halaman manapun di {{SITENAME}}.',
+'lonelypagestext'         => 'Halaman-halaman berikut tidak memiliki pranala dari atau ditransklusikan ke halaman mana pun di {{SITENAME}}.',
 'uncategorizedpages'      => 'Halaman yang tak terkategori',
 'uncategorizedcategories' => 'Kategori yang tak terkategori',
 'uncategorizedimages'     => 'Berkas yang tak terkategori',
@@ -1937,7 +1940,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'shortpages'              => 'Halaman pendek',
 'longpages'               => 'Halaman panjang',
 'deadendpages'            => 'Halaman buntu',
-'deadendpagestext'        => 'Halaman-halaman berikut tidak memiliki pranala ke halaman manapun di wiki ini.',
+'deadendpagestext'        => 'Halaman-halaman berikut tidak memiliki pranala ke halaman mana pun di wiki ini.',
 'protectedpages'          => 'Halaman yang dilindungi',
 'protectedpages-indef'    => 'Hanya untuk pelindungan dengan jangka waktu tak terbatas',
 'protectedpages-cascade'  => 'Hanya pelindungan runtun',
@@ -1956,7 +1959,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'ancientpages'            => 'Halaman terlama',
 'move'                    => 'Pindahkan',
 'movethispage'            => 'Pindahkan halaman ini',
-'unusedimagestext'        => 'Berkas berikut ada tapi tidak disertakan di halaman manapun.
+'unusedimagestext'        => 'Berkas berikut ada tapi tidak disertakan di halaman mana pun.
 Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas dengan URL langsung, dan karenanya masih terdaftar di sini meskipun sudah tidak digunakan aktif.',
 'unusedcategoriestext'    => 'Kategori berikut ada, walaupun tidak ada halaman atau kategori lain yang menggunakannya.',
 'notargettitle'           => 'Tidak ada sasaran',
@@ -2154,16 +2157,19 @@ Hubungi penyunting:
 surel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Tidak akan ada pemberitahuan lainnya dalam rangka perubahan lebih lanjut kecuali anda mengunjungi halaman ini.
-Anda juga dapat menset ulang tanda pemberitahuan untuk semua halaman pantauan anda pada daftar pantauan anda.
+Kami tidak akan mengirim pemberitahuan lain bila ada perubahan lebih lanjut sampai Anda mengunjungi halaman ini.
+Anda juga dapat menyetel ulang tanda pemberitahuan untuk semua halaman pantauan pada daftar pantauan Anda.
 
-             Sistem pemberitahuan anda di {{SITENAME}}
+             Sistem pemberitahuan situs {{SITENAME}}
 
 --
-Untuk mengubah preferensi daftar pantauan anda, kunjungi
+Untuk mengubah setelan pemberitahuan surel, kunjungi
+{{fullurl:{{#special:Preferences}}}}
+
+Untuk mengubah setelan daftar pantauan, kunjungi
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Untuk menghapus halaman dari daftar pantauan anda, kunjungi
+Untuk menghapus halaman dari daftar pantauan, kunjungi
 $UNWATCHURL
 
 Umpan balik dan bantuan lebih lanjut:

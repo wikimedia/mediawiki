@@ -910,7 +910,11 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view'   => 'Kontot "$1" är inte registrerat.',
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
-'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' 
+'''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh);
+'''Konqueror:''': klicka ''Reload'' eller tryck ''F5;''
+'''Opera:''' rensa cachen i ''Tools → Preferences;''
+'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
 'userjsyoucanpreview'              => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
@@ -1010,7 +1014,7 @@ Antalet anrop får vara högst $2, nu görs {{PLURAL:$#|$1 anrop}}.',
 'expensive-parserfunction-category'       => 'Sidor med för många resurskrävande parserfunktioner',
 'post-expand-template-inclusion-warning'  => 'Varning: Den här sidan innehåller för mycket mallinklusioner.
 Några av mallarna kommer inte att inkluderas.',
-'post-expand-template-inclusion-category' => 'Sidor som inkluderar för mycket mallar',
+'post-expand-template-inclusion-category' => 'Sidor som inkluderar för mycket mallkod',
 'post-expand-template-argument-warning'   => 'Varning: Sidan innehåller en eller flera mallparametrar som blir för långa när de expanderas.
 Dessa parametrar har uteslutits.',
 'post-expand-template-argument-category'  => 'Sidor med uteslutna mallparametrar',
@@ -1082,15 +1086,15 @@ Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{
 Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-deleted-no-diff'         => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
-'rev-suppressed-no-diff'      => "Du kan inte se skillnaden för en av revisionerna har blivit '''raderad'''.",
+'rev-suppressed-no-diff'      => "Du kan inte se den här diffen för en av sidversionerna har '''raderats'''.",
 'rev-deleted-unhide-diff'     => "En av versionerna för den här diffen har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].
 Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
 'rev-suppressed-unhide-diff'  => "En av versionerna för denna diff har blivit '''undanhållen'''.
 Det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
 Som administratör kan du fortfarande [$1 se denna diff] om du önskar fortsätta.",
-'rev-deleted-diff-view'       => "En av revisionerna för denna diff har blivit '''raderad'''.
-Som en administratör kan du se denna diff, det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+'rev-deleted-diff-view'       => "En av sidversionerna i denna diff har '''raderats'''.
+Som administratör kan du se denna diff. Mer information kan finnas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-suppressed-diff-view'    => "En av versionerna för denna diff har blivit '''undanhållen'''.
 Som administratör kan du se denna diff; det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-delundel'                => 'visa/göm',
@@ -2201,6 +2205,9 @@ Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i di
              Hälsningar från {{SITENAME}}s meddelandesystem
 
 --
+För att ändra inställningarna för dina uppdateringar via e-post, besök
+{{fullurl:{{#special:Preferences}}}}
+
 För att ändra inställningarna i din bevakningslista, besök
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2483,8 +2490,8 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipblocklist-localblock'          => 'Lokalblockering',
 'ipblocklist-otherblocks'         => 'Övriga {{PLURAL:$1|blockering|blockeringar}}',
 'blocklistline'                   => '$1, $2 blockerade $3 ($4)',
-'infiniteblock'                   => 'för evigt',
-'expiringblock'                   => 'utgår den $1 kl $2',
+'infiniteblock'                   => 'på obestämd tid',
+'expiringblock'                   => 'upphör den $1 kl $2',
 'anononlyblock'                   => 'endast oinloggade',
 'noautoblockblock'                => 'utan automatisk blockering',
 'createaccountblock'              => 'kontoregistrering blockerad',

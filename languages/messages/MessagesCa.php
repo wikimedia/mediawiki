@@ -1512,12 +1512,12 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'filetype-unwanted-type'      => "Els fitxers del tipus «'''.$1'''» no són desitjats. {{PLURAL:$3|Es prefereix el tipus de fitxer|Els tipus de fitxer preferits són}} $2.",
 'filetype-banned-type'        => "Els fitxers del tipus «'''.$1'''» no estan permesos. {{PLURAL:$3|Només s'admeten els fitxers del tipus|Els tipus de fitxer permesos són}} $2.",
 'filetype-missing'            => 'El fitxer no té extensió (com ara «.jpg»).',
-'empty-file'                  => 'El fitxer que vau submetre estava buit.',
-'file-too-large'              => 'El fitxer que vau submetre era massa gran.',
+'empty-file'                  => 'El fitxer que heu tramès està buit.',
+'file-too-large'              => 'El fitxer que heu tramès és massa gran.',
 'filename-tooshort'           => 'El nom del fitxer és massa curt.',
 'filetype-banned'             => 'Aquest tipus de fitxer està prohibit.',
 'verification-error'          => 'Aquest fitxer no ha passat la verificació de fitxers.',
-'hookaborted'                 => "La modificació que vau tractar de fer ha estat cancel.lada per un lligam d'extensió.",
+'hookaborted'                 => "La modificació que vau tractar de fer ha estat canceŀlada per un lligam d'extensió.",
 'illegal-filename'            => 'El nom del fitxer no està permès.',
 'overwrite'                   => 'No es permet sobreescriure un fitxer existent.',
 'unknown-error'               => "S'ha produït un error desconegut.",
@@ -3029,6 +3029,8 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-sensingmethod-5' => "Sensor d'àrea de color per seqüències",
 'exif-sensingmethod-7' => 'Sensor trilineal',
 'exif-sensingmethod-8' => 'Sensor linear de color per seqüències',
+
+'exif-filesource-3' => 'Càmera fotogràfica digital',
 
 'exif-scenetype-1' => 'Una imatge fotografiada directament',
 

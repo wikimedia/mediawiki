@@ -35,6 +35,7 @@
  * @author Nemo bis
  * @author Nick1915
  * @author Od1n
+ * @author Oile11
  * @author Omnipaedista
  * @author PaoloRomano
  * @author Pietrodn
@@ -1642,22 +1643,23 @@ $1',
 'upload-http-error'         => 'Si è verificato un errore HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accesso negato',
-'img-auth-nopathinfo'   => 'PATH_INFO mancante.
+'img-auth-accessdenied'     => 'Accesso negato',
+'img-auth-nopathinfo'       => 'PATH_INFO mancante.
 Il server non è impostato per passare questa informazione.
 Potrebbe essere basato su CGI e non può supportare img_auth.
 Consultare http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Il percorso richiesto non si trova nella directory di upload configurata.',
-'img-auth-badtitle'     => 'Impossibile costruire un titolo valido da "$1".',
-'img-auth-nologinnWL'   => 'Non si è effettuato l\'accesso e "$1" non è nella whitelist.',
-'img-auth-nofile'       => 'File "$1" non esiste.',
-'img-auth-isdir'        => 'Si sta tentando di accedere a una directory "$1".
+'img-auth-notindir'         => 'Il percorso richiesto non si trova nella directory di upload configurata.',
+'img-auth-badtitle'         => 'Impossibile costruire un titolo valido da "$1".',
+'img-auth-nologinnWL'       => 'Non si è effettuato l\'accesso e "$1" non è nella whitelist.',
+'img-auth-nofile'           => 'File "$1" non esiste.',
+'img-auth-isdir'            => 'Si sta tentando di accedere a una directory "$1".
 Solo l\'accesso ai file è consentito.',
-'img-auth-streaming'    => '"$1" in streaming.',
-'img-auth-public'       => 'La funzione di img_auth.php è di dare in output file da un sito wiki privato.
+'img-auth-streaming'        => '"$1" in streaming.',
+'img-auth-public'           => 'La funzione di img_auth.php è di dare in output file da un sito wiki privato.
 Questo sito è configurato come un wiki pubblico.
 Per una sicurezza ottimale, img_auth.php è disattivato.',
-'img-auth-noread'       => 'L\'utente non ha accesso alla lettura di "$1".',
+'img-auth-noread'           => 'L\'utente non ha accesso alla lettura di "$1".',
+'img-auth-bad-query-string' => "L'URL contiene una stringa di query non valida.",
 
 # HTTP errors
 'http-invalid-url'      => 'URL non valido: $1',
@@ -2092,14 +2094,17 @@ Non verranno inviate altre notifiche in caso di ulteriori cambiamenti, a meno ch
              Il sistema di notifica di {{SITENAME}}, al tuo servizio
 
 --
-Per modificare le impostazioni della lista degli osservati speciali, visita
-{{fullurl:Special:Watchlist/edit}}
+Per modificare le impostazioni delle notifiche via e-mail, visita 
+{{fullurl:{{#special:Preferences}}}}
 
-Per cancellare la pagina della lista degli osservati speciali, visita
+Per modificare la lista degli osservati speciali, visita 
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Per rimuovere la pagina dalla lista degli osservati speciali, visita
 $UNWATCHURL
 
-Per dare il tuo feedback e ricevere ulteriore assistenza:
-{{fullurl:Help:Aiuto}}',
+Per commentare e ricevere aiuto:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Cancella pagina',
@@ -2583,7 +2588,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-interwiki-namespace' => 'Namespace di destinazione:',
 'import-upload-filename'     => 'Nome file:',
 'import-comment'             => 'Oggetto:',
-'importtext'                 => 'Si prega di esportare il file dal sito wiki di origine con la funzione Special:Export, salvarlo sul proprio disco e poi caricarlo qui.',
+'importtext'                 => 'Si prega di esportare il file dal sito wiki di origine con la [[Special:Export|funzione di esportazione]], salvarlo sul proprio disco e poi caricarlo qui.',
 'importstart'                => 'Importazione delle pagine in corso...',
 'import-revision-count'      => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}}',
 'importnopages'              => 'Nessuna pagina da importare.',
@@ -2897,7 +2902,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-spectralsensitivity'         => 'Sensibilità spettrale',
 'exif-isospeedratings'             => 'Sensibilità ISO',
 'exif-oecf'                        => 'Fattore di conversione optoelettronica',
-'exif-shutterspeedvalue'           => 'Tempo di esposizione',
+'exif-shutterspeedvalue'           => "Velocità dell'otturatore APEX",
 'exif-aperturevalue'               => 'Apertura APEX',
 'exif-brightnessvalue'             => 'Luminosità APEX',
 'exif-exposurebiasvalue'           => 'Correzione esposizione',
@@ -3053,6 +3058,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-sensingmethod-5' => 'Sensore area colore sequenziale',
 'exif-sensingmethod-7' => 'Sensore trilineare',
 'exif-sensingmethod-8' => 'Sensore lineare colore sequenziale',
+
+'exif-filesource-3' => 'Fotocamera digitale',
 
 'exif-scenetype-1' => 'Fotografia diretta',
 

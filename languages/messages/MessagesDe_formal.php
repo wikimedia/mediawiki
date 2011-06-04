@@ -457,7 +457,9 @@ Es werden Ihnen solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis S
              Das freundliche {{SITENAME}}-Benachrichtigungssystem
 
 --
-Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie: {{fullurl:{{#special:Watchlist}}/edit}}
+Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuchen Sie {{fullurl:{{#special:Preferences}}}}
+
+Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie {{fullurl:{{#special:Watchlist}}/edit}}
 
 Um diese Seite von Ihrer Beobachtungsliste zu entfernen, besuchen Sie $UNWATCHURL
 
@@ -567,7 +569,7 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 
 # Namespace 8 related
 'allmessagestext' => 'Dies ist eine Liste der MediaWiki-Systemtexte.
-Besuchen Sie die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], wenn Sie sich an der Lokalisierung von MediaWiki beteiligen möchten.',
+Bitte besuchen Sie die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], sofern Sie sich an der Lokalisierung von MediaWiki beteiligen möchten.',
 
 # Special:Import
 'import-interwiki-text' => 'Wählen Sie ein Wiki und eine Seite zum Importieren aus.

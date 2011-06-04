@@ -435,17 +435,17 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'gotaccountlink'             => 'Log in',
 'createaccountmail'          => 'e-mail se',
 'createaccountreason'        => 'Kaaran:',
-'badretype'                  => 'Jon duuno password aap likha hai uu ek rakam nai hai.',
-'userexists'                 => 'Ii username aur koi ke hai.
-Duusra username choose karo.',
-'loginerror'                 => 'Login me galti hai',
+'badretype'                  => 'Jon duuno password aap likha hai uu ek rakam nai hae.',
+'userexists'                 => 'Ii username aur koi ke hae.
+Duusra username ke choose karo.',
+'loginerror'                 => 'Login me kuchh wrong hae',
 'createaccounterror'         => 'Account ke nai banae sakaa hae: $1',
-'nocookiesnew'               => 'Aap ke account banae dewa gais hai lekin aap loggen in nai hai.
-{{SITENAME}} me sadasya ke login khatir cookies hai.
-Aap cookies ke disabled karaa hai.
+'nocookiesnew'               => 'Aap ke account banae dewa gais hae lekin aap logged in nai hae.
+{{SITENAME}} me sadasya ke login khatir cookies hae.
+Aap cookies ke rok diya hae.
 Cookies ke enable kar ke, aapan nawaa username aur password se login karo.',
-'nocookieslogin'             => '{{SITENAME}} me sadasya ke login khatir cookies hai.
-Aap cookies ke disabled karaa hai.
+'nocookieslogin'             => '{{SITENAME}} me sadasya ke login khatir cookies hae.
+Aap cookies ke disabled karaa hae.
 Cookies ke enable kar ke fir se kosis karo.',
 'noname'                     => 'Aap achchha user name ke nai specify karaa hai.',
 'loginsuccesstitle'          => 'Login safal bhais',
@@ -787,7 +787,7 @@ Saait iske wiki me se mitae dewa gae hoi, nai to iske naam badal dewa gae hoi.
 Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comment ke hatae dewa gais hai)',
+'rev-deleted-comment'         => '(badlao ke summary ke hatae dewa gais hae)',
 'rev-deleted-user'            => '(username ke hatae dewa gais hai)',
 'rev-deleted-event'           => '(log action ke hatae dewa gais hai)',
 'rev-deleted-user-contribs'   => '[Sadasya ke naam nai to IP address ke hatae dewa gais hae- yogdaan se badlao ke lukae dewa gais hae]',
@@ -2204,7 +2204,7 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:IPBlockList|IP block list]]
 'ipusubmit'                       => 'Ii rukawat ke hatao',
 'unblocked'                       => '[[User:$1|$1]] ke rukawat ke khalaas kar dewa gais hai',
 'unblocked-id'                    => 'Roko $1 ke khalaas kar dewa gais hai',
-'ipblocklist'                     => 'Roka gais IP addresses aur usernames',
+'ipblocklist'                     => 'Roka gais sadasya',
 'ipblocklist-legend'              => 'Ek roka gais sadasya ke khojo',
 'ipblocklist-username'            => 'Username nai to IP address:',
 'ipblocklist-sh-userblocks'       => '$1 account rukawat',
@@ -2724,8 +2724,8 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-colorspace'                  => 'Rang ke jagha',
 'exif-componentsconfiguration'     => 'Har ek component ke matlab',
 'exif-compressedbitsperpixel'      => 'Chapa ke compression mode',
-'exif-pixelydimension'             => 'Chapa ke thik chaurrai',
-'exif-pixelxdimension'             => 'Chapa ke thik uunchai',
+'exif-pixelydimension'             => 'Chaapa ke thiik chaurrai',
+'exif-pixelxdimension'             => 'Chaapa ke thiik uunchai',
 'exif-makernote'                   => 'Manufacturer se jaankari',
 'exif-usercomment'                 => 'Sadasysa ke bichar',
 'exif-relatedsoundfile'            => 'Saathe waala awaaj waala file',
@@ -2741,9 +2741,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-spectralsensitivity'         => 'Ketna achchhaa se ujaala ke pakrre sake hae',
 'exif-isospeedratings'             => 'ISO ke raftaar rating',
 'exif-oecf'                        => 'Optoelectronic conversion factor',
-'exif-shutterspeedvalue'           => 'Shutter ke raftaar',
-'exif-aperturevalue'               => 'Aperture',
-'exif-brightnessvalue'             => 'Chamak',
+'exif-shutterspeedvalue'           => 'APEX shutter ke raftaar',
+'exif-aperturevalue'               => 'APEX aperture',
+'exif-brightnessvalue'             => 'APEX chamak',
 'exif-exposurebiasvalue'           => 'Exposure bias',
 'exif-maxaperturevalue'            => 'Sab se jaada land aperture',
 'exif-subjectdistance'             => 'Chij se duuri',

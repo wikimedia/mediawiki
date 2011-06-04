@@ -417,8 +417,8 @@ $messages = array(
 'pagecategories'                 => 'Catègorie{{PLURAL:$1||s}}',
 'category_header'                => 'Pâges dens la catègorie « $1 »',
 'subcategories'                  => 'Sot-catègories',
-'category-media-header'          => 'Fichiérs multimèdia dens la catègorie « $1 »',
-'category-empty'                 => "''Ora, ceta catègorie contint gins de pâge, de sot-catègorie ou ben de fichiér multimèdia.''",
+'category-media-header'          => 'Fichiérs mèdia dens la catègorie « $1 »',
+'category-empty'                 => "''Ora, ceta catègorie contint gins de pâge ou ben de fichiér mèdia.''",
 'hidden-categories'              => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
 'hidden-category-category'       => 'Catègories cachiês',
 'category-subcat-count'          => 'Ceta catègorie at {{PLURAL:$2|ren que la sot-catègorie|$2 sot-catègories, que {{PLURAL:$1|cela|les $1}}}} ce-desot.',
@@ -599,7 +599,7 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pâge',
 'nstab-user'      => 'Pâge utilisator',
-'nstab-media'     => 'Pâge du fichiér multimèdia',
+'nstab-media'     => 'Pâge de mèdia',
 'nstab-special'   => 'Pâge spèciâla',
 'nstab-project'   => 'Pâge du projèt',
 'nstab-image'     => 'Fichiér',
@@ -762,8 +762,8 @@ l’utilisator « $2 » et est « $3 ». S’o ére voutra entencion, vos vos de
 branchiér et pués chouèsir un mot de pâssa novél.
 Voutron mot de pâssa temporèro èxpirerat dens $5 jorn{{PLURAL:$5||s}}.
 
-Se vos éte pas l’ôtor de cela demanda, ou ben se vos vos rapelâd ora
-de voutron viely mot de pâssa et que vos souhètâd pas més nen changiér, vos
+Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora
+de voutron mot de pâssa et que vos souhètâd pas més nen changiér, vos
 pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
 'noemail'                    => 'Niona adrèce èlèctronica at étâ encartâ por l’utilisator « $1 ».',
 'noemailcreate'              => 'Vos dête balyér una adrèce èlèctronica valida',
@@ -837,7 +837,7 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'image_sample'    => 'Ègzemplo.jpg',
 'image_tip'       => 'Fichiér entrebetâ',
 'media_sample'    => 'Ègzemplo.ogg',
-'media_tip'       => 'Lim de vers un fichiér multimèdia',
+'media_tip'       => 'Lim de vers un fichiér mèdia',
 'sig_tip'         => 'Voutra signatura avouéc la dâta',
 'hr_tip'          => 'Legne plana (pas nen abusar)',
 
@@ -1169,7 +1169,7 @@ $1",
 'pagehist'                    => 'Historico de la pâge',
 'deletedhist'                 => 'Historico suprimâ',
 'revdelete-content'           => 'contegnu',
-'revdelete-summary'           => 'rèsumâ de changement',
+'revdelete-summary'           => 'rèsumâ du changement',
 'revdelete-uname'             => 'nom d’utilisator',
 'revdelete-restricted'        => 'at aplicâ les rèstriccions ux administrators',
 'revdelete-unrestricted'      => 'rèstriccions enlevâs por los administrators',
@@ -1267,12 +1267,12 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Rechèrchiér les pâges que començont per ceti prèfixo]]',
 'searchprofile-articles'           => 'Pâges de contegnu',
 'searchprofile-project'            => 'Pâges d’éde et du projèt',
-'searchprofile-images'             => 'Fichiérs multimèdia',
+'searchprofile-images'             => 'Multimèdia',
 'searchprofile-everything'         => 'Tot',
 'searchprofile-advanced'           => 'Rechèrche avanciê',
 'searchprofile-articles-tooltip'   => 'Rechèrchiér dens $1',
 'searchprofile-project-tooltip'    => 'Rechèrchiér dens $1',
-'searchprofile-images-tooltip'     => 'Rechèrchiér des fichiérs multimèdia',
+'searchprofile-images-tooltip'     => 'Rechèrchiér des fichiérs mèdia',
 'searchprofile-everything-tooltip' => 'Rechèrchiér dens tot lo seto (les pâges de discussion avouéc)',
 'searchprofile-advanced-tooltip'   => 'Chouèsir los èspâços de noms por la rechèrche',
 'search-result-size'               => '$1 ($2 mot{{PLURAL:$2||s}})',
@@ -1323,7 +1323,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'mypreferences'                 => 'Prèferences',
 'prefs-edits'                   => 'Nombro de changements :',
 'prefsnologin'                  => 'Pas branchiê',
-'prefsnologintext'              => 'Vos dête étre <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} branchiê]</span> por changiér voutres prèferences d’utilisator.',
+'prefsnologintext'              => 'Vos dête étre <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} branchiê]</span> por changiér voutres prèferences utilisator.',
 'changepassword'                => 'Changement du mot de pâssa',
 'prefs-skin'                    => 'Habelyâjo',
 'skin-preview'                  => 'Prèvisualisar',
@@ -1418,7 +1418,7 @@ Ceta enformacion serat publica.',
 'prefs-help-email'              => 'U chouèx : endicar voutra adrèce èlèctronica pèrmèt de vos mandar un mot de pâssa novél se vos oubliâd lo voutro.
 Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avouéc voutra pâge de discussion, sen avêr fôta de dèvouèlar voutra identitât.',
 'prefs-help-email-required'     => 'Una adrèce èlèctronica est nècèssèra.',
-'prefs-info'                    => 'Enformacion de bâsa',
+'prefs-info'                    => 'Enformacions de bâsa',
 'prefs-i18n'                    => 'Entèrnacionalisacion',
 'prefs-signature'               => 'Signatura',
 'prefs-dateformat'              => 'Format de les dâtes',
@@ -1657,7 +1657,7 @@ Por encllure un fichiér dens una pâge, utilisâd un lim de la fôrma :
 'upload-preferred'            => 'Formats de fichiérs prèferâs : $1.',
 'upload-prohibited'           => 'Formats de fichiérs dèfendus : $1.',
 'uploadlog'                   => 'Jornal des tèlèchargements',
-'uploadlogpage'               => 'Jornal des tèlèchargements de fichiérs multimèdia',
+'uploadlogpage'               => 'Jornal des tèlèchargements',
 'uploadlogpagetext'           => 'Vê-que la lista des dèrriérs fichiérs tèlèchargiês sur lo sèrvor.
 Vêde la [[Special:NewFiles|galerie des novéls fichiérs]] por una presentacion ples visuâla.',
 'filename'                    => 'Nom du fichiér',
@@ -1839,7 +1839,7 @@ Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 'listfiles-summary'     => 'Ceta pâge spèciâla montre tôs los fichiérs tèlèchargiês.
 Per dèfôt, los dèrriérs fichiérs tèlèchargiês sont montrâs d’amont la lista.
 Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisacion.',
-'listfiles_search_for'  => 'Rechèrchiér un nom d’un fichiér multimèdia :',
+'listfiles_search_for'  => 'Rechèrchiér un nom de mèdia :',
 'imgfile'               => 'fichiér',
 'listfiles'             => 'Lista des fichiérs',
 'listfiles_thumb'       => 'Figura',
@@ -2092,7 +2092,7 @@ Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre util
 
 # Special:Categories
 'categories'                    => 'Catègories',
-'categoriespagetext'            => '{{PLURAL:$1|Ceta catègorie est utilisâ|Cetes catègories sont utilisâs}} per des pâges ou ben des fichiérs multimèdia.
+'categoriespagetext'            => '{{PLURAL:$1|Ceta catègorie contint|Cetes catègories contegnont}} des pâges ou ben des fichiérs mèdia.
 Les [[Special:UnusedCategories|catègories inutilisâs]] sont pas montrâs ique.
 Vêde asse-ben les [[Special:WantedCategories|catègories les ples demandâs]].',
 'categoriesfrom'                => 'Fâre vêre les catègories dês :',
@@ -2252,6 +2252,9 @@ Vos pouede asse-ben tornar inicialisar los drapéls de notificacion por totes le
              Voutron sistèmo de notificacion de {{SITENAME}}
 
 --
+Por changiér los paramètres de notificacion per mèssageria èlèctronica, visitâd
+{{fullurl:{{#special:Preferences}}}}
+
 Por changiér los paramètres de voutra lista de survelyence, visitâd
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2696,7 +2699,7 @@ Nen volyéd chouèsir un ôtro.',
 'movelogpagetext'              => 'Vê-que la lista de totes les pâges renomâs ou dèplaciês.',
 'movesubpage'                  => 'Sot-pâge{{PLURAL:$1||s}}',
 'movesubpagetext'              => 'Cela pâge at $1 {{PLURAL:$1|sot-pâge montrâ|sot-pâges montrâs}} ce-desot.',
-'movenosubpage'                => 'Cela pâge at gins de sot-pâge.',
+'movenosubpage'                => 'Ceta pâge at gins de sot-pâge.',
 'movereason'                   => 'Rêson :',
 'revertmove'                   => 'rètablir',
 'delete_and_move'              => 'Suprimar et renomar',
@@ -2869,13 +2872,13 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-feed-atom'               => 'Flux Atom por ceta pâge',
 'tooltip-t-contributions'         => 'Vêre la lista de les contribucions a ceti utilisator',
 'tooltip-t-emailuser'             => 'Mandar un mèssâjo a ceti utilisator',
-'tooltip-t-upload'                => 'Tèlèchargiér una émâge ou ben un fichiér multimèdia sur lo sèrvor',
+'tooltip-t-upload'                => 'Tèlèchargiér des fichiérs',
 'tooltip-t-specialpages'          => 'Lista de totes les pâges spèciâles',
 'tooltip-t-print'                 => 'Vèrsion emprimâbla de ceta pâge',
 'tooltip-t-permalink'             => 'Lim fixo de vers ceta vèrsion de la pâge',
 'tooltip-ca-nstab-main'           => 'Vêre la pâge de contegnu',
 'tooltip-ca-nstab-user'           => 'Vêre la pâge utilisator',
-'tooltip-ca-nstab-media'          => 'Vêre la pâge du fichiér multimèdia',
+'tooltip-ca-nstab-media'          => 'Vêre la pâge de mèdia',
 'tooltip-ca-nstab-special'        => 'O est una pâge spèciâla, vos la pouede pas changiér.',
 'tooltip-ca-nstab-project'        => 'Vêre la pâge du projèt',
 'tooltip-ca-nstab-image'          => 'Vêre la pâge du fichiér',
@@ -3382,34 +3385,46 @@ Ora, vos vos pouede [[Special:UserLogin|branchiér]] et profitar du vouiqui.',
 'confirmemail_error'        => 'Un problèmo est arrevâ pendent l’encartâjo de voutra confirmacion.',
 'confirmemail_subject'      => 'Confirmacion d’adrèce èlèctronica por {{SITENAME}}',
 'confirmemail_body'         => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
-at encartâ un compto « $2 » avouéc ceta adrèce èlèctronica sur lo seto {{SITENAME}}.
+at encartâ un compto « $2 » avouéc cela adrèce èlèctronica dessus {{SITENAME}}.
 
 Por confirmar que cél compto est franc a vos et por
 activar les fonccions de mèssageria dessus {{SITENAME}},
-volyéd siuvre ceti lim dens voutron navigator :
+volyéd uvrir ceti lim dens voutron navigator :
 
 $3
 
-Se vos éd *pas* encartâ cél compto, uvréd pas ceti lim ;
-vos pouede siuvre l’ôtro lim ce-desot por anular la
-confirmacion de voutra adrèce èlèctronica :
+Se vos éd *pas* encartâ lo compto, siude ceti lim
+por anular la confirmacion de l’adrèce èlèctronica :
 
 $5
 
 Cél code de confirmacion èxpirerat lo $4.',
-'confirmemail_body_changed' => 'Quârqu’un, probâblament vos, dês l’adrèce IP $1,
-at changiê l’adrèce èlèctronica associyê u compto « $2 » de {{SITENAME}}
-en ceta adrèce.
+'confirmemail_body_changed' => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
+at changiê l’adrèce èlèctronica du compto « $2 » a cela adrèce dessus {{SITENAME}}.
 
 Por confirmar que cél compto est franc a vos et por
 reactivar les fonccions de mèssageria dessus {{SITENAME}},
-volyéd siuvre ceti lim dens voutron navigator :
+volyéd uvrir ceti lim dens voutron navigator :
 
 $3
 
-Se vos éd *pas* encartâ cél compto, uvréd pas ceti lim ;
-vos pouede siuvre l’ôtro lim ce-desot por anular la
-confirmacion de voutra adrèce èlèctronica :
+Se lo compto est *pas* a vos, siude ceti lim
+por anular la confirmacion de l’adrèce èlèctronica :
+
+$5
+
+Cél code de confirmacion èxpirerat lo $4.',
+'confirmemail_body_set'     => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
+at changiê l’adrèce èlèctronica du compto « $2 » a cela adrèce dessus {{SITENAME}}.
+
+Por confirmar que cél compto est franc a vos et por
+reactivar les fonccions de mèssageria dessus {{SITENAME}},
+volyéd uvrir ceti lim dens voutron navigator :
+
+$3
+
+Se lo compto est *pas* a vos, siude ceti lim
+por anular la confirmacion de l’adrèce èlèctronica :
 
 $5
 
@@ -3587,7 +3602,7 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 'version-variables'                => 'Variâbles',
 'version-skins'                    => 'Habelyâjos',
 'version-other'                    => 'De totes sôrtes',
-'version-mediahandlers'            => 'Maneyors de fichiérs multimèdia',
+'version-mediahandlers'            => 'Maneyors de mèdia',
 'version-hooks'                    => 'Grèfons',
 'version-extension-functions'      => 'Fonccions d’èxtension de dedens',
 'version-parser-extensiontags'     => 'Balises d’èxtension du parsor',
@@ -3639,7 +3654,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'specialpages-group-other'       => 'Ôtres pâges spèciâles',
 'specialpages-group-login'       => 'Branchement / encartâjo',
 'specialpages-group-changes'     => 'Dèrriérs changements et jornals',
-'specialpages-group-media'       => 'Rapôrts et tèlèchargements de fichiérs multimèdia',
+'specialpages-group-media'       => 'Rapôrts et tèlèchargements de fichiérs mèdia',
 'specialpages-group-users'       => 'Utilisators et drêts apondus',
 'specialpages-group-highuse'     => 'Pâges d’usâjo important',
 'specialpages-group-pages'       => 'Listes de pâges',

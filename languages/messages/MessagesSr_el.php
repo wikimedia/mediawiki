@@ -2256,7 +2256,7 @@ stranice su vandalizovane).',
 'unblockip'                       => 'Deblokiraj korisnika',
 'unblockiptext'                   => 'Upotrebite donji upitnik da biste vratili pravo pisanja
 ranije blokiranoj IP adresi ili korisničkom imenu.',
-'ipusubmit'                       => 'Ukloni ovaj blok',
+'ipusubmit'                       => 'Deblokiraj',
 'unblocked'                       => '[[User:$1|$1]] je deblokiran',
 'unblocked-id'                    => 'Blok $1 je uklonjen',
 'ipblocklist'                     => 'Blokirane IP adrese i korisnička imena',
@@ -2287,7 +2287,7 @@ ranije blokiranoj IP adresi ili korisničkom imenu.',
 'blocklog-showlog'                => 'Ovaj korisnik je već bio blokiran.
 Dnevnik blokiranja je ponuđen ispod  kao referenca:',
 'blocklogentry'                   => 'je blokirao „[[$1]]” sa vremenom isticanja blokade od $2 $3',
-'reblock-logentry'                => 'promenjena podešavanja bloka za [[$1]] sa vremenom isteka $2 ($3)',
+'reblock-logentry'                => 'je promenio podešavanja bloka za [[$1]] sa vremenom isteka $2 ($3)',
 'blocklogtext'                    => 'Ovo je istorija blokiranja korisnika.
 Automatski zabranjene IP adrese nisu ispisane ovde.
 Pogledajte [[Special:IPBlockList|zabranjene IP adrese]] za spisak trenutnih blokova.',
@@ -2296,7 +2296,7 @@ Pogledajte [[Special:IPBlockList|zabranjene IP adrese]] za spisak trenutnih blok
 'block-log-flags-nocreate'        => 'onemogućeno otvaranje naloga',
 'block-log-flags-noautoblock'     => 'isključeno automatsko blokiranje',
 'block-log-flags-noemail'         => 'zabranjena e-pošta',
-'block-log-flags-nousertalk'      => 'ne može da izmeni sopstvenu stranu za razgovor',
+'block-log-flags-nousertalk'      => 'zabranjeno uređivanje sopstvene stranice za razgovor',
 'block-log-flags-angry-autoblock' => 'omogućen je poboljšani autoblok',
 'block-log-flags-hiddenname'      => 'korisničko ime sakriveno',
 'range_block_disabled'            => 'Administratorska mogućnost da blokira blokove IP adresa je isključena.',

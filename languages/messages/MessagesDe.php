@@ -380,16 +380,16 @@ $messages = array(
 'tog-nocache'                 => 'Seitencache des Browsers deaktivieren',
 'tog-enotifwatchlistpages'    => 'Bei Änderungen an beobachteten Seiten E-Mails senden',
 'tog-enotifusertalkpages'     => 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden',
-'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden',
+'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an Seiten E-Mails senden',
 'tog-enotifrevealaddr'        => 'Meine E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-oldsig'                  => 'Vorschau der aktuellen Signatur:',
 'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
-'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede als Standard benutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
+'tog-externaleditor'          => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
+'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-showjumplinks'           => '„Wechseln zu“-Links aktivieren',
 'tog-uselivepreview'          => 'Live-Vorschau nutzen (benötigt JavaScript) (experimentell)',
-'tog-forceeditsummary'        => 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
+'tog-forceeditsummary'        => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown'        => 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots'       => 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
 'tog-watchlisthideminor'      => 'Kleine Bearbeitungen in der Beobachtungsliste ausblenden',
@@ -398,7 +398,7 @@ $messages = array(
 'tog-watchlisthidepatrolled'  => 'Kontrollierte Änderungen in der Beobachtungsliste ausblenden',
 'tog-nolangconversion'        => 'Konvertierung von Sprachvarianten deaktivieren',
 'tog-ccmeonemails'            => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
-'tog-diffonly'                => 'Zeige beim Versionsvergleich nur die Unterschiede, nicht die vollständige Seite',
+'tog-diffonly'                => 'Zeige beim Versionsvergleich nur die Unterschiede und nicht die vollständige Seite',
 'tog-showhiddencats'          => 'Zeige versteckte Kategorien',
 'tog-noconvertlink'           => 'Konvertierung des Titels deaktivieren',
 'tog-norollbackdiff'          => 'Unterschied nach dem Zurücksetzen unterdrücken',
@@ -1444,7 +1444,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'prefs-diffs'                   => 'Versionsvergleich',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => 'Gültige E-Mail-Adresse',
+'email-address-validity-valid'   => 'E-Mail-Adresse scheint gültig zu sein',
 'email-address-validity-invalid' => 'Eine gültige E-Mail-Adresse ist erforderlich.',
 
 # User rights
@@ -1695,7 +1695,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'hookaborted'                 => 'Der Versuch, die Änderung durchzuführen, ist aufgrund eines Extension-Hooks fehlgeschlagen',
 'illegal-filename'            => 'Der Dateiname ist nicht erlaubt',
 'overwrite'                   => 'Das Überschreiben einer existierenden Datei ist nicht erlaubt',
-'unknown-error'               => 'Ein unbekannter Fehler ist aufgetreten',
+'unknown-error'               => 'Ein unbekannter Fehler ist aufgetreten.',
 'tmp-create-error'            => 'Temporäre Datei konnte nicht erstellt werden',
 'tmp-write-error'             => 'Fehler beim Schreiben der temporären Datei',
 'large-file'                  => 'Die Dateigröße sollte nach Möglichkeit $1 nicht überschreiten. Diese Datei ist $2 groß.',
@@ -2094,7 +2094,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'sp-deletedcontributions-contribs' => 'Benutzerbeiträge',
 
 # Special:LinkSearch
-'linksearch'       => 'Weblink-Suche',
+'linksearch'       => 'Weblinksuche',
 'linksearch-pat'   => 'Suchmuster:',
 'linksearch-ns'    => 'Namensraum:',
 'linksearch-ok'    => 'Suchen',
@@ -2126,7 +2126,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'newuserlog-autocreate-entry' => 'Benutzerkonto wurde automatisch erstellt',
 
 # Special:ListGroupRights
-'listgrouprights'                      => 'Benutzergruppen-Rechte',
+'listgrouprights'                      => 'Benutzergruppenrechte',
 'listgrouprights-summary'              => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und der damit verbundenen Rechte.
 Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgrouprights-helppage}}|hier]] gefunden werden.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Gewährtes Recht</span>
@@ -2242,6 +2242,8 @@ Es werden dir solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du 
              Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
+Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{fullurl:{{#special:Preferences}}}}
+
 Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{fullurl:{{#special:Watchlist}}/edit}}
 
 Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL
@@ -2382,7 +2384,7 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletebtn'                  => 'Wiederherstellen',
 'undeletelink'                 => 'ansehen/wiederherstellen',
 'undeleteviewlink'             => 'ansehen',
-'undeletereset'                => 'Abbrechen',
+'undeletereset'                => 'Zurücksetzen',
 'undeleteinvert'               => 'Auswahl umkehren',
 'undeletecomment'              => 'Grund:',
 'undeletedarticle'             => 'hat „[[$1]]“ wiederhergestellt',
@@ -2641,7 +2643,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'cantmove-titleprotected'      => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
 'talkexists'                   => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussionsseite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
 'movedto'                      => 'verschoben nach',
-'movetalk'                     => 'Die Diskussionsseite mitverschieben, wenn möglich',
+'movetalk'                     => 'Sofern möglich die Diskussionsseite mitverschieben',
 'move-subpages'                => 'Unterseiten verschieben (bis zu $1)',
 'move-talk-subpages'           => 'Unterseiten der Diskussionsseite verschieben (bis zu $1)',
 'movepage-page-exists'         => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
@@ -2706,12 +2708,12 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'export-pagelinks'  => 'Verlinkte Seiten automatisch mit exportieren, bis zur Rekursionstiefe von:',
 
 # Namespace 8 related
-'allmessages'                   => 'MediaWiki-Systemtexte',
+'allmessages'                   => 'MediaWiki-Systemnachrichten',
 'allmessagesname'               => 'Name',
 'allmessagesdefault'            => 'Standardtext',
 'allmessagescurrent'            => 'Aktueller Text',
 'allmessagestext'               => 'Dies ist eine Liste der MediaWiki-Systemtexte.
-Besuche die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], wenn du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
+Bitte besuche die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], sofern du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
 'allmessagesnotsupportedDB'     => 'Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter für angepassten Zustand:',
@@ -3490,11 +3492,11 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 'version-variables'                => 'Variablen',
 'version-skins'                    => 'Benutzeroberflächen',
 'version-other'                    => 'Anderes',
-'version-mediahandlers'            => 'Medien-Handler',
+'version-mediahandlers'            => 'Mediennutzung',
 'version-hooks'                    => "Schnittstellen ''(Hooks)''",
 'version-extension-functions'      => 'Funktionsaufrufe',
-'version-parser-extensiontags'     => "Parser-Erweiterungen ''(tags)''",
-'version-parser-function-hooks'    => 'Parser-Funktionen',
+'version-parser-extensiontags'     => "Parsererweiterungen ''(tags)''",
+'version-parser-function-hooks'    => 'Parserfunktionen',
 'version-skin-extension-functions' => 'Benutzeroberflächen-Erweiterungs-Funktionen',
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
@@ -3521,7 +3523,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Datei-Duplikat-Suche',
+'fileduplicatesearch'          => 'Dateiduplikatsuche',
 'fileduplicatesearch-summary'  => 'Suche nach Datei-Duplikaten auf Basis ihres Hash-Wertes.
 
 Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',

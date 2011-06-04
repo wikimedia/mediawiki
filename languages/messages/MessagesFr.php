@@ -1236,7 +1236,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'mergelogpagetext'   => 'Voici la liste des fusions de l’historique d’une page dans celui d’une autre les plus récentes.',
 
 # Diffs
-'history-title'            => 'Historique des versions de « $1 »',
+'history-title'            => 'Historique des versions de «&nbsp;$1&nbsp;»',
 'difference'               => '(Différences entre les versions)',
 'difference-multipage'     => '(Différence entre les pages)',
 'lineno'                   => 'Ligne $1 :',
@@ -1470,7 +1470,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 
 'group-user-member'          => 'utilisateur',
 'group-autoconfirmed-member' => 'utilisateur enregistré',
-'group-bot-member'           => 'bot',
+'group-bot-member'           => 'robot',
 'group-sysop-member'         => 'administrateur',
 'group-bureaucrat-member'    => 'bureaucrate',
 'group-suppress-member'      => 'superviseur',
@@ -2232,6 +2232,9 @@ Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pa
              Votre système de notification de {{SITENAME}}
 
 --
+Pour modifier les paramètres de notification par courriel, visitez
+{{fullurl:{{#special:Preferences}}}}
+
 Pour modifier les paramètres de votre liste de suivi, visitez
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2984,7 +2987,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Attention :''' ce type de fichier peut contenir du code malveillant.
 Si vous l’exécutez, votre système peut être compromis.",
-'imagemaxsize'         => "Taille maximale des images :<br />''(pour les pages de description de fichiers)''",
+'imagemaxsize'         => "Taille maximale des images :<br />''(pour les pages de description de fichier)''",
 'thumbsize'            => 'Taille de la miniature :',
 'widthheightpage'      => '$1 × $2, $3 page{{PLURAL:$3||s}}',
 'file-info'            => 'Taille du fichier : $1, type MIME : $2',
@@ -3432,7 +3435,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'table_pager_last'         => 'Dernière page',
 'table_pager_limit'        => 'Afficher $1 éléments par page',
 'table_pager_limit_label'  => 'Résultats par page :',
-'table_pager_limit_submit' => 'Accéder',
+'table_pager_limit_submit' => 'Envoyer',
 'table_pager_empty'        => 'Aucun résultat',
 
 # Auto-summaries
@@ -3448,7 +3451,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'size-gigabytes' => '$1 Go',
 
 # Live preview
-'livepreview-loading' => 'Chargement…',
+'livepreview-loading' => 'Chargement...',
 'livepreview-ready'   => 'Chargement … terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',

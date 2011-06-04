@@ -545,7 +545,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'noname'                     => 'Dydych chi ddim wedi cynnig enw defnyddiwr dilys.',
 'loginsuccesstitle'          => 'Llwyddodd y mewngofnodi',
 'loginsuccess'               => "'''Yr ydych wedi mewngofnodi i {{SITENAME}} fel \"\$1\".'''",
-'nosuchuser'                 => "Does yna'r un defnyddiwr â'r enw \"\$1\".
+'nosuchuser'                 => "Does dim defnyddiwr o'r enw \"\$1\".
 Mae'r rhaglen yn gwahaniaethu rhwng llythrennau bach a mawr.
 Sicrhewch eich bod chi wedi sillafu'r enw'n gywir, neu [[Special:UserLogin/signup|crëwch gyfrif newydd]].",
 'nosuchusershort'            => 'Does dim defnyddiwr o\'r enw "<nowiki>$1</nowiki>". Gwiriwch eich sillafu.',
@@ -806,9 +806,9 @@ Mae ar gael yn barod.',
 
 Dylai fod llai na $2 {{PLURAL:$2|galwad|alwad|alwad|galwad|galwad|galwad}} yn y dudalen, ond ar hyn o bryd mae $1 {{PLURAL:$1|galwad|alwad|alwad|galwad|galwad|galwad}} ynddi.",
 'expensive-parserfunction-category'       => "Tudalennau a gormod o alwadau ar ffwythiannau dosrannu sy'n dreth ar adnoddau",
-'post-expand-template-inclusion-warning'  => "Rhybudd: Mae'r maint cynnwys nodyn yn rhy fawr.
+'post-expand-template-inclusion-warning'  => "'''Rhybudd:''' Mae maint y nodiadau ar ôl eu chwyddo yn rhy fawr.
 Ni chaiff rhai nodiadau eu cynnwys.",
-'post-expand-template-inclusion-category' => "Tudalennau a phatrymlun ynddynt sy'n fwy na chyfyngiad y meddalwedd",
+'post-expand-template-inclusion-category' => "Tudalennau a nodiadau ynddynt sy'n fwy na chyfyngiad y meddalwedd",
 'post-expand-template-argument-warning'   => "'''Rhybudd:''' Mae gan y dudalen hon o leiaf un arg nodyn sydd a maint ehangu rhy fawr.
 Cafodd yr argiau hyn eu hepgor.",
 'post-expand-template-argument-category'  => 'Tudalennau lle ceir argiau nodiadau coll',
@@ -1331,7 +1331,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'action-upload'               => "uwchlwytho'r ffeil",
 'action-reupload'             => 'trosysgrifo ffeil sydd eisoes ar gael',
 'action-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil yn y storfa gyfrannol",
-'action-upload_by_url'        => "uuchlwytho'r ffeil o gyfeiriad URL",
+'action-upload_by_url'        => "uwchlwytho'r ffeil o gyfeiriad URL",
 'action-writeapi'             => "defnyddio'r API i ysgrifennu a thrin y tudalennau",
 'action-delete'               => "dileu'r dudalen",
 'action-deleterevision'       => "dileu'r golygiad",
@@ -1428,7 +1428,7 @@ Gweler [[Special:NewFiles|oriel y ffeiliau newydd]] i fwrw golwg drostynt.",
 'filedesc'                    => 'Crynodeb',
 'fileuploadsummary'           => 'Crynodeb:',
 'filereuploadsummary'         => "Newidiadau i'r ffeil:",
-'filestatus'                  => 'Statws hawlfraint:',
+'filestatus'                  => 'Statws yr hawlfraint:',
 'filesource'                  => 'Ffynhonnell:',
 'uploadedfiles'               => 'Ffeiliau a uwchlwythwyd',
 'ignorewarning'               => "Anwybydder y rhybudd, a rhoi'r dudalen ar gadw beth bynnag",
@@ -1494,7 +1494,7 @@ Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.
 Gwiriwch y gosodiad ar file_uploads.',
 'uploadscripted'              => "Mae'r ffeil hon yn cynnwys HTML neu sgript a all achosi problemau i borwyr gwe.",
 'uploadvirus'                 => 'Mae firws gan y ffeil hon! Manylion: $1',
-'upload-source'               => 'Y ffeil gwreiddiol',
+'upload-source'               => 'Y ffeil wreiddiol',
 'sourcefilename'              => "Enw'r ffeil wreiddiol:",
 'sourceurl'                   => 'URL y gwreiddiol:',
 'destfilename'                => 'Enw ffeil y cyrchfan:',
@@ -1707,7 +1707,8 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 
 'disambiguations'      => 'Tudalennau gwahaniaethu',
 'disambiguationspage'  => 'Template:Gwahaniaethu',
-'disambiguations-text' => "Mae'r tudalennau canlynol yn cysylltu â thudalennau gwahaniaethu. Yn hytrach dylent gysylltu'n syth â'r erthygl briodol.<br />Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
+'disambiguations-text' => "Mae'r tudalennau canlynol yn cynnwys un neu ragor o gysylltau wici, sydd yn cysylltu â '''thudalennau gwahaniaethu'''. Yn hytrach dylent arwain yn syth at yr erthygl briodol.<br />
+Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
 
 'doubleredirects'            => 'Ailgyfeiriadau dwbl',
 'doubleredirectstext'        => "Mae pob rhes yn cynnwys cysylltiad i'r ddau ail-gyfeiriad cyntaf, ynghyd â chyrchfan yr ail ailgyfeiriad. Fel arfer bydd hyn yn rhoi'r gwir dudalen y dylai'r tudalennau cynt gyfeirio ati.
@@ -1988,10 +1989,13 @@ Os digwydd mwy o olygiadau i\'r dudalen cyn i chi ymweld â hi, ni chewch ragor 
              Sustem hysbysu {{SITENAME}}
 
 --
-I newid eich gosodiadau gwylio, ymwelwch â
+I newid eich gosodiadau negeseuon hysbysu, ewch i 
+{{fullurl:{{#special:Preferences}}}}
+
+I newid eich gosodiadau gwylio, ewch i
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-I dynnu\'r dudalen oddi ar eich rhestr wylio, ewch at
+I dynnu\'r dudalen oddi ar eich rhestr wylio, ewch i
 $UNWATCHURL
 
 Am fwy o gymorth ac adborth:
@@ -2015,7 +2019,7 @@ Os gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod 
 Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'deletedarticle'         => 'wedi dileu "[[$1]]"',
 'suppressedarticle'      => 'cuddiwyd "[[$1]]"',
-'dellogpage'             => 'Log dileuon',
+'dellogpage'             => 'Lòg dileuon',
 'dellogpagetext'         => "Ceir rhestr isod o'r dileadau diweddaraf.",
 'deletionlog'            => 'lòg dileuon',
 'reverted'               => "Wedi gwrthdroi i'r golygiad cynt",
@@ -2129,7 +2133,7 @@ Os oes tudalen newydd o'r un enw wedi cael ei chreu ers y dilëad, fe ddangosir 
 'undeleterevdel'               => "Ni fydd yr adfer yn cael ei chyflawni pe byddai peth o'r diwygiad blaen i'r dudalen neu'r ffeil yn cael ei dileu oherwydd yr adfer.
 Os hynny, rhaid i chi dad-ticio'r diwygiad dilëedig diweddaraf neu ei ddatguddio.",
 'undeletehistorynoadmin'       => "Mae'r dudalen hon wedi'i dileu. Dangosir y rheswm am y dileu isod, gyda manylion o'r holl ddefnyddwyr sydd wedi golygu'r dudalen cyn y dileu. Dim ond gweinyddwyr sydd yn gallu gweld testun y diwygiadau i'r dudalen.",
-'undelete-revision'            => 'Testun y golygiad gan $3 o $1 (fel ag yr oedd am $5 ar $4), a ddilëwyd:',
+'undelete-revision'            => 'Y golygiad gan $3 o $1 (fel ag yr oedd am $5 ar $4), a ddilëwyd:',
 'undeleterevision-missing'     => "Y diwygiad yn annilys neu yn eisiau.
 Mae'n bosib bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi ei adfer neu wedi ei ddileu o'r archif.",
 'undelete-nodiff'              => 'Ni chafwyd hyd i olygiad cynharach.',
@@ -2506,7 +2510,7 @@ Mae cofnod o bob weithred o fewnforio i'w gweld ar y [[Special:Log/import|lòg m
 'import-interwiki-namespace' => 'Parth y cyrchir ato:',
 'import-upload-filename'     => "Enw'r ffeil:",
 'import-comment'             => 'Sylw:',
-'importtext'                 => "Os gwelwch yn dda, allforiwch y ffeil o'r wici gwreiddiol trwy ddefnyddio'r nodwedd [[Special:Export|allforio]]. Rhowch hi ar gadw ar eich cyfrifiadur, ac yna ei huwchlwytho fan hyn.",
+'importtext'                 => "Allforiwch y ffeil o'r wici gwreiddiol trwy ddefnyddio'r [[Special:Export|nodwedd allforio]]. Rhowch hi ar gadw ar eich cyfrifiadur, ac wedyn ei huwchlwytho fan hyn.",
 'importstart'                => "Wrthi'n mewnforio...",
 'import-revision-count'      => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
 'importnopages'              => "Dim tudalennau i gael i'w mewnforio.",
@@ -2960,6 +2964,8 @@ Ymateb yr amledd gofodol',
 'exif-sensingmethod-5' => 'Synhwyrydd lliw ardal dilyniannol',
 'exif-sensingmethod-7' => 'Synhwyrydd trillinol',
 'exif-sensingmethod-8' => 'Synhwyrydd lliw llinellol dilyniannol',
+
+'exif-filesource-3' => 'Camera digidol lluniau llonydd',
 
 'exif-scenetype-1' => "Delwedd wedi ei dynnu'n uniongyrchol",
 

@@ -618,7 +618,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'externaldberror'            => 'Ou ben se produciu un erro da base de datos na autenticación externa ou ben non se lle permite actualizar a súa conta externa.',
 'login'                      => 'Acceder ao sistema',
 'nav-login-createaccount'    => 'Rexistro',
-'loginprompt'                => "Debe habilitar as ''cookies'' para acceder a {{SITENAME}}.",
+'loginprompt'                => 'Debe habilitar as cookies para acceder a {{SITENAME}}.',
 'userlogin'                  => 'Rexistro',
 'userloginnocreate'          => 'Rexistro',
 'logout'                     => 'Saír ao anonimato',
@@ -755,7 +755,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'showpreview'                      => 'Mostrar a vista previa',
 'showlivepreview'                  => 'Vista previa',
 'showdiff'                         => 'Mostrar os cambios',
-'anoneditwarning'                  => "'''Aviso:''' non accedeu ao sistema.
+'anoneditwarning'                  => "'''Aviso:''' Non accedeu ao sistema.
 O seu enderezo IP quedará rexistrado no historial de revisións desta páxina.",
 'anonpreviewwarning'               => "''Non accedeu ao sistema. Se garda a páxina, o seu enderezo IP quedará rexistrado no historial de edicións.''",
 'missingsummary'                   => "'''Aviso:''' esqueceu incluír o texto do campo resumo.
@@ -1134,8 +1134,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'compareselectedversions'  => 'Comparar as versións seleccionadas',
 'showhideselectedversions' => 'Mostrar/Agochar as versións seleccionadas',
 'editundo'                 => 'desfacer',
-'diff-multi'               => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$2|feita por un usuario|feitas por $2 usuarios}}.)',
-'diff-multi-manyusers'     => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$2|feita por máis dun usuario|feitas por máis de $2 usuarios}}.)',
+'diff-multi'               => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por {{PLURAL:$2|un usuario|$2 usuarios}}.)',
+'diff-multi-manyusers'     => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por máis {{PLURAL:$2|dun usuario|de $2 usuarios}}.)',
 
 # Search results
 'searchresults'                    => 'Resultados da procura',
@@ -1771,6 +1771,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'repositorio compartido',
+'filepage.css'              => '/** O CSS que se coloque aquí será incluído na páxina de descrición do ficheiro, así como nos wikis de clientes estranxeiros */',
 
 # File reversion
 'filerevert'                => 'Desfacer $1',
@@ -2133,6 +2134,10 @@ Pode borrar os indicadores de aviso de notificación para o conxunto das páxina
              O sistema de aviso de {{SITENAME}}
 
 --
+Para cambiar as notificacións por correo electrónico, visite
+{{fullurl:{{#special:Preferences}}}}
+
+
 Para cambiar a súa lista de vixilancia, visite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -3135,6 +3140,8 @@ Os demais agocharanse por omisión.
 'exif-sensingmethod-7' => 'Sensor trilineal',
 'exif-sensingmethod-8' => 'Sensor secuencial da liña de cor',
 
+'exif-filesource-3' => 'Cámara fotográfica dixital',
+
 'exif-scenetype-1' => 'Unha imaxe fotografada directamente',
 
 'exif-customrendered-0' => 'Procesamento normal',
@@ -3325,6 +3332,9 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'autosumm-replace' => 'O contido da páxina foi substituído por "$1"',
 'autoredircomment' => 'Redirixida cara a "[[$1]]"',
 'autosumm-new'     => 'Nova páxina: "$1"',
+
+# Size units
+'size-kilobytes' => '$1 kB',
 
 # Live preview
 'livepreview-loading' => 'Cargando...',

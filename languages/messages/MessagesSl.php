@@ -1542,7 +1542,7 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 'hookaborted'                 => 'Spremembo, ki ste jo poskušali narediti, je prekinila razširitev.',
 'illegal-filename'            => 'Ime datoteke ni dovoljeno',
 'overwrite'                   => 'Prepisovanje obstoječe datoteke ni dovoljeno',
-'unknown-error'               => 'Prišlo je do neznane napake',
+'unknown-error'               => 'Prišlo je do neznane napake.',
 'tmp-create-error'            => 'Začasne datoteke ni bilo mogoče ustvariti',
 'tmp-write-error'             => 'Napaka pri pisanju začasne datoteke',
 'large-file'                  => 'Priporočeno je, da datoteke niso večje od $1; ta datoteka je $2.',
@@ -2100,6 +2100,9 @@ Na spisku nadzorov lahko tudi ponastavite zastavice obveščanj za vse spremljan
              Vaš opozorilni sistem {{GRAMMAR:rodilnik|{{SITENAME}}}}
 
 --
+Za spremembo nastavitev e-poštnih obvestil obiščite
+{{fullurl:{{#special:Preferences}}}}
+
 Za spremembo nastavitev spiska nadzorov obiščite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2833,7 +2836,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'widthheight'          => '$1&nbsp;×&nbsp;$2',
 'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|stran|strani}}',
 'file-info'            => 'Velikost datoteke: $1, MIME-vrsta: <code>$2</code>',
-'file-info-size'       => '$1 × $2 točk, velikost datoteke: $3, MIME-vrsta: $4',
+'file-info-size'       => '$1 × $2 točk, velikost datoteke: $3, vrsta MIME: $4',
 'file-nohires'         => '<small>Slika višje ločljivosti ni na voljo.</small>',
 'svg-long-desc'        => 'datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
 'show-big-image'       => 'Slika v višji ločljivosti',

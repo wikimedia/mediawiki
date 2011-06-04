@@ -39,6 +39,7 @@
  * @author Jens Liebenau
  * @author Jurock
  * @author Lin linao
+ * @author Linterweb
  * @author Locos epraix
  * @author Mahadeva
  * @author Manuelt15
@@ -61,6 +62,7 @@
  * @author Toniher
  * @author Translationista
  * @author Urhixidur
+ * @author VegaDark
  * @author XalD
  * @author לערי ריינהארט
  */
@@ -336,14 +338,14 @@ $messages = array(
 'tog-watchdefault'            => 'Vigilar las páginas que yo modifique',
 'tog-watchmoves'              => 'Vigilar las páginas que renombre',
 'tog-watchdeletion'           => 'Vigilar las páginas que borre',
-'tog-minordefault'            => 'Marcar todas las ediciones como menores por defecto',
-'tog-previewontop'            => 'Mostrar la previsualización antes de la caja de edición en lugar de después',
-'tog-previewonfirst'          => 'Mostrar previsualización al comenzar a editar',
-'tog-nocache'                 => 'Deshabilitar la caché de páginas',
-'tog-enotifwatchlistpages'    => 'Envíame un correo cuando haya cambios en una página vigilada',
-'tog-enotifusertalkpages'     => 'Notifícame cuando cambia mi página de discusión de usuario',
-'tog-enotifminoredits'        => 'Notifícame también los cambios menores de página',
-'tog-enotifrevealaddr'        => 'Mostrar mi dirección de correo electrónico en los correos de notificación',
+'tog-minordefault'            => 'Marcar todas las ediciones como menores de manera predeterminada',
+'tog-previewontop'            => 'Mostrar previsualización antes del cuadro de edición',
+'tog-previewonfirst'          => 'Mostrar previsualización en la primera edición',
+'tog-nocache'                 => 'Desactivar la caché de páginas del navegador',
+'tog-enotifwatchlistpages'    => 'Enviarme un correo electrónico cuando una página en mi lista de seguimiento sea modificada',
+'tog-enotifusertalkpages'     => 'Enviarme un correo electrónico cuando mi página de discusión sea modificada',
+'tog-enotifminoredits'        => 'Notificarme también los cambios menores de páginas',
+'tog-enotifrevealaddr'        => 'Revelar mi dirección de correo electrónico en los correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig'                  => 'Vista previa de firma existente:',
 'tog-fancysig'                => 'Tratar firma como wikitexto (sin un enlace automático)',
@@ -471,7 +473,7 @@ $messages = array(
 'qbedit'         => 'Editar',
 'qbpageoptions'  => 'Opciones de página',
 'qbpageinfo'     => 'Información de página',
-'qbmyoptions'    => 'Mis opciones',
+'qbmyoptions'    => 'Mis páginas',
 'qbspecialpages' => 'Páginas especiales',
 'faq'            => 'Preguntas más frecuentes',
 'faqpage'        => 'Project:FAQ',
@@ -523,7 +525,7 @@ $messages = array(
 'newpage'           => 'Página nueva',
 'talkpage'          => 'Discutir esta página',
 'talkpagelinktext'  => 'Discusión',
-'specialpage'       => 'Página Especial',
+'specialpage'       => 'Página especial',
 'personaltools'     => 'Herramientas personales',
 'postcomment'       => 'Nueva sección',
 'articlepage'       => 'Ver artículo',
@@ -569,7 +571,7 @@ $1',
 'edithelppage'         => 'Help:Cómo se edita una página',
 'helppage'             => 'Help:Ayuda',
 'mainpage'             => 'Página principal',
-'mainpage-description' => 'Página Principal',
+'mainpage-description' => 'Página principal',
 'policy-url'           => 'Project:Políticas',
 'portal'               => 'Portal de la comunidad',
 'portal-url'           => 'Project:Portal de la comunidad',
@@ -587,7 +589,7 @@ $1',
 'retrievedfrom'           => 'Obtenido de «$1»',
 'youhavenewmessages'      => 'Tienes $1 ($2).',
 'newmessageslink'         => 'mensajes nuevos',
-'newmessagesdifflink'     => 'ultima modificación',
+'newmessagesdifflink'     => 'última modificación',
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
@@ -734,7 +736,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'nologin'                    => "¿No tienes una cuenta? '''$1'''.",
 'nologinlink'                => 'Crear una cuenta',
 'createaccount'              => 'Cree una nueva cuenta',
-'gotaccount'                 => '¿Ya tiene una cuenta de usuario? $1.',
+'gotaccount'                 => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink'             => 'Entrar',
 'createaccountmail'          => 'por correo electrónico',
 'createaccountreason'        => 'Razón:',
@@ -827,7 +829,7 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'italic_tip'      => 'Texto en cursiva',
 'link_sample'     => 'Título del enlace',
 'link_tip'        => 'Enlace interno',
-'extlink_sample'  => 'http://www.example.com Título del enlace',
+'extlink_sample'  => 'http://www.ejemplo.com Título del enlace',
 'extlink_tip'     => 'Enlace externo (recuerda añadir el prefijo http://)',
 'headline_sample' => 'Texto de titular',
 'headline_tip'    => 'Titular de nivel 2',
@@ -968,7 +970,7 @@ Si quieres grabar tus cambios, has de trasladarlos al área superior.
 'storedversion'                    => 'Versión almacenada',
 'nonunicodebrowser'                => "'''Atención: Tu navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.'''",
 'editingold'                       => "'''Aviso: Estás editando una versión antigua de esta página.'''
-Si la guardas, los cambios hechos desde esa revisión se perderán.",
+Si la guardas, se perderán los cambios realizados desde esta revisión.",
 'yourdiff'                         => 'Diferencias',
 'copyrightwarning'                 => "Por favor observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (véase $1 para más detalles). Si no deseas la modificación y distribución libre de tu obra, entonces no la pongas aquí.<br />También nos aseguras que tú escribiste esto y te pertenecen de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. '''¡No uses escritos con copyright sin permiso!'''",
 'copyrightwarning2'                => "Por favor, ten en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no deseas que las modifiquen sin limitaciones y las distribuyan libremente, entonces no las pongas aquí.<br />También nos aseguras que tú escribiste esto y te pertenecen de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. (véase $1 para más detalles).
@@ -1448,7 +1450,7 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burócratas',
-'group-suppress'      => 'Supresores',
+'group-suppress'      => 'Supresores de ediciones',
 'group-all'           => '(todos)',
 
 'group-user-member'          => 'usuario',
@@ -1456,7 +1458,7 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administrador',
 'group-bureaucrat-member'    => 'burócrata',
-'group-suppress-member'      => 'supresor',
+'group-suppress-member'      => 'supresor de ediciones',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
@@ -1509,7 +1511,7 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'right-editusercssjs'         => 'Editar las páginas de CSS y JS de otros usuarios',
 'right-editusercss'           => 'Editar las páginas de CSS de otros usuarios',
 'right-edituserjs'            => 'Editar las páginas de JS de otros usuarios',
-'right-rollback'              => 'Revertir rápidamente las ediciones del último usuario que modificó una página particular',
+'right-rollback'              => 'Revertir rápidamente las ediciones del último usuario que modificó una página en particular',
 'right-markbotedits'          => 'Marcar ediciones deshechas como ediciones de un bot',
 'right-noratelimit'           => 'No afectado por límites de frecuencia',
 'right-import'                => 'Importar páginas desde otras wikis',
@@ -1744,22 +1746,23 @@ $1',
 'upload-http-error'         => 'Ha ocurrido un error HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acceso denegado',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+'img-auth-accessdenied'     => 'Acceso denegado',
+'img-auth-nopathinfo'       => 'Falta PATH_INFO.
 Tu servidor no está configurado para pasar esta información.
 Puede que este basado en CGI y no sea compatible con img_auth.
 Véase http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Ruta solicitad no esá en el directorio de cargas configurado',
-'img-auth-badtitle'     => 'Incapaz de construir un título válido de «$1».',
-'img-auth-nologinnWL'   => 'No has iniciado sesión y «$1» no está en la lista blanca.',
-'img-auth-nofile'       => 'El archivo «$1» no existe.',
-'img-auth-isdir'        => 'Estás tratando de acceder a un directorio «$1».
+'img-auth-notindir'         => 'Ruta solicitad no esá en el directorio de cargas configurado',
+'img-auth-badtitle'         => 'Incapaz de construir un título válido de «$1».',
+'img-auth-nologinnWL'       => 'No has iniciado sesión y «$1» no está en la lista blanca.',
+'img-auth-nofile'           => 'El archivo «$1» no existe.',
+'img-auth-isdir'            => 'Estás tratando de acceder a un directorio «$1».
 Solo se permite el acceso a los archivos.',
-'img-auth-streaming'    => 'Streaming «$1».',
-'img-auth-public'       => 'La función de img_auth.php es mostrar archivos desde una wiki privada.
+'img-auth-streaming'        => 'Streaming «$1».',
+'img-auth-public'           => 'La función de img_auth.php es mostrar archivos desde una wiki privada.
 Esta wiki está configurada como pública.
 Para óptima seguridad, img_auth.php está desactivado.',
-'img-auth-noread'       => 'El usuario no tiene acceso para leer «$1».',
+'img-auth-noread'           => 'El usuario no tiene acceso para leer «$1».',
+'img-auth-bad-query-string' => 'La dirección URL tiene una cadena de consulta no válida.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
@@ -2001,7 +2004,7 @@ Por favor note que otros sitios web pueden vincular a un archivo con un URL dire
 'nopagetext'              => 'La página destino que ha especificado no existe.',
 'pager-newer-n'           => '{{PLURAL:$1|1 siguiente|$1 siguientes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
-'suppress'                => 'Supervisor',
+'suppress'                => 'Supresor de ediciones',
 
 # Book sources
 'booksources'               => 'Fuentes de libros',
@@ -2238,7 +2241,7 @@ Véase $2 para un registro de los borrados recientes.',
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar razones de borrado',
 'delete-toobig'          => 'Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.',
-'delete-warning-toobig'  => 'Esta página tiene un historial de más de {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
+'delete-warning-toobig'  => 'Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
 
 # Rollback
 'rollback'          => 'Revertir ediciones',
@@ -2758,7 +2761,7 @@ No hay un directorio temporal.',
 'tooltip-pt-anonlogin'            => 'Te invitamos a registrarte, aunque no es obligatorio',
 'tooltip-pt-logout'               => 'Salir de la sesión',
 'tooltip-ca-talk'                 => 'Discusión acerca del artículo',
-'tooltip-ca-edit'                 => 'Puedes editar esta página. Por favor, usa el botón de previsualización antes de grabar.',
+'tooltip-ca-edit'                 => 'Puedes editar esta página. Utiliza el botón de previsualización antes de guardar',
 'tooltip-ca-addsection'           => 'Inicia una nueva sección',
 'tooltip-ca-viewsource'           => 'Esta página está protegida; sólo puedes ver su código fuente',
 'tooltip-ca-history'              => 'Versiones anteriores de esta página y sus autores',
@@ -2772,8 +2775,8 @@ No hay un directorio temporal.',
 'tooltip-search'                  => 'Buscar en este wiki',
 'tooltip-search-go'               => 'Ir al artículo con este nombre exacto si existe',
 'tooltip-search-fulltext'         => 'Busca este texto en las páginas',
-'tooltip-p-logo'                  => 'Portada',
-'tooltip-n-mainpage'              => 'Visitar la Portada',
+'tooltip-p-logo'                  => 'Visitar la página principal',
+'tooltip-n-mainpage'              => 'Visitar la página principal',
 'tooltip-n-mainpage-description'  => 'Visitar la página principal',
 'tooltip-n-portal'                => 'Acerca del proyecto, lo que puedes hacer, dónde encontrar información',
 'tooltip-n-currentevents'         => 'Información de contexto sobre acontecimientos actuales',
@@ -3103,7 +3106,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-objectname'                  => 'Título breve',
 
 # EXIF attributes
-'exif-compression-1' => 'No comprimida',
+'exif-compression-1' => 'Sin comprimir',
 
 'exif-unknowndate' => 'Fecha desconocida',
 
@@ -3181,6 +3184,8 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-sensingmethod-5' => 'Sensor de área secuencial de color',
 'exif-sensingmethod-7' => 'Sensor trilineal',
 'exif-sensingmethod-8' => 'Sensor lineal secuencial de color',
+
+'exif-filesource-3' => 'Cámara digital',
 
 'exif-scenetype-1' => 'Una imagen directamente fotografiada',
 
@@ -3454,8 +3459,8 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'fileduplicatesearch-filename' => 'Nombre del fichero:',
 'fileduplicatesearch-submit'   => 'Buscar',
 'fileduplicatesearch-info'     => '$1 × $2 píxeles<br />Tamaño: $3<br />Tipo MIME: $4',
-'fileduplicatesearch-result-1' => 'El archivo "$1" no tiene duplicados idénticos.',
-'fileduplicatesearch-result-n' => 'El archivo "$1" tiene {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
+'fileduplicatesearch-result-1' => 'El archivo «$1» no tiene duplicados idénticos.',
+'fileduplicatesearch-result-n' => 'El archivo «$1» tiene {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiales',
@@ -3464,20 +3469,20 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 * <strong class="mw-specialpagerestricted">Páginas especiales restringidas.</strong>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other'       => 'Otras páginas especiales',
-'specialpages-group-login'       => 'Registrarse / entrar',
+'specialpages-group-login'       => 'Iniciar sesión / Registrarse',
 'specialpages-group-changes'     => 'Cambios recientes y registros',
 'specialpages-group-media'       => 'Páginas sobre archivos',
 'specialpages-group-users'       => 'Usuarios y permisos',
 'specialpages-group-highuse'     => 'Páginas sobre usos',
 'specialpages-group-pages'       => 'Listas de páginas',
 'specialpages-group-pagetools'   => 'Herramientas de páginas',
-'specialpages-group-wiki'        => 'Datos sobre la wiki y herramientas',
+'specialpages-group-wiki'        => 'Herramientas y datos del wiki',
 'specialpages-group-redirects'   => 'Búsquedas y redirecciones',
 'specialpages-group-spam'        => 'Herramientas anti-SPAM',
 
 # Special:BlankPage
 'blankpage'              => 'Página vacía',
-'intentionallyblankpage' => 'Esta pagina está en blanco intencionadamente',
+'intentionallyblankpage' => 'Esta pagina está en blanco de manera intencionada.',
 
 # External image whitelist
 'external_image_whitelist' => ' #Deja esta línea exactamente como está<pre>
@@ -3512,11 +3517,11 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'compare-submit'   => 'Comparar',
 
 # Database error messages
-'dberr-header'      => 'Esta wiki tiene un problema',
+'dberr-header'      => 'Este wiki tiene un problema',
 'dberr-problems'    => 'Lo sentimos. Este sitio está experimentando dificultades técnicas.',
 'dberr-again'       => 'Prueba a recargar dentro de unos minutos.',
 'dberr-info'        => '(No se puede contactar con la base de datos del servidor: $1)',
-'dberr-usegoogle'   => 'Mientras tanto puede probar buscando a través de Google.',
+'dberr-usegoogle'   => 'Mientras tanto puedes probar buscando a través de Google.',
 'dberr-outofdate'   => 'Ten en cuenta que su índice de nuestro contenido puede estar desactualizado.',
 'dberr-cachederror' => 'La siguiente es una página guardada de la página solicitada, y puede no estar actualizada.',
 

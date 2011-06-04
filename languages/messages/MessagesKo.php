@@ -11,6 +11,7 @@
  * @author Devunt
  * @author Ficell
  * @author Gapo
+ * @author Gjue
  * @author IRTC1015
  * @author ITurtle
  * @author Klutzy
@@ -292,7 +293,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => '링크에 밑줄치기:',
+'tog-underline'               => '링크 걸기:',
 'tog-highlightbroken'         => '없는 문서로 연결된 링크를 <a href="" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
 'tog-justify'                 => '문단 정렬하기',
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
@@ -447,7 +448,7 @@ $messages = array(
 'qbpageinfo'     => '문서 정보',
 'qbmyoptions'    => '내 문서',
 'qbspecialpages' => '특수 문서',
-'faq'            => 'FAQ',
+'faq'            => '자주 묻는 질문',
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
@@ -1706,20 +1707,21 @@ $1',
 'upload-http-error'         => 'HTTP 오류 발생: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => '접근 거부됨',
-'img-auth-nopathinfo'   => 'PATH_INFO 가 빠졌습니다.
+'img-auth-accessdenied'     => '접근 거부됨',
+'img-auth-nopathinfo'       => 'PATH_INFO 가 빠졌습니다.
 서버에 이 정보가 설정되어 있지 않습니다.
 CGI 기반이거나 img_auth 를 지원하지 않을 수 있습니다.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
-'img-auth-notindir'     => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
-'img-auth-badtitle'     => '"$1"에서 바른 제목을 만들 수 없습니다.',
-'img-auth-nologinnWL'   => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
-'img-auth-nofile'       => '"$1" 파일이 없습니다.',
-'img-auth-isdir'        => '"$1" 디렉토리에 접근을 시도했습니다.
+'img-auth-notindir'         => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
+'img-auth-badtitle'         => '"$1"에서 바른 제목을 만들 수 없습니다.',
+'img-auth-nologinnWL'       => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
+'img-auth-nofile'           => '"$1" 파일이 없습니다.',
+'img-auth-isdir'            => '"$1" 디렉토리에 접근을 시도했습니다.
 파일에만 접근할 수 있습니다.',
-'img-auth-streaming'    => '‘$1’ 파일을 전송하는 중입니다.',
-'img-auth-public'       => 'img_auth.php는 개인 위키 파일을 외부 사이트로 전송하는 기능입니다. 이 기능은 기본적으로 공개적인 위키에서 사용하도록 설계되어 있으며, 보안적인 문제로 기본적으로 img_auth.php 기능은 비활성화되어 있습니다.',
-'img-auth-noread'       => '‘$1’ 파일을 볼 권한이 없습니다.',
+'img-auth-streaming'        => '‘$1’ 파일을 전송하는 중입니다.',
+'img-auth-public'           => 'img_auth.php는 개인 위키 파일을 외부 사이트로 전송하는 기능입니다. 이 기능은 기본적으로 공개적인 위키에서 사용하도록 설계되어 있으며, 보안적인 문제로 기본적으로 img_auth.php 기능은 비활성화되어 있습니다.',
+'img-auth-noread'           => '‘$1’ 파일을 볼 권한이 없습니다.',
+'img-auth-bad-query-string' => 'URL에 잘못된 쿼리 문자열이 있습니다.',
 
 # HTTP errors
 'http-invalid-url'      => '잘못된 URL: $1',
@@ -2158,6 +2160,9 @@ $NEWPAGE
              {{SITENAME}} 알림 시스템
 
 --
+이메일 알림 설정을 바꾸시려면 이곳을 방문해주세요:
+{{fullurl:{{#special:Preferences}}}}
+
 주시문서 설정을 바꾸려면 다음을 사용하세요:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2673,7 +2678,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'import-interwiki-namespace' => '새 이름공간:',
 'import-upload-filename'     => '파일 이름:',
 'import-comment'             => '이유:',
-'importtext'                 => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받아서 여기에 올려주세요.',
+'importtext'                 => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받으십시오.
+그리고 당신의 컴퓨터에 저장해 둔 후 여기에 올려주세요.',
 'importstart'                => '문서를 가져오는 중...',
 'import-revision-count'      => '판 $1개',
 'importnopages'              => '가져올 문서가 없습니다.',

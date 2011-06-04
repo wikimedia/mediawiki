@@ -13,6 +13,7 @@
  * @author Garas
  * @author Homo
  * @author Hugo.arg
+ * @author Ignas693
  * @author Matasg
  * @author Meno25
  * @author Pdxx
@@ -791,6 +792,8 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'userjsyoucanpreview'              => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį JS prieš išsaugant.",
 'usercsspreview'                   => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
 'userjspreview'                    => "'''Nepamirškite, kad jūs tik testuojat/peržiūrit savo naudotojo JavaScript, jis dar nebuvo išsaugotas!'''",
+'sitecsspreview'                   => "'''Nepamirškite, kad jūs tik peržiūrit šio CSS .'''! N!''' Tai dar nebuvo išsaugotas!'''",
+'sitejspreview'                    => "'''Nepamirškite, kad jūs tik peržiūrit šis JavaScript kodas .'''! N!''' Tai dar nebuvo išsaugotas!'''",
 'userinvalidcssjstitle'            => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/vector.css, o ne {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Atnaujinta)',
 'note'                             => "'''Pastaba:'''",
@@ -1597,22 +1600,23 @@ Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
 'upload-http-error'         => 'Įvyko HTTP klaida: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Prieiga uždrausta',
-'img-auth-nopathinfo'   => 'Trūksta PATH_INFO.
+'img-auth-accessdenied'     => 'Prieiga uždrausta',
+'img-auth-nopathinfo'       => 'Trūksta PATH_INFO.
 Jūsų serveris nenustatytas perduoti šią informaciją.
 Tai gali būti CGI paremta ir negali palaikyti img_auth.
 Daugiau informacijos http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Užklaustas kelias nėra sukonfigūruotame įkėlimo kataloge.',
-'img-auth-badtitle'     => 'Nepavyksta padaryti leistino pavadinimo iš „$1“.',
-'img-auth-nologinnWL'   => 'Jūs nesate prisijungęs ir „$1“ nėra baltajame sąraše.',
-'img-auth-nofile'       => 'Failas „$1“ neegzistuoja.',
-'img-auth-isdir'        => 'Jūs bandote pasiekti katalogą „$1“.
+'img-auth-notindir'         => 'Užklaustas kelias nėra sukonfigūruotame įkėlimo kataloge.',
+'img-auth-badtitle'         => 'Nepavyksta padaryti leistino pavadinimo iš „$1“.',
+'img-auth-nologinnWL'       => 'Jūs nesate prisijungęs ir „$1“ nėra baltajame sąraše.',
+'img-auth-nofile'           => 'Failas „$1“ neegzistuoja.',
+'img-auth-isdir'            => 'Jūs bandote pasiekti katalogą „$1“.
 Leidžiama prieiga tik prie failų.',
-'img-auth-streaming'    => 'Siunčiamas „$1“.',
-'img-auth-public'       => 'img_auth.php paskirtis yra pateikti failus iš privačių projektų.
+'img-auth-streaming'        => 'Siunčiamas „$1“.',
+'img-auth-public'           => 'img_auth.php paskirtis yra pateikti failus iš privačių projektų.
 Šis projektas sukonfigūruotas kaip viešasis.
 Dėl saugumo, img_auth.php yra išjungtas.',
-'img-auth-noread'       => 'Naudotojas neturi teisės peržiūrėti „$1“.',
+'img-auth-noread'           => 'Naudotojas neturi teisės peržiūrėti „$1“.',
+'img-auth-bad-query-string' => 'URL neteisingas užklausos eilutę.',
 
 # HTTP errors
 'http-invalid-url'      => 'Neleistinas URL: $1',
@@ -2245,6 +2249,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Naudotojų keitimai naujoms paskyroms',
 'sp-contributions-blocklog'            => 'Blokavimų istorija',
 'sp-contributions-deleted'             => 'ištrintas naudotojo indėlis',
+'sp-contributions-uploads'             => 'nuotraukos',
 'sp-contributions-logs'                => 'Specialiųjų veiksmų istorija',
 'sp-contributions-talk'                => 'Aptarimas',
 'sp-contributions-userrights'          => 'naudotojų teisių valdymas',
@@ -2582,7 +2587,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'import-interwiki-namespace' => 'Paskirties vardų sritis:',
 'import-upload-filename'     => 'Failo pavadinimas:',
 'import-comment'             => 'Komentaras:',
-'importtext'                 => 'Prašome eksportuoti failą iš projekto-šaltinio naudojantis {{ns:special}}:Export priemone, išsaugokite jį savo diske ir įkelkite jį čia.',
+'importtext'                 => 'Prašome eksportuoti iš projekto-šaltinio failo, naudojant [[Specialus: Export | Export.]]! N! Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 'importstart'                => 'Imporuojami puslapiai...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versija|versijos|versijų}}',
 'importnopages'              => 'Nėra puslapių importavimui.',
@@ -2875,8 +2880,8 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-colorspace'                  => 'Spalvų pristatymas',
 'exif-componentsconfiguration'     => 'kiekvieno komponento reikšmė',
 'exif-compressedbitsperpixel'      => 'Paveikslėlio suspaudimo režimas',
-'exif-pixelydimension'             => 'Leistinas paveikslėlio plotis',
-'exif-pixelxdimension'             => 'Leistinas paveikslėlio aukštis',
+'exif-pixelydimension'             => 'Paveikslėlio plotis',
+'exif-pixelxdimension'             => 'Vaizdo aukštis',
 'exif-makernote'                   => 'Gamintojo pastabos',
 'exif-usercomment'                 => 'Naudotojo komentarai',
 'exif-relatedsoundfile'            => 'Susijusi garso byla',
@@ -2892,9 +2897,9 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-spectralsensitivity'         => 'Spektrinis jautrumas',
 'exif-isospeedratings'             => 'ISO greitis',
 'exif-oecf'                        => 'Optoelektronikos konversijos daugiklis',
-'exif-shutterspeedvalue'           => 'Užrakto greitis',
-'exif-aperturevalue'               => 'Diafragma',
-'exif-brightnessvalue'             => 'Šviesumas',
+'exif-shutterspeedvalue'           => 'APEX užrakto greičio',
+'exif-aperturevalue'               => 'APEX diafragma',
+'exif-brightnessvalue'             => 'APEX ryškumas',
 'exif-exposurebiasvalue'           => 'Išlaikymo paklaida',
 'exif-maxaperturevalue'            => 'Mažiausias lešio F numeris',
 'exif-subjectdistance'             => 'Objekto atstumas',
