@@ -1,6 +1,7 @@
 <?php
 /**
  * Communications protocol...
+ * This is used by dumpTextPass.php when the --spawn option is present.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
