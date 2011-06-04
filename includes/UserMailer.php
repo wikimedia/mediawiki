@@ -558,7 +558,7 @@ class EmailNotification {
 			$replyto = new MailAddress( $wgNoReplyAddress );
 		}
 
-		if ( $editor->isIP( $name ) ) {
+		if ( $editor->isAnon() ) {
 			# real anon (user:xxx.xxx.xxx.xxx)
 			$utext = wfMsgForContent( 'enotif_anon_editor', $name );
 			$subject = str_replace( '$PAGEEDITOR', $utext, $subject );
