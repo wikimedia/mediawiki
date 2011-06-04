@@ -1029,7 +1029,7 @@ class User {
 			$all = false;
 		}
 
-		if ( isset( $row->user_name ) ) {
+		if ( isset( $row->user_real_name ) ) {
 			$this->mRealName = $row->user_real_name;
 			$this->setItemLoaded( 'realname' );
 		} else {
