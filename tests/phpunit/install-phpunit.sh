@@ -26,7 +26,7 @@ else if ( has_binary apt-get ); then
 else if ( has_binary yum ); then
     echo Installing phpunit with yum
     yum install phpunit
-else if ( has_binary pear ); then
+else if ( has_binary port ); then
     echo Installing phpunit with macports
     port install php5-unit
 fi
