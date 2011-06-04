@@ -2850,6 +2850,9 @@ $1',
 'bydate'                => 'за датою',
 'sp-newimages-showfrom' => 'Показати нові зображення, починаючи з $2, $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'minutes-abbrev' => 'хв',
+
 # Bad image list
 'bad_image_list' => 'Формат має бути наступним:
 
@@ -2924,9 +2927,9 @@ $1',
 'exif-spectralsensitivity'         => 'Спектральна чутливість',
 'exif-isospeedratings'             => 'Світлочутливість ISO',
 'exif-oecf'                        => 'OECF (коефіцієнт оптикоелектричного перетворення)',
-'exif-shutterspeedvalue'           => 'Витримка',
-'exif-aperturevalue'               => 'Діафрагма',
-'exif-brightnessvalue'             => 'Яскравість',
+'exif-shutterspeedvalue'           => 'Витримка в APEX',
+'exif-aperturevalue'               => 'Діафрагма в APEX',
+'exif-brightnessvalue'             => 'Яскравість в APEX',
 'exif-exposurebiasvalue'           => 'Компенсація експозиції',
 'exif-maxaperturevalue'            => 'Мінімальне число діафрагми',
 'exif-subjectdistance'             => "Відстань до об'єкту",

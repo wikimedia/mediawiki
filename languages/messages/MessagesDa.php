@@ -1221,7 +1221,7 @@ Det kan ikke gøres om.',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Kommentarer på diskussionssider bør signeres med "<nowiki>~~~~</nowiki>" som vil blive konverteret til din signatur og et tidsstempel.',
 'badsig'                        => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
-'badsiglength'                  => 'Din sigantur er for lang. Den må højst indeholde {{PLURAL:$1|}}$1 tegn.',
+'badsiglength'                  => 'Din signatur er for lang. Den må højst indeholde {{PLURAL:$1|}}$1 tegn.',
 'yourgender'                    => 'Køn:',
 'gender-unknown'                => 'Uspecificeret',
 'gender-male'                   => 'Mand',
@@ -1991,6 +1991,9 @@ På din overvågningsliste kan du også nulstille alle markeringer på de sider,
              Med venlig hilsen {{SITENAME}}s informationssystem
 
 --
+For at ændre dine indstillinger for e-mail-notifikationer, besøg
+{{fullurl:{{#special:Preferences}}}}
+
 For at ændre indstillingerne for din overvågningsliste, besøg
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2029,7 +2032,7 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 ** Efter forfatters ønske
 ** Overtrædelse af ophavsret
 ** Hærværk',
-'delete-edit-reasonlist' => 'Rediger sletningsårsagerrette',
+'delete-edit-reasonlist' => 'Rediger sletningsårsager',
 'delete-toobig'          => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}}. Sletning af sådanne sider er begrænset blevet for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
 'delete-warning-toobig'  => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}} versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
 
@@ -2922,6 +2925,8 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-sensingmethod-7' => 'Triliniær sensor',
 'exif-sensingmethod-8' => 'Farvesekventiel liniarsensor',
 
+'exif-filesource-3' => 'Digitalt stillbilledekamera',
+
 'exif-scenetype-1' => 'Normal',
 
 'exif-customrendered-0' => 'Standard',
@@ -3116,7 +3121,7 @@ Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'watchlisttools-raw'  => 'Rediger rå overvågningsliste',
 
 # Core parser functions
-'unknown_extension_tag' => 'Unknown extension tag "$1"',
+'unknown_extension_tag' => 'Ukendt tag "$1"',
 'duplicate-defaultsort' => 'Advarsel: Standardsorteringsnøglen "$2" tilsidesætter den tidligere sorteringsnøgle "$1".',
 
 # Special:Version

@@ -659,6 +659,9 @@ Ku tö olet petnus tänna tuldes, pingat teiden kaclimen '''tagaze'''-kingitimel
 Tö voit [[Special:Search/{{PAGENAME}}|ectä nece nimi]] toižil lehtpolil,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ectä pojavid aigkirjoiden kirjutesid],
 vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktiruida nece lehtpol\']</span>.',
+'noarticletext-nopermission'       => 'Necil lehtpolel ei ole nügüd\' tekstad.
+Tö voit [[Special:Search/{{PAGENAME}}|ectä necen lehtpolen nimi]] toižil lehtpolil,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ectä pojavid aigkirjoiden kirjutesid]</span>.',
 'userpage-userdoesnotexist'        => "Kävutajan nimed «$1» ei ole. Todeks-ik tahtoit säta vai toižetada nece lehtpol'?",
 'userpage-userdoesnotexist-view'   => '"$1"-kävutai ei ole registriruidud.',
 'blocked-notice-logextract'        => "Nece kävutai om nügüd' blokiruidud.
@@ -722,6 +725,10 @@ Tö voit pörttas tagaze i redaktiruida toine lehtpol', vai [[Special:UserLogin|
 'permissionserrors'                => 'Oiktusiden petused',
 'permissionserrorstext'            => 'Teile ei sa tehta muga {{PLURAL:$1|necen sün|neniden süiden}} tagut:',
 'permissionserrorstext-withaction' => 'Teile ei sa $2 {{PLURAL:$1|necen sün|neciden süiden}} tagut:',
+'recreate-moveddeleted-warn'       => "Homaikat!
+Tö ladit säta lehtpol', kudamb om čutud poiš aigemba.
+Kodvgat, pidab-ik säta nece lehtpol' udes.
+Alemba anttas necen lehtpolen čudandoiden da udesnimitandoiden aiglehtez.",
 'moveddeleted-notice'              => "Nece lehtpol' om čutud poiš.
 Alemba om anttud lehtpolen čudandan vai sirdandan istorii kut abuandmused.",
 'log-fulllog'                      => 'Ozutada kaclendnimikirjutez kogonaz',
@@ -739,6 +746,8 @@ Wikiš om jo mugoi lehtpol'.",
 'post-expand-template-inclusion-warning'  => 'Varutuz: lehtpolele pandud šablonoiden suruz om surehk.
 Ei voi mülütada erasid šablonoid.',
 'post-expand-template-inclusion-category' => 'Lehtpoled, kudambiden mülütadud šablonoiden suruz om ülitadud',
+'post-expand-template-argument-warning'   => "Homaikat! Necil lehtpolel om hot' üks' surehk šablonan argument.
+Mugomad argumentad čutihe.",
 'post-expand-template-argument-category'  => 'Lehtpoled, kudambil om keskhe jättud šablonoiden argumentid',
 'parser-template-loop-warning'            => "Sol'm om löutud šablonas: [[$1]]",
 'parser-template-recursion-depth-warning' => 'Šablonan rekursijan süvuzröun om ülitadud ($1)',
@@ -942,6 +951,7 @@ Tö ei voigoi kävutada sidä.',
 'searchall'                        => 'kaik',
 'showingresults'                   => "Alemba ozutadas {{PLURAL:$1|'''1''' rezul'tat|'''$1''' rezul'tatad}} nomeraspäi #'''$2''' augotaden.",
 'showingresultsnum'                => "Alemba ozutadas {{PLURAL:$3|'''1''' rezul'tat|'''$3''' rezul'tatad}} nomeraspäi '''$2''' augotaden.",
+'showingresultsheader'             => "{{PLURAL:$5|'''$1''' '''$3'''-š rezul'tatoišpäi|Rezul'tatad '''$1–$2''' '''$3'''-špäi}} '''$4'''-n täht",
 'nonefound'                        => "'''Note''': Ectäs tobjimalaz kaidetud nimiavaruzišpäi.
 Kävutagat prefiks ''all:'', miše ectä kaikes südäimištospäi (lodulehtpolid, šablonoid i m. e. mülütaden), vai kävutagat tarbhaine nimiavaruz.",
 'search-nonefound'                 => "Ecmižhe ei löudnus rezul'tatoid.",
@@ -1394,6 +1404,8 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 'redirectstofile'           => '{{PLURAL:$1|Nece fail läbikosketab|$1 Nened failad läbikosketadas}} necile failale:',
 'duplicatesoffile'          => '{{PLURAL:$1|Nece fail om|$1 Nened failad oma}} ([[Special:FileDuplicateSearch/$2|ližainformacii]])-failan {{PLURAL:$1|dublikat|$1 dublikatad}}:',
 'sharedupload'              => 'Nece fail om ühthižes $1-varaaitaspäi, sidä voiži kävutada mugažo toižiš projektoiš.',
+'sharedupload-desc-here'    => 'Nece fail om $1-späi i se sab kävutada toižiš projektoiš.
+Informacijad sen [$2 andmusiden lehtpolelpäi] om anttud alemba.',
 'filepage-nofile'           => 'Ei ole failad mugoižen nimenke.',
 'filepage-nofile-link'      => 'Ei ole failad mugoižen nimenke, no tö voit [$1 jügutoitta se].',
 'uploadnewversion-linktext' => "Jügutoitta necen failan uz' versii",
@@ -1971,7 +1983,7 @@ Kc. [[Special:IPBlockList|blokiruidud IP-adresoiden nimikirjuteshe]].',
 'ipusubmit'                       => 'Heitta nece blokiruind',
 'unblocked'                       => '[[User:$1|$1]]-kävutajan blokiruind om heittud',
 'unblocked-id'                    => 'Blokiruind $1 om heittud',
-'ipblocklist'                     => 'Blokiruidud IP-adresad da kävutajiden nimed',
+'ipblocklist'                     => 'Blokiruidud kävutajad',
 'ipblocklist-legend'              => 'Löuta blokiruidud kävutajad',
 'ipblocklist-username'            => 'Kävutajan nimi vai IP-adres:',
 'ipblocklist-sh-userblocks'       => '$1 kävutajiden nimiden blokiruindad',
@@ -2321,6 +2333,7 @@ kc. math/README järgendamižen täht.',
 # Patrol log
 'patrol-log-page'      => 'Patruliruindan aigkirj',
 'patrol-log-header'    => 'Nece om patruliruidud versijoiden aiglehtez.',
+'patrol-log-line'      => 'kodvi $1 $2-špäi $3',
 'patrol-log-auto'      => '(avtomatižikš)',
 'patrol-log-diff'      => 'versii $1',
 'log-show-hide-patrol' => '$1 patruliruindan aigkirj',

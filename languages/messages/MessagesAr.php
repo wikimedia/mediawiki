@@ -21,6 +21,7 @@
  * @author Gharbeia
  * @author Hakeem
  * @author Histolo2
+ * @author Houcinee1
  * @author Jak
  * @author Khaledhosny
  * @author Lord Anubis
@@ -2295,32 +2296,32 @@ PICT # متنوع
 'enotif_lastvisited'           => 'انظر $1 لكل التغييرات منذ زيارتك الأخيرة.',
 'enotif_lastdiff'              => 'انظر $1 لرؤية هذا التغيير.',
 'enotif_anon_editor'           => 'مستخدم مجهول $1',
-'enotif_body'                  => 'عزيزي $WATCHINGUSERNAME،
+'enotif_body'                  => 'عزيزي $ WATCHINGUSERNAMEE
+صفحة  $PAGETITLE قد  $ CHANGEDORCREATEDفي $PAGEEDITDATE ب$PAGEEDITOR, انظر$PAGETITLE_URL للمراجعة الحالية
+موجز للمحرر: $PAGESUMMARY $PAGEMINOREDIT
 
-$CHANGEDORCREATED صفحة $PAGETITLE في {{SITENAME}} من قبل $PAGEEDITOR، لرؤية النسخة الحالية من الصفحة راجع: $PAGETITLE_URL.
 
-$NEWPAGE
+الاتصال بالمحرر:
+ البريد: $PAGEEDITOR_EMAIL
+ ويكي: $PAGEEDITOR_WIKI
 
-ملخص تعديل المحرر: $PAGESUMMARY $PAGEMINOREDIT
+لن يكون هناك لا إخطارات أخرى في حالة حدوث مزيد من التغييرات إلا إذا قمت بزيارة هذه الصفحة.
+يمكن أيضا تعيين إشارات الإعلام لجميع صفحات شاهد على هيئة الرصد الخاصة بك.
 
-اتصل بالمحرر:
-عبر بريد إلكتروني: $PAGEEDITOR_EMAIL
-عبر الويكي: $PAGEEDITOR_WIKI
-
-لن يكون هنالك أي إخطارات أخرى عن أية تغييرات تتم في المستقبل إلا إذا زرت هذه الصفحة.
-يمكنك أيضا أن تعيد تصفير عداد الإخطارات لجميع الصفحات التي تراقبها في قائمة مراقبتك.
-
-             نظام إخطار {{SITENAME}} الودود
+			 {{SITENAME}} إعلام النظام الخاص بك ودية
 
 --
-لتغيير إعدادات قائمة مراقبتك، اذهب إلى:
-{{fullurl:{{#special:Watchlist}}/edit}}
+لتغيير إعدادات إعلام البريد الإلكتروني الخاص بك، قم بزيارة
+{{fullurl: {{# الخاص: تفضيلات}}}}
 
-لحذف الصفحة من قائمة مراقبتك، زر
-$UNWATCHURL
+لتغيير إعدادات الرصد الخاصة بك، قم بزيارة
+{{fullurl: {{# الخاص: الرصد}}/تحرير}}
 
-للاقتراحات وللحصول على مساعدة إضافية:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+لحذف الصفحة من هيئة الرصد الخاصة بك، قم بزيارة
+$ أونواتشورل
+
+التغذية المرتدة، والحصول على مساعدة إضافية:
+{{fullurl: {{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'حذف الصفحة',
@@ -3166,9 +3167,9 @@ $1',
 'exif-spectralsensitivity'         => 'الحساسية الطيفية',
 'exif-isospeedratings'             => 'تقييم سرعة أيزو',
 'exif-oecf'                        => 'عامل التحويل الكهروضوئي',
-'exif-shutterspeedvalue'           => 'سرعة الغالق',
-'exif-aperturevalue'               => 'فتحة الغالق',
-'exif-brightnessvalue'             => 'السطوع',
+'exif-shutterspeedvalue'           => 'سرعة الغالق APEX',
+'exif-aperturevalue'               => 'فتحة الغالق APEX',
+'exif-brightnessvalue'             => 'سطوع APEX',
 'exif-exposurebiasvalue'           => 'تعويض التعرض',
 'exif-maxaperturevalue'            => 'أقصى غالق أرضي',
 'exif-subjectdistance'             => 'مسافة الجسم',
@@ -3334,7 +3335,7 @@ $1',
 'exif-sensingmethod-7' => 'مستشعر خطي ثلاثي',
 'exif-sensingmethod-8' => 'مستشعر لون خطي متتابع',
 
-'exif-filesource-3' => 'دي إس سي',
+'exif-filesource-3' => 'كاميرا رقمية واقفة',
 
 'exif-scenetype-1' => 'صورة ملتقطة بشكل مباشر',
 

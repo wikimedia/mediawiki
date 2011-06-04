@@ -1606,22 +1606,23 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'upload-http-error'         => "'n HTTP-fout het voorgekom: $1",
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Toegang geweier',
-'img-auth-nopathinfo'   => 'PATH_INFO word vermis.
+'img-auth-accessdenied'     => 'Toegang geweier',
+'img-auth-nopathinfo'       => 'PATH_INFO word vermis.
 U bediener is nie ingestel om hierdie inligting deur te stuur nie.
 Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
 Sien http://www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
-'img-auth-notindir'     => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
-'img-auth-badtitle'     => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
-'img-auth-nologinnWL'   => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
-'img-auth-nofile'       => 'Lêer "$1" bestaan nie.',
-'img-auth-isdir'        => 'U probeer om toegang na gids "$1" te kry.
+'img-auth-notindir'         => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
+'img-auth-badtitle'         => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
+'img-auth-nologinnWL'       => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
+'img-auth-nofile'           => 'Lêer "$1" bestaan nie.',
+'img-auth-isdir'            => 'U probeer om toegang na gids "$1" te kry.
 Slegs toegang tot lêers word toegelaat.',
-'img-auth-streaming'    => 'Besig met die stoom van "$1".',
-'img-auth-public'       => "Die doel van img_auth.php is die afvoer van lêers vanaf 'n privaat wiki.
+'img-auth-streaming'        => 'Besig met die stoom van "$1".',
+'img-auth-public'           => "Die doel van img_auth.php is die afvoer van lêers vanaf 'n privaat wiki.
 Hierdie wiki is opgestel as 'n publieke wiki.
 Vir veiligheidsredes is img_auth.php gedeaktiveer.",
-'img-auth-noread'       => 'Gebruiker het nie toegang om "$1" te lees nie.',
+'img-auth-noread'           => 'Gebruiker het nie toegang om "$1" te lees nie.',
+'img-auth-bad-query-string' => 'Die URL het \'n ongeldige navraagstring ("query string").',
 
 # HTTP errors
 'http-invalid-url'      => 'Ongeldige URL: $1',
@@ -3006,6 +3007,8 @@ Ander velde sal versteek wees.
 'exif-sensingmethod-5' => 'Kleurvolgende gebiedssensor',
 'exif-sensingmethod-7' => 'Drielynige sensor',
 'exif-sensingmethod-8' => 'Kleurvolgende lynsensor',
+
+'exif-filesource-3' => 'Digitale fotokamera',
 
 'exif-scenetype-1' => "'n Direk gefotografeerde beeld",
 

@@ -262,7 +262,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]',
 
-'about'         => 'Honi Buruz',
+'about'         => 'Honi buruz',
 'article'       => 'Artikulua',
 'newwindow'     => '(leiho berrian irekitzen da)',
 'cancel'        => 'Utzi',
@@ -1921,6 +1921,9 @@ Horrez gain, orrialdeen oharpen konfigurazioa leheneratu dezakezu jarraipen zerr
              Adeitasunez {{SITENAME}}(e)ko oharpen sistema
 
 --
+Zure epostaren jakinarazpenen konfigurazioa aldatzeko, ikus
+{{fullurl:{{#special:Preferences}}}}
+
 Zure jarraipen zerrendako konfigurazioa aldatzeko, ikus
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2145,7 +2148,7 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 
 # Block/unblock
 'blockip'                         => 'Erabiltzailea blokeatu',
-'blockip-title'                   => 'Lankidea blokeatu',
+'blockip-title'                   => 'Erabiltzailea blokeatu',
 'blockip-legend'                  => 'Erabiltzailea blokeatu',
 'blockiptext'                     => 'IP helbide edo erabiltzaile izen bati idazketa baimenak kentzeko beheko formularioa erabil dezakezu. Ekintza hau bandalismoa saihesteko baino ez da burutu behar, eta beti ere [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz. Blokeoaren arrazoi bat ere zehaztu ezazu (adibidez, orrialde batzuk zehaztuz).',
 'ipaddress'                       => 'IP Helbidea',
@@ -2189,7 +2192,7 @@ Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'ipusubmit'                       => 'Blokeoa ezabatu',
 'unblocked'                       => '[[User:$1|$1]] desblokeatu egin da',
 'unblocked-id'                    => '$1 blokeaketa ezabatu da',
-'ipblocklist'                     => 'Blokeatutako IP helbide eta erabiltzaileak',
+'ipblocklist'                     => 'Blokeatutako erabiltzaileak',
 'ipblocklist-legend'              => 'Blokeatutako erabiltzaile bat bilatu',
 'ipblocklist-username'            => 'Erabiltzaile izena edo IP helbidea:',
 'ipblocklist-sh-userblocks'       => 'Kontuaren blokeoak $1',
@@ -2405,7 +2408,7 @@ Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [htt
 'import-interwiki-namespace' => 'Helburuko izen-tartea:',
 'import-upload-filename'     => 'Fitxategiaren izena:',
 'import-comment'             => 'Iruzkina:',
-'importtext'                 => 'Mesedez, jatorrizko wikitik orrialdea esportatzeko Special:Export tresna erabil ezazu, zure diskoan gorde eta jarraian hona igo.',
+'importtext'                 => 'Mesedez, jatorrizko wikitik orrialdea esportatzeko [[Special:Export|esportazio tresna]] erabil ezazu, zure diskoan gorde eta jarraian hona igo.',
 'importstart'                => 'Orrialdeak inportatzen...',
 'import-revision-count'      => '{{PLURAL:$1|berrikuspen 1|$1 berrikuspen}}',
 'importnopages'              => 'Ez dago orrialderik inportatzeko.',
@@ -2694,8 +2697,8 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-colorspace'                  => 'Kolore tartea',
 'exif-componentsconfiguration'     => 'Osagai bakoitzaren esanahia',
 'exif-compressedbitsperpixel'      => 'Irudi konpresio mota',
-'exif-pixelydimension'             => 'Baliozko irudi zabalera',
-'exif-pixelxdimension'             => 'Baliozko irudi altuera',
+'exif-pixelydimension'             => 'Irudiaren zabalera',
+'exif-pixelxdimension'             => 'Irudiaren altuera',
 'exif-makernote'                   => 'Egilearen oharrak',
 'exif-usercomment'                 => 'Erabiltzailearen iruzkinak',
 'exif-relatedsoundfile'            => 'Harremanetan dagoen audio fitxategia',
@@ -2712,9 +2715,9 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-spectralsensitivity'         => 'Sentiberatasun espektrala',
 'exif-isospeedratings'             => 'ISO abiadura',
 'exif-oecf'                        => 'Aldatze faktore optoelektronikoa',
-'exif-shutterspeedvalue'           => 'Argazkiaren abiadura',
-'exif-aperturevalue'               => 'Irekiera',
-'exif-brightnessvalue'             => 'Distira',
+'exif-shutterspeedvalue'           => 'APEX argazkiaren itxiera-abiadura',
+'exif-aperturevalue'               => 'APEX irekiera',
+'exif-brightnessvalue'             => 'APEX distira',
 'exif-exposurebiasvalue'           => 'Esposizio biasa',
 'exif-maxaperturevalue'            => 'Gehienezko landa irekiera',
 'exif-subjectdistance'             => 'Subjetuarekiko distantzia',
@@ -2880,7 +2883,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-sensingmethod-7' => 'Hiru lerroko sentsorea',
 'exif-sensingmethod-8' => 'Kolore sekuentzialeko sentsore linearra',
 
-'exif-filesource-3' => 'DSC',
+'exif-filesource-3' => 'Argazki kamera digitala',
 
 'exif-scenetype-1' => 'Zuzenean argazkia atera zaion irudi bat',
 

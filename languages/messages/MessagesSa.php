@@ -8,12 +8,15 @@
  * @file
  *
  * @author Bharata
+ * @author Bhawani Gautam
  * @author Hemant wikikosh1
  * @author Hrishikesh.kb
+ * @author Htt
  * @author Kaustubh
  * @author Mahitgar
  * @author Naveen Sankar
  * @author Omnipaedista
+ * @author Vibhijain
  * @author రాకేశ్వర
  */
 
@@ -276,7 +279,7 @@ $messages = array(
 'tog-minordefault'            => 'मम सर्वाणि संपादनानि लघुत्वेन वर्तन्ते।',
 'tog-previewontop'            => 'सम्पादन-पिटकस्योपरि प्राग्दृश्यं दर्शयतु।',
 'tog-previewonfirst'          => 'प्रथम-संपादन-पश्चात् प्राग्दृश्यं दर्शयतु।',
-'tog-nocache'                 => 'पृष्ठाणि उपस्मृतौ (कैश्-इत्यस्मिन्) मा धारयतु।',
+'tog-nocache'                 => 'पृष्ठ धारक-ब्राउजरं निस्क्रियतु ।',
 'tog-enotifwatchlistpages'    => 'मम निरीक्षासूचिकायां सतां पृष्ठाणां परिवर्तनसमये मां विद्युत्पत्रेण (ईमेल् इति) ज्ञापयतु।',
 'tog-enotifusertalkpages'     => 'मम योजकसंभाषणपृष्ठे परिवर्तिते सति मां विद्युत्पत्रेण (ईमेल् इति) ज्ञापयतु।',
 'tog-enotifminoredits'        => 'लघुपरिवर्तनेषु सत्सु अपि मां विद्युत्पत्रेण (ईमेल् इति) ज्ञापयतु।',
@@ -284,7 +287,7 @@ $messages = array(
 'tog-shownumberswatching'     => 'निरीक्षमतां प्रयोक्तृणां संख्यां दर्शयतु।',
 'tog-oldsig'                  => 'अधुनातनानां हस्ताक्षराणां प्रारूपम्।',
 'tog-fancysig'                => 'हस्ताक्षराणि विकिपाठवत् सन्तु (स्वचालित-संबंधनेभ्यः रहितानि)।',
-'tog-externaleditor'          => 'अकथिते (बाइ डिफाल्ट् इति), बाह्य संपादकं प्रयोजयतु (केवलेभ्यः निपुणेभ्यः, भवतः संगणके विशेषाः न्यासाः (सेटिंग्स् इति) आवश्यकाः)।',
+'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'अकथिते (बाइ डिफाल्ट् इति), बाह्य अंतरक्रमादेशं प्रयोजयतु (केवलेभ्यः निपुणेभ्यः, भवतः संगणके विशेषाः न्यासाः आवश्यकाः)।',
 'tog-showjumplinks'           => '"इत्येतत् प्रति कूर्दयतु" इति संबंधनानि समर्थयतु।',
 'tog-uselivepreview'          => 'संपादनेन सहैव प्राग्दृश्यं दर्शयतु (जावास्क्रिप्टम् आवश्यकम्) (प्रयोगात्मकम्)।',
@@ -487,6 +490,10 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'jumpto'            => 'कूर्दयतु अत्र :',
 'jumptonavigation'  => 'सुचलनम्',
 'jumptosearch'      => 'अन्वेषणम्',
+'view-pool-error'   => 'क्षम्यताम्, परिवेषणयन्त्राणि अतिभारितानि अस्मिन् समये।
+बहवः प्रयोक्तारः एतत् पृष्ठं द्रष्टुं प्रयतमानाः सन्ति।
+कृपया किंचित्कालं प्रतीक्षताम् भवान्, तदा क्रियताम् प्रयासः।
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} इत्यस्य विषये',
@@ -508,7 +515,12 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'privacy'              => 'नैजता-नीतिः',
 'privacypage'          => 'Project:नैजता-नीतिः',
 
-'badaccess' => 'अनुज्ञा-विभ्रमः',
+'badaccess'        => 'अनुज्ञा-विभ्रमः',
+'badaccess-group0' => 'भवदर्थम्, अत्र प्रार्थिता क्रिया प्रवर्तितुं न अनुमतम्।',
+'badaccess-groups' => 'भवता प्रार्थिता क्रिया केवले {{PLURAL:$2|अस्मिन् समूहे|एतेषु समूहेषु}} अनुमता अस्ति: $1।',
+
+'versionrequired'     => 'मीडीयाविके: $1 संस्करण आवश्यकः ।',
+'versionrequiredtext' => 'एतत्पृष्ठं प्रयोक्तुं मीडियाविकि इत्येतस्य $1तमा आवृत्तिः आवश्यकी। पश्यतु [[Special:Version|आवृत्ति-सूचिका]]',
 
 'ok'                      => 'आम्',
 'pagetitle'               => '',
@@ -526,6 +538,7 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'toc'                     => 'अन्तर्विषयाः',
 'showtoc'                 => 'दर्शयतु',
 'hidetoc'                 => 'गोपयतु',
+'thisisdeleted'           => '$1 दर्शयेत् वा प्रत्यानयेत् वा?',
 'viewdeleted'             => '$1 पश्यतु?',
 'feedlinks'               => 'अनुबन्ध:',
 'site-rss-feed'           => '$1 आरएसएस पूरणम्',
@@ -551,22 +564,30 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'nosuchspecialpage' => 'एतादृश विशेष पृष्टम् नास्ति',
 
 # General errors
-'error'               => 'विभ्रम',
-'databaseerror'       => 'दत्ताधार-विभ्रमः',
-'readonly'            => 'डाटाबेस बन्धितमस्ति',
-'missing-article'     => 'दत्ताधारेण(डाटाबेस् इत्यनेन) "$1" $2 इतिनामकं पृष्ठं नैव प्राप्तम्, यत्तु प्राप्तीभवितव्यमासीत्।
+'error'                => 'विभ्रम',
+'databaseerror'        => 'दत्ताधार-विभ्रमः',
+'readonly'             => 'डाटाबेस बन्धितमस्ति',
+'missing-article'      => 'दत्ताधारेण(डाटाबेस् इत्यनेन) "$1" $2 इतिनामकं पृष्ठं नैव प्राप्तम्, यत्तु प्राप्तीभवितव्यमासीत्।
 
 कदाचित् एवं तु अवसिते सति अंतरे अथवा अपाकृतस्य पृष्ठस्य इतिहास-संबंधनात् भवति।
 
 
 यदि न एवं विद्यते, तदा भवता क्रमादेश-कीटकं अन्विष्टम्।
 कृपया केनचित् [[Special:ListUsers/sysop|प्रचालकेन]] सह अस्य पृष्ठस्य URL इत्येतद्- ज्ञापनपूर्वकं संभाषताम्।',
-'missingarticle-rev'  => '(आवृत्तिः# :$1)',
-'missingarticle-diff' => '(व्यतिरेक: $1, $2)',
-'unexpected'          => 'अप्रतीक्षितमूल्यम् : "$1"="$2"।',
-'badtitletext'        => 'प्रार्थितं पृष्ठ-शीर्षकं अमान्यं वा, रिक्तं वा, अथवा अशुद्धतया संबंद्धं आंतर्भाषिकं, आंतर्विकीयं वा शीर्षकमस्ति। अस्मिन् एकं एकाधिकानि वा एतादृशाणि अक्षराणि विद्यन्ते येषां प्रयोगं शीर्षकेषु अशक्यम्।',
-'viewsource'          => 'स्रोतः दर्शयतु',
-'viewsourcefor'       => '$1 कृते',
+'missingarticle-rev'   => '(आवृत्तिः# :$1)',
+'missingarticle-diff'  => '(व्यतिरेक: $1, $2)',
+'internalerror'        => 'आन्तरिका त्रुटिः',
+'internalerror_info'   => 'आन्तरिका त्रुटिः: $1',
+'directorycreateerror' => '$1 इति निर्देशिकां स्रष्टुं न अपारयत्',
+'unexpected'           => 'अप्रतीक्षितमूल्यम् : "$1"="$2"।',
+'formerror'            => 'त्रुटिः : प्रारूपं समर्पयितुं न अपारयत्',
+'badarticleerror'      => 'अस्मिन् पृष्ठे एषा क्रिया कर्तुं न शक्या।',
+'badtitletext'         => 'प्रार्थितं पृष्ठ-शीर्षकं अमान्यं वा, रिक्तं वा, अथवा अशुद्धतया संबंद्धं आंतर्भाषिकं, आंतर्विकीयं वा शीर्षकमस्ति। अस्मिन् एकं एकाधिकानि वा एतादृशाणि अक्षराणि विद्यन्ते येषां प्रयोगं शीर्षकेषु अशक्यम्।',
+'viewsource'           => 'स्रोतः दर्शयतु',
+'viewsourcefor'        => '$1 कृते',
+
+# Virus scanner
+'virus-unknownscanner' => 'अज्ञातं विषाणुप्रतिकारकम्:',
 
 # Login and logout pages
 'welcomecreation'         => '==स्वागतम्‌, $1!==
@@ -586,8 +607,10 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'nologinlink'             => 'लेखां रचयतु',
 'createaccount'           => 'लेखां रचयतु',
 'gotaccountlink'          => 'प्रविशतु',
+'createaccounterror'      => '$1 इति लेखां स्रष्टुं न अपारयत्',
 'loginsuccesstitle'       => 'सुस्वागतम्‌। प्रवेशः सिद्धः।',
 'mailmypassword'          => 'नूतनं रहस्यवाक् विद्युत्पत्रेण प्रेषयतु',
+'accountcreated'          => 'खाता निर्मित',
 'loginlanguagelabel'      => 'भाषा : $1',
 
 # Password reset dialog
@@ -711,42 +734,95 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'editundo'                => 'अकरोतु',
 
 # Search results
-'searchresults'             => 'अन्वेषण फलानि',
-'searchresults-title'       => '"$1" इत्यस्य कृते अन्वेषण-फलानि',
-'searchresulttext'          => '{{SITENAME}} इत्यस्मिन् अन्वेषणे सहाय्यार्थम् [[{{MediaWiki:Helppage}}|{{int:help}}]] इत्येतत् पश्यतु ।',
-'searchsubtitle'            => 'भवान् \'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|सर्वाणि "$1" इत्यस्माद् आरभमन्तः पृष्ठाणि]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|सर्वाणि "$1" इत्येतत्प्रति संबद्धानि पृष्ठाणि]]) इत्यस्य कृते अन्विष्टवान्।',
-'searchsubtitleinvalid'     => "भवता '''$1''' इत्यस्य कृते अन्वेषणं कृतम्",
-'notitlematches'            => 'न कस्यापि पृष्ठस्य शीर्षकम् अस्य समम्।',
-'notextmatches'             => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
-'prevn'                     => 'पूर्वतनानि {{PLURAL:$1|$1}}',
-'nextn'                     => 'आगामि{{PLURAL:$1|$1}}',
-'viewprevnext'              => 'दर्शयतु ($1 {{int:pipe-separator}} $2) ($3)',
-'searchprofile-everything'  => 'सर्वम्',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
-'search-redirect'           => '($1 इतीदं अनुप्रेषितम्)',
-'search-section'            => '(विभागः $1)',
-'search-suggest'            => 'किं भवतः आशयः एवमस्ति : $1',
-'search-interwiki-caption'  => 'बन्धु-प्रकल्पाः',
-'search-interwiki-default'  => '$1 परिणामाः :',
-'search-interwiki-more'     => '(अधिकानि)',
-'search-mwsuggest-enabled'  => 'उपक्षेपेभ्यः सह',
-'search-mwsuggest-disabled' => 'नात्र उपक्षेपाः',
-'searchall'                 => 'सर्वाणि',
-'nonefound'                 => "'''सूचना''': स्वतः अत्र केषुचिदेव नामाकाशेषु अन्वेषणं क्रियते।
+'searchresults'                    => 'अन्वेषण फलानि',
+'searchresults-title'              => '"$1" इत्यस्य कृते अन्वेषण-फलानि',
+'searchresulttext'                 => '{{SITENAME}} इत्यस्मिन् अन्वेषणे सहाय्यार्थम् [[{{MediaWiki:Helppage}}|{{int:help}}]] इत्येतत् पश्यतु ।',
+'searchsubtitle'                   => 'भवान् \'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|सर्वाणि "$1" इत्यस्माद् आरभमन्तः पृष्ठाणि]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|सर्वाणि "$1" इत्येतत्प्रति संबद्धानि पृष्ठाणि]]) इत्यस्य कृते अन्विष्टवान्।',
+'searchsubtitleinvalid'            => "भवता '''$1''' इत्यस्य कृते अन्वेषणं कृतम्",
+'notitlematches'                   => 'न कस्यापि पृष्ठस्य शीर्षकम् अस्य समम्।',
+'notextmatches'                    => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
+'prevn'                            => 'पूर्वतनानि {{PLURAL:$1|$1}}',
+'nextn'                            => 'आगामि{{PLURAL:$1|$1}}',
+'prevn-title'                      => 'विगत {{PLURAL:$1|परिणाम| परिणामानि}}',
+'nextn-title'                      => 'अवर {{PLURAL:$1|  १ परिणाम|  $1 परिणामानि}}',
+'shown-title'                      => 'प्रत्येक पृष्ठे $1 {{PLURAL:$1|परिणामं|परिणामान्}}प्रदर्शयतु',
+'viewprevnext'                     => 'दर्शयतु ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-new'                   => "'''अश्मिन् विकिते \"[[:\$1]]\" पृष्ठं सृजतु!'''",
+'searchprofile-articles'           => 'सामग्री पृष्ठानि',
+'searchprofile-project'            => 'सहायता तथा परियोजनासहित  पृष्ठानि',
+'searchprofile-images'             => 'बहुमाध्यमः',
+'searchprofile-everything'         => 'सर्वम्',
+'searchprofile-advanced'           => 'उन्नतमः',
+'searchprofile-articles-tooltip'   => '$1 स्थले अन्वेशयतु',
+'searchprofile-project-tooltip'    => '$1 स्थले अन्वेशयतु',
+'searchprofile-images-tooltip'     => 'सञ्चिकान् अन्वेशयतु',
+'searchprofile-everything-tooltip' => '(चर्चा पृष्ठसहित) सम्पूर्ण पठनीय सामग्रीं अन्वेषयतु',
+'searchprofile-advanced-tooltip'   => 'विशेष नामस्थाने अन्वेषयतु',
+'search-result-size'               => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
+'search-redirect'                  => '($1 इतीदं अनुप्रेषितम्)',
+'search-section'                   => '(विभागः $1)',
+'search-suggest'                   => 'किं भवतः आशयः एवमस्ति : $1',
+'search-interwiki-caption'         => 'बन्धु-प्रकल्पाः',
+'search-interwiki-default'         => '$1 परिणामाः :',
+'search-interwiki-more'            => '(अधिकानि)',
+'search-mwsuggest-enabled'         => 'उपक्षेपेभ्यः सह',
+'search-mwsuggest-disabled'        => 'नात्र उपक्षेपाः',
+'searchall'                        => 'सर्वाणि',
+'showingresultsheader'             => "'''$4''' निमित्तये {{PLURAL:$5|'''$3'''स्य '''$1'''  परिणाम|'''$3'''स्य '''$1 - $2'''  परिणामानि}}",
+'nonefound'                        => "'''सूचना''': स्वतः अत्र केषुचिदेव नामाकाशेषु अन्वेषणं क्रियते।
 
 सकले घटके अन्वेषणं कर्तुं स्व अन्वेषणपदेभ्यः पूर्वं ''all:'' इति योजयतु, अथवा इष्टं नामाकाशं पूर्वलग्नरूपेण योजयतु।",
-'powersearch'               => 'प्रगतम् अन्वेषणम्',
-'powersearch-legend'        => 'प्रगतम् अन्वेषणम्',
-'powersearch-ns'            => 'नामाकाशेषु अन्विष्यतु :',
-'powersearch-redir'         => 'अनुप्रेषणानां सूचिकां दर्शयतु।',
-'powersearch-field'         => 'इत्यस्मै अन्विष्यतु',
-'powersearch-toggleall'     => 'सर्वम्',
+'powersearch'                      => 'प्रगतम् अन्वेषणम्',
+'powersearch-legend'               => 'प्रगतम् अन्वेषणम्',
+'powersearch-ns'                   => 'नामाकाशेषु अन्विष्यतु :',
+'powersearch-redir'                => 'अनुप्रेषणानां सूचिकां दर्शयतु।',
+'powersearch-field'                => 'इत्यस्मै अन्विष्यतु',
+'powersearch-toggleall'            => 'सर्वम्',
+'powersearch-togglenone'           => 'नास्ति',
+'search-external'                  => 'वाह्य अन्वेषणम्',
+'searchdisabled'                   => '{{SITENAME}} अन्वेषणं निष्क्रियम्
+अश्मिन् समये भवान् गूगल माध्यमेन अन्वेषणं कर्तुं शक्नोति
+स्मरयतु यत् {{SITENAME}} इति स्थलस्य क्रमाङ्का नैव अद्यातना  इति सोच्यते।',
+
+# Quickbar
+'qbsettings'            => 'शीघ्रपट',
+'qbsettings-none'       => 'नास्ति',
+'qbsettings-fixedleft'  => 'बामे स्थापितः',
+'qbsettings-fixedright' => 'दक्षिणे स्थापितः',
 
 # Preferences page
-'preferences'   => 'इष्टतमानि',
-'mypreferences' => 'मम वरीयांसि',
-'yourlanguage'  => 'भाषा:',
-'email'         => 'विद्युत्पत्रव्यवस्था',
+'preferences'               => 'इष्टतमानि',
+'mypreferences'             => 'मम वरीयांसि',
+'prefs-edits'               => 'सम्पादनानां सख्याः',
+'prefsnologin'              => 'नैव प्रविष्ट',
+'changepassword'            => 'प्रवेश शव्दं परिवर्तयतु',
+'prefs-skin'                => 'त्वचा',
+'skin-preview'              => 'प्राग्दृश्यम्',
+'datedefault'               => 'वरीयांसि नास्ति',
+'prefs-datetime'            => 'दिनांक तथा समय',
+'prefs-personal'            => 'योजकः व्यक्तिरेखा',
+'prefs-rc'                  => 'नवतमानि परिवर्तनानि',
+'prefs-watchlist'           => 'दृष्टि सूची',
+'prefs-watchlist-days'      => 'दृष्टि सूची दर्शनार्थे  दिवसानि',
+'prefs-watchlist-days-max'  => 'अधिकतम ७ दिवसानि',
+'prefs-watchlist-edits-max' => 'अधिकतम संख्या: १०००',
+'prefs-misc'                => 'विविधः',
+'prefs-resetpass'           => 'प्रवेश शव्दं परिवर्तयतु',
+'prefs-email'               => 'इमेल वैकल्पिकाः',
+'prefs-rendering'           => 'स्वरुपः',
+'saveprefs'                 => 'संरक्षतु',
+'resetprefs'                => 'असंरक्षित परिवर्तनानि विलोपयतु',
+'restoreprefs'              => 'समग्राः व्यवस्थादय व्यवस्थानुसारे पुनः संरक्षतु',
+'prefs-editing'             => 'सम्पादनशील:',
+'rows'                      => 'पंक्ति',
+'columns'                   => 'अध: पंक्त्याः',
+'searchresultshead'         => 'अन्वेषणम्',
+'resultsperpage'            => 'प्रति पृष्ट हिट्स:',
+'recentchangesdays'         => 'दिवसानि पर्यन्तो सद्यावधि-परिवर्तनानि दृश्यतु:',
+'recentchangesdays-max'     => 'अधिकतम $1 {{PLURAL:$1|दिवसः|दिवसानि}}',
+'recentchangescount'        => 'सम्पादन संख्यकानि व्यवस्थानुसारेण दृश्यतु:',
+'yourlanguage'              => 'भाषा:',
+'email'                     => 'विद्युत्पत्रव्यवस्था',
 
 # Groups
 'group-sysop' => 'प्रबंधकाः',
@@ -798,6 +874,7 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'upload'        => 'संचिकाम् उद्भारयतु',
 'uploadbtn'     => 'संचिकाम् उद्भारयतु',
 'uploadlogpage' => 'उद्भारण-सूचिका',
+'filedesc'      => 'सांक्षेपिक',
 'uploadedimage' => '"[[$1]]" इत्येतद् उद्भारितमस्ति',
 
 # Special:ListFiles
@@ -824,7 +901,10 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'randompage' => 'अविशिष्ट पृष्ठ',
 
 # Statistics
-'statistics' => 'स्थितिगणितम्',
+'statistics'              => 'स्थितिगणितम्',
+'statistics-users-active' => 'सक्रिय सदस्य',
+
+'doubleredirects' => 'दुगुनी-अनुप्रेषिते',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|बैटम्|बैटानि}}',
@@ -930,8 +1010,13 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'restriction-type'            => 'अनुमतिः:',
 'restriction-level'           => 'सुरक्षा-स्तरः :',
 
+# Restriction levels
+'restriction-level-sysop'         => 'पूर्ण सुरक्षित',
+'restriction-level-autoconfirmed' => 'अर्ध सुरक्षित',
+
 # Undelete
 'undeletelink'     => 'दर्शयतु/पुनःस्थापयतु',
+'undeleteviewlink' => 'द्र्ष्टुमिच्छामि',
 'undeletedarticle' => '"[[$1]]" इत्येतद् पुनःस्थापितमस्ति।',
 
 # Namespace form on various pages

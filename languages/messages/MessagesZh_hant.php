@@ -894,10 +894,11 @@ $2',
 'undo-summary' => '取消由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）所作出的修訂 $1',
 
 # Account creation failure
-'cantcreateaccounttitle' => '無法建立帳號',
-'cantcreateaccount-text' => "從這個 IP 位址 （<b>$1</b>） 建立帳號已經被 [[User:$3|$3]] 禁止。
+'cantcreateaccounttitle'          => '無法建立帳號',
+'cantcreateaccount-text'          => "從這個 IP 位址 （<b>$1</b>） 建立帳號已經被 [[User:$3|$3]] 禁止。
 
 當中被 $3 封禁的原因是 ''$2''",
+'cantcreateaccount-nonblock-text' => '&nbsp&;',
 
 # History pages
 'viewpagelogs'           => '查詢這個頁面的日誌',
@@ -931,7 +932,7 @@ $2',
 嘗試[[Special:Search|搜索本站]]獲得相關的新建頁面。',
 
 # Revision deletion
-'rev-deleted-comment'         => '（註釋已除）',
+'rev-deleted-comment'         => '（編輯摘要已除）',
 'rev-deleted-user'            => '（用戶名已移除）',
 'rev-deleted-event'           => '（日誌已除）',
 'rev-deleted-user-contribs'   => '[用戶名或IP地址已移除 - 從貢獻中隱藏編輯]',
@@ -2267,7 +2268,7 @@ $1',
 'ipusubmit'                       => '移除這個封鎖',
 'unblocked'                       => '[[User:$1|$1]] 的封禁已經解除。',
 'unblocked-id'                    => '封禁 $1 已經被移除',
-'ipblocklist'                     => '被封IP地址列表',
+'ipblocklist'                     => '被封用戶列表',
 'ipblocklist-legend'              => '搜尋一位已經被查封的用戶',
 'ipblocklist-username'            => '用戶名稱或IP地址:',
 'ipblocklist-sh-userblocks'       => '$1賬戶封鎖',
@@ -2499,8 +2500,8 @@ $1已經被封鎖。您是否想更改這個設定？',
 'import-interwiki-namespace' => '目的名字空間:',
 'import-upload-filename'     => '檔案名稱：',
 'import-comment'             => '註解:',
-'importtext'                 => '請使用[[Special:Export|匯出功能]]從來源 wiki 匯出檔案，
-儲存到您的磁片並上傳到這裡。',
+'importtext'                 => '請使用[[Special:Export|匯出功能]]從來源維基匯出檔案，
+儲存到您的電腦中並上傳到這裡。',
 'importstart'                => '正在匯入頁面...',
 'import-revision-count'      => '$1個修訂',
 'importnopages'              => '沒有匯入的頁面。',
@@ -2816,8 +2817,8 @@ Variants for Chinese language
 'exif-colorspace'                  => '顏色空間',
 'exif-componentsconfiguration'     => '每分量含義',
 'exif-compressedbitsperpixel'      => '圖片壓縮模式',
-'exif-pixelydimension'             => '有效圖片寬度',
-'exif-pixelxdimension'             => '有效圖片高度',
+'exif-pixelydimension'             => '圖片寬度',
+'exif-pixelxdimension'             => '圖片高度',
 'exif-makernote'                   => '製造商註釋',
 'exif-usercomment'                 => '用戶註釋',
 'exif-relatedsoundfile'            => '相關的音頻檔案',
@@ -2833,9 +2834,9 @@ Variants for Chinese language
 'exif-spectralsensitivity'         => '感光',
 'exif-isospeedratings'             => 'ISO 速率',
 'exif-oecf'                        => '光電轉換因子',
-'exif-shutterspeedvalue'           => '快門速度',
-'exif-aperturevalue'               => '光圈',
-'exif-brightnessvalue'             => '亮度',
+'exif-shutterspeedvalue'           => 'APEX快門速度',
+'exif-aperturevalue'               => 'APEX光圈',
+'exif-brightnessvalue'             => 'APEX亮度',
 'exif-exposurebiasvalue'           => '曝光補償',
 'exif-maxaperturevalue'            => '最大陸地光圈',
 'exif-subjectdistance'             => '物距',
@@ -2979,6 +2980,8 @@ Variants for Chinese language
 'exif-sensingmethod-5' => '連續彩色區域傳感器',
 'exif-sensingmethod-7' => '三線傳感器',
 'exif-sensingmethod-8' => '連續彩色線性傳感器',
+
+'exif-filesource-3' => '數碼相機',
 
 'exif-scenetype-1' => '直接照像圖片',
 

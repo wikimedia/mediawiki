@@ -320,7 +320,7 @@ $messages = array(
 'tog-externaldiff'            => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-showjumplinks'           => 'Possibilitar links de acessibilidade "{{int:jumpto}}"',
 'tog-uselivepreview'          => 'Usar a antevisão ao vivo (requer JavaScript; é experimental)',
-'tog-forceeditsummary'        => 'Avisar-me ao introduzir um resumo vazio',
+'tog-forceeditsummary'        => 'Avisar-me se deixar o resumo da edição vazio',
 'tog-watchlisthideown'        => 'Esconder as minhas edições ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidebots'       => 'Esconder edições de robôs ao listar mudanças às páginas vigiadas',
 'tog-watchlisthideminor'      => 'Esconder edições menores ao listar mudanças às páginas vigiadas',
@@ -328,7 +328,7 @@ $messages = array(
 'tog-watchlisthideanons'      => 'Esconder edições de utilizadores anónimos ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidepatrolled'  => 'Esconder edições patrulhadas ao listar mudanças às páginas vigiadas',
 'tog-nolangconversion'        => 'Impossibilitar a conversão de variantes da língua',
-'tog-ccmeonemails'            => 'Enviar-me cópias dos correios electrónicos que eu enviar a outros utilizadores',
+'tog-ccmeonemails'            => 'Enviar-me cópias das mensagens por correio electrónico que eu enviar a outros utilizadores',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats'          => 'Mostrar categorias ocultas',
 'tog-noconvertlink'           => 'Impossibilitar a conversão dos títulos de links',
@@ -676,7 +676,7 @@ Consulta: $2',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de protecção "em cascata" activada):
 $2',
 'namespaceprotected'   => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
-'customcssjsprotected' => 'Não possui permissão para editar esta página, porque ela contém as configurações pessoais de outro utilizador.',
+'customcssjsprotected' => 'Não tem permissão de editar esta página, porque ela contém as configurações pessoais de outro utilizador.',
 'ns-specialprotected'  => 'Não é possível editar páginas especiais',
 'titleprotected'       => 'Este título foi protegido contra criação por [[User:$1|$1]].
 A justificação foi "\'\'$2\'\'".',
@@ -956,7 +956,7 @@ Garante-nos também que isto é algo escrito por si, ou copiado do domínio púb
 'copyrightwarning2'                => "Por favor, note que todas as suas contribuições na {{SITENAME}} podem ser editadas, alteradas ou removidas por outros utilizadores. Se não deseja que o seu texto seja inexoravelmente editado, não o envie.
 Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (veja $1 para detalhes).<br />
 '''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
-'longpagewarning'                  => "'''AVISO:''' Esta página possui $1 kilobytes; alguns
+'longpagewarning'                  => "'''AVISO:''' Esta página tem $1 kilobytes; alguns
 browsers têm problemas em editar páginas maiores do que 32 kb.
 Tente dividir a página em secções de menor dimensão, por favor.",
 'longpageerror'                    => "'''Erro: O texto que submeteu ocupa $1 KB, um espaço superior ao máximo de $2 KB.
@@ -1015,7 +1015,7 @@ Devia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLU
 Estes argumentos foram omitidos.',
 'post-expand-template-argument-category'  => 'Páginas com omissão de argumentos para predefinições',
 'parser-template-loop-warning'            => 'Ciclo de predefinições detectado: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Atingido o limite de profundidade de recursividade de predefinição ($1)',
+'parser-template-recursion-depth-warning' => 'Foi excedido o limite da profundidade de recursividade nas predefinições ($1)',
 'language-converter-depth-warning'        => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
 
 # "Undo" feature
@@ -2052,7 +2052,7 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'listusersfrom'      => 'Mostrar utilizadores começando por:',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'Não foram encontrados utilizadores.',
-'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
+'listusers-blocked'  => '(bloqueado)',
 
 # Special:ActiveUsers
 'activeusers'            => 'Utilizadores activos',
@@ -2126,7 +2126,7 @@ O endereço de correio que introduziu nas suas [[Special:Preferences|preferênci
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua lista de [[Special:Watchlist|páginas vigiadas]], onde serão indicadas quaisquer
 modificações futuras desta página e da respectiva página de discussão.
-O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:RecentChanges|mudanças recentes]] para que a encontre facilmente.",
+O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:RecentChanges|mudanças recentes]], para que a encontre facilmente.",
 'removedwatch'         => 'Removida da lista de páginas vigiadas',
 'removedwatchtext'     => 'A página "[[:$1]]" foi removida da sua lista de [[Special:Watchlist|páginas vigiadas]].',
 'watch'                => 'Vigiar',
@@ -2164,7 +2164,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'enotif_body'                  => 'Caro(a) $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
+A página $PAGETITLE da {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para ver a versão actual.
 
 $NEWPAGE
 
@@ -2174,19 +2174,22 @@ Contacte o editor:
 correio electrónico: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Até que visite esta página, não haverá lugar a mais notificações no caso de alterações futuras.
-Pode também reactivar as notificações para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
+Até que visite esta página, não receberá mais notificações das alterações futuras.
+Pode também reactivar as notificações para todas páginas na sua lista de páginas vigiadas.
 
              O seu sistema de notificação amigável da {{SITENAME}}
 
 --
-Para alterar as suas preferências da lista de páginas vigiadas, visite
+Para alterar as suas preferências das notificações por correio electrónico, visite
+{{fullurl:{{#special:Preferences}}}}
+
+Para alterar as suas preferências das páginas vigiadas, visite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Para retirar a página da sua lista de páginas vigiadas, visite
+Para retirar a página da lista de páginas vigiadas, visite
 $UNWATCHURL
 
-Contacto e assistência:
+Para comentários e pedidos de ajuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2219,9 +2222,9 @@ Consulte $2 para um registo de eliminações recentes.',
 ** Violação de direitos de autor
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar motivos de eliminação',
-'delete-toobig'          => 'Esta página possui um longo histórico, com mais de $1 {{PLURAL:$1|edição|edições}}.
-A eliminação de tais páginas foi restringida na {{SITENAME}}, para evitar problemas acidentais.',
-'delete-warning-toobig'  => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
+'delete-toobig'          => 'Esta página tem um histórico longo, com mais de $1 {{PLURAL:$1|edição|edições}}.
+A eliminação de páginas como esta foi restringida na {{SITENAME}}, para evitar problemas acidentais.',
+'delete-warning-toobig'  => 'Esta página tem um histórico de edições longo, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados da {{SITENAME}};
 prossiga com precaução.',
 
@@ -2264,7 +2267,7 @@ Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as p
 Esta é a configuração presente para a página '''$1''':",
 'protect-locked-dblock'       => "Não é possível alterar os níveis de protecção, porque a base de dados está bloqueada.
 Esta é a configuração actual para a página '''$1''':",
-'protect-locked-access'       => "A sua conta não possui permissões para alterar os níveis de protecção de uma página.
+'protect-locked-access'       => "A sua conta não tem permissão de alterar os níveis de protecção de uma página.
 Esta é a configuração actual da página '''$1''':",
 'protect-cascadeon'           => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com protecção em cascata.
 Pode alterar o nível de protecção desta página, mas isso não afectará a protecção em cascata.',
@@ -2811,13 +2814,13 @@ Permite colocar uma justificação no resumo da edição.',
 'vector.js'      => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Vector */',
 
 # Metadata
-'nodublincore'      => 'Os metadados RDF para Dublin Core foram impossibilitados neste servidor.',
-'nocreativecommons' => 'Os metadados RDF para Creative Commons foram impossibilitados neste servidor.',
+'nodublincore'      => 'O uso de metadados RDF para Dublin Core foi impossibilitado neste servidor.',
+'nocreativecommons' => 'O uso de metadados RDF da Creative Commons foi impossibilitado neste servidor.',
 'notacceptable'     => 'O servidor não pode fornecer os dados num formato que o seu cliente possa ler.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizador anónimo|Utilizadores anónimos}} da {{SITENAME}}',
-'siteuser'         => '{{GENDER:$2|um utilizador|uma utilizadora|um utilizador}} da {{SITENAME}} ($1)',
+'siteuser'         => '$1 da {{SITENAME}}',
 'anonuser'         => 'utilizador anónimo $1 da {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.',
 'othercontribs'    => 'Baseado no trabalho de $1.',
@@ -3273,7 +3276,7 @@ a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar às $7 de $6.',
+Este código de confirmação expira a $4.',
 'confirmemail_invalidated' => 'Confirmação de endereço de correio electrónico cancelada',
 'invalidateemail'          => 'Cancelar confirmação de correio electrónico',
 

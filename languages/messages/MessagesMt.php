@@ -892,11 +892,11 @@ Din il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal
 'editingsection'                   => "Modifika ta' $1 (sezzjoni)",
 'editingcomment'                   => 'Qed jiġi editjat $1 (sezzjoni ġdida)',
 'editconflict'                     => "Kunflitt t'editjar: $1",
-'explainconflict'                  => "Xi ħadd modifika din il-paġna sakemm int kont qiegħed tagħmel il-modifiki.
-Fiż-Żona tal-modifika superjuri jinsab il-kliem tal-paġna kif teżisti bħalissa, kif ġiet modifikata mill-utent l-ieħor.
-Il-Verżjoni bil-modifiki tiegħek jinsab fiż-żona ta' modifika inferjuri.
-Jekk trid il-modifiki tiegħek jiġu salvati, inti trid tgħaqqad il-modifiki tiegħek mat-test kif jeżisti bħalissa fiż-żona superjuri.
-Meta tagħfas ''Modifika'', se jiġi salvat '''biss''' it-test li jinsab fiż-żona superjuri.",
+'explainconflict'                  => "Utent ieħor biddel il-paġna meta inti kont qiegħed tagħmel il-modifiki tiegħek.
+Il-kaxxa tal-modifika ta' fuq turi t-test tal-paġna kif inhu bħalissa.
+Il-bidliet li għamilt huma fin-naħa t'isfel.
+Jekk trid il-modifiki tiegħek jiġu salvati, hemm bżonn li tgħaqqad il-modifiki personali ma' dawk eżistenti (fil-kaxxa ta' fuq)
+Meta tagħfas il-buttuna \"{{int:savearticle}}\", se jiġi salvat '''biss''' it-test li jinsab fil-kaxxa tal-modifika ta' fuq.",
 'yourtext'                         => 'It-test tiegħek',
 'storedversion'                    => 'Il-verżjoni maħżuna',
 'nonunicodebrowser'                => "'''TWISSIJA: Il-Browser tiegħek m'għandux sapport għal unicode.
@@ -1015,7 +1015,7 @@ Jista' jkun li ġiet imħassra mill-wiki, jew imsemmija mill-ġdid.
 Prova [[Special:Search|fittex fuq il-wiki]] għal paġni relevanti ġodda.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(tneħħa l-kumment)',
+'rev-deleted-comment'         => '(tneħħija tat-taqsira)',
 'rev-deleted-user'            => '(l-isem tal-utent tneħħa)',
 'rev-deleted-event'           => '(azzjoni tal-log tneħħa)',
 'rev-deleted-user-contribs'   => '[isem tal-utent jew indirizz IP imneħħi - il-modifika ġie moħbiha mill-kronoloġija]',
@@ -1030,6 +1030,8 @@ Dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FU
 Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
 'rev-suppressed-text-view'    => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Bħala amministratur inti xorta waħda tista' taraha; dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
+'rev-deleted-no-diff'         => "Mhuwiex possibbli illi tara dan il-konfront bejn verżjonijiet differenti minħabba li waħda mir-reviżjonijiet ġiet '''imħassra'''.
+Ikkonsulta r-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.",
 'rev-delundel'                => 'uri/aħbi',
 'rev-showdeleted'             => 'uri',
 'revisiondelete'              => 'Ħassar/irkupra reviżjonijiet',
@@ -1863,6 +1865,7 @@ Ara wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].',
 'listusersfrom'      => 'Uri utenti li jibdew minn:',
 'listusers-submit'   => 'Uri',
 'listusers-noresult' => 'l-Ebda utent insab għal din il-kriterja.',
+'listusers-blocked'  => '(imblukkat)',
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista tal-utenti attivi',
@@ -2107,6 +2110,7 @@ Int jista' jkollhok link ħażin, jew jista' jkun li ir-reviżjoni ġie rkuprat 
 'undelete-nodiff'              => 'L-ebda reviżjoni preċedenti ma ġiet misjuba.',
 'undeletebtn'                  => 'Irkupra',
 'undeletelink'                 => 'uri/irkupra',
+'undeleteviewlink'             => 'uri',
 'undeletereset'                => 'Irrisettja',
 'undeleteinvert'               => 'Inverti s-selezzjoni',
 'undeletecomment'              => 'Raġuni:',
@@ -2257,35 +2261,36 @@ Ara l-[[Special:IPBlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.
 'block-log-flags-nocreate'        => 'ħolqien tal-kont imblukkat',
 'block-log-flags-noautoblock'     => 'blokkar awtomatiku disattivat',
 'block-log-flags-noemail'         => 'posta elettronika imblukkata',
+'block-log-flags-nousertalk'      => "ma jistax jimmodifika l-paġna ta' diskussjoni personali",
 'block-log-flags-angry-autoblock' => 'blokkar awtomatiku avvanzat attivat',
 'block-log-flags-hiddenname'      => 'l-isem tal-utent huwa moħbi',
-'range_block_disabled'            => "Il-Possibilitá li timblokka intervali ta' indirizzi tal-IP mhux attiva bħalissa.",
+'range_block_disabled'            => "Il-possibilità li timblokka firxa ta' indirizzi IP mhux attiva bħalissa.",
 'ipb_expiry_invalid'              => "Il-ħin ta' skadenza huwa invalidu.",
-'ipb_expiry_temp'                 => "Blokkijiet ta' ismijiet ta' l-utent moħbija rridu jkunu permanenti.",
-'ipb_already_blocked'             => 'L-utent "$1" diġà bblokkjat',
+'ipb_expiry_temp'                 => "Blokkijiet ta' ismijiet ta' l-utent moħbija jridu jkunu permanenti.",
+'ipb_hide_invalid'                => "Ma jistax jitneħħa l-kont; jista' jkun li għandu ħafna modifiki.",
+'ipb_already_blocked'             => 'L-utent "$1" diġà imblukkat',
 'ipb-needreblock'                 => '== Diġà imblukkat ==
 L-utent $1 hu diġà imblukkat. Trid tbiddel l-impostazzjonijet?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Blokk ieħor|Blokki oħra}}',
 'ipb_cant_unblock'                => 'Problema: Impossibli ssib il-blokk bl-ID $1. L-Imblokk setgħa jkun ġa sblokkat.',
 'ipb_blocked_as_range'            => "Problema: L-Indirizz tal-IP $1 ma jistax jiġi blokkat waħdu u ma jistax jiġi sblokkat. L-Imblokk huwa attiv però f'livell ta' interval $2, li jista' jkun sblokkat.",
 'ip_range_invalid'                => "Interval ta' indirizzi ta' IP mhux validi.",
+'ip_range_toolarge'               => "Mhumiex permessi firxa ta' blokki ikbar minn /$1.",
 'blockme'                         => 'Imblukkani',
 'proxyblocker'                    => "Blokki ta' proxy miftuħa",
 'proxyblocker-disabled'           => 'Din il-funzjoni mhijiex attivata.',
-'proxyblockreason'                => "L-Indirizz tal-IP tiegħek ġie bblokkjat peress li huwa proxy miftuħ.
-Jekk jogħġbok, ikkuntattja lill-provdituri tas-servizz tal-internet jew lis-support tekniku tiegħek u informahom b'din il-problema serja ta' sigurtà.",
-'proxyblocksuccess'               => 'Blokkjat.',
-'sorbsreason'                     => "L-Indirizz tal-IP tiegħek huwa mniżżel bħala proxy miftuħ fil-DNSBL ta' {{SITENAME}}.",
-'sorbs_create_account_reason'     => 'Mhux possibli toħloq aċċessi ġodda minn dan l-indirizz tal-IP minħabba li huwa mniżżel bħala proxy miftuħ fil-DNSBL użat minn {{SITENAME}}.',
+'proxyblockreason'                => "L-indirizz IP tiegħek ġie imblukkat peress li huwa proxy miftuħ. Jekk jogħġbok, ikkuntattja lill-provdituri tas-servizz tal-internet (ISP) jew lis-''support'' tekniku tiegħek u infurmahom b'din il-problema serja ta' sigurtà.",
+'proxyblocksuccess'               => 'Blokk esegwit.',
+'sorbsreason'                     => 'L-indirizz IP tiegħek huwa mniżżel bħala proxy miftuħ fid-DNSBL użat minn {{SITENAME}}.',
+'sorbs_create_account_reason'     => 'L-indirizz IP tiegħek huwa mniżżel bħala proxy miftuħ fid-DNSBL użat minn {{SITENAME}}. Ma tistax toħloq kont.',
 'cant-block-while-blocked'        => 'Ma tistax timblokka lil utenti oħra waqt li inti mblukkat.',
-'cant-see-hidden-user'            => 'L-utent li qiegħed tipprova timblokk diġà ġie imblukkat u moħbi.
+'cant-see-hidden-user'            => 'L-utent li qiegħed tipprova timblokka diġà ġie imblukkat u moħbi.
 Minħabba li inti m\'għandikx id-dritt li "taħbi \'l-utent", ma tistax tara jew timmodifika l-blokk tal-utent.',
 
 # Developer tools
-'lockdb'              => 'Agħlaq id-database',
-'unlockdb'            => 'Iftaħ id-database',
-'lockdbtext'          => "Tagħlaq id-database se jisuspendi l-abbilitá ta' kull utent li jagħmlu modifiki fil-paġni, modifika l-preferenzi tagħhom, modifika l-osservazzjonijiet speċjali tagħhom, u affarijiet oħra li għadnhom bżonn modifika fid-database.
-Jekk jogħġbok konferma li dan huwa li tixtieq li tagħmel, u li se tiftaħ id-database wara li l-manteniment ikun lest.",
+'lockdb'              => 'Agħlaq id-databażi',
+'unlockdb'            => 'Iftaħ id-databażi',
+'lockdbtext'          => "L-imblukkar tad-databażi iwassal għall-interuzzjoni, għall-utenti kollha, tal-possibilità li jimmodifikaw il-paġni jew li joħolqu oħrajn ġodda, li jbiddlu l-preferenzi tagħhom u jimmodifikaw l-elenki tal-paġni taħt osservazzjoni, u ġeneralment kull operazzjoni li għandha bżonn ta' modifiki fid-databażi. Jekk jogħġbok, ikkonferma li dan jikkorispondi effettivament għall-azzjoni li ġie rikjesta għalik u li fi tmiem il-manuntenzjoni terġa' tiżblokka d-databażi.",
 'unlockdbtext'        => "Tiftaħ id-database se jirkupra l-abbilità ta' kull utent li jagħmlu modifiki mill-ġdid, jagħmlu modifiki fil-preferenzi, modifiki fl-osservazzjonijiet speċjali, u affarijiet oħra li għandhom bżonn modifika fid-database.
 Jekk jogħġbok konferma mill-ġdid li dan huwa li tixtieq li tagħmel.",
 'lockconfirm'         => 'Iva, ċert li rrid nagħlaq id-database.',
@@ -2344,7 +2349,7 @@ Jekk jogħġbok, waħħad iż-żewġ paġni manwalment.'''",
 '1movedto2'                    => '[[$1]] tmexxa lejn [[$2]]',
 '1movedto2_redir'              => "[[$1]] tmexxa lejn [[$2]] permezz ta' riindirizzament",
 'move-redirect-suppressed'     => 'rindirizz mrażżan',
-'movelogpage'                  => 'Ċaqlieq',
+'movelogpage'                  => "Reġistru tat-tmexxija ta' paġni",
 'movelogpagetext'              => "Hawn taħt jinsab lista ta' paġni mċaqilqa.",
 'movesubpage'                  => '{{PLURAL:$1|Sottopaġna|Sottopaġna}}',
 'movenosubpage'                => "Din il-paġna m'għandha l-ebda sottopaġna.",
@@ -3173,6 +3178,7 @@ Daħħal l-isem tal-fajl mingħajr il-prefiss \"{{ns:file}}:\".",
 'dberr-header'   => 'Din il-wiki għandha problema',
 'dberr-problems' => 'Jiddispjaċina! Dan is-sit għandu diffikultajiet tekniċi.',
 'dberr-again'    => "Prova stenna ftit minuti u erġa' tella' l-paġna.",
+'dberr-info'     => '(Impossibbli li jsir kuntratt mas-server tad-databażi: $1)',
 
 # HTML forms
 'htmlform-invalid-input'       => "Hemm xi problemi f'dak li daħħalt",

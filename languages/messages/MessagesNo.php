@@ -2037,6 +2037,7 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 'enotif_anon_editor'           => 'anonym bruker $1',
 'enotif_body'                  => 'Kjære $WATCHINGUSERNAME,
 
+
 {{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED den $PAGEEDITDATE av $PAGEEDITOR, se $PAGETITLE_URL for den nåværende revisjonen.
 
 $NEWPAGE
@@ -2047,20 +2048,22 @@ Kontakt brukeren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Det vil ikke komme flere påminnelser om endringer på denne siden med mindre du besøker den.
-Du kan også fjerne påminnelsesflagg for alle sider i overvåkningslisten din.
+Det vil ikke komme flere varsler om endringer på denne siden med mindre du besøker den.
+Du kan også fjerne varslingsflagg for alle overvåkede sider i overvåkningslisten din.
 
-Med vennlig hilsen,
-{{SITENAME}}s påminnelsessystem
+             Ditt vennlige varslingssystem for {{SITENAME}}
 
 --
-For å endre innstillingene i overvåkningslisten din, besøk
+For å endre innstillingene for e-postvarsler, se
+{{fullurl:{{#special:Preferences}}}}
+
+For å endre innstillingene for overvåkningslisten, se
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-For å slette siden fra overvåkningslisten din, besøk
+For å slette en side fra overvåkningssiden, se
 $UNWATCHURL
 
-Tilbakemeldinger og videre assistanse:
+Tilbakemelding og videre assistanse:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -3170,7 +3173,7 @@ $1',
 'autosumm-new'     => 'Ny side: $1',
 
 # Live preview
-'livepreview-loading' => 'Laster&nbsp;…',
+'livepreview-loading' => 'Laster…',
 'livepreview-ready'   => 'Laster&nbsp;… Klar!',
 'livepreview-failed'  => 'Levende forhåndsvisning mislyktes. Prøv vanlig forhåndsvisning.',
 'livepreview-error'   => 'Tilkobling mislyktes: $1 «$2»

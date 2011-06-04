@@ -491,7 +491,7 @@ Tafadhali ripoti hili kwa [[Special:ListUsers/sysop|mkabidhi]], na uache jina la
 'cannotdelete'         => 'Haikuweza kufuta kurasa au faili linaloitwa "$1".
 Huenda likawa tayari lishafutwa na mtu mwingine.',
 'badtitle'             => 'Jina halifai',
-'badtitletext'         => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja a zaidi ambazo hazitumiki katika majina.',
+'badtitletext'         => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja au zaidi ambazo hazitumiki katika majina.',
 'perfcached'           => 'Data zifuatazo zinatoka kwenye kache na huenda si ya kisasa.',
 'perfcachedts'         => 'Data zifuatazo zimetoka kwenye kache iliobadilishwa mara ya mwisho saa $3, tarehe $2.',
 'querypage-no-updates' => 'Mabadiliko kwa ajili ya ukurasa huu yamesimamishwa.
@@ -828,6 +828,13 @@ Inaonekana kwamba ukurasa umefutwa.',
 'edit-no-change'                   => 'Uhariri wako haukufanikiwa, kwa sababu hapakuwa na mabadiliko yoyote kwenye maandishi.',
 'edit-already-exists'              => 'Haikufanikiwa kuanzisha ukurasa mpya.
 Ukurasa wa jina hilo unapatikana tayari.',
+
+# Parser/template warnings
+'post-expand-template-inclusion-warning'  => "'''Ilani:''' Kigezo kinajumlisha ukubwa uliozidi mno.
+Baadhi ya vigezo havitaweza kuingizwa.",
+'post-expand-template-inclusion-category' => 'Kurasa ambapo vigezo vinajumlisha ukubwa uliozidi',
+'post-expand-template-argument-warning'   => "'''Ilani:'''Ukurasa huu una agumeni ya kigezo moja au zaidi, ambayo ukubwa wake wa kupanuliwa unazidi mpaka. Agumeni hizi hazikutumika.",
+'post-expand-template-argument-category'  => 'Kurasa zenye vigezo vilivyoruka agumeni',
 
 # "Undo" feature
 'undo-success' => 'Sahihisho linaweza kutenguliwa.
@@ -1314,6 +1321,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'recentchanges-label-minor'         => 'Hili ni badiliko dogo',
 'recentchanges-legend-bot'          => '$1 - sahihisho la bot',
 'recentchanges-label-bot'           => 'Sahihisho hili lilitekelezwa na bot',
+'recentchanges-label-unpatrolled'   => 'Haririo hili bado halijafanyiwa doria',
 'rcnote'                            => "{{PLURAL:$1|Linalofuata ni badiliko '''1'''|Yanayofuata ni mabadiliko '''$1''' ya mwisho}} kutoka katika {{PLURAL:$2|siku iliyopita|siku '''$2''' zilizopita}}, hadi saa $5, tarehe $4.",
 'rcnotefrom'                        => "Hapo chini yaonekana mabadiliko tangu '''$2''' (tunaonyesha hadi '''$1''').",
 'rclistfrom'                        => 'Onyesha mabadiliko mapya kuanzia $1',
@@ -1751,7 +1759,7 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'linksearch-ok'    => 'Tafuta',
 'linksearch-text'  => 'Alama maalum za kutafuta kama "*.wikipedia.org" zinaweza kutumika.<br />
 Itifaki zinazoungwa mkono: <tt>$1</tt>',
-'linksearch-line'  => '$2 lina kiungo kinachokupeleka hadi $1',
+'linksearch-line'  => '$2 umeungwa kutoka $1',
 'linksearch-error' => 'Alama maalum za kutafuta zinaweza kutumika mwanzoni mwa URL tu.',
 
 # Special:ListUsers
@@ -2078,6 +2086,9 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'blockip'                    => 'Zuia mtumiaji',
 'blockip-title'              => 'Kumzuia mtumiaji',
 'blockip-legend'             => 'Kumzuia mtumiaji',
+'blockiptext'                => 'Tumia fomu iliyopo chini kumzuia mtu asihariri kwa kupitia anwani fulani wa IP au kwa kutumia jina fulani la mtumiaji.
+Nia ya kumzuia mtu inatakiwa kuwa kuzuia uharibifu tu, na ifanikiwe kutokana na masharti ya [[{{MediaWiki:Policy-url}}|sera]].
+Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizoharibiwa).',
 'ipaddress'                  => 'Anwani ya IP:',
 'ipadressorusername'         => 'Anwani ya IP au jina la mtumiaji:',
 'ipbexpiry'                  => 'Itakwisha:',
@@ -2106,10 +2117,13 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'badipaddress'               => 'Anwani batili ya IP',
 'blockipsuccesssub'          => 'Kulifaulu kumzuia',
 'ipb-edit-dropdown'          => 'Hariri sababu za kuzuia',
+'ipb-unblock-addr'           => 'Acha kumzuia $1',
+'ipb-unblock'                => 'Acha kumzuia mtumiaji au anwani wa IP',
 'ipb-blocklist-contribs'     => 'Michango ya $1',
-'ipblocklist'                => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
+'ipblocklist'                => 'Watumiaji waliozuiliwa',
 'ipblocklist-username'       => 'Jina la mtumiaji au anwani ya IP:',
 'ipblocklist-submit'         => 'Tafuta',
+'ipblocklist-otherblocks'    => ' {{PLURAL:$1|Uzuio mwingine|Zuio zingine}}',
 'blocklistline'              => '$1, $2 alimzuia $3 ($4)',
 'infiniteblock'              => 'milele',
 'expiringblock'              => 'inakwisha tarehe $1 saa $2',
@@ -2189,6 +2203,8 @@ Chagua jina lengine.',
 'movetalk'                     => 'Hamisha ukurasa wake wa majadiliano',
 'move-subpages'                => 'Hamisha kurasa ndogo (hadi $1)',
 'move-talk-subpages'           => 'Hamisha kurasa ndogo za ukurasa wa majadiliano (hadi $1)',
+'movepage-page-moved'          => 'Ukurasa wa $1 umehamishwa hadi $2.',
+'movepage-page-unmoved'        => 'Ukurasa wa $1 hakuweza kuhamishwa hadi $2.',
 '1movedto2'                    => '[[$1]] umesogezwa hapa [[$2]]',
 '1movedto2_redir'              => 'alihamisha [[$1]] kwenda [[$2]] kwa kutengeneza elekezo',
 'movelogpage'                  => 'Kumbukumbu ya uhamiaji',
@@ -2285,6 +2301,7 @@ Ulihafadhi katika tarakalishi yako, halafu ulipakie hapa.',
 'importbadinterwiki'         => 'Kiungo kibovu kati za wiki',
 'importnotext'               => 'Tupu au bila maandishi',
 'importsuccess'              => 'Kuleta kumekamilishwa!',
+'import-noarticle'           => 'Hakuna kurasa za kuleta!',
 'import-token-mismatch'      => 'Data ya kipindi zilipotelewa.
 Tafadhali jaribu tena.',
 
@@ -2381,6 +2398,7 @@ Tafadhali jaribu tena.',
 'math_unknown_error' => 'hitilafu isiyojulikana',
 
 # Patrol log
+'patrol-log-line' => 'aliweka alama ya kufanyiwa doria katika $1 ya $2 $3',
 'patrol-log-auto' => '(kwa kujiendesha)',
 'patrol-log-diff' => 'pitio la $1',
 
@@ -2457,6 +2475,8 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-copyright'                   => 'Mwenye hatimiliki',
 'exif-exifversion'                 => 'Mtindo wa Exif',
 'exif-componentsconfiguration'     => 'Maana ya kila kijenzi',
+'exif-pixelydimension'             => 'Upana wa picha',
+'exif-pixelxdimension'             => 'Urefu wa picha',
 'exif-makernote'                   => 'Maelezo ya mtengenezaji',
 'exif-usercomment'                 => 'Maoni ya mtumiaji',
 'exif-relatedsoundfile'            => 'Faili la sauti linalohusika',
@@ -2474,6 +2494,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpsdestlatitude'             => 'Latitudo ya kikomo',
 'exif-gpsdestlongitude'            => 'Longitudo ya kikomo',
 'exif-gpsdestdistance'             => 'Mbali wa kikomo',
+'exif-gpsareainformation'          => 'Jina la eneo la GPS',
 'exif-gpsdatestamp'                => 'Tarehe ya GPS',
 
 'exif-unknowndate' => 'Tarehe haijulikani',
@@ -2601,6 +2622,9 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'scarytranscludefailed'  => '[Kuleta kigezo imeshindikana kwa ajili ya $1]',
 'scarytranscludetoolong' => '[URL ni ndefu mno]',
 
+# Trackbacks
+'trackbackremove' => '([$1 Futa])',
+
 # Delete conflict
 'deletedwhileediting' => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
 'confirmrecreate'     => "Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri, akaandika sababu hii ya kufuta:
@@ -2674,6 +2698,9 @@ Pia unaweza [[Special:Watchlist/edit|kutumia kihariri cha kawaida]].',
 'watchlisttools-edit' => 'Tazama na hariri maangalizi',
 'watchlisttools-raw'  => 'Hariri maangalizi ghafi',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Ilani:\'\'\' Neno msingi "$2" ya kupanga inafanya vingine na neno msingi "$1" ya kupanga lilotangulia.',
+
 # Special:Version
 'version'                  => 'Toleo',
 'version-specialpages'     => 'Kurasa maalum',
@@ -2725,6 +2752,16 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 # Special:BlankPage
 'blankpage'              => 'Ukurasa tupu',
 'intentionallyblankpage' => 'Ukurasa huu umeachwa tupu kwa makusudi.',
+
+# External image whitelist
+'external_image_whitelist' => ' #Acha mstari huu jinsi ilivyo<pre>
+#Weka vipande vya uchanuzi wa kawaida (regex) (kipande kinachoingia kati ya // tu) hapo chini
+#Vipande hivi vitaoanishwa na URL ya picha za nje (na kiungo cha moto)
+#Vipande vinavyooanishwa vitaonekana kama picha, la sivyo, itaonyeshwa kiungo kinachokwenda katika picha tu
+#Mistari inayoanza na # zinatumiwa kama maelezo
+#Haitofautishana kati ya herufi kubwa na ndogo
+
+#Weka vipande vyote vya regex juu ya mstari huu. Acha mstari huu jinsi ilivyo</pre>',
 
 # Special:Tags
 'tag-filter'              => 'Chujio cha [[Special:Tags|tagi]]:',

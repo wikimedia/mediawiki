@@ -753,7 +753,7 @@ $messages = array(
 'rcshowhideliu'                => '$1 ܡܦܠܚܢ̈ܐ ܥܠܝܠ̈ܐ',
 'rcshowhideanons'              => '$1 ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ',
 'rcshowhidemine'               => '$1 ܫܘܚܠܦ̈ܝ',
-'rclinks'                      => 'ܚܘܝ $1 ܫܘܚܠܦ̈ܐ ܐܚܪ̈ܝܐ ܒ $2 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܬܐ<br />$3',
+'rclinks'                      => 'ܚܘܝ $1 ܫܘܚܠܦ̈ܐ ܐܚܪ̈ܝܐ ܒ $2 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܐ<br />$3',
 'diff'                         => 'ܦܪܝܫܘܬܐ',
 'hist'                         => 'ܬܫܥܝܬܐ',
 'hide'                         => 'ܛܫܝ',
@@ -993,7 +993,7 @@ $messages = array(
 
 # Special:ActiveUsers
 'activeusers'            => 'ܡܟܬܒܘܬܐ ܕܗܕ̈ܡܐ ܟܫܝܪ̈ܐ',
-'activeusers-count'      => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ ܚܕܬܐ|ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ}} ܒ {{PLURAL:$3|ܝܘܡܐ ܐܚܪܝܐ|$3 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܬܐ}}',
+'activeusers-count'      => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ ܚܕܬܐ|ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ}} ܒ {{PLURAL:$3|ܝܘܡܐ ܐܚܪܝܐ|$3 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܐ}}',
 'activeusers-from'       => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܐ ܥܡ:',
 'activeusers-hidebots'   => 'ܛܫܝ ܒܘܬ̈ܐ (bots)',
 'activeusers-hidesysops' => 'ܛܫܝ ܡܕܒܪ̈ܢܐ',
@@ -1047,7 +1047,7 @@ $messages = array(
 'watchthispage'     => 'ܪܗܝ ܗܕܐ ܦܐܬܐ',
 'unwatch'           => 'ܠܐ ܪܗܝ',
 'unwatchthispage'   => 'ܟܠܝ ܪܗܝܐ',
-'wlshowlast'        => 'ܚܘܝ $1 ܫܥܬ̈ܐ $2 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܬܐ $3',
+'wlshowlast'        => 'ܚܘܝ $1 ܫܥܬ̈ܐ $2 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܐ $3',
 'watchlist-options' => 'ܓܒܝܬ̈ܐ ܕܪ̈ܗܝܬܐ',
 
 # Displayed when you click the "watch" button and it is in the process of watching

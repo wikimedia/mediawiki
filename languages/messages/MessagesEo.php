@@ -182,13 +182,13 @@ $messages = array(
 'tog-hidepatrolled'           => 'Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj',
 'tog-newpageshidepatrolled'   => 'Kaŝi patrolitajn paĝojn de listo de novaj paĝoj',
 'tog-extendwatchlist'         => 'Etendi la atentaron por montri ĉiujn ŝanĝojn, ne nur la plej lastajn',
-'tog-usenewrc'                => 'Uzi progresan "Lastaj Ŝanĝoj" (bezonas JavaSkripton)',
+'tog-usenewrc'                => 'Uzi progresan "Lastaj ŝanĝoj" (bezonas JavaSkripton)',
 'tog-numberheadings'          => 'Aŭtomate numerigi sekciojn',
 'tog-showtoolbar'             => 'Montri eldonilaron',
 'tog-editondblclick'          => 'Redakti per duobla alklako (JavaScript)',
 'tog-editsection'             => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
-'tog-showtoc'                 => 'Montri liston de enhavoj (por paĝojn kun pli ol 3 sekciojn)',
+'tog-showtoc'                 => 'Montri enhavliston (por paĝoj kun pli ol 3 sekcioj)',
 'tog-rememberpassword'        => 'Memori mian pasvorton por ĉi tiu komputilo',
 'tog-editwidth'               => 'Plenekranigi la redaktilon',
 'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
@@ -1612,7 +1612,7 @@ Por optimuma sekureco, img_auth.php estas malŝalta.',
 'upload-curl-error28-text' => 'La retejo atendas tro sen respondo. Bonvolu verigi ke la retejo ankoraŭ funkcias kaj reprovi. Vi eble volus trovi dum malpli okupa tempo.',
 
 'license'            => 'Permesiloj:',
-'license-header'     => 'Licencado:',
+'license-header'     => 'Permesiloj:',
 'nolicense'          => 'Neniu elektita',
 'license-nopreview'  => '(Antaŭvido ne montrebla)',
 'upload_source_url'  => ' (valida, publike atingebla URL-o)',
@@ -1634,7 +1634,7 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 
 # File description page
 'file-anchor-link'          => 'Dosiero',
-'filehist'                  => 'Historio de dosiero',
+'filehist'                  => 'Dosiera historio',
 'filehist-help'             => 'Klaku daton/tempon por rigardi la dosieron kiel ĝin ŝajnitan tiame.',
 'filehist-deleteall'        => 'forigi ĉiujn',
 'filehist-deleteone'        => 'forigi',
@@ -2291,7 +2291,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'ipblocklist-username'            => 'Salutnomo aŭ IP-adreso:',
 'ipblocklist-sh-userblocks'       => '$1 kontaj forbaroj',
 'ipblocklist-sh-tempblocks'       => '$1 provizoraj forbaroj',
-'ipblocklist-sh-addressblocks'    => '$1 unuopaj IP-adresaj foraroj',
+'ipblocklist-sh-addressblocks'    => '$1 unuopaj IP-adresaj forbaroj',
 'ipblocklist-submit'              => 'Serĉi',
 'ipblocklist-localblock'          => 'Loka forbaro',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Alia forbaro|Aliaj forbaroj}}',
@@ -2961,6 +2961,8 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-sensingmethod-7' => 'Trilinia sensilo',
 'exif-sensingmethod-8' => 'Sensilo de laŭvicaj liniaj koloroj',
 
+'exif-filesource-3' => 'Cifereca senmova fotilo',
+
 'exif-scenetype-1' => 'Rekte fotita bildo',
 
 'exif-customrendered-0' => 'Norma proceso',
@@ -3087,7 +3089,7 @@ $1',
 
 # Delete conflict
 'deletedwhileediting' => "'''Averto''': Ĉi tiu paĝo estis forigita post vi ekredaktis!",
-'confirmrecreate'     => "Uzanto [[User:$1|$1]] ([[User talk:$1|diskuto]]) forigis ĉi paĝon post vi ekredaktis ĝin kun kialo:
+'confirmrecreate'     => "Uzanto [[User:$1|$1]] ([[User talk:$1|diskuto]]) forigis ĉi tiun paĝon post vi ekredaktis ĝin kun kialo:
 : ''$2''
 Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 'recreate'            => 'Rekrei',

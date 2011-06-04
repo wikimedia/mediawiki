@@ -1711,7 +1711,7 @@ Masukan yang <s>dipotong</s> telah diselesaikan.',
 'brokenredirects'        => 'Lencongan rosak',
 'brokenredirectstext'    => 'Lencongan-lencongan berikut menuju ke laman yang tidak wujud:',
 'brokenredirects-edit'   => 'sunting',
-'brokenredirects-delete' => 'hapus',
+'brokenredirects-delete' => 'hapuskan',
 
 'withoutinterwiki'         => 'Laman tanpa pautan bahasa',
 'withoutinterwiki-summary' => 'Laman-laman berikut tidak mempunyai pautan ke versi bahasa lain:',
@@ -1959,14 +1959,14 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'enotif_lastvisited'           => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir anda.',
 'enotif_lastdiff'              => 'Rujuk $1 untuk melihat perubahan ini.',
 'enotif_anon_editor'           => 'pengguna tanpa nama $1',
-'enotif_body'                  => 'Saudara/saudari $WATCHINGUSERNAME,
+'enotif_body'                  => '$WATCHINGUSERNAME,
 
 
-Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR, sila lihat $PAGETITLE_URL untuk versi semasa.
+Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR; sila lihat $PAGETITLE_URL untuk semakan terkini.
 
 $NEWPAGE
 
-Ringkasan: $PAGESUMMARY $PAGEMINOREDIT
+Ringkasan penyunting: $PAGESUMMARY $PAGEMINOREDIT
 
 Hubungi penyunting tersebut:
 mel: $PAGEEDITOR_EMAIL
@@ -1975,13 +1975,16 @@ wiki: $PAGEEDITOR_WIKI
 Tiada pemberitahuan lain akan dikirim berkaitan perubahan selanjutnya melainkan anda mengunjungi laman tersebut.
 Anda juga boleh menetapkan semula penanda pemberitahuan bagi semua laman dalam senarai pantau anda.
 
-         Sistem pemberitahuan {{SITENAME}} anda yang ramah
+         Sistem pemberitahuan {{SITENAME}} anda yang ramah mesra
 
 --
+Untuk mengubah tetapan pemberitahuan e-mel anda, lawati
+{{fullurl:{{#special:Preferences}}}}
+
 Untuk mengubah tetapan senarai pantau anda, lawati
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Untuk memadam laman ini dari senarai pantau anda, lawati
+Untuk menghapuskan laman ini dari senarai pantau anda, lawati
 $UNWATCHURL
 
 Maklum balas dan bantuan:
@@ -3079,7 +3082,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'autosumm-new'     => "Mencipta laman baru dengan kandungan '$1'",
 
 # Live preview
-'livepreview-loading' => 'Memuat …',
+'livepreview-loading' => 'Memuatkan...',
 'livepreview-ready'   => 'Memuat … Sedia!',
 'livepreview-failed'  => 'Pratonton langsung gagal! Sila gunakan pratonton biasa.',
 'livepreview-error'   => 'Gagal membuat sambungan: $1 "$2". Sila gunakan pratonton biasa.',

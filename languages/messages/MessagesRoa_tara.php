@@ -1903,7 +1903,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_body'                  => 'Care $WATCHINGUSERNAME,
 
 
-\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATE da $PAGEEDITOR, vide $PAGETITLE_URL pa versiona corrende.
+\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATE da $PAGEEDITOR, vide $PAGETITLE_URL pa revisione corrende.
 
 $NEWPAGE
 
@@ -1914,12 +1914,15 @@ mail: $PAGEEDITOR_EMAIL
 uicchi: $PAGEEDITOR_WIKI
 
 Non ge stonne otre notifiche ce tu face otre cangiaminde senza ca tu visite sta pàgene.
-Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollete jndr\'à lista toje.
+Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollate jndr\'à lista toje.
 
              Statte Bbuene, \'u sisteme de notificaziune de {{SITENAME}}
 
 --
-Pe cangià le \'mbostaziune d\'a liste de le pàggene condrollete tue, vè vide
+Pe cangià le \'mbostaziune de notifeche de l\'email toje, vè vide
+{{fullurl:{{#special:Preferences}}}}
+
+Pe cangià le \'mbostaziune de l\'elenghe de le pàggene condrollate tune, vè vide
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Pe scangellà \'a pàgene da \'a liste de le pàggene condrollate, vè vide

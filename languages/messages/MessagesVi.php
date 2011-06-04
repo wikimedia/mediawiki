@@ -388,7 +388,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại hiện hành.',
 'listingcontinuesabbrev'         => 'tiếp',
 'index-category'                 => 'Trang được ghi chỉ mục',
-'noindex-category'               => 'Trang không ghi chỉ mục',
+'noindex-category'               => 'Trang không hiển thị trong bộ máy tìm kiếm',
 
 'mainpagetext'      => "'''MediaWiki đã được cài đặt thành công.'''",
 'mainpagedocfooter' => 'Xin đọc [http://meta.wikimedia.org/wiki/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.
@@ -513,7 +513,7 @@ $1',
 'aboutpage'            => 'Project:Giới thiệu',
 'copyright'            => 'Bản quyền $1.',
 'copyrightpage'        => '{{ns:project}}:Bản quyền',
-'currentevents'        => 'Thời sự',
+'currentevents'        => 'Tin tức',
 'currentevents-url'    => 'Project:Thời sự',
 'disclaimers'          => 'Phủ nhận',
 'disclaimerpage'       => 'Project:Phủ nhận chung',
@@ -555,12 +555,12 @@ $1',
 'viewdeleted'             => 'Xem $1?',
 'restorelink'             => '{{PLURAL:$1|một|$1}} sửa đổi đã xóa',
 'feedlinks'               => 'Nạp:',
-'feed-invalid'            => 'Định dạng feed không hợp lệ.',
-'feed-unavailable'        => 'Website không cung cấp bản tin',
-'site-rss-feed'           => '$1 mục RSS',
-'site-atom-feed'          => '$1 mục Atom',
-'page-rss-feed'           => 'Mục RSS của “$1”',
-'page-atom-feed'          => 'Mục Atom của “$1”',
+'feed-invalid'            => 'Định dạng nguồn tin (feed) không hợp lệ.',
+'feed-unavailable'        => 'Nguồn tin (feed) không có sẵn tại đây',
+'site-rss-feed'           => 'Nguồn tin RSS của $1',
+'site-atom-feed'          => 'Nguồn tin Atom của $1',
+'page-rss-feed'           => 'Nguồn tin RSS của “$1”',
+'page-atom-feed'          => 'Nguồn tin Atom của “$1”',
 'red-link-title'          => '$1 (trang chưa được viết)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1483,7 +1483,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'recentchanges'                     => 'Thay đổi gần đây',
 'recentchanges-legend'              => 'Tùy chọn thay đổi gần đây',
 'recentchangestext'                 => 'Xem các thay đổi gần đây nhất tại wiki trên trang này.',
-'recentchanges-feed-description'    => 'Theo dõi các thay đổi gần đây nhất của wiki dùng feed này.',
+'recentchanges-feed-description'    => 'Theo dõi các thay đổi gần đây nhất của wiki dùng nguồn tin này.',
 'recentchanges-label-legend'        => 'Giải thích: $1.',
 'recentchanges-legend-newpage'      => '$1 - trang mới',
 'recentchanges-label-newpage'       => 'Bản sửa này tạo ra trang mới',
@@ -1566,7 +1566,7 @@ Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực
 'illegalfilename'             => 'Tên tập tin “$1” có chứa ký tự không được phép dùng cho tựa trang. Xin hãy đổi tên và tải lên lại.',
 'badfilename'                 => 'Tên tập tin đã được đổi thành “$1”.',
 'filetype-mime-mismatch'      => 'Phần mở rộng của tập tin không phù hợp kiểu MIME.',
-'filetype-badmime'            => 'Không thể tải lên các tập tin có định dạng MIME “$1”.',
+'filetype-badmime'            => 'Không thể tải lên các tập tin có kiểu MIME “$1”.',
 'filetype-bad-ie-mime'        => 'Không thể tải tập tin này lên vì Internet Explorer sẽ nhận diện tập tin này là “$1”, một định dạng tập tin tiềm ẩn nguy hiểm và không được cho phép.',
 'filetype-unwanted-type'      => "'''“.$1”''' là định dạng tập tin không được trông đợi.
 {{PLURAL:$3|Loại|Những loại}} tập tin thích hợp hơn là $2.",
@@ -1774,8 +1774,8 @@ Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiể
 
 # MIME search
 'mimesearch'         => 'Tìm kiếm theo định dạng',
-'mimesearch-summary' => 'Trang này có khả năng lọc tập tin theo định dạng MIME. Đầu vào: contenttype/subtype, v.d. <tt>image/jpeg</tt>.',
-'mimetype'           => 'Định dạng MIME:',
+'mimesearch-summary' => 'Trang này có khả năng lọc tập tin theo kiểu MIME. Đầu vào: kiểu-nội-dung/kiểu-phụ, v.d. <tt>image/jpeg</tt>.',
+'mimetype'           => 'Kiểu MIME:',
 'download'           => 'tải về',
 
 # Unwatched pages
@@ -1923,7 +1923,7 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'log-title-wildcard'   => 'Tìm các tựa trang bắt đầu bằng các chữ này',
 
 # Special:AllPages
-'allpages'          => 'Tất cả các trang',
+'allpages'          => 'Mọi trang',
 'alphaindexline'    => '$1 đến $2',
 'nextpage'          => 'Trang sau ($1)',
 'prevpage'          => 'Trang trước ($1)',
@@ -2094,10 +2094,13 @@ Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả cá
               Hệ thống báo tin {{SITENAME}} thân thiện của bạn
 
 --
-Để thay đổi các thiết lập danh sách theo dõi, mời xem
+Để thay đổi các thiết lập thư điện tử thông báo, mời xem:
+{{fullurl:{{#special:Preferences}}}}
+
+Để thay đổi các thiết lập danh sách theo dõi, mời xem:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem
+Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem:
 $UNWATCHURL
 
 Phản hồi và cần sự hỗ trợ:
@@ -2481,7 +2484,7 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'movepagebtn'                  => 'Di chuyển trang',
 'pagemovedsub'                 => 'Di chuyển thành công',
 'movepage-moved'               => "'''“$1” đã được di chuyển đến “$2”'''",
-'movepage-moved-redirect'      => 'Đã tạo trang chuyển hướng.',
+'movepage-moved-redirect'      => 'Đã tạo trang đổi hướng.',
 'movepage-moved-noredirect'    => 'Chức năng tạo trang chuyển hướng đã bị tắt.',
 'articleexists'                => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
@@ -2497,7 +2500,7 @@ Xin hãy chọn tên khác.',
 'movepage-max-pages'           => 'Đã có tối đa $1 {{PLURAL:$1|trang|trang}} đã di chuyển và không tự động di chuyển thêm được nữa.',
 '1movedto2'                    => '[[$1]] đổi thành [[$2]]',
 '1movedto2_redir'              => '[[$1]] đổi thành [[$2]] qua đổi hướng',
-'move-redirect-suppressed'     => 'đã tắt chuyển hướng',
+'move-redirect-suppressed'     => 'đã tắt đổi hướng',
 'movelogpage'                  => 'Nhật trình di chuyển',
 'movelogpagetext'              => 'Dưới đây là danh sách các trang đã được di chuyển.',
 'movesubpage'                  => '{{PLURAL:$1|Trang con|Các trang con}}',
@@ -2546,7 +2549,7 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'export-addcattext' => 'Thêm trang từ thể loại:',
 'export-addcat'     => 'Thêm',
 'export-addnstext'  => 'Thêm trang từ không gian tên:',
-'export-addns'      => 'Thêm vào',
+'export-addns'      => 'Thêm',
 'export-download'   => 'Lưu xuống tập tin',
 'export-templates'  => 'Gồm cả bản mẫu',
 'export-pagelinks'  => 'Gồm cả các trang liên kết sâu đến:',
@@ -2627,7 +2630,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|phiên bản|phiên bản}} từ $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Trang thành viên của tôi',
+'tooltip-pt-userpage'             => 'Trang cá nhân của tôi',
 'tooltip-pt-anonuserpage'         => 'Trang của IP bạn đang dùng',
 'tooltip-pt-mytalk'               => 'Thảo luận với tôi',
 'tooltip-pt-anontalk'             => 'Thảo luận với địa chỉ IP này',
@@ -2656,14 +2659,14 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-n-mainpage'              => 'Đi đến Trang Chính',
 'tooltip-n-mainpage-description'  => 'Xem trang chính',
 'tooltip-n-portal'                => 'Giới thiệu dự án, cách sử dụng và tìm kiếm thông tin ở đây',
-'tooltip-n-currentevents'         => 'Các trang có liên quan đến thời sự',
+'tooltip-n-currentevents'         => 'Các trang có liên quan đến tin tức',
 'tooltip-n-recentchanges'         => 'Danh sách các thay đổi gần đây',
 'tooltip-n-randompage'            => 'Xem trang ngẫu nhiên',
 'tooltip-n-help'                  => 'Nơi tìm hiểu thêm cách dùng.',
 'tooltip-t-whatlinkshere'         => 'Các trang liên kết đến đây',
 'tooltip-t-recentchangeslinked'   => 'Thay đổi gần đây của các trang liên kết đến đây',
-'tooltip-feed-rss'                => 'Nạp RSS cho trang này',
-'tooltip-feed-atom'               => 'Nạp Atom cho trang này',
+'tooltip-feed-rss'                => 'Nguồn tin RSS của trang này',
+'tooltip-feed-atom'               => 'Nguồn tin Atom của trang này',
 'tooltip-t-contributions'         => 'Xem đóng góp của người này',
 'tooltip-t-emailuser'             => 'Gửi thư cho người này',
 'tooltip-t-upload'                => 'Tải hình ảnh hoặc tập tin lên',
@@ -3394,7 +3397,7 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'fileduplicatesearch-legend'   => 'Tìm kiếm tập tin trùng lắp',
 'fileduplicatesearch-filename' => 'Tên tập tin:',
 'fileduplicatesearch-submit'   => 'Tìm kiếm',
-'fileduplicatesearch-info'     => '$1×$2 điểm ảnh<br />Kích thước tập tin: $3<br />Định dạng MIME: $4',
+'fileduplicatesearch-info'     => '$1 × $2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
 'fileduplicatesearch-result-1' => 'Không có bản sao y hệt với tập tin “$1”.',
 'fileduplicatesearch-result-n' => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
 

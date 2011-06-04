@@ -617,7 +617,9 @@ $1',
 S-ar putea să fi introdus greșit URL-ul, sau să fi urmat o legătură incorectă.
 Aceasta s-ar putea să indice și un bug în programul folosit de {{SITENAME}}.',
 'nosuchspecialpage' => 'Această pagină specială nu există',
-'nospecialpagetext' => 'Ai cerut o [[Special:SpecialPages|pagină specială]] care nu este recunoscută de {{SITENAME}}.',
+'nospecialpagetext' => '<strong>Ați cerut o [[Special:SpecialPages|pagină specială]] invalidă.</strong>
+
+O listă cu paginile speciale valide se poate găsi la [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Eroare',
@@ -1245,7 +1247,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'powersearch'                      => 'Căutare avansată',
 'powersearch-legend'               => 'Căutare avansată',
 'powersearch-ns'                   => 'Căutare în spațiile de nume:',
-'powersearch-redir'                => 'Afișează redirectările',
+'powersearch-redir'                => 'Afișează redirecționările',
 'powersearch-field'                => 'Caută după',
 'powersearch-togglelabel'          => 'Marchează:',
 'powersearch-toggleall'            => 'Tot',
@@ -1291,7 +1293,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-editing'                 => 'Modificare',
 'prefs-edit-boxsize'            => 'Mărimea ferestrei de modificare.',
 'rows'                          => 'Rânduri:',
-'columns'                       => 'Coloane',
+'columns'                       => 'Coloane:',
 'searchresultshead'             => 'Parametri căutare',
 'resultsperpage'                => 'Numărul de rezultate per pagină',
 'contextlines'                  => 'Numărul de linii per rezultat',
@@ -1299,7 +1301,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'stub-threshold'                => 'Valoarea minimă pentru un <a href="#" class="stub">ciot</a> (octeți):',
 'recentchangesdays'             => 'Numărul de zile afișate în schimbări recente:',
 'recentchangesdays-max'         => '(maxim {{PLURAL:$1|o zi|$1 zile}})',
-'recentchangescount'            => 'Numărul modificărilor arătate implicit:',
+'recentchangescount'            => 'Numărul modificărilor afișate implicit:',
 'prefs-help-recentchangescount' => 'Sunt incluse schimbările recente, istoricul paginilor și jurnalele.',
 'prefs-help-watchlist-token'    => 'Completând această căsuță cu o cheie secretă se va genera un flux RSS pentru lista dumneavoastră de pagini urmărite.
 Oricine cunoaște cheia din această căsuță va putea citi această listă, așa că alegeți o combinație sigură.
@@ -1958,7 +1960,7 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 
 # Book sources
 'booksources'               => 'Surse de cărți',
-'booksources-search-legend' => 'Caută surse pentru cărți',
+'booksources-search-legend' => 'Căutare surse pentru cărți',
 'booksources-go'            => 'Salt',
 'booksources-text'          => 'Mai jos se află o listă de legături înspre alte situri care vând cărți noi sau vechi și care pot oferi informații suplimentare despre cărțile pe care le căutați:',
 'booksources-invalid-isbn'  => 'Codul ISBN oferit nu este valid; verificați dacă a fost copiat corect de la sursa originală.',
@@ -2128,7 +2130,7 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'enotif_anon_editor'           => 'utilizator anonim $1',
 'enotif_body'                  => 'Domnule/Doamnă $WATCHINGUSERNAME,
 
-Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED la $PAGEEDITDATE de către $PAGEEDITOR. Vedeți la $PAGETITLE_URL versiunea curentă.
+Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED în data de $PAGEEDITDATE de către $PAGEEDITOR. Vedeți la $PAGETITLE_URL versiunea curentă.
 
 $NEWPAGE
 
@@ -2138,15 +2140,19 @@ Puteți contacta utilizatorul:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Nu veți mai primi notificări în cazul unor viitoare modificări în afara cazului în care vizitați pagina. Puteți de asemenea reseta notificările pentru alte pagini urmărite.
+Nu veți mai primi notificări în cazul unor viitoare modificări până când nu veți vizitați pagina. 
+Puteți de asemenea reseta notificările pentru toate pagini pe care le urmăriți.
 
-             Al dvs. amic, sistemul de notificare de la {{SITENAME}}
+             Al dumneavoastră amic, sistemul de notificare de la {{SITENAME}}
 
 --
-Pentru a modifica preferințele listei de urmărire vizitați
+Pentru a modifica setările notificării prin e-mail, vizitați
+{{fullurl:{{#special:Preferences}}}}
+
+Pentru a modifica setările listei de pagini urmărite, vizitați
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Pentru a nu mai urmări pagina vizitați
+Pentru a nu mai urmări pagina, vizitați
 $UNWATCHURL
 
 Asistență și suport:
@@ -3109,6 +3115,8 @@ Altele vor fi ascunse implicit.
 'exif-sensingmethod-5' => 'Senzorul suprafeței color secvențiale',
 'exif-sensingmethod-7' => 'Senzor triliniar',
 'exif-sensingmethod-8' => 'Senzorul linear al culorii secvențiale',
+
+'exif-filesource-3' => 'Aparat de fotografiat digital',
 
 'exif-scenetype-1' => 'O imagine fotografiată direct',
 

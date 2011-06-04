@@ -1723,22 +1723,23 @@ PICT # διάφορα
 'upload-http-error'         => 'Εμφανίστηκε κάποιο σφάλμα HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Δεν επετράπη η πρόσβαση',
-'img-auth-nopathinfo'   => 'Υπολείπεται το PATH_INFO.
+'img-auth-accessdenied'     => 'Δεν επετράπη η πρόσβαση',
+'img-auth-nopathinfo'       => 'Υπολείπεται το PATH_INFO.
 Ο διακομιστής σας δεν είναι παραμετροποιημένος για να περάσει αυτές τις πληροφορίες.
 Μπορεί να είναι βασισμένος σε CGI και να μην υποστηρίζει img_atuh.
 Συμβουλευτείτε το http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Η ζητούμενη διαδρομή δεν βρίσκεται στον διαμορφωμένο αρχειοκατάλογο επιφορτώσεων',
-'img-auth-badtitle'     => 'Αδύνατη η κατασκευή έγκυρου τίτλου από "$1".',
-'img-auth-nologinnWL'   => 'Δεν έχετε συνδεθεί και η "$1" δεν είναι στην άσπρη λίστα.',
-'img-auth-nofile'       => 'Το αρχείο "$1" δεν υπάρχει',
-'img-auth-isdir'        => 'Προσπαθείτε να αποκτήσετε πρόσβαση στον αρχειοκατάλογο "$1".
+'img-auth-notindir'         => 'Η ζητούμενη διαδρομή δεν βρίσκεται στον διαμορφωμένο αρχειοκατάλογο επιφορτώσεων',
+'img-auth-badtitle'         => 'Αδύνατη η κατασκευή έγκυρου τίτλου από "$1".',
+'img-auth-nologinnWL'       => 'Δεν έχετε συνδεθεί και η "$1" δεν είναι στην άσπρη λίστα.',
+'img-auth-nofile'           => 'Το αρχείο "$1" δεν υπάρχει',
+'img-auth-isdir'            => 'Προσπαθείτε να αποκτήσετε πρόσβαση στον αρχειοκατάλογο "$1".
 Μόνον η πρόσβαση σε αρχεία είναι επιτρεπτή.',
-'img-auth-streaming'    => 'Ροή "$1".',
-'img-auth-public'       => 'Η λειτουργία του img_auth.php  είναι να εξάγει αρχεία από ένα ιδιωτικό wiki.
+'img-auth-streaming'        => 'Ροή "$1".',
+'img-auth-public'           => 'Η λειτουργία του img_auth.php  είναι να εξάγει αρχεία από ένα ιδιωτικό wiki.
 Αυτό το wiki έχει ρυθμιστεί ως δημόσιο wiki.
 Για τη μεγαλύτερη δυνατή ασφάλεια, η img_auth.php είναι απενεργοποιημένη.',
-'img-auth-noread'       => 'Ο χρήστης δεν έχει πρόσβαση στο να διαβάσει το "$1".',
+'img-auth-noread'           => 'Ο χρήστης δεν έχει πρόσβαση στο να διαβάσει το "$1".',
+'img-auth-bad-query-string' => 'Η διεύθυνση URL έχει μια συμβολοσειρά ερωτήματος που δεν είναι έγκυρη.',
 
 # HTTP errors
 'http-invalid-url'      => 'Άκυρη διεύθυνση URL: $1',
@@ -2150,25 +2151,28 @@ PICT # διάφορα
 'enotif_anon_editor'           => 'ανώνυμος χρήστης $1',
 'enotif_body'                  => '{{GENDER:$WATCHINGUSERNAME|Αγαπητέ|Αγαπητή}} $WATCHINGUSERNAME,
 
-Η σελίδα $PAGETITLE του εγχειρήματος {{SITENAME}} $CHANGEDORCREATED στις $PAGEEDITDATE από {{GENDER:$PAGEEDITOR|το χρήστη|την χρήστρια}} $PAGEEDITOR -ακολουθήστε το σύνδεσμο $PAGETITLE_URL για να δείτε την τρέχουσα αναθεώρηση.
+Η σελίδα $PAGETITLE του εγχειρήματος {{SITENAME}} $CHANGEDORCREATED στις $PAGEEDITDATE από {{GENDER:$PAGEEDITOR|τον χρήστη|την χρήστη}} $PAGEEDITOR - ακολουθήστε το σύνδεσμο $PAGETITLE_URL για να δείτε την τρέχουσα αναθεώρηση.
 
 $NEWPAGE
 
 Περιγραφή επεξεργασίας: $PAGESUMMARY $PAGEMINOREDIT
 
-Επικοινωνήστε με {{GENDER:$PAGEEDITOR|το συγκεκριμένο χρήστη|τη συγκεκριμένη χρήστρια}} :
+Επικοινωνήστε με {{GENDER:$PAGEEDITOR|το συγκεκριμένο χρήστη|τη συγκεκριμένη χρήστη}} :
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Δεν θα υπάρξουν άλλες ειδοποιήσεις για περαιτέρω αλλαγές αν δεν επισκεφθείτε τη σελίδα.
 Μπορείτε επίσης να επαναφέρετε την επιλογή ειδοποίησης για όλες τις παρακολουθούμενες σελίδες στη λίστα παρακολούθησής σας.
 
-Φιλικά,
-Tο σύστημα ειδοποίησης του εγχειρήματος {{SITENAME}}
+                         Φιλικά,
+                         Tο σύστημα ειδοποίησης του εγχειρήματος {{SITENAME}}
 
 --
+Για να αλλάξετε τις προτιμήσεις της ειδοποιήσεων email, ακολουθήστε το σύνδεσμο:
+{{fullurl:{{#special:Preferences}}}}
+
 Για να αλλάξετε τις προτιμήσεις της λίστας παρακολούθησής σας, ακολουθήστε το σύνδεσμο:
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Για να διαγράψετε την σελίδα από την λίστα παρακολούθησής σας:
 $UNWATCHURL
@@ -2983,7 +2987,7 @@ $1',
 'exif-isospeedratings'             => 'Βαθμολόγηση ταχύτητας ISO',
 'exif-oecf'                        => 'Οπτικοηλεκτρονικός συντελεστής μετατροπής',
 'exif-shutterspeedvalue'           => 'APEX ταχύτητα κλείστρου',
-'exif-aperturevalue'               => 'Διάφραγμα',
+'exif-aperturevalue'               => 'Διάφραγμα APEX',
 'exif-brightnessvalue'             => 'APEX φωτεινότητα',
 'exif-exposurebiasvalue'           => 'Προτεραιότητα έκθεσης',
 'exif-maxaperturevalue'            => 'Μέγιστο διάφραγμα ξηράς',

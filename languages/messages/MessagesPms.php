@@ -1765,19 +1765,19 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'linksearch-ok'    => 'Sërché',
 'linksearch-text'  => 'As peulo dovresse dij ciapatut coma "*.wikipedia.org".<br />Protocòj ch\'as peulo dovresse: <tt>$1</tt>',
 'linksearch-line'  => "$1 a l'ha n'anliura ch'a-j riva dzora da $2",
-'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël servent.',
+'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël sërvent.',
 
 # Special:ListUsers
 'listusersfrom'      => "Smon-me j'utent a parte da:",
-'listusers-submit'   => 'Smon',
-'listusers-noresult' => 'Pa gnun utent parej.',
+'listusers-submit'   => 'Smon-e',
+'listusers-noresult' => 'Gnun utent përparèj.',
 'listusers-blocked'  => '(blocà)',
 
 # Special:ActiveUsers
 'activeusers'            => "Lista dj'utent ativ",
 'activeusers-intro'      => "Costa a l'é na lista d'utent ch'a l'han avù n'atività qualsëssìa ant j'ùltim $1 {{PLURAL:$1|di|di}}.",
 'activeusers-count'      => "$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}} ant {{PLURAL:$3|l'ùltim di|j'ùltim $3 di}}",
-'activeusers-from'       => "Mosta j'utent a parte da:",
+'activeusers-from'       => "Smon-me j'utent a parte da:",
 'activeusers-hidebots'   => 'Stërma trigomiro',
 'activeusers-hidesysops' => "Stërma j'aministrator",
 'activeusers-noresult'   => 'Pa gnun utent trovà.',
@@ -2405,7 +2405,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'import-upload-filename'     => 'Nòm dël file:',
 'import-comment'             => 'Oget:',
 'importtext'                 => "Për piasì, che as espòrta l'archivi da 'nt la sorgiss wiki ën dovrand l'[[Special:Export|utiss d'esportassion]]. 
-Che as lo salva ansima a sò calcolador e peui che a lo caria ambelessì.",
+Che as lo salva ansima a sò ordinator e peui che a lo caria ambelessì.",
 'importstart'                => 'I soma antramentr che amportoma le pàgine...',
 'import-revision-count'      => '{{PLURAL:$1|Na|$1}} revision',
 'importnopages'              => 'Pa gnun-a pàgina da amporté',

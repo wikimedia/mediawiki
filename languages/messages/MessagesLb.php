@@ -1313,9 +1313,9 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'right-noratelimit'           => 'Net limitéiert duerch Zäitlimitatiounen um Server',
 'right-import'                => 'Säite vun anere Wikien importéieren',
 'right-importupload'          => 'Säite vun engem eropgeluedene Fichier importéieren',
-'right-patrol'                => 'Aneren hir Ännerungen als kontrolléiert markéieren',
-'right-autopatrol'            => 'Déi eegen Ännerungen automatesch als iwwerkuckt markéieren',
-'right-patrolmarks'           => 'Markéierung "iwwerkuckt" an de rezenten Ännerunge weisen',
+'right-patrol'                => 'Aneren hir Ännerungen als nogekuckt markéieren',
+'right-autopatrol'            => 'Déi eegen Ännerungen automatesch als nogekuckt markéieren',
+'right-patrolmarks'           => 'Markéierung "nogekuckt" an de rezenten Ännerunge weisen',
 'right-unwatchedpages'        => 'Lëscht vun den net iwwerwaachte Säite weisen',
 'right-trackback'             => 'En Trackback matdeelen',
 'right-mergehistory'          => 'Zesummeféierung vum Historique vun de Versioune vu Säiten',
@@ -1360,8 +1360,8 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'action-protect'              => 'de Protectiounsstatus vun dëser Säit änneren',
 'action-import'               => "dës Säit aus enger anerer Wiki z'importéieren",
 'action-importupload'         => "dës Säit duerch d'Eropluede vun engem Fichier importéieren",
-'action-patrol'               => 'd?Ännerunge vun Aneren als iwwerkuckt markéieren',
-'action-autopatrol'           => 'eegen Ännerungen als iwwerkuckt ze markéieren',
+'action-patrol'               => "d'Ännerunge vun Aneren als nogekuckt markéieren",
+'action-autopatrol'           => 'eegen Ännerungen als nogekuckt ze markéieren',
 'action-unwatchedpages'       => "d'Lëscht vun den net iwwerwaachte Säiten ze kucken",
 'action-trackback'            => "en ''Trackback'' matzedeelen",
 'action-mergehistory'         => "d'Versiounsgeschicht vun dëser Säit zesummenzeféieren",
@@ -1435,8 +1435,8 @@ Gitt op d'[[Special:FileList|Lëscht vun den eropgeluedene Fichieren]], fir no F
 
 Fir e '''Bild''' op enger Säit zu benotzen, schreift amplaz vum Bild eng vun dëse Formelen:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.jpg]]</nowiki></tt>''' fir déi ganz Versioun vum Fichier ze benotzen
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></tt>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénkse Rand mat 'alt text' als Beschreiwung
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></tt>''' fir e Fichier direk ze verlinken ouni de Fichier ze weisen",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></tt>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénke Rand mat 'alt text' als Beschreiwung
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></tt>''' fir e Fichier direkt ze verlinken ouni de Fichier ze weisen",
 'upload-permitted'            => 'Erlaabte Formater vun de Fichieren: $1.',
 'upload-preferred'            => 'Fichierszorten déi am beschte funktionéieren: $1.',
 'upload-prohibited'           => 'Verbuede Fichiers Formater: $1.',
@@ -1965,7 +1965,7 @@ $NEWPAGE
 
 Resumé vum Mataarbechter: $PAGESUMMARY $PAGEMINOREDIT
 
-Dëse Mataarbechter kontaktéieren:
+Den Editeur kontaktéieren:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
@@ -1976,8 +1976,14 @@ Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen 
              Äre frëndleche {{SITENAME}} Benoriichtigungssystem
 
 --
-Fir d\'Astellungen op ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
+
+Fir d\'Astellungen op ären E-Mailbenoriichtigungen z\'änneren, besicht w.e.g.
+{{fullurl:{{#special:Preferences}}}}
+
+
+Fir d\'Astellungen vun ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
 {{fullurl:Special:Watchlist/edit}}
+
 
 Fir d\'Säit vun Ärer Iwwerwaachungslëscht erofzehuelen, gitt w.e.g. op
 $UNWATCHURL
@@ -2647,20 +2653,20 @@ iwwerpréift déi korrekt Installatioun vu LaTeX an dvipng (oder dvips + gs + co
 'math_notexvc'          => 'Den texvc Programm feelt: Liest w.e.g. math/README fir en anzestellen.',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Als kontrolléiert markéieren',
-'markaspatrolledtext'                 => 'Dës Säit als kontrolléiert markéieren',
-'markedaspatrolled'                   => 'ass als kontrolléiert markéiert',
-'markedaspatrolledtext'               => 'Déi gewielte Versioun vu(n) [[:$1]] gouf als kontrolléiert markéiert.',
+'markaspatrolleddiff'                 => 'Als nogekuckt markéieren',
+'markaspatrolledtext'                 => 'Dës Säit als nogekuckt markéieren',
+'markedaspatrolled'                   => 'ass als nogekuckt markéiert',
+'markedaspatrolledtext'               => 'Déi gewielte Versioun vu(n) [[:$1]] gouf als nogekuckt markéiert.',
 'rcpatroldisabled'                    => 'Rezent Ännerungskontroll ausgeschalt.',
 'rcpatroldisabledtext'                => "D'Kontroll vun de leschten Ännerungen ass elo ausgeschalt.",
-'markedaspatrollederror'              => 'Kann net als "kontrolléiert" markéiert ginn.',
+'markedaspatrollederror'              => 'Kann net als "nogekuckt" markéiert ginn.',
 'markedaspatrollederrortext'          => 'Dir musst eng Säitenännerung auswielen.',
-'markedaspatrollederror-noautopatrol' => 'Dir däerft Är eegen Ännerungen net als iwwerkuckt markéieren.',
+'markedaspatrollederror-noautopatrol' => 'Dir däerft Är eegen Ännerungen net als nogekuckt markéieren.',
 
 # Patrol log
 'patrol-log-page'      => 'Logbuch vun den iwwerkuckte Versiounen',
 'patrol-log-header'    => "Dëst ass d'Logbuch vun den nogekuckte Versiounen.",
-'patrol-log-line'      => 'huet d\'$1 vu(n) "$2" als iwwerkuckt markéiert $3',
+'patrol-log-line'      => 'huet d\'$1 vu(n) "$2" als nogekuckt markéiert $3',
 'patrol-log-auto'      => '(automatesch)',
 'patrol-log-diff'      => 'Versioun $1',
 'log-show-hide-patrol' => 'Kontroll-Logbuch $1',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Huji
  * @author Mostafadaneshvar
  * @author ZxxZxxZ
  */
@@ -1506,8 +1507,8 @@ PICT # misc.
 'filehist-current'          => 'هنو',
 'filehist-datetime'         => 'تاریح/زمان',
 'filehist-thumb'            => 'بند انگشت',
-'filehist-thumbtext'        => 'بند انگشتی عکس چه $1',
-'filehist-nothumb'          => 'بی بند انگشتی',
+'filehist-thumbtext'        => 'بندانگشتی از نسخهٔ مورخ $1',
+'filehist-nothumb'          => 'فاقد بندانگشتی',
 'filehist-user'             => 'کاربر',
 'filehist-dimensions'       => 'جنبه یان',
 'filehist-filesize'         => 'اندازه فایل',

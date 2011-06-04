@@ -2024,6 +2024,9 @@ Na spisku nadzorov lahko tudi ponastavite zastavice obveščanj za vse spremljan
              Vaš opozorilni sistem {{GRAMMAR:rodilnik|{{SITENAME}}}}
 
 --
+Za spremembo nastavitev e-poštnih obvestil obiščite
+{{fullurl:{{#special:Preferences}}}}
+
 Za spremembo nastavitev spiska nadzorov obiščite
 {{fullurl:{{#special:Watchlist}}/edit}}
 

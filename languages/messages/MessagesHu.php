@@ -728,7 +728,7 @@ Nálad ezek le vannak tiltva.
 Engedélyezd őket, majd próbáld meg újra.',
 'noname'                     => 'Érvénytelen szerkesztőnevet adtál meg.',
 'loginsuccesstitle'          => 'Sikeres bejelentkezés',
-'loginsuccess'               => "'''Most már be vagy jelentkezve a(z) {{SITENAME}} wikibe „$1” néven.'''",
+'loginsuccess'               => "'''Sikeresen bejelentkeztél a(z) {{SITENAME}} wikibe „$1” néven.'''",
 'nosuchuser'                 => 'Nem létezik „$1” nevű szerkesztő.
 A szerkesztőnevek kis- és nagybetű-érzékenyek.
 Ellenőrizd, hogy helyesen írtad-e be, vagy [[Special:UserLogin/signup|hozz létre egy új fiókot]].',
@@ -3104,6 +3104,8 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-sensingmethod-5' => 'Színsorrendi területérzékelő',
 'exif-sensingmethod-7' => 'Háromvonalas érzékelő',
 'exif-sensingmethod-8' => 'Színsorrendi vonalas érzékelő',
+
+'exif-filesource-3' => 'Digitális fényképezőgép',
 
 'exif-scenetype-1' => 'Egy közvetlenül lefotózott kép',
 

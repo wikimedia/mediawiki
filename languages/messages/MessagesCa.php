@@ -2960,6 +2960,8 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-sensingmethod-7' => 'Sensor trilineal',
 'exif-sensingmethod-8' => 'Sensor linear de color per seqüències',
 
+'exif-filesource-3' => 'Càmera fotogràfica digital',
+
 'exif-scenetype-1' => 'Una imatge fotografiada directament',
 
 'exif-customrendered-0' => 'Procés normal',

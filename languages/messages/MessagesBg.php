@@ -2030,7 +2030,7 @@ $1",
 'enotif_anon_editor'           => 'анонимен потребител $1',
 'enotif_body'                  => 'Уважаеми(а) $WATCHINGUSERNAME,
 
-Страницата $PAGETITLE в {{SITENAME}} е била $CHANGEDORCREATED на $PAGEEDITDATE от $PAGEEDITOR. За текущата версия на страницата вижте $PAGETITLE_URL.
+Страницата $PAGETITLE в {{SITENAME}} е била $CHANGEDORCREATED на $PAGEEDITDATE от $PAGEEDITOR. За текущата версия на страницата, вижте $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -2046,6 +2046,9 @@ $NEWPAGE
              Системата за известяване на {{SITENAME}}
 
 --
+За да промените настройките си за известявания чрез електронна поща, посетете
+{{fullurl:{{#special:Preferences}}}}
+
 За да промените настройките на списъка си за наблюдение, посетете
 {{fullurl:{{#special:Watchlist}}/edit}}
 

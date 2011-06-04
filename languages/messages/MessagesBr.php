@@ -405,7 +405,7 @@ $1',
 'red-link-title'          => "$1 (n'eus ket eus ar bajenn-mañ)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Page',
+'nstab-main'      => 'Pajenn',
 'nstab-user'      => 'Pajenn implijer',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Pajenn dibar',
@@ -531,7 +531,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'badretype'                  => 'Ne glot ket ar gerioù-tremen an eil gant egile.',
 'userexists'                 => "Implijet eo an anv implijer lakaet ganeoc'h dija.
 Dibabit un anv all mar plij.",
-'loginerror'                 => 'Kudenn kevreañ',
+'loginerror'                 => 'Kudenn gevreañ',
 'createaccounterror'         => 'Dibosupl krouiñ ar gont : $1',
 'nocookiesnew'               => "Krouet eo bet ar gont implijer met n'oc'h ket kevreet. {{SITENAME}} a implij toupinoù evit ar c'hevreañ met diweredekaet eo an toupinoù ganeoc'h. Trugarez da weredekaat anezho ha da gevreañ en-dro.",
 'nocookieslogin'             => "{{SITENAME}} a implij toupinoù evit kevreañ met diweredekaet eo an toupinoù ganeoc'h. Trugarez da weredekaat anezho ha da gevreañ en-dro.",
@@ -1000,7 +1000,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'diff-multi'               => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} kuzhet.)",
 
 # Search results
-'searchresults'                    => "Disoc'h ar c'hlask",
+'searchresults'                    => "Disoc'hoù enklask",
 'searchresults-title'              => 'Disoc\'hoù klask evit "$1"',
 'searchresulttext'                 => "Evit gouzout hiroc'h diwar-benn ar c'hlask e {{SITENAME}}, sellet ouzh [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'                   => 'Klasket hoc\'h eus \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|an holl bajennoù a grog gant "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|an holl bajennoù enno ul liamm war-du "$1"]])',
@@ -1936,7 +1936,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'enotif_anon_editor'           => 'implijer dizanv $1',
 'enotif_body'                  => '$WATCHINGUSERNAME ker,
 
-$CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATE, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
+$CHANGEDORCREATED eo bet pajenn $PAGETITLE {{SITENAME}} gant $PAGEEDITOR d\'an $PAGEEDITDATE gwelet $PAGETITLE_URL evit gwelet ar stumm red.
 
 $NEWPAGE
 
@@ -1952,6 +1952,9 @@ Gallout a rit nevesaat doare ar pennadoù evezhiet ganeoc\'h en ho rollad evezhi
             Ho reizhiad kemenn {{SITENAME}} muiañ karet
 
 --
+A-benn kemmañ arventennoù ho kemennoù dre bostel, sellit ouzh
+{{fullurl:{{#special:Preferences}}}}
+
 A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2866,7 +2869,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-subjectdistance-value' => '$1 metr',
 
 'exif-meteringmode-0'   => 'Dianav',
-'exif-meteringmode-1'   => 'Keitat',
+'exif-meteringmode-1'   => 'Keidenn',
 'exif-meteringmode-2'   => 'Muzul kreiz keitat',
 'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Liesspot',

@@ -719,7 +719,9 @@ Izskatās, ka lapa ir dzēsta.',
 Tā jau eksistē.',
 
 # Parser/template warnings
-'parser-template-loop-warning' => 'Veidne ir ievietota tādā pašā veidnē: [[$1]]',
+'expensive-parserfunction-category'       => 'Lapas ar pārāk daudz laikietilpīgiem apstrādes funkciju izsaukumiem',
+'post-expand-template-inclusion-category' => 'Lapas, kurām pārsniegts iekļauto veidņu apjoms',
+'parser-template-loop-warning'            => 'Veidne ir ievietota tādā pašā veidnē: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'Šo izmaiņu ir iespējams atcelt.
@@ -1487,6 +1489,7 @@ Lapu uzskata par nozīmju atdalīšanas lapu, ja tā satur veidni, uz kuru ir sa
 Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.
 <s>Nosvītrotie</s> ieraksti jau ir tikuši salaboti.',
 'double-redirect-fixed-move' => '[[$1]] bija ticis pārvietots, tas tagad ir pāradresācija uz [[$2]]',
+'double-redirect-fixer'      => 'Pāradresāciju labotājs',
 
 'brokenredirects'        => 'Kļūdainas pāradresācijas',
 'brokenredirectstext'    => 'Šīs ir pāradresācijas lapas uz neesošām lapām:',
@@ -1578,9 +1581,10 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'allinnamespace'    => 'Visas lapas ($1 vārdtelpa)',
 'allnotinnamespace' => 'Visas lapas (nav $1 vārdtelpa)',
 'allpagesprev'      => 'Iepriekšējās',
-'allpagesnext'      => 'Nākošās',
+'allpagesnext'      => 'Nākamās',
 'allpagessubmit'    => 'Aiziet!',
 'allpagesprefix'    => 'Parādīt lapas ar šādu virsraksta sākumu:',
+'allpages-bad-ns'   => '{{SITENAME}} nav vārdkopas "$1".',
 
 # Special:Categories
 'categories'                    => 'Kategorijas',
@@ -1645,6 +1649,7 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'emailpage'        => 'Sūtīt e-pastu lietotājam',
 'emailpagetext'    => 'Ar šo veidni ir iespējams nosūtīt e-pastu šim lietotājam.
 Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta "From" lauciņā, tādejādi saņēmējs varēs tev atbildēt.',
+'usermailererror'  => 'Pasta objekts atgrieza kļūdu:',
 'defemailsubject'  => 'E-pasts par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'noemailtitle'     => 'Nav e-pasta adreses',
 'noemailtext'      => 'Šis lietotājs nav norādījis derīgu e-pasta adresi.',
@@ -2423,8 +2428,8 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-colorspace'                  => 'Krāsu telpa',
 'exif-componentsconfiguration'     => 'Katras sastāvdaļas nozīme',
 'exif-compressedbitsperpixel'      => 'Attēla kompresijas pakāpe',
-'exif-pixelydimension'             => 'Derīgs attēla platums',
-'exif-pixelxdimension'             => 'Valind image height',
+'exif-pixelydimension'             => 'Attēla platums',
+'exif-pixelxdimension'             => 'Attēla augstums',
 'exif-makernote'                   => 'Ražotāja piezīmes',
 'exif-usercomment'                 => 'Lietotāja komentāri',
 'exif-relatedsoundfile'            => 'Saistītais skaņas fails',
@@ -2437,7 +2442,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-spectralsensitivity'         => 'Spektrālā jutība',
 'exif-isospeedratings'             => 'ISO jutība',
 'exif-shutterspeedvalue'           => 'Slēdža ātrums',
-'exif-aperturevalue'               => 'Apertūra',
+'exif-aperturevalue'               => 'APEX apertūra',
 'exif-brightnessvalue'             => 'Gaišums',
 'exif-exposurebiasvalue'           => 'Ekspozīcijas nobīde',
 'exif-subjectdistance'             => 'Objekta attālums',

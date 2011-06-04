@@ -664,7 +664,7 @@ Sutinnaq kaspaykipas {{SITENAME}}pi wamp'uytam atinki. Mana hinataq munaspaykiqa
 'welcomecreation'            => '== Allinmi hamusqayki $1! ==
 Rakiqunaykiqa kicharisqañam.
 Ama qunqaychu [[Special:Preferences|{{SITENAME}} allinkachinaykikunata]] kikinchayta.',
-'yourname'                   => 'Ruraq sutiyki',
+'yourname'                   => 'Ruraq sutiyki:',
 'yourpassword'               => 'Yaykuna rimayki',
 'yourpasswordagain'          => 'Yaykuna rimaykita kutipayay',
 'remembermypassword'         => "Llamk'apuy tiyayniykunapura yuyaykuway.",
@@ -985,7 +985,7 @@ Wikimanta qullusqachá icha astasqachá.
 Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
 
 # Revision deletion
-'rev-deleted-comment'         => '(qullusqa rimapuy)',
+'rev-deleted-comment'         => "(qullusqa llamk'apuna rimapuy)",
 'rev-deleted-user'            => '(qullusqa ruraqpa sutin)',
 'rev-deleted-event'           => "(qullusqa hallch'a)",
 'rev-deleted-user-contribs'   => "[ruraqpa sutinqa icha IP tiyayqa qichusqam - musuqchasqaqa llamk'apusqakunamanta pakasqam]",
@@ -1219,7 +1219,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prefs-rc'                      => 'Ñaqha hukchasqakuna',
 'prefs-watchlist'               => "Watiqasqa p'anqakuna",
 'prefs-watchlist-days'          => "Hayk'a p'unchawkunata watiqana sutisuyupi rikuchiy:",
-'prefs-watchlist-days-max'      => "(ama qanchismanta aswan p'unchaw kachunchu)",
+'prefs-watchlist-days-max'      => "Ama qanchismanta aswan p'unchaw kachunchu",
 'prefs-watchlist-edits'         => "Hayk'a hukchasqakunata hatunchasqa watiqana sutisuyupi rikuchiy:",
 'prefs-watchlist-edits-max'     => 'Ama waranqamanta aswan kachunchu',
 'prefs-watchlist-token'         => 'Watiqay sutisuyu sanancha:',
@@ -1609,22 +1609,23 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'upload-http-error'         => 'HTTP pantasqam tukusqa: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Manam chayman saqisqachu',
-'img-auth-nopathinfo'   => "Manam kanchu PATH_INFO.
+'img-auth-accessdenied'     => 'Manam chayman saqisqachu',
+'img-auth-nopathinfo'       => "Manam kanchu PATH_INFO.
 Sirwiqniykiqa manam churasqachu kaymanta willananpaq.
 CGI nisqawanchá tiksichasqa, chayrayku manachá img_auth nisqata q'imiyta atinchu.
 Qhaway http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => 'Mañakusqa ñanqa manam churaykusqa churkuna churanapi kachkanchu.',
-'img-auth-badtitle'     => 'Manam atinichu "$1" nisqamanta chaniyuq sutita rurayta.',
-'img-auth-nologinnWL'   => 'Manam yaykusqa kachkankichu, "$1" nisqataq manam yuraq sutisuyupi kachkanchu.',
-'img-auth-nofile'       => '"$1" sutiyuq willañiqiqa manam kanchu.',
-'img-auth-isdir'        => '"$1" nisqa churanatam aypaykachachkanki.
+'img-auth-notindir'         => 'Mañakusqa ñanqa manam churaykusqa churkuna churanapi kachkanchu.',
+'img-auth-badtitle'         => 'Manam atinichu "$1" nisqamanta chaniyuq sutita rurayta.',
+'img-auth-nologinnWL'       => 'Manam yaykusqa kachkankichu, "$1" nisqataq manam yuraq sutisuyupi kachkanchu.',
+'img-auth-nofile'           => '"$1" sutiyuq willañiqiqa manam kanchu.',
+'img-auth-isdir'            => '"$1" nisqa churanatam aypaykachachkanki.
 Willañiqilla aypayllam saqillasqa.',
-'img-auth-streaming'    => '"$1" nisqata purichispa.',
-'img-auth-public'       => 'img_auth.php nisqap rurananqa akuna wikimanta willañiqikunata lluqsichinam.
+'img-auth-streaming'        => '"$1" nisqata purichispa.',
+'img-auth-public'           => 'img_auth.php nisqap rurananqa akuna wikimanta willañiqikunata lluqsichinam.
 Kay wikiqa sapsi wiki hinam churaykusqa.
 Lliwmanta aswan alliku kanapaqqa, img_auth.php manam atinchu.',
-'img-auth-noread'       => 'Ruraqqa "$1" nisqata ñawiriyta manam saqillasqachu.',
+'img-auth-noread'           => 'Ruraqqa "$1" nisqata ñawiriyta manam saqillasqachu.',
+'img-auth-bad-query-string' => 'URL tiyaypa maskana qillqaqa manam allinchu.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL tiyayqa manam allinchu: $1',
@@ -2044,6 +2045,9 @@ Kay p\'anqata mana musuqmanta watukamuptiykiqa, manam huk hukchasqakunamanta wil
              Tukuy sunquwan, {{SITENAME}}pa e-chaski musyachina llikan
 
 --
+E-chaski willaykuy allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
+{{fullurl:{{#special:Preferences}}}} 
+
 Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2304,7 +2308,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipusubmit'                       => "Kay hark'asqata qispichiy",
 'unblocked'                       => "Hark'asqa [[User:$1|$1]] qispisqañam",
 'unblocked-id'                    => "Hark'asqa $1-qa qispisqañam",
-'ipblocklist'                     => "Hark'asqa ruraqkuna IP tiyaykunapas",
+'ipblocklist'                     => "Hark'asqa ruraqkuna",
 'ipblocklist-legend'              => "Hark'asqa ruraqta tariy",
 'ipblocklist-username'            => 'Ruraqpa sutin icha IP huchha:',
 'ipblocklist-sh-userblocks'       => "$1 rakiquna hark'asqakuna",
@@ -2814,8 +2818,8 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-colorspace'                  => 'Llimphi suyu',
 'exif-componentsconfiguration'     => "Sapa ñawpariqninpa sut'in",
 'exif-compressedbitsperpixel'      => "Rikchap mat'isqa kaynin laya",
-'exif-pixelydimension'             => 'Rikchap chaniyuq suni kaynin',
-'exif-pixelxdimension'             => 'Rikchap chaniyuq hanaq kaynin',
+'exif-pixelydimension'             => 'Rikchap suni kaynin',
+'exif-pixelxdimension'             => 'Rikchap hanaq kaynin',
 'exif-makernote'                   => 'Ruraqpa willasqankuna',
 'exif-usercomment'                 => "Llamk'achiqpa willayninkuna",
 'exif-relatedsoundfile'            => 'Ninachiq ruqyay willañiqi',
@@ -2831,9 +2835,9 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-spectralsensitivity'         => 'Ispiktru musyaykuy',
 'exif-isospeedratings'             => 'ISO utqay chayninchay',
 'exif-oecf'                        => "Achkiy antañiqichana t'ikrana mink'aqi",
-'exif-shutterspeedvalue'           => "Wichq'aqpa utqaynin",
-'exif-aperturevalue'               => "Illa k'ichkina",
-'exif-brightnessvalue'             => "K'anchay",
+'exif-shutterspeedvalue'           => "APEX wichq'aqpa utqaynin",
+'exif-aperturevalue'               => "APEX illa k'ichkina",
+'exif-brightnessvalue'             => "APEX k'anchay",
 'exif-exposurebiasvalue'           => 'Churapay pantapayay',
 'exif-maxaperturevalue'            => "Illa k'ichkinap lliwmanta aswan chanin",
 'exif-subjectdistance'             => 'Rikchachasqamanta karu kaynin',
@@ -2977,6 +2981,8 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-sensingmethod-5' => 'Qatiqlla llimphi suyu musyachiq',
 'exif-sensingmethod-7' => "Kimsantin siq'i musyachiq",
 'exif-sensingmethod-8' => "Qatiqlla siq'i llimphi musyachiq",
+
+'exif-filesource-3' => "Ruk'aqta sayaq rikch'a hap'ina",
 
 'exif-scenetype-1' => "Chiqalla hap'isqa rikcha",
 

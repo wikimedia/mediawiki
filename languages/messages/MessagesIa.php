@@ -2023,7 +2023,7 @@ $NEWPAGE
 
 Summario del redactor: $PAGESUMMARY $PAGEMINOREDIT
 
-Contactar le redactor:
+Pro contactar le redactor:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
@@ -2032,8 +2032,11 @@ Como alternativa tu pote reinitialisar le optiones de notification pro tote le p
 
              Le systema de notification de {{SITENAME}}, a tu servicio
 
---
-Pro cambiar le configuration de tu observatorio, visita
+-- 
+Pro configurar le notification per e-mail, visita
+{{fullurl:{{#special:Preferences}}}}
+
+Pro configurar le observatorio, visita
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Pro retirar le pagina de tu observatorio, visita

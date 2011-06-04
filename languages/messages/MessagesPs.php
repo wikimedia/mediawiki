@@ -159,6 +159,7 @@ $defaultUserOptionOverrides = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'کرښنې تړنې:',
+'tog-highlightbroken'         => 'د بڼې ماتې تړنې <a href="" class="new">لکه همدا</a> (بله چاره: لکه همدا<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'پاراګرافونه همجوليزول',
 'tog-hideminor'               => 'په وروستيو بدلونو کې واړه سمونونه پټول',
 'tog-hidepatrolled'           => 'په وروستيو بدلونونو کې څارل شوې سمونونه پټول',
@@ -187,6 +188,7 @@ $messages = array(
 'tog-shownumberswatching'     => 'د کتونکو کارنانو شمېر ښکاره کول',
 'tog-oldsig'                  => 'د شته لاسليک مخليدنه:',
 'tog-fancysig'                => 'لاسليک د ويکي متن په توګه په پام کې نيول (د خپلکاره تړن د تړلو پرته)',
+'tog-showjumplinks'           => 'د "ورټوپ کړه" د آسانتياوو تړنې چارنول',
 'tog-uselivepreview'          => 'ژوندۍ مخليدنه کارول (جاوا سکرېپټ ته اړتيا) (آزمېښتي)',
 'tog-forceeditsummary'        => 'د يوه تش سمون لنډيز په ورکولو سره دې خبر راکړل شي',
 'tog-watchlisthideown'        => 'په کتنلړ کې زما سمونې پټول',
@@ -413,7 +415,7 @@ $1',
 'policy-url'           => 'Project:تګلاره',
 'portal'               => 'د ټولنې تانبه',
 'portal-url'           => 'Project:د ټولنې تانبه',
-'privacy'              => 'د محرميت تګلاره',
+'privacy'              => 'د پټنتيا تګلاره',
 'privacypage'          => 'Project:د محرميت_تګلاره',
 
 'badaccess'        => 'د لاسرسۍ تېروتنه',
@@ -599,6 +601,8 @@ $1',
 'emailnotauthenticated'      => 'ستاسو د برېښليک پته لا تر اوسه پورې د منلو وړ نه ده ګرځېدلې. د اړوندو بېلوونکو نښو په هکله تاسو ته هېڅ کوم برېښليک نه لېږل کېږي.',
 'noemailprefs'               => 'ددې لپاره چې دا کړنې کار وکړي نو تاسو يو برېښليک وټاکۍ.',
 'emailconfirmlink'           => 'د خپل د برېښليک پتې پخلی وکړی',
+'invalidemailaddress'        => 'دا برېښليک پته نه منل کېږي، دا ځکه چې دا پته يوه ناکره بڼه لري.
+لطفاً د يوې کره بڼې پته وليکۍ او يا هم دا ځای تش پرېږدۍ.',
 'accountcreated'             => 'ګڼون مو جوړ شو.',
 'accountcreatedtext'         => 'د $1 لپاره يو ګڼون جوړ شو.',
 'createaccount-title'        => 'د {{SITENAME}} د ګڼون جوړېدنه',
@@ -767,6 +771,10 @@ $1',
 'edit-already-exists'              => 'په دې نوم يو نوی مخ جوړ نه شو.
 پدې نوم د پخوا نه يو مخ شته.',
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning' => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
+ځينې کينډۍ به په کې ګډې نه شي.",
+
 # "Undo" feature
 'undo-norev' => 'دا سمون ناکړ کېدلای نه شي دا ځکه چې دا سمون نشته او يا هم ړنګ شوی.',
 
@@ -893,6 +901,7 @@ $1',
 'searchprofile-project-tooltip'    => 'په $1 کې پلټل',
 'searchprofile-images-tooltip'     => 'د دوتنو پلټنه',
 'searchprofile-everything-tooltip' => 'د ټولې مېنځپانګې پلټنه (د خبرو اترو مخونو سره)',
+'searchprofile-advanced-tooltip'   => 'د خپل خوښې په نوم-تشيالونو کې پلټل',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 ويی|$2 وييونه}})',
 'search-result-score'              => 'اړوندتوب: $1%',
 'search-redirect'                  => '(د $1 مخ ګرځونه)',
@@ -1323,7 +1332,8 @@ $1',
 'statistics-users-active'  => 'فعاله کارنان',
 'statistics-mostpopular'   => 'تر ټولو ډېر کتل شوي مخونه',
 
-'disambiguations' => 'د څرګندونې مخونه',
+'disambiguations'     => 'د څرګندونې مخونه',
+'disambiguationspage' => 'Template:ناجوت',
 
 'doubleredirects' => 'دوه ځلي ورګرځېدنې',
 
@@ -1722,7 +1732,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 ** په مخونو کې ناندرۍ راپارېدنې/د تاوتريخوالي خپرېدو ته هڅول
 ** د ګڼ شمېر ګڼونونو نه ناوړه ګټه اخيستل
 ** نه مننونکی کارن-نوم کارول',
-'ipbcreateaccount'           => 'د ګڼون جوړولو مخنيوی',
+'ipbcreateaccount'           => 'د ګڼون جوړولو مخنيول',
 'ipbsubmit'                  => 'په دې کارن بنديز لګول',
 'ipbother'                   => 'بل وخت:',
 'ipboptions'                 => '2 ساعتونه:2 hours,1 ورځ:1 day,3 ورځې:3 days,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',
@@ -1990,7 +2000,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'show-big-image-thumb' => '<small>د دې مخليدنې کچه: $1 × $2 pixels</small>',
 
 # Special:NewFiles
-'newimages'             => 'د نوو دوتنو نندارتون',
+'newimages'             => 'د نوو دوتنو انځورتون',
 'imagelisttext'         => "دلته لاندې د '''$1''' {{PLURAL:$1|دوتنه|دوتنې}} يو لړليک دی چې اوډل شوي $2.",
 'newimages-summary'     => 'همدا ځانګړی مخ، وروستنۍ پورته شوې دوتنې ښکاره کوي.',
 'newimages-legend'      => 'چاڼګر',
