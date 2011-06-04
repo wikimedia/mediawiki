@@ -126,14 +126,13 @@ class Http {
 	 * and php support.
 	 *
 	 * @fixme this is wildly inaccurate and fails to actually check most stuff
-	 * @fixme do we actually intend to have FTP support here? Does it work consistently?
 	 *
 	 * @param $uri Mixed: URI to check for validity
 	 * @returns Boolean
 	 */
 	public static function isValidURI( $uri ) {
 		return preg_match(
-			'/^(f|ht)tps?:\/\/[^\/\s]\S*$/D',
+			'/^https?:\/\/[^\/\s]\S*$/D',
 			$uri
 		);
 	}
@@ -717,7 +716,6 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 
 		if ( $this->parsedUrl['scheme'] != 'http' &&
-			 $this->parsedUrl['scheme'] != 'ftp' &&
 			 $this->parsedUrl['scheme'] != 'https' ) {
 			$this->status->fatal( 'http-invalid-scheme', $this->parsedUrl['scheme'] );
 		}
