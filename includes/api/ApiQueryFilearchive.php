@@ -100,7 +100,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$sha1 = $params['sha1base36'];
 			}
 			if ( $sha1 ) {
-				$this->addWhere( 'fa_storage_key=' . $db->addQuotes( $sha1 ) );
+				$this->addWhere( 'fa_storage_key ' . $db->buildLike( $sha1, $db->anyString() ) );
 			}
 		}
 
