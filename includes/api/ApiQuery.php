@@ -484,10 +484,6 @@ class ApiQuery extends ApiBase {
 				}
 			}
 		}
-		// only export when there are titles
-		if ( !count( $exportTitles ) ) {
-			return;
-		}
 
 		$exporter = new WikiExporter( $this->getDB() );
 		// WikiExporter writes to stdout, so catch its
