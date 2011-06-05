@@ -126,7 +126,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		if ( !is_null( $params['mime'] ) ) {
 			global $wgMiserMode;
 			if ( $wgMiserMode  ) {
-				$this->dieUsage( 'MIME search disabled in Miser Mode', 'mimeearchdisabled' );
+				$this->dieUsage( 'MIME search disabled in Miser Mode', 'mimesearchdisabled' );
 			}
 
 			list( $major, $minor ) = File::splitMime( $params['mime'] );
@@ -259,7 +259,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator' ),
 			array( 'code' => 'unsupportedrepo', 'info' => 'Local file repository does not support querying all images' ),
-			array( 'code' => 'mimeearchdisabled', 'info' => 'MIME search disabled in Miser Mode' ),
+			array( 'code' => 'mimesearchdisabled', 'info' => 'MIME search disabled in Miser Mode' ),
 			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
 			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
 		) );

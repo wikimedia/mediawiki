@@ -533,7 +533,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * Return the API documentation for the parameters.
-	 * @return {Array} parameter documentation.
+	 * @return Array parameter documentation.
 	 */
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
