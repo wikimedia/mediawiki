@@ -85,6 +85,25 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			$this->addWhere( 'fa_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
 
+		$sha1Set = isset( $params['sha1'] );
+		$sha1base36Set = isset( $params['sha1base36'] );
+		if ( $sha1Set || $sha1base36Set ) {
+			global $wgMiserMode;
+			if ( $wgMiserMode  ) {
+				$this->dieUsage( 'Search by hash disabled in Miser Mode', 'hashsearchdisabled' );
+			}
+
+			$sha1 = false;
+			if ( $sha1Set ) {
+				$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
+			} elseif ( $sha1base36Set ) {
+				$sha1 = $params['sha1base36'];
+			}
+			if ( $sha1 ) {
+				$this->addWhere( 'fa_storage_key=' . $db->addQuotes( $sha1 ) );
+			}
+		}
+
 		if ( !$wgUser->isAllowed( 'suppressrevision' ) ) {
 			// Filter out revisions that the user is not allowed to see. There
 			// is no way to indicate that we have skipped stuff because the
@@ -201,6 +220,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'descending'
 				)
 			),
+			'sha1' => null,
+			'sha1base36' => null,
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'timestamp',
 				ApiBase::PARAM_ISMULTI => true,
@@ -227,6 +248,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
 			'limit' => 'How many images to return in total',
+			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36. Disabled in Miser Mode",
+			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki). Disabled in Miser Mode',
 			'prop' => array(
 				'What image information to get:',
 				' sha1              - Adds SHA-1 hash for the image',
@@ -250,6 +273,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted file information' ),
+			array( 'code' => 'hashsearchdisabled', 'info' => 'Search by hash disabled in Miser Mode' ),
 		) );
 	}
 
