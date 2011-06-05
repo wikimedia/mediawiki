@@ -370,8 +370,7 @@ class ApiMain extends ApiBase {
 			// Error results should not be cached
 			$this->setCacheMode( 'private' );
 
-			global $wgRequest;
-			$response = $wgRequest->response();
+			$response = $this->getRequest()->response();
 			$headerStr = 'MediaWiki-API-Error: ' . $errCode;
 			if ( $e->getCode() === 0 ) {
 				$response->header( $headerStr );
@@ -399,8 +398,7 @@ class ApiMain extends ApiBase {
 	}
 
 	protected function sendCacheHeaders() {
-		global $wgRequest;
-		$response = $wgRequest->response();
+		$response = $this->getRequest()->response();
 
 		if ( $this->mCacheMode == 'private' ) {
 			$response->header( 'Cache-Control: private' );
@@ -572,7 +570,7 @@ class ApiMain extends ApiBase {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
 				global $wgUser;
-				if ( !$wgUser->matchEditToken( $moduleParams['token'], $salt, $this->getMain()->getRequest() ) ) {
+				if ( !$wgUser->matchEditToken( $moduleParams['token'], $salt, $this->getRequest() ) ) {
 					$this->dieUsageMsg( 'sessionfailure' );
 				}
 			}
@@ -593,8 +591,7 @@ class ApiMain extends ApiBase {
 			$maxLag = $params['maxlag'];
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
-				global $wgRequest;
-				$response = $wgRequest->response();
+				$response = $this->getRequest()->response();
 
 				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				$response->header( 'X-Database-Lag: ' . intval( $lag ) );
@@ -867,7 +864,7 @@ class ApiMain extends ApiBase {
 		// Get help text from cache if present
 		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
 			SpecialVersion::getVersion( 'nodb' ) .
-			$this->getMain()->getShowVersions() );
+			$this->getShowVersions() );
 		if ( $wgAPICacheHelpTimeout > 0 ) {
 			$cached = $wgMemc->get( $key );
 			if ( $cached ) {
