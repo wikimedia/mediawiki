@@ -228,7 +228,7 @@ class WebInstaller_Language extends WebInstallerPage {
 class WebInstaller_ExistingWiki extends WebInstallerPage {
 	public function execute() {
 		// If there is no LocalSettings.php, continue to the installer welcome page
-		$vars = $this->parent->getExistingLocalSettings();
+		$vars = Installer::getExistingLocalSettings();
 		if ( !$vars ) {
 			return 'skip';
 		}
