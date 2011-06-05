@@ -57,6 +57,7 @@ class EditPage {
 	var $isCssJsSubpage = false;
 	var $isCssSubpage = false;
 	var $isJsSubpage = false;
+	var $isWrongCaseCssJsPage = false;
 	var $isNew = false; // new page or new section
 	var $deletedSinceEdit;
 	var $formtype;
@@ -100,6 +101,7 @@ class EditPage {
 	public $editFormTextBottom;
 	public $editFormTextAfterContent;
 	public $previewTextAfterContent;
+	public $mPreloadText;
 
 	/* $didSave should be set to true whenever an article was succesfully altered. */
 	public $didSave = false;
@@ -162,6 +164,8 @@ class EditPage {
 
 	/**
 	 * Fetch initial editing page content.
+	 *
+	 * @param $def_text string
 	 * @returns mixed string on success, $def_text for invalid sections
 	 * @private
 	 */
@@ -254,7 +258,11 @@ class EditPage {
 		return $text;
 	}
 
-	/** Use this method before edit() to preload some text into the edit box */
+	/**
+	 * Use this method before edit() to preload some text into the edit box
+	 *
+	 * @param $text string
+	 */
 	public function setPreloadedText( $text ) {
 		$this->mPreloadText = $text;
 	}
@@ -324,6 +332,8 @@ class EditPage {
 	/**
 	 * Checks whether the user entered a skin name in uppercase,
 	 * e.g. "User:Example/Monobook.css" instead of "monobook.css"
+	 *
+	 * @return bool
 	 */
 	protected function isWrongCaseCssJsPage() {
 		if( $this->mTitle->isCssJsSubpage() ) {
@@ -489,6 +499,9 @@ class EditPage {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function getEditPermissionErrors() {
 		global $wgUser;
 		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
@@ -582,7 +595,7 @@ class EditPage {
 
 	/**
 	 * @todo document
-	 * @param $request
+	 * @param $request WebRequest
 	 */
 	function importFormData( &$request ) {
 		global $wgLang, $wgUser;
@@ -839,7 +852,11 @@ class EditPage {
 
 	/**
 	 * Attempt submission (no UI)
-	 * @return one of the constants describing the result
+	 *
+	 * @param $result
+	 * @param $bot bool
+	 *
+	 * @return int one of the constants describing the result
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
 		global $wgFilterCallback, $wgUser, $wgParser;
@@ -1175,6 +1192,11 @@ class EditPage {
 	 * Check if no edits were made by other users since
 	 * the time a user started editing the page. Limit to
 	 * 50 revisions for the sake of performance.
+	 *
+	 * @param $id int
+	 * @param $edittime string
+	 *
+	 * @return bool
 	 */
 	protected function userWasLastToEdit( $id, $edittime ) {
 		if( !$id ) return false;
@@ -1197,7 +1219,10 @@ class EditPage {
 
 	/**
 	 * Check given input text against $wgSpamRegex, and return the text of the first match.
-	 * @return mixed -- matching string or false
+	 *
+	 * @param $text string
+	 *
+	 * @return string|false matching string or false
 	 */
 	public static function matchSpamRegex( $text ) {
 		global $wgSpamRegex;
@@ -1208,7 +1233,10 @@ class EditPage {
 
 	/**
 	 * Check given input text against $wgSpamRegex, and return the text of the first match.
-	 * @return mixed -- matching string or false
+	 *
+	 * @parma $text string
+	 *
+	 * @return string|false  matching string or false
 	 */
 	public static function matchSummarySpamRegex( $text ) {
 		global $wgSummarySpamRegex;
@@ -1216,6 +1244,11 @@ class EditPage {
 		return self::matchSpamRegexInternal( $text, $regexes );
 	}
 
+	/**
+	 * @param $text string
+	 * @param $regexes array
+	 * @return bool|string
+	 */
 	protected static function matchSpamRegexInternal( $text, $regexes ) {
 		foreach( $regexes as $regex ) {
 			$matches = array();
@@ -1229,7 +1262,7 @@ class EditPage {
 	/**
 	 * Initialise form fields in the object
 	 * Called on the first invocation, e.g. when a user clicks an edit link
-	 * @returns bool -- if the requested section is valid
+	 * @return bool -- if the requested section is valid
 	 */
 	function initialiseForm() {
 		global $wgUser;
@@ -1247,8 +1280,12 @@ class EditPage {
 			# Already watched
 			$this->watchthis = true;
 		}
-		if ( $wgUser->getOption( 'minordefault' ) && !$this->isNew ) $this->minoredit = true;
-		if ( $this->textbox1 === false ) return false;
+		if ( $wgUser->getOption( 'minordefault' ) && !$this->isNew ) {
+			$this->minoredit = true;
+		}
+		if ( $this->textbox1 === false ) {
+			return false;
+		}
 		wfProxyCheck();
 		return true;
 	}
@@ -1588,10 +1625,10 @@ HTML
 	 * inferred by the id given to the input. You can remove them both by
 	 * passing array( 'id' => false ) to $userInputAttrs.
 	 *
-	 * @param $summary The value of the summary input
-	 * @param $labelText The html to place inside the label
-	 * @param $inputAttrs An array of attrs to use on the input
-	 * @param $spanLabelAttrs An array of attrs to use on the span inside the label
+	 * @param $summary string The value of the summary input
+	 * @param $labelText string The html to place inside the label
+	 * @param $inputAttrs array of attrs to use on the input
+	 * @param $spanLabelAttrs array of attrs to use on the span inside the label
 	 *
 	 * @return array An array in the format array( $label, $input )
 	 */
@@ -1634,11 +1671,13 @@ HTML
 		# Add a class if 'missingsummary' is triggered to allow styling of the summary line
 		$summaryClass = $this->missingSummary ? 'mw-summarymissed' : 'mw-summary';
 		if ( $isSubjectPreview ) {
-			if ( $this->nosummary )
+			if ( $this->nosummary ) {
 				return;
+			}
 		} else {
-			if ( !$this->mShowSummaryField )
+			if ( !$this->mShowSummaryField ) {
 				return;
+			}
 		}
 		$summary = $wgContLang->recodeForEdit( $summary );
 		$labelText = wfMsgExt( $isSubjectPreview ? 'subject' : 'summary', 'parseinline' );
@@ -2198,6 +2237,10 @@ HTML
 	/**
 	 * @private
 	 * @todo document
+	 *
+	 * @parma $editText string
+	 *
+	 * @return bool
 	 */
 	function mergeChangesInto( &$editText ){
 		wfProfileIn( __METHOD__ );
@@ -2566,7 +2609,9 @@ HTML
 		echo $s;
 	}
 
-
+	/**
+	 * @return string
+	 */
 	public function getCancelLink() {
 		global $wgUser;
 
@@ -2827,7 +2872,7 @@ HTML
 
 			case self::AS_NO_CREATE_PERMISSION:
 				$this->noCreatePermission();
-				return;
+				return false;
 
 			case self::AS_BLANK_ARTICLE:
 				$wgOut->redirect( $this->getContextTitle()->getFullURL() );
@@ -2839,6 +2884,9 @@ HTML
 		}
 	}
 
+	/**
+	 * @return Revision
+	 */
 	function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
