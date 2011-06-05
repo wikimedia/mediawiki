@@ -295,6 +295,8 @@ class ApiMain extends ApiBase {
 	 *
 	 * Cache control values set here will only be used if the cache mode is not
 	 * private, see setCacheMode().
+	 *
+	 * @param $directives array
 	 */
 	public function setCacheControl( $directives ) {
 		$this->mCacheControl = $directives + $this->mCacheControl;
@@ -359,11 +361,9 @@ class ApiMain extends ApiBase {
 				wfDebugLog( 'exception', $e->getLogMessage() );
 			}
 
-			//
 			// Handle any kind of exception by outputing properly formatted error message.
 			// If this fails, an unhandled exception should be thrown so that global error
 			// handler will process and log it.
-			//
 
 			$errCode = $this->substituteResultWithError( $e );
 
@@ -601,7 +601,6 @@ class ApiMain extends ApiBase {
 		return true;
 	}
 
-
 	/**
 	 * Check for sufficient permissions to execute
 	 * @param $module ApiBase An Api module
@@ -786,8 +785,15 @@ class ApiMain extends ApiBase {
 			'**********************************************************************************************************',
 			'',
 			'Status:                All features shown on this page should be working, but the API',
-			'                       is still in active development, and  may change at any time.',
+			'                       is still in active development, and may change at any time.',
 			'                       Make sure to monitor our mailing list for any updates',
+			'',
+			'Erroneous requests:    When erroneous are sent to the API, a HTTP header will be sent',
+			'                       with the key "MediaWiki-API-Error" and then both the value of the',
+			'                       header and the error code sent back will be set to the same value',
+			'',
+			'                       In the case of an invalid action being passed, these will have a value',
+			'                       of "unknown_action"',
 			'',
 			'Documentation:         http://www.mediawiki.org/wiki/API',
 			'Mailing list:          http://lists.wikimedia.org/mailman/listinfo/mediawiki-api',
@@ -1023,10 +1029,16 @@ class UsageException extends Exception {
 		$this->mExtraData = $extradata;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getCodeString() {
 		return $this->mCodestr;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getMessageArray() {
 		$result = array(
 			'code' => $this->mCodestr,
@@ -1038,6 +1050,9 @@ class UsageException extends Exception {
 		return $result;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString() {
 		return "{$this->getCodeString()}: {$this->getMessage()}";
 	}
