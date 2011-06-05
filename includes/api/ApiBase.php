@@ -775,14 +775,13 @@ abstract class ApiBase {
 						}
 						break;
 					case 'timestamp':
-						if ( $multi ) {
-							ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+						if ( is_array( $value ) ) {
+							foreach ( $value as $key => $val ) {
+								$value[$key] = $this->validateTimestamp( $val, $encParamName );
+							}
+						} else {
+							$value = $this->validateTimestamp( $value, $encParamName );
 						}
-						$value = wfTimestamp( TS_UNIX, $value );
-						if ( $value === 0 ) {
-							$this->dieUsage( "Invalid value '$value' for timestamp parameter $encParamName", "badtimestamp_{$encParamName}" );
-						}
-						$value = wfTimestamp( TS_MW, $value );
 						break;
 					case 'user':
 						if ( !is_array( $value ) ) {
@@ -911,6 +910,19 @@ abstract class ApiBase {
 				$value = $max;
 			}
 		}
+	}
+
+	/**
+	 * @param $value string
+	 * @param $paramName string
+	 * @return string
+	 */
+	function validateTimestamp( $value, $paramName ) {
+		$value = wfTimestamp( TS_UNIX, $value );
+		if ( $value === 0 ) {
+			$this->dieUsage( "Invalid value '$value' for timestamp parameter $paramName", "badtimestamp_{$paramName}" );
+		}
+		return wfTimestamp( TS_MW, $value );
 	}
 
 	/**

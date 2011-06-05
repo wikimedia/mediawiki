@@ -103,7 +103,8 @@ class ApiUndelete extends ApiBase {
 			'token' => null,
 			'reason' => '',
 			'timestamps' => array(
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_TYPE => 'timestamp',
+				ApiBase::PARAM_ISMULTI => true,
 			),
 			'watchlist' => array(
 				ApiBase::PARAM_DFLT => 'preferences',

@@ -102,6 +102,7 @@ production.
 * (bug 26597) Allow toggling of persistent cookies ("remember me") in API
   action=login
 * (bug 29237) add interwiki target url attribute to api/query/interwiki
+* (bug 28392) mark action=undelete&timestamps as type "timestamp"
 
 === Languages updated in 1.19 ===
 
