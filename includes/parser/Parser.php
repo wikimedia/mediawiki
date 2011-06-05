@@ -5123,6 +5123,7 @@ class Parser {
 		$matches = array();
 		$elements = array_keys( $this->mTransparentTagHooks );
 		$text = self::extractTagsAndParams( $elements, $text, $matches, $this->mUniqPrefix );
+		$replacements = array();
 
 		foreach ( $matches as $marker => $data ) {
 			list( $element, $content, $params, $tag ) = $data;
@@ -5132,9 +5133,9 @@ class Parser {
 			} else {
 				$output = $tag;
 			}
-			$this->mStripState->addGeneral( $marker, $output );
+			$replacements[$marker] = $output;
 		}
-		return $text;
+		return strtr( $text, $replacements );
 	}
 
 	/**
