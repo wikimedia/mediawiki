@@ -49,7 +49,7 @@ class ApiQuery extends ApiBase {
 	 */
 	private $mPageSet;
 
-	private $params, $redirects, $convertTitles;
+	private $params, $redirects, $convertTitles, $iwUrl;
 
 	private $mQueryPropModules = array(
 		'info' => 'ApiQueryInfo',
@@ -232,6 +232,7 @@ class ApiQuery extends ApiBase {
 		$this->params = $this->extractRequestParams();
 		$this->redirects = $this->params['redirects'];
 		$this->convertTitles = $this->params['converttitles'];
+		$this->iwUrl = $this->params['wurl'];
 
 		// Create PageSet
 		$this->mPageSet = new ApiPageSet( $this, $this->redirects, $this->convertTitles );
@@ -367,10 +368,15 @@ class ApiQuery extends ApiBase {
 		// Interwiki titles
 		$intrwValues = array();
 		foreach ( $pageSet->getInterwikiTitles() as $rawTitleStr => $interwikiStr ) {
-			$intrwValues[] = array(
+			$item = array(
 				'title' => $rawTitleStr,
-				'iw' => $interwikiStr
+				'iw' => $interwikiStr,
 			);
+			if ( $this->iwUrl ) {
+				$title = Title::newFromText( "{$interwikiStr}:{$rawTitleStr}" );
+				$item['url'] = $title->getFullURL();
+			}
+			$intrwValues[] = $item;
 		}
 
 		if ( count( $intrwValues ) ) {
@@ -586,6 +592,7 @@ class ApiQuery extends ApiBase {
 			'indexpageids' => false,
 			'export' => false,
 			'exportnowrap' => false,
+			'iwurl' => false,
 		);
 	}
 
@@ -672,6 +679,7 @@ class ApiQuery extends ApiBase {
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
 			'export' => 'Export the current revisions of all given or generated pages',
 			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
+			'iwurl' => 'Whether to get the full URL if the title is an interwiki link',
 		);
 	}
 

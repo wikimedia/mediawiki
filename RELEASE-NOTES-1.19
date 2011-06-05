@@ -101,6 +101,7 @@ production.
 * (bug 28002) Internal error in ApiFormatRaw::getMimeType
 * (bug 26597) Allow toggling of persistent cookies ("remember me") in API
   action=login
+* (bug 29237) add interwiki target url attribute to api/query/interwiki
 
 === Languages updated in 1.19 ===
 
