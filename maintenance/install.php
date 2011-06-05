@@ -27,6 +27,7 @@ if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '
 }
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
+define( 'MEDIAWIKI_INSTALL', true );
 
 require_once( dirname( dirname( __FILE__ ) )."/maintenance/Maintenance.php" );
 
