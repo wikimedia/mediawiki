@@ -2942,6 +2942,7 @@ $wgExpensiveParserFunctionLimit = 100;
 
 /**
  * Preprocessor caching threshold
+ * Setting it to 'false' will disable the preprocessor cache.
  */
 $wgPreprocessorCacheThreshold = 1000;
 
