@@ -53,7 +53,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addTable', 'msg_resource',                      'patch-msg_resource.sql' ),
 			array( 'addTable', 'module_deps',                       'patch-module_deps.sql' ),
 			array( 'dropIndex', 'archive', 'ar_page_revid',         'patch-archive_kill_ar_page_revid.sql' ),
-	        array( 'addIndex', 'archive', 'ar_revid',               'patch-archive_ar_revid.sql' ),
+			array( 'addIndex', 'archive', 'ar_revid',               'patch-archive_ar_revid.sql' ),
 
 			// 1.19
 			array( 'addTable', 'config', 'patch-config.sql' ),
