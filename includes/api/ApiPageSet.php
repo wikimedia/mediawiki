@@ -535,6 +535,15 @@ class ApiPageSet extends ApiQueryBase {
 		$pageids = array();
 		$remaining = array_flip( $revids );
 
+		// bug 25734 API: possible issue with revids validation
+		// It seems with a load of revision rows, MySQL gets upset
+		// Remove any < 0 revids, as they can't be valid
+		foreach( $revids as $i => $revid ) {
+			if ( $revid < 0 ) {
+				unset( $revids[$i] );
+			}
+		}
+
 		$tables = array( 'revision', 'page' );
 		$fields = array( 'rev_id', 'rev_page' );
 		$where = array( 'rev_id' => $revids, 'rev_page = page_id' );
