@@ -146,8 +146,7 @@ abstract class ApiFormatBase extends ApiBase {
 			return; // skip any initialization
 		}
 
-		global $wgRequest;
-		$wgRequest->response()->header( "Content-Type: $mime; charset=utf-8" );
+		$this->getMain()->getRequest()->response()->header( "Content-Type: $mime; charset=utf-8" );
 
 		if ( $isHtml ) {
 ?>
