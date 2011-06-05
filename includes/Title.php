@@ -1376,9 +1376,9 @@ class Title {
 		if ( $action != 'patrol' && !$user->isAllowed( 'editusercssjs' )
 				&& !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
 			if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
-				$errors[] = array( 'customcssjsprotected' );
+				$errors[] = array( 'customcssprotected' );
 			} else if ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
-				$errors[] = array( 'customcssjsprotected' );
+				$errors[] = array( 'customjsprotected' );
 			}
 		}
 
