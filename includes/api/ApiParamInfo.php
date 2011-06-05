@@ -134,7 +134,7 @@ class ApiParamInfo extends ApiBase {
 			if ( !isset( $p[ApiBase::PARAM_TYPE] ) ) {
 				$dflt = isset( $p[ApiBase::PARAM_DFLT] ) ? $p[ApiBase::PARAM_DFLT] : null;
 				if ( is_bool( $dflt ) ) {
-					$p[ApiBase::PARAM_TYPE] = 'bool';
+					$p[ApiBase::PARAM_TYPE] = 'boolean';
 				} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
 					$p[ApiBase::PARAM_TYPE] = 'string';
 				} elseif ( is_int( $dflt ) ) {
@@ -151,7 +151,7 @@ class ApiParamInfo extends ApiBase {
 
 			if ( isset( $p[ApiBase::PARAM_DFLT] ) ) {
 				$type = $p[ApiBase::PARAM_TYPE];
-				if( $type === 'bool' ) {
+				if( $type === 'boolean' ) {
 					$a['default'] = ( $p[ApiBase::PARAM_DFLT] ? 'true' : 'false' );
 				} elseif( $type === 'string' ) {
 					$a['default'] = strval( $p[ApiBase::PARAM_DFLT] );
