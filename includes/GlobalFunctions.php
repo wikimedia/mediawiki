@@ -2174,8 +2174,6 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		return false;
 	}
 
-
-
 	static $formats = array(
 		TS_UNIX => 'U',
 		TS_MW => 'YmdHis',
