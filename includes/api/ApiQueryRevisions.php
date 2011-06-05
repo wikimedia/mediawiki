@@ -482,10 +482,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
 			}
 			if ( $this->parseContent ) {
-				$articleObj = new Article( $title );
-
-				$p_result = $articleObj->getParserOutput();
-				$text = $p_result->getText();
+				$text = $wgParser->parse( $text, $title, new ParserOptions() )->getText();
 			}
 			ApiResult::setContent( $vals, $text );
 		} elseif ( $this->fld_content ) {

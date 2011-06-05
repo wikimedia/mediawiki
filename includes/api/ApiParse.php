@@ -297,11 +297,11 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
-	 * @param  $articleObj Article
-	 * @param  $titleObj Title
-	 * @param  $popts ParserOptions
-	 * @param  $pageId Int
-	 * @param  $getWikitext Bool
+	 * @param $articleObj Article
+	 * @param $titleObj Title
+	 * @param $popts ParserOptions
+	 * @param $pageId Int
+	 * @param $getWikitext Bool
 	 * @return ParserOutput
 	 */
 	private function getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageId = null, $getWikitext = false ) {
