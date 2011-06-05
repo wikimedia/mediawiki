@@ -419,7 +419,6 @@ Gbanwere më ihüa ga mètú ihu élélé nke onye-na-banife maka ndi ozor.
 Maka ikuwaria na asụsụ nke ozor, biko chetu I ji [http://translatewiki.net/wiki/Main_Page?setlang=ig translatewiki.net], ihe orü MediaWiki di na ama ama.",
 'sqlhidden'            => '(nchowa SQL zonari a zonari)',
 'namespaceprotected'   => "I weghị ike I rüwa élu ihü nor na '''$1''' áháama.",
-'customcssjsprotected' => 'Í nwéghi ọdà Í rü na ihü nka, maka ó nwèrè ihe doséré ka onye ozor na banife.',
 'ns-specialprotected'  => 'Ihü mkpà, a nweriki ru na ya.',
 
 # Virus scanner

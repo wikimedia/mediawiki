@@ -431,7 +431,6 @@ $2
 
 </strong>',
 'namespaceprotected'   => "Qebûlkirinê te tune, ku tu vê rûpelê di namespace'a $1 da biguherînê.",
-'customcssjsprotected' => 'Qebûlkirinên te tune ne, tu nikanê vê rûpelê biguherînê, ji ber ku di vir da tercihên bikarhênerekî din hene.',
 'ns-specialprotected'  => "Rûpel di namespace'a {{ns:special}} nikanin werin guherandin.",
 'titleprotected'       => "Rûpelek bi vî navî nikane were çêkirin. Ev astengkirina ji [[User:$1|$1]] bi sedemê ''$2'' hate çêkirin.",
 

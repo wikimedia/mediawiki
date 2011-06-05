@@ -603,7 +603,6 @@ Andramo indray afaka minitra vitsivitsy.",
 
 $2',
 'namespaceprotected'   => "Tsy manana alalàna manova ny toeran'anarana « '''$1''' » ianao.",
-'customcssjsprotected' => "Tsy azonao atao ny manova ity pejy ity, satria misy ny safidin'ny mpikambana hafa ity pejy ity.",
 'ns-specialprotected'  => "Tsy afaka ovaina ny pejy anatin'ny toeran'anarana « {{ns:special}} » .",
 'titleprotected'       => "Voaaron'i [[User:$1|$1]] ity lohateny ity mba tsy hamorona pejy mitondra ity anarana ity.
 Ny antony napetraka dia : « ''$2'' ».",

@@ -610,7 +610,6 @@ jet doh drövver fenge kanns, udder op
 'cascadeprotected'     => 'Die Sigg es jeschöz, un mer kann se nit ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:
 $2',
 'namespaceprotected'   => 'Do darfs Sigge em Appachtemang „$1“ nit ändere.',
-'customcssjsprotected' => 'Do darfs di Sigg heh nit ändere. Se jehööt enem andere Metmacher un es e Stöck funn dämm sing eije Enstellunge.',
 'ns-specialprotected'  => '{{int:nstab-special}}e künne mer nit ändere.',
 'titleprotected'       => "Dä Tittel för en Sigg eß verbodde, fum [[User:$1]], un dr Jrond wohr: ''„$2“''",
 

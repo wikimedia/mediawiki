@@ -382,7 +382,6 @@ $1',
 'cascadeprotected'     => '箇只页面拨保护拉许，因为箇只页面拨下底已经标注“联锁保护”个{{PLURAL:$1|一只|多只}}被保护页面包含：
 $2',
 'namespaceprotected'   => "侬无没编辑'''$1'''名字空间里向页面个权限。",
-'customcssjsprotected' => '侬无权编辑箇只页面，因为渠包含其他用户个个人设定。',
 'ns-specialprotected'  => '特殊页编辑是弗来三个。',
 'titleprotected'       => "箇只标题已经拨[[User:$1|$1]]保护以防止创建。理由是''$2''。",
 

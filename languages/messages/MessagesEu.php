@@ -507,7 +507,6 @@ Itzulpenetarako, [http://translatewiki.net/wiki/Main_Page?setlang=en translatewi
 'cascadeprotected'     => "Orrialde hau aldaketen aurka babestua dago, ''kaskada'' aukerarekin babestu {{PLURAL:$1|duten orrialde honetan|dituzten orrialde hauetan}} txertaturik dagoelako:
 $2",
 'namespaceprotected'   => "Ez daukazu '''$1''' izen-tarteko orrialdeak aldatzeko baimenik.",
-'customcssjsprotected' => 'Ez daukazu orrialde hau aldatzeko baimenik, beste erabiltzaile baten hobespenak definitzen dituelako.',
 'ns-specialprotected'  => 'Ezin dira {{ns:special}} izen-tarteko orrialdeak editatu.',
 'titleprotected'       => "[[User:$1|$1]]ek izenburu hau sortzea ekidin zuen.
 Emandako arrazoia ''$2'' izan zen.",

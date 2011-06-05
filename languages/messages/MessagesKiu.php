@@ -407,7 +407,6 @@ Serba çarnais, yardımê [http://translatewiki.net/wiki/Main_Page?setlang=kiu t
 'sqlhidden'            => '(Persê SQLi nımıteo)',
 'cascadeprotected'     => 'Na pele esterıtene ra sıtar biya, çıke na zerrê {{PLURAL:$1|pela ke|pelunê ke}} dera/derê be "cascading" opsiyoni kılit biya, $2 de bena ra.',
 'namespaceprotected'   => "'''$1''' ''namespace'' de desturê sıma be vurnaisê pelu çino.",
-'customcssjsprotected' => 'Desturê sıma be vurnaisê na pele çino, çıke nae de ayarê kesê karberê bini esto.',
 'ns-specialprotected'  => 'Pelê xususi nêvurrinê.',
 'titleprotected'       => "No sername terefê [[User:$1|$1]]i ra, afernaene ra sıtar biyo.
 Sebebê ho ''$2'' dero.",

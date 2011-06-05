@@ -422,7 +422,6 @@ Kanggo terjemahan, mangga nganggo [http://translatewiki.net/wiki/Main_Page?setla
 'cascadeprotected'     => 'Kaca iki wis direksa saka panyuntingan amerga disertakaké ing {{PLURAL:$1|kaca|kaca-kaca}} ngisor iki sing wis direksa mawa opsi "runtun" diaktifaké:
 $2',
 'namespaceprotected'   => "Panjenengan ora kagungan idin kanggo nyunting kaca ing bilik nama '''$1'''.",
-'customcssjsprotected' => 'Panjenengan ora kagungan idin kanggo nyunting kaca iki amerga ngandhut pangaturan pribadi panganggo liya.',
 'ns-specialprotected'  => 'Kaca ing bilik nama astaméwa utawa kusus, ora bisa disunting.',
 'titleprotected'       => "Irah-irahan iki direksa ora olèh digawé déning [[User:$1|$1]].
 Alesané yaiku ''$2''.",

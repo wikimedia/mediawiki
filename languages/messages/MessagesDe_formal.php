@@ -50,23 +50,22 @@ $1',
 'youhavenewmessagesmulti' => 'Sie haben neue Nachrichten: $1',
 
 # General errors
-'enterlockreason'      => 'Bitte geben Sie einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
-'readonlytext'         => 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
+'enterlockreason'     => 'Bitte geben Sie einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
+'readonlytext'        => 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
 
 Grund der Sperrung: $1',
-'missing-article'      => 'Der Text von „$1“ $2 wurde nicht in der Datenbank gefunden.
+'missing-article'     => 'Der Text von „$1“ $2 wurde nicht in der Datenbank gefunden.
 
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
 Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software gefunden. Bitte melden Sie dies einem [[Special:ListUsers/sysop|Administrator]] unter Nennung der URL.',
-'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze haben Sie überschritten.
+'actionthrottledtext' => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze haben Sie überschritten.
 Bitte versuchen Sie es in ein paar Minuten erneut.',
-'viewsourcetext'       => 'Sie können den Quelltext dieser Seite betrachten und kopieren:',
-'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.
+'viewsourcetext'      => 'Sie können den Quelltext dieser Seite betrachten und kopieren:',
+'editinginterface'    => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.
 Änderungen auf dieser Seite wirken sich auf die Benutzeroberfläche aus.
 Ziehen Sie bitte im Fall von Übersetzungen in Betracht, diese bei [http://translatewiki.net/wiki/Main_Page?setlang=de-formal translatewiki.net], der Lokalisierungsplattform für MediaWiki, durchzuführen.",
-'namespaceprotected'   => "Sie haben keine Berechtigung, Seiten im '''$1'''-Namensraum zu bearbeiten.",
-'customcssjsprotected' => 'Sie sind nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
+'namespaceprotected'  => "Sie haben keine Berechtigung, Seiten im '''$1'''-Namensraum zu bearbeiten.",
 
 # Login and logout pages
 'logouttext'                 => "'''Sie sind nun abgemeldet.'''

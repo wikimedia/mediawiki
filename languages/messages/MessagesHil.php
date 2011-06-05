@@ -405,7 +405,6 @@ Para sa mga paglubad/pagbadbad, palihog kilalanon ang paggamit sang [http://tran
 'cascadeprotected'     => 'Ang ini nga panid ginpangapinan agod nga indi ma-ilisan, bangud nga ini nadal sa masunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} ginapangapinan sang naga-"kaskad" nga pililian nga naga-andar:
 $2',
 'namespaceprotected'   => "Wala ka ginapasugtan nga mag-ilis sang mga panid sa '''$1''' nga lugar-espasyo.",
-'customcssjsprotected' => 'Wala ka ginapasugtan nga mag-ilis sang sini nga panid, bagud nga may yara ini sang pagpilian sang isa pa gid nga manug-gamit.',
 'ns-specialprotected'  => 'Ang mga espesyal nga panid indi mahimo nga paga-ilisan.',
 'titleprotected'       => 'Ang ini nga titulo ginpangapinan batok sa pagbuhat ni [[User:$1|$1]].
 Ang iya rason amo ang "\'\'$2\'\'".',

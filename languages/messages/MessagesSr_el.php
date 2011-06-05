@@ -594,7 +594,6 @@ Za prevode, posetite [http://translatewiki.net/wiki/Main_Page?setlang=sr_ec tran
 'cascadeprotected'     => 'Ova stranica je zaključana i njeno uređivanje je onemogućeno jer je uključena u sadržaj {{PLURAL:$1|sledeće stranice|sledećih stranica}}, koji je zaštićen sa opcijom „prenosive“ zaštite:
 $2',
 'namespaceprotected'   => "Nemate ovlašćenja da uređujete stranice u '''$1''' imenskom prostoru.",
-'customcssjsprotected' => 'Nemate ovlašćenja da uređujete ovu stranicu jer sadrži lična podešavanja drugog korisnika.',
 'ns-specialprotected'  => 'Stranice u {{ns:special}} imenskom prostoru ne mogu se uređivati.',
 'titleprotected'       => "Ovaj naslov je blokiran za pravljenje.
 Blokirao ga je [[User:$1|$1]] a dati razlog je ''$2''.",
@@ -2251,7 +2250,7 @@ stranice su vandalizovane).',
 'unblockip'                       => 'Deblokiraj korisnika',
 'unblockiptext'                   => 'Upotrebite donji upitnik da biste vratili pravo pisanja
 ranije blokiranoj IP adresi ili korisničkom imenu.',
-'ipusubmit'                       => 'Ukloni ovaj blok',
+'ipusubmit'                       => 'Deblokiraj',
 'unblocked'                       => '[[User:$1|$1]] je deblokiran',
 'unblocked-id'                    => 'Blok $1 je uklonjen',
 'ipblocklist'                     => 'Blokirane IP adrese i korisnička imena',
@@ -2277,7 +2276,7 @@ ranije blokiranoj IP adresi ili korisničkom imenu.',
 'blocklog-showlog'                => 'Ovaj korisnik je već bio blokiran.
 Dnevnik blokiranja je ponuđen ispod  kao referenca:',
 'blocklogentry'                   => 'je blokirao „[[$1]]” sa vremenom isticanja blokade od $2 $3',
-'reblock-logentry'                => 'promenjena podešavanja bloka za [[$1]] sa vremenom isteka $2 ($3)',
+'reblock-logentry'                => 'je promenio podešavanja bloka za [[$1]] sa vremenom isteka $2 ($3)',
 'blocklogtext'                    => 'Ovo je istorija blokiranja korisnika.
 Automatski zabranjene IP adrese nisu ispisane ovde.
 Pogledajte [[Special:BlockList|zabranjene IP adrese]] za spisak trenutnih blokova.',

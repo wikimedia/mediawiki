@@ -367,7 +367,6 @@ Pursuçū: $2',
 'sqlhidden'            => '(Dasturi SQL pinhonist)',
 'cascadeprotected'     => 'In sahifa az viroiş muhofizat şudaast, baroi in ki  dar {{PLURAL:$1|sahifai|sahifahoi}} muhofizatşudai zerin, ki guzainai "obşorī" dar {{PLURAL:$1|on|onho}} intixob şudaast, faro giriftaast: $2',
 'namespaceprotected'   => "Şumo içozati viroişi sahifahoi fazoinomi '''$1'''-ro nadored.",
-'customcssjsprotected' => 'Şumo içozati viroişi in sahifaro nadored, baroi on ki on tanzimhoi şasiji jak korbari digarero dar bar megirad.',
 'ns-specialprotected'  => 'Sahifahoi viƶa ƣajri qobili viroiş hastand.',
 'titleprotected'       => "Eçodi sahifae bo in unvon az tarafi [[User:$1|$1]] çilavgirī şudaast.
 Daleli zikrşuda az in qaror ast ''$2''.",

@@ -438,7 +438,6 @@ Para sa mga paghubad, palihog ikonsider ang paggamit sa [http://translatewiki.ne
 'cascadeprotected'     => 'Ang kining panid giprotektahan sa pag-usab tungod kay nahiapil kini sa mosunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} giprotektahan pinaagi sa pag-turn on gamit ang "cascading" nga opsyon:
 $2',
 'namespaceprotected'   => "Wala kay permiso nga mag-usab sa mga panid sa '''$1''' nga ngalang espasyo.",
-'customcssjsprotected' => 'Wala kay permiso nga usbon ang kining panid, tungod kay may sulod kini nga personal nga mga setting sa laing gumagamit.',
 'ns-specialprotected'  => 'Ang mga espesyal nga panid dili mausban.',
 'titleprotected'       => 'Ang kining titulo giprotektahan sa paghimo ni [[User:$1|$1]].
 Ang rason nga gihatag mao ang "\'\'$2\'\'".',

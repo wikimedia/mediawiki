@@ -627,7 +627,6 @@ $1',
 'cascadeprotected'     => '此页面已被保护，因为这个页面被以下已标注“联锁保护”的{{PLURAL:$1|一个|多个}}被保护页面包含：
 $2',
 'namespaceprotected'   => "您并没有权限编辑'''$1'''名字空间内的页面。",
-'customcssjsprotected' => '您并无权限去编辑这个页面，因为它包含了另一位用户的个人设定。',
 'ns-specialprotected'  => '特殊页面是不可以编辑的。',
 'titleprotected'       => "这个标题已经被[[User:$1|$1]]保护以防止创建。理由是''$2''。",
 

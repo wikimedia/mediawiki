@@ -374,7 +374,6 @@ Per tulkausnans, madli endirēis tērpautun [http://translatewiki.net/wiki/Main_
 'cascadeprotected'     => 'Šin pāusan ast pakūnstan ezze redigīsnan, beggi ast ebīmtan en {{PLURAL:$1|ripīntsmu pāusan, kawīdan|ripīntimans pāusans, kawīdai}} turri mazīngiskwan "pakūnsnas weldīsnan" enklaūtan:
 $2',
 'namespaceprotected'   => "Tū ni assei preiwērptan, kāi redigīlai pāusans en '''$1''' tītelin plattibei.",
-'customcssjsprotected' => 'Tū ni mazzi redigītun šin pāusan, beggi tennan turri ēn sen persōniskans ensadīnsenins kitse tērpautajan.',
 'ns-specialprotected'  => 'Speciālai pāusai ni mazzi būtwei redigītan.',
 'titleprotected'       => 'Šis tītels pastāi drēuditan pra [[User:$1|$1]].
 Drēudisnas pagrintinsna: "$2".',

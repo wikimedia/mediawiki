@@ -355,6 +355,8 @@ $1',
 'feed-atom'               => 'अणु',
 'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (पृष्ठ उपलब्ध छैन)',
+'sort-descending'         => 'अवरोहण क्रममा मिलाउने',
+'sort-ascending'          => 'आरोहण क्रममा मिलाउने',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'लेख',
@@ -443,7 +445,6 @@ $1',
 'cascadeprotected'     => 'यो पृष्ठ सम्पादन गर्नबाट सुरक्षित गरिएकोछ किनभनें   {{PLURAL:$1|पृष्ठ |पृष्ठहरु}}मा  सुरक्षित गर्नुका साथै प्रपात ("cascading") विकल्प खुल्ला राखिएकोछ:
 $2',
 'namespaceprotected'   => " '''$1'''  नेमस्पेसमा रहेका पृष्ठहरु सम्पादन गर्ने अनुमति यहाँलाई छैन ।",
-'customcssjsprotected' => 'यो पृष्ठ सम्पादन गर्ने अनुमति यहाँलाई छैन ,किन भनें यसमा अर्को प्रयोगकर्ताको व्यक्तिगत जानकारीहरु छन् ।',
 'ns-specialprotected'  => 'विशेष पृष्ठ सम्पादन गर्न सकिदैन ।',
 'titleprotected'       => ' [[User:$1|$1]]द्वारा यो शीर्षक निर्माणहुनबाट जोगाइएको छ।
 कारण   "\'\'$2\'\'" हो ।',
@@ -572,6 +573,7 @@ $2',
 'passwordreset-text'           => 'तपाईंको खाता-विवरणको  इमेल अनुस्मारक प्राप्त गर्न यो फारम पूरा गर्नुहोस्।',
 'passwordreset-legend'         => 'प्रवेशशव्द पुनः तय गर्ने',
 'passwordreset-disabled'       => 'प्रवेश शव्द पुनः निर्धारण गर्ने व्यवस्था यस विकिमा निस्क्रिय पारिएको छ।',
+'passwordreset-pretext'        => '{{PLURAL:$1||तल दिएका आँकड़ाका टुकुरा मध्ये एउटा प्रविष्ट गर्नुहोस्}}',
 'passwordreset-username'       => 'प्रयोगकर्ता-नाम:',
 'passwordreset-email'          => 'इमेल ठेगाना:',
 'passwordreset-emailtitle'     => '{{SITENAME}}मा खाता विवरण',
@@ -1095,7 +1097,7 @@ $1",
 'savedprefs'                    => 'तपाईंका अभिरुचिहरू सङ्ग्रहित भयो।',
 'timezonelegend'                => 'समय क्षेत्र :',
 'localtime'                     => 'स्थानिय समय:',
-'timezoneuseserverdefault'      => 'सर्भर पूर्वनिर्धारित प्रयोग गर्नुहोस',
+'timezoneuseserverdefault'      => 'विकि मूल  ($1) रुपमा प्रयोग गर्ने',
 'timezoneuseoffset'             => 'अरु नै(अफसेट खुलाउनुहोस्)',
 'timezoneoffset'                => 'अफसेट¹:',
 'servertime'                    => 'सर्भर समय:',
@@ -1561,7 +1563,8 @@ $1',
 'unusedtemplateswlh' => 'अन्य कड़ीहरु',
 
 # Random page
-'randompage' => 'कुनै एक लेख',
+'randompage'         => 'कुनै एक लेख',
+'randompage-nopages' => '{{PLURAL:$2| $1 नाम भएको कुनै पृष्ट छैन|$1 नाम भएका कुनै पृष्टहरु छैनन्}}',
 
 # Random redirect
 'randomredirect'         => 'कुनै एउटा अनुप्रेषितमा जाने',
@@ -1833,7 +1836,8 @@ $1',
 'enotif_body'                  => 'प्रिय $WATCHINGUSERNAME,
 
 
-$PAGEEDITDATE को दिन {{SITENAME}}को पृष्ठ $PAGETITLE  $PAGEEDITORद्वारा $CHANGEDORCREATED, हालको संशोधनको निम्ति  हेर्नुहोस्  $PAGETITLE_URL ।
+{{SITENAME}}को पृष्ठ $PAGETITLE  $PAGEEDITDATE को दिन $PAGEEDITORद्वारा $CHANGEDORCREATED, 
+हालको संशोधनको निम्ति  हेर्नुहोस्  $PAGETITLE_URL ।
 
 $NEWPAGE
 
@@ -1843,16 +1847,18 @@ $NEWPAGE
 मेल: $PAGEEDITOR_EMAIL
 विकि: $PAGEEDITOR_WIKI
 
-तपाईं यस पृष्ठमा नगएसम्म कुनै परिवर्तन भएका खण्डमा अगाड़ि कुनै सूचना दिनेछैन।
-तपाईंका सम्पूर्ण निगरानी पृष्ठहरुकोलागि तपाईंले सूचना पताकालाई निगरानी सूचीमा पुनर्बहाली गर्न सक्नुहुन्छ। 
+तपाईं यस पृष्ठमा नगएसम्म अब उसो कुनै परिवर्तन भएका खण्डमा कुनै सूचना दिनेछैन।
+तपाईंका सम्पूर्ण निगरानी पृष्ठहरुको लागि तपाईंले सूचना पताकालाई निगरानी सूचीमा पुनर्बहाली गर्न सक्नुहुन्छ। 
 
              तपाईंको मित्र {{SITENAME}} सूचना प्रणाली
-
 --
+इमेल सूचना व्यवस्था परिवर्तन गर्न, जानुहोस्
+{{fullurl:{{#special:Preferences}}}}
+
 निगरानी सूची व्यवस्थित गर्न, जानुहोस्
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-निगरानी सूची मेट्न गर्न, जानुहोस्
+निगरानी सूची मेट्न, जानुहोस्
 $UNWATCHURL
 
 प्रतिक्रिया र अन्य सहयोगको निम्ति:
@@ -2497,8 +2503,8 @@ Others will be hidden by default.
 'exif-colorspace'                  => 'वर्ण स्थान',
 'exif-componentsconfiguration'     => 'प्रत्येक घटकको अर्थ',
 'exif-compressedbitsperpixel'      => 'चित्र सम्पीडन मोड',
-'exif-pixelydimension'             => 'चित्रको मान्य चौड़ाई',
-'exif-pixelxdimension'             => 'चित्रको मान्य उचाई',
+'exif-pixelydimension'             => 'चित्रको  चौड़ाई',
+'exif-pixelxdimension'             => 'चित्रको उचाई',
 'exif-usercomment'                 => 'प्रयोगकर्ताका टिप्पणखरु:',
 'exif-relatedsoundfile'            => 'सम्बन्धित अडियो फाइल',
 'exif-datetimeoriginal'            => 'डेटा सञ्चालनको मिति र समय',
@@ -2509,15 +2515,18 @@ Others will be hidden by default.
 'exif-exposureprogram'             => 'एक्स्पोजर कार्यक्रम',
 'exif-spectralsensitivity'         => 'वर्णक्रमीय संवेदनशीलता',
 'exif-isospeedratings'             => 'आईएसओ गति रेटिंग',
-'exif-shutterspeedvalue'           => 'शटरको गति',
-'exif-aperturevalue'               => 'छिंड़',
-'exif-brightnessvalue'             => 'चमक',
+'exif-shutterspeedvalue'           => 'APEX  शटरको गति',
+'exif-aperturevalue'               => 'APEX छिंड़',
+'exif-brightnessvalue'             => 'APEX चमक',
 'exif-exposurebiasvalue'           => 'एक्सपोजर पूर्वाग्रह',
 'exif-maxaperturevalue'            => 'अधिकतम एपर्चर भूमि',
+'exif-subjectdistance'             => 'विषय दूरी',
 'exif-meteringmode'                => 'Metering मोड',
 'exif-lightsource'                 => 'प्रकाश स्रोत',
+'exif-flash'                       => 'झिल्को(फ्लास)',
 'exif-focallength'                 => 'लेंस फोकल लम्बाई',
 'exif-subjectarea'                 => 'विषय क्षेत्र',
+'exif-flashenergy'                 => 'फ्ल्यास ऊर्जा',
 'exif-focalplanexresolution'       => 'फोकल विमान एक्स संकल्प',
 'exif-focalplaneyresolution'       => 'फोकल प्लेन वाई रिजोलुसन',
 'exif-subjectlocation'             => 'विषयको अवस्थिति',
@@ -2544,6 +2553,7 @@ Others will be hidden by default.
 'exif-gpslongitude'                => 'देशान्तर',
 'exif-gpsaltituderef'              => 'ऊंचाई संदर्भ',
 'exif-gpsaltitude'                 => 'उँचाई',
+'exif-gpstimestamp'                => 'GPS समय (स्वचालित घड़ी)',
 'exif-gpssatellites'               => 'नाप्नकोलागि प्रयोग गरिएका उपग्रहहरु',
 'exif-gpsstatus'                   => 'रिसिभर अवस्था',
 'exif-gpsmeasuremode'              => 'माप मोड',

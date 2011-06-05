@@ -441,7 +441,6 @@ Interrogazioni: $2",
 'cascadeprotected'     => 'In chistha pàgina nò è pussìbiri effettuà mudìfigghi parchí è isthadda incrusa {{PLURAL:$1|i la sighenti pàgina indicadda, ch\'è isthadda prutiggidda|i li sighenti pàgini indicaddi, chi so isthaddi prutiggiddi}} chirriendi la prutizioni "ricussiba":
 $2',
 'namespaceprotected'   => "Nò si diponi di li pimmissi nezzessàri pa mudifiggà li pagini di lu tipu di pagina '''$1'''.",
-'customcssjsprotected' => "Nò si diponi di li pimmissi nezzessàri pa mudifiggà la pàgina, parchí cunteni l'impusthazioni passunari di un althru utenti.",
 'ns-specialprotected'  => 'No è pussìbiri mudifiggà li pàgini ippiziari.',
 'titleprotected'       => "Chisthu tìturu è isthaddu prutiggiddu da la criazioni da [[User:$1|$1]].
 La rasgioni frunidda è ''$2''.",

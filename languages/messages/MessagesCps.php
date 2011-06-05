@@ -378,7 +378,6 @@ Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede
 'sqlhidden'            => '(nakatago ang pamangkot sang SQL)',
 'cascadeprotected'     => '',
 'namespaceprotected'   => "Wala ka sang permiso nga magliwat sang mga pahina nga ara sa namespace nga '''$1'''.",
-'customcssjsprotected' => 'Wala ka sang permiso nga bag-uhon ang ini nga pahina, tungod naga-unod ni sang mga pangkina-ugalingon nga gusto sang iban nga manug-usar.',
 'ns-specialprotected'  => 'Indi pwede bag-uhon ang mga pinasahi nga pahina.',
 'titleprotected'       => 'Naprotektahan ang mini nga titulo halin sa pag-ubra ni [[User:$1|$1]].
 Mini ang ginhatag nga kabangdanan "\'\'$2\'\'".',

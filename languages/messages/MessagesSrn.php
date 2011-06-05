@@ -445,7 +445,6 @@ A kan taki a abi wan noso moro karakter san no bun fu kebroiki gi nen.',
 'viewsourcefor'        => 'fu $1',
 'protectedpagetext'    => 'A papira disi sroto gi kenki.',
 'viewsourcetext'       => 'Yu kan luku nanga kopi a source fu a papira disi:',
-'customcssjsprotected' => 'Yu no kan kenki a papira disi, bika a abi seti fu wan tra kebroikiman.',
 'ns-specialprotected'  => 'Spesrutu papira no kan kenki.',
 'titleprotected'       => "[[User:$1|$1]] sroto a meki fu wan papira nanga a nen disi
 Fu san ede: ''$2''.",

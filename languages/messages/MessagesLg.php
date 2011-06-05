@@ -399,7 +399,6 @@ Enkyukakyuka z'okola wano zigyakubaako kye zikola ku ngeri abantu gye bakozesaam
 'cascadeprotected'     => 'Olupapula luno lulandideko ekikugizo ekirugaana okukyusibwako ekisibuka ku {{PLURAL:$1|lunnaalwo luno olulukozesa|zinnalwo zino ezirukozesa}}:<br />
 $2',
 'namespaceprotected'   => "Tolina buyinza bwa kukyusa ku mpapula ez'omu kkuŋaanizo erya '''$1'''.",
-'customcssjsprotected' => 'Tolina buyinza bwa kukyusa ku lupapula luno, kubanga lufuga enteekateeka eza memba omulala.',
 'ns-specialprotected'  => 'Empapula enjawule tezikukkiriza kuzikyusaako.',
 'titleprotected'       => '[[User:$1|$1]] ataddewo ekikugizo ekigaana okukozesa omutwe guno.<br />
 Ensonga gy\'awadde eri nti "\'\'$2\'\'".',

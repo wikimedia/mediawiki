@@ -568,7 +568,6 @@ Consulta: $2',
 'cascadeprotected'     => "Aquesta pàgina està protegida i no es pot modificar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
 $2",
 'namespaceprotected'   => "No teniu permís per a modificar pàgines en l'espai de noms '''$1'''.",
-'customcssjsprotected' => "No teniu permís per modificar aquesta pàgina, perquè conté paràmetres personals d'un altre usuari.",
 'ns-specialprotected'  => 'No es poden modificar les pàgines especials.',
 'titleprotected'       => "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].
 Els seus motius han estat: «''$2''».",

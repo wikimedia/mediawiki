@@ -680,7 +680,6 @@ Zeukopdrach: $2',
 'cascadeprotected'     => 'Disse pagina is beveilig umdat \'t veurkump in de volgende {{PLURAL:$1|pagina|pagina\'s}}, dee beveilig {{PLURAL:$1|is|bin}} mit de "cascade"-optie:
 $2',
 'namespaceprotected'   => "Je bin neet bevoeg um pagina is de '''$1'''-naamruumte te bewarken.",
-'customcssjsprotected' => 'Je kunnen disse pagina neet bewarken umdat der persoonlijke instellingen van een aandere gebruker in staon.',
 'ns-specialprotected'  => "Speciale pagina's kunnen neet bewark wönnen.",
 'titleprotected'       => "'t Anmaken van disse pagina is beveilig deur [[User:$1|$1]].
 De op-egeven reden is ''$2''.",

@@ -325,7 +325,6 @@ Dagiti panangbalbaliw iti daytoy a panid ket apektaranna ti langa ti user interf
 Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatewiki.net/wiki/Main_Page?setlang=ilo translatewiki.net], ti MediaWiki localisation project.",
 'sqlhidden'            => '(nakalemmeng ti SQL query)',
 'namespaceprotected'   => "Awananka iti pammalubos a mangbaliw kadagiti panid iti '''$1''' a namespace.",
-'customcssjsprotected' => 'Awananka iti pammalubos a mangedit iti daytoy a panid, agsipud ta adda linaonna a personal a settings ti sabali nga agar-aramat.',
 'ns-specialprotected'  => 'Saan a mabalin  a baliwan dagiti espesial a panid.',
 'titleprotected'       => "Sinaluadan daytoy a titulo manipud iti pannakaparnuay ni [[User:$1|$1]].
 Ti naited a rason ket ''$2''.",

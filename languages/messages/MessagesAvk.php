@@ -412,7 +412,6 @@ Erura : $2',
 'sqlhidden'            => '(SQL kucilara palsena)',
 'cascadeprotected'     => 'Batu bu icde betara zo nendar, kire va vlevefu {{PLURAL:$1|bu|bu}} pasur, danu kan tegisa "stoyakorafa" rotisaca zo nendad : $2',
 'namespaceprotected'   => "Va bu koe '''$1''' yoltxo me robetal !",
-'customcssjsprotected' => 'Va batu bu me robetal kire in va ar favesikaf titickaks ruldar.',
 'ns-specialprotected'  => 'Aptafu bu tir merobetanu.',
 'titleprotected'       => "Bat vergumvelt gan [[User:$1|$1]] zo reduranendar.
 Batdume : ''$2''.",

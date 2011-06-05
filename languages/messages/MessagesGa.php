@@ -470,7 +470,6 @@ Bain trial arís as i gcionn cúpla bomaite más é do thoil é.',
 Más maith leat MediaWiki a aistriú, cuimhnigh ar [http://translatewiki.net/wiki/Main_Page?setlang=ga translatewiki.net] (tionscadal logánaithe MediaWiki) a úsáid.",
 'sqlhidden'            => '(Iarratas SQL folaithe)',
 'namespaceprotected'   => "Ní chead agat leathanaigh a chur in eagar san ainmspás '''$1'''.",
-'customcssjsprotected' => 'Níl cead agat an leathanach seo a athrú, mar is sainroghanna úsáideora eile atá ann.',
 'ns-specialprotected'  => 'Ní féidir leathanaigh speisialta a chur in eagar.',
 'titleprotected'       => "Tá an teideal seo cosanta ar chruthú le [[User:$1|$1]].
 An fáth ná ''$2''.",

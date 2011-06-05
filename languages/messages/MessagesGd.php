@@ -387,7 +387,6 @@ Ma dh'atharraicheas tu an duilleag seo, bidh buaidh ann air coltas na h-eadar-ag
 Ma tha thu airson Gàidhlig a chur air, saoil an cleachd thu [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], am pròiseact ionadailidh aig MediaWiki?",
 'sqlhidden'            => "(Iarrtas SQL 'ga fhalach)",
 'namespaceprotected'   => "Chan eil cead agad duilleagan san namespace '''$1''' a dheasachadh.",
-'customcssjsprotected' => "Chan eil cead agad an duilleag seo a dheasachadh a chionn 's gu bheil na roghainnean pearsanta aig cleachdaiche eile innte.",
 'ns-specialprotected'  => 'Chan ghabh duilleagan sònraichte a dheasachadh.',
 'titleprotected'       => 'Chaidh an duilleag seo a dhìon o chruthachadh le [[User:$1|$1]].
 Seo am mìneachadh: "\'\'$2\'\'".',

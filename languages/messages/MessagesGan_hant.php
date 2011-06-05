@@ -421,7 +421,6 @@ MySQL回到錯誤“$3: $4”。',
 'cascadeprotected'     => '箇頁已拕保護，因為佢拕「聯鎖保護」嗰{{PLURAL:$1|一隻|幾隻}}拕保護頁包到：
 $2',
 'namespaceprotected'   => "倷冇權編寫'''$1'''空間裡度嗰頁面。",
-'customcssjsprotected' => '倷冇權編寫箇頁，佢含到別嗰用戶嗰個人設定。',
 'ns-specialprotected'  => '編寫伓正{{ns:special}}空間嗰頁面。',
 
 # Virus scanner

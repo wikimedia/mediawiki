@@ -34,21 +34,20 @@ Het kan ook wijzen op een fout in de software van {{SITENAME}}.',
 Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|speciale pagina’s]].',
 
 # General errors
-'missing-article'      => 'In de database is geen inhoud aangetroffen voor de pagina "$1" die er wel zou moeten zijn ($2).
+'missing-article'     => 'In de database is geen inhoud aangetroffen voor de pagina "$1" die er wel zou moeten zijn ($2).
 
 Dit kan voorkomen als je een verouderde verwijzing naar het verschil tussen twee versies van een pagina volgt of een versie opvraagt die is verwijderd.
 
 Als dit niet het geval is, heb je wellicht een fout in de software gevonden.
 Maak hiervan melding bij een [[Special:ListUsers/sysop|systeembeheerder]] van {{SITENAME}} en vermeld daarbij de URL van deze pagina.',
-'actionthrottledtext'  => 'Als maatregel tegen spam is het aantal keren per tijdseenheid dat je deze handeling kunt verrichten beperkt.
+'actionthrottledtext' => 'Als maatregel tegen spam is het aantal keren per tijdseenheid dat je deze handeling kunt verrichten beperkt.
 De limiet is overschreden.
 Probeer het over een aantal minuten opnieuw.',
-'viewsourcetext'       => 'Je kunt de brontekst van deze pagina bekijken en kopiëren:',
-'editinginterface'     => "'''Waarschuwing:''' Je bewerkt een pagina die gebruikt wordt door de software.
+'viewsourcetext'      => 'Je kunt de brontekst van deze pagina bekijken en kopiëren:',
+'editinginterface'    => "'''Waarschuwing:''' Je bewerkt een pagina die gebruikt wordt door de software.
 Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.
 Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl translatewiki.net] te gebruiken, het vertalingsproject voor MediaWiki.",
-'namespaceprotected'   => "Je hebt geen rechten om pagina's in de naamruimte '''$1''' te bewerken.",
-'customcssjsprotected' => 'Je kunt deze pagina niet bewerken, omdat die persoonlijke instellingen van een andere gebruiker bevat.',
+'namespaceprotected'  => "Je hebt geen rechten om pagina's in de naamruimte '''$1''' te bewerken.",
 
 # Login and logout pages
 'logouttext'                 => "'''Je bent nu afgemeld.'''

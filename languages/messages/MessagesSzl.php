@@ -375,7 +375,6 @@ Zapytańy: $2',
 'cascadeprotected'     => 'Ta zajta je zawarto uod sprowjańo, po takymu, co uůna je zauončono na {{PLURAL:$1|nastympujůncyj zajće, kero zostaua zawarto|nastympujůncych zajtach, kere zostauy zawarte}} ze zauončonům opcyjům dźedźičyńo:
 $2',
 'namespaceprotected'   => "Ńy moš uprowńyń, coby sprowjać zajty we přestřeńi mjan '''$1'''.",
-'customcssjsprotected' => 'Ńy moš uprawńyń do sprowjańo tyj zajty, bo na ńij sům uosobiste štalowańo inkšego užytkowńika.',
 'ns-specialprotected'  => 'Ńy idźe sprowjać zajtůw we přestřyni mjan {{ns:special}}.',
 'titleprotected'       => "Wćepańy sam zajty uo takim mjańe zawar [[User:$1|$1]].
 Powůd zawarćo: ''$2''.",

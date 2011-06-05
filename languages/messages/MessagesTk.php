@@ -416,7 +416,6 @@ Talap: $2',
 'cascadeprotected'     => 'Bu sahypa redaktirlenmekden goralýar, sebäbi ol "kaskadly" opsiýasy işledilip gorag astyna alnan {{PLURAL:$1|sahypada|sahypada}} ulanylýar:
 $2',
 'namespaceprotected'   => "Siziň '''$1''' giňişligindäki sahypalary redaktirlemäge rugsadyňyz ýok.",
-'customcssjsprotected' => 'Bu sahypany redaktirlemegiňize rugsat berilmeýär, çünki ol başga bir ulanyjynyň şahsy sazlamalaryny öz içine alýar.',
 'ns-specialprotected'  => '{{ns:special}} at giňişligindäki sahypalary redaktirläp bolmaýar.',
 'titleprotected'       => "[[User:$1|$1]] tarapyndan döredilmeginiň öňüni almak maksady bilen bu sahypa gorag astyna alyndy.
 Görkezilen sebäp: ''$2''.",

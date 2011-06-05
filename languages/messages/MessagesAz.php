@@ -469,7 +469,6 @@ Tərcümə üçün daha yaxşı olar ki, MediaWiki-nin lokallaşması üçün ol
 'cascadeprotected'     => 'Səhifə mühafizə olunub, çünki o kaskad mühafizə olunan {{PLURAL:$1|növbəti səhifəyə|növbəti səhifələrə}} qoşulub:
 $2',
 'namespaceprotected'   => 'Sizin adlarında $1 olan məqalələrdə redaktə etməyə icazəniz yoxdur.',
-'customcssjsprotected' => 'Sizin bu səhifədə redaktə etməyə icazəniz yoxdur. Çünki bu səhifədə başqa istifadəçinin şəxsi məlumatları var.',
 'ns-specialprotected'  => 'Xüsusi səhifələr redaktə oluna bilməz.',
 'titleprotected'       => 'Bu adda səhifənin yaradılması istifadəçi [[User:$1|$1]] tərəfindən qadağan edilmişdir.
 Göstərilən səbəb: "\'\'$2\'\'".',

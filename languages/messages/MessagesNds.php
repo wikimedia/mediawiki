@@ -580,7 +580,6 @@ Wenn du Text översetten wist, de betherto noch gornich översett is, denn maak 
 'cascadeprotected'     => 'Disse Siet is sperrt un kann nich ännert warrn. Dat kummt dorvun dat se in disse {{PLURAL:$1|Siet|Sieden}} inbunnen is, de över Kaskadensperr schuult {{PLURAL:$1|is|sünd}}:
 $2',
 'namespaceprotected'   => "Du hest keen Rechten, Sieden in’n Naamruum '''$1''' to ännern.",
-'customcssjsprotected' => 'Du hest keen Rechten, disse Siet to ännern. Dor sünd persönliche Instellungen vun en annern Bruker in.',
 'ns-specialprotected'  => 'Spezialsieden köönt nich ännert warrn.',
 'titleprotected'       => "Disse Siet is gegen dat nee Opstellen vun [[User:$1|$1]] schuult worrn.
 As Grund is angeven: ''$2''.",

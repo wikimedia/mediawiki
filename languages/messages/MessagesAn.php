@@ -501,7 +501,6 @@ Consulta: $2',
 'sqlhidden'            => '(Consulta SQL amagata)',
 'cascadeprotected'     => 'Ista pachina ye protechita y no se puede editar porque ye incluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que son protechitas con a opción de "cascada": $2',
 'namespaceprotected'   => "No tiene premiso ta editar as pachinas d'o espacio de nombres '''$1'''.",
-'customcssjsprotected' => "No tiene premiso ta editar ista pachina porque contiene a confeguración presonal d'atro usuario.",
 'ns-specialprotected'  => "No ye posible editar as pachinas d'o espacio de nombres {{ns:special}}.",
 'titleprotected'       => "Iste títol no puede creyar-se porque ye estato protechito por [[User:$1|$1]].
 A razón data ye ''$2''.",

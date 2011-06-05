@@ -292,7 +292,6 @@ Fier Iebersetzunga ziehe bitte ei Betracht, diese eim [http://translatewiki.net/
 'cascadeprotected'     => 'Diese Seyte ies zur Beoarbeetung gesperrt. Se ies ei de {{PLURAL:$1|folgende Seyte|folgenda Seyta}} eengebunda, de mittels dar Kaskadensperroption geschietzt {{PLURAL:$1|ies|sein}}:
 $2',
 'namespaceprotected'   => "Du host kenne Berechtigung, de Seyte eim '''$1'''-Noamensraum zu beorbeeta.",
-'customcssjsprotected' => 'Du biest ne berechtigt, diese Seyte zu beoarbeeta, do se zu dann persenlicha Eenstellunga annes andern Benutzers gehiert.',
 'ns-specialprotected'  => 'Spezialseyta kinna nicht beoarbeet warn.',
 'titleprotected'       => "Enne Seyte miet dam della Noama koan nicht oageläat warn.
 De Sperre wurde durch [[User:$1|$1]] miet der Begrindung ''„$2“'' eigerichtet.",

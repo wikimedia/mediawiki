@@ -642,7 +642,6 @@ Jekk jogħġbok erġa' prova fi ftit minuti oħra.",
 'cascadeprotected'     => 'Din il-paġna ġiet protetta mill-modifiki, minħabba li tinkludi {{PLURAL:$1|paġni, li huwa|paġni, li huma}} protetti bil-preferenza tal-"kaskata" mixewla:
 $2',
 'namespaceprotected'   => "Inti m'għandhekx il-permess li timodifika paġni fin-''namespace'' '''$1''.",
-'customcssjsprotected' => "M'għandekx permess timmodifika din il-paġna, peress li tinkludi l-preferenzi personali ta' utent ieħor.",
 'ns-specialprotected'  => 'Il-paġni speċjali ma jistgħux jiġu mmodifikati.',
 'titleprotected'       => "Dan it-titlu ġie protett mill-ħolqien minn [[User:$1|$1]].
 Ir-raġuni li ġiet mogħtija kienet ''$2''.",

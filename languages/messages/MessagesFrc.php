@@ -312,7 +312,6 @@ Demande: $2',
 'cascadeprotected'     => 'Cette page est protégée parce qu’elle est incluse par {{PLURAL:$1|la page suivante, qui est protégée|les pages suivantes, qui sont protégées}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected'   => 'Vous avez pas la permission de changer les pages dans l\'espace de noms "$1".',
-'customcssjsprotected' => "Vous avez pas la permission de changer cette page parce qu'alle contient le réglage d'un autre useur.",
 'ns-specialprotected'  => "Vous pouvez pas changer les pages dans l'espace de noms {{ns:special}}.",
 
 # Login and logout pages

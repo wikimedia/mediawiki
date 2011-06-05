@@ -657,7 +657,6 @@ Ho kan allereie vere sletta av andre.',
 'cascadeprotected'     => 'Denne sida er verna mot endring fordi ho er inkludert i {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på:
 $2',
 'namespaceprotected'   => "Du har ikkje tilgang til å endre sidene i '''$1'''-namnerommet.",
-'customcssjsprotected' => 'Du har ikkje tilgang til å endre denne sida, fordi ho inneheld ein annan brukar sine personlege innstillingar.',
 'ns-specialprotected'  => 'Sider i {{ns:special}}-namnerommet kan ikkje endrast.',
 'titleprotected'       => "Denne sidetittelen er verna mot oppretting av [[User:$1|$1]].
 Grunnen som er gjeven er: ''$2''.",
@@ -1068,7 +1067,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 * Upassanda personleg informasjon
 *: ''heimeadresser og -telefonnummer,  personnummer, osb.''",
 'revdelete-legend'            => 'Vel avgrensing for synlegdom',
-'revdelete-hide-text'         => 'Gøym endringssamandraga',
+'revdelete-hide-text'         => 'Gøym versjonsteksten',
 'revdelete-hide-image'        => 'Skjul filinnhald',
 'revdelete-hide-name'         => 'Gøym handling og sidenamn',
 'revdelete-hide-comment'      => 'Gøym endringssamandraga',

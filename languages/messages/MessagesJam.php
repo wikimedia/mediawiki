@@ -398,7 +398,6 @@ Fi chranslieshan, begyu kansida fi yuuz [http://translatewiki.net/wiki/Main_Page
 'cascadeprotected'     => 'Dis piej protek frahn edit, bikaa i\'inkluud ina di falarin {{PLURAL:$1|piej, ush|piejdem, ush}} protek wid di "kiaskiedn" apshan ton aan:
 $2',
 'namespaceprotected'   => "Yu no gat no pomishan fi edit piej ina di '''$1''' niemspies.",
-'customcssjsprotected' => 'Yu no gat no pomishan fi edit dis piej, bikaa ikantien aneda yuuza poersnal setndem.',
 'ns-specialprotected'  => 'Peshal piejdem kyaahn edit.',
 'titleprotected'       => 'Dis taikl protek frahn krieshan bai [[User:$1|$1]].
 Di riizn dehn gi a "\'\'$2\'\'".',

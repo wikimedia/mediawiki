@@ -402,7 +402,6 @@ For ouerseetinge tånk deeram, jü önj di  [http://translatewiki.net/wiki/Main_
 önjbünen, {{PLURAL:$1|jü|da}} madels e kaskaadespäropsjoon önj febading hüüljen {{PLURAL:$1|as|san}}:
 $2',
 'namespaceprotected'   => "Dü hääst niinj beruchtiging, jü sid önj di '''$1'''-noomerüm tu beårben.",
-'customcssjsprotected' => 'Dü bast ai beruchtiged, jüdeer sid tu beårben, deer jü tu da persöönlike önjstalinge foon en ouderen brüker hiirt.',
 'ns-specialprotected'  => 'Spetsjåålside koone ai beårbed wårde.',
 'titleprotected'       => 'En sid ma dideer noome koon ai önjläid wårde.
 Jü späre wörd döör [[User:$1|$1]] ma grün "$2" önjruchted.',

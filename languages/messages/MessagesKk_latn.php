@@ -701,7 +701,6 @@ Awdarmalar üşin, MediaWiki bağdarlamasın jersindirw [http://translatewiki.ne
 'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi bul kelesi «bawlı qorğawı» qosılğan {{PLURAL:$1|bettiñ|betterdiñ}} kirikbeti:
 $2',
 'namespaceprotected'   => "'''$1''' esim ayasındağı betterdi öñdew üşin ruqsatıñız joq.",
-'customcssjsprotected' => 'Bul betti öñdewge ruqsatıñız joq, sebebi mında özge qatıswşınıñ jeke baptawları bar.',
 'ns-specialprotected'  => '{{ns:special}} esim ayasındağı better öñdelinbeýdi',
 'titleprotected'       => "Bul taqırıp atı bastawdan [[{{ns:user}}:$1|$1]] qorğadı.
 Keltirilgen sebebi: ''$2''.",

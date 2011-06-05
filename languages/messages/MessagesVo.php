@@ -473,7 +473,6 @@ Ad tradutön vödemis, demolös gebi ela [http://translatewiki.net/wiki/Main_Pag
 'sqlhidden'            => '(SQL beg peklänedon)',
 'cascadeprotected'     => 'Pad at pejelon ta redakam, bi pakeninükon fa {{PLURAL:$1|pad|pads}} sököl, kels pejelons ma „jänajel“: $2',
 'namespaceprotected'   => "No dalol redakön padis in nemaspad: '''$1'''.",
-'customcssjsprotected' => 'No dalol redakön padi at, bi keninükon parametis pösodik gebana votik.',
 'ns-specialprotected'  => 'Pads patik no kanons paredakön.',
 'titleprotected'       => "Jaf tiäda at penemögükon fa geban: [[User:$1|$1]].
 Kod binon: ''$2''.",

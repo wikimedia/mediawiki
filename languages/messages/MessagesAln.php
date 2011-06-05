@@ -448,7 +448,6 @@ Për përkthim, konsideroni ju lutem përdorimin e [http://translatewiki.net/wik
 'cascadeprotected'     => 'Kjo faqe âsht e mbrojtun prej redaktimit, për shkak se âsht e përfshime në {{PLURAL:$1|faqen, e cila âsht e mbrojtun|faqet, të cilat janë të mbrojtuna}} me opcionin "zinxhir" të zgjedhun:
 $2',
 'namespaceprotected'   => "Nuk keni tagër me redaktue faqe në hapësinën '''$1'''.",
-'customcssjsprotected' => 'Nuk keni tagër me redaktue këtë faqe, sepse përmban përcaktime personale të nji përdoruesi tjetër.',
 'ns-specialprotected'  => 'Faqet speciale nuk mujnë me u redaktue.',
 'titleprotected'       => 'Ky titull âsht i mbrojtun për krijim prej përdoruesit [[User:$1|$1]].
 Arsyeja e dhânë âsht "\'\'$2\'\'".',

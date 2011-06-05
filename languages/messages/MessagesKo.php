@@ -680,7 +680,6 @@ $1',
 'cascadeprotected'     => '이 문서는 연쇄보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다. 연쇄 보호된 문서:
 $2',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
-'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
 'titleprotected'       => '[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다.
 이유는 다음과 같습니다. ‘$2’',
