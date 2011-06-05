@@ -788,7 +788,7 @@ class ApiMain extends ApiBase {
 			'                       is still in active development, and may change at any time.',
 			'                       Make sure to monitor our mailing list for any updates',
 			'',
-			'Erroneous requests:    When erroneous are sent to the API, a HTTP header will be sent',
+			'Erroneous requests:    When erroneous requests are sent to the API, a HTTP header will be sent',
 			'                       with the key "MediaWiki-API-Error" and then both the value of the',
 			'                       header and the error code sent back will be set to the same value',
 			'',
