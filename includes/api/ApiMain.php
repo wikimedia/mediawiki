@@ -370,11 +370,13 @@ class ApiMain extends ApiBase {
 			// Error results should not be cached
 			$this->setCacheMode( 'private' );
 
+			global $wgRequest;
+			$response = $wgRequest->response();
 			$headerStr = 'MediaWiki-API-Error: ' . $errCode;
 			if ( $e->getCode() === 0 ) {
-				header( $headerStr );
+				$response->header( $headerStr );
 			} else {
-				header( $headerStr, true, $e->getCode() );
+				$response->header( $headerStr, true, $e->getCode() );
 			}
 
 			// Reset and print just the error message
@@ -397,26 +399,29 @@ class ApiMain extends ApiBase {
 	}
 
 	protected function sendCacheHeaders() {
+		global $wgRequest;
+		$response = $wgRequest->response();
+
 		if ( $this->mCacheMode == 'private' ) {
-			header( 'Cache-Control: private' );
+			$response->header( 'Cache-Control: private' );
 			return;
 		}
 
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
 			global $wgUseXVO, $wgOut;
-			header( 'Vary: Accept-Encoding, Cookie' );
+			$response->header( 'Vary: Accept-Encoding, Cookie' );
 			if ( $wgUseXVO ) {
-				header( $wgOut->getXVO() );
+				$response->header( $wgOut->getXVO() );
 				if ( $wgOut->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
-					header( 'Cache-Control: private' );
+					$response->header( 'Cache-Control: private' );
 					return;
 				}
 				// Logged out, send normal public headers below
 			} elseif ( session_id() != '' ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
-				header( 'Cache-Control: private' );
+				$response->header( 'Cache-Control: private' );
 				return;
 			} // else no XVO and anonymous, send public headers below
 		}
@@ -433,7 +438,7 @@ class ApiMain extends ApiBase {
 			// Public cache not requested
 			// Sending a Vary header in this case is harmless, and protects us
 			// against conditional calls of setCacheMaxAge().
-			header( 'Cache-Control: private' );
+			$response->header( 'Cache-Control: private' );
 			return;
 		}
 
@@ -442,7 +447,7 @@ class ApiMain extends ApiBase {
 		// Send an Expires header
 		$maxAge = min( $this->mCacheControl['s-maxage'], $this->mCacheControl['max-age'] );
 		$expiryUnixTime = ( $maxAge == 0 ? 1 : time() + $maxAge );
-		header( 'Expires: ' . wfTimestamp( TS_RFC2822, $expiryUnixTime ) );
+		$response->header( 'Expires: ' . wfTimestamp( TS_RFC2822, $expiryUnixTime ) );
 
 		// Construct the Cache-Control header
 		$ccHeader = '';
@@ -459,7 +464,7 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		header( "Cache-Control: $ccHeader" );
+		$response->header( "Cache-Control: $ccHeader" );
 	}
 
 	/**
@@ -588,8 +593,12 @@ class ApiMain extends ApiBase {
 			$maxLag = $params['maxlag'];
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
-				header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-				header( 'X-Database-Lag: ' . intval( $lag ) );
+				global $wgRequest;
+				$response = $wgRequest->response();
+
+				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
+				$response->header( 'X-Database-Lag: ' . intval( $lag ) );
+
 				if ( $wgShowHostnames ) {
 					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
 				} else {

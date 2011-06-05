@@ -17,12 +17,14 @@ class WebResponse {
 	 * header()
 	 * @param $string String: header to output
 	 * @param $replace Bool: replace current similar header
+	 * @param $http_response_code null|int Forces the HTTP response code to the specified value.
 	 */
-	public function header($string, $replace=true) {
-		header($string,$replace);
+	public function header( $string, $replace = true, $http_response_code = null ) {
+		header( $string, $replace, $http_response_code );
 	}
 
-	/** Set the browser cookie
+	/**
+	 * Set the browser cookie
 	 * @param $name String: name of cookie
 	 * @param $value String: value to give cookie
 	 * @param $expire Int: number of seconds til cookie expires
@@ -59,15 +61,15 @@ class FauxResponse extends WebResponse {
 	private $headers;
 	private $cookies;
 
-	public function header($string, $replace=true) {
-		list($key, $val) = explode(":", $string, 2);
+	public function header( $string, $replace = true, $http_response_code = null ) {
+		list( $key, $val ) = explode( ":", $string, 2 );
 
-		if($replace || !isset($this->headers[$key])) {
+		if( $replace || !isset( $this->headers[$key] ) ) {
 			$this->headers[$key] = $val;
 		}
 	}
 
-	public function getheader($key) {
+	public function getheader( $key ) {
 		return $this->headers[$key];
 	}
 
@@ -76,7 +78,7 @@ class FauxResponse extends WebResponse {
 	}
 
 	public function getcookie( $name )  {
-		if ( isset($this->cookies[$name]) ) {
+		if ( isset( $this->cookies[$name] ) ) {
 			return $this->cookies[$name];
 		}
 	}
