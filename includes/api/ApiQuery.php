@@ -232,7 +232,7 @@ class ApiQuery extends ApiBase {
 		$this->params = $this->extractRequestParams();
 		$this->redirects = $this->params['redirects'];
 		$this->convertTitles = $this->params['converttitles'];
-		$this->iwUrl = $this->params['wurl'];
+		$this->iwUrl = $this->params['iwurl'];
 
 		// Create PageSet
 		$this->mPageSet = new ApiPageSet( $this, $this->redirects, $this->convertTitles );
