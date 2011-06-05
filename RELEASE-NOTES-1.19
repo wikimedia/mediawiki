@@ -22,6 +22,7 @@ production.
   and the functionality has been moved to the relevant extensions. See
   http://www.mediawiki.org/wiki/Extension:DublinCoreRdf and
   http://www.mediawiki.org/wiki/Extension:CreativeCoreRdf as appropriate
+* (bug 21107) Split error "customcssjsprotected" into separate messages for JS and CSS
 
 === New features in 1.19 ===
 * (bug 28916) A way to to toggle mw.config legacy globals settings from
