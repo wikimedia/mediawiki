@@ -387,15 +387,15 @@ class TitlePermissionTest extends MediaWikiTestCase {
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'customcssjsprotected' ) ),
-			array( array( 'badaccess-group0' ), array( 'customcssjsprotected'  ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
 			array( array( 'badaccess-group0' ) ) );
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'customcssjsprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) ),
 			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ),  array( 'customcssjsprotected' ) ) );
+			array( array( 'badaccess-group0' ),  array( 'customcssprotected' ) ) );
 
 		$this->setTitle( NS_USER, $this->altUserName . '/tempo' );
 		$this->runCSSandJSPermissions(
