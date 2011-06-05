@@ -359,7 +359,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Get the Query database connection (read-only)
-	 * @return Database
+	 * @return DatabaseBase
 	 */
 	protected function getDB() {
 		if ( is_null( $this->mDb ) ) {

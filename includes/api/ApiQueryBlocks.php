@@ -30,7 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
- * Query module to enumerate all available pages.
+ * Query module to enumerate all user blocks
  *
  * @ingroup API
  */
