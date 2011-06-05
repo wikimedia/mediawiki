@@ -98,6 +98,7 @@ production.
 * (bug 29267) always give the servername for meta=siteinfo&siprop=dbrepllag
 * (bug 28897) rvparse doesn’t seem to work with rvsection
 * (bug 25734) API: possible issue with revids validation
+* (bug 28002) Internal error in ApiFormatRaw::getMimeType
 
 === Languages updated in 1.19 ===
 
