@@ -411,6 +411,8 @@ class ApiEditPage extends ApiBase {
 			array( 'unknownerror', 'retval' ),
 			array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
 			array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
+			array( 'customcssprotected' ),
+			array( 'customjsprotected' ),
 		) );
 	}
 

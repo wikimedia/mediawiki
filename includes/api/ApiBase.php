@@ -970,7 +970,7 @@ abstract class ApiBase {
 		'ns-specialprotected' => array( 'code' => 'unsupportednamespace', 'info' => "Pages in the Special namespace can't be edited" ),
 		'protectedinterface' => array( 'code' => 'protectednamespace-interface', 'info' => "You're not allowed to edit interface messages" ),
 		'namespaceprotected' => array( 'code' => 'protectednamespace', 'info' => "You're not allowed to edit pages in the ``\$1'' namespace" ),
-		'customcssprotected' => array( 'code' => 'customcssprotected', 'info' => "You're not allowed to edit custom CSS  pages" ),
+		'customcssprotected' => array( 'code' => 'customcssprotected', 'info' => "You're not allowed to edit custom CSS pages" ),
 		'customjsprotected' => array( 'code' => 'customjsprotected', 'info' => "You're not allowed to edit custom JavaScript pages" ),
 		'cascadeprotected' => array( 'code' => 'cascadeprotected', 'info' => "The page you're trying to edit is protected because it's included in a cascade-protected page" ),
 		'protectedpagetext' => array( 'code' => 'protectedpage', 'info' => "The ``\$1'' right is required to edit this page" ),
