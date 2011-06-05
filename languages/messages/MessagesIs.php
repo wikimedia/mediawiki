@@ -584,7 +584,6 @@ Fyrir þýðingar, gjörðu svo vel að nota [http://translatewiki.net/wiki/Main
 'cascadeprotected'     => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:
 $2',
 'namespaceprotected'   => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
-'customcssjsprotected' => 'Þú hefur ekki leyfi til að breyta þessari síðu, því hún hefur notandastillingar annars notanda.',
 'ns-specialprotected'  => 'Kerfissíðum er ekki hægt að breyta.',
 'titleprotected'       => "Þessi titill hefur verið verndaður fyrir sköpun af [[User:$1|$1]].
 Ástæðan sem gefin var ''$2''.",

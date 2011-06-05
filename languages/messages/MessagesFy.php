@@ -505,7 +505,6 @@ Query: $2',
 'sqlhidden'            => '(SQL query ferburgen)',
 'cascadeprotected'     => 'Dizze side is skoattele tsjin wizigjen, om\'t der in ûnderdiel útmakket fan de neikommende {{PLURAL:$1|side|siden}}, dy\'t skoattele {{PLURAL:$1|is|binne}} mei de "ûnderlizzende siden" opsje ynskeakele: $2',
 'namespaceprotected'   => "Jo hawwe gjin rjochten om siden yn'e nammerûmte '''$1''' te bewurkjen.",
-'customcssjsprotected' => "Jo kinne dizze side net bewurkje, om't er persoanlike ynstellings fan in oare brûker befettet.",
 'ns-specialprotected'  => "Siden yn'e nammerûmte {{ns:special}} kinne net bewurke wurde.",
 'titleprotected'       => "It oanmeitsjen fan dizze side is befeilige troch [[User:$1|$1]].
 De oanfierde reden is ''$2''.",

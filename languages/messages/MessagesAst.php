@@ -447,7 +447,6 @@ Si quies facer traducciones, por favor usa [http://translatewiki.net/wiki/Main_P
 'cascadeprotected'     => 'Esta páxina ta protexida d\'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción "en cascada":
 $2',
 'namespaceprotected'   => "Nun tienes permisu pa editar páxines nel espaciu de nomes '''$1'''.",
-'customcssjsprotected' => "Nun tienes permisu pa editar esta páxina porque contién preferencies personales d'otru usuariu.",
 'ns-specialprotected'  => 'Les páxines especiales nun se puen editar.',
 'titleprotected'       => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]].
 El motivu conseñáu ye ''$2''.",

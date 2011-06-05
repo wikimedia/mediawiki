@@ -687,7 +687,6 @@ Lekérdezés: $2',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
 $2',
 'namespaceprotected'   => "Nincs jogosultságod a(z) '''$1''' névtérben található lapok szerkesztésére.",
-'customcssjsprotected' => 'Nincs jogosultságod a lap szerkesztéséhez, mert egy másik szerkesztő személyes beállításait tartalmazza.',
 'ns-specialprotected'  => 'A speciális lapok nem szerkeszthetőek.',
 'titleprotected'       => "Ilyen címmel nem lehet szócikket készíteni, [[User:$1|$1]] letiltotta.
 A blokkolás oka: „''$2''”.",
@@ -835,7 +834,7 @@ Ideiglenes jelszó: $2',
 'italic_tip'      => 'Dőlt szöveg',
 'link_sample'     => 'Belső hivatkozás',
 'link_tip'        => 'Belső hivatkozás',
-'extlink_sample'  => 'http://www.example.com hivatkozás címe',
+'extlink_sample'  => 'http://www.példa-hivatkozás.hu hivatkozás címe',
 'extlink_tip'     => 'Külső hivatkozás (ne felejtsd el a http:// előtagot)',
 'headline_sample' => 'Alfejezet címe',
 'headline_tip'    => 'Alfejezetcím',
@@ -2160,7 +2159,7 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'email-legend'         => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
 'emailfrom'            => 'Feladó:',
 'emailto'              => 'Címzett:',
-'emailsubject'         => 'Téma:',
+'emailsubject'         => 'Tárgy:',
 'emailmessage'         => 'Üzenet:',
 'emailsend'            => 'Küldés',
 'emailccme'            => 'Az üzenet másolatát küldje el nekem is e-mailben.',
@@ -3420,7 +3419,7 @@ A levelező üzenete: $1',
 'confirmemail_error'        => 'Hiba az e-mail címed megerősítése során.',
 'confirmemail_subject'      => '{{SITENAME}} e-mail cím megerősítés',
 'confirmemail_body'         => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált
-"$2" néven a(z) {{SITENAME}} wikin, a(z) $1 IP-címről.
+„$2” néven a(z) {{SITENAME}} wikin, a(z) $1 IP-címről.
 
 Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik,
 és hogy aktiváld az e-mail címedet, nyisd meg az alábbi linket a böngésződben:

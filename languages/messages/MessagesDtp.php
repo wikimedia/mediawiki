@@ -402,7 +402,6 @@ Montok pangawaliwboros, pomusarahai no do mongoguno [http://translatewiki.net/wi
 'cascadeprotected'     => 'Notingoligan bolikon diti mantad do pingiditan tu nokosuang  id bolikon, {{PLURAL:$1 | do | it}} pinilian tingolig  "kasading" poinsikit:
 $2',
 'namespaceprotected'   => "Ingaa kasagaannu do mongidit bobolikon it kinoingaran '''$1'''.",
-'customcssjsprotected' => 'Ingaa kasagaannu do mongidit diti bolikon, tu kisuang ponguludan momorian momoguno.',
 'ns-specialprotected'  => 'Bolikon pinotontu awu milo iditon.',
 'titleprotected'       => 'Notingoligan tuluhon diti mantad wonsoyon do [[User:$1|$1]].
 Sasabab no do "\'\'$2\'\'".',

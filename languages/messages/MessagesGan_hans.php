@@ -398,7 +398,6 @@ MySQL回到错误“$3: $4”。',
 'cascadeprotected'     => '个页已拖保护，因为佢拖“联锁保护”𠮶{{PLURAL:$1|一只|几只}}拖保护页包到：
 $2',
 'namespaceprotected'   => "倷冇权编写'''$1'''空间里度𠮶页面。",
-'customcssjsprotected' => '倷冇权编写个页，佢含到别𠮶用户𠮶个人设定。',
 'ns-specialprotected'  => '编写伓正{{ns:special}}空间𠮶页面。',
 
 # Virus scanner

@@ -359,8 +359,6 @@ Pakisubukan mung pasibayu kaibat ning mapilang minutu.',
 'cascadeprotected'     => 'Makaprotekta ya king pamag-edit ing bulung a ini uling kayabe ya king makatuking {{PLURAL:$1|bulung, a|bulung, a}} a maki proteksiun uling makasalangi ya ing  "tuki-tuki" o "cascading" option:
 $2',
 'namespaceprotected'   => "Ala kang paintulut a mag-edit bulung king pirinan lagyung (namespace a) '''$1'''.",
-'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.
-Ala kang paintulut a i-edit ya ing bulung a ini, uling atin yang personal setting ning aliwang talagamit.",
 'ns-specialprotected'  => 'E la malyaring i-edit deng bulung a makabukud.',
 'titleprotected'       => "Pinrotekta ne king pamaglalang [[User:$1|$1]] ining pamagat.
 Iti ing binie nang sangkan: ''$2''.",

@@ -540,7 +540,6 @@ Query: $2',
 'cascadeprotected'     => "Deze pagina kin neet bewirk waere, omdet zie is opgenome in de volgende {{PLURAL:$1|pagina|pagina's}} die beveilig {{PLURAL:$1|is|zeen}} mèt de kaskaad-optie:
 $2",
 'namespaceprotected'   => "Doe höbs gein rechte om pagina's in de naamruumde '''$1''' te bewirke.",
-'customcssjsprotected' => "De kèns dees pagina neet bewirke ómdet die persuunlike insjtèllinge van 'ne angere gebroeker bevat.",
 'ns-specialprotected'  => 'Pagina\'s in de naamruumde "{{ns:special}}" kinne neet bewirk waere.',
 'titleprotected'       => "'t aanmake van deze pagina is beveilig door [[User:$1|$1]].
 De gegaeve ree is ''$2''.",

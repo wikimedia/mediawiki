@@ -417,7 +417,6 @@ Foar Uursättengen koast du fielicht beeter [http://translatewiki.net/wiki/Main_
 'cascadeprotected'     => 'Disse Siede is tou Beoarbaidenge speerd. Ju is in do {{PLURAL:$1|foulgjende Siede|foulgjende Sieden}} ienbuunen, do der middels ju Kaskadenspeeroption skutsed {{PLURAL:$1|is|sunt}}:
 $2',
 'namespaceprotected'   => "Du hääst neen Begjuchtigenge, ju Siede in dän '''$1'''-Noomensruum tou beoarbaidjen.",
-'customcssjsprotected' => 'Du bäst nit begjuchtiged disse Siede tou beoarbaidjen, deer ju tou do persöönelke Ienstaalengen fon n uur Benutser heert.',
 'ns-specialprotected'  => 'Spezioalsieden konnen nit beoarbaided wäide.',
 'titleprotected'       => "Ne Siede mäd dissen Noome kon nit moaked wäide.
 Ju Speere wuude truch [[User:$1|$1]] mäd ju Begruundenge ''$2'' ienroat.",

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Huji
  * @author Mostafadaneshvar
  * @author ZxxZxxZ
  */
@@ -506,7 +507,6 @@ Query: $2',
 'cascadeprotected'     => 'ای صفحه محافظت بیت چه اصلاح چرا که آیی شامل جهلیگین {{PLURAL:$1|صفحه, که|صفحات, که}} محافظتی گون the "cascading" option turned on:
 $2',
 'namespaceprotected'   => "شما اجازت په اصلاح صفحات ته  '''$1'' نام فضا نیست",
-'customcssjsprotected' => 'شما را اجازت په اصلاح ای صفحه نیستپه چی که آی شامل شامل  تنظیمات شخصی دگه کاربر اینت',
 'ns-specialprotected'  => 'حاصین صفحات اصلاح نه بنت',
 'titleprotected'       => "ای عنوان محافظت بوتت چه سربیگ به وسیله  [[User:$1|$1]].
 ای دلیل دییگ بیتت ''$2''.",
@@ -1485,8 +1485,8 @@ PICT # misc.
 'filehist-current'          => 'هنو',
 'filehist-datetime'         => 'تاریح/زمان',
 'filehist-thumb'            => 'بند انگشت',
-'filehist-thumbtext'        => 'بند انگشتی عکس چه $1',
-'filehist-nothumb'          => 'بی بند انگشتی',
+'filehist-thumbtext'        => 'بندانگشتی از نسخهٔ مورخ $1',
+'filehist-nothumb'          => 'فاقد بندانگشتی',
 'filehist-user'             => 'کاربر',
 'filehist-dimensions'       => 'جنبه یان',
 'filehist-filesize'         => 'اندازه فایل',

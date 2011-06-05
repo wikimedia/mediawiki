@@ -404,7 +404,6 @@ Perse: $2',
 'cascadeprotected'     => 'No pel de vurnayiş qedexe biyo, çunke şıma tuşa "kademeyın" aqtif kerdo u no {{PLURAL:$1|pelo|pelo}} pawıteyo de xebıtyeno:
 $2',
 'namespaceprotected'   => "No '''$1''' ca de icazetê şıma çino şıma pel rêz keri.",
-'customcssjsprotected' => 'Heqa şıma çıniya şıma ena pele bıvurnê, çunke eyarê şexsiyê karberê dê bini tederê.',
 'ns-specialprotected'  => 'Pelê xasi nênê vurnayış.',
 'titleprotected'       => 'Eno [[User:$1|$1]] zerreyê ena peli nişeno vuriye.
 Sebeb: "\'\'$2\'\'".',

@@ -421,7 +421,6 @@ Vaicājums: $2',
 'editinginterface'     => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem. Pēc modificēšanas, šīs izmaiņas būtu lietderīgi pievienot arī [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], kas ir MediaWiki lokalizēšanas projekts.",
 'sqlhidden'            => '(SQL vaicājums paslēpts)',
 'namespaceprotected'   => "Tev nav atļaujas izmainīt lapas, kas atrodas '''$1''' ''namespacē''.",
-'customcssjsprotected' => "Tev nav atļaujas izmainīt šo lapu, tāpēc, ka tā satur cita lietotāja personīgos uzstādījumus (''settings'').",
 'ns-specialprotected'  => 'Nevar izmainīt īpašās lapas.',
 'titleprotected'       => "Šī lapa ir aizsargāta pret izveidošanu. To aizsargāja [[User:$1|$1]].
 Norādītais iemesls bija ''$2''.",

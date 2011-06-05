@@ -511,7 +511,6 @@ Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [http://translatewiki.
 'cascadeprotected'     => 'Ukurasa huu umekingwa usihaririwe, kwa sababu umejumlishwa katika {{PLURAL:$1|ukurasa ufuatao, ambao umekingwa|kurasa zifuatazo, ambazo zimekingwa}} na chagua la "cascadi" iliwashwa:
 $2',
 'namespaceprotected'   => "Huna ruhusa ya kuhariri kurasa za eneo la wiki la '''$1'''.",
-'customcssjsprotected' => 'Huna ruhusa ya kuhariri ukurasa huu, kwa sababu ukurasa umejumlisha mipangilio binafsi ya mtumiaji mwingine.',
 'ns-specialprotected'  => 'Kurasa maalumu haziwezi kuhaririwa.',
 'titleprotected'       => 'Jina hili limekingwa lisiumbwe na [[User:$1|$1]].
 Sababu zilizotolewa ni "\'\'$2\'\'".',

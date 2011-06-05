@@ -476,7 +476,6 @@ Soraw: $2',
 'cascadeprotected'     => 'Bu bit üzgärtülärdän saqlanğan, çönki ul kaskadlı saqlaw qabul itelgän {{PLURAL:$1|bitkä|bitlärgä}} östälgän:
 $2',
 'namespaceprotected'   => "'''$1''' isem kiñlegendäge bitlärne üzgärtü öçen sezneñ röxsätegez yuq.",
-'customcssjsprotected' => 'Sez bu bitne üzgärtä almıysız, çönki anda başqa qullanıçınıñ köylänmäläre bar.',
 'ns-specialprotected'  => 'Maxsus bitlärne üzgärtep bulmıy.',
 'titleprotected'       => "Bu isem belän bit yasaw [[User:$1|$1]] tarafınnan tıyılğan.
 Ul kürsätkän säbäp: ''$2''.",

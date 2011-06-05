@@ -694,7 +694,6 @@ För översättningar, använd gärna [http://translatewiki.net/wiki/Main_Page?s
 'cascadeprotected'     => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":
 $2',
 'namespaceprotected'   => "Du har inte behörighet att redigera sidor i namnrymden '''$1'''.",
-'customcssjsprotected' => 'Du har inte behörighet att redigera den här sidan eftersom den innehåller en annan användares personliga inställningar.',
 'ns-specialprotected'  => 'Specialsidor kan inte redigeras.',
 'titleprotected'       => 'Denna sidtitel har skyddats från att skapas av [[User:$1|$1]].
 Den uppgivna anledningen är "\'\'$2\'\'".',

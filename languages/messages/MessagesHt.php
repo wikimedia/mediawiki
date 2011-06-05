@@ -524,7 +524,6 @@ Demann : $2',
 'cascadeprotected'     => 'Paj sa pwoteje kounye a paske l nan {{PLURAL:$1|paj ki douvan l|paj yo ki douvan l}}, paske {{PLURAL:$1|l te pwoteje|yo te pwoteje}} ak opsyon « pwoteksyon pou tout paj ki nan premye paj an - kaskad » aktive :
 $2',
 'namespaceprotected'   => "Ou pa gen dwa modifye paj nan espas non « '''$1''' ».",
-'customcssjsprotected' => 'Ou pa kapab modifye paj sa paske li manke w kèk otorizasyon; li genyen preferans yon lòt itilizatè.',
 'ns-specialprotected'  => 'Paj yo ki nan espas non « {{ns:special}} » pa kapab modifye.',
 'titleprotected'       => "Tit, sijè sa pwoteje pandan kreyasyon l pa [[User:$1|$1]].
 Rezon li bay yo se « ''$2'' ».",

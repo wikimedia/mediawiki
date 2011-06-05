@@ -715,7 +715,6 @@ Consulta: $2',
 'cascadeprotected'     => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con la opción de «cascada»:
 $2',
 'namespaceprotected'   => "No tienes permiso para editar las páginas del espacio de nombres '''$1'''.",
-'customcssjsprotected' => 'No tienes permiso para editar esta página porque contiene elementos de la configuración personal de otro usuario.',
 'ns-specialprotected'  => 'Las páginas especiales no se pueden editar',
 'titleprotected'       => 'Esta página ha sido protegida contra creación por [[User:$1|$1]].
 El motivo dado fue: "\'\'$2\'\'".',

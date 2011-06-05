@@ -400,7 +400,6 @@ Gasan tarjamahan, muhun puruk [http://translatewiki.net/wiki/Main_Page?setlang=b
 'sqlhidden'            => '(Parmintaan SQL disungkupakan)',
 'cascadeprotected'     => 'Tungkaran ini sudah dilindungi matan pambabakan, marga nangini tamasuk dalam {{PLURAL:$1|tungkaran|tutungkaran}} dudi nang dilindungi "barénténg": $2',
 'namespaceprotected'   => "Pian kada baisi ijin hagan mambabak tutungkaran dalam ngaran kamar '''$1'''.",
-'customcssjsprotected' => 'Pian kada baisi ijin hagan mambabak tungkaran ini, karana ini mangandung setélan paribadi pamuruk lain.',
 'ns-specialprotected'  => 'Tungkaran istimiwa kada kawa dibabak',
 'titleprotected'       => "Judul ini dilindungi matan paulahan ulih [[User:$1|$1]].
 Alasan nang dibariakan adalah ''$2''.",

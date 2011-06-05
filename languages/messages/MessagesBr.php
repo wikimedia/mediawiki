@@ -562,7 +562,6 @@ Goulenn : $2",
 'cascadeprotected'     => 'Gwarezet eo ar bajenn-mañ; n\'haller ket degas kemmoù enni peogwir he c\'haver er {{PLURAL:$1|bajenn|pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh "skalierad" :
 $2',
 'namespaceprotected'   => "N'oc'h ket aotreet da zegas kemmoù e pajennoù an esaouenn anv '''$1'''.",
-'customcssjsprotected' => "N'oc'h ket aotreet da zegas kemmoù war ar bajenn-mañ rak kavout a reer enni arventennoù personel un implijer all.",
 'ns-specialprotected'  => "N'haller ket kemmañ ar pajennoù en esaouenn anv {{ns:special}}.",
 'titleprotected'       => "Gwarezet eo bet an titl-mañ p'eo bet krouet gant [[User:$1|$1]].
 Setu amañ perak ''$2''.",
@@ -2263,9 +2262,8 @@ Setu an doare a-vremañ evit ar bajenn-mañ '''$1''':",
 'undeletepagetext'             => "Diverket eo bet {{PLURAL:$1|ar bajenn da-heul; emañ|ar pajennoù da-heul; emaint}} e bank roadennoù an dielloù, ma c'hallont bezañ assavet.
 Ingal e c'hall an diell bezañ goullonderet.",
 'undelete-fieldset-title'      => 'Assevel ar stummoù',
-'undeleteextrahelp'            => "Evit diziverkañ ar bajenn en he fezh, laoskit goullo an holl logoù bihan ha klikit war '''''Diziverkañ!'''''.
-Evit diziverkañ stummoù zo hepken, askit ar logoù bihan a glot gant ar stummoù da vezañ adsavet, ha klikit war '''''Diziverkañ!'''''.
-Mar klikit war '''''Adderaouiñ''''' e vo naetaet ar stern diverrañ hag al logoù asket.",
+'undeleteextrahelp'            => "Evit assevel istor klok ar bajenn, laoskit goullo an holl logoù ha klikit war '''''{{int:undeletebtn}}'''''.
+Evit assevel stummoù zo hepken, askit ar logoù a glot gant ar stummoù da vezañ assavet, ha klikit war '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|stumm|stumm}} diellaouet',
 'undeletehistory'              => "Ma tiziverkit ar bajenn e vo erlec'hiet an holl gemmoù bet degaset enni er roll istor.
 

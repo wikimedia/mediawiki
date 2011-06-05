@@ -300,28 +300,27 @@ $messages = array(
 'nosuchspecialpage' => 'Cha nel y duillag er lheh shoh ayn',
 
 # General errors
-'error'                => 'Marranys',
-'missing-article'      => 'Cha row teks duillag, lhisagh ve er gheddyn lesh yn ennym "$1" $2, feddynit ec y stoyr-fysseree.
+'error'               => 'Marranys',
+'missing-article'     => 'Cha row teks duillag, lhisagh ve er gheddyn lesh yn ennym "$1" $2, feddynit ec y stoyr-fysseree.
 
 Dy cadjin, she y chooish da\'n taghyrt shen na jannoo shelg er kiangley caghlaa ass date ny kiangley shennaghys dys duillag va scrysst.
 
 Mannagh vel eh y chooish, foddee dy vel doghan \'sy chooid vog er ve feddynit magh ayd.<br />
 Cur coontey jeh da [[Special:ListUsers/sysop|reireyder]], as gow notey jeh\'n URL.',
-'missingarticle-rev'   => '(caghlaa#: $1)',
-'internalerror'        => 'Marranys ynveanagh',
-'internalerror_info'   => 'Marranys ynveanagh: $1',
-'badarticleerror'      => 'Cha nod oo jannoo shen er y duillag shoh.',
-'badtitle'             => 'Drogh-ennym',
-'badtitletext'         => "Va marrantys bentyn rish ennym y ghuillag v'ou shirrey.  Foddee dy vel eh follym ny gyn vree, ny kianglt dy moal myr kiangley eddyr-wiki.  Foddee dy row cowraghyn 'syn ennym nagh nod oo jannoo ymmyd jeu ayns enmyn.",
-'viewsource'           => 'Jeeagh er bun',
-'viewsourcefor'        => 'dy $1',
-'actionthrottled'      => 'Obbyr er ny phlooghey',
-'actionthrottledtext'  => "Myr saase noi-spam, cha nod oo jannoo yn obbyr shoh rouyr keayrtyn ayns tammylt beg, as t'ou er roshtyn yn earroo smoo.  Jean eab noa dy gerrid, my saillt.",
-'protectedpagetext'    => "Ta'n duillag shoh fo ghlass, as cha nod oo eshyn y reaghey.",
-'viewsourcetext'       => 'Foddee oo jeeagh as jean aascreeuyn er bun ny duillag shoh:',
-'namespaceprotected'   => "Cha nel kiart ayd duillagyn 'sy reamys '''$1''' y reaghey.",
-'customcssjsprotected' => 'Cha nel kiart ayd y duillag shoh y reaghey.  Ta tosheeaghtyn persoonagh ymmydeyr elley ayn.',
-'ns-specialprotected'  => 'Cha nod oo reaghey duillagyn er lheh.',
+'missingarticle-rev'  => '(caghlaa#: $1)',
+'internalerror'       => 'Marranys ynveanagh',
+'internalerror_info'  => 'Marranys ynveanagh: $1',
+'badarticleerror'     => 'Cha nod oo jannoo shen er y duillag shoh.',
+'badtitle'            => 'Drogh-ennym',
+'badtitletext'        => "Va marrantys bentyn rish ennym y ghuillag v'ou shirrey.  Foddee dy vel eh follym ny gyn vree, ny kianglt dy moal myr kiangley eddyr-wiki.  Foddee dy row cowraghyn 'syn ennym nagh nod oo jannoo ymmyd jeu ayns enmyn.",
+'viewsource'          => 'Jeeagh er bun',
+'viewsourcefor'       => 'dy $1',
+'actionthrottled'     => 'Obbyr er ny phlooghey',
+'actionthrottledtext' => "Myr saase noi-spam, cha nod oo jannoo yn obbyr shoh rouyr keayrtyn ayns tammylt beg, as t'ou er roshtyn yn earroo smoo.  Jean eab noa dy gerrid, my saillt.",
+'protectedpagetext'   => "Ta'n duillag shoh fo ghlass, as cha nod oo eshyn y reaghey.",
+'viewsourcetext'      => 'Foddee oo jeeagh as jean aascreeuyn er bun ny duillag shoh:',
+'namespaceprotected'  => "Cha nel kiart ayd duillagyn 'sy reamys '''$1''' y reaghey.",
+'ns-specialprotected' => 'Cha nod oo reaghey duillagyn er lheh.',
 
 # Login and logout pages
 'welcomecreation'            => '== Failt ort, $1! ==

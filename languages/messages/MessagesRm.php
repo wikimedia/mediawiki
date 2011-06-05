@@ -420,7 +420,6 @@ Emprova danovamain en in per minutas.',
 'cascadeprotected'     => "Questa pagina è protegida da modificaziuns perquai ch'ella è integrada en suandanta{{PLURAL:$1| pagina, ch'è protegida|s paginas, ch'èn protegidas}} entras l'opziun «protecziun ertada»: 
 $2",
 'namespaceprotected'   => "Ti n'has betg la lubientscha da modifitgar paginas dal tip da pagina '''$1'''.",
-'customcssjsprotected' => "Ti n'has betg la lubientscha da midar questa pagina perquai ch'ella cuntegna preferenzas persunalas d'in auter utilisader.",
 'ns-specialprotected'  => 'Paginas spezialas no pon betg vegnir modifitgadas.',
 'titleprotected'       => 'Quest titel è vegnì protegì da la creaziun da [[User:$1|$1]].
 Il motiv inditgà è "\'\'$2\'\'".',

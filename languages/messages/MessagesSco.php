@@ -369,7 +369,6 @@ Aks: $2',
 'cascadeprotected'     => 'This page haes been protectit fra editin, acause it is includit in the followin {{PLURAL:$1|page|pages}}, that are protectit wi the "cascading" option turnit on:
 $2',
 'namespaceprotected'   => "Ye dinna hae permeession tae edit pages in the '''$1''' namespace.",
-'customcssjsprotected' => "Ye dinna hae permeession tae edit this page, sin it hauds anither uiser's personal settins.",
 'ns-specialprotected'  => 'Byordinar pages canna be editit.',
 'titleprotected'       => "This teetle haes been protectit frae bein makkit by [[User:$1|$1]].
 The grunds for this are: ''$2''.",

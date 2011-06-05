@@ -400,7 +400,6 @@ Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=en translate
 'cascadeprotected'     => 'Ii panna ke badlao se bachawa gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit hae "cascading" option turned on ke saathe me rakkhaa gais hai:
 $2',
 'namespaceprotected'   => "Aap ke paas '''$1''' namespace me panna ke badle ke adhikar nai hai.",
-'customcssjsprotected' => 'Aap ke paas ii panna ke badle ke adkikar nai hai, kahe ki isme duusra sadasya ke personal settings hai.',
 'ns-specialprotected'  => 'Khaas panna ke badla nai jae sake hai.',
 'titleprotected'       => "Ii title ke banae se [[User:$1|$1]] rokis hai.
 Iske kaaran hai ''$2''.",

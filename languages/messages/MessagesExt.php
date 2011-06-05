@@ -377,7 +377,6 @@ Pa traucil, consiera gastal [http://translatewiki.net/wiki/Main_Page?setlang=en 
 'cascadeprotected'     => 'Esta páhina s\'alcuentra protehia ebiu a que horma parti e {{PLURAL:$1|la siguienti páhina|las siguientis páhinas}}, qu\'están protehias cola oción "proteción en cascá" ativá:
 $2',
 'namespaceprotected'   => "Nu tiinis premisu pa eital páhinas nel \"espaciu e nombris\" '''\$1'''.",
-'customcssjsprotected' => "Nu tiinis premisu pa eital esta páhina ebiu a que contieni la configuración presonal d'otru usuáriu.",
 'ns-specialprotected'  => 'Nu se puein eital las páhinas el {{ns:special}} "espaciu e nombris".',
 'titleprotected'       => "Esti entítulu á siu atarugau pol [[User:$1|$1]].
 La razón es la siguienti: ''$2''.",

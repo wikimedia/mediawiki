@@ -1977,7 +1977,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $1 is the name of the media
 * $2 is a date
 * $3 is a hour
-* $4 is an URL and must follow square bracket: [$4
+* $4 is a URL and must follow square bracket: [$4
 {{Identical|Revert}}',
 'filerevert-comment'        => '{{Identical|Reason}}',
 'filerevert-defaultcomment' => '* $1 is a date
@@ -1998,7 +1998,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $1 is the name of the media
 * $2 is a date
 * $3 is a hour
-* $4 is an URL and must follow square bracket: [$4',
+* $4 is a URL and must follow square bracket: [$4',
 'filedelete-comment'          => '{{Identical|Reason}}',
 'filedelete-submit'           => 'Delete button when deleting a file for admins
 

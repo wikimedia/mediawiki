@@ -437,7 +437,6 @@ $1',
 'cascadeprotected'     => '此頁"迭緘"矣。$1頁牽連如下：
 $2',
 'namespaceprotected'   => "子權未逮，莫能纂'''$1'''。",
-'customcssjsprotected' => '牽他人，子權未逮，莫能纂之。',
 'ns-specialprotected'  => '奇頁禁纂也。',
 'titleprotected'       => "緘焉自[[User:$1|$1]]防建也。因''$2''也。",
 

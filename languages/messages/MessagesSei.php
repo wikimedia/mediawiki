@@ -316,7 +316,6 @@ Query: $2',
 'cascadeprotected'     => 'Jan páhina coccebj protectöxde ticpatlöx, zo coccebj cascadande jan {{PLURAL:$1|páhina|páhinám}}, jan coccebj protëctox cascadanöx opcion zo mii:
 $2',
 'namespaceprotected'   => "Me necoccebj permiccion ticpatlöx páhinám '''$1''' ipartuatl zo iti.",
-'customcssjsprotected' => 'Me necoccebj permiccion ticpatlöx jan páhina, zo coccebj diijömde caitom quáatlaác.',
 'ns-specialprotected'  => 'Páhinámde {{ns:special}} zo iti neticpatlöx.',
 
 # Login and logout pages

@@ -593,7 +593,6 @@ Za prijevode, molimo Vas koristite [http://translatewiki.net/wiki/Main_Page?setl
 'cascadeprotected'     => 'Ova stranica je zaštićena od uređivanja, jer je uključena u {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja sa uključenom kaskadnom opcijom:
 $2',
 'namespaceprotected'   => "Nemate dozvolu uređivati stranice imenskog prostora '''$1'''.",
-'customcssjsprotected' => 'Nemate dozvolu za mijenjanje ove stranice jer sadrži osobne postavke nekog drugog korisnika.',
 'ns-specialprotected'  => 'Posebne stranice se ne mogu uređivati.',
 'titleprotected'       => 'Naslov stranice je zaštićen od postavljanja od strane korisnika [[User:$1|$1]].
 Kao razlog je naveden "\'\'$2\'\'".',

@@ -458,7 +458,6 @@ Mugoi tegend toižetab interfeisan irdnägu toižiden kävutajiden täht.
 Kändmižen täht om paremb kävutada [http://translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
 'sqlhidden'            => '(SQL-küzelend om peittud)',
 'namespaceprotected'   => "Teil ei ole oiktust redaktiruida lehtpolid '''$1'''-nimiavaruses.",
-'customcssjsprotected' => "Teile ei sa redaktiruida necidä lehtpol't, sikš miše sil om toižen kävutajan personaližid järgendusid.",
 'ns-specialprotected'  => 'Ei sa redaktiruida specialižid lehtpolid.',
 'titleprotected'       => '[[User:$1|$1]]-kävutai om kel\'nu mugoižen lehtpolen pälkirjutesen kävutamižen.
 Sü om "\'\'$2\'\'".',
