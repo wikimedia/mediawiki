@@ -95,6 +95,7 @@ production.
 * (bug 29070) Add token to action=watch
 * (bug 29221) Expose oldrevid in watchlist output
 * (bug 29267) always give the servername for meta=siteinfo&siprop=dbrepllag
+* (bug 28897) rvparse doesn’t seem to work with rvsection
 
 === Languages updated in 1.19 ===
 
