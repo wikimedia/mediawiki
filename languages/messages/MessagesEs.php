@@ -715,6 +715,8 @@ Consulta: $2',
 'cascadeprotected'     => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con la opción de «cascada»:
 $2',
 'namespaceprotected'   => "No tienes permiso para editar las páginas del espacio de nombres '''$1'''.",
+'customcssprotected'   => 'No tienes permiso para editar esta página CSS, porque contiene configuraciones personales de otro usuario.',
+'customjsprotected'    => 'No tienes permiso para editar esta página JavaScript, porque contiene configuraciones personales de otro usuario.',
 'ns-specialprotected'  => 'Las páginas especiales no se pueden editar',
 'titleprotected'       => 'Esta página ha sido protegida contra creación por [[User:$1|$1]].
 El motivo dado fue: "\'\'$2\'\'".',
@@ -842,13 +844,16 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'resetpass-temp-password'   => 'Contraseña temporal:',
 
 # Special:PasswordReset
-'passwordreset'            => 'Restablecimiento de contraseña',
-'passwordreset-legend'     => 'Restablecer contraseña',
-'passwordreset-disabled'   => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
-'passwordreset-username'   => 'Nombre de usuario:',
-'passwordreset-email'      => 'Dirección de correo electrónico:',
-'passwordreset-emailtitle' => 'Detalles de la cuenta en {{SITENAME}}',
-'passwordreset-emailsent'  => 'Se ha enviado un correo electrónico de recordatorio.',
+'passwordreset'              => 'Restablecimiento de contraseña',
+'passwordreset-text'         => 'Completa este formulario para recibir un recordatorio por correo electrónico de los detalles de tu cuenta.',
+'passwordreset-legend'       => 'Restablecer contraseña',
+'passwordreset-disabled'     => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
+'passwordreset-username'     => 'Nombre de usuario:',
+'passwordreset-email'        => 'Dirección de correo electrónico:',
+'passwordreset-emailtitle'   => 'Detalles de la cuenta en {{SITENAME}}',
+'passwordreset-emailelement' => 'Nombre de usuario: $1
+Contraseña temporal: $2',
+'passwordreset-emailsent'    => 'Se ha enviado un correo electrónico de recordatorio.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negrita',
@@ -2374,7 +2379,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'undeletepagetext'             => '{{PLURAL:$1|La siguiente página ha sido borrada pero aún está en el archivo y puede ser restaurada.|Las siguientes $1 páginas han sido borradas pero aún están en el archivo y pueden ser restauradas.}}
 Puede que el archivo se limpie periódicamente.',
 'undelete-fieldset-title'      => 'Restaurar revisiones',
-'undeleteextrahelp'            => "Para restaurar todas las revisiones, deja todas las casillas sin seleccionar y pulsa '''''Restaurar'''''. Para restaurar sólo algunas revisiones, marca las revisiones que quieres restaurar y pulsa '''''Restaurar'''''. Haciendo clic en al botón '''''Cancelar''''', se deseleccionarán todas las casillas y eliminará el comentario que hayas escrito.",
+'undeleteextrahelp'            => "Para restaurar todo el historial de la página, deja todas las casillas sin seleccionar y pulsa '''''{{int:undeletebtn}}'''''. Para realizar una restauración selectiva, marca las revisiones a ser restauradas y pulsa '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión|revisiones}} archivadas',
 'undeletehistory'              => 'Si restauras una página, todas sus revisiones serán restauradas al historial.
 Si una nueva página con el mismo nombre ha sido creada desde que se borró la original, las versiones restauradas aparecerán como historial anterior, y la revisión actual de la página actual no se reemplazará automáticamente.',
@@ -3142,6 +3147,9 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-countrycreated'              => 'País en el que se tomó la imagen',
 'exif-countrycodecreated'          => 'Código para el país en el que la imagen fue tomada',
 'exif-provinceorstatecreated'      => 'Provincia o estado en el que la imagen fue tomada',
+'exif-countrycodedest'             => 'Código de país mostrado',
+'exif-provinceorstatedest'         => 'Provincia o estado mostrado',
+'exif-citydest'                    => 'Ciudad mostrada',
 'exif-objectname'                  => 'Título breve',
 'exif-specialinstructions'         => 'Instrucciones especiales',
 'exif-headline'                    => 'Encabezado',
@@ -3330,6 +3338,8 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-ycbcrpositioning-1' => 'Centrado',
 
 'exif-dc-contributor' => 'Colaboradores',
+
+'exif-rating-rejected' => 'Rechazado',
 
 'exif-isospeedratings-overflow' => 'Más de 65535',
 
