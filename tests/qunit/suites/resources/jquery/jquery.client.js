@@ -7,15 +7,19 @@ test( '-- Initial check', function(){
 
 test( 'profile', function(){
 	expect(7);
-	var profile = $.client.profile();
+	var p = $.client.profile();
+	var unk = 'unknown';
+	var unkOrType = function( val, type ) {
+		return typeof val === type || val === unk;
+	};
 
-	equal( typeof profile, 'object', 'profile() returns an object' );
-	equal( typeof profile.layout, 'string', 'profile.layout is a string' );
-	equal( typeof profile.layoutVersion, 'number', 'profile.layoutVersion is a number' );
-	equal( typeof profile.platform, 'string', 'profile.platform is a string' );
-	equal( typeof profile.version, 'string', 'profile.version is a string' );
-	equal( typeof profile.versionBase, 'string', 'profile.versionBase is a number' );
-	equal( typeof profile.versionNumber, 'number', 'profile.versionNumber is a number' );
+	equal( typeof p, 'object', 'profile() returns an object' );
+	ok( unkOrType( p.layout, 'string' ), 'p.layout is a string (or "unknown")' );
+	ok( unkOrType( p.layoutVersion, 'number' ), 'p.layoutVersion is a number (or "unknown")' );
+	ok( unkOrType( p.platform, 'string' ), 'p.platform is a string (or "unknown")' );
+	ok( unkOrType( p.version, 'string' ), 'p.version is a string (or "unknown")' );
+	ok( unkOrType( p.versionBase, 'string' ), 'p.versionBase is a string (or "unknown")' );
+	equal( typeof p.versionNumber, 'number', 'p.versionNumber is a number' );
 });
 
 test( 'test', function(){
