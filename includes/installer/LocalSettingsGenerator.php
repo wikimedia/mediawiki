@@ -202,7 +202,7 @@ class LocalSettingsGenerator {
 				foreach( $rightArr as $right => $perm ) {
 					$right = self::escapePhpString( $right );
 					$groupRights .= "\$wgGroupPermissions['$group']['$right'] = " .
-						wfBoolToStr( $perm ) . "\n";
+						wfBoolToStr( $perm ) . ";\n";
 				}
 			}
 		}
