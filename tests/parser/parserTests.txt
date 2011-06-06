@@ -1438,6 +1438,62 @@ Table with thead & tfoot
 !! end
 
 !! test
+Table have th inside tfoot
+!! input
+{| 
+| cell1 || cell2
+|-
+! Footer1 !! Footer2
+|}
+!! result
+<table>
+<tbody>
+<tr>
+<td>cell1
+</td>
+<td>cell2
+</td>
+</tr></tbody>
+<tfoot>
+<tr>
+<th>Footer1
+</th>
+<th>Footer2
+</th>
+</tr></tfoot>
+</table>
+
+!! end
+
+!! test
+Table have th inside thead
+!! input
+{| 
+! Header1 !! Header2
+|-
+| cell1 || cell2
+|}
+!! result
+<table>
+<thead>
+<tr>
+<th>Header1
+</th>
+<th>Header2
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>cell1
+</td>
+<td>cell2
+</td>
+</tr></tbody>
+</table>
+
+!! end
+
+!! test
 Table with list inside
 !! input
 {|
