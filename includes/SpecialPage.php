@@ -657,6 +657,23 @@ class SpecialPage {
 	public function msg( /* $args */ ) {
 		return call_user_func_array( 'wfMessage', func_get_args() )->title( $this->getFullTitle() );
 	}
+
+	/**
+	 * Adds RSS/atom links
+	 *
+	 * @param $params array
+	 */
+	protected function addFeedLinks( $params ) {
+		global $wgFeedClasses, $wgOut;
+
+		$feedTemplate = wfScript( 'api' ) . '?';
+
+		foreach( $wgFeedClasses as $format => $class ) {
+			$theseParams = $params + array( 'feedformat' => $format );
+			$url = $feedTemplate . wfArrayToCGI( $theseParams );
+			$wgOut->addFeedLink( $format, $url );
+		}
+	}
 }
 
 /**
