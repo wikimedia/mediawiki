@@ -13,7 +13,10 @@ $.fn.firstTabIndex = function() {
 		var tabIndex = parseInt( $(this).attr( 'tabindex' ), 10 );
 		if ( i === 0 ) {
 			minTabIndex = tabIndex;
-		} else if ( tabIndex < minTabIndex ) {
+		// In IE6/IE7 the above jQuery selector returns all elements,
+		// becuase it has a default value for tabIndex in IE6/IE7 of 0
+		// (rather than null/undefined). Therefore check "> 0" as well
+		} else if ( tabIndex > 0 && tabIndex < minTabIndex ) {
 			minTabIndex = tabIndex;
 		}
 	} );
