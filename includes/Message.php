@@ -225,9 +225,15 @@ class Message {
 
 	/**
 	 * Request the message in the wiki's content language.
+	 * @see $wgForceUIMsgAsContentMsg
 	 * @return Message: $this
 	 */
 	public function inContentLanguage() {
+		global $wgForceUIMsgAsContentMsg;
+		if ( in_array( $this->key, (array)$wgForceUIMsgAsContentMsg ) ) {
+			return $this;
+		}
+
 		global $wgContLang;
 		$this->interface = false;
 		$this->language = $wgContLang;

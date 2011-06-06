@@ -37,7 +37,15 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses', 'Заглавная страница $1' )->plain() );
 		$this->assertEquals( '(Заглавная страница)', wfMessage( 'parentheses' )->rawParams( 'Заглавная страница' )->plain() );
 		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses' )->rawParams( 'Заглавная страница $1' )->plain() );
+	}
 
+	function testInContentLanguage() {
+		global $wgLang, $wgForceUIMsgAsContentMsg;
+		$wgLang = Language::factory( 'fr' );
+
+		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inContentLanguage()->plain(), "ForceUIMsg disabled" );
+		$wgForceUIMsgAsContentMsg[] = 'mainpage';
+		$this->assertEquals( 'Accueil', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg enabled' );
 	}
 
 	/**
