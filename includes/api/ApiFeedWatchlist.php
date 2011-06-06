@@ -56,10 +56,18 @@ class ApiFeedWatchlist extends ApiBase {
 	 * Wrap the result as an RSS/Atom feed.
 	 */
 	public function execute() {
-		global $wgFeedClasses, $wgFeedLimit, $wgSitename, $wgLanguageCode;
+		global $wgFeed, $wgFeedClasses, $wgFeedLimit, $wgSitename, $wgLanguageCode;
 
 		try {
 			$params = $this->extractRequestParams();
+
+			if( !$wgFeed ) {
+				$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
+			}
+
+			if( !isset( $wgFeedClasses[ $params['feed'] ] ) ) {
+				$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
+			}
 
 			// limit to the number of hours going from now back
 			$endTime = wfTimestamp( TS_MW, time() - intval( $params['hours'] * 60 * 60 ) );
@@ -195,6 +203,13 @@ class ApiFeedWatchlist extends ApiBase {
 
 	public function getDescription() {
 		return 'Returns a watchlist feed';
+	}
+
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'feed-unavailable', 'info' => 'Syndication feeds are not available' ),
+			array( 'code' => 'feed-invalid', 'info' => 'Invalid subscription feed type' ),
+		) );
 	}
 
 	protected function getExamples() {
