@@ -2382,7 +2382,8 @@ class Article {
 	}
 
 	/**
-	 * User-interface handler for the "watch" action
+	 * User-interface handler for the "watch" action.
+	 * Requires Request to pass a token as of 1.19.
 	 * @deprecated since 1.18
 	 */
 	public function watch() {
@@ -2398,11 +2399,13 @@ class Article {
 	 * @deprecated since 1.18
 	 */
 	public function doWatch() {
-		return Action::factory( 'watch', $this )->execute();
+		global $wgUser;
+		return WatchAction:doWatch( $this->mTitle, $wgUser );
 	}
 
 	/**
 	 * User interface handler for the "unwatch" action.
+	 * Requires Request to pass a token as of 1.19.
 	 * @deprecated since 1.18
 	 */
 	public function unwatch() {
@@ -2415,7 +2418,8 @@ class Article {
 	 * @deprecated since 1.18
 	 */
 	public function doUnwatch() {
-		return Action::factory( 'unwatch', $this )->execute();
+		global $wgUser;
+		return WatchAction:doUnwatch( $this->mTitle, $wgUser );
 	}
 
 	/**

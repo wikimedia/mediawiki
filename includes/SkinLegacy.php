@@ -672,22 +672,31 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function watchThisPage() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		++$this->mWatchLinkNum;
 
+		// Cache
+		$title = $this->getSkin()->getTitle();
+
 		if ( $wgOut->isArticleRelated() ) {
-			if ( $this->getSkin()->getTitle()->userIsWatching() ) {
+			if ( $title->userIsWatching() ) {
 				$text = wfMsg( 'unwatchthispage' );
-				$query = array( 'action' => 'unwatch' );
+				$query = array(
+					'action' => 'unwatch',
+					'token' => UnwatchAction::getUnwatchToken( $title, $wgUser ),
+				);
 				$id = 'mw-unwatch-link' . $this->mWatchLinkNum;
 			} else {
 				$text = wfMsg( 'watchthispage' );
-				$query = array( 'action' => 'watch' );
+				$query = array(
+					'action' => 'watch',
+					'token' => WatchAction::getWatchToken( $title, $wgUser ),
+				);
 				$id = 'mw-watch-link' . $this->mWatchLinkNum;
 			}
 
 			$s = $this->getSkin()->link(
-				$this->getSkin()->getTitle(),
+				$title,
 				$text,
 				array( 'id' => $id ),
 				$query,

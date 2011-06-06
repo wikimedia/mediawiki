@@ -39,9 +39,20 @@ class WatchAction extends FormlessAction {
 	}
 
 	protected function checkCanExecute( User $user ) {
+
+		// Must be logged in
 		if ( $user->isAnon() ) {
 			throw new ErrorPageError( 'watchnologin', 'watchnologintext' );
 		}
+
+		// Must have valid token for this action/title
+		$salt = array( $this->getName(), $this->getTitle()->getDBkey() );
+
+		if ( !$user->matchEditToken( $this->getRequest()->getVal( 'token' ), $salt ) ) {
+			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
+			return;
+		}
+		
 		return parent::checkCanExecute( $user );
 	}
 
@@ -49,15 +60,66 @@ class WatchAction extends FormlessAction {
 		wfProfileIn( __METHOD__ );
 
 		$user = $this->getUser();
-		if ( wfRunHooks( 'WatchArticle', array( &$user, &$this->page ) ) ) {
-			$this->getUser()->addWatch( $this->getTitle() );
-			wfRunHooks( 'WatchArticleComplete', array( &$user, &$this->page ) );
-		}
+		self::doWatch( $this->getTitle(), $user );
 
 		wfProfileOut( __METHOD__ );
 
 		return wfMessage( 'addedwatchtext', $this->getTitle()->getPrefixedText() )->parse();
 	}
+
+	public static function doWatch( Title $title, User $user  ) {
+		$page = new Article( $title );
+
+		if ( wfRunHooks( 'WatchArticle', array( &$user, &$page ) ) ) {
+			$user->addWatch( $title );
+			wfRunHooks( 'WatchArticleComplete', array( &$user, &$page ) );
+		}
+		return true;
+	}
+
+	public static function doUnwatch( Title $title, User $user  ) {
+		$page = new Article( $title );
+
+		if ( wfRunHooks( 'UnwatchArticle', array( &$user, &$page ) ) ) {
+			$user->removeWatch( $title );
+			wfRunHooks( 'UnwatchArticleComplete', array( &$user, &$page ) );
+		}
+		return true;
+	}
+
+	/**
+	 * Get token to watch (or unwatch) a page for a user
+	 *
+	 * @param Title $title Title object of page to watch
+	 * @param User $title User for whom the action is going to be performed
+	 * @param string $action Optionally override the action to 'unwatch'
+	 * @return string Token
+	 * @since 1.19
+	 */
+	public static function getWatchToken( Title $title, User $user, $action = 'watch' ) {
+		if ( $action != 'unwatch' ) {
+			$action = 'watch';
+		}
+		$salt = array( $action, $title->getDBkey() );
+
+		// This token stronger salted and not compatible with ApiWatch
+		// It's title/action specific because index.php is GET and API is POST
+		return $user->editToken( $salt );
+	}
+
+	/**
+	 * Get token to unwatch (or watch) a page for a user
+	 *
+	 * @param Title $title Title object of page to unwatch
+	 * @param User $title User for whom the action is going to be performed
+	 * @param string $action Optionally override the action to 'watch'
+	 * @return string Token
+	 * @since 1.19
+	 */
+	public static function getUnwatchToken( Title $title, User $user, $action = 'unwatch' ) {
+		return self::getWatchToken( $title, $user, $action );
+	}
+
 }
 
 class UnwatchAction extends WatchAction {
@@ -74,10 +136,7 @@ class UnwatchAction extends WatchAction {
 		wfProfileIn( __METHOD__ );
 
 		$user = $this->getUser();
-		if ( wfRunHooks( 'UnwatchArticle', array( &$user, &$this->page ) ) ) {
-			$this->getUser()->removeWatch( $this->getTitle() );
-			wfRunHooks( 'UnwatchArticleComplete', array( &$user, &$this->page ) );
-		}
+		self::doUnwatch( $this->getTitle(), $user );
 
 		wfProfileOut( __METHOD__ );
 
