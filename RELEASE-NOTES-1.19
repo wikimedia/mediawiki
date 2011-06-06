@@ -25,6 +25,7 @@ production.
 * (bug 21107) Split error "customcssjsprotected" into separate messages for JS and CSS
 
 === New features in 1.19 ===
+* BREAKING CHANGE: action=watch / action=unwatch now requires a token.
 * (bug 28916) A way to to toggle mw.config legacy globals settings from
   LocalSettings.php has been created by introducing $wgLegacyJavaScriptGlobals.
 * (bug 28503) Support for ircs:// URL protocols
@@ -44,6 +45,7 @@ production.
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
 * (bug 29067) Creating "user.tokens" module (like user.options) in ResourceLoader.
 * New 'Debug' hook used by wfDebug() and wfDebugLog()
+* (bug 27655) Require token for watching/unwatching pages)
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
@@ -93,7 +95,7 @@ production.
 * (bug 28578) API's parse module should not silently override invalid
   title inputs
 * (bug 20699) API watchlist should list log-events
-* (bug 29070) Add token to action=watch
+* (bug 29070) Add token to action=watch API 
 * (bug 29221) Expose oldrevid in watchlist output
 * (bug 29267) always give the servername for meta=siteinfo&siprop=dbrepllag
 * (bug 28897) rvparse doesn’t seem to work with rvsection
