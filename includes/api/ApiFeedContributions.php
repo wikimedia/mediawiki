@@ -54,6 +54,11 @@ class ApiFeedContributions extends ApiBase {
 			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 		}
 
+		global $wgMiserMode;
+		if ( $params['showsizediff'] && $wgMiserMode ) {
+			$this->dieUsage( 'Size difference is disabled in Miser Mode', 'sizediffdisabled' );
+		}
+
 		$msg = wfMsgForContent( 'Contributions' );
 		$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
@@ -174,7 +179,7 @@ class ApiFeedContributions extends ApiBase {
 			'tagfilter' => 'Filter contributions that have these tags',
 			'deletedonly' => 'Show only deleted contributions',
 			'toponly' => 'Only show edits that are latest revisions',
-			'showsizediff' => '',
+			'showsizediff' => 'Show the size difference between revisions. Disabled in Miser Mode',
 		);
 	}
 
@@ -186,6 +191,7 @@ class ApiFeedContributions extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'feed-unavailable', 'info' => 'Syndication feeds are not available' ),
 			array( 'code' => 'feed-invalid', 'info' => 'Invalid subscription feed type' ),
+			array( 'code' => 'sizediffdisabled', 'info' => 'Size difference is disabled in Miser Mode' ),
 		) );
 	}
 
