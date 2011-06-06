@@ -31,12 +31,6 @@ abstract class DatabaseUpdater {
 	protected $extensionUpdates = array();
 
 	/**
-	 * List of extension-provided database updaters
-	 * @var array
-	 */
-	protected $extensionUpdaters = array();
-
-	/**
 	 * Used to hold schema files during installation process
 	 * @var array
 	 */
@@ -173,17 +167,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Add a updater class that will handle extensions DB install/update. 
-	 * This should be called by extensions while executing the 
-	 * LoadExtensionSchemaUpdates hook.
-	 *
-	 * @param $updater (string) classname (extends DatabaseUpdater).
-	 */
-	public function addExtensionUpdater( $updater ) {
-		$this->extensionUpdaters[] = $updater;
-	}
-
-	/**
 	 * Convenience wrapper for addExtensionUpdate() when adding a new table (which
 	 * is the most common usage of updaters in an extension)
 	 * @param $tableName String Name of table to create
@@ -219,15 +202,6 @@ abstract class DatabaseUpdater {
 		return $this->extensionUpdates;
 	}
 
-	/**
-	 * Get the list of extension-defined updaters
-	 *
-	 * @return Array
-	 */
-	protected function getExtensionUpdaters() {
-		return $this->extensionUpdaters;
-	}
-
 	public function getPostDatabaseUpdateMaintenance() {
 		return $this->postDatabaseUpdateMaintenance;
 	}
@@ -247,10 +221,6 @@ abstract class DatabaseUpdater {
 		if ( isset( $what['extensions'] ) ) {
 			$this->runUpdates( $this->getOldGlobalUpdates(), false );
 			$this->runUpdates( $this->getExtensionUpdates(), true );
-			foreach ( $this->getExtensionUpdaters() as $updaterClass ) {
-				$eupdater = new $updaterClass( $this );
-				$eupdater->doUpdates();
-			}
 		}
 
 		$this->setAppliedUpdates( $wgVersion, $this->updates );
