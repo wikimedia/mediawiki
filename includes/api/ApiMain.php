@@ -60,6 +60,7 @@ class ApiMain extends ApiBase {
 		'expandtemplates' => 'ApiExpandTemplates',
 		'parse' => 'ApiParse',
 		'opensearch' => 'ApiOpenSearch',
+		'feedcontributions' => 'ApiFeedContributions',
 		'feedwatchlist' => 'ApiFeedWatchlist',
 		'help' => 'ApiHelp',
 		'paraminfo' => 'ApiParamInfo',
