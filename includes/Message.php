@@ -224,7 +224,8 @@ class Message {
 	}
 
 	/**
-	 * Request the message in the wiki's content language.
+	 * Request the message in the wiki's content language,
+	 * unless it is disabled for this message.
 	 * @see $wgForceUIMsgAsContentMsg
 	 * @return Message: $this
 	 */

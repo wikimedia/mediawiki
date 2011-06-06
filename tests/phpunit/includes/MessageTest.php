@@ -41,11 +41,16 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	function testInContentLanguage() {
 		global $wgLang, $wgForceUIMsgAsContentMsg;
+		$oldLang = $wgLang;
 		$wgLang = Language::factory( 'fr' );
 
-		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inContentLanguage()->plain(), "ForceUIMsg disabled" );
-		$wgForceUIMsgAsContentMsg[] = 'mainpage';
+		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg disabled' );
+		$wgForceUIMsgAsContentMsg['testInContentLanguage'] = 'mainpage';
 		$this->assertEquals( 'Accueil', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg enabled' );
+		
+		/* Restore globals */
+		$wgLang = $oldLang;
+		unset( $wgForceUIMsgAsContentMsg['testInContentLanguage'] );
 	}
 
 	/**
