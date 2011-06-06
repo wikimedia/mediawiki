@@ -582,6 +582,38 @@ abstract class ApiBase {
 	}
 
 	/**
+	 * Die if more than one of a certain set of parameters is set and not false.
+	 *
+	 * @param $params array
+	 */
+	public function requireMaxOneParameter( $params ) {
+		$required = func_get_args();
+		array_shift( $required );
+
+		$intersection = array_intersect( array_keys( array_filter( $params,
+				array( $this, "parameterNotEmpty" ) ) ), $required );
+
+		if ( count( $intersection ) > 1 ) {
+			$this->dieUsage( 'The parameters ' . implode( ', ', $intersection ) . ' can not be used together', 'invalidparammix' );
+		}
+	}
+
+	/**
+	 * Generates the possible error requireMaxOneParameter() can die with
+	 *
+	 * @param $params array
+	 * @return array
+	 */
+	public function getRequireMaxOneParameterErrorMessages( $params ) {
+		$p = $this->getModulePrefix();
+		$params = implode( ", {$p}", $params );
+
+		return array(
+			array( 'code' => "{$p}invalidparammix", 'info' => "The parameters {$p}{$params} can not be used together" )
+		);
+	}
+
+	/**
 	 * Callback function used in requireOnlyOneParameter to check whether reequired parameters are set
 	 *
 	 * @param  $x object Parameter to check is not null/false
