@@ -114,6 +114,7 @@ class ApiComparePages extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'inputneeded', 'info' => 'A title or a revision is needed' ),
 			array( 'invalidtitle', 'title' ),
+			array( 'code' => 'baddiff', 'info' => 'The diff cannot be retrieved. Maybe one or both revisions do not exist or you do not have permission to view them.' ),
 		) );
 	}
 
