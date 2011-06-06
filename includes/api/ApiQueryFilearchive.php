@@ -95,8 +95,14 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 			$sha1 = false;
 			if ( $sha1Set ) {
+				if ( !ApiQueryAllimages::validateSha1Hash( $params['sha1'] ) ) {
+					$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
+				}
 				$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
+				if ( !ApiQueryAllimages::validateSha1Base36Hash( $sha1 ) ) {
+					$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
+				}
 				$sha1 = $params['sha1base36'];
 			}
 			if ( $sha1 ) {
@@ -274,6 +280,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted file information' ),
 			array( 'code' => 'hashsearchdisabled', 'info' => 'Search by hash disabled in Miser Mode' ),
+			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
+			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
 		) );
 	}
 
