@@ -116,10 +116,14 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		// Add RSS/atom links
-		$this->setSyndicated();
-		$feedType = $wgRequest->getVal( 'feed' );
-		if( $feedType ) {
-			return $this->feed( $feedType );
+		global $wgFeedClasses;
+		$apiParams = array( 'action' => 'feedcontributions', 'user' => $wgUser->getName() );
+		$feedTemplate = wfScript( 'api' ) . '?';
+
+		foreach( $wgFeedClasses as $format => $class ) {
+			$theseParams = $apiParams + array( 'feedformat' => $format );
+			$url = $feedTemplate . wfArrayToCGI( $theseParams );
+			$wgOut->addFeedLink( $format, $url );
 		}
 
 		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id ) ) ) {
@@ -150,7 +154,6 @@ class SpecialContributions extends SpecialPage {
 			}
 			$wgOut->preventClickjacking( $pager->getPreventClickjacking() );
 
-
 			# Show the appropriate "footer" message - WHOIS tools, etc.
 			if( $target != 'newbies' ) {
 				$message = 'sp-contributions-footer';
@@ -171,12 +174,6 @@ class SpecialContributions extends SpecialPage {
 				}
 			}
 		}
-	}
-
-	protected function setSyndicated() {
-		global $wgOut;
-		$wgOut->setSyndicated( true );
-		$wgOut->setFeedAppendQuery( wfArrayToCGI( $this->opts ) );
 	}
 
 	/**
@@ -410,103 +407,6 @@ class SpecialContributions extends SpecialPage {
 		$f .= Xml::closeElement('fieldset' ) .
 			Xml::closeElement( 'form' );
 		return $f;
-	}
-
-	/**
-	 * Output a subscription feed listing recent edits to this page.
-	 * @param $type String
-	 */
-	protected function feed( $type ) {
-		global $wgFeed, $wgFeedClasses, $wgFeedLimit, $wgOut;
-
-		if( !$wgFeed ) {
-			$wgOut->addWikiMsg( 'feed-unavailable' );
-			return;
-		}
-
-		if( !isset( $wgFeedClasses[$type] ) ) {
-			$wgOut->addWikiMsg( 'feed-invalid' );
-			return;
-		}
-
-		$feed = new $wgFeedClasses[$type](
-			$this->feedTitle(),
-			wfMsgExt( 'tagline', 'parsemag' ),
-			$this->getTitle()->getFullUrl() . "/" . urlencode($this->opts['target'])
-		);
-
-		// Already valid title
-		$nt = Title::makeTitleSafe( NS_USER, $this->opts['target'] );
-		$target = $this->opts['target'] == 'newbies' ? 'newbies' : $nt->getText();
-
-		$pager = new ContribsPager( array(
-			'target' => $target,
-			'namespace' => $this->opts['namespace'],
-			'year' => $this->opts['year'],
-			'month' => $this->opts['month'],
-			'tagFilter' => $this->opts['tagFilter'],
-			'deletedOnly' => $this->opts['deletedOnly'],
-			'topOnly' => $this->opts['topOnly'],
-			'showSizeDiff' => $this->opts['showSizeDiff'],
-		) );
-
-		$pager->mLimit = min( $this->opts['limit'], $wgFeedLimit );
-
-		$feed->outHeader();
-		if( $pager->getNumRows() > 0 ) {
-			foreach ( $pager->mResult as $row ) {
-				$feed->outItem( $this->feedItem( $row ) );
-			}
-		}
-		$feed->outFooter();
-	}
-
-	protected function feedTitle() {
-		global $wgLanguageCode, $wgSitename;
-		$desc = $this->getDescription();
-		return "$wgSitename - $desc [$wgLanguageCode]";
-	}
-
-	protected function feedItem( $row ) {
-		$title = Title::MakeTitle( intval( $row->page_namespace ), $row->page_title );
-		if( $title ) {
-			$date = $row->rev_timestamp;
-			$comments = $title->getTalkPage()->getFullURL();
-			$revision = Revision::newFromTitle( $title, $row->rev_id );
-
-			return new FeedItem(
-				$title->getPrefixedText(),
-				$this->feedItemDesc( $revision ),
-				$title->getFullURL(),
-				$date,
-				$this->feedItemAuthor( $revision ),
-				$comments
-			);
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * @param $revision Revision
-	 * @return string
-	 */
-	protected function feedItemAuthor( $revision ) {
-		return $revision->getUserText();
-	}
-
-	/**
-	 * @param $revision Revision
-	 * @return string
-	 */
-	protected function feedItemDesc( $revision ) {
-		if( $revision ) {
-			return '<p>' . htmlspecialchars( $revision->getUserText() ) . wfMsgForContent( 'colon-separator' ) .
-				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
-				"</p>\n<hr />\n<div>" .
-				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
-		}
-		return '';
 	}
 }
 
