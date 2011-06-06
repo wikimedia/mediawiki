@@ -1028,8 +1028,8 @@ For translations, please consider using [http://translatewiki.net/wiki/Main_Page
 'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
 $2',
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
-'customcssprotected'   => "You do not have permission to edit this JavaScript page, because it contains another user's personal settings.",
-'customjsprotected'    => "You do not have permission to edit this CSS page, because it contains another user's personal settings.",
+'customcssprotected'   => "You do not have permission to edit this CSS page, because it contains another user's personal settings.",
+'customjsprotected'    => "You do not have permission to edit this JavaScript page, because it contains another user's personal settings.",
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
