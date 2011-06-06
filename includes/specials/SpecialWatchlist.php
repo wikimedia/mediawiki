@@ -46,16 +46,8 @@ class SpecialWatchlist extends SpecialPage {
 			$wgUser->saveSettings();
 		}
 
-		global $wgFeedClasses;
-		$apiParams = array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
-							'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken );
-		$feedTemplate = wfScript( 'api' ) . '?';
-
-		foreach( $wgFeedClasses as $format => $class ) {
-			$theseParams = $apiParams + array( 'feedformat' => $format );
-			$url = $feedTemplate . wfArrayToCGI( $theseParams );
-			$wgOut->addFeedLink( $format, $url );
-		}
+		$this->addFeedLinks( array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
+							'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken ) );
 
 		$skin = $this->getSkin();
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );

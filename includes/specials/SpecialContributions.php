@@ -116,15 +116,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		// Add RSS/atom links
-		global $wgFeedClasses;
-		$apiParams = array( 'action' => 'feedcontributions', 'user' => $wgUser->getName() );
-		$feedTemplate = wfScript( 'api' ) . '?';
-
-		foreach( $wgFeedClasses as $format => $class ) {
-			$theseParams = $apiParams + array( 'feedformat' => $format );
-			$url = $feedTemplate . wfArrayToCGI( $theseParams );
-			$wgOut->addFeedLink( $format, $url );
-		}
+		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $wgUser->getName() ) );
 
 		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id ) ) ) {
 
