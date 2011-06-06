@@ -870,7 +870,12 @@ if (class_exists('PEAR_Error')) {
 		function Services_JSON_Error($message = 'unknown error', $code = null,
 						$mode = null, $options = null, $userinfo = null)
 		{
-
+			$this->message = $message;
+		}
+		
+		function __toString()
+		{
+			return $this->message;
 		}
 	}
 }
