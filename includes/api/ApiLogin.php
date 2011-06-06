@@ -60,11 +60,8 @@ class ApiLogin extends ApiBase {
 			'wpPassword' => $params['password'],
 			'wpDomain' => $params['domain'],
 			'wpLoginToken' => $params['token'],
+			'wpRemember' => ''
 		) );
-
-		if ( $params['rememberme'] ) {
-			$req['wpRemember'] = '';
-		}
 
 		// Init session if necessary
 		if ( session_id() == '' ) {
@@ -171,10 +168,6 @@ class ApiLogin extends ApiBase {
 			'password' => null,
 			'domain' => null,
 			'token' => null,
-			'rememberme'  => array(
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => true,
-			),
 		);
 	}
 
@@ -184,7 +177,6 @@ class ApiLogin extends ApiBase {
 			'password' => 'Password',
 			'domain' => 'Domain (optional)',
 			'token' => 'Login token obtained in first request',
-			'rememberme' => 'Make the cookies persistant'
 		);
 	}
 
