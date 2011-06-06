@@ -1176,13 +1176,14 @@ class EditPage {
 	 * Commit the change of watch status
 	 */
 	protected function commitWatch() {
+		global $wgUser;
 		if ( $this->watchthis xor $this->mTitle->userIsWatching() ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
 			if ( $this->watchthis ) {
-				Action::factory( 'watch', $this->mArticle )->execute();
+				WatchAction::doWatch( $this->mTitle, $wgUser );
 			} else {
-				Action::factory( 'unwatch', $this->mArticle )->execute();
+				WatchAction::doUnwatch( $this->mTitle, $wgUser );
 			}
 			$dbw->commit();
 		}

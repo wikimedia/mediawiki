@@ -1,6 +1,6 @@
 <?php
 /**
- * Performs the watch and unwatch actions on a page
+ * Performs the delete action on a page
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -196,9 +196,9 @@ class DeleteAction extends Action {
 	public function onSuccess(){
 		// Watch or unwatch, if requested
 		if( $this->getRequest()->getCheck( 'wpWatch' ) && $this->getUser()->isLoggedIn() ) {
-			Action::factory( 'watch', $this->page )->execute();
+			WatchAction::doWatch( $this->getTitle(), $this->getUser() );
 		} elseif ( $this->getTitle()->userIsWatching() ) {
-			Action::factory( 'unwatch', $this->page )->execute();
+			WatchAction::doUnwatch( $this->getTitle(), $this->getUser() );
 		}
 
 		$this->getOutput()->setPagetitle( wfMsg( 'actioncomplete' ) );

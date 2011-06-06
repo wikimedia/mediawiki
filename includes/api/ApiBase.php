@@ -645,17 +645,17 @@ abstract class ApiBase {
 	 * @param $titleObj Title the article's title to change
 	 * @param $userOption String The user option to consider when $watch=preferences
 	 */
-	protected function setWatch ( $watch, $titleObj, $userOption = null ) {
+	protected function setWatch( $watch, $titleObj, $userOption = null ) {
 		$value = $this->getWatchlistValue( $watch, $titleObj, $userOption );
 		if ( $value === null ) {
 			return;
 		}
 
-		$articleObj = new Article( $titleObj );
+		global $wgUser;
 		if ( $value ) {
-			Action::factory( 'watch', $articleObj )->execute();
+			WatchAction::doWatch( $titleObj, $wgUser );
 		} else {
-			Action::factory( 'unwatch', $articleObj )->execute();
+			WatchAction::doUnwatch( $titleObj, $wgUser );
 		}
 	}
 
