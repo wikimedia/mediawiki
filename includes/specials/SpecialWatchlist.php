@@ -49,7 +49,7 @@ class SpecialWatchlist extends SpecialPage {
 		global $wgFeedClasses;
 		$apiParams = array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
 							'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken );
-		$feedTemplate = wfScript('api') . '?';
+		$feedTemplate = wfScript( 'api' ) . '?';
 
 		foreach( $wgFeedClasses as $format => $class ) {
 			$theseParams = $apiParams + array( 'feedformat' => $format );
