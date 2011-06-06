@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Tests for WebRequest::findIE6Extension
+ * Tests for IEUrlExtension::findIE6Extension
  */
-class FindIE6ExtensionTest extends MediaWikiTestCase {
+class IEUrlExtensionTest extends MediaWikiTestCase {
 	function testSimple() {
 		$this->assertEquals( 
 			'y',
-			WebRequest::findIE6Extension( 'x.y' ),
+			IEUrlExtension::findIE6Extension( 'x.y' ),
 			'Simple extension'
 		);
 	}
@@ -15,7 +15,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testSimpleNoExt() {
 		$this->assertEquals(
 			'',
-			WebRequest::findIE6Extension( 'x' ),
+			IEUrlExtension::findIE6Extension( 'x' ),
 			'No extension'
 		);
 	}
@@ -23,7 +23,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testEmpty() {
 		$this->assertEquals(
 			'',
-			WebRequest::findIE6Extension( '' ),
+			IEUrlExtension::findIE6Extension( '' ),
 			'Empty string'
 		);
 	}
@@ -31,7 +31,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testQuestionMark() {
 		$this->assertEquals(
 			'',
-			WebRequest::findIE6Extension( '?' ),
+			IEUrlExtension::findIE6Extension( '?' ),
 			'Question mark only'
 		);
 	}
@@ -39,7 +39,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testExtQuestionMark() {
 		$this->assertEquals(
 			'x',
-			WebRequest::findIE6Extension( '.x?' ),
+			IEUrlExtension::findIE6Extension( '.x?' ),
 			'Extension then question mark'
 		);
 	}
@@ -47,7 +47,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testQuestionMarkExt() {
 		$this->assertEquals(
 			'x',
-			WebRequest::findIE6Extension( '?.x' ),
+			IEUrlExtension::findIE6Extension( '?.x' ),
 			'Question mark then extension'
 		);
 	}
@@ -55,7 +55,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testInvalidChar() {
 		$this->assertEquals(
 			'',
-			WebRequest::findIE6Extension( '.x*' ),
+			IEUrlExtension::findIE6Extension( '.x*' ),
 			'Extension with invalid character'
 		);
 	}
@@ -63,7 +63,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testInvalidCharThenExtension() {
 		$this->assertEquals(
 			'x',
-			WebRequest::findIE6Extension( '*.x' ),
+			IEUrlExtension::findIE6Extension( '*.x' ),
 			'Invalid character followed by an extension'
 		);
 	}
@@ -71,7 +71,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testMultipleQuestionMarks() {
 		$this->assertEquals(
 			'c',
-			WebRequest::findIE6Extension( 'a?b?.c?.d?e?f' ),
+			IEUrlExtension::findIE6Extension( 'a?b?.c?.d?e?f' ),
 			'Multiple question marks'
 		);
 	}
@@ -79,7 +79,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testExeException() {
 		$this->assertEquals(
 			'd',
-			WebRequest::findIE6Extension( 'a?b?.exe?.d?.e' ),
+			IEUrlExtension::findIE6Extension( 'a?b?.exe?.d?.e' ),
 			'.exe exception'
 		);
 	}
@@ -87,7 +87,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testExeException2() {
 		$this->assertEquals(
 			'exe',
-			WebRequest::findIE6Extension( 'a?b?.exe' ),
+			IEUrlExtension::findIE6Extension( 'a?b?.exe' ),
 			'.exe exception 2'
 		);
 	}
@@ -95,7 +95,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testHash() {
 		$this->assertEquals(
 			'',
-			WebRequest::findIE6Extension( 'a#b.c' ),
+			IEUrlExtension::findIE6Extension( 'a#b.c' ),
 			'Hash character preceding extension'
 		);
 	}
@@ -103,7 +103,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testHash2() {
 		$this->assertEquals(
 			'',
-			WebRequest::findIE6Extension( 'a?#b.c' ),
+			IEUrlExtension::findIE6Extension( 'a?#b.c' ),
 			'Hash character preceding extension 2'
 		);
 	}
@@ -111,7 +111,7 @@ class FindIE6ExtensionTest extends MediaWikiTestCase {
 	function testDotAtEnd() {
 		$this->assertEquals(
 			'',
-			WebRequest::findIE6Extension( '.' ),
+			IEUrlExtension::findIE6Extension( '.' ),
 			'Dot at end of string'
 		);
 	}

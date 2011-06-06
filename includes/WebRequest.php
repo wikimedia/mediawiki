@@ -772,23 +772,21 @@ class WebRequest {
 	 * message or redirect to a safer URL. Returns true if the URL is OK, and
 	 * false if an error message has been shown and the request should be aborted.
 	 */
-	public function checkUrlExtension() {
-		$query = isset( $_SERVER['QUERY_STRING'] ) ? $_SERVER['QUERY_STRING'] : '';
-		if ( self::isUrlExtensionBad( $query ) ) {
+	public function checkUrlExtension( $extWhitelist = array() ) {
+		global $wgScriptExtension;
+		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
+		if ( IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist ) ) {
 			if ( !$this->wasPosted() ) {
-				if ( $this->attemptExtensionSecurityRedirect() ) {
+				$newUrl = IEUrlExtension::fixUrlForIE6(
+					$this->getFullRequestURL(), $extWhitelist );
+				if ( $newUrl !== false ) {
+					$this->doSecurityRedirect( $newUrl );
 					return false;
 				}
 			}
 			wfHttpError( 403, 'Forbidden',
-				'Invalid file extension found in the query string.' );
+				'Invalid file extension found in the path info or query string.' );
 			
-			return false;
-		}
-
-		if ( $this->isPathInfoBad() ) {
-			wfHttpError( 403, 'Forbidden',
-				'Invalid file extension found in PATH_INFO.' );
 			return false;
 		}
 		return true;
@@ -798,12 +796,7 @@ class WebRequest {
 	 * Attempt to redirect to a URL with a QUERY_STRING that's not dangerous in 
 	 * IE 6. Returns true if it was successful, false otherwise.
 	 */
-	protected function attemptExtensionSecurityRedirect() {
-		$url = self::fixUrlForIE6( $this->getFullRequestURL() );
-		if ( $url === false ) {
-			return false;
-		}
-
+	protected function doSecurityRedirect( $url ) {
 		header( 'Location: ' . $url );
 		header( 'Content-Type: text/html' );
 		$encUrl = htmlspecialchars( $url );
@@ -844,159 +837,13 @@ HTML;
 	 * Also checks for anything that looks like a file extension at the end of
 	 * QUERY_STRING, since IE 6 and earlier will use this to get the file type
 	 * if there was no dot before the question mark (bug 28235).
-	 */
-	public function isPathInfoBad() {
-		global $wgScriptExtension;
-
-		if ( $this->isQueryStringBad() ) {
-			return true;
-		}
-
-		if ( !isset( $_SERVER['PATH_INFO'] ) ) {
-			return false;
-		}
-		$pi = $_SERVER['PATH_INFO'];
-		$dotPos = strrpos( $pi, '.' );
-		if ( $dotPos === false ) {
-			return false;
-		}
-		$ext = substr( $pi, $dotPos );
-		return !in_array( $ext, array( $wgScriptExtension, '.php', '.php5' ) );
-	}
-	
-	/**
-	 * Determine what extension IE6 will infer from a certain query string.
-	 * If the URL has an extension before the question mark, IE6 will use
-	 * that and ignore the query string, but per the comment at
-	 * isPathInfoBad() we don't have a reliable way to determine the URL,
-	 * so isPathInfoBad() just passes in the query string for $url.
-	 * All entry points have safe extensions (php, php5) anyway, so
-	 * checking the query string is possibly overly paranoid but never
-	 * insecure.
 	 *
-	 * The criteria for finding an extension are as follows:
-	 * - a possible extension is a dot followed by one or more characters not 
-	 *   in <>\"/:|?.#
-	 * - if we find a possible extension followed by the end of the string or 
-	 *   a #, that's our extension
-	 * - if we find a possible extension followed by a ?, that's our extension
-	 *    - UNLESS it's exe, dll or cgi, in which case we ignore it and continue 
-	 *      searching for another possible extension
-	 * - if we find a possible extension followed by a dot or another illegal 
-	 *   character, we ignore it and continue searching
-	 * 
-	 * @param $url string URL
-	 * @return mixed Detected extension (string), or false if none found
+	 * @deprecated Use checkUrlExtension(). 
 	 */
-	public static function findIE6Extension( $url ) {
-		$pos = 0;
-		$hashPos = strpos( $url, '#' );
-		if ( $hashPos !== false ) {
-			$urlLength = $hashPos;
-		} else {
-			$urlLength = strlen( $url );
-		}
-		$remainingLength = $urlLength;
-		while ( $remainingLength > 0 ) {
-			// Skip ahead to the next dot
-			$pos += strcspn( $url, '.', $pos, $remainingLength );
-			if ( $pos >= $urlLength ) {
-				// End of string, we're done
-				return false;
-			}
-			
-			// We found a dot. Skip past it
-			$pos++;
-			$remainingLength = $urlLength - $pos;
-
-			// Check for illegal characters in our prospective extension,
-			// or for another dot
-			$nextPos = $pos + strcspn( $url, "<>\\\"/:|?*.", $pos, $remainingLength );
-			if ( $nextPos >= $urlLength ) {
-				// No illegal character or next dot
-				// We have our extension
-				return substr( $url, $pos, $urlLength - $pos );
-			}
-			if ( $url[$nextPos] === '?' ) {
-				// We've found a legal extension followed by a question mark
-				// If the extension is NOT exe, dll or cgi, return it
-				$extension = substr( $url, $pos, $nextPos - $pos );
-				if ( strcasecmp( $extension, 'exe' ) && strcasecmp( $extension, 'dll' ) &&
-					strcasecmp( $extension, 'cgi' ) )
-				{
-					return $extension;
-				}
-				// Else continue looking
-			}
-			// We found an illegal character or another dot
-			// Skip to that character and continue the loop
-			$pos = $nextPos + 1;
-			$remainingLength = $urlLength - $pos;
-		}
-		return false;
-	}
-
-	/**
-	 * Check for a bad query string, which IE 6 will use as a potentially 
-	 * insecure cache file extension. See bug 28235. Returns true if the 
-	 * request should be disallowed.
-	 * 
-	 * @return Boolean
-	 */
-	public function isQueryStringBad() {
-		if ( !isset( $_SERVER['QUERY_STRING'] ) ) {
-			return false;
-		}
-		return self::isUrlExtensionBad( $_SERVER['QUERY_STRING'] );
-	}
-
-	/**
-	 * The same as WebRequest::isQueryStringBad() except as a static function.
-	 */
-	public static function isUrlExtensionBad( $query ) {
-		if ( strval( $query ) === '' ) {
-			return false;
-		}
-
-		$extension = self::findIE6Extension( $query );
-		if ( strval( $extension ) === '' ) {
-			/* No extension or empty extension (false/'') */
-			return false;
-		}
-
-		/* Only consider the extension understood by IE to be potentially 
-		 * dangerous if it is made of normal characters (so it is more 
-		 * likely to be registered with an application)
-		 * Compromise with api.php convenience. Considers for instance 
-		 * that no sane application will register a dangerous file type
-		 * in an extension containing an ampersand.
-		 */
-		return (bool)preg_match( '/^[a-zA-Z0-9_-]+$/', $extension );
-	}
-
-	/**
-	 * Returns a variant of $url which will pass isUrlExtensionBad() but has the 
-	 * same GET parameters, or false if it can't figure one out.
-	 */
-	public static function fixUrlForIE6( $url ) {
-		$questionPos = strpos( $url, '?' );
-		if ( $questionPos === false || $questionPos === strlen( $url ) - 1 ) {
-			return $url;
-		}
-
-		$beforeQuery = substr( $url, 0, $questionPos + 1 );
-		$query = substr( $url, $questionPos + 1 );
-		// Multiple question marks cause problems. Encode the second and 
-		// subsequent question mark.
-		$query = str_replace( '?', '%3E', $query );
-		// Append an invalid path character so that IE6 won't see the end of the
-		// query string as an extension
-		$query .= '&*';
-		if ( self::isUrlExtensionBad( $query ) ) {
-			// Avoid a redirect loop
-			return false;
-		}
-		return $beforeQuery . $query;
+	public function isPathInfoBad( $extWhitelist = array() ) {
+		global $wgScriptExtension;
+		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
+		return IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist );
 	}
 
 	/**
@@ -1235,7 +1082,11 @@ class FauxRequest extends WebRequest {
 		return $this->session;
 	}
 
-	public function isPathInfoBad() {
+	public function isPathInfoBad( $extWhitelist = array() ) {
 		return false;
+	}
+
+	public function checkUrlExtension( $extWhitelist = array() ) {
+		return true;
 	}
 }

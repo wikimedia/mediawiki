@@ -42,14 +42,20 @@ if ( $wgImgAuthPublicTest
 	wfForbidden('img-auth-accessdenied','img-auth-public');
 }
 
-// Check for bug 28235: QUERY_STRING overriding the correct extension
-if ( $wgRequest->isQueryStringBad() )
-{
-	wfForbidden( 'img-auth-accessdenied', 'img-auth-bad-query-string' );
-}	
-
 $matches = WebRequest::getPathInfo();
 $path = $matches['title'];
+
+// Check for bug 28235: QUERY_STRING overriding the correct extension
+$dotPos = strpos( $path, '.' );
+$whitelist = array();
+if ( $dotPos !== false ) {
+	$whitelist[] = substr( $path, $dotPos + 1 );
+}
+if ( !$wgRequest->checkUrlExtension( $whitelist ) )
+{
+	return;
+}
+
 $filename = realpath( $wgUploadDirectory . $path );
 $realUpload = realpath( $wgUploadDirectory );
 
