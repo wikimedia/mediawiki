@@ -99,8 +99,6 @@ production.
 * (bug 28897) rvparse doesn’t seem to work with rvsection
 * (bug 25734) API: possible issue with revids validation
 * (bug 28002) Internal error in ApiFormatRaw::getMimeType
-* (bug 26597) Allow toggling of persistent cookies ("remember me") in API
-  action=login
 * (bug 29237) add interwiki target url attribute to api/query/interwiki
 * (bug 28392) mark action=undelete&timestamps as type "timestamp"
 * (bug 21346) Make deleted images searchable by hash (disabled in Miser Mode)
