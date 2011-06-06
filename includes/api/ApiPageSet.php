@@ -451,6 +451,7 @@ class ApiPageSet extends ApiQueryBase {
 
 		$pageids = self::getPositiveIntegers( $pageids );
 
+		$res = null;
 		if ( count( $pageids ) ) {
 			$set = array(
 				'page_id' => $pageids
@@ -485,20 +486,22 @@ class ApiPageSet extends ApiQueryBase {
 			ApiBase::dieDebug( __METHOD__, 'Missing $processTitles parameter when $remaining is provided' );
 		}
 
-		foreach ( $res as $row ) {
-			$pageId = intval( $row->page_id );
+		if ( $res ) {
+			foreach ( $res as $row ) {
+				$pageId = intval( $row->page_id );
 
-			// Remove found page from the list of remaining items
-			if ( isset( $remaining ) ) {
-				if ( $processTitles ) {
-					unset( $remaining[$row->page_namespace][$row->page_title] );
-				} else {
-					unset( $remaining[$pageId] );
+				// Remove found page from the list of remaining items
+				if ( isset( $remaining ) ) {
+					if ( $processTitles ) {
+						unset( $remaining[$row->page_namespace][$row->page_title] );
+					} else {
+						unset( $remaining[$pageId] );
+					}
 				}
-			}
 
-			// Store any extra fields requested by modules
-			$this->processDbRow( $row );
+				// Store any extra fields requested by modules
+				$this->processDbRow( $row );
+			}
 		}
 
 		if ( isset( $remaining ) ) {
