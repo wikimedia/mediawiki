@@ -49,9 +49,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		global $wgUser, $wgContLang;
 
 		$params = $this->extractRequestParams();
-		if ( isset( $params['users'] ) && isset( $params['ip'] ) ) {
-			$this->dieUsage( 'bkusers and bkip cannot be used together', 'usersandip' );
-		}
+		$this->requireMaxOneParameter( $params, 'users', 'ip' );
 
 		$prop = array_flip( $params['prop'] );
 		$fld_id = isset( $prop['id'] );
@@ -290,7 +288,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'usersandip', 'info' => 'bkusers and bkip cannot be used together' ),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'users', 'ip' ) ),
 			array( 'code' => 'cidrtoobroad', 'info' => 'CIDR ranges broader than /16 are not accepted' ),
 			array( 'code' => 'param_user', 'info' => 'User parameter may not be empty' ),
 			array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
