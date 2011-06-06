@@ -15,7 +15,7 @@ $.fn.firstTabIndex = function() {
 		// becuase it has a default value for tabIndex in IE6/IE7 of 0
 		// (rather than null/undefined). Therefore check "> 0" as well
 		if ( tabIndex > 0 ) {
-			if ( i === 0 ) {
+			if ( minTabIndex === null ) {
 				minTabIndex = tabIndex;
 			} else if ( tabIndex < minTabIndex ) {
 				minTabIndex = tabIndex;
@@ -34,7 +34,7 @@ $.fn.lastTabIndex = function() {
 	var maxTabIndex = null;
 	$(this).find( '[tabindex]' ).each( function( i ) {
 		var tabIndex = parseInt( $(this).attr( 'tabindex' ), 10 );
-		if ( i === 0 ) {
+		if ( maxTabIndex === null ) {
 			maxTabIndex = tabIndex;
 		} else if ( tabIndex > maxTabIndex ) {
 			maxTabIndex = tabIndex;
