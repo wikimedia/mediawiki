@@ -2400,7 +2400,7 @@ class Article {
 	 */
 	public function doWatch() {
 		global $wgUser;
-		return WatchAction:doWatch( $this->mTitle, $wgUser );
+		return WatchAction::doWatch( $this->mTitle, $wgUser );
 	}
 
 	/**
@@ -2419,7 +2419,7 @@ class Article {
 	 */
 	public function doUnwatch() {
 		global $wgUser;
-		return WatchAction:doUnwatch( $this->mTitle, $wgUser );
+		return WatchAction::doUnwatch( $this->mTitle, $wgUser );
 	}
 
 	/**
