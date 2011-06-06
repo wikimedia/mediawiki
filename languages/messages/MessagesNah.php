@@ -1042,30 +1042,30 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 'enotif_anon_editor'           => 'ahtōcātlatequitiltilīlli $1',
 'enotif_body'                  => 'Māhuizzoh $WATCHINGUSERNAME,
 
-In {{SITENAME}} zāzanilli "$PAGETITLE" $CHANGEDORCREATED īpal in tlatequitiltilīlli $PAGEEDITOR īpan $PAGEEDITDATE.
-Xiquitta in āxcān tlachiyaliztli īpan $PAGETITLE_URL.
+In {{SITENAME}} āmatl "$PAGETITLE" $CHANGEDORCREATED in tlatequitiltilīlli $PAGEEDITOR īpan $PAGEEDITDATE.
+In āxcān tlachiyaliztli onca īpan $PAGETITLE_URL
 
 $NEWPAGE
 
 In tlapatlaliztli īxtlamatiliztli cah: $PAGESUMMARY $PAGEMINOREDIT
+ 
+Xicnotzāz in tlapatlani:
+Correo electrónico: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
+Huiqui: {{fullurl:User:$PAGEEDITOR}}
 
-Ic ticnotzāz in tlatequitiltilīlli:
-correo electrónico: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
-huiquipan: {{fullurl:User:$PAGEEDITOR}}
+Ahmo onyez occē tēmachitīliztli ītech occē tlapatlaliztli, zan mā tiquihitta inīn āmoxtli yancuīcān.
+Nō tihuelīti quitlahtlālīz, in tēmachitīliztli in mochi tlachixqui mozāzanilhuīc in motlachiyaliz āmatl.
 
-Ic ticpiyāz yancuīc tlanōnōtzaliztli tlapatlalizcopa inīn zāzanilpan, tihuīquilīz tictlahpolōz occeppa.
-Nō tihuelīti, motlachiyalizpan, ticpatlāz motlanequiliz tlanōnōtzaliztechcopa in zāzanilli tiquinchiya.
-
-             Mocnīuh {{SITENAME}} ītlanōnōtzaliz.
+	In {{SITENAME}} tēmachitīliztli sistema.
 
 --
-Ic ticpatla totlachiyaliz, xiquitta
+Ic ticpatlaz in tlachiyaliztli motlapōhualāma, xiquihitta:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Ic ticpoloa in zāzanilli ītech totlachiyaliz, xiquitta
+Ic ticpolōz in āmatl in tlachiyaliztli motlapōhualāma, xiquihitta:
 $UNWATCHURL
 
-Tlacaquiztiliztli īhuān ocachi tēpalēhuiliztli:
+Tētlamachītīliztli īhuān oc yeh tēpalehuiliztli:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -1504,9 +1504,10 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 
 # Special:SpecialPages
 'specialpages'                 => 'Nōncuahquīzqui āmatl',
-'specialpages-note'            => '----
-* Nōncuahquīzqui.
-* <strong class="mw-specialpagerestricted">Tzacuilic.</strong>',
+'specialpages-note'            => '* Nōncuahquīzqui āmatl.
+* <span class="mw-specialpagerestricted>Caxauhqui nōncuahquīzqui āmatl.</span>
+* <span class="mw-specialpagecached">Páginas especiales cacheadas.</span>
+*<span class="mw-specialpagecached">Nōncuahquīzqui āmatl īpan caché</span>',
 'specialpages-group-other'     => 'Occequīntīn nōncuahquīzqui zāzaniltin',
 'specialpages-group-login'     => 'Ximocalaqui / ximomachiyōmaca',
 'specialpages-group-changes'   => 'Yancuīc tlapatlaliztli īhuān tlahcuilōlloh',
