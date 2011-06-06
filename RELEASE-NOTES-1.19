@@ -105,6 +105,7 @@ production.
 * (bug 28392) mark action=undelete&timestamps as type "timestamp"
 * (bug 21346) Make deleted images searchable by hash (disabled in Miser Mode)
 * (bug 27595) sha1 search of list=filearchive does not work
+* (bug 26763) Make RSS/Atom of user contributions more visible
 
 === Languages updated in 1.19 ===
 
