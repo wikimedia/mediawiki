@@ -179,7 +179,11 @@ class ChangeTags {
 		return $html;
 	}
 
-	/** Basically lists defined tags which count even if they aren't applied to anything */
+	/**
+	 *Basically lists defined tags which count even if they aren't applied to anything
+	 *
+	 * @return array
+	 */
 	static function listDefinedTags() {
 		// Caching...
 		global $wgMemc;
