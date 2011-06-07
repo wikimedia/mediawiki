@@ -63,8 +63,6 @@ if( isset( $_SERVER['SERVER_NAME'] )
 	$serverName = $_SERVER['SERVER_NAME'];
 } elseif( isset( $_SERVER['HOSTNAME'] ) ) {
 	$serverName = $_SERVER['HOSTNAME'];
-} elseif( isset( $_SERVER['HTTP_HOST'] ) ) {
-	$serverName = $_SERVER['HTTP_HOST'];
 } elseif( isset( $_SERVER['SERVER_ADDR'] ) ) {
 	$serverName = $_SERVER['SERVER_ADDR'];
 } else {
