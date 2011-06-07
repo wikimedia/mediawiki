@@ -124,7 +124,7 @@ class SpecialLockdb extends SpecialPage {
 		fwrite( $fp, $this->reason );
 		fwrite( $fp, "\n<p>" . wfMsgExt(
 			'lockedbyandtime',
-			'content',
+			array( 'content', 'parseinline' ),
 			$wgUser->getName(),
 			$wgContLang->date( wfTimestampNow() ),
 			$wgContLang->time( wfTimestampNow() )

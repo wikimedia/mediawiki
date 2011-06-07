@@ -3171,7 +3171,7 @@ Remember to [[Special:UnlockDB|remove the lock]] after your maintenance is compl
 'lockfilenotwritable' => 'The database lock file is not writable.
 To lock or unlock the database, this needs to be writable by the web server.',
 'databasenotlocked'   => 'The database is not locked.',
-'lockedbyandtime'     => '(by $1 on $2 at $3)',
+'lockedbyandtime'     => '(by GENDER:$1|$1}} on $2 at $3)',
 
 # Move page
 'move-page'                    => 'Move $1',
