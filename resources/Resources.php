@@ -104,6 +104,7 @@ return array(
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
 		'styles' => 'resources/jquery/jquery.suggestions.css',
+		'dependencies' => 'jquery.autoEllipsis',
 	),
 	'jquery.tabIndex' => array(
 		'scripts' => 'resources/jquery/jquery.tabIndex.js'
