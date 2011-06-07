@@ -183,26 +183,9 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$updater = DatabaseUpdater::newForDB( $this->db );
-		$extensionUpdates = $updater->getNewExtensions();
-
-		$ourExtensions = array_map( 'strtolower', $this->getVar( '_Extensions' ) );
-
-		foreach( $ourExtensions as $ext ) {
-			if( isset( $extensionUpdates[$ext] ) ) {
-				$this->db->begin( __METHOD__ );
-				$error = $this->db->sourceFile( $extensionUpdates[$ext] );
-				if( $error !== true ) {
-					$this->db->rollback( __METHOD__ );
-					$status->warning( 'config-install-tables-failed', $error );
-				} else {
-					$this->db->commit( __METHOD__ );
-				}
-			}
-		}
 
 		// Now run updates to create tables for old extensions
-		$updater->doUpdates( array( 'extensions' ) );
+		DatabaseUpdater::newForDB( $this->db )->doUpdates( array( 'extensions' ) );
 
 		return $status;
 	}
