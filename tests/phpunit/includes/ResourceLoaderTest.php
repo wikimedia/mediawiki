@@ -46,6 +46,40 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 		$resourceLoader->register( $name, $module );
 		$this->assertEquals( $module, $resourceLoader->getModule( $name ) );
 	}
+
+	/**
+	 * @dataProvider providePackedModules
+	 */
+	public function testMakePackedModulesString( $desc, $modules, $packed ) {
+		$this->assertEquals( $packed, ResourceLoader::makePackedModulesString( $modules ), $desc );
+	}
+
+	/**
+	 * @dataProvider providePackedModules
+	 */
+	public function testexpandModuleNames( $desc, $modules, $packed ) {
+		$this->assertEquals( $modules, ResourceLoaderContext::expandModuleNames( $packed ), $desc );
+	}
+
+	public function providePackedModules() {
+		return array(
+			array(
+				'Example from makePackedModulesString doc comment',
+				array( 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' ),
+				'foo.bar,baz|bar.baz,quux',
+			),
+			array(
+				'Example from expandModuleNames doc comment',
+				array( 'jquery.foo', 'jquery.bar', 'jquery.ui.baz', 'jquery.ui.quux' ),
+				'jquery.foo,bar|jquery.ui.baz,quux',
+			),
+			array(
+				'Regression fixed in r88706 with dotless names',
+				array( 'foo', 'bar', 'baz' ),
+				'foo,bar,baz',
+			)
+		);
+	}
 }
 
 /* Stubs */
