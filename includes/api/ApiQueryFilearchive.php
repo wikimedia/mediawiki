@@ -100,7 +100,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				}
 				$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
-				if ( !ApiQueryAllimages::validateSha1Base36Hash( $sha1 ) ) {
+				if ( !ApiQueryAllimages::validateSha1Base36Hash( $params['sha1base36'] ) ) {
 					$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
 				}
 				$sha1 = $params['sha1base36'];
@@ -114,7 +114,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			// Filter out revisions that the user is not allowed to see. There
 			// is no way to indicate that we have skipped stuff because the
 			// continuation parameter is fa_name
-			
+
 			// Note that this field is unindexed. This should however not be
 			// a big problem as files with fa_deleted are rare
 			$this->addWhereFld( 'fa_deleted', 0 );
