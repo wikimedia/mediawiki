@@ -111,26 +111,8 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# the wiki installer needs to be launched or the generated file uploaded to
 	# the root wiki directory
 	if( !file_exists( MW_CONFIG_FILE ) ) {
-		$script = $_SERVER['SCRIPT_NAME'];
-		$path = htmlspecialchars( str_replace( '//', '/', pathinfo( $script, PATHINFO_DIRNAME ) ) );
-		$ext = htmlspecialchars( pathinfo( $script, PATHINFO_EXTENSION ) );
-
-		# Check to see if the installer is running
-		if ( !function_exists( 'session_name' ) ) {
-			$installerStarted = false;
-		} else {
-			session_name( 'mw_installer_session' );
-			$oldReporting = error_reporting( E_ALL & ~E_NOTICE );
-			$success = session_start();
-			error_reporting( $oldReporting );
-			$installerStarted = ( $success && isset( $_SESSION['installData'] ) );
-		}
-
-		$please = $installerStarted
-			? "Please <a href=\"$path/mw-config/index.$ext\"> complete the installation</a> and download LocalSettings.php."
-			: "Please <a href=\"$path/mw-config/index.$ext\"> set up the wiki</a> first.";
-
-		wfDie( "<p>LocalSettings.php not found.</p><p>$please</p>" );
+		require_once( "$IP/includes/templates/NoLocalSettings.php" );
+		die();
 	}
 
 	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)

@@ -180,9 +180,15 @@ function wfDie( $errorMsg ){
 	$version = isset( $wgVersion ) && $wgVersion
 		? htmlspecialchars( $wgVersion )
 		: '';
+
+	$script = $_SERVER['SCRIPT_NAME'];
+	$path = pathinfo( $script, PATHINFO_DIRNAME ) . '/';
+	$path = str_replace( '//', '/', $path );
+
 	$logo = isset( $wgLogo ) && $wgLogo
 		? $wgLogo
-		: 'http://upload.wikimedia.org/wikipedia/commons/1/1c/MediaWiki_logo.png';
+		: $path . 'skins/common/images/mediawiki.png';
+	$encLogo = htmlspecialchars( $logo );
 
 	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
 	header( 'Content-type: text/html; charset=UTF-8' );
