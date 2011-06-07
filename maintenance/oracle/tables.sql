@@ -718,6 +718,7 @@ CREATE OR REPLACE PROCEDURE duplicate_table(p_tabname   IN VARCHAR2,
   e_table_not_exist EXCEPTION;
   PRAGMA EXCEPTION_INIT(e_table_not_exist, -00942);
   l_temp_ei_sql VARCHAR2(2000);
+  l_temporary   BOOLEAN := p_temporary;
 BEGIN
   BEGIN
     EXECUTE IMMEDIATE 'DROP TABLE ' || p_newprefix || p_tabname ||
@@ -726,7 +727,10 @@ BEGIN
     WHEN e_table_not_exist THEN
       NULL;
   END;
-  IF (p_temporary) THEN
+  IF (p_tabname = 'SEARCHINDEX') THEN
+    l_temporary := FALSE;
+  END IF;
+  IF (l_temporary) THEN
     EXECUTE IMMEDIATE 'CREATE GLOBAL TEMPORARY TABLE ' || p_newprefix ||
                       p_tabname || ' AS SELECT * FROM ' || p_oldprefix ||
                       p_tabname || ' WHERE ROWNUM = 0';
@@ -765,7 +769,7 @@ BEGIN
       EXECUTE IMMEDIATE l_temp_ei_sql;
     END IF;
   END LOOP;
-  IF (NOT p_temporary) THEN
+  IF (NOT l_temporary) THEN
     FOR rc IN (SELECT REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('REF_CONSTRAINT',
                                                                     constraint_name),
                                               32767,
@@ -810,6 +814,29 @@ BEGIN
       EXECUTE IMMEDIATE l_temp_ei_sql;
     END IF;
   END LOOP;
+  FOR rc IN (SELECT REPLACE(REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('INDEX',
+                                                                          index_name),
+                                                    32767,
+                                                    1),
+                                    USER || '"."' || p_oldprefix,
+                                    USER || '"."' || p_newprefix),
+                            '"' || index_name || '"',
+                            '"' || p_newprefix || index_name || '"') DDLVC2,
+                    index_name,
+                    index_type
+               FROM user_indexes ui
+              WHERE table_name = p_oldprefix || p_tabname
+                AND index_type = 'DOMAIN'
+                AND NOT EXISTS
+              (SELECT NULL
+                       FROM user_constraints
+                      WHERE table_name = ui.table_name
+                        AND constraint_name = ui.index_name)) LOOP
+    l_temp_ei_sql := rc.ddlvc2;
+    IF nvl(length(l_temp_ei_sql), 0) > 0 THEN
+      EXECUTE IMMEDIATE l_temp_ei_sql;
+    END IF;
+  END LOOP;
   FOR rc IN (SELECT REPLACE(REPLACE(UPPER(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('TRIGGER',
                                                                                 trigger_name),
                                                           32767,
@@ -827,6 +854,7 @@ BEGIN
     END IF;
   END LOOP;
 END;
+
 /*$mw$*/
 
 /*$mw$*/
