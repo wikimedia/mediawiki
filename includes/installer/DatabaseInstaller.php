@@ -186,11 +186,6 @@ abstract class DatabaseInstaller {
 		$updater = DatabaseUpdater::newForDB( $this->db );
 		$extensionUpdates = $updater->getNewExtensions();
 
-		// No extensions need tables (or haven't updated to new installer support)
-		if( !count( $extensionUpdates ) ) {
-			return $status;
-		}
-
 		$ourExtensions = array_map( 'strtolower', $this->getVar( '_Extensions' ) );
 
 		foreach( $ourExtensions as $ext ) {
