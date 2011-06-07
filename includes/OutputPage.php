@@ -2338,7 +2338,6 @@ class OutputPage {
 			$wgResourceLoaderInlinePrivateModules, $wgRequest;
 		// Lazy-load ResourceLoader
 		// TODO: Should this be a static function of ResourceLoader instead?
-		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$baseQuery = array(
 			'lang' => $wgLang->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
@@ -2407,7 +2406,7 @@ class OutputPage {
 				continue;
 			}
 			
-			$query['modules'] = implode( '|', array_keys( $modules ) );
+			$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $modules ) );
 			
 			// Support inlining of private modules if configured as such
 			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
@@ -2442,6 +2441,9 @@ class OutputPage {
 			ksort( $query );
 
 			$url = wfAppendQuery( $wgLoadScript, $query );
+			// Prevent the IE6 extension check from being triggered (bug 28840)
+			// by appending a character that's invalid in Windows extensions ('*')
+			$url .= '&*';
 			if ( $useESI && $wgResourceLoaderUseESI ) {
 				$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
 				if ( $only == 'styles' ) {
@@ -2452,9 +2454,9 @@ class OutputPage {
 			} else {
 				// Automatically select style/script elements
 				if ( $only === 'styles' ) {
-					$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+					$links .= Html::linkedStyle( $url ) . "\n";
 				} else {
-					$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+					$links .= Html::linkedScript( $url ) . "\n";
 				}
 			}
 		}

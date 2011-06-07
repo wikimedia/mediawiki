@@ -675,6 +675,20 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return sorted;
 		}
+		
+		/**
+		 * Converts a module map of the form { foo: [ 'bar', 'baz' ], bar: [ 'baz, 'quux' ] }
+		 * to a query string of the form foo.bar,baz|bar.baz,quux
+		 */
+		function buildModulesString( moduleMap ) {
+			var arr = [];
+			for ( var prefix in moduleMap ) {
+				var p = prefix === '' ? '' : prefix + '.';
+				arr.push( p + moduleMap[prefix].join( ',' ) );
+			}
+			return arr.join( '|' ).replace( /\./g, '!' );
+		}
+		
 
 		/* Public Methods */
 
@@ -728,9 +742,44 @@ window.mediaWiki = new ( function( $ ) {
 							version = registry[groups[group][g]].version;
 						}
 					}
-					requests[requests.length] = $.extend(
-						{ 'modules': groups[group].join( '|' ), 'version': formatVersionNumber( version ) }, base
-					);
+					var reqBase = $.extend( { 'version': formatVersionNumber( version ) }, base );
+					var reqBaseLength = $.param( reqBase ).length;
+					var reqs = [];
+					var limit = mw.config.get( 'wgResourceLoaderMaxQueryLength', -1 );
+					// We may need to split up the request to honor the query string length limit
+					// So build it piece by piece
+					var l = reqBaseLength + 9; // '&modules='.length == 9
+					var r = 0;
+					reqs[0] = {}; // { prefix: [ suffixes ] }
+					for ( var i = 0; i < groups[group].length; i++ ) {
+						// Determine how many bytes this module would add to the query string
+						var lastDotIndex = groups[group][i].lastIndexOf( '.' );
+						// Note that these substr() calls work even if lastDotIndex == -1
+						var prefix = groups[group][i].substr( 0, lastDotIndex );
+						var suffix = groups[group][i].substr( lastDotIndex + 1 );
+						var bytesAdded = prefix in reqs[r] ?
+							suffix.length + 3 : // '%2C'.length == 3
+							groups[group][i].length + 3; // '%7C'.length == 3
+						
+						// If the request would become too long, create a new one,
+						// but don't create empty requests
+						if ( limit > 0 &&  reqs[r] != {} && l + bytesAdded > limit ) {
+							// This request would become too long, create a new one
+							r++;
+							reqs[r] = {};
+							l = reqBaseLength + 9;
+						}
+						if ( !( prefix in reqs[r] ) ) {
+							reqs[r][prefix] = [];
+						}
+						reqs[r][prefix].push( suffix );
+						l += bytesAdded;
+					}
+					for ( var r = 0; r < reqs.length; r++ ) {
+						requests[requests.length] = $.extend(
+							{ 'modules': buildModulesString( reqs[r] ) }, reqBase
+						);
+					}
 				}
 				// Clear the batch - this MUST happen before we append the
 				// script element to the body or it's possible that the script

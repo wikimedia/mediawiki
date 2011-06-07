@@ -155,6 +155,7 @@ Installation aborted.',
 	'config-using531'                 => 'MediaWiki cannot be used with PHP $1 due to a bug involving reference parameters to <code>__call()</code>.
 Upgrade to PHP 5.3.2 or higher, or downgrade to PHP 5.3.0 to resolve this.
 Installation aborted.',
+	'config-suhosin-max-value-length' => "Suhosin is installed and limits the GET parameter length to $1 bytes. MediaWiki's ResourceLoader component will work around this limit, but that will degrade performance. If at all possible, you should set suhosin.get.max_value_length to 1024 or higher in php.ini , and set \$wgResourceLoaderMaxQueryLength to the same value in LocalSettings.php .",
 	'config-db-type'                  => 'Database type:',
 	'config-db-host'                  => 'Database host:',
 	'config-db-host-help'             => 'If your database server is on different server, enter the host name or IP address here.
