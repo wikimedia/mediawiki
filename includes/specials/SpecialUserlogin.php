@@ -148,7 +148,7 @@ class LoginForm {
 		global $wgOut;
 
 		if ( $this->mEmail == '' ) {
-			$this->mainLoginForm( wfMsgExt( 'noemailcreate', array( 'parsemag', 'escape' ), $this->mName ) );
+			$this->mainLoginForm( wfMsgExt( 'noemailcreate', array( 'parsemag', 'escape' ) ) );
 			return;
 		}
 
