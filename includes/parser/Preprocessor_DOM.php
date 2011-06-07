@@ -1089,11 +1089,8 @@ class PPFrame_DOM implements PPFrame {
 					# OT_WIKI will only respect <ignore> in substed templates.
 					# The other output types respect it unless NO_IGNORE is set.
 					# extractSections() sets NO_IGNORE and so never respects it.
-					if ( $flags & PPFrame::NO_IGNORE ) {
+					if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] ) || ( $flags & PPFrame::NO_IGNORE ) ) {
 						$out .= $contextNode->textContent;
-					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
-					} elseif ( !isset( $this->parent ) && $this->parser->ot['wiki'] ) {
-						$out .= $this->parser->insertStripItem( $contextNode->textContent );
 					} else {
 						$out .= '';
 					}
