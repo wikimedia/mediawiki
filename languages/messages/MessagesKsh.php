@@ -610,6 +610,8 @@ jet doh drövver fenge kanns, udder op
 'cascadeprotected'     => 'Die Sigg es jeschöz, un mer kann se nit ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:
 $2',
 'namespaceprotected'   => 'Do darfs Sigge em Appachtemang „$1“ nit ändere.',
+'customcssprotected'   => 'Do darfs di CSS-Sigg heh nit ändere. Se jehööt enem andere Metmacher un es e Stöck funn dämm sing eije Enstellunge.',
+'customjsprotected'    => 'Do darfs di JavaSkep-Sigg heh nit ändere. Se jehööt enem andere Metmacher un es e Stöck funn dämm sing eije Enstellunge.',
 'ns-specialprotected'  => '{{int:nstab-special}}e künne mer nit ändere.',
 'titleprotected'       => "Dä Tittel för en Sigg eß verbodde, fum [[User:$1]], un dr Jrond wohr: ''„$2“''",
 
@@ -1397,7 +1399,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'savedprefs'                    => 'Ding Enstellunge sin jetz jesechert.',
 'timezonelegend'                => 'Ziggzon:',
 'localtime'                     => 'De Zigg op Dingem Kompjuter:',
-'timezoneuseserverdefault'      => 'Nemm däm Server sing Zigg',
+'timezoneuseserverdefault'      => 'Nemm däm Server sing Zigg ($1)',
 'timezoneuseoffset'             => 'Söns jet, jiff dä Ungerscheid aan',
 'timezoneoffset'                => 'Dä Ungerscheid¹ es:',
 'servertime'                    => 'De Uhrzigg om ẞööver es jetz:',
@@ -1734,6 +1736,7 @@ hallde deiht, wat nit erlaub, un müjjelelscherwies ene jefährlesche Dattei-Typ
 'large-file'                  => 'Dateie sullte nit jröößer wääde, wi $1, ävver Ding Datei es $2 jroß.',
 'largefileserver'             => 'De Datei es ze jroß. Jrößer wie däm ẞööver sing Enstellung erlaub.',
 'emptyfile'                   => 'Wat De hee jetz huhjelade häs, hät kein Daate dren jehatt. Künnt sin, dat De Dich verdon häs, un dä Name wo verkihrt jeschrevve. Luur ens ov De wirklich <strong>die</strong> Datei hee huhlade wells.',
+'windows-nonascii-filename'   => 'Heh dat Wiki löht kein Datteiname met Sönderzeische zoh.',
 'fileexists'                  => "Et jitt ald en Datei met däm Name.
 Wann De op „Datei avspeichere“ klicks, weed se ersetz.
 Bes esu jod  un luur Der '''<tt>[[:$1]]</tt>''' aan, wann De nit 100% secher bes.
@@ -1931,6 +1934,7 @@ De Liß hee dronger zeisch nur {{PLURAL:$1|der eetse Link|de eetste $1 Links|kei
 Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'nolinkstoimage'            => 'Nix link op hee die Datei.',
 'morelinkstoimage'          => 'Belohr Der [[Special:WhatLinksHere/$1|de Links]] op di Datei.',
+'linkstoimage-redirect'     => '$1 (Dattei-Ömleidong) $2',
 'duplicatesoffile'          => 'Mer hann_er {{PLURAL:$1|en dubbelte Datei|$1 dubbelte Dateie|kei dubbelte Dateije}} fon he dä Datei, di {{PLURAL:$1|hät|han all|han}} dersellve Enhalldt ([[Special:FileDuplicateSearch/$2|mieh Einzelheite]]):',
 'sharedupload'              => 'De Datei es för diverse ungerscheidlije Projekte parat jelaht. Se kütt fun $1.',
 'sharedupload-desc-there'   => 'Di Datei kütt vun $1 un kann en andere Projekte jebruch wäde.
@@ -2320,8 +2324,9 @@ dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'watchlist-options'    => 'Eijeschaffte fun de Oppassless',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Drop oppasse…',
-'unwatching' => 'Nimmieh drop oppasse',
+'watching'       => 'Drop oppasse…',
+'unwatching'     => 'Nimmieh drop oppasse',
+'watcherrortext' => 'Ene Fähler es opjetrodde beim Ändere vun de Enshtällonge för Ding Oppaßleß för „$1“',
 
 'enotif_mailer'                => '{{ucfirst:{{GRAMMAR:Genitive singe male|{{SITENAME}}}}}} Nohreechte-Versand',
 'enotif_reset'                 => 'Setz all Änderunge op „Aanjeluurt“ un Erledich.',
@@ -2352,6 +2357,9 @@ Do kanns ävver och all die Merker för e-mail för die Sigge en Dinger Oppassli
 Ene schöne Jroß {{GRAMMAR:vun|{{SITENAME}}}}.
 
 -- 
+Öm de Enshtällonge för Nohreeschet aan Desch ze ändere, jangk op:
+{{fullurl:{{#special:Preferences}}}}
+
 Do kanns hee Ding Oppassliss ändere:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2557,6 +2565,7 @@ De neuste Sperr ier Enndraach em Logbooch es:',
 'sp-contributions-username'            => 'Metmaachername odder <i lang="en">IP</i>-Address:',
 'sp-contributions-toponly'             => 'Bloß neuste Versione zeije',
 'sp-contributions-submit'              => 'Söhke',
+'sp-contributions-showsizediff'        => 'Don de Veränderong vum Ömfang vun dä Sigge aanzeije',
 
 # What links here
 'whatlinkshere'            => 'Wat noh heh link',
@@ -2725,6 +2734,7 @@ un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rä�
 'unlockdbsuccesstext' => 'De Daatebank es jetz freijejovve.',
 'lockfilenotwritable' => 'De Datei, wo de Daatebank met jesperrt wääde wööd, künne mer nit aanläje, oder nit dren schrieve. Esu ene Dress! Dat mööt dä Websörver ävver künne! Verzäll dat enem Verantwortliche för de Installation vun däm ẞööver oder repareer et selvs, wann De et kanns.',
 'databasenotlocked'   => '<strong>Opjepass:</strong> De Daatebank es <strong>nit</strong> jesperrt.',
+'lockedbyandtime'     => '(aam $2 öm $3 Uhr {{GENDER:$1|vum|vum|vum Metmaacher|vun dä|vum}} $1)',
 
 # Move page
 'move-page'                    => 'De Sigg „$1“ ömnenne',

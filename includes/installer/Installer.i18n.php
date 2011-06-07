@@ -7223,13 +7223,14 @@ Cambia LocalSettings.php in modo che questa variabile sia impostata e fai clic s
  * @author Aphaia
  * @author Iwai.masaharu
  * @author Mizusumashi
+ * @author Ninomy
  * @author Ohgi
  * @author Whym
  * @author Yanajin66
  * @author 青子守歌
  */
 $messages['ja'] = array(
-	'config-desc' => 'MediaWikiのためのインストーラー',
+	'config-desc' => 'MediaWikiのインストーラー',
 	'config-title' => 'MediaWiki $1のインストール',
 	'config-information' => '情報',
 	'config-localsettings-upgrade' => '<code>LocalSettings.php</code>ファイルが検出されました。
@@ -7237,6 +7238,10 @@ $messages['ja'] = array(
 LocalSettings.phpの中にそれはあるでしょう。',
 	'config-localsettings-key' => 'アップグレードキー：',
 	'config-localsettings-badkey' => '与えられたキーが間違っています',
+	'config-upgrade-key-missing' => 'MediaWikiの既存インストールを検出しました。
+インストールをアップグレードするために、次の行をLocalSettings.phpの末尾に挿入してください:
+
+$1',
 	'config-localsettings-incomplete' => '現在のLocalSettings.phpは不完全であるようです。
 変数$1が設定されていません。
 LocalSettings.phpを変更してこの変数を設定して、『{{int:Config-continue}}』を押してください。',
@@ -7263,16 +7268,16 @@ php.iniを確認し、<code>session.save_path</code>が適切なディレクト�
 	'config-page-install' => 'インストール',
 	'config-page-complete' => '完了！',
 	'config-page-restart' => 'インストールを再起動',
-	'config-page-readme' => 'リードミー',
+	'config-page-readme' => 'お読みください',
 	'config-page-releasenotes' => 'リリースノート',
 	'config-page-copying' => 'コピー',
-	'config-page-upgradedoc' => '更新',
+	'config-page-upgradedoc' => 'アップグレード',
 	'config-page-existingwiki' => '既存のウィキ',
-	'config-help-restart' => '入力された全て保存データを消去し、インストール作業を再起動しますか？',
+	'config-help-restart' => '入力された全ての保存データを消去し、インストール作業を再起動しますか？',
 	'config-restart' => 'はい、再起動します',
 	'config-welcome' => '=== 環境の確認 ===
-基本的な確認では、この環境がMediaWikiの導入に適しているかを確認します。
-インストール中に必要になったとき、この確認結果を利用して下さい。',
+基本的な確認では、現在の環境がMediaWikiのインストールに適しているかを確認します。
+インストール中に助けが必要になった場合は、この確認結果を提供して下さい。',
 	'config-copyright' => '=== 著作権および規約 ===
 $1
 
@@ -7291,19 +7296,26 @@ $1
 * <doclink href=ReleaseNotes>リリースノート</doclink>
 * <doclink href=Copying>コピー</doclink>
 * <doclink href=UpgradeDoc>アップグレード</doclink>',
-	'config-env-good' => '環境は確認されました。
-MediaWikiをインストール出来ます。',
-	'config-env-bad' => '環境が確認されました。
-MediaWikiをインストール出来ません。',
+	'config-env-good' => '環境の確認が終わりました。
+MediaWikiをインストールできます。',
+	'config-env-bad' => '環境の確認が終わりました。
+MediaWikiのインストールはできません。',
 	'config-env-php' => 'PHP $1がインストールされています。',
-	'config-unicode-using-utf8' => 'Unicode正規化に、Brion Vibberのutf8_normalize.soを利用。',
-	'config-unicode-using-intl' => 'Unicode正規化に[http://pecl.php.net/intl intl PECL 拡張機能]を利用。',
-	'config-unicode-pure-php-warning' => "'''警告'''：Unicode正規化の処理に [http://pecl.php.net/intl intl PECL 拡張機能]ではなく、ピュア PHP な実装を用いています。この処理は遅いです。
+	'config-env-php-toolow' => 'PHP $1 がインストールされています。
+しかし、MediaWikiには PHP $2 以上が必要です。',
+	'config-unicode-using-utf8' => 'Unicode正規化に、Brion Vibberのutf8_normalize.soを使用。',
+	'config-unicode-using-intl' => 'Unicode正規化に[http://pecl.php.net/intl intl PECL 拡張機能]を使用。',
+	'config-unicode-pure-php-warning' => "'''警告'''：Unicode正規化の処理に [http://pecl.php.net/intl intl PECL 拡張機能]が使用可能ではなく、処理の遅いピュア PHP の実装を代わりに用いています。
 高トラフィックのサイトを運営する場合は、[http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode正規化に関するページ]をお読み下さい。",
-	'config-unicode-update-warning' => "'''警告'''：Unicode正規化ラッパーのインストールされているバージョンは、[http://site.icu-project.org/ ICUプロジェクト]のライブラリの古いバージョンを使用しています。
-Unicodeを少しでも利用する可能性があるなら、[http://www.mediawiki.org/wiki/Unicode_normalization_considerations 更新]する必要があります。",
-	'config-no-db' => '適切なデータベースドライバを見つけられませんでした！',
-	'config-no-fts3' => "'''警告'''：SQLiteは[http://sqlite.org/fts3.html FTS3]モジュール以外でコンパイルされており、検索機能はこのバックエンドで利用不可能になります。",
+	'config-unicode-update-warning' => "'''警告'''：インストールされているバージョンのUnicode正規化ラッパーは、[http://site.icu-project.org/ ICUプロジェクト]のライブラリの古いバージョンを使用しています。
+Unicodeを少しでも利用する可能性があるなら、[http://www.mediawiki.org/wiki/Unicode_normalization_considerations アップグレード]する必要があります。",
+	'config-no-db' => '適切なデータベースドライバが見つかりませんでした！PHPにデータベースドライバをインストールする必要があります。
+次の種類のデータベースが使用できます: $1
+
+共有サーバを使用している場合は、サーバの管理者に適切なデータベースドライバのインストールを依頼してください。
+PHPを自分でコンパイルした場合は、たとえば<code>./configure --with-mysql</code>を実行して、データベースクライアントを使用可能に再設定してください。
+DebianまたはUbuntuのパッケージからPHPをインストールした場合は、php5-mysqlモジュールもインストールする必要があります。',
+	'config-no-fts3' => "'''警告'''：SQLiteは[http://sqlite.org/fts3.html FTS3]モジュールなしでコンパイルされており、検索機能はこのバックエンドで利用不可能になります。",
 	'config-register-globals' => "'''警告：PHPの<code>[http://php.net/register_globals register_globals]</code>オプションが有効になっています。'''
 '''可能なら無効化してください。'''
 MediaWikiは動作しますが、サーバーは、潜在的なセキュリティ脆弱性を露呈します。",
@@ -7662,7 +7674,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
 	'config-install-mainpage' => '既定の接続でメインページを作成',
 	'config-install-mainpage-failed' => 'メインページを挿入できませんでした:$1',
-	'config-install-done' => "'''おめでとうございます！'''
+	'config-install-done' => "'''おめでとうございます！''' 
 MediaWikiのインストールに成功しました。
 
 <code>LocalSettings.php</code>ファイルが生成されました。
@@ -12128,7 +12140,7 @@ GFDL может быть использована, но она сложна дл
 	'config-install-interwiki-exists' => "'''Предупреждение''': в интервики-таблице, кажется, уже есть записи.
 Создание стандартного списка пропущено.",
 	'config-install-stats' => 'Статистика инициализации',
-	'config-install-keys' => 'Создание секретного ключа',
+	'config-install-keys' => 'Создание секретных ключей',
 	'config-insecure-keys' => "'''Предупреждение.''' {{PLURAL:$2|Ключ безопасности $1, созданный во время установки, недостаточно надёжен|Ключи безопасности $1, созданные во время установки, недостаточно надёжны}}. Рассмотрите возможность {{PLURAL:$2|его|их}} изменения вручную.",
 	'config-install-sysop' => 'Создание учётной записи администратора',
 	'config-install-subscribe-fail' => 'Не удаётся подписаться на mediawiki-announce',

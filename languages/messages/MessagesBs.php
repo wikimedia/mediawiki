@@ -663,6 +663,8 @@ Za prijevode, molimo Vas koristite [http://translatewiki.net/wiki/Main_Page?setl
 'cascadeprotected'     => 'Uređivanje ove stranice je zabranjeno jer sadrži {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja iz razloga:
 $2',
 'namespaceprotected'   => "Vi nemate dozvulu da mijenjate stranicu '''$1'''.",
+'customcssprotected'   => 'Nemate dozvolu za mijenjanje ove CSS stranice jer sadrži osobne postavke nekog drugog korisnika.',
+'customjsprotected'    => 'Nemate dozvolu za mijenjanje ove JavaScript stranice jer sadrži osobne postavke nekog drugog korisnika.',
 'ns-specialprotected'  => 'Specijalne stranice se ne mogu uređivati.',
 'titleprotected'       => 'Naslov stranice je zaštićen od postavljanja od strane korisnika [[User:$1|$1]].
 Iz razloga "\'\'$2\'\'".',
@@ -3431,23 +3433,43 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpsdirection-m' => 'Magnetski smijer',
 
 'exif-ycbcrpositioning-1' => 'Centrirano',
+'exif-ycbcrpositioning-2' => 'Uporedo',
 
 'exif-dc-contributor' => 'Autori',
+'exif-dc-coverage'    => 'Prostorni ili vremenski okvir medije',
 'exif-dc-date'        => 'Datum(i)',
 'exif-dc-publisher'   => 'Izdavač',
 'exif-dc-relation'    => 'Povezana medija',
 'exif-dc-rights'      => 'Prava',
 'exif-dc-source'      => 'Izvor medije',
+'exif-dc-type'        => 'Vrsta medije',
 
 'exif-rating-rejected' => 'Odbijeno',
 
 'exif-isospeedratings-overflow' => 'Više od 65535',
 
+'exif-iimcategory-ace' => 'Umjetnosti, kultura i zabava',
+'exif-iimcategory-clj' => 'Kriminal i zakon',
+'exif-iimcategory-dis' => 'Katastrofe i nesreće',
+'exif-iimcategory-fin' => 'Ekonomija i posao',
+'exif-iimcategory-edu' => 'Obrazovanje',
+'exif-iimcategory-evn' => 'Okolina',
 'exif-iimcategory-hth' => 'Zdravlje',
+'exif-iimcategory-hum' => 'Ljudski interes',
 'exif-iimcategory-lab' => 'Rad',
+'exif-iimcategory-lif' => 'Način života i razonoda',
 'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Religija i vjerovanje',
+'exif-iimcategory-sci' => 'Nauka i tehnologija',
+'exif-iimcategory-soi' => 'Društvena pitanja',
 'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Rat, sukob i nemir',
 'exif-iimcategory-wea' => 'Vrijeme',
+
+'exif-urgency-normal' => 'Normalno ($1)',
+'exif-urgency-low'    => 'Nisko ( $1 )',
+'exif-urgency-high'   => 'Visoko ($1)',
+'exif-urgency-other'  => 'Korisnički određen prioritet ($1)',
 
 # External editor support
 'edit-externally'      => 'Izmjeni ovu datoteku koristeći vanjski program',
