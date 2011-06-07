@@ -1743,7 +1743,7 @@ class User {
 			$wgMemc->set( $key, $val ? 1 : 0, 1800 );
 		}
 		if ( $changed ) {
-			$this->invalidateCache( true );
+			$this->invalidateCache();
 		}
 	}
 
@@ -1776,15 +1776,13 @@ class User {
 	 * Immediately touch the user data cache for this account.
 	 * Updates user_touched field, and removes account data from memcached
 	 * for reload on the next hit.
-	 *
-	 * @param $doDatabaseUpdate bool Do you really need to update the database? Really?
 	 */
-	function invalidateCache( $doDatabaseUpdate = false ) {
+	function invalidateCache() {
 		if( wfReadOnly() ) {
 			return;
 		}
 		$this->load();
-		if( $this->mId && $doDatabaseUpdate ) {
+		if( $this->mId ) {
 			$this->mTouched = self::newTouchedTimestamp();
 
 			$dbw = wfGetDB( DB_MASTER );
@@ -2247,7 +2245,7 @@ class User {
 		$this->mGroups[] = $group;
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
 
-		$this->invalidateCache( true );
+		$this->invalidateCache();
 	}
 
 	/**
@@ -2269,7 +2267,7 @@ class User {
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
 
-		$this->invalidateCache( true );
+		$this->invalidateCache();
 	}
 
 	/**
