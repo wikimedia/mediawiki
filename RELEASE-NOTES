@@ -38,6 +38,13 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * The lowest supported version of PHP is now 5.2.3. If necessary, please
   upgrade PHP prior to upgrading MediaWiki.
 
+=== Changes since 1.17 beta 1 ===
+
+* (bug 28840) Reduce the collateral damage caused by the fix for bug 28235 (XSS
+  on Internet Explorer 6 due to a file extension in the query string) by 
+  reducing the number of URLs that are blocked, and by redirecting the request
+  to a safer URL where possible instead of blocking it. 
+
 === Configuration changes in 1.17 ===
 
 * $wgLogAutocreatedAccounts controls whether autocreation of accounts is logged

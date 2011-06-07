@@ -736,6 +736,62 @@ class WebRequest {
 	}
 
 	/**
+	 * Check if Internet Explorer will detect an incorrect cache extension in 
+	 * PATH_INFO or QUERY_STRING. If the request can't be allowed, show an error
+	 * message or redirect to a safer URL. Returns true if the URL is OK, and
+	 * false if an error message has been shown and the request should be aborted.
+	 */
+	public function checkUrlExtension( $extWhitelist = array() ) {
+		global $wgScriptExtension;
+		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
+		if ( IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist ) ) {
+			if ( !$this->wasPosted() ) {
+				$newUrl = IEUrlExtension::fixUrlForIE6(
+					$this->getFullRequestURL(), $extWhitelist );
+				if ( $newUrl !== false ) {
+					$this->doSecurityRedirect( $newUrl );
+					return false;
+				}
+			}
+			wfHttpError( 403, 'Forbidden',
+				'Invalid file extension found in the path info or query string.' );
+			
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Attempt to redirect to a URL with a QUERY_STRING that's not dangerous in 
+	 * IE 6. Returns true if it was successful, false otherwise.
+	 */
+	protected function doSecurityRedirect( $url ) {
+		header( 'Location: ' . $url );
+		header( 'Content-Type: text/html' );
+		$encUrl = htmlspecialchars( $url );
+		echo <<<HTML
+<html>
+<head>
+<title>Security redirect</title>
+</head>
+<body>
+<h1>Security redirect</h1>
+<p>
+We can't serve non-HTML content from the URL you have requested, because 
+Internet Explorer would interpret it as an incorrect and potentially dangerous
+content type.</p>
+<p>Instead, please use <a href="$encUrl">this URL</a>, which is the same as the URL you have requested, except that 
+"&amp;*" is appended. This prevents Internet Explorer from seeing a bogus file 
+extension.
+</p>
+</body>
+</html>
+HTML;
+		echo "\n";
+		return true;
+	}
+
+	/**
 	 * Returns true if the PATH_INFO ends with an extension other than a script
 	 * extension. This could confuse IE for scripts that send arbitrary data which
 	 * is not HTML but may be detected as such.
@@ -753,30 +809,8 @@ class WebRequest {
 	 */
 	public function isPathInfoBad() {
 		global $wgScriptExtension;
-
-		if ( isset( $_SERVER['QUERY_STRING'] ) 
-			&& preg_match( '/\.[^\\/:*?"<>|%]+(#|\?|$)/i', $_SERVER['QUERY_STRING'] ) )
-		{
-			// Bug 28235
-			// Block only Internet Explorer, and requests with missing UA 
-			// headers that could be IE users behind a privacy proxy.
-			if ( !isset( $_SERVER['HTTP_USER_AGENT'] ) 
-				|| preg_match( '/; *MSIE/', $_SERVER['HTTP_USER_AGENT'] ) )
-			{
-				return true;
-			}
-		}
-
-		if ( !isset( $_SERVER['PATH_INFO'] ) ) {
-			return false;
-		}
-		$pi = $_SERVER['PATH_INFO'];
-		$dotPos = strrpos( $pi, '.' );
-		if ( $dotPos === false ) {
-			return false;
-		}
-		$ext = substr( $pi, $dotPos );
-		return !in_array( $ext, array( $wgScriptExtension, '.php', '.php5' ) );
+		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
+		return IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist );
 	}
 
 	/**
@@ -1025,7 +1059,11 @@ class FauxRequest extends WebRequest {
 		$this->session[$key] = $data;
 	}
 
-	public function isPathInfoBad() {
+	public function isPathInfoBad( $extWhitelist = array() ) {
 		return false;
+	}
+
+	public function checkUrlExtension( $extWhitelist = array() ) {
+		return true;
 	}
 }

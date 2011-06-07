@@ -475,6 +475,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/libs
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
+	'IEUrlExtension' => 'includes/libs/IEUrlExtension.php',
 	'Spyc' => 'includes/libs/spyc.php',
 
 	# includes/media
