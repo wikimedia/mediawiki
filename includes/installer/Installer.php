@@ -1239,7 +1239,7 @@ abstract class Installer {
 		require( "$IP/includes/DefaultSettings.php" );
 
 		foreach( $exts as $e ) {
-   			require_once( $IP . '/extensions' . "/$e/$e.php" );
+   			require_once( "$IP/extensions/$e/$e.php" );
 		}
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
