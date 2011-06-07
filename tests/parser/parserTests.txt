@@ -3926,7 +3926,7 @@ pst
 !! result
 * [[Special:Contributions/127.0.0.1|127.0.0.1]]
 * <noinclude>[[Special:Contributions/127.0.0.1|127.0.0.1]]</noinclude>
-* <includeonly>[[Special:Contributions/127.0.0.1|127.0.0.1]]</includeonly>
+* <includeonly>~~~</includeonly>
 * <onlyinclude>[[Special:Contributions/127.0.0.1|127.0.0.1]]</onlyinclude>
 !! end
 
@@ -3934,7 +3934,7 @@ pst
 !! test
 pre-save transform: Signature expansion in nowiki tags (bug 93)
 !! options
-pst disabled
+pst
 !! input
 Shall not expand:
 
