@@ -236,7 +236,7 @@ to add events to the MediaWiki code.
 
 'AbortAutoAccount': Return false to cancel automated local account creation, where normally authentication against an external auth plugin would be creating a local account.
 $user: the User object about to be created (read-only, incomplete)
-&$abortMessage: out parameter: error message to be displayed to user
+&$abortMsg: out parameter: name of error message to be displayed to user
 
 'AbortAutoblock': Return false to cancel an autoblock.
 $autoblockip: The IP going to be autoblocked.
@@ -262,7 +262,7 @@ $reason: the reason for the move (added in 1.13)
 
 'AbortNewAccount': Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
-&$message: out parameter: error message to display on abort
+&$msg: out parameter: name of error message to display on abort
 
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
