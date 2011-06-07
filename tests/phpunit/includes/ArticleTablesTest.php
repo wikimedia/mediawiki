@@ -5,9 +5,7 @@
  * @group Destructive
  */
 class ArticleTablesTest extends MediaWikiLangTestCase {
-	/**
- 	 * @group Broken
-	 */
+
 	function testbug14404() {
 		global $wgUser, $wgContLang, $wgLanguageCode, $wgLang;
 		
