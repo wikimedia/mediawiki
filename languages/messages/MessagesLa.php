@@ -12,6 +12,7 @@
  * @author Esteban97
  * @author LeighvsOptimvsMaximvs
  * @author McDutchie
+ * @author MissPetticoats
  * @author Omnipaedista
  * @author OrbiliusMagister
  * @author Ornil
@@ -1457,6 +1458,7 @@ Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis 
 # Watchlist
 'watchlist'          => 'Paginae custoditae',
 'mywatchlist'        => 'Paginae custoditae',
+'watchlistfor2'      => 'Pro $1 $2',
 'nowatchlist'        => 'Nullas paginas custodis.',
 'watchlistanontext'  => 'Necesse est $1 ad indicem paginarum custoditarum inspiciendum vel recensendum.',
 'watchnologin'       => 'Conventum non est apertum',
