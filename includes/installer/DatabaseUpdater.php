@@ -66,6 +66,7 @@ abstract class DatabaseUpdater {
 			$this->maintenance = new FakeMaintenance;
 		}
 		$this->initOldGlobals();
+		$this->loadExtensions();
 		wfRunHooks( 'LoadExtensionSchemaUpdates', array( $this ) );
 	}
 
@@ -88,7 +89,25 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * @static
+	 * Loads LocalSettings.php, if needed, and initialises everything needed for LoadExtensionSchemaUpdates hook
+	 */
+	private function loadExtensions() {
+		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
+			return; // already loaded
+		}
+		$vars = Installer::getExistingLocalSettings();
+		if ( !$vars ) {
+			return; // no LocalSettings found
+		}
+		if ( !isset( $vars['wgHooks'] ) && !isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+			return;
+		}
+		global $wgHooks, $wgAutoloadClasses;
+		$wgHooks['LoadExtensionSchemaUpdates'] = $vars['wgHooks']['LoadExtensionSchemaUpdates'];
+		$wgAutoloadClasses = $wgAutoloadClasses + $vars['wgAutoloadClasses'];
+	}
+
+	/**
 	 * @throws MWException
 	 * @param DatabaseBase $db
 	 * @param bool $shared

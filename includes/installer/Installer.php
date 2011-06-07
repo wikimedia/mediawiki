@@ -453,7 +453,7 @@ abstract class Installer {
 	 *
 	 * @return Array
 	 */
-	public function getExistingLocalSettings() {
+	public static function getExistingLocalSettings() {
 		global $IP;
 
 		wfSuppressWarnings();
