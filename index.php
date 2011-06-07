@@ -220,7 +220,7 @@ function wfDie( $errorMsg ){
 		</style>
 	</head>
 	<body>
-		<img src="<?php echo $logo; ?>" alt='The MediaWiki logo' />
+		<img src="<?php echo $encLogo; ?>" alt='The MediaWiki logo' />
 		<h1>MediaWiki <?php echo $version; ?> internal error</h1>
 		<div class='error'> <?php echo $errorMsg; ?> </div>
 	</body>
