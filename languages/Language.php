@@ -1202,7 +1202,7 @@ class Language {
 	private static function tsToIranian( $ts ) {
 		$gy = substr( $ts, 0, 4 ) -1600;
 		$gm = substr( $ts, 4, 2 ) -1;
-		$gd = (int)substr( $ts, 6, 2 ) -1;
+		$gd = substr( $ts, 6, 2 ) -1;
 
 		# Days passed from the beginning (including leap years)
 		$gDayNo = 365 * $gy
