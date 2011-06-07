@@ -278,6 +278,7 @@ class DatabaseOracle extends DatabaseBase {
 		# removed putenv calls because they interfere with the system globaly
 		$this->doQuery( 'ALTER SESSION SET NLS_TIMESTAMP_FORMAT=\'DD-MM-YYYY HH24:MI:SS.FF6\'' );
 		$this->doQuery( 'ALTER SESSION SET NLS_TIMESTAMP_TZ_FORMAT=\'DD-MM-YYYY HH24:MI:SS.FF6\'' );
+		$this->doQuery( 'ALTER SESSION SET NLS_NUMERIC_CHARACTERS=\'.,\'' );
 		return $this->mConn;
 	}
 
@@ -298,7 +299,7 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function execFlags() {
-		return $this->mTrxLevel ? OCI_DEFAULT : OCI_COMMIT_ON_SUCCESS;
+		return $this->mTrxLevel ? OCI_NO_AUTO_COMMIT : OCI_COMMIT_ON_SUCCESS;
 	}
 
 	function doQuery( $sql ) {
@@ -548,7 +549,7 @@ class DatabaseOracle extends DatabaseBase {
 				}
 
 				$val = ( $wgContLang != null ) ? $wgContLang->checkTitleEncoding( $val ) : $val;
-				if ( oci_bind_by_name( $stmt, ":$col", $val ) === false ) {
+				if ( oci_bind_by_name( $stmt, ":$col", $val, -1, SQLT_CHR ) === false ) {
 					$e = oci_error( $stmt );
 					$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 					return false;
@@ -686,7 +687,14 @@ class DatabaseOracle extends DatabaseBase {
 	 */
 	private function getSequenceData( $table ) {
 		if ( $this->sequenceData == null ) {
-			$result = $this->doQuery( 'SELECT lower(us.sequence_name), lower(utc.table_name), lower(utc.column_name) from user_sequences us, user_tab_columns utc where us.sequence_name = utc.table_name||\'_\'||utc.column_name||\'_SEQ\'' );
+			$result = $this->doQuery( "SELECT lower(asq.sequence_name),
+				   lower(atc.table_name),
+				   lower(atc.column_name)
+			  FROM all_sequences asq, all_tab_columns atc
+			 WHERE decode(atc.table_name, '{$this->mTablePrefix}MWUSER', '{$this->mTablePrefix}USER', atc.table_name) || '_' ||
+				   atc.column_name || '_SEQ' = '{$this->mTablePrefix}' || asq.sequence_name
+			   AND asq.sequence_owner = '{$this->mDBname}'
+			   AND atc.owner = '{$this->mDBname}'" );
 
 			while ( ( $row = $result->fetchRow() ) !== false ) {
 				$this->sequenceData[$this->tableName( $row[1] )] = array(
@@ -695,7 +703,7 @@ class DatabaseOracle extends DatabaseBase {
 				);
 			}
 		}
-
+		$table = strtolower( $this->removeIdentifierQuotes( $this->tableName( $table ) ) );
 		return ( isset( $this->sequenceData[$table] ) ) ? $this->sequenceData[$table] : false;
 	}
 
@@ -810,19 +818,15 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseOracle::duplicateTableStructure' ) {
-		global $wgDBprefix;
-		$this->setFlag( DBO_DDLMODE );
-		
 		$temporary = $temporary ? 'TRUE' : 'FALSE';
 
 		$newName = strtoupper( $newName );
 		$oldName = strtoupper( $oldName );
 
-		$tabName = substr( $newName, strlen( $wgDBprefix ) );
+		$tabName = substr( $newName, strlen( $this->mTablePrefix ) );
 		$oldPrefix = substr( $oldName, 0, strlen( $oldName ) - strlen( $tabName ) );
-		$newPrefix = strtoupper( $wgDBprefix );
+		$newPrefix = strtoupper( $this->mTablePrefix );
 
-		$this->clearFlag( DBO_DDLMODE );
 		return $this->doQuery( "BEGIN DUPLICATE_TABLE( '$tabName', '$oldPrefix', '$newPrefix', $temporary ); END;" );
 	}
 
@@ -936,7 +940,7 @@ class DatabaseOracle extends DatabaseBase {
 		} else {
 			$count = 0;
 		}
-		return $count != 0;
+		return $count;
 	}
 
 	/**
@@ -1010,12 +1014,17 @@ class DatabaseOracle extends DatabaseBase {
 
 	function begin( $fname = 'DatabaseOracle::begin' ) {
 		$this->mTrxLevel = 1;
+		$this->doQuery( 'SET CONSTRAINTS ALL DEFERRED' );
 	}
 
 	function commit( $fname = 'DatabaseOracle::commit' ) {
 		if ( $this->mTrxLevel ) {
-			oci_commit( $this->mConn );
+			$ret = oci_commit( $this->mConn );
+			if ( !$ret ) {
+				throw new DBUnexpectedError( $this, $this->lastError() );
+			}
 			$this->mTrxLevel = 0;
+			$this->doQuery( 'SET CONSTRAINTS ALL IMMEDIATE' );
 		}
 	}
 
@@ -1023,6 +1032,7 @@ class DatabaseOracle extends DatabaseBase {
 		if ( $this->mTrxLevel ) {
 			oci_rollback( $this->mConn );
 			$this->mTrxLevel = 0;
+			$this->doQuery( 'SET CONSTRAINTS ALL IMMEDIATE' );
 		}
 	}
 
