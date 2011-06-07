@@ -703,7 +703,7 @@ class Block {
 	public function getRangeStart() {
 		switch( $this->type ) {
 			case self::TYPE_USER:
-				return null;
+				return '';
 			case self::TYPE_IP:
 				return IP::toHex( $this->target );
 			case self::TYPE_RANGE:
@@ -720,7 +720,7 @@ class Block {
 	public function getRangeEnd() {
 		switch( $this->type ) {
 			case self::TYPE_USER:
-				return null;
+				return '';
 			case self::TYPE_IP:
 				return IP::toHex( $this->target );
 			case self::TYPE_RANGE:
