@@ -196,7 +196,8 @@ class ImageListPager extends TablePager {
 				static $imgfile = null;
 				if ( $imgfile === null ) $imgfile = wfMsg( 'imgfile' );
 
-				$filePage = Title::makeTitle( NS_FILE, $value );
+				// Weird files can maybe exist? Bug 
+				$filePage = Title::makeTitleSafe( NS_FILE, $value );
 				if( $filePage ) {
 					$link = $this->getSkin()->linkKnown( $filePage, htmlspecialchars( $filePage->getText() ) );
 					$download = Xml::element( 'a',
