@@ -9212,6 +9212,16 @@ Special characters in embedded file links (bug 27679)
 !! end
 
 
+!! test
+Confirm that 'apos' named character reference doesn't make it to output (not legal in HTML 4)
+!! input
+Text&apos;s been normalized?
+!! result
+<p>Text&#39;s been normalized?
+</p>
+!! end
+
+
 TODO:
 more images
 more tables
