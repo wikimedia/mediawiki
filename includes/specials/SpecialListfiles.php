@@ -196,7 +196,7 @@ class ImageListPager extends TablePager {
 				static $imgfile = null;
 				if ( $imgfile === null ) $imgfile = wfMsg( 'imgfile' );
 
-				// Weird files can maybe exist? Bug 
+				// Weird files can maybe exist? Bug 22227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );
 				if( $filePage ) {
 					$link = $this->getSkin()->linkKnown( $filePage, htmlspecialchars( $filePage->getText() ) );
