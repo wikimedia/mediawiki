@@ -14,6 +14,7 @@ $fallback = 'ur';
 
 $messages = array(
 # Dates
+'sat'           => 'شمبے',
 'january'       => 'جنوری',
 'february'      => 'فروری',
 'march'         => 'مارچ',
@@ -70,6 +71,15 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'تلاش کورے',
 
+# Vector skin
+'vector-action-move'  => 'منتقل کورے',
+'vector-view-edit'    => 'ایڈٹ کورے',
+'vector-view-history' => 'تاریخچہ',
+'vector-view-view'    => 'راوے',
+'actions'             => 'ایکشنز',
+'namespaces'          => 'نامان ژاغہ',
+'variants'            => 'الگ',
+
 'errorpagetitle'   => 'خطاء',
 'returnto'         => ' آچی $1۔',
 'tagline'          => '{{SITENAME}}ھموغاری',
@@ -108,6 +118,8 @@ $messages = array(
 'aboutpage'            => 'Project:کھوار ویکیپیڈیو تعارف',
 'copyright'            => 'تمام مواد $1 تحتہ میانسار شیر',
 'copyrightpage'        => '{{ns:project}}:حقوق تصانیف',
+'currentevents'        => 'حالیہ واقعات',
+'currentevents-url'    => 'Project:حالیہ واقعات',
 'disclaimers'          => 'اعلانات',
 'disclaimerpage'       => 'Project:عام کھوار اعلان',
 'edithelp'             => 'مدد براۓ ترمیم',
@@ -173,6 +185,7 @@ $1 (صفحہ موجود نیکی)',
 'logout'                  => 'لاگ آوٹ',
 'userlogout'              => 'لاگ آوٹ',
 'nologinlink'             => 'کھاتہ ساوزاوے',
+'gotaccountlink'          => 'لاگن بوس',
 'mailmypassword'          => 'نوغ پاسورڈ بشلی کغازو زریعا انځاوے',
 
 # Edit page toolbar
@@ -265,6 +278,9 @@ $1 (صفحہ موجود نیکی)',
 'prevn'                     => 'آچھو{{PLURAL:$1|$1}}',
 'nextn'                     => 'پروشٹیو{{PLURAL:$1|$1}}',
 'viewprevnext'              => 'لوڑے($1 {{int:pipe-separator}} $2) ($3)۔',
+'searchmenu-new'            => "↓'''ھیہ کھوار ویکیپیڈیا صفحہ \"[[:\$1]]\" تخلیق کورے!'''",
+'searchprofile-articles'    => 'مشمولاتی صفحات',
+'searchprofile-images'      => 'ملٹی میڈیا',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 لوظ|$2 الفاظ}})',
 'search-redirect'           => '(رجوع مکرر $1)',
 'search-section'            => '(حصہ $1)',
@@ -274,6 +290,7 @@ $1 (صفحہ موجود نیکی)',
 'search-interwiki-more'     => '(مزید)',
 'search-mwsuggest-enabled'  => 'تجویزان سوم جستہ',
 'search-mwsuggest-disabled' => 'کیہ تجویز نیکی',
+'searchall'                 => 'کھل',
 'nonefound'                 => "'''یاددہانی''': عموماً صرف ای کما نامان تلاش کورونو بونیان۔
 تمام مواد (بشمول تبادلۂ خیال صفحات، سانچہ جات وغیران) تلاش کوریکو بچے تان استفساراری پروشٹی ''all:'' لیگاوے، یا تان پسندو نامو بطور سابقہ استعمال کورے",
 'powersearch'               => 'ایڈوانس تلاش',
@@ -285,6 +302,7 @@ $1 (صفحہ موجود نیکی)',
 # Preferences page
 'preferences'   => 'ترجیحات',
 'mypreferences' => 'مہ ترجیہات',
+'youremail'     => 'بشلی کغاز',
 
 # Groups
 'group-sysop' => 'کھوار ویکیپیڈیو منتظمین',
@@ -331,6 +349,7 @@ $1 (صفحہ موجود نیکی)',
 'uploadedimage' => 'زبراثقال (اپ لوڈ) بچے"[[$1]]"',
 
 # File description page
+'file-anchor-link'          => 'فایل',
 'filehist'                  => 'مسلو تاریخ',
 'filehist-current'          => 'حالیہ',
 'filehist-datetime'         => 'تاریخ/وخت',
@@ -341,6 +360,9 @@ $1 (صفحہ موجود نیکی)',
 'imagelinks'                => 'مسلو روابط',
 'linkstoimage'              => 'ھیہ مسلو سوم درج ذیل {{PLURAL:$1|صفحہ مربوط شیر|$1 صفحات مربوط شینی}}',
 'uploadnewversion-linktext' => 'ھیہ مسلو نوغ ورژنو اپلوڈ کورے',
+
+# Random page
+'randompage' => 'بےترتیب صفحہ',
 
 # Statistics
 'statistics' => 'اعداد و شمار',
@@ -438,6 +460,7 @@ $1 (صفحہ موجود نیکی)',
 
 # Undelete
 'undeletelink'     => 'لوڑے/بحال کورے',
+'undeleteviewlink' => 'لوڑے',
 'undeletedarticle' => 'بحال "[[$1]]"',
 
 # Namespace form on various pages
@@ -529,6 +552,7 @@ $1 (صفحہ موجود نیکی)',
 'tooltip-search'                  => 'تلاش {{SITENAME}}',
 'tooltip-search-go'               => 'اگر بالکل ھیہ نامو سورا صفحہ کہ موجود شیر تھے ھتے صفحہا بوغے',
 'tooltip-search-fulltext'         => 'ھیہ متنو بچے صفحاتن تلاش کورے',
+'tooltip-p-logo'                  => 'سرورقا بوغے',
 'tooltip-n-mainpage'              => 'اصلی صفحہا بوغے',
 'tooltip-n-mainpage-description'  => 'اصلی صفحہ',
 'tooltip-n-portal'                => 'کھوار ویکیپیڈیو منصوبو متعلقہ، تو کیاغ کوریکو بوس، اشناریان کورا تلاش کوریلک',

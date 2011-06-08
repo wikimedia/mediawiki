@@ -24,13 +24,18 @@ $messages = array(
 'tog-extendwatchlist'       => 'Kambangkan senarai pantauan untuak malihek sado parubahan, indak nan baru se',
 'tog-usenewrc'              => 'Gunoan parubahan terkini tingkek lanjut (perlu JavaScript)',
 'tog-numberheadings'        => 'Agiah nomor judua sacaro otomatis',
+'tog-showtoolbar'           => 'Tampilkan bilah suntiang (paralu JavaScript)',
 'tog-editsection'           => 'Fungsikan penyuntingan subbagian malalui [sunting] pranala',
-'tog-rememberpassword'      => 'Kana log masuak denai di komputer ko (salamo of $1 {{PLURAL:$1|hari|hari}})',
+'tog-rememberpassword'      => 'Kana log masuak denai di peramban ko (salamo $1 {{PLURAL:$1|hari|hari}})',
 'tog-watchcreations'        => 'Tambahkan halaman nan denai buek ka senarai pantauan',
 'tog-watchdefault'          => 'Tambahkan halaman yang denai sunting ka senarai pantauan',
 'tog-watchmoves'            => 'Tambahkan halaman yang denai pindahkan ka senarai pantauan',
 'tog-watchdeletion'         => 'Tambahkan halaman yang denai hapuih ka senarai pantauan',
 'tog-previewontop'          => 'Tampilkan pratonton sabalun kotak suntiang',
+'tog-enotifwatchlistpages'  => 'E-mail ambo jiko laman nan denai jago lah barubah',
+'tog-enotifusertalkpages'   => 'E-mail ambo jiko laman barundiang denai lah barubah',
+'tog-enotifminoredits'      => 'E-mail ambo walau hanyo ado parubahan saketek',
+'tog-enotifrevealaddr'      => 'Cogokan alamaik e-mail den pado e-mail notifikasi',
 
 # Dates
 'sunday'        => 'Akaik',
@@ -147,18 +152,19 @@ $messages = array(
 'jumptosearch'     => 'cari',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'      => 'Tentang {{SITENAME}}',
-'aboutpage'      => 'Project:Perihal',
-'copyright'      => 'Kandungan tasadio dalam $1',
-'copyrightpage'  => '{{ns:project}}:Hak cipta',
-'disclaimers'    => 'Penyangkalan',
-'disclaimerpage' => 'Project:Penyangkalan umum',
-'edithelp'       => 'Bantuan suntingan',
-'edithelppage'   => 'Help:Suntingan',
-'helppage'       => 'Help:Kandungan',
-'mainpage'       => 'Halaman Utamo',
-'privacy'        => 'Kebijakan privasi',
-'privacypage'    => 'Project:Kebijakan privasi',
+'aboutsite'            => 'Tentang {{SITENAME}}',
+'aboutpage'            => 'Project:Perihal',
+'copyright'            => 'Kandungan tasadio dalam $1',
+'copyrightpage'        => '{{ns:project}}:Hak cipta',
+'disclaimers'          => 'Penyangkalan',
+'disclaimerpage'       => 'Project:Penyangkalan umum',
+'edithelp'             => 'Bantuan suntingan',
+'edithelppage'         => 'Help:Suntingan',
+'helppage'             => 'Help:Kandungan',
+'mainpage'             => 'Halaman Utamo',
+'mainpage-description' => 'Laman Utamo',
+'privacy'              => 'Kebijakan privasi',
+'privacypage'          => 'Project:Kebijakan privasi',
 
 'badaccess' => 'Kesalahan hak akses',
 
@@ -662,7 +668,7 @@ Pranala-pranala salanjuiknyo pado barih nan samo dianggap sabagai pengecualian, 
 'metadata-help'     => 'Berkas ko mengandung informasi tambahan yang mungkin ditambahkan dek kamera digital atau pemindai yang digunokan untuak mambuek atau mendigitalisasi berkas. Jiko berkas ko lah mangalami modifikasi, rincian yang ado mungkin indak sacaro penuh merefleksikan modifikasi berkas tu.',
 'metadata-expand'   => 'Tampilkan rincian tambahan',
 'metadata-collapse' => 'Suruakkan rincian tambahan',
-'metadata-fields'   => 'Pesan EXIF metadata ko akan ditampilkan pado laman informasi gambar jiko tabel metadata disuruakkan.
+'metadata-fields'   => 'Tapak metadata gambar nan disenaraikan dalam pasan ko akan di masuakan pado tampilan laman gambar katiko tabel metadata disuruakkan. 
 Nan lainnyo akan tasuruak sacaro default.
 * make
 * model

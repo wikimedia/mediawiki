@@ -551,8 +551,8 @@ $1',
 'mainpage'             => 'Veurblad',
 'mainpage-description' => 'Veurblad',
 'policy-url'           => 'Project:Beleid',
-'portal'               => 'Gebrukerspertaol',
-'portal-url'           => 'Project:Gebrukerspertaol',
+'portal'               => 'Gebrukersportaol',
+'portal-url'           => 'Project:Gebrukersportaol',
 'privacy'              => 'Gegevensbeleid',
 'privacypage'          => 'Project:Gegevensbeleid',
 
@@ -647,7 +647,7 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'readonly_lag'         => 'De databanke is autematisch beveilig, zodat de onder-eschikken servers zich kunnen synchroniseren mit de centrale server.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
-'fileappenderrorread'  => '"$1" kon neet elezen wönnen tiejens \'t toevoegen.',
+'fileappenderrorread'  => '"$1" kon neet elezen wönnen tiejens \'t inlaojen.',
 'fileappenderror'      => 'Kon "$1" neet bie "$2" doon.',
 'filecopyerror'        => 'Kon bestaand "$1" neet naor "$2" kopiëren.',
 'filerenameerror'      => 'Bestaansnaamwieziging "$1" naor "$2" neet meugelijk.',
@@ -988,7 +988,7 @@ De leste logboekregel steet hieronder:",
 'template-protected'               => '(beveilig)',
 'template-semiprotected'           => '(semibeveilig)',
 'hiddencategories'                 => 'Disse pagina vuilt in de volgende verbörgen {{PLURAL:$1|kattegerie|kattegerieën}}:',
-'edittools'                        => '<!-- Disse tekse steet onder bewarkings- en bestaanstoevoegingsformelieren. -->',
+'edittools'                        => '<!-- Disse tekse steet onder de bewarkings- en bestaandinlaodformelieren. -->',
 'nocreatetitle'                    => "'t Anmaken van pagina's is beteund",
 'nocreatetext'                     => "Disse webstee hef de meugelijkheid um nieje pagina's an te maken beteund. Je kunnen pagina's dee al bestaon wiezigen of je kunnen je [[Special:UserLogin|anmelden of een gebrukerspagina anmaken]].",
 'nocreate-loggedin'                => "Je hemmen gien toestemming um nieje pagina's an te maken.",
@@ -1334,7 +1334,7 @@ Je kunnen oek disse egenereren standardcode gebruken: $1",
 'savedprefs'                    => 'Veurkeuren bin op-esleugen.',
 'timezonelegend'                => 'Tiedzone:',
 'localtime'                     => 'Plaoselijke tied:',
-'timezoneuseserverdefault'      => 'Tied van de server gebruken',
+'timezoneuseserverdefault'      => 'Wikistandard gebruken ($1)',
 'timezoneuseoffset'             => 'Aanders (tiedverschil angeven)',
 'timezoneoffset'                => 'Tiedverschil¹:',
 'servertime'                    => 'Tied op de server:',
@@ -1463,11 +1463,11 @@ Disse infermasie is zichbaor veur aandere gebrukers.',
 'right-move-rootuserpages'    => "Gebrukerspagina's van 't hoogste nivo herneumen",
 'right-movefile'              => 'Bestanen herneumen',
 'right-suppressredirect'      => 'Gien deurverwiezing anmaken op de ouwe naam as een pagina herneumd wönnen',
-'right-upload'                => 'Bestanen toevoegen',
+'right-upload'                => 'Bestanen opsturen',
 'right-reupload'              => 'Een bestaond bestaand overschrieven',
 'right-reupload-own'          => 'Bestanen overschrieven dee-j der zelf bie ezet hemmen',
 'right-reupload-shared'       => 'Media uut de edelen mediadatabanke plaoselijk overschrieven',
-'right-upload_by_url'         => 'Bestanen toevoegen via een verwiezing',
+'right-upload_by_url'         => 'Bestanen inlaojen via een webadres',
 'right-purge'                 => "'t Tussengeheugen van een pagina legen",
 'right-autoconfirmed'         => 'Behaandeld wonnen as een an-emelde gebruker',
 'right-bot'                   => 'Behaandeld wönnen as een eautomatiseerd preces',
@@ -1530,10 +1530,10 @@ Disse infermasie is zichbaor veur aandere gebrukers.',
 'action-move-subpages'        => "disse pagina en de biebeheurende subpagina's herneumen",
 'action-move-rootuserpages'   => "gebrukerspagina's van 't hoogste nivo herneumen",
 'action-movefile'             => 'dit bestaand herneumen',
-'action-upload'               => 'dit bestaand toevoegen',
+'action-upload'               => 'dit bestaand opsturen',
 'action-reupload'             => 'dit bestaonde bestaand overschrieven',
 'action-reupload-shared'      => 'een aander bestaand over dit bestaand uut de edeelde mediadatabanke hinne zetten.',
-'action-upload_by_url'        => 'dit bestaand vanof een webadres toevoegen',
+'action-upload_by_url'        => 'dit bestaand vanof een webadres inlaojen',
 'action-writeapi'             => 'de schrief-API bewarken',
 'action-delete'               => 'disse pagina vortdoon',
 'action-deleterevision'       => 'disse versie vortdoon',
@@ -1601,15 +1601,15 @@ Disse infermasie is zichbaor veur aandere gebrukers.',
 'recentchangeslinked-to'       => "Bekiek wiezigingen op pagina's mit verwiezingen naor disse pagina",
 
 # Upload
-'upload'                      => 'Bestaand toevoegen',
-'uploadbtn'                   => 'Bestaand toevoegen',
-'reuploaddesc'                => 'Weerumme naor bestaandtoevoegingsformelier.',
+'upload'                      => 'Bestaand opsturen',
+'uploadbtn'                   => 'Bestaand opsturen',
+'reuploaddesc'                => "Weerumme naor 't bestaandinlaodformelier.",
 'upload-tryagain'             => 'Bestaansbeschrieving biewarken',
 'uploadnologin'               => 'Neet an-emeld',
 'uploadnologintext'           => 'Je mutten [[Special:UserLogin|an-emeld]] ween um bestanen toe te kunnen voegen.',
-'upload_directory_missing'    => 'De bestaanstoevoegingsmap ($1) is vort en kon neet an-emaak wönnen deur de webserver.',
-'upload_directory_read_only'  => "Op 't mement ku-j gien bestanen toevoegen vanwegen technische preblemen ($1).",
-'uploaderror'                 => "Fout bie 't toevoegen van 't bestaand",
+'upload_directory_missing'    => 'De bestaandinlaodmap ($1) is vort en kon neet an-emaak wönnen deur de webserver.',
+'upload_directory_read_only'  => "Op 't mement ku-j gien bestanen opsturen vanwegen technische preblemen ($1).",
+'uploaderror'                 => "Fout bie 't inlaojen van 't bestaand",
 'upload-recreate-warning'     => "'''Waorschuwing: der is een bestaand mit disse naam vort-edaon of herneumd.'''
 
 Hieronder steet 't vortdologboek en 't herneumlogboek veur disse pagina:",
@@ -1661,6 +1661,7 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur een overzichte.',
 'large-file'                  => 'Bestanen mutten neet groter ween as $1, dit bestaand is $2.',
 'largefileserver'             => "'t Bestaand is groter as dat de server toesteet.",
 'emptyfile'                   => "'t Bestaand da-j toe-evoeg hemmen is leeg. Dit kan koemen deur een tikfout in de bestaansnaam. Kiek effen nao o-j dit bestaand wè bedoelen.",
+'windows-nonascii-filename'   => 'Disse wiki ondersteunt gien bestaansnamen mit speciale tekens.',
 'fileexists'                  => "Een ofbeelding mit disse naam besteet al; voeg 't bestaand onder een aandere naam toe.
 '''<tt>[[:$1]]</tt>''' [[$1|thumb]]",
 'filepageexists'              => "De beschrievingspagina veur dit bestaand bestung al op '''<tt>[[:$1]]</tt>''', mar der besteet nog gien bestaand mit disse naam.
@@ -1680,8 +1681,8 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'fileexists-forbidden'        => "Een bestaand mit disse naam besteet al, en kan neet overschreven wonnen.
 Voeg 't bestaand toe onder een aandere naam.
 [[File:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "Der besteet al een bestaand mit disse naam in de gezamelijke bestaanslokasie.
-A-j 't bestaand asnog toevoegen willen, gao dan weerumme en kies een aandere naam.
+'fileexists-shared-forbidden' => "Der besteet al een bestaand mit disse naam in de gezamenlijke bestaanslokasie.
+A-j 't bestaand evengoed op willen sturen, gao dan weerumme en kies een aandere naam.
 [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dit bestaand is liekeleens as {{PLURAL:$1|'t volgende bestaand|de volgende bestanen}}:",
 'file-deleted-duplicate'      => "Een bestaand dat liekeleens is an dit bestaand ([[:$1]]) is eerder al vort-edaon.
@@ -1691,11 +1692,11 @@ Bekiek 't vortdologboek veurda-j veurdan gaon.",
 'savefile'                    => 'Bestaand opslaon',
 'uploadedimage'               => 'Toe-evoeg: [[$1]]',
 'overwroteimage'              => 'Nieje versie van "[[$1]]" toe-evoeg',
-'uploaddisabled'              => 'Bestanen toevoegen is neet meugelijk.',
-'copyuploaddisabled'          => 'Bestanen toevoegen via een webadres is uut-eschakeld.',
-'uploadfromurl-queued'        => 'Joew bestaanstoevoeging is in de wachrie ezet.',
-'uploaddisabledtext'          => 'Bestaanstoevoegingen bin uut-eschakeld.',
-'php-uploaddisabledtext'      => "'t Toevoegen van PHP-bestanen is uut-eschakeld. Kiek de instellingen veur 't toevoegen van bestanen effen nao.",
+'uploaddisabled'              => "'t Opsturen van bestanen is uut-eschakeld.",
+'copyuploaddisabled'          => "'t Opsturen van bestanen via een webadres is uut-eschakeld.",
+'uploadfromurl-queued'        => 'Joew bestaand is in de wachrie ezet.',
+'uploaddisabledtext'          => "'t Opsturen van bestanen is uut-eschakeld.",
+'php-uploaddisabledtext'      => "'t Opsturen van PHP-bestanen is uut-eschakeld. Kiek de instellingen veur 't opsturen van bestanen effen nao.",
 'uploadscripted'              => 'Dit bestaand bevat HTML- of scriptcode dee verkeerd elezen kan wönnen deur de webkieker.',
 'uploadvirus'                 => "'t Bestaand bevat een virus! Gegevens: $1",
 'upload-source'               => 'Bronbestaand',
@@ -1704,30 +1705,32 @@ Bekiek 't vortdologboek veurda-j veurdan gaon.",
 'destfilename'                => 'Opslaon as (optioneel)',
 'upload-maxfilesize'          => 'Maximale bestaansgrootte: $1',
 'upload-description'          => 'Bestaansbeschrieving',
-'upload-options'              => "Instellingen veur 't toevoegen van bestanen",
+'upload-options'              => "Instellingen veur 't opsturen van bestanen",
 'watchthisupload'             => 'Volg dit bestaand',
-'filewasdeleted'              => "Een bestaand mit disse naam is al eerder vort-edaon. Kiek 't $1 nao veurda-j 't opniej toevoegen.",
-'upload-wasdeleted'           => "'''Waorschuwing: je bin een bestaand an 't toevoegen dee eerder al vort-edaon is.'''
+'filewasdeleted'              => "Een bestaand mit disse naam is al eerder vort-edaon. Kiek 't $1 nao veurda-j 't opniej opsturen.",
+'upload-wasdeleted'           => "'''Waorschuwing: je willen een bestaand opsturen dat eerder al vort-edaon is.'''
 
-Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand toe-evoeg wönnen.
+Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand op-estuurd wönnen.
 't Logboek mit alle vort-edaone infermasie ku-j hier vienen:",
-'filename-bad-prefix'         => "De naam van 't bestaand da-j toevoegen, begint mit '''\"\$1\"''', dit is een neet-beschrievende naam dee meestentieds autematisch deur een digitale camera egeven wonnen. Kies een dudelijke naam veur 't bestaand.",
-'upload-success-subj'         => 'Bestaanstoevoeging was succesvol',
+'filename-bad-prefix'         => "De naam van 't bestaand da-j opsturen, begint mit '''\"\$1\"''', dit is een neet-beschrievende naam dee meestentieds autematisch deur een digitale camera egeven wönnen. Kies een dudelijke naam veur 't bestaand.",
+'upload-success-subj'         => "'t Bestaand is op-estuurd",
 'upload-success-msg'          => "'t Bestaand [$2] steet derop. Je kunnen 't hier vienen: [[:{{ns:file}}:$1]]",
-'upload-failure-subj'         => "Prebleem bie 't toevoegen van 't bestaand",
-'upload-failure-msg'          => "Der was een prebleem bie 't toevoegen van [$2]:
+'upload-failure-subj'         => "Prebleem bie 't inlaojen van 't bestaand",
+'upload-failure-msg'          => "Der was een prebleem bie 't inlaojen van [$2]:
 
 $1",
-'upload-warning-subj'         => "Waorschuwing veur 't toevoegen van bestanen",
-'upload-warning-msg'          => "Der was een prebleem mit toevoegen van 't bestaand [$2].
-Gao weerumme naor 't [[Special:Upload/stash/$1|bestaanstoevoegingsformelier]] um dit prebleem te verhelpen.",
+'upload-warning-subj'         => "Waorschuwing veur 't opsturen van bestanen",
+'upload-warning-msg'          => "Der was een prebleem mit 't inlaojen van 't bestaand [$2].
+Gao weerumme naor 't [[Special:Upload/stash/$1|bestaandinlaodformelier]] um dit prebleem te verhelpen.",
 
 'upload-proto-error'        => 'Verkeerd protecol',
 'upload-proto-error-text'   => 'Um op disse meniere bestanen toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
 'upload-file-error'         => 'Interne fout',
 'upload-file-error-text'    => 'Bie ons gung der effen wat fout to een tiedelijk bestaand op de server an-emaak wönnen. Neem kontak op mit een [[Special:ListUsers/sysop|systeembeheerder]].',
-'upload-misc-error'         => "Onbekende fout bie 't toevoegen van joew bestaand",
-'upload-misc-error-text'    => "Der is bie 't toevoegen van 't bestaand een onbekende fout op-etrejen. Kiek effen nao of de verwiezing 't wel dut en prebeer 't opniej. As 't prebleem anhuilt, neem dan kontak op mit één van de systeembeheerders.",
+'upload-misc-error'         => "Onbekende fout bie 't inlaojen van joew bestaand",
+'upload-misc-error-text'    => "Der is bie 't inlaojen van 't bestaand een onbekende fout op-etrejen. 
+Kiek effen nao of de verwiezing 't wel dut en prebeer 't opniej. 
+As 't prebleem zo blif, neem dan kontak op mit één van de [[Special:ListUsers/sysop|systeembeheerders]].",
 'upload-too-many-redirects' => 'Der zatten te veul deurverwiezingen in de URL.',
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => 'Der is een HTTP-fout op-etrejen: $1',
@@ -1745,7 +1748,7 @@ Gao weerumme naor 't [[Special:Upload/stash/$1|bestaanstoevoegingsformelier]] um
 Joew server is neet in-esteld um disse infermasie deur te geven.
 Meschien gebruuk disse CGI, en dan wonnen img_auth neet ondersteund.
 Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization veur meer infermasie',
-'img-auth-notindir'     => "'t Op-evreugen pad is neet de in-estelde bestaanstoevoegingsmap",
+'img-auth-notindir'     => "'t Op-evreugen pad is neet de in-estelde bestaandinlaodmap",
 'img-auth-badtitle'     => 'Kon gien geldige paginanaam maken van "$1".',
 'img-auth-nologinnWL'   => 'Je bin neet an-emeld en "$1" steet neet op de witte lieste.',
 'img-auth-nofile'       => 'Bestaand "$1" besteet neet.',
@@ -1824,8 +1827,8 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'sharedupload-desc-there'   => "Dit is een edeeld bestaand op $1 en ku-j oek gebruken veur aandere prejekken. Bekiek de [$2 beschrieving van 't bestaand] veur meer infermasie.",
 'sharedupload-desc-here'    => "Dit is een edeeld bestaand op $1 en ku-j oek gebruken veur aandere prejekken. De [$2 beschrieving van 't bestaand] derginse, steet hieronder.",
 'filepage-nofile'           => 'Der besteet gien bestaand mit disse naam.',
-'filepage-nofile-link'      => "Der besteet gien bestaand mit disse naam, mar je kunnen 't [$1 toevoegen].",
-'uploadnewversion-linktext' => 'Een niejere versie van dit bestaand toevoegen.',
+'filepage-nofile-link'      => "Der besteet gien bestaand mit disse naam, mer je kunnen 't [$1 opsturen].",
+'uploadnewversion-linktext' => 'Een niejere versie van dit bestaand opsturen.',
 'shared-repo-from'          => 'uut $1',
 'shared-repo'               => 'een edeelde mediadatabanke',
 
@@ -2091,9 +2094,9 @@ Meer infermasie over de rechen ku-j [[{{MediaWiki:Listgrouprights-helppage}}|hie
 'listgrouprights-removegroup'          => 'Kan gebrukers uut disse {{PLURAL:$2|groep|groepen}} haolen: $1',
 'listgrouprights-addgroup-all'         => 'Kan gebrukers bie alle groepen zetten',
 'listgrouprights-removegroup-all'      => 'Kan gebrukers uut alle groepen haolen',
-'listgrouprights-addgroup-self'        => 'Kan {{PLURAL:$2|groep|groepen}} toevoegen an eigen gebruker: $1',
+'listgrouprights-addgroup-self'        => 'Kan {{PLURAL:$2|groep|groepen}} bie de eigen gebruker doon: $1',
 'listgrouprights-removegroup-self'     => 'Kan {{PLURAL:$2|groep|groepen}} vortdoon van eigen gebruker: $1',
-'listgrouprights-addgroup-self-all'    => 'Kan alle groepen toevoegen an eigen gebruker',
+'listgrouprights-addgroup-self-all'    => 'Kan alle groepen bie de eigen gebruker doon',
 'listgrouprights-removegroup-self-all' => 'Kan alle groepen vortdoon van eigen gebruker',
 
 # E-mail user
@@ -2189,14 +2192,17 @@ Kontakgevevens van de auteur:
 Netpos: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Je kriegen veerder gien berichen, behalve a-j disse pagina bezeuken.
+Je kriegen veerder gien berichen, behalven a-j disse pagina bezeuken.
 Op joew volglieste ku-j veur alle pagina\'s dee-j volgen de waorschuwingsinstellingen derof haolen.
 
 Groeten van \'t {{SITENAME}}-waorschuwingssysteem.
 
 --
-Je kunnen de instellingen van joew volglieste wiezigen op:
-{{fullurl:Special:Watchlist/edit}}
+Je kunnen joew netposinstellingen wiezigen op:
+{{fullurl:{{#special:Preferences}}}}
+
+Je kunnen de volgliestinstellingen wiezigen op:
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Je kunnen de pagina van joew volglieste ofhaolen deur op de volgende verwiezing te klikken:
 $UNWATCHURL
@@ -2311,7 +2317,7 @@ Hier staon de instellingen zoas ze noen bin veur de pagina '''$1''':",
 'restriction-edit'   => 'Bewark',
 'restriction-move'   => 'Herneum',
 'restriction-create' => 'Anmaken',
-'restriction-upload' => 'Bestaand toevoegen',
+'restriction-upload' => 'Bestaand opsturen',
 
 # Restriction levels
 'restriction-level-sysop'         => 'helemaole beveilig',
@@ -2325,10 +2331,8 @@ Hier staon de instellingen zoas ze noen bin veur de pagina '''$1''':",
 'viewdeletedpage'              => "Bekiek vort-edaone pagina's",
 'undeletepagetext'             => "Hieronder {{PLURAL:$1|steet de pagina dee vort-edaon is|staon de pagina's dee vort-edaon bin}} en vanuut 't archief  weerummeplaos {{PLURAL:$1|kan|kunnen}} wönnen.",
 'undelete-fieldset-title'      => 'Versies weerummeplaosen',
-'undeleteextrahelp'            => "Um de pagina mit alle eerdere versies weerumme te plaosen lao-j alle hokjes leeg en klik op '''''Weerummeplaosen!'''''.
-Um een bepaolde versies weerumme te plaosen mu-j de versies dee-j weerummeplaosen willen anvinken en klik op '''''Weerummeplaosen!'''''.
-Um een bulte achter mekaarstaonde versies te kiezen mu-j de eerste in de reeks anvinken en vervolgens mit de schuufknoppe in-edrok de leste anvinken. Hierdeur wonnen oek alle tussenliggende versies mee-eneumen.
-A-j op '''''Herstel''''' klikken wonnen 't infermasieveld en alle hokjes leeg-emaak.",
+'undeleteextrahelp'            => "Laot alle vakjes leeg en klik op '''''{{int:undeletebtn}}''''' um de hele pagina mit alle veurgeschiedenisse weerumme te plaosen.
+Vink de versies die weerummeplaosen willen an en klik op '''''{{int:undeletebtn}}''''' um bepaolde versies weerumme te zetten.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|versie|versies}} earchiveerd',
 'undeletehistory'              => 'A-j een pagina weerummeplaosen, wönnen alle versies as ouwe versies weerummeplaos.
 As der al een nieje pagina mit dezelfde naam an-emaak is, zullen disse versies as ouwe versies weerummeplaos wönnen, mar de op-esleugen versie zal neet ewiezig wönnen.',
@@ -2668,10 +2672,10 @@ A-j dat leste doon willen dan ku-j oek een verwiezing gebruken, bieveurbeeld [[{
 'exportnohistory'   => "----
 '''NB:''' 't uutvoeren van de hele geschiedenisse is uut-eschakeld vanwegen prestasieredens.",
 'export-submit'     => 'Uutvoeren',
-'export-addcattext' => "Pagina's toevoegen uut kattegerie:",
-'export-addcat'     => 'Toevoegen',
-'export-addnstext'  => "Pagina's uut de volgende naamruumte toevoegen:",
-'export-addns'      => 'Toevoegen',
+'export-addcattext' => "Pagina's derbie doon uut de kattegerie:",
+'export-addcat'     => 'Derbie doon',
+'export-addnstext'  => "Pagina's uut de volgende naamruumte derbie doon:",
+'export-addns'      => 'Derbie doon',
 'export-download'   => 'As bestaand opslaon',
 'export-templates'  => 'Mit mallen derbie',
 'export-pagelinks'  => "Pagina's waor naor verwezen wonnen opnemen tot:",
@@ -2731,7 +2735,7 @@ Slao 't op joew eigen systeem op, en stuur 't daornao hier op.",
 'importnotext'               => 'Leeg of gien tekse',
 'importsuccess'              => 'Invoeren succesvol!',
 'importhistoryconflict'      => 'Der bin konflikken in de geschiedenisse van de pagina (is meschien eerder al in-evoerd)',
-'importnosources'            => 'Gien transwiki-invoerbronnen edefinieerd en drekte geschiedenistoevoegingen bin eblokkeerd.',
+'importnosources'            => "Gien transwiki-invoerbronnen vastesteld en 't drek inlaojen van versies is eblokkeerd.",
 'importnofile'               => 'Der is gien invoerbestaand toe-evoeg.',
 'importuploaderrorsize'      => "'t Oplaojen van 't invoerbestaand is mislok.
 't Bestaand is groter as de in-estelde limiet.",
@@ -2750,7 +2754,7 @@ De tiedelijke map is neet anwezig.",
 # Import log
 'importlogpage'                    => 'Invoerlogboek',
 'importlogpagetext'                => "Administratieve invoer van pagina's mit geschiedenisse van aandere wiki's.",
-'import-logentry-upload'           => '[[$1]] in-evoerd via een bestaanstoevoeging',
+'import-logentry-upload'           => 'hef [[$1]] in-evoerd',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
 'import-logentry-interwiki'        => 'transwiki $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
@@ -2843,7 +2847,7 @@ Je kunnen in de bewarkingssamenvatting een reden opgeven.',
 'spamprotectiontext'  => 'De pagina dee-j opslaon wollen is eblokkeerd deur de moekfilter.
 Meestentieds kump dit deur een uutgaonde verwiezing dee op de zwarte lieste steet.',
 'spamprotectionmatch' => 'Disse tekse zörgen derveur dat onze moekfilter alarmsleug: $1',
-'spambot_username'    => 'MediaWiki keren van ongewunste toevoegingen',
+'spambot_username'    => 'MediaWiki ongewunste zooi oprumen',
 'spam_reverting'      => "Bezig mit 't weerummezetten naor de leste versie dee gien verwiezing hef naor $1",
 'spam_blanking'       => 'Alle wiezigingen mit een verwiezing naor $1 wönnen vort-ehaold',
 
