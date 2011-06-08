@@ -961,7 +961,7 @@ abstract class Installer {
 			$this->showMessage( 'config-uploads-not-safe', $dir );
 		}
 	}
-	
+
 	/**
 	 * Checks if suhosin.get.max_value_length is set, and if so, sets
 	 * $wgResourceLoaderMaxQueryLength to that value in the generated
@@ -1393,20 +1393,14 @@ abstract class Installer {
 	protected function createSysop() {
 		$name = $this->getVar( '_AdminName' );
 		$user = User::newFromName( $name );
-		$status = $this->getDBInstaller()->getConnection();
-		if( $status->isOK() ) {
-			$db = $status->value;
-		} else {
-			return Status::newFatal( 'config-admin-error-user', $name );
-		}
 
 		if ( !$user ) {
 			// We should've validated this earlier anyway!
 			return Status::newFatal( 'config-admin-error-user', $name );
 		}
 
-		if ( $user->idForName( $db ) == 0 ) {
-			$user->addToDatabase( $db );
+		if ( $user->idForName() == 0 ) {
+			$user->addToDatabase();
 
 			try {
 				$user->setPassword( $this->getVar( '_AdminPassword' ) );
@@ -1414,12 +1408,12 @@ abstract class Installer {
 				return Status::newFatal( 'config-admin-error-password', $name, $pwe->getMessage() );
 			}
 
-			$user->addGroup( 'sysop', $db );
-			$user->addGroup( 'bureaucrat', $db );
+			$user->addGroup( 'sysop' );
+			$user->addGroup( 'bureaucrat' );
 			if( $this->getVar( '_AdminEmail' ) ) {
 				$user->setEmail( $this->getVar( '_AdminEmail' ) );
 			}
-			$user->saveSettings( $db );
+			$user->saveSettings();
 
 			// Update user count
 			$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );

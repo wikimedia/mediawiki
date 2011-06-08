@@ -2162,8 +2162,8 @@ class User {
 	 * This takes immediate effect.
 	 * @param $group \string Name of the group to add
 	 */
-	function addGroup( $group, $dbw = null ) {
-		if( $dbw === null ) $dbw = wfGetDB( DB_MASTER );
+	function addGroup( $group ) {
+		$dbw = wfGetDB( DB_MASTER );
 		if( $this->getId() ) {
 			$dbw->insert( 'user_groups',
 				array(
@@ -2537,14 +2537,14 @@ class User {
 	 * Save this user's settings into the database.
 	 * @todo Only rarely do all these fields need to be set!
 	 */
-	function saveSettings( $dbw = null ) {
+	function saveSettings() {
 		$this->load();
 		if ( wfReadOnly() ) { return; }
 		if ( 0 == $this->mId ) { return; }
 
 		$this->mTouched = self::newTouchedTimestamp();
 
-		if( $dbw === null ) $dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
@@ -2564,7 +2564,7 @@ class User {
 			), __METHOD__
 		);
 
-		$this->saveOptions( $dbw );
+		$this->saveOptions();
 
 		wfRunHooks( 'UserSaveSettings', array( $this ) );
 		$this->clearSharedCache();
@@ -2574,11 +2574,11 @@ class User {
 	/**
 	 * If only this user's username is known, and it exists, return the user ID.
 	 */
-	function idForName( $dbr = null ) {
+	function idForName() {
 		$s = trim( $this->getName() );
 		if ( $s === '' ) return 0;
 
-		if( $dbr == null ) $dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$id = $dbr->selectField( 'user', 'user_id', array( 'user_name' => $s ), __METHOD__ );
 		if ( $id === false ) {
 			$id = 0;
@@ -2641,9 +2641,9 @@ class User {
 	/**
 	 * Add this existing user object to the database
 	 */
-	function addToDatabase( $dbw = null ) {
+	function addToDatabase() {
 		$this->load();
-		if( $dbw === null ) $dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 		$dbw->insert( 'user',
 			array(
@@ -2666,7 +2666,7 @@ class User {
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
 
-		$this->saveOptions( $dbw );
+		$this->saveOptions();
 	}
 
 	/**
@@ -3684,13 +3684,13 @@ class User {
 		wfRunHooks( 'UserLoadOptions', array( $this, &$this->mOptions ) );
 	}
 
-	protected function saveOptions( $dbw = null ) {
+	protected function saveOptions() {
 		global $wgAllowPrefChange;
 
 		$extuser = ExternalUser::newFromUser( $this );
 
 		$this->loadOptions();
-		if( $dbw === null ) $dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		$insert_rows = array();
 
