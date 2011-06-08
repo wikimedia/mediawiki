@@ -237,6 +237,7 @@ $messages = array(
 'jumpto'            => 'Тагъд æрвитæнтæ:',
 'jumptonavigation'  => 'навигаци',
 'jumptosearch'      => 'агуырд',
+'pool-errorunknown' => 'Æбæрæг рæдыд',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} тыххæй',
@@ -257,6 +258,7 @@ $messages = array(
 'privacy'              => 'Хибардзинады политикæ',
 'privacypage'          => 'Project:Хибардзинады политикæ',
 
+'badaccess'        => 'Бацæуæны рæдыд',
 'badaccess-group0' => 'Ацы архайд ракæныны бар дæм нæй.',
 
 'versionrequired' => 'Хъæуы MediaWiki-йы версии $1',
@@ -277,6 +279,7 @@ $messages = array(
 'showtoc'             => 'равдис',
 'hidetoc'             => 'бамбæхсын',
 'viewdeleted'         => '$1 фенын дæ фæнды?',
+'feedlinks'           => 'Лæсæн:',
 'site-rss-feed'       => '$1 — RSS-уадздзаг',
 'site-atom-feed'      => '$1 — Atom-уадздзаг',
 'page-rss-feed'       => '$1 — RSS-лæсæн',
@@ -419,6 +422,7 @@ $messages = array(
 'templatesused'                    => 'Ацы фарсы ис {{PLURAL:$1|шаблон|шаблоны}}:',
 'template-protected'               => '(æхгæд)',
 'template-semiprotected'           => '(æрдæг-æхгæд)',
+'permissionserrors'                => 'Бацæуæны рæдыдтæ',
 'permissionserrorstext-withaction' => 'Нæй дын бар $2 {{PLURAL:$1|ай|адон}} тыххæй:',
 'edit-conflict'                    => 'Иввдзинæдты конфликт.',
 'edit-already-exists'              => 'Ног фарс скæнæн нæй. Ахæм фарс ис.',
@@ -452,16 +456,18 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 $2',
 
 # Revision deletion
-'rev-deleted-comment'    => '(комментарий аппæрст у)',
-'rev-deleted-user'       => '(архайæджы ном аппæрст у)',
-'rev-deleted-event'      => '(фыст аппæрст у)',
-'rev-delundel'           => 'равдисын/бамбæхсын',
-'revisiondelete'         => 'Аппар / рацараз фарсы фæлтæртæ',
-'revdel-restore-deleted' => 'хафт ивдтытæ',
-'revdel-restore-visible' => 'зынгæ ивдтытæ',
-'pagehist'               => 'Фарсы истори',
-'revdelete-summary'      => 'ивддзинады мидис',
-'revdelete-uname'        => 'архайæджы ном',
+'rev-deleted-comment'       => '(ивды афыст æппæрст æрцыд)',
+'rev-deleted-user'          => '(архайæджы ном аппæрст у)',
+'rev-deleted-event'         => '(фыст аппæрст у)',
+'rev-delundel'              => 'равдисын/бамбæхсын',
+'revisiondelete'            => 'Аппар / рацараз фарсы фæлтæртæ',
+'revdel-restore-deleted'    => 'хафт ивдтытæ',
+'revdel-restore-visible'    => 'зынгæ ивдтытæ',
+'pagehist'                  => 'Фарсы истори',
+'revdelete-summary'         => 'ивддзинады мидис',
+'revdelete-uname'           => 'архайæджы ном',
+'revdelete-reasonotherlist' => 'Æндæр аххос',
+'revdelete-offender'        => 'Фарсы фæлтæры автор:',
 
 # History merging
 'mergehistory-reason' => 'Аххос:',
@@ -515,6 +521,7 @@ $messages = array(
 'powersearch-legend'               => 'Сæрмагонд агуырд',
 'powersearch-redir'                => 'Рарвыстытæ дæр æвдис',
 'powersearch-field'                => 'Агуырд',
+'powersearch-toggleall'            => 'Æппæт',
 
 # Quickbar
 'qbsettings'              => 'Навигацион таг',
@@ -913,8 +920,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'export' => 'Фæрсты экспорт',
 
 # Namespace 8 related
-'allmessages'     => 'Æппæт техникон фыстытæ',
-'allmessagesname' => 'Ном',
+'allmessages'            => 'Æппæт техникон фыстытæ',
+'allmessagesname'        => 'Ном',
+'allmessages-filter-all' => 'Æппæт',
+'allmessages-language'   => 'Æвзаг:',
 
 # Thumbnails
 'thumbnail-more' => 'Фестырдæр кæнын',
@@ -1021,9 +1030,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'metadata-expand' => 'Фылдæр детальтæ равдис',
 
 # EXIF tags
-'exif-imagewidth'  => 'Уæрх',
-'exif-imagelength' => 'Бæрзæнд',
-'exif-artist'      => 'Чи йæ систа',
+'exif-imagewidth'   => 'Уæрх',
+'exif-imagelength'  => 'Бæрзæнд',
+'exif-artist'       => 'Чи йæ систа',
+'exif-languagecode' => 'Æвзаг',
 
 'exif-gaincontrol-0' => 'Нæй',
 

@@ -7367,6 +7367,7 @@ PHPを5.2.9かそれ以降のバージョンに、libxml2を2.7.3かそれ以降
 	'config-using531' => 'PHP$1は<code>__call()</code>の引数参照に関するバグのため、MediaWikiと互換性がありません。
 PHP5.3.2以降に更新するか、この([http://bugs.php.net/bug.php?id=50394 PHPに提出されたバグ])を修正するためにPHP5.3.0へ戻してください。
 インストールは中止されました。',
+	'config-suhosin-max-value-length' => 'Suhosin がインストールされており、GETパラメータの長さを $1 バイトに制限しています。MediaWiki の ResourceLoader コンポーネントはこの制限を回避しますが、パフォーマンスは低下します。可能な限り、php.ini で suhosin.get.max_value_length を 1024 以上に設定し、同じ値を LocalSettings.php 中で $wgResourceLoaderMaxQueryLength に設定してください。',
 	'config-db-type' => 'データベースの種類：',
 	'config-db-host' => 'データベースのホスト：',
 	'config-db-host-help' => 'データベースサーバーが異なったサーバー上にある場合、ホスト名またはIPアドレスをここに入力してください。
@@ -7386,6 +7387,8 @@ WindowsでMySQLを使用している場合に、「localhost」は、サーバ�
 	'config-db-install-account' => 'インストールのための利用者アカウント',
 	'config-db-username' => 'データベースの利用者名：',
 	'config-db-password' => 'データベースのパスワード：',
+	'config-db-password-empty' => '新しいデータベースの利用者名 $1 のパスワードを入力してください。
+パスワードを設定しないでユーザを作ることもできるかもしれませんが、安全ではありません。',
 	'config-db-install-username' => 'インストール中にデータベースに接続するために使うユーザ名を入力してください。これは MediaWiki アカウントのユーザ名 (利用者名) のことではありません。あなたのデータベースでのユーザ名です。',
 	'config-db-install-password' => 'インストール中にデータベースに接続するために使うパスワードを入力してください。これは MediaWiki アカウントパスワードのことではありません。あなたのデータベースでのパスワードです。',
 	'config-db-install-help' => 'インストール作業中にデータベースに接続するための利用者名とパスワードを入力してください。',
@@ -7429,6 +7432,7 @@ WindowsでMySQLを使用している場合に、「localhost」は、サーバ�
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'メディアウィキは次のようなデータベースシステムをサポートする:
 
 $1
@@ -7438,12 +7442,15 @@ $1
 	'config-support-postgres' => '* $1は、MySQLの代替として、人気のあるオープンソースデータベースシステムです（[http://www.php.net/manual/en/pgsql.installation.php PostgreSQLのサポート下でPHPをコンパイルする方法]）',
 	'config-support-sqlite' => '* $1は、良くサポートされている、軽量データベースシステムです。（[http://www.php.net/manual/en/pdo.installation.php SQLiteのサポート下でPHPをコンパイルする方法]、PDOを使用）',
 	'config-support-oracle' => '* $1は商業企業のデータベースです。（[http://www.php.net/manual/en/oci8.installation.php OCI8サポートなPHPをコンパイルする方法]）',
+	'config-support-ibm_db2' => '* $1 は商業企業のデータベースです。',
 	'config-header-mysql' => 'MySQLの設定',
 	'config-header-postgres' => 'PostgreSQLの設定',
 	'config-header-sqlite' => 'SQLiteの設定',
 	'config-header-oracle' => 'Oracleの設定',
+	'config-header-ibm_db2' => 'IBM DB2の設定',
 	'config-invalid-db-type' => '不正なデータベースの種類',
 	'config-missing-db-name' => '「データベース名」を入力する必要があります',
+	'config-missing-db-host' => '「データベースのホスト」を入力する必要があります',
 	'config-missing-db-server-oracle' => '「データベースTNS」に値を入力する必要があります',
 	'config-invalid-db-server-oracle' => '不正なデータベースTNS「$1」です。
 アスキー文字(a-z, A-Z)、数字(0-9)およびアンダーバー(_)とドット(.)のみを使用してください。',
@@ -10184,6 +10191,13 @@ For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man 
 	'config-help' => 'hjelp',
 );
 
+/** Ossetic (Иронау)
+ * @author Amikeco
+ */
+$messages['os'] = array(
+	'config-page-language' => 'Æвзаг',
+);
+
 /** Polish (Polski)
  * @author Holek
  * @author Sp5uhe
@@ -10470,8 +10484,6 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-license-none' => 'Brak stopki z licencją',
 	'config-license-cc-by-sa' => 'Creative Commons – za uznaniem autora, na tych samych zasadach',
 	'config-license-cc-by-nc-sa' => 'Creative Commons – za uznaniem autora, bez użycia komercyjnego, na tych samych zasadach',
-	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
-	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 lub późniejsza',
 	'config-license-pd' => 'Domena publiczna',
 	'config-license-cc-choose' => 'Wybierz własną licencję Creative Commons',
 	'config-email-settings' => 'Ustawienia e-maili',
@@ -12725,8 +12737,6 @@ Maaari mo ngayong laktawan ang natitira pang pag-aayos at iluklok na ang wiki ng
 	'config-license-none' => 'Walang talababa ng lisensiya',
 	'config-license-cc-by-sa' => 'Malikhaing Pangkaraniwang Pagtukoy Pamamahaging Magkatulad',
 	'config-license-cc-by-nc-sa' => 'Malikhaing Pangkaraniwang Pagtukoy Hindi-Pangkalakal Pamamahaging Magkatulad',
-	'config-license-gfdl-old' => 'Lisensiya ng Malayang Dokumenstasyon 1.2 ng GNU',
-	'config-license-gfdl-current' => 'Lisensiya ng Malayang Dokumenstasyon 1.3 ng GNU o mas bago',
 	'config-license-pd' => 'Nasasakupan ng Madla',
 	'config-license-cc-choose' => 'Pumili ng isang pasadyang Lisensiya ng Malikhaing mga Pangkaraniwan',
 	'config-email-settings' => 'Mga katakdaan ng e-liham',
@@ -12894,7 +12904,6 @@ $messages['uk'] = array(
 	'config-admin-email' => 'Адреса електронної пошти:',
 	'config-license' => 'Авторські права і ліцензія:',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
-	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-email-settings' => 'Налаштування електронної пошти',
 	'config-upload-enable' => 'Дозволити завантаження файлів',
 	'config-upload-deleted' => 'Каталог для вилучених файлів:',
