@@ -3,13 +3,13 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
-== MediaWiki 1.17 beta 1 ==
+== MediaWiki 1.17.0rc1 ==
 
-2011-05-05
+2011-06-09
 
-This is a beta release of the MediaWiki 1.17 branch. Please test it and let us
-know what you think of it. Beta releases are not recommended for use in
-production. 
+This is a release candidate of the MediaWiki 1.17 branch. Please test it and 
+let us know what you think of it. Barring new bug reports, this release 
+candidate will soon be released as MediaWiki 1.17.0.
 
 === Summary of selected changes in 1.17 ===
 
@@ -40,10 +40,43 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 
 === Changes since 1.17 beta 1 ===
 
+* Fixed warning about missing file "password.js".
+* When installing on MySQL, don't attempt to create a new database user if the 
+  same user is used for installation and web access.
+* Fixed SQL query errors in queries with table aliases.
+* (bug 27891) Fixed the "chronology protector", broken since 1.17beta1, which 
+  ensures that when database replication is used, the new version is seen by 
+  the user immediately after they create or edit an article.
+* (bug 28845) Allow PostgreSQL installation using a non-root user account which 
+  has role creation abilities.
+* When installing on PostgreSQL and the install account is the same as the web
+  account, check to make sure that the account has suitable privileges in the 
+  mediawiki schema.
+* (Bug 28172) Fixed error in PostgreSQL installation when creating the wiki 
+  sysop account.
+* Fixed an issue with the Oracle installer in cases where the user is different 
+  to the database name.
+* Added "unblockself" to the list of available rights. 
+* In the installer, fixed the "user rights profile" option, it never worked.
+* (bug 29117) Fixed Hebrew localisation of the installer.
 * (bug 28840) Reduce the collateral damage caused by the fix for bug 28235 (XSS
   on Internet Explorer 6 due to a file extension in the query string) by 
   reducing the number of URLs that are blocked, and by redirecting the request
   to a safer URL where possible instead of blocking it. 
+* (bug 28812) Fixed documentation of API action=parse.
+* (bug 28979) Fixed styling of <abbr> and <acronym>.
+* Fixed the error message displayed when you try to create an account by email,
+  but an email address is not given.
+* Fixed JS error due to missing dependency for jquery.suggestions.
+* Exposed $wgExtensionAssetsPath in JavaScript.
+* (bug 28738) Made ResourceLoader support environments with small URL length 
+  limits. The length limit can be configured via $wgResourceLoaderMaxQueryLength,
+  and this is set automatically in the generated LocalSettings.php when the 
+  php.ini variable "suhosin.get.max_value_length" is set. When a URL exceeds 
+  this limit, the request is split up. Also, reduced the average length of 
+  load.php URLs by using a more compact parameter format.
+* (bug 25262) Fix for minification of hardcoded data: URIs in CSS.
+* (bug 25124) Respect $wgStyleDirectory in ResourceLoader.
 
 === Configuration changes in 1.17 ===
 
