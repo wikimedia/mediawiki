@@ -56,11 +56,15 @@ class FindHooks extends Maintenance {
 		$pathinc = array(
 			$IP . '/',
 			$IP . '/includes/',
+			$IP . '/includes/actions/',
 			$IP . '/includes/api/',
+			$IP . '/includes/cache/',
 			$IP . '/includes/db/',
 			$IP . '/includes/diff/',
 			$IP . '/includes/filerepo/',
 			$IP . '/includes/installer/',
+			$IP . '/includes/interwiki/',
+			$IP . '/includes/media/',
 			$IP . '/includes/parser/',
 			$IP . '/includes/resourceloader/',
 			$IP . '/includes/revisiondelete/',
@@ -141,7 +145,7 @@ class FindHooks extends Maintenance {
 	private function getHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
 		$m = array();
-		preg_match_all( '/(wfRunHooks|Hooks\:\:run)\(\s*([\'"])(.*?)\1/', $content, $m );
+		preg_match_all( '/(?:wfRunHooks|Hooks\:\:run)\(\s*([\'"])(.*?)\1/', $content, $m );
 		return $m[2];
 	}
 
