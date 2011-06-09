@@ -3041,7 +3041,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-cameraownername'             => 'Kameran omistaja',
 'exif-nickname'                    => 'Kuvan epävirallinen nimi',
 'exif-copyrighted'                 => 'Tekijänoikeudellinen tila',
-'exif-copyrightowner'              => 'Tekijänoikeuden omistaja',
+'exif-copyrightowner'              => 'Tekijänoikeuden haltija',
 'exif-usageterms'                  => 'Käyttöehdot',
 'exif-licenseurl'                  => 'Tekijänoikeuslisenssin URL',
 'exif-morepermissionsurl'          => 'Vaihtoehtoiset lisenssitiedot',
@@ -3198,9 +3198,43 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-gpsspeed-m' => 'mailia tunnissa',
 'exif-gpsspeed-n' => 'solmua',
 
+'exif-gpsdop-excellent' => 'Erinomainen ($1)',
+'exif-gpsdop-good'      => 'Hyvä ($1)',
+'exif-gpsdop-moderate'  => 'Tyydyttävä ($1)',
+'exif-gpsdop-fair'      => 'Välttävä ($1)',
+'exif-gpsdop-poor'      => 'Huono ($1)',
+
+'exif-objectcycle-a' => 'vain aamulla',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Todellinen suunta',
 'exif-gpsdirection-m' => 'Magneettinen suunta',
+
+'exif-rating-rejected' => 'Hylätty',
+
+'exif-isospeedratings-overflow' => 'Suurempi kuin 65535',
+
+'exif-iimcategory-ace' => 'Taide, kulttuuri ja viihde',
+'exif-iimcategory-clj' => 'Rikos ja oikeus',
+'exif-iimcategory-dis' => 'Katastrofit ja onnettomuudet',
+'exif-iimcategory-fin' => 'Talous ja liiketoiminta',
+'exif-iimcategory-edu' => 'Koulutus',
+'exif-iimcategory-evn' => 'Ympäristö',
+'exif-iimcategory-hth' => 'Terveys',
+'exif-iimcategory-lab' => 'Työnteko',
+'exif-iimcategory-lif' => 'Elämäntapa ja vapaa-aika',
+'exif-iimcategory-pol' => 'Politiikka',
+'exif-iimcategory-rel' => 'Uskonto ja usko',
+'exif-iimcategory-sci' => 'Tiede ja tekniikka',
+'exif-iimcategory-soi' => 'Sosiaaliset kysymykset',
+'exif-iimcategory-spo' => 'Urheilu',
+'exif-iimcategory-war' => 'Sota, konflikti ja levottomuus',
+'exif-iimcategory-wea' => 'Sää',
+
+'exif-urgency-normal' => 'Tavallinen ($1)',
+'exif-urgency-low'    => 'Matala ($1)',
+'exif-urgency-high'   => 'Korkea ($1)',
+'exif-urgency-other'  => 'Käyttäjän määrittelemä prioriteetti ($1)',
 
 # External editor support
 'edit-externally'      => 'Muokkaa tätä tiedostoa ulkoisessa sovelluksessa',

@@ -186,8 +186,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Numerum usorum custodientium monstrare',
 'tog-oldsig'                  => 'Praevisum subscriptionis ad tempus adhibitae:',
 'tog-fancysig'                => 'Subscriptio vicitext (sine nexu automatico)',
-'tog-externaleditor'          => 'Utere editore externo semper',
-'tog-externaldiff'            => 'Utere dissimilitudine externa semper',
+'tog-externaleditor'          => 'Utere editore externo semper (pro peritus solo, requirat speciales optiones in calculone. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => 'Utere editore dissimilitudine externa semper (pro peritus solo, requirat speciales optiones in calculone. [http://www.mediawiki.org/wiki/Manial:External_editors More information.])',
 'tog-showjumplinks'           => 'Sinere nexus ostendi forma "salire ad" monstrata',
 'tog-uselivepreview'          => 'Praevisum viventem adhibere (JavaScript)',
 'tog-forceeditsummary'        => 'Si recensionem non summatim descripsero, me roga si continuare velim',
@@ -561,6 +561,11 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'resetpass-no-info'         => 'Necesse est conventum aperire ad hanc paginam adhibendum.',
 'resetpass-submit-loggedin' => 'Tesseram mutare',
 'resetpass-temp-password'   => 'Tessera temporaria:',
+
+# Special:PasswordReset
+'passwordreset-username'     => 'Nomen usoris:',
+'passwordreset-email'        => 'Inscriptio electronica:',
+'passwordreset-emailelement' => ' Nomen usoris: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Litterae pingues',

@@ -51,6 +51,7 @@
  * @author Trixt
  * @author Una giornata uggiosa '94
  * @author Vajotwo
+ * @author Valepert
  * @author Xpensive
  * @author לערי ריינהארט
  */
@@ -638,6 +639,8 @@ Per le traduzioni, considera la possibilità di usare [http://translatewiki.net/
 'cascadeprotected'     => 'Su questa pagina non è possibile effettuare modifiche perché è stata inclusa {{PLURAL:$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione "ricorsiva":
 $2',
 'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
+'customcssprotected'   => 'Non si dispone dei permessi necessari alla modifica di questa pagina CSS, in quanto contiene le impostazioni personali di un altro utente.',
+'customjsprotected'    => 'Non si dispone dei permessi necessari alla modifica di questa pagina JavaScript, in quanto contiene le impostazioni personali di un altro utente.',
 'ns-specialprotected'  => 'Non è possibile modificare le pagine speciali.',
 'titleprotected'       => "La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]].
 La motivazione è la seguente: ''$2''.",
@@ -2122,8 +2125,9 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'watchlist-options'    => 'Opzioni osservati speciali',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Aggiunta agli osservati speciali...',
-'unwatching' => 'Eliminazione dagli osservati speciali...',
+'watching'       => 'Aggiunta agli osservati speciali...',
+'unwatching'     => 'Eliminazione dagli osservati speciali...',
+'watcherrortext' => 'Si è verificato un errore durante la modifica degli osservati speciali per "$1".',
 
 'enotif_mailer'                => 'Sistema di notifica via e-mail di {{SITENAME}}',
 'enotif_reset'                 => 'Segna tutte le pagine come già visitate',
@@ -3025,9 +3029,12 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsdifferential'             => 'Correzione differenziale GPS',
 'exif-jpegfilecomment'             => 'Commento del file JPEG',
 'exif-keywords'                    => 'Parole chiave',
+'exif-countrycreated'              => 'Paese dove è stata scattata la foto',
+'exif-countrycodecreated'          => 'Codice del paese dove è stata scattata la foto',
 'exif-provinceorstatecreated'      => 'Provincia o stato dove è stata scattata la foto',
 'exif-citycreated'                 => 'Città dove è stata scattata la foto',
 'exif-objectname'                  => 'Titolo breve',
+'exif-credit'                      => 'Crediti',
 'exif-source'                      => 'Fonte',
 'exif-urgency'                     => 'Urgenza',
 'exif-locationdest'                => 'Località raffigurata',
