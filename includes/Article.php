@@ -2303,11 +2303,13 @@ class Article {
 	 * Output a redirect back to the article.
 	 * This is typically used after an edit.
 	 *
+	 * @deprecated in 1.19; call $wgOut->redirect() directly
 	 * @param $noRedir Boolean: add redirect=no
 	 * @param $sectionAnchor String: section to redirect to, including "#"
 	 * @param $extraQuery String: extra query params
 	 */
 	public function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
+		wfDeprecated( __METHOD__ );
 		global $wgOut;
 
 		if ( $noRedir ) {
