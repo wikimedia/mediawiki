@@ -77,6 +77,11 @@ class CliInstaller extends Installer {
 				$this->getVar( 'wgDBuser' ) );
 			$this->setVar( '_InstallPassword',
 				$this->getVar( 'wgDBpassword' ) );
+		} else {
+			$this->setVar( '_InstallUser',
+				$option['installdbuser'] );
+			$this->setVar( '_InstallPassword',
+				$option['installdbpass'] );
 		}
 
 		if ( isset( $option['pass'] ) ) {
