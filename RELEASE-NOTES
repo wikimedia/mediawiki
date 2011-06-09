@@ -77,6 +77,16 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   load.php URLs by using a more compact parameter format.
 * (bug 25262) Fix for minification of hardcoded data: URIs in CSS.
 * (bug 25124) Respect $wgStyleDirectory in ResourceLoader.
+* Allow installation when no HTTP client is available, don't throw an exception.
+* (bug 27465) Fix metadata extraction for SVG files using unusual namespace 
+  names.
+* (bug 29174) Fix regression in upload-by-URL: uploading files larger than the 
+  PHP memory limit should work again.
+* Fixed the display of comments in the new user log.
+* (bug 28237) When installing extensions using the web-based installer, create
+  any necessary database tables.
+* (bug 28983) Fixed automated installation of extensions that overwrite $path.
+* Fixed error caused by missing magic words.
 
 === Configuration changes in 1.17 ===
 
