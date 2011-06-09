@@ -3066,6 +3066,8 @@ Ander velde sal versteek wees.
 'exif-copyrighted'                 => 'Outeursregstus:',
 'exif-copyrightowner'              => 'Kopiereghouer',
 'exif-usageterms'                  => 'Gebruiksvoorwaardes',
+'exif-attributionurl'              => 'Gebruik die volgende skakel as die werk hergebruik word',
+'exif-preferredattributionname'    => 'Krediteer die volgende persone as die werk hergebruik word',
 'exif-pngfilecomment'              => 'Opmerking in PNG-lêer',
 'exif-disclaimer'                  => 'Voorbehoud',
 'exif-contentwarning'              => 'Waarskuwing oor inhoud',

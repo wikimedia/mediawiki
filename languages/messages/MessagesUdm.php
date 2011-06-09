@@ -41,7 +41,15 @@ $separatorTransformTable = array( ',' => ' ', '.' => ',' );
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Линкъёс ултӥз гожен сызоно',
+'tog-underline'             => 'Линкъёс ултӥз гожен сызоно',
+'tog-highlightbroken'       => 'Кушкам чӧлсконъёсты <a href="" class="new">та кадь</a> возматыны (озьытэк: <a href="" class="internal">?</a>)',
+'tog-hideminor'             => 'Берпуметӥ тупатонъёслэн списоксэс ичи воштонъёстэк возьматыны',
+'tog-hidepatrolled'         => 'Берпуметӥ тупатонъёслэн списоксэс партрулировать каремын воштонъёстэк возьматыны',
+'tog-newpageshidepatrolled' => 'Выль бамъёслэн списоксэс партрулировать каремын бамъёстэк возьматыны',
+'tog-extendwatchlist'       => 'Чаклан списокын вань тупатонъёсты возьматыны (озьытэк берпуметӥоссэс гинэ)',
+'tog-usenewrc'              => 'Выль тупатонъёслэн списоксэс умояллям сямен возьматыны (JavsScript кулэ)',
+'tog-numberheadings'        => 'Заголовокъёсты автоматически нумеровать карыны',
+'tog-showtoolbar'           => 'Тупатон тӥрлыкъёслэн панельзэс возьматыны (JavaScript кулэ)',
 
 'underline-always'  => 'Котьку',
 'underline-never'   => 'Ноку',
