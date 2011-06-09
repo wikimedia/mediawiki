@@ -64,12 +64,14 @@ class WantedPagesPage extends WantedQueryPage {
 						NS_MEDIAWIKI . "'" ),
 			'options' => array ( 'HAVING' => "COUNT(*) > $count",
 				'GROUP BY' => 'pl_namespace, pl_title' ),
-			'join_conds' => array ( 'pg1' => array (
+			'join_conds' => array (
+				'pg1' => array (
 					'LEFT JOIN', array (
 					'pg1.page_namespace = pl_namespace',
 					'pg1.page_title = pl_title' ) ),
 				'pg2' => array ( 'LEFT JOIN',
-					'pg2.page_id = pl_from' ) )
+					'pg2.page_id = pl_from' )
+				)
 		);
 		// Replacement WantedPages::getSQL
 		wfRunHooks( 'WantedPages::getQueryInfo',
