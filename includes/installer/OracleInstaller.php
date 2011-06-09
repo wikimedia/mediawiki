@@ -127,7 +127,7 @@ class OracleInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function openConnection( $dbName = null ) {
+	public function openConnection() {
 		$status = Status::newGood();
 		try {
 			$db = new DatabaseOracle(
