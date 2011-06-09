@@ -253,6 +253,14 @@ form#powersearch {
 	font-weight:bold;
 }
 
+.mw-specialpages-table {
+	margin-top: -1em;
+	margin-bottom: 1em;
+}
+
+.mw-specialpages-table td {
+	vertical-align: top;
+}
 
 /**** Special:Statistics ****/
 td.mw-statistics-numbers {
