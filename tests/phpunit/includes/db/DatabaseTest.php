@@ -12,7 +12,7 @@ class DatabaseTest extends MediaWikiTestCase {
 
 	function testAddQuotesNull() {
 		$check = "NULL";
-		if ( $this->db->getType() === 'sqlite' ) {
+		if ( $this->db->getType() === 'sqlite' || $this->db->getType() === 'oracle' ) {
 			$check = "''";
 		}
 		$this->assertEquals( $check, $this->db->addQuotes( null ) );
