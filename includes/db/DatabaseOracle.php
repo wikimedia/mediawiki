@@ -930,9 +930,9 @@ class DatabaseOracle extends DatabaseBase {
 	 */
 	function tableExists( $table ) {
 		$table = $this->tableName( $table );
-		$table = strtoupper( $this->removeIdentifierQuotes( $table ) );
-		$owner = strtoupper( $this->mDBname );
-		$SQL = "SELECT 1 FROM all_tables WHERE owner='$owner' AND table_name='$table'";
+		$table = $this->addQuotes( strtoupper( $this->removeIdentifierQuotes( $table ) ) );
+		$owner = $this->addQuotes( strtoupper( $this->mDBname ) );
+		$SQL = "SELECT 1 FROM all_tables WHERE owner=$owner AND table_name=$table";
 		$res = $this->doQuery( $SQL );
 		if ( $res ) {
 			$count = $res->numRows();
