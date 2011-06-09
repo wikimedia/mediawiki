@@ -330,7 +330,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	public function isQuotedIdentifier( $name ) {
-		return $name[0] == '`' && substr( $name, -1, 1 ) == '`';
+		return strlen($name) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
 	}
 
 	function ping() {
