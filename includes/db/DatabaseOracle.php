@@ -936,9 +936,9 @@ class DatabaseOracle extends DatabaseBase {
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
 	 */
 	function tableExists( $table ) {
-		$table = trim( $this->tableName($table), '"' );
-		$owner = strtoupper( $this->mDBname );
-		$SQL = "SELECT 1 FROM all_tables WHERE owner='$owner' AND table_name='$table'";
+		$table = $this->addQuotes( trim( $this->tableName($table), '"' ) );
+		$owner = $this->addQuotes( strtoupper( $this->mDBname ) );
+		$SQL = "SELECT 1 FROM all_tables WHERE owner=$owner AND table_name=$table";
 		$res = $this->doQuery( $SQL );
 		if ( $res ) {
 			$count = $res->numRows();
