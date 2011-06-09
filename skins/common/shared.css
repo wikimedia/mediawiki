@@ -21,15 +21,6 @@ abbr, acronym, .explain {
 	font-style: italic;
 }
 
-.mw-specialpages-table {
-	margin-top: -1em;
-	margin-bottom: 1em;
-}
-
-.mw-specialpages-table td {
-	vertical-align: top;
-}
-
 
 /* Comment and username portions of RC entries */
 span.comment {
