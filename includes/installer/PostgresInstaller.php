@@ -115,6 +115,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	protected function openConnectionWithParams( $user, $password, $dbName ) {
 		$status = Status::newGood();
 		try {
+			$GLOBALS['wgDBport'] = $this->getVar( 'wgDBport' );
 			$db = new DatabasePostgres(
 				$this->getVar( 'wgDBserver' ),
 				$user,
@@ -207,6 +208,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$status = Status::newGood();
 		foreach ( $dbs as $db ) {
 			try {
+				$GLOBALS['wgDBport'] = $this->getVar( 'wgDBport' );
 				$conn = new DatabasePostgres(
 					$this->getVar( 'wgDBserver' ),
 					$user,

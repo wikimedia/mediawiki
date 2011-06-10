@@ -89,6 +89,10 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * Fixed error caused by missing magic words.
 * Fixed breakage of article editing in PostgreSQL due to text search
   configuration errors.
+* Fixed the HTTPS client used when Curl is not available. This avoids an error
+  during install about failure of the mediawiki-announce subscription.
+* (bug 28162) When installing to PostgreSQL, respect the "database port" input,
+  it was ignored.
 
 === Configuration changes in 1.17 ===
 
@@ -600,7 +604,6 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   in IE 7.
 * (bug 17398) Fixed "link" parameter in image links with "thumb" or "frame"
   parameter.
-* (bug 27854) Http::isValidURI is way too lax.
 
 === API changes in 1.17 ===
 
