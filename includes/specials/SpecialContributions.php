@@ -259,11 +259,10 @@ class SpecialContributions extends SpecialPage {
 			}
 			# Block log link
 			$tools[] = $sk->linkKnown(
-				SpecialPage::getTitleFor( 'Log' ),
+				SpecialPage::getTitleFor( 'Log', 'block' ),
 				wfMsgHtml( 'sp-contributions-blocklog' ),
 				array(),
 				array(
-					'type' => 'block',
 					'page' => $userpage->getPrefixedText()
 				)
 			);
@@ -276,10 +275,8 @@ class SpecialContributions extends SpecialPage {
 
 		# Other logs link
 		$tools[] = $sk->linkKnown(
-			SpecialPage::getTitleFor( 'Log' ),
-			wfMsgHtml( 'sp-contributions-logs' ),
-			array(),
-			array( 'user' => $username )
+			SpecialPage::getTitleFor( 'Log', $username ),
+			wfMsgHtml( 'sp-contributions-logs' )
 		);
 
 		# Add link to deleted user contributions for priviledged users
