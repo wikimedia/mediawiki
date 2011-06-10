@@ -5,7 +5,7 @@
  *
  * @author Niklas Laxström
  */
-class LanguageBat_smg extends Language {
+class LanguageSgs extends Language {
 
 	/**
 	 * @param $count int
