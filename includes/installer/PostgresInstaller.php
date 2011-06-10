@@ -276,15 +276,13 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$same = $this->getVar( 'wgDBuser' ) === $this->getVar( '_InstallUser' );
 
-		if ( !$same ) {
-			// Check if the web user exists
-			// Connect to the database with the install user
-			$status = $this->getPgConnection( 'create-db' );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-			$exists = $status->value->roleExists( $this->getVar( 'wgDBuser' ) );
+		// Check if the web user exists
+		// Connect to the database with the install user
+		$status = $this->getPgConnection( 'create-db' );
+		if ( !$status->isOK() ) {
+			return $status;
 		}
+		$exists = $status->value->roleExists( $this->getVar( 'wgDBuser' ) );
 
 		// Validate the create checkbox
 		if ( $this->canCreateAccounts() && !$same && !$exists ) {
