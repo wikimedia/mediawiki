@@ -161,7 +161,6 @@ abstract class Installer {
 		'_UpgradeDone' => false,
 		'_InstallDone' => false,
 		'_Caches' => array(),
-		'_InstallUser' => 'root',
 		'_InstallPassword' => '',
 		'_SameAccount' => true,
 		'_CreateDBAccount' => false,

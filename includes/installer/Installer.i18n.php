@@ -211,6 +211,7 @@ but it will not let you store characters above the [http://en.wikipedia.org/wiki
 	'config-db-schema'                => 'Schema for MediaWiki',
 	'config-db-schema-help'           => 'This schema will usually be fine.
 Only change it if you know you need to.',
+	'config-pg-test-error'            => "Cannot connect to database '''$1''': $2",
 	'config-sqlite-dir'               => 'SQLite data directory:',
 	'config-sqlite-dir-help'          => "SQLite stores all data in a single file.
 
@@ -486,6 +487,7 @@ If you still want to make changes, press back.',
 	'config-install-step-failed'      => 'failed',
 	'config-install-extensions'       => 'Including extensions',
 	'config-install-database'         => 'Setting up database',
+	'config-install-schema'           => 'Creating schema',
 	'config-install-pg-schema-not-exist' => 'PostgreSQL schema does not exist.',
 	'config-install-pg-schema-failed' => 'Tables creation failed.
 Make sure that the user "$1" can write to the schema "$2".',
@@ -493,10 +495,17 @@ Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-pg-plpgsql'       => 'Checking for language PL/pgSQL',
 	'config-pg-no-plpgsql'            => 'You need to install the language PL/pgSQL in the database $1',
 	'config-pg-no-create-privs'       => 'The account you specified for installation does not have enough privileges to create an account.',
+	'config-pg-not-in-role'           => 'The account you specified for the web user already exists.
+The account you specified for installation is not a superuser and is not a member of the web user\'s role, so it is unable to create objects owned by the web user.
+
+MediaWiki currently requires that the tables be owned by the web user. Please specify another web account name, or click "back" and specify a suitably privileged install user.',
 	'config-install-user'             => 'Creating database user',
 	'config-install-user-alreadyexists' => 'User "$1" already exists',
 	'config-install-user-create-failed' => 'Creating user "$1" failed: $2',
 	'config-install-user-grant-failed'  => 'Granting permission to user "$1" failed: $2',
+	'config-install-user-missing'     => 'The specified user "$1" does not exist.',
+	'config-install-user-missing-create' => 'The specified user "$1" does not exist.
+Please click the "create account" checkbox below if you want to create it.',
 	'config-install-tables'           => 'Creating tables',
 	'config-install-tables-exist'     => "'''Warning''': MediaWiki tables seem to already exist.
 Skipping creation.",

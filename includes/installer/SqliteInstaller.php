@@ -122,7 +122,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	/**
 	 * @return Status
 	 */
-	public function openConnection( $dbName = null ) {
+	public function openConnection() {
 		global $wgSQLiteDataDir;
 
 		$status = Status::newGood();
