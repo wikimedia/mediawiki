@@ -560,7 +560,7 @@
 			var block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
 			var RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])';
 			var RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
-			return address.search( new RegExp( '^' + RE_IP_ADD + block + '$' ) ) != -1;
+			return typeof address === 'string' && address.search( new RegExp( '^' + RE_IP_ADD + block + '$' ) ) != -1;
 		},
 		/**
 		 * Note: borrows from IP::isIPv6
@@ -570,6 +570,9 @@
 		 * @return boolean
 		 */
 		'isIPv6Address' : function( address, allowBlock ) {
+			if ( typeof address !== 'string' ) {
+				return false;
+			}
 			var block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
 			var RE_IPV6_ADD =
 			'(?:' + // starts with "::" (including "::")
