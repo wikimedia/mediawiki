@@ -87,6 +87,8 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   any necessary database tables.
 * (bug 28983) Fixed automated installation of extensions that overwrite $path.
 * Fixed error caused by missing magic words.
+* Fixed breakage of article editing in PostgreSQL due to text search
+  configuration errors.
 
 === Configuration changes in 1.17 ===
 
