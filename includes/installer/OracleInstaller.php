@@ -24,7 +24,8 @@ class OracleInstaller extends DatabaseInstaller {
 
 	protected $internalDefaults = array(
 		'_OracleDefTS' => 'USERS',
-		'_OracleTempTS' => 'TEMP'
+		'_OracleTempTS' => 'TEMP',
+		'_InstallUser' => 'SYSDBA',
 	);
 
 	public $minimumVersion = '9.0.1'; // 9iR1
@@ -127,7 +128,7 @@ class OracleInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function openConnection( $dbName = null ) {
+	public function openConnection() {
 		$status = Status::newGood();
 		try {
 			$db = new DatabaseOracle(

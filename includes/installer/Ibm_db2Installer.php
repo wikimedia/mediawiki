@@ -24,6 +24,10 @@ class Ibm_db2Installer extends DatabaseInstaller {
 		'wgDBmwschema',
 	);
 
+	protected $internalDefaults = array(
+		'_InstallUser' => 'db2admin'
+	);
+
 	/**
 	 * Get the DB2 database extension name
 	 * @return string
@@ -113,7 +117,7 @@ class Ibm_db2Installer extends DatabaseInstaller {
 	 * Open a DB2 database connection
 	 * @return Status
 	 */
-	public function openConnection( $dbName = null ) {
+	public function openConnection() {
 		$status = Status::newGood();
 		try {
 			$db = new DatabaseIbm_db2(

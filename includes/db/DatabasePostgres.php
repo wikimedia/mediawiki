@@ -186,7 +186,7 @@ class DatabasePostgres extends DatabaseBase {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError() . "\n" );
-			throw new DBConnectionError( $this, $phpError );
+			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
 		}
 
 		$this->mOpened = true;
@@ -218,7 +218,11 @@ class DatabasePostgres extends DatabaseBase {
 	 * @return
 	 */
 	function selectDB( $db ) {
-		return (bool)$this->open( $this->mServer, $this->mUser, $this->mPassword, $db );
+		if ( $this->mDBname !== $db ) {
+			return (bool)$this->open( $this->mServer, $this->mUser, $this->mPassword, $db );
+		} else {
+			return true;
+		}
 	}
 
 	function makeConnectionString( $vars ) {
@@ -762,23 +766,6 @@ class DatabasePostgres extends DatabaseBase {
 		return $valuedata;
 	}
 
-	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		// Ignore errors during error handling to avoid infinite recursion
-		$ignore = $this->ignoreErrors( true );
-		$this->mErrorCount++;
-
-		if ( $ignore || $tempIgnore ) {
-			wfDebug( "SQL ERROR (ignored): $error\n" );
-			$this->ignoreErrors( $ignore );
-		} else {
-			$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
-				"Query: $sql\n" .
-				"Function: $fname\n" .
-				"Error: $errno $error\n";
-			throw new DBUnexpectedError( $this, $message );
-		}
-	}
-
 	/**
 	 * @return string wikitext of a link to the server software's web site
 	 */
@@ -894,20 +881,21 @@ SQL;
 	}
 
 	/**
-	 * Query whether a given schema exists. Returns the name of the owner
+	 * Query whether a given schema exists. Returns true if it does, false if it doesn't.
 	 */
 	function schemaExists( $schema ) {
-		$eschema = str_replace( "'", "''", $schema );
-		$SQL = "SELECT rolname FROM pg_catalog.pg_namespace n, pg_catalog.pg_roles r "
-				."WHERE n.nspowner=r.oid AND n.nspname = '$eschema'";
-		$res = $this->query( $SQL );
-		if ( $res && $res->numRows() ) {
-			$row = $res->fetchObject();
-			$owner = $row->rolname;
-		} else {
-			$owner = false;
-		}
-		return $owner;
+		$exists = $this->selectField( '"pg_catalog"."pg_namespace"', 1,
+			array( 'nspname' => $schema ), __METHOD__ );
+		return (bool)$exists;
+	}
+
+	/**
+	 * Returns true if a given role (i.e. user) exists, false otherwise.
+	 */
+	function roleExists( $roleName ) {
+		$exists = $this->selectField( '"pg_catalog"."pg_roles"', 1,
+			array( 'rolname' => $roleName ), __METHOD__ );
+		return (bool)$exists;
 	}
 
 	function fieldInfo( $table, $field ) {
