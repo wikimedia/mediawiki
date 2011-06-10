@@ -1,8 +1,8 @@
 module( 'jquery.autoEllipsis.js' );
 
-test( '-- Initial check', function(){
+test( '-- Initial check', function() {
 	expect(1);
-	ok( jQuery.fn.autoEllipsis, 'jQuery.fn.autoEllipsis defined' );
+	ok( $.fn.autoEllipsis, 'jQuery.fn.autoEllipsis defined' );
 });
 
 function createWrappedDiv( text ) {
@@ -31,11 +31,11 @@ test( 'Position right', function() {
 
 	// Verify that, and only one, span element was created
 	var $span = $wrapper.find( '> span' );
-	deepEqual( $span.length, 1, 'autoEllipsis wrapped the contents in a span element' );
+	strictEqual( $span.length, 1, 'autoEllipsis wrapped the contents in a span element' );
 
 	// Check that the text fits by turning on word wrapping
 	$span.css( 'whiteSpace', 'nowrap' );
-	deepEqual( $span.width() <= $span.parent().width(), true, "Text fits (span's width is no larger than its parent's width)" );
+	strictEqual( $span.width() <= $span.parent().width(), true, "Text fits (span's width is no larger than its parent's width)" );
 
 	// Add one character using scary black magic
 	var spanText = $span.text();
@@ -44,7 +44,7 @@ test( 'Position right', function() {
 
 	// Put this text in the span and verify it doesn't fit
 	$span.text( spanText );
-	deepEqual( $span.width() > $span.parent().width(), true, 'Fit is maximal (adding one character makes it not fit any more)' );
+	strictEqual( $span.width() > $span.parent().width(), true, 'Fit is maximal (adding one character makes it not fit any more)' );
 
 	// Clean up
 	$wrapper.remove();

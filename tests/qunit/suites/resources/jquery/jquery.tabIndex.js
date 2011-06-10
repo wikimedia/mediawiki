@@ -1,53 +1,50 @@
 module( 'jquery.tabIndex.js' );
 
-test( '-- Initial check', function(){
+test( '-- Initial check', function() {
 	expect(2);
 
 	ok( $.fn.firstTabIndex, '$.fn.firstTabIndex defined' );
 	ok( $.fn.lastTabIndex, '$.fn.lastTabIndex defined' );
-
 });
 
-test( 'firstTabIndex', function(){
+test( 'firstTabIndex', function() {
 	expect(2);
 
-	var testEnvironment = 
+	var testEnvironment =
 '<form>' +
 	'<input tabindex="7" />' +
 	'<input tabindex="9" />' +
 	'<textarea tabindex="2">Foobar</textarea>' +
 	'<textarea tabindex="5">Foobar</textarea>' +
 '</form>';
-	var $testA = $( '<div />' ).html( testEnvironment ).appendTo( 'body' );
 
-	deepEqual( $testA.firstTabIndex(), 2, 'First tabindex should be 2 within this context.' );
+	var $testA = $( '<div>' ).html( testEnvironment ).appendTo( 'body' );
+	strictEqual( $testA.firstTabIndex(), 2, 'First tabindex should be 2 within this context.' );
 
-	var $testB = $( '<div />' );
-
-	deepEqual( $testB.firstTabIndex(), null, 'Return null if none available.' );
+	var $testB = $( '<div>' );
+	strictEqual( $testB.firstTabIndex(), null, 'Return null if none available.' );
 
 	// Clean up
-	$testA.add( $testB).remove();
+	$testA.add( $testB ).remove();
 });
 
-test( 'lastTabIndex', function(){
+test( 'lastTabIndex', function() {
 	expect(2);
 
-	var testEnvironment = 
+	var testEnvironment =
 '<form>' +
 	'<input tabindex="7" />' +
 	'<input tabindex="9" />' +
 	'<textarea tabindex="2">Foobar</textarea>' +
 	'<textarea tabindex="5">Foobar</textarea>' +
 '</form>';
-	var $testA = $( '<div />' ).html( testEnvironment ).appendTo( 'body' );
 
-	deepEqual( $testA.lastTabIndex(), 9, 'Last tabindex should be 9 within this context.' );
+	var $testA = $( '<div>' ).html( testEnvironment ).appendTo( 'body' );
+	strictEqual( $testA.lastTabIndex(), 9, 'Last tabindex should be 9 within this context.' );
 
-	var $testB = $( '<div />' );
-
-	deepEqual( $testB.lastTabIndex(), null, 'Return null if none available.' );
+	var $testB = $( '<div>' );
+	strictEqual( $testB.lastTabIndex(), null, 'Return null if none available.' );
 
 	// Clean up
-	$testA.add( $testB).remove();
+	$testA.add( $testB ).remove();
 });
