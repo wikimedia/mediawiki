@@ -7,7 +7,7 @@
  */
 
 class PostgresField implements Field {
-	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname, $sharedmConn = null;
+	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname;
 
 	/**
 	 * @param $db DatabaseBase
@@ -152,7 +152,7 @@ class DatabasePostgres extends DatabaseBase {
 			throw new DBConnectionError( $this, "Postgres functions missing, have you compiled PHP with the --with-pgsql option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
 		}
 
-		global $wgDBport, $wgSharedDB;
+		global $wgDBport;
 
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
 			return;
@@ -189,30 +189,6 @@ class DatabasePostgres extends DatabaseBase {
 			throw new DBConnectionError( $this, $phpError );
 		}
 
-		if( $wgSharedDB ) {
-			$connectVars = array(
-				'dbname' => $wgSharedDB,
-				'user' => $user,
-				'password' => $password );
-			if ($server!=false && $server!="") {
-				$connectVars['host'] = $server;
-			}
-			if ($port!=false && $port!="") {
-				$connectVars['port'] = $port;
-			}
-			$connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
-
-			$this->installErrorHandler();
-			$this->sharedmConn = pg_connect( $connectString );
-			$phpError = $this->restoreErrorHandler();
-			if ( $this->sharedmConn == false ) {
-				wfDebug( "SharedDB connection error\n" );
-				wfDebug( "Server: $server, Database: $wgSharedDB, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
-				wfDebug( $this->lastError()."\n" );
-				$this->close();
-				throw new DBConnectionError( $this, $phpError );
-			}
-		}
 		$this->mOpened = true;
 
 		global $wgCommandLineMode;
@@ -258,56 +234,19 @@ class DatabasePostgres extends DatabaseBase {
 	 * Returns success, true if already closed
 	 */
 	function close() {
-		$mainConn = true;
-		$sharedConn = true;
- 		if ( $this->mConn ) {
-			$mainConn = pg_close ( $this->mConn );
+		$this->mOpened = false;
+		if ( $this->mConn ) {
+			return pg_close( $this->mConn );
+		} else {
+			return true;
 		}
-		if ( isset( $this->sharedmConn ) && $this->sharedmConn ) {
-			$sharedConn = pg_close ( $this->sharedmConn );
-		}
-		$this->mOpened = !($mainConn && $sharedConn);
-		return !$this->mOpened;
 	}
 
 	function doQuery( $sql ) {
-		global $wgSharedDB;
 		if ( function_exists( 'mb_convert_encoding' ) ) {
 			$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		}
-		# we can find the shared tables after FROM or UPDATE statements.
-		$FROMpos = strpos( $sql, 'FROM' );
-		if ( $FROMpos === false ) {
-			$FROMpos = strpos( $sql, 'UPDATE' );
-			if ( $FROMpos === false ) {	
-				# does this query even exists?
-				$this->mLastResult = pg_query( $this->mConn, $sql );
-				$this->mAffectedRows = null; // use pg_affected_rows(mLastResult)
-				return $this->mLastResult;
-			}
-		}
-		# check if we should connect to the shared database
-		# skip FROM/UPDATE statement
-		$FROMquery = substr( $sql, $FROMpos + ($sql[$FROMpos] == 'F' ? 4 : 6) );
-		$trimmed = trim( $FROMquery );
-		$FROMquery = $trimmed;
-		# skip eventual comment and spaces
-		if ( substr( $FROMquery, 0, 2 ) == '/*' ) {
-			$FROMquery = substr( $FROMquery, strpos( $FROMquery, '*/') + 2 );
-			$trimmed = trim( $FROMquery );
-			$FROMquery = $trimmed;
-		}
-		# select only dbname
-		$FROMquery = substr( $FROMquery, 0, strpos($FROMquery, ' ') );
-		$FROMvalue = explode( '.', $FROMquery );
-		# db is always quoted, compare it to wgSharedDB
-		if ( $FROMvalue[0] == "\"$wgSharedDB\"" ) {
-			# shared db requested. switch connection
-			$this->mLastResult = pg_query( $this->sharedmConn, $sql );
-		} else {
-			# main db: basic query
-			$this->mLastResult = pg_query( $this->mConn, $sql );
-		}
+		$this->mLastResult = pg_query( $this->mConn, $sql );
 		$this->mAffectedRows = null; // use pg_affected_rows(mLastResult)
 		return $this->mLastResult;
 	}
@@ -671,81 +610,15 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function tableName( $name, $quoted = true ) {
-		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables, $wgDBmwschema;
 		# Replace reserved words with better ones
 		switch( $name ) {
 			case 'user':
-				$name = 'mwuser';
-				break;
-			case '"user"':
-				$name = '"mwuser"';
-				break;
- 			case 'text':
-				$name = 'pagecontent';
-				break;
- 			case 'text':
-				$name = 'pagecontent';
-				break;
+				return 'mwuser';
+			case 'text':
+				return 'pagecontent';
+			default:
+				return parent::tableName( $name, $quoted );
 		}
-		# Skip the entire process when we have a string quoted on both ends.
-		# Note that we check the end so that we will still quote any use of
-		# use of `database`.table. But won't break things if someone wants
-		# to query a database table with a dot in the name.
-		if ( $name[0] == '"' && substr( $name, -1, 1 ) == '"' ) {
-			return $name;
-		}
-
-		# Lets test for any bits of text that should never show up in a table
-		# name. Basically anything like JOIN or ON which are actually part of
-		# SQL queries, but may end up inside of the table value to combine
-		# sql. Such as how the API is doing.
-		# Note that we use a whitespace test rather than a \b test to avoid
-		# any remote case where a word like on may be inside of a table name
-		# surrounded by symbols which may be considered word breaks.
-		if( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
-			return $name;
-		}
-
-		# Split database and table into proper variables.
-		# We reverse the explode so that database.table and table both output
-		# the correct table.
-		$dbDetails = array_reverse( explode( '.', $name, 2 ) );
-		if ( isset( $dbDetails[1] ) ) {
-			@list( $table, $database ) = $dbDetails;
-		} else {
-			@list( $table ) = $dbDetails;
- 		}
-		$prefix = $this->mTablePrefix; # Default prefix
-
-		# A database name has been specified in input. Quote the table name
-		# because we don't want any prefixes added.
-		if( isset($database) ) {
-			$table = ( $table[0] == '"' ? $table : "\"{$table}\"" );
-		}
-
-		# Note that we use the long format because php will complain in in_array if
-		# the input is not an array, and will complain in is_array if it is not set.
-		if( !isset( $database ) # Don't use shared database if pre selected.
-			&& isset( $wgSharedDB ) # We have a shared database
-			&& $table[0] != '"' # Paranoia check to prevent shared tables listing '`table`'
-			&& isset( $wgSharedTables )
-			&& is_array( $wgSharedTables )
-			&& in_array( $table, $wgSharedTables ) ) { # A shared table is selected
-				$database = $wgSharedDB;
-				$prefix   = isset( $wgSharedPrefix ) ? $wgSharedPrefix : $prefix;
-		}
-
-		# Quote the $database and $table and apply the prefix if not quoted.
-		if( isset($database) ) {
-			$database = ( $database[0] == '"' ? $database : "\"{$database}\"" );
-		}
-		$table = ( $table[0] == '"' ? $table : "\"{$prefix}{$table}\"" );
-
-		# Merge our database and table into our final table name.
-		$tableName = ( isset($database) ? "{$database}.\"{$wgDBmwschema}\".{$table}" : "{$table}" );
-
-		# We're finished, return.
-		return $tableName;
 	}
 
 	/**
