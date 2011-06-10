@@ -643,18 +643,17 @@ ol:lang(or) li {
 /* tooltip styles */
 .mw-help-field-hint {
 	display: none;
-	padding: 0px;
-	padding-left: 15px;
 	margin-left: 2px;
 	margin-bottom: -8px;
+	padding: 0px 0px 0px 15px;
 	/* @embed */
 	background-image: url('images/help-question.gif');
 	background-position: left center;
 	background-repeat: no-repeat;
-	color: #0645ad;
-	text-decoration: underline;
 	cursor: pointer;
 	font-size: .8em;
+	text-decoration: underline;
+	color: #0645ad;
 }
 .mw-help-field-hint:hover {
 	/* @embed */
