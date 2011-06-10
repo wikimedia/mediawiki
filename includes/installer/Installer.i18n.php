@@ -2857,6 +2857,8 @@ Bitte einen abweichenden Benutzernamen angeben.',
 	'config-subscribe' => 'Bitte die Mailingliste [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mitteilungen zu Versionsveröffentlichungen] abonnieren.',
 	'config-subscribe-help' => 'Es handelt sich hierbei um eine Mailingliste mit wenigen Aussendungen, die für Mitteilungen zu Versionsveröffentlichungen, einschließlich wichtiger Sicherheitsveröffentlichungen, genutzt wird.
 Diese Mailingliste sollte abonniert werden. Zudem sollte die MediaWiki-Installation stets aktualisiert werden, sobald eine neue Programmversion veröffentlicht wurde.',
+	'config-subscribe-noemail' => 'Beim Abonnieren der Mailingliste mit Mitteilungen zu Versionsveröffentlichungen wurde keine E-Mail-Adresse angegeben.
+Bitte eine E-Mail-Adresse angeben, sofern die Mailingliste abonniert werden soll.',
 	'config-almost-done' => 'Der Vorgang ist fast abgeschlossen!
 Die verbliebenen Konfigurationseinstellungen können übersprungen und das Wiki umgehend installiert werden.',
 	'config-optional-continue' => 'Sollen weitere Konfigurationseinstellungen vorgenommen werden?',
@@ -8893,6 +8895,8 @@ chmod a+w $3</pre>',
 	'config-subscribe' => 'Претплатете се на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release поштенскиот список за известувања].',
 	'config-subscribe-help' => 'Ова е нископрометен поштенски список кој се користи за соопштувања во врска со изданија, вклучувајќи важни безбедносни соопштенија.
 Треба да се претплатите и да ја надградувате вашата инсталација на МедијаВики кога излегуваат нови верзии.',
+	'config-subscribe-noemail' => 'Се обидовте да се претплатите на поштенскиот список со известувања за нови изданија без да наведете е-пошта.
+Наведете е-поштенска адреса ако сакате да се претплатите на списокот.',
 	'config-almost-done' => 'Уште малку сте готови!
 Сега можете да ги прескокнете преостанатите поставувања и веднаш да го инсталирате викито.',
 	'config-optional-continue' => 'Постави ми повеќе прашања.',
@@ -11403,6 +11407,8 @@ Introduza um nome de utilizador diferente.',
 	'config-subscribe' => 'Subscreva a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de divulgação de anúncios de lançamento].',
 	'config-subscribe-help' => 'Esta é uma lista de divulgação de baixo volume para anúncios de lançamento de versões novas, incluindo anúncios de segurança importantes.
 Deve subscrevê-la e actualizar a sua instalação MediaWiki quando são lançadas versões novas.',
+	'config-subscribe-noemail' => 'Tentou subscrever a lista de divulgação dos anúncios de novas versões, sem fornecer um endereço de correio electrónico.
+Para subscrever esta lista de divulgação tem de fornecer um endereço de correio electrónico.',
 	'config-almost-done' => 'Está quase a terminar!
 Agora pode saltar as configurações restantes e instalar já a wiki.',
 	'config-optional-continue' => 'Faz-me mais perguntas.',

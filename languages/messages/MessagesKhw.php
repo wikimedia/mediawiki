@@ -14,6 +14,12 @@ $fallback = 'ur';
 
 $messages = array(
 # Dates
+'sun'           => 'یک شمبے',
+'mon'           => 'دو شمبے',
+'tue'           => 'سے شمبے',
+'wed'           => 'چار شمبے',
+'thu'           => 'پنچ شمبے',
+'fri'           => 'آدینہ',
 'sat'           => 'شمبے',
 'january'       => 'جنوری',
 'february'      => 'فروری',
@@ -72,14 +78,15 @@ $messages = array(
 'qbfind' => 'تلاش کورے',
 
 # Vector skin
-'vector-action-move'  => 'منتقل کورے',
-'vector-view-create'  => 'ساوزاوے',
-'vector-view-edit'    => 'ایڈٹ کورے',
-'vector-view-history' => 'تاریخچہ',
-'vector-view-view'    => 'راوے',
-'actions'             => 'ایکشنز',
-'namespaces'          => 'نامان ژاغہ',
-'variants'            => 'الگ',
+'vector-action-move'     => 'منتقل کورے',
+'vector-view-create'     => 'ساوزاوے',
+'vector-view-edit'       => 'ایڈٹ کورے',
+'vector-view-history'    => 'تاریخچہ',
+'vector-view-view'       => 'راوے',
+'vector-view-viewsource' => 'مسودہ',
+'actions'                => 'ایکشنز',
+'namespaces'             => 'نامان ژاغہ',
+'variants'               => 'الگ',
 
 'errorpagetitle'   => 'خطاء',
 'returnto'         => ' آچی $1۔',
