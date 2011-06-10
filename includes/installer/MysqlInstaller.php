@@ -27,6 +27,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	protected $internalDefaults = array(
 		'_MysqlEngine' => 'InnoDB',
 		'_MysqlCharset' => 'binary',
+		'_InstallUser' => 'root',
 	);
 
 	public $supportedEngines = array( 'InnoDB', 'MyISAM' );
@@ -111,7 +112,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function openConnection( $dbName = null ) {
+	public function openConnection() {
 		$status = Status::newGood();
 		try {
 			$db = new DatabaseMysql(
