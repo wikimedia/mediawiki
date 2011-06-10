@@ -758,6 +758,12 @@ class WebInstaller_Name extends WebInstallerPage {
 			$this->parent->showError( 'config-admin-error-bademail' );
 			$retVal = false;
 		}
+		// If they asked to subscribe to mediawiki-announce but didn't give
+		// an e-mail, show an error. Bug 29332
+		if( !$email && $this->getVar( '_Subscribe' ) ) {
+			$this->parent->showError( 'config-subscribe-noemail' );
+			$retVal = false;
+		}
 
 		return $retVal;
 	}

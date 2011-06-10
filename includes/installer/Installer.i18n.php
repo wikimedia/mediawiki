@@ -373,6 +373,8 @@ Specify a different username.',
 	'config-subscribe'                => 'Subscribe to the [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list].',
 	'config-subscribe-help'           => 'This is a low-volume mailing list used for release announcements, including important security announcements.
 You should subscribe to it and update your MediaWiki installation when new versions come out.',
+	'config-subscribe-noemail'        => 'You tried to subscribe to the release announcements mailing list without providing an e-mail address.
+Please provide an e-mail address if you wish to subscribe to the mailing list.',
 	'config-almost-done'              => 'You are almost done!
 You can now skip the remaining configuration and install the wiki right now.',
 	'config-optional-continue'        => 'Ask me more questions.',
