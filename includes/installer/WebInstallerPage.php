@@ -126,7 +126,7 @@ abstract class WebInstallerPage {
 		$this->addHTML(
 			'<div id="config-spinner" style="display:none;"><img src="../skins/common/images/ajax-loader.gif" /></div>' .
 			'<script>jQuery( "#config-spinner" ).show();</script>' .
-			'<textarea id="config-live-log" name="LiveLog" rows="10" cols="30" readonly="readonly">'
+			'<div id="config-live-log"><textarea name="LiveLog" rows="10" cols="30" readonly="readonly">'
 		);
 		$this->parent->output->flush();
 	}
@@ -135,7 +135,7 @@ abstract class WebInstallerPage {
 	 * Opposite to startLiveBox()
 	 */
 	protected function endLiveBox() {
-		$this->addHTML( '</textarea>
+		$this->addHTML( '</textarea></div>
 <script>jQuery( "#config-spinner" ).hide()</script>' );
 		$this->parent->output->flush();
 	}
