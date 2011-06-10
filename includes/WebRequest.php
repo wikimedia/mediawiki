@@ -285,7 +285,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Set an aribtrary value into our get/post data.
+	 * Set an arbitrary value into our get/post data.
 	 *
 	 * @param $key String: key name to use
 	 * @param $value Mixed: value to set
