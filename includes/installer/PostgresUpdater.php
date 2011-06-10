@@ -130,8 +130,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeField', 'ipblocks',      'ipb_block_email', 'smallint', "CASE WHEN ipb_block_email=' ' THEN 0 ELSE ipb_block_email::smallint END DEFAULT 0" ),
 			array( 'changeField', 'ipblocks',      'ipb_address',     'text',     'ipb_address::text' ),
 			array( 'changeField', 'ipblocks',      'ipb_deleted',     'smallint', 'ipb_deleted::smallint DEFAULT 0' ),
-			array( 'changeField', 'math',          'math_inputhash',  'bytea',    "decode(math_inputhash,'escape')" ),
-			array( 'changeField', 'math',          'math_outputhash', 'bytea',    "decode(math_outputhash,'escape')" ),
 			array( 'changeField', 'mwuser',        'user_token',      'text',     '' ),
 			array( 'changeField', 'mwuser',        'user_email_token', 'text',     '' ),
 			array( 'changeField', 'objectcache',   'keyname',         'text',     '' ),
