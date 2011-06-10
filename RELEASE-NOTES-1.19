@@ -86,6 +86,8 @@ production.
 * (bug 29101) Special:FileDuplicateSearch shows silly message
 * (bug 29048) jQuery.tabIndex: firstTabIndex() should not output the same
   as lastTabIndex().
+* (bug 29332) Warn if user requests mediawiki-announce subscription but does not
+  enter an e-mail address.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
