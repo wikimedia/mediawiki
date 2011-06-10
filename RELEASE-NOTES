@@ -596,8 +596,9 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 28611) Don't die in SqlBagOStuff::incr() if there's a race condition.
 * (bug 16886) Sister projects box moves down the extract of the first result
   in IE 7.
- * (bug 17398) Fixed "link" parameter in image links with "thumb" or "frame"
+* (bug 17398) Fixed "link" parameter in image links with "thumb" or "frame"
   parameter.
+* (bug 27854) Http::isValidURI is way too lax.
 
 === API changes in 1.17 ===
 
