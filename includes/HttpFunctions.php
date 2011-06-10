@@ -116,16 +116,19 @@ class Http {
 	}
 
 	/**
-	 * Checks that the given URI is a valid one
+	 * Checks that the given URI is a valid one. Hardcoding the
+	 * protocols, because we only want protocols that both cURL
+	 * and php support.
+	 *
+	 * @fixme this is wildly inaccurate and fails to actually check most stuff
 	 *
 	 * @param $uri Mixed: URI to check for validity
 	 * @returns Boolean
 	 */
 	public static function isValidURI( $uri ) {
 		return preg_match(
-			'/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/',
-			$uri,
-			$matches
+			'/^https?:\/\/[^\/\s]\S*$/D',
+			$uri
 		);
 	}
 }
@@ -939,7 +942,8 @@ class PhpHttpRequest extends MWHttpRequest {
 		// causes a segfault
 		$manuallyRedirect = version_compare( phpversion(), '5.1.7', '<' );
 
-		if ( $this->parsedUrl['scheme'] != 'http' ) {
+		if ( $this->parsedUrl['scheme'] != 'http' &&
+			 $this->parsedUrl['scheme'] != 'https' ) {
 			$this->status->fatal( 'http-invalid-scheme', $this->parsedUrl['scheme'] );
 		}
 
