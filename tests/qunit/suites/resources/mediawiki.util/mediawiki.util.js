@@ -1,39 +1,38 @@
 module( 'mediawiki.util.js' );
 
-test( '-- Initial check', function(){
+test( '-- Initial check', function() {
+	expect(1);
 
 	ok( mw.util, 'mw.util defined' );
-
 });
 
-test( 'rawurlencode', function(){
+test( 'rawurlencode', function() {
+	expect(1);
 
 	equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
-
 });
 
-test( 'wikiUrlencode', function(){
+test( 'wikiUrlencode', function() {
+	expect(1);
 
 	equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
-
 });
 
-test( 'wikiGetlink', function(){
+test( 'wikiGetlink', function() {
+	expect(2);
 
 	// Not part of startUp module
 	mw.config.set( 'wgArticlePath', '/wiki/$1' );
 
 	var hrefA = mw.util.wikiGetlink( 'Sandbox' );
-
 	equal( hrefA, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
 
 	var hrefB = mw.util.wikiGetlink( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
-
-	equal( hrefB, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage', 'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
-
+	equal( hrefB, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage',
+		'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
 });
 
-test( 'wikiScript', function(){
+test( 'wikiScript', function() {
 	expect(2);
 
 	mw.config.set({
@@ -43,26 +42,28 @@ test( 'wikiScript', function(){
 	});
 
 	equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ), 'Defaults to index.php and is equal to wgScript' );
-	deepEqual( mw.util.wikiScript( 'api' ), '/w/api.php' );
+	equal( mw.util.wikiScript( 'api' ), '/w/api.php', 'API path' );
 
 });
 
-test( 'addCSS', function(){
+test( 'addCSS', function() {
 	expect(3);
 
 	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
-	ok(  a, 'function works' );
-	deepEqual( a.disabled, false, 'property "disabled" is available and set to false' );
+	ok( a instanceof CSSStyleSheet, 'Object is an instance of CSSStyleSheet' );
+	strictEqual( a.disabled, false, 'property "disabled" is available and set to false' );
 
 	var $b = $('#bodyContent');
 	equal( $b.css('visibility'), 'hidden', 'Added style properties are in effect' );
 
+	// Clean up
+	$( a.ownerNode ).remove();
 });
 
-test( 'toggleToc', function(){
+test( 'toggleToc', function() {
 	expect(3);
 
-	deepEqual( mw.util.toggleToc(), null, 'Return null if there is no table of contents on the page.' );
+	strictEqual( mw.util.toggleToc(), null, 'Return null if there is no table of contents on the page.' );
 
 	var tocHtml =
 	'<table id="toc" class="toc"><tr><td>' +
@@ -71,7 +72,7 @@ test( 'toggleToc', function(){
 			'<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Hide</a>&nbsp;]</span>' +
 		'</div>' +
 		'<ul><li></li></ul>' +
-	'</td></tr></table>';	
+	'</td></tr></table>';
 	var $toc = $(tocHtml).appendTo( 'body' );
 	var $toggleLink = $( '#togglelink' );
 
@@ -79,49 +80,48 @@ test( 'toggleToc', function(){
 	// QUnit should not finish this test() untill they are all done
 	stop();
 
-	var actionC = function(){
+	var actionC = function() {
 		start();
 
 		// Clean up
 		$toc.remove();
 	};
-	var actionB = function(){
-		deepEqual( mw.util.toggleToc( $toggleLink, actionC ), true, 'Return boolean true if the TOC is now visible.' );
+	var actionB = function() {
+		strictEqual( mw.util.toggleToc( $toggleLink, actionC ), true, 'Return boolean true if the TOC is now visible.' );
 	};
-	var actionA = function(){
-		deepEqual( mw.util.toggleToc( $toggleLink, actionB ), false, 'Return boolean false if the TOC is now hidden.' );
+	var actionA = function() {
+		strictEqual( mw.util.toggleToc( $toggleLink, actionB ), false, 'Return boolean false if the TOC is now hidden.' );
 	};
-	
+
 	actionA();
-
-
 });
 
-test( 'getParamValue', function(){
+test( 'getParamValue', function() {
+	expect(2);
 
 	var url = 'http://mediawiki.org/?foo=wrong&foo=right#&foo=bad';
 
 	equal( mw.util.getParamValue( 'foo', url ), 'right', 'Use latest one, ignore hash' );
-	deepEqual( mw.util.getParamValue( 'bar', url ), null, 'Return null when not found' );
-
+	strictEqual( mw.util.getParamValue( 'bar', url ), null, 'Return null when not found' );
 });
 
-test( 'tooltipAccessKey', function(){
+test( 'tooltipAccessKey', function() {
+	expect(3);
 
 	equal( typeof mw.util.tooltipAccessKeyPrefix, 'string', 'mw.util.tooltipAccessKeyPrefix must be a string' );
 	ok( mw.util.tooltipAccessKeyRegexp instanceof RegExp, 'mw.util.tooltipAccessKeyRegexp instance of RegExp' );
 	ok( mw.util.updateTooltipAccessKeys, 'mw.util.updateTooltipAccessKeys' );
-
 });
 
-test( '$content', function(){
+test( '$content', function() {
+	expect(2);
 
 	ok( mw.util.$content instanceof jQuery, 'mw.util.$content instance of jQuery' );
-	deepEqual( mw.util.$content.length, 1, 'mw.util.$content must have length of 1' );
-
+	strictEqual( mw.util.$content.length, 1, 'mw.util.$content must have length of 1' );
 });
 
-test( 'addPortletLink', function(){
+test( 'addPortletLink', function() {
+	expect(5);
 
 	var A = mw.util.addPortletLink( 'p-tb', 'http://mediawiki.org/wiki/ResourceLoader',
 		'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l', '#t-specialpages' );
@@ -142,55 +142,124 @@ test( 'addPortletLink', function(){
 
 	// Clean up
 	$( [A, B, C] ).remove();
-
 });
 
-test( 'jsMessage', function(){
+test( 'jsMessage', function() {
+	expect(1);
 
 	var a = mw.util.jsMessage( "MediaWiki is <b>Awesome</b>." );
-
 	ok( a, 'Basic checking of return value' );
 
 	// Clean up
 	$( '#mw-js-message' ).remove();
-
 });
 
-test( 'validateEmail', function(){
+test( 'validateEmail', function() {
 	expect(6);
 
-	deepEqual( mw.util.validateEmail( "" ), null, 'Should return null for empty string ' );
-	deepEqual( mw.util.validateEmail( "user@localhost" ), true, 'Return true for a valid e-mail address' );
+	strictEqual( mw.util.validateEmail( "" ), null, 'Should return null for empty string ' );
+	strictEqual( mw.util.validateEmail( "user@localhost" ), true, 'Return true for a valid e-mail address' );
 
 	// testEmailWithCommasAreInvalids
-	deepEqual( mw.util.validateEmail( "user,foo@example.org" ), false, 'Emails with commas are invalid' );
-	deepEqual( mw.util.validateEmail( "userfoo@ex,ample.org" ), false, 'Emails with commas are invalid' );
+	strictEqual( mw.util.validateEmail( "user,foo@example.org" ), false, 'Emails with commas are invalid' );
+	strictEqual( mw.util.validateEmail( "userfoo@ex,ample.org" ), false, 'Emails with commas are invalid' );
 
 	// testEmailWithHyphens
-	deepEqual( mw.util.validateEmail( "user-foo@example.org" ), true, 'Emails may contain a hyphen' );
-	deepEqual( mw.util.validateEmail( "userfoo@ex-ample.org" ), true, 'Emails may contain a hyphen' );
-
+	strictEqual( mw.util.validateEmail( "user-foo@example.org" ), true, 'Emails may contain a hyphen' );
+	strictEqual( mw.util.validateEmail( "userfoo@ex-ample.org" ), true, 'Emails may contain a hyphen' );
 });
 
-test( 'isIPv6Address', function(){
-	expect(6);
+test( 'isIPv6Address', function() {
+	expect(40);
 
-	// Based on IPTest.php > IPv6
-	deepEqual( mw.util.isIPv6Address( "" ), false, 'Empty string is not an IP' );
-	deepEqual( mw.util.isIPv6Address( ":fc:100::" ), false, 'IPv6 starting with lone ":"' );
-	deepEqual( mw.util.isIPv6Address( "fc:100::" ), true );
-	deepEqual( mw.util.isIPv6Address( "fc:100:a:d:1:e:ac::" ), true );
-	deepEqual( mw.util.isIPv6Address( ":::" ), false );
-	deepEqual( mw.util.isIPv6Address( "::0:" ), false );
+	// Shortcuts
+	var	assertFalseIPv6 = function( addy, summary ) {
+			return strictEqual( mw.util.isIPv6Address( addy ), false, summary );
+		},
+		assertTrueIPv6 = function( addy, summary ) {
+			return strictEqual( mw.util.isIPv6Address( addy ), true, summary );
+		};
 
+	// Based on IPTest.php > testisIPv6
+	assertFalseIPv6( ':fc:100::', 'IPv6 starting with lone ":"' );
+	assertFalseIPv6( 'fc:100:::', 'IPv6 ending with a ":::"' );
+	assertFalseIPv6( 'fc:300', 'IPv6 with only 2 words' );
+	assertFalseIPv6( 'fc:100:300', 'IPv6 with only 3 words' );
+
+	$.each(
+	['fc:100::',
+	'fc:100:a::',
+	'fc:100:a:d::',
+	'fc:100:a:d:1::',
+	'fc:100:a:d:1:e::',
+	'fc:100:a:d:1:e:ac::'], function( i, addy ){
+		assertTrueIPv6( addy, addy + ' is a valid IP' );
+	});
+
+	assertFalseIPv6( 'fc:100:a:d:1:e:ac:0::', 'IPv6 with 8 words ending with "::"' );
+	assertFalseIPv6( 'fc:100:a:d:1:e:ac:0:1::', 'IPv6 with 9 words ending with "::"' );
+
+	assertFalseIPv6( ':::' );
+	assertFalseIPv6( '::0:', 'IPv6 ending in a lone ":"' );
+
+	assertTrueIPv6( '::', 'IPv6 zero address' );
+	$.each(
+	['::0',
+	'::fc',
+	'::fc:100',
+	'::fc:100:a',
+	'::fc:100:a:d',
+	'::fc:100:a:d:1',
+	'::fc:100:a:d:1:e',
+	'::fc:100:a:d:1:e:ac',
+
+	'fc:100:a:d:1:e:ac:0'], function( i, addy ){
+		assertTrueIPv6( addy, addy + ' is a valid IP' );
+	});
+
+	assertFalseIPv6( '::fc:100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' );
+	assertFalseIPv6( '::fc:100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' );
+
+	assertFalseIPv6( ':fc::100', 'IPv6 starting with lone ":"' );
+	assertFalseIPv6( 'fc::100:', 'IPv6 ending with lone ":"' );
+	assertFalseIPv6( 'fc:::100', 'IPv6 with ":::" in the middle' );
+
+	assertTrueIPv6( 'fc::100', 'IPv6 with "::" and 2 words' );
+	assertTrueIPv6( 'fc::100:a', 'IPv6 with "::" and 3 words' );
+	assertTrueIPv6( 'fc::100:a:d', 'IPv6 with "::" and 4 words' );
+	assertTrueIPv6( 'fc::100:a:d:1', 'IPv6 with "::" and 5 words' );
+	assertTrueIPv6( 'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' );
+	assertTrueIPv6( 'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' );
+	assertTrueIPv6( '2001::df', 'IPv6 with "::" and 2 words' );
+	assertTrueIPv6( '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' );
+	assertTrueIPv6( '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' );
+
+	assertFalseIPv6( 'fc::100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' );
+	assertFalseIPv6( 'fc::100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' );
 });
 
-test( 'isIPv4Address', function(){
-	expect(3);
+test( 'isIPv4Address', function() {
+	expect(11);
 
-	// Based on IPTest.php > IPv4
-	deepEqual( mw.util.isIPv4Address( "" ), false, 'Empty string is not an IP' );
-	deepEqual( mw.util.isIPv4Address( "...." ), false );
-	deepEqual( mw.util.isIPv4Address( "1.24.52.13" ), true );
+	// Shortcuts
+	var	assertFalseIPv4 = function( addy, summary ) {
+			return strictEqual( mw.util.isIPv4Address( addy ), false, summary );
+		},
+		assertTrueIPv4 = function( addy, summary ) {
+			return strictEqual( mw.util.isIPv4Address( addy ), true, summary );
+		};
 
+	// Based on IPTest.php > testisIPv4
+	assertFalseIPv4( false, 'Boolean false is not an IP' );
+	assertFalseIPv4( true, 'Boolean true is not an IP' );
+	assertFalseIPv4( '', 'Empty string is not an IP' );
+	assertFalseIPv4( 'abc', '"abc" is not an IP' );
+	assertFalseIPv4( ':', 'Colon is not an IP' );
+	assertFalseIPv4( '124.24.52', 'IPv4 not enough quads' );
+	assertFalseIPv4( '24.324.52.13', 'IPv4 out of range' );
+	assertFalseIPv4( '.24.52.13', 'IPv4 starts with period' );
+
+	assertTrueIPv4( '124.24.52.13', '124.24.52.134 is a valid IP' );
+	assertTrueIPv4( '1.24.52.13', '1.24.52.13 is a valid IP' );
+	assertFalseIPv4( '74.24.52.13/20', 'IPv4 ranges are not recogzized as valid IPs' );
 });
