@@ -94,7 +94,7 @@ abstract class DatabaseUpdater {
 		if ( !$vars ) {
 			return; // no LocalSettings found
 		}
-		if ( !isset( $vars['wgHooks'] ) && !isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+		if ( !isset( $vars['wgHooks'] ) || !isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			return;
 		}
 		global $wgHooks, $wgAutoloadClasses;
