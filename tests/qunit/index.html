@@ -57,6 +57,14 @@
 	     the following script will allow it to extract the results.
 	     Harmless otherwise. -->
 	<script src="testswarm.inject.js"></script>
+
+	<!-- CompletenessTest -->
+	<script>
+		if ( QUnit.urlParams.completenesstest ) {
+			document.write( '\x3Cscript src="../../resources/jquery/jquery.qunit.completenessTest.js">\x3C/script>' );
+			document.write( '\x3Cscript src="jquery.qunit.completenessTest.config.js">\x3C/script>' );
+		}
+	</script>
 </head>
 <body>
 	<h1 id="qunit-header">MediaWiki JavaScript Test Suite</h1>

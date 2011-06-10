@@ -16,7 +16,6 @@ test( '-- Initial check', function() {
 
 test( 'mw.Map', function() {
 	expect(15);
-
 	ok( mw.Map, 'mw.Map defined' );
 
 	var	conf = new mw.Map(),
@@ -49,7 +48,7 @@ test( 'mw.Map', function() {
 
 	strictEqual( conf.exists( 'foo' ), true, 'Map.exists returns boolean true if a key exists' );
 	strictEqual( conf.exists( 'notExist' ), false, 'Map.exists returns boolean false if a key does not exists' );
-	strictEqual( conf.get() === conf.values, true, 'Map.get returns the entire values object by reference (if called without arguments)' );
+	strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
 
 	conf.set( 'globalMapChecker', 'Hi' );
 
@@ -107,7 +106,6 @@ test( 'mw.message & mw.messages', function() {
 	strictEqual( goodbye.exists(), false, 'Message.exists returns false for inexisting messages' );
 
 	equal( goodbye.toString(), '<goodbye>', 'Message.toString returns <key> if key does not exist' );
-
 });
 
 test( 'mw.msg', function() {
@@ -160,6 +158,7 @@ test( 'mw.loader', function() {
 		// /sample/awesome.js declares the "mw.loader.testCallback" function
 		// which contains a call to start() and ok()
 		mw.loader.testCallback();
+		mw.loader.testCallback = undefined;
 
 	}, function() {
 		start();
