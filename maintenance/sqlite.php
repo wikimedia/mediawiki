@@ -44,6 +44,7 @@ class SqliteMaintenance extends Maintenance {
 		// Should work even if we use a non-SQLite database
 		if ( $this->hasOption( 'check-syntax' ) ) {
 			$this->checkSyntax();
+			return;
 		}
 
 		$this->db = wfGetDB( DB_MASTER );
