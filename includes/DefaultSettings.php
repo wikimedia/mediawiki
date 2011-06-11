@@ -4428,10 +4428,6 @@ $wgCopyrightIcon = null;
 /** Set this to true if you want detailed copyright information forms on Upload. */
 $wgUseCopyrightUpload = false;
 
-/** Set this to false if you want to disable checking that detailed copyright
- * information values are not empty. */
-$wgCheckCopyrightUpload = true;
-
 /**
  * Set this to the number of authors that you want to be credited below an
  * article text. Set it to zero to hide the attribution block, and a negative
