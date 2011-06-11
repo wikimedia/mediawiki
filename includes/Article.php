@@ -1785,6 +1785,122 @@ class Article {
 	}
 
 	/**
+	 * Mark this particular edit/page as patrolled
+	 */
+	public function markpatrolled() {
+		global $wgOut, $wgRequest;
+
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+
+		# If we haven't been given an rc_id value, we can't do anything
+		$rcid = (int) $wgRequest->getVal( 'rcid' );
+
+		if ( !$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'token' ), $rcid ) ) {
+			$wgOut->showErrorPage( 'sessionfailure-title', 'sessionfailure' );
+			return;
+		}
+
+		$rc = RecentChange::newFromId( $rcid );
+
+		if ( is_null( $rc ) ) {
+			$wgOut->showErrorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+			return;
+		}
+
+		# It would be nice to see where the user had actually come from, but for now just guess
+		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
+		$return = SpecialPage::getTitleFor( $returnto );
+
+		$errors = $rc->doMarkPatrolled();
+
+		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {
+			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
+
+			return;
+		}
+
+		if ( in_array( array( 'hookaborted' ), $errors ) ) {
+			// The hook itself has handled any output
+			return;
+		}
+
+		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
+			$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
+			$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
+			$wgOut->returnToMain( null, $return );
+
+			return;
+		}
+
+		if ( !empty( $errors ) ) {
+			$wgOut->showPermissionsErrorPage( $errors );
+
+			return;
+		}
+
+		# Inform the user
+		$wgOut->setPageTitle( wfMsg( 'markedaspatrolled' ) );
+		$wgOut->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
+		$wgOut->returnToMain( null, $return );
+	}
+
+	/**
+	 * User-interface handler for the "watch" action.
+	 * Requires Request to pass a token as of 1.19.
+	 * @deprecated since 1.18
+	 */
+	public function watch() {
+		Action::factory( 'watch', $this )->show();
+	}
+
+	/**
+	 * Add this page to $wgUser's watchlist
+	 *
+	 * This is safe to be called multiple times
+	 *
+	 * @return bool true on successful watch operation
+	 * @deprecated since 1.18
+	 */
+	public function doWatch() {
+		global $wgUser;
+		return WatchAction::doWatch( $this->mTitle, $wgUser );
+	}
+
+	/**
+	 * User interface handler for the "unwatch" action.
+	 * Requires Request to pass a token as of 1.19.
+	 * @deprecated since 1.18
+	 */
+	public function unwatch() {
+		Action::factory( 'unwatch', $this )->show();
+	}
+
+	/**
+	 * Stop watching a page
+	 * @return bool true on successful unwatch
+	 * @deprecated since 1.18
+	 */
+	public function doUnwatch() {
+		global $wgUser;
+		return WatchAction::doUnwatch( $this->mTitle, $wgUser );
+	}
+
+	/**
+	 * action=protect handler
+	 */
+	public function protect() {
+		$form = new ProtectionForm( $this );
+		$form->execute();
+	}
+
+	/**
+	 * action=unprotect handler (alias)
+	 */
+	public function unprotect() {
+		$this->protect();
+	}
+
+	/**
 	 * Insert a new empty page record for this article.
 	 * This *must* be followed up by creating a revision
 	 * and running $this->updateRevisionOn( ... );
@@ -2321,122 +2437,6 @@ class Article {
 		}
 
 		$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $sectionAnchor );
-	}
-
-	/**
-	 * Mark this particular edit/page as patrolled
-	 */
-	public function markpatrolled() {
-		global $wgOut, $wgRequest;
-
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-
-		# If we haven't been given an rc_id value, we can't do anything
-		$rcid = (int) $wgRequest->getVal( 'rcid' );
-
-		if ( !$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'token' ), $rcid ) ) {
-			$wgOut->showErrorPage( 'sessionfailure-title', 'sessionfailure' );
-			return;
-		}
-
-		$rc = RecentChange::newFromId( $rcid );
-
-		if ( is_null( $rc ) ) {
-			$wgOut->showErrorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
-			return;
-		}
-
-		# It would be nice to see where the user had actually come from, but for now just guess
-		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
-		$return = SpecialPage::getTitleFor( $returnto );
-
-		$errors = $rc->doMarkPatrolled();
-
-		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {
-			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
-
-			return;
-		}
-
-		if ( in_array( array( 'hookaborted' ), $errors ) ) {
-			// The hook itself has handled any output
-			return;
-		}
-
-		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
-			$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
-			$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
-			$wgOut->returnToMain( null, $return );
-
-			return;
-		}
-
-		if ( !empty( $errors ) ) {
-			$wgOut->showPermissionsErrorPage( $errors );
-
-			return;
-		}
-
-		# Inform the user
-		$wgOut->setPageTitle( wfMsg( 'markedaspatrolled' ) );
-		$wgOut->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
-		$wgOut->returnToMain( null, $return );
-	}
-
-	/**
-	 * User-interface handler for the "watch" action.
-	 * Requires Request to pass a token as of 1.19.
-	 * @deprecated since 1.18
-	 */
-	public function watch() {
-		Action::factory( 'watch', $this )->show();
-	}
-
-	/**
-	 * Add this page to $wgUser's watchlist
-	 *
-	 * This is safe to be called multiple times
-	 *
-	 * @return bool true on successful watch operation
-	 * @deprecated since 1.18
-	 */
-	public function doWatch() {
-		global $wgUser;
-		return WatchAction::doWatch( $this->mTitle, $wgUser );
-	}
-
-	/**
-	 * User interface handler for the "unwatch" action.
-	 * Requires Request to pass a token as of 1.19.
-	 * @deprecated since 1.18
-	 */
-	public function unwatch() {
-		Action::factory( 'unwatch', $this )->show();
-	}
-
-	/**
-	 * Stop watching a page
-	 * @return bool true on successful unwatch
-	 * @deprecated since 1.18
-	 */
-	public function doUnwatch() {
-		global $wgUser;
-		return WatchAction::doUnwatch( $this->mTitle, $wgUser );
-	}
-
-	/**
-	 * action=protect handler
-	 */
-	public function protect() {
-		$form = new ProtectionForm( $this );
-		$form->execute();
-	}
-
-	/**
-	 * action=unprotect handler (alias)
-	 */
-	public function unprotect() {
-		$this->protect();
 	}
 
 	/**
