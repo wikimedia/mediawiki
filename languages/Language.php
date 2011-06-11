@@ -759,9 +759,12 @@ class Language {
 		$data = explode( '|', $tz, 3 );
 
 		if ( $data[0] == 'ZoneInfo' ) {
-			if ( function_exists( 'timezone_open' ) && @timezone_open( $data[2] ) !== false ) {
+			wfSuppressWarnings();
+			$userTZ = timezone_open( $data[2] );
+			wfRestoreWarnings();
+			if ( $userTZ !== false ) {
 				$date = date_create( $ts, timezone_open( 'UTC' ) );
-				date_timezone_set( $date, timezone_open( $data[2] ) );
+				date_timezone_set( $date, $userTZ );
 				$date = date_format( $date, 'YmdHis' );
 				return $date;
 			}
