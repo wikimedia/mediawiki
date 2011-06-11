@@ -46,32 +46,55 @@ var CompletenessTest = function ( masterVariable, ignoreFn ) {
 	this.lazyLimit = 1000;
 	this.lazyCounter = 0;
 
-	// Bind begin and end to QUnit.
 	var that = this;
+
+	// Bind begin and end to QUnit.
 	QUnit.begin = function(){
 		that.checkTests( null, masterVariable, masterVariable, [], CompletenessTest.ACTION_INJECT );
 	};
+
 	QUnit.done = function(){
 		that.checkTests( null, masterVariable, masterVariable, [], CompletenessTest.ACTION_CHECK );
 		console.log( 'CompletenessTest.ACTION_CHECK', that );
 
-		// Insert HTML into header
+		// Build HTML representing the outcome from CompletenessTest
+		// And insert it into the header.
 
 		var makeList = function( blob, title, style ) {
 			title = title || 'Values';
-			var html = '<div style="'+style+'">'
-			+ '<strong>' + mw.html.escape(title) + '</strong>';
+			var html = '<strong>' + mw.html.escape(title) + '</strong>';
 			$.each( blob, function( key ) {
 				html += '<br />' + mw.html.escape(key);
 			});
-			return html + '<br /><br /><em>&mdash; CompletenessTest</em></div>';
+			html += '<br /><br /><em>&mdash; CompletenessTest</em>';
+			return $( '<div>' ).css( style ).append( html );
 		};
-		if ( $.isEmptyObject( that.missingTests ) ) { 
-			var testResults = makeList( { 'No missing tests!': true }, 'missingTests', 'background: #D2E0E6; color: #366097; padding:1em' );
+
+		if ( $.isEmptyObject( that.missingTests ) ) {
+			// Good
+			var $testResults = makeList(
+				{ 'No missing tests!': true },
+				'missingTests',
+				{
+					background: '#D2E0E6',
+					color: '#366097',
+					padding: '1em'
+				}
+			);
 		} else {
-			var testResults = makeList( that.missingTests, 'missingTests', 'background: #EE5757; color: black; padding: 1em' );
+			// Bad
+			var $testResults = makeList(
+				that.missingTests,
+				'missingTests',
+				{
+					background: '#EE5757',
+					color: 'black',
+					padding: '1em'
+				}
+			);
 		}
-		$( '#qunit-testrunner-toolbar' ).prepend( testResults );
+
+		$( '#qunit-testrunner-toolbar' ).prepend( $testResults );
 	};
 
 	return this;
@@ -87,11 +110,18 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 	/**
 	 * CompletenessTest.fn.checkTests
 	 *
-	 * @param currName {String}
-	 * @param currVar {mixed}
-	 * @param masterVariable {Object}
-	 * @param parentPathArray {Array}
-	 * @param action {Number} What action is checkTests commanded to do ?
+	 * This function recursively walks through the given object, calling itself as it goes.
+	 * Depending on the action it either injects our listener into the methods, or
+	 * reads from our tracker and records which methods have not been called by the test suite.
+	 *
+	 * @param currName {String|Null} Name of the given object member (Initially this is null).
+	 * @param currVar {mixed} The variable to check (initially an object,
+	 *  further down it could be anything).
+	 * @param masterVariable {Object} Throughout our interation, always keep track of the master/root.
+	 *  Initially this is the same as currVar.
+	 * @param parentPathArray {Array} Array of names that indicate our breadcrumb path starting at
+	 *  masterVariable. Not including currName.
+	 * @param action {Number} What is this function supposed to do (ACTION_INJECT or ACTION_CHECK)
 	 */
 	checkTests: function( currName, currVar, masterVariable, parentPathArray, action ) {
 
@@ -107,7 +137,7 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 
 		// Hard ignores
 		if ( this.ignoreFn( currVar, that, parentPathArray ) ) {
-
+			return null;
 
 		// Functions
 		} else  if ( type === 'function' ) {
@@ -127,14 +157,14 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 					$.each( currVar.prototype, function( key, value ) {
 
 						// Clone and brake reference to parentPathArray
-						var tmpPathArray = $.extend([], parentPathArray);
-						tmpPathArray.push('prototype'); tmpPathArray.push(key);
+						var tmpPathArray = $.extend( [], parentPathArray );
+						tmpPathArray.push( 'prototype' ); tmpPathArray.push( key );
 
 						that.hasTest( tmpPathArray.join( '.' ) );
 					} );
 				}
 
-			/* INJET MODE */
+			/* INJECT MODE */
 
 			} else if ( action === CompletenessTest.ACTION_INJECT ) {
 
@@ -154,14 +184,14 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 					$.each( currVar.prototype, function( key, value ) {
 
 						// Clone and brake reference to parentPathArray
-						var tmpPathArray = $.extend([], parentPathArray);
-						tmpPathArray.push('prototype'); tmpPathArray.push(key);
+						var tmpPathArray = $.extend( [], parentPathArray );
+						tmpPathArray.push( 'prototype' ); tmpPathArray.push( key );
 
 						that.checkTests( key, value, masterVariable, tmpPathArray, action );
 					} );
 				}
 
-			} //else { }
+			}
 
 		// Recursively. After all, this *is* the completness test
 		} else if ( type === 'object' ) {
@@ -169,14 +199,14 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 			$.each( currVar, function( key, value ) {
 
 				// Clone and brake reference to parentPathArray
-				var tmpPathArray = $.extend([], parentPathArray);
-				tmpPathArray.push(key);
+				var tmpPathArray = $.extend( [], parentPathArray );
+				tmpPathArray.push( key );
 
 				that.checkTests( key, value, masterVariable, tmpPathArray, action );
 
 			} );
 
-		} // else { }
+		}
 
 		return 'End of checkTests';
 	},
@@ -184,27 +214,37 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 	/**
 	 * CompletenessTest.fn.hasTest
 	 *
+	 * Checks if the given method name (ie. 'my.foo.bar')
+	 * was called during the test suite (as far as the tracker knows).
+	 * If so it adds it to missingTests.
+	 *
 	 * @param fnName {String}
+	 * @return {Boolean}
 	 */
 	hasTest: function( fnName ) {
 		if ( !(fnName in this.methodCallTracker) ) {
 			this.missingTests[fnName] = true;
+			return false;
 		}
+		return true;
 	},
 
 	/**
 	 * CompletenessTest.fn.injectCheck
 	 *
+	 * Injects a function (such as a spy that updates methodCallTracker when
+	 * it's called) inside another function.
+	 *
 	 * @param masterVariable {Object}
 	 * @param objectPathArray {Array}
 	 * @param injectFn {Function}
 	 */
-	injectCheck: function( masterVariable, objectPathArray, injectFn, functionType ) {
+	injectCheck: function( masterVariable, objectPathArray, injectFn ) {
 		var	prev,
 			curr = masterVariable,
 			lastMember;
 
-		$.each(objectPathArray, function(i, memberName){
+		$.each( objectPathArray, function(i, memberName){
 			prev = curr;
 			curr = prev[memberName];
 			lastMember = memberName;
@@ -213,7 +253,7 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 		// Objects are by reference, members (unless objects) are not.
 		prev[lastMember] = function(){
 			injectFn();
-			return curr.apply(this, arguments );
+			return curr.apply( this, arguments );
 		};
 	}
 };
