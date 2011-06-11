@@ -23,6 +23,8 @@ production.
   http://www.mediawiki.org/wiki/Extension:DublinCoreRdf and
   http://www.mediawiki.org/wiki/Extension:CreativeCoreRdf as appropriate
 * (bug 21107) Split error "customcssjsprotected" into separate messages for JS and CSS
+* Removed $wgCheckCopyrightUpload from DefaultSettings, since the relevant feature
+  was removed in about 1.5.
 
 === New features in 1.19 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
