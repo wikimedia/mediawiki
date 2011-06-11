@@ -511,7 +511,7 @@ abstract class Skin {
 	function getCategoryLinks() {
 		global $wgUseCategoryBrowser, $wgContLang;
 
-		$out = $this->getContext()->output;
+		$out = $this->getContext()->getOutput();
 
 		if ( count( $out->mCategoryLinks ) == 0 ) {
 			return '';
@@ -601,7 +601,7 @@ abstract class Skin {
 	}
 
 	function getCategories() {
-		$out = $this->getContext()->output;
+		$out = $this->getContext()->getOutput();
 
 		$catlinks = $this->getCategoryLinks();
 
