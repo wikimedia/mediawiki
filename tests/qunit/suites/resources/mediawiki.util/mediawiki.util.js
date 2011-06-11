@@ -50,7 +50,7 @@ test( 'addCSS', function() {
 	expect(3);
 
 	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
-	ok( a instanceof CSSStyleSheet, 'Object is an instance of CSSStyleSheet' );
+	equal( typeof a, 'object', 'addCSS returned an object' );
 	strictEqual( a.disabled, false, 'property "disabled" is available and set to false' );
 
 	var $b = $('#bodyContent');
