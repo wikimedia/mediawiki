@@ -250,6 +250,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/actions
 	'CreditsAction' => 'includes/actions/CreditsAction.php',
 	'PurgeAction' => 'includes/actions/PurgeAction.php',
+	'RevisiondeleteAction' => 'includes/actions/RevisiondeleteAction.php',
 	'UnwatchAction' => 'includes/actions/WatchAction.php',
 	'WatchAction' => 'includes/actions/WatchAction.php',
 
