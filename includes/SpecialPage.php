@@ -639,6 +639,16 @@ class SpecialPage {
 	}
 
 	/**
+	 * Shortcut to get user's language
+	 *
+	 * @return Language
+	 * @since 1.19
+	 */
+	public function getLang() {
+		return $this->getContext()->getLang();
+	}
+
+	/**
 	 * Return the full title, including $par
 	 *
 	 * @return Title
