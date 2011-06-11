@@ -331,6 +331,24 @@ abstract class RevDel_List {
 	}
 
 	/**
+	 * Get the user doing the action
+	 *
+	 * @return User object
+	 */
+	public function getUser() {
+		return $this->special->getUser();
+	}
+
+	/**
+	 * Get the language of the user doing the action
+	 *
+	 * @return Language object
+	 */
+	public function getLang() {
+		return $this->special->getLang();
+	}
+
+	/**
 	 * Create an item object from a DB result row
 	 * @param $row stdclass
 	 */
@@ -426,6 +444,24 @@ abstract class RevDel_Item {
 	 */
 	public function isHideCurrentOp( $newBits ) {
 		return false;
+	}
+
+	/**
+	 * Get the user doing the action
+	 *
+	 * @return User object
+	 */
+	public function getUser() {
+		return $this->special->getUser();
+	}
+
+	/**
+	 * Get the language of the user doing the action
+	 *
+	 * @return Language object
+	 */
+	public function getLang() {
+		return $this->special->getLang();
 	}
 
 	/**
