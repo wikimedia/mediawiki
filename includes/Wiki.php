@@ -430,9 +430,7 @@ class MediaWiki {
 			case 'protect':
 			case 'unprotect':
 			case 'info':
-			case 'markpatrolled':
 			case 'render':
-			case 'deletetrackback':
 				$article->$act();
 				break;
 			case 'submit':

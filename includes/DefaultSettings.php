@@ -5026,8 +5026,10 @@ $wgMaxRedirectLinksRetrieved = 500;
  */
 $wgActions = array(
 	'credits' => true,
-	'revisiondelete' => true,
+	'deletetrackback' => true,
+	'markpatrolled' => true,
 	'purge' => true,
+	'revisiondelete' => true,
 	'unwatch' => true,
 	'watch' => true,
 );
