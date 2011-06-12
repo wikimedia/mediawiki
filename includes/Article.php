@@ -1706,29 +1706,10 @@ class Article {
 
 	/**
 	 * Removes trackback record for current article from trackbacks table
+	 * @deprecated since 1.19
 	 */
 	public function deletetrackback() {
-		global $wgRequest, $wgOut;
-
-		if ( !$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'token' ) ) ) {
-			$wgOut->addWikiMsg( 'sessionfailure' );
-
-			return;
-		}
-
-		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgOut->getUser() );
-
-		if ( count( $permission_errors ) ) {
-			$wgOut->showPermissionsErrorPage( $permission_errors );
-
-			return;
-		}
-
-		$db = wfGetDB( DB_MASTER );
-		$db->delete( 'trackbacks', array( 'tb_id' => $wgRequest->getInt( 'tbid' ) ) );
-
-		$wgOut->addWikiMsg( 'trackbackdeleteok' );
-		$this->mTitle->invalidateCache();
+		return Action::factory( 'deletetrackback', $this )->show();
 	}
 
 	/**
@@ -1786,62 +1767,10 @@ class Article {
 
 	/**
 	 * Mark this particular edit/page as patrolled
+	 * @deprecated since 1.19
 	 */
 	public function markpatrolled() {
-		global $wgOut, $wgRequest;
-
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-
-		# If we haven't been given an rc_id value, we can't do anything
-		$rcid = (int) $wgRequest->getVal( 'rcid' );
-
-		if ( !$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'token' ), $rcid ) ) {
-			$wgOut->showErrorPage( 'sessionfailure-title', 'sessionfailure' );
-			return;
-		}
-
-		$rc = RecentChange::newFromId( $rcid );
-
-		if ( is_null( $rc ) ) {
-			$wgOut->showErrorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
-			return;
-		}
-
-		# It would be nice to see where the user had actually come from, but for now just guess
-		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
-		$return = SpecialPage::getTitleFor( $returnto );
-
-		$errors = $rc->doMarkPatrolled();
-
-		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {
-			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
-
-			return;
-		}
-
-		if ( in_array( array( 'hookaborted' ), $errors ) ) {
-			// The hook itself has handled any output
-			return;
-		}
-
-		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
-			$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
-			$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
-			$wgOut->returnToMain( null, $return );
-
-			return;
-		}
-
-		if ( !empty( $errors ) ) {
-			$wgOut->showPermissionsErrorPage( $errors );
-
-			return;
-		}
-
-		# Inform the user
-		$wgOut->setPageTitle( wfMsg( 'markedaspatrolled' ) );
-		$wgOut->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
-		$wgOut->returnToMain( null, $return );
+		Action::factory( 'markpatrolled', $this )->show();
 	}
 
 	/**
