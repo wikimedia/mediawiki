@@ -516,7 +516,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		$header = unpack( 'Vofp/Vcsize', substr( $diff, 0, 8 ) );
 		
 		# Check the checksum if mhash is available
-		if ( extension_loaded( 'mhash' ) ) {
+		if ( function_exists( 'mhash' ) ) {
 			$ofp = mhash( MHASH_ADLER32, $base );
 			if ( $ofp !== substr( $diff, 0, 4 ) ) {
 				wfDebug( __METHOD__. ": incorrect base checksum\n" );
