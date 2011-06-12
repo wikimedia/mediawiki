@@ -1880,7 +1880,7 @@ Vergeet neet de verwiezingen nao te kieken veurda-j de mal vortdoon.',
 'unusedtemplateswlh'  => 'aandere verwiezingen',
 
 # Random page
-'randompage'         => 'Willekeurig artikel',
+'randompage'         => 'Zomer een artikel',
 'randompage-nopages' => "Der staon gien pagina's in de {{PLURAL:$2|naamruumte|naamruumtes}}: $1.",
 
 # Random redirect

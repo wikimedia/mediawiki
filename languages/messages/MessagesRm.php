@@ -1002,7 +1002,7 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'savedprefs'                  => 'Tias preferenzas èn vegnidas memorisadas.',
 'timezonelegend'              => "Zona d'urari:",
 'localtime'                   => 'Temp local:',
-'timezoneuseserverdefault'    => 'Utilisar il standard dil server',
+'timezoneuseserverdefault'    => 'Utilisar il standard dal server',
 'timezoneuseoffset'           => 'Auter (inditgar la differenza)',
 'timezoneoffset'              => 'Differenza¹:',
 'servertime'                  => 'Temp dal server:',

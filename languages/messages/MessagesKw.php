@@ -797,7 +797,7 @@ Gwelewgh $2 rag covath a dhileansow a-dhiwedhes.',
 'whatlinkshere-filters'    => 'Sidhlow',
 
 # Block/unblock
-'blockip'                    => 'Lettya an devnydhyer',
+'blockip'                    => 'Lettya devnydhyer',
 'ipadressorusername'         => 'Trigva IP po hanow-usyer:',
 'ipbreason'                  => 'Acheson:',
 'ipbreasonotherlist'         => 'Acheson aral',

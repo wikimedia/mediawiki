@@ -794,6 +794,7 @@ $messages = array(
 
 # Special:LinkSearch
 'linksearch'    => 'ବାହାର ଲିଙ୍କ',
+'linksearch-ns' => 'ନେମସ୍ପେସ:',
 'linksearch-ok' => 'ଖୋଜିବା',
 
 # Special:Log/newusers
@@ -948,6 +949,12 @@ $messages = array(
 # Export
 'export' => 'ଫରଦସବୁ ରପ୍ତାନି କର',
 
+# Namespace 8 related
+'allmessagesname'           => 'ନାମ',
+'allmessages-filter-all'    => 'ସବୁ',
+'allmessages-language'      => 'ଭାଷା:',
+'allmessages-filter-submit' => 'ଯିବା',
+
 # Thumbnails
 'thumbnail-more' => 'ବଡ଼କର',
 
@@ -1030,6 +1037,8 @@ $messages = array(
 'metadata-help'     => 'ଏହି ଫରଦଟିରେ ଗୁଡ଼ାଏ ଅଧିକ କଥା ଅଛି, ବୋଧହୁଏ ଡିଜିଟାଲ କାମେରା କିମ୍ବା ସ୍କାନରରେ ନିଆଯାଇଛି । ଯଦି ଫାଇଲଟି ତାର ମୂଳ ଭାଗଠୁ ବଦଳାଜାଇଥାଏ ତେବେ କିଛି ଅଁଶ ଠିକ ଭାବେ ଦେଖାଯାଇ ନପାରେ ।',
 'metadata-expand'   => 'ଆହୁରି ଖୋଲିକରି ଦେଖାଇବେ',
 'metadata-collapse' => 'ଆହୁରି ଖୋଲିକରି ଦେଖାଇବେ',
+
+'exif-gaincontrol-0' => 'କିଛି ନାହିଁ',
 
 # External editor support
 'edit-externally'      => 'ଏକ ବାହାର ଆପ୍ଲିକେସନ ବ୍ୟବହାର କରି ଏହି ଫାଇଲଟିକୁ ବଦଳାଇବା',

@@ -2335,7 +2335,7 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'unwatching'     => 'Bezig met verwijderen van volglijst…',
 'watcherrortext' => 'Er is een fout opgetreden tijdens het wijzigen van uw volglijstinstellingen voor "$1".',
 
-'enotif_mailer'                => '{{SITENAME}} waarschuwingssysteem',
+'enotif_mailer'                => '{{SITENAME}}-waarschuwingssysteem',
 'enotif_reset'                 => "Alle pagina's markeren als bezocht",
 'enotif_newpagetext'           => 'Dit is een nieuwe pagina.',
 'enotif_impersonal_salutation' => 'gebruiker van {{SITENAME}}',

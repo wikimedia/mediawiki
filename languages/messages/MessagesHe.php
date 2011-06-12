@@ -3047,7 +3047,7 @@ $1',
 'patrol-log-header'    => 'יומן זה מציג גרסאות שנבדקו.',
 'patrol-log-line'      => 'סימן את $1 בדף $2 כבדוקה $3',
 'patrol-log-auto'      => '(אוטומטית)',
-'patrol-log-diff'      => 'גרסה $1',
+'patrol-log-diff'      => 'הגרסה $1',
 'log-show-hide-patrol' => '$1 יומן שינויים בדוקים',
 
 # Image deletion

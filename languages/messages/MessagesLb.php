@@ -2057,8 +2057,9 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'watchlist-options'    => 'Optioune vun der Iwwerwaachungslëscht',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Iwwerwaachen …',
-'unwatching' => 'Net méi iwwerwaachen …',
+'watching'       => 'Iwwerwaachen …',
+'unwatching'     => 'Net méi iwwerwaachen …',
+'watcherrortext' => 'Beim Ännere vun den Astellunge vun der Iwwerwaachungslëscht fir "$1" ass e Feeler geschitt.',
 
 'enotif_mailer'                => '{{SITENAME}} E-Mail-Informatiounssystem',
 'enotif_reset'                 => 'All Säiten als besicht markéieren',
@@ -3025,6 +3026,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-rating'                      => 'Bewäertung (vu 5)',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
 'exif-licenseurl'                  => 'URL vum Copyright (Lizenz)',
+'exif-morepermissionsurl'          => 'Alternativ Lizenzinformatiounen',
 'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
 'exif-contentwarning'              => 'Warnung iwwer den Inhalt',
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
@@ -3204,10 +3206,11 @@ Déi aner sinn am Standard verstoppt.
 
 'exif-ycbcrpositioning-1' => 'Zentréiert',
 
-'exif-dc-date'      => 'Datum(en)',
-'exif-dc-publisher' => 'Editeur',
-'exif-dc-rights'    => 'Rechter',
-'exif-dc-type'      => 'Medientyp',
+'exif-dc-contributor' => 'Bedeelegt',
+'exif-dc-date'        => 'Datum(en)',
+'exif-dc-publisher'   => 'Editeur',
+'exif-dc-rights'      => 'Rechter',
+'exif-dc-type'        => 'Medientyp',
 
 'exif-rating-rejected' => 'Refuséiert',
 
