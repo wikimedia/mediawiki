@@ -66,20 +66,26 @@ $.suggestions = {
 	},
 	/**
 	 * Ask the user-specified callback for new suggestions. Any previous delayed call to this function still pending
-	 * will be canceled.  If the value in the textbox hasn't changed since the last time suggestions were fetched, this
+	 * will be canceled.  If the value in the textbox is or hasn't changed since the last time suggestions were fetched, this
 	 * function does nothing.
 	 * @param {Boolean} delayed Whether or not to delay this by the currently configured amount of time
 	 */
 	update: function( context, delayed ) {
-		// Only fetch if the value in the textbox changed
+		// Only fetch if the value in the textbox changed and is not empty
 		function maybeFetch() {
-			if ( context.data.$textbox.val() !== context.data.prevText ) {
+			if ( ( context.data.$textbox.val().length != 0 ) && ( context.data.$textbox.val() !== context.data.prevText ) ) {
 				context.data.prevText = context.data.$textbox.val();
 				if ( typeof context.config.fetch == 'function' ) {
 					context.config.fetch.call( context.data.$textbox, context.data.$textbox.val() );
 				}
 			}
 		}
+
+		// clear result div if the value in the text is empty
+		if ( context.data.$textbox.val().length != 0 ) {
+			context.data.$container.hide();
+		}
+
 		// Cancel previous call
 		if ( context.data.timerID != null ) {
 			clearTimeout( context.data.timerID );
