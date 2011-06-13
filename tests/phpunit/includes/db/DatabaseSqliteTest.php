@@ -134,6 +134,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		if ( $result !== true ) {
 			$this->fail( $result );
 		}
+		$this->assertTrue( true ); // avoid test being marked as incomplete due to lack of assertions
 	}
 
 	/**
