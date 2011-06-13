@@ -264,6 +264,17 @@ $reason: the reason for the move (added in 1.13)
 $user: the User object about to be created (read-only, incomplete)
 &$msg: out parameter: name of error message to display on abort
 
+'ActionBeforeFormDisplay': before executing the HTMLForm object
+$name: name of the action
+&$form: HTMLForm object
+$article: Article object
+
+'ActionModifyFormFields': before creating an HTMLForm object for a page action;
+	allows to change the fields on the form that will be generated
+$name: name of the action
+&$fields: HTMLForm descriptor array
+$article: Article object
+
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
@@ -274,16 +285,6 @@ $origTitle: Title provided by the XML file
 $revCount: Number of revisions in the XML file
 $sRevCount: Number of sucessfully imported revisions
 $pageInfo: associative array of page information
-
-'AfterUserMessage': After a user message has been left, this hook is
-called to take care of any cleanup.
-$user: The user who we left the message for.
-$article: The article the message was left on.
-$subject: The subject of the message
-$text: The text of the message.
-$signature: The signature we used.
-$summary: The edit summary.
-$editor: The editor that performed the edit.
 
 'AjaxAddScript': Called in output page just before the initialisation
 of the javascript ajax engine. The hook is only called when ajax
@@ -813,6 +814,9 @@ $user: The user who is trying to email another user.
 $editToken: The user's edit token.
 &$hookErr: Out-param for the error. Passed as the parameters to OutputPage::showErrorPage.
 
+'ExtensionTypes': called when generating the extensions credits, use this to change the tables headers
+&$extTypes: associative array of extensions types
+
 'FetchChangesList': When fetching the ChangesList derivative for
 a particular user
 $user: User the list is being fetched for
@@ -838,12 +842,6 @@ $title: title object to the file
 $fileVersions: array of undeleted versions. Empty if all versions were restored
 $user: user who performed the undeletion
 $reason: reason
-
-'FormatUserMessage': Hook to format a message if you want to override
-the internal formatter.
-$subject: Title of the message.
-&$text: Text of the message.
-$signature: Signature that they would like to leave.
 
 'GetAutoPromoteGroups': When determining which autopromote groups a user
 is entitled to be in.
@@ -1132,6 +1130,9 @@ $paramArray: Array of parameters that corresponds to logging.log_params field.
 &$revert: string that is displayed in the UI, similar to $comment.
 $time: timestamp of the log entry (added in 1.12)
 
+'MaintenanceRefreshLinksInit': before executing the refreshLinks.php maintenance script
+$refreshLinks: RefreshLinks object
+
 'MagicWordMagicWords': When defining new magic word.
 DEPRECATED: use $magicWords in a file listed in 
 $wgExtensionMessagesFiles instead.
@@ -1158,11 +1159,6 @@ $rcid: ID of the revision marked as patrolled
 $user: user (object) who marked the edit patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user
 	must be a sysop to patrol the edit
-
-'MathAfterTexvc': after texvc is executed when rendering mathematics
-$mathRenderer: instance of MathRenderer
-$errmsg: error message, in HTML (string). Nonempty indicates failure
-	of rendering the formula
 
 'MediaWikiPerformAction': Override MediaWiki::performAction().
 Use this to do something completely different, after the basic
@@ -1456,16 +1452,6 @@ $query : Original query.
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
-'SetupUserMessageArticle': Called in User::leaveUserMessage() before
-anything has been posted to the article.
-$user: The user who we left the message for.
-&$article: The article that will be posted to.
-$subject: The subject of the message
-$text: The text of the message.
-$signature: The signature we used.
-$summary: The edit summary.
-$editor: The editor that performed the edit.
-
 'ShowMissingArticle': Called when generating the output for a non-existent page
 $article: The article object corresponding to the page
 
@@ -1626,6 +1612,12 @@ Each key maps to an associative array with a 'msg' (message key) and a 'default'
 'SpecialPage_initList': called when setting up SpecialPage::$mList, use this
 hook to remove a core special page
 $list: list (array) of core special pages
+
+'SpecialPasswordResetOnSubmit': when executing a form submission on Special:PasswordReset
+$users: array of User objects
+$data: array of data submitted by the user
+&$error: string, error code (message name) used to describe to error (out paramater).
+	The hook needs to return false when setting this, otherwise it will have no effect.
 
 'SpecialRandomGetRandomTitle': called during the execution of Special:Random,
 use this to change some selection criteria or substitute a different title
@@ -1946,10 +1938,6 @@ $inject_html: Any HTML to inject after the "logged in" message.
 
 'UserLoginForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
-
-'UserLoginMailPassword': Block users from emailing passwords
-$name: the username to email the password of.
-&$error: out-param - the error message to return.
 
 'UserLogout': before a user logs out
 $user: the user object that is about to be logged out
