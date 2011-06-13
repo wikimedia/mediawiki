@@ -81,7 +81,7 @@ $.suggestions = {
 			}
 		}
 
-		// clear result div if the value in the text is empty
+		// clear result div if the value in the textbox is empty
 		if ( context.data.$textbox.val().length != 0 ) {
 			context.data.$container.hide();
 		}
