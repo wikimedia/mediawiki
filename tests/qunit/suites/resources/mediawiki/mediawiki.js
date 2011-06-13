@@ -16,6 +16,7 @@ test( '-- Initial check', function() {
 
 test( 'mw.Map', function() {
 	expect(15);
+
 	ok( mw.Map, 'mw.Map defined' );
 
 	var	conf = new mw.Map(),
