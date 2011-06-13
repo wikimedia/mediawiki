@@ -79,6 +79,7 @@ $.suggestions = {
 				context.data.prevText = '';
 			} else if ( context.data.$textbox.val() !== context.data.prevText ) {
 				if ( typeof context.config.fetch == 'function' ) {
+     					context.data.prevText = context.data.$textbox.val();
 					context.config.fetch.call( context.data.$textbox, context.data.$textbox.val() );
 				}
 			}
