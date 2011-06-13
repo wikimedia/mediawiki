@@ -75,7 +75,7 @@ class TestRecorder {
 		if ( $this->total > 0 ) {
 			$this->reportPercentage( $this->success, $this->total );
 		} else {
-			wfDie( "No tests found.\n" );
+			throw new MWException( "No tests found.\n" );
 		}
 	}
 
@@ -458,7 +458,7 @@ class TestFileIterator implements Iterator {
 		$this->fh = fopen( $this->file, "rt" );
 
 		if ( !$this->fh ) {
-			wfDie( "Couldn't open file '$file'\n" );
+			throw new MWException( "Couldn't open file '$file'\n" );
 		}
 
 		$this->parserTest = $parserTest;
@@ -469,7 +469,7 @@ class TestFileIterator implements Iterator {
 
 	function rewind() {
 		if ( fseek( $this->fh, 0 ) ) {
-			wfDie( "Couldn't fseek to the start of '$this->file'\n" );
+			throw new MWException( "Couldn't fseek to the start of '$this->file'\n" );
 		}
 
 		$this->index = -1;
@@ -514,11 +514,11 @@ class TestFileIterator implements Iterator {
 
 				if ( $section == 'endarticle' ) {
 					if ( !isset( $data['text'] ) ) {
-						wfDie( "'endarticle' without 'text' at line {$this->lineNum} of $this->file\n" );
+						throw new MWException( "'endarticle' without 'text' at line {$this->lineNum} of $this->file\n" );
 					}
 
 					if ( !isset( $data['article'] ) ) {
-						wfDie( "'endarticle' without 'article' at line {$this->lineNum} of $this->file\n" );
+						throw new MWException( "'endarticle' without 'article' at line {$this->lineNum} of $this->file\n" );
 					}
 
 					$this->parserTest->addArticle( ParserTest::chomp( $data['article'] ), $data['text'], $this->lineNum );
@@ -531,7 +531,7 @@ class TestFileIterator implements Iterator {
 
 				if ( $section == 'endhooks' ) {
 					if ( !isset( $data['hooks'] ) ) {
-						wfDie( "'endhooks' without 'hooks' at line {$this->lineNum} of $this->file\n" );
+						throw new MWException( "'endhooks' without 'hooks' at line {$this->lineNum} of $this->file\n" );
 					}
 
 					foreach ( explode( "\n", $data['hooks'] ) as $line ) {
@@ -552,7 +552,7 @@ class TestFileIterator implements Iterator {
 
 				if ( $section == 'endfunctionhooks' ) {
 					if ( !isset( $data['functionhooks'] ) ) {
-						wfDie( "'endfunctionhooks' without 'functionhooks' at line {$this->lineNum} of $this->file\n" );
+						throw new MWException( "'endfunctionhooks' without 'functionhooks' at line {$this->lineNum} of $this->file\n" );
 					}
 
 					foreach ( explode( "\n", $data['functionhooks'] ) as $line ) {
@@ -573,15 +573,15 @@ class TestFileIterator implements Iterator {
 
 				if ( $section == 'end' ) {
 					if ( !isset( $data['test'] ) ) {
-						wfDie( "'end' without 'test' at line {$this->lineNum} of $this->file\n" );
+						throw new MWException( "'end' without 'test' at line {$this->lineNum} of $this->file\n" );
 					}
 
 					if ( !isset( $data['input'] ) ) {
-						wfDie( "'end' without 'input' at line {$this->lineNum} of $this->file\n" );
+						throw new MWException( "'end' without 'input' at line {$this->lineNum} of $this->file\n" );
 					}
 
 					if ( !isset( $data['result'] ) ) {
-						wfDie( "'end' without 'result' at line {$this->lineNum} of $this->file\n" );
+						throw new MWException( "'end' without 'result' at line {$this->lineNum} of $this->file\n" );
 					}
 
 					if ( !isset( $data['options'] ) ) {
@@ -611,7 +611,7 @@ class TestFileIterator implements Iterator {
 				}
 
 				if ( isset ( $data[$section] ) ) {
-					wfDie( "duplicate section '$section' at line {$this->lineNum} of $this->file\n" );
+					throw new MWException( "duplicate section '$section' at line {$this->lineNum} of $this->file\n" );
 				}
 
 				$data[$section] = '';

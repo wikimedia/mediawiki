@@ -1138,14 +1138,13 @@ class ParserTest {
 		$title = Title::newFromText( $name );
 
 		if ( is_null( $title ) ) {
-			wfDie( "invalid title ('$name' => '$title') at line $line\n" );
+			throw new MWException( "invalid title ('$name' => '$title') at line $line\n" );
 		}
 
 		$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $aid != 0 ) {
-			debug_print_backtrace();
-			wfDie( "duplicate article '$name' at line $line\n" );
+			throw new MWException( "duplicate article '$name' at line $line\n" );
 		}
 
 		$art = new Article( $title );
