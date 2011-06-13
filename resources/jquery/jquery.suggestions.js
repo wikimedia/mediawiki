@@ -66,7 +66,7 @@ $.suggestions = {
 	},
 	/**
 	 * Ask the user-specified callback for new suggestions. Any previous delayed call to this function still pending
-	 * will be canceled.  If the value in the textbox is or hasn't changed since the last time suggestions were fetched, this
+	 * will be canceled.  If the value in the textbox is empty or hasn't changed since the last time suggestions were fetched, this
 	 * function does nothing.
 	 * @param {Boolean} delayed Whether or not to delay this by the currently configured amount of time
 	 */
