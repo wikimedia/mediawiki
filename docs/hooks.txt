@@ -784,6 +784,9 @@ $user: The user who is trying to email another user.
 $editToken: The user's edit token.
 &$hookErr: Out-param for the error. Passed as the parameters to OutputPage::showErrorPage.
 
+'ExtensionTypes': called when generating the extensions credits, use this to change the tables headers
+&$extTypes: associative array of extensions types
+
 'FetchChangesList': When fetching the ChangesList derivative for
 a particular user
 &$user: User the list is being fetched for
@@ -1672,9 +1675,6 @@ $rev: revision (object) that will be viewed
 		 your own actions)
 $action: action name
 $article: article "acted on"
-
-'UnitTestsList': Called when building a list of files with PHPUnit tests
-&$files: list of files
 
 'UnwatchArticle': before a watch is removed from an article
 $user: user watching
