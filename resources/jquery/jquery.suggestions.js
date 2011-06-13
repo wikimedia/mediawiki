@@ -72,18 +72,16 @@ $.suggestions = {
 	 */
 	update: function( context, delayed ) {
 		// Only fetch if the value in the textbox changed and is not empty
+		// if the textbox is empty then clear the result div, but leave other settings intouched
 		function maybeFetch() {
-			if ( ( context.data.$textbox.val().length != 0 ) && ( context.data.$textbox.val() !== context.data.prevText ) ) {
-				context.data.prevText = context.data.$textbox.val();
+			if ( context.data.$textbox.val().length == 0 ) {
+				context.data.$container.hide();
+				context.data.prevText = '';
+			} else if ( context.data.$textbox.val() !== context.data.prevText ) {
 				if ( typeof context.config.fetch == 'function' ) {
 					context.config.fetch.call( context.data.$textbox, context.data.$textbox.val() );
 				}
 			}
-		}
-
-		// clear result div if the value in the textbox is empty
-		if ( context.data.$textbox.val().length == 0 ) {
-			context.data.$container.hide();
 		}
 
 		// Cancel previous call
