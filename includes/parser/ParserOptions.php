@@ -114,6 +114,8 @@ class ParserOptions {
 	 * You shouldn't use this. Really. $parser->getFunctionLang() is all you need.
 	 * Using this fragments the cache and is discouraged. Yes, {{int: }} uses this,
 	 * producing inconsistent tables (Bug 14404).
+	 * @return String   Language code
+	 * @since 1.17
 	 */
 	function getUserLang() {
 		$this->optionUsed('userlang');
@@ -143,7 +145,12 @@ class ParserOptions {
 	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
 	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
-	function setUserLang( $x )                  { return wfSetVar( $this->mUserLang, $x ); }
+	function setUserLang( $x )                  {
+		if ( $x instanceof Language ) {
+			$x = $x->getCode();
+		}
+		return wfSetVar( $this->mUserLang, $x );
+	}
 	function setThumbSize( $x )                 { return wfSetVar( $this->mThumbSize, $x ); }
 	function setStubThreshold( $x )             { return wfSetVar( $this->mStubThreshold, $x ); }
 	function setPreSaveTransform( $x )          { return wfSetVar( $this->mPreSaveTransform, $x ); }
