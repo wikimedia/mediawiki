@@ -141,7 +141,6 @@ $wgAutoloadLocalClasses = array(
 	'LogEventsList' => 'includes/LogEventsList.php',
 	'LogPage' => 'includes/LogPage.php',
 	'LogPager' => 'includes/LogEventsList.php',
-	'MacBinary' => 'includes/MacBinary.php',
 	'MagicWord' => 'includes/MagicWord.php',
 	'MagicWordArray' => 'includes/MagicWord.php',
 	'MailAddress' => 'includes/UserMailer.php',

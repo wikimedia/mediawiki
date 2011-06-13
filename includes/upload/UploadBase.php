@@ -368,7 +368,6 @@ abstract class UploadBase {
 		$this->getTitle();
 
 		$this->mFileProps = File::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
-		$this->checkMacBinary();
 
 		# check mime type, if desired
 		$mime = $this->mFileProps[ 'file-mime' ];
@@ -1110,30 +1109,6 @@ abstract class UploadBase {
 			wfDebug( __METHOD__ . ": FOUND VIRUS! scanner feedback: $output \n" );
 			return $output;
 		}
-	}
-
-	/**
-	 * Check if the temporary file is MacBinary-encoded, as some uploads
-	 * from Internet Explorer on Mac OS Classic and Mac OS X will be.
-	 * If so, the data fork will be extracted to a second temporary file,
-	 * which will then be checked for validity and either kept or discarded.
-	 */
-	private function checkMacBinary() {
-		$macbin = new MacBinary( $this->mTempPath );
-		if( $macbin->isValid() ) {
-			$dataFile = tempnam( wfTempDir(), 'WikiMacBinary' );
-			$dataHandle = fopen( $dataFile, 'wb' );
-
-			wfDebug( __METHOD__ . ": Extracting MacBinary data fork to $dataFile\n" );
-			$macbin->extractData( $dataHandle );
-
-			$this->mTempPath = $dataFile;
-			$this->mFileSize = $macbin->dataForkLength();
-
-			// We'll have to manually remove the new file if it's not kept.
-			$this->mRemoveTempFile = true;
-		}
-		$macbin->close();
 	}
 
 	/**
