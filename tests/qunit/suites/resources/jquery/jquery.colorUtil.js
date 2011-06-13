@@ -28,7 +28,7 @@ test( 'getRGB', function() {
 	strictEqual( $.colorUtil.getRGB( 'rgba(0,0,0,0)' ), undefined, 'Zero rgba without whitespace' );
 
 	deepEqual( $.colorUtil.getRGB( 'lightGreen' ), [144, 238, 144], 'Color names (lightGreen)' );
-	deepEqual( $.colorUtil.getRGB( 'lightGreen' ), [144, 238, 144], 'Color names (transparent)' );
+	deepEqual( $.colorUtil.getRGB( 'transparent' ), [255, 255, 255], 'Color names (transparent)' );
 	strictEqual( $.colorUtil.getRGB( 'mediaWiki' ), undefined, 'Inexisting color name' );
 });
 
