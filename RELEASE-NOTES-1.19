@@ -124,6 +124,7 @@ changes to languages because of Bugzilla reports.
 
 === Other changes in 1.19 ===
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
+* (bug 28556) Remove MacBinary (IE5 for Mac)
 
 == Compatibility ==
 
