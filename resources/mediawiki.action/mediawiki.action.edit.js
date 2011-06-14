@@ -42,7 +42,7 @@
 			// Merge buttons from mwCustomEditButtons
 			var buttons = [].concat( this.buttons, window.mwCustomEditButtons );
 			for ( var i = 0; i < buttons.length; i++ ) {
-				if ( buttons[i] instanceof Array ) {
+				if ( $.isArray( buttons[i] ) ) {
 					// Passes our button array as arguments
 					mw.toolbar.insertButton.apply( this, buttons[i] );
 				} else {
