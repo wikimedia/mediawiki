@@ -5,8 +5,8 @@ test( '-- Initial check', function() {
 	ok( $.fn.autoEllipsis, 'jQuery.fn.autoEllipsis defined' );
 });
 
-function createWrappedDiv( text ) {
-	var $wrapper = $( '<div />' ).css( 'width', '100px' );
+function createWrappedDiv( text, width ) {
+	var $wrapper = $( '<div />' ).css( 'width', width );
 	var $div = $( '<div />' ).text( text );
 	$wrapper.append( $div );
 	return $wrapper;
@@ -21,7 +21,7 @@ function findDivergenceIndex( a, b ) {
 }
 
 test( 'Position right', function() {
-	expect(3);
+	expect(4);
 
 	/**
 	 * Extra QUnit assertions
@@ -39,10 +39,14 @@ test( 'Position right', function() {
 	var gt = function( actual, expected, message ) {
 		QUnit.push( actual > expected, actual, 'greater than ' + expected, message );
 	};
+	// Expect numerical value greater than or equal to X
+	var gtOrEq = function( actual, expected, message ) {
+		QUnit.push( actual >= expected, actual, 'greater than or equal to ' + expected, message );
+	};
 
 	// We need this thing to be visible, so append it to the DOM
 	var origText = 'This is a really long random string and there is no way it fits in 100 pixels.';
-	var $wrapper = createWrappedDiv( origText );
+	var $wrapper = createWrappedDiv( origText, '100px' );
 	$( 'body' ).append( $wrapper );
 	$wrapper.autoEllipsis( { position: 'right' } );
 
@@ -52,16 +56,23 @@ test( 'Position right', function() {
 
 	// Check that the text fits by turning on word wrapping
 	$span.css( 'whiteSpace', 'nowrap' );
-	ltOrEq( $span.width(), $span.parent().width(), "Text fits (span's width is no larger than its parent's width)" );
+	ltOrEq( $span.width(), $span.parent().width(), "Text fits (making the span 'white-space:nowrap' does not make it wider than its parent)" );
 
-	// Add one character using scary black magic
+	// Add two characters using scary black magic
 	var spanText = $span.text();
 	var d = findDivergenceIndex( origText, spanText );
-	spanText = spanText.substr( 0, d ) + origText[d] + '...';
+	var spanTextNew = spanText.substr( 0, d ) + origText[d] + origText[d] + '...';
+
+	gt( spanTextNew.length, spanText.length, 'Verify that the new span-length is indeed greater' );
 
 	// Put this text in the span and verify it doesn't fit
-	$span.text( spanText );
-	gt( $span.width(), $span.parent().width(), 'Fit is maximal (adding one character makes it not fit any more)' );
+	$span.text( spanTextNew );
+	// In IE6 width works like min-width, allow IE6's width to be "equal to"
+	if ( $.browser.msie && Number( $.browser.version ) == 6 ) {
+		gtOrEq( $span.width(), $span.parent().width(), 'Fit is maximal (adding two characters makes it not fit any more) - IE6: Maybe equal to as well due to width behaving like min-width in IE6' );
+	} else {
+		gt( $span.width(), $span.parent().width(), 'Fit is maximal (adding two characters makes it not fit any more)' );
+	}
 
 	// Clean up
 	$wrapper.remove();
