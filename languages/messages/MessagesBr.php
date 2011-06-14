@@ -1494,7 +1494,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'recentchangeslinked-noresult' => 'Kemm ebet war ar pajennoù liammet e-pad an amzer spisaet.',
 'recentchangeslinked-summary'  => "Rollet eo war ar bajenn dibar-mañ ar c'hemmoù diwezhañ bet degaset war ar pajennoù liammet ouzh ur bajenn lakaet (pe ouzh izili ur rummad lakaet).
 E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
-'recentchangeslinked-page'     => 'Anv ar bajenn:',
+'recentchangeslinked-page'     => 'Anv ar bajenn :',
 'recentchangeslinked-to'       => "Diskouez ar c'hemmoù war-du ar pajennoù liammet kentoc'h eget re ar bajenn lakaet",
 
 # Upload

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Alcali
  * @author Bani
  * @author Brion
  * @author BrunaaAa
@@ -686,6 +687,8 @@ Tente novamente em alguns minutos.',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
 'namespaceprotected'   => "Você não possui permissão para editar páginas no espaço nominal '''$1'''.",
+'customcssprotected'   => 'Você não tem permissão para editar esta página CSS, porque ele contém configurações pessoais de outro usuário.',
+'customjsprotected'    => 'Você não tem permissão para editar esta página de JavaScript, porque ele contém configurações pessoais de outro usuário.',
 'ns-specialprotected'  => 'Não é possível editar páginas especiais',
 'titleprotected'       => "Este título foi protegido, para que não seja criado.
 Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
@@ -818,6 +821,12 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'passwordreset-username'     => 'Nome de usuário:',
 'passwordreset-email'        => 'Endereço de e-mail:',
 'passwordreset-emailtitle'   => 'Detalhes da conta na {{SITENAME}}',
+'passwordreset-emailtext-ip' => 'Alguém (provavelmente você, do endereço IP $1) solicitou um lembrete do seu detalhes de conta para {{SITENAME}} ($4). O seguinte usuário {{PLURAL:$3|conta|são contas}} associado com este endereço de e-mail:
+
+$2
+
+{{PLURAL:$3|Esta senha temporária |Essas senhas temporárias}} vão expirar em {{PLURAL:$5|um dia|$5 dias}}.
+Você deve efetuar login e escolher uma nova senha agora. Se você conseguir lembrar da senha, ignore este e-mail e continue usando sua senha anterior, do contrário, prossiga com as instruções clicando no link.',
 'passwordreset-emailelement' => 'Usuário: $1
 Senha temporária: $2',
 'passwordreset-emailsent'    => 'Foi enviado um e-mail de lembrete.',

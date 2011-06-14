@@ -2640,6 +2640,7 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 {{Identical/IP address or username}}',
 'sp-contributions-toponly'             => '"top revision" means the "latest revision"',
 'sp-contributions-submit'              => '{{Identical|Search}}',
+'sp-contributions-showsizediff'        => 'In [[Special:Contributions/McDutchie|Special:Contributions]], this is a label for a checkbox that toggles the display of how much the size has changed in each of the listed page edits.',
 
 # What links here
 'whatlinkshere'            => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',

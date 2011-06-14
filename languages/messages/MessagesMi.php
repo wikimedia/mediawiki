@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Iketsi
  * @author Kiharoa
  * @author Sonia
  */
@@ -39,6 +40,9 @@ $messages = array(
 
 # Cologne Blue skin
 'qbspecialpages' => 'Whārangi motuhake',
+
+# Vector skin
+'vector-view-view' => 'Rīti',
 
 'help'             => 'Whakamārama',
 'search'           => 'Rapua',

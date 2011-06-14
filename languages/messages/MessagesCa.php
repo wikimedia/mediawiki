@@ -481,6 +481,8 @@ $1",
 'page-rss-feed'           => '«$1» RSS Feed',
 'page-atom-feed'          => 'Canal Atom «$1»',
 'red-link-title'          => '$1 (encara no existeix)',
+'sort-descending'         => 'Ordena descendentment',
+'sort-ascending'          => 'Ordena ascendentment',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pàgina',
@@ -568,6 +570,8 @@ Consulta: $2',
 'cascadeprotected'     => "Aquesta pàgina està protegida i no es pot modificar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
 $2",
 'namespaceprotected'   => "No teniu permís per a modificar pàgines en l'espai de noms '''$1'''.",
+'customcssprotected'   => "No teniu permisos per editar la pàgina CSS perquè conté els paràmetres personals d'un altre usuari.",
+'customjsprotected'    => "No teniu permisos per editar la pàgina JavaScript perquè conté els paràmetres personals d'un altre usuari.",
 'ns-specialprotected'  => 'No es poden modificar les pàgines especials.',
 'titleprotected'       => "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].
 Els seus motius han estat: «''$2''».",
@@ -690,12 +694,16 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'resetpass-temp-password'   => 'Contrasenya temporal:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Restablir contrasenya',
-'passwordreset-text'     => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
-'passwordreset-legend'   => 'Restablir contrasenya',
-'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
-'passwordreset-username' => "Nom d'usuari:",
-'passwordreset-email'    => 'Adreça de correu electrònic:',
+'passwordreset'              => 'Restablir contrasenya',
+'passwordreset-text'         => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
+'passwordreset-legend'       => 'Restablir contrasenya',
+'passwordreset-disabled'     => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
+'passwordreset-username'     => "Nom d'usuari:",
+'passwordreset-email'        => 'Adreça de correu electrònic:',
+'passwordreset-emailtitle'   => 'Detalls del compte a {{SITENAME}}',
+'passwordreset-emailelement' => "Nom d'usuari: $1
+Contrasenya temporal: $2",
+'passwordreset-emailsent'    => "S'ha enviat un correu de recordatori.",
 
 # Edit page toolbar
 'bold_sample'     => 'Text en negreta',
@@ -1541,6 +1549,7 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'emptyfile'                   => 'El fitxer que heu carregat sembla estar buit.
 Açò por ser degut a un mal caràcter en el nom del fitxer.
 Comproveu si realment voleu carregar aquest fitxer.',
+'windows-nonascii-filename'   => 'Aquest wiki no permet noms de fitxer amb caràcters especials.',
 'fileexists'                  => "Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu '''<tt>[[:$1]]</tt>''' si no esteu segurs de voler substituir-lo.
 [[$1|thumb]]",
 'filepageexists'              => "La pàgina de descripció d'aquest fitxer ja ha estat creada ('''<tt>[[:$1]]</tt>'''), però de moment no hi ha cap fitxer amb aquest nom. La descripció que heu posat no apareixerà a la pàgina de descripció. Si voleu que hi aparegui haureu d'editar-la manualment.
@@ -2055,8 +2064,9 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'watchlist-options'    => 'Opcions de la llista de seguiment',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => "S'està vigilant...",
-'unwatching' => "S'està desatenent...",
+'watching'       => "S'està vigilant...",
+'unwatching'     => "S'està desatenent...",
+'watcherrortext' => "S'ha produït un error en canviar els paràmetres de la vostra llista de seguiment de «$1».",
 
 'enotif_mailer'                => 'Sistema de notificació per correl de {{SITENAME}}',
 'enotif_reset'                 => 'Marca totes les pàgines com a visitades',
@@ -2215,11 +2225,8 @@ Ací es troben els paràmetres actuals de la pàgina '''$1''':",
 'viewdeletedpage'              => 'Visualitza les pàgines eliminades',
 'undeletepagetext'             => "S'ha eliminat {{PLURAL:|la pàgina $1, però encara és a l'arxiu i pot ser restaurada|les pàgines $1, però encara són a l'arxiu i poden ser restaurades}}. Es Pot netejar l'arxiu periòdicament.",
 'undelete-fieldset-title'      => 'Restaura revisions',
-'undeleteextrahelp'            => "Per a restaurar la pàgina sencera, deixeu totes les caselles sense seleccionar i
-cliqueu a  '''''Restaura'''''.
-Per a realitzar una restauració selectiva, marqueu les caselles que corresponguin
-a les revisions que voleu recuperar, i feu clic a '''''Restaura'''''.
-Si cliqueu '''''Reinicia''''' es netejarà el camp de comentari i es desmarcaran totes les caselles.",
+'undeleteextrahelp'            => "Per a restaurar l'historial sencer de la pàgina, deixeu totes les caselles sense seleccionar i feu clic a '''''{{int:undeletebtn}}'''''.
+Per a realitzar una restauració selectiva, marqueu les caselles que corresponguin a les revisions que voleu recuperar, i feu clic a '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revisió arxivada|$1 revisions arxivades}}',
 'undeletehistory'              => "Si restaureu la pàgina, totes les revisions seran restaurades a l'historial.
 
@@ -2295,6 +2302,7 @@ Per més detalls, la última entrada del registre es mostra a continuació:',
 'sp-contributions-username'            => "Adreça IP o nom d'usuari:",
 'sp-contributions-toponly'             => 'Mostra només revisions superiors',
 'sp-contributions-submit'              => 'Cerca',
+'sp-contributions-showsizediff'        => 'Mostra la diferència en mida de pàgina',
 
 # What links here
 'whatlinkshere'            => 'Què hi enllaça',

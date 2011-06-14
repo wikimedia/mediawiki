@@ -328,6 +328,11 @@ Waxaa meeshaan ka heli kartaa liiska bogyaasha khaaska ah oo jiro  [[Special:Spe
 'databaseerror'        => 'Qalad ka dhacday database;ka',
 'laggedslavemode'      => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku soo kordhin.',
 'enterlockreason'      => 'Ku qor sababta loo xiraayo, kuna siidar waqtigii la soo fasaxaayo maqaalka.',
+'missing-article'      => 'Database-ka ma soo helin qoraalkii bogga oo laga rabay in oo soo helo, oo la dhoho  "$1" $2.
+
+Waxaan oo kale waxaa sabab ugu ah soo raacida linkiga duqoobay ee duwanaan ama taariikh oo kula xiriirtay bog la tirtitay.
+Hadii ee sidaas eheen, waxaa laga yaabaa in software-ka aad qalad ka heshay.
+Fadlan u sheek [[Special:ListUsers/sysop|maamulaha]], kana digtooneesii URL-ka.',
 'missingarticle-diff'  => '(Duwanaan: $1, $2)',
 'internalerror'        => 'Qalad gudaha ah',
 'internalerror_info'   => 'Qalad gudaha ah: $1',
@@ -486,6 +491,8 @@ Ereysirka kumeelgaarka ah: $2',
 'link_sample'     => 'Qoraalka linkiga',
 'extlink_tip'     => 'Xiriirka tixraaca (xasuuso http:// prefix)',
 'headline_sample' => 'Qoraalka madaxa hore',
+'headline_tip'    => 'Qeybta 2aad ee ciwaanka kore',
+'nowiki_sample'   => 'Ku dar meeshaan qoraal aan la format-gareen',
 'nowiki_tip'      => 'Iska dhagooleey formatka wiki',
 'image_tip'       => 'Fayl la soo galiyay',
 'media_tip'       => 'Linkiga file-ka',
@@ -676,6 +683,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'searchhelp-url'                   => 'Help:Caawinaad',
 'searchprofile-articles'           => 'Maqaalada kooban',
 'searchprofile-project'            => 'Caawin iyo Bogga mashruuca',
+'searchprofile-images'             => 'Multimedia-ha',
 'searchprofile-everything'         => 'Wax kasto',
 'searchprofile-advanced'           => 'La talin',
 'searchprofile-articles-tooltip'   => 'Ka raadi $1',
@@ -903,7 +911,7 @@ ku saabsan: $1',
 'filehist-user'          => 'Isticmaale',
 'filehist-comment'       => 'Ka hadalka',
 'imagelinks'             => 'Faylka la xiriira',
-'linkstoimage'           => 'Waxyaabahaan soo socota ee  {{PLURAL:$1|bog waxey la xiriiraan|$1 boggag ah waxey la xiriiraan}} faylkan:',
+'linkstoimage'           => 'Waxyaabahaan soo socota ee  {{PLURAL:$1|bog ah waxey la xiriiraan|$1 boggag ah waxey la xiriiraan}} faylkan:',
 'nolinkstoimage'         => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
 'sharedupload-desc-here' => 'Faylkaan waxoo ka socdaa  $1 waxaana laga yaabaa in lagu isticmaalay mashruucyada kale.
 Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kartid hoostaan.',
@@ -1134,7 +1142,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'whatlinkshere-page'       => 'Bogga:',
 'linkshere'                => "Bogyaashaan waxey la xiriiraan  '''[[:$1]]''':",
 'nolinkshere'              => "Boggag la xiriiro   '''[[:$1]]''' ma jirto.",
-'isredirect'               => 'bogga loo wareejiyay',
+'isredirect'               => 'bogga loo sii toosiyay',
 'isimage'                  => 'Sawirka la xiriiro',
 'whatlinkshere-prev'       => '{{PLURAL:$1|kii ka horeeyay|kii ka horeeyay $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|kan ku xiga|kan ku xiga $1}}',
@@ -1299,6 +1307,7 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'exif-iimcategory' => 'Qeybta',
 
 # External editor support
+'edit-externally'      => 'wax ka bedel faylkaan adiga oo isticmaalaya brogram dheeraad ah',
 'edit-externally-help' => '(Ka fiiri wax war ah oo kale  [http://www.mediawiki.org/wiki/Manual:External_editors sidii oo wax ugu habeysmi lahaa] )',
 
 # 'all' in various places, this might be different for inflected languages

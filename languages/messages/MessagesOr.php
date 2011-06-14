@@ -663,8 +663,10 @@ $messages = array(
 'userrights-reason' => 'କାରଣ:',
 
 # Groups
+'group-user'  => 'ବ୍ୟବହାରକାରି',
 'group-sysop' => 'ପରିଛାଗଣ',
 
+'grouppage-user'  => '{{ns:ପ୍ରକଳ୍ପ}}:ବ୍ୟବହାରକାରି',
 'grouppage-sysop' => '{{ns:project}}:ପରିଛା (ଆଡମିନ)',
 
 # User rights log

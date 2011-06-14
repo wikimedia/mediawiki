@@ -54,6 +54,7 @@
  * @author Sherbrooke
  * @author Skalman
  * @author The Evil IP address
+ * @author TouzaxA
  * @author Urhixidur
  * @author Verdy p
  * @author Wyz
@@ -737,6 +738,8 @@ Veuillez essayer de nouveau dans quelques minutes.',
 'cascadeprotected'     => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected'   => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
+'customcssprotected'   => "Vous n'avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d'un autre utilisateur.",
+'customjsprotected'    => "Vous n'avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d'un autre utilisateur.",
 'ns-specialprotected'  => 'Les pages dans l’espace de noms « {{ns:special}} » ne peuvent pas être modifiées.',
 'titleprotected'       => "Ce titre a été protégé à la création par [[User:$1|$1]].
 Le motif avancé est « ''$2'' ».",

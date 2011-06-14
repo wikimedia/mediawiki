@@ -660,6 +660,7 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 
 # Undelete
 'undeletelink'              => 'soim/restore',
+'undeleteviewlink'          => 'lukim',
 'undeletecomment'           => 'As bilong en:',
 'undelete-search-submit'    => 'Painim',
 'undelete-show-file-submit' => 'Yes',
@@ -748,6 +749,7 @@ Yu inap lukim as tok bilong em',
 'tooltip-ca-unwatch'             => 'Rausim dispela pes long lukautbuk bilong yu (Remove this page from your watchlist)',
 'tooltip-search'                 => 'Painim long {{SITENAME}}',
 'tooltip-search-fulltext'        => 'Painim dispela hap tok insait long olgeta pes',
+'tooltip-p-logo'                 => 'Lukim fran pes (Visit the main page)',
 'tooltip-n-mainpage'             => 'Lukim fran pes (Visit the main page)',
 'tooltip-n-mainpage-description' => 'Lukim fran pes (Visit the main page)',
 'tooltip-n-help'                 => 'Ples long painim halivim',
