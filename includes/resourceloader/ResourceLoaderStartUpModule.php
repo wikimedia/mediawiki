@@ -60,7 +60,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// to their numerical ids (case insensitive and with underscores)
 		$namespaceIds = $wgContLang->getNamespaceIds();
 		foreach( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
-			$nsIds[$wgContLang->lc( $name )] = $index;
+			$namespaceIds[$wgContLang->lc( $name )] = $index;
 		}
 
 		// Build list of variables
