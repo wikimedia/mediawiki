@@ -43,7 +43,7 @@ class Article {
 	var $mRedirectTarget = null;
 
 	/**
-	 * @var Title
+	 * @var mixed: boolean false or URL string
 	 */
 	var $mRedirectUrl = false;        // !<
 	var $mRevIdFetched = 0;           // !<
