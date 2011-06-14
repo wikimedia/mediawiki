@@ -53,17 +53,17 @@ class ApiWatch extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
-		$article = new Article( $title );
+		$article = new Article( $title, 0 );
 		$res = array( 'title' => $title->getPrefixedText() );
 
 		if ( $params['unwatch'] ) {
 			$res['unwatched'] = '';
 			$res['message'] = wfMsgExt( 'removedwatchtext', array( 'parse' ), $title->getPrefixedText() );
-			$success = WatchAction::doWatch( $title, $wgUser );
+			$success = WatchAction::doUnwatch( $title, $wgUser );
 		} else {
 			$res['watched'] = '';
 			$res['message'] = wfMsgExt( 'addedwatchtext', array( 'parse' ), $title->getPrefixedText() );
-			$success = UnwatchAction::doUnwatch( $title, $wgUser );
+			$success = UnwatchAction::doWatch( $title, $wgUser );
 		}
 		if ( !$success ) {
 			$this->dieUsageMsg( 'hookaborted' );
