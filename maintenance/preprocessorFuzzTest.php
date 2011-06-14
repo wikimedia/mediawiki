@@ -227,12 +227,12 @@ class PPFuzzUser extends User {
 	}
 
 	function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
-		if ( $option === 'fancysig' ) {
+		if ( $oname === 'fancysig' ) {
 			return $this->ppfz_test->fancySig;
-		} elseif ( $option === 'nickname' ) {
+		} elseif ( $oname === 'nickname' ) {
 			return $this->ppfz_test->nickname;
 		} else {
-			return parent::getOption( $option, $defaultOverride, $ignoreHidden );
+			return parent::getOption( $oname, $defaultOverride, $ignoreHidden );
 		}
 	}
 }
