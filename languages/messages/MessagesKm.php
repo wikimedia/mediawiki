@@ -388,6 +388,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'បន្ត',
 'index-category'                 => 'ទំព័រដែលបានធ្វើលិបិក្រម',
 'noindex-category'               => 'ទំព័រដែលមិនបានធ្វើលិបិក្រម',
+'broken-file-category'           => 'ទំព័រទាំងឡាយដែលមានតំណភ្ជាប់ខូច',
 
 'mainpagetext'      => "'''មេឌាវិគីត្រូវបានដំឡើងសំរេចហើយ​។'''",
 'mainpagedocfooter' => 'សូមពិនិត្យមើល [http://meta.wikimedia.org/wiki/ជំនួយ​៖ ខ្លឹមសារ​ណែនាំ​ប្រើប្រាស់]សម្រាប់​ព័ត៌មាន​​បន្ថែមចំពោះ​ការប្រើប្រាស់ ផ្នែកទន់វិគី​។
@@ -560,6 +561,8 @@ $1',
 'page-rss-feed'           => 'បម្រែបម្រួល RSS Feed នៃ "$1"',
 'page-atom-feed'          => 'បម្រែបម្រួល Atom Feed នៃ "$1"',
 'red-link-title'          => '$1 (ទំព័រនេះមិនទាន់​មាននៅឡើយទេ)',
+'sort-descending'         => 'តំរៀបតាមលំដាប់ចុះ',
+'sort-ascending'          => 'តំរៀបតាមលំដាប់ឡើង',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'អត្ថបទ',
@@ -680,6 +683,7 @@ $2',
 'createaccount'              => 'បង្កើតគណនី',
 'gotaccount'                 => "បើលោកអ្នកមានគណនីសម្រាប់ប្រើហើយ  សូម'''$1'''។",
 'gotaccountlink'             => 'កត់ឈ្មោះចូល',
+'userlogin-resetlink'        => 'តើអ្នកភ្លេចព័ត៌មានលំអិតសំរាប់កត់ឈ្មោះចូលហើយ?',
 'createaccountmail'          => 'តាមរយៈអ៊ីមែល',
 'createaccountreason'        => 'មូលហេតុ៖',
 'badretype'                  => 'ពាក្យសំងាត់ដែលអ្នកបានបញ្ចូលនោះ គឺមិនស៊ីគ្នាទេ។',
@@ -763,6 +767,7 @@ $2',
 'login-throttled'            => 'អ្នកបានកត់ឈ្មោះចូលមិនបានសំរេចច្រើនដងពេកហើយ។​
 
 សូមរងចាំមួយរយៈ មុនពេលសាកល្បងម្ដងទៀត។',
+'login-abort-generic'        => 'អ្នកចុះឈ្មោះចូលមិនបានសំរេចទេ។ ការចុះឈ្មោះចូលត្រូវបានបោះបង់។',
 'loginlanguagelabel'         => 'ភាសា៖ $1',
 
 # E-mail sending
@@ -791,7 +796,12 @@ $2',
 
 # Special:PasswordReset
 'passwordreset'              => 'កំណត់​ពាក្យសំងាត់​សាឡើងវិញ',
+'passwordreset-text'         => 'បំពេញសំណុំបែបបទនេះដើម្បីទទួលបានអ៊ីម៉ែលក្រើនរំលឹកពីព័ត៌មានលំអិតរបស់គណនីរបស់អ្នក។',
+'passwordreset-legend'       => 'ប្ដូរទៅពាក្យសំងាត់ដើម',
+'passwordreset-disabled'     => 'មុខងារប្ដូរទៅពាក្យសំងាត់ដើមត្រូវបានបិទមិនអោយប្រើនៅលើវិគីនេះ។',
+'passwordreset-pretext'      => '{{PLURAL:$1||វាយបញ្ចូលផ្នែកមួយនៃទិន្នន័យខាងក្រោម}}',
 'passwordreset-username'     => 'អត្តនាម៖',
+'passwordreset-email'        => 'អាសយដ្ឋានអ៊ីមែល៖',
 'passwordreset-emailelement' => 'ឈ្មោះអ្នកប្រើប្រាស់៖ $1
 លេខសម្ងាត់បណ្ដោះអាសន្ន៖ $2',
 'passwordreset-emailsent'    => 'អីុមែលរំលឹកមួយបានផ្ញើទៅហើយ។',

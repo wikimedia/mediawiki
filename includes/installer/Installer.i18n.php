@@ -1430,6 +1430,7 @@ chmod a+w $3</pre>',
 	'config-install-step-failed' => 'не атрымалася',
 	'config-install-extensions' => 'Уключаючы пашырэньні',
 	'config-install-database' => 'Налада базы зьвестак',
+	'config-install-schema' => 'Стварэньне схемы',
 	'config-install-pg-schema-not-exist' => 'Схема PostgreSQL не існуе',
 	'config-install-pg-schema-failed' => 'Немагчыма стварыць табліцу.
 Упэўніцеся, што карыстальнік «$1» можа пісаць у схему «$2».',
@@ -1437,6 +1438,10 @@ chmod a+w $3</pre>',
 	'config-install-pg-plpgsql' => 'Праверка падтрымкі мовы PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Вам неабходна ўсталяваць падтрымку мовы PL/pgSQL у базе зьвестак $1',
 	'config-pg-no-create-privs' => 'Рахунак, які Вы пазначылі для ўсталяваньня ня мае дастаткова правоў для стварэньня рахунку.',
+	'config-pg-not-in-role' => 'Пазначаны Вамі рахунак для ўэб-карыстальніка ўжо існуе.
+Пазначаны Вамі рахунак для ўсталяваньня ня мае правоў і не зьяўляецца сябрам ролі ўэб-карыстальніка, таму немагчыма стварыць аб’екты, якія належаць ўэб-карыстальніку.
+
+Цяпер MediaWiki патрабуе, каб табліцы належалі да ўэб-карыстальніку. Калі ласка, пазначце іншы рахунак, ці націсьніце кнопку «Вярнуцца» і пазначце карыстальніка з неабходнымі для ўсталяваньня правамі.',
 	'config-install-user' => 'Стварэньне карыстальніка базы зьвестак',
 	'config-install-user-alreadyexists' => 'Удзельнік «$1» ужо існуе',
 	'config-install-user-create-failed' => 'Немагчыма стварыць ўдзельніка «$1»: $2',
@@ -1504,6 +1509,12 @@ $1',
 
 $1',
 	'config-session-error' => 'Грешка при създаване на сесия: $1',
+	'config-session-expired' => 'Срокът на валидност на данните от сесията са изтекли.
+Продължителността на сесиите е настроена на $1.
+Това може да бъде увеличено чрез настройване на <code>session.gc_maxlifetime</code> в php.ini.
+Необходимо е рестартиране на инсталационния процес.',
+	'config-no-session' => 'Данните за сесията бяха загубени!
+Проверете вашия php.ini и се уверете, че на <code>session.save_path</code> е настроена подходящата директория.',
 	'config-your-language' => 'Вашият език:',
 	'config-your-language-help' => 'Избиране на език за използване по време на инсталацията.',
 	'config-wiki-language' => 'Език на уикито:',
@@ -1589,6 +1600,8 @@ $1
 	'config-xml-bad' => 'Липсва XML модулът на PHP.
 МедияУики се нуждае от някои функции от този модул и няма да работи при наличната конфигурация.
 При Mandrake, необходимо е да се инсталира пакетът php-xml.',
+	'config-pcre' => 'Липсва модулът PCRE.
+За да работи, МедияУики изисква съвместими с Perl функии за регилярни изрази.',
 	'config-pcre-no-utf8' => "'''Фатално''': Модулът PCRE на PHP изглежда е компилиран без поддръжка на PCRE_UTF8.
 За да функционира правилно, МедияУики изисква поддръжка на UTF-8.",
 	'config-memory-raised' => '<code>memory_limit</code> на PHP е $1, увеличаване до $2.',
@@ -1654,6 +1667,7 @@ $1
 	'config-db-schema' => 'Схема за МедияУики',
 	'config-db-schema-help' => 'Схемата по-горе обикновено е коректна.
 Промени се извършват ако наистина е необходимо.',
+	'config-pg-test-error' => "Невъзможно свързване с базата данни '''$1''': $2",
 	'config-sqlite-dir' => 'Директория за данни на SQLite:',
 	'config-sqlite-dir-help' => "SQLite съхранява всички данни в един файл.
 
@@ -1776,6 +1790,8 @@ $1
 	'config-subscribe' => 'Абониране за [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce пощенския списък за нови версии].',
 	'config-subscribe-help' => 'Това е пощенски списък с малко трафик, който се използва за съобщения при излизане на нови версии, както и за важни проблеми със сигурността.
 Абонирането е препоръчително, както и надграждането на инсталацията на МедияУики при излизането на нова версия.',
+	'config-subscribe-noemail' => 'Опитахте да се абонирате за пощенския списък за нови версии без да посочите адрес за електронна поща.
+Необходимо е да се предостави адрес за електронна поща, в случай че желаете да се абонирате за пощенския списък.',
 	'config-almost-done' => 'Инсталацията е почти готова!
 Възможно е пропускане на оставащата конфигурация и моментално инсталиране на уикито.',
 	'config-optional-continue' => 'Задаване на допълнителни въпроси.',
@@ -1881,6 +1897,7 @@ $1
 	'config-install-step-failed' => 'неуспешно',
 	'config-install-extensions' => 'Добавяне на разширенията',
 	'config-install-database' => 'Създаване на базата от данни',
+	'config-install-schema' => 'Създаване на схема',
 	'config-install-pg-schema-not-exist' => 'PostgreSQL схемата не съществува',
 	'config-install-pg-schema-failed' => 'Създаването на таблиците пропадна.
 Необходимо е потребител "$1" да има права за писане в схемата "$2".',
@@ -1891,6 +1908,9 @@ $1
 	'config-install-user-alreadyexists' => 'Потребител „$1“ вече съществува',
 	'config-install-user-create-failed' => 'Създаването на потребител „$1“ беше неуспешно: $2',
 	'config-install-user-grant-failed' => 'Предоставянето на права на потребител "$1" беше неуспешно: $2',
+	'config-install-user-missing' => 'Посоченият потребител " $1 "не съществува.',
+	'config-install-user-missing-create' => 'Посоченият потребител "$1" не съществува.
+Ако желаете да го създадете, поставете отметка на "създаване на сметка".',
 	'config-install-tables' => 'Създаване на таблиците',
 	'config-install-tables-exist' => "'''Предупреждение''': Таблиците за МедияУики изглежда вече съществуват.
 Пропускане на създаването им.",
@@ -1900,10 +1920,10 @@ $1
 	'config-install-interwiki-exists' => "'''Предупреждение''': Таблицата с междууикита изглежда вече съдържа данни.
 Пропускане на списъка по подразбиране.",
 	'config-install-stats' => 'Инициализиране на статистиките',
-	'config-install-keys' => 'Генериране на таен ключ',
+	'config-install-keys' => 'Генериране на тайни ключове',
 	'config-insecure-keys' => "'''Предупреждение:''' {{PLURAL:$2|Сигурният ключ, създаден по време на инсталацията, не е напълно надежден|Сигурните ключове, създадени по време на инсталацията, не са напълно надеждни}} $1 . Обмислете да {{PLURAL:$2|го|ги}} смените ръчно.",
 	'config-install-sysop' => 'Създаване на администраторска сметка',
-	'config-install-subscribe-fail' => 'Невъзможно беше абонирането за mediawiki-announce',
+	'config-install-subscribe-fail' => 'Невъзможно беше абонирането за mediawiki-announce: $1',
 	'config-install-mainpage' => 'Създаване на Началната страница със съдържание по подразбиране',
 	'config-install-extension-tables' => 'Създаване на таблици за включените разширения',
 	'config-install-mainpage-failed' => 'Вмъкването на Началната страница беше невъзможно: $1',
@@ -2178,6 +2198,9 @@ ha pa vefe gwiriet gant MediaWiki an holl restroù pellgarget eo erbedet-groñs 
 	'config-brokenlibxml' => "Ur meskad stummoù PHP ha libxml2 dreinek a vez implijet gant ho reizhiad. Gallout a ra breinañ ar roadennoù e MediaWiki hag en arloadoù web all.
 Hizivait da PHP 5.2.9 pe nevesoc'h ha libxml2 2.7.3 pe nevesoc'h ([http://bugs.php.net/bug.php?id=45996 draet renablet gant PHP]).
 Staliadur paouezet.",
+	'config-using531' => "N'haller ket implijout MediaWiki gant PHP $1 abalamour d'un draen a zegas trubuilh en arventennoù kaset en ur ober dave da <code>__call()</code>.
+Hizivait ho reizhiad gant PHP 5.3.2 pe nevesoc'h, pe distroit da PHP 5.3.0 evit renkañ an dra-se.
+Staliadur paouezet.",
 	'config-db-type' => 'Doare an diaz roadennoù :',
 	'config-db-host' => 'Anv implijer an diaz roadennoù :',
 	'config-db-host-help' => "M'emañ ho servijer roadennoù war ur servijer disheñvel, merkit amañ an anv ostiz pe ar chomlec'h IP.
@@ -2215,6 +2238,7 @@ N'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roaden
 	'config-db-schema' => 'Brastres evit MediaWiki',
 	'config-db-schema-help' => "Peurliesañ e vo digudenn ar chema-mañ.
 Arabat cheñch anezho ma n'hoc'h eus ket ezhomm d'en ober.",
+	'config-pg-test-error' => "N'haller ket kevreañ ouzh an diaz-titouroù '''$1''' : $2",
 	'config-sqlite-dir' => "Kavlec'h roadennoù SQLite :",
 	'config-oracle-def-ts' => 'Esaouenn stokañ ("tablespace") dre ziouer :',
 	'config-oracle-temp-ts' => "Esaouenn stokañ (''tablespace'') da c'hortoz :",
@@ -2330,7 +2354,7 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-license-none' => 'Aotre ebet en traoñ pajenn',
 	'config-license-cc-by-sa' => 'Creative Commons Deroadenn Kenrannañ heñvel',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Deroadenn Angenwerzhel Kenrannañ heñvel',
-	'config-license-cc-0' => 'Creative Commons Zero',
+	'config-license-cc-0' => 'Creative Commons Zero (Domani foran)',
 	'config-license-pd' => 'Domani foran',
 	'config-license-cc-choose' => 'Dibabit un aotre-implijout Creative Commons personelaet',
 	'config-email-settings' => 'Arventennoù ar postel',
@@ -2383,6 +2407,7 @@ Pouezit war Kent mar fell deoc\'h cheñch tra pe dra.',
 	'config-install-step-failed' => "c'hwitet",
 	'config-install-extensions' => 'En ur gontañ an astennoù',
 	'config-install-database' => 'Krouiñ an diaz roadennoù',
+	'config-install-schema' => 'O krouiñ ar chema',
 	'config-install-pg-schema-not-exist' => "N'eus ket eus chema PostgreSQL.",
 	'config-install-pg-schema-failed' => "C'hwitet eo krouidigezh an taolennoù.
 Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
@@ -2399,9 +2424,9 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-interwiki' => 'O leuniañ dre ziouer an daolenn etrewiki',
 	'config-install-interwiki-list' => "Ne c'haller ket kavout ar restr <code>interwiki.list</code>.",
 	'config-install-stats' => 'O sevel ar stadegoù',
-	'config-install-keys' => "Genel an alc'hwez kuzh",
+	'config-install-keys' => "Genel an alc'hwezioù kuzh",
 	'config-install-sysop' => 'Krouidigezh kont ar merour',
-	'config-install-subscribe-fail' => "Ne c'haller ket koumanantiñ da mediawiki-announce",
+	'config-install-subscribe-fail' => "N'haller ket koumanantiñ da mediawiki-announce : $1",
 	'config-install-mainpage' => "O krouiñ ar bajenn bennañ gant un endalc'had dre ziouer",
 	'config-install-extension-tables' => 'O krouiñ taolennoù evit an astennoù gweredekaet',
 	'config-install-mainpage-failed' => "Ne c'haller ket ensoc'hañ ar bajenn bennañ: $1",
@@ -3775,6 +3800,7 @@ En ''mode UTF-8'', MySQL connaîtra le jeu de caractères de vos données et pou
 	'config-db-schema' => 'Schéma pour MediaWiki',
 	'config-db-schema-help' => "Les schémas ci-dessus sont généralement corrects.
 Ne les changez que si vous êtes sûr que c'est nécessaire.",
+	'config-pg-test-error' => "Impossible de se connecter à la base de données '''$1''' : $2",
 	'config-sqlite-dir' => 'Dossier des données SQLite :',
 	'config-sqlite-dir-help' => "SQLite stocke toutes les données dans un fichier unique.
 
@@ -3932,6 +3958,7 @@ Indiquez un nom d'utilisateur différent.",
 	'config-subscribe' => "Abonnez-vous à la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce liste d'annonce des nouvelles versions] (la page peut afficher le texte en français).",
 	'config-subscribe-help' => "Il s'agit d'une liste de diffusion à faible volume utilisée servant à annoncer les nouvelles versions, y compris les versions améliorant la sécurité du logiciel.
 Vous devriez y souscrire et mettre à jour votre version de MediaWiki lorsque de nouvelles versions sont publiées.",
+	'config-subscribe-noemail' => "Vous avez essayé de vous abonner à la liste de diffusion des communiqués, sans fournir une adresse courriel ! S'il vous plaît, fournir une adresse électronique si vous souhaitez vous abonner à la liste de diffusion.",
 	'config-almost-done' => 'Vous avez presque fini !
 Vous pouvez passer la configuration restante et installer immédiatement le wiki.',
 	'config-optional-continue' => 'Me poser davantage de questions.',
@@ -4042,6 +4069,7 @@ Si vous voulez apporter des modifications, appuyez sur Retour.",
 	'config-install-step-failed' => 'échec',
 	'config-install-extensions' => 'Inclusion des extensions',
 	'config-install-database' => 'Création de la base de données',
+	'config-install-schema' => 'Création de schéma',
 	'config-install-pg-schema-not-exist' => "Le schéma PostgreSQL n'existe pas",
 	'config-install-pg-schema-failed' => "Échec lors de la création des tables.
 Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 ».",
@@ -4049,10 +4077,17 @@ Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 »."
 	'config-install-pg-plpgsql' => 'Vérification du language PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Vous devez installer le langage PL/pgSQL dans la base de données $1',
 	'config-pg-no-create-privs' => "Le compte que vous avez spécifié pour l'installation n'a pas suffisamment de privilèges pour créer un compte.",
+	'config-pg-not-in-role' => "Le compte que vous avez spécifié pour l'utilisateur web existe déjà ! 
+Le compte que vous avez spécifié pour l'installation n'est pas un super-utilisateur et n'est pas membre du rôle de l'internaute, il est donc incapable de créer des objets appartenant à l'utilisateur web.! 
+
+MediaWiki exige actuellement que les tableaux soient possédés par un utilisateur web. S'il vous plaît, spécifier un autre nom de compte web, ou cliquez sur \"retour\" et spécifier un utilisateur avec les privilèges suffisants.",
 	'config-install-user' => "Création d'un utilisateur de la base de données",
 	'config-install-user-alreadyexists' => "L'utilisateur « $1 » existe déjà.",
 	'config-install-user-create-failed' => "Échec lors de la création de l'utilisateur « $1 » : $2",
 	'config-install-user-grant-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
+	'config-install-user-missing' => 'L\'utilisateur "$1" n\'existe pas.',
+	'config-install-user-missing-create' => 'L\'utilisateur "$1" n\'existe pas ! 
+S\'il vous plaît, cocher "Compte de créer" dans la case ci-dessous si vous voulez le créer.',
 	'config-install-tables' => 'Création des tables',
 	'config-install-tables-exist' => "'''Avertissement:''' Les tables MediaWiki semblent déjà exister.
 Création omise.",
@@ -4065,7 +4100,7 @@ La liste par défaut ne sera pas inscrite.",
 	'config-install-keys' => 'Génération de la clé secrète',
 	'config-insecure-keys' => "'''Avertissement''' : {{PLURAL:$2|Une clé de sécurité générée ($1) pendant l'installation n'est pas complètement sécuritaire. Envisagez de la modifier manuellement.|Des clés de sécurité générées ($1) pendant l'installation ne sont pas complètement sécuritaires. Envisagez de les modifier manuellement.}}",
 	'config-install-sysop' => 'Création du compte administrateur',
-	'config-install-subscribe-fail' => "Impossible de s'abonner à mediawiki-announce",
+	'config-install-subscribe-fail' => "Impossible de s'abonner à mediawiki-announce : $1",
 	'config-install-mainpage' => 'Création de la page principale avec un contenu par défaut',
 	'config-install-extension-tables' => 'Création de tables pour les extensions activées',
 	'config-install-mainpage-failed' => 'Impossible d’insérer la page principale: $1',
@@ -4600,6 +4635,8 @@ Especifique un nome de usuario diferente.',
 	'config-subscribe' => 'Subscríbase á [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de correo de anuncios sobre lanzamentos].',
 	'config-subscribe-help' => 'Esta é unha lista de correos de baixo volume usada para anuncios sobre lanzamentos de novas versións, incluíndo avisos de seguridade importantes.
 Debería subscribirse a ela e actualizar a súa instalación MediaWiki cando saian as novas versións.',
+	'config-subscribe-noemail' => 'Intentou subscribirse á lista de correo dos anuncios de novos lanzamentos sen proporcionar o enderezo de correo electrónico.
+Dea un enderezo de correo electrónico se quere efectuar a subscrición á lista de correo.',
 	'config-almost-done' => 'Xa case rematou!
 Neste paso pode saltar o resto da configuración e instalar o wiki agora mesmo.',
 	'config-optional-continue' => 'Facédeme máis preguntas.',
@@ -4718,6 +4755,10 @@ Asegúrese de que o usuario "$1" pode escribir no esquema "$2".',
 	'config-install-pg-plpgsql' => 'Comprobación da lingua PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Cómpre instalar a lingua PL/pgSQL na base de datos $1',
 	'config-pg-no-create-privs' => 'A conta especificada para a instalación non ten os privilexios necesarios para crear unha conta.',
+	'config-pg-not-in-role' => 'A conta especificada para o usuario web xa existe.
+A conta que especificou para a instalación non é un superusuario e non pertence ao grupo de usuarios con acceso á web, polo que non pode crear obxectos pertencentes ao usuario da rede.
+
+Actualmente, MediaWiki necesita que as táboas sexan propiedade do usuario da rede. Especifique outro nome de conta web ou prema no botón "Atrás" e dea un usuario de instalación cos privilexios axeitados.',
 	'config-install-user' => 'Creando o usuario da base de datos',
 	'config-install-user-alreadyexists' => 'O usuario "$1" xa existe',
 	'config-install-user-create-failed' => 'A creación do usuario "$1" fallou: $2',
@@ -9638,6 +9679,8 @@ Kies een andere gebruikersnaam.',
 	'config-subscribe' => 'Abonneren op de [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailinglijst releaseaankondigen].',
 	'config-subscribe-help' => 'Dit is een mailinglijst met een laag volume voor aankondigingen van nieuwe versies, inclusief belangrijke aankondigingen met betrekking tot beveiliging.
 Abonneer uzelf erop en werk uw MediaWiki-installatie bij als er nieuwe versies uitkomen.',
+	'config-subscribe-noemail' => 'U hebt geprobeerd zich te abonneren op de release-aankondigingen-mailinglijst zonder een e-mailadres op te geven.
+Geef een e-mailadres op als u zich wil abonneren op de mailinglijst.',
 	'config-almost-done' => 'U bent bijna klaar!
 Als u wilt kunt u de overige instellingen overslaan en de wiki nu installeren.',
 	'config-optional-continue' => 'Stel me meer vragen.',
@@ -9751,6 +9794,7 @@ Als u nog wijzigingen wilt maken, klik dan op "Terug".',
 	'config-install-step-failed' => 'Mislukt',
 	'config-install-extensions' => 'Inclusief uitbreidingen',
 	'config-install-database' => 'Database inrichten',
+	'config-install-schema' => 'Schema aanmaken',
 	'config-install-pg-schema-not-exist' => 'Het schema voor PostgreSQL bestaat niet',
 	'config-install-pg-schema-failed' => 'Het aanmaken van de tabellen is mislukt.
 Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
@@ -9758,6 +9802,10 @@ Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
 	'config-install-pg-plpgsql' => 'Controle op de taal PL/pgSQL',
 	'config-pg-no-plpgsql' => 'U moet de taal PL/pgSQL installeren in de database $1',
 	'config-pg-no-create-privs' => 'De gebruiker die u hebt opgegeven door de installatie heeft niet voldoende rechten om een gebruiker aan te maken.',
+	'config-pg-not-in-role' => 'De account die u hebt opgegeven voor de webgebruiker bestaat al.
+De account die u hebt opgegeven voor installatie is geen superuser en geen lid van de rol van de webgebruiker, en kan het dus geen objecten aanmaken die van de webgebruiker zijn.
+
+MediaWiki vereist momenteel dat de tabellen van de webgebruiker zijn. Geef een andere webaccountnaam op, of klik op "terug" en geef een gebruiker op die voldoende installatierechten heeft.',
 	'config-install-user' => 'Databasegebruiker aan het aanmaken',
 	'config-install-user-alreadyexists' => 'Gebruiker "$1" bestaat al',
 	'config-install-user-create-failed' => 'Het aanmaken van de gebruiker "$1" is mislukt: $2',

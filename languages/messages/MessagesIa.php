@@ -373,7 +373,7 @@ Troppo de usatores tenta vider iste pagina.
 Per favor attende un momento ante que tu essaya acceder novemente a iste pagina.
 
 $1',
-'pool-timeout'      => 'Tempore limite excedite attendente le serratura',
+'pool-timeout'      => 'Tempore limite excedite durante le serratura',
 'pool-queuefull'    => 'Le cauda commun de processos es plen',
 'pool-errorunknown' => 'Error incognite',
 
