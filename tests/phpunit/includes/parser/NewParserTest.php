@@ -668,7 +668,6 @@ class NewParserTest extends MediaWikiTestCase {
 	 *
 	 * @param $text String: the text to tidy
 	 * @return String
-	 * @static
 	 */
 	protected function tidy( $text ) {
 		global $wgUseTidy;
