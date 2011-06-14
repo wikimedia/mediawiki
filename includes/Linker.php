@@ -1343,10 +1343,10 @@ class Linker {
 	 * @param $comment String
 	 * @param $title Mixed: Title object (to generate link to section in autocomment) or null
 	 * @param $local Boolean: whether section links should refer to local page
-	 * @param $embraced Boolean: whether the formatted comment should be embraced with ()
+	 *
 	 * @return string
 	 */
-	static function commentBlock( $comment, $title = null, $local = false, $embraced = true ) {
+	static function commentBlock( $comment, $title = null, $local = false ) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
 		// compatability, acc. to brion -ævar
@@ -1354,10 +1354,7 @@ class Linker {
 			return '';
 		} else {
 			$formatted = self::formatComment( $comment, $title, $local );
-			if ( $embraced ) {
-				$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
-			}
-			return Html::rawElement( 'span', array( 'class' => 'comment' ), $formatted );
+			return " <span class=\"comment\">($formatted)</span>";
 		}
 	}
 
@@ -1377,7 +1374,7 @@ class Linker {
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		} else if ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
-			$block = ' ' . self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
+			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
 				$rev->getTitle(), $local );
 		} else {
 			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
