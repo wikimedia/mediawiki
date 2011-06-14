@@ -55,6 +55,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		);
 		$mainPage = Title::newMainPage();
 
+		// Build wgNamespaceIds
+		// A complete key-value pair object mapping localized, canonical and aliases for namespaces
+		// to their numerical ids (case insensitive and with underscores)
+		$namespaceIds = $wgContLang->getNamespaceIds();
+		foreach( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
+			$nsIds[$wgContLang->lc( $name )] = $index;
+		}
+
 		// Build list of variables
 		$vars = array(
 			'wgLoadScript' => $wgLoadScript,
@@ -81,7 +89,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgDigitTransformTable' => $compactDigitTransTable,
 			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
-			'wgNamespaceIds' => $wgContLang->getNamespaceIds(),
+			'wgNamespaceIds' => $namespaceIds,
 			'wgSiteName' => $wgSitename,
 			'wgFileExtensions' => array_values( $wgFileExtensions ),
 			'wgDBname' => $wgDBname,
