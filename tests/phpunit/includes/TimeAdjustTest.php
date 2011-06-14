@@ -1,6 +1,6 @@
 <?php
 
-class TimeAdjustTest extends MediaWikiTestCase {
+class TimeAdjustTest extends MediaWikiLangTestCase {
 	static $offset;
 
 	public function setUp() {
@@ -13,6 +13,7 @@ class TimeAdjustTest extends MediaWikiTestCase {
 	public function tearDown() {
 		global $wgLocalTZoffset;
 		$wgLocalTZoffset = self::$offset;
+		parent::tearDown();
 	}
 
 	# Test offset usage for a given language::userAdjust
