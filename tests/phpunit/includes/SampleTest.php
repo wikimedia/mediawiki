@@ -15,6 +15,7 @@ class TestSample extends MediaWikiLangTestCase {
 	 * Anything cleanup you need to do should go here.
 	 */
 	function tearDown() {
+		parent::tearDown();
 	}
 
 	/**
