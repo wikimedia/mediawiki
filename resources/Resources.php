@@ -446,7 +446,7 @@ return array(
 		),
 	),
 	'mediawiki.util' => array(
-		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
+		'scripts' => 'resources/mediawiki/mediawiki.util.js',
 		'dependencies' => array(
 			'jquery.checkboxShiftClick',
 			'jquery.client',
