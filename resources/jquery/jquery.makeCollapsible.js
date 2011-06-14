@@ -211,17 +211,24 @@ $.fn.makeCollapsible = function() {
 			};
 
 		// Use custom text or default ?
-		if( !collapsetext || collapsetext === '' ){
+		if( !collapsetext ) {
 			collapsetext = mw.msg( 'collapsible-collapse' );
 		}
-		if ( !expandtext || expandtext === '' ){
+		if ( !expandtext ) {
 			expandtext = mw.msg( 'collapsible-expand' );
 		}
 
 		// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
-		var $toggleLink = $( '<a href="#"></a>' ).text( collapsetext ).wrap( '<span class="mw-collapsible-toggle"></span>' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).bind( 'click.mw-collapse', function(e){
-			toggleLinkDefault( this, e );
-		} );
+		var $toggleLink =
+			$( '<a href="#"></a>' )
+				.text( collapsetext )
+				.wrap( '<span class="mw-collapsible-toggle"></span>' )
+				.parent()
+				.prepend( '&nbsp;[' )
+				.append( ']&nbsp;' )
+				.bind( 'click.mw-collapse', function(e) {
+					toggleLinkDefault( this, e );
+				} );
 
 		// Return if it has been enabled already.
 		if ( $that.hasClass( 'mw-made-collapsible' ) ) {
@@ -233,7 +240,7 @@ $.fn.makeCollapsible = function() {
 		// Check if this element has a custom position for the toggle link
 		// (ie. outside the container or deeper inside the tree)
 		// Then: Locate the custom toggle link(s) and bind them
-		if ( $that.attr( 'id' ).indexOf( 'mw-customcollapsible-' ) === 0 ) {
+		if ( ( $that.attr( 'id' ) || '' ).indexOf( 'mw-customcollapsible-' ) === 0 ) {
 
 			var thatId = $that.attr( 'id' ),
 				$customTogglers = $( '.' + thatId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
@@ -268,7 +275,7 @@ $.fn.makeCollapsible = function() {
 				if ( !$toggle.length ) {
 					$firstRowCells.eq(-1).prepend( $toggleLink );
 				} else {
-					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
+					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ) {
 						toggleLinkPremade( $toggle, e );
 					} );
 				}
@@ -280,15 +287,16 @@ $.fn.makeCollapsible = function() {
 	
 				// If theres no toggle link, add it
 				if ( !$toggle.length ) {
-					// Make sure the numeral order doesn't get messed up, reset to 1 unless value-attribute is already used
-					// WebKit return '' if no value, Mozilla returns '-1' is no value.
-					// Needs ==, will fail with ===
-					if ( $firstItem.attr( 'value' ) == '' || $firstItem.attr( 'value' ) == '-1' ) { 
+					// Make sure the numeral order doesn't get messed up, force the first (soon to be second) item
+					// to be "1". Except if the value-attribute is already used.
+					// If no value was set WebKit returns "", Mozilla returns '-1', others return null or undefined.
+					var firstval = $firstItem.attr( 'value' );
+					if ( firstval === undefined || !firstval || firstval == '-1' ) { 
 						$firstItem.attr( 'value', '1' );
 					}
 					$that.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent() );
 				} else {
-					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
+					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ) {
 						toggleLinkPremade( $toggle, e );
 					} );
 				}
@@ -307,7 +315,7 @@ $.fn.makeCollapsible = function() {
 				if ( !$toggle.length ) {
 					$that.prepend( $toggleLink );
 				} else {
-					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
+					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ) {
 						toggleLinkPremade( $toggle, e );
 					} );
 				}
@@ -315,7 +323,7 @@ $.fn.makeCollapsible = function() {
 		}
 
 		// Initial state (only for those that are not custom)
-		if ( $that.hasClass( 'mw-collapsed' ) && $that.attr( 'id' ).indexOf( 'mw-customcollapsible-' ) !== 0 ) {
+		if ( $that.hasClass( 'mw-collapsed' ) && ( $that.attr( 'id' ) || '').indexOf( 'mw-customcollapsible-' ) !== 0 ) {
 			$that.removeClass( 'mw-collapsed' );
 			// The collapsible element could have multiple togglers
 			// To toggle the initial state only click one of them (ie. the first one, eq(0) )
