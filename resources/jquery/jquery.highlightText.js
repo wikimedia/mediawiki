@@ -21,9 +21,10 @@ $.highlightText = {
 		// if this is a text node
 		if ( node.nodeType == 3 ) {
 			// TODO - need to be smarter about the character matching here. 
-			// non latin characters can make regex think a new word has begun. 
-			// look for an occurence of our pattern and store the starting position 
-			var pos = node.data.search( new RegExp( "\\b" + $.escapeRE( pat ), "i" ) );
+			// non latin characters can make regex think a new word has begun: do not use \b
+			// http://stackoverflow.com/questions/3787072/regex-wordwrap-with-utf8-characters-in-js
+			// look for an occurence of our pattern and store the starting position
+			var pos = node.data.search( new RegExp( "(^|\\s)" + $.escapeRE( pat ), "i" ) );
 			if ( pos >= 0 ) {
 				// create the span wrapper for the matched text
 				var spannode = document.createElement( 'span' );

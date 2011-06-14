@@ -229,7 +229,7 @@ $.suggestions = {
 				} else {
 					result = selected.prev();
 					if ( selected.length == 0 ) {
-						// we are at the begginning, so lets jump to the last item
+						// we are at the beginning, so lets jump to the last item
 						if ( context.data.$container.find( '.suggestions-special' ).html() != "" ) {
 							result = context.data.$container.find( '.suggestions-special' );
 						} else {
