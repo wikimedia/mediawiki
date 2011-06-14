@@ -468,10 +468,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param $ns Integer: the namespace of the article
 	 * @param $text String: the name of the article
 	 * @return array( int namespace, string dbkey, string pagename ) or NULL on error
-	 * @static (sort of)
-	 * @access private
 	 */
-	function getNamespaceKeyAndText($ns, $text) {
+	protected function getNamespaceKeyAndText($ns, $text) {
 		if ( $text == '' )
 			return array( $ns, '', '' ); # shortcut for common case
 

@@ -1205,7 +1205,6 @@ class ParserTest {
 	 *
 	 * @param $text String: the text to tidy
 	 * @return String
-	 * @static
 	 */
 	private function tidy( $text ) {
 		global $wgUseTidy;

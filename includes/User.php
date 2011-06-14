@@ -2864,22 +2864,6 @@ class User {
 	}
 
 	/**
-	 * Get the maximum valid user ID.
-	 * @return Integer: User ID
-	 * @static
-	 */
-	function getMaxID() {
-		static $res; // cache
-
-		if ( isset( $res ) ) {
-			return $res;
-		} else {
-			$dbr = wfGetDB( DB_SLAVE );
-			return $res = $dbr->selectField( 'user', 'max(user_id)', false, __METHOD__ );
-		}
-	}
-
-	/**
 	 * Determine whether the user is a newbie. Newbies are either
 	 * anonymous IPs, or the most recently created accounts.
 	 * @return Bool
