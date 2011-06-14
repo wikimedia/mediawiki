@@ -3,7 +3,7 @@
 /**
  * @group Database
  */
-class BlockTest extends MediaWikiTestCase {
+class BlockTest extends MediaWikiLangTestCase {
 
 	const REASON = "Some reason";
 	
