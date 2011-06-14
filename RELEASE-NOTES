@@ -38,6 +38,10 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * The lowest supported version of PHP is now 5.2.3. If necessary, please
   upgrade PHP prior to upgrading MediaWiki.
 
+=== Changes since 1.17.0rc1 ===
+* Fixed syntax error in generated LocalSettings.php when a non-default user
+rights profile is chosen.
+
 === Changes since 1.17 beta 1 ===
 
 * Fixed warning about missing file "password.js".
