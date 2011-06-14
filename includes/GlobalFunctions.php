@@ -2795,6 +2795,15 @@ function wfParseUrl( $url ) {
 		return false;
 	}
 
+	/* Provide an empty host for eg. file:/// urls (see bug 28627) */
+	if ( !isset( $bits['host'] ) ) {
+		$bits['host'] = '';
+		
+		/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
+		if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
+			$bits['path'] = '/' . $bits['path'];
+		}
+	}
 	return $bits;
 }
 
@@ -2818,12 +2827,8 @@ function wfMakeUrlIndex( $url ) {
 			$domainpart = '';
 		}
 		$reversedHost = $domainpart . '@' . $mailparts[0];
-	} else if ( isset( $bits['host'] ) ) {
-		$reversedHost = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
 	} else {
-		// In file: URIs for instance it's common to have an empty host,
-		// which turns up as not getting a 'host' member from parse_url.
-		$reversedHost = '.';
+		$reversedHost = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
 	}
 	// Add an extra dot to the end
 	// Why? Is it in wrong place in mailto links?
@@ -2838,13 +2843,6 @@ function wfMakeUrlIndex( $url ) {
 		$index .= ':' . $bits['port'];
 	}
 	if ( isset( $bits['path'] ) ) {
-		// parse_url() removes the initial '/' from the path
-		// for file: URLs with Windows-style paths, such as
-		// file:///c:/windows/stuff. We need to add it back
-		// to keep our division between host and path properly.
-		if ( strlen( $bits['path'] ) > 0 && substr( $bits['path'], 0, 1 ) !== '/' ) {
-			$index .= '/';
-		}
 		$index .= $bits['path'];
 	} else {
 		$index .= '/';
