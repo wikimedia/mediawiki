@@ -5,7 +5,7 @@
 
 // Cache ellipsed substrings for every string-width-position combination
 var cache = { };
-// Use a seperate cache when match highlighting is enabled
+// Use a separate cache when match highlighting is enabled
 var matchTextCache = { };
 
 $.fn.autoEllipsis = function( options ) {
