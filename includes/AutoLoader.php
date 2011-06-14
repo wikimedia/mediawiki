@@ -458,6 +458,7 @@ $wgAutoloadLocalClasses = array(
 	'DatabaseUpdater' => 'includes/installer/DatabaseUpdater.php',
 	'Ibm_db2Installer' => 'includes/installer/Ibm_db2Installer.php',
 	'Ibm_db2Updater' => 'includes/installer/Ibm_db2Updater.php',
+	'InstallDocFormatter' => 'includes/installer/InstallDocFormatter.php',
 	'Installer' => 'includes/installer/Installer.php',
 	'LBFactory_InstallerFake' => 'includes/installer/Installer.php',
 	'LocalSettingsGenerator' => 'includes/installer/LocalSettingsGenerator.php',
