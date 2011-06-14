@@ -176,7 +176,7 @@ test( 'mw.loader.bug29107' , function() {
 
 	// Async! Include a timeout, as failure in this test leads to neither the
 	// success nor failure callbacks getting called.
-	stop(1500);
+	stop(5000);
 
 	mw.loader.implement( 'bug29107.messages-only', [], {}, {'bug29107': 'loaded'} );
 	mw.loader.using( 'bug29107.messages-only', function() {
