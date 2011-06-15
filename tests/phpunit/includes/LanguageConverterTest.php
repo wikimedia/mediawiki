@@ -1,6 +1,5 @@
 <?php
 
-
 class LanguageConverterTest extends MediaWikiLangTestCase {
 	protected $lang = null;
 	protected $lc = null;
@@ -19,11 +18,11 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	function tearDown() {
-		global $wgMemc, $wgContLang;
+		global $wgMemc;
 		unset( $wgMemc );
 		unset( $this->lc );
 		unset( $this->lang );
-		$wgContLang = Language::factory( 'en' );
+		parent::tearDown();
 	}
 
 	function testGetPreferredVariantDefaults() {
@@ -63,6 +62,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 		$wgUser = new User;
 		$wgUser->setId( 1 );
+		$wgUser->mFrom = 'defaults';
 		$wgUser->mDataLoaded = true;
 		$wgUser->mOptionsLoaded = true;
 		$wgUser->setOption( 'variant', 'tg-latn' );
@@ -77,7 +77,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$wgRequest->setVal( 'variant', 'tg' );
 		$wgUser = User::newFromId( "admin" );
 		$wgUser->setId( 1 );
-		$wgUser->mDataLoaded = true;
+		$wgUser->mFrom = 'defaults';
 		$wgUser->mOptionsLoaded = true;
 		$wgUser->setOption( 'variant', 'tg-latn' ); // The user's data is ignored
 												  // because the variant is set in the URL.
