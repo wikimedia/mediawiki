@@ -61,8 +61,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		global $wgUser;
 
 		$wgUser = new User;
-		$wgUser->setId( 1 );
-		$wgUser->mFrom = 'defaults';
+		$wgUser->load(); // from 'defaults'
+		$wgUser->mId = 1;
 		$wgUser->mDataLoaded = true;
 		$wgUser->mOptionsLoaded = true;
 		$wgUser->setOption( 'variant', 'tg-latn' );
