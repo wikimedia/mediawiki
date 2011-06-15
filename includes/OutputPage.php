@@ -2689,7 +2689,7 @@ class OutputPage {
 			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $this->getUser() );
 		}
 		if ( $title->isMainPage() ) {
-			$vars['wgIsMainPage'] = $title->isMainPage();
+			$vars['wgIsMainPage'] = true;
 		}
 
 		// Allow extensions to add their custom variables to the global JS variables
