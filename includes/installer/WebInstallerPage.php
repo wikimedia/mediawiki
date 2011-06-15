@@ -531,7 +531,7 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 		$this->addHTML(
 			$this->parent->getInfoBox(
 				wfMsgNoTrans( $msg,
-					$GLOBALS['wgServer'] .
+					$this->getVar( 'wgServer' ) .
 						$this->getVar( 'wgScriptPath' ) . '/index' .
 						$this->getVar( 'wgScriptExtension' )
 				), 'tick-32.png'
@@ -934,8 +934,8 @@ class WebInstaller_Options extends WebInstallerPage {
 	 * @return string
 	 */
 	public function getCCPartnerUrl() {
-		global $wgServer;
-		$exitUrl = $wgServer . $this->parent->getUrl( array(
+		$server = $this->getVar( 'wgServer' );
+		$exitUrl = $server . $this->parent->getUrl( array(
 			'page' => 'Options',
 			'SubmitCC' => 'indeed',
 			'config__LicenseCode' => 'cc',
@@ -943,7 +943,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			'config_wgRightsText' => '[license_name]',
 			'config_wgRightsIcon' => '[license_button]',
 		) );
-		$styleUrl = $wgServer . dirname( dirname( $this->parent->getUrl() ) ) .
+		$styleUrl = $server . dirname( dirname( $this->parent->getUrl() ) ) .
 			'/skins/common/config-cc.css';
 		$iframeUrl = 'http://creativecommons.org/license/?' .
 			wfArrayToCGI( array(
@@ -1147,7 +1147,7 @@ class WebInstaller_Complete extends WebInstallerPage {
 	public function execute() {
 		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file
-		$lsUrl = $GLOBALS['wgServer'] . $this->parent->getURL( array( 'localsettings' => 1 ) );
+		$lsUrl = $this->getVar( 'wgServer' ) . $this->parent->getURL( array( 'localsettings' => 1 ) );
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false ) {
 			// JS appears the only method that works consistently with IE7+
 			$this->addHtml( "\n<script type=\"" . $GLOBALS['wgJsMimeType'] . '">jQuery( document ).ready( function() { document.location='
@@ -1162,7 +1162,7 @@ class WebInstaller_Complete extends WebInstallerPage {
 			$this->parent->getInfoBox(
 				wfMsgNoTrans( 'config-install-done',
 					$lsUrl,
-					$GLOBALS['wgServer'] .
+					$this->getVar( 'wgServer' ) .
 						$this->getVar( 'wgScriptPath' ) . '/index' .
 						$this->getVar( 'wgScriptExtension' ),
 					'<downloadlink/>'

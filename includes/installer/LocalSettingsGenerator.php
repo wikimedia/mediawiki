@@ -39,7 +39,7 @@ class LocalSettingsGenerator {
 
 		$confItems = array_merge(
 			array(
-				'wgScriptPath', 'wgScriptExtension',
+				'wgServer', 'wgProto', 'wgScriptPath', 'wgScriptExtension',
 				'wgPasswordSender', 'wgImageMagickConvertCommand', 'wgShellLocale',
 				'wgLanguageCode', 'wgEnableEmail', 'wgEnableUserEmail', 'wgDiff3',
 				'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
@@ -248,6 +248,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## http://www.mediawiki.org/wiki/Manual:Short_URL
 \$wgScriptPath       = \"{$this->values['wgScriptPath']}\";
 \$wgScriptExtension  = \"{$this->values['wgScriptExtension']}\";
+
+## The server name to use in fully-qualified URLs
+\$wgServer           = \"{$this->values['wgServer']}\";
+
+## The URL protocol, may be http or https
+\$wgProto            = \"{$this->values['wgProto']}\";
 
 ## The relative URL path to the skins directory
 \$wgStylePath        = \"\$wgScriptPath/skins\";

@@ -99,6 +99,7 @@ abstract class Installer {
 		'envCheckCache',
 		'envCheckDiff3',
 		'envCheckGraphics',
+		'envCheckServer',
 		'envCheckPath',
 		'envCheckExtension',
 		'envCheckShellLocale',
@@ -131,6 +132,8 @@ abstract class Installer {
 		'wgDiff3',
 		'wgImageMagickConvertCommand',
 		'IP',
+		'wgServer',
+		'wgProto',
 		'wgScriptPath',
 		'wgScriptExtension',
 		'wgMetaNamespace',
@@ -838,6 +841,47 @@ abstract class Installer {
 	}
 
 	/**
+	 * Environment check for the server hostname.
+	 */
+	protected function envCheckServer() {
+		if ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on') {
+			$proto = 'https';
+			$stdPort = 443;
+		} else {
+			$proto = 'http';
+			$stdPort = 80;
+		}
+
+		$varNames = array( 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' );
+		$host = 'localhost';
+		$port = $stdPort;
+		foreach ( $varNames as $varName ) {
+			if ( !isset( $_SERVER[$varName] ) ) {
+				continue;
+			}
+			$parts = IP::splitHostAndPort( $_SERVER[$varName] );
+			if ( !$parts ) {
+				// Invalid, do not use
+				continue;
+			}
+			$host = $parts[0];
+			if ( $parts[1] === false ) {
+				if ( isset( $_SERVER['SERVER_PORT'] ) ) {
+					$port = $_SERVER['SERVER_PORT'];
+				} // else leave it as $stdPort
+			} else {
+				$port = $parts[1];
+			}
+			break;
+		}
+
+		$server = $proto . '://' . IP::combineHostAndPort( $host, $port, $stdPort );
+		$this->showMessage( 'config-using-server', $server );
+		$this->setVar( 'wgServer', $server );
+		$this->setVar( 'wgProto', $proto );
+	}
+
+	/**
 	 * Environment check for setting $IP and $wgScriptPath.
 	 */
 	protected function envCheckPath() {
@@ -955,10 +999,10 @@ abstract class Installer {
 	 * TODO: document
 	 */
 	protected function envCheckUploadsDirectory() {
-		global $IP, $wgServer;
+		global $IP;
 
 		$dir = $IP . '/images/';
-		$url = $wgServer . $this->getVar( 'wgScriptPath' ) . '/images/';
+		$url = $this->getVar( 'wgServer' ) . $this->getVar( 'wgScriptPath' ) . '/images/';
 		$safe = !$this->dirIsExecutable( $dir, $url );
 
 		if ( $safe ) {
