@@ -28,6 +28,6 @@ class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
  */
 class DummyExtensionsTest extends MediaWikiTestCase {
 	public function testNothing() {
-		
+		$this->assertTrue( true );
 	}
 }
