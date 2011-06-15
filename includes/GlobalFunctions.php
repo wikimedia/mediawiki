@@ -705,9 +705,12 @@ function wfMessageFallback( /*...*/ ) {
  * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
  *
- * This function also takes extra optional parameters (not
- * shown in the function definition), which can be used to
- * insert variable text into the predefined message.
+ * Parameters to the message, which can be used to insert variable text into
+ * it, can be passed to this function in the following formats:
+ * - One per argument, starting at the second parameter
+ * - As an array in the second parameter
+ * These are not shown in the function definition.
+ *
  * @return String
  */
 function wfMsg( $key ) {
