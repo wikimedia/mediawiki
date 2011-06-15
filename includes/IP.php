@@ -186,6 +186,76 @@ class IP {
 	}
 
 	/**
+	 * Given a host/port string, like one might find in the host part of a URL 
+	 * per RFC 2732, split the hostname part and the port part and return an 
+	 * array with an element for each. If there is no port part, the array will 
+	 * have false in place of the port. If the string was invalid in some way, 
+	 * false is returned.
+	 *
+	 * This was easy with IPv4 and was generally done in an ad-hoc way, but 
+	 * with IPv6 it's somewhat more complicated due to the need to parse the 
+	 * square brackets and colons.
+	 *
+	 * A bare IPv6 address is accepted despite the lack of square brackets.
+	 *
+	 * @param $both The string with the host and port
+	 * @return array
+	 */
+	public static function splitHostAndPort( $both ) {
+		if ( substr( $both, 0, 1 ) === '[' ) {
+			if ( preg_match( '/^\[(' . RE_IPV6_ADD . ')\](?::(?P<port>\d+))?$/', $both, $m ) ) {
+				if ( isset( $m['port'] ) ) {
+					return array( $m[1], intval( $m['port'] ) );
+				} else {
+					return array( $m[1], false );
+				}
+			} else {
+				// Square bracket found but no IPv6
+				return false;
+			}
+		}
+		$numColons = substr_count( $both, ':' );
+		if ( $numColons >= 2 ) {
+			// Is it a bare IPv6 address?
+			if ( preg_match( '/^' . RE_IPV6_ADD . '$/', $both ) ) {
+				return array( $both, false );
+			} else {
+				// Not valid IPv6, but too many colons for anything else
+				return false;
+			}
+		}
+		if ( $numColons >= 1 ) {
+			// Host:port?
+			$bits = explode( ':', $both );
+			if ( preg_match( '/^\d+/', $bits[1] ) ) {
+				return array( $bits[0], intval( $bits[1] ) );
+			} else {
+				// Not a valid port
+				return false;
+			}
+		}
+		// Plain hostname
+		return array( $both, false );
+	}
+
+	/**
+	 * Given a host name and a port, combine them into host/port string like
+	 * you might find in a URL. If the host contains a colon, wrap it in square
+	 * brackets like in RFC 2732. If the port matches the default port, omit 
+	 * the port specification
+	 */
+	public static function combineHostAndPort( $host, $port, $defaultPort = false ) {
+		if ( strpos( $host, ':' ) !== false ) {
+			$host = "[$host]";
+		}
+		if ( $defaultPort !== false && $port == $defaultPort ) {
+			return $host;
+		} else {
+			return "$host:$port";
+		}
+	}
+
+	/**
 	 * Given an unsigned integer, returns an IPv6 address in octet notation
 	 *
 	 * @param $ip_int String: IP address.
