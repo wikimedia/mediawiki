@@ -39,8 +39,11 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   upgrade PHP prior to upgrading MediaWiki.
 
 === Changes since 1.17.0rc1 ===
+
 * Fixed syntax error in generated LocalSettings.php when a non-default user
-rights profile is chosen.
+  rights profile is chosen.
+* (bug 29399) Fixed PostgreSQL installation when the DB user for installation 
+  is the same as the one for web access. 
 
 === Changes since 1.17 beta 1 ===
 

@@ -278,7 +278,9 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$same = $this->getVar( 'wgDBuser' ) === $this->getVar( '_InstallUser' );
 
-		if ( !$same ) {
+		if ( $same ) {
+			$exists = true;
+		} else {
 			// Check if the web user exists
 			// Connect to the database with the install user
 			$status = $this->getPgConnection( 'create-db' );
@@ -321,7 +323,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		// The web user is conventionally the table owner in PostgreSQL 
 		// installations. Make sure the install user is able to create 
 		// objects on behalf of the web user.
-		if ( $this->canCreateObjectsForWebUser() ) {
+		if ( $same || $this->canCreateObjectsForWebUser() ) {
 			return Status::newGood();
 		} else {
 			return Status::newFatal( 'config-pg-not-in-role' );
