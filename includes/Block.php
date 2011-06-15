@@ -415,10 +415,11 @@ class Block {
 			array( 'IGNORE' )
 		);
 		$affected = $dbw->affectedRows();
+		$this->mId = $dbw->insertId();
 
 		if ( $affected ) {
 			$auto_ipd_ids = $this->doRetroactiveAutoblock();
-			return array( 'id' => $ipb_id, 'autoIds' => $auto_ipd_ids );
+			return array( 'id' => $this->mId, 'autoIds' => $auto_ipd_ids );
 		}
 
 		return false;
