@@ -55,6 +55,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'dropIndex', 'archive', 'ar_page_revid',         'patch-archive_kill_ar_page_revid.sql' ),
 			array( 'addIndex', 'archive', 'ar_revid',               'patch-archive_ar_revid.sql' ),
 
+			// 1.18
+			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
+
 			// 1.19
 			array( 'addTable', 'config', 'patch-config.sql' ),
 		);
