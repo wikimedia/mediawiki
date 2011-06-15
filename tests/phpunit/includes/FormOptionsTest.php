@@ -36,16 +36,6 @@ class FormOptionsTest extends MediaWikiTestCase {
 		$this->object->add( 'intnull',  0, FormOptions::INTNULL );
 	}
 
-	/**
-	 * @todo Implement testDelete().
-	 */
-	public function testDelete() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-		  'This test has not been implemented yet.'
-		);
-	}
-
 	/** Helpers for testGuessType() */
 	/* @{ */
 	private function assertGuessBoolean( $data ) {
