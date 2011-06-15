@@ -110,7 +110,8 @@ class LinksUpdate {
 		$existing = $this->getExistingImages();
 
 		$imageDeletes = $this->getImageDeletions( $existing );
-		$this->incrTableUpdate( 'imagelinks', 'il', $imageDeletes, $this->getImageInsertions( $existing ) );
+		$this->incrTableUpdate( 'imagelinks', 'il', $imageDeletes,
+			$this->getImageInsertions( $existing ) );
 
 		# Invalidate all image description pages which had links added or removed
 		$imageUpdates = $imageDeletes + array_diff_key( $this->mImages, $existing );
@@ -141,7 +142,8 @@ class LinksUpdate {
 
 		$categoryDeletes = $this->getCategoryDeletions( $existing );
 
-		$this->incrTableUpdate( 'categorylinks', 'cl', $categoryDeletes, $this->getCategoryInsertions( $existing ) );
+		$this->incrTableUpdate( 'categorylinks', 'cl', $categoryDeletes,
+			$this->getCategoryInsertions( $existing ) );
 
 		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
 		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
@@ -154,7 +156,8 @@ class LinksUpdate {
 
 		$propertiesDeletes = $this->getPropertyDeletions( $existing );
 
-		$this->incrTableUpdate( 'page_props', 'pp', $propertiesDeletes, $this->getPropertyInsertions( $existing ) );
+		$this->incrTableUpdate( 'page_props', 'pp', $propertiesDeletes,
+			$this->getPropertyInsertions( $existing ) );
 
 		# Invalidate the necessary pages
 		$changed = $propertiesDeletes + array_diff_assoc( $this->mProperties, $existing );
@@ -362,7 +365,9 @@ class LinksUpdate {
 	function getLinkInsertions( $existing = array() ) {
 		$arr = array();
 		foreach( $this->mLinks as $ns => $dbkeys ) {
-			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
+			$diffs = isset( $existing[$ns] )
+				? array_diff_key( $dbkeys, $existing[$ns] )
+				: $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
 					'pl_from'      => $this->mId,

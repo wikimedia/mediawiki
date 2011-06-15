@@ -674,7 +674,8 @@ class SkinTemplate extends Skin {
 				# @todo FIXME: Class depends on skin
 				$login_url['class'] = 'link-https';
 				if ( isset($createaccount_url) ) {
-					$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL("type=signup") );
+					$https_url = preg_replace( '/^http:/', 'https:',
+						$title->getFullURL("type=signup") );
 					$createaccount_url['href']  = $https_url;
 					# @todo FIXME: Class depends on skin
 					$createaccount_url['class'] = 'link-https';
@@ -742,7 +743,8 @@ class SkinTemplate extends Skin {
 			$text = $msg->text();
 		} else {
 			global $wgContLang;
-			$text = $wgContLang->getFormattedNsText( MWNamespace::getSubject( $title->getNamespace() ) );
+			$text = $wgContLang->getFormattedNsText(
+				MWNamespace::getSubject( $title->getNamespace() ) );
 		}
 
 		$result = array();
@@ -1033,7 +1035,8 @@ class SkinTemplate extends Skin {
 				'context' => 'subject'
 			);
 
-			wfRunHooks( 'SkinTemplateNavigation::SpecialPage', array( &$this, &$content_navigation ) );
+			wfRunHooks( 'SkinTemplateNavigation::SpecialPage',
+				array( &$this, &$content_navigation ) );
 		}
 
 		// Gets list of language variants
@@ -1184,7 +1187,8 @@ class SkinTemplate extends Skin {
 			if ( !$out->isPrintable() ) {
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),
-					'href' => $this->getTitle()->getLocalURL( $wgRequest->appendQueryValue( 'printable', 'yes', true ) )
+					'href' => $this->getTitle()->getLocalURL(
+						$wgRequest->appendQueryValue( 'printable', 'yes', true ) )
 				);
 			}
 
@@ -1198,7 +1202,8 @@ class SkinTemplate extends Skin {
 			}
 
 			// Use the copy of revision ID in case this undocumented, shady hook tries to mess with internals
-			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$revid, &$revid ) );
+			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
+				array( &$this, &$nav_urls, &$revid, &$revid ) );
 		}
 
 		if( $this->getTitle()->getNamespace() != NS_SPECIAL ) {
@@ -1663,7 +1668,8 @@ abstract class BaseTemplate extends QuickTemplate {
 				$realAttrs = array(
 					'type' => 'submit',
 					'name' => $mode,
-					'value' => $this->translator->translate( $mode == 'go' ? 'searcharticle' : 'searchbutton' ),
+					'value' => $this->translator->translate(
+						$mode == 'go' ? 'searcharticle' : 'searchbutton' ),
 				);
 				$realAttrs = array_merge(
 					$realAttrs,
@@ -1685,7 +1691,9 @@ abstract class BaseTemplate extends QuickTemplate {
 				unset( $buttonAttrs['alt'] );
 				$imgAttrs = array(
 					'src' => $attrs['src'],
-					'alt' => isset( $attrs['alt'] ) ? $attrs['alt'] : $this->translator->translate( 'searchbutton' ),
+					'alt' => isset( $attrs['alt'] )
+						? $attrs['alt']
+						: $this->translator->translate( 'searchbutton' ),
 				);
 				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
 			default:
