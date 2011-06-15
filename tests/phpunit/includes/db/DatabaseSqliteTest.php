@@ -174,7 +174,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 				$this->assertEquals(
 					array_keys( $currentCols ),
 					array_keys( $cols ),
-					"Mismatching columns for table $table $versions"
+					"Mismatching columns for table \"$table\" $versions"
 				);
 				foreach ( $currentCols as $name => $column ) {
 					$fullName = "$table.$name";
@@ -196,6 +196,13 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 						);
 					}
 				}
+				$currentIndexes = $this->getIndexes( $currentDB, $table );
+				$indexes = $this->getIndexes( $db, $table );
+				$this->assertEquals(
+					array_keys( $currentIndexes ),
+					array_keys( $indexes ),
+					"mismatching indexes for table \"$table\" $versions"
+				);
 			}
 			$db->close();
 		}
@@ -244,5 +251,22 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		}
 		ksort( $cols );
 		return $cols;
+	}
+
+	private function getIndexes( $db, $table ) {
+		$indexes = array();
+		$res = $db->query( "PRAGMA index_list($table)" );
+		$this->assertNotNull( $res );
+		foreach ( $res as $index ) {
+			$res2 = $db->query( "PRAGMA index_info({$index->name})" );
+			$this->assertNotNull( $res2 );
+			$index->columns = array();
+			foreach ( $res2 as $col ) {
+				$index->columns[] = $col;
+			}
+			$indexes[$index->name] = $index;
+		}
+		ksort( $indexes );
+		return $indexes;
 	}
 }
