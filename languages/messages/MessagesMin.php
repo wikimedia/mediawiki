@@ -692,16 +692,58 @@ Hal iko kadang tajadi jikok Sanak manggunokan layanan proxy anonim babasis web n
 'editingsection'                   => 'Suntiang $1 (bagian)',
 'editingcomment'                   => 'Manyuntiang $1 (bahagian baharu)',
 'editconflict'                     => 'Konflik panyuntiangan: $1',
+'explainconflict'                  => "Urang lain alah manyuntiang laman iko sajak Sanak mulai manyuntiangnyo.
+Bagian ateh teks iko manganduang teks laman saat iko.
+Parubahan nan Sanak lakuan ditunjuakan pado bagian bawah teks.
+Sanak hanyo paralu magabungan parubahan Sanak jo teks nan alah ado.
+'''Hanyo''' teks pado bagian ateh lamanlah nan akan disimpan apobilo Sanak manakan \"{{int:savearticle}}\".",
+'yourtext'                         => 'Teks Sanak',
+'storedversion'                    => 'Versi tasimpan',
+'nonunicodebrowser'                => "'''Paringatan: Panjalajah web Sanak indak mandukung unicode.'''
+Alah tadapek sabuah solusi agar Sanak dapek manyuntiang laman jo aman: karakter non-ASCII akan muncua dalam kotak edit sabagai kode heksadesimal.",
+'editingold'                       => "'''Paringatan:
+Sanak manyuntiang revisi lama suatu laman.
+Jikok Sanak manyimpannyo, parubahan-parubahan nan dibuek sajak revisi iko akan hilang.'''",
+'yourdiff'                         => 'Pambedoan',
 'copyrightwarning'                 => "Untuak diingek bahwa apo nan disumbang kapado {{SITENAME}} dianggap lah dilapeh dibawah $2 (lihek $1 untuak lengkapnyo).
 Jiko awak indak ingin apo nan ditulis tu disuntiang dan disebarkan, jan dikirim tulisan tu ka siko.<br />
 Awak juo mesti bajanji bahwa itu adolah hasil karya awak surang, atau disalin dari sumber milik basamo atau sumber bebas lainnyo.
 '''Jan dikirim karya punyo hak cipta tanpa izin!'''",
+'copyrightwarning2'                => "Parhatikan bahawa sadoalah kontribusi terhadap {{SITENAME}} dapek disuntiang, diubah, atau dihapuih oleh panyumbang lainnyo. Jikok Sanak indak ingin tulisan Sanak disuntiang urang lain, jan kiriman ka siko.<br />Sanak jua bajanji bahawa iko adolah hasil karyo Sanak surang, atau disalin dari sumber miliak umum atau sumber bebas nan lain (liek $1 untuak informasi labiah lanjuik). '''JAN KIRIMAN KARYO NAN DILINDUNGI HAK CIPTA TANPA IJIN!'''",
+'longpageerror'                    => "'''KASALAHAN: Teks nan Sanak kiriman sagadang $1 kilobita, nan barati labiah gadang dari jumlah maksimum $2 kilobita. Teks indak dapek disimpan.'''",
+'readonlywarning'                  => "'''PARINGATAN: Basis data sadang dikunci karano pamaliharaan, sahinggo saat iko Sanak indak dapek manyimpan hasil suntiangan Sanak.
+Sanak mungkin paralu manyalin teks suntiangan Sanak iko dan manyimpannyo ka sabuah berkas teks dan mamuekannyo baliak sausai pamaliharaan usai.'''
+
+Pangurus nan mangunci basis data magiahan panjalehan barikuik: $1",
+'protectedpagewarning'             => "'''Paringatan: Laman iko sadang dilinduangi sahinggo hanyo pangguno jo hak akses pangurus nan dapek manyuntiangnyo.'''
+Entri catatan tarakhir disadioan di bawah untuak referensi:",
+'semiprotectedpagewarning'         => "'''Paringatan: Laman iko sadang dilinduangi sahinggo hanyo pangguno tadafta nan bisa manyuntiangnyo.'''
+Entri catatan tarakhir disadioan di bawah untuak referensi:",
+'cascadeprotectedwarning'          => "'''PARINGATAN:''' Laman iko sadang dilinduangi sahinggo hanyo pangguno jo hak akses pangurus sajo nan dapek manyuntiangnyo karano disaratokan dalam {{PLURAL:$1|laman|laman-laman}} barikuik nan alah dilinduangi jo opsi 'palinduangan runtun':",
+'titleprotectedwarning'            => "'''Paringatan: Laman iko alah dilinduangi sahinggo diparaluan [[Special:ListGroupRights|hak khusus]] untuak mambueknyo.'''
+Entri catatan tarakhir disadioan di bawah untuak referensi:",
 'templatesused'                    => '{{PLURAL:$1|Templat|Templat}} yang digunoan di laman iko:',
 'templatesusedpreview'             => '{{PLURAL:$1|Templat|Templat}} yang digunoan dalam pratonton ko:',
+'templatesusedsection'             => '{{PLURAL:$1|Templat|Templat}} nan digunoan di bagian iko:',
 'template-protected'               => '(dilinduangi)',
 'template-semiprotected'           => '(semi-perlindungan)',
 'hiddencategories'                 => 'Laman ko marupokan kalompok dari {{PLURAL:$1|1 kategori tapandam|$1 kategori tapandam}}:',
+'nocreatetitle'                    => 'Pambuekan laman baharu dibatasi',
+'nocreatetext'                     => '{{SITENAME}} alah mambatasi pambuekan laman-laman baharu.
+Sanak dapek baliak dan manyuntiang laman nan alah ado, atau sila [[Special:UserLogin|masuak log atau mambuek akun]].',
+'nocreate-loggedin'                => 'Sanak ndak mampunyoi hak akses untuak mambuek laman baharu.',
+'sectioneditnotsupported-title'    => 'Panyuntiangan bagian indak didukuang',
+'sectioneditnotsupported-text'     => 'Panyuntiangan bagian indak didukuang di laman suntiang iko.',
+'permissionserrors'                => 'Kasalahan Hak Akses',
+'permissionserrorstext'            => 'Sanak ndak mampunyoi hak untuak malakuan hal itu karano {{PLURAL:$1|alasan|alasan-alasan}} barikuik:',
 'permissionserrorstext-withaction' => 'Awak indak punyo hak akses untuak $2, karano {{PLURAL:$1|alasan|alasan}} berikut:',
+'recreate-moveddeleted-warn'       => "'''Paringatan: Sanak mambuek ulang suatu laman nan alah parnah dihapuih.'''
+
+Harap patimbangan apokah layak untuak malanjutan suntiangan Sanak.
+Barikuik adolah log panghapuihan dan pamindahan dari laman iko:",
+'moveddeleted-notice'              => 'Laman iko alah dihapuih.
+Sabagai referensi, barikuik adolah log panghapusan dan pamindahan laman iko.',
+'log-fulllog'                      => 'Liek saluruah log',
 
 # History pages
 'viewpagelogs'           => 'Lihek log untuak laman ko',
@@ -742,13 +784,16 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'notextmatches'                    => 'Indak ado judul nan pas',
 'prevn'                            => 'sabalunnyo {{PLURAL:$1|$1}}',
 'nextn'                            => 'salanjuiknyo {{PLURAL:$1|$1}}',
+'prevn-title'                      => 'Sabalunnyo $1 {{PLURAL:$1|hasil|hasil}}',
 'shown-title'                      => '↓ Tampilkan $1 {{PLURAL:$1|hasil|hasil}} per lama',
 'viewprevnext'                     => 'Tampilkan ($1 {{int:pipe-separator}} $2) ($3)',
+'searchprofile-articles'           => 'Artikel',
 'searchprofile-project'            => '↓ Laman Bantuan dan Proyek',
 'searchprofile-images'             => '↓ Multimedia',
 'searchprofile-everything'         => '↓ Sadonyo',
 'searchprofile-advanced'           => 'Lanjuikan',
 'searchprofile-articles-tooltip'   => '↓ Cari di $1',
+'searchprofile-project-tooltip'    => 'Cari di $1',
 'searchprofile-images-tooltip'     => '↓ Cari untuak berkas',
 'searchprofile-everything-tooltip' => '↓ Cari sadoalahnyo (tamasuak laman maota)',
 'searchprofile-advanced-tooltip'   => 'Pacaharian di ruang namo tatantu',
@@ -761,6 +806,7 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'search-interwiki-more'            => '(selanjutnyo)',
 'search-mwsuggest-enabled'         => 'dengan saran',
 'search-mwsuggest-disabled'        => 'indak ado saran',
+'searchall'                        => 'Sadonyo',
 'nonefound'                        => "'''Catatan''': hanyo babarapo ruangnamo yang dicari sacaro default.
 Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasuak laman ota, templat, dll), atau gunoan ruangnamo yang diinginkan sabagai awalan.",
 'powersearch'                      => 'Pencarian lanjut',

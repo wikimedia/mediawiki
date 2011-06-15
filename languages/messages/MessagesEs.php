@@ -2875,21 +2875,30 @@ Permite añadir una razón al resumen de edición.',
 'tooltip-summary'                 => 'Ingresar un breve resumen',
 
 # Stylesheets
-'common.css'   => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
-'monobook.css' => '/* cambie este archivo para personalizar la piel monobook para el sitio entero */',
-'vector.css'   => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector. */',
+'common.css'      => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
+'standard.css'    => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Standard */',
+'nostalgia.css'   => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Nostalgia */',
+'cologneblue.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Cologne Blue */',
+'monobook.css'    => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Monobook */',
+'myskin.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MySkin */',
+'chick.css'       => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Chick */',
+'simple.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Simple */',
+'modern.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Modern */',
+'vector.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
+'print.css'       => '/* Los estilos CSS colocados aquí afectarán la impresión */',
+'handheld.css'    => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
 
 # Scripts
-'common.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
-'standard.js'    => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar. */',
+'common.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página */',
+'standard.js'    => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar */',
 'nostalgia.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Nostalgia. */',
-'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul. */',
+'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul */',
 'monobook.js'    => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
-'myskin.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel. */',
-'chick.js'       => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito. */',
-'simple.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple. */',
-'modern.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna. */',
-'vector.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector. */',
+'myskin.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel */',
+'chick.js'       => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito */',
+'simple.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple */',
+'modern.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna */',
+'vector.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector */',
 
 # Metadata
 'notacceptable' => 'El servidor wiki no puede proveer los datos en un formato que su cliente (navegador) pueda entender.',
@@ -2999,6 +3008,10 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'ilsubmit'              => 'Búsqueda',
 'bydate'                => 'por fecha',
 'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'minutes-abbrev' => 'm',
+'hours-abbrev'   => 'h',
 
 # Bad image list
 'bad_image_list' => 'El formato es el siguiente:

@@ -608,7 +608,7 @@ Gwrewgh assaya dhe rag-gorra agas govyn gans ''all:'' rag hwilas en pub le (a-ba
 'nchanges'                       => '$1 {{PLURAL:$1|chanj|chanj}}',
 'recentchanges'                  => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend'           => 'Etholyow an chanjyow a-dhiwedhes',
-'recentchangestext'              => "War'n folen-ma hwi a ell sewya an chanjyow diwettha a veu gwres dhe'n wiki.",
+'recentchangestext'              => "War'n folen-ma hwi a ell sewya an chanjyow diwettha eus gwres dhe'n wiki.",
 'recentchanges-feed-description' => "Sewya an chanjyow diwettha dhe'n wiki e'n feed-ma.",
 'recentchanges-label-minor'      => 'Chanj bian yw hebma',
 'rclistfrom'                     => 'Diskwedhes chanjyow nowyth ow talleth a-dhia $1.',
@@ -657,6 +657,7 @@ En '''tew''' yw folednow eus war agas [[Special:Watchlist|rol golyas]].",
 # File description page
 'file-anchor-link'          => 'Restren',
 'filehist'                  => 'Istori an folen',
+'filehist-help'             => 'Klyckyowgh war dedhyans/eur rag gweles an folen del veu hi nena.',
 'filehist-deleteall'        => 'dilea oll',
 'filehist-deleteone'        => 'dilea',
 'filehist-current'          => 'a-lebmyn',
@@ -679,7 +680,14 @@ En '''tew''' yw folednow eus war agas [[Special:Watchlist|rol golyas]].",
 # MIME search
 'download' => 'iskarga',
 
+# Unwatched pages
+'unwatchedpages' => 'Folednow nag eus ow pos golyes',
+
+# List redirects
+'listredirects' => 'Rol an daswedyansow',
+
 # Unused templates
+'unusedtemplates'    => 'Skantlyns heb devnydh',
 'unusedtemplateswlh' => 'kevrednow erel',
 
 # Random page
@@ -691,17 +699,29 @@ En '''tew''' yw folednow eus war agas [[Special:Watchlist|rol golyas]].",
 'brokenredirects-edit'   => 'chanjya',
 'brokenredirects-delete' => 'dilea',
 
+'withoutinterwiki'        => 'Folednow heb kevrednow yeth',
 'withoutinterwiki-submit' => 'Diskwedhes',
 
 # Miscellaneous special pages
-'nbytes'            => '$1 {{PLURAL:$1|bayt|bayt}}',
-'nmembers'          => '$1 {{PLURAL:$1|esel|esel}}',
-'newpages'          => 'Folednow nowyth',
-'newpages-username' => 'Hanow-usyer:',
-'move'              => 'Gwaya',
-'movethispage'      => 'Gwaya an folen-ma',
-'pager-newer-n'     => '{{PLURAL:$1|1 nowettha|$1 nowettha}}',
-'pager-older-n'     => '{{PLURAL:$1|1 kottha|$1 kottha}}',
+'nbytes'                  => '$1 {{PLURAL:$1|bayt|bayt}}',
+'nmembers'                => '$1 {{PLURAL:$1|esel|esel}}',
+'uncategorizedpages'      => 'Folednow heb klass',
+'uncategorizedcategories' => 'Klassys heb klass',
+'uncategorizedimages'     => 'Restrednow heb klass',
+'uncategorizedtemplates'  => 'Skantlyns heb klass',
+'unusedcategories'        => 'Klassys gwag',
+'unusedimages'            => 'Restrednow heb devnydh',
+'shortpages'              => 'Folednow berr',
+'longpages'               => 'Folednow hir',
+'protectedpages'          => 'Folednow difresys',
+'protectedtitles'         => 'Titlys difresys',
+'newpages'                => 'Folednow nowyth',
+'newpages-username'       => 'Hanow-usyer:',
+'ancientpages'            => 'Folednow kottha',
+'move'                    => 'Gwaya',
+'movethispage'            => 'Gwaya an folen-ma',
+'pager-newer-n'           => '{{PLURAL:$1|1 nowettha|$1 nowettha}}',
+'pager-older-n'           => '{{PLURAL:$1|1 kottha|$1 kottha}}',
 
 # Book sources
 'booksources'               => 'Penn-fentynyow lyver',
@@ -822,7 +842,7 @@ Gwelowgh $2 rag kovadh a dhileansow a-dhiwedhes.',
 'month'               => 'A-dhia mis (ha moy a-varr):',
 'year'                => 'A-dhia bledhen (ha moy a-varr):',
 
-'sp-contributions-newbies'  => 'Disqwedhes hepken kevrohow an akontow nowyth',
+'sp-contributions-newbies'  => 'Diskwedhes hepken kevrohow an akontow nowyth',
 'sp-contributions-blocklog' => 'kovnoten lettya',
 'sp-contributions-talk'     => 'keskows',
 'sp-contributions-search'   => 'Hwilas kevrohow',
@@ -971,6 +991,7 @@ Hwi a ell gweles hy fennfenten.',
 
 # Metadata
 'metadata'          => 'Metadata',
+'metadata-help'     => "Yma dhe'n restren-ma kedhlow keworansel, dres lycklod keworrys dhort an kamera besyel po an skanyer usys rag hy gwruthyl po besya. Mars yw an folen chanjys dhort hy studh gwredhek, martesen nag alja neb manylyon bos a-dro dhe'n folen janjys.",
 'metadata-expand'   => 'Diskwedhes manylyon ystydnys',
 'metadata-collapse' => 'Kudha manylyon ystydnys',
 

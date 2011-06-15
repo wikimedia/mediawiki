@@ -83,8 +83,8 @@ $messages = array(
 
 # Dates
 'sunday'        => 'Хуыцаубон',
-'monday'        => 'Къуырисæр',
-'tuesday'       => 'Дыццæг',
+'monday'        => 'къуырисæр',
+'tuesday'       => 'дыццæг',
 'wednesday'     => 'Æртыццæг',
 'thursday'      => 'Цыппæрæм',
 'friday'        => 'майрæмбон',
@@ -639,7 +639,7 @@ $3',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Баст ивдтытæ',
-'recentchangeslinked-feed'    => 'Баст ивддзинæдтæ',
+'recentchangeslinked-feed'    => 'Баст ивдтытæ',
 'recentchangeslinked-toolbox' => 'Баст ивдтытæ',
 'recentchangeslinked-title'   => '"$1"-имæ баст ивдтытæ',
 'recentchangeslinked-page'    => 'Фарсы ном:',

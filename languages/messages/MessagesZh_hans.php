@@ -627,6 +627,8 @@ $1',
 'cascadeprotected'     => '此页面已被保护，因为这个页面被以下已标注“联锁保护”的{{PLURAL:$1|一个|多个}}被保护页面包含：
 $2',
 'namespaceprotected'   => "您并没有权限编辑'''$1'''名字空间内的页面。",
+'customcssprotected'   => '您没有权限编辑此CSS页面，因为它包含了另一位用户的个人设定。',
+'customjsprotected'    => '您没有权限编辑此JavaScript页面，因为它包含了另一位用户的个人设定。',
 'ns-specialprotected'  => '特殊页面是不可以编辑的。',
 'titleprotected'       => "这个标题已经被[[User:$1|$1]]保护以防止创建。理由是''$2''。",
 
@@ -743,17 +745,27 @@ $2',
 'resetpass-temp-password'   => '临时密码：',
 
 # Special:PasswordReset
-'passwordreset'              => '密码重设',
-'passwordreset-text'         => '完成此窗体可以接收电子邮件提醒您帐户详细信息。',
-'passwordreset-legend'       => '重置密码',
-'passwordreset-disabled'     => '密码重置此维基上已禁用。',
-'passwordreset-pretext'      => '{{PLURAL:$1||输入下面的数据块之一}}',
-'passwordreset-username'     => '用户名：',
-'passwordreset-email'        => '电子邮件地址：',
-'passwordreset-emailtitle'   => '在 {{SITENAME}} 的帐户详细信息',
-'passwordreset-emailelement' => '用户名：$1
+'passwordreset'                => '密码重设',
+'passwordreset-text'           => '完成此窗体可以接收电子邮件提醒您帐户详细信息。',
+'passwordreset-legend'         => '重置密码',
+'passwordreset-disabled'       => '密码重置此维基上已禁用。',
+'passwordreset-pretext'        => '{{PLURAL:$1||输入下面的数据块之一}}',
+'passwordreset-username'       => '用户名：',
+'passwordreset-email'          => '电子邮件地址：',
+'passwordreset-emailtitle'     => '在 {{SITENAME}} 的帐户详细信息',
+'passwordreset-emailtext-ip'   => '有人通过IP地址 $1 （也许是你）要求获取 {{SITENAME}} ($4)上相关账户的密码提示。{{PLURAL:$3|以下账户|此账户}}与该email地址关联：
+
+$2
+
+{{PLURAL:$3|这个|这些}}临时密码会在{{PLURAL:$5|一天|$5 天}}内过期。请现在登入并设置新的密码。如果请求是其他人提出的，或者您记起你的旧密码并不再需要更改，您可以无视本条消息并继续使用旧有密码。',
+'passwordreset-emailtext-user' => '用户 $1 要求获取 {{SITENAME}} ($4)上你的账户的密码提示。{{PLURAL:$3|以下账户|此账户}}与该email地址关联：
+
+$2
+
+{{PLURAL:$3|这个|这些}}临时密码会在{{PLURAL:$5|一天|$5 天}}内过期。请现在登入并设置新的密码。如果请求是其他人提出的，或者您记起你的旧密码并不再需要更改，您可以无视本条消息并继续使用旧有密码。',
+'passwordreset-emailelement'   => '用户名：$1
 临时密码：$2',
-'passwordreset-emailsent'    => '已发送提醒电子邮件。',
+'passwordreset-emailsent'      => '已发送提醒电子邮件。',
 
 # Edit page toolbar
 'bold_sample'     => '粗体文字',
@@ -1577,6 +1589,7 @@ $1",
 'large-file'                  => '建议文件大小不能超过 $1；本文件大小为 $2。',
 'largefileserver'             => '这个文件的大小比服务器配置允许的大小还要大。',
 'emptyfile'                   => '您所上传的文件不存在。这可能是由于文件名键入错误。请检查您是否真的要上传此文件。',
+'windows-nonascii-filename'   => '本维基不支持在文件名中使用特殊字符。',
 'fileexists'                  => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><tt>[[:$1]]</tt></strong>。 [[$1|thumb]]',
 'filepageexists'              => '这个文件的描述页已经于<strong><tt>[[:$1]]</tt></strong>创建，但是这个名称的文件尚不存在。
 您输入的摘要不会显示在该描述页中。
@@ -1736,6 +1749,7 @@ $1',
 一个[[Special:WhatLinksHere/$2|完整的列表]]可以提供。',
 'nolinkstoimage'                    => '没有页面链接到本文件。',
 'morelinkstoimage'                  => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多链接]]。',
+'linkstoimage-redirect'             => '$1（文件重定向）$2',
 'duplicatesoffile'                  => '以下的$1个文件跟这个文件重复（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
 'sharedupload'                      => '该文件来自于$1，它可能在其它计划项目中被应用。',
 'sharedupload-desc-there'           => '该文件来自于$1，它可能在其它计划项目中被应用。
@@ -2087,8 +2101,9 @@ Template:消除歧義',
 'watchlist-options'    => '监视列表选项',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => '监视……',
-'unwatching' => '解除监视……',
+'watching'       => '监视……',
+'unwatching'     => '解除监视……',
+'watcherrortext' => '更改“$1”的监视列表设置时出错。',
 
 'enotif_mailer'                => '{{SITENAME}}邮件通知器',
 'enotif_reset'                 => '将所有页面标为已读',
@@ -2116,9 +2131,11 @@ $NEWPAGE
 
 在您访问此页之前，将来的更改将不会向您发通知。您也可以重设您所有监视页面的通知标记。
 
-                {{SITENAME}}通知系统
+{{SITENAME}}通知系统
 
 --
+要更改您的邮件通知设置，请访问
+{{fullurl:{{#special:Preferences}}}}
 要改变您的监视列表设置，请访问
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2247,7 +2264,7 @@ $UNWATCHURL
 'undeletepagetext'             => '以下的$1个页面已经被删除，但依然在存档中并可以被恢复。
 档案库可能被定时清理。',
 'undelete-fieldset-title'      => '恢复修订',
-'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击'''''{{int:undeletebtn}}'''''。恢复特定版本时，请选择相应版本前的复选框后点击'''''{{int:undeletebtn}}'''''。点击'''''{{int:undeletereset}}'''''将清除评论内容及所有复选框。",
+'undeleteextrahelp'            => "恢复整个编辑历史时，请清除所有复选框后点击'''''{{int:undeletebtn}}'''''。恢复特定版本时，请选择相应版本前的复选框后点击'''''{{int:undeletebtn}}'''''。",
 'undeleterevisions'            => '$1版本存档',
 'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
 如果本页删除后有一个同名的新页面建立，被恢复的版本将会出现在先前的历史中。',
@@ -2478,6 +2495,7 @@ $1被封禁的理由是：“$2”',
 'unlockdbsuccesstext' => '数据库已解锁。',
 'lockfilenotwritable' => '数据库锁定文件不可写。要锁定和解锁数据库，该文件必须对网络服务器可写。',
 'databasenotlocked'   => '数据库没有锁定。',
+'lockedbyandtime'     => '（由 {{GENDER:$1|$1}} 于$2 $3执行）',
 
 # Move page
 'move-page'                    => '移动$1',
@@ -3040,12 +3058,13 @@ Variants for Chinese language
 'exif-countrycodecreated'          => '在拍摄图片的国家代码',
 'exif-provinceorstatecreated'      => '省或拍摄图片中的状态',
 'exif-citycreated'                 => '照片中的城市',
-'exif-sublocationcreated'          => ' 该市在拍摄图片 sublocation',
+'exif-sublocationcreated'          => '照片拍摄地点在城市中的位置',
 'exif-worldregiondest'             => '世界区域显示',
 'exif-countrydest'                 => '所示的国家',
 'exif-countrycodedest'             => '国家所示的代码',
 'exif-provinceorstatedest'         => '省或状态显示',
 'exif-citydest'                    => '所示的城市',
+'exif-sublocationdest'             => '显示城市中的详细地点',
 'exif-objectname'                  => '简称',
 'exif-specialinstructions'         => '特别说明',
 'exif-headline'                    => '标题',
@@ -3056,6 +3075,7 @@ Variants for Chinese language
 'exif-fixtureidentifier'           => '夹具名称',
 'exif-locationdest'                => '位置描述',
 'exif-locationdestcode'            => '位置所示的代码',
+'exif-objectcycle'                 => '媒体应当使用的时间段',
 'exif-contact'                     => '联系信息',
 'exif-writer'                      => '作家',
 'exif-languagecode'                => '语言',
@@ -3072,6 +3092,7 @@ Variants for Chinese language
 'exif-label'                       => '标签',
 'exif-datetimemetadata'            => '上次修改日期的元数据',
 'exif-nickname'                    => '非正式的图像的名称',
+'exif-rating'                      => '评分（满分为5）',
 'exif-rightscertificate'           => '权利管理证书',
 'exif-copyrighted'                 => '版权状态',
 'exif-copyrightowner'              => '版权拥有人',
@@ -3230,6 +3251,10 @@ Variants for Chinese language
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => '东经',
 'exif-gpslongitude-w' => '西经',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '海拔$1 {{PLURAL:$1|米|米}}',
+'exif-gpsaltitude-below-sealevel' => '海拔负$1{{PLURAL:$1|米|米}}',
 
 'exif-gpsstatus-a' => '测量过程',
 'exif-gpsstatus-v' => '互动测量',
