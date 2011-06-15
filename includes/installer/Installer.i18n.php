@@ -2673,6 +2673,7 @@ Miniaturansichten von Bildern werden möglich sein, sobald das Hochladen von Dat
 Miniaturansichten von Bildern sind daher nicht möglich.',
 	'config-no-uri' => "'''Fehler:''' Die aktuelle URL konnte nicht ermittelt werden.
 Der Installationsvorgang wurde daher abgebrochen.",
+	'config-using-server' => 'Der Servername „<nowiki>$1</nowiki>“ wird verwendet.',
 	'config-uploads-not-safe' => "'''Warnung:''' Das Standardverzeichnis für hochgeladene Dateien <code>$1</code> ist für die willkürliche Ausführung von Skripten anfällig.
 Obwohl MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen diese [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
 	'config-brokenlibxml' => 'Das System nutzt eine Kombination aus PHP- und libxml2-Versionen, die fehleranfällig ist und versteckte Datenfehler bei MediaWiki und anderen Webanwendungen verursachen kann.
@@ -9680,7 +9681,7 @@ Kies een andere gebruikersnaam.',
 	'config-subscribe' => 'Abonneren op de [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailinglijst releaseaankondigen].',
 	'config-subscribe-help' => 'Dit is een mailinglijst met een laag volume voor aankondigingen van nieuwe versies, inclusief belangrijke aankondigingen met betrekking tot beveiliging.
 Abonneer uzelf erop en werk uw MediaWiki-installatie bij als er nieuwe versies uitkomen.',
-	'config-subscribe-noemail' => 'U hebt geprobeerd zich te abonneren op de release-aankondigingen-mailinglijst zonder een e-mailadres op te geven.
+	'config-subscribe-noemail' => 'U hebt geprobeerd zich te abonneren op de mailinglijst voor release-aankondigingen zonder een e-mailadres op te geven.
 Geef een e-mailadres op als u zich wil abonneren op de mailinglijst.',
 	'config-almost-done' => 'U bent bijna klaar!
 Als u wilt kunt u de overige instellingen overslaan en de wiki nu installeren.',
@@ -9795,7 +9796,7 @@ Als u nog wijzigingen wilt maken, klik dan op "Terug".',
 	'config-install-step-failed' => 'Mislukt',
 	'config-install-extensions' => 'Inclusief uitbreidingen',
 	'config-install-database' => 'Database inrichten',
-	'config-install-schema' => 'Schema aanmaken',
+	'config-install-schema' => 'Het schema wordt aangemaakt',
 	'config-install-pg-schema-not-exist' => 'Het schema voor PostgreSQL bestaat niet',
 	'config-install-pg-schema-failed' => 'Het aanmaken van de tabellen is mislukt.
 Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
@@ -9803,10 +9804,10 @@ Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
 	'config-install-pg-plpgsql' => 'Controle op de taal PL/pgSQL',
 	'config-pg-no-plpgsql' => 'U moet de taal PL/pgSQL installeren in de database $1',
 	'config-pg-no-create-privs' => 'De gebruiker die u hebt opgegeven door de installatie heeft niet voldoende rechten om een gebruiker aan te maken.',
-	'config-pg-not-in-role' => 'De account die u hebt opgegeven voor de webgebruiker bestaat al.
-De account die u hebt opgegeven voor installatie is geen superuser en geen lid van de rol van de webgebruiker, en kan het dus geen objecten aanmaken die van de webgebruiker zijn.
+	'config-pg-not-in-role' => 'De gebruiker die u hebt opgegeven voor de webgebruiker bestaat al.
+De gebruiker die u hebt opgegeven voor installatie is geen superuser en geen lid van de rol van de webgebruiker, en kan het dus geen objecten aanmaken die van de webgebruiker zijn.
 
-MediaWiki vereist momenteel dat de tabellen van de webgebruiker zijn. Geef een andere webaccountnaam op, of klik op "terug" en geef een gebruiker op die voldoende installatierechten heeft.',
+MediaWiki vereist momenteel dat de tabellen van de webgebruiker zijn. Geef een andere webgebruikersnaam op, of klik op "terug" en geef een gebruiker op die voldoende installatierechten heeft.',
 	'config-install-user' => 'Databasegebruiker aan het aanmaken',
 	'config-install-user-alreadyexists' => 'Gebruiker "$1" bestaat al',
 	'config-install-user-create-failed' => 'Het aanmaken van de gebruiker "$1" is mislukt: $2',
