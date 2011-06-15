@@ -28,7 +28,14 @@ class BlockTest extends MediaWikiLangTestCase {
 			
 			$user->saveSettings();
 		}
-		
+
+		// Delete the last round's block if it's still there
+		$oldBlock = Block::newFromTarget( 'UTBlockee' );
+		if ( $oldBlock ) {
+			// An old block will prevent our new one from saving.
+			$oldBlock->delete();
+		}
+
 		$this->block = new Block( 'UTBlockee', 1, 0,
 			self::REASON
 		);
@@ -38,7 +45,12 @@ class BlockTest extends MediaWikiLangTestCase {
 		// save up ID for use in assertion. Since ID is an autoincrement,
 		// its value might change depending on the order the tests are run.
 		// ApiBlockTest insert its own blocks!
-		$this->blockId = $this->block->getId();
+		$newBlockId = $this->block->getId();
+		if ($newBlockId) {
+			$this->blockId = $newBlockId;
+		} else {
+			throw new MWException( "Failed to insert block for BlockTest; old leftover block remaining?" );
+		}
 	}
 
 	/**
