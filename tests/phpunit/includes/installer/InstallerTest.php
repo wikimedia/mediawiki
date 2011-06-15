@@ -20,10 +20,14 @@ class InstallerTest extends MediaWikiTestCase {
 		$oldServer = $_SERVER;
 		$_SERVER = $input;
 		$rm = new ReflectionMethod( 'Installer_TestHelper', 'envCheckServer' );
-		$rm->setAccessible( true );
-		$rm->invoke( $installer );
-		$_SERVER = $oldServer;
-		$this->assertEquals( $expected, $installer->getVar( 'wgServer' ), $description );
+		if( !method_exists( $rm, 'setAccessible' ) ) {
+			$this->markTestIncomplete( "Test requires PHP 5.3.2 or above for ReflectionMethod::setAccessible" );
+		} else {
+			$rm->setAccessible( true );
+			$rm->invoke( $installer );
+			$_SERVER = $oldServer;
+			$this->assertEquals( $expected, $installer->getVar( 'wgServer' ), $description );
+		}
 	}
 
 	function provideEnvCheckServer() {
