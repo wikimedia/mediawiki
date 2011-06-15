@@ -4,6 +4,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 	static $offset;
 
 	public function setUp() {
+		parent::setUp();
 		global $wgLocalTZoffset;
 		self::$offset = $wgLocalTZoffset;
 
