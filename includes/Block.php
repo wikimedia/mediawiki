@@ -105,7 +105,7 @@ class Block {
 	 * Load a blocked user from their block id.
 	 *
 	 * @param $id Integer: Block id to search for
-	 * @return Block object
+	 * @return Block object or null
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -115,7 +115,11 @@ class Block {
 			array( 'ipb_id' => $id ),
 			__METHOD__
 		);
-		return Block::newFromRow( $res );
+		if ( $res ) {
+			return Block::newFromRow( $res );
+		} else {
+			return null;
+		}
 	}
 
 	/**
