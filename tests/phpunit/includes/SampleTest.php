@@ -7,6 +7,8 @@ class TestSample extends MediaWikiLangTestCase {
 	 */
 	function setUp() {
 		global $wgContLang;
+		parent::setUp();
+
 		/* For example, we need to set $wgContLang for creating a new Title */
 		$wgContLang = Language::factory( 'en' );
 	}
