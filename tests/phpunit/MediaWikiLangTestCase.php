@@ -27,6 +27,7 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 
 		$wgContLang = self::$oldContLang;
 		$wgLanguageCode = $wgContLang->getCode();
+		self::$oldContLang = self::$oldLang = null;
 	}
 
 }
