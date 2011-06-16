@@ -312,6 +312,243 @@ function wfUrlencode( $s ) {
 }
 
 /**
+ * This function takes two arrays as input, and returns a CGI-style string, e.g.
+ * "days=7&limit=100". Options in the first array override options in the second.
+ * Options set to "" will not be output.
+ *
+ * @param $array1 Array( String|Array )
+ * @param $array2 Array( String|Array )
+ * @return String
+ */
+function wfArrayToCGI( $array1, $array2 = null ) {
+	if ( !is_null( $array2 ) ) {
+		$array1 = $array1 + $array2;
+	}
+
+	$cgi = '';
+	foreach ( $array1 as $key => $value ) {
+		if ( $value !== '' ) {
+			if ( $cgi != '' ) {
+				$cgi .= '&';
+			}
+			if ( is_array( $value ) ) {
+				$firstTime = true;
+				foreach ( $value as $v ) {
+					$cgi .= ( $firstTime ? '' : '&') .
+						urlencode( $key . '[]' ) . '=' .
+						urlencode( $v );
+					$firstTime = false;
+				}
+			} else {
+				if ( is_object( $value ) ) {
+					$value = $value->__toString();
+				}
+				$cgi .= urlencode( $key ) . '=' .
+					urlencode( $value );
+			}
+		}
+	}
+	return $cgi;
+}
+
+/**
+ * This is the logical opposite of wfArrayToCGI(): it accepts a query string as
+ * its argument and returns the same string in array form.  This allows compa-
+ * tibility with legacy functions that accept raw query strings instead of nice
+ * arrays.  Of course, keys and values are urldecode()d.  Don't try passing in-
+ * valid query strings, or it will explode.
+ *
+ * @param $query String: query string
+ * @return array Array version of input
+ */
+function wfCgiToArray( $query ) {
+	if( isset( $query[0] ) && $query[0] == '?' ) {
+		$query = substr( $query, 1 );
+	}
+	$bits = explode( '&', $query );
+	$ret = array();
+	foreach( $bits as $bit ) {
+		if( $bit === '' ) {
+			continue;
+		}
+		list( $key, $value ) = explode( '=', $bit );
+		$key = urldecode( $key );
+		$value = urldecode( $value );
+		$ret[$key] = $value;
+	}
+	return $ret;
+}
+
+/**
+ * Append a query string to an existing URL, which may or may not already
+ * have query string parameters already. If so, they will be combined.
+ *
+ * @param $url String
+ * @param $query Mixed: string or associative array
+ * @return string
+ */
+function wfAppendQuery( $url, $query ) {
+	if ( is_array( $query ) ) {
+		$query = wfArrayToCGI( $query );
+	}
+	if( $query != '' ) {
+		if( false === strpos( $url, '?' ) ) {
+			$url .= '?';
+		} else {
+			$url .= '&';
+		}
+		$url .= $query;
+	}
+	return $url;
+}
+
+/**
+ * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
+ * is correct.
+ *
+ * @todo this won't work with current-path-relative URLs
+ * like "subdir/foo.html", etc.
+ *
+ * @param $url String: either fully-qualified or a local path + query
+ * @return string Fully-qualified URL
+ */
+function wfExpandUrl( $url ) {
+	global $wgServer;
+	if( substr( $url, 0, 2 ) == '//' ) {
+		$bits = wfParseUrl( $wgServer );
+		$scheme = $bits ? $bits['scheme'] : 'http';
+		return $scheme . ':' . $url;
+	} elseif( substr( $url, 0, 1 ) == '/' ) {
+		return $wgServer . $url;
+	} else {
+		return $url;
+	}
+}
+
+/**
+ * Returns a regular expression of url protocols
+ *
+ * @return String
+ */
+function wfUrlProtocols() {
+	global $wgUrlProtocols;
+
+	static $retval = null;
+	if ( !is_null( $retval ) ) {
+		return $retval;
+	}
+
+	// Support old-style $wgUrlProtocols strings, for backwards compatibility
+	// with LocalSettings files from 1.5
+	if ( is_array( $wgUrlProtocols ) ) {
+		$protocols = array();
+		foreach ( $wgUrlProtocols as $protocol ) {
+			$protocols[] = preg_quote( $protocol, '/' );
+		}
+
+		$retval = implode( '|', $protocols );
+	} else {
+		$retval = $wgUrlProtocols;
+	}
+	return $retval;
+}
+
+/**
+ * parse_url() work-alike, but non-broken.  Differences:
+ *
+ * 1) Does not raise warnings on bad URLs (just returns false)
+ * 2) Handles protocols that don't use :// (e.g., mailto: and news:) correctly
+ * 3) Adds a "delimiter" element to the array, either '://' or ':' (see (2))
+ *
+ * @param $url String: a URL to parse
+ * @return Array: bits of the URL in an associative array, per PHP docs
+ */
+function wfParseUrl( $url ) {
+	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
+	wfSuppressWarnings();
+	$bits = parse_url( $url );
+	wfRestoreWarnings();
+	if ( !$bits ) {
+		return false;
+	}
+
+	// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
+	if ( in_array( $bits['scheme'] . '://', $wgUrlProtocols ) ) {
+		$bits['delimiter'] = '://';
+	} elseif ( in_array( $bits['scheme'] . ':', $wgUrlProtocols ) ) {
+		$bits['delimiter'] = ':';
+		// parse_url detects for news: and mailto: the host part of an url as path
+		// We have to correct this wrong detection
+		if ( isset( $bits['path'] ) ) {
+			$bits['host'] = $bits['path'];
+			$bits['path'] = '';
+		}
+	} else {
+		return false;
+	}
+
+	/* Provide an empty host for eg. file:/// urls (see bug 28627) */
+	if ( !isset( $bits['host'] ) ) {
+		$bits['host'] = '';
+		
+		/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
+		if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
+			$bits['path'] = '/' . $bits['path'];
+		}
+	}
+	return $bits;
+}
+
+/**
+ * Make a URL index, appropriate for the el_index field of externallinks.
+ *
+ * @param $url String
+ * @return String
+ */
+function wfMakeUrlIndex( $url ) {
+	$bits = wfParseUrl( $url );
+
+	// Reverse the labels in the hostname, convert to lower case
+	// For emails reverse domainpart only
+	if ( $bits['scheme'] == 'mailto' ) {
+		$mailparts = explode( '@', $bits['host'], 2 );
+		if ( count( $mailparts ) === 2 ) {
+			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
+		} else {
+			// No domain specified, don't mangle it
+			$domainpart = '';
+		}
+		$reversedHost = $domainpart . '@' . $mailparts[0];
+	} else {
+		$reversedHost = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
+	}
+	// Add an extra dot to the end
+	// Why? Is it in wrong place in mailto links?
+	if ( substr( $reversedHost, -1, 1 ) !== '.' ) {
+		$reversedHost .= '.';
+	}
+	// Reconstruct the pseudo-URL
+	$prot = $bits['scheme'];
+	$index = $prot . $bits['delimiter'] . $reversedHost;
+	// Leave out user and password. Add the port, path, query and fragment
+	if ( isset( $bits['port'] ) ) {
+		$index .= ':' . $bits['port'];
+	}
+	if ( isset( $bits['path'] ) ) {
+		$index .= $bits['path'];
+	} else {
+		$index .= '/';
+	}
+	if ( isset( $bits['query'] ) ) {
+		$index .= '?' . $bits['query'];
+	}
+	if ( isset( $bits['fragment'] ) ) {
+		$index .= '#' . $bits['fragment'];
+	}
+	return $index;
+}
+
+/**
  * Sends a line to the debug log if enabled or, optionally, to a comment in output.
  * In normal operation this is a NOP.
  *
@@ -1481,120 +1718,6 @@ function wfSetBit( &$dest, $bit, $state = true ) {
 }
 
 /**
- * This function takes two arrays as input, and returns a CGI-style string, e.g.
- * "days=7&limit=100". Options in the first array override options in the second.
- * Options set to "" will not be output.
- *
- * @param $array1 Array( String|Array )
- * @param $array2 Array( String|Array )
- * @return String
- */
-function wfArrayToCGI( $array1, $array2 = null ) {
-	if ( !is_null( $array2 ) ) {
-		$array1 = $array1 + $array2;
-	}
-
-	$cgi = '';
-	foreach ( $array1 as $key => $value ) {
-		if ( $value !== '' ) {
-			if ( $cgi != '' ) {
-				$cgi .= '&';
-			}
-			if ( is_array( $value ) ) {
-				$firstTime = true;
-				foreach ( $value as $v ) {
-					$cgi .= ( $firstTime ? '' : '&') .
-						urlencode( $key . '[]' ) . '=' .
-						urlencode( $v );
-					$firstTime = false;
-				}
-			} else {
-				if ( is_object( $value ) ) {
-					$value = $value->__toString();
-				}
-				$cgi .= urlencode( $key ) . '=' .
-					urlencode( $value );
-			}
-		}
-	}
-	return $cgi;
-}
-
-/**
- * This is the logical opposite of wfArrayToCGI(): it accepts a query string as
- * its argument and returns the same string in array form.  This allows compa-
- * tibility with legacy functions that accept raw query strings instead of nice
- * arrays.  Of course, keys and values are urldecode()d.  Don't try passing in-
- * valid query strings, or it will explode.
- *
- * @param $query String: query string
- * @return array Array version of input
- */
-function wfCgiToArray( $query ) {
-	if( isset( $query[0] ) && $query[0] == '?' ) {
-		$query = substr( $query, 1 );
-	}
-	$bits = explode( '&', $query );
-	$ret = array();
-	foreach( $bits as $bit ) {
-		if( $bit === '' ) {
-			continue;
-		}
-		list( $key, $value ) = explode( '=', $bit );
-		$key = urldecode( $key );
-		$value = urldecode( $value );
-		$ret[$key] = $value;
-	}
-	return $ret;
-}
-
-/**
- * Append a query string to an existing URL, which may or may not already
- * have query string parameters already. If so, they will be combined.
- *
- * @param $url String
- * @param $query Mixed: string or associative array
- * @return string
- */
-function wfAppendQuery( $url, $query ) {
-	if ( is_array( $query ) ) {
-		$query = wfArrayToCGI( $query );
-	}
-	if( $query != '' ) {
-		if( false === strpos( $url, '?' ) ) {
-			$url .= '?';
-		} else {
-			$url .= '&';
-		}
-		$url .= $query;
-	}
-	return $url;
-}
-
-/**
- * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
- * is correct.
- *
- * @todo this won't work with current-path-relative URLs
- * like "subdir/foo.html", etc.
- *
- * @param $url String: either fully-qualified or a local path + query
- * @return string Fully-qualified URL
- */
-function wfExpandUrl( $url ) {
-	global $wgServer;
-	if( substr( $url, 0, 2 ) == '//' ) {
-		$bits = wfParseUrl( $wgServer );
-		$scheme = $bits ? $bits['scheme'] : 'http';
-		return $scheme . ':' . $url;
-	} elseif( substr( $url, 0, 1 ) == '/' ) {
-		return $wgServer . $url;
-	} else {
-		return $url;
-	}
-}
-
-/**
  * Windows-compatible version of escapeshellarg()
  * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg()
  * function puts single quotes in regardless of OS.
@@ -2449,34 +2572,6 @@ function wfSpecialList( $page, $details ) {
 }
 
 /**
- * Returns a regular expression of url protocols
- *
- * @return String
- */
-function wfUrlProtocols() {
-	global $wgUrlProtocols;
-
-	static $retval = null;
-	if ( !is_null( $retval ) ) {
-		return $retval;
-	}
-
-	// Support old-style $wgUrlProtocols strings, for backwards compatibility
-	// with LocalSettings files from 1.5
-	if ( is_array( $wgUrlProtocols ) ) {
-		$protocols = array();
-		foreach ( $wgUrlProtocols as $protocol ) {
-			$protocols[] = preg_quote( $protocol, '/' );
-		}
-
-		$retval = implode( '|', $protocols );
-	} else {
-		$retval = $wgUrlProtocols;
-	}
-	return $retval;
-}
-
-/**
  * Safety wrapper around ini_get() for boolean settings.
  * The values returned from ini_get() are pre-normalized for settings
  * set via php.ini or php_flag/php_admin_flag... but *not*
@@ -2763,101 +2858,6 @@ function wfRelativePath( $path, $from ) {
 	array_push( $pieces, wfBaseName( $path ) );
 
 	return implode( DIRECTORY_SEPARATOR, $pieces );
-}
-
-/**
- * parse_url() work-alike, but non-broken.  Differences:
- *
- * 1) Does not raise warnings on bad URLs (just returns false)
- * 2) Handles protocols that don't use :// (e.g., mailto: and news:) correctly
- * 3) Adds a "delimiter" element to the array, either '://' or ':' (see (2))
- *
- * @param $url String: a URL to parse
- * @return Array: bits of the URL in an associative array, per PHP docs
- */
-function wfParseUrl( $url ) {
-	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
-	wfSuppressWarnings();
-	$bits = parse_url( $url );
-	wfRestoreWarnings();
-	if ( !$bits ) {
-		return false;
-	}
-
-	// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
-	if ( in_array( $bits['scheme'] . '://', $wgUrlProtocols ) ) {
-		$bits['delimiter'] = '://';
-	} elseif ( in_array( $bits['scheme'] . ':', $wgUrlProtocols ) ) {
-		$bits['delimiter'] = ':';
-		// parse_url detects for news: and mailto: the host part of an url as path
-		// We have to correct this wrong detection
-		if ( isset( $bits['path'] ) ) {
-			$bits['host'] = $bits['path'];
-			$bits['path'] = '';
-		}
-	} else {
-		return false;
-	}
-
-	/* Provide an empty host for eg. file:/// urls (see bug 28627) */
-	if ( !isset( $bits['host'] ) ) {
-		$bits['host'] = '';
-		
-		/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
-		if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
-			$bits['path'] = '/' . $bits['path'];
-		}
-	}
-	return $bits;
-}
-
-/**
- * Make a URL index, appropriate for the el_index field of externallinks.
- *
- * @param $url String
- * @return String
- */
-function wfMakeUrlIndex( $url ) {
-	$bits = wfParseUrl( $url );
-
-	// Reverse the labels in the hostname, convert to lower case
-	// For emails reverse domainpart only
-	if ( $bits['scheme'] == 'mailto' ) {
-		$mailparts = explode( '@', $bits['host'], 2 );
-		if ( count( $mailparts ) === 2 ) {
-			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
-		} else {
-			// No domain specified, don't mangle it
-			$domainpart = '';
-		}
-		$reversedHost = $domainpart . '@' . $mailparts[0];
-	} else {
-		$reversedHost = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
-	}
-	// Add an extra dot to the end
-	// Why? Is it in wrong place in mailto links?
-	if ( substr( $reversedHost, -1, 1 ) !== '.' ) {
-		$reversedHost .= '.';
-	}
-	// Reconstruct the pseudo-URL
-	$prot = $bits['scheme'];
-	$index = $prot . $bits['delimiter'] . $reversedHost;
-	// Leave out user and password. Add the port, path, query and fragment
-	if ( isset( $bits['port'] ) ) {
-		$index .= ':' . $bits['port'];
-	}
-	if ( isset( $bits['path'] ) ) {
-		$index .= $bits['path'];
-	} else {
-		$index .= '/';
-	}
-	if ( isset( $bits['query'] ) ) {
-		$index .= '?' . $bits['query'];
-	}
-	if ( isset( $bits['fragment'] ) ) {
-		$index .= '#' . $bits['fragment'];
-	}
-	return $index;
 }
 
 /**
