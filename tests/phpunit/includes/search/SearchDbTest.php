@@ -4,6 +4,7 @@ require_once( dirname( __FILE__ ) . '/SearchEngineTest.php' );
 
 /**
  * @group Search
+ * @group Database
  * @group Destructive
  */
 class SearchDbTest extends SearchEngineTest {
@@ -20,8 +21,6 @@ class SearchDbTest extends SearchEngineTest {
 
 		// Initialize search database with data
 		$GLOBALS['wgContLang'] = new Language;
-		$this->insertSearchData();
-
 		$this->insertSearchData();
 		$searchType = $this->db->getSearchEngine();
 		$this->search = new $searchType( $this->db );
