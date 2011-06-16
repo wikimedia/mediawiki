@@ -176,6 +176,9 @@ $.fn.makeCollapsible = function() {
 			},
 			// Toggles collapsible and togglelink class
 			toggleLinkPremade = function( $that, e ) {
+				if ( $(e.target).is('a') ) {
+					return true;
+				}
 				var	$collapsible = $that.eq(0).closest( '.mw-collapsible.mw-made-collapsible' ).toggleClass( 'mw-collapsed' );
 				e.preventDefault();
 				e.stopPropagation();
