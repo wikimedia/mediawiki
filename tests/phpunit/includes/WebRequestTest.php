@@ -1,36 +1,18 @@
 <?php
 
-class Installer_TestHelper extends Installer {
-	function showMessage( $msg ) {}
-	function showError( $msg ) {}
-	function showStatusMessage( Status $status ) {}
-
-	function __construct() {
-		$this->settings = array();
-	}
-
-}
-
-class InstallerTest extends MediaWikiTestCase {
+class WebRequestTest extends MediaWikiTestCase {
 	/**
-	 * @dataProvider provideEnvCheckServer
+	 * @dataProvider provideDetectServer
 	 */
-	function testEnvCheckServer( $expected, $input, $description ) {
-		$installer = new Installer_TestHelper;
+	function testDetectServer( $expected, $input, $description ) {
 		$oldServer = $_SERVER;
 		$_SERVER = $input;
-		$rm = new ReflectionMethod( 'Installer_TestHelper', 'envCheckServer' );
-		if( !method_exists( $rm, 'setAccessible' ) ) {
-			$this->markTestIncomplete( "Test requires PHP 5.3.2 or above for ReflectionMethod::setAccessible" );
-		} else {
-			$rm->setAccessible( true );
-			$rm->invoke( $installer );
-			$_SERVER = $oldServer;
-			$this->assertEquals( $expected, $installer->getVar( 'wgServer' ), $description );
-		}
+		$result = WebRequest::detectServer();
+		$_SERVER = $oldServer;
+		$this->assertEquals( $expected, $result, $description );
 	}
 
-	function provideEnvCheckServer() {
+	function provideDetectServer() {
 		return array(
 			array(
 				'http://x',
