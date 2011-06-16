@@ -55,20 +55,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		);
 		$mainPage = Title::newMainPage();
 
-		/**
-		 * Namespace related preparation
-		 * - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
-		 * - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.
-		 */
+		// Build wgNamespaceIds
+		// A complete key-value pair object mapping localized, canonical and aliases for namespaces
+		// to their numerical ids (case insensitive and with underscores)
 		$namespaceIds = $wgContLang->getNamespaceIds();
-		$caseSensitiveNamespaces = array();
 		foreach( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
 			$namespaceIds[$wgContLang->lc( $name )] = $index;
-			if ( !MWNamespace::isCapitalized( $index ) ) {
-				$caseSensitiveNamespaces[] = $index;
-			}
 		}
-
 
 		$serverBits = wfParseUrl( $wgServer );
 		$protocol = $serverBits ? $serverBits['scheme'] : 'http';
@@ -113,7 +106,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgCookiePrefix' => $wgCookiePrefix,
 			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,
 			'wgLegacyJavaScriptGlobals' => $wgLegacyJavaScriptGlobals,
-			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 		);
 		if ( $wgUseAjax && $wgEnableMWSuggest ) {
 			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
