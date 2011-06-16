@@ -76,7 +76,7 @@ class CommandLineInstaller extends Maintenance {
 			if ( $dbpass === false ) {
 				$this->error( "Couldn't open $dbpassfile", true );
 			}
-			$this->mOptions['dbpass'] = $dbpass;
+			$this->mOptions['dbpass'] = trim( $dbpass, "\r\n" );
 		}
 
 		$installer =
