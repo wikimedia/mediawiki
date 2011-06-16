@@ -558,10 +558,9 @@ class HttpTest extends MediaWikiTestCase {
 		return array(
 			array( false, '¿non sens before!! http://a', 'Allow anything before URI' ),
 
-			# (ftp|http|https) - only three schemes allowed
+			# (http|https) - only three schemes allowed
 			array( true,  'http://www.example.org/' ),
 			array( true,  'https://www.example.org/' ),
-			array( true,  'ftp://www.example.org/' ),
 			array( true,  'http://www.example.org', 'URI without directory' ),
 			array( true,  'http://a', 'Short name' ),
 			array( true, 'http://étoile', 'Allow UTF-8 in hostname' ),  # 'étoile' is french for 'star'
@@ -590,8 +589,6 @@ class HttpTest extends MediaWikiTestCase {
 			array( true, 'https://example.org:80/' ),
 			array( true, 'http://example.org:443/' ),
 			array( true, 'https://example.org:443/' ),
-			array( true, 'ftp://example.org:1/', 'Minimum' ),
-			array( true, 'ftp://example.org:65535/', 'Maximum port number' ),
 
 			# Part after the hostname is / or / with something else
 			array( true, 'http://example/#' ),
