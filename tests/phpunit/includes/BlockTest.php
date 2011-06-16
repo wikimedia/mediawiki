@@ -91,9 +91,14 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * @dataProvider dataBug29116
 	 */
 	function testBug29116LoadWithEmptyIp( $vagueTarget ) {
+		$uid = User::idFromName( 'UTBlockee' );
+		$this->assertTrue( ($uid > 0), 'Must be able to look up the target user during tests' );
+
 		$block = new Block();
-		$block->load( $vagueTarget, 'UTBlockee' );
-		$this->assertTrue( $this->block->equals( Block::newFromTarget('UTBlockee', $vagueTarget) ), "Block->load() returns the same block as the one that was made when given empty ip param " . var_export( $vagueTarget, true ) );
+		$ok = $block->load( $vagueTarget, $uid );
+		$this->assertTrue( $ok, "Block->load() with empty IP and user ID '$uid' should return a block" );
+
+		$this->assertTrue( $this->block->equals( $block ), "Block->load() returns the same block as the one that was made when given empty ip param " . var_export( $vagueTarget, true ) );
 	}
 
 	/**
