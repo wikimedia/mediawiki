@@ -16,10 +16,10 @@ class SearchEngineTest extends MediaWikiTestCase {
 	function setUp() {
 		// Search tests require MySQL or SQLite with FTS
 		# Get database type and version
-		$dbType    = $this->db->getType();
+		$dbType = $this->db->getType();
 		$dbSupported =
 			($dbType === 'mysql')
-			|| (   $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
+			|| ( $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
 
 		if( !$dbSupported ) {
 			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
@@ -85,41 +85,41 @@ class SearchEngineTest extends MediaWikiTestCase {
 	 * @param $n Integer: unused
 	 */
 	function insertPage( $pageName, $text, $ns ) {
-			$dbw = $this->db;
-			$title = Title::newFromText( $pageName );
+		$dbw = $this->db;
+		$title = Title::newFromText( $pageName );
 
-			$user = User::newFromName( 'WikiSysop' );
-			$comment = 'Search Test';
+		$user = User::newFromName( 'WikiSysop' );
+		$comment = 'Search Test';
 
-			// avoid memory leak...?
-			$linkCache = LinkCache::singleton();
-			$linkCache->clear();
+		// avoid memory leak...?
+		$linkCache = LinkCache::singleton();
+		$linkCache->clear();
 
-			$article = new Article( $title );
-			$article->doEdit( $text, $comment, 0, false, $user );
+		$article = new Article( $title );
+		$article->doEdit( $text, $comment, 0, false, $user );
 
-			$this->pageList[] = array( $title, $article->getId() );
+		$this->pageList[] = array( $title, $article->getId() );
 
-			return true;
-		}
+		return true;
+	}
 
 	function testFullWidth() {
-			$this->assertEquals(
-				array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
-				$this->fetchIds( $this->search->searchText( 'AZ' ) ),
-				"Search for normalized from Half-width Upper" );
-			$this->assertEquals(
-				array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
-				$this->fetchIds( $this->search->searchText( 'az' ) ),
-				"Search for normalized from Half-width Lower" );
-			$this->assertEquals(
-				array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
-				$this->fetchIds( $this->search->searchText( 'ＡＺ' ) ),
-				"Search for normalized from Full-width Upper" );
-			$this->assertEquals(
-				array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
-				$this->fetchIds( $this->search->searchText( 'ａｚ' ) ),
-				"Search for normalized from Full-width Lower" );
+		$this->assertEquals(
+			array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
+			$this->fetchIds( $this->search->searchText( 'AZ' ) ),
+			"Search for normalized from Half-width Upper" );
+		$this->assertEquals(
+			array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
+			$this->fetchIds( $this->search->searchText( 'az' ) ),
+			"Search for normalized from Half-width Lower" );
+		$this->assertEquals(
+			array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
+			$this->fetchIds( $this->search->searchText( 'ＡＺ' ) ),
+			"Search for normalized from Full-width Upper" );
+		$this->assertEquals(
+			array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
+			$this->fetchIds( $this->search->searchText( 'ａｚ' ) ),
+			"Search for normalized from Full-width Lower" );
 	}
 
 	function testTextSearch() {
