@@ -133,7 +133,6 @@ abstract class Installer {
 		'wgImageMagickConvertCommand',
 		'IP',
 		'wgServer',
-		'wgProto',
 		'wgScriptPath',
 		'wgScriptExtension',
 		'wgMetaNamespace',
@@ -878,7 +877,6 @@ abstract class Installer {
 		$server = $proto . '://' . IP::combineHostAndPort( $host, $port, $stdPort );
 		$this->showMessage( 'config-using-server', $server );
 		$this->setVar( 'wgServer', $server );
-		$this->setVar( 'wgProto', $proto );
 	}
 
 	/**

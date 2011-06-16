@@ -37,7 +37,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang,
 			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion, 
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest,
-			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath, $wgProto,
+			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
 			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength, $wgLegacyJavaScriptGlobals;
 
 		// Pre-process information
@@ -62,6 +62,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		foreach( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
 			$namespaceIds[$wgContLang->lc( $name )] = $index;
 		}
+
+		$serverBits = wfParseUrl( $wgServer );
+		$protocol = $serverBits ? $serverBits['scheme'] : 'http';
 
 		// Build list of variables
 		$vars = array(
@@ -98,7 +101,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgFileCanRotate' => BitmapHandler::canRotate(),
 			'wgAvailableSkins' => Skin::getSkinNames(),
 			'wgExtensionAssetsPath' => $wgExtensionAssetsPath,
-			'wgProto' => $wgProto,
+			'wgProto' => $protocol,
 			// MediaWiki sets cookies to have this prefix by default
 			'wgCookiePrefix' => $wgCookiePrefix,
 			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,

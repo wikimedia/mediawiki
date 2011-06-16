@@ -666,8 +666,8 @@ class SkinTemplate extends Skin {
 					'active' => $title->isSpecial( 'Userlogin' ) && $is_signup
 				);
 			}
-			global $wgProto, $wgSecureLogin;
-			if( $wgProto === 'http' && $wgSecureLogin ) {
+			global $wgServer, $wgSecureLogin;
+			if( substr( $wgServer, 0, 5 ) === 'http:' && $wgSecureLogin ) {
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
 				$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL() );
 				$login_url['href']  = $https_url;
