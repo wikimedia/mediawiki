@@ -51,6 +51,8 @@ production.
 * New 'Debug' hook used by wfDebug() and wfDebugLog()
 * (bug 27655) Require token for watching/unwatching pages)
 * (bug 28904) Update jQuery version from 1.4.4 to 1.6.1 (the latest version)
+* (bug 29441) Expose CapitalLinks config in JS to allow modules to properly
+  handle titles on case-sensitive wikis.
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
