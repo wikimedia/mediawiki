@@ -160,7 +160,7 @@ class User {
 	 */
 	//@{
 	var $mOptionsLoaded;
-	
+
 	/**
 	 * Array with already loaded items or true if all items have been loaded.
 	 */
