@@ -70,15 +70,20 @@ class MWInit {
 	/**
 	 * The equivalent of MWInit::interpretedPath() but for files relative to the
 	 * extensions directory.
+	 *
+	 * @param $file string
+	 * @return string
 	 */
 	static function extInterpretedPath( $file ) {
 		return self::getExtensionsDirectory() . '/' . $file;
 	}
 
 	/**
-	 * The equivalent of MWInit::compiledPath() but for files relative to the 
+	 * The equivalent of MWInit::compiledPath() but for files relative to the
 	 * extensions directory. Any files referenced in this way must be registered
 	 * for compilation by including them in $wgCompiledFiles.
+	 * @param $file string
+	 * @return string
 	 */
 	static function extCompiledPath( $file ) {
 		if ( defined( 'MW_COMPILED' ) ) {
@@ -95,8 +100,10 @@ class MWInit {
 	 *
 	 *    require( MWInit::extSetupPath( 'ParserFunctions/ParserFunctions.php' ) );
 	 *
-	 * @param $path The path relative to the extensions directory, as defined by 
+	 * @param $extRel string The path relative to the extensions directory, as defined by
 	 *   $wgExtensionsDirectory.
+	 *
+	 * @return string
 	 */
 	static function extSetupPath( $extRel ) {
 		$baseRel = "extensions/$extRel";
@@ -109,6 +116,9 @@ class MWInit {
 		}
 	}
 
+	/**
+	 * @return bool|string
+	 */
 	static function getExtensionsDirectory() {
 		global $wgExtensionsDirectory, $IP;
 		if ( $wgExtensionsDirectory === false ) {
@@ -160,8 +170,12 @@ class MWInit {
 	}
 
 	/**
-	 * Call a static method of a class with variable arguments without causing 
+	 * Call a static method of a class with variable arguments without causing
 	 * it to become volatile.
+	 * @param $className string
+	 * @param $methodName string
+	 * @param $args array
+	 *
 	 */
 	static function callStaticMethod( $className, $methodName, $args ) {
 		$r = new ReflectionMethod( $className, $methodName );

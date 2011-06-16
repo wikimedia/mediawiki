@@ -50,7 +50,6 @@ class WatchAction extends FormlessAction {
 
 		if ( !$user->matchEditToken( $this->getRequest()->getVal( 'token' ), $salt ) ) {
 			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
-			return;
 		}
 		
 		return parent::checkCanExecute( $user );
