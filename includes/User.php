@@ -2233,7 +2233,7 @@ class User {
 	 * @param $group String Name of the group to add
 	 */
 	function addGroup( $group ) {
-		if( wfRunHooks( 'UserAddGroup', array( &$this, &$group ) ) ) {
+		if( wfRunHooks( 'UserAddGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			if( $this->getId() ) {
 				$dbw->insert( 'user_groups',
@@ -2259,7 +2259,7 @@ class User {
 	 */
 	function removeGroup( $group ) {
 		$this->load();
-		if( wfRunHooks( 'UserRemoveGroup', array( &$this, &$group ) ) ) {
+		if( wfRunHooks( 'UserRemoveGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user_groups',
 				array(
