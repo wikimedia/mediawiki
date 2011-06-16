@@ -3526,7 +3526,7 @@ function wfBCP47( $code ) {
 /**
  * Get a cache object.
  *
- * @param integer $inputType Cache type, one the the CACHE_* constants.
+ * @param $inputType integer Cache type, one the the CACHE_* constants.
  * @return BagOStuff
  */
 function wfGetCache( $inputType ) {
