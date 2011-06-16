@@ -1573,7 +1573,7 @@ function wfAppendQuery( $url, $query ) {
 
 /**
  * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
- * and $wgProto are correct.
+ * is correct.
  *
  * @todo this won't work with current-path-relative URLs
  * like "subdir/foo.html", etc.
@@ -1582,11 +1582,12 @@ function wfAppendQuery( $url, $query ) {
  * @return string Fully-qualified URL
  */
 function wfExpandUrl( $url ) {
+	global $wgServer;
 	if( substr( $url, 0, 2 ) == '//' ) {
-		global $wgProto;
-		return $wgProto . ':' . $url;
+		$bits = wfParseUrl( $wgServer );
+		$scheme = $bits ? $bits['scheme'] : 'http';
+		return $scheme . ':' . $url;
 	} elseif( substr( $url, 0, 1 ) == '/' ) {
-		global $wgServer;
 		return $wgServer . $url;
 	} else {
 		return $url;

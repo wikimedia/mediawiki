@@ -321,6 +321,10 @@ if ( $wgNewUserLog ) {
 	$wgLogActions['newusers/autocreate'] = 'newuserlog-autocreate-entry';
 }
 
+if ( $wgCookieSecure === 'detect' ) {
+	$wgCookieSecure = ( substr( $wgServer, 0, 6 ) === 'https:' );
+}
+
 if ( !defined( 'MW_COMPILED' ) ) {
 	if ( !MWInit::classExists( 'AutoLoader' ) ) {
 		require_once( "$IP/includes/AutoLoader.php" );
