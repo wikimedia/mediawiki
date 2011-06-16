@@ -1075,7 +1075,7 @@ function wfHostname() {
 	if ( is_null( $host ) ) {
 		if ( function_exists( 'posix_uname' ) ) {
 			// This function not present on Windows
-			$uname = @posix_uname();
+			$uname = posix_uname();
 		} else {
 			$uname = false;
 		}
@@ -1814,7 +1814,7 @@ function wfDiff( $before, $after, $params = '-u' ) {
 function wfVarDump( $var ) {
 	global $wgOut;
 	$s = str_replace( "\n", "<br />\n", var_export( $var, true ) . "\n" );
-	if ( headers_sent() || !@is_object( $wgOut ) ) {
+	if ( headers_sent() || !isset( $wgOut ) || !is_object( $wgOut ) ) {
 		print $s;
 	} else {
 		$wgOut->addHTML( $s );
@@ -1937,12 +1937,12 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 
 	foreach( $parts as $part ) {
 		# @todo FIXME: Doesn't deal with params like 'text/html; level=1'
-		@list( $value, $qpart ) = explode( ';', trim( $part ) );
+		$values = explode( ';', trim( $part ) );
 		$match = array();
-		if( !isset( $qpart ) ) {
-			$prefs[$value] = 1.0;
-		} elseif( preg_match( '/q\s*=\s*(\d*\.\d+)/', $qpart, $match ) ) {
-			$prefs[$value] = floatval( $match[1] );
+		if ( count( $values ) == 1 ) {
+			$prefs[$values[0]] = 1.0;
+		} elseif ( preg_match( '/q\s*=\s*(\d*\.\d+)/', $values[1], $match ) ) {
+			$prefs[$values[0]] = floatval( $match[1] );
 		}
 	}
 
