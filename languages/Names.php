@@ -250,7 +250,7 @@
 	'oc' => 'Occitan',		# Occitan
 	'om' => 'Oromoo',		# Oromo
 	'or' => 'ଓଡ଼ିଆ',		# Oriya
-	'os' => 'Иронау', # Ossetic
+	'os' => 'Ирон', # Ossetic -- fixed per bug 29091
 	'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (Gurmukhi script) (pan)
 	'pag' => 'Pangasinan',	# Pangasinan
 	'pam' => 'Kapampangan',   # Pampanga
