@@ -255,6 +255,8 @@ production.
 * (bug 29263) Add LTR class to the shared CSS to be used for left-to-right text
   such as SQL queries shown in dberrortext and similar messages in RTL
   environments
+* (bug 14977) Fixed $wgServer detection in cases where an IPv6 address is used 
+  as the server name.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result.

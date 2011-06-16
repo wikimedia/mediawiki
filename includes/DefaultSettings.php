@@ -26,10 +26,9 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }
 
-# Create a site configuration object. Not used for much in a default install
-if ( !defined( 'MW_COMPILED' ) ) {
-	require_once( "$IP/includes/SiteConfiguration.php" );
-}
+# Create a site configuration object. Not used for much in a default install.
+# Note: this (and other things) will break if the autoloader is not enabled. 
+# Please include includes/AutoLoader.php before including this file.
 $wgConf = new SiteConfiguration;
 /** @endcond */
 
@@ -51,36 +50,7 @@ $wgSitename         = 'MediaWiki';
  * wrong server, it will redirect incorrectly after you save a page. In that
  * case, set this variable to fix it.
  */
-$wgServer = '';
-
-/** @cond file_level_code */
-if( isset( $_SERVER['SERVER_NAME'] )
-	# KLUGE: lighttpd 1.4.28 truncates IPv6 addresses at the first colon,
-	# giving bogus hostnames like "[2001"; check for presence of both
-	# brackets to detect this.
-	&& ($_SERVER['SERVER_NAME'][0] !== '[' || substr($_SERVER['SERVER_NAME'], -1) === ']')
-	) {
-	$serverName = $_SERVER['SERVER_NAME'];
-} elseif( isset( $_SERVER['HOSTNAME'] ) ) {
-	$serverName = $_SERVER['HOSTNAME'];
-} elseif( isset( $_SERVER['SERVER_ADDR'] ) ) {
-	$serverName = $_SERVER['SERVER_ADDR'];
-} else {
-	$serverName = 'localhost';
-}
-
-$wgProto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
-
-$wgServer = $wgProto.'://' . $serverName;
-# If the port is a non-standard one, add it to the URL
-if(    isset( $_SERVER['SERVER_PORT'] )
-	&& !strpos( $serverName, ':' )
-	&& (    ( $wgProto == 'http' && $_SERVER['SERVER_PORT'] != 80 )
-	 || ( $wgProto == 'https' && $_SERVER['SERVER_PORT'] != 443 ) ) ) {
-
-	$wgServer .= ":" . $_SERVER['SERVER_PORT'];
-}
-/** @endcond */
+$wgServer = WebRequest::detectServer();
 
 /************************************************************************//**
  * @name   Script path settings
@@ -985,6 +955,8 @@ $wgDjvuOutputExtension = 'jpg';
  * @name   Email settings
  * @{
  */
+
+$serverName = substr( $wgServer, strrpos( $wgServer, '/' ) + 1 );
 
 /**
  * Site admin email address.

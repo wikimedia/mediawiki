@@ -125,6 +125,45 @@ class WebRequest {
 	}
 
 	/**
+	 * Work out an appropriate URL prefix containing scheme and host, based on
+	 * information detected from $_SERVER
+	 */
+	public static function detectServer() {
+		if ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on') {
+			$proto = 'https';
+			$stdPort = 443;
+		} else {
+			$proto = 'http';
+			$stdPort = 80;
+		}
+
+		$varNames = array( 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' );
+		$host = 'localhost';
+		$port = $stdPort;
+		foreach ( $varNames as $varName ) {
+			if ( !isset( $_SERVER[$varName] ) ) {
+				continue;
+			}
+			$parts = IP::splitHostAndPort( $_SERVER[$varName] );
+			if ( !$parts ) {
+				// Invalid, do not use
+				continue;
+			}
+			$host = $parts[0];
+			if ( $parts[1] === false ) {
+				if ( isset( $_SERVER['SERVER_PORT'] ) ) {
+					$port = $_SERVER['SERVER_PORT'];
+				} // else leave it as $stdPort
+			} else {
+				$port = $parts[1];
+			}
+			break;
+		}
+
+		return $proto . '://' . IP::combineHostAndPort( $host, $port, $stdPort );
+	}
+
+	/**
 	 * Check for title, action, and/or variant data in the URL
 	 * and interpolate it into the GET variables.
 	 * This should only be run after $wgContLang is available,
