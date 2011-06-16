@@ -335,20 +335,7 @@ class NewParserTest extends MediaWikiTestCase {
 		global $wgUser;
 		$wgUser = new User();
 	}
-	
-	/**
-	 * Restore default values and perform any necessary clean-up
-	 * after each test runs.
-	 */
-	protected function teardownGlobals() {
-		RepoGroup::destroySingleton();
-		LinkCache::singleton()->clear();
 
-		foreach ( $this->savedGlobals as $var => $val ) {
-			$GLOBALS[$var] = $val;
-		}
-	}
-	
 	/**
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
@@ -380,6 +367,90 @@ class NewParserTest extends MediaWikiTestCase {
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
 
 		return $dir;
+	}
+	
+	/**
+	 * Restore default values and perform any necessary clean-up
+	 * after each test runs.
+	 */
+	protected function teardownGlobals() {
+		RepoGroup::destroySingleton();
+		LinkCache::singleton()->clear();
+
+		foreach ( $this->savedGlobals as $var => $val ) {
+			$GLOBALS[$var] = $val;
+		}
+		
+		$this->teardownUploadDir( $this->uploadDir );
+	}
+
+	/**
+	 * Remove the dummy uploads directory
+	 */
+	private function teardownUploadDir( $dir ) {
+		if ( $this->keepUploads ) {
+			return;
+		}
+
+		// delete the files first, then the dirs.
+		self::deleteFiles(
+			array (
+				"$dir/3/3a/Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
+
+				"$dir/0/09/Bad.jpg",
+
+				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
+			)
+		);
+
+		self::deleteDirs(
+			array (
+				"$dir/3/3a",
+				"$dir/3",
+				"$dir/thumb/6/65",
+				"$dir/thumb/6",
+				"$dir/thumb/3/3a/Foobar.jpg",
+				"$dir/thumb/3/3a",
+				"$dir/thumb/3",
+
+				"$dir/0/09/",
+				"$dir/0/",
+				"$dir/thumb",
+				"$dir/math/f/a/5",
+				"$dir/math/f/a",
+				"$dir/math/f",
+				"$dir/math",
+				"$dir",
+			)
+		);
+	}
+
+	/**
+	 * Delete the specified files, if they exist.
+	 * @param $files Array: full paths to files to delete.
+	 */
+	private static function deleteFiles( $files ) {
+		foreach ( $files as $file ) {
+			if ( file_exists( $file ) ) {
+				unlink( $file );
+			}
+		}
+	}
+
+	/**
+	 * Delete the specified directories, if they exist. Must be empty.
+	 * @param $dirs Array: full paths to directories to delete.
+	 */
+	private static function deleteDirs( $dirs ) {
+		foreach ( $dirs as $dir ) {
+			if ( is_dir( $dir ) ) {
+				rmdir( $dir );
+			}
+		}
 	}
 	
 	public function parserTestProvider() {
