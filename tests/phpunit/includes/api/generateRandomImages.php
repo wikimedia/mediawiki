@@ -8,7 +8,8 @@ $getOptSpec = array(
 	'maxWidth::',
 	'minHeight::',
 	'maxHeight::',
-	'circlesToDraw::',
+	'shapesToDraw::',
+	'shape::',
 
 	'number::',
 	'format::'
