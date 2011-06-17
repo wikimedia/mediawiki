@@ -44,6 +44,9 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   rights profile is chosen.
 * (bug 29399) Fixed PostgreSQL installation when the DB user for installation 
   is the same as the one for web access. 
+* (bug 29233) Fixed failover for DB slave servers. When a DB slave went down,
+  an error was immediately shown to the user, instead of trying another slave. 
+  Was broken since 1.17 beta 1.
 
 === Changes since 1.17 beta 1 ===
 
