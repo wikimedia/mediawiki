@@ -800,7 +800,6 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 	}
 
-
 	/**
 	 * Intended to be compatible with the PEAR::DB wrapper functions.
 	 * http://pear.php.net/manual/en/package.database.db.intro-execute.php
@@ -1461,7 +1460,7 @@ abstract class DatabaseBase implements DatabaseType {
 			}
 
 			// Support 'NOT IN' by suffixing fieldname with an exclamation mark
-			$not = false; 
+			$not = false;
 			if( substr($field,-1) == '!' ) {
 				$not = true;
 				$field = substr($field, 0, -1 );
@@ -1604,7 +1603,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * when calling query() directly.
 	 *
 	 * @param $name String: database table name
-	 * @param $quoted Boolean: Automatically pass the table name through 
+	 * @param $quoted Boolean: Automatically pass the table name through
 	 *          addIdentifierQuotes() so that it can be used in a query.
 	 * @return String: full database name
 	 */
@@ -1657,7 +1656,7 @@ abstract class DatabaseBase implements DatabaseType {
 			$database = ( !$quoted || $this->isQuotedIdentifier( $database ) ? $database : $this->addIdentifierQuotes( $database ) );
 			$prefix = '';
 		}
-		
+
 		$table = "{$prefix}{$table}";
 		if ( $quoted && !$this->isQuotedIdentifier( $table ) ) {
 			$table = $this->addIdentifierQuotes( "{$table}" );
@@ -1849,7 +1848,7 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Returns if the given identifier looks quoted or not according to 
+	 * Returns if the given identifier looks quoted or not according to
 	 * the database convention for quoting identifiers .
 	 *
 	 * @param $name string
@@ -2428,7 +2427,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Note that unlike most database abstraction functions, this function does not
 	 * automatically append database prefix, because it works at a lower
 	 * abstraction level.
-	 * The table names passed to this function shall not be quoted (this 
+	 * The table names passed to this function shall not be quoted (this
 	 * function calls addIdentifierQuotes when needed).
 	 *
 	 * @param $oldName String: name of table whose structure should be copied
