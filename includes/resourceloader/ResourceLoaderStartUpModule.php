@@ -21,7 +21,7 @@
  */
 
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
-	
+
 	/* Protected Members */
 
 	protected $modifiedTime = array();
@@ -35,7 +35,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	protected function getConfig( $context ) {
 		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension,
 			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang,
-			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion, 
+			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion,
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest,
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
 			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength, $wgLegacyJavaScriptGlobals;
@@ -118,12 +118,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		if ( $wgUseAjax && $wgEnableMWSuggest ) {
 			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
 		}
-		
+
 		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
-		
+
 		return $vars;
 	}
-	
+
 	/**
 	 * Gets registration code for all modules
 	 *
@@ -133,7 +133,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
 		global $wgCacheEpoch;
 		wfProfileIn( __METHOD__ );
-		
+
 		$out = '';
 		$registrations = array();
 		$resourceLoader = $context->getResourceLoader();
@@ -144,7 +144,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( $loader !== false ) {
 				$deps = $module->getDependencies();
 				$group = $module->getGroup();
-				$version = wfTimestamp( TS_ISO_8601_BASIC, 
+				$version = wfTimestamp( TS_ISO_8601_BASIC,
 					$module->getModifiedTime( $context ) );
 				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $loader );
 			}
@@ -154,18 +154,18 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				// seem to do that, and custom implementations might forget. Coerce it to TS_UNIX
 				$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
 				$mtime = max( $moduleMtime, wfTimestamp( TS_UNIX, $wgCacheEpoch ) );
-				// Modules without dependencies or a group pass two arguments (name, timestamp) to 
+				// Modules without dependencies or a group pass two arguments (name, timestamp) to
 				// mw.loader.register()
 				if ( !count( $module->getDependencies() && $module->getGroup() === null ) ) {
 					$registrations[] = array( $name, $mtime );
 				}
-				// Modules with dependencies but no group pass three arguments 
+				// Modules with dependencies but no group pass three arguments
 				// (name, timestamp, dependencies) to mw.loader.register()
-				else if ( $module->getGroup() === null ) {
+				elseif ( $module->getGroup() === null ) {
 					$registrations[] = array(
 						$name, $mtime,  $module->getDependencies() );
 				}
-				// Modules with dependencies pass four arguments (name, timestamp, dependencies, group) 
+				// Modules with dependencies pass four arguments (name, timestamp, dependencies, group)
 				// to mw.loader.register()
 				else {
 					$registrations[] = array(
@@ -174,7 +174,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 		}
 		$out .= ResourceLoader::makeLoaderRegisterScript( $registrations );
-		
+
 		wfProfileOut( __METHOD__ );
 		return $out;
 	}
@@ -194,15 +194,15 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// The core modules:
 			$modules = array( 'jquery', 'mediawiki' );
 			wfRunHooks( 'ResourceLoaderGetStartupModules', array( &$modules ) );
-			
+
 			// Get the latest version
-			$version = 0;					
+			$version = 0;
 			foreach ( $modules as $moduleName ) {
 				$version = max( $version,
 					$context->getResourceLoader()->getModule( $moduleName )->getModifiedTime( $context )
 				);
 			}
-			// Build load query for StartupModules 
+			// Build load query for StartupModules
 			$query = array(
 				'modules' => ResourceLoader::makePackedModulesString( $modules ),
 				'only' => 'scripts',
@@ -253,7 +253,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$this->modifiedTime[$hash] = filemtime( "$IP/resources/startup.js" );
 		// ATTENTION!: Because of the line above, this is not going to cause
-		// infinite recursion - think carefully before making changes to this 
+		// infinite recursion - think carefully before making changes to this
 		// code!
 		$time = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $loader->getModuleNames() as $name ) {

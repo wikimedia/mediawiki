@@ -137,7 +137,7 @@ abstract class RevDel_List {
 				$status->successCount++;
 				if( $item->getAuthorId() > 0 ) {
 					$authorIds[] = $item->getAuthorId();
-				} else if( IP::isIPAddress( $item->getAuthorName() ) ) {
+				} elseif( IP::isIPAddress( $item->getAuthorName() ) ) {
 					$authorIPs[] = $item->getAuthorName();
 				}
 			} else {

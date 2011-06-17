@@ -145,7 +145,7 @@ class XMPReader {
 			// only apply to the dc:Creator prop, not the
 			// exif:Artist prop.
 
-			$data['xmp-general']['Artist'][0] = 
+			$data['xmp-general']['Artist'][0] =
 				$data['xmp-special']['AuthorsPosition'] . ', '
 				. $data['xmp-general']['Artist'][0];
 		}
@@ -226,7 +226,7 @@ class XMPReader {
 			if ( !$this->charset ) {
 				$bom = array();
 				if ( preg_match( '/\xEF\xBB\xBF|\xFE\xFF|\x00\x00\xFE\xFF|\xFF\xFE\x00\x00|\xFF\xFE/',
-					 $content, $bom ) 
+					 $content, $bom )
 				) {
 					switch ( $bom[0] ) {
 						case "\xFE\xFF":
@@ -407,7 +407,7 @@ class XMPReader {
 	* property value, and now have to save the result to the
 	* results array
 	*
-	* For example, when processing: 
+	* For example, when processing:
 	* <exif:DigitalZoomRatio>0/10</exif:DigitalZoomRatio>
 	* this deals with when we hit </exif:DigitalZoomRatio>.
 	*
@@ -571,7 +571,7 @@ class XMPReader {
 	*
 	* generally just calls a helper function depending on what
 	* mode we're in.
-	* 
+	*
 	* Ignores the outer wrapping elements that are optional in
 	* xmp and have no meaning.
 	*
@@ -692,7 +692,7 @@ class XMPReader {
 	private function startElementModeSeq( $elm ) {
 		if ( $elm === self::NS_RDF . ' Seq' ) {
 			array_unshift( $this->mode, self::MODE_LI );
-		} else if ( $elm === self::NS_RDF . ' Bag' ) {
+		} elseif ( $elm === self::NS_RDF . ' Bag' ) {
 			# bug 27105
 			wfDebugLog( 'XMP', __METHOD__ . ' Expected an rdf:Seq, but got an rdf:Bag. Pretending'
 				. ' it is a Seq, since some buggy software is known to screw this up.' );
@@ -854,9 +854,9 @@ class XMPReader {
 	*  <exif:Mode>1</exif:Mode></rdf:Description></exif:Flash>
 	*
 	* or:
-	* 
+	*
 	* <exif:Flash rdf:parseType='Resource'> <exif:Fired>True</exif:Fired>
-	*  <exif:Mode>1</exif:Mode></exif:Flash> 
+	*  <exif:Mode>1</exif:Mode></exif:Flash>
 	*
 	* @param $ns String namespace
 	* @param $tag String tag name (no ns)
@@ -906,7 +906,7 @@ class XMPReader {
 	* This method is called when we hit the <rdf:li> element.
 	*
 	* @param $elm String: namespace . ' ' . tagname
-	* @param $attribs Array: Attributes. (needed for BAGSTRUCTS) 
+	* @param $attribs Array: Attributes. (needed for BAGSTRUCTS)
 	* @throws MWException if gets a tag other than <rdf:li>
 	*/
 	private function startElementModeLi( $elm, $attribs ) {
@@ -994,7 +994,7 @@ class XMPReader {
 	function startElement( $parser, $elm, $attribs ) {
 
 		if ( $elm === self::NS_RDF . ' RDF'
-			|| $elm === 'adobe:ns:meta/ xmpmeta' 
+			|| $elm === 'adobe:ns:meta/ xmpmeta'
 			|| $elm === 'adobe:ns:meta/ xapmeta')
 		{
 			/* ignore. */
@@ -1080,7 +1080,7 @@ class XMPReader {
 	* @param $attribs Array attribute=>value array.
 	*/
 	private function doAttribs( $attribs ) {
-		
+
 		// first check for rdf:parseType attribute, as that can change
 		// how the attributes are interperted.
 

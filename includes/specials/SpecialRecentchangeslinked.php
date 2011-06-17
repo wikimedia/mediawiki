@@ -144,7 +144,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 			// imagelinks and categorylinks tables have no xx_namespace field, and have xx_to instead of xx_title
 			if( $link_table == 'imagelinks' ) $link_ns = NS_FILE;
-			else if( $link_table == 'categorylinks' ) $link_ns = NS_CATEGORY;
+			elseif( $link_table == 'categorylinks' ) $link_ns = NS_CATEGORY;
 			else $link_ns = 0;
 
 			if( $showlinkedto ) {

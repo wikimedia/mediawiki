@@ -31,7 +31,7 @@ function wfGetForwardedFor() {
 	#Try a couple of headers
 	if( isset( $set[$index] ) ) {
 		return $set[$index];
-	} else if( isset( $set[$index2] ) ) {
+	} elseif( isset( $set[$index2] ) ) {
 		return $set[$index2];
 	} else {
 		return null;

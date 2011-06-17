@@ -160,7 +160,7 @@ class RawPage {
 			$sk->initPage( $wgOut );
 			if( $this->mGen == 'css' ) {
 				return $sk->generateUserStylesheet();
-			} else if( $this->mGen == 'js' ) {
+			} elseif( $this->mGen == 'js' ) {
 				return $sk->generateUserJs();
 			}
 		} else {

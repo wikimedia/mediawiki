@@ -99,10 +99,10 @@ class SearchPostgres extends SearchEngine {
 				if (strtolower($terms[2]) === 'and') {
 					$searchstring .= ' & ';
 				}
-				else if (strtolower($terms[2]) === 'or' or $terms[2] === '|') {
+				elseif (strtolower($terms[2]) === 'or' or $terms[2] === '|') {
 					$searchstring .= ' | ';
 				}
-				else if (strtolower($terms[2]) === 'not') {
+				elseif (strtolower($terms[2]) === 'not') {
 					$searchstring .= ' & !';
 				}
 				else {

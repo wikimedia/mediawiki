@@ -40,15 +40,15 @@ class ResourceLoader {
 
 	/**
 	 * Loads information stored in the database about modules.
-	 * 
-	 * This method grabs modules dependencies from the database and updates modules 
+	 *
+	 * This method grabs modules dependencies from the database and updates modules
 	 * objects.
-	 * 
-	 * This is not inside the module code because it is much faster to 
-	 * request all of the information at once than it is to have each module 
+	 *
+	 * This is not inside the module code because it is much faster to
+	 * request all of the information at once than it is to have each module
 	 * requests its own information. This sacrifice of modularity yields a substantial
 	 * performance improvement.
-	 * 
+	 *
 	 * @param $modules Array: List of module names to preload information for
 	 * @param $context ResourceLoaderContext: Context to load the information within
 	 */
@@ -59,7 +59,7 @@ class ResourceLoader {
 		$dbr = wfGetDB( DB_SLAVE );
 		$skin = $context->getSkin();
 		$lang = $context->getLanguage();
-		
+
 		// Get file dependency information
 		$res = $dbr->select( 'module_deps', array( 'md_module', 'md_deps' ), array(
 				'md_module' => $modules,
@@ -80,7 +80,7 @@ class ResourceLoader {
 		foreach ( array_diff( $modules, $modulesWithDeps ) as $name ) {
 			$this->getModule( $name )->setFileDependencies( $skin, array() );
 		}
-		
+
 		// Get message blob mtimes. Only do this for modules with messages
 		$modulesWithMessages = array();
 		foreach ( $modules as $name ) {
@@ -96,11 +96,11 @@ class ResourceLoader {
 				), __METHOD__
 			);
 			foreach ( $res as $row ) {
-				$this->getModule( $row->mr_resource )->setMsgBlobMtime( $lang, 
+				$this->getModule( $row->mr_resource )->setMsgBlobMtime( $lang,
 					wfTimestamp( TS_UNIX, $row->mr_timestamp ) );
 				unset( $modulesWithoutMessages[$row->mr_resource] );
 			}
-		} 
+		}
 		foreach ( array_keys( $modulesWithoutMessages ) as $name ) {
 			$this->getModule( $name )->setMsgBlobMtime( $lang, 0 );
 		}
@@ -108,14 +108,14 @@ class ResourceLoader {
 
 	/**
 	 * Runs JavaScript or CSS data through a filter, caching the filtered result for future calls.
-	 * 
+	 *
 	 * Available filters are:
 	 *  - minify-js \see JavaScriptMinifier::minify
 	 *  - minify-css \see CSSMin::minify
-	 * 
-	 * If $data is empty, only contains whitespace or the filter was unknown, 
+	 *
+	 * If $data is empty, only contains whitespace or the filter was unknown,
 	 * $data is returned unmodified.
-	 * 
+	 *
 	 * @param $filter String: Name of filter to run
 	 * @param $data String: Text to filter, such as JavaScript or CSS text
 	 * @return String: Filtered data, or a comment containing an error message
@@ -124,10 +124,10 @@ class ResourceLoader {
 		global $wgResourceLoaderMinifierStatementsOnOwnLine, $wgResourceLoaderMinifierMaxLineLength;
 		wfProfileIn( __METHOD__ );
 
-		// For empty/whitespace-only data or for unknown filters, don't perform 
+		// For empty/whitespace-only data or for unknown filters, don't perform
 		// any caching or processing
-		if ( trim( $data ) === '' 
-			|| !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) 
+		if ( trim( $data ) === ''
+			|| !in_array( $filter, array( 'minify-js', 'minify-css' ) ) )
 		{
 			wfProfileOut( __METHOD__ );
 			return $data;
@@ -168,7 +168,7 @@ class ResourceLoader {
 		}
 
 		wfProfileOut( __METHOD__ );
-		
+
 		return $result;
 	}
 
@@ -179,24 +179,24 @@ class ResourceLoader {
 	 */
 	public function __construct() {
 		global $IP, $wgResourceModules;
-		
+
 		wfProfileIn( __METHOD__ );
-		
+
 		// Register core modules
 		$this->register( include( "$IP/resources/Resources.php" ) );
 		// Register extension modules
 		wfRunHooks( 'ResourceLoaderRegisterModules', array( &$this ) );
 		$this->register( $wgResourceModules );
-		
+
 		wfProfileOut( __METHOD__ );
 	}
 
 	/**
 	 * Registers a module with the ResourceLoader system.
-	 * 
+	 *
 	 * @param $name Mixed: Name of module as a string or List of name/object pairs as an array
-	 * @param $info Module info array. For backwards compatibility with 1.17alpha, 
-	 *   this may also be a ResourceLoaderModule object. Optional when using 
+	 * @param $info Module info array. For backwards compatibility with 1.17alpha,
+	 *   this may also be a ResourceLoaderModule object. Optional when using
 	 *   multiple-registration calling style.
 	 * @throws MWException: If a duplicate module registration is attempted
 	 * @throws MWException: If a module name contains illegal characters (pipes or commas)
@@ -220,11 +220,11 @@ class ResourceLoader {
 		if ( isset( $this->moduleInfos[$name] ) ) {
 			// A module has already been registered by this name
 			throw new MWException(
-				'ResourceLoader duplicate registration error. ' . 
+				'ResourceLoader duplicate registration error. ' .
 				'Another module has already been registered as ' . $name
 			);
 		}
-		
+
 		// Check $name for illegal characters
 		if ( preg_match( '/[|,!]/', $name ) ) {
 			throw new MWException( "ResourceLoader module name '$name' is invalid. Names may not contain pipes (|), commas (,) or exclamation marks (!)" );
@@ -235,7 +235,7 @@ class ResourceLoader {
 			// Old calling convention
 			// Validate the input
 			if ( !( $info instanceof ResourceLoaderModule ) ) {
-				throw new MWException( 'ResourceLoader invalid module error. ' . 
+				throw new MWException( 'ResourceLoader invalid module error. ' .
 					'Instances of ResourceLoaderModule expected.' );
 			}
 
@@ -298,7 +298,7 @@ class ResourceLoader {
 	 */
 	public function respond( ResourceLoaderContext $context ) {
 		global $wgResourceLoaderMaxage, $wgCacheEpoch;
-		
+
 		// Buffer output to catch warnings. Normally we'd use ob_clean() on the
 		// top-level output buffer to clear warnings, but that breaks when ob_gzhandler
 		// is used: ob_clean() will clear the GZIP header in that case and it won't come
@@ -322,13 +322,13 @@ class ResourceLoader {
 			}
 		}
 
-		// If a version wasn't specified we need a shorter expiry time for updates 
+		// If a version wasn't specified we need a shorter expiry time for updates
 		// to propagate to clients quickly
 		if ( is_null( $context->getVersion() ) ) {
 			$maxage  = $wgResourceLoaderMaxage['unversioned']['client'];
 			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
 		}
-		// If a version was specified we can use a longer expiry time since changing 
+		// If a version was specified we can use a longer expiry time since changing
 		// version numbers causes cache misses
 		else {
 			$maxage  = $wgResourceLoaderMaxage['versioned']['client'];
@@ -346,7 +346,7 @@ class ResourceLoader {
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
 
 		$private = false;
-		// To send Last-Modified and support If-Modified-Since, we need to detect 
+		// To send Last-Modified and support If-Modified-Since, we need to detect
 		// the last modified time
 		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $modules as $module ) {
@@ -410,17 +410,17 @@ class ResourceLoader {
 				for ( $i = 0; $i < ob_get_level(); $i++ ) {
 					ob_end_clean();
 				}
-				
+
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
 				wfProfileOut( __METHOD__ );
 				return;
 			}
 		}
-		
+
 		// Generate a response
 		$response = $this->makeModuleResponse( $context, $modules, $missing );
-		
+
 		// Prepend comments indicating exceptions
 		$response = $exceptions . $response;
 
@@ -439,21 +439,21 @@ class ResourceLoader {
 
 	/**
 	 * Generates code for a response
-	 * 
+	 *
 	 * @param $context ResourceLoaderContext: Context in which to generate a response
 	 * @param $modules Array: List of module objects keyed by module name
 	 * @param $missing Array: List of unavailable modules (optional)
 	 * @return String: Response data
 	 */
-	public function makeModuleResponse( ResourceLoaderContext $context, 
-		array $modules, $missing = array() ) 
+	public function makeModuleResponse( ResourceLoaderContext $context,
+		array $modules, $missing = array() )
 	{
 		$out = '';
 		$exceptions = '';
 		if ( $modules === array() && $missing === array() ) {
 			return '/* No modules requested. Max made me put this here */';
 		}
-		
+
 		wfProfileIn( __METHOD__ );
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
@@ -494,7 +494,7 @@ class ResourceLoader {
 					case 'scripts':
 						if ( is_string( $scripts ) ) {
 							$out .= $scripts;
-						} else if ( is_array( $scripts ) ) {
+						} elseif ( is_array( $scripts ) ) {
 							$out .= self::makeLoaderImplementScript( $name, $scripts, array(), array() );
 						}
 						break;
@@ -532,10 +532,10 @@ class ResourceLoader {
 		// Update module states
 		if ( $context->shouldIncludeScripts() ) {
 			// Set the state of modules loaded as only scripts to ready
-			if ( count( $modules ) && $context->getOnly() === 'scripts' 
-				&& !isset( $modules['startup'] ) ) 
+			if ( count( $modules ) && $context->getOnly() === 'scripts'
+				&& !isset( $modules['startup'] ) )
 			{
-				$out .= self::makeLoaderStateScript( 
+				$out .= self::makeLoaderStateScript(
 					array_fill_keys( array_keys( $modules ), 'ready' ) );
 			}
 			// Set the state of modules which were requested but unavailable as missing
@@ -551,7 +551,7 @@ class ResourceLoader {
 				$out = $this->filter( 'minify-js', $out );
 			}
 		}
-		
+
 		wfProfileOut( __METHOD__ );
 		return $exceptions . $out;
 	}
@@ -559,14 +559,14 @@ class ResourceLoader {
 	/* Static Methods */
 
 	/**
-	 * Returns JS code to call to mw.loader.implement for a module with 
+	 * Returns JS code to call to mw.loader.implement for a module with
 	 * given properties.
 	 *
 	 * @param $name Module name
 	 * @param $scripts Mixed: List of URLs to JavaScript files or String of JavaScript code
 	 * @param $styles Mixed: List of CSS strings keyed by media type, or list of lists of URLs to
 	 * CSS files keyed by media type
-	 * @param $messages Mixed: List of messages associated with this module. May either be an 
+	 * @param $messages Mixed: List of messages associated with this module. May either be an
 	 *     associative array mapping message key to value, or a JSON-encoded message blob containing
 	 *     the same data, wrapped in an XmlJsCode object.
 	 *
@@ -575,11 +575,11 @@ class ResourceLoader {
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_string( $scripts ) ) {
 			$scripts = new XmlJsCode( "function( $ ) {{$scripts}}" );
-		} else if ( !is_array( $scripts ) ) {
+		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
-		return Xml::encodeJsCall( 
-			'mw.loader.implement', 
+		return Xml::encodeJsCall(
+			'mw.loader.implement',
 			array(
 				$name,
 				$scripts,
@@ -601,7 +601,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Combines an associative array mapping media type to CSS into a 
+	 * Combines an associative array mapping media type to CSS into a
 	 * single stylesheet with @media blocks.
 	 *
 	 * @param $styles Array: List of CSS strings keyed by media type
@@ -614,10 +614,10 @@ class ResourceLoader {
 			// Transform the media type based on request params and config
 			// The way that this relies on $wgRequest to propagate request params is slightly evil
 			$media = OutputPage::transformCssMedia( $media );
-			
+
 			if ( $media === null ) {
 				// Skip
-			} else if ( $media === '' || $media == 'all' ) {
+			} elseif ( $media === '' || $media == 'all' ) {
 				// Don't output invalid or frivolous @media statements
 				$out .= "$style\n";
 			} else {
@@ -628,7 +628,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Returns a JS call to mw.loader.state, which sets the state of a 
+	 * Returns a JS call to mw.loader.state, which sets the state of a
 	 * module or modules to a given value. Has two calling conventions:
 	 *
 	 *    - ResourceLoader::makeLoaderStateScript( $name, $state ):
@@ -652,9 +652,9 @@ class ResourceLoader {
 
 	/**
 	 * Returns JS code which calls the script given by $script. The script will
-	 * be called with local variables name, version, dependencies and group, 
-	 * which will have values corresponding to $name, $version, $dependencies 
-	 * and $group as supplied. 
+	 * be called with local variables name, version, dependencies and group,
+	 * which will have values corresponding to $name, $version, $dependencies
+	 * and $group as supplied.
 	 *
 	 * @param $name String: Module name
 	 * @param $version Integer: Module version number as a timestamp
@@ -666,13 +666,13 @@ class ResourceLoader {
 	 */
 	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
-		return Xml::encodeJsCall( 
+		return Xml::encodeJsCall(
 			"( function( name, version, dependencies, group ) {\n\t$script\n} )",
 			array( $name, $version, $dependencies, $group ) );
 	}
 
 	/**
-	 * Returns JS code which calls mw.loader.register with the given 
+	 * Returns JS code which calls mw.loader.register with the given
 	 * parameters. Has three calling conventions:
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group ):
@@ -695,20 +695,20 @@ class ResourceLoader {
 	 *
 	 * @return string
 	 */
-	public static function makeLoaderRegisterScript( $name, $version = null, 
-		$dependencies = null, $group = null ) 
+	public static function makeLoaderRegisterScript( $name, $version = null,
+		$dependencies = null, $group = null )
 	{
 		if ( is_array( $name ) ) {
 			return Xml::encodeJsCall( 'mw.loader.register', array( $name ) );
 		} else {
 			$version = (int) $version > 1 ? (int) $version : 1;
-			return Xml::encodeJsCall( 'mw.loader.register', 
+			return Xml::encodeJsCall( 'mw.loader.register',
 				array( $name, $version, $dependencies, $group ) );
 		}
 	}
 
 	/**
-	 * Returns JS code which runs given JS code if the client-side framework is 
+	 * Returns JS code which runs given JS code if the client-side framework is
 	 * present.
 	 *
 	 * @param $script String: JavaScript code
@@ -721,7 +721,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Returns JS code which will set the MediaWiki configuration array to 
+	 * Returns JS code which will set the MediaWiki configuration array to
 	 * the given value.
 	 *
 	 * @param $configuration Array: List of configuration values keyed by variable name
@@ -734,7 +734,7 @@ class ResourceLoader {
 
 	/**
 	 * Convert an array of module names to a packed query string.
-	 * 
+	 *
 	 * For example, array( 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' )
 	 * becomes 'foo.bar,baz|bar.baz,quux'
 	 * @param $modules array of module names (strings)

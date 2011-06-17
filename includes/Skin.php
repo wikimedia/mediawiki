@@ -110,7 +110,7 @@ abstract class Skin {
 
 		if ( isset( $skinNames[$key] ) ) {
 			return $key;
-		} else if ( isset( $skinNames[$wgDefaultSkin] ) ) {
+		} elseif ( isset( $skinNames[$wgDefaultSkin] ) ) {
 			return $wgDefaultSkin;
 		} else {
 			return 'vector';
@@ -184,7 +184,7 @@ abstract class Skin {
 	 */
 	function preloadExistence() {
 		$user = $this->getContext()->getUser();
-		
+
 		// User/talk link
 		$titles = array( $user->getUserPage(), $user->getTalkPage() );
 
@@ -340,7 +340,7 @@ abstract class Skin {
 			);
 		} else {
 			return '';
-		} 
+		}
 	}
 
 	/**
@@ -923,7 +923,7 @@ abstract class Skin {
 
 		$url = htmlspecialchars( "$wgStylePath/common/images/poweredby_mediawiki_88x31.png" );
 		$text = '<a href="http://www.mediawiki.org/"><img src="' . $url . '" height="31" width="88" alt="Powered by MediaWiki" /></a>';
-		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ) );	
+		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ) );
 		return $text;
 	}
 
@@ -1290,7 +1290,7 @@ abstract class Skin {
 						'id' => 'n-' . strtr( $line[1], ' ', '-' ),
 						'active' => false
 					);
-				} else if ( ( substr( $line, 0, 2 ) == '{{' ) && ( substr( $line, -2 ) == '}}' ) ) {
+				} elseif ( ( substr( $line, 0, 2 ) == '{{' ) && ( substr( $line, -2 ) == '}}' ) ) {
 					global $wgParser;
 
 					$line = substr( $line, 2, strlen( $line ) - 4 );

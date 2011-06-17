@@ -332,7 +332,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 
 		if( $this->sizetype=='min' ) {
 			$conds[] = 'page_len>=' . $this->size;
-		} else if( $this->sizetype=='max' ) {
+		} elseif( $this->sizetype=='max' ) {
 			$conds[] = 'page_len<=' . $this->size;
 		}
 

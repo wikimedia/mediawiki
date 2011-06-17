@@ -132,11 +132,11 @@ class SearchEngine {
 		wfRunHooks( 'SearchGetNearMatchComplete', array( $searchterm, &$title ) );
 		return $title;
 	}
-	
+
 	/**
-	 * Do a near match (see SearchEngine::getNearMatch) and wrap it into a 
+	 * Do a near match (see SearchEngine::getNearMatch) and wrap it into a
 	 * SearchResultSet.
-	 * 
+	 *
 	 * @param $searchterm string
 	 * @return SearchResultSet
 	 */
@@ -300,7 +300,7 @@ class SearchEngine {
 		if ( strncmp( $query, $allkeyword, strlen( $allkeyword ) ) == 0 ) {
 			$this->namespaces = null;
 			$parsed = substr( $query, strlen( $allkeyword ) );
-		} else if ( strpos( $query, ':' ) !== false ) {
+		} elseif ( strpos( $query, ':' ) !== false ) {
 			$prefix = substr( $query, 0, strpos( $query, ':' ) );
 			$index = $wgContLang->getNsIndex( $prefix );
 			if ( $index !== false ) {
@@ -639,7 +639,7 @@ class SqlSearchResultSet extends SearchResultSet {
 		$row = $this->mResultSet->fetchObject();
 		if ( $row === false )
 			return false;
-			
+
 		return SearchResult::newFromRow( $row );
 	}
 
@@ -685,8 +685,8 @@ class SearchResult {
 
 	/**
 	 * Return a new SearchResult and initializes it with a title.
-	 * 
-	 * @param $title Title 
+	 *
+	 * @param $title Title
 	 * @return SearchResult
 	 */
 	public static function newFromTitle( $title ) {
@@ -696,7 +696,7 @@ class SearchResult {
 	}
 	/**
 	 * Return a new SearchResult and initializes it with a row.
-	 * 
+	 *
 	 * @param $row object
 	 * @return SearchResult
 	 */
@@ -705,28 +705,28 @@ class SearchResult {
 		$result->initFromRow( $row );
 		return $result;
 	}
-	
+
 	public function __construct( $row = null ) {
 		if ( !is_null( $row ) ) {
 			// Backwards compatibility with pre-1.17 callers
 			$this->initFromRow( $row );
 		}
 	}
-	
+
 	/**
 	 * Initialize from a database row. Makes a Title and passes that to
 	 * initFromTitle.
-	 * 
+	 *
 	 * @param $row object
 	 */
 	protected function initFromRow( $row ) {
 		$this->initFromTitle( Title::makeTitle( $row->page_namespace, $row->page_title ) );
 	}
-	
+
 	/**
 	 * Initialize from a Title and if possible initializes a corresponding
 	 * Revision and File.
-	 * 
+	 *
 	 * @param $title Title
 	 */
 	protected function initFromTitle( $title ) {
@@ -843,7 +843,7 @@ class SearchResult {
 	function getTimestamp() {
 		if ( $this->mRevision )
 			return $this->mRevision->getTimestamp();
-		else if ( $this->mImage )
+		elseif ( $this->mImage )
 			return $this->mImage->getTimestamp();
 		return '';
 	}

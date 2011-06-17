@@ -97,7 +97,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Constructs a new module from an options array.
-	 * 
+	 *
 	 * @param $options Array: List of options; if not given or empty, an empty module will be
 	 *     constructed
 	 * @param $localBasePath String: Base path to prepend to all local paths in $options. Defaults
@@ -105,7 +105,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param $remoteBasePath String: Base path to prepend to all remote paths in $options. Defaults
 	 *     to $wgScriptPath
 	 *
-	 * Below is a description for the $options array: 
+	 * Below is a description for the $options array:
 	 * @code
 	 * 	array(
 	 * 		// Base path to prepend to all local paths in $options. Defaults to $IP
@@ -145,8 +145,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 	)
 	 * @endcode
 	 */
-	public function __construct( $options = array(), $localBasePath = null, 
-		$remoteBasePath = null ) 
+	public function __construct( $options = array(), $localBasePath = null,
+		$remoteBasePath = null )
 	{
 		global $IP, $wgScriptPath;
 		$this->localBasePath = $localBasePath === null ? $IP : $localBasePath;
@@ -172,14 +172,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'skinStyles':
 					if ( !is_array( $option ) ) {
 						throw new MWException(
-							"Invalid collated file path list error. " . 
+							"Invalid collated file path list error. " .
 							"'$option' given, array expected."
 						);
 					}
 					foreach ( $option as $key => $value ) {
 						if ( !is_string( $key ) ) {
 							throw new MWException(
-								"Invalid collated file path list key error. " . 
+								"Invalid collated file path list key error. " .
 								"'$key' given, string expected."
 							);
 						}
@@ -210,7 +210,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets all scripts for a given context concatenated together.
-	 * 
+	 *
 	 * @param $context ResourceLoaderContext: Context in which to generate script
 	 * @return String: JavaScript code for $context
 	 */
@@ -228,7 +228,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets loader script.
-	 * 
+	 *
 	 * @return String: JavaScript code to be added to startup module
 	 */
 	public function getLoaderScript() {
@@ -240,7 +240,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets all styles for a given context concatenated together.
-	 * 
+	 *
 	 * @param $context ResourceLoaderContext: Context in which to generate styles
 	 * @return String: CSS code for $context
 	 */
@@ -277,7 +277,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets list of message keys used by this module.
-	 * 
+	 *
 	 * @return Array: List of message keys
 	 */
 	public function getMessages() {
@@ -286,7 +286,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets the name of the group this module should be loaded in.
-	 * 
+	 *
 	 * @return String: Group name
 	 */
 	public function getGroup() {
@@ -302,7 +302,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets list of names of modules this module depends on.
-	 * 
+	 *
 	 * @return Array: List of module names
 	 */
 	public function getDependencies() {
@@ -311,14 +311,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Get the last modified timestamp of this module.
-	 * 
-	 * Last modified timestamps are calculated from the highest last modified 
-	 * timestamp of this module's constituent files as well as the files it 
-	 * depends on. This function is context-sensitive, only performing 
-	 * calculations on files relevant to the given language, skin and debug 
+	 *
+	 * Last modified timestamps are calculated from the highest last modified
+	 * timestamp of this module's constituent files as well as the files it
+	 * depends on. This function is context-sensitive, only performing
+	 * calculations on files relevant to the given language, skin and debug
 	 * mode.
-	 * 
-	 * @param $context ResourceLoaderContext: Context in which to calculate 
+	 *
+	 * @param $context ResourceLoaderContext: Context in which to calculate
 	 *     the modified time
 	 * @return Integer: UNIX timestamp
 	 * @see ResourceLoaderModule::getFileDependencies
@@ -328,23 +328,23 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			return $this->modifiedTime[$context->getHash()];
 		}
 		wfProfileIn( __METHOD__ );
-		
+
 		$files = array();
-		
+
 		// Flatten style files into $files
 		$styles = self::collateFilePathListByOption( $this->styles, 'media', 'all' );
 		foreach ( $styles as $styleFiles ) {
 			$files = array_merge( $files, $styleFiles );
 		}
 		$skinFiles = self::tryForKey(
-			self::collateFilePathListByOption( $this->skinStyles, 'media', 'all' ), 
-			$context->getSkin(), 
+			self::collateFilePathListByOption( $this->skinStyles, 'media', 'all' ),
+			$context->getSkin(),
 			'default'
 		);
 		foreach ( $skinFiles as $styleFiles ) {
 			$files = array_merge( $files, $styleFiles );
 		}
-		
+
 		// Final merge, this should result in a master list of dependent files
 		$files = array_merge(
 			$files,
@@ -357,19 +357,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$files = array_map( array( $this, 'getLocalPath' ), $files );
 		// File deps need to be treated separately because they're already prefixed
 		$files = array_merge( $files, $this->getFileDependencies( $context->getSkin() ) );
-		
-		// If a module is nothing but a list of dependencies, we need to avoid 
+
+		// If a module is nothing but a list of dependencies, we need to avoid
 		// giving max() an empty array
 		if ( count( $files ) === 0 ) {
 			wfProfileOut( __METHOD__ );
 			return $this->modifiedTime[$context->getHash()] = 1;
 		}
-		
+
 		wfProfileIn( __METHOD__.'-filemtime' );
 		$filesMtime = max( array_map( 'filemtime', $files ) );
 		wfProfileOut( __METHOD__.'-filemtime' );
-		$this->modifiedTime[$context->getHash()] = max( 
-			$filesMtime, 
+		$this->modifiedTime[$context->getHash()] = max(
+			$filesMtime,
 			$this->getMsgBlobMtime( $context->getLanguage() ) );
 
 		wfProfileOut( __METHOD__ );
@@ -396,8 +396,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Collates file paths by option (where provided).
-	 * 
-	 * @param $list Array: List of file paths in any combination of index/path 
+	 *
+	 * @param $list Array: List of file paths in any combination of index/path
 	 *     or path/options pairs
 	 * @param $option String: option name
 	 * @param $default Mixed: default value if the option isn't set
@@ -412,7 +412,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					$collatedFiles[$default] = array();
 				}
 				$collatedFiles[$default][] = $value;
-			} else if ( is_array( $value ) ) {
+			} elseif ( is_array( $value ) ) {
 				// File name as the key, options array as the value
 				$optionValue = isset( $value[$option] ) ? $value[$option] : $default;
 				if ( !isset( $collatedFiles[$optionValue] ) ) {
@@ -426,19 +426,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets a list of element that match a key, optionally using a fallback key.
-	 * 
+	 *
 	 * @param $list Array: List of lists to select from
 	 * @param $key String: Key to look for in $map
 	 * @param $fallback String: Key to look for in $list if $key doesn't exist
-	 * @return Array: List of elements from $map which matched $key or $fallback, 
+	 * @return Array: List of elements from $map which matched $key or $fallback,
 	 *     or an empty list in case of no match
 	 */
 	protected static function tryForKey( array $list, $key, $fallback = null ) {
 		if ( isset( $list[$key] ) && is_array( $list[$key] ) ) {
 			return $list[$key];
-		} else if ( is_string( $fallback ) 
-			&& isset( $list[$fallback] ) 
-			&& is_array( $list[$fallback] ) ) 
+		} elseif ( is_string( $fallback )
+			&& isset( $list[$fallback] )
+			&& is_array( $list[$fallback] ) )
 		{
 			return $list[$fallback];
 		}
@@ -447,7 +447,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets a list of file paths for all scripts in this module, in order of propper execution.
-	 * 
+	 *
 	 * @param $context ResourceLoaderContext: Context
 	 * @return Array: List of file paths
 	 */
@@ -465,7 +465,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets a list of file paths for all styles in this module, in order of propper inclusion.
-	 * 
+	 *
 	 * @param $context ResourceLoaderContext: Context
 	 * @return Array: List of file paths
 	 */
@@ -480,7 +480,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets the contents of a list of JavaScript files.
-	 * 
+	 *
 	 * @param $scripts Array: List of file paths to scripts to read, remap and concetenate
 	 * @return String: Concatenated and remapped JavaScript data from $scripts
 	 */
@@ -502,13 +502,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets the contents of a list of CSS files.
-	 * 
+	 *
 	 * @param $styles Array: List of media type/list of file paths pairs, to read, remap and
 	 * concetenate
 	 *
 	 * @param $flip bool
 	 *
-	 * @return Array: List of concatenated and remapped CSS data from $styles, 
+	 * @return Array: List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 */
 	protected function readStyleFiles( array $styles, $flip ) {
@@ -531,15 +531,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Reads a style file.
-	 * 
+	 *
 	 * This method can be used as a callback for array_map()
-	 * 
+	 *
 	 * @param $path String: File path of script file to read
 	 * @param $flip bool
 	 *
 	 * @return String: CSS data in script file
 	 */
-	protected function readStyleFile( $path, $flip ) {	
+	protected function readStyleFile( $path, $flip ) {
 		$localPath = $this->getLocalPath( $path );
 		$style = file_get_contents( $localPath );
 		if ( $style === false ) {
@@ -556,8 +556,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$dir = $this->getLocalPath( $dirname );
 		$remoteDir = $this->getRemotePath( $dirname );
 		// Get and register local file references
-		$this->localFileRefs = array_merge( 
-			$this->localFileRefs, 
+		$this->localFileRefs = array_merge(
+			$this->localFileRefs,
 			CSSMin::getLocalFileReferences( $style, $dir ) );
 		return CSSMin::remap(
 			$style, $dir, $remoteDir, true
