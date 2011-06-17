@@ -1043,20 +1043,30 @@ class LocalFile extends File {
 	 * @param $srcPath String: local filesystem path to the source image
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE	Delete the source file, i.e. move rather than copy
-	 * @param $dstArchiveName string File name if the file is to be published 
-	 *     into the archive
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function publish( $srcPath, $flags = 0, $dstArchiveName = null ) {
-		$this->lock();
+	function publish( $srcPath, $flags = 0 ) {
+		return $this->publishTo( $srcPath, $this->getRel(), $flags );
+	}
 
-		if ( $dstArchiveName ) {
-			$dstRel = 'archive/' . $this->getHashPath() . $dstArchiveName;
-		} else {
-			$dstRel = $this->getRel();
-		}
-			
+	/**
+	 * Move or copy a file to a specified location. Returns a FileRepoStatus 
+	 * object with the archive name in the "value" member on success.
+	 *
+	 * The archive name should be passed through to recordUpload for database
+	 * registration.
+	 *
+	 * @param $srcPath String: local filesystem path to the source image
+	 * @param $dstRel String: target relative path
+	 * @param $flags Integer: a bitwise combination of:
+	 *     File::DELETE_SOURCE	Delete the source file, i.e. move rather than copy
+	 * @return FileRepoStatus object. On success, the value member contains the
+	 *     archive name, or an empty string if it was a new file.
+	 */
+	function publishTo( $srcPath, $dstRel, $flags = 0 ) {
+		$this->lock();
+		
 		$archiveName = wfTimestamp( TS_MW ) . '!'. $this->getName();
 		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;

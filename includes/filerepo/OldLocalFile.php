@@ -223,9 +223,11 @@ class OldLocalFile extends LocalFile {
 	 */
 	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user, $flags = 0 ) {
 		$this->lock();
-		$status = $this->publish( $srcPath, 
-			$flags & File::DELETE_SOURCE ? FileRepo::DELETE_SOURCE : 0, 
-			$archiveName );
+		
+		$dstRel = 'archive/' . $this->getHashPath() . $archiveName;
+		$status = $this->publishTo( $srcPath, $dstRel,
+			$flags & File::DELETE_SOURCE ? FileRepo::DELETE_SOURCE : 0
+		);
 		
 		if ( $status->isGood() ) {
 			if ( !$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) ) {
