@@ -11,7 +11,7 @@
  *
  * @ingroup Media
  */
-class TiffHandler extends JpegOrTiffHandler {
+class TiffHandler extends ExifBitmapHandler {
 
 	/**
 	 * Conversion to PNG for inline display can be disabled here...
@@ -63,7 +63,7 @@ class TiffHandler extends JpegOrTiffHandler {
 				$data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 				return serialize( $data );
 			} else {
-				return JpegOrTiffHandler::BROKEN_FILE;
+				return ExifBitmapHandler::BROKEN_FILE;
 			}
 		} else {
 			return '';
