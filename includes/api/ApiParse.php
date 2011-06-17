@@ -110,35 +110,44 @@ class ApiParse extends ApiBase {
 					$p_result = $wgParser->parse( $this->text, $titleObj, $popts );
 				}
 			} else { // Not $oldid
-				if ( !is_null ( $pageid ) ) {
-					$titleObj = Title::newFromID( $pageid );
-
-					if ( !$titleObj ) {
-						$this->dieUsageMsg( array( 'nosuchpageid', $pageid ) );
+				if ( $params['redirects'] ) {
+					$reqParams = array(
+						'action' => 'query',
+						'redirects' => '',
+					);
+					if ( !is_null ( $pageid ) ) {
+						$reqParams['pageids'] = $pageid;
+					} else { // $page
+						$reqParams['titles'] = $page;
 					}
-				} else { // $page
-					if ( $params['redirects'] ) {
-						$req = new FauxRequest( array(
-							'action' => 'query',
-							'redirects' => '',
-							'titles' => $page
-						) );
-						$main = new ApiMain( $req );
-						$main->execute();
-						$data = $main->getResultData();
-						$redirValues = isset( $data['query']['redirects'] )
-							? $data['query']['redirects'] : array();
-						$to = $page;
-						foreach ( (array)$redirValues as $r ) {
-							$to = $r['to'];
-						}
-					} else {
-						$to = $page;
+					$req = new FauxRequest( $reqParams );
+					$main = new ApiMain( $req );
+					$main->execute();
+					$data = $main->getResultData();
+					$redirValues = isset( $data['query']['redirects'] )
+						? $data['query']['redirects']
+						: array();
+					$to = $page;
+					foreach ( (array)$redirValues as $r ) {
+						$to = $r['to'];
 					}
 					$titleObj = Title::newFromText( $to );
-					if ( !$titleObj || !$titleObj->exists() ) {
-						$this->dieUsage( "The page you specified doesn't exist", 'missingtitle' );
+				} else {
+					if ( !is_null ( $pageid ) ) {
+						$reqParams['pageids'] = $pageid;
+						$titleObj = Title::newFromID( $pageid );
+					} else { // $page
+						$to = $page;
+						$titleObj = Title::newFromText( $to );
 					}
+				}
+				if ( !is_null ( $pageid ) ) {
+					if ( !$titleObj ) {
+						// Still throw nosuchpageid error if pageid was provided
+						$this->dieUsageMsg( array( 'nosuchpageid', $pageid ) );
+					}
+				} elseif ( !$titleObj || !$titleObj->exists() ) {
+					$this->dieUsage( "The page you specified doesn't exist", 'missingtitle' );
 				}
 				$wgTitle = $titleObj;
 
@@ -515,7 +524,7 @@ class ApiParse extends ApiBase {
 		return array(
 			'text' => 'Wikitext to parse',
 			'summary' => 'Summary to parse',
-			'redirects' => "If the {$p}page parameter is set to a redirect, resolve it",
+			'redirects' => "If the {$p}page or the {$p}pageid parameter is set to a redirect, resolve it",
 			'title' => 'Title of page the text belongs to',
 			'page' => "Parse the content of this page. Cannot be used together with {$p}text and {$p}title",
 			'pageid' => "Parse the content of this page. Overrides {$p}page",
