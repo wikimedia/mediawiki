@@ -279,7 +279,7 @@ class ChangesList {
 		# Diff link
 		if( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$diffLink = $this->message['diff'];
-		} else if( !self::userCan($rc,Revision::DELETED_TEXT) ) {
+		} elseif( !self::userCan($rc,Revision::DELETED_TEXT) ) {
 			$diffLink = $this->message['diff'];
 		} else {
 			$query = array(
@@ -684,11 +684,11 @@ class EnhancedChangesList extends ChangesList {
 				array(), array( 'redirect' => 'no' ) ),
 				$this->skin->linkKnown( $rc->getMovedToTitle() ) );
 		// New unpatrolled pages
-		} else if( $rc->unpatrolled && $type == RC_NEW ) {
+		} elseif( $rc->unpatrolled && $type == RC_NEW ) {
 			$clink = $this->skin->linkKnown( $rc->getTitle(), null, array(),
 				array( 'rcid' => $rc->mAttribs['rc_id'] ) );
 		// Log entries
-		} else if( $type == RC_LOG ) {
+		} elseif( $type == RC_LOG ) {
 			if( $logType ) {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
 				$clink = '(' . $this->skin->linkKnown( $logtitle,
@@ -740,7 +740,7 @@ class EnhancedChangesList extends ChangesList {
 		if( !$showdifflinks ) {
 			$curLink = $this->message['cur'];
 			$diffLink = $this->message['diff'];
-		} else if( in_array( $type, array( RC_NEW, RC_LOG, RC_MOVE, RC_MOVE_OVER_REDIRECT ) ) ) {
+		} elseif( in_array( $type, array( RC_NEW, RC_LOG, RC_MOVE, RC_MOVE_OVER_REDIRECT ) ) ) {
 			if ( $type != RC_NEW ) {
 				$curLink = $this->message['cur'];
 			} else {
@@ -758,7 +758,7 @@ class EnhancedChangesList extends ChangesList {
 		# Make "last" link
 		if( !$showdifflinks || !$lastOldid ) {
 			$lastLink = $this->message['last'];
-		} else if( in_array( $type, array( RC_LOG, RC_MOVE, RC_MOVE_OVER_REDIRECT ) ) ) {
+		} elseif( in_array( $type, array( RC_LOG, RC_MOVE, RC_MOVE_OVER_REDIRECT ) ) ) {
 			$lastLink = $this->message['last'];
 		} else {
 			$lastLink = $this->skin->linkKnown( $rc->getTitle(), $this->message['last'],
@@ -903,7 +903,7 @@ class EnhancedChangesList extends ChangesList {
 		# Article link
 		if( $namehidden ) {
 			$r .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-event' ) . '</span>';
-		} else if( $allLogs ) {
+		} elseif( $allLogs ) {
 			$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
 		} else {
 			$this->insertArticleLink( $r, $block[0], $block[0]->unpatrolled, $block[0]->watched );
@@ -924,7 +924,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= '(';
 			if( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT ) ) {
 				$r .= $nchanges[$n];
-			} else if( $isnew ) {
+			} elseif( $isnew ) {
 				$r .= $nchanges[$n];
 			} else {
 				$params = $queryParams;
@@ -944,7 +944,7 @@ class EnhancedChangesList extends ChangesList {
 		# History
 		if( $allLogs ) {
 			// don't show history link for logs
-		} else if( $namehidden || !$block[0]->getTitle()->exists() ) {
+		} elseif( $namehidden || !$block[0]->getTitle()->exists() ) {
 			$r .= $this->message['pipe-separator'] . $this->message['hist'] . ')';
 		} else {
 			$params = $queryParams;
@@ -1012,7 +1012,7 @@ class EnhancedChangesList extends ChangesList {
 			if( $type == RC_LOG ) {
 				$link = $rcObj->timestamp;
 			# Revision link
-			} else if( !ChangesList::userCan($rcObj,Revision::DELETED_TEXT) ) {
+			} elseif( !ChangesList::userCan($rcObj,Revision::DELETED_TEXT) ) {
 				$link = '<span class="history-deleted">'.$rcObj->timestamp.'</span> ';
 			} else {
 				if ( $rcObj->unpatrolled && $type == RC_NEW) {

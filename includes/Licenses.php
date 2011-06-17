@@ -62,7 +62,7 @@ class Licenses extends HTMLFormField {
 					}
 					if ( $level == count( $levels ) ) {
 						$levels[$level - 1] = $line;
-					} else if ( $level > count( $levels ) ) {
+					} elseif ( $level > count( $levels ) ) {
 						$levels[] = $line;
 					}
 				}

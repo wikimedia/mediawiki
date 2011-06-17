@@ -352,7 +352,7 @@ class _DiffEngine {
 						$this->in_seq[$this->seq[$k]] = false;
 						$this->seq[$k] = $y;
 						$this->in_seq[$y] = 1;
-					} else if ( empty( $this->in_seq[$y] ) ) {
+					} elseif ( empty( $this->in_seq[$y] ) ) {
 						$k = $this->_lcs_pos( $y );
 						assert( $k > 0 );
 						$ymids[$k] = $ymids[$k -1];

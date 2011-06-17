@@ -250,7 +250,7 @@ class Hooks {
 						'should return true to continue hook processing or false to abort.'
 					);
 				}
-			} else if ( !$retval ) {
+			} elseif ( !$retval ) {
 				return false;
 			}
 		}

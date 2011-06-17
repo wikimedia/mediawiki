@@ -1766,12 +1766,12 @@ abstract class DatabaseBase implements DatabaseType {
 
 				$retJOIN[] = $tableClause;
 			// Is there an INDEX clause?
-			} else if ( isset( $use_index_safe[$alias] ) ) {
+			} elseif ( isset( $use_index_safe[$alias] ) ) {
 				$tableClause = $this->tableNameWithAlias( $table, $alias );
 				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$alias] ) );
 				$ret[] = $tableClause;
 			// Is there a JOIN clause?
-			} else if ( isset( $join_conds_safe[$alias] ) ) {
+			} elseif ( isset( $join_conds_safe[$alias] ) ) {
 				$tableClause = $join_conds_safe[$alias][0] . ' ' . $this->tableNameWithAlias( $table, $alias );
 				$on = $this->makeList( (array)$join_conds_safe[$alias][1], LIST_AND );
 				if ( $on != '' ) {
@@ -2663,7 +2663,7 @@ abstract class DatabaseBase implements DatabaseType {
 					$dollarquote = true;
 				}
 			}
-			else if ( !$dollarquote ) {
+			elseif ( !$dollarquote ) {
 				if ( ';' == $line { $sl } && ( $sl < 2 || ';' != $line { $sl - 1 } ) ) {
 					$done = true;
 					$line = substr( $line, 0, $sl );

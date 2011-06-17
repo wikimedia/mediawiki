@@ -482,7 +482,7 @@ class ApiEditPage extends ApiBase {
 			'minor' => 'Minor edit',
 			'notminor' => 'Non-minor edit',
 			'bot' => 'Mark this edit as bot',
-			'basetimestamp' => array( 'Timestamp of the base revision (gotten through prop=revisions&rvprop=timestamp).',
+			'basetimestamp' => array( 'Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp).',
 						'Used to detect edit conflicts; leave unset to ignore conflicts.'
 			),
 			'starttimestamp' => array( 'Timestamp when you obtained the edit token.',

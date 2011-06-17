@@ -764,7 +764,7 @@ CONTROL;
 			wfDl( 'php_wikidiff' );
 			wfProfileOut( __METHOD__ . '-php_wikidiff.so' );
 		}
-		else if ( $wgExternalDiffEngine == 'wikidiff2' && !function_exists( 'wikidiff2_do_diff' ) ) {
+		elseif ( $wgExternalDiffEngine == 'wikidiff2' && !function_exists( 'wikidiff2_do_diff' ) ) {
 			wfProfileIn( __METHOD__ . '-php_wikidiff2.so' );
 			wfDl( 'wikidiff2' );
 			wfProfileOut( __METHOD__ . '-php_wikidiff2.so' );
@@ -1050,7 +1050,7 @@ CONTROL;
 		}
 		if ( !$this->mNewRev->userCan( Revision::DELETED_TEXT ) ) {
 			$this->mNewtitle = "<span class='history-deleted'>{$this->mPagetitle}</span>";
-		} else if ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
+		} elseif ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$this->mNewtitle = "<span class='history-deleted'>{$this->mNewtitle}</span>";
 		}
 
@@ -1105,7 +1105,7 @@ CONTROL;
 
 			if ( !$this->mOldRev->userCan( Revision::DELETED_TEXT ) ) {
 				$this->mOldtitle = '<span class="history-deleted">' . $this->mOldPagetitle . '</span>';
-			} else if ( $this->mOldRev->isDeleted( Revision::DELETED_TEXT ) ) {
+			} elseif ( $this->mOldRev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$this->mOldtitle = '<span class="history-deleted">' . $this->mOldtitle . '</span>';
 			}
 		}

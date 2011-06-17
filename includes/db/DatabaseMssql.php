@@ -345,7 +345,7 @@ class DatabaseMssql extends DatabaseBase {
 					$row->Column_name = trim( $col );
 					$result[] = clone $row;
 				}
-			} else if ( $index == 'PRIMARY' && stristr( $row->index_description, 'PRIMARY' ) ) {
+			} elseif ( $index == 'PRIMARY' && stristr( $row->index_description, 'PRIMARY' ) ) {
 				$row->Non_unique = 0;
 				$cols = explode( ", ", $row->index_keys );
 				foreach ( $cols as $col ) {
@@ -927,12 +927,12 @@ class DatabaseMssql extends DatabaseBase {
 				$tableClause .= ' ON (' . $this->makeList( (array)$join_conds_safe[$table][1], LIST_AND ) . ')';
 				$retJOIN[] = $tableClause;
 			// Is there an INDEX clause?
-			} else if ( isset( $use_index_safe[$table] ) ) {
+			} elseif ( isset( $use_index_safe[$table] ) ) {
 				$tableClause = $this->tableName( $table );
 				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$table] ) );
 				$ret[] = $tableClause;
 			// Is there a JOIN clause?
-			} else if ( isset( $join_conds_safe[$table] ) ) {
+			} elseif ( isset( $join_conds_safe[$table] ) ) {
 				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
 				$tableClause .= ' ON (' . $this->makeList( (array)$join_conds_safe[$table][1], LIST_AND ) . ')';
 				$retJOIN[] = $tableClause;

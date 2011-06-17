@@ -244,7 +244,7 @@ class EditPage {
 					// was created, or we may simply have got bogus input.
 					$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-norev">' . wfMsgNoTrans( 'undo-norev' ) . '</div>' );
 				}
-			} else if ( $section != '' ) {
+			} elseif ( $section != '' ) {
 				if ( $section == 'new' ) {
 					$text = $this->getPreloadedText( $preload );
 				} else {
@@ -411,9 +411,9 @@ class EditPage {
 		} else {
 			if ( $this->save ) {
 				$this->formtype = 'save';
-			} else if ( $this->preview ) {
+			} elseif ( $this->preview ) {
 				$this->formtype = 'preview';
-			} else if ( $this->diff ) {
+			} elseif ( $this->diff ) {
 				$this->formtype = 'diff';
 			} else { # First time through
 				$this->firsttime = true;
@@ -553,7 +553,7 @@ class EditPage {
 		} elseif ( $wgRequest->getVal( 'preview' ) == 'no' ) {
 			// Explicit override from request
 			return false;
-		} elseif ( $this->section == 'new' ) { 
+		} elseif ( $this->section == 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
 		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
@@ -662,7 +662,7 @@ class EditPage {
 					# The unmarked state will be assumed to be a save,
 					# if the form seems otherwise complete.
 					wfDebug( __METHOD__ . ": Passed token check.\n" );
-				} else if ( $this->diff ) {
+				} elseif ( $this->diff ) {
 					# Failed token check, but only requested "Show Changes".
 					wfDebug( __METHOD__ . ": Failed token check; Show Changes requested.\n" );
 				} else {
@@ -793,7 +793,7 @@ class EditPage {
 			if ( !$user->isLoggedIn() && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
 					array( 'userpage-userdoesnotexist', $username ) );
-			} else if ( $user->isBlocked() ) { # Show log extract if the user is currently blocked
+			} elseif ( $user->isBlocked() ) { # Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
 					$wgOut,
 					'block',
@@ -1003,7 +1003,7 @@ class EditPage {
 			}
 
 			$text = $this->textbox1;
-			if ( $this->section == 'new' && $this->summary != '' ) { 
+			if ( $this->section == 'new' && $this->summary != '' ) {
 				$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
 			}
 
@@ -1053,7 +1053,7 @@ class EditPage {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
 				$this->isConflict = true;
 				$text = $this->textbox1; // do not try to merge here!
-			} else if ( $this->isConflict ) {
+			} elseif ( $this->isConflict ) {
 				# Attempt merge
 				if ( $this->mergeChangesInto( $text ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
@@ -1085,7 +1085,7 @@ class EditPage {
 			}
 
 			# Handle the user preference to force summaries here, but not for null edits
-			if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp( $oldtext, $text ) 
+			if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp( $oldtext, $text )
 				&& !Title::newFromRedirect( $text ) ) # check if it's not a redirect
 			{
 				if ( md5( $this->summary ) == $this->autoSumm ) {
@@ -1096,7 +1096,7 @@ class EditPage {
 			}
 
 			# And a similar thing for new sections
-			if ( $this->section == 'new' && !$this->allowBlankSummary ) { 
+			if ( $this->section == 'new' && !$this->allowBlankSummary ) {
 				if ( trim( $this->summary ) == '' ) {
 					$this->missingSummary = true;
 					wfProfileOut( __METHOD__ );
@@ -1107,7 +1107,7 @@ class EditPage {
 			# All's well
 			wfProfileIn( __METHOD__ . '-sectionanchor' );
 			$sectionanchor = '';
-			if ( $this->section == 'new' ) { 
+			if ( $this->section == 'new' ) {
 				if ( $this->textbox1 == '' ) {
 					$this->missingComment = true;
 					wfProfileOut( __METHOD__ . '-sectionanchor' );
@@ -1435,7 +1435,7 @@ HTML
 		}
 
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
-		
+
 		$wgOut->addHTML( $toolbar );
 
 		if ( $this->isConflict ) {
@@ -1536,7 +1536,7 @@ HTML
 
 				if ( !$this->mArticle->mRevision->userCan( Revision::DELETED_TEXT ) ) {
 					$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
-				} else if ( $this->mArticle->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
+				} elseif ( $this->mArticle->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
 					$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
 				}
 
@@ -1997,7 +1997,7 @@ HTML
 			} else {
 				$note = wfMsg( 'session_fail_preview' );
 			}
-		} else if ( $this->incompleteForm ) {
+		} elseif ( $this->incompleteForm ) {
 			$note = wfMsg( 'edit_form_incomplete' );
 		} else {
 			$note = wfMsg( 'previewnote' );

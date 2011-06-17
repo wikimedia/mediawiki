@@ -217,7 +217,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		);
 		if ( $this->getModuleName() == self::LINKS ) {
 			$arr[$this->titlesParam] = 'Only list links to these titles. Useful for checking whether a certain page links to a certain title.';
-		} else if ( $this->getModuleName() == self::TEMPLATES ) {
+		} elseif ( $this->getModuleName() == self::TEMPLATES ) {
 			$arr[$this->titlesParam] = 'Only list these templates. Useful for checking whether a certain page uses a certain template.';
 		}
 		return $arr;

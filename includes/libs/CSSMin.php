@@ -1,24 +1,24 @@
 <?php
 /*
  * Copyright 2010 Wikimedia Foundation
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * 		http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed
  * under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
  * OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License. 
+ * specific language governing permissions and limitations under the License.
  */
 
 /**
  * Transforms CSS data
- * 
+ *
  * This class provides minification, URL remapping, URL extracting, and data-URL embedding.
- * 
+ *
  * @file
  * @version 0.1.1 -- 2010-09-11
  * @author Trevor Parscal <tparscal@wikimedia.org>
@@ -26,9 +26,9 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0
  */
 class CSSMin {
-	
+
 	/* Constants */
-	
+
 	/**
 	 * Maximum file size to still qualify for in-line embedding as a data-URI
 	 *
@@ -37,9 +37,9 @@ class CSSMin {
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
 	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*)(?P<query>\??[^\)\'"]*)[\'"]?\s*\)';
-	
+
 	/* Protected Static Members */
-	
+
 	/** @var array List of common image files extensions and mime-types */
 	protected static $mimeTypes = array(
 		'gif' => 'image/gif',
@@ -51,9 +51,9 @@ class CSSMin {
 		'tiff' => 'image/tiff',
 		'xbm' => 'image/x-xbitmap',
 	);
-	
+
 	/* Static Methods */
-	
+
 	/**
 	 * Gets a list of local file paths which are referenced in a CSS style sheet
 	 *
@@ -78,7 +78,7 @@ class CSSMin {
 		}
 		return $files;
 	}
-	
+
 	protected static function getMimeType( $file ) {
 		$realpath = realpath( $file );
 		// Try a couple of different ways to get the mime-type of a file, in order of
@@ -92,7 +92,7 @@ class CSSMin {
 			// As of PHP 5.3, this is how you get the mime-type of a file; it uses the Fileinfo
 			// PECL extension
 			return finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
-		} else if ( function_exists( 'mime_content_type' ) ) {
+		} elseif ( function_exists( 'mime_content_type' ) ) {
 			// Before this was deprecated in PHP 5.3, this was how you got the mime-type of a file
 			return mime_content_type( $file );
 		} else {
@@ -104,7 +104,7 @@ class CSSMin {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Remaps CSS URL paths and automatically embeds data URIs for URL rules
 	 * preceded by an /* @embed * / comment
@@ -175,9 +175,9 @@ class CSSMin {
 				}
 				if ( $replacement === false ) {
 					// Assume that all paths are relative to $remote, and make them absolute
-					$replacement = "{$embed}{$pre}url({$url}){$post};";				
+					$replacement = "{$embed}{$pre}url({$url}){$post};";
 				}
-			} else if ( $local === false ) {
+			} elseif ( $local === false ) {
 				// Assume that all paths are relative to $remote, and make them absolute
 				$replacement = "{$embed}{$pre}url({$url}{$query}){$post};";
 			}

@@ -40,7 +40,7 @@ abstract class FileRepo {
 		$this->initialCapital = MWNamespace::isCapitalized( NS_FILE );
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection',
-			'descriptionCacheExpiry', 'hashLevels', 'url', 'thumbUrl', 'scriptExtension' ) 
+			'descriptionCacheExpiry', 'hashLevels', 'url', 'thumbUrl', 'scriptExtension' )
 			as $var )
 		{
 			if ( isset( $info[$var] ) ) {
@@ -132,7 +132,7 @@ abstract class FileRepo {
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted(File::DELETED_FILE) ) {
 					return $img;
-				} else if ( !empty( $options['private'] )  && $img->userCan(File::DELETED_FILE) ) {
+				} elseif ( !empty( $options['private'] )  && $img->userCan(File::DELETED_FILE) ) {
 					return $img;
 				}
 			}
@@ -233,7 +233,7 @@ abstract class FileRepo {
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted(File::DELETED_FILE) ) {
 					return $img;
-				} else if ( !empty( $options['private'] ) && $img->userCan(File::DELETED_FILE) ) {
+				} elseif ( !empty( $options['private'] ) && $img->userCan(File::DELETED_FILE) ) {
 					return $img;
 				}
 			}
@@ -308,18 +308,18 @@ abstract class FileRepo {
 	function getName() {
 		return $this->name;
 	}
-	
+
 	/**
 	 * Make an url to this repo
-	 * 
+	 *
 	 * @param $query mixed Query string to append
 	 * @param $entry string Entry point; defaults to index
 	 * @return string
 	 */
 	function makeUrl( $query = '', $entry = 'index' ) {
 		$ext = isset( $this->scriptExtension ) ? $this->scriptExtension : '.php';
-		return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}", $query ); 
-	} 
+		return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}", $query );
+	}
 
 	/**
 	 * Get the URL of an image description page. May return false if it is
@@ -369,7 +369,7 @@ abstract class FileRepo {
 			$query .= '&uselang=' . $lang;
 		}
 		if ( isset( $this->scriptDirUrl ) ) {
-			return $this->makeUrl( 
+			return $this->makeUrl(
 				'title=' .
 				wfUrlencode( 'Image:' . $name ) .
 				"&$query" );
@@ -382,7 +382,7 @@ abstract class FileRepo {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the URL of the stylesheet to apply to description pages
 	 * @return string
@@ -703,7 +703,7 @@ abstract class FileRepo {
 		array_unshift( $args, 'filerepo', $this->getName() );
 		return call_user_func_array( 'wfMemcKey', $args );
 	}
-	
+
 	/**
 	 * Get an UploadStash associated with this repo.
 	 *
