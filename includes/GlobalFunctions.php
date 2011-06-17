@@ -1416,7 +1416,7 @@ function wfBacktrace() {
 			$msg .= '<li>' . $file . ' line ' . $line . ' calls ';
 		}
 		if( !empty( $call['class'] ) ) {
-			$msg .= $call['class'] . '::';
+			$msg .= $call['class'] . $call['type'];
 		}
 		$msg .= $call['function'] . '()';
 
