@@ -1815,6 +1815,14 @@ HTML
 			'style' => '' // avoid php notices when appending preferences (appending allows customAttribs['style'] to still work
 		);
 
+		global $wgBetterDirectionality, $wgContLang;
+		if( $wgBetterDirectionality ) {
+			$getPageLang = $wgOut->parserOptions()->getTargetLanguage( $this->mTitle );
+			$pageLang = ( $getPageLang ? $getPageLang : $wgContLang );
+			$attribs['lang'] = $pageLang->getCode();
+			$attribs['dir'] = $pageLang->getDir();
+		}
+
 		$wgOut->addHTML( Html::textarea( $name, $wikitext, $attribs ) );
 	}
 
@@ -2058,13 +2066,6 @@ HTML
 
 				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
 
-				// Parse mediawiki messages with correct target language
-				if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-					list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $this->mTitle->getText() );
-					$obj = wfGetLangObj( $lang );
-					$parserOptions->setTargetLanguage( $obj );
-				}
-
 				$parserOptions->setTidy( true );
 				$parserOptions->enableLimitReport();
 				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ),
@@ -2091,6 +2092,13 @@ HTML
 			$wgOut->parse( $note ) . $conflict . "</div>\n";
 
 		wfProfileOut( __METHOD__ );
+		global $wgBetterDirectionality, $wgContLang;
+		if( $wgBetterDirectionality ) {
+			$getPageLang = $wgOut->parserOptions()->getTargetLanguage( $this->mTitle );
+			$pageLang = ( $getPageLang ? $getPageLang : $wgContLang );
+			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+			$previewHTML = Html::rawElement( 'div', $realBodyAttribs, $previewHTML );
+		}
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}
 

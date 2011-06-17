@@ -66,7 +66,15 @@ class ParserOptions {
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
-	function getTargetLanguage()                { return $this->mTargetLanguage; }
+	function getTargetLanguage( $title = null ) {
+		// Parse mediawiki messages with correct target language
+		if ( $title && $title->getNamespace() == NS_MEDIAWIKI ) {
+			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
+			$obj = wfGetLangObj( $lang );
+			return $obj;
+		}
+	return $this->mTargetLanguage;
+}
 	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
 	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
 	function getMaxPPExpandDepth()              { return $this->mMaxPPExpandDepth; }
