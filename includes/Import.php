@@ -1153,6 +1153,10 @@ class WikiRevision {
 		}
 		$sha1 = $this->getSha1();
 		if ( $sha1 && ( $sha1 !== sha1_file( $source ) ) ) {
+			if ( $flags & File::DELETE_SOURCE ) {
+				# Broken file; delete it if it is a temporary file
+				unlink( $source );
+			}
 			wfDebug( __METHOD__ . ": Corrupt file $source.\n" );
 			return false;
 		}
