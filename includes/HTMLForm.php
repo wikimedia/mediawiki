@@ -624,7 +624,7 @@ class HTMLForm {
 	 */
 	function getTitle() {
 		return $this->mTitle === false
-			? $this->getContext()->title
+			? $this->getContext()->getTitle()
 			: $this->mTitle;
 	}
 
@@ -641,21 +641,21 @@ class HTMLForm {
 	 * @return OutputPage
 	 */
 	public function getOutput(){
-		return $this->getContext()->output;
+		return $this->getContext()->getOutput();
 	}
 
 	/**
 	 * @return WebRequest
 	 */
 	public function getRequest(){
-		return $this->getContext()->request;
+		return $this->getContext()->getRequest();
 	}
 
 	/**
 	 * @return User
 	 */
 	public function getUser(){
-		return $this->getContext()->user;
+		return $this->getContext()->getUser();
 	}
 
 	/**
