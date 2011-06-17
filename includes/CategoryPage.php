@@ -179,6 +179,12 @@ class CategoryViewer {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
 		}
 
+		global $wgBetterDirectionality, $wgLang;
+		if( $wgBetterDirectionality ) {
+			$langAttribs = array( 'lang' => $wgLang->getCode(), 'dir' => $wgLang->getDir() );
+			$r = Html::rawElement( 'div', $langAttribs, $r );
+		}
+
 		wfProfileOut( __METHOD__ );
 		return $wgContLang->convert( $r );
 	}
@@ -501,12 +507,21 @@ class CategoryViewer {
 	 */
 	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
 		if ( count ( $articles ) > $cutoff ) {
-			return self::columnList( $articles, $articles_start_char );
+			$list = self::columnList( $articles, $articles_start_char );
 		} elseif ( count( $articles ) > 0 ) {
 			// for short lists of articles in categories.
-			return self::shortList( $articles, $articles_start_char );
+			$list = self::shortList( $articles, $articles_start_char );
 		}
-		return '';
+		global $wgBetterDirectionality;
+		if( $wgBetterDirectionality ) {
+			global $wgOut, $wgContLang;
+			$getPageLang = $wgOut->parserOptions()->getTargetLanguage();
+			$pageLang = ( $getPageLang ? Language::factory( $getPageLang ) : $wgContLang );
+			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+			$list = Html::rawElement( 'div', $realBodyAttribs, $list );
+		}
+
+		return $list;
 	}
 
 	/**

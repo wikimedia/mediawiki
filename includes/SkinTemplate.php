@@ -455,20 +455,17 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'printfooter', $this->printSource() );
 
 		global $wgBetterDirectionality;
-		if ( $wgBetterDirectionality && $this->getTitle()->getNamespace() != NS_SPECIAL ) {
-			if( $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) {
-				// If the page is in the MediaWiki NS, the lang and dir attribute should depend on that,
-				// i.e. MediaWiki:Message/ar -> lang=ar, dir=rtl. This assumes every message is translated,
-				// but it's anyway better than assuming it is always in the content lang
-				$nsMWTitle = $wgContLang->lcfirst( $this->getTitle()->getText() );
-				list( $nsMWName, $nsMWLang ) = MessageCache::singleton()->figureMessage( $nsMWTitle );
-				$nsMWDir = Language::factory( $nsMWLang )->getDir();
-				$realBodyAttribs = array( 'lang' => $nsMWLang, 'dir' => $nsMWDir );
-			} else {
-				// Body text is in the site content language (see also bug 6100 and 28970)
-				$realBodyAttribs = array( 'lang' => $wgLanguageCode, 'dir' => $wgContLang->getDir() );
+		if ( $wgBetterDirectionality ) {
+			// not for special pages AND only when viewing AND if the page exists
+			// (or is in MW namespace, because that has default content)
+			if( $this->getTitle()->getNamespace() != NS_SPECIAL &&
+				in_array( $action, array( 'view', 'render', 'print' ) ) &&
+				( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
+				$getPageLang = $out->parserOptions()->getTargetLanguage( $this->getTitle() );
+				$pageLang = ( $getPageLang ? $getPageLang : $wgContLang );
+				$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+				$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 			}
-			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		}
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
