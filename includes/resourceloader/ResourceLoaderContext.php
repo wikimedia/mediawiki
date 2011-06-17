@@ -140,8 +140,11 @@ class ResourceLoaderContext {
 		if ( $this->direction === null ) {
 			$this->direction = $this->request->getVal( 'dir' );
 			if ( !$this->direction ) {
-				global $wgContLang;
-				$this->direction = $wgContLang->getDir();
+				global $wgBetterDirectionality, $wgContLang;
+				// if $wgBetterDirectionality is true, set
+				// directionality based on user language (see bug 6100)
+				$this->direction = ( $wgBetterDirectionality ?
+					Language::factory( $this->language )->getDir() : $wgContLang->getDir() );
 			}
 		}
 		return $this->direction;
