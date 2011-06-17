@@ -104,7 +104,7 @@ $messages = array(
 'tog-nolangconversion'     => 'Ahmo tictēquitiltia tlahtōlcuepaliztli',
 'tog-ccmeonemails'         => 'Nō xinēch-mailīz ihcuāc nitē-mailīz tlatequitiltilīlli',
 'tog-diffonly'             => 'Ahmo tiquittāz zāzanilli ītlapiyaliz ahneneuhquilitzīntlan',
-'tog-showhiddencats'       => 'Xiquitta motlātiani neneuhcāyōtl',
+'tog-showhiddencats'       => 'Mà monèxtìkàn in tlatlatìltìn tlaìxmatkàtlàlilòmë',
 
 'underline-always' => 'Mochipa',
 'underline-never'  => 'Aīcmah',
@@ -176,9 +176,9 @@ $messages = array(
 'hidden-category-category'       => 'Tlatlàtìlkàtlaìxmatkàtlàlilòmë',
 'category-subcat-count'          => '{{PLURAL:$2|Inìn tlaìxmatkàtlàlilòtl kipia san inìn tlaìxmatkàtlàlilòpilli.|Inìn tlaìxmatkàtlàlilòtl {{PLURAL:$1|kipia inìn tlaìxmatkàtlàlilòpilli|kimpia inìn $1 tlaìxmatkàtlàlilòpiltìn}}, ìpan $2.}}',
 'category-subcat-count-limited'  => 'Inīn {{PLURAL:$1|neneuhcāyōtzintli cah|$1 neneuhcāyōtzintli cateh}} inīn neneuhcāyōc.',
-'category-article-count'         => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn zāzanilli|inīn $1 zāzanilli}}, īhuīcpa $2.}}',
+'category-article-count'         => '{{PLURAL:$2|Inìn tlaìxmatkàtlàlilòtl san kipia|Inìn tlaìxmatkàtlàlilòtl kimpia {{PLURAL:$1|inìn tlaìxtlapalli|inîkë $1 tlaìxtlapaltìn}}, ìwikpa $2.}}',
 'category-article-count-limited' => 'Inīn {{PLURAL:$1|zāzanilli cah|$1 zāzanilli cateh}} inīn neneuhcāyōc.',
-'category-file-count'            => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn tlahcuilōlli|inīn $1 tlahcuilōlli}}, īhuīcpa $2.}}',
+'category-file-count'            => '{{PLURAL:$2|Inìn tlaìxmatkàtlàlilòtl san kipia|Inìn tlaìxmatkàtlalilòtl kimpia {{PLURAL:$1|inìn èwalli|inîkë $1 èwaltìn}}, ìwikpa $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Inìn tlâkuilòlèwalli kä|Inîkë $1 tlâkuilòlèwaltìn katêkë}} ìpan inìn tlaìxmatkàtlàlilòtl.',
 'listingcontinuesabbrev'         => 'niman',
 
@@ -262,7 +262,7 @@ $messages = array(
 'mediawikipage'     => 'Xiquitta tlahcuilōltzin zāzanilli',
 'templatepage'      => 'Tiquittāz nemachiyōtīlli zāzanilli',
 'viewhelppage'      => 'Xiquitta tēpalēhuiliztli zāzanilli',
-'categorypage'      => 'Xiquitta neneuhcāyōtl zāzanilli',
+'categorypage'      => 'Mà mỏta in tlaìxmatkàtlàlilòtlaìxtlapalli',
 'viewtalkpage'      => 'Xiquitta tēixnāmiquiliztli zāzanilli',
 'otherlanguages'    => 'Occequīntīn tlahtōlcopa',
 'redirectedfrom'    => '(Ōmotlacuep īhuīcpa $1)',
@@ -986,10 +986,10 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 
 # Special:Categories
 'categories'                    => 'Tlaìxmatkàtlàlilòmë',
-'categoriespagetext'            => 'Inīn neneuhcāyōtl {{PLURAL:$1|quipiya|quimpiyah}} zāzanilli ahnozo medios.
-Ahmo ahmo mottah nicān in [[Special:UnusedCategories|Neneuhcāyōtl ahmo motequitiltia]].
-Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
-'categoriesfrom'                => 'Xiquittaz neneuhcāyōtl mopēhuah īca:',
+'categoriespagetext'            => '{{PLURAL:$1|Inìn tlaìxmatkàtlàlilòtl kimpia|Inîkë tlaìxmatkàtlàlilòmë kimpiâkë}} tlaìxtlapaltìn noso medios.
+Âmò monèxtiâkë nikàn in [[Special:UnusedCategories|tlaìxmatkàtlàlilòmë tlèn âmò mokìntekitìltia]].
+Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlàlilòtl]].',
+'categoriesfrom'                => 'Mà monèxtìkàn tlaìxmatkàtlàlilòmë tlèn pèwâkë ìka:',
 'special-categories-sort-count' => 'tlapōhualcopa',
 'special-categories-sort-abc'   => 'tlahtōlcopa',
 
@@ -1233,7 +1233,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 # Export
 'export'            => 'Tiquinnamacāz zāzaniltin',
 'export-submit'     => 'Ticnamacāz',
-'export-addcattext' => 'Ticcēntilīz zāzanilli īhuīcpa neneuhcāyōtl:',
+'export-addcattext' => 'Mà tlatlaìxtlapalwilo ìwikpa tlatlaìxmatkàtlàlilòpa:',
 'export-addcat'     => 'Ticcētilīz',
 'export-download'   => 'Ticpiyāz quemeh tlahcuilōlli',
 'export-templates'  => 'Tiquimpiyāz nemachiyōtīlli',
@@ -1309,7 +1309,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'tooltip-ca-nstab-mediawiki'      => 'Xiquitta in tlahcuilōltzin',
 'tooltip-ca-nstab-template'       => 'Xiquitta in nemachiyōtīlli',
 'tooltip-ca-nstab-help'           => 'Xiquitta in tēpalēhuiliztli zāzanilli',
-'tooltip-ca-nstab-category'       => 'Xiquitta in neneuhcāyōtl zāzanilli',
+'tooltip-ca-nstab-category'       => 'Mà mỏta ìtlaìxtlapal in tlaìxmatkàtlàlilòtl',
 'tooltip-minoredit'               => 'Ticmachiyōz quemeh tlapatlalitzintli',
 'tooltip-save'                    => 'Ticpiyāz mopatlaliz',
 'tooltip-preview'                 => 'Xiquitta achtopa mopatlaliz, ¡timitztlātlauhtiah quitēquitiltilia achto ticpiya!',

@@ -222,7 +222,7 @@ $messages = array(
 'tog-numberheadings'          => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar'             => 'Mostrar a caixa de ferramentas de edición (JavaScript)',
 'tog-editondblclick'          => 'Editar as páxinas logo de facer dobre clic (JavaScript)',
-'tog-editsection'             => 'Permitir a edición de seccións vía as ligazóns [editar]',
+'tog-editsection'             => 'Permitir a edición de seccións mediante as ligazóns "[editar]"',
 'tog-editsectiononrightclick' => 'Permitir a edición de seccións premendo co botón dereito <br /> nos títulos das seccións (JavaScript)',
 'tog-showtoc'                 => 'Mostrar o índice (para páxinas con máis de tres cabeceiras)',
 'tog-rememberpassword'        => 'Lembrar o meu contrasinal neste navegador (ata $1 {{PLURAL:$1|día|días}})',
@@ -3513,6 +3513,9 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'confirm_purge_button' => 'Si',
 'confirm-purge-top'    => 'Quere limpar a memoria caché desta páxina?',
 'confirm-purge-bottom' => 'Ao purgar unha páxina, límpase a memoria caché e isto obriga tamén a que apareza a versión máis recente da páxina.',
+
+# Separators for various lists, etc.
+'colon-separator' => ':&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',

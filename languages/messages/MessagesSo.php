@@ -333,6 +333,7 @@ Waxaa meeshaan ka heli kartaa liiska bogyaasha khaaska ah oo jiro  [[Special:Spe
 Waxaan oo kale waxaa sabab ugu ah soo raacida linkiga duqoobay ee duwanaan ama taariikh oo kula xiriirtay bog la tirtitay.
 Hadii ee sidaas eheen, waxaa laga yaabaa in software-ka aad qalad ka heshay.
 Fadlan u sheek [[Special:ListUsers/sysop|maamulaha]], kana digtooneesii URL-ka.',
+'missingarticle-rev'   => '(bedelaadka#: $1)',
 'missingarticle-diff'  => '(Duwanaan: $1, $2)',
 'internalerror'        => 'Qalad gudaha ah',
 'internalerror_info'   => 'Qalad gudaha ah: $1',
@@ -589,7 +590,7 @@ Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
 'permissionserrorstext-withaction' => 'Ma laguu ogolo in aad $2, ku sameysid  {{PLURAL:$1| sababtaan|sababahaan }} soo socota:',
 'recreate-moveddeleted-warn'       => "'''Digniin: waxaa dib u sameyn rabtaa bog mar hore la tirtiray.'''
 
-Waa in aad si fiican uuga  fikirtaa hadii ee habboontahay sii socoshada bedelaadka boggaan.
+Waa in aad ka fikirtaa hadii ee habboontahay sii socoshada wax ka bedelka boggaan.
 Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa meeshaan:",
 'moveddeleted-notice'              => 'Boggaan waa la tirtiray.
 Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa hoostaan.',
@@ -647,6 +648,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'revdelete-log'               => 'Sababta:',
 'revdel-restore'              => 'badal muuqaalka',
 'revdel-restore-deleted'      => 'kuwii la tirtiray badalyadooda',
+'revdel-restore-visible'      => 'bedelaadka la arki karo',
 'pagehist'                    => 'Taariikhda bogga',
 'revdelete-content'           => 'oo kooban',
 'revdelete-uname'             => 'Magaca isticmaalaha',
@@ -1064,7 +1066,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Rollback
 'rollback_short'    => 'Dib u soo celi',
 'rollbacklink'      => 'dib u soo celi',
-'revertpage'        => 'Waxoo dib u noqay bedelaadka  [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) kuna celiyay bedelkii ka  danbeeyay ee  [[User:$1|$1]]',
+'revertpage'        => 'Waxoo dib u noqay badalkii oo sameeyay  [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) kuna celiyay badalkii ka  danbeeyay oo sameeyay  [[User:$1|$1]]',
 'revertpage-nouser' => 'Waxoo dib u noqay bedelyada (magaca isticmaalaha waa laga saaray) kuna celiyay  [[User:$1|$1]]',
 'rollback-success'  => 'Waxoo dib u noqay bedelaadka  $1;
 waxoo dib ugu celiyay bedelaadka $2.',
@@ -1128,7 +1130,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 
 'sp-contributions-newbies'  => 'Itus akoonada cusub kaliya oo wax ku darsaday',
 'sp-contributions-blocklog' => 'mamnuucyada',
-'sp-contributions-uploads'  => 'kuwa la soo geliyay',
+'sp-contributions-uploads'  => 'wixii la soo geliyay',
 'sp-contributions-logs'     => 'Guda galayaasha',
 'sp-contributions-talk'     => 'Wadahadal',
 'sp-contributions-search'   => 'Raadi si aad wax uugu darsatid',
@@ -1143,6 +1145,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'linkshere'                => "Bogyaashaan waxey la xiriiraan  '''[[:$1]]''':",
 'nolinkshere'              => "Boggag la xiriiro   '''[[:$1]]''' ma jirto.",
 'isredirect'               => 'bogga loo sii toosiyay',
+'istemplate'               => 'ku soo derida',
 'isimage'                  => 'Sawirka la xiriiro',
 'whatlinkshere-prev'       => '{{PLURAL:$1|kii ka horeeyay|kii ka horeeyay $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|kan ku xiga|kan ku xiga $1}}',
@@ -1330,6 +1333,7 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'autosumm-new' => 'Bog cusub: $1',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Itusi isbedelada jiro',
 'watchlisttools-edit' => 'Fiiri iyo wax ka badal liiska waardiyaha',
 'watchlisttools-raw'  => 'Badal liiska waardiyeenta ceeriinka ah',
 
