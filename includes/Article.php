@@ -907,7 +907,7 @@ class Article {
 			'GROUP BY' => array( 'rev_user', 'rev_user_text' ),
 			'ORDER BY' => 'timestamp DESC',
 		);
-		
+
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $jconds );
 		return new UserArrayFromResult( $res );
 	}
@@ -957,7 +957,7 @@ class Article {
 		if ( $wgOut->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$parserOptions->setEditSection( false );
-		} else if ( $wgUseETag && !$this->mTitle->quickUserCan( 'edit' ) ) {
+		} elseif ( $wgUseETag && !$this->mTitle->quickUserCan( 'edit' ) ) {
 			$parserOptions->setEditSection( false );
 		}
 
@@ -974,7 +974,7 @@ class Article {
 
 				return;
 			# Try file cache
-			} else if ( $wgUseFileCache && $this->tryFileCache() ) {
+			} elseif ( $wgUseFileCache && $this->tryFileCache() ) {
 				wfDebug( __METHOD__ . ": done file cache\n" );
 				# tell wgOut that output is taken care of
 				$wgOut->disable();
@@ -1440,7 +1440,7 @@ class Article {
 			if ( !$user->isLoggedIn() && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					array( 'userpage-userdoesnotexist-view', $rootPart ) );
-			} else if ( $user->isBlocked() ) { # Show log extract if the user is currently blocked
+			} elseif ( $user->isBlocked() ) { # Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
 					$wgOut,
 					'block',
@@ -1520,7 +1520,7 @@ class Article {
 
 			return false;
 		// If the user needs to confirm that they want to see it...
-		} else if ( $wgRequest->getInt( 'unhide' ) != 1 ) {
+		} elseif ( $wgRequest->getInt( 'unhide' ) != 1 ) {
 			# Give explanation and add a link to view the revision...
 			$oldid = intval( $this->getOldID() );
 			$link = $this->mTitle->getFullUrl( "oldid={$oldid}&unhide=1" );
@@ -3269,7 +3269,7 @@ class Article {
 		if ( $s === false ) {
 			# No one else ever edited this page
 			return array( array( 'cantrollback' ) );
-		} else if ( $s->rev_deleted & Revision::DELETED_TEXT || $s->rev_deleted & Revision::DELETED_USER ) {
+		} elseif ( $s->rev_deleted & Revision::DELETED_TEXT || $s->rev_deleted & Revision::DELETED_USER ) {
 			# Only admins can see this text
 			return array( array( 'notvisiblerev' ) );
 		}

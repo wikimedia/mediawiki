@@ -518,7 +518,7 @@ class HistoryPager extends ReverseChronologicalPager {
 					array( 'name' => 'ids[' . $rev->getId() . ']' ) );
 			}
 		// User can only view deleted revisions...
-		} else if ( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) {
+		} elseif ( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
 			if ( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$cdel = $this->getSkin()->revDeleteLinkDisabled( false );
@@ -726,7 +726,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				if ( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 					$radio['disabled'] = 'disabled';
 					$checkmark = array(); // We will check the next possible one
-				} else if ( !$this->oldIdChecked ) {
+				} elseif ( !$this->oldIdChecked ) {
 					$checkmark = array( 'checked' => 'checked' );
 					$this->oldIdChecked = $id;
 				} else {

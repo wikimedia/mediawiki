@@ -84,7 +84,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 						$skip = true;
 					}
 					$messages_filtered[] = $message;
-				} else if ( $skip ) {
+				} elseif ( $skip ) {
 					break;
 				}
 			}

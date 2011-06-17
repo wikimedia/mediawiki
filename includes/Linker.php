@@ -264,7 +264,7 @@ class Linker {
 	 * @param $target Title
 	 * @param $attribs
 	 * @param $options
-	 * 
+	 *
 	 * @return array
 	 */
 	private static function linkAttribs( $target, $attribs, $options ) {
@@ -521,7 +521,7 @@ class Linker {
 				// we don't want it to be limited by its "normal" width.
 				global $wgSVGMaxSize;
 				$hp['width'] = $wgSVGMaxSize;
-			} else { 
+			} else {
 				$hp['width'] = $file->getWidth( $page );
 			}
 
@@ -1013,7 +1013,7 @@ class Linker {
 	static function revUserLink( $rev, $isPublic = false ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMsgHtml( 'rev-deleted-user' );
-		} else if ( $rev->userCan( Revision::DELETED_USER ) ) {
+		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
 			$link = self::userLink( $rev->getUser( Revision::FOR_THIS_USER ),
 				$rev->getUserText( Revision::FOR_THIS_USER ) );
 		} else {
@@ -1034,7 +1034,7 @@ class Linker {
 	static function revUserTools( $rev, $isPublic = false ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMsgHtml( 'rev-deleted-user' );
-		} else if ( $rev->userCan( Revision::DELETED_USER ) ) {
+		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
 			$userId = $rev->getUser( Revision::FOR_THIS_USER );
 			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
 			$link = self::userLink( $userId, $userText ) .
@@ -1373,7 +1373,7 @@ class Linker {
 		}
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
-		} else if ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
+		} elseif ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
 				$rev->getTitle(), $local );
 		} else {
@@ -1473,7 +1473,7 @@ class Linker {
 		foreach ( $tree as $section ) {
 			if ( $section['toclevel'] > $lastLevel )
 				$toc .= self::tocIndent();
-			else if ( $section['toclevel'] < $lastLevel )
+			elseif ( $section['toclevel'] < $lastLevel )
 				$toc .= self::tocUnindent(
 					$lastLevel - $section['toclevel'] );
 			else

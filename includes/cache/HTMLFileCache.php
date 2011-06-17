@@ -78,7 +78,7 @@ class HTMLFileCache {
 	public function fileCacheTime() {
 		return wfTimestamp( TS_MW, filemtime( $this->fileCacheName() ) );
 	}
-	
+
 	/**
 	 * Check if pages can be cached for this request/user
 	 * @return bool
@@ -96,13 +96,13 @@ class HTMLFileCache {
 			}
 			// Normal page view in query form can have action=view.
 			// Raw hits for pages also stored, like .css pages for example.
-			else if( $query == 'action' && ($val == 'view' || $val == 'raw') ) {
+			elseif( $query == 'action' && ($val == 'view' || $val == 'raw') ) {
 				continue;
-			} else if( $query == 'usemsgcache' && $val == 'yes' ) {
+			} elseif( $query == 'usemsgcache' && $val == 'yes' ) {
 				continue;
 			}
 			// Below are header setting params
-			else if( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' ) {
+			elseif( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' ) {
 				continue;
 			} else {
 				return false;

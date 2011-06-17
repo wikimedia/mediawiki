@@ -239,7 +239,7 @@ class WikiDiff3 {
 							$starty - 1, $V, $snake )
 			+ $this->lcs_rec( $startx + $len, $topl1, $starty + $len,
 							$topl2, $V, $snake );
-		} else if ( $d == 1 ) {
+		} elseif ( $d == 1 ) {
 			/*
 			 * In this case the sequences differ by exactly 1 line. We have
 			 * already saved all the lines after the difference in the for loop
@@ -332,7 +332,7 @@ class WikiDiff3 {
 					// check to see if we can cut down the diagonal range
 					if ( $x >= $N && $end_forward > $k - 1 ) {
 						$end_forward = $k - 1;
-					} else if ( $absy - $bottoml2 >= $M ) {
+					} elseif ( $absy - $bottoml2 >= $M ) {
 						$start_forward = $k + 1;
 						$value_to_add_forward = 0;
 					}
@@ -366,7 +366,7 @@ class WikiDiff3 {
 					if ( $x <= 0 ) {
 						$start_backward = $k + 1;
 						$value_to_add_backward = 0;
-					} else if ( $y <= 0 && $end_backward > $k - 1 ) {
+					} elseif ( $y <= 0 && $end_backward > $k - 1 ) {
 						$end_backward = $k - 1;
 					}
 				}
@@ -400,7 +400,7 @@ class WikiDiff3 {
 					// check to see if we can cut down the diagonal range
 					if ( $x >= $N && $end_forward > $k - 1 ) {
 						$end_forward = $k - 1;
-					} else if ( $absy -$bottoml2 >= $M ) {
+					} elseif ( $absy -$bottoml2 >= $M ) {
 						$start_forward = $k + 1;
 						$value_to_add_forward = 0;
 					}
@@ -441,7 +441,7 @@ class WikiDiff3 {
 					if ( $x <= 0 ) {
 						$start_backward = $k + 1;
 						$value_to_add_backward = 0;
-					} else if ( $y <= 0 && $end_backward > $k - 1 ) {
+					} elseif ( $y <= 0 && $end_backward > $k - 1 ) {
 						$end_backward = $k - 1;
 					}
 				}
@@ -510,7 +510,7 @@ class WikiDiff3 {
 				$max_progress[0][0] = $x;
 				$max_progress[0][1] = $y;
 				$max_progress[0][2] = $progress;
-			} else if ( $progress == $max_progress[0][2] ) {
+			} elseif ( $progress == $max_progress[0][2] ) {
 				++$num_progress;
 				$max_progress[$num_progress][0] = $x;
 				$max_progress[$num_progress][1] = $y;
@@ -537,7 +537,7 @@ class WikiDiff3 {
 				$max_progress[0][0] = $x;
 				$max_progress[0][1] = $y;
 				$max_progress[0][2] = $progress;
-			} else if ( $progress == $max_progress[0][2] && !$max_progress_forward ) {
+			} elseif ( $progress == $max_progress[0][2] && !$max_progress_forward ) {
 				++$num_progress;
 				$max_progress[$num_progress][0] = $x;
 				$max_progress[$num_progress][1] = $y;

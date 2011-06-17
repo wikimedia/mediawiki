@@ -16,7 +16,7 @@ class ORAResult {
 	private $rows;
 	private $cursor;
 	private $nrows;
-	
+
 	private $columns = array();
 
 	private function array_unique_md( $array_in ) {
@@ -246,7 +246,7 @@ class DatabaseOracle extends DatabaseBase {
 			$this->mServer = $server;
 			if ( !$dbName ) {
 				$this->mDBname = $user;
-			} else {	
+			} else {
 				$this->mDBname = $dbName;
 			}
 		}
@@ -359,7 +359,7 @@ class DatabaseOracle extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		
+
 		$res->free();
 	}
 
@@ -367,7 +367,7 @@ class DatabaseOracle extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		
+
 		return $res->fetchObject();
 	}
 
@@ -485,11 +485,11 @@ class DatabaseOracle extends DatabaseBase {
 		if ( is_numeric( $col ) ) {
 			$bind = $val;
 			$val = null;
-			return $bind; 
-		} else if ( $includeCol ) {
+			return $bind;
+		} elseif ( $includeCol ) {
 			$bind = "$col = ";
 		}
-		
+
 		if ( $val == '' && $val !== 0 && $col_type != 'BLOB' && $col_type != 'CLOB' ) {
 			$val = null;
 		}
@@ -503,7 +503,7 @@ class DatabaseOracle extends DatabaseBase {
 		} else {
 			$bind .= ':' . $col;
 		}
-		
+
 		return $bind;
 	}
 
@@ -523,7 +523,7 @@ class DatabaseOracle extends DatabaseBase {
 			} else {
 				$first = false;
 			}
-			
+
 			$sql .= $this->fieldBindStatement( $table, $col, $val );
 		}
 		$sql .= ')';
@@ -757,7 +757,7 @@ class DatabaseOracle extends DatabaseBase {
 				$this->delete( $table, $deleteConds, $fname );
 			}
 
-			
+
 			if ( $sequenceData !== false && !isset( $row[$sequenceData['column']] ) ) {
 				$row[$sequenceData['column']] = $this->nextSequenceValue( $sequenceData['sequence'] );
 			}
@@ -835,7 +835,7 @@ class DatabaseOracle extends DatabaseBase {
 		if (!empty($prefix)) {
 			$listWhere = ' AND table_name LIKE \''.strtoupper($prefix).'%\'';
 		}
-		
+
 		$owner = strtoupper( $this->mDBname );
 		$result = $this->doQuery( "SELECT table_name FROM all_tables WHERE owner='$owner' AND table_name NOT LIKE '%!_IDX\$_' ESCAPE '!' $listWhere" );
 
@@ -858,7 +858,7 @@ class DatabaseOracle extends DatabaseBase {
 		if( !$this->tableExists( $tableName ) ) {
 			return false;
 		}
-		
+
 		return $this->doQuery( "DROP TABLE $tableName CASCADE CONSTRAINTS PURGE" );
 	}
 
@@ -902,7 +902,7 @@ class DatabaseOracle extends DatabaseBase {
 		$rset = $this->doQuery( 'SELECT version FROM product_component_version WHERE UPPER(product) LIKE \'ORACLE DATABASE%\'' );
 		if ( !( $row =  $rset->fetchRow() ) ) {
 			return oci_server_version( $this->mConn );
-		} 
+		}
 		return $row['version'];
 	}
 
@@ -1163,7 +1163,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	private function wrapFieldForWhere( $table, &$col, &$val ) {
 		global $wgContLang;
-		
+
 		$col_info = $this->fieldInfoMulti( $table, $col );
 		$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
 		if ( $col_type == 'CLOB' ) {
@@ -1250,15 +1250,15 @@ class DatabaseOracle extends DatabaseBase {
 
 	function update( $table, $values, $conds, $fname = 'DatabaseOracle::update', $options = array() ) {
 		global $wgContLang;
-		
+
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET ";
-		
+
 		$first = true;
 		foreach ( $values as $col => &$val ) {
 			$sqlSet = $this->fieldBindStatement( $table, $col, $val, true );
-			
+
 			if ( !$first ) {
 				$sqlSet = ', ' . $sqlSet;
 			} else {
@@ -1304,8 +1304,8 @@ class DatabaseOracle extends DatabaseBase {
 					throw new DBUnexpectedError( $this, "Cannot create LOB descriptor: " . $e['message'] );
 				}
 
-				if ( $col_type == 'BLOB' ) { 
-					$lob[$col]->writeTemporary( $val ); 
+				if ( $col_type == 'BLOB' ) {
+					$lob[$col]->writeTemporary( $val );
 					oci_bind_by_name( $stmt, ":$col", $lob[$col], - 1, SQLT_BLOB );
 				} else {
 					$lob[$col]->writeTemporary( $val );

@@ -5,7 +5,7 @@
  * @file
  * @ingroup Media
  */
- 
+
 /**
  * Handler for DjVu images
  *
@@ -207,11 +207,11 @@ class DjVuHandler extends ImageHandler {
 			$image->djvuTextTree = false;
 			$tree = new SimpleXMLElement( $metadata );
 			if( $tree->getName() == 'mw-djvu' ) {
-				foreach($tree->children() as $b){ 
+				foreach($tree->children() as $b){
 					if( $b->getName() == 'DjVuTxt' ) {
 						$image->djvuTextTree = $b;
 					}
-					else if ( $b->getName() == 'DjVuXML' ) {
+					elseif ( $b->getName() == 'DjVuXML' ) {
 						$image->dejaMetaTree = $b;
 					}
 				}
