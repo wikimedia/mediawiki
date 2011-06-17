@@ -50,7 +50,7 @@ class LoadBalancer {
 		$this->mLaggedSlaveMode = false;
 		$this->mErrorConnection = false;
 		$this->mAllowLagged = false;
-		$this->mLoadMonitorClass = isset( $params['loadMonitor'] ) 
+		$this->mLoadMonitorClass = isset( $params['loadMonitor'] )
 			? $params['loadMonitor'] : 'LoadMonitor_MySQL';
 
 		foreach( $params['servers'] as $i => $server ) {
@@ -240,7 +240,7 @@ class LoadBalancer {
 
 				if ( $i === false ) {
 					# pickRandom() returned false
-					# This is permanent and means the configuration or the load monitor 
+					# This is permanent and means the configuration or the load monitor
 					# wants us to return false.
 					wfDebugLog( 'connect', __METHOD__.": pickRandom() returned false\n" );
 					wfProfileOut( __METHOD__ );
@@ -258,7 +258,7 @@ class LoadBalancer {
 				}
 
 				// Perform post-connection backoff
-				$threshold = isset( $this->mServers[$i]['max threads'] ) 
+				$threshold = isset( $this->mServers[$i]['max threads'] )
 					? $this->mServers[$i]['max threads'] : false;
 				$backoff = $this->getLoadMonitor()->postConnectionBackoff( $conn, $threshold );
 
@@ -267,7 +267,7 @@ class LoadBalancer {
 				if ( $wiki !== false ) {
 					$this->reuseConnection( $conn );
 				}
-				
+
 				if ( $backoff ) {
 					# Post-connection overload, don't use this server for now
 					$totalThreadsConnected += $backoff;
@@ -350,7 +350,7 @@ class LoadBalancer {
 		}
 		wfProfileOut( __METHOD__ );
 	}
-	
+
 	/**
 	 * Set the master wait position and wait for ALL slaves to catch up to it
 	 */
@@ -413,11 +413,11 @@ class LoadBalancer {
 	/**
 	 * Get a connection by index
 	 * This is the main entry point for this class.
-	 * 
+	 *
 	 * @param $i Integer: server index
 	 * @param $groups Array: query groups
 	 * @param $wiki String: wiki ID
-	 * 
+	 *
 	 * @return DatabaseBase
 	 */
 	public function &getConnection( $i, $groups = array(), $wiki = false ) {
@@ -954,7 +954,7 @@ class LoadBalancer {
 	 * Results are cached for a short time in memcached, and indefinitely in the process cache
 	 *
 	 * @param $wiki
-	 * 
+	 *
 	 * @return array
 	 */
 	function getLagTimes( $wiki = false ) {
