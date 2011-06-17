@@ -42,7 +42,7 @@ class LanguageEo extends Language {
 			return preg_replace_callback (
 				'/([cghjsu]x?)((?:xx)*)(?!x)/i',
 				array( $this, 'strrtxuCallback' ), $string	);
-		} else if ( strcasecmp( $in, 'UTF-8' ) == 0 && strcasecmp( $out, 'x' ) == 0 ) {
+		} elseif ( strcasecmp( $in, 'UTF-8' ) == 0 && strcasecmp( $out, 'x' ) == 0 ) {
 			# Double Xs only if they follow cxapelutaj literoj.
 			return preg_replace_callback(
 				'/((?:[cghjsu]|\xc4[\x88\x89\x9c\x9d\xa4\xa5\xb4\xb5]|\xc5[\x9c\x9d\xac\xad])x*)/i',

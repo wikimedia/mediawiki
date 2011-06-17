@@ -65,7 +65,7 @@ class TitlePermissionTest extends MediaWikiTestCase {
 	function setUser( $userName = null ) {
 		if ( $userName === 'anon' ) {
 			$this->user = $this->anonUser;
-		} else if ( $userName === null || $userName === $this->userName ) {
+		} elseif ( $userName === null || $userName === $this->userName ) {
 			$this->user = $this->userUser;
 		} else {
 			$this->user = $this->altUser;

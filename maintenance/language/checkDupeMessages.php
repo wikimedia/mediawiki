@@ -34,9 +34,9 @@ if ( isset( $options['lang'] ) && isset( $options['clang'] ) ) {
 	} else {
 		if ( !strcmp( $options['mode'], 'wiki' ) ) {
 			$runMode = 'wiki';
-		} else if ( !strcmp( $options['mode'], 'php' ) ) {
+		} elseif ( !strcmp( $options['mode'], 'php' ) ) {
 			$runMode = 'php';
-		} else if ( !strcmp( $options['mode'], 'raw' ) ) {
+		} elseif ( !strcmp( $options['mode'], 'raw' ) ) {
 			$runMode = 'raw';
 		} else {
 		}
@@ -77,7 +77,7 @@ if ( $runTest ) {
 if ( $run ) {
 	if ( !strcmp( $runMode, 'wiki' ) ) {
 		$runMode = 'wiki';
-	} else if ( !strcmp( $runMode, 'raw' ) ) {
+	} elseif ( !strcmp( $runMode, 'raw' ) ) {
 		$runMode = 'raw';
 	}
 	include( $messagesFile );
@@ -102,9 +102,9 @@ if ( $run ) {
 					if ( ( !strcmp( $key, $ckey ) ) && ( !strcmp( $value, $cvalue ) ) ) {
 						if ( !strcmp( $runMode, 'raw' ) ) {
 							print( "$key\n" );
-						} else if ( !strcmp( $runMode, 'php' ) ) {
+						} elseif ( !strcmp( $runMode, 'php' ) ) {
 							print( "'$key' => '',\n" );
-						} else if ( !strcmp( $runMode, 'wiki' ) ) {
+						} elseif ( !strcmp( $runMode, 'wiki' ) ) {
 							$uKey = ucfirst( $key );
 							print( "* MediaWiki:$uKey/$langCode\n" );
 						} else {

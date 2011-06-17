@@ -1283,13 +1283,13 @@ class Title {
 		if ( is_array( $result ) && count( $result ) && !is_array( $result[0] ) ) {
 			// A single array representing an error
 			$errors[] = $result;
-		} else if ( is_array( $result ) && is_array( $result[0] ) ) {
+		} elseif ( is_array( $result ) && is_array( $result[0] ) ) {
 			// A nested array representing multiple errors
 			$errors = array_merge( $errors, $result );
-		} else if ( $result !== '' && is_string( $result ) ) {
+		} elseif ( $result !== '' && is_string( $result ) ) {
 			// A string representing a message-id
 			$errors[] = array( $result );
-		} else if ( $result === false ) {
+		} elseif ( $result === false ) {
 			// a generic "We don't want them to do that"
 			$errors[] = array( 'badaccess-group0' );
 		}
@@ -1377,7 +1377,7 @@ class Title {
 				&& !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
 			if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
 				$errors[] = array( 'customcssprotected' );
-			} else if ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
+			} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
 				$errors[] = array( 'customjsprotected' );
 			}
 		}
@@ -2022,7 +2022,7 @@ class Title {
 
 		if ( isset( $this->mCascadeSources ) && $getPages ) {
 			return array( $this->mCascadeSources, $this->mCascadingRestrictions );
-		} else if ( isset( $this->mHasCascadingRestrictions ) && !$getPages ) {
+		} elseif ( isset( $this->mHasCascadingRestrictions ) && !$getPages ) {
 			return array( $this->mHasCascadingRestrictions, $pagerestrictions );
 		}
 
@@ -2617,7 +2617,7 @@ class Title {
 						if ( $wgContLang->getNsIndex( $x[1] ) ) {
 							# Disallow Talk:File:x type titles...
 							return false;
-						} else if ( Interwiki::isValidInterwiki( $x[1] ) ) {
+						} elseif ( Interwiki::isValidInterwiki( $x[1] ) ) {
 							# Disallow Talk:Interwiki:x type titles...
 							return false;
 						}
@@ -3163,7 +3163,7 @@ class Title {
 		$u->doUpdate();
 
 		$dbw->commit();
-		
+
 		# Update site_stats
 		if ( $this->isContentPage() && !$nt->isContentPage() ) {
 			# No longer a content page
@@ -3656,7 +3656,7 @@ class Title {
 	 * @return String: MW timestamp
 	 */
 	public function getEarliestRevTime( $flags = 0 ) {
-		$rev = $this->getFirstRevision( $flags );	
+		$rev = $this->getFirstRevision( $flags );
 		return $rev ? $rev->getTimestamp() : null;
 	}
 

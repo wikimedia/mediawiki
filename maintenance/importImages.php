@@ -96,7 +96,7 @@ if ( count( $args ) > 0 ) {
 			die( "failed to read comment file: {$options['comment-file']}\n" );
 		}
 	}
-	else if ( isset( $options['comment'] ) ) {
+	elseif ( isset( $options['comment'] ) ) {
 		$comment =  $options['comment'];
 	}
 
@@ -241,7 +241,7 @@ if ( count( $args ) > 0 ) {
 
 			if ( isset( $options['dry'] ) ) {
 				echo( "done.\n" );
-			} else if ( $image->recordUpload( $archive->value, $commentText, $license ) ) {
+			} elseif ( $image->recordUpload( $archive->value, $commentText, $license ) ) {
 				# We're done!
 				echo( "done.\n" );
 				if ( $doProtect ) {

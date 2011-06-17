@@ -116,7 +116,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if( !$user->isAllowed( 'deletedhistory' ) ) {
 			$output->permissionRequired( 'deletedhistory' );
 			return;
-		} else if( wfReadOnly() ) {
+		} elseif( wfReadOnly() ) {
 			$output->readOnlyPage();
 			return;
 		}
@@ -588,7 +588,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		foreach( $bitPars as $const => $val ) {
 			if( $val == 1 ) {
 				$newBits |= $const; // $const is the *_deleted const
-			} else if( $val == -1 ) {
+			} elseif( $val == -1 ) {
 				$newBits |= ($oldfield & $const); // use existing
 			}
 		}
