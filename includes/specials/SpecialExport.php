@@ -74,7 +74,7 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
-		else if( $wgRequest->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
+		elseif( $wgRequest->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
 			$page = $wgRequest->getText( 'pages' );
 			$nsindex = $wgRequest->getText( 'nsindex', '' );
 
@@ -88,7 +88,7 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
-		else if( $wgRequest->wasPosted() && $par == '' ) {
+		elseif( $wgRequest->wasPosted() && $par == '' ) {
 			$page = $wgRequest->getText( 'pages' );
 			$this->curonly = $wgRequest->getCheck( 'curonly' );
 			$rawOffset = $wgRequest->getVal( 'offset' );

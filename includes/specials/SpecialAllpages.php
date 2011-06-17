@@ -476,7 +476,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$t = Title::makeTitleSafe($ns, $text);
 		if ( $t && $t->isLocal() ) {
 			return array( $t->getNamespace(), $t->getDBkey(), $t->getText() );
-		} else if ( $t ) {
+		} elseif ( $t ) {
 			return null;
 		}
 

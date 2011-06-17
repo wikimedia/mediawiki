@@ -279,7 +279,7 @@ class AllmessagesTablePager extends TablePager {
 				} elseif( isset( $xNames[$s->page_title] ) ) {
 					$pageFlags[$s->page_title] = true;
 				}
-			} else if( $s->page_namespace == NS_MEDIAWIKI_TALK ){
+			} elseif( $s->page_namespace == NS_MEDIAWIKI_TALK ){
 				$talkFlags[$s->page_title] = true;
 			}
 		}

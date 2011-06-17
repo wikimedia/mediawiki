@@ -358,7 +358,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagFilter'] );
-		
+
 		$fNS = '';
 		$fShowDiff = '';
 		if ( !$wgMiserMode ) {
@@ -447,12 +447,12 @@ class ContribsPager extends ReverseChronologicalPager {
 		// Paranoia: avoid brute force searches (bug 17342)
 		if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
 			$conds[] = $this->mDb->bitAnd('rev_deleted',Revision::DELETED_USER) . ' = 0';
-		} else if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+		} elseif( !$wgUser->isAllowed( 'suppressrevision' ) ) {
 			$conds[] = $this->mDb->bitAnd('rev_deleted',Revision::SUPPRESSED_USER) .
 				' != ' . Revision::SUPPRESSED_USER;
 		}
 		$join_cond['page'] = array( 'INNER JOIN', 'page_id=rev_page' );
-		
+
 		$fields = array(
 			'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
 			'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
@@ -484,7 +484,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
 		return $queryInfo;
 	}
- 
+
  	function getUserCond() {
 		$condition = array();
 		$join_conds = array();
@@ -645,8 +645,8 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
-		
-		
+
+
 		$diffOut = ( $this->showSizeDiff ) ? ' . . '.ChangesList::showCharacterDifference( $row->rc_old_len, $row->rc_new_len ) : ' . . '.Linker::formatRevisionSize( $row->rev_len );
 
 		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$diffOut}{$userlink} {$comment} {$topmarktext}";

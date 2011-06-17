@@ -841,11 +841,11 @@ class Parser {
 				if ( $attributes !== '' ) {
 					$table['attributes'] = $attributes;
 				}
-			} else if ( !isset( $tables[0] ) ) {
+			} elseif ( !isset( $tables[0] ) ) {
 				// we're outside the table
 
 				$out .= $outLine . "\n";
-			} else if ( $firstChars === '|}' ) {
+			} elseif ( $firstChars === '|}' ) {
 				// trim the |} code from the line
 				$line = substr ( $line , 2 );
 
@@ -886,7 +886,7 @@ class Parser {
 
 				$output .= $o;
 
-			} else if ( $firstChars === '|-' ) {
+			} elseif ( $firstChars === '|-' ) {
 				// start a new row element
 				// but only when we haven't started one already
 				if ( count( $currentRow ) != 0 ) {
@@ -901,7 +901,7 @@ class Parser {
 					$currentRow['attributes'] = $attributes;
 				}
 
-			} else if ( $firstChars  === '|+' ) {
+			} elseif ( $firstChars  === '|+' ) {
 				// a table caption, but only proceed if there isn't one already
 				if ( !isset ( $table['caption'] ) ) {
 					$line = substr ( $line , 2 );
@@ -913,7 +913,7 @@ class Parser {
 					unset( $c );
 					$output =& $table['caption']['content'];
 				}
-			} else if ( $firstChars === '|' || $firstChars === '!' || $firstChars === '!+' ) {
+			} elseif ( $firstChars === '|' || $firstChars === '!' || $firstChars === '!+' ) {
 				// Which kind of cells are we dealing with
 				$currentTag = 'td';
 				$line = substr ( $line , 1 );
@@ -930,7 +930,7 @@ class Parser {
 				// decide whether thead to tbody
 				if ( !array_key_exists( 'type', $currentRow ) ) {
 					$currentRow['type'] = ( $firstChars === '!' ) ? 'thead' : 'tbody' ;
-				} else if ( $firstChars === '|' ) {
+				} elseif ( $firstChars === '|' ) {
 					$currentRow['type'] = 'tbody';
 				}
 
@@ -1000,7 +1000,7 @@ class Parser {
 		if ( strpos( $cellData[0], '[[' ) !== false ) {
 			$content = trim ( $cell );
 		}
-		else if ( count ( $cellData ) == 1 ) {
+		elseif ( count ( $cellData ) == 1 ) {
 			$content = trim ( $cellData[0] );
 		} else {
 			$attributes = $this->mStripState->unstripBoth( $cellData[0] );
@@ -1042,7 +1042,7 @@ class Parser {
 			if ( !isset( $table[$i]['type'] ) ) $table[$i]['type'] = 'tbody';
 			if ( !$lastSection ) {
 				$lastSection = $table[$i]['type'];
-			} else if ( $lastSection != $table[$i]['type'] ) {
+			} elseif ( $lastSection != $table[$i]['type'] ) {
 				$simple = false;
 				break;
 			}
@@ -3086,7 +3086,7 @@ class Parser {
 		$args = ( null == $piece['parts'] ) ? array() : $piece['parts'];
 		wfProfileOut( __METHOD__.'-setup' );
 		wfProfileIn( __METHOD__."-title-$originalTitle" );
-		
+
 		# SUBST
 		wfProfileIn( __METHOD__.'-modifiers' );
 		if ( !$found ) {

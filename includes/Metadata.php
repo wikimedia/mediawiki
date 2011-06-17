@@ -138,9 +138,9 @@ abstract class RdfMetaData {
 		if( $wgRightsPage && ( $nt = Title::newFromText( $wgRightsPage ) )
 			&& ($nt->getArticleID() != 0)) {
 			$this->page('rights', $nt);
-		} else if( $wgRightsUrl ){
+		} elseif( $wgRightsUrl ){
 			$this->url('rights', $wgRightsUrl);
-		} else if( $wgRightsText ){
+		} elseif( $wgRightsText ){
 			$this->element( 'rights', $wgRightsText );
 		}
 	}

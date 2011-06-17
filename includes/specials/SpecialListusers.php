@@ -41,7 +41,7 @@ class UsersPager extends AlphabeticPager {
 		if ( $parms[0] != '' && ( in_array( $par, User::getAllGroups() ) || in_array( $par, $symsForAll ) ) ) {
 			$this->requestedGroup = $par;
 			$un = $wgRequest->getText( 'username' );
-		} else if ( count( $parms ) == 2 ) {
+		} elseif ( count( $parms ) == 2 ) {
 			$this->requestedGroup = $parms[0];
 			$un = $parms[1];
 		} else {

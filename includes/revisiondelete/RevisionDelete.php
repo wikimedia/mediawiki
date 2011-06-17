@@ -48,7 +48,7 @@ class RevDel_RevisionList extends RevDel_List {
 
 		if ( $archived->numRows() == 0 ) {
 			return $live;
-		} else if ( $live->numRows() == 0 ) {
+		} elseif ( $live->numRows() == 0 ) {
 			return $archived;
 		} else {
 			// Combine the two! Whee

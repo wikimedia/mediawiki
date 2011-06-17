@@ -175,25 +175,25 @@ class SpecialListGroupRights extends SpecialPage {
 		sort( $r );
 		if( $add === true ){
 			$r[] = wfMsgExt( 'listgrouprights-addgroup-all', array( 'escape' ) );
-		} else if( is_array( $add ) && count( $add ) ) {
+		} elseif( is_array( $add ) && count( $add ) ) {
 			$add = array_values( array_unique( $add ) );
 			$r[] = wfMsgExt( 'listgrouprights-addgroup', array( 'parseinline' ), $wgLang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $add ) ), count( $add ) );
 		}
 		if( $remove === true ){
 			$r[] = wfMsgExt( 'listgrouprights-removegroup-all', array( 'escape' ) );
-		} else if( is_array( $remove ) && count( $remove ) ) {
+		} elseif( is_array( $remove ) && count( $remove ) ) {
 			$remove = array_values( array_unique( $remove ) );
 			$r[] = wfMsgExt( 'listgrouprights-removegroup', array( 'parseinline' ), $wgLang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $remove ) ), count( $remove ) );
 		}
 		if( $addSelf === true ){
 			$r[] = wfMsgExt( 'listgrouprights-addgroup-self-all', array( 'escape' ) );
-		} else if( is_array( $addSelf ) && count( $addSelf ) ) {
+		} elseif( is_array( $addSelf ) && count( $addSelf ) ) {
 			$addSelf = array_values( array_unique( $addSelf ) );
 			$r[] = wfMsgExt( 'listgrouprights-addgroup-self', array( 'parseinline' ), $wgLang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $addSelf ) ), count( $addSelf ) );
 		}
 		if( $removeSelf === true ){
 			$r[] = wfMsgExt( 'listgrouprights-removegroup-self-all', array( 'escape' ) );
-		} else if( is_array( $removeSelf ) && count( $removeSelf ) ) {
+		} elseif( is_array( $removeSelf ) && count( $removeSelf ) ) {
 			$removeSelf = array_values( array_unique( $removeSelf ) );
 			$r[] = wfMsgExt( 'listgrouprights-removegroup-self', array( 'parseinline' ), $wgLang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $removeSelf ) ), count( $removeSelf ) );
 		}
