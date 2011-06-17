@@ -455,8 +455,19 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'printfooter', $this->printSource() );
 
 		global $wgBetterDirectionality;
-		if ( $wgBetterDirectionality ) {
-			$realBodyAttribs = array( 'lang' => $wgLanguageCode, 'dir' => $wgContLang->getDir() );
+		if ( $wgBetterDirectionality && $this->getTitle()->getNamespace() != NS_SPECIAL ) {
+			if( $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) {
+				// If the page is in the MediaWiki NS, the lang and dir attribute should depend on that,
+				// i.e. MediaWiki:Message/ar -> lang=ar, dir=rtl. This assumes every message is translated,
+				// but it's anyway better than assuming it is always in the content lang
+				$nsMWTitle = $wgContLang->lcfirst( $this->getTitle()->getText() );
+				list( $nsMWName, $nsMWLang ) = MessageCache::singleton()->figureMessage( $nsMWTitle );
+				$nsMWDir = Language::factory( $nsMWLang )->getDir();
+				$realBodyAttribs = array( 'lang' => $nsMWLang, 'dir' => $nsMWDir );
+			} else {
+				// Body text is in the site content language (see also bug 6100 and 28970)
+				$realBodyAttribs = array( 'lang' => $wgLanguageCode, 'dir' => $wgContLang->getDir() );
+			}
 			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		}
 		$tpl->setRef( 'bodytext', $out->mBodytext );
