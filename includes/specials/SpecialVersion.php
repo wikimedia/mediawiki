@@ -55,8 +55,6 @@ class SpecialVersion extends SpecialPage {
 		$this->outputHeader();
 		$wgOut->allowClickjacking();
 
-		$wgOut->addHTML( Xml::openElement( 'div',
-			array( 'dir' => $wgContLang->getDir() ) ) );
 		$text =
 			$this->getMediaWikiCredits() .
 			$this->softwareInformation() .
@@ -67,7 +65,6 @@ class SpecialVersion extends SpecialPage {
 
 		$wgOut->addWikiText( $text );
 		$wgOut->addHTML( $this->IPInfo() );
-		$wgOut->addHTML( '</div>' );
 
 		if ( $wgRequest->getVal( 'easteregg' ) ) {
 			if ( $this->showEasterEgg() ) {
