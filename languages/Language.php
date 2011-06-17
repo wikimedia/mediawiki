@@ -778,7 +778,7 @@ class Language {
 			if ( isset( $wgLocalTZoffset ) ) {
 				$minDiff = $wgLocalTZoffset;
 			}
-		} else if ( $data[0] == 'Offset' ) {
+		} elseif ( $data[0] == 'Offset' ) {
 			$minDiff = intval( $data[1] );
 		} else {
 			$data = explode( ':', $tz );
@@ -1469,9 +1469,9 @@ class Language {
 		$c = intval( ( $Mar + 3 * ( $year - 1 ) + 5 * $b + 5 ) % 7 );
 		if ( $c == 0 && $a > 11 && $m >= 0.89772376543210 ) {
 			$Mar++;
-		} else if ( $c == 1 && $a > 6 && $m >= 0.63287037037037 ) {
+		} elseif ( $c == 1 && $a > 6 && $m >= 0.63287037037037 ) {
 			$Mar += 2;
-		} else if ( $c == 2 || $c == 4 || $c == 6 ) {
+		} elseif ( $c == 2 || $c == 4 || $c == 6 ) {
 			$Mar++;
 		}
 
@@ -1501,12 +1501,12 @@ class Language {
 			# Add 543 years to the Gregorian calendar
 			# Months and days are identical
 			$gy_offset = $gy + 543;
-		} else if ( ( !strcmp( $cName, 'minguo' ) ) || !strcmp( $cName, 'juche' ) ) {
+		} elseif ( ( !strcmp( $cName, 'minguo' ) ) || !strcmp( $cName, 'juche' ) ) {
 			# Minguo dates
 			# Deduct 1911 years from the Gregorian calendar
 			# Months and days are identical
 			$gy_offset = $gy - 1911;
-		} else if ( !strcmp( $cName, 'tenno' ) ) {
+		} elseif ( !strcmp( $cName, 'tenno' ) ) {
 			# Nengō dates up to Meiji period
 			# Deduct years from the Gregorian calendar
 			# depending on the nengo periods
@@ -1519,7 +1519,7 @@ class Language {
 					$gy_offset = '元';
 				}
 				$gy_offset = '明治' . $gy_offset;
-			} else if (
+			} elseif (
 				( ( $gy == 1912 ) && ( $gm == 7 ) && ( $gd == 31 ) ) ||
 				( ( $gy == 1912 ) && ( $gm >= 8 ) ) ||
 				( ( $gy > 1912 ) && ( $gy < 1926 ) ) ||
@@ -1534,7 +1534,7 @@ class Language {
 					$gy_offset = '元';
 				}
 				$gy_offset = '大正' . $gy_offset;
-			} else if (
+			} elseif (
 				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd >= 26 ) ) ||
 				( ( $gy > 1926 ) && ( $gy < 1989 ) ) ||
 				( ( $gy == 1989 ) && ( $gm == 1 ) && ( $gd < 8 ) )
@@ -2586,7 +2586,7 @@ class Language {
 			for ( $i = $m; $i >= 0; $i-- ) {
 				if ( $i == $m ) {
 					$s = $l[$i];
-				} else if ( $i == $m - 1 ) {
+				} elseif ( $i == $m - 1 ) {
 					$s = $l[$i] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $s;
 				} else {
 					$s = $l[$i] . $this->getMessageFromDB( 'comma-separator' ) . $s;
@@ -2898,7 +2898,7 @@ class Language {
 		if ( $tag != '' ) {
 			if ( $tagType == 0 && $lastCh != '/' ) {
 				$openTags[] = $tag; // tag opened (didn't close itself)
-			} else if ( $tagType == 1 ) {
+			} elseif ( $tagType == 1 ) {
 				if ( $openTags && $tag == $openTags[count( $openTags ) - 1] ) {
 					array_pop( $openTags ); // tag closed
 				}

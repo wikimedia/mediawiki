@@ -62,10 +62,10 @@ class LanguageWa extends Language {
 		if ( $n == 1 ) {
 		    $d = "1î d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
-		} else if ( $n == 2 || $n == 3 || $n == 20 || $n == 22 || $n == 23 ) {
+		} elseif ( $n == 2 || $n == 3 || $n == 20 || $n == 22 || $n == 23 ) {
 		    $d = ( 0 + $n ) . " d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
-		} else if ( $m == 4 || $m == 8 || $m == 10 ) {
+		} elseif ( $m == 4 || $m == 8 || $m == 10 ) {
 		    $d = ( 0 + $n ) . " d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		} else {

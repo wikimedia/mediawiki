@@ -126,10 +126,10 @@ class MediaWiki {
 		// If the user is not logged in, the Namespace:title of the article must be in
 		// the Read array in order for the user to see it. (We have to check here to
 		// catch special pages etc. We check again in Article::view())
-		} else if ( !$title->userCanRead() ) {
+		} elseif ( !$title->userCanRead() ) {
 			$output->loginToUse();
 		// Interwiki redirects
-		} else if ( $title->getInterwiki() != '' ) {
+		} elseif ( $title->getInterwiki() != '' ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
 				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
@@ -148,7 +148,7 @@ class MediaWiki {
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
-		} else if ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
+		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
 			&& ( $request->getVal( 'title' ) === null || $title->getPrefixedDBKey() != $request->getVal( 'title' ) )
 			&& !count( array_diff( array_keys( $request->getValues() ), array( 'action', 'title' ) ) ) )
 		{
@@ -186,7 +186,7 @@ class MediaWiki {
 				$output->redirect( $targetUrl, '301' );
 			}
 		// Special pages
-		} else if ( NS_SPECIAL == $title->getNamespace() ) {
+		} elseif ( NS_SPECIAL == $title->getNamespace() ) {
 			// actions that need to be made when we have a special pages
 			SpecialPageFactory::executePath( $title, $this->context );
 		} else {

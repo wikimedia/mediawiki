@@ -191,7 +191,7 @@ class SrConverter extends LanguageConverter {
 
 		if( $variant == 'sr-ec' ) {
 			return $numCyrillic > $numLatin;
-		} else if( $variant == 'sr-el' ) {
+		} elseif( $variant == 'sr-el' ) {
 			return $numLatin > $numCyrillic;
 		} else {
 			return false;

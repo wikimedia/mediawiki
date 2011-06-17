@@ -806,7 +806,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Check if Internet Explorer will detect an incorrect cache extension in 
+	 * Check if Internet Explorer will detect an incorrect cache extension in
 	 * PATH_INFO or QUERY_STRING. If the request can't be allowed, show an error
 	 * message or redirect to a safer URL. Returns true if the URL is OK, and
 	 * false if an error message has been shown and the request should be aborted.
@@ -825,14 +825,14 @@ class WebRequest {
 			}
 			wfHttpError( 403, 'Forbidden',
 				'Invalid file extension found in the path info or query string.' );
-			
+
 			return false;
 		}
 		return true;
 	}
 
 	/**
-	 * Attempt to redirect to a URL with a QUERY_STRING that's not dangerous in 
+	 * Attempt to redirect to a URL with a QUERY_STRING that's not dangerous in
 	 * IE 6. Returns true if it was successful, false otherwise.
 	 */
 	protected function doSecurityRedirect( $url ) {
@@ -847,11 +847,11 @@ class WebRequest {
 <body>
 <h1>Security redirect</h1>
 <p>
-We can't serve non-HTML content from the URL you have requested, because 
+We can't serve non-HTML content from the URL you have requested, because
 Internet Explorer would interpret it as an incorrect and potentially dangerous
 content type.</p>
-<p>Instead, please use <a href="$encUrl">this URL</a>, which is the same as the URL you have requested, except that 
-"&amp;*" is appended. This prevents Internet Explorer from seeing a bogus file 
+<p>Instead, please use <a href="$encUrl">this URL</a>, which is the same as the URL you have requested, except that
+"&amp;*" is appended. This prevents Internet Explorer from seeing a bogus file
 extension.
 </p>
 </body>
@@ -877,7 +877,7 @@ HTML;
 	 * QUERY_STRING, since IE 6 and earlier will use this to get the file type
 	 * if there was no dot before the question mark (bug 28235).
 	 *
-	 * @deprecated Use checkUrlExtension(). 
+	 * @deprecated Use checkUrlExtension().
 	 */
 	public function isPathInfoBad( $extWhitelist = array() ) {
 		global $wgScriptExtension;
@@ -916,7 +916,7 @@ HTML;
 		foreach ( $langs as $lang => $val ) {
 			if ( $val === '' ) {
 				$langs[$lang] = 1;
-			} else if ( $val == 0 ) {
+			} elseif ( $val == 0 ) {
 				unset($langs[$lang]);
 			}
 		}

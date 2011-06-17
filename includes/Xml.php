@@ -191,7 +191,7 @@ class Xml {
 		}
 		if( $year ) {
 			$encYear = intval( $year );
-		} else if( $encMonth ) {
+		} elseif( $encMonth ) {
 			$thisMonth = intval( gmdate( 'n' ) );
 			$thisYear = intval( gmdate( 'Y' ) );
 			if( intval($encMonth) > $thisMonth ) {
@@ -351,9 +351,9 @@ class Xml {
 	 * Convenience function to build an HTML form label
 	 * @param $label String text of the label
 	 * @param $id
-	 * @param $attribs Array an attribute array.  This will usuall be 
+	 * @param $attribs Array an attribute array.  This will usuall be
 	 *     the same array as is passed to the corresponding input element,
-	 *     so this function will cherry-pick appropriate attributes to 
+	 *     so this function will cherry-pick appropriate attributes to
 	 *     apply to the label as well; currently only class is applied.
 	 * @return string HTML
 	 */
@@ -646,8 +646,8 @@ class Xml {
 	}
 
 	/**
-	 * Create a call to a JavaScript function. The supplied arguments will be 
-	 * encoded using Xml::encodeJsVar(). 
+	 * Create a call to a JavaScript function. The supplied arguments will be
+	 * encoded using Xml::encodeJsVar().
 	 *
 	 * @param $name String The name of the function to call, or a JavaScript expression
 	 *    which evaluates to a function object which is called.
@@ -904,8 +904,8 @@ class XmlSelect {
 }
 
 /**
- * A wrapper class which causes Xml::encodeJsVar() and Xml::encodeJsCall() to 
- * interpret a given string as being a JavaScript expression, instead of string 
+ * A wrapper class which causes Xml::encodeJsVar() and Xml::encodeJsCall() to
+ * interpret a given string as being a JavaScript expression, instead of string
  * data.
  *
  * Example:

@@ -97,14 +97,14 @@ class PopulateLogSearch extends Maintenance {
 					foreach ( $sres as $srow ) {
 						if ( $srow->$userField > 0 )
 							$userIds[] = intval( $srow->$userField );
-						else if ( $srow->$userTextField != '' )
+						elseif ( $srow->$userTextField != '' )
 							$userIPs[] = $srow->$userTextField;
 					}
 					// Add item author relations...
 					$log->addRelations( 'target_author_id', $userIds, $row->log_id );
 					$log->addRelations( 'target_author_ip', $userIPs, $row->log_id );
 				// RevisionDelete logs - log events
-				} else if ( LogEventsList::typeAction( $row, $delTypes, 'event' ) ) {
+				} elseif ( LogEventsList::typeAction( $row, $delTypes, 'event' ) ) {
 					$params = LogPage::extractParams( $row->log_params );
 					// Param format: <item CSV> [<ofield> <nfield>]
 					if ( count( $params ) < 1 ) continue; // bad row
@@ -121,7 +121,7 @@ class PopulateLogSearch extends Maintenance {
 					foreach ( $sres as $srow ) {
 						if ( $srow->log_user > 0 )
 							$userIds[] = intval( $srow->log_user );
-						else if ( IP::isIPAddress( $srow->log_user_text ) )
+						elseif ( IP::isIPAddress( $srow->log_user_text ) )
 							$userIPs[] = $srow->log_user_text;
 					}
 					$log->addRelations( 'target_author_id', $userIds, $row->log_id );

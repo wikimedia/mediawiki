@@ -48,7 +48,7 @@ class SpecialUnlockdb extends SpecialPage {
 
 		if ( $action == 'success' ) {
 			$this->showSuccess();
-		} else if ( $action == 'submit' && $wgRequest->wasPosted() &&
+		} elseif ( $action == 'submit' && $wgRequest->wasPosted() &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 			$this->doSubmit();
 		} else {

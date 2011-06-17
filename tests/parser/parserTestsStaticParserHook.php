@@ -36,7 +36,7 @@ class ParserTestStaticParserHook {
 		if ( ! count( $argv ) ) {
 			$parser->static_tag_buf = $in;
 			return '';
-		} else if ( count( $argv ) === 1 && isset( $argv['action'] )
+		} elseif ( count( $argv ) === 1 && isset( $argv['action'] )
 			&& $argv['action'] === 'flush' && $in === null )
 		{
 			// Clear the buffer, we probably don't need to

@@ -925,7 +925,7 @@ class User {
 				return false;
 			}
 			$wgRequest->setSessionData( 'wsUserID', $sId );
-		} else if ( $sessId !== null && $sessId != 0 ) {
+		} elseif ( $sessId !== null && $sessId != 0 ) {
 			$sId = $sessId;
 		} else {
 			$this->loadDefaults();
@@ -934,7 +934,7 @@ class User {
 
 		if ( $wgRequest->getSessionData( 'wsUserName' ) !== null ) {
 			$sName = $wgRequest->getSessionData( 'wsUserName' );
-		} else if ( $wgRequest->getCookie( 'UserName' ) !== null ) {
+		} elseif ( $wgRequest->getCookie( 'UserName' ) !== null ) {
 			$sName = $wgRequest->getCookie( 'UserName' );
 			$wgRequest->setSessionData( 'wsUserName', $sName );
 		} else {
@@ -959,7 +959,7 @@ class User {
 		if ( $wgRequest->getSessionData( 'wsToken' ) !== null ) {
 			$passwordCorrect = $proposedUser->getToken() === $wgRequest->getSessionData( 'wsToken' );
 			$from = 'session';
-		} else if ( $wgRequest->getCookie( 'Token' ) !== null ) {
+		} elseif ( $wgRequest->getCookie( 'Token' ) !== null ) {
 			$passwordCorrect = $proposedUser->getToken() === $wgRequest->getCookie( 'Token' );
 			$from = 'cookie';
 		} else {
@@ -1492,7 +1492,7 @@ class User {
 		// User is already an IP?
 		if( IP::isIPAddress( $this->getName() ) ) {
 			$ip = $this->getName();
-		} else if( !$ip ) {
+		} elseif( !$ip ) {
 			$ip = wfGetIP();
 		}
 		$blocked = false;

@@ -823,7 +823,7 @@ class wikiFuzz {
 	static private function stringEscape( $matches ) {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );
 	}
-	
+
 	/**
 	 ** Strips out the stuff that Mediawiki balks at in a page's title.
 	 **        Implementation copied/pasted from cleanupTable.inc & cleanupImages.php
@@ -1369,7 +1369,7 @@ class viewPageTest extends pageTest {
 
 		// Tidy does not know how to valid atom or rss, so exclude from testing for the time being.
 		if ( $this->params["feed"] == "atom" )     { unset( $this->params["feed"] ); }
-		else if ( $this->params["feed"] == "rss" ) { unset( $this->params["feed"] ); }
+		elseif ( $this->params["feed"] == "rss" ) { unset( $this->params["feed"] ); }
 
 		// Raw pages cannot really be validated
 		if ( $this->params["action"] == "raw" ) unset( $this->params["action"] );
@@ -1416,7 +1416,7 @@ class specialNewpagesPageTest extends pageTest {
 
 		// Tidy does not know how to valid atom or rss, so exclude from testing for the time being.
 		if ( $this->params["feed"] == "atom" )     { unset( $this->params["feed"] ); }
-		else if ( $this->params["feed"] == "rss" ) { unset( $this->params["feed"] ); }
+		elseif ( $this->params["feed"] == "rss" ) { unset( $this->params["feed"] ); }
 	}
 }
 
@@ -2702,7 +2702,7 @@ if ( !is_dir( DIRECTORY ) ) {
 	mkdir ( DIRECTORY, 0700 );
 }
 // otherwise, we first retest the things that we have found in previous runs
-else if ( RERUN_OLD_TESTS ) {
+elseif ( RERUN_OLD_TESTS ) {
 	rerunPreviousTests();
 }
 
@@ -2750,7 +2750,7 @@ for ( $count = 0; true; $count++ ) {
 		}
 		saveTest( $test, $testname );
 		$num_errors += 1;
-	} else if ( KEEP_PASSED_TESTS ) {
+	} elseif ( KEEP_PASSED_TESTS ) {
 		// print current time, with microseconds (matches "strace" format), and the test name.
 		print " " . date( "H:i:s." ) . substr( current( explode( " ", microtime() ) ), 2 ) . " " . $testname;
 		saveTest( $test, $testname );

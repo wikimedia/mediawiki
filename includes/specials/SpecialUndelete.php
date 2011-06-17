@@ -691,7 +691,7 @@ class SpecialUndelete extends SpecialPage {
 			if ( !$file->exists() ) {
 				$wgOut->addWikiMsg( 'filedelete-nofile', $this->mFilename );
 				return;
-			} else if( !$file->userCan( File::DELETED_FILE ) ) {
+			} elseif( !$file->userCan( File::DELETED_FILE ) ) {
 				if( $file->isDeleted( File::DELETED_RESTRICTED ) ) {
 					$wgOut->permissionRequired( 'suppressrevision' );
 				} else {
@@ -1253,7 +1253,7 @@ class SpecialUndelete extends SpecialPage {
 			if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 				$pageLink = htmlspecialchars( $wgLang->timeanddate( $ts, true ) );
 				$last = wfMsgHtml( 'diff' );
-			} else if( $remaining > 0 || ( $earliestLiveTime && $ts > $earliestLiveTime ) ) {
+			} elseif( $remaining > 0 || ( $earliestLiveTime && $ts > $earliestLiveTime ) ) {
 				$pageLink = $this->getPageLink( $rev, $titleObj, $ts, $sk );
 				$last = $sk->linkKnown(
 					$titleObj,
