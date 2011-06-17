@@ -33,10 +33,11 @@ class MediaWiki {
 	private function parseTitle() {
 		global $wgContLang;
 
-		$curid = $this->context->request->getInt( 'curid' );
-		$title = $this->context->request->getVal( 'title' );
+		$request = $this->context->getRequest();
+		$curid = $request->getInt( 'curid' );
+		$title = $request->getVal( 'title' );
 
-		if ( $this->context->request->getCheck( 'search' ) ) {
+		if ( $request->getCheck( 'search' ) ) {
 			// Compatibility with old search URLs which didn't use Special:Search
 			// Just check for presence here, so blank requests still
 			// show the search page when using ugly URLs (bug 8054).
@@ -57,8 +58,8 @@ class MediaWiki {
 		// For non-special titles, check for implicit titles
 		if ( is_null( $ret ) || $ret->getNamespace() != NS_SPECIAL ) {
 			// We can have urls with just ?diff=,?oldid= or even just ?diff=
-			$oldid = $this->context->request->getInt( 'oldid' );
-			$oldid = $oldid ? $oldid : $this->context->request->getInt( 'diff' );
+			$oldid = $request->getInt( 'oldid' );
+			$oldid = $oldid ? $oldid : $request->getInt( 'diff' );
 			// Allow oldid to override a changed or missing title
 			if ( $oldid ) {
 				$rev = Revision::newFromId( $oldid );
@@ -344,7 +345,7 @@ class MediaWiki {
 		} else {
 			$n = intval( $wgJobRunRate );
 		}
-		
+
 		// Close the session so that jobs don't access the current session
 		$this->shutdownLBFactory();
 		session_write_close();
@@ -375,7 +376,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * Commit pending master changes, shutdown the current loadbalancer 
+	 * Commit pending master changes, shutdown the current loadbalancer
 	 * factory and destroys the factory instance.
 	 */
 	private function shutdownLBFactory() {
