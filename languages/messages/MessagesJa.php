@@ -2037,7 +2037,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'statistics-pages'             => '総ページ数',
 'statistics-pages-desc'        => 'トークページやリダイレクトなどを含んだこのウィキ内のすべてのページです。',
 'statistics-files'             => 'アップロードされたファイル数',
-'statistics-edits'             => '{{SITENAME}}が立ち上がってからの編集回数の総計',
+'statistics-edits'             => '{{SITENAME}}が開設されてからの編集回数の総計',
 'statistics-edits-average'     => '1ページあたりの編集回数',
 'statistics-views-total'       => '総閲覧回数',
 'statistics-views-total-desc'  => '存在しないページと特別ページに対する閲覧は含まれていません',

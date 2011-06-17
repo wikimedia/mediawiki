@@ -1095,6 +1095,7 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 Маштабаваньне выяваў будзе адключанае.',
 	'config-no-uri' => "'''Памылка:''' Не магчыма вызначыць цяперашні URI.
 Усталяваньне спыненае.",
+	'config-using-server' => 'Выкарыстоўваецца назва сэрвэра «<nowiki>$1</nowiki>».',
 	'config-uploads-not-safe' => "'''Папярэджаньне:''' дырэкторыя для загрузак па змоўчваньні <code>$1</code> уразьлівая да выкананьня адвольнага коду.
 Хоць MediaWiki і правярае ўсе файлы перад захаваньнем, вельмі рэкамэндуецца [http://www.mediawiki.org/wiki/Manual:Security#Upload_security закрыць гэтую ўразьлівасьць] перад уключэньнем магчымасьці загрузкі файлаў.",
 	'config-brokenlibxml' => 'У Вашай сыстэме ўсталяваныя PHP і libxml2 зь несумяшчальнымі вэрсіямі, што можа прывесьці да пашкоджаньня зьвестак MediaWiki і іншых ўэб-дастасаваньняў.
@@ -2483,12 +2484,20 @@ Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> pos
 	'config-env-good' => 'Okruženje je provjereno.
 Možete instalirati MediaWiki.',
 	'config-env-php' => 'PHP $1 je instaliran.',
-	'config-no-db' => 'Nije mogao biti pronađen podgodan drajver za bazu podataka!',
+	'config-no-db' => 'Nije mogao biti pronađen pogodan driver za bazu podataka! Morate instalirati driver baze podataka za PHP.
+Slijedeće vrste baza podataka su podržane: $1.
+
+Ako se na dijeljenom serveru, tražite od vašeg pružaoca usluga da instalira pogodan driver za bazu podataka.
+Ako se sami kompajlirali PHP, podesite ga sa omogućenim klijentom baze podataka, koristeći naprimjer <code>./configure --with-mysql</code>.
+Ako ste instalirali PHP iz Debian ili Ubuntu paketa, možda morate instalirati i modul php5-mysql.',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je instaliran',
 	'config-apc' => '[http://www.php.net/apc APC] je instaliran',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] je instaliran',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] je instaliran',
 	'config-diff3-bad' => 'GNU diff3 nije pronađen.',
+	'config-db-type' => 'Vrsta baze podataka:',
+	'config-db-host' => 'Domaćin baze podataka:',
+	'config-db-wiki-settings' => 'Identificiraj ovu wiki',
 	'config-db-name' => 'Naziv baze podataka:',
 	'config-db-name-oracle' => 'Šema baze podataka:',
 	'config-header-mysql' => 'Postavke MySQL',
@@ -3150,8 +3159,8 @@ No puedes instalar MediaWiki.',
 	'config-env-php' => 'PHP $1 está instalado.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando la [http://pecl.php.net/intl extensión intl PECL] para la normalización Unicode.',
-	'config-unicode-pure-php-warning' => "'''Advertencia''': La [http://pecl.php.net/intl extensión intl PECL] no está disponible para efectuar la normalización Unicode. Retornando a la implementación pura y lenta PHP.
-Si tu web tiene un alto volumen de tráfico, te recomendamos leer acerca de la  [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalización Unicode].",
+	'config-unicode-pure-php-warning' => "'''Advertencia''': La [http://pecl.php.net/intl extensión intl] no está disponible para efectuar la normalización Unicode. Utilizando la implementación más lenta en PHP.
+Si tu web tiene mucho tráfico, te recomendamos leer acerca de la [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalización Unicode].",
 	'config-unicode-update-warning' => "'''Warning''': La versión instalada del contenedor de normalización Unicode usa una versión anterior de la biblioteca del [http://site.icu-project.org/ proyecto ICU].
 Deberás [http://www.mediawiki.org/wiki/Unicode_normalization_considerations actualizar] si realmente deseas usar Unicode.",
 	'config-no-db' => 'No fue posible encontrar un controlador adecuado para la base de datos! Necesitas instalar un controlador de base de datos para PHP.
@@ -4413,6 +4422,7 @@ As miniaturas de imaxes estarán dispoñibles se activa as cargas.',
 As miniaturas de imaxes estarán desactivadas.',
 	'config-no-uri' => "'''Erro:''' Non se puido determinar o URI actual.
 Instalación abortada.",
+	'config-using-server' => 'Usando o nome do servidor "<nowiki>$1</nowiki>".',
 	'config-uploads-not-safe' => "'''Atención:''' O seu directorio por defecto para as cargas, <code>$1</code>, é vulnerable a execucións arbitrarias de escrituras.
 Aínda que MediaWiki comproba todos os ficheiros cargados por se houbese ameazas de seguridade, é amplamente recomendable [http://www.mediawiki.org/wiki/Manual:Security#Upload_security pechar esta vulnerabilidade de seguridade] antes de activar as cargas.",
 	'config-brokenlibxml' => 'O seu sistema ten unha combinación de versións de PHP e libxml2 que pode ser problemático e causar corrupción de datos en MediaWiki e outras aplicacións web.
@@ -5878,6 +5888,7 @@ Bélyegképek készítése működni fog, miután engedélyezted a fájlfeltölt
 A bélyegképek készítése le lesz tiltva.',
 	'config-no-uri' => "'''Hiba:''' Nem sikerült megállapítani a jelenlegi URI-t.
 Telepítés megszakítva.",
+	'config-using-server' => 'A következő szervernév használata: „<nowiki>$1</nowiki>”.',
 	'config-uploads-not-safe' => "'''Figyelmeztetés:''' a feltöltésekhez használt alapértelmezett könyvtárban (<code>$1</code>) tetszőleges külső szkript futtatható.
 Habár a MediaWiki ellenőrzi a feltöltött fájlokat az efféle biztonsági veszélyek megtalálása érdekében, a feltöltés engedélyezése előtt erősen ajánlott a [http://www.mediawiki.org/wiki/Manual:Security#Upload_security a sérülékenység megszüntetése].",
 	'config-brokenlibxml' => 'A rendszereden a PHP és libxml2 verziók olyan kombinációja található meg, ami hibásan működik, és észrevehetetlen adatkárosodást okoz a MediaWikiben és más webalkalmazásokban.
@@ -5941,6 +5952,7 @@ nem használhatod a [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_p
 	'config-db-schema' => 'MediaWiki-séma',
 	'config-db-schema-help' => 'A fenti sémák általában megfelelőek.
 Csak akkor módosíts rajtuk, ha tudod, hogy szükséges.',
+	'config-pg-test-error' => "Nem sikerült csatlakozni a(z) '''$1''' adatbázishoz: $2",
 	'config-sqlite-dir' => 'SQLite-adatkönyvtár:',
 	'config-sqlite-dir-help' => "Az SQLite minden adatot egyetlen fájlban tárol.
 
@@ -6095,6 +6107,8 @@ Adj meg egy másik felhasználónevet.',
 	'config-subscribe' => 'Feliratkozás a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce kiadási bejelentések levelezőlistájára].',
 	'config-subscribe-help' => 'Ez egy alacsony forgalmú levelezőlista, ahol a kiadásokkal kapcsolatos bejelentések jelennek meg, a fontos biztonsági javításokkal együtt.
 Ajánlott feliratkozni rá, és frissíteni a MediaWikit, ha új verzió jön ki.',
+	'config-subscribe-noemail' => 'Anélkül próbáltál feliratkozni a kiadási bejelentések levelezőlistájára, hogy megadtál volna egy e-mail címet.
+Adj meg egyet, ha fel szeretnél iratkozni a levelezőlistára.',
 	'config-almost-done' => 'Már majdnem kész!
 A további konfigurációt kihagyhatod, és most azonnal elindíthatod a wiki telepítését.',
 	'config-optional-continue' => 'További információk megadása.',
@@ -6203,6 +6217,7 @@ Ha szeretnél módosítani a beállításokon, kattints a vissza gombra.',
 	'config-install-step-failed' => 'sikertelen',
 	'config-install-extensions' => 'Kiterjesztések beillesztése',
 	'config-install-database' => 'Adatbázis felállítása',
+	'config-install-schema' => 'Adatbázis-szerkezet létrehozása',
 	'config-install-pg-schema-not-exist' => 'A PostgreSQL-adatbázis nem létezik.',
 	'config-install-pg-schema-failed' => 'A táblák létrehozása nem sikerült.
 Ellenőrizd, hogy „$1” felhasználó írhat-e a következő adatbázisba: „$2”.',
@@ -6214,6 +6229,9 @@ Ellenőrizd, hogy „$1” felhasználó írhat-e a következő adatbázisba: �
 	'config-install-user-alreadyexists' => 'Már létezik „$1” nevű felhasználó',
 	'config-install-user-create-failed' => 'Nem sikerült a(z) „$1” nevű felhasználó létrehozása: $2',
 	'config-install-user-grant-failed' => 'Nem sikerült jogosultságokkal felruházni a(z) „$1” nevű felhasználót: $2',
+	'config-install-user-missing' => 'A megadott felhasználó („$1”) nem létezik.',
+	'config-install-user-missing-create' => 'A megadott felhasználó („$1”) nem létezik.
+Pipáld ki a „Fiók létrehozása” dobozt, ha létre szeretnéd hozni.',
 	'config-install-tables' => 'Táblák létrehozása',
 	'config-install-tables-exist' => "'''Figyelmeztetés''': úgy tűnik, hogy a MediaWiki táblái már léteznek.
 Létrehozás kihagyása.",
@@ -6226,7 +6244,7 @@ Alapértelmezett lista kihagyása.",
 	'config-install-keys' => 'Titkos kulcsok generálása',
 	'config-insecure-keys' => "'''Figyelmeztetés:''' A telepítés során generált $1 {{PLURAL:$2|biztonsági kulcs|biztonsági kulcsok}} nem teljesen $1 {{PLURAL:$2|biztonságos|biztonságosak}}. Érdemes {{PLURAL:$2||őket}} manuálisan megváltoztatni.",
 	'config-install-sysop' => 'Az adminisztrátor felhasználói fiókjának létrehozása',
-	'config-install-subscribe-fail' => 'Nem sikerült feliratkozni a mediawiki-announce levelezőlistára',
+	'config-install-subscribe-fail' => 'Nem sikerült feliratkozni a mediawiki-announce levelezőlistára: $1',
 	'config-install-mainpage' => 'Kezdőlap létrehozása az alapértelmezett tartalommal',
 	'config-install-extension-tables' => 'Táblák létrehozása az engedélyezett kiterjesztésekhez',
 	'config-install-mainpage-failed' => 'Nemsikerült létrehozni a kezdőlapot: $1',
@@ -8745,6 +8763,7 @@ $1
 Минијатуризацијата на сликите ќе биде оневозможена.',
 	'config-no-uri' => "'''Грешка:''' Не можев да го утврдам тековниот URI.
 Инсталацијата е откажана.",
+	'config-using-server' => 'Користите опслужувач под името „<nowiki>$1</nowiki>“.',
 	'config-uploads-not-safe' => "'''Предупредување:''' Вашата матична папка за подигање <code>$1</code> е подложна на извршување (пуштање) на произволни скрипти.
 Иако МедијаВики врши безбедносни проверки на сите подигнати податотеки, ве советуваме [http://www.mediawiki.org/wiki/Manual:Security#Upload_security да ја затворите оваа безбедносна дупка] пред да овозможите подигање.",
 	'config-brokenlibxml' => 'Вашиот систем има комбинација од PHP и libxml2 верзии и затоа има грешки и може да предизвика скриено расипување на податоците кај МедијаВики и други мрежни програми.
@@ -8997,7 +9016,7 @@ chmod a+w $3</pre>',
 	'config-license-cc-by-nc-sa' => 'Creative Commons НаведиИзвор-Некомерцијално-СподелиПодИстиУслови',
 	'config-license-cc-0' => 'Криејтив комонс Нула (јавен домен)',
 	'config-license-gfdl' => 'ГНУ-ова лиценца за слободна документација 1.3 или понова',
-	'config-license-pd' => 'Јавен домен',
+	'config-license-pd' => 'Јавна сопственост',
 	'config-license-cc-choose' => 'Одберете друга Creative Commons лиценца по ваш избор',
 	'config-license-help' => "Многу јавни викија ги ставаат сите придонеси под [http://freedomdefined.org/Definition слободна лиценца].
 Со ова се создава атмосфера на општа сопственост и поттикнува долгорочно учество.
@@ -11274,6 +11293,7 @@ Se possibilitar uploads, a miniaturização de imagens será activada.',
 A miniaturização de imagens será desactivada.',
 	'config-no-uri' => "'''Erro:''' Não foi possível determinar a URI actual.
 A instalação foi abortada.",
+	'config-using-server' => 'A utilizar o nome de servidor "<nowiki>$1</nowiki>".',
 	'config-uploads-not-safe' => "'''Aviso:''' O directório por omissão para uploads <code>$1</code>, está vulnerável à execução arbitrária de scripts.
 Embora o MediaWiki verifique a existência de ameaças de segurança em todos os ficheiros enviados, é altamente recomendado que [http://www.mediawiki.org/wiki/Manual:Security#Upload_security vede esta vulnerabilidade de segurança] antes de possibilitar uploads.",
 	'config-brokenlibxml' => 'O seu sistema tem uma combinação de versões de PHP e libxml2 conhecida por ser problemática, podendo causar corrupção de dados no MediaWiki e outras aplicações da internet.
