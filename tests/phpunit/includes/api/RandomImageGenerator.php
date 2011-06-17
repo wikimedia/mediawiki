@@ -122,7 +122,7 @@ class RandomImageGenerator {
 
 	/**
 	 * Generate data representing an image of random size (within limits),
-	 * consisting of randomly colored and sized circles against a random background color
+	 * consisting of randomly colored and sized upward pointing triangles against a random background color
 	 * (This data is used in the writeImage* methods).
 	 * @return {Mixed}
 	 */
@@ -140,17 +140,17 @@ class RandomImageGenerator {
 			$radius = mt_rand( 0, $diagonalLength / 4 );
 			$originX = mt_rand( -1 * $radius, $spec['width'] + $radius );
 			$originY = mt_rand( -1 * $radius, $spec['height'] + $radius );
-			$perimeterX = $originX + $radius;
-			$perimeterY = $originY + $radius;
+			$angle = mt_rand( 0, ( 3.141592/2 ) * $radius ) / $radius;
+			$legDeltaX = round( $radius * sin( $angle ) );
+			$legDeltaY = round( $radius * cos( $angle ) );
 
 			$draw = array();
 			$draw['fill'] = $this->getRandomColor();
-			$draw['circle'] = array(
-				'originX' => $originX,
-				'originY' => $originY,
-				'radius' => $radius,
-				'perimeterX' => $perimeterX,
-				'perimeterY' => $perimeterY
+			$draw['shape'] = array(
+				array( 'x' => $originX, 		'y' => $originY - $radius ),
+				array( 'x' => $originX + $legDeltaX, 	'y' => $originY + $legDeltaY ),
+				array( 'x' => $originX - $legDeltaX, 	'y' => $originY + $legDeltaY ),
+				array( 'x' => $originX, 		'y' => $originY - $radius )
 			);
 			$draws[] = $draw;
 
@@ -177,12 +177,9 @@ class RandomImageGenerator {
  		$svg->addAttribute( 'height', $spec['height'] );
 		$g = $svg->addChild( 'g' );
 		foreach ( $spec['draws'] as $drawSpec ) {
-			$circle = $g->addChild( 'circle' );
-			$circle->addAttribute( 'fill', $drawSpec['fill'] );		
-			$circleSpec = $drawSpec['circle'];
-			$circle->addAttribute( 'cx', $circleSpec['originX'] );		
-			$circle->addAttribute( 'cy', $circleSpec['originY'] );		
-			$circle->addAttribute( 'r', $circleSpec['radius'] );		
+			$shape = $g->addChild( 'polygon' );
+			$shape->addAttribute( 'fill', $drawSpec['fill'] );		
+			$shape->addAttribute( 'points', shapePointsToString( $drawSpec['shape'] ) );
 		};
 		if ( ! $fh = fopen( $filename, 'w' ) ) {
 			throw new Exception( "couldn't open $filename for writing" );
@@ -191,6 +188,14 @@ class RandomImageGenerator {
 		if ( !fclose($fh) ) {
 			throw new Exception( "couldn't close $filename" );
 		}
+	}
+
+	public function shapePointsToString( $shape ) {
+		$points = array();
+		foreach ( $shape as $point ) { 
+			$points[] = $point['x'] . ',' . $point['y'];
+		}
+		return join( " ", $points );
 	}
 
 	/**
@@ -206,8 +211,7 @@ class RandomImageGenerator {
 		foreach ( $spec['draws'] as $drawSpec ) {
 			$draw = new ImagickDraw();
 			$draw->setFillColor( $drawSpec['fill'] );
-			$circle = $drawSpec['circle'];
-			$draw->circle( $circle['originX'], $circle['originY'], $circle['perimeterX'], $circle['perimeterY'] );
+			$draw->polygon( $drawSpec['shape'] );
 			$image->drawImage( $draw );
 		}
 
@@ -221,7 +225,7 @@ class RandomImageGenerator {
 	 *
 	 * Sample command line:
 	 *    $ convert -size 100x60 xc:rgb(90,87,45)  \
-		 * 	-draw 'fill rgb(12,34,56)   circle 41,39 44,57' \
+		 * 	-draw 'fill rgb(12,34,56)   polygon 41,39 44,57 50,57 41,39' \
 		 *      -draw 'fill rgb(99,123,231) circle 59,39 56,57' \
 		 *      -draw 'fill rgb(240,12,32)  circle 50,21 50,3'  filename.png
 	 *
@@ -236,11 +240,8 @@ class RandomImageGenerator {
 		$args[] = wfEscapeShellArg( "xc:" . $spec['fill'] );
 		foreach( $spec['draws'] as $draw ) {
 			$fill = $draw['fill'];
-			$originX = $draw['circle']['originX'];
-			$originY = $draw['circle']['originY'];
-			$perimeterX = $draw['circle']['perimeterX'];
-			$perimeterY = $draw['circle']['perimeterY'];
-			$drawCommand = "fill $fill  circle $originX,$originY $perimeterX,$perimeterY";
+			$polygon = shapePointsToString( $draw['shape'] );
+			$drawCommand = "fill $fill  polygon $polygon";
 			$args[] = '-draw ' . wfEscapeShellArg( $drawCommand );
 		}
 		$args[] = wfEscapeShellArg( $filename );
