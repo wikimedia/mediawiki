@@ -1489,6 +1489,9 @@ abstract class DatabaseBase implements DatabaseType {
 			} elseif ( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
 					$list .= "$field IS ";
+					if ( $not ) {
+						$list .= "NOT ";
+					}
 				} elseif ( $mode == LIST_SET ) {
 					$list .= "$field = ";
 				}
