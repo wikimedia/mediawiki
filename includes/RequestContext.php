@@ -86,6 +86,13 @@ class RequestContext {
 	}
 
 	/**
+	 * @param $o OutputPage
+	 */
+	public function setOutput( OutputPage $o ) {
+		$this->mOutput = $o;
+	}
+
+	/**
 	 * Get the OutputPage object
 	 *
 	 * @return OutputPage object
