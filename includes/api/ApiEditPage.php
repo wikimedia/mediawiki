@@ -475,7 +475,9 @@ class ApiEditPage extends ApiBase {
 			'title' => 'Page title',
 			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
 			'text' => 'Page content',
-			'token' => 'Edit token. You can get one of these through prop=info',
+			'token' => array( 'Edit token. You can get one of these through prop=info.',
+						'The token should always be sent as the last parameter, or at least, after the text parameter'
+			),
 			'summary' => 'Edit summary. Also section title when section=new',
 			'minor' => 'Minor edit',
 			'notminor' => 'Non-minor edit',
