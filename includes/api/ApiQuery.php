@@ -373,7 +373,7 @@ class ApiQuery extends ApiBase {
 				'iw' => $interwikiStr,
 			);
 			if ( $this->iwUrl ) {
-				$title = Title::newFromText( "{$interwikiStr}:{$rawTitleStr}" );
+				$title = Title::newFromText( $rawTitleStr );
 				$item['url'] = $title->getFullURL();
 			}
 			$intrwValues[] = $item;
