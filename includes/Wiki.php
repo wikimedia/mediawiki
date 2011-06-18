@@ -544,6 +544,8 @@ class MediaWiki {
 	function main() {
 		global $wgUseFileCache, $wgTitle, $wgUseAjax;
 		
+		wfProfileIn( __METHOD__ );
+		
 		# Set title from request parameters
 		$wgTitle = $this->getTitle();
 		$action = $this->context->getRequest()->getVal( 'action', 'view' );
@@ -552,6 +554,7 @@ class MediaWiki {
 		if ( $wgUseAjax && $action == 'ajax' ) {
 			$dispatcher = new AjaxDispatcher();
 			$dispatcher->performAction();
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		
@@ -573,6 +576,7 @@ class MediaWiki {
 					# Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
 					wfProfileOut( 'main-try-filecache' );
+					wfProfileOut( __METHOD__ );
 					return;
 				}
 			}
@@ -580,5 +584,7 @@ class MediaWiki {
 		}
 		
 		$this->performRequest();
+		
+		wfProfileOut( __METHOD__ );
 	}
 }
