@@ -1320,9 +1320,9 @@ or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
-'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
+'userpage-userdoesnotexist'        => 'User account "<nowiki>$1</nowiki>" is not registered.
 Please check if you want to create/edit this page.',
-'userpage-userdoesnotexist-view'   => 'User account "$1" is not registered.',
+'userpage-userdoesnotexist-view'   => 'User account "<nowiki>$1</nowiki>" is not registered.',
 'blocked-notice-logextract'        => 'This user is currently blocked.
 The latest block log entry is provided below for reference:',
 'clearyourcache'                   => "'''Note: After saving, you may have to bypass your browser's cache to see the changes.'''
