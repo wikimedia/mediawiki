@@ -544,6 +544,35 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
+	 * DELETE where the condition is a join
+	 *
+	 * @param $delTable String: The table to delete from.
+	 * @param $joinTable String: The other table.
+	 * @param $delVar String: The variable to join on, in the first table.
+	 * @param $joinVar String: The variable to join on, in the second table.
+	 * @param $conds Array: Condition array of field names mapped to variables, ANDed together in the WHERE clause
+	 * @param $fname String: Calling function name (use __METHOD__) for logs/profiling
+	 */
+	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
+		$fname = 'DatabaseSqlite::deleteJoin' )
+	{
+		if ( !$conds ) {
+			throw new DBUnexpectedError( $this,
+				'DatabaseSqlite::deleteJoin() called with empty $conds' );
+		}
+
+		$delTable = $this->tableName( $delTable );
+		$joinTable = $this->tableName( $joinTable );
+		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable";
+		if ( $conds != '*' ) {
+			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
+		}
+		$sql .= ')';
+
+		$this->query( $sql, $fname );
+	}
+
+	/**
 	 * Returns the size of a text field, or -1 for "unlimited"
 	 * In SQLite this is SQLITE_MAX_LENGTH, by default 1GB. No way to query it though.
 	 *
