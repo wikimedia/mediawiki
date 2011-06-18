@@ -1480,39 +1480,6 @@ SQL;
 	}
 
 	/**
-	 * DELETE where the condition is a join
-	 * @param $delTable String: deleting from this table
-	 * @param $joinTable String: using data from this table
-	 * @param $delVar String: variable in deleteable table
-	 * @param $joinVar String: variable in data table
-	 * @param $conds Array: conditionals for join table
-	 * @param $fname String: function name for profiling
-	 */
-	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar,
-		$conds, $fname = "DatabaseIbm_db2::deleteJoin" )
-	{
-		if ( !$conds ) {
-			throw new DBUnexpectedError( $this,
-				'DatabaseIbm_db2::deleteJoin() called with empty $conds' );
-		}
-
-		$delTable = $this->tableName( $delTable );
-		$joinTable = $this->tableName( $joinTable );
-		$sql = <<<SQL
-DELETE FROM $delTable
-WHERE $delVar IN (
-	SELECT $joinVar FROM $joinTable
-
-SQL;
-		if ( $conds != '*' ) {
-			$sql .= 'WHERE ' . $this->makeList( $conds, LIST_AND );
-		}
-		$sql .= ' )';
-
-		$this->query( $sql, $fname );
-	}
-
-	/**
 	 * Description is left as an exercise for the reader
 	 * @param $b Mixed: data to be encoded
 	 * @return IBM_DB2Blob

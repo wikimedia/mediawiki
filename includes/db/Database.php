@@ -2004,7 +2004,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * DELETE where the condition is a join
-	 * MySQL does this with a multi-table DELETE syntax, PostgreSQL does it with sub-selects
+	 * MySQL overrides this to use a multi-table DELETE syntax, in other databases we use sub-selects
 	 *
 	 * For safety, an empty $conds will not delete everything. If you want to delete all rows where the
 	 * join condition matches, set $conds='*'
@@ -2025,13 +2025,13 @@ abstract class DatabaseBase implements DatabaseType {
 
 		$delTable = $this->tableName( $delTable );
 		$joinTable = $this->tableName( $joinTable );
-		$sql = "DELETE $delTable FROM $delTable, $joinTable WHERE $delVar=$joinVar ";
-
+		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
 		if ( $conds != '*' ) {
-			$sql .= ' AND ' . $this->makeList( $conds, LIST_AND );
+			$sql .= 'WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
+		$sql .= ')';
 
-		return $this->query( $sql, $fname );
+		$this->query( $sql, $fname );
 	}
 
 	/**

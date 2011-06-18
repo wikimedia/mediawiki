@@ -598,23 +598,6 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
-	# DELETE where the condition is a join
-	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = "DatabaseMssql::deleteJoin" ) {
-		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'DatabaseMssql::deleteJoin() called with empty $conds' );
-		}
-
-		$delTable = $this->tableName( $delTable );
-		$joinTable = $this->tableName( $joinTable );
-		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
-		if ( $conds != '*' ) {
-			$sql .= 'WHERE ' . $this->makeList( $conds, LIST_AND );
-		}
-		$sql .= ')';
-
-		$this->query( $sql, $fname );
-	}
-
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );

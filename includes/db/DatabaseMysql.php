@@ -483,6 +483,25 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
+	 * DELETE where the condition is a join. MySql uses multi-table deletes.
+	 */
+	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'DatabaseBase::deleteJoin' ) {
+		if ( !$conds ) {
+			throw new DBUnexpectedError( $this, 'DatabaseBase::deleteJoin() called with empty $conds' );
+		}
+
+		$delTable = $this->tableName( $delTable );
+		$joinTable = $this->tableName( $joinTable );
+		$sql = "DELETE $delTable FROM $delTable, $joinTable WHERE $delVar=$joinVar ";
+
+		if ( $conds != '*' ) {
+			$sql .= ' AND ' . $this->makeList( $conds, LIST_AND );
+		}
+
+		return $this->query( $sql, $fname );
+	}
+
+	/**
 	 * Determines if the last failure was due to a deadlock
 	 */
 	function wasDeadlock() {
