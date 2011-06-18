@@ -506,7 +506,8 @@ CONTROL;
 		global $wgOut, $wgUser;
 		wfProfileIn( __METHOD__ );
 		# Add "current version as of X" title
-		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
+		$wgOut->addHTML( "<hr class='diff-hr' />
+		<h2 class='diff-currentversion-title'>{$this->mPagetitle}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
 		if ( wfRunHooks( 'ArticleContentOnDiff', array( $this, $wgOut ) ) ) {
 			# Use the current version parser cache if applicable
@@ -935,7 +936,17 @@ CONTROL;
 	 * @return string
 	 */
 	static function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
-		$header = "<table class='diff'>";
+		global $wgBetterDirectionality;
+		$dirclass = '';
+		if( $wgBetterDirectionality ) {
+			global $wgContLang, $wgOut, $wgTitle;
+			// shared.css sets diff in interface language/dir,
+			// but the actual content should be in the page language/dir
+			$getPageLang = $wgOut->parserOptions()->getTargetLanguage( $wgTitle );
+			$pageLang = ( $getPageLang ? $getPageLang : $wgContLang );
+			$dirclass = ' diff-contentalign-'.$pageLang->alignStart();
+		}
+		$header = "<table class='diff $dirclass'>";
 		if ( $diff ) { // Safari/Chrome show broken output if cols not used
 			$header .= "
 			<col class='diff-marker' />
