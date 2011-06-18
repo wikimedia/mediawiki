@@ -1070,11 +1070,11 @@ class SpecialUndelete extends SpecialPage {
 
 		$sk = $wgUser->getSkin();
 		if( $this->mAllowed ) {
+			$wgOut->addModules( 'mediawiki.special.undelete' );
 			$wgOut->setPageTitle( wfMsg( 'undeletepage' ) );
 		} else {
 			$wgOut->setPageTitle( wfMsg( 'viewdeletedpage' ) );
 		}
-
 		$wgOut->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
 			array( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() )

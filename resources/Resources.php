@@ -518,6 +518,9 @@ return array(
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
 	),
+	'mediawiki.special.undelete' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.undelete.js',
+	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
