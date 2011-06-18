@@ -579,35 +579,35 @@ class Block {
 			return false;
 		}
 
-		# Check for presence on the autoblock whitelist
+		# Check for presence on the autoblock whitelist.
 		if ( self::isWhitelistedFromAutoblocks( $autoblockIP ) ) {
 			return false;
 		}
 
-		# # Allow hooks to cancel the autoblock.
+		# Allow hooks to cancel the autoblock.
 		if ( !wfRunHooks( 'AbortAutoblock', array( $autoblockIP, &$this ) ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
 			return false;
 		}
 
-		# It's okay to autoblock. Go ahead and create/insert the block.
+		# It's okay to autoblock. Go ahead and insert/update the block...
 
+		# Do not add a *new* block if the IP is already blocked.
 		$ipblock = Block::newFromTarget( $autoblockIP );
 		if ( $ipblock ) {
-			# If the user is already blocked. Then check if the autoblock would
-			# exceed the user block. If it would exceed, then do nothing, else
-			# prolong block time
-			if ( $this->mExpiry > Block::getAutoblockExpiry( $ipblock->mTimestamp )
+			# Check if the block is an autoblock and would exceed the user block
+			# if renewed. If so, do nothing, otherwise prolong the block time...
+			if ( $ipblock->mAuto && // @TODO: why not compare $ipblock->mExpiry?
+				$this->mExpiry > Block::getAutoblockExpiry( $ipblock->mTimestamp )
 			) {
-				# If the block is an autoblock, reset its timestamp to now and its expiry
-				# to an $wgAutoblockExpiry in the future; otherwise do nothing
+				# Reset block timestamp to now and its expiry to
+				# $wgAutoblockExpiry in the future
 				$ipblock->updateTimestamp();
 			}
 			return false;
-
 		}
 
-		# Make a new block object with the desired properties
+		# Make a new block object with the desired properties.
 		$autoblock = new Block;
 		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP . "\n" );
 		$autoblock->setTarget( $autoblockIP );
@@ -630,7 +630,7 @@ class Block {
 			$autoblock->mExpiry = min( $this->mExpiry, Block::getAutoblockExpiry( wfTimestampNow() ) );
 		}
 
-		# Insert it
+		# Insert the block...
 		$status = $autoblock->insert();
 		return $status
 			? $status['id']
