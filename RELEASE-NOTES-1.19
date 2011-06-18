@@ -100,6 +100,7 @@ production.
 * (bug 29443) Special:Undelete should use JavaScript to invert all checkboxes
   without reloading the page
 * (bug 29325) Setting $wgStrictFileExtensions to false gives incorrect warning
+* (bug 29437) Multiple apostrophes in deleted article title cause odd rendering
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
