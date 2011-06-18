@@ -198,6 +198,14 @@ class MediaWiki {
 			// may be a redirect to another article or URL.
 			$article = $this->initializeArticle();
 			if ( is_object( $article ) ) {
+				/**
+				 * $wgArticle is deprecated, do not use it. This will possibly be removed
+				 * entirely in 1.20 or 1.21
+				 * @deprecated since 1.19
+				 */
+				global $wgArticle;
+				$wgArticle = $article;
+				
 				$this->performAction( $article );
 				wfProfileOut( __METHOD__ );
 				return $article;
