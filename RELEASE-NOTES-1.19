@@ -99,6 +99,7 @@ production.
 * The class JpegOrTiffHandler was renamed ExifBitmapHandler.
 * (bug 29443) Special:Undelete should use JavaScript to invert all checkboxes
   without reloading the page
+* (bug 29325) Setting $wgStrictFileExtensions to false gives incorrect warning
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.

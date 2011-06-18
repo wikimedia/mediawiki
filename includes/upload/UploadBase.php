@@ -509,6 +509,8 @@ abstract class UploadBase {
 	 * @return Array of warnings
 	 */
 	public function checkWarnings() {
+		global $wgLang;
+
 		$warnings = array();
 
 		$localFile = $this->getLocalFile();
@@ -529,7 +531,8 @@ abstract class UploadBase {
 		global $wgCheckFileExtensions, $wgFileExtensions;
 		if ( $wgCheckFileExtensions ) {
 			if ( !$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) {
-				$warnings['filetype-unwanted-type'] = $this->mFinalExtension;
+				$warnings['filetype-unwanted-type'] = array( $this->mFinalExtension,
+					$wgLang->commaList( $wgFileExtensions ) );
 			}
 		}
 

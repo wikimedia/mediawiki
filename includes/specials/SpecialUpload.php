@@ -567,7 +567,7 @@ class SpecialUpload extends SpecialPage {
 	 * @param $details Array: result of UploadBase::verifyUpload
 	 */
 	protected function processVerificationError( $details ) {
-		global $wgFileExtensions;
+		global $wgFileExtensions, $wgLang;
 
 		switch( $details['status'] ) {
 
@@ -597,13 +597,12 @@ class SpecialUpload extends SpecialPage {
 				break;
 			case UploadBase::FILETYPE_BADTYPE:
 				$msg = wfMessage( 'filetype-banned-type' );
-				$sep = wfMsg( 'comma-separator' );
 				if ( isset( $details['blacklistedExt'] ) ) {
-					$msg->params( implode( $sep, $details['blacklistedExt'] ) );
+					$msg->params( $wgLang->commaList( $details['blacklistedExt'] ) );
 				} else {
 					$msg->params( $details['finalExt'] );
 				}
-				$msg->params( implode( $sep, $wgFileExtensions ),
+				$msg->params( $wgLang->commaList( $wgFileExtensions ),
 					count( $wgFileExtensions ) );
 
 				// Add PLURAL support for the first parameter. This results
