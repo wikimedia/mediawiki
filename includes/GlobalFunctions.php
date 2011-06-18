@@ -1359,7 +1359,7 @@ function wfReportTime() {
  *
  * @return array of backtrace information
  */
-function wfDebugBacktrace() {
+function wfDebugBacktrace( $limit = 0 ) {
 	static $disabled = null;
 
 	if( extension_loaded( 'Zend Optimizer' ) ) {
@@ -1381,7 +1381,7 @@ function wfDebugBacktrace() {
 		return array();
 	}
 
-	if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
+	if ( $limit && version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 ), 1 );
 	} else {
 		return array_slice( debug_backtrace(), 1 );
@@ -1446,7 +1446,7 @@ function wfBacktrace() {
  * @return Bool|string
  */
 function wfGetCaller( $level = 2 ) {
-	$backtrace = wfDebugBacktrace();
+	$backtrace = wfDebugBacktrace( $level );
 	if ( isset( $backtrace[$level] ) ) {
 		return wfFormatStackFrame( $backtrace[$level] );
 	} else {
