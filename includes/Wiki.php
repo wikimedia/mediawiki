@@ -22,7 +22,11 @@ class MediaWiki {
 		return $this->context->getOutput();
 	}
 
-	public function __construct( RequestContext $context ){
+	public function __construct( RequestContext $context = null ) {
+		if ( !$context ) {
+			$context = RequestContext::getMain();
+		}
+		
 		$this->context = $context;
 		$this->context->setTitle( $this->parseTitle() );
 	}
@@ -472,5 +476,101 @@ class MediaWiki {
 				}
 		}
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Run the current MediaWiki instance
+	 * index.php just calls this 
+	 */	
+	function run() {
+		try {
+			$this->checkMaxLag( true );
+			$this->main();
+			$this->finalCleanup();
+			$this->restInPeace();
+		} catch ( Exception $e ) {
+			MWExceptionHandler::handle( $e );
+		}
+	} 
+	
+	/**
+	 * Checks if the request should abort due to a lagged server, 
+	 * for given maxlag parameter.
+	 * 
+	 * @param boolean $abort True if this class should abort the 
+	 * script execution. False to return the result as a boolean.
+	 * @return boolean True if we passed the check, false if we surpass the maxlag
+	 */
+	function checkMaxLag( $abort ) {
+		global $wgShowHostnames;
+		
+		wfProfileIn( __METHOD__ );
+		$maxLag = $this->context->getRequest()->getVal( 'maxlag' );
+		if ( !is_null( $maxLag ) ) {
+			$lb = wfGetLB(); // foo()->bar() is not supported in PHP4
+			list( $host, $lag ) = $lb->getMaxLag();
+			if ( $lag > $maxLag ) {
+				if ( $abort ) {
+					header( 'HTTP/1.1 503 Service Unavailable' );
+					header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
+					header( 'X-Database-Lag: ' . intval( $lag ) );
+					header( 'Content-Type: text/plain' );
+					if( $wgShowHostnames ) {
+						echo "Waiting for $host: $lag seconds lagged\n";
+					} else {
+						echo "Waiting for a database server: $lag seconds lagged\n";
+					}
+				}
+				
+				wfProfileOut( __METHOD__ );
+
+				if ( !$abort ) 
+					return false;
+				exit;
+			}
+		}
+		wfProfileOut( __METHOD__ );
+		return true;
+	}
+
+	function main() {
+		global $wgUseFileCache, $wgTitle, $wgUseAjax;
+		
+		# Set title from request parameters
+		$wgTitle = $this->getTitle();
+		$action = $this->context->getRequest()->getVal( 'action', 'view' );
+		
+		# Send Ajax requests to the Ajax dispatcher.
+		if ( $wgUseAjax && $action == 'ajax' ) {
+			$dispatcher = new AjaxDispatcher();
+			$dispatcher->performAction();
+			return;
+		}
+		
+		if ( $wgUseFileCache && $wgTitle !== null ) {
+			wfProfileIn( 'main-try-filecache' );
+			// Raw pages should handle cache control on their own,
+			// even when using file cache. This reduces hits from clients.
+			if ( $action != 'raw' && HTMLFileCache::useFileCache() ) {
+				/* Try low-level file cache hit */
+				$cache = new HTMLFileCache( $wgTitle, $action );
+				if ( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
+					/* Check incoming headers to see if client has this cached */
+					if ( !$this->context->getOutput()->checkLastModified( $cache->fileCacheTime() ) ) {
+						$cache->loadFromFileCache();
+					}
+					# Do any stats increment/watchlist stuff
+					$article = Article::newFromTitle( $wgTitle, $this->context );
+					$article->viewUpdates();
+					# Tell OutputPage that output is taken care of
+					$this->context->getOutput()->disable();
+					wfProfileOut( 'main-try-filecache' );
+					return;
+				}
+			}
+			wfProfileOut( 'main-try-filecache' );
+		}
+		
+		$this->performRequest();
 	}
 }
