@@ -1,11 +1,16 @@
 // Return true to ignore
 var mwTestIgnore = function( val, tester, funcPath ) {
 
-	// Don't record methods of the properties of mw.Map instances
-	// Because we're therefor skipping any injection for
-	// "new mw.Map()", manually set it to true here.
+	// Don't record methods of the properties of constructors,
+	// to avoid getting into a loop (prototype.constructor.prototype..).
+	// Since we're therefor skipping any injection for
+	// "new mw.Foo()", manually set it to true here.
 	if ( val instanceof mw.Map ) {
 		tester.methodCallTracker['Map'] = true;
+		return true;
+	}
+	if ( val instanceof mw.Title ) {
+		tester.methodCallTracker['Title'] = true;
 		return true;
 	}
 

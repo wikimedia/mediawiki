@@ -155,6 +155,7 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 
 					// ...the prototypes are fine tho
 					$.each( currVar.prototype, function( key, value ) {
+						if ( key === 'constructor' ) return;
 
 						// Clone and brake reference to parentPathArray
 						var tmpPathArray = $.extend( [], parentPathArray );
@@ -182,6 +183,7 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 
 					// ... the prototypes are fine tho
 					$.each( currVar.prototype, function( key, value ) {
+						if ( key === 'constructor' ) return;
 
 						// Clone and brake reference to parentPathArray
 						var tmpPathArray = $.extend( [], parentPathArray );
