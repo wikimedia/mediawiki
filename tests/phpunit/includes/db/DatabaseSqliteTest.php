@@ -38,6 +38,19 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		return preg_replace( '/\s+/', ' ', $this->db->replaceVars( $sql ) );
 	}
 
+	private function assertResultIs( $expected, $res ) {
+		$this->assertNotNull( $res );
+		$i = 0;
+		foreach( $res as $row ) {
+			foreach( $expected[$i] as $key => $value ) {
+				$this->assertTrue( isset( $row->$key ) );
+				$this->assertEquals( $value, $row->$key );
+			}
+			$i++;
+		}
+		$this->assertEquals( count( $expected ), $i, 'Unexpected number of rows' );
+	}
+
 	public function testReplaceVars() {
 		$this->assertEquals( 'foo', $this->replaceVars( 'foo' ), "Don't break anything accidentally" );
 
@@ -124,6 +137,33 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$this->assertEquals( 'CREATE VIRTUAL TABLE "baz" USING FTS3(foobar)',
 			$db->selectField( 'sqlite_master', 'sql', array( 'name' => 'baz' ) ),
 			"Can't create temporary virtual tables, should fall back to non-temporary duplication"
+		);
+	}
+
+	public function testDeleteJoin() {
+		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db->query( 'CREATE TABLE a (a_1)', __METHOD__ );
+		$db->query( 'CREATE TABLE b (b_1, b_2)', __METHOD__ );
+		$db->insert( 'a', array(
+				array( 'a_1' => 1 ),
+				array( 'a_1' => 2 ),
+				array( 'a_1' => 3 ),
+			),
+			__METHOD__
+		);
+		$db->insert( 'b', array(
+				array( 'b_1' => 2, 'b_2' => 'a' ),
+				array( 'b_1' => 3, 'b_2' => 'b' ),
+			),
+			__METHOD__
+		);
+		$db->deleteJoin( 'a', 'b', 'a_1', 'b_1', array( 'b_2' => 'a' ), __METHOD__ );
+		$res = $db->query( "SELECT * FROM a", __METHOD__ );
+		$this->assertResultIs( array(
+				array( 'a_1' => 1 ),
+				array( 'a_1' => 3 ),
+			),
+			$res
 		);
 	}
 
