@@ -1381,7 +1381,11 @@ function wfDebugBacktrace() {
 		return array();
 	}
 
-	return array_slice( debug_backtrace(), 1 );
+	if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
+		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 ), 1 );
+	} else {
+		return array_slice( debug_backtrace(), 1 );
+	}
 }
 
 /**
