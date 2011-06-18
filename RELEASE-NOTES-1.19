@@ -97,6 +97,8 @@ production.
   enter an e-mail address.
 * (bug 25375) Add canonical namespaces to JavaScript "wgNamespaceIds"
 * The class JpegOrTiffHandler was renamed ExifBitmapHandler.
+* (bug 29443) Special:Undelete should use JavaScript to invert all checkboxes
+  without reloading the page
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
