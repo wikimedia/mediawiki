@@ -2274,7 +2274,7 @@ wiki: $PAGEEDITOR_WIKI
 {{fullurl:{{#special:Preferences}}}}
 
 Για να αλλάξετε τις προτιμήσεις της λίστας παρακολούθησής σας, ακολουθήστε το σύνδεσμο:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Για να διαγράψετε την σελίδα από την λίστα παρακολούθησής σας:
 $UNWATCHURL

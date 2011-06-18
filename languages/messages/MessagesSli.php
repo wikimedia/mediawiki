@@ -1387,7 +1387,7 @@ Is waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seyt
              Dei freindliches {{SITENAME}}-Benoachrichtigungssystem
 
 --
-Im de Einstellunga denner Beobachtungsliste oazupoaßa, besiche: {{fullurl:{{#special:Watchlist}}/edit}}
+Im de Einstellunga denner Beobachtungsliste oazupoaßa, besiche: {{fullurl:{{#special:EditWatchlist}}}}
 
 Rickmeldungen und wettere Helfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 

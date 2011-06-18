@@ -1484,7 +1484,7 @@ e-mail адреси: $PAGEEDITOR_EMAIL
 
 --
 Сазламаларны денъиштирмек ичюн:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Саифени козетюв джедвелинден ёкъ этмек ичюн:
 $UNWATCHURL

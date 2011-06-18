@@ -2054,7 +2054,7 @@ $NEWPAGE
 
 --
 మీ వీక్షణజాబితా అమరికలను మార్చుకునేందుకు,
-{{fullurl:{{#special:Watchlist}}/edit}} ని చూడండి.
+{{fullurl:{{#special:EditWatchlist}}}} ని చూడండి.
 
 ఈ పేజీని మీ వీక్షణజాబితా నుండి తొలగించుకునేందుకు,
 $UNWATCHURL కి వెళ్ళండి.

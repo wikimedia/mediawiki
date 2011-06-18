@@ -1696,7 +1696,7 @@ $NEWPAGE
 
 --
 Ձեր հսկացանկի նախընտրությունները փոխելու համար այցելեք՝
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Հետադարձ կապ և օգնություն՝
 {{fullurl:{{MediaWiki:Helppage}}}}',

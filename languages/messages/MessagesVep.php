@@ -1739,7 +1739,7 @@ Tö voižit mugažo saubata tedotusiden opcii kaikiden lehtpoliden täht teiden 
 
 --
 Miše toižetada teiden kaclendnimikirjutesen järgendused, mängat tänna:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Miše čuta lehtpol\' teiden kaclendnimikirjutesespäi, mängat tänna:
 $UNWATCHURL

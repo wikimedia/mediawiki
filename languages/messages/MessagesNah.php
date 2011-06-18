@@ -1060,7 +1060,7 @@ Nō tihuelīti quitlahtlālīz, in tēmachitīliztli in mochi tlachixqui mozāza
 
 --
 Ic ticpatlaz in tlachiyaliztli motlapōhualāma, xiquihitta:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Ic ticpolōz in āmatl in tlachiyaliztli motlapōhualāma, xiquihitta:
 $UNWATCHURL

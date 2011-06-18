@@ -1429,7 +1429,7 @@ Maliari mo muring isubli king sadia (reset) deng markang pamipabalu (notificatio
              Ing talabie kapabaluan ning {{SITENAME}} a magmalasakit keka
 --
 Ba mong ayalilan deng pakatuldu king kekang tala ring babanten (watchlist settings), munta ka king
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Keni ka magparalang puna/komentu at maniad karagdagang saup:
 {{fullurl:{{MediaWiki:Helppage}}}}',

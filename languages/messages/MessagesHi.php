@@ -2001,7 +2001,7 @@ $NEWPAGE
 --
 ध्यानसूची के जमाव को बदलने के लिए यहाँ जाएँ
 
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 राय देने या अधिक मदद पाने के लिए:
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -2302,7 +2302,7 @@ Pour modifier les paramètres de notification par courriel, visitez
 {{fullurl:{{#special:Preferences}}}}
 
 Pour modifier les paramètres de votre liste de suivi, visitez
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Pour supprimer la page de votre liste de suivi, visitez
 $UNWATCHURL

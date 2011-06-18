@@ -2039,7 +2039,7 @@ $NEWPAGE
 
 --
 თქვენი კონტროლის სიის შესასწორებლად იხილეთ
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 თქვენი კონტროლის სიიდან გვერდის ამოშლა
 $UNWATCHURL

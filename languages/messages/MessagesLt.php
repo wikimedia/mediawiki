@@ -2104,7 +2104,7 @@ Jūs taip pat galite išjungti pranešimo žymę visiems jūsų stebimiems pusla
 
 --
 Norėdami pakeisti stebimų puslapių nustatymus, užeikite į
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Norėdami puslapį iš stebimų puslapių sąrašo, užeikite į
 $UNWATCHURL
@@ -3017,17 +3017,35 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-worldregiondest'             => 'Pasaulio regionas rodomas',
 'exif-countrydest'                 => 'Šalis rodomas',
 'exif-countrycodedest'             => 'Kodas šalies rodomas',
+'exif-source'                      => 'Šaltinis',
+'exif-contact'                     => 'Kontaktinė informacija',
 'exif-writer'                      => 'Rašytojas',
+'exif-languagecode'                => 'Kalba',
+'exif-iimversion'                  => 'IIM versija',
 'exif-iimcategory'                 => 'Kategorija',
+'exif-datetimeexpires'             => 'Nenaudokite po',
+'exif-datetimereleased'            => 'Išleista',
+'exif-serialnumber'                => 'kameros serijinis numeris',
 'exif-cameraownername'             => 'Fotoaparato savininkas',
+'exif-label'                       => 'Etiketė',
 'exif-rating'                      => 'Vertinimas (iki 5)',
+'exif-copyrighted'                 => 'Autorių teisių statusas',
+'exif-copyrightowner'              => 'Autorystės teisių savininkas',
 'exif-usageterms'                  => 'Naudojimo sąlygos',
+'exif-originaldocumentid'          => 'Unikalus ID orginalus dokumentas',
 'exif-licenseurl'                  => 'Autorių teisių licencijos URL',
+'exif-morepermissionsurl'          => 'Alternatyvi licencijavimo informacija',
+'exif-preferredattributionname'    => 'Kai naudojate ši darbą prašome nurodyti',
 'exif-pngfilecomment'              => 'JPEG failo komentaras',
 'exif-giffilecomment'              => 'GIF failo komentaras',
+'exif-intellectualgenre'           => 'Elemento tipas',
+'exif-subjectnewscode'             => 'Objektas kodas',
 
 # EXIF attributes
 'exif-compression-1' => 'Nesuspausta',
+
+'exif-copyrighted-true'  => 'Autorinės teisės',
+'exif-copyrighted-false' => 'Viešas domenas',
 
 'exif-unknowndate' => 'Nežinoma data',
 
@@ -3191,11 +3209,21 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsdirection-t' => 'Tikroji kryptis',
 'exif-gpsdirection-m' => 'Magnetinė kryptis',
 
-'exif-dc-date' => 'Data (-os)',
-'exif-dc-type' => 'Laikmenos tipas',
+'exif-dc-date'      => 'Data (-os)',
+'exif-dc-publisher' => 'Leidėjas',
+'exif-dc-rights'    => 'Teisės',
+'exif-dc-type'      => 'Laikmenos tipas',
 
 'exif-rating-rejected' => 'Atmesta',
 
+'exif-iimcategory-clj' => 'Nusikalstamumas ir įstatymas',
+'exif-iimcategory-dis' => 'Nelaimės ir nelaimingi atsitikimai',
+'exif-iimcategory-fin' => 'Ekonomika ir verslas',
+'exif-iimcategory-edu' => 'Švietimas',
+'exif-iimcategory-hth' => 'Sveikata',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-sci' => 'Mokslas ir technologijos',
+'exif-iimcategory-soi' => 'Socialiniai klausimai',
 'exif-iimcategory-spo' => 'Sportas',
 'exif-iimcategory-wea' => 'Oras',
 

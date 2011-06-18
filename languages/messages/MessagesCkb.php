@@ -1962,7 +1962,7 @@ $NEWPAGE
              بە سوپاسەوە، سیستەمی ڕاگەیاندنی {{SITENAME}}
 --
 بۆ گۆڕینی ڕێکخستنەکانی لیستی چاودێرییەکەت، سەربدە لە
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 بۆ سڕینەوەی پەڕەکە لە لیستی چاودێرییەکەت، سەربدە لە
 $UNWATCHURL

@@ -1312,7 +1312,7 @@ $NEWPAGE
 
 本站: $PAGEEDITOR_WIKI 今後伓會通知倷將來嗰改動，除非接到來到箇頁。倷也能設過倷全部監視頁嗰通知標記。
 
-{{SITENAME}}通知系統 – 會改卟倷嗰監視列表設置，請去 {{fullurl:{{#special:Watchlist}}/edit}}
+{{SITENAME}}通知系統 – 會改卟倷嗰監視列表設置，請去 {{fullurl:{{#special:EditWatchlist}}}}
 
 回饋同到別嗰説明: {{fullurl:{{MediaWiki:Helppage}}}}',
 

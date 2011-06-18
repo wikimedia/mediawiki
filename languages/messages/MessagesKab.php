@@ -1045,7 +1045,7 @@ Ur yelli ara email n talɣut asmi llan ibeddlen deg usebter ala lukan teẓreḍ
 
 --
 Akken ad tbeddleḍ n wumuɣ n uɛessi inek settings, ruḥ ɣer
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Tadhelt:
 {{fullurl:{{MediaWiki:Helppage}}}}',

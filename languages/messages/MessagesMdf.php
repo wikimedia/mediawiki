@@ -1715,7 +1715,7 @@ $NEWPAGE
 
 --
 Тонь мельгеваномацень латцемасна полафтоманкса сашентт
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Лопать тонь мельгеваномастот нардаманди сашентт
 $UNWATCHURL

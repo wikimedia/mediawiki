@@ -1486,7 +1486,7 @@ Nel chascu en que nu vesitis el artículu, nu se te hazrán mas notificacionis. 
 
 --
 Pa hazel chambus ena tu lista e seguimientu, vesita
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Ayua la Güiquipeya:
 {{fullurl:{{MediaWiki:Helppage}}}}',

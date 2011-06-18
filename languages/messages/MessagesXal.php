@@ -917,7 +917,7 @@ e-mail\'ар $PAGEEDITOR_EMAIL
 
 --
 Тана шинҗллһнә сеткүлин көгүдиг сольҗ седхлә, эниг дахтн:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Хәрү холва болн тус:
 {{fullurl:{{MediaWiki:Helppage}}}}',

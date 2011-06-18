@@ -2361,7 +2361,7 @@ Ene schöne Jroß {{GRAMMAR:vun|{{SITENAME}}}}.
 {{fullurl:{{#special:Preferences}}}}
 
 Do kanns hee Ding Oppassliss ändere:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Öm di Sigg vun Dinger Oppassliss ze schmieße:
 $UNWATCHURL

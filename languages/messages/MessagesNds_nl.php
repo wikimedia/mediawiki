@@ -432,7 +432,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki-vragen dee vake esteld wönnen]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-poslieste veur nieje versies]",
 
-'about'         => 'Infermasie',
+'about'         => 'Informasie',
 'article'       => 'Artikel',
 'newwindow'     => '(niej vienster)',
 'cancel'        => 'Ofbreken',
@@ -680,6 +680,8 @@ Zeukopdrach: $2',
 'cascadeprotected'     => 'Disse pagina is beveilig umdat \'t veurkump in de volgende {{PLURAL:$1|pagina|pagina\'s}}, dee beveilig {{PLURAL:$1|is|bin}} mit de "cascade"-optie:
 $2',
 'namespaceprotected'   => "Je bin neet bevoeg um pagina is de '''$1'''-naamruumte te bewarken.",
+'customcssprotected'   => 'Je kunnen disse CSS-pagina neet bewarken, umdat der persoonlijke instellingen van een aandere gebruker in staon.',
+'customjsprotected'    => 'Je kunnen disse JavaScript-pagina neet bewarken, umdat der persoonlijke instellingen van een aandere gebruker in staon.',
 'ns-specialprotected'  => "Speciale pagina's kunnen neet bewark wönnen.",
 'titleprotected'       => "'t Anmaken van disse pagina is beveilig deur [[User:$1|$1]].
 De op-egeven reden is ''$2''.",
@@ -809,17 +811,31 @@ Meschien he-j 't wachwoord al ewiezig of een niej veurlopig wachwoord an-evreuge
 'resetpass-temp-password'   => 'Veurlopig wachwoord:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Wachwoord opniej instellen',
-'passwordreset-text'         => 'Vul dit formelier in zoda-w joe netpos kunnen sturen mit de gebrukersgegevens.',
-'passwordreset-legend'       => 'Wachwoord opniej instellen',
-'passwordreset-disabled'     => 'Je kunnen op disse wiki joew wachtwoord neet opniej instellen.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Voer één van de onderstaonde velden in}}',
-'passwordreset-username'     => 'Gebruker:',
-'passwordreset-email'        => 'Netposadres:',
-'passwordreset-emailtitle'   => 'Gebrukersgegevens op {{SITENAME}}',
-'passwordreset-emailelement' => 'Gebrukersnaam: $1
+'passwordreset'                => 'Wachwoord opniej instellen',
+'passwordreset-text'           => 'Vul dit formelier in zoda-w joe netpos kunnen sturen mit de gebrukersgegevens.',
+'passwordreset-legend'         => 'Wachwoord opniej instellen',
+'passwordreset-disabled'       => 'Je kunnen op disse wiki joew wachtwoord neet opniej instellen.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Voer één van de onderstaonde velden in}}',
+'passwordreset-username'       => 'Gebruker:',
+'passwordreset-email'          => 'Netposadres:',
+'passwordreset-emailtitle'     => 'Gebrukersgegevens op {{SITENAME}}',
+'passwordreset-emailtext-ip'   => "Der hef der ene, werschienlijk jie zelf, gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanof 't IP-adres $1.
+De volgende {{PLURAL:$3|gebruker is|gebrukers bin}} ekoppeld an dit netposadres:
+
+$2
+
+{{PLURAL:$3|Dit tiejelijke wachwoord vervuilt|Disse tiejelijke wachwoorden vervallen}} over {{PLURAL:$5|een dag|$5 dagen}}.
+Meld je eigen noen an en wiezig 't wachtwoord. A-j dit verzeuk neet zelf edaon hemmen, of a-j 't oorspronkelijke wachwoord nog kennen en 't neet wiezigen willen, negeer dit berich dan en blief joew ouwe wachwoord gebruken.",
+'passwordreset-emailtext-user' => "De gebruker $1 van {{SITENAME}} hef joew gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanof 't IP-adres $1.
+De volgende {{PLURAL:$3|gebruker is|gebrukers bin}} ekoppeld an dit netposadres:
+
+$2
+
+{{PLURAL:$3|Dit tiejelijke wachwoord vervuilt|Disse tiejelijke wachwoorden vervallen}} over {{PLURAL:$5|een dag|$5 dagen}}.
+Meld je eigen noen an en wiezig 't wachtwoord. A-j dit verzeuk neet zelf edaon hemmen, of a-j 't oorspronkelijke wachwoord nog kennen en 't neet wiezigen willen, negeer dit berich dan en blief joew ouwe wachwoord gebruken.",
+'passwordreset-emailelement'   => 'Gebrukersnaam: $1
 Tiedelijk wachwoord: $2',
-'passwordreset-emailsent'    => 'Der is per netpos een herinnering verstuurd.',
+'passwordreset-emailsent'      => 'Der is per netpos een herinnering verstuurd.',
 
 # Edit page toolbar
 'bold_sample'     => 'Vet-edrokken tekse',
@@ -1636,7 +1652,7 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur een overzichte.',
 'filesource'                  => 'Bron',
 'uploadedfiles'               => 'Nieje bestanen',
 'ignorewarning'               => 'Negeer alle waorschuwingen',
-'ignorewarnings'              => 'negeer waorschuwingen',
+'ignorewarnings'              => 'Negeer waorschuwingen',
 'minlength1'                  => 'Bestaansnamen mutten uut tenminsen één letter bestaon.',
 'illegalfilename'             => 'De bestaansnaam "$1" bevat kerakters dee neet in namen van artikels veur maggen koemen. Geef \'t bestaand een aandere naam, en prebeer \'t dan opniej toe te voegen.',
 'badfilename'                 => 'De naam van \'t bestaand is ewiezig naor "$1".',
@@ -1699,6 +1715,8 @@ Bekiek 't vortdologboek veurda-j veurdan gaon.",
 'php-uploaddisabledtext'      => "'t Opsturen van PHP-bestanen is uut-eschakeld. Kiek de instellingen veur 't opsturen van bestanen effen nao.",
 'uploadscripted'              => 'Dit bestaand bevat HTML- of scriptcode dee verkeerd elezen kan wönnen deur de webkieker.',
 'uploadvirus'                 => "'t Bestaand bevat een virus! Gegevens: $1",
+'uploadjava'                  => "'t Bestaand is een ZIP-bestaand dat een Java .class-bestaand bevat.
+'t Inlaojen van Java-bestanen is neet toe-estaon umdat hiermee beveiligingsinstellingen ummezeild kunnen wönnen.",
 'upload-source'               => 'Bronbestaand',
 'sourcefilename'              => 'Bestaansnaam op de hardeschieve:',
 'sourceurl'                   => 'Bronwebadres:',
@@ -1735,30 +1753,41 @@ As 't prebleem zo blif, neem dan kontak op mit één van de [[Special:ListUsers/
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => 'Der is een HTTP-fout op-etrejen: $1',
 
+# ZipDirectoryReader
+'zip-file-open-error' => "Der is wat fout egaon bie 't los doon van 't bestaand veur de ZIP-controle.",
+'zip-wrong-format'    => "'t Op-egeven bestaand was gien ZIP-bestaand.",
+'zip-bad'             => "'t Bestaand is beschaodig of is een onleesbaor ZIP-bestaand.
+De veiligheid kan neet econtroleerd wönnen.",
+'zip-unsupported'     => "'t Bestaand is een ZIP-bestaand dat gebruukmaak van ZIP-meugelijkheen dee MediaWiki neet ondersteunt.
+De veiligheid kan neet econtroleerd wönnen.",
+
 # Special:UploadStash
 'uploadstash'          => 'Verbörgen bestanen',
+'uploadstash-summary'  => 'Disse pagina geef toegang tot bestanen dee op-estuurd bin of nog op-estuurd wönnen mer nog neet beschikbaor emaak bin op de wiki. Disse bestanen bin allinnig zichbaor veur de gebruker dee ze opstuurt.',
 'uploadstash-clear'    => 'Verbörgen bestanen vortdoon',
 'uploadstash-nofiles'  => 'Der bin gien verbörgen bestanen.',
+'uploadstash-badtoken' => "'t Uutvoeren van de haandeling is mislok. Dit kump werschienlijk deurdat joew bewarkingsrifferenties verleupen bin. Prebeer 't opniej.",
 'uploadstash-errclear' => "'t Vortdoon van de bestanen is mislok.",
 'uploadstash-refresh'  => 'Lieste mit bestanen biewarken',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Toegang eweigerd',
-'img-auth-nopathinfo'   => 'PATH_INFO onbreek.
+'img-auth-accessdenied'     => 'Toegang eweigerd',
+'img-auth-nopathinfo'       => 'PATH_INFO onbreek.
 Joew server is neet in-esteld um disse infermasie deur te geven.
 Meschien gebruuk disse CGI, en dan wonnen img_auth neet ondersteund.
 Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization veur meer infermasie',
-'img-auth-notindir'     => "'t Op-evreugen pad is neet de in-estelde bestaandinlaodmap",
-'img-auth-badtitle'     => 'Kon gien geldige paginanaam maken van "$1".',
-'img-auth-nologinnWL'   => 'Je bin neet an-emeld en "$1" steet neet op de witte lieste.',
-'img-auth-nofile'       => 'Bestaand "$1" besteet neet.',
-'img-auth-isdir'        => 'Je preberen de map "$1" binnen te koemen.
+'img-auth-notindir'         => "'t Op-evreugen pad is neet de in-estelde bestaandinlaodmap",
+'img-auth-badtitle'         => 'Kon gien geldige paginanaam maken van "$1".',
+'img-auth-nologinnWL'       => 'Je bin neet an-emeld en "$1" steet neet op de witte lieste.',
+'img-auth-nofile'           => 'Bestaand "$1" besteet neet.',
+'img-auth-isdir'            => 'Je preberen de map "$1" binnen te koemen.
 Allinnig toegang tot bestanen is toe-estaon.',
-'img-auth-streaming'    => 'Bezig mit \'t streumen van "$1".',
-'img-auth-public'       => "'t Doel van img_auth.php is de uutvoer van bestanen van een besleuten wiki.
+'img-auth-streaming'        => 'Bezig mit \'t streumen van "$1".',
+'img-auth-public'           => "'t Doel van img_auth.php is de uutvoer van bestanen van een besleuten wiki.
 Disse wiki is in-esteld as peblieke wiki.
 Um beveiligingsredens is img_auth.php uut-eschakeld.",
-'img-auth-noread'       => 'De gebruker hef gien leestoegang tot "$1".',
+'img-auth-noread'           => 'De gebruker hef gien leestoegang tot "$1".',
+'img-auth-bad-query-string' => "'t Webadres bevat een ongeldige zeukopdrach.",
 
 # HTTP errors
 'http-invalid-url'      => 'Ongeldig webadres: $1',
@@ -1822,6 +1851,7 @@ De volgende lieste geef allinnig de eerste {{PLURAL:$1|verwiezing|$1 verwiezinge
 De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'nolinkstoimage'            => 'Ofbeelding is neet in gebruuk.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Meer verwiezingen]] naor dit bestaand bekieken.',
+'linkstoimage-redirect'     => '$1 (bestaansdeurverwiezing) $2',
 'duplicatesoffile'          => "{{PLURAL:$1|'t Volgende bestaand is|De volgende $1 bestanen bin}} liekeleens as dit bestaand ([[Special:FileDuplicateSearch/$2|meer infermasie]]):",
 'sharedupload'              => 'Dit is een edeeld bestaand op $1 en ku-j oek gebruken veur aandere prejekken.',
 'sharedupload-desc-there'   => "Dit is een edeeld bestaand op $1 en ku-j oek gebruken veur aandere prejekken. Bekiek de [$2 beschrieving van 't bestaand] veur meer infermasie.",
@@ -1901,6 +1931,7 @@ Vergeet neet de verwiezingen nao te kieken veurda-j de mal vortdoon.',
 'statistics-edits'             => "Paginabewarkingen vanof 't begin van {{SITENAME}}",
 'statistics-edits-average'     => 'Gemiddeld antal bewarkingen per pagina',
 'statistics-views-total'       => "Totaal antal weer-egeven pagina's",
+'statistics-views-total-desc'  => "'t Bekieken van neet-bestaonde pagina's en speciale pagina's zitten der neet bie in",
 'statistics-views-peredit'     => "Weer-egeven pagina's per bewarking",
 'statistics-users'             => 'In-eschreven [[Special:ListUsers|gebrukers]]',
 'statistics-users-active'      => 'Actieve gebrukers',
@@ -1913,12 +1944,13 @@ Vergeet neet de verwiezingen nao te kieken veurda-j de mal vortdoon.',
 
 Pagina's wönnen ezien as een deurverwiespagina, as de mal gebruuk wönnen dee vermeld steet op [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Dubbele deurverwiezingen',
-'doubleredirectstext'        => "Op disse lieste staon alle pagina's dee deurverwiezen naor aandere deurverwiezingen.
+'doubleredirects'                   => 'Dubbele deurverwiezingen',
+'doubleredirectstext'               => "Op disse lieste staon alle pagina's dee deurverwiezen naor aandere deurverwiezingen.
 Op elke regel steet de eerste en de tweede deurverwiezing, daorachter steet de doelpagina van de tweede deurverwiezing.
 Meestentieds is leste pagina de gewunste doelpagina, waor oek de eerste pagina heer zol mutten liejen.",
-'double-redirect-fixed-move' => '[[$1]] is herneumd en is noen een deurverwiezing naor [[$2]]',
-'double-redirect-fixer'      => 'Deurverwiezingsverbeteraar',
+'double-redirect-fixed-move'        => '[[$1]] is herneumd en is noen een deurverwiezing naor [[$2]]',
+'double-redirect-fixed-maintenance' => 'Verbeteren van dubbele deurverwiezing van [[$1]] naor [[$2]].',
+'double-redirect-fixer'             => 'Deurverwiezingsverbeteraar',
 
 'brokenredirects'        => 'Ebreuken deurverwiezingen',
 'brokenredirectstext'    => 'Disse deurverwiezingen verwiezen naor een neet-bestaonde pagina.',
@@ -1998,6 +2030,7 @@ Een bestaand kan hier dus ten onrechte op-eneumen ween.",
 'pager-newer-n'           => '{{PLURAL:$1|1 niejere|$1 niejere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 ouwere|$1 ouwere}}',
 'suppress'                => 'Toezichte',
+'querypage-disabled'      => 'Disse speciale pagina is uut-eschakeld um prestasieredens.',
 
 # Book sources
 'booksources'               => 'Boekinfermasie',
@@ -2167,8 +2200,9 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'watchlist-options'    => 'Opties veur de volglieste',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Volg...',
-'unwatching' => 'Neet volgen...',
+'watching'       => 'Volg...',
+'unwatching'     => 'Neet volgen...',
+'watcherrortext' => 'Der is een fout op-etrejen tiejens \'t wiezigen van joew volgliesinstellingen veur "$1".',
 
 'enotif_mailer'                => '{{SITENAME}}-berichgevingssysteem',
 'enotif_reset'                 => "Markeer alle pagina's as bezoch.",
@@ -2202,7 +2236,7 @@ Je kunnen joew netposinstellingen wiezigen op:
 {{fullurl:{{#special:Preferences}}}}
 
 Je kunnen de volgliestinstellingen wiezigen op:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Je kunnen de pagina van joew volglieste ofhaolen deur op de volgende verwiezing te klikken:
 $UNWATCHURL
@@ -2406,6 +2440,7 @@ De leste regel uut 't blokkeerlogboek steet as rifferentie",
 'sp-contributions-username'            => 'IP-adres of gebrukersnaam:',
 'sp-contributions-toponly'             => 'Allinnig de niejste versie laoten zien',
 'sp-contributions-submit'              => 'Zeuk',
+'sp-contributions-showsizediff'        => 'Verschil in paginagrootte laoten zien',
 
 # What links here
 'whatlinkshere'            => 'Verwiezingen naor disse pagina',
@@ -2568,6 +2603,7 @@ Vergeet neet de [[Special:UnlockDB|databanke vrie te geven]] a-j klaor bin mit '
 'unlockdbsuccesstext' => 'De databanke is weer vrie-egeven.',
 'lockfilenotwritable' => "Gien schriefrechen op 't beveiligingsbestaand van de databanke. Um de databanke te blokkeren of de blokkering op te heffen, mut der eschreven kunnen wönnen deur de webserver.",
 'databasenotlocked'   => 'De databanke is neet eblokkeerd.',
+'lockedbyandtime'     => '(deur $1 um $3 op $2)',
 
 # Move page
 'move-page'                    => 'Herneum "$1"',
@@ -2910,6 +2946,7 @@ $1",
 'widthheightpage'        => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'              => 'Bestaansgrootte: $1, MIME-type: $2',
 'file-info-size'         => '$1 × $2 beeldpunten, bestaansgrootte: $3, MIME-type: $4',
+'file-info-size-pages'   => "$1 × $2 beeldpunten, bestaansgrootte: $3, MIME-type: $4, $5 {{PLURAL:$5|pagina|pagina's}}",
 'file-nohires'           => '<small>Gien hogere resolusie beschikbaor.</small>',
 'svg-long-desc'          => 'SVG-bestaand, uutgangsgrootte $1 × $2 beeldpunten, bestaansgrootte: $3',
 'show-big-image'         => 'Ofbeelding wat groter',
@@ -3108,6 +3145,7 @@ Aandere velden wönnen verbörgen.
 'exif-iimsupplementalcategory'     => 'Anvullende kattegerieën',
 'exif-datetimeexpires'             => 'Neet te gebruken nao',
 'exif-datetimereleased'            => 'Uut-ebröch op',
+'exif-originaltransmissionref'     => 'Oorspronkelijke taaklokasiecode',
 'exif-identifier'                  => 'ID',
 'exif-lens'                        => 'Lenze dee gebruuk wönnen',
 'exif-serialnumber'                => 'Serienummer van de camera',
@@ -3141,6 +3179,9 @@ Aandere velden wönnen verbörgen.
 
 # EXIF attributes
 'exif-compression-1' => 'Neet ecomprimeerd',
+'exif-compression-2' => 'CCITT-groep 3 1-dimensionale an-epassen "Huffman run length"-codering',
+'exif-compression-3' => 'CCITT-groep 3 faxcodering',
+'exif-compression-4' => 'CCITT-groep 4 faxcodering',
 
 'exif-copyrighted-true'  => 'Auteursrechtelijk bescharmp',
 'exif-copyrighted-false' => 'Pebliek domein',
@@ -3399,6 +3440,19 @@ um de bevestiging van joew netposadres of te breken:
 $5
 
 De bevestigingscode zal verlopen op $4.',
+'confirmemail_body_set'     => 'Ene mit IP-adres $1, werschienlijk jie zelf,
+hef zien eigen mit dit netposadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
+
+Klik op de volgende verwiezing um te bevestigen da-jie disse gebruker bin en um de netposmeugelijkheen op {{SITENAME}} te activeren:
+
+$3
+
+A-j joe eigen *neet* an-emeld hemmen, klik dan neet op disse verwiezing
+um de bevestiging van joew netposadres of te zegen:
+
+$5
+
+De bevestigingscode zal verlopen op $4.',
 'confirmemail_invalidated'  => 'De netposbevestiging is of-ebreuken',
 'invalidateemail'           => 'Netposbevestiging ofbreken',
 
@@ -3512,6 +3566,11 @@ Je kunnen oek [[Special:EditWatchlist|'t standardbewarkingsscharm gebruken]].",
 'version-license'               => 'Licentie',
 'version-poweredby-credits'     => "Disse wiki wönnen an-estuurd deur '''[http://www.mediawiki.org/ MediaWiki]''', kopierech © 2001-$1 $2.",
 'version-poweredby-others'      => 'aanderen',
+'version-license-info'          => "MediaWiki is vrieje programmatuur; je kunnen MediaWiki verspreien en/of anpassen onder de veurweerden van de GNU General Public License zoas epubliceerd deur de Free Software Foundation; of versie 2 van de Licentie, of - naor eigen wuns - een laotere versie.
+
+MediaWiki wönnen verspreid in de hoop dat 't nuttig is, mer ZONDER ENIGE GARANTIE; zonder zelfs de daoronder begrepen garantie van VERKOOPBAORHEID of GESCHIKTHEID VEUR ENIG DOEL IN 'T BIEZUNDER. Zie de GNU General Public License veur meer infermasie.
+
+Samen mit dit pregramma heur jie een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te hemmen ekregen; as dat neet zo is, schrief dan naor de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees de licentie op 't internet].",
 'version-software'              => 'Pregrammetuur dee eïnstalleerd is',
 'version-software-product'      => 'Preduk',
 'version-software-version'      => 'Versie',

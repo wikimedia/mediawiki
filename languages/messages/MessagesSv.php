@@ -2268,7 +2268,7 @@ För att ändra inställningarna för dina uppdateringar via e-post, besök
 {{fullurl:{{#special:Preferences}}}}
 
 För att ändra inställningarna i din bevakningslista, besök
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 För att radera sidan från din bevakningslista, besök
 $UNWATCHURL

@@ -1791,7 +1791,7 @@ Sonımen qatar baqılaw tizimiñizdegi bet eskertpelik belgisin qaýta qoýıñ�
 
 ----
 Baqılaw tizimiñizdiñ baptawlırın özgertw üşin, mında kelip-ketiñiz:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Sın-pikir berw jäne bılaýğı järdem alw üşin:
 {{fullurl:{{{{ns:mediawiki}}:Helppage}}}}',

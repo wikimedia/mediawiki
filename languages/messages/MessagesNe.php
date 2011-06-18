@@ -1856,7 +1856,7 @@ $NEWPAGE
 {{fullurl:{{#special:Preferences}}}}
 
 निगरानी सूची व्यवस्थित गर्न, जानुहोस्
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 निगरानी सूची मेट्न, जानुहोस्
 $UNWATCHURL

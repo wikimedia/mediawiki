@@ -1610,7 +1610,7 @@ $NEWPAGE
 
 --
 Διὰ τὸ ἀλλάξειν τὰς ῥυθμίσεις τὴς ἐφοροδιαλογῆς σου, ἐπίσκεψαι τὸ
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Ἀνάδρασις καὶ περαιτέρω βοήθεια:
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -2328,7 +2328,7 @@ $NEWPAGE
 {{fullurl:{{#special:Preferences}}}}
 
 Доколку сакате да ги измените нагодувањата на списокот на набљудувања, посетете ја страницата
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 За да ја избришете страницата од списокот на набљудувања, посетете ја страницата
 $UNWATCHURL

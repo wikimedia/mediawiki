@@ -503,6 +503,8 @@ Ceisiwch eto ymhen rhai munudau.",
 'cascadeprotected'     => "Diogelwyd y dudalen hon rhag ei newid, oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen ganlynol|dudalen ganlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol}}, a {{PLURAL:$1|honno yn ei thro wedi ei|honno yn ei thro wedi ei|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu}} diogelu, a'r dewisiad 'sgydol' ynghynn:
 $2",
 'namespaceprotected'   => "Nid oes caniatâd gennych i olygu tudalennau yn y parth '''$1'''.",
+'customcssprotected'   => "Nid oes caniatâd ganddoch i olygu'r dudalen CSS hon oherwydd bod gosodiadau personol defnyddiwr arall arno.",
+'customjsprotected'    => "Nid oes caniatâd ganddoch i olygu'r dudalen JavaScript hon oherwydd bod gosodiadau personol defnyddiwr arall arno.",
 'ns-specialprotected'  => 'Ni ellir golygu tudalennau arbennig.',
 'titleprotected'       => "Diogelwyd y teitl hwn rhag ei greu gan [[User:$1|$1]].
 Rhoddwyd y rheswm hwn - ''$2''.",
@@ -2052,7 +2054,7 @@ I newid eich gosodiadau negeseuon hysbysu, ewch i
 {{fullurl:{{#special:Preferences}}}}
 
 I newid eich gosodiadau gwylio, ewch i
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 I dynnu\'r dudalen oddi ar eich rhestr wylio, ewch i
 $UNWATCHURL

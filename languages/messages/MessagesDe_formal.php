@@ -474,7 +474,7 @@ Es werden Ihnen solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis S
 --
 Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuchen Sie {{fullurl:{{#special:Preferences}}}}
 
-Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie {{fullurl:{{#special:Watchlist}}/edit}}
+Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie {{fullurl:{{#special:EditWatchlist}}}}
 
 Um diese Seite von Ihrer Beobachtungsliste zu entfernen, besuchen Sie $UNWATCHURL
 

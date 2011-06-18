@@ -1525,7 +1525,7 @@ You could also reset the notification flags for all your watched pages on your w
 
 --
 To change your watchlist settings, visit
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Feedback and further assistance:
 {{fullurl:{{MediaWiki:Helppage}}}}',

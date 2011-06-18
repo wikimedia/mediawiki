@@ -2239,7 +2239,7 @@ Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả cá
 {{fullurl:{{#special:Preferences}}}}
 
 Để thay đổi các thiết lập danh sách theo dõi, mời xem:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem:
 $UNWATCHURL

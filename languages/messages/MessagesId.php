@@ -2255,7 +2255,7 @@ Untuk mengubah setelan pemberitahuan surel, kunjungi
 {{fullurl:{{#special:Preferences}}}}
 
 Untuk mengubah setelan daftar pantauan, kunjungi
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Untuk menghapus halaman dari daftar pantauan, kunjungi
 $UNWATCHURL

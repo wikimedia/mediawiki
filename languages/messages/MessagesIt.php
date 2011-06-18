@@ -2160,7 +2160,7 @@ Per modificare le impostazioni delle notifiche via e-mail, visita
 {{fullurl:{{#special:Preferences}}}}
 
 Per modificare la lista degli osservati speciali, visita 
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Per rimuovere la pagina dalla lista degli osservati speciali, visita
 $UNWATCHURL

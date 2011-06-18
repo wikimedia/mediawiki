@@ -1956,7 +1956,7 @@ O sistema de notificación de {{SITENAME}}.
 
 --
 Ta cambiar as opcions d\'a suya lista de seguimiento, punche:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Ta borrar ista pachina d\'a suya lista de seguimiento, punche:
 $UNWATCHURL

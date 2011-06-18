@@ -2132,7 +2132,7 @@ A-benn kemmañ arventennoù ho kemennoù dre bostel, sellit ouzh
 {{fullurl:{{#special:Preferences}}}}
 
 A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 A-benn dilemel ar bajenn eus ho rollad evezhiañ, sellit ouzh
 $UNWATCHURL

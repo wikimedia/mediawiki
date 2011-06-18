@@ -2022,7 +2022,7 @@ Pe cangià le \'mbostaziune de notifeche de l\'email toje, vè vide
 {{fullurl:{{#special:Preferences}}}}
 
 Pe cangià le \'mbostaziune de l\'elenghe de le pàggene condrollate tune, vè vide
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Pe scangellà \'a pàgene da \'a liste de le pàggene condrollate, vè vide
 $UNWATCHURL
