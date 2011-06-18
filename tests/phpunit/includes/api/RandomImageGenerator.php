@@ -161,6 +161,20 @@ class RandomImageGenerator {
 		return $spec;
 	}
 
+	/**
+	 * Given array( array('x' => 10, 'y' => 20), array( 'x' => 30, y=> 5 ) )
+	 * returns "10,20 30,5"
+	 * Useful for SVG and imagemagick command line arguments
+	 * @param $shape: Array of arrays, each array containing x & y keys mapped to numeric values
+	 * @return string
+	 */
+	static function shapePointsToString( $shape ) {
+		$points = array();
+		foreach ( $shape as $point ) { 
+			$points[] = $point['x'] . ',' . $point['y'];
+		}
+		return join( " ", $points );
+	}
 
 	/**
 	 * Based on image specification, write a very simple SVG file to disk.
@@ -179,7 +193,7 @@ class RandomImageGenerator {
 		foreach ( $spec['draws'] as $drawSpec ) {
 			$shape = $g->addChild( 'polygon' );
 			$shape->addAttribute( 'fill', $drawSpec['fill'] );		
-			$shape->addAttribute( 'points', shapePointsToString( $drawSpec['shape'] ) );
+			$shape->addAttribute( 'points', self::shapePointsToString( $drawSpec['shape'] ) );
 		};
 		if ( ! $fh = fopen( $filename, 'w' ) ) {
 			throw new Exception( "couldn't open $filename for writing" );
@@ -188,14 +202,6 @@ class RandomImageGenerator {
 		if ( !fclose($fh) ) {
 			throw new Exception( "couldn't close $filename" );
 		}
-	}
-
-	public function shapePointsToString( $shape ) {
-		$points = array();
-		foreach ( $shape as $point ) { 
-			$points[] = $point['x'] . ',' . $point['y'];
-		}
-		return join( " ", $points );
 	}
 
 	/**
@@ -240,7 +246,7 @@ class RandomImageGenerator {
 		$args[] = wfEscapeShellArg( "xc:" . $spec['fill'] );
 		foreach( $spec['draws'] as $draw ) {
 			$fill = $draw['fill'];
-			$polygon = shapePointsToString( $draw['shape'] );
+			$polygon = self::shapePointsToString( $draw['shape'] );
 			$drawCommand = "fill $fill  polygon $polygon";
 			$args[] = '-draw ' . wfEscapeShellArg( $drawCommand );
 		}
