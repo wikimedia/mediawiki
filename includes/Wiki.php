@@ -494,7 +494,6 @@ class MediaWiki {
 		try {
 			$this->checkMaxLag( true );
 			$this->main();
-			$this->finalCleanup();
 			$this->restInPeace();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handle( $e );
@@ -548,7 +547,7 @@ class MediaWiki {
 		
 		# Set title from request parameters
 		$wgTitle = $this->getTitle();
-		$action = $this->context->getRequest()->getVal( 'action', 'view' );
+		$action = $this->getAction();
 		
 		# Send Ajax requests to the Ajax dispatcher.
 		if ( $wgUseAjax && $action == 'ajax' ) {
@@ -584,6 +583,7 @@ class MediaWiki {
 		}
 		
 		$this->performRequest();
+		$this->finalCleanup();
 		
 		wfProfileOut( __METHOD__ );
 	}
