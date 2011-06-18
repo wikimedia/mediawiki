@@ -1817,8 +1817,7 @@ HTML
 
 		global $wgBetterDirectionality, $wgContLang;
 		if( $wgBetterDirectionality ) {
-			$getPageLang = $wgOut->parserOptions()->getTargetLanguage( $this->mTitle );
-			$pageLang = ( $getPageLang ? $getPageLang : $wgContLang );
+			$pageLang = $this->mTitle->getPageLanguage();
 			$attribs['lang'] = $pageLang->getCode();
 			$attribs['dir'] = $pageLang->getDir();
 		}
@@ -2066,6 +2065,12 @@ HTML
 
 				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
 
+				// In which language to parse the page
+				// (Should this still be only for MediaWiki pages, or for all pages?)
+				if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+					$parserOptions->setTargetLanguage( $this->mTitle->getPageLanguage() );
+				}
+				$parserOptions->setTargetLanguage( $this->mTitle->getPageLanguage() );
 				$parserOptions->setTidy( true );
 				$parserOptions->enableLimitReport();
 				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ),
@@ -2091,12 +2096,11 @@ HTML
 			'<h2 id="mw-previewheader">' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>" .
 			$wgOut->parse( $note ) . $conflict . "</div>\n";
 
-		global $wgBetterDirectionality, $wgContLang;
+		global $wgBetterDirectionality;
 		if( $wgBetterDirectionality ) {
-			$getPageLang = $wgOut->parserOptions()->getTargetLanguage( $this->mTitle );
-			$pageLang = ( $getPageLang ? $getPageLang : $wgContLang );
-			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
-			$previewHTML = Html::rawElement( 'div', $realBodyAttribs, $previewHTML );
+			$pageLang = $this->mTitle->getPageLanguage();
+			$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+			$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
 		}
 		wfProfileOut( __METHOD__ );
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;

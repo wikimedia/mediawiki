@@ -66,17 +66,7 @@ class ParserOptions {
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
-	function getTargetLanguage( $title = null ) {
-		if ( $title && $title->isCssOrJsPage() ) {
-			return Language::factory( 'en' ); // css/js should always be LTR
-		} elseif ( $title && $title->getNamespace() == NS_MEDIAWIKI ) {
-			// Parse mediawiki messages with correct target language
-			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
-			$obj = wfGetLangObj( $lang );
-			return $obj;
-		}
-	return $this->mTargetLanguage;
-}
+	function getTargetLanguage()                { return $this->mTargetLanguage; }
 	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
 	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
 	function getMaxPPExpandDepth()              { return $this->mMaxPPExpandDepth; }

@@ -461,8 +461,7 @@ class SkinTemplate extends Skin {
 			if( $this->getTitle()->getNamespace() != NS_SPECIAL &&
 				in_array( $action, array( 'view', 'render', 'print' ) ) &&
 				( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
-				$getPageLang = $out->parserOptions()->getTargetLanguage( $this->getTitle() );
-				$pageLang = ( $getPageLang ? $getPageLang : $wgContLang );
+				$pageLang = $this->getTitle()->getPageLanguage();
 				$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
 				$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 			}

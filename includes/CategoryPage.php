@@ -506,19 +506,18 @@ class CategoryViewer {
 	 * @private
 	 */
 	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
+		$list = '';
 		if ( count ( $articles ) > $cutoff ) {
 			$list = self::columnList( $articles, $articles_start_char );
 		} elseif ( count( $articles ) > 0 ) {
 			// for short lists of articles in categories.
 			$list = self::shortList( $articles, $articles_start_char );
 		}
-		global $wgBetterDirectionality;
+		global $wgBetterDirectionality, $wgTitle;
 		if( $wgBetterDirectionality ) {
-			global $wgOut, $wgContLang;
-			$getPageLang = $wgOut->parserOptions()->getTargetLanguage();
-			$pageLang = ( $getPageLang ? Language::factory( $getPageLang ) : $wgContLang );
-			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
-			$list = Html::rawElement( 'div', $realBodyAttribs, $list );
+			$pageLang = $wgTitle->getPageLanguage();
+			$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+			$list = Html::rawElement( 'div', $attribs, $list );
 		}
 
 		return $list;
