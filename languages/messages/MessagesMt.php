@@ -1980,7 +1980,7 @@ Mhux se jiġu mibgħuta notifiki oħra f\'każ ta\' aktar modifiki sakemm ma ż�
 
 --
 Biex tbiddel l-impostazzjonijiet tal-lista ta\' osservazzjoni tiegħek, żur
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Biex tħassar il-paġna minn fuq il-lista ta\' osservazzjoni tiegħek, żur
 $UNWATCHURL

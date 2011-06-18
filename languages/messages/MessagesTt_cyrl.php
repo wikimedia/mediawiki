@@ -331,6 +331,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'дәвамы',
 'index-category'                 => 'Индексланган битләр',
 'noindex-category'               => 'Индексланмаган битләр',
+'broken-file-category'           => 'Эшләми торган файл сылтамаларлы битләр',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => '«MediaWiki» уңышлы куелды.',
@@ -505,6 +506,8 @@ $1',
 'feed-atom'               => 'Atom-тасмасы',
 'feed-rss'                => 'RSS-тасмасы',
 'red-link-title'          => '$1 (мондый бит юк)',
+'sort-descending'         => 'Кимү буенча урнаштыру',
+'sort-ascending'          => 'Арту буенча урнаштыру',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Бит',
@@ -1708,7 +1711,7 @@ $NEWPAGE
 
 --
 Күзәтү исемлеге көйләүләрен үзгәртү:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Битне сезнең күзәтү исемлегездән бетерү:
 $UNWATCHURL

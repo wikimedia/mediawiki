@@ -2151,7 +2151,7 @@ Pro configurar le notification per e-mail, visita
 {{fullurl:{{#special:Preferences}}}}
 
 Pro configurar le observatorio, visita
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Pro retirar le pagina de tu observatorio, visita
 $UNWATCHURL

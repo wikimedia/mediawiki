@@ -1828,7 +1828,7 @@ $NEWPAGE
 --
 
 আপনার নজরতালিকা সেটিংস পরিবর্তন করতে চাইলে এখানে যান:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 
 নজরতালিকা থেকে কোন পাতা অপসারণ করতে চাইলে এখানে যান:

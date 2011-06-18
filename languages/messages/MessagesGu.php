@@ -2097,7 +2097,7 @@ wiki: $PAGEEDITOR_WIKI
              તમારો મિત્ર {{SITENAME}} સૂચના પ્રક્રિયા   
  
 --
-તમારી ધ્યાનસૂચિ ના  વિક્લ્પ ગોઠવણ માટે  આ જુઓ {{fullurl:{{#special:Watchlist}}/edit}}
+તમારી ધ્યાનસૂચિ ના  વિક્લ્પ ગોઠવણ માટે  આ જુઓ {{fullurl:{{#special:EditWatchlist}}}}
 
 ધ્યાનસૂચિમાંથી વિષ્ય હટાવવા , આ જુઓ  
 $UNWATCHURL

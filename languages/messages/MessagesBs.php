@@ -2268,7 +2268,7 @@ Za promjenu vaših postavki e-mail obavijesti, posjetite
 {{fullurl:{{#special:Preferences}}}}
 
 Za promjenu postavki vašeg praćenja, posjetite
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Da obrišete stranicu sa vašeg spiska praćenja, posjetite
 $UNWATCHURL

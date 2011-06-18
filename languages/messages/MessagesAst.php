@@ -2030,7 +2030,7 @@ En casu de producise más cambeos, nun habrá más notificaciones a nun ser que 
 
 --
 Pa camudar la configuración de la to llista de vixilancia, visita
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Pa desaniciar la páxina de la to llista de vixilancia, visita
 $UNWATCHURL

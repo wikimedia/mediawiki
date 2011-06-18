@@ -2245,7 +2245,7 @@ Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus la paĝon. Vi 
 
 --
 Por ŝanĝi la elektojn de via atentaro, bonvolu viziti
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Por forigi la paĝon el via atentaro, bonvolu viziti
 $UNWATCHURL

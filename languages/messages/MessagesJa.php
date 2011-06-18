@@ -2342,7 +2342,7 @@ $NEWPAGE
 {{fullurl:{{#special:Preferences}}}}
 
 ウォッチリストの設定は、次のページから変更して下さい。
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 このページは、次のページでウォッチリストから除去することが出来ます。
 $UNWATCHURL

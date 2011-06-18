@@ -1955,7 +1955,7 @@ $NEWPAGE
 --
 
 Күҙәтеү исемлеге көйләүҙәрен үҙгәртергә:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Битте һеҙҙең күҙәтеү исемлегенән юйырға
 $UNWATCHURL

@@ -1852,7 +1852,7 @@ $NEWPAGE
              Сістэма апавяшчэнняў {{SITENAME}}
 
 --
-Настаўленні спісу назіранага: {{fullurl:{{#special:Watchlist}}/edit}}
+Настаўленні спісу назіранага: {{fullurl:{{#special:EditWatchlist}}}}
 
 Выняцце старонкі з ліку назіраных: $UNWATCHURL
 

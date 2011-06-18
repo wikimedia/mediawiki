@@ -2215,7 +2215,7 @@ $NEWPAGE
 
 --
 Змінити налаштування вашого списку спостереження можна на
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Для вилучення сторінки з вашого списку спостереження відвідайте
 $UNWATCHURL

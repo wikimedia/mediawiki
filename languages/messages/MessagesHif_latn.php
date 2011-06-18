@@ -1945,7 +1945,7 @@ Aap aapan dhyan suchi me sab dhyan me rakha gais panna pe notification flags ke 
 
 --
 Aapan dhyan ke settings ke badle ke khatir, jaao
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Aapan dhyan suchi se panna ke mitae ke khatir, jaao
 $UNWATCHURL

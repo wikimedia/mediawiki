@@ -2391,7 +2391,7 @@ $NEWPAGE
 {{fullurl:{{#special:Preferences}}}}
 
 Да бисте променили поставке у вези са списком надгледања, посетите
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Да бисте уклонили ову страницу са списка надгледања, посетите
 $UNWATCHURL

@@ -1987,7 +1987,7 @@ $NEWPAGE
 
 --
 Кэтиир сирэйдэриҥ тиһигин уларытарга маны көр:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Бу сирэйи кэтэбил тиһигиттэн соторго манна киир:
 $UNWATCHURL

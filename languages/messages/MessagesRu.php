@@ -2253,7 +2253,7 @@ $NEWPAGE
 {{fullurl:{{#special:Preferences}}}}
 
 Изменение настройки вашего списка наблюдения
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Удалить страницы из вашего списка наблюдения
 $UNWATCHURL

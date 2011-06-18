@@ -2136,7 +2136,7 @@ Podètz tanben reïnicializar las bandièras de notificacion per totas las pagin
 
 --
 Per modificar los paramètres de vòstra lista de seguiment, visitatz
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Per suprimir la pagina de vòstra lista de seguiment, visitatz
 $UNWATCHURL

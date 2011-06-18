@@ -1871,6 +1871,8 @@ $1
 За да е възможно това, МедияУики изисква достъп до Интернет.
 
 Повече информация за тази функционалност, както и инструкции за настройване за други уикита, различни от Общомедия, е налична в [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos наръчника].',
+	'config-cc-error' => 'Избирането на лиценз на Криейтив Комънс не даде резултат.
+Необходимо е името на лиценза да бъде въведено ръчно.',
 	'config-cc-again' => 'Повторно избиране...',
 	'config-cc-not-chosen' => 'Изберете кой лиценз на Криейтив Комънс желаете и щракнете "proceed".',
 	'config-advanced-settings' => 'Разширена конфигурация',
@@ -1887,6 +1889,7 @@ $1
 192.168.1.25:1234',
 	'config-memcache-needservers' => 'Избран е Memcached като складиращ тип, но не са посочени сървъри.',
 	'config-memcache-badip' => 'Беше въведен невалиден IP адрес за Memcached: $1.',
+	'config-memcache-badport' => 'Портовете за Memcached трябва да бъдат между $1 и $2.',
 	'config-extensions' => 'Разширения',
 	'config-extensions-help' => 'Разширенията от списъка по-горе бяха открити в директорията <code>./extensions</code>.
 
@@ -5062,6 +5065,7 @@ $1
 מזעור תמונות לא יופעל.',
 	'config-no-uri' => "'''שגיאה:''' אי־אפשר לזהות את הכתובת הנוכחית.
 ההתקנה בוטלה.",
+	'config-using-server' => 'שם השרת בשימוש: "<nowiki>$1</nowiki>".',
 	'config-uploads-not-safe' => "'''אזהרה:''' התיקייה ההתחלתית להעלות <code>$1</code> חשופה להרצת סקריפטים.
 מדיה־ויקי בודקת את כל הקבצים המוּעלים לאיומי אבטחה, מומלץ מאוד למנוע את [http://www.mediawiki.org/wiki/Manual:Security#Upload_security פרצת האבטחה] הזאת לפני שאתם מפעילים את ההעלאות.",
 	'config-brokenlibxml' => 'במערכת שלכם יש שילוב של גרסאות של PHP ושל libxml2 שחשוף לבאגים ויכול לגרום לעיוות נתונים נסתר במדיה־ויקי וביישומי רשת אחרים.
@@ -5126,6 +5130,7 @@ $1
 	'config-db-schema' => 'סכמה למדיה־ויקי',
 	'config-db-schema-help' => 'הסְכֵמָה הבאה בדרך כלל מתאימה.
 שנו אותה רק אם אתם יודעים שאתם חייבים.',
+	'config-pg-test-error' => "ההתחברות למסד הנתונים '''$1''' לא מצליחה: $2",
 	'config-sqlite-dir' => 'תיקיית נתונים (data directory) של SQLite:',
 	'config-sqlite-dir-help' => 'SQLite שומר את כל הנתונים בקובץ אחד.
 
@@ -5281,6 +5286,8 @@ chmod a+w $3</pre></div>',
 	'config-subscribe' => 'להירשם ל[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה עם הודעות על גרסאות חדשות].',
 	'config-subscribe-help' => 'זוהי רשימת תפוצה עם הודעות מעטות שמשמשת להודעות על הוצאת גרסאות, כולל עדכוני אבטחה חשובים.
 מומלץ להירשם אליה ולעדכן את מדיה־ויקי כאשר יוצאות גרסאות חדשות.',
+	'config-subscribe-noemail' => 'ניסיתם להירשם לרשימת תפוצה של הודעות בלי לתת כתובת דוא"ל.
+נא לתת כתובת דוא"ל אם אתם רוצים להירשם לרשימת התפוצה.',
 	'config-almost-done' => 'כמעט סיימתם!
 אפשר לדלג על שאר ההגדרות ולהתקין את הוויקי כבר עכשיו.',
 	'config-optional-continue' => 'הצגת שאלות נוספות.',
@@ -5391,6 +5398,7 @@ chmod a+w $3</pre></div>',
 	'config-install-step-failed' => 'נכשל',
 	'config-install-extensions' => 'כולל הרחבות',
 	'config-install-database' => 'הקמת מסד נתונים',
+	'config-install-schema' => 'יצירת סכמה',
 	'config-install-pg-schema-not-exist' => 'סכמה של PostgreSQL אינה קיימת',
 	'config-install-pg-schema-failed' => 'יצירת טבלאות נכשלה.
 ודאו כי המשתמש "$1" יכול לכתוב לסכמה "$2".',
@@ -5398,10 +5406,17 @@ chmod a+w $3</pre></div>',
 	'config-install-pg-plpgsql' => 'בדיקת שפת PL/pgSQL',
 	'config-pg-no-plpgsql' => 'צריך להתקין את שפת PL/pgSQL במסד הנתונים $1',
 	'config-pg-no-create-privs' => 'לחשבון שהגדרתם להתקנה אין מספיק הרשאות ליצירת חשבון.',
+	'config-pg-not-in-role' => 'החשבון שציינתם עבור משתמש שרת הווב כבר קיים.
+החשבון שסיפקתם להתקנה אינו חשבון בעל הרשאות (superuser) ואינו חבר בתפקיד (role) של משתמש שרת הווב, אז אין אפשרות ליצור עצמים בבעלות משתמש שרת הווב.
+
+כעת נדרש במדיה־ויקי שהטבלאות יהיו בבעלות של משתמש שרת הווב. נא לציין שם חשבון שרת וב אחר או ללחוץ על כפתור "אחורה" ולציין משתמש התקנה בעל הרשאות מתאימות.',
 	'config-install-user' => 'יצירת חשבון במסד נתונים',
 	'config-install-user-alreadyexists' => 'המשתמש "$1" כבר קיים',
 	'config-install-user-create-failed' => 'יצירת משתמש "$1" נכשלה: $2',
 	'config-install-user-grant-failed' => 'מתן הרשאות למשתמש "$1" נכשל: $2',
+	'config-install-user-missing' => 'המשתמש "$1" שצוין אינו קיים.',
+	'config-install-user-missing-create' => 'המשתמש "$1" שצוין אינו קיים.
+נא ללחוץ על תיבת בסימון "יצירת חשבון" להלן אם אתם רוצים ליצור אותו.',
 	'config-install-tables' => 'יצירת טבלאות',
 	'config-install-tables-exist' => "'''אזהרה:''' נראה שטבלאות מדיה־ויקי כבר קיימות.
 מדלג על יצירתן.",

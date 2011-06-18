@@ -1284,7 +1284,7 @@ $NEWPAGE
 
 本站: $PAGEEDITOR_WIKI 今后伓会通知倷将来𠮶改动，除非接到来到个页。倷也能设过倷全部监视页𠮶通知标记。
 
-{{SITENAME}}通知系统 – 会改卟倷𠮶监视列表设置，请去 {{fullurl:{{#special:Watchlist}}/edit}}
+{{SITENAME}}通知系统 – 会改卟倷𠮶监视列表设置，请去 {{fullurl:{{#special:EditWatchlist}}}}
 
 回馈同到别𠮶说明: {{fullurl:{{MediaWiki:Helppage}}}}',
 

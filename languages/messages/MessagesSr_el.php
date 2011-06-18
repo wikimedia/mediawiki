@@ -2160,7 +2160,7 @@ Da biste promenili postavke u vezi s e-obaveštenjima, posetite
 {{fullurl:{{#special:Preferences}}}}
 
 Da biste promenili postavke u vezi sa spiskom nadgledanja, posetite
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Da biste uklonili ovu stranicu sa spiska nadgledanja, posetite
 $UNWATCHURL

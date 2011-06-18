@@ -2161,7 +2161,7 @@ $NEWPAGE
 
 --
 علشان تغيّر ليستة المراقبه بتاعتك, زور
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 علشان تمسح الصفحه من على ليستة مراقبتك, زور
 $UNWATCHURL

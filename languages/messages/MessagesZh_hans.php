@@ -2137,7 +2137,7 @@ $NEWPAGE
 要更改您的邮件通知设置，请访问
 {{fullurl:{{#special:Preferences}}}}
 要改变您的监视列表设置，请访问
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 要删除您监视列表中的该页面，请访问
 $UNWATCHURL

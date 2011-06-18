@@ -2211,7 +2211,7 @@ Para cambiar as notificacións por correo electrónico, visite
 
 
 Para cambiar a súa lista de vixilancia, visite
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Para borrar a páxina da súa lista de vixilancia, visite
 $UNWATCHURL

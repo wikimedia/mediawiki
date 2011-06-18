@@ -2148,7 +2148,7 @@ U kan ook die waarskuwingsvlag op u dophoulys verstel.
 
 --
 U kan u dophoulys wysig by:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Om die bladsy vanaf u dophoulys te verwyder, besoek:
 $UNWATCHURL

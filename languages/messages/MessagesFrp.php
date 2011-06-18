@@ -2318,7 +2318,7 @@ Por changiér los paramètres de notificacion per mèssageria èlèctronica, vis
 {{fullurl:{{#special:Preferences}}}}
 
 Por changiér los paramètres de voutra lista de survelyence, visitâd
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Por suprimar la pâge de voutra lista de survelyence, visitâd
 $UNWATCHURL

@@ -2229,7 +2229,7 @@ $NEWPAGE
 {{fullurl:{{#special:Preferences}}}}
 
 주시문서 설정을 바꾸려면 다음을 사용하세요:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 주시문서에서 이 문서를 지우려면 이곳을 방문해주세요:
 $UNWATCHURL

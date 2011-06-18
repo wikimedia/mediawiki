@@ -14,6 +14,13 @@ $fallback = 'et';
 
 $messages = array(
 # Dates
+'sun'           => 'Piv',
+'mon'           => 'Ežž',
+'tue'           => 'Tūo',
+'wed'           => 'Kuo',
+'thu'           => 'Neļ',
+'fri'           => 'Brē',
+'sat'           => 'Pūo',
 'january'       => 'janvār',
 'february'      => 'februār',
 'march'         => 'märts',
@@ -67,12 +74,16 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => 'Vȯtšõgid',
+'faq'    => 'SKK',
 
 # Vector skin
-'vector-view-create' => 'Lūo',
-'vector-view-edit'   => 'Redigīer',
-'vector-view-view'   => 'Vaņ',
-'namespaces'         => 'Nim-rūimõd',
+'vector-view-create'     => 'Lūo',
+'vector-view-edit'       => 'Redigīer',
+'vector-view-history'    => 'Nägţ istōrijõ',
+'vector-view-view'       => 'Vaņ',
+'vector-view-viewsource' => 'Vaņ ovāt tekstõ',
+'namespaces'             => 'Nim-rūimõd',
+'variants'               => 'Varianţõd',
 
 'errorpagetitle'   => 'Vigā',
 'returnto'         => 'Li tāgiž līed $1 jūrõ.',
@@ -120,6 +131,7 @@ $messages = array(
 'helppage'             => 'Help:Sižāli',
 'mainpage'             => 'Eḑḑilēḑ',
 'mainpage-description' => 'Eḑḑilēḑ',
+'portal-url'           => 'Project:Kubgõnd vǟrõd',
 'privacy'              => 'Privātõm',
 'privacypage'          => 'Project:Privātõm',
 
@@ -222,6 +234,10 @@ Tēg tȭitat ka, ku kēratiztõ sīe īž agā võtīztõ sīe ovātõst, kust k
 Se lēḑ um {{PLURAL:$1|īds jarā vaŗtõd kategōrijõs|$1 jarā vaŗtõd kategōrijõs }}:',
 'permissionserrorstext-withaction' => 'Sinnõn äb ūo õigõmt $2 {{PLURAL:$1||}} pierāst:',
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning'  => "'''Kūondõks:''' Kizdõd mallõd lug um pa-jennõks sūr. Mingiži mallidi äb sō nägţõ.",
+'post-expand-template-inclusion-category' => 'Lēḑõd, kus um mallõd limīt täuž',
+
 # History pages
 'viewpagelogs'           => 'Vaņ sīe līed logīdi',
 'currentrev-asof'        => 'Perri redaktsij: $1',
@@ -238,8 +254,10 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'histlast'               => 'Perrizt',
 
 # Revision deletion
-'rev-delundel'   => 'nägţ/vaŗ jarā',
-'revdel-restore' => 'Mõitiņt nǟdõbõzt',
+'rev-delundel'           => 'nägţ/vaŗ jarā',
+'revdel-restore'         => 'Mõitiņt nǟdõbõzt',
+'revdel-restore-deleted' => 'jarā kištāntõd redaktsijõd',
+'revdel-restore-visible' => 'nǟdõbõd redaktsijõd',
 
 # Merge log
 'revertmerge' => 'Kīeld jarā kubbõ vieddimi',
@@ -252,33 +270,47 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'editundo'                => 'kištānt jarā',
 
 # Search results
-'searchresults'             => 'Vȯtšimiz rezultātõd',
-'searchresults-title'       => 'Vȯtšimiz "$1" rezultātõd',
-'searchresulttext'          => 'Mūdõ tieutõkst iļ {{SITENAME}} vȯtšimiz pierāst vaņtligid  [[{{MediaWiki:Helppage}}| opātõksõst]]',
-'searchsubtitle'            => "Vȯtšīztõ frāzõ '''[[:$1]]''' ( [[Special:Prefixindex/$1|amād sõnādõks ''$1'' irgõbõd lēḑõd]]{{int:pipe-separator}} 
+'searchresults'                    => 'Vȯtšimiz rezultātõd',
+'searchresults-title'              => 'Vȯtšimiz "$1" rezultātõd',
+'searchresulttext'                 => 'Mūdõ tieutõkst iļ {{SITENAME}} vȯtšimiz pierāst vaņtligid  [[{{MediaWiki:Helppage}}| opātõksõst]]',
+'searchsubtitle'                   => "Vȯtšīztõ frāzõ '''[[:$1]]''' ( [[Special:Prefixindex/$1|amād sõnādõks ''$1'' irgõbõd lēḑõd]]{{int:pipe-separator}} 
 [[Special:WhatLinksHere/$1|amād lēḑõd, mis sizzõl um siḑīmḑi kēratõks ''$1'' jūrõ]])",
-'searchsubtitleinvalid'     => "Tēg vȯtšīztõ frāzõ  '''$1'''",
-'notitlematches'            => 'Kēratõks pēļikēris vȯtštõd sõņḑi äb ūo lieudtõd',
-'notextmatches'             => 'Kēratõks sizzõl vȯtštõd tekstõ äb lieudtõd',
-'prevn'                     => '{{PLURAL:$1|jedmõli|jedmõlizt $1}}',
-'nextn'                     => '{{PLURAL:$1|pierrõ-tulbi|pierrõ-tulbizt $1}}',
-'viewprevnext'              => 'Nägţõgid ($1 {{int:pipe-separator}} $2) ($3)',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 sõnā|$2 sõnnõ}})',
-'search-redirect'           => '($1 jeddõpēḑõn sōtimi)',
-'search-section'            => '(alli jag $1)',
-'search-suggest'            => 'Kas mõtliztõ: $1',
-'search-interwiki-caption'  => 'Sõzār-projektõd',
-'search-interwiki-default'  => '$1 rezultātõd:',
-'search-interwiki-more'     => ' (vel)',
-'search-mwsuggest-enabled'  => 'jeddõpandõkstõks',
-'search-mwsuggest-disabled' => 'jeddõpandõkši äb ūo',
-'searchall'                 => 'tikkiž',
-'nonefound'                 => "'''Pangid tǟdõl''': Vȯtšõbõd set mingizt nim-rūimõd sizāld. Až tēg tōgid vȯtšõ amšti nim-rūimšti (ka nõvpidāmiz lēḑõd, mallõd, jnj sizāld) kȭlbatõgid kizzimiz jedsõ prefiksõ ''all:''",
-'powersearch'               => 'Juo akurāt vȯtšimi',
-'powersearch-legend'        => ' Juo akurāt vȯtšimi',
-'powersearch-ns'            => 'Vȯtšimi nim-rūimšti:',
-'powersearch-redir'         => 'Jeddõpēḑõn sōtimizt nimkēra',
-'powersearch-field'         => 'Vȯtšõgid frāzõ',
+'searchsubtitleinvalid'            => "Tēg vȯtšīztõ frāzõ  '''$1'''",
+'notitlematches'                   => 'Kēratõks pēļikēris vȯtštõd sõņḑi äb ūo lieudtõd',
+'notextmatches'                    => 'Kēratõks sizzõl vȯtštõd tekstõ äb lieudtõd',
+'prevn'                            => '{{PLURAL:$1|jedmõli|jedmõlizt $1}}',
+'nextn'                            => '{{PLURAL:$1|pierrõ-tulbi|pierrõ-tulbizt $1}}',
+'prevn-title'                      => '{{PLURAL:$1|Jedmõli rezultāt|Jedmõlizt $1 rezultātõ}}',
+'nextn-title'                      => '{{PLURAL:$1|Jedmõli rezultāt|Jedmõlizt $1 rezultātõ}}',
+'shown-title'                      => 'Nägţ līed iļ $1 {{PLURAL:$1|rezultāt|rezultātõ}}',
+'viewprevnext'                     => 'Nägţõgid ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-new'                   => "'''Lūo lēḑ pēļizkēraks \"[[:\$1]]\".'''",
+'searchprofile-articles'           => 'Sižāliz lēḑõd',
+'searchprofile-project'            => 'Ab ja projekt lēḑõd',
+'searchprofile-images'             => 'Multimēdij',
+'searchprofile-everything'         => 'Tikkiž',
+'searchprofile-advanced'           => 'Jo akurāt vȯtšimi',
+'searchprofile-articles-tooltip'   => 'Vȯtšõgid nim-rūimstõ $1',
+'searchprofile-project-tooltip'    => 'Vȯtšõgid nim-rūimstõ $1',
+'searchprofile-images-tooltip'     => 'Fail vȯtšimi',
+'searchprofile-everything-tooltip' => 'Vȯtšõgid amā sižāliz sizāld (ka nõvpidāmiz-lēḑõd pǟld)',
+'search-result-size'               => '$1 ({{PLURAL:$2|1 sõnā|$2 sõnnõ}})',
+'search-redirect'                  => '($1 jeddõpēḑõn sōtimi)',
+'search-section'                   => '(alli jag $1)',
+'search-suggest'                   => 'Kas mõtliztõ: $1',
+'search-interwiki-caption'         => 'Sõzār-projektõd',
+'search-interwiki-default'         => '$1 rezultātõd:',
+'search-interwiki-more'            => ' (vel)',
+'search-mwsuggest-enabled'         => 'jeddõpandõkstõks',
+'search-mwsuggest-disabled'        => 'jeddõpandõkši äb ūo',
+'searchall'                        => 'tikkiž',
+'showingresultsheader'             => "{{PLURAL:$5|'''$1''' '''$3'''-st rezultātõst|Rezultātõd '''$1–$2''' '''$3'''-st}} kizzimizõn '''$4'''",
+'nonefound'                        => "'''Pangid tǟdõl''': Vȯtšõbõd set mingizt nim-rūimõd sizāld. Až tēg tōgid vȯtšõ amšti nim-rūimšti (ka nõvpidāmiz lēḑõd, mallõd, jnj sizāld) kȭlbatõgid kizzimiz jedsõ prefiksõ ''all:''",
+'powersearch'                      => 'Juo akurāt vȯtšimi',
+'powersearch-legend'               => ' Juo akurāt vȯtšimi',
+'powersearch-ns'                   => 'Vȯtšimi nim-rūimšti:',
+'powersearch-redir'                => 'Jeddõpēḑõn sōtimizt nimkēra',
+'powersearch-field'                => 'Vȯtšõgid frāzõ',
 
 # Preferences page
 'preferences'   => 'Mīeldõbõd ulzõ-vēļimizt',
@@ -320,6 +352,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 
 # Recent changes linked
 'recentchangeslinked'         => 'Sidtõd mõitõkst',
+'recentchangeslinked-toolbox' => 'Sidtõd mõitõkst',
 'recentchangeslinked-title'   => '"$1" sidtõd mõitõkst',
 'recentchangeslinked-summary' => "Täs um lugdõd andtõd līedstõ sidtõd (agā andtõd kategōrij) lēḑis tīedõd perrizt mõitõkst. Sin [[Special:Watchlist|iļ-vaņtlimiz.nimkēra]] lēḑõd ātõ  ' ' ' razzistiz ' ' ' jeddõ tūodõd.",
 'recentchangeslinked-page'    => 'Līed nim:',
@@ -444,6 +477,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 
 # Undelete
 'undeletelink'     => 'vaņ/lūo ūtstõ',
+'undeleteviewlink' => 'vaņ',
 'undeletedarticle' => 'tūoi tāgiž līed "[[$1]]"',
 
 # Namespace form on various pages
@@ -581,6 +615,7 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 'tooltip-watch'                   => 'Pan jūrõ se līedpūol eņtš iļ-vaņtlimiz nimkerrõ',
 'tooltip-rollback'                => 'Kištāntõb jarā īd glõbžõks lǟndz kubsõtīe tējiz tīedõd mõitõkst',
 'tooltip-undo'                    => '"Viedāgid jarā" tīeb tijāks/kīeldõbjarā sīe mõitõks ja ovātõb redigīerimiz läb tekstõ jedmõl-vaņtlimizõks. Neiīž tēg võigid sǟl kēratõ, mis vȯļ sīe jarā vīmiz sī.',
+'tooltip-summary'                 => 'Kēratigid lītõ kubbõ-võtāmi',
 
 # Browsing diffs
 'previousdiff' => '← Jedmõli redaktsij',

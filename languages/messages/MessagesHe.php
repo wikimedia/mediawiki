@@ -2320,7 +2320,7 @@ $NEWPAGE
 {{fullurl:{{#special:Preferences}}}}
 
 כדי לשנות את הגדרות רשימת המעקב, בקרו בדף
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 כדי למחוק את הדף מרשימת המעקב שלכם, בקרו בדף
 $UNWATCHURL

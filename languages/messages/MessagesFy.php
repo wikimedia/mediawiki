@@ -1780,7 +1780,7 @@ Fierdere meldings wurde jo net tastjoerd, oant jo de side lêzen hawwe. Op jo fo
                  Jo freonlike {{SITENAME}}-meldingssysteem.
 
 --
-Gean nei {{fullurl:{{#special:Watchlist}}/edit}}
+Gean nei {{fullurl:{{#special:EditWatchlist}}}}
 om jo folchlistynstellings te feroarjen.
 
 Reaksjes en fierdere help:

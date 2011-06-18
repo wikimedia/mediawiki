@@ -2249,7 +2249,7 @@ Pentru a modifica setările notificării prin e-mail, vizitați
 {{fullurl:{{#special:Preferences}}}}
 
 Pentru a modifica setările listei de pagini urmărite, vizitați
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Pentru a nu mai urmări pagina, vizitați
 $UNWATCHURL

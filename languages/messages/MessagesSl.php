@@ -2174,7 +2174,7 @@ Za spremembo nastavitev e-poštnih obvestil obiščite
 {{fullurl:{{#special:Preferences}}}}
 
 Za spremembo nastavitev spiska nadzorov obiščite
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Za odstranitev strani z vašega spiska nadzorov obiščite
 $UNWATCHURL

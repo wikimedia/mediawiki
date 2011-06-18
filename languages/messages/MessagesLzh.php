@@ -1803,7 +1803,7 @@ $NEWPAGE
 {{SITENAME}}敬上
 
 --
-欲更哨令，惠訪{{fullurl:{{#special:Watchlist}}/edit}}
+欲更哨令，惠訪{{fullurl:{{#special:EditWatchlist}}}}
 
 欲刪之頁，惠訪$UNWATCHURL
 

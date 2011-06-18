@@ -1811,7 +1811,7 @@ $NEWPAGE
 
 ----
 Бақылау тізіміңіздің баптаулырын өзгерту үшін, мында келіп-кетіңіз:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Сын-пікір беру және былайғы жәрдем алу үшін:
 {{fullurl:{{{{ns:mediawiki}}:Helppage}}}}',

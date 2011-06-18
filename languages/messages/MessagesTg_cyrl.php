@@ -1517,7 +1517,7 @@ $NEWPAGE
 
 --
 Барои танзимоти феҳристи пайгириҳоятон биравед ба
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Пешниҳодот ва кӯмаки бештар:
 {{fullurl:{{MediaWiki:Helppage}}}}',

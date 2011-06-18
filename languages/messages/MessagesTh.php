@@ -2054,7 +2054,7 @@ $NEWPAGE
 
 --
 ถ้าต้องการเปลี่ยนแปลงรายการเฝ้าดู กรุณาไปที่:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 ถ้าต้องการลบหน้านี้จากรายการเฝ้าดู กรุณาไปที่:
 $UNWATCHURL

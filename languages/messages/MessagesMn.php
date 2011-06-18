@@ -1921,7 +1921,7 @@ $NEWPAGE
 
 --
 Хянаж буй хуудсуудынхаа тохиргоог өөрчлөхийн тулд дараах хуудаст зочилно уу:
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 Дэлгэрэнгүй мэдээлэл:
 {{fullurl:{{MediaWiki:Helppage}}}}',

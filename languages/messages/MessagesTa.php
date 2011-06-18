@@ -349,7 +349,7 @@ $1',
 'viewsourceold'           => 'மூலத்தை காட்டுக',
 'editlink'                => 'தொகு',
 'viewsourcelink'          => 'மூலத்தைக் காண்க',
-'editsectionhint'         => '$1 பகுதியை தொகு',
+'editsectionhint'         => '$1 பகுதியைத் தொகு',
 'toc'                     => 'பொருளடக்கம்',
 'showtoc'                 => 'காட்டு',
 'hidetoc'                 => 'மறை',
@@ -1724,7 +1724,7 @@ $NEWPAGE
 
 --
 உங்கள் கவனிப்புப் பட்டியல் அமைவுகளை மாற்ற
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 பின்னூட்டம், மேலதிக உதவிகளுக்கு:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2180,7 +2180,7 @@ $1',
 'tooltip-feed-atom'               => 'இப்பக்கத்துக்கான அடொம் ஓடை கிடையாது',
 'tooltip-t-contributions'         => 'இப்பயனரின்  பங்களிப்புக்களின் பட்டியலைப் பார்',
 'tooltip-t-emailuser'             => 'இப் பயனருக்கு மின்னஞ்சல் செய்',
-'tooltip-t-upload'                => 'ஊடகக் கோப்புகளை பதிவேற்ற',
+'tooltip-t-upload'                => 'கோப்புகளைப் பதிவேற்றுக',
 'tooltip-t-specialpages'          => 'அனைத்துச் சிறப்புப் பக்கங்களின் பட்டியல்',
 'tooltip-t-print'                 => 'இப்பக்கத்தின் அச்சுக்குகந்தப் பதிப்பு',
 'tooltip-t-permalink'             => 'இப்பக்கத்தின் இந்தப் பதிப்புக்கான நிலையான இணைப்பு',

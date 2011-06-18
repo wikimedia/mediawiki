@@ -2134,7 +2134,7 @@ Du kan også tilbakestille endringsmeldingsstatus for alle sidene på overvaking
 
 --
 For å endre innstillingane for overvakingslista di, gå til
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 For hjelp og meir informasjon:
 $UNWATCHURL

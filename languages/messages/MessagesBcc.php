@@ -1856,7 +1856,7 @@ $NEWPAGE
 
 --
 په عوض کتن تنظیمات وتی لیست چارگ،به چار
-{{fullurl:{{#special:Watchlist}}/edit}}
+{{fullurl:{{#special:EditWatchlist}}}}
 
 نظرات و گیشترین کمک:
 {{fullurl:{{MediaWiki:Helppage}}}}',
