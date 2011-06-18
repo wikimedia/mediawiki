@@ -2070,7 +2070,6 @@ HTML
 				if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 					$parserOptions->setTargetLanguage( $this->mTitle->getPageLanguage() );
 				}
-				$parserOptions->setTargetLanguage( $this->mTitle->getPageLanguage() );
 				$parserOptions->setTidy( true );
 				$parserOptions->enableLimitReport();
 				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ),
