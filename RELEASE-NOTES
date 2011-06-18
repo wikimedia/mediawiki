@@ -752,7 +752,7 @@ Other significant changes to MediaWiki's language support:
 * Fiji Hindi (Devangari script) was removed.
 * Removed deprecated language code "dk" (Danish), use "da" instead.
 * Link trail added for sl and sh.
-* (bug 27633) Add characters to linkTrail for Potuguese (pt and pt-br).
+* (bug 27633) Add characters to linkTrail for Portuguese (pt and pt-br).
 * (bug 23156) Commafy and search normalization updated for Belarusian
   (Taraškievica).
 * (bug 23283) Native name for Old English -> Ænglisc.
