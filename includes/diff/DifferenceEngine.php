@@ -936,14 +936,12 @@ CONTROL;
 	 * @return string
 	 */
 	static function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
-		global $wgBetterDirectionality;
+		global $wgBetterDirectionality, $wgTitle;
 		$dirclass = '';
 		if( $wgBetterDirectionality ) {
-			global $wgContLang, $wgOut, $wgTitle;
 			// shared.css sets diff in interface language/dir,
 			// but the actual content should be in the page language/dir
-			$getPageLang = $wgOut->parserOptions()->getTargetLanguage( $wgTitle );
-			$pageLang = ( $getPageLang ? $getPageLang : $wgContLang );
+			$pageLang = $wgTitle->getPageLanguage();
 			$dirclass = ' diff-contentalign-'.$pageLang->alignStart();
 		}
 		$header = "<table class='diff $dirclass'>";
