@@ -2091,7 +2091,6 @@ HTML
 			'<h2 id="mw-previewheader">' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>" .
 			$wgOut->parse( $note ) . $conflict . "</div>\n";
 
-		wfProfileOut( __METHOD__ );
 		global $wgBetterDirectionality, $wgContLang;
 		if( $wgBetterDirectionality ) {
 			$getPageLang = $wgOut->parserOptions()->getTargetLanguage( $this->mTitle );
@@ -2099,6 +2098,7 @@ HTML
 			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
 			$previewHTML = Html::rawElement( 'div', $realBodyAttribs, $previewHTML );
 		}
+		wfProfileOut( __METHOD__ );
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}
 
