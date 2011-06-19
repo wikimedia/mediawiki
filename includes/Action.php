@@ -107,7 +107,7 @@ abstract class Action {
 	 * @return WebRequest
 	 */
 	protected final function getRequest() {
-		return $this->getContext()->request;
+		return $this->getContext()->getRequest();
 	}
 
 	/**
@@ -116,7 +116,7 @@ abstract class Action {
 	 * @return OutputPage
 	 */
 	protected final function getOutput() {
-		return $this->getContext()->output;
+		return $this->getContext()->getOutput();
 	}
 
 	/**
@@ -125,7 +125,7 @@ abstract class Action {
 	 * @return User
 	 */
 	protected final function getUser() {
-		return $this->getContext()->user;
+		return $this->getContext()->getOutput();
 	}
 
 	/**
@@ -134,7 +134,7 @@ abstract class Action {
 	 * @return Skin
 	 */
 	protected final function getSkin() {
-		return $this->getContext()->skin;
+		return $this->getContext()->getSkin();
 	}
 
 	/**
@@ -143,7 +143,7 @@ abstract class Action {
 	 * @return Skin
 	 */
 	protected final function getLang() {
-		return $this->getContext()->lang;
+		return $this->getContext()->getLang();
 	}
 
 	/**
