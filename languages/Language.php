@@ -3436,7 +3436,15 @@ class Language {
 		} elseif ( round( $seconds ) <= 2*86400 ) {
 			$hours = floor( $seconds / 3600 );
 			$minutes = floor( ( $seconds - $hours * 3600 ) / 60 );
-			$secondsPart = floor( $seconds - $hours * 3600 - $minutes * 60 );
+			$secondsPart = round( $seconds - $hours * 3600 - $minutes * 60 );
+			if ( $secondsPart == 60 ) {
+				$secondsPart = 0;
+				$minutes++;
+			}
+			if ( $minutes == 60 ) {
+				$minutes = 0;
+				$hours++;
+			}
 			$s = $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' ) .
 				' ' .
 				$this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
