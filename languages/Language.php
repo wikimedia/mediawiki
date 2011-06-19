@@ -3412,8 +3412,8 @@ class Language {
 	 * @todo Document
 	 * @param $seconds int|float
 	 * @param $format String Optional, one of ("avoidseconds","avoidminutes"):
-	 *		If "avoidminutes" don't mention minutes if $seconds >= 1 hour
-	 *		If "avoidseconds" don't mention seconds/minutes if $seconds > 2 days
+	 *		"avoidseconds" - don't mention seconds if $seconds >= 1 hour
+	 *		"avoidminutes" - don't mention seconds/minutes if $seconds > 2 days
 	 * @return string
 	 */
 	function formatTimePeriod( $seconds, $format = false ) {
