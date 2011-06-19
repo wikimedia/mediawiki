@@ -101,6 +101,10 @@ production.
   without reloading the page
 * (bug 29325) Setting $wgStrictFileExtensions to false gives incorrect warning
 * (bug 29437) Multiple apostrophes in deleted article title cause odd rendering
+* (bug 29485) RSS feed of Special:RecentChange grouped together multiple
+  consecutive edits by same user in included diff, but then linked to
+  a single ungrouped diff.
+* Do not try to group together a page creation and edit in the RSS feed of RC.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.

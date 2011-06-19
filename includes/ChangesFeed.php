@@ -149,6 +149,7 @@ class ChangesFeed {
 		$n = 0;
 		foreach( $rows as $obj ) {
 			if( $n > 0 &&
+				$obj->rc_type == RC_EDIT &&
 				$obj->rc_namespace >= 0 &&
 				$obj->rc_cur_id == $sorted[$n-1]->rc_cur_id &&
 				$obj->rc_user_text == $sorted[$n-1]->rc_user_text ) {
@@ -164,10 +165,21 @@ class ChangesFeed {
 			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullUrl() : '';
 			// Skip items with deleted content (avoids partially complete/inconsistent output)
 			if( $obj->rc_deleted ) continue;
+
+			if ( $obj->rc_this_oldid ) {
+				$url = $title->getFullURL(
+					'diff=' . $obj->rc_this_oldid .
+					'&oldid=' . $obj->rc_last_oldid
+				);
+			} else {
+				// log entry or something like that.
+				$url = $title->getFullURL();
+			}
+
 			$item = new FeedItem(
 				$title->getPrefixedText(),
 				FeedUtils::formatDiff( $obj ),
-				$obj->rc_this_oldid ? $title->getFullURL( 'diff=' . $obj->rc_this_oldid . '&oldid=prev' ) : $title->getFullURL(),
+				$url,
 				$obj->rc_timestamp,
 				($obj->rc_deleted & Revision::DELETED_USER) ? wfMsgHtml('rev-deleted-user') : $obj->rc_user_text,
 				$talkpage
