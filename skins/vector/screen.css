@@ -533,6 +533,7 @@ div#footer #footer-icons li {
 	float: left;
 	margin-left: 0.5em;
 	line-height: 2em;
+	text-align: right;
 }
 div#footer #footer-places li {
 	float: left;
