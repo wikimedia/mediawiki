@@ -79,7 +79,7 @@ class OutputPage {
 	 * to compare its cached version with the server version. Client sends
 	 * headers If-Match and If-None-Match containing its locally cached ETAG value.
 	 *
-	 * To get more information, you will have to look at HTTP1/1 protocols which
+	 * To get more information, you will have to look at HTTP/1.1 protocol which
 	 * is properly described in RFC 2616 : http://tools.ietf.org/html/rfc2616
 	 */
 	var $mETag = false;
