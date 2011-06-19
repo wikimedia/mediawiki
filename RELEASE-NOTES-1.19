@@ -105,6 +105,8 @@ production.
   consecutive edits by same user in included diff, but then linked to
   a single ungrouped diff.
 * Do not try to group together a page creation and edit in the RSS feed of RC.
+* (bug 29342) Patrol preferences shouldn't be visible to users who don't have
+  patrol permissions
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
