@@ -311,6 +311,7 @@ $wgOptionalMessages = array(
 	'seconds-abbrev',
 	'minutes-abbrev',
 	'hours-abbrev',
+	'days-abbrev',
 	'filerevert-backlink',
 	'filedelete-backlink',
 	'delete-backlink',
