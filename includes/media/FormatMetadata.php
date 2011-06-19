@@ -104,7 +104,7 @@ class FormatMetadata {
 
 				$time = wfTimestamp( TS_MW, '1971:01:01 ' . $tags[$tag] );
 				// the 1971:01:01 is just a placeholder, and not shown to user.
-				if ( $time ) {
+				if ( $time && intval( $time ) > 0 ) {
 					$tags[$tag] = $wgLang->time( $time );
 				}
 				continue;
@@ -234,7 +234,7 @@ class FormatMetadata {
 						$val = wfMsg( 'exif-unknowndate' );
 					} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/D', $val ) ) {
 						$time = wfTimestamp( TS_MW, $val );
-						if ( $time ) {
+						if ( $time && intval( $time ) > 0 ) {
 							$val = $wgLang->timeanddate( $time );
 						}
 					} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d)$/D', $val ) ) {
@@ -243,7 +243,7 @@ class FormatMetadata {
 							. substr( $val, 5, 2 )
 							. substr( $val, 8, 2 )
 							. '000000' );
-						if ( $time ) {
+						if ( $time && intval( $time ) > 0 ) {
 							$val = $wgLang->date( $time );
 						}
 					}
