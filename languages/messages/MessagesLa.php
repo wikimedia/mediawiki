@@ -654,7 +654,7 @@ Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
 Potes [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} acta huius paginae videre]
 aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare]</span>.',
-'userpage-userdoesnotexist'        => 'Usor "$1" non est. Visne re vera hanc paginam creare vel recensere?',
+'userpage-userdoesnotexist'        => 'Usor "<nowiki>$1</nowiki>" non est. Visne re vera hanc paginam creare vel recensere?',
 'updated'                          => '(Novata)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Memento hanc paginam solum praevisum esse, neque iam servatam!'''",

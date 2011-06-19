@@ -743,8 +743,8 @@ Aby bok napórał, zapiš do kašćika dołojce (glědaj [[{{MediaWiki:Helppage}
 'noarticletext-nopermission'       => 'Tuchylu njejo žeden tekst na toś tom boku.
 Móžoš [[Special:Search/{{PAGENAME}}|toś ten bokowy titel]] na drugich bokach pytaś
 abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś]</span>.',
-'userpage-userdoesnotexist'        => 'Wužywarske konto "$1" njejo zregistrěrowane. Pšosym pśeglědaj, lěc coš toś ten bok wopšawdu napóraś/wobźěłaś.',
-'userpage-userdoesnotexist-view'   => 'Wužywarske konto "$1" njejo zregistrowane.',
+'userpage-userdoesnotexist'        => 'Wužywarske konto "<nowiki>$1</nowiki>" njejo zregistrěrowane. Pšosym pśeglědaj, lěc coš toś ten bok wopšawdu napóraś/wobźěłaś.',
+'userpage-userdoesnotexist-view'   => 'Wužywarske konto "<nowiki>$1</nowiki>" njejo zregistrowane.',
 'blocked-notice-logextract'        => 'Toś ten wužywaŕ jo tuchylu blokěrowany.
 Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:',
 'clearyourcache'                   => "'''Pokazka: Jo móžno, až dejš wuprozniś cache wobglědowaka, aby změny wiźeł.'''

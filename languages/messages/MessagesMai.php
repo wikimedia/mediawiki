@@ -655,9 +655,9 @@ $2
 आकि [{{fullurl:{{FULLPAGENAME}}|action=edit}} ऐ पन्नाकेँ सम्पादित करू]</span>.',
 'noarticletext-nopermission'       => 'अखन ऐ पन्नापर कोनो पाठ नै अछि।
 अहाँ [[Special:Search/{{PAGENAME}}|ऐ पन्ना शीर्षक लेल ताकू]]',
-'userpage-userdoesnotexist'        => 'प्रयोक्ता खाता "$1" पंजीकृत नै अछि।
+'userpage-userdoesnotexist'        => 'प्रयोक्ता खाता "<nowiki>$1</nowiki>" पंजीकृत नै अछि।
 निश्चय करू जे की अहाँ ई पन्ना बनेबाक/ सम्पादित करबाक इच्छुक छी।',
-'userpage-userdoesnotexist-view'   => 'प्रयोक्ता खाता "$1" पंजीकृत नै अछि।',
+'userpage-userdoesnotexist-view'   => 'प्रयोक्ता खाता "<nowiki>$1</nowiki>" पंजीकृत नै अछि।',
 'blocked-notice-logextract'        => 'ई प्रयोक्ता अखन प्रतिबन्धित अछि।
 अद्यतन प्रतिबन्धित  वृत्तलेख लेखा सन्दर्भ लेल नीचाँ देल अछि:',
 'clearyourcache'                   => "'''टिप्पणी: संरक्षणक बाद, अहाँकेँ परिवर्तन देखबा लेल अपन गवेषकक उपस्मृतिकेँ हटबए पड़त।'''

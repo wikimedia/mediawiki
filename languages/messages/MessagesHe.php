@@ -357,7 +357,7 @@ $messages = array(
 'tog-numberheadings'          => 'מספור כותרות אוטומטי',
 'tog-showtoolbar'             => 'הצגת סרגל העריכה (דרוש JavaScript)',
 'tog-editondblclick'          => 'עריכת דפים בלחיצה כפולה (דרוש JavaScript)',
-'tog-editsection'             => 'עריכת פסקאות באמצעות קישורים מהצורה [עריכה]',
+'tog-editsection'             => 'עריכת פסקאות באמצעות קישורי [עריכה]',
 'tog-editsectiononrightclick' => 'עריכת פסקאות על ידי לחיצה ימנית על כותרות הפסקאות (דרוש JavaScript)',
 'tog-showtoc'                 => 'הצגת תוכן עניינים (עבור דפים עם יותר מ־3 כותרות)',
 'tog-rememberpassword'        => 'זכירת הכניסה שלי בדפדפן זה (למשך עד {{PLURAL:$1|יום אחד|$1 ימים|יומיים}})',
@@ -986,9 +986,9 @@ $2
 'noarticletext-nopermission'       => 'אין כרגע טקסט בדף זה.
 באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,
 או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים].</span>',
-'userpage-userdoesnotexist'        => 'חשבון המשתמש "$1" אינו רשום.
+'userpage-userdoesnotexist'        => 'חשבון המשתמש "<nowiki>$1</nowiki>" אינו רשום.
 אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
-'userpage-userdoesnotexist-view'   => 'חשבון המשתמש "$1" אינו רשום.',
+'userpage-userdoesnotexist-view'   => 'חשבון המשתמש "<nowiki>$1</nowiki>" אינו רשום.',
 'blocked-notice-logextract'        => 'משתמש זה חסום כרגע.
 פעולת יומן החסימות האחרונה מוצגת להלן:',
 'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (Cache) של הדפדפן כדי להבחין בשינויים.
@@ -1177,7 +1177,7 @@ $2
 כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם לצפות בהבדלים בין הגרסאות; ניתן למצוא פרטים על כך ב[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} יומן ההסתרות].",
 'rev-delundel'                => 'הצגה/הסתרה',
 'rev-showdeleted'             => 'הצגה',
-'revisiondelete'              => 'מחיקת ושחזור גרסאות',
+'revisiondelete'              => 'מחיקה ושחזור של גרסאות',
 'revdelete-nooldid-title'     => 'גרסת מטרה בלתי תקינה',
 'revdelete-nooldid-text'      => 'הגרסה או הגרסאות עליהן תבוצע פעולה זו אינן תקינות. ייתכן שלא ציינתם אותן, ייתכן שהגרסה אינה קיימת, וייתכן שאתם מנסים להסתיר את הגרסה הנוכחית.',
 'revdelete-nologtype-title'   => 'לא נבחר סוג יומן',
@@ -1187,7 +1187,7 @@ $2
 'revdelete-no-file'           => 'הקובץ שציינתם אינו קיים.',
 'revdelete-show-file-confirm' => 'האם אתם בטוחים שברצונכם לצפות בגרסה המחוקה של הקובץ "<nowiki>$1</nowiki>" מתאריך $3, $2?',
 'revdelete-show-file-submit'  => 'כן',
-'revdelete-selected'          => "'''{{PLURAL:$2|הגרסה שנבחרה|הגרסאות שנבחרו}} של [[:$1]]:'''",
+'revdelete-selected'          => "'''{{PLURAL:$2|הגרסה הנבחרת|הגרסאות הנבחרות}} של הדף [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|פעולת היומנים שנבחרה|פעולות היומנים שנבחרו}}:'''",
 'revdelete-text'              => "'''גרסאות ופעולות יומנים שנמחקו עדיין תופענה בהיסטוריית הדף ובדפי היומנים, אך חלקים מהתוכן שלהן לא יהיה זמין לציבור.'''
 מפעילי מערכת אחרים באתר עדיין יוכלו לגשת לתוכן הנסתר ויוכלו לשחזר אותו שוב דרך הממשק הזה, אלא אם כן תוגדרנה הגבלות נוספות.",
@@ -2446,7 +2446,7 @@ $UNWATCHURL
 
 # Undelete
 'undelete'                     => 'צפייה בדפים מחוקים',
-'undeletepage'                 => 'צפייה ושחזור דפים מחוקים',
+'undeletepage'                 => 'הצגה ושחזור של דפים מחוקים',
 'undeletepagetitle'            => "'''זוהי רשימת הגרסאות המחוקות של [[:$1]]'''.",
 'viewdeletedpage'              => 'צפייה בדפים מחוקים',
 'undeletepagetext'             => '{{PLURAL:$1|הדף שלהלן נמחק, אך הוא עדיין בארכיון וניתן לשחזר אותו|הדפים שלהלן נמחקו, אך הם עדיין בארכיון וניתן לשחזר אותם}}.
@@ -2463,8 +2463,8 @@ $UNWATCHURL
 'undeleterevision-missing'     => 'הגרסה שגויה או חסרה. ייתכן שמדובר בקישור שבור, או שהגרסה שוחזרה או הוסרה מהארכיון.',
 'undelete-nodiff'              => 'לא נמצאה גרסה קודמת.',
 'undeletebtn'                  => 'שחזור',
-'undeletelink'                 => 'צפייה/שחזור',
-'undeleteviewlink'             => 'צפייה',
+'undeletelink'                 => 'הצגה/שחזור',
+'undeleteviewlink'             => 'הצגה',
 'undeletereset'                => 'איפוס',
 'undeleteinvert'               => 'הפיכת הבחירה',
 'undeletecomment'              => 'סיבה:',

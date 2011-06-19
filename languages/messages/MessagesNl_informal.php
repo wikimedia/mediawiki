@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author MarkvA
  * @author Siebrand
  * @author Tedjuh10
  */
@@ -176,7 +177,7 @@ Je kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'
 'noarticletext-nopermission'       => 'Deze pagina bevat geen tekst.
 Je kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
-'userpage-userdoesnotexist'        => 'Je bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1").
+'userpage-userdoesnotexist'        => 'Je bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "<nowiki>$1</nowiki>").
 Controleer of je deze pagina wel wilt aanmaken/bewerken.',
 'clearyourcache'                   => "'''Let op! Nadat je de wijzigingen hebt opgeslagen is het wellicht nodig je browsercache te legen.'''
 

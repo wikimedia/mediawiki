@@ -951,8 +951,8 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission'       => 'Actualmente no hay texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
-'userpage-userdoesnotexist'        => 'La cuenta de usuario «$1» no está registrada. Por favor comprueba si quieres crear o editar esta página.',
-'userpage-userdoesnotexist-view'   => 'La cuenta de usuario «$1» no está registrada.',
+'userpage-userdoesnotexist'        => 'La cuenta de usuario «<nowiki>$1</nowiki>» no está registrada. Por favor comprueba si quieres crear o editar esta página.',
+'userpage-userdoesnotexist-view'   => 'La cuenta de usuario «<nowiki>$1</nowiki>» no está registrada.',
 'blocked-notice-logextract'        => 'Este usuario está actualmente bloqueado.
 La última entrada del registro de bloqueos es provista debajo para mayor referencia:',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debes vaciar la caché del navegador para ver los cambios:
@@ -2474,7 +2474,7 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
-'autoblockid'                     => 'Autobloquear #$1',
+'autoblockid'                     => 'Bloqueo automático #$1',
 'block'                           => 'Bloquear usuario',
 'unblock'                         => 'Desbloquear usuario',
 'blockip'                         => 'Bloquear usuario',

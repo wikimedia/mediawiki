@@ -622,9 +622,9 @@ Ef yu a ananimos yuuza ahn fiil se irelivant kament dairek tu yu, begyu [[Specia
 Yu kiahn [[Special:Search/{{PAGENAME}}|saach fi dis piej taikl]] ina ada piej,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} saach di rilietid lagdem],
 ar [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit dis piej]</span>.',
-'userpage-userdoesnotexist'        => 'Yuuza akount "$1" no rejista.
+'userpage-userdoesnotexist'        => 'Yuuza akount "<nowiki>$1</nowiki>" no rejista.
 Begyu chek ef yu waahn fi kriet/edit dis piej.',
-'userpage-userdoesnotexist-view'   => 'Yuuza akount "$1" no rejista.',
+'userpage-userdoesnotexist-view'   => 'Yuuza akount "<nowiki>$1</nowiki>" no rejista.',
 'blocked-notice-logextract'        => 'Dis yuuza korantli blak.
 Di lietis blak lag enchri provaid biluo fi refrans:',
 'usercssyoucanpreview'             => "'''Tip:''' Yuuz di \"{{int:showpreview}}\" botn fi tes yu nyuu CSS bifuo yu sieb.",

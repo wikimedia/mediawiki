@@ -623,8 +623,8 @@ $2',
 'noarticletext-nopermission'       => 'Джыпсту мы напэкӀуэцӀыр нэщӀу щытщ.
 Узхуэныкъуэм [[Special:Search/{{PAGENAME}}|и гугъ бгъуэтыфыну]] нэгъуэщӀ напэкӀуэцӀхэм, 
 иэ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} абым теухуа тхъыгъэхэр].</span>',
-'userpage-userdoesnotexist'        => 'Аккаунт «$1» щыӀэкъым. У арэзыуэ ущыт мы напэкӀуэцӀыр быщӀыным иэ зэпхъуэкӀыным.',
-'userpage-userdoesnotexist-view'   => 'ЦӀыхухэт «$1»-м и аккаунтым регистрациэ иӀэкъым.',
+'userpage-userdoesnotexist'        => 'Аккаунт «<nowiki>$1</nowiki>» щыӀэкъым. У арэзыуэ ущыт мы напэкӀуэцӀыр быщӀыным иэ зэпхъуэкӀыным.',
+'userpage-userdoesnotexist-view'   => 'ЦӀыхухэт «<nowiki>$1</nowiki>»-м и аккаунтым регистрациэ иӀэкъым.',
 'blocked-notice-logextract'        => 'Мы цӀыхухэтыр иджыпсту теубыдауэ щытщ.
 ИщӀагъымкӀэ теубыдыгъэ тхылъым и яужырей итхэгъуэр гъэлъэгъуа:',
 'clearyourcache'                   => "'''Къэохугъуэ:'''Итха яуж зэхъуэкӀыгъу хъуар къэнэн щхьэкӀэ, уи браузэрым и кэшыр гъэкъэбзэн хуэй: '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Safari''': ''Cmd+Shift+R'', '''Konqueror''': ''F5'', '''Opera''': ''Tools→Preferences''-мкӀэ уикӀын хуэй.",

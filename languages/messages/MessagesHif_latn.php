@@ -642,9 +642,9 @@ nai to [{{fullurl:{{FULLPAGENAME}}|action=edit}} ii panna ke badlo]</span>.',
 'noarticletext-nopermission'       => 'Abhi ii panna pe koi chij likha nai hae.
 Aap sakta hae [[Special:Search/{{PAGENAME}}|ii panna ke title ke khoje]] duusra panna me,
 nai to <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.',
-'userpage-userdoesnotexist'        => 'User account "$1" abi registered nai hai.
+'userpage-userdoesnotexist'        => 'User account "<nowiki>$1</nowiki>" abi registered nai hai.
 Check karo ki Ii panna ke aap banae/badle mangta hai.',
-'userpage-userdoesnotexist-view'   => 'User account "$1" abhi register nai karaa gais hae',
+'userpage-userdoesnotexist-view'   => 'User account "<nowiki>$1</nowiki>" abhi register nai karaa gais hae',
 'blocked-notice-logextract'        => 'Ii sadasya ke abhi rok dewa gais hae.
 Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:',
 'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",

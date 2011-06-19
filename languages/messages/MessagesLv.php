@@ -634,9 +634,9 @@ Ja tu esi anonīms lietotājs un uzskati, ka tev ir adresēti neatbilstoši kome
 'noarticletext-nopermission'       => 'Šajā lapā pašlaik nav nekāda teksta.
 Tu vari [[Special:Search/{{PAGENAME}}|meklēt šīs lapas nosaukumu]] citās lapās,
 vai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saistītus reģistru ierakstus]</span>.',
-'userpage-userdoesnotexist'        => 'Lietotājs "$1" nav reģistrēts.
+'userpage-userdoesnotexist'        => 'Lietotājs "<nowiki>$1</nowiki>" nav reģistrēts.
 Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
-'userpage-userdoesnotexist-view'   => 'Lietotājs "$1" nav reģistrēts.',
+'userpage-userdoesnotexist-view'   => 'Lietotājs "<nowiki>$1</nowiki>" nav reģistrēts.',
 'blocked-notice-logextract'        => 'Šis lietotājs pašlaik ir nobloķēts.
 
 Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',

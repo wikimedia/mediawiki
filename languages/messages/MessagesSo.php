@@ -154,7 +154,7 @@ $messages = array(
 'mypage'        => 'Boggeyga',
 'mytalk'        => 'Wadahadalkeyga',
 'anontalk'      => 'Wadahadalka ciwaanka IP:kaan',
-'navigation'    => 'Jihada',
+'navigation'    => 'Navigation-ka',
 'and'           => '&#32;iyo',
 
 # Cologne Blue skin
@@ -238,7 +238,7 @@ $messages = array(
 'viewcount'         => 'Boggaan waxaa soo booqday {{PLURAL:$1|mar|$1 jeer}}.',
 'protectedpage'     => "Bogga la'difaacay",
 'jumpto'            => 'U bood:',
-'jumptonavigation'  => 'jihada',
+'jumptonavigation'  => 'navigation-ka',
 'jumptosearch'      => 'raadi',
 'view-pool-error'   => 'Naga raali noqo, kombiyutarkaan hadda woo buuxsamay.
 Dad badan ayaa waqtigaan xaadirka ah fiirinooyo boggaan.
@@ -551,9 +551,9 @@ Waxaa  [[Special:Search/{{PAGENAME}}|magaca boggaan]] ka raadin kartaa bogyaasha
 ama [{{fullurl:{{FULLPAGENAME}}|action=edit}} wax ka bedel boggaan]</span>.',
 'noarticletext-nopermission'       => 'Hadda boggaan wax qoraal ah kuma qorno.
 Waxaa  [[Special:Search/{{PAGENAME}}|magaca boggaan ka raadin kartaa]] boggaga kale ama <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ka raadi gudagalayaasha kale]</span>.',
-'userpage-userdoesnotexist'        => 'Isticmaalahan  "$1" ma diiwaangashno.
+'userpage-userdoesnotexist'        => 'Isticmaalahan  "<nowiki>$1</nowiki>" ma diiwaangashno.
 Fadlan fiiri hadii aad rabto in aad sameeyso/wax ka bedesho boggaan.',
-'userpage-userdoesnotexist-view'   => 'Isticmaalahaan  "$1" ma diiwaangashno.',
+'userpage-userdoesnotexist-view'   => 'Isticmaalahaan  "<nowiki>$1</nowiki>" ma diiwaangashno.',
 'blocked-notice-logextract'        => 'Isticmaalahaan hadda waa la mamnuucay.
 Mamnuucida ugu danbeyso in oo soo galo hoostaan ee ku qorantahay',
 'usercssyoucanpreview'             => "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso CSS'gaaga cusub intii aadan kaydin.",
@@ -670,7 +670,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 # Search results
 'searchresults'                    => 'Raadi natiijooyinka',
 'searchresults-title'              => 'Raadi natiijoojika "$1"',
-'searchsubtitle'                   => 'Waxaad raadisay \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dhamaan bogyaasha ka bilaawdo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dhamaan bogyaasha la xiriiro "$1"]])',
+'searchsubtitle'                   => 'Waxaad raadisay \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dhamaan boggaga ka bilaawdo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dhamaan boggaga la xiriiro "$1"]])',
 'searchsubtitleinvalid'            => "Waxaa raadisay '''$1'''",
 'prevn'                            => 'Ka horeeya {{PLURAL:$1|$1}}',
 'nextn'                            => 'Ku xiga {{PLURAL:$1|$1}}',
@@ -910,6 +910,8 @@ ku saabsan: $1',
 'filehist-revert'        => 'soo celin',
 'filehist-current'       => 'kan hadda',
 'filehist-datetime'      => 'Taariikhda/Waqtiga',
+'filehist-thumb'         => 'Sawir yar',
+'filehist-thumbtext'     => 'Sawirka yar nuuciisa ahaa $1',
 'filehist-user'          => 'Isticmaale',
 'filehist-comment'       => 'Ka hadalka',
 'imagelinks'             => 'Faylka la xiriira',
@@ -974,7 +976,7 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'nextpage'          => 'Bogga ku xiga ($1)',
 'prevpage'          => 'Bogga ka horeeyo ($1)',
 'allpagesfrom'      => 'Soosaar boggaga ka bilaawda:',
-'allarticles'       => 'Maqaalada oo dhan',
+'allarticles'       => 'Dhamaan boggaga',
 'allinnamespace'    => 'Dhamaan boggaga ($1 namespace)',
 'allnotinnamespace' => 'Dhamaan boggaga (aan ku jirin xarun magaceedka $1)',
 'allpagesprev'      => 'ka hore',
@@ -1124,6 +1126,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'contributions'       => 'Isticmaalada wax ku darsaday',
 'contributions-title' => 'Waxa oo ku darsaday isticmaalaha $1',
 'mycontris'           => 'Wax qoraalkeyga',
+'contribsub2'         => 'Ku socoto $1 ($2)',
 'uctop'               => '(kor)',
 'month'               => 'Bilaawga bisha (iyo wixii ka danbeeyay):',
 'year'                => 'Bilaawga sanadka  (iyo wixii ka danbeeyay):',

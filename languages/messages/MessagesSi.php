@@ -831,9 +831,9 @@ $2',
 හෝ [{{fullurl:{{FULLPAGENAME}}|action=edit}} මෙම පිටුව සංස්කරණය කිරීම] හෝ ඔබ විසින් සිදු කල හැක</span>.',
 'noarticletext-nopermission'       => 'දැනට මෙම පිටුවෙහි කිසිදු පෙළක් නොමැත.
 අනෙකුත් පිටුවල [[Special:Search/{{PAGENAME}}|මෙම පිටු ශීර්ෂය සඳහා ගවේශනය කිරීම]] හෝ, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}අදාළ ලඝු-සටහන් සඳහා ගවේෂණය කිරීම]</span>, හෝ මෙම පිටුව සංස්කරණය කිරීම හෝ ඔබට කල හැක.',
-'userpage-userdoesnotexist'        => '"$1" යන පරිශීලක ගිණුම ලේඛනගත කොට නොමැත.
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" යන පරිශීලක ගිණුම ලේඛනගත කොට නොමැත.
 ඔබ හට මෙම පිටුව තැනීමට/සංස්කරණය කිරීමට ඇවැසිද යන බව විමසා බලන්න.',
-'userpage-userdoesnotexist-view'   => '"$1" පරිශීලක ගිණුම ලියාපදිංචි කර නොමැත.',
+'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" පරිශීලක ගිණුම ලියාපදිංචි කර නොමැත.',
 'blocked-notice-logextract'        => 'මෙම පරිශීලකයා දැනට අවහිර කරනු ලැබ ඇත.
 ආශ්‍රය තකා නවතම අවහිර කිරීම් ලඝු-සටහන පහත සැපයේ:',
 'clearyourcache'                   => "'''සටහන - සුරැකීමෙන් පසුව, වෙනස්වීම් දැකීම සඳහා, බ්‍රවුසරයෙහි පූර්වාක්ෂේපිත සංචිතය (කෑෂය)  මගහැරීමට ඔබ හට සිදුවනවා ඇත.'''

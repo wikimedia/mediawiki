@@ -503,7 +503,7 @@ ola [{{fullurl:{{FULLPAGENAME}}|action=edit}} ṫsayeb ṣ-ṣefḫa]</span>.',
 Imken lek [[Special:Search/{{PAGENAME}}|ṫqelleb ĝla ṣefḫa be had l-ĝonwan]] fe ṣ-ṣefḫaṫ l-ĥrin,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ṫqelleb fe l-ĝamaliyaṫ l-mlaqyin]
 ola [{{fullurl:{{FULLPAGENAME}}|action=edit}} ṫsayeb ṣ-ṣefḫa]</span>.',
-'userpage-userdoesnotexist-view'   => 'L-Ḫsab dyal l-mosṫeĥdim "$1" ma mċejjelċ.',
+'userpage-userdoesnotexist-view'   => 'L-Ḫsab dyal l-mosṫeĥdim "<nowiki>$1</nowiki>" ma mċejjelċ.',
 'updated'                          => '(mohdata)',
 'note'                             => "'''molahada:'''",
 'previewnote'                      => "'''Dir fe balek belli hadċi ġir prévizualizasyon.'''

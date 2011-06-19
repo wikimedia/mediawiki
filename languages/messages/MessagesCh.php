@@ -469,7 +469,7 @@ Buente ha' na guåha unos kuantos na muna'sesetbi ni ma u'usa i enao na IP.
 An un muna'sesetbi taina'an hao ya manñiente hao na guåha na kommentu ti prisisu ni manadirihiyi hao, pot fabot [[Special:UserLogin|fa'tinas kuenta-mu pat log in]] para mansuhayi yinaoyao yan i otru na muna'sesetbi siha.''",
 'noarticletext'                    => 'Tåya\' tinige\'-ña este na påhina gi este na momento.
 Siña un [[Special:Search/{{PAGENAME}}|aligao este na titulon påhina]] gi halom otro na påhina siha, <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} tulaika este na påhina]</span>.',
-'userpage-userdoesnotexist'        => 'Ti marehistra i kuenata muna\'sesetbi "$1". Pot fabot chek kao malago\' hao un fa\'tinas/tulaika este na påhina.',
+'userpage-userdoesnotexist'        => 'Ti marehistra i kuenata muna\'sesetbi "<nowiki>$1</nowiki>". Pot fabot chek kao malago\' hao un fa\'tinas/tulaika este na påhina.',
 'usercsspreview'                   => "'''Hasso fan na un ripapasa iyo-mu CSS muna'sesetbi, trabiha ti masåtba ha'!'''",
 'userjspreview'                    => "'''Hasso fan na un chachagi/ripapasa iyo-mu JavaScript muna'sesetbi, trabiha ti masåtba ha'!'''",
 'note'                             => "'''Fanapunta:'''",

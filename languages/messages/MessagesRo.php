@@ -922,20 +922,28 @@ sau puteți [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</sp
 'noarticletext-nopermission'       => 'Actualmente, această pagină este lipsită de conținut.
 Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini
 sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>.',
-'userpage-userdoesnotexist'        => 'Contul de utilizator "$1" nu este înregistrat. Verificați dacă doriți să creați/modificați această pagină.',
-'userpage-userdoesnotexist-view'   => 'Contul de utilizator "$1" nu este înregistrat.',
+'userpage-userdoesnotexist'        => 'Contul de utilizator „<nowiki>$1</nowiki>” nu este înregistrat.
+Asigurați-vă că doriți să creați/modificați această pagină.',
+'userpage-userdoesnotexist-view'   => 'Contul de utilizator „<nowiki>$1</nowiki>” nu este înregistrat.',
 'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
 Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referință:',
-'clearyourcache'                   => "'''Notă:''' După salvare, trebuie să treceți peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' țineți apăsat ''Shift'' în timp ce apăsați ''Reload'' (sau apăsați ''Ctrl-Shift-R''), '''IE:''' apăsați ''Ctrl-F5'', '''Opera:''' apăsați ''F5''.",
+'clearyourcache'                   => "'''Notă: După salvare, trebuie să treceți peste memoria cache a navigatorului pentru a vedea modificările.'''
+'''Mozilla / Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''Command-R'' pe un sistem Macintosh);
+'''Konqueror:''' faceți clic pe ''Reîncărcare'' sau apăsați ''F5'';
+'''Opera:''' curățați memoria cache din ''Unelte → Preferințe'';
+'''Internet Explorer:''' țineți apăsat pe ''Ctrl'' în timp ce faceți clic pe ''Reîmprospătare'' sau apăsați ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Sfat:''' Folosiți butonul „{{int:showpreview}}” pentru a testa noul CSS înainte de a-l salva.",
 'userjsyoucanpreview'              => "'''Sfat:''' Folosiți butonul „{{int:showpreview}}” pentru a testa noul JavaScript înainte de a-l salva.",
-'usercsspreview'                   => "'''Reține că urmărești doar o previzualizare a css-ului tău de utilizator, acesta nu este încă salvat!'''",
-'userjspreview'                    => "'''Reține că urmărești doar un test/o previzualizare a javascript-ului tău de utilizator, acesta nu este încă salvat!'''",
+'usercsspreview'                   => "'''Rețineți că vizualizați doar o previzualizare a CSS-ului dumneavoastră de utilizator.'''
+'''Acesta nu a fost încă salvat!'''",
+'userjspreview'                    => "'''Rețineți că vizualizați doar o previzualizare/versiune de testare a JavaScript-ului dumneavoastră de utilizator.'''
+'''Acesta nu a fost încă salvat!'''",
 'sitecsspreview'                   => "'''Rețineți că doar previzualizați această foaie de stil.'''
 '''Ea nu a fost salvată încă!'''",
 'sitejspreview'                    => "'''Rețineți că doar previzualizați acest cod JavaScript.'''
 '''El nu a fost salvat încă!'''",
-'userinvalidcssjstitle'            => '<b>Avertizare:</b> Nu există skin "$1". Amintește-ți că paginile .css and .js specifice utilizatorilor au titluri care încep cu literă mică, de exemplu {{ns:user}}:Foo/vector.css în comparație cu {{ns:user}}:Foo/Vector.css.',
+'userinvalidcssjstitle'            => "'''Avertizare:''' Nu există aspectul „$1”.
+Paginile .css și .js specifice utilizatorilor au titluri care încep cu literă mică; de exemplu {{ns:user}}:Foo/vector.css în comparație cu {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualizat)',
 'note'                             => "'''Notă:'''",
 'previewnote'                      => "Aceasta este doar o previzualizare! Pentru a salva pagina în forma actuală, descrieți succint modificările efectuate și apăsați butonul '''Salvează pagina'''.",
@@ -2221,8 +2229,8 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'enotif_reset'                 => 'Marchează toate paginile vizitate',
 'enotif_newpagetext'           => 'Aceasta este o pagină nouă.',
 'enotif_impersonal_salutation' => '{{SITENAME}} utilizator',
-'changed'                      => 'modificat',
-'created'                      => 'creat',
+'changed'                      => 'modificată',
+'created'                      => 'creată',
 'enotif_subject'               => 'Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED de $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vedeți $1 pentru toate modificările de la ultima dvs. vizită.',
 'enotif_lastdiff'              => 'Apasă $1 pentru a vedea această schimbare.',

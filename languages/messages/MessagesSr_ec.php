@@ -1046,9 +1046,9 @@ $2
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје] или [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити страницу]</span>.',
 'noarticletext-nopermission'       => 'На овој страници тренутно нема садржаја.
 Можете [[Special:Search/{{PAGENAME}}|потражити овај наслов]] на другим страницама или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје]</span>.',
-'userpage-userdoesnotexist'        => 'Налог „$1“ није отворен.
+'userpage-userdoesnotexist'        => 'Налог „<nowiki>$1</nowiki>“ није отворен.
 Размислите да ли желите да направите или измените ову страницу.',
-'userpage-userdoesnotexist-view'   => 'Кориснички налог „$1“ није отворен.',
+'userpage-userdoesnotexist-view'   => 'Кориснички налог „<nowiki>$1</nowiki>“ није отворен.',
 'blocked-notice-logextract'        => 'Овај корисник је тренутно блокиран.
 Подаци о последњем блокирању можете погледати испод:',
 'clearyourcache'                   => "'''Напомена:''' након чувања, можда ћете морати да очистите привремену меморију прегледача.
@@ -1173,7 +1173,7 @@ $2
 Проверите разлике испод, па сачувајте измене.',
 'undo-failure' => 'Измена се не може вратити услед сукобљених међуизмена.',
 'undo-norev'   => 'Измена се не може вратити јер не постоји или је обрисана.',
-'undo-summary' => 'Измена $1 је враћена од стране {{GENDER:$2|корисника|кориснице|корисника}} [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]])',
+'undo-summary' => 'Измена $1 је враћена од {{GENDER:$2|корисника|кориснице|корисника}} [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Отварање налога није могуће',

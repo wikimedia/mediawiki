@@ -700,8 +700,8 @@ Si vusté ye un usuario anonimo y creye que l'han escrito comentarios no relevan
 'noarticletext-nopermission'       => 'Por l\'inte no i hai garra texto en ista pachina.
 Puet [[Special:Search/{{PAGENAME}}|mirar iste títol]] en atras páginas,
 u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mirar en os rechistros relacionatos]</span>.',
-'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "$1" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
-'userpage-userdoesnotexist-view'   => 'A cuenta d\'usuario "$1" no ye rechistrada.',
+'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "<nowiki>$1</nowiki>" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
+'userpage-userdoesnotexist-view'   => 'A cuenta d\'usuario "<nowiki>$1</nowiki>" no ye rechistrada.',
 'blocked-notice-logextract'        => "Ista cuenta d'usuario ye actualment bloqueyata.
 A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 'clearyourcache'                   => "'''Pare cuenta: Si quiere veyer os cambeos dimpués d'alzar o fichero, puede estar que tienga que refrescar a caché d'o suyo navegador ta veyer os cambeos.'''

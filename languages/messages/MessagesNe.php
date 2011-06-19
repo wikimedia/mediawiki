@@ -693,9 +693,9 @@ $2
 'noarticletext-nopermission'       => 'यस लेखमा अहिले केहि पनि पाठ छैन ।
 तपाईंले अन्य पृष्ठमा [[Special:Search/{{PAGENAME}}|यस पृष्ठको शीर्षकको लागि खोज]] गर्न सक्नुहुन्छ,
 अथवा <span class="plainlinks">[{{fullurl:{{#Special:Log}}|पृष्ठ={{FULLPAGENAMEE}}}} सम्बन्धित लगहरु खोज्न सक्नुहुनेछ ]</span>.',
-'userpage-userdoesnotexist'        => 'प्रयोगकर्ताको खाता  "$1" दर्ता गरिएको छैन ।
+'userpage-userdoesnotexist'        => 'प्रयोगकर्ताको खाता  "<nowiki>$1</nowiki>" दर्ता गरिएको छैन ।
 तपाईँले पृष्ठ निर्माण/सम्पादन गर्न चाहनु भएको भए जाँच गर्नुहोस् ।',
-'userpage-userdoesnotexist-view'   => 'प्रयोगकर्ता खाता "$1" दर्ता गरिएको छैन।',
+'userpage-userdoesnotexist-view'   => 'प्रयोगकर्ता खाता "<nowiki>$1</nowiki>" दर्ता गरिएको छैन।',
 'blocked-notice-logextract'        => 'यो प्रयोगकर्ता हाल प्रतिबन्धित छ।
 भर्खरैको प्रतिबन्ध लग प्रविष्टि सन्दर्भको निम्ति तल दिइन्छ:',
 'clearyourcache'                   => "'''सूचना: सेभ गरेपछि, परिवर्तन हेर्न लाइ तपाइले आफ्नो ब्राउजर मा क्याश बाईपास गर्न पर्ने हुन सक्छ।'''

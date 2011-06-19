@@ -844,8 +844,8 @@ $2
 'noarticletext'                    => '此页面目前没有内容。您可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索此页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑此页]。</span>',
 'noarticletext-nopermission'       => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
-'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
-'userpage-userdoesnotexist-view'   => '用户账户“$1”未曾创建。',
+'userpage-userdoesnotexist'        => '用户账户“<nowiki>$1</nowiki>”未曾创建。请在创建／编辑这个页面前先检查一下。',
+'userpage-userdoesnotexist-view'   => '用户账户“<nowiki>$1</nowiki>”未曾创建。',
 'blocked-notice-logextract'        => '这位用户现正被封锁。
 下面有最近的封锁纪录以供参考：',
 'clearyourcache'                   => "'''注意：在保存以后，您必须清除浏览器的缓存才能看到所作出的改变。'''

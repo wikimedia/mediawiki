@@ -564,7 +564,7 @@ Biko tinyé cha ihe ńdía na ájújú nkeówulà I gi me.',
 Í nwèríkí [[Special:Search/{{PAGENAME}}|tuó íshí ihü nke á]] na ihü ndi ozor,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chöwá na ndetu nchètá di nwanne],
 mà [{{fullurl:{{FULLPAGENAME}}|action=edit}} Í nwèríkí rü nà ihü á]</span>.',
-'userpage-userdoesnotexist-view'   => 'Bùwá ọ\'bànifé "$1 à díghị na orunotu.',
+'userpage-userdoesnotexist-view'   => 'Bùwá ọ\'bànifé "<nowiki>$1</nowiki> à díghị na orunotu.',
 'blocked-notice-logextract'        => "Ha gbàchìrì ọ'bànifé nke.
 Ndetu nchèta mbgàchì ǹkè ógè nso di na àlà màkà ádià má àmá:",
 'usercssyoucanpreview'             => "'''Lè kwá:''' Jí mpiá \"{{int:showpreview}}\" Í létú òtù CSS gí di mgbe Í donyèrè ya.",

@@ -944,9 +944,9 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission'       => 'Ainda não existe texto nesta página.
 Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar registos relacionados]</span>.',
-'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registada.
+'userpage-userdoesnotexist'        => 'A conta "<nowiki>$1</nowiki>" não se encontra registada.
 Verifique se deseja realmente criar ou editar esta página, por favor.',
-'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
+'userpage-userdoesnotexist-view'   => 'A conta de utilizador "<nowiki>$1</nowiki>" não está registada.',
 'blocked-notice-logextract'        => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
 'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''

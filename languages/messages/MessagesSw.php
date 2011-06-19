@@ -756,9 +756,9 @@ Labda itakusumbua kwamba kuna maoni mengine yanawekwa hapa na unaamini kwamba ha
 'noarticletext-nopermission'       => 'Kwa sasa hakuna maandishi katika ukurasa huu.
 Unaweza [[Special:Search/{{PAGENAME}}|kutafuta jina la ukurasa huu]] katika kurasa nyingine,
 au <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tafuta ingizo linalofanana]</span>.',
-'userpage-userdoesnotexist'        => 'Akaunti ya mtumiaji "$1" haijasajilishwa.
+'userpage-userdoesnotexist'        => 'Akaunti ya mtumiaji "<nowiki>$1</nowiki>" haijasajilishwa.
 Ukitaka kuanzisha au kuhariri ukurasa huu tafadhali ucheki jina la akaunti.',
-'userpage-userdoesnotexist-view'   => 'Akaunti ya mtumiaji "$1" haijasajilishwa.',
+'userpage-userdoesnotexist-view'   => 'Akaunti ya mtumiaji "<nowiki>$1</nowiki>" haijasajilishwa.',
 'blocked-notice-logextract'        => 'Mtumiaji huyu bado amezuiwa.
 Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'clearyourcache'                   => "'''Elewa - Baada ya kuhifadhi, itakubidi uzungushe kivinjali kache chako ili kuona mabadiliko.'''

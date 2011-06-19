@@ -478,8 +478,8 @@ Du koast diesen Tittel uffa andern Seyta [[Special:Search/{{PAGENAME}}|sucha]],
 'noarticletext-nopermission'       => 'Diese Seyte enthält momentan noo kenn Text.
 Du koast diesen Tittel uff dann andern Seyta [[Special:Search/{{PAGENAME}}|sicha]]
 oder ei dann zugehieriga <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbichern sicha].</span>',
-'userpage-userdoesnotexist'        => 'Doas Nutzerkonto „$1“ ies ne vurhanda. Bitte priefe, ob du diese Seyte wirklich erstalla/beoarbeeta wielst.',
-'userpage-userdoesnotexist-view'   => 'Nutzerkonto „$1“ existiert ne.',
+'userpage-userdoesnotexist'        => 'Doas Nutzerkonto „<nowiki>$1</nowiki>“ ies ne vurhanda. Bitte priefe, ob du diese Seyte wirklich erstalla/beoarbeeta wielst.',
+'userpage-userdoesnotexist-view'   => 'Nutzerkonto „<nowiki>$1</nowiki>“ existiert ne.',
 'clearyourcache'                   => "'''Hinweis - Laare noach damm Speichern dann Browser-Cache, im de Änderungen sahn zu kinna:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und uff ''Aktualisiera'' klicka oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) dricka; '''Konqueror: '''Uff ''Aktualisiera'' klicka oder ''F5'' dricka; '''Opera:''' Cache under ''Extras → Eenstellunga'' laara; '''Internet Explorer:''' ''Strg-F5'' dricka oder ''Strg'' gedrickt halta und dabei ''Aktualisiera'' oaklicka.",
 'usercssyoucanpreview'             => "'''Tipp:''' Benutze dann Vurschau-Button, im dei neues CSS vur damm Speichern zu testa.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benutze dann Vurschau-Button, im dei neues JS vur damm Speichern zu testa.",

@@ -711,7 +711,7 @@ $2',
 'noarticletext'                    => 'هنو هچ متنی ته ای صفحه نیست.
 شما تونیت [[Special:Search/{{PAGENAME}}|گردیت په عنوان صفحه]]  ته دگه صفحات یا<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} گردگ په مربوطین آمار],
 یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} اصلاح ای صفحه]</span>.',
-'userpage-userdoesnotexist'        => 'حساب کاربر "$1" ثبت نهنت. لطفا کنترل کنیت اگه شما لوٹیت ای صفحه یا شر/اصلاح کنیت.',
+'userpage-userdoesnotexist'        => 'حساب کاربر "<nowiki>$1</nowiki>" ثبت نهنت. لطفا کنترل کنیت اگه شما لوٹیت ای صفحه یا شر/اصلاح کنیت.',
 'clearyourcache'                   => "'''توجه:''' بعد چه ذخیره کتن، شما شاید مجبور بیت چه وتی ذخیره ی بروزر رد بیت تا تغییرات بگندیت. '''Mozilla / Firefox / Safari:'' ''Shift'' جهل داریت همی وهدی که کلیک کنیت ''Reload'' یا بداریت ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac);'''IE:''' ''Ctrl''  بداری وهدی که کلیک ''Refresh' یا 'Ctrl-F5''; '''Konqueror:''':  راحت کلیک کن دکمه ''Reload'' یا بدار ''F5''; '''Opera''' کاربر بایدن ته ''Tools→Preferences'' ذخیره پاک کنت.",
 'usercssyoucanpreview'             => "'''نکته:''' چه دکمه 'Show preview' په آزمایش کتن  CSS پیش چه ذخیره کتن استفاده کن",
 'userjsyoucanpreview'              => "'''نکته:''' چه دکمه 'Show preview' په آزمایش کتن  JS پیش چه ذخیره کتن استفاده کن",

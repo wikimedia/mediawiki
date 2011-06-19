@@ -53,7 +53,7 @@ $messages = array(
 
 'article' => 'Гижӧд',
 'cancel'  => 'Дугӧдны',
-'mytalk'  => 'Сёрнитӧм лист бокӧй',
+'mytalk'  => 'Сёрнитан лист бокӧй',
 
 # Cologne Blue skin
 'qbfind' => 'Корсьысьӧм',
@@ -61,6 +61,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-move' => 'Ним вежны',
+'vector-view-edit'   => 'Вежны',
 'vector-view-view'   => 'Лыддьыны',
 'namespaces'         => 'Ним пространствояс',
 
@@ -70,12 +71,12 @@ $messages = array(
 'history_short'    => 'Важвылӧм',
 'printableversion' => 'Лэдзӧм версия',
 'permalink'        => 'Вежласьтӧм ыстӧд',
-'edit'             => 'Веськӧдны',
+'edit'             => 'Вежны',
 'delete'           => 'Бырӧдны',
 'protect'          => 'Дорйыны',
 'newpage'          => 'Выль лист бок',
 'talkpagelinktext' => 'сёрнитанін',
-'talk'             => 'Сёрнитӧм',
+'talk'             => 'Сёрнитанін',
 'toolbox'          => 'Инструментъяс',
 'otherlanguages'   => 'Мӧд кывъясӧн',
 'jumptosearch'     => 'корсьысьӧм',
@@ -91,12 +92,15 @@ $messages = array(
 'newmessageslink' => 'выль юӧртӧмъяс',
 'editsection'     => 'веськӧдны',
 'editold'         => 'веськӧдны',
+'editlink'        => 'вежны',
+'editsectionhint' => '«$1» секция веськӧдны',
 'red-link-title'  => '$1 (гижӧд абу)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'    => 'Гижӧд',
-'nstab-user'    => 'Вӧлысь',
-'nstab-project' => 'Проект йылысь',
+'nstab-main'     => 'Гижӧд',
+'nstab-user'     => 'Пырысь',
+'nstab-project'  => 'Проект йылысь',
+'nstab-category' => 'Категория',
 
 # Login and logout pages
 'yourname'                => 'Вӧлысьлӧн ним:',
@@ -124,6 +128,11 @@ $messages = array(
 # Recent changes
 'recentchanges' => 'Выль веськӧдӧмъяс',
 'hide'          => 'Дзебны',
+'newpageletter' => 'В',
+'boteditletter' => 'б',
+
+# Recent changes linked
+'recentchangeslinked-page' => 'Гижӧдлӧн ним:',
 
 # Upload
 'upload'    => 'Файл сӧвтны',
@@ -131,7 +140,7 @@ $messages = array(
 
 # File description page
 'filehist-datetime' => 'Кадпас/кад',
-'filehist-user'     => 'Вӧлысь',
+'filehist-user'     => 'Пырысь',
 'filehist-comment'  => 'Пасйӧд',
 
 # Random page
@@ -148,17 +157,27 @@ $messages = array(
 # Special:AllPages
 'allarticles' => 'Став гижӧдъяс',
 
+# Watchlist
+'mywatchlist' => 'Видзӧдӧм лыддьӧгӧй',
+
 # Delete
 'deletepage' => 'Лист бокӧс бырӧдны',
 
 # Protect
 'protect-level-sysop' => 'Администраторъяс сӧмын',
 
+# Namespace form on various pages
+'namespace' => 'Ним пространство:',
+
 # Contributions
 'contributions' => 'Вӧлысьлӧн чӧжӧс',
+'mycontris'     => 'Чӧжӧсӧй',
 
 # What links here
 'whatlinkshere' => 'Ыстӧдъяс татчӧ',
+
+# Block/unblock
+'contribslink' => 'чӧжӧс',
 
 # Move page
 'newtitle'    => 'Выль ним',
@@ -168,7 +187,7 @@ $messages = array(
 'allmessages' => 'Система юӧртӧмъяс',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Вӧлысьлӧн лист бокӧй',
+'tooltip-pt-userpage' => 'Пырысьлӧн лист бокӧй',
 'tooltip-ca-talk'     => 'Гижӧдлӧн сёрнитӧм лист бокӧй али Википедиялӧн дӧнъялӧм лист бокӧй',
 'tooltip-ca-move'     => 'Лист боклӧн ним вежны',
 

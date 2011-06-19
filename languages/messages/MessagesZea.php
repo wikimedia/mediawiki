@@ -541,7 +541,7 @@ Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore.
 A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Special:UserLogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
 'noarticletext'              => 'Deêze pagina bevat hin tekst.
 Je kan [[Special:Search/{{PAGENAME}}|ni deêze term zoeken]] in aore pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deêze pagina bewerken]</span>.',
-'userpage-userdoesnotexist'  => 'Je bewerk een gebrukerspagina van een gebruker die a nie besti (gebruker "$1"). Controleer of a je deêze pagina wè wil anmaeken/bewerken.',
+'userpage-userdoesnotexist'  => 'Je bewerk een gebrukerspagina van een gebruker die a nie besti (gebruker "<nowiki>$1</nowiki>"). Controleer of a je deêze pagina wè wil anmaeken/bewerken.',
 'clearyourcache'             => '\'\'\'Let op!\'\'\' Leeg je cache naeda je de wiezigiengen ei opeslogen.
 
 {| border="1" cellpadding="3" class=toccolours style="border: 1px #AAAAAA solid; border-collapse: collapse;"

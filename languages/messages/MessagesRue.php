@@ -674,8 +674,8 @@ $2
 'noarticletext-nopermission'       => 'Теперь на тїй сторінцї не є текст.
 Можете [[Special:Search/{{PAGENAME}}|глядати тоту назву]] в іншых сторінках,
 або <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} глядати в лоґах]</span>.',
-'userpage-userdoesnotexist'        => 'Хосновательске конто під назвов  "$1" не є реґістроване. Сконтролюйте ці хочете вытворити/едітовати тоту сторінку.',
-'userpage-userdoesnotexist-view'   => 'Хосновательске конто „$1 не є реґістроване.',
+'userpage-userdoesnotexist'        => 'Хосновательске конто під назвов  "<nowiki>$1</nowiki>" не є реґістроване. Сконтролюйте ці хочете вытворити/едітовати тоту сторінку.',
+'userpage-userdoesnotexist-view'   => 'Хосновательске конто „<nowiki>$1</nowiki> не є реґістроване.',
 'blocked-notice-logextract'        => 'Тот хоснователь є теперь блокованый.
 Послїднїй запис в лоґах блоковань є такый:',
 'clearyourcache'                   => "'''Позначка:''' По уложіню мусите змазати кеш вашого вебового переглядача, інакше зміни не увидите: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",

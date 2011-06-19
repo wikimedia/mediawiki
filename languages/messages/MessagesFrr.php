@@ -581,9 +581,9 @@ Dü koost dideere tiitel aw da ouder side [[Special:Search/{{PAGENAME}}|säke]],
 'noarticletext-nopermission'       => 'Jüdeer sid önjhålt uugenblaklik nuch nån täkst.
 Dü koost dideere tiitel aw da oudre side [[Special:Search/{{PAGENAME}}|säke]],
 unti<span class="plainlinks">önj da deertuhiirende [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logböke säke] </span>.',
-'userpage-userdoesnotexist'        => 'Dåt benjüterkonto "$1" as ai deer.
+'userpage-userdoesnotexist'        => 'Dåt benjüterkonto "<nowiki>$1</nowiki>" as ai deer.
 Wees sü gödj än präif, weer dü jüdeer sid wörklik mååge/beårbe wååt.',
-'userpage-userdoesnotexist-view'   => 'Benjüterkonto "$1" bestoont ai.',
+'userpage-userdoesnotexist-view'   => 'Benjüterkonto "<nowiki>$1</nowiki>" bestoont ai.',
 'blocked-notice-logextract'        => 'Dideer benjüter as tutids spärd.
 For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
 'usercssyoucanpreview'             => "'''Tip:''' Brük di „{{int:showpreview}}“-knoop, am din nai CSS for dåt spiikern tu tästen.",

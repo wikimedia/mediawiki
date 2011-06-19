@@ -1625,8 +1625,15 @@ $1
 Преоразмеряването на картинки ще бъде изключено.',
 	'config-no-uri' => "'''Грешка:''' Не може да се определи текущия адрес.
 Инсталация беше прекратена.",
+	'config-using-server' => 'Използване на сървърното име "<nowiki>$1</nowiki>".',
 	'config-uploads-not-safe' => "'''Предупреждение:''' Папката по подразбиране за качване <code>$1</code> е уязвима от изпълнение на зловредни скриптове.
 Въпреки че МедияУики извършва проверка за заплахи в сигурността на всички качени файлове, силно препоръчително е да се [http://www.mediawiki.org/wiki/Manual:Security#Upload_security затвори тази уязвимост в сигурността] преди разрешаване за качване на файлове.",
+	'config-brokenlibxml' => 'Вашата система използа комбинация от версии на PHP и libxml2, които са с много грешки и могат да причинят скрити повреди на данните в МедияУики или други уеб приложения.
+Необходимо е обновяване до PHP 5.2.9 или по-нова версия и libxml2 2.7.3 или по-нова версия ([http://bugs.php.net/bug.php?id=45996 докладвана грешка при PHP]).
+Инсталацията беше прекратена.',
+	'config-using531' => 'МедияУики не може да се използва с PHP $1 заради проблем с референтните параметри за <code>__call()</code>.
+За разрешаване на този проблем е необходимо да се обнови до PHP 5.3.2 или по-нова версия или да се инсталира по-стара версия, напр. PHP 5.3.0.
+Инсталацията беше прекратена.',
 	'config-suhosin-max-value-length' => 'Suhosin е инсталиран и ограничава дължината на параметъра GET на $1 байта. Компонентът на МедияУики ResourceLoader ще може да пренебрегне частично това ограничение, но това ще намали производителността. По възможност е препоръчително да се настрои suhosin.get.max_value_length на 1024 или по-голяма стойност в php.ini и в LocalSettings.php да се настрои $wgResourceLoaderMaxQueryLength със същата стойност.',
 	'config-db-type' => 'Тип на базата от данни:',
 	'config-db-host' => 'Хост на базата от данни:',
@@ -1715,8 +1722,29 @@ $1
 	'config-sqlite-name-help' => 'Избира се име, което да идентифицира уикито.
 Не се използват интервали или тирета.
 Това име ще се използва за име на файла за данни на SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'Дикректорията за данни <code><nowiki>$1</nowiki></code> не може да бъде създадена, тъй като уеб сървърът няма права за писане в родителската директория <code><nowiki>$2</nowiki></code>.
+
+Инсталаторът разпознава потребителското име, с което работи уеб сървърът.
+Уверете се, че той притежава права за писане в директорията <code><nowiki>$3</nowiki></code> преди да продължите.
+В Unix/Линукс системи можете да използвате:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'Дикректорията за данни <code><nowiki>$1</nowiki></code> не може да бъде създадена, тъй като уеб сървърът няма права за писане в родителската директория <code><nowiki>$2</nowiki></code>.
+
+Инсталаторът не може да определи потребителското име, с което работи уеб сървърът.
+Уверете се, че в директория <code><nowiki>$3</nowiki></code> може да бъде писано от уебсървъра (или от други потребители!) преди да продължите.
+На Unix/Линукс системи можете да използвате:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Грешка при създаване на директорията за данни "$1".
 Проверете местоположението ѝ и опитайте отново.',
+	'config-sqlite-dir-unwritable' => 'Уебсървърът няма права за писане в директория "$1".
+Променете правата му така, че да може да пише в нея, и опитайте отново.',
 	'config-sqlite-connection-error' => '$1.
 
 Проверете директорията за данни и името на базата от данни по-долу и опитайте отново.',
@@ -1746,6 +1774,13 @@ $1
 	'config-mysql-engine' => 'Хранилище на данни:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''Предупреждение''': Избрана е MyISAM като система за складиране в MySQL, която не се препоръчва за използване с МедияУики, защото:
+* почти не поддържа паралелност заради заключване на таблиците
+* е по-податлива на повреди в сравнение с други системи
+* кодът на МедияУики не винаги поддържа MyISAM коректно
+
+Ако инсталацията на MySQL поддържа InnoDB, силно е препоръчително да се използва тя.
+Ако инсталацията на MySQL не поддържа InnoDB, вероятно е време за обновяване.",
 	'config-mysql-engine-help' => "'''InnoDB''' почти винаги е най-добрата възможност заради навременната си поддръжка.
 
 '''MyISAM''' може да е по-бърза при инсталации с един потребител или само за четене.
@@ -6420,6 +6455,7 @@ Le miniaturas de imagines essera activate si tu activa le incargamento de files.
 Le miniaturas de imagines essera disactivate.',
 	'config-no-uri' => "'''Error:''' Non poteva determinar le URI actual.
 Installation abortate.",
+	'config-using-server' => 'Es usate le nomine de servitor "<nowiki>$1</nowiki>".',
 	'config-uploads-not-safe' => "'''Aviso:''' Le directorio predefinite pro files incargate <code>$1</code> es vulnerabile al execution arbitrari de scripts.
 Ben que MediaWiki verifica tote le files incargate contra le menacias de securitate, il es altemente recommendate [http://www.mediawiki.org/wiki/Manual:Security#Upload_security remediar iste vulnerabilitate de securitate] ante de activar le incargamento de files.",
 	'config-brokenlibxml' => 'Vostre systema ha un combination de versiones de PHP e libxml2 que es defectuose e pote causar corruption celate de datos in MediaWiki e altere applicationes web.
@@ -6482,6 +6518,7 @@ ma non te permittera immagazinar characteres supra le [http://en.wikipedia.org/w
 	'config-db-schema' => 'Schema pro MediaWiki',
 	'config-db-schema-help' => 'Iste schema es generalmente correcte.
 Solmente cambia lo si tu es secur que es necessari.',
+	'config-pg-test-error' => "Impossibile connecter al base de datos '''$1''': $2",
 	'config-sqlite-dir' => 'Directorio pro le datos de SQLite:',
 	'config-sqlite-dir-help' => "SQLite immagazina tote le datos in un sol file.
 
@@ -6642,6 +6679,8 @@ Specifica un altere nomine de usator.',
 	'config-subscribe' => 'Subscribe al [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de diffusion pro annuncios de nove versiones].',
 	'config-subscribe-help' => 'Isto es un lista de e-mail a basse volumine pro annuncios de nove versiones, includente importante annuncios de securitate.
 Tu deberea subscriber a illo e actualisar tu installation de MediaWiki quando nove versiones es editate.',
+	'config-subscribe-noemail' => 'Tu tentava abonar te al lista de diffusion pro annunciamento de nove versiones sin fornir un adresse de e-mail.
+Per favor specifica un adresse de e-mail si tu vole abonar te al lista de diffusion.',
 	'config-almost-done' => 'Tu ha quasi finite!
 Tu pote ora saltar le configuration remanente e installar le wiki immediatemente.',
 	'config-optional-continue' => 'Pone me plus questiones.',
@@ -6753,6 +6792,7 @@ Pro facer alterationes, clicca sur "Retro".',
 	'config-install-step-failed' => 'fallite',
 	'config-install-extensions' => 'Include le extensiones',
 	'config-install-database' => 'Configura le base de datos',
+	'config-install-schema' => 'Creation de schema',
 	'config-install-pg-schema-not-exist' => 'Iste schema de PostgreSQL non existe',
 	'config-install-pg-schema-failed' => 'Le creation del tabellas falleva.
 Assecura te que le usator "$1" pote scriber in le schema "$2".',
@@ -6760,10 +6800,17 @@ Assecura te que le usator "$1" pote scriber in le schema "$2".',
 	'config-install-pg-plpgsql' => 'Verifica le presentia del linguage PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Es necessari installar le linguage PL/pgSQL in le base de datos $1',
 	'config-pg-no-create-privs' => 'Le conto que tu specificava pro installation non ha sufficiente privilegios pro crear un conto.',
+	'config-pg-not-in-role' => 'Le conto que tu specificava pro le usator web ja existe.
+Le conto que tu specificava pro installation non es superusator e non es membro del rolo de usator web, dunque es incapace de crear objectos possedite per le usator web.
+
+MediaWiki require actualmente que le tabellas sia possedite per le usator web. Per favor specifica un altere nomine de conto web, o clicca super "retornar" e specifica un usator de installation con sufficiente privilegios.',
 	'config-install-user' => 'Crea usator pro base de datos',
 	'config-install-user-alreadyexists' => 'Le usator "$1" ja existe',
 	'config-install-user-create-failed' => 'Le creation del usator "$1" ha fallite: $2',
 	'config-install-user-grant-failed' => 'Le concession de permission al usator "$1" falleva: $2',
+	'config-install-user-missing' => 'Le usator specificate, "$1", non existe.',
+	'config-install-user-missing-create' => 'Le usator specificate, "$1", non existe.
+Per favor marca le quadrato "crear conto" hic infra si tu vole crear lo.',
 	'config-install-tables' => 'Crea tabellas',
 	'config-install-tables-exist' => "'''Aviso''': Il pare que le tabellas de MediaWiki jam existe.
 Le creation es saltate.",
@@ -6776,7 +6823,7 @@ Le lista predefinite es saltate.",
 	'config-install-keys' => 'Generation de claves secrete',
 	'config-insecure-keys' => "'''Attention:''' {{PLURAL:$2|Un clave|Alcun claves}} secur ($1) generate durante le installation non es completemente secur. Considera cambiar {{PLURAL:$2|lo|los}} manualmente.",
 	'config-install-sysop' => 'Crea conto de usator pro administrator',
-	'config-install-subscribe-fail' => 'Impossibile subscriber a mediawiki-announce',
+	'config-install-subscribe-fail' => 'Impossibile subscriber a mediawiki-announce: $1',
 	'config-install-mainpage' => 'Crea pagina principal con contento predefinite',
 	'config-install-extension-tables' => 'Creation de tabellas pro le extensiones activate',
 	'config-install-mainpage-failed' => 'Non poteva inserer le pagina principal: $1',

@@ -455,8 +455,8 @@ Wånnst a anonymer Benutzer bist und denkst, das irrelevante Kommentare ån di g
 'noarticletext'                    => 'De Saiten enthoit zua Zaid koan Text ned.
 Du kååst an Titl vo derer Saiten auf de åndern Saiten [[Special:Search/{{PAGENAME}}|suacha]],
 <span class="plainlinks"> in de dazuagheraden [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbiache suacha] oder de Saiten [{{fullurl:{{FULLPAGENAME}}|action=edit}} beorwaiten]</span>.',
-'userpage-userdoesnotexist'        => 'Des Benutzerkonto „$1“ is ned vurhånden. Bittschee priaf, ob du de Seiten wirkle erstöin/beorweiten wüist.',
-'userpage-userdoesnotexist-view'   => 'Benutzerkonto „$1“ existiard ned.',
+'userpage-userdoesnotexist'        => 'Des Benutzerkonto „<nowiki>$1</nowiki>“ is ned vurhånden. Bittschee priaf, ob du de Seiten wirkle erstöin/beorweiten wüist.',
+'userpage-userdoesnotexist-view'   => 'Benutzerkonto „<nowiki>$1</nowiki>“ existiard ned.',
 'blocked-notice-logextract'        => "{{GENDER:$1|Der Benutzer|De Benutzarin|Der Benutzer do}} is zurzeid gesperrd.
 Zua da Informazion foigt a aktueller Auszug aus 'm Benutzersperr-Logbiache:",
 'updated'                          => '(Gendert)',
