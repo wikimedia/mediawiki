@@ -3411,7 +3411,7 @@ class Language {
 	/**
 	 * @todo Document
 	 * @param $seconds int|float
-	 * @param $format String Optional, one of ("avoidseconds","avoidseconds"):
+	 * @param $format String Optional, one of ("avoidseconds","avoidminutes"):
 	 *		If "avoidminutes" don't mention minutes if $seconds >= 1 hour
 	 *		If "avoidseconds" don't mention seconds/minutes if $seconds > 2 days
 	 * @return string
