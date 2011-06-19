@@ -326,7 +326,6 @@ class TitlePermissionTest extends MediaWikiTestCase {
 		$this->assertEquals( $result2, $res );
 	}
 
-	function testPermissionHooks() { }
 	function testSpecialsAndNSPermissions() {
 		$this->setUser( $this->userName );
 		global $wgUser;
