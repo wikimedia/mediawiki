@@ -30,8 +30,8 @@ def unichr3( *args ):
     return [unichr( int( i[2:7], 16 ) ) for i in args if i[2:7]]
 
 # DEFINE
-SF_MIRROR = 'easynews'
-SCIM_TABLES_VER = '0.5.9'
+SF_MIRROR = 'cdnetworks-kr-2'
+SCIM_TABLES_VER = '0.5.10'
 SCIM_PINYIN_VER = '0.5.91'
 LIBTABE_VER = '0.2.3'
 # END OF DEFINE
