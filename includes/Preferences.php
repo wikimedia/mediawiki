@@ -745,11 +745,14 @@ class Preferences {
 			'section' => 'editing/advancedediting',
 			'label-message' => 'tog-showtoolbar',
 		);
-		$defaultPreferences['minordefault'] = array(
-			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
-			'label-message' => 'tog-minordefault',
-		);
+
+		if ( $user->isAllowed( 'minoredit' ) ) {
+			$defaultPreferences['minordefault'] = array(
+				'type' => 'toggle',
+				'section' => 'editing/advancedediting',
+				'label-message' => 'tog-minordefault',
+			);
+		}
 
 		if ( $wgUseExternalEditor ) {
 			$defaultPreferences['externaleditor'] = array(
@@ -815,7 +818,7 @@ class Preferences {
 			'section' => 'rc/advancedrc',
 		);
 
-		if ( $wgUseRCPatrol ) {
+		if ( $wgUseRCPatrol && $user->isAllowed( 'patrol' ) ) {
 			$defaultPreferences['hidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
