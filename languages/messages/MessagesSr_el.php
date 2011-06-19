@@ -860,8 +860,8 @@ Možete [[Special:Search/{{PAGENAME}}|tražiti ovu stranicu]] u drugim člancima
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne istorije zapisa], ili je [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti]</span>.',
 'noarticletext-nopermission'       => 'Na ovoj stranici trenutno nema sadržaja.
 Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne izveštaje]</span>.',
-'userpage-userdoesnotexist'        => 'Nalog "$1" nije registrovan. Proverite da li želite da pravite/uređujete ovu stranicu.',
-'userpage-userdoesnotexist-view'   => 'Korisnički nalog "$1" nije registrovan.',
+'userpage-userdoesnotexist'        => 'Nalog "<nowiki>$1</nowiki>" nije registrovan. Proverite da li želite da pravite/uređujete ovu stranicu.',
+'userpage-userdoesnotexist-view'   => 'Korisnički nalog "<nowiki>$1</nowiki>" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Podaci o poslednjem blokiranju su priloženi ispod kao dodatna informacija:',
 'clearyourcache'                   => "'''Zapamtite:''' Nakon snimanja, možda morate očistiti keš vašeg brauzera da biste videli promene. '''Mozilla / Firefox / Safari:''' držite ''Shift'' dok klikćete ''Reload'' ili pritisnite  ''Shift+Ctrl+R'' (''Cmd-Shift-R'' na ''Apple Mac'' mašini); '''IE:''' držite ''Ctrl'' dok klikćete ''Refresh'' ili pritisnite ''Ctrl-F5''; '''Konqueror:''': samo kliknite ''Reload'' dugme ili pritisnite ''F5''; korisnici '''Opera''' brauzera možda moraju da u potpunosti očiste svoj keš preko ''Tools→Preferences''.",
@@ -967,7 +967,7 @@ Trebalo bi da ima manje od $2 {{PLURAL:$2|poziv|poziva}}, a sada {{PLURAL:$1|pos
 'undo-success' => 'Ova izmena može da se vrati. Proverite razlike ispod kako bi proverili da je ovo to što želite da uradite, tada snimite izmene kako bi završili vraćanje izmene.',
 'undo-failure' => 'Izmena ne može biti oporavljena usled sukobljenih međuizmena.',
 'undo-norev'   => 'Izmena ne može biti oporavljena zato što ne postoji ili je obrisana.',
-'undo-summary' => 'Vraćena revizija $1 korisnika [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])',
+'undo-summary' => 'Izmena $1 je vraćena od {{GENDER:$2|korisnika|korisnice|korisnika}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne može da se napravi nalog',

@@ -724,8 +724,8 @@ Si se paske ou fè yon erè ke ou rive nan paj sa a, klike anlè bouton '''fè b
 Ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj yo, oubyen <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chache jounal modifikasyon yo ki an relasyon ak paj sa] oubyen tou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye paj sa]</span>.',
 'noarticletext-nopermission'       => 'Poko genyen tèks nan paj sa a.
 Ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj yo, oubyen <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chache jounal modifikasyon yo ki an relasyon ak paj sa].',
-'userpage-userdoesnotexist'        => 'Kont itilizatè « $1 » sa pa anrejistre. Verifye toutbon ke ou vle kreye paj sa.',
-'userpage-userdoesnotexist-view'   => 'Itilizatè "$1" pa ekziste.',
+'userpage-userdoesnotexist'        => 'Kont itilizatè « <nowiki>$1</nowiki> » sa pa anrejistre. Verifye toutbon ke ou vle kreye paj sa.',
+'userpage-userdoesnotexist-view'   => 'Itilizatè "<nowiki>$1</nowiki>" pa ekziste.',
 'blocked-notice-logextract'        => 'Itilizatè sa a bloke kounye a.
 Dènye jounal pou blokaj yo parèt anba kòm referans:',
 'clearyourcache'                   => "'''Note bagay sa:''' apre ou pibliye paj sa, ou gendwa oblije fòse chajman, rafrechi paj nan kach navigatè entènèt ou an pou ou kapab wè chanjman yo : '''Mozilla / Firefox / Konqueror / Safari :''' kenbe touch ''lèt kapital'' toutpandan w ap klike sou bouton ''Rafrechi/Aktyalize'' oubyen swa ou peze ''Maj-Ctrl-F5'', swa ou peze ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sou sistèm Apple Mac) ; '''Internet Explorer / Opera :''' kenbe touch ''Ctrl'' toutpandan w ap klike sou bouton ''Rafrechi/Aktyalize'', oubyen peze ''Ctrl-F5''.",

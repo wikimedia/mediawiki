@@ -843,9 +843,9 @@ $2',
 Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանումը]] այլ էջերում, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել համապատասխան տեղեկամատյանները] կամ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ստեղծել նոր էջ այս անվանմամբ]</span>։',
 'noarticletext-nopermission'       => 'Ներկայումս այս էջում որևէ տեքստ չկա։
 Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանունը]] այլ էջերում կամ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել այն տեղեկամատյաններում]</span>։',
-'userpage-userdoesnotexist'        => '«$1» անվանմամբ մասնակից գոյություն չունի։
+'userpage-userdoesnotexist'        => '«<nowiki>$1</nowiki>» անվանմամբ մասնակից գոյություն չունի։
 Խնդրում ենք հավաստիանալ նրանում, թե արդյոք ուզում եք ստեղծել/խմբագրել այս էջը։',
-'userpage-userdoesnotexist-view'   => '«$1» անվանմամբ գրանցված մասնակից չկա։',
+'userpage-userdoesnotexist-view'   => '«<nowiki>$1</nowiki>» անվանմամբ գրանցված մասնակից չկա։',
 'clearyourcache'                   => "'''Ծանուցում. Հիշելուց հետո կատարված փոփոխությունները տեսնելու համար մաքրեք ձեր զննարկիչի հիշապահեստը. '''
 '''Mozilla / Firefox / Safari'''՝ ''Ctrl+Shift+R''  (''Cmd+Shift+R'' Mac OS X-ում)
 '''Konqueror'''՝ ''F5''

@@ -907,8 +907,8 @@ $2',
 'noarticletext-nopermission'       => 'या लेखात सध्या काहीही मजकूर नाही.
 तुम्ही विकिपिडीयावरील इतर लेखांमध्ये या [[Special:Search/{{PAGENAME}}|मथळ्याच्या शोध घेऊ शकता]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} इतर याद्या शोधा],
 किंवा हा लेख [{{fullurl:{{FULLPAGENAME}}|action=edit}} लिहू शकता]</span>.',
-'userpage-userdoesnotexist'        => '"$1" सदस्य खाते नोंदीकॄत नाही.कृपया हे पान तुम्ही संपादीत किंवा नव्याने तयार करू इच्छिता का या बद्दल विचार करा.',
-'userpage-userdoesnotexist-view'   => 'सदस्यखाते "$1"  हे नोंदलेले नाही.',
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" सदस्य खाते नोंदीकॄत नाही.कृपया हे पान तुम्ही संपादीत किंवा नव्याने तयार करू इच्छिता का या बद्दल विचार करा.',
+'userpage-userdoesnotexist-view'   => 'सदस्यखाते "<nowiki>$1</nowiki>"  हे नोंदलेले नाही.',
 'blocked-notice-logextract'        => 'हा सदस्य सध्या प्रतिबंधित आहे.
 सर्वांत नवीन प्रतिबंधन यादी खाली संदर्भासाठी दिली आहे:',
 'clearyourcache'                   => "'''सूचना:''' जतन केल्यानंतर, बदल पहाण्याकरिता तुम्हाला तुमच्या विचरकाची सय टाळायला लागू शकते. '''मोझील्ला/फायरफॉक्स /सफारी:''' ''Reload''करताना ''Shift''दाबून ठेवा किंवा ''Ctrl-Shift-R'' दाबा

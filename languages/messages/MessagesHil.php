@@ -673,9 +673,9 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} islan ini nga pahina]</span>.',
 'noarticletext-nopermission'       => 'Wala subong sang teksto ang ini nga panid.
 Pwede ka [[Special:Search/{{PAGENAME}}|mangita para sa titulo sang ini nga panid]] sa iban man nga panid,
 ukon <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mangita ka sang kaparehas nga logs]</span>.',
-'userpage-userdoesnotexist'        => 'Ang akawnt sang manuggamit nga "$1" wala pa marehistro.
+'userpage-userdoesnotexist'        => 'Ang akawnt sang manuggamit nga "<nowiki>$1</nowiki>" wala pa marehistro.
 Palihog tsek kon luyag mo nga himuon/ilisan ang ini nga panid.',
-'userpage-userdoesnotexist-view'   => 'Ang akawnt sang manuggamit nga "$1" wala pa marehistro.',
+'userpage-userdoesnotexist-view'   => 'Ang akawnt sang manuggamit nga "<nowiki>$1</nowiki>" wala pa marehistro.',
 'blocked-notice-logextract'        => 'Ang ini nga manuggamit ginapunggan karon.
 Ang pinaka-ulihi nga log sa pagpuggong yara sa idalom para mahibaluan nimo:',
 'clearyourcache'                   => "'''Pahibalo: Pagkatapos mo magtipon, mahimo nga kinahanglan mo pa nga laktawan ang talaguan sang imo brawser agod nga makita ang mga pag-ilis.'''

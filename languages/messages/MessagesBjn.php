@@ -649,9 +649,9 @@ atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} mambabak tungkaran ini]</span>.'
 'noarticletext-nopermission'       => 'Parhatan ini kadada naskah di tungkaran ini.
 Pian kawa [[Special:Search/{{PAGENAME}}|manggagai gasan judul ini]] pintang tungkaran lain,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} manggagai log barait].</span>.',
-'userpage-userdoesnotexist'        => 'Akun pamuruk "$1" kada tadaptar.
+'userpage-userdoesnotexist'        => 'Akun pamuruk "<nowiki>$1</nowiki>" kada tadaptar.
 Muhun pariksa amun Pian handak maulah/mambabak tungkaran ini.',
-'userpage-userdoesnotexist-view'   => 'Akun pamuruk "$1" kada tadaptar.',
+'userpage-userdoesnotexist-view'   => 'Akun pamuruk "<nowiki>$1</nowiki>" kada tadaptar.',
 'blocked-notice-logextract'        => 'Pamuruk nangini parhatan ini diblukir.
 Log blukir pahabisannya tasadia di bawah ini gasan rujukan:',
 'clearyourcache'                   => "'''Catatan: Habis manyimpan, Pian harus malingarakan cache panjalajah web Pian hagan malihat parubahan.'''

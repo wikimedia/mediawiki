@@ -752,8 +752,8 @@ De kèns [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pagina\'s,
 'noarticletext-nopermission'       => 'Dees pagina bevat gein teks.
 De kans [[Special:Search/{{PAGENAME}}|nao dees term zeuke]] in anger pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logbeuk doorzeuke]</span>.',
-'userpage-userdoesnotexist'        => 'Doe bewirks \'n gebroekerspagina van \'ne gebroeker dae neet besjteit (gebroeker "$1"). Controlere ofs doe dees pagina waal wils aanmake/bewirke.',
-'userpage-userdoesnotexist-view'   => 'Gebroeker "$1" is neet geregistreerd.',
+'userpage-userdoesnotexist'        => 'Doe bewirks \'n gebroekerspagina van \'ne gebroeker dae neet besjteit (gebroeker "<nowiki>$1</nowiki>"). Controlere ofs doe dees pagina waal wils aanmake/bewirke.',
+'userpage-userdoesnotexist-view'   => 'Gebroeker "<nowiki>$1</nowiki>" is neet geregistreerd.',
 'blocked-notice-logextract'        => "Deze gebroeker is noe geblok.
 De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'clearyourcache'                   => "'''Lèt op:''' Nao 't opsjlaon mós te diene browserbuffer wisse óm de verangeringe te zeen: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''Firefox / IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",

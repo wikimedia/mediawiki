@@ -978,9 +978,9 @@ $2
 'noarticletext-nopermission'       => 'Нема текст на оваа страница.
 Можете да го [[Special:Search/{{PAGENAME}}|пребарате овој наслов]] во други страници,
 или да ги <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пребарате соодветните дневници]</span>.',
-'userpage-userdoesnotexist'        => 'Корисничката сметка „$1“ не е регистрирана.
+'userpage-userdoesnotexist'        => 'Корисничката сметка „<nowiki>$1</nowiki>“ не е регистрирана.
 Ве молиме размислете дали навистина сакате да ја создадете/уредите оваа страница.',
-'userpage-userdoesnotexist-view'   => 'Корисничката сметка „$1“ не е регистрирана.',
+'userpage-userdoesnotexist-view'   => 'Корисничката сметка „<nowiki>$1</nowiki>“ не е регистрирана.',
 'blocked-notice-logextract'        => 'Овој корисник е моментално блокиран.
 Подолу е прикажан последниот дневнички запис:',
 'clearyourcache'                   => "'''Напомена: По зачувувањето морате да го исчистите кешот на прелистувачот за да можете ги видите промените.'''

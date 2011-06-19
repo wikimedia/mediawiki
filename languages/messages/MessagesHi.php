@@ -680,8 +680,8 @@ $2',
 'noarticletext-nopermission'       => 'फ़िलहाल इस पन्ने पर कोई सामग्री नहीं है।
 आप अन्य पन्नों में [[Special:Search/{{PAGENAME}}|इस पन्ना शीर्षक की खोज]] कर सकते हैं,
 या <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} संबंधित चिट्ठों में खोज कर सकते हैं] </span>।',
-'userpage-userdoesnotexist'        => 'सदस्य खाता "$1" पंजिकृत नहीं हैं । कृपया यह लेख आप संपादित अथवा निर्मित करना चाहते हैं इसकी जाँच करें ।',
-'userpage-userdoesnotexist-view'   => 'सदस्य "$1" पंजीकृत नहीं है',
+'userpage-userdoesnotexist'        => 'सदस्य खाता "<nowiki>$1</nowiki>" पंजिकृत नहीं हैं । कृपया यह लेख आप संपादित अथवा निर्मित करना चाहते हैं इसकी जाँच करें ।',
+'userpage-userdoesnotexist-view'   => 'सदस्य "<nowiki>$1</nowiki>" पंजीकृत नहीं है',
 'blocked-notice-logextract'        => 'यह सदस्य फ़िलहाल अवरोधित हैं। सदंर्भ के लिए ताज़ातरीन अवरोध चिट्ठा प्रविष्टि नीचे है:',
 'clearyourcache'                   => "'''ध्यान दें - सँजोने के बाद बदलाव देखने के लिए आपको अपने विचरक की संचिका खाली करने पड़ सकती है।'''
 

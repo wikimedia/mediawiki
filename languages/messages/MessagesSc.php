@@ -533,9 +533,9 @@ Si ses intradu inoghe pro sbàlliu, carca in su browser tuo su butone '''back/in
 'anontalkpagetext'                 => "----''Custa est sa pàgina de cuntierra de unu usuàriu anònimu ki no at creadu unu account galu, o ki non dd'usat. Pro custu impreamus su nùmeru de indiritzos IP pro ddu identificare. Is indiritzos IP podent però èsser cundivìdidos dae unos cantos usuàrios. Si ses unu usuàriu anònimu e ritenes ki custos cummentos non sunt diretos a tue, pro praxere [[Special:UserLogin/signup|crea unu account]] o [[Special:UserLogin|identifica·ti (log in)]] pro evitare cunfusione cun àteros usuàrios anònimos.''",
 'noarticletext'                    => 'In custu momentu sa pàgina est bùida.
 Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chircare in is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
-'userpage-userdoesnotexist'        => 'S\'account de s\'usuàriu "$1" no est stadu registradu.
+'userpage-userdoesnotexist'        => 'S\'account de s\'usuàriu "<nowiki>$1</nowiki>" no est stadu registradu.
 Pro praxere abbàida si boles creare/acontzare custa pàgina.',
-'userpage-userdoesnotexist-view'   => 'S\'account de s\'usuàriu "$1" no est stadu registradu.',
+'userpage-userdoesnotexist-view'   => 'S\'account de s\'usuàriu "<nowiki>$1</nowiki>" no est stadu registradu.',
 'updated'                          => '(Agiornadu)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Regorda·ti ca custa est feti una ANTIPRIMA. Is mudàntzias tuas non sunt galu sarbadas!'''",

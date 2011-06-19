@@ -817,8 +817,8 @@ Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang t
 'noarticletext-nopermission'       => 'Tiada teks dalam laman ini ketika ini.
 Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman lain,
 atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log yang berkaitan]</span>.',
-'userpage-userdoesnotexist'        => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
-'userpage-userdoesnotexist-view'   => 'Akaun pengguna "$1" tidak berdaftar.',
+'userpage-userdoesnotexist'        => 'Akaun pengguna "<nowiki>$1</nowiki>" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
+'userpage-userdoesnotexist-view'   => 'Akaun pengguna "<nowiki>$1</nowiki>" tidak berdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang disekat.
 Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''

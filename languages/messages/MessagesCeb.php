@@ -535,7 +535,7 @@ Kon miabot ka dinhi pinaagi sa usa ka sayop, palihog tuploka ang back nga tuplok
 'noarticletext'                    => 'Sa kasamtangan walay sulod nga teksto ang kining panid.
 Puyde nimong  [[Special:Search/{{PAGENAME}}|pangitaon kining titulo sa panid]] sa ubang mga panid, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pangitaa ang related nga mga log],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} usba kining panid]</span>.',
-'userpage-userdoesnotexist'        => 'Ang akawnt sa tiggamit nga "$1" wala marehistro. Palihug tan-awa kon buot nimong himoon/usbon ang kining panid.',
+'userpage-userdoesnotexist'        => 'Ang akawnt sa tiggamit nga "<nowiki>$1</nowiki>" wala marehistro. Palihug tan-awa kon buot nimong himoon/usbon ang kining panid.',
 'previewnote'                      => "'''Hinumdomi nga kini usa lang ka paunang tan-aw; wala pa matipigi ang imong giusab!'''",
 'editing'                          => 'Nagausab sa $1',
 'editingsection'                   => 'Nagausab sa $1 (bahin)',

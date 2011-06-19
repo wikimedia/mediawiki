@@ -652,8 +652,8 @@ Awak dapek [[Special:Search/{{PAGENAME}}|mancari judul laman ko]] pado laman lai
 atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} suntiang laman ko]</span>.',
 'noarticletext-nopermission'       => 'Kini ko indak ado teks dalam laman iko.
 Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancaharian untuak judul laman iko]] di laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mancahari log takaik], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} manyuntiang laman iko]</span>.',
-'userpage-userdoesnotexist'        => 'Akun pangguno "$1" indak tadafta.',
-'userpage-userdoesnotexist-view'   => 'Pangguno "$1" indak tadafta.',
+'userpage-userdoesnotexist'        => 'Akun pangguno "<nowiki>$1</nowiki>" indak tadafta.',
+'userpage-userdoesnotexist-view'   => 'Pangguno "<nowiki>$1</nowiki>" indak tadafta.',
 'blocked-notice-logextract'        => 'Pangguno iko sadang diblokir.
 Entri log pamblokiran tabaharu iko disadioan di bawah iko untuak referensi:',
 'clearyourcache'                   => "'''Catatan:''' Sasudah manyimpan preferensi, Sanak mungkin paralu mambarasiahan singgahan panjalajah web Sanak untuak maliek parubahan. '''Mozilla / Firefox / Safari:''' takan ''Ctrl-R'' (''Cmd-R'' pada Macintosh);

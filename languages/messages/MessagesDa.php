@@ -811,8 +811,8 @@ eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
 'noarticletext-nopermission'       => 'Der er i øjeblikket ikke noget tekst på denne side.
 Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} se de relaterede loglister]</span>.',
-'userpage-userdoesnotexist'        => 'Brugerkontoen "$1" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
-'userpage-userdoesnotexist-view'   => 'Brugerkontoen "$1" er ikke oprettet.',
+'userpage-userdoesnotexist'        => 'Brugerkontoen "<nowiki>$1</nowiki>" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
+'userpage-userdoesnotexist-view'   => 'Brugerkontoen "<nowiki>$1</nowiki>" er ikke oprettet.',
 'blocked-notice-logextract'        => 'Denne bruger er i øjeblikket blokeret.
 Loggen over den seneste blokering ses nedenfor:',
 'clearyourcache'                   => "'''Bemærk: Efter at have gemt er du nødt til at tømme din browsers cache for at kunne se ændringerne.'''

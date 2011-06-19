@@ -656,8 +656,8 @@ $2',
 'noarticletext-nopermission'       => 'Хәҙерге ваҡытта был биттә текст юҡ.
 Һеҙ башҡа мәҡәләләрҙә [[Special:Search/{{PAGENAME}}|был исемде]] йәки
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ.</span>',
-'userpage-userdoesnotexist'        => '«$1» иҫәп яҙыуы юҡ. Һеҙ бындай бит яһарға йәки битте үҙгәртергә теләһәгеҙ яңынан тикшерегеҙ.',
-'userpage-userdoesnotexist-view'   => '«$1» исемле иҫәп яҙыуы юҡ.',
+'userpage-userdoesnotexist'        => '«<nowiki>$1</nowiki>» иҫәп яҙыуы юҡ. Һеҙ бындай бит яһарға йәки битте үҙгәртергә теләһәгеҙ яңынан тикшерегеҙ.',
+'userpage-userdoesnotexist-view'   => '«<nowiki>$1</nowiki>» исемле иҫәп яҙыуы юҡ.',
 'blocked-notice-logextract'        => 'Хәҙергә был ҡатнашыусы ябылған. Һуңғы ҡулланыусы ябыу яҙмаһы:',
 'clearyourcache'                   => "'''Иҫкәрмә:''' Битте һаҡлағандан һуң үҙгәртеүҙерегеҙ күренһен өсөн браузерығыҙҙың кэшын таҙартығыҙ.
 Быны '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''Safari''': ''Cmd+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Konqueror''': ''F5'', '''Opera''': ''Tools→Preferences'' аша эшләп була.",

@@ -574,8 +574,8 @@ $2',
 'noarticletext'                    => '箇只页面目前呒没内容。侬可以垃拉其他页面高头[[Special:Search/{{PAGENAME}}|搜索此页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑此页]。</span>',
 'noarticletext-nopermission'       => '箇只页面目前呒没内容，侬可以垃拉其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
-'userpage-userdoesnotexist'        => '用户账户“$1”弗曾创建。请垃拉创建／编辑迭个页面前头先检查一记。',
-'userpage-userdoesnotexist-view'   => '用户账户“$1”弗曾创建。',
+'userpage-userdoesnotexist'        => '用户账户“<nowiki>$1</nowiki>”弗曾创建。请垃拉创建／编辑迭个页面前头先检查一记。',
+'userpage-userdoesnotexist-view'   => '用户账户“<nowiki>$1</nowiki>”弗曾创建。',
 'blocked-notice-logextract'        => '箇位用户箇歇畀封锁垃许。
 下头有最近个封锁纪录以供参考：',
 'clearyourcache'                   => "'''注意：垃拉保存之后，侬必须清除浏览器个缓存再好看见所作出个改变。'''

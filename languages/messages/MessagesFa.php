@@ -1089,9 +1089,9 @@ $2
 'noarticletext-nopermission'       => 'در حال حاضر این صفحه متنی ندارد.
 شما می‌توانید در دیگر صفحه‌ها [[Special:Search/{{PAGENAME}}|دنبال عنوان این صفحه بگردید]]،
 یا <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} سیاهه‌های مرتبط را جستجو کنید]</span>.',
-'userpage-userdoesnotexist'        => 'حساب کاربر «$1» ثبت نشده است.
+'userpage-userdoesnotexist'        => 'حساب کاربر «<nowiki>$1</nowiki>» ثبت نشده است.
 اطمینان حاصلی کنید که می‌خواهید این صفحه را ایجاد یا ویرایش کنید.',
-'userpage-userdoesnotexist-view'   => 'حساب کاربری «$1» ثبت نشده‌است.',
+'userpage-userdoesnotexist-view'   => 'حساب کاربری «<nowiki>$1</nowiki>» ثبت نشده‌است.',
 'blocked-notice-logextract'        => 'دسترسی این کاربر در حال حاضر بسته است.
 آخرین مورد سیاهه قطع دسترسی در زیر آمده‌است:',
 'clearyourcache'                   => "'''نکته: پس از ذخیره‌سازی ممکن است برای دیدن تغییرات نیاز باشد که حافظهٔ نهانی مرورگر خود را خالی کنید.'''

@@ -985,9 +985,9 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]か、
 もしくは、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
 'noarticletext-nopermission'       => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]</span>ことができます。',
-'userpage-userdoesnotexist'        => '「$1」という名前のアカウントは登録されていません。
+'userpage-userdoesnotexist'        => '「<nowiki>$1</nowiki>」という名前のアカウントは登録されていません。
 このページを編集することが適切かどうか確認してください。',
-'userpage-userdoesnotexist-view'   => '利用者アカウント「$1」は登録されていません。',
+'userpage-userdoesnotexist-view'   => '利用者アカウント「<nowiki>$1</nowiki>」は登録されていません。',
 'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
 参考のために最新のブロック記録を以下に表示します。',
 'clearyourcache'                   => "'''注意：'''保存した後、変更を確認するには、ブラウザのキャッシュをクリアする必要があります。'''

@@ -643,9 +643,9 @@ Ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpap
 'noarticletext-nopermission'       => 'Wano tewali kyawandikidwawo.<br />
 Ky\'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula ndala oba
 oyinza <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} okukinoonyeza mu nkalala z\'ebifuddeyo ebyekuusana nakyo]</span>.',
-'userpage-userdoesnotexist'        => 'Akawunti y\'obwamemba "$1" teri mu nkalala za wiki eno.<br />
+'userpage-userdoesnotexist'        => 'Akawunti y\'obwamemba "<nowiki>$1</nowiki>" teri mu nkalala za wiki eno.<br />
 Sooka okakase oba ddala oyagala okukolawo olupapula olupya luno.',
-'userpage-userdoesnotexist-view'   => 'Tewali akawunti ey\'obwamemba "$1".',
+'userpage-userdoesnotexist-view'   => 'Tewali akawunti ey\'obwamemba "<nowiki>$1</nowiki>".',
 'blocked-notice-logextract'        => "Memba ono mu kaakano agaanidwa.<br />
 Bino ebiddako bye ebikwata ku nsonga eyo mu lukalala lw'ebifuddeyo mu by'okugaana:",
 'clearyourcache'                   => "'''Genderera:''' Bw'omala okubaako by'okaza, kiyinza okukwetaagisa okumala<br />

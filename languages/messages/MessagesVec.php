@@ -742,8 +742,8 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'noarticletext-nopermission'       => 'In sto momento no ghe xe nissun testo su sta pagina.
 Te pol [[Special:Search/{{PAGENAME}}|sercar el titolo de sta pagina]] in altre pagine,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sercar in tei registri ligà a sta pagina]</span>.',
-'userpage-userdoesnotexist'        => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
-'userpage-userdoesnotexist-view'   => 'L\'utensa "$1" no la xe gnancora registrà.',
+'userpage-userdoesnotexist'        => 'L\'account "<nowiki>$1</nowiki>" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
+'userpage-userdoesnotexist-view'   => 'L\'utensa "<nowiki>$1</nowiki>" no la xe gnancora registrà.',
 'blocked-notice-logextract'        => "Sto utente xè atualmente blocà.
 L'ultimo ełemento del rejistro de i blochi xè riportà de seguito par informasion:",
 'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",

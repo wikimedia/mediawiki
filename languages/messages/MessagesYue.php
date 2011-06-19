@@ -737,8 +737,8 @@ $1',
 或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一版]</span>。',
 'noarticletext-nopermission'       => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，
 或者<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搵有關嘅日誌]</span>。',
-'userpage-userdoesnotexist'        => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
-'userpage-userdoesnotexist-view'   => '用戶戶口"$1"重未開。',
+'userpage-userdoesnotexist'        => '用戶戶口"<nowiki>$1</nowiki>"重未開。請響䦒／編輯呢版之前先檢查一下。',
+'userpage-userdoesnotexist-view'   => '用戶戶口"<nowiki>$1</nowiki>"重未開。',
 'blocked-notice-logextract'        => '呢位用戶而家被封鎖緊。
 下面有最近嘅封鎖紀錄以供參考：',
 'clearyourcache'                   => "'''注意：喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''

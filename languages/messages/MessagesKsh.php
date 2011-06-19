@@ -926,8 +926,8 @@ domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere nam
 'noarticletext-nopermission'       => 'Op dä Sigg es em Momang nix drop.
 Do kanns noh däm Tittel vun heh dä Sigg [[Special:Search/{{PAGENAME}}|em Tex op ander Sigge söhke]],
 udder en dä zopaß <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbööscher nohloore]</span>.',
-'userpage-userdoesnotexist'        => 'Enne Metmaacher „$1“ hammer nit, beß De secher, dat De die Metmaachersigg ändere oder aanläje wellss?.',
-'userpage-userdoesnotexist-view'   => 'Ene Metmaacher mem Naame „$1“ hät sesch noch nih aanjemeldt',
+'userpage-userdoesnotexist'        => 'Enne Metmaacher „<nowiki>$1</nowiki>“ hammer nit, beß De secher, dat De die Metmaachersigg ändere oder aanläje wellss?.',
+'userpage-userdoesnotexist-view'   => 'Ene Metmaacher mem Naame „<nowiki>$1</nowiki>“ hät sesch noch nih aanjemeldt',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dä Metmaacher|Dat|Dä Metmaacher|Die Metmaacheren|Et}} es jraad jesperrt.
 Heh kütt der neuste Enndraach drövver uss_em Logbooch övver et Metmaacher_Sperre:',
 'clearyourcache'                   => "<br clear=\"all\" style=\"clear:both\">

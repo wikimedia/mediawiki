@@ -639,8 +639,8 @@ Du koast dissen Tittel ap do uur Sieden [[Special:Search/{{PAGENAME}}|säike]],
 'noarticletext-nopermission'       => 'Der is apstuuns noch naan Text ap disse Siede.
 Du koast dissen Tittel ap do uur Sieden [[Special:Search/{{PAGENAME}}|säike]]
 of <span class="plainlinks">in do touheerige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbouke säike].</span>',
-'userpage-userdoesnotexist'        => 'Dät Benutserkonto „$1“ is nit deer. Pröif, of du disse Siede wuddelk moakje/beoarbaidje wolt.',
-'userpage-userdoesnotexist-view'   => 'Benutserkonto „$1“ bestoant nit.',
+'userpage-userdoesnotexist'        => 'Dät Benutserkonto „<nowiki>$1</nowiki>“ is nit deer. Pröif, of du disse Siede wuddelk moakje/beoarbaidje wolt.',
+'userpage-userdoesnotexist-view'   => 'Benutserkonto „<nowiki>$1</nowiki>“ bestoant nit.',
 'blocked-notice-logextract'        => 'Dissen Benutser is apstuuns speerd.
 Foar Information foulget n aktuellen Iendraach uut dät Benutser-Logbouk:',
 'clearyourcache'                   => "'''Bemäärkenge: Ätter dät Fäästlääsen kon dät nöödich weese, dän Browser-Cache loostoumoakjen, uum do Annerengen sjo tou konnen.'''

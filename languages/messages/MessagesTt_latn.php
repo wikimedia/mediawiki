@@ -681,8 +681,8 @@ yäki '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} şuşındıy isemle yaña bit
 'noarticletext-nopermission'       => 'Xäzerge waqıtta bu bittä tekst yuq.
 Sez [[Special:Search/{{PAGENAME}}|bu isem kergän başqa mäqälälärne]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} köndäleklärdäge yazmalarnı] taba alasız.</span>',
-'userpage-userdoesnotexist'        => '«$1» isemle xisap yazması yuq. Sez çınlap ta bu bitne yasarğa yäisä üzgärtergä telisezme?',
-'userpage-userdoesnotexist-view'   => '"$1" isemle xisap yazması yuq.',
+'userpage-userdoesnotexist'        => '«<nowiki>$1</nowiki>» isemle xisap yazması yuq. Sez çınlap ta bu bitne yasarğa yäisä üzgärtergä telisezme?',
+'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" isemle xisap yazması yuq.',
 'blocked-notice-logextract'        => 'Bu qullanuçı xäzergä tıyıldı.
 Tübändä tıyu köndälegeneñ soñğı yazu birelgän:',
 'clearyourcache'                   => "'''İskärmä:''' Bitne saqlağannan soñ üzgärtülär kürensen öçen brauzerığıznıñ keşın çistartığız.

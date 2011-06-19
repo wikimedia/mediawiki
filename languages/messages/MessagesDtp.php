@@ -631,9 +631,9 @@ toi [{{fullurl:{{FULLPAGENAME}}|action=edit}} mongidit bolikon diti]</span>.',
 'noarticletext-nopermission'       => 'Maso po do ingaa tik id bolikon diti.
 Milo ko nogi do [[Special:Search/{{PAGENAME}}|mogihum do tuluhon bolikon diti]] id bolikon suai, toi
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mogihum kokomoi log-log] </span>.',
-'userpage-userdoesnotexist'        => 'Akaun momomoguno "$1" awu nokorijisto.
+'userpage-userdoesnotexist'        => 'Akaun momomoguno "<nowiki>$1</nowiki>" awu nokorijisto.
 Mangai intangai nung mumang ko pomonsoi/mongidit do bolikon diti.',
-'userpage-userdoesnotexist-view'   => 'Akaun momomoguno "$1" awu po nokorijisto.',
+'userpage-userdoesnotexist-view'   => 'Akaun momomoguno "<nowiki>$1</nowiki>" awu po nokorijisto.',
 'blocked-notice-logextract'        => 'Maso do nantaban momomoguno diti.
 Riporon id siriba kokomoi nantaban di tohuri no:',
 'clearyourcache'                   => "'''Soroho: Opongoh do pogompi, mangai  pawayao dangkob pogigihumnu do mongintong di nopingalanan.'''

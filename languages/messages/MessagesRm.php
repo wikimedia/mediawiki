@@ -643,9 +643,9 @@ u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina]</span>.',
 'noarticletext-nopermission'       => 'Questa pagina cuntegna actualmain nagin text.
 Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in\'autra pagina,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tschertgar en ils logs]</span>.',
-'userpage-userdoesnotexist'        => 'Il conto d\'utilisader "$1" n\'èxista betg.
+'userpage-userdoesnotexist'        => 'Il conto d\'utilisader "<nowiki>$1</nowiki>" n\'èxista betg.
 Controllescha sch ti vuls propi crear/modiftgar questa pagina.',
-'userpage-userdoesnotexist-view'   => 'Il conto d\'utilisader "$1" n\'exista betg.',
+'userpage-userdoesnotexist-view'   => 'Il conto d\'utilisader "<nowiki>$1</nowiki>" n\'exista betg.',
 'blocked-notice-logextract'        => "Quai utilisader è bloccà actualmain. 
 L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
 'clearyourcache'                   => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.

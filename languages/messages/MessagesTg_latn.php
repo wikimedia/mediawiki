@@ -529,7 +529,7 @@ Agar az sababi xatogī va jo iştiboh omaded, tugmai '''Ba oqib'''-ro dar brauze
 Şumo metavoned dar digar sahifaho [[Special:Search/{{PAGENAME}}|unvoni in sahifaro çustuçū kuned]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guzorişhoi aloqamandro çustuçū namoed],
 jo [{{fullurl:{{FULLPAGENAME}}|action=edit}} in sahifaro viroiş kuned]</span>.',
-'userpage-userdoesnotexist'        => 'Hisobi korbar "$1" sabt naşudaast. Itminon hosil kuned ki mexohed in sahifaro ecod jo viroiş kuned.',
+'userpage-userdoesnotexist'        => 'Hisobi korbar "<nowiki>$1</nowiki>" sabt naşudaast. Itminon hosil kuned ki mexohed in sahifaro ecod jo viroiş kuned.',
 'usercssyoucanpreview'             => "'''Ezoh:''' Peş parvandai CSS jo JS xudro zaxira kuned, bo istifoda az tugmai \"Peşnamoiş\" metavoned onro ozmoiş kuned.",
 'userjsyoucanpreview'              => "'''Ezoh:''' Peş parvandai CSS jo JS xudro zaxira kuned, bo istifoda az tugmai \"Peşnamoiş\" metavoned onro ozmoiş kuned.",
 'userjspreview'                    => "'''Faromūş nakuned, ki şumo faqat ÇavaSkripti korbariatonro imtihon,peşnamoiş karda istodaed va on hanūz zaxira naşudaast!'''",

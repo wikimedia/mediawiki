@@ -832,9 +832,9 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'noarticletext'                    => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v dnevniških zapisih] ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite]</span>.',
 'noarticletext-nopermission'       => 'Na tej strani ni trenutno nobenega besedila.
 Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov te strani]] v drugih straneh, ali <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} poiskati v povezanih dnevniških zapisih]</span>.',
-'userpage-userdoesnotexist'        => 'Uporabniški račun »$1« ni registriran.
+'userpage-userdoesnotexist'        => 'Uporabniški račun »<nowiki>$1</nowiki>« ni registriran.
 Prosimo preverite, ali res želite ustvariti/urediti to stran.',
-'userpage-userdoesnotexist-view'   => 'Uporabniški račun »$1« ni registriran.',
+'userpage-userdoesnotexist-view'   => 'Uporabniški račun »<nowiki>$1</nowiki>« ni registriran.',
 'blocked-notice-logextract'        => 'Ta uporabnik je trenutno blokiran.
 Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 'clearyourcache'                   => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika: '''Mozilla/Safari:''' držite ''Shift'' in kliknite ''Reload'' (ali pritisnite ''Ctrl-Shift-R''), '''Internet Explorer:''' ''Ctrl-F5'', '''Opera/Konqueror:''' ''F5''.",

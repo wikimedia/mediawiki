@@ -691,7 +691,7 @@ Oars kinne jo tebek mei de tebek-knop fan jo blêder.",
 'anontalkpagetext'                 => "----''Dit is de oerlisside fan in ûnbekende meidogger; in meidogger dy't him/har net oanmeld hat. Om't der gjin namme bekend is, wurdt it ynternet-adres brûkt om oan te jaan wa. Mar faak is it sa dat sa'n adres net altyd troch deselde persoan brûkt wurdt. As jo it idee hawwe dat jo as ûnbekende meidogger opmerkings foar in oar krije, dan kinne jo jo [[Special:UserLogin/signup|registrearje]], of jo [[Special:UserLogin|oanmelde]]. Fan in oanmelde meidogger is it ynternet-adres net sichtber, en as oanmelde meidogger krije jo allinnich opmerkings dy't foar josels bedoeld binne.''",
 'noarticletext'                    => 'Der stjit noch gjin tekst op dizze side. Jo kinne
 [[Special:Search/{{PAGENAME}}|hjirboppe nei dy tekst sykje]], of [{{fullurl:{{FULLPAGENAME}}|action=edit}} de side skriuwe].',
-'userpage-userdoesnotexist'        => 'Jo bewurkje in brûkersside fan in brûker dy\'t net bestiet (brûker "$1").
+'userpage-userdoesnotexist'        => 'Jo bewurkje in brûkersside fan in brûker dy\'t net bestiet (brûker "<nowiki>$1</nowiki>").
 Kontrolearje oft jo dizze side wol oanmeitsje/bewurkje wolle.',
 'clearyourcache'                   => "'''Opmerking:''' Nei it fêstlizzen kin it nedich wêze de oerslach fan dyn blêder te leegjen foardat de wizigings te sjen binne.
 

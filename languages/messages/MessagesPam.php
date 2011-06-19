@@ -544,7 +544,7 @@ Nung migkamali kang minta keni, i-click me mu ing '''back''' (mibalik) button ni
 Maliari meng [[Special:Search/{{PAGENAME}}|paintunan ining bansag ning bulung]] kareng aliwang bulung,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} i-edit ing bulung a ini]</span>.',
-'userpage-userdoesnotexist'        => 'E makarehistru ing account ning talagamit (user account) a "$1". Pakilawe mu nung buri meng lalangan o i-edit ing bulung a ini.',
+'userpage-userdoesnotexist'        => 'E makarehistru ing account ning talagamit (user account) a "<nowiki>$1</nowiki>". Pakilawe mu nung buri meng lalangan o i-edit ing bulung a ini.',
 'clearyourcache'                   => "'''Kapabaluan:''' Kaibat mung mig-save, maliari meng lakton ing simpan (cache) ning kekang browser ba mong akit deng miyalilan. '''Mozilla / Firefox / Safari:''' timid me ing ''Shift'' kabang ki-click me ing ''Reload'', o timid me ing ''Ctrl-Shift-R'' (''Cmd-Shift-R'' king Apple Mac); '''IE:''' timid me ing ''Ctrl'' kabang ki-click me ing ''Refresh'', o timid me ing ''Ctrl-F5''; '''Konqueror:''': i-click me mu ing ''Reload'' button, o timid me ing ''F5''; deng talagamit ning '''Opera''', mapaliaring kailangan deng laganas a linisan (i-clear) ing karelang simpan (cache) king ''Tools→Preferences''.",
 'usercssyoucanpreview'             => "'''Tip:''' Gamitan me ing button a 'Pakit ya ing preview' ('Show preview') ba yang subukan ing kekang bayung CSS bayu ka mag-save.",
 'userjsyoucanpreview'              => "'''Tip:''' Gamitan me ing button a 'Pakit ya ing preview' ('Show preview') ba yang subukan ing kekang bayung JS bayu ka mag-save.",

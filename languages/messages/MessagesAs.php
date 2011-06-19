@@ -748,9 +748,9 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'noarticletext-nopermission'       => 'এই পৃষ্ঠাত বৰ্তমান কোনো পাঠ্য নাই ।
 আপুনি আন পৃষ্ঠাত [[Special:Search/{{PAGENAME}}| এই শিৰোণামা অনুসন্ধান কৰিব পাৰে]],
 বা <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} সম্পৰ্কিয় লগ অনুসন্ধান কৰিব পাৰে ।]</span>',
-'userpage-userdoesnotexist'        => '"$1" নামৰ সদস্য একাউন্ট নিবন্ধিত নহয় ।
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" নামৰ সদস্য একাউন্ট নিবন্ধিত নহয় ।
 অনুগ্ৰ কৰি চাওক আপুনি এই পৃষ্ঠা সৃষ্টি/সম্পাদনা কৰিব বিচাৰিছে নেকি ।',
-'userpage-userdoesnotexist-view'   => "সনস্য একাউন্ট ''$1'' পঞ্জীভূত নহয়",
+'userpage-userdoesnotexist-view'   => "সনস্য একাউন্ট ''<nowiki>$1</nowiki>'' পঞ্জীভূত নহয়",
 'blocked-notice-logextract'        => "বৰ্তমানে এই সদস্যক বাৰণ কৰা হৈছে ।
 প্ৰসংগক্ৰমে সাম্প্ৰতিক বাৰণ সূচি তলত দিয়া হ'ল ।",
 'clearyourcache'                   => "'''টোকা: সাঁচি ৰখাৰ পিছত পৰিৱৰ্তনখিনি চাবৰ বাবে আপুনি আপোনাৰ ব্ৰাউজাৰৰ cache অগ্ৰাহ্য কৰিব লগা হ’ব পাৰে |'''

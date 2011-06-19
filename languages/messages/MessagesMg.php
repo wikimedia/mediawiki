@@ -849,8 +849,8 @@ Azonao atao ny [[Special:Search/{{PAGENAME}}||Tadiavo ny momba ny {{PAGENAME}}]]
 'noarticletext-nopermission'       => "Mbola tsy misy lahatsoratra ao amin'io pejy io.
 
 Azonao atao ny [[Special:Search/{{PAGENAME}}|Mikaroka momba ny lohatenin'io pejy io]] ao amin'ny pejy hafa, mitady <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} anatin'ny laogy mikasika azy]</span>",
-'userpage-userdoesnotexist'        => 'Mbola tsy nisoratra anarana ato i « $1 ». Marino raha tena hamorona ity pejy ity ianao.',
-'userpage-userdoesnotexist-view'   => 'Tsy nisoratra anarana ato i « $1 ».',
+'userpage-userdoesnotexist'        => 'Mbola tsy nisoratra anarana ato i « <nowiki>$1</nowiki> ». Marino raha tena hamorona ity pejy ity ianao.',
+'userpage-userdoesnotexist-view'   => 'Tsy nisoratra anarana ato i « <nowiki>$1</nowiki> ».',
 'blocked-notice-logextract'        => "Ankehitriny ity mpikambana ity dia voasakana.
 Ny fampidirana faran'ny laogin'ny fanakanam-pikambana dia naseho teo ambany ho an'ny fampahalalàna :",
 'clearyourcache'                   => "'''Fanamarihana:''' Aorian'ny fanovana, dia mila mamafa ny cache ianao vao mahita ny fiovana.

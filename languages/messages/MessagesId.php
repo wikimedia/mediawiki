@@ -954,8 +954,8 @@ Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komenta
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
 'noarticletext-nopermission'       => 'Saat ini tidak ada teks di halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
-'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
-'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
+'userpage-userdoesnotexist'        => 'Akun pengguna "<nowiki>$1</nowiki>" tidak terdaftar.',
+'userpage-userdoesnotexist-view'   => 'Pengguna "<nowiki>$1</nowiki>" tidak terdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda mungkin perlu membersihkan singgahan penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-R'' (''Cmd-R'' pada Macintosh);

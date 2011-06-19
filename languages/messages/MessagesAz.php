@@ -662,9 +662,9 @@ və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ed�
 'noarticletext-nopermission'       => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} baxa],
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
-'userpage-userdoesnotexist'        => '"$1" istifadəçi adı qeydiyyata alınmayıb.
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" istifadəçi adı qeydiyyata alınmayıb.
 Əgər siz bu səhifəni yaratmaq/redaktə etmək istəyirsinizsə, xahiş edirik bunu yoxlayın.',
-'userpage-userdoesnotexist-view'   => '"$1" istifadəçi hesabı qeydiyyatda deyil',
+'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" istifadəçi hesabı qeydiyyatda deyil',
 'blocked-notice-logextract'        => 'Bu istifadəçi hal-hazırda bloklanmışdır.
 Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'usercssyoucanpreview'             => "'''İpucu:''' Qeyd etmədən əvvəl \"{{int:showpreview}}\"ə klikləyərək yeni CSSinizi yoxlayın.",

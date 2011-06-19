@@ -551,7 +551,7 @@ $messages = array(
 'searcharticle'     => 'Seite',
 'history'           => 'Versionen',
 'history_short'     => 'Versionen/Autoren',
-'updatedmarker'     => 'geändert seit meinem letzten Besuch',
+'updatedmarker'     => 'Änderung seit meinem letzten Besuch',
 'info_short'        => 'Information',
 'printableversion'  => 'Druckversion',
 'permalink'         => 'Permanenter Link',
@@ -996,8 +996,8 @@ oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page=
 'noarticletext-nopermission'       => 'Diese Seite enthält momentan noch keinen Text.
 Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
 oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span>',
-'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
-'userpage-userdoesnotexist-view'   => 'Das Benutzerkonto „$1“ existiert nicht.',
+'userpage-userdoesnotexist'        => 'Das Benutzerkonto „<nowiki>$1</nowiki>“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
+'userpage-userdoesnotexist-view'   => 'Das Benutzerkonto „<nowiki>$1</nowiki>“ existiert nicht.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
 Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' auf dem Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
@@ -2032,7 +2032,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'double-redirect-fixed-maintenance' => 'Bereinigung der doppelten Weiterleitung von [[$1]] nach [[$2]].',
 'double-redirect-fixer'             => 'RedirectBot',
 
-'brokenredirects'        => 'Kaputte Weiterleitungen',
+'brokenredirects'        => 'Defekte Weiterleitungen',
 'brokenredirectstext'    => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Seiten auf.',
 'brokenredirects-edit'   => 'bearbeiten',
 'brokenredirects-delete' => 'löschen',
@@ -2071,13 +2071,13 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'mostlinked'              => 'Häufig verlinkte Seiten',
 'mostlinkedcategories'    => 'Meistbenutzte Kategorien',
 'mostlinkedtemplates'     => 'Meistbenutzte Vorlagen',
-'mostcategories'          => 'Meistkategorisierte Seiten',
+'mostcategories'          => 'Seiten mit den meisten Kategorien',
 'mostimages'              => 'Meistbenutzte Dateien',
 'mostrevisions'           => 'Seiten mit den meisten Versionen',
 'prefixindex'             => 'Alle Seiten (mit Präfix)',
 'shortpages'              => 'Kurze Seiten',
 'longpages'               => 'Lange Seiten',
-'deadendpages'            => 'Sackgassenseiten',
+'deadendpages'            => 'Nicht verlinkende Seiten',
 'deadendpagestext'        => 'Die folgenden Seiten verweisen nicht auf andere Seiten von {{SITENAME}}.',
 'protectedpages'          => 'Geschützte Seiten',
 'protectedpages-indef'    => 'Nur unbeschränkt geschützte Seiten zeigen',
@@ -2173,7 +2173,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'listusers-blocked'  => '(gesperrt)',
 
 # Special:ActiveUsers
-'activeusers'            => 'Liste aktiver Benutzer',
+'activeusers'            => 'Aktive Benutzer',
 'activeusers-intro'      => 'Dies ist eine Liste von Benutzern, die innerhalb {{PLURAL:$1|des letzten Tages|der letzten $1 Tage}} Aktivitäten aufwiesen.',
 'activeusers-count'      => '$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}} in den {{PLURAL:$3|letzten 24 Stunden|vergangenen $3 Tagen}}',
 'activeusers-from'       => 'Zeige Benutzer ab:',

@@ -545,9 +545,9 @@ Se vu esas hike erore, kliktez sur la butono por retrovenar en vua navigilo.',
 Vu povas [[Special:Search/{{PAGENAME}}|serchar ica titulo]] en altra pagini,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchar en la relata registri],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktar ica pagino]</span>.',
-'userpage-userdoesnotexist'        => 'Uzanto-nomo "$1" no registragesis.
+'userpage-userdoesnotexist'        => 'Uzanto-nomo "<nowiki>$1</nowiki>" no registragesis.
 Voluntez konfirmez se vu volas krear/redaktar ica pagino.',
-'userpage-userdoesnotexist-view'   => 'Uzanto-nomo "$1" no registragesis.',
+'userpage-userdoesnotexist-view'   => 'Uzanto-nomo "<nowiki>$1</nowiki>" no registragesis.',
 'clearyourcache'                   => "'''Atencez: Pos registragar, vu probable mustas renovigar la tempala-magazino di vua navigilo por vidar la chanji.'''
 '''Mozilla / Firefox / Safari:''' tenez ''Shift'' kliktante ''Reload'', o presez sive  ''Ctrl-F5'' sive ''Ctrl-R'' (''Command-R'' ye Macintosh);
 '''Konqueror''': kliktez ''Reload'' o presez ''F5'';

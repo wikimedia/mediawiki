@@ -802,8 +802,8 @@ $2',
 'noarticletext-nopermission'       => 'Хәзерге вакытта бу биттә текст юк.
 Сез [[Special:Search/{{PAGENAME}}|бу исем кергән башка мәкаләләрне]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} көндәлекләрдәге язмаларны] таба аласыз.</span>',
-'userpage-userdoesnotexist'        => '«$1» исемле хисап язмасы юк. Сез чынлап та бу битне ясарга яисә үзгәртергә телисезме?',
-'userpage-userdoesnotexist-view'   => '"$1" исемле хисап язмасы юк.',
+'userpage-userdoesnotexist'        => '«<nowiki>$1</nowiki>» исемле хисап язмасы юк. Сез чынлап та бу битне ясарга яисә үзгәртергә телисезме?',
+'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" исемле хисап язмасы юк.',
 'blocked-notice-logextract'        => 'Бу кулланучы хәзергә тыелды.
 Түбәндә тыю көндәлегенең соңгы язу бирелгән:',
 'clearyourcache'                   => "'''Искәрмә:''' Битне саклаганнан соң үзгәртүләр күренсен өчен браузерыгызның кэшын чистартыгыз.

@@ -665,9 +665,9 @@ $2',
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} بۇ بەتنى تەھرىرلىيەلەيسىز]</span>',
 'noarticletext-nopermission'       => 'بۇ بەتتە ھازىرچە مەزمۇن يوق.
  سىز باشقا بەتتە [[Special:Search/{{PAGENAME}}|بۇ بەتنىڭ ماۋزۇسىنى ئىزدىيەلەيسىز]] ياكى <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}] مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،</span>',
-'userpage-userdoesnotexist'        => '"$1" ئىشلەتكۈچى خەتلەتمىگەن.
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" ئىشلەتكۈچى خەتلەتمىگەن.
 بۇ بەتنى قۇرۇش/تەھرىرلەشتىن ئىلگىرى تەكشۈرۈپ بېقىڭ.',
-'userpage-userdoesnotexist-view'   => '"$1" ئىشلەتكۈچى ھېساباتى خەتلەتمىگەن.',
+'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" ئىشلەتكۈچى ھېساباتى خەتلەتمىگەن.',
 'blocked-notice-logextract'        => 'بۇ ئىشلەتكۈچى نۆۋەتتە چەكلەنگەن.
 پايدىلىنىش ئۈچۈن يېقىنقى تۆۋەندە چەكلەش خاتىرە تۈرلىرى تەمىنلەندى:',
 'clearyourcache'                   => "'''دىققەت - ساقلىغاندىن كېيىن، تور كۆرگۈنىڭ غەملىكىنى تازىلىغاندىن كېيىنلا ئاندىن ئېلىپ بارغان ئۆزگەرتىشنى كۆرەلەيسىز.'''

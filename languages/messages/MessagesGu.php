@@ -765,9 +765,9 @@ Please log in again after you receive it.
 'noarticletext-nopermission'       => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી.
 તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} સંલગ્ન માહિતિ પત્રકોમાં શોધી શકો છો],
 અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરી શકો છો</span>.',
-'userpage-userdoesnotexist'        => 'સભ્ય ખાતું "$1"ની નોંધણીનથી થઈ.
+'userpage-userdoesnotexist'        => 'સભ્ય ખાતું "<nowiki>$1</nowiki>"ની નોંધણીનથી થઈ.
 શું તમે ખરેખર આ પાનાની રચના કે ફેરફાર કરવા માંગો છો',
-'userpage-userdoesnotexist-view'   => 'સભ્યના ખાતા $1 ની નોંધણી નથી થઈ',
+'userpage-userdoesnotexist-view'   => 'સભ્યના ખાતા <nowiki>$1</nowiki> ની નોંધણી નથી થઈ',
 'blocked-notice-logextract'        => 'આ સભ્ય હાલમાં પ્રતિબંધિત છે.
 તમારા નીરીક્ષણ માટે તાજેતરમાં પ્રતિબંધિત થયેલા સભ્યોની યાદિ આપી છે.',
 'clearyourcache'                   => "'''નોંધ : સાચવ્યા પછી, તમારે તમારા બ્રાઉઝરની હંગામી યાદદાશ્તને અદ્યતન કરવી પડશે જેથી તમે સાચવેલા ફેરફાર જોઇ શકો.'''

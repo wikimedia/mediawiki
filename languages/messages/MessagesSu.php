@@ -712,8 +712,8 @@ atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} ngédit ieu kaca]</span>.',
 'noarticletext-nopermission'       => 'Kiwari ieu kaca euweuh eusian.
 Anjeun bisa [[Special:Search/{{PAGENAME}}|milari judul ieu kaca]] di kaca séjén,
 atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pilari log nu tumali]</span>.',
-'userpage-userdoesnotexist'        => 'Rekening pamaké "$1" tacan kadaptar. Mangga tilikan lamun anjeun hoyong ngadamel/ngédit kaca ieu.',
-'userpage-userdoesnotexist-view'   => 'Rekening pamaké "$1" teu aya dina daptar.',
+'userpage-userdoesnotexist'        => 'Rekening pamaké "<nowiki>$1</nowiki>" tacan kadaptar. Mangga tilikan lamun anjeun hoyong ngadamel/ngédit kaca ieu.',
+'userpage-userdoesnotexist-view'   => 'Rekening pamaké "<nowiki>$1</nowiki>" teu aya dina daptar.',
 'blocked-notice-logextract'        => 'Ieu pamaké keur dipeungpeuk.
 Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'clearyourcache'                   => "'''Catetan:''' Sanggeus nyimpen, anjeun perlu ngosongkeun sindangan panyungsi anjeun pikeun nempo parobahanana:

@@ -565,7 +565,7 @@ Si nu quieis crial esti artículu, solu tiinis que pursal nel botón \"'''atrás
 Pueis [[Special:Search/{{PAGENAME}}|landeal el entítulu del artículu]] en otras páhinas,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta]</span>.',
-'userpage-userdoesnotexist'        => 'La cuenta d\'usuáriu "$1" nu está rustria. Pol favol, compreba que rialmenti quieis crial/eital esta páhina.',
+'userpage-userdoesnotexist'        => 'La cuenta d\'usuáriu "<nowiki>$1</nowiki>" nu está rustria. Pol favol, compreba que rialmenti quieis crial/eital esta páhina.',
 'clearyourcache'                   => "'''Nota:''' Aluspués d'emburacal el archivu, ebi gorvel a cargal la página pa vel los chambus. '''Mozilla / Firefox / Safari:''' Pursa la tecra ''Shift'' mentris das a ''Recargal'', u pursa ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' en Macintosh);
 '''Konqueror:''' Pursa ''F5'' u ''Recargal'';
 '''Opera:''' Esborra el caché en ''Herramientas→Preferéncias''.

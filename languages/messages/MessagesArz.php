@@ -902,8 +902,8 @@ $2',
 'noarticletext-nopermission'       => 'مفيش اى نص دلوقتى فى الصفحه دى.
 ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه دى]] فى الصفحات التانيه,
 او <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات بتاعتها]</span>.',
-'userpage-userdoesnotexist'        => 'حساب اليوزر "$1" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
-'userpage-userdoesnotexist-view'   => 'حساب اليوزر "$1" مش متسجل',
+'userpage-userdoesnotexist'        => 'حساب اليوزر "<nowiki>$1</nowiki>" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
+'userpage-userdoesnotexist-view'   => 'حساب اليوزر "<nowiki>$1</nowiki>" مش متسجل',
 'blocked-notice-logextract'        => 'اليوزر ده معمول له بلوك دلوقتى.
 اخر بلوك فى السجل موجود تحت للمراجعه:',
 'clearyourcache'                   => "'''ملاحظة - بعد التسييف,  يمكن لازم تفرغ كاش متصفحك علشان تشوف التغييرات.''' '''موزيللا / فايرفوكس / سافارى:''' دوس على ''Shift'' فى نفس الوقت دوس على ''Reload,'' أو دوس على اما ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''دوس على ''Reload'' أو دوس على ''F5;'' '''أوبرا:''' فرغ الكاش فى ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' دوس على ''Ctrl'' فى نفس الوقت دوس على ''Refresh,'' أو دوس على ''Ctrl-F5.''",

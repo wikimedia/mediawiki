@@ -672,8 +672,8 @@ IP-аадырыһа эрэ көстөр.
 'noarticletext-nopermission'       => 'Билигин бу сирэй кураанах.
 Бу [[Special:Search/{{PAGENAME}}|тылы атын сирэйдэргэ көрдөөн көрүөххүн]] сөп,
 эбэтэр <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} сурунаалларга манна сыһыаннаах суруктары булуоххун сөп].</span>',
-'userpage-userdoesnotexist'        => '"$1" аат бэлиэтэммэтэх. Бу сирэйи оҥорор/уларытар баҕалааххын дуо?',
-'userpage-userdoesnotexist-view'   => '"$1" кыттааччы аата бэлиэтэниллибэтэх.',
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" аат бэлиэтэммэтэх. Бу сирэйи оҥорор/уларытар баҕалааххын дуо?',
+'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" кыттааччы аата бэлиэтэниллибэтэх.',
 'blocked-notice-logextract'        => 'Бу кыттааччы билигин бобуллубут.
 Манна бобуу сурунаалын бүтэһик суруга көстөр:',
 'clearyourcache'                   => "'''Болҕой - Уларыппыт сирэйгин сөпкө көрөргө интэриниэт бырагыраамматын кээһин ыраастаа.''' '''Mozilla / Firefox / Safari:''' ''Shift'' кнопканы тутан туран ''Reload'' баттаа, эбэтэр ''Ctrl-F5'', ''Ctrl-R'' дуу (Macintosh-ка ''Command-R'') баттаа; '''Konqueror: ''' ''Reload'' ''F5'' эбэтэр баттаа;

@@ -931,8 +931,8 @@ $2
 'noarticletext-nopermission'       => 'В настоящее время на этой странице нет текста.
 Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] в других статьях,
 или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].</span>',
-'userpage-userdoesnotexist'        => 'Учётной записи «$1» не существует. Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
-'userpage-userdoesnotexist-view'   => 'Не зарегистрировано учётной записи участника «$1».',
+'userpage-userdoesnotexist'        => 'Учётной записи «<nowiki>$1</nowiki>» не существует. Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
+'userpage-userdoesnotexist-view'   => 'Не зарегистрировано учётной записи участника «<nowiki>$1</nowiki>».',
 'blocked-notice-logextract'        => 'Этот участник в данный момент заблокирован.
 Ниже приведена последняя запись из журнала блокировок:',
 'clearyourcache'                   => "'''Замечание:''' Чтобы после сохранения сделанные изменения вступили в силу, очистите кеш своего браузера: '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Safari''': ''Cmd+Shift+R'', '''Konqueror''': ''F5'', '''Opera''': через меню ''Tools→Preferences''.",

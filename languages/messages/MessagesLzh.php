@@ -617,8 +617,8 @@ $2',
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 纂頁]</span>。',
 'noarticletext-nopermission'       => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]</span>。',
-'userpage-userdoesnotexist'        => '「$1」之簿未增也。請建纂本頁前查之。',
-'userpage-userdoesnotexist-view'   => '「$1」之簿未增也。',
+'userpage-userdoesnotexist'        => '「<nowiki>$1</nowiki>」之簿未增也。請建纂本頁前查之。',
+'userpage-userdoesnotexist-view'   => '「<nowiki>$1</nowiki>」之簿未增也。',
 'blocked-notice-logextract'        => '該簿現鎖也。
 下列之記鎖，以察之：',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
