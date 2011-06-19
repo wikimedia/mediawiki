@@ -937,14 +937,14 @@ CONTROL;
 	 */
 	static function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
 		global $wgBetterDirectionality, $wgTitle;
-		$dirclass = '';
+		$tableClass = 'diff';
 		if( $wgBetterDirectionality ) {
 			// shared.css sets diff in interface language/dir,
 			// but the actual content should be in the page language/dir
 			$pageLang = $wgTitle->getPageLanguage();
-			$dirclass = ' diff-contentalign-'.$pageLang->alignStart();
+			$tableClass .= ' diff-contentalign-' . htmlspecialchars( $pageLang->alignStart() );
 		}
-		$header = "<table class='diff $dirclass'>";
+		$header = "<table class='$tableClass'>";
 		if ( $diff ) { // Safari/Chrome show broken output if cols not used
 			$header .= "
 			<col class='diff-marker' />
