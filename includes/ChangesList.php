@@ -355,7 +355,7 @@ class ChangesList {
 			$articlelink = "<strong class=\"mw-watched\">{$articlelink}</strong>";
 		}
 		# RTL/LTR marker
-		$articlelink .= $wgContLang->getDirMark();
+		$articlelink .= wfUILang()->getDirMark();
 
 		wfRunHooks( 'ChangesListInsertArticleLink',
 			array(&$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched) );
@@ -867,7 +867,7 @@ class EnhancedChangesList extends ChangesList {
 		$users = array();
 		foreach( $userlinks as $userlink => $count) {
 			$text = $userlink;
-			$text .= $wgContLang->getDirMark();
+			$text .= wfUILang()->getDirMark();
 			if( $count > 1 ) {
 				$text .= ' (' . $wgLang->formatNum( $count ) . '×)';
 			}
@@ -909,7 +909,7 @@ class EnhancedChangesList extends ChangesList {
 			$this->insertArticleLink( $r, $block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
 
-		$r .= $wgContLang->getDirMark();
+		$r .= wfUILang()->getDirMark();
 
 		$queryParams['curid'] = $curId;
 		# Changes message
