@@ -1220,9 +1220,9 @@ class User {
 		}
 
 		# Proxy blocking
-		if ( !$this->isAllowed( 'proxyunbannable' ) && !in_array( $ip, $wgProxyWhitelist ) ) {
+		if ( $ip !== null && !$this->isAllowed( 'proxyunbannable' ) && !in_array( $ip, $wgProxyWhitelist ) ) {
 			# Local list
-			if ( wfIsLocallyBlockedProxy( $ip ) ) {
+			if ( self::isLocallyBlockedProxy( $ip ) ) {
 				$this->mBlockedby = wfMsg( 'proxyblocker' );
 				$this->mBlockreason = wfMsg( 'proxyblockreason' );
 			}
@@ -1298,6 +1298,37 @@ class User {
 
 		wfProfileOut( __METHOD__ );
 		return $found;
+	}
+
+	/**
+	 * Check if an IP address is in the local proxy list
+	 * @return bool
+	 */
+	public static function isLocallyBlockedProxy( $ip ) {
+		global $wgProxyList;
+
+		if ( !$wgProxyList ) {
+			return false;
+		}
+		wfProfileIn( __METHOD__ );
+
+		if ( !is_array( $wgProxyList ) ) {
+			# Load from the specified file
+			$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
+		}
+
+		if ( !is_array( $wgProxyList ) ) {
+			$ret = false;
+		} elseif ( array_search( $ip, $wgProxyList ) !== false ) {
+			$ret = true;
+		} elseif ( array_key_exists( $ip, $wgProxyList ) ) {
+			# Old-style flipped proxy list
+			$ret = true;
+		} else {
+			$ret = false;
+		}
+		wfProfileOut( __METHOD__ );
+		return $ret;
 	}
 
 	/**

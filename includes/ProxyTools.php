@@ -179,35 +179,3 @@ function wfProxyCheck() {
 		$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
 	}
 }
-
-/**
- * Check if an IP address is in the local proxy list
- * @return bool
- */
-function wfIsLocallyBlockedProxy( $ip ) {
-	global $wgProxyList;
-
-	if ( !$wgProxyList ) {
-		return false;
-	}
-	wfProfileIn( __METHOD__ );
-
-	if ( !is_array( $wgProxyList ) ) {
-		# Load from the specified file
-		$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
-	}
-
-	if ( !is_array( $wgProxyList ) ) {
-		$ret = false;
-	} elseif ( array_search( $ip, $wgProxyList ) !== false ) {
-		$ret = true;
-	} elseif ( array_key_exists( $ip, $wgProxyList ) ) {
-		# Old-style flipped proxy list
-		$ret = true;
-	} else {
-		$ret = false;
-	}
-	wfProfileOut( __METHOD__ );
-	return $ret;
-}
-
