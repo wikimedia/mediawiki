@@ -612,10 +612,10 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $dbType String A possible DB type
 	 * @param $p Array An array of options to pass to the constructor.
-	 *    Valid options are: host, user, password, dbname, flags, tableprefix
+	 *    Valid options are: host, user, password, dbName, flags, tablePrefix
 	 * @return DatabaseBase subclass or null
 	 */
-	public final static function newFromType( $dbType, $p = array() ) {
+	public final static function factory( $dbType, $p = array() ) {
 		$canonicalDBTypes = array(
 			'mysql', 'postgres', 'sqlite', 'oracle', 'mssql', 'ibm_db2'
 		);
@@ -627,9 +627,9 @@ abstract class DatabaseBase implements DatabaseType {
 				isset( $p['host'] ) ? $p['host'] : false,
 				isset( $p['user'] ) ? $p['user'] : false,
 				isset( $p['password'] ) ? $p['password'] : false,
-				isset( $p['dbname'] ) ? $p['dbname'] : false,
+				isset( $p['dbName'] ) ? $p['dbName'] : false,
 				isset( $p['flags'] ) ? $p['flags'] : 0,
-				isset( $p['tableprefix'] ) ? $p['tableprefix'] : 'get from global'
+				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global'
 			);
 		} else {
 			return null;

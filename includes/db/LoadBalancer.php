@@ -669,7 +669,7 @@ class LoadBalancer {
 
 		# Create object
 		wfDebug( "Connecting to $host $dbname...\n" );
-		$db = DatabaseBase::newFromType( $server['type'], $server );
+		$db = DatabaseBase::factory( $server['type'], $server );
 		if ( $db->isOpen() ) {
 			wfDebug( "Connected to $host $dbname.\n" );
 		} else {

@@ -35,14 +35,14 @@ class ForeignDBRepo extends LocalRepo {
 
 	function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
-			$this->dbConn = DatabaseBase::newFromType( $this->dbType,
+			$this->dbConn = DatabaseBase::factory( $this->dbType,
 				array(
 					'host' => $this->dbServer,
 					'user'   => $this->dbUser,
 					'password' => $this->dbPassword,
-					'dbname' => $this->dbName,
+					'dbName' => $this->dbName,
 					'flags' => $this->dbFlags,
-					'tableprefix' => $this->tablePrefix
+					'tablePrefix' => $this->tablePrefix
 				)
 			);
 		}
