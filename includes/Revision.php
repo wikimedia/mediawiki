@@ -240,14 +240,12 @@ class Revision {
 		$fields[] = 'page_namespace';
 		$fields[] = 'page_title';
 		$fields[] = 'page_latest';
-		$res = $db->select(
+		return $db->select(
 			array( 'page', 'revision' ),
 			$fields,
 			$conditions,
 			__METHOD__,
 			array( 'LIMIT' => 1 ) );
-		$ret = $db->resultObject( $res );
-		return $ret;
 	}
 
 	/**
