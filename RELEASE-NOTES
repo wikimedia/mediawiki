@@ -47,6 +47,8 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 29233) Fixed failover for DB slave servers. When a DB slave went down,
   an error was immediately shown to the user, instead of trying another slave. 
   Was broken since 1.17 beta 1.
+* (bug 29278) server error 500 when attempting to add text to a page via redirect
+  (redirect points to the page and page is edited)
 
 === Changes since 1.17 beta 1 ===
 
@@ -62,7 +64,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * When installing on PostgreSQL and the install account is the same as the web
   account, check to make sure that the account has suitable privileges in the 
   mediawiki schema.
-* (Bug 28172) Fixed error in PostgreSQL installation when creating the wiki 
+* (bug 28172) Fixed error in PostgreSQL installation when creating the wiki 
   sysop account.
 * Fixed an issue with the Oracle installer in cases where the user is different 
   to the database name.
