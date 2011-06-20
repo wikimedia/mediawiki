@@ -37,6 +37,9 @@ class SpecialSearch extends SpecialPage {
 	/// For links
 	protected $extraParams = array();
 
+	/// No idea, apparently used by some other classes
+	protected $mPrefix;
+
 	const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
@@ -84,6 +87,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function load( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
+		$this->mPrefix = $request->getVal( 'prefix', '' );
 
 
 		# Extract manually requested namespaces
@@ -179,6 +183,7 @@ class SpecialSearch extends SpecialPage {
 		$search->setNamespaces( $this->namespaces );
 		$search->showRedirects = $this->searchRedirects; // BC
 		$search->setFeatureData( 'list-redirects', $this->searchRedirects );
+		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm($term);
 
 		wfRunHooks( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
