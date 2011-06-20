@@ -58,7 +58,7 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
-		$result = $this->getResult();
+		$apiResult = $this->getResult();
 
 		if ( $params['redirect'] ) {
 			if ( $titleObj->isRedirect() ) {
@@ -67,7 +67,7 @@ class ApiEditPage extends ApiBase {
 				$titles = Title::newFromRedirectArray( Revision::newFromTitle( $oldTitle )->getText( Revision::FOR_THIS_USER ) );
 				// array_shift( $titles );
 
-				$result->addValue( null, 'foo', $titles );
+				$apiResult->addValue( null, 'foo', $titles );
 
 				$redirValues = array();
 				foreach ( $titles as $id => $newTitle ) {
@@ -84,8 +84,8 @@ class ApiEditPage extends ApiBase {
 					$titleObj = $newTitle;
 				}
 
-				$result->setIndexedTagName( $redirValues, 'r' );
-				$result->addValue( null, 'redirects', $redirValues );
+				$apiResult->setIndexedTagName( $redirValues, 'r' );
+				$apiResult->addValue( null, 'redirects', $redirValues );
 			}
 		}
 
@@ -257,7 +257,7 @@ class ApiEditPage extends ApiBase {
 		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $ep->textbox1, &$r ) ) ) {
 			if ( count( $r ) ) {
 				$r['result'] = 'Failure';
-				$result->addValue( null, $this->getModuleName(), $r );
+				$apiResult->addValue( null, $this->getModuleName(), $r );
 				return;
 			} else {
 				$this->dieUsageMsg( 'hookaborted' );
@@ -266,6 +266,7 @@ class ApiEditPage extends ApiBase {
 
 		// Do the actual save
 		$oldRevId = $articleObj->getRevIdFetched();
+		$result = null;
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
 		$oldRequest = $wgRequest;
@@ -364,7 +365,7 @@ class ApiEditPage extends ApiBase {
 			default:
 				$this->dieUsageMsg( array( 'unknownerror', $retval ) );
 		}
-		$result->addValue( null, $this->getModuleName(), $r );
+		$apiResult->addValue( null, $this->getModuleName(), $r );
 	}
 
 	public function mustBePosted() {
