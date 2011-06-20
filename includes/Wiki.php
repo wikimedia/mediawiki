@@ -444,7 +444,6 @@ class MediaWiki {
 			case 'rollback':
 			case 'protect':
 			case 'unprotect':
-			case 'info':
 			case 'render':
 				$article->$act();
 				break;

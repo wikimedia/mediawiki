@@ -812,7 +812,6 @@ XHTML id names.
 'history'           => 'Page history',
 'history_short'     => 'History',
 'updatedmarker'     => 'updated since my last visit',
-'info_short'        => 'Information',
 'printableversion'  => 'Printable version',
 'permalink'         => 'Permanent link',
 'print'             => 'Print',
@@ -3566,12 +3565,17 @@ This is probably caused by a link to a blacklisted external site.',
 'spam_blanking'       => 'All revisions contained links to $1, blanking',
 
 # Info page
-'infosubtitle'   => 'Information for page',
-'numedits'       => 'Number of edits (page): $1',
-'numtalkedits'   => 'Number of edits (discussion page): $1',
-'numwatchers'    => 'Number of watchers: $1',
-'numauthors'     => 'Number of distinct authors (page): $1',
-'numtalkauthors' => 'Number of distinct authors (discussion page): $1',
+'pageinfo-title'            => 'Information for "$1"',
+'pageinfo-header-edits'     => 'Edits',
+'pageinfo-header-watchlist' => 'Watchlist',
+'pageinfo-header-views'     => 'Views',
+'pageinfo-subjectpage'      => 'Page',
+'pageinfo-talkpage'         => 'Talk page',
+'pageinfo-watchers'         => 'Number of watchers',
+'pageinfo-edits'            => 'Number of edits',
+'pageinfo-authors'          => 'Number of distinct authors',
+'pageinfo-views'            => 'Number of views',
+'pageinfo-viewsperedit'     => 'Views per edit',
 
 # Skin names
 'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it
