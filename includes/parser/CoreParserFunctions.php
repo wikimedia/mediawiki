@@ -269,7 +269,7 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param $user string
+	 * @param $username string
 	 * @return
 	 */
 	static function gender( $parser, $username ) {
