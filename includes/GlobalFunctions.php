@@ -1024,38 +1024,6 @@ function wfMsgForContentNoTrans( $key ) {
 }
 
 /**
- * Get a message from the language file, for the UI elements
- *
- * @deprecated since 1.18; use wfMessage()
- */
-function wfMsgNoDB( $key ) {
-	wfDeprecated( __FUNCTION__ );
-	$args = func_get_args();
-	array_shift( $args );
-	return wfMsgReal( $key, $args, false );
-}
-
-/**
- * Get a message from the language file, for the content
- *
- * @deprecated since 1.18; use wfMessage()
- */
-function wfMsgNoDBForContent( $key ) {
-	wfDeprecated( __FUNCTION__ );
-	global $wgForceUIMsgAsContentMsg;
-	$args = func_get_args();
-	array_shift( $args );
-	$forcontent = true;
-	if( is_array( $wgForceUIMsgAsContentMsg ) &&
-		in_array( $key,	$wgForceUIMsgAsContentMsg ) )
-	{
-		$forcontent = false;
-	}
-	return wfMsgReal( $key, $args, false, $forcontent );
-}
-
-
-/**
  * Really get a message
  *
  * @param $key String: key to get.
@@ -1071,22 +1039,6 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
 	$message = wfMsgReplaceArgs( $message, $args );
 	wfProfileOut( __METHOD__ );
 	return $message;
-}
-
-/**
- * This function provides the message source for messages to be edited which are *not* stored in the database.
- *
- * @deprecated since 1.18; use wfMessage()
- * @param $key String
- */
-function wfMsgWeirdKey( $key ) {
-	wfDeprecated( __FUNCTION__ );
-	$source = wfMsgGetKey( $key, false, true, false );
-	if ( wfEmptyMsg( $key ) ) {
-		return '';
-	} else {
-		return $source;
-	}
 }
 
 /**
