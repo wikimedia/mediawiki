@@ -213,7 +213,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 *
 	 * @return ResultWrapper
 	 */
-	function doQuery( $sql ) {
+	protected function doQuery( $sql ) {
 		$res = $this->mConn->query( $sql );
 		if ( $res === false ) {
 			return false;

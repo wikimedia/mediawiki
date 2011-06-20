@@ -117,7 +117,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
-	function doQuery( $sql ) {
+	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
 		$this->offset = 0;
 

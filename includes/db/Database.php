@@ -1044,7 +1044,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return Array
 	 * @see DatabaseBase::select()
 	 */
-	protected function makeSelectOptions( $options ) {
+	function makeSelectOptions( $options ) {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = '';
 
@@ -1517,7 +1517,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $options array
 	 * @return string
 	 */
-	protected function makeInsertOptions( $options ) {
+	function makeInsertOptions( $options ) {
 		return implode( ' ', $options );
 	}
 
@@ -1602,7 +1602,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $options Array: The options passed to DatabaseBase::update
 	 * @return string
 	 */
-	protected function makeUpdateOptions( $options ) {
+	function makeUpdateOptions( $options ) {
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
 		}
@@ -2758,10 +2758,15 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Take the result from a query, and wrap it in a ResultWrapper if 
 	 * necessary. Boolean values are passed through as is, to indicate success 
-	 * of write queries or failure. ResultWrapper objects are also passed 
-	 * through.
+	 * of write queries or failure. 
+	 *
+	 * Once upon a time, DatabaseBase::query() returned a bare MySQL result 
+	 * resource, and it was necessary to call this function to convert it to
+	 * a wrapper. Nowadays, raw database objects are never exposed to external
+	 * callers, so this is unnecessary in external code. For compatibility with 
+	 * old code, ResultWrapper objects are passed through unaltered.
 	 */
-	protected function resultObject( $result ) {
+	function resultObject( $result ) {
 		if ( empty( $result ) ) {
 			return false;
 		} elseif ( $result instanceof ResultWrapper ) {
