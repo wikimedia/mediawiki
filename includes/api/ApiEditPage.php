@@ -266,7 +266,6 @@ class ApiEditPage extends ApiBase {
 
 		// Do the actual save
 		$oldRevId = $articleObj->getRevIdFetched();
-		$result = null;
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
 		$oldRequest = $wgRequest;
