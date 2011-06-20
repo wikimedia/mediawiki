@@ -125,7 +125,7 @@ abstract class Action {
 	 * @return User
 	 */
 	protected final function getUser() {
-		return $this->getContext()->getOutput();
+		return $this->getContext()->getUser();
 	}
 
 	/**
