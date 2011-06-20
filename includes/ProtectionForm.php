@@ -237,7 +237,8 @@ class ProtectionForm {
 				$wgOut->showPermissionsErrorPage( $this->mPermErrors );
 			}
 		} else {
-			$wgOut->addWikiMsg( 'protect-text', $this->mTitle->getPrefixedText() );
+			$wgOut->addWikiMsg( 'protect-text',
+				wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );
 		}
 
 		$wgOut->addHTML( $this->buildForm() );

@@ -1090,7 +1090,7 @@ Ensure you have cookies enabled, reload this page and try again.',
 'nosuchuser'                 => 'There is no user by the name "$1".
 Usernames are case sensitive.
 Check your spelling, or [[Special:UserLogin/signup|create a new account]].',
-'nosuchusershort'            => 'There is no user by the name "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'There is no user by the name "$1".
 Check your spelling.',
 'nouserspecified'            => 'You have to specify a username.',
 'login-userblocked'          => 'This user is blocked. Login not allowed.',
@@ -1319,9 +1319,9 @@ or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
-'userpage-userdoesnotexist'        => 'User account "<nowiki>$1</nowiki>" is not registered.
+'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
-'userpage-userdoesnotexist-view'   => 'User account "<nowiki>$1</nowiki>" is not registered.',
+'userpage-userdoesnotexist-view'   => 'User account "$1" is not registered.',
 'blocked-notice-logextract'        => 'This user is currently blocked.
 The latest block log entry is provided below for reference:',
 'clearyourcache'                   => "'''Note: After saving, you may have to bypass your browser's cache to see the changes.'''
@@ -2797,7 +2797,7 @@ Feedback and further assistance:
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'actioncomplete'         => 'Action complete',
 'actionfailed'           => 'Action failed',
-'deletedtext'            => '"<nowiki>$1</nowiki>" has been deleted.
+'deletedtext'            => '"$1" has been deleted.
 See $2 for a record of recent deletions.',
 'deletedarticle'         => 'deleted "[[$1]]"',
 'suppressedarticle'      => 'suppressed "[[$1]]"',
@@ -2859,7 +2859,7 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'protect_expiry_invalid'      => 'Expiry time is invalid.',
 'protect_expiry_old'          => 'Expiry time is in the past.',
 'protect-unchain-permissions' => 'Unlock further protect options',
-'protect-text'                => "You may view and change the protection level here for the page '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "You may view and change the protection level here for the page '''$1'''.",
 'protect-locked-blocked'      => "You cannot change protection levels while blocked.
 Here are the current settings for the page '''$1''':",
 'protect-locked-dblock'       => "Protection levels cannot be changed due to an active database lock.
