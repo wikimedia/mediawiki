@@ -543,7 +543,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			$status->fatal( 'config-install-pg-schema-not-exist' );
 			return $status;
 		}
-		$error = $conn->sourceFile( $conn->getSchema() );
+		$error = $conn->sourceFile( $conn->getSchemaPath() );
 		if( $error !== true ) {
 			$conn->reportQueryError( $error, 0, '', __METHOD__ );
 			$conn->rollback( __METHOD__ );

@@ -531,11 +531,11 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Return a path to the DBMS-specific schema, otherwise default to tables.sql
+	 * Return a path to the DBMS-specific schema file, otherwise default to tables.sql
 	 *
 	 * @return string
 	 */
-	public function getSchema() {
+	public function getSchemaPath() {
 		global $IP;
 		if ( file_exists( "$IP/maintenance/" . $this->getType() . "/tables.sql" ) ) {
 			return "$IP/maintenance/" . $this->getType() . "/tables.sql";
