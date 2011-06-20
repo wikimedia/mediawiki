@@ -40,7 +40,7 @@ class ForeignDBRepo extends LocalRepo {
 					'host' => $this->dbServer,
 					'user'   => $this->dbUser,
 					'password' => $this->dbPassword,
-					'dbName' => $this->dbName,
+					'dbname' => $this->dbName,
 					'flags' => $this->dbFlags,
 					'tablePrefix' => $this->tablePrefix
 				)

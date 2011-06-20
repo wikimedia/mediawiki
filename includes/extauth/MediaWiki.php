@@ -94,7 +94,7 @@ class ExternalUser_MediaWiki extends ExternalUser {
 				'host'        => $wgExternalAuthConf['DBserver'],
 				'user'        => $wgExternalAuthConf['DBuser'],
 				'password'    => $wgExternalAuthConf['DBpassword'],
-				'dbName'      => $wgExternalAuthConf['DBname'],
+				'dbname'      => $wgExternalAuthConf['DBname'],
 				'tablePrefix' => $wgExternalAuthConf['DBprefix'],
 			)
 		);
