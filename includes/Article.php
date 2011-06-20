@@ -1830,6 +1830,14 @@ class Article {
 	}
 
 	/**
+	 * Info about this page
+	 * Called for ?action=info when $wgAllowPageInfo is on.
+	 */
+	public function info() {
+		Action::factory( 'info', $this )->show();
+	}
+
+	/**
 	 * Insert a new empty page record for this article.
 	 * This *must* be followed up by creating a revision
 	 * and running $this->updateRevisionOn( ... );
@@ -3998,95 +4006,6 @@ class Article {
 	public function revert() {
 		global $wgOut;
 		$wgOut->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
-	}
-
-	/**
-	 * Info about this page
-	 * Called for ?action=info when $wgAllowPageInfo is on.
-	 */
-	public function info() {
-		global $wgLang, $wgOut, $wgAllowPageInfo, $wgUser;
-
-		if ( !$wgAllowPageInfo ) {
-			$wgOut->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
-			return;
-		}
-
-		$page = $this->mTitle->getSubjectPage();
-
-		$wgOut->setPagetitle( $page->getPrefixedText() );
-		$wgOut->setPageTitleActionText( wfMsg( 'info_short' ) );
-		$wgOut->setSubtitle( wfMsgHtml( 'infosubtitle' ) );
-
-		if ( !$this->mTitle->exists() ) {
-			$wgOut->addHTML( '<div class="noarticletext">' );
-			$msg = $wgUser->isLoggedIn()
-				? 'noarticletext'
-				: 'noarticletextanon';
-			$wgOut->addWikiMsg( $msg );
-			$wgOut->addHTML( '</div>' );
-		} else {
-			$dbr = wfGetDB( DB_SLAVE );
-			$wl_clause = array(
-				'wl_title'     => $page->getDBkey(),
-				'wl_namespace' => $page->getNamespace() );
-			$numwatchers = $dbr->selectField(
-				'watchlist',
-				'COUNT(*)',
-				$wl_clause,
-				__METHOD__ );
-
-			$pageInfo = $this->pageCountInfo( $page );
-			$talkInfo = $this->pageCountInfo( $page->getTalkPage() );
-
-			// @todo FIXME: unescaped messages
-			$wgOut->addHTML( "<ul><li>" . wfMsg( "numwatchers", $wgLang->formatNum( $numwatchers ) ) . '</li>' );
-			$wgOut->addHTML( "<li>" . wfMsg( 'numedits', $wgLang->formatNum( $pageInfo['edits'] ) ) . '</li>' );
-
-			if ( $talkInfo ) {
-				$wgOut->addHTML( '<li>' . wfMsg( "numtalkedits", $wgLang->formatNum( $talkInfo['edits'] ) ) . '</li>' );
-			}
-
-			$wgOut->addHTML( '<li>' . wfMsg( "numauthors", $wgLang->formatNum( $pageInfo['authors'] ) ) . '</li>' );
-
-			if ( $talkInfo ) {
-				$wgOut->addHTML( '<li>' . wfMsg( 'numtalkauthors', $wgLang->formatNum( $talkInfo['authors'] ) ) . '</li>' );
-			}
-
-			$wgOut->addHTML( '</ul>' );
-		}
-	}
-
-	/**
-	 * Return the total number of edits and number of unique editors
-	 * on a given page. If page does not exist, returns false.
-	 *
-	 * @param $title Title object
-	 * @return mixed array or boolean false
-	 */
-	public function pageCountInfo( $title ) {
-		$id = $title->getArticleId();
-
-		if ( $id == 0 ) {
-			return false;
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$rev_clause = array( 'rev_page' => $id );
-		$edits = $dbr->selectField(
-			'revision',
-			'COUNT(rev_page)',
-			$rev_clause,
-			__METHOD__
-		);
-		$authors = $dbr->selectField(
-			'revision',
-			'COUNT(DISTINCT rev_user_text)',
-			$rev_clause,
-			__METHOD__
-		);
-
-		return array( 'edits' => $edits, 'authors' => $authors );
 	}
 
 	/**
