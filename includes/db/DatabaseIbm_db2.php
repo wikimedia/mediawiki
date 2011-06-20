@@ -453,10 +453,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * The DBMS-dependent part of query()
 	 * @param  $sql String: SQL query.
 	 * @return object Result object for fetch functions or false on failure
-	 * @access private
 	 */
-	/*private*/
-	public function doQuery( $sql ) {
+	protected function doQuery( $sql ) {
 		$this->applySchema();
 		
 		// Needed to handle any UTF-8 encoding issues in the raw sql

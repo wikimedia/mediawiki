@@ -302,7 +302,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->mTrxLevel ? OCI_NO_AUTO_COMMIT : OCI_COMMIT_ON_SUCCESS;
 	}
 
-	function doQuery( $sql ) {
+	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
 		if ( !mb_check_encoding( $sql ) ) {
 			throw new MWException( "SQL encoding is invalid\n$sql" );
