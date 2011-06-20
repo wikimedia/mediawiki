@@ -58,6 +58,8 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
+		$result = $this->getResult();
+
 		if ( $params['redirect'] ) {
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
@@ -65,7 +67,7 @@ class ApiEditPage extends ApiBase {
 				$titles = Title::newFromRedirectArray( Revision::newFromTitle( $oldTitle )->getText( Revision::FOR_THIS_USER ) );
 				// array_shift( $titles );
 
-				$this->getResult()->addValue( null, 'foo', $titles );
+				$result->addValue( null, 'foo', $titles );
 
 				$redirValues = array();
 				foreach ( $titles as $id => $newTitle ) {
@@ -82,9 +84,8 @@ class ApiEditPage extends ApiBase {
 					$titleObj = $newTitle;
 				}
 
-				$this->getResult()->setIndexedTagName( $redirValues, 'r' );
-				$this->getResult()->addValue( null, 'redirects', $redirValues );
-
+				$result->setIndexedTagName( $redirValues, 'r' );
+				$result->addValue( null, 'redirects', $redirValues );
 			}
 		}
 
@@ -256,7 +257,7 @@ class ApiEditPage extends ApiBase {
 		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $ep->textbox1, &$r ) ) ) {
 			if ( count( $r ) ) {
 				$r['result'] = 'Failure';
-				$this->getResult()->addValue( null, $this->getModuleName(), $r );
+				$result->addValue( null, $this->getModuleName(), $r );
 				return;
 			} else {
 				$this->dieUsageMsg( 'hookaborted' );
@@ -364,7 +365,7 @@ class ApiEditPage extends ApiBase {
 			default:
 				$this->dieUsageMsg( array( 'unknownerror', $retval ) );
 		}
-		$this->getResult()->addValue( null, $this->getModuleName(), $r );
+		$result->addValue( null, $this->getModuleName(), $r );
 	}
 
 	public function mustBePosted() {
