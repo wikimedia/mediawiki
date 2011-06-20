@@ -43,14 +43,6 @@ interface DatabaseType {
 	function open( $server, $user, $password, $dbName );
 
 	/**
-	 * The DBMS-dependent part of query()
-	 *
-	 * @param  $sql String: SQL query.
-	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure
-	 */
-	protected function doQuery( $sql );
-
-	/**
 	 * Fetch the next row from the given result object, in object form.
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
@@ -683,6 +675,14 @@ abstract class DatabaseBase implements DatabaseType {
 		# New method
 		throw new DBConnectionError( $this, $error );
 	}
+
+	/**
+	 * The DBMS-dependent part of query()
+	 *
+	 * @param  $sql String: SQL query.
+	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure
+	 */
+	protected abstract function doQuery( $sql );
 
 	/**
 	 * Determine whether a query writes to the DB.
