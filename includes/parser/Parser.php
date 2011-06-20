@@ -5162,6 +5162,8 @@ class Parser {
 	 * @param $newText String: replacement text for section data.
 	 * @return String: for "get", the extracted section text.
 	 *                 for "replace", the whole page with the section replaced.
+	 *                 If the page is empty and section 0 is requested, $text (as '')
+	 *                  is returned
 	 */
 	private function extractSections( $text, $section, $mode, $newText='' ) {
 		global $wgTitle; # not generally used but removes an ugly failure mode
