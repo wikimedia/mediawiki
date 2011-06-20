@@ -2105,9 +2105,8 @@ Orrialde honen babes maila alda dezakezu, baina ez du eraginik izango kaskada bi
 'undeletepagetext'             => 'Jarraian zerrendatzen {{PLURAL:$1|den orrialdea ezabatu da baina oraindik artxiboan gordeta dago eta leheneratu egin daiteke.|diren orrialdeak ezabatu dira baina oraindik artxiboan gordeta daude eta leheneratu egin daitezke.}}
 Artxiboa noizean behin hustu egin liteke.',
 'undelete-fieldset-title'      => 'Berrikuspenak berrezarri',
-'undeleteextrahelp'            => "Orrialde osoa leheneratzeko, koadrotxo guztiak hautatu gabe utzi eta '''''Leheneratu'''''n klik egin.
-Aukeratutako leheneratze bat burutzeko, leheneratu nahi dituzun berrikuspenen koadrotxoak markatu eta '''''Leheneratu''''' klik egin.
-'''''Hasiera'''''n klik eginez gero koadrotxo guztiak eta iruzkin koadroa hustu egingo dira.",
+'undeleteextrahelp'            => "Orrialde osoko historia berreskuratzeko, koadrotxo guztiak hautatu gabe utzi eta '''''{{int:undeletebtn}}'''''-n klik egin.
+Aukeratutako leheneratze bat burutzeko, leheneratu nahi dituzun berrikuspenen koadrotxoak markatu eta '''''{{int:undeletebtn}}'''''-n klik egin.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|berrikuspen|berrikuspen}} artxibatuta',
 'undeletehistory'              => 'Orrialdea leheneratzen baduzu, berrikuspena guztiak leheneratuko dira historian.
 Ezabatu ondoren izen berdina duen orrialde berri bat sortzen bada leheneratutako berrikuspenak azalduko dira historian.',
@@ -2152,9 +2151,10 @@ $1',
 'undelete-show-file-submit'    => 'Bai',
 
 # Namespace form on various pages
-'namespace'      => 'Izen-tartea:',
-'invert'         => 'Hautapena alderanztu',
-'blanknamespace' => '(Nagusia)',
+'namespace'             => 'Izen-tartea:',
+'invert'                => 'Hautapena alderanztu',
+'namespace_association' => 'Lotutako izen-tartea',
+'blanknamespace'        => '(Nagusia)',
 
 # Contributions
 'contributions'       => 'Lankidearen ekarpenak',

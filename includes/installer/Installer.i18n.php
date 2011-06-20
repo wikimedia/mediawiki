@@ -1924,6 +1924,8 @@ chmod a+w $3</pre>',
 192.168.1.25:1234',
 	'config-memcache-needservers' => 'Избран е Memcached като складиращ тип, но не са посочени сървъри.',
 	'config-memcache-badip' => 'Беше въведен невалиден IP адрес за Memcached: $1.',
+	'config-memcache-noport' => 'Не е посочен порт за използване за Memcached сървъра: $1.
+В случай, че не знаете порта, този по подразбиране е 11211.',
 	'config-memcache-badport' => 'Портовете за Memcached трябва да бъдат между $1 и $2.',
 	'config-extensions' => 'Разширения',
 	'config-extensions-help' => 'Разширенията от списъка по-горе бяха открити в директорията <code>./extensions</code>.

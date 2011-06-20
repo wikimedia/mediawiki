@@ -3167,6 +3167,9 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-specialinstructions'         => 'Instrucciones especiales',
 'exif-headline'                    => 'Encabezado',
 'exif-source'                      => 'Fuente',
+'exif-urgency'                     => 'Urgencia',
+'exif-locationdest'                => 'Ubicación mostrada',
+'exif-locationdestcode'            => 'Código de la ubicación mostrada',
 'exif-contact'                     => 'Información de contacto',
 'exif-writer'                      => 'Escritor',
 'exif-languagecode'                => 'Idioma',
@@ -3192,6 +3195,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-morepermissionsurl'          => 'Información de licencia alternativa',
 'exif-attributionurl'              => 'Cuando reutilices este trabajo, por favor enlaza a',
 'exif-pngfilecomment'              => 'Comentario de archivo PNG',
+'exif-disclaimer'                  => 'Aviso legal',
 
 # EXIF attributes
 'exif-compression-1' => 'Sin comprimir',

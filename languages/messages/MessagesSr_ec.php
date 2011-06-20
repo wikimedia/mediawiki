@@ -3691,7 +3691,7 @@ $1',
 'autosumm-new'     => 'Направљена је страница са „$1“',
 
 # Live preview
-'livepreview-loading' => 'Учитавање…',
+'livepreview-loading' => 'Учитавам…',
 'livepreview-ready'   => 'Учитавање… спремно!',
 'livepreview-failed'  => 'Брзи приказ није могућ!
 Пробајте обичан приказ.',
