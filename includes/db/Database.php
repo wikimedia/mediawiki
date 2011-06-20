@@ -1300,13 +1300,15 @@ abstract class DatabaseBase implements DatabaseType {
 			$vars = implode( ',', $vars );
 		}
 
-		if ( !is_array( $options ) ) {
-			$options = array( $options );
-		}
+		$options = (array)$options;
 
 		if ( is_array( $table ) ) {
-			if ( !empty( $join_conds ) || ( isset( $options['USE INDEX'] ) && is_array( @$options['USE INDEX'] ) ) ) {
-				$from = ' FROM ' . $this->tableNamesWithUseIndexOrJOIN( $table, @$options['USE INDEX'], $join_conds );
+			$useIndex = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
+				? $options['USE INDEX']
+				: array();
+			if ( count( $join_conds ) || count( $useIndex ) ) {
+				$from = ' FROM ' .
+					$this->tableNamesWithUseIndexOrJOIN( $table, $useIndex, $join_conds );
 			} else {
 				$from = ' FROM ' . implode( ',', $this->tableNamesWithAlias( $table ) );
 			}
@@ -1331,9 +1333,10 @@ abstract class DatabaseBase implements DatabaseType {
 			$sql = "SELECT $startOpts $vars $from $useIndex $preLimitTail";
 		}
 
-		if ( isset( $options['LIMIT'] ) )
+		if ( isset( $options['LIMIT'] ) ) {
 			$sql = $this->limitResult( $sql, $options['LIMIT'],
 				isset( $options['OFFSET'] ) ? $options['OFFSET'] : false );
+		}
 		$sql = "$sql $postLimitTail";
 
 		if ( isset( $options['EXPLAIN'] ) ) {
@@ -1982,45 +1985,54 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Get the aliased table name clause for a FROM clause
+	 * which might have a JOIN and/or USE INDEX clause
+	 *
+	 * @param $tables array( [alias] => table )
+	 * @param $use_index array() Same as for select()
+	 * @param $join_conds array() Same as for select()
 	 * @return string
 	 */
-	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
+	protected function tableNamesWithUseIndexOrJOIN(
+		$tables, $use_index = array(), $join_conds = array()
+	) {
 		$ret = array();
 		$retJOIN = array();
-		$use_index_safe = is_array( $use_index ) ? $use_index : array();
-		$join_conds_safe = is_array( $join_conds ) ? $join_conds : array();
+		$use_index = (array)$use_index;
+		$join_conds = (array)$join_conds;
 
 		foreach ( $tables as $alias => $table ) {
 			if ( !is_string( $alias ) ) {
 				// No alias? Set it equal to the table name
 				$alias = $table;
 			}
-			// Is there a JOIN and INDEX clause for this table?
-			if ( isset( $join_conds_safe[$alias] ) && isset( $use_index_safe[$alias] ) ) {
-				$tableClause = $join_conds_safe[$alias][0] . ' ' . $this->tableNameWithAlias( $table, $alias );
-				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$alias] ) );
-				$on = $this->makeList( (array)$join_conds_safe[$alias][1], LIST_AND );
+			// Is there a JOIN clause for this table?
+			if ( isset( $join_conds[$alias] ) ) {
+				list( $joinType, $conds ) = $join_conds[$alias];
+				$tableClause = $joinType;
+				$tableClause .= ' ' . $this->tableNameWithAlias( $table, $alias );
+				if ( isset( $use_index[$alias] ) ) { // has USE INDEX?
+					$use = $this->useIndexClause( implode( ',', (array)$use_index[$alias] ) );
+					if ( $use != '' ) {
+						$tableClause .= ' ' . $use;
+					}
+				}
+				$on = $this->makeList( (array)$conds, LIST_AND );
 				if ( $on != '' ) {
 					$tableClause .= ' ON (' . $on . ')';
 				}
 
 				$retJOIN[] = $tableClause;
-			// Is there an INDEX clause?
-			} elseif ( isset( $use_index_safe[$alias] ) ) {
+			// Is there an INDEX clause for this table?
+			} elseif ( isset( $use_index[$alias] ) ) {
 				$tableClause = $this->tableNameWithAlias( $table, $alias );
-				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$alias] ) );
-				$ret[] = $tableClause;
-			// Is there a JOIN clause?
-			} elseif ( isset( $join_conds_safe[$alias] ) ) {
-				$tableClause = $join_conds_safe[$alias][0] . ' ' . $this->tableNameWithAlias( $table, $alias );
-				$on = $this->makeList( (array)$join_conds_safe[$alias][1], LIST_AND );
-				if ( $on != '' ) {
-					$tableClause .= ' ON (' . $on . ')';
-				}
+				$tableClause .= ' ' . $this->useIndexClause(
+					implode( ',', (array)$use_index[$alias] ) );
 
-				$retJOIN[] = $tableClause;
+				$ret[] = $tableClause;
 			} else {
 				$tableClause = $this->tableNameWithAlias( $table, $alias );
+
 				$ret[] = $tableClause;
 			}
 		}
