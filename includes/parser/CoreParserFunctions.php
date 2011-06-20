@@ -272,24 +272,27 @@ class CoreParserFunctions {
 	 * @param $user string
 	 * @return
 	 */
-	static function gender( $parser, $user ) {
+	static function gender( $parser, $username ) {
 		wfProfileIn( __METHOD__ );
 		$forms = array_slice( func_get_args(), 2);
+
+		$username = trim( $username );
 
 		// default
 		$gender = User::getDefaultOption( 'gender' );
 
 		// allow prefix.
-		$title = Title::newFromText( $user );
+		$title = Title::newFromText( $username );
 
-		if ( is_object( $title ) && $title->getNamespace() == NS_USER )
-			$user = $title->getText();
+		if ( $title && $title->getNamespace() == NS_USER ) {
+			$username = $title->getText();
+		}
 
 		// check parameter, or use the ParserOptions if in interface message
-		$user = User::newFromName( $user );
+		$user = User::newFromName( $username );
 		if ( $user ) {
 			$gender = $user->getOption( 'gender' );
-		} elseif ( $parser->getOptions()->getInterfaceMessage() ) {
+		} elseif ( $username === '' && $parser->getOptions()->getInterfaceMessage() ) {
 			$gender = $parser->getOptions()->getUser()->getOption( 'gender' );
 		}
 		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
