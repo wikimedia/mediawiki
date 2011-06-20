@@ -1439,7 +1439,7 @@ class Article {
 
 			if ( !$user->isLoggedIn() && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
-					array( 'userpage-userdoesnotexist-view', $rootPart ) );
+					array( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ) );
 			} elseif ( $user->isBlocked() ) { # Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
 					$wgOut,
@@ -2732,7 +2732,8 @@ class Article {
 				Html::rawElement(
 					'div',
 					array( 'class' => 'error mw-error-cannotdelete' ),
-					wfMsgExt( 'cannotdelete', array( 'parse' ), $this->mTitle->getPrefixedText() )
+					wfMsgExt( 'cannotdelete', array( 'parse' ),
+						wfEscapeWikiText( $this->mTitle->getPrefixedText() ) )
 				)
 			);
 			$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
@@ -3000,7 +3001,7 @@ class Article {
 
 			$loglink = '[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]';
 
-			$wgOut->addWikiMsg( 'deletedtext', $deleted, $loglink );
+			$wgOut->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 			$wgOut->returnToMain( false );
 		} else {
 			if ( $error == '' ) {
@@ -3008,7 +3009,8 @@ class Article {
 					Html::rawElement(
 						'div',
 						array( 'class' => 'error mw-error-cannotdelete' ),
-						wfMsgExt( 'cannotdelete', array( 'parse' ), $this->mTitle->getPrefixedText() )
+						wfMsgExt( 'cannotdelete', array( 'parse' ),
+							wfEscapeWikiText( $this->mTitle->getPrefixedText() ) )
 					)
 				);
 

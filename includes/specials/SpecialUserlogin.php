@@ -696,9 +696,11 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::NOT_EXISTS:
 				if( $wgUser->isAllowed( 'createaccount' ) ) {
-					$this->mainLoginForm( wfMsgExt( 'nosuchuser', 'parseinline', $this->mUsername ) );
+					$this->mainLoginForm( wfMsgExt( 'nosuchuser', 'parseinline',
+					   wfEscapeWikiText( $this->mUsername ) ) );
 				} else {
-					$this->mainLoginForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->mUsername ) ) );
+					$this->mainLoginForm( wfMsg( 'nosuchusershort',
+						wfEscapeWikiText( $this->mUsername ) ) );
 				}
 				break;
 			case self::WRONG_PASS:

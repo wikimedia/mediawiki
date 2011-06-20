@@ -204,7 +204,7 @@ class DeleteAction extends Action {
 		$this->getOutput()->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$this->getOutput()->addWikiMsg(
 			'deletedtext',
-			$this->getTitle()->getPrefixedText(),
+			wfEscapeWikiText( $this->getTitle()->getPrefixedText() ),
 			'[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]'
 		);
 		$this->getOutput()->returnToMain( false );

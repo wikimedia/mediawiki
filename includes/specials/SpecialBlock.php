@@ -486,7 +486,8 @@ class SpecialBlock extends SpecialPage {
 		if( $type == Block::TYPE_USER ){
 			# TODO: why do we not have a User->exists() method?
 			if( !$target->getId() ){
-				return wfMessage( 'nosuchusershort', $target->getName() );
+				return wfMessage( 'nosuchusershort',
+					wfEscapeWikiText( $target->getName() ) );
 			}
 
 			$status = self::checkUnblockSelf( $target );
