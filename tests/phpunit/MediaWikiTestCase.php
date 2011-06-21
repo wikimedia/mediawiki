@@ -231,5 +231,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		MediaWikiPHPUnitCommand::$additionalOptions[$offset] = $value;
 
 	}
+
+	public static function disableInterwikis( $prefix, &$data ) {
+		return false;
+	}
 }
 
