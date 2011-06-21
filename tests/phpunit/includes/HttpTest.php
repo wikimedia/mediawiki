@@ -558,7 +558,7 @@ class HttpTest extends MediaWikiTestCase {
 		return array(
 			array( false, '¿non sens before!! http://a', 'Allow anything before URI' ),
 
-			# (http|https) - only three schemes allowed
+			# (http|https) - only two schemes allowed
 			array( true,  'http://www.example.org/' ),
 			array( true,  'https://www.example.org/' ),
 			array( true,  'http://www.example.org', 'URI without directory' ),
