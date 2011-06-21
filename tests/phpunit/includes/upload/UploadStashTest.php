@@ -11,7 +11,7 @@ class UploadStashTest extends MediaWikiTestCase {
 		
 		// Setup a file for bug 29408
 		$this->bug29408File = dirname( __FILE__ ) . '/bug29408';
-		// file_put_contents( $this->bug29408File, "\x00" );		
+		file_put_contents( $this->bug29408File, "\x00" );		
 	}
 	
 	public function testBug29408() {
@@ -28,5 +28,8 @@ class UploadStashTest extends MediaWikiTestCase {
 	
 	public function tearDown() {
 		parent::tearDown();
+		
+		unlink( $this->bug29408File . "." );
+		
 	}
 }
