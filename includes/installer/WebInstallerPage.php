@@ -32,6 +32,15 @@ abstract class WebInstallerPage {
 		$this->parent = $parent;
 	}
 
+	/**
+	 * Is this a slow-running page in the installer? If so, WebInstaller will
+	 * set_time_limit(0) before calling execute(). Right now this only applies
+	 * to Install and Upgrade pages
+	 */
+	public function isSlow() {
+		return false;
+	}
+
 	public function addHTML( $html ) {
 		$this->parent->output->addHTML( $html );
 	}
@@ -467,6 +476,9 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 }
 
 class WebInstaller_Upgrade extends WebInstallerPage {
+	public function isSlow() {
+		return true;
+	}
 
 	public function execute() {
 		if ( $this->getVar( '_UpgradeDone' ) ) {
@@ -1086,6 +1098,9 @@ class WebInstaller_Options extends WebInstallerPage {
 }
 
 class WebInstaller_Install extends WebInstallerPage {
+	public function isSlow() {
+		return true;
+	}
 
 	public function execute() {
 		if( $this->getVar( '_UpgradeDone' ) ) {
