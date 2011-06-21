@@ -110,6 +110,7 @@ production.
 * (bug 29471) Exception thrown for files with invalid date in metadata
 * (bug 29492) Long-running steps in the installer (such as Upgrade and Install)
   can sometimes timeout
+* (bug 29507) Change 'image link' to 'file link' in Special:Whatlinkshere
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
@@ -131,7 +132,6 @@ production.
 * (bug 27595) sha1 search of list=filearchive does not work
 * (bug 26763) Make RSS/Atom of user contributions more visible
 * (bug 25133) allow redirects also for action=parse&pageid
-* (bug 29507) Change 'image link' to 'file link' in Special:Whatlinkshere
 
 === Languages updated in 1.19 ===
 
