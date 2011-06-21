@@ -953,7 +953,7 @@ function wfMessageFallback( /*...*/ ) {
 function wfMsg( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReal( $key, $args, true );
+	return wfMsgReal( $key, $args );
 }
 
 /**
@@ -1051,7 +1051,7 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
  * @param $transform Boolean: whether to parse magic words, etc.
  * @return string
  */
-function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
+function wfMsgGetKey( $key, $useDB = true, $langCode = false, $transform = true ) {
 	wfRunHooks( 'NormalizeMessageKey', array( &$key, &$useDB, &$langCode, &$transform ) );
 
 	$cache = MessageCache::singleton();
@@ -1106,7 +1106,7 @@ function wfMsgReplaceArgs( $message, $args ) {
 function wfMsgHtml( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReplaceArgs( htmlspecialchars( wfMsgGetKey( $key, true ) ), $args );
+	return wfMsgReplaceArgs( htmlspecialchars( wfMsgGetKey( $key ) ), $args );
 }
 
 /**
@@ -1124,7 +1124,7 @@ function wfMsgWikiHtml( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReplaceArgs(
-		MessageCache::singleton()->parse( wfMsgGetKey( $key, true ), null, /* can't be set to false */ true )->getText(),
+		MessageCache::singleton()->parse( wfMsgGetKey( $key ), null, /* can't be set to false */ true )->getText(),
 		$args );
 }
 
