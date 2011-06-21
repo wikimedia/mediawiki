@@ -7,10 +7,16 @@ class UploadTest extends MediaWikiTestCase {
 
 
 	function setUp() {
-		global $wgContLang;
+		global $wgHooks;
 		parent::setUp();
-		$wgContLang = Language::factory( 'en' );
+
 		$this->upload = new UploadTestHandler;
+		$this->hooks = $wgHooks;
+		$wgHooks['InterwikiLoadPrefix'][] = 'MediaWikiTestCase::disableInterwikis';
+	}
+
+	function tearDown() {
+		$wgHooks = $this->hooks;
 	}
 
 	/**
