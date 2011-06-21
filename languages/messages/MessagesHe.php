@@ -534,7 +534,6 @@ $messages = array(
 'history'           => 'היסטוריית הדף',
 'history_short'     => 'היסטוריית הדף',
 'updatedmarker'     => 'עודכן מאז ביקורך האחרון',
-'info_short'        => 'מידע',
 'printableversion'  => 'גרסת הדפסה',
 'permalink'         => 'קישור קבוע',
 'print'             => 'גרסה להדפסה',
@@ -791,11 +790,14 @@ $2',
 'loginsuccess'               => "'''נכנסת ל{{grammar:תחילית|{{SITENAME}}}} בשם \"\$1\".'''",
 'nosuchuser'                 => 'אין משתמש בשם "$1".
 אנא ודאו שהאיות נכון (כולל אותיות רישיות וקטנות), או [[Special:UserLogin/signup|צרו חשבון חדש]].',
-'nosuchusershort'            => 'אין משתמש בשם "<nowiki>$1</nowiki>". אנא ודאו שהאיות נכון.',
+'nosuchusershort'            => 'אין משתמש בשם "$1".
+אנא ודאו שהאיות נכון.',
 'nouserspecified'            => 'עליכם לציין שם משתמש.',
 'login-userblocked'          => 'משתמש זה חסום. אינכם מורשים להיכנס לחשבון.',
-'wrongpassword'              => 'הסיסמה שהקלדתם שגויה, אנא נסו שוב.',
-'wrongpasswordempty'         => 'הסיסמה שהקלדתם ריקה. אנא נסו שוב.',
+'wrongpassword'              => 'הסיסמה שהקלדתם שגויה.
+אנא נסו שוב.',
+'wrongpasswordempty'         => 'הסיסמה שהקלדתם ריקה.
+אנא נסו שוב.',
 'passwordtooshort'           => 'סיסמאות חייבות להיות באורך {{PLURAL:$1|תו אחד|$1 תווים}} לפחות.',
 'password-name-match'        => 'סיסמתכם חייבת להיות שונה משם המשתמש שלכם.',
 'password-login-forbidden'   => 'השימוש בשם המשתמש והסיסמה האלה נאסר.',
@@ -986,9 +988,9 @@ $2
 'noarticletext-nopermission'       => 'אין כרגע טקסט בדף זה.
 באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,
 או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים].</span>',
-'userpage-userdoesnotexist'        => 'חשבון המשתמש "<nowiki>$1</nowiki>" אינו רשום.
+'userpage-userdoesnotexist'        => 'חשבון המשתמש "$1" אינו רשום.
 אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
-'userpage-userdoesnotexist-view'   => 'חשבון המשתמש "<nowiki>$1</nowiki>" אינו רשום.',
+'userpage-userdoesnotexist-view'   => 'חשבון המשתמש "$1" אינו רשום.',
 'blocked-notice-logextract'        => 'משתמש זה חסום כרגע.
 פעולת יומן החסימות האחרונה מוצגת להלן:',
 'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (Cache) של הדפדפן כדי להבחין בשינויים.
@@ -2344,7 +2346,8 @@ $UNWATCHURL
 אנא אשרו שזה אכן מה שאתם מתכוונים לעשות, שאתם מבינים את התוצאות של מעשה כזה, ושהמעשה מבוצע בהתאם ל[[{{MediaWiki:Policy-url}}|נוהלי האתר]].',
 'actioncomplete'         => 'הפעולה בוצעה',
 'actionfailed'           => 'הפעולה נכשלה',
-'deletedtext'            => '<strong><nowiki>$1</nowiki></strong> נמחק. ראו $2 לרשימת המחיקות האחרונות.',
+'deletedtext'            => '"$1" נמחק.
+ראו $2 לרשימת המחיקות האחרונות.',
 'deletedarticle'         => 'מחק את [[$1]]',
 'suppressedarticle'      => 'הסתיר את [[$1]]',
 'dellogpage'             => 'יומן מחיקות',
@@ -2398,7 +2401,7 @@ $UNWATCHURL
 'protect_expiry_invalid'      => 'זמן פקיעת ההגנה בלתי חוקי.',
 'protect_expiry_old'          => 'זמן פקיעת ההגנה כבר עבר.',
 'protect-unchain-permissions' => 'שינוי אפשרויות הגנה נוספות',
-'protect-text'                => "בדף זה אפשר לראות ולשנות את רמת ההגנה של הדף '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "בדף זה אפשר לראות ולשנות את רמת ההגנה של הדף '''$1'''.",
 'protect-locked-blocked'      => "אינכם יכולים לשנות את רמת ההגנה של הדף בעודכם חסומים.
 להלן ההגדרות הנוכחיות עבור הדף '''$1''':",
 'protect-locked-dblock'       => "אינכם יכולים לשנות את רמת ההגנה על הדף שכן בסיס הנתונים חסום ברגע זה.
@@ -2445,12 +2448,12 @@ $UNWATCHURL
 'restriction-level-all'           => 'כל רמה',
 
 # Undelete
-'undelete'                     => 'צפייה בדפים מחוקים',
+'undelete'                     => 'הצגה של דפים מחוקים',
 'undeletepage'                 => 'הצגה ושחזור של דפים מחוקים',
 'undeletepagetitle'            => "'''זוהי רשימת הגרסאות המחוקות של [[:$1]]'''.",
-'viewdeletedpage'              => 'צפייה בדפים מחוקים',
+'viewdeletedpage'              => 'הצגה של דפים מחוקים',
 'undeletepagetext'             => '{{PLURAL:$1|הדף שלהלן נמחק, אך הוא עדיין בארכיון וניתן לשחזר אותו|הדפים שלהלן נמחקו, אך הם עדיין בארכיון וניתן לשחזר אותם}}.
-ניתן לנקות את הארכיון מעת לעת.',
+ייתכן שהארכיון ינוקה מעת לעת.',
 'undelete-fieldset-title'      => 'שחזור גרסאות',
 'undeleteextrahelp'            => "לשחזור היסטוריית הגרסאות המלאה של הדף, אל תסמנו שום תיבת סימון ולחצו על '''{{int:undeletebtn}}'''.
 לשחזור של גרסאות מסוימות בלבד, סמנו את תיבות הסימון של הגרסאות הללו, ולחצו על '''{{int:undeletebtn}}'''.",
@@ -3011,12 +3014,17 @@ $1',
 'spam_blanking'       => 'כל הגרסאות כוללות קישורים ל־$1, מרוקן את הדף',
 
 # Info page
-'infosubtitle'   => 'מידע על הדף',
-'numedits'       => 'מספר עריכות (דף תוכן): $1',
-'numtalkedits'   => 'מספר עריכות (דף שיחה): $1',
-'numwatchers'    => 'מספר העוקבים אחרי הדף: $1',
-'numauthors'     => 'מספר כותבים נפרדים (דף תוכן): $1',
-'numtalkauthors' => 'מספר כותבים נפרדים (דף שיחה): $1',
+'pageinfo-title'            => 'מידע על "$1"',
+'pageinfo-header-edits'     => 'עריכות',
+'pageinfo-header-watchlist' => 'רשימת המעקב',
+'pageinfo-header-views'     => 'צפיות',
+'pageinfo-subjectpage'      => 'דף',
+'pageinfo-talkpage'         => 'דף שיחה',
+'pageinfo-watchers'         => 'מספר עוקבים',
+'pageinfo-edits'            => 'מספר עריכות',
+'pageinfo-authors'          => 'מספר כותבים נפרדים',
+'pageinfo-views'            => 'מספר צפיות',
+'pageinfo-viewsperedit'     => 'צפיות לכל עריכה',
 
 # Skin names
 'skinname-standard'    => 'קלאסי',
