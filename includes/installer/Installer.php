@@ -1533,4 +1533,14 @@ abstract class Installer {
 	public function addInstallStep( $callback, $findStep = 'BEGINNING' ) {
 		$this->extraInstallSteps[$findStep][] = $callback;
 	}
+
+	/**
+	 * Disable the time limit for execution.
+	 * Some long-running pages (Install, Upgrade) will want to do this
+	 */
+	protected function disableTimeLimit() {
+		wfSuppressWarnings();
+		set_time_limit( 0 );
+		wfRestoreWarnings();
+	}
 }

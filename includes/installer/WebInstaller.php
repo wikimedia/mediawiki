@@ -247,6 +247,10 @@ class WebInstaller extends Installer {
 		$this->currentPageName = $page->getName();
 		$this->startPageWrapper( $pageName );
 
+		if( $page->isSlow() ) {
+			$this->disableTimeLimit();
+		}
+
 		$result = $page->execute();
 
 		$this->endPageWrapper();

@@ -108,6 +108,8 @@ production.
 * (bug 29342) Patrol preferences shouldn't be visible to users who don't have
   patrol permissions
 * (bug 29471) Exception thrown for files with invalid date in metadata
+* (bug 29492) Long-running steps in the installer (such as Upgrade and Install)
+  can sometimes timeout
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
