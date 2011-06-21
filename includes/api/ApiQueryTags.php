@@ -113,9 +113,8 @@ class ApiQueryTags extends ApiQueryBase {
 		}
 
 		if ( $this->fld_description ) {
-			$msg = wfMsg( "tag-$tagName-description" );
-			$msg = wfEmptyMsg( "tag-$tagName-description" ) ? '' : $msg;
-			$tag['description'] = $msg;
+			$msg = wfMessage( "tag-$tagName-description" );
+			$tag['description'] = $msg->exists() ? $msg->text() : '';
 		}
 
 		if ( $this->fld_hitcount ) {
