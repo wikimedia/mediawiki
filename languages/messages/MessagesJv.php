@@ -233,7 +233,6 @@ $messages = array(
 'history'           => 'Vèrsi sadurungé',
 'history_short'     => 'Vèrsi lawas',
 'updatedmarker'     => 'diowahi wiwit kunjungan pungkasanku',
-'info_short'        => 'Informasi',
 'printableversion'  => 'Versi cithak',
 'permalink'         => 'Pranala permanèn',
 'print'             => 'Cithak',
@@ -626,7 +625,7 @@ Yèn ora sengaja tekan kéné, bisa ngeklik pencètan '''back''' waé ing panjla
 'noarticletext'                    => 'Saiki ora ana tèks ing kaca iki. Panjenengan bisa [[Special:Search/{{PAGENAME}}|nglakoni panggolèkan kanggo judhul iki kaca iki]] ing kaca-kaca liyané, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|kaca={{urlencode:{{FULLPAGENAME}}}}}} nggolèki log kagandhèng],
 utawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} nyunting kaca iki]</span>.',
 'userpage-userdoesnotexist'        => 'Akun utawa rékening panganggo "<nowiki>$1</nowiki>" ora kadaftar.',
-'userpage-userdoesnotexist-view'   => 'Panganggo "<nowiki>$1</nowiki>" ora kadhaptar.',
+'userpage-userdoesnotexist-view'   => 'Panganggo "$1" ora kadhaptar.',
 'blocked-notice-logextract'        => 'Panganggo iki saiki lagi diblokir.
 Log pamblokiran pungkasan dituduhaké ing ngisor iki minangka bahan rujukan:',
 'clearyourcache'                   => "'''Cathetan:''' Sawisé nyimpen préférènsi, panjenengan prelu ngresiki <em>cache</em> panjlajah wèb panjenengan kanggo mirsani pangowahan. '''Mozilla / Firefox / Safari:''' pencèt ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': pencèt ''F5''; '''Opera''' resikana <em>cache</em> miturut menu ''Tools→Preferences''.",
@@ -1811,7 +1810,7 @@ Umpan balik lan pitulung sabanjuré:
 'confirmdeletetext'      => 'Panjenengan bakal mbusak kaca utawa berkas iki minangka permanèn karo kabèh sajarahé saka basis data. Pastèkna dhisik menawa panjenengan pancèn nggayuh iki, ngerti kabèh akibat lan konsekwènsiné, lan apa sing bakal panjenengan tumindak iku cocog karo [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].',
 'actioncomplete'         => 'Proses tuntas',
 'actionfailed'           => 'Tindakan gagal',
-'deletedtext'            => '"<nowiki>$1</nowiki>" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
+'deletedtext'            => '"$1" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
 'deletedarticle'         => 'mbusak "[[$1]]"',
 'suppressedarticle'      => 'ndelikaké "[[$1]]"',
 'dellogpage'             => 'Cathetan pambusakan',
@@ -1865,7 +1864,7 @@ Mangga mirsani [[Special:ProtectedPages|daftar kaca sing direksa]] kanggo daftar
 'protectexpiry'               => 'Kadaluwarsa:',
 'protect_expiry_invalid'      => 'Wektu kadaluwarsané ora sah.',
 'protect_expiry_old'          => 'Wektu kadaluwarsané kuwi ana ing jaman biyèn.',
-'protect-text'                => "Panjenengan bisa mirsani utawa ngganti tingkatan pangreksan kanggo kaca '''<nowiki>$1</nowiki>''' ing kéné.",
+'protect-text'                => "Panjenengan bisa mirsani utawa ngganti tingkatan pangreksan kanggo kaca '''$1''' ing kéné.",
 'protect-locked-blocked'      => "Panjenengan ora bisa ngganti tingkat pangreksan yèn lagi diblokir.
 Ing ngisor iki kapacak konfigurasi saiki iki kanggo kaca '''$1''':",
 'protect-locked-dblock'       => "Tingkat pangreksan ora bisa diganti amerga anané panguncèn aktif basis data.
@@ -2378,14 +2377,6 @@ Mbokmanawa iki disebabaké anané pranala jaba sing klebu daftar ireng.',
 'spambot_username'    => 'Resik-resik spam MediaWiki',
 'spam_reverting'      => 'Mbalèkaké menyang vèrsi pungkasan sing ora ana pranalané menyang $1',
 'spam_blanking'       => 'Kabèh révisi sing duwé pranala menyang $1, pangosongan',
-
-# Info page
-'infosubtitle'   => 'Informasi kanggo kaca',
-'numedits'       => 'Cacahé panyuntingan (artikel): $1',
-'numtalkedits'   => 'Cacahé panyuntingan (kaca dhiskusi): $1',
-'numwatchers'    => 'Cacahé sing ngawasi: $1',
-'numauthors'     => 'Cacahé pangarang sing béda-béda (artikel): $1',
-'numtalkauthors' => 'Cacahé pangarang sing béda-béda (kaca dhiskusi): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tandhanana wis dipatroli',

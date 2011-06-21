@@ -141,7 +141,6 @@ $messages = array(
 'go'                => 'ދުރުވޭ',
 'history'           => 'ޞަފްޙާގެ ތާރީހު',
 'history_short'     => 'ތާރީހު',
-'info_short'        => 'މައުލޫމާތު',
 'printableversion'  => 'ޗާޕަށްފަހި ނުސްހާ',
 'permalink'         => 'ދާއިމީ ފާލަން',
 'print'             => 'ޗާޕުކުރައްވާ',

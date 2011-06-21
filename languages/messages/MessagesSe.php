@@ -146,7 +146,6 @@ $messages = array(
 'history'           => 'Historjá',
 'history_short'     => 'Historjá',
 'updatedmarker'     => 'beaiváduvvon du ovddit fitnama maŋŋá',
-'info_short'        => 'Diđoštus',
 'printableversion'  => 'Prentenveršuvdna',
 'permalink'         => 'Bissovaš liŋka',
 'print'             => 'Prente',
@@ -300,7 +299,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'loginsuccesstitle'          => 'Sisačállin lihkosmuvai',
 'loginsuccess'               => 'Leat čálligoahtan sisa geavaheaddjidovddaldagain $1.',
 'nosuchuser'                 => 'Geavaheaddjidovddaldat ”$1” ii dihtto. Dárkis čálletgo dovddaldaga riekta dahke geavat skovi vuolábealde ja ráhkat ođđa geavaheaddjidovddaldaga.',
-'nosuchusershort'            => 'Geavaheaddjidovddaldat ”<nowiki>$1</nowiki>” ii dihtto. Čálletgo dovddaldaga riekta?',
+'nosuchusershort'            => 'Geavaheaddjidovddaldat ”$1” ii dihtto. Čálletgo dovddaldaga riekta?',
 'nouserspecified'            => 'Geavaheaddjidovddaldat ii leat meroštallojuvvon.',
 'wrongpassword'              => 'Suollemassátni, man čállet, ii leat riekta. Leage buorre ja iska ođđasit.',
 'wrongpasswordempty'         => 'It čállán suollemassáni. Iska ođđasit.',
@@ -893,7 +892,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'historywarning'    => 'Siiddu, man aiggot sihkut, lea rievdaduvvon dávjit go oktii:',
 'confirmdeletetext' => 'Leat sihkumin siiddu dahje fiilla ja buot dan historjjá. Ádde dagu váikkuhsaid ja sihko {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|geavahaid]] mielde.',
 'actioncomplete'    => 'Doaibma lea dahkkon',
-'deletedtext'       => '"<nowiki>$1</nowiki>" lea sihkojuvvon.
+'deletedtext'       => '"$1" lea sihkojuvvon.
 Siiddus $2 lea listu maŋimus sihkomiin.',
 'deletedarticle'    => 'sihkoi siiddu [[$1]]',
 'dellogpage'        => 'Sihkkunlogga',
@@ -1137,12 +1136,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'others'      => 'earát',
 'siteusers'   => '{{GRAMMAR:genitive|{{SITENAME}}}} geavaheaddji(t) $1',
 'creditspage' => 'Siiddu dahkkit',
-
-# Info page
-'infosubtitle' => 'Dieđut siiddus',
-'numedits'     => 'Siiddu rievdadusaid mearri: $1',
-'numtalkedits' => 'Ságastallansiiddu rievdadusaid mearri: $1',
-'numwatchers'  => 'Čuovvujeddjiid mearri: $1',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Merke dárkistuvvon',

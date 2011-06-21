@@ -634,7 +634,6 @@ $messages = array(
 'history'           => 'تاريخ الصفحة',
 'history_short'     => 'تاريخ',
 'updatedmarker'     => 'تم تحديثها منذ زيارتي الأخيرة',
-'info_short'        => 'معلومات',
 'printableversion'  => 'نسخة للطباعة',
 'permalink'         => 'وصلة دائمة',
 'print'             => 'اطبع',
@@ -899,7 +898,7 @@ $2',
 'nosuchuser'                 => 'لا يوجد مستخدم بالاسم "$1".
 أسماء المستخدمين حساسة لحالة الحروف.
 تأكد من إملاء الاسم، أو [[Special:UserLogin/signup|قم بإنشاء حساب جديد]].',
-'nosuchusershort'            => 'لا يوجد مستخدم باسم <nowiki>$1</nowiki>".
+'nosuchusershort'            => 'لا يوجد مستخدم باسم $1".
 تأكد من إملاء الاسم.',
 'nouserspecified'            => 'يجب عليك تحديد اسم مستخدم.',
 'login-userblocked'          => 'هذا المستخدم ممنوع. لا يسمح بالولوج.',
@@ -1099,7 +1098,7 @@ $2
 'noarticletext-nopermission'       => 'لا يوجد حاليا أي نص في هذه الصفحة.يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى,أو <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} بحث السجلات المتصلة]</span>.',
 'userpage-userdoesnotexist'        => 'حساب المستخدم "<nowiki>$1</nowiki>" غير مسجل.
 من فضلك تأكد أنك تريد إنشاء/تعديل هذه الصفحة.',
-'userpage-userdoesnotexist-view'   => 'حساب المستخدم "<nowiki>$1</nowiki>" غير مسجل.',
+'userpage-userdoesnotexist-view'   => 'حساب المستخدم "$1" غير مسجل.',
 'blocked-notice-logextract'        => 'هذا المستخدم ممنوع حاليا.
 آخر مدخلة في سجل المنع موفرة بالأسفل كمرجع:',
 'clearyourcache'                   => "'''ملاحظة - بعد الحفظ, ربما ينبغي عليك إفراغ كاش متصفحك لرؤية التغييرات.''' '''موزيللا / فايرفوكس / سافاري:''' اضغط ''Shift'' أثناء ضغط ''Reload,'' أو اضغط أيا من ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''اضغط ''Reload'' أو اضغط ''F5;'' '''أوبرا:''' أفرغ الكاش في ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' اضغط ''Ctrl'' أثناء ضغط ''Refresh,'' أو اضغط ''Ctrl-F5.''",
@@ -2467,7 +2466,7 @@ $ أونواتشورل
 من فضلك التأكد من عزمك على الحذف، وبأنك مدرك للعواقب، وبأنك تقوم بهذا بالتوافق مع [[{{MediaWiki:Policy-url}}|السياسة]].',
 'actioncomplete'         => 'انتهاء العملية',
 'actionfailed'           => 'الفعل فشل',
-'deletedtext'            => '"<nowiki>$1</nowiki>" تم حذفها.
+'deletedtext'            => '"$1" تم حذفها.
 انظر في $2 لسجل آخر عمليات الحذف.',
 'deletedarticle'         => 'حذف "[[$1]]"',
 'suppressedarticle'      => 'أخفى "[[$1]]"',
@@ -2528,7 +2527,7 @@ $ أونواتشورل
 'protect_expiry_invalid'      => 'وقت الانتهاء غير صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع يقع في الماضي.',
 'protect-unchain-permissions' => 'ألغ قفل خيارات الحماية الأخرى',
-'protect-text'                => "يمكنك هنا أن تعرض وتغير مستوى الحماية للصفحة '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "يمكنك هنا أن تعرض وتغير مستوى الحماية للصفحة '''$1'''.",
 'protect-locked-blocked'      => "لا يمكنك تغيير مستويات الحماية وأنت ممنوع.
 الإعدادات الحالية للصفحة '''$1''' هي:",
 'protect-locked-dblock'       => "لا يمكن تغيير مستويات الحماية بسبب غلق قاعدة البيانات حاليا.
@@ -3158,14 +3157,6 @@ $1',
 'spambot_username'    => 'تنظيف سبام ميدياويكي',
 'spam_reverting'      => 'استرجاع آخر نسخة ليس بها وصلات إلى $1',
 'spam_blanking'       => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
-
-# Info page
-'infosubtitle'   => 'المعلومات للصفحة',
-'numedits'       => 'عدد التعديلات (صفحة): $1',
-'numtalkedits'   => 'عدد التعديلات (صفحة نقاش): $1',
-'numwatchers'    => 'عدد المراقبين: $1',
-'numauthors'     => 'عدد المحررين (صفحة): $1',
-'numtalkauthors' => 'عدد المحررين (صحفة نقاش): $1',
 
 # Skin names
 'skinname-standard'    => 'كلاسيك',

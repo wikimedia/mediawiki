@@ -289,7 +289,6 @@ $messages = array(
 'history'           => 'Saifeniñ keçmişi',
 'history_short'     => 'Keçmiş',
 'updatedmarker'     => 'soñki ziyaretimden soñ yañarğan',
-'info_short'        => 'Malümat',
 'printableversion'  => 'Basılmağa uyğun körüniş',
 'permalink'         => 'Soñki alına bağlantı',
 'print'             => 'Bastır',
@@ -527,7 +526,7 @@ Başqa bir qullanıcı adı saylañız.',
 'nosuchuser'                 => '"$1" adlı qullanıcı yoq.
 Qullanıcı adlarında büyük ve kiçik arifler arasında farq bar.
 Doğru yazğanıñıznı teşkeriñiz ya da [[Special:UserLogin/signup|yañı qullanıcı esabını açıñız]].',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
+'nosuchusershort'            => '"$1" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını kirsetmek kereksiñiz.',
 'login-userblocked'          => 'Bu qullanıcı blok etilgen. Kirmege ruhset etilmey.',
 'wrongpassword'              => 'Kirsetken paroliñiz yañlıştır. Lütfen, tekrar etiñiz.',
@@ -672,7 +671,7 @@ Eger siz anonim qullanıcı olsañız ve sizge kelgen beyanatlarnı yañlıştan
 'noarticletext'                    => 'Bu saife şimdi boştır. Bu serlevanı başqa saifelerde [[Special:Search/{{PAGENAME}}|qıdırıp olasıñız]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bağlı jurnal qaydlarını qıdırıp olasıñız] ya da bu saifeni özüñiz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazıp olasıñız]</span>.',
 'noarticletext-nopermission'       => 'Bu saife şimdi boştır. Bu serlevanı başqa saifelerde [[Special:Search/{{PAGENAME}}|qıdıra bile]] ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bağlı jurnallarnı közden keçire bilesiñiz]</span>.',
 'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" adlı qullanıcı yoqtır. Tamam bu saifeni deñiştirmege istegeniñizni teşkeriñiz.',
-'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" adlı qullanıcı esabı yoq.',
+'userpage-userdoesnotexist-view'   => '"$1" adlı qullanıcı esabı yoq.',
 'blocked-notice-logextract'        => 'Bu qullanıcı şimdi blok etilgen.
 Blok etüv jurnalınıñ soñki yazısı aşağıda kösterilgen:',
 'clearyourcache'                   => "'''İhtar:''' Sazlamalarıñıznı saqlağandan soñ deñişikliklerni körmek içün brauzeriñizniñ keşini temizlemek kereksiñiz.
@@ -1502,7 +1501,7 @@ Yardım ve teklifler içün:
 Lütfen, neticelerini añlağanıñıznı ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
 'actioncomplete'        => 'Areket tamamlandı',
 'actionfailed'          => 'Areket yapılamadı',
-'deletedtext'           => '"<nowiki>$1</nowiki>" yoq etildi.
+'deletedtext'           => '"$1" yoq etildi.
 yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 'deletedarticle'        => '"[[$1]]" yoq etildi',
 'dellogpage'            => 'Yoq etüv jurnalı',
@@ -1535,7 +1534,7 @@ Qorçalav altına alınğan saifeler tam cedveli [[Special:ProtectedPages|bu sai
 'protectexpiry'               => 'Bitiş tarihı:',
 'protect_expiry_invalid'      => 'Bitiş tarihı yañlış.',
 'protect_expiry_old'          => 'Bitiş zamanı keçmiştedir.',
-'protect-text'                => "'''[[<nowiki>$1</nowiki>]]''' saifesiniñ qorçalav seviyesini mından körip olur ve deñiştirip olasıñız.",
+'protect-text'                => "'''[[$1]]''' saifesiniñ qorçalav seviyesini mından körip olur ve deñiştirip olasıñız.",
 'protect-locked-access'       => "Qullanıcı esabıñız saifeniñ qorçalav seviyelerini deñiştirme yetkisine saip degil. '''$1''' saifesiniñ şimdiki sazlamaları şularıdır:",
 'protect-cascadeon'           => 'Bu saife şimdi qorçalav altındadır, çünki aşağıda cedvellengen ve kaskadlı qorçalav altındaki {{PLURAL:$1|1|$1}} saifede qullanıla.
 Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorçalav tesir etilmeycek.',
@@ -1831,14 +1830,6 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'spambot_username'    => 'Spamdan temizlev',
 'spam_reverting'      => '$1 saytına bağlantısı olmağan soñki versiyağa keri ketirüv',
 'spam_blanking'       => 'Bar olğan versiyalarda $1 saytına bağlantılar bar, temizlev',
-
-# Info page
-'infosubtitle'   => 'Saife aqqında malümat',
-'numedits'       => 'Deñişiklik sayısı (saife): $1',
-'numtalkedits'   => 'Deñişiklik sayısı (muzakere saifesi): $1',
-'numwatchers'    => 'Közetici sayısı: $1',
-'numauthors'     => 'Müellif sayısı (saife): $1',
-'numtalkauthors' => 'Müellif sayısı (muzakere saifesi): $1',
 
 # Skin names
 'skinname-standard'    => 'Standart',

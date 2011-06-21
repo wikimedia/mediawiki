@@ -191,7 +191,6 @@ Pāusai en kategōrijai "$1"',
 'history'           => 'Pāusas istōrija',
 'history_short'     => 'Istōrija',
 'updatedmarker'     => 'Kitawīdintan ezze panzdaumasmu kāimalukisenin',
-'info_short'        => 'Infōrmaciōni',
 'printableversion'  => 'Drukkaumina wersiōni',
 'permalink'         => 'Ainatīngis autengīnsenis',
 'print'             => 'Drukkaus',
@@ -429,7 +428,7 @@ Madli enklaūjais tennans be bāndais etkūmps.',
 'nosuchuser'                 => 'Ni ast tērpautajs sen pabilīsnan "$1".
 Zentlin debban en tērpautajas pabilīsnai ast zentlawingi.
 Izbandais peisāsnan anga [[Special:UserLogin/signup|teīkeis nāunan rekkenan]].',
-'nosuchusershort'            => 'Ni ast tērpautajs sen pabilīsnan "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Ni ast tērpautajs sen pabilīsnan "$1".
 Izbandais peisāsnan.',
 'nouserspecified'            => 'Tu turri enpeisātun tērpautajas pabilīsnan.',
 'wrongpassword'              => 'Nitikrōmiskas kliptaswīrds. Bāndais dabber rēizan.',
@@ -581,7 +580,7 @@ Tu mazzi [[Special:Search/{{PAGENAME}}|laukītun šisse pāusas tītelin]] en ki
 anga [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigītun šin pāusan]</span>.',
 'userpage-userdoesnotexist'        => 'Tērpautajs "<nowiki>$1</nowiki>" ni ast registrītan.
 Izbāndais, anga tū perarwi kwaitīwuns teīktun/redigītun šin pāusan.',
-'userpage-userdoesnotexist-view'   => 'Tērpautajas rekkens "<nowiki>$1</nowiki>" ni ast registrītan.',
+'userpage-userdoesnotexist-view'   => 'Tērpautajas rekkens "$1" ni ast registrītan.',
 'clearyourcache'                   => "'''Nōda: Kitawīdisnas pa enpeisāsnan stēisan nāunan ensadīnsenin mazzi ni būtwei widāminan. Prawerru skīstintun lasāltas rānkas minīsnan.'''
 *'''Mozilla, Firefox anga Safari - ''' zabāis \"Shift\" gnestan ne gnetteis \"Etnāunais\" anga gnetteis \"Ctrl-F5\" anga \"Ctrl-R\" (\"Command-R\" en Macintoshu);
 *'''Konqueror:''' gnetteis '''Etwārtai kraūneis\" anga \"F5\";
@@ -1673,7 +1672,7 @@ Eraīna šisse pāusas ēnturas kitawīdinsna anga diskusiōnis pāusas sēitan 
 Izbāndais, anga perarwi kwaitēi tu stan segītun, kāi tū izpresta rīplins, adder ka tū segēi ast preitarīngi sen [[{{MediaWiki:Policy-url}}pōlitikin]].',
 'actioncomplete'         => 'Dīlasenis izpilnintan',
 'actionfailed'           => 'Dīlasenis ni izpalla',
-'deletedtext'            => 'Āupausinā di "<nowiki>$1</nowiki>"
+'deletedtext'            => 'Āupausinā di "$1"
 Wīdais en $2 listin stēisan panzdauman āupausinsenin.',
 'deletedarticle'         => 'ast āupausinuns(si) "[[$1]]"',
 'suppressedarticle'      => 'ast enkliptinuns(si) "[[$1]]"',
@@ -1718,7 +1717,7 @@ Kāi widālai listin stēisan tēntiskai pakūnstan pāusan, jaīs en [[Special:
 'protectexpiry'               => 'Wangīnsnas kerdā:',
 'protect_expiry_invalid'      => 'Wangīnsnas kerdā ast nitikrōmiskan.',
 'protect_expiry_old'          => 'Wangīnsnas kerdā ast en pragūbiniskwai.',
-'protect-text'                => "Stwi tu mazzi izbandātwei be kitawīdintun pāusas '''<nowiki>$1</nowiki>''' pakūnsnas līgmenin.",
+'protect-text'                => "Stwi tu mazzi izbandātwei be kitawīdintun pāusas '''$1''' pakūnsnas līgmenin.",
 'protect-locked-blocked'      => "Tu ni mazzi kitawīdintun pakūnsnas līgmenin, beggi assei blōkitan.
 Tēntiskas ensadīnsenei per pāusan '''$1''':",
 'protect-locked-dblock'       => "Ni mazīngi kitawīdintun pakūnsnas līgmenin, dīlantis dātanbazis blōkisnas paggan.
@@ -2223,14 +2222,6 @@ Sta ast drūwiminai dīlintan pra autengīnsenin prēi izwinandan pāusan iz kī
 'spambot_username'    => 'MediaWiki - spamas skīstinsna',
 'spam_reverting'      => 'Etwārtai wartīnsna stesses panzdauman wersiōnin, ni turrintes ēn sin autengīnsenins prei $1',
 'spam_blanking'       => 'Wissas wesiōnis turēi en sin autengīnsenins prei $1. Pāusas skistīnsna.',
-
-# Info page
-'infosubtitle'   => 'Infōrmaciōni ezze pāusan',
-'numedits'       => 'Redigīsenin gīrbis (pāusan): $1',
-'numtalkedits'   => 'Redigīsenin gīrbis (diskusiōnis pāusan): $1',
-'numwatchers'    => 'Nadirīntin gīrbis: $1',
-'numauthors'     => 'Autōran gīrbis (pāusan): $1',
-'numtalkauthors' => 'Autōran gīrbis (diskusiōnis pāusan): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Pazentlis kāigi "izbandātan"',

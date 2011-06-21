@@ -180,7 +180,7 @@ teqqad ad yilli days ca n usekkil war itwagg deg isem .',
 'loginsuccess'            => "'''Qac tudeffed di {{SITENAME}} s \"\$1\".'''",
 'nosuchuser'              => 'War illi ca n useqdac s isem a"$1".
 xemm tirra , niɣ egg amiḍan d amaynu.',
-'nosuchusershort'         => 'War illi ca n useqdac s isem a "<nowiki>$1</nowiki>".
+'nosuchusershort'         => 'War illi ca n useqdac s isem a "$1".
 xemm tirra.',
 'nouserspecified'         => 'ixessa ad tuced isem n useqdac.',
 'wrongpassword'           => 'Taguri n wadaf war tceni ca. Sideff tenni nican.',
@@ -524,7 +524,7 @@ Tasniwin di [[Special:Watchlist|your watchlist]] d '''tizurarin'''.",
 'confirmdeletetext'     => 'Ur d ac iqqim walu a tsfḍed ict tasna ak marra amzruy nns.
 Ma nican txsd a tggd manaya? Ma tssnd min ttggd? Ma ttggd manaya amc teqqaṛ  [[{{MediaWiki:Policy-url}}|tasrtit n Wiki]] ?',
 'actioncomplete'        => 'Tiggawt tsala',
-'deletedtext'           => '"<nowiki>$1</nowiki>" Twakkes.
+'deletedtext'           => '"$1" Twakkes.
 Xemm $2 i tikkas timaynutin.',
 'deletedarticle'        => 'twakkes "[[$1]]"',
 'dellogpage'            => 'Aɣmis n uṣfaḍ',
@@ -542,7 +542,7 @@ Xemm $2 i tikkas timaynutin.',
 'protectexpiry'               => 'Itsala:',
 'protect_expiry_invalid'      => 'Akud n usali ur illi nican.',
 'protect_expiry_old'          => 'Akud usali izri, idwl d amzruy.',
-'protect-text'                => "tzemred ad teẓṛed u atbedeld aswir n uḥeṭṭu n Tasna ya da '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "tzemred ad teẓṛed u atbedeld aswir n uḥeṭṭu n Tasna ya da '''$1'''.",
 'protect-locked-access'       => "Amiḍan inecc war ɣars turagt bac ad ibeddel aswir n uḥeṭṭu n Tasna .
 Aqa (settings) n Tasna '''$1''':",
 'protect-cascadeon'           => 'Tasna ya tẓarq ruxa mayenzi tudef di {{PLURAL:$1|Tasna, iɣa illa|Tasniwin, iɣa illa}} aḥeṭṭu n usmuzzar(cascading protection).

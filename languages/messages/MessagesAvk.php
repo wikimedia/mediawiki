@@ -245,7 +245,6 @@ $messages = array(
 'history'           => 'Buizvot',
 'history_short'     => 'Izvot',
 'updatedmarker'     => 'nuskeyen mali jinafa ironokafa worara',
-'info_short'        => 'Givara',
 'printableversion'  => 'Rorubian siatos',
 'permalink'         => 'Elubkafi gluyasiki',
 'print'             => 'Rubiara',
@@ -456,7 +455,7 @@ Va amidaf yolt gokiblal.',
 'nosuchuser'                 => '« $1 » favesik me krulder.
 Sutera va favesikyolt gotir eltaykoranhafa.
 Ageltal va rinaf suteks oke [[Special:UserLogin/signup|pataredura]].',
-'nosuchusershort'            => 'Me tir favesik digis va « <nowiki>$1</nowiki> » yolt. Va sutekaks ageltal.',
+'nosuchusershort'            => 'Me tir favesik digis va « $1 » yolt. Va sutekaks ageltal.',
 'nouserspecified'            => 'Va favesikyolt gobazel !',
 'wrongpassword'              => 'Remravlem tir volenaf. Tollwil !',
 'wrongpasswordempty'         => 'Remravlem bazeyen tir vlardaf.Vay tolon bazel !',
@@ -1451,7 +1450,7 @@ Feedback and further assistance:
 'confirmdeletetext'      => 'Rin va bu is varaf izvot fu sulal.
 Vay gruyel da djuskul ise va maletireem vangrupel ise tarkason va [[{{MediaWiki:Policy-url}}|xoverteem]] askil !',
 'actioncomplete'         => 'Skuyuna sulara',
-'deletedtext'            => '« <nowiki>$1</nowiki> » tir sulayan.
+'deletedtext'            => '« $1 » tir sulayan.
 Ta vexala dem noeltaf sulareem va $2 disukel.',
 'deletedarticle'         => 'al sular va « [[$1]] »',
 'suppressedarticle'      => '"[[$1]]" sulayan',
@@ -1497,7 +1496,7 @@ Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'protectexpiry'               => 'Edjatena :',
 'protect_expiry_invalid'      => 'Edjatena me tir enafa.',
 'protect_expiry_old'          => 'Edjatena tir abdiugalafa.',
-'protect-text'                => "Rin va nendareka ke '''<nowiki>$1</nowiki>''' bu batlize rowil nume robetal.",
+'protect-text'                => "Rin va nendareka ke '''$1''' bu batlize rowil nume robetal.",
 'protect-locked-access'       => "Rinafa pata va betara va nendareka me rictar.
 Noeltaf plekukseem ke '''$1''' bu batlize tid :",
 'protect-cascadeon'           => 'Batu bu zo nendar kire va {{PLURAL:$1|bu disu|bu yo disu}} va tegisa stoyakorafa nendara pasur. Rin va nendareka va batu bu robetal vexe batcoba va stoyakorafa nendara me vanolatar.',
@@ -1886,14 +1885,6 @@ Ise va bazera va lazava ko vildeks nover.',
 MediaWiki spam cleanup',
 'spam_reverting'      => 'Dimplekura va ironokaf siatos meruldas va gluyasiki do $1',
 'spam_blanking'       => 'Kot betaks ruldas va gluyasiki do $1, tuvlardara',
-
-# Info page
-'infosubtitle'   => 'Bugiva',
-'numedits'       => 'Telizota (teliz) : $1',
-'numtalkedits'   => 'Ota dem betaks (prilarabu): $1',
-'numwatchers'    => 'Disukerota : $1',
-'numauthors'     => 'Ota dem amidaf sutesik (teliz): $1',
-'numtalkauthors' => 'Ota va amidaf sutesik (prilarabu) : $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marquer comme vérifiée',

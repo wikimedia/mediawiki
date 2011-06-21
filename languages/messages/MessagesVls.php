@@ -125,7 +125,6 @@ $messages = array(
 'searchbutton'      => 'Zoekn',
 'history_short'     => 'Geschiedenisse',
 'updatedmarker'     => 'bygewerkt sinds min latste visite',
-'info_short'        => 'Informoatie',
 'printableversion'  => 'Drukboare versie',
 'permalink'         => 'Bluuvende link',
 'print'             => 'Drukn',

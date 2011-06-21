@@ -132,7 +132,6 @@ $messages = array(
 'searcharticle'    => 'İgzali',
 'history'          => 'Butʼkʼaş tarixi',
 'history_short'    => 'Tarixi',
-'info_short'       => 'Çkina',
 'printableversion' => "Kart'alişa na geibaz*gen versiyoni",
 'permalink'        => 'Am xalişa kʼontaktʼi qʼvi',
 'edit'             => 'doktiri',
@@ -507,7 +506,7 @@ Butʼkʼai gotxozu listʼeşen ojilu şeni "gotxozu naşkʼvi" linkʼişa gebaz*
 'confirmdeletetext'     => 'Aşoten am butʼkʼa varna dosya, mteli golaxteri kʼayitʼepe kʼala datʼabeizişen nijilen.
 Am dulyaşen na yeçkindasen zararepe giçkinna do am dulya [[{{MediaWiki:Policy-url}}|Ojiluşi kʼaidepe]] şeni mtini renya isimadep na, am dulya doqʼvi.',
 'actioncomplete'        => 'Aksiyoni içodinu.',
-'deletedtext'           => '"<nowiki>$1</nowiki>" nijilu.
+'deletedtext'           => '"$1" nijilu.
 Xolosi oras jileri na renanpe oz*iru şeni: $2.',
 'deletedarticle'        => '"[[$1]]" aya nijilu',
 'dellogpage'            => 'Ojiluşi kʼayitʼepe',
@@ -526,7 +525,7 @@ Xolosi oras jileri na renanpe oz*iru şeni: $2.',
 'protectexpiry'               => 'Am tarixis içoden:',
 'protect_expiry_invalid'      => 'Am tarixis var içoden, mtini va ren.',
 'protect_expiry_old'          => 'Golaxteris soni oxmaruşi ora.',
-'protect-text'                => "'''<nowiki>$1</nowiki>''' butʼkʼaşi oçvaluşi sinori akolen gazʼiren do gaktirinen.",
+'protect-text'                => "'''$1''' butʼkʼaşi oçvaluşi sinori akolen gazʼiren do gaktirinen.",
 'protect-locked-access'       => "Butʼkʼaşi oçvalu sinorepe oktiru şeni maxmare-hesabi skanis yetʼkʼi var uğun.
 '''$1''' butʼkʼaşi maartani tercihepe antepe renan:",
 'protect-cascadeon'           => 'Am butʼkʼa, "kʼademoni oçvuşi sistemi" aktʼifi na ixvenu do tude na ren {{PLURAL:$1|$1 butʼkʼas|$1 butʼkʼas}} na ixmarinetʼu şeni a3ʼi içven.

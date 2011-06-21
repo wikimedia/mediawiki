@@ -144,7 +144,6 @@ $messages = array(
 'searcharticle'    => 'Tassunngarit',
 'history'          => 'Oqaluttuassartaa',
 'history_short'    => 'Oqaluttuassartaa',
-'info_short'       => 'Paasissutissat',
 'printableversion' => 'Naqikkuminartoq',
 'permalink'        => 'Ataavartumik innersuut',
 'edit'             => 'Aaqqissoruk',

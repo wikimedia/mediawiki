@@ -131,7 +131,6 @@ $messages = array(
 'history'           => 'Hisitōlia ʻo e pēsí',
 'history_short'     => 'Hisitōlia',
 'updatedmarker'     => 'Kuo fakafoʻoua talu ai mei heʻeku ʻaʻahi',
-'info_short'        => 'Fakamatala',
 'printableversion'  => 'Paaki',
 'permalink'         => 'Fehokotaki taumaʻu',
 'print'             => 'Paaki',
@@ -292,7 +291,7 @@ Kuo fakatupu hoʻo tohi kau-ki-ai. ʻOua ʻe ngalo ke liliu hoʻo faʻiteliha {{
 'loginsuccesstitle'          => 'Kuo ola ʻa e kau-ki-ai',
 'loginsuccess'               => "'''ʻOku ke kau-ki-ai he taimí ni ki he {{SITENAME}} hangē \"\$1\".'''",
 'nosuchuser'                 => 'ʻOku ʻikai ʻi ai ha ʻetita mo hono hingoa "$1". Sivi hoʻo sipela pe [[Special:UserLogin/signup|fakatupu haʻo kau-ki-ai foʻou]].',
-'nosuchusershort'            => 'ʻOku ʻikai ʻi ai ha ʻetita mo hono hingoa "<nowiki>$1</nowiki>". Sivi hoʻo sipela.',
+'nosuchusershort'            => 'ʻOku ʻikai ʻi ai ha ʻetita mo hono hingoa "$1". Sivi hoʻo sipela.',
 'nouserspecified'            => 'ʻOku pau te ke ʻoatu ha hingoa ʻo e ʻetita.',
 'wrongpassword'              => 'ʻOku ʻikai totonu ʻa e leatapu, kātaki ʻe toki feinga.',
 'wrongpasswordempty'         => 'Naʻe maha ʻa e tapulea, kātaki ʻe toki feinga.',
@@ -806,7 +805,7 @@ Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomi
 'historywarning'    => 'Tokanga: ko e peesi te ke fietāmateʻi, ʻoku ʻi ai haʻane histolia.',
 'confirmdeletetext' => 'Te ke tāmateʻi, ʻikai ala fūlihi, ʻa e peesi pe faitā mo hono hisitōlia kātoa mei he tānekingaʻilo. Kātaki fakamoʻoniʻi ʻoku sai ia, ʻoku ke ʻilo ʻa e fua, pea ʻoku ke fai pehē ototaha ia mo e [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'ʻOsi ngāue',
-'deletedtext'       => 'Kuo tāmateʻi "<nowiki>$1</nowiki>"
+'deletedtext'       => 'Kuo tāmateʻi "$1"
 Vakai ki he $2 maʻa e fakamatala ʻo e ngaahi toki tāmateʻi.',
 'deletedarticle'    => 'ʻosi tamateʻi "[[$1]]"',
 'dellogpage'        => 'Tohinoa ʻo e tāmateʻi',
@@ -1034,9 +1033,6 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 
 # Spam protection
 'spamprotectionmatch' => 'Naʻe kamosi ʻemau meʻasivi tohila ʻe he ngaahi mataʻitohi koʻeni: $1',
-
-# Info page
-'infosubtitle' => 'Fakamatala ki he peesi',
 
 # Patrolling
 'rcpatroldisabled' => 'ʻOku fakataʻeʻaʻongaʻi ʻa e leʻo ʻo e ngaahi toki liliu',

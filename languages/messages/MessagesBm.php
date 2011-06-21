@@ -45,7 +45,6 @@ $messages = array(
 'search'         => 'Nyini',
 'history'        => 'Nyɛka tariku',
 'history_short'  => 'Tariku',
-'info_short'     => 'Kunnafoni',
 'edit'           => 'yɛlɛma',
 'editthispage'   => 'Nyɛ nin yɛlɛma',
 'newpage'        => 'Nyɛ kura',

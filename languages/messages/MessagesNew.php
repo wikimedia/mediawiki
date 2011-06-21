@@ -181,7 +181,6 @@ $messages = array(
 'history'          => 'पौया इतिहास',
 'history_short'    => 'इतिहास',
 'updatedmarker'    => 'जिं दक्ले लिपा पौ स्वे धुंकाया अपडेट',
-'info_short'       => 'जानकारी',
 'printableversion' => 'ध्वायेज्युगु संस्करण',
 'permalink'        => 'स्थायी लिङ्क',
 'print'            => 'ध्वानादिसँ',

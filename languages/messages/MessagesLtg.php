@@ -148,7 +148,6 @@ $messages = array(
 'searcharticle'    => 'Īt',
 'history'          => 'Puslopys viesture',
 'history_short'    => 'Viesture',
-'info_short'       => 'Informaceja',
 'printableversion' => 'Verseja drukavuošonai',
 'permalink'        => 'Nūtaleja nūruode',
 'print'            => 'Drukavuot',
@@ -609,7 +608,7 @@ Ka vāluok puordūmuosi i nagribiesi vairs puorraudzeit itū lopu, spīd iz sait
 'excontentauthor'       => 'turīņs beja: "$1" (vīneigais autors: [[Special:Contributions/$2|$2]])',
 'confirmdeletetext'     => 'Tu tagad nu datu bazys iztreisi lopu voi biļdi, kai ari tūs īprīškejuos versejis. Lyudzu, apstypryni, ka tu pa eistam tū gribi dareit, ka tu saprūt, ka tū dori i atbylstūši [[{{MediaWiki:Policy-url}}|nūsacejumim]].',
 'actioncomplete'        => 'Darbeiba pabeigta',
-'deletedtext'           => '"<nowiki>$1</nowiki>" beja iztreits.
+'deletedtext'           => '"$1" beja iztreits.
 Kab apsavērtu pādejuo iztreitū sarokstu, verīs $2.',
 'deletedarticle'        => 'dzāsts "[[$1]]"',
 'dellogpage'            => 'Iztreišonys registris',
@@ -629,7 +628,7 @@ Kab apsavērtu pādejuo iztreitū sarokstu, verīs $2.',
 'protectexpiry'               => 'Izabeidz:',
 'protect_expiry_invalid'      => 'Beigu termiņš ir nadereigs.',
 'protect_expiry_old'          => 'Beigu termiņš jau paguojs.',
-'protect-text'                => "Ite var apsavērt i izmaineit lopys '''<nowiki>$1</nowiki>''' aizsardzeibys leimini.",
+'protect-text'                => "Ite var apsavērt i izmaineit lopys '''$1''' aizsardzeibys leimini.",
 'protect-locked-access'       => "Jiusu kontam nav atļuovis maineit lopys aizsardzeibys pakuopi.
 Pašreizejī lopys '''$1''' īstatejumi ir:",
 'protect-cascadeon'           => 'Itei lopa niu ir aizsorguota, deļ tam ka tei ir īlykta {{PLURAL:$1|itadā lopā|itaiduos lopuos}} (mainūt ituos lopys aizsardzeibys leimini tuos aizsardzeiba nabyus nūjimta):',

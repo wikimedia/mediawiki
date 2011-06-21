@@ -489,10 +489,6 @@ $messages = array(
 'others'    => 'fill',
 'siteusers' => '{{PLURAL:$2|Kellufe|Kellufe}} $1 {{SITENAME}}',
 
-# Info page
-'numedits'     => 'Rakin wirin (pakina): $1',
-'numtalkedits' => 'Rakin wirin (pakina nütramkawe): $1',
-
 # Patrol log
 'patrol-log-diff' => 'ng$1',
 

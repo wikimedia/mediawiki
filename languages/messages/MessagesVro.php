@@ -225,7 +225,6 @@ $messages = array(
 'history'           => 'Artikli aolugu',
 'history_short'     => 'Aolugu',
 'updatedmarker'     => 'toimõndõt päält mu perämäst kaemist',
-'info_short'        => 'Teedüs',
 'printableversion'  => 'Trükükujo',
 'permalink'         => 'Püsülink',
 'print'             => 'Trüküq vällä',
@@ -461,7 +460,7 @@ Valiq tõõnõ nimi.',
 'loginsuccess'               => 'Olõt nimega sisse lännüq. Suq pruukjanimi om "$1".',
 'nosuchuser'                 => '"$1" nimelist pruukjat olõ-i olõman.
 Kaeq kiräpilt üle vai [[Special:UserLogin/signup|luuq vahtsõnõ pruukjanimi]].',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" nimelist pruukjat olõ-i olõman. Kas kirotit iks nime õigõhe?',
+'nosuchusershort'            => '"$1" nimelist pruukjat olõ-i olõman. Kas kirotit iks nime õigõhe?',
 'nouserspecified'            => 'Olõ-i kirotõt pruukjanimme.',
 'wrongpassword'              => 'Kirotõt võlss salasõna. Prooviq vahtsõst.',
 'wrongpasswordempty'         => 'Salasõna tohe-i tühi ollaq.',
@@ -608,7 +607,7 @@ Ku sa johtuq siiäq kogõmaldaq, sis klõpsaq võrgokaeja '''Tagasi'''-nuppi.",
 Võit [[Special:Search/{{PAGENAME}}|otsiq soe lehe nimme]]  tõisi lehti päält vai
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uuriq muutmisnimekirjo] vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduolõva leheküle esiq luvvaq]</span>.',
 'userpage-userdoesnotexist'        => 'Pruukjanimme "<nowiki>$1</nowiki>" olõ-i kirjä pant. Kaeq perrä, kas olõt iks kimmäs, et tahat taad lehte toimõndaq.',
-'userpage-userdoesnotexist-view'   => 'Pruukjanimme "<nowiki>$1</nowiki>" olõ-õi kirjä pant.',
+'userpage-userdoesnotexist-view'   => 'Pruukjanimme "$1" olõ-õi kirjä pant.',
 'clearyourcache'                   => "'''Panõq tähele:''' perän pästmist piät muutmiisi nägemises uma võrgokaeja vaihõmälo tühäs tegemä. '''Mozillal / Firofoxil / Safaril''' hoiaq all nõstmisnuppi ''Shift'' ja vaodaq ''Reload'' vai ''Ctrl-R'' (Macintoshil ''Command-R''); Konqueroril vaodaq ''Reload'' vai ''F5''. Operal puhastaq vaihõmälo ja võtaq valikust ''Tools → Preferences''. Internet Exploreril hoiaq ''Ctrl'' ja vaodaq ''Refresh'' vai vaodaq  ''ctrl-f5''.",
 'usercssyoucanpreview'             => "'''Nõvvoannõq:''' Pruugiq nuppi 'Näütäq proovikaehust' uma vahtsõ CCS-i vai JavaScripti ülekaemisõs, inne ku taa ärq pästät.",
 'userjsyoucanpreview'              => "'''Nõvvoannõq:''' Pruugiq nuppi 'Näütäq proovikaehust' uma vahtsõ CCS-i vai JavaScripti ülekaemisõs, inne ku taa ärq pästät.",
@@ -1378,7 +1377,7 @@ As\'a kotsilõ mano kaiaq ja küssü saat lehe päält: {{fullurl:{{MediaWiki:He
 'confirmdeletetext'     => 'Sa kistutat teedüskogost periselt ärq lehe vai pildi üten kõgõ timä aoluuga.
 Kinnüdäq, et sa tahat tuud tõtõstõ tetäq, et sa saat arvo, miä tuust tullaq või ja et tuu, miä sa tiit, klapis [[{{MediaWiki:Policy-url}}|sisekõrraga]].',
 'actioncomplete'        => 'Tallitus valmis',
-'deletedtext'           => '"<nowiki>$1</nowiki>" om ärq kistutõt.
+'deletedtext'           => '"$1" om ärq kistutõt.
 Perämäidsi kistutuisi nimekirjä näet siist: $2.',
 'deletedarticle'        => '"[[$1]]" kistutõt',
 'dellogpage'            => 'Kistutõduq leheküleq',
@@ -1419,7 +1418,7 @@ Kelläaoq ummaq serveriao perrä.',
 'protectexpiry'               => 'Tähtaig',
 'protect_expiry_invalid'      => 'Kõlbmaldaq tähtaig.',
 'protect_expiry_old'          => 'Tähtaig om joba läbi.',
-'protect-text'                => "Tan saat kaiaq ja säädäq lehe '''<nowiki>$1</nowiki>''' kaitsmist.",
+'protect-text'                => "Tan saat kaiaq ja säädäq lehe '''$1''' kaitsmist.",
 'protect-locked-blocked'      => "Kinniqpeetült saa-i kaitsmiisi muutaq. Tan ommaq lehe '''$1''' parhilladsõq säädmiseq:",
 'protect-locked-dblock'       => "Kaitsmiisi saa-i muuta, selle et teedüskogo om lukun. Tan ommaq lehe '''$1''' parhilladsõq säädmiseq:",
 'protect-locked-access'       => "Sul olõ-i õigust kaitsmiisi muutaq.
@@ -1818,14 +1817,6 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'spambot_username'    => 'MediaWiki prahihäötäjä',
 'spam_reverting'      => 'Tagasi pööret viimädse kujo pääle, koh olõ-i linke lehele $1',
 'spam_blanking'       => "Kõigin kujõn oll' linke lehele $1. Leht tühäs tett.",
-
-# Info page
-'infosubtitle'   => 'Teedüs lehe kotsilõ',
-'numedits'       => 'Lehele tettüid toimõnduisi: $1',
-'numtalkedits'   => 'Arotuskülele tettüid toimõnduisi: $1',
-'numwatchers'    => 'Perräkaejit: $1',
-'numauthors'     => 'Lehele eräle kirotajit: $1',
-'numtalkauthors' => 'Arotuskülele eräle kirotajit: $1',
 
 # Skin names
 'skinname-standard'    => 'Array',

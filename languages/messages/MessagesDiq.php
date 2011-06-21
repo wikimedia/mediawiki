@@ -204,7 +204,6 @@ $messages = array(
 'history'           => 'Tarixê pele',
 'history_short'     => 'Tarix',
 'updatedmarker'     => 'cıkewtena mına peyêne ra dıme biyo rocane',
-'info_short'        => 'Melumat',
 'printableversion'  => 'Asayışê çapkerdışi',
 'permalink'         => 'Gıreyo jûqere',
 'print'             => 'Çap ke',
@@ -460,7 +459,7 @@ Ravêri inan akerê u reyna bıcerrebnê.',
 'nosuchuser'                 => 'Ebe namey "$1"i yew karber çıniyo.
 Nuştışê namanê karberan de herfa pil u qıce rê diqet kerên.
 Nuştışê xo qonrol kerên, ya zi [[Special:UserLogin/signup|yew hesabo newe akerên]].',
-'nosuchusershort'            => 'No "<nowiki>$1</nowiki>" name de yew ten çino. Kontrolê nuştışi bıkere.',
+'nosuchusershort'            => 'No "$1" name de yew ten çino. Kontrolê nuştışi bıkere.',
 'nouserspecified'            => 'Şıma gani yew name bıde.',
 'login-userblocked'          => 'No karber/na karbere blokekerdeyo/blokekerdiya. Cıkewtışi rê musade çıniyo.',
 'wrongpassword'              => 'Parola ğeleta. Rêna / fına bıcerrebne .',
@@ -625,7 +624,7 @@ No sernuşte şıma [[Special:Search/{{PAGENAME}}|pelanê binan de eşkeni bıge
 ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} itara eşekeni bıgere].</span>',
 'userpage-userdoesnotexist'        => 'Hesabê karberi "<nowiki>$1</nowiki>" qeyd nêbiyo.
 Kerem ke, tı ke wazenay na pele bafernê/bıvurnê, qontrol ke.',
-'userpage-userdoesnotexist-view'   => 'Hesabê karberi "<nowiki>$1</nowiki>" qeyd nêbiyo.',
+'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nêbiyo.',
 'blocked-notice-logextract'        => 'No karber/na karbere emanet blokekerdeyo/blokekediya.
 Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'clearyourcache'                   => "'''Not:''' Bade eyar qayd kerdış, gani hafızayê cıgerayox pak bıbo: '''Mozilla / Firefox / Safari:''' ''Shift'' ri gıştê şıma ser nayi pel newe ra bar kere veyaxut ''Ctrl-Shift-R'' bıkere u (qey Apple Mac ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' tena tuşê pel newe ra bar kere ser a ne.",
@@ -1887,7 +1886,7 @@ qey hemkari u pêşniyazi:
 Tı ra rica keno, tı zani tı ho sekeno, tı zani neticeyanê eno wedarnayışi u tı zani tı ser [[{{MediaWiki:Policy-url}}|poliçe]] kar keno.',
 'actioncomplete'         => 'Aksiyon temam biyo',
 'actionfailed'           => 'kar nêbı',
-'deletedtext'            => '"<nowiki>$1</nowiki>" biya wedariya.
+'deletedtext'            => '"$1" biya wedariya.
 Qe qeydê wedarnayışi, $2 bevinin.',
 'deletedarticle'         => '"[[$1]]" esterıt',
 'suppressedarticle'      => '"[[$1]]" çap biyo',
@@ -1947,7 +1946,7 @@ qey malumato ziyed bıewnê [[Special:ProtectedPages|protected pages list]].',
 'protect_expiry_invalid'      => 'Demo qediyayışi raşt niyo.',
 'protect_expiry_old'          => 'Demo qediyayışi tarix dı.',
 'protect-unchain-permissions' => 'Zobina tercihanê mıhafezekerdışi kilıt meke',
-'protect-text'                => "Tı eşkeno bıvin u seviyê kılit-kerdışi bıvin '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Tı eşkeno bıvin u seviyê kılit-kerdışi bıvin '''$1'''.",
 'protect-locked-blocked'      => "seviyeya qedexe biyayeyan nevuriyeno.
 '''$1''' eyarê peli:",
 'protect-locked-dblock'       => "semedê kılidê database ya aktifi şıma neeşkeni seviyeya pawıtışi buvurni.
@@ -2492,14 +2491,6 @@ Tı eşkeno yew sebeb bınus.',
 'spambot_username'    => 'wikimedya spam-pakkerdışi',
 'spam_reverting'      => 'agêriyeno revizyon o ke tawayê $1 ıney piya çiniyo',
 'spam_blanking'       => 'revizyonê hemeyi de ıney $1 re gıreyi estî, deverdiyeno',
-
-# Info page
-'infosubtitle'   => 'qey peli malumati',
-'numedits'       => 'Teneyê vurnayişi (pele): $1',
-'numtalkedits'   => 'Teneyê vurnayişi (pela minaqaşe): $1',
-'numwatchers'    => 'amarê temaşakerdoxi: $1',
-'numauthors'     => 'amarê nuştoxê ferqıni (pel): $1',
-'numtalkauthors' => 'Teneyê karberi ke ferkliyê (pela minaqeşe): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Nişan bike ke devriye biyo',

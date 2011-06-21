@@ -197,7 +197,6 @@ $messages = array(
 'history'           => 'Paginaheschiedenisse',
 'history_short'     => 'Geschiedenisse',
 'updatedmarker'     => 'bewerkt sins men lèste bezoek',
-'info_short'        => 'Informaotie',
 'printableversion'  => 'Printbaere versie',
 'permalink'         => 'Permanente lienk',
 'print'             => "Print'n",
@@ -412,7 +411,7 @@ Schaokel die asjeblieft in en meld dinae an mie je nieuwe gebrukersnaem en wacht
 'loginsuccess'               => "'''Je bin noe anemeld bie {{SITENAME}} as \"\$1\".'''",
 'nosuchuser'                 => 'De gebruker "$1" besti nie.
 Controleer de schriefwieze of [[Special:UserLogin/signup|mik een nieuwe gebruker an]].',
-'nosuchusershort'            => 'De gebruker "<nowiki>$1</nowiki>" besti nie. Controleer de schriefwieze.',
+'nosuchusershort'            => 'De gebruker "$1" besti nie. Controleer de schriefwieze.',
 'nouserspecified'            => 'Je dien een gebrukersnaem op te heven.',
 'wrongpassword'              => "Wachtwoôrd onjuust. Probeer 't opnieuw.",
 'wrongpasswordempty'         => "'t Opeheven wachtwoôrd was leeg. Probeer 't opnieuw.",

@@ -203,7 +203,6 @@ $messages = array(
 'history'           => 'Riwayat halaman',
 'history_short'     => 'Riwayat',
 'updatedmarker'     => 'diubah sajak kunjuangan tarakhir ambo',
-'info_short'        => 'Informasi',
 'printableversion'  => 'Versi cetak',
 'permalink'         => 'Pranala permanen',
 'print'             => 'Cetak',
@@ -458,7 +457,7 @@ Pastian Sanak alah mangaktifan kuki, lalu muek ulang laman iko dan cubo baliak.'
 'nosuchuser'                 => 'Indak ado pangguno jo namo "$1".
 Namo psngguno msmbedokan kapitalisasi.
 Pariso baliak ejaan Sanak, atau [[Special:UserLogin/signup|buek akun baharu]].',
-'nosuchusershort'            => 'Indak ado pangguno jo namo "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Indak ado pangguno jo namo "$1".
 Sila pariso baliak ejaan Sanak.',
 'nouserspecified'            => 'Sanak harus mamasuakkan namo pangguno.',
 'login-userblocked'          => 'Pangguno iko diblokir. Indak diizinan/dipabuliahan untuak masuak log.',
@@ -653,7 +652,7 @@ atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} suntiang laman ko]</span>.',
 'noarticletext-nopermission'       => 'Kini ko indak ado teks dalam laman iko.
 Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancaharian untuak judul laman iko]] di laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mancahari log takaik], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} manyuntiang laman iko]</span>.',
 'userpage-userdoesnotexist'        => 'Akun pangguno "<nowiki>$1</nowiki>" indak tadafta.',
-'userpage-userdoesnotexist-view'   => 'Pangguno "<nowiki>$1</nowiki>" indak tadafta.',
+'userpage-userdoesnotexist-view'   => 'Pangguno "$1" indak tadafta.',
 'blocked-notice-logextract'        => 'Pangguno iko sadang diblokir.
 Entri log pamblokiran tabaharu iko disadioan di bawah iko untuak referensi:',
 'clearyourcache'                   => "'''Catatan:''' Sasudah manyimpan preferensi, Sanak mungkin paralu mambarasiahan singgahan panjalajah web Sanak untuak maliek parubahan. '''Mozilla / Firefox / Safari:''' takan ''Ctrl-R'' (''Cmd-R'' pada Macintosh);
@@ -952,7 +951,7 @@ Parubahan laman ko tamasuak laman otanyo akan ditampilkan dalam '''cetak taba'''
 'confirmdeletetext'     => 'Awak akan mahapuih laman atau berkas basamo riwayatnyo.
 Pastikan awak mainginkannyo, dan awak lah tahu sagalo akibatnyo dan sasuai jo [[{{MediaWiki:Policy-url}}|kebijakan]] yang balaku.',
 'actioncomplete'        => 'Proses selesai',
-'deletedtext'           => '"<nowiki>$1</nowiki>" lah dihapuih.
+'deletedtext'           => '"$1" lah dihapuih.
 Lihek $2 untuak rekam jejak laman yang lah dihapuih.',
 'deletedarticle'        => 'dihapuih "[[$1]]"',
 'dellogpage'            => 'Log penghapusan',
@@ -971,7 +970,7 @@ Lihek $2 untuak rekam jejak laman yang lah dihapuih.',
 'protectexpiry'               => 'Kadaluwarsa:',
 'protect_expiry_invalid'      => 'Maso kadaluwarsa indak balaku',
 'protect_expiry_old'          => 'Maso kadaluwarsa adolah pado maso lampau',
-'protect-text'                => "Awak buliah malihek jo mangganti tingkek perlindungan di siko untuak laman '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Awak buliah malihek jo mangganti tingkek perlindungan di siko untuak laman '''$1'''.",
 'protect-locked-access'       => "Akun awak indak berhak untuak maubah tingkek perlindungan laman ko.
 Berikut ko pengaturan yang balaku untuak laman '''$1''':",
 'protect-cascadeon'           => 'Laman ko sedang dilindungi karano tamasuak dalam {{PLURAL:$1|laman|laman}} aktif perlindungan batingkek.

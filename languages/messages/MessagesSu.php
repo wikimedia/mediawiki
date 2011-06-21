@@ -308,7 +308,6 @@ $messages = array(
 'history'           => 'Jujutan kaca',
 'history_short'     => 'Jujutan',
 'updatedmarker'     => 'dirobah saprak pamungkas datangna kuring',
-'info_short'        => 'Iber',
 'printableversion'  => 'Vérsi citakeun',
 'permalink'         => 'Tutumbu permanén',
 'print'             => 'Citak',
@@ -553,7 +552,7 @@ Pariksa kukisna bisi tumpur, terus cobaan muat ulang ieu kaca.',
 'nosuchuser'                 => 'Euweuh pamaké nu ngaranna "$1".
 Ngaran pamaké ngabedakeun hurup kapital.
 Pariksa éjahanana, atawa paké formulir di handap pikeun [[Special:UserLogin/signup|nyieun rekening anyar]].',
-'nosuchusershort'            => 'Taya pamaké nu ngaranna "<nowiki>$1</nowiki>", pariksa éjahanana!',
+'nosuchusershort'            => 'Taya pamaké nu ngaranna "$1", pariksa éjahanana!',
 'nouserspecified'            => 'Anjeun kudu ngeusian ngaran landihan.',
 'login-userblocked'          => 'Ieu pamaké keur dipeungpeuk, teu diwenangkeun asup log.',
 'wrongpassword'              => 'Sandi nu diasupkeun teu cocog. Mangga cobian deui.',
@@ -713,7 +712,7 @@ atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} ngédit ieu kaca]</span>.',
 Anjeun bisa [[Special:Search/{{PAGENAME}}|milari judul ieu kaca]] di kaca séjén,
 atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pilari log nu tumali]</span>.',
 'userpage-userdoesnotexist'        => 'Rekening pamaké "<nowiki>$1</nowiki>" tacan kadaptar. Mangga tilikan lamun anjeun hoyong ngadamel/ngédit kaca ieu.',
-'userpage-userdoesnotexist-view'   => 'Rekening pamaké "<nowiki>$1</nowiki>" teu aya dina daptar.',
+'userpage-userdoesnotexist-view'   => 'Rekening pamaké "$1" teu aya dina daptar.',
 'blocked-notice-logextract'        => 'Ieu pamaké keur dipeungpeuk.
 Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'clearyourcache'                   => "'''Catetan:''' Sanggeus nyimpen, anjeun perlu ngosongkeun sindangan panyungsi anjeun pikeun nempo parobahanana:
@@ -1808,7 +1807,7 @@ Asupan jeung bantuan salajengna:
 'historywarning'         => "'''Awas:''' kaca nu rék dihapus mibanda jujutan kira $1  {{PLURAL:$1|révisi|révisi}}:",
 'confirmdeletetext'      => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan {{SITENAME}}]].',
 'actioncomplete'         => 'Peta geus réngsé',
-'deletedtext'            => '"<nowiki>$1</nowiki>" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
+'deletedtext'            => '"$1" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
 'deletedarticle'         => 'ngahapus "[[$1]]"',
 'dellogpage'             => 'Log_hapusan',
 'dellogpagetext'         => 'Di handap ieu daptar hapusan nu ahir-ahir, sakabéh wanci dumasar wanci server.',
@@ -2313,14 +2312,6 @@ Cara kieu bisa nambahkeun alesan dina ringkesanana.',
 'spamprotectiontitle' => 'Saringan spam',
 'spamprotectiontext'  => 'Kaca nu rék disimpen dipeungpeuk ku saringan spam.
 Sigana mah ieu téh alatan tumbu ka loka luar.',
-
-# Info page
-'infosubtitle'   => 'Iber pikeun kaca',
-'numedits'       => 'Jumlah éditan (artikel): $1',
-'numtalkedits'   => 'Jumlah éditan (kaca sawala): $1',
-'numwatchers'    => 'Jumlah nu ngawaskeun: $1',
-'numauthors'     => 'Jumlah pangarang nu béda (artikel): $1',
-'numtalkauthors' => 'Jumlah pangarang nu béda (kaca sawala): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tandaan salaku geus diriksa',

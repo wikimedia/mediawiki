@@ -343,7 +343,6 @@ $messages = array(
 'history'           => 'Historie',
 'history_short'     => 'Historie',
 'updatedmarker'     => 'bewirk sins mien lètste bezeuk',
-'info_short'        => 'Informatie',
 'printableversion'  => 'Printervruntelike versie',
 'permalink'         => 'Permanente link',
 'print'             => 'Aafdrukke',
@@ -593,7 +592,7 @@ Zörg deveur dats te cookies höbs ingesjakeld, herlaaj dees pagina en perbeer '
 'nosuchuser'                 => 'D\'r besjteit geine gebroeker mit de naam "$1".
 Die seen huidlettegevullig
 Controleer dien spelling, of gebroek ongersjtaond formuleer om \'n [[Special:UserLogin/signup|nuuj]] gebroekersprofiel aan te make.',
-'nosuchusershort'            => 'De gebroeker "<nowiki>$1</nowiki>" besjteit neet. Konterleer de sjriefwieze.',
+'nosuchusershort'            => 'De gebroeker "$1" besjteit neet. Konterleer de sjriefwieze.',
 'nouserspecified'            => "Doe deens 'ne gebroekersnaam op te gaeve.",
 'login-userblocked'          => 'Deze gebroeker steit geblokkeerd. Aanmèlje is neet toegestange.',
 'wrongpassword'              => "'t Ingegaeve wachwaord is neet zjus. Perbeer 't obbenuujts.",
@@ -753,7 +752,7 @@ De kèns [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pagina\'s,
 De kans [[Special:Search/{{PAGENAME}}|nao dees term zeuke]] in anger pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logbeuk doorzeuke]</span>.',
 'userpage-userdoesnotexist'        => 'Doe bewirks \'n gebroekerspagina van \'ne gebroeker dae neet besjteit (gebroeker "<nowiki>$1</nowiki>"). Controlere ofs doe dees pagina waal wils aanmake/bewirke.',
-'userpage-userdoesnotexist-view'   => 'Gebroeker "<nowiki>$1</nowiki>" is neet geregistreerd.',
+'userpage-userdoesnotexist-view'   => 'Gebroeker "$1" is neet geregistreerd.',
 'blocked-notice-logextract'        => "Deze gebroeker is noe geblok.
 De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'clearyourcache'                   => "'''Lèt op:''' Nao 't opsjlaon mós te diene browserbuffer wisse óm de verangeringe te zeen: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''Firefox / IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
@@ -2041,7 +2040,7 @@ Commentaar en wiejer assistentie:
 Kónfermeer hiejónger dat dit inderdaod dien bedoeling is, dats doe de gevolge begrips en dats doe dit deis in euvereinstömming mit 't [[{{MediaWiki:Policy-url}}|beleid]].",
 'actioncomplete'         => 'Actie voltoeid',
 'actionfailed'           => 'Hanjeling mislök',
-'deletedtext'            => '"<nowiki>$1</nowiki>" is eweggesjaf. Bekiek $2 veur \'n euverzich van recènt eweggesjafde pagina\'s.',
+'deletedtext'            => '"$1" is eweggesjaf. Bekiek $2 veur \'n euverzich van recènt eweggesjafde pagina\'s.',
 'deletedarticle'         => '"[[$1]]" is eweggesjaf',
 'suppressedarticle'      => 'haet "[[$1]]" verborge',
 'dellogpage'             => 'Wislogbook',
@@ -2095,7 +2094,7 @@ Zuug de [[Special:ProtectedPages|lies mit beveiligde pazjena's]] veur alle hujig
 'protect_expiry_invalid'      => 'De aangegaeve verlouptied is óngeljig.',
 'protect_expiry_old'          => "De verloupdatum is in 't verleije.",
 'protect-unchain-permissions' => 'Maak euverige beveiligingsinstèllinge besjikber',
-'protect-text'                => "Hie kins te 't beveiligingsniveau veur de pagina '''<nowiki>$1</nowiki>''' bekieke en verangere.",
+'protect-text'                => "Hie kins te 't beveiligingsniveau veur de pagina '''$1''' bekieke en verangere.",
 'protect-locked-blocked'      => "De kèns 't beveiligingsniveau neet verangere terwiels te geblokkeerd bis.
 Hie zeen de hujige insjtèllinge veur de pazjena '''[[$1]]''':",
 'protect-locked-dblock'       => "'t Beveiligingsniveau kin neet waere gewiezig ómdet de database geslaote is.
@@ -2629,14 +2628,6 @@ Meistal wörd dit door 'ne zwarte externe link veroorzaak.",
 'spambot_username'    => 'MediaWiki spam opruming',
 'spam_reverting'      => 'Bezig mit trökdrèjje nao de letste versie die gein verwiezing haet nao $1',
 'spam_blanking'       => "Alle wieziginge mit 'ne link nao $1 waere verwiederd",
-
-# Info page
-'infosubtitle'   => 'Informatie veur pagina',
-'numedits'       => 'Aantal bewerkinge (pagina): $1',
-'numtalkedits'   => 'Aantal bewerkinge (euverlikpagina): $1',
-'numwatchers'    => 'Aantal volgende: $1',
-'numauthors'     => 'Aantal sjrievers (pagina): $1',
-'numtalkauthors' => 'Aantal versjilende auteurs (euverlikpagina): $1',
 
 # Skin names
 'skinname-standard'    => 'Standaard',

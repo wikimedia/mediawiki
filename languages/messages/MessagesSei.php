@@ -153,7 +153,6 @@ $messages = array(
 'history'           => 'Historiám páhina',
 'history_short'     => 'Historiám',
 'updatedmarker'     => 'Par hiineditar visitua ciónsam',
-'info_short'        => 'Informacion',
 'printableversion'  => 'Cabjöxino printino',
 'permalink'         => 'Link permanentöj',
 'print'             => 'Printom',
@@ -354,7 +353,7 @@ Mecaitom coccebj creatöx. Quiix hequáatlaácde {{SITENAME}} pos-poop.",
 'loginsuccesstitle'          => 'Caápo tampua',
 'loginsuccess'               => "'''Me coccebj caápo {{SITENAME}} itide \"\$1\".'''",
 'nosuchuser'                 => 'Jan caitom necoccebj zo, ID "$1". Cohuatlöx mecuáxiit jöx creatom huncaitom.',
-'nosuchusershort'            => 'Jan caitom necoccebj zo, ID "<nowiki>$1</nowiki>". Cohuatlöx mecuáxiit.',
+'nosuchusershort'            => 'Jan caitom necoccebj zo, ID "$1". Cohuatlöx mecuáxiit.',
 'nouserspecified'            => 'Me coccebj IDde caitom caápo.',
 'wrongpassword'              => 'Römjde quimx canj. Vanquimx canj.',
 'wrongpasswordempty'         => 'Quimx canj blankanj. Vanquimx canj.',
@@ -1034,9 +1033,6 @@ iitom e-iitomde diijömde caitóm.',
 
 # Spam protection
 'spambot_username' => 'MediaWiki nespam',
-
-# Info page
-'infosubtitle' => 'Informacionde páhina',
 
 # Media information
 'widthheightpage' => '$1×$2, $3 páhinám',

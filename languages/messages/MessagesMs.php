@@ -380,7 +380,6 @@ $messages = array(
 'history'           => 'Sejarah laman',
 'history_short'     => 'Sejarah',
 'updatedmarker'     => 'dikemaskinikan sejak kunjungan terakhir saya',
-'info_short'        => 'Maklumat',
 'printableversion'  => 'Versi boleh cetak',
 'permalink'         => 'Pautan kekal',
 'print'             => 'Cetak',
@@ -629,7 +628,7 @@ Pastikan anda telah bolehkan kuki, muat semula laman ini dan cuba lagi.',
 'loginsuccesstitle'          => 'Berjaya log masuk',
 'loginsuccess'               => "'''Anda telah log masuk ke dalam {{SITENAME}} sebagai \"\$1\".'''",
 'nosuchuser'                 => 'Pengguna "$1" tidak wujud. Nama pengguna adalah peka huruf besar. Sila semak ejaan anda, atau anda boleh [[Special:UserLogin/signup|membuka akaun baru]].',
-'nosuchusershort'            => 'Pengguna "<nowiki>$1</nowiki>" tidak wujud. Sila semak ejaan anda.',
+'nosuchusershort'            => 'Pengguna "$1" tidak wujud. Sila semak ejaan anda.',
 'nouserspecified'            => 'Sila nyatakan nama pengguna.',
 'login-userblocked'          => 'Pengguna ini disekat. Log masuk tidak dibenarkan.',
 'wrongpassword'              => 'Kata laluan yang dimasukkan adalah salah. Sila cuba lagi.',
@@ -818,7 +817,7 @@ Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang t
 Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman lain,
 atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log yang berkaitan]</span>.',
 'userpage-userdoesnotexist'        => 'Akaun pengguna "<nowiki>$1</nowiki>" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
-'userpage-userdoesnotexist-view'   => 'Akaun pengguna "<nowiki>$1</nowiki>" tidak berdaftar.',
+'userpage-userdoesnotexist-view'   => 'Akaun pengguna "$1" tidak berdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang disekat.
 Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
@@ -2141,7 +2140,7 @@ Sila sahkan bahawa anda memang hendak berbuat demikian, anda faham akan
 akibatnya, dan perbuatan anda mematuhi [[{{MediaWiki:Policy-url}}|dasar kami]].',
 'actioncomplete'         => 'Tindakan berjaya',
 'actionfailed'           => 'Tindakan gagal',
-'deletedtext'            => '"<nowiki>$1</nowiki>" telah dihapuskan.
+'deletedtext'            => '"$1" telah dihapuskan.
 Sila lihat $2 untuk rekod penghapusan terkini.',
 'deletedarticle'         => 'menghapuskan "[[$1]]"',
 'suppressedarticle'      => 'menahan "[[$1]]"',
@@ -2195,7 +2194,7 @@ Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebel
 'protect_expiry_invalid'      => 'Waktu tamat tidak sah.',
 'protect_expiry_old'          => 'Waktu tamat telah berlalu.',
 'protect-unchain-permissions' => 'Aktifkan pilihan perlindungan selanjutnya',
-'protect-text'                => "Anda boleh melihat dan menukar peringkat perlindungan bagi laman '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Anda boleh melihat dan menukar peringkat perlindungan bagi laman '''$1'''.",
 'protect-locked-blocked'      => "Anda telah disekat, justeru tidak boleh menukar peringkat perlindungan.
 Ini adalah tetapan semasa bagi laman '''$1''':",
 'protect-locked-dblock'       => "Anda tidak boleh menukar peringkat perlindungan kerana pangkalan data sedang dikunci.
@@ -2771,14 +2770,6 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'spambot_username'    => 'Pembersihan spam MediaWiki',
 'spam_reverting'      => 'Membalikkan kepada versi terakhir yang tidak mengandungi pautan ke $1',
 'spam_blanking'       => 'Mengosongkan semua semakan yang mengandungi pautan ke $1',
-
-# Info page
-'infosubtitle'   => 'Maklumat laman',
-'numedits'       => 'Jumlah suntingan (laman): $1',
-'numtalkedits'   => 'Jumlah suntingan (laman perbincangan): $1',
-'numwatchers'    => 'Bilangan pemantau: $1',
-'numauthors'     => 'Bilangan pengarang (page): $1',
-'numtalkauthors' => 'Bilangan pengarang (laman perbincangan): $1',
 
 # Skin names
 'skinname-standard' => 'Klasik',

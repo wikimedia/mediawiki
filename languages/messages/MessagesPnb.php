@@ -151,7 +151,6 @@ $messages = array(
 'searcharticle'     => 'چلو جی',
 'history'           => 'پچھلے کم',
 'history_short'     => 'ریکارڈ',
-'info_short'        => 'معلومات',
 'printableversion'  => 'چھپن آلا صفحہ',
 'permalink'         => 'پکا تعلق',
 'print'             => 'چھاپو',
@@ -299,7 +298,7 @@ $messages = array(
 'loginsuccess'            => "'''ہن تسی {{SITENAME}} تے \"\$1\" دے ناں توں لاگ ان او'''",
 'nosuchuser'              => 'اس $1 ناں نال کوئی ورتن آلا نہیں۔
 اپنی لکھائی درست کرو یا نیا [[Special:UserLogin/signup|کھاتہ بناؤ]]۔',
-'nosuchusershort'         => 'اس "<nowiki>$1</nowiki>" ناں دا کوئی ورتن آلا نہيں اے۔
+'nosuchusershort'         => 'اس "$1" ناں دا کوئی ورتن آلا نہيں اے۔
 
 اپنی الف، بے چیک کرو۔',
 'nouserspecified'         => 'توانوں اپنا ورتن آلا ناں دسنا ہوۓ گا۔',
@@ -875,7 +874,7 @@ $messages = array(
 'confirmdeletetext'      => 'تسی اک صفحہ اسدی تاریخ دے نال مٹان لگے او۔
 کیا تسی اے ای کرنا چاہندے او کیا تسی اس دے نتیجے نوں جاندے او کہ تسی اے کم [[{{MediaWiki:Policy-url}}|پالیسی]] دے مطابق کر رہے او۔',
 'actioncomplete'         => 'کم ہوگیا',
-'deletedtext'            => '"<nowiki>$1</nowiki>" مٹایا جا چکیا اے۔<br />
+'deletedtext'            => '"$1" مٹایا جا چکیا اے۔<br />
 نیڑے نیڑے مٹاۓ گۓ ریکارڈ نوں دیکن آسطے $2 ایتھے چلو۔',
 'deletedarticle'         => '"[[$1]]" مٹا دتا گیا',
 'dellogpage'             => 'مٹان آلی لاگ',
@@ -900,7 +899,7 @@ $messages = array(
 'protectexpiry'               => 'انت ہوندا اے:',
 'protect_expiry_invalid'      => 'اکسپائری ٹیم غلط اے۔',
 'protect_expiry_old'          => 'ایدا اکسپائری ٹائم گزر چکیا اے۔',
-'protect-text'                => "تسی اس صفحے دے حفاظتی درجے نوں تک تے تبدیل کر سکدے او'''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "تسی اس صفحے دے حفاظتی درجے نوں تک تے تبدیل کر سکدے او'''$1'''.",
 'protect-locked-access'       => "تواڈا کھاتہ اجازت نہیں دیندا کہ تسی صفحے دے حفاظتی درجے نوں تبدیل کرو۔<br />
 ایتھے صفحے آسطے موجودہ ترتیب نے '''$1''':",
 'protect-cascadeon'           => 'اے صفحہ ایس ویلے بچایا گیا کیوجہ اے اونھاں {{PLURAL:$1|page, which has|صفحیاں وچ شامل اے }} جیناں دی کسکیڈنگ حفاظت آن اے۔
@@ -1165,11 +1164,6 @@ $messages = array(
 
 # Attribution
 'others' => 'دوجے',
-
-# Info page
-'infosubtitle' => 'صفحے آسطے معلومات',
-'numedits'     => 'لکھائی دی گنتی (صفحہ): $1',
-'numwatchers'  => 'ویکھنے آلیاں دی گنتی: $1',
 
 # Browsing diffs
 'previousdiff' => '← پرانی لکھائی',

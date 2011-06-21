@@ -390,7 +390,7 @@ Ná radbadal ák deskáne atíko matano.",
 'confirmdeletetext'     => 'Ní panna as e oná lekav ton avár mesing aŧí us.
 Dá pakk kar ki ní dun kanning xuáisa, dáná pad án poh us, o ní dád [[{{MediaWiki:Policy-url}}|ráhband]] ná vaŕ aŧ kanning us.',
 'actioncomplete'        => 'Amal sarjam',
-'deletedtext'           => '"<nowiki>$1</nowiki>" mesingáne.
+'deletedtext'           => '"$1" mesingáne.
 Zút áteaŧ mesing átá lekav kin $2 e ur.',
 'deletedarticle'        => '"[[$1]]" mesingá',
 'dellogpage'            => 'Mesing ná hisáb',

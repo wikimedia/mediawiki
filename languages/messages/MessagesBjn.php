@@ -202,7 +202,6 @@ $messages = array(
 'history'           => 'Tungkaran halam',
 'history_short'     => 'Tungkaran halam',
 'updatedmarker'     => 'Dihanyari tumatan ilangan pauncitan ulun',
-'info_short'        => 'Panjalasan',
 'printableversion'  => 'Nang kawa dicitak',
 'permalink'         => 'Tautan tatap',
 'print'             => 'Citak',
@@ -460,7 +459,7 @@ Yakinakan Pian sudah mangkawa-akan cookies (wawadai), muat pulang tungkaran ini 
 'nosuchuser'                 => 'Kadada pamuruk bangaran "$1".
 Ngaran pamuruk adalah kasus marinci.
 Lihati pulang ijaan, atawa [[Special:UserLogin/signup|ulah sabuah akun hanyar]]',
-'nosuchusershort'            => 'Kadada pamuruk bangaran "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Kadada pamuruk bangaran "$1".
 Lihati pulang hijaan Pian.',
 'nouserspecified'            => "Pian harus ma'ajuakan sabuah ngaran pamuruk.",
 'login-userblocked'          => 'Pamuruk ini diblukir. Babuat log kada dibulihakan.',
@@ -651,7 +650,7 @@ Pian kawa [[Special:Search/{{PAGENAME}}|manggagai gasan judul ini]] pintang tung
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} manggagai log barait].</span>.',
 'userpage-userdoesnotexist'        => 'Akun pamuruk "<nowiki>$1</nowiki>" kada tadaptar.
 Muhun pariksa amun Pian handak maulah/mambabak tungkaran ini.',
-'userpage-userdoesnotexist-view'   => 'Akun pamuruk "<nowiki>$1</nowiki>" kada tadaptar.',
+'userpage-userdoesnotexist-view'   => 'Akun pamuruk "$1" kada tadaptar.',
 'blocked-notice-logextract'        => 'Pamuruk nangini parhatan ini diblukir.
 Log blukir pahabisannya tasadia di bawah ini gasan rujukan:',
 'clearyourcache'                   => "'''Catatan: Habis manyimpan, Pian harus malingarakan cache panjalajah web Pian hagan malihat parubahan.'''
@@ -1908,7 +1907,7 @@ Parubahan-parubahan salanjutnya pada tungkaran ini dan tungkaran pamandiran tara
 'confirmdeletetext'     => 'Pian handak mahapus sabuah tungkaran awan samunyaan halamnya.
 Muhun mamastiakan amun Pian handak manggawi ini, bahwasa Pian paham akibatnya, wan apa nang Pian gawi ini sasuai awan [[{{MediaWiki:Policy-url}}|kabijakan {{SITENAME}}]].',
 'actioncomplete'        => 'Pangulahan tuntung',
-'deletedtext'           => '"<nowiki>$1</nowiki>" sudah tahapus. Lihati $2 sabuah rakaman gasan nang hanyar ni tahapus.',
+'deletedtext'           => '"$1" sudah tahapus. Lihati $2 sabuah rakaman gasan nang hanyar ni tahapus.',
 'deletedarticle'        => 'mahapus "[[$1]]"',
 'dellogpage'            => 'Log pahapusan',
 'deletionlog'           => 'log pahapusan',
@@ -1939,7 +1938,7 @@ Babakan tauncit dilakukan ulih [[User:$3|$3]] ([[User talk:$3|pandir]]{{int:pipe
 'protectexpiry'               => 'Kadaluwarsa:',
 'protect_expiry_invalid'      => 'Waktu kadaluwarsa kada sah.',
 'protect_expiry_old'          => 'Waktu kadaluwarsa adalah pada masa bahari.',
-'protect-text'                => "Pian kawa maniring atawa mangganti tingkatan parlindungan gasan tungkaran '''<nowiki>$1</nowiki>''' di sia.",
+'protect-text'                => "Pian kawa maniring atawa mangganti tingkatan parlindungan gasan tungkaran '''$1''' di sia.",
 'protect-locked-access'       => "Akun Pian kada baisi ijin gasan maubah tingkatan palindungan tungkaran.
 Di sia adalah pangaturan wayah ini gasan tungkaran '''$1''':",
 'protect-cascadeon'           => 'Tungkaran ini rahatan dilindungi lantaran diumpatakan dalam {{PLURAL:$1|tungkaran|tungkaran-tungkaran}} barikut nang sudah aktip palindungan barénténgnya.
@@ -2369,10 +2368,6 @@ Muhun cubai pulang.',
 'anonusers'        => '{{PLURAL:$2|pamuruk|papamuruk}} kada bangaran {{SITENAME}} $1',
 'creditspage'      => 'Tungkaran kridit',
 'nocredits'        => 'Kadada panjalasan kridit tasadia gasan tungkaran ngini.',
-
-# Info page
-'infosubtitle' => 'Panjalasan gasan tungkaran',
-'numedits'     => 'Rikinan babakan (tungkaran): $1',
 
 # Patrol log
 'patrol-log-diff' => 'Ralatan $1',

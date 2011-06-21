@@ -272,7 +272,6 @@ $messages = array(
 'history'           => 'Storic de pagjine',
 'history_short'     => 'Storic',
 'updatedmarker'     => 'inzornât de mê ultime visite',
-'info_short'        => 'Informazions',
 'printableversion'  => 'Version stampabil',
 'permalink'         => 'Leam permanent',
 'print'             => 'Stampe',
@@ -449,7 +448,7 @@ No stâ dismenteâti di gambiâ lis [[Special:Preferences|preferencis di {{SITEN
 'loginsuccesstitle'       => 'Jentrât cun sucès',
 'loginsuccess'            => 'Cumò tu sês jentrât te {{SITENAME}} sicu "$1".',
 'nosuchuser'              => 'Nissun utent regjistrât cul non "$1". Controle il non inserît o [[Special:UserLogin/signup|cree tu une gnove identitât]].',
-'nosuchusershort'         => 'Nol esist nissun utent cul non "<nowiki>$1</nowiki>". Controle di no vê sbaliât di scrivi.',
+'nosuchusershort'         => 'Nol esist nissun utent cul non "$1". Controle di no vê sbaliât di scrivi.',
 'nouserspecified'         => 'Tu scugnis specificâ un non utent.',
 'wrongpassword'           => 'La peraule clâf zontade no je juste. Torne par plasê a provâ.',
 'wrongpasswordempty'      => 'La peraule clâf inseride e je vueide. Torne a provâ.',
@@ -1214,7 +1213,7 @@ e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins
 Par plasê, da la conferme che tu vuelis fâlu, che tu capissis lis conseguencis e che tu lu stâs fasint tal rispiet de [[{{MediaWiki:Policy-url}}|politiche dal progjet]].',
 'actioncomplete'        => 'Azion completade',
 'actionfailed'          => 'Azion falide',
-'deletedtext'           => '"<nowiki>$1</nowiki>" al è stât eliminât.
+'deletedtext'           => '"$1" al è stât eliminât.
 Cjale $2 par une liste des ultimis eliminazions.',
 'deletedarticle'        => 'eliminât "[[$1]]"',
 'dellogpage'            => 'Regjistri des eliminazions',
@@ -1238,7 +1237,7 @@ Cjale $2 par une liste des ultimis eliminazions.',
 'protectexpiry'               => 'Scjadence:',
 'protect_expiry_invalid'      => 'Scjadence no valide.',
 'protect_expiry_old'          => 'La scjadence e je za passade.',
-'protect-text'                => "Ca tu puedis viodi e cambiâ il nivel di protezion pe pagjine '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Ca tu puedis viodi e cambiâ il nivel di protezion pe pagjine '''$1'''.",
 'protect-locked-access'       => "No tu âs i permès che a coventis par cambiâ i nivei di protezion de pagjine.
 Lis impuestazions atuâls pe pagjine a son '''$1''':",
 'protect-cascadeon'           => 'Cheste pagjine e je blocade par cumò parcè che e je includude {{PLURAL:$1|inte pagjine|intes pagjinis}} culì sot, dulà che e je ative la protezion ricorsive.
@@ -1507,14 +1506,6 @@ Par plasê va su [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'anonusers'        => '$1, {{PLURAL:$2|utent anonim|utents anonims}} di {{SITENAME}}',
 'creditspage'      => 'Pagjine dai ricognossiments',
 'nocredits'        => 'Nissune informazion sui ricognossiments disponibil par cheste pagjine.',
-
-# Info page
-'infosubtitle'   => 'Informazions pe pagjine',
-'numedits'       => 'Numar di cambiaments (vôs): $1',
-'numtalkedits'   => 'Numar di cambiaments (pagjine di discussion): $1',
-'numwatchers'    => 'Numar di chei che e àn cjalât: $1',
-'numauthors'     => 'Numar di autôrs diviers (vôs): $1',
-'numtalkauthors' => 'Numar di autôrs diviers (pagjine di discussion): $1',
 
 # Skin names
 'skinname-standard'  => 'Classiche',

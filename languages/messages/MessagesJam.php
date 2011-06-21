@@ -198,7 +198,6 @@ Lef aaf dif afta pofaamin ruolbak',
 'history'           => 'Piej ischri',
 'history_short'     => 'Ischri',
 'updatedmarker'     => 'opdiet sens mi laas vizit',
-'info_short'        => 'Infamieshan',
 'printableversion'  => 'Printobl voerjan',
 'permalink'         => 'Poermanint lingk',
 'print'             => 'Print',
@@ -454,7 +453,7 @@ Begyu eniebl dem ahn chrai agen.',
 'nosuchuser'                 => 'No yuuza no de bai di niem "$1".
 Yuuza niem kies sensitiv.
 Chek yu spelin, ar [[Special:UserLogin/signup|kriet a nyuu akount]].',
-'nosuchusershort'            => 'No yuuza no de bai di niem "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'No yuuza no de bai di niem "$1".
 Chek yu spelin.',
 'nouserspecified'            => 'Yu afi spesifai a yuuzaniem.',
 'login-userblocked'          => 'Dis yuuza blak. No lagiin no lou.',
@@ -624,7 +623,7 @@ Yu kiahn [[Special:Search/{{PAGENAME}}|saach fi dis piej taikl]] ina ada piej,
 ar [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit dis piej]</span>.',
 'userpage-userdoesnotexist'        => 'Yuuza akount "<nowiki>$1</nowiki>" no rejista.
 Begyu chek ef yu waahn fi kriet/edit dis piej.',
-'userpage-userdoesnotexist-view'   => 'Yuuza akount "<nowiki>$1</nowiki>" no rejista.',
+'userpage-userdoesnotexist-view'   => 'Yuuza akount "$1" no rejista.',
 'blocked-notice-logextract'        => 'Dis yuuza korantli blak.
 Di lietis blak lag enchri provaid biluo fi refrans:',
 'usercssyoucanpreview'             => "'''Tip:''' Yuuz di \"{{int:showpreview}}\" botn fi tes yu nyuu CSS bifuo yu sieb.",
@@ -866,7 +865,7 @@ Fyuucha chienj tu dis piej ahn iasuosietid taak piej wi lis de, ahn di piej wi a
 'confirmdeletetext'     => "Yu bout fi diliit a piej alangx wid aal a i'ischri.
 Begyu kanfoerm se yu inten fi du dis, se yu andastan di kansikwens, ahn se yu a du dis askaadans wid [[{{MediaWiki:Policy-url}}|di palisi]].",
 'actioncomplete'        => 'Akshan kompliit',
-'deletedtext'           => '"<nowiki>$1</nowiki>" don diliit.
+'deletedtext'           => '"$1" don diliit.
 Si $2 fi a rekaad a riisant diliishan.',
 'deletedarticle'        => 'diliitid "[[$1]]"',
 'dellogpage'            => 'Diliishan lag',
@@ -885,7 +884,7 @@ Si $2 fi a rekaad a riisant diliishan.',
 'protectexpiry'               => 'Expaya:',
 'protect_expiry_invalid'      => 'Expairi taim invalid.',
 'protect_expiry_old'          => 'Expairi taim ina di paas.',
-'protect-text'                => "Yu kiahn vyuu ahn chienj di protekshan lebl yaso fi di piej '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Yu kiahn vyuu ahn chienj di protekshan lebl yaso fi di piej '''$1'''.",
 'protect-locked-access'       => "Yu akount no ab no poermishan fi chienj piej protekshan lebl.
 Demaya a di korant setndem fi di piej '''$1''':",
 'protect-cascadeon'           => "Dis piej korantli protek kaa i'inkluud ina di falarin {{PLURAL:$1|piej, ush ab|piejdem, ush ab}} kiaskiedn protekshan ton aan.

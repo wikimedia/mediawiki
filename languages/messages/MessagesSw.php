@@ -311,7 +311,6 @@ $messages = array(
 'history'           => 'Historia ya ukurasa',
 'history_short'     => 'Historia',
 'updatedmarker'     => 'imebadilishwa tangu nilipoutazama mara ya mwisho',
-'info_short'        => 'Maarifa',
 'printableversion'  => 'Ukurasa wa kuchapika',
 'permalink'         => 'Kiungo cha daima',
 'print'             => 'Chapisha',
@@ -567,7 +566,7 @@ Hakikisha kwamba kuki zimewezeshwa kwenye tarakalishi yako, pakia ukurasa huu up
 'nosuchuser'                 => 'Hakuna mtumiaji mwenye jina "$1".
 Kumbuka kwamba programu inatofautishana kati ya herufi kubwa na ndogo.
 Labda umeandika vibaya, au [[Special:UserLogin/signup|sajili akaunti mpya]].',
-'nosuchusershort'            => 'Hakuna mtumiaji mwenye jina "<nowiki>$1</nowiki>". Labda umeandika vibaya.',
+'nosuchusershort'            => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya.',
 'nouserspecified'            => 'Lazima uandike jina la mtumiaji.',
 'login-userblocked'          => 'Mtumiaji huyu amezuiwa. Hawezi kuingia.',
 'wrongpassword'              => 'Umeingiza neno la siri la makosa.
@@ -758,7 +757,7 @@ Unaweza [[Special:Search/{{PAGENAME}}|kutafuta jina la ukurasa huu]] katika kura
 au <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tafuta ingizo linalofanana]</span>.',
 'userpage-userdoesnotexist'        => 'Akaunti ya mtumiaji "<nowiki>$1</nowiki>" haijasajilishwa.
 Ukitaka kuanzisha au kuhariri ukurasa huu tafadhali ucheki jina la akaunti.',
-'userpage-userdoesnotexist-view'   => 'Akaunti ya mtumiaji "<nowiki>$1</nowiki>" haijasajilishwa.',
+'userpage-userdoesnotexist-view'   => 'Akaunti ya mtumiaji "$1" haijasajilishwa.',
 'blocked-notice-logextract'        => 'Mtumiaji huyu bado amezuiwa.
 Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'clearyourcache'                   => "'''Elewa - Baada ya kuhifadhi, itakubidi uzungushe kivinjali kache chako ili kuona mabadiliko.'''
@@ -1999,7 +1998,7 @@ Kutoa maoni yako au kupata msaada mwingine:
 Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo yake, na kwamba unafuata [[{{MediaWiki:Policy-url}}|sera]].',
 'actioncomplete'         => 'Kitendo kimekwisha',
 'actionfailed'           => 'Tendo halikufaulu',
-'deletedtext'            => '"<nowiki>$1</nowiki>" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
+'deletedtext'            => '"$1" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
 'deletedarticle'         => 'alifuta "[[$1]]"',
 'suppressedarticle'      => 'alificha "[[$1]]"',
 'dellogpage'             => 'Kumbukumbu ya ufutaji',
@@ -2048,7 +2047,7 @@ ukurasa huu una mhariri mmoja tu.',
 'protectexpiry'               => 'Itakwisha:',
 'protect_expiry_invalid'      => 'Muda wa kwisha ni batilifu.',
 'protect_expiry_old'          => 'Muda wa kuishi umepita tayari.',
-'protect-text'                => "Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa '''$1'''.",
 'protect-locked-dblock'       => "Viwango vya ulindaji haviwezi kubadilishwa kwa sababu hifadhidata imefungwa.
 Hapo panaandikwa viwango vya ulindaji wa ukurasa '''$1''':",
 'protect-locked-access'       => "Akaunti yako hairuhusiwi kubadilisha viwango vya ulindaji.
@@ -2482,14 +2481,6 @@ Tafadhali jaribu tena.',
 'anonusers'        => '{{PLURAL:$2|Mtumiaji|Watumiaji}} wa {{SITENAME}} {{PLURAL:$2|asiyetiwa jina|wasiotiwa jina}} $1',
 'creditspage'      => 'Wandishi wa ukurasa',
 'nocredits'        => 'Taarifa kuhusu wandishi wa ukurasa huu haipatikana.',
-
-# Info page
-'infosubtitle'   => 'Taarifa juu ya ukurasa',
-'numedits'       => 'Idadi ya haririo (ukurasa): $1',
-'numtalkedits'   => 'Idadi ya uhariri (ukurasa wa majadiliano): $1',
-'numwatchers'    => 'Idadi ya wanaofuatilia ukurasa: $1',
-'numauthors'     => 'Idadi ya waandishi tofauti (ukurasa): $1',
-'numtalkauthors' => 'Idadi ya waandishi tofauti (ukurasa wa majadiliano): $1',
 
 # Patrol log
 'patrol-log-line' => 'aliweka alama ya kufanyiwa doria katika $1 ya $2 $3',

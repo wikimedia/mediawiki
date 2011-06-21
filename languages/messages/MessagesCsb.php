@@ -215,7 +215,6 @@ $messages = array(
 'history'           => 'Historëjô starnë',
 'history_short'     => 'Historëjô',
 'updatedmarker'     => 'zaktualnioné òd mòji slédny gòscënë',
-'info_short'        => 'Wëdowiédza',
 'printableversion'  => 'Wersëjô do drëkù',
 'permalink'         => 'Prosti lënk',
 'print'             => 'Drëkùjë',
@@ -969,7 +968,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'confirmdeletetext'     => 'Chcesz rëmnąc starnã do grëpë z ji całowną historëją.
 Ùgwësni sã, czë na gwës chcesz to zrobic, rozmiejąc kònsekwencëje ti òperacëji ë że robisz to zgòdno z [[{{MediaWiki:Policy-url}}|reglama]].',
 'actioncomplete'        => 'Òperacëjô wëkònónô',
-'deletedtext'           => '^<nowiki>$1</nowiki>" òstôł rëmniãti.
+'deletedtext'           => '^$1" òstôł rëmniãti.
 Òbôczë na starnie $2 register slédnych rëmniãców.',
 'deletedarticle'        => 'rëmniãté przez "[[$1]]"',
 'dellogpage'            => 'Rëmóné',
@@ -998,7 +997,7 @@ Slédnym ùsódzcą starnë bëł [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]]{
 'protectexpiry'               => 'Wëgasô pò:',
 'protect_expiry_invalid'      => 'Lëchi czas wëgasniãcô.',
 'protect_expiry_old'          => 'Czas wëgasniãcô leżi w przińdnocë.',
-'protect-text'                => "Mòżesz tuwò sprôwdzëc ë zjinaczëc légã zazychrowaniô starnë '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Mòżesz tuwò sprôwdzëc ë zjinaczëc légã zazychrowaniô starnë '''$1'''.",
 'protect-locked-access'       => "Ni môsz dosc prawa do zjinaczi lédżi zazychrowaniô starnë. Aktualny nastôw dlô starnë '''$1''':",
 'protect-cascadeon'           => 'Na starna je zazychrowónô przed edicëją, dlôte że je brëkòwónô przez {{PLURAL:$1|nôslédną starnã, chtërnô òsta zazychrowónô|nôslédné starnë, chtërné òstałe zazychrowóné}} z aktiwną kaskadową òpatcëją zazychrowëwaniô.
 Mòżesz zmienic légã zazychrowaniô, nie bãdze to równak miało cëskù na kaskadowé zazychrowanié.',

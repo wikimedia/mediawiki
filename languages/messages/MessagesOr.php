@@ -360,7 +360,6 @@ $messages = array(
 'searcharticle'     => 'ଯିବା',
 'history'           => 'ଫାଇଲ ଇତିହାସ',
 'history_short'     => 'ଇତିହାସ',
-'info_short'        => 'ଖବର',
 'printableversion'  => 'ଛପାହୋଇପାରିବା ପୃଷ୍ଠା',
 'permalink'         => 'ସବୁଦିନିଆ ଲିଙ୍କ',
 'print'             => 'ପ୍ରିଣ୍ଟ କରିବା',
@@ -826,7 +825,7 @@ $messages = array(
 'confirmdeletetext'     => 'ଆପଣ ଗୋଟିଏ ପୃଷ୍ଠାର ଇତିହାସ ସହ ତାହାକୁ ଲିଭାଇବାକୁ ଯାଉଛନ୍ତି ।
 ଏହା ଥୟ କରନ୍ତୁ ଯେ ଆପଣ ଏହାର ପରିଣତି ଜାଣିଛନ୍ତି ଓ ଏହା [[{{MediaWiki:Policy-url}}|ମିଡ଼ିଆଉଇକିର ନିୟମ]] ଅନୁସାରେ କରୁଛନ୍ତି ।',
 'actioncomplete'        => 'କାମଟି ପୁରା ହେଲା',
-'deletedtext'           => '"<nowiki>$1</nowiki>"କୁ ଲିଭାଇ ଦିଆଗଲା ।
+'deletedtext'           => '"$1"କୁ ଲିଭାଇ ଦିଆଗଲା ।
 ନଗଦ ଲିଭାଯାଇଥିବା ଫାଇଲର ଇତିହାସ $2ରେ ଦେଖନ୍ତୁ ।',
 'deletedarticle'        => '"[[$1]]" ଟି ଉଡ଼ିଗଲା',
 'dellogpage'            => 'ଲିଭାଇବା ଲଗ',

@@ -440,7 +440,6 @@ I seguenti collegamenti sono in lingua inglese:
 'history'           => 'Versioni precedenti',
 'history_short'     => 'Cronologia',
 'updatedmarker'     => 'modificata dalla mia ultima visita',
-'info_short'        => 'Informazioni',
 'printableversion'  => 'Versione stampabile',
 'permalink'         => 'Link permanente',
 'print'             => 'Stampa',
@@ -694,7 +693,7 @@ Assicurati di avere attivato i cookie, ricarica questa pagina e riprova.",
 'loginsuccesstitle'          => 'Accesso effettuato',
 'loginsuccess'               => "'''Sei stato connesso al server di {{SITENAME}} con il nome utente di \"\$1\".'''",
 'nosuchuser'                 => 'Non è registrato alcun utente di nome "$1". I nomi utente sono sensibili alle maiuscole. Verificare il nome inserito o [[Special:UserLogin/signup|creare un nuovo accesso]].',
-'nosuchusershort'            => 'Non è registrato alcun utente di nome "<nowiki>$1</nowiki>". Verificare il nome inserito.',
+'nosuchusershort'            => 'Non è registrato alcun utente di nome "$1". Verificare il nome inserito.',
 'nouserspecified'            => 'È necessario specificare un nome utente.',
 'login-userblocked'          => 'Questa utenza è bloccata. Non è possibile effettuare il login.',
 'wrongpassword'              => 'La password inserita non è corretta. Riprovare.',
@@ -881,7 +880,7 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
 'noarticletext-nopermission'       => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>.',
 'userpage-userdoesnotexist'        => 'L\'account "<nowiki>$1</nowiki>" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
-'userpage-userdoesnotexist-view'   => 'L\'account utente "<nowiki>$1</nowiki>" non è registrato.',
+'userpage-userdoesnotexist-view'   => 'L\'account utente "$1" non è registrato.',
 'blocked-notice-logextract'        => "Questo utente è attualmente bloccato.
 L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
 'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
@@ -2181,7 +2180,7 @@ Per commentare e ricevere aiuto:
 'confirmdeletetext'      => 'Stai per cancellare una pagina con tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Azione completata',
 'actionfailed'           => 'Azione fallita',
-'deletedtext'            => 'La pagina "<nowiki>$1</nowiki>" è stata cancellata.
+'deletedtext'            => 'La pagina "$1" è stata cancellata.
 Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'deletedarticle'         => 'ha cancellato "[[$1]]"',
 'suppressedarticle'      => 'ha soppresso "[[$1]]"',
@@ -2234,7 +2233,7 @@ Consultare la [[Special:ProtectedPages|lista delle pagine protette]] per l'elenc
 'protect_expiry_invalid'      => 'Scadenza non valida.',
 'protect_expiry_old'          => 'Scadenza già trascorsa.',
 'protect-unchain-permissions' => 'Sblocca ulteriori opzioni di protezione',
-'protect-text'                => "Questo modulo consente di vedere e modificare il livello di protezione per la pagina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Questo modulo consente di vedere e modificare il livello di protezione per la pagina '''$1'''.",
 'protect-locked-blocked'      => "Non è possibile modificare i livelli di protezione quando è attivo un blocco. Le impostazioni correnti per la pagina sono '''$1''':",
 'protect-locked-dblock'       => "Impossibile modificare i livelli di protezione durante un blocco del database.
 Le impostazioni correnti per la pagina sono '''$1''':",
@@ -2813,14 +2812,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'spambot_username'    => 'MediaWiki - sistema di rimozione spam',
 'spam_reverting'      => "Ripristinata l'ultima versione priva di collegamenti a $1",
 'spam_blanking'       => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
-
-# Info page
-'infosubtitle'   => 'Informazioni per la pagina',
-'numedits'       => 'Numero di modifiche (pagina): $1',
-'numtalkedits'   => 'Numero di modifiche (pagina di discussione): $1',
-'numwatchers'    => 'Numero di osservatori: $1',
-'numauthors'     => 'Numero di autori distinti (pagina): $1',
-'numtalkauthors' => 'Numero di autori distinti (pagina di discussione): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Segna la modifica come verificata',

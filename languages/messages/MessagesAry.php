@@ -202,7 +202,6 @@ $messages = array(
 'history'           => 'Ṫariĥ ṣ-ṣefḫa',
 'history_short'     => 'Historik',
 'updatedmarker'     => 'tam thditha ala akhir ziyara liya',
-'info_short'        => 'maalomat',
 'printableversion'  => 'Vérsyon imkenliha ṫṫetbeĝ',
 'permalink'         => 'Lyan dayem',
 'print'             => 'Tbeĝ',
@@ -503,7 +502,7 @@ ola [{{fullurl:{{FULLPAGENAME}}|action=edit}} ṫsayeb ṣ-ṣefḫa]</span>.',
 Imken lek [[Special:Search/{{PAGENAME}}|ṫqelleb ĝla ṣefḫa be had l-ĝonwan]] fe ṣ-ṣefḫaṫ l-ĥrin,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ṫqelleb fe l-ĝamaliyaṫ l-mlaqyin]
 ola [{{fullurl:{{FULLPAGENAME}}|action=edit}} ṫsayeb ṣ-ṣefḫa]</span>.',
-'userpage-userdoesnotexist-view'   => 'L-Ḫsab dyal l-mosṫeĥdim "<nowiki>$1</nowiki>" ma mċejjelċ.',
+'userpage-userdoesnotexist-view'   => 'L-Ḫsab dyal l-mosṫeĥdim "$1" ma mċejjelċ.',
 'updated'                          => '(mohdata)',
 'note'                             => "'''molahada:'''",
 'previewnote'                      => "'''Dir fe balek belli hadċi ġir prévizualizasyon.'''
@@ -1293,7 +1292,7 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 Ĝafak ekked belli hadċi howa li baġi ṫdir, belli nṫa fahem l-ahammiya dyalo, o belli kaṫdir hadċi be ṫ-ṫowfiq dyal [[{{MediaWiki:Policy-url}}|l-qawaĝid d-daĥiliya]].',
 'actioncomplete'         => 'Ṫsalaṫ l-ĝamaliya',
 'actionfailed'           => 'Ma ṣeḍqaṫċ',
-'deletedtext'            => '« <nowiki>$1</nowiki> » ṫemḫa.
+'deletedtext'            => '« $1 » ṫemḫa.
 Ċof $2 ila bġiṫi ċi lista dyal kolċi li ṫemḫa aĥiran.',
 'deletedarticle'         => 'memḫi "[[$1]]"',
 'suppressedarticle'      => 'mḫa "[[$1]]"',
@@ -1322,7 +1321,7 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 'protectexpiry'               => 'Ġayṫqada fe:',
 'protect_expiry_invalid'      => 'Daz ĝlih l-oqeṫ.',
 'protect_expiry_old'          => 'L-oqeṫ dyal n-nihaya fe l-maḍi.',
-'protect-text'                => "Hnaya ṫeqḍer tċof o ṫbeddel l-mostawa de l-ḫimaya dyal ṣ-ṣefḫa '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Hnaya ṫeqḍer tċof o ṫbeddel l-mostawa de l-ḫimaya dyal ṣ-ṣefḫa '''$1'''.",
 'protect-locked-access'       => "Ḫsabek ma ĝendoċ l-ḫaqq baċ ibeddel l-mosṫawa de l-ḫimaya dyal ṣ-ṣefḫa.
 Hnaya ġadi ṫelqa lé-ééglaj l-leĥĥrin dyal ṣ-ṣefḫa '''$1''':",
 'protect-cascadeon'           => 'Had ṣ-ṣefḫa raha meḫmiya ḫiṫ hiya daĥel {{PLURAL:$1|had ṣ-ṣefḫa, li ṫṫeḫmaṫ|had ṣ-ṣefḫaṫ, li ṫṫeḫmaw}} be l-opsyon "ḫimaya moḍmana" ĥeddama.
@@ -1652,11 +1651,6 @@ Imken lek ṫċof l-ĝin dyalha.',
 
 # Spam protection
 'spambot_username' => 'tandif spam mediawiki',
-
-# Info page
-'numedits'     => 'adad taadilat (sfha) : $1',
-'numtalkedits' => 'adad taadilat (sfht niqach): $1',
-'numwatchers'  => 'adad lmmoraqibin: $1',
 
 # Patrolling
 'markaspatrolleddiff' => 'marki kamorajaaa',

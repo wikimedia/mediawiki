@@ -202,7 +202,6 @@ $messages = array(
 'history'           => 'Panna ke itihaas',
 'history_short'     => 'Itihaas',
 'updatedmarker'     => 'hamaar pahile waala visit ke baad badla gais hai',
-'info_short'        => 'Jankari',
 'printableversion'  => 'Chhape ke khaatir',
 'permalink'         => 'Pakka jorr',
 'print'             => 'Print karo',
@@ -460,7 +459,7 @@ Cookies ke enable kar ke, ii panna ke fir se load karo aur fir se kosis karo.',
 'nosuchuser'                 => '"$1" naam ke koi sadasya nai hai.
 Sadasya ke naam case sensitive hai.
 Aapan spelling check karo nai to [[Special:UserLogin/signup|nawaa account banao]].',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" naam ke koi sadasya nai hai.
+'nosuchusershort'            => '"$1" naam ke koi sadasya nai hai.
 Aapan spelling check karo.',
 'nouserspecified'            => 'Aap ke aapan username de ke parri.',
 'login-userblocked'          => 'Ii sadasya ke rok dewa gais hae.  Login kare ke ijajat nai hae.',
@@ -644,7 +643,7 @@ Aap sakta hae [[Special:Search/{{PAGENAME}}|ii panna ke title ke khoje]] duusra 
 nai to <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.',
 'userpage-userdoesnotexist'        => 'User account "<nowiki>$1</nowiki>" abi registered nai hai.
 Check karo ki Ii panna ke aap banae/badle mangta hai.',
-'userpage-userdoesnotexist-view'   => 'User account "<nowiki>$1</nowiki>" abhi register nai karaa gais hae',
+'userpage-userdoesnotexist-view'   => 'User account "$1" abhi register nai karaa gais hae',
 'blocked-notice-logextract'        => 'Ii sadasya ke abhi rok dewa gais hae.
 Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:',
 'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
@@ -1968,7 +1967,7 @@ Aapan bichar de ke khatir aur aage ke sahaeta:
 Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke policy ke niche delete karta hai.',
 'actioncomplete'         => 'Action puura hoe gais hai',
 'actionfailed'           => 'Action fail hoe gais',
-'deletedtext'            => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
+'deletedtext'            => '"$1" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
 'deletedarticle'         => '"[[$1]]" ke mitae dewa gais hae',
 'suppressedarticle'      => 'suppressed "[[$1]]"',
 'dellogpage'             => 'Mitae ke suchi',
@@ -2029,7 +2028,7 @@ Abhi ke laabu panna protection ke dekho [[Special:ProtectedPages|protected pages
 'protect_expiry_old'          => 'Khalas hoe waala time past me hai.',
 'protect-unchain-permissions' => 'Aur jaada bachae waala option ke kholo',
 'protect-text'                => "Aap ii panna ke protection level ke dekhe aur badle sakta hai
-'''<nowiki>$1</nowiki>'''.",
+'''$1'''.",
 'protect-locked-blocked'      => "Aap blocked rahe pe protection level ke nai badle sakta hai.
 Panna '''$1''' ke abhi ke settings hai:",
 'protect-locked-dblock'       => "Active database lock ke kaaran protection level ke bala nai jaawe sake hai.
@@ -2596,14 +2595,6 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'spambot_username'    => 'MediaWiki spam ke safai',
 'spam_reverting'      => 'Pahile waala badalo, jisme $1 se link nai hai, pe karaa jaawe hai',
 'spam_blanking'       => 'Sab badlao jisme $1 se jorr hai, ke mitawa jaawe hai',
-
-# Info page
-'infosubtitle'   => 'Panna ke baare me jaankari',
-'numedits'       => 'Badlao ke ginti (panna): $1',
-'numtalkedits'   => 'Badlao ke ginti (salah waala panna): $1',
-'numwatchers'    => 'Dekhe waala ke ginti: $1',
-'numauthors'     => 'Likhe waala ke ginti (panna): $1',
-'numtalkauthors' => 'Likhe waala ke ginti (salah waala panna): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Mark karo ke pahraa dewa jaawe hai',

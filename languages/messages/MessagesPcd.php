@@ -167,7 +167,6 @@ $messages = array(
 'history'           => 'Pache historique',
 'history_short'     => 'Histoère',
 'updatedmarker'     => 'Cangé édpui em darinne visite',
-'info_short'        => 'Informachion',
 'printableversion'  => 'Imprimabe vérchon',
 'permalink'         => 'Loïen pérmanint',
 'print'             => 'Imprimer',
@@ -621,7 +620,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'deletepage'            => "Défacer l'pache",
 'confirmdeletetext'     => "Vos alez défacer eune pache ou un fichié aveuc toutes chés antieusses vérchons.<br /> Confreumer éq ch'est cho éq vos voulez foaire, éq vos conprindez chés consécanches et pi éq ch'est bin s'lon el [[{{MediaWiki:Policy-url}}|politique éd MédiaWiki]].",
 'actioncomplete'        => 'Plònne acchon',
-'deletedtext'           => "« <nowiki>$1</nowiki> » o té défacé.
+'deletedtext'           => "« $1 » o té défacé.
 Vir $2 pou eune lisse d'chés darinnes défachons.",
 'deletedarticle'        => 'défacé "[[$1]]"',
 'dellogpage'            => 'jornal éd chés défacions',
@@ -647,7 +646,7 @@ L' passèie édition del pache étoait par  [[User:$3|$3]] ([[User talk:$3|Talk]
 'protectexpiry'               => "Date d'éspirachon:",
 'protect_expiry_invalid'      => "L'date d'éspirachon ale n'est mie possibe.",
 'protect_expiry_old'          => "L'date d'éspirachon ale est déjo érpassée.",
-'protect-text'                => "Os pouvez vir pi canger ech nivieu d'protécchon ichi pou l'pache-lo '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Os pouvez vir pi canger ech nivieu d'protécchon ichi pou l'pache-lo '''$1'''.",
 'protect-locked-access'       => "Vos n’avez poin chés droés pou canger chés nivieus d'protécchon des paches.<br />
 Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'protect-cascadeon'           => "L'pache-lo ale est garantie ker ale est incluse din {{PLURAL:$1|eune pache qu'o té garantie|des paches éq ont té garanties}} aveuc l'option « protécchon in cascate» écanillée. <br /> Os povez canger ch'nivieu d'garantie del pache mais el garantie in cascate n'sro poin cangée.",
@@ -817,9 +816,6 @@ Os pouvez vir l'source",
 'tooltip-rollback'                => '« Racacher » cancéle aveuc un clic el (ou chés) modificachon(s) del pache-lo pèr sin darin contérbucheu.',
 'tooltip-undo'                    => "« Undo » ( ''démangler'' ) értire ch'canjemint-lo pi ouvre l' fénéte d'édichon din ch'mode ''prévir''. <br /> In put mette un motif din ch'résumé.",
 'tooltip-preferences-save'        => 'Warder chés préférinches.',
-
-# Info page
-'numedits' => 'Nombe ed canjemints (pache) : $1',
 
 # Browsing diffs
 'previousdiff' => '← Pu vieille édition',

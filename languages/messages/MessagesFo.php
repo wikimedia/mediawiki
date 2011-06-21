@@ -248,7 +248,6 @@ $messages = array(
 'searcharticle'     => 'Far',
 'history'           => 'Síðusøga',
 'history_short'     => 'Søga',
-'info_short'        => 'Upplýsingar',
 'printableversion'  => 'Prentvinarlig útgáva',
 'permalink'         => 'Støðug slóð',
 'print'             => 'Prenta',
@@ -404,7 +403,7 @@ Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstilling
 'loginsuccesstitle'          => 'Innritan væleydnað',
 'loginsuccess'               => "'''Tú hevur nú ritað inn í {{SITENAME}} sum \"\$1\".'''",
 'nosuchuser'                 => 'Eingin brúkari er við navninum "$1". Kanna stavseting ella nýt frymilin niðanfyri til at stovna nýggja kontu.',
-'nosuchusershort'            => 'Eingin brúkari er við navninum "<nowiki>$1</nowiki>". Kanna stavseting.',
+'nosuchusershort'            => 'Eingin brúkari er við navninum "$1". Kanna stavseting.',
 'wrongpassword'              => 'Loyniorðið, sum tú skrivaði, er skeivt. Vinaliga royn aftur.',
 'wrongpasswordempty'         => 'Loyniorð manglar. Vinarliga royn aftur.',
 'mailmypassword'             => 'Send mær eitt nýtt loyniorð',
@@ -847,7 +846,7 @@ Vinarliga vátta at tú ætlar at gera hetta, at tú skilur
 avleiðingarnar og at tú gert tað í tráð við
 [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'Verkið er fullgjørt',
-'deletedtext'       => '"<nowiki>$1</nowiki>" er nú strikað.
+'deletedtext'       => '"$1" er nú strikað.
 Sí $2 fyri fulla skráseting av strikingum.',
 'deletedarticle'    => 'strikaði "[[$1]]"',
 'dellogpage'        => 'Striku logg',
@@ -1051,9 +1050,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'othercontribs' => 'Grundað á arbeiði eftir $1.',
 'others'        => 'onnur',
 'siteusers'     => '{{SITENAME}}brúkari(ar) $1',
-
-# Info page
-'infosubtitle' => 'Upplýsingar um síðu',
 
 # Skin names
 'skinname-standard'    => 'Standardur',

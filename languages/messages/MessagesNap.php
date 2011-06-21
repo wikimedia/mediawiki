@@ -151,7 +151,6 @@ $messages = array(
 'go'                => 'Vàje',
 'history'           => "Verziune 'e primma",
 'history_short'     => 'Cronologgia',
-'info_short'        => 'Nfurmazzione',
 'printableversion'  => "Verzione pe' stampa",
 'permalink'         => 'Jonta permanente',
 'edit'              => 'Càgna',
@@ -236,7 +235,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'gotaccountlink'             => 'Tràse',
 'loginerror'                 => "Probblema 'e accièsso",
 'loginsuccesstitle'          => 'Acciesso affettuato',
-'nosuchusershort'            => 'Nun ce stanno utente cu o nòmme "<nowiki>$1</nowiki>". Cuntrolla si scrivìste buòno.',
+'nosuchusershort'            => 'Nun ce stanno utente cu o nòmme "$1". Cuntrolla si scrivìste buòno.',
 'nouserspecified'            => "Tiene 'a dìcere nu nomme pricìso.",
 'acct_creation_throttle_hit' => 'Ce dispiace, haje già criato $1 utente. Nun ne pô crià ate.',
 'accountcreated'             => 'Cunto criato',
@@ -374,7 +373,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'exbeforeblank'   => "'O cuntenuto apprimm' 'a ll'arrevacamento era: '$1'",
 'exblank'         => "'a paggena era vacante",
 'actioncomplete'  => 'Azzione fernuta',
-'deletedtext'     => 'Qauccheruno ha scancellata \'a paggena "<nowiki>$1</nowiki>".  Addumannà \'o $2 pe na lista d"e ppaggene scancellate urdemamente.',
+'deletedtext'     => 'Qauccheruno ha scancellata \'a paggena "$1".  Addumannà \'o $2 pe na lista d"e ppaggene scancellate urdemamente.',
 'deletedarticle'  => 'ha scancellato "[[$1]]"',
 'dellogpage'      => 'Scancellazione',
 'deletionlog'     => 'Log d"e scancellazione',
@@ -450,10 +449,6 @@ Also see [[Special:WantedCategories|wanted categories]].",
 
 # Attribution
 'others' => 'ate',
-
-# Info page
-'numedits'    => "Nummero 'e cagnamiente (articulo): $1",
-'numwatchers' => "Nummero 'e asservature: $1",
 
 # Special:NewFiles
 'noimages' => "Nun nc'è nind' 'a veré.",

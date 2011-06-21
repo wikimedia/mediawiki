@@ -436,7 +436,6 @@ $messages = array(
 'history'           => '页面历史',
 'history_short'     => '历史',
 'updatedmarker'     => '我上次访问以来的修改',
-'info_short'        => '信息',
 'printableversion'  => '可打印版',
 'permalink'         => '永久链接',
 'print'             => '打印',
@@ -680,7 +679,7 @@ $2',
 'loginsuccesstitle'          => '登录成功',
 'loginsuccess'               => "'''你现在以“$1”的身份登录到{{SITENAME}}。'''",
 'nosuchuser'                 => '找不到用户“$1”。用户名是大小写敏感且区分繁简体的。请检查您的拼写，或者[[Special:UserLogin/signup|建立一个新账户]]。',
-'nosuchusershort'            => '没有一个名为“<nowiki>$1</nowiki>”的用户。请检查您输入的文字是否有错误。',
+'nosuchusershort'            => '没有一个名为“$1”的用户。请检查您输入的文字是否有错误。',
 'nouserspecified'            => '你需要指定一个用户名。',
 'login-userblocked'          => '这位用户已被封锁。不容许登录。',
 'wrongpassword'              => '您输入的密码错误，请再试一次。',
@@ -845,7 +844,7 @@ $2
 'noarticletext-nopermission'       => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
 'userpage-userdoesnotexist'        => '用户账户“<nowiki>$1</nowiki>”未曾创建。请在创建／编辑这个页面前先检查一下。',
-'userpage-userdoesnotexist-view'   => '用户账户“<nowiki>$1</nowiki>”未曾创建。',
+'userpage-userdoesnotexist-view'   => '用户账户“$1”未曾创建。',
 'blocked-notice-logextract'        => '这位用户现正被封锁。
 下面有最近的封锁纪录以供参考：',
 'clearyourcache'                   => "'''注意：在保存以后，您必须清除浏览器的缓存才能看到所作出的改变。'''
@@ -2159,7 +2158,7 @@ $UNWATCHURL
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',
 'actionfailed'           => '操作失败',
-'deletedtext'            => '"<nowiki>$1</nowiki>"已经被删除。最近删除的记录请参见$2。',
+'deletedtext'            => '"$1"已经被删除。最近删除的记录请参见$2。',
 'deletedarticle'         => '已删除“[[$1]]”',
 'suppressedarticle'      => '已隐藏“[[$1]]”',
 'dellogpage'             => '删除日志',
@@ -2213,7 +2212,7 @@ $UNWATCHURL
 'protect_expiry_invalid'      => '输入的终止时间无效。',
 'protect_expiry_old'          => '终止时间已过去。',
 'protect-unchain-permissions' => '解除锁定更多的保护选项',
-'protect-text'                => '你可以在这里浏览和修改对页面<strong><nowiki>$1</nowiki></strong>的保护级别。',
+'protect-text'                => '你可以在这里浏览和修改对页面<strong>$1</strong>的保护级别。',
 'protect-locked-blocked'      => "您不能在被封禁时更改保护级别。以下是页面'''$1'''的当前设置：",
 'protect-locked-dblock'       => "您不能在数据库锁定时更改保护级别。以下是页面'''$1'''的当前设置：",
 'protect-locked-access'       => "您的帐户没有足够的权限去更改保护级别。以下是页面'''$1'''的当前设置：",
@@ -2807,14 +2806,6 @@ $1被封禁的理由是：“$2”',
 'spambot_username'    => 'MediaWiki垃圾链接清理器',
 'spam_reverting'      => '恢复到不包含链接的最近修订版本$1',
 'spam_blanking'       => '消隐所有包含链接至$1的修订',
-
-# Info page
-'infosubtitle'   => '页面信息',
-'numedits'       => '编辑数（页面）：$1',
-'numtalkedits'   => '编辑数（讨论页）：$1',
-'numwatchers'    => '监视者数目：$1',
-'numauthors'     => '作者数量（页面）：$1',
-'numtalkauthors' => '作者数量（讨论页）：$1',
 
 # Skin names
 'skinname-standard'    => '标准',

@@ -1,5 +1,5 @@
 <?php
-/** Bihari (भोजपुरी)
+/** Bhojpuri (भोजपुरी)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -152,7 +152,6 @@ $messages = array(
 'history'           => 'पन्ना के इतिहास',
 'history_short'     => 'इतिहास',
 'updatedmarker'     => 'हमार अन्तिम आगमन से बदलाव',
-'info_short'        => 'जानकारी',
 'printableversion'  => 'छापे लायक संस्करण',
 'permalink'         => 'स्थायी लिंक',
 'print'             => 'छापीं',
@@ -308,7 +307,7 @@ $1',
 'nosuchuser'              => '"$1" नाम से कौनो प्रयोगकर्ता नईखन।
 प्रयोगकर्ता नाम संवेदनशील मामला बा।
 शब्द-वर्तनी के जाँच करीं, आ चाहे [[Special:UserLogin/signup|एगो नया खाता बनाईं]]।',
-'nosuchusershort'         => 'ई नाम से कौनो प्रयोगकर्ता नईखन "<nowiki>$1</nowiki>".
+'nosuchusershort'         => 'ई नाम से कौनो प्रयोगकर्ता नईखन "$1".
 आपन शब्द-वर्तनी के जाँच करीं।',
 'nouserspecified'         => 'रउआ एगो प्रयोगकर्ता नाम निर्दिष्ट करे के बा।',
 'login-userblocked'       => 'ई प्रयोगकर्ता के खाता निष्क्रिय हो चुकल बा। प्रवेश के आज्ञा नईखे।',

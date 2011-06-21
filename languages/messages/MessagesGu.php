@@ -324,7 +324,6 @@ $messages = array(
 'history'           => 'પાનાનો ઇતિહાસ',
 'history_short'     => 'ઇતિહાસ',
 'updatedmarker'     => 'મારી ગઇ મુલાકાત પછીના બદલાવ',
-'info_short'        => 'માહિતી',
 'printableversion'  => 'છાપવા માટેની આવૃત્તિ',
 'permalink'         => 'સ્થાયી કડી',
 'print'             => 'છાપો',
@@ -591,7 +590,7 @@ $2',
 સભ્યનામો અક્ષરસંવેદી (કેસ સેન્સિટીવ) હોય છે.
 
 કૃપા કરી સ્પેલીંગ/જોડણી ચકાસો અથવા [[Special:UserLogin/signup|નવું ખાતુ ખોલો]].',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" નામનો કોઇ સભ્ય નથી, તમારી જોડણી તપાસો.',
+'nosuchusershort'            => '"$1" નામનો કોઇ સભ્ય નથી, તમારી જોડણી તપાસો.',
 'nouserspecified'            => 'તમારે સભ્ય નામ દર્શાવવાની જરૂર છે.',
 'login-userblocked'          => 'આ યુઝર પ્રતિબંધિત છે. પ્રવેશ વર્જીત.',
 'wrongpassword'              => 'તમે લખેલી ગુપ્ત સંજ્ઞા ખોટી છે.
@@ -767,7 +766,7 @@ Please log in again after you receive it.
 અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરી શકો છો</span>.',
 'userpage-userdoesnotexist'        => 'સભ્ય ખાતું "<nowiki>$1</nowiki>"ની નોંધણીનથી થઈ.
 શું તમે ખરેખર આ પાનાની રચના કે ફેરફાર કરવા માંગો છો',
-'userpage-userdoesnotexist-view'   => 'સભ્યના ખાતા <nowiki>$1</nowiki> ની નોંધણી નથી થઈ',
+'userpage-userdoesnotexist-view'   => 'સભ્યના ખાતા $1 ની નોંધણી નથી થઈ',
 'blocked-notice-logextract'        => 'આ સભ્ય હાલમાં પ્રતિબંધિત છે.
 તમારા નીરીક્ષણ માટે તાજેતરમાં પ્રતિબંધિત થયેલા સભ્યોની યાદિ આપી છે.',
 'clearyourcache'                   => "'''નોંધ : સાચવ્યા પછી, તમારે તમારા બ્રાઉઝરની હંગામી યાદદાશ્તને અદ્યતન કરવી પડશે જેથી તમે સાચવેલા ફેરફાર જોઇ શકો.'''
@@ -2119,7 +2118,7 @@ $UNWATCHURL
 કૃપા કરી મંજૂરી આપો કે, આપ આમ કરવા ચાહો છો, આપ આના સરા-નરસા પરિણામોથી વાકેફ છો, અને આપ આ કૃત્ય [[{{MediaWiki:Policy-url}}|નીતિ]]ને અનુરૂપ જ કરી રહ્યાં છો.',
 'actioncomplete'         => 'કામ પૂરું થઈ ગયું',
 'actionfailed'           => 'કાર્ય અસફળ',
-'deletedtext'            => '"<nowiki>$1</nowiki>" દૂર કરવામાં આવ્યું છે.
+'deletedtext'            => '"$1" દૂર કરવામાં આવ્યું છે.
 તાજેતરમાં દૂર કરેલા લેખોની વિગત માટે $2 જુઓ.',
 'deletedarticle'         => 'હટાવવામાં આવેલા "[[$1]]"',
 'suppressedarticle'      => 'છુપાવેલા "[[$1]]"',
@@ -2183,7 +2182,7 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 'protect_expiry_invalid'      => 'સમાપ્તિનો સમય માન્ય નથી.',
 'protect_expiry_old'          => 'સમાપ્તિનો સમય ભૂતકાળમાં છે.',
 'protect-unchain-permissions' => 'આગળના સંરક્ષણ પ્રતિબંધ વિકલ્પ મુક્ત કરો',
-'protect-text'                => "અહિં તમે પાના '''<nowiki>$1</nowiki>'''નું સુરક્ષા સ્તર જોઈ શકો છો અને તેમાં ફેરફાર પણ કરી શકશો.",
+'protect-text'                => "અહિં તમે પાના '''$1'''નું સુરક્ષા સ્તર જોઈ શકો છો અને તેમાં ફેરફાર પણ કરી શકશો.",
 'protect-locked-blocked'      => "જ્યારે પાના પર રોક લગાવેલી હોય ત્યારે તેનું સુરક્ષા સ્તર બદલાવી ન શકાય.
 '''$1''' પાનાની હાલની સુરક્ષા ગોઠવણી આપેલી છે",
 'protect-locked-dblock'       => 'માહિતી સંચ બંધ હોવાથી સંરક્ષણ સ્તર બદલી નહીં શકાય્
@@ -2756,14 +2755,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'spambot_username'    => 'મિડિયાવિકી સ્પેમ સફાઇ',
 'spam_reverting'      => ' $1 પર કડી ન ધરાવતા છેલ્લા ફેરેફાર પર પુનઃ સ્થાપન કરાય છે',
 'spam_blanking'       => 'બધા ફેરફારોમાં  $1 પર કડી હતી, આને હટાવી દેવામાં આવે છે',
-
-# Info page
-'infosubtitle'   => 'પાના વિષે માહિતી',
-'numedits'       => 'ફેરફારોની સંખ્યા (લેખ): $1',
-'numtalkedits'   => 'ફેરફારોની સંખ્યા (ચર્ચાનું પાનું): $1',
-'numwatchers'    => 'નીરીક્ષકોની સંખ્યા : $1',
-'numauthors'     => 'લેખકોની સંખ્યા (પાનું): $1',
-'numtalkauthors' => 'લેખકોની સંખ્યા (ચર્ચા પાનું): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'નિરીક્ષીત અંકિત કરો',

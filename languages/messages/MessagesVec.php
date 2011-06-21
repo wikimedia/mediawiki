@@ -336,7 +336,6 @@ I seguenti cołegamenti i xé en łengua inglese:
 'history'           => 'Storia de la pagina',
 'history_short'     => 'Storia',
 'updatedmarker'     => 'modifegà da ła me ultema visita',
-'info_short'        => 'Informasion',
 'printableversion'  => 'Version par la stanpa',
 'permalink'         => 'Link parmanente',
 'print'             => 'Stanpa',
@@ -582,7 +581,7 @@ Tòtene uno difarente.',
 'loginsuccesstitle'          => 'Aceso efetuà',
 'loginsuccess'               => "'''Te si sta conesso al server de {{SITENAME}} con el nome utente de \"\$1\".'''",
 'nosuchuser'                 => 'Nol xè rejistrà alcun utente de nome "$1". I nomi utente i xè sensibiłi a łe majuscołe. Verifegare el nome inserio o [[Special:UserLogin/signup|creare on novo aceso]].',
-'nosuchusershort'            => 'No ghe xe nissun utente de nome "<nowiki>$1</nowiki>". Sito sicuro che te lo ghè scrito ben?',
+'nosuchusershort'            => 'No ghe xe nissun utente de nome "$1". Sito sicuro che te lo ghè scrito ben?',
 'nouserspecified'            => 'Te ghè da métar un nome utente.',
 'login-userblocked'          => 'Sta utensa xè blocà. No xè posibiłe efetuare el login.',
 'wrongpassword'              => 'Ła password inseria no a xè coreta. Riprovare.',
@@ -743,7 +742,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 Te pol [[Special:Search/{{PAGENAME}}|sercar el titolo de sta pagina]] in altre pagine,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sercar in tei registri ligà a sta pagina]</span>.',
 'userpage-userdoesnotexist'        => 'L\'account "<nowiki>$1</nowiki>" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
-'userpage-userdoesnotexist-view'   => 'L\'utensa "<nowiki>$1</nowiki>" no la xe gnancora registrà.',
+'userpage-userdoesnotexist-view'   => 'L\'utensa "$1" no la xe gnancora registrà.',
 'blocked-notice-logextract'        => "Sto utente xè atualmente blocà.
 L'ultimo ełemento del rejistro de i blochi xè riportà de seguito par informasion:",
 'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
@@ -2012,7 +2011,7 @@ Par riscontri e ulteriore assistensa:
 'confirmdeletetext'      => 'Te ste par scansełare na pajina co tuta ła so cronołosia. Par cortesia, conferma che xè to intension prosedere a tałe scansełasion, che te ghe piena consapevołeza de łe conseguense de ła to axion e che esa xè conforme a łe linee guida stabiłie en [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Axion conpletà',
 'actionfailed'           => 'Azion mia riussìa',
-'deletedtext'            => "''<nowiki>$1</nowiki>'' xe stà scanselà.
+'deletedtext'            => "''$1'' xe stà scanselà.
 Varda $2 par n'elenco de le ultime pagine scanselà.",
 'deletedarticle'         => 'gà scanselà "[[$1]]"',
 'suppressedarticle'      => 'sconto "[[$1]]"',
@@ -2064,7 +2063,7 @@ L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]{
 'protect_expiry_invalid'      => 'Scadensa mìa valida.',
 'protect_expiry_old'          => 'Scadensa zà passà.',
 'protect-unchain-permissions' => 'Desbloca ulteriori possibilità de protession',
-'protect-text'                => "Sto modulo qua el consente de védar e modificar el livel de protezion par la pagina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Sto modulo qua el consente de védar e modificar el livel de protezion par la pagina '''$1'''.",
 'protect-locked-blocked'      => "No se pol mìa canbiar i livèi de protezion co ghe xe un bloco ativo. Le inpostazion corenti par la pagina le xe '''$1''':",
 'protect-locked-dblock'       => "No se pol canbiar i livèi de protezion durante un bloco del database.
 Le inpostazion corenti par la pagina le xe '''$1''':",
@@ -2604,14 +2603,6 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'spambot_username'    => 'MediaWiki - sistema de rimozion del spam',
 'spam_reverting'      => "Ripristinà l'ultima version priva de colegamenti a $1",
 'spam_blanking'       => 'Pàxena svodà, tute łe version le contegneva cołegamenti a $1',
-
-# Info page
-'infosubtitle'   => 'Informazion par la pàxena',
-'numedits'       => 'Nùmaro de modifiche (pagina): $1',
-'numtalkedits'   => 'Nùmaro de modifeghe (pàxena de discussion): $1',
-'numwatchers'    => 'Nùmaro de osservadori: $1',
-'numauthors'     => 'Nùmaro de autori distinti (pagina): $1',
-'numtalkauthors' => 'Nùmaro de autori distinti (pàxena de discussion): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Segna la modifica come verificà',

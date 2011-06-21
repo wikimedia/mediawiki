@@ -490,7 +490,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'history'           => 'Stare izmjene',
 'history_short'     => 'Stare izmjene',
 'updatedmarker'     => 'obnovljeno od zadnjeg posjeta',
-'info_short'        => 'Informacija',
 'printableversion'  => 'Verzija za ispis',
 'permalink'         => 'Trajna poveznica',
 'print'             => 'Ispiši',
@@ -740,7 +739,7 @@ Provjerite jesu li kolačići (''cookies'') omogućeni, ponovo učitajte ovu str
 'nosuchuser'                 => 'Ne postoji suradnik s imenom "$1".
 Suradnička imena su osjetljiva na veličinu slova.
 Provjerite jeste li točno upisali, ili [[Special:UserLogin/signup|otvorite novi suradnički račun]].',
-'nosuchusershort'            => 'Ne postoji suradnik s imenom "<nowiki>$1</nowiki>". Provjerite Vaš unos.',
+'nosuchusershort'            => 'Ne postoji suradnik s imenom "$1". Provjerite Vaš unos.',
 'nouserspecified'            => 'Molimo navedite suradničko ime.',
 'login-userblocked'          => 'Ovaj suradnik je blokiran. Prijava nije dozvoljena.',
 'wrongpassword'              => 'Lozinka koju ste unijeli nije ispravna. Pokušajte ponovno.',
@@ -934,7 +933,7 @@ Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranic
 ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'noarticletext-nopermission'       => 'Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane evidencije]</span>.',
 'userpage-userdoesnotexist'        => 'Suradničko ime "<nowiki>$1</nowiki>" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?',
-'userpage-userdoesnotexist-view'   => 'Suradnički račun "<nowiki>$1</nowiki>" nije registriran.',
+'userpage-userdoesnotexist-view'   => 'Suradnički račun "$1" nije registriran.',
 'blocked-notice-logextract'        => 'Ovaj suradnik je trenutačno blokiran.
 Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
@@ -2239,7 +2238,7 @@ Za povratne informacije i pomoć posjetite:
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'actioncomplete'         => 'Zahvat završen',
 'actionfailed'           => 'Radnja nije uspjela',
-'deletedtext'            => '"<nowiki>$1</nowiki>" je izbrisana.
+'deletedtext'            => '"$1" je izbrisana.
 Vidi $2 za evidenciju nedavnih brisanja.',
 'deletedarticle'         => 'izbrisano "$1"',
 'suppressedarticle'      => 'sakriven "[[$1]]"',
@@ -2293,7 +2292,7 @@ Pogledajte [[Special:ProtectedPages|zaštićene stranice]] za popis trenutačno 
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
 'protect_expiry_old'          => 'Vrijeme isteka je u prošlosti.',
 'protect-unchain-permissions' => 'Otključaj daljnje mogućnosti zaštićivanja',
-'protect-text'                => "Ovdje možete pregledati i promijeniti razinu zaštite za stranicu '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Ovdje možete pregledati i promijeniti razinu zaštite za stranicu '''$1'''.",
 'protect-locked-blocked'      => "Ne možete mijenjati nivo zaštite dok ste blokirani.
 Slijede postavke stranice '''$1''':",
 'protect-locked-dblock'       => "Razina zaštite ne može biti promijenjena jer je baza zaključana.
@@ -2873,14 +2872,6 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'spambot_username'    => 'MediaWiki zaštita od spama',
 'spam_reverting'      => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',
 'spam_blanking'       => 'Sve inačice sadrže poveznice na $1, brišem cjelokupni sadržaj',
-
-# Info page
-'infosubtitle'   => 'Podaci o stranici',
-'numedits'       => 'Broj promjena (članak): $1',
-'numtalkedits'   => 'Broj promjena (stranica za razgovor): $1',
-'numwatchers'    => 'Broj pratitelja: $1',
-'numauthors'     => 'Broj autora (članak): $1',
-'numtalkauthors' => 'Broj autora (stranica za razgovor): $1',
 
 # Skin names
 'skinname-standard'    => 'Standardna',

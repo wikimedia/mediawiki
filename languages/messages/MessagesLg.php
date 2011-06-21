@@ -195,7 +195,6 @@ $messages = array(
 'history'           => "Ennanda y'olupapula luno",
 'history_short'     => 'Ennanda',
 'updatedmarker'     => 'ebikyusidwa okuva lwe nasemba okukebera',
-'info_short'        => 'Okumanyisa',
 'printableversion'  => 'Entereeza eyanguya okukubisa',
 'permalink'         => 'Kolawo enyunzi egguka ku lupapula luno nga bwe lufaanana ku ssaawa eno',
 'print'             => 'Kubisa',
@@ -459,7 +458,7 @@ Kalambulanetti yo gitegeke ekkirize obujjukiza, ddamu owange olupapula luno oryo
 'nosuchuser'                 => "Tewali memba akozesa lya \"\$1\".<br />
 Ery'obwa memba bw'okyusa obunene bw'ennukuta z'oliwandisa obeera owandise eddala.<br />
 Kebera bw'oliwandise, oba [[Special:UserLogin/signup|kolawo akawunti empya]].",
-'nosuchusershort'            => 'Tewali memba akozesa lya "<nowiki>$1</nowiki>".<br />
+'nosuchusershort'            => 'Tewali memba akozesa lya "$1".<br />
 Kebera bw\'oliwandise.',
 'nouserspecified'            => "Kyetaagisa owandikewo erinnya ly'obwa memba.",
 'login-userblocked'          => 'Memba ono agaanidwa. Takkirizibwa kuyingira.',
@@ -645,7 +644,7 @@ Ky\'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpa
 oyinza <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} okukinoonyeza mu nkalala z\'ebifuddeyo ebyekuusana nakyo]</span>.',
 'userpage-userdoesnotexist'        => 'Akawunti y\'obwamemba "<nowiki>$1</nowiki>" teri mu nkalala za wiki eno.<br />
 Sooka okakase oba ddala oyagala okukolawo olupapula olupya luno.',
-'userpage-userdoesnotexist-view'   => 'Tewali akawunti ey\'obwamemba "<nowiki>$1</nowiki>".',
+'userpage-userdoesnotexist-view'   => 'Tewali akawunti ey\'obwamemba "$1".',
 'blocked-notice-logextract'        => "Memba ono mu kaakano agaanidwa.<br />
 Bino ebiddako bye ebikwata ku nsonga eyo mu lukalala lw'ebifuddeyo mu by'okugaana:",
 'clearyourcache'                   => "'''Genderera:''' Bw'omala okubaako by'okaza, kiyinza okukwetaagisa okumala<br />
@@ -1070,7 +1069,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 
 Kakasa nti kino ky'oyagala, era nti otegeera bye kinaaleetawo, era nti kikkirizigana [[{{MediaWiki:Policy-url}}|n'enkola ya MediaWiki]].",
 'actioncomplete'        => 'Kiwedde',
-'deletedtext'           => 'Olupapula "<nowiki>$1</nowiki>" lugyidwawo.
+'deletedtext'           => 'Olupapula "$1" lugyidwawo.
 
 Kebera olukalala $2 okumanya ebifa ku byakagyibwawo.',
 'deletedarticle'        => 'olupapula olwa "[[$1]]" lugyidwawo',
@@ -1093,7 +1092,7 @@ Kebera olukalala $2 okumanya ebifa ku byakagyibwawo.',
 'protectexpiry'               => 'Kukoma nga:',
 'protect_expiry_invalid'      => "Ekkomo ery'okusibibwa terikkizidwa.",
 'protect_expiry_old'          => "Ekkomo ery'okusibibwa liri ku budde obwayita.",
-'protect-text'                => "Wano w'osobolera okukebera n'okukyusa okusibibwa kw'olupapula '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Wano w'osobolera okukebera n'okukyusa okusibibwa kw'olupapula '''$1'''.",
 'protect-locked-access'       => "Akawunti yo tekuwa lukusa kukyusa okusibibwa kw'olupapula luno.
 
 Eno y'enteekateeka ey'olupapula '''$1''':",

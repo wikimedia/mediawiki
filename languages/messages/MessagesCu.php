@@ -186,7 +186,6 @@ $messages = array(
 'searcharticle'     => 'прѣиди',
 'history'           => 'страницѧ їсторїꙗ',
 'history_short'     => 'їсторїꙗ',
-'info_short'        => 'плирофорїꙗ',
 'printableversion'  => 'пєчатьнъ обраꙁъ',
 'permalink'         => 'въиньна съвѧꙁь',
 'print'             => 'пєчатаниѥ',
@@ -610,7 +609,7 @@ $messages = array(
 'excontentauthor' => "вънѫтри бѣ : '$1' (и послѣдьн҄ии дѣтєл҄ь бѣ '[[Special:Contributions/$2|$2]]')",
 'delete-legend'   => 'поничьжєниѥ',
 'actioncomplete'  => 'дѣиство сътворєно ѥстъ',
-'deletedtext'     => 'страница ⁖ <nowiki>$1</nowiki> ⁖ поничьжєна ѥстъ ⁙
+'deletedtext'     => 'страница ⁖ $1 ⁖ поничьжєна ѥстъ ⁙
 виждь ⁖ $2 ⁖ послѣдьнъ поничьжєниѩ дѣлꙗ',
 'deletedarticle'  => '⁖ [[$1]] ⁖ поничьжєнъ ѥстъ',
 'dellogpage'      => 'поничьжєниꙗ їсторїꙗ',

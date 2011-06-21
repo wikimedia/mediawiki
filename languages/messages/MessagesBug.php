@@ -95,7 +95,6 @@ $messages = array(
 'searcharticle'    => 'Lao',
 'history'          => 'Versi riolo leppaë',
 'history_short'    => 'versi riolo',
-'info_short'       => 'Informasi',
 'permalink'        => 'Pranala permanen',
 'edit'             => 'Padécéŋ',
 'create'           => 'Ebbu',

@@ -372,7 +372,6 @@ $messages = array(
 'history'           => 'Historial de canvis',
 'history_short'     => 'Historial',
 'updatedmarker'     => 'actualitzat des de la darrera visita',
-'info_short'        => 'Informació',
 'printableversion'  => 'Versió per a impressora',
 'permalink'         => 'Enllaç permanent',
 'print'             => "Envia aquesta pàgina a la cua d'impressió",
@@ -626,7 +625,7 @@ Verifiqueu que teniu habilitades les galetes al vostre navegador, torneu a carre
 'loginsuccess'               => 'Heu iniciat la sessió a {{SITENAME}} com a «$1».',
 'nosuchuser'                 => "No hi ha cap usuari anomenat «$1».
 Reviseu-ne l'ortografia (recordeu que es distingeixen les majúscules i minúscules), o [[Special:UserLogin/signup|creeu un compte d'usuari nou]].",
-'nosuchusershort'            => 'No hi ha cap usuari anomenat «<nowiki>$1</nowiki>». Comproveu que ho hàgiu escrit correctament.',
+'nosuchusershort'            => 'No hi ha cap usuari anomenat «$1». Comproveu que ho hàgiu escrit correctament.',
 'nouserspecified'            => "Heu d'especificar un nom d'usuari.",
 'login-userblocked'          => 'Aquest usuari està bloquejat. Inici de sessió no permès.',
 'wrongpassword'              => 'La contrasenya que heu introduït és incorrecta. Torneu-ho a provar.',
@@ -800,7 +799,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear-la ara]</span>.',
 'noarticletext-nopermission'       => 'Actualment no hi ha text en aquesta pàgina.
 Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o bé <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres relacionats]</span>.',
 'userpage-userdoesnotexist'        => "Atenció: El compte d'usuari «<nowiki>$1</nowiki>» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
-'userpage-userdoesnotexist-view'   => 'El compte d\'usuari "<nowiki>$1</nowiki>" no està registrat.',
+'userpage-userdoesnotexist-view'   => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract'        => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
@@ -2119,7 +2118,7 @@ Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",
 'actioncomplete'         => "S'ha realitzat l'acció de manera satisfactòria.",
 'actionfailed'           => "L'acció ha fallat",
-'deletedtext'            => '«<nowiki>$1</nowiki>» ha estat esborrat.
+'deletedtext'            => '«$1» ha estat esborrat.
 Vegeu $2 per a un registre dels esborrats més recents.',
 'deletedarticle'         => 'ha esborrat «[[$1]]»',
 'suppressedarticle'      => "s'ha suprimit «[[$1]]»",
@@ -2172,7 +2171,7 @@ La darrera modificació ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$
 'protect_expiry_invalid'      => "Data d'expiració no vàlida",
 'protect_expiry_old'          => 'El temps de termini ja ha passat.',
 'protect-unchain-permissions' => 'Desbloqueja les opcions de protecció avançades',
-'protect-text'                => 'Aquí podeu visualitzar i canviar el nivell de protecció de la pàgina «<nowiki>$1</nowiki>». Assegureu-vos de seguir les polítiques existents.',
+'protect-text'                => 'Aquí podeu visualitzar i canviar el nivell de protecció de la pàgina «$1». Assegureu-vos de seguir les polítiques existents.',
 'protect-locked-blocked'      => "No podeu canviar els nivells de protecció mentre estigueu bloquejats. Ací hi ha els
 paràmetres actuals de la pàgina '''$1''':",
 'protect-locked-dblock'       => "No poden canviar-se els nivells de protecció a casa d'un bloqueig actiu de la base de dades.
@@ -2761,14 +2760,6 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'spambot_username'    => 'Neteja de brossa del MediaWiki',
 'spam_reverting'      => 'Es reverteix a la darrera versió que no conté enllaços a $1',
 'spam_blanking'       => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
-
-# Info page
-'infosubtitle'   => 'Informació de la pàgina',
-'numedits'       => "Nombre d'edicions (pàgina): $1",
-'numtalkedits'   => "Nombre d'edicions (pàgina de discussió): $1",
-'numwatchers'    => "Nombre d'usuaris que l'estan vigilant: $1",
-'numauthors'     => "Nombre d'autors (pàgina): $1",
-'numtalkauthors' => "Nombre d'autors (pàgina de discussió): $1",
 
 # Skin names
 'skinname-standard'    => 'Clàssic',

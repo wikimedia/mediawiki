@@ -247,7 +247,6 @@ $messages = array(
 'history'           => 'Kaagi ning panid',
 'history_short'     => 'Kaagi',
 'updatedmarker'     => 'na-update sugod sa akong kataposang bisita',
-'info_short'        => 'Impormasyon',
 'printableversion'  => 'Mapatik nga bersiyon',
 'permalink'         => 'Permanenteng sumpay',
 'print'             => 'I-print',
@@ -490,7 +489,7 @@ Palihog i-enable kini, ug sulayi'g balik.",
 'nosuchuser'              => 'Walay gumagamit nga may pangalang "$1".
 Case sensitive ang mga user name.
 I-tsek ang imong espeling, o [[Special:UserLogin/signup|paghimo og bag-ong akawnt]].',
-'nosuchusershort'         => 'Walay gumagamit nga may pangalang "<nowiki>$1</nowiki>".
+'nosuchusershort'         => 'Walay gumagamit nga may pangalang "$1".
 I-tsek ang imong espeling.',
 'nouserspecified'         => 'Kinahanglan mag-specify ka og username.',
 'wrongpassword'           => "Sayop nga pasword ang naentra.
@@ -1029,7 +1028,7 @@ Ang mga pag-usab puhon sa kining panid ug ang kaubang panid sa hisgot dinhi mait
 'confirmdeletetext'     => 'Imo nang papason ang panid kauban ang tanang kaagi niini.
 Palihog ikompirma nga imo gyud ni buhaton, nga nakasabot ka sa mga puyde idangat niini, ug imo kini gibuhat sumala sa [[{{MediaWiki:Policy-url}}|palisiya]].',
 'actioncomplete'        => 'Nahuman na ang lihok',
-'deletedtext'           => 'Ang "<nowiki>$1</nowiki>" napapas na.
+'deletedtext'           => 'Ang "$1" napapas na.
 Tan-awa ang $2 para sa rekord sa mga bag-ong napapas.',
 'deletedarticle'        => 'gitangtang "[[$1]]"',
 'dellogpage'            => 'Log sa pagtangtang',
@@ -1048,7 +1047,7 @@ Tan-awa ang $2 para sa rekord sa mga bag-ong napapas.',
 'protectexpiry'               => 'Matapos:',
 'protect_expiry_invalid'      => 'Dili puyde ang expiry time.',
 'protect_expiry_old'          => 'Ang expiry time miagi na.',
-'protect-text'                => "Puyde nimo tan-awon ug usbon ang proteksyon dinhi para sa panid nga '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Puyde nimo tan-awon ug usbon ang proteksyon dinhi para sa panid nga '''$1'''.",
 'protect-locked-access'       => "Walay permiso ang imong akawnt nga mag-usab og level sa proteksyon sa panid.
 Kini ang kasamtangan nga mga setting sa panid nga '''$1''':",
 'protect-cascadeon'           => 'Ang kining panid kasamtangang giprotektahan tungod kay nahiapil kini sa mosunod nga {{PLURAL:$1|panid, nga may|mga panid, nga may}} naka-turn on nga pabuhagay (cascading) nga proteksyon.

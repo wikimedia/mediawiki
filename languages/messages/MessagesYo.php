@@ -237,7 +237,6 @@ $messages = array(
 'history_short'     => '
 Ìtàn',
 'updatedmarker'     => 'jẹ́ títúnṣe lẹ́yìn àbẹ̀wò mi',
-'info_short'        => 'Ìfitọ́nilétí',
 'printableversion'  => 'Àtẹ̀jáde tóṣeétẹ̀síìwé',
 'permalink'         => 'Ìjápọ̀ tíkòníyípadà',
 'print'             => 'Ìtẹ̀síìwé',
@@ -483,7 +482,7 @@ A ti ṣ'èdá àpamọ́ yín.
 'nosuchuser'                 => 'Kò sí oníṣe kankan pẹ̀lú orúkọ "$1".
 Àwọn lẹ́tà àwọn orúkọ oníṣe gbọ́dọ̀ jẹ́ irúkanna.
 Ẹ yẹ lẹ́tà yín wò, tàbí [[Special:UserLogin/signup|kí ẹ dá àkópamọ́ tuntun]].',
-'nosuchusershort'            => "Kò sí oníṣe t'ón jẹ́ <nowiki>$1</nowiki>.
+'nosuchusershort'            => "Kò sí oníṣe t'ón jẹ́ $1.
 Ẹ yẹ lẹ́tà ọ̀rọ̀ yín wò.",
 'nouserspecified'            => 'Ẹ gbọ́dọ̀ tọ́kasí orúkọ oníṣe kan.',
 'login-userblocked'          => 'Oníṣe yìí jẹ́ dídínà. Ìwọlé kò jẹ́ gbígbà láyè.',
@@ -662,7 +661,7 @@ T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́y
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wá àwọn àkọọ́lẹ̀ tó bámu]</span>.',
 'userpage-userdoesnotexist'        => 'Àkópamọ́ oníṣe "<nowiki>$1</nowiki>" kò tíì jẹ́ fíforúkọsílẹ̀.
 Ẹjọ̀wọ́ ẹ ṣ\'àgbéyẹ̀wò bóyá ẹ fẹ́ dá/ṣàtúnṣe ojúewé yìí.',
-'userpage-userdoesnotexist-view'   => 'Àpamọ́ oníṣe "<nowiki>$1</nowiki>" kò jẹ́ fífilórúkọsílẹ̀.',
+'userpage-userdoesnotexist-view'   => 'Àpamọ́ oníṣe "$1" kò jẹ́ fífilórúkọsílẹ̀.',
 'blocked-notice-logextract'        => 'Lọ́wọ́lọ́wọ́ oníṣe yìí jẹ́ dídílọ́nà.
 Àkọsílẹ̀ ìdínà àìpẹ́ nìyí nísàlẹ̀ fún ìtọ́kasí:',
 'clearyourcache'                   => "'''Àkíyèsí: Lẹ́yìn ìmúpamọ́, ó ṣe é ṣe kó jẹ́ pé ẹ gbọ́dọ̀ fo cache agbétàkùn yín láti rí àwọn ìyípadà.'''
@@ -1670,7 +1669,7 @@ Fún ìrànwọ́:
 [[{{MediaWiki:Policy-url}}|ìlànà]] ṣe làá kalẹ̀.',
 'actioncomplete'         => 'Ìmúṣe ti parí',
 'actionfailed'           => 'Ìkùnà ìgbéṣe',
-'deletedtext'            => 'A ti pa "<nowiki>$1</nowiki>" rẹ́.
+'deletedtext'            => 'A ti pa "$1" rẹ́.
 Ẹ wo $2 fún àkọọ́lẹ̀ àwọn ìparẹ́ àìpẹ́.',
 'deletedarticle'         => 'A ti pa "[[$1]]" rẹ́',
 'dellogpage'             => 'Àkọsílẹ̀ ìparẹ́',
@@ -1700,7 +1699,7 @@ Fún ìrànwọ́:
 'protect_expiry_invalid'      => 'Àkókò ìparí kò ní ìbámu.',
 'protect_expiry_old'          => 'Ìgbà tó ti kọjá ni ìparí.',
 'protect-unchain-permissions' => 'Ẹ ṣí àwọn àṣàyàn àbò yìókù',
-'protect-text'                => "Ẹ lè wo, bẹ́ ẹ̀ sìni ẹ lè ṣ'àtúnṣe ibi àbò níbí fún ojúewé '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Ẹ lè wo, bẹ́ ẹ̀ sìni ẹ lè ṣ'àtúnṣe ibi àbò níbí fún ojúewé '''$1'''.",
 'protect-locked-access'       => "Àpamọ́ yín kò ní àyè láti ṣ'àtúnṣe àwọn ibi àbò.
 Bí a ṣe to ojúewé '''$1''' nì yí:",
 'protect-cascadeon'           => 'Ojúewé yìí jẹ́ dídàbòbò lọ́wọ́lọ́wọ́ nítorí ó jẹ́ mímúpọ nínú {{PLURAL:$1|ojúewé ìsàlẹ̀ yìí, tó ní|àwọn ojúewé ìsàlẹ̀ wọ̀nyí, tí wọ́n ní}} àbò onípele tó ún ṣiṣé.
@@ -2064,12 +2063,6 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 'others'           => 'àwọn mìíràn',
 'siteusers'        => '{{PLURAL:$2|Oníṣe|Àwọn oníṣe}} $1  {{SITENAME}}',
 'anonusers'        => '{{PLURAL:$2|Oníṣe|Àwọn oníṣe}} aláìlórúkọ $1 {{SITENAME}}',
-
-# Info page
-'infosubtitle' => 'Ìfitọ́nilétí fún ojúewé',
-'numedits'     => 'Íyé áwon àtúnṣe (ojúewé): $1',
-'numtalkedits' => 'Íyé áwon àtúnṣe (ojúewé ìfọ̀rọ̀wérọ̀): $1',
-'numwatchers'  => 'Iye àwọn aláàbójúwò: $1',
 
 # Patrol log
 'patrol-log-auto' => '(fúnraara)',

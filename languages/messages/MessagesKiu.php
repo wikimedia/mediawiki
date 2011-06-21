@@ -202,7 +202,6 @@ href="" class="internal"}?{/a}) basne.',
 'history'           => 'Tarixê pele',
 'history_short'     => 'Tarix',
 'updatedmarker'     => 'cıkotena mına peyêne ra dıme biya rocaniye',
-'info_short'        => 'Melumat',
 'printableversion'  => 'Asaena çapkerdene',
 'permalink'         => 'Gireo daimki',
 'print'             => 'Çap ke',
@@ -464,7 +463,7 @@ Ravêri ine rakerê u reyna bıcerrebnê.',
 'nosuchuser'               => 'Ebe namê "$1"i jü karber çino.
 Nustena namunê karberu de herfa pil u qıze rê diqet kerê.
 Nustena ho qonrol kerê, ya ki [[Special:UserLogin/signup|jü hesabo newe rakerê]].',
-'nosuchusershort'          => 'Karberê do ebe namê "<nowiki>$1</nowiki>" çino.
+'nosuchusershort'          => 'Karberê do ebe namê "$1" çino.
 Nustena cı qontrol ke.',
 'nouserspecified'          => 'Gunê namê jü karberi bıdekernê.',
 'login-userblocked'        => 'No karber engel biyo. Cıkotene rê mısade cı nêdino.',
@@ -555,7 +554,7 @@ Tı şikina zerrê pelunê binu de [[Special:Search/{{PAGENAME}}|seba sernamê n
 ya ki [{{fullurl:{{FULLPAGENAME}}|action=edit}} na pele bıvurnê]</span>.',
 'userpage-userdoesnotexist'        => 'Hesabê karberi "<nowiki>$1</nowiki>" qeyd nêbiyo.
 Kerem ke, tı ke wazena na pele vırazê/bıvurnê, qontrol ke.',
-'userpage-userdoesnotexist-view'   => 'Hesabê karberi "<nowiki>$1</nowiki>" qeyd nêbiyo.',
+'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nêbiyo.',
 'userinvalidcssjstitle'            => "'''Teme:''' Mewzuyê \"\$1\" çino.
 Dosyunê ebe namê .css u .js'y de herfa hurdiye bıgurêne, mesela hurêndia {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
 'updated'                          => '(Bi rozane)',
@@ -1086,7 +1085,7 @@ Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, 
 'confirmdeletetext'     => 'Tı hawo kena ke jü pele be tarixê dae pêro bıne ra bıesterê.
 Eke ferqê neticê na kerdene de bena u no kar be gorê [[{{MediaWiki:Policy-url}}|qeydunê esterıtene]] beno, wa gurêy tesdiq ke.',
 'actioncomplete'        => 'Kar bi temam',
-'deletedtext'           => '"<nowiki>$1</nowiki>" esteriya.
+'deletedtext'           => '"$1" esteriya.
 Serba diyaena esterıteyunê peyênu $2 bıvêne.',
 'deletedarticle'        => '"[[$1]]" esterıt',
 'dellogpage'            => 'Qeydê esterıtene',
@@ -1105,7 +1104,7 @@ Serba diyaena esterıteyunê peyênu $2 bıvêne.',
 'protectexpiry'               => 'Tarixê qediyaene:',
 'protect_expiry_invalid'      => 'Tarixê qediyaena nêvêreno.',
 'protect_expiry_old'          => 'Waxtê gurênaena peyêna vêrdiye.',
-'protect-text'                => "Tı şikina halê seveknaena pela '''<nowiki>$1</nowiki>'''i ita bıvênê u bıvurnê.",
+'protect-text'                => "Tı şikina halê seveknaena pela '''$1'''i ita bıvênê u bıvurnê.",
 'protect-locked-access'       => "Hesabê karberê to vurnaisê sewiya seveknaena rê selahiyetdar niyo.
 Eyarê pela '''$1'''ina vêrdey nêyê:",
 'protect-cascadeon'           => 'Na pele na sate sevekiya, çıke {{PLURAL:$1|na pele de|nê pelu de}} sevekiyaena qedemeine biya feal.

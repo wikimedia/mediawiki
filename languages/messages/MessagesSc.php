@@ -229,7 +229,6 @@ $messages = array(
 'history'           => 'Istòria de sa pàgina',
 'history_short'     => 'Istòria',
 'updatedmarker'     => "agiornada dae s'ùrtima bìsita mia",
-'info_short'        => 'Informatziones',
 'printableversion'  => 'Versione de imprenta',
 'permalink'         => 'Acàpiu fitianu',
 'print'             => 'Imprenta',
@@ -535,7 +534,7 @@ Si ses intradu inoghe pro sbàlliu, carca in su browser tuo su butone '''back/in
 Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chircare in is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
 'userpage-userdoesnotexist'        => 'S\'account de s\'usuàriu "<nowiki>$1</nowiki>" no est stadu registradu.
 Pro praxere abbàida si boles creare/acontzare custa pàgina.',
-'userpage-userdoesnotexist-view'   => 'S\'account de s\'usuàriu "<nowiki>$1</nowiki>" no est stadu registradu.',
+'userpage-userdoesnotexist-view'   => 'S\'account de s\'usuàriu "$1" no est stadu registradu.',
 'updated'                          => '(Agiornadu)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Regorda·ti ca custa est feti una ANTIPRIMA. Is mudàntzias tuas non sunt galu sarbadas!'''",
@@ -1106,7 +1105,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 Pro praxere, cunfirma ca est intentzione tua fàgher custu, ca connosches is cosseguèntzias de s'atzione tua, a ca custa est cunforma a is [[{{MediaWiki:Policy-url}}|lìnias polìticas]].",
 'actioncomplete'        => "Acabada s'atzione",
 'actionfailed'          => 'Atzione faddida',
-'deletedtext'           => 'Sa pàgina "<nowiki>$1</nowiki>" est istada fuliada.
+'deletedtext'           => 'Sa pàgina "$1" est istada fuliada.
 Càstia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 'deletedarticle'        => 'at fuliadu "[[$1]]"',
 'dellogpage'            => 'Burraduras',
@@ -1133,7 +1132,7 @@ s'ùrtimu contribuidore est s'ùnicu autore de custa pàgina.",
 'protectexpiry'               => 'Iscadèntzia:',
 'protect_expiry_invalid'      => "S'iscadèntzia est imbàlida.",
 'protect_expiry_old'          => 'Iscadentzia giai passada.',
-'protect-text'                => "Custu modulu serbit pro castiari e cambiari su livellu de amparadura de sa pàgina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Custu modulu serbit pro castiari e cambiari su livellu de amparadura de sa pàgina '''$1'''.",
 'protect-locked-access'       => "Non tenes su permissu pro cambiare is livellus de amparadura de sa pàgina.
 Is impostatziones atuales pro sa pàgina '''$1''':",
 'protect-cascadeon'           => "A su momentu custa pàgina est bloccada pro ite est inclùdia {{PLURAL:$1|in sa pàgina indicada a suta, pro sa cali|in is pàginas indicadas a suta, pro is calis}} est ativa s'amparadura ricorsiva. Est possìbile cambiare su livellu de amparadura de custa pàgina, ma is impostatziones derivadas dae s'amparadura ricorsiva non ant a èssere mudadas.",
@@ -1415,11 +1414,6 @@ Podes agiùnger unu motivu in s\'ogetu de s\'acontzu.',
 'siteusers'   => '$1, {{PLURAL:$2|usuàriu|usuàrios}} de {{SITENAME}}',
 'anonusers'   => '$1, {{PLURAL:$2|usuàriu anònimu|usuàrios anònimos}} de {{SITENAME}}',
 'creditspage' => 'Autores de sa pàgina',
-
-# Info page
-'infosubtitle' => 'Informatziones pro sa pàgina',
-'numedits'     => 'Nùmeru de acontzos (pàgina): $1',
-'numtalkedits' => 'Nùmeru de acontzos (pàgina de cuntierra): $1',
 
 # Browsing diffs
 'previousdiff' => '← Acontzu in antis',

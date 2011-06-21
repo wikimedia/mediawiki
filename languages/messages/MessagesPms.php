@@ -230,7 +230,6 @@ dj'artìcoj ancó pa scrit",
 'history'           => 'Version pì veje',
 'history_short'     => 'Stòria',
 'updatedmarker'     => "Agiornà da 'nt l'ùltima vira che i son passà",
-'info_short'        => 'Anformassion',
 'printableversion'  => 'Version bon-a për stampé',
 'permalink'         => 'Anliura fissa',
 'print'             => 'Stampa',
@@ -484,7 +483,7 @@ Ch'a contròla d'avèj ij bëscotin abilità, ch'a caria torna la pàgina e ch'a
 'nosuchuser'                 => 'A-i é pa gnun utent con ël nòm "$1".
 Ij nòm ëd j\'utent a son sensìbij a le majùscole.
 Controla ël nòm che it l\'has batù, o [[Special:UserLogin/signup|fà un neuv cont]].',
-'nosuchusershort'            => 'A-i é pa gnun utent che as ciama "<nowiki>$1</nowiki>". Për piasì, che a contròla se a l\'ha scrit tut giust.',
+'nosuchusershort'            => 'A-i é pa gnun utent che as ciama "$1". Për piasì, che a contròla se a l\'ha scrit tut giust.',
 'nouserspecified'            => 'A venta che a specìfica në stranòm utent',
 'login-userblocked'          => "St'utent-sì a l'é blocà. A peul pa intré ant ël sistema.",
 'wrongpassword'              => "La ciav batùa a l'é pa giusta.<br /><br />Che a preuva torna, për piasì.",
@@ -675,7 +674,7 @@ o purament [{{fullurl:{{FULLPAGENAME}}|action=edit}} modìfiché la pàgina ades
 It peule [[Special:Search/{{PAGENAME}}|sërché sto tìtol ëd pàgina-sì]] an d\'àutre pàgine,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sërché j\'argistrassion colegà]</span>.',
 'userpage-userdoesnotexist'        => 'Lë stranòm "<nowiki>$1</nowiki>" a l\'é pa registrà. Për piasì ch\'a varda se da bon a veul creé/modifiché sta pàgina.',
-'userpage-userdoesnotexist-view'   => 'Ël cont utent "<nowiki>$1</nowiki>" a l\'é pa registrà.',
+'userpage-userdoesnotexist-view'   => 'Ël cont utent "$1" a l\'é pa registrà.',
 'blocked-notice-logextract'        => "S'utent a l'é al moment blocà.
 'Me arferiment, sì-sota a-i é la dariera anotassion da l'argistr dij blocagi.",
 'clearyourcache'                   => "'''Nòta:''' na vira che a l'ha salvà, a peul esse che a-j fasa da manca da passé via la memorisassion (cache) dël sò programa ëd navigassion (browser) për podèj ës-ciairé le modìfiche.
@@ -2021,7 +2020,7 @@ Për fé dle comunicassion ëd servissi e avèj pì d\'agiut:
 Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont ëd le conseguense ëd lòn che a fa, e che sòn a resta an pien an régola con lòn che a l'é stabilì ant la [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Travaj fait e finì',
 'actionfailed'           => 'Assion falìa',
-'deletedtext'            => 'La pàgina "<nowiki>$1</nowiki>" a l\'é staita scancelà.
+'deletedtext'            => 'La pàgina "$1" a l\'é staita scancelà.
 Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
 'deletedarticle'         => 'Scancelà "$1"',
 'suppressedarticle'      => 'a l\'ha scancelà "[[$1]]"',
@@ -2079,7 +2078,7 @@ Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për ës-c
 'protect_expiry_invalid'      => 'Scadensa pa bon-a.',
 'protect_expiry_old'          => 'Scadensa già passà.',
 'protect-unchain-permissions' => 'Sblòca àutre opsion ëd protession',
-'protect-text'                => "Ambelessì a peul vardé e cangé ël livel ëd protession dla pàgina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Ambelessì a peul vardé e cangé ël livel ëd protession dla pàgina '''$1'''.",
 'protect-locked-blocked'      => "Un a peul pa modifiché ij livel ëd protession antramentr ch'a l'é blocà chiel. Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 'protect-locked-dblock'       => "Ij livej ëd protession as peulo nen cambiesse antramentr che la base dat a l'é blocà.
 Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
@@ -2669,14 +2668,6 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spambot_username'    => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
 'spam_reverting'      => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking'       => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
-
-# Info page
-'infosubtitle'   => 'Anformassion për la pàgina',
-'numedits'       => 'Nùmer ëd modìfiche (artìcol): $1',
-'numtalkedits'   => 'Nùmer ëd modìfiche (pàgina ëd discussion): $1',
-'numwatchers'    => "Nùmer d'utent che as ten-o sossì sot euj: $1",
-'numauthors'     => "Nùmer d'autor diferent (artìcol): $1",
-'numtalkauthors' => "Nùmer d'autor distint (pàgina ëd discussion): $1",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marca coma verificà',

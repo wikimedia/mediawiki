@@ -175,7 +175,6 @@ $messages = array(
 'history'           => 'Amezruy n usebter',
 'history_short'     => 'Amezruy',
 'updatedmarker'     => 'yettubeddel segmi tarzeft taneggarut inu',
-'info_short'        => 'Talɣut',
 'printableversion'  => 'Tasiwelt iwakken ad timprimiḍ',
 'permalink'         => 'Azday ur yettbeddil ara',
 'print'             => 'Imprimi',
@@ -360,7 +359,7 @@ Isem n wemseqdac inek yettwaxleq. Ur tettuḍ ara ad tbeddleḍ Isemyifiyen n {{
 'loginsuccesstitle'          => 'Tkecmeḍ !',
 'loginsuccess'               => "'''Tkecmeḍ ar {{SITENAME}} s yisem n wemseqdac \"\$1\".'''",
 'nosuchuser'                 => 'Ulac isem n wemseqdac s yisem "$1". Ssenqed tira n yisem-nni, neɣ xelq isem n wemseqdac amaynut.',
-'nosuchusershort'            => 'Ulac isem n wemseqdac s yisem "<nowiki>$1</nowiki>". Ssenqed tira n yisem-nni.',
+'nosuchusershort'            => 'Ulac isem n wemseqdac s yisem "$1". Ssenqed tira n yisem-nni.',
 'nouserspecified'            => 'Yessefk ad tefkeḍ isem n wemseqdac.',
 'wrongpassword'              => 'Awal n tbaḍnit ɣaleṭ. Ɛreḍ daɣen.',
 'wrongpasswordempty'         => 'Awal n tbaḍnit ulac-it. Ɛreḍ daɣen.',
@@ -1059,7 +1058,7 @@ Tadhelt:
 'exblank'         => 'asebter yella d ilem',
 'historywarning'  => 'Aɣtal: Asebter i ara temḥuḍ yesɛa amezruy:',
 'actioncomplete'  => 'Axdam yekfa',
-'deletedtext'     => '"<nowiki>$1</nowiki>" yettumḥa.
+'deletedtext'     => '"$1" yettumḥa.
 Ẓer $2 i aɣmis n yimḥayin imaynuten.',
 'deletedarticle'  => '"[[$1]]" yettumḥa',
 'dellogpage'      => 'Aɣmis n umḥay',
@@ -1318,14 +1317,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'spamprotectionmatch' => 'Aḍris-agi ur t-iɛeǧ \'\'"aḥraz mgel "Spam"\'\': $1',
 'spam_reverting'      => 'Asuɣal i tasiwel taneggarut i ur tesɛi ara izdayen ɣer $1',
 'spam_blanking'       => 'Akk tisiwal sɛan izdayen ɣer $1, ad yemḥu',
-
-# Info page
-'infosubtitle'   => 'Talɣut n usebter',
-'numedits'       => 'Geddac n yibeddlen (amagrad): $1',
-'numtalkedits'   => 'Geddac n yibeddlen (asebter n wemyannan): $1',
-'numwatchers'    => 'Geddac n yiɛessasen: $1',
-'numauthors'     => 'Geddac n yimseqdacen i yuran (amagrad): $1',
-'numtalkauthors' => 'Geddac n yimsedac i yuran (asebter n wemyennan): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Rcem "yettwassenqden"',

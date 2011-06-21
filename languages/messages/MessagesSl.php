@@ -366,7 +366,6 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'history'           => 'Zgodovina strani',
 'history_short'     => 'Zgodovina strani',
 'updatedmarker'     => 'Posodobljeno od mojega zadnjega obiska',
-'info_short'        => 'Sporočilo',
 'printableversion'  => 'Različica za tisk',
 'permalink'         => 'Trajna povezava',
 'print'             => 'Tisk',
@@ -629,7 +628,7 @@ Poskrbite, da imate omogočene piškotke, osvežite to stran in poskusite znova.
 'nosuchuser'                 => 'Uporabnik z imenom »$1« ne obstaja.
 Uporabniška imena so občutljiva na velikost črk.
 Preverite črkovanje ali pa si [[Special:UserLogin/signup|ustvarite nov uporabniški račun]].',
-'nosuchusershort'            => 'Uporabnik z imenom »<nowiki>$1</nowiki>« ne obstaja.
+'nosuchusershort'            => 'Uporabnik z imenom »$1« ne obstaja.
 Preverite črkovanje.',
 'nouserspecified'            => 'Prosimo, vpišite uporabniško ime.',
 'login-userblocked'          => 'Ta uporabnik je blokiran. Prijava ni dovoljena.',
@@ -834,7 +833,7 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov te strani]] v drugih straneh, ali <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} poiskati v povezanih dnevniških zapisih]</span>.',
 'userpage-userdoesnotexist'        => 'Uporabniški račun »<nowiki>$1</nowiki>« ni registriran.
 Prosimo preverite, ali res želite ustvariti/urediti to stran.',
-'userpage-userdoesnotexist-view'   => 'Uporabniški račun »<nowiki>$1</nowiki>« ni registriran.',
+'userpage-userdoesnotexist-view'   => 'Uporabniški račun »$1« ni registriran.',
 'blocked-notice-logextract'        => 'Ta uporabnik je trenutno blokiran.
 Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 'clearyourcache'                   => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika: '''Mozilla/Safari:''' držite ''Shift'' in kliknite ''Reload'' (ali pritisnite ''Ctrl-Shift-R''), '''Internet Explorer:''' ''Ctrl-F5'', '''Opera/Konqueror:''' ''F5''.",
@@ -2196,7 +2195,7 @@ Povratna sporočila in pomoč:
 Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 'actioncomplete'         => 'Poseg je končan',
 'actionfailed'           => 'Dejanje spodletelo',
-'deletedtext'            => 'Stran »<nowiki>$1</nowiki>« je izbrisana.
+'deletedtext'            => 'Stran »$1« je izbrisana.
 Za zapise nedavnih brisanj glej $2.',
 'deletedarticle'         => 'je izbrisal(-a) »[[$1]]«',
 'suppressedarticle'      => 'skril »[[$1]]«',
@@ -2254,7 +2253,7 @@ Oglejte si [[Special:ProtectedPages|seznam zaščitenih strani]] za seznam trenu
 'protect_expiry_invalid'      => 'Čas izteka je neveljaven.',
 'protect_expiry_old'          => 'Čas izteka je v preteklosti.',
 'protect-unchain-permissions' => 'Odkleni nadaljne možnosti zaščite',
-'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''$1'''.",
 'protect-locked-blocked'      => "Med blokado ne morete spreminjati stopenj zaščite.
 To so trenutne nastavitve za stran '''$1''':",
 'protect-locked-dblock'       => "Stopnje zaščite ni mogoče spremeniti zaradi aktivnega zaklepa zbirke podatkov.
@@ -2848,12 +2847,17 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'spam_blanking'       => 'Vse redakcije so vsebovale povezave na $1, izpraznjujem',
 
 # Info page
-'infosubtitle'   => 'Podatki o strani',
-'numedits'       => 'Število urejanj (stran): $1',
-'numtalkedits'   => 'Število urejanj (pogovorna stran): $1',
-'numwatchers'    => 'Število oseb, ki spremljajo stran: $1',
-'numauthors'     => 'Število različnih avtorjev (stran): $1',
-'numtalkauthors' => 'Število različnih avtorjev (pogovorna stran): $1',
+'pageinfo-title'            => 'Informacije o »$1«',
+'pageinfo-header-edits'     => 'Urejanja',
+'pageinfo-header-watchlist' => 'Spisek nadzorov',
+'pageinfo-header-views'     => 'Ogledi',
+'pageinfo-subjectpage'      => 'Stran',
+'pageinfo-talkpage'         => 'Pogovorna stran',
+'pageinfo-watchers'         => 'Število spremljevalcev',
+'pageinfo-edits'            => 'Število urejanj',
+'pageinfo-authors'          => 'Število različnih avtorjev',
+'pageinfo-views'            => 'Število ogledov',
+'pageinfo-viewsperedit'     => 'Razmerje med ogledi in urejanji',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Označite kot nadzorovano',

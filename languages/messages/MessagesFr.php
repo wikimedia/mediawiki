@@ -539,7 +539,6 @@ $messages = array(
 'history'           => 'Historique de la page',
 'history_short'     => 'Historique',
 'updatedmarker'     => 'modifié depuis ma dernière visite',
-'info_short'        => 'Informations',
 'printableversion'  => 'Version imprimable',
 'permalink'         => 'Adresse de cette version',
 'print'             => 'Imprimer',
@@ -796,7 +795,7 @@ Vérifiez que vous avez activé les cookies, rechargez la page et rééssayez.",
 'nosuchuser'                 => 'L’utilisateur « $1 » n’existe pas.
 Les noms d’utilisateurs sont sensibles à la casse.
 Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].',
-'nosuchusershort'            => 'Il n’y a pas de contributeur avec le nom « <nowiki>$1</nowiki> ». Veuillez vérifier l’orthographe.',
+'nosuchusershort'            => 'Il n’y a pas de contributeur avec le nom « $1 ». Veuillez vérifier l’orthographe.',
 'nouserspecified'            => 'Vous devez saisir un nom d’utilisateur.',
 'login-userblocked'          => 'Cet utilisateur est bloqué. Connexion non autorisée.',
 'wrongpassword'              => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
@@ -986,7 +985,7 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page]</span>.',
 Vous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur ce titre]] dans les autres pages,
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les journaux associés]</span>.',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « <nowiki>$1</nowiki> » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
-'userpage-userdoesnotexist-view'   => 'Le compte utilisateur « <nowiki>$1</nowiki> » n’est pas enregistré.',
+'userpage-userdoesnotexist-view'   => 'Le compte utilisateur « $1 » n’est pas enregistré.',
 'blocked-notice-logextract'        => 'Cet utilisateur est actuellement bloqué.
 La dernière entrée du registre des blocages est indiquée ci-dessous à titre d’information :',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
@@ -2323,7 +2322,7 @@ Retour et assistance :
 'confirmdeletetext'      => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'         => 'Action effectuée',
 'actionfailed'           => 'L’action a échoué',
-'deletedtext'            => '« <nowiki>$1</nowiki> » a été supprimée.
+'deletedtext'            => '« $1 » a été supprimée.
 Voir $2 pour une liste des suppressions récentes.',
 'deletedarticle'         => 'a supprimé « [[$1]] »',
 'suppressedarticle'      => 'a supprimé « [[$1]] »',
@@ -2384,7 +2383,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protect_expiry_invalid'      => 'La date d’expiration est invalide.',
 'protect_expiry_old'          => 'La date d’expiration est déjà passée.',
 'protect-unchain-permissions' => 'Déverrouiller davantage d’options de protection',
-'protect-text'                => "Vous pouvez consulter et modifier le niveau de protection de la page '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Vous pouvez consulter et modifier le niveau de protection de la page '''$1'''.",
 'protect-locked-blocked'      => "Vous ne pouvez pas modifier les niveaux de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
 Voici les réglages actuels de la page '''$1''' :",
 'protect-locked-dblock'       => "Le niveau de protection ne peut pas être modifié car la base de données est verrouillée.
@@ -2990,12 +2989,17 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'spam_blanking'       => 'Toutes les versions contenant des liens vers $1 sont blanchies',
 
 # Info page
-'infosubtitle'   => 'Informations pour la page',
-'numedits'       => 'Nombre de modifications : $1',
-'numtalkedits'   => 'Nombre de modifications (page de discussion) : $1',
-'numwatchers'    => 'Nombre de contributeurs ayant la page dans leur liste de suivi : $1',
-'numauthors'     => 'Nombre d’auteurs distincts : $1',
-'numtalkauthors' => 'Nombre d’auteurs distincts (page de discussion) : $1',
+'pageinfo-title'            => 'Informations pour « $1 »',
+'pageinfo-header-edits'     => 'Modifications',
+'pageinfo-header-watchlist' => 'Liste de suivi',
+'pageinfo-header-views'     => 'Vues',
+'pageinfo-subjectpage'      => 'Page',
+'pageinfo-talkpage'         => 'Page de discussion',
+'pageinfo-watchers'         => 'Nombre de contributeurs ayant la page dans leur liste de suivi',
+'pageinfo-edits'            => 'Nombre de modifications',
+'pageinfo-authors'          => "Nombre d'auteurs distincts",
+'pageinfo-views'            => 'Nombre de vues',
+'pageinfo-viewsperedit'     => 'Visites par modification',
 
 # Skin names
 'skinname-standard'    => 'Standard',

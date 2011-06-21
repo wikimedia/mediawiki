@@ -491,7 +491,6 @@ $messages = array(
 'history'           => 'Historico de la pâge',
 'history_short'     => 'Historico',
 'updatedmarker'     => 'betâ a jorn dês ma dèrriére visita',
-'info_short'        => 'Enformacions',
 'printableversion'  => 'Vèrsion emprimâbla',
 'permalink'         => 'Lim historico',
 'print'             => 'Emprimar',
@@ -755,7 +754,7 @@ Controlâd que vos éd activâ los tèmouens (''cookies''), rechargiéd la pâge
 'nosuchuser'                 => 'L’utilisator « $1 » ègziste pas.
 Los noms d’utilisator sont sensiblos a la câssa.
 Controlâd l’ortografia, ou ben [[Special:UserLogin/signup|féte un compto novél]].',
-'nosuchusershort'            => 'Y at gins de contributor avouéc lo nom « <nowiki>$1</nowiki> ».
+'nosuchusershort'            => 'Y at gins de contributor avouéc lo nom « $1 ».
 Volyéd controlar l’ortografia.',
 'nouserspecified'            => 'Vos dête buchiér un nom d’utilisator.',
 'login-userblocked'          => 'Ceti utilisator est blocâ. Branchement pas ôtorisâ.',
@@ -960,7 +959,7 @@ Vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche sur lo titro de la
 ou ben <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechèrchiér dens los jornals liyês]</span>.',
 'userpage-userdoesnotexist'        => 'Lo compto utilisator « <nowiki>$1</nowiki> » est pas encartâ.
 Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
-'userpage-userdoesnotexist-view'   => 'Lo compto utilisator « <nowiki>$1</nowiki> » est pas encartâ.',
+'userpage-userdoesnotexist-view'   => 'Lo compto utilisator « $1 » est pas encartâ.',
 'blocked-notice-logextract'        => 'Ceti utilisator est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ voutres prèferences, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
@@ -2340,7 +2339,7 @@ Retôrn et assistance :
 Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'actioncomplete'         => 'Accion fêta',
 'actionfailed'           => 'L’accion at pas reussia',
-'deletedtext'            => '« <nowiki>$1</nowiki> » at étâ suprimâ.
+'deletedtext'            => '« $1 » at étâ suprimâ.
 Vêde lo $2 por una lista de les novèles suprèssions.',
 'deletedarticle'         => 'at suprimâ « [[$1]] »',
 'suppressedarticle'      => 'at suprimâ « [[$1]] »',
@@ -2401,7 +2400,7 @@ Vêde la [[Special:ProtectedPages|lista de les pâges protègiês]] por vêre le
 'protect_expiry_invalid'      => 'La dâta d’èxpiracion est envalida.',
 'protect_expiry_old'          => 'La dâta d’èxpiracion est ja passâ.',
 'protect-unchain-permissions' => 'Dèvèrrolyér adés més de chouèx de protèccion',
-'protect-text'                => "Vos pouede vêre et changiér lo nivél de protèccion de la pâge '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Vos pouede vêre et changiér lo nivél de protèccion de la pâge '''$1'''.",
 'protect-locked-blocked'      => "Vos pouede pas changiér los nivéls de protèccion tant que vos éte blocâ.
 Vê-que la configuracion d’ora de la pâge '''$1''' :",
 'protect-locked-dblock'       => "Los nivéls de protèccion pôvont pas étre changiês perce que la bâsa de balyês est vèrrolyê.
@@ -3026,12 +3025,17 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 'spam_blanking'       => 'Totes les vèrsions que contegnont des lims de vers $1 sont blanchies',
 
 # Info page
-'infosubtitle'   => 'Enformacions por la pâge',
-'numedits'       => 'Nombro de changements (pâge) : $1',
-'numtalkedits'   => 'Nombro de changements (pâge de discussion) : $1',
-'numwatchers'    => 'Nombro de contributors qu’ont la pâge dens lor lista de survelyence : $1',
-'numauthors'     => 'Nombro d’ôtors difèrents (pâge) : $1',
-'numtalkauthors' => 'Nombro d’ôtors difèrents (pâge de discussion) : $1',
+'pageinfo-title'            => 'Enformacions por « $1 »',
+'pageinfo-header-edits'     => 'Changements',
+'pageinfo-header-watchlist' => 'Lista de survelyence',
+'pageinfo-header-views'     => 'Visualisacions',
+'pageinfo-subjectpage'      => 'Pâge',
+'pageinfo-talkpage'         => 'Pâge de discussion',
+'pageinfo-watchers'         => 'Nombro de contributors qu’ont la pâge dens lor lista de survelyence',
+'pageinfo-edits'            => 'Nombro de changements',
+'pageinfo-authors'          => 'Nombro d’ôtors difèrents',
+'pageinfo-views'            => 'Nombro de visualisacions',
+'pageinfo-viewsperedit'     => 'Visualisacions per changement',
 
 # Skin names
 'skinname-standard'    => 'Estandârd',

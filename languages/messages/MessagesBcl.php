@@ -252,7 +252,6 @@ $messages = array(
 'history'           => 'Uusipón nin pahina',
 'history_short'     => 'Uusipón',
 'updatedmarker'     => 'nabàgo poon kan huri kong pagdalaw',
-'info_short'        => 'Impormasyon',
 'printableversion'  => 'Naipiprentang bersyon',
 'permalink'         => 'Permanenteng takod',
 'print'             => 'Iprenta',
@@ -467,7 +466,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'loginsuccesstitle'          => 'Matriumpo an paglaog',
 'loginsuccess'               => "'''Nakalaog ka na sa {{SITENAME}} \"\$1\".'''",
 'nosuchuser'                 => 'Mayong paragamit sa pangaran na "$1". Reparohon an pigsurat mo, o maggibo nin bàgong account.',
-'nosuchusershort'            => 'Mayong paragamit sa nagngangaran na "<nowiki>$1</nowiki>". Reparohon an pigsurat mo.',
+'nosuchusershort'            => 'Mayong paragamit sa nagngangaran na "$1". Reparohon an pigsurat mo.',
 'nouserspecified'            => 'Kaipuhan mong kaagan nin pangaran.',
 'wrongpassword'              => 'Salâ an pigtaták na sekretong panlaog. Probaran giraray tabì.',
 'wrongpasswordempty'         => 'Mayong pigkaag na sekretong panlaog. Probaran giraray tabì.',
@@ -1308,7 +1307,7 @@ Komentaryo asin iba pang tabang:
 Konpirmaron tabì na talagang boot mong gibohon ini, nasasabotan mo an mga resulta, asin an piggigibo mo ini konporme sa
 [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'        => 'Nagibo na',
-'deletedtext'           => 'Pigparà na an "<nowiki>$1</nowiki>" .
+'deletedtext'           => 'Pigparà na an "$1" .
 Hilingón tabì an $2 para mahiling an lista nin mga kaaagi pa sanang pagparà.',
 'deletedarticle'        => 'pigparà an "[[$1]]"',
 'dellogpage'            => 'Usip nin pagparà',
@@ -1351,7 +1350,7 @@ Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, danga
 'protectexpiry'               => 'Mápasó:',
 'protect_expiry_invalid'      => 'Dai pwede ining pahanon nin pagpasó.',
 'protect_expiry_old'          => 'Nakalihis na an panahon nin pagpasó.',
-'protect-text'                => "Pwede mong hilingón asin bàgohon an tangga nin proteksyon digdi para sa pahina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Pwede mong hilingón asin bàgohon an tangga nin proteksyon digdi para sa pahina '''$1'''.",
 'protect-locked-blocked'      => "Dai mo pwedeng bâgohon an mga tangga kan proteksyon mientras na ika nababágat. Ini an mga presenteng pwesto kan páhina '''$1''':",
 'protect-locked-dblock'       => "Dai puedeng ibalyo an mga nibel kan proteksión ta may actibong kandado sa base nin datos.
 Ini an mga puesta sa ngunyan kaining páhina '''$1''':",
@@ -1747,14 +1746,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'spambot_username'    => 'paglimpya nin spam sa MediaWiki',
 'spam_reverting'      => 'Mabalik sa huring bersion na mayong takod sa $1',
 'spam_blanking'       => 'An gabos na mga pahirá na may takod sa $1, pigblablanko',
-
-# Info page
-'infosubtitle'   => 'Impormasyón kan páhina',
-'numedits'       => 'Bilang kan mga hira (artikulo): $1',
-'numtalkedits'   => 'Bilang kan mga hirá (páhina kan orólay): $1',
-'numwatchers'    => 'Bilang kan mga parábantay: $1',
-'numauthors'     => 'Bilang kan mga parásurat na ibá (páhina): $1',
-'numtalkauthors' => 'Bilang kan mga parásurat na ibá (páhina kan orólay): $1',
 
 # Skin names
 'skinname-standard' => 'Klasiko',

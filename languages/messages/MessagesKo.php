@@ -485,7 +485,6 @@ $messages = array(
 'history'           => '문서 역사',
 'history_short'     => '역사',
 'updatedmarker'     => '마지막으로 읽은 뒤 바뀌었음',
-'info_short'        => '정보',
 'printableversion'  => '인쇄용 문서',
 'permalink'         => '고유링크',
 'print'             => '인쇄',
@@ -735,7 +734,7 @@ $2',
 'nosuchuser'                 => '"$1" 사용자가 존재하지 않습니다.
 사용자 이름은 대소문자를 구별합니다. 철자가 맞는지 확인해주세요.
 [[Special:UserLogin/signup|새 계정을 만들 수도 있습니다]].',
-'nosuchusershort'            => '이름이 ‘<nowiki>$1</nowiki>’인 사용자는 없습니다. 철자가 맞는지 확인해 주세요.',
+'nosuchusershort'            => '이름이 ‘$1’인 사용자는 없습니다. 철자가 맞는지 확인해 주세요.',
 'nouserspecified'            => '사용자 이름을 입력하지 않았습니다.',
 'login-userblocked'          => '이 사용자는 차단되었습니다. 로그인할 수 없습니다.',
 'wrongpassword'              => '암호가 틀렸습니다. 다시 시도해 주세요.',
@@ -912,7 +911,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'noarticletext-nopermission'       => '‘{{FULLPAGENAME}}’ 문서가 존재하지 않습니다.
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span>',
 'userpage-userdoesnotexist'        => '‘<nowiki>$1</nowiki>’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
-'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" 사용자 계정은 등록되지 않았습니다.',
+'userpage-userdoesnotexist-view'   => '"$1" 사용자 계정은 등록되지 않았습니다.',
 'blocked-notice-logextract'        => '이 사용자는 현재 차단되어 있습니다.
 해당 사용자의 최근 차단 기록을 참고하십시오:',
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
@@ -2250,7 +2249,7 @@ $UNWATCHURL
 'confirmdeletetext'      => '문서와 문서 역사를 삭제하려고 합니다. 삭제하려는 문서가 맞는지, 이 문서를 삭제하는 것이 [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지를 확인해 주세요.',
 'actioncomplete'         => '명령 완료',
 'actionfailed'           => '명령 실패',
-'deletedtext'            => '‘<nowiki>$1</nowiki>’ 문서를 삭제했습니다. 최근 삭제 기록은 $2에 있습니다.',
+'deletedtext'            => '‘$1’ 문서를 삭제했습니다. 최근 삭제 기록은 $2에 있습니다.',
 'deletedarticle'         => '사용자가 [[$1]] 문서를 삭제하였습니다.',
 'suppressedarticle'      => '"[[$1]]"를 숨김',
 'dellogpage'             => '삭제 기록',
@@ -2304,7 +2303,7 @@ $UNWATCHURL
 'protect_expiry_invalid'      => '보호 기간이 잘못되었습니다.',
 'protect_expiry_old'          => '기한을 과거로 입력했습니다.',
 'protect-unchain-permissions' => '다른 보호 설정을 수동으로 설정하기',
-'protect-text'                => "'''<nowiki>$1</nowiki>''' 문서의 보호 수준을 보거나 변경할 수 있습니다.",
+'protect-text'                => "'''$1''' 문서의 보호 수준을 보거나 변경할 수 있습니다.",
 'protect-locked-blocked'      => "차단된 동안에는 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 보호 설정은 다음과 같습니다:",
 'protect-locked-dblock'       => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 현재 설정은 다음과 같습니다:",
 'protect-locked-access'       => "문서 보호 수준을 변경할 권한이 없습니다. '''$1''' 문서의 권한은 다음과 같습니다.",
@@ -2894,14 +2893,6 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'spambot_username'    => 'MediaWiki 스팸 제거',
 'spam_reverting'      => '$1을 포함하지 않는 최신 버전으로 되돌림',
 'spam_blanking'       => '모든 버전에 $1 링크를 포함하고 있어 문서를 비움',
-
-# Info page
-'infosubtitle'   => '문서 정보',
-'numedits'       => '편집 횟수(문서): $1',
-'numtalkedits'   => '편집 횟수(토론 문서): $1',
-'numwatchers'    => '주시하는 사용자 수: $1',
-'numauthors'     => '기여한 사용자 수(문서): $1',
-'numtalkauthors' => '기여한 사용자 수(토론 문서): $1',
 
 # Skin names
 'skinname-standard'    => '클래식',

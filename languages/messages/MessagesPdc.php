@@ -177,7 +177,6 @@ $messages = array(
 'searcharticle'    => 'Blatt',
 'history'          => 'Gschicht',
 'history_short'    => 'Gschicht',
-'info_short'       => 'Information',
 'printableversion' => 'Version zum Drucke',
 'permalink'        => 'Permanent Gleecher',
 'print'            => 'Drucke',
@@ -696,7 +695,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'exblank'                => 'Blatt war leer',
 'delete-confirm'         => 'Lösche vun „$1“',
 'delete-legend'          => 'Lösche',
-'deletedtext'            => '"<nowiki>$1</nowiki>" iss gelescht warre.
+'deletedtext'            => '"$1" iss gelescht warre.
 Guck $2 fer e Lischt vun de letscht Leschunge.',
 'deletedarticle'         => 'hot „[[$1]]“ gelöscht',
 'dellogpage'             => 'Lischt vun gelöschte Bledder',

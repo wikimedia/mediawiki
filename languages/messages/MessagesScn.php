@@ -321,7 +321,6 @@ $messages = array(
 'history'           => 'cronuluggìa',
 'history_short'     => 'storia',
 'updatedmarker'     => 'canciata dâ mè ùrtima vìsita',
-'info_short'        => 'Nfurmazzioni',
 'printableversion'  => 'Virsioni stampàbbili',
 'permalink'         => 'Liami pirmanenti',
 'print'             => 'Stampa',
@@ -556,7 +555,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li [
 'nosuchuser'                 => 'Nun è riggistratu nuddu utenti di nomu "$1".
 Li nnomi utenti sunu sinsitivi ê maiusculi.
 Virificari lu nomu nziritu o [[Special:UserLogin/signup|criari un novu accessu]].',
-'nosuchusershort'            => 'Nun c\'è nuddu utenti di nomu "<nowiki>$1</nowiki>". Cuntrolla l\'ortugrafìa.',
+'nosuchusershort'            => 'Nun c\'è nuddu utenti di nomu "$1". Cuntrolla l\'ortugrafìa.',
 'nouserspecified'            => 'È nicissariu spicificari un nomu utenti.',
 'login-userblocked'          => "St'utilizzaturi è bluccatu. Nun è pussibbili di tràsiri",
 'wrongpassword'              => "La ''password'' chi mittisti nun è giusta. Prova n'àutra vota.",
@@ -1855,7 +1854,7 @@ Pi dari lu tò feedback e arricèviri ultiriuri assistenza:
 'confirmdeletetext'      => "Stai cancillannu dû databbasi na pàggina o na mmàggini cu tutta la sò storia di manera pirmanenti. Pi fauri, cunferma ca tu ntenni fari sta cosa, ca tu hai caputu li cunziquenzi, e chi lu fai secunnu li linìi guida stabbiliti 'n [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Azzioni cumpritata',
 'actionfailed'           => 'Azioni fallita',
-'deletedtext'            => '"<nowiki>$1</nowiki>" ha statu cancillatu.
+'deletedtext'            => '"$1" ha statu cancillatu.
 Talìa $2 pi na lista di cancillazzioni ricenti.',
 'deletedarticle'         => 'Hà cancillatu "[[$1]]"',
 'suppressedarticle'      => 'suppressu "[[$1]]"',
@@ -1906,7 +1905,7 @@ Pi favuri utilizza lu tastu "\'n arreri" dû tò browser, ricàrrica la pàggina
 'protectexpiry'               => 'Scadenza',
 'protect_expiry_invalid'      => 'Scadenza nun vàlida.',
 'protect_expiry_old'          => 'Scadenza già trascursa.',
-'protect-text'                => "Ccà poi vìdiri e canciari lu liveddu di prutezzioni pi la pàggina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Ccà poi vìdiri e canciari lu liveddu di prutezzioni pi la pàggina '''$1'''.",
 'protect-locked-blocked'      => "Nun pò canciari li liveddi di prutizzioni quannu sî bloccatu. Li mpostazzioni correnti pâ pàggina sugnu '''$1''':",
 'protect-locked-dblock'       => "Mpussibbili canciari li liveddi di prutizzioni pi nu bloccu dô database.
 Li mpostazzioni correnti pâ pàggina sugnu '''$1''':",
@@ -2401,14 +2400,6 @@ Visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [ht
 'spambot_username'    => 'MediaWiki - sistema di rimuzzioni spam',
 'spam_reverting'      => "Ripristinata l'ùrtima virsioni priva di culligamenti a $1",
 'spam_blanking'       => 'Pàggina svacantata, tutti li virsioni cuntinìanu culligamenti a $1',
-
-# Info page
-'infosubtitle'   => 'Nfurmazzioni pi la pàggina',
-'numedits'       => 'Nùmmuru di canciamenti (artìculu): $1',
-'numtalkedits'   => 'Nùmmuru di canciamenti (pàggina di discussioni): $1',
-'numwatchers'    => "Nùmmuru d'ossirvatura: $1",
-'numauthors'     => "Nùmmuru d'autura distinti (artìculu): $1",
-'numtalkauthors' => "Nùmmuru d'autura distinti (pàggina di discussioni): $1",
 
 # Skin names
 'skinname-standard'    => 'Classicu',

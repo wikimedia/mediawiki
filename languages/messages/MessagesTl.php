@@ -321,7 +321,6 @@ $messages = array(
 'history'           => 'Kasaysayan ng pahina',
 'history_short'     => 'Kasaysayan',
 'updatedmarker'     => 'isinapanahon mula noong huli kong pagdalaw',
-'info_short'        => 'Kabatiran',
 'printableversion'  => 'Bersyong maililimbag',
 'permalink'         => 'Palagiang kawing',
 'print'             => 'Ilimbag',
@@ -585,7 +584,7 @@ Tiyaking mayroon kang pinagaganang mga otap, ikargang muli ang pahinang ito at s
 'nosuchuser'                 => 'Walang tagagamit na may pangalang "$1".
 Maselan sa pagtitipa ang mga pangalan ng tagagamit.
 Suriin ang iyong pagbabaybay, o [[Special:UserLogin/signup|lumikha ng bagong kuwenta]].',
-'nosuchusershort'            => 'Walang tagagamit na may pangalang "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Walang tagagamit na may pangalang "$1".
 Pakitingnan ang iyong pagbabaybay.',
 'nouserspecified'            => 'Kailangang tukuyin mo ang isang pangalang pantagagamit.',
 'login-userblocked'          => 'Hinarang ang tagagamit na ito.  Hindi pinahihintulutan ang paglalagda.',
@@ -790,7 +789,7 @@ Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] 
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa kaugnay na mga talaan]</span>.',
 'userpage-userdoesnotexist'        => 'Hindi nakatala ang kuwenta ng tagagamit na "<nowiki>$1</nowiki>".
 Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
-'userpage-userdoesnotexist-view'   => 'Hindi nakatala ang kuwenta ng tagagamit na "<nowiki>$1</nowiki>".',
+'userpage-userdoesnotexist-view'   => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".',
 'blocked-notice-logextract'        => 'Kasalukuyang hinarang ang tagagamit na ito.
 Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa inyong pagsasangguni:',
 'clearyourcache'                   => "'''Tandaan: Pagkatapos magtala, dapat linisin mo ang baunan ng iyong pambasa-basa upang makita ang mga pagbabago.'''
@@ -2179,7 +2178,7 @@ Tingnan ang [[Special:ProtectedPages|talaan ng nakasanggalang na mga pahina]] pa
 'protect_expiry_invalid'      => 'Hindi tanggap/hindi tama ang oras ng pagtatapos.',
 'protect_expiry_old'          => 'Nasa nakaraan ang oras ng pagtatapos.',
 'protect-unchain-permissions' => 'Huwag ikandado ang iba pang mga pagpipilian ng pagprutekta',
-'protect-text'                => "Maaari mong tingnan at baguhin dito ang antas ng pananananggalang para sa pahinang '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Maaari mong tingnan at baguhin dito ang antas ng pananananggalang para sa pahinang '''$1'''.",
 'protect-locked-blocked'      => "Hindi mo maaaring baguhin ang mga antas ng panananggalang habang may pagharang/paghadlang.
 Narito ang mga pangkasalukuyang pagtatakda para sa pahinang '''$1''':",
 'protect-locked-dblock'       => "Hindi mababago ang mga antas ng panananggalang dahil sa isang umiiral na pagkandado ng kalipunan ng dato.
@@ -2780,14 +2779,6 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'spambot_username'    => "Paglilinis ng ''spam'' ng MediaWiki",
 'spam_reverting'      => "Ibinabalik sa huling bersyon na 'di-naglalaman ng mga kawing sa $1",
 'spam_blanking'       => 'Lahat ng mga pagbabago ay naglalaman ng mga kawing sa $1, pagpapatlang',
-
-# Info page
-'infosubtitle'   => 'Kabatiran para sa pahina',
-'numedits'       => 'Bilang ng mga pagbabago (pahina): $1',
-'numtalkedits'   => 'Bilang ng mga pagbabago (pahinang usapan): $1',
-'numwatchers'    => 'Bilang ng mga tagatingin: $1',
-'numauthors'     => 'Bilang ng mga bukdo-tanging mga may-akda (pahina): $1',
-'numtalkauthors' => 'Bilang ng bukod-tanging mga may-akda (pahinang usapan): $1',
 
 # Skin names
 'skinname-standard'    => 'Klasiko',

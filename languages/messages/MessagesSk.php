@@ -466,7 +466,6 @@ $messages = array(
 'history'           => 'História stránky',
 'history_short'     => 'História',
 'updatedmarker'     => 'aktualizované od mojej poslednej návštevy',
-'info_short'        => 'Informácie',
 'printableversion'  => 'Verzia na tlač',
 'permalink'         => 'Trvalý odkaz',
 'print'             => 'Tlač',
@@ -718,7 +717,7 @@ Ubezpečte sa, že máte povolené cookies, obnovte túto stránku a skúste to 
 'nosuchuser'                 => 'Používateľské meno „$1“ neexistuje.
 V používateľských menách sa rozlišuje veľkosť písmen.
 Skontrolujte preklepy alebo sa [[Special:UserLogin/signup|zaregistrujte ako nový používateľ]].',
-'nosuchusershort'            => 'V súčasnosti neexistuje používateľ s menom „<nowiki>$1</nowiki>“. Skontrolujte preklepy.',
+'nosuchusershort'            => 'V súčasnosti neexistuje používateľ s menom „$1“. Skontrolujte preklepy.',
 'nouserspecified'            => 'Musíte uviesť meno používateľa.',
 'login-userblocked'          => 'Tento používateľ je zablokovaný. Nie je mu dovolené prihlásiť sa.',
 'wrongpassword'              => 'Zadané heslo je nesprávne. Skúste  znovu.',
@@ -923,7 +922,7 @@ alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku]</span
 Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
 alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si pozrieť súvisiace záznamy]</span>.',
 'userpage-userdoesnotexist'        => 'Používateľský účet „<nowiki>$1</nowiki>“ nie je registrovaný. Prosím, skontrolujte, či naozaj chcete vytvoriť/upravovať túto stránku.',
-'userpage-userdoesnotexist-view'   => 'Používateľský účet „<nowiki>$1</nowiki>“ nie je registrovaný.',
+'userpage-userdoesnotexist-view'   => 'Používateľský účet „$1“ nie je registrovaný.',
 'blocked-notice-logextract'        => 'Tento používateľ je momentálne zablokovaný.
 Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'clearyourcache'                   => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
@@ -2255,7 +2254,7 @@ Návrhy a ďalšia pomoc:
 'confirmdeletetext'      => 'Chystáte sa trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
 'actioncomplete'         => 'Úloha bola dokončená',
 'actionfailed'           => 'Operácia sa nepodarila',
-'deletedtext'            => '"<nowiki>$1</nowiki>" bol zmazaný.
+'deletedtext'            => '"$1" bol zmazaný.
 Na $2 nájdete zoznam posledných zmazaní.',
 'deletedarticle'         => '„[[$1]]“ zmazaná',
 'suppressedarticle'      => 'potlačil „[[$1]]“',
@@ -2310,7 +2309,7 @@ Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných za
 'protect_expiry_invalid'      => 'Neplatný čas vypršania.',
 'protect_expiry_old'          => 'Čas vypršania je v minulosti.',
 'protect-unchain-permissions' => 'Odomknúť ďalšie možnosti ochrany',
-'protect-text'                => "Tu si môžete pozrieť a zmeniť úroveň ochrany stránky '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Tu si môžete pozrieť a zmeniť úroveň ochrany stránky '''$1'''.",
 'protect-locked-blocked'      => "Nemôžete meniť úroveň ochrany, kým ste zablokovaný.
 Tu sú aktuálne nastavenia stránky '''$1''':",
 'protect-locked-dblock'       => "Nie je možné zmeniť úroveň ochrany z dôvodu aktívneho zámku databázy.
@@ -2923,14 +2922,6 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'spambot_username'    => 'MediaWiki čistenie spamu',
 'spam_reverting'      => 'Vraciam poslednú verziu, ktorá neobsahuje odkazy na $1',
 'spam_blanking'       => 'Všetky revízie obsahovali odkaz na $1, odstraňujem obsah',
-
-# Info page
-'infosubtitle'   => 'Informácie o stránke',
-'numedits'       => 'Počet úprav (stránka): $1',
-'numtalkedits'   => 'Počet úprav (diskusná stránka): $1',
-'numwatchers'    => 'Počet zobrazení: $1',
-'numauthors'     => 'Počet odlišných autorov (stránka): $1',
-'numtalkauthors' => 'Počet odlišných autorov (diskusná stránka): $1',
 
 # Skin names
 'skinname-standard'    => 'Klasický',

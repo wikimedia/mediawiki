@@ -487,7 +487,6 @@ pe titlul secțiunii (JavaScript)',
 'history'           => 'Istoricul paginii',
 'history_short'     => 'Istoric',
 'updatedmarker'     => 'încărcat de la ultima mea vizită',
-'info_short'        => 'Informații',
 'printableversion'  => 'Versiune de tipărit',
 'permalink'         => 'Legătură permanentă',
 'print'             => 'Tipărire',
@@ -741,7 +740,7 @@ Asigurați-vă că aveți cookie-urile activate, reîncărcați pagina și înce
 'nosuchuser'                 => 'Nu există nici un utilizator cu numele „$1”.
 Numele de utilizatori sunt sensibile la majuscule.
 Verifică dacă ai scris corect sau [[Special:UserLogin/signup|creează un nou cont de utilizator]].',
-'nosuchusershort'            => 'Nu este nici un utilizator cu numele „<nowiki>$1</nowiki>”. Verificați dacă ați scris corect.',
+'nosuchusershort'            => 'Nu este nici un utilizator cu numele „$1”. Verificați dacă ați scris corect.',
 'nouserspecified'            => 'Trebuie să specificați un nume de utilizator.',
 'login-userblocked'          => 'Acest utilizator este blocat. Autentificarea nu este permisă.',
 'wrongpassword'              => 'Parola pe care ați introdus-o este incorectă. Vă rugăm să încercați din nou.',
@@ -924,7 +923,7 @@ Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini
 sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>.',
 'userpage-userdoesnotexist'        => 'Contul de utilizator „<nowiki>$1</nowiki>” nu este înregistrat.
 Asigurați-vă că doriți să creați/modificați această pagină.',
-'userpage-userdoesnotexist-view'   => 'Contul de utilizator „<nowiki>$1</nowiki>” nu este înregistrat.',
+'userpage-userdoesnotexist-view'   => 'Contul de utilizator „$1” nu este înregistrat.',
 'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
 Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referință:',
 'clearyourcache'                   => "'''Notă: După salvare, trebuie să treceți peste memoria cache a navigatorului pentru a vedea modificările.'''
@@ -2278,7 +2277,7 @@ Asistență și suport:
 'confirmdeletetext'      => 'Sunteți pe cale să ștergeți permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmați alegerea făcută de dvs., faptul că înțelegeți consecințele acestei acțiuni și faptul că o faceți în conformitate cu [[{{MediaWiki:Policy-url}}|Politica oficială]].',
 'actioncomplete'         => 'Acțiune completă',
 'actionfailed'           => 'Acțiunea a eșuat',
-'deletedtext'            => 'Pagina "<nowiki>$1</nowiki>" a fost ștearsă. Vedeți $2 pentru o listă a elementelor șterse recent.',
+'deletedtext'            => 'Pagina "$1" a fost ștearsă. Vedeți $2 pentru o listă a elementelor șterse recent.',
 'deletedarticle'         => 'a șters "[[$1]]"',
 'suppressedarticle'      => 'eliminate "[[$1]]"',
 'dellogpage'             => 'Jurnal ștergeri',
@@ -2333,7 +2332,7 @@ revenire la ultima versiune de $2.',
 'protect_expiry_invalid'      => 'Timpul de expirare nu este valid.',
 'protect_expiry_old'          => 'Timpul de expirare este în trecut.',
 'protect-unchain-permissions' => 'Deblochează mai multe opțiuni de protejare',
-'protect-text'                => "Poți vizualiza sau modifica nivelul de protecție pentru pagina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Poți vizualiza sau modifica nivelul de protecție pentru pagina '''$1'''.",
 'protect-locked-blocked'      => "Nu poți schimba nivelurile de protecție fiind blocat.
 Iată configurația curentă a paginii '''$1''':",
 'protect-locked-dblock'       => "Nivelurile de protecție nu pot fi aplicate deoarece baza de date este închisă.
@@ -2932,14 +2931,6 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'spambot_username'    => 'Curățarea de spam a MediaWiki',
 'spam_reverting'      => 'Revenire la ultima versiune care nu conține legături către $1',
 'spam_blanking'       => 'Toate reviziile conținând legături către $1, au eșuat',
-
-# Info page
-'infosubtitle'   => 'Informații pentru pagină',
-'numedits'       => 'Număr de modificări (articole): $1',
-'numtalkedits'   => 'Număr de modificări (pagina de discuții): $1',
-'numwatchers'    => 'Număr de utilizatori care urmăresc: $1',
-'numauthors'     => 'Număr de autori distincți (articole): $1',
-'numtalkauthors' => 'Număr de autori distincți (pagini de discuții): $1',
 
 # Skin names
 'skinname-standard'    => 'Clasic',

@@ -311,7 +311,6 @@ $messages = array(
 'history'           => "Historial d'a pachina",
 'history_short'     => 'Historial',
 'updatedmarker'     => 'esviellato dende a zaguera vesita',
-'info_short'        => 'Información',
 'printableversion'  => 'Versión ta imprentar',
 'permalink'         => 'Vinclo permanent',
 'print'             => 'Imprentar',
@@ -551,7 +550,7 @@ Por favor, meta-ne uno diferent.",
 'nosuchuser'                 => 'No bi ha garra usuario clamato "$1".
 Os nombres d\'usuario son sensibles a las mayusclas.
 Comprebe si ha escrito bien o nombre u [[Special:UserLogin/signup|creye una nueva cuenta d\'usuario]].',
-'nosuchusershort'            => 'No bi ha garra usuario con o nombre "<nowiki>$1</nowiki>". Comprebe si o nombre ye bien escrito.',
+'nosuchusershort'            => 'No bi ha garra usuario con o nombre "$1". Comprebe si o nombre ye bien escrito.',
 'nouserspecified'            => "Ha d'escribir un nombre d'usuario.",
 'login-userblocked'          => "Iste usuario ye bloqueyau. No se permite l'inicio de sesión.",
 'wrongpassword'              => 'A contrasenya indicata no ye correcta. Prebe unatra vegada.',
@@ -701,7 +700,7 @@ Si vusté ye un usuario anonimo y creye que l'han escrito comentarios no relevan
 Puet [[Special:Search/{{PAGENAME}}|mirar iste títol]] en atras páginas,
 u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mirar en os rechistros relacionatos]</span>.',
 'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "<nowiki>$1</nowiki>" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
-'userpage-userdoesnotexist-view'   => 'A cuenta d\'usuario "<nowiki>$1</nowiki>" no ye rechistrada.',
+'userpage-userdoesnotexist-view'   => 'A cuenta d\'usuario "$1" no ye rechistrada.',
 'blocked-notice-logextract'        => "Ista cuenta d'usuario ye actualment bloqueyata.
 A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 'clearyourcache'                   => "'''Pare cuenta: Si quiere veyer os cambeos dimpués d'alzar o fichero, puede estar que tienga que refrescar a caché d'o suyo navegador ta veyer os cambeos.'''
@@ -1978,7 +1977,7 @@ Ta obtenir más información y aduya:
 Por favor, confirme que reyalment ye mirando de fer ixo, que entiende as conseqüencias, y que lo fa d'alcuerdo con as [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
 'actioncomplete'         => 'Acción rematada',
 'actionfailed'           => "L'acción ha feito fallita",
-'deletedtext'            => 'S\'ha borrau "<nowiki>$1</nowiki>".
+'deletedtext'            => 'S\'ha borrau "$1".
 Se veiga en $2 un rechistro d\'os borraus recients.',
 'deletedarticle'         => 'ha borrato "[[$1]]"',
 'suppressedarticle'      => 's\'ha supreso "[[$1]]"',
@@ -2032,7 +2031,7 @@ Torne t'a pachina anterior, recargue a pachina y torne a prebar alavez.",
 'protect_expiry_invalid'      => 'O tiempo de circumducción ye incorrecto.',
 'protect_expiry_old'          => 'O tiempo de circumducción ye una calendata ya pasata.',
 'protect-unchain-permissions' => 'Desbloqueyar opcions de protección abanzatas',
-'protect-text'                => "Puetz veyer y cambiar o livel e protección d'a pachina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Puetz veyer y cambiar o livel e protección d'a pachina '''$1'''.",
 'protect-locked-blocked'      => "No puede cambiar os livels de protección mientres ye bloqueyato. Contino se i amuestran as opcions actuals d'a pachina '''$1''':",
 'protect-locked-dblock'       => "Os livels de protección no se pueden cambiar por un bloqueyo activo d'a base de datos.
 Contino se i amuestran as opcions actuals d'a pachina '''$1''':",
@@ -2559,14 +2558,6 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'spambot_username'    => 'Esporga de spam de MediaWiki',
 'spam_reverting'      => "Tornando t'a zaguera versión sin de vinclos ta $1",
 'spam_blanking'       => 'Todas as versions teneban vinclos ta $1, se deixa en blanco',
-
-# Info page
-'infosubtitle'   => "Información d'a pachina",
-'numedits'       => "Numero d'edicions (articlo): $1",
-'numtalkedits'   => "Numero d'edicions (pachina de descusión): $1",
-'numwatchers'    => "Número d'usuario cosirando: $1",
-'numauthors'     => "Numero d'autors (articlo): $1",
-'numtalkauthors' => "Numero d'autors (pachina de descusión): $1",
 
 # Skin names
 'skinname-standard'    => 'Clasica (Classic)',

@@ -489,7 +489,6 @@ $messages = array(
 'history'           => 'تاريخ الصفحه',
 'history_short'     => 'تاريخ',
 'updatedmarker'     => 'اتحدثت بعد زيارتى الأخيرة',
-'info_short'        => 'معلومات',
 'printableversion'  => 'نسخه للطبع',
 'permalink'         => 'لينك دايم',
 'print'             => 'اطبع',
@@ -736,7 +735,7 @@ $2',
 'nosuchuser'                 => 'مافيش يوزر اسمه "$1".
 اسامى اليوزر بتبقى حساسه لحالة الحرف.
 اتأكد من التهجيه, او [[Special:UserLogin/signup|افتح حساب جديد]].',
-'nosuchusershort'            => 'مافيش يوزر باسم <nowiki>$1</nowiki>".
+'nosuchusershort'            => 'مافيش يوزر باسم $1".
 اتاكد من تهجية الاسم.',
 'nouserspecified'            => 'لازم تحدد اسم يوزر.',
 'login-userblocked'          => 'اليوزر دا ممنوع من الدخول.',
@@ -903,7 +902,7 @@ $2',
 ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه دى]] فى الصفحات التانيه,
 او <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات بتاعتها]</span>.',
 'userpage-userdoesnotexist'        => 'حساب اليوزر "<nowiki>$1</nowiki>" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
-'userpage-userdoesnotexist-view'   => 'حساب اليوزر "<nowiki>$1</nowiki>" مش متسجل',
+'userpage-userdoesnotexist-view'   => 'حساب اليوزر "$1" مش متسجل',
 'blocked-notice-logextract'        => 'اليوزر ده معمول له بلوك دلوقتى.
 اخر بلوك فى السجل موجود تحت للمراجعه:',
 'clearyourcache'                   => "'''ملاحظة - بعد التسييف,  يمكن لازم تفرغ كاش متصفحك علشان تشوف التغييرات.''' '''موزيللا / فايرفوكس / سافارى:''' دوس على ''Shift'' فى نفس الوقت دوس على ''Reload,'' أو دوس على اما ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''دوس على ''Reload'' أو دوس على ''F5;'' '''أوبرا:''' فرغ الكاش فى ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' دوس على ''Ctrl'' فى نفس الوقت دوس على ''Refresh,'' أو دوس على ''Ctrl-F5.''",
@@ -2183,7 +2182,7 @@ $UNWATCHURL
 من فضلك  اتأكد انك عايز المسح وبأنك فاهم نتايج  العمليه  دى. عمليات الحذف لازم تتم بناء على [[{{MediaWiki:Policy-url}}|القواعد المتفق عليها]].',
 'actioncomplete'         => 'العمليه خلصت',
 'actionfailed'           => 'الفعل فشل',
-'deletedtext'            => '"<nowiki>$1</nowiki>" اتمسحت.
+'deletedtext'            => '"$1" اتمسحت.
 بص على $2 علشان تشوف سجل آخر عمليات المسح.',
 'deletedarticle'         => 'اتمسحت "[[$1]]"',
 'suppressedarticle'      => 'خببى "[[$1]]"',
@@ -2242,7 +2241,7 @@ $UNWATCHURL
 'protect_expiry_invalid'      => 'وقت الانتهاء مش صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع قديم.',
 'protect-unchain-permissions' => 'شيل حماية أوبشنات الحمايه التانيه',
-'protect-text'                => "ممكن هنا تعرض و تغير مستوى الحمايه للصفحه '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "ممكن هنا تعرض و تغير مستوى الحمايه للصفحه '''$1'''.",
 'protect-locked-blocked'      => "انت مش ممكن تغير مستويات الحماية وأنت ممنوع.
 الإعدادات بتاعة الصفحة '''$1''' دلوقتى هي:",
 'protect-locked-dblock'       => "ما ينفعش تغير مستويات الحماية بسبب قفل قاعدة البيانات دلوقتي.
@@ -2818,14 +2817,6 @@ $1',
 'spambot_username'    => 'تنظيف سبام ميدياويكى',
 'spam_reverting'      => 'ترجيع آخر نسخة مافيهاش لينكات لـ $1',
 'spam_blanking'       => 'كل النسخ فيها لينكات ل $1، فضيها',
-
-# Info page
-'infosubtitle'   => 'معلومات للصفحه',
-'numedits'       => 'عدد التعديلات (صفحة): $1',
-'numtalkedits'   => 'عدد التعديلات (صفحة نقاش): $1',
-'numwatchers'    => 'عدد المراقبين: $1',
-'numauthors'     => 'عدد المؤلفين المميزين (صفحة): $1',
-'numtalkauthors' => 'عدد المؤلفين المميزين (صحفة نقاش): $1',
 
 # Skin names
 'skinname-standard'    => 'كلاسيك',

@@ -207,7 +207,6 @@ $messages = array(
 'history'           => 'Färsjoone',
 'history_short'     => 'Färsjoone/autoore',
 'updatedmarker'     => 'änred sunt man leest besäk',
-'info_short'        => 'Informasjoon',
 'printableversion'  => 'Prantfärsjoon',
 'permalink'         => 'Permanänten link',
 'print'             => 'Prante',
@@ -455,7 +454,7 @@ Wees sü gödj än aktiwiir da än fersäk dåt wider.',
 'loginsuccess'               => "'''Dü bast nü ås „$1“ bai {{SITENAME}} önjmälded.'''",
 'nosuchuser'                 => 'Di brükernoome „$1“ bestoont ai.
 Präiw jü schriwwise (grut-/latjschriwing beåchte) unti [[Special:UserLogin/signup|mäld de ås naie brüker önj]].',
-'nosuchusershort'            => 'Deer as nåån brüker ma noome  "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Deer as nåån brüker ma noome  "$1".
 Präiw din ruchtschriwing.',
 'nouserspecified'            => 'Dü schäät en brükernoome spesifisiire.',
 'login-userblocked'          => 'Dideer brüker as spärd. Niinj ferloof tu önjmälding.',
@@ -583,7 +582,7 @@ Dü koost dideere tiitel aw da oudre side [[Special:Search/{{PAGENAME}}|säke]],
 unti<span class="plainlinks">önj da deertuhiirende [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logböke säke] </span>.',
 'userpage-userdoesnotexist'        => 'Dåt benjüterkonto "<nowiki>$1</nowiki>" as ai deer.
 Wees sü gödj än präif, weer dü jüdeer sid wörklik mååge/beårbe wååt.',
-'userpage-userdoesnotexist-view'   => 'Benjüterkonto "<nowiki>$1</nowiki>" bestoont ai.',
+'userpage-userdoesnotexist-view'   => 'Benjüterkonto "$1" bestoont ai.',
 'blocked-notice-logextract'        => 'Dideer benjüter as tutids spärd.
 For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
 'usercssyoucanpreview'             => "'''Tip:''' Brük di „{{int:showpreview}}“-knoop, am din nai CSS for dåt spiikern tu tästen.",
@@ -1090,7 +1089,7 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'deletepage'            => 'Sid tunintemååge',
 'confirmdeletetext'     => 'Dü bast deerbai, en sid ma åle tuhiirende ålere färsjoone tuninte tu måågen. Bestääsie hål deertu, dåt dü de foon da konsekwänse bewust bast, än dåt dü önj oueriinjstiming ma da [[{{MediaWiki:Policy-url}}|ruchtliinjen]] hoonelst.',
 'actioncomplete'        => 'Aksjoon beånd',
-'deletedtext'           => '„<nowiki>$1</nowiki>“ wörd tunintemååged. In e $2 fanst dü en list foon da tuleest tunintemåågede side.',
+'deletedtext'           => '„$1“ wörd tunintemååged. In e $2 fanst dü en list foon da tuleest tunintemåågede side.',
 'deletedarticle'        => 'heet "[[$1]]" tunintemååged',
 'dellogpage'            => 'Tunintemååg-Logbök',
 'deletecomment'         => 'Grün:',

@@ -200,7 +200,6 @@ $messages = array(
 'history'           => 'Susuyan bolikon',
 'history_short'     => 'Susuyan',
 'updatedmarker'     => 'noinwoguan mantad di poguluku do tuminombului',
-'info_short'        => 'Kointalangan',
 'printableversion'  => 'Solinan milo pirinon',
 'permalink'         => 'Toput pointatap',
 'print'             => 'Pirino',
@@ -462,7 +461,7 @@ Posikito no pogogonsoknu, gumulisuang id bolikon diti om umbalan kawagu.',
 'nosuchuser'                 => 'Ingaa momoguno pinungaranan "$1".
 Ngaran momoguno nopo nga kowoyo pimato.
 Intaai ijaannu, toi [[Special:UserLogin/signup|pomonsoi do takaun kawawagu]].',
-'nosuchusershort'            => 'Ingaa momoguno kingaran  "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Ingaa momoguno kingaran  "$1".
 Intaai ijaannu.',
 'nouserspecified'            => 'Maai posuango ngaran momoguno.',
 'login-userblocked'          => 'Nantaban momoguno diti. Oduhan do sumuang log.',
@@ -633,7 +632,7 @@ Milo ko nogi do [[Special:Search/{{PAGENAME}}|mogihum do tuluhon bolikon diti]] 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mogihum kokomoi log-log] </span>.',
 'userpage-userdoesnotexist'        => 'Akaun momomoguno "<nowiki>$1</nowiki>" awu nokorijisto.
 Mangai intangai nung mumang ko pomonsoi/mongidit do bolikon diti.',
-'userpage-userdoesnotexist-view'   => 'Akaun momomoguno "<nowiki>$1</nowiki>" awu po nokorijisto.',
+'userpage-userdoesnotexist-view'   => 'Akaun momomoguno "$1" awu po nokorijisto.',
 'blocked-notice-logextract'        => 'Maso do nantaban momomoguno diti.
 Riporon id siriba kokomoi nantaban di tohuri no:',
 'clearyourcache'                   => "'''Soroho: Opongoh do pogompi, mangai  pawayao dangkob pogigihumnu do mongintong di nopingalanan.'''
@@ -1143,7 +1142,7 @@ Kinaalanan id bolikon om kinoruhangan bolikon bolotok diti do maso dumontol maan
 Mangai potontuo do mimang iti no komoyonnu om karati ko do kotutukon, om winonsoinu iti katanud do  [[{{MediaWiki:Policy-url}}|kopitimbangan]].',
 'actioncomplete'        => 'Nopongoh',
 'actionfailed'          => 'Nantaban karaja',
-'deletedtext'           => '"<nowiki>$1</nowiki>" nopugas nodi.
+'deletedtext'           => '"$1" nopugas nodi.
 Intaai $2 montok ruputan di wagu pinugas.',
 'deletedarticle'        => '"[[$1]]" it nopugas',
 'dellogpage'            => 'Log pinimpugasan',
@@ -1162,7 +1161,7 @@ Intaai $2 montok ruputan di wagu pinugas.',
 'protectexpiry'               => 'Nokolubo:',
 'protect_expiry_invalid'      => 'Timpu kolubo awu koontok.',
 'protect_expiry_old'          => 'Timpu kolubo nopo nga notoliban no.',
-'protect-text'                => "Milo ko do mongintong om mongolon tingkat tingolig montok bolikon diti '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Milo ko do mongintong om mongolon tingkat tingolig montok bolikon diti '''$1'''.",
 'protect-locked-access'       => "Ingaa kasagaan do akaunnu do mongolon tingkat tingolig bolikon. Iti no nuludan sandad montok bolikon '''$1'''.",
 'protect-cascadeon'           => 'Bolikon diti maso po do notingoligan tu poinsuang iti {{PLURAL:$1|bolikon, it kisuang|bobolikon, kisuang}} tingolig kasading poimposik.
 Milo ko nogi do mongolon tingkat tingolig diti, nga ingaa it kosimbanon montok tingolig kasading.',

@@ -496,7 +496,6 @@ $messages = array(
 'history'           => 'Versionshistorik',
 'history_short'     => 'Historik',
 'updatedmarker'     => 'uppdaterad sedan senaste besöket',
-'info_short'        => 'Information',
 'printableversion'  => 'Utskriftsvänlig version',
 'permalink'         => 'Permanent länk',
 'print'             => 'Skriv ut',
@@ -752,7 +751,7 @@ Se till att du har aktiverat cookies, ladda om denna sida och försök igen.',
 'nosuchuser'                 => 'Det finns ingen användare med namnet "$1".
 Användarnamn är skiftlägeskänsliga.
 Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]].',
-'nosuchusershort'            => 'Det finns ingen användare som heter "<nowiki>$1</nowiki>". Kontrollera att du stavat rätt.',
+'nosuchusershort'            => 'Det finns ingen användare som heter "$1". Kontrollera att du stavat rätt.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'login-userblocked'          => 'Denna användare är blockerad. Login inte tillåtet.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
@@ -940,7 +939,7 @@ Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sido
 Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] i andra sidor,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relevanta loggar]</span>.',
 'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
-'userpage-userdoesnotexist-view'   => 'Kontot "<nowiki>$1</nowiki>" är inte registrerat.',
+'userpage-userdoesnotexist-view'   => 'Kontot "$1" är inte registrerat.',
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' 
@@ -2290,7 +2289,7 @@ Feedback och ytterligare hjälp:
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta leder till, och att du följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
 'actioncomplete'         => 'Genomfört',
 'actionfailed'           => 'Handlingen misslyckades',
-'deletedtext'            => '"<nowiki>$1</nowiki>" har tagits bort.
+'deletedtext'            => '"$1" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'         => 'raderade "[[$1]]"',
 'suppressedarticle'      => 'undanhöll "[[$1]]"',
@@ -2343,7 +2342,7 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-
 'protect_expiry_invalid'      => 'Ogiltig varaktighetstid.',
 'protect_expiry_old'          => 'Den angivna varaktighetentiden har redan passerats.',
 'protect-unchain-permissions' => 'Lås upp fler skyddsalternativ',
-'protect-text'                => "Här kan du se och ändra skyddsnivån av sidan '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Här kan du se och ändra skyddsnivån av sidan '''$1'''.",
 'protect-locked-blocked'      => "Du kan inte ändra sidors skydd medan du är blockerad.
 Här kan du se gällande skyddsinställninger för sidan '''$1''':",
 'protect-locked-dblock'       => "Skrivskydd kan inte ändras då databasen är låst.
@@ -2949,14 +2948,6 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'spambot_username'    => 'MediaWikis spampatrull',
 'spam_reverting'      => 'Återställer till den senaste versionen som inte innehåller länkar till $1',
 'spam_blanking'       => 'Alla versioner innehöll en länk till $1, blankar',
-
-# Info page
-'infosubtitle'   => 'Information om sida',
-'numedits'       => 'Antal redigeringar (sida): $1',
-'numtalkedits'   => 'Antal redigeringar (diskussionssida): $1',
-'numwatchers'    => 'Antal användare som bevakar sidan: $1',
-'numauthors'     => 'Antal olika bidragsgivare (sida): $1',
-'numtalkauthors' => 'Antal olika bidragsgivare (diskussionssida): $1',
 
 # Skin names
 'skinname-standard'    => 'Standard',

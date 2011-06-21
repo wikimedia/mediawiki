@@ -644,7 +644,7 @@ HTML tags لوڑے.',",
 'confirmdeletetext'     => 'تو ھیہ صفحو ھمو سوم ملحقہ تاریخچو سوم جستہ حذف کوریکو ارادہ کوری آسوس ۔ براۓ مہربانی تصدیق کورے کہ تو ھیہ عملو نتائجان ساری بخوبی آگاہ آسوس، وا ھیہ یقینو دی کورے کہ تو ھش [[{{MediaWiki:Policy-url}}|ویکیپیڈیو حکمت عملیو]] دائرا حال بتی کوروسان۔',
 'actioncomplete'        => 'اقدام تکمیلوتے تورتای',
 'actionfailed'          => 'تہ ایکشن ناکام ہوی',
-'deletedtext'           => '"<nowiki>$1</nowiki>" حذف کورونو بیتی شیر ۔
+'deletedtext'           => '"$1" حذف کورونو بیتی شیر ۔
 حالیہ حذف شدگیو تاریخ نامو بچے  $2  لوڑے',
 'deletedarticle'        => 'حذف شدہ "[[$1]]"',
 'dellogpage'            => 'نوشتۂ حذف شدگی',
@@ -663,8 +663,8 @@ HTML tags لوڑے.',",
 'protectexpiry'               => 'ختم بویان:',
 'protect_expiry_invalid'      => 'Expiry ٹیم غلط شیر.',
 'protect_expiry_old'          => 'ایکسپایری ٹیم مسقبلا',
-'protect-text'                => "You may view and change the protection level here for the page '''<nowiki>$1</nowiki>'''.
-تو ھیارا پروٹیکشن لیولو لوڑیکو اوچے چینج کوریکو بوس '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "You may view and change the protection level here for the page '''$1'''.
+تو ھیارا پروٹیکشن لیولو لوڑیکو اوچے چینج کوریکو بوس '''$1'''.",
 'protect-default'             => 'تمام صارفینانتے اجازت دیت',
 'protect-fallback'            => 'ضرورت شیر"$1" اجازتو',
 'protect-level-autoconfirmed' => 'نوغ اوچے غیر رجسٹیر شدہ یوزران بلاک کورے',

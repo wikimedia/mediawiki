@@ -400,7 +400,6 @@ $messages = array(
 'history'           => 'Istorija stranice',
 'history_short'     => 'istorija',
 'updatedmarker'     => 'ažurirano od moje poslednje posete',
-'info_short'        => 'Informacije',
 'printableversion'  => 'Verzija za štampu',
 'permalink'         => 'Permalink',
 'print'             => 'Štampa',
@@ -663,7 +662,7 @@ Omogućite kolačiće na pregledaču i ponovo učitajte stranicu.',
 'nosuchuser'                 => 'Ne postoji korisnik pod imenom "$1".
 Kod korisničkih imena se pravi razlika između malog i velikog slova.
 Proverite da li ste ga dobro ukucali, ili [[Special:UserLogin/signup|napravite novi korisnički nalog]].',
-'nosuchusershort'            => 'Ne postoji korisnik sa imenom "<nowiki>$1</nowiki>". Proverite da li ste dobro napisali.',
+'nosuchusershort'            => 'Ne postoji korisnik sa imenom "$1". Proverite da li ste dobro napisali.',
 'nouserspecified'            => 'Morate da naznačite korisničko ime.',
 'login-userblocked'          => 'Ovaj korisnik je blokiran. Logovanje nije dozvoljeno.',
 'wrongpassword'              => 'Lozinka koju ste uneli je neispravna. Molimo pokušajte ponovo.',
@@ -861,7 +860,7 @@ Možete [[Special:Search/{{PAGENAME}}|tražiti ovu stranicu]] u drugim člancima
 'noarticletext-nopermission'       => 'Na ovoj stranici trenutno nema sadržaja.
 Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne izveštaje]</span>.',
 'userpage-userdoesnotexist'        => 'Nalog "<nowiki>$1</nowiki>" nije registrovan. Proverite da li želite da pravite/uređujete ovu stranicu.',
-'userpage-userdoesnotexist-view'   => 'Korisnički nalog "<nowiki>$1</nowiki>" nije registrovan.',
+'userpage-userdoesnotexist-view'   => 'Korisnički nalog "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Podaci o poslednjem blokiranju su priloženi ispod kao dodatna informacija:',
 'clearyourcache'                   => "'''Zapamtite:''' Nakon snimanja, možda morate očistiti keš vašeg brauzera da biste videli promene. '''Mozilla / Firefox / Safari:''' držite ''Shift'' dok klikćete ''Reload'' ili pritisnite  ''Shift+Ctrl+R'' (''Cmd-Shift-R'' na ''Apple Mac'' mašini); '''IE:''' držite ''Ctrl'' dok klikćete ''Refresh'' ili pritisnite ''Ctrl-F5''; '''Konqueror:''': samo kliknite ''Reload'' dugme ili pritisnite ''F5''; korisnici '''Opera''' brauzera možda moraju da u potpunosti očiste svoj keš preko ''Tools→Preferences''.",
@@ -2185,7 +2184,7 @@ posledice, i da ovo radite u skladu sa
 [[{{MediaWiki:Policy-url}}|pravilima]] {{SITENAME}}.',
 'actioncomplete'         => 'Akcija je završena',
 'actionfailed'           => 'Akcija nije uspela',
-'deletedtext'            => 'Članak "<nowiki>$1</nowiki>" je obrisan.
+'deletedtext'            => 'Članak "$1" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletedarticle'         => 'je obrisao „[[$1]]“',
 'suppressedarticle'      => 'saktiveno: "[[$1]]"',
@@ -2242,7 +2241,7 @@ Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda poku�
 'protect_expiry_invalid'      => 'Vreme isteka nije odgovarajuće.',
 'protect_expiry_old'          => 'Vreme isteka je u prošlosti.',
 'protect-unchain-permissions' => 'Otključaj daljnje postavke zaštite',
-'protect-text'                => "Ovde možete pogledati i menjati nivo zaštite za stranicu '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Ovde možete pogledati i menjati nivo zaštite za stranicu '''$1'''.",
 'protect-locked-blocked'      => "Ne možete menjati nivoe zaštite dok ste blokirani.
 Ovo su trenutna podešavanja za stranicu '''$1''':",
 'protect-locked-dblock'       => "Nivoi zaštite ne mogu biti promenjeni zbog aktivnog zaključavanja baze.
@@ -2837,14 +2836,6 @@ Ovo je verovatno izazvano blokiranom vezom ka spoljašnjem sajtu.',
 'spambot_username'    => 'Čišćenje neželjenih poruka u MedijaVikiju',
 'spam_reverting'      => 'Vraćanje na staru reviziju koja ne sadrži veze ka $1',
 'spam_blanking'       => 'Sve revizije su sadržale veze ka $1, pražnjenje',
-
-# Info page
-'infosubtitle'   => 'Informacije za stranicu',
-'numedits'       => 'Broj promena (članak): $1',
-'numtalkedits'   => 'Broj promena (stranica za razgovor): $1',
-'numwatchers'    => 'Broj korisnika koji nadgledaju: $1',
-'numauthors'     => 'Broj različitih autora (članak): $1',
-'numtalkauthors' => 'Broj različitih autora (stranica za razgovor): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Označi kao patroliran',

@@ -199,7 +199,6 @@ $messages = array(
 'history'           => 'Kasaysayan sang pahina',
 'history_short'     => 'Kasaysayan',
 'updatedmarker'     => 'na-update halin sang san-o ko lang nga pagbisita',
-'info_short'        => 'Impormasyon',
 'printableversion'  => 'Pang-imprinta nga bersyon',
 'permalink'         => 'Permanente nga link',
 'print'             => 'I-imprinta',
@@ -690,7 +689,7 @@ Ang mga pagbag-o sa buwas-damlag kag mga kaangot nga pahina sang istoryahanay pa
 'confirmdeletetext'     => 'Imo na pagapanason ang isa ka pahina kaupod sang iya mga kasaysayan.
 Palihog kumpirmahon nga intensyon mo nga himu-on mini, nga na-intindihan mo ang abtan, kag gina-ubra mo mini nga nagasunod sa [[{{MediaWiki:Policy-url}}|patakaran]].',
 'actioncomplete'        => 'Tapos na ang aksyon',
-'deletedtext'           => 'Napanas na ang "<nowiki>$1</nowiki>".
+'deletedtext'           => 'Napanas na ang "$1".
 Tan-awon ang $2 para sa nalista sang mga bag-o lang napanas.',
 'deletedarticle'        => 'ginpanas ang "[[$1]]"',
 'dellogpage'            => 'Lista sang pagpanas',
@@ -709,7 +708,7 @@ Tan-awon ang $2 para sa nalista sang mga bag-o lang napanas.',
 'protectexpiry'               => 'Maga-ekspayr sa:',
 'protect_expiry_invalid'      => 'Indi pwede ang oras sang pag-ekspayr.',
 'protect_expiry_old'          => 'Sang nagligad pa ang oras sang pag-ekspayr.',
-'protect-text'                => "Pwede mo malantaw kag mabag-o ang lebel sang proteksiyon diya para sa pahina nga '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Pwede mo malantaw kag mabag-o ang lebel sang proteksiyon diya para sa pahina nga '''$1'''.",
 'protect-locked-access'       => "Ang imo account wala nakala-ong para magpangbag-o sang proteksyon nga lebel sang pahina.
 Ari ang mga mga settings yanda para sa pahina nga '''$1''':",
 'protect-cascadeon'           => 'Protektado ang mini nga pahina kay nasakop mini sa mga gasunod nga {{PLURAL:$1|pahina, nga may|mga pahina, nga may}} pasunod nga proteksiyon nga naga-andar.

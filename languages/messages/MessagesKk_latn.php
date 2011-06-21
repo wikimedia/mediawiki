@@ -518,7 +518,6 @@ $messages = array(
 'history'           => 'Bet tarïxı',
 'history_short'     => 'Tarïxı',
 'updatedmarker'     => 'soñğı kelip-ketwimnen beri jañalanğan',
-'info_short'        => 'Mälimet',
 'printableversion'  => 'Basıp şığarw üşin',
 'permalink'         => 'Turaqtı silteme',
 'print'             => 'Basıp şığarw',
@@ -748,7 +747,7 @@ Sonı qosıñız da kirwdi qaýta baýqap köriñiz.',
 'loginsuccess'               => "'''Siz endi {{SITENAME}} jobasına «$1» retinde kirip otırsız.'''",
 'nosuchuser'                 => 'Mında «$1» dep atalğan qatıswşı joq.
 Emleñizdi tekseriñiz, ne jaña tirkelgi jasañız.',
-'nosuchusershort'            => 'Mında «<nowiki>$1</nowiki>» dep atalğan qatıswşı joq.
+'nosuchusershort'            => 'Mında «$1» dep atalğan qatıswşı joq.
 Emleñizdi tekseriñiz.',
 'nouserspecified'            => 'Qatıswşı atın keltirwiñiz jön.',
 'wrongpassword'              => 'Burıs qupïya söz engizilgen. Qaýta baýqap köriñiz.',
@@ -1809,7 +1808,7 @@ Sın-pikir berw jäne bılaýğı järdem alw üşin:
 'confirmdeletetext'      => 'Betti bükil tarïxımen birge derekqordan joýywın kozdediñiz.
 Osını istew nïetiñizdi, saldarın baýımdawıñızdı jäne [[{{{{ns:mediawiki}}:Policy-url}}]] degenge laýıqtı dep istemektengeñizdi quptañız.',
 'actioncomplete'         => 'Äreket bitti',
-'deletedtext'            => '«<nowiki>$1</nowiki>» joýıldı.
+'deletedtext'            => '«$1» joýıldı.
 Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
 'deletedarticle'         => '«[[$1]]» degendi joýdı',
 'suppressedarticle'      => '«[[$1]]» degendi şettetti',
@@ -1866,7 +1865,7 @@ Ağımdağı qorğaw ärektter bar better üşin [[{{#special:Protectedpages}}|q
 'protectexpiry'               => 'Merzimi bitpek:',
 'protect_expiry_invalid'      => 'Bitetin waqıtı jaramsız.',
 'protect_expiry_old'          => 'Bitetin waqıtı ötip ketken.',
-'protect-text'                => "'''<nowiki>$1</nowiki>''' betiniñ qorğaw deñgeýin qarap jäne özgertip şığa alasız.",
+'protect-text'                => "'''$1''' betiniñ qorğaw deñgeýin qarap jäne özgertip şığa alasız.",
 'protect-locked-blocked'      => "Buğattawıñız öşirilgenşe deýin qorğaw deñgeýin özgerte almaýsız.
 Mına '''$1''' bettiñ ağımdıq baptawları:",
 'protect-locked-dblock'       => "Derekqordıñ qulıptawı belsendi bolğandıqtan qorğaw deñgeýleri özgertilmeýdi.
@@ -2337,14 +2336,6 @@ Bunıñ sebebi şettik torap siltemesinen bolwı mümkin.',
 'spambot_username'    => 'MediaWiki spam cleanup',
 'spam_reverting'      => '$1 degenge siltemeleri joq soñğı nusqasına qaýtarıldı',
 'spam_blanking'       => '$1 degenge siltemeleri bar barlıq tüzetwler tazartıldı',
-
-# Info page
-'infosubtitle'   => 'Bet twralı mälimet',
-'numedits'       => 'Öñdeme sanı (bet): $1',
-'numtalkedits'   => 'Öñdeme sanı (talqılaw beti): $1',
-'numwatchers'    => 'Baqılawşı sanı: $1',
-'numauthors'     => 'Ärtürli awtor sanı (bet): $1',
-'numtalkauthors' => 'Ärtürli awtor sanı (talqılaw beti): $1',
 
 # Skin names
 'skinname-standard'    => 'Dağdılı (standard)',

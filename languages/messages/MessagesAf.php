@@ -393,7 +393,6 @@ $messages = array(
 'history'           => 'Ouer weergawes',
 'history_short'     => 'Geskiedenis',
 'updatedmarker'     => 'opgedateer sedert my laaste besoek',
-'info_short'        => 'Inligting',
 'printableversion'  => 'Drukbare weergawe',
 'permalink'         => 'Permanente skakel',
 'print'             => 'Druk',
@@ -653,7 +652,7 @@ Maak seker dat u koekies aangeskakel het, herlaai die bladsy en probeer dan weer
 'nosuchuser'                 => 'Die gebruiker "$1" bestaan nie.
 Gebruikersname is gevoelig vir hoofletters.
 Maak seker dit is reg gespel of [[Special:UserLogin/signup|skep \'n nuwe rekening]].',
-'nosuchusershort'            => 'Daar is geen gebruikersnaam "<nowiki>$1</nowiki>" nie. Maak seker dit is reg gespel.',
+'nosuchusershort'            => 'Daar is geen gebruikersnaam "$1" nie. Maak seker dit is reg gespel.',
 'nouserspecified'            => "U moet 'n gebruikersnaam spesifiseer.",
 'login-userblocked'          => 'Hierdie gebruiker is geblokkeer.
 Intekening word verbied.',
@@ -828,7 +827,7 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'noarticletext-nopermission'       => 'Daar is tans geen teks in hierdie bladsy nie. U kan vir die bladsytitel [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek]</span>.',
 'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "<nowiki>$1</nowiki>"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
-'userpage-userdoesnotexist-view'   => 'Die gebruiker "<nowiki>$1</nowiki>" is nie geregistreer nie.',
+'userpage-userdoesnotexist-view'   => 'Die gebruiker "$1" is nie geregistreer nie.',
 'blocked-notice-logextract'        => 'Hierdie gebruiker is tans geblokkeer.
 Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
@@ -2170,7 +2169,7 @@ Terugvoer en verdere bystand:
 Bevestig asseblief dat u dit wil doen, dat u die gevolge verstaan en dat u dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Aksie uitgevoer',
 'actionfailed'           => 'Aksie het gefaal',
-'deletedtext'            => '"<nowiki>$1</nowiki>" is geskrap.
+'deletedtext'            => '"$1" is geskrap.
 Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'deletedarticle'         => '"[[$1]]" geskrap',
 'suppressedarticle'      => 'het "[[$1]]" verberg',
@@ -2229,7 +2228,7 @@ Sien die [[Special:ProtectedPages|lys van beveiligde bladsye]] vir alle bladsye 
 'protect_expiry_invalid'      => 'Vervaltyd is ongeldig.',
 'protect_expiry_old'          => 'Vervaltyd is in die verlede.',
 'protect-unchain-permissions' => 'Ontsluit verdere beskermingsopsies',
-'protect-text'                => "U kan die veiligheidsvlak vir blad '''<nowiki>$1</nowiki>''' hier bekyk of verander.",
+'protect-text'                => "U kan die veiligheidsvlak vir blad '''$1''' hier bekyk of verander.",
 'protect-locked-blocked'      => "U kan nie beskermingsvlakke verander terwyl u geblok is nie.
 Hier volg die huidige oprigtings vir die bladsy '''$1''':",
 'protect-locked-dblock'       => "Die beskermingsvlak kan nie tans gewysig word nie omdat die databasis gesluit is.
@@ -2814,14 +2813,6 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'spambot_username'    => 'MediaWiki opruiming van spam',
 'spam_reverting'      => 'Besig met terugrol na die laaste weergawe wat nie skakels na $1 bevat nie',
 'spam_blanking'       => "Alle weergawes met 'n skakel na $1 word verwyder",
-
-# Info page
-'infosubtitle'   => 'Inligting vir bladsy',
-'numedits'       => 'Aantal wysigings (bladsy): $1',
-'numtalkedits'   => 'Aantal wysigings (besprekingsblad): $1',
-'numwatchers'    => 'Aantal dophouers: $1',
-'numauthors'     => 'Aantal outeurs (bladsy): $1',
-'numtalkauthors' => 'Aantal outeurs (besprekingsblad): $1',
 
 # Skin names
 'skinname-standard'    => 'Standaard',

@@ -192,7 +192,6 @@ $messages = array(
 'searcharticle'     => 'Gow',
 'history'           => 'Shennaghys ny duillag',
 'history_short'     => 'Shennaghys',
-'info_short'        => 'Oayllys',
 'printableversion'  => 'Lhieggan clou',
 'permalink'         => 'Kiangley yiarn',
 'print'             => 'Dy chlou',
@@ -352,7 +351,7 @@ Ny jean jarrood dty [[Special:Preferences|{{SITENAME}} hosheeaghtyn]] y arraghey
 'loginsuccess'               => "'''T'ou loggit stiagh ayns {{SITENAME}} myr \"\$1\".'''",
 'nosuchuser'                 => 'Cha nel ymmydeyr lesh yn ennym "$1".<br />
 Cur streean er dty lettraghey, ny [[Special:UserLogin/signup|croo coontys noa]].',
-'nosuchusershort'            => 'Cha nel ymmydeyr lesh yn ennym "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Cha nel ymmydeyr lesh yn ennym "$1".
 Cur streean er dty lettraghey.',
 'nouserspecified'            => 'Shegin dhyt ennym ymmydeyr y honraghey.',
 'wrongpassword'              => 'Va fockle arrey neuchiart screeuit. Screeu eh reesht eh.',
@@ -974,7 +973,7 @@ Aaveaghey as cooney s\'odjey:
 'confirmdeletetext'     => 'Ta shiu er-çhee scryssey magh duillag myrane lesh y shennaghys eck.<br />
 Feeraghey dy vel eh y çhalee ayd eh y yannoo, dy vel ny scanshyn toiggit ayd, as dy vel oo jannoo eh ayns coardailys rish [[{{MediaWiki:Policy-url}}|y pholasee]].',
 'actioncomplete'        => 'Obbraghey creaghnit',
-'deletedtext'           => 'Ta "<nowiki>$1</nowiki>" scrysst.<br />
+'deletedtext'           => 'Ta "$1" scrysst.<br />
 Jeeagh er $2 son recortys ny scryssaghyn magh jeianagh.',
 'deletedarticle'        => '"[[$1]]" scryssit',
 'dellogpage'            => 'Lioar scryssaghyn magh',
@@ -1000,7 +999,7 @@ Jeeagh er $2 son recortys ny scryssaghyn magh jeianagh.',
 'protectexpiry'               => 'Jerrey:',
 'protect_expiry_invalid'      => 'Ta jerrey yn amm gyn vree.',
 'protect_expiry_old'          => 'Ta jerrey yn amm er ngoll shaghey hannah.',
-'protect-text'                => "Foddee oo jeeagh er as arraghey yn rea choadee ayns shoh son y duillag '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Foddee oo jeeagh er as arraghey yn rea choadee ayns shoh son y duillag '''$1'''.",
 'protect-locked-access'       => "Cha nel kied ec dty choontys dys arraghey cormidyn coadee.<br />
 Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'protect-cascadeon'           => "Ta'n duillag shoh coadit nish, er y fa dy vel eh goit stiagh {{PLURAL:$1|'sy $1 duillag|'syn $1 duillag| 'sy $1 ghuillag|ayns ny $1 duillagyn}} heese as adsyn fo coadey eiraghtagh.  Ga dy nod oo caghlaa keim coadee y ghuillag shoh, cha jean eh bentyn rish y coadey eiraghtagh.",
@@ -1243,9 +1242,6 @@ T'eh lhiggey da oyr y chur 'sy ghiare-choontey.",
 'siteuser'  => 'ymmydeyr {{SITENAME}} $1',
 'others'    => 'sleih elley',
 'siteusers' => '{{PLURAL:$2|Ymmydeyr|Ymmydeyryn}} ec {{SITENAME}} $1',
-
-# Info page
-'infosubtitle' => 'Oayllys da duillag',
 
 # Patrol log
 'patrol-log-auto' => '(seyr-obbragh)',
