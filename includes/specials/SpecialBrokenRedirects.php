@@ -77,7 +77,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 	 * @return String
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgUser, $wgContLang, $wgLang;
+		global $wgUser, $wgLang;
 
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
 		if ( isset( $result->rd_title ) ) {
@@ -116,7 +116,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 			array(),
 			array( 'broken' )
 		);
-		$arr = $wgContLang->getArrow();
+		$arr = wfUILang()->getArrow();
 
 		$out = $from . wfMsg( 'word-separator' );
 

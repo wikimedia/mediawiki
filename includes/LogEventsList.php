@@ -364,12 +364,11 @@ class LogEventsList {
 	}
 
 	private function logComment( $row ) {
-		global $wgContLang;
 		if( self::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' .
 				wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
 		} else {
-			$comment = $wgContLang->getDirMark() .
+			$comment = wfUILang()->getDirMark() .
 				$this->skin->commentBlock( $row->log_comment );
 		}
 		return $comment;

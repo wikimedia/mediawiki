@@ -76,8 +76,6 @@ class DoubleRedirectsPage extends PageQueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
 
 		if ( $result && !isset( $result->nsb ) ) {
@@ -119,7 +117,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 			array( 'redirect' => 'no' )
 		);
 		$linkC = $skin->linkKnown( $titleC );
-		$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();
+		$arr = wfUILang()->getArrow() . wfUILang()->getDirMark();
 
 		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
 	}
