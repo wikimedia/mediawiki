@@ -13,20 +13,22 @@ class MediaWiki {
 	private $context;
 
 	public function request( WebRequest $x = null ){
+		$old = $this->context->getRequest();
 		$this->context->setRequest( $x );
-		return $this->context->getRequest();
+		return $old;
 	}
 
 	public function output( OutputPage $x = null ){
+		$old = $this->context->getOutput();
 		$this->context->setOutput( $x );
-		return $this->context->getOutput();
+		return $old;
 	}
 
 	public function __construct( RequestContext $context = null ) {
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
-		
+
 		$this->context = $context;
 		$this->context->setTitle( $this->parseTitle() );
 	}
@@ -205,7 +207,7 @@ class MediaWiki {
 				 */
 				global $wgArticle;
 				$wgArticle = $article;
-				
+
 				$this->performAction( $article );
 				wfProfileOut( __METHOD__ );
 				return $article;
@@ -487,8 +489,8 @@ class MediaWiki {
 
 	/**
 	 * Run the current MediaWiki instance
-	 * index.php just calls this 
-	 */	
+	 * index.php just calls this
+	 */
 	function run() {
 		try {
 			$this->checkMaxLag( true );
@@ -497,19 +499,19 @@ class MediaWiki {
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handle( $e );
 		}
-	} 
-	
+	}
+
 	/**
-	 * Checks if the request should abort due to a lagged server, 
+	 * Checks if the request should abort due to a lagged server,
 	 * for given maxlag parameter.
-	 * 
-	 * @param boolean $abort True if this class should abort the 
+	 *
+	 * @param boolean $abort True if this class should abort the
 	 * script execution. False to return the result as a boolean.
 	 * @return boolean True if we passed the check, false if we surpass the maxlag
 	 */
 	function checkMaxLag( $abort ) {
 		global $wgShowHostnames;
-		
+
 		wfProfileIn( __METHOD__ );
 		$maxLag = $this->context->getRequest()->getVal( 'maxlag' );
 		if ( !is_null( $maxLag ) ) {
@@ -527,10 +529,10 @@ class MediaWiki {
 						echo "Waiting for a database server: $lag seconds lagged\n";
 					}
 				}
-				
+
 				wfProfileOut( __METHOD__ );
 
-				if ( !$abort ) 
+				if ( !$abort )
 					return false;
 				exit;
 			}
@@ -541,13 +543,13 @@ class MediaWiki {
 
 	function main() {
 		global $wgUseFileCache, $wgTitle, $wgUseAjax;
-		
+
 		wfProfileIn( __METHOD__ );
-		
+
 		# Set title from request parameters
 		$wgTitle = $this->getTitle();
 		$action = $this->getAction();
-		
+
 		# Send Ajax requests to the Ajax dispatcher.
 		if ( $wgUseAjax && $action == 'ajax' ) {
 			$dispatcher = new AjaxDispatcher();
@@ -555,7 +557,7 @@ class MediaWiki {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-		
+
 		if ( $wgUseFileCache && $wgTitle !== null ) {
 			wfProfileIn( 'main-try-filecache' );
 			// Raw pages should handle cache control on their own,
@@ -580,10 +582,10 @@ class MediaWiki {
 			}
 			wfProfileOut( 'main-try-filecache' );
 		}
-		
+
 		$this->performRequest();
 		$this->finalCleanup();
-		
+
 		wfProfileOut( __METHOD__ );
 	}
 }
