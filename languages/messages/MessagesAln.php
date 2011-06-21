@@ -252,7 +252,6 @@ $messages = array(
 'history'           => 'Historiku i faqes',
 'history_short'     => 'Të përparshmet',
 'updatedmarker'     => 'ndryshue nga vizita jeme e fundit',
-'info_short'        => 'Informacion',
 'printableversion'  => 'Version për shtyp',
 'permalink'         => 'Vegëz e përhershme',
 'print'             => 'Shtyp',
@@ -505,7 +504,7 @@ Të lutem aktivizoji dhe provo prap.',
 'nosuchuser'                 => 'Nuk ka përdorues me emnin "$1".
 Emnat janë senzitiv në madhësi të germës.
 Kontrollo drejtshkrimin ose [[Special:UserLogin/signup|krijo llogari]].',
-'nosuchusershort'            => 'Nuk ka përdorues me emnin "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Nuk ka përdorues me emnin "$1".
 Kontrollo drejtshkrimin.',
 'nouserspecified'            => 'Duhesh me dhânë nji nofkë.',
 'login-userblocked'          => 'Ky përdorues është bllokuar. Identifikohu nuk lejohet',
@@ -1335,7 +1334,7 @@ Ndryshimet e ardhshme të kësaj faqeje dhe të faqes gjegjëse të diskutimit k
 'confirmdeletetext'     => 'Jeni tue fshi nji faqe bashkë me krejt historikun e saj.
 Ju lutemi konfirmoni që kjo âsht ajo që deshtët me bâ, që i keni të njoftuna konsekuencat, dhe që këtë jeni tue e bâ në përputhje me [[{{MediaWiki:Policy-url}}|politikat]].',
 'actioncomplete'        => 'Veprimi u kry',
-'deletedtext'           => '"<nowiki>$1</nowiki>" âsht fshi.
+'deletedtext'           => '"$1" âsht fshi.
 Shih $2 për regjistrin e fshimjeve të fundit.',
 'deletedarticle'        => 'grisi "[[$1]]"',
 'dellogpage'            => 'Regjistri i fshimjeve',
@@ -1355,7 +1354,7 @@ Shih $2 për regjistrin e fshimjeve të fundit.',
 'protectexpiry'               => 'Afáti',
 'protect_expiry_invalid'      => 'Data e skadimit asht e pasaktë.',
 'protect_expiry_old'          => 'Data e skadimit asht në kohën kalueme.',
-'protect-text'                => "Këtu muneni me shiku dhe me ndryshu nivelin e mbrojtjes për faqen '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Këtu muneni me shiku dhe me ndryshu nivelin e mbrojtjes për faqen '''$1'''.",
 'protect-locked-access'       => "Llogaria juej nuk ka privilegjet e nevojitme për me ndryshu nivelin e mbrojtjes. Kufizimet e kësaj faqe janë '''$1''':",
 'protect-cascadeon'           => 'Kjo faqe aktualisht âsht e mbrojtun sepse përfshihet në {{PLURAL:$1|faqen që ka|faqet, të cilat kanë}} mbrojtje të përfshimjes.
 Mundeni me ndryshue nivelin e mbrojtjes për këtë faqe, por kjo nuk ka me prekë mbrojtjen e përfshimjes.',

@@ -129,7 +129,6 @@ $messages = array(
 'history'           => 'Kasaysayan kang Pahina',
 'history_short'     => 'Kasaysayan',
 'updatedmarker'     => 'ginpabag-o halin kang orihi ko nga pagbisita',
-'info_short'        => 'Impormasyon',
 'printableversion'  => "Bersyon nga sarang ma-''print''",
 'permalink'         => "Permanyente nga ''link''",
 'print'             => 'Printa',

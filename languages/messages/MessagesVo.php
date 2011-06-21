@@ -289,7 +289,6 @@ $messages = array(
 'history'           => 'Padajenotem',
 'history_short'     => 'Jenotem',
 'updatedmarker'     => 'pävotükon pos visit lätik oba',
-'info_short'        => 'Nün',
 'printableversion'  => 'Fom dabükovik',
 'permalink'         => 'Yüm laidüpik',
 'print'             => 'Bükön',
@@ -523,7 +522,7 @@ No glömolöd ad votükön [[Special:Preferences|buükamis olik in {{SITENAME}}]
 'nosuchuser'                 => 'No dabinon geban labü nem: "$1".
 Gebananems distidons mayudis i minudis.
 Koräkolös tonatami nema at, u [[Special:UserLogin/signup|jafolös kali nulik]].',
-'nosuchusershort'            => 'No dabinon geban labü nem: "<nowiki>$1</nowiki>". Koräkolös tonatami nema at.',
+'nosuchusershort'            => 'No dabinon geban labü nem: "$1". Koräkolös tonatami nema at.',
 'nouserspecified'            => 'Mutol välön gebananemi.',
 'wrongpassword'              => 'Letavöd neveräton. Steifülolös dönu.',
 'wrongpasswordempty'         => 'Letavöd vagon. Steifülolös dönu.',
@@ -664,7 +663,7 @@ If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'noarticletext'                    => 'Atimo no dabinon vödem su pad at.
 Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sukön in jenotaliseds tefik] u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at]</span>.',
 'userpage-userdoesnotexist'        => 'Gebanakal: "<nowiki>$1</nowiki>" no peregistaron. Fümükolös, va vilol jäfön/redakön padi at.',
-'userpage-userdoesnotexist-view'   => 'Gebenakal: "<nowiki>$1</nowiki>" no peregistaron.',
+'userpage-userdoesnotexist-view'   => 'Gebenakal: "$1" no peregistaron.',
 'clearyourcache'                   => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis.
 '''Mozilla / Firefox / Safari:''' kipolöd klavi: ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis: ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' if labol eli Macintosh);
 '''Konqueror:''' välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klavi: ''F5'';
@@ -1757,7 +1756,7 @@ Küpets e yuf pluik:
 'historywarning'         => 'Nuned: pad, keli vilol moükön, labon jenotemi:',
 'confirmdeletetext'      => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Peledunon',
-'deletedtext'            => 'Pad: "<nowiki>$1</nowiki>" pemoükon;
+'deletedtext'            => 'Pad: "$1" pemoükon;
 $2 jonon moükamis nulik.',
 'deletedarticle'         => 'Pad: "[[$1]]" pemoükon',
 'suppressedarticle'      => 'logov pada: „[[$1]]“ pevotükon',
@@ -1811,7 +1810,7 @@ Logolös [[Special:ProtectedPages|lisedi padas pejelöl]], kö pajonons padijela
 'protectexpiry'               => 'Dul:',
 'protect_expiry_invalid'      => 'Dul no lonöfon.',
 'protect_expiry_old'          => 'Dul ya epasetikon.',
-'protect-text'                => "Kanol logön e votükön is jelanivodi pada: '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Kanol logön e votükön is jelanivodi pada: '''$1'''.",
 'protect-locked-blocked'      => "No kanol votükön jelanivodi bi peblokol. Ekö! paramets anuik pada: '''$1''':",
 'protect-locked-dblock'       => "Jelanivods no kanons pavotükön sekü lökofärmükam vüka at. Ekö! paramets anuik pada: '''$1''':",
 'protect-locked-access'       => "Kal olik no labon däli ad votükön jelanivodi padas.
@@ -2310,14 +2309,6 @@ Pad luveratiko ninädon yümi lü bevüresodatopäd plödik in blägalised.',
 'spambot_username'    => 'Spamiklinükam ela MediaWiki',
 'spam_reverting'      => 'Geükön ad fomam lätik, kel no älabon yümis lü $1',
 'spam_blanking'       => 'Moükam revidas valik (bi ninädons yüms lü $1)',
-
-# Info page
-'infosubtitle'   => 'Nüns tefü pad',
-'numedits'       => 'Redakamanum (pad): $1',
-'numtalkedits'   => 'Redakamanum (bespikapad): $1',
-'numwatchers'    => 'Num galädanas: $1',
-'numauthors'     => 'Num lautanas distik (pad): $1',
-'numtalkauthors' => 'Num lautanas distik (bespikapad): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Zepön',

@@ -304,7 +304,6 @@ $messages = array(
 'history'           => 'Hanes y dudalen',
 'history_short'     => 'Hanes',
 'updatedmarker'     => 'diwygiwyd ers i mi ymweld ddiwethaf',
-'info_short'        => 'Gwybodaeth',
 'printableversion'  => 'Fersiwn argraffu',
 'permalink'         => 'Dolen barhaol',
 'print'             => 'Argraffu',
@@ -559,7 +558,7 @@ Sicrhewch eich bod wedi galluogi cwcis, yna ail-lwythwch y dudalen hon a cheisiw
 'nosuchuser'                 => "Does dim defnyddiwr o'r enw \"\$1\".
 Mae'r rhaglen yn gwahaniaethu rhwng llythrennau bach a mawr.
 Sicrhewch eich bod chi wedi sillafu'r enw'n gywir, neu [[Special:UserLogin/signup|crëwch gyfrif newydd]].",
-'nosuchusershort'            => 'Does dim defnyddiwr o\'r enw "<nowiki>$1</nowiki>". Gwiriwch eich sillafu.',
+'nosuchusershort'            => 'Does dim defnyddiwr o\'r enw "$1". Gwiriwch eich sillafu.',
 'nouserspecified'            => "Mae'n rhaid nodi enw defnyddiwr.",
 'login-userblocked'          => "Mae'r defnyddiwr hwn wedi ei flocio. Ni ellir mewngofnodi.",
 'wrongpassword'              => "Nid yw'r cyfrinair a deipiwyd yn gywir. Rhowch gynnig arall arni, os gwelwch yn dda.",
@@ -741,7 +740,7 @@ Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau era
 'noarticletext-nopermission'       => 'Mae\'r dudalen hon yn wag ar hyn o bryd.
 Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, neu gallwch <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chwilio drwy\'r logiau perthnasol]</span>.',
 'userpage-userdoesnotexist'        => 'Nid oes defnyddiwr a\'r enw "<nowiki>$1</nowiki>" yn bod. Gwnewch yn siwr eich bod am greu/golygu\'r dudalen hon.',
-'userpage-userdoesnotexist-view'   => 'Nid yw\'r cyfrif defnyddiwr "<nowiki>$1</nowiki>" wedi ei gofrestri.',
+'userpage-userdoesnotexist-view'   => 'Nid yw\'r cyfrif defnyddiwr "$1" wedi ei gofrestri.',
 'blocked-notice-logextract'        => "Mae'r defnyddiwr hwn wedi ei flocio ar hyn o bryd.
 Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 'clearyourcache'                   => "'''Sylwer - Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau.'''
@@ -2076,7 +2075,7 @@ Am fwy o gymorth ac adborth:
 Os gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod yn deall y canlyniadau, ac yn ei wneud yn ôl [[{{MediaWiki:Policy-url}}|polisïau {{SITENAME}}]].",
 'actioncomplete'         => "Wedi cwblhau'r weithred",
 'actionfailed'           => 'Methodd y weithred',
-'deletedtext'            => 'Mae "<nowiki>$1</nowiki>" wedi\'i ddileu.
+'deletedtext'            => 'Mae "$1" wedi\'i ddileu.
 Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'deletedarticle'         => 'wedi dileu "[[$1]]"',
 'suppressedarticle'      => 'cuddiwyd "[[$1]]"',
@@ -2133,7 +2132,7 @@ Mae'r tudalennau sydd wedi eu diogelu ar hyn o bryd wedi eu rhestri ar y [[Speci
 'protect_expiry_invalid'      => 'Amser terfynu annilys.',
 'protect_expiry_old'          => "Mae'r amser darfod yn y gorffennol.",
 'protect-unchain-permissions' => 'Datgloi rhagor o opsiynau diogelu',
-'protect-text'                => "Yma, gallwch weld a newid y lefel diogelu ar gyfer y dudalen '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Yma, gallwch weld a newid y lefel diogelu ar gyfer y dudalen '''$1'''.",
 'protect-locked-blocked'      => "Ni allwch newid y lefel diogelu tra eich bod wedi eich blocio.
 Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 'protect-locked-dblock'       => "Ni ellir newid y lefel diogelu gan fod y databas dan glo.
@@ -2712,14 +2711,6 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'spambot_username'    => 'Teclyn clirio sbam MediaWiki',
 'spam_reverting'      => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
 'spam_blanking'       => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
-
-# Info page
-'infosubtitle'   => 'Gwybodaeth am y dudalen',
-'numedits'       => "Nifer y golygiadau (i'r dudalen): $1",
-'numtalkedits'   => "Nifer y golygiadau (i'r dudalen sgwrs): $1",
-'numwatchers'    => 'Nifer y gwylwyr: $1',
-'numauthors'     => 'Nifer y gwahanol awduron a gyfrannodd at y dudalen: $1',
-'numtalkauthors' => "Nifer yr awduron (o'r dudalen sgwrs): $1",
 
 # Skin names
 'skinname-standard'    => 'Safonol',

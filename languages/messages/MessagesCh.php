@@ -162,7 +162,6 @@ $messages = array(
 'history'           => 'Historian påhina',
 'history_short'     => 'Historia',
 'updatedmarker'     => "maribisa desde i må'pos na bisita-hu",
-'info_short'        => 'Infotmasion',
 'printableversion'  => 'Ribision imprentayon',
 'permalink'         => 'Inachetton petmanente',
 'print'             => 'Imprenta',
@@ -344,7 +343,7 @@ Pot fabot na'sedi ha'.",
 'loginsuccess'               => "'''Esta ma'log in hao gi {{SITENAME}}: \"\$1\".'''",
 'nosuchuser'                 => 'Tåya\' na muna\'sesetbi as "$1".
 Chek fan i dineletrea, pat fa\'tinas un kuenta nuebu.',
-'nosuchusershort'            => 'Tåya\' na muna\'sesetbi as "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Tåya\' na muna\'sesetbi as "$1".
 Chek fan i dineletrea.',
 'nouserspecified'            => "Un nesita manayek i na'an muna'sesetbi.",
 'wrongpassword'              => "Lachi i password ni tinige'-mu. Pot fabot, chagi fan ta'lo.",
@@ -924,7 +923,7 @@ I tinilaika siha mo'na gi tiempo kontodu i påhinan kombetsasion siha para u fan
 'confirmdeletetext'     => "Para un na'suha i påhina kontodu i historia-ña.
 Konfotme fan na este i malago'-mu, na kumonprende hao hiniyong-ña, yan tumattiyi [[{{MediaWiki:Policy-url}}|i polisia]] ni bidada-mu.",
 'actioncomplete'        => 'Funhayan i aksion',
-'deletedtext'           => 'Mana\'suha "<nowiki>$1</nowiki>".
+'deletedtext'           => 'Mana\'suha "$1".
 Chek $2 para i historian muna\'suha gi halacha.',
 'deletedarticle'        => 'Mana\'suha "[[$1]]"',
 'dellogpage'            => "Historian muna'suha",
@@ -942,7 +941,7 @@ Chek $2 para i historian muna\'suha gi halacha.',
 'protectexpiry'               => 'Munhåyan:',
 'protect_expiry_invalid'      => 'Lachi i oran funhåyan.',
 'protect_expiry_old'          => 'Esta maloffan i oran funhåyan.',
-'protect-text'                => "Siña un tulaika i nibet proteksion ni påhina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Siña un tulaika i nibet proteksion ni påhina '''$1'''.",
 'protect-locked-access'       => "Ti nahong i petmisu kuenta-mu tumulaika nibet proteksion ni påhina siha.
 Estague taiguini i nibet i påhina '''$1''':",
 'protect-fallback'            => 'Afuetsas "$1" na petmisu',

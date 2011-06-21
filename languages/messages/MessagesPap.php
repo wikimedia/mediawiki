@@ -74,7 +74,6 @@ $messages = array(
 'search'            => 'Buska',
 'history'           => 'Historia di página',
 'history_short'     => 'Historia',
-'info_short'        => 'Informashon',
 'edit'              => 'Editá',
 'editthispage'      => 'Editá e página aki',
 'delete'            => 'Kita',
@@ -367,9 +366,6 @@ Por fabor skohe un otro título.',
 
 # Attribution
 'anonymous' => 'Uzadó(nan) anonimo di {{SITENAME}}',
-
-# Info page
-'infosubtitle' => 'Informashon pa página',
 
 # Browsing diffs
 'previousdiff' => '← Diferensia anterior',

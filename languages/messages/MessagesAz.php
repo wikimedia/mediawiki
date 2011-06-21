@@ -263,7 +263,6 @@ $messages = array(
 'history'           => 'Səhifənin tarixçəsi',
 'history_short'     => 'Tarixçə',
 'updatedmarker'     => 'son dəfə mən nəzərdən keçirəndən sonra yenilənib',
-'info_short'        => 'Məlumat',
 'printableversion'  => 'Çap variantı',
 'permalink'         => 'Daimi bağlantı',
 'print'             => 'Çap',
@@ -527,7 +526,7 @@ Kukların qoşulmasına əmin olduqdan sonra səhifəni yeniləyib bir daha sın
 'nosuchuser'                 => '"$1" adında istifadəçi mövcud deyil.
 İstifadəçi adları hərflərin böyük və ya kiçik olmasına həssasdırlar.
 Düzgün yazdığına əmin ol, yaxud [[Special:UserLogin/signup|yeni hesab aç]].',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" adında istifadəçi mövcud deyil.
+'nosuchusershort'            => '"$1" adında istifadəçi mövcud deyil.
 Düzgün yazdığına əmin ol.',
 'nouserspecified'            => 'İstifadəçi adı daxil etməlisiniz.',
 'login-userblocked'          => 'Bu istifadəçi bloklanıb. Sistemə giriş üçün icazə verilmir.',
@@ -664,7 +663,7 @@ və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ed�
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
 'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" istifadəçi adı qeydiyyata alınmayıb.
 Əgər siz bu səhifəni yaratmaq/redaktə etmək istəyirsinizsə, xahiş edirik bunu yoxlayın.',
-'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" istifadəçi hesabı qeydiyyatda deyil',
+'userpage-userdoesnotexist-view'   => '"$1" istifadəçi hesabı qeydiyyatda deyil',
 'blocked-notice-logextract'        => 'Bu istifadəçi hal-hazırda bloklanmışdır.
 Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'usercssyoucanpreview'             => "'''İpucu:''' Qeyd etmədən əvvəl \"{{int:showpreview}}\"ə klikləyərək yeni CSSinizi yoxlayın.",
@@ -1768,7 +1767,7 @@ Yardım və təklifləriniz üçün:
 'confirmdeletetext'      => 'Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunu [[{{MediaWiki:Policy-url}}|qaydalara]] uyğun etdiyinizi və əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.',
 'actioncomplete'         => 'Fəaliyyət tamamlandı',
 'actionfailed'           => 'Əməliyyat yerinə yetirilmədi',
-'deletedtext'            => '"<nowiki>$1</nowiki>" silindi.
+'deletedtext'            => '"$1" silindi.
 Sonuncu silinmələrə bax: $2.',
 'deletedarticle'         => '"[[$1]]" silindi',
 'suppressedarticle'      => '"[[$1]]" gizlədildi',
@@ -1812,7 +1811,7 @@ Sonuncu silinmələrə bax: $2.',
 'protect_expiry_invalid'      => 'Mühafizənin bitmə vaxtı səhvdir.',
 'protect_expiry_old'          => 'Bitmə vaxtı keçmişdir.',
 'protect-unchain-permissions' => 'Mühafizənin əlavə parametrlərini açmaq',
-'protect-text'                => "Siz '''<nowiki>$1</nowiki>''' səhifəsinin mühafizə səviyyəsini görə və dəyişə bilərsiniz.",
+'protect-text'                => "Siz '''$1''' səhifəsinin mühafizə səviyyəsini görə və dəyişə bilərsiniz.",
 'protect-locked-blocked'      => "Səhifənin bloklu olduğu müddətdə siz mühafizə səviyyəsini dəyişə bilməzsiniz.
 '''$1''' səhifəsində hal-hazırda edə biləcəyiniz əməliyyatlar bunlardır:",
 'protect-locked-dblock'       => "Verilənlər bazası kilidli olduğu üçün mühafizə səviyyəsi dəyişilə bilməz.
@@ -2292,12 +2291,6 @@ Zəhmət olmasa başqa ad seçin.',
 # Spam protection
 'spamprotectiontitle' => 'Spam qoruma süzgəci',
 'spambot_username'    => 'MediaViki spam təmizləməsi',
-
-# Info page
-'infosubtitle' => 'Səhifə üçün məlumat',
-'numedits'     => 'Redaktələrin sayı (səhifə): $1',
-'numtalkedits' => 'Redaktələrin sayı (müzakirə səhifəsi): $1',
-'numwatchers'  => 'Baxış sayı: $1',
 
 # Skin names
 'skinname-standard'    => 'Classic',

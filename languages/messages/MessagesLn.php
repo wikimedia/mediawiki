@@ -123,7 +123,6 @@ $messages = array(
 'searcharticle'     => 'Kokɛndɛ',
 'history'           => 'Mokóló mwa lonkásá',
 'history_short'     => 'Mokóló',
-'info_short'        => 'Liyébisi',
 'printableversion'  => 'Mpɔ̂ na kofínela',
 'permalink'         => 'Ekangeli ya ntángo yɔ́nsɔ',
 'print'             => 'kobimisa nkomá',

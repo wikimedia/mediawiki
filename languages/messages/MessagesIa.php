@@ -323,7 +323,6 @@ $messages = array(
 'history'           => 'Historia del pagina',
 'history_short'     => 'Historia',
 'updatedmarker'     => 'actualisate post mi ultime visita',
-'info_short'        => 'Information',
 'printableversion'  => 'Version imprimibile',
 'permalink'         => 'Ligamine permanente',
 'print'             => 'Imprimer',
@@ -588,7 +587,7 @@ Verifica que tu ha activate le "cookies", recarga iste pagina e reproba.',
 'nosuchuser'                 => 'Non existe un usator con le nomine "$1".
 In le nomines de usator se distingue inter majusculas e minusculas.
 Verifica le orthographia, o [[Special:UserLogin/signup|crea un nove conto]].',
-'nosuchusershort'            => 'Non existe un usator con le nomine "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Non existe un usator con le nomine "$1".
 Verifica le orthographia.',
 'nouserspecified'            => 'Tu debe specificar un nomine de usator.',
 'login-userblocked'          => 'Iste usator es blocate. Apertura de session non permittite.',
@@ -800,7 +799,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina]</span>.',
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].</span>',
 'userpage-userdoesnotexist'        => 'Le conto de usator "<nowiki>$1</nowiki>" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
-'userpage-userdoesnotexist-view'   => 'Le conto de usator "<nowiki>$1</nowiki>" non es registrate.',
+'userpage-userdoesnotexist-view'   => 'Le conto de usator "$1" non es registrate.',
 'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
 Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
@@ -2173,7 +2172,7 @@ Feedback e ulterior assistentia:
 Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
 'actioncomplete'         => 'Action complete',
 'actionfailed'           => 'Action fallite',
-'deletedtext'            => '"<nowiki>$1</nowiki>" ha essite delite.
+'deletedtext'            => '"$1" ha essite delite.
 Vide $2 pro un registro de deletiones recente.',
 'deletedarticle'         => 'deleva "[[$1]]"',
 'suppressedarticle'      => 'supprimeva "[[$1]]"',
@@ -2235,7 +2234,7 @@ Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de pr
 'protect_expiry_invalid'      => 'Le tempore de expiration es invalide.',
 'protect_expiry_old'          => 'Le tempore de expiration es in le passato.',
 'protect-unchain-permissions' => 'Disblocar ulterior optiones de protection',
-'protect-text'                => "In basso tu pote vider e modificar le nivello de protection del pagina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "In basso tu pote vider e modificar le nivello de protection del pagina '''$1'''.",
 'protect-locked-blocked'      => "Tu non pote cambiar le nivellos de protection durante que tu es blocate.
 Ecce le configurationes actual del pagina '''$1''':",
 'protect-locked-dblock'       => "Le nivellos de protection non pote esser cambiate proque es active un blocada del base de datos.
@@ -2380,7 +2379,7 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 'nolinkshere-ns'           => "Nulle pagina liga a '''[[:$1]]''' in le spatio de nomines seligite.",
 'isredirect'               => 'pagina de redirection',
 'istemplate'               => 'transclusion',
-'isimage'                  => 'ligamine al imagine',
+'isimage'                  => 'ligamine al file',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedente|precedente $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sequente|sequente $1}}',
 'whatlinkshere-links'      => '← ligamines',
@@ -2858,12 +2857,17 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'spam_blanking'       => 'Tote le versiones contineva ligamines a $1. Le pagina ha essite vacuate.',
 
 # Info page
-'infosubtitle'   => 'Informationes del pagina',
-'numedits'       => 'Numero de modificationes (pagina): $1',
-'numtalkedits'   => 'Numero de modificationes (pagina de discussion): $1',
-'numwatchers'    => 'Numero de observatores: $1',
-'numauthors'     => 'Numero de autores distincte (pagina): $1',
-'numtalkauthors' => 'Numero de autores distincte (pagina de discussion): $1',
+'pageinfo-title'            => 'Informationes pro "$1"',
+'pageinfo-header-edits'     => 'Modificationes',
+'pageinfo-header-watchlist' => 'Observatorio',
+'pageinfo-header-views'     => 'Visitas',
+'pageinfo-subjectpage'      => 'Pagina',
+'pageinfo-talkpage'         => 'Discussion',
+'pageinfo-watchers'         => 'Numero de observatores',
+'pageinfo-edits'            => 'Numero de modificationes',
+'pageinfo-authors'          => 'Numero de autores distincte',
+'pageinfo-views'            => 'Numero de visitas',
+'pageinfo-viewsperedit'     => 'Visitas per modification',
 
 # Skin names
 'skinname-standard'    => 'Classic',

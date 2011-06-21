@@ -399,7 +399,6 @@ $messages = array(
 'history'           => 'Historial da páxina',
 'history_short'     => 'Historial',
 'updatedmarker'     => 'actualizado desde a miña última visita',
-'info_short'        => 'Información',
 'printableversion'  => 'Versión para imprimir',
 'permalink'         => 'Ligazón permanente',
 'print'             => 'Imprimir',
@@ -663,7 +662,7 @@ Asegúrese de que ten as cookies habilitadas, volva cargar a páxina e inténteo
 'nosuchuser'                 => 'Non existe ningún usuario chamado "$1".
 Os nomes de usuario diferencian entre maiúsculas e minúsculas.
 Verifique o nome que inseriu ou [[Special:UserLogin/signup|cree unha nova conta]].',
-'nosuchusershort'            => 'Non existe ningún usuario chamado "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Non existe ningún usuario chamado "$1".
 Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
 'login-userblocked'          => 'Este usuario está bloqueado. Acceso non autorizado.',
@@ -869,7 +868,7 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'A conta do usuario "<nowiki>$1</nowiki>" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
-'userpage-userdoesnotexist-view'   => 'A conta de usuario "<nowiki>$1</nowiki>" non está rexistrada.',
+'userpage-userdoesnotexist-view'   => 'A conta de usuario "$1" non está rexistrada.',
 'blocked-notice-logextract'        => 'Este usuario está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
@@ -2233,7 +2232,7 @@ Axuda:
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
 'actioncomplete'         => 'A acción foi completada',
 'actionfailed'           => 'Fallou a acción',
-'deletedtext'            => 'Borrouse a páxina "<nowiki>$1</nowiki>".
+'deletedtext'            => 'Borrouse a páxina "$1".
 No $2 pode ver unha lista cos borrados máis recentes.',
 'deletedarticle'         => 'borrou "[[$1]]"',
 'suppressedarticle'      => 'suprimiu "[[$1]]"',
@@ -2292,7 +2291,7 @@ Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a 
 'protect_expiry_invalid'      => 'O tempo de duración da protección non e válido.',
 'protect_expiry_old'          => 'O momento de remate da protección corresponde ao pasado.',
 'protect-unchain-permissions' => 'Desbloquear as opcións de protección adicionais',
-'protect-text'                => "Aquí é onde pode ver e cambiar os niveis de protección da páxina chamada \"'''<nowiki>\$1</nowiki>'''\".",
+'protect-text'                => "Aquí é onde pode ver e cambiar os niveis de protección da páxina chamada \"'''\$1'''\".",
 'protect-locked-blocked'      => "Non pode modificar os niveis de protección mentres exista un bloqueo. Velaquí a configuración actual da páxina  '''$1''':",
 'protect-locked-dblock'       => "Os niveis de protección non se poden modificar debido a un bloqueo da base de datos activa.
 Velaquí a configuración actual da páxina '''$1''':",
@@ -2906,12 +2905,17 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'spam_blanking'       => 'Limpáronse todas as revisións con ligazóns a "$1"',
 
 # Info page
-'infosubtitle'   => 'Información da páxina',
-'numedits'       => 'Número de edicións (artigo): $1',
-'numtalkedits'   => 'Número de edicións (páxina de conversa): $1',
-'numwatchers'    => 'Número de vixiantes: $1',
-'numauthors'     => 'Número de autores distintos (artigo): $1',
-'numtalkauthors' => 'Número de autores distintos (páxina de conversa): $1',
+'pageinfo-title'            => 'Información sobre "$1"',
+'pageinfo-header-edits'     => 'Edicións',
+'pageinfo-header-watchlist' => 'Lista de vixilancia',
+'pageinfo-header-views'     => 'Visitas',
+'pageinfo-subjectpage'      => 'Páxina',
+'pageinfo-talkpage'         => 'Páxina de conversa',
+'pageinfo-watchers'         => 'Número de vixiantes',
+'pageinfo-edits'            => 'Número de edicións',
+'pageinfo-authors'          => 'Número de autores distintos',
+'pageinfo-views'            => 'Número de visitas',
+'pageinfo-viewsperedit'     => 'Visitas por edición',
 
 # Skin names
 'skinname-standard'    => 'Clásica',

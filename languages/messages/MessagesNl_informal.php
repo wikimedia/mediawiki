@@ -465,7 +465,7 @@ Je handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat u
 Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 
 # Protect
-'protect-text'           => "Hier kun je het beveiligingsniveau voor de pagina '''<nowiki>$1</nowiki>''' bekijken en wijzigen.",
+'protect-text'           => "Hier kun je het beveiligingsniveau voor de pagina '''$1''' bekijken en wijzigen.",
 'protect-locked-blocked' => "Je kunt het beveiligingsniveau niet wijzigen terwijl je geblokkeerd bent.
 Hier zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-locked-access'  => "Je hebt geen rechten om het beveiligingsniveau te wijzigen.

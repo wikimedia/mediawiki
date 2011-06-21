@@ -384,7 +384,6 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 
 {{Identical|History}}',
 'updatedmarker'     => 'Displayed in the page history (of a page you are [[Special:Watchlist|watching]]), when the page has been edited since the last time you visited it. This feature is used if [[mw:Manual:$wgShowUpdatedMarker|$wgShowUpdatedMarker]] is enabled.',
-'info_short'        => '{{Identical|Information}}',
 'printableversion'  => 'Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].',
 'permalink'         => 'Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]',
 'print'             => '{{Identical|Print}}',
@@ -3075,6 +3074,19 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 
 # Spam protection
 'spam_reverting' => '{{Identical|Revert}}',
+
+# Info page
+'pageinfo-title'            => 'Page title for action=info.
+
+* $1 is the page name',
+'pageinfo-header-edits'     => 'Table section header in action=info.
+{{Identical|Edit}}',
+'pageinfo-header-watchlist' => 'Table section header in action=info.',
+'pageinfo-header-views'     => 'Table section header in action=info.
+{{Identical|View}}',
+'pageinfo-subjectpage'      => 'Table header in action=info.
+{{Identical|Page}}',
+'pageinfo-talkpage'         => 'Table header in action=info.',
 
 # Skin names
 'skinname-standard'    => '{{optional}}',

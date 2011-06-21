@@ -401,7 +401,6 @@ $messages = array(
 'history'           => 'Breytingaskrá',
 'history_short'     => 'Breytingaskrá',
 'updatedmarker'     => 'uppfært frá síðustu heimsókn minni',
-'info_short'        => 'Upplýsingar',
 'printableversion'  => 'Prentvæn útgáfa',
 'permalink'         => 'Varanlegur tengill',
 'print'             => 'Prenta',
@@ -635,7 +634,7 @@ Gjörðu svo vel og opnaðu fyrir þær, skráðu þig svo inn með notandanafni
 'nosuchuser'                 => 'Það er enginn notandi með þetta nafn: "$1".
 Gerður er greinarmunur á há- og lágstöfum.
 Athugaðu hvort um innsláttavillu er að ræða eða [[Special:UserLogin/signup|búðu til nýtt notendanafn]].',
-'nosuchusershort'            => 'Það er enginn notandi með nafnið „<nowiki>$1</nowiki>“. Athugaðu hvort nafnið sé ritað rétt.',
+'nosuchusershort'            => 'Það er enginn notandi með nafnið „$1“. Athugaðu hvort nafnið sé ritað rétt.',
 'nouserspecified'            => 'Þú verður að taka fram notandanafn.',
 'login-userblocked'          => 'Þessi notandi hefur verið settur í bann.  Innskráning ekki leyfð.',
 'wrongpassword'              => 'Uppgefið lykilorð er rangt. Vinsamlegast reyndu aftur.',
@@ -1659,7 +1658,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 Vinsamlegast staðfestu það að þú ætlir að gera svo, það að þú skiljir afleiðingarnar, og að þú sért að gera þetta í samræmi við [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Aðgerð lokið',
 'actionfailed'           => 'Aðgerð mistókst',
-'deletedtext'            => '„<nowiki>$1</nowiki>“ hefur verið eytt.
+'deletedtext'            => '„$1“ hefur verið eytt.
 Sjá lista yfir nýlegar eyðingar í $2.',
 'deletedarticle'         => 'eyddi „[[$1]]“',
 'dellogpage'             => 'Eyðingaskrá',
@@ -1704,7 +1703,7 @@ Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núvera
 'protectexpiry'               => 'Rennur út:',
 'protect_expiry_invalid'      => 'Ógildur tími.',
 'protect_expiry_old'          => 'Tíminn er þegar runninn út.',
-'protect-text'                => "Hér getur þú skoðað og breytt verndunarstigi síðunnar '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Hér getur þú skoðað og breytt verndunarstigi síðunnar '''$1'''.",
 'protect-locked-access'       => "Þú hefur ekki heimild til þess að vernda eða afvernda síður.
 Núverandi staða síðunnar er '''$1''':",
 'protect-cascadeon'           => 'Þessi síða er vernduð vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er keðjuvernduð|síðum, sem eru keðjuverndaðar}}.
@@ -2109,14 +2108,6 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'othercontribs'    => 'Byggt á verkum $1.',
 'others'           => 'aðrir',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|notandi|notendur}} $1',
-
-# Info page
-'infosubtitle'   => 'Upplýsingar um síðu',
-'numedits'       => 'Fjöldi breytinga (síða): $1',
-'numtalkedits'   => 'Fjöldi breytinga (spjall síða): $1',
-'numwatchers'    => 'Fjöldi vaktara: $1',
-'numauthors'     => 'Fjöldi frábrugðinna höfunda (grein): $1',
-'numtalkauthors' => 'Fjöldi frábrugðinna höfunda (spjall síða): $1',
 
 # Skin names
 'skinname-standard'    => 'Sígilt',

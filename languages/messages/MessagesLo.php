@@ -233,7 +233,6 @@ $messages = array(
 'searcharticle'    => 'ໄປ',
 'history'          => 'ປະຫວັດ',
 'history_short'    => 'ປະຫວັດການດັດແກ້',
-'info_short'       => 'ຂ້ອມູນ',
 'printableversion' => 'ສະບັບພິມໄດ້',
 'permalink'        => 'ລິ້ງຄ໌ຖາວອນ',
 'print'            => 'ພິມ',
@@ -763,7 +762,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'prot_1movedto2'              => '[[$1]] ຍ້າຍໄປ [[$2]]',
 'protect-legend'              => 'ຢືນຢັນ ການປົກປ້ອງ',
 'protectexpiry'               => 'ໝົດກຳນົດ:',
-'protect-text'                => "ທ່ານສາມາດເບິ່ງ ແລະ ປ່ຽນແປງ ລະດັບການປົກປ້ອງ ສຳຫຼັບ ໜ້າ  '''<nowiki>$1</nowiki> ຢູ່ນີ້'''.",
+'protect-text'                => "ທ່ານສາມາດເບິ່ງ ແລະ ປ່ຽນແປງ ລະດັບການປົກປ້ອງ ສຳຫຼັບ ໜ້າ  '''$1 ຢູ່ນີ້'''.",
 'protect-level-autoconfirmed' => 'ຫ້າມຜູ້ໃຊ້ບໍ່ໄດ້ເຊັນເຂົ້າ',
 'protect-level-sysop'         => 'ສະເພາະຜູ້ບໍລິຫານລະບົບ',
 'protect-expiring'            => 'ໝົດອາຍຸ $1 (UTC)',
@@ -899,9 +898,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Attribution
 'anonymous' => 'ຜູ້ໃຊ້ ບໍ່ສະແດງຊື່ ຈາກ {{SITENAME}}',
-
-# Info page
-'numedits' => 'ຈຳນວນດັດແກ້ (ໜ້າ): $1',
 
 # Browsing diffs
 'previousdiff' => 'ສ່ວນຕ່າງກ່ອນ',

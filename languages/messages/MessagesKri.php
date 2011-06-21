@@ -88,7 +88,6 @@ $messages = array(
 'history'          => 'Pej-im istri',
 'history_short'    => 'Istri',
 'updatedmarker'    => 'wetin dehm dohn ohpdet since wehn ah las kam',
-'info_short'       => 'Infohmeshohn',
 'printableversion' => 'Vazhòn fò Print',
 'permalink'        => 'Pamanènt link',
 'print'            => 'Print am',

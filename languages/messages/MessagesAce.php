@@ -313,7 +313,6 @@ $messages = array(
 'searcharticle'     => 'Jak u',
 'history'           => 'Atra u likot',
 'history_short'     => 'Atra u likôt',
-'info_short'        => 'Haba',
 'printableversion'  => 'Seunalén citak',
 'permalink'         => 'Hubông teutap',
 'print'             => 'Rakam',
@@ -440,7 +439,7 @@ Nan Droeneuh ka teupeugot. Neuato laju [[Special:Preferences|peue nyang neugalak
 'nosuchuser'              => 'Hana ureuëng nguy ngön nan "$1".
 Nan ureuëng nguy jipeubida harah rayek.
 Tulông neuparéksa keulayi neuija Droëneuh, atawa [[Special:UserLogin/signup|neudapeuta barô]].',
-'nosuchusershort'         => 'Hana ureuëng nguy ngön nan "<nowiki>$1</nowiki>".
+'nosuchusershort'         => 'Hana ureuëng nguy ngön nan "$1".
 Préksa keulayi neu’ija Droëneuh.',
 'nouserspecified'         => 'Neupasoë nan Droëneuh.',
 'wrongpassword'           => 'Lageuëm nyang neupasoë salah. Neuci lom.',
@@ -796,7 +795,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'historywarning'        => 'Ingat: Ôn nyang hawa neusampôh na riwayat:',
 'confirmdeletetext'     => 'Droëneuh neuk neusampôh ôn atawa beureukah nyoë keu sabé. Meunan cit ban mandum riwayatjih nibak basis data. Neupeupaseuti meunyo Droëneuh cit keubiët meung neusampôh, neutupeuë ban mandum akébatjih, ngön peuë nyang neupeulaku nyoë nakeuh meunurôt [[{{MediaWiki:Policy-url}}|kebijakan{{SITENAME}}]].',
 'actioncomplete'        => 'Seuleusoë',
-'deletedtext'           => '"<nowiki>$1</nowiki>" ka geusampôh. Eu $2 keu log paléng barô bak ôn nyang ka geusampôh.',
+'deletedtext'           => '"$1" ka geusampôh. Eu $2 keu log paléng barô bak ôn nyang ka geusampôh.',
 'deletedarticle'        => 'sampôh "[[$1]]"',
 'dellogpage'            => 'Log seunampoh',
 'deletecomment'         => 'Choë:',
@@ -815,7 +814,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'protectexpiry'               => 'Maté tanggay:',
 'protect_expiry_invalid'      => 'Watèë maté tanggay hana sah.',
 'protect_expiry_old'          => 'Watèë maté tanggay nakeuh bak masa u likôt.',
-'protect-text'                => "Droëneuh jeuët neu’eu atawa neugantoë tingkat lindông keu ôn '''<nowiki>$1</nowiki>''' nyoë pat.",
+'protect-text'                => "Droëneuh jeuët neu’eu atawa neugantoë tingkat lindông keu ôn '''$1''' nyoë pat.",
 'protect-locked-access'       => "Nan dapeuta Droëneuh hana hak keu jak gantoë tingkat lindông ôn. Nyoë pat nakeuh konfigurasi atra jinoë keu ôn '''$1''':",
 'protect-cascadeon'           => 'Ôn nyoë teungöh geulindông kareuna geupeuseureuta lam {{PLURAL:$1|ôn|ôn-ôn}} nyoë nyang ka geulindông ngön peuniléh lindông meuturôt geupeuudép.
 Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peungarôh keu lindông meuturôt.',

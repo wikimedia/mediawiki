@@ -300,7 +300,6 @@ $messages = array(
 'history'           => 'Versione',
 'history_short'     => 'Versione/Autore',
 'updatedmarker'     => '(gändret syt mym letschte Bsuech)',
-'info_short'        => 'Information',
 'printableversion'  => 'Druck-Aasicht',
 'permalink'         => 'Bschtändigi URL',
 'print'             => 'Drucke',
@@ -552,7 +551,7 @@ S mueß sichergstellt syy, ass Cookies aktiviert sin. Derno ddie Syte nomol lade
 'nosuchuser'                 => 'Dr Benutzername "$1" git s nit.
 
 Iberprief d Schrybwys, oder mäld Di as [[Special:UserLogin/signup|neje Benutzer aa]].',
-'nosuchusershort'            => 'S git kei Benutzername „<nowiki>$1</nowiki>“. Bitte iberprief d Schrybwys.',
+'nosuchusershort'            => 'S git kei Benutzername „$1“. Bitte iberprief d Schrybwys.',
 'nouserspecified'            => 'Bitte gib e Benutzername yy.',
 'login-userblocked'          => 'Dää Benutzer isch gsperrt. Aamäldig nit erlaubt.',
 'wrongpassword'              => 'Des Passwort isch falsch (oder fählt). Bitte versuech s nomol.',
@@ -728,7 +727,7 @@ oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite]</span>.',
 Du chasch dää Titel uf andre Syte [[Special:Search/{{PAGENAME}}|sueche]]
 oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbiecher sueche].</span>',
 'userpage-userdoesnotexist'        => 'S Benutzerkonto „<nowiki>$1</nowiki>“ git s nit. Bitte prief, eb Du die Syte wirkli wit aalege/bearbeite.',
-'userpage-userdoesnotexist-view'   => 'S Benutzerkonto „<nowiki>$1</nowiki>“ isch nit registriert.',
+'userpage-userdoesnotexist-view'   => 'S Benutzerkonto „$1“ isch nit registriert.',
 'blocked-notice-logextract'        => 'Dää Benutzer isch zur Zyt gsperrt.
 As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
 'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
@@ -2032,7 +2031,7 @@ Ruckmäldig un wyteri Hilf:
 Bitte bi Dir iber d Konsequänze bewusst, un bi sicher, dass Du Di an unsri [[{{MediaWiki:Policy-url}}|Leitlinie]] haltsch.',
 'actioncomplete'         => 'Uftrag usgfiert.',
 'actionfailed'           => 'Aktion fählgschlaa',
-'deletedtext'            => '«<nowiki>$1</nowiki>» isch glescht wore.
+'deletedtext'            => '«$1» isch glescht wore.
 Im $2 het s e Lischt vu dr letschte Leschige.',
 'deletedarticle'         => 'het „[[$1]]“ glescht',
 'suppressedarticle'      => 'het d Sichtbarkeit vu „[[$1]]“ gänderet',
@@ -2086,7 +2085,7 @@ Bitte gang zruck, tue d Syte nej lade un versuech s nomol.',
 'protect_expiry_invalid'      => 'Di gwählti Duur isch nid gültig.',
 'protect_expiry_old'          => 'Di gwählti Duur isch scho vergange.',
 'protect-unchain-permissions' => 'Wyteri Schutzoptione frej schalte',
-'protect-text'                => "Hie chasch der Schutzstatus vor Syte '''<nowiki>$1</nowiki>''' azeigen und ändere.",
+'protect-text'                => "Hie chasch der Schutzstatus vor Syte '''$1''' azeigen und ändere.",
 'protect-locked-blocked'      => "Du chasch dr Syteschutz nit ändere, wel Dyy Benutzerkonto gsperrt isch. Do sin di aktuälle Syteschutz-Yystellige fir d Syte '''„$1“:'''",
 'protect-locked-dblock'       => "D Datebank isch gsperrt, dr Syteschutz cha wäge däm nit gänderet wäre. Doo sin di aktuälle Syteschutz-Yystellige fir d Syte '''„$1“:'''",
 'protect-locked-access'       => "Dys Konto het nid di nötige Rächt, für der Schutzstatus z ändere.
@@ -2631,14 +2630,6 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'spambot_username'    => 'MediaWiki Spam-Syyferig',
 'spam_reverting'      => 'Letschti Version ohni Gleicher zue $1 widerhärgstellt.',
 'spam_blanking'       => 'In allene Versione het s Gleicher zue $1 gha, sufer gmacht.',
-
-# Info page
-'infosubtitle'   => 'Syteinformation',
-'numedits'       => 'Aazaal vo Ändrige aa dr Syte: $1',
-'numtalkedits'   => 'Aazaal vo Ändrige aa de Diskussionssyte: $1',
-'numwatchers'    => 'Die Syte wird vo $1 Lüt beobachtet',
-'numauthors'     => 'Aazaal vo Autore: $1',
-'numtalkauthors' => 'Aazaal vo Diskussionsteilnäämer: $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Als patrulyrt markyre',

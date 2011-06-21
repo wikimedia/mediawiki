@@ -364,7 +364,6 @@ $messages = array(
 'history'           => 'Puslapio istorija',
 'history_short'     => 'Istorija',
 'updatedmarker'     => 'atnaujinta nuo paskutinio mano apsilankymo',
-'info_short'        => 'Informacija',
 'printableversion'  => 'Versija spausdinimui',
 'permalink'         => 'Nuolatinė nuoroda',
 'print'             => 'Spausdinti',
@@ -619,7 +618,7 @@ Prašome pasirinkti kitą vardą.',
 'nosuchuser'                 => 'Nėra jokio naudotojo, turinčio vardą „$1“.
 Naudotojų varduose skiriamos didžiosios ir mažosios raidės.
 Patikrinkite rašybą, arba [[Special:UserLogin/signup|sukurkite naują paskyrą]].',
-'nosuchusershort'            => 'Nėra jokio naudotojo, pavadinto „<nowiki>$1</nowiki>“. Patikrinkite rašybą.',
+'nosuchusershort'            => 'Nėra jokio naudotojo, pavadinto „$1“. Patikrinkite rašybą.',
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'login-userblocked'          => 'Šis naudotojas yra užblokuotas. Prisijungti neleidžiama.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
@@ -808,7 +807,7 @@ arba [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaguoti šį puslapį]</span>.'
 Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ieškoti susijusių įrašų]</span>.',
 'userpage-userdoesnotexist'        => 'Naudotojo paskyra „<nowiki>$1</nowiki>“ yra neužregistruota. Prašom patikrinti, ar jūs norite kurti/redaguoti šį puslapį.',
-'userpage-userdoesnotexist-view'   => 'Naudotojo paskyra „<nowiki>$1</nowiki>“ neužregistruota.',
+'userpage-userdoesnotexist-view'   => 'Naudotojo paskyra „$1“ neužregistruota.',
 'blocked-notice-logextract'        => 'Šis naudotojas šiuo metu yra užblokuotas.
 Žemiau pateikiamas paskutinis blokavimo istorijos įrašas:',
 'clearyourcache'                   => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
@@ -2126,7 +2125,7 @@ Atsiliepimai ir pagalba:
 Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus padarinius, ir kad jūs tai darote atsižvelgdami į [[{{MediaWiki:Policy-url}}|politiką]].',
 'actioncomplete'         => 'Veiksmas atliktas',
 'actionfailed'           => 'Veiksmas atšauktas',
-'deletedtext'            => '„<nowiki>$1</nowiki>“ ištrintas.
+'deletedtext'            => '„$1“ ištrintas.
 Paskutinių šalinimų istorija - $2.',
 'deletedarticle'         => 'ištrynė „[[$1]]“',
 'suppressedarticle'      => 'apribotas „[[$1]]“',
@@ -2182,7 +2181,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 'protect_expiry_invalid'      => 'Galiojimo laikas neteisingas.',
 'protect_expiry_old'          => 'Galiojimo laikas yra praeityje.',
 'protect-unchain-permissions' => 'Atrakinti šiuos apsaugos nustatymus',
-'protect-text'                => "Čia jūs gali matyti ir keisti apsaugos lygį puslapiui '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Čia jūs gali matyti ir keisti apsaugos lygį puslapiui '''$1'''.",
 'protect-locked-blocked'      => "Jūs negalite keisti apsaugos lygių, kol esate užbluokuotas.
 Čia yra dabartiniai nustatymai puslapiui '''$1''':",
 'protect-locked-dblock'       => "Apsaugos lygiai negali būti pakeisti dėl duomenų bazės užrakinimo.
@@ -2780,14 +2779,6 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'spambot_username'    => 'MediaWiki reklamų šalinimas',
 'spam_reverting'      => 'Atkuriama į ankstesnę versiją, neturinčios nuorodų į $1',
 'spam_blanking'       => 'Visos versijos turėjo nuorodų į $1, išvaloma',
-
-# Info page
-'infosubtitle'   => 'Puslapio informacija',
-'numedits'       => 'Keitimų skaičius (puslapis): $1',
-'numtalkedits'   => 'Keitimų skaičius (aptarimo puslapis): $1',
-'numwatchers'    => 'Stebinčiųjų skaičius: $1',
-'numauthors'     => 'Skirtingų autorių skaičius (puslapis): $1',
-'numtalkauthors' => 'Skirtingų autorių skaičius (aptarimo puslapis): $1',
 
 # Skin names
 'skinname-standard'    => 'Klasikinė',

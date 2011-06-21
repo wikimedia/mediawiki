@@ -211,7 +211,6 @@ $messages = array(
 'history'           => "Storie d'a pàgene",
 'history_short'     => 'Cunde',
 'updatedmarker'     => "aggiornete da l'urtema visite meje",
-'info_short'        => "'Mbormazione",
 'printableversion'  => 'Versione ca se stambe',
 'permalink'         => 'Collegamende ca remane pe sembre',
 'print'             => 'Stambe',
@@ -480,7 +479,7 @@ Pe piacere vide ce tine le cookie abbilitate, recareche sta pàgene e pruève ar
 'nosuchuser'                 => "Non g'esiste n'utende cu 'u nome \"\$1\".
 Fà attenzione ca le nome de l'utinde so senzibbele a le lettere granne e piccenne.
 Vide bbuene a cumme l'è scritte, o [[Special:UserLogin/signup|ccreje n'utende nuève]].",
-'nosuchusershort'            => 'Non ge ste nisciune utende cu \'u nome "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Non ge ste nisciune utende cu \'u nome "$1".
 Condrolle accume l\'è scritte.',
 'nouserspecified'            => "A scrivere pe forze 'u nome de l'utende.",
 'login-userblocked'          => 'Stu utende jè bloccate. Non ge puè trasè.',
@@ -682,7 +681,7 @@ Tu puè [[Special:Search/{{PAGENAME}}|cercà pe stu titele]]  jndr'à otre pàgg
 o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cirche jndr'à l'archivije cullegate]</span>.",
 'userpage-userdoesnotexist'        => '\'U cunde utende "<nowiki>$1</nowiki>" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
-'userpage-userdoesnotexist-view'   => '\'U cunde utende "<nowiki>$1</nowiki>" non g\'è reggistrate.',
+'userpage-userdoesnotexist-view'   => '\'U cunde utende "$1" non g\'è reggistrate.',
 'blocked-notice-logextract'        => "Stu utende jè correndemende bloccate.<br />
 L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
@@ -2045,7 +2044,7 @@ Segnalaziune e otre assistenze:
 Conferme quidde ca ste face, ce si sicure ca è capite quidde ca ste cumbine e ce è corrette rispette a [[{{MediaWiki:Policy-url}}|le regole de scangellazione]], ce no statte quiete.",
 'actioncomplete'         => 'Aziona Combletete',
 'actionfailed'           => 'Aziona fallite',
-'deletedtext'            => '"<nowiki>$1</nowiki>" onne state scangillete.
+'deletedtext'            => '"$1" onne state scangillete.
 Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'deletedarticle'         => 'scangillete "[[$1]]"',
 'suppressedarticle'      => 'soppresse "[[$1]]"',
@@ -2107,7 +2106,7 @@ Vide 'a [[Special:ProtectedPages|liste de le pàggene prutette]] pa liste de le 
 'protect_expiry_invalid'      => 'Orarie de scadenze jè invalide.',
 'protect_expiry_old'          => "L'ore de scadenza jè jndr'à 'u passate.",
 'protect-unchain-permissions' => 'Sbluecche otre opzione de protezzione',
-'protect-text'                => "Tu puè vedè e cangià 'u levèlle de protezzione p'a pàgene '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Tu puè vedè e cangià 'u levèlle de protezzione p'a pàgene '''$1'''.",
 'protect-locked-blocked'      => "Tu non ge puè cangià le levèlle de protezzione quanne si bloccate.
 Aqquà stonne le 'mbostaziune corrende pa pàgene '''$1''':",
 'protect-locked-dblock'       => "Le levèlle de protezzione non ge ponne essere cangete purcè stè 'nu blocche d'u database.
@@ -2706,14 +2705,6 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'spambot_username'    => "Sdevacatore d'u spam de MediaUicchi",
 'spam_reverting'      => "Turnanne a l'urtema revisione no ge condiene collegaminde a $1",
 'spam_blanking'       => 'Tutte le revisiune condènene collegaminde a $1, vacande',
-
-# Info page
-'infosubtitle'   => "'Mbormazione pe pàgene",
-'numedits'       => 'Numere de cangiaminde (pàgene): $1',
-'numtalkedits'   => "Numere de cangiaminde (pàgene de le 'ngazzaminde): $1",
-'numwatchers'    => 'Numere de visitature: $1',
-'numauthors'     => 'Numere de autore distinde (vôsce): $1',
-'numtalkauthors' => "Numere de autore distinde (pàgene de le 'ngazzaminde): $1",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Signe cumme condrollate',

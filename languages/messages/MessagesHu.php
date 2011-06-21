@@ -491,7 +491,6 @@ $messages = array(
 'history'           => 'Laptörténet',
 'history_short'     => 'Laptörténet',
 'updatedmarker'     => 'az utolsó látogatásom óta frissítették',
-'info_short'        => 'Információ',
 'printableversion'  => 'Nyomtatható változat',
 'permalink'         => 'Link erre a változatra',
 'print'             => 'Nyomtatás',
@@ -746,7 +745,7 @@ Ellenőrizd, hogy a sütik engedélyezve vannak-e, majd frissítsd az oldalt, é
 'nosuchuser'                 => 'Nem létezik „$1” nevű szerkesztő.
 A szerkesztőnevek kis- és nagybetű-érzékenyek.
 Ellenőrizd, hogy helyesen írtad-e be, vagy [[Special:UserLogin/signup|hozz létre egy új fiókot]].',
-'nosuchusershort'            => 'Nem létezik „<nowiki>$1</nowiki>” nevű szerkesztő.
+'nosuchusershort'            => 'Nem létezik „$1” nevű szerkesztő.
 Ellenőrizd, hogy helyesen írtad-e be.',
 'nouserspecified'            => 'Meg kell adnod a felhasználói nevet.',
 'login-userblocked'          => 'Ez a szerkesztő blokkolva van, a bejelentkezés nem engedélyezett.',
@@ -929,7 +928,7 @@ vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
 [[Special:Search/{{PAGENAME}}|Rákereshetsz a lap címére]] más lapok tartalmában, vagy <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} megtekintheted a kapcsolódó naplófájlokat]</span>.',
 'userpage-userdoesnotexist'        => 'Nincs „<nowiki>$1</nowiki>” nevű regisztrált felhasználónk.
 Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.',
-'userpage-userdoesnotexist-view'   => 'Nincs regisztrálva „<nowiki>$1</nowiki>” szerkesztői azonosító.',
+'userpage-userdoesnotexist-view'   => 'Nincs regisztrálva „$1” szerkesztői azonosító.',
 'blocked-notice-logextract'        => 'A felhasználó jelenleg blokkolva van.
 A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
 'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.'''
@@ -2260,7 +2259,7 @@ Visszajelzés és további segítség:
 Kérjük, erősítsd meg, hogy valóban ezt szeretnéd tenni, átlátod a következményeit, és hogy a műveletet a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]] összhangban végzed.',
 'actioncomplete'         => 'Művelet végrehajtva',
 'actionfailed'           => 'A művelet nem sikerült',
-'deletedtext'            => 'A(z) „<nowiki>$1</nowiki>” lapot törölted.
+'deletedtext'            => 'A(z) „$1” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletedarticle'         => '„[[$1]]” törölve',
 'suppressedarticle'      => 'elrejtette a(z) „[[$1]]” szócikket',
@@ -2315,7 +2314,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'protect_expiry_invalid'      => 'A lejárati idő érvénytelen.',
 'protect_expiry_old'          => 'A lejárati idő a múltban van.',
 'protect-unchain-permissions' => 'További védelmi lehetőségek feloldása',
-'protect-text'                => "Itt megtekintheted és módosíthatod a(z) '''<nowiki>$1</nowiki>''' lap védelmi szintjét.",
+'protect-text'                => "Itt megtekintheted és módosíthatod a(z) '''$1''' lap védelmi szintjét.",
 'protect-locked-blocked'      => "Nem változtathatod meg a védelmi szinteket, amíg blokkolnak. Itt vannak a(z)
 '''$1''' lap jelenlegi beállításai:",
 'protect-locked-dblock'       => "A védelmi szinteket egy aktív adatbázis zárolás miatt nem változtathatod meg.
@@ -2916,14 +2915,6 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'spambot_username'    => 'MediaWiki spam kitakarítása',
 'spam_reverting'      => 'Visszatérés a $1 lapra mutató hivatkozásokat nem tartalmazó utolsó változathoz',
 'spam_blanking'       => 'Az összes változat tartalmazott a $1 lapra mutató hivatkozásokat, kiürítés',
-
-# Info page
-'infosubtitle'   => 'Információk a lapról',
-'numedits'       => 'Szerkesztések száma (szócikk): $1',
-'numtalkedits'   => 'Szerkesztések száma (vitalap): $1',
-'numwatchers'    => 'Figyelők száma: $1',
-'numauthors'     => 'Önálló szerzők száma (szócikk): $1',
-'numtalkauthors' => 'Önálló szerzők száma (vitalap): $1',
 
 # Skin names
 'skinname-standard'    => 'Klasszikus',

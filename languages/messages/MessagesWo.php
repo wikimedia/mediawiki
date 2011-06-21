@@ -263,7 +263,6 @@ $messages = array(
 'history'           => 'Jaar-jaaru xët wi',
 'history_short'     => 'Jaar-jaar',
 'updatedmarker'     => 'Ci samag nemmeeku gu mujj lañ ko soppi',
-'info_short'        => 'Xibaar',
 'printableversion'  => 'Sumb bu móolu',
 'permalink'         => 'Lëkkalekaay yu sax',
 'print'             => 'Móol',
@@ -494,7 +493,7 @@ Bul fatte soppi say [[Special:Preferences|{{SITENAME}} tànneef]].',
 'loginsuccesstitle'          => 'Sag dugg jàll na',
 'loginsuccess'               => 'Léegi nag dugg nga ci {{SITENAME}} yaay « $1 ».',
 'nosuchuser'                 => 'Amul benn jëfandikukat bu tudd « $1 ». Xoolaatal bu baax mbindiin mi walla nga sos meneen sàqum jëfandikukat.',
-'nosuchusershort'            => 'Amul benn jëfandikukat bu tudd « <nowiki>$1</nowiki> ». Xoolaatal mbidiin mi.',
+'nosuchusershort'            => 'Amul benn jëfandikukat bu tudd « $1 ». Xoolaatal mbidiin mi.',
 'nouserspecified'            => 'Laaj na nga tànn ab turu jëfandikukat',
 'wrongpassword'              => 'Bii baatujàll baaxul. Jéemaatal.',
 'wrongpasswordempty'         => 'Duggaloo ab baatujàll, jéemaatal.',
@@ -1688,7 +1687,7 @@ Coppite yiy ñëw yu xët wi ak xëtu waxtaanuwaay wi mu àndal di nañu leen fa
 'historywarning'         => 'Moytul! xët wi ngay waaja far am na jaar-jaar :',
 'confirmdeletetext'      => 'Yaa ngi waaja far ba faaw, ci dáttub njoxe bi, aw xët walla ab nataal ak jaar-jaaram. Dila ñaan nga dëggal ne loolu nga namma def dëgg-dëgg, te xam nga limuy jur, te itam dëppoo na ak átte yi ñu tëral ci [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Jëf jees def',
-'deletedtext'            => '« <nowiki>$1</nowiki> » far nañu ko.
+'deletedtext'            => '« $1 » far nañu ko.
 Xolal $2 ngir gis limu farte bi mujj.',
 'deletedarticle'         => 'moo far « [[$1]] »',
 'suppressedarticle'      => 'moo far « [[$1]] »',
@@ -1744,7 +1743,7 @@ nemmeekul [[Special:ProtectedPages|limu xët yi ñu aar]] ngir gis ab lim ci xë
 'protectexpiry'               => 'Jeexintal :',
 'protect_expiry_invalid'      => 'Waxtub njeextal bi baaxul.',
 'protect_expiry_old'          => 'Waxtub njeextal bi weesu na.',
-'protect-text'                => "Fii man nga fee gise ak soppi tolluwaayu kaaraange gu wii xët '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Fii man nga fee gise ak soppi tolluwaayu kaaraange gu wii xët '''$1'''.",
 'protect-locked-blocked'      => "Manoo soppi tolluwaayu kaaraange gi su ñu la téyee.
 Nii la xët wi tëdde '''$1''' :",
 'protect-locked-access'       => "Sa sàq amul sañ-sañ yu mat ba man a soppi tolluwaayu kaaraangeg xët wi.

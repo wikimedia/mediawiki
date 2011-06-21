@@ -477,7 +477,6 @@ $messages = array(
 'history'           => 'Istoric',
 'history_short'     => 'Istoric',
 'updatedmarker'     => 'modificat dempuèi ma darrièra visita',
-'info_short'        => 'Entresenhas',
 'printableversion'  => 'Version imprimibla',
 'permalink'         => 'Ligam istoric',
 'print'             => 'Imprimir',
@@ -717,7 +716,7 @@ Causissètz-ne un autre.",
 'nosuchuser'                 => "L'utilizaire « $1 » existís pas.
 Lo nom d'utilizaire es sensible a la cassa.
 Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creatz-vos un compte novèl]].",
-'nosuchusershort'            => 'I a pas de contributor amb lo nom « <nowiki>$1</nowiki> ». Verificatz l’ortografia.',
+'nosuchusershort'            => 'I a pas de contributor amb lo nom « $1 ». Verificatz l’ortografia.',
 'nouserspecified'            => "Vos cal especificar vòstre nom d'utilizaire.",
 'login-userblocked'          => 'Aqueste utilizaire es blocat. Connexion pas autorizada.',
 'wrongpassword'              => 'Lo senhal es incorrècte. Ensajatz tornarmai.',
@@ -882,7 +881,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear aquesta pagina]</span>.',
 Podètz [[Special:Search/{{PAGENAME}}|far una recèrca sul títol de la pagina]] dins las autras paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} recercar dins los jornals associats]</span>.',
 'userpage-userdoesnotexist'        => "Lo compte d'utilizaire « <nowiki>$1</nowiki> » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
-'userpage-userdoesnotexist-view'   => "Lo compte d'utilizaire « <nowiki>$1</nowiki> » es pas enregistrat.",
+'userpage-userdoesnotexist-view'   => "Lo compte d'utilizaire « $1 » es pas enregistrat.",
 'blocked-notice-logextract'        => 'Aqueste utilizaire es actualament blocat.
 La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
 'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple Mac) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz ''Ctrl-F5''.",
@@ -2158,7 +2157,7 @@ Retorn e assisténcia :
 Confirmatz qu'es plan çò que volètz far, que ne comprenètz las consequéncias e que fasètz aquò en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].",
 'actioncomplete'         => 'Accion efectuada',
 'actionfailed'           => 'L’accion a fracassat',
-'deletedtext'            => '"<nowiki>$1</nowiki>" es estat suprimit.
+'deletedtext'            => '"$1" es estat suprimit.
 Vejatz $2 per una lista de las supressions recentas.',
 'deletedarticle'         => 'a escafat «[[$1]]»',
 'suppressedarticle'      => 'amagat  « [[$1]] »',
@@ -2215,7 +2214,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protect_expiry_invalid'      => 'Lo temps d’expiracion es invalid',
 'protect_expiry_old'          => 'Lo temps d’expiracion ja es passat.',
 'protect-unchain-permissions' => "Desvarrolhar ancara mai d'opcions de proteccion",
-'protect-text'                => "Podètz consultar e modificar lo nivèl de proteccion de la pagina '''<nowiki>$1</nowiki>'''. Asseguratz-vos que seguissètz las règlas intèrnas.",
+'protect-text'                => "Podètz consultar e modificar lo nivèl de proteccion de la pagina '''$1'''. Asseguratz-vos que seguissètz las règlas intèrnas.",
 'protect-locked-blocked'      => "Podètz pas modificar lo nivèl de proteccion tant que sètz blocat. Vaquí los reglatges actuals de la pagina '''$1''' :",
 'protect-locked-dblock'       => "Lo nivèl de proteccion pòt pas èsser modificat perque la banca de donadas es blocada. Vaquí los reglatges actuals de la pagina '''$1''' :",
 'protect-locked-access'       => "Avètz pas los dreches necessaris per modificar la proteccion de la pagina. Vaquí los reglatges actuals de la pagina '''$1''' :",
@@ -2770,14 +2769,6 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'spambot_username'    => 'Netejatge de spam de MediaWiki',
 'spam_reverting'      => 'Restabliment de la darrièra version que conten pas de ligam cap a $1',
 'spam_blanking'       => 'Totas las versions que contenon de ligams cap a $1 son blanquidas',
-
-# Info page
-'infosubtitle'   => 'Entresenhas per la pagina',
-'numedits'       => 'Nombre de modificacions : $1',
-'numtalkedits'   => 'Nombre de modificacions (pagina de discussion) : $1',
-'numwatchers'    => "Nombre de contributors qu'an la pagina dins lor lista de seguiment : $1",
-'numauthors'     => 'Nombre d’autors distints : $1',
-'numtalkauthors' => 'Nombre d’autors distints (pagina de discussion) : $1',
 
 # Skin names
 'skinname-standard'    => 'Estandard',

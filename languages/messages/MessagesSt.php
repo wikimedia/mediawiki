@@ -60,7 +60,6 @@ $messages = array(
 'search'         => 'Fuputsa',
 'history'        => 'Nalane',
 'history_short'  => 'Nalane',
-'info_short'     => 'Tlhahiso-leseding',
 'newpage'        => 'Leqephe le letjha',
 'talkpage'       => 'Qoqa ka leqephe lena',
 'talk'           => 'Moqoqo',
@@ -160,8 +159,5 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'allmessagesname'    => 'Lebitso',
 'allmessagesdefault' => 'Se neng se ngotswe pele',
 'allmessagescurrent' => 'Se ngotsweng hona jwale',
-
-# Info page
-'infosubtitle' => 'Tlhahiso-leseding ka leqephe',
 
 );

@@ -321,7 +321,6 @@ $messages = array(
 'searcharticle'     => 'Ire',
 'history'           => 'Historia paginae',
 'history_short'     => 'Historia',
-'info_short'        => 'Informatio',
 'printableversion'  => 'Forma impressibilis',
 'permalink'         => 'Nexus perpetuus',
 'print'             => 'Imprimere',
@@ -521,7 +520,7 @@ Nomen usoris alium selige.',
 'loginsuccess'               => "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris nomine \"\$1\".'''",
 'nosuchuser'                 => 'Usor "$1" non est.
 Confirma orthographiam (cave litteras maiusculas minusculasque), aut [[Special:UserLogin/signup|novam rationem crea]].',
-'nosuchusershort'            => 'Usor "<nowiki>$1</nowiki>" non est.
+'nosuchusershort'            => 'Usor "$1" non est.
 Confirma orthographiam.',
 'nouserspecified'            => 'Nomen usoris indicare debes.',
 'wrongpassword'              => 'Tessera quam scripsisti non constat. Conare denuo.',
@@ -583,7 +582,7 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'image_sample'    => 'Exemplum.jpg',
 'image_tip'       => 'Fasciculus in pagina impositus',
 'media_sample'    => 'Exemplum.ogg',
-'media_tip'       => 'Nexus ad fasciculum mediorum',
+'media_tip'       => 'Nexus ad fasciculum',
 'sig_tip'         => 'Subscriptio tua cum indicatione temporis',
 'hr_tip'          => 'Linea horizontalis (noli saepe uti)',
 
@@ -1544,7 +1543,7 @@ Feedback and further assistance:
 Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, et actionem tuam [[{{MediaWiki:Policy-url}}|consilio]] congruere.',
 'actioncomplete'         => 'Actum perfectum',
 'actionfailed'           => 'Actum non feliciter evenit',
-'deletedtext'            => '"<nowiki>$1</nowiki>" deletum est. Vide $2 pro indice deletionum recentum.',
+'deletedtext'            => '"$1" deletum est. Vide $2 pro indice deletionum recentum.',
 'deletedarticle'         => 'delevit "[[$1]]"',
 'suppressedarticle'      => 'supprimit "[[$1]]"',
 'dellogpage'             => 'Index deletionum',
@@ -1587,7 +1586,7 @@ ad emendationem proximam ab $2.',
 'protectexpiry'               => 'Exitus:',
 'protect_expiry_invalid'      => 'Tempus post quod res exitur est invalidum.',
 'protect_expiry_old'          => 'Tempus est praeteritus.',
-'protect-text'                => "Hic tibi licet protectiones legere et mutare paginae '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Hic tibi licet protectiones legere et mutare paginae '''$1'''.",
 'protect-locked-access'       => "Tibi non licet protectionem paginarum mutare.
 Ecce protectiones paginae '''$1''':",
 'protect-cascadeon'           => 'Hanc paginam, in {{PLURAL:$1|pagina seriatim protecta|paginis seriatim protectis}} inclusam, potes deprotegere; manebit autem protectio serialis.',
@@ -1978,12 +1977,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'others'           => 'alii',
 'siteusers'        => '{{PLURAL:$2|usor|usores}} {{grammar:genitive|{{SITENAME}}}} $1',
 'creditspage'      => 'Auctores paginae',
-
-# Info page
-'numedits'       => 'Numerus recensionum (pagina): $1',
-'numtalkedits'   => 'Numerus recensionum (pagina disputationis): $1',
-'numauthors'     => 'Numerus auctorum discretorum (pagina): $1',
-'numtalkauthors' => 'Numerus auctorum discretorum (pagina disputationis): $1',
 
 # Skin names
 'skinname-standard'    => 'Norma',

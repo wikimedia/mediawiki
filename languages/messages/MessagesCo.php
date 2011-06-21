@@ -93,7 +93,6 @@ $messages = array(
 'searcharticle'    => 'Và',
 'history'          => 'Cronolugia',
 'history_short'    => 'Cronolugia',
-'info_short'       => 'Infurmazione',
 'permalink'        => 'Ligame permanente',
 'print'            => 'Stampà',
 'edit'             => 'Mudificà',

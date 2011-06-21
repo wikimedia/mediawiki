@@ -198,7 +198,6 @@ $messages = array(
 'history'           => 'Eachdraidh na duilleige',
 'history_short'     => 'Eachdraidh',
 'updatedmarker'     => 'air ùrachadh on turas mu dheireadh a thadhail mi air',
-'info_short'        => 'Fiosrachadh',
 'printableversion'  => 'Tionndadh a ghabhas a chlò-bhualadh',
 'permalink'         => 'Ceangal buan',
 'print'             => 'Clò-bhuail',
@@ -780,7 +779,7 @@ Nochdaidh mùthaidhean a nithear air an duilleag seo 's air an duilleag deasbair
 'confirmdeletetext'      => "Tha thu an impis duilleag a sguabadh às agus a h-eachdraidh uile gu lèir.
 Dearbhaich gu bheil thu airson seo a dhèanamh 's gun tuig thu a' bhuaidh a bhios ann agus gu bheil thu a' dèanamh seo a-rèir [[{{MediaWiki:Policy-url}}|a' phoileasaidh]].",
 'actioncomplete'         => 'Gnìomh deiseil',
-'deletedtext'            => 'Chaidh "<nowiki>$1</nowiki>" a sguabadh às.
+'deletedtext'            => 'Chaidh "$1" a sguabadh às.
 Seall air $2 airson clàr de dhuilleagan a chaidh a sguabadh às o chionn ghoirid.',
 'deletedarticle'         => '"[[$1]]" air a sguabadh às',
 'dellogpage'             => 'Loga an sguabaidh às',
@@ -813,7 +812,7 @@ Cuir sùil air [[Special:ProtectedPages|liosta nan duilleagan fo dhìon]] airson
 'protectexpiry'               => 'Falbhaidh an ùine air:',
 'protect_expiry_invalid'      => 'Tha an t-àm-crìochnachaidh mì-dhligheach.',
 'protect_expiry_old'          => 'Tha an t-àm crìochnachaidh seachad mu thràth.',
-'protect-text'                => "Chì thu an ìre dìon dhen duilleag '''<nowiki>$1</nowiki>''' an-seo agus is urrainn dhut atharrachadh an-seo.",
+'protect-text'                => "Chì thu an ìre dìon dhen duilleag '''$1''' an-seo agus is urrainn dhut atharrachadh an-seo.",
 'protect-locked-access'       => "Chan eil cead aig a' chunntas agad an ìre dìon de dhuilleag atharrachadh.
 Seo roghainnean làithreach na duilleige '''$1''':",
 'protect-cascadeon'           => "Tha an duilleag seo fo dhìon an-dràsta a chionn 's gu bheil e air a ghabhail a-steach {{PLURAL:$1|san duilleag|sna duilleagan|san duilleag|sna duilleagan|san duilleag|sna duilleagan}} a leanas aig a bheil dìon easach air.
@@ -1017,10 +1016,6 @@ Tadhail air [http://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] 
 'othercontribs' => 'Stèidhichte air obair le $1.',
 'others'        => 'eile',
 'siteusers'     => '{{PLURAL:$2|chleachdaiche|chleachdaiche|chleachdaiche|chleachdaiche|cleachdaichean|cleachdaiche}} {{SITENAME}} $1',
-
-# Info page
-'infosubtitle' => 'Fiosrachadh mun duilleag',
-'numwatchers'  => "Àireamh de dhaoine a tha a' cumail sùil air: $1",
 
 # Browsing diffs
 'previousdiff' => '← Mùthadh nas sine',

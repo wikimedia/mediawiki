@@ -379,7 +379,6 @@ $messages = array(
 'history'           => 'Historiku i faqes',
 'history_short'     => 'Historiku',
 'updatedmarker'     => 'ndryshuar nga vizita e fundit',
-'info_short'        => 'Informacion',
 'printableversion'  => 'Version shtypi',
 'permalink'         => 'Lidhja e përhershme',
 'print'             => 'Shtype',
@@ -634,7 +633,7 @@ Sigurohuni që ju pranoni "biskota" (cookise), rifreskoni këtë faqe dhe provoj
 'loginsuccess'               => 'Keni hyrë brënda në {{SITENAME}} si "$1".',
 'nosuchuser'                 => 'Nuk ka ndonjë përdorues me emrin "$1".
 Kontrolloni shkrimin ose [[Special:UserLogin/signup|hapni një llogari të re]].',
-'nosuchusershort'            => 'Nuk ka asnjë përdorues me emrin "<nowiki>$1</nowiki>".',
+'nosuchusershort'            => 'Nuk ka asnjë përdorues me emrin "$1".',
 'nouserspecified'            => 'Ju duhet të jepni një nofkë',
 'login-userblocked'          => 'Ky përdorues është bllokuar. Identifikimi nuk lejohet.',
 'wrongpassword'              => 'Fjalëkalimi që futët nuk është i saktë. Provoni përsëri!',
@@ -798,7 +797,7 @@ Ju mundeni [[Special:Search/{{PAGENAME}}|me kërku këtë titull]] në faqe tjer
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërku në regjistrat tematikisht të afërm],
 apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
 'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "<nowiki>$1</nowiki>" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
-'userpage-userdoesnotexist-view'   => 'Profili i përdoruesit "<nowiki>$1</nowiki>" nuk është i regjistruar.',
+'userpage-userdoesnotexist-view'   => 'Profili i përdoruesit "$1" nuk është i regjistruar.',
 'blocked-notice-logextract'        => 'Ky përdorues është bllokuar aktualisht.
 Regjistri i bllokuar hyrjen e fundit është më poshtë, për referencë:',
 'clearyourcache'                   => "'''Shënim:''' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni ''cache''-në e shfletuesit tuaj për të parë ndryshimet: për '''Mozilla/Safari/Konqueror''' shtypni ''Ctrl+Shift+Reload'' (ose ''ctrl+shift+r''), për '''IE''' ''Ctrl+f5'', '''Opera''': ''F5''.",
@@ -2128,7 +2127,7 @@ Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 'confirmdeletetext'      => 'Jeni duke grisur një faqe me tërë historinë e saj. Ju lutemi konfirmoni që po e bëni qëllimisht, që i kuptoni pasojat, dhe që po veproni në përputhje me [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Veprimi u krye',
 'actionfailed'           => 'Veprimi dështoi',
-'deletedtext'            => '"<nowiki>$1</nowiki>" është grisur nga regjistri. Shikoni $2 për një pasqyrë të grisjeve së fundmi.',
+'deletedtext'            => '"$1" është grisur nga regjistri. Shikoni $2 për një pasqyrë të grisjeve së fundmi.',
 'deletedarticle'         => 'grisi "[[$1]]"',
 'suppressedarticle'      => '"[[$1]]" i shtypur',
 'dellogpage'             => 'Regjistri i grisjeve',
@@ -2184,7 +2183,7 @@ Shih listën e [[Special:ProtectedPages|faqeve të mbrojtura]] nga lista e mbroj
 'protect_expiry_invalid'      => 'Data e skadimit është e gabuar.',
 'protect_expiry_old'          => 'Data e skadencës është në të shkuarën.',
 'protect-unchain-permissions' => 'Zhbllokoni opsionet e mëtejshme të mbrojtjes',
-'protect-text'                => "Këtu mund të shikoni dhe ndryshoni nivelin e mbrojtjes për faqen '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Këtu mund të shikoni dhe ndryshoni nivelin e mbrojtjes për faqen '''$1'''.",
 'protect-locked-blocked'      => "Nuk mund të ndryshoni nivelet e mbrojtjes duke qenë i bllokuar. Kufizimet e kësaj faqeje janë '''$1''':",
 'protect-locked-dblock'       => "Nivelet e mbrojtjes nuk mund të ndryshohen pasi regjistri është i bllokuar. Kufizimet e kësaj faqeje janë '''$1''':",
 'protect-locked-access'       => "Llogaria juaj nuk ka privilegjet e nevojitura për të ndryshuar nivelin e mbrojtjes. Kufizimet e kësaj faqeje janë '''$1''':",
@@ -2742,14 +2741,6 @@ Ju lutemi provoni përsëri.',
 'spambot_username'    => 'MediaWiki spam-pastrues',
 'spam_reverting'      => "U kthye tek versioni i fundit që s'ka lidhje tek $1",
 'spam_blanking'       => 'U boshatis sepse të gjitha versionet kanë lidhje tek $1',
-
-# Info page
-'infosubtitle'   => 'Informacion për faqen',
-'numedits'       => 'Numri i versioneve të artikullit: $1',
-'numtalkedits'   => 'Numrii versioneve të diskutimit të artikullit: $1',
-'numwatchers'    => 'Numri i mbikqyrësve: $1',
-'numauthors'     => 'Numri i autorëve të artikullit: $1',
-'numtalkauthors' => 'Numri i diskutuesve për artikullin: $1',
 
 # Skin names
 'skinname-standard'    => 'Standarte',

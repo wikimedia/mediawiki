@@ -216,7 +216,6 @@ $messages = array(
 'history'           => 'Sīdan stǣr',
 'history_short'     => 'Stǣr',
 'updatedmarker'     => 'nīƿod æfter ic cōm hider ǣror',
-'info_short'        => 'Cȳþþu',
 'printableversion'  => 'Ūtmǣlendlicu fadunȝ',
 'permalink'         => 'Fæst hlenċe',
 'print'             => 'Ūtmǣl',
@@ -405,7 +404,7 @@ Bidde þē, lǣt hīe tō twyrcenne, and þǣræfter inmelda þurh þīnne nīwa
 'nosuchuser'                 => 'Þǣr nis nān brūcere þe hæfþ þone naman "$1".
 Stafena micelnesse sind hefige and ānlica on brūcendnamum.
 Scēawa þīne wrītunge eft, oþþe brūc þā cartan þe is hērunder tō [[Special:UserLogin/signup|settene nīwne brūcendreccend]].',
-'nosuchusershort'            => 'Þǣr is nān brūcend mid þǣm naman "<nowiki>$1</nowiki>".  Edscēawa on þīne wrītunge.',
+'nosuchusershort'            => 'Þǣr is nān brūcend mid þǣm naman "$1".  Edscēawa on þīne wrītunge.',
 'passwordtooshort'           => 'Gelēafword sculon habban læst {{PLURAL:$1|1 stafan|$1 stafan}}.',
 'mailmypassword'             => 'Nīƿe þafungƿord bȳ e-mail sendan',
 'acct_creation_throttle_hit' => 'Hwæt, þu hæfst gēo geseted {{PLURAL:$1|1 hordcleofan|$1 -}}. Þu ne canst settan ǣnige māran.',
@@ -936,7 +935,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'protectexpiry'               => 'Endaþ:',
 'protect_expiry_invalid'      => 'Endende tīde is unriht.',
 'protect_expiry_old'          => 'Endende tīde is in ȝēara dagum.',
-'protect-text'                => "Þū meaht þæt beorges emnet sēon and hƿeorfan hēr for þǣre sīdan '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Þū meaht þæt beorges emnet sēon and hƿeorfan hēr for þǣre sīdan '''$1'''.",
 'protect-default'             => 'Eall brūcendas þafian',
 'protect-fallback'            => '"$1" þafunge ābiddan',
 'protect-level-autoconfirmed' => 'Nīƿe and unbōcen brūcendas fortȳnan',
@@ -1135,11 +1134,6 @@ Bidde cēos ōðerne naman.',
 'siteuser'  => '{{SITENAME}}n brūcere $1',
 'others'    => 'ōðru',
 'anonusers' => '{{SITENAME}} {{PLURAL:$2|uncūþ brūcend|uncūðe brūcendas}} $1',
-
-# Info page
-'numedits'     => 'Hū mæniȝ ādihtas (sīde): $1',
-'numtalkedits' => 'Hū mæniȝ ādihtas (ȝespreċsīde): $1',
-'numwatchers'  => 'Hū mæniȝ ƿæcceras: $1',
 
 # Patrol log
 'patrol-log-auto' => '(selffremmende)',

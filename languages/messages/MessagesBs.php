@@ -462,7 +462,6 @@ $messages = array(
 'history'           => 'Historija stranice',
 'history_short'     => 'Historija',
 'updatedmarker'     => 'promjene od moje zadnje posjete',
-'info_short'        => 'Informacija',
 'printableversion'  => 'Prilagođeno štampanju',
 'permalink'         => 'Trajni link',
 'print'             => 'Štampa',
@@ -720,7 +719,7 @@ Provjerite da li su cookies omogućeni, ponovo učitajte ovu stranicu i pokušaj
 'nosuchuser'                 => 'Ne postoji korisnik sa imenom "$1".
 Korisnička imena razlikuju velika i mala slova.
 Provjerite vaše kucanje ili [[Special:UserLogin/signup|napravite novi korisnički račun]].',
-'nosuchusershort'            => 'Ne postoji korisnik sa imenom "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Ne postoji korisnik sa imenom "$1".
 Provjerite da li ste dobro ukucali.',
 'nouserspecified'            => 'Morate izabrati korisničko ime.',
 'login-userblocked'          => 'Ovaj korisnik je blokiran. Prijava nije dopuštena.',
@@ -926,7 +925,7 @@ Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim s
 Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane zapisnike]</span>.',
 'userpage-userdoesnotexist'        => 'Korisnički račun "<nowiki>$1</nowiki>" nije registrovan.
 Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
-'userpage-userdoesnotexist-view'   => 'Korisnički račun "<nowiki>$1</nowiki>" nije registrovan.',
+'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'clearyourcache'                   => "'''Pažnja: Nakon što sačuvate izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
@@ -2290,7 +2289,7 @@ Povratne informacije i daljnja pomoć:
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu sa [[{{MediaWiki:Policy-url}}|pravilima]].',
 'actioncomplete'         => 'Akcija završena',
 'actionfailed'           => 'Akcija nije uspjela',
-'deletedtext'            => 'Članak "<nowiki>$1</nowiki>" je obrisan.
+'deletedtext'            => 'Članak "$1" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletedarticle'         => 'obrisan "[[$1]]"',
 'suppressedarticle'      => 'promijeni vidljivost od "[[$1]]"',
@@ -2346,7 +2345,7 @@ vraćeno na posljednju verziju koju je sačuvao $2.',
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
 'protect_expiry_old'          => 'Upisani vremenski rok je u prošlosti.',
 'protect-unchain-permissions' => 'Otključaj daljnje opcije zaštite',
-'protect-text'                => "Ovdje možete gledati i izmjeniti level zaštite za stranicu '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Ovdje možete gledati i izmjeniti level zaštite za stranicu '''$1'''.",
 'protect-locked-blocked'      => "Ne možete promijeniti nivo zaštite dok ste blokirani.
 Ovo su trenutne postavke za stranicu '''$1''':",
 'protect-locked-dblock'       => "Nivoi zaštite se ne mogu mijenjati jer je aktivna baza podataka zaključana.
@@ -2965,14 +2964,6 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'spambot_username'    => 'MediaWiki čišćenje spama',
 'spam_reverting'      => 'Vraćanje na zadnju verziju koja ne sadrži linkove ka $1',
 'spam_blanking'       => 'Sve revizije koje sadrže linkove ka $1, očisti',
-
-# Info page
-'infosubtitle'   => 'Informacije za stranicu',
-'numedits'       => 'Broj izmjena (stranica): $1',
-'numtalkedits'   => 'Broj izmjena (stranice za razgovor): $1',
-'numwatchers'    => 'Broj onih koji pregledaju: $1',
-'numauthors'     => 'Broj različitih autora (stranice): $1',
-'numtalkauthors' => 'Broj različitih autora (stranice za razgovor): $1',
 
 # Skin names
 'skinname-standard'    => 'Klasično',

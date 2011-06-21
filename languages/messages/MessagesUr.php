@@ -215,7 +215,6 @@ $messages = array(
 'searcharticle'     => 'چلو',
 'history'           => 'تاریخچہ ء صفحہ',
 'history_short'     => 'تاریخچہ',
-'info_short'        => 'معلومات',
 'printableversion'  => 'قابل طبع نسخہ',
 'permalink'         => 'مستقل کڑی',
 'print'             => 'طباعت',
@@ -461,7 +460,7 @@ Warning: Page may not contain recent updates.',
 'nosuchuser'                 => '"$1" کے نام سے کوئی صارف موجود نہیں ہے.
 برائے مہربانی! ہجوں کے درست اندراج کی تصدیق کرلیجئے.
 اگر آپ چاہیں تو [[Special:UserLogin/signup|نیا کھاتہ بھی بناسکتے ہیں]].',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" کے نام سے کوئی صارف موجود نہیں.
+'nosuchusershort'            => '"$1" کے نام سے کوئی صارف موجود نہیں.
 اپنا ہجہ جانچئے.',
 'nouserspecified'            => 'آپ کو ایک اسمِ صارف مخصوص کرنا ہے.',
 'login-userblocked'          => 'اِس صارف پر پابندی ہے. داخلِ نوشتہ ہونے کی اجازت نہیں.',
@@ -1134,7 +1133,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'historywarning'        => 'انتباہ: جو صفحہ آپ حذف کرنے جارہے ہیں اس سے ایک تاریخچہ منسلک ہے۔',
 'confirmdeletetext'     => 'آپ نے اس صفحے کو اس سے ملحقہ تاریخچہ سمیت حذف کرنے کا ارادہ کیا ہے۔ براۓ مہربانی تصدیق کرلیجیۓ کہ آپ اس عمل کے نتائج سے بخوبی آگاہ ہیں، اور یہ بھی یقین کرلیجیۓ کہ آپ ایسا [[{{MediaWiki:Policy-url}}|ویکیپیڈیا کی حکمت عملی]] کے دائرے میں رہ کر کر رہے ہیں۔',
 'actioncomplete'        => 'اقدام تکمیل کو پہنچا',
-'deletedtext'           => '"<nowiki>$1</nowiki>" کو حذف کر دیا گیا ہے ۔
+'deletedtext'           => '"$1" کو حذف کر دیا گیا ہے ۔
 حالیہ حذف شدگی کے تاریخ نامہ کیلیۓ  $2  دیکھیۓ',
 'deletedarticle'        => 'حذف شدہ "[[$1]]"',
 'dellogpage'            => 'نوشتۂ حذف شدگی',

@@ -273,7 +273,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'history'           => 'Stair an lch seo',
 'history_short'     => 'Stair',
 'updatedmarker'     => 'leasaithe (ó shin mo chuairt dheireanach)',
-'info_short'        => 'Eolas',
 'printableversion'  => 'Eagrán inphriontáilte',
 'permalink'         => 'Nasc buan',
 'print'             => 'Priontáil',
@@ -527,7 +526,7 @@ Cumasaigh iad agus bain triail eile as, le do thoil.',
 'nosuchuser'                 => 'Níl aon úsáideoir ann leis an ainm "$1".
 Tá ainmneacha úsáideoir cásíogair.
 Cinntigh do litriú, nó [[Special:UserLogin/signup|bain úsáid as an foirm thíos]] chun cuntas úsáideora nua a chruthú.',
-'nosuchusershort'            => 'Níl aon úsáideoir ann leis an ainm "<nowiki>$1</nowiki>". Cinntigh do litriú.',
+'nosuchusershort'            => 'Níl aon úsáideoir ann leis an ainm "$1". Cinntigh do litriú.',
 'nouserspecified'            => 'Caithfidh ainm úsáideoir a shonrú.',
 'login-userblocked'          => 'Tá an t-úsáideoir seo faoi bhac. Níl cead aige/aici logáil isteach.',
 'wrongpassword'              => "D'iontráil tú focal faire mícheart.<br />
@@ -649,7 +648,7 @@ Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do bhrabhs�
 'noarticletext'                    => 'Níl aon téacs ar an leathanach seo faoi láthair.
 Is féidir [[Special:Search/{{PAGENAME}}|cuardach a dhéanamh le haghaidh an teidil seo]] i leathanaigh eile, nó <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cuardach a dhéanamh sna logaí gaolmhara],
 nó [{{fullurl:{{FULLPAGENAME}}|action=edit}} an leathanach seo a chur in eagar].</span>',
-'userpage-userdoesnotexist-view'   => 'Níl cuntas úsáideora "<nowiki>$1</nowiki>" cláraithe.',
+'userpage-userdoesnotexist-view'   => 'Níl cuntas úsáideora "$1" cláraithe.',
 'clearyourcache'                   => "'''Tugtar faoi deara:''' Tar éis duit athruithe a shábháil, caithfear gabháil thar thaisce do bhrabhsálaí chun iad a fheiceáil. '''Internet Explorer:''' cliceáil ar an gcnaipe ''Athnuaigh'' nó ''Athlódáil'', agus an eochair ''Ctrl'' á bhrú agat. '''Firefox:''' cliceáil ar ''Athlódáil'', agus an eochair ''Iomlaoid'' á bhrú agat (nó brúigh ''Ctrl-Iomlaoid-R''). '''Opera:''' caithfear d'úsáideoirí a dtaiscí a ghlanadh trí ''Uirlisí→Sainroghanna''. Ní mór d'úsáideoirí '''Konqueror''' nó '''Safari''' ach cliceáil ar an gcnaipe ''Athlódáil''.",
 'usercssyoucanpreview'             => "'''Leid:''' Sula sábhálann tú, úsáid an cnaipe \"{{int:showpreview}}\" chun do CSS nua a thástáil.",
 'userjsyoucanpreview'              => "'''Leid:''' Sula sábhálann tú, úsáid an cnaipe \"{{int:showpreview}}\" chun do JavaScript nua a thástáil.",
@@ -1362,7 +1361,7 @@ Aiseolas agus a thuilleadh cabhrach:
 'confirmdeletetext'     => 'Tá tú ar tí leathanach, agus a chuid staire, a scriosadh.
 Deimhnigh, le do thoil, gur mhian leat é seo a dhéanamh, go dtuigeann tú torthaí an ghnímh seo agus go bhfuil tú dá dhéanamh de réir [[{{MediaWiki:Policy-url}}|an pholasaí]].',
 'actioncomplete'        => 'Gníomh críochnaithe',
-'deletedtext'           => 'scriosadh "<nowiki>$1</nowiki>".
+'deletedtext'           => 'scriosadh "$1".
 Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
 'deletedarticle'        => 'scriosadh "[[$1]]"',
 'dellogpage'            => 'Loga scriosta',
@@ -1403,7 +1402,7 @@ Féach ar [[Special:ProtectedPages|Leathanach glasáilte]] chun a thuilleadh eol
 'protectexpiry'               => 'As feidhm:',
 'protect_expiry_invalid'      => 'Am éaga neamhbhailí.',
 'protect_expiry_old'          => 'Am éaga san am atá thart.',
-'protect-text'                => "Is féidir leat an leibhéal glasála a athrú anseo don leathanach '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Is féidir leat an leibhéal glasála a athrú anseo don leathanach '''$1'''.",
 'protect-locked-access'       => "Ní chead ag do chuntas chun athraigh leibhéal cosaint an leathanach.
 Seo iad na socruithe reatha faoin leathanach '''$1''':",
 'protect-cascadeon'           => 'Tá an leathanach seo ghlasáil le athrú mar tá se iniata ar {{PLURAL:$1|an leathanach seo|na leathanaigh seo}} a leanas, agus iad ghlasáil le glasáil cascáideach.
@@ -1774,14 +1773,6 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'spamprotectionmatch' => 'Truicear ár scagaire dramhála ag an téacs seo a leanas: $1',
 'spambot_username'    => 'MediaWiki turscar glanadh',
-
-# Info page
-'infosubtitle'   => 'Eolas don leathanach',
-'numedits'       => 'Méid athruithe (alt): $1',
-'numtalkedits'   => 'Méid athruithe (leathanach phlé): $1',
-'numwatchers'    => 'Méid féachnóirí: $1',
-'numauthors'     => 'Méid údair ar leith (alt): $1',
-'numtalkauthors' => 'Méid údair ar leith (leathanach phlé): $1',
 
 # Skin names
 'skinname-standard'    => 'Clasaiceach',

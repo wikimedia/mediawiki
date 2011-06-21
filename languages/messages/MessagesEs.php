@@ -338,7 +338,7 @@ $messages = array(
 'tog-usenewrc'                => 'Cambios recientes mejorados (requiere JavaScript)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
 'tog-showtoolbar'             => 'Mostrar la barra de edición',
-'tog-editondblclick'          => 'Editar páginas con doble click (JavaScript)',
+'tog-editondblclick'          => 'Editar páginas con doble clic (requiere JavaScript)',
 'tog-editsection'             => 'Habilitar la edición de secciones usando el enlace [editar]',
 'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha en los títulos de secciones (requiere JavaScript)',
 'tog-showtoc'                 => 'Mostrar el índice (para páginas con más de 3 encabezados)',
@@ -516,7 +516,6 @@ $messages = array(
 'history'           => 'Historial',
 'history_short'     => 'Historial',
 'updatedmarker'     => 'actualizado desde mi última visita',
-'info_short'        => 'Información',
 'printableversion'  => 'Versión para imprimir',
 'permalink'         => 'Enlace permanente',
 'print'             => 'Imprimir',
@@ -743,7 +742,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'yourdomainname'             => 'Dominio',
 'externaldberror'            => 'Hubo un error de autenticación externa de la base de datos o bien no tienes autorización para actualizar tu cuenta externa.',
 'login'                      => 'Entrar',
-'nav-login-createaccount'    => 'Registrarse/Entrar',
+'nav-login-createaccount'    => 'Iniciar sesión / crear cuenta',
 'loginprompt'                => "Es necesario habilitar las ''cookies'' en el navegador para registrarse en {{SITENAME}}.",
 'userlogin'                  => 'Registrarse/Entrar',
 'userloginnocreate'          => 'Iniciar sesión',
@@ -773,7 +772,7 @@ Asegurarse de que tiene las cookies habilitadas, luego recargue esta página e i
 'nosuchuser'                 => 'No existe ningún usuario llamado «$1».
 Los nombres de usuario son sensibles a las mayúsculas.
 Revisa la ortografía, o [[Special:UserLogin/signup|crea una nueva cuenta]].',
-'nosuchusershort'            => 'No hay un usuario con el nombre «<nowiki>$1</nowiki>». Comprueba que lo has escrito correctamente.',
+'nosuchusershort'            => 'No hay un usuario con el nombre «$1». Comprueba que lo has escrito correctamente.',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
 'login-userblocked'          => 'Este usuario está bloqueado. Inicio de sesión no permitido.',
 'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtalo de nuevo.',
@@ -801,7 +800,7 @@ Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLUR
 'mailerror'                  => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit' => 'Los visitantes a esta wiki usando su dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día, lo cual es lo máximo permitido en este periodo de tiempo.
 Como resultado, los visitantes usando esta dirección IP no pueden crear más cuentas en este momento.',
-'emailauthenticated'         => 'Su dirección electrónica fue autenticada en $2 a $3.',
+'emailauthenticated'         => 'Tu dirección de correo electrónico fue autenticada el $2 a $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'noemailprefs'               => 'Especifica una dirección electrónica para habilitar estas características.',
@@ -848,6 +847,7 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'passwordreset-text'         => 'Completa este formulario para recibir un recordatorio por correo electrónico de los detalles de tu cuenta.',
 'passwordreset-legend'       => 'Restablecer contraseña',
 'passwordreset-disabled'     => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Introduce uno de los elementos de datos siguientes}}',
 'passwordreset-username'     => 'Nombre de usuario:',
 'passwordreset-email'        => 'Dirección de correo electrónico:',
 'passwordreset-emailtitle'   => 'Detalles de la cuenta en {{SITENAME}}',
@@ -952,9 +952,9 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario «<nowiki>$1</nowiki>» no está registrada. Por favor comprueba si quieres crear o editar esta página.',
-'userpage-userdoesnotexist-view'   => 'La cuenta de usuario «<nowiki>$1</nowiki>» no está registrada.',
+'userpage-userdoesnotexist-view'   => 'La cuenta de usuario «$1» no está registrada.',
 'blocked-notice-logextract'        => 'Este usuario está actualmente bloqueado.
-La última entrada del registro de bloqueos es provista debajo para mayor referencia:',
+La última entrada del registro de bloqueos se proporciona debajo para mayor referencia:',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debes vaciar la caché del navegador para ver los cambios:
 
 *'''Mozilla / Firefox / Safari:''' pulsa ''Mayús.'' mientras haces clic en el botón ''Recargar'', o pulsa ''Ctrl+F5'' o ''Ctrl+R'' (''Comando+R'' en un Macintosh)
@@ -1000,7 +1000,8 @@ Si quieres grabar tus cambios, has de trasladarlos al área superior.
 '''Sólo''' el texto en el área de texto superior será grabado cuando pulses «{{int:savearticle}}».",
 'yourtext'                         => 'Tu texto',
 'storedversion'                    => 'Versión almacenada',
-'nonunicodebrowser'                => "'''Atención: Tu navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.'''",
+'nonunicodebrowser'                => "'''Atención: Tu navegador no cumple la norma Unicode.'''
+Se ha activado un sistema de edición alternativo que te permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.",
 'editingold'                       => "'''Aviso: Estás editando una versión antigua de esta página.'''
 Si la guardas, se perderán los cambios realizados desde esta revisión.",
 'yourdiff'                         => 'Diferencias',
@@ -1042,7 +1043,7 @@ El registro de borrado y traslados para esta página están provistos aquí por 
 'moveddeleted-notice'              => 'Esta página ha sido borrada.
 El registro de borrados y traslados para la página están provistos debajo como referencia.',
 'log-fulllog'                      => 'Ver el registro completo',
-'edit-hook-aborted'                => 'Edición abortada por la extensión.
+'edit-hook-aborted'                => 'Edición cancelada por la extensión.
 No dió explicaciones.',
 'edit-gone-missing'                => 'No se pudo actualizar la página.
 Parece que ha sido borrada.',
@@ -1283,7 +1284,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opciones de búsqueda',
 'searchmenu-exists'                => "'''Hay una página llamada \"[[:\$1]]\" en esta wiki.'''",
-'searchmenu-new'                   => "'''¡Crear la página «[[:$1]]» en esta wiki!'''",
+'searchmenu-new'                   => "'''¡Crea la página «[[:$1]]» en este wiki!'''",
 'searchmenu-new-nocreate'          => '«$1» es un nombre de página inválido o no que no puedes crear.',
 'searchhelp-url'                   => 'Help:Ayuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Otras páginas con este prefijo]]',
@@ -1707,6 +1708,7 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'large-file'                  => 'Se recomienda que los archivos no sean mayores de $1; este archivo ocupa $2.',
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile'                   => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
+'windows-nonascii-filename'   => 'Este wiki no admite nombres de archivo con caracteres especiales.',
 'fileexists'                  => "Ya existe un archivo con este nombre, por favor comprueba '''<tt>[[:$1]]</tt>''' si no estás seguro de querer cambiarlo.
 [[$1|thumb]]",
 'filepageexists'              => "La página de descripción de este archivo ya ha sido creada en '''<tt>[[:$1]]</tt>''', pero no existe actualmente ningún fichero con este nombre.
@@ -1759,7 +1761,7 @@ A continuación se muestra el registro de borrado de este archivo:",
 
 Por favor, elige un nombre más descriptivo.",
 'upload-success-subj'         => 'Subida con éxito',
-'upload-success-msg'          => 'Tu carga de  [$2] fue existosa. Está disponible aquí: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Tu carga de [$2] fue exitosa. Está disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en la carga',
 'upload-failure-msg'          => 'Hubo un problema durante la carga desde [$2]:
 
@@ -1776,6 +1778,12 @@ $1',
 'upload-too-many-redirects' => 'La URL contenía demasiadas redirecciones',
 'upload-unknown-size'       => 'Tamaño desconocido',
 'upload-http-error'         => 'Ha ocurrido un error HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Se encontró un error al abrir el archivo ZIP para su comprobación.',
+'zip-wrong-format'    => 'El archivo especificado no es un archivo ZIP.',
+'zip-bad'             => 'El archivo es un ZIP dañado o que no se puede leer.
+No se puede comprobar su seguridad.',
 
 # Special:UploadStash
 'uploadstash'          => 'Ficheros escondidos',
@@ -1869,6 +1877,7 @@ La lista siguiente sólo muestra {{PLURAL:$1|la primera página que enlaza|las p
 También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 'nolinkstoimage'            => 'No hay páginas que enlacen a esta imagen.',
 'morelinkstoimage'          => 'Vea [[Special:WhatLinksHere/$1|más enlaces]] a este archivo.',
+'linkstoimage-redirect'     => '$1 (archivo de redirección) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|El siguiente archivo es un duplicado|Los siguientes $1 archivos son duplicados}} de éste ([[Special:FileDuplicateSearch/$2|más detalles]]):',
 'sharedupload'              => 'Este archivo es de $1 y puede ser usado por otros proyectos.',
 'sharedupload-desc-there'   => 'Este archivo es de $1 y puede ser usado por otros proyectos.
@@ -2214,8 +2223,9 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 'watchlist-options'    => 'Opciones de la lista de seguimiento',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Vigilando...',
-'unwatching' => 'Eliminando de la lista de seguimiento...',
+'watching'       => 'Vigilando...',
+'unwatching'     => 'Eliminando de la lista de seguimiento...',
+'watcherrortext' => 'Ocurrió un error al cambiar la configuración de tu lista de seguimiento para «$1».',
 
 'enotif_mailer'                => 'Notificación por correo de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar todas las páginas visitadas',
@@ -2270,7 +2280,7 @@ Por favor, confirma que realmente quieres hacer eso, que entiendes las
 consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}}|las políticas]].',
 'actioncomplete'         => 'Acción completada',
 'actionfailed'           => 'Acción fallida',
-'deletedtext'            => '«<nowiki>$1</nowiki>» ha sido borrado.
+'deletedtext'            => '«$1» ha sido borrado.
 Véase $2 para un registro de los borrados recientes.',
 'deletedarticle'         => 'borró «[[$1]]»',
 'suppressedarticle'      => 'suprimió «[[$1]]»',
@@ -2326,7 +2336,7 @@ Por favor, pulsa «Atrás», recarga la página de la que viniste e inténtalo d
 'protect_expiry_invalid'      => 'Tiempo de caducidad incorrecto.',
 'protect_expiry_old'          => 'El tiempo de expiración está en el pasado.',
 'protect-unchain-permissions' => 'Desbloquear opciones de protección adicionales',
-'protect-text'                => "Puedes ver y modificar el nivel de protección de la página '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Puedes ver y modificar el nivel de protección de la página '''$1'''.",
 'protect-locked-blocked'      => "No puede cambiar los niveles de protección estando bloqueado. A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-locked-dblock'       => "Los niveles de protección no se pueden cambiar debido a un bloqueo activo de la base de datos.
 A continuación se muestran las opciones actuales de la página '''$1''':",
@@ -2923,14 +2933,6 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'spambot_username'    => 'Limpieza de spam de MediaWiki',
 'spam_reverting'      => 'Revirtiendo a la última versión que no contenga enlaces a $1',
 'spam_blanking'       => 'Todas las revisiones contienen enlaces a $1, blanqueando',
-
-# Info page
-'infosubtitle'   => 'Información de la página',
-'numedits'       => 'Número de ediciones (artículo): $1',
-'numtalkedits'   => 'Número de ediciones (página de discusión): $1',
-'numwatchers'    => 'Número de usuarios vigilándola: $1',
-'numauthors'     => 'Número de autores distintos (artículo): $1',
-'numtalkauthors' => 'Número de autores distintos (página de discusión): $1',
 
 # Skin names
 'skinname-standard'    => 'Estándar',

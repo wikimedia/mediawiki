@@ -323,7 +323,6 @@ $messages = array(
 'history'           => 'Sideskiednis',
 'history_short'     => 'Skiednis',
 'updatedmarker'     => 'bewurke sûnt myn lêste besite',
-'info_short'        => 'Ynformaasje',
 'printableversion'  => 'Ofdruk-ferzje',
 'permalink'         => 'Fêste keppeling',
 'print'             => 'Ofdrukke',
@@ -1801,7 +1800,7 @@ of ôfbyld, tegearre mei alle skiednis, út de databank.
 Befêstigje dat jo dat wier dwaan wolle. Befêstigje dat dat is wat jo witte wat it gefolch
 is en dat jo dit dogge neffens de [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'        => 'Dien',
-'deletedtext'           => '"<nowiki>$1</nowiki>" is wiske.
+'deletedtext'           => '"$1" is wiske.
 Sjoch "$2" foar in list fan wat resint wiske is.',
 'deletedarticle'        => '"[[$1]]" is wiske',
 'dellogpage'            => 'Wiskloch',
@@ -1845,7 +1844,7 @@ Sjoch [[Special:ProtectedPages|Skoattele side]] foar mear ynformaasje.',
 'protectexpiry'               => 'Ferrint nei',
 'protect_expiry_invalid'      => 'Tiid fan ferrinnen is net jildich.',
 'protect_expiry_old'          => 'Tiid fan ferrinnen leit yn it ferline.',
-'protect-text'                => "Hjir kin jo it nivo fan skoatteljen sjen en oanpasse foar de side '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Hjir kin jo it nivo fan skoatteljen sjen en oanpasse foar de side '''$1'''.",
 'protect-locked-blocked'      => "Jo kinne it befeiligingsnivo net feroarje wylst jo blokkearre binne.
 Hjir binne de hjoeddeiske ynstellings foar de side '''$1''':",
 'protect-locked-dblock'       => "It befeiligingsnivo kin net feroare wurde om't de database sletten is.
@@ -2170,9 +2169,6 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 # Spam protection
 'spamprotectiontext'  => "De side dy't jo fêstlizze woene is blokkearre troch in spam filter. Dit wurdt wierskynlik feroarsake troch in ferwizing nei in ekstern webstee.",
 'spamprotectionmatch' => 'De neikommende tekst hat it spam filter aktivearre: $1',
-
-# Info page
-'infosubtitle' => 'Ynformaasje foar side',
 
 # Skin names
 'skinname-standard'  => 'Standert',

@@ -332,7 +332,6 @@ $messages = array(
 'history'           => '版史',
 'history_short'     => '歷史',
 'updatedmarker'     => '我上次來之後嘅修改',
-'info_short'        => '資訊',
 'printableversion'  => '可打印版本',
 'permalink'         => '永久連結',
 'print'             => '印',
@@ -579,7 +578,7 @@ $1',
 'nosuchuser'                 => '呢度冇叫做 "$1"嘅用戶。
 用戶名係有分大細楷嘅。
 請檢查你個名嘅輸入方法，或者[[Special:UserLogin/signup|建立一個新嘅戶口]]。',
-'nosuchusershort'            => '呢度冇叫做 "<nowiki>$1</nowiki>"嘅用戶。 請檢查你個名嘅輸入方法。',
+'nosuchusershort'            => '呢度冇叫做 "$1"嘅用戶。 請檢查你個名嘅輸入方法。',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'login-userblocked'          => '呢位用戶封鎖咗。唔容許登入。',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
@@ -738,7 +737,7 @@ $1',
 'noarticletext-nopermission'       => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，
 或者<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搵有關嘅日誌]</span>。',
 'userpage-userdoesnotexist'        => '用戶戶口"<nowiki>$1</nowiki>"重未開。請響䦒／編輯呢版之前先檢查一下。',
-'userpage-userdoesnotexist-view'   => '用戶戶口"<nowiki>$1</nowiki>"重未開。',
+'userpage-userdoesnotexist-view'   => '用戶戶口"$1"重未開。',
 'blocked-notice-logextract'        => '呢位用戶而家被封鎖緊。
 下面有最近嘅封鎖紀錄以供參考：',
 'clearyourcache'                   => "'''注意：喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''
@@ -2040,7 +2039,7 @@ wiki: $PAGEEDITOR_WIKI
 請確認你打算噉做，而且你知道後果係點，加上確認你噉做冇違反到[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',
 'actionfailed'           => '操作失敗',
-'deletedtext'            => '"<nowiki>$1</nowiki>"已經刪除。最近嘅刪除記錄請睇$2。',
+'deletedtext'            => '"$1"已經刪除。最近嘅刪除記錄請睇$2。',
 'deletedarticle'         => '已經刪除"[[$1]]"',
 'suppressedarticle'      => '已經廢止"[[$1]]"',
 'dellogpage'             => '刪除日誌',
@@ -2093,7 +2092,7 @@ wiki: $PAGEEDITOR_WIKI
 'protect_expiry_invalid'      => '到期時間唔正確。',
 'protect_expiry_old'          => '到期時間係響之前過去嘅。',
 'protect-unchain-permissions' => '解除更多嘅保護選項',
-'protect-text'                => "你可以喺呢度睇到同修改頁面'''<nowiki>$1</nowiki>'''嘅保護等級。",
+'protect-text'                => "你可以喺呢度睇到同修改頁面'''$1'''嘅保護等級。",
 'protect-locked-blocked'      => "當你響被封鎖嗰陣唔可以改呢版嘅保護等級。
 呢個係'''$1'''版嘅現時設定：",
 'protect-locked-dblock'       => "響資料庫主動鎖住咗嗰陣係唔可以改呢版嘅保護等級。
@@ -2660,14 +2659,6 @@ $1',
 'spambot_username'    => 'MediaWiki垃圾清除',
 'spam_reverting'      => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個修訂。',
 'spam_blanking'       => '全部版本都含有指去$1嘅連結，留空',
-
-# Info page
-'infosubtitle'   => '頁面嘅資訊',
-'numedits'       => '編輯次數（版頁）：$1',
-'numtalkedits'   => '編輯次數（討論頁）：$1',
-'numwatchers'    => '監視者數：$1',
-'numauthors'     => '唔同編者嘅數目（版頁）：$1',
-'numtalkauthors' => '唔同編者嘅數目（討論頁）：$1',
 
 # Skin names
 'skinname-standard'    => '傳統',

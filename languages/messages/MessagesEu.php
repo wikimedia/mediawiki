@@ -311,7 +311,6 @@ $messages = array(
 'history'           => 'Orrialdearen historia',
 'history_short'     => 'Historia',
 'updatedmarker'     => 'nire azkeneko bisitaz geroztik eguneratuta',
-'info_short'        => 'Informazioa',
 'printableversion'  => 'Inprimatzeko bertsioa',
 'permalink'         => 'Lotura finkoa',
 'print'             => 'Inprimatu',
@@ -562,7 +561,7 @@ Ziurta ezazu cookiak gaiturik dituzula, birkargatu orrialde hau eta saia saitez 
 'nosuchuser'                 => 'Ez dago "$1" izena duen lankiderik.
 Lankide izenak zehatza izan behar du.
 Egiaztatu ondo idatzi duzun, edo [[Special:UserLogin/signup|kontu berria sor ezazu]].',
-'nosuchusershort'            => 'Ez dago "<nowiki>$1</nowiki>" izena duen erabiltzailerik. Egiaztatu ongi idatzi duzula.',
+'nosuchusershort'            => 'Ez dago "$1" izena duen erabiltzailerik. Egiaztatu ongi idatzi duzula.',
 'nouserspecified'            => 'Erabiltzaile izena zehaztu beharra daukazu.',
 'login-userblocked'          => 'Erabiltzailea blokeatua dago. Ezin du saioa hasi.',
 'wrongpassword'              => 'Pasahitza ez da zuzena. Saiatu berriz.',
@@ -737,7 +736,7 @@ edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu]</s
 Beste orrietan [[Special:Search/{{PAGENAME}}|testua bilatu dezakezu]],
 edo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} erlazionatutako erregistroak ikusi]</span>.',
 'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
-'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" erabiltzaile-kontua ez dago erregistraturik.',
+'userpage-userdoesnotexist-view'   => '"$1" erabiltzaile-kontua ez dago erregistraturik.',
 'blocked-notice-logextract'        => 'Erabiltzaile hau blokeatuta dago une honetan.
 Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'clearyourcache'                   => "'''Oharra - Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.''' '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''Internet Explorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
@@ -1996,7 +1995,7 @@ Laguntza:
 'confirmdeletetext'      => 'Orrialde edo irudi bat eta beste historia guztia datu-basetik ezabatzear zaude. Mesedez, egiaztatu hori egin nahi duzula, ondorioak zeintzuk diren badakizula, eta [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz egingo duzula.',
 'actioncomplete'         => 'Ekintza burutu da',
 'actionfailed'           => 'Ekintzak huts egin du',
-'deletedtext'            => '"<nowiki>$1</nowiki>" ezabatu egin da. Ikus $2 azken ezabaketen erregistroa ikusteko.',
+'deletedtext'            => '"$1" ezabatu egin da. Ikus $2 azken ezabaketen erregistroa ikusteko.',
 'deletedarticle'         => '"[[$1]]" ezabatu da',
 'suppressedarticle'      => '"[[$1]]" kendua',
 'dellogpage'             => 'Ezabaketa erregistroa',
@@ -2050,7 +2049,7 @@ beste norbaitek editatu du edo jada desegin du.
 'protect_expiry_invalid'      => 'Baliogabeko iraungipen-data.',
 'protect_expiry_old'          => 'Iraungipen-data iragan da.',
 'protect-unchain-permissions' => 'Babes aukerak desblokeatu',
-'protect-text'                => "'''<nowiki>$1</nowiki>''' orrialdearen babes maila ikusi eta aldatu egin beharko zenuke.",
+'protect-text'                => "'''$1''' orrialdearen babes maila ikusi eta aldatu egin beharko zenuke.",
 'protect-locked-blocked'      => "Babes-mailak ezin dira aldatu blokeatuta dagoen bitartean.
 Hemen daude '''$1''' orrialdearen egungo ezarpenak:",
 'protect-locked-dblock'       => "Babes-mailak ezin dira aldatu, datu-basea blokeatuta baitago.
@@ -2592,14 +2591,6 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'spambot_username'    => 'MediaWikiren spam garbiketa',
 'spam_reverting'      => '$1(e)rako loturarik ez daukan azken bertsiora itzultzen',
 'spam_blanking'       => 'Berrikuspen guztiek $1(e)rako lotura zeukaten, husten',
-
-# Info page
-'infosubtitle'   => 'Orrialdearen informazioa',
-'numedits'       => 'Aldaketa kopurua (artikulua): $1',
-'numtalkedits'   => 'Aldaketa kopurua (eztabaida orrialdea): $1',
-'numwatchers'    => 'Jarraitzaile kopurua: $1',
-'numauthors'     => 'Egile ezberdinen kopurua (artikulua): $1',
-'numtalkauthors' => 'Egile ezberdinen kopurua (eztabaida orrialdea): $1',
 
 # Skin names
 'skinname-standard'    => 'Lehenetsia',

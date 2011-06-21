@@ -198,7 +198,6 @@ $messages = array(
 'history'           => 'Amzruy n tasna',
 'history_short'     => 'Amzruy',
 'updatedmarker'     => 'Tuybddal z tizrink li iğuran',
-'info_short'        => 'Inɣmisn',
 'printableversion'  => 'Tasna nu sugz',
 'permalink'         => 'Azday Bdda illan',
 'print'             => 'Siggz',
@@ -409,7 +408,7 @@ lcont nek  tuyskar .
 'nosuchuser'              => 'Asqdac « $1 » ur illi.
 Ussaɣ n isqdacn ḥiln hlli.
 Ẓṛ daɣ ist turit mzyan mayad, niɣd [[Special:UserLogin/signup|tmmurẓmt amiḍan amaynu]].',
-'nosuchusershort'         => 'Ur illa umsaws lli ilan assaɣ « <nowiki>$1</nowiki> ». Ẓṛ ist turit mzyan mayad.',
+'nosuchusershort'         => 'Ur illa umsaws lli ilan assaɣ « $1 ». Ẓṛ ist turit mzyan mayad.',
 'nouserspecified'         => 'Illa fllak ad tarat assaɣ nk.',
 'login-userblocked'       => 'Asqdac ad ur as yufi ad ikcm. Tazdayt ɣ ifalan uras ttuyskar',
 'mailmypassword'          => 'sifd yi awal ihdan yadni',
@@ -919,7 +918,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'confirmdeletetext'     => 'Ḥan tbidt f attkkist tasna yad kullu d kullu amzruy nes.
 illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist d is iffaɣ mayad i [[{{MediaWiki:Policy-url}}|tasrtit]].',
 'actioncomplete'        => 'tigawt tummidt',
-'deletedtext'           => '"<nowiki>$1</nowiki>"  ttuykkas.
+'deletedtext'           => '"$1"  ttuykkas.
 Ẓṛ $2 inɣmas imggura n ma ittuykkasn',
 'deletedarticle'        => 'Kkiss "[[$1]]"',
 'dellogpage'            => 'Qqiyd akkas ad',
@@ -938,7 +937,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'protectexpiry'               => 'Tizi nu uzri n umzruy:',
 'protect_expiry_invalid'      => 'Tizi n uzri n umzruy urtti tga.',
 'protect_expiry_old'          => 'Tizi n uzri n umzruy n zrit.',
-'protect-text'                => "Tzḍaṛt ad tẓṛt niɣ tbudlt taskflt n ugdal (protection) n tasna '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Tzḍaṛt ad tẓṛt niɣ tbudlt taskflt n ugdal (protection) n tasna '''$1'''.",
 'protect-locked-access'       => "Ur tẓdart wala ittuyskarak ad tbadlt tiskfal n ugdal n tisniwin.
 Ha riglaj n ɣila lli f tlla tasna '''$1''' :",
 'protect-cascadeon'           => 'Tasna yad tgddl (protégé) t llan ɣ {{PLURAL:$1|Tasna llid yuckan, talli igddln| Tillid yuckan, lli igddln}} s tamatart ad « Agdl s imuzzar ». Tzḍart ad tsbadlt iswirn n ugdlns bla irza mayad aǧdl s imuzzar',

@@ -196,7 +196,6 @@ $messages = array(
 'searcharticle'     => 'Агурын',
 'history'           => 'Фарсы истори',
 'history_short'     => 'Истори',
-'info_short'        => 'Информаци',
 'printableversion'  => 'Мыхурмæ верси',
 'permalink'         => 'Ацы версимæ æрвитæн',
 'print'             => 'Мыхуыр',

@@ -485,7 +485,6 @@ $messages = array(
 'history'           => 'Histórico',
 'history_short'     => 'Histórico',
 'updatedmarker'     => 'actualizado desde a minha última visita',
-'info_short'        => 'Informação',
 'printableversion'  => 'Versão para impressão',
 'permalink'         => 'Link permanente',
 'print'             => 'Imprimir',
@@ -748,7 +747,7 @@ Certifique-se de que tem os cookies activados, recarregue esta página e tente n
 'nosuchuser'                 => 'Não existe nenhum utilizador com o nome "$1".
 Os nomes de utilizador são sensíveis à capitalização.
 Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
-'nosuchusershort'            => 'Não existe um utilizador com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
+'nosuchusershort'            => 'Não existe um utilizador com o nome "$1". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Precisa de especificar um nome de utilizador.',
 'login-userblocked'          => 'Este utilizador está bloqueado. Não é permitido o acesso.',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Tente novamente, por favor.',
@@ -946,7 +945,7 @@ Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras p
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar registos relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'A conta "<nowiki>$1</nowiki>" não se encontra registada.
 Verifique se deseja realmente criar ou editar esta página, por favor.',
-'userpage-userdoesnotexist-view'   => 'A conta de utilizador "<nowiki>$1</nowiki>" não está registada.',
+'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'blocked-notice-logextract'        => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
 'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
@@ -2317,7 +2316,7 @@ Para comentários e pedidos de ajuda:
 Confirme que é realmente esta a sua intenção, que compreende as consequências e que o faz de acordo com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]] do projecto, por favor.',
 'actioncomplete'         => 'Operação executada',
 'actionfailed'           => 'Operação falhou',
-'deletedtext'            => '"<nowiki>$1</nowiki>" foi eliminada.
+'deletedtext'            => '"$1" foi eliminada.
 Consulte $2 para um registo de eliminações recentes.',
 'deletedarticle'         => 'eliminou "[[$1]]"',
 'suppressedarticle'      => 'suprimiu "[[$1]]"',
@@ -2376,7 +2375,7 @@ Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as p
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido situa-se no passado.',
 'protect-unchain-permissions' => 'Desbloquear outras opções de protecção',
-'protect-text'                => "Pode ver e alterar aqui o nível de protecção da página '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Pode ver e alterar aqui o nível de protecção da página '''$1'''.",
 'protect-locked-blocked'      => "Não pode alterar níveis de protecção enquanto estiver bloqueado.
 Esta é a configuração presente para a página '''$1''':",
 'protect-locked-dblock'       => "Não é possível alterar os níveis de protecção, porque a base de dados está bloqueada.
@@ -2983,14 +2982,6 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'spambot_username'    => 'MediaWiki limpeza de spam',
 'spam_reverting'      => 'Revertendo para a última revisão que não contém links para $1',
 'spam_blanking'       => 'Todas as revisões continham links para $1, limpando',
-
-# Info page
-'infosubtitle'   => 'Informação para página',
-'numedits'       => 'Número de edições (página): $1',
-'numtalkedits'   => 'Número de edições (página de discussão): $1',
-'numwatchers'    => 'Número de pessoas vigiando: $1',
-'numauthors'     => 'Número de autores distintos (página): $1',
-'numtalkauthors' => 'Número de autores distintos (página de discussão): $1',
 
 # Skin names
 'skinname-standard'    => 'Clássico',

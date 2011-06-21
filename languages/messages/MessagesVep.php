@@ -272,7 +272,6 @@ $messages = array(
 'history'           => 'Istorii',
 'history_short'     => 'Istorii',
 'updatedmarker'     => "udištadud minun jäl'gmäižen vizitan jäl'ghe",
-'info_short'        => 'Informacii',
 'printableversion'  => 'Versii painmižen täht',
 'permalink'         => 'Kaikenaigaine kosketuz',
 'print'             => 'Painda',
@@ -511,7 +510,7 @@ Otkat ned kävutamižhe i toštkat teiden tegend.',
 'nosuchuser'               => 'Ei ole kävutajad "$1"-nimenke.
 Kävutajan nimiden oigedkirjutamine rippub kirjamiden registraspäi.
 Kodvgat teiden oigedkirjutamine, vai [[Special:UserLogin/signup|säkat uz\' registracii]].',
-'nosuchusershort'          => 'Ei ole kävutajad "<nowiki>$1</nowiki>"-nimenke.
+'nosuchusershort'          => 'Ei ole kävutajad "$1"-nimenke.
 Kodvgat teiden oigedkirjutamine.',
 'nouserspecified'          => 'Pidab kirjutada kävutajan nimi.',
 'login-userblocked'        => "Nece kävutai om blokiruidud. Tulend sistemha om kel'tud.",
@@ -656,7 +655,7 @@ vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktiruida nece lehtpol\']</span
 Tö voit [[Special:Search/{{PAGENAME}}|ectä necen lehtpolen nimi]] toižil lehtpolil,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ectä pojavid aigkirjoiden kirjutesid]</span>.',
 'userpage-userdoesnotexist'        => "Kävutajan nimed «<nowiki>$1</nowiki>» ei ole. Todeks-ik tahtoit säta vai toižetada nece lehtpol'?",
-'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>"-kävutai ei ole registriruidud.',
+'userpage-userdoesnotexist-view'   => '"$1"-kävutai ei ole registriruidud.',
 'blocked-notice-logextract'        => "Nece kävutai om nügüd' blokiruidud.
 Alemba om anttud jälgmäine kirjutuz blokiruindaiglehtesespäi:",
 'usercssyoucanpreview'             => "'''Nevond:''' Kävutagat «{{int:showpreview}}» 'Ozutada ezikacund'-kingitim, miše kodvda teiden uz' CSS edel mušthopanendad.",
@@ -1762,7 +1761,7 @@ Pid\'oitelend da joksii abu:
 Olgat hüväd, vahvištoitkat, miše tö todeks himoičet čuta se, el'gendat ičetoi tegendan jäl'gused, i miše teiden tegend sättub [[{{MediaWiki:Policy-url}}|saitan politikha]].",
 'actioncomplete'         => 'Tegend om loptud',
 'actionfailed'           => 'Tegend lopihe onetomašti',
-'deletedtext'            => '"<nowiki>$1</nowiki>" om čutud poiš.
+'deletedtext'            => '"$1" om čutud poiš.
 Kc. $2, miše lugeda tantoižiden čudandoiden nimikirjutez.',
 'deletedarticle'         => '"[[$1]]"-lehtpol\' om čutud poiš',
 'suppressedarticle'      => '"[[$1]]"-lehtpol\' om peittud',
@@ -1819,7 +1818,7 @@ Kc. [[Special:ProtectedPages|kaitud lehtpoliden nimikirjutez]].',
 'protect_expiry_invalid'      => 'Lopstrok om vär.',
 'protect_expiry_old'          => 'Lopstrokun aig om jo männu.',
 'protect-unchain-permissions' => 'Avaita kaičendan ližaparametrad',
-'protect-text'                => "Sab nähta da toižetada kaičendpind naku '''<nowiki>$1</nowiki>'''-lehtpolen täht.",
+'protect-text'                => "Sab nähta da toižetada kaičendpind naku '''$1'''-lehtpolen täht.",
 'protect-locked-blocked'      => "Teiden registracii om blokiruidud, i sikš tö et voigoi toižetada lehtpolen kaičendpindad.
 Naku oma nügüdläižed järgendused '''$1'''-lehtpolen täht.",
 'protect-locked-dblock'       => "Ei sa toižetada lehtpolen kaičendpindad, sikš miše päandmuzbaz om blokiruidud aigaks.
@@ -2290,14 +2289,6 @@ Sab lugeda sen augotižkod da kopiruida se.",
 Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjuteses.",
 'spamprotectionmatch' => "Meiden spamanfil'tr tedoti necil statjal mugošt: $1",
 'spambot_username'    => 'MediaWikid puhtastadas spamaspäi',
-
-# Info page
-'infosubtitle'   => 'Informacii lehtpoles',
-'numedits'       => "Redakcijoiden lugu (lehtpol'): $1",
-'numtalkedits'   => "Redakcijoiden lugu (lodulehtpol'): $1",
-'numwatchers'    => 'Kaclijoiden lugu: $1',
-'numauthors'     => "Erazvuiččiden avtoriden lugu (lehtpol'): $1",
-'numtalkauthors' => "Erazvuiččiden avtoriden lugu (lodulehtpol'): $1",
 
 # Skin names
 'skinname-standard'    => 'Klassine',

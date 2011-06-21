@@ -520,7 +520,6 @@ $messages = array(
 'history'           => 'Paginageschiedenis',
 'history_short'     => 'Geschiedenis',
 'updatedmarker'     => 'bewerkt sinds mijn laatste bezoek',
-'info_short'        => 'Informatie',
 'printableversion'  => 'Printervriendelijke versie',
 'permalink'         => 'Permanente verwijzing',
 'print'             => 'Afdrukken',
@@ -788,7 +787,7 @@ Zorg ervoor dat u cookies hebt ingeschakeld, herlaad deze pagina en probeer het 
 'nosuchuser'                 => 'De gebruiker "$1" bestaat niet.
 Gebruikersnamen zijn hoofdlettergevoelig.
 Controleer de schrijfwijze of [[Special:UserLogin/signup|maak een nieuwe gebruiker aan]].',
-'nosuchusershort'            => 'De gebruiker "<nowiki>$1</nowiki>" bestaat niet.
+'nosuchusershort'            => 'De gebruiker "$1" bestaat niet.
 Controleer de schrijfwijze.',
 'nouserspecified'            => 'U dient een gebruikersnaam op te geven.',
 'login-userblocked'          => 'Deze gebruiker is geblokkeerd.
@@ -1001,7 +1000,7 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
 'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "<nowiki>$1</nowiki>").
 Controleer of u deze pagina wel wilt aanmaken/bewerken.',
-'userpage-userdoesnotexist-view'   => 'De gebruiker "<nowiki>$1</nowiki>" is niet geregistreerd.',
+'userpage-userdoesnotexist-view'   => 'De gebruiker "$1" is niet geregistreerd.',
 'blocked-notice-logextract'        => 'Deze gebruiker is op het moment geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'clearyourcache'                   => "'''Let op! Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.'''
@@ -2388,7 +2387,7 @@ Feedback en andere assistentie:
 Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat de verwijdering overeenstemt met het [[{{MediaWiki:Policy-url}}|beleid]].',
 'actioncomplete'         => 'Handeling voltooid',
 'actionfailed'           => 'De handeling is mislukt.',
-'deletedtext'            => '"<nowiki>$1</nowiki>" is verwijderd.
+'deletedtext'            => '"$1" is verwijderd.
 Zie het $2 voor een overzicht van recente verwijderingen.',
 'deletedarticle'         => 'verwijderde "[[$1]]"',
 'suppressedarticle'      => 'heeft "[[$1]]" verborgen',
@@ -2448,7 +2447,7 @@ Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveil
 'protect_expiry_invalid'      => 'De aangegeven duur is ongeldig.',
 'protect_expiry_old'          => 'Vervaldatum is in het verleden.',
 'protect-unchain-permissions' => 'Overige beveiligingsinstellingen beschikbaar maken',
-'protect-text'                => "Hier kunt u het beveiligingsniveau voor de pagina '''<nowiki>$1</nowiki>''' bekijken en wijzigen.",
+'protect-text'                => "Hier kunt u het beveiligingsniveau voor de pagina '''$1''' bekijken en wijzigen.",
 'protect-locked-blocked'      => "U kunt het beveiligingsniveau niet wijzigen terwijl u geblokkeerd bent.
 Hier zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-locked-dblock'       => "Het beveiligingsniveau kan niet worden gewijzigd, omdat de database gesloten is.
@@ -2689,7 +2688,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 Het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'blocklog-showsuppresslog'        => 'Deze gebruiker is voorheen geblokkeerd geweest en er zijn (delen van) bewerkingen van deze gebruiker verborgen.
 Het verbergingslogboek wordt hieronder ter referentie weergegeven:',
-'blocklogentry'                   => 'blokkeerde "[[$1]]" voor de duur van $2 $3',
+'blocklogentry'                   => 'blokkeerde [[$1]] voor de duur van $2 $3',
 'reblock-logentry'                => 'heeft de instellingen voor de blokkade voor [[$1]] gewijzigd. Deze vervalt nu op $2 om $3',
 'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen.
 Automatische blokkeringen en deblokkeringen komen niet in het logboek.
@@ -3076,14 +3075,6 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'spambot_username'    => 'MediaWiki opschoning spam',
 'spam_reverting'      => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
 'spam_blanking'       => 'Alle wijzigingen met een verwijzing naar $1 worden verwijderd',
-
-# Info page
-'infosubtitle'   => 'Informatie voor pagina',
-'numedits'       => 'Aantal bewerkingen (pagina): $1',
-'numtalkedits'   => 'Aantal bewerkingen (overlegpagina): $1',
-'numwatchers'    => 'Aantal volgers: $1',
-'numauthors'     => 'Aantal auteurs (pagina): $1',
-'numtalkauthors' => 'Aantal verschilende auteurs (overlegpagina): $1',
 
 # Skin names
 'skinname-standard'    => 'Klassiek',

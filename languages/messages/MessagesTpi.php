@@ -170,7 +170,6 @@ $messages = array(
 'searcharticle'    => 'Go',
 'history'          => 'Ol senis long dispela pes',
 'history_short'    => 'Ol senis',
-'info_short'       => 'Infomesen',
 'print'            => 'Prinim',
 'edit'             => 'Senisim',
 'create'           => 'Kirapim',

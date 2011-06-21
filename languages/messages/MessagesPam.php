@@ -178,7 +178,6 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'history'           => 'Amlat ning bulung',
 'history_short'     => 'Amlat',
 'updatedmarker'     => 'mibayuan manibat inyang tauli kung migbisita',
-'info_short'        => 'Impormasiun',
 'printableversion'  => 'Kopiang malyaring i-print',
 'permalink'         => 'Suglung a permanenti',
 'print'             => 'I-print',
@@ -405,7 +404,7 @@ Pakisalangi mu la, at subukan mung pasibayu.',
 'loginsuccesstitle'          => 'Melaus ya ing pamag login',
 'loginsuccess'               => "'''Maka login na ka king {{SITENAME}} lalam ning lagyung \"\$1\".'''",
 'nosuchuser'                 => 'Alang talagamit a maku lagyung "$1". Pakalon me pangasulat o maglalang kang bayung account.',
-'nosuchusershort'            => 'Alang talagamit a maki lagyung "<nowiki>$1</nowiki>". Lon mu nung ustu ya pangasulat.',
+'nosuchusershort'            => 'Alang talagamit a maki lagyung "$1". Lon mu nung ustu ya pangasulat.',
 'nouserspecified'            => 'Kailangan mung mamieng lagyung talagamit (username).',
 'wrongpassword'              => 'E ustu ing binie mung password. Pakisulat meng pasibayu.',
 'wrongpasswordempty'         => 'Blangku ya ing binie mung password. Pakisulat meng pasibayu.',
@@ -1447,7 +1446,7 @@ Keni ka magparalang puna/komentu at maniad karagdagang saup:
 'confirmdeletetext'      => 'Buburan mu ne ing metung a bulung, kayabe na ing mabilug nang amlat/kasalesayan.
 Pakikumpirma nung ini pin ing buri mung gawan, nung aintindian mu ing eganaganang kabaldugan na niti, at nung daraptan mu iti agpang king [[{{MediaWiki:Policy-url}}|patakaran]].',
 'actioncomplete'         => 'Ing dapat mebuu ne.',
-'deletedtext'            => 'Mebura ya ing "<nowiki>$1</nowiki>".
+'deletedtext'            => 'Mebura ya ing "$1".
 Makasulat la king $2 deng pekabayung mebura.',
 'deletedarticle'         => 'mebura ne ing "[[$1]]"',
 'suppressedarticle'      => 'mesabat ya ing "[[$1]]"',
@@ -1504,7 +1503,7 @@ Lon me ing [[Special:ProtectedPages|tala ring bulung a protektadu/makakambil]] p
 'protectexpiry'               => 'Mayari ya keng:',
 'protect_expiry_invalid'      => 'E matatanggap ing panaun nung kapilan ya mayari.',
 'protect_expiry_old'          => 'Keta ya pang milabas ing panaun a miyari ya.',
-'protect-text'                => "Malyari meng lon at alilan ing sikan ning proteksiun (protection level) para king bulung keti '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Malyari meng lon at alilan ing sikan ning proteksiun (protection level) para king bulung keti '''$1'''.",
 'protect-locked-blocked'      => "E mo maliaring alilan deng sikan/lebel ning proteksiun kabang makasabat ka.
 Deni reng kasalungsungan a makatuldu (settings) para king bulung '''$1''':",
 'protect-locked-dblock'       => "E la maliaring alilan deng sikan/lebel ning proteksiun uling kasalungsungan yang makasara ing database. Deni reng pakatuldu (settings) para king bulung '''$1''':",
@@ -1953,14 +1952,6 @@ Mapaliaring ing sangkan metung yang suglung king karinan king kilual (link to an
 'spambot_username'    => 'pamaglinis na king spam ning MediaWiki',
 'spam_reverting'      => 'Misusubli ya king tauling bersion a yalang suglung king $1',
 'spam_blanking'       => 'Deng anggang pamagbayung maki suglung king $1, magblangku',
-
-# Info page
-'infosubtitle'   => 'Impormasiun king bulung',
-'numedits'       => 'Bilang da reng me-edit (bulung): $1',
-'numtalkedits'   => 'Bilang da reng me-edit (bulung pamisabi-sabi): $1',
-'numwatchers'    => 'Bilang da reng talabante: $1',
-'numauthors'     => 'Taganang bilang da reng talasulat (bulung): $1',
-'numtalkauthors' => 'Taganang bilang da reng talasulat (bulung pamisabi-sabi): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tatakan yang babanten (patrolled)',

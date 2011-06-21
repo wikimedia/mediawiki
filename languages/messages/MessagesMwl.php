@@ -228,7 +228,6 @@ $messages = array(
 'searcharticle'     => 'Bota',
 'history'           => 'Stórico de la Páigina',
 'history_short'     => 'Stórico',
-'info_short'        => 'Anformaçon',
 'printableversion'  => 'Berson pa Ampremir',
 'permalink'         => 'Lhigaçon pa siempre',
 'print'             => 'Ampremir',
@@ -394,7 +393,7 @@ Puode tener un ó mais carateres que nun puoden ser outelizados an títalos.',
 'nosuchuser'              => 'Num eisiste nanhun outelizador cul nome "$1".
 Ls nomes de outelizador son defrentes an lhetra grande ó pequeinha.
 Bei cumo screbiste, ó [[Special:UserLogin/signup|cria ua nuoba cuonta]].',
-'nosuchusershort'         => 'Nun eisiste nanhun outelizador cul nome "<nowiki>$1</nowiki>".
+'nosuchusershort'         => 'Nun eisiste nanhun outelizador cul nome "$1".
 Bei se l screbiste bien.',
 'nouserspecified'         => 'Tenes que dezir un nome de outelizador.',
 'wrongpassword'           => 'La palabra chabe ye ambálida.
@@ -897,7 +896,7 @@ Altaraçones feturas na tal páigina i páiginas de çcusson a eilha associadas 
 'confirmdeletetext'     => "Stás quaije a botar fuora para siempre ua páigina ó ua eimaige i todos ls sous stóricos.
 Por fabor, bei se ye esso que quieres fazer, que antendes las cunsequéncias i se esso stá d'acordo culas [[{{MediaWiki:Policy-url}}|políticas]].",
 'actioncomplete'        => 'Acion acabada',
-'deletedtext'           => '"<nowiki>$1</nowiki>" fue elhiminada.
+'deletedtext'           => '"$1" fue elhiminada.
 Consulte $2 para um registo de eliminações recentes.',
 'deletedarticle'        => 'botado pa la rue "[[$1]]"',
 'dellogpage'            => 'Registro de botado fuora',
@@ -918,7 +917,7 @@ Consulte $2 para um registo de eliminações recentes.',
 'protectexpiry'               => 'Data de balidade:',
 'protect_expiry_invalid'      => 'La data de balidade ye ambálido.',
 'protect_expiry_old'          => 'La data de balidade stá ne l passado.',
-'protect-text'                => "Tu eiqui puodes ber i demudar ls nibles de porteçon pa esta páigina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Tu eiqui puodes ber i demudar ls nibles de porteçon pa esta páigina '''$1'''.",
 'protect-locked-access'       => "La tue cuonta nun ten permissones pa demudar ls nibles de porteçon dua páigina.
 Esta ye la cunfiguraçon atual pa la páigina '''$1''':",
 'protect-cascadeon'           => 'Esta páigina ancontra-se portegida, ua beç que se ancontra ancluída {{PLURAL:$1|na páigina listada a seguir, portegida|nas páiginas listadas a seguir, portegidas}} cun la "porteçon porgressiba" atibada. Tu puodes demudar l nible de porteçon desta páigina, mas esso nun terá eifeito na "porteçon an cachon".',

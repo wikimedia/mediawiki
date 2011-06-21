@@ -204,7 +204,6 @@ $messages = array(
 'history'           => 'Истори',
 'history_short'     => 'Истори',
 'updatedmarker'     => 'эпĕ юлашки хут кĕнĕ хыççăн çĕнелнĕ',
-'info_short'        => 'Информаци',
 'printableversion'  => 'Пичетлемелли верси',
 'permalink'         => 'Яланхи вырăн',
 'print'             => 'Пичетле',
@@ -1112,13 +1111,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Spam protection
 'spambot_username' => 'MediaWiki спамран тасатни',
-
-# Info page
-'infosubtitle'   => 'Страница çинчен',
-'numedits'       => 'Улшăнусен шучĕ (статьясем): $1',
-'numtalkedits'   => 'Улшăнусен шучĕ (сӳтсе явмалли страница): $1',
-'numwatchers'    => 'Сăнакансен шучĕ: $1',
-'numtalkauthors' => 'Тĕрлĕ авторсен шучĕ (çӳтсе явмалли страница): $1',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Тĕрĕсленĕ тесе палăрт',

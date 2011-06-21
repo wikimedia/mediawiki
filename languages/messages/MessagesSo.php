@@ -195,7 +195,6 @@ $messages = array(
 'history'           => 'Taariikhda bogga',
 'history_short'     => 'Taariikh',
 'updatedmarker'     => 'Wax laga bedelay ilaa booqoshadaydii ugu dambeysay',
-'info_short'        => 'Warbixin',
 'printableversion'  => 'Nooc la daabicikaro',
 'permalink'         => 'Linkiga daaimka ah',
 'print'             => 'Daabac',
@@ -417,7 +416,7 @@ Waa in aad hubsataa in aad shiday cookies'kaaga, ku soo noqo boggaan markale neh
 'nosuchuser'                 => 'Ma jiro isticmaalo leh magacaan "$1".
 Magacyada way kala waaweyn yihiin.
 Sax hingaada, ama  [[Special:UserLogin/signup|samayso magac gudagale ah]].',
-'nosuchusershort'            => 'Majiro isticmaale leh magacaan "<nowiki>$1</nowiki>". Sax qoraalkaaga.',
+'nosuchusershort'            => 'Majiro isticmaale leh magacaan "$1". Sax qoraalkaaga.',
 'nouserspecified'            => 'Waa in aad magac gudagale heshaa.',
 'login-userblocked'          => 'Isticmaalahaan waa la mamnuucay. Lama ogolo in oo gudaha u galo',
 'wrongpassword'              => 'Ereyga sirta ah waa qalad. Fadlan iskuday markale.',
@@ -553,7 +552,7 @@ ama [{{fullurl:{{FULLPAGENAME}}|action=edit}} wax ka bedel boggaan]</span>.',
 Waxaa  [[Special:Search/{{PAGENAME}}|magaca boggaan ka raadin kartaa]] boggaga kale ama <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ka raadi gudagalayaasha kale]</span>.',
 'userpage-userdoesnotexist'        => 'Isticmaalahan  "<nowiki>$1</nowiki>" ma diiwaangashno.
 Fadlan fiiri hadii aad rabto in aad sameeyso/wax ka bedesho boggaan.',
-'userpage-userdoesnotexist-view'   => 'Isticmaalahaan  "<nowiki>$1</nowiki>" ma diiwaangashno.',
+'userpage-userdoesnotexist-view'   => 'Isticmaalahaan  "$1" ma diiwaangashno.',
 'blocked-notice-logextract'        => 'Isticmaalahaan hadda waa la mamnuucay.
 Mamnuucida ugu danbeyso in oo soo galo hoostaan ee ku qorantahay',
 'usercssyoucanpreview'             => "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso CSS'gaaga cusub intii aadan kaydin.",
@@ -1270,9 +1269,6 @@ Waxaa fiiri kartaa cadaadkiisa',
 'siteuser'         => '{{SITENAME}} isticmaalaha $1',
 'lastmodifiedatby' => 'Bogaan waxaa ugu dambeyntii wax laga bedelay $2, $1 kana bedelay $3.',
 'othercontribs'    => 'Waxay ku saleysantahay shaqada $1.',
-
-# Info page
-'numwatchers' => 'Tirada waardiyeyaasha: $1',
 
 # Patrol log
 'patrol-log-line' => 'waxa la calaamadeeyay  $1 ee  $2 waxaa la waardiyeeyay $3',

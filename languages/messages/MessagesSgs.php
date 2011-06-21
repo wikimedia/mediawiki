@@ -218,7 +218,6 @@ $messages = array(
 'history'           => 'Poslapė istuorėjė',
 'history_short'     => 'Istuorėjė',
 'updatedmarker'     => 'atnaujėnta nu paskotėnė mona apsėlonkīma',
-'info_short'        => 'Infuormacėjė',
 'printableversion'  => 'Versėjė spausdintė',
 'permalink'         => 'Nulatėnė nūruoda',
 'print'             => 'Spausdėntė',
@@ -1666,11 +1665,6 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'spambot_username'    => "''MediaWiki'' reklamu šalėnėms",
 'spam_reverting'      => 'Atkoriama i onkstesne versėje, katra nator nūruodu i $1',
 'spam_blanking'       => 'Vėsos versėjės toriejė nūruodu i $1. Ėšvaluoma',
-
-# Info page
-'numedits'     => 'Pakeitimu skaitlius (straipsnis): $1',
-'numtalkedits' => 'Pakeitėmu skaitlius (aptarėma poslapis): $1',
-'numwatchers'  => 'Keravuojantiu skaitlius: $1',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Žīmietė, kū patikrėnta',

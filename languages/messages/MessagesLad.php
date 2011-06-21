@@ -364,7 +364,6 @@ $messages = array(
 'history'           => 'La îstoria de la hoja',
 'history_short'     => 'Îstoria',
 'updatedmarker'     => 'trocado desde mi visita de alcavo',
-'info_short'        => 'Enformasyón',
 'printableversion'  => 'Vista apropiada para emprimir',
 'permalink'         => 'Atamiento mantenido',
 'print'             => 'Emprimir',
@@ -858,7 +857,7 @@ en forma turable, ansí como todo su istoria.
 Si puede ser, confirma que de verdad queres hazer esto, que estás entendiendo las
 resultados, i que lo estás haziendo de acorddo con las [[{{MediaWiki:Policy-url}}|Políticas]].',
 'actioncomplete'        => 'Aksion kompleta',
-'deletedtext'           => '"<nowiki>$1</nowiki>" fue efassado.
+'deletedtext'           => '"$1" fue efassado.
 Mira $2 para un registro de los efassados nuevos.',
 'deletedarticle'        => 'efassó «[[$1]]»',
 'dellogpage'            => 'Registro de efassados',
@@ -882,7 +881,7 @@ Mira $2 para un registro de los efassados nuevos.',
 'protectexpiry'               => 'Escapa:',
 'protect_expiry_invalid'      => 'Tiempo de escapación yerrado.',
 'protect_expiry_old'          => 'El tiempo de escapación está en el passado.',
-'protect-text'                => "Puedes ver i trocar el nivel de protección de la hoja '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Puedes ver i trocar el nivel de protección de la hoja '''$1'''.",
 'protect-locked-access'       => "Tu cuento no tiene permissión para trocar los niveles de protección de una hoja.
 A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'protect-cascadeon'           => 'Esta hoja está guardada en momento porque está incluida en {{PLURAL:$1|la hoja venidera|las hojas venideras}}, que tienen activada la opción de protección en grados. Puedes trocar el nivel de protección de esta hoja, ma no va afectar a la protección en grados.',

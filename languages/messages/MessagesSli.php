@@ -339,7 +339,7 @@ Vergiss nä, denne [[Special:Preferences|{{SITENAME}}-Eistellunga]] oazupoassa.'
 'loginsuccess'               => 'Du biest jitz ols „$1“ bei {{SITENAME}} oagemeldet.',
 'nosuchuser'                 => 'Dar Nutzernoame „$1“ existiert ne.
 Ieberpriefe de Schreibweise (Gruß-/Kleenschreibung beachta) oder [[Special:UserLogin/signup|melde diech ols neuer Benutzer oa]].',
-'nosuchusershort'            => 'Dar Nutzernoame „<nowiki>$1</nowiki>“ existiert ne. Bitte ieberpriefe de Schreibweise.',
+'nosuchusershort'            => 'Dar Nutzernoame „$1“ existiert ne. Bitte ieberpriefe de Schreibweise.',
 'nouserspecified'            => 'Bitte gieb enn Benutzernoamen oa.',
 'wrongpassword'              => 'Doas Passwurt ies foalsch (oder fehlt). Bitte versuche is erneut.',
 'wrongpasswordempty'         => 'Is wurde kei Poaßwurt eigegahn. Bitte versuchs nuch amool.',
@@ -479,7 +479,7 @@ Du koast diesen Tittel uffa andern Seyta [[Special:Search/{{PAGENAME}}|sucha]],
 Du koast diesen Tittel uff dann andern Seyta [[Special:Search/{{PAGENAME}}|sicha]]
 oder ei dann zugehieriga <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbichern sicha].</span>',
 'userpage-userdoesnotexist'        => 'Doas Nutzerkonto „<nowiki>$1</nowiki>“ ies ne vurhanda. Bitte priefe, ob du diese Seyte wirklich erstalla/beoarbeeta wielst.',
-'userpage-userdoesnotexist-view'   => 'Nutzerkonto „<nowiki>$1</nowiki>“ existiert ne.',
+'userpage-userdoesnotexist-view'   => 'Nutzerkonto „$1“ existiert ne.',
 'clearyourcache'                   => "'''Hinweis - Laare noach damm Speichern dann Browser-Cache, im de Änderungen sahn zu kinna:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und uff ''Aktualisiera'' klicka oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) dricka; '''Konqueror: '''Uff ''Aktualisiera'' klicka oder ''F5'' dricka; '''Opera:''' Cache under ''Extras → Eenstellunga'' laara; '''Internet Explorer:''' ''Strg-F5'' dricka oder ''Strg'' gedrickt halta und dabei ''Aktualisiera'' oaklicka.",
 'usercssyoucanpreview'             => "'''Tipp:''' Benutze dann Vurschau-Button, im dei neues CSS vur damm Speichern zu testa.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benutze dann Vurschau-Button, im dei neues JS vur damm Speichern zu testa.",
@@ -1404,7 +1404,7 @@ Rickmeldungen und wettere Helfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 'confirmdeletetext'      => 'Du best dabei, eene Seyte miet olla zugeheeriga ältera Versiona zu läscha. Bite bestätige dazu, dass du dir dar Konsequenza bewusst best, on dass du ei Iebereinstimmung miet dan [[{{MediaWiki:Policy-url}}|Richtlinia]] handelst.',
 'actioncomplete'         => 'Aksjonn beendet',
 'actionfailed'           => 'Aksjonn fahlgeschlaga',
-'deletedtext'            => '„<nowiki>$1</nowiki>“ wurde geläscht. Eim $2 findest du eene Liste dar letzta Läschunga.',
+'deletedtext'            => '„$1“ wurde geläscht. Eim $2 findest du eene Liste dar letzta Läschunga.',
 'deletedarticle'         => 'hoot „[[$1]]“ geläscht',
 'suppressedarticle'      => 'veränderte de Sechtbarkeet vu „[[$1]]“',
 'dellogpage'             => 'Läsch-Logbuch',
@@ -1883,14 +1883,6 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 'spamprotectiontext'  => "De Seyte, de du speichern wielst, wurde vum Spamschutzfilter blockiert. Doas leit woahrscheinlich oa an'm Link uff anne externe Seyte.",
 'spamprotectionmatch' => "'''Dar folgende Text wurde vum Spamfilter gefunda: ''$1'''''",
 'spam_blanking'       => 'Olle Versionen enthielta Links zu $1, bereinigt.',
-
-# Info page
-'infosubtitle'   => 'Seytainformation',
-'numedits'       => 'Oazoahl dar Seyta änderunga: $1',
-'numtalkedits'   => 'Oazoahl dar Dischkuränderunga: $1',
-'numwatchers'    => 'Oazoahl dar Beobachter: $1',
-'numauthors'     => 'Oazoahl dar Autoren: $1',
-'numtalkauthors' => 'Oazoahl dar Dischkurteelnahmer: $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Ols kontrolliert markiern',

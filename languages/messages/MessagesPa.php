@@ -179,7 +179,6 @@ $messages = array(
 'history'           => 'ਸਫ਼ਾ ਅਤੀਤ',
 'history_short'     => 'ਅਤੀਤ',
 'updatedmarker'     => 'ਮੇਰੇ ਆਖਰੀ ਖੋਲ੍ਹਣ ਬਾਦ ਅੱਪਡੇਟ',
-'info_short'        => 'ਜਾਣਕਾਰੀ',
 'printableversion'  => 'ਪਰਿੰਟਯੋਗ ਵਰਜਨ',
 'permalink'         => 'ਪੱਕਾ ਲਿੰਕ',
 'print'             => 'ਪਰਿੰਟ ਕਰੋ',
@@ -336,7 +335,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'loginsuccesstitle'          => 'ਲਾਗਇਨ ਸਫ਼ਲ ਰਿਹਾ',
 'loginsuccess'               => "'''ਤੁਸੀਂ {{SITENAME}} ਉੱਤੇ \"\$1\" ਵਾਂਗ ਲਾਗਇਨ ਕਰ ਚੁੱਕੇ ਹੋ।'''",
 'nosuchuser'                 => '"$1" ਨਾਂ ਨਾਲ ਕੋਈ ਯੂਜ਼ਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸ਼ਬਦ ਧਿਆਨ ਨਾਲ ਚੈੱਕ ਕਰੋ ਜਾਂ ਨਵਾਂ ਅਕਾਊਂਟ ਬਣਾਓ।',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" ਨਾਂ ਨਾਲ ਕੋਈ ਵੀ ਯੂਜ਼ਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸ਼ਬਦ ਧਿਆਨ ਨਾਲ ਚੈੱਕ ਕਰੋ।',
+'nosuchusershort'            => '"$1" ਨਾਂ ਨਾਲ ਕੋਈ ਵੀ ਯੂਜ਼ਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸ਼ਬਦ ਧਿਆਨ ਨਾਲ ਚੈੱਕ ਕਰੋ।',
 'nouserspecified'            => 'ਤੁਹਾਨੂੰ ਇੱਕ ਯੂਜ਼ਰ-ਨਾਂ ਦੇਣਾ ਪਵੇਗਾ।',
 'wrongpassword'              => 'ਗਲਤ ਪਾਸਵਰਡ ਦਿੱਤਾ ਹੈ। ਮੁੜ-ਟਰਾਈ ਕਰੋ ਜੀ।',
 'wrongpasswordempty'         => 'ਖਾਲੀ ਪਾਸਵਰਡ ਦਿੱਤਾ ਹੈ। ਮੁੜ-ਟਰਾਈ ਕਰੋ ਜੀ।',
@@ -1021,9 +1020,6 @@ to upload files.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spam ਸੁਰੱਖਿਆ ਫਿਲਟਰ',
-
-# Info page
-'infosubtitle' => 'ਸਫ਼ੇ ਦੀ ਜਾਣਕਾਰੀ',
 
 # Skin names
 'skinname-standard' => 'ਕਲਾਸਿਕ',

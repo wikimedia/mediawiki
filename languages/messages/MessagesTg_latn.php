@@ -197,7 +197,6 @@ $messages = array(
 'history'           => "Ta'rix",
 'history_short'     => "Ta'rix",
 'updatedmarker'     => 'barūzşuda az rūzi oxirin taşrifam',
-'info_short'        => 'Ittiloot',
 'printableversion'  => 'Nusxai copī',
 'permalink'         => 'Pajvandi doimī',
 'print'             => 'Cop',
@@ -416,7 +415,7 @@ Nomi digareroro intixob kuned.',
 'loginsuccess'            => "'''Şumo aknun ba Vikipedia hamcun \"\$1\". vurud karded'''",
 'nosuchuser'              => 'Korbare bo nomi "$1" vuçud nadorad.
 Amali nomro barrasi kuned, jo [[Special:UserLogin/signup|hisobi çadidero eçod kuned]].',
-'nosuchusershort'         => 'Jagon korbare bo nomi "<nowiki>$1</nowiki>" vuçud nadorad. Tarzi navişti nomro sançed.',
+'nosuchusershort'         => 'Jagon korbare bo nomi "$1" vuçud nadorad. Tarzi navişti nomro sançed.',
 'nouserspecified'         => 'Şumo bojad jak nomi korbarī muşaxxas kuned.',
 'wrongpassword'           => 'Kalimai uburi nodurust doxil karda şud. Bori digar sançed.',
 'wrongpasswordempty'      => 'Kalimai uburi doxil şuda xolī ast. Bori digar sançed.',
@@ -1343,7 +1342,7 @@ Agar şumo dertar az fehristi nazarotaton in sahifaro hazv kardan xohed, dar men
 'delete-legend'          => 'Hazf',
 'confirmdeletetext'      => "Şumo dar holi hazf kardani jak sahifa jo akse az pojgoh doda hamroh bo tamomi ta'rixi on hasted. Lutfan in amalro tasdiq kuned va itminon hosil kuned, ki oqibati in korro medoned va in amalro mutobiqi [[{{MediaWiki:Policy-url}}|sijosati hazf]] ançom medihed.",
 'actioncomplete'         => 'Amal içro şud',
-'deletedtext'            => '"<nowiki>$1</nowiki>" hazf şudaast.
+'deletedtext'            => '"$1" hazf şudaast.
 Nigared ba $2 baroi guzorişi hazfi oxirin.',
 'deletedarticle'         => 'hazfşuda "[[$1]]"',
 'suppressedarticle'      => '"[[$1]]"-ro mavquf kard',
@@ -1386,7 +1385,7 @@ Nigared ba $2 baroi guzorişi hazfi oxirin.',
 'protectexpiry'               => 'Zamoni saromadan:',
 'protect_expiry_invalid'      => "Zamoni saromadan nomū'tabar ast.",
 'protect_expiry_old'          => 'Zamoni saromadan dar guzaşta ast.',
-'protect-text'                => "Şumo inço sathi muhofizati sahifai '''<nowiki>$1</nowiki>''' metavoned nigared jo taƣjir dihed",
+'protect-text'                => "Şumo inço sathi muhofizati sahifai '''$1''' metavoned nigared jo taƣjir dihed",
 'protect-locked-blocked'      => "Şumo muddate, ki dastarsiaton qat' ast nametavoned sathi hifzi sahifahoro tagjir dihed. Tanzimoti fe'liji sahifai '''$1''' ba in qaror ast:",
 'protect-locked-dblock'       => "Az sababi qufl şudani pojgohi doda, imkoni taƣjiri sathi hifzi sahifa vuçud nadorad.
 Tanzimoti fe'liji sahifai '''$1''' ba in qaror ast:",
@@ -1830,14 +1829,6 @@ Ehtimolan in az sababi dar bar giriftani pajvandi beruna ba somonai xoriçiji ba
 'spambot_username'    => 'Spamtozakuni MediaViki',
 'spam_reverting'      => 'Vogardoni ba oxirin nusxae, ki pajvande ba $1 nadorad',
 'spam_blanking'       => 'Hamai nusxahoi pajvandho $1 doştan, dar holi xolī kardan',
-
-# Info page
-'infosubtitle'   => 'Ittiloot dar mavridi sahifa',
-'numedits'       => "Te'dodi viroişho (sahifa): $1",
-'numtalkedits'   => "Te'dodi viroişho (sahifai bahs): $1",
-'numwatchers'    => 'Şumorai pajgirikunandagon: $1',
-'numauthors'     => "Te'dodi muallifoni muxtalif (maqola): $1",
-'numtalkauthors' => "Te'dodi muallifoni muxtalif (sahifai bahs): $1",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Ba unvoni barrasişuda alomat bizan',

@@ -164,7 +164,6 @@ $messages = array(
 'searcharticle'     => 'Күүcедири',
 'history'           => 'Арынның Төөгүзү',
 'history_short'     => 'Төөгү',
-'info_short'        => 'Медеглел',
 'printableversion'  => 'Саазынга үндүрерин көөрү',
 'permalink'         => 'Үргүлчү холбаа',
 'print'             => 'Саазынга үндүрер',

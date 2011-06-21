@@ -169,7 +169,6 @@ $messages = array(
 'history'           => 'ಪುಟೊತ ಚರಿತ್ರೆ',
 'history_short'     => 'ಇತಿಹಾಸ',
 'updatedmarker'     => 'ಎನ್ನ ಅಕೇರಿದ ವೀಕ್ಷಣೆ ಡ್ದ್ ಬುಕ್ಕ ಆಯಿನ ಬದಲಾವಣೆಲು',
-'info_short'        => 'ಮಾಹಿತಿ',
 'printableversion'  => 'ಪ್ರಿಂಟ್ ಆವೃತ್ತಿ',
 'permalink'         => 'ಸ್ಥಿರ ಸಂಪರ್ಕ',
 'print'             => 'ಪ್ರಿ೦ಟ್ ಮನ್ಪುಲೆ',

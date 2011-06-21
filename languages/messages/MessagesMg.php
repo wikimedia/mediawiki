@@ -402,7 +402,6 @@ $messages = array(
 'history'           => "Tantaran'ny pejy",
 'history_short'     => 'Tantara',
 'updatedmarker'     => 'niova hatry ny tsidiko farany',
-'info_short'        => 'Fampahalalana',
 'printableversion'  => 'Ny votoatiny azo atonta printy',
 'permalink'         => 'Rohy maharitra',
 'print'             => 'Avoaka an-taratasy',
@@ -660,7 +659,7 @@ Marino tsara raha mahazo mametraka cookie ao amin'ny kompioteranao ny sehata, di
 'loginsuccesstitle'          => 'Tafiditra soa aman-tsara',
 'loginsuccess'               => "'''Tafiditra amin'ny {{SITENAME}} ianao ry \"\$1\".'''",
 'nosuchuser'                 => 'Tsy misy mpikambana manana izany solonanarana "$1" izany. Hamarino ny tsipelina na manokafa kaonty vaovao.',
-'nosuchusershort'            => 'Tsy misy mpikambana hoe "<nowiki>$1</nowiki>". Hamarino ny tsipelina.',
+'nosuchusershort'            => 'Tsy misy mpikambana hoe "$1". Hamarino ny tsipelina.',
 'nouserspecified'            => 'Tsy maintsy mampiditra solonanarana ianao.',
 'login-userblocked'          => 'Voasakana io mpikambana io. Fidirana tsy nahazoan-dalana.',
 'wrongpassword'              => 'Diso ny tenimiafina. Manandrama tenimiafina hafa azafady.',
@@ -850,7 +849,7 @@ Azonao atao ny [[Special:Search/{{PAGENAME}}||Tadiavo ny momba ny {{PAGENAME}}]]
 
 Azonao atao ny [[Special:Search/{{PAGENAME}}|Mikaroka momba ny lohatenin'io pejy io]] ao amin'ny pejy hafa, mitady <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} anatin'ny laogy mikasika azy]</span>",
 'userpage-userdoesnotexist'        => 'Mbola tsy nisoratra anarana ato i « <nowiki>$1</nowiki> ». Marino raha tena hamorona ity pejy ity ianao.',
-'userpage-userdoesnotexist-view'   => 'Tsy nisoratra anarana ato i « <nowiki>$1</nowiki> ».',
+'userpage-userdoesnotexist-view'   => 'Tsy nisoratra anarana ato i « $1 ».',
 'blocked-notice-logextract'        => "Ankehitriny ity mpikambana ity dia voasakana.
 Ny fampidirana faran'ny laogin'ny fanakanam-pikambana dia naseho teo ambany ho an'ny fampahalalàna :",
 'clearyourcache'                   => "'''Fanamarihana:''' Aorian'ny fanovana, dia mila mamafa ny cache ianao vao mahita ny fiovana.
@@ -2112,7 +2111,7 @@ fantatrao ny vokany ary mahalala ianao fa tsy mifanipaka amin'ny
 [[{{MediaWiki:Policy-url}}|fepetra]] izao ataonao izany.",
 'actioncomplete'         => 'Vita ny asa',
 'actionfailed'           => 'Tsy nandeha ny tao',
-'deletedtext'            => 'Voafafa i "<nowiki>$1</nowiki>".
+'deletedtext'            => 'Voafafa i "$1".
 Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
 'deletedarticle'         => 'namafa « [[$1]] »',
 'suppressedarticle'      => 'namafa « [[$1]] »',
@@ -2167,7 +2166,7 @@ miverina any amin'ny santiôna farany nataon'i $2.",
 'protect_expiry_invalid'      => 'Tsy mety ilay daty fialàna.',
 'protect_expiry_old'          => 'Efa lasa ilay daty fialàna.',
 'protect-unchain-permissions' => 'Aitatra ny fomba fiarovana',
-'protect-text'                => "Afaka jerenao na ovainao eto ny politikam-piarovana ny pejy '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Afaka jerenao na ovainao eto ny politikam-piarovana ny pejy '''$1'''.",
 'protect-locked-blocked'      => "Tsy afaka ovanao ny sokajy ny fiarovana raha tsy mahazo manoratra ianao.
 Ity ny sokajy ny pejy '''$1''' :",
 'protect-locked-dblock'       => "Tsy afaka solona ny sokajy ny fiarovana satria ny voatohana ny fotom-pandraisana.
@@ -2712,14 +2711,6 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'spambot_username'    => "Fanadiovana ny spam amin'i MediaWiki.",
 'spam_reverting'      => "Famerenana an'ilay santiôna farany tsy misy ny rohy mankany amin'ny $1",
 'spam_blanking'       => "Voafotsy ny santiôna misy ny rohy mankany amin'ny $1",
-
-# Info page
-'infosubtitle'   => "Fampahalalàna ho an'ilay pejy",
-'numedits'       => "Isan'ny fanovana (lahatsoratra): $1",
-'numtalkedits'   => "Isan'ny resaka (pejin-dresaka): $1",
-'numwatchers'    => "Isan'ny mpikambana manaraka ity pejy ity : $1",
-'numauthors'     => "Isan'ny mpanova samihafa : $1",
-'numtalkauthors' => "Isan'ny mpiresaka (fa tsy ny resaka) (pejin-dresaka): $1",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marihana ho voamarina',

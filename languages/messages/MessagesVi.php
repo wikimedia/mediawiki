@@ -474,7 +474,6 @@ $messages = array(
 'history'           => 'Lịch sử trang',
 'history_short'     => 'Lịch sử',
 'updatedmarker'     => 'được cập nhật kể từ lần xem cuối',
-'info_short'        => 'Thông tin',
 'printableversion'  => 'Bản để in',
 'permalink'         => 'Liên kết thường trực',
 'print'             => 'In',
@@ -728,7 +727,7 @@ Hãy chắc chắn bạn đã bật lên cookie, làm mới trang này, và th�
 'nosuchuser'                 => 'Không có thành viên nào có tên “$1”.
 Tên người dùng có phân biệt chữ hoa chữ thường.
 Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài khoản mới]].',
-'nosuchusershort'            => 'Không có thành viên nào có tên “<nowiki>$1</nowiki>”. Xin hãy kiểm tra lại chính tả.',
+'nosuchusershort'            => 'Không có thành viên nào có tên “$1”. Xin hãy kiểm tra lại chính tả.',
 'nouserspecified'            => 'Bạn phải đưa ra tên đăng ký.',
 'login-userblocked'          => 'Thành viên này đã bị cấm. Không cho phép đăng nhập.',
 'wrongpassword'              => 'Mật khẩu sai. Xin vui lòng nhập lại.',
@@ -922,7 +921,7 @@ hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác,
 hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>.',
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “<nowiki>$1</nowiki>” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
-'userpage-userdoesnotexist-view'   => 'Tài khoản “<nowiki>$1</nowiki>” chưa được đăng ký.',
+'userpage-userdoesnotexist-view'   => 'Tài khoản “$1” chưa được đăng ký.',
 'blocked-notice-logextract'        => 'Người dùng này hiện đang bị cấm sửa đổi. Nhật trình cấm gần nhất được ghi ở dưới để tiện theo dõi:',
 'clearyourcache'                   => "'''Ghi chú&nbsp;– Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (<span title=\"Command\">⌘</span>''R'' trên Macintosh); '''Konqueror:''' nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản CSS của bạn trước khi lưu trang.",
@@ -2261,7 +2260,7 @@ Phản hồi và cần sự hỗ trợ:
 Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng đúng [[{{MediaWiki:Policy-url}}|quy định]].',
 'actioncomplete'         => 'Đã thực hiện xong',
 'actionfailed'           => 'Tác động bị thất bại',
-'deletedtext'            => 'Đã xóa “<nowiki>$1</nowiki>”. Xem danh sách các xóa bỏ gần nhất tại $2.',
+'deletedtext'            => 'Đã xóa “$1”. Xem danh sách các xóa bỏ gần nhất tại $2.',
 'deletedarticle'         => 'đã xóa “[[$1]]”',
 'suppressedarticle'      => 'đã giấu "[[$1]]"',
 'dellogpage'             => 'Nhật trình xóa',
@@ -2317,7 +2316,7 @@ quay về phiên bản cuối của $2.',
 'protect_expiry_invalid'      => 'Thời hạn không hợp lệ.',
 'protect_expiry_old'          => 'Thời hạn đã qua.',
 'protect-unchain-permissions' => 'Thay đổi các tùy chọn khóa trang khác',
-'protect-text'                => "Bạn có thể xem và đổi kiểu khóa trang '''<nowiki>$1</nowiki>''' ở đây.",
+'protect-text'                => "Bạn có thể xem và đổi kiểu khóa trang '''$1''' ở đây.",
 'protect-locked-blocked'      => "Bạn không thể đổi mức khóa khi bị cấm. Đây là trạng thái
 hiện tại của trang '''$1''':",
 'protect-locked-dblock'       => "Hiện không thể đổi mức khóa do cơ sở dữ liệu bị khóa.
@@ -2920,14 +2919,6 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'spambot_username'    => 'Bộ dọn dẹp thư rác MediaWiki',
 'spam_reverting'      => 'Lùi lại đến phiên bản cuối không chứa liên kết đến $1',
 'spam_blanking'       => 'Tất cả các phiên bản có liên kết đến $1, đang tẩy trống',
-
-# Info page
-'infosubtitle'   => 'Thông tin về trang',
-'numedits'       => 'Số lần sửa đổi (trang nội dung): $1',
-'numtalkedits'   => 'Số lần sửa đổi (trang thảo luận): $1',
-'numwatchers'    => 'Số người theo dõi: $1',
-'numauthors'     => 'Số người sửa đổi khác nhau (trang nội dung): $1',
-'numtalkauthors' => 'Số người sửa đổi khác nhau (trang thảo luận): $1',
 
 # Skin names
 'skinname-standard'    => 'Cổ điển',

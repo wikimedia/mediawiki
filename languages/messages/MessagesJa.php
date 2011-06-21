@@ -536,7 +536,6 @@ $messages = array(
 'history'           => 'ページの履歴',
 'history_short'     => '履歴',
 'updatedmarker'     => '最後の訪問から更新されています',
-'info_short'        => '情報',
 'printableversion'  => '印刷用バージョン',
 'permalink'         => 'この版への固定リンク',
 'print'             => '印刷',
@@ -799,7 +798,7 @@ $2',
 'nosuchuser'                 => '「$1」という名前の利用者は見当たりません。
 利用者名では大文字と小文字を区別します。
 綴りが正しいことを確認するか、[[Special:UserLogin/signup|新たにアカウントを作成してください]]。',
-'nosuchusershort'            => '「<nowiki>$1</nowiki>」という利用者は見当たりません。
+'nosuchusershort'            => '「$1」という利用者は見当たりません。
 綴りが正しいことを再度確認してください。',
 'nouserspecified'            => '利用者名を指定してください。',
 'login-userblocked'          => 'この利用者はブロックされています。ログインは拒否されます。',
@@ -987,7 +986,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'noarticletext-nopermission'       => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]</span>ことができます。',
 'userpage-userdoesnotexist'        => '「<nowiki>$1</nowiki>」という名前のアカウントは登録されていません。
 このページを編集することが適切かどうか確認してください。',
-'userpage-userdoesnotexist-view'   => '利用者アカウント「<nowiki>$1</nowiki>」は登録されていません。',
+'userpage-userdoesnotexist-view'   => '利用者アカウント「$1」は登録されていません。',
 'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
 参考のために最新のブロック記録を以下に表示します。',
 'clearyourcache'                   => "'''注意：'''保存した後、変更を確認するには、ブラウザのキャッシュをクリアする必要があります。'''
@@ -2364,7 +2363,7 @@ $UNWATCHURL
 本当にこの操作を行いたいか、操作の結果を理解しているか、およびこの操作が[[{{MediaWiki:Policy-url}}|方針]]に従っているかどうか、確認をしてください。',
 'actioncomplete'         => '完了しました',
 'actionfailed'           => '操作失敗',
-'deletedtext'            => '「<nowiki>$1</nowiki>」は削除されました。
+'deletedtext'            => '「$1」は削除されました。
 最近の削除に関しては、$2を参照してください。',
 'deletedarticle'         => '「[[$1]]」を削除しました',
 'suppressedarticle'      => '「[[$1]]」を隠蔽しました',
@@ -2425,7 +2424,7 @@ $2による最後の版へ変更されました。',
 'protect_expiry_invalid'      => '有効期間が不正です。',
 'protect_expiry_old'          => '有効期限が過去の時刻です。',
 'protect-unchain-permissions' => '追加保護オプションをロック解除',
-'protect-text'                => "ページ「'''<nowiki>$1</nowiki>'''」に対する保護レベルの表示と操作ができます。",
+'protect-text'                => "ページ「'''$1'''」に対する保護レベルの表示と操作ができます。",
 'protect-locked-blocked'      => "ブロック中は、保護レベルを変更できません。
 ページ'''$1'''の現在の状態は以下の通りです：",
 'protect-locked-dblock'       => "使用中のでデータベースが現在ロックされているため、保護レベルを変更できません。
@@ -3044,14 +3043,6 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'spambot_username'    => 'MediaWikiスパム除去',
 'spam_reverting'      => '$1へのリンクを含まない最新の版に差し戻し',
 'spam_blanking'       => 'すべての版が$1へのリンクを含んでいます。白紙化します。',
-
-# Info page
-'infosubtitle'   => 'ページ情報',
-'numedits'       => '編集数（ページ）：$1',
-'numtalkedits'   => '編集数（議論ページ）：$1',
-'numwatchers'    => 'ウォッチしている利用者数：$1',
-'numauthors'     => '個別の著者数（ページ）：$1',
-'numtalkauthors' => '個別の著者数（議論ページ）：$1',
 
 # Skin names
 'skinname-standard'    => 'クラシック',

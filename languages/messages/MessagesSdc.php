@@ -265,7 +265,6 @@ Li sighenti cullegamenti so in linga ingrese:
 'history'           => 'Versioni prizzidenti',
 'history_short'     => 'Cronologia',
 'updatedmarker'     => "mudìfiggadda di la me' ulthima vìsita",
-'info_short'        => 'Infuimmazioni',
 'printableversion'  => 'Versioni sthampabiri',
 'permalink'         => 'Cullegamentu peimmanenti',
 'print'             => 'Sthampa',
@@ -481,7 +480,7 @@ La registhrazioni è isthadda criadda currettamenti. No dimintiggà di passunari
 'loginsuccesstitle'          => 'Intradda effettuadda',
 'loginsuccess'               => "'''Lu cullegamentu a lu server di {{SITENAME}} cu l'innòmu utenti \"\$1\" è attibu.'''",
 'nosuchuser'                 => 'Nò è registhraddu caschunu utenti d\'innòmu "$1". Verifiggà l\'innòmu insiriddu o crià una noba registhrazioni.',
-'nosuchusershort'            => 'Nò è registhraddu caschunu utenti d\'innòmu "<nowiki>$1</nowiki>". Verifiggà l\'innòmu insiriddu.',
+'nosuchusershort'            => 'Nò è registhraddu caschunu utenti d\'innòmu "$1". Verifiggà l\'innòmu insiriddu.',
 'nouserspecified'            => "È nezzessàriu ippizzificà un'innòmu utenti.",
 'wrongpassword'              => "La paràura d'órdhini insiridda nò è curretta. Riprubà.",
 'wrongpasswordempty'         => "La paràura d'órdhini insiridda è biodda. Riprubà.",
@@ -1385,7 +1384,7 @@ Pa dì cosa ni pensi e dumandà assisthènzia:
 'confirmdeletetext'      => "Sei canzillendi pa sempri da la bancati una pàgina o un'immàgina, umpari a la cronologia d'edda.
 Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguènzi di l'azioni tóia e ch'edda è cunfòimmi a li [[{{MediaWiki:Policy-url}}|lìni ghia]].",
 'actioncomplete'         => 'Azioni cumpritadda',
-'deletedtext'            => 'La pàgina "<nowiki>$1</nowiki>" è isthadda canzilladda. Cunsultha lu $2 pa un\'erencu di li pàgini canzilladdi da poggu tempu.',
+'deletedtext'            => 'La pàgina "$1" è isthadda canzilladda. Cunsultha lu $2 pa un\'erencu di li pàgini canzilladdi da poggu tempu.',
 'deletedarticle'         => 'ha canzilladdu "[[$1]]"',
 'suppressedarticle'      => 'eliminaddu "[[$1]]"',
 'dellogpage'             => 'Canzilladduri',
@@ -1426,7 +1425,7 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'protectexpiry'               => 'Ischadènzia:',
 'protect_expiry_invalid'      => 'Ischadènzia invàridda.',
 'protect_expiry_old'          => 'Ischadènzia già passadda.',
-'protect-text'                => "Chisthu mòdulu cunsenti di vidé e mudìfiggà lu libellu di prutizioni pa la pàgina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Chisthu mòdulu cunsenti di vidé e mudìfiggà lu libellu di prutizioni pa la pàgina '''$1'''.",
 'protect-locked-blocked'      => "Nò è pussìbiri mudìfiggà i libelli di prutizioni cand'è attibu un broccu. L'impusthazioni currenti pa la pàgina so '''$1''':",
 'protect-locked-access'       => "Nò si diponi di li primmissi nezzessàri pa mudìfiggà lu libellu di prutizioni di la pàgina.
 L'impusthazioni currenti pa la pàgina so '''$1''':",
@@ -1812,14 +1811,6 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'spambot_username'    => 'MediaWiki buggadda spam',
 'spam_reverting'      => "Turradda a l'ulthima versioni chena cullegamenti a $1",
 'spam_blanking'       => 'Pàgina ibbiuddadda, tutti li ribisioni abìani cullegamenti a $1',
-
-# Info page
-'infosubtitle'   => 'Infuimmazioni pa la pàgina',
-'numedits'       => 'Nùmaru di mudìfigghi (pàgina): $1',
-'numtalkedits'   => 'Nùmaru di mudìfigghi (pàgina di dischussioni): $1',
-'numwatchers'    => "Nùmaru d'osseivvadori: $1",
-'numauthors'     => "Nùmaru d'autori disthinti (pàgina): $1",
-'numtalkauthors' => "Nùmaru d'autori disthinti (pàgina di dischussioni): $1",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Signa la mudìffiga cumenti verifiggadda',

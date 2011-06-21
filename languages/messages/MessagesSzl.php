@@ -199,7 +199,6 @@ $messages = array(
 'history'           => 'Gyszichta zajty',
 'history_short'     => 'Gyszichta',
 'updatedmarker'     => 'pomjyńane uod uostatńij wizyty',
-'info_short'        => 'Informacyjo',
 'printableversion'  => 'Wersyjo do durku',
 'permalink'         => 'Bezpostrzedńi link',
 'print'             => 'Durkuj',
@@ -421,7 +420,7 @@ Uotwarli my sam lo Ćebje kůnto.
 'loginsuccess'               => "'''Terozki ježeś zalůgowany do {{SITENAME}} jako \"\$1\".'''",
 'nosuchuser'                 => 'Ńy ma sam užytkowńika uo mjańe "$1".
 Sprowdź šrajbůng, abo [[Special:UserLogin/signup|utwůř nowe kůnto]].',
-'nosuchusershort'            => 'Ńy mo sam užytkowńika uo mjańe "<nowiki>$1</nowiki>".',
+'nosuchusershort'            => 'Ńy mo sam užytkowńika uo mjańe "$1".',
 'nouserspecified'            => 'Podej mjano užytkowńika.',
 'wrongpassword'              => 'Hasuo kere žeś naškryflou je felerne. Poprůbůj naškryflać je ješče roz.',
 'wrongpasswordempty'         => 'Hasuo kere žeś podou je puste. Naškryflej je ješče roz.',
@@ -1554,7 +1553,7 @@ Pomoc:
 'historywarning'         => 'Pozor! Ta zajta kerům chceš wyćepnůńć mo historjo:',
 'confirmdeletetext'      => 'Chceš wyćepnůńć trwale artikel abo plik s bazy danych s historią. Pokož, aže wjyš co robdza, i to aže to je tak jak godojům [[{{MediaWiki:Policy-url}}|zasady]].',
 'actioncomplete'         => 'Fertig',
-'deletedtext'            => 'Wyćepano "<nowiki>$1</nowiki>". Rejer uostatnio zrobiůnych wyćepań možeš uobejžyć tukej: $2.',
+'deletedtext'            => 'Wyćepano "$1". Rejer uostatnio zrobiůnych wyćepań možeš uobejžyć tukej: $2.',
 'deletedarticle'         => 'wyciepnjynto "[[$1]]"',
 'suppressedarticle'      => 'utajńjyu [[$1]]',
 'dellogpage'             => 'Wyćepane',
@@ -1610,7 +1609,7 @@ Coby přejřeć lista uobecńy zawartych zajtůw, přeńdź na zajta wykazu [[Sp
 'protectexpiry'               => 'Wygaso:',
 'protect_expiry_invalid'      => 'Čas wygaśńjyńćo je zuy.',
 'protect_expiry_old'          => 'Čas wygaśńjyńćo je w downiej ńiž terozki.',
-'protect-text'                => "Sam tukej možyš uobejžeć i pomjyńyć poźům zawarcia zajty '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Sam tukej možyš uobejžeć i pomjyńyć poźům zawarcia zajty '''$1'''.",
 'protect-locked-blocked'      => "Ńy možeš půmjyńać poźůmůw zawarćo kej žeś sům je zawarty uod sprowjyń. Terozki štalowańa dla zajty '''$1''' to:",
 'protect-locked-dblock'       => "Ńy idźe půmjyńić poźůmu zawarća s kuli tygo co baza danych tyž je zawarto. Uobecne štalowańa dla zajty '''$1''' to:",
 'protect-locked-access'       => "Ńy moš uprowńyń coby pomjyńyć poziům zawarcia zajty. Uobecne ustawjyńo dlo zajty '''$1''' to:",
@@ -2099,14 +2098,6 @@ Nojprawdopodobńij zostoło to spowodowane bez link do zewnyntrznyj zajty intern
 'spambot_username'    => 'MediaWiki – wyćepywańe spamu',
 'spam_reverting'      => 'Přiwracańy uostatńij wersyji we kerej ńy bůuo linkůw do $1',
 'spam_blanking'       => 'Wšyjstke wersyje zawjerouy uodnośńiki do $1. Čyščyńy zajty.',
-
-# Info page
-'infosubtitle'   => 'Informacyja uo zajće',
-'numedits'       => 'Ličba sprowjyń (artikel): $1',
-'numtalkedits'   => 'Ličba sprowjyń (zajta godki): $1',
-'numwatchers'    => 'Ličba dowajůncych pozůr: $1',
-'numauthors'     => 'Ličba autorůw (artikel) $1',
-'numtalkauthors' => 'Ličba autorůw (zajta godki): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'uoznoč sprawjyńy kej „sprawdzůne”',

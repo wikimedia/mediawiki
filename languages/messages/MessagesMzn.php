@@ -248,7 +248,6 @@ $messages = array(
 'history'           => 'صفحه‌ی تاریخچه',
 'history_short'     => 'تاریخچه',
 'updatedmarker'     => 'عوض بَیی پس از آخرین بار که بی‌یمومه',
-'info_short'        => 'اطیلاعات',
 'printableversion'  => 'په‌رینت ده‌لـماج',
 'permalink'         => 'مـونـده‌نـه‌سـی لـیـنـک',
 'print'             => 'په‌ریـنت',

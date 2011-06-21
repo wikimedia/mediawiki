@@ -421,7 +421,6 @@ $messages = array(
 'history'           => 'Sidehistorikk',
 'history_short'     => 'Historikk',
 'updatedmarker'     => 'oppdatert siden mitt forrige besøk',
-'info_short'        => 'Informasjon',
 'printableversion'  => 'Utskriftsvennlig versjon',
 'permalink'         => 'Permanent lenke',
 'print'             => 'Skriv ut',
@@ -673,7 +672,7 @@ Kontroller at du har aktivert informasjonskapsler, oppdater siden og prøv igjen
 'nosuchuser'                 => 'Det eksisterer ingen bruker ved navn «$1».
 Husk at det er forskjell på store og små bokstaver.
 Sjekk stavemåten eller [[Special:UserLogin/signup|opprett en ny konto]].',
-'nosuchusershort'            => 'Det finnes ingen bruker ved navn «<nowiki>$1</nowiki>». Kontroller stavemåten.',
+'nosuchusershort'            => 'Det finnes ingen bruker ved navn «$1». Kontroller stavemåten.',
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
 'login-userblocked'          => 'Brukeren er blokkert. Innlogging er ikke tillatt.',
 'wrongpassword'              => 'Du har oppgitt et ugyldig passord. Prøv igjen.',
@@ -874,7 +873,7 @@ eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette siden]</span>.',
 'noarticletext-nopermission'       => 'Det er ingen tekst på denne siden.
 Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] i andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
 'userpage-userdoesnotexist'        => 'Brukerkontoen «<nowiki>$1</nowiki>» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
-'userpage-userdoesnotexist-view'   => 'Kontoen «<nowiki>$1</nowiki>» er ikke registrert.',
+'userpage-userdoesnotexist-view'   => 'Kontoen «$1» er ikke registrert.',
 'blocked-notice-logextract'        => 'Denne brukeren er for tiden blokkert.
 Siste blokkeringsloggelement kan sees nedenfor.',
 'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
@@ -2199,7 +2198,7 @@ Tilbakemelding og videre assistanse:
 Bekreft at du virkelig vil slette denne siden, at du forstår konsekvensene og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
 'actioncomplete'         => 'Gjennomført',
 'actionfailed'           => 'Handling mislyktes',
-'deletedtext'            => '«<nowiki>$1</nowiki>» er slettet.
+'deletedtext'            => '«$1» er slettet.
 Se $2 for en oversikt over de siste slettingene.',
 'deletedarticle'         => 'slettet «[[$1]]»',
 'suppressedarticle'      => 'fjernet «[[$1]]»',
@@ -2251,7 +2250,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect_expiry_invalid'      => 'Utløpstiden er ugyldig.',
 'protect_expiry_old'          => 'Utløpstiden har allerede vært.',
 'protect-unchain-permissions' => 'Lås opp flere beskyttelsesinnstillinger',
-'protect-text'                => "Du kan se og endre beskyttelsesnivået for siden '''<nowiki>$1</nowiki>''' her.",
+'protect-text'                => "Du kan se og endre beskyttelsesnivået for siden '''$1''' her.",
 'protect-locked-blocked'      => "Du kan ikke endre beskyttelsesnivåer mens du er blokkert. Dette er de nåværende innstillingene for siden '''$1''':",
 'protect-locked-dblock'       => "Beskyttelsesnivåer kan ikke endres under en aktiv databasebeskyttelse. Dette er de nåværende innstillingene for siden '''$1''':",
 'protect-locked-access'       => "Kontoen din har ikke tillatelse til å endre sidebeskyttelsesnivå.
@@ -2844,14 +2843,6 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'spambot_username'    => 'MediaWikis spamopprydning',
 'spam_reverting'      => 'Tilbakestiller til siste versjon uten lenke til $1',
 'spam_blanking'       => 'Alle revisjoner inneholdt lenke til $1, tømmer siden',
-
-# Info page
-'infosubtitle'   => 'Sideinformasjon',
-'numedits'       => 'Antall redigeringer (artikkel): $1',
-'numtalkedits'   => 'Antall redigeringer (diskusjonsside): $1',
-'numwatchers'    => 'Antall overvåkere: $1',
-'numauthors'     => 'Antall forskjellige bidragsytere (artikkel): $1',
-'numtalkauthors' => 'Antall forskjellige bidragsytere (diskusjonsside): $1',
 
 # Skin names
 'skinname-standard'    => 'Standard',

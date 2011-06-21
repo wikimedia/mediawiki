@@ -482,7 +482,6 @@ $messages = array(
 'history'           => 'Geschiedenisse',
 'history_short'     => 'Geschiedenisse',
 'updatedmarker'     => 'bie-ewörken sins mien leste bezeuk',
-'info_short'        => 'Infermasie',
 'printableversion'  => 'Ofdrokbaore versie',
 'permalink'         => 'Vaste verwiezing',
 'print'             => 'Ofdrokken',
@@ -935,7 +934,7 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse pagina bewarken]</span>.',
 Je kunnen [[Special:Search/{{PAGENAME}}|zeuken naor disse term]] in aandere pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken deurzeuken]</span>.',
 'userpage-userdoesnotexist'        => 'Je bewarken een gebrukerspagina van een gebruker dee neet besteet (gebruker "<nowiki>$1</nowiki>"). Kiek effen nao o-j disse pagina wel anmaken/bewarken willen.',
-'userpage-userdoesnotexist-view'   => 'Gebruker "<nowiki>$1</nowiki>" steet hier neet in-eschreven',
+'userpage-userdoesnotexist-view'   => 'Gebruker "$1" steet hier neet in-eschreven',
 'blocked-notice-logextract'        => "Disse gebruker is op 't mement eblokkeerd.
 De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 'clearyourcache'                   => "'''NB:''' naodat de wiezigingen op-esleugen bin, mut 't tussengeheugen van de webkieker nog leeg-emaak wönnen um 't te kunnen zien. '''Mozilla / Firefox / Safari:''' drok op ''Shift'' + ''Pagina verniejen,'' of ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Macintosh-computer); '''Konqueror: '''klik op ''verniejen'' of drok op ''F5;'' '''Opera:''' leeg 't tussengeheugen in ''Extra → Voorkeuren;'' '''Internet Explorer:''' hou ''Ctrl'' in-edrok terwiel je op ''Pagina verniejen'' klikken of ''Ctrl-F5'' gebruken.",
@@ -2419,7 +2418,7 @@ $1",
 'mycontris'           => 'Mien biedragen',
 'contribsub2'         => 'Veur $1 ($2)',
 'nocontribs'          => 'Gien wiezigingen evunnen dee an de estelde criteria voldoon.',
-'uctop'               => ' (leste wieziging)',
+'uctop'               => '(leste wieziging)',
 'month'               => 'Maond:',
 'year'                => 'Jaor:',
 
@@ -2886,14 +2885,6 @@ Meestentieds kump dit deur een uutgaonde verwiezing dee op de zwarte lieste stee
 'spambot_username'    => 'MediaWiki ongewunste zooi oprumen',
 'spam_reverting'      => "Bezig mit 't weerummezetten naor de leste versie dee gien verwiezing hef naor $1",
 'spam_blanking'       => 'Alle wiezigingen mit een verwiezing naor $1 wönnen vort-ehaold',
-
-# Info page
-'infosubtitle'   => 'Infermasie veur disse pagina',
-'numedits'       => 'Antal bewarkingen (artikel): $1',
-'numtalkedits'   => 'Antal bewarkingen (overlegpagina): $1',
-'numwatchers'    => 'Antal volgers: $1',
-'numauthors'     => 'Antal verschillende auteurs (artikel): $1',
-'numtalkauthors' => 'Antal verschillende auteurs (overlegpagina): $1',
 
 # Skin names
 'skinname-standard'    => 'Klassiek',

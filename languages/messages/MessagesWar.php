@@ -208,7 +208,6 @@ $messages = array(
 'history'           => 'Kaagi han pakli',
 'history_short'     => 'Kaagi',
 'updatedmarker'     => 'ginbag-ohan tikang han akon urhi nga pagbisita',
-'info_short'        => 'Impormasyon',
 'printableversion'  => 'Maipapatik nga bersyon',
 'permalink'         => 'Sumpay nga unob',
 'print'             => 'Igpatik',
@@ -400,7 +399,7 @@ Ayaw paghingalimot hin pagbalyo han imo [[Special:Preferences|{{SITENAME}} mga g
 Alayon pagpili hin lain nga ngaran.',
 'loginerror'              => 'Sayop hin pagsakob',
 'loginsuccesstitle'       => 'An pagsulod malinamposon',
-'nosuchusershort'         => 'Waray nagamit it may ngaran nga "<nowiki>$1</nowiki>".
+'nosuchusershort'         => 'Waray nagamit it may ngaran nga "$1".
 Kitaa kun amo it im pagbaybay.',
 'nouserspecified'         => 'Dapat nim magbutang hin agnay-hit-nagamit.',
 'wrongpassword'           => 'Sayop nga tigaman-pagsulod an nahibutang.
@@ -746,7 +745,7 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'exblank'        => 'waray sulod an pakli',
 'delete-confirm' => 'Igpara "$1"',
 'delete-legend'  => 'Igpara',
-'deletedtext'    => 'Ginpara an "<nowiki>$1</nowiki>".
+'deletedtext'    => 'Ginpara an "$1".
 Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 
 # Protect

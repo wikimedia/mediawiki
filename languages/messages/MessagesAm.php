@@ -221,7 +221,6 @@ $messages = array(
 'history'           => 'የገጽ ታሪክ',
 'history_short'     => 'ታሪክ',
 'updatedmarker'     => 'ከመጨረሻው ጉብኝቴ በኋላ የተሻሻለ',
-'info_short'        => 'መረጃ',
 'printableversion'  => 'ለህትመት የተዘጋጀ',
 'permalink'         => 'ቋሚ መያያዣ',
 'print'             => 'ይታተም',
@@ -431,7 +430,7 @@ $2",
 'loginsuccesstitle'          => 'መግባትዎ ተከናወነ!',
 'loginsuccess'               => 'እንደ «$1» ሆነው አሁን {{SITENAME}}ን ገብተዋል።',
 'nosuchuser'                 => '«$1» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ ወይም አዲስ ብዕር ስም ያውጡ።',
-'nosuchusershort'            => '«<nowiki>$1</nowiki>» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ።',
+'nosuchusershort'            => '«$1» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ።',
 'nouserspecified'            => 'አንድ ብዕር ስም መጠቆም ያስፈልጋል።',
 'wrongpassword'              => 'የተሰጠው መግቢያ ቃል ልክ አልነበረም። ዳግመኛ ይሞክሩ።',
 'wrongpasswordempty'         => 'ምንም መግቢያ ቃል አልተሰጠም። ዳግመኛ ይሞክሩ።',
@@ -1438,7 +1437,7 @@ $NEWPAGE
 'confirmdeletetext'      => 'ይህን ገጽ ከነ ሙሉ የለውጥ ታሪኩ ሊያጠፉት ነው።
 እባክዎን ይህን የሚያደርጉት አስበውበት፣ በ[[{{MediaWiki:Policy-url}}|መተዳደሪያ ደንብም]] መሰረት መሆኑን ያረጋግጡ።',
 'actioncomplete'         => 'ተፈጽሟል',
-'deletedtext'            => '«<nowiki>$1</nowiki>» ጠፍቷል።
+'deletedtext'            => '«$1» ጠፍቷል።
 
 (የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
 'deletedarticle'         => '«[[$1]]» አጠፋ',
@@ -1483,7 +1482,7 @@ $NEWPAGE
 'protectexpiry'               => 'የሚያልቅበት ግዜ፦',
 'protect_expiry_invalid'      => "የተሰጠው 'የሚያልቅበት ጊዜ' ልክ አይደለም።",
 'protect_expiry_old'          => "የተሰጠው 'የሚያልቅበት ጊዜ' ባለፈው ግዜ ነበር።",
-'protect-text'                => "እዚህ ለገጹ «'''<nowiki>$1</nowiki>'''» የመቆለፍ ደረጃ መመልከት ወይም መቀይር ይችላሉ።",
+'protect-text'                => "እዚህ ለገጹ «'''$1'''» የመቆለፍ ደረጃ መመልከት ወይም መቀይር ይችላሉ።",
 'protect-locked-blocked'      => "ማገጃ እያለብዎት የመቆለፍ ደረጃ ለመቀየር አይችሉም። ለገጹ '''$1''' የአሁኑኑ ደረጃ እንዲህ ነው፦",
 'protect-locked-dblock'       => "መረጃ-ቤቱ እራሱ አሁን ስለሚቆለፍ፣ የገጽ መቆለፍ ደረጃ ሊቀየር አይችልም። ለገጹ '''$1''' የአሁኑኑ ደረጃ እንዲህ ነው፦",
 'protect-locked-access'       => "እርስዎ ገጽ የመቆለፍ ወይም የመፍታት ፈቃድ የለዎም።<br />አሁኑ የዚሁ ገጽ መቆለፍ ደረጃ እንዲህ ነው፦ '''$1''':",
@@ -1873,14 +1872,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'spamprotectiontitle' => 'የስፓም መከላከል ማጣሪያ',
 'spambot_username'    => 'MediaWiki የስፓም ማፅዳት',
 'spam_reverting'      => 'ወደ $1 የሚወስድ መያያዣ ወደሌለበት መጨረሻ ዕትም መለሰው',
-
-# Info page
-'infosubtitle'   => 'መረጃ ለገጹ',
-'numedits'       => 'የእትሞች ቁጥር (ገጽ)፦ $1',
-'numtalkedits'   => 'የእትሞች ቁጥር (የውይይት ገጽ)፦ $1',
-'numwatchers'    => 'የሚከታተሉት ተጠቃሚዎች ቁጥር፦ $1',
-'numauthors'     => 'የተለዩ አቅራቢዎች ቁጥር (ገጽ)፦ $1',
-'numtalkauthors' => 'የተለዩ አቅራቢዎች ቁጥር (የውይይት ገጽ)፦ $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'የተሳለፈ ሆኖ ማመልከት',

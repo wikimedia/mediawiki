@@ -111,7 +111,6 @@ $messages = array(
 'searcharticle'     => 'Hamba',
 'history'           => 'Umlandvo walelikhasi',
 'history_short'     => 'Umlandvo',
-'info_short'        => 'Lwati',
 'print'             => 'Print',
 'edit'              => 'Hlela',
 'create'            => 'Yakha',

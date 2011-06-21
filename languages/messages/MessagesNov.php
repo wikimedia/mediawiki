@@ -99,7 +99,6 @@ $messages = array(
 'searcharticle'    => 'Vada',
 'history'          => 'Historie del pagine',
 'history_short'    => 'Historie',
-'info_short'       => 'Informatione',
 'printableversion' => 'Printindi versione',
 'permalink'        => 'Permananti linke',
 'print'            => 'Printa',
@@ -422,9 +421,6 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'tooltip-pt-preferences' => 'Men preferos',
 'tooltip-pt-logout'      => 'Eksignata',
 'tooltip-p-logo'         => 'Chefi pagine',
-
-# Info page
-'infosubtitle' => 'Informatione pri pagine',
 
 # Special:NewFiles
 'ilsubmit' => 'Sercha',

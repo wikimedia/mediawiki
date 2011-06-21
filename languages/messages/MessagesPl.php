@@ -433,7 +433,6 @@ $messages = array(
 'history'           => 'Historia strony',
 'history_short'     => 'Historia i autorzy',
 'updatedmarker'     => 'zmienione od ostatniej wizyty',
-'info_short'        => 'Informacja',
 'printableversion'  => 'Wersja do druku',
 'permalink'         => 'Link do tej wersji',
 'print'             => 'Drukuj',
@@ -695,7 +694,7 @@ Upewnij się, że masz włączoną obsługę ciasteczek, przeładuj stronę i sp
 'nosuchuser'                 => 'Brak użytkownika o nazwie „$1”.
 W nazwie użytkownika ma znaczenie wielkość znaków.
 Sprawdź pisownię lub [[Special:UserLogin/signup|utwórz nowe konto]].',
-'nosuchusershort'            => 'Brak użytkownika o nazwie „<nowiki>$1</nowiki>”.
+'nosuchusershort'            => 'Brak użytkownika o nazwie „$1”.
 Sprawdź poprawność pisowni.',
 'nouserspecified'            => 'Musisz podać nazwę użytkownika.',
 'login-userblocked'          => 'Ten użytkownik jest zablokowany. Zalogowanie się jest niemożliwe.',
@@ -895,7 +894,7 @@ Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych st
 lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane logi].</span>',
 'userpage-userdoesnotexist'        => 'Użytkownik „<nowiki>$1</nowiki>” nie jest zarejestrowany.
 Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmodyfikować właśnie tę stronę.',
-'userpage-userdoesnotexist-view'   => 'Konto użytkownika „<nowiki>$1</nowiki>” nie jest zarejestrowane.',
+'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
 'clearyourcache'                   => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
@@ -2247,7 +2246,7 @@ Pomoc
 Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete'         => 'Operacja wykonana',
 'actionfailed'           => 'Działanie nie powiodło się',
-'deletedtext'            => 'Usunięto „<nowiki>$1</nowiki>”.
+'deletedtext'            => 'Usunięto „$1”.
 Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
 'deletedarticle'         => 'usunął [[$1]]',
 'suppressedarticle'      => 'utajnił [[$1]]',
@@ -2306,7 +2305,7 @@ Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę 
 'protect_expiry_invalid'      => 'Podany czas automatycznego odbezpieczenia jest nieprawidłowy.',
 'protect_expiry_old'          => 'Podany czas automatycznego odblokowania znajduje się w przeszłości.',
 'protect-unchain-permissions' => 'Odblokuj dodatkowe opcje zabezpieczania',
-'protect-text'                => "Możesz tu sprawdzić i zmienić poziom zabezpieczenia strony '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Możesz tu sprawdzić i zmienić poziom zabezpieczenia strony '''$1'''.",
 'protect-locked-blocked'      => "Nie możesz zmienić poziomów zabezpieczenia, ponieważ jesteś zablokowany.
 Obecne ustawienia dla strony '''$1''' to:",
 'protect-locked-dblock'       => "Nie można zmienić poziomu zabezpieczenia z powodu działającej blokady bazy danych. Obecne ustawienia dla strony '''$1''' to:",
@@ -2917,14 +2916,6 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'spambot_username'    => 'MediaWiki – usuwanie spamu',
 'spam_reverting'      => 'Przywracanie ostatniej wersji nie zawierającej linków do $1',
 'spam_blanking'       => 'Wszystkie wersje zawierały odnośniki do $1. Czyszczenie strony.',
-
-# Info page
-'infosubtitle'   => 'Informacja o stronie',
-'numedits'       => 'Liczba edycji (strona zawartości): $1',
-'numtalkedits'   => 'Liczba edycji (strona dyskusji): $1',
-'numwatchers'    => 'Liczba obserwujących: $1',
-'numauthors'     => 'Liczba autorów (strona zawartości): $1',
-'numtalkauthors' => 'Liczba autorów (strona dyskusji): $1',
 
 # Skin names
 'skinname-standard'    => 'Standardowa',

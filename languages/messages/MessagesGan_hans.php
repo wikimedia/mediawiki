@@ -218,7 +218,6 @@ $messages = array(
 'history'           => '文章历史',
 'history_short'     => '历史',
 'updatedmarker'     => '最末道浏览后𠮶改动',
-'info_short'        => '消息',
 'printableversion'  => '可打印版本',
 'permalink'         => '永久链接',
 'print'             => '打印',
@@ -1759,14 +1758,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'spambot_username'    => 'MediaWiki 广告清除',
 'spam_reverting'      => '返回到伓包连到$1最晏𠮶版本',
 'spam_blanking'       => '全部包含连到$1𠮶改动，留空',
-
-# Info page
-'infosubtitle'   => '页面𠮶信息',
-'numedits'       => '编辑数 （文章）: $1',
-'numtalkedits'   => '编辑数 （讨论页）: $1',
-'numwatchers'    => '监视人数: $1',
-'numauthors'     => '作者人数 （文章）: $1',
-'numtalkauthors' => '作者人数 （讨论页）: $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => '标到系检查过𠮶',

@@ -122,7 +122,6 @@ $messages = array(
 'history'          => "Siedeje'schijchte",
 'history_short'    => 'Jeschicht',
 'updatedmarker'    => 'fresch jemoakt',
-'info_short'       => 'Informatioon',
 'printableversion' => 'Drekdoastalinj',
 'permalink'        => 'Bestendja Link',
 'print'            => 'Drek',
@@ -265,6 +264,9 @@ Bitte schriew eene Notiz aun [[Special:ListUsers/sysop|administrator]], en lot d
 'userexists'              => 'Dem Bruckanome haft aul wea.
 Bitte nemm eenen aundren.',
 'loginlanguagelabel'      => 'Sproak: $1',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Bruckernome:',
 
 # Edit page toolbar
 'media_tip' => 'Datei-Link',
@@ -594,14 +596,6 @@ Daut woat aun eenem Link lidje, woona no eene externe Sied wiest.',
 'spambot_username'    => 'MediaWiki Spam-Uborka (Opprieme)',
 'spam_reverting'      => 'Latste Versioon ohne Links no $1 wada trajcht jemoakt.',
 'spam_blanking'       => 'Aule Versioone haude Links no $1, reed jemoakt',
-
-# Info page
-'infosubtitle'   => 'Siedeinformatioon',
-'numedits'       => 'Zohl von Endanisse (Sied): $1',
-'numtalkedits'   => 'Zohl von Endanisse (Diskussioonssied): $1',
-'numwatchers'    => 'Zohl von Beoobachta: $1',
-'numauthors'     => 'Zohl von Autore (Sied): $1',
-'numtalkauthors' => 'Zohl von Autore (Diskussioonssied): $1',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Aus kontrolliet markere',

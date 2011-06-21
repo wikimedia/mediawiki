@@ -488,7 +488,6 @@ $messages = array(
 'history'           => 'Historio de versioj',
 'history_short'     => 'Historio',
 'updatedmarker'     => 'ĝisdatita de post mia lasta vizito',
-'info_short'        => 'Informo',
 'printableversion'  => 'Presebla versio',
 'permalink'         => 'Konstanta ligilo',
 'print'             => 'Printi',
@@ -744,7 +743,7 @@ Bonvolu elekti alian nomon.',
 'nosuchuser'                 => 'Neniu uzanto havas nomon "$1".
 Nomoj por uzantoj estas usklecodistinga.
 Kontrolu vian literumadon, aŭ [[Special:UserLogin/signup|kreu novan konton]].',
-'nosuchusershort'            => 'Ne ekzistas uzanto kun la nomo "<nowiki>$1</nowiki>". Bonvolu kontroli vian ortografion.',
+'nosuchusershort'            => 'Ne ekzistas uzanto kun la nomo "$1". Bonvolu kontroli vian ortografion.',
 'nouserspecified'            => 'Vi devas entajpi salutnomon.',
 'login-userblocked'          => 'Ĉi tiu uzanto estas forbarita. Ensalutado ne estas permesita.',
 'wrongpassword'              => 'Vi tajpis malĝustan pasvorton. Bonvolu provi denove.',
@@ -945,7 +944,7 @@ aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝan titolon]] en aliaj paĝoj,
 aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serĉi la rilatajn protokolojn]</span>.',
 'userpage-userdoesnotexist'        => 'Uzantokonto "<nowiki>$1</nowiki>" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti ĉi tiun paĝon.',
-'userpage-userdoesnotexist-view'   => 'Uzanto-konto "<nowiki>$1</nowiki>" ne estas registrita.',
+'userpage-userdoesnotexist-view'   => 'Uzanto-konto "$1" ne estas registrita.',
 'blocked-notice-logextract'        => 'Ĉi tiu uzanto estas ĉi-momente forbarita.
 La lasta protokolero estas jene montrata por via referenco:',
 'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
@@ -2266,7 +2265,7 @@ Por viaj reagoj kaj por obteni plian helpon:
 'confirmdeletetext'      => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
 'actioncomplete'         => 'Ago farita',
 'actionfailed'           => 'Ago malsukcesis',
-'deletedtext'            => '"<nowiki>$1</nowiki>" estas forigita.
+'deletedtext'            => '"$1" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletedarticle'         => 'forigis "[[$1]]"',
 'suppressedarticle'      => '"[[$1]]" estas subigita',
@@ -2322,7 +2321,7 @@ Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por pli da informoj
 'protect_expiry_invalid'      => 'Malvalida findaŭro.',
 'protect_expiry_old'          => 'Eksvalidiĝa tempo jam pasis.',
 'protect-unchain-permissions' => 'Malŝlosi pluajn protektajn opciojn',
-'protect-text'                => "Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo '''$1'''.",
 'protect-locked-blocked'      => "Vi ne povas ŝanĝi prokekto-nivelojn dum forbarita. Jen la nunaj ecoj de la paĝo '''$1''':",
 'protect-locked-dblock'       => "Ne povas ŝanĝi nivelojn de protekto pro aktiva datumbaza ŝlosado.
 Jen la nunaj agordoj de la paĝo '''$1''':",
@@ -2900,14 +2899,6 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'spambot_username'    => 'Trudmesaĝa forigo de MediaWiki',
 'spam_reverting'      => 'Restarigo de lasta versio ne entenante ligilojn al $1',
 'spam_blanking'       => 'Forviŝo de ĉiuj versioj entenantaj ligilojn al $1',
-
-# Info page
-'infosubtitle'   => 'Informoj por paĝo',
-'numedits'       => 'Nombro de redaktoj (paĝo): $1',
-'numtalkedits'   => 'Nombro de redaktoj (diskuto-paĝo): $1',
-'numwatchers'    => 'Nombro de atentantoj: $1',
-'numauthors'     => 'Nombro de apartaj aŭtoroj (paĝo): $1',
-'numtalkauthors' => 'Nombro de apartaj aŭtoroj (diskuto-paĝo): $1',
 
 # Skin names
 'skinname-standard'    => 'Klasika',

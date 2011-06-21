@@ -513,7 +513,6 @@ $messages = array(
 'history'           => 'Versi terdahulu halaman',
 'history_short'     => 'Versi terdahulu',
 'updatedmarker'     => 'diubah sejak kunjungan terakhir saya',
-'info_short'        => 'Informasi',
 'printableversion'  => 'Versi cetak',
 'permalink'         => 'Pranala permanen',
 'print'             => 'Cetak',
@@ -762,7 +761,7 @@ Pastikan Anda telah mengaktifkan kuki, lalu muat ulang halaman ini dan coba lagi
 'nosuchuser'                 => 'Tidak ada pengguna dengan nama "$1".
 Nama pengguna membedakan kapitalisasi.
 Periksa kembali ejaan Anda, atau [[Special:UserLogin/signup|buat akun baru]].',
-'nosuchusershort'            => 'Tidak ada pengguna dengan nama "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Tidak ada pengguna dengan nama "$1".
 Silakan periksa kembali ejaan Anda.',
 'nouserspecified'            => 'Anda harus memasukkan nama pengguna.',
 'login-userblocked'          => 'Pengguna ini diblokir. Tidak diizinkan/diperbolehkan untuk masuk log.',
@@ -955,7 +954,7 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman
 'noarticletext-nopermission'       => 'Saat ini tidak ada teks di halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
 'userpage-userdoesnotexist'        => 'Akun pengguna "<nowiki>$1</nowiki>" tidak terdaftar.',
-'userpage-userdoesnotexist-view'   => 'Pengguna "<nowiki>$1</nowiki>" tidak terdaftar.',
+'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda mungkin perlu membersihkan singgahan penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-R'' (''Cmd-R'' pada Macintosh);
@@ -2276,7 +2275,7 @@ Umpan balik dan bantuan lebih lanjut:
 'confirmdeletetext'      => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data. Pastikan bahwa Anda memang ingin melakukannya, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan {{SITENAME}}]].',
 'actioncomplete'         => 'Proses selesai',
 'actionfailed'           => 'Eksekusi gagal',
-'deletedtext'            => '"<nowiki>$1</nowiki>" telah dihapus. Lihat $2 untuk log terkini halaman yang telah dihapus.',
+'deletedtext'            => '"$1" telah dihapus. Lihat $2 untuk log terkini halaman yang telah dihapus.',
 'deletedarticle'         => 'menghapus "[[$1]]"',
 'suppressedarticle'      => '"[[$1]]" disembunyikan',
 'dellogpage'             => 'Log penghapusan',
@@ -2332,7 +2331,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect_expiry_invalid'      => 'Waktu kedaluwarsa tidak sah.',
 'protect_expiry_old'          => 'Waktu kedaluwarsa adalah pada masa lampau.',
 'protect-unchain-permissions' => 'Aktifkan opsi pelindungan lanjutan',
-'protect-text'                => "Anda dapat melihat atau mengganti tingkatan pelindungan untuk halaman '''<nowiki>$1</nowiki>''' di sini.",
+'protect-text'                => "Anda dapat melihat atau mengganti tingkatan pelindungan untuk halaman '''$1''' di sini.",
 'protect-locked-blocked'      => "Anda tak dapat mengganti tingkat pelindungan selagi diblokir. Berikut adalah konfigurasi saat ini untuk halaman '''$1''':",
 'protect-locked-dblock'       => "Tingkat pelindungan tak dapat diganti karena aktifnya penguncian basis data. Berikut adalah konfigurasi saat ini untuk halaman '''$1''':",
 'protect-locked-access'       => "Akun Anda tidak dapat memiliki hak untuk mengganti tingkat pelindungan halaman. Berikut adalah konfigurasi saat ini untuk halaman '''$1''':",
@@ -2919,14 +2918,6 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'spambot_username'    => 'Pembersihan span MediaWiki',
 'spam_reverting'      => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
 'spam_blanking'       => 'Semua revisi yang memiliki pranala ke $1, pengosongan',
-
-# Info page
-'infosubtitle'   => 'Informasi halaman',
-'numedits'       => 'Jumlah suntingan (halaman): $1',
-'numtalkedits'   => 'Jumlah suntingan (halaman pembicaraan): $1',
-'numwatchers'    => 'Jumlah pengamat: $1',
-'numauthors'     => 'Jumlah pengarang yang berbeda (halaman): $1',
-'numtalkauthors' => 'Jumlah pengarang yang berbeda (halaman pembicaraan): $1',
 
 # Skin names
 'skinname-standard' => 'Klasik',

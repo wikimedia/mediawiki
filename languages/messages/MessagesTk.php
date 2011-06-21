@@ -221,7 +221,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'history'           => 'Sahypanyň geçmişi',
 'history_short'     => 'Geçmiş',
 'updatedmarker'     => 'soňky gezek görelim bäri täzelenen',
-'info_short'        => 'Maglumat',
 'printableversion'  => 'Print ediş wersiýasy',
 'permalink'         => 'Hemişelik çykgyt',
 'print'             => 'Print et',
@@ -473,7 +472,7 @@ Olary işletmegiňizi we gaýtadan synanyşyp görmegiňizi haýyş edýäris.',
 'nosuchuser'                 => '"$1" diýen at bilen ulanyjy ýok.
 Ulanyjy atlary baş hem-de setir harplara duýgurdyr.
 Ýazylyşyny barlaň ýa-da [[Special:UserLogin/signup|täze hasap açyň]].',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" dýen at bilen ulanyjy ýok. Ýazylyşyny barlaň.',
+'nosuchusershort'            => '"$1" dýen at bilen ulanyjy ýok. Ýazylyşyny barlaň.',
 'nouserspecified'            => 'Ulanyjy adyny görkezmegiňiz hökmanydyr.',
 'login-userblocked'          => 'Bu ulanyjy blokirlenipdir. Sessiýa açmaga rugsat berilmeýär.',
 'wrongpassword'              => 'Paroly nädogry girizdiňiz. Gaýtadan synanyşmagyňyzy haýyş edýäris.',
@@ -635,7 +634,7 @@ Bu sahypa adyny [[Special:Search/{{PAGENAME}}|başga sahypalarda gözläp]]
 ýa-da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} degişli gündeliklerde gözleg geçirip bilersiňiz].</span>',
 'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" ulanyjy hasaby hasaba alynmandyr.
 Bu sahypany döretmek/redaktirlemek isleýän bolsaňyz, onda esewan boluň.',
-'userpage-userdoesnotexist-view'   => '"<nowiki>$1</nowiki>" ulanyjy hasaby hasaba alynmandyr.',
+'userpage-userdoesnotexist-view'   => '"$1" ulanyjy hasaby hasaba alynmandyr.',
 'blocked-notice-logextract'        => 'Bu ulanyjy şu wagt blokirlengi.
 Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:',
 'clearyourcache'                   => "'''Bellik:''' Ýazdyranyňyzdan soň, üýtgeşmeleri görmek üçin brauzeriňiziň keşini arassalaň:
@@ -1943,7 +1942,7 @@ Seslenme we goşmaça kömek:
 Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{{MediaWiki:Policy-url}}|Öçürme kadalaryna]] laýyklykdadygyny bilýän bolsaňyz, amaly tassyklaň.',
 'actioncomplete'         => 'Iş ýerine ýetirildi',
 'actionfailed'           => 'Iş başa barmady',
-'deletedtext'            => '"<nowiki>$1</nowiki>" öçürildi.
+'deletedtext'            => '"$1" öçürildi.
 Ýaňy-ýakynda öçürilenleri görmek üçin: $2.',
 'deletedarticle'         => 'öçürdi: "[[$1]]"',
 'suppressedarticle'      => '"[[$1]]" bökdeldi',
@@ -2004,7 +2003,7 @@ Häzirki wagtda gorag astynda duran sahypalaryň sanawy üçin [[Special:Protect
 'protect_expiry_invalid'      => 'Gutaryş möhleti nädogry.',
 'protect_expiry_old'          => 'Geçmişdäki gutaryş möhleti.',
 'protect-unchain-permissions' => 'Goşmaça gorag opsiýalarynyň gulpuny aç',
-'protect-text'                => "'''<nowiki>$1</nowiki>''' sahypasynyň gorag derejesini şu ýerden görüp hem-de üýtgedip bilersiňiz.",
+'protect-text'                => "'''$1''' sahypasynyň gorag derejesini şu ýerden görüp hem-de üýtgedip bilersiňiz.",
 'protect-locked-blocked'      => "Blokirlengikä gorag derejelerini üýtgedip bolmaýar.
 '''$1''' sahypasy üçin häzirki sazlamalar:",
 'protect-locked-dblock'       => "Häzir maglumat bazasy gulpludygy sebäpli gorag derejelerini üýtgedip bolmaýar.
@@ -2553,14 +2552,6 @@ Mazmun üçin bir sebäp goşmaga rugsat berýär',
 'spambot_username'    => 'MediaWiki spam arassalaýyş',
 'spam_reverting'      => '$1 sahypasyna çykgytlary bolmadyk iň soňky wersiýasyna yzyna getirilýär',
 'spam_blanking'       => 'Ähli wersiýalarda $1 sahypasyna çykgytlar bar, boşadylýar',
-
-# Info page
-'infosubtitle'   => 'Sahypa barada maglumat',
-'numedits'       => 'Özgerdiş sany (sahypa): $1',
-'numtalkedits'   => 'Özgerdiş sany (pikir alyşma sahypasy): $1',
-'numwatchers'    => 'Gözegçilikde saklaýanlaryň sany: $1',
-'numauthors'     => 'Dürli awtorlaryň sany (sahypa): $1',
-'numtalkauthors' => 'Dürli awtorlaryň sany (çekişme sahypasy): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Patrullyk edilen diýip belle',

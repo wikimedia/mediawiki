@@ -111,7 +111,6 @@ $messages = array(
 'searcharticle'    => 'Vaadtsa',
 'history'          => 'Histovrije',
 'history_short'    => 'Histovrije',
-'info_short'       => 'Bïevnesh',
 'printableversion' => 'Tjaelije bielie',
 'permalink'        => 'Permanente lïenghke',
 'print'            => 'Tjaeledh olkese',
@@ -223,7 +222,7 @@ $messages = array(
 'loginsuccesstitle'       => 'Dov lea daelie sïjse logge',
 'loginsuccess'            => "'''Dov lea daelie sïjselogge nille {{SITENAME}} goh \"\$1\".'''",
 'nosuchuser'              => 'Dïhte gååvnese ijje nuhtjien goh nomme "$1". Gïehtjedidh dov baakoehtidh, jallh skaepede orre nuhtjien.',
-'nosuchusershort'         => 'Dïhte gååvnese ijje nuhtjien goh nomme "<nowiki>$1</nowiki>". Gïehtjedidh baakoehtidh.',
+'nosuchusershort'         => 'Dïhte gååvnese ijje nuhtjien goh nomme "$1". Gïehtjedidh baakoehtidh.',
 'nouserspecified'         => 'Dov galkedh tjaeledh nuhtjiennomme.',
 'wrongpassword'           => 'Loevesbaakoe lea gåarhmede. Vuejnedh vihth.',
 'wrongpasswordempty'      => 'Loevesbaakoe lea gåaroes. Vuejnedh vihth.',
@@ -571,7 +570,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'deletepage'            => 'Tjåegkedh bielie',
 'historywarning'        => 'Vaaroehtidh: Bielie datne gïehtele ahte sihkut åtna histovrije:',
 'actioncomplete'        => 'Deahpadimmie voerkes',
-'deletedtext'           => '"<nowiki>$1</nowiki>" lea sihkojuvvon.
+'deletedtext'           => '"$1" lea sihkojuvvon.
 Vuajna $2 ihke galtege bïjre männgan sihkojuvvonh.',
 'deletedarticle'        => 'sihkoj "[[$1]]"',
 'dellogpage'            => 'Sihkkun logge',
@@ -590,7 +589,7 @@ Vuajna $2 ihke galtege bïjre männgan sihkojuvvonh.',
 'protectexpiry'               => 'Boarasnuvve:',
 'protect_expiry_invalid'      => 'Ov-jiltiige buaorasjnuvvenaigi.',
 'protect_expiry_old'          => 'Boarasnuvvenaigi lea vaesedh.',
-'protect-text'                => "Daesnie dorje datne vuajna jih värrhtoedimmie vaarjelidhdaltese dejstie bielie '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Daesnie dorje datne vuajna jih värrhtoedimmie vaarjelidhdaltese dejstie bielie '''$1'''.",
 'protect-locked-access'       => "Dov nuhtjien åtna ijje luhpie gåajkoe värrhtoedimmie tjaeleste-vaarjelidh.
 Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie '''$1''' lea:",
 'protect-default'             => '(åvte-veeljeme)',
@@ -760,11 +759,6 @@ Gïemhpes veeljeme jeatjebh nomme.',
 # Attribution
 'siteuser'  => '{{SITENAME}} nuhtjien $1',
 'siteusers' => '{{SITENAME}} nuhtjien(h) $1',
-
-# Info page
-'infosubtitle' => 'Bïevnesh ihke bielie',
-'numedits'     => 'Låhkoe värrhtoedimmieh (bielie): $1',
-'numtalkedits' => 'Låhkoe värrhtoedimmieh (dïjvaldidh bielie): $1',
 
 # Patrol log
 'patrol-log-auto' => '(jïjtsistie)',

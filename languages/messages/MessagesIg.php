@@ -246,7 +246,6 @@ $messages = array(
 'history'           => 'Akíkó mbu nke ihü',
 'history_short'     => 'Akiko mbú',
 'updatedmarker'     => 'ihe gáráníru ké mgbe m byàrà nga mbu',
-'info_short'        => 'Ómárí',
 'printableversion'  => 'Nkè I nweríkí dotié',
 'permalink'         => 'Jikodo ekechịrị',
 'print'             => 'Dotié',
@@ -462,7 +461,7 @@ Bíkó nwèré áhà nke ozor.",
 'noname'                  => 'I nyétubọ áhạ buwa di mkpà.',
 'loginsuccesstitle'       => 'I batala nke oma',
 'loginsuccess'            => "'''Í bátálá nke ọma na ime {{SITENAME}} na áhà \"\$1\".'''",
-'nosuchusershort'         => 'Ọ díghị ọ\'bànifé nwéré áhà nke "<nowiki>$1</nowiki>".
+'nosuchusershort'         => 'Ọ díghị ọ\'bànifé nwéré áhà nke "$1".
 Lèmá òtú Í dèrè ya.',
 'nouserspecified'         => 'I kweshiri nyetu áhà gi iji a rüoru.',
 'login-userblocked'       => 'Ha gbachịrị onye á ezi. Anaá kweté kör banyé.',
@@ -564,7 +563,7 @@ Biko tinyé cha ihe ńdía na ájújú nkeówulà I gi me.',
 Í nwèríkí [[Special:Search/{{PAGENAME}}|tuó íshí ihü nke á]] na ihü ndi ozor,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chöwá na ndetu nchètá di nwanne],
 mà [{{fullurl:{{FULLPAGENAME}}|action=edit}} Í nwèríkí rü nà ihü á]</span>.',
-'userpage-userdoesnotexist-view'   => 'Bùwá ọ\'bànifé "<nowiki>$1</nowiki> à díghị na orunotu.',
+'userpage-userdoesnotexist-view'   => 'Bùwá ọ\'bànifé "$1 à díghị na orunotu.',
 'blocked-notice-logextract'        => "Ha gbàchìrì ọ'bànifé nke.
 Ndetu nchèta mbgàchì ǹkè ógè nso di na àlà màkà ádià má àmá:",
 'usercssyoucanpreview'             => "'''Lè kwá:''' Jí mpiá \"{{int:showpreview}}\" Í létú òtù CSS gí di mgbe Í donyèrè ya.",
@@ -1154,7 +1153,7 @@ Ihe gi gbanwe na ógè gi bya nà ihüá na ihü okwu ya gi di ndétu ngáhù, n
 'confirmdeletetext'     => 'Í gálá Í gbákashiá ihü na ákíkó mbu ya.
 Biko sí nà ọ bụ ihe Í chọrọ, na Í mà ihe gi mè, na Í nè me ya kà yá na [[{{MediaWiki:Policy-url}}|òtù há nè mé ihe]] di óma.',
 'actioncomplete'        => 'Ọ méchá',
-'deletedtext'           => '"<nowiki>$1</nowiki>" à gbákáshíálá.
+'deletedtext'           => '"$1" à gbákáshíálá.
 Lé $2 màkà okwu gbásárá ihe ọ gbakashiri màkà.',
 'deletedarticle'        => 'gbakashịrị "[[$1]]"',
 'dellogpage'            => 'Ntínyé ngbákashị',
@@ -1175,7 +1174,7 @@ Lé $2 màkà okwu gbásárá ihe ọ gbakashiri màkà.',
 'protectexpiry'               => 'Gbá okà:',
 'protect_expiry_invalid'      => 'Ógẹ mgbe ó gị gbá ùkà adíghị ómá.',
 'protect_expiry_old'          => 'Ógẹ mgbe ȯ gbàrà úkà à gafele.',
-'protect-text'                => "Í nwèríkí lá mà Í gbanwe ncẹdolu ihü '''<nowiki>$1</nowiki>''' nke.",
+'protect-text'                => "Í nwèríkí lá mà Í gbanwe ncẹdolu ihü '''$1''' nke.",
 'protect-locked-access'       => "Bùwá gi ènwéghị òdạ Í gbanwe ncẹdolu ihü.
 Ngá bu ihe hé mèkwàrà nà ihü '''$1''':",
 'protect-cascadeon'           => ' Ihüá cẹdolu màkà ȯ dị nà {{PLURAL:$1|ihü, nwéré|ihü, ndi nwéré}} cẹdolu mgbàwéré dí.

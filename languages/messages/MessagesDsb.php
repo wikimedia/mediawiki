@@ -340,7 +340,6 @@ $messages = array(
 'history'           => 'wersije',
 'history_short'     => 'Wersije a awtory',
 'updatedmarker'     => 'Změny wót mójogo slědnego woglěda',
-'info_short'        => 'Informacija',
 'printableversion'  => 'Wersija za śišć',
 'permalink'         => 'Wobstawny wótkaz',
 'print'             => 'Śišćaś',
@@ -585,7 +584,7 @@ Pśeswědč se, až cookije su zmóžnjone, zacytaj toś ten bok a wopytaj hyš�
 'loginsuccess'               => "'''Sy něnto ako „$1” w {{GRAMMAR:lokatiw|{{SITENAME}}}} pśizjawjony.'''",
 'nosuchuser'                 => 'Wužywaŕ z mjenim „$1“ njeeksistěrujo. Wužywarske mjenja źiwaju na wjelikopisanje.
 Pśeglěduj pšawopis abo [[Special:UserLogin/signup|załož nowe konto]].',
-'nosuchusershort'            => 'Wužywarske mě „<nowiki>$1</nowiki>“ njeeksistěrujo. Pśeglěduj pšawopis.',
+'nosuchusershort'            => 'Wužywarske mě „$1“ njeeksistěrujo. Pśeglěduj pšawopis.',
 'nouserspecified'            => 'Pšosym pódaj wužywarske mě.',
 'login-userblocked'          => 'Toś ten wužywaŕ jo blokěrowany. Pśizjawjenje njejo dowólone.',
 'wrongpassword'              => 'Zapódane šćitne gronidło njejo pšawe. Pšosym wopytaj hyšći raz.',
@@ -744,7 +743,7 @@ Aby bok napórał, zapiš do kašćika dołojce (glědaj [[{{MediaWiki:Helppage}
 Móžoš [[Special:Search/{{PAGENAME}}|toś ten bokowy titel]] na drugich bokach pytaś
 abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś]</span>.',
 'userpage-userdoesnotexist'        => 'Wužywarske konto "<nowiki>$1</nowiki>" njejo zregistrěrowane. Pšosym pśeglědaj, lěc coš toś ten bok wopšawdu napóraś/wobźěłaś.',
-'userpage-userdoesnotexist-view'   => 'Wužywarske konto "<nowiki>$1</nowiki>" njejo zregistrowane.',
+'userpage-userdoesnotexist-view'   => 'Wužywarske konto "$1" njejo zregistrowane.',
 'blocked-notice-logextract'        => 'Toś ten wužywaŕ jo tuchylu blokěrowany.
 Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:',
 'clearyourcache'                   => "'''Pokazka: Jo móžno, až dejš wuprozniś cache wobglědowaka, aby změny wiźeł.'''
@@ -2050,7 +2049,7 @@ Pšašanja a dalšna pomoc:
 'confirmdeletetext'      => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
 'actioncomplete'         => 'Akcija jo se wugbała.',
 'actionfailed'           => 'Akcija jo se njeraźiła',
-'deletedtext'            => '„<nowiki>$1</nowiki>“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
+'deletedtext'            => '„$1“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
 'deletedarticle'         => 'jo "[[$1]]" wulašował',
 'suppressedarticle'      => '"[[$1]]" pódtłocony',
 'dellogpage'             => 'Protokol wulašowanjow',
@@ -2104,7 +2103,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'protect_expiry_invalid'      => 'Zapódany cas jo njekorektny.',
 'protect_expiry_old'          => 'Zapódany cas jo wótběžał.',
 'protect-unchain-permissions' => 'Dalšne šćitne opcije pśipušćiś',
-'protect-text'                => "How móžoš status šćita boka '''<nowiki>$1</nowiki>''' wobglědowaś a jen změniś.",
+'protect-text'                => "How móžoš status šćita boka '''$1''' wobglědowaś a jen změniś.",
 'protect-locked-blocked'      => "Njamóžoš status šćita togo boka změniś, dokulaž jo twójo wužywarske konto se blokěrowało. How su aktualne nastajenja šćita za bok '''„$1“:'''.",
 'protect-locked-dblock'       => "Datowa banka jo zamknjona a toś njejo móžno šćit boka změniś. How su aktualne nastajenja šćita za bok '''„$1“:'''.",
 'protect-locked-access'       => "Wašo wužywarske konto njama notne pšawa za změnu šćita toś togo boka. How su aktualne nastajenja šćita boka '''„$1“:'''.",
@@ -2669,14 +2668,6 @@ W zespominanju dajo se pśicyna pódaś.',
 'spambot_username'    => 'MediaWikijowe spamowe rěšenje',
 'spam_reverting'      => 'Nawrośijo se slědna wersija, kótaraž njejo wopśimjeła wótkaz na $1.',
 'spam_blanking'       => 'Wšykne wersije su wopśimowali wótkaze na $1, do rěcha spórane.',
-
-# Info page
-'infosubtitle'   => 'Informacija wó boku',
-'numedits'       => 'Licba změnow boka: $1',
-'numtalkedits'   => 'Licba změnow diskusijnego boka: $1',
-'numwatchers'    => 'Licba  wobglědowarjow: $1',
-'numauthors'     => 'Licba awtorow: $1',
-'numtalkauthors' => 'Licba diskutěrujucych: $1',
 
 # Skin names
 'skinname-standard'    => 'Klasiski',

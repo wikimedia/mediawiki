@@ -245,7 +245,6 @@ $messages = array(
 'history'           => 'Historial de la páxina',
 'history_short'     => 'Historial',
 'updatedmarker'     => 'actualizáu dende la mio última visita',
-'info_short'        => 'Información',
 'printableversion'  => 'Versión pa imprentar',
 'permalink'         => 'Enllaz permanente',
 'print'             => 'Imprentar',
@@ -501,7 +500,7 @@ Asegúrate de tener activaes les cookies, recarga esta páxina y vuelve a tental
 'nosuchuser'                 => 'Nun hai usuariu dalu col nome "$1".
 Los nomes d\'usuariu distinguen mayúscules y minúscules.
 Comprueba la ortografía o [[Special:UserLogin/signup|crea una cuenta d\'usuariu nueva]].',
-'nosuchusershort'            => 'Nun hai nengún usuariu col nome "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Nun hai nengún usuariu col nome "$1".
 Mira que tea bien escritu.',
 'nouserspecified'            => "Has especificar un nome d'usuariu.",
 'login-userblocked'          => 'Esti usuariu ta bloquiáu. Nun se permite la conexón.',
@@ -703,7 +702,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí]</span>.',
 Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar los rexistros rellacionaos]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta d\'usuariu "<nowiki>$1</nowiki>" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
-'userpage-userdoesnotexist-view'   => 'La cuenta d\'usuariu "<nowiki>$1</nowiki>" nun ta rexistrada.',
+'userpage-userdoesnotexist-view'   => 'La cuenta d\'usuariu "$1" nun ta rexistrada.',
 'blocked-notice-logextract'        => "Esti usuariu anguaño ta bloquiáu.
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
@@ -2052,7 +2051,7 @@ Más ayuda y sofitu:
 Por favor confirma que ye lo que quies facer, qu'entiendes les consecuencies, y que lo tas faciendo acordies coles [[{{MediaWiki:Policy-url}}|polítiques]].",
 'actioncomplete'         => 'Aición completada',
 'actionfailed'           => "Falló l'aición",
-'deletedtext'            => 'Esborróse "<nowiki>$1</nowiki>".
+'deletedtext'            => 'Esborróse "$1".
 Mira en $2 la llista de les últimes páxines esborraes.',
 'deletedarticle'         => 'esborró "[[$1]]"',
 'suppressedarticle'      => 'suprimió "[[$1]]"',
@@ -2110,7 +2109,7 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protect_expiry_invalid'      => 'Caducidá non válida.',
 'protect_expiry_old'          => 'La fecha de caducidá ta pasada.',
 'protect-unchain-permissions' => 'Desbloquiar les demás opciones de protección',
-'protect-text'                => "Equí pues ver y camudar el nivel de proteición de la páxina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Equí pues ver y camudar el nivel de proteición de la páxina '''$1'''.",
 'protect-locked-blocked'      => "Nun pues camudar los niveles de proteición mentes teas bloquiáu. Esta
 ye la configuración actual de la páxina '''$1''':",
 'protect-locked-dblock'       => "Los niveles de proteición nun puen ser camudaos pol mor d'un candáu activu de
@@ -2719,14 +2718,6 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'spambot_username'    => 'Llimpieza de spam de MediaWiki',
 'spam_reverting'      => 'Revirtiendo a la cabera versión que nun contién enllaces a $1',
 'spam_blanking'       => 'Toles revisiones teníen enllaces a $1; dexando en blanco',
-
-# Info page
-'infosubtitle'   => 'Información de la páxina',
-'numedits'       => "Númberu d'ediciones (páxina): $1",
-'numtalkedits'   => "Númberu d'ediciones (páxina d'alderique): $1",
-'numwatchers'    => "Númberu d'usuarios vixilando: $1",
-'numauthors'     => "Númberu d'autores distintos (páxina): $1",
-'numtalkauthors' => "Númberu d'autores distintos (páxina d'alderique): $1",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como supervisada',

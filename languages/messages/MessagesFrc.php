@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ebe123
  * @author JeanVoisin
  * @author Peter17
  * @author PieRRoMaN
@@ -21,6 +22,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Préparez les liens déconnectés <a href=""class="new">comme ça ici</a> (autrement: comme ça ici<a href=""class="internal">?</a>).',
 'tog-justify'                 => 'Égalisez les paragraphes',
 'tog-hideminor'               => 'Cachez les petits changements dans la liste des derniers changements',
+'tog-hidepatrolled'           => '↓ Cachez les petits changements dans la liste des derniers changements',
+'tog-newpageshidepatrolled'   => '↓Cache pages patrollés de la list des pages nouveau',
 'tog-extendwatchlist'         => 'Agrandir la liste des pages guettées pour montrer tous les changements',
 'tog-usenewrc'                => 'User les derniers changements improuvés (JavaScript)',
 'tog-numberheadings'          => 'Mettre les numéros sus les en-têtes',
@@ -43,6 +46,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Envoyer un e-mail même pour les petits changements',
 'tog-enotifrevealaddr'        => "Montrer mon adresse e-mail dans les e-mails d'avertissement",
 'tog-shownumberswatching'     => 'Montrer le montant de guetteurs',
+'tog-oldsig'                  => '↓ Preview du signature existant:',
 'tog-fancysig'                => 'Signature brute (sans liens préparés)',
 'tog-externaleditor'          => 'Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur)',
 'tog-externaldiff'            => 'User un autre comparateur comme réglage ordinaire',
@@ -325,7 +329,7 @@ Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENA
 'yourname'                   => "Nom d'useur:",
 'yourpassword'               => 'Mot de passe:',
 'yourpasswordagain'          => 'Mot de passe encore:',
-'remembermypassword'         => 'Se rappeler de mon mot de passe (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'         => 'Se rappeler de mon mot de passe (pour un maximum de $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Votre domaine:',
 'externaldberror'            => "Soit y avait une erreur avec la base d'information de certification extérieur, soit vous avez pas la permission de renouveler votre compte extérieur.",
 'login'                      => 'Connecter',
@@ -350,7 +354,7 @@ Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENA
 'loginsuccesstitle'          => 'Vous êtes connecté',
 'loginsuccess'               => "'''Asteur vous êtes connecté à {{SITENAME}} comme \"\$1\".'''",
 'nosuchuser'                 => 'Y a aucun utilisateur avec le nom "$1".  Les noms d\'utilisateur respectent les majuscules et minuscules. Vérifiez l\'orthographe, ou créez un nouveau compte.',
-'nosuchusershort'            => 'Y a aucun useur avec le nom "<nowiki>$1</nowiki>".  Regardez donc l\'espellage.',
+'nosuchusershort'            => 'Y a aucun useur avec le nom "$1".  Regardez donc l\'espellage.',
 'nouserspecified'            => "Il faut mettre un nom d'useur.",
 'wrongpassword'              => "Mauvais mot de passe.  Assayez encore s'il vous plaît.",
 'wrongpasswordempty'         => "Le mot de passe était vide.  Assayez encore s'il vous plaît.",

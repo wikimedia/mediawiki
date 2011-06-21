@@ -395,7 +395,6 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'history'           => 'Historie',
 'history_short'     => 'Historie',
 'updatedmarker'     => 'bearbeidt, in de Tiet sietdem ik toletzt dor weer',
-'info_short'        => 'Informatschoon',
 'printableversion'  => 'Druckversion',
 'permalink'         => 'Duurlenk',
 'print'             => 'Drucken',
@@ -632,7 +631,7 @@ Sorg dor för, dat Cookies anstellt sünd. Denn laad de Sied noch wedder nee un 
 'nosuchuser'                 => 'Den Brukernaam „$1“ gifft dat nich.
 Brukernaams maakt en Ünnerscheed twischen groot un lütt schrevene Bookstaven.
 Kiek de Schrievwies na oder [[Special:UserLogin/signup|mell di as ne’en Bruker an]].',
-'nosuchusershort'            => 'De Brukernaam „<nowiki>$1</nowiki>“ existeert nich. Prööv de Schrievwies.',
+'nosuchusershort'            => 'De Brukernaam „$1“ existeert nich. Prööv de Schrievwies.',
 'nouserspecified'            => 'Du musst en Brukernaam angeven',
 'login-userblocked'          => 'Disse Bruker is sperrt. Anmellen geiht nich.',
 'wrongpassword'              => 'Dat Passwoort, wat du ingeven hest, is verkehrt. Kannst dat aver noch wedder versöken.',
@@ -788,7 +787,7 @@ oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Sied ännern]</span>.',
 Du kannst in annere Sieden [[Special:Search/{{PAGENAME}}|na dissen Titel söken]]
 oder <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} in de Logböker söken]</span>.',
 'userpage-userdoesnotexist'        => 'Dat Brukerkonto „<nowiki>$1</nowiki>“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
-'userpage-userdoesnotexist-view'   => 'Dat Brukerkonto „<nowiki>$1</nowiki>“ gifft dat nich.',
+'userpage-userdoesnotexist-view'   => 'Dat Brukerkonto „$1“ gifft dat nich.',
 'blocked-notice-logextract'        => 'Disse Bruker is opstunns sperrt.
 De jüngste Indrag in dat Sperr-Logbook wart ünnen wiest:',
 'clearyourcache'                   => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -1934,7 +1933,7 @@ De Instellungen vun dien Oppasslist to ännern, gah na: {{fullurl:Special:Watchl
 Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]] hannelst.',
 'actioncomplete'         => 'Akschoon trech',
 'actionfailed'           => 'Akschoon fehlslaan',
-'deletedtext'            => 'De Artikel „<nowiki>$1</nowiki>“ is nu wegsmeten. Op $2 gifft dat en Logbook vun de letzten Löschakschonen.',
+'deletedtext'            => 'De Artikel „$1“ is nu wegsmeten. Op $2 gifft dat en Logbook vun de letzten Löschakschonen.',
 'deletedarticle'         => '„[[$1]]“ wegsmeten',
 'suppressedarticle'      => 'hett „[[$1]]“ versteken',
 'dellogpage'             => 'Lösch-Logbook',
@@ -1984,7 +1983,7 @@ Gah een Sied trüch un versöök dat noch wedder.',
 'protectexpiry'               => 'Löppt ut:',
 'protect_expiry_invalid'      => 'Utlooptiet ungüllig',
 'protect_expiry_old'          => 'Utlooptiet al vörbi.',
-'protect-text'                => "Hier kannst du den Schuulstatus för de Siet '''<nowiki>$1</nowiki>''' ankieken un ännern.",
+'protect-text'                => "Hier kannst du den Schuulstatus för de Siet '''$1''' ankieken un ännern.",
 'protect-locked-blocked'      => "Du kannst den Schuulstatus vun de Sied nich ännern, du büst sperrt. Hier sünd de aktuellen Schuulstatus-Instellungen för de Siet '''„$1“:'''",
 'protect-locked-dblock'       => "De Datenbank is sperrt un de Schuulstatus vun de Sied kann nich ännert warrn. Dit sünd de aktuellen Schuul-Instellungen för de Sied '''„$1“:'''",
 'protect-locked-access'       => "Du hest nich de nödigen Rechten, den Schuulstatus vun de Siet to ännern. Dit sünd de aktuellen Instellungen för de Siet '''„$1“:'''",
@@ -2494,14 +2493,6 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'spambot_username'    => 'MediaWiki Spam-Oprümen',
 'spam_reverting'      => 'Trüchdreiht na de letzte Version ahn Lenken na $1.',
 'spam_blanking'       => 'All Versionen harrn Lenken na $1, rein maakt.',
-
-# Info page
-'infosubtitle'   => 'Informatschonen för de Siet',
-'numedits'       => 'Antall vun Ännern (Siet): $1',
-'numtalkedits'   => 'Antall vun Ännern (Diskuschoonssiet): $1',
-'numwatchers'    => 'Antall vun Oppassers: $1',
-'numauthors'     => 'Antall vun verschedene Autoren (Siet): $1',
-'numtalkauthors' => 'Antall vun verschedene Autoren (Diskuschoonssiet): $1',
 
 # Skin names
 'skinname-standard'    => 'Klassik',

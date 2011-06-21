@@ -221,7 +221,6 @@ $messages = array(
 'history'           => 'Versione',
 'history_short'     => 'Geskichte',
 'updatedmarker'     => '(annerd)',
-'info_short'        => 'Information',
 'printableversion'  => 'Drukversion',
 'permalink'         => 'Permanentlink',
 'print'             => 'drukke',
@@ -470,7 +469,7 @@ Dät mout sicher moaked wäide, dät Cookies aktivierd sunt. Deerätter diissen 
 'loginsuccess'               => "'''Du bäst nu as \"\$1\" bie {{SITENAME}} anmälded.'''",
 'nosuchuser'                 => 'Die Benutsernoome "$1" bestoant nit.
 Uurpröif ju Skrieuwwiese (Groot-/Littekskrieuwenge beoachtje) of [[Special:UserLogin/signup|mäld die as näien Benutser an]].',
-'nosuchusershort'            => 'Die Benutsernooome "<nowiki>$1</nowiki>" bestoant nit. Uurpröif ju Skrieuwwiese.',
+'nosuchusershort'            => 'Die Benutsernooome "$1" bestoant nit. Uurpröif ju Skrieuwwiese.',
 'nouserspecified'            => 'Reek jädden n Benutsernoome an.',
 'login-userblocked'          => 'Dissen Benutser is speerd. Anmäldenge nit ferlööwed.',
 'wrongpassword'              => 'Dät Paaswoud is falsk. Fersäik dät jädden fonnäien.',
@@ -640,7 +639,7 @@ Du koast dissen Tittel ap do uur Sieden [[Special:Search/{{PAGENAME}}|säike]],
 Du koast dissen Tittel ap do uur Sieden [[Special:Search/{{PAGENAME}}|säike]]
 of <span class="plainlinks">in do touheerige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbouke säike].</span>',
 'userpage-userdoesnotexist'        => 'Dät Benutserkonto „<nowiki>$1</nowiki>“ is nit deer. Pröif, of du disse Siede wuddelk moakje/beoarbaidje wolt.',
-'userpage-userdoesnotexist-view'   => 'Benutserkonto „<nowiki>$1</nowiki>“ bestoant nit.',
+'userpage-userdoesnotexist-view'   => 'Benutserkonto „$1“ bestoant nit.',
 'blocked-notice-logextract'        => 'Dissen Benutser is apstuuns speerd.
 Foar Information foulget n aktuellen Iendraach uut dät Benutser-Logbouk:',
 'clearyourcache'                   => "'''Bemäärkenge: Ätter dät Fäästlääsen kon dät nöödich weese, dän Browser-Cache loostoumoakjen, uum do Annerengen sjo tou konnen.'''
@@ -1948,7 +1947,7 @@ Touräächmäldengen un wiedere Hälpe: {{fullurl:{{MediaWiki:Helppage}}}}',
 'confirmdeletetext'      => 'Jie sunt deerbie, n Artikkel of ne Bielde un aal allere Versione foar altied uut dän Doatenboank tou läskjen. Bitte bestäätigje Jie Jou Apsicht, dät tou dwoon, dät Jie Jou do Konsekwänsen bewust sunt, un dät Jie in Uureenstämmenge mäd uus [[{{MediaWiki:Policy-url}}]] honnelje.',
 'actioncomplete'         => 'Aktion be-eended',
 'actionfailed'           => 'Aktion misglukked',
-'deletedtext'            => '"<nowiki>$1</nowiki>" wuude läsked.
+'deletedtext'            => '"$1" wuude läsked.
 In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'deletedarticle'         => '"[[$1]]" wuude läsked',
 'suppressedarticle'      => 'feranderde ju Sichtboarhaid fon „[[$1]]“',
@@ -2001,7 +2000,7 @@ Sjuch [[Special:ProtectedPages|Skutsede Siede]] foar moor Informatione.',
 'protect_expiry_invalid'      => 'Ju ienroate Duur is uungultich.',
 'protect_expiry_old'          => 'Ju Speertied lait in ju fergeene Tied.',
 'protect-unchain-permissions' => 'Fröiere Speeroptione aphieuwje',
-'protect-text'                => "Hier koast du dän Skutsstoatus foar ju Siede '''<nowiki>$1</nowiki>''' ienkiekje un annerje.",
+'protect-text'                => "Hier koast du dän Skutsstoatus foar ju Siede '''$1''' ienkiekje un annerje.",
 'protect-locked-blocked'      => "Du koast dän Siedenskuts nit annerje, deer dien Benutserkonto speerd is. Hier sunt do aktuelle Siedenskuts-Ienstaalengen foar ju Siede '''„$1“:'''",
 'protect-locked-dblock'       => "Ju Doatenboank is speerd, die Siedenskuts kon deeruum nit annerd wäide. Hier sunt do aktuelle Siedenskuts-Ienstaalengen foar ju Siede '''„$1“:'''",
 'protect-locked-access'       => "Du bäst nit begjuchtiged, dän Siedenskutsstoatus tou annerjen. Hier is die aktuälle Skutsstoatus fon ju Siede '''$1''':",
@@ -2572,14 +2571,6 @@ Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 'spambot_username'    => 'MediaWiki Spam-Süüwerenge',
 'spam_reverting'      => 'Lääste Version sunner Links tou $1 wier häärstoald.',
 'spam_blanking'       => 'Aal Versione äntheelden Links tou $1, skeenmoaked.',
-
-# Info page
-'infosubtitle'   => 'Siedeninformation',
-'numedits'       => 'Antaal fon do Artikkelversione: $1',
-'numtalkedits'   => 'Antaal fon do Diskussionsversione: $1',
-'numwatchers'    => 'Antaal fon do Beooboachtere: $1',
-'numauthors'     => 'Antaal fon do Artikkelautore: $1',
-'numtalkauthors' => 'Antaal fon do Diskutante: $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'As pröiwed markierje',

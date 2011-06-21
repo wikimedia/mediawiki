@@ -201,7 +201,6 @@ $messages = array(
 'history'           => 'Pahina historya',
 'history_short'     => 'Saysay',
 'updatedmarker'     => 'ginbag-o halin sang akon pinaka-ulihe nga pagbisita',
-'info_short'        => 'Impormasyon',
 'printableversion'  => 'Pang-imprinta nga bersyon',
 'permalink'         => 'Permanente nga tabid',
 'print'             => 'I-imprinta',
@@ -465,7 +464,7 @@ Palihog sigurado kon nakabukas ang imo kokes, dayon ipakarga liwat ang ini nga p
 'nosuchuser'                 => 'Wala sang manug-gamit nga iya pangalan "$1".
 Ang mga gamit-pangalan sensitibo sa kadakoon sang letra.
 Siguradoha ang pagbaybay sang pumolongon, ukon  [[Special:UserLogin/signup|magbuhat sang bag-o nga akawnt]].',
-'nosuchusershort'            => 'Wala sang manug-gamit nga iya pangalan "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Wala sang manug-gamit nga iya pangalan "$1".
 Siguradoha ang pagbaybay sang pumolongon.',
 'nouserspecified'            => 'Kinahanglan mo magbutang sa gamit-pangalan.',
 'login-userblocked'          => 'Ang ini nga manug-gamit ginapungga. Indi ka mahimo nga magsulod.',
@@ -675,7 +674,7 @@ Pwede ka [[Special:Search/{{PAGENAME}}|mangita para sa titulo sang ini nga panid
 ukon <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mangita ka sang kaparehas nga logs]</span>.',
 'userpage-userdoesnotexist'        => 'Ang akawnt sang manuggamit nga "<nowiki>$1</nowiki>" wala pa marehistro.
 Palihog tsek kon luyag mo nga himuon/ilisan ang ini nga panid.',
-'userpage-userdoesnotexist-view'   => 'Ang akawnt sang manuggamit nga "<nowiki>$1</nowiki>" wala pa marehistro.',
+'userpage-userdoesnotexist-view'   => 'Ang akawnt sang manuggamit nga "$1" wala pa marehistro.',
 'blocked-notice-logextract'        => 'Ang ini nga manuggamit ginapunggan karon.
 Ang pinaka-ulihi nga log sa pagpuggong yara sa idalom para mahibaluan nimo:',
 'clearyourcache'                   => "'''Pahibalo: Pagkatapos mo magtipon, mahimo nga kinahanglan mo pa nga laktawan ang talaguan sang imo brawser agod nga makita ang mga pag-ilis.'''
@@ -1313,7 +1312,7 @@ Buwas-damlag nga pagbag-o sang pahina kag ang iya upod na hisayrany pahina ay ip
 'confirmdeletetext'     => 'Ikaw ay magapanas sang pahina upod sang tanan niya nga historya.
 Palihog lang nga sigurado nga kinagusto mo ini nga himuon, nga na-intindihan mo ang resulta sang ginahimo mo, kag ang gina obra mo ga santo upod sa [[{{MediaWiki:Policy-url}}|polisiya]].',
 'actioncomplete'        => 'Kompleto nga aksiyon',
-'deletedtext'           => '"<nowiki>$1</nowiki>" ay nakakas na.
+'deletedtext'           => '"$1" ay nakakas na.
 Lantawa $2 para sa mga lista sang mga bag-o lang ginkakas.',
 'deletedarticle'        => 'ginkakas "[[$1]]"',
 'dellogpage'            => 'Ginkakas na log',
@@ -1333,7 +1332,7 @@ Lantawa $2 para sa mga lista sang mga bag-o lang ginkakas.',
 'protectexpiry'               => 'Ekspayr:',
 'protect_expiry_invalid'      => 'Ang Oras sang pag-ekspayr ay hindi tuod.',
 'protect_expiry_old'          => 'Ang Oras sang pag-ekspayr ay sang ligad pa.',
-'protect-text'                => "Pwede mo malantaw kag mabag-o ang lebel sang proteksiyon diri para sa pahina '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Pwede mo malantaw kag mabag-o ang lebel sang proteksiyon diri para sa pahina '''$1'''.",
 'protect-locked-access'       => "Ang imo akawnt ay wala permiso para mabag-o ang pahina sa lebel sang proteksiyon.
 Ari diri ang mga pinkabag-o nga mga seting para sa pahina '''$1''':",
 'protect-cascadeon'           => 'Protektado ang ini nga pahina kay man nasakop ini sa mga sumunod {{PLURAL:$1|pahina, nga may ara|mga pahina, nga may ara}} pasunod nga proteksiyon nga naka andar.

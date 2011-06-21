@@ -220,7 +220,6 @@ $messages = array(
 'history'           => 'versiuns',
 'history_short'     => 'versiuns/auturs',
 'updatedmarker'     => "actualisà dapi mi'ultima visita",
-'info_short'        => 'Infurmaziun',
 'printableversion'  => 'Versiun per stampar',
 'permalink'         => 'Link permanent',
 'print'             => 'stampar',
@@ -477,7 +476,7 @@ Controllescha che ti has activà ils cookies, rechargia la pagina ed emprova dan
 'nosuchuser'                 => 'I exista nagin utilisader cun il num "$1".
 Fa stim dad utilisar correctamain maiusclas e minusclas.
 Curregia il num u [[Special:UserLogin/signup|creescha in nov conto]].',
-'nosuchusershort'            => 'I dat nagin utilisader cun il num "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'I dat nagin utilisader cun il num "$1".
 Curregia ti\'endataziun.',
 'nouserspecified'            => "Inditgescha per plaschair in num d'utilisader.",
 'login-userblocked'          => "Quest utilisader è bloccà. Betg pussaivel da t'annunziar.",
@@ -645,7 +644,7 @@ Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in\'autra pagina,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tschertgar en ils logs]</span>.',
 'userpage-userdoesnotexist'        => 'Il conto d\'utilisader "<nowiki>$1</nowiki>" n\'èxista betg.
 Controllescha sch ti vuls propi crear/modiftgar questa pagina.',
-'userpage-userdoesnotexist-view'   => 'Il conto d\'utilisader "<nowiki>$1</nowiki>" n\'exista betg.',
+'userpage-userdoesnotexist-view'   => 'Il conto d\'utilisader "$1" n\'exista betg.',
 'blocked-notice-logextract'        => "Quai utilisader è bloccà actualmain. 
 L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
 'clearyourcache'                   => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.
@@ -1712,7 +1711,7 @@ Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan
 'confirmdeletetext'     => 'Ti es vidlonder da stizzar permanentamain in artitgel u in maletg e tut las versiuns pli veglias ord la datoteca. <br />
 Conferma per plaschair che ti ta es conscient da las consequenzas e che ti ageschas tenor las [[{{MediaWiki:Policy-url}}|directivas da {{SITENAME}}]].',
 'actioncomplete'        => "L' acziun è terminada.",
-'deletedtext'           => '"<nowiki>$1</nowiki>" è vegnì stizzà.
+'deletedtext'           => '"$1" è vegnì stizzà.
 Sin $2 chattas ti ina glista dals davos artitgels stizzads.',
 'deletedarticle'        => 'ha stizzà "[[$1]]"',
 'dellogpage'            => 'log dal stizzar',
@@ -1742,7 +1741,7 @@ L'ultima modificaziun vid questa pagina è da [[User:$3|$3]] ([[User talk:$3|tal
 'protectexpiry'               => 'Pretegì enfin:',
 'protect_expiry_invalid'      => "Il temp endatà n'è betg valid.",
 'protect_expiry_old'          => 'Il temp da proteger giascha en il passà.',
-'protect-text'                => "Qua pos ti contemplar ed midar il livel da protecziun per l'artitgel '''<nowiki>$1</nowiki>'''.",
+'protect-text'                => "Qua pos ti contemplar ed midar il livel da protecziun per l'artitgel '''$1'''.",
 'protect-locked-access'       => "Tes conto d'utilisader n'ha betg il dretg da midar ils livels da protecziun.
 Qua èn las reglas actualas per l'artitgel '''$1''':",
 'protect-cascadeon'           => 'Questa pagina è actualmain protegida, perquai ch\'ella è integrada en {{PLURAL:$1|suandant artitgel che ha activà|suandants artitgels che han activà}} la "protecziun ertada".
@@ -2196,14 +2195,6 @@ Probablamien è quai capità pervia dad in link ad ina pagina externa ch'è sin 
 'spambot_username'    => 'Sistem da MediaWikip per nettegiar da spam',
 'spam_reverting'      => "Restituir l'ultima versiun che na cuntegna nagins links a $1",
 'spam_blanking'       => 'Nettegià tut las versiuns che han cuntegnì links a $1',
-
-# Info page
-'infosubtitle'   => 'Infurmaziuns per la pagina',
-'numedits'       => 'Dumber da las versiuns da quest artitgel: $1',
-'numtalkedits'   => 'Dumber da las versiuns da la pagina da discussiun: $1',
-'numwatchers'    => 'dumber dals observaturs: $1',
-'numauthors'     => 'Dumber dals auturs da quest artitgel: $1',
-'numtalkauthors' => 'dumber dals participants da la discussiun: $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar sco controllà',

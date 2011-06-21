@@ -235,7 +235,6 @@ $messages = array(
 'history'           => 'hronoloģija',
 'history_short'     => 'Hronoloģija',
 'updatedmarker'     => 'atjaunināti kopš pēdējā apmeklējuma',
-'info_short'        => 'Informācija',
 'printableversion'  => 'Drukājama versija',
 'permalink'         => 'Pastāvīgā saite',
 'print'             => 'Drukāt',
@@ -469,7 +468,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'loginsuccesstitle'          => 'Ieiešana veiksmīga',
 'loginsuccess'               => 'Tu esi ienācis {{grammar:lokatīvs|{{SITENAME}}}} kā "$1".',
 'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Lietotājvārdi ir reģistrjutīgi (lielie un mazie burti nav viens un tas pats) Pārbaudi, vai pareizi uzrakstīts, vai arī [[Special:UserLogin/signup|izveido jaunu kontu]].',
-'nosuchusershort'            => 'Šeit nav lietotāja ar vārdu "<nowiki>$1</nowiki>". Pārbaudi, vai nav drukas kļūda.',
+'nosuchusershort'            => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi, vai nav drukas kļūda.',
 'nouserspecified'            => 'Tev jānorāda lietotājvārds.',
 'login-userblocked'          => 'Šis lietotājs ir bloķēts. Pieslēgšanās nav atļauta.',
 'wrongpassword'              => 'Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.',
@@ -636,7 +635,7 @@ Tu vari [[Special:Search/{{PAGENAME}}|meklēt šīs lapas nosaukumu]] citās lap
 vai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saistītus reģistru ierakstus]</span>.',
 'userpage-userdoesnotexist'        => 'Lietotājs "<nowiki>$1</nowiki>" nav reģistrēts.
 Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
-'userpage-userdoesnotexist-view'   => 'Lietotājs "<nowiki>$1</nowiki>" nav reģistrēts.',
+'userpage-userdoesnotexist-view'   => 'Lietotājs "$1" nav reģistrēts.',
 'blocked-notice-logextract'        => 'Šis lietotājs pašlaik ir nobloķēts.
 
 Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
@@ -1789,7 +1788,7 @@ Papildinformācija:
 'confirmdeletetext'      => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[{{MediaWiki:Policy-url}}|vadlīnijām]].',
 'actioncomplete'         => 'Darbība pabeigta',
 'actionfailed'           => 'Darbība neizdevās',
-'deletedtext'            => 'Lapa "<nowiki>$1</nowiki>" ir izdzēsta.
+'deletedtext'            => 'Lapa "$1" ir izdzēsta.
 Šeit var apskatīties pēdējos izdzēstos: "$2".',
 'deletedarticle'         => 'izdzēsa "[[$1]]"',
 'dellogpage'             => 'Dzēšanas reģistrs',
@@ -1841,7 +1840,7 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protectexpiry'               => 'Beidzas:',
 'protect_expiry_invalid'      => 'Beigu termiņš ir nederīgs.',
 'protect_expiry_old'          => 'Beigu termiņs ir pagātnē.',
-'protect-text'                => "Šeit var apskatīties un izmainīt lapas '''<nowiki>$1</nowiki>''' aizsardzības līmeni.",
+'protect-text'                => "Šeit var apskatīties un izmainīt lapas '''$1''' aizsardzības līmeni.",
 'protect-locked-access'       => "Jūsu kontam nav atļaujas mainīt lapas aizsardzības pakāpi.
 Pašreizējie lapas '''$1''' iestatījumi ir:",
 'protect-cascadeon'           => 'Šī lapa pašlaik ir aizsargāta, jo tā ir iekļauta {{PLURAL:$1|sekojošā lapā|sekojošās lapās}} (mainot šīs lapas aizsardzības līmeni aizsardzība netiks noņemta):',
@@ -2344,14 +2343,6 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'spamprotectionmatch' => 'Spama filtram radās iebildumi pret šo tekstu: $1',
 'spambot_username'    => 'MediaWiki surogātpasta tīrīšana',
 'spam_reverting'      => 'Atjauno iepriekšējo versiju, kas nesatur saiti uz $1',
-
-# Info page
-'infosubtitle'   => 'Informācija lapai',
-'numedits'       => 'Labojumu skaits (lapa): $1',
-'numtalkedits'   => 'Labojumu skaits (diskusiju lapa): $1',
-'numwatchers'    => 'Uzraudzītāju skaits: $1',
-'numauthors'     => 'Atsevišķu autoru skaits (lapai): $1',
-'numtalkauthors' => 'Atsevišķu autoru skaits (diskusiju lapai): $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Atzīmēt kā pārbaudītu',
