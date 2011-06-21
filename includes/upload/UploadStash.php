@@ -140,9 +140,11 @@ class UploadStash {
 			// This is a bit lame, as we may have more info in the $status and we're throwing it away, but to fix it means
 			// redesigning API errors significantly.
 			// $status->value just contains the virtual URL (if anything) which is probably useless to the caller
-			$error = reset( $status->getErrorsArray() );
+			$error = $status->getErrorsArray();
+			$error = reset( $error );
 			if ( ! count( $error ) ) {
-				$error = reset( $status->getWarningsArray() );
+				$error = $status->getWarningsArray();
+				$error = reset( $error );
 				if ( ! count( $error ) ) {
 					$error = array( 'unknown', 'no error recorded' );
 				}
