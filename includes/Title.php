@@ -67,7 +67,6 @@ class Title {
 	var $mRedirect = null;            // /< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
 	var $mBacklinkCache = null;       // /< Cache of links to this title
-	var $mPageLanguage;
 	// @}
 
 
@@ -4231,16 +4230,16 @@ class Title {
 	 */
 	public function getPageLanguage() {
 		global $wgContLang;
-		$this->mPageLanguage = $wgContLang;
+		$pageLang = $wgContLang;
 		if ( $this->isCssOrJsPage() ) {
 			// css/js should always be LTR and is, in fact, English
-			$this->mPageLanguage = Language::factory( 'en' );
+			$pageLang = wfGetLangObj( 'en' );
 		} elseif ( $this->getNamespace() == NS_MEDIAWIKI ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $this->getText() );
-			$this->mPageLanguage = wfGetLangObj( $lang );
+			$pageLang = wfGetLangObj( $lang );
 		}
-		return $this->mPageLanguage;
+		return $pageLang;
 	}
 }
 
