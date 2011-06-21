@@ -2522,8 +2522,7 @@ function in_string( $needle, $str, $insensitive = false ) {
 }
 
 function wfSpecialList( $page, $details ) {
-	global $wgContLang;
-	$details = $details ? ' ' . $wgContLang->getDirMark() . "($details)" : '';
+	$details = $details ? ' ' . wfUILang()->getDirMark() . "($details)" : '';
 	return $page . $details;
 }
 

@@ -91,7 +91,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	}
 
 	function execute( $par ) {
-		global $wgRequest, $wgOut, $wgLang, $wgContLang, $wgScript;
+		global $wgRequest, $wgOut, $wgLang, $wgScript;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -126,7 +126,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		}
 
 		if( $this->hash != '' ) {
-			$align = $wgContLang->alignEnd();
+			$align = wfUILang()->alignEnd();
 
 			# Show a thumbnail of the file
 			$img = $this->file;

@@ -289,7 +289,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @return String
 	 */
 	public function formatRow( $result ) {
-		global $wgLang, $wgContLang;
+		global $wgLang;
 
 		# Revision deletion works on revisions, so we should cast one
 		$row = array(
@@ -302,7 +302,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$classes = array();
 
-		$dm = $wgContLang->getDirMark();
+		$dm = wfUILang()->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
 		$time = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),

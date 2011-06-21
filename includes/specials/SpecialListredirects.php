@@ -96,8 +96,6 @@ class ListredirectsPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );
 		$rd_link = $skin->link(
@@ -111,7 +109,7 @@ class ListredirectsPage extends QueryPage {
 		$target = $this->getRedirectTarget( $result );
 		if( $target ) {
 			# Make a link to the destination page
-			$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();
+			$arr = wfUILang()->getArrow() . wfUILang()->getDirMark();
 			$targetLink = $skin->link( $target );
 			return "$rd_link $arr $targetLink";
 		} else {

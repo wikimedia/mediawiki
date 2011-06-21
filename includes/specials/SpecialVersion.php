@@ -49,7 +49,7 @@ class SpecialVersion extends SpecialPage {
 	 * main()
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgSpecialVersionShowHooks, $wgContLang, $wgRequest;
+		global $wgOut, $wgSpecialVersionShowHooks, $wgRequest;
 
 		$this->setHeaders();
 		$this->outputHeader();

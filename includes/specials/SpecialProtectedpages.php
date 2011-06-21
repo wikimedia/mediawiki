@@ -76,7 +76,7 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return string Formatted <li> element
 	 */
 	public function formatRow( $row ) {
-		global $wgUser, $wgLang, $wgContLang;
+		global $wgUser, $wgLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -116,7 +116,7 @@ class SpecialProtectedpages extends SpecialPage {
 		}
 
 		if(!is_null($size = $row->page_len)) {
-			$stxt = $wgContLang->getDirMark() . ' ' . $skin->formatRevisionSize( $size );
+			$stxt = wfUILang()->getDirMark() . ' ' . $skin->formatRevisionSize( $size );
 		}
 
 		# Show a link to the change protection form for allowed users otherwise a link to the protection log

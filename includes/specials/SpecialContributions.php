@@ -543,7 +543,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @todo This would probably look a lot nicer in a table.
 	 */
 	function formatRow( $row ) {
-		global $wgUser, $wgLang, $wgContLang;
+		global $wgUser, $wgLang;
 		wfProfileIn( __METHOD__ );
 
 		$sk = $this->getSkin();
@@ -590,7 +590,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			array( 'action' => 'history' )
 		);
 
-		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
+		$comment = wfUILang()->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
 		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
 			$d = $sk->linkKnown(
