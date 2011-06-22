@@ -253,7 +253,7 @@ class FileDeleteForm {
 			return wfMsgExt(
 				"{$message}-old", # To ensure grep will find them: 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
 				'parse',
-				$this->title->getText(),
+				wfEscapeWikiText( $this->title->getText() ),
 				$wgLang->date( $this->getTimestamp(), true ),
 				$wgLang->time( $this->getTimestamp(), true ),
 				wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ) ) );
@@ -261,7 +261,7 @@ class FileDeleteForm {
 			return wfMsgExt(
 				$message,
 				'parse',
-				$this->title->getText()
+				wfEscapeWikiText( $this->title->getText() )
 			);
 		}
 	}
