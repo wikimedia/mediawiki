@@ -1254,7 +1254,9 @@ class ImportStreamSource {
 	}
 
 	static function newFromFile( $filename ) {
-		$file = @fopen( $filename, 'rt' );
+		wfSuppressWarnings();
+		$file = fopen( $filename, 'rt' );
+		wfRestoreWarnings();
 		if( !$file ) {
 			return Status::newFatal( "importcantopen" );
 		}
