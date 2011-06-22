@@ -421,7 +421,7 @@
 				// We allow a trailing percent sign, which we just strip.  This works fine
 				// if percents and regular numbers aren't being mixed.
 				ts.numberRegex = new RegExp("^(" + "[-+\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[-+\u2212]?[0-9][0-9,]*)?" + // Fortran-style scientific
-				"|" + "[-+\u2212]?" + digitClass + "+[\\s\\xa0]*%?" + // Generic localised
+				"|" + "[-+\u2212]?" + digitClass + "+[\\s]*%?" + // Generic localised
 				")$", "i");
 			}
 
@@ -470,16 +470,19 @@
 
 			function buildCollationTable() {
 				ts.collationTable = mw.config.get('tableSorterCollation');
-				if ( typeof ts.collationTable === "object" ) {
-					ts.collationRegex = [];
+				ts.collationRegex = null;
+				if ( ts.collationTable ) {
+					var keys = [];
 
 					//Build array of key names
 					for ( var key in ts.collationTable ) {
 						if ( ts.collationTable.hasOwnProperty(key) ) { //to be safe
-							ts.collationRegex.push(key);
+							keys.push(key);
 						}
 					}
-					ts.collationRegex = new RegExp( '[' + ts.collationRegex.join('') + ']', 'ig' );
+					if (keys.length) {
+						ts.collationRegex = new RegExp( '[' + ts.collationRegex.join('') + ']', 'ig' );
+					}
 				}
 			}
 
