@@ -25,16 +25,22 @@
  */
 abstract class Action {
 
-	// Page on which we're performing the action
-	// @var Article
+	/**
+	 * Page on which we're performing the action
+	 * @var Article
+	 */
 	protected $page;
 
-	// RequestContext if specified; otherwise we'll use the Context from the Page
-	// @var RequestContext
+	/**
+	 * RequestContext if specified; otherwise we'll use the Context from the Page
+	 * @var RequestContext
+	 */
 	protected $context;
 
-	// The fields used to create the HTMLForm
-	// @var Array
+	/**
+	 * The fields used to create the HTMLForm
+	 * @var Array
+	 */
 	protected $fields;
 
 	/**
