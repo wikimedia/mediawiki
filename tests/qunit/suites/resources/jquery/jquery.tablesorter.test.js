@@ -78,17 +78,11 @@ var tableTest = function( msg, header, data, expected, callback ) {
 
 		// Give caller a chance to set up sorting and manipulate the table.
 		callback( $table );
-		
-		// Table sorting is done asynchronously in the event loop by running
-		// it through a setTimeout({},0); we need to do the same so we can
-		// check our results after.
-		stop( 1000 ); // timeout in 1s
-		setTimeout(function() {
-			start(); // continue the async tests...
 
-			var extracted = tableExtract( $table );
-			deepEqual( extracted, expected, msg )
-		}, 150);
+		// Table sorting is done synchronously; if it ever needs to change back
+		// to asynchronous, we'll need a timeout or a callback here.
+		var extracted = tableExtract( $table );
+		deepEqual( extracted, expected, msg )
 	});
 };
 
