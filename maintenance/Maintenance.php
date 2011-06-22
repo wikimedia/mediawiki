@@ -314,9 +314,9 @@ abstract class Maintenance {
 	 * Throw an error to the user. Doesn't respect --quiet, so don't use
 	 * this for non-error output
 	 * @param $err String: the error to display
-	 * @param $die Boolean: If true, go ahead and die out.
+	 * @param $die Int: if > 0, go ahead and die out using this int as the code
 	 */
-	protected function error( $err, $die = false ) {
+	protected function error( $err, $die = 0 ) {
 		$this->outputChanneled( false );
 		if ( php_sapi_name() == 'cli' ) {
 			fwrite( STDERR, $err . "\n" );
@@ -325,8 +325,9 @@ abstract class Maintenance {
 			fwrite( $f, $err . "\n" );
 			fclose( $f );
 		}
-		if ( $die ) {
-			die();
+		$die = intval( $die );
+		if ( $die > 0 ) {
+			die( $die );
 		}
 	}
 
