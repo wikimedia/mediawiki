@@ -2762,6 +2762,15 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'spam_reverting'      => 'Déi lescht Versioun ouni Linken op $1 restauréieren.',
 'spam_blanking'       => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
 
+# Info page
+'pageinfo-title'            => 'Informatioun iwwer "$1"',
+'pageinfo-header-edits'     => 'Ännerungen',
+'pageinfo-header-watchlist' => 'Iwwerwaachungslëscht',
+'pageinfo-subjectpage'      => 'Säit',
+'pageinfo-talkpage'         => 'Diskussiounssäit',
+'pageinfo-watchers'         => 'Zuel vun de Benotzer déi iwwerwaachen',
+'pageinfo-edits'            => 'Zuel vun den Ännerungen',
+
 # Skin names
 'skinname-standard'    => 'Klassesch',
 'skinname-nostalgia'   => 'Nostalgie',

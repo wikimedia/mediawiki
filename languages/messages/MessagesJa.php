@@ -38,6 +38,7 @@
  * @author Penn Station
  * @author Reedy
  * @author Suisui
+ * @author VZP10224
  * @author Vigorous action
  * @author W.CC
  * @author Web comic
@@ -738,6 +739,7 @@ URLを間違って打ったか、不正なリンクを辿った可能性があ�
 'cascadeprotected'     => 'このページは、「連続」選択肢が有効な状態で保護されている以下の{{PLURAL:$1|ページ}}で読み込まれているため、編集できないように保護されています：
 $2',
 'namespaceprotected'   => "'''$1'''名前空間にあるページを編集する権限がありません。",
+'customcssprotected'   => 'このCSSページはほかのユーザーの個人設定が含まれているため、編集することができません。',
 'ns-specialprotected'  => '特別ページは編集できません。',
 'titleprotected'       => "[[User:$1|$1]]によりこのページ名を持つページの作成は保護されています。
 理由は「''$2''」です。",
@@ -2569,7 +2571,7 @@ $1',
 'nolinkshere-ns'           => "選択された名前空間中で、'''[[:$1]]'''にリンクしているページはありません。",
 'isredirect'               => '転送ページ',
 'istemplate'               => '参照読み込み',
-'isimage'                  => '画像リンク',
+'isimage'                  => 'ファイルへのリンク',
 'whatlinkshere-prev'       => '{{PLURAL:$1|前|前の$1件}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|次|次の$1件}}',
 'whatlinkshere-links'      => '← リンク',

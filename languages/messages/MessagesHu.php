@@ -2369,9 +2369,8 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 'undeletepagetext'             => 'Az alábbi {{PLURAL:$1|lapot törölték, de még helyreállítható|$1 lapot törölték, de még helyreállíthatók}} az archívumból.
 Az archívumot időről időre üríthetik!',
 'undelete-fieldset-title'      => 'Változatok helyreállítása',
-'undeleteextrahelp'            => "A lap teljes helyreállításához ne jelölj be egy jelölőnégyzetet sem, csak kattints a '''''Helyreállítás''''' gombra.
-A lap részleges helyreállításához jelöld be a kívánt változatok melletti jelölőnégyzeteket, és kattints a '''''Helyreállítás''''' gombra.
-Ha megnyomod a '''''Vissza''''' gombot, az törli a jelölőnégyzetek és az összefoglaló jelenlegi tartalmát.",
+'undeleteextrahelp'            => "A lap teljes helyreállításához ne jelölj be egy jelölőnégyzetet sem, csak kattints a '''''{{int:undeletebtn}}''''' gombra.
+A lap részleges helyreállításához jelöld be a kívánt változatok melletti jelölőnégyzeteket, és kattints a '''''{{int:undeletebtn}}''''' gombra.",
 'undeleterevisions'            => '{{PLURAL:$1|egy|$1}} változat archiválva',
 'undeletehistory'              => 'Ha helyreállítasz egy lapot, azzal visszahozod laptörténet összes változatát.
 Ha lap törlése óta azonos néven már létrehoztak egy újabb lapot, a helyreállított
@@ -2459,7 +2458,7 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'nolinkshere-ns'           => "A kiválasztott névtérben egyetlen oldal sem hivatkozik a(z) '''[[:$1]]''' lapra.",
 'isredirect'               => 'átirányítás',
 'istemplate'               => 'beillesztve',
-'isimage'                  => 'képhivatkozás',
+'isimage'                  => 'fájlhivatkozás',
 'whatlinkshere-prev'       => '{{PLURAL:$1|előző|előző $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|következő|következő $1}}',
 'whatlinkshere-links'      => '← erre mutató hivatkozások',
@@ -2915,6 +2914,18 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'spambot_username'    => 'MediaWiki spam kitakarítása',
 'spam_reverting'      => 'Visszatérés a $1 lapra mutató hivatkozásokat nem tartalmazó utolsó változathoz',
 'spam_blanking'       => 'Az összes változat tartalmazott a $1 lapra mutató hivatkozásokat, kiürítés',
+
+# Info page
+'pageinfo-title'            => 'Információk a(z) „$1” lapról',
+'pageinfo-header-edits'     => 'Szerkesztések',
+'pageinfo-header-watchlist' => 'Figyelőlista',
+'pageinfo-header-views'     => 'Megtekintések',
+'pageinfo-subjectpage'      => 'Lap',
+'pageinfo-talkpage'         => 'Vitalap',
+'pageinfo-edits'            => 'Szerkesztések száma',
+'pageinfo-authors'          => 'Egyedi szerkesztők száma',
+'pageinfo-views'            => 'Megtekintések száma',
+'pageinfo-viewsperedit'     => 'Megtekintés/szerkesztés',
 
 # Skin names
 'skinname-standard'    => 'Klasszikus',

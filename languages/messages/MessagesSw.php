@@ -2159,7 +2159,7 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'nolinkshere-ns'           => "Hakuna kurasa zilizounganishwa na '''[[:$1]]''' katika eneo la wiki lililochaguliwa.",
 'isredirect'               => 'elekeza ukurasa',
 'istemplate'               => 'jumuisho',
-'isimage'                  => 'kiungo cha picha',
+'isimage'                  => 'kiungo cha faili',
 'whatlinkshere-prev'       => '{{PLURAL:$1|uliotangulia|$1 zilizotangulia}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|ujao|$1 zijazo}}',
 'whatlinkshere-links'      => '← viungo',
@@ -2481,6 +2481,11 @@ Tafadhali jaribu tena.',
 'anonusers'        => '{{PLURAL:$2|Mtumiaji|Watumiaji}} wa {{SITENAME}} {{PLURAL:$2|asiyetiwa jina|wasiotiwa jina}} $1',
 'creditspage'      => 'Wandishi wa ukurasa',
 'nocredits'        => 'Taarifa kuhusu wandishi wa ukurasa huu haipatikana.',
+
+# Info page
+'pageinfo-header-edits' => 'Maharirio',
+'pageinfo-subjectpage'  => 'Ukurasa',
+'pageinfo-talkpage'     => 'Ukurasa wa majadiliano',
 
 # Patrol log
 'patrol-log-line' => 'aliweka alama ya kufanyiwa doria katika $1 ya $2 $3',

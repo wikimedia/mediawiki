@@ -6100,7 +6100,7 @@ Most már '''[$1 beléphetsz a wikibe]'''.",
 	'config-unknown-collation' => "'''Figyelmeztetés:''' az adatbázis ismeretlen egybevetést használ.",
 	'config-db-web-account' => 'A webes hozzáférésnél használt adatbázisfiók',
 	'config-db-web-help' => 'Add meg azt a felhasználónevet és jelszót, amit a webszerver a wiki általános működése során használ a csatlakozáshoz.',
-	'config-db-web-account-same' => 'Ezen fiók használata a telepítéshez is',
+	'config-db-web-account-same' => 'A telepítéshez használt fiók használata',
 	'config-db-web-create' => 'Fiók létrehozása, ha még nem létezik.',
 	'config-db-web-no-create-privs' => 'A telepítéshez megadott fiók nem rendelkezik megfelelő jogosultságokkal új felhasználó létrehozásához.
 Az itt megadott fióknak léteznie kell.',

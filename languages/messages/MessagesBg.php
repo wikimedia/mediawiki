@@ -2800,6 +2800,14 @@ $1',
 'spam_reverting'      => 'Връщане на последната версия, несъдържаща препратки към $1',
 'spam_blanking'       => 'Всички версии, съдържащи препратки към $1, изчистване',
 
+# Info page
+'pageinfo-title'            => 'Информация за "$1"',
+'pageinfo-header-edits'     => 'Редакции',
+'pageinfo-header-watchlist' => 'Списък за наблюдение',
+'pageinfo-header-views'     => 'Прегледи',
+'pageinfo-subjectpage'      => 'Страница',
+'pageinfo-talkpage'         => 'Дискусионна страница',
+
 # Skin names
 'skinname-standard'    => 'Класика',
 'skinname-nostalgia'   => 'Носталгия',
