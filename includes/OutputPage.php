@@ -2359,7 +2359,12 @@ $templates
 			$wgUseAjax, $wgAjaxWatch, $wgEnableMWSuggest;
 
 		// Add base resources
-		$this->addModules( array( 'mediawiki.user', 'mediawiki.util', 'mediawiki.action.view.tablesorting' ) );
+		$this->addModules( array(
+			'mediawiki.user',
+			'mediawiki.util',
+			'mediawiki.page.startup',
+			'mediawiki.page.ready',
+		) );
 		if ( $wgIncludeLegacyJavaScript ){
 			$this->addModules( 'mediawiki.legacy.wikibits' );
 		}
