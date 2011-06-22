@@ -323,7 +323,6 @@ class ChangesList {
 	 * @return void
 	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
-		global $wgContLang;
 		# If it's a new article, there is no diff link, but if it hasn't been
 		# patrolled yet, we need to give users a way to do so
 		$params = array();
@@ -805,7 +804,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Enhanced RC group
 	 */
 	protected function recentChangesBlockGroup( $block ) {
-		global $wgLang, $wgContLang, $wgRCShowChangedSize;
+		global $wgLang, $wgRCShowChangedSize;
 
 		wfProfileIn( __METHOD__ );
 

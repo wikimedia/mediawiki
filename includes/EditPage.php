@@ -1815,7 +1815,7 @@ HTML
 			'style' => '' // avoid php notices when appending preferences (appending allows customAttribs['style'] to still work
 		);
 
-		global $wgBetterDirectionality, $wgContLang;
+		global $wgBetterDirectionality;
 		if( $wgBetterDirectionality ) {
 			$pageLang = $this->mTitle->getPageLanguage();
 			$attribs['lang'] = $pageLang->getCode();
