@@ -378,19 +378,11 @@
 				mergeSortHelper(array, begin, beginRight, end, sortList);
 			}
 
-			var lastSort = '';
-			
 			function multisort( table, sortList, cache ) {
 				//var sortTime = new Date();
 		    
 				var i = sortList.length;
-				if ( i == 1 && sortList[0][0] === lastSort) {
-					// Special case a simple reverse
-					cache.normalized.reverse();
-				} else {
-					mergeSort(cache.normalized, 0, cache.normalized.length, sortList);
-				}
-				lastSort = ( sortList.length == 1 ) ? sortList[0][0] : '';
+				mergeSort(cache.normalized, 0, cache.normalized.length, sortList);
 
 				//benchmark( "Sorting in dir " + order + " time:", sortTime );
 		    
@@ -453,7 +445,7 @@
 
 				//Build RegEx
 				//Any date formated with . , ' - or /
-				ts.dateRegex[0] = new RegExp(/^\s*\d{1,2}[\,\.\-\/'\s]*\d{1,2}[\,\.\-\/'\s]*\d{2,4}\s*?/i);
+				ts.dateRegex[0] = new RegExp(/^\s*\d{1,2}[\,\.\-\/'\s]{1,2}\d{1,2}[\,\.\-\/'\s]{1,2}\d{2,4}\s*?/i);
 
 				//Written Month name, dmy
 				ts.dateRegex[1] = new RegExp('^\\s*\\d{1,2}[\\,\\.\\-\\/\'\\s]*(' + r + ')' + '[\\,\\.\\-\\/\'\\s]*\\d{2,4}\\s*$', 'i');
