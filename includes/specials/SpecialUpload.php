@@ -609,9 +609,9 @@ class SpecialUpload extends SpecialPage {
 				// in a bit unlogical parameter sequence, but does not break
 				// old translations
 				if ( isset( $details['blacklistedExt'] ) ) {
-					$msg->numParams( count( $details['blacklistedExt'] ) );
+					$msg->params( count( $details['blacklistedExt'] ) );
 				} else {
-					$msg->numParams( 1 );
+					$msg->params( 1 );
 				}
 
 				$this->showUploadError( $msg->parse() );
