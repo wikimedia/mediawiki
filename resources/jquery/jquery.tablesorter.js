@@ -101,7 +101,7 @@
 						l = cells.length;
 
 					for ( var i = 0; i < l; i++ ) {
-						p = false;
+						var p = false;
 						sortType = $headers.eq(i).data('sort-type');
 						if ( typeof sortType != 'undefined' ) {
 							p = getParserById( sortType );
@@ -264,7 +264,7 @@
 				// }
 				//var header_index = computeTableHeaderCellIndexes( table );
 				var realCellIndex = 0;
-				$tableHeaders = $( "thead:eq(0) tr", table );
+				var $tableHeaders = $( "thead:eq(0) tr", table );
 				if ( $tableHeaders.length > 1 ) {
 					$tableHeaders.each(function() {
 						if (this.cells.length > maxSeen) {
@@ -795,7 +795,7 @@
 		format: function ( s, table ) {
 			s = $.trim( s.toLowerCase() );
 
-			for ( i = 1, j = 0; i < 13 && j < 2; i++ ) {
+			for ( var i = 1, j = 0; i < 13 && j < 2; i++ ) {
 				s = s.replace( ts.monthNames[j][i], i );
 				if ( i == 12 ) {
 					j++;
