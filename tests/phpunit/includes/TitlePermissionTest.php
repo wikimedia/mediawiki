@@ -3,7 +3,7 @@
 /**
  * @group Database
  */
-class TitlePermissionTest extends MediaWikiLangTestCase {
+class TitlePermissionTest extends MediaWikiTestCase {
 	protected $title;
 	protected $user;
 	protected $anonUser;
@@ -14,7 +14,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 	function setUp() {
 		global $wgLocaltimezone, $wgLocalTZoffset, $wgMemc, $wgContLang, $wgLang;
-		parent::setUp();
 
 		if(!$wgMemc) {
 			$wgMemc = new EmptyBagOStuff;
@@ -49,10 +48,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			$this->user = $this->userUser;
 		}
-	}
-
-	function tearDown() {
-		parent::tearDown();
 	}
 
 	function setUserPerm( $perm ) {
