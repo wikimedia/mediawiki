@@ -4383,11 +4383,9 @@ class Parser {
 		# If we're still here, make it a link to the user page
 		$userText = wfEscapeWikiText( $username );
 		$nickText = wfEscapeWikiText( $nickname );
-		if ( $user->isAnon() )  {
-			return wfMsgExt( 'signature-anon', array( 'content', 'parsemag' ), $userText, $nickText );
-		} else {
-			return wfMsgExt( 'signature', array( 'content', 'parsemag' ), $userText, $nickText );
-		}
+		$msgName = $user->isAnon() ? 'signature-anon' : 'signature';
+
+		return wfMessage( $msgName, $userText, $nickText )->inContentLanguage()->title( $this->getTitle() )->text();
 	}
 
 	/**
