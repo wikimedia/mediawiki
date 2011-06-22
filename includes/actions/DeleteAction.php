@@ -480,6 +480,5 @@ class DeleteAction extends Action {
 	}
 
 	public function execute(){
-
 	}
 }
