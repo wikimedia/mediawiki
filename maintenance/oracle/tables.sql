@@ -27,7 +27,7 @@ CREATE INDEX &mw_prefix.mwuser_i02 ON &mw_prefix.mwuser (user_email, user_name);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.mwuser
-  VALUES (user_user_id_seq.nextval,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL, '', current_timestamp, current_timestamp, 0);
+  VALUES (user_user_id_seq.nextval,'Anonymous',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL, '', current_timestamp, current_timestamp, 0);
 
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
@@ -169,9 +169,9 @@ CREATE TABLE &mw_prefix.categorylinks (
   cl_from       NUMBER      NOT NULL,
   cl_to         VARCHAR2(255)         NOT NULL,
   cl_sortkey    VARCHAR2(230),
-  cl_sortkey_prefix VARCHAR2(255) DEFAULT '' NOT NULL,
+  cl_sortkey_prefix VARCHAR2(255),
   cl_timestamp  TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
-  cl_collation	VARCHAR2(32) DEFAULT '' NOT NULL,
+  cl_collation	VARCHAR2(32),
   cl_type 		VARCHAR2(6) DEFAULT 'page' NOT NULL
 );
 ALTER TABLE &mw_prefix.categorylinks ADD CONSTRAINT &mw_prefix.categorylinks_fk1 FOREIGN KEY (cl_from) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
@@ -221,8 +221,8 @@ CREATE INDEX &mw_prefix.langlinks_i01 ON &mw_prefix.langlinks (ll_lang, ll_title
 
 CREATE TABLE &mw_prefix.iwlinks (
   iwl_from NUMBER DEFAULT 0 NOT NULL,
-  iwl_prefix VARCHAR2(20) DEFAULT '' NOT NULL,
-  iwl_title VARCHAR2(255) DEFAULT '' NOT NULL
+  iwl_prefix VARCHAR2(20),
+  iwl_title VARCHAR2(255)
 );
 CREATE UNIQUE INDEX &mw_prefix.iwlinks_ui01 ON &mw_prefix.iwlinks (iwl_from, iwl_prefix, iwl_title);
 CREATE UNIQUE INDEX &mw_prefix.iwlinks_ui02 ON &mw_prefix.iwlinks (iwl_prefix, iwl_title, iwl_from);
@@ -408,7 +408,7 @@ CREATE INDEX &mw_prefix.watchlist_i01 ON &mw_prefix.watchlist (wl_namespace, wl_
 
 CREATE TABLE &mw_prefix.searchindex (
   si_page	NUMBER NOT NULL,
-  si_title	VARCHAR2(255) DEFAULT '' NOT NULL,
+  si_title	VARCHAR2(255),
   si_text	CLOB NOT NULL
 );
 CREATE UNIQUE INDEX &mw_prefix.searchindex_u01 ON &mw_prefix.searchindex (si_page);
@@ -520,9 +520,9 @@ CREATE TABLE &mw_prefix.querycachetwo (
   qcc_type          VARCHAR2(32)     NOT NULL,
   qcc_value         NUMBER  DEFAULT 0 NOT NULL,
   qcc_namespace     NUMBER  DEFAULT 0 NOT NULL,
-  qcc_title         VARCHAR2(255)     DEFAULT '' NOT NULL,
+  qcc_title         VARCHAR2(255),
   qcc_namespacetwo  NUMBER  DEFAULT 0 NOT NULL,
-  qcc_titletwo      VARCHAR2(255)     DEFAULT '' NOT NULL
+  qcc_titletwo      VARCHAR2(255)
 );
 CREATE INDEX &mw_prefix.querycachetwo_i01 ON &mw_prefix.querycachetwo (qcc_type,qcc_value);
 CREATE INDEX &mw_prefix.querycachetwo_i02 ON &mw_prefix.querycachetwo (qcc_type,qcc_namespace,qcc_title);

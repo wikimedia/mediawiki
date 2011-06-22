@@ -29,6 +29,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'doFunctions17' ),
 			array( 'doSchemaUpgrade17' ),
 			array( 'doInsertPage0' ),
+			array( 'doRemoveNotNullEmptyDefaults' ),
 			
 			//1.18
 			array( 'addIndex',	'user',          'i02',       'patch-user_email_index.sql' ),
@@ -93,7 +94,7 @@ class OracleUpdater extends DatabaseUpdater {
 	protected function doSchemaUpgrade17() {
 		$this->output( "Updating schema to 17 ... " );
 		// check if iwlinks table exists which was added in 1.17
-		if ( $this->db->tableExists( $this->db->tableName( 'iwlinks' ) ) ) {
+		if ( $this->db->tableExists( 'iwlinks' ) ) {
 			$this->output( "schema seem to be up to date.\n" );
 			return;
 		}
@@ -122,6 +123,20 @@ class OracleUpdater extends DatabaseUpdater {
 		$this->output( "ok\n" );
 	}
 
+	/**
+	 * Remove DEFAULT '' NOT NULL constraints from fields as '' is internally
+	 * converted to NULL in Oracle
+	 */
+	protected function doRemoveNotNullEmptyDefaults() {
+		$this->output( "Removing not null empty constraints ... " );
+		$meta = $this->db->fieldInfo( 'categorylinks' , 'cl_sortkey_prefix' );
+		if ( $meta->isNullable() ) {
+			$this->output( "constraints seem to be removed\n" );
+			return;
+		}
+		$this->applyPatch( 'patch_remove_not_null_empty_defs.sql', false );
+		$this->output( "ok\n" );
+	}
 
 	/**
 	 * rebuilding of the function that duplicates tables for tests
