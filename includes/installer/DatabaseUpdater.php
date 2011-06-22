@@ -232,6 +232,7 @@ abstract class DatabaseUpdater {
 	}
 
 	protected function setAppliedUpdates( $version, $updates = array() ) {
+		$this->db->clearFlag( DBO_DDLMODE );
 		if( !$this->canUseNewUpdatelog() ) {
 			return;
 		}
@@ -239,6 +240,7 @@ abstract class DatabaseUpdater {
 		$this->db->insert( 'updatelog',
 			array( 'ul_key' => $key, 'ul_value' => serialize( $updates ) ),
 			 __METHOD__ );
+		$this->db->setFlag( DBO_DDLMODE );
 	}
 
 	/**
@@ -265,11 +267,13 @@ abstract class DatabaseUpdater {
 	 * @param $val String [optional] value to insert along with the key
 	 */
 	public function insertUpdateRow( $key, $val = null ) {
+		$this->db->clearFlag( DBO_DDLMODE );
 		$values = array( 'ul_key' => $key );
 		if( $val && $this->canUseNewUpdatelog() ) {
 			$values['ul_value'] = $val;
 		}
 		$this->db->insert( 'updatelog', $values, __METHOD__, 'IGNORE' );
+		$this->db->setFlag( DBO_DDLMODE );
 	}
 
 	/**
