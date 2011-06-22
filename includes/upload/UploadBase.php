@@ -532,7 +532,7 @@ abstract class UploadBase {
 		if ( $wgCheckFileExtensions ) {
 			if ( !$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) {
 				$warnings['filetype-unwanted-type'] = array( $this->mFinalExtension,
-					$wgLang->commaList( $wgFileExtensions ) );
+					$wgLang->commaList( $wgFileExtensions ), count( $wgFileExtensions ) );
 			}
 		}
 
