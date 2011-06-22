@@ -1129,7 +1129,7 @@ class OutputPage {
 				}
 				$text = $wgContLang->convertHtml( $title->getText() );
 				$this->mCategories[] = $title->getText();
-				$this->mCategoryLinks[$type][] = $this->getSkin()->link( $title, $text );
+				$this->mCategoryLinks[$type][] = Linker::link( $title, $text );
 			}
 		}
 	}
@@ -1919,7 +1919,7 @@ class OutputPage {
 		} else {
 			$this->addDefaultModules();
 
-			$sk = $this->getSkin( $this->getTitle() );
+			$sk = $this->getSkin();
 
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
@@ -2035,7 +2035,7 @@ class OutputPage {
 		$this->setArticleRelated( false );
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = $this->getSkin()->link(
+		$loginLink = Linker::link(
 			$loginTitle,
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
@@ -2125,7 +2125,7 @@ class OutputPage {
 			if( $source ) {
 				$this->setPageTitle( wfMsg( 'viewsource' ) );
 				$this->setSubtitle(
-					wfMsg( 'viewsourcefor', $this->getSkin()->linkKnown( $this->getTitle() ) )
+					wfMsg( 'viewsourcefor', Linker::linkKnown( $this->getTitle() ) )
 				);
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
@@ -2150,10 +2150,10 @@ class OutputPage {
 			$this->addHTML( Html::element( 'textarea', $params, $source ) );
 
 			// Show templates used by this article
-			$skin = $this->getSkin();
 			$article = new Article( $this->getTitle() );
+			$templates = Linker::formatTemplates( $article->getUsedTemplates() );
 			$this->addHTML( "<div class='templatesUsed'>
-{$skin->formatTemplates( $article->getUsedTemplates() )}
+$templates
 </div>
 " );
 		}
@@ -2234,7 +2234,7 @@ class OutputPage {
 		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullURL() ) );
 		$link = wfMsgHtml(
 			'returnto',
-			$this->getSkin()->link( $title, $text, array(), $query )
+			Linker::link( $title, $text, array(), $query )
 		);
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
 	}
