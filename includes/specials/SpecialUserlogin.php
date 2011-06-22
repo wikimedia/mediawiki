@@ -831,7 +831,7 @@ class LoginForm extends SpecialPage {
 
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
 		if( $msgname ){
-			$wgOut->addWikiMsg( $msgname, $wgUser->getName() );
+			$wgOut->addWikiMsg( $msgname, wfEscapeWikiText( $wgUser->getName() ) );
 		}
 		
 		$wgOut->addHTML( $injected_html );
