@@ -163,4 +163,59 @@ tableTest(
 	}
 );
 
+
+// Regression tests!
+tableTest(
+	'Bug 28775: German-style short numeric dates',
+	['Date'],
+	[
+		// German-style dates are day-month-year
+		['11.11.2011'],
+		['01.11.2011'],
+		['02.10.2011'],
+		['03.08.2011'],
+		['09.11.2011']
+	],
+	[
+		// Sorted by ascending date
+		['03.08.2011'],
+		['02.10.2011'],
+		['01.11.2011'],
+		['09.11.2011'],
+		['11.11.2011']
+	],
+	function( $table ) {
+		// @fixme reset it at end or change module to allow us to override it
+		mw.config.set('wgDefaultDateFormat', window.wgDefaultDateFormat = 'dmy');
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click();
+	}
+);
+tableTest(
+	'Bug 28775: American-style short numeric dates',
+	['Date'],
+	[
+		// American-style dates are month-day-year
+		['11.11.2011'],
+		['01.11.2011'],
+		['02.10.2011'],
+		['03.08.2011'],
+		['09.11.2011']
+	],
+	[
+		// Sorted by ascending date
+		['01.11.2011'],
+		['02.10.2011'],
+		['03.08.2011'],
+		['09.11.2011'],
+		['11.11.2011']
+	],
+	function( $table ) {
+		// @fixme reset it at end or change module to allow us to override it
+		mw.config.set('wgDefaultDateFormat', window.wgDefaultDateFormat = 'mdy');
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click();
+	}
+);
+
 })();
