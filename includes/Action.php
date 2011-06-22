@@ -59,13 +59,9 @@ abstract class Action {
 
 		if ( $wgActions[$action] === false ) {
 			return false;
-		}
-
-		elseif ( $wgActions[$action] === true ) {
+		} elseif ( $wgActions[$action] === true ) {
 			return ucfirst( $action ) . 'Action';
-		}
-
-		else {
+		} else {
 			return $wgActions[$action];
 		}
 	}
