@@ -202,14 +202,4 @@
 			return true;
 		}
 	};
-
-	$( document ).ready( function() {
-		var profile = $.client.profile();
-		$( 'html' )
-			.addClass( 'client-' + profile.name )
-			.addClass( 'client-' + profile.name + '-' + profile.versionBase )
-			.addClass( 'client-' + profile.layout )
-			.addClass( 'client-' + profile.platform );
-	} );
-
 } )( jQuery );

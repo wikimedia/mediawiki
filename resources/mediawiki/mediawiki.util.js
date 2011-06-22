@@ -57,14 +57,6 @@
 						mw.util.tooltipAccessKeyPrefix = 'alt-shift-';
 					}
 
-					/* Enable CheckboxShiftClick */
-					$( 'input[type=checkbox]:not(.noshiftselect)' ).checkboxShiftClick();
-
-					/* Emulate placeholder if not supported by browser */
-					if ( !( 'placeholder' in document.createElement( 'input' ) ) ) {
-						$( 'input[placeholder]' ).placeholder();
-					}
-
 					/* Fill $content var */
 					if ( $( '#bodyContent' ).length ) {
 						// Vector, Monobook, Chick etc.
@@ -85,9 +77,6 @@
 						// so it's a good fallback
 						mw.util.$content = $( '#content' );
 					}
-
-					/* Enable makeCollapse */
-					$( '.mw-collapsible' ).makeCollapsible();
 
 					/* Table of Contents toggle */
 					var	$tocContainer = $( '#toc' ),

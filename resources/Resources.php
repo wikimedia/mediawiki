@@ -448,16 +448,28 @@ return array(
 			'jquery.cookie',
 		),
 	),
+	'mediawiki.page.startup' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.startup.js',
+		'dependencies' => array(
+			'jquery.client',
+		),
+		'position' => 'top',
+	),
+	'mediawiki.page.ready' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.ready.js',
+		'dependencies' => array(
+			'jquery.checkboxShiftClick',
+			'jquery.makeCollapsible',
+			'jquery.placeholder',
+		),
+	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.util.js',
 		'dependencies' => array(
-			'jquery.checkboxShiftClick',
 			'jquery.client',
 			'jquery.cookie',
 			'jquery.messageBox',
-			'jquery.makeCollapsible',
 			'jquery.mwPrototypes',
-			'jquery.placeholder',
 		),
 	),
 	'mediawiki.libs.jpegmeta' => array(
@@ -481,9 +493,6 @@ return array(
 	'mediawiki.action.view.metadata' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.metadata.js',
 		'messages' => array( 'metadata-expand', 'metadata-collapse' ),
-	),
-	'mediawiki.action.view.tablesorting' => array(
-		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.tablesorting.js',
 	),
 	'mediawiki.action.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
