@@ -488,7 +488,7 @@
 					IPAddress: [new RegExp(/^\d{1,3}[\.]\d{1,3}[\.]\d{1,3}[\.]\d{1,3}$/)],
 					currency: [new RegExp(/^[£$€?.]/), new RegExp(/[£$€]/g)],
 					url: [new RegExp(/^(https?|ftp|file):\/\/$/), new RegExp(/(https?|ftp|file):\/\//)],
-					isoDate: [new RegExp(/^\d{4}[\/-]\d{1,2}[\/-]\d{1,2}$/)],
+					isoDate: [new RegExp(/^\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2}$/)],
 					usLongDate: [new RegExp(/^[A-Za-z]{3,10}\.? [0-9]{1,2}, ([0-9]{4}|'?[0-9]{2}) (([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(AM|PM)))$/)],
 					time: [new RegExp(/^(([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(am|pm)))$/)]
 				};
