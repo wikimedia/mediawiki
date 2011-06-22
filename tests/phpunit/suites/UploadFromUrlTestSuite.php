@@ -1,6 +1,6 @@
 <?php
 
-require_once( dirname( dirname( __FILE__ ) ) . '/includes/UploadFromUrlTest.php' );
+require_once( dirname( dirname( __FILE__ ) ) . '/includes/upload/UploadFromUrlTest.php' );
 
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	public static function addTables( &$tables ) {
@@ -170,7 +170,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 	public static function suite() {
 		// Hack to invoke the autoloader required to get phpunit to recognize
-		// the UploadFromUrlTest class 
+		// the UploadFromUrlTest class
 		class_exists( 'UploadFromUrlTest' );
 		$suite = new UploadFromUrlTestSuite( 'UploadFromUrlTest' );
 		return $suite;
