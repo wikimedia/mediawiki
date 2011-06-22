@@ -456,9 +456,9 @@ class SkinTemplate extends Skin {
 
 		global $wgBetterDirectionality;
 		if ( $wgBetterDirectionality ) {
-			// not for special pages AND only when viewing AND if the page exists
+			// not for special pages or file pages AND only when viewing AND if the page exists
 			// (or is in MW namespace, because that has default content)
-			if( $this->getTitle()->getNamespace() != NS_SPECIAL &&
+			if( !in_array( $this->getTitle()->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
 				in_array( $action, array( 'view', 'render', 'print' ) ) &&
 				( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
 				$pageLang = $this->getTitle()->getPageLanguage();
