@@ -579,14 +579,14 @@
 									config.sortList.push( [i, this.order] );
 								}
 							}
-							setTimeout( function () {
-								// set css for headers
-								setHeadersCss( $this[0], $headers, config.sortList, sortCSS, sortMsg );
-								appendToTable( 
-								$this[0], multisort( 
-								$this[0], config.sortList, cache ) );
-								//benchmark( "Sorting " + totalRows + " rows:", clickTime );
-							}, 1 );
+
+							// set css for headers
+							setHeadersCss( $this[0], $headers, config.sortList, sortCSS, sortMsg );
+							appendToTable( 
+							$this[0], multisort( 
+							$this[0], config.sortList, cache ) );
+							//benchmark( "Sorting " + totalRows + " rows:", clickTime );
+
 							// stop normal event by returning false
 							return false;
 						}
