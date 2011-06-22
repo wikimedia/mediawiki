@@ -11,7 +11,7 @@ class UploadTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->upload = new UploadTestHandler;
-		$this->hooks = $wgHooks;var_dump($wgHooks);
+		$this->hooks = $wgHooks;
 		$wgHooks['InterwikiLoadPrefix'][] = 'MediaWikiTestCase::disableInterwikis';
 	}
 
