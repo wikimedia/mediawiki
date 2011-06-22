@@ -2526,7 +2526,7 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 'nolinkshere-ns'           => "Aucune page ne contient de lien vers '''[[:$1]]''' dans l’espace de noms choisi.",
 'isredirect'               => 'page de redirection',
 'istemplate'               => 'inclusion',
-'isimage'                  => 'fichier lié',
+'isimage'                  => 'lien vers le fichier',
 'whatlinkshere-prev'       => '{{PLURAL:$1|précédente|$1 précédentes}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|suivante|$1 suivantes}}',
 'whatlinkshere-links'      => '← liens',

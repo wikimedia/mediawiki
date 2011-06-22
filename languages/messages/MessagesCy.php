@@ -2272,7 +2272,7 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'nolinkshere-ns'           => "Nid oes cyswllt ar unrhyw dudalen yn y parth dewisedig yn arwain at '''[[:$1]]'''.",
 'isredirect'               => 'tudalen ail-gyfeirio',
 'istemplate'               => 'cynhwysiad',
-'isimage'                  => 'cyswllt at y ddelwedd',
+'isimage'                  => 'cyswllt yn nôl y ddelwedd',
 'whatlinkshere-prev'       => '{{PLURAL:$1|cynt|cynt|$1 cynt|$1 cynt|$1 cynt|$1 cynt}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|nesaf|nesaf|$1 nesaf|$1 nesaf|$1 nesaf|$1 nesaf}}',
 'whatlinkshere-links'      => '← cysylltiadau',
@@ -2711,6 +2711,10 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'spambot_username'    => 'Teclyn clirio sbam MediaWiki',
 'spam_reverting'      => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
 'spam_blanking'       => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
+
+# Info page
+'pageinfo-subjectpage' => 'Tudalen',
+'pageinfo-talkpage'    => 'Tudalen sgwrs',
 
 # Skin names
 'skinname-standard'    => 'Safonol',

@@ -3076,6 +3076,14 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'spam_reverting'      => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
 'spam_blanking'       => 'Alle wijzigingen met een verwijzing naar $1 worden verwijderd',
 
+# Info page
+'pageinfo-title'        => 'Informatie over "$1"',
+'pageinfo-header-edits' => 'Bewerkingen',
+'pageinfo-subjectpage'  => 'Pagina',
+'pageinfo-talkpage'     => 'Overleg pagina',
+'pageinfo-edits'        => 'Aantal bewerkingen',
+'pageinfo-authors'      => 'Aantal verschillende auteurs',
+
 # Skin names
 'skinname-standard'    => 'Klassiek',
 'skinname-nostalgia'   => 'Nostalgie',

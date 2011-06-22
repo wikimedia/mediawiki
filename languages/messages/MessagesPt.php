@@ -2515,7 +2515,7 @@ Para sua referência, encontra abaixo a entrada mais recente no registo de bloqu
 'nolinkshere-ns'           => "Não existem links para '''[[:$1]]''' no espaço nominal seleccionado.",
 'isredirect'               => 'página de redireccionamento',
 'istemplate'               => 'inclusão',
-'isimage'                  => 'link para a imagem',
+'isimage'                  => 'link para o ficheiro',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|próximo|próximos $1}}',
 'whatlinkshere-links'      => '← links',
@@ -2982,6 +2982,19 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'spambot_username'    => 'MediaWiki limpeza de spam',
 'spam_reverting'      => 'Revertendo para a última revisão que não contém links para $1',
 'spam_blanking'       => 'Todas as revisões continham links para $1, limpando',
+
+# Info page
+'pageinfo-title'            => 'Informações sobre "$1"',
+'pageinfo-header-edits'     => 'Edições',
+'pageinfo-header-watchlist' => 'Páginas vigiadas',
+'pageinfo-header-views'     => 'Visitas',
+'pageinfo-subjectpage'      => 'Página',
+'pageinfo-talkpage'         => 'Página de discussão',
+'pageinfo-watchers'         => 'Número de vigilantes',
+'pageinfo-edits'            => 'Número de edições',
+'pageinfo-authors'          => 'Número de autores individuais',
+'pageinfo-views'            => 'Número de visitas',
+'pageinfo-viewsperedit'     => 'Visitas por edição',
 
 # Skin names
 'skinname-standard'    => 'Clássico',

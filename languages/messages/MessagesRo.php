@@ -740,7 +740,8 @@ Asigurați-vă că aveți cookie-urile activate, reîncărcați pagina și înce
 'nosuchuser'                 => 'Nu există nici un utilizator cu numele „$1”.
 Numele de utilizatori sunt sensibile la majuscule.
 Verifică dacă ai scris corect sau [[Special:UserLogin/signup|creează un nou cont de utilizator]].',
-'nosuchusershort'            => 'Nu este nici un utilizator cu numele „$1”. Verificați dacă ați scris corect.',
+'nosuchusershort'            => 'Nu există niciun utilizator cu numele „$1”.
+Verificați ortografierea.',
 'nouserspecified'            => 'Trebuie să specificați un nume de utilizator.',
 'login-userblocked'          => 'Acest utilizator este blocat. Autentificarea nu este permisă.',
 'wrongpassword'              => 'Parola pe care ați introdus-o este incorectă. Vă rugăm să încercați din nou.',
@@ -2277,7 +2278,8 @@ Asistență și suport:
 'confirmdeletetext'      => 'Sunteți pe cale să ștergeți permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmați alegerea făcută de dvs., faptul că înțelegeți consecințele acestei acțiuni și faptul că o faceți în conformitate cu [[{{MediaWiki:Policy-url}}|Politica oficială]].',
 'actioncomplete'         => 'Acțiune completă',
 'actionfailed'           => 'Acțiunea a eșuat',
-'deletedtext'            => 'Pagina "$1" a fost ștearsă. Vedeți $2 pentru o listă a elementelor șterse recent.',
+'deletedtext'            => 'Pagina „$1” a fost ștearsă.
+Accesați $2 pentru o listă cu elementele recent șterse.',
 'deletedarticle'         => 'a șters "[[$1]]"',
 'suppressedarticle'      => 'eliminate "[[$1]]"',
 'dellogpage'             => 'Jurnal ștergeri',
@@ -2332,7 +2334,7 @@ revenire la ultima versiune de $2.',
 'protect_expiry_invalid'      => 'Timpul de expirare nu este valid.',
 'protect_expiry_old'          => 'Timpul de expirare este în trecut.',
 'protect-unchain-permissions' => 'Deblochează mai multe opțiuni de protejare',
-'protect-text'                => "Poți vizualiza sau modifica nivelul de protecție pentru pagina '''$1'''.",
+'protect-text'                => "Puteți vizualiza sau modifica nivelul de protecție al paginii '''$1'''.",
 'protect-locked-blocked'      => "Nu poți schimba nivelurile de protecție fiind blocat.
 Iată configurația curentă a paginii '''$1''':",
 'protect-locked-dblock'       => "Nivelurile de protecție nu pot fi aplicate deoarece baza de date este închisă.
@@ -2471,7 +2473,7 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'nolinkshere-ns'           => "Nici o pagină din spațiul de nume ales nu trimite la '''[[:$1]]'''.",
 'isredirect'               => 'pagină de redirecționare',
 'istemplate'               => 'prin includerea formatului',
-'isimage'                  => 'legătura fișierului',
+'isimage'                  => 'legătură către fișier',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterioara|anterioarele $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|următoarea|urmatoarele $1}}',
 'whatlinkshere-links'      => '← legături',

@@ -356,6 +356,7 @@ $messages = array(
 Лæмбынæгæй ныффысс дæ пароль',
 'wrongpasswordempty'      => 'Пароль афтид уыд. Афтæ нæ баззы, ныффыс-ма исты пароль.',
 'mailmypassword'          => 'Рарвит мæм ног пароль',
+'passwordremindertitle'   => '{{SITENAME}}: ног рæстæгмæ пароль',
 'noemail'                 => 'Архайæг $1 йæ электрон посты адрис нæ ныууагъта.',
 'mailerror'               => 'Фыстæг арвитыны рæдыд: $1',
 'emailconfirmlink'        => 'Дæ электронон посты адрис сфидар кæн',
@@ -367,11 +368,14 @@ $messages = array(
 'newpassword'               => 'Новый пароль',
 'resetpass_forbidden'       => 'Пароль баивæн нæй',
 'resetpass-submit-loggedin' => 'Пароль баив',
+'resetpass-submit-cancel'   => 'Нæ хъæуы',
 'resetpass-temp-password'   => 'Рæстæгмæ пароль:',
 
 # Special:PasswordReset
-'passwordreset-username' => 'Архайæджы ном:',
-'passwordreset-email'    => 'Электрон посты адрис:',
+'passwordreset-username'     => 'Архайæджы ном:',
+'passwordreset-email'        => 'Электрон посты адрис:',
+'passwordreset-emailelement' => 'Архайæджы ном: $1
+Рæстæгмæ пароль: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Бæзджын текст',

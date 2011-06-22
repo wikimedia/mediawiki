@@ -2446,7 +2446,7 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'nolinkshere-ns'           => "Żadna strona nie odwołuje się do '''[[:$1]]''' w wybranej przestrzeni nazw.",
 'isredirect'               => 'strona przekierowująca',
 'istemplate'               => 'dołączony szablon',
-'isimage'                  => 'odnośnik z grafiki',
+'isimage'                  => 'link do pliku',
 'whatlinkshere-prev'       => '{{PLURAL:$1|poprzednie|poprzednie $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|następne|następne $1}}',
 'whatlinkshere-links'      => '← linkujące',
@@ -2916,6 +2916,19 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'spambot_username'    => 'MediaWiki – usuwanie spamu',
 'spam_reverting'      => 'Przywracanie ostatniej wersji nie zawierającej linków do $1',
 'spam_blanking'       => 'Wszystkie wersje zawierały odnośniki do $1. Czyszczenie strony.',
+
+# Info page
+'pageinfo-title'            => 'Informacje o „$1“',
+'pageinfo-header-edits'     => 'Edycje',
+'pageinfo-header-watchlist' => 'Obserwowane',
+'pageinfo-header-views'     => 'Odsłon',
+'pageinfo-subjectpage'      => 'Strona',
+'pageinfo-talkpage'         => 'Strona dyskusji',
+'pageinfo-watchers'         => 'Obserwujących',
+'pageinfo-edits'            => 'Edycji',
+'pageinfo-authors'          => 'Autorów',
+'pageinfo-views'            => 'Odsłon',
+'pageinfo-viewsperedit'     => 'Odsłon na edycję',
 
 # Skin names
 'skinname-standard'    => 'Standardowa',

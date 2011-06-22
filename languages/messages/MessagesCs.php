@@ -22,6 +22,7 @@
  * @author Ragimiri
  * @author Reaperman
  * @author Urhixidur
+ * @author Utar
  * @author לערי ריינהארט
  */
 
@@ -2492,7 +2493,7 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'nolinkshere-ns'           => "Ve zvoleném jmenném prostoru na '''[[:$1]]''' neodkazuje žádná stránka.",
 'isredirect'               => 'přesměrování',
 'istemplate'               => 'vložení',
-'isimage'                  => 'vložení souboru',
+'isimage'                  => 'odkaz na soubor',
 'whatlinkshere-prev'       => '{{PLURAL:$1|předchozí|předchozí $1|předchozích $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|následující|následující $1|následujících $1}}',
 'whatlinkshere-links'      => '← odkazy',
@@ -2942,6 +2943,19 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'spambot_username'    => 'Systémový čistič spamu',
 'spam_reverting'      => 'Revert na poslední verzi neobsahující odkazy na $1',
 'spam_blanking'       => 'Všechny revize obsahovaly odkazy na $1, vyprázdněno',
+
+# Info page
+'pageinfo-title'            => 'Informace o "$1"',
+'pageinfo-header-edits'     => 'Editace',
+'pageinfo-header-watchlist' => 'Sledované stránky',
+'pageinfo-header-views'     => 'Zobrazení',
+'pageinfo-subjectpage'      => 'Stránka',
+'pageinfo-talkpage'         => 'Diskusní stránka',
+'pageinfo-watchers'         => 'Počet sledujících',
+'pageinfo-edits'            => 'Počet editací',
+'pageinfo-authors'          => 'Počet různých autorů',
+'pageinfo-views'            => 'Počet zobrazení',
+'pageinfo-viewsperedit'     => 'Počet zobrazení na editaci',
 
 # Skin names
 'skinname-standard'    => 'Klasický',

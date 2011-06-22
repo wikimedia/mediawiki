@@ -8,6 +8,7 @@
  * @file
  *
  * @author Anjoeli9806
+ * @author Erythrii
  * @author Jose77
  * @author Kguirnela
  * @author Tagimata
@@ -1161,7 +1162,9 @@ Ini indi dapat nga magsobra sa $1 {{PLURAL:$1|ka karakter|ka mga karakter}} ang 
 'gender-unknown'                => 'Wala masigurado',
 'gender-male'                   => 'Lalaki',
 'gender-female'                 => 'Babayi',
+'prefs-help-gender'             => '',
 'email'                         => 'E-mail',
+'prefs-signature'               => 'pirma',
 
 # Groups
 'group-sysop' => 'Mga Administrador',
