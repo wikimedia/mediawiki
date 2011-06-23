@@ -115,6 +115,8 @@ production.
 * (bug 29507) Change 'image link' to 'file link' in Special:Whatlinkshere
 * If the db is really screwed up, and doesn't have a recentchanges table,
   make the updater throw an exception instead of a fatal.
+* wfArrayToCGI() and wfCgiToArray() now handle nested and associative arrays
+  correctly
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
