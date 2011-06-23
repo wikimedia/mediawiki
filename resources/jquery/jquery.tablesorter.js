@@ -726,7 +726,9 @@
 				l = a.length;
 			for ( var i = 0; i < l; i++ ) {
 				var item = a[i];
-				if ( item.length == 2 ) {
+				if ( item.length == 1 ) {
+					r += "00" + item;
+				} else if ( item.length == 2 ) {
 					r += "0" + item;
 				} else {
 					r += item;
