@@ -292,7 +292,21 @@ tableTest(
 	}
 );
 
+var planetsRowspan  =[["Earth","6051.8"], jupiter, ["Mars","6051.8"], mercury, saturn, venus];
 
+tableTest(
+	'Basic planet table: Same value for multiple rows via rowspan',
+	header,
+	planets,
+	planetsRowspan,
+	function( $table ) {
+		//Quick&Dirty mod
+		$table.find('tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)').remove();
+		$table.find('tr:eq(2) td:eq(1)').attr('rowspan', '3');
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click();
+	}
+);
 
 
 
