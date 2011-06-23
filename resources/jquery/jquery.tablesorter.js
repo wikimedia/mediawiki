@@ -287,7 +287,7 @@
 					this.order = 0;
 					this.count = 0;
 
-					if ( $( this ).is( '.unsortable' ) ) this.sortDisabled = true;
+					if ( $( this ).is( '.unsortable, .mw-unsortable' ) ) this.sortDisabled = true;
 
 					if ( !this.sortDisabled ) {
 						var $th = $( this ).addClass( table.config.cssHeader ).attr( 'title', msg[1] );
