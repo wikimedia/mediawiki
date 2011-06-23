@@ -639,10 +639,15 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	protected function namespaceFilterForm( FormOptions $opts ) {
 		$nsSelect = Xml::namespaceSelector( $opts['namespace'], '' );
 		$nsLabel = Xml::label( wfMsg( 'namespace' ), 'namespace' );
-		$invert = Xml::checkLabel( wfMsg( 'invert' ), 'invert', 'nsinvert', $opts['invert'] );
+		$invert = Xml::checkLabel(
+			wfMsg( 'invert' ), 'invert', 'nsinvert',
+			$opts['invert'],
+			array( 'title' => wfMsg( 'invert_tip' ) )
+		);
 		$associated = Xml::checkLabel(
 			wfMsg( 'namespace_association' ), 'associated', 'nsassociated',
-			$opts['associated']
+			$opts['associated'],
+			array( 'title' => wfMsg( 'namespace_association_tip' ) )
 		);
 		return array( $nsLabel, "$nsSelect $invert $associated" );
 	}

@@ -2963,7 +2963,9 @@ $1',
 # Namespace form on various pages
 'namespace'             => 'Namespace:',
 'invert'                => 'Invert selection',
+'invert_tip'            => 'Check this box to also filter out the current namespace selection',
 'namespace_association' => 'Associated namespace',
+'namespace_association_tip' => 'Check this box to also include the talk or subject namespace associated to your selection',
 'blanknamespace'        => '(Main)',
 
 # Contributions
