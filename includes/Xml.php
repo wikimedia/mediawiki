@@ -354,14 +354,20 @@ class Xml {
 	 * @param $attribs Array an attribute array.  This will usuall be
 	 *     the same array as is passed to the corresponding input element,
 	 *     so this function will cherry-pick appropriate attributes to
-	 *     apply to the label as well; currently only class is applied.
+	 *     apply to the label as well; only class and title are applied.
 	 * @return string HTML
 	 */
 	public static function label( $label, $id, $attribs = array() ) {
 		$a = array( 'for' => $id );
+
+		# FIXME avoid copy pasting below: 
 		if( isset( $attribs['class'] ) ){
 				$a['class'] = $attribs['class'];
 		}
+		if( isset( $attribs['title'] ) ){
+				$a['title'] = $attribs['title'];
+		}
+
 		return self::element( 'label', $a, $label );
 	}
 
