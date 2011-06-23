@@ -817,6 +817,7 @@
 			//Pad Month and Day
 			if ( s[0] && s[0].length == 1 ) s[0] = "0" + s[0];
 			if ( s[1] && s[1].length == 1 ) s[1] = "0" + s[1];
+			var y;
 
 			if ( !s[2] ) {
 				//Fix yearless dates
