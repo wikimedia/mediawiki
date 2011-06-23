@@ -102,6 +102,18 @@ class GlobalTest extends MediaWikiTestCase {
 			wfArrayToCGI(
 				array( 'baz' => 'AT&T', 'ignore' => '' ),
 				array( 'foo' => 'bar', 'baz' => 'overridden value' ) ) );
+		$this->assertEquals(
+			"path%5B0%5D=wiki&path%5B1%5D=test&cfg%5Bservers%5D%5Bhttp%5D=localhost",
+			wfArrayToCGI( array(
+				'path' => array( 'wiki', 'test' ),
+				'cfg' => array( 'servers' => array( 'http' => 'localhost' ) ) ) ) );
+	}
+
+	function testCgiToArray() {
+		$this->assertEquals(
+			array( 'path' => array( 'wiki', 'test' ),
+			'cfg' => array( 'servers' => array( 'http' => 'localhost' ) ) ),
+			wfCgiToArray( 'path%5B0%5D=wiki&path%5B1%5D=test&cfg%5Bservers%5D%5Bhttp%5D=localhost' ) );
 	}
 
 	function testMimeTypeMatch() {
