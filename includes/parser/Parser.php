@@ -473,6 +473,8 @@ class Parser {
 	 *
 	 * @param $text String: text extension wants to have parsed
 	 * @param $frame PPFrame: The frame to use for expanding any template variables
+	 *
+	 * @return string
 	 */
 	function recursiveTagParse( $text, $frame=false ) {
 		wfProfileIn( __METHOD__ );
