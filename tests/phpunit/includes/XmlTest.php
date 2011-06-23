@@ -193,7 +193,7 @@ class XmlTest extends MediaWikiTestCase {
 			'label() with no attribs'
 		);
 	}
-	function testLabelAttributeCanOnlyBeClass() {
+	function testLabelAttributeCanOnlyBeClassOrTitle() {
 		$this->assertEquals(
 			'<label for="id">name</label>',
 			Xml::label( 'name', 'id', array( 'generated' => true ) ),
@@ -205,14 +205,20 @@ class XmlTest extends MediaWikiTestCase {
 			'label() can get a class attribute'
 		);
 		$this->assertEquals(
-			'<label for="id" class="nice">name</label>',
+			'<label for="id" title="nice tooltip">name</label>',
+			Xml::label( 'name', 'id', array( 'title' => 'nice tooltip' ) ),
+			'label() can get a title attribute'
+		);
+		$this->assertEquals(
+			'<label for="id" class="nice" title="nice tooltip">name</label>',
 			Xml::label( 'name', 'id', array(
 				'generated' => true,
 				'class' => 'nice',
+				'title' => 'nice tooltip',
 				'anotherattr' => 'value',
 				)
 			),
-			'label() skip all attributes but "class"'
+			'label() skip all attributes but "class" and "title"'
 		);
 	}
 
