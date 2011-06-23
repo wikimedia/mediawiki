@@ -294,6 +294,7 @@ tableTest(
 );
 
 var planetsRowspan  =[["Earth","6051.8"], jupiter, ["Mars","6051.8"], mercury, saturn, venus];
+var planetsRowspanII  =[jupiter, mercury, saturn, ['Venus', '6371.0'], venus, ['Venus', '3390.0']];
 
 tableTest(
 	'Basic planet table: Same value for multiple rows via rowspan',
@@ -308,9 +309,47 @@ tableTest(
 		$table.find('.headerSort:eq(0)').click();
 	}
 );
+tableTest(
+	'Basic planet table: Same value for multiple rows via rowspan II',
+	header,
+	planets,
+	planetsRowspanII,
+	function( $table ) {
+		//Quick&Dirty mod
+		$table.find('tr:eq(3) td:eq(0), tr:eq(4) td:eq(0)').remove();
+		$table.find('tr:eq(2) td:eq(0)').attr('rowspan', '3');
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click();
+	}
+);
 
+var complexMDYDates = [
+	// Some words with Umlauts
+	['January, 19 2010'],
+	['April 21 1991'],
+	['04 22 1991'],
+	['5.12.1990'],
+	['December 12 \'10']
+];
 
+var complexMDYSorted = [
+	["5.12.1990"],
+	["April 21 1991"],
+	["04 22 1991"],
+	["January, 19 2010"],
+	["December 12 '10"]
+];
 
-
+tableTest(
+	'Complex date parsing I',
+	['date'],
+	complexMDYDates,
+	complexMDYSorted,
+	function( $table ) {
+		mw.config.set('wgDefaultDateFormat', window.wgDefaultDateFormat = 'mdy');
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click();
+	}
+);
 
 })();
