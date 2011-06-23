@@ -539,65 +539,6 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
-
-	# REPLACE query wrapper
-	# MSSQL simulates this with a DELETE followed by INSERT
-	# $row is the row to insert, an associative array
-	# $uniqueIndexes is an array of indexes. Each element may be either a
-	# field name or an array of field names
-	#
-	# It may be more efficient to leave off unique indexes which are unlikely to collide.
-	# However if you do this, you run the risk of encountering errors which wouldn't have
-	# occurred in MySQL
-	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseMssql::replace' ) {
-		$table = $this->tableName( $table );
-
-		if ( count( $rows ) == 0 ) {
-			return;
-		}
-
-		# Single row case
-		if ( !is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
-		}
-
-		foreach ( $rows as $row ) {
-			# Delete rows which collide
-			if ( $uniqueIndexes ) {
-				$sql = "DELETE FROM $table WHERE ";
-				$first = true;
-				foreach ( $uniqueIndexes as $index ) {
-					if ( $first ) {
-						$first = false;
-						$sql .= "(";
-					} else {
-						$sql .= ') OR (';
-					}
-					if ( is_array( $index ) ) {
-						$first2 = true;
-						foreach ( $index as $col ) {
-							if ( $first2 ) {
-								$first2 = false;
-							} else {
-								$sql .= ' AND ';
-							}
-							$sql .= $col . '=' . $this->addQuotes( $row[$col] );
-						}
-					} else {
-						$sql .= $index . '=' . $this->addQuotes( $row[$index] );
-					}
-				}
-				$sql .= ')';
-				$this->query( $sql, $fname );
-			}
-
-			# Now insert the row
-			$sql = "INSERT INTO $table (" . $this->makeList( array_keys( $row ), LIST_NAMES ) . ') VALUES (' .
-				$this->makeList( $row, LIST_COMMA ) . ')';
-			$this->query( $sql, $fname );
-		}
-	}
-
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
@@ -760,48 +701,6 @@ class DatabaseMssql extends DatabaseBase {
 	function rollback( $fname = 'DatabaseMssql::rollback' ) {
 		sqlsrv_rollback( $this->mConn );
 		$this->mTrxLevel = 0;
-	}
-
-	function setup_database() {
-		global $wgDBuser;
-
-		// Make sure that we can write to the correct schema
-		$ctest = "mediawiki_test_table";
-		if ( $this->tableExists( $ctest ) ) {
-			$this->doQuery( "DROP TABLE $ctest" );
-		}
-		$SQL = "CREATE TABLE $ctest (a int)";
-		$res = $this->doQuery( $SQL );
-		if ( !$res ) {
-			print "<b>FAILED</b>. Make sure that the user " . htmlspecialchars( $wgDBuser ) . " can write to the database</li>\n";
-			die();
-		}
-		$this->doQuery( "DROP TABLE $ctest" );
-
-		$res = $this->sourceFile( "../maintenance/mssql/tables.sql" );
-		if ( $res !== true ) {
-			echo " <b>FAILED</b></li>";
-			die( htmlspecialchars( $res ) );
-		}
-
-		# Avoid the non-standard "REPLACE INTO" syntax
-		$f = fopen( "../maintenance/interwiki.sql", 'r' );
-		if ( $f == false ) {
-			die( "<li>Could not find the interwiki.sql file" );
-		}
-		# We simply assume it is already empty as we have just created it
-		$SQL = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
-		while ( ! feof( $f ) ) {
-			$line = fgets( $f, 1024 );
-			$matches = array();
-			if ( !preg_match( '/^\s*(\(.+?),(\d)\)/', $line, $matches ) ) {
-				continue;
-			}
-			$this->query( "$SQL $matches[1],$matches[2])" );
-		}
-		print " (table interwiki successfully populated)...\n";
-
-		$this->commit();
 	}
 
 	/**

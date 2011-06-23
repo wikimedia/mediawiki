@@ -555,45 +555,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	}
 
 	/**
-	 * Create tables, stored procedures, and so on
-	 */
-	public function setup_database() {
-		try {
-			// TODO: switch to root login if available
-
-			// Switch into the correct namespace
-			$this->applySchema();
-			$this->begin();
-
-			$res = $this->sourceFile( "../maintenance/ibm_db2/tables.sql" );
-			if ( $res !== true ) {
-				print ' <b>FAILED</b>: ' . htmlspecialchars( $res ) . '</li>';
-			} else {
-				print ' done</li>';
-			}
-			$res = $this->sourceFile( "../maintenance/ibm_db2/foreignkeys.sql" );
-			if ( $res !== true ) {
-				print ' <b>FAILED</b>: ' . htmlspecialchars( $res ) . '</li>';
-			} else {
-				print '<li>Foreign keys done</li>';
-			}
-
-			// TODO: populate interwiki links
-
-			if ( $this->lastError() ) {
-				$this->installPrint(
-					'Errors encountered during table creation -- rolled back' );
-				$this->installPrint( 'Please install again' );
-				$this->rollback();
-			} else {
-				$this->commit();
-			}
-		} catch ( MWException $mwe ) {
-			print "<br><pre>$mwe</pre><br>";
-		}
-	}
-
-	/**
 	 * Escapes strings
 	 * Doesn't escape numbers
 	 *
@@ -1068,63 +1029,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	}
 
 	/**
-	 * Simulates REPLACE with a DELETE followed by INSERT
-	 * @param $table Object
-	 * @param $uniqueIndexes Array consisting of indexes and arrays of indexes
-	 * @param $rows Array: rows to insert
-	 * @param $fname String: name of the function for profiling
-	 * @return nothing
-	 */
-	function replace( $table, $uniqueIndexes, $rows,
-		$fname = 'DatabaseIbm_db2::replace' )
-	{
-		$table = $this->tableName( $table );
-
-		if ( count( $rows )==0 ) {
-			return;
-		}
-
-		# Single row case
-		if ( !is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
-		}
-
-		foreach( $rows as $row ) {
-			# Delete rows which collide
-			if ( $uniqueIndexes ) {
-				$sql = "DELETE FROM $table WHERE ";
-				$first = true;
-				foreach ( $uniqueIndexes as $index ) {
-					if ( $first ) {
-						$first = false;
-						$sql .= '( ';
-					} else {
-						$sql .= ' ) OR ( ';
-					}
-					if ( is_array( $index ) ) {
-						$first2 = true;
-						foreach ( $index as $col ) {
-							if ( $first2 ) {
-								$first2 = false;
-							} else {
-								$sql .= ' AND ';
-							}
-							$sql .= $col . '=' . $this->addQuotes( $row[$col] );
-						}
-					} else {
-						$sql .= $index . '=' . $this->addQuotes( $row[$index] );
-					}
-				}
-				$sql .= ' )';
-				$this->query( $sql, $fname );
-			}
-
-			# Now insert the row
-			$this->insert($table, $row);
-		}
-	}
-
-	/**
 	 * Returns the number of rows in the result set
 	 * Has to be called right after the corresponding select query
 	 * @param $res Object result set
@@ -1345,14 +1249,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	######################################
 	# Unimplemented and not applicable
 	######################################
-	/**
-	 * Not implemented
-	 * @return string ''
-	 */
-	public function getStatus( $which = '%' ) {
-		$this->installPrint( 'Not implemented for DB2: getStatus()' );
-		return '';
-	}
 	/**
 	 * Not implemented
 	 * @return string $sql

@@ -241,6 +241,10 @@ class DatabaseMysql extends DatabaseBase {
 
 	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
 
+	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseMysql::replace' ) {
+		return $this->nativeReplace( $table, $rows, $fname );
+	}
+
 	/**
 	 * Estimate rows in dataset
 	 * Returns estimated count, based on EXPLAIN output
@@ -348,7 +352,11 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * Returns slave lag.
-	 * At the moment, this will only work if the DB user has the PROCESS privilege
+	 *
+	 * On MySQL 4.1.9 and later, this will do a SHOW SLAVE STATUS. On earlier
+	 * versions of MySQL, it uses SHOW PROCESSLIST, which requires the PROCESS
+	 * privilege.
+	 *
 	 * @result int
 	 */
 	function getLag() {
@@ -356,6 +364,31 @@ class DatabaseMysql extends DatabaseBase {
 			wfDebug( "getLag: fake slave lagged {$this->mFakeSlaveLag} seconds\n" );
 			return $this->mFakeSlaveLag;
 		}
+
+		if ( version_compare( $this->getServerVersion(), '4.1.9', '>=' ) ) {
+			return $this->getLagFromSlaveStatus();
+		} else {
+			return $this->getLagFromProcesslist();
+		}
+	}
+
+	function getLagFromSlaveStatus() {
+		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
+		if ( !$res ) {
+			return false;
+		}
+		$row = $res->fetchObject();
+		if ( !$row ) {
+			return false;
+		}
+		if ( strval( $row->Seconds_Behind_Master ) === '' ) {
+			return false;
+		} else {
+			return intval( $row->Seconds_Behind_Master );
+		}
+	}
+
+	function getLagFromProcesslist() {
 		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
 		if( !$res ) {
 			return false;
@@ -387,6 +420,83 @@ class DatabaseMysql extends DatabaseBase {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Wait for the slave to catch up to a given master position.
+	 *
+	 * @param $pos DBMasterPos object
+	 * @param $timeout Integer: the maximum number of seconds to wait for synchronisation
+	 */
+	function masterPosWait( DBMasterPos $pos, $timeout ) {
+		$fname = 'DatabaseBase::masterPosWait';
+		wfProfileIn( $fname );
+
+		# Commit any open transactions
+		if ( $this->mTrxLevel ) {
+			$this->commit();
+		}
+
+		if ( !is_null( $this->mFakeSlaveLag ) ) {
+			$status = parent::masterPosWait( $pos, $timeout );
+			wfProfileOut( $fname );
+			return $status;
+		}
+
+		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
+		$encFile = $this->addQuotes( $pos->file );
+		$encPos = intval( $pos->pos );
+		$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
+		$res = $this->doQuery( $sql );
+
+		if ( $res && $row = $this->fetchRow( $res ) ) {
+			wfProfileOut( $fname );
+			return $row[0];
+		} else {
+			wfProfileOut( $fname );
+			return false;
+		}
+	}
+
+	/**
+	 * Get the position of the master from SHOW SLAVE STATUS
+	 *
+	 * @return MySQLMasterPos|false
+	 */
+	function getSlavePos() {
+		if ( !is_null( $this->mFakeSlaveLag ) ) {
+			return parent::getSlavePos();
+		}
+
+		$res = $this->query( 'SHOW SLAVE STATUS', 'DatabaseBase::getSlavePos' );
+		$row = $this->fetchObject( $res );
+
+		if ( $row ) {
+			$pos = isset( $row->Exec_master_log_pos ) ? $row->Exec_master_log_pos : $row->Exec_Master_Log_Pos;
+			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos );
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Get the position of the master from SHOW MASTER STATUS
+	 *
+	 * @return MySQLMasterPos|false
+	 */
+	function getMasterPos() {
+		if ( $this->mFakeMaster ) {
+			return parent::getMasterPos();
+		}
+
+		$res = $this->query( 'SHOW MASTER STATUS', 'DatabaseBase::getMasterPos' );
+		$row = $this->fetchObject( $res );
+
+		if ( $row ) {
+			return new MySQLMasterPos( $row->File, $row->Position );
+		} else {
+			return false;
+		}
 	}
 
 	function getServerVersion() {
@@ -587,6 +697,23 @@ class DatabaseMysql extends DatabaseBase {
 		$vars['wgDBTableOptions'] = $GLOBALS['wgDBTableOptions'];
 		return $vars;
 	}
+
+	/**
+	 * Get status information from SHOW STATUS in an associative array
+	 *
+	 * @return array
+	 */
+	function getMysqlStatus( $which = "%" ) {
+		$res = $this->query( "SHOW STATUS LIKE '{$which}'" );
+		$status = array();
+
+		foreach ( $res as $row ) {
+			$status[$row->Variable_name] = $row->Value;
+		}
+
+		return $status;
+	}
+
 }
 
 /**
@@ -644,7 +771,7 @@ class MySQLField implements Field {
 	}
 }
 
-class MySQLMasterPos {
+class MySQLMasterPos implements DBMasterPos {
 	var $file, $pos;
 
 	function __construct( $file, $pos ) {

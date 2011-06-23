@@ -707,66 +707,6 @@ class DatabaseOracle extends DatabaseBase {
 		return ( isset( $this->sequenceData[$table] ) ) ? $this->sequenceData[$table] : false;
 	}
 
-	/**
-	 * REPLACE query wrapper
-	 * Oracle simulates this with a DELETE followed by INSERT
-	 * $row is the row to insert, an associative array
-	 * $uniqueIndexes is an array of indexes. Each element may be either a
-	 * field name or an array of field names
-	 *
-	 * It may be more efficient to leave off unique indexes which are unlikely to collide.
-	 * However if you do this, you run the risk of encountering errors which wouldn't have
-	 * occurred in MySQL.
-	 *
-	 * @param $table String: table name
-	 * @param $uniqueIndexes Array: array of indexes. Each element may be
-	 *                       either a field name or an array of field names
-	 * @param $rows Array: rows to insert to $table
-	 * @param $fname String: function name, you can use __METHOD__ here
-	 */
-	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseOracle::replace' ) {
-		$table = $this->tableName( $table );
-
-		if ( count( $rows ) == 0 ) {
-			return;
-		}
-
-		# Single row case
-		if ( !is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
-		}
-
-		$sequenceData = $this->getSequenceData( $table );
-
-		foreach ( $rows as $row ) {
-			# Delete rows which collide
-			if ( $uniqueIndexes ) {
-				$deleteConds = array();
-				foreach ( $uniqueIndexes as $key=>$index ) {
-					if ( is_array( $index ) ) {
-						$deleteConds2 = array();
-						foreach ( $index as $col ) {
-							$deleteConds2[$col] = $row[$col];
-						}
-						$deleteConds[$key] = $this->makeList( $deleteConds2, LIST_AND );
-					} else {
-						$deleteConds[$index] = $row[$index];
-					}
-				}
-				$deleteConds = array( $this->makeList( $deleteConds, LIST_OR ) );
-				$this->delete( $table, $deleteConds, $fname );
-			}
-
-
-			if ( $sequenceData !== false && !isset( $row[$sequenceData['column']] ) ) {
-				$row[$sequenceData['column']] = $this->nextSequenceValue( $sequenceData['sequence'] );
-			}
-
-			# Now insert the row
-			$this->insert( $table, $row, $fname );
-		}
-	}
-
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$fieldInfoData = $this->fieldInfo( $table, $field );

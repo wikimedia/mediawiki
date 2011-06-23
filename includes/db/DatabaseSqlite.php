@@ -532,12 +532,12 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
 			$ret = true;
 			foreach ( $rows as $v ) {
-				if ( !parent::replace( $table, $uniqueIndexes, $v, "$fname/multi-row" ) ) {
+				if ( !$this->nativeReplace( $table, $v, "$fname/multi-row" ) ) {
 					$ret = false;
 				}
 			}
 		} else {
-			$ret = parent::replace( $table, $uniqueIndexes, $rows, "$fname/single-row" );
+			$ret = $this->nativeReplace( $table, $rows, "$fname/single-row" );
 		}
 
 		return $ret;

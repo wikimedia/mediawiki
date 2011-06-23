@@ -50,8 +50,17 @@ class LoadBalancer {
 		$this->mLaggedSlaveMode = false;
 		$this->mErrorConnection = false;
 		$this->mAllowLagged = false;
-		$this->mLoadMonitorClass = isset( $params['loadMonitor'] )
-			? $params['loadMonitor'] : 'LoadMonitor_MySQL';
+
+		if ( isset( $params['loadMonitor'] ) ) {
+			$this->mLoadMonitorClass = $params['loadMonitor'];
+		} else {
+			$master = reset( $params['servers'] );
+			if ( isset( $master['type'] ) && $master['type'] === 'mysql' ) {
+				$this->mLoadMonitorClass = 'LoadMonitor_MySQL';
+			} else {
+				$this->mLoadMonitorClass = 'LoadMonitor_Null';
+			}
+		}
 
 		foreach( $params['servers'] as $i => $server ) {
 			$this->mLoads[$i] = $server['load'];
