@@ -265,13 +265,18 @@ class DBQueryError extends DBError {
 	 */
 	function getContentMessage( $html ) {
 		if ( $this->useMessageCache() ) {
-			$msg = $html ? 'dberrortext' : 'dberrortextcl';
-			$ret = wfMsg( $msg, $this->getSQL(),
-				$this->fname, $this->errno, $this->error );
 			if ( $html ) {
-				$ret = htmlspecialchars( $ret );
+				$msg = 'dberrortext';
+				$sql = htmlspecialchars( $this->getSQL() );
+				$fname = htmlspecialchars( $this->fname );
+				$error = htmlspecialchars( $this->error );
+			} else {
+				$msg = 'dberrortextcl';
+				$sql = $this->getSQL();
+				$fname = $this->fname;
+				$error = $this->error;
 			}
-			return $ret;
+			return wfMsg( $msg, $sql, $fname, $this->errno, $error );
 		} else {
 			return parent::getContentMessage( $html );
 		}
