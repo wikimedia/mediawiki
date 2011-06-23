@@ -259,3 +259,10 @@ class LikeMatch {
 		return $this->str;
 	}
 }
+
+/**
+ * An object representing a master or slave position in a replicated setup.
+ */
+interface DBMasterPos {
+}
+

@@ -56,6 +56,21 @@ interface LoadMonitor {
 	function getLagTimes( $serverIndexes, $wiki );
 }
 
+class LoadMonitor_Null implements LoadMonitor {
+	function __construct( $parent ) {
+	}
+
+	function scaleLoads( &$loads, $group = false, $wiki = false ) {
+	}
+
+	function postConnectionBackoff( $conn, $threshold ) {
+	}
+
+	function getLagTimes( $serverIndexes, $wiki ) {
+		return array_fill_keys( $serverIndexes, 0 );
+	}
+}
+
 
 /**
  * Basic MySQL load monitor with no external dependencies
@@ -150,7 +165,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		if ( !$threshold ) {
 			return 0;
 		}
-		$status = $conn->getStatus("Thread%");
+		$status = $conn->getMysqlStatus("Thread%");
 		if ( $status['Threads_running'] > $threshold ) {
 			return $status['Threads_connected'];
 		} else {

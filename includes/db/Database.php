@@ -2215,15 +2215,24 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * REPLACE query wrapper
-	 * PostgreSQL simulates this with a DELETE followed by INSERT
-	 * $row is the row to insert, an associative array
-	 * $uniqueIndexes is an array of indexes. Each element may be either a
-	 * field name or an array of field names
+	 * REPLACE query wrapper.
 	 *
-	 * It may be more efficient to leave off unique indexes which are unlikely to collide.
-	 * However if you do this, you run the risk of encountering errors which wouldn't have
-	 * occurred in MySQL
+	 * REPLACE is a very handy MySQL extension, which functions like an INSERT
+	 * except that when there is a duplicate key error, the old row is deleted
+	 * and the new row is inserted in its place. 
+	 *
+	 * We simulate this with standard SQL with a DELETE followed by INSERT. To 
+	 * perform the delete, we need to know what the unique indexes are so that 
+	 * we know how to find the conflicting rows.
+	 *
+	 * It may be more efficient to leave off unique indexes which are unlikely 
+	 * to collide. However if you do this, you run the risk of encountering 
+	 * errors which wouldn't have occurred in MySQL.
+	 * 
+	 * @param $rows Can be either a single row to insert, or multiple rows, 
+	 *    in the same format as for DatabaseBase::insert()
+	 * @param $uniqueIndexes is an array of indexes. Each element may be either 
+	 *    a field name or an array of field names
 	 *
 	 * @param $table String: The table to replace the row(s) in.
 	 * @param $uniqueIndexes Array: An associative array of indexes
@@ -2231,6 +2240,61 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname String: Calling function name (use __METHOD__) for logs/profiling
 	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseBase::replace' ) {
+		$quotedTable = $this->tableName( $table );
+
+		if ( count( $rows ) == 0 ) {
+			return;
+		}
+
+		# Single row case
+		if ( !is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
+
+		foreach( $rows as $row ) {
+			# Delete rows which collide
+			if ( $uniqueIndexes ) {
+				$sql = "DELETE FROM $quotedTable WHERE ";
+				$first = true;
+				foreach ( $uniqueIndexes as $index ) {
+					if ( $first ) {
+						$first = false;
+						$sql .= '( ';
+					} else {
+						$sql .= ' ) OR ( ';
+					}
+					if ( is_array( $index ) ) {
+						$first2 = true;
+						foreach ( $index as $col ) {
+							if ( $first2 ) {
+								$first2 = false;
+							} else {
+								$sql .= ' AND ';
+							}
+							$sql .= $col . '=' . $this->addQuotes( $row[$col] );
+						}
+					} else {
+						$sql .= $index . '=' . $this->addQuotes( $row[$index] );
+					}
+				}
+				$sql .= ' )';
+				$this->query( $sql, $fname );
+			}
+
+			# Now insert the row
+			$this->insert( $table, $row );
+		}
+	}
+
+	/**
+	 * REPLACE query wrapper for MySQL and SQLite, which have a native REPLACE
+	 * statement.
+	 *
+	 * @param $table Table name
+	 * @param $rows Rows to insert
+	 * @param $fname Caller function name
+	 */
+	protected function nativeReplace( $table, $rows, $fname ) {
 		$table = $this->tableName( $table );
 
 		# Single row case
@@ -2584,19 +2648,19 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Do a SELECT MASTER_POS_WAIT()
+	 * Wait for the slave to catch up to a given master position.
 	 *
-	 * @param $pos MySQLMasterPos object
-	 * @param $timeout Integer: the maximum number of seconds to wait for synchronisation
+	 * @param $pos DBMasterPos object
+	 * @param $timeout Integer: the maximum number of seconds to wait for 
+	 *   synchronisation
+	 *
+	 * @return An integer: zero if the slave was past that position already,
+	 *   greater than zero if we waited for some period of time, less than 
+	 *   zero if we timed out.
 	 */
-	function masterPosWait( MySQLMasterPos $pos, $timeout ) {
+	function masterPosWait( DBMasterPos $pos, $timeout ) {
 		$fname = 'DatabaseBase::masterPosWait';
 		wfProfileIn( $fname );
-
-		# Commit any open transactions
-		if ( $this->mTrxLevel ) {
-			$this->commit();
-		}
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
 			$wait = intval( ( $pos->pos - microtime( true ) + $this->mFakeSlaveLag ) * 1e6 );
@@ -2617,59 +2681,36 @@ abstract class DatabaseBase implements DatabaseType {
 			}
 		}
 
-		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		$encFile = $this->addQuotes( $pos->file );
-		$encPos = intval( $pos->pos );
-		$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
-		$res = $this->doQuery( $sql );
+		wfProfileOut( $fname );
 
-		if ( $res && $row = $this->fetchRow( $res ) ) {
-			wfProfileOut( $fname );
-			return $row[0];
-		} else {
-			wfProfileOut( $fname );
-			return false;
-		}
+		# Real waits are implemented in the subclass.
+		return 0;
 	}
 
 	/**
-	 * Get the position of the master from SHOW SLAVE STATUS
+	 * Get the replication position of this slave
 	 *
-	 * @return MySQLMasterPos|false
+	 * @return DBMasterPos, or false if this is not a slave.
 	 */
 	function getSlavePos() {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
 			$pos = new MySQLMasterPos( 'fake', microtime( true ) - $this->mFakeSlaveLag );
 			wfDebug( __METHOD__ . ": fake slave pos = $pos\n" );
 			return $pos;
-		}
-
-		$res = $this->query( 'SHOW SLAVE STATUS', 'DatabaseBase::getSlavePos' );
-		$row = $this->fetchObject( $res );
-
-		if ( $row ) {
-			$pos = isset( $row->Exec_master_log_pos ) ? $row->Exec_master_log_pos : $row->Exec_Master_Log_Pos;
-			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos );
 		} else {
+			# Stub
 			return false;
 		}
 	}
 
 	/**
-	 * Get the position of the master from SHOW MASTER STATUS
+	 * Get the position of this master
 	 *
-	 * @return MySQLMasterPos|false
+	 * @return DBMasterPos, or false if this is not a master
 	 */
 	function getMasterPos() {
 		if ( $this->mFakeMaster ) {
 			return new MySQLMasterPos( 'fake', microtime( true ) );
-		}
-
-		$res = $this->query( 'SHOW MASTER STATUS', 'DatabaseBase::getMasterPos' );
-		$row = $this->fetchObject( $res );
-
-		if ( $row ) {
-			return new MySQLMasterPos( $row->File, $row->Position );
 		} else {
 			return false;
 		}
@@ -2815,22 +2856,6 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	function getLag() {
 		return intval( $this->mFakeSlaveLag );
-	}
-
-	/**
-	 * Get status information from SHOW STATUS in an associative array
-	 *
-	 * @return array
-	 */
-	function getStatus( $which = "%" ) {
-		$res = $this->query( "SHOW STATUS LIKE '{$which}'" );
-		$status = array();
-
-		foreach ( $res as $row ) {
-			$status[$row->Variable_name] = $row->Value;
-		}
-
-		return $status;
 	}
 
 	/**
