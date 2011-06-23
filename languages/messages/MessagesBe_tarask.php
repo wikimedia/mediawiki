@@ -2871,6 +2871,8 @@ $1',
 'pageinfo-watchers'         => 'Колькасьць назіральнікаў і назіральніц',
 'pageinfo-edits'            => 'Колькасьць рэдагаваньняў',
 'pageinfo-authors'          => 'Колькасьць аўтараў',
+'pageinfo-views'            => 'Колькасьць праглядаў',
+'pageinfo-viewsperedit'     => 'Колькасьць праглядаў на рэдагаваньне',
 
 # Skin names
 'skinname-standard'    => 'Клясычнае',

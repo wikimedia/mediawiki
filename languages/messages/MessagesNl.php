@@ -3080,7 +3080,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'pageinfo-title'        => 'Informatie over "$1"',
 'pageinfo-header-edits' => 'Bewerkingen',
 'pageinfo-subjectpage'  => 'Pagina',
-'pageinfo-talkpage'     => 'Overleg pagina',
+'pageinfo-talkpage'     => 'Overlegpagina',
 'pageinfo-edits'        => 'Aantal bewerkingen',
 'pageinfo-authors'      => 'Aantal verschillende auteurs',
 
