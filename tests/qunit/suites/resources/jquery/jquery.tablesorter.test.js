@@ -212,4 +212,47 @@ tableTest(
 	}
 );
 
+var ipv4 = [
+	// Some randomly generated fake IPs
+	['45.238.27.109'],
+	['44.172.9.22'],
+	['247.240.82.209'],
+	['204.204.132.158'],
+	['170.38.91.162'],
+	['197.219.164.9'],
+	['45.68.154.72'],
+	['182.195.149.80']
+];
+var ipv4Sorted = [
+	// Sort order should go octet by octet
+	['44.172.9.22'],
+	['45.68.154.72'],
+	['45.238.27.109'],
+	['170.38.91.162'],
+	['182.195.149.80'],
+	['197.219.164.9'],
+	['204.204.132.158'],
+	['247.240.82.209']
+];
+tableTest(
+	'Bug 17141: IPv4 address sorting',
+	['IP'],
+	ipv4,
+	ipv4Sorted,
+	function( $table ) {
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click();
+	}
+);
+tableTest(
+	'Bug 17141: IPv4 address sorting (reverse)',
+	['IP'],
+	ipv4,
+	reversed(ipv4Sorted),
+	function( $table ) {
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click().click();
+	}
+);
+
 })();
