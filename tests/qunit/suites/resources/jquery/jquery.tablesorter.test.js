@@ -27,7 +27,7 @@ var tableCreate = function( header, data ) {
 	$.each(header, function(i, str) {
 		var $th = $('<th>');
 		$th.text(str).appendTo($tr);
-	})
+	});
 	$tr.appendTo($thead);
 
 	for (var i = 0; i < data.length; i++) {
@@ -35,7 +35,7 @@ var tableCreate = function( header, data ) {
 		$.each(data[i], function(j, str) {
 			var $td = $('<td>');
 			$td.text(str).appendTo($tr);
-		})
+		});
 		$tr.appendTo($tbody);
 	}
 	return $table;
@@ -53,7 +53,7 @@ var tableExtract = function( $table ) {
 		var row = [];
 		$(tr).find('td,th').each(function(i, td) {
 			row.push($(td).text());
-		})
+		});
 		data.push(row);
 	});
 	return data;
@@ -82,7 +82,7 @@ var tableTest = function( msg, header, data, expected, callback ) {
 		// Table sorting is done synchronously; if it ever needs to change back
 		// to asynchronous, we'll need a timeout or a callback here.
 		var extracted = tableExtract( $table );
-		deepEqual( extracted, expected, msg )
+		deepEqual( extracted, expected, msg );
 	});
 };
 
@@ -90,7 +90,7 @@ var reversed = function(arr) {
 	var arr2 = arr.slice(0);
 	arr2.reverse();
 	return arr2;
-}
+};
 
 // Sample data set: some planets!
 var header = ['Planet', 'Radius (km)'],
@@ -254,5 +254,48 @@ tableTest(
 		$table.find('.headerSort:eq(0)').click().click();
 	}
 );
+
+var umlautWords = [
+	// Some words with Umlauts
+	['Günther'],
+	['Peter'],
+	['Björn'],
+	['Bjorn'],
+	['Apfel'],
+	['Äpfel'],
+	['Strasse'],
+	['Sträßschen']
+];
+
+var umlautWordsSorted = [
+	// Some words with Umlauts
+	['Äpfel'],
+	['Apfel'],
+	['Björn'],
+	['Bjorn'],
+	['Günther'],
+	['Peter'],
+	['Sträßschen'],
+	['Strasse']
+];
+
+tableTest(
+	'Accented Characters with custom collation',
+	['Name'],
+	umlautWords,
+	umlautWordsSorted,
+	function( $table ) {
+		mw.config.set('tableSorterCollation', {'ä':'ae', 'ö' : 'oe', 'ß': 'ss', 'ü':'ue'});
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click();
+		mw.config.set('tableSorterCollation', {});
+	}
+);
+
+
+
+
+
+
 
 })();

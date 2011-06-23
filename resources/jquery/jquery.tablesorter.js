@@ -481,7 +481,7 @@
 						}
 					}
 					if (keys.length) {
-						ts.collationRegex = new RegExp( '[' + ts.collationRegex.join('') + ']', 'ig' );
+						ts.collationRegex = new RegExp( '[' + keys.join('') + ']', 'ig' );
 					}
 				}
 			}
