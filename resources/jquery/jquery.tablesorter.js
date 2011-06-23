@@ -463,7 +463,14 @@
 					var cell = $( this );
 					var next = cell.parent().nextAll();
 					for ( var i = 0; i < rowSpan - 1; i++ ) {
-						next.eq(0).find( 'td' ).eq( this.cellIndex ).before( cell.clone() );
+						var td = next.eq( i ).find( 'td' );
+						if ( !td.length ) {
+							next.eq( i ).append( cell.clone() );
+						} else if ( this.cellIndex == 0 ) {
+							td.eq( this.cellIndex ).before( cell.clone() );
+						} else {
+							td.eq( this.cellIndex - 1 ).after( cell.clone() );
+						}
 					}
 				});
 			}
