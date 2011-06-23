@@ -693,6 +693,8 @@ För översättningar, använd gärna [http://translatewiki.net/wiki/Main_Page?s
 'cascadeprotected'     => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":
 $2',
 'namespaceprotected'   => "Du har inte behörighet att redigera sidor i namnrymden '''$1'''.",
+'customcssprotected'   => 'Du har inte behörighet att redigera denna CSS-sidan eftersom den innehåller en annan användares personliga inställningar.',
+'customjsprotected'    => 'Du har inte behörighet att redigera denna JavaScript-sidan eftersom den innehåller en annan användares personliga inställningar.',
 'ns-specialprotected'  => 'Specialsidor kan inte redigeras.',
 'titleprotected'       => 'Denna sidtitel har skyddats från att skapas av [[User:$1|$1]].
 Den uppgivna anledningen är "\'\'$2\'\'".',
@@ -2397,9 +2399,8 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'undeletepagetext'             => 'Följande {{PLURAL:$1|sida har blivit raderad|$1 sidor har blivit raderade}} men finns fortfarande i arkivet och kan återställas.
 Arkivet kan ibland rensas ut.',
 'undelete-fieldset-title'      => 'Återställ sidversioner',
-'undeleteextrahelp'            => "För att återställa sidans hela historik, lämna alla rutor oifyllda och klicka '''''Återställ'''''.
-För att göra en selektiv återställning, kryssa i de rutor som hör till de versioner som ska återställas, och klicka '''''Återställ'''''.
-Om du klickar '''''Rensa''''' så töms kommentarfältet och alla kryssrutorna.",
+'undeleteextrahelp'            => "För att återställa sidans hela historik, lämna alla rutor oifyllda och klicka på '''''{{int:undeletebtn}}'''''.
+För att göra en selektiv återställning, kryssa i de rutor som hör till de versioner som ska återställas, och klicka på '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
 'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken.
 Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken.',
@@ -2948,6 +2949,19 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'spambot_username'    => 'MediaWikis spampatrull',
 'spam_reverting'      => 'Återställer till den senaste versionen som inte innehåller länkar till $1',
 'spam_blanking'       => 'Alla versioner innehöll en länk till $1, blankar',
+
+# Info page
+'pageinfo-title'            => 'Information om "$1"',
+'pageinfo-header-edits'     => 'Redigeringar',
+'pageinfo-header-watchlist' => 'Bevakningslista',
+'pageinfo-header-views'     => 'Visningar',
+'pageinfo-subjectpage'      => 'Sida',
+'pageinfo-talkpage'         => 'Diskussionssida',
+'pageinfo-watchers'         => 'Antal användare som bevakar sidan',
+'pageinfo-edits'            => 'Antal redigeringar',
+'pageinfo-authors'          => 'Antal olika författare',
+'pageinfo-views'            => 'Antal visningar',
+'pageinfo-viewsperedit'     => 'Sidvisningar per redigering',
 
 # Skin names
 'skinname-standard'    => 'Standard',

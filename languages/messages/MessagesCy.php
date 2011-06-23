@@ -2713,8 +2713,13 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'spam_blanking'       => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
 
 # Info page
-'pageinfo-subjectpage' => 'Tudalen',
-'pageinfo-talkpage'    => 'Tudalen sgwrs',
+'pageinfo-title'            => 'Manylion "$1"',
+'pageinfo-header-edits'     => 'Golygiadau',
+'pageinfo-header-watchlist' => 'Rhestr wylio',
+'pageinfo-subjectpage'      => 'Tudalen',
+'pageinfo-talkpage'         => 'Tudalen sgwrs',
+'pageinfo-watchers'         => 'Nifer y gwylwyr',
+'pageinfo-edits'            => 'Nifer y golygiadau',
 
 # Skin names
 'skinname-standard'    => 'Safonol',

@@ -2814,6 +2814,18 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'spam_reverting'      => 'Besig met terugrol na die laaste weergawe wat nie skakels na $1 bevat nie',
 'spam_blanking'       => "Alle weergawes met 'n skakel na $1 word verwyder",
 
+# Info page
+'pageinfo-title'            => 'Inligting oor "$1"',
+'pageinfo-header-edits'     => 'Wysigings',
+'pageinfo-header-watchlist' => 'Dophoulys',
+'pageinfo-subjectpage'      => 'Bladsy',
+'pageinfo-talkpage'         => 'Besprekingsblad',
+'pageinfo-watchers'         => 'Aantal dophouers',
+'pageinfo-edits'            => 'Aantal wysigings',
+'pageinfo-authors'          => 'Aantal verskillende outeurs',
+'pageinfo-views'            => 'Aantal kere gewys',
+'pageinfo-viewsperedit'     => 'Kere gewys per wysiging',
+
 # Skin names
 'skinname-standard'    => 'Standaard',
 'skinname-nostalgia'   => 'Nostalgie',
@@ -2963,9 +2975,9 @@ Ander velde sal versteek wees.
 'exif-exposureprogram'             => 'Beligtingsprogram',
 'exif-spectralsensitivity'         => 'Spektrale gevoeligheid',
 'exif-isospeedratings'             => 'ISO/ASA-waarde',
-'exif-shutterspeedvalue'           => 'Sluitersnelheid',
-'exif-aperturevalue'               => 'Diafragma',
-'exif-brightnessvalue'             => 'Helderheid',
+'exif-shutterspeedvalue'           => 'Sluitersnelheid in APEX',
+'exif-aperturevalue'               => 'Diafragma in APEX',
+'exif-brightnessvalue'             => 'Helderheid in APEX',
 'exif-exposurebiasvalue'           => 'Beligtingskompensasie',
 'exif-maxaperturevalue'            => 'Maksimale diafragma-opening',
 'exif-subjectdistance'             => 'Afstand na onderwerp',
