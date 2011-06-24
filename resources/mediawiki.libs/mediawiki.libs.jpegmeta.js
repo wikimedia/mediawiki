@@ -118,7 +118,7 @@
 	/* Rational number methods */
 	JpegMeta.Rational.prototype.toString = function toString() {
 	    if (this.num === 0) {
-		return "" + this.num
+		return "" + this.num;
 	    }
 	    if (this.den === 1) {
 		return "" + this.num;
@@ -291,7 +291,7 @@
 	    9 : ["SLONG", 4],
 	    10 : ["SRATIONAL", 8],
 	    11 : ["FLOAT", 4],
-	    12 : ["DOUBLE", 8],
+	    12 : ["DOUBLE", 8]
 	};
 	
 	this.JpegMeta.JpegFile.prototype._tifftags = {
@@ -308,7 +308,7 @@
 		   {1 : "Normal", 2 : "Reverse?", 
 		    3 : "Upside-down", 4 : "Upside-down Reverse",
 		    5 : "90 degree CW", 6 : "90 degree CW reverse",
-		    7 : "90 degree CCW", 8 : "90 degree CCW reverse",}],
+		    7 : "90 degree CCW", 8 : "90 degree CCW reverse"}],
 	    277 : ["Number of components", "SamplesPerPixel"],
 	    284 : ["Image data arrangement", "PlanarConfiguration",
 		   {1 : "chunky format", 2 : "planar format"}],
@@ -342,7 +342,7 @@
 	    33432 : ["Copyright holder", "Copyright"],
 	    
 	    34665 : ["Exif tag", "ExifIfdPointer"],
-	    34853 : ["GPS tag", "GPSInfoIfdPointer"],
+	    34853 : ["GPS tag", "GPSInfoIfdPointer"]
 	};
 	
 	this.JpegMeta.JpegFile.prototype._exiftags = {
@@ -418,7 +418,7 @@
 	    /* H. Other Tags */
 	    42016 : ["Unique image ID", "ImageUniqueID"],
 	    
-	    40965 : ["Interoperability tag", "InteroperabilityIFDPointer"],
+	    40965 : ["Interoperability tag", "InteroperabilityIFDPointer"]
 	};
 	
 	this.JpegMeta.JpegFile.prototype._gpstags = {
@@ -453,7 +453,7 @@
 	    27 : ["Name of GPS processing method", "GPSProcessingMethod"],
 	    28 : ["Name of GPS area", "GPSAreaInformation"],
 	    29 : ["GPS Date", "GPSDateStamp"],
-	    30 : ["GPS differential correction", "GPSDifferential"],
+	    30 : ["GPS differential correction", "GPSDifferential"]
 	};
 
 	this.JpegMeta.JpegFile.prototype._markers = {
@@ -535,7 +535,7 @@
 	    0xfe: ["COM", null], /* Comment */
 	    
 	    /* Reserved markers */
-	    0x01: ["JPG13", null], /* For temporary private use in arithmetic coding */
+	    0x01: ["JPG13", null] /* For temporary private use in arithmetic coding */
 	    /* 02 -> bf are reserverd */
 	};
 
