@@ -1261,6 +1261,7 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|byte|bytes}}',
 'nmembers'          => '$1 {{PLURAL:$1|membro|mga membro}}',
+'popularpages'      => 'Ang panid nagakilala gid',
 'prefixindex'       => 'Tanan nga mga pahina nga may-ara prefiks',
 'newpages'          => 'Mga Bag-o nga Pahina',
 'newpages-username' => 'Ngalan sang Manog-gamit:',
@@ -1284,6 +1285,8 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'allpagesfrom'   => 'Ipakita ang mga pahina sugod sa:',
 'allpagesto'     => 'Ipakita ang mga pahina nga nagakatapos sa:',
 'allarticles'    => 'Tanan nga mga pahina',
+'allpagesprev'   => 'Nagligad',
+'allpagesnext'   => 'Dason',
 'allpagessubmit' => 'Sige',
 
 # Special:LinkSearch
@@ -1295,6 +1298,7 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'newuserlog-create-entry' => 'Bag-o na akawnt nga naga-usar',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'Grupo',
 'listgrouprights-members' => '(lista sang mga membro)',
 
 # E-mail user
