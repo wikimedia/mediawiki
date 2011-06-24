@@ -122,24 +122,24 @@ production.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
-* (bug 27790) add query type for querymodules to action=paraminfo
-* (bug 28963) add langbacklinks module to api
+* (bug 27790) Add query type for querymodules to action=paraminfo
+* (bug 28963) Add langbacklinks module to api
 * (bug 27593) API: add error message when sha1/sha1base36 is invalid
 * (bug 28578) API's parse module should not silently override invalid
   title inputs
 * (bug 20699) API watchlist should list log-events
 * (bug 29070) Add token to action=watch API
 * (bug 29221) Expose oldrevid in watchlist output
-* (bug 29267) always give the servername for meta=siteinfo&siprop=dbrepllag
-* (bug 28897) rvparse doesn’t seem to work with rvsection
+* (bug 29267) Always give the servername for meta=siteinfo&siprop=dbrepllag
+* (bug 28897) rvparse now respects rvsection for action=query&prop=revisions
 * (bug 25734) API: possible issue with revids validation
 * (bug 28002) Internal error in ApiFormatRaw::getMimeType
-* (bug 29237) add interwiki target url attribute to api/query/interwiki
-* (bug 28392) mark action=undelete&timestamps as type "timestamp"
+* (bug 29237) Add interwiki target url attribute to api/query/interwiki
+* (bug 28392) Mark action=undelete&timestamps as type "timestamp"
 * (bug 21346) Make deleted images searchable by hash (disabled in Miser Mode)
 * (bug 27595) sha1 search of list=filearchive does not work
 * (bug 26763) Make RSS/Atom of user contributions more visible
-* (bug 25133) allow redirects also for action=parse&pageid
+* (bug 25133) Allow redirects also for action=parse&pageid
 
 === Languages updated in 1.19 ===
 
