@@ -2098,7 +2098,8 @@ HTML
 		global $wgBetterDirectionality;
 		if( $wgBetterDirectionality ) {
 			$pageLang = $this->mTitle->getPageLanguage();
-			$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+			$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
+				'class' => 'mw-content-'.$pageLang->getDir() );
 			$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
 		}
 		wfProfileOut( __METHOD__ );

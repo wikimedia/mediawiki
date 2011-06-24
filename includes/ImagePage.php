@@ -117,7 +117,8 @@ class ImagePage extends Article {
 			# but this section (the actual wikitext) should be in page content language
 			$pageLang = $this->mTitle->getPageLanguage();
 			$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
-				'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() ) ) );
+				'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
+				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
 			parent::view();
 			$wgOut->addHTML( Xml::closeElement( 'div' ) );
 		} else {
