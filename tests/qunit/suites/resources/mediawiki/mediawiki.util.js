@@ -49,15 +49,18 @@ test( 'wikiScript', function() {
 test( 'addCSS', function() {
 	expect(3);
 
-	var a = mw.util.addCSS( '#bodyContent { visibility: hidden; }' );
-	equal( typeof a, 'object', 'addCSS returned an object' );
-	strictEqual( a.disabled, false, 'property "disabled" is available and set to false' );
+	var $testEl = $( '<div>' ).attr( 'id', 'mw-addcsstest' ).appendTo( 'body' );
 
-	var $b = $('#bodyContent');
-	equal( $b.css('visibility'), 'hidden', 'Added style properties are in effect' );
+	var style = mw.util.addCSS( '#mw-addcsstest { visibility: hidden; }' );
+	equal( typeof style, 'object', 'addCSS returned an object' );
+	strictEqual( style.disabled, false, 'property "disabled" is available and set to false' );
+
+	equal( $testEl.css('visibility'), 'hidden', 'Added style properties are in effect' );
 
 	// Clean up
-	$( a.ownerNode ).remove();
+	$( style.ownerNode )
+		.add( $testEl )
+		.remove();
 });
 
 test( 'toggleToc', function() {
@@ -123,8 +126,21 @@ test( '$content', function() {
 test( 'addPortletLink', function() {
 	expect(5);
 
+	var mwPanel = '<div id="mw-panel" class="noprint">\
+	<h5>Toolbox</h5>\
+	<div class="portlet" id="p-tb">\
+		<ul class="body"></ul>\
+	</div>\
+</div>',
+	vectorTabs = '<div id="p-views" class="vectorTabs">\
+	<h5>Views</h5>\
+	<ul></ul>\
+</div>',
+	$mwPanel = $(mwPanel).appendTo( 'body' ),
+	$vectorTabs = $(vectorTabs).appendTo( 'body' );
+
 	var A = mw.util.addPortletLink( 'p-tb', 'http://mediawiki.org/wiki/ResourceLoader',
-		'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l', '#t-specialpages' );
+		'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l' );
 
 	ok( $.isDomElement( A ), 'addPortletLink returns a valid DOM Element according to $.isDomElement' );
 
@@ -132,7 +148,7 @@ test( 'addPortletLink', function() {
 		"MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", A );
 
 	equal( $( B ).attr( 'id' ), 't-mworg', 'Link has correct ID set' );
-	equal( $( B ).closest( '.portal' ).attr( 'id' ), 'p-tb', 'Link was inserted within correct portlet' );
+	equal( $( B ).closest( '.portlet' ).attr( 'id' ), 'p-tb', 'Link was inserted within correct portlet' );
 	equal( $( B ).next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing nextnode)' );
 
 	var C = mw.util.addPortletLink( "p-tb", "http://mediawiki.org/wiki/RL/DM",
@@ -141,7 +157,10 @@ test( 'addPortletLink', function() {
 	equal( $( C ).next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing CSS selector)' );
 
 	// Clean up
-	$( [A, B, C] ).remove();
+	$( [A, B, C] )
+		.add( $mwPanel )
+		.add( $vectorTabs )
+		.remove();
 });
 
 test( 'jsMessage', function() {
