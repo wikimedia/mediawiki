@@ -1188,7 +1188,7 @@ Als Administrator kannst du diesen Versionsunterschied sehen. Details finden sic
 'revdelete-nologtype-text'    => 'Es wurde kein Logtyp für diese Aktion angegeben.',
 'revdelete-nologid-title'     => 'Ungültiger Logeintrag',
 'revdelete-nologid-text'      => 'Es wurde kein Logtyp ausgewählt oder der gewählte Logtyp existiert nicht.',
-'revdelete-no-file'           => 'Die angegebene Datei existiert nicht.',
+'revdelete-no-file'           => 'Die angegebene Datei ist nicht vorhanden.',
 'revdelete-show-file-confirm' => 'Bist du sicher, dass du die gelöschte Version der Datei „<nowiki>$1</nowiki>“ vom $2 um $3 Uhr ansehen willst?',
 'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''{{PLURAL:$2|Gewählte Version|Gewählte Versionen}} von [[:$1]]:'''",
