@@ -95,8 +95,9 @@ $wgGeneralMessages = $wgLanguages->getGeneralMessages();
 $wgRequiredMessagesNumber = count( $wgGeneralMessages['required'] );
 
 foreach ( $wgLanguages->getLanguages() as $code ) {
-	# Don't check English or RTL English
-	if ( $code == 'en' || $code == 'enRTL' ) {
+	# Don't check English, RTL English or dummy language codes
+	if ( $code == 'en' || $code == 'enRTL' || (is_array( $wgDummyLanguageCodes ) &&
+		in_array( $code, $wgDummyLanguageCodes ) ) ) {
 		continue;
 	}
 
