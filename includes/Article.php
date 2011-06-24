@@ -363,13 +363,12 @@ class Article {
 	 * @return mixed string on success, false on failure
 	 */
 	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
-		$currentRev = Revision::newFromTitle( $this->mTitle );
-		if ( !$currentRev ) {
+		$cur_text = $this->getRawText();
+		if ( $cur_text === false ) {
 			return false; // no page
 		}
 		$undo_text = $undo->getText();
 		$undoafter_text = $undoafter->getText();
-		$cur_text = $currentRev->getText();
 
 		if ( $cur_text == $undo_text ) {
 			# No use doing a merge if it's just a straight revert.
