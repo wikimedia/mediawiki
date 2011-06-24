@@ -62,7 +62,9 @@ div#mw-js-message {
 	float: right;
 	margin-left: 5px;
 }
-
+/* Correct directionality when page dir is different from site/user dir */
+/* @noflip */.mw-content-ltr .editsection, .mw-content-rtl [dir="ltr"] .editsection { float: right; }
+/* @noflip */.mw-content-rtl .editsection, .mw-content-ltr [dir="rtl"] .editsection { float: left; }
 /**
  * File histories
  */
@@ -614,6 +616,18 @@ div.gallerytext {
 	background-repeat: no-repeat;
 }
 
+/* Correct directionality when page dir is different from site/user dir */
+/* @noflip */.mw-content-ltr ul, .mw-content-ltr ol,
+.mw-content-rtl [dir="ltr"] ul, .mw-content-rtl [dir="ltr"] ol {
+	margin: .3em 0 0 1.5em;
+}
+/* @noflip */.mw-content-rtl ul, .mw-content-rtl ol,
+.mw-content-ltr [dir="rtl"] ul, .mw-content-ltr [dir="rtl"] ol {
+	margin: .3em 1.5em 0 0;
+}
+/* @noflip */ {
+	margin: .3em 1.5em 0 0;
+}
 /* Localised ordered list numbering for some languages */
 ol:lang(bcc) li,
 ol:lang(bqi) li,
@@ -638,6 +652,26 @@ ol:lang(bn) li {
 ol:lang(or) li {
 	list-style-type: -moz-oriya;
 	list-style-type: oriya;
+}
+
+/* Correct directionality when page dir is different from site/user dir */
+/* @noflip */.mw-content-ltr .toc ul, .mw-content-ltr #toc ul,
+.mw-content-rtl [dir="ltr"] .toc ul, .mw-content-rtl [dir="ltr"] #toc ul {
+	text-align: left;
+	margin-left: 0;
+}
+/* @noflip */.mw-content-rtl .toc ul, .mw-content-rtl #toc ul,
+.mw-content-ltr [dir="rtl"] .toc ul, .mw-content-ltr [dir="rtl"] #toc ul {
+	text-align: right;
+	margin-right: 0;
+}
+/* @noflip */.mw-content-ltr .toc ul ul, .mw-content-ltr #toc ul ul,
+.mw-content-rtl [dir="ltr"] .toc ul ul, .mw-content-rtl [dir="ltr"] #toc ul ul {
+	margin: 0 0 0 2em;
+}
+/* @noflip */.mw-content-rtl .toc ul ul, .mw-content-rtl #toc ul ul,
+.mw-content-ltr [dir="rtl"] .toc ul ul, .mw-content-ltr [dir="rtl"] #toc ul ul {
+	margin: 0 2em 0 0;
 }
 
 /* tooltip styles */
@@ -736,4 +770,8 @@ th.headerSortDown {
 .diff-otitle, .diff-ntitle, .diff-lineno {
 	direction: ltr !important;
 	unicode-bidi: embed;
+}
+
+#mw-revision-info, #mw-revision-nav {
+	direction: ltr;
 }

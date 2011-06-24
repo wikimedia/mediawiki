@@ -179,10 +179,13 @@ class CategoryViewer {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
 		}
 
-		global $wgBetterDirectionality, $wgLang;
+		global $wgBetterDirectionality, $wgTitle;
 		if( $wgBetterDirectionality ) {
-			$langAttribs = array( 'lang' => $wgLang->getCode(), 'dir' => $wgLang->getDir() );
-			$r = Html::rawElement( 'div', $langAttribs, $r );
+			$pageLang = $wgTitle->getPageLanguage();
+			$langAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+			# close the previous div, show the headings in user language,
+			# then open a new div with the page content language again
+			$r = '</div>' . $r . Html::openElement( 'div', $langAttribs );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -516,7 +519,8 @@ class CategoryViewer {
 		global $wgBetterDirectionality, $wgTitle;
 		if( $wgBetterDirectionality ) {
 			$pageLang = $wgTitle->getPageLanguage();
-			$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+			$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
+				'class' => 'mw-content-'.$pageLang->getDir() );
 			$list = Html::rawElement( 'div', $attribs, $list );
 		}
 
