@@ -535,6 +535,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		$s .= " $link";
+		$s .= wfUILang()->getDirMark();
 		$s .= " <span class='history-user'>" .
 			$this->getSkin()->revUserTools( $rev, true ) . "</span>";
 
