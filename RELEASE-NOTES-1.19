@@ -56,6 +56,8 @@ production.
 * (bug 29397) Implement mw.Title module in core.
 * In MySQL 4.1.9+ with replication enabled, get the slave lag from SHOW SLAVE 
   STATUS instead of SHOW PROCESSLIST.
+* Language codes in $wgDummyLanguageCodes are now excluded on localization
+  statistics (maintenance/language/transstat.php)
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
