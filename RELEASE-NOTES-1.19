@@ -118,7 +118,9 @@ production.
 * If the db is really screwed up, and doesn't have a recentchanges table,
   make the updater throw an exception instead of a fatal.
 * wfArrayToCGI() and wfCgiToArray() now handle nested and associative arrays
-  correctly
+  correctly.
+* (bug 29567) mw.util.addPortletLink should only wrap link in <span> for
+  "vectorTabs" portlets.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
