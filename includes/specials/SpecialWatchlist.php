@@ -299,12 +299,13 @@ class SpecialWatchlist extends SpecialPage {
 
 		$wlInfo = '';
 		if( $values['days'] >= 1 ) {
+			$timestamp = wfTimestampNow();
 			$wlInfo = wfMsgExt( 'rcnote', 'parseinline',
 					$wgLang->formatNum( $numRows ),
 					$wgLang->formatNum( $values['days'] ),
-					$wgLang->timeAndDate( wfTimestampNow(), true ),
-					$wgLang->date( wfTimestampNow(), true ),
-					$wgLang->time( wfTimestampNow(), true )
+					$wgLang->timeAndDate( $timestamp, true ),
+					$wgLang->date( $timestamp, true ),
+					$wgLang->time( $timestamp, true )
 				) . '<br />';
 		} elseif( $values['days'] > 0 ) {
 			$wlInfo = wfMsgExt( 'wlnote', 'parseinline',

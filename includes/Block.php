@@ -613,7 +613,8 @@ class Block {
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
 		$autoblock->mReason = wfMsgForContent( 'autoblocker', $this->getTarget(), $this->mReason );
-		$autoblock->mTimestamp = wfTimestampNow();
+		$timestamp = wfTimestampNow();
+		$autoblock->mTimestamp = $timestamp;
 		$autoblock->mAuto = 1;
 		$autoblock->prevents( 'createaccount', $this->prevents( 'createaccount' ) );
 		# Continue suppressing the name if needed
@@ -623,11 +624,11 @@ class Block {
 		$dbr = wfGetDB( DB_SLAVE );
 		if ( $this->mTimestamp == $dbr->getInfinity() ) {
 			# Original block was indefinite, start an autoblock now
-			$autoblock->mExpiry = Block::getAutoblockExpiry( wfTimestampNow() );
+			$autoblock->mExpiry = Block::getAutoblockExpiry( $timestamp );
 		} else {
 			# If the user is already blocked with an expiry date, we don't
 			# want to pile on top of that.
-			$autoblock->mExpiry = min( $this->mExpiry, Block::getAutoblockExpiry( wfTimestampNow() ) );
+			$autoblock->mExpiry = min( $this->mExpiry, Block::getAutoblockExpiry( $timestamp ) );
 		}
 
 		# Insert the block...
@@ -662,12 +663,13 @@ class Block {
 	 * @return Boolean
 	 */
 	public function isExpired() {
-		wfDebug( "Block::isExpired() checking current " . wfTimestampNow() . " vs $this->mExpiry\n" );
+		$timestamp = wfTimestampNow();
+		wfDebug( "Block::isExpired() checking current " . $timestamp . " vs $this->mExpiry\n" );
 
 		if ( !$this->mExpiry ) {
 			return false;
 		} else {
-			return wfTimestampNow() > $this->mExpiry;
+			return $timestamp > $this->mExpiry;
 		}
 	}
 

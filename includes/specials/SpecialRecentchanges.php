@@ -827,9 +827,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		// show from this onward link
-		$now = $wgLang->timeanddate( wfTimestampNow(), true );
+		$timestamp = wfTimestampNow();
+		$now = $wgLang->timeanddate( $timestamp, true );
 		$tl = $this->makeOptionsLink(
-			$now, array( 'from' => wfTimestampNow() ), $nondefaults
+			$now, array( 'from' => $timestamp ), $nondefaults
 		);
 
 		$rclinks = wfMsgExt( 'rclinks', array( 'parseinline', 'replaceafter' ),
