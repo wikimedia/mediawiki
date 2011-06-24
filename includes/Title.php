@@ -4223,23 +4223,34 @@ class Title {
 	}
 
 	/**
-	 * Get the language this page is written in
-	 * Defaults to $wgContLang
+	 * Get the language in which the content of this page is written.
+	 * Defaults to $wgContLang, but in certain cases it can be e.g.
+	 * $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @return object Language
 	 */
 	public function getPageLanguage() {
-		global $wgContLang;
-		$pageLang = $wgContLang;
-		if ( $this->isCssOrJsPage() ) {
+		global $wgLang;
+		if ( $this->getNamespace() == NS_SPECIAL ) {
+			// special pages are in the user language
+			return $wgLang;
+		} elseif ( $this->isRedirect() ) {
+			// the arrow on a redirect page is aligned according to the user language
+			return $wgLang;
+		} elseif ( $this->isCssOrJsPage() ) {
 			// css/js should always be LTR and is, in fact, English
-			$pageLang = wfGetLangObj( 'en' );
+			return wfGetLangObj( 'en' );
 		} elseif ( $this->getNamespace() == NS_MEDIAWIKI ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $this->getText() );
-			$pageLang = wfGetLangObj( $lang );
+			return wfGetLangObj( $lang );
 		}
-		return $pageLang;
+		global $wgContLang;
+		// If nothing special, it should be in the wiki content language
+		$pageLang = $wgContLang;
+		// Hook at the end because we don't want to override the above stuff
+		wfRunHooks( 'PageContentLanguage', array( $this, &$pageLang, $wgLang ) );
+		return wfGetLangObj( $pageLang );
 	}
 }
 

@@ -1624,13 +1624,13 @@ class Article {
 	 * @return string containing HMTL with redirect link
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
-		global $wgOut, $wgContLang, $wgStylePath;
+		global $wgOut, $wgStylePath;
 
 		if ( !is_array( $target ) ) {
 			$target = array( $target );
 		}
 
-		$imageDir = $wgContLang->getDir();
+		$imageDir = wfUILang()->getDir();
 
 		if ( $appendSubtitle ) {
 			$wgOut->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );
@@ -1646,7 +1646,7 @@ class Article {
 		}
 
 		$nextRedirect = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
-		$alt = $wgContLang->isRTL() ? '←' : '→';
+		$alt = wfUILang()->isRTL() ? '←' : '→';
 		// Automatically append redirect=no to each link, since most of them are redirect pages themselves.
 		foreach ( $target as $rt ) {
 			$link .= Html::element( 'img', array( 'src' => $nextRedirect, 'alt' => $alt ) );
