@@ -374,9 +374,14 @@
 				// Unhide portlet if it was hidden before
 				$portlet.removeClass( 'emptyPortlet' );
 
-				// Wrap the anchor tag in a <span> and create a list item for it
+				// Wrap the anchor tag in a list item (and a span if $portlet is a Vector tab)
 				// and back up the selector to the list item
-				var $item = $link.wrap( '<li><span></span></li>' ).parent().parent();
+				var $item;
+				if ( $portlet.hasClass( 'vectorTabs' ) ) {
+					$item = $link.wrap( '<li><span></span></li>' ).parent().parent();
+				} else {
+					$item = $link.wrap( '<li></li>' ).parent();
+				}
 
 				// Implement the properties passed to the function
 				if ( id ) {
