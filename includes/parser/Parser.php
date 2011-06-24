@@ -1019,7 +1019,7 @@ class Parser {
 	 *
 	 * @private
 	 */
-	function generateTableHTML ( &$table ) {
+	function generateTableHTML( &$table ) {
 		$return = "";
 		$return .= str_repeat( '<dl><dd>' , $table['indent'] );
 		$return .= '<table';
@@ -1041,22 +1041,20 @@ class Parser {
 		// If we only have tbodies, mark table as simple
 		for ( $i = 0; isset( $table[$i] ); $i++ ) {
 			if ( !count( $table[$i] ) ) continue;
-			if ( !isset( $table[$i]['type'] ) ) $table[$i]['type'] = 'tbody';
+			if ( !isset( $table[$i]['type'] ) ) {
+				$table[$i]['type'] = 'tbody';
+			}
 			if ( !$lastSection ) {
 				$lastSection = $table[$i]['type'];
 			} elseif ( $lastSection != $table[$i]['type'] ) {
 				$simple = false;
-				break;
 			}
 		}
 		$lastSection = '';
 		for ( $i = 0; isset( $table[$i] ); $i++ ) {
-			// Check for empty tables
-			if ( count( $table[$i] ) ) {
-				$empty = false;
-			} else {
-				continue;
-			}
+			if ( !count( $table[$i] ) ) continue;
+			$empty = false; // check for empty tables
+
 			if ( $table[$i]['type'] != $lastSection && !$simple ) {
 				$return .= "\n<" . $table[$i]['type'] . '>';
 			}
