@@ -554,7 +554,8 @@ class SpecialBlock extends SpecialPage {
 			# Give admins a heads-up before they go and block themselves.  Much messier
 			# to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
 			# permission anyway, although the code does allow for it
-			if( $target === $wgUser->getName() && ( $data['PreviousTarget'] != $data['Target'] || !$data['Confirm'] ) )
+			if( $target === $wgUser->getName() &&
+				( $data['PreviousTarget'] != $data['Target'] || !$data['Confirm'] ) )
 			{
 				return array( 'ipb-blockingself' );
 			}
@@ -634,7 +635,9 @@ class SpecialBlock extends SpecialPage {
 		$status = $block->insert();
 		if( !$status ) {
 			# Show form unless the user is already aware of this...
-			if( ( array_key_exists('PreviousTarget', $data ) && $data['PreviousTarget'] != htmlspecialchars( $block->getTarget() ) ) || !$data['Confirm'] ) {
+			if( !$data['Confirm'] || ( array_key_exists( 'PreviousTarget', $data )
+				&& $data['PreviousTarget'] !== htmlspecialchars( $block->getTarget() ) ) )
+			{
 				return array( array( 'ipb_already_blocked', $block->getTarget() ) );
 			# Otherwise, try to update the block...
 			} else {
