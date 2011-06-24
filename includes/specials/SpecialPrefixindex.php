@@ -56,18 +56,17 @@ class SpecialPrefixindex extends SpecialAllpages {
 		);
 
 		$showme = '';
-		if ( $this->including() && ( $par == '' ) ) {
+		if ( $this->including() && $par == '' ) {
 			// Bug 27864: if transcluded, show all pages instead of the form
-			$showme = ' ';
-		} elseif( isset( $par ) ){
+		} elseif( isset( $par ) ) {
 			$showme = $par;
-		} elseif( $prefix != '' ){
+		} elseif( $prefix != '' ) {
 			$showme = $prefix;
-		} elseif( $from != '' ){
+		} elseif( $from != '' ) {
 			// For back-compat with Special:Allpages
 			$showme = $from;
 		}
-		if ($showme != '' || $namespace) {
+		if ( $showme != '' || $namespace ) {
 			$this->showPrefixChunk( $namespace, $showme, $from );
 		} else {
 			$wgOut->addHTML( $this->namespacePrefixForm( $namespace, null ) );
