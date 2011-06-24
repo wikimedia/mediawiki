@@ -47,18 +47,18 @@ class SpecialPrefixindex extends SpecialAllpages {
 		# GET values
 		$from = $wgRequest->getVal( 'from', '' );
 		$prefix = $wgRequest->getVal( 'prefix', '' );
-		$namespace = $wgRequest->getInt( 'namespace' );
-		$namespaces = $wgContLang->getNamespaces();
+		$ns = $wgRequest->getIntOrNull( 'namespace' );
+		$namespace = (int)$ns; // if no namespace given, use 0 (NS_MAIN).
 
-		$wgOut->setPagetitle( ( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) )
-			? wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
-			: wfMsg( 'prefixindex' )
+		$namespaces = $wgContLang->getNamespaces();
+		$wgOut->setPagetitle(
+			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) )
+				? wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
+				: wfMsg( 'prefixindex' )
 		);
 
 		$showme = '';
-		if ( $this->including() && $par == '' ) {
-			// Bug 27864: if transcluded, show all pages instead of the form
-		} elseif( isset( $par ) ) {
+		if( isset( $par ) ) {
 			$showme = $par;
 		} elseif( $prefix != '' ) {
 			$showme = $prefix;
@@ -66,7 +66,9 @@ class SpecialPrefixindex extends SpecialAllpages {
 			// For back-compat with Special:Allpages
 			$showme = $from;
 		}
-		if ( $showme != '' || $namespace ) {
+
+		// Bug 27864: if transcluded, show all pages instead of the form.
+		if ( $this->including() || $showme != '' || $ns !== null ) {
 			$this->showPrefixChunk( $namespace, $showme, $from );
 		} else {
 			$wgOut->addHTML( $this->namespacePrefixForm( $namespace, null ) );
