@@ -309,7 +309,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## be publically accessible from the web.
 #\$wgCacheDirectory = \"\$IP/cache\";
 
-# Site language code, should be one of ./languages/Language(.*).php
+# Site language code, should be one of the list in ./languages/Names.php
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 \$wgSecretKey = \"{$this->values['wgSecretKey']}\";
