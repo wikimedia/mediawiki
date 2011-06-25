@@ -101,7 +101,7 @@ class MediaWiki {
 	 * - special pages
 	 * - normal pages
 	 *
-	 * @return Article object
+	 * @return void
 	 */
 	public function performRequest() {
 		global $wgServer, $wgUsePathInfo;
@@ -113,22 +113,15 @@ class MediaWiki {
 		$output = $this->context->getOutput();
 		$user = $this->context->getUser();
 
-		# Promote user to any groups they meet the criteria for
-		$user->addAutopromoteOnceGroups( 'onView' );
-
 		if ( $request->getVal( 'printable' ) === 'yes' ) {
 			$output->setPrintable();
 		}
 
-		wfRunHooks( 'BeforeInitialize', array(
-			&$title,
-			null,
-			&$output,
-			&$user,
-			$request,
-			$this
-		) );
-		
+		$pageView = false; // was an article or special page viewed?
+
+		wfRunHooks( 'BeforeInitialize',
+			array( &$title, null, &$output, &$user, $request, $this ) );
+
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( $title instanceof BadTitle ) {
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
@@ -196,13 +189,15 @@ class MediaWiki {
 			}
 		// Special pages
 		} elseif ( NS_SPECIAL == $title->getNamespace() ) {
-			// actions that need to be made when we have a special pages
+			$pageView = true;
+			// Actions that need to be made when we have a special pages
 			SpecialPageFactory::executePath( $title, $this->context );
 		} else {
 			// ...otherwise treat it as an article view. The article
 			// may be a redirect to another article or URL.
 			$article = $this->initializeArticle();
 			if ( is_object( $article ) ) {
+				$pageView = true;
 				/**
 				 * $wgArticle is deprecated, do not use it. This will possibly be removed
 				 * entirely in 1.20 or 1.21
@@ -212,8 +207,6 @@ class MediaWiki {
 				$wgArticle = $article;
 
 				$this->performAction( $article );
-				wfProfileOut( __METHOD__ );
-				return $article;
 			} elseif ( is_string( $article ) ) {
 				$output->redirect( $article );
 			} else {
@@ -221,6 +214,12 @@ class MediaWiki {
 				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
 			}
 		}
+
+		if ( $pageView ) {
+			// Promote user to any groups they meet the criteria for
+			$user->addAutopromoteOnceGroups( 'onView' );
+		}
+
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -406,7 +405,7 @@ class MediaWiki {
 	 *
 	 * @param $article Article
 	 */
-	private function performAction( $article ) {
+	private function performAction( Article $article ) {
 		global $wgSquidMaxage, $wgUseExternalEditor;
 
 		wfProfileIn( __METHOD__ );
@@ -416,9 +415,8 @@ class MediaWiki {
 		$title = $this->context->getTitle();
 		$user = $this->context->getUser();
 
-		if ( !wfRunHooks( 'MediaWikiPerformAction', array(
-				$output, $article, $title,
-				$user, $request, $this ) ) )
+		if ( !wfRunHooks( 'MediaWikiPerformAction',
+			array( $output, $article, $title, $user, $request, $this ) ) )
 		{
 			wfProfileOut( __METHOD__ );
 			return;
@@ -561,11 +559,11 @@ class MediaWiki {
 			return;
 		}
 
-		if ( $wgUseFileCache && $wgTitle !== null ) {
+		if ( $wgUseFileCache && $wgTitle->getNamespace() != NS_SPECIAL ) {
 			wfProfileIn( 'main-try-filecache' );
 			// Raw pages should handle cache control on their own,
 			// even when using file cache. This reduces hits from clients.
-			if ( $action != 'raw' && HTMLFileCache::useFileCache() ) {
+			if ( HTMLFileCache::useFileCache() ) {
 				/* Try low-level file cache hit */
 				$cache = new HTMLFileCache( $wgTitle, $action );
 				if ( $cache->isFileCacheGood( /* Assume up to date */ ) ) {

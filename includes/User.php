@@ -1110,11 +1110,11 @@ class User {
 	 *   will not be re-added automatically. The user will also not lose the
 	 *   group if they no longer meet the criteria.
 	 *   
-	 * @param $event String 'onEdit' or 'onView' (each one has groups/criteria)
+	 * @param $event String key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *   
 	 * @return array Array of groups the user has been promoted to.  
 	 * 
-	 * @see $wgAutopromote
+	 * @see $wgAutopromoteOnce
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
 		if ( $this->getId() ) {
@@ -2346,7 +2346,7 @@ class User {
 					'ug_user'  => $this->getID(),
 					'ug_group' => $group,
 				), __METHOD__ );
-			//remember that the user has had this group
+			// Remember that the user was in this group
 			$dbw->insert( 'user_former_groups',
 				array(
 					'ufg_user'  => $this->getID(),
