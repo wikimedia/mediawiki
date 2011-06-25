@@ -26,7 +26,18 @@ abstract class Collation {
 			case 'uca-default':
 				return new IcuCollation( 'root' );
 			default:
-				throw new MWException( __METHOD__.": unknown collation type \"$collationName\"" );
+				# Provide a mechanism for extensions to hook in.
+				if ( class_exists( $collationName ) ) {
+					$collationObject = new $collationName;
+					if ( $collationObject instanceof Collation ) {
+						return $collationObject;
+					} else {
+						throw new MWException( __METHOD__.": collation type \"$collationName\""
+							. " is not a subclass of Collation." );
+					}
+				} else {
+					throw new MWException( __METHOD__.": unknown collation type \"$collationName\"" );
+				}
 		}
 	}
 

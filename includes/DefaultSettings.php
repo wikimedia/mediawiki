@@ -4731,6 +4731,9 @@ $wgCategoryPagingLimit = 200;
  *
  * After you change this, you must run maintenance/updateCollation.php to fix
  * the sort keys in the database.
+ *
+ * Extensions can define there own collations by subclassing Collation
+ * and using the class name as the value of this variable.
  */
 $wgCategoryCollation = 'uppercase';
 

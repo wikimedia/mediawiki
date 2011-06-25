@@ -27,6 +27,8 @@ production.
   was removed in about 1.5.
 * LogPageValidTypes, LogPageLogName, LogPageLogHeader and LogPageActionText
   hooks have been removed.
+* $wgCategoryCollation can now use a class name as its value, in order for
+  extensions to be able to define new collations
 
 === New features in 1.19 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
