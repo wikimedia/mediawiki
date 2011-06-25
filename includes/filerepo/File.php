@@ -1433,11 +1433,7 @@ abstract class File {
 	 *
 	 * @param $path string
 	 *
-	 * @return false on failure
-	 *
-	 * @param $path string
-	 *
-	 * @return false|string
+	 * @return false|string False on failure
 	 */
 	static function sha1Base36( $path ) {
 		wfSuppressWarnings();
