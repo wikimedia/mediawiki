@@ -1431,7 +1431,9 @@ abstract class File {
 	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
 	 * fairly neatly.
 	 *
-	 * Returns false on failure
+	 * @param $path string
+	 *
+	 * @return false on failure
 	 *
 	 * @param $path string
 	 *
