@@ -625,9 +625,6 @@ div.gallerytext {
 .mw-content-ltr [dir="rtl"] ul, .mw-content-ltr [dir="rtl"] ol {
 	margin: .3em 1.5em 0 0;
 }
-/* @noflip */ {
-	margin: .3em 1.5em 0 0;
-}
 /* Localised ordered list numbering for some languages */
 ol:lang(bcc) li,
 ol:lang(bqi) li,
