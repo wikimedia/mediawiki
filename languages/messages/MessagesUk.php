@@ -2420,6 +2420,7 @@ $1',
 'sp-contributions-username'            => "IP-адреса або ім'я користувача:",
 'sp-contributions-toponly'             => 'Показувати тільки редагування, що є останніми версіями',
 'sp-contributions-submit'              => 'Знайти',
+'sp-contributions-showsizediff'        => 'Показати зміну розміру сторінки',
 
 # What links here
 'whatlinkshere'            => 'Посилання сюди',
@@ -3278,12 +3279,28 @@ $1',
 'exif-gpsdop-fair'      => 'Нижче середньої',
 'exif-gpsdop-poor'      => 'Низька ($1)',
 
+'exif-objectcycle-a' => 'Тільки вранці',
+'exif-objectcycle-p' => 'Тільки ввечері',
+'exif-objectcycle-b' => 'Вранці та ввечері',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'справжній',
 'exif-gpsdirection-m' => 'магнітний',
 
-'exif-dc-date'   => 'Дата(и)',
-'exif-dc-rights' => 'Права',
+'exif-ycbcrpositioning-1' => 'Центрований',
+
+'exif-dc-contributor' => 'Співавтори',
+'exif-dc-coverage'    => 'Просторові або тимчасові рамки медіа',
+'exif-dc-date'        => 'Дата(и)',
+'exif-dc-publisher'   => 'Видавець',
+'exif-dc-relation'    => "Пов'язані медіа",
+'exif-dc-rights'      => 'Права',
+'exif-dc-source'      => 'Оригінальне медіа',
+'exif-dc-type'        => 'Тип медіа',
+
+'exif-rating-rejected' => 'Відхилено',
+
+'exif-isospeedratings-overflow' => 'Понад 65535',
 
 'exif-iimcategory-clj' => 'Злочинність і право',
 'exif-iimcategory-edu' => 'Освіта',

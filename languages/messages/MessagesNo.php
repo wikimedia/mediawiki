@@ -2386,7 +2386,7 @@ Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
 'nolinkshere-ns'           => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
 'isredirect'               => 'omdirigeringsside',
 'istemplate'               => 'transklusjon',
-'isimage'                  => 'bildelenke',
+'isimage'                  => 'fillenke',
 'whatlinkshere-prev'       => '{{PLURAL:$1|forrige|forrige $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|neste|neste $1}}',
 'whatlinkshere-links'      => '← lenker',
@@ -2843,6 +2843,19 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'spambot_username'    => 'MediaWikis spamopprydning',
 'spam_reverting'      => 'Tilbakestiller til siste versjon uten lenke til $1',
 'spam_blanking'       => 'Alle revisjoner inneholdt lenke til $1, tømmer siden',
+
+# Info page
+'pageinfo-title'            => 'Informasjon om «$1»',
+'pageinfo-header-edits'     => 'Redigeringer',
+'pageinfo-header-watchlist' => 'Overvåkningsliste',
+'pageinfo-header-views'     => 'Visninger',
+'pageinfo-subjectpage'      => 'Side',
+'pageinfo-talkpage'         => 'Diskusjonsside',
+'pageinfo-watchers'         => 'Antall overvåkere',
+'pageinfo-edits'            => 'Antall redigeringer',
+'pageinfo-authors'          => 'Antall forskjellige forfattere',
+'pageinfo-views'            => 'Antall visninger',
+'pageinfo-viewsperedit'     => 'Visninger per redigering',
 
 # Skin names
 'skinname-standard'    => 'Standard',

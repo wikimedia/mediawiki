@@ -812,23 +812,28 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'resetpass-temp-password'   => 'Senha temporária:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Repor Palavra-chave',
-'passwordreset-text'         => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
-'passwordreset-legend'       => 'Reiniciar a senha',
-'passwordreset-disabled'     => 'Reiniciar a senha foi impossibilitado nesta wiki.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
-'passwordreset-username'     => 'Nome de usuário:',
-'passwordreset-email'        => 'Endereço de e-mail:',
-'passwordreset-emailtitle'   => 'Detalhes da conta na {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Alguém (provavelmente você, do endereço IP $1) solicitou um lembrete do seu detalhes de conta para {{SITENAME}} ($4). O seguinte usuário {{PLURAL:$3|conta|são contas}} associado com este endereço de e-mail:
+'passwordreset'                => 'Repor Palavra-chave',
+'passwordreset-text'           => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
+'passwordreset-legend'         => 'Reiniciar a senha',
+'passwordreset-disabled'       => 'Reiniciar a senha foi impossibilitado nesta wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
+'passwordreset-username'       => 'Nome de usuário:',
+'passwordreset-email'          => 'Endereço de e-mail:',
+'passwordreset-emailtitle'     => 'Detalhes da conta na {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Alguém (provavelmente você, do endereço IP $1) solicitou um lembrete do seu detalhes de conta para {{SITENAME}} ($4). O seguinte usuário {{PLURAL:$3|conta|são contas}} associado com este endereço de e-mail:
 
 $2
 
 {{PLURAL:$3|Esta senha temporária |Essas senhas temporárias}} vão expirar em {{PLURAL:$5|um dia|$5 dias}}.
 Você deve efetuar login e escolher uma nova senha agora. Se você conseguir lembrar da senha, ignore este e-mail e continue usando sua senha anterior, do contrário, prossiga com as instruções clicando no link.',
-'passwordreset-emailelement' => 'Usuário: $1
+'passwordreset-emailtext-user' => 'O usuário $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:
+
+$2
+
+{{PLURAL:$3|Esta senha temporária irá|Estas senhas temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma senha nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua senha original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a senha antiga.',
+'passwordreset-emailelement'   => 'Usuário: $1
 Senha temporária: $2',
-'passwordreset-emailsent'    => 'Foi enviado um e-mail de lembrete.',
+'passwordreset-emailsent'      => 'Foi enviado um e-mail de lembrete.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto em negrito',
@@ -1359,7 +1364,7 @@ Eis um valor gerado aleatoriamente que você pode usar: $1",
 'savedprefs'                    => 'As suas preferências foram salvas.',
 'timezonelegend'                => 'Fuso horário:',
 'localtime'                     => 'Horário local:',
-'timezoneuseserverdefault'      => 'Usa padrão do servidor',
+'timezoneuseserverdefault'      => 'Usar padrão da wiki ($1)',
 'timezoneuseoffset'             => 'Outro (especifique diferença horária)',
 'timezoneoffset'                => 'Diferença horária¹',
 'servertime'                    => 'Horário do servidor:',
@@ -1686,6 +1691,7 @@ A [[Special:NewFiles|galeria de arquivos novos]] oferece uma listagem mais visua
 'large-file'                  => 'É recomendável que os arquivos não sejam maiores que $1; este possui $2.',
 'largefileserver'             => 'O tamanho deste arquivo é superior ao qual o servidor encontra-se configurado para permitir.',
 'emptyfile'                   => 'O arquivo que está tentando carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do arquivo. Por favor verifique se realmente deseja carregar este arquivo.',
+'windows-nonascii-filename'   => 'A wiki não aceita nomes de arquivos com caracteres especiais.',
 'fileexists'                  => "Já existe um arquivo com este nome.
 Por favor, verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza se deseja alterar o arquivo atual.
 [[$1|thumb]]",
@@ -1720,6 +1726,8 @@ Se você ainda quer carregar o seu arquivo, por favor volte e use um novo nome. 
 'php-uploaddisabledtext'      => 'O carregamento de arquivos via PHP está desativado. Por favor, verifique a configuração file_uploads.',
 'uploadscripted'              => 'Este arquivo contém HTML ou código que pode ser erradamente interpretado por um navegador web.',
 'uploadvirus'                 => 'O arquivo contém vírus! Detalhes: $1',
+'uploadjava'                  => 'Este é um arquivo ZIP que contém um arquivo .class de Java.
+Não é permitido o upload de arquivos Java, porque estes podem contornar as restrições de segurança.',
 'upload-source'               => 'Arquivo de origem',
 'sourcefilename'              => 'Nome do arquivo de origem:',
 'sourceurl'                   => 'URL de origem:',
@@ -1769,7 +1777,12 @@ Por gentileza, entre em contato com um [[Special:ListUsers/sysop|administrador]]
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
 
 # ZipDirectoryReader
-'zip-wrong-format' => 'O arquivo especificado não é um arquivo ZIP.',
+'zip-file-open-error' => 'Foi encontrado um erro ao abrir o arquivo ZIP para verificação.',
+'zip-wrong-format'    => 'O arquivo especificado não é um arquivo ZIP.',
+'zip-bad'             => 'O arquivo ZIP se encontra corrompido ou não é legível.
+A sua segurança não pode ser devidamente verificada.',
+'zip-unsupported'     => 'Este arquivo ZIP usa funcionalidades ZIP não suportadas pelo MediaWiki.
+A sua segurança não pode ser devidamente verificada.',
 
 # Special:UploadStash
 'uploadstash'          => 'Arquivos escondidos',
@@ -1861,6 +1874,7 @@ A lista a seguir mostra apenas {{PLURAL:$1|o primeiro link|os $1 primeiros links
 Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 'nolinkstoimage'            => 'Nenhuma página aponta para este arquivo.',
 'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|mais links]] para este arquivo.',
+'linkstoimage-redirect'     => '$1 (redirecionamento de arquivo) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte arquivo é duplicado|Os seguintes arquivos são duplicados}} deste arquivo ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
 'sharedupload'              => 'Este arquivo é do $1 e pode ser usado por outros projetos.',
 'sharedupload-desc-there'   => 'Este arquivo é do $1 e pode ser utilizado por outros projetos.
@@ -2153,6 +2167,7 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'noemailtext'          => 'Este usuário não especificou um endereço de e-mail válido.',
 'nowikiemailtitle'     => 'E-mail não permitido',
 'nowikiemailtext'      => 'Este usuário optou por não receber e-mail de outros usuários.',
+'emailnotarget'        => 'O nome do destinatário não existe ou é inválido.',
 'emailtarget'          => 'Insira o nome de usuário do destinatário',
 'emailusername'        => 'Nome de usuário:',
 'emailusernamesubmit'  => 'Enviar',
@@ -2204,8 +2219,9 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'watchlist-options'    => 'Opções da lista de páginas vigiadas',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Vigiando...',
-'unwatching' => 'Deixando de vigiar...',
+'watching'       => 'Vigiando...',
+'unwatching'     => 'Deixando de vigiar...',
+'watcherrortext' => 'Ocorreu um erro ao alterar a configuração da sua lista de páginas vigiadas para "$1".',
 
 'enotif_mailer'                => '{{SITENAME}} Email de Notificação',
 'enotif_reset'                 => 'Marcar todas páginas como visitadas',
@@ -2220,29 +2236,32 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_body'                  => 'Caro(a) $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão atual.
+A página $PAGETITLE da {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para ver a versão atual.
 
 $NEWPAGE
 
-Sumário de edição: $PAGESUMMARY $PAGEMINOREDIT
+Resumo da edição: $PAGESUMMARY $PAGEMINOREDIT
 
 Contate o editor:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página.
-Você pode também reativar as notificações para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
+Até que visite esta página, você não receberá mais notificações das alterações futuras.
+Você pode também reativar as notificações para todas páginas na sua lista de páginas vigiadas.
 
-             O seu sistema de notificação amigável da {{SITENAME}}
+O seu sistema de notificação amigável da {{SITENAME}}
 
 --
-Para alterar as configurações de sua lista de páginas vigiadas, visite
-{{fullurl:Special:Watchlist/edit}}
+Para alterar as suas preferências das notificações por correio electrónico, visite
+{{fullurl:{{#special:Preferences}}}}
 
-Para retirar esta página de sua lista de páginas vigiadas, visite
+Para alterar as suas preferências das páginas vigiadas, visite
+{{fullurl:{{#special:EditWatchlist}}}}
+
+Para retirar a página da lista de páginas vigiadas, visite
 $UNWATCHURL
 
-Comentários e assistência:
+Para comentários e pedidos de ajuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2371,9 +2390,8 @@ Esta é a configuração atual para a página '''$1''':",
 'undeletepagetext'             => '{{PLURAL:$1|A seguinte página foi eliminada|As $1 páginas seguintes foram eliminadas}}, mas ainda {{PLURAL:$1|permanece|permanecem}} no arquivo e poderem ser restauradas.
 O arquivo pode ser limpo periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar edições',
-'undeleteextrahelp'            => "Para restaurar todo o histórico de edições desta página, deixe todas as caixas de seleção desmarcadas e clique em '''''Restaurar'''''.
-Para efetuar uma restauração seletiva, selecione as caixas correspondentes às edições a serem restauradas e clique em '''''Restaurar'''''.
-Clicar em '''''Limpar''''' irá limpar o campo de comentário e todas as caixas de seleção.",
+'undeleteextrahelp'            => "Para restaurar o histórico de edições completo desta página, desmarque todas as caixas de seleção e clique '''''{{int:undeletebtn}}'''''.
+Para efectuar uma restauração seletiva, marque as caixas correspondentes às edições que pretende restaurar e clique '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|edição disponível|edições disponíveis}}',
 'undeletehistory'              => 'Se restaurar a página, todas as revisões serão restauradas para o histórico.
 Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão no histórico anterior.',
@@ -2445,6 +2463,7 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'sp-contributions-username'            => 'Endereço de IP ou usuário:',
 'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
+'sp-contributions-showsizediff'        => 'Mostrar a diferença no tamanho da página',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
@@ -2455,7 +2474,7 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'nolinkshere-ns'           => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
 'isredirect'               => 'página de redirecionamento',
 'istemplate'               => 'inclusão',
-'isimage'                  => 'link de imagem',
+'isimage'                  => 'link para o arquivo',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|próximo|próximos $1}}',
 'whatlinkshere-links'      => '← links',
@@ -2524,6 +2543,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'blocklist-tempblocks'            => 'Esconder bloqueios temporários',
 'blocklist-addressblocks'         => 'Esconder bloqueios de IP único',
 'blocklist-timestamp'             => 'Data e hora',
+'blocklist-target'                => 'Destinatário',
 'blocklist-expiry'                => 'Expira',
 'blocklist-by'                    => 'Administrador que realizou o bloqueio',
 'blocklist-params'                => 'Parâmetros do bloqueio',
@@ -2606,6 +2626,7 @@ Por favor, confirme que realmente pretende fazer isso.',
 'unlockdbsuccesstext' => 'O banco de dados foi desbloqueado.',
 'lockfilenotwritable' => 'O arquivo de bloqueio da base de dados não pode ser escrito. Para bloquear ou desbloquear a base de dados, este precisa de poder ser escrito pelo servidor Web.',
 'databasenotlocked'   => 'A base de dados não encontra-se bloqueada.',
+'lockedbyandtime'     => '(por $1 em $2 às $3)',
 
 # Move page
 'move-page'                    => 'Mover $1',
@@ -2899,6 +2920,11 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'spam_reverting'      => 'Revertendo para a última versão que não contém links para $1',
 'spam_blanking'       => 'Todas revisões contendo hiperligações para $1, limpando',
 
+# Info page
+'pageinfo-title'            => 'Informações sobre "$1"',
+'pageinfo-header-edits'     => 'Edições',
+'pageinfo-header-watchlist' => 'Páginas vigiadas',
+
 # Skin names
 'skinname-standard'    => 'Clássico',
 'skinname-nostalgia'   => 'Nostalgia',
@@ -2944,21 +2970,24 @@ $1',
 'nextdiff'     => 'Edição posterior →',
 
 # Media information
-'mediawarning'         => "'''Aviso''': Este tipo de arquivo pode conter código malicioso.
+'mediawarning'           => "'''Aviso''': Este tipo de arquivo pode conter código malicioso.
 Executá-lo poderá comprometer a segurança do seu sistema.",
-'imagemaxsize'         => "Limite de tamanho de imagem:<br />''(para páginas de descrição de arquivos)''",
-'thumbsize'            => 'Tamanho de miniaturas:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
-'file-info'            => 'tamanho: $1, tipo MIME: $2',
-'file-info-size'       => '$1 × $2 pixels, tamanho: $3, tipo MIME: $4',
-'file-nohires'         => '<small>Sem resolução maior disponível.</small>',
-'svg-long-desc'        => 'arquivo SVG, de $1 × $2 pixels, tamanho: $3',
-'show-big-image'       => 'Resolução completa',
-'file-info-gif-looped' => 'cíclico',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|quadro|quadros}}',
-'file-info-png-looped' => 'cíclico',
-'file-info-png-repeat' => 'tocado $1 {{PLURAL:$1|vez|vezes}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|quadro|quadros}}',
+'imagemaxsize'           => "Limite de tamanho de imagem:<br />''(para páginas de descrição de arquivos)''",
+'thumbsize'              => 'Tamanho de miniaturas:',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
+'file-info'              => 'tamanho: $1, tipo MIME: $2',
+'file-info-size'         => '$1 × $2 pixels, tamanho: $3, tipo MIME: $4',
+'file-nohires'           => '<small>Sem resolução maior disponível.</small>',
+'svg-long-desc'          => 'arquivo SVG, de $1 × $2 pixels, tamanho: $3',
+'show-big-image'         => 'Resolução completa',
+'show-big-image-preview' => '<small>Tamanho desta previsualização: $1.</small>',
+'show-big-image-other'   => '<small>Outras resoluções: $1.</small>',
+'show-big-image-size'    => '$1 × $2 pixels',
+'file-info-gif-looped'   => 'cíclico',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|quadro|quadros}}',
+'file-info-png-looped'   => 'cíclico',
+'file-info-png-repeat'   => 'tocado $1 {{PLURAL:$1|vez|vezes}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|quadro|quadros}}',
 
 # Special:NewFiles
 'newimages'             => 'Galeria de novos arquivos',
@@ -3130,11 +3159,14 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-objectname'                  => 'Título curto',
 'exif-specialinstructions'         => 'Instruções especiais',
 'exif-headline'                    => 'Título',
+'exif-credit'                      => 'Atribuição/Fornecedor',
 'exif-source'                      => 'Fonte',
 'exif-editstatus'                  => 'Estatuto editorial da imagem',
 'exif-urgency'                     => 'Urgência',
+'exif-fixtureidentifier'           => 'Nome da coluna',
 'exif-locationdest'                => 'Localização representada',
 'exif-locationdestcode'            => 'Código da localização representada',
+'exif-objectcycle'                 => 'Período do dia para a qual o conteúdo está direcionado',
 'exif-contact'                     => 'Informações para contato',
 'exif-writer'                      => 'Escritor',
 'exif-languagecode'                => 'Língua',
@@ -3163,13 +3195,22 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-attributionurl'              => 'Ao reutilizar esta obra, coloque um link para',
 'exif-preferredattributionname'    => 'Ao reutilizar esta obra, faça a atribuição a',
 'exif-pngfilecomment'              => 'Comentário de arquivo PNG',
+'exif-disclaimer'                  => 'Exoneração de responsabilidade',
 'exif-contentwarning'              => 'Aviso sobre conteúdo',
 'exif-giffilecomment'              => 'Comentário de arquivo GIF',
 'exif-intellectualgenre'           => 'Tipo de item',
+'exif-subjectnewscode'             => 'Código do tema',
+'exif-scenecode'                   => 'Código de cena IPTC',
+'exif-event'                       => 'Evento retratado',
+'exif-organisationinimage'         => 'Organização retratada',
+'exif-personinimage'               => 'Pessoa retratada',
+'exif-originalimageheight'         => 'Altura da imagem antes de ser cortada',
+'exif-originalimagewidth'          => 'Largura da imagem antes de ser cortada',
 
 # EXIF attributes
 'exif-compression-1' => 'Sem compressão',
 
+'exif-copyrighted-true'  => 'Direitos autorais reservados',
 'exif-copyrighted-false' => 'Domínio público',
 
 'exif-unknowndate' => 'Data desconhecida',
@@ -3301,6 +3342,10 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpslongitude-e' => 'Longitude Leste',
 'exif-gpslongitude-w' => 'Longitude Oeste',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metro|metros}} acima do nível do mar',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metro|metros}} abaixo do nível do mar',
+
 'exif-gpsstatus-a' => 'Medição em progresso',
 'exif-gpsstatus-v' => 'Interoperabilidade de medição',
 
@@ -3320,10 +3365,55 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsdop-excellent' => 'Excelente ($1)',
 'exif-gpsdop-good'      => 'Bom ($1)',
 'exif-gpsdop-moderate'  => 'Satisfatório ($1)',
+'exif-gpsdop-fair'      => 'Aceitável ($1)',
+'exif-gpsdop-poor'      => 'Fraco ($1)',
+
+'exif-objectcycle-a' => 'Só de manhã',
+'exif-objectcycle-p' => 'Só à tarde/noite',
+'exif-objectcycle-b' => 'De manhã e à tarde/noite',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direção real',
 'exif-gpsdirection-m' => 'Direção magnética',
+
+'exif-ycbcrpositioning-1' => 'Centradas',
+'exif-ycbcrpositioning-2' => 'Co-localizada',
+
+'exif-dc-contributor' => 'Colaboradores',
+'exif-dc-coverage'    => 'Âmbito espacial ou temporal do conteúdo',
+'exif-dc-date'        => 'Data(s)',
+'exif-dc-publisher'   => 'Editora',
+'exif-dc-relation'    => 'Conteúdos relacionados',
+'exif-dc-rights'      => 'Direitos',
+'exif-dc-source'      => 'Imagem fonte',
+'exif-dc-type'        => 'Tipo de mídia',
+
+'exif-rating-rejected' => 'Rejeitado',
+
+'exif-isospeedratings-overflow' => 'Maior que 65535',
+
+'exif-iimcategory-ace' => 'Artes, cultura e entretenimento',
+'exif-iimcategory-clj' => 'Lei e crime',
+'exif-iimcategory-dis' => 'Desastres e acidentes',
+'exif-iimcategory-fin' => 'Economia e negócios',
+'exif-iimcategory-edu' => 'Educação',
+'exif-iimcategory-evn' => 'Meio ambiente',
+'exif-iimcategory-hth' => 'Saúde',
+'exif-iimcategory-hum' => 'Interesse humano',
+'exif-iimcategory-lab' => 'Trabalho',
+'exif-iimcategory-lif' => 'Estilo de vida e lazer',
+'exif-iimcategory-pol' => 'Política',
+'exif-iimcategory-rel' => 'Religião e credo',
+'exif-iimcategory-sci' => 'Ciência e tecnologia',
+'exif-iimcategory-soi' => 'Questões sociais',
+'exif-iimcategory-spo' => 'Esportes',
+'exif-iimcategory-war' => 'Guerra, conflitos e agitação social',
+'exif-iimcategory-wea' => 'Tempo',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Baixa ($1)',
+'exif-urgency-high'   => 'Alta ($1)',
+'exif-urgency-other'  => 'Prioridade definida pelo usuário ($1)',
 
 # External editor support
 'edit-externally'      => 'Editar este arquivo utilizando uma aplicação externa',
@@ -3415,11 +3505,12 @@ $1',
 'trackbackdeleteok' => 'O trackback foi eliminado com sucesso.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Aviso''': Esta página foi eliminada após você ter começado a editar!",
-'confirmrecreate'     => "O usuário [[User:$1|$1]] ([[User talk:$1|Discussão]]) eliminou esta página após você ter começado a editar, pelo seguinte motivo:
+'deletedwhileediting'      => "'''Aviso''': Esta página foi eliminada após você ter começado a editar!",
+'confirmrecreate'          => "O usuário [[User:$1|$1]] ([[User talk:$1|Discussão]]) eliminou esta página após você ter começado a editar, pelo seguinte motivo:
 : ''$2''
 Por favor, confirme que realmente deseja recriar esta página.",
-'recreate'            => 'Recriar',
+'confirmrecreate-noreason' => 'O usuário [[User:$1|$1]] ([[User talk:$1|discussão]]) eliminou esta página depois de você ter começado a editá-la. Confirme que deseja recriar a página, por favor.',
+'recreate'                 => 'Recriar',
 
 # action=purge
 'confirm_purge_button' => 'OK',
