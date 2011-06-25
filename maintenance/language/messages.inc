@@ -1980,7 +1980,9 @@ $wgMessageStructure = array(
 	'nsform' => array(
 		'namespace',
 		'invert',
+		'tooltip-invert',
 		'namespace_association',
+		'tooltip-namespace_association',
 		'blanknamespace',
 	),
 	'contributions' => array(
