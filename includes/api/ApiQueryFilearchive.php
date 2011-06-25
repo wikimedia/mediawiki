@@ -95,12 +95,12 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 			$sha1 = false;
 			if ( $sha1Set ) {
-				if ( !ApiQueryAllimages::validateSha1Hash( $params['sha1'] ) ) {
+				if ( !$this->validateSha1Hash( $params['sha1'] ) ) {
 					$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
 				}
 				$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
-				if ( !ApiQueryAllimages::validateSha1Base36Hash( $params['sha1base36'] ) ) {
+				if ( !$this->validateSha1Base36Hash( $params['sha1base36'] ) ) {
 					$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
 				}
 				$sha1 = $params['sha1base36'];

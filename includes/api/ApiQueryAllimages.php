@@ -109,13 +109,13 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 		$sha1 = false;
 		if ( isset( $params['sha1'] ) ) {
-			if ( !self::validateSha1Hash( $params['sha1'] ) ) {
+			if ( !$this->validateSha1Hash( $params['sha1'] ) ) {
 				$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
 			}
 			$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
 		} elseif ( isset( $params['sha1base36'] ) ) {
 			$sha1 = $params['sha1base36'];
-			if ( !self::validateSha1Base36Hash( $sha1 ) ) {
+			if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
 				$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
 			}
 		}
@@ -179,22 +179,6 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
-	}
-
-	/**
-	 * @param $hash string
-	 * @return bool
-	 */
-	public static function validateSha1Hash( $hash ) {
-		return preg_match( '/[a-fA-F0-9]{40}/', $hash );
-	}
-
-	/**
-	 * @param $hash string
-	 * @return bool
-	 */
-	public static function validateSha1Base36Hash( $hash ) {
-		return preg_match( '/[a-zA-Z0-9]{31}/', $hash );
 	}
 
 	public function getAllowedParams() {
