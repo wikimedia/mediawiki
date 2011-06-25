@@ -1117,16 +1117,12 @@ class User {
 	 * @see $wgAutopromote
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
-		global $wgAutopromoteOnce;
-		if ( isset( $wgAutopromoteOnce[$event] ) ) {
-			$criteria = $wgAutopromoteOnce[$event]; // group/requirement pairs
-			if ( count( $criteria ) && $this->getId() ) {
-				$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $criteria );
-				foreach ( $toPromote as $group ) {
-					$this->addGroup( $group );
-				}
-				return $toPromote;
+		if ( $this->getId() ) {
+			$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
+			foreach ( $toPromote as $group ) {
+				$this->addGroup( $group );
 			}
+			return $toPromote;
 		}
 		return array(); 
 	}

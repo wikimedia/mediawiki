@@ -26,37 +26,38 @@ class Autopromote {
 
 		return $promote;
 	}
-	
+
 	/**
 	 * Get the groups for the given user based on the given criteria.
 	 * 
 	 * Does not return groups the user already belongs to or has once belonged.
 	 * 
 	 * @param $user The user to get the groups for
-	 * @param $criteria array Groups and conditions the user must meet in order
-	 *   to be promoted to these groups. Array of the same format as 
-	 *   \ref $wgAutopromote. 
+	 * @param $event String 'onEdit' or 'onView' (each one has groups/criteria)
 	 *               
 	 * @return array Groups the user should be promoted to.
 	 */
-	public static function getAutopromoteOnceGroups( User $user, $criteria ) {
+	public static function getAutopromoteOnceGroups( User $user, $event ) {
+		global $wgAutopromoteOnce;
+
 		$promote = array();
 
-		$currentGroups = $user->getGroups();
-
-		foreach ( $criteria as $group => $cond ) {
-			// Do not check if the user's already a member
-			if ( in_array( $group, $currentGroups ) ) {
-				continue;
-			}
-			// Do not autopromote if the user has belonged to the group
-			$formerGroups = $user->getFormerGroups();
-			if ( in_array( $group, $formerGroups ) ) {
-				continue;
-			}
-			// Finally - check the conditions
-			if ( self::recCheckCondition( $cond, $user ) ) {
-				$promote[] = $group;
+		if ( isset( $wgAutopromoteOnce[$event] ) && count( $wgAutopromoteOnce[$event] ) ) {
+			$currentGroups = $user->getGroups();
+			foreach ( $wgAutopromoteOnce[$event] as $group => $cond ) {
+				// Do not check if the user's already a member
+				if ( in_array( $group, $currentGroups ) ) {
+					continue;
+				}
+				// Do not autopromote if the user has belonged to the group
+				$formerGroups = $user->getFormerGroups();
+				if ( in_array( $group, $formerGroups ) ) {
+					continue;
+				}
+				// Finally - check the conditions
+				if ( self::recCheckCondition( $cond, $user ) ) {
+					$promote[] = $group;
+				}
 			}
 		}
 
