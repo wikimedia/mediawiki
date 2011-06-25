@@ -93,16 +93,14 @@ class HTMLFileCache {
 		foreach( $queryVals as $query => $val ) {
 			if( $query == 'title' || $query == 'curid' ) {
 				continue;
-			}
 			// Normal page view in query form can have action=view.
 			// Raw hits for pages also stored, like .css pages for example.
-			elseif( $query == 'action' && ($val == 'view' || $val == 'raw') ) {
+			} elseif( $query == 'action' && $val == 'view' ) {
 				continue;
 			} elseif( $query == 'usemsgcache' && $val == 'yes' ) {
 				continue;
-			}
 			// Below are header setting params
-			elseif( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' ) {
+			} elseif( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' ) {
 				continue;
 			} else {
 				return false;

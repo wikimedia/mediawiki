@@ -33,9 +33,11 @@ class Autopromote {
 	 * Does not return groups the user already belongs to or has once belonged.
 	 * 
 	 * @param $user The user to get the groups for
-	 * @param $event String 'onEdit' or 'onView' (each one has groups/criteria)
-	 *               
+	 * @param $event String key in $wgAutopromoteOnce (each one has groups/criteria)
+	 *
 	 * @return array Groups the user should be promoted to.
+	 *
+	 * @see $wgAutopromoteOnce
 	 */
 	public static function getAutopromoteOnceGroups( User $user, $event ) {
 		global $wgAutopromoteOnce;
