@@ -115,6 +115,41 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['month'] = $wgRequest->getIntOrNull( 'month' );
 		}
 
+		$feedType = $wgRequest->getVal( 'feed' );
+		if( $feedType ) {
+			$apiParams = array(
+				'action' => 'feedcontributions',
+				'feedformat' => $feedType,
+				'user' => $target,
+			);
+			if ( $this->opts['topOnly'] ) {
+				$apiParams['toponly'] = true;
+			}
+			if ( $this->opts['showSizeDiff'] ) {
+				$apiParams['showsizediff'] = true;
+			}
+			if ( $this->opts['deletedonly'] ) {
+				$apiParams['deletedonly'] = true;
+			}
+			if ( $this->opts['tagFilter'] !== '' ) {
+				$apiParams['tagfilter'] = $this->opts['tagFilter'];
+			}
+			if ( $this->opts['namespace'] !== '' ) {
+				$apiParams['namespace'] = $this->opts['namespace'];
+			}
+			if ( $this->opts['year'] !== null ) {
+				$apiParams['year'] = $this->opts['year'];
+			}
+			if ( $this->opts['month'] !== null ) {
+				$apiParams['month'] = $this->opts['month'];
+			}
+
+			$url = wfScript( 'api' ) . '?' . wfArrayToCGI( $apiParams );
+
+			$wgOut->redirect( $url, '301' );
+			return;
+		}
+
 		// Add RSS/atom links
 		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $wgUser->getName() ) );
 
