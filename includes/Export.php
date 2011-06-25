@@ -438,11 +438,12 @@ class XmlDumpWriter {
 	/**
 	 * Closes the output stream with the closing root element.
 	 * Call when finished dumping things.
+	 *
+	 * @return string
 	 */
 	function closeStream() {
 		return "</mediawiki>\n";
 	}
-
 
 	/**
 	 * Opens a <page> section on the output stream, with data
@@ -616,6 +617,11 @@ class XmlDumpWriter {
 		return '';
 	}
 
+	/**
+	 * @param $file File
+	 * @param $dumpContents bool
+	 * @return string
+	 */
 	function writeUpload( $file, $dumpContents = false ) {
 		if ( $file->isOld() ) {
 			$archiveName = "      " . 
