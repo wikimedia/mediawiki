@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Dynamically change configuration variables based on the test suite name and a cookie value.
  * For details on how to configure a wiki for a Selenium test, see:
  * http://www.mediawiki.org/wiki/SeleniumFramework#Test_Wiki_configuration
@@ -13,38 +13,44 @@ require_once( "$IP/includes/GlobalFunctions.php" );
 $fname = 'SeleniumWebSettings.php';
 wfProfileIn( $fname );
 
-$cookiePrefix = $wgSitename . "-";
-$cookieName = $cookiePrefix . "Selenium";
+$cookiePrefix = $wgSitename . '-';
+$cookieName = $cookiePrefix . 'Selenium';
 
-// this is a fallback sql file
+// this is a fallback SQL file
 $testSqlFile = false;
 $testImageZip = false;
 	
-//if we find a request parameter containing the test name, set a cookie with the test name
+// if we find a request parameter containing the test name, set a cookie with the test name
 if ( isset( $_GET['setupTestSuite'] ) ) {
 	$setupTestSuiteName = $_GET['setupTestSuite'];
 
-	if ( preg_match( '/[^a-zA-Z0-9_-]/', $setupTestSuiteName ) || !isset( $wgSeleniumTestConfigs[$setupTestSuiteName] ) ) {
+	if (
+		preg_match( '/[^a-zA-Z0-9_-]/', $setupTestSuiteName ) ||
+		!isset( $wgSeleniumTestConfigs[$setupTestSuiteName] )
+	)
+	{
 		return;
 	}
-	if ( strlen( $setupTestSuiteName) > 0 ) {
+	if ( strlen( $setupTestSuiteName ) > 0 ) {
 		$expire = time() + 600;
-		setcookie( $cookieName,
+		setcookie(
+			$cookieName,
 			$setupTestSuiteName,
 			$expire,
 			$wgCookiePath,
 			$wgCookieDomain,
 			$wgCookieSecure,
-			true );
+			true
+		);
 	}
 	
-	$testIncludes = array(); //array containing all the includes needed for this test
-	$testGlobalConfigs = array(); //an array containg all the global configs needed for this test
+	$testIncludes = array(); // array containing all the includes needed for this test
+	$testGlobalConfigs = array(); // an array containg all the global configs needed for this test
 	$testResourceFiles = array(); // an array containing all the resource files needed for this test
 	$callback = $wgSeleniumTestConfigs[$setupTestSuiteName];
 	call_user_func_array( $callback, array( &$testIncludes, &$testGlobalConfigs, &$testResourceFiles));
 
-	if ( isset($testResourceFiles['images']) ) {
+	if ( isset( $testResourceFiles['images'] ) ) {
 		$testImageZip = $testResourceFiles['images'];
 	}
 	
@@ -57,32 +63,34 @@ if ( isset( $_GET['setupTestSuite'] ) ) {
 	}
 }
 
-//clear the cookie based on a request param
+// clear the cookie based on a request param
 if ( isset( $_GET['clearTestSuite'] ) ) {
 	$testSuiteName = getTestSuiteNameFromCookie( $cookieName );
 
 	$expire = time() - 600; 
-	setcookie( $cookieName,
+	setcookie(
+		$cookieName,
 		'',
 		$expire,
 		$wgCookiePath,
 		$wgCookieDomain,
 		$wgCookieSecure,
-		true );
+		true
+	);
 	
 	$testResourceName = getTestResourceNameFromTestSuiteName( $testSuiteName );
 	teardownTestResources( $testResourceName );
 }
 
-//if a cookie is found, run the appropriate callback to get the config params.
+// if a cookie is found, run the appropriate callback to get the config params.
 if ( isset( $_COOKIE[$cookieName] ) ) {		
 	$testSuiteName = getTestSuiteNameFromCookie( $cookieName );
 	if ( !isset( $wgSeleniumTestConfigs[$testSuiteName] ) ) {
 		return;
 	}
 	
-	$testIncludes = array(); //array containing all the includes needed for this test
-	$testGlobalConfigs = array(); //an array containg all the global configs needed for this test
+	$testIncludes = array(); // array containing all the includes needed for this test
+	$testGlobalConfigs = array(); // an array containg all the global configs needed for this test
 	$testResourceFiles = array(); // an array containing all the resource files needed for this test
 	$callback = $wgSeleniumTestConfigs[$testSuiteName]; 
 	call_user_func_array( $callback, array( &$testIncludes, &$testGlobalConfigs, &$testResourceFiles));
@@ -134,21 +142,21 @@ function setupTestResources( $testResourceName, $testSqlFile, $testImageZip ) {
 
 	// Basic security. Do not allow to drop productive database.
 	if ( $testResourceName == $wgDBname ) {
-		die( "Cannot override productive database." );
+		die( 'Cannot override productive database.' );
 	}
 	if ( $testResourceName == '' ) {
-		die( "Cannot identify a test the resources should be installed for." );
+		die( 'Cannot identify a test the resources should be installed for.' );
 	}
 	
-	//create tables
-	$dbw =& wfGetDB( DB_MASTER );
-	$dbw->query( "DROP DATABASE IF EXISTS ".$testResourceName );
-	$dbw->query( "CREATE DATABASE ".$testResourceName );
+	// create tables
+	$dbw = wfGetDB( DB_MASTER );
+	$dbw->query( 'DROP DATABASE IF EXISTS ' . $testResourceName );
+	$dbw->query( 'CREATE DATABASE ' . $testResourceName );
 
-	// do not set the new db name before database is setup
+	// do not set the new DB name before database is setup
 	$wgDBname = $testResourceName;
 	$dbw->selectDB( $testResourceName );
-	// populate from sql file
+	// populate from SQL file
 	if ( $testSqlFile ) {
 		$dbw->sourceFile( $testSqlFile );
 	}
@@ -169,8 +177,8 @@ function setupTestResources( $testResourceName, $testSqlFile, $testImageZip ) {
 
 function teardownTestResources( $testResourceName ) {
 	// remove test database
-	$dbw =& wfGetDB( DB_MASTER );
-	$dbw->query( "DROP DATABASE IF EXISTS ".$testResourceName );
+	$dbw = wfGetDB( DB_MASTER );
+	$dbw->query( 'DROP DATABASE IF EXISTS ' . $testResourceName );
 
 	$testUploadPath = getTestUploadPathFromResourceName( $testResourceName );
 	// remove test image dir
@@ -190,7 +198,7 @@ function switchToTestResources( $testResourceName, $switchDB = true ) {
 	$wgDBuser = $wgDBtestuser;
 	$wgDBpassword = $wgDBtestpassword;
 
-	$testUploadPath =  getTestUploadPathFromResourceName( $testResourceName );
+	$testUploadPath = getTestUploadPathFromResourceName( $testResourceName );
 	$wgUploadPath = $testUploadPath;
 }
 
@@ -200,10 +208,10 @@ function wfRecursiveRemoveDir( $dir ) {
 		$objects = scandir( $dir );
 		foreach ( $objects as $object ) {
 			if ( $object != "." && $object != ".." ) {
-				if ( filetype( $dir."/".$object ) == "dir" ) {
-					wfRecursiveRemoveDir( $dir."/".$object );
+				if ( filetype( $dir . '/' . $object ) == "dir" ) {
+					wfRecursiveRemoveDir( $dir . '/' . $object );
 				} else {
-					unlink( $dir."/".$object );
+					unlink( $dir . '/' . $object );
 				}
 			}
 		}
