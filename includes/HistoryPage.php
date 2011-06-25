@@ -409,9 +409,8 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	private function getRevisionButton( $name, $msg ) {
-		global $wgContLang;
 		$this->preventClickjacking();
-		$float = $wgContLang->alignEnd();
+		$float = wfUILang()->alignEnd();
 		# Note bug #20966, <button> is non-standard in IE<8
 		$element = Html::element( 'button',
 			array(
