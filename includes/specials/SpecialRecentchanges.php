@@ -642,12 +642,12 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$invert = Xml::checkLabel(
 			wfMsg( 'invert' ), 'invert', 'nsinvert',
 			$opts['invert'],
-			array( 'title' => wfMsg( 'invert_tip' ) )
+			array( 'title' => wfMsg( 'tooltip-invert' ) )
 		);
 		$associated = Xml::checkLabel(
 			wfMsg( 'namespace_association' ), 'associated', 'nsassociated',
 			$opts['associated'],
-			array( 'title' => wfMsg( 'namespace_association_tip' ) )
+			array( 'title' => wfMsg( 'tooltip-namespace_association' ) )
 		);
 		return array( $nsLabel, "$nsSelect $invert $associated" );
 	}
