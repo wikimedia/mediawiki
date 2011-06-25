@@ -6,6 +6,41 @@
 
 class Autopromote {
 	/**
+	 * A function which may be assigned to a hook in order to check 
+	 *   autopromotion of the current user (\ref $wgUser) to the specified 
+	 *   group.
+	 *    
+	 * Contrary to autopromotion by \ref $wgAutopromote, the group will be 
+	 *   possible to remove manually via Special:UserRights. In such case it
+	 *   will not be re-added autmoatically. The user will also not lose the
+	 *   group if they no longer meet the criteria.
+	 *   
+	 * Example configuration: 
+	 * \code $wgHooks['ArticleSaveComplete'][] = array (
+	 *     'Autopromote::autopromoteOnceHook', 
+	 *     array( 'somegroup' => array(APCOND_EDITCOUNT, 200) )
+	 * ); \endcode
+	 * 
+	 * The second array should be of the same format as \ref $wgAutopromote.
+	 * 
+	 * This funciton simply runs User::autopromoteOnce() on $wgUser. You may
+	 *   run this method from your custom function if you wish.  
+	 * 
+	 * @param $criteria array Groups and conditions which must be met in order to
+	 *   aquire these groups. Array of the same format as \ref $wgAutopromote.
+	 *               
+	 * @return Always true.
+	 * 
+	 * @see User::autopromoteOnce()
+	 * @see $wgAutopromote
+	 */
+	public static function autopromoteOnceHook($criteria) {
+		global $wgUser; 
+		$wgUser->autopromoteOnce($criteria); 
+		return true; 
+	}
+	
+	/**
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
 	 * @param $user User The user to get the groups for
@@ -24,6 +59,41 @@ class Autopromote {
 
 		wfRunHooks( 'GetAutoPromoteGroups', array( $user, &$promote ) );
 
+		return $promote;
+	}
+	
+	/**
+	 * Get the groups for the given user based on the given criteria.
+	 * 
+	 * Does not return groups the user already belongs to or has once belonged.
+	 * 
+	 * @param $user The user to get the groups for
+	 * @param $criteria array Groups and conditions the user must meet in order
+	 *   to be promoted to these groups. Array of the same format as 
+	 *   \ref $wgAutopromote. 
+	 *               
+	 * @return array Groups the user should be promoted to.
+	 */
+	public static function getAutopromoteOnceGroups( User $user, $criteria ) {
+		$promote = array();
+		
+		//get the current groups 
+		$currentGroups = $user->getGroups();
+		
+		foreach( $criteria as $group => $cond ) {
+			//do not check if the user's already a member
+			if ( in_array($group, $currentGroups))
+				continue;
+		
+			//do not autopromote if the user has belonged to the group
+			$formerGroups = $user->getFormerGroups();
+			if ( in_array($group, $formerGroups) )
+				continue;
+				
+			//finally - check the conditions 
+			if ( self::recCheckCondition($cond, $user) )
+				$promote[] = $group; 
+		}
 		return $promote;
 	}
 

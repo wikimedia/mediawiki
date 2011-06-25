@@ -3513,6 +3513,12 @@ $wgAutoConfirmCount = 0;
  *
  * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
  * user who has provided an e-mail address.
+ * 
+ * If the groups should be removable, consider using 
+ *   Autopromote::autopromoteOnceHook() instead.
+ * 
+ * @see Autopromote::autopromoteOnceHook()
+ * @see User::autopromoteOnce()
  */
 $wgAutopromote = array(
 	'autoconfirmed' => array( '&',
