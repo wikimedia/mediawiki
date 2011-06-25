@@ -113,6 +113,9 @@ class MediaWiki {
 		$output = $this->context->getOutput();
 		$user = $this->context->getUser();
 
+		# Promote user to any groups they meet the criteria for
+		$user->addAutopromoteOnceGroups( 'onView' );
+
 		if ( $request->getVal( 'printable' ) === 'yes' ) {
 			$output->setPrintable();
 		}
@@ -125,7 +128,7 @@ class MediaWiki {
 			$request,
 			$this
 		) );
-
+		
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( $title instanceof BadTitle ) {
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
