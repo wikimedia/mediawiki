@@ -164,6 +164,16 @@ CREATE TABLE /*_*/user_groups (
 CREATE UNIQUE INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user,ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
 
+-- Stores the groups the user has once belonged to. 
+-- The user may still belong these groups. Check user_groups.
+CREATE TABLE /*_*/user_former_groups (
+  -- Key to user_id
+  ufg_user int unsigned NOT NULL default 0,
+  ufg_group varbinary(16) NOT NULL default ''
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg_group);
+CREATE INDEX /*i*/ufg_group ON /*_*/user_former_groups (ufg_group);
 
 --
 -- Stores notifications of user talk page changes, for the display

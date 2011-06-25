@@ -71,7 +71,7 @@ class User {
 		'mEmailTokenExpires',
 		'mRegistration',
 		'mEditCount',
-		// user_group table
+		// user_groups table
 		'mGroups',
 		// user_properties table
 		'mOptionOverrides',
@@ -182,7 +182,7 @@ class User {
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
 	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mRights,
-		$mBlockreason, $mEffectiveGroups, $mBlockedGlobally,
+		$mBlockreason, $mEffectiveGroups, $mFormerGroups, $mBlockedGlobally,
 		$mLocked, $mHideName, $mOptions;
 
 	/**
@@ -1103,6 +1103,33 @@ class User {
 	}
 
 	/**
+	 * Add the user to the group if he/she meets given criteria.
+	 * 
+	 * Contrary to autopromotion by \ref $wgAutopromote, the group will be 
+	 *   possible to remove manually via Special:UserRights. In such case it
+	 *   will not be re-added autmoatically. The user will also not lose the
+	 *   group if they no longer meet the criteria.
+	 *   
+	 * @param $criteria array Groups and conditions the user must meet in order
+	 *   to be promoted to these groups. Array of the same format as 
+	 *   \ref $wgAutopromote. 
+	 *   
+	 * @return array Array of groups the user has been promoted to.  
+	 * 
+	 * @see $wgAutopromote
+	 * @see Autopromote::autopromoteOnceHook()
+	 */
+	public function autopromoteOnce( $criteria ) {		
+		if ($this->getId())	{
+			$toPromote = Autopromote::getAutopromoteOnceGroups($this, $criteria);
+			foreach($toPromote as $group)
+				$this->addGroup($group);
+			return $toPromote;
+		}
+		return array(); 
+	}
+	
+	/**
 	 * Clear various cached data stored in this object.
 	 * @param $reloadFrom String Reload user and user_groups table data from a
 	 *   given source. May be "name", "id", "defaults", "session", or false for
@@ -1116,7 +1143,7 @@ class User {
 		$this->mSkin = null;
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
-		$this->mOptions = null;
+		$this->mOptions = null; 
 
 		if ( $reloadFrom ) {
 			$this->mLoadedItems = array();
@@ -2240,7 +2267,31 @@ class User {
 		}
 		return $this->mEffectiveGroups;
 	}
-
+	
+	/**
+	 * Returns the groups the user has belonged to. 
+	 * 
+	 * The user may still belong to the returned groups. Compare with getGroups().
+	 * 
+	 * The function will not return groups the user had belonged to before MW 1.17
+	 *  
+	 * @return array Names of the groups the user has belonged to. 
+	 */
+	function getFormerGroups() {
+		if(is_null($this->mFormerGroups)) {
+			$dbr = wfGetDB( DB_MASTER );
+			$res = $dbr->select( 'user_former_groups',
+				array( 'ufg_group' ),
+				array( 'ufg_user' => $this->mId ),
+				__METHOD__ );
+			$this->mFormerGroups = array();
+			while( $row = $dbr->fetchObject( $res ) ) {
+				$this->mFormerGroups[] = $row->ufg_group;
+			}
+		}	
+		return $this->mFormerGroups;
+	}
+	
 	/**
 	 * Get the user's edit count.
 	 * @return Int
@@ -2297,6 +2348,14 @@ class User {
 					'ug_user'  => $this->getID(),
 					'ug_group' => $group,
 				), __METHOD__ );
+			//remember that the user has had this group
+			$dbw->insert( 'user_former_groups',
+				array(
+					'ufg_user'  => $this->getID(),
+					'ufg_group' => $group,
+				),
+				__METHOD__,
+				array( 'IGNORE' ) );
 		}
 		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
