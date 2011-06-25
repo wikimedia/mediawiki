@@ -173,7 +173,6 @@ CREATE TABLE /*_*/user_former_groups (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg_group);
-CREATE INDEX /*i*/ufg_group ON /*_*/user_former_groups (ufg_group);
 
 --
 -- Stores notifications of user talk page changes, for the display
