@@ -514,6 +514,22 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
+	 * @param $hash string
+	 * @return bool
+	 */
+	public function validateSha1Hash( $hash ) {
+		return preg_match( '/[a-fA-F0-9]{40}/', $hash );
+	}
+
+	/**
+	 * @param $hash string
+	 * @return bool
+	 */
+	public function validateSha1Base36Hash( $hash ) {
+		return preg_match( '/[a-zA-Z0-9]{31}/', $hash );
+	}
+
+	/**
 	 * @return array
 	 */
 	public function getPossibleErrors() {
