@@ -1107,28 +1107,30 @@ class User {
 	 * 
 	 * Contrary to autopromotion by \ref $wgAutopromote, the group will be 
 	 *   possible to remove manually via Special:UserRights. In such case it
-	 *   will not be re-added autmoatically. The user will also not lose the
+	 *   will not be re-added automatically. The user will also not lose the
 	 *   group if they no longer meet the criteria.
 	 *   
-	 * @param $criteria array Groups and conditions the user must meet in order
-	 *   to be promoted to these groups. Array of the same format as 
-	 *   \ref $wgAutopromote. 
+	 * @param $event String 'onEdit' or 'onView' (each one has groups/criteria)
 	 *   
 	 * @return array Array of groups the user has been promoted to.  
 	 * 
 	 * @see $wgAutopromote
-	 * @see Autopromote::autopromoteOnceHook()
 	 */
-	public function autopromoteOnce( $criteria ) {		
-		if ($this->getId())	{
-			$toPromote = Autopromote::getAutopromoteOnceGroups($this, $criteria);
-			foreach($toPromote as $group)
-				$this->addGroup($group);
-			return $toPromote;
+	public function addAutopromoteOnceGroups( $event ) {
+		global $wgAutopromoteOnce;
+		if ( isset( $wgAutopromoteOnce[$event] ) ) {
+			$criteria = $wgAutopromoteOnce[$event]; // group/requirement pairs
+			if ( count( $criteria ) && $this->getId() ) {
+				$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $criteria );
+				foreach ( $toPromote as $group ) {
+					$this->addGroup( $group );
+				}
+				return $toPromote;
+			}
 		}
 		return array(); 
 	}
-	
+
 	/**
 	 * Clear various cached data stored in this object.
 	 * @param $reloadFrom String Reload user and user_groups table data from a
@@ -2278,14 +2280,14 @@ class User {
 	 * @return array Names of the groups the user has belonged to. 
 	 */
 	function getFormerGroups() {
-		if(is_null($this->mFormerGroups)) {
+		if( is_null( $this->mFormerGroups ) ) {
 			$dbr = wfGetDB( DB_MASTER );
 			$res = $dbr->select( 'user_former_groups',
 				array( 'ufg_group' ),
 				array( 'ufg_user' => $this->mId ),
 				__METHOD__ );
 			$this->mFormerGroups = array();
-			while( $row = $dbr->fetchObject( $res ) ) {
+			foreach( $res as $row ) {
 				$this->mFormerGroups[] = $row->ufg_group;
 			}
 		}	

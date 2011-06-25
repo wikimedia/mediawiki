@@ -2347,6 +2347,9 @@ class Article {
 		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $text, $summary,
 			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
 
+		# Promote user to any groups they meet the criteria for
+		$user->addAutopromoteOnceGroups( 'onEdit' );
+
 		wfProfileOut( __METHOD__ );
 		return $status;
 	}
