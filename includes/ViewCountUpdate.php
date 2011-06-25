@@ -21,7 +21,7 @@
  */
 
 /**
- * Update for the 'page_counter' field, when $wgDisableCounters is true.
+ * Update for the 'page_counter' field, when $wgDisableCounters is false.
  *
  * Depending on $wgHitcounterUpdateFreq, this will directly increment the
  * 'page_counter' field or use the 'hitcounter' table and then collect the data
