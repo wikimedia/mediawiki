@@ -818,7 +818,7 @@ class Preferences {
 			'section' => 'rc/advancedrc',
 		);
 
-		if ( $wgUseRCPatrol && $user->isAllowed( 'patrol' ) ) {
+		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['hidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
