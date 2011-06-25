@@ -862,8 +862,8 @@ Ukurasa wa jina hilo unapatikana tayari.',
 'post-expand-template-inclusion-warning'  => "'''Ilani:''' Kigezo kinajumlisha ukubwa uliozidi mno.
 Baadhi ya vigezo havitaweza kuingizwa.",
 'post-expand-template-inclusion-category' => 'Kurasa ambapo vigezo vinajumlisha ukubwa uliozidi',
-'post-expand-template-argument-warning'   => "'''Ilani:'''Ukurasa huu una agumeni ya kigezo moja au zaidi, ambayo ukubwa wake wa kupanuliwa unazidi mpaka. Agumeni hizi hazikutumika.",
-'post-expand-template-argument-category'  => 'Kurasa zenye vigezo vilivyoruka agumeni',
+'post-expand-template-argument-warning'   => "'''Ilani:'''Ukurasa huu una angalau kigezo kimoja au zaidi vye matatizo, ambavyo ukubwa wake wa kupanuliwa unazidi mipaka. Kwa hiyo sehemu za vigezo havitaonekana.",
+'post-expand-template-argument-category'  => 'Kurasa zenye shida ya vigezo vilivyorukwa',
 
 # "Undo" feature
 'undo-success' => 'Sahihisho linaweza kutenguliwa.
@@ -1200,7 +1200,7 @@ Taarifa hii itakuwa wazi.',
 'email'                         => 'Barua pepe',
 'prefs-help-realname'           => 'Jina la kweli si lazima. Ukichagua kutaja jina lako hapa, litatumiwa kuonyesha kwamba ndiyo ulifanya kazi unayochangia.',
 'prefs-help-email'              => 'Barua-pepe sio lazima, lakini inawezesha kupokea neno jipya la siri kwa kupitia barua-pepe yako endapo utakuwa umelisahau.',
-'prefs-help-email-others'       => 'Unaweza pia kuwezesha wengine wawasiliane nawe kwa njia ya ukurasa wako wa mtumiaji au ukurasa wako wa majadiliano tu, bila kujitambulisha.',
+'prefs-help-email-others'       => 'Unaweza pia kuwezesha wengine wawasiliane nawe kwa njia ya ukurasa wako wa mtumiaji au ukurasa wako wa majadiliano. Anwani ya barua-pepe yako haioneshwi wakati watumiaji wanawasiliana na wewe.',
 'prefs-help-email-required'     => 'Barua pepe inahitajika.',
 'prefs-info'                    => 'Maelezo ya kimsingi',
 'prefs-i18n'                    => 'Lugha',
@@ -1453,7 +1453,7 @@ faili hili lina $2.',
 'emptyfile'                   => 'Faili ulilolipakia linaonekana kuwa tupu.
 Hii huenda ikawa jina lake limeandikwa vibaya.
 Tafadhali uhakikishe kwamba ni kweli unataka kupakia faili hili.',
-'fileexists'                  => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.
+'fileexists'                  => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>[[:$1]]</tt>''' ikiwa una mashaka kuhusu kulibadilisha.
 [[$1|thumb]]",
 'filepageexists'              => "Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili kwa sasa.
 Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
@@ -2146,7 +2146,7 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'sp-contributions-search'              => 'Tafuta michango',
 'sp-contributions-username'            => 'Anwani ya IP au jina la mtumiaji:',
-'sp-contributions-toponly'             => 'Yaonyeshwe maharirio ya mwisho tu katika ukurasa',
+'sp-contributions-toponly'             => 'Onesha maharirio ambayo ni mapitio mapya tu',
 'sp-contributions-submit'              => 'Tafuta',
 'sp-contributions-showsizediff'        => 'Onyesha tofauti ya ukubwa wa ukurasa',
 
@@ -2488,7 +2488,7 @@ Tafadhali jaribu tena.',
 'pageinfo-talkpage'     => 'Ukurasa wa majadiliano',
 
 # Patrol log
-'patrol-log-line' => 'aliweka alama ya kufanyiwa doria katika $1 ya $2 $3',
+'patrol-log-line' => 'imewekewa alama $1 ya $2 kufanyiwa doria $3',
 'patrol-log-auto' => '(kwa kujiendesha)',
 'patrol-log-diff' => 'pitio la $1',
 
@@ -2857,7 +2857,7 @@ Pia unaweza [[Special:EditWatchlist|kutumia kihariri cha kawaida]].',
 'watchlisttools-raw'  => 'Hariri maangalizi ghafi',
 
 # Core parser functions
-'duplicate-defaultsort' => '\'\'\'Ilani:\'\'\' Neno msingi "$2" ya kupanga inafanya vingine na neno msingi "$1" ya kupanga lilotangulia.',
+'duplicate-defaultsort' => '!\'\'\'Ilani:\'\'\' Neno msingi la kupanga "$2" linafunika neno msingi la kupanga la awali "$1".',
 
 # Special:Version
 'version'                   => 'Toleo',
@@ -2919,14 +2919,14 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'intentionallyblankpage' => 'Ukurasa huu umeachwa tupu kwa makusudi.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Acha mstari huu jinsi ilivyo<pre>
+'external_image_whitelist' => '#Acha mstari huu jinsi vile ulivyo<pre>
 #Weka vipande vya uchanuzi wa kawaida (regex) (kipande kinachoingia kati ya // tu) hapo chini
 #Vipande hivi vitaoanishwa na URL ya picha za nje (na kiungo cha moto)
 #Vipande vinavyooanishwa vitaonekana kama picha, la sivyo, itaonyeshwa kiungo kinachokwenda katika picha tu
-#Mistari inayoanza na # zinatumiwa kama maelezo
-#Haitofautishana kati ya herufi kubwa na ndogo
+#Mistari inayoanza na # inachukuliwa kama maelezo tu
+#Haita-tofautishwa kati ya herufi kubwa na ndogo
 
-#Weka vipande vyote vya regex juu ya mstari huu. Acha mstari huu jinsi ilivyo</pre>',
+#Weka vipande vyote vya regex juu ya mstari huu. Acha mstari huu jinsi vile ulivyo</pre>',
 
 # Special:Tags
 'tag-filter'              => 'Chujio cha [[Special:Tags|tagi]]:',

@@ -744,6 +744,11 @@ Barikuik adolah log panghapuihan dan pamindahan dari laman iko:",
 Sabagai referensi, barikuik adolah log panghapusan dan pamindahan laman iko.',
 'log-fulllog'                      => 'Liek saluruah log',
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning'  => "'''Peringatan:''' Ukuran templat talalu gadang.
+Babarapo templat akan diabaikan.",
+'post-expand-template-inclusion-category' => 'Laman nan ukurannyo templatnyo malabiahi bateh',
+
 # History pages
 'viewpagelogs'           => 'Lihek log untuak laman ko',
 'currentrev-asof'        => 'Revisi terkini pado $1',
@@ -760,8 +765,14 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'histlast'               => 'Nan baru',
 
 # Revision deletion
-'rev-delundel'   => 'tampilkan/suruakkan',
-'revdel-restore' => 'Ganti tampilan',
+'rev-delundel'           => 'tampilkan/suruakkan',
+'revdelete-logentry'     => 'Maubah tampilan revisi untuak "[[$1]]"',
+'revdel-restore'         => 'Ganti tampilan',
+'revdel-restore-deleted' => 'revisi nan lah tahapuih',
+'revdel-restore-visible' => 'tampilan revisi',
+'revdelete-content'      => 'kandungan',
+'revdelete-hid'          => 'suruakan $1',
+'revdelete-log-message'  => '$1 untuak $2 {{PLURAL:$2|revisi|revisi}}',
 
 # Merge log
 'revertmerge' => 'Batal bergabung',
@@ -784,8 +795,11 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'prevn'                            => 'sabalunnyo {{PLURAL:$1|$1}}',
 'nextn'                            => 'salanjuiknyo {{PLURAL:$1|$1}}',
 'prevn-title'                      => 'Sabalunnyo $1 {{PLURAL:$1|hasil|hasil}}',
+'nextn-title'                      => 'Barikuiknyo $1 {{PLURAL:$1|hasil|hasil}}',
 'shown-title'                      => '↓ Tampilkan $1 {{PLURAL:$1|hasil|hasil}} per lama',
 'viewprevnext'                     => 'Tampilkan ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-new'                   => "'''Buek laman \"[[:\$1]]\" di wiki ko!'''",
+'searchmenu-new-nocreate'          => '"$1" bukan namo laman yang sah atau indak buliah dibuek dek awak ang.',
 'searchprofile-articles'           => 'Artikel',
 'searchprofile-project'            => '↓ Laman Bantuan dan Proyek',
 'searchprofile-images'             => '↓ Multimedia',
@@ -806,8 +820,10 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'search-mwsuggest-enabled'         => 'dengan saran',
 'search-mwsuggest-disabled'        => 'indak ado saran',
 'searchall'                        => 'Sadonyo',
+'showingresultsheader'             => "{{PLURAL:$5|Hasil '''$1''' dari '''$3'''|Hasil '''$1 - $2''' dari '''$3'''}} untuak '''$4'''",
 'nonefound'                        => "'''Catatan''': hanyo babarapo ruangnamo yang dicari sacaro default.
 Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasuak laman ota, templat, dll), atau gunoan ruangnamo yang diinginkan sabagai awalan.",
+'search-nonefound'                 => 'Indak ado hasil nan cocok sasuai jo parmintaan',
 'powersearch'                      => 'Pencarian lanjut',
 'powersearch-legend'               => 'Pencarian lanjut',
 'powersearch-ns'                   => 'Mancari di ruangnamo:',
@@ -817,6 +833,7 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 # Preferences page
 'preferences'   => 'Preferensi',
 'mypreferences' => 'Preferensi denai',
+'yourrealname'  => 'Namo sabananyo:',
 
 # Groups
 'group-sysop' => 'Pengurus',
@@ -834,6 +851,9 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 'recentchanges'                  => 'Parubahan baru',
 'recentchanges-legend'           => 'Pilihan parubahan baru',
 'recentchanges-feed-description' => 'Temukan parubahan baru dalam umpan wiki ko',
+'recentchanges-label-newpage'    => 'Suntiang ko mambuek laman baru',
+'recentchanges-label-minor'      => 'Iko di suntiang saketek',
+'recentchanges-label-bot'        => 'Suntiang ko dibuek dek bot',
 'rcnote'                         => "Berikut ko {{PLURAL:$1|'''1'''|'''$1'''}} parubahan dalam {{PLURAL:$2|hari|'''$2''' hari}} terakhir, sampai $5, pukul $4.",
 'rclistfrom'                     => 'Tampilkan parubahan baru sejak $1',
 'rcshowhideminor'                => '$1 suntingan ketek',
@@ -866,7 +886,10 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 'uploadlogpage' => 'Log unggah',
 'uploadedimage' => 'unggah "[[$1]]"',
 
+'license' => 'Lisensi:',
+
 # File description page
+'file-anchor-link'          => 'Berkas',
 'filehist'                  => 'Riwayat berkas',
 'filehist-help'             => 'Klik pado tanggal/waktu untuak malihek berkas pado maso tu',
 'filehist-current'          => 'kini ko',
@@ -887,10 +910,13 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 # Statistics
 'statistics' => 'Statistik',
 
+'disambiguationspage' => 'Template:disambig',
+
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|bait|bait}}',
 'nmembers'      => '$1 {{PLURAL:$1|anggota|anggota}}',
 'prefixindex'   => 'Semua laman jo awalan',
+'usercreated'   => 'Dibuek pado $1 waktu $2',
 'newpages'      => 'Laman baru',
 'move'          => 'Pindahkan',
 'movethispage'  => 'Pindahkan laman ko',
@@ -913,6 +939,9 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 'allpagesto'     => 'Tampilkan laman hinggo:',
 'allarticles'    => 'Semua laman',
 'allpagessubmit' => 'Tuju',
+
+# Special:Categories
+'categories' => 'Kategori',
 
 # Special:LinkSearch
 'linksearch' => 'Pranala lua',
@@ -988,6 +1017,7 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 
 # Undelete
 'undeletelink'     => 'tampilkan/pulihkan',
+'undeleteviewlink' => 'liek',
 'undeletedarticle' => 'dipulihkan "[[$1]]"',
 
 # Namespace form on various pages
@@ -1006,8 +1036,12 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 
 'sp-contributions-newbies'  => 'Tampilkan jariah pangguno baru',
 'sp-contributions-blocklog' => 'log pemblokiran',
+'sp-contributions-uploads'  => 'muek',
+'sp-contributions-logs'     => 'log',
+'sp-contributions-talk'     => 'kecek',
 'sp-contributions-search'   => 'Cari jariah',
 'sp-contributions-username' => 'Alamat IP atau namo pangguno:',
+'sp-contributions-toponly'  => 'Hanyo manampilkan suntiang nan tarakhir',
 'sp-contributions-submit'   => 'Cari',
 
 # What links here
@@ -1015,9 +1049,10 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'whatlinkshere-title'      => 'Laman yang bakaik ka "$1"',
 'whatlinkshere-page'       => 'Laman:',
 'linkshere'                => "Laman-laman ko bakaik ka '''[[:$1]]''':",
+'nolinkshere'              => "Indak ado laman nan punyo tautan ka '''[[:$1]]'''.",
 'isredirect'               => 'laman pengalihan',
 'istemplate'               => 'transklusi',
-'isimage'                  => 'pranala berkas',
+'isimage'                  => 'tautan berkas',
 'whatlinkshere-prev'       => '{{PLURAL:$1|sabalunnyo|sabalunnyo $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|salanjuiknyo|salanjuiknyo $1}}',
 'whatlinkshere-links'      => '← pranala',
@@ -1069,6 +1104,10 @@ Dalam kasus tu, apobilo diinginkan, awak dapek mamindahkan atau manggabuangkan l
 
 # Export
 'export' => 'Ekspor laman',
+
+# Namespace 8 related
+'allmessagesname'    => 'Namo',
+'allmessagesdefault' => 'Teks pasan default',
 
 # Thumbnails
 'thumbnail-more' => 'Pagadang',
@@ -1194,5 +1233,18 @@ Nan lainnyo akan tasuruak sacaro default.
 
 # Special:SpecialPages
 'specialpages' => 'Laman istimewa',
+
+# External image whitelist
+'external_image_whitelist' => '#Bia se barih ko apo adonyo<pre>
+#Latakan fragmen tando regular (hanyo bagian antaro //) dibawah ko
+#Iko akan dicocokan jo URL gambar lua (tahubuang langsuang)
+#Yang mano cocok akan ditampilkan sabagai gambar, sisonyo hanyo sabagai tautan sajo
+#Barih dimulai jo # dipalakuan sabagai komentar
+#Iko indak manbedaan huruf gadang atau ketek
+
+#Latakan sado fragmen regex di bawah barih ko. Bia se barih apo adonyo</pre>',
+
+# Special:Tags
+'tag-filter' => '[[Special:Tags|Tag]] bateh:',
 
 );

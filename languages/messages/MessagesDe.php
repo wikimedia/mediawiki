@@ -1112,7 +1112,7 @@ Bitte prüfe den Vergleich unten um sicherzustellen, dass du dies tun möchtest,
 'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht.',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden',
+'cantcreateaccounttitle' => 'Das Benutzerkonto kann nicht erstellt werden',
 'cantcreateaccount-text' => "Die Erstellung eines Benutzerkontos von der IP-Adresse '''($1)''' aus wurde durch [[User:$3|$3]] gesperrt.
 
 Grund der Sperre: ''$2''",

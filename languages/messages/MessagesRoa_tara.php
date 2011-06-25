@@ -417,6 +417,8 @@ Pe traduziune, pe piacere vide ce ause [http://translatewiki.net/wiki/Main_Page?
 'cascadeprotected'     => 'Sta pàgene ha state prutette da le cangiaminde, purcè jè ingluse jndr\'à {{PLURAL:$1|seguende pàgene, ca jè|le seguende pàggene, ca sonde}} prutette cu l\'opzione "a caschete":
 $2',
 'namespaceprotected'   => "Non ge tine 'u permesse pe cangià pàggene d'u neimspeise '''$1'''.",
+'customcssprotected'   => "Non ge tine 'u permesse pe cangià sta pàgene de CSS, purcè tène otre configurazione personale.",
+'customjsprotected'    => "Non ge tine 'u permesse pe cangià sta pàgene de Javascript, purcè tène otre configurazione personale.",
 'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
 'titleprotected'       => "Stu titele ha state prutette da 'a ccreazione da [[User:$1|$1]].
 'U mutive jè ''$2''.",
@@ -1985,8 +1987,9 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'watchlist-options'    => "Opzione d'a liste de le pàggene condrollete",
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Fà vedè...',
-'unwatching' => 'No fà vedè...',
+'watching'       => 'Fà vedè...',
+'unwatching'     => 'No fà vedè...',
+'watcherrortext' => "'N'errore s'a verificate quanne ste cangiave le 'mbostaziune de le pàggene condrollate pe \"\$1\".",
 
 'enotif_mailer'                => '{{SITENAME}} Notificatore de email',
 'enotif_reset'                 => 'Signe tutte le pàggene cumme visitete',
@@ -2161,9 +2164,8 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'undeletepagetext'             => "{{PLURAL:$1|'A seguende pàgene ha state scangellate ma ète|Le seguende $1 pàggene one state scangellate ma sonde}} angore in archivije e se pò reprocessà.<br />
 L'archivije avène periodicamende sdevachete.",
 'undelete-fieldset-title'      => 'Repristine le revisiune',
-'undeleteextrahelp'            => "Pe repristina totte 'a storie d'a pàgene, lasse tutte le caselle cu le spunde vacande e cazze '''''Repristine'''''.
-Pe fà 'nu repristine selettive, mitte 'a spunde jndr'à le caselle corrispondende a le revisiune ca vuè ccu repristine e pò cazze '''''Repristine'''''.
-Cazzanne '''''Azzera''''' avène pulezzate 'u cambe d'u commende e tutte le caselle cu 'a spunde.",
+'undeleteextrahelp'            => "Pe repristina totte 'a storie d'a pàgene, lasse tutte le caselle cu le spunde vacande e cazze '''''{{int:undeletebtn}}'''''.
+Pe fà 'nu repristine selettive, mitte 'a spunde jndr'à le caselle corrispondende a le revisiune ca vuè ccu repristine e pò cazze '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisione|revisiune}} archiviete',
 'undeletehistory'              => "Ce tu repristine 'a pàgene, tutte le revisiune avènene repristinate jndr'à storie.
 Ce 'na pàgena nove cu 'u stesse nome ha state ccrejate da 'a scangellazione, le revisiune repristinate iessène jndr'à storia prengepàle.",
@@ -2253,7 +2255,7 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'nolinkshere-ns'           => "Nisciuna pàgene apponde a '''[[:$1]]''' jndr'à 'u namespace scacchiete.",
 'isredirect'               => 'pàgene de ridirezionamende',
 'istemplate'               => 'inclusione',
-'isimage'                  => "collegamende a l'immaggine",
+'isimage'                  => "collegamende a 'u file",
 'whatlinkshere-prev'       => '{{PLURAL:$1|apprime|apprime $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|apprisse|apprisse $1}}',
 'whatlinkshere-links'      => '← collegaminde',
@@ -2705,6 +2707,19 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'spambot_username'    => "Sdevacatore d'u spam de MediaUicchi",
 'spam_reverting'      => "Turnanne a l'urtema revisione no ge condiene collegaminde a $1",
 'spam_blanking'       => 'Tutte le revisiune condènene collegaminde a $1, vacande',
+
+# Info page
+'pageinfo-title'            => '\'Mbormaziune pe "$1"',
+'pageinfo-header-edits'     => 'Cangiaminde',
+'pageinfo-header-watchlist' => 'Pàggene condrollate',
+'pageinfo-header-views'     => 'Visite',
+'pageinfo-subjectpage'      => 'Pàgene',
+'pageinfo-talkpage'         => "Pàgene de le 'ngazzaminde",
+'pageinfo-watchers'         => 'Numere de visitature',
+'pageinfo-edits'            => 'Numere de cangiaminde',
+'pageinfo-authors'          => 'Numere de autore diverse',
+'pageinfo-views'            => 'Numere de visite',
+'pageinfo-viewsperedit'     => 'Visite pe cangiaminde',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Signe cumme condrollate',

@@ -396,7 +396,7 @@ $messages = array(
 'protectedpage'     => 'Gespaarte Säit',
 'jumpto'            => 'Wiesselen op:',
 'jumptonavigation'  => 'Navigatioun',
-'jumptosearch'      => 'Sich',
+'jumptosearch'      => 'sichen',
 'view-pool-error'   => "Pardon, d'Servere si fir de Moment iwwerlaascht.
 Zevill Benotzer versichen dës Säit ze gesinn.
 Waart w.e.g. e bëssen ier Dir versicht dës Säit nach emol opzeruffen.
@@ -935,7 +935,7 @@ De Benotzer $3 huet "$2" als Grond uginn.',
 'history-feed-item-nocomment' => '$1 ëm $2',
 'history-feed-empty'          => 'Déi ugefrote Säit gëtt et net.
 Vläicht gouf se geläscht oder geréckelt.
-[[Special:Search|Sich op]] {{SITENAME}} no passenden neie Säiten.',
+[[Special:Search|Sicht]] op {{SITENAME}} no relevanten neie Säiten.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(Resumé vun der Ännerung ewechgeholl)',
@@ -1092,7 +1092,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'diff-multi-manyusers'     => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vu méi wéi $2 {{PLURAL:$2|Benotzer|Benotzer}} ginn net gewisen)',
 
 # Search results
-'searchresults'                    => 'Resultat vun der Sich',
+'searchresults'                    => 'Resultat vum Sichen',
 'searchresults-title'              => 'Resultater vun der Sich no "$1"',
 'searchresulttext'                 => "Fir méi Informatiounen iwwer d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'                   => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all Säiten déi op "$1" linken]])',
@@ -1147,13 +1147,13 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'search-nonefound'                 => 'Fir är Ufro gouf näischt fonnt.',
 'powersearch'                      => 'Erweidert Sich',
 'powersearch-legend'               => 'Erweidert Sich',
-'powersearch-ns'                   => 'Sich an den Nummraim:',
+'powersearch-ns'                   => 'Sichen an den Nummraim:',
 'powersearch-redir'                => 'Viruleedunge weisen',
-'powersearch-field'                => 'Sich no:',
+'powersearch-field'                => 'Sichen no:',
 'powersearch-togglelabel'          => 'Markéieren:',
 'powersearch-toggleall'            => 'All',
 'powersearch-togglenone'           => 'Keen',
-'search-external'                  => 'Extern Sich',
+'search-external'                  => 'Extern sichen',
 'searchdisabled'                   => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat Hëllef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
 # Quickbar
@@ -1194,7 +1194,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'prefs-edit-boxsize'            => 'Gréisst vun der Ännerungsfënster:',
 'rows'                          => 'Zeilen',
 'columns'                       => 'Kolonnen',
-'searchresultshead'             => 'Sich',
+'searchresultshead'             => 'Sichen',
 'resultsperpage'                => 'Zuel vun de Resultater pro Säit:',
 'stub-threshold'                => 'Maximum (a Byte) bei deem e Link nach ëmmer am <a href="#" class="stub">Skizze-Format</a> gewise gëtt:',
 'stub-threshold-disabled'       => 'Desaktivéiert',
@@ -1751,7 +1751,7 @@ D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnendrënner.",
 'filedelete-maintenance'      => 'Läschen a Restauréiere vu Fichieren temporär ausgeschalt wéinst Maintenance.',
 
 # MIME search
-'mimesearch'         => 'Sich no MIME-Zort',
+'mimesearch'         => 'No MIME-Zort sichen',
 'mimesearch-summary' => "Op dëser Spezialsäit kënnen d'Fichieren no hirem MIME-Typ gefiltert ginn.
 Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 'mimetype'           => 'MIME-Typ:',
@@ -1901,7 +1901,7 @@ Denkt w.e.g. drunn datt aner Internetsäiten dëse Fichier mat enger direkter UR
 'log'                  => 'Logbicher',
 'all-logs-page'        => 'All ëffentlech Logbicher',
 'alllogstext'          => "Dëst ass eng kombinéiert Lëscht vu Logbicher op {{SITENAME}}.
-Dir kënnt d'Sich limitéieren wann dir e Log-Typ, e Benotzernumm (case-senisitive) oder déi gefrote Säit  (och case-senisitive) agitt.",
+Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisitive) oder déi gefrote Säit (och case-senisitive) agitt.",
 'logempty'             => 'Näischt fonnt.',
 'log-title-wildcard'   => 'Titel fänkt mat dësem Text un',
 
@@ -2255,7 +2255,7 @@ An esou Fäll däerf déi neiste Versioun net markéiert ginn oder déi neiste g
 
 Am [[Special:Log/delete|Läsch-Logbuch]] fannt Dir déi geläscht a restauréiert Säiten.",
 'undelete-header'              => 'Kuckt [[Special:Log/delete|Läschlescht]] fir rezent geläschte Säiten.',
-'undelete-search-box'          => 'Sich no geläschte Säiten',
+'undelete-search-box'          => 'Sichen no geläschte Säiten',
 'undelete-search-prefix'       => 'Weis Säiten déi esou ufänken:',
 'undelete-search-submit'       => 'Sichen',
 'undelete-no-results'          => 'Et goufen am Archiv keng Säite fonnt déi op är Sich passen.',
@@ -3028,6 +3028,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-nickname'                    => 'Informellen Numm vum Bild',
 'exif-rating'                      => 'Bewäertung (vu 5)',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
+'exif-usageterms'                  => 'Benotzungsbedingungen',
 'exif-licenseurl'                  => 'URL vum Copyright (Lizenz)',
 'exif-morepermissionsurl'          => 'Alternativ Lizenzinformatiounen',
 'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
@@ -3434,9 +3435,9 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'           => 'Sich no duebele Fichieren',
-'fileduplicatesearch-summary'   => "Sich no Doublone vu Fichieren op der Basis vun hirem ''Hash-Wäert''.",
-'fileduplicatesearch-legend'    => 'Sich no engem Doublon',
+'fileduplicatesearch'           => 'No duebele Fichiere sichen',
+'fileduplicatesearch-summary'   => "Sichen no Doublone vu Fichieren op der Basis vun hirem ''Hash-Wäert''.",
+'fileduplicatesearch-legend'    => 'No engem Doublon sichen',
 'fileduplicatesearch-filename'  => 'Numm vum Fichier:',
 'fileduplicatesearch-submit'    => 'Sichen',
 'fileduplicatesearch-info'      => '$1 × $2 Pixel<br />Gréisst vum Fichier: $3<br />MIME Typ: $4',

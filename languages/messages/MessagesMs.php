@@ -2771,6 +2771,19 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'spam_reverting'      => 'Membalikkan kepada versi terakhir yang tidak mengandungi pautan ke $1',
 'spam_blanking'       => 'Mengosongkan semua semakan yang mengandungi pautan ke $1',
 
+# Info page
+'pageinfo-title'            => 'Maklumat untuk "$1"',
+'pageinfo-header-edits'     => 'Suntingan',
+'pageinfo-header-watchlist' => 'Senarai pantau',
+'pageinfo-header-views'     => 'Kunjungan',
+'pageinfo-subjectpage'      => 'Laman',
+'pageinfo-talkpage'         => 'Laman perbincangan',
+'pageinfo-watchers'         => 'Bilangan pemantau',
+'pageinfo-edits'            => 'Bilangan suntingan',
+'pageinfo-authors'          => 'Bilangan pengarang yang berlainan',
+'pageinfo-views'            => 'Bilangan kunjungan',
+'pageinfo-viewsperedit'     => 'Kunjungan sesuntingan',
+
 # Skin names
 'skinname-standard' => 'Klasik',
 'skinname-simple'   => 'Ringkas',
