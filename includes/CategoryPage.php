@@ -629,7 +629,7 @@ class CategoryViewer {
 			$prevQuery["{$type}until"] = $first;
 			unset( $prevQuery["{$type}from"] );
 			$prevLink = $sk->linkKnown(
-				$this->title,
+				$this->addFragmentToTitle( $this->title, $type ),
 				$prevLink,
 				array(),
 				$prevQuery
@@ -643,7 +643,7 @@ class CategoryViewer {
 			$lastQuery["{$type}from"] = $last;
 			unset( $lastQuery["{$type}until"] );
 			$nextLink = $sk->linkKnown(
-				$this->title,
+				$this->addFragmentToTitle( $this->title, $type ),
 				$nextLink,
 				array(),
 				$lastQuery
@@ -653,6 +653,32 @@ class CategoryViewer {
 		return "($prevLink) ($nextLink)";
 	}
 
+	/**
+	 * Takes a title, and adds the fragment identifier that
+	 * corresponds to the correct segment of the category.
+	 *
+	 * @param Title $title: The title (usually $this->title)
+	 * @param String $section: Which section
+	 */
+	private function addFragmentToTitle( $title, $section ) {
+		switch ( $section ) {
+			case 'page':
+				$fragment = 'mw-pages';
+				break;
+			case 'subcat':
+				$fragment = 'mw-subcategories';
+				break;
+			case 'file':
+				$fragment = 'mw-category-media';
+				break;
+			default:
+				throw new MWException( __METHOD__ .
+					" Invalid section $section." );
+		}
+
+		return Title::makeTitle( $title->getNamespace(),
+			$title->getDBkey(), $fragment );
+	}
 	/**
 	 * What to do if the category table conflicts with the number of results
 	 * returned?  This function says what. Each type is considered independently
