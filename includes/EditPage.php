@@ -2071,11 +2071,6 @@ HTML
 
 				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
 
-				// In which language to parse the page
-				// (Should this still be only for MediaWiki pages, or for all pages?)
-				if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-					$parserOptions->setTargetLanguage( $this->mTitle->getPageLanguage() );
-				}
 				$parserOptions->setTidy( true );
 				$parserOptions->enableLimitReport();
 				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ),
