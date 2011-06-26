@@ -60,6 +60,8 @@ production.
   SHOW SLAVE STATUS instead of SHOW PROCESSLIST.
 * Language codes in $wgDummyLanguageCodes are now excluded on localization
   statistics (maintenance/language/transstat.php)
+* (bug 29586) Make the (next 200) links on categories link directly to
+  the relevant section of the category.
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
