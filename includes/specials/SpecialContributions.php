@@ -117,6 +117,8 @@ class SpecialContributions extends SpecialPage {
 
 		$feedType = $wgRequest->getVal( 'feed' );
 		if( $feedType ) {
+			// Maintain some level of backwards compatability
+			// If people request feeds using the old parameters, redirect to API
 			$apiParams = array(
 				'action' => 'feedcontributions',
 				'feedformat' => $feedType,
@@ -151,7 +153,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		// Add RSS/atom links
-		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $wgUser->getName() ) );
+		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
 
 		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id ) ) ) {
 
