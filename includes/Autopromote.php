@@ -68,7 +68,7 @@ class Autopromote {
 
 	/**
 	 * Recursively check a condition.  Conditions are in the form
-	 *   array( '&' or '|' or '^', cond1, cond2, ... )
+	 *   array( '&' or '|' or '^' or '!', cond1, cond2, ... )
 	 * where cond1, cond2, ... are themselves conditions; *OR*
 	 *   APCOND_EMAILCONFIRMED, *OR*
 	 *   array( APCOND_EMAILCONFIRMED ), *OR*
@@ -176,6 +176,8 @@ class Autopromote {
 				return IP::isInRange( wfGetIP(), $cond[1] );
 			case APCOND_BLOCKED:
 				return $user->isBlocked();
+			case APCOND_ISBOT:
+				return in_array( 'bot', User::getGroupPermissions( $user->getGroups() ) );
 			default:
 				$result = null;
 				wfRunHooks( 'AutopromoteCondition', array( $cond[0], array_slice( $cond, 1 ), $user, &$result ) );

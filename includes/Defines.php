@@ -249,4 +249,5 @@ define( 'APCOND_ISIP', 5 );
 define( 'APCOND_IPINRANGE', 6 );
 define( 'APCOND_AGE_FROM_EDIT', 7 );
 define( 'APCOND_BLOCKED', 8 );
+define( 'APCOND_ISBOT', 9 );
 /**@}*/

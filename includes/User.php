@@ -1117,14 +1117,25 @@ class User {
 	 * @see $wgAutopromoteOnce
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
+		$toPromote = array();
 		if ( $this->getId() ) {
 			$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
-			foreach ( $toPromote as $group ) {
-				$this->addGroup( $group );
+			if ( count( $toPromote ) ) {
+				$oldGroups = $this->getGroups(); // previous groups
+				foreach ( $toPromote as $group ) {
+					$this->addGroup( $group );
+				}
+				$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
+
+				$log = new LogPage( 'rights', false /* not in RC */ );
+				$log->addEntry( 'rights',
+					$this->getUserPage(),
+					wfMsgForContent( 'rightsautocomment' ),
+					array( implode( ', ', $oldGroups ), implode( ', ', $newGroups ) )
+				);
 			}
-			return $toPromote;
 		}
-		return array(); 
+		return $toPromote; 
 	}
 
 	/**
