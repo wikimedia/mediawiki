@@ -128,8 +128,8 @@ class SpecialContributions extends SpecialPage {
 			if ( $this->opts['showSizeDiff'] ) {
 				$apiParams['showsizediff'] = true;
 			}
-			if ( $this->opts['deletedonly'] ) {
-				$apiParams['deletedonly'] = true;
+			if ( $this->opts['deletedOnly'] ) {
+				$apiParams['deletedOnly'] = true;
 			}
 			if ( $this->opts['tagFilter'] !== '' ) {
 				$apiParams['tagfilter'] = $this->opts['tagFilter'];
