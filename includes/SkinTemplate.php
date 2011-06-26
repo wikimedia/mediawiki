@@ -1576,7 +1576,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 
 		$attrs = array();
-		foreach ( array( 'href', 'id', 'class', 'rel', 'type' ) as $attr ) {
+		foreach ( array( 'href', 'id', 'class', 'rel', 'type', 'target') as $attr ) {
 			if ( isset( $item[$attr] ) ) {
 				$attrs[$attr] = $item[$attr];
 			}
@@ -1629,7 +1629,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 		} else {
 			$link = array();
-			foreach ( array( 'text', 'msg', 'href', 'rel', 'type', 'tooltiponly' ) as $k ) {
+			foreach ( array( 'text', 'msg', 'href', 'rel', 'type', 'tooltiponly', 'target' ) as $k ) {
 				if ( isset( $item[$k] ) ) {
 					$link[$k] = $item[$k];
 				}
