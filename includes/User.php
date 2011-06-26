@@ -194,6 +194,7 @@ class User {
 	 * @var Block
 	 */
 	var $mBlock;
+	private $mBlockedFromCreateAccount = false;
 
 	static $idCacheByName = array();
 
@@ -1246,7 +1247,7 @@ class User {
 		$this->mBlock = Block::newFromTarget( $this->getName(), $ip, !$bFromSlave );
 		if ( $this->mBlock instanceof Block ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
-			$this->mBlockedby = $this->mBlock->getBlocker()->getName();
+			$this->mBlockedby = $this->mBlock->getByName();
 			$this->mBlockreason = $this->mBlock->mReason;
 			$this->mHideName = $this->mBlock->mHideName;
 			$this->mAllowUsertalk = !$this->mBlock->prevents( 'editownusertalk' );
@@ -2921,12 +2922,11 @@ class User {
 		# bug 13611: if the IP address the user is trying to create an account from is
 		# blocked with createaccount disabled, prevent new account creation there even
 		# when the user is logged in
-		static $accBlock = false;
-		if( $accBlock === false ){
-			$accBlock = Block::newFromTarget( null, wfGetIP() );
+		if( $this->mBlockedFromCreateAccount === false ){
+			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, wfGetIP() );
 		}
-		return $accBlock instanceof Block && $accBlock->prevents( 'createaccount' )
-			? $accBlock
+		return $this->mBlockedFromCreateAccount instanceof Block && $this->mBlockedFromCreateAccount->prevents( 'createaccount' )
+			? $this->mBlockedFromCreateAccount
 			: false;
 	}
 

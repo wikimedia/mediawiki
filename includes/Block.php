@@ -160,7 +160,6 @@ class Block {
 	 *
 	 * @param $address string The IP address of the user, or blank to skip IP blocks
 	 * @param $user int The user ID, or zero for anonymous users
-	 * @param $killExpired bool Whether to delete expired rows while loading
 	 * @return Boolean: the user is blocked from editing
 	 * @deprecated since 1.18
 	 */
@@ -394,6 +393,7 @@ class Block {
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
+	 * @param $dbw DatabaseBase if you have one available
 	 * @return mixed: false on failure, assoc array on success:
 	 *	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
@@ -428,6 +428,9 @@ class Block {
 	/**
 	 * Update a block in the DB with new parameters.
 	 * The ID field needs to be loaded first.
+	 *
+	 * @return Int number of affected rows, which should probably be 1 or something's
+	 *     gone slightly awry
 	 */
 	public function update() {
 		wfDebug( "Block::update; timestamp {$this->mTimestamp}\n" );
@@ -770,6 +773,8 @@ class Block {
 	/**
 	 * Get/set the SELECT ... FOR UPDATE flag
 	 * @deprecated since 1.18
+	 *
+	 * @param $x Bool
 	 */
 	public function forUpdate( $x = null ) {
 		# noop
@@ -777,6 +782,9 @@ class Block {
 
 	/**
 	 * Get/set a flag determining whether the master is used for reads
+	 *
+	 * @param $x Bool
+	 * @return Bool
 	 */
 	public function fromMaster( $x = null ) {
 		return wfSetVar( $this->mFromMaster, $x );
@@ -864,7 +872,7 @@ class Block {
 	 * Decode expiry which has come from the DB
 	 *
 	 * @param $expiry String: Database expiry format
-	 * @param $timestampType Requested timestamp format
+	 * @param $timestampType Int Requested timestamp format
 	 * @return String
 	 * @deprecated since 1.18; use $wgLang->decodeExpiry() instead
 	 */
@@ -876,6 +884,7 @@ class Block {
 	/**
 	 * Get a timestamp of the expiry for autoblocks
 	 *
+	 * @param $timestamp String|Int
 	 * @return String
 	 */
 	public static function getAutoblockExpiry( $timestamp ) {
@@ -1016,6 +1025,8 @@ class Block {
 	 * From an existing Block, get the target and the type of target.  Note that it is
 	 * always safe to treat the target as a string; for User objects this will return
 	 * User::__toString() which in turn gives User::getName().
+	 *
+	 * @param $target String|Int|User
 	 * @return array( User|String, Block::TYPE_ constant )
 	 */
 	public static function parseTarget( $target ) {
