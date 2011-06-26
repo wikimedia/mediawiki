@@ -3077,12 +3077,17 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'spam_blanking'       => 'Alle wijzigingen met een verwijzing naar $1 worden verwijderd',
 
 # Info page
-'pageinfo-title'        => 'Informatie over "$1"',
-'pageinfo-header-edits' => 'Bewerkingen',
-'pageinfo-subjectpage'  => 'Pagina',
-'pageinfo-talkpage'     => 'Overlegpagina',
-'pageinfo-edits'        => 'Aantal bewerkingen',
-'pageinfo-authors'      => 'Aantal verschillende auteurs',
+'pageinfo-title'            => 'Informatie over "$1"',
+'pageinfo-header-edits'     => 'Bewerkingen',
+'pageinfo-header-watchlist' => 'Volglijst',
+'pageinfo-header-views'     => 'Weergaven',
+'pageinfo-subjectpage'      => 'Pagina',
+'pageinfo-talkpage'         => 'Overlegpagina',
+'pageinfo-watchers'         => 'Aantal volgers',
+'pageinfo-edits'            => 'Aantal bewerkingen',
+'pageinfo-authors'          => 'Aantal verschillende auteurs',
+'pageinfo-views'            => 'Aantal weergaven',
+'pageinfo-viewsperedit'     => 'Weergaven per bewerking',
 
 # Skin names
 'skinname-standard'    => 'Klassiek',
