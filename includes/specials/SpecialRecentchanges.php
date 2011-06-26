@@ -365,6 +365,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$limit = $opts['limit'];
 		$namespace = $opts['namespace'];
 		$invert = $opts['invert'];
+		$associated = $opts['associated'];
 
 		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*' ); // all rc columns
 		// JOIN on watchlist for users
@@ -397,11 +398,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		// Don't use the new_namespace_time timestamp index if:
 		// (a) "All namespaces" selected
-		// (b) We want all pages NOT in a certain namespaces (inverted)
+		// (b) We want pages in more than one namespace (inverted/associated)
 		// (c) There is a tag to filter on (use tag index instead)
 		// (d) UNION + sort/limit is not an option for the DBMS
-		if( is_null( $namespace )
-			|| ( $invert && !is_null( $namespace ) )
+		if( $namespace === ''
+			|| ( $invert || $associated )
 			|| $opts['tagfilter'] != ''
 			|| !$dbr->unionSupportsOrderAndLimit() )
 		{
@@ -420,7 +421,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				array(
 					'ORDER BY' => 'rc_timestamp DESC',
 					'LIMIT' => $limit,
-					'USE INDEX' => array( 'recentchanges' => 'rc_timestamp' )
+					'USE INDEX' => array( 'recentchanges' => 'new_name_timestamp' )
 				),
 				$join_conds
 			);
@@ -433,7 +434,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				array(
 					'ORDER BY' => 'rc_timestamp DESC',
 					'LIMIT' => $limit,
-					'USE INDEX' => array( 'recentchanges' => 'rc_timestamp' )
+					'USE INDEX' => array( 'recentchanges' => 'new_name_timestamp' )
 				),
 				$join_conds
 			);
