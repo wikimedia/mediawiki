@@ -1128,9 +1128,9 @@ class User {
 				$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
 
 				$log = new LogPage( 'rights', false /* not in RC */ );
-				$log->addEntry( 'rights',
+				$log->addEntry( 'autopromote',
 					$this->getUserPage(),
-					wfMsgForContent( 'rightsautocomment' ),
+					'', // no comment
 					array( implode( ', ', $oldGroups ), implode( ', ', $newGroups ) )
 				);
 			}

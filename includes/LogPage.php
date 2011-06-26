@@ -217,7 +217,7 @@ class LogPage {
 				$rv = wfMsgHtml( $wgLogActions[$key] );
 			} else {
 				$titleLink = self::getTitleLink( $type, $skin, $title, $params );
-				if( $key == 'rights/rights' ) {
+				if( preg_match( '/^rights\/(rights|autopromote)/', $key ) ) {
 					if( $skin ) {
 						$rightsnone = wfMsg( 'rightsnone' );
 						foreach ( $params as &$param ) {

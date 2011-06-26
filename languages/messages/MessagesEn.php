@@ -1978,11 +1978,11 @@ Your e-mail address is not revealed when other users contact you.',
 'right-sendemail'             => 'Send e-mail to other users',
 
 # User rights log
-'rightslog'         => 'User rights log',
-'rightslogtext'     => 'This is a log of changes to user rights.',
-'rightslogentry'    => 'changed group membership for $1 from $2 to $3',
-'rightsnone'        => '(none)',
-'rightsautocomment' => 'automatically promoted',
+'rightslog'                  => 'User rights log',
+'rightslogtext'              => 'This is a log of changes to user rights.',
+'rightslogentry'             => 'changed group membership for $1 from $2 to $3',
+'rightslogentry-autopromote' => 'was automatically promoted from $2 to $3',
+'rightsnone'                 => '(none)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'read this page',

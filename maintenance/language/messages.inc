@@ -1142,8 +1142,8 @@ $wgMessageStructure = array(
 		'rightslog',
 		'rightslogtext',
 		'rightslogentry',
+        'rightslogentry-autopromote',
 		'rightsnone',
-		'rightsautocomment',
 	),
 	'action' => array(
 		'action-read',
