@@ -46,13 +46,13 @@ class Autopromote {
 
 		if ( isset( $wgAutopromoteOnce[$event] ) && count( $wgAutopromoteOnce[$event] ) ) {
 			$currentGroups = $user->getGroups();
+			$formerGroups = $user->getFormerGroups();
 			foreach ( $wgAutopromoteOnce[$event] as $group => $cond ) {
 				// Do not check if the user's already a member
 				if ( in_array( $group, $currentGroups ) ) {
 					continue;
 				}
 				// Do not autopromote if the user has belonged to the group
-				$formerGroups = $user->getFormerGroups();
 				if ( in_array( $group, $formerGroups ) ) {
 					continue;
 				}
