@@ -54,7 +54,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 
 		if( empty( $code ) ) {
 			if( $wgUser->isLoggedIn() ) {
-				if( User::isValidEmailAddr( $wgUser->getEmail() ) ) {
+				if( Sanitizer::validateEmail( $wgUser->getEmail() ) ) {
 					$this->showRequestForm();
 				} else {
 					$wgOut->addWikiMsg( 'confirmemail_noemail' );

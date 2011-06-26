@@ -161,7 +161,7 @@ abstract class MediaHandler {
 	 * MediaHanlder::METADATA_COMPATIBLE if metadata is old but backwards
 	 * compatible (which may or may not trigger a metadata reload).
 	 */
-	function isMetadataValid( $image, $metadata ) { 
+	function isMetadataValid( $image, $metadata ) {
 		return self::METADATA_GOOD;
 	}
 
@@ -210,14 +210,14 @@ abstract class MediaHandler {
 	function getThumbType( $ext, $mime, $params = null ) {
 		$magic = MimeMagic::singleton();
 		if ( !$ext || $magic->isMatchingExtension( $ext, $mime ) === false ) {
-			// The extension is not valid for this mime type and we do 
+			// The extension is not valid for this mime type and we do
 			// recognize the mime type
 			$extensions = $magic->getExtensionsForType( $mime );
 			if ( $extensions ) {
 				return array( strtok( $extensions, ' ' ), $mime );
 			}
 		}
-		
+
 		// The extension is correct (true) or the mime type is unknown to
 		// MediaWiki (null)
 		return array( $ext, $mime );
@@ -357,12 +357,12 @@ abstract class MediaHandler {
 	/**
 	 * This is used to generate an array element for each metadata value
 	 * That array is then used to generate the table of metadata values
-	 * on the image page 
+	 * on the image page
 	 *
 	 * @param &$array Array An array containing elements for each type of visibility
 	 * and each of those elements being an array of metadata items. This function adds
 	 * a value to that array.
-	 * @param $visibility string ('visible' or 'collapsed') if this value is hidden
+	 * @param $visbility string ('visible' or 'collapsed') if this value is hidden
 	 * by default.
 	 * @param $type String type of metadata tag (currently always 'exif')
 	 * @param $id String the name of the metadata tag (like 'artist' for example).
@@ -381,7 +381,7 @@ abstract class MediaHandler {
 		$msgName = "$type-$id";
 		if ( wfEmptyMsg( $msgName ) ) {
 			// This is for future compatibility when using instant commons.
-			// So as to not display as ugly a name if a new metadata 
+			// So as to not display as ugly a name if a new metadata
 			// property is defined that we don't know about
 			// (not a major issue since such a property would be collapsed
 			// by default).
@@ -455,10 +455,10 @@ abstract class MediaHandler {
 	/**
 	 * File validation hook called on upload.
 	 *
-	 * If the file at the given local path is not valid, or its MIME type does not 
+	 * If the file at the given local path is not valid, or its MIME type does not
 	 * match the handler class, a Status object should be returned containing
 	 * relevant errors.
-	 * 
+	 *
 	 * @param $fileName The local path to the file.
 	 * @return Status object
 	 */

@@ -206,7 +206,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Send out an email authentication message if needed
-		if( $wgEmailAuthentication && User::isValidEmailAddr( $u->getEmail() ) ) {
+		if( $wgEmailAuthentication && Sanitizer::validateEmail( $u->getEmail() ) ) {
 			$status = $u->sendConfirmationMail();
 			if( $status->isGood() ) {
 				$wgOut->addWikiMsg( 'confirmemail_oncreate' );
@@ -355,7 +355,7 @@ class LoginForm extends SpecialPage {
 			return false;
 		}
 
-		if( !empty( $this->mEmail ) && !User::isValidEmailAddr( $this->mEmail ) ) {
+		if( !empty( $this->mEmail ) && !Sanitizer::validateEmail( $this->mEmail ) ) {
 			$this->mainLoginForm( wfMsg( 'invalidemailaddress' ) );
 			return false;
 		}
@@ -814,12 +814,12 @@ class LoginForm extends SpecialPage {
 		# Run any hooks; display injected HTML
 		$injected_html = '';
 		$welcome_creation_msg = 'welcomecreation';
-		
+
 		wfRunHooks( 'UserLoginComplete', array( &$wgUser, &$injected_html ) );
-		
+
 		//let any extensions change what message is shown
 		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ) );
-		
+
 		$this->displaySuccessfulLogin( $welcome_creation_msg, $injected_html );
 	}
 
@@ -833,7 +833,7 @@ class LoginForm extends SpecialPage {
 		if( $msgname ){
 			$wgOut->addWikiMsg( $msgname, wfEscapeWikiText( $wgUser->getName() ) );
 		}
-		
+
 		$wgOut->addHTML( $injected_html );
 
 		if ( !empty( $this->mReturnTo ) ) {
@@ -874,7 +874,7 @@ class LoginForm extends SpecialPage {
 			$block_reason,
 			$block->getBlocker()->getName()
 		);
-		
+
 		$wgOut->returnToMain( false );
 	}
 

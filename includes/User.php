@@ -1104,16 +1104,16 @@ class User {
 
 	/**
 	 * Add the user to the group if he/she meets given criteria.
-	 * 
-	 * Contrary to autopromotion by \ref $wgAutopromote, the group will be 
+	 *
+	 * Contrary to autopromotion by \ref $wgAutopromote, the group will be
 	 *   possible to remove manually via Special:UserRights. In such case it
 	 *   will not be re-added automatically. The user will also not lose the
 	 *   group if they no longer meet the criteria.
-	 *   
+	 *
 	 * @param $event String key in $wgAutopromoteOnce (each one has groups/criteria)
-	 *   
-	 * @return array Array of groups the user has been promoted to.  
-	 * 
+	 *
+	 * @return array Array of groups the user has been promoted to.
+	 *
 	 * @see $wgAutopromoteOnce
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
@@ -1135,7 +1135,7 @@ class User {
 				);
 			}
 		}
-		return $toPromote; 
+		return $toPromote;
 	}
 
 	/**
@@ -1152,7 +1152,7 @@ class User {
 		$this->mSkin = null;
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
-		$this->mOptions = null; 
+		$this->mOptions = null;
 
 		if ( $reloadFrom ) {
 			$this->mLoadedItems = array();
@@ -2276,15 +2276,15 @@ class User {
 		}
 		return $this->mEffectiveGroups;
 	}
-	
+
 	/**
-	 * Returns the groups the user has belonged to. 
-	 * 
+	 * Returns the groups the user has belonged to.
+	 *
 	 * The user may still belong to the returned groups. Compare with getGroups().
-	 * 
+	 *
 	 * The function will not return groups the user had belonged to before MW 1.17
-	 *  
-	 * @return array Names of the groups the user has belonged to. 
+	 *
+	 * @return array Names of the groups the user has belonged to.
 	 */
 	function getFormerGroups() {
 		if( is_null( $this->mFormerGroups ) ) {
@@ -2297,10 +2297,10 @@ class User {
 			foreach( $res as $row ) {
 				$this->mFormerGroups[] = $row->ufg_group;
 			}
-		}	
+		}
 		return $this->mFormerGroups;
 	}
-	
+
 	/**
 	 * Get the user's edit count.
 	 * @return Int
@@ -3310,12 +3310,15 @@ class User {
 		$this->load();
 		$confirmed = true;
 		if( wfRunHooks( 'EmailConfirmed', array( &$this, &$confirmed ) ) ) {
-			if( $this->isAnon() )
+			if( $this->isAnon() ) {
 				return false;
-			if( !self::isValidEmailAddr( $this->mEmail ) )
+			}
+			if( !Sanitizer::validateEmail( $this->mEmail ) ) {
 				return false;
-			if( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() )
+			}
+			if( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
 				return false;
+			}
 			return true;
 		} else {
 			return $confirmed;
