@@ -1138,12 +1138,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Execute a SELECT query constructed using the various parameters provided.
 	 * See below for full details of the parameters.
 	 *
-	 * @param $table Table name
-	 * @param $vars Field names
-	 * @param $conds Conditions
-	 * @param $fname Caller function name
-	 * @param $options Query options
-	 * @param $join_conds Join conditions
+	 * @param $table String|Array Table name
+	 * @param $vars String|Array Field names
+	 * @param $conds String|Array Conditions
+	 * @param $fname String Caller function name
+	 * @param $options Array Query options
+	 * @param $join_conds Array Join conditions
 	 *
 	 *
 	 * @b    $table
@@ -1549,10 +1549,10 @@ abstract class DatabaseBase implements DatabaseType {
 	 *     possible to determine how many rows were successfully inserted using 
 	 *     DatabaseBase::affectedRows().
 	 *
-	 * @param $table   Table name. This will be passed through 
+	 * @param $table   String Table name. This will be passed through
 	 *                 DatabaseBase::tableName().
 	 * @param $a	   Array of rows to insert
-	 * @param $fname   Calling function name (use __METHOD__) for logs/profiling
+	 * @param $fname   String Calling function name (use __METHOD__) for logs/profiling
 	 * @param $options Array of options
 	 *
 	 * @return bool
@@ -1626,7 +1626,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * UPDATE wrapper. Takes a condition array and a SET array.
 	 *
-	 * @param $table  The name of the table to UPDATE. This will be passed through 
+	 * @param $table  String name of the table to UPDATE. This will be passed through
 	 *                DatabaseBase::tableName().
 	 *
 	 * @param $values Array:  An array of values to SET. For each array element, 
@@ -2392,9 +2392,10 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * DELETE query wrapper.
 	 *
-	 * @param $table Table name
-	 * @param $conds Condition array. See $conds in DatabaseBase::select() for 
+	 * @param $table Array Table name
+	 * @param $conds String|Array of conditions. See $conds in DatabaseBase::select() for
 	 *               the format. Use $conds == "*" to delete all rows
+	 * @param $fname String name of the calling function
 	 *
 	 * @return bool
 	 */
