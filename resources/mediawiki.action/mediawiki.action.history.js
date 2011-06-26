@@ -59,7 +59,6 @@ jQuery( function( $ ) {
 		}
 		var copyAttrs = ['title', 'accesskey'];
 		$buttons.each(function() {
-			console.log(this);
 			var $button = $(this),
 				$compareLink= $( '<a></a>', {
 					'class': 'compare-link',
