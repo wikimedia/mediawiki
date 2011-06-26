@@ -2964,9 +2964,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Namespace:',
 'invert'                        => 'Invert selection',
-'tooltip-invert'                => 'Check this box to hides changes in the selected namespace',
+'tooltip-invert'                => 'Check this box to hide changes to pages within the selected namespace (and the associated namespace if checked)',
 'namespace_association'         => 'Associated namespace',
-'tooltip-namespace_association' => 'Check this box to also include the talk or subject namespace associated to your selection',
+'tooltip-namespace_association' => 'Check this box to also include the talk or subject namespace associated with the selected namespace',
 'blanknamespace'                => '(Main)',
 
 # Contributions
