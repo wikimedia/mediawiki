@@ -87,7 +87,7 @@ class Autopromote {
 
 		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
 			# Recursive condition
-			if ( $cond[0] == '&' ) {
+			if ( $cond[0] == '&' ) { // AND (all conds pass)
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
 					if ( !self::recCheckCondition( $subcond, $user ) ) {
 						return false;
@@ -95,7 +95,7 @@ class Autopromote {
 				}
 
 				return true;
-			} elseif ( $cond[0] == '|' ) {
+			} elseif ( $cond[0] == '|' ) { // OR (at least one cond passes)
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
 					if ( self::recCheckCondition( $subcond, $user ) ) {
 						return true;
@@ -103,18 +103,20 @@ class Autopromote {
 				}
 
 				return false;
-			} elseif ( $cond[0] == '^' ) {
-				$res = null;
+			} elseif ( $cond[0] == '^' ) { // XOR (exactly one cond passes)
+				$res = false;
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( is_null( $res ) ) {
-						$res = self::recCheckCondition( $subcond, $user );
-					} else {
-						$res = ( $res xor self::recCheckCondition( $subcond, $user ) );
+					if ( self::recCheckCondition( $subcond, $user ) ) {
+						if ( $res ) {
+							return false;
+						} else {
+							$res = true;
+						}
 					}
 				}
 
 				return $res;
-			} elseif ( $cond[0] == '!' ) {
+			} elseif ( $cond[0] == '!' ) { // NOT (no conds pass)
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
 					if ( self::recCheckCondition( $subcond, $user ) ) {
 						return false;
