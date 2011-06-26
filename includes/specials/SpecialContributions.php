@@ -129,7 +129,7 @@ class SpecialContributions extends SpecialPage {
 				$apiParams['showsizediff'] = true;
 			}
 			if ( $this->opts['deletedOnly'] ) {
-				$apiParams['deletedOnly'] = true;
+				$apiParams['deletedonly'] = true;
 			}
 			if ( $this->opts['tagFilter'] !== '' ) {
 				$apiParams['tagfilter'] = $this->opts['tagFilter'];
