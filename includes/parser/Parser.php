@@ -673,7 +673,7 @@ class Parser {
 		if ( $target !== null ) {
 			return $target;
 		} else {
-			return $this->mOptions->getInterfaceMessage() ? $wgLang : $wgContLang;
+			return $this->mOptions->getInterfaceMessage() ? $wgLang : $this->mTitle->getPageLanguage();
 		}
 	}
 
