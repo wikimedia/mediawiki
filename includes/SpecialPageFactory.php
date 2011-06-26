@@ -267,7 +267,7 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Add a page to a certain display group for Special:SpecialPages
+	 * Get the group that the special page belongs in on Special:SpecialPage
 	 *
 	 * @param $page SpecialPage
 	 */
