@@ -6,26 +6,26 @@
 class BlockTest extends MediaWikiLangTestCase {
 
 	const REASON = "Some reason";
-	
+
 	private $block, $madeAt;
 
 	/* variable used to save up the blockID we insert in this test suite */
 	private $blockId;
-	
+
 	function setUp() {
 		global $wgContLang;
 		parent::setUp();
 		$wgContLang = Language::factory( 'en' );
 	}
-	
+
 	function addDBData() {
 		//$this->dumpBlocks();
-		
+
 		$user = User::newFromName( 'UTBlockee' );
 		if( $user->getID() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTBlockeePassword' );
-			
+
 			$user->saveSettings();
 		}
 
@@ -70,16 +70,16 @@ class BlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $this->block->equals( Block::newFromTarget('UTBlockee') ), "newFromTarget() returns the same block as the one that was made");
 
 		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made");
-		
+
 	}
-	
+
 	/**
 	 * per bug 26425
 	 */
 	function testBug26425BlockTimestampDefaultsToTime() {
-		
+
 		$this->assertEquals( $this->madeAt, $this->block->mTimestamp, "If no timestamp is specified, the block is recorded as time()");
-		
+
 	}
 
 	/**
