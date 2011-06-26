@@ -80,14 +80,6 @@
 				debug: false
 			};
 
-			/* debuging utils */
-			// 
-			// function benchmark( s, d ) {
-			//     console.log( s + " " + ( new Date().getTime() - d.getTime() ) + "ms" );
-			// }
-			// 
-			// this.benchmark = benchmark;
-			// 
 			/* parsers utils */
 
 			function buildParserCache( table, $headers ) {
@@ -110,9 +102,7 @@
 						if (p === false) {
 							p = detectParserForColumn( table, rows, i );
 						}
-						// if ( table.config.debug ) {
-						//     console.log( "column:" + i + " parser:" + p.id + "\n" );
-						// }
+
 						list.push(p);
 					}
 				}
@@ -299,11 +289,6 @@
 					table.config.headerList[index] = this;
 				} );
 
-				// if ( table.config.debug ) {
-				//     benchmark( "Built headers:", time );
-				//     console.log( $tableHeaders );
-				// }
-				// 
 				return $tableHeaders;
 
 			}
