@@ -3498,7 +3498,7 @@ $wgAutoConfirmCount = 0;
 /**
  * Automatically add a usergroup to any user who matches certain conditions.
  * The format is
- *   array( '&' or '|' or '^', cond1, cond2, ... )
+ *   array( '&' or '|' or '^' or '!', cond1, cond2, ... )
  * where cond1, cond2, ... are themselves conditions; *OR*
  *   APCOND_EMAILCONFIRMED, *OR*
  *   array( APCOND_EMAILCONFIRMED ), *OR*
@@ -3509,6 +3509,7 @@ $wgAutoConfirmCount = 0;
  *   array( APCOND_IPINRANGE, range ), *OR*
  *   array( APCOND_AGE_FROM_EDIT, seconds since first edit ), *OR*
  *   array( APCOND_BLOCKED ), *OR*
+ *   array( APCOND_ISBOT ), *OR*
  *   similar constructs defined by extensions.
  *
  * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
