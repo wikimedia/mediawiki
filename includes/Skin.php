@@ -1253,6 +1253,7 @@ abstract class Skin {
 				if ( strpos( $line, '|' ) !== false ) { // sanity check
 					$line = MessageCache::singleton()->transform( $line, false, null, $this->getTitle() );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
+					$extraAttribs = array();
 
 					$msgLink = wfMessage( $line[0] )->inContentLanguage();
 					if ( $msgLink->exists() ) {
@@ -1273,6 +1274,28 @@ abstract class Skin {
 
 					if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $link ) ) {
 						$href = $link;
+						//Parser::getExternalLinkAttribs won't work here because of the Namespace things
+						global $wgNoFollowLinks;
+						if ( $wgNoFollowLinks ) {
+							$extraAttribs['rel'] = 'nofollow';
+
+							global $wgNoFollowDomainExceptions;
+							if ( $wgNoFollowDomainExceptions ) {
+								$bits = wfParseUrl( $url );
+								if ( is_array( $bits ) && isset( $bits['host'] ) ) {
+									foreach ( $wgNoFollowDomainExceptions as $domain ) {
+										if ( substr( $bits['host'], -strlen( $domain ) ) == $domain ) {
+											unset( $extraAttribs['rel'] );
+											break;
+										}
+									}
+								}
+							}
+						}
+						global $wgExternalLinkTarget;
+						if ( $wgExternalLinkTarget) {
+							$extraAttribs['target'] = $wgExternalLinkTarget;
+						}
 					} else {
 						$title = Title::newFromText( $link );
 
@@ -1284,12 +1307,12 @@ abstract class Skin {
 						}
 					}
 
-					$bar[$heading][] = array(
+					$bar[$heading][] = array_merge( array(
 						'text' => $text,
 						'href' => $href,
 						'id' => 'n-' . strtr( $line[1], ' ', '-' ),
 						'active' => false
-					);
+					), $extraAttribs );
 				} elseif ( ( substr( $line, 0, 2 ) == '{{' ) && ( substr( $line, -2 ) == '}}' ) ) {
 					global $wgParser;
 
