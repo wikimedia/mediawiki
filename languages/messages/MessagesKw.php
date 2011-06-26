@@ -1054,7 +1054,7 @@ Whi a ell gweles hy fednfenten.',
 
 # Auto-summaries
 'autoredircomment' => 'Daswedyas an folen war-tu [[$1]]',
-'autosumm-new'     => "Formyas folen gan: '$1'",
+'autosumm-new'     => "Formyas folen gen: '$1'",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Gweles chanjyow longus',

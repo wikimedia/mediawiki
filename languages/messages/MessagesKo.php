@@ -679,6 +679,8 @@ $1',
 'cascadeprotected'     => '이 문서는 연쇄보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다. 연쇄 보호된 문서:
 $2',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
+'customcssprotected'   => '여기에는 다른 사용자의 개인 설정이 포함되어 있기 때문에 당신은 이 CSS 문서를 편집할 수 없습니다.',
+'customjsprotected'    => '여기에는 다른 사용자의 개인 설정이 포함되어 있기 때문에 당신은 이 자바스크립트 문서를 편집할 수 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
 'titleprotected'       => '[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다.
 이유는 다음과 같습니다. ‘$2’',
@@ -2443,7 +2445,7 @@ $1',
 'nolinkshere-ns'           => "선택한 이름공간에는 '''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
 'isredirect'               => '넘겨주기 문서',
 'istemplate'               => '포함',
-'isimage'                  => '그림 포함',
+'isimage'                  => '파일 사용 중',
 'whatlinkshere-prev'       => '{{PLURAL:$1|이전|이전 $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|다음|다음 $1}}',
 'whatlinkshere-links'      => '← 가리키는 문서 목록',
@@ -2894,6 +2896,19 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'spam_reverting'      => '$1을 포함하지 않는 최신 버전으로 되돌림',
 'spam_blanking'       => '모든 버전에 $1 링크를 포함하고 있어 문서를 비움',
 
+# Info page
+'pageinfo-title'            => '"$1" 문서에 대한 정보',
+'pageinfo-header-edits'     => '편집',
+'pageinfo-header-watchlist' => '주시 현황',
+'pageinfo-header-views'     => '보기 현황',
+'pageinfo-subjectpage'      => '문서',
+'pageinfo-talkpage'         => '토론 문서',
+'pageinfo-watchers'         => '주시하는 사용자 수',
+'pageinfo-edits'            => '편집 수',
+'pageinfo-authors'          => '서로 다른 편집자의 수',
+'pageinfo-views'            => '읽힌 횟수',
+'pageinfo-viewsperedit'     => '읽힌 횟수/편집 수',
+
 # Skin names
 'skinname-standard'    => '클래식',
 'skinname-nostalgia'   => '노스탤지아',
@@ -3042,8 +3057,8 @@ Variants for Chinese language
 'exif-colorspace'                  => '색 공간',
 'exif-componentsconfiguration'     => '각 구성 요소의 의미',
 'exif-compressedbitsperpixel'      => '이미지 압축 방식',
-'exif-pixelydimension'             => '유효한 그림 너비',
-'exif-pixelxdimension'             => '유효한 그림 높이',
+'exif-pixelydimension'             => '그림 너비',
+'exif-pixelxdimension'             => '그림 높이',
 'exif-usercomment'                 => '사용자 주',
 'exif-relatedsoundfile'            => '관련된 오디오 파일',
 'exif-datetimeoriginal'            => '날짜와 시간',
@@ -3057,9 +3072,9 @@ Variants for Chinese language
 'exif-exposureprogram'             => '노출 프로그램',
 'exif-spectralsensitivity'         => '스펙트럼 감도',
 'exif-isospeedratings'             => 'ISO 속도',
-'exif-shutterspeedvalue'           => '셔터 속도',
-'exif-aperturevalue'               => '조리개',
-'exif-brightnessvalue'             => '밝기',
+'exif-shutterspeedvalue'           => 'APEX 셔터 속도',
+'exif-aperturevalue'               => 'APEX 조리개',
+'exif-brightnessvalue'             => 'APEX 밝기',
 'exif-exposurebiasvalue'           => '노출 보정값',
 'exif-maxaperturevalue'            => '최대 조리개 값 (최소 F 값)',
 'exif-subjectdistance'             => '대상과의 거리',
@@ -3128,6 +3143,8 @@ Variants for Chinese language
 'exif-countrycodecreated'          => '이 사진이 찍힌 나라의 ISO코드를 입력하십시오.',
 'exif-objectname'                  => '짧은 제목',
 'exif-languagecode'                => '언어',
+'exif-lens'                        => '사용된 렌즈',
+'exif-serialnumber'                => '카메라 일련 번호',
 
 # EXIF attributes
 'exif-compression-1' => '압축되지 않음',
@@ -3272,6 +3289,8 @@ Variants for Chinese language
 
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => '킬로미터',
+'exif-gpsdestdistance-m' => '마일',
+'exif-gpsdestdistance-n' => '해리',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '실제 방위',

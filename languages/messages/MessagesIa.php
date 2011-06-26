@@ -301,7 +301,7 @@ $messages = array(
 'vector-action-move'             => 'Renominar',
 'vector-action-protect'          => 'Proteger',
 'vector-action-undelete'         => 'Restaurar',
-'vector-action-unprotect'        => 'Disproteger',
+'vector-action-unprotect'        => 'Cambiar protection',
 'vector-simplesearch-preference' => 'Activar le suggestiones de recerca meliorate (solmente in apparentia Vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Modificar',
@@ -338,8 +338,8 @@ $messages = array(
 'protect'           => 'Proteger',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Proteger iste pagina',
-'unprotect'         => 'Disproteger',
-'unprotectthispage' => 'Disproteger iste pagina',
+'unprotect'         => 'Cambiar protection',
+'unprotectthispage' => 'Cambiar le protection de iste pagina',
 'newpage'           => 'Nove pagina',
 'talkpage'          => 'Discuter iste pagina',
 'talkpagelinktext'  => 'Discussion',
@@ -1416,10 +1416,11 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
 
 # User rights log
-'rightslog'      => 'Registro de derectos de usator',
-'rightslogtext'  => 'Isto es un registro de cambios in derectos de usator.',
-'rightslogentry' => 'cambiava le gruppos del quales $1 es membro de $2 a $3',
-'rightsnone'     => '(nulle)',
+'rightslog'         => 'Registro de derectos de usator',
+'rightslogtext'     => 'Isto es un registro de cambios in derectos de usator.',
+'rightslogentry'    => 'cambiava le gruppos del quales $1 es membro de $2 a $3',
+'rightsnone'        => '(nulle)',
+'rightsautocomment' => 'automaticamente promovite',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'leger iste pagina',
@@ -2220,11 +2221,11 @@ Per favor preme "retro" e recarga le pagina de ubi tu ha venite, postea reprova.
 
 # Protect
 'protectlogpage'              => 'Registro de protectiones',
-'protectlogtext'              => 'Infra es un lista de protection e disprotection de paginas.
+'protectlogtext'              => 'Ecce un lista de cambios de protection de paginas.
 Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de protectiones de paginas actualmente in operation.',
 'protectedarticle'            => 'protegeva "[[$1]]"',
 'modifiedarticleprotection'   => 'cambiava nivello de protection de "[[$1]]"',
-'unprotectedarticle'          => 'disprotegeva "[[$1]]"',
+'unprotectedarticle'          => 'removeva le protection de "[[$1]]"',
 'movedarticleprotection'      => 'displaciava le configurationes de protection ab "[[$2]]" verso "[[$1]]"',
 'protect-title'               => 'Cambiar nivello de protection de "$1"',
 'prot_1movedto2'              => 'displaciava [[$1]] verso [[$2]]',
@@ -2337,10 +2338,12 @@ $1',
 'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
-'namespace'             => 'Spatio de nomine:',
-'invert'                => 'Inverter selection',
-'namespace_association' => 'Spatio de nomines associate',
-'blanknamespace'        => '(Principal)',
+'namespace'                     => 'Spatio de nomine:',
+'invert'                        => 'Inverter selection',
+'tooltip-invert'                => 'Marca iste quadrato pro celar le cambios in le spatio de nomines seligite',
+'namespace_association'         => 'Spatio de nomines associate',
+'tooltip-namespace_association' => 'Marca iste quadrato pro includer anque le spatio de nomines de discussion o de subjecto associate a tu selection',
+'blanknamespace'                => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contributiones del usator',
@@ -2755,7 +2758,7 @@ Per favor usa le previsualisation ante de publicar.',
 'tooltip-ca-viewsource'           => 'Iste pagina es protegite. Tu pote vider su codice fonte.',
 'tooltip-ca-history'              => 'Versiones anterior de iste pagina',
 'tooltip-ca-protect'              => 'Proteger iste pagina',
-'tooltip-ca-unprotect'            => 'Disproteger iste pagina',
+'tooltip-ca-unprotect'            => 'Cambiar le protection de iste pagina',
 'tooltip-ca-delete'               => 'Deler iste pagina',
 'tooltip-ca-undelete'             => 'Restaurar le modificationes facite a iste pagina ante que illo esseva delite',
 'tooltip-ca-move'                 => 'Renominar iste pagina',

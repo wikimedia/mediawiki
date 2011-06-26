@@ -341,7 +341,7 @@ $messages = array(
 'vector-action-move'             => 'Flyt',
 'vector-action-protect'          => 'Beskyt',
 'vector-action-undelete'         => 'Gendan',
-'vector-action-unprotect'        => 'Fjern beskyttelse',
+'vector-action-unprotect'        => 'Ændr beskyttelse',
 'vector-simplesearch-preference' => 'Aktivér forbedrede søgeforslag (kun Vector-udseendet)',
 'vector-view-create'             => 'Opret',
 'vector-view-edit'               => 'Redigér',
@@ -378,8 +378,8 @@ $messages = array(
 'protect'           => 'Beskyt',
 'protect_change'    => 'ændr',
 'protectthispage'   => 'Beskyt side',
-'unprotect'         => 'Fjern beskyttelse',
-'unprotectthispage' => 'Frigiv side',
+'unprotect'         => 'Ændr beskyttelse',
+'unprotectthispage' => 'Ændr beskyttelsen af denne side',
 'newpage'           => 'Ny side',
 'talkpage'          => 'Diskussion',
 'talkpagelinktext'  => 'diskussion',
@@ -1410,10 +1410,11 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-sendemail'             => 'Sende e-mail til andre brugere',
 
 # User rights log
-'rightslog'      => 'Rettighedslog',
-'rightslogtext'  => 'Dette er en log over ændringer i brugeres rettigheder.',
-'rightslogentry' => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
-'rightsnone'     => '(-)',
+'rightslog'         => 'Rettighedslog',
+'rightslogtext'     => 'Dette er en log over ændringer i brugeres rettigheder.',
+'rightslogentry'    => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
+'rightsnone'        => '(-)',
+'rightsautocomment' => 'automatisk forfremmet',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'se denne side',
@@ -2167,10 +2168,11 @@ og den seneste version af $2 er gendannet.',
 
 # Protect
 'protectlogpage'              => 'Skrivebeskyttelseslog',
-'protectlogtext'              => 'Herunder er en liste med sider der er blevet beskyttet/har fået fjernet beskyttelsen.',
+'protectlogtext'              => 'Herunder er en liste over ændringer til sidebeskyttelser.
+Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sidebeskyttelser, der er i kraft i øjeblikket.',
 'protectedarticle'            => '[[$1]] beskyttet',
 'modifiedarticleprotection'   => 'ændrede beskyttelsen af "[[$1]]"',
-'unprotectedarticle'          => 'fjernet beskyttelse af [[$1]]',
+'unprotectedarticle'          => 'fjernede beskyttelse af "[[$1]]"',
 'movedarticleprotection'      => 'flyttede beskyttelsesindstillinger fra "[[$2]]" til "[[$1]]"',
 'protect-title'               => 'Ændr beskyttelse af "$1"',
 'prot_1movedto2'              => '$1 flyttet til $2',
@@ -2276,10 +2278,12 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'             => 'Navnerum:',
-'invert'                => 'Udeluk valgt navnerum',
-'namespace_association' => 'Tilknyttet navnerum',
-'blanknamespace'        => '(Hoved)',
+'namespace'                     => 'Navnerum:',
+'invert'                        => 'Udeluk valgt navnerum',
+'tooltip-invert'                => 'Afkryds dette felt for at skjule ændringer i det valgte navnerum',
+'namespace_association'         => 'Tilknyttet navnerum',
+'tooltip-namespace_association' => 'Afkryds dette felt for også at inkludere diskussions- eller emnenavnerummet, der er tilknyttet dit valg',
+'blanknamespace'                => '(Hoved)',
 
 # Contributions
 'contributions'       => 'Brugerbidrag',
@@ -2665,7 +2669,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 Du kan se på kildeteksten.',
 'tooltip-ca-history'              => 'Tidligere versioner af denne side',
 'tooltip-ca-protect'              => 'Beskyt denne side',
-'tooltip-ca-unprotect'            => 'Fjern beskyttelsen af siden',
+'tooltip-ca-unprotect'            => 'Ændr beskyttelsen af denne side',
 'tooltip-ca-delete'               => 'Slet denne side',
 'tooltip-ca-undelete'             => 'Gendan de redigeringer der blev lavet på denne side før den blev slettet',
 'tooltip-ca-move'                 => 'Flyt denne side',

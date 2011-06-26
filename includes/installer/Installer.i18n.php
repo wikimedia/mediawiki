@@ -8564,6 +8564,8 @@ Dir kënnt elo [$1 ufänken Är Wiki ze benotzen]",
 	'config-admin-name' => 'Ären Numm:',
 	'config-admin-password' => 'Passwuert:',
 	'config-admin-password-confirm' => 'Passwuert confirméieren:',
+	'config-admin-help' => 'Gitt w.e.g. Äre gewënschte Benotzernumm hei an, zum Beispill "Jang Muller".
+Dësen Numm gëtt da gebraucht fir sech an d\'Wiki anzeloggen.',
 	'config-admin-name-blank' => 'Gitt e Benotzernumm fir den Administrateur an.',
 	'config-admin-name-invalid' => 'De spezifizéierte Benotzernumm "<nowiki>$1</nowiki>" ass net valabel.
 Spezifizéiert en anere Benotzernumm.',
@@ -9539,6 +9541,7 @@ Het aanmaken van miniaturen van afbeeldingen wordt ingeschakeld als u uploaden i
 Het maken van miniaturen van afbeeldingen wordt uitgeschakeld.',
 	'config-no-uri' => "'''Fout:''' de huidige URI kon niet vastgesteld worden.
 De installatie is afgebroken.",
+	'config-using-server' => 'Servernaam "<nowiki>$1</nowiki>" wordt gebruikt.',
 	'config-uploads-not-safe' => "'''Waarschuwing:''' uw uploadmap <code>$1</code> kan gebruikt worden voor het arbitrair uitvoeren van scripts.
 Hoewel MediaWiki alle toegevoegde bestanden  controleert op bedreigingen, is het zeer aan te bevelen het [http://www.mediawiki.org/wiki/Manual:Security#Upload_security beveiligingslek te verhelpen] alvorens uploads in te schakelen.",
 	'config-brokenlibxml' => 'Uw systeem heeft een combinatie van PHP- en libxml2-versies geïnstalleerd die is foutgevoelig is en kan leiden tot onzichtbare beschadiging van gegevens in MediaWiki en andere webapplicaties.

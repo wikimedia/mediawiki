@@ -1093,7 +1093,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 
 # Search results
 'searchresults'                    => 'Resultat vum Sichen',
-'searchresults-title'              => 'Resultater vun der Sich no "$1"',
+'searchresults-title'              => 'Resultater vum Sichen no "$1"',
 'searchresulttext'                 => "Fir méi Informatiounen iwwer d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'                   => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all Säiten déi op "$1" linken]])',
 'searchsubtitleinvalid'            => 'Dir hutt no "$1" gesicht.',
@@ -1108,7 +1108,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'nextn-title'                      => 'Nächst $1 {{PLURAL:$1|Resultat|Resultater}}',
 'shown-title'                      => '$1 {{PLURAL:$1|Resultat|Resultater}} pro Säit weisen',
 'viewprevnext'                     => 'Weis ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-legend'                => 'Optioune vun der Sich',
+'searchmenu-legend'                => 'Sichoptiounen',
 'searchmenu-exists'                => "* Säit '''[[$1]]'''",
 'searchmenu-new'                   => "'''Opmaache vun der Säit ''[[:$1|$1]]'' op dëser Wiki!'''",
 'searchmenu-new-nocreate'          => '"$1" ass en net-valabele Säitennumm oder ka vun Iech net ugeluecht ginn.',

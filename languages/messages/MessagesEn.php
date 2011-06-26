@@ -1978,11 +1978,11 @@ Your e-mail address is not revealed when other users contact you.',
 'right-sendemail'             => 'Send e-mail to other users',
 
 # User rights log
-'rightslog'          => 'User rights log',
-'rightslogtext'      => 'This is a log of changes to user rights.',
-'rightslogentry'     => 'changed group membership for $1 from $2 to $3',
-'rightsnone'         => '(none)',
-'rightsautocomment'  => 'automatically promoted',
+'rightslog'         => 'User rights log',
+'rightslogtext'     => 'This is a log of changes to user rights.',
+'rightslogentry'    => 'changed group membership for $1 from $2 to $3',
+'rightsnone'        => '(none)',
+'rightsautocomment' => 'automatically promoted',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'read this page',
@@ -2962,12 +2962,12 @@ $1',
 'undelete-show-file-submit'    => 'Yes',
 
 # Namespace form on various pages
-'namespace'             => 'Namespace:',
-'invert'                => 'Invert selection',
-'tooltip-invert'            => 'Check this box to hides changes in the selected namespace',
-'namespace_association' => 'Associated namespace',
+'namespace'                     => 'Namespace:',
+'invert'                        => 'Invert selection',
+'tooltip-invert'                => 'Check this box to hides changes in the selected namespace',
+'namespace_association'         => 'Associated namespace',
 'tooltip-namespace_association' => 'Check this box to also include the talk or subject namespace associated to your selection',
-'blanknamespace'        => '(Main)',
+'blanknamespace'                => '(Main)',
 
 # Contributions
 'contributions'       => 'User contributions',
