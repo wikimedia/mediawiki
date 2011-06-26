@@ -24,7 +24,7 @@
  * @file
  * @ingroup Maintenance
  */
- 
+
 require_once( dirname( __FILE__ ) . '/dumpIterator.php' );
 
 class PreprocessDump extends DumpIterator {
@@ -37,7 +37,7 @@ class PreprocessDump extends DumpIterator {
 		global $wgParser;
 		return $wgParser->getStripList();
 	}
-		
+
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'cache', 'Use and populate the preprocessor cache.', false, false );
@@ -54,7 +54,7 @@ class PreprocessDump extends DumpIterator {
 		if ( !$this->hasOption( 'cache' ) ) {
 			$wgPreprocessorCacheThreshold = false;
 		}
-		
+
 		if ( $this->hasOption( 'preprocessor' ) ) {
 			$name = $this->getOption( 'preprocessor' );
 		} elseif ( isset( $wgParserConf['preprocessorClass'] ) ) {
@@ -66,7 +66,7 @@ class PreprocessDump extends DumpIterator {
 		$wgParser->firstCallInit();
 		$this->mPreprocessor = new $name( $this );
 	}
-	
+
 	/**
 	 * Callback function for each revision, preprocessToObj()
 	 * @param $rev Revision
@@ -82,5 +82,5 @@ class PreprocessDump extends DumpIterator {
 }
 
 $maintClass = "PreprocessDump";
-require( RUN_MAINTENANCE_IF_MAIN );
+require_once( RUN_MAINTENANCE_IF_MAIN );
 
