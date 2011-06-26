@@ -29,9 +29,9 @@ class Autopromote {
 
 	/**
 	 * Get the groups for the given user based on the given criteria.
-	 * 
+	 *
 	 * Does not return groups the user already belongs to or has once belonged.
-	 * 
+	 *
 	 * @param $user The user to get the groups for
 	 * @param $event String key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
@@ -153,7 +153,7 @@ class Autopromote {
 
 		switch( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
-				if ( User::isValidEmailAddr( $user->getEmail() ) ) {
+				if ( Sanitizer::validateEmail( $user->getEmail() ) ) {
 					if ( $wgEmailAuthentication ) {
 						return (bool)$user->getEmailAuthenticationTimestamp();
 					} else {
