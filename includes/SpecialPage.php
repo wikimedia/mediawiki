@@ -121,6 +121,7 @@ class SpecialPage {
 	 *
 	 * @param $page Mixed: SpecialPage or string
 	 * @param $group String
+	 * @return null
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function setGroup( $page, $group ) {
@@ -128,9 +129,10 @@ class SpecialPage {
 	}
 
 	/**
-	 * Add a page to a certain display group for Special:SpecialPages
+	 * Get the group that the special page belongs in on Special:SpecialPage
 	 *
 	 * @param $page SpecialPage
+	 * @return null
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getGroup( &$page ) {
@@ -142,6 +144,8 @@ class SpecialPage {
 	 * Formerly used to disable expensive or dangerous special pages. The
 	 * preferred method is now to add a SpecialPage_initList hook.
 	 * @deprecated since 1.18
+	 *
+	 * @param $name String the page to remove
 	 */
 	static function removePage( $name ) {
 		unset( SpecialPageFactory::getList()->$name );
@@ -173,6 +177,7 @@ class SpecialPage {
 	 * Get a special page with a given localised name, or NULL if there
 	 * is no such special page.
 	 *
+	 * @param $alias String
 	 * @return SpecialPage object or null if the page doesn't exist
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
@@ -223,6 +228,7 @@ class SpecialPage {
 	 * @param $title          Title object
 	 * @param $context        RequestContext
 	 * @param $including      Bool output is being captured for use in {{special:whatever}}
+	 * @return Bool
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	public static function executePath( &$title, RequestContext &$context, $including = false ) {
@@ -234,6 +240,7 @@ class SpecialPage {
 	 * Returns false if there was no such special page, or a title object if it was
 	 * a redirect.
 	 *
+	 * @param $title Title
 	 * @return String: HTML fragment
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
@@ -257,6 +264,8 @@ class SpecialPage {
 	/**
 	 * Get a localised Title object for a specified special page name
 	 *
+	 * @param $name String
+	 * @param $subpage String|Bool subpage string, or false to not use a subpage
 	 * @return Title object
 	 */
 	public static function getTitleFor( $name, $subpage = false ) {
@@ -271,6 +280,8 @@ class SpecialPage {
 	/**
 	 * Get a localised Title object for a page name with a possibly unvalidated subpage
 	 *
+	 * @param $name String
+	 * @param $subpage String|Bool subpage string, or false to not use a subpage
 	 * @return Title object or null if the page doesn't exist
 	 */
 	public static function getSafeTitleFor( $name, $subpage = false ) {
@@ -285,6 +296,7 @@ class SpecialPage {
 	/**
 	 * Get a title for a given alias
 	 *
+	 * @param $alias String
 	 * @return Title or null if there is no such alias
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
@@ -304,10 +316,10 @@ class SpecialPage {
 	 *
 	 * @param $name String: name of the special page, as seen in links and URLs
 	 * @param $restriction String: user right required, e.g. "block" or "delete"
-	 * @param $listed Boolean: whether the page is listed in Special:Specialpages
-	 * @param $function Callback: function called by execute(). By default it is constructed from $name
+	 * @param $listed Bool: whether the page is listed in Special:Specialpages
+	 * @param $function Callback|Bool: function called by execute(). By default it is constructed from $name
 	 * @param $file String: file which is included by execute(). It is also constructed from $name by default
-	 * @param $includable Boolean: whether the page can be included in normal pages
+	 * @param $includable Bool: whether the page can be included in normal pages
 	 */
 	public function __construct( $name = '', $restriction = '', $listed = true, $function = false, $file = 'default', $includable = false ) {
 		$this->init( $name, $restriction, $listed, $function, $file, $includable );
@@ -316,7 +328,12 @@ class SpecialPage {
 	/**
 	 * Do the real work for the constructor, mainly so __call() can intercept
 	 * calls to SpecialPage()
-	 * @see __construct() for param docs
+	 * @param $name String: name of the special page, as seen in links and URLs
+	 * @param $restriction String: user right required, e.g. "block" or "delete"
+	 * @param $listed Bool: whether the page is listed in Special:Specialpages
+	 * @param $function Callback|Bool: function called by execute(). By default it is constructed from $name
+	 * @param $file String: file which is included by execute(). It is also constructed from $name by default
+	 * @param $includable Bool: whether the page can be included in normal pages
 	 */
 	private function init( $name, $restriction, $listed, $function, $file, $includable ) {
 		$this->mName = $name;
@@ -401,6 +418,7 @@ class SpecialPage {
 	/**
 	 * Set whether this page is listed in Special:Specialpages, at run-time
 	 * @since r3583 (v1.3)
+	 * @param $listed Bool
 	 * @return Bool
 	 */
 	function setListed( $listed ) {
@@ -409,6 +427,7 @@ class SpecialPage {
 	/**
 	 * Get or set whether this special page is listed in Special:SpecialPages
 	 * @since r11308 (v1.6)
+	 * @param $x Bool
 	 * @return Bool
 	 */
 	function listed( $x = null) {
@@ -426,6 +445,8 @@ class SpecialPage {
 	/**
 	 * These mutators are very evil, as the relevant variables should not mutate.  So
 	 * don't use them.
+	 * @param $x Mixed
+	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
 	function name( $x = null ) { return wfSetVar( $this->mName, $x ); }
@@ -436,6 +457,7 @@ class SpecialPage {
 
 	/**
 	 * Whether the special page is being evaluated via transclusion
+	 * @param $x Bool
 	 * @return Bool
 	 */
 	function including( $x = null ) {
@@ -511,6 +533,8 @@ class SpecialPage {
 	 * Checks user permissions, calls the function given in mFunction
 	 *
 	 * This must be overridden by subclasses; it will be made abstract in a future version
+	 *
+	 * @param $par String subpage string, if one was specified
 	 */
 	function execute( $par ) {
 		$this->setHeaders();
@@ -567,6 +591,7 @@ class SpecialPage {
 	/**
 	 * Get a self-referential title object
 	 *
+	 * @param $subpage String|Bool
 	 * @return Title object
 	 */
 	function getTitle( $subpage = false ) {
@@ -662,6 +687,7 @@ class SpecialPage {
 	 * Wrapper around wfMessage that sets the current context. Currently this
 	 * is only the title.
 	 *
+	 * @return Message
 	 * @see wfMessage
 	 */
 	public function msg( /* $args */ ) {
@@ -756,6 +782,8 @@ abstract class FormSpecialPage extends SpecialPage {
 
 	/**
 	 * Basic SpecialPage workflow: get a form, send it to the user; get some data back,
+	 *
+	 * @param $par String Subpage string if one was specified
 	 */
 	public function execute( $par ) {
 		$this->setParameter( $par );
@@ -782,6 +810,7 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * must throw subclasses of ErrorPageError
 	 *
 	 * @param $user User: the user to check, or null to use the context user
+	 * @return Bool true
 	 * @throws ErrorPageError
 	 */
 	public function userCanExecute( User $user ) {
@@ -886,6 +915,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * If the special page is a redirect, then get the Title object it redirects to.
 	 * False otherwise.
 	 *
+	 * @param $par String Subpage string
 	 * @return Title|false
 	 */
 	abstract public function getRedirect( $par );
