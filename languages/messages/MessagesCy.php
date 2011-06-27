@@ -2232,7 +2232,7 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Parth:',
 'invert'                        => 'Dewiswch bob parth heblaw am hwn',
-'tooltip-invert'                => 'Ticiwch y blwch hwn i guddio newidiadau yn y parth dewisedig',
+'tooltip-invert'                => "Ticiwch y blwch hwn i guddio newidiadau yn y parth dewisedig (a'i gymar os y dewisioch trin parau o barthau fel ei gilydd)",
 'namespace_association'         => "A'r parth cysylltiedig",
 'tooltip-namespace_association' => 'Ticiwch y blwch hwn i gynnwys cymar y blwch dewisedig yn y pâr parth/sgwrs parth',
 'blanknamespace'                => '(Prif)',

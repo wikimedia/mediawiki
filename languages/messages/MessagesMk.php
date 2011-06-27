@@ -484,7 +484,7 @@ $messages = array(
 'vector-action-move'             => 'Премести',
 'vector-action-protect'          => 'Заштити',
 'vector-action-undelete'         => 'Врати',
-'vector-action-unprotect'        => 'Отстрани заштита',
+'vector-action-unprotect'        => 'Измени заштита',
 'vector-simplesearch-preference' => 'Овозможи збогатени предлози при пребарување (само за рувото „Векторско“)',
 'vector-view-create'             => 'Создај',
 'vector-view-edit'               => 'Уреди',
@@ -521,8 +521,8 @@ $messages = array(
 'protect'           => 'Заштити',
 'protect_change'    => 'промена',
 'protectthispage'   => 'Заштити ја оваа страница',
-'unprotect'         => 'Отстрани заштита',
-'unprotectthispage' => 'Отстрани заштита на страница',
+'unprotect'         => 'Измени заштита',
+'unprotectthispage' => 'Измена на заштитата на страницава',
 'newpage'           => 'Нова страница',
 'talkpage'          => 'Разговор',
 'talkpagelinktext'  => 'Разговор',
@@ -2395,8 +2395,8 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => 'Дневник на заштитувања',
-'protectlogtext'              => 'Подолу е наведен список на отклучувања/заклучувања на страницата.
-Погледете го [[Special:ProtectedPages|списокот на заштитени страници]].',
+'protectlogtext'              => 'Подолу има список на измените во заштитата на страницата.
+Моментално заштитените страници ќе ги најдете [[Special:ProtectedPages|овој список]].',
 'protectedarticle'            => 'заштитена „[[$1]]“',
 'modifiedarticleprotection'   => 'изменет степен на заштита за „[[$1]]“',
 'unprotectedarticle'          => 'отстранета заштитата на „[[$1]]“',
@@ -2512,10 +2512,12 @@ $1',
 'undelete-show-file-submit'    => 'Да',
 
 # Namespace form on various pages
-'namespace'             => 'Именски простор:',
-'invert'                => 'Обратен избор',
-'namespace_association' => 'Поврзан именски простор',
-'blanknamespace'        => '(Главен)',
+'namespace'                     => 'Именски простор:',
+'invert'                        => 'Обратен избор',
+'tooltip-invert'                => 'Штиклирајќи го полево ќе ги скриете извршените измени во одбраниот именски простор',
+'namespace_association'         => 'Поврзан именски простор',
+'tooltip-namespace_association' => 'Штиклирајќи го полево ќе го вклучите и именскиот простор за разговор или наслов на одбраното',
+'blanknamespace'                => '(Главен)',
 
 # Contributions
 'contributions'       => 'Кориснички придонеси',
@@ -2929,7 +2931,7 @@ $1',
 'tooltip-ca-viewsource'           => 'Оваа страница е заштитена. Можете да го видите изворниот код.',
 'tooltip-ca-history'              => 'Претходни верзии на оваа страница.',
 'tooltip-ca-protect'              => 'Заштитете ја оваа страница',
-'tooltip-ca-unprotect'            => 'Симни заштита на оваа страница',
+'tooltip-ca-unprotect'            => 'Измени заштита страницава',
 'tooltip-ca-delete'               => 'Избриши ја оваа страница',
 'tooltip-ca-undelete'             => 'Обнови ги уредувањата направени на оваа страница пред да биде избришана',
 'tooltip-ca-move'                 => 'Премести ја оваа страница',

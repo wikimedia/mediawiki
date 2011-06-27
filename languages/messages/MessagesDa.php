@@ -1068,7 +1068,7 @@ Se venligst loglisterne.',
 
 # Suppression log
 'suppressionlog'     => 'Skjulningslog',
-'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer der er skjult for almindelige systemadministratorer.Below is a list of deletions and blocks involving content hidden from sysops.
+'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer der er skjult for almindelige systemadministratorer.
 Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
 
 # History merging
@@ -1410,11 +1410,10 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-sendemail'             => 'Sende e-mail til andre brugere',
 
 # User rights log
-'rightslog'         => 'Rettighedslog',
-'rightslogtext'     => 'Dette er en log over ændringer i brugeres rettigheder.',
-'rightslogentry'    => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
-'rightsnone'        => '(-)',
-'rightsautocomment' => 'automatisk forfremmet',
+'rightslog'      => 'Rettighedslog',
+'rightslogtext'  => 'Dette er en log over ændringer i brugeres rettigheder.',
+'rightslogentry' => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
+'rightsnone'     => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'se denne side',

@@ -395,7 +395,7 @@ $messages = array(
 'vector-action-move'             => 'Преместване',
 'vector-action-protect'          => 'Защита',
 'vector-action-undelete'         => 'Възстановяване',
-'vector-action-unprotect'        => 'Сваляне на защитата',
+'vector-action-unprotect'        => 'Промяна на защитата',
 'vector-simplesearch-preference' => 'Включване на предложениия при търсене (само за изгледа Vector)',
 'vector-view-create'             => 'Създаване',
 'vector-view-edit'               => 'Редактиране',
@@ -432,8 +432,8 @@ $messages = array(
 'protect'           => 'Защита',
 'protect_change'    => 'промяна',
 'protectthispage'   => 'Защита',
-'unprotect'         => 'Сваляне на защитата',
-'unprotectthispage' => 'Сваляне на защитата',
+'unprotect'         => 'Промяна на защитата',
+'unprotectthispage' => 'Промяна на защитата на тази страница',
 'newpage'           => 'Нова страница',
 'talkpage'          => 'Дискусионна страница',
 'talkpagelinktext'  => 'Беседа',
@@ -2213,7 +2213,7 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => 'Дневник на защитата',
-'protectlogtext'              => 'Списък на защитите и техните сваляния за страницата.
+'protectlogtext'              => 'Списък на промените в защитата за страницата.
 Можете да прегледате и [[Special:ProtectedPages|списъка на текущо защитените страници]].',
 'protectedarticle'            => 'защити „[[$1]]“',
 'modifiedarticleprotection'   => 'смени нивото на защита на „[[$1]]“',
@@ -2320,6 +2320,7 @@ $1',
 # Namespace form on various pages
 'namespace'             => 'Именно пространство:',
 'invert'                => 'Обръщане на избора',
+'tooltip-invert'        => 'Поставянето на отметка ще скрие всички промени в избраното именно пространство',
 'namespace_association' => 'Свързани именни пространства',
 'blanknamespace'        => '(Основно)',
 
@@ -2718,7 +2719,7 @@ $1',
 'tooltip-ca-viewsource'           => 'Страницата е защитена. Можете да разгледате изходния й код.',
 'tooltip-ca-history'              => 'Предишни версии на страницата',
 'tooltip-ca-protect'              => 'Защитаване на страницата',
-'tooltip-ca-unprotect'            => 'Сваляне на защитата от тази страница',
+'tooltip-ca-unprotect'            => 'Промяна на защитата за тази страница',
 'tooltip-ca-delete'               => 'Изтриване на страницата',
 'tooltip-ca-undelete'             => 'Възстановяване на изтрити редакции на страницата',
 'tooltip-ca-move'                 => 'Преместване на страницата',

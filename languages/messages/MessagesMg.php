@@ -380,7 +380,7 @@ $messages = array(
 'vector-action-move'             => 'Hanolo anarana',
 'vector-action-protect'          => 'Arovy',
 'vector-action-undelete'         => 'Avereno',
-'vector-action-unprotect'        => 'esory ny fiarovana',
+'vector-action-unprotect'        => 'Hanala ny fiarovana',
 'vector-simplesearch-preference' => "Alefa ny soso-kevitra mikasika ny fikarohana (ho an'ny Vector ihany)",
 'vector-view-create'             => 'Foronona',
 'vector-view-edit'               => 'Hanova',
@@ -417,8 +417,8 @@ $messages = array(
 'protect'           => 'Hiaro',
 'protect_change'    => 'ovaina',
 'protectthispage'   => 'Hiaro ity pejy ity',
-'unprotect'         => 'Esory ny fiarovana',
-'unprotectthispage' => "Esory ny fiarovan'ity pejy ity",
+'unprotect'         => 'Hanala ny fiarovana',
+'unprotectthispage' => "Hanala idy an'ity pejy ity",
 'newpage'           => 'Pejy vaovao',
 'talkpage'          => 'Dinidinika momba ity pejy ity',
 'talkpagelinktext'  => 'Dinika',
@@ -1140,9 +1140,10 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 # Diffs
 'history-title'            => "Tantara ny endrik'i « $1 »",
 'difference'               => "(Fahasamihafan'ny pejy)",
+'difference-multipage'     => "(Fahasamihafan'ny pejy)",
 'lineno'                   => 'Andalana $1:',
 'compareselectedversions'  => 'Ampitahao ireo version voafidy',
-'showhideselectedversions' => 'Asehoy/asitriho ny santiôna nofidiana',
+'showhideselectedversions' => 'Aseho/asitrika ireo ny santiôna nofidiana',
 'editundo'                 => 'esory',
 'diff-multi'               => "({{PLURAL:$1|Famerenana tokana|Famerenana $1}} nataon'ny {{PLURAL:$2|mpikambana iray|mpikambana $2}} tsy miseho)",
 
@@ -2298,7 +2299,7 @@ Ny iditra farany tao amin'ny laogim-panakanam-pikambana dia naseho teo ambany mb
 'nolinkshere-ns'           => "Tsy misy pejy misy rohy mankany amin'ny [[:$1]] ao amin'ny anaran-tsehatra voafidy.",
 'isredirect'               => 'pejina redirekta',
 'istemplate'               => 'fanometrahany',
-'isimage'                  => 'rakitra mifatotra',
+'isimage'                  => "rohy mankany amin'ilay sary",
 'whatlinkshere-prev'       => '$1 taloha{{PLURAL:$1||}}',
 'whatlinkshere-next'       => '$1 manaraka{{PLURAL:$1||}}',
 'whatlinkshere-links'      => '← rohy',
@@ -2782,7 +2783,7 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'metadata-help'     => "Mirakitra fampahalalana fanampiny, izay inoana ho napetraky ny fakan-tsary na scanner nampiasaina nanaovana ny numérisation-ny ity rakitra ity. Raha kitihina na ovana izy ity dia mety tsy hifanitsy amin'ny sary voaova ireo antsipirihany sasany ireo.",
 'metadata-expand'   => 'Asehoy ny antsipirihany',
 'metadata-collapse' => 'Aza aseho ny antsipirihany',
-'metadata-fields'   => "Hisy anatin'ny pejin-ambangovangon'ilay sary ny métadonnées ny EXIF rehefa nasitrika ny tabilao ny metafonnées, asitrika ny champ hafa.
+'metadata-fields'   => "Ho ao amin'ny ambangovangom-pejin-tsary ireo saham-pampahalala mahakasika ny tsary valisitra anatin'ity hafatra ity rehefa hafohezina ny tabilaon-tsaham-pampahalalana mahakasika ny sary. Hasitrika araka ny fahazarana ny saha fanatsofohan-teny hafa.
 * make
 * model
 * datetimeoriginal

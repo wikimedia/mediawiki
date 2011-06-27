@@ -530,7 +530,7 @@ $messages = array(
 'vector-action-move'             => 'Verschieben',
 'vector-action-protect'          => 'Schützen',
 'vector-action-undelete'         => 'Wiederherstellen',
-'vector-action-unprotect'        => 'Freigeben',
+'vector-action-unprotect'        => 'Seitenschutz ändern',
 'vector-simplesearch-preference' => 'Erweiterte Suchvorschläge aktivieren (nur Vector)',
 'vector-view-create'             => 'Erstellen',
 'vector-view-edit'               => 'Bearbeiten',
@@ -567,8 +567,8 @@ $messages = array(
 'protect'           => 'Schützen',
 'protect_change'    => 'ändern',
 'protectthispage'   => 'Seite schützen',
-'unprotect'         => 'Freigeben',
-'unprotectthispage' => 'Schutz aufheben',
+'unprotect'         => 'Seitenschutz ändern',
+'unprotectthispage' => 'Seitenschutz ändern',
 'newpage'           => 'Neue Seite',
 'talkpage'          => 'Diese Seite diskutieren',
 'talkpagelinktext'  => 'Diskussion',
@@ -1595,10 +1595,11 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
 
 # User rights log
-'rightslog'      => 'Rechte-Logbuch',
-'rightslogtext'  => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
-'rightslogentry' => 'änderte die Benutzerrechte für „$1“ von „$2“ auf „$3“',
-'rightsnone'     => '(–)',
+'rightslog'                  => 'Rechte-Logbuch',
+'rightslogtext'              => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
+'rightslogentry'             => 'änderte die Benutzerrechte für „$1“ von „$2“ auf „$3“',
+'rightslogentry-autopromote' => 'die Zuordnung zur Benutzergruppe wurde automatisch von $2 in $3 geändert',
+'rightsnone'                 => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'die Seite zu lesen',
@@ -1979,7 +1980,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'unwatchedpages' => 'Nicht beobachtete Seiten',
 
 # List redirects
-'listredirects' => 'Weiterleitungsliste',
+'listredirects' => 'Weiterleitungen',
 
 # Unused templates
 'unusedtemplates'     => 'Unbenutzte Vorlagen',
@@ -2479,10 +2480,12 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'             => 'Namensraum:',
-'invert'                => 'Auswahl umkehren',
-'namespace_association' => 'Zugeordneter Namensraum',
-'blanknamespace'        => '(Seiten)',
+'namespace'                     => 'Namensraum:',
+'invert'                        => 'Auswahl umkehren',
+'tooltip-invert'                => 'Dieses Kästchen anklicken, um Änderungen im gewählten Namensraum und, sofern ausgewählt, dem entsprechenden zugehörigen Namensraum auszublenden',
+'namespace_association'         => 'Zugeordneter Namensraum',
+'tooltip-namespace_association' => 'Dieses Kästchen anklicken, um den deiner Auswahl zugehörigen Diskussionsnamensraum, oder im umgekehrten Fall Namensraum, mit einzubeziehen',
+'blanknamespace'                => '(Seiten)',
 
 # Contributions
 'contributions'       => 'Benutzerbeiträge',
@@ -2881,7 +2884,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-ca-viewsource'           => 'Diese Seite ist geschützt. Der Quelltext kann angesehen werden.',
 'tooltip-ca-history'              => 'Frühere Versionen dieser Seite',
 'tooltip-ca-protect'              => 'Diese Seite schützen',
-'tooltip-ca-unprotect'            => 'Diese Seite freigeben',
+'tooltip-ca-unprotect'            => 'Seitenschutz ändern',
 'tooltip-ca-delete'               => 'Diese Seite löschen',
 'tooltip-ca-undelete'             => 'Einträge wiederherstellen, bevor diese Seite gelöscht wurde',
 'tooltip-ca-move'                 => 'Diese Seite verschieben',

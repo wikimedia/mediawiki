@@ -1416,11 +1416,11 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
 
 # User rights log
-'rightslog'         => 'Registro de derectos de usator',
-'rightslogtext'     => 'Isto es un registro de cambios in derectos de usator.',
-'rightslogentry'    => 'cambiava le gruppos del quales $1 es membro de $2 a $3',
-'rightsnone'        => '(nulle)',
-'rightsautocomment' => 'automaticamente promovite',
+'rightslog'                  => 'Registro de derectos de usator',
+'rightslogtext'              => 'Isto es un registro de cambios in derectos de usator.',
+'rightslogentry'             => 'cambiava le gruppos del quales $1 es membro de $2 a $3',
+'rightslogentry-autopromote' => 'ha essite automaticamente promovite de $2 a $3',
+'rightsnone'                 => '(nulle)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'leger iste pagina',
@@ -2340,9 +2340,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Spatio de nomine:',
 'invert'                        => 'Inverter selection',
-'tooltip-invert'                => 'Marca iste quadrato pro celar le cambios in le spatio de nomines seligite',
+'tooltip-invert'                => 'Marca iste quadrato pro celar le modificationes in paginas intra le spatio de nomines seligite (e le spatio de nomines associate, si tal option es seligite)',
 'namespace_association'         => 'Spatio de nomines associate',
-'tooltip-namespace_association' => 'Marca iste quadrato pro includer anque le spatio de nomines de discussion o de subjecto associate a tu selection',
+'tooltip-namespace_association' => 'Marca iste quadrato pro includer anque le spatio de nomines de discussion o de subjecto associate al spatio de nomines seligite',
 'blanknamespace'                => '(Principal)',
 
 # Contributions
