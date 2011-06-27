@@ -3413,16 +3413,16 @@ class Language {
 	 * @param $seconds int|float
 	 * @param $format String Optional, one of ("avoidseconds","avoidminutes"):
 	 *		"avoidseconds" - don't mention seconds if $seconds >= 1 hour
-	 *		"avoidminutes" - don't mention seconds/minutes if $seconds > 2 days
+	 *		"avoidminutes" - don't mention seconds/minutes if $seconds > 48 hours
 	 * @return string
 	 */
 	function formatTimePeriod( $seconds, $format = false ) {
 		if ( round( $seconds * 10 ) < 100 ) {
-			return $this->formatNum( sprintf( "%.1f", round( $seconds * 10 ) / 10 ) ) .
-				$this->getMessageFromDB( 'seconds-abbrev' );
+			$s = $this->formatNum( sprintf( "%.1f", round( $seconds * 10 ) / 10 ) );
+			$s .= $this->getMessageFromDB( 'seconds-abbrev' );
 		} elseif ( round( $seconds ) < 60 ) {
-			return $this->formatNum( round( $seconds ) ) .
-				$this->getMessageFromDB( 'seconds-abbrev' );
+			$s = $this->formatNum( round( $seconds ) );
+			$s .= $this->getMessageFromDB( 'seconds-abbrev' );
 		} elseif ( round( $seconds ) < 3600 ) {
 			$minutes = floor( $seconds / 60 );
 			$secondsPart = round( fmod( $seconds, 60 ) );
@@ -3430,9 +3430,9 @@ class Language {
 				$secondsPart = 0;
 				$minutes++;
 			}
-			return $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' ) .
-				' ' .
-				$this->formatNum( $secondsPart ) . $this->getMessageFromDB( 'seconds-abbrev' );
+			$s = $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
+			$s .= ' ';
+			$s .= $this->formatNum( $secondsPart ) . $this->getMessageFromDB( 'seconds-abbrev' );
 		} elseif ( round( $seconds ) <= 2*86400 ) {
 			$hours = floor( $seconds / 3600 );
 			$minutes = floor( ( $seconds - $hours * 3600 ) / 60 );
@@ -3445,25 +3445,47 @@ class Language {
 				$minutes = 0;
 				$hours++;
 			}
-			$s = $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' ) .
-				' ' .
-				$this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
-			if ( $format !== 'avoidseconds' ) {
+			$s = $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' );
+			$s .= ' ';
+			$s .= $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
+			if ( !in_array( $format, array( 'avoidseconds', 'avoidminutes' ) ) ) {
 				$s .= ' ' . $this->formatNum( $secondsPart ) .
 					$this->getMessageFromDB( 'seconds-abbrev' );
 			}
-			return $s;
 		} else {
 			$days = floor( $seconds / 86400 );
-			$s = $this->formatNum( $days ) . $this->getMessageFromDB( 'days-abbrev' ) . ' ';
 			if ( $format === 'avoidminutes' ) {
-				$hours = floor( ( $seconds - $days * 86400 ) / 3600 );
+				$hours = round( ( $seconds - $days * 86400 ) / 3600 );
+				if ( $hours == 24 ) {
+					$hours = 0;
+					$days++;
+				}
+				$s = $this->formatNum( $days ) . $this->getMessageFromDB( 'days-abbrev' );
+				$s .= ' ';
 				$s .= $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' );
+			} elseif ( $format === 'avoidseconds' ) {
+				$hours = floor( ( $seconds - $days * 86400 ) / 3600 );
+				$minutes = round( ( $seconds - $days * 86400 - $hours * 3600 ) / 60 );
+				if ( $minutes == 60 ) {
+					$minutes = 0;
+					$hours++;
+				}
+				if ( $hours == 24 ) {
+					$hours = 0;
+					$days++;
+				}
+				$s = $this->formatNum( $days ) . $this->getMessageFromDB( 'days-abbrev' );
+				$s .= ' ';
+				$s .= $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' );
+				$s .= ' ';
+				$s .= $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
 			} else {
+				$s = $this->formatNum( $days ) . $this->getMessageFromDB( 'days-abbrev' );
+				$s .= ' ';
 				$s .= $this->formatTimePeriod( $seconds - $days * 86400, $format );
 			}
-			return $s;
 		}
+		return $s;
 	}
 
 	/**

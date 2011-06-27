@@ -56,6 +56,60 @@ class LanguageTest extends MediaWikiTestCase {
 			$this->lang->formatTimePeriod( 7199.55 ),
 			'formatTimePeriod() rounding (>=1h)'
 		);
+
+		$this->assertEquals(
+			"2h 0m",
+			$this->lang->formatTimePeriod( 7199.55, 'avoidseconds' ),
+			'formatTimePeriod() rounding (>=1h), avoidseconds'
+		);
+
+		$this->assertEquals(
+			"2h 0m",
+			$this->lang->formatTimePeriod( 7199.55, 'avoidminutes' ),
+			'formatTimePeriod() rounding (>=1h), avoidminutes'
+		);
+
+		$this->assertEquals(
+			"48h 0m",
+			$this->lang->formatTimePeriod( 172799.55, 'avoidseconds' ),
+			'formatTimePeriod() rounding (=48h), avoidseconds'
+		);
+
+		$this->assertEquals(
+			"3d 0h",
+			$this->lang->formatTimePeriod( 259199.55, 'avoidminutes' ),
+			'formatTimePeriod() rounding (>48h), avoidminutes'
+		);
+
+		$this->assertEquals(
+			"2d 1h 0m",
+			$this->lang->formatTimePeriod( 176399.55, 'avoidseconds' ),
+			'formatTimePeriod() rounding (>48h), avoidseconds'
+		);
+
+		$this->assertEquals(
+			"2d 1h",
+			$this->lang->formatTimePeriod( 176399.55, 'avoidminutes' ),
+			'formatTimePeriod() rounding (>48h), avoidminutes'
+		);
+
+		$this->assertEquals(
+			"3d 0h 0m",
+			$this->lang->formatTimePeriod( 259199.55, 'avoidseconds' ),
+			'formatTimePeriod() rounding (>48h), avoidminutes'
+		);
+
+		$this->assertEquals(
+			"2d 0h 0m",
+			$this->lang->formatTimePeriod( 172801.55, 'avoidseconds' ),
+			'formatTimePeriod() rounding, (>48h), avoidseconds'
+		);
+
+		$this->assertEquals(
+			"2d 1h 1m 1s",
+			$this->lang->formatTimePeriod( 176460.55 ),
+			'formatTimePeriod() rounding, recursion, (>48h)'
+		);
 	}
 
 	/**
