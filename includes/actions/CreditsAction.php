@@ -33,8 +33,14 @@ class CreditsAction extends FormlessAction {
 		return null;
 	}
 
+	protected function getDescription() {
+		return wfMsg( strtolower( 'creditspage' ) );
+	}
+
 	/**
 	 * This is largely cadged from PageHistory::history
+	 *
+	 * @return String HTML
 	 */
 	public function onView() {
 		wfProfileIn( __METHOD__ );
@@ -75,6 +81,7 @@ class CreditsAction extends FormlessAction {
 	/**
 	 * Get the last author with the last modification time
 	 * @param $article Article object
+	 * @return String HTML
 	 */
 	protected static function getAuthor( Article $article ) {
 		global $wgLang;
@@ -94,7 +101,6 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get a list of contributors of $article
-	 * @param $article Article object
 	 * @param $cnt Int: maximum list of contributors to show
 	 * @param $showIfMax Bool: whether to contributors if there more than $cnt
 	 * @return String: html
