@@ -1568,16 +1568,19 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {
 		} elseif( array_key_exists( 'other-message', $params ) ){
-			$params['other'] = wfMsg( $params['other-message'] );
+			$params['other'] = wfMessage( $params['other-message'] )->escaped();
 		} else {
-			$params['other'] = wfMsg( 'htmlform-selectorother-other' );
+			$params['other'] = null;
 		}
 
 		if ( array_key_exists( 'options', $params ) ) {
 			# Options array already specified
 		} elseif( array_key_exists( 'options-message', $params ) ){
 			# Generate options array from a system message
-			$params['options'] = self::parseMessage( wfMsg( $params['options-message'], $params['other'] ) );
+			$params['options'] = self::parseMessage(
+				wfMessage( $params['options-message'] )->inContentLanguage()->escaped(),
+				$params['other']
+			);
 		} else {
 			# Sulk
 			throw new MWException( 'HTMLSelectAndOtherField called without any options' );
@@ -1596,7 +1599,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	 */
 	public static function parseMessage( $string, $otherName=null ) {
 		if( $otherName === null ){
-			$otherName = wfMsg( 'htmlform-selectorother-other' );
+			$otherName = wfMessage( 'htmlform-selectorother-other' )->escaped();
 		}
 
 		$optgroup = false;
