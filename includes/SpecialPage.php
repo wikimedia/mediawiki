@@ -321,7 +321,10 @@ class SpecialPage {
 	 * @param $file String: file which is included by execute(). It is also constructed from $name by default
 	 * @param $includable Bool: whether the page can be included in normal pages
 	 */
-	public function __construct( $name = '', $restriction = '', $listed = true, $function = false, $file = 'default', $includable = false ) {
+	public function __construct(
+		$name = '', $restriction = '', $listed = true,
+		$function = false, $file = 'default', $includable = false
+	) {
 		$this->init( $name, $restriction, $listed, $function, $file, $includable );
 	}
 
@@ -569,7 +572,8 @@ class SpecialPage {
 			$msg = $summaryMessageKey;
 		}
 		if ( !wfMessage( $msg )->isBlank() and ! $this->including() ) {
-			$this->getOutput()->wrapWikiMsg( "<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
+			$this->getOutput()->wrapWikiMsg(
+				"<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
 
 	}
@@ -691,7 +695,8 @@ class SpecialPage {
 	 * @see wfMessage
 	 */
 	public function msg( /* $args */ ) {
-		return call_user_func_array( 'wfMessage', func_get_args() )->title( $this->getFullTitle() );
+		return call_user_func_array( 'wfMessage',
+			func_get_args() )->title( $this->getFullTitle() );
 	}
 
 	/**
@@ -751,10 +756,12 @@ abstract class FormSpecialPage extends SpecialPage {
 		$form = new HTMLForm( $this->fields, $this->getContext() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
 		$form->setWrapperLegend( wfMessage( strtolower( $this->getName() ) . '-legend' ) );
-		$form->addHeaderText( wfMessage( strtolower( $this->getName() ) . '-text' )->parseAsBlock() );
+		$form->addHeaderText(
+			wfMessage( strtolower( $this->getName() ) . '-text' )->parseAsBlock() );
 
 		// Retain query parameters (uselang etc)
-		$params = array_diff_key( $this->getRequest()->getQueryValues(), array( 'title' => null ) );
+		$params = array_diff_key(
+			$this->getRequest()->getQueryValues(), array( 'title' => null ) );
 		$form->addHiddenField( 'redirectparams', wfArrayToCGI( $params ) );
 
 		$form->addPreText( $this->preText() );
@@ -868,7 +875,9 @@ class UnlistedSpecialPage extends SpecialPage
  */
 class IncludableSpecialPage extends SpecialPage
 {
-	function __construct( $name, $restriction = '', $listed = true, $function = false, $file = 'default' ) {
+	function __construct(
+		$name, $restriction = '', $listed = true, $function = false, $file = 'default'
+	) {
 		parent::__construct( $name, $restriction, $listed, $function, $file, true );
 	}
 
@@ -946,10 +955,12 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 }
 
 abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
-
 	var $redirName, $redirSubpage;
 
-	function __construct( $name, $redirName, $redirSubpage = false, $allowedRedirectParams = array(), $addedRedirectParams = array() ) {
+	function __construct(
+		$name, $redirName, $redirSubpage = false,
+		$allowedRedirectParams = array(), $addedRedirectParams = array()
+	) {
 		parent::__construct( $name );
 		$this->redirName = $redirName;
 		$this->redirSubpage = $redirSubpage;
@@ -1013,11 +1024,10 @@ class SpecialMypage extends RedirectSpecialPage {
 	}
 
 	function getRedirect( $subpage ) {
-		global $wgUser;
 		if ( strval( $subpage ) !== '' ) {
-			return Title::makeTitle( NS_USER, $wgUser->getName() . '/' . $subpage );
+			return Title::makeTitle( NS_USER, $this->getUser()->getName() . '/' . $subpage );
 		} else {
-			return Title::makeTitle( NS_USER, $wgUser->getName() );
+			return Title::makeTitle( NS_USER, $this->getUser()->getName() );
 		}
 	}
 }
@@ -1034,11 +1044,10 @@ class SpecialMytalk extends RedirectSpecialPage {
 	}
 
 	function getRedirect( $subpage ) {
-		global $wgUser;
 		if ( strval( $subpage ) !== '' ) {
-			return Title::makeTitle( NS_USER_TALK, $wgUser->getName() . '/' . $subpage );
+			return Title::makeTitle( NS_USER_TALK, $this->getUser()->getName() . '/' . $subpage );
 		} else {
-			return Title::makeTitle( NS_USER_TALK, $wgUser->getName() );
+			return Title::makeTitle( NS_USER_TALK, $this->getUser()->getName() );
 		}
 	}
 }
@@ -1055,8 +1064,7 @@ class SpecialMycontributions extends RedirectSpecialPage {
 	}
 
 	function getRedirect( $subpage ) {
-		global $wgUser;
-		return SpecialPage::getTitleFor( 'Contributions', $wgUser->getName() );
+		return SpecialPage::getTitleFor( 'Contributions', $this->getUser()->getName() );
 	}
 }
 
@@ -1070,8 +1078,7 @@ class SpecialMyuploads extends RedirectSpecialPage {
 	}
 
 	function getRedirect( $subpage ) {
-		global $wgUser;
-		return SpecialPage::getTitleFor( 'Listfiles', $wgUser->getName() );
+		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );
 	}
 }
 
