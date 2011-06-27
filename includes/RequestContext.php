@@ -1,7 +1,7 @@
 <?php
 /**
  * Group all the pieces relevant to the context of a request into one instance
- *
+ * 
  * @since 1.18
  *
  * @author IAlex
@@ -14,32 +14,32 @@ class RequestContext {
 	/**
 	 * @var WebRequest
 	 */
-	private $mRequest;
+	private $request;
 
 	/**
 	 * @var Title
 	 */
-	private $mTitle;
+	private $title;
 
 	/**
 	 * @var OutputPage
 	 */
-	private $mOutput;
+	private $output;
 
 	/**
 	 * @var User
 	 */
-	private $mUser;
+	private $user;
 
 	/**
 	 * @var Language
 	 */
-	private $mLang;
+	private $lang;
 
 	/**
 	 * @var Skin
 	 */
-	private $mSkin;
+	private $skin;
 
 	/**
 	 * Set the WebRequest object
@@ -47,7 +47,7 @@ class RequestContext {
 	 * @param $r WebRequest object
 	 */
 	public function setRequest( WebRequest $r ) {
-		$this->mRequest = $r;
+		$this->request = $r;
 	}
 
 	/**
@@ -56,11 +56,11 @@ class RequestContext {
 	 * @return WebRequest
 	 */
 	public function getRequest() {
-		if ( !isset( $this->mRequest ) ) {
+		if ( !isset($this->request) ) {
 			global $wgRequest; # fallback to $wg till we can improve this
-			$this->mRequest = $wgRequest;
+			$this->request = $wgRequest;
 		}
-		return $this->mRequest;
+		return $this->request;
 	}
 
 	/**
@@ -69,7 +69,7 @@ class RequestContext {
 	 * @param $t Title object
 	 */
 	public function setTitle( Title $t ) {
-		$this->mTitle = $t;
+		$this->title = $t;
 	}
 
 	/**
@@ -78,18 +78,18 @@ class RequestContext {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if ( !isset( $this->mTitle ) ) {
+		if ( !isset($this->title) ) {
 			global $wgTitle; # fallback to $wg till we can improve this
-			$this->mTitle = $wgTitle;
+			$this->title = $wgTitle;
 		}
-		return $this->mTitle;
+		return $this->title;
 	}
 
 	/**
 	 * @param $o OutputPage
 	 */
 	public function setOutput( OutputPage $o ) {
-		$this->mOutput = $o;
+		$this->output = $o;
 	}
 
 	/**
@@ -98,10 +98,10 @@ class RequestContext {
 	 * @return OutputPage object
 	 */
 	public function getOutput() {
-		if ( !isset( $this->mOutput ) ) {
-			$this->mOutput = new OutputPage( $this );
+		if ( !isset( $this->output ) ) {
+			$this->output = new OutputPage( $this );
 		}
-		return $this->mOutput;
+		return $this->output;
 	}
 
 	/**
@@ -110,7 +110,7 @@ class RequestContext {
 	 * @param $u User
 	 */
 	public function setUser( User $u ) {
-		$this->mUser = $u;
+		$this->user = $u;
 	}
 
 	/**
@@ -119,13 +119,13 @@ class RequestContext {
 	 * @return User
 	 */
 	public function getUser() {
-		if ( !isset( $this->mUser ) ) {
+		if ( !isset($this->user) ) {
 			global $wgCommandLineMode;
-			$this->mUser = $wgCommandLineMode
+			$this->user = $wgCommandLineMode
 				? new User
 				: User::newFromSession( $this->getRequest() );
 		}
-		return $this->mUser;
+		return $this->user;
 	}
 
 	/**
@@ -134,7 +134,7 @@ class RequestContext {
 	 * @return Language
 	 */
 	public function getLang() {
-		if ( !isset( $this->mLang ) ) {
+		if ( !isset($this->lang) ) {
 			global $wgLanguageCode, $wgContLang;
 			$code = $this->getRequest()->getVal(
 				'uselang',
@@ -144,21 +144,21 @@ class RequestContext {
 			$code = strtolower( $code );
 
 			# Validate $code
-			if ( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
+			if( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
 				wfDebug( "Invalid user language code\n" );
 				$code = $wgLanguageCode;
 			}
 
 			wfRunHooks( 'UserGetLanguageObject', array( $this->getUser(), &$code ) );
 
-			if ( $code === $wgLanguageCode ) {
-				$this->mLang = $wgContLang;
+			if( $code === $wgLanguageCode ) {
+				$this->lang = $wgContLang;
 			} else {
 				$obj = Language::factory( $code );
-				$this->mLang = $obj;
+				$this->lang = $obj;
 			}
 		}
-		return $this->mLang;
+		return $this->lang;
 	}
 
 	/**
@@ -167,11 +167,11 @@ class RequestContext {
 	 * @return Skin
 	 */
 	public function getSkin() {
-		if ( !isset( $this->mSkin ) ) {
+		if ( !isset($this->skin) ) {
 			wfProfileIn( __METHOD__ . '-createskin' );
-
+			
 			global $wgHiddenPrefs;
-			if ( !in_array( 'skin', $wgHiddenPrefs ) ) {
+			if( !in_array( 'skin', $wgHiddenPrefs ) ) {
 				# get the user skin
 				$userSkin = $this->getUser()->getOption( 'skin' );
 				$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
@@ -181,11 +181,11 @@ class RequestContext {
 				$userSkin = $wgDefaultSkin;
 			}
 
-			$this->mSkin = Skin::newFromKey( $userSkin );
-			$this->mSkin->setContext( $this );
+			$this->skin = Skin::newFromKey( $userSkin );
+			$this->skin->setContext( $this );
 			wfProfileOut( __METHOD__ . '-createskin' );
 		}
-		return $this->mSkin;
+		return $this->skin;
 	}
 
 	/** Helpful methods **/
@@ -210,42 +210,10 @@ class RequestContext {
 	 */
 	public static function getMain() {
 		static $instance = null;
-		if ( !isset( $instance ) ) {
+		if ( !isset($instance) ) {
 			$instance = new self;
 		}
 		return $instance;
-	}
-
-	/**
-	 * Make these C#-style accessors, so you can do $context->user->getName() which is
-	 * internally mapped to $context->__get('user')->getName() which is mapped to
-	 * $context->getUser()->getName()
-	 *
-	 * @param $name string
-	 *
-	 * @return string
-	 */
-	public function __get( $name ) {
-		wfDeprecated( 'RequestContext::__get() is deprecated; use $context->getFoo() instead' );
-		if ( in_array( $name, array( 'request', 'title', 'output', 'user', 'lang', 'skin' ) ) ) {
-			$fname = 'get' . ucfirst( $name );
-			return $this->$fname();
-		}
-		trigger_error( "Undefined property {$name}", E_NOTICE );
-	}
-
-	/**
-	 * @param $name string
-	 * @param $value
-	 * @return string
-	 */
-	public function __set( $name, $value ) {
-		wfDeprecated( 'RequestContext::__set() is deprecated; use $context->setFoo() instead' );
-		if ( in_array( $name, array( 'request', 'title', 'output', 'user', 'lang', 'skin' ) ) ) {
-			$fname = 'set' . ucfirst( $name );
-			return $this->$fname( $value );
-		}
-		trigger_error( "Undefined property {$name}", E_NOTICE );
 	}
 }
 
