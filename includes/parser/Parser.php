@@ -4012,10 +4012,7 @@ class Parser {
 					if ( $dot ) {
 						$numbering .= '.';
 					}
-					global $wgBetterDirectionality;
-					$pagelang = $this->mTitle->getPageLanguage();
-					$toclang = ( $wgBetterDirectionality ? $pagelang : $wgContLang );
-					$numbering .= $toclang->formatNum( $sublevelCount[$i] );
+					$numbering .= $this->getFunctionLang()->formatNum( $sublevelCount[$i] );
 					$dot = 1;
 				}
 			}
