@@ -619,6 +619,11 @@ $wgImageMagickTempDir = false;
 $wgCustomConvertCommand = false;
 
 /**
+ * Some tests and extensions use exiv2 to manipulate the EXIF metadata in some image formats. 
+ */
+$wgExiv2Command = '/usr/bin/exiv2';
+
+/**
  * Scalable Vector Graphics (SVG) may be uploaded as images.
  * Since SVG support is not yet standard in browsers, it is
  * necessary to rasterize SVGs to PNG as a fallback format.
