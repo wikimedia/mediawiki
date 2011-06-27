@@ -447,7 +447,7 @@ $messages = array(
 'vector-action-move'             => 'Переименовать',
 'vector-action-protect'          => 'Защитить',
 'vector-action-undelete'         => 'Восстановить',
-'vector-action-unprotect'        => 'Снять защиту',
+'vector-action-unprotect'        => 'Изменить защиту',
 'vector-simplesearch-preference' => 'Включить расширенные поисковые подсказки (только для оформления «Векторное»)',
 'vector-view-create'             => 'Создание',
 'vector-view-edit'               => 'Правка',
@@ -484,8 +484,8 @@ $messages = array(
 'protect'           => 'Защитить',
 'protect_change'    => 'изменить',
 'protectthispage'   => 'Защитить эту страницу',
-'unprotect'         => 'Снять защиту',
-'unprotectthispage' => 'Снять защиту',
+'unprotect'         => 'Изменить защиту',
+'unprotectthispage' => 'Изменить защиту этой страницы',
 'newpage'           => 'Новая страница',
 'talkpage'          => 'Обсудить эту страницу',
 'talkpagelinktext'  => 'обсуждение',
@@ -1536,10 +1536,11 @@ $1",
 'right-sendemail'             => 'отправлять электронную почту другим участникам',
 
 # User rights log
-'rightslog'      => 'Журнал прав участника',
-'rightslogtext'  => 'Это журнал изменений прав участника.',
-'rightslogentry' => 'изменил членство в группах для $1 с $2 на $3',
-'rightsnone'     => '(нет)',
+'rightslog'                  => 'Журнал прав участника',
+'rightslogtext'              => 'Это журнал изменений прав участника.',
+'rightslogentry'             => 'изменил членство в группах для $1 с $2 на $3',
+'rightslogentry-autopromote' => 'был автоматически переведён из $2 в $3',
+'rightsnone'                 => '(нет)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'чтение этой страницы',
@@ -2320,7 +2321,8 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => 'Журнал защиты',
-'protectlogtext'              => 'Ниже приведён журнал установок и снятий защиты со статей. Вы можете также просмотреть [[Special:ProtectedPages|список страниц, которые в данный момент защищены]].',
+'protectlogtext'              => 'Ниже приведён журнал изменений защиты страницы.
+Вы можете также просмотреть [[Special:ProtectedPages|список страниц, которые в данный момент защищены]].',
 'protectedarticle'            => 'защищена страница «[[$1]]»',
 'modifiedarticleprotection'   => 'изменён уровень защиты страницы «[[$1]]»',
 'unprotectedarticle'          => 'снята защита с «[[$1]]»',
@@ -2428,10 +2430,12 @@ $1',
 'undelete-show-file-submit'    => 'Да',
 
 # Namespace form on various pages
-'namespace'             => 'Пространство имён:',
-'invert'                => 'Обратить выбранное',
-'namespace_association' => 'Связанные пространства имён',
-'blanknamespace'        => '(Основное)',
+'namespace'                     => 'Пространство имён:',
+'invert'                        => 'Обратить выбранное',
+'tooltip-invert'                => 'Установите эту отметку, чтобы скрыть изменения на страницах, в пределах выбранного пространства имён (и связанных пространств имён, если указано)',
+'namespace_association'         => 'Связанные пространства имён',
+'tooltip-namespace_association' => 'Установите эту отметку, чтобы также включить пространство имён обсуждения (или предметное), связанное с выбранным пространством имён',
+'blanknamespace'                => '(Основное)',
 
 # Contributions
 'contributions'       => 'Вклад участника',
@@ -2837,7 +2841,7 @@ $1',
 'tooltip-ca-viewsource'           => 'Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст',
 'tooltip-ca-history'              => 'Журнал изменений страницы',
 'tooltip-ca-protect'              => 'Защитить страницу от изменений',
-'tooltip-ca-unprotect'            => 'Снять защиту с этой страницы',
+'tooltip-ca-unprotect'            => 'Изменить защиту этой страницы',
 'tooltip-ca-delete'               => 'Удалить эту страницу',
 'tooltip-ca-undelete'             => 'Восстановить исправления страницы, сделанные до того, как она была удалена',
 'tooltip-ca-move'                 => 'Переименовать страницу',

@@ -463,7 +463,7 @@ $messages = array(
 'vector-action-move'             => 'Mover',
 'vector-action-protect'          => 'Proteger',
 'vector-action-undelete'         => 'Restaurar',
-'vector-action-unprotect'        => 'Desproteger',
+'vector-action-unprotect'        => 'Alterar protecção',
 'vector-simplesearch-preference' => 'Activar sugestões de busca melhoradas (apenas no tema Vector)',
 'vector-view-create'             => 'Criar',
 'vector-view-edit'               => 'Editar',
@@ -500,8 +500,8 @@ $messages = array(
 'protect'           => 'Proteger',
 'protect_change'    => 'alterar',
 'protectthispage'   => 'Proteger esta página',
-'unprotect'         => 'Desproteger',
-'unprotectthispage' => 'Desproteger esta página',
+'unprotect'         => 'Alterar protecção',
+'unprotectthispage' => 'Alterar a protecção desta página',
 'newpage'           => 'Nova página',
 'talkpage'          => 'Discutir esta página',
 'talkpagelinktext'  => 'discussão',
@@ -1567,10 +1567,11 @@ Esta informação será pública.',
 'right-sendemail'             => 'Enviar correio electrónico a outros utilizadores',
 
 # User rights log
-'rightslog'      => 'Registo de privilégios de utilizador',
-'rightslogtext'  => 'Este é um registo de mudanças nos privilégios dos utilizadores.',
-'rightslogentry' => 'alterou grupos de $1 (de $2 para $3)',
-'rightsnone'     => '(nenhum)',
+'rightslog'                  => 'Registo de privilégios de utilizador',
+'rightslogtext'              => 'Este é um registo de mudanças nos privilégios dos utilizadores.',
+'rightslogentry'             => 'alterou grupos de $1 (de $2 para $3)',
+'rightslogentry-autopromote' => 'foi automaticamente promovido de $2 para $3',
+'rightsnone'                 => '(nenhum)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'ler esta página',
@@ -2361,7 +2362,7 @@ Clique o botão "Voltar" e recarregue a página de onde veio, depois tente novam
 
 # Protect
 'protectlogpage'              => 'Registo de protecção',
-'protectlogtext'              => 'Abaixo encontra o registo de protecção e desprotecção de páginas.
+'protectlogtext'              => 'Encontra abaixo o registo de protecção e desprotecção de páginas.
 Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as páginas que se encontram protegidas neste momento.',
 'protectedarticle'            => 'protegeu "[[$1]]"',
 'modifiedarticleprotection'   => 'alterou o nível de protecção para "[[$1]]"',
@@ -2472,10 +2473,12 @@ $1',
 'undelete-show-file-submit'    => 'Sim',
 
 # Namespace form on various pages
-'namespace'             => 'Espaço nominal:',
-'invert'                => 'Inverter selecção',
-'namespace_association' => 'Espaço nominal associado',
-'blanknamespace'        => '(Principal)',
+'namespace'                     => 'Espaço nominal:',
+'invert'                        => 'Inverter selecção',
+'tooltip-invert'                => 'Marque esta caixa para esconder as alterações a páginas no espaço nominal seleccionado (e no espaço nominal associado, se escolheu fazê-lo)',
+'namespace_association'         => 'Espaço nominal associado',
+'tooltip-namespace_association' => 'Marque esta caixa para incluir também o espaço nominal de conteúdo ou de discussão associado à sua selecção',
+'blanknamespace'                => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contribuições do utilizador',
@@ -2882,7 +2885,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-ca-viewsource'           => 'Esta página está protegida; só pode ver o conteúdo.',
 'tooltip-ca-history'              => 'Edições anteriores desta página.',
 'tooltip-ca-protect'              => 'Proteger esta página',
-'tooltip-ca-unprotect'            => 'Desproteger esta página',
+'tooltip-ca-unprotect'            => 'Alterar a protecção desta página',
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-undelete'             => 'Restaurar edições feitas a esta página antes da eliminação',
 'tooltip-ca-move'                 => 'Mover esta página',

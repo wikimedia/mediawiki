@@ -9378,6 +9378,7 @@ $messages['mn'] = array(
  */
 $messages['ms'] = array(
 	'config-page-language' => 'Bahasa',
+	'config-page-options' => 'Pilihan',
 	'config-page-install' => 'Pasang',
 );
 

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Sapral Mikail
  * @author Tagir
  */
@@ -161,7 +162,7 @@ $messages = array(
 'vector-action-move'             => 'ЦIи хувца',
 'vector-action-protect'          => 'Лораде',
 'vector-action-undelete'         => 'Юхаоттаде',
-'vector-action-unprotect'        => 'Лорам тIерaбаккха',
+'vector-action-unprotect'        => 'Лорам хувца',
 'vector-simplesearch-preference' => 'Яьржа лахарий довзамаш чуяккха (Vector skin only)',
 'vector-view-create'             => 'Кхоллам',
 'vector-view-edit'               => 'Хувцар',
@@ -199,8 +200,8 @@ $messages = array(
 'protect'           => 'Лораде',
 'protect_change'    => 'хувца',
 'protectthispage'   => 'Лорае ер оагIув',
-'unprotect'         => 'Лорам тIерaбаккха',
-'unprotectthispage' => 'Лорам тIерабаккха',
+'unprotect'         => 'Лорам хувца',
+'unprotectthispage' => 'Лорам хувца',
 'newpage'           => 'Керда оагIув',
 'talkpage'          => 'Укх оагIув тIа дувцам бе',
 'talkpagelinktext'  => 'дувцам',
@@ -386,6 +387,7 @@ $messages = array(
 'blockedtitle'                     => 'Дакъалаьцархо чIега бела ва/я',
 'blockednoreason'                  => 'бахьан доацаш да',
 'loginreqlink'                     => 'чувала/яла',
+'loginreqpagetext'                 => 'Кхыйола оагIувнашка хьожаргдолаш, оаш $1 де деза.',
 'accmailtitle'                     => 'КъайладоагI дIадахатад',
 'newarticle'                       => '(Kерда)',
 'newarticletext'                   => 'Шо йоаца оагIув тIа Iинкаца дехьадаьннад.
@@ -463,7 +465,7 @@ $messages = array(
 'revdelete-radio-unset'      => 'A',
 'revdelete-log'              => 'Бахьан',
 'revdelete-logentry'         => '[[$1]] доржама оагIувни бIасанче хийцай',
-'revdel-restore'             => ' БIасанче хувца',
+'revdel-restore'             => 'БӀасанче хувца',
 'revdel-restore-deleted'     => 'дIадаьккха доржамаш',
 'revdel-restore-visible'     => 'бIаргагушдола доржамаш',
 'pagehist'                   => 'ОагIува искар',
@@ -986,16 +988,16 @@ $messages = array(
 'tooltip-ca-move'                 => 'Укх оагIува цIи хувца',
 'tooltip-ca-watch'                => 'Ер оагIув теркам беча каьхата тIа тIаяккха',
 'tooltip-ca-unwatch'              => 'Ер оагIув теркам беча каьхата тIара дIаяккха',
-'tooltip-search'                  => ' Цу тайпара дош лаха {{SITENAME}}',
-'tooltip-search-go'               => ' Изза мо цIи йолаш оагIув тIa дехьавала',
-'tooltip-search-fulltext'         => ' Изза мо яздам долаш оагIувнаш лаха',
+'tooltip-search'                  => 'Цу тайпара дош лаха {{SITENAME}}',
+'tooltip-search-go'               => 'Изза мо цӀи йолаш оагӀув тӀa дехьавала',
+'tooltip-search-fulltext'         => 'Изза мо яздам долаш оагӀувнаш лаха',
 'tooltip-p-logo'                  => 'Кертера оагIув тIа дехьавала',
 'tooltip-n-mainpage'              => 'Кертера оагIув тIа дехьавала',
 'tooltip-n-mainpage-description'  => 'Кертера оагIув тIа дехьавала',
 'tooltip-n-portal'                => 'Хьахьоадайтамахь лаьца, хьа де йийшдар, фа а мичча а йоала',
 'tooltip-n-currentevents'         => 'ХIанзара хоамий дагарче',
-'tooltip-n-recentchanges'         => ' ТIехьара хувцамий дагарче',
-'tooltip-n-randompage'            => ' Бе йоаца оагIув ела',
+'tooltip-n-recentchanges'         => 'ТӀехьара хувцамий дагарче',
+'tooltip-n-randompage'            => 'Бе йоаца оагӀув ела',
 'tooltip-n-help'                  => 'Новкъостала моттиг',
 'tooltip-t-whatlinkshere'         => 'Массайола оагIувий дагарче, укх оагIув тIа Iинкаш луш йола',
 'tooltip-t-recentchangeslinked'   => 'ОагIувнаш тIа тIехьара хувцамаш, укх оагIувнера Iинк я йола',

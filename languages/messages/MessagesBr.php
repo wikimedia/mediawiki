@@ -1410,11 +1410,10 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 
 # User rights log
-'rightslog'         => 'Marilh statud an implijerien',
-'rightslogtext'     => "Setu marilh ar c'hemmoù statud bet c'hoarvezet d'an implijerien.",
-'rightslogentry'    => '{{Gender:.|en|he}} deus cheñchet gwirioù an {{Gender:.|implijer|implijerez}}  $1 a oa $2 hag a zo bet lakaet da $3',
-'rightsnone'        => '(netra)',
-'rightsautocomment' => 'kaset war-raok ent emgefre',
+'rightslog'      => 'Marilh statud an implijerien',
+'rightslogtext'  => "Setu marilh ar c'hemmoù statud bet c'hoarvezet d'an implijerien.",
+'rightslogentry' => '{{Gender:.|en|he}} deus cheñchet gwirioù an {{Gender:.|implijer|implijerez}}  $1 a oa $2 hag a zo bet lakaet da $3',
+'rightsnone'     => '(netra)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'lenn ar bajenn-mañ',
