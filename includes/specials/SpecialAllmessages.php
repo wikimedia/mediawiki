@@ -71,7 +71,7 @@ class SpecialAllmessages extends SpecialPage {
 			wfGetLangObj( $request->getVal( 'lang', $par ) )
 		);
 
-		$this->langCode = $this->table->lang->getCode();
+		$this->langcode = $this->table->lang->getCode();
 
 		$out->addHTML( $this->table->buildForm() .
 			$this->table->getNavigationBar() .
@@ -82,15 +82,13 @@ class SpecialAllmessages extends SpecialPage {
 
 }
 
-
-
 /**
  * Use TablePager for prettified output. We have to pretend that we're
  * getting data from a table when in fact not all of it comes from the database.
  */
 class AllmessagesTablePager extends TablePager {
 
-	protected $filter, $prefix, $langCode;
+	protected $filter, $prefix, $langcode;
 
 	public $mLimitsShown;
 
