@@ -34,7 +34,7 @@ class CreditsAction extends FormlessAction {
 	}
 
 	protected function getDescription() {
-		return wfMsg( strtolower( 'creditspage' ) );
+		return wfMsg( 'creditspage' );
 	}
 
 	/**
