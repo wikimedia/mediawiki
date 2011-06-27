@@ -88,7 +88,7 @@ class SpecialAllmessages extends SpecialPage {
  */
 class AllmessagesTablePager extends TablePager {
 
-	protected $filter, $prefix, $langcode;
+	protected $filter, $prefix, $langcode, $displayPrefix;
 
 	public $mLimitsShown;
 
@@ -132,8 +132,10 @@ class AllmessagesTablePager extends TablePager {
 		$prefix = $wgLang->ucfirst( $wgRequest->getVal( 'prefix', '' ) );
 		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $wgRequest->getVal( 'prefix', null ) ) : null;
 		if( $prefix !== null ){
-			$this->prefix = '/^' . preg_quote( $prefix->getDBkey() ) . '/i';
+			$this->displayPrefix = $prefix->getDBkey();
+			$this->prefix = '/^' . preg_quote( $this->displayPrefix ) . '/i';
 		} else {
+			$this->displayPrefix = false;
 			$this->prefix = false;
 		}
 		$this->getSkin();
