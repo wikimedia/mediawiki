@@ -988,11 +988,6 @@ class Block {
 	 *     not be the same as the target you gave if you used $vagueTarget!
 	 */
 	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
-		# (bug 29116) passing $vagueTarget = '' is not unreasonable here, but int(0)
-		# is a valid username, so we can't just use weak comparisons.
-		if( $vagueTarget === '' ){
-			$vagueTarget = null;
-		}
 
 		list( $target, $type ) = self::parseTarget( $specificTarget );
 		if( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ){
@@ -1000,7 +995,8 @@ class Block {
 
 		} elseif( $target === null && $vagueTarget == '' ){
 			# We're not going to find anything useful here
-			# Be aware that the == '' check is explicit, since empty values will be passed by some callers.
+			# Be aware that the == '' check is explicit, since empty values will be
+			# passed by some callers (bug 29116)
 			return null;
 
 		} elseif( in_array( $type, array( Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ) ) ) {
