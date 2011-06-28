@@ -104,18 +104,11 @@ class Autopromote {
 
 				return false;
 			} elseif ( $cond[0] == '^' ) { // XOR (exactly one cond passes)
-				$res = false;
-				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( self::recCheckCondition( $subcond, $user ) ) {
-						if ( $res ) {
-							return false;
-						} else {
-							$res = true;
-						}
-					}
+				if ( count( $cond ) > 3 ) {
+					wfWarn( 'recCheckCondition() given XOR ("^") condition on three or more conditions. Check your $wgAutopromote and $wgAutopromoteOnce settings.' );
 				}
-
-				return $res;
+				return self::recCheckCondition( $cond[1], $user )
+					xor self::recCheckCondition( $cond[2], $user );
 			} elseif ( $cond[0] == '!' ) { // NOT (no conds pass)
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
 					if ( self::recCheckCondition( $subcond, $user ) ) {
