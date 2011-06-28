@@ -25,11 +25,11 @@
 		},
 
 		init: function() {
-			// Populate & bind
-	 		$select = $( '#namespace' ).change( rc.updateCheckboxes );
+			// Populate
+	 		$select = $( '#namespace' );
 
-			// Trigger once set the initial statuses of the checkboxes.
-			$select.change();
+			// Bind to change event, and trigger once to set the initial state of the checkboxes.
+			$select.change( rc.updateCheckboxes ).change();
 		}
 	};
 
