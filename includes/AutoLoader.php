@@ -748,6 +748,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialNewFiles' => 'includes/specials/SpecialNewimages.php',
 	'SpecialNewpages' => 'includes/specials/SpecialNewpages.php',
 	'SpecialPasswordReset' => 'includes/specials/SpecialPasswordReset.php',
+	'SpecialPermanentLink' => 'includes/specials/SpecialPage.php',
 	'SpecialPreferences' => 'includes/specials/SpecialPreferences.php',
 	'SpecialPrefixindex' => 'includes/specials/SpecialPrefixindex.php',
 	'SpecialProtectedpages' => 'includes/specials/SpecialProtectedpages.php',
