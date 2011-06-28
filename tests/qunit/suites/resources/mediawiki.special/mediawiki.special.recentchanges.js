@@ -1,12 +1,12 @@
-module( 'mediawiki.special.preferences.js' );
+module( 'mw.special.recentchanges.js' );
 
 test( '-- Initial check', function() {
 	expect( 2 );
-	ok( mediaWiki.special.recentchanges.init,
-	   'mediaWiki.special.recentchanges.init defined'
+	ok( mw.special.recentchanges.init,
+	   'mw.special.recentchanges.init defined'
 	  );
-	ok( mediaWiki.special.recentchanges.updateCheckboxes,
-	   'mediaWiki.special.recentchanges.updateCheckboxes defined'
+	ok( mw.special.recentchanges.updateCheckboxes,
+	   'mw.special.recentchanges.updateCheckboxes defined'
 	  );
 	// TODO: verify checkboxes == [ 'nsassociated', 'nsinvert' ]
 });
@@ -38,29 +38,29 @@ test( 'foobar', function() {
 	// TODO abstract the double strictEquals
 
 	// At first checkboxes are enabled
-	strictEqual( $('input#nsinvert').attr('disabled'), enabled);
-	strictEqual( $('input#nsassociated').attr('disabled'), enabled);
+	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), enabled );
+	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), enabled );
 
 	// load our magic code to disable them
-	mediaWiki.special.recentchanges.init();
-	strictEqual( $('#nsinvert').attr('disabled'), 'disabled');
-	strictEqual( $('#nsassociated').attr('disabled'), 'disabled' );
+	mw.special.recentchanges.init();
+	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), 'disabled' );
+	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), 'disabled' );
 
 	// select second option...
-	$('select#namespace option:nth-child(1)').removeAttr( 'selected' );
-	$('select#namespace option:nth-child(2)').attr( 'selected', 'selected' );
-	$('select#namespace').change();
+	$( '#namespace option:nth-child(1)' ).removeAttr( 'selected' );
+	$( '#namespace option:nth-child(2)' ).attr( 'selected', 'selected' );
+	$( '#namespace' ).change();
 	// ... and checkboxes should be enabled again
-	strictEqual( $('input#nsinvert').attr('disabled'), enabled);
-	strictEqual( $('input#nsassociated').attr('disabled'), enabled);
+	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), enabled );
+	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), enabled );
 
-	// select first option ('all' namespace)...
-	$('select#namespace option:nth-child(1)').attr( 'selected', 'selected' );
-	$('select#namespace option:nth-child(2)').removeAttr( 'selected' );
-	$('select#namespace').change();
+	// select first option ( 'all' namespace)...
+	$( '#namespace option:nth-child(1)' ).attr( 'selected', 'selected' );
+	$( '#namespace option:nth-child(2)' ).removeAttr( 'selected' );
+	$( '#namespace' ).change();
 	// ... and checkboxes should now be disabled
-	strictEqual( $('#nsinvert').attr('disabled'), 'disabled');
-	strictEqual( $('#nsassociated').attr('disabled'), 'disabled' );
+	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), 'disabled' );
+	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), 'disabled' );
 
 	// DOM cleanup
 	$env.remove();
