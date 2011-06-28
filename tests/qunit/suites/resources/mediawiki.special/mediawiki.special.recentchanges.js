@@ -1,4 +1,4 @@
-module( 'mw.special.recentchanges.js' );
+module( 'mediawiki.special.recentchanges.js' );
 
 test( '-- Initial check', function() {
 	expect( 2 );
