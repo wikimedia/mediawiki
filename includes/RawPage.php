@@ -60,7 +60,7 @@ class RawPage {
 				if( !$oldid ) {
 					# get the current revision so we can get the penultimate one
 					$this->mArticle->getTouched();
-					$oldid = $this->mArticle->mLatest;
+					$oldid = $this->mArticle->getLatest();
 				}
 				$prev = $this->mTitle->getPreviousRevisionId( $oldid );
 				$oldid = $prev ? $prev : -1 ;
