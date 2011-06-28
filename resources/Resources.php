@@ -538,6 +538,7 @@ return array(
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
 		'dependencies' => array( 'mediawiki.special' ),
+		'position' => 'top',
 	),
 	'mediawiki.special.upload' => array(
 		// @TODO: merge in remainder of mediawiki.legacy.upload

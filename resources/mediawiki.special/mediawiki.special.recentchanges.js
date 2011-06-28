@@ -3,22 +3,12 @@
 
 	var checkboxes = [ 'nsassociated', 'nsinvert' ];
 
-	mw.special.recentchanges = {
+	/**
+	 * @var select {jQuery}
+	 */
+	var $select = null;
 
-		/**
-		 * @var select {jQuery}
-		 */
-		$select: null,
-
-		init: function() {
-			var rc = this;
-
-			rc.$select = 
-				$( 'select#namespace' )
-					.change( rc.updateCheckboxes )
-					// Trigger once set the initial statuses of the checkboxes.
-					.change();
-		},
+	var rc = mw.special.recentchanges = {
 	
 		/**
 		 * Handler to disable/enable the namespace selector checkboxes when the
@@ -26,15 +16,24 @@
 		 */
 	 	updateCheckboxes: function() {
 			// The 'all' namespace is the FIRST in the list.
-			var isAllNS = mw.special.recentchanges.$select.find( 'option' ).first().is( ':selected' );
+			var isAllNS = $select.find( 'option' ).first().is( ':selected' );
 
 			// Iterates over checkboxes and propagate the selected option
-			$.map( checkboxes, function( id ) {
-				$( '#'+id ).attr( 'disabled', isAllNS );
+			$.each( checkboxes, function( i, id ) {
+				$( '#' + id ).attr( 'disabled', isAllNS );
 			});
 		},
+
+		init: function() {
+			// Populate & bind
+	 		$select = $( '#namespace' ).change( rc.updateCheckboxes );
+
+			// Trigger once set the initial statuses of the checkboxes.
+			$select.change();
+		}
 	};
 
-	mw.special.recentchanges.init();
+	// Run when document is ready
+	$( rc.init );
 
 })( jQuery );
