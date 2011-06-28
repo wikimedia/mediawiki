@@ -11,7 +11,7 @@ test( '-- Initial check', function() {
 	// TODO: verify checkboxes == [ 'nsassociated', 'nsinvert' ]
 });
 
-test( 'foobar', function() {
+test( '"all" namespace disable checkboxes', function() {
 
 	// from Special:Recentchanges
 	var select =
