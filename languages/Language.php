@@ -2770,31 +2770,33 @@ class Language {
 			return $text; // string short enough even *with* HTML (short-circuit)
 		}
 
-		$displayLen = 0; // innerHTML legth so far
+		$dispLen = 0; // innerHTML legth so far
 		$testingEllipsis = false; // checking if ellipses will make string longer/equal?
 		$tagType = 0; // 0-open, 1-close
 		$bracketState = 0; // 1-tag start, 2-tag name, 0-neither
 		$entityState = 0; // 0-not entity, 1-entity
-		$tag = $ret = $pRet = ''; // accumulated tag name, accumulated result string
+		$tag = $ret = ''; // accumulated tag name, accumulated result string
 		$openTags = array(); // open tag stack
-		$pOpenTags = array();
+		$maybeState = null; // possible truncation state
 
 		$textLen = strlen( $text );
 		$neLength = max( 0, $length - strlen( $ellipsis ) ); // non-ellipsis len if truncated
 		for ( $pos = 0; true; ++$pos ) {
 			# Consider truncation once the display length has reached the maximim.
+			# We check if $dispLen > 0 to grab tags for the $neLength = 0 case.
 			# Check that we're not in the middle of a bracket/entity...
-			if ( $displayLen >= $neLength && $bracketState == 0 && $entityState == 0 ) {
+			if ( $dispLen && $dispLen >= $neLength && $bracketState == 0 && !$entityState ) {
 				if ( !$testingEllipsis ) {
 					$testingEllipsis = true;
 					# Save where we are; we will truncate here unless there turn out to
 					# be so few remaining characters that truncation is not necessary.
-					$pOpenTags = $openTags; // save state
-					$pRet = $ret; // save state
-				} elseif ( $displayLen > $length && $displayLen > strlen( $ellipsis ) ) {
+					if ( !$maybeState ) { // already saved? ($neLength = 0 case)
+						$maybeState = array( $ret, $openTags ); // save state
+					}
+				} elseif ( $dispLen > $length && $dispLen > strlen( $ellipsis ) ) {
 					# String in fact does need truncation, the truncation point was OK.
-					$openTags = $pOpenTags; // reload state
-					$ret = $this->removeBadCharLast( $pRet ); // reload state, multi-byte char fix
+					list( $ret, $openTags ) = $maybeState; // reload state
+					$ret = $this->removeBadCharLast( $ret ); // multi-byte char fix
 					$ret .= $ellipsis; // add ellipsis
 					break;
 				}
@@ -2832,24 +2834,26 @@ class Language {
 				if ( $entityState ) {
 					if ( $ch == ';' ) {
 						$entityState = 0;
-						$displayLen++; // entity is one displayed char
+						$dispLen++; // entity is one displayed char
 					}
 				} else {
+					if ( $neLength == 0 && !$maybeState ) {
+						// Save state without $ch. We want to *hit* the first
+						// display char (to get tags) but not *use* it if truncating.
+						$maybeState = array( substr( $ret, 0, -1 ), $openTags );
+					}
 					if ( $ch == '&' ) {
 						$entityState = 1; // entity found, (e.g. "&#160;")
 					} else {
-						$displayLen++; // this char is displayed
+						$dispLen++; // this char is displayed
 						// Add the next $max display text chars after this in one swoop...
-						$max = ( $testingEllipsis ? $length : $neLength ) - $displayLen;
+						$max = ( $testingEllipsis ? $length : $neLength ) - $dispLen;
 						$skipped = $this->truncate_skip( $ret, $text, "<>&", $pos + 1, $max );
-						$displayLen += $skipped;
+						$dispLen += $skipped;
 						$pos += $skipped;
 					}
 				}
 			}
-		}
-		if ( $displayLen == 0 ) {
-			return ''; // no text shown, nothing to format
 		}
 		// Close the last tag if left unclosed by bad HTML
 		$this->truncate_endBracket( $tag, $text[$textLen - 1], $tagType, $openTags );

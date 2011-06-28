@@ -112,6 +112,108 @@ class LanguageTest extends MediaWikiTestCase {
 		);
 	}
 
+	function testTruncate() {
+		$this->assertEquals(
+			"XXX",
+			$this->lang->truncate( "1234567890", 0, 'XXX' ),
+			'truncate prefix, len 0, small ellipsis'
+		);
+
+		$this->assertEquals(
+			"12345XXX",
+			$this->lang->truncate( "1234567890", 8, 'XXX' ),
+			'truncate prefix, small ellipsis'
+		);
+
+		$this->assertEquals(
+			"123456789",
+			$this->lang->truncate( "123456789", 5, 'XXXXXXXXXXXXXXX' ),
+			'truncate prefix, large ellipsis'
+		);
+
+		$this->assertEquals(
+			"XXX67890",
+			$this->lang->truncate( "1234567890", -8, 'XXX' ),
+			'truncate suffix, small ellipsis'
+		);
+
+		$this->assertEquals(
+			"123456789",
+			$this->lang->truncate( "123456789", -5, 'XXXXXXXXXXXXXXX' ),
+			'truncate suffix, large ellipsis'
+		);
+	}
+
+	/**
+	* @dataProvider provideHTMLTruncateData()
+	*/
+	function testTruncateHTML( $len, $ellipsis, $input, $expected ) {
+		// Actual HTML...
+		$this->assertEquals(
+			$expected,
+			$this->lang->truncateHTML( $input, $len, $ellipsis )
+		);
+	}
+
+	/**
+	 * Array format is ($len, $ellipsis, $input, $expected)
+	 */
+	function provideHTMLTruncateData() {
+		return array(
+			array( 0, 'XXX', "1234567890", "XXX" ),
+			array( 8, 'XXX', "1234567890", "12345XXX" ),
+			array( 5, 'XXXXXXXXXXXXXXX', '1234567890', "1234567890" ),
+			array( 2, '***',
+				'<p><span style="font-weight:bold;"></span></p>',
+				'<p><span style="font-weight:bold;"></span></p>',
+			),
+			array( 2, '***',
+				'<p><span style="font-weight:bold;">123456789</span></p>',
+				'<p><span style="font-weight:bold;">***</span></p>',
+			),
+			array( 2, '***',
+				'<p><span style="font-weight:bold;">&nbsp;23456789</span></p>',
+				'<p><span style="font-weight:bold;">***</span></p>',
+			),
+			array( 3, '***',
+				'<p><span style="font-weight:bold;">123456789</span></p>',
+				'<p><span style="font-weight:bold;">***</span></p>',
+			),
+			array( 4, '***',
+				'<p><span style="font-weight:bold;">123456789</span></p>',
+				'<p><span style="font-weight:bold;">1***</span></p>',
+			),
+			array( 5, '***',
+				'<tt><span style="font-weight:bold;">123456789</span></tt>',
+				'<tt><span style="font-weight:bold;">12***</span></tt>',
+			),
+			array( 6, '***',
+				'<p><a href="www.mediawiki.org">123456789</a></p>',
+				'<p><a href="www.mediawiki.org">123***</a></p>',
+			),
+			array( 6, '***',
+				'<p><a href="www.mediawiki.org">12&nbsp;456789</a></p>',
+				'<p><a href="www.mediawiki.org">12&nbsp;***</a></p>',
+			),
+			array( 7, '***',
+				'<small><span style="font-weight:bold;">123<p id="#moo">456</p>789</span></small>',
+				'<small><span style="font-weight:bold;">123<p id="#moo">4***</p></span></small>',
+			),
+			array( 8, '***',
+				'<div><span style="font-weight:bold;">123<span>4</span>56789</span></div>',
+				'<div><span style="font-weight:bold;">123<span>4</span>5***</span></div>',
+			),
+			array( 9, '***',
+				'<p><table style="font-weight:bold;"><tr><td>123456789</td></tr></table></p>',
+				'<p><table style="font-weight:bold;"><tr><td>123456789</td></tr></table></p>',
+			),
+			array( 10, '***',
+				'<p><font style="font-weight:bold;">123456789</font></p>',
+				'<p><font style="font-weight:bold;">123456789</font></p>',
+			),
+		);
+	}
+
 	/**
 	 * Test Language::isValidBuiltInCode()
 	 * @dataProvider provideLanguageCodes
