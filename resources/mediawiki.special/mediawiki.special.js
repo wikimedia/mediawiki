@@ -1,5 +1,1 @@
-( function( $, mw ) {
-
-	mw.special = {};
-
-} )( jQuery, mediaWiki );
+mw.special = {};
