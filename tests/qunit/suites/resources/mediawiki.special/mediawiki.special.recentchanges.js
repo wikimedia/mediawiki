@@ -33,31 +33,35 @@ test( 'foobar', function() {
 	;
 
 	var $env = $( '<div>' ).html( select ).appendTo( 'body' );
-	var enabled = undefined;
 
 	// TODO abstract the double strictEquals
 
 	// At first checkboxes are enabled
-	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), enabled );
-	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), enabled );
+	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), undefined );
+	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), undefined );
 
-	// load our magic code to disable them
+	// Initiate the recentchanges module
 	mw.special.recentchanges.init();
+
+	// By default
 	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), 'disabled' );
 	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), 'disabled' );
 
 	// select second option...
-	$( '#namespace option:nth-child(1)' ).removeAttr( 'selected' );
-	$( '#namespace option:nth-child(2)' ).attr( 'selected', 'selected' );
+	var $options = $( '#namespace' ).find( 'option' );
+	$options.eq(0).removeAttr( 'selected' );
+	$options.eq(1).attr( 'selected', 'selected' );
 	$( '#namespace' ).change();
+
 	// ... and checkboxes should be enabled again
-	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), enabled );
-	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), enabled );
+	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), undefined );
+	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), undefined );
 
 	// select first option ( 'all' namespace)...
-	$( '#namespace option:nth-child(1)' ).attr( 'selected', 'selected' );
-	$( '#namespace option:nth-child(2)' ).removeAttr( 'selected' );
+	$options.eq(1).removeAttr( 'selected' );
+	$options.eq(0).attr( 'selected', 'selected' );;
 	$( '#namespace' ).change();
+	
 	// ... and checkboxes should now be disabled
 	strictEqual( $( '#nsinvert' ).attr( 'disabled' ), 'disabled' );
 	strictEqual( $( '#nsassociated' ).attr( 'disabled' ), 'disabled' );
