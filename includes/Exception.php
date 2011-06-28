@@ -187,12 +187,8 @@ class MWException extends Exception {
 				die( $hookResult );
 			}
 
-			$html = $this->getHTML();
-			if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
-				echo $html;
-			} else {
-				wfDie( $html );
-			}
+			echo $this->getHTML();
+			die(1);
 		}
 	}
 
@@ -215,7 +211,7 @@ class MWException extends Exception {
 	}
 
 	static function isCommandLine() {
-		return !empty( $GLOBALS['wgCommandLineMode'] ) && !defined( 'MEDIAWIKI_INSTALL' );
+		return !empty( $GLOBALS['wgCommandLineMode'] );
 	}
 }
 
@@ -431,7 +427,7 @@ class MWExceptionHandler {
 				if ( $cmdLine ) {
 					self::printError( $message );
 				} else {
-					wfDie( nl2br( htmlspecialchars( $message ) ) ) . "\n";
+					self::escapeEchoAndDie( $message );
 				}
 			}
 		} else {
@@ -445,7 +441,7 @@ class MWExceptionHandler {
 			if ( $cmdLine ) {
 				self::printError( $message );
 			} else {
-				wfDie( nl2br( htmlspecialchars( $message ) ) ) . "\n";
+				self::escapeEchoAndDie( $message );
 			}
 		}
 	}
@@ -453,6 +449,7 @@ class MWExceptionHandler {
 	/**
 	 * Print a message, if possible to STDERR.
 	 * Use this in command line mode only (see isCommandLine)
+	 * @param $message String Failure text
 	 */
 	public static function printError( $message ) {
 		# NOTE: STDERR may not be available, especially if php-cgi is used from the command line (bug #15602).
@@ -462,6 +459,16 @@ class MWExceptionHandler {
 		} else {
 			echo( $message );
 		}
+	}
+
+	/**
+	 * Print a message after escaping it and converting newlines to <br>
+	 * Use this for non-command line failures
+	 * @param $message String Failure text
+	 */
+	private static function escapeEchoAndDie( $message ) {
+		echo nl2br( htmlspecialchars( $message ) ) . "\n";
+		die(1);
 	}
 
 	/**
