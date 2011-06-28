@@ -858,8 +858,7 @@ abstract class FormSpecialPage extends SpecialPage {
  * Shortcut to construct a special page which is unlisted by default
  * @ingroup SpecialPage
  */
-class UnlistedSpecialPage extends SpecialPage
-{
+class UnlistedSpecialPage extends SpecialPage {
 	function __construct( $name, $restriction = '', $function = false, $file = 'default' ) {
 		parent::__construct( $name, $restriction, false, $function, $file );
 	}
@@ -873,8 +872,7 @@ class UnlistedSpecialPage extends SpecialPage
  * Shortcut to construct an includable special  page
  * @ingroup SpecialPage
  */
-class IncludableSpecialPage extends SpecialPage
-{
+class IncludableSpecialPage extends SpecialPage {
 	function __construct(
 		$name, $restriction = '', $listed = true, $function = false, $file = 'default'
 	) {
