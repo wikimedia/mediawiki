@@ -224,6 +224,10 @@ class LoginForm extends SpecialPage {
 		if( $wgUser->isAnon() ) {
 			$wgUser = $u;
 			$wgUser->setCookies();
+			// This should set it for OutputPage and the Skin
+			// which is needed or the personal links will be
+			// wrong.
+			RequestContext::getMain()->setUser( $u );
 			wfRunHooks( 'AddNewAccount', array( $wgUser, false ) );
 			$wgUser->addNewUserLogEntry();
 			if( $this->hasSessionCookie() ) {
