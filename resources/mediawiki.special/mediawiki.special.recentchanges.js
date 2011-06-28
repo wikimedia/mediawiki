@@ -15,8 +15,8 @@
 		 * special 'all' namespace is selected/unselected respectively.
 		 */
 	 	updateCheckboxes: function() {
-			// The 'all' namespace is the FIRST in the list.
-			var isAllNS = $select.find( 'option' ).first().is( ':selected' );
+			// The option element for the 'all' namespace has an empty value
+			var isAllNS = ('' === $select.find('option:selected').val() );
 
 			// Iterates over checkboxes and propagate the selected option
 			$.each( checkboxes, function( i, id ) {
