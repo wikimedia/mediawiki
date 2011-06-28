@@ -98,24 +98,22 @@ class Article {
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 		}
 
-		$article = null;
-		wfRunHooks( 'ArticleFromTitle', array( &$title, &$article ) );
-		if ( $article ) {
-			$article->setContext( $context );
-			return $article;
-		}
-
-		switch( $title->getNamespace() ) {
-			case NS_FILE:
-				$page = new ImagePage( $title );
-				break;
-			case NS_CATEGORY:
-				$page = new CategoryPage( $title );
-				break;
-			default:
-				$page = new Article( $title );
+		$page = null;
+		wfRunHooks( 'ArticleFromTitle', array( &$title, &$page ) );
+		if ( !$page ) {
+			switch( $title->getNamespace() ) {
+				case NS_FILE:
+					$page = new ImagePage( $title );
+					break;
+				case NS_CATEGORY:
+					$page = new CategoryPage( $title );
+					break;
+				default:
+					$page = new Article( $title );
+			}
 		}
 		$page->setContext( $context );
+
 		return $page;
 	}
 
@@ -1685,9 +1683,9 @@ class Article {
 		foreach ( $tbs as $o ) {
 			$rmvtxt = "";
 
-			if ( $wgOut->getUser()->isAllowed( 'trackback' ) ) {
+			if ( $this->getContext()->getUser()->isAllowed( 'trackback' ) ) {
 				$delurl = $this->mTitle->getFullURL( "action=deletetrackback&tbid=" .
-					$o->tb_id . "&token=" . urlencode( $wgOut->getUser()->editToken() ) );
+					$o->tb_id . "&token=" . urlencode( $this->getContext()->getUser()->editToken() ) );
 				$rmvtxt = wfMsg( 'trackbackremove', htmlspecialchars( $delurl ) );
 			}
 
@@ -2688,7 +2686,7 @@ class Article {
 		global $wgOut, $wgRequest;
 
 		$confirm = $wgRequest->wasPosted() &&
-				$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
+				$this->getContext()->getUser()->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 
 		$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList', 'other' );
 		$this->DeleteReason = $wgRequest->getText( 'wpReason' );
@@ -2703,7 +2701,7 @@ class Article {
 		}
 
 		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgOut->getUser()->isAllowed( 'suppressrevision' );
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $this->getContext()->getUser()->isAllowed( 'suppressrevision' );
 
 		# This code desperately needs to be totally rewritten
 
@@ -2715,7 +2713,7 @@ class Article {
 		}
 
 		# Check permissions
-		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgOut->getUser() );
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $this->getContext()->getUser() );
 
 		if ( count( $permission_errors ) > 0 ) {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
@@ -2762,7 +2760,7 @@ class Article {
 		if ( $confirm ) {
 			$this->doDelete( $reason, $suppress );
 
-			if ( $wgRequest->getCheck( 'wpWatch' ) && $wgOut->getUser()->isLoggedIn() ) {
+			if ( $wgRequest->getCheck( 'wpWatch' ) && $this->getContext()->getUser()->isLoggedIn() ) {
 				$this->doWatch();
 			} elseif ( $this->mTitle->userIsWatching() ) {
 				$this->doUnwatch();
@@ -2899,7 +2897,7 @@ class Article {
 
 		wfRunHooks( 'ArticleConfirmDelete', array( $this, $wgOut, &$reason ) );
 
-		if ( $wgOut->getUser()->isAllowed( 'suppressrevision' ) ) {
+		if ( $this->getContext()->getUser()->isAllowed( 'suppressrevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
@@ -2910,7 +2908,7 @@ class Article {
 		} else {
 			$suppress = '';
 		}
-		$checkWatch = $wgOut->getUser()->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching();
+		$checkWatch = $this->getContext()->getUser()->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching();
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->mTitle->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
@@ -2943,7 +2941,7 @@ class Article {
 			</tr>";
 
 		# Disallow watching if user is not logged in
-		if ( $wgOut->getUser()->isLoggedIn() ) {
+		if ( $this->getContext()->getUser()->isLoggedIn() ) {
 			$form .= "
 			<tr>
 				<td></td>
@@ -2965,10 +2963,10 @@ class Article {
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
-			Html::hidden( 'wpEditToken', $wgOut->getUser()->editToken() ) .
+			Html::hidden( 'wpEditToken', $this->getContext()->getUser()->editToken() ) .
 			Xml::closeElement( 'form' );
 
-			if ( $wgOut->getUser()->isAllowed( 'editinterface' ) ) {
+			if ( $this->getContext()->getUser()->isAllowed( 'editinterface' ) ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
 				$link = Linker::link(
 					$title,
