@@ -1345,10 +1345,11 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'right-sendemail'             => 'Anfon e-bost at ddefnyddwyr eraill',
 
 # User rights log
-'rightslog'      => 'Lòg galluoedd defnyddiwr',
-'rightslogtext'  => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
-'rightslogentry' => "wedi gosod $1 yn aelod o'r grŵp $3 (grŵp cynt $2)",
-'rightsnone'     => '(dim)',
+'rightslog'                  => 'Lòg galluoedd defnyddiwr',
+'rightslogtext'              => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
+'rightslogentry'             => "wedi gosod $1 yn aelod o'r grŵp $3 (grŵp cynt $2)",
+'rightslogentry-autopromote' => "wedi ei ddyrchafu'n awtomatig o $2 i $3",
+'rightsnone'                 => '(dim)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'darllen y dudalen',

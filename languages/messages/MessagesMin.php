@@ -748,11 +748,15 @@ Sabagai referensi, barikuik adolah log panghapusan dan pamindahan laman iko.',
 'post-expand-template-inclusion-warning'  => "'''Peringatan:''' Ukuran templat talalu gadang.
 Babarapo templat akan diabaikan.",
 'post-expand-template-inclusion-category' => 'Laman nan ukurannyo templatnyo malabiahi bateh',
+'post-expand-template-argument-warning'   => 'Peringatan: Laman ko barisi satidaknyo ciek uraian templat na baukuran ekspansi nan talalu gadang. 
+Uraian-uraian tu alah diabaikan.',
+'post-expand-template-argument-category'  => 'Laman nan barisi uraian template nan diabaikan',
 
 # History pages
 'viewpagelogs'           => 'Lihek log untuak laman ko',
 'currentrev-asof'        => 'Revisi terkini pado $1',
 'revisionasof'           => 'Revisi per $1',
+'revision-info'          => 'Revisi sajak $1 dek $2',
 'previousrevision'       => '← Revisi sabalunnyo',
 'nextrevision'           => 'Revisi selanjutnyo →',
 'currentrevisionlink'    => 'Revisi terkini',
@@ -761,6 +765,7 @@ Babarapo templat akan diabaikan.",
 'histlegend'             => "Membandingkan pilihan: Tandoi dari revisi yang ingin dibandingkan dengan memilih kotak radionyo dan tekan tombol ''Bandingkan revisi pilihan''.<br />
 Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''' = perbedaan jo revisi sabalunnyo, '''{{int:k}}''' = suntingan ketek, '''{{int:b}}''' = suntingan bot.",
 'history-fieldset-title' => 'Telusuri riwayat',
+'history-show-deleted'   => 'Hanyo nan dihapuih',
 'histfirst'              => 'Nan lamo',
 'histlast'               => 'Nan baru',
 
@@ -783,6 +788,7 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'lineno'                  => 'Barih $1:',
 'compareselectedversions' => 'Bandingkan revisi pilihan',
 'editundo'                => 'batalkan',
+'diff-multi'              => '({{PLURAL:$1|ciek |$1 revisi antaro}} oleh {{PLURAL:$2|ciek|$2 pangguno}} indak ditampilkan)',
 
 # Search results
 'searchresults'                    => 'Hasil pencarian',
@@ -798,6 +804,7 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'nextn-title'                      => 'Barikuiknyo $1 {{PLURAL:$1|hasil|hasil}}',
 'shown-title'                      => '↓ Tampilkan $1 {{PLURAL:$1|hasil|hasil}} per lama',
 'viewprevnext'                     => 'Tampilkan ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists'                => "'''Ado laman nan banamo \"[[:\$1]]\" pado wiki ko.'''",
 'searchmenu-new'                   => "'''Buek laman \"[[:\$1]]\" di wiki ko!'''",
 'searchmenu-new-nocreate'          => '"$1" bukan namo laman yang sah atau indak buliah dibuek dek awak ang.',
 'searchprofile-articles'           => 'Artikel',
@@ -811,6 +818,7 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'searchprofile-everything-tooltip' => '↓ Cari sadoalahnyo (tamasuak laman maota)',
 'searchprofile-advanced-tooltip'   => 'Pacaharian di ruang namo tatantu',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 kato|$2 kato}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 anggota|$1 anggota}} ({{PLURAL:$2|1 subkategori|$2 subkategori}}, {{PLURAL:$3|1 berkas|$3 berkas}})',
 'search-redirect'                  => '(pengalihan $1)',
 'search-section'                   => '(bagian $1)',
 'search-suggest'                   => 'Mungkin maksud awak: $1',
@@ -819,6 +827,7 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'search-interwiki-more'            => '(selanjutnyo)',
 'search-mwsuggest-enabled'         => 'dengan saran',
 'search-mwsuggest-disabled'        => 'indak ado saran',
+'searchrelated'                    => 'bakaitan',
 'searchall'                        => 'Sadonyo',
 'showingresultsheader'             => "{{PLURAL:$5|Hasil '''$1''' dari '''$3'''|Hasil '''$1 - $2''' dari '''$3'''}} untuak '''$4'''",
 'nonefound'                        => "'''Catatan''': hanyo babarapo ruangnamo yang dicari sacaro default.
@@ -833,6 +842,7 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 # Preferences page
 'preferences'   => 'Preferensi',
 'mypreferences' => 'Preferensi denai',
+'youremail'     => 'Surek Elektronik:',
 'yourrealname'  => 'Namo sabananyo:',
 
 # Groups
@@ -847,43 +857,48 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 'action-edit' => 'suntiang laman ko',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|parubahan|parubahan}}',
-'recentchanges'                  => 'Parubahan baru',
-'recentchanges-legend'           => 'Pilihan parubahan baru',
-'recentchanges-feed-description' => 'Temukan parubahan baru dalam umpan wiki ko',
-'recentchanges-label-newpage'    => 'Suntiang ko mambuek laman baru',
-'recentchanges-label-minor'      => 'Iko di suntiang saketek',
-'recentchanges-label-bot'        => 'Suntiang ko dibuek dek bot',
-'rcnote'                         => "Berikut ko {{PLURAL:$1|'''1'''|'''$1'''}} parubahan dalam {{PLURAL:$2|hari|'''$2''' hari}} terakhir, sampai $5, pukul $4.",
-'rclistfrom'                     => 'Tampilkan parubahan baru sejak $1',
-'rcshowhideminor'                => '$1 suntingan ketek',
-'rcshowhidebots'                 => '$1 bot',
-'rcshowhideliu'                  => '$1 pangguno masuak log',
-'rcshowhideanons'                => '$1 pangguno anon',
-'rcshowhidemine'                 => '$1 suntingan denai',
-'rclinks'                        => 'Tampilkan $1 parubahan baru dalam $2 hari terakhir<br />$3',
-'diff'                           => 'beda',
-'hist'                           => 'versi',
-'hide'                           => 'Suruakkan',
-'show'                           => 'Tampilkan',
-'minoreditletter'                => 'k',
-'newpageletter'                  => 'B',
-'boteditletter'                  => 'b',
-'rc-enhanced-expand'             => 'Tampilkan rincian (perlu JavaScript)',
-'rc-enhanced-hide'               => 'Suruakkan rincian',
+'nchanges'                        => '$1 {{PLURAL:$1|parubahan|parubahan}}',
+'recentchanges'                   => 'Parubahan baru',
+'recentchanges-legend'            => 'Pilihan parubahan baru',
+'recentchangestext'               => 'Manjajak parubahan terbaru dalam wiki di laman ko.',
+'recentchanges-feed-description'  => 'Temukan parubahan baru dalam umpan wiki ko',
+'recentchanges-label-newpage'     => 'Suntiang ko mambuek laman baru',
+'recentchanges-label-minor'       => 'Iko di suntiang saketek',
+'recentchanges-label-bot'         => 'Suntiang ko dibuek dek bot',
+'recentchanges-label-unpatrolled' => 'Suntiangan ko alun tajago',
+'rcnote'                          => "Berikut ko {{PLURAL:$1|'''1'''|'''$1'''}} parubahan dalam {{PLURAL:$2|hari|'''$2''' hari}} terakhir, sampai $5, pukul $4.",
+'rcnotefrom'                      => "Di bawah ko ado parubahan sejak '''$2''' (sampai '''$1''' parubahan).",
+'rclistfrom'                      => 'Tampilkan parubahan baru sejak $1',
+'rcshowhideminor'                 => '$1 suntingan ketek',
+'rcshowhidebots'                  => '$1 bot',
+'rcshowhideliu'                   => '$1 pangguno masuak log',
+'rcshowhideanons'                 => '$1 pangguno anon',
+'rcshowhidemine'                  => '$1 suntingan denai',
+'rclinks'                         => 'Tampilkan $1 parubahan baru dalam $2 hari terakhir<br />$3',
+'diff'                            => 'beda',
+'hist'                            => 'versi',
+'hide'                            => 'Suruakkan',
+'show'                            => 'Tampilkan',
+'minoreditletter'                 => 'k',
+'newpageletter'                   => 'B',
+'boteditletter'                   => 'b',
+'rc-enhanced-expand'              => 'Tampilkan rincian (perlu JavaScript)',
+'rc-enhanced-hide'                => 'Suruakkan rincian',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Parubahan takaik',
-'recentchangeslinked-toolbox' => '↓ Parubahan takaik',
-'recentchangeslinked-title'   => 'Parubahan nan takaik jo "$1"',
-'recentchangeslinked-summary' => "Iko adolah senarai parubahan terakhir pado laman yang takaik jo laman tartantu (atau pado kalompok kategori tartantu).
+'recentchangeslinked'          => 'Parubahan takaik',
+'recentchangeslinked-toolbox'  => '↓ Parubahan takaik',
+'recentchangeslinked-title'    => 'Parubahan nan takaik jo "$1"',
+'recentchangeslinked-noresult' => 'Indak ado parubahan pado laman nan tapauik salamo periode nan ditantuan',
+'recentchangeslinked-summary'  => "Iko adolah senarai parubahan terakhir pado laman yang takaik jo laman tartantu (atau pado kalompok kategori tartantu).
 Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
-'recentchangeslinked-page'    => 'Namo laman:',
-'recentchangeslinked-to'      => 'Tampilkan parubahan dari laman yang takaik jo laman yang disajikan',
+'recentchangeslinked-page'     => 'Namo laman:',
+'recentchangeslinked-to'       => 'Tampilkan parubahan dari laman yang takaik jo laman yang disajikan',
 
 # Upload
 'upload'        => 'Unggah berkas',
 'uploadlogpage' => 'Log unggah',
+'filedesc'      => 'Ringkasan',
 'uploadedimage' => 'unggah "[[$1]]"',
 
 'license' => 'Lisensi:',
@@ -892,6 +907,7 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 'file-anchor-link'          => 'Berkas',
 'filehist'                  => 'Riwayat berkas',
 'filehist-help'             => 'Klik pado tanggal/waktu untuak malihek berkas pado maso tu',
+'filehist-revert'           => 'kembalikan',
 'filehist-current'          => 'kini ko',
 'filehist-datetime'         => 'Tanggal/Waktu',
 'filehist-thumb'            => 'Miniatur',
@@ -901,7 +917,10 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 'filehist-comment'          => 'Ulasan',
 'imagelinks'                => 'Pranala berkas',
 'linkstoimage'              => 'Berikut ko ado {{PLURAL:$1|laman nan takaik|$1 laman nan takaik}} jo berkas ko:',
+'nolinkstoimage'            => 'Indak ado laman nan ado batauik ka berkas ko.',
 'sharedupload'              => 'Berkas ko barasal dari $1 dan mungkin digunoan oleh berbagai proyek lain.',
+'sharedupload-desc-here'    => 'Berkas ko dari $1 dan mungkin digunoan untuak proyek-proyek lain.
+Deskripsi dari [$2 laman deskripsi berkas] ditampilkan dibawah.',
 'uploadnewversion-linktext' => 'Unggah versi baru dari berkas ko',
 
 # Random page
@@ -944,7 +963,8 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 'categories' => 'Kategori',
 
 # Special:LinkSearch
-'linksearch' => 'Pranala lua',
+'linksearch'      => 'Pranala lua',
+'linksearch-line' => '$1 tapauik dari $2',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Log pangguno baru',
@@ -959,6 +979,7 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 # Watchlist
 'watchlist'         => 'Senarai pantauan denai',
 'mywatchlist'       => 'Senarai pantauan den',
+'watchlistfor2'     => 'Untuak $1 $2',
 'addedwatch'        => 'Lah ditambahkan ka senarai pantauan',
 'addedwatchtext'    => "Laman \"[[:\$1]]\" lah ditambahkan ka [[Special:Watchlist|senarai pantauan awak]].
 Parubahan laman ko tamasuak laman otanyo akan ditampilkan dalam '''cetak taba''' pado [[Special:RecentChanges|senarai parubahan]] agar lebih mudah manjagonyo.",
@@ -980,6 +1001,7 @@ Parubahan laman ko tamasuak laman otanyo akan ditampilkan dalam '''cetak taba'''
 'confirmdeletetext'     => 'Awak akan mahapuih laman atau berkas basamo riwayatnyo.
 Pastikan awak mainginkannyo, dan awak lah tahu sagalo akibatnyo dan sasuai jo [[{{MediaWiki:Policy-url}}|kebijakan]] yang balaku.',
 'actioncomplete'        => 'Proses selesai',
+'actionfailed'          => 'Aksi gagal',
 'deletedtext'           => '"$1" lah dihapuih.
 Lihek $2 untuak rekam jejak laman yang lah dihapuih.',
 'deletedarticle'        => 'dihapuih "[[$1]]"',
@@ -1059,6 +1081,7 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'whatlinkshere-hideredirs' => '$1 pengalihan',
 'whatlinkshere-hidetrans'  => '$1 transklusi',
 'whatlinkshere-hidelinks'  => '$1 pranala',
+'whatlinkshere-hideimages' => '$1 pahubuang gambar',
 'whatlinkshere-filters'    => 'Penapis',
 
 # Block/unblock
@@ -1110,7 +1133,8 @@ Dalam kasus tu, apobilo diinginkan, awak dapek mamindahkan atau manggabuangkan l
 'allmessagesdefault' => 'Teks pasan default',
 
 # Thumbnails
-'thumbnail-more' => 'Pagadang',
+'thumbnail-more'  => 'Pagadang',
+'thumbnail_error' => 'Gagal mambuek thumbnail : $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Halaman pangguno awak',
@@ -1175,6 +1199,10 @@ Awak hanyo buliah lihek sumber se',
 
 # Metadata
 'notacceptable' => 'Layanan wiki indak manyadioan data dalam format yang dapek dibaco dek pelanggan awak.',
+
+# Patrol log
+'patrol-log-line' => 'manandoi $1 dari $2 nan tajago $3',
+'patrol-log-diff' => 'revisi $1',
 
 # Browsing diffs
 'previousdiff' => '← Revisi sabalunnyo',

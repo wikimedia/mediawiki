@@ -1491,10 +1491,11 @@ $1",
 'right-sendemail'             => 'адпраўка электронных лістоў іншым удзельнікам',
 
 # User rights log
-'rightslog'      => 'Журнал правоў удзельнікаў',
-'rightslogtext'  => 'Гэта журнал зьменаў правоў удзельнікаў.',
-'rightslogentry' => 'зьменена прыналежнасьць $1 з групы $2 да $3',
-'rightsnone'     => '(няма)',
+'rightslog'                  => 'Журнал правоў удзельнікаў',
+'rightslogtext'              => 'Гэта журнал зьменаў правоў удзельнікаў.',
+'rightslogentry'             => 'зьменена прыналежнасьць $1 з групы $2 да $3',
+'rightslogentry-autopromote' => 'быў аўтаматычна падвышаны з $2 да $3',
+'rightsnone'                 => '(няма)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'чытаньне гэтай старонкі',

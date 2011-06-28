@@ -1522,10 +1522,11 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
 
 # User rights log
-'rightslog'      => 'Nhật trình cấp quyền thành viên',
-'rightslogtext'  => 'Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.',
-'rightslogentry' => 'đã đổi cấp của thành viên $1 từ $2 thành $3',
-'rightsnone'     => '(không có)',
+'rightslog'                  => 'Nhật trình cấp quyền thành viên',
+'rightslogtext'              => 'Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.',
+'rightslogentry'             => 'đã đổi cấp của thành viên $1 từ $2 thành $3',
+'rightslogentry-autopromote' => 'được tự động phong cấp từ $2 đến $3',
+'rightsnone'                 => '(không có)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'đọc trang này',
@@ -2417,9 +2418,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Không gian tên:',
 'invert'                        => 'Đảo ngược lựa chọn',
-'tooltip-invert'                => 'Ẩn các thay đổi trong không gian tên được chọn',
+'tooltip-invert'                => 'Ẩn các thay đổi trong các không gian tên được chọn và tương ứng',
 'namespace_association'         => 'Không gian tên cùng đôi',
-'tooltip-namespace_association' => 'Cũng ẩn không gian tên thảo luận hoặc nội dung ứng với lựa chọn của bạn',
+'tooltip-namespace_association' => 'Cũng ẩn không gian tên thảo luận hoặc nội dung ứng với không gian được chọn',
 'blanknamespace'                => '(Chính)',
 
 # Contributions

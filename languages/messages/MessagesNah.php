@@ -340,10 +340,10 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Ahmo ia tlachīhualiztli',
-'nosuchspecialpage' => 'Ahmelāhuac nōncuahquīzqui zāzanilli',
-'nospecialpagetext' => '<strong>Ahmo ia nōncuahquīzqui āmatl ticnequi.</strong>
+'nosuchspecialpage' => 'Âmò ka inòn nònkuâkìskàtlaìxtlapalli',
+'nospecialpagetext' => '<strong>Tiknẻki sè nònkuâkìskàtlaìxtlapalli tlèn âmò kä.</strong>
 
-Tihuelīti tiquitta mochi nōncuahquīzqui āmatl īpan [[Special:SpecialPages|{{int:specialpages}}]].',
+Kualli tikỉtas sè ìntlapòpòwaltekpànal in nònkuâkìskàtlaìxtlapaltìn ìpan [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'               => 'Ahcuallōtl',
@@ -369,7 +369,7 @@ Hueliz quimpiya tlahtōl tlein ahmo mohuelītih motequitiltia tōcāpan.',
 'viewsourcetext'      => 'Tihuelīti tiquitta auh ticcopīna inīn zāzanilli ītlahtōlcaquiliztilōni:',
 'sqlhidden'           => '(Tlatēmoliztli SQL omotlāti)',
 'namespaceprotected'  => "Ahmo tiquihuelīti tiquimpatla zāzaniltin īpan '''$1'''.",
-'ns-specialprotected' => 'Ahmohuelīti quimpatla nōncuahquīzqui zāzaniltin.',
+'ns-specialprotected' => 'In nònkuâkìskàtlaìxtlapaltìn awel ìmpan nemàtilòs mokinyèktlàlis.',
 'titleprotected'      => "Inīn zāzanilli ōmoquīxti ic tlachīhualiztli ic [[User:$1|$1]].
 Ōquihto: ''$2''",
 
@@ -683,7 +683,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'uid'                       => 'Tlatequitiltilīlli ID:',
 'prefs-memberingroups'      => 'Tlācatl {{PLURAL:$1|olōlco|olōlco}}:',
 'yourrealname'              => 'Melāhuac motōcā:',
-'yourlanguage'              => 'Motlahtōl:',
+'yourlanguage'              => 'Tlâtòlli:',
 'yournick'                  => 'Motōcātlaliz:',
 'badsiglength'              => 'Motōcātlaliz cah ocachi huēyac.
 Ahmo quihuīquilia quimpiya achi $1 {{PLURAL:$1|machiyōtlahtōliztli|machiyōtlahtōliztli}}.',
@@ -770,7 +770,7 @@ Intlā ticnequi, tlācah quimatīzqueh motequi.',
 'nchanges'                          => '$1 {{PLURAL:$1|tlapatlaliztli|tlapatlaliztli}}',
 'recentchanges'                     => 'Yancuīc tlapatlaliztli',
 'recentchanges-legend'              => 'Yancuīc tlapatlaliztechcopa tlanequiliztli',
-'recentchangestext'                 => 'Xiquinttāz in achi yancuīc ahmo occequīntīn tlapatlaliztli huiquipan inīn zāzanilpan.',
+'recentchangestext'                 => 'Ìpan inìn tlaìxtlapalli xikỉta in okảchi yankuik ìtlatlaìxpảtilis in wiki.',
 'rcnote'                            => "Nicān {{PLURAL:$1|cah '''1''' tlapatlaliaztli|cateh in xōcoyōc '''$1''' tlapatlaliztli}} īpan xōcoyōc {{PLURAL:$2|tōnalli|'''$2''' tōnaltin}} īhuīcpa $5, $4.",
 'rclistfrom'                        => 'Xiquinttāz yancuīc tlapatlaliztli īhuīcpa $1',
 'rcshowhideminor'                   => '$1 tlapatlalitzintli',
@@ -1301,11 +1301,11 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'tooltip-t-contributions'         => 'Xiquitta inīn tlatequitiltilīlli ītlahcuilōl',
 'tooltip-t-emailuser'             => 'Tiquihcuilōz inīn tlatequitiltililhuīc',
 'tooltip-t-upload'                => 'Tiquinquetzāz tlahcuilōlli',
-'tooltip-t-specialpages'          => 'Mochīntīn nōncuahquīzqui zāzaniltin',
+'tooltip-t-specialpages'          => 'Ìntlapòpòwaltekpànal mochtìn in nònkuâkìskàtlaìxtlapaltìn',
 'tooltip-t-print'                 => 'Tepoztlahcuilōlli',
 'tooltip-ca-nstab-main'           => 'Xiquitta in tlahcuilōlli',
 'tooltip-ca-nstab-user'           => 'Xiquitta tlatequitiltilīlli īzāzanil',
-'tooltip-ca-nstab-special'        => 'Inīn cē nōncuahquīzqui zāzanilli; ahmo ticpatlahuelitīz in zāzanilli',
+'tooltip-ca-nstab-special'        => 'Inìn sè nònkuâkìskàtlaìxtlapalli, yêìka awel nemàtilòs moyêyèktlàlis in tlaìxtlapalli',
 'tooltip-ca-nstab-project'        => 'Xiquitta tlachīhualiztli īzāzanil',
 'tooltip-ca-nstab-image'          => 'Xiquittāz īxipzāzanilli',
 'tooltip-ca-nstab-mediawiki'      => 'Xiquitta in tlahcuilōltzin',
@@ -1497,12 +1497,12 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 'fileduplicatesearch-info'     => '$1 × $2 pixelli<br />Tlahcuilōlli īxquichiliz: $3<br />MIME iuhcāyōtl: $4',
 
 # Special:SpecialPages
-'specialpages'                 => 'Nōncuahquīzqui āmatl',
-'specialpages-note'            => '* Nōncuahquīzqui āmatl.
-* <span class="mw-specialpagerestricted>Caxauhqui nōncuahquīzqui āmatl.</span>
-* <span class="mw-specialpagecached">Páginas especiales cacheadas.</span>
-*<span class="mw-specialpagecached">Nōncuahquīzqui āmatl īpan caché</span>',
-'specialpages-group-other'     => 'Occequīntīn nōncuahquīzqui zāzaniltin',
+'specialpages'                 => 'Nònkuâkìskàtlaìxtlapaltìn',
+'specialpages-note'            => '----
+* Kèn sanỉman nònkuâkìskàtlaìxtlapaltìn.
+* <span class="mw-specialpagerestricted>Âmò tlakàwiltìn nònkuâkìskàtlaìxtlapaltìn.</span>
+* <span class="mw-specialpagecached">Tlatlaìxkopìnèuhtìn nònkuâkìskàtlaìxtlapaltìn.</span>',
+'specialpages-group-other'     => 'Oksẻki nònkuâkìskàtlaìxtlapaltìn',
 'specialpages-group-login'     => 'Ximocalaqui / ximomachiyōmaca',
 'specialpages-group-changes'   => 'Yancuīc tlapatlaliztli īhuān tlahcuilōlloh',
 'specialpages-group-users'     => 'Tlatequitiltilīlli īhuān huelītiliztli',
