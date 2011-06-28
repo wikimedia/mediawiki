@@ -58,7 +58,7 @@ abstract class RdfMetaData {
 	protected function basics() {
 		global $wgLanguageCode, $wgSitename;
 
-		$this->element( 'title', $this->mArticle->mTitle->getText() );
+		$this->element( 'title', $this->mArticle->getTitle()->getText() );
 		$this->pageOrString( 'publisher', wfMsg( 'aboutpage' ), $wgSitename );
 		$this->element( 'language', $wgLanguageCode );
 		$this->element( 'type', 'Text' );
