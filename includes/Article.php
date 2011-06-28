@@ -3237,7 +3237,7 @@ class Article {
 	 * doRollback() instead.
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails ) {
-		global $wgUseRCPatrol, $wgUser, $wgLang;
+		global $wgUseRCPatrol, $wgUser, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -3318,8 +3318,8 @@ class Article {
 		# Allow the custom summary to use the same args as the default message
 		$args = array(
 			$target->getUserText(), $from, $s->rev_id,
-			$wgLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ), true ),
-			$current->getId(), $wgLang->timeanddate( $current->getTimestamp() )
+			$wgContLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
+			$current->getId(), $wgContLang->timeanddate( $current->getTimestamp() )
 		);
 		$summary = wfMsgReplaceArgs( $summary, $args );
 

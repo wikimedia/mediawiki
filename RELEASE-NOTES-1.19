@@ -127,6 +127,8 @@ production.
   "vectorTabs" portlets.
 * (bug 8556) Incorrect session failure warning on preview-on-open 
   namespaces (categories) when combined with $wgRawHtml.
+* Use content language in formatting of dates in revertpage message
+  (rollback revert edit summary) and do not adjust for user timezone.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
