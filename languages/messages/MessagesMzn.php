@@ -198,7 +198,7 @@ $messages = array(
 'index-category'           => 'صفحه‌ئون نمایه بَیی',
 'noindex-category'         => 'صفحه‌ئون نمایه نَیی',
 
-'about'         => 'ده‌لـه‌واره',
+'about'         => 'درباره',
 'article'       => 'صفحه‌ی بنویشته‌ئون',
 'newwindow'     => '(ته‌رنه‌ روجین ده‌له‌ وا بونه)',
 'cancel'        => 'وه‌ل هـه‌کـارده‌ن',
@@ -296,8 +296,8 @@ $2، $1',
 'pool-errorunknown' => 'خطای ناشناخته',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}} درباره',
-'aboutpage'            => 'Project:About',
+'aboutsite'            => 'دربارهٔ {{SITENAME}}',
+'aboutpage'            => 'Project:درباره',
 'copyright'            => 'این صفحه ره بَنوشته‌ئون  $1  زیر شِمه دسـت دَرنه.',
 'copyrightpage'        => '{{ns:project}}:کـوپـی‌راسـت‌ئون',
 'currentevents'        => 'اسایی دکته‌ئون',

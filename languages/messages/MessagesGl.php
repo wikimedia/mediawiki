@@ -377,7 +377,7 @@ $messages = array(
 'vector-action-move'             => 'Mover',
 'vector-action-protect'          => 'Protexer',
 'vector-action-undelete'         => 'Restaurar',
-'vector-action-unprotect'        => 'Desprotexer',
+'vector-action-unprotect'        => 'Cambiar a protección',
 'vector-simplesearch-preference' => 'Activar as suxestións de procura melloradas (soamente na aparencia vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Editar',
@@ -414,8 +414,8 @@ $messages = array(
 'protect'           => 'Protexer',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Protexer esta páxina',
-'unprotect'         => 'desprotexer',
-'unprotectthispage' => 'Desprotexer esta páxina',
+'unprotect'         => 'Cambiar a protección',
+'unprotectthispage' => 'Cambiar a protección desta páxina',
 'newpage'           => 'Páxina nova',
 'talkpage'          => 'Conversar sobre esta páxina',
 'talkpagelinktext'  => 'Conversa',
@@ -1482,10 +1482,11 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 
 # User rights log
-'rightslog'      => 'Rexistro de dereitos de usuario',
-'rightslogtext'  => 'Este é un rexistro de permisos dos usuarios.',
-'rightslogentry' => 'cambiou o grupo ao que pertence "$1" de $2 a $3',
-'rightsnone'     => '(ningún)',
+'rightslog'                  => 'Rexistro de dereitos de usuario',
+'rightslogtext'              => 'Este é un rexistro de permisos dos usuarios.',
+'rightslogentry'             => 'cambiou o grupo ao que pertence "$1" de $2 a $3',
+'rightslogentry-autopromote' => 'foi promovido automaticamente de $2 a $3',
+'rightsnone'                 => '(ningún)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'ler esta páxina',
@@ -2277,11 +2278,11 @@ Prema no botón "atrás", volva cargar a páxina da que proviña e inténteo de 
 
 # Protect
 'protectlogpage'              => 'Rexistro de proteccións',
-'protectlogtext'              => 'Embaixo móstrase unha lista dos bloqueos e desbloqueos de páxinas.
+'protectlogtext'              => 'A continuación móstrase a lista cos cambios de protección nas páxinas.
 Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a lista coas proteccións de páxinas vixentes.',
 'protectedarticle'            => 'protexeu "[[$1]]"',
 'modifiedarticleprotection'   => 'modificou o nivel de protección de "[[$1]]"',
-'unprotectedarticle'          => 'desprotexeu "[[$1]]"',
+'unprotectedarticle'          => 'eliminou a protección de "[[$1]]"',
 'movedarticleprotection'      => 'cambiou as características da protección de "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Cambiar o nivel de protección de "$1"',
 'prot_1movedto2'              => 'moveu "[[$1]]" a "[[$2]]"',
@@ -2389,10 +2390,12 @@ $1',
 'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
-'namespace'             => 'Espazo de nomes:',
-'invert'                => 'Inverter a selección',
-'namespace_association' => 'Espazo de nomes asociado',
-'blanknamespace'        => '(Principal)',
+'namespace'                     => 'Espazo de nomes:',
+'invert'                        => 'Inverter a selección',
+'tooltip-invert'                => 'Marque esta caixa para agochar os cambios nas páxinas pertencentes ao espazo de nomes seleccionado (e o espazo de nomes asociado, se escolleu a opción)',
+'namespace_association'         => 'Espazo de nomes asociado',
+'tooltip-namespace_association' => 'Marque esta caixa para incluír tamén o espazo de nomes de conversa ou de contidos asociado a aquel seleccionado',
+'blanknamespace'                => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contribucións do usuario',
@@ -2795,7 +2798,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-ca-viewsource'           => 'Esta páxina está protexida. Pode ver o código fonte.',
 'tooltip-ca-history'              => 'Versións anteriores desta páxina',
 'tooltip-ca-protect'              => 'Protexer esta páxina',
-'tooltip-ca-unprotect'            => 'Desprotexer esta páxina',
+'tooltip-ca-unprotect'            => 'Cambiar a protección desta páxina',
 'tooltip-ca-delete'               => 'Eliminar esta páxina',
 'tooltip-ca-undelete'             => 'Restaurar as edicións feitas nesta páxina antes de que fose eliminada',
 'tooltip-ca-move'                 => 'Mover esta páxina',

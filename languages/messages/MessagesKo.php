@@ -463,7 +463,7 @@ $messages = array(
 'vector-action-move'             => '이동',
 'vector-action-protect'          => '보호',
 'vector-action-undelete'         => '되살리기',
-'vector-action-unprotect'        => '보호 해제',
+'vector-action-unprotect'        => '보호 설정 변경',
 'vector-simplesearch-preference' => '향상된 검색어 제안 사용하기 (벡터 스킨 전용)',
 'vector-view-create'             => '생성',
 'vector-view-edit'               => '편집',
@@ -500,8 +500,8 @@ $messages = array(
 'protect'           => '보호',
 'protect_change'    => '보호 수준 변경',
 'protectthispage'   => '이 문서 보호하기',
-'unprotect'         => '보호 해제',
-'unprotectthispage' => '이 문서 보호 해제하기',
+'unprotect'         => '보호 설정 변경',
+'unprotectthispage' => '이 문서의 보호 설정을 변경하기',
 'newpage'           => '새 문서',
 'talkpage'          => '토론 문서',
 'talkpagelinktext'  => '토론',
@@ -1514,10 +1514,11 @@ $1",
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
 
 # User rights log
-'rightslog'      => '사용자 권한 기록',
-'rightslogtext'  => '사용자 권한 조정 기록입니다.',
-'rightslogentry' => '$1의 권한을 $2에서 $3(으)로 변경',
-'rightsnone'     => '(없음)',
+'rightslog'                  => '사용자 권한 기록',
+'rightslogtext'              => '사용자 권한 조정 기록입니다.',
+'rightslogentry'             => '$1의 권한을 $2에서 $3(으)로 변경',
+'rightslogentry-autopromote' => '사용자의 권한이 자동적으로 $2에서 $3으로 변경되었습니다.',
+'rightsnone'                 => '(없음)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => '이 문서를 읽기',
@@ -2291,7 +2292,7 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => '문서 보호 기록',
-'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.
+'protectlogtext'              => '아래의 목록은 문서 보호에 관한 변경 사항에 대한 기록입니다.
 현재 보호된 문서의 목록에 대해서는 [[Special:ProtectedPages|보호된 문서 목록]]을 참고하십시오.',
 'protectedarticle'            => '‘[[$1]]’ 문서를 보호함',
 'modifiedarticleprotection'   => '‘[[$1]]’ 문서의 보호 설정을 변경함',
@@ -2811,7 +2812,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'tooltip-ca-viewsource'           => '문서가 잠겨 있습니다. 문서의 소스만 볼 수 있습니다.',
 'tooltip-ca-history'              => '문서의 과거 버전들',
 'tooltip-ca-protect'              => '문서 보호하기',
-'tooltip-ca-unprotect'            => '이 문서 보호 헤제하기',
+'tooltip-ca-unprotect'            => '이 문서의 보호 설정을 변경하기',
 'tooltip-ca-delete'               => '문서 삭제하기',
 'tooltip-ca-undelete'             => '삭제된 문서 복구하기',
 'tooltip-ca-move'                 => '문서 이동하기',

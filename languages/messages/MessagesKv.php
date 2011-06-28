@@ -103,7 +103,7 @@ $messages = array(
 'nstab-category' => 'Категория',
 
 # Login and logout pages
-'yourname'                => 'Вӧлысьлӧн ним:',
+'yourname'                => 'Пырысьлӧн ним:',
 'login'                   => 'Висьтасьны',
 'nav-login-createaccount' => 'Висьтасьны / гижсьыны',
 'userlogin'               => 'Висьтасьны али гижсьыны',
@@ -151,7 +151,7 @@ $messages = array(
 'move'     => 'Ним вежны',
 
 # Special:Log
-'specialloguserlabel' => 'Вӧлысь:',
+'specialloguserlabel' => 'Пырысь:',
 'log'                 => 'Журналъяс',
 
 # Special:AllPages
@@ -161,7 +161,13 @@ $messages = array(
 'mywatchlist' => 'Видзӧдӧм лыддьӧгӧй',
 
 # Delete
-'deletepage' => 'Лист бокӧс бырӧдны',
+'deletepage'            => 'Лист бокӧс бырӧдны',
+'deletereason-dropdown' => '* Типовые причины удаления
+** вандализм
+** по запросу автора
+** нарушение авторских прав
+* MediaWiki
+** Дубликат сообщения с translatewiki.net',
 
 # Protect
 'protect-level-sysop' => 'Администраторъяс сӧмын',
