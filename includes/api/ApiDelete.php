@@ -150,7 +150,7 @@ class ApiDelete extends ApiBase {
 		if ( $article->doDeleteArticle( $reason, false, 0, true, $error ) ) {
 			return array();
 		} else {
-			return array( array( 'cannotdelete', $article->mTitle->getPrefixedText() ) );
+			return array( array( 'cannotdelete', $article->getTitle()->getPrefixedText() ) );
 		}
 	}
 

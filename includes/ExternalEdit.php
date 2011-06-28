@@ -22,7 +22,7 @@ class ExternalEdit {
 
 	function __construct( $article, $mode ) {
 		$this->mArticle =& $article;
-		$this->mTitle =& $article->mTitle;
+		$this->mTitle = $article->getTitle();
 		$this->mCharset = 'UTF-8';
 		$this->mMode = $mode;
 	}

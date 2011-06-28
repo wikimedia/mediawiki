@@ -28,7 +28,7 @@ class RawPage {
 
 		$allowedCTypes = array( 'text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit' );
 		$this->mArticle = $article;
-		$this->mTitle = $article->mTitle;
+		$this->mTitle = $article->getTitle();
 
 		if( $request === false ) {
 			$this->mRequest = $wgRequest;

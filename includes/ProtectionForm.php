@@ -61,7 +61,7 @@ class ProtectionForm {
 		global $wgUser;
 		// Set instance variables.
 		$this->mArticle = $article;
-		$this->mTitle = $article->mTitle;
+		$this->mTitle = $article->getTitle();
 		$this->mApplicableTypes = $this->mTitle->getRestrictionTypes();
 		
 		// Check if the form should be disabled.
