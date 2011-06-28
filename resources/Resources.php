@@ -534,6 +534,13 @@ return array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
 	),
+	'mediawiki.special' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.special.js',
+	),
+	'mediawiki.special.recentchanges' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
+		'dependencies' => array( 'mediawiki.special' ),
+	),
 	'mediawiki.special.upload' => array(
 		// @TODO: merge in remainder of mediawiki.legacy.upload
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',

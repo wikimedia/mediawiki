@@ -140,6 +140,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts = $this->getOptions();
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addRecentChangesJS();
 
 		// Fetch results, prepare a batch link existence check query
 		$conds = $this->buildMainQueryConds( $opts );
@@ -838,5 +839,15 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$cl, $dl, $wgLang->pipeList( $links ) );
 		$rclistfrom = wfMsgExt( 'rclistfrom', array( 'parseinline', 'replaceafter' ), $tl );
 		return "{$note}$rclinks<br />$rclistfrom";
+	}
+
+	/**
+	 * add javascript specific to the [[Special:RecentChanges]] page
+	 */
+	function addRecentChangesJS() {
+		global $wgOut;
+		$wgOut->addModules( array(
+			'mediawiki.special.recentchanges',
+		) );
 	}
 }

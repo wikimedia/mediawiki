@@ -132,6 +132,8 @@ class Xml {
 		}
 
 		if( !is_null( $all ) )
+			# Please make sure the 'namespacesall' is the first or you will break
+			# such an assumption (ex js: mw.special.recentchanges.updateCheckboxes)
 			$namespaces = array( $all => wfMsg( 'namespacesall' ) ) + $namespaces;
 		foreach( $namespaces as $index => $name ) {
 			if( $index < NS_MAIN ) {
