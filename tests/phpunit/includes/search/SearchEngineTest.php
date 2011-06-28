@@ -3,17 +3,21 @@
 /**
  * This class is not directly tested. Instead it is extended by SearchDbTest.
  * @group Search
- * @group Stub
- * @group Destructive
+ * @group Database
  */
 class SearchEngineTest extends MediaWikiTestCase {
-	var $db, $search, $pageList;
+	protected $search, $pageList;
+
+	function tearDown() {
+		unset( $this->search );
+	}
 
 	/*
 	 * Checks for database type & version.
 	 * Will skip current test if DB does not support search.
 	 */
 	function setUp() {
+		parent::setUp();
 		// Search tests require MySQL or SQLite with FTS
 		# Get database type and version
 		$dbType = $this->db->getType();
@@ -24,13 +28,16 @@ class SearchEngineTest extends MediaWikiTestCase {
 		if( !$dbSupported ) {
 			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
 		}
+
+		$searchType = $this->db->getSearchEngine();
+		$this->search = new $searchType( $this->db );
 	}
 
 	function pageExists( $title ) {
 		return false;
 	}
 
-	function insertSearchData() {
+	function addDBData() {
 		if ( $this->pageExists( 'Not_Main_Page' ) ) {
 			return;
 		}
@@ -51,15 +58,6 @@ class SearchEngineTest extends MediaWikiTestCase {
 		$this->insertPage( 'HalfNumbers',	'1234567890', 0 );
 		$this->insertPage( 'FullNumbers',	'１２３４５６７８９０', 0 );
 		$this->insertPage( 'DomainName',	'example.com', 0 );
-	}
-
-	function removeSearchData() {
-		return;
-		/*while ( count( $this->pageList ) ) {
-			list( $title, $id ) = array_pop( $this->pageList );
-			$article = new Article( $title, $id );
-			$article->doDeleteArticle( "Search Test" );
-		}*/
 	}
 
 	function fetchIds( $results ) {
