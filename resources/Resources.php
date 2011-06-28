@@ -510,6 +510,7 @@ return array(
 	/* Special pages */
 
 	'mediawiki.special' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.css',
 	),
 	'mediawiki.special.preferences' => array(
@@ -533,9 +534,6 @@ return array(
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
-	),
-	'mediawiki.special' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.special.js',
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
