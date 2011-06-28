@@ -3350,7 +3350,7 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
 function wfOut( $s ) {
 	wfDeprecated( __METHOD__ );
 	global $wgCommandLineMode;
-	if ( $wgCommandLineMode && !defined( 'MEDIAWIKI_INSTALL' ) ) {
+	if ( $wgCommandLineMode ) {
 		echo $s;
 	} else {
 		echo htmlspecialchars( $s );
