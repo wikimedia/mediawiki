@@ -512,7 +512,7 @@ $messages = array(
 'vector-action-move'             => 'העברה',
 'vector-action-protect'          => 'הגנה',
 'vector-action-undelete'         => 'ביטול מחיקה',
-'vector-action-unprotect'        => 'הסרת הגנה',
+'vector-action-unprotect'        => 'שינוי הגנה',
 'vector-simplesearch-preference' => 'הפעלת הצעות החיפוש המשופרות (בעיצוב וקטור בלבד)',
 'vector-view-create'             => 'יצירה',
 'vector-view-edit'               => 'עריכה',
@@ -548,9 +548,9 @@ $messages = array(
 'viewdeleted_short' => 'צפייה ב{{PLURAL:$1|עריכה מחוקה אחת|־$1 עריכות מחוקות}}',
 'protect'           => 'הגנה',
 'protect_change'    => 'שינוי',
-'protectthispage'   => 'הפעלת הגנה על דף זה',
-'unprotect'         => 'הסרת הגנה',
-'unprotectthispage' => 'הסרת הגנה מדף זה',
+'protectthispage'   => 'הגנה על דף זה',
+'unprotect'         => 'שינוי הגנה',
+'unprotectthispage' => 'שינוי ההגנה של דף זה',
 'newpage'           => 'דף חדש',
 'talkpage'          => 'שיחה על דף זה',
 'talkpagelinktext'  => 'שיחה',
@@ -1600,10 +1600,11 @@ $1",
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
 
 # User rights log
-'rightslog'      => 'יומן תפקידים',
-'rightslogtext'  => 'זהו יומן השינויים בתפקידי המשתמשים.',
-'rightslogentry' => 'שינה את ההרשאות של $1 מ$2 ל$3',
-'rightsnone'     => '(כלום)',
+'rightslog'                  => 'יומן תפקידים',
+'rightslogtext'              => 'זהו יומן השינויים בתפקידי המשתמשים.',
+'rightslogentry'             => 'שינה את ההרשאות של $1 מ$2 ל$3',
+'rightslogentry-autopromote' => 'קודם אוטומטית מ$2 ל$3',
+'rightsnone'                 => '(כלום)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'לקרוא דף זה',
@@ -2387,7 +2388,8 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => 'יומן הגנות',
-'protectlogtext'              => 'להלן רשימה של הפעלות וביטולי הגנות על דפים. ראו גם את [[Special:ProtectedPages|רשימת הדפים המוגנים]] הנוכחית.',
+'protectlogtext'              => 'להלן רשימה של שינויי ההגנה על דפים.
+ראו גם את [[Special:ProtectedPages|רשימת הדפים המוגנים]] הנוכחית.',
 'protectedarticle'            => 'הפעיל הגנה על [[$1]]',
 'modifiedarticleprotection'   => 'שינה את רמת ההגנה של [[$1]]',
 'unprotectedarticle'          => 'ביטל את ההגנה על [[$1]]',
@@ -2496,10 +2498,12 @@ $1',
 'undelete-show-file-submit'    => 'כן',
 
 # Namespace form on various pages
-'namespace'             => 'מרחב שם:',
-'invert'                => 'ללא מרחב זה',
-'namespace_association' => 'מרחב שם צמוד',
-'blanknamespace'        => '(ראשי)',
+'namespace'                     => 'מרחב שם:',
+'invert'                        => 'ללא מרחב זה',
+'tooltip-invert'                => 'יש לסמן תיבה זו כדי להסתיר שינויים בדפים בתוך מרחב השם שנבחר (ובתוך מרחב השם הצמוד, אם הוא סומן)',
+'namespace_association'         => 'מרחב שם צמוד',
+'tooltip-namespace_association' => 'יש לסמן תיבה זו כדי לכלול גם את מרחב דפי השיחה או דפי הנושא המשויכים למרחב השם הנבחר',
+'blanknamespace'                => '(ראשי)',
 
 # Contributions
 'contributions'       => 'תרומות המשתמש',
@@ -2904,7 +2908,7 @@ $1',
 'tooltip-ca-viewsource'           => 'זהו דף מוגן, אך באפשרותכם לצפות במקורו',
 'tooltip-ca-history'              => 'גרסאות קודמות של דף זה',
 'tooltip-ca-protect'              => 'הגנה על דף זה',
-'tooltip-ca-unprotect'            => 'הסרת ההגנה על דף זה',
+'tooltip-ca-unprotect'            => 'שינוי ההגנה על דף זה',
 'tooltip-ca-delete'               => 'מחיקת דף זה',
 'tooltip-ca-undelete'             => 'שחזור עריכות שנעשו בדף זה לפני שנמחק',
 'tooltip-ca-move'                 => 'העברת דף זה',
