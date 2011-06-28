@@ -258,20 +258,21 @@ class UploadStashFile extends UnregisteredLocalFile {
 		// resolve mwrepo:// urls
 		if ( $repo->isVirtualUrl( $path ) ) {
 			$path = $repo->resolveVirtualUrl( $path );
-		}
+		} else {
 
-		// check if path appears to be sane, no parent traversals, and is in this repo's temp zone.
-		$repoTempPath = $repo->getZonePath( 'temp' );
-		if ( ( ! $repo->validateFilename( $path ) ) ||
-				( strpos( $path, $repoTempPath ) !== 0 ) ) {
-			wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not valid\n" );
-			throw new UploadStashBadPathException( 'path is not valid' );
-		}
+			// check if path appears to be sane, no parent traversals, and is in this repo's temp zone.
+			$repoTempPath = $repo->getZonePath( 'temp' );
+			if ( ( ! $repo->validateFilename( $path ) ) ||
+					( strpos( $path, $repoTempPath ) !== 0 ) ) {
+				wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not valid\n" );
+				throw new UploadStashBadPathException( 'path is not valid' );
+			}
 
-		// check if path exists! and is a plain file.
-		if ( ! $repo->fileExists( $path, FileRepo::FILES_ONLY ) ) {
-			wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not found\n" );
-			throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
+			// check if path exists! and is a plain file.
+			if ( ! $repo->fileExists( $path, FileRepo::FILES_ONLY ) ) {
+				wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not found\n" );
+				throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
+			}
 		}
 
 		parent::__construct( false, $repo, $path, false );
