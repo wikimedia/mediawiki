@@ -180,6 +180,9 @@ echo $footerEnd;
 		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
 
 		foreach ($sidebar as $boxName => $cont) {
+			if ( $cont === false )
+				continue;
+
 			if ( $boxName == 'SEARCH' ) {
 				$this->searchBox();
 			} elseif ( $boxName == 'TOOLBOX' ) {
