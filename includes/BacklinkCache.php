@@ -207,10 +207,17 @@ class BacklinkCache {
 		switch ( $table ) {
 			case 'pagelinks':
 			case 'templatelinks':
+				$conds = array(
+					"{$prefix}_namespace" => $this->title->getNamespace(),
+					"{$prefix}_title"     => $this->title->getDBkey(),
+					"page_id={$prefix}_from"
+				);
+				break;
 			case 'redirect':
 				$conds = array(
 					"{$prefix}_namespace" => $this->title->getNamespace(),
 					"{$prefix}_title"     => $this->title->getDBkey(),
+					"{$prefix}_interwiki" => '',
 					"page_id={$prefix}_from"
 				);
 				break;

@@ -130,6 +130,8 @@ production.
 * Use content language in formatting of dates in revertpage message
   (rollback revert edit summary) and do not adjust for user timezone.
 * (bug 29277) MediaWiki:Filepage.css is also shown on the local wiki
+* Make sure Backlink cache does not retrieve interwiki redirects when looking for
+  redirects to a local page.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
