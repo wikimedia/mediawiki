@@ -1,11 +1,17 @@
 <?php
 class FormatMetadataTest extends MediaWikiTestCase {
 	public function testInvalidDate() {
+		global $wgShowEXIF;
+		if ( !$wgShowEXIF ) {
+			$this->markTestIncomplete( "This test needs the exif extension." );
+		}
+		
 		$file = UnregisteredLocalFile::newFromPath( dirname( __FILE__ ) . 
 			'/broken_exif_date.jpg', 'image/jpeg' );
 		
 		// Throws an error if bug hit
 		$meta = $file->formatMetadata();
+		$this->assertNotEquals( false, $meta, 'Valid metadata extracted' );
 		
 		// Find date exif entry
 		$this->assertArrayHasKey( 'visible', $meta );

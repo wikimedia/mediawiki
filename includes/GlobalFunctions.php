@@ -3549,3 +3549,17 @@ function wfGetParserCacheStorage() {
 function wfRunHooks( $event, $args = array() ) {
 	return Hooks::run( $event, $args );
 }
+
+/**
+ * Unserialize a string to a PHP value without throwing E_NOTICE. Simply a 
+ * wrapper around unserialize()
+ * 
+ * @param $data string The serialized string
+ * @return mixed
+ */
+function wfUnserialize( $data ) {
+	wfSuppressWarnings();
+	$result = unserialize( $data );
+	wfRestoreWarnings();
+	return $result;
+}
