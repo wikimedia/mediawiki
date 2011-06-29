@@ -445,7 +445,7 @@ class ParserTest {
 		if ( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
 		} elseif ( isset( $opts['msg'] ) ) {
-			$out = $parser->transformMsg( $input, $options );
+			$out = $parser->transformMsg( $input, $options, $title );
 		} elseif ( isset( $opts['section'] ) ) {
 			$section = $opts['section'];
 			$out = $parser->getSection( $input, $section );
