@@ -863,7 +863,7 @@ class XmlSelect {
 	public function addOption( $name, $value = false ) {
 		// Stab stab stab
 		$value = ($value !== false) ? $value : $name;
-		$this->options[] = array( $name => $value ); //Xml::option( $name, $value, $value === $this->default );
+		$this->options[] = array( $name => $value );
 	}
 
 	/**
