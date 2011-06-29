@@ -217,7 +217,10 @@ class BacklinkCache {
 				$conds = array(
 					"{$prefix}_namespace" => $this->title->getNamespace(),
 					"{$prefix}_title"     => $this->title->getDBkey(),
-					"{$prefix}_interwiki" => '',
+					$this->getDb()->makeList( array(
+						"{$prefix}_interwiki = ''",
+						"{$prefix}_interwiki is null",
+					), LIST_OR ),
 					"page_id={$prefix}_from"
 				);
 				break;
