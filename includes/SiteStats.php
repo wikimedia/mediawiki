@@ -377,7 +377,7 @@ class SiteStatsInit {
 		$this->mPages = $this->db->selectField( 'page', 'COUNT(*)', '', __METHOD__ );
 		return $this->mPages;
 	}
-	
+
 	/**
 	 * Count total users
 	 * @return Integer
@@ -386,7 +386,7 @@ class SiteStatsInit {
 		$this->mUsers = $this->db->selectField( 'user', 'COUNT(*)', '', __METHOD__ );
 		return $this->mUsers;
 	}
-	
+
 	/**
 	 * Count views
 	 * @return Integer

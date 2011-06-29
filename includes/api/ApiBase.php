@@ -181,7 +181,8 @@ abstract class ApiBase {
 	 * @param $warning string Warning message
 	 */
 	public function setWarning( $warning ) {
-		$data = $this->getResult()->getData();
+		$result = $this->getResult();
+		$data = $result->getData();
 		if ( isset( $data['warnings'][$this->getModuleName()] ) ) {
 			// Don't add duplicate warnings
 			$warn_regex = preg_quote( $warning, '/' );
@@ -191,13 +192,13 @@ abstract class ApiBase {
 			$oldwarning = $data['warnings'][$this->getModuleName()]['*'];
 			// If there is a warning already, append it to the existing one
 			$warning = "$oldwarning\n$warning";
-			$this->getResult()->unsetValue( 'warnings', $this->getModuleName() );
+			$result->unsetValue( 'warnings', $this->getModuleName() );
 		}
 		$msg = array();
 		ApiResult::setContent( $msg, $warning );
-		$this->getResult()->disableSizeCheck();
-		$this->getResult()->addValue( 'warnings', $this->getModuleName(), $msg );
-		$this->getResult()->enableSizeCheck();
+		$result->disableSizeCheck();
+		$result->addValue( 'warnings', $this->getModuleName(), $msg );
+		$result->enableSizeCheck();
 	}
 
 	/**
