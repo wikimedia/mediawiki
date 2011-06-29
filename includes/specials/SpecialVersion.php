@@ -230,6 +230,7 @@ class SpecialVersion extends SpecialPage {
 				'media' => wfMsg( 'version-mediahandlers' ),
 				'antispam' => wfMsg( 'version-antispam' ),
 				'skin' => wfMsg( 'version-skins' ),
+				'api' => wfMsg( 'version-api' ),
 				'other' => wfMsg( 'version-other' ),
 			);
 

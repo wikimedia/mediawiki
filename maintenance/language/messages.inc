@@ -339,7 +339,7 @@ $wgMessageStructure = array(
 		'red-link-title',
 		'sort-descending',
 		'sort-ascending',
-        
+
 	),
 	'nstab' => array(
 		'nstab-main',
@@ -1009,7 +1009,7 @@ $wgMessageStructure = array(
 		'prefs-help-email',
 		'prefs-help-email-others',
 		'prefs-help-email-required',
-	
+
 		'prefs-info',
 		'prefs-i18n',
 		'prefs-signature',
@@ -3341,6 +3341,7 @@ $wgMessageStructure = array(
 		'version-variables',
 		'version-antispam',
 		'version-skins',
+		'version-api',
 		'version-other',
 		'version-mediahandlers',
 		'version-hooks',
