@@ -1624,10 +1624,11 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
 
 # User rights log
-'rightslog'      => 'Gebruikersrechtenlogboek',
-'rightslogtext'  => 'Hieronder staan de wijzigingen in gebruikersrechten.',
-'rightslogentry' => 'wijzigde de gebruikersrechten voor $1 van $2 naar $3',
-'rightsnone'     => '(geen)',
+'rightslog'                  => 'Gebruikersrechtenlogboek',
+'rightslogtext'              => 'Hieronder staan de wijzigingen in gebruikersrechten.',
+'rightslogentry'             => 'wijzigde de gebruikersrechten voor $1 van $2 naar $3',
+'rightslogentry-autopromote' => 'werd automatisch gepromoveerd van $2 naar $3',
+'rightsnone'                 => '(geen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'deze pagina te bekijken',
@@ -2548,10 +2549,12 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'             => 'Naamruimte:',
-'invert'                => 'Omgekeerde selectie',
-'namespace_association' => 'Gekoppelde naamruimte',
-'blanknamespace'        => '(Hoofdnaamruimte)',
+'namespace'                     => 'Naamruimte:',
+'invert'                        => 'Omgekeerde selectie',
+'tooltip-invert'                => 'Vink dit aan om wijzigingen te verbergen in de geselecteerde naamruimte (en de gekoppelde naamruimte indien aangevinkt)',
+'namespace_association'         => 'Gekoppelde naamruimte',
+'tooltip-namespace_association' => 'Vink dit aan om ook wijzigingen weer te geven in de overleg- of onderwerpnaamruimte die bij de geselecteerde naamruimte hoort',
+'blanknamespace'                => '(Hoofdnaamruimte)',
 
 # Contributions
 'contributions'       => 'Gebruikersbijdragen',

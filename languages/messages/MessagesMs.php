@@ -1420,10 +1420,11 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-sendemail'             => 'Kirim e-mel kepada pengguna-pengguna lain',
 
 # User rights log
-'rightslog'      => 'Log hak pengguna',
-'rightslogtext'  => 'Ini ialah log bagi perubahan hak pengguna.',
-'rightslogentry' => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
-'rightsnone'     => '(tiada)',
+'rightslog'                  => 'Log hak pengguna',
+'rightslogtext'              => 'Ini ialah log bagi perubahan hak pengguna.',
+'rightslogentry'             => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
+'rightslogentry-autopromote' => 'dinaik pangkat secara automatik dari $2 ke $3',
+'rightsnone'                 => '(tiada)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'membaca laman ini',
@@ -2294,9 +2295,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Ruang nama:',
 'invert'                        => 'Kecualikan pilihan',
-'tooltip-invert'                => 'Tandai kotak ini untuk menyorokkan perubahan dalam ruang nama yang dipilih',
+'tooltip-invert'                => 'Tandai kotak ini untuk menyorokkan perubahan dalam ruang nama yang dipilih (dan ruang nama yang berkaitan jika ditandai)',
 'namespace_association'         => 'Ruang nama berkaitan',
-'tooltip-namespace_association' => 'Tandai kotak ini untuk turut menyertakan ruang nama perbincangan atau subjek yang dikaitkan dengan pilihan anda',
+'tooltip-namespace_association' => 'Tandai kotak ini untuk turut menyertakan ruang nama perbincangan atau subjek yang dikaitkan dengan ruang nama terpilih',
 'blanknamespace'                => '(Utama)',
 
 # Contributions
@@ -2359,7 +2360,7 @@ dengan [[{{MediaWiki:Policy-url}}|dasar {{SITENAME}}]].
 Sila masukkan sebab sekatan di bawah (umpamannya, sebutkan laman yang telah
 dirosakkan).',
 'ipadressorusername'              => 'Alamat IP atau nama pengguna:',
-'ipbexpiry'                       => 'Tempoh:',
+'ipbexpiry'                       => 'Tamat:',
 'ipbreason'                       => 'Sebab:',
 'ipbreasonotherlist'              => 'Lain-lain',
 'ipbreason-dropdown'              => '*Sebab lazim
