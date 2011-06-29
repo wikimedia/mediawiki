@@ -90,8 +90,6 @@ class XmlSelectTest extends MediaWikiTestCase {
 	 * To handle this, we need to render the options in getHtml()
 	 */
 	public function testSetDefaultAfterAddingOptions() {
-		$this->markTestSkipped( 'XmlSelect::setDefault() need to apply to previously added options');
-
 		$this->select->addOption( 'foo1' );
 		$this->select->addOption( 'bar1' );
 		$this->select->addOption( 'foo2' );
