@@ -935,13 +935,13 @@ CONTROL;
 	 *
 	 * @return string
 	 */
-	static function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
-		global $wgBetterDirectionality, $wgTitle;
+	function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
+		global $wgBetterDirectionality;
 		$tableClass = 'diff';
 		if( $wgBetterDirectionality ) {
 			// shared.css sets diff in interface language/dir,
 			// but the actual content should be in the page language/dir
-			$pageLang = $wgTitle->getPageLanguage();
+			$pageLang = $this->mTitle->getPageLanguage();
 			$tableClass .= ' diff-contentalign-' . htmlspecialchars( $pageLang->alignStart() );
 		}
 		$header = "<table class='$tableClass'>";
