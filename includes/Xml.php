@@ -863,7 +863,7 @@ class XmlSelect {
 	public function addOption( $name, $value = false ) {
 		// Stab stab stab
 		$value = ($value !== false) ? $value : $name;
-		$this->options[] = Xml::option( $name, $value, $value === $this->default );
+		$this->options[] = array( $name => $value ); //Xml::option( $name, $value, $value === $this->default );
 	}
 
 	/**
@@ -874,7 +874,7 @@ class XmlSelect {
 	 * @param  $options
 	 */
 	public function addOptions( $options ) {
-		$this->options[] = trim( self::formatOptions( $options, $this->default ) );
+		$this->options[] = $options;
 	}
 
 	/**
@@ -904,7 +904,11 @@ class XmlSelect {
 	 * @return string
 	 */
 	public function getHTML() {
-		return Xml::tags( 'select', $this->attributes, implode( "\n", $this->options ) );
+		$contents = '';
+		foreach ( $this->options as $options ) {
+			$contents .= self::formatOptions( $options, $this->default );
+		}
+		return Xml::tags( 'select', $this->attributes, rtrim( $contents ) );
 	}
 
 }
