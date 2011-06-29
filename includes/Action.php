@@ -73,7 +73,7 @@ abstract class Action {
 	 * @return Action|false|null false if the action is disabled, null
 	 *     if it is not recognised
 	 */
-	public final static function factory( $action, Article $page ) {
+	public final static function factory( $action, Page $page ) {
 		$class = self::getClass( $action );
 		if ( $class ) {
 			$obj = new $class( $page );
@@ -159,9 +159,9 @@ abstract class Action {
 	/**
 	 * Protected constructor: use Action::factory( $action, $page ) to actually build
 	 * these things in the real world
-	 * @param Article $page
+	 * @param Page $page
 	 */
-	protected function __construct( Article $page ) {
+	protected function __construct( Page $page ) {
 		$this->page = $page;
 	}
 

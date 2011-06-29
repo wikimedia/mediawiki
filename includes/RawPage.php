@@ -23,7 +23,7 @@ class RawPage {
 	var $mSmaxage, $mMaxage;
 	var $mContentType, $mExpandTemplates;
 
-	function __construct( Article $article, $request = false ) {
+	function __construct( Page $article, $request = false ) {
 		global $wgRequest, $wgSquidMaxage, $wgJsMimeType, $wgGroupPermissions;
 
 		$allowedCTypes = array( 'text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit' );

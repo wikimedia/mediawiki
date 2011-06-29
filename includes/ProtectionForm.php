@@ -57,7 +57,7 @@ class ProtectionForm {
 	/** Map of action to the expiry time of the existing protection */
 	var $mExistingExpiry = array();
 
-	function __construct( Article $article ) {
+	function __construct( Page $article ) {
 		global $wgUser;
 		// Set instance variables.
 		$this->mArticle = $article;

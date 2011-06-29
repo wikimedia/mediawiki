@@ -181,9 +181,6 @@ class ParserCache {
 			wfDebug( "ParserOutput key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
 		} else {
-			if ( isset( $value->mTimestamp ) ) {
-				$article->mTimestamp = $value->mTimestamp;
-			}
 			wfIncrStats( "pcache_hit" );
 		}
 
