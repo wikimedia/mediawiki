@@ -180,7 +180,7 @@ echo $footerEnd;
 		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
 
 		foreach ($sidebar as $boxName => $cont) {
-			if ( $cont === false )
+			if ( $content === false )
 				continue;
 
 			if ( $boxName == 'SEARCH' ) {
