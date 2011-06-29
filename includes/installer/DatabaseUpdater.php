@@ -497,7 +497,7 @@ abstract class DatabaseUpdater {
 			$this->output( "done.\n" );
 			return;
 		}
-		SiteStatsInit::doAllAndCommit( false );
+		SiteStatsInit::doAllAndCommit( $this->db );
 	}
 
 	# Common updater functions

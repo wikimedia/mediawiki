@@ -55,7 +55,7 @@ class SiteStats {
 			// clean schema with mwdumper.
 			wfDebug( __METHOD__ . ": initializing damaged or missing site_stats\n" );
 
-			SiteStatsInit::doAllAndCommit( false );
+			SiteStatsInit::doAllAndCommit( wfGetDB( DB_SLAVE ) );
 
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
@@ -317,10 +317,16 @@ class SiteStatsInit {
 
 	/**
 	 * Constructor
-	 * @param $useMaster Boolean: whether to use the master DB
+	 * @param $database Boolean or DatabaseBase:
+	 * - Boolean: whether to use the master DB
+	 * - DatabaseBase: database connection to use
 	 */
-	public function __construct( $useMaster = false ) {
-		$this->db = wfGetDB( $useMaster ? DB_MASTER : DB_SLAVE );
+	public function __construct( $database = false ) {
+		if ( $database instanceof DatabaseBase ) {
+			$this->db = $database;
+		} else {
+			$this->db = wfGetDB( $useMaster ? DB_MASTER : DB_SLAVE );
+		}
 	}
 
 	/**
@@ -402,13 +408,21 @@ class SiteStatsInit {
 	/**
 	 * Do all updates and commit them. More or less a replacement
 	 * for the original initStats, but without the calls to wfOut()
-	 * @param $update Boolean: whether to update the current stats or write fresh
-	 * @param $noViews Boolean: when true, do not update the number of page views
-	 * @param $activeUsers Boolean: whether to update the number of active users
+	 *
+	 * @param $database Boolean or DatabaseBase:
+	 * - Boolean: whether to use the master DB
+	 * - DatabaseBase: database connection to use
+	 * @param $options Array of options, may contain the following values
+	 * - update Boolean: whether to update the current stats (true) or write fresh (false) (default: false)
+	 * - views Boolean: when true, do not update the number of page views (default: true)
+	 * - activeUsers Boolean: whether to update the number of active users (default: false)
 	 */
-	public static function doAllAndCommit( $update, $noViews = false, $activeUsers = false ) {
+	public static function doAllAndCommit( $database, array $options = array() ) {
+		$options += array( 'update' => false, 'views' => true, 'activeUsers' => false );
+
 		// Grab the object and count everything
-		$counter = new SiteStatsInit( false );
+		$counter = new SiteStatsInit( $database );
+
 		$counter->edits();
 		$counter->articles();
 		$counter->pages();
@@ -416,19 +430,19 @@ class SiteStatsInit {
 		$counter->files();
 
 		// Only do views if we don't want to not count them
-		if( !$noViews ) {
+		if( $options['views'] ) {
 			$counter->views();
 		}
 
 		// Update/refresh
-		if( $update ) {
+		if( $options['update'] ) {
 			$counter->update();
 		} else {
 			$counter->refresh();
 		}
 
 		// Count active users if need be
-		if( $activeUsers ) {
+		if( $options['activeUsers'] ) {
 			SiteStatsUpdate::cacheUpdate( wfGetDB( DB_MASTER ) );
 		}
 	}
