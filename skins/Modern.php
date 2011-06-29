@@ -100,24 +100,7 @@ class ModernTemplate extends MonoBookTemplate {
 	<div id="mw_portlets"<?php $this->html("userlangattributes") ?>>
 
 	<!-- portlets -->
-	<?php
-		$sidebar = $this->data['sidebar'];
-		if ( !isset( $sidebar['SEARCH'] ) ) $sidebar['SEARCH'] = true;
-		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
-		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
-
-		foreach ($sidebar as $boxName => $cont) {
-			if ( $boxName == 'SEARCH' ) {
-				$this->searchBox();
-			} elseif ( $boxName == 'TOOLBOX' ) {
-				$this->toolbox();
-			} elseif ( $boxName == 'LANGUAGES' ) {
-				$this->languageBox();
-			} else {
-				$this->customBox( $boxName, $cont );
-			}
-		}
-	?>
+	<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 
 	</div><!-- mw_portlets -->
 
