@@ -53,9 +53,10 @@ class ApiUserrights extends ApiBase {
 				$user, (array)$params['add'],
 				(array)$params['remove'], $params['reason'] );
 
-		$this->getResult()->setIndexedTagName( $r['added'], 'group' );
-		$this->getResult()->setIndexedTagName( $r['removed'], 'group' );
-		$this->getResult()->addValue( null, $this->getModuleName(), $r );
+		$result = $this->getResult();
+		$result->setIndexedTagName( $r['added'], 'group' );
+		$result->setIndexedTagName( $r['removed'], 'group' );
+		$result->addValue( null, $this->getModuleName(), $r );
 	}
 
 	/**

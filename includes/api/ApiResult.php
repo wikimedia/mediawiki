@@ -346,7 +346,6 @@ class ApiResult extends ApiBase {
 		global $wgContLang;
 		$s = $wgContLang->normalize( $s );
 	}
-	
 
 	/**
 	 * Converts a Status object to an array suitable for addValue
@@ -358,7 +357,7 @@ class ApiResult extends ApiBase {
 		if ( $status->isGood() ) {
 			return array();
 		}
-		
+
 		$result = array();
 		foreach ( $status->getErrorsByType( $errorType ) as $error ) {
 			$this->setIndexedTagName( $error['params'], 'param' );

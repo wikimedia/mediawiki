@@ -601,8 +601,6 @@ class ApiQuery extends ApiBase {
 	 * @return string
 	 */
 	public function makeHelpMsg() {
-		$msg = '';
-
 		// Make sure the internal object is empty
 		// (just in case a sub-module decides to optimize during instantiation)
 		$this->mPageSet = null;
@@ -610,7 +608,7 @@ class ApiQuery extends ApiBase {
 
 		$querySeparator = str_repeat( '--- ', 12 );
 		$moduleSeparator = str_repeat( '*** ', 14 );
-		$msg .= "\n$querySeparator Query: Prop  $querySeparator\n\n";
+		$msg = "\n$querySeparator Query: Prop  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryPropModules, 'prop' );
 		$msg .= "\n$querySeparator Query: List  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryListModules, 'list' );

@@ -146,11 +146,11 @@ class ApiUpload extends ApiBase {
 		}
 		return $sessionKey;
 	}
-	
+
 	/**
-	 * Throw an error that the user can recover from by providing a better 
+	 * Throw an error that the user can recover from by providing a better
 	 * value for $parameter
-	 * 
+	 *
 	 * @param $error array Error array suitable for passing to dieUsageMsg()
 	 * @param $parameter string Parameter that needs revising
 	 * @param $data array Optional extra data to pass to the user
@@ -163,7 +163,7 @@ class ApiUpload extends ApiBase {
 			$data['stashfailed'] = $e->getMessage();
 		}
 		$data['invalidparameter'] = $parameter;
-		
+
 		$parsed = $this->parseMsg( $error );
 		$this->dieUsage( $parsed['info'], $parsed['code'], 0, $data );
 	}
@@ -184,7 +184,7 @@ class ApiUpload extends ApiBase {
 
 		if ( $this->mParams['statuskey'] ) {
 			$this->checkAsyncDownloadEnabled();
-			
+
 			// Status request for an async upload
 			$sessionData = UploadFromUrlJob::getSessionData( $this->mParams['statuskey'] );
 			if ( !isset( $sessionData['result'] ) ) {
@@ -231,7 +231,7 @@ class ApiUpload extends ApiBase {
 			$async = false;
 			if ( $this->mParams['asyncdownload'] ) {
 				$this->checkAsyncDownloadEnabled();
-				
+
 				if ( $this->mParams['leavemessage'] && !$this->mParams['ignorewarnings'] ) {
 					$this->dieUsage( 'Using leavemessage without ignorewarnings is not supported',
 						'missing-ignorewarnings' );
@@ -286,7 +286,7 @@ class ApiUpload extends ApiBase {
 			// Recoverable errors
 			case UploadBase::MIN_LENGTH_PARTNAME:
 				$this->dieRecoverableError( 'filename-tooshort', 'filename' );
-				break;			
+				break;
 			case UploadBase::ILLEGAL_FILENAME:
 				$this->dieRecoverableError( 'illegal-filename', 'filename',
 						array( 'filename' => $verification['filtered'] ) );
@@ -297,7 +297,7 @@ class ApiUpload extends ApiBase {
 			case UploadBase::WINDOWS_NONASCII_FILENAME:
 				$this->dieRecoverableError( 'windows-nonascii-filename', 'filename' );
 				break;
-			
+
 			// Unrecoverable errors
 			case UploadBase::EMPTY_FILE:
 				$this->dieUsage( 'The file you submitted was empty', 'empty-file' );
@@ -345,18 +345,19 @@ class ApiUpload extends ApiBase {
 		}
 		return $this->transformWarnings( $warnings );
 	}
-			
+
 	protected function transformWarnings( $warnings ) {
 		if ( $warnings ) {
 			// Add indices
-			$this->getResult()->setIndexedTagName( $warnings, 'warning' );
+			$result = $this->getResult();
+			$result->setIndexedTagName( $warnings, 'warning' );
 
 			if ( isset( $warnings['duplicate'] ) ) {
 				$dupes = array();
 				foreach ( $warnings['duplicate'] as $dupe ) {
 					$dupes[] = $dupe->getName();
 				}
-				$this->getResult()->setIndexedTagName( $dupes, 'duplicate' );
+				$result->setIndexedTagName( $dupes, 'duplicate' );
 				$warnings['duplicate'] = $dupes;
 			}
 
@@ -418,7 +419,7 @@ class ApiUpload extends ApiBase {
 
 		return $result;
 	}
-	
+
 	/**
 	 * Checks if asynchronous copy uploads are enabled and throws an error if they are not.
 	 */

@@ -172,6 +172,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		$count = 0;
 		$res = $this->select( __METHOD__ );
+		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -183,13 +184,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if ( !$vals ) {
 				continue;
 			}
-			$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->log_timestamp ) );
 				break;
 			}
 		}
-		$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
+		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
 	}
 
 	/**
