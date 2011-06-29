@@ -667,7 +667,7 @@ class Parser {
 	 * @return Language
 	 */
 	function getFunctionLang() {
-		global $wgLang, $wgContLang;
+		global $wgLang;
 
 		$target = $this->mOptions->getTargetLanguage();
 		if ( $target !== null ) {
@@ -3875,7 +3875,7 @@ class Parser {
 	 * @private
 	 */
 	function formatHeadings( $text, $origText, $isMain=true ) {
-		global $wgMaxTocLevel, $wgContLang, $wgHtml5, $wgExperimentalHtmlIds;
+		global $wgMaxTocLevel, $wgHtml5, $wgExperimentalHtmlIds;
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
