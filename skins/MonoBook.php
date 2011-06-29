@@ -126,21 +126,7 @@ class MonoBookTemplate extends BaseTemplate {
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 <?php
-		$sidebar = $this->data['sidebar'];
-		if ( !isset( $sidebar['SEARCH'] ) ) $sidebar['SEARCH'] = true;
-		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
-		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
-		foreach ($sidebar as $boxName => $cont) {
-			if ( $boxName == 'SEARCH' ) {
-				$this->searchBox();
-			} elseif ( $boxName == 'TOOLBOX' ) {
-				$this->toolbox();
-			} elseif ( $boxName == 'LANGUAGES' ) {
-				$this->languageBox();
-			} else {
-				$this->customBox( $boxName, $cont );
-			}
-		}
+	$this->renderPortals( $this->data['sidebar'] );
 ?>
 </div><!-- end of the left (by default at least) column -->
 <div class="visualClear"></div>
@@ -187,6 +173,25 @@ echo $footerEnd;
 	} // end of execute() method
 
 	/*************************************************************************************************/
+
+	protected function renderPortals( $sidebar ) {
+		if ( !isset( $sidebar['SEARCH'] ) ) $sidebar['SEARCH'] = true;
+		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
+		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
+
+		foreach ($sidebar as $boxName => $cont) {
+			if ( $boxName == 'SEARCH' ) {
+				$this->searchBox();
+			} elseif ( $boxName == 'TOOLBOX' ) {
+				$this->toolbox();
+			} elseif ( $boxName == 'LANGUAGES' ) {
+				$this->languageBox();
+			} else {
+				$this->customBox( $boxName, $cont );
+			}
+		}
+	}
+
 	function searchBox() {
 		global $wgUseTwoButtonsSearchForm;
 ?>
