@@ -70,7 +70,7 @@ class MonoBookTemplate extends BaseTemplate {
 	 * @access private
 	 */
 	function execute() {
-		$this->skin = $skin = $this->data['skin'];
+		$this->skin = $this->data['skin'];
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
@@ -103,7 +103,7 @@ class MonoBookTemplate extends BaseTemplate {
 	</div>
 </div></div>
 <div id="column-one"<?php $this->html('userlangattributes')  ?>>
-<?php $this->cactions( $skin ); ?>
+<?php $this->cactions( $this->skin ); ?>
 	<div class="portlet" id="p-personal">
 		<h5><?php $this->msg('personaltools') ?></h5>
 		<div class="pBody">
