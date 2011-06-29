@@ -101,7 +101,8 @@ class ExifBitmapHandler extends BitmapHandler {
 	 */
 	function formatMetadata( $image ) {
 		$metadata = $image->getMetadata();
-		if ( !$metadata ||
+		if ( $metadata === self::OLD_BROKEN_FILE ||
+			$metadata === self::BROKEN_FILE ||
 			$this->isMetadataValid( $image, $metadata ) === self::METADATA_BAD )
 		{
 			// So we don't try and display metadata from PagedTiffHandler
