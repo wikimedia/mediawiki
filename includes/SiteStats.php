@@ -325,7 +325,7 @@ class SiteStatsInit {
 		if ( $database instanceof DatabaseBase ) {
 			$this->db = $database;
 		} else {
-			$this->db = wfGetDB( $useMaster ? DB_MASTER : DB_SLAVE );
+			$this->db = wfGetDB( $database ? DB_MASTER : DB_SLAVE );
 		}
 	}
 
