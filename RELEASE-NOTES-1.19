@@ -129,6 +129,7 @@ production.
   namespaces (categories) when combined with $wgRawHtml.
 * Use content language in formatting of dates in revertpage message
   (rollback revert edit summary) and do not adjust for user timezone.
+* (bug 29277) MediaWiki:Filepage.css is also shown on the local wiki
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.

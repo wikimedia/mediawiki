@@ -11,6 +11,7 @@ return array(
 	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
 	'user.tokens' => array( 'class' => 'ResourceLoaderUserTokensModule' ),
+	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
 
 	/* Skins */
 
