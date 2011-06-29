@@ -109,7 +109,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			return false;
 		}
 
-		$exif = unserialize( $metadata );
+		$exif = wfUnserialize( $metadata );
 		if ( !$exif ) {
 			return false;
 		}
