@@ -274,6 +274,9 @@ class VectorTemplate extends BaseTemplate {
 		}
 		// Render portals
 		foreach ( $portals as $name => $content ) {
+			if ( $cont === false )
+				continue;
+
 			echo "\n<!-- {$name} -->\n";
 			switch( $name ) {
 				case 'SEARCH':
