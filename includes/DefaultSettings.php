@@ -354,7 +354,7 @@ $wgUseInstantCommons = false;
  * Requires PHP's EXIF extension: http://www.php.net/manual/en/ref.exif.php
  *
  * NOTE FOR WINDOWS USERS:
- * To enable EXIF functions, add the folloing lines to the
+ * To enable EXIF functions, add the following lines to the
  * "Windows extensions" section of php.ini:
  *
  * extension=extensions/php_mbstring.dll
