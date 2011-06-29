@@ -2177,92 +2177,93 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 # Restriction levels
 'restriction-level-sysop'         => 'diogelwyd yn llwyr',
 'restriction-level-autoconfirmed' => 'lled-ddiogelwyd',
-'restriction-level-all'           => 'pob lefel',
+'restriction-level-all'           => 'unrhyw lefel',
 
 # Undelete
-'undelete'                     => 'Gweld tudalennau dilëedig',
-'undeletepage'                 => 'Gweld ac adfer tudalennau dilëedig',
-'undeletepagetitle'            => "'''Dyma'r diwygiadau dilëedig o [[:$1|$1]]'''.",
-'viewdeletedpage'              => "Gweld tudalennau sydd wedi'u dileu",
-'undeletepagetext'             => "Mae'r {{PLURAL:$1|tudalennau|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} isod wedi cael eu dileu ond mae cofnod ohonynt o hyd yn yr archif, felly mae'n bosibl eu hadfer.
+'undelete'                     => 'Gweld tudalennau dileedig',
+'undeletepage'                 => 'Gweld ac adfer tudalennau dileedig',
+'undeletepagetitle'            => "'''Dyma'r diwygiadau dileedig o [[:$1|$1]]'''.",
+'viewdeletedpage'              => 'Gweld tudalennau sydd dileedig',
+'undeletepagetext'             => "Mae'r {{PLURAL:$1|dudalen ganlynol wedi cael ei dileu ond mae hi|$1 tudalen ganlynol wedi cael eu dileu ond maent}} ar gael o hyd yn yr archif, ac mae modd i'w hadfer os oes angen.
 Gall yr archif gael ei glanhau o dro i dro.",
-'undelete-fieldset-title'      => 'Dewis ac adfer diwygiadau',
-'undeleteextrahelp'            => "I adfer hanes gyfan y dudalen, gadewch pob blwch ticio'n wag a phwyswch y botwm '''''{{int:undeletebtn}}'''''. I adfer rhai diwygiadau'n unig, ticiwch y blychau ar gyfer y diwygiadau yr ydych am eu hadfer, yna pwyswch ar '''''{{int:undeletebtn}}'''''.",
+'undelete-fieldset-title'      => 'Adfer diwygiadau',
+'undeleteextrahelp'            => "I adfer hanes gyfan y dudalen, gadewch bob blwch ticio'n wag a phwyso'r botwm '''''{{int:undeletebtn}}'''''. I adfer rhai diwygiadau'n unig, ticiwch y blychau ar gyfer y diwygiadau yr ydych am eu hadfer, wedyn pwyso ar '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => 'Gosodwyd $1 {{PLURAL:$1|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn}} yn yr archif',
-'undeletehistory'              => "Os adferwch y dudalen, fe fydd yr holl ddiwygiadau yn cael eu hadfer hefyd yn hanes y dudalen.
-Os oes tudalen newydd o'r un enw wedi cael ei chreu ers y dilëad, fe ddangosir y diwygiadau cynt yn yr hanes, heb ddisodli'r dudalen bresennol.",
-'undeleterevdel'               => "Ni fydd yr adfer yn cael ei chyflawni pe byddai peth o'r diwygiad blaen i'r dudalen neu'r ffeil yn cael ei dileu oherwydd yr adfer.
-Os hynny, rhaid i chi dad-ticio'r diwygiad dilëedig diweddaraf neu ei ddatguddio.",
-'undeletehistorynoadmin'       => "Mae'r dudalen hon wedi'i dileu. Dangosir y rheswm am y dileu isod, gyda manylion o'r holl ddefnyddwyr sydd wedi golygu'r dudalen cyn y dileu. Dim ond gweinyddwyr sydd yn gallu gweld testun y diwygiadau i'r dudalen.",
-'undelete-revision'            => 'Y golygiad gan $3 o $1 (fel ag yr oedd am $5 ar $4), a ddilëwyd:',
-'undeleterevision-missing'     => "Y diwygiad yn annilys neu yn eisiau.
-Mae'n bosib bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi ei adfer neu wedi ei ddileu o'r archif.",
+'undeletehistory'              => "Os adferwch y dudalen, aderir yr holl ddiwygiadau hefyd yn hanes y dudalen.
+Os crëwyd tudalen newydd o'r un enw ers iddi chael ei dileu, dangosir y diwygiadau cynt yn yr hanes, heb ddisodli'r dudalen bresennol.",
+'undeleterevdel'               => "Ni chyflawnir adfer pe byddai peth o'r diwygiad blaen i'r dudalen neu'r ffeil yn cael ei dileu oherwydd yr adfer.
+Os hynny, mae'n rhaid i chi dad-dicio'r diwygiad dileedig diweddaraf neu ei ddatguddio.",
+'undeletehistorynoadmin'       => "Dilëwyd y dudalen hon. Dangosir y rheswm dros y dileu isod, ynghyd â manylion o'r holl ddefnyddwyr a olygwyd y dudalen cyn iddi gael ei dileu. Dim ond gweinyddwyr sy'n gallu gweld testun y diwygiadau i'r dudalen.",
+'undelete-revision'            => 'Y golygiad a ddilëwyd o $1 (fel ag yr oedd am $5 ar $4) gan $3:',
+'undeleterevision-missing'     => "Mae'r diwygiad yn annilys neu yn goll.
+Mae'n bosibl bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi'i adfer neu wedi'i ddileu o'r archif.",
 'undelete-nodiff'              => 'Ni chafwyd hyd i olygiad cynharach.',
-'undeletebtn'                  => 'Adfer!',
+'undeletebtn'                  => 'Adfer',
 'undeletelink'                 => 'gweld/adfer',
 'undeleteviewlink'             => 'gweld',
-'undeletereset'                => 'Ailosoder',
-'undeleteinvert'               => "Troi'r dewis tu chwith",
+'undeletereset'                => 'Ailosod',
+'undeleteinvert'               => "Gwrthdroi'r dewis",
 'undeletecomment'              => 'Rheswm:',
 'undeletedarticle'             => 'wedi adfer "[[$1]]"',
 'undeletedrevisions'           => 'wedi adfer $1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
 'undeletedrevisions-files'     => 'Adferwyd $1 {{PLURAL:$1|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn}} a $2 {{PLURAL:$2|ffeil|ffeil|ffeil|ffeil|ffeil|ffeil}}',
 'undeletedfiles'               => 'Adferwyd $1 {{PLURAL:$1|ffeil|ffeil|ffeil|ffeil|ffeil|ffeil}}',
-'cannotundelete'               => "Wedi methu dad-ddileu;
-gall rhywyn arall fod wedi dad-ddileu'r dudalen yn barod.",
+'cannotundelete'               => "Mae'r cais i ddad-ddileu wedi'i fethu;
+efallai bod rhywun arall wedi dad-ddileu'r dudalen yn barod.",
 'undeletedpage'                => "'''Adferwyd $1'''
 
-Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Special:Log/delete|lòg dileuon]].",
-'undelete-header'              => "Ewch i'r [[Special:Log/delete|lòg dileuon]] i weld tudalennau a ddilëwyd yn ddiweddar.",
-'undelete-search-box'          => "Chwilio'r tudalennau a ddilëwyd",
+Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Special:Log/delete|lòg ddileuon]].",
+'undelete-header'              => "Ewch i'r [[Special:Log/delete|lòg ddileuon]] i weld tudalennau a ddilëwyd yn ddiweddar.",
+'undelete-search-box'          => 'Chwilio tudalennau a ddilëwyd',
 'undelete-search-prefix'       => 'Dangos tudalennau gan ddechrau gyda:',
 'undelete-search-submit'       => 'Chwilio',
 'undelete-no-results'          => 'Ni chafwyd hyd i dudalennau cyfatebol yn archif y dileuon.',
-'undelete-filename-mismatch'   => "Ni ellir adfer y golgiad ffeil â'r stamp amser $1: nid oedd enw'r ffeil yn cysefeillio",
-'undelete-bad-store-key'       => "Ni ellir adfer y golgiad ffeil â'r stamp amser $1: roedd y ffeil yn eisiau cyn y dileuad.",
-'undelete-cleanup-error'       => 'Cafwyd gwall wrth ddileu\'r ffeil archif na ddefnyddiwyd "$1".',
-'undelete-missing-filearchive' => "Ni ellid adfer archif y ffeil â'r ID $1 oherwydd nad yw yn y databas.
-Efallai ei bod eisoes wedi ei hadfer.",
+'undelete-filename-mismatch'   => "Nid oes modd dad-dileu'r golygiad ffeil â'r stamp amser $1: nid oedd enw'r ffeil yn cydweddu",
+'undelete-bad-store-key'       => "Nid oes modd dad-dileu'r golygiad ffeil â'r stamp amser $1: yr oedd y ffeil ar goll cyn iddi gael ei dileu.",
+'undelete-cleanup-error'       => 'Bu gwall wrth ddileu\'r ffeil archif na ddefnyddiwyd "$1".',
+'undelete-missing-filearchive' => "Nid oes modd adfer archif y ffeil â'r ID $1 oherwydd nad ydyw yn y gronfa ddata.
+Efallai ei bod eisoes wedi'i hadfer.",
 'undelete-error-short'         => 'Gwall wrth adfer y ffeil: $1',
 'undelete-error-long'          => 'Cafwyd gwallau wrth adfer y ffeil:
 
 $1',
-'undelete-show-file-confirm'   => 'Ydych chi\'n sicr eich bod am weld golygiad dilëedig o\'r ffeil "<nowiki>$1</nowiki>" a roddwyd ar gadw ar $2 am $3?',
+'undelete-show-file-confirm'   => 'A ydych yn siŵr eich bod am weld golygiad dileedig o\'r ffeil "<nowiki>$1</nowiki>" a roddwyd ar gadw ar $2 am $3?',
 'undelete-show-file-submit'    => 'Ydw',
 
 # Namespace form on various pages
 'namespace'                     => 'Parth:',
-'invert'                        => 'Dewiswch bob parth heblaw am hwn',
-'tooltip-invert'                => "Ticiwch y blwch hwn i guddio newidiadau yn y parth dewisedig (a'i gymar os y dewisioch trin parau o barthau fel ei gilydd)",
-'namespace_association'         => "A'r parth cysylltiedig",
-'tooltip-namespace_association' => 'Ticiwch y blwch hwn i gynnwys cymar y blwch dewisedig yn y pâr parth/sgwrs parth',
+'invert'                        => "Gwrthdroi'r dewis",
+'tooltip-invert'                => "Ticiwch y blwch hwn i guddio newidiadau i dudalennau yn y parth dewisedig (a'r parth cysylltiedig os yw wedi'i dicio)",
+'namespace_association'         => 'Parth cysylltiedig',
+'tooltip-namespace_association' => "Ticiwch y blwch hwn i gynnwys y parth pwnc neu sgwrs sy'n gysylltiedig â'r parth a ddewiswyd",
 'blanknamespace'                => '(Prif)',
 
 # Contributions
 'contributions'       => "Cyfraniadau'r defnyddiwr",
-'contributions-title' => "Cyfraniadau'r defnyddiwr $1",
+'contributions-title' => "Cyfraniadau'r defnyddiwr am $1",
 'mycontris'           => 'Fy nghyfraniadau',
 'contribsub2'         => 'Dros $1 ($2)',
-'nocontribs'          => "Heb ddod o hyd i newidiadau gyda'r maen prawf hwn.",
+'nocontribs'          => "Heb ddod o hyd i newidiadau gyda'r meini prawf hyn.",
 'uctop'               => '(cyfredol)',
-'month'               => 'Cyfraniadau hyd at fis:',
-'year'                => 'Cyfraniadau hyd at y flwyddyn:',
+'month'               => 'Cyfraniadau hyd at fis (ac yn gynharach):',
+'year'                => 'Cyfraniadau hyd at y flwyddyn (ac yn gynharach):',
 
 'sp-contributions-newbies'             => 'Dangos cyfraniadau gan gyfrifon newydd yn unig',
 'sp-contributions-newbies-sub'         => 'Ar gyfer cyfrifon newydd',
-'sp-contributions-newbies-title'       => 'Cyfraniadau defnyddwyr newydd',
-'sp-contributions-blocklog'            => 'Lòg blocio',
-'sp-contributions-deleted'             => 'cyfraniadau defnyddiwr i dudalennau dilëedig',
-'sp-contributions-uploads'             => 'Llwythiadau',
+'sp-contributions-newbies-title'       => 'Cyfraniadau defnyddwyr ar gyfer cyfrifon newydd',
+'sp-contributions-blocklog'            => 'lòg blocio',
+'sp-contributions-deleted'             => 'cyfraniadau defnyddiwr dileedig',
+'sp-contributions-uploads'             => 'uwchlwythiadau',
 'sp-contributions-logs'                => 'logiau',
 'sp-contributions-talk'                => 'sgwrs',
 'sp-contributions-userrights'          => 'rheoli galluoedd defnyddwyr',
-'sp-contributions-blocked-notice'      => "Mae'r defnyddiwr hwn wedi ei atal rhag golygu ar hyn o bryd. Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
-'sp-contributions-blocked-notice-anon' => "Mae'r gallu i olygu o'r cyfeiriad IP hwn wedi ei atal ar hyn o bryd.
+'sp-contributions-blocked-notice'      => "Mae'r defnyddiwr hwn wedi'i rwystro ar hyn o bryd. 
+Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
+'sp-contributions-blocked-notice-anon' => "Mae'r cyfeiriad IP hwn wedi'i rwystro ar hyn o bryd.
 Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'sp-contributions-search'              => 'Chwilio am gyfraniadau',
 'sp-contributions-username'            => 'Cyfeiriad IP neu enw defnyddiwr:',
-'sp-contributions-toponly'             => 'Dangos y diwygiadau diweddaraf yn unig',
+'sp-contributions-toponly'             => "Dangos golygiadau sy'n olygiadau diweddaraf yn unig",
 'sp-contributions-submit'              => 'Chwilier',
 'sp-contributions-showsizediff'        => 'Dangos y gwahaniaeth ym maint y dudalen',
 
@@ -2271,179 +2272,180 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'whatlinkshere-title'      => 'Tudalennau sy\'n cysylltu â "$1"',
 'whatlinkshere-page'       => 'Tudalen:',
 'linkshere'                => "Mae'r tudalennau isod yn cysylltu â '''[[:$1]]''':",
-'nolinkshere'              => "Nid oes cyswllt ar unrhyw dudalen arall yn arwain at '''[[:$1]]'''.",
-'nolinkshere-ns'           => "Nid oes cyswllt ar unrhyw dudalen yn y parth dewisedig yn arwain at '''[[:$1]]'''.",
-'isredirect'               => 'tudalen ail-gyfeirio',
+'nolinkshere'              => "Nid oes cyswllt ar unrhyw dudalen arall syn arwain at '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Nid oes cyswllt ar unrhyw dudalen yn y parth dewisedig sy'n arwain at '''[[:$1]]'''.",
+'isredirect'               => 'tudalen ailgyfeirio',
 'istemplate'               => 'cynhwysiad',
-'isimage'                  => 'cyswllt yn nôl y ddelwedd',
+'isimage'                  => 'cyswllt ffeil',
 'whatlinkshere-prev'       => '{{PLURAL:$1|cynt|cynt|$1 cynt|$1 cynt|$1 cynt|$1 cynt}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|nesaf|nesaf|$1 nesaf|$1 nesaf|$1 nesaf|$1 nesaf}}',
 'whatlinkshere-links'      => '← cysylltiadau',
-'whatlinkshere-hideredirs' => '$1 ail-gyfeiriadau',
-'whatlinkshere-hidetrans'  => '$1 trawsgynhwysion',
+'whatlinkshere-hideredirs' => '$1 ailgyfeiriadau',
+'whatlinkshere-hidetrans'  => '$1 cynhwysion',
 'whatlinkshere-hidelinks'  => '$1 cysylltau',
 'whatlinkshere-hideimages' => '$1 cysylltau delweddau',
 'whatlinkshere-filters'    => 'Hidlau',
 
 # Block/unblock
-'autoblockid'                     => 'Gosod bloc awtomatig ar #$1',
+'autoblockid'                     => 'Awtoflocio #$1',
 'block'                           => 'Rhwystro defnyddiwr',
 'unblock'                         => 'Dad-rwystro defnyddiwr',
-'blockip'                         => "Blocio'r defnyddiwr",
-'blockip-title'                   => "Blocio'r defnyddiwr",
-'blockip-legend'                  => "Blocio'r defnyddiwr",
-'blockiptext'                     => "Defnyddiwch y ffurflen isod i flocio cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r databas. Dylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. Llenwch y rheswm am y bloc yn y blwch isod -- dywedwch pa dudalen sydd wedi cael ei fandaleiddio.",
+'blockip'                         => "Rhwystro'r defnyddiwr",
+'blockip-title'                   => "Rhwystro'r defnyddiwr",
+'blockip-legend'                  => "Rhwystro'r defnyddiwr",
+'blockiptext'                     => "Defnyddiwch y ffurflen hon i rwystro cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r gronfa ddata. 
+Dylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth, a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. 
+Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a fandaleiddiwyd).",
 'ipadressorusername'              => 'Cyfeiriad IP neu enw defnyddiwr:',
 'ipbexpiry'                       => 'Am gyfnod:',
 'ipbreason'                       => 'Rheswm:',
 'ipbreasonotherlist'              => 'Rheswm arall',
-'ipbreason-dropdown'              => '*Rhesymau cyffredin dros flocio
+'ipbreason-dropdown'              => "*Rhesymau cyffredin dros flocio
 ** Gosod gwybodaeth anghywir
 ** Dileu cynnwys tudalennau
-** Gosod cysylltiadau spam i wefannau eraill
-** Gosod dwli ar dudalennau
-** Ymddwyn yn fygythiol/tarfu
-** Camddefnyddio cyfrifon niferus
-** Enw defnyddiwr annerbyniol',
+** Gosod cysylltiadau sbam i wefannau eraill
+** Gosod dwli/lol ar dudalennau
+** Ymddygiad sy'n dychrynu neu'n aflonyddu
+** Camddefnyddio nifer o gyfrifon
+** Enw defnyddiwr annerbyniol",
 'ipb-hardblock'                   => "Atal defnyddwyr mewngofnodedig rhag golygu o'r cyfeiriad IP hwn",
 'ipbcreateaccount'                => 'Atal y gallu i greu cyfrif',
 'ipbemailban'                     => 'Atal y defnyddiwr rhag anfon e-bost',
-'ipbenableautoblock'              => "Blocio'n awtomatig y cyfeiriad IP diwethaf y defnyddiodd y defnyddiwr hwn, ac unrhyw gyfeiriad IP arall y bydd yn ceisio defnyddio i olygu ohono.",
-'ipbsubmit'                       => 'Blocier y defnyddiwr hwn',
+'ipbenableautoblock'              => "Rhwystro'n awtomatig y cyfeiriad IP diwethaf a ddefnyddiodd y defnyddiwr hwn, ac unrhyw gyfeiriad IP arall y bydd yn ceisio'i ddefnyddio i olygu ohono.",
+'ipbsubmit'                       => "Rhwystro'r defnyddiwr hwn",
 'ipbother'                        => 'Cyfnod arall:',
-'ipboptions'                      => 'o 2 awr:2 hours,o ddiwrnod:1 day,o 3 niwrnod:3 days,o wythnos:1 week,o bythefnos:2 weeks,o fis:1 month,o 3 mis:3 months,o 6 mis:6 months,o flwyddyn:1 year,amhenodol:infinite',
+'ipboptions'                      => '2 awr:2 hours,ddiwrnod:1 day,3 diwrnod:3 days,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,amhenodol:infinite',
 'ipbotheroption'                  => 'arall',
-'ipbotherreason'                  => 'Rheswm arall:',
+'ipbotherreason'                  => 'Rheswm arall/ychwanegol:',
 'ipbhidename'                     => "Cuddio'r enw defnyddiwr rhag ymddangos ar restri a golygiadau",
 'ipbwatchuser'                    => 'Gwylio tudalen defnyddiwr a thudalen sgwrs y defnyddiwr hwn',
-'ipb-disableusertalk'             => 'Atal y defnyddiwr hwn rhag golygu ei dudalen sgwrs eu hunan tra ei fod wedi ei flocio',
+'ipb-disableusertalk'             => "Atal y defnyddiwr hwn rhag golygu ei dudalen/ei thudalen sgwrs ei hunan wrth i'r bloc fod yn weithredol",
 'ipb-change-block'                => "Ailflocio'r defnyddiwr hwn gyda'r gosodiadau hyn",
 'ipb-confirm'                     => "Cadarnhau'r rhwystr",
 'badipaddress'                    => 'Cyfeiriad IP annilys.',
 'blockipsuccesssub'               => 'Llwyddodd y rhwystr',
-'blockipsuccesstext'              => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.
-<br />Gwelwch [[Special:IPBlockList|restr y blociau IP]] er mwyn arolygu blociau.',
+'blockipsuccesstext'              => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.<br />
+Gwelwch y [[Special:IPBlockList|rhestr blociau IP]] er mwyn arolygu blociau.',
 'ipb-blockingself'                => "Rydych ar rwystro'ch hunan! A ydych yn siŵr eich bod chi am wneud hyn?",
 'ipb-confirmhideuser'             => 'Rydych ar rwystro defnyddiwr sydd yn "guddiedig." Bydd hyn yn atal enw\'r defnyddiwr ym mhob rhestr a chofnod lòg. A ydych yn siŵr eich bod chi am wneud hyn?',
 'ipb-edit-dropdown'               => "Golygu'r rhesymau dros flocio",
-'ipb-unblock-addr'                => 'Datflocio $1',
-'ipb-unblock'                     => 'Datflocio enw defnyddiwr neu cyfeiriad IP',
+'ipb-unblock-addr'                => 'Dadflocio $1',
+'ipb-unblock'                     => 'Dadflocio enw defnyddiwr neu gyfeiriad IP',
 'ipb-blocklist'                   => 'Dangos y blociau cyfredol',
 'ipb-blocklist-contribs'          => 'Cyfraniadau $1',
 'unblockip'                       => 'Dadflocio defnyddiwr',
 'unblockiptext'                   => "Defnyddiwch y ffurflen isod i ail-alluogi golygiadau gan ddefnyddiwr neu o gyfeiriad IP a fu gynt wedi'i flocio.",
-'ipusubmit'                       => 'Dadflocier',
+'ipusubmit'                       => "Tynnu'r rhwystr hwn",
 'unblocked'                       => 'Mae [[User:$1|$1]] wedi cael ei ddad-flocio',
-'unblocked-range'                 => 'Dad-rwystrir $1',
-'unblocked-id'                    => 'Tynnwyd y bloc $1',
+'unblocked-range'                 => 'Dadrwystrir $1',
+'unblocked-id'                    => 'Tynnwyd rhwystr $1',
 'blocklist'                       => 'Defnyddwyr a rwystrwyd',
-'ipblocklist'                     => "Defnyddwyr wedi'u blocio",
-'ipblocklist-legend'              => 'Dod o hyd i ddefnyddiwr sydd wedi ei flocio',
+'ipblocklist'                     => 'Defnyddwyr a rwystrwyd',
+'ipblocklist-legend'              => 'Dod o hyd i ddefnyddiwr a rwystrwyd',
 'blocklist-userblocks'            => 'Cuddio rhwystrau cyfrifon',
 'blocklist-tempblocks'            => 'Cuddio rhwystrau dros dro',
 'blocklist-addressblocks'         => 'Cuddio rhwystrau IP unigol',
-'blocklist-timestamp'             => 'Dyddiad ac amser',
+'blocklist-timestamp'             => 'Stamp amser',
 'blocklist-target'                => 'Targed',
 'blocklist-expiry'                => 'Yn dod i ben:',
 'blocklist-by'                    => 'Rhwystro gweinyddion',
 'blocklist-params'                => 'Paramedrau rhwystro',
 'blocklist-reason'                => 'Rheswm',
 'ipblocklist-submit'              => 'Chwilier',
-'ipblocklist-localblock'          => 'Bloc lleol',
-'ipblocklist-otherblocks'         => '{{PLURAL:$1|Bloc arall|Bloc arall|Blociau eraill|Blociau eraill|Blociau eraill|Blociau eraill}}',
-'infiniteblock'                   => 'bloc parhaus',
+'ipblocklist-localblock'          => 'Rhwystr lleol',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|Rhwystr arall|Rhwystr arall|Rhwystrau eraill|Rhwystrau eraill|Rhwystrau eraill|Rhwystrau eraill}}',
+'infiniteblock'                   => 'amhenodol',
 'expiringblock'                   => 'yn dod i ben ar $1 am $2',
-'anononlyblock'                   => 'ataliwyd dim ond pan nad yw wedi mewngofnodi',
+'anononlyblock'                   => 'cyfranwyr heb gyfrif yn unig',
 'noautoblockblock'                => 'analluogwyd blocio awtomatig',
 'createaccountblock'              => 'ataliwyd y gallu i greu cyfrif',
 'emailblock'                      => 'rhwystrwyd e-bostio',
-'blocklist-nousertalk'            => 'ni all olygu ei dudalen sgwrs ei hun',
-'ipblocklist-empty'               => "Mae'r rhestr blociau'n wag.",
-'ipblocklist-no-results'          => 'Nid yw cyfeiriad IP neu enw defnyddiwr yr ymholiad wedi ei flocio.',
-'blocklink'                       => 'blocio',
-'unblocklink'                     => 'dadflocio',
-'change-blocklink'                => 'newid y bloc',
+'blocklist-nousertalk'            => 'ni all olygu ei dudalen/ei thudalen sgwrs ei hunan',
+'ipblocklist-empty'               => "Mae'r rhestr rwystrau'n wag.",
+'ipblocklist-no-results'          => "Nid yw cyfeiriad IP neu enw defnyddiwr yr ymholiad wedi'i rwystro.",
+'blocklink'                       => 'rhwystro',
+'unblocklink'                     => 'dadrwystro',
+'change-blocklink'                => 'newid y rhwystr',
 'contribslink'                    => 'cyfraniadau',
-'autoblocker'                     => 'Rydych wedi cael eich rhwystro\'n awtomatig oherwydd i\'ch cyfeiriad IP gael ei ddefnyddio gan "[[User:$1|$1]]" yn ddiweddar. Dyma\'r rheswm a roddwyd dros rwystro $1: "$2".',
-'blocklogpage'                    => 'Lòg blociau',
+'autoblocker'                     => 'Rydych wedi cael eich rhwystro\'n awtomatig oherwydd bod eich cyfeiriad IP wedi cael ei ddefnyddio gan "[[User:$1|$1]]" yn ddiweddar. 
+Dyma\'r rheswm a roddwyd dros rwystro $1: "$2".',
+'blocklogpage'                    => 'Lòg rhwystrau',
 'blocklog-showlog'                => "Cafodd y defnyddiwr hwn ei flocio o'r blaen.
-Dyma'r lòg blocio perthnasol:",
+Dyma'r lòg rhwystro perthnasol:",
 'blocklog-showsuppresslog'        => "Cafodd y defnyddiwr hwn ei flocio a'i guddio o'r blaen.
 Dyma'r lòg cuddio perthnasol:",
-'blocklogentry'                   => 'wedi rhwystro "[[$1]]" am gyfnod o $2 $3',
-'reblock-logentry'                => 'wedi newid y gosodiadau blocio ar [[$1]], gan ddod i ben am $2 $3',
-'blocklogtext'                    => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:BlockList|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
-'unblocklogentry'                 => 'wedi dadflocio $1',
+'blocklogentry'                   => 'wedi rhwystro "[[$1]]" sy\'n dod i\'w ben ar $2 $3',
+'reblock-logentry'                => "wedi newid y gosodiadau rhwystro sydd ar [[$1]] sy'n dod i'w ben am $2 $3",
+'blocklogtext'                    => "Dyma lòg o'r holl weithredoedd rhwystro a dadrwystro. Nid yw'r cyfeiriadau IP sydd wedi cael ei rwystro'n awtomatig ar y rhestr. Gweler y [[Special:BlockList|rhestr rhwystrau IP]] am restr y rhwystrau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
+'unblocklogentry'                 => 'wedi dadrwystro $1',
 'block-log-flags-anononly'        => 'defnyddwyr anhysbys yn unig',
 'block-log-flags-nocreate'        => 'analluogwyd creu cyfrif',
-'block-log-flags-noautoblock'     => 'analluogwyd blocio awtomatig',
+'block-log-flags-noautoblock'     => 'analluogwyd rhwystro awtomatig',
 'block-log-flags-noemail'         => 'analluogwyd e-bostio',
-'block-log-flags-nousertalk'      => 'ni all olygu ei dudalen sgwrs ei hun',
-'block-log-flags-angry-autoblock' => 'galluogwyd blocio awtomatig uwch',
+'block-log-flags-nousertalk'      => 'ni all olygu ei dudalen/ei thudalen sgwrs ei hunan',
+'block-log-flags-angry-autoblock' => 'galluogwyd uwch rwystro awtomatig',
 'block-log-flags-hiddenname'      => 'cuddiwyd yr enw defnyddiwr',
-'range_block_disabled'            => 'Ar hyn o bryd nid yw gweinyddwyr yn gallu blocio ystod o gyfeiriadau IP.',
+'range_block_disabled'            => 'Nid oes modd i weinyddwyr greu rhwystrau ystod.',
 'ipb_expiry_invalid'              => 'Amser terfynu yn annilys.',
-'ipb_expiry_temp'                 => "Rhaid i floc ar ddefnyddiwr fod yn barhaus os am guddio'r enw.",
+'ipb_expiry_temp'                 => "Mae'n rhaid i rwystr ar ddefnyddiwr fod yn barhaus os am guddio'r enw.",
 'ipb_hide_invalid'                => "Ddim yn gallu cuddio'r cyfrif hwn; efallai bod ganddo ormod o olygiadau.",
-'ipb_already_blocked'             => 'Mae "$1" eisoes wedi ei flocio',
-'ipb-needreblock'                 => "Mae $1 wedi ei flocio'n barod. Ydych chi am newid y gosodiadau?",
-'ipb-otherblocks-header'          => '{{PLURAL:$1|Bloc|Bloc|Blociau|Blociau|Blociau|Blociau}} eraill',
+'ipb_already_blocked'             => 'Mae "$1" eisoes wedi\'i rwystro',
+'ipb-needreblock'                 => "Mae $1 wedi' rwystro'n barod. A ydych am newid y gosodiadau?",
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Rhwystr|Rhwystr|Rhwystrau|Rhwystrau|Rhwystrau|Rhwystrau}} eraill',
 'unblock-hideuser'                => "Nid oes modd dad-rwystro'r defnyddiwr yma, oherwydd cuddir ei (h)enw defnyddiwr.",
-'ipb_cant_unblock'                => "Gwall: Ni chafwyd hyd i'r bloc a'r ID $1.
-Hwyrach ei fod wedi ei ddad-flocio'n barod.",
-'ipb_blocked_as_range'            => "Gwall: Nid yw'r IP $1 wedi ei blocio'n uniongyrchol ac felly ni ellir ei datflocio. Wedi dweud hynny, y mae'n rhan o'r amrediad $2 sydd wedi ei blocio; gellir datflocio'r amrediad.",
-'ip_range_invalid'                => 'Dewis IP annilys.',
-'ip_range_toolarge'               => 'Ni chaniateir blociau amrediad mwy na /$1.',
-'blockme'                         => 'Blocier fi',
+'ipb_cant_unblock'                => "Gwall: Ni chafwyd hyd i'r rhwystr a'r ID $1. Efallai ei fod e wedi cael ei ddadrwystro'n barod.",
+'ipb_blocked_as_range'            => "Gwall: Nid yw'r cyfeiriad IP $1 wedi'n rwystro'n uniongyrchol ac felly ni ellir ei ddadrwystro. Wedi dweud hynny, y mae'n rhan o'r amrediad $2 sydd wedi'i rwystro; gellir dadrwystro'r amrediad.",
+'ip_range_invalid'                => 'Ystod IP annilys.',
+'ip_range_toolarge'               => "Ni chaniateir rhwystrau ystod sy'n fwy na /$1.",
+'blockme'                         => 'Rhwystro fi',
 'proxyblocker'                    => 'Dirprwy-flociwr',
 'proxyblocker-disabled'           => 'Analluogwyd y swyddogaeth hon.',
-'proxyblockreason'                => "Mae eich cyfeiriad IP wedi'i flocio gan ei fod yn ddirprwy agored (open proxy). Cysylltwch â'ch gweinyddwr rhyngrwyd neu gymorth technegol er mwyn eu hysbysu am y broblem ddifrifol yma.",
-'proxyblocksuccess'               => 'Wedi llwyddo.',
+'proxyblockreason'                => "Mae eich cyfeiriad IP wedi'i rwystro gan ei fod yn ddirprwy agored. Cysylltwch â'ch Cyflenwr Gwasanaeth Rhyngrwyd neu gymorth technegol er mwyn eu hysbysu am y broblem ddiogelwch ddifrifol yma.",
+'proxyblocksuccess'               => 'Gwnaethpwyd.',
 'sorbsreason'                     => 'Mae eich cyfeiriad IP wedi cael ei osod ymhlith y dirprwyon agored ar y Rhestr DNS Gwaharddedig a ddefnyddir gan {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Mae eich cyfeiriad IP wedi cael ei osod ymhlith y dirprwyon agored ar y Rhestr DNS Gwaharddedig a ddefnyddir gan {{SITENAME}}.
-Ni allwch greu cyfrif.',
-'cant-block-while-blocked'        => 'Ni allwch flocio defnyddwyr eraill tra bod bloc arnoch chithau.',
-'cant-see-hidden-user'            => "Mae'r defnyddiwr yr ydych am ei flocio eisoes wedi ei flocio a'i guddio.
-Gan nad yw'r gallu \"hideuser\" gennych, ni allwch weld y bloc ar y defnyddiwr na'i olygu.",
-'ipbblocked'                      => 'Ni allwch flocio na dad-flocio defnyddwyr eraill, oherwydd eich bod chi eich hunan wedi eich blocio',
-'ipbnounblockself'                => "Nid yw'r gallu gennych i ddad-flocio'ch hunan",
+Ni allwch greu cyfrif',
+'cant-block-while-blocked'        => 'Ni allwch flocio defnyddwyr eraill tra bod rhwystr arnoch chithau.',
+'cant-see-hidden-user'            => "Mae'r defnyddiwr yr ydych yn ceisio'i rwystro wedi ei rwystro a'i guddio'n barod.
+Gan nad yw'r gallu i guddio defnyddwyr gennych, ni allwch weld y rhwystr sydd ar y defnyddiwr na'i olygu.",
+'ipbblocked'                      => 'Ni allwch rwystro na dadrwystro defnyddwyr eraill, oherwydd eich bod chi eich hunan wedi eich rhwystro',
+'ipbnounblockself'                => "Nid yw'r hawl gennych ddadrwystro'ch hunan",
 
 # Developer tools
-'lockdb'              => "Cloi'r databas",
-'unlockdb'            => "Datgloi'r databas",
-'lockdbtext'          => "Bydd cloi'r databas yn golygu na all unrhyw ddefnyddiwr olygu tudalennau, newid eu dewisiadau, golygu eu rhestrau gwylio, na gwneud unrhywbeth arall sydd angen newid yn y databas. Cadarnhewch eich bod chi wir am wneud hyn, ac y byddwch yn ei ddatgloi unwaith mae'r gwaith cynnal a chadw ar ben.",
-'unlockdbtext'        => "Bydd datgloi'r databas yn ail-alluogi unrhyw ddefnyddiwr i olygu tudalennau, newid eu dewisiadau, golygu eu rhestrau gwylio, neu i wneud unrhywbeth arall sydd angen newid yn y databas. Cadarnhewch eich bod chi wir am wneud hyn.",
-'lockconfirm'         => "Ydw, rydw i wir am gloi'r databas.",
-'unlockconfirm'       => "Ydw, rydw i wir am ddatgloi'r databas.",
-'lockbtn'             => "Cloi'r databas",
-'unlockbtn'           => "Datgloi'r databas",
+'lockdb'              => "Cloi'r gronfa ddata",
+'unlockdb'            => "Datgloi'r gronfa ddata",
+'lockdbtext'          => "Bydd cloi'r gronfa ddata yn golygu na all unrhyw ddefnyddiwr olygu tudalennau, newid eu dewisiadau, golygu eu rhestrau gwylio, na gwneud unrhyw beth arall sydd angen newid yn y gronfa ddata. Cadarnhewch eich bod chi wir am wneud hyn, ac y byddwch yn ei ddatgloi unwaith mae'r gwaith cynnal a chadw ar ei ben.",
+'unlockdbtext'        => "Bydd datgloi'r gronfa ddatayn ail-alluogi unrhyw ddefnyddiwr i olygu tudalennau, newid eu dewisiadau, golygu eu rhestrau gwylio, neu i wneud unrhyw beth arall sydd angen newid yn y gronfa ddata. Cadarnhewch eich bod chi wir am wneud hyn.",
+'lockconfirm'         => "Ydw, rydw i wir am gloi'r gronfa ddata.",
+'unlockconfirm'       => "Ydw, rydw i wir am ddatgloi'r gronfa ddata.",
+'lockbtn'             => "Cloi'r gronfa ddata",
+'unlockbtn'           => "Datgloi'r gronfa ddata",
 'locknoconfirm'       => "Nid ydych wedi ticio'r blwch cadarnhad.",
-'lockdbsuccesssub'    => "Wedi llwyddo cloi'r databas",
-'unlockdbsuccesssub'  => "Databas wedi'i ddatgloi",
-'lockdbsuccesstext'   => "Mae'r databas wedi'i gloi.<br />
-Cofiwch [[Special:UnlockDB|ddatgloi'r]] databas pan fydd y gwaith cynnal ar ben.",
-'unlockdbsuccesstext' => "Mae'r databas wedi'i ddatgloi.",
-'lockfilenotwritable' => "Ni ellir ysgrifennu'r ffeil cloi'r databas.
-Er mwyn cloi'r databas neu ei ddatgloi, mae'n rhaid i'r gweinydd gwe allu ysgrifennu'r ffeil.",
-'databasenotlocked'   => "Nid yw'r databas ar glo.",
-'lockedbyandtime'     => '(gan $1 ar $2 am $3)',
+'lockdbsuccesssub'    => "Wedi llwyddo cloi'r gronfa ddata",
+'unlockdbsuccesssub'  => "Cronfa ddata wedi'i datgloi",
+'lockdbsuccesstext'   => "Mae'r gronfa ddata wedi'i cloi.<br />
+Cofiwch [[Special:UnlockDB|ddatgloi'r]] gronfa ddata pan fydd y gwaith cynnal ar ei ben.",
+'unlockdbsuccesstext' => "Mae'r gronfa ddata wedi cael ei datgloi.",
+'lockfilenotwritable' => "Nid oes modd ysgrifennu i ffeil cloi'r gronfa ddata.
+Er mwyn cloi'r gronfa ddata neu ei datgloi, mae'n rhaid i'r gweinydd gwe allu ysgrifennu ffeil.",
+'databasenotlocked'   => "Nid yw'r gronfa ddata ar glo.",
+'lockedbyandtime'     => '(gan {{GENDER:$1|$1}} at $2 am $3)',
 
 # Move page
 'move-page'                    => 'Symud $1',
 'move-page-legend'             => 'Symud tudalen',
-'movepagetext'                 => "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.
-Bydd yr hen deitl yn troi'n dudalen ailgyfeirio i'r teitl newydd.
-Gallwch ddewis bod y meddalwedd yn cywiro tudalennau ailgyfeirio oedd yn arwain at yr hen deitl yn awtomatig.
-Os nad ydych yn dewis hyn, yna byddwch gystal â thrwsio [[Special:DoubleRedirects|ailgyfeiriadau dwbl]] ac [[Special:BrokenRedirects|ailgyfeiriadau tor]] eich hunan.
-Eich cyfrifoldeb chi yw sicrhau bod cysylltiadau wici'n dal i arwain at y man iawn!
+'movepagetext'                 => "Drwy ddefnyddio'r ffurflen isod, byddwch yn ailenwi tudalen, felly yn symud ei holl hanes i'r enw tudalen newydd.
+Caiff yr hen deitl a oedd ar y dudalen ei droi'n dudalen sy'n ailgyfeirio i'r teitl newydd.
+Gallwch ddiweddaru tudalennau ailgyfeirio sy'n cyfeirio at y teitl gwreiddiol yn awtomatig.
+Os ydych yn dewis peidio â gwneud hyn, gwiriwch [[Special:BrokenRedirects|dudalennau ailgyfeirio nad ydynt yn ailgyfeirio]] neu [[Special:DoubleRedirects|dudalennau ailgyfeirio dwbl]].
+Chi sy'n gyfrifol am wirio bod cysylltiadau yn cyfeirio at y tudalennau cywir.
 
-Sylwch '''na fydd''' y dudalen yn symud os oes yna dudalen o'r enw newydd ar gael yn barod ar y databas (heblaw ei bod hi'n wag neu'n ailgyfeiriad heb unrhyw hanes golygu).
-Felly, os y gwnewch gamgymeriad wrth ail-enwi tudalen dylai fod yn bosibl ei hail-enwi eto ar unwaith wrth yr enw gwreiddiol.
-Hefyd, mae'n amhosibl ysgrifennu dros ben tudalen sydd ar gael yn barod.
+Sylwer '''na''' chaiff y dudalen ei symud os oes enw ar y dudalen yn bodoli'n barod, oni bai ei bod hi'n wag neu'n dudalen ailgyfeirio ac nad oes hanes golygu ganddi.
+Mae hyn yn golygu y gallwch ailenwi tudalen yn ôl os yr ydych yn gwneud camgymeriad, ond nid ydych yn gallu trosysgrifo tudalen sy'n bodoli'n barod.
 
-'''Dalier Sylw!'''
-Gall hwn fod yn newid sydyn a llym i dudalen boblogaidd;
-gwnewch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
+'''Rhybudd!'''
+Gall hwn greu newid annisgwyl a chryf i dudalen boblogaidd;
+gwnewch yn siŵr eich bod yn deall canlyniadau'r broses hon cyn i chi barhau.",
 'movepagetext-noredirectfixer' => "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.
 Bydd yr hen deitl yn troi'n dudalen ailgyfeirio i'r teitl newydd.
 Byddwch gystal â thrwsio [[Special:DoubleRedirects|ailgyfeiriadau dwbl]] ac [[Special:BrokenRedirects|ailgyfeiriadau tor]].
