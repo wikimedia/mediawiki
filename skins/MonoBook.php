@@ -179,7 +179,7 @@ echo $footerEnd;
 		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
 		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
 
-		foreach ($sidebar as $boxName => $cont) {
+		foreach( $sidebar as $boxName => $content ) {
 			if ( $content === false )
 				continue;
 
@@ -190,7 +190,7 @@ echo $footerEnd;
 			} elseif ( $boxName == 'LANGUAGES' ) {
 				$this->languageBox();
 			} else {
-				$this->customBox( $boxName, $cont );
+				$this->customBox( $boxName, $content );
 			}
 		}
 	}
