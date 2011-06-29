@@ -9,7 +9,11 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 * translation (to en) where XMP should win.
 	 */
 	public function testMultilingualCascade() {
-		
+		global $wgShowEXIF;
+		if ( !$wgShowEXIF ) {
+			$this->markTestIncomplete( "This test needs the exif extension." );
+		}
+
 		$meta = BitmapMetadataHandler::Jpeg( dirname( __FILE__ ) .
 			'/Xmp-exif-multilingual_test.jpg' );
 
