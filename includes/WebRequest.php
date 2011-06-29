@@ -536,7 +536,8 @@ class WebRequest {
 	}
 
 	/**
-	 * Return the path portion of the request URI.
+	 * Return the path and query string portion of the request URI.
+	 * This will be suitable for use as a relative link in HTML output.
 	 *
 	 * @return String
 	 */
@@ -574,7 +575,9 @@ class WebRequest {
 	}
 
 	/**
-	 * Return the request URI with the canonical service and hostname.
+	 * Return the request URI with the canonical service and hostname, path,
+	 * and query string. This will be suitable for use as an absolute link
+	 * in HTML or other output.
 	 *
 	 * @return String
 	 */
