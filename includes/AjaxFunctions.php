@@ -36,7 +36,7 @@ function js_unescape( $source, $iconv_to = 'UTF-8' ) {
 				$pos++;
 				$unicodeHexVal = substr ( $source, $pos, 4 );
 				$unicode = hexdec ( $unicodeHexVal );
-				$decodedStr .= code2utf( $unicode );
+				$decodedStr .= codepointToUtf8( $unicode );
 				$pos += 4;
 			} else {
 				// we have an escaped ascii character
@@ -55,31 +55,4 @@ function js_unescape( $source, $iconv_to = 'UTF-8' ) {
 	}
 
 	return $decodedStr;
-}
-
-/**
- * Function coverts number of utf char into that character.
- * Function taken from: http://www.php.net/manual/en/function.utf8-encode.php#49336
- *
- * @param $num Integer
- * @return utf8char
- */
-function code2utf( $num ) {
-	if ( $num < 128 ) {
-		return chr( $num );
-	}
-
-	if ( $num < 2048 ) {
-		return chr( ( $num >> 6 ) + 192 ) . chr( ( $num&63 ) + 128 );
-	}
-
-	if ( $num < 65536 ) {
-		return chr( ( $num >> 12 ) + 224 ) . chr( ( ( $num >> 6 )&63 ) + 128 ) . chr( ( $num&63 ) + 128 );
-	}
-
-	if ( $num < 2097152 ) {
-		return chr( ( $num >> 18 ) + 240 ) . chr( ( ( $num >> 12 )&63 ) + 128 ) . chr( ( ( $num >> 6 )&63 ) + 128 ) . chr( ( $num&63 ) + 128 );
-	}
-
-	return '';
 }
