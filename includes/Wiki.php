@@ -426,7 +426,7 @@ class MediaWiki {
 	 *
 	 * @param $article Article
 	 */
-	private function performAction( Article $article ) {
+	private function performAction( Page $article ) {
 		global $wgSquidMaxage, $wgUseExternalEditor;
 
 		wfProfileIn( __METHOD__ );

@@ -83,7 +83,7 @@ class CreditsAction extends FormlessAction {
 	 * @param $article Article object
 	 * @return String HTML
 	 */
-	protected static function getAuthor( Article $article ) {
+	protected static function getAuthor( Page $article ) {
 		global $wgLang;
 
 		$user = User::newFromId( $article->getUser() );

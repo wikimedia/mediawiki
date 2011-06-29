@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Special handling for image description pages
+ * Class for viewing MediaWiki file description pages
  *
  * @ingroup Media
  */
@@ -10,7 +9,6 @@ class ImagePage extends Article {
 	/**
 	 * @var File
 	 */
-	private $img;
 	private $displayImg;
 	/**
 	 * @var FileRepo
@@ -19,12 +17,21 @@ class ImagePage extends Article {
 	private $fileLoaded;
 
 	var $mExtraDescription = false;
-	var $dupes;
 
-	function __construct( $title ) {
-		parent::__construct( $title );
-		$this->dupes = null;
-		$this->repo = null;
+	protected function newPage( Title $title ) {
+		// Overload mPage with a file-specific page
+		return new WikiFilePage( $title );
+	}
+
+	/**
+	 * Constructor from a page id
+	 * @param $id Int article ID to load
+	 */
+	public static function newFromID( $id ) {
+		$t = Title::newFromID( $id );
+		# @todo FIXME: Doesn't inherit right
+		return $t == null ? null : new self( $t );
+		# return $t == null ? null : new static( $t ); // PHP 5.3
 	}
 
 	/**
@@ -32,8 +39,8 @@ class ImagePage extends Article {
 	 * @return void
 	 */
 	public function setFile( $file ) {
+		$this->mPage->setFile( $file );
 		$this->displayImg = $file;
-		$this->img = $file;
 		$this->fileLoaded = true;
 	}
 
@@ -43,18 +50,19 @@ class ImagePage extends Article {
 		}
 		$this->fileLoaded = true;
 
-		$this->displayImg = $this->img = false;
-		wfRunHooks( 'ImagePageFindFile', array( $this, &$this->img, &$this->displayImg ) );
-		if ( !$this->img ) {
-			$this->img = wfFindFile( $this->mTitle );
-			if ( !$this->img ) {
-				$this->img = wfLocalFile( $this->mTitle );
+		$this->displayImg = $img = false;
+		wfRunHooks( 'ImagePageFindFile', array( $this, &$img, &$this->displayImg ) );
+		if ( !$img ) { // not set by hook?
+			$img = wfFindFile( $this->getTitle() );
+			if ( !$img ) {
+				$img = wfLocalFile( $this->getTitle() );
 			}
 		}
-		if ( !$this->displayImg ) {
-			$this->displayImg = $this->img;
+		$this->mPage->setFile( $img );
+		if ( !$this->displayImg ) { // not set by hook?
+			$this->displayImg = $img;
 		}
-		$this->repo = $this->img->getRepo();
+		$this->repo = $img->getRepo();
 	}
 
 	/**
@@ -73,14 +81,14 @@ class ImagePage extends Article {
 		$diff = $wgRequest->getVal( 'diff' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
-		if ( $this->mTitle->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) ) {
+		if ( $this->getTitle()->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) ) {
 			return parent::view();
 		}
 			
 		$this->loadFile();
 
-		if ( $this->mTitle->getNamespace() == NS_FILE && $this->img->getRedirected() ) {
-			if ( $this->mTitle->getDBkey() == $this->img->getName() || isset( $diff ) ) {
+		if ( $this->getTitle()->getNamespace() == NS_FILE && $this->mPage->getFile()->getRedirected() ) {
+			if ( $this->getTitle()->getDBkey() == $this->mPage->getFile()->getName() || isset( $diff ) ) {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
 				$wgRequest->setVal( 'diffonly', 'true' );
@@ -88,10 +96,10 @@ class ImagePage extends Article {
 			} else {
 				// mTitle is not the same as the redirect target so it is 
 				// probably the redirect page itself. Fake the redirect symbol
-				$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-				$wgOut->addHTML( $this->viewRedirect( Title::makeTitle( NS_FILE, $this->img->getName() ),
+				$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
+				$wgOut->addHTML( $this->viewRedirect( Title::makeTitle( NS_FILE, $this->mPage->getFile()->getName() ),
 					/* $appendSubtitle */ true, /* $forceKnown */ true ) );
-				$this->viewUpdates();
+				$this->mPage->viewUpdates();
 				return;
 			}
 		}
@@ -115,10 +123,10 @@ class ImagePage extends Article {
 		}
 
 		# No need to display noarticletext, we use our own message, output in openShowImage()
-		if ( $this->getID() ) {
+		if ( $this->mPage->getID() ) {
 			# When $wgBetterDirectionality is enabled, NS_FILE is in the user language,
 			# but this section (the actual wikitext) should be in page content language
-			$pageLang = $this->mTitle->getPageLanguage();
+			$pageLang = $this->getTitle()->getPageLanguage();
 			$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
@@ -127,8 +135,8 @@ class ImagePage extends Article {
 		} else {
 			# Just need to set the right headers
 			$wgOut->setArticleFlag( true );
-			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-			$this->viewUpdates();
+			$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
+			$this->mPage->viewUpdates();
 		}
 
 		# Show shared description, if needed
@@ -175,81 +183,10 @@ class ImagePage extends Article {
 		// always show the local local Filepage.css, bug 29277
 		$wgOut->addModuleStyles( 'filepage' );
 	}
-	
-	public function getRedirectTarget() {
-		$this->loadFile();
-		if ( $this->img->isLocal() ) {
-			return parent::getRedirectTarget();
-		}
-		// Foreign image page
-		$from = $this->img->getRedirected();
-		$to = $this->img->getName();
-		if ( $from == $to ) {
-			return null;
-		}
-		return $this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
-	}
 
-	public function followRedirect() {
-		$this->loadFile();
-		if ( $this->img->isLocal() ) {
-			return parent::followRedirect();
-		}
-		$from = $this->img->getRedirected();
-		$to = $this->img->getName();
-		if ( $from == $to ) {
-			return false;
-		}
-		return Title::makeTitle( NS_FILE, $to );
-	}
-
-	public function isRedirect( $text = false ) {
-		$this->loadFile();
-		if ( $this->img->isLocal() ) {
-			return parent::isRedirect( $text );
-		}
-			
-		return (bool)$this->img->getRedirected();
-	}
-	
-	public function isLocal() {
-		$this->loadFile();
-		return $this->img->isLocal();
-	}
-	
-	public function getFile() {
-		$this->loadFile();
-		return $this->img;
-	}
-	
 	public function getDisplayedFile() {
 		$this->loadFile();
 		return $this->displayImg;
-	}
-	
-	public function getDuplicates() {
-		$this->loadFile();
-		if ( !is_null( $this->dupes ) ) {
-			return $this->dupes;
-		}
-		$hash = $this->img->getSha1();
-		if ( !( $hash ) ) {
-			return $this->dupes = array();
-		}
-		$dupes = RepoGroup::singleton()->findBySha1( $hash );
-		// Remove duplicates with self and non matching file sizes
-		$self = $this->img->getRepoName() . ':' . $this->img->getName();
-		$size = $this->img->getSize();
-		foreach ( $dupes as $index => $file ) {
-			$key = $file->getRepoName() . ':' . $file->getName();
-			if ( $key == $self ) {
-				unset( $dupes[$index] );
-			}
-			if ( $file->getSize() != $size ) {
-				unset( $dupes[$index] );
-			}
-		}
-		return $this->dupes = $dupes;
 	}
 
 	/**
@@ -309,7 +246,7 @@ class ImagePage extends Article {
 	 */
 	public function getContent() {
 		$this->loadFile();
-		if ( $this->img && !$this->img->isLocal() && 0 == $this->getID() ) {
+		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getID() ) {
 			return '';
 		}
 		return parent::getContent();
@@ -422,13 +359,13 @@ class ImagePage extends Article {
 					if ( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
 						$link = $sk->link(
-							$this->mTitle,
+							$this->getTitle(),
 							$label,
 							array(),
 							array( 'page' => $page - 1 ),
 							array( 'known', 'noclasses' )
 						);
-						$thumb1 = $sk->makeThumbLinkObj( $this->mTitle, $this->displayImg, $link, $label, 'none',
+						$thumb1 = $sk->makeThumbLinkObj( $this->getTitle(), $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page - 1 ) );
 					} else {
 						$thumb1 = '';
@@ -437,13 +374,13 @@ class ImagePage extends Article {
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
 						$link = $sk->link(
-							$this->mTitle,
+							$this->getTitle(),
 							$label,
 							array(),
 							array( 'page' => $page + 1 ),
 							array( 'known', 'noclasses' )
 						);
-						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $this->displayImg, $link, $label, 'none',
+						$thumb2 = $sk->makeThumbLinkObj( $this->getTitle(), $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page + 1 ) );
 					} else {
 						$thumb2 = '';
@@ -521,7 +458,7 @@ EOT
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 				$nofile = array(
 					'filepage-nofile-link',
-					$uploadTitle->getFullURL( array( 'wpDestFile' => $this->img->getName() ) )
+					$uploadTitle->getFullURL( array( 'wpDestFile' => $this->mPage->getFile()->getName() ) )
 				);
 			} else {
 				$nofile = 'filepage-nofile';
@@ -569,16 +506,16 @@ EOT
 
 		$this->loadFile();
 
-		$descUrl = $this->img->getDescriptionUrl();
-		$descText = $this->img->getDescriptionText();
+		$descUrl = $this->mPage->getFile()->getDescriptionUrl();
+		$descText = $this->mPage->getFile()->getDescriptionText();
 
 		/* Add canonical to head if there is no local page for this shared file */
-		if( $descUrl && $this->getID() == 0 ) {
+		if( $descUrl && $this->mPage->getID() == 0 ) {
 			$wgOut->addLink( array( 'rel' => 'canonical', 'href' => $descUrl ) );
 		}
 
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
-		$repo = $this->img->getRepo()->getDisplayName();
+		$repo = $this->mPage->getFile()->getRepo()->getDisplayName();
 
 		if ( $descUrl && $descText && wfMsgNoTrans( 'sharedupload-desc-here' ) !== '-'  ) {
 			$wgOut->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
@@ -597,7 +534,7 @@ EOT
 		$this->loadFile();
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 		return $uploadTitle->getFullURL( array(
-			'wpDestFile' => $this->img->getName(),
+			'wpDestFile' => $this->mPage->getFile()->getName(),
 			'wpForReUpload' => 1
 		 ) );
 	}
@@ -614,7 +551,7 @@ EOT
 		}
 
 		$this->loadFile();
-		if ( !$this->img->isLocal() ) {
+		if ( !$this->mPage->getFile()->isLocal() ) {
 			return;
 		}
 
@@ -623,7 +560,7 @@ EOT
 		$wgOut->addHTML( "<br /><ul>\n" );
 
 		# "Upload a new version of this file" link
-		if ( UploadBase::userCanReUpload( $wgUser, $this->img->name ) ) {
+		if ( UploadBase::userCanReUpload( $wgUser, $this->mPage->getFile()->name ) ) {
 			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
 			$wgOut->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
 		}
@@ -631,7 +568,7 @@ EOT
 		# External editing link
 		if ( $wgUseExternalEditor ) {
 			$elink = $sk->link(
-				$this->mTitle,
+				$this->getTitle(),
 				wfMsgHtml( 'edit-externally' ),
 				array(),
 				array(
@@ -665,11 +602,11 @@ EOT
 		$wgOut->addHTML( $pager->getBody() );
 		$wgOut->preventClickjacking( $pager->getPreventClickjacking() );
 
-		$this->img->resetHistory(); // free db resources
+		$this->mPage->getFile()->resetHistory(); // free db resources
 
 		# Exist check because we don't want to show this on pages where an image
 		# doesn't exist along with the noimage message, that would suck. -ævar
-		if ( $this->img->exists() ) {
+		if ( $this->mPage->getFile()->exists() ) {
 			$this->uploadLinksBox();
 		}
 	}
@@ -691,7 +628,7 @@ EOT
 
 		$limit = 100;
 		
-		$res = $this->queryImageLinks( $this->mTitle->getDbKey(), $limit + 1);
+		$res = $this->queryImageLinks( $this->getTitle()->getDbKey(), $limit + 1);
 		$rows = array();
 		$redirects = array();
 		foreach ( $res as $row ) {
@@ -729,7 +666,7 @@ EOT
 			// More links than the limit. Add a link to [[Special:Whatlinkshere]]
 			$wgOut->addWikiMsg( 'linkstoimage-more',
 				$wgLang->formatNum( $limit ),
-				$this->mTitle->getPrefixedDBkey()
+				$this->getTitle()->getPrefixedDBkey()
 			);
 		}
 
@@ -786,7 +723,7 @@ EOT
 
 		// Add a links to [[Special:Whatlinkshere]]
 		if ( $count > $limit ) {
-			$wgOut->addWikiMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() );
+			$wgOut->addWikiMsg( 'morelinkstoimage', $this->getTitle()->getPrefixedDBkey() );
 		}
 		$wgOut->addHTML( Html::closeElement( 'div' ) . "\n" );
 	}
@@ -796,14 +733,14 @@ EOT
 
 		$this->loadFile();
 
-		$dupes = $this->getDuplicates();
+		$dupes = $this->mPage->getDuplicates();
 		if ( count( $dupes ) == 0 ) {
 			return;
 		}
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" );
 		$wgOut->addWikiMsg( 'duplicatesoffile',
-			$wgLang->formatNum( count( $dupes ) ), $this->mTitle->getDBkey()
+			$wgLang->formatNum( count( $dupes ) ), $this->getTitle()->getDBkey()
 		);
 		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
@@ -833,19 +770,19 @@ EOT
 	 */
 	public function delete() {
 		global $wgUploadMaintenance;
-		if ( $wgUploadMaintenance && $this->mTitle && $this->mTitle->getNamespace() == NS_FILE ) {
+		if ( $wgUploadMaintenance && $this->getTitle() && $this->getTitle()->getNamespace() == NS_FILE ) {
 			global $wgOut;
 			$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n", array( 'filedelete-maintenance' ) );
 			return;
 		}
 
 		$this->loadFile();
-		if ( !$this->img->exists() || !$this->img->isLocal() || $this->img->getRedirected() ) {
+		if ( !$this->mPage->getFile()->exists() || !$this->mPage->getFile()->isLocal() || $this->mPage->getFile()->getRedirected() ) {
 			// Standard article deletion
 			parent::delete();
 			return;
 		}
-		$deleter = new FileDeleteForm( $this->img );
+		$deleter = new FileDeleteForm( $this->mPage->getFile() );
 		$deleter->execute();
 	}
 
@@ -854,7 +791,7 @@ EOT
 	 */
 	public function revert() {
 		$this->loadFile();
-		$reverter = new FileRevertForm( $this->img );
+		$reverter = new FileRevertForm( $this->mPage->getFile() );
 		$reverter->execute();
 	}
 
@@ -863,17 +800,17 @@ EOT
 	 */
 	public function doPurge() {
 		$this->loadFile();
-		if ( $this->img->exists() ) {
-			wfDebug( 'ImagePage::doPurge purging ' . $this->img->getName() . "\n" );
-			$update = new HTMLCacheUpdate( $this->mTitle, 'imagelinks' );
+		if ( $this->mPage->getFile()->exists() ) {
+			wfDebug( 'ImagePage::doPurge purging ' . $this->mPage->getFile()->getName() . "\n" );
+			$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
 			$update->doUpdate();
-			$this->img->upgradeRow();
-			$this->img->purgeCache();
+			$this->mPage->getFile()->upgradeRow();
+			$this->mPage->getFile()->purgeCache();
 		} else {
-			wfDebug( 'ImagePage::doPurge no image for ' . $this->img->getName() . "; limiting purge to cache only\n" );
+			wfDebug( 'ImagePage::doPurge no image for ' . $this->mPage->getFile()->getName() . "; limiting purge to cache only\n" );
 			// even if the file supposedly doesn't exist, force any cached information
 			// to be updated (in case the cached information is wrong)
-			$this->img->purgeCache();
+			$this->mPage->getFile()->purgeCache();
 		}
 		parent::doPurge();
 	}
