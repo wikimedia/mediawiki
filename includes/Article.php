@@ -284,18 +284,14 @@ class Article extends Page {
 				wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
 				return false;
 			}
-
+			// Revision title doesn't match the page title given?
 			if ( $this->mPage->getID() != $revision->getPage() ) {
-				$data = $this->mPage->pageDataFromId( wfGetDB( DB_SLAVE ), $revision->getPage() );
-
-				if ( !$data ) {
+				$function = array( get_class( $this->mPage ), 'newFromID' );
+				$this->mPage = call_user_func( $function, $revision->getPage() );
+				if ( !$this->mPage->getId() ) {
 					wfDebug( __METHOD__ . " failed to get page data linked to revision id $oldid\n" );
 					return false;
 				}
-
-				$title = Title::makeTitle( $data->page_namespace, $data->page_title );
-				$this->mPage = new WikiPage( $title );
-				$this->mPage->loadPageData( $data );
 			}
 		} else {
 			if ( $this->mPage->getLatest() === false ) {
@@ -1931,7 +1927,58 @@ class Article extends Page {
 		global $wgOut;
 
 		$this->mParserOutput = $this->getOutputFromWikitext( $text, $cache, $parserOptions );
+
+		$this->doCascadeProtectionUpdates( $this->mParserOutput );
+
 		$wgOut->addParserOutput( $this->mParserOutput );
+	}
+
+	/**
+	 * Lightweight method to get the parser output for a page, checking the parser cache
+	 * and so on. Doesn't consider most of the stuff that WikiPage::view is forced to
+	 * consider, so it's not appropriate to use there.
+	 *
+	 * @since 1.16 (r52326) for LiquidThreads
+	 *
+	 * @param $oldid mixed integer Revision ID or null
+	 * @param $user User The relevant user
+	 * @return ParserOutput or false if the given revsion ID is not found
+	 */
+	public function getParserOutput( $oldid = null, User $user = null ) {
+		global $wgEnableParserCache, $wgUser;
+		$user = is_null( $user ) ? $wgUser : $user;
+
+		// Should the parser cache be used?
+		$useParserCache = $wgEnableParserCache &&
+			$user->getStubThreshold() == 0 &&
+			$this->mPage->exists() &&
+			$oldid === null;
+
+		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
+
+		if ( $user->getStubThreshold() ) {
+			wfIncrStats( 'pcache_miss_stub' );
+		}
+
+		if ( $useParserCache ) {
+			$parserOutput = ParserCache::singleton()->get( $this, $this->mPage->getParserOptions() );
+			if ( $parserOutput !== false ) {
+				return $parserOutput;
+			}
+		}
+
+		// Cache miss; parse and output it.
+		if ( $oldid === null ) {
+			$text = $this->mPage->getRawText();
+		} else {
+			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
+			if ( $rev === null ) {
+				return false;
+			}
+			$text = $rev->getText();
+		}
+
+		return $this->getOutputFromWikitext( $text, $useParserCache );
 	}
 
 	/**
