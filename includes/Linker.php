@@ -2000,9 +2000,5 @@ class DummyLinker {
 	public function __call( $fname, $args ) {
 		return call_user_func_array( array( 'Linker', $fname ), $args );
 	}
-
-	public static function normalizeSubpageLink( $contextTitle, $target, &$text ) {
-		return Linker::normalizeSubpageLink( $contextTitle, $target, $text );
-	}
 }
 
