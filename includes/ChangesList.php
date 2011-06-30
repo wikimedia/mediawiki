@@ -589,6 +589,8 @@ class OldChangesList extends ChangesList {
 		}
 		# User tool links
 		$this->insertUserRelatedLinks( $s, $rc );
+		# LTR/RTL direction mark
+		$s .= wfUILang()->getDirMark();
 		# Log action text (if any)
 		$this->insertAction( $s, $rc );
 		# Edit or log comment
