@@ -79,8 +79,12 @@ return array(
 		'scripts' => 'resources/jquery/jquery.autoEllipsis.js',
 		'dependencies' => 'jquery.highlightText',
 	),
+	'jquery.byteLength' => array(
+		'scripts' => 'resources/jquery/jquery.byteLength.js',
+	),
 	'jquery.byteLimit' => array(
 		'scripts' => 'resources/jquery/jquery.byteLimit.js',
+		'dependencies' => 'jquery.byteLength',
 	),
 	'jquery.checkboxShiftClick' => array(
 		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js',
