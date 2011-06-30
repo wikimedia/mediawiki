@@ -3523,9 +3523,7 @@ class User {
 		}
 		$title = self::getGroupPage( $group );
 		if( $title ) {
-			global $wgUser;
-			$sk = $wgUser->getSkin();
-			return $sk->link( $title, htmlspecialchars( $text ) );
+			return Linker::link( $title, htmlspecialchars( $text ) );
 		} else {
 			return $text;
 		}
