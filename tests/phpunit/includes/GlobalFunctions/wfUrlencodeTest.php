@@ -118,6 +118,9 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 			// Other 'funnies' chars
 			array( '[]', '%5B%5D' ),
 			array( '<>', '%3C%3E' ),
+
+			// Apostrophe is encoded
+			array( '\'', '%27' ),
 		);
 	}
 }
