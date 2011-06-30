@@ -4373,6 +4373,16 @@ $wgFeedDiffCutoff = 32768;
 $wgOverrideSiteFeed = array();
 
 /**
+ * Available feeds objects
+ * Should probably only be defined when a page is syndicated ie when
+ * $wgOut->isSyndicated() is true
+ */
+$wgFeedClasses = array(
+	'rss' => 'RSSFeed',
+	'atom' => 'AtomFeed',
+);
+
+/**
  * Which feed types should we provide by default?  This can include 'rss',
  * 'atom', neither, or both.
  */
