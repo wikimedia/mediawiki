@@ -1504,10 +1504,11 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
 
 # User rights log
-'rightslog'      => 'Uprawnienia',
-'rightslogtext'  => 'Rejestr zmian uprawnień użytkowników.',
-'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
-'rightsnone'     => 'brak',
+'rightslog'                  => 'Uprawnienia',
+'rightslogtext'              => 'Rejestr zmian uprawnień użytkowników.',
+'rightslogentry'             => 'zmienił przynależność $1 do grup ($2 → $3)',
+'rightslogentry-autopromote' => 'automatycznie zmienił przynależność ($2 → $3)',
+'rightsnone'                 => 'brak',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'przeglądania tej strony',
@@ -2406,9 +2407,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Przestrzeń nazw',
 'invert'                        => 'odwróć wybór',
-'tooltip-invert'                => 'Zaznacz to pole, aby ukryć zmiany w wybranych przestrzeniach nazw',
+'tooltip-invert'                => 'Zaznacz to pole, aby ukryć zmiany na stronach w wybranych przestrzeniach nazw (oraz związanych z nimi innymi przestrzeniami nazw, jeśli zaznaczono)',
 'namespace_association'         => 'powiązana przestrzeń nazw',
-'tooltip-namespace_association' => 'Zaznacz to pole, aby uwzględnić strony dyskusji i tematu w wybranych przestrzeniach nazw',
+'tooltip-namespace_association' => 'Zaznacz to pole, aby uwzględnić strony dyskusji i tematu związane z wybranymi przestrzeniami nazw',
 'blanknamespace'                => '(główna)',
 
 # Contributions

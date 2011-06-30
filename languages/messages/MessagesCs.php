@@ -2453,10 +2453,12 @@ $1',
 'undelete-show-file-submit'    => 'Ano',
 
 # Namespace form on various pages
-'namespace'             => 'Jmenný prostor:',
-'invert'                => 'Obrátit výběr',
-'namespace_association' => 'Související jmenný prostor',
-'blanknamespace'        => '(Hlavní)',
+'namespace'                     => 'Jmenný prostor:',
+'invert'                        => 'Obrátit výběr',
+'tooltip-invert'                => 'Zaškrtnutím tohoto políčka skryjete změny stránek ve zvoleném jmenném prostoru (a souvisejícím jmenném prostoru, pokud je zaškrtnuto)',
+'namespace_association'         => 'Související jmenný prostor',
+'tooltip-namespace_association' => 'Zaškrtnutím tohoto políčka zahrnete i diskusní či obsahový jmenný prostor příslušný k vybranému jmennému prostoru',
+'blanknamespace'                => '(Hlavní)',
 
 # Contributions
 'contributions'       => 'Příspěvky uživatele',

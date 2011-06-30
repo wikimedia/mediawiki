@@ -7395,15 +7395,48 @@ $1",
 	'config-localsettings-incomplete' => 'Il file LocalSettings.php esistente sembra essere incompleto.
 La variabile $1 non è impostata.
 Cambia LocalSettings.php in modo che questa variabile sia impostata e fai clic su "Continua".',
+	'config-localsettings-connection-error' => 'Si è verificato un errore durante la connessione al database utilizzando le impostazioni specificate in LocalSettings.php o AdminSettings.php. Si prega di correggere queste impostazioni e riprovare.
+
+$1',
+	'config-session-error' => "Errore nell'avvio della sessione: $1",
+	'config-session-expired' => 'I dati della sessione sembrano essere scaduti.
+Le sessioni sono configurate per una durata di $1.
+Puoi aumentarla impostando <code>session.gc_maxlifetime</code> nel file php.ini.
+Riavvia il processo di installazione.',
+	'config-no-session' => 'I dati della sessione sono andati persi!
+Controlla il tuo file php.ini ed assicurati che <code>session.save_path</code> è impostato su una directory appropriata.',
+	'config-your-language' => 'La tua lingua:',
+	'config-your-language-help' => 'Seleziona una lingua da utilizzare durante il processo di installazione.',
+	'config-wiki-language' => 'La lingua del wiki:',
+	'config-wiki-language-help' => 'Seleziona la lingua che verrà prevalentemente usata nel wiki.',
 	'config-back' => '← Indietro',
 	'config-continue' => 'Continua →',
 	'config-page-language' => 'Lingua',
+	'config-page-welcome' => 'Benvenuti in MediaWiki!',
+	'config-page-dbconnect' => 'Connessione al database',
+	'config-page-upgrade' => "Aggiornamento dell'installazione esistente",
+	'config-page-dbsettings' => 'Impostazioni del database',
 	'config-page-name' => 'Nome',
 	'config-page-options' => 'Opzioni',
 	'config-page-install' => 'Installa',
 	'config-page-complete' => 'Completa!',
+	'config-page-restart' => 'Riavvio installazione',
 	'config-page-readme' => 'Leggimi',
 	'config-page-releasenotes' => 'Note di versione',
+	'config-page-upgradedoc' => 'Aggiornamento',
+	'config-page-existingwiki' => 'Wiki esistenti',
+	'config-help-restart' => 'Vuoi cancellare tutti i dati salvati che hai inserito e riavviare il processo di installazione?',
+	'config-restart' => 'Sì, riavvia',
+	'config-welcome' => "=== Controllo dell'ambiente ===
+Vengono eseguiti controlli di base per vedere se questo ambiente è adatto per l'installazione di MediaWiki.
+Se hai bisogno di aiuto durante l'installazione, è necessario fornire i risultati di questi controlli.",
+	'config-env-good' => "L'ambiente è stato controllato.
+È possibile installare MediaWiki.",
+	'config-env-bad' => "L'ambiente è stato controllato.
+Non è possibile installare MediaWiki.",
+	'config-env-php' => 'PHP $1 è installato.',
+	'config-env-php-toolow' => 'PHP $1 è installato.
+Tuttavia, MediaWiki richiede PHP $2 o superiore.',
 );
 
 /** Japanese (日本語)
@@ -9644,7 +9677,7 @@ Dit veld wordt meestal leeg gelaten.",
 In '''binaire modus''' slaat MediaWiki tekst in UTF-8 op in binaire databasevelden.
 Dit is efficiënter dan de UTF-8-modus van MySQL en stelt u in staat de volledige reeks Unicode-tekens te gebruiken.
 In '''UTF-8-modus''' kent MySQL de tekenset van uw gegevens en kan de databaseserver ze juist weergeven en converteren.
-Het is dat niet mogelijk tekens op te slaan die de \"[http://nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
+Het is dan niet mogelijk tekens op te slaan die de \"[http://nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
 	'config-mysql-old' => 'U moet MySQL $1 of later gebruiken.
 U gebruikt $2.',
 	'config-db-port' => 'Databasepoort:',
