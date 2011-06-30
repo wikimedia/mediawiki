@@ -10,8 +10,6 @@ abstract class Page {}
  * Some fields are public only for backwards-compatibility. Use accessors.
  * In the past, this class was part of Article.php and everything was public.
  *
- * @TODO: dependency inject $wgUser as an argument to functions
- *
  * @internal documentation reviewed 15 Mar 2010
  */
 class WikiPage extends Page {
@@ -48,6 +46,9 @@ class WikiPage extends Page {
 
 	/**
 	 * Constructor from a page id
+	 *
+	 * Always override this for all subclasses (until we use PHP with LSB)
+	 *
 	 * @param $id Int article ID to load
 	 */
 	public static function newFromID( $id ) {
@@ -643,13 +644,14 @@ class WikiPage extends Page {
 	/**
 	 * Should the parser cache be used?
 	 *
+	 * @param $user User The relevant user
 	 * @return boolean
 	 */
-	public function useParserCache( $oldid ) {
-		global $wgUser, $wgEnableParserCache;
+	public function isParserCacheUsed( User $user, $oldid ) {
+		global $wgEnableParserCache;
 
 		return $wgEnableParserCache
-			&& $wgUser->getStubThreshold() == 0
+			&& $user->getStubThreshold() == 0
 			&& $this->exists()
 			&& empty( $oldid )
 			&& !$this->mTitle->isCssOrJsPage()
@@ -923,8 +925,6 @@ class WikiPage extends Page {
 	 * Change an existing article or create a new article. Updates RC and all necessary caches,
 	 * optionally via the deferred update array.
 	 *
-	 * $wgUser must be set before calling this function.
-	 *
 	 * @param $text String: new text
 	 * @param $summary String: edit summary
 	 * @param $flags Integer bitfield:
@@ -950,7 +950,7 @@ class WikiPage extends Page {
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
 	 * @param $baseRevId the revision ID this edit was based off, if any
-	 * @param $user User (optional), $wgUser will be used if not passed
+	 * @param $user User the user doing the edit
 	 *
 	 * @return Status object. Possible errors:
 	 *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
@@ -1119,7 +1119,7 @@ class WikiPage extends Page {
 			# as a template. Partly deferred.
 			self::onArticleEdit( $this->mTitle );
 			# Update links tables, site stats, etc.
-			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed, $user );
+			$this->doEditUpdates( $text, $user, $summary, $isminor, $revisionId, $changed );
 		} else {
 			# Create new article
 			$status->value['new'] = true;
@@ -1180,7 +1180,7 @@ class WikiPage extends Page {
 			$dbw->commit();
 
 			# Update links, etc.
-			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, true, $user, true );
+			$this->doEditUpdates( $text, $user, $summary, $isminor, $revisionId, true, true );
 
 			# Clear caches
 			self::onArticleCreate( $this->mTitle );
@@ -1214,10 +1214,14 @@ class WikiPage extends Page {
 	 * @param $reason String
 	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
 	 * @param $expiry Array: per restriction type expiration
+	 * @param $user User The user updating the restrictions
 	 * @return bool true on success
 	 */
-	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
+	public function updateRestrictions(
+		$limit = array(), $reason = '', &$cascade = 0, $expiry = array(), User $user = null
+	) {
 		global $wgUser, $wgContLang;
+		$user = is_null( $user ) ? $wgUser : $user;
 
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 
@@ -1276,7 +1280,7 @@ class WikiPage extends Page {
 
 		# If nothing's changed, do nothing
 		if ( $changed ) {
-			if ( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser, $limit, $reason ) ) ) {
+			if ( wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
 				$dbw = wfGetDB( DB_MASTER );
 
 				# Prepare a null revision to be added to the history
@@ -1375,8 +1379,8 @@ class WikiPage extends Page {
 					), __METHOD__
 				);
 
-				wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $nullRevision, $latest, $wgUser ) );
-				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
+				wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $nullRevision, $latest, $user ) );
+				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$user, $limit, $reason ) );
 
 				# Update the protection log
 				$log = new LogPage( 'protect' );
@@ -1507,15 +1511,19 @@ class WikiPage extends Page {
 	 * 	Revision::DELETED_RESTRICTED
 	 * @param $id int article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
+	 * @param &$errors Array of errors to append to
+	 * @param $user User The relevant user
 	 * @return boolean true if successful
 	 */
-	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, &$error = '' ) {
-		global $wgDeferredUpdateList, $wgUseTrackbacks;
-		global $wgUser;
+	public function doDeleteArticle(
+		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
+	) {
+		global $wgDeferredUpdateList, $wgUseTrackbacks, $wgUser;
+		$user = is_null( $user ) ? $wgUser : $user;
 
 		wfDebug( __METHOD__ . "\n" );
 
-		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$wgUser, &$reason, &$error ) ) ) {
+		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error ) ) ) {
 			return false;
 		}
 		$dbw = wfGetDB( DB_MASTER );
@@ -1644,7 +1652,7 @@ class WikiPage extends Page {
 			$dbw->commit();
 		}
 
-		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$wgUser, $reason, $id ) );
+		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
 		return true;
 	}
 
@@ -1652,7 +1660,7 @@ class WikiPage extends Page {
 	 * Roll back the most recent consecutive set of edits to a page
 	 * from the same user; fails if there are no eligible edits to
 	 * roll back to, e.g. user is the sole contributor. This function
-	 * performs permissions checks on $wgUser, then calls commitRollback()
+	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
 	 *
 	 * @param $fromP String: Name of the user whose edits to rollback.
@@ -1664,26 +1672,30 @@ class WikiPage extends Page {
 	 *    'alreadyrolled' : 'current' (rev)
 	 *    success        : 'summary' (str), 'current' (rev), 'target' (rev)
 	 *
+	 * @param $user User The user performing the rollback
 	 * @return array of errors, each error formatted as
 	 *   array(messagekey, param1, param2, ...).
 	 * On success, the array is empty.  This array can also be passed to
 	 * OutputPage::showPermissionsErrorPage().
 	 */
-	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails ) {
+	public function doRollback(
+		$fromP, $summary, $token, $bot, &$resultDetails, User $user = null
+	) {
 		global $wgUser;
+		$user = is_null( $user ) ? $wgUser : $user;
 
 		$resultDetails = null;
 
 		# Check permissions
-		$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
-		$rollbackErrors = $this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser );
+		$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $user );
+		$rollbackErrors = $this->mTitle->getUserPermissionsErrors( 'rollback', $user );
 		$errors = array_merge( $editErrors, wfArrayDiff2( $rollbackErrors, $editErrors ) );
 
-		if ( !$wgUser->matchEditToken( $token, array( $this->mTitle->getPrefixedText(), $fromP ) ) ) {
+		if ( !$user->matchEditToken( $token, array( $this->mTitle->getPrefixedText(), $fromP ) ) ) {
 			$errors[] = array( 'sessionfailure' );
 		}
 
-		if ( $wgUser->pingLimiter( 'rollback' ) || $wgUser->pingLimiter() ) {
+		if ( $user->pingLimiter( 'rollback' ) || $user->pingLimiter() ) {
 			$errors[] = array( 'actionthrottledtext' );
 		}
 
@@ -1692,7 +1704,7 @@ class WikiPage extends Page {
 			return $errors;
 		}
 
-		return $this->commitRollback( $fromP, $summary, $bot, $resultDetails );
+		return $this->commitRollback( $user, $fromP, $summary, $bot, $resultDetails );
 	}
 
 	/**
@@ -1703,9 +1715,16 @@ class WikiPage extends Page {
 	 * rollback to the DB Therefore, you should only call this function direct-
 	 * ly if you want to use custom permissions checks. If you don't, use
 	 * doRollback() instead.
+	 * @param $fromP String: Name of the user whose edits to rollback.
+	 * @param $summary String: Custom summary. Set to default summary if empty.
+	 * @param $bot Boolean: If true, mark all reverted edits as bot.
+	 *
+	 * @param $resultDetails Array: contains result-specific array of additional values
+	 * @param $guser User The user performing the rollback
 	 */
-	public function commitRollback( $fromP, $summary, $bot, &$resultDetails ) {
+	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
 		global $wgUseRCPatrol, $wgUser, $wgContLang;
+		$guser = is_null( $guser ) ? $wgUser : $guser;
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -1753,7 +1772,7 @@ class WikiPage extends Page {
 		}
 
 		$set = array();
-		if ( $bot && $wgUser->isAllowed( 'markbotedits' ) ) {
+		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
 			# Mark all reverted edits as bot
 			$set['rc_bot'] = 1;
 		}
@@ -1794,11 +1813,11 @@ class WikiPage extends Page {
 		# Save
 		$flags = EDIT_UPDATE;
 
-		if ( $wgUser->isAllowed( 'minoredit' ) ) {
+		if ( $guser->isAllowed( 'minoredit' ) ) {
 			$flags |= EDIT_MINOR;
 		}
 
-		if ( $bot && ( $wgUser->isAllowedAny( 'markbotedits', 'bot' ) ) ) {
+		if ( $bot && ( $guser->isAllowedAny( 'markbotedits', 'bot' ) ) ) {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
@@ -1810,7 +1829,7 @@ class WikiPage extends Page {
 			$revId = false;
 		}
 
-		wfRunHooks( 'ArticleRollbackComplete', array( $this, $wgUser, $target, $current ) );
+		wfRunHooks( 'ArticleRollbackComplete', array( $this, $guser, $target, $current ) );
 
 		$resultDetails = array(
 			'summary' => $summary,
@@ -1824,21 +1843,22 @@ class WikiPage extends Page {
 
 	/**
 	 * Do standard deferred updates after page view
+	 * @param $user User The relevant user
 	 */
-	public function viewUpdates() {
-		global $wgDeferredUpdateList, $wgDisableCounters, $wgUser;
+	public function doViewUpdates( User $user ) {
+		global $wgDeferredUpdateList, $wgDisableCounters;
 		if ( wfReadOnly() ) {
 			return;
 		}
 
 		# Don't update page view counters on views from bot users (bug 14044)
-		if ( !$wgDisableCounters && !$wgUser->isAllowed( 'bot' ) && $this->getID() ) {
+		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->getID() ) {
 			$wgDeferredUpdateList[] = new ViewCountUpdate( $this->getID() );
 			$wgDeferredUpdateList[] = new SiteStatsUpdate( 1, 0, 0 );
 		}
 
 		# Update newtalk / watchlist notification status
-		$wgUser->clearNotification( $this->mTitle );
+		$user->clearNotification( $this->mTitle );
 	}
 
 	/**
@@ -1846,17 +1866,17 @@ class WikiPage extends Page {
 	 * Returns a stdclass with source, pst and output members
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
-		if ( $this->mPreparedEdit && $this->mPreparedEdit->newText == $text && $this->mPreparedEdit->revid == $revid ) {
+		global $wgParser, $wgUser;
+		$user = is_null( $user ) ? $wgUser : $user;
+		// @TODO fixme: check $user->getId() here???
+		if ( $this->mPreparedEdit
+			&& $this->mPreparedEdit->newText == $text
+			&& $this->mPreparedEdit->revid == $revid
+		) {
 			// Already prepared
 			return $this->mPreparedEdit;
 		}
 
-		global $wgParser;
-
-		if( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
 		$popts = ParserOptions::newFromUser( $user );
 		wfRunHooks( 'ArticlePrepareTextForEdit', array( $this, $popts ) );
 
@@ -1881,18 +1901,17 @@ class WikiPage extends Page {
 	 *
 	 * @private
 	 * @param $text String: New text of the article
+	 * @param $user User object: User doing the edit
 	 * @param $summary String: Edit summary
 	 * @param $minoredit Boolean: Minor edit
-	 * @param $timestamp_of_pagechange String timestamp associated with the page change
 	 * @param $newid Integer: rev_id value of the new revision
 	 * @param $changed Boolean: Whether or not the content actually changed
-	 * @param $user User object: User doing the edit
 	 * @param $created Boolean: Whether the edit created the page
 	 */
-	public function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid,
-		$changed = true, User $user = null, $created = false )
-	{
-		global $wgDeferredUpdateList, $wgUser, $wgEnableParserCache;
+	public function doEditUpdates(
+		$text, $user, $summary, $minoredit, $newid, $changed = true, $created = false
+	) {
+		global $wgDeferredUpdateList, $wgEnableParserCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1961,8 +1980,8 @@ class WikiPage extends Page {
 		# Don't do this if $changed = false otherwise some idiot can null-edit a
 		# load of user talk pages and piss people off, nor if it's a minor edit
 		# by a properly-flagged bot.
-		if ( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getTitleKey() && $changed
-			&& !( $minoredit && $wgUser->isAllowed( 'nominornewtalk' ) )
+		if ( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $user->getTitleKey() && $changed
+			&& !( $minoredit && $user->isAllowed( 'nominornewtalk' ) )
 		) {
 			if ( wfRunHooks( 'ArticleEditUpdateNewTalk', array( &$this ) ) ) {
 				$other = User::newFromName( $shortTitle, false );
@@ -1992,12 +2011,14 @@ class WikiPage extends Page {
 	 * @param $rev Revision object
 	 *
 	 * @todo This is a shitty interface function. Kill it and replace the
-	 * other shitty functions like editUpdates and such so it's not needed
+	 * other shitty functions like doEditUpdates and such so it's not needed
 	 * anymore.
+	 * @deprecated since 1.19, use doEditUpdates()
 	 */
 	public function createUpdates( $rev ) {
-		$this->editUpdates( $rev->getText(), $rev->getComment(),
-			$rev->isMinor(), wfTimestamp(), $rev->getId(), true, null, true );
+		global $wgUser;
+		$this->doEditUpdates( $rev->getText(), $wgUser, $rev->getComment(),
+			$rev->isMinor(), $rev->getId(), true, true );
 	}
 
 	/**
@@ -2005,20 +2026,15 @@ class WikiPage extends Page {
 	 * so we can do things like signatures and links-in-context.
 	 *
 	 * @param $text String article contents
-	 * @param $user User object: user doing the edit, $wgUser will be used if
-	 *              null is given
+	 * @param $user User object: user doing the edit
 	 * @param $popts ParserOptions object: parser options, default options for
 	 *               the user loaded if null given
 	 * @return string article contents with altered wikitext markup (signatures
 	 * 	converted, {{subst:}}, templates, etc.)
 	 */
 	public function preSaveTransform( $text, User $user = null, ParserOptions $popts = null ) {
-		global $wgParser;
-
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
+		global $wgParser, $wgUser;
+		$user = is_null( $user ) ? $wgUser : $user;
 
 		if ( $popts === null ) {
 			$popts = ParserOptions::newFromUser( $user );
@@ -2069,10 +2085,11 @@ class WikiPage extends Page {
 	 * are not updated, caches are not flushed.
 	 *
 	 * @param $text String: text submitted
+	 * @param $user User The relevant user
 	 * @param $comment String: comment submitted
 	 * @param $minor Boolean: whereas it's a minor modification
 	 */
-	public function quickEdit( $text, $comment = '', $minor = 0 ) {
+	public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
 		wfProfileIn( __METHOD__ );
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -2081,12 +2098,11 @@ class WikiPage extends Page {
 			'text'       => $text,
 			'comment'    => $comment,
 			'minor_edit' => $minor ? 1 : 0,
-			) );
+		) );
 		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
 
-		global $wgUser;
-		wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, false, $wgUser ) );
+		wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -2400,20 +2416,22 @@ class WikiPage extends Page {
 	 * @since 1.16 (r52326) for LiquidThreads
 	 *
 	 * @param $oldid mixed integer Revision ID or null
+	 * @param $user User The relevant user
 	 * @return ParserOutput or false if the given revsion ID is not found
 	 */
-	public function getParserOutput( $oldid = null ) {
+	public function getParserOutput( $oldid = null, User $user = null ) {
 		global $wgEnableParserCache, $wgUser;
+		$user = is_null( $user ) ? $wgUser : $user;
 
 		// Should the parser cache be used?
 		$useParserCache = $wgEnableParserCache &&
-			$wgUser->getStubThreshold() == 0 &&
+			$user->getStubThreshold() == 0 &&
 			$this->exists() &&
 			$oldid === null;
 
 		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 
-		if ( $wgUser->getStubThreshold() ) {
+		if ( $user->getStubThreshold() ) {
 			wfIncrStats( 'pcache_miss_stub' );
 		}
 
@@ -2436,5 +2454,40 @@ class WikiPage extends Page {
 		}
 
 		return $this->getOutputFromWikitext( $text, $useParserCache );
+	}
+
+	/*
+	* @deprecated since 1.19
+	*/
+	public function quickEdit( $text, $comment = '', $minor = 0 ) {
+		global $wgUser;
+		return $this->doQuickEdit( $text, $wgUser, $comment, $minor );
+	}
+
+	/*
+	* @deprecated since 1.19
+	*/
+	public function editUpdates(
+		$text, $summary, $minoredit, $timestamp_of_pagechange, $newid,
+		$changed = true, User $user = null, $created = false
+	) {
+		global $wgUser;
+		return $this->doEditUpdates( $text, $wgUser, $summary, $minoredit, $newid, $changed, $created );
+	}
+
+	/*
+	* @deprecated since 1.19
+	*/
+	public function viewUpdates() {
+		global $wgUser;
+		return $this->doViewUpdates( $wgUser );
+	}
+
+	/*
+	* @deprecated since 1.19
+	*/
+	public function useParserCache( $oldid ) {
+		global $wgUser;
+		return $this->isParserCacheUsed( $wgUser, $oldid );
 	}
 }
