@@ -352,4 +352,20 @@ tableTest(
 	}
 );
 
+ascendingNameLegacy = ascendingName.slice(0);
+ascendingNameLegacy[4] = ascendingNameLegacy[5];
+ascendingNameLegacy.pop();
+
+tableTest(
+	'Legacy compat with .sortbottom',
+	header,
+	planets,
+	ascendingNameLegacy,
+	function( $table ) {
+		$table.find('tr:last').addClass('sortbottom');
+		$table.tablesorter();
+		$table.find('.headerSort:eq(0)').click();
+	}
+);
+
 })();

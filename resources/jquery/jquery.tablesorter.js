@@ -539,6 +539,13 @@
 
 						if ( firstTime ) {
 							firstTime = false;
+							
+							// Legacy fix of .sortbottoms
+							// Wrap them inside inside a tfoot (because that's what they actually want to be) &
+							// Move them up one level in the DOM
+							var sortbottoms = $table.find('tr.sortbottom').wrap('<tfoot>');
+							sortbottoms.parents('table').append(sortbottoms.parent());
+							
 							explodeRowspans( $table );
 							// try to auto detect column type, and store in tables config
 							table.config.parsers = buildParserCache( table, $headers );
