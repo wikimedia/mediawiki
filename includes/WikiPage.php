@@ -13,21 +13,24 @@ abstract class Page {}
  * @internal documentation reviewed 15 Mar 2010
  */
 class WikiPage extends Page {
+	/**
+	 * @var Title
+	 * @protected
+	 */
+	public $mTitle = null;
+
 	/**@{{
 	 * @protected
-	 * Fields are public for backwards-compatibility. Use accessors.
-	 * In the past, this class was part of Article.php and everything was public.
 	 */
-	public $mTitle = null;               // !< Title object
-	public $mCounter = -1;               // !< Not loaded
-	public $mDataLoaded = false;         // !<
-	public $mIsRedirect = false;         // !<
-	public $mLatest = false;             // !<
-	public $mPreparedEdit = false;		 // !<
+	public $mCounter = -1;               // !< Integer (-1 means "not loaded")
+	public $mDataLoaded = false;         // !< Boolean
+	public $mIsRedirect = false;         // !< Boolean
+	public $mLatest = false;             // !< Boolean
+	public $mPreparedEdit = false;		 // !< Array
 	public $mRedirectTarget = null;		 // !< Title object
 	public $mLastRevision = null;		 // !< Revision object
-	public $mTimestamp = '';             // !<
-	public $mTouched = '19700101000000'; // !<
+	public $mTimestamp = '';             // !< String
+	public $mTouched = '19700101000000'; // !< String
 	/**@}}*/
 
 	/**
@@ -78,7 +81,7 @@ class WikiPage extends Page {
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'redirect',
 			array( 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ),
-			array( 'rd_from' => $this->getID() ),
+			array( 'rd_from' => $this->getId() ),
 			__METHOD__
 		);
 
@@ -118,7 +121,7 @@ class WikiPage extends Page {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace( 'redirect', array( 'rd_from' ),
 			array(
-				'rd_from' 		=> $this->getID(),
+				'rd_from' 		=> $this->getId(),
 				'rd_namespace' 	=> $rt->getNamespace(),
 				'rd_title' 		=> $rt->getDBkey(),
 				'rd_fragment' 	=> $rt->getFragment(),
@@ -331,7 +334,7 @@ class WikiPage extends Page {
 	/**
 	 * @return int Page ID
 	 */
-	public function getID() {
+	public function getId() {
 		return $this->mTitle->getArticleID();
 	}
 
@@ -359,7 +362,7 @@ class WikiPage extends Page {
 	 */
 	public function getCount() {
 		if ( -1 == $this->mCounter ) {
-			$id = $this->getID();
+			$id = $this->getId();
 
 			if ( $id == 0 ) {
 				$this->mCounter = 0;
@@ -447,7 +450,7 @@ class WikiPage extends Page {
 		}
 
 		# New or non-existent articles have no user information
-		$id = $this->getID();
+		$id = $this->getId();
 		if ( 0 == $id ) {
 			return;
 		}
@@ -683,7 +686,7 @@ class WikiPage extends Page {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			if ( $this->getID() == 0 ) {
+			if ( $this->getId() == 0 ) {
 				$text = false;
 			} else {
 				$text = $this->getRawText();
@@ -1850,8 +1853,8 @@ class WikiPage extends Page {
 		}
 
 		# Don't update page view counters on views from bot users (bug 14044)
-		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->getID() ) {
-			$wgDeferredUpdateList[] = new ViewCountUpdate( $this->getID() );
+		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->getId() ) {
+			$wgDeferredUpdateList[] = new ViewCountUpdate( $this->getId() );
 			$wgDeferredUpdateList[] = new SiteStatsUpdate( 1, 0, 0 );
 		}
 
@@ -1954,7 +1957,7 @@ class WikiPage extends Page {
 			}
 		}
 
-		$id = $this->getID();
+		$id = $this->getId();
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
 
@@ -1980,11 +1983,12 @@ class WikiPage extends Page {
 		$wgDeferredUpdateList[] = new SiteStatsUpdate( 0, 1, $good, $total );
 		$wgDeferredUpdateList[] = new SearchUpdate( $id, $title, $text );
 
-		# If this is another user's talk page, update newtalk
-		# Don't do this if $changed = false otherwise some idiot can null-edit a
-		# load of user talk pages and piss people off, nor if it's a minor edit
-		# by a properly-flagged bot.
-		if ( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $user->getTitleKey() && $changed
+		# If this is another user's talk page, update newtalk.
+		# Don't do this if $options['changed'] = false (null-edits) nor if
+		# it's a minor edit and the user doesn't want notifications for those.
+		if ( $options['changed']
+			&& $this->mTitle->getNamespace() == NS_USER_TALK
+			&& $shortTitle != $user->getTitleKey()
 			&& !( $revision->isMinor() && $user->isAllowed( 'nominornewtalk' ) )
 		) {
 			if ( wfRunHooks( 'ArticleEditUpdateNewTalk', array( &$this ) ) ) {

@@ -19,7 +19,7 @@ class WikiCategoryPage extends WikiPage {
 	 * In use defined as: either the actual page exists
 	 * or the category currently has members.
 	 */
-	function hasViewableContent() {
+	public function hasViewableContent() {
 		if ( parent::hasViewableContent() ) {
 			return true;
 		} else {
