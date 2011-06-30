@@ -2520,7 +2520,7 @@ class User {
 	 * @param $title Title of the article to look at
 	 */
 	function clearNotification( &$title ) {
-		global $wgUser, $wgUseEnotif, $wgShowUpdatedMarker;
+		global $wgUseEnotif, $wgShowUpdatedMarker;
 
 		# Do nothing if the database is locked to writes
 		if( wfReadOnly() ) {
@@ -2548,13 +2548,11 @@ class User {
 		// and when it does have to be executed, it can be on a slave
 		// If this is the user's newtalk page, we always update the timestamp
 		if( $title->getNamespace() == NS_USER_TALK &&
-			$title->getText() == $wgUser->getName() )
+			$title->getText() == $this->getName() )
 		{
 			$watched = true;
-		} elseif ( $this->getId() == $wgUser->getId() ) {
-			$watched = $title->userIsWatching();
 		} else {
-			$watched = true;
+			$watched = $this->isWatched( $title );
 		}
 
 		// If the page is watched by the user (or may be watched), update the timestamp on any
