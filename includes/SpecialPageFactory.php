@@ -468,6 +468,10 @@ class SpecialPageFactory {
 	 * Returns false if there was no such special page, or a title object if it was
 	 * a redirect.
 	 *
+	 * Also saves the current $wgTitle, $wgOut, and $wgRequest variables so that
+	 * the special page will get the context it'd expect on a normal request,
+	 * and then restores them to their previous values after.
+	 *
 	 * @param $title Title
 	 *
 	 * @return String: HTML fragment
