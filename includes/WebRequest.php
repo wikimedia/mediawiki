@@ -127,6 +127,8 @@ class WebRequest {
 	/**
 	 * Work out an appropriate URL prefix containing scheme and host, based on
 	 * information detected from $_SERVER
+	 *
+	 * @return string
 	 */
 	public static function detectServer() {
 		if ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on') {
@@ -196,7 +198,7 @@ class WebRequest {
 	 *             passed on as the value of this URL parameter
 	 * @return array of URL variables to interpolate; empty if no match
 	 */
-	private static function extractTitle( $path, $bases, $key=false ) {
+	private static function extractTitle( $path, $bases, $key = false ) {
 		foreach( (array)$bases as $keyValue => $base ) {
 			// Find the part after $wgArticlePath
 			$base = str_replace( '$1', '', $base );
@@ -464,6 +466,8 @@ class WebRequest {
 	 * Extracts the given named values into an array.
 	 * If no arguments are given, returns all input values.
 	 * No transformation is performed on the values.
+	 *
+	 * @return array
 	 */
 	public function getValues() {
 		$names = func_get_args();
@@ -606,6 +610,12 @@ class WebRequest {
 		return htmlspecialchars( $this->appendQuery( $query ) );
 	}
 
+	/**
+	 * @param $key
+	 * @param $value
+	 * @param $onlyquery bool
+	 * @return String
+	 */
 	public function appendQueryValue( $key, $value, $onlyquery = false ) {
 		return $this->appendQueryArray( array( $key => $value ), $onlyquery );
 	}
@@ -714,7 +724,7 @@ class WebRequest {
 	/**
 	 * Return a WebRequestUpload object corresponding to the key
 	 *
-	 * @param @key string
+	 * @param $key string
 	 * @return WebRequestUpload
 	 */
 	public function getUpload( $key ) {
@@ -749,7 +759,6 @@ class WebRequest {
 				$this->headers[ strtoupper( $tempName ) ] = $tempValue;
 			}
 		} else {
-			$headers = $_SERVER;
 			foreach ( $_SERVER as $name => $value ) {
 				if ( substr( $name, 0, 5 ) === 'HTTP_' ) {
 					$name = str_replace( '_', '-',  substr( $name, 5 ) );
@@ -774,6 +783,8 @@ class WebRequest {
 	/**
 	 * Get a request header, or false if it isn't set
 	 * @param $name String: case-insensitive header name
+	 *
+	 * @return string|false
 	 */
 	public function getHeader( $name ) {
 		$this->initHeaders();
@@ -813,6 +824,9 @@ class WebRequest {
 	 * PATH_INFO or QUERY_STRING. If the request can't be allowed, show an error
 	 * message or redirect to a safer URL. Returns true if the URL is OK, and
 	 * false if an error message has been shown and the request should be aborted.
+	 *
+	 * @param $extWhitelist array
+	 * @return bool
 	 */
 	public function checkUrlExtension( $extWhitelist = array() ) {
 		global $wgScriptExtension;
@@ -837,6 +851,9 @@ class WebRequest {
 	/**
 	 * Attempt to redirect to a URL with a QUERY_STRING that's not dangerous in
 	 * IE 6. Returns true if it was successful, false otherwise.
+	 *
+	 * @param $url string
+	 * @return bool
 	 */
 	protected function doSecurityRedirect( $url ) {
 		header( 'Location: ' . $url );

@@ -50,7 +50,7 @@ if( !function_exists( 'mb_strpos' ) ) {
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strpos( $haystack, $needle, $offset, $encoding );
 	}
-	
+
 }
 
 if( !function_exists( 'mb_strrpos' ) ) {
@@ -316,8 +316,8 @@ function wfUrlencode( $s ) {
  * "days=7&limit=100". Options in the first array override options in the second.
  * Options set to "" will not be output.
  *
- * @param $array1 Array( String|Array )
- * @param $array2 Array( String|Array )
+ * @param $array1 Array ( String|Array )
+ * @param $array2 Array ( String|Array )
  * @param $prefix String
  * @return String
  */
@@ -511,7 +511,7 @@ function wfParseUrl( $url ) {
 	/* Provide an empty host for eg. file:/// urls (see bug 28627) */
 	if ( !isset( $bits['host'] ) ) {
 		$bits['host'] = '';
-		
+
 		/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
 		if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
 			$bits['path'] = '/' . $bits['path'];
@@ -623,10 +623,10 @@ function wfIsDebugRawPage() {
 	}
 	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
 	if ( ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' )
-		|| ( 
-			isset( $_SERVER['SCRIPT_NAME'] ) 
-			&& substr( $_SERVER['SCRIPT_NAME'], -8 ) == 'load.php' 
-		) )	
+		|| (
+			isset( $_SERVER['SCRIPT_NAME'] )
+			&& substr( $_SERVER['SCRIPT_NAME'], -8 ) == 'load.php'
+		) )
 	{
 		$cache = true;
 	} else {
@@ -637,7 +637,7 @@ function wfIsDebugRawPage() {
 
 /**
  * Get microsecond timestamps for debug logs
- * 
+ *
  * @return string
  */
 function wfDebugTimer() {
@@ -1277,7 +1277,7 @@ function wfDebugDieBacktrace( $msg = '' ) {
  * Fetch server name for use in error reporting etc.
  * Use real server name if available, so we know which machine
  * in a server farm generated the current page.
- * 
+ *
  * @return string
  */
 function wfHostname() {
@@ -2538,7 +2538,7 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
 function in_string( $needle, $str, $insensitive = false ) {
 	$func = 'strpos';
 	if( $insensitive ) $func = 'stripos';
-	
+
 	return $func( $str, $needle ) !== false;
 }
 
@@ -2996,11 +2996,11 @@ function wfSetupSession( $sessionId = false ) {
 			global $IP;
 			require_once( "$IP/includes/cache/MemcachedSessions.php" );
 		}
-		session_set_save_handler( 'memsess_open', 'memsess_close', 'memsess_read', 
+		session_set_save_handler( 'memsess_open', 'memsess_close', 'memsess_read',
 			'memsess_write', 'memsess_destroy', 'memsess_gc' );
 
-		// It's necessary to register a shutdown function to call session_write_close(), 
-		// because by the time the request shutdown function for the session module is 
+		// It's necessary to register a shutdown function to call session_write_close(),
+		// because by the time the request shutdown function for the session module is
 		// called, $wgMemc has already been destroyed. Shutdown functions registered
 		// this way are called before object destruction.
 		register_shutdown_function( 'memsess_write_close' );
@@ -3327,7 +3327,7 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
  * master position. Use this when updating very large numbers of rows, as
  * in maintenance scripts, to avoid causing too much lag.  Of course, this is
  * a no-op if there are no slaves.
- * 
+ *
  * @param $maxLag Integer (deprecated)
  * @param $wiki mixed Wiki identifier accepted by wfGetLB
  * @return null
@@ -3477,7 +3477,7 @@ function wfBCP47( $code ) {
 	$codeBCP = array();
 	foreach ( $codeSegment as $segNo => $seg ) {
 		if ( count( $codeSegment ) > 0 ) {
-			// when previous segment is x, it is a private segment and should be lc 
+			// when previous segment is x, it is a private segment and should be lc
 			if( $segNo > 0 && strtolower( $codeSegment[($segNo - 1)] ) == 'x') {
 				$codeBCP[$segNo] = strtolower( $seg );
 			// ISO 3166 country code
@@ -3551,9 +3551,9 @@ function wfRunHooks( $event, $args = array() ) {
 }
 
 /**
- * Unserialize a string to a PHP value without throwing E_NOTICE. Simply a 
+ * Unserialize a string to a PHP value without throwing E_NOTICE. Simply a
  * wrapper around unserialize()
- * 
+ *
  * @param $data string The serialized string
  * @return mixed
  */
