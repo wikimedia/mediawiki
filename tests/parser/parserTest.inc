@@ -185,8 +185,6 @@ class ParserTest {
 					$options['setversion'] : SpecialVersion::getVersion();
 		} elseif ( isset( $options['compare'] ) ) {
 			$this->recorder = new DbTestPreviewer( $this );
-		} elseif ( isset( $options['upload'] ) ) {
-			$this->recorder = new RemoteTestRecorder( $this );
 		} else {
 			$this->recorder = new TestRecorder( $this );
 		}
