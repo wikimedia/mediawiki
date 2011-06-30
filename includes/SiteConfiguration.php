@@ -411,4 +411,3 @@ class SiteConfiguration {
 		}
 	}
 }
-} // End of multiple inclusion guard
