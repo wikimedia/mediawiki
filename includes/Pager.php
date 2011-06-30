@@ -945,7 +945,7 @@ abstract class TablePager extends IndexPager {
 	 * A navigation bar with images
 	 */
 	function getNavigationBar() {
-		global $wgStylePath, $wgContLang, $wgLang, $wgBetterDirectionality;
+		global $wgStylePath;
 
 		if ( !$this->isNavigationBarShown() ) {
 			return '';
@@ -970,8 +970,7 @@ abstract class TablePager extends IndexPager {
 			'next' => 'arrow_disabled_right_25.png',
 			'last' => 'arrow_disabled_last_25.png',
 		);
-		$isRTL = ( $wgBetterDirectionality ? $wgLang->isRTL() : $wgContLang->isRTL() );
-		if( $isRTL ) {
+		if( wfUILang()->isRTL() ) {
 			$keys = array_keys( $labels );
 			$images = array_combine( $keys, array_reverse( $images ) );
 			$disabledImages = array_combine( $keys, array_reverse( $disabledImages ) );
