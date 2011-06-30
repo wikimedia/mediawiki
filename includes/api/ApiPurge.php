@@ -72,7 +72,7 @@ class ApiPurge extends ApiBase {
 			$article = Article::newFromTitle( $title, $context );
 			$article->doPurge(); // Directly purge and skip the UI part of purge().
 			$r['purged'] = '';
-			
+
 			if( $forceLinkUpdate ) {
 				if ( !$wgUser->pingLimiter() ) {
 					global $wgParser, $wgEnableParserCache;
@@ -94,11 +94,12 @@ class ApiPurge extends ApiBase {
 					$forceLinkUpdate = false;
 				}
 			}
-			
+
 			$result[] = $r;
 		}
-		$this->getResult()->setIndexedTagName( $result, 'page' );
-		$this->getResult()->addValue( null, $this->getModuleName(), $result );
+		$apiResult = $this->getResult();
+		$apiResult->setIndexedTagName( $result, 'page' );
+		$apiResult->addValue( null, $this->getModuleName(), $result );
 	}
 
 	public function isWriteMode() {

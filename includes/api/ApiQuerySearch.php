@@ -97,16 +97,17 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$this->dieUsage( "{$what} search is disabled", "search-{$what}-disabled" );
 		}
 
+		$result = $this->getResult();
 		// Add search meta data to result
 		if ( isset( $searchInfo['totalhits'] ) ) {
 			$totalhits = $matches->getTotalHits();
 			if ( $totalhits !== null ) {
-				$this->getResult()->addValue( array( 'query', 'searchinfo' ),
+				$result->addValue( array( 'query', 'searchinfo' ),
 						'totalhits', $totalhits );
 			}
 		}
 		if ( isset( $searchInfo['suggestion'] ) && $matches->hasSuggestion() ) {
-			$this->getResult()->addValue( array( 'query', 'searchinfo' ),
+			$result->addValue( array( 'query', 'searchinfo' ),
 						'suggestion', $matches->getSuggestionQuery() );
 		}
 
@@ -171,7 +172,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				}
 
 				// Add item to results and see whether it fits
-				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ),
+				$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 						null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'offset', $params['offset'] + $count - 1 );
@@ -185,7 +186,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->setIndexedTagName_internal( array(
+			$result->setIndexedTagName_internal( array(
 						'query', $this->getModuleName()
 					), 'p' );
 		} else {

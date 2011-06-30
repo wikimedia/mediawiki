@@ -231,9 +231,12 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->redirect = isset( $this->params['redirect'] ) && $this->params['redirect'];
 		$userMax = ( $this->redirect ? ApiBase::LIMIT_BIG1 / 2 : ApiBase::LIMIT_BIG1 );
 		$botMax  = ( $this->redirect ? ApiBase::LIMIT_BIG2 / 2 : ApiBase::LIMIT_BIG2 );
+
+		$result = $this->getResult();
+
 		if ( $this->params['limit'] == 'max' ) {
 			$this->params['limit'] = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$this->getResult()->setParsedLimit( $this->getModuleName(), $this->params['limit'] );
+			$result->setParsedLimit( $this->getModuleName(), $this->params['limit'] );
 		}
 
 		$this->processContinue();
@@ -290,13 +293,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 		if ( is_null( $resultPageSet ) ) {
 			// Try to add the result data in one go and pray that it fits
-			$fit = $this->getResult()->addValue( 'query', $this->getModuleName(), array_values( $this->resultArr ) );
+			$fit = $result->addValue( 'query', $this->getModuleName(), array_values( $this->resultArr ) );
 			if ( !$fit ) {
 				// It didn't fit. Add elements one by one until the
 				// result is full.
 				foreach ( $this->resultArr as $pageID => $arr ) {
 					// Add the basic entry without redirlinks first
-					$fit = $this->getResult()->addValue(
+					$fit = $result->addValue(
 						array( 'query', $this->getModuleName() ),
 						null, array_diff_key( $arr, array( 'redirlinks' => '' ) ) );
 					if ( !$fit ) {
@@ -307,7 +310,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					$hasRedirs = false;
 					$redirLinks = isset( $arr['redirlinks'] ) ? $arr['redirlinks'] : array();
 					foreach ( (array)$redirLinks as $key => $redir ) {
-						$fit = $this->getResult()->addValue(
+						$fit = $result->addValue(
 							array( 'query', $this->getModuleName(), $pageID, 'redirlinks' ),
 							$key, $redir );
 						if ( !$fit ) {
@@ -317,7 +320,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 						$hasRedirs = true;
 					}
 					if ( $hasRedirs ) {
-						$this->getResult()->setIndexedTagName_internal(
+						$result->setIndexedTagName_internal(
 							array( 'query', $this->getModuleName(), $pageID, 'redirlinks' ),
 							$this->bl_code );
 					}
@@ -327,7 +330,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				}
 			}
 
-			$this->getResult()->setIndexedTagName_internal(
+			$result->setIndexedTagName_internal(
 				array( 'query', $this->getModuleName() ),
 				$this->bl_code
 			);

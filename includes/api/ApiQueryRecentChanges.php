@@ -269,6 +269,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$titles = array();
 
+		$result = $this->getResult();
+
 		/* Iterate through the rows, adding data extracted from them to our query result. */
 		foreach ( $res as $row ) {
 			if ( ++ $count > $params['limit'] ) {
@@ -285,7 +287,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				if ( !$vals ) {
 					continue;
 				}
-				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );
 					break;
@@ -297,7 +299,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			/* Format the result */
-			$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'rc' );
+			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'rc' );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}

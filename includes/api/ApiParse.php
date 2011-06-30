@@ -77,6 +77,9 @@ class ApiParse extends ApiBase {
 
 		$redirValues = null;
 
+		// Return result
+		$result = $this->getResult();
+
 		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
 			if ( !is_null( $oldid ) ) {
 				// Don't use the parser cache
@@ -178,19 +181,17 @@ class ApiParse extends ApiBase {
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out
 				$result_array['text'] = array();
-				$this->getResult()->setContent( $result_array['text'], $this->pstText );
+				$result->setContent( $result_array['text'], $this->pstText );
 				if ( isset( $prop['wikitext'] ) ) {
 					$result_array['wikitext'] = array();
-					$this->getResult()->setContent( $result_array['wikitext'], $this->text );
+					$result->setContent( $result_array['wikitext'], $this->text );
 				}
-				$this->getResult()->addValue( null, $this->getModuleName(), $result_array );
+				$result->addValue( null, $this->getModuleName(), $result_array );
 				return;
 			}
 			$p_result = $wgParser->parse( $params['pst'] ? $this->pstText : $this->text, $titleObj, $popts );
 		}
 
-		// Return result
-		$result = $this->getResult();
 		$result_array = array();
 
 		$result_array['title'] = $titleObj->getPrefixedText();

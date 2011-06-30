@@ -107,15 +107,18 @@ class ApiMove extends ApiBase {
 			}
 		}
 
+		$result = $this->getResult();
+
 		// Move subpages
 		if ( $params['movesubpages'] ) {
 			$r['subpages'] = $this->moveSubpages( $fromTitle, $toTitle,
 					$params['reason'], $params['noredirect'] );
-			$this->getResult()->setIndexedTagName( $r['subpages'], 'subpage' );
+			$result->setIndexedTagName( $r['subpages'], 'subpage' );
+
 			if ( $params['movetalk'] ) {
 				$r['subpages-talk'] = $this->moveSubpages( $fromTalk, $toTalk,
 					$params['reason'], $params['noredirect'] );
-				$this->getResult()->setIndexedTagName( $r['subpages-talk'], 'subpage' );
+				$result->setIndexedTagName( $r['subpages-talk'], 'subpage' );
 			}
 		}
 
@@ -132,7 +135,7 @@ class ApiMove extends ApiBase {
 		$this->setWatch( $watch, $fromTitle, 'watchmoves' );
 		$this->setWatch( $watch, $toTitle, 'watchmoves' );
 
-		$this->getResult()->addValue( null, $this->getModuleName(), $r );
+		$result->addValue( null, $this->getModuleName(), $r );
 	}
 
 	/**

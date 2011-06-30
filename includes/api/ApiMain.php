@@ -473,6 +473,7 @@ class ApiMain extends ApiBase {
 	 * @return string
 	 */
 	protected function substituteResultWithError( $e ) {
+		$result = $this->getResult();
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
 		if ( !isset ( $this->mPrinter ) ) {
 			// The printer has not been created yet. Try to manually get formatter value.
@@ -483,7 +484,7 @@ class ApiMain extends ApiBase {
 
 			$this->mPrinter = $this->createPrinterByName( $value );
 			if ( $this->mPrinter->getNeedsRawData() ) {
-				$this->getResult()->setRawMode();
+				$result->setRawMode();
 			}
 		}
 
@@ -512,16 +513,16 @@ class ApiMain extends ApiBase {
 			ApiResult::setContent( $errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : '' );
 		}
 
-		$this->getResult()->reset();
-		$this->getResult()->disableSizeCheck();
+		$result->reset();
+		$result->disableSizeCheck();
 		// Re-add the id
 		$requestid = $this->getParameter( 'requestid' );
 		if ( !is_null( $requestid ) ) {
-			$this->getResult()->addValue( null, 'requestid', $requestid );
+			$result->addValue( null, 'requestid', $requestid );
 		}
 		// servedby is especially useful when debugging errors
-		$this->getResult()->addValue( null, 'servedby', wfHostName() );
-		$this->getResult()->addValue( null, 'error', $errMessage );
+		$result->addValue( null, 'servedby', wfHostName() );
+		$result->addValue( null, 'error', $errMessage );
 
 		return $errMessage['code'];
 	}
@@ -532,13 +533,14 @@ class ApiMain extends ApiBase {
 	 */
 	protected function setupExecuteAction() {
 		// First add the id to the top element
+		$result = $this->getResult();
 		$requestid = $this->getParameter( 'requestid' );
 		if ( !is_null( $requestid ) ) {
-			$this->getResult()->addValue( null, 'requestid', $requestid );
+			$result->addValue( null, 'requestid', $requestid );
 		}
 		$servedby = $this->getParameter( 'servedby' );
 		if ( $servedby ) {
-			$this->getResult()->addValue( null, 'servedby', wfHostName() );
+			$result->addValue( null, 'servedby', wfHostName() );
 		}
 
 		$params = $this->extractRequestParams();
