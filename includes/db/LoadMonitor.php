@@ -18,7 +18,7 @@ interface LoadMonitor {
 	 * @param LoadBalancer $parent
 	 */
 	function __construct( $parent );
-	
+
 	/**
 	 * Perform pre-connection load ratio adjustment.
 	 * @param $loads array
@@ -30,13 +30,13 @@ interface LoadMonitor {
 	/**
 	 * Perform post-connection backoff.
 	 *
-	 * If the connection is in overload, this should return a backoff factor 
-	 * which will be used to control polling time. The number of threads 
+	 * If the connection is in overload, this should return a backoff factor
+	 * which will be used to control polling time. The number of threads
 	 * connected is a good measure.
 	 *
 	 * If there is no overload, zero can be returned.
 	 *
-	 * A threshold thread count is given, the concrete class may compare this 
+	 * A threshold thread count is given, the concrete class may compare this
 	 * to the running thread count. The threshold may be false, which indicates
 	 * that the sysadmin has not configured this feature.
 	 *
@@ -50,7 +50,7 @@ interface LoadMonitor {
 	 *
 	 * @param $serverIndexes
 	 * @param $wiki
-	 * 
+	 *
 	 * @return array
 	 */
 	function getLagTimes( $serverIndexes, $wiki );
@@ -113,7 +113,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		global $wgMemc;
 		if ( empty( $wgMemc ) )
 			$wgMemc = wfGetMainCache();
-		
+
 		$masterName = $this->parent->getServerName( 0 );
 		$memcKey = wfMemcKey( 'lag_times', $masterName );
 		$times = $wgMemc->get( $memcKey );
@@ -167,6 +167,8 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		}
 		$status = $conn->getMysqlStatus("Thread%");
 		if ( $status['Threads_running'] > $threshold ) {
+			$server = $conn->getProperty( 'mServer' );
+			wfLogDBError( "LB backoff from $server - Threads_running = {$status['Threads_running']}\n" );
 			return $status['Threads_connected'];
 		} else {
 			return 0;
