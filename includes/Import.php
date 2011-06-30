@@ -1000,9 +1000,11 @@ class WikiRevision {
 		if( $user ) {
 			$userId = intval( $user->getId() );
 			$userText = $user->getName();
+			$userObj = $user;
 		} else {
 			$userId = 0;
 			$userText = $this->getUser();
+			$userObj = new User;
 		}
 
 		// avoid memory leak...?
@@ -1015,6 +1017,7 @@ class WikiRevision {
 			# must create the page...
 			$pageId = $article->insertOn( $dbw );
 			$created = true;
+			$oldcountable = null;
 		} else {
 			$created = false;
 
@@ -1031,6 +1034,7 @@ class WikiRevision {
 					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
 				return false;
 			}
+			$oldcountable = $article->isCountable();
 		}
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
@@ -1044,33 +1048,13 @@ class WikiRevision {
 			'timestamp'  => $this->timestamp,
 			'minor_edit' => $this->minor,
 			) );
-		$revId = $revision->insertOn( $dbw );
+		$revision->insertOn( $dbw );
 		$changed = $article->updateIfNewerOn( $dbw, $revision );
 
-		# To be on the safe side...
-		$tempTitle = $GLOBALS['wgTitle'];
-		$GLOBALS['wgTitle'] = $this->title;
-
-		if ( $created ) {
-			wfDebug( __METHOD__ . ": running onArticleCreate\n" );
-			Article::onArticleCreate( $this->title );
-		} elseif( $changed ) {
-			wfDebug( __METHOD__ . ": running onArticleEdit\n" );
-			Article::onArticleEdit( $this->title );
+		if ( $changed !== false ) {
+			wfDebug( __METHOD__ . ": running updates\n" );
+			$article->doEditUpdates( $revision, $userObj, array( 'created' => $created, 'oldcountable' => $oldcountable ) );
 		}
-
-		wfDebug( __METHOD__ . ": running updates\n" );
-		$article->editUpdates(
-			$this->getText(),
-			$this->getComment(),
-			$this->minor,
-			$this->timestamp,
-			$revId,
-			true,
-			null,
-			$created );
-
-		$GLOBALS['wgTitle'] = $tempTitle;
 
 		return true;
 	}
