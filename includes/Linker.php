@@ -1695,6 +1695,10 @@ class Linker {
 	 *   escape), or false for no title attribute
 	 */
 	public static function titleAttrib( $name, $options = null ) {
+		global $wgEnableTooltipsAndAccesskeys;
+		if ( !$wgEnableTooltipsAndAccesskeys )
+			return false;
+		
 		wfProfileIn( __METHOD__ );
 
 		$message = wfMessage( "tooltip-$name" );
