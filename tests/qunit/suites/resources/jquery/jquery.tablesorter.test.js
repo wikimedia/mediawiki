@@ -352,7 +352,7 @@ tableTest(
 	}
 );
 
-ascendingNameLegacy = ascendingName.slice(0);
+var ascendingNameLegacy = ascendingName.slice(0);
 ascendingNameLegacy[4] = ascendingNameLegacy[5];
 ascendingNameLegacy.pop();
 
