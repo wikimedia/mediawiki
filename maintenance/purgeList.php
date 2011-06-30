@@ -43,7 +43,7 @@ class PurgeList extends Maintenance {
 					$url = $title->getFullUrl();
 					$this->output( "$url\n" );
 					$urls[] = $url;
-					if ( $this->getOptions( 'purge' ) ) {
+					if ( $this->getOption( 'purge' ) ) {
 						$title->invalidateCache();
 					}
 				} else {
