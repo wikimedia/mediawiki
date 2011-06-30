@@ -533,10 +533,13 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= " $del ";
 		}
 
+		$dirmark = wfUILang()->getDirMark();
+
 		$s .= " $link";
-		$s .= wfUILang()->getDirMark();
+		$s .= $dirmark;
 		$s .= " <span class='history-user'>" .
 			$this->getSkin()->revUserTools( $rev, true ) . "</span>";
+		$s .= $dirmark;
 
 		if ( $rev->isMinor() ) {
 			$s .= ' ' . ChangesList::flag( 'minor' );
