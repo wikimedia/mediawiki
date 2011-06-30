@@ -117,8 +117,12 @@ abstract class Job {
 			}
 		}
 		$offset = intval( $offset );
-		$row = $dbr->selectRow( 'job', '*', array_merge( $conditions, array( "job_id >= $offset" ) ) , __METHOD__,
-			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ) 
+		$options = array( 'ORDER BY' => 'job_id', 'USE INDEX' => 'PRIMARY' );
+
+		$row = $dbr->selectRow( 'job', '*',
+			array_merge( $conditions, array( "job_id >= $offset" ) ),
+			__METHOD__,
+			$options
 		);
 
 		// Refetching without offset is needed as some of job IDs could have had delayed commits
@@ -126,8 +130,7 @@ abstract class Job {
 		//
 		if ( $row === false ) {
 			if ( $offset != 0 ) {
-				$row = $dbr->selectRow( 'job', '*', $conditions, __METHOD__,
-					array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ) );
+				$row = $dbr->selectRow( 'job', '*', $conditions, __METHOD__, $options );
 			}
 
 			if ( $row === false ) {
