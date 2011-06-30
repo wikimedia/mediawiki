@@ -2577,10 +2577,8 @@ class User {
 	 * Resets all of the given user's page-change notification timestamps.
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of any watched page.
-	 *
-	 * @param $currentUser Int User ID
 	 */
-	function clearAllNotifications( $currentUser ) {
+	function clearAllNotifications() {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
 			$this->setNewtalk( false );
@@ -2592,7 +2590,7 @@ class User {
 				array( /* SET */
 					'wl_notificationtimestamp' => null
 				), array( /* WHERE */
-					'wl_user' => $currentUser
+					'wl_user' => $this->getId()
 				), __METHOD__
 			);
 		# 	We also need to clear here the "you have new message" notification for the own user_talk page
