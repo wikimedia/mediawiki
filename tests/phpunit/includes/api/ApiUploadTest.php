@@ -414,6 +414,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			'comment' => 'dummy comment',
 			'text'	=> "This is the page text for $fileName, altered",
 		);
+		$session[ UploadBase::getSessionKeyname() ] = $_SESSION[ UploadBase::getSessionKeyname() ];
 
 		$this->clearFakeUploads();
 		$exception = false;
