@@ -1004,6 +1004,7 @@ class WikiPage extends Page {
 
 		$oldtext = $this->getRawText(); // current revision
 		$oldsize = strlen( $oldtext );
+		$oldcountable = $this->isCountable();
 
 		# Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
@@ -1027,6 +1028,17 @@ class WikiPage extends Page {
 				$userAbort = ignore_user_abort( true );
 			}
 
+			$revision = new Revision( array(
+				'page'       => $this->getId(),
+				'comment'    => $summary,
+				'minor_edit' => $isminor,
+				'text'       => $text,
+				'parent_id'  => $this->mLatest,
+				'user'       => $user->getId(),
+				'user_text'  => $user->getName(),
+				'timestamp'  => $now
+			) );
+
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
 
 			if ( $changed ) {
@@ -1038,17 +1050,6 @@ class WikiPage extends Page {
 					wfProfileOut( __METHOD__ );
 					return $status;
 				}
-
-				$revision = new Revision( array(
-					'page'       => $this->getId(),
-					'comment'    => $summary,
-					'minor_edit' => $isminor,
-					'text'       => $text,
-					'parent_id'  => $this->mLatest,
-					'user'       => $user->getId(),
-					'user_text'  => $user->getName(),
-					'timestamp'  => $now
-				) );
 
 				$dbw->begin();
 				$revisionId = $revision->insertOn( $dbw );
@@ -1095,14 +1096,6 @@ class WikiPage extends Page {
 					$user->incEditCount();
 					$dbw->commit();
 				}
-			} else {
-				$status->warning( 'edit-no-change' );
-				$revision = null;
-				// Keep the same revision ID, but do some updates on it
-				$revisionId = $this->getLatest();
-				// Update page_touched, this is usually implicit in the page update
-				// Other cache updates are done in onArticleEdit()
-				$this->mTitle->invalidateCache();
 			}
 
 			if ( !$wgDBtransactions ) {
@@ -1115,11 +1108,19 @@ class WikiPage extends Page {
 				return $status;
 			}
 
-			# Invalidate cache of this article and all pages using this article
-			# as a template. Partly deferred.
-			self::onArticleEdit( $this->mTitle );
 			# Update links tables, site stats, etc.
-			$this->doEditUpdates( $text, $user, $summary, $isminor, $revisionId, $changed );
+			$this->doEditUpdates( $revision, $user, array( 'changed' => $changed,
+				'oldcountable' => $oldcountable ) );
+
+			if ( !$changed ) {
+				$status->warning( 'edit-no-change' );
+				$revision = null;
+				// Keep the same revision ID, but do some updates on it
+				$revisionId = $this->getLatest();
+				// Update page_touched, this is usually implicit in the page update
+				// Other cache updates are done in onArticleEdit()
+				$this->mTitle->invalidateCache();
+			}
 		} else {
 			# Create new article
 			$status->value['new'] = true;
@@ -1180,10 +1181,7 @@ class WikiPage extends Page {
 			$dbw->commit();
 
 			# Update links, etc.
-			$this->doEditUpdates( $text, $user, $summary, $isminor, $revisionId, true, true );
-
-			# Clear caches
-			self::onArticleCreate( $this->mTitle );
+			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
 
 			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $text, $summary,
 				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
@@ -1900,26 +1898,29 @@ class WikiPage extends Page {
 	 * Every 100th edit, prune the recent changes table.
 	 *
 	 * @private
-	 * @param $text String: New text of the article
-	 * @param $user User object: User doing the edit
-	 * @param $summary String: Edit summary
-	 * @param $minoredit Boolean: Minor edit
-	 * @param $newid Integer: rev_id value of the new revision
-	 * @param $changed Boolean: Whether or not the content actually changed
-	 * @param $created Boolean: Whether the edit created the page
+	 * @param $revision Revision object
+	 * @param $user User object that did the revision
+	 * @param $options Array of options, following indexes are used:
+	 * - changed: boolean, whether the revision changed the content (default true)
+	 * - created: boolean, whether the revision created the page (default false)
+	 * - oldcountable: boolean or null (default null):
+	 *   - boolean: whether the page was counted as an article before that
+	 *     revision, only used in changed is true and created is false
+	 *   - null: don't change the article count
 	 */
-	public function doEditUpdates(
-		$text, $user, $summary, $minoredit, $newid, $changed = true, $created = false
-	) {
+	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
 		global $wgDeferredUpdateList, $wgEnableParserCache;
 
 		wfProfileIn( __METHOD__ );
+
+		$options += array( 'changed' => true, 'created' => false, 'oldcountable' => null );
+		$text = $revision->getText();
 
 		# Parse the text
 		# Be careful not to double-PST: $text is usually already PST-ed once
 		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
 			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
-			$editInfo = $this->prepareTextForEdit( $text, $newid, $user );
+			$editInfo = $this->prepareTextForEdit( $text, $revision->getId(), $user );
 		} else {
 			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
 			$editInfo = $this->mPreparedEdit;
@@ -1935,7 +1936,7 @@ class WikiPage extends Page {
 		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
 		$u->doUpdate();
 
-		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $changed ) );
+		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
 		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
 			if ( 0 == mt_rand( 0, 99 ) ) {
@@ -1962,14 +1963,17 @@ class WikiPage extends Page {
 			return;
 		}
 
-		if ( !$changed ) {
+		if ( !$options['changed'] ) {
 			$good = 0;
 			$total = 0;
-		} elseif ( $created ) {
+		} elseif ( $options['created'] ) {
 			$good = (int)$this->isCountable( $editInfo );
 			$total = 1;
+		} elseif ( $options['oldcountable'] !== null ) {
+			$good = (int)$this->isCountable( $editInfo ) - (int)$options['oldcountable'];
+			$total = 0;
 		} else {
-			$good = (int)$this->isCountable( $editInfo ) - (int)$this->isCountable();
+			$good = 0;
 			$total = 0;
 		}
 
@@ -1981,7 +1985,7 @@ class WikiPage extends Page {
 		# load of user talk pages and piss people off, nor if it's a minor edit
 		# by a properly-flagged bot.
 		if ( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $user->getTitleKey() && $changed
-			&& !( $minoredit && $user->isAllowed( 'nominornewtalk' ) )
+			&& !( $revision->isMinor() && $user->isAllowed( 'nominornewtalk' ) )
 		) {
 			if ( wfRunHooks( 'ArticleEditUpdateNewTalk', array( &$this ) ) ) {
 				$other = User::newFromName( $shortTitle, false );
@@ -2002,6 +2006,12 @@ class WikiPage extends Page {
 			MessageCache::singleton()->replace( $shortTitle, $text );
 		}
 
+		if( $options['created'] ) {
+			self::onArticleCreate( $this->mTitle );
+		} else {
+			self::onArticleEdit( $this->mTitle );
+		}
+
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -2017,8 +2027,7 @@ class WikiPage extends Page {
 	 */
 	public function createUpdates( $rev ) {
 		global $wgUser;
-		$this->doEditUpdates( $rev->getText(), $wgUser, $rev->getComment(),
-			$rev->isMinor(), $rev->getId(), true, true );
+		$this->doEditUpdates( $rev, $wgUser, array( 'created' => true ) );
 	}
 
 	/**
@@ -2414,17 +2423,6 @@ class WikiPage extends Page {
 	public function quickEdit( $text, $comment = '', $minor = 0 ) {
 		global $wgUser;
 		return $this->doQuickEdit( $text, $wgUser, $comment, $minor );
-	}
-
-	/*
-	* @deprecated since 1.19
-	*/
-	public function editUpdates(
-		$text, $summary, $minoredit, $timestamp_of_pagechange, $newid,
-		$changed = true, User $user = null, $created = false
-	) {
-		global $wgUser;
-		return $this->doEditUpdates( $text, $wgUser, $summary, $minoredit, $newid, $changed, $created );
 	}
 
 	/*

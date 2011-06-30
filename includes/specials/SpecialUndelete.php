@@ -532,22 +532,17 @@ class PageArchive {
 		}
 
 		$created = (bool)$newid;
+		$oldcountable = $article->isCountable();
 
 		// Attach the latest revision to the page...
 		$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
 		if ( $created || $wasnew ) {
 			// Update site stats, link tables, etc
-			$article->editUpdates( $revision->getText(), $revision->getComment(),
-				$revision->isMinor(), wfTimestamp(), $revision->getId(), true, null, $created );
+			$user = User::newFromName( $revision->getRawUserText() );
+			$article->doEditUpdates( $revision, $user, array( 'created' => $created, 'oldcountable' => $oldcountable ) );
 		}
 
 		wfRunHooks( 'ArticleUndelete', array( &$this->title, $created, $comment ) );
-
-		if( $created ) {
-			Article::onArticleCreate( $this->title );
-		} else {
-			Article::onArticleEdit( $this->title );
-		}
 
 		if( $this->title->getNamespace() == NS_FILE ) {
 			$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
