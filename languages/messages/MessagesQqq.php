@@ -4100,6 +4100,7 @@ Name of month in Hebrew calender.',
 {{Identical|Special pages}}',
 'version-parserhooks'           => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
 'version-variables'             => '{{Identical|Variable}}',
+'version-api'                   => '{{optional}}',
 'version-other'                 => '{{Identical|Other}}',
 'version-mediahandlers'         => 'Used in [[Special:Version]]. It is the title of a section for media handler extensions (e.g. [[mw:Extension:OggHandler]]).
 There are no such extensions here, so look at [[wikipedia:Special:Version]] for an example.',

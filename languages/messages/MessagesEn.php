@@ -4471,7 +4471,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-variables'             => 'Variables',
 'version-antispam'              => 'Spam prevention',
 'version-skins'                 => 'Skins',
-'version-api'                   => 'API',
+'version-api'                   => 'API', # only translate this message to other languages if you have to change it
 'version-other'                 => 'Other',
 'version-mediahandlers'         => 'Media handlers',
 'version-hooks'                 => 'Hooks',

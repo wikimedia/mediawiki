@@ -1068,8 +1068,8 @@ Se venligst loglisterne.',
 
 # Suppression log
 'suppressionlog'     => 'Skjulningslog',
-'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer der er skjult for almindelige systemadministratorer.
-Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
+'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer, som involverer indhold, der er skjult for administratorer.
+Se [[Special:BlockList|IP-blokeringslisten]] for listen over alle aktuelle blokeringer.',
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
@@ -1410,10 +1410,11 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-sendemail'             => 'Sende e-mail til andre brugere',
 
 # User rights log
-'rightslog'      => 'Rettighedslog',
-'rightslogtext'  => 'Dette er en log over ændringer i brugeres rettigheder.',
-'rightslogentry' => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
-'rightsnone'     => '(-)',
+'rightslog'                  => 'Rettighedslog',
+'rightslogtext'              => 'Dette er en log over ændringer i brugeres rettigheder.',
+'rightslogentry'             => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
+'rightslogentry-autopromote' => 'blev automatisk forfremmet fra $2 til $3',
+'rightsnone'                 => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'se denne side',
@@ -2279,9 +2280,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Navnerum:',
 'invert'                        => 'Udeluk valgt navnerum',
-'tooltip-invert'                => 'Afkryds dette felt for at skjule ændringer i det valgte navnerum',
+'tooltip-invert'                => 'Afkryds dette felt for at skjule ændringer til sider i det valgte navnerum (og det tilknyttede navnerum, hvis det felt også er afkrydset)',
 'namespace_association'         => 'Tilknyttet navnerum',
-'tooltip-namespace_association' => 'Afkryds dette felt for også at inkludere diskussions- eller emnenavnerummet, der er tilknyttet dit valg',
+'tooltip-namespace_association' => 'Afkryds dette felt for også at inkludere det diskussions- eller emnenavnerum, der er tilknyttet det valgte navnerum',
 'blanknamespace'                => '(Hoved)',
 
 # Contributions
