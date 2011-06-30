@@ -85,16 +85,6 @@ define( 'NS_IMAGE', NS_FILE );
 define( 'NS_IMAGE_TALK', NS_FILE_TALK );
 /**@}*/
 
-/**
- * Available feeds objects
- * Should probably only be defined when a page is syndicated ie when
- * $wgOut->isSyndicated() is true
- */
-$wgFeedClasses = array(
-	'rss' => 'RSSFeed',
-	'atom' => 'AtomFeed',
-);
-
 /**@{
  * Cache type
  */
