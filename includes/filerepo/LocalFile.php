@@ -1981,8 +1981,11 @@ class LocalFileRestoreBatch {
 		$cleanupBatch = array(); 
 		
 		foreach ( $storeStatus->success as $i => $success ) {
+			// Check if this item of the batch was successfully copied
 			if ( $success ) {
-				$cleanupBatch[] = array( $storeBatch[$i][1], $storeBatch[$i][1] );
+				// Item was successfully copied and needs to be removed again
+				// Extract ($dstZone, $dstRel) from the batch
+				$cleanupBatch[] = array( $storeBatch[$i][1], $storeBatch[$i][2] );
 			}
 		}
 		$this->file->repo->cleanupBatch( $cleanupBatch );
