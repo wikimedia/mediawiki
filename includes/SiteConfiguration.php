@@ -1,17 +1,4 @@
 <?php
-
-/**
- * The include paths change after this file is included from commandLine.inc,
- * meaning that require_once() fails to detect that it is including the same
- * file again. We use DIY C-style protection as a workaround.
- */
-
-// Hide this pattern from Doxygen, which spazzes out at it
-/// @cond
-if( !defined( 'SITE_CONFIGURATION' ) ){
-define( 'SITE_CONFIGURATION', 1 );
-/// @endcond
-
 /**
  * This is a class used to hold configuration settings, particularly for multi-wiki sites.
  */

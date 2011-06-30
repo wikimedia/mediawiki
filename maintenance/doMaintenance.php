@@ -81,7 +81,6 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Maybe a hook?
 	global $cluster;
 	$cluster = 'pmtpa';
-	require_once( MWInit::compiledPath( 'includes/SiteConfiguration.php' ) );
 	require( MWInit::interpretedPath( 'wmf-config/wgConf.php' ) );
 	$maintenance->loadWikimediaSettings();
 	require( MWInit::interpretedPath( '/wmf-config/CommonSettings.php' ) );
