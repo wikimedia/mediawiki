@@ -84,7 +84,7 @@ class ImagePage extends Article {
 		if ( $this->getTitle()->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) ) {
 			return parent::view();
 		}
-			
+
 		$this->loadFile();
 
 		if ( $this->getTitle()->getNamespace() == NS_FILE && $this->mPage->getFile()->getRedirected() ) {
@@ -94,7 +94,7 @@ class ImagePage extends Article {
 				$wgRequest->setVal( 'diffonly', 'true' );
 				return parent::view();
 			} else {
-				// mTitle is not the same as the redirect target so it is 
+				// mTitle is not the same as the redirect target so it is
 				// probably the redirect page itself. Fake the redirect symbol
 				$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
 				$wgOut->addHTML( $this->viewRedirect( Title::makeTitle( NS_FILE, $this->mPage->getFile()->getName() ),
@@ -159,7 +159,7 @@ class ImagePage extends Article {
 		# @todo FIXME: For some freaky reason, we can't redirect to foreign images.
 		# Yet we return metadata about the target. Definitely an issue in the FileRepo
 		$this->imageLinks();
-		
+
 		# Allow extensions to add something after the image links
 		$html = '';
 		wfRunHooks( 'ImagePageAfterImageLinks', array( $this, &$html ) );
@@ -204,9 +204,9 @@ class ImagePage extends Article {
 		if ( $metadata ) {
 			$r[] = '<li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>';
 		}
-	
+
 		wfRunHooks( 'ImagePageShowTOC', array( $this, &$r ) );
-		
+
 		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
 	}
 
@@ -318,12 +318,12 @@ class ImagePage extends Article {
 					foreach ( $wgImageLimits as $size ) {
 						if ( $size[0] < $width_orig && $size[1] < $height_orig &&
 								$size[0] != $width && $size[1] != $height ) {
-							$otherSizes[] = $this->makeSizeLink( $params, $size[0], $size[1] );							
+							$otherSizes[] = $this->makeSizeLink( $params, $size[0], $size[1] );
 						}
 					}
 					$msgsmall = wfMessage( 'show-big-image-preview' )->
 						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
-						parse() . ' ' . 
+						parse() . ' ' .
 						wfMessage( 'show-big-image-other' )->
 						rawParams( $wgLang->pipeList( $otherSizes ) )->parse();
 				} else {
@@ -475,9 +475,9 @@ EOT
 			}
 		}
 	}
-	
+
 	/**
-	 * Creates an thumbnail of specified size and returns an HTML link to it  
+	 * Creates an thumbnail of specified size and returns an HTML link to it
 	 * @param array $params Scaler parameters
 	 * @param int $width
 	 * @param int $height
@@ -491,7 +491,7 @@ EOT
 				'href' => $thumbnail->getUrl(),
 				'class' => 'mw-thumbnail-link'
 				), wfMessage( 'show-big-image-size' )->numParams(
-					$thumbnail->getWidth(), $thumbnail->getHeight() 
+					$thumbnail->getWidth(), $thumbnail->getHeight()
 				)->parse() );
 		} else {
 			return '';
@@ -619,15 +619,15 @@ EOT
 			array( 'page_namespace', 'page_title', 'page_is_redirect', 'il_to' ),
 			array( 'il_to' => $target, 'il_from = page_id' ),
 			__METHOD__,
-			array( 'LIMIT' => $limit + 1 )
-		);		
+			array( 'LIMIT' => $limit + 1, 'ORDER BY' => 'il_from', )
+		);
 	}
-	
+
 	protected function imageLinks() {
 		global $wgUser, $wgOut, $wgLang;
 
 		$limit = 100;
-		
+
 		$res = $this->queryImageLinks( $this->getTitle()->getDbKey(), $limit + 1);
 		$rows = array();
 		$redirects = array();
@@ -638,10 +638,10 @@ EOT
 			$rows[] = $row;
 		}
 		$count = count( $rows );
-		
+
 		$hasMore = $count > $limit;
 		if ( !$hasMore && count( $redirects ) ) {
-			$res = $this->queryImageLinks( array_keys( $redirects ), 
+			$res = $this->queryImageLinks( array_keys( $redirects ),
 				$limit - count( $rows ) + 1 );
 			foreach ( $res as $row ) {
 				$redirects[$row->il_to][] = $row;
@@ -658,7 +658,7 @@ EOT
 			);
 			return;
 		}
-		
+
 		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
 		if ( !$hasMore ) {
 			$wgOut->addWikiMsg( 'linkstoimage', $count );
@@ -687,7 +687,7 @@ EOT
 			if ( $currentCount > $limit ) {
 				break;
 			}
-			    
+
 			$link = $sk->linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
 			if ( !isset( $redirects[$element->page_title] ) ) {
 				$liContents = $link;
@@ -698,7 +698,7 @@ EOT
 					if ( $currentCount > $limit ) {
 						break;
 					}
-					
+
 					$link2 = $sk->linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
 					$ul .= Html::rawElement(
 						'li',
@@ -707,7 +707,7 @@ EOT
 						) . "\n";
 				}
 				$ul .= '</ul>';
-				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams( 
+				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams(
 					$link, $ul )->parse();
 			}
 			$wgOut->addHTML( Html::rawElement(
@@ -830,7 +830,7 @@ EOT
 	/**
 	 * Callback for usort() to do link sorts by (namespace, title)
 	 * Function copied from Title::compare()
-	 * 
+	 *
 	 * @param $a object page to compare with
 	 * @param $b object page to compare with
 	 * @return Integer: result of string comparison, or namespace comparison
@@ -1096,7 +1096,7 @@ class ImageHistoryList {
 					$wgLang->time( $timestamp, true ) ),
 				'file-link' => true,
 			);
-			
+
 			if ( !$thumbnail ) {
 				return wfMsgHtml( 'filehist-nothumb' );
 			}
@@ -1141,7 +1141,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mHist = array();
 		$this->mRange = array( 0, 0 ); // display range
 	}
-	
+
 	function getTitle() {
 		return $this->mTitle;
 	}
@@ -1157,7 +1157,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	function formatRow( $row ) {
 		return '';
 	}
-	
+
 	function getBody() {
 		$s = '';
 		$this->doQuery();
@@ -1260,7 +1260,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		}
 		$this->mQueryDone = true;
 	}
-	
+
 	protected function preventClickjacking( $enable = true ) {
 		$this->preventClickjacking = $enable;
 	}
