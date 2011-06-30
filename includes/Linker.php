@@ -1997,9 +1997,12 @@ class DummyLinker {
 	 * @param $fname String Name of called method
 	 * @param $args Array Arguments to the method
 	 */
-	function __call( $fname, $args ) {
+	public function __call( $fname, $args ) {
 		return call_user_func_array( array( 'Linker', $fname ), $args );
 	}
 
+	public static function normalizeSubpageLink( $contextTitle, $target, &$text ) {
+		return Linker::normalizeSubpageLink( $contextTitle, $target, $text );
+	}
 }
 
