@@ -440,7 +440,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$revision = Revision::newFromId( $row->rev_id );
 		if( $revision ) {
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) . wfMsgForContent( 'colon-separator' ) .
-				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) . 
+				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
 				"</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
 		}
@@ -453,7 +453,12 @@ class SpecialNewpages extends IncludableSpecialPage {
  */
 class NewPagesPager extends ReverseChronologicalPager {
 	// Stored opts
-	protected $opts, $mForm;
+	protected $opts;
+
+	/**
+	 * @var HtmlForm
+	 */
+	protected $mForm;
 
 	function __construct( $form, FormOptions $opts ) {
 		parent::__construct();
@@ -461,6 +466,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->opts = $opts;
 	}
 
+	/**
+	 * @return Title
+	 */
 	function getTitle() {
 		static $title = null;
 		if ( $title === null ) {
@@ -469,6 +477,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return $title;
 	}
 
+	/**
+	 * @return User
+	 */
 	function getUser() {
 		static $user = null;
 		if ( $user === null ) {
@@ -514,7 +525,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		if ( $this->opts->getValue( 'hideredirs' ) ) {
 			$conds['page_is_redirect'] = 0;
 		}
-  
+
 		// Allow changes to the New Pages query
 		$tables = array( 'recentchanges', 'page' );
 		$fields = array(
