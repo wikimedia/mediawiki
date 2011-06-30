@@ -1,5 +1,7 @@
 /**
  * jQuery byteLimit
+ *
+ * @author Jan Paul Posma
  */
 ( function( $ ) {
 
@@ -17,7 +19,7 @@
 			this.attr( 'maxLength', limit );
 		}
 
-		// Nothing passed and/or empty attribute, return this for further chaining.
+		// Nothing passed and/or empty attribute, return without binding an event.
 		if ( limit == null ) {
 			return this;
 		}
@@ -40,16 +42,7 @@
 				return true; //a special key (backspace, etc) so don't interfere.
 			}
 	
-			// This basically figures out how many bytes a UTF-16 string (which is what js sees)
-			// will take in UTF-8 by replacing a 2 byte character with 2 *'s, etc, and counting that.
-			// Note, surrogate (\uD800-\uDFFF) characters are counted as 2 bytes, since there's two of them
-			// and the actual character takes 4 bytes in UTF-8 (2*2=4). Might not work perfectly in
-			// edge cases such as illegal sequences, but that should never happen.
-	
-			var len = this.value
-				.replace( /[\u0080-\u07FF\uD800-\uDFFF]/g, '**' )
-				.replace( /[\u0800-\uD7FF\uE000-\uFFFF]/g, '***' )
-				.length;
+			var len = $.byteLength( this.value );
 
 			// limit-3 as this doesn't count the character about to be inserted.
 			if ( len > ( limit-3 ) ) {
