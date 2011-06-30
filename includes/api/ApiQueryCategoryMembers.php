@@ -129,11 +129,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 						'by the previous query', '_badcontinue'
 					);
 				}
-				
+
 				// Remove the types to skip from $queryTypes
 				$contTypeIndex = array_search( $cont[0], $queryTypes );
 				$queryTypes = array_slice( $queryTypes, $contTypeIndex );
-				
+
 				// Add a WHERE clause for sortkey and from
 				// pack( "H*", $foo ) is used to convert hex back to binary
 				$escSortkey = $this->getDB()->addQuotes( pack( "H*", $cont[1] ) );
@@ -143,7 +143,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$contWhere = "cl_sortkey $op $escSortkey OR " .
 					"(cl_sortkey = $escSortkey AND " .
 					"cl_from $op= $from)";
-				
+
 			} else {
 				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
 				$this->addWhereRange( 'cl_sortkey',
@@ -189,6 +189,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$res = $this->select( __METHOD__ );
 			$rows = iterator_to_array( $res );
 		}
+
+		$result = $this->getResult();
 		$count = 0;
 		foreach ( $rows as $row ) {
 			if ( ++ $count > $limit ) {
@@ -234,7 +236,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $fld_timestamp ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
 				}
-				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ),
+				$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 						null, $vals );
 				if ( !$fit ) {
 					if ( $params['sort'] == 'timestamp' ) {
@@ -253,7 +255,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->setIndexedTagName_internal(
+			$result->setIndexedTagName_internal(
 					 array( 'query', $this->getModuleName() ), 'cm' );
 		}
 	}

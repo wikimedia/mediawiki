@@ -352,9 +352,10 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function setContinueEnumParameter( $paramName, $paramValue ) {
 		$paramName = $this->encodeParamName( $paramName );
 		$msg = array( $paramName => $paramValue );
-		$this->getResult()->disableSizeCheck();
-		$this->getResult()->addValue( 'query-continue', $this->getModuleName(), $msg );
-		$this->getResult()->enableSizeCheck();
+		$result = $this->getResult();
+		$result->disableSizeCheck();
+		$result->addValue( 'query-continue', $this->getModuleName(), $msg );
+		$result->enableSizeCheck();
 	}
 
 	/**

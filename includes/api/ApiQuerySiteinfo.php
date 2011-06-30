@@ -347,6 +347,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgGroupPermissions, $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
 		$data = array();
+		$result = $this->getResult();
 		foreach ( $wgGroupPermissions as $group => $permissions ) {
 			$arr = array(
 				'name' => $group,
@@ -375,16 +376,16 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			foreach ( $groupArr as $type => $rights ) {
 				if ( isset( $rights[$group] ) ) {
 					$arr[$type] = $rights[$group];
-					$this->getResult()->setIndexedTagName( $arr[$type], 'group' );
+					$result->setIndexedTagName( $arr[$type], 'group' );
 				}
 			}
 
-			$this->getResult()->setIndexedTagName( $arr['rights'], 'permission' );
+			$result->setIndexedTagName( $arr['rights'], 'permission' );
 			$data[] = $arr;
 		}
 
-		$this->getResult()->setIndexedTagName( $data, 'group' );
-		return $this->getResult()->addValue( 'query', $property, $data );
+		$result->setIndexedTagName( $data, 'group' );
+		return $result->addValue( 'query', $property, $data );
 	}
 
 	protected function appendFileExtensions( $property ) {
