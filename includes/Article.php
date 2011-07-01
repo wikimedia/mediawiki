@@ -280,7 +280,7 @@ class Article extends Page {
 
 		if ( $oldid ) {
 			$revision = Revision::newFromId( $oldid );
-			if ( $revision === null ) {
+			if ( !$revision ) {
 				wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
 				return false;
 			}
@@ -300,7 +300,7 @@ class Article extends Page {
 			}
 
 			$revision = $this->mPage->getRevision();
-			if ( $revision === null ) {
+			if ( !$revision ) {
 				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " . $this->mPage->getLatest() . "\n" );
 				return false;
 			}
