@@ -1320,7 +1320,9 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'skin-preview'                  => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
 {{Identical|Preview}}',
+'prefs-beta'                    => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are in beta but mostly suitable for general use",
 'prefs-datetime'                => '{{Identical|Date}}',
+'prefs-labs'                    => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are experimental",
 'prefs-personal'                => 'Title of a tab in [[Special:Preferences]].',
 'prefs-rc'                      => 'Used in user preferences.
 
