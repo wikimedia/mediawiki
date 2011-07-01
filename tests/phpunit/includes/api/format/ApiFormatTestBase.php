@@ -1,13 +1,9 @@
 <?php
 
-require_once dirname( dirname( __FILE__ ) ) . '/ApiSetup.php';
-
-abstract class ApiFormatTestBase extends ApiTestSetup {
-
+abstract class ApiFormatTestBase extends ApiTestCase {
 	protected function apiRequest( $format, $params, $data = null ) {
-		
 		$data = parent::doApiRequest( $params, $data, true );
-		
+
 		$module = $data[3];
 		
 		$printer = $module->createPrinterByName( $format );
@@ -23,9 +19,4 @@ abstract class ApiFormatTestBase extends ApiTestSetup {
 
 		return $out;
 	}
-
-	function setupUser() {
-		/* Do not setup a user here */
-	}
 }
-

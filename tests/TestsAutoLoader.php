@@ -14,10 +14,12 @@ $wgAutoloadClasses += array(
 	'BlockTest' => "$testFolder/phpunit/includes/BlockTest.php",
 
 	//API
-	'ApiTestSetup' => "$testFolder/phpunit/includes/api/ApiSetup.php",
+	'ApiFormatTestBase' => "$testFolder/phpunit/includes/api/format/ApiFormatTestBase.php",
 	'ApiTestCase' => "$testFolder/phpunit/includes/api/ApiTestCase.php",
 	'ApiTestUser' => "$testFolder/phpunit/includes/api/ApiTestUser.php",
+	'MockApi' => "$testFolder/phpunit/includes/api/ApiTestCase.php",
 	'RandomImageGenerator' => "$testFolder/phpunit/includes/api/RandomImageGenerator.php",
+	'UserWrapper' => "$testFolder/phpunit/includes/api/ApiTestCase.php",
 
 	//Parser
 	'ParserTestFileIterator' => "$testFolder/phpunit/includes/parser/NewParserHelpers.php",
