@@ -130,6 +130,7 @@ class CheckStorage {
 					// It's safe to just erase the old_flags field
 					if ( $fix ) {
 						$this->error( 'fixed', "Warning: old_flags set to 0", $id );
+						$dbw = wfGetDB( DB_MASTER );
 						$dbw->ping();
 						$dbw->update( 'text', array( 'old_flags' => '' ),
 							array( 'old_id' => $id ), $fname );

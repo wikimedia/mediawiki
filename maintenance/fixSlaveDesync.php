@@ -124,7 +124,7 @@ class FixSlaveDesync extends Maintenance {
 			$masterIDs[] = $row->rev_id;
 		}
 
-		$res = $db->select( 'revision', array( 'rev_id' ), array( 'rev_page' => $pageID ), __METHOD__ );
+		$res = $dbw->select( 'revision', array( 'rev_id' ), array( 'rev_page' => $pageID ), __METHOD__ );
 		$slaveIDs = array();
 		foreach ( $res as $row ) {
 			$slaveIDs[] = $row->rev_id;
@@ -133,7 +133,7 @@ class FixSlaveDesync extends Maintenance {
 			$missingIDs = array_diff( $slaveIDs, $masterIDs );
 			if ( count( $missingIDs ) ) {
 				$this->output( "Found " . count( $missingIDs ) . " lost in master, copying from slave... " );
-				$dbFrom = $db;
+				$dbFrom = $dbw;
 				$found = true;
 				$toMaster = true;
 			} else {
