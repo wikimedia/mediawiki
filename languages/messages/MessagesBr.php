@@ -1410,10 +1410,11 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 
 # User rights log
-'rightslog'      => 'Marilh statud an implijerien',
-'rightslogtext'  => "Setu marilh ar c'hemmoù statud bet c'hoarvezet d'an implijerien.",
-'rightslogentry' => '{{Gender:.|en|he}} deus cheñchet gwirioù an {{Gender:.|implijer|implijerez}}  $1 a oa $2 hag a zo bet lakaet da $3',
-'rightsnone'     => '(netra)',
+'rightslog'                  => 'Marilh statud an implijerien',
+'rightslogtext'              => "Setu marilh ar c'hemmoù statud bet c'hoarvezet d'an implijerien.",
+'rightslogentry'             => '{{Gender:.|en|he}} deus cheñchet gwirioù an {{Gender:.|implijer|implijerez}}  $1 a oa $2 hag a zo bet lakaet da $3',
+'rightslogentry-autopromote' => 'zo bet anvet ent emgefre a $2 da $3',
+'rightsnone'                 => '(netra)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'lenn ar bajenn-mañ',
@@ -2308,9 +2309,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Esaouenn anv :',
 'invert'                        => 'Eilpennañ an dibab',
-'tooltip-invert'                => "Askañ ar voest-mañ da guzhat ar c'hemmoù en esaouenn anv diuzet",
+'tooltip-invert'                => "Askañ ar voest-mañ da guzhat ar c'hemmoù er pajennoù stag ouzh an esaouenn anv diuzet (hag an esaouenn anv stag, m'emañ asket)",
 'namespace_association'         => 'Esaouennoù anv all da ouzhpennañ',
-'tooltip-namespace_association' => 'Askañ ar voest-mañ da lakaat ivez e-barzh kaozeadenn pe danvez an esaouenn anv liammet ouzh ho tiuzadenn',
+'tooltip-namespace_association' => 'Askañ ar voest-mañ da lakaat ivez e-barzh ar gaozeadenn pe danvez an esaouenn anv liammet ouzh an esaouenn anv diuzet',
 'blanknamespace'                => '(Pennañ)',
 
 # Contributions

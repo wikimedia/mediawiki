@@ -474,7 +474,7 @@ $messages = array(
 'vector-action-move'             => 'Flytta',
 'vector-action-protect'          => 'Skrivskydda',
 'vector-action-undelete'         => 'Återställ',
-'vector-action-unprotect'        => 'Ta bort skrivskydd',
+'vector-action-unprotect'        => 'Ändra skydd',
 'vector-simplesearch-preference' => 'Aktivera utökade sökförslag (endast Vector-utseendet)',
 'vector-view-create'             => 'Skapa',
 'vector-view-edit'               => 'Redigera',
@@ -511,8 +511,8 @@ $messages = array(
 'protect'           => 'Skrivskydda',
 'protect_change'    => 'ändra',
 'protectthispage'   => 'Skrivskydda denna sida',
-'unprotect'         => 'Ta bort skrivskydd',
-'unprotectthispage' => 'Ta bort skrivskyddet från den här sidan',
+'unprotect'         => 'Ändra skydd',
+'unprotectthispage' => 'Ändra skyddet på denna sidan',
 'newpage'           => 'Ny sida',
 'talkpage'          => 'Diskutera denna sida',
 'talkpagelinktext'  => 'Diskussion',
@@ -1553,10 +1553,11 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-sendemail'             => 'Skicka e-post till andra användare',
 
 # User rights log
-'rightslog'      => 'Användarrättighetslogg',
-'rightslogtext'  => 'Detta är en logg över ändringar av användares rättigheter.',
-'rightslogentry' => 'ändrade grupptillhörighet för $1 från $2 till $3',
-'rightsnone'     => '(inga)',
+'rightslog'                  => 'Användarrättighetslogg',
+'rightslogtext'              => 'Detta är en logg över ändringar av användares rättigheter.',
+'rightslogentry'             => 'ändrade grupptillhörighet för $1 från $2 till $3',
+'rightslogentry-autopromote' => 'befordrades automatiskt från $2 till $3',
+'rightsnone'                 => '(inga)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'läsa denna sida',
@@ -2331,10 +2332,11 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-
 
 # Protect
 'protectlogpage'              => 'Skrivskyddslogg',
-'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.',
+'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.
+Se [[Special:ProtectedPages|listan över skyddade sidor]] för listan över aktiva sidskydd.',
 'protectedarticle'            => 'skyddade [[$1]]',
 'modifiedarticleprotection'   => 'ändrade skyddsnivån för "[[$1]]"',
-'unprotectedarticle'          => 'tog bort skydd av "[[$1]]"',
+'unprotectedarticle'          => 'tog bort skydd från "[[$1]]"',
 'movedarticleprotection'      => 'flyttade skyddsinställningar från "[[$2]]" till "[[$1]]"',
 'protect-title'               => 'Skyddsinställningar för "$1"',
 'prot_1movedto2'              => 'flyttade [[$1]] till [[$2]]',
@@ -2850,7 +2852,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-ca-viewsource'           => 'Den här sidan är skrivskyddad. Du kan se källtexten.',
 'tooltip-ca-history'              => 'Tidigare versioner av sidan',
 'tooltip-ca-protect'              => 'Skydda den här sidan',
-'tooltip-ca-unprotect'            => 'Ta bort skrivskyddet från den här sidan',
+'tooltip-ca-unprotect'            => 'Ändra skyddet för den här sidan',
 'tooltip-ca-delete'               => 'Radera denna sida',
 'tooltip-ca-undelete'             => 'Återställ alla redigeringar som gjorts innan sidan raderades',
 'tooltip-ca-move'                 => 'Flytta den här sidan',

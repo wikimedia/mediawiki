@@ -769,6 +769,9 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'histfirst'              => 'Nan lamo',
 'histlast'               => 'Nan baru',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 pado $2',
+
 # Revision deletion
 'rev-delundel'           => 'tampilkan/suruakkan',
 'revdelete-logentry'     => 'Maubah tampilan revisi untuak "[[$1]]"',
@@ -840,10 +843,13 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 'powersearch-field'                => 'Mancari',
 
 # Preferences page
-'preferences'   => 'Preferensi',
-'mypreferences' => 'Preferensi denai',
-'youremail'     => 'Surek Elektronik:',
-'yourrealname'  => 'Namo sabananyo:',
+'preferences'             => 'Preferensi',
+'mypreferences'           => 'Preferensi denai',
+'youremail'               => 'Surek Elektronik:',
+'yourrealname'            => 'Namo sabananyo:',
+'prefs-help-email'        => 'Alamaik surek elektronik ko hanyo tambahan se, namun paralu untuak maulang kato kunci, jiko awak ang lupo kato kunci.',
+'prefs-help-email-others' => 'Awak ang juo dapek mamiliah untuak mangizinkan urang lain manghubungi awak ang jo surek elektronik malalui laman pangguno atau laman ota.
+Alamaik surek elektronik awak ang tu indak kan katahuan dek urang lain nan manghubungi awak ang tu.',
 
 # Groups
 'group-sysop' => 'Pengurus',
@@ -873,6 +879,7 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 'rcshowhidebots'                  => '$1 bot',
 'rcshowhideliu'                   => '$1 pangguno masuak log',
 'rcshowhideanons'                 => '$1 pangguno anon',
+'rcshowhidepatr'                  => '$1 suntiangan nan tajago',
 'rcshowhidemine'                  => '$1 suntingan denai',
 'rclinks'                         => 'Tampilkan $1 parubahan baru dalam $2 hari terakhir<br />$3',
 'diff'                            => 'beda',
@@ -901,7 +908,8 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 'filedesc'      => 'Ringkasan',
 'uploadedimage' => 'unggah "[[$1]]"',
 
-'license' => 'Lisensi:',
+'license'        => 'Lisensi:',
+'license-header' => 'Lisensi',
 
 # File description page
 'file-anchor-link'          => 'Berkas',
@@ -1255,6 +1263,9 @@ Nan lainnyo akan tasuruak sacaro default.
 'watchlisttools-view' => 'Tampilkan parubahan takaik',
 'watchlisttools-edit' => 'Tampilkan dan suntiang senarai pantauan',
 'watchlisttools-raw'  => 'Suntiang senarai pantauan mentah',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Peringatan:\'\'\' Kunci panguruitan default "$2" sabalunnyo maabaikan kunci panguruitan default "$1".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-result-n' => 'Berkas "$1" punyo {{PLURAL:$2|1 duplikat identik|$2 duplikat identik}}.',
