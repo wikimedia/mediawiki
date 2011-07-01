@@ -1,13 +1,11 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/ApiSetup.php';
-
 /**
  * @group Database
  * @group Destructive
  * @todo This test suite is severly broken and need a full review 
  */
-class ApiWatchTest extends ApiTestSetup {
+class ApiWatchTest extends ApiTestCase {
 
 	function setUp() {
 		parent::setUp();
@@ -15,7 +13,7 @@ class ApiWatchTest extends ApiTestSetup {
 	}
 	
 	function getTokens() {
-		return $this->getTokenList( $this->sysopUser );
+		return $this->getTokenList( self::$users['sysop'] );
 	}
 
 	/**

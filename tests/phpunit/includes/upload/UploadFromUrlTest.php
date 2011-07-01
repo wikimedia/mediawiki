@@ -1,12 +1,10 @@
 <?php
 
-require_once dirname( dirname( __FILE__ ) ) . '/api/ApiSetup.php';
-
 /**
  * @group Broken
  * @group Upload
  */
-class UploadFromUrlTest extends ApiTestSetup {
+class UploadFromUrlTest extends ApiTestCase {
 
 	public function setUp() {
 		global $wgEnableUploads, $wgAllowCopyUploads, $wgAllowAsyncCopyUploads;

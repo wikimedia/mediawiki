@@ -1,11 +1,9 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/ApiSetup.php';
-
 /**
  * @group Database
  */
-class ApiPurgeTest extends ApiTestSetup {
+class ApiPurgeTest extends ApiTestCase {
 
 	function setUp() {
 		parent::setUp();

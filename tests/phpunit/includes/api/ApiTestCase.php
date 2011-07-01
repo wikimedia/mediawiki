@@ -1,12 +1,17 @@
 <?php 
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
+	/**
+	 * @var Array of ApiTestUser
+	 */
 	public static $users;
+	protected static $apiUrl;
 
 	function setUp() {
-		global $wgContLang, $wgAuth, $wgMemc, $wgRequest, $wgUser;
+		global $wgContLang, $wgAuth, $wgMemc, $wgRequest, $wgUser, $wgServer;
 
 		parent::setUp();
+		self::$apiUrl = $wgServer . wfScript( 'api' );
 		$wgMemc = new EmptyBagOStuff();
 		$wgContLang = Language::factory( 'en' );
 		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
@@ -35,12 +40,18 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if ( is_null( $session ) ) {
 			$session = array();
 		}
+		$_SESSION = $session; // paranoia
 
 		$request = new FauxRequest( $params, true, $session );
 		$module = new ApiMain( $request, true );
 		$module->execute();
 
-		return array( $module->getResultData(), $request, $request->getSessionArray() );
+		$results = array( $module->getResultData(), $request, $request->getSessionArray() );
+		if( $appendModule ) {
+			$results[] = $module;
+		}
+
+		return $results;
 	}
 
 	/**
@@ -62,4 +73,68 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		}
 	}
 
+	protected function doLogin() {
+		$data = $this->doApiRequest( array(
+			'action' => 'login',
+			'lgname' => self::$users['sysop']->username,
+			'lgpassword' => self::$users['sysop']->password ) );
+
+		$token = $data[0]['login']['token'];
+
+		$data = $this->doApiRequest( array(
+			'action' => 'login',
+			'lgtoken' => $token,
+			'lgname' => self::$users['sysop']->username,
+			'lgpassword' => self::$users['sysop']->password
+			), $data );
+
+		return $data;
+	}
+
+	protected function getTokenList( $user ) {
+		$GLOBALS['wgUser'] = $user->user;
+		$data = $this->doApiRequest( array(
+			'action' => 'query',
+			'titles' => 'Main Page',
+			'intoken' => 'edit|delete|protect|move|block|unblock',
+			'prop' => 'info' ) );
+		return $data;
+	}
+}
+
+class UserWrapper {
+	public $userName, $password, $user;
+
+	public function __construct( $userName, $password, $group = '' ) {
+		$this->userName = $userName;
+		$this->password = $password;
+
+		$this->user = User::newFromName( $this->userName );
+		if ( !$this->user->getID() ) {
+			$this->user = User::createNew( $this->userName, array(
+				"email" => "test@example.com",
+				"real_name" => "Test User" ) );
+		}
+		$this->user->setPassword( $this->password );
+
+		if ( $group !== '' ) {
+			$this->user->addGroup( $group );
+		}
+		$this->user->saveSettings();
+	}
+}
+
+class MockApi extends ApiBase {
+	public function execute() { }
+	public function getVersion() { }
+
+	public function __construct() { }
+
+	public function getAllowedParams() {
+		return array(
+			'filename' => null,
+			'enablechunks' => false,
+			'sessionkey' => null,
+		);
+	}
 }

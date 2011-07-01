@@ -1,12 +1,10 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/ApiSetup.php';
-
 /**
  * @group Database
  * @group Destructive
  */
-class ApiBlockTest extends ApiTestSetup {
+class ApiBlockTest extends ApiTestCase {
 
 	function setUp() {
 		parent::setUp();
@@ -14,7 +12,7 @@ class ApiBlockTest extends ApiTestSetup {
 	}
 
 	function getTokens() {
-		return $this->getTokenList( $this->sysopUser );
+		return $this->getTokenList( self::$users['sysop'] );
 	}
 
 	function addDBData() {
