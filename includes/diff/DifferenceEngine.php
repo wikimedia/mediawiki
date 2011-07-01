@@ -482,7 +482,7 @@ CONTROL;
 		// (a) the user can delete revisions, or
 		// (b) the user can view deleted revision *and* this one is deleted
 		if ( $canHide || ( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) ) {
-			$sk = $wgUser->getSkin();
+			$sk = $this->getSkin();
 			if ( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$link = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
@@ -550,7 +550,7 @@ CONTROL;
 		}
 		# Add redundant patrol link on bottom...
 		if ( $this->mRcidMarkPatrolled && $this->mTitle->quickUserCan( 'patrol' ) ) {
-			$sk = $wgUser->getSkin();
+			$sk = $this->getSkin();
 			$token = $wgUser->editToken( $this->mRcidMarkPatrolled );
 			$wgOut->preventClickjacking();
 			$wgOut->addHTML(

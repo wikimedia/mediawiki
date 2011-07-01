@@ -319,7 +319,7 @@ class SpecialUpload extends SpecialPage {
 				$link = wfMsgExt(
 					$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
 					array( 'parse', 'replaceafter' ),
-					$wgUser->getSkin()->linkKnown(
+					$this->getSkin()->linkKnown(
 						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
 						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
 					)
@@ -863,7 +863,7 @@ class UploadForm extends HTMLForm {
 		}
 
 		$this->mMaxUploadSize['file'] = UploadBase::getMaxUploadSize( 'file' );
-		# Limit to upload_max_filesize unless we are running under HipHop and 
+		# Limit to upload_max_filesize unless we are running under HipHop and
 		# that setting doesn't exist
 		if ( !wfIsHipHop() ) {
 			$this->mMaxUploadSize['file'] = min( $this->mMaxUploadSize['file'],

@@ -77,7 +77,7 @@ class SpecialBlock extends SpecialPage {
 		if ( $this->target instanceof User ) {
 			# Set the 'relevant user' in the skin, so it displays links like Contributions,
 			# User logs, UserRights, etc.
-			$wgUser->getSkin()->setRelevantUser( $this->target );
+			$this->getSkin()->setRelevantUser( $this->target );
 		}
 
 		list( $this->previousTarget, /*...*/ ) = Block::parseTarget( $wgRequest->getVal( 'wpPreviousTarget' ) );

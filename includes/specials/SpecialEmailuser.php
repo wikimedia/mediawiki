@@ -39,7 +39,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'From' => array(
 				'type' => 'info',
 				'raw' => 1,
-				'default' => $wgUser->getSkin()->link(
+				'default' => $this->getSkin()->link(
 					$wgUser->getUserPage(),
 					htmlspecialchars( $wgUser->getName() )
 				),
@@ -49,7 +49,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'To' => array(
 				'type' => 'info',
 				'raw' => 1,
-				'default' => $wgUser->getSkin()->link(
+				'default' => $this->getSkin()->link(
 					$this->mTargetObj->getUserPage(),
 					htmlspecialchars( $this->mTargetObj->getName() )
 				),

@@ -657,7 +657,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 		if ( $this->mTarget !== '' ) {
 			$this->mTargetObj = Title::newFromURL( $this->mTarget );
-			$wgUser->getSkin()->setRelevantTitle( $this->mTargetObj );
+			$this->getSkin()->setRelevantTitle( $this->mTargetObj );
 		} else {
 			$this->mTargetObj = null;
 		}
@@ -750,7 +750,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$wgOut->addWikiMsg( 'undeletepagetext', $wgLang->formatNum( $result->numRows() ) );
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 		$undelete = $this->getTitle();
 		$wgOut->addHTML( "<ul>\n" );
 		foreach ( $result as $row ) {
@@ -775,7 +775,7 @@ class SpecialUndelete extends SpecialPage {
 	private function showRevision( $timestamp ) {
 		global $wgLang, $wgUser, $wgOut;
 
-		$skin = $wgUser->getSkin();
+		$skin = $this->getSkin();
 
 		if( !preg_match( '/[0-9]{14}/', $timestamp ) ) {
 			return 0;
@@ -905,7 +905,7 @@ class SpecialUndelete extends SpecialPage {
 		global $wgUser;
 		$canHide = $wgUser->isAllowed( 'deleterevision' );
 		if( $canHide || ( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) ) {
-			$skin = $wgUser->getSkin();
+			$skin = $this->getSkin();
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$revdlink = $skin->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
@@ -976,7 +976,7 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private function diffHeader( $rev, $prefix ) {
 		global $wgUser, $wgLang;
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 		$isDeleted = !( $rev->getId() && $rev->getTitle() );
 		if( $isDeleted ) {
 			/// @todo FIXME: $rev->getTitle() is null for deleted revs...?

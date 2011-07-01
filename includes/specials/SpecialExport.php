@@ -40,7 +40,7 @@ class SpecialExport extends SpecialPage {
 	public function execute( $par ) {
 		global $wgOut, $wgRequest, $wgSitename, $wgExportAllowListContributors;
 		global $wgExportAllowHistory, $wgExportMaxHistory, $wgExportMaxLinkDepth;
-		global $wgExportFromNamespaces, $wgUser;
+		global $wgExportFromNamespaces;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -215,7 +215,7 @@ class SpecialExport extends SpecialPage {
 			$wgRequest->wasPosted() ? $wgRequest->getCheck( 'wpDownload' ) : true
 		) . '<br />';
 
-		$form .= Xml::submitButton( wfMsg( 'export-submit' ), $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'export' ) );
+		$form .= Xml::submitButton( wfMsg( 'export-submit' ), $this->getSkin()->tooltipAndAccessKeyAttribs( 'export' ) );
 		$form .= Xml::closeElement( 'form' );
 
 		$wgOut->addHTML( $form );

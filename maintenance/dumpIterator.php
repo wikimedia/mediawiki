@@ -5,7 +5,7 @@
  * We implement below the simple task of searching inside a dump.
  *
  * Copyright (C) 2011 Platonides - http://www.mediawiki.org/
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,7 +24,7 @@
  * @file
  * @ingroup Maintenance
  */
- 
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 abstract class DumpIterator extends Maintenance {
@@ -44,18 +44,18 @@ abstract class DumpIterator extends Maintenance {
 		if (! ( $this->hasOption('file') ^ $this->hasOption('dump') ) ) {
 			$this->error("You must provide a file or dump", true);
 		}
-		
+
 		$this->checkOptions();
-		
+
 		if ( $this->hasOption('file') ) {
 			$revision = new WikiRevision;
-			
+
 			$revision->setText( file_get_contents( $this->getOption( 'file' ) ) );
 			$revision->setTitle( Title::newFromText( rawurldecode( basename( $this->getOption( 'file' ), '.txt' ) ) ) );
 			$this->handleRevision( $revision );
 			return;
 		}
-		
+
 		$this->startTime = wfTime();
 
 		if ( $this->getOption('dump') == '-' ) {
@@ -67,23 +67,23 @@ abstract class DumpIterator extends Maintenance {
 
 		$importer->setRevisionCallback(
 			array( &$this, 'handleRevision' ) );
-		
+
 		$this->from = $this->getOption( 'from', null );
 		$this->count = 0;
 		$importer->doImport();
-		
+
 		$this->conclusions();
-			
+
 		$delta = wfTime() - $this->startTime;
 		$this->error( "Done {$this->count} revisions in " . round($delta, 2) . " seconds " );
 		if ($delta > 0)
 			$this->error( round($this->count / $delta, 2) . " pages/sec" );
-		
+
 		# Perform the memory_get_peak_usage() when all the other data has been output so there's no damage if it dies.
 		# It is only available since 5.2.0 (since 5.2.1 if you haven't compiled with --enable-memory-limit)
 		$this->error( "Memory peak usage of " . memory_get_peak_usage() . " bytes\n" );
 	}
-	
+
 	public function finalSetup() {
 		parent::finalSetup();
 
@@ -101,9 +101,9 @@ abstract class DumpIterator extends Maintenance {
 
 		return false;
 	}
-	
+
 	/**
-	 * Callback function for each revision, child classes should override 
+	 * Callback function for each revision, child classes should override
 	 * processRevision instead.
 	 * @param $rev Revision
 	 */
@@ -113,25 +113,25 @@ abstract class DumpIterator extends Maintenance {
 			$this->error( "Got bogus revision with null title!" );
 			return;
 		}
-		
+
 		$this->count++;
 		if ( isset( $this->from ) ) {
 			if ( $this->from != $title )
 				return;
 			$this->output( "Skipped " . ($this->count - 1) . " pages\n" );
-			
+
 			$this->count = 1;
 			$this->from = null;
 		}
-		
+
 		$this->processRevision( $rev );
 	}
-	
+
 	/* Stub function for processing additional options */
 	public function checkOptions() {
 		return;
 	}
-	
+
 	/* Stub function for giving data about what was computed */
 	public function conclusions() {
 		return;
@@ -142,17 +142,20 @@ abstract class DumpIterator extends Maintenance {
 }
 
 class SearchDump extends DumpIterator {
-	
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Runs a regex in the revisions from a dump";
 		$this->addOption( 'regex', 'Searching regex', true, true );
 	}
-	
+
 	public function getDbType() {
 		return Maintenance::DB_NONE;
 	}
-		
+
+	/**
+	 * @param $rev Revision
+	 */
 	public function processRevision( $rev ) {
 		if ( preg_match( $this->getOption( 'regex' ), $rev->getText() ) ) {
 			$this->output( $rev->getTitle() . " matches at edit from " . $rev->getTimestamp() . "\n" );

@@ -74,14 +74,14 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-		global $wgUser, $wgLang;
+		global $wgLang;
 
 		wfProfileIn( __METHOD__ );
 
-		static $skin=null;
+		static $skin =  null;
 
 		if( is_null( $skin ) )
-			$skin = $wgUser->getSkin();
+			$skin = $this->getSkin();
 
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
 		$link = $skin->link( $title );

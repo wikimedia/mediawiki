@@ -67,6 +67,9 @@ class ImageBuilder extends Maintenance {
 		}
 	}
 
+	/**
+	 * @return FileRepo
+	 */
 	function getRepo() {
 		if ( !isset( $this->repo ) ) {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();

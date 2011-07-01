@@ -173,7 +173,7 @@ class SpecialMergeHistory extends SpecialPage {
 	private function showHistory() {
 		global $wgUser, $wgOut;
 
-		$this->sk = $wgUser->getSkin();
+		$this->sk = $this->getSkin();
 
 		$wgOut->setPageTitle( wfMsg( 'mergehistory' ) );
 

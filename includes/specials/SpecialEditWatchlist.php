@@ -37,7 +37,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		# Anons don't get a watchlist
 		if( $wgUser->isAnon() ) {
 			$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
-			$llink = $wgUser->getSkin()->linkKnown(
+			$llink = $this->getSkin()->linkKnown(
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				wfMsgHtml( 'loginreqlink' ),
 				array(),
@@ -51,7 +51,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			'watchlistfor2',
 			array( 'parseinline', 'replaceafter' ),
 			$wgUser->getName(),
-			SpecialEditWatchlist::buildTools( $wgUser->getSkin() )
+			SpecialEditWatchlist::buildTools( $this->getSkin() )
 		);
 		$wgOut->setSubtitle( $sub );
 
@@ -139,7 +139,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'watchlistedit-raw-added',
 					$wgLang->formatNum( count( $toWatch ) )
 				);
-				$this->showTitles( $toWatch, $this->successMessage, $wgUser->getSkin() );
+				$this->showTitles( $toWatch, $this->successMessage, $this->getSkin() );
 			}
 
 			if( count( $toUnwatch ) > 0 ) {
@@ -147,7 +147,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'watchlistedit-raw-removed',
 					$wgLang->formatNum( count( $toUnwatch ) )
 				);
-				$this->showTitles( $toUnwatch, $this->successMessage, $wgUser->getSkin() );
+				$this->showTitles( $toUnwatch, $this->successMessage, $this->getSkin() );
 			}
 		} else {
 			$this->clearWatchlist( $wgUser );
@@ -156,7 +156,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'watchlistedit-raw-removed',
 				$wgLang->formatNum( count( $current ) )
 			);
-			$this->showTitles( $current, $this->successMessage, $wgUser->getSkin() );
+			$this->showTitles( $current, $this->successMessage, $this->getSkin() );
 		}
 		return true;
 	}
@@ -416,7 +416,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'watchlistedit-normal-done',
 				$wgLang->formatNum( count( $removed ) )
 			);
-			$this->showTitles( $removed, $this->successMessage, $wgUser->getSkin() );
+			$this->showTitles( $removed, $this->successMessage, $this->getSkin() );
 			return true;
 		} else {
 			return false;

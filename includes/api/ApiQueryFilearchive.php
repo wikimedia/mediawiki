@@ -181,7 +181,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_mime ) {
 				$file['mime'] = "$row->fa_major_mime/$row->fa_minor_mime";
 			}
-			
+
 			if ( $row->fa_deleted & File::DELETED_FILE ) {
 				$file['filehidden'] = '';
 			}
@@ -196,7 +196,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['suppressed'] = '';
 			}
 
-			
+
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->fa_name ) );

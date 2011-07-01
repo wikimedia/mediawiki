@@ -107,7 +107,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgContLang, $wgFixDoubleRedirects;
 
-		$skin = $wgUser->getSkin();
+		$skin = $this->getSkin();
 
 		$oldTitleLink = $skin->link( $this->oldTitle );
 
@@ -492,7 +492,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		$extraOutput = array();
-		$skin = $wgUser->getSkin();
+		$skin = $this->getSkin();
 		$count = 1;
 		foreach( $extraPages as $oldSubpage ) {
 			if( $ot->equals( $oldSubpage ) ) {
@@ -596,7 +596,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		$out->addWikiMsg( 'movesubpagetext', $wgLang->formatNum( $count ) );
-		$skin = $wgUser->getSkin();
+		$skin = $this->getSkin();
 		$out->addHTML( "<ul>\n" );
 
 		foreach( $subpages as $subpage ) {

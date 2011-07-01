@@ -122,7 +122,7 @@ class SpecialSearch extends SpecialPage {
 		// Redirects defaults to true, but we don't know whether it was ticked of or just missing
 		$default = $request->getBool( 'profile' ) ? 0 : 1;
 		$this->searchRedirects = $request->getBool( 'redirs', $default ) ? 1 : 0;
-		$this->sk = $user->getSkin();
+		$this->sk = $this->getSkin();
 		$this->didYouMeanHtml = ''; # html of did you mean... link
 		$this->fulltext = $request->getVal('fulltext');
 	}
@@ -173,10 +173,10 @@ class SpecialSearch extends SpecialPage {
 	 * @param $term String
 	 */
 	public function showResults( $term ) {
-		global $wgOut, $wgUser, $wgDisableTextSearch, $wgContLang, $wgScript;
+		global $wgOut, $wgDisableTextSearch, $wgContLang, $wgScript;
 		wfProfileIn( __METHOD__ );
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 
 		$search = $this->getSearchEngine();
 		$search->setLimitOffset( $this->limit, $this->offset );
@@ -482,7 +482,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param $terms Array: terms to highlight
 	 */
 	protected function showHit( $result, $terms ) {
-		global $wgLang, $wgUser;
+		global $wgLang;
 		wfProfileIn( __METHOD__ );
 
 		if( $result->isBrokenTitle() ) {
@@ -490,7 +490,7 @@ class SpecialSearch extends SpecialPage {
 			return "<!-- Broken link in search result -->\n";
 		}
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 		$t = $result->getTitle();
 
 		$titleSnippet = $result->getTitleSnippet($terms);

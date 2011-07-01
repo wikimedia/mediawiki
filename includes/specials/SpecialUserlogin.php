@@ -1188,7 +1188,7 @@ class LoginForm extends SpecialPage {
 		if( $this->mReturnTo ) {
 			$attr['returnto'] = $this->mReturnTo;
 		}
-		$skin = $wgUser->getSkin();
+		$skin = $this->getSkin();
 		return $skin->linkKnown(
 			$self,
 			htmlspecialchars( $text ),
