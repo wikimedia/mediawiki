@@ -741,7 +741,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return bool
 	 */
 	private function showList( $result ) {
-		global $wgLang, $wgUser, $wgOut;
+		global $wgLang, $wgOut;
 
 		if( $result->numRows() == 0 ) {
 			$wgOut->addWikiMsg( 'undelete-no-results' );

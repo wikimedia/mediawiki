@@ -1179,7 +1179,6 @@ class LoginForm extends SpecialPage {
 	 * @param $lang Language code
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
-		global $wgUser;
 		$self = SpecialPage::getTitleFor( 'Userlogin' );
 		$attr = array( 'uselang' => $lang );
 		if( $this->mType == 'signup' ) {
