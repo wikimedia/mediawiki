@@ -40,7 +40,7 @@ class Revision {
 	public static function newFromTitle( $title, $id = 0 ) {
 		$conds = array(
 			'page_namespace' => $title->getNamespace(),
-			'page_title' => $title->getDBkey()
+			'page_title' 	 => $title->getDBkey()
 		);
 		if ( $id ) {
 			// Use the specified ID
@@ -73,7 +73,7 @@ class Revision {
 	public static function newFromPageId( $pageId, $revId = 0 ) {
 		$conds = array( 'page_id' => $pageId );
 		if ( $revId ) {
-			$conds['rev_id'] = $pageId;
+			$conds['rev_id'] = $revId;
 		} elseif ( wfGetLB()->getServerCount() > 1 ) {
 			// Get the latest revision ID from the master
 			$dbw = wfGetDB( DB_MASTER );
@@ -85,6 +85,7 @@ class Revision {
 		} else {
 			$conds[] = 'rev_id = page_latest';
 		}
+		$conds[] = 'page_id=rev_page';
 		return Revision::newFromConds( $conds );
 	}
 
