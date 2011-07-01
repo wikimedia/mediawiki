@@ -787,15 +787,6 @@ EOT
 	}
 
 	/**
-	 * Revert the file to an earlier version
-	 */
-	public function revert() {
-		$this->loadFile();
-		$reverter = new FileRevertForm( $this->mPage->getFile() );
-		$reverter->execute();
-	}
-
-	/**
 	 * Override handling of action=purge
 	 */
 	public function doPurge() {

@@ -62,6 +62,18 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Returns overrides for action handlers.
+	 * Classes listed here will be used instead of the default one when
+	 * (and only when) $wgActions[$action] === true. This allows subclasses
+	 * to override the default behavior.
+	 *
+	 * @return Array
+	 */
+	public function getActionOverrides() {
+		return array();
+	}
+
+	/**
 	 * If this page is a redirect, get its target
 	 *
 	 * The target will be fetched from the redirect table if possible.

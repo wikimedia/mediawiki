@@ -1233,6 +1233,14 @@ class Article extends Page {
 	}
 
 	/**
+	 * Overriden by ImagePage class, only present here to avoid a fatal error
+	 * Called for ?action=revert
+	 */
+	public function revert() {
+		Action::factory( 'revert', $this )->show();
+	}
+
+	/**
 	 * Output a redirect back to the article.
 	 * This is typically used after an edit.
 	 *
@@ -1904,15 +1912,6 @@ class Article extends Page {
 	}
 
 	/**#@-*/
-
-	/**
-	 * Overriden by ImagePage class, only present here to avoid a fatal error
-	 * Called for ?action=revert
-	 */
-	public function revert() {
-		global $wgOut;
-		$wgOut->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
-	}
 
 	/**
 	 * Add the primary page-view wikitext to the output buffer

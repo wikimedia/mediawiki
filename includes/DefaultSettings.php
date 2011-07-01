@@ -5049,6 +5049,9 @@ $wgMaxRedirectLinksRetrieved = 500;
  * Array of allowed values for the title=foo&action=<action> parameter. Syntax is:
  *     'foo' => 'ClassName'    Load the specified class which subclasses Action
  *     'foo' => true           Load the class FooAction which subclasses Action
+ *                             If something is specified in the getActionOverrides()
+ *                             of the relevant Page object it will be used
+ *                             instead of the default class.
  *     'foo' => false          The action is disabled; show an error message
  * Unsetting core actions will probably cause things to complain loudly.
  */
@@ -5058,6 +5061,7 @@ $wgActions = array(
 	'info' => true,
 	'markpatrolled' => true,
 	'purge' => true,
+	'revert' => true,
 	'revisiondelete' => true,
 	'unwatch' => true,
 	'watch' => true,
