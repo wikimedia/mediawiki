@@ -281,6 +281,10 @@ class RandomImageGenerator {
 		// because the above setImageOrientation call doesn't work... nor can I get an external imagemagick binary to do this either...
 		// hacking this for now (only works if you have exiv2 installed, a program to read and manipulate exif)
 		if ( $wgExiv2Command ) {
+			# Make sure we have exiv2 command
+			if( !is_executable( $wgExiv2Command ) ) {
+				throw new MWException( __METHOD__ . ": '$wgExiv2Command' not found or not executable\n" );
+			}
 			$cmd = wfEscapeShellArg( $wgExiv2Command )
 				. " -M "
 				. wfEscapeShellArg( "set Exif.Image.Orientation " . $orientation['exifCode'] )
