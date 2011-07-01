@@ -1552,7 +1552,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'beheerder',
 'group-bureaucrat-member'    => 'bureaucraat',
-'group-suppress-member'      => 'Toezichthouder',
+'group-suppress-member'      => 'toezichthouder',
 
 'grouppage-user'          => '{{ns:project}}:Gebruikers',
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',
