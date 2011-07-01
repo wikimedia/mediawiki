@@ -879,7 +879,7 @@ class ImageHistoryList {
 	 */
 	public function __construct( $imagePage ) {
 		global $wgUser, $wgShowArchiveThumbnails;
-		$this->skin = $this->getSkin();
+		$this->skin = $wgUser->getSkin();
 		$this->current = $imagePage->getFile();
 		$this->img = $imagePage->getDisplayedFile();
 		$this->title = $imagePage->getTitle();
