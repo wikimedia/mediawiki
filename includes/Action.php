@@ -47,9 +47,10 @@ abstract class Action {
 	 * Get the Action subclass which should be used to handle this action, false if
 	 * the action is disabled, or null if it's not recognised
 	 * @param $action String
+	 * @param $overrides Array
 	 * @return bool|null|string
 	 */
-	private final static function getClass( $action ) {
+	private final static function getClass( $action, array $overrides ) {
 		global $wgActions;
 		$action = strtolower( $action );
 
@@ -59,6 +60,8 @@ abstract class Action {
 
 		if ( $wgActions[$action] === false ) {
 			return false;
+		} elseif ( $wgActions[$action] === true && isset( $overrides[$action] ) ) {
+			return $overrides[$action];
 		} elseif ( $wgActions[$action] === true ) {
 			return ucfirst( $action ) . 'Action';
 		} else {
@@ -74,7 +77,7 @@ abstract class Action {
 	 *     if it is not recognised
 	 */
 	public final static function factory( $action, Page $page ) {
-		$class = self::getClass( $action );
+		$class = self::getClass( $action, $page->getActionOverrides() );
 		if ( $class ) {
 			$obj = new $class( $page );
 			return $obj;
@@ -223,13 +226,22 @@ abstract class Action {
 	protected function setHeaders() {
 		$out = $this->getOutput();
 		$out->setRobotPolicy( "noindex,nofollow" );
-		$out->setPageTitle( $this->getTitle()->getPrefixedText() );
+		$out->setPageTitle( $this->getPageTitle() );
 		$this->getOutput()->setSubtitle( $this->getDescription() );
 		$out->setArticleRelated( true );
 	}
 
 	/**
 	 * Returns the name that goes in the \<h1\> page title
+	 *
+	 * @return String
+	 */
+	protected function getPageTitle() {
+		return $this->getTitle()->getPrefixedText();
+	}
+
+	/**
+	 * Returns the description that goes below the \<h1\> tag
 	 *
 	 * @return String
 	 */
