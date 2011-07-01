@@ -786,7 +786,7 @@ class Preferences {
 	 * @param $defaultPreferences Array
 	 */
 	static function rcPreferences( $user, &$defaultPreferences ) {
-		global $wgRCMaxAge, $wgUseRCPatrol, $wgLang;
+		global $wgRCMaxAge, $wgLang;
 
 		## RecentChanges #####################################
 		$defaultPreferences['rcdays'] = array(
