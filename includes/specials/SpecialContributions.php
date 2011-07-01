@@ -83,8 +83,8 @@ class SpecialContributions extends SpecialPage {
 			$wgOut->setSubtitle( $this->contributionsSub( $nt, $id ) );
 			$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsgExt( 'contributions-title', array( 'parsemag' ),$target ) ) );
 			$user = User::newFromName( $target, false );
-			if ( is_object($user) ) {
-				$wgUser->getSkin()->setRelevantUser( $user );
+			if ( is_object( $user ) ) {
+				$this->getSkin()->setRelevantUser( $user );
 			}
 		} else {
 			$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
@@ -215,7 +215,7 @@ class SpecialContributions extends SpecialPage {
 	protected function contributionsSub( $nt, $id ) {
 		global $wgLang, $wgUser, $wgOut;
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 
 		if ( $id === null ) {
 			$user = htmlspecialchars( $nt->getText() );

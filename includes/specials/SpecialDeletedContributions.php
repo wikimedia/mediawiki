@@ -357,7 +357,7 @@ class DeletedContributionsPage extends SpecialPage {
 	function getSubTitle( $nt, $id ) {
 		global $wgLang, $wgUser, $wgOut;
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 
 		if ( $id === null ) {
 			$user = htmlspecialchars( $nt->getText() );

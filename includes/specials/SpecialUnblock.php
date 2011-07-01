@@ -115,14 +115,12 @@ class SpecialUnblock extends SpecialPage {
 				unset( $fields['Name'] );
 
 			} else {
-				global $wgUser;
-
 				$fields['Target']['default'] = $target;
 				$fields['Target']['type'] = 'hidden';
 				switch( $type ){
 					case Block::TYPE_USER:
 					case Block::TYPE_IP:
-						$skin = $wgUser->getSkin();
+						$skin = $this->getSkin();
 						$fields['Name']['default'] = $skin->link(
 							$target->getUserPage(),
 							$target->getName()

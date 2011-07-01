@@ -165,8 +165,8 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getUserStats() {
-		global $wgLang, $wgUser, $wgActiveUserDays;
-		$sk = $wgUser->getSkin();
+		global $wgLang, $wgActiveUserDays;
+		$sk = $this->getSkin();
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-users', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' ) .
@@ -188,8 +188,8 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getGroupStats() {
-		global $wgGroupPermissions, $wgImplicitGroups, $wgLang, $wgUser;
-		$sk = $wgUser->getSkin();
+		global $wgGroupPermissions, $wgImplicitGroups, $wgLang;
+		$sk = $this->getSkin();
 		$text = '';
 		foreach( $wgGroupPermissions as $group => $permissions ) {
 			# Skip generic * and implicit groups
@@ -249,10 +249,10 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getMostViewedPages() {
-		global $wgLang, $wgUser;
+		global $wgLang;
 		$text = '';
 		$dbr = wfGetDB( DB_SLAVE );
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 		$res = $dbr->select(
 				'page',
 				array(

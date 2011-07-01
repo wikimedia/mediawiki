@@ -133,11 +133,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->addWhere( array(
 			'rc_deleted' => 0,
 		) );
-		
+
 		$db = $this->getDB();
 
-		$this->addWhereRange( 'rc_timestamp', $params['dir'], 
-			$db->timestamp( $params['start'] ), 
+		$this->addWhereRange( 'rc_timestamp', $params['dir'],
+			$db->timestamp( $params['start'] ),
 			$db->timestamp( $params['end'] ) );
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
 		$this->addWhereIf( 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG, !$params['allrev'] );
@@ -293,7 +293,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
 			global $wgUser;
-			$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->rc_comment, $title );
+			$vals['parsedcomment'] = $this->getSkin()->formatComment( $row->rc_comment, $title );
 		}
 
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {

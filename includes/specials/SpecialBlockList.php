@@ -225,7 +225,7 @@ class BlockListPager extends TablePager {
 
 		static $sk, $msg;
 		if ( empty( $sk ) ) {
-			$sk = $wgUser->getSkin();
+			$sk = $this->getSkin();
 			$msg = array(
 				'anononlyblock',
 				'createaccountblock',

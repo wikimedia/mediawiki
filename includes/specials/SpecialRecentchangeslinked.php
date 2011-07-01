@@ -236,8 +236,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 	}
 
 	function setTopText( OutputPage $out, FormOptions $opts ) {
-		global $wgUser;
-		$skin = $wgUser->getSkin();
+		$skin = $this->getSkin();
 		$target = $this->getTargetTitle();
 		if( $target )
 			$out->setSubtitle( wfMsg( 'recentchangeslinked-backlink', $skin->link( $target,

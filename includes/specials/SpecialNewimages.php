@@ -51,11 +51,11 @@ class SpecialNewFiles extends IncludableSpecialPage {
 class NewFilesPager extends ReverseChronologicalPager {
 
 	function __construct( $par = null ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest;
 
 		$this->like = $wgRequest->getText( 'like' );
 		$this->showbots = $wgRequest->getBool( 'showbots' , 0 );
-		$this->skin = $wgUser->getSkin();
+		$this->skin = $this->getSkin();
 
 		parent::__construct();
 	}

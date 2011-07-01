@@ -120,9 +120,9 @@ class SpecialPrefixindex extends SpecialAllpages {
 	 * @param $from String: list all pages from this name (default FALSE)
 	 */
 	function showPrefixChunk( $namespace = NS_MAIN, $prefix, $from = null ) {
-		global $wgOut, $wgUser, $wgContLang, $wgLang;
+		global $wgOut, $wgContLang, $wgLang;
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 
 		if (!isset($from)) $from = $prefix;
 

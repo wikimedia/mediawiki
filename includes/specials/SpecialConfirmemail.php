@@ -61,7 +61,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				}
 			} else {
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
-				$skin = $wgUser->getSkin();
+				$skin = $this->getSkin();
 				$llink = $skin->linkKnown(
 					$title,
 					wfMsgHtml( 'loginreqlink' ),

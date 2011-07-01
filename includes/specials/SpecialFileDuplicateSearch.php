@@ -62,8 +62,8 @@ class FileDuplicateSearchPage extends QueryPage {
 	 * @param $dupes Array of File objects
 	 */
 	function showList( $dupes ) {
-		global $wgUser, $wgOut;
-		$skin = $wgUser->getSkin();
+		global $wgOut;
+		$skin = $this->getSkin();
 
 		$html = array();
 		$html[] = $this->openList( 0 );

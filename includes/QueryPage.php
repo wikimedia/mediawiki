@@ -521,7 +521,7 @@ abstract class QueryPage extends SpecialPage {
 		# with more than a straight list, so we hand them the info, plus
 		# an OutputPage, and let them get on with it
 		$this->outputResults( $wgOut,
-			$wgUser->getSkin(),
+			$this->getSkin(),
 			$dbr, # Should use a ResultWrapper for this
 			$res,
 			$this->numRows,

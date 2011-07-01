@@ -292,7 +292,7 @@ class SpecialImport extends SpecialPage {
 					<td>
 					</td>
 					<td class='mw-submit'>" .
-						Xml::submitButton( wfMsg( 'import-interwiki-submit' ), $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'import' ) ) .
+						Xml::submitButton( wfMsg( 'import-interwiki-submit' ), $this->getSkin()->tooltipAndAccessKeyAttribs( 'import' ) ) .
 					"</td>
 				</tr>" .
 				Xml::closeElement( 'table' ).
@@ -350,7 +350,7 @@ class ImportReporter {
 		$args = func_get_args();
 		call_user_func_array( $this->mOriginalPageOutCallback, $args );
 
-		$skin = $wgUser->getSkin();
+		$skin = $this->getSkin();
 
 		$this->mPageCount++;
 

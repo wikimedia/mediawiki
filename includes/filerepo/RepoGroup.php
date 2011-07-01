@@ -289,6 +289,8 @@ class RepoGroup {
 	/**
 	 * Get the local repository, i.e. the one corresponding to the local image
 	 * table. Files are typically uploaded to the local repository.
+	 *
+	 * @return LocalRepo
 	 */
 	function getLocalRepo() {
 		return $this->getRepo( 'local' );

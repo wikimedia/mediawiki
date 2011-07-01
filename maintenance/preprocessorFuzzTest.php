@@ -154,6 +154,9 @@ class PPFuzzTest {
 		$this->templates = array();
 	}
 
+	/**
+	 * @param $title Title
+	 */
 	function templateHook( $title ) {
 		$titleText = $title->getPrefixedDBkey();
 
