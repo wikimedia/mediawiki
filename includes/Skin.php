@@ -1430,7 +1430,7 @@ abstract class Skin {
 	 * @return String: HTML fragment
 	 */
 	private function getCachedNotice( $name ) {
-		global $wgRenderHashAppend, $parserMemc;
+		global $wgRenderHashAppend, $parserMemc, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1472,7 +1472,8 @@ abstract class Skin {
 			$notice = $parsed;
 		}
 
-		$notice = '<div id="localNotice">' .$notice . '</div>';
+		$notice = Html::rawElement( 'div', array( 'id' => 'localNotice',
+			'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ), $notice );
 		wfProfileOut( __METHOD__ );
 		return $notice;
 	}
