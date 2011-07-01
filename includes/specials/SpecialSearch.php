@@ -582,7 +582,7 @@ class SpecialSearch extends SpecialPage {
 		$size = wfMsgExt(
 			'search-result-size',
 			array( 'parsemag', 'escape' ),
-			$this->sk->formatSize( $byteSize ),
+			$wgLang->formatSize( $byteSize ),
 			$wgLang->formatNum( $wordCount )
 		);
 
