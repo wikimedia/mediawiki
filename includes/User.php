@@ -2582,13 +2582,14 @@ class User {
 			$this->setNewtalk( false );
 			return;
 		}
-		if( $currentUser != 0 )  {
+		$id = $this->getId();
+		if( $id != 0 )  {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
 				array( /* SET */
 					'wl_notificationtimestamp' => null
 				), array( /* WHERE */
-					'wl_user' => $this->getId()
+					'wl_user' => $id
 				), __METHOD__
 			);
 		# 	We also need to clear here the "you have new message" notification for the own user_talk page
