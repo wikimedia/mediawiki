@@ -34,7 +34,7 @@ class Revision {
 	 * to that title, will return null.
 	 *
 	 * @param $title Title
-	 * @param $id Integer
+	 * @param $id Integer (optional)
 	 * @return Revision or null
 	 */
 	public static function newFromTitle( $title, $id = 0 ) {
@@ -50,8 +50,7 @@ class Revision {
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 			if ( $latest === false ) {
-				// Page does not exist
-				return null;
+				return null; // page does not exist
 			}
 			$conds['rev_id'] = $latest;
 		} else {
@@ -59,6 +58,33 @@ class Revision {
 			$conds[] = 'rev_id=page_latest';
 		}
 		$conds[] = 'page_id=rev_page';
+		return Revision::newFromConds( $conds );
+	}
+
+	/**
+	 * Load either the current, or a specified, revision
+	 * that's attached to a given page ID.
+	 * Returns null if no such revision can be found.
+	 *
+	 * @param $revId Integer
+	 * @param $pageId Integer (optional)
+	 * @return Revision or null
+	 */
+	public static function newFromPageId( $pageId, $revId = 0 ) {
+		$conds = array( 'page_id' => $pageId );
+		if ( $revId ) {
+			$conds['rev_id'] = $pageId;
+		} elseif ( wfGetLB()->getServerCount() > 1 ) {
+			// Get the latest revision ID from the master
+			$dbw = wfGetDB( DB_MASTER );
+			$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
+			if ( $latest === false ) {
+				return null; // page does not exist
+			}
+			$conds['rev_id'] = $latest;
+		} else {
+			$conds[] = 'rev_id = page_latest';
+		}
 		return Revision::newFromConds( $conds );
 	}
 

@@ -326,7 +326,7 @@ class WikiPage extends Page {
 		if ( $data ) {
 			$lc->addGoodLinkObj( $data->page_id, $this->mTitle, $data->page_len, $data->page_is_redirect, $data->page_latest );
 
-			$this->mTitle->mArticleID = intval( $data->page_id );
+			$this->mTitle->loadFromRow( $data );
 
 			# Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
@@ -337,7 +337,8 @@ class WikiPage extends Page {
 			$this->mLatest      = intval( $data->page_latest );
 		} else {
 			$lc->addBadLinkObj( $this->mTitle );
-			$this->mTitle->mArticleID = 0;
+
+			$this->mTitle->loadFromRow( false );
 		}
 
 		$this->mDataLoaded = true;
@@ -461,14 +462,13 @@ class WikiPage extends Page {
 			return; // already loaded
 		}
 
-		# New or non-existent articles have no user information
-		$id = $this->getId();
-		if ( 0 == $id ) {
-			return;
+		$latest = $this->getLatest();
+		if ( !$latest ) {
+			return; // page doesn't exist or is missing page_latest info
 		}
 
-		$revision = Revision::loadFromPageId( wfGetDB( DB_MASTER ), $id );
-		if ( $revision ) {
+		$revision = Revision::newFromPageId( $this->getId(), $latest );
+		if ( $revision ) { // sanity
 			$this->setLastEdit( $revision );
 		}
 	}
@@ -1279,7 +1279,9 @@ class WikiPage extends Page {
 				# If something changed, we need to log it. Checking $aRChanged
 				# assures that "unprotecting" a page that is not protected does
 				# not log just because the expiry was "changed".
-				if ( $aRChanged && $this->mTitle->mRestrictionsExpiry[$action] != $expiry[$action] ) {
+				if ( $aRChanged &&
+					$this->mTitle->getRestrictionExpiry( $action ) != $expiry[$action] )
+				{
 					$changed = true;
 				}
 			}
@@ -2076,7 +2078,6 @@ class WikiPage extends Page {
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-
 		return !$this->mIsRedirect;
 	}
 
@@ -2088,7 +2089,6 @@ class WikiPage extends Page {
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-
 		return $this->mTouched;
 	}
 
@@ -2100,7 +2100,6 @@ class WikiPage extends Page {
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-
 		return (int)$this->mLatest;
 	}
 
