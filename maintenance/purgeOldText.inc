@@ -44,6 +44,7 @@ function PurgeRedundantText( $delete = false ) {
 	# Get "active" text records from the archive table
 	echo( "Searching for active text records in archive table..." );
 	$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
+	$cur = array();
 	foreach ( $res as $row ) {
 		$cur[] = $row->ar_text_id;
 	}

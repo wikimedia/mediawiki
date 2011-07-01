@@ -53,6 +53,7 @@ class wikiStatsOutput extends statsOutput {
 		echo "For additional information on specific languages (the message names, the actual problems, etc.), run <code>php maintenance/language/checkLanguage.php --lang=foo</code>.\n\n";
 		echo 'English (en) is excluded because it is the default localization';
 		if( is_array( $wgDummyLanguageCodes ) ) {
+			$dummyCodes = array();
 			foreach( $wgDummyLanguageCodes as $dummyCode ) {
 				$dummyCodes[] = $wgContLang->getLanguageName( $dummyCode ) . ' (' . $dummyCode . ')';
 			}

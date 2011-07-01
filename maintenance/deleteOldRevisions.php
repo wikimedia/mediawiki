@@ -60,6 +60,7 @@ class DeleteOldRevisions extends Maintenance {
 		# Get "active" revisions from the page table
 		$this->output( "Searching for active revisions..." );
 		$res = $dbw->query( "SELECT page_latest FROM $tbl_pag{$pageIdClause}" );
+		$cur = array();
 		foreach ( $res as $row ) {
 			$cur[] = $row->page_latest;
 		}
