@@ -471,14 +471,14 @@ class WikiPage extends Page {
 
 	/**
 	 * Get the latest revision
-	 * @return Revision|false
+	 * @return Revision|null
 	 */
 	public function getRevision() {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision;
 		}
-		return false;
+		return null;
 	}
 
 	/**
