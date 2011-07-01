@@ -31,13 +31,13 @@ class SkinMonoBook extends SkinTemplate {
 		parent::setupSkinUserCss( $out );
 
 		$out->addModuleStyles( 'skins.monobook' );
-		
+
 		// Ugh. Can't do this properly because $wgHandheldStyle may be a URL
 		if( $wgHandheldStyle ) {
 			// Currently in testing... try 'chick/main.css'
 			$out->addStyle( $wgHandheldStyle, 'handheld' );
 		}
-		
+
 		// TODO: Migrate all of these
 		//$out->addStyle( 'monobook/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
 		//$out->addStyle( 'monobook/IE55Fixes.css', 'screen', 'IE 5.5000' );
@@ -103,7 +103,7 @@ class MonoBookTemplate extends BaseTemplate {
 	</div>
 </div></div>
 <div id="column-one"<?php $this->html('userlangattributes')  ?>>
-<?php $this->cactions( $this->skin ); ?>
+<?php $this->cactions(); ?>
 	<div class="portlet" id="p-personal">
 		<h5><?php $this->msg('personaltools') ?></h5>
 		<div class="pBody">
@@ -225,7 +225,7 @@ echo $footerEnd;
 	 *
 	 * @param $skin Skin
 	 */
-	function cactions( Skin $skin ) {
+	function cactions() {
 ?>
 	<div id="p-cactions" class="portlet">
 		<h5><?php $this->msg('views') ?></h5>
@@ -233,7 +233,7 @@ echo $footerEnd;
 			<ul><?php
 				foreach($this->data['content_actions'] as $key => $tab) {
 					$linkAttribs = array( 'href' => $tab['href'] );
-					
+
 				 	if( isset( $tab["tooltiponly"] ) && $tab["tooltiponly"] ) {
 						$title = Linker::titleAttrib( "ca-$key" );
 						if ( $title !== false ) {
@@ -243,7 +243,7 @@ echo $footerEnd;
 						$linkAttribs += Linker::tooltipAndAccesskeyAttribs( "ca-$key" );
 				 	}
 				 	$linkHtml = Html::element( 'a', $linkAttribs, $tab['text'] );
-				 	
+
 				 	/* Surround with a <li> */
 				 	$liAttribs = array( 'id' => Sanitizer::escapeId( "ca-$key" ) );
 					if( $tab['class'] ) {

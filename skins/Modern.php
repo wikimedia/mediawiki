@@ -63,7 +63,7 @@ class ModernTemplate extends MonoBookTemplate {
 	<div id="mw_main">
 	<div id="mw_contentwrapper">
 	<!-- navigation portlet -->
-<?php $this->cactions( $skin ); ?>
+<?php $this->cactions(); ?>
 
 	<!-- content -->
 	<div id="mw_content">

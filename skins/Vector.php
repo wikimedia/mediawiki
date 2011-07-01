@@ -29,7 +29,7 @@ class SkinVector extends SkinTemplate {
 		global $wgLocalStylePath, $wgRequest;
 
 		parent::initPage( $out );
-		
+
 		// Append CSS which includes IE only behavior fixes for hover support -
 		// this is better than including this in a CSS fille since it doesn't
 		// wait for the CSS file to load before fetching the HTC file.
@@ -39,7 +39,7 @@ class SkinVector extends SkinTemplate {
 				htmlspecialchars( $wgLocalStylePath ) .
 				"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
 		);
-		
+
 		$out->addModuleScripts( 'skins.vector' );
 	}
 
@@ -80,7 +80,7 @@ class VectorTemplate extends BaseTemplate {
 		// Build additional attributes for navigation urls
 		//$nav = $this->skin->buildNavigationUrls();
 		$nav = $this->data['content_navigation'];
-		
+
 		if ( $wgVectorUseIconWatch ) {
 			$mode = $this->skin->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
 			if ( isset( $nav['actions'][$mode] ) ) {
@@ -97,7 +97,7 @@ class VectorTemplate extends BaseTemplate {
 				if ( $section == 'views' && !( isset( $link['primary'] ) && $link['primary'] ) ) {
 					$link['class'] = rtrim( 'collapsible ' . $link['class'], ' ' );
 				}
-				
+
 				$xmlID = isset( $link['id'] ) ? $link['id'] : 'ca-' . $xmlID;
 				$nav[$section][$key]['attributes'] =
 					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
@@ -259,7 +259,7 @@ class VectorTemplate extends BaseTemplate {
 	/**
 	 * Render a series of portals
 	 *
-	 * @params $portals array
+	 * @param $portals array
 	 */
 	private function renderPortals( $portals ) {
 		// Force the rendering of the following portals
