@@ -252,13 +252,33 @@ class Title {
 	 */
 	public static function newFromRow( $row ) {
 		$t = self::makeTitle( $row->page_namespace, $row->page_title );
-
-		$t->mArticleID = isset( $row->page_id ) ? intval( $row->page_id ) : -1;
-		$t->mLength = isset( $row->page_len ) ? intval( $row->page_len ) : -1;
-		$t->mRedirect = isset( $row->page_is_redirect ) ? (bool)$row->page_is_redirect : null;
-		$t->mLatestID = isset( $row->page_latest ) ? intval( $row->page_latest ) : false;
-
+		$t->loadFromRow( $row );
 		return $t;
+	}
+
+	/**
+	 * Load Title object fields from a DB row.
+	 * If false is given, the title will be treated as non-existing.
+	 *
+	 * @param $row Object|false database row
+	 * @return void
+	 */
+	public function loadFromRow( $row ) {
+		if ( $row ) { // page found
+			if ( isset( $row->page_id ) )
+				$this->mArticleID = (int)$row->page_id;
+			if ( isset( $row->page_len ) )
+				$this->mLength = (int)$row->page_len;
+			if ( isset( $row->page_is_redirect ) )
+				$this->mRedirect = (bool)$row->page_is_redirect;
+			if ( isset( $row->page_latest ) )
+				$this->mLatestID = (int)$row->page_latest;
+		} else { // page not found
+			$this->mArticleID = 0;
+			$this->mLength = 0;
+			$this->mRedirect = false;
+			$this->mLatestID = 0;
+		}
 	}
 
 	/**

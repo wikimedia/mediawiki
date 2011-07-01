@@ -294,7 +294,7 @@ class Article extends Page {
 				}
 			}
 		} else {
-			if ( $this->mPage->getLatest() === false ) {
+			if ( !$this->mPage->getLatest() ) {
 				wfDebug( __METHOD__ . " failed to find page data for title " . $this->getTitle()->getPrefixedText() . "\n" );
 				return false;
 			}
