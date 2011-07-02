@@ -1897,7 +1897,7 @@ class Article extends Page {
 	 * @param $text string
 	 * @param $cache boolean
 	 * @param $parserOptions parsing options, defaults to false
-	 * @return string containing parsed output
+	 * @return ParserOutput
 	 */
 	public function getOutputFromWikitext( $text, $cache = true, $parserOptions = false ) {
 		global $wgParser, $wgEnableParserCache, $wgUseFileCache;
@@ -1929,60 +1929,11 @@ class Article extends Page {
 			$wgUseFileCache = false;
 		}
 
-		$this->doCascadeProtectionUpdates( $this->mParserOutput );
+		if ( $this->isCurrent() ) {
+			$this->mPage->doCascadeProtectionUpdates( $this->mParserOutput );
+		}
 
 		return $this->mParserOutput;
-	}
-
-	/**
-	 * Updates cascading protections
-	 *
-	 * @param $parserOutput ParserOutput object, or boolean false
-	 **/
-	protected function doCascadeProtectionUpdates( $parserOutput ) {
-		if ( !$this->isCurrent() || wfReadOnly() || !$this->getTitle()->areRestrictionsCascading() ) {
-			return;
-		}
-
-		// templatelinks table may have become out of sync,
-		// especially if using variable-based transclusions.
-		// For paranoia, check if things have changed and if
-		// so apply updates to the database. This will ensure
-		// that cascaded protections apply as soon as the changes
-		// are visible.
-
-		# Get templates from templatelinks
-		$id = $this->getTitle()->getArticleID();
-
-		$tlTemplates = array();
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( array( 'templatelinks' ),
-			array( 'tl_namespace', 'tl_title' ),
-			array( 'tl_from' => $id ),
-			__METHOD__
-		);
-
-		foreach ( $res as $row ) {
-			$tlTemplates["{$row->tl_namespace}:{$row->tl_title}"] = true;
-		}
-
-		# Get templates from parser output.
-		$poTemplates = array();
-		foreach ( $parserOutput->getTemplates() as $ns => $templates ) {
-			foreach ( $templates as $dbk => $id ) {
-				$poTemplates["$ns:$dbk"] = true;
-			}
-		}
-
-		# Get the diff
-		$templates_diff = array_diff_key( $poTemplates, $tlTemplates );
-
-		if ( count( $templates_diff ) > 0 ) {
-			# Whee, link updates time.
-			$u = new LinksUpdate( $this->getTitle(), $parserOutput, false );
-			$u->doUpdate();
-		}
 	}
 
 	/**
