@@ -2068,12 +2068,16 @@ class Article extends Page {
 		return $this->mPage->doDeleteArticle( $reason, $suppress, $id, $commit, $error );
 	}
 
-	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails ) {
-		return $this->mPage->doRollback( $fromP, $summary, $token, $bot, $resultDetails );
+	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
+		global $wgUser;
+		$user = is_null( $user ) ? $wgUser : $user;
+		return $this->mPage->doRollback( $fromP, $summary, $token, $bot, $resultDetails, $user );
 	}
 
-	public function commitRollback( $fromP, $summary, $bot, &$resultDetails ) {
-		return $this->mPage->commitRollback( $fromP, $summary, $bot, $resultDetails );
+	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
+		global $wgUser;
+		$guser = is_null( $guser ) ? $wgUser : $guser;
+		return $this->mPage->commitRollback( $fromP, $summary, $bot, $resultDetails, $guser );
 	}
 
 	// ****** B/C functions for static methods ( __callStatic is PHP>=5.3 ) ****** //

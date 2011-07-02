@@ -1694,11 +1694,8 @@ class WikiPage extends Page {
 	 * OutputPage::showPermissionsErrorPage().
 	 */
 	public function doRollback(
-		$fromP, $summary, $token, $bot, &$resultDetails, User $user = null
+		$fromP, $summary, $token, $bot, &$resultDetails, User $user
 	) {
-		global $wgUser;
-		$user = is_null( $user ) ? $wgUser : $user;
-
 		$resultDetails = null;
 
 		# Check permissions
@@ -1737,9 +1734,8 @@ class WikiPage extends Page {
 	 * @param $resultDetails Array: contains result-specific array of additional values
 	 * @param $guser User The user performing the rollback
 	 */
-	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
-		global $wgUseRCPatrol, $wgUser, $wgContLang;
-		$guser = is_null( $guser ) ? $wgUser : $guser;
+	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser ) {
+		global $wgUseRCPatrol, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
 
