@@ -10,11 +10,14 @@
  */
 class RevDel_RevisionList extends RevDel_List {
 	var $currentRevId;
-	var $type = 'revision';
-	var $idField = 'rev_id';
-	var $dateField = 'rev_timestamp';
-	var $authorIdField = 'rev_user';
-	var $authorNameField = 'rev_user_text';
+
+	public function getType() {
+		return 'revision';
+	}
+
+	public static function getRelationType() {
+		return 'rev_id';
+	}
 
 	/**
 	 * @param $db DatabaseBase
@@ -112,6 +115,22 @@ class RevDel_RevisionItem extends RevDel_Item {
 		$this->revision = new Revision( $row );
 	}
 
+	public function getIdField() {
+		return 'rev_id';
+	}
+
+	public function getTimestampField() {
+		return 'rev_timestamp';
+	}
+
+	public function getAuthorIdField() {
+		return 'rev_user';
+	}
+
+	public function getAuthorNameField() {
+		return 'rev_user_text';
+	}
+
 	public function canView() {
 		return $this->revision->userCan( Revision::DELETED_RESTRICTED );
 	}
@@ -170,7 +189,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	 * Overridden by RevDel_ArchiveItem.
 	 */
 	protected function getRevisionLink() {
-		$date = $this->getLang()->timeanddate( $this->revision->getTimestamp(), true );
+		$date = $this->list->getLang()->timeanddate( $this->revision->getTimestamp(), true );
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
@@ -227,11 +246,13 @@ class RevDel_RevisionItem extends RevDel_Item {
  * List for archive table items, i.e. revisions deleted via action=delete
  */
 class RevDel_ArchiveList extends RevDel_RevisionList {
-	var $type = 'archive';
-	var $idField = 'ar_timestamp';
-	var $dateField = 'ar_timestamp';
-	var $authorIdField = 'ar_user';
-	var $authorNameField = 'ar_user_text';
+	public function getType() {
+		return 'archive';
+	}
+
+	public static function getRelationType() {
+		return 'ar_timestamp';
+	}
 
 	/**
 	 * @param $db DatabaseBase
@@ -276,6 +297,22 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 			array( 'page' => $this->list->title->getArticleId() ) );
 	}
 
+	public function getIdField() {
+		return 'ar_timestamp';
+	}
+
+	public function getTimestampField() {
+		return 'ar_timestamp';
+	}
+
+	public function getAuthorIdField() {
+		return 'ar_user';
+	}
+
+	public function getAuthorNameField() {
+		return 'ar_user_text';
+	}
+
 	public function getId() {
 		# Convert DB timestamp to MW timestamp
 		return $this->revision->getTimestamp();
@@ -285,12 +322,13 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'archive',
 			array( 'ar_deleted' => $bits ),
-			array( 'ar_namespace' => $this->list->title->getNamespace(),
-				'ar_title'     => $this->list->title->getDBkey(),
+			array(
+				'ar_namespace' 	=> $this->list->title->getNamespace(),
+				'ar_title'     	=> $this->list->title->getDBkey(),
 				// use timestamp for index
-				'ar_timestamp' => $this->row->ar_timestamp,
-				'ar_rev_id'    => $this->row->ar_rev_id,
-				'ar_deleted' => $this->getBits()
+				'ar_timestamp' 	=> $this->row->ar_timestamp,
+				'ar_rev_id'    	=> $this->row->ar_rev_id,
+				'ar_deleted' 	=> $this->getBits()
 			),
 			__METHOD__ );
 		return (bool)$dbw->affectedRows();
@@ -298,7 +336,7 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 
 	protected function getRevisionLink() {
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-		$date = $this->getLang()->timeanddate( $this->revision->getTimestamp(), true );
+		$date = $this->list->getLang()->timeanddate( $this->revision->getTimestamp(), true );
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
@@ -336,6 +374,10 @@ class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
 			array( 'page' => $this->list->title->getArticleId() ) );
 	}
 
+	public function getIdField() {
+		return 'ar_rev_id';
+	}
+
 	public function getId() {
 		return $this->revision->getId();
 	}
@@ -356,11 +398,14 @@ class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
  * List for oldimage table items
  */
 class RevDel_FileList extends RevDel_List {
-	var $type = 'oldimage';
-	var $idField = 'oi_archive_name';
-	var $dateField = 'oi_timestamp';
-	var $authorIdField = 'oi_user';
-	var $authorNameField = 'oi_user_text';
+	public function getType() {
+		return 'oldimage';
+	}
+
+	public static function getRelationType() {
+		return 'oi_archive_name';
+	}
+
 	var $storeBatch, $deleteBatch, $cleanupBatch;
 
 	/**
@@ -442,6 +487,22 @@ class RevDel_FileItem extends RevDel_Item {
 		$this->file = RepoGroup::singleton()->getLocalRepo()->newFileFromRow( $row );
 	}
 
+	public function getIdField() {
+		return 'oi_archive_name';
+	}
+
+	public function getTimestampField() {
+		return 'oi_timestamp';
+	}
+
+	public function getAuthorIdField() {
+		return 'oi_user';
+	}
+
+	public function getAuthorNameField() {
+		return 'oi_user_text';
+	}
+
 	public function getId() {
 		$parts = explode( '!', $this->row->oi_archive_name );
 		return $parts[0];
@@ -506,7 +567,7 @@ class RevDel_FileItem extends RevDel_Item {
 	 * Overridden by RevDel_ArchivedFileItem.
 	 */
 	protected function getLink() {
-		$date = $this->getLang()->timeanddate( $this->file->getTimestamp(), true  );
+		$date = $this->list->getLang()->timeanddate( $this->file->getTimestamp(), true  );
 		if ( $this->isDeleted() ) {
 			# Hidden files...
 			if ( !$this->canViewContent() ) {
@@ -518,7 +579,8 @@ class RevDel_FileItem extends RevDel_Item {
 					array(
 						'target' => $this->list->title->getPrefixedText(),
 						'file'   => $this->file->getArchiveName(),
-						'token'  => $this->getUser()->editToken( $this->file->getArchiveName() )
+						'token'  => $this->list->getUser()->editToken(
+							$this->file->getArchiveName() )
 					)
 				);
 			}
@@ -567,11 +629,11 @@ class RevDel_FileItem extends RevDel_Item {
 		$data =
 			wfMsg(
 				'widthheight',
-				$this->getLang()->formatNum( $this->file->getWidth() ),
-				$this->getLang()->formatNum( $this->file->getHeight() )
+				$this->list->getLang()->formatNum( $this->file->getWidth() ),
+				$this->list->getLang()->formatNum( $this->file->getHeight() )
 			) .
 			' (' .
-			wfMsgExt( 'nbytes', 'parsemag', $this->getLang()->formatNum( $this->file->getSize() ) ) .
+			wfMsgExt( 'nbytes', 'parsemag', $this->list->getLang()->formatNum( $this->file->getSize() ) ) .
 			')';
 
 		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
@@ -583,11 +645,13 @@ class RevDel_FileItem extends RevDel_Item {
  * List for filearchive table items
  */
 class RevDel_ArchivedFileList extends RevDel_FileList {
-	var $type = 'filearchive';
-	var $idField = 'fa_id';
-	var $dateField = 'fa_timestamp';
-	var $authorIdField = 'fa_user';
-	var $authorNameField = 'fa_user_text';
+	public function getType() {
+		return 'filearchive';
+	}
+
+	public static function getRelationType() {
+		return 'fa_id';
+	}
 
 	/**
 	 * @param $db DatabaseBase
@@ -619,6 +683,22 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 		$this->file = ArchivedFile::newFromRow( $row );
 	}
 
+	public function getIdField() {
+		return 'fa_id';
+	}
+
+	public function getTimestampField() {
+		return 'fa_timestamp';
+	}
+
+	public function getAuthorIdField() {
+		return 'fa_user';
+	}
+
+	public function getAuthorNameField() {
+		return 'fa_user_text';
+	}
+
 	public function getId() {
 		return $this->row->fa_id;
 	}
@@ -637,7 +717,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 	}
 
 	protected function getLink() {
-		$date = $this->getLang()->timeanddate( $this->file->getTimestamp(), true  );
+		$date = $this->list->getLang()->timeanddate( $this->file->getTimestamp(), true  );
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 		$key = $this->file->getKey();
 		# Hidden files...
@@ -648,7 +728,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 				array(
 					'target' => $this->list->title->getPrefixedText(),
 					'file' => $key,
-					'token' => $this->getUser()->editToken( $key )
+					'token' => $this->list->getUser()->editToken( $key )
 				)
 			);
 		}
@@ -663,11 +743,13 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
  * List for logging table items
  */
 class RevDel_LogList extends RevDel_List {
-	var $type = 'logging';
-	var $idField = 'log_id';
-	var $dateField = 'log_timestamp';
-	var $authorIdField = 'log_user';
-	var $authorNameField = 'log_user_text';
+	public function getType() {
+		return 'logging';
+	}
+
+	public static function getRelationType() {
+		return 'log_id';
+	}
 
 	/**
 	 * @param $db DatabaseBase
@@ -707,6 +789,22 @@ class RevDel_LogList extends RevDel_List {
  * Item class for a logging table row
  */
 class RevDel_LogItem extends RevDel_Item {
+	public function getIdField() {
+		return 'log_id';
+	}
+
+	public function getTimestampField() {
+		return 'log_timestamp';
+	}
+
+	public function getAuthorIdField() {
+		return 'log_user';
+	}
+
+	public function getAuthorNameField() {
+		return 'log_user_text';
+	}
+
 	public function canView() {
 		return LogEventsList::userCan( $this->row, Revision::DELETED_RESTRICTED );
 	}
@@ -744,7 +842,7 @@ class RevDel_LogItem extends RevDel_Item {
 	}
 
 	public function getHTML() {
-		$date = htmlspecialchars( $this->getLang()->timeanddate( $this->row->log_timestamp ) );
+		$date = htmlspecialchars( $this->list->getLang()->timeanddate( $this->row->log_timestamp ) );
 		$paramArray = LogPage::extractParams( $this->row->log_params );
 		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
 
@@ -771,7 +869,7 @@ class RevDel_LogItem extends RevDel_Item {
 			$userLink = '<span class="history-deleted">' . $userLink . '</span>';
 		}
 		// Comment
-		$comment = $this->getLang()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
+		$comment = $this->list->getLang()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
 		if( LogEventsList::isDeleted($this->row,LogPage::DELETED_COMMENT) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}

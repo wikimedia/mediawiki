@@ -61,39 +61,39 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	static $allowedTypes = array(
 		'revision' => array(
-			'check-label' => 'revdelete-hide-text',
+			'check-label' 	=> 'revdelete-hide-text',
 			'deletion-bits' => Revision::DELETED_TEXT,
-			'success' => 'revdelete-success',
-			'failure' => 'revdelete-failure',
-			'list-class' => 'RevDel_RevisionList',
+			'success' 		=> 'revdelete-success',
+			'failure' 		=> 'revdelete-failure',
+			'list-class' 	=> 'RevDel_RevisionList',
 		),
 		'archive' => array(
-			'check-label' => 'revdelete-hide-text',
+			'check-label' 	=> 'revdelete-hide-text',
 			'deletion-bits' => Revision::DELETED_TEXT,
-			'success' => 'revdelete-success',
-			'failure' => 'revdelete-failure',
-			'list-class' => 'RevDel_ArchiveList',
+			'success' 		=> 'revdelete-success',
+			'failure' 		=> 'revdelete-failure',
+			'list-class' 	=> 'RevDel_ArchiveList',
 		),
 		'oldimage'=> array(
-			'check-label' => 'revdelete-hide-image',
+			'check-label' 	=> 'revdelete-hide-image',
 			'deletion-bits' => File::DELETED_FILE,
-			'success' => 'revdelete-success',
-			'failure' => 'revdelete-failure',
-			'list-class' => 'RevDel_FileList',
+			'success' 		=> 'revdelete-success',
+			'failure' 		=> 'revdelete-failure',
+			'list-class' 	=> 'RevDel_FileList',
 		),
 		'filearchive' => array(
-			'check-label' => 'revdelete-hide-image',
+			'check-label' 	=> 'revdelete-hide-image',
 			'deletion-bits' => File::DELETED_FILE,
-			'success' => 'revdelete-success',
-			'failure' => 'revdelete-failure',
-			'list-class' => 'RevDel_ArchivedFileList',
+			'success' 		=> 'revdelete-success',
+			'failure' 		=> 'revdelete-failure',
+			'list-class' 	=> 'RevDel_ArchivedFileList',
 		),
 		'logging' => array(
-			'check-label' => 'revdelete-hide-name',
+			'check-label'	=> 'revdelete-hide-name',
 			'deletion-bits' => LogPage::DELETED_ACTION,
-			'success' => 'logdelete-success',
-			'failure' => 'logdelete-failure',
-			'list-class' => 'RevDel_LogList',
+			'success' 		=> 'logdelete-success',
+			'failure' 		=> 'logdelete-failure',
+			'list-class'	=> 'RevDel_LogList',
 		),
 	);
 
@@ -258,7 +258,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function getLogQueryCond() {
 		$conds = array();
 		// Revision delete logs for these item
-		$conds['log_type'] = array('delete','suppress');
+		$conds['log_type'] = array( 'delete', 'suppress' );
 		$conds['log_action'] = $this->getList()->getLogAction();
 		$conds['ls_field'] = RevisionDeleter::getRelationType( $this->typeName );
 		$conds['ls_value'] = $this->ids;
@@ -328,7 +328,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function getList() {
 		if ( is_null( $this->list ) ) {
 			$class = $this->typeInfo['list-class'];
-			$this->list = new $class( $this, $this->targetObj, $this->ids );
+			$this->list = new $class( $this->getContext(), $this->targetObj, $this->ids );
 		}
 		return $this->list;
 	}
@@ -506,7 +506,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function submit() {
 		# Check edit token on submission
-		if( $this->submitClicked && !$this->getUser()->matchEditToken( $this->getRequest()->getVal('wpEditToken') ) ) {
+		$token = $this->getRequest()->getVal('wpEditToken');
+		if( $this->submitClicked && !$this->getUser()->matchEditToken( $token ) ) {
 			$this->getOutput()->addWikiMsg( 'sessionfailure' );
 			return false;
 		}

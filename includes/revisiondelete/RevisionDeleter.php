@@ -119,8 +119,7 @@ class RevisionDeleter {
 		}
 		if ( isset( SpecialRevisionDelete::$allowedTypes[$typeName] ) ) {
 			$class = SpecialRevisionDelete::$allowedTypes[$typeName]['list-class'];
-			$list = new $class( null, null, null );
-			return $list->getIdField();
+			return call_user_func( array( $class, 'getRelationType' ) );
 		} else {
 			return null;
 		}
