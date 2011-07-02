@@ -1250,7 +1250,7 @@ class WikiPage extends Page {
 			return false;
 		}
 
-		if ( !$this->mTitle->userCan( 'protect' ) ) {
+		if ( count( $this->mTitle->getUserPermissionsErrors( 'protect', $user ) ) ) {
 			wfDebug( "updateRestrictions failed: insufficient permissions\n" );
 			return false;
 		}
