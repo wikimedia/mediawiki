@@ -573,8 +573,9 @@ class RevDel_FileItem extends RevDel_Item {
 			if ( !$this->canViewContent() ) {
 				$link = $date;
 			} else {
+				$revdelete = SpecialPage::getTitleFor( 'Revisiondelete' );
 				$link = Linker::link(
-					$this->special->getTitle(),
+					$revdelete,
 					$date, array(),
 					array(
 						'target' => $this->list->title->getPrefixedText(),
@@ -857,8 +858,9 @@ class RevDel_LogItem extends RevDel_Item {
 		if( !$this->canView() ) {
 			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 		} else {
-			$action = LogPage::actionText( $this->row->log_type, $this->row->log_action, $title,
-				$this->special->getSkin(), $paramArray, true, true );
+			$skin = $this->list->getUser()->getSkin();
+			$action = LogPage::actionText( $this->row->log_type, $this->row->log_action,
+				$title, $skin, $paramArray, true, true );
 			if( $this->row->log_deleted & LogPage::DELETED_ACTION )
 				$action = '<span class="history-deleted">' . $action . '</span>';
 		}
