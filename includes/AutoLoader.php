@@ -264,6 +264,7 @@ $wgAutoloadLocalClasses = array(
 	'RevertAction' => 'includes/actions/RevertAction.php',
 	'RevertFileAction' => 'includes/actions/RevertAction.php',
 	'RevisiondeleteAction' => 'includes/actions/RevisiondeleteAction.php',
+	'RollbackAction' => 'includes/actions/RollbackAction.php',
 	'UnwatchAction' => 'includes/actions/WatchAction.php',
 	'WatchAction' => 'includes/actions/WatchAction.php',
 

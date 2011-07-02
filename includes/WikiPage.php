@@ -1719,7 +1719,7 @@ class WikiPage extends Page {
 			return $errors;
 		}
 
-		return $this->commitRollback( $user, $fromP, $summary, $bot, $resultDetails );
+		return $this->commitRollback( $fromP, $summary, $bot, $resultDetails, $user );
 	}
 
 	/**

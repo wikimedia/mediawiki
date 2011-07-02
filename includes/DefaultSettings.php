@@ -5063,6 +5063,7 @@ $wgActions = array(
 	'purge' => true,
 	'revert' => true,
 	'revisiondelete' => true,
+	'rollback' => true,
 	'unwatch' => true,
 	'watch' => true,
 );
