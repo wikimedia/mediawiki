@@ -521,7 +521,7 @@ $messages = array(
 'qbpageinfo'     => 'Seitendaten',
 'qbmyoptions'    => 'Meine Seiten',
 'qbspecialpages' => 'Spezialseiten',
-'faq'            => 'FAQ',
+'faq'            => 'Häufige Fragen',
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
@@ -1382,7 +1382,9 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'prefs-skin'                    => 'Benutzeroberfläche',
 'skin-preview'                  => 'Vorschau',
 'datedefault'                   => 'Standard',
+'prefs-beta'                    => 'Beta-Funktionen',
 'prefs-datetime'                => 'Datum und Zeit',
+'prefs-labs'                    => 'Experimentelle Labor-Funktionen',
 'prefs-personal'                => 'Benutzerdaten',
 'prefs-rc'                      => 'Letzte Änderungen',
 'prefs-watchlist'               => 'Beobachtungsliste',
