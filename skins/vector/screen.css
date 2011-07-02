@@ -422,13 +422,14 @@ div#mw-head h5 {
 		right: 0;
 		top: 0;
 		padding: 0;
-		padding-top: 0.2em;
+		padding-top: 0.3em;
 		padding-bottom: 0.2em;
 		padding-right: 0.4em;
 		margin: 0;
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
+		background-image: none;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#simpleSearch button#searchButton img {
