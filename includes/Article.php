@@ -126,18 +126,6 @@ class Article extends Page {
 	}
 
 	/**
-	 * Get the Title object this text redirects to
-	 *
-	 * @param $text string article content containing redirect info
-	 * @return mixed false, Title of in-wiki target, or string with URL
-	 * @deprecated since 1.17
-	 */
-	public function followRedirectText( $text ) {
-		// recurse through to only get the final target
-		return $this->getRedirectURL( Title::newFromRedirectRecurse( $text ) );
-	}
-
-	/**
 	 * Get the title object of the article
 	 * @return Title object of this page
 	 */
