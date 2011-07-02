@@ -7,6 +7,11 @@
  * to wrap bulk update operations.
  */
 abstract class RevDel_List extends Rev_List {
+	function __construct( RequestContext $context, Title $title, array $ids ) {
+		parent::__construct( $context, $title );
+		$this->ids = $ids;
+	}
+
 	/**
 	 * Get the DB field name associated with the ID list.
 	 * This used to populate the log_search table for finding log entries.

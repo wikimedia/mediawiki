@@ -14,9 +14,21 @@ abstract class Rev_List {
 
 	var $ids, $res, $current;
 
-	function __construct( RequestContext $context, Title $title, array $ids ) {
+	/**
+	 * Construct a revision list for a given title
+	 * @param $context RequestContext
+	 * @param $title Title
+	 */
+	function __construct( RequestContext $context, Title $title ) {
 		$this->context = $context;
 		$this->title = $title;
+	}
+
+	/**
+	 * Select items only where the ID is any of the specified values
+	 * @param $ids Array
+	 */
+	function filterByIds( array $ids ) {
 		$this->ids = $ids;
 	}
 
@@ -238,13 +250,17 @@ class RevisionList extends Rev_List {
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
-		$ids = array_map( 'intval', $this->ids );
-		return $db->select( array('revision','page'), '*',
-			array(
-				'rev_page' => $this->title->getArticleID(),
-				'rev_id'   => array_map( 'intval', $this->ids ),
-				'rev_page = page_id'
-			),
+		$conds = array(
+			'rev_page' => $this->title->getArticleID(),
+			'rev_page = page_id'
+		);
+		if ( $this->ids !== null ) {
+			$conds['rev_id'] = array_map( 'intval', $this->ids );
+		}
+		return $db->select(
+			array( 'revision', 'page' ),
+			'*',
+			$conds,
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id DESC' )
 		);
