@@ -9,6 +9,7 @@
  *
  * @author Anton008
  * @author Brest
+ * @author Bugoslav
  * @author Dalibor Bosits
  * @author Demicx
  * @author Dnik
@@ -390,7 +391,7 @@ $messages = array(
 'august'        => 'kolovoza',
 'september'     => 'rujna',
 'october'       => 'listopada',
-'november'      => 'studenog',
+'november'      => 'studenoga',
 'december'      => 'prosinca',
 'january-gen'   => 'siječnja',
 'february-gen'  => 'veljače',
@@ -402,7 +403,7 @@ $messages = array(
 'august-gen'    => 'kolovoza',
 'september-gen' => 'rujna',
 'october-gen'   => 'listopada',
-'november-gen'  => 'studenog',
+'november-gen'  => 'studenoga',
 'december-gen'  => 'prosinca',
 'jan'           => 'sij',
 'feb'           => 'velj',
@@ -1314,7 +1315,9 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'prefs-skin'                    => 'Izgled',
 'skin-preview'                  => 'Pregled',
 'datedefault'                   => 'Nemoj postaviti',
+'prefs-beta'                    => 'Beta mogućnosti',
 'prefs-datetime'                => 'Datum i vrijeme',
+'prefs-labs'                    => 'Labs mogućnosti',
 'prefs-personal'                => 'Podaci o suradniku',
 'prefs-rc'                      => 'Nedavne promjene i kratki članci',
 'prefs-watchlist'               => 'Praćene stranice',
@@ -1840,7 +1843,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 'duplicatesoffile'          => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 sljedeće datoteke su kopije|$1 sljedećih datoteka su kopije}} ove datoteke ([[Special:FileDuplicateSearch/$2|više detalja]]):',
 'sharedupload'              => 'Ova je datoteka postavljena na $1 i mogu je koristiti ostali projekti.',
 'sharedupload-desc-there'   => 'Ova datoteka je s $1 i mogu je koristiti drugi projekti. Pogledajte [$2 stranicu s opisom datoteke] za dodatne informacije.',
-'sharedupload-desc-here'    => 'Ova datoteka je s $1 i mogu je koristiti drugi projekti. Opis s njezine [$2 stranice s opisom datoteke] prikazan je ispod.',
+'sharedupload-desc-here'    => 'Ova datoteka je sa $1 i mogu je koristiti drugi projekti. Opis s njezine [$2 stranice s opisom datoteke] prikazan je ispod.',
 'filepage-nofile'           => 'Ne postoji datoteka s ovim imenom.',
 'filepage-nofile-link'      => 'Ne postoji datoteka s ovim imenom, ali možete je [$1 postaviti].',
 'uploadnewversion-linktext' => 'Postavi novu inačicu datoteke',
