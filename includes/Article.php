@@ -1229,6 +1229,13 @@ class Article extends Page {
 	}
 
 	/**
+	 * User interface for rollback operations
+	 */
+	public function rollback() {
+		Action::factory( 'rollback', $this )->show();
+	}
+
+	/**
 	 * Output a redirect back to the article.
 	 * This is typically used after an edit.
 	 *
@@ -1612,92 +1619,6 @@ class Article extends Page {
 			} else {
 				$wgOut->showFatalError( $error );
 			}
-		}
-	}
-
-	/**
-	 * User interface for rollback operations
-	 */
-	public function rollback() {
-		global $wgUser, $wgOut, $wgRequest;
-
-		$details = null;
-
-		$result = $this->mPage->doRollback(
-			$wgRequest->getVal( 'from' ),
-			$wgRequest->getText( 'summary' ),
-			$wgRequest->getVal( 'token' ),
-			$wgRequest->getBool( 'bot' ),
-			$details
-		);
-
-		if ( in_array( array( 'actionthrottledtext' ), $result ) ) {
-			$wgOut->rateLimited();
-			return;
-		}
-
-		if ( isset( $result[0][0] ) && ( $result[0][0] == 'alreadyrolled' || $result[0][0] == 'cantrollback' ) ) {
-			$wgOut->setPageTitle( wfMsg( 'rollbackfailed' ) );
-			$errArray = $result[0];
-			$errMsg = array_shift( $errArray );
-			$wgOut->addWikiMsgArray( $errMsg, $errArray );
-
-			if ( isset( $details['current'] ) ) {
-				$current = $details['current'];
-
-				if ( $current->getComment() != '' ) {
-					$wgOut->addWikiMsgArray( 'editcomment', array(
-						Linker::formatComment( $current->getComment() ) ), array( 'replaceafter' ) );
-				}
-			}
-
-			return;
-		}
-
-		# Display permissions errors before read-only message -- there's no
-		# point in misleading the user into thinking the inability to rollback
-		# is only temporary.
-		if ( !empty( $result ) && $result !== array( array( 'readonlytext' ) ) ) {
-			# array_diff is completely broken for arrays of arrays, sigh.
-			# Remove any 'readonlytext' error manually.
-			$out = array();
-			foreach ( $result as $error ) {
-				if ( $error != array( 'readonlytext' ) ) {
-					$out [] = $error;
-				}
-			}
-			$wgOut->showPermissionsErrorPage( $out );
-
-			return;
-		}
-
-		if ( $result == array( array( 'readonlytext' ) ) ) {
-			$wgOut->readOnlyPage();
-
-			return;
-		}
-
-		$current = $details['current'];
-		$target = $details['target'];
-		$newId = $details['newid'];
-		$wgOut->setPageTitle( wfMsg( 'actioncomplete' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-
-		if ( $current->getUserText() === '' ) {
-			$old = wfMsg( 'rev-deleted-user' );
-		} else {
-			$old = Linker::userLink( $current->getUser(), $current->getUserText() )
-				. Linker::userToolLinks( $current->getUser(), $current->getUserText() );
-		}
-
-		$new = Linker::userLink( $target->getUser(), $target->getUserText() )
-			. Linker::userToolLinks( $target->getUser(), $target->getUserText() );
-		$wgOut->addHTML( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
-		$wgOut->returnToMain( false, $this->getTitle() );
-
-		if ( !$wgRequest->getBool( 'hidediff', false ) && !$wgUser->getBoolOption( 'norollbackdiff', false ) ) {
-			$de = new DifferenceEngine( $this->getTitle(), $current->getId(), $newId, false, true );
-			$de->showDiff( '', '' );
 		}
 	}
 

@@ -464,7 +464,6 @@ class MediaWiki {
 				wfProfileOut( __METHOD__ . '-raw' );
 				break;
 			case 'delete':
-			case 'rollback':
 			case 'protect':
 			case 'unprotect':
 			case 'render':
