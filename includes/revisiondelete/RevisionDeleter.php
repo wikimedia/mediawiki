@@ -163,7 +163,7 @@ class RevisionDeleter {
 	public static function getLogLinks( $title, $paramArray, $skin, $messages ) {
 		global $wgLang;
 
-		if( count($paramArray) >= 2 ) {
+		if ( count( $paramArray ) >= 2 ) {
 			// Different revision types use different URL params...
 			$originalKey = $key = $paramArray[0];
 			// $paramArray[1] is a CSV of the IDs
@@ -171,19 +171,10 @@ class RevisionDeleter {
 
 			$revert = array();
 
-			// For if undeleted revisions are found amidst deleted ones.
-			$undeletedRevisions = array();
-
-			// This is not going to work if some revs are deleted and some
-			//  aren't.
-			if ($key == 'revision') {
-				// Nothing to do; deleted revisions can still be looked up by ID.
-			}
-
 			// Diff link for single rev deletions
-			if( count($Ids) == 1 && !count($undeletedRevisions) ) {
+			if ( count( $Ids ) == 1 ) {
 				// Live revision diffs...
-				if( in_array( $key, array( 'oldid', 'revision' ) ) ) {
+				if ( in_array( $key, array( 'oldid', 'revision' ) ) ) {
 					$revert[] = $skin->link(
 						$title,
 						$messages['diff'],
@@ -195,7 +186,7 @@ class RevisionDeleter {
 						array( 'known', 'noclasses' )
 					);
 				// Deleted revision diffs...
-				} elseif( in_array( $key, array( 'artimestamp','archive' ) ) ) {
+				} elseif ( in_array( $key, array( 'artimestamp','archive' ) ) ) {
 					$revert[] = $skin->link(
 						SpecialPage::getTitleFor( 'Undelete' ),
 						$messages['diff'],
@@ -211,52 +202,17 @@ class RevisionDeleter {
 			}
 
 			// View/modify link...
-			if ( count( $undeletedRevisions ) ) {
-				// @todo FIXME: THIS IS A HORRIBLE HORRIBLE HACK AND SHOULD DIE
-				// It's not possible to pass a list of both deleted and
-				// undeleted revisions to SpecialRevisionDelete, so we're
-				// stuck with two links. See bug 23363.
-				$restoreLinks = array();
-
-				$restoreLinks[] = $skin->link(
-					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					$messages['revdel-restore-visible'],
-					array(),
-					array(
-						'target' => $title->getPrefixedText(),
-						'type' => $originalKey,
-						'ids' => implode( ',', $undeletedRevisions ),
-					),
-					array( 'known', 'noclasses' )
-				);
-
-				$restoreLinks[] = $skin->link(
-					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					$messages['revdel-restore-deleted'],
-					array(),
-					array(
-						'target' => $title->getPrefixedText(),
-						'type' => $key,
-						'ids' => implode(',', $Ids),
-					),
-					array( 'known', 'noclasses' )
-				);
-
-				$revert[] = $messages['revdel-restore'] . ' [' .
-						$wgLang->pipeList( $restoreLinks ) . ']';
-			} else {
-				$revert[] = $skin->link(
-					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					$messages['revdel-restore'],
-					array(),
-					array(
-						'target' => $title->getPrefixedText(),
-						'type' => $key,
-						'ids' => implode(',', $Ids),
-					),
-					array( 'known', 'noclasses' )
-				);
-			}
+			$revert[] = $skin->link(
+				SpecialPage::getTitleFor( 'Revisiondelete' ),
+				$messages['revdel-restore'],
+				array(),
+				array(
+					'target' => $title->getPrefixedText(),
+					'type' => $key,
+					'ids' => implode(',', $Ids),
+				),
+				array( 'known', 'noclasses' )
+			);
 
 			// Pipe links
 			return wfMsg( 'parentheses', $wgLang->pipeList( $revert ) );
