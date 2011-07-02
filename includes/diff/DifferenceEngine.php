@@ -222,12 +222,10 @@ CONTROL;
 		$wgOut->setArticleFlag( false );
 		if ( !$this->loadRevisionData() ) {
 			// Sounds like a deleted revision... Let's see what we can do.
-			$deletedLink = $this->deletedLink( $this->mNewid );
-
 			$t = $this->mTitle->getPrefixedText();
 			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ),
-					$this->deletedIdMarker( $this->mOldid ),
-					$this->deletedIdMarker( $this->mNewid ) );
+				$this->deletedIdMarker( $this->mOldid ),
+				$this->deletedIdMarker( $this->mNewid ) );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
 			$wgOut->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", "<span class='plainlinks'>$d</span>" );
 			wfProfileOut( __METHOD__ );
