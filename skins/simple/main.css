@@ -259,19 +259,13 @@ div.tocindent {
   border-bottom: solid 1px black;
 }
 
-div.floatright, table.floatright {
-    clear: right;
-    float: right;
+/* @noflip */div.floatright, table.floatright {
     margin: 0;
-    position: relative;
     border-width: 0.5em 0 0.8em 1.4em;
 }
 div.floatright p { font-style: italic; }
-div.floatleft, table.floatleft {
-    float: left;
-    clear: left;
+/* @noflip */div.floatleft, table.floatleft {
     margin: 0.3em 0.5em 0.5em 0;
-    position: relative;
     border-width: 0.5em 1.4em 0.8em 0;
 }
 div.floatleft p { font-style: italic; }
@@ -302,14 +296,10 @@ div.magnify a, div.magnify img {
     border: none !important;
     background: none !important;
 }
-div.tright {
-    clear: right;
-    float: right;
+/* @noflip */div.tright {
     border-width: 0.5em 0 0.8em 1.4em;
 }
-div.tleft {
-    float: left;
-    clear: left;
+/* @noflip */div.tleft {
     margin-right:0.5em;
     border-width: 0.5em 1.4em 0.8em 0;
 }

@@ -373,11 +373,7 @@ table.small {
 }
 
 /* images */
-/* @noflip */
-div.floatright, table.floatright {
-	clear: right;
-	float: right;
-	position: relative;
+/* @noflip */div.floatright, table.floatright {
 	margin: 0 0 .5em .5em;
 	border: 0;
 /*
@@ -386,11 +382,7 @@ div.floatright, table.floatright {
 */
 }
 div.floatright p { font-style: italic; }
-/* @noflip */
-div.floatleft, table.floatleft {
-	float: left;
-	clear: left;
-	position: relative;
+/* @noflip */div.floatleft, table.floatleft {
 	margin: 0 .5em .5em 0;
 	border: 0;
 /*
@@ -433,16 +425,10 @@ div.magnify a, div.magnify img {
 	border: none !important;
 	background: none !important;
 }
-/* @noflip */
-div.tright {
-	clear: right;
-	float: right;
+/* @noflip */div.tright {
 	margin: .5em 0 1.3em 1.4em;
 }
-/* @noflip */
-div.tleft {
-	float: left;
-	clear: left;
+/* @noflip */div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
 img.thumbborder {
