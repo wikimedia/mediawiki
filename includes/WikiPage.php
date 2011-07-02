@@ -2428,6 +2428,57 @@ class WikiPage extends Page {
 		}
 	}
 
+	/**
+	 * Updates cascading protections
+	 *
+	 * @param $parserOutput ParserOutput object for the current version
+	 **/
+	public function doCascadeProtectionUpdates( ParserOutput $parserOutput ) {
+		if ( wfReadOnly() || !$this->mTitle->areRestrictionsCascading() ) {
+			return;
+		}
+
+		// templatelinks table may have become out of sync,
+		// especially if using variable-based transclusions.
+		// For paranoia, check if things have changed and if
+		// so apply updates to the database. This will ensure
+		// that cascaded protections apply as soon as the changes
+		// are visible.
+
+		# Get templates from templatelinks
+		$id = $this->mTitle->getArticleID();
+
+		$tlTemplates = array();
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'templatelinks' ),
+			array( 'tl_namespace', 'tl_title' ),
+			array( 'tl_from' => $id ),
+			__METHOD__
+		);
+
+		foreach ( $res as $row ) {
+			$tlTemplates["{$row->tl_namespace}:{$row->tl_title}"] = true;
+		}
+
+		# Get templates from parser output.
+		$poTemplates = array();
+		foreach ( $parserOutput->getTemplates() as $ns => $templates ) {
+			foreach ( $templates as $dbk => $id ) {
+				$poTemplates["$ns:$dbk"] = true;
+			}
+		}
+
+		# Get the diff
+		$templates_diff = array_diff_key( $poTemplates, $tlTemplates );
+
+		if ( count( $templates_diff ) > 0 ) {
+			# Whee, link updates time.
+			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
+			$u->doUpdate();
+		}
+	}
+
 	/*
 	* @deprecated since 1.19
 	*/
