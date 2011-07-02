@@ -183,10 +183,10 @@
 				// Unknown, so we assume it's working
 				return true;
 			}
-			var name = map[dir][profile.name];
-			for ( var condition in name ) {
-				var op = name[condition][0];
-				var val = name[condition][1];
+			var conditions = map[dir][profile.name];
+			for ( var i = 0; i < conditions.length; i++ ) {
+				var op = conditions[i][0];
+				var val = conditions[i][1];
 				if ( val === false ) {
 					return false;
 				} else if ( typeof val == 'string' ) {
