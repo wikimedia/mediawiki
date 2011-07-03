@@ -1055,7 +1055,9 @@ $3 द्वारा देल कारण अछि ''$2''",
 'prefs-skin'                    => 'रूप',
 'skin-preview'                  => 'पूर्वावलोकन',
 'datedefault'                   => 'कोनो मोनपसंद नै',
+'prefs-beta'                    => 'द्वितीय-परीक्षा गुण सभ',
 'prefs-datetime'                => 'दिन आ तिथि',
+'prefs-labs'                    => 'प्रायोगिक गुण सभ',
 'prefs-personal'                => 'प्रयोक्ता परिचय',
 'prefs-rc'                      => 'हालक परिवर्तन',
 'prefs-watchlist'               => 'साकांक्ष-सूची',
@@ -2165,11 +2167,12 @@ $1',
 'undelete-show-file-submit'    => 'हँ',
 
 # Namespace form on various pages
-'namespace'             => 'चेन्हासी समूह',
-'invert'                => 'उनटा चयन',
-'tooltip-invert'        => 'ऐ बक्साकेँ सही करू पन्ना परिवर्तनकेँ नुकेबा लेल चयनित नामस्थानक भीतर (आ संग लागल नामस्थान जँ सही कएल अछि तखन)',
-'namespace_association' => 'सम्बद्ध नामस्थान',
-'blanknamespace'        => '(मुख्य)',
+'namespace'                     => 'चेन्हासी समूह',
+'invert'                        => 'उनटा चयन',
+'tooltip-invert'                => 'ऐ बक्साकेँ सही करू पन्ना परिवर्तनकेँ नुकेबा लेल चयनित नामस्थानक भीतर (आ संग लागल नामस्थान जँ सही कएल अछि तखन)',
+'namespace_association'         => 'सम्बद्ध नामस्थान',
+'tooltip-namespace_association' => 'ऐ बक्साकेँ सही करू जइसँ वार्ता आ विषय नामस्थान समाहित कएल जा सकए चुनल नामस्थानमे',
+'blanknamespace'                => '(मुख्य)',
 
 # Contributions
 'contributions'       => 'प्रयोक्ताक योगदान सभ',
@@ -2464,9 +2467,21 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 अद्यतन वृतलेख उल्लेख नीचाँ सन्दर्भ लेल देल जा रहल अछि:",
 'semiprotectedpagemovewarning' => "'''नोट:''' ई पन्ना संरक्षित अछि से खाली पंजीकृत प्रयोक्ता एकरा हटा सकैत छथि।
 अद्यतन वृतलेख उल्लेख नीचाँ सन्दर्भ लेल देल जा रहल अछि:",
+'move-over-sharedrepo'         => '[[:$1]] अछि एकटा साझी बखारीमे। कोनो संचिकाकेँ ऐ नामसँ अनलापर साझीबला एकटा संचिका मेटा जाएत।',
+'file-exists-sharedrepo'       => 'साझी बखारीमे ऐ नामसँ पहिनहियेसँ एकटा संचिका अछि।
+कृपा कऽ दोसर नाम चुनू।',
 
 # Export
 'export'            => 'पन्ना सभकेँ पठाउ',
+'exporttext'        => 'अहाँ पाठ आ कोनो पन्ना/ वा पन्ना-सभक सम्पादन इतिहासकेँ दोसर ठाम कोनो एक्स.एम.एल. संचिकामे लपेट कऽ पठा सकै छी।
+ई कोनो दोसर विकीमे मीडियाविकीक प्रयोग कऽ [[Special:Import|import page]] द्वारा आयात कएल जा सकैए।
+
+पन्ना सभक निर्यात लेल, नीचाँक पाठ बक्शामे शीर्षक सभ भरू, प्रति पाँती एक शीर्षक, आ चुनू जे अहाँ अखुनका आ पहिलुका सभटा संशोधन राखऽ चाहै छी, पन्ना इतिहास पाँतीक संग, आकि अखुनका संशोधन पछिला सम्पादनक सूचनाक संग।
+
+बादबला स्थितिमे अहाँ एकटा लागिक प्रयोग कऽ सकै छी, जेना "[[{{MediaWiki:Mainpage}}]]" पन्ना लेल [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]।',
+'exportcuronly'     => 'अखुनका संशोधन मात्र लिअ, पूरा इतिहास नै।',
+'exportnohistory'   => "----
+'''सूचना:''' परिणाम कुशलताकेँ देखैत पन्नाक सम्पूर्ण इतिहासक निर्यात अशक्त कएल गेल अछि।",
 'export-submit'     => 'निर्यात',
 'export-addcattext' => 'अहि श्रेणी केर पन्ना जोडू',
 'export-addcat'     => 'जोडू',
@@ -2474,11 +2489,15 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'export-addns'      => 'जोडू',
 'export-download'   => 'संचिका रूपमे संरक्षण करू',
 'export-templates'  => 'सभटा नमूना शामिल करू',
+'export-pagelinks'  => 'लागिबला पन्ना सभकेँ एतेक तह धरि राखू:',
 
 # Namespace 8 related
 'allmessages'                   => 'प्रणालीक सन्देश',
 'allmessagesname'               => 'नाम',
 'allmessagesdefault'            => 'पूर्वनिर्धारित संदेश पाठ',
+'allmessagescurrent'            => 'अखुनका संदेश पाठ',
+'allmessagestext'               => 'ई मीडियाविकी नामस्थानमे उपलब्ध संस्थागत संदेशक सूची छी।
+कृपा कऽ देखू [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] आ [http://translatewiki.net translatewiki.net] जँ अहाँ मीडियाविकीक स्थानिकीकरणक मूलक अनुवादमे योगदान करए चाहै छी।',
 'allmessagesnotsupportedDB'     => "ई पन्ना प्रयोगमे नै आनल जा सकैए कारण '''\$wgUseDatabaseMessages''' अशक्त कएल अछि।",
 'allmessages-filter-legend'     => 'चलनी',
 'allmessages-filter'            => 'अपन हिसाबे अनुकूलित कऽ छाँटू:',
@@ -2545,15 +2564,23 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'import-invalid-interwiki'   => 'विशिष्ट विकीसँ आयात नै कऽ सकै छी।',
 
 # Import log
-'importlogpage' => 'लॉगक आयात',
+'importlogpage'                    => 'लॉगक आयात',
+'importlogpagetext'                => 'पन्ना सभक प्रशासनिक आयात दोसर विकीक सम्पादन इतिहासक संग।',
+'import-logentry-upload'           => '[[$1]] आयात केलौं संचिका उपारोपण द्वारा',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|सुधार|सुधार सभ}}',
+'import-logentry-interwiki'        => '$1 क विकीअन्तरण',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|सुधार|सुधार सभ}} $2 सँ',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'अहाँक खेसरा पन्ना',
+'tooltip-pt-anonuserpage'         => 'सम्पाद्न कएल जा रहल स्थानक  अनिकेतक प्रयोक्ता पन्ना',
 'tooltip-pt-mytalk'               => 'अहाँक वार्त्ता पृष्ठ',
+'tooltip-pt-anontalk'             => 'ऐ अनिकेतसँ भेल सम्पादनक वार्ता',
 'tooltip-pt-preferences'          => 'हमर मोनपसंद',
 'tooltip-pt-watchlist'            => 'पन्ना सभ जकर परिवर्त्तन पर अहाँक नजरि अछि',
 'tooltip-pt-mycontris'            => 'अहाँक योगदानक सूची',
 'tooltip-pt-login'                => 'लॉग इन करब नीक, परञ्च आवश्यक नहि.',
+'tooltip-pt-anonlogin'            => 'सम्प्रवेश करब नीक, परञ्च, आवश्यक नै।',
 'tooltip-pt-logout'               => 'फेर आयब',
 'tooltip-ca-talk'                 => 'विषयसूचीक पन्नाक संबंधमे वर्त्तालाप',
 'tooltip-ca-edit'                 => 'अहाँ एहि पन्नाकेँ संपादित कए सकैत छी। कृपया सुरक्षित करबासँ पहिने पूर्वप्रदर्शन बटम उपयोग करू।',
@@ -2564,6 +2591,7 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'tooltip-ca-protect'              => 'ऐ पन्नाकेँ बचाउ',
 'tooltip-ca-unprotect'            => 'ऐ पन्नाक रक्षा कवच बदलू',
 'tooltip-ca-delete'               => 'ऐ पन्नाकेँ मेटाउ',
+'tooltip-ca-undelete'             => 'ई पन्ना मेटेबासँ पहिने भेल सम्पादन वापस करू',
 'tooltip-ca-move'                 => 'ऐ पृष्ठकेँ हटाउ',
 'tooltip-ca-watch'                => 'आइ पन्नाकेँ अपन साकांक्षसूचीमे राखू',
 'tooltip-ca-unwatch'              => 'ऐ पन्नाकेँ हमर साकांक्ष सूचीसँ हटाउ',
@@ -2594,6 +2622,7 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'tooltip-ca-nstab-special'        => 'ई एकटा विशिष्ट पन्ना छी, अहाँ अही पन्नाकेँ संपादित नै कऽ सकै छी',
 'tooltip-ca-nstab-project'        => 'परियोजना पन्ना देखू',
 'tooltip-ca-nstab-image'          => 'पन्नाक पृष्ठ देखू',
+'tooltip-ca-nstab-mediawiki'      => 'प्रणालीक संदेश देखू',
 'tooltip-ca-nstab-template'       => 'नमूना देखू',
 'tooltip-ca-nstab-help'           => 'सहायता पृष्ठ देखू',
 'tooltip-ca-nstab-category'       => 'संवर्ग पन्ना देखू',

@@ -223,7 +223,7 @@ $messages = array(
 'vector-action-move'             => 'Treslladar',
 'vector-action-protect'          => 'Protexer',
 'vector-action-undelete'         => 'Des-desaniciar',
-'vector-action-unprotect'        => 'Desprotexer',
+'vector-action-unprotect'        => 'Camudar la proteición',
 'vector-simplesearch-preference' => 'Activar suxerencies de gueta enantaes (piel Vector namái)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Editar',
@@ -260,8 +260,8 @@ $messages = array(
 'protect'           => 'Protexer',
 'protect_change'    => 'camudar',
 'protectthispage'   => 'Protexer esta páxina',
-'unprotect'         => 'Desprotexer',
-'unprotectthispage' => 'Desprotexer esta páxina',
+'unprotect'         => 'Camudar la proteición',
+'unprotectthispage' => 'Camudar la proteición desta páxina',
 'newpage'           => 'Páxina nueva',
 'talkpage'          => 'Aldericar sobre esta páxina',
 'talkpagelinktext'  => 'Alderique',
@@ -2013,7 +2013,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'enotif_body'                  => 'Estimáu $WATCHINGUSERNAME,
 
 
-La páxina de {{SITENAME}} $PAGETITLE foi $CHANGEDORCREATED el $PAGEEDITDATE por $PAGEEDITOR, vete $PAGETITLE_URL pa ver la versión actual.
+La páxina de {{SITENAME}} $PAGETITLE foi $CHANGEDORCREATED el $PAGEEDITDATE por $PAGEEDITOR, mira $PAGETITLE_URL pa ver la versión actual.
 
 $NEWPAGE
 
@@ -2023,11 +2023,14 @@ Ponte\'n contautu col editor:
 corréu: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-En casu de producise más cambeos, nun habrá más notificaciones a nun ser que visites esta páxina. Tamién podríes restablecer na to llista de vixilancia los marcadores de notificación de toles páxines que tengas vixilaes.
+En casu de producise más cambeos, nun habrá más notificaciones a nun ser que visites esta páxina. Tamién podríes reaniciar na to llista de vixilancia los marcadores de notificación de toles páxines que tengas vixilaes.
 
-             El to abertable sistema de notificación de {{SITENAME}}
+El to abertable sistema de notificación de {{SITENAME}}
 
 --
+Pa camudar les preferencies d\'avisos per corréu, visita
+{{fullurl:{{#special:Preferences}}}}
+
 Pa camudar la configuración de la to llista de vixilancia, visita
 {{fullurl:{{#special:EditWatchlist}}}}
 
@@ -2096,10 +2099,11 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 
 # Protect
 'protectlogpage'              => 'Rexistru de proteiciones',
-'protectlogtext'              => 'Esti ye un rexistru de les páxines candaes y descandaes. Consulta la [[Special:ProtectedPages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
+'protectlogtext'              => 'Darréu ta un rexistru de les protecciones de páxines.
+Consulta la [[Special:ProtectedPages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
 'protectedarticle'            => 'protexó $1',
 'modifiedarticleprotection'   => 'camudó\'l nivel de proteición de "[[$1]]"',
-'unprotectedarticle'          => 'desprotexó "[[$1]]"',
+'unprotectedarticle'          => 'quitó-y la protección a "[[$1]]"',
 'movedarticleprotection'      => 'treslladó los parámetros de proteición dende "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Protexendo "$1"',
 'prot_1movedto2'              => '[[$1]] treslladáu a [[$2]]',
@@ -2250,7 +2254,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'nolinkshere-ns'           => "Nenguna páxina enllaza a '''[[:$1]]''' nel espaciu de nome conseñáu.",
 'isredirect'               => 'páxina redirixida',
 'istemplate'               => 'inclusión',
-'isimage'                  => "enllaz d'imaxe",
+'isimage'                  => 'enllaz al ficheru',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|anteriores $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|siguiente|siguientes $1}}',
 'whatlinkshere-links'      => '← enllaces',
@@ -2619,7 +2623,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'tooltip-ca-viewsource'           => 'Esta páxina ta protexida. Pues ver el so códigu fonte.',
 'tooltip-ca-history'              => "Versiones antigües d'esta páxina.",
 'tooltip-ca-protect'              => 'Protexe esta páxina',
-'tooltip-ca-unprotect'            => 'Desprotexer esta páxina',
+'tooltip-ca-unprotect'            => 'Camudar la proteición desta páxina',
 'tooltip-ca-delete'               => 'Esborra esta páxina',
 'tooltip-ca-undelete'             => 'Restaura les ediciones feches nesta páxina enantes de que fuera esborrada',
 'tooltip-ca-move'                 => 'Tresllada esta páxina',
