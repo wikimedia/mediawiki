@@ -40,7 +40,7 @@ window.mediaWiki = new ( function( $ ) {
 	 * If selection was an array, returns an object of key/values (value is null if not found),
 	 * If selection was not passed or invalid, will return the 'values' object member (be careful as
 	 * objects are always passed by reference in JavaScript!).
-	 * @return Map
+	 * @return Values as a string or object, null if invalid/inexistant.
 	 */
 	Map.prototype.get = function( selection, fallback ) {
 		if ( $.isArray( selection ) ) {
@@ -59,7 +59,11 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return this.values[selection];
 		}
-		return this.values;
+		if ( selection === undefined ) {
+			return this.values;
+		} else {
+			return null; // invalid selection key
+		}
 	};
 
 	/**
