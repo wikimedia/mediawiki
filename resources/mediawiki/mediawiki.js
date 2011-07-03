@@ -52,7 +52,7 @@ window.mediaWiki = new ( function( $ ) {
 			return results;
 		} else if ( typeof selection === 'string' ) {
 			if ( this.values[selection] === undefined ) {
-				if ( typeof fallback !== 'undefined' ) {
+				if ( fallback !== undefined ) {
 					return fallback;
 				}
 				return null;
@@ -75,7 +75,7 @@ window.mediaWiki = new ( function( $ ) {
 				this.values[s] = selection[s];
 			}
 			return true;
-		} else if ( typeof selection === 'string' && typeof value !== 'undefined' ) {
+		} else if ( typeof selection === 'string' && value !== undefined ) {
 			this.values[selection] = value;
 			return true;
 		}
@@ -116,7 +116,7 @@ window.mediaWiki = new ( function( $ ) {
 		this.format = 'parse';
 		this.map = map;
 		this.key = key;
-		this.parameters = typeof parameters === 'undefined' ? [] : $.makeArray( parameters );
+		this.parameters = parameters === undefined ? [] : $.makeArray( parameters );
 		return this;
 	}
 
@@ -367,7 +367,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * Recursively resolves dependencies and detects circular references
 		 */
 		function recurse( module, resolved, unresolved ) {
-			if ( typeof registry[module] === 'undefined' ) {
+			if ( registry[module] === undefined ) {
 				throw new Error( 'Unknown dependency: ' + module );
 			}
 			// Resolves dynamic loader function and replaces it with its own results
@@ -441,7 +441,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// If called without a list of modules, build and use a list of all modules
 			var list = [], module;
-			if ( typeof modules === 'undefined' ) {
+			if ( modules === undefined ) {
 				modules = [];
 				for ( module in registry ) {
 					modules[modules.length] = module;
@@ -450,7 +450,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Build a list of modules which are in one of the specified states
 			for ( var s = 0; s < states.length; s++ ) {
 				for ( var m = 0; m < modules.length; m++ ) {
-					if ( typeof registry[modules[m]] === 'undefined' ) {
+					if ( registry[modules[m]] === undefined ) {
 						// Module does not exist
 						if ( states[s] == 'undefined' ) {
 							// OK, undefined
@@ -475,7 +475,7 @@ window.mediaWiki = new ( function( $ ) {
 		 */
 		function execute( module, callback ) {
 			var _fn = 'mw.loader::execute> ';
-			if ( typeof registry[module] === 'undefined' ) {
+			if ( registry[module] === undefined ) {
 				throw new Error( 'Module has not been registered yet: ' + module );
 			} else if ( registry[module].state === 'registered' ) {
 				throw new Error( 'Module has not been requested from the server yet: ' + module );
@@ -837,7 +837,7 @@ window.mediaWiki = new ( function( $ ) {
 			if ( typeof module !== 'string' ) {
 				throw new Error( 'module must be a string, not a ' + typeof module );
 			}
-			if ( typeof registry[module] !== 'undefined' ) {
+			if ( registry[module] !== undefined ) {
 				throw new Error( 'module already implemented: ' + module );
 			}
 			// List the module as registered
@@ -845,7 +845,7 @@ window.mediaWiki = new ( function( $ ) {
 				'state': 'registered',
 				'group': typeof group === 'string' ? group : null,
 				'dependencies': [],
-				'version': typeof version !== 'undefined' ? parseInt( version, 10 ) : 0
+				'version': version !== undefined ? parseInt( version, 10 ) : 0
 			};
 			if ( typeof dependencies === 'string' ) {
 				// Allow dependencies to be given as a single module name
@@ -886,13 +886,11 @@ window.mediaWiki = new ( function( $ ) {
 				throw new Error( 'msgs must be an object, not a ' + typeof msgs );
 			}
 			// Automatically register module
-			if ( typeof registry[module] === 'undefined' ) {
+			if ( registry[module] === undefined ) {
 				mw.loader.register( module );
 			}
 			// Check for duplicate implementation
-			if ( typeof registry[module] !== 'undefined'
-				&& typeof registry[module].script !== 'undefined' )
-			{
+			if ( registry[module] !== undefined && registry[module].script !== undefined ) {
 				throw new Error( 'module already implemeneted: ' + module );
 			}
 			// Mark module as loaded
@@ -978,7 +976,7 @@ window.mediaWiki = new ( function( $ ) {
 							href: modules
 						} ) );
 						return true;
-					} else if ( type === 'text/javascript' || typeof type === 'undefined' ) {
+					} else if ( type === 'text/javascript' || type === undefined ) {
 						addScript( modules );
 						return true;
 					}
@@ -1122,7 +1120,7 @@ window.mediaWiki = new ( function( $ ) {
 			for ( var attrName in attrs ) {
 				s += ' ' + attrName + '="' + this.escape( attrs[attrName] ) + '"';
 			}
-			if ( typeof contents == 'undefined' || contents === null ) {
+			if ( contents === undefined || contents === null ) {
 				// Self close tag
 				s += '/>';
 				return s;
@@ -1157,11 +1155,13 @@ window.mediaWiki = new ( function( $ ) {
 
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;
+
+// Global alias
 window.mw = mediaWiki;
 
 /* Auto-register from pre-loaded startup scripts */
 
-if ( $.isFunction( startUp ) ) {
+if ( jQuery.isFunction( startUp ) ) {
 	startUp();
 	delete startUp;
 }
