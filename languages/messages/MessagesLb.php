@@ -1389,10 +1389,11 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
 
 # User rights log
-'rightslog'      => 'Logbuch vun de Benotzerrechter',
-'rightslogtext'  => "Dëst ass d'Lëscht vun den Ännerunge vu Benotzerrechter.",
-'rightslogentry' => "huet d'Benotzerrechter vum $1 vun $2 op $3 geännert.",
-'rightsnone'     => '(keen)',
+'rightslog'                  => 'Logbuch vun de Benotzerrechter',
+'rightslogtext'              => "Dëst ass d'Lëscht vun den Ännerunge vu Benotzerrechter.",
+'rightslogentry'             => "huet d'Benotzerrechter vum $1 vun $2 op $3 geännert.",
+'rightslogentry-autopromote' => 'gouf automatesch aus dem Grupp $2 an de Grupp $3 gesat',
+'rightsnone'                 => '(keen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'dës Säit ze liesen',
