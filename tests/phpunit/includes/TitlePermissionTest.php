@@ -384,7 +384,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 							 $this->title->userCan( 'bogus' ) );
 	}
 
-	function testCSSandJSPermissions() {
+	function testCssAndJavascriptPermissions() {
 		$this->setUser( $this->userName );
 		global $wgUser;
 		$wgUser = $this->user;
