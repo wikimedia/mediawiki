@@ -15,22 +15,28 @@ test( '-- Initial check', function() {
 });
 
 test( 'mw.Map', function() {
-	expect(15);
+	expect(17);
 
 	ok( mw.Map, 'mw.Map defined' );
 
 	var	conf = new mw.Map(),
+		// Dummy variables
 		funky = function() {},
 		arry = [],
 		nummy = 7;
 
+	// Tests for input validation
 	strictEqual( conf.get( 'inexistantKey' ), null, 'Map.get returns null if selection was a string and the key was not found' );
 	strictEqual( conf.set( 'myKey', 'myValue' ), true, 'Map.set returns boolean true if a value was set for a valid key string' );
 	strictEqual( conf.set( funky, 'Funky' ), false, 'Map.set returns boolean false if key was invalid (Function)' );
 	strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
 	strictEqual( conf.set( nummy, 'Nummy' ), false, 'Map.set returns boolean false if key was invalid (Number)' );
 	equal( conf.get( 'myKey' ), 'myValue', 'Map.get returns a single value value correctly' );
+	// @broken (these currently return the values object)
+	strictEqual( conf.get( nummy ), null, 'Map.get ruturns null if selection was invalid (Number)' );
+	strictEqual( conf.get( funky ), null, 'Map.get ruturns null if selection was invalid (Function)' );
 
+	// Multiple values at once
 	var someValues = {
 		'foo': 'bar',
 		'lorem': 'ipsum',
@@ -49,6 +55,8 @@ test( 'mw.Map', function() {
 
 	strictEqual( conf.exists( 'foo' ), true, 'Map.exists returns boolean true if a key exists' );
 	strictEqual( conf.exists( 'notExist' ), false, 'Map.exists returns boolean false if a key does not exists' );
+
+	// Interacting with globals and accessing the values object
 	strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
 
 	conf.set( 'globalMapChecker', 'Hi' );
