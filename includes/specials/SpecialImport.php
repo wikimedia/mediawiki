@@ -350,7 +350,7 @@ class ImportReporter {
 		$args = func_get_args();
 		call_user_func_array( $this->mOriginalPageOutCallback, $args );
 
-		$skin = $this->getSkin();
+		$skin = $wgUser->getSkin();
 
 		$this->mPageCount++;
 
