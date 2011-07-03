@@ -2,7 +2,7 @@
 
 class JsonTest extends MediaWikiTestCase {
 	
-	function testPHPBug46944Test() {
+	function testPhpBug46944Test() {
 		
 		$this->assertNotEquals( 
 			'\ud840\udc00',			

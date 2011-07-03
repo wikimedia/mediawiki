@@ -93,7 +93,7 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 	}
 
 
-	function testSiteFromDB() {
+	function testSiteFromDb() {
 		$this->assertEquals(
 			array( 'wikipedia', 'en' ),
 			$this->mConf->siteFromDB( 'enwiki' ),
@@ -126,7 +126,7 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testGet() {
+	function testGetConfVariables() {
 		$this->assertEquals(
 			'enwiki',
 			$this->mConf->get( 'simple', 'enwiki', 'wiki' ),
@@ -238,7 +238,7 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testSiteFromDBWithCallback() {
+	function testSiteFromDbWithCallback() {
 		$this->mConf->siteParamsCallback = 'getSiteParams';
 
 		$this->assertEquals(
@@ -258,7 +258,7 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testParamReplacement() {
+	function testParameterReplacement() {
 		$this->mConf->siteParamsCallback = 'getSiteParams';
 
 		$this->assertEquals(
@@ -288,7 +288,7 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testGetAll() {
+	function testGetAllGlobals() {
 		$this->mConf->siteParamsCallback = 'getSiteParams';
 
 		$getall = array(

@@ -147,7 +147,7 @@ class LanguageTest extends MediaWikiTestCase {
 	/**
 	* @dataProvider provideHTMLTruncateData()
 	*/
-	function testTruncateHTML( $len, $ellipsis, $input, $expected ) {
+	function testTruncateHtml( $len, $ellipsis, $input, $expected ) {
 		// Actual HTML...
 		$this->assertEquals(
 			$expected,

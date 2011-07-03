@@ -5,7 +5,8 @@
  * @group Database
  */
 class ApiFormatPhpTest extends ApiFormatTestBase {
-	function testValidPHPSyntax() {
+
+	function testValidPhpSyntax() {
 		
 		$data = $this->apiRequest( 'php', array( 'action' => 'query', 'meta' => 'siteinfo' ) );
 		
