@@ -350,15 +350,13 @@ class ImportReporter {
 		$args = func_get_args();
 		call_user_func_array( $this->mOriginalPageOutCallback, $args );
 
-		$skin = $wgUser->getSkin();
-
 		$this->mPageCount++;
 
 		$localCount = $wgLang->formatNum( $successCount );
 		$contentCount = $wgContLang->formatNum( $successCount );
 
 		if( $successCount > 0 ) {
-			$wgOut->addHTML( "<li>" . $skin->linkKnown( $title ) . " " .
+			$wgOut->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
 				wfMsgExt( 'import-revision-count', array( 'parsemag', 'escape' ), $localCount ) .
 				"</li>\n"
 			);
@@ -392,7 +390,7 @@ class ImportReporter {
 			$article->updateRevisionOn( $dbw, $nullRevision );
 			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest, $wgUser) );
 		} else {
-			$wgOut->addHTML( "<li>" . $skin->linkKnown( $title ) . " " .
+			$wgOut->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
 				wfMsgHtml( 'import-nonewrevisions' ) . "</li>\n" );
 		}
 	}
