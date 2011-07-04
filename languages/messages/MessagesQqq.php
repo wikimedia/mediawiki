@@ -3930,7 +3930,7 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 # Auto-summaries
 'autosumm-blank'   => 'The auto summary when blanking the whole page. This is not the same as deleting the page.',
 'autosumm-replace' => 'The auto summary when a user removes a lot of characters in the page.',
-'autoredircomment' => 'The auto summary when making a redirect. $1 is the page where it redirects to.',
+'autoredircomment' => 'The auto summary when making a redirect. $1 is the page where it redirects to. $2 is the first X number of characters of the redirect ($2 is usually only used when end users customize the message)',
 'autosumm-new'     => 'The auto summary when creating a new page. $1 are the first X number of characters of the new page.',
 
 # Size units

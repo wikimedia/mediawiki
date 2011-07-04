@@ -62,6 +62,8 @@ production.
   statistics (maintenance/language/transstat.php)
 * (bug 29586) Make the (next 200) links on categories link directly to
   the relevant section of the category.
+* (bug 29109) Allow the automatic edit summary for redirect creation
+  show the first bit of the new redirect page.
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
