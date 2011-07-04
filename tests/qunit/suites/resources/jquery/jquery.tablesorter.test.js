@@ -21,7 +21,7 @@ test( '-- Initial check', function() {
  * @return jQuery
  */
 var tableCreate = function( header, data ) {
-	var $table = $('<table class="mw-sortable"><thead></thead><tbody></tbody></table>'),
+	var $table = $('<table class="sortable"><thead></thead><tbody></tbody></table>'),
 		$thead = $table.find('thead'),
 		$tbody = $table.find('tbody');
 	var $tr = $('<tr>');
