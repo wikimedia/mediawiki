@@ -143,7 +143,7 @@ class CategoryViewer {
 	 * @return string HTML output
 	 */
 	public function getHTML() {
-		global $wgOut, $wgCategoryMagicGallery, $wgContLang;
+		global $wgOut, $wgCategoryMagicGallery, $wgContLang, $wgBetterDirectionality;
 		wfProfileIn( __METHOD__ );
 
 		$this->showGallery = $wgCategoryMagicGallery && !$wgOut->mNoGallery;
@@ -174,9 +174,8 @@ class CategoryViewer {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
 		}
 
-		global $wgBetterDirectionality, $wgTitle;
 		if( $wgBetterDirectionality ) {
-			$pageLang = $wgTitle->getPageLanguage();
+			$pageLang = $this->title->getPageLanguage();
 			$langAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
 			# close the previous div, show the headings in user language,
 			# then open a new div with the page content language again
@@ -504,6 +503,8 @@ class CategoryViewer {
 	 * @private
 	 */
 	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
+		global $wgBetterDirectionality;
+
 		$list = '';
 		if ( count ( $articles ) > $cutoff ) {
 			$list = self::columnList( $articles, $articles_start_char );
@@ -511,9 +512,9 @@ class CategoryViewer {
 			// for short lists of articles in categories.
 			$list = self::shortList( $articles, $articles_start_char );
 		}
-		global $wgBetterDirectionality, $wgTitle;
+
 		if( $wgBetterDirectionality ) {
-			$pageLang = $wgTitle->getPageLanguage();
+			$pageLang = $this->title->getPageLanguage();
 			$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() );
 			$list = Html::rawElement( 'div', $attribs, $list );
