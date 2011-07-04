@@ -55,7 +55,7 @@ test( 'addCSS', function() {
 	equal( typeof style, 'object', 'addCSS returned an object' );
 	strictEqual( style.disabled, false, 'property "disabled" is available and set to false' );
 
-	equal( $testEl.css('visibility'), 'hidden', 'Added style properties are in effect' );
+	equal( $testEl.css( 'visibility' ), 'hidden', 'Added style properties are in effect' );
 
 	// Clean up
 	$( style.ownerNode )
@@ -64,20 +64,22 @@ test( 'addCSS', function() {
 });
 
 test( 'toggleToc', function() {
-	expect(3);
+	expect(4);
 
 	strictEqual( mw.util.toggleToc(), null, 'Return null if there is no table of contents on the page.' );
 
-	var tocHtml =
+	var	tocHtml =
 	'<table id="toc" class="toc"><tr><td>' +
 		'<div id="toctitle">' +
 			'<h2>Contents</h2>' +
 			'<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Hide</a>&nbsp;]</span>' +
 		'</div>' +
 		'<ul><li></li></ul>' +
-	'</td></tr></table>';
-	var $toc = $(tocHtml).appendTo( 'body' );
-	var $toggleLink = $( '#togglelink' );
+	'</td></tr></table>',
+		$toc = $(tocHtml).appendTo( 'body' ),
+		$toggleLink = $( '#togglelink' );
+
+	strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );
 
 	// Toggle animation is asynchronous
 	// QUnit should not finish this test() untill they are all done
@@ -90,6 +92,7 @@ test( 'toggleToc', function() {
 		$toc.remove();
 	};
 	var actionB = function() {
+		start(); stop();
 		strictEqual( mw.util.toggleToc( $toggleLink, actionC ), true, 'Return boolean true if the TOC is now visible.' );
 	};
 	var actionA = function() {
