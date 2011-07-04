@@ -1594,7 +1594,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			} else {
 				$attrs = array_merge(
 					$attrs,
-					$this->skin->tooltipAndAccesskeyAttribs( $item['single-id'] )
+					Linker::tooltipAndAccesskeyAttribs( $item['single-id'] )
 				);
 			}
 		}
@@ -1665,7 +1665,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			'name' => 'search',
 			'value' => isset( $this->data['search'] ) ? $this->data['search'] : '',
 		);
-		$realAttrs = array_merge( $realAttrs, $this->skin->tooltipAndAccesskeyAttribs( 'search' ), $attrs );
+		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
 		return Html::element( 'input', $realAttrs );
 	}
 
@@ -1681,7 +1681,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				);
 				$realAttrs = array_merge(
 					$realAttrs,
-					$this->skin->tooltipAndAccesskeyAttribs( "search-$mode" ),
+					Linker::tooltipAndAccesskeyAttribs( "search-$mode" ),
 					$attrs
 				);
 				return Html::element( 'input', $realAttrs );
@@ -1692,7 +1692,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				);
 				$buttonAttrs = array_merge(
 					$buttonAttrs,
-					$this->skin->tooltipAndAccesskeyAttribs( 'search-fulltext' ),
+					Linker::tooltipAndAccesskeyAttribs( 'search-fulltext' ),
 					$attrs
 				);
 				unset( $buttonAttrs['src'] );

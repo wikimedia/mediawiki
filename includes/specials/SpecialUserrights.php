@@ -463,7 +463,7 @@ class UserrightsPage extends SpecialPage {
 					<td></td>
 					<td class='mw-submit'>" .
 						Xml::submitButton( wfMsg( 'saveusergroups' ),
-							array( 'name' => 'saveusergroups' ) + $this->getSkin()->tooltipAndAccessKeyAttribs( 'userrights-set' ) ) .
+							array( 'name' => 'saveusergroups' ) + Linker::tooltipAndAccesskeyAttribs( 'userrights-set' ) ) .
 					"</td>
 				</tr>" .
 			Xml::closeElement( 'table' ) . "\n" .

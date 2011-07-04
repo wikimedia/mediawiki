@@ -292,7 +292,7 @@ class SpecialImport extends SpecialPage {
 					<td>
 					</td>
 					<td class='mw-submit'>" .
-						Xml::submitButton( wfMsg( 'import-interwiki-submit' ), $this->getSkin()->tooltipAndAccessKeyAttribs( 'import' ) ) .
+						Xml::submitButton( wfMsg( 'import-interwiki-submit' ), Linker::tooltipAndAccesskeyAttribs( 'import' ) ) .
 					"</td>
 				</tr>" .
 				Xml::closeElement( 'table' ).
