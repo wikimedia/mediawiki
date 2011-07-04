@@ -9,9 +9,9 @@ jQuery( document ).ready( function( $ ) {
 	$( '.mw-collapsible' ).makeCollapsible();
 
 	/* Lazy load jquery.tablesorter */
-	if ( $( 'table.mw-sortable, table.sortable' ).length ) {
+	if ( $( 'table.sortable' ).length ) {
 		mw.loader.using( 'jquery.tablesorter', function() {
-			$( 'table.mw-sortable, table.sortable' ).tablesorter();
+			$( 'table.sortable' ).tablesorter();
 		});
 	}
 
