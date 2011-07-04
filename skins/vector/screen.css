@@ -997,11 +997,6 @@ img.thumbborder {
 	color: #7d7d7d;
 	width: auto;
 }
-
-#contentSub:empty, #contentSub2:empty {
-	display: none;
-}
-
 span.subpages {
 	display: block;
 }

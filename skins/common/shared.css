@@ -766,15 +766,8 @@ th.headerSortDown {
 	unicode-bidi: embed;
 }
 
-#mw-revision-info, #revision-info-current, #mw-revision-nav {
+#mw-revision-info, #mw-revision-nav {
 	direction: ltr;
-	text-align: center;
-}
-
-#mw-revision-nav {
-	border-bottom: 1px solid #aaa;
-	padding-bottom: 0.5em;
-	margin-bottom: 0.5em;
 }
 
 /* Images */
