@@ -787,26 +787,6 @@ EOT
 	}
 
 	/**
-	 * Override handling of action=purge
-	 */
-	public function doPurge() {
-		$this->loadFile();
-		if ( $this->mPage->getFile()->exists() ) {
-			wfDebug( 'ImagePage::doPurge purging ' . $this->mPage->getFile()->getName() . "\n" );
-			$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
-			$update->doUpdate();
-			$this->mPage->getFile()->upgradeRow();
-			$this->mPage->getFile()->purgeCache();
-		} else {
-			wfDebug( 'ImagePage::doPurge no image for ' . $this->mPage->getFile()->getName() . "; limiting purge to cache only\n" );
-			// even if the file supposedly doesn't exist, force any cached information
-			// to be updated (in case the cached information is wrong)
-			$this->mPage->getFile()->purgeCache();
-		}
-		parent::doPurge();
-	}
-
-	/**
 	 * Display an error with a wikitext description
 	 */
 	function showError( $description ) {
