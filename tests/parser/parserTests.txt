@@ -7465,14 +7465,14 @@ File:foobar.jpg|{{Test|unamedParam|alt=param}}|alt=galleryalt
 !! result
 <ul class="gallery">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Foobar.jpg" class="image" title="desc"><img alt="inneralt" src="http://example.com/images/3/3a/Foobar.jpg" width="20" height="2" /></a>
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 <p>This is a test template
 </p>
@@ -7509,7 +7509,7 @@ caption
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">Foobar.jpg</a><br />
 some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
@@ -7517,7 +7517,7 @@ some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">Foobar.jpg</a><br />
 </p>
@@ -7549,12 +7549,12 @@ foobar.jpg
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
