@@ -263,7 +263,10 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		if ( !@pg_free_result( $res ) ) {
+		wfSuppressWarnings();
+		$ok = pg_free_result( $res );
+		wfRestoreWarnings();
+		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free Postgres result\n" );
 		}
 	}
@@ -272,7 +275,9 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		@$row = pg_fetch_object( $res );
+		wfSuppressWarnings();
+		$row = pg_fetch_object( $res );
+		wfRestoreWarnings();
 		# @todo FIXME: HACK HACK HACK HACK debug
 
 		# @todo hashar: not sure if the following test really trigger if the object
@@ -287,7 +292,9 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		@$row = pg_fetch_array( $res );
+		wfSuppressWarnings();
+		$row = pg_fetch_array( $res );
+		wfRestoreWarnings();
 		if( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
 		}
@@ -298,7 +305,9 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		@$n = pg_num_rows( $res );
+		wfSuppressWarnings();
+		$n = pg_num_rows( $res );
+		wfRestoreWarnings();
 		if( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
 		}

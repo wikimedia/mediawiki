@@ -17,7 +17,7 @@ class DBError extends MWException {
 	 * @param $error String A simple error message to be used for debugging
 	 */
 	function __construct( DatabaseBase &$db, $error ) {
-		$this->db =& $db;
+		$this->db = $db;
 		parent::__construct( $error );
 	}
 
@@ -178,13 +178,13 @@ class DBConnectionError extends DBError {
 	 * @return string
 	 */
 	function searchForm() {
-		global $wgSitename, $wgServer;
+		global $wgSitename, $wgServer, $wgRequest;
 
 		$usegoogle = htmlspecialchars( $this->msg( 'dberr-usegoogle', 'You can try searching via Google in the meantime.' ) );
 		$outofdate = htmlspecialchars( $this->msg( 'dberr-outofdate', 'Note that their indexes of our content may be out of date.' ) );
 		$googlesearch = htmlspecialchars( $this->msg( 'searchbutton', 'Search' ) );
 
-		$search = htmlspecialchars( @$_REQUEST['search'] );
+		$search = htmlspecialchars( $wgRequest->getVal( 'search' ) );
 
 		$server = htmlspecialchars( $wgServer );
 		$sitename = htmlspecialchars( $wgSitename );

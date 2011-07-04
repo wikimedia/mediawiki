@@ -1877,9 +1877,9 @@ abstract class DatabaseBase implements DatabaseType {
 		# the correct table.
 		$dbDetails = array_reverse( explode( '.', $name, 2 ) );
 		if ( isset( $dbDetails[1] ) ) {
-			@list( $table, $database ) = $dbDetails;
+			list( $table, $database ) = $dbDetails;
 		} else {
-			@list( $table ) = $dbDetails;
+			list( $table ) = $dbDetails;
 		}
 		$prefix = $this->mTablePrefix; # Default prefix
 

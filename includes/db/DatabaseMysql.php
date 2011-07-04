@@ -95,7 +95,9 @@ class DatabaseMysql extends DatabaseBase {
 		wfProfileOut("dbconnect-$server");
 
 		if ( $dbName != '' && $this->mConn !== false ) {
-			$success = @/**/mysql_select_db( $dbName, $this->mConn );
+			wfSuppressWarnings();
+			$success = mysql_select_db( $dbName, $this->mConn );
+			wfRestoreWarnings();
 			if ( !$success ) {
 				$error = "Error selecting database $dbName on server {$this->mServer} " .
 					"from client host " . wfHostname() . "\n";
@@ -152,7 +154,10 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		if ( !@/**/mysql_free_result( $res ) ) {
+		wfSuppressWarnings();
+		$ok = mysql_free_result( $res );
+		wfRestoreWarnings();
+		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
 		}
 	}
@@ -161,7 +166,9 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		@/**/$row = mysql_fetch_object( $res );
+		wfSuppressWarnings();
+		$row = mysql_fetch_object( $res );
+		wfRestoreWarnings();
 		if( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
@@ -172,7 +179,9 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		@/**/$row = mysql_fetch_array( $res );
+		wfSuppressWarnings();
+		$row = mysql_fetch_array( $res );
+		wfRestoreWarnings();
 		if ( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
 		}
@@ -183,7 +192,9 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		@/**/$n = mysql_num_rows( $res );
+		wfSuppressWarnings();
+		$n = mysql_num_rows( $res );
+		wfRestoreWarnings();
 		if( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in numRows(): ' . htmlspecialchars( $this->lastError() ) );
 		}

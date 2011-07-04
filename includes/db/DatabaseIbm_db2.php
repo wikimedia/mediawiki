@@ -379,7 +379,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Opens a cataloged database connection, sets mConn
 	 */
 	protected function openCataloged( $dbName, $user, $password ) {
-		@$this->mConn = db2_pconnect( $dbName, $user, $password );
+		wfSuppressWarnings();
+		$this->mConn = db2_pconnect( $dbName, $user, $password );
+		wfRestoreWarnings();
 	}
 
 	/**
@@ -388,7 +390,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	protected function openUncataloged( $dbName, $user, $password, $server, $port )
 	{
 		$dsn = "DRIVER={IBM DB2 ODBC DRIVER};DATABASE=$dbName;CHARSET=UTF-8;HOSTNAME=$server;PORT=$port;PROTOCOL=TCPIP;UID=$user;PWD=$password;";
-		@$this->mConn = db2_pconnect($dsn, "", "", array());
+		wfSuppressWarnings();
+		$this->mConn = db2_pconnect($dsn, "", "", array());
+		wfRestoreWarnings();
 	}
 
 	/**
@@ -501,7 +505,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		}
 
 		// If the table exists, there should be one of it
-		@$row = $this->fetchRow( $res );
+		$row = $this->fetchRow( $res );
 		$count = $row[0];
 		if ( $count == '1' || $count == 1 ) {
 			return true;
@@ -523,7 +527,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		@$row = db2_fetch_object( $res );
+		wfSuppressWarnings();
+		$row = db2_fetch_object( $res );
+		wfRestoreWarnings();
 		if( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): '
 				. htmlspecialchars( $this->lastError() ) );
@@ -544,7 +550,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 			$res = $res->result;
 		}
 		if ( db2_num_rows( $res ) > 0) {
-			@$row = db2_fetch_array( $res );
+			wfSuppressWarnings();
+			$row = db2_fetch_array( $res );
+			wfRestoreWarnings();
 			if ( $this->lastErrno() ) {
 				throw new DBUnexpectedError( $this, 'Error in fetchRow(): '
 					. htmlspecialchars( $this->lastError() ) );
@@ -1072,7 +1080,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		if ( !@db2_free_result( $res ) ) {
+		wfSuppressWarnings();
+		$ok = db2_free_result( $res );
+		wfRestoreWarnings();
+		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free DB2 result\n" );
 		}
 	}
