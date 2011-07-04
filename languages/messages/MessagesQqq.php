@@ -417,7 +417,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'unprotect'         => 'Name of unprotect tab displayed for admins
 
 {{Identical|Unprotect}}',
-'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to unprotect the page in admin view.
+'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the anchor text for the link to unprotect the page in admin view.
 {{Identical|Unprotect this page}}',
 'newpage'           => '{{Identical|New page}}',
 'talkpage'          => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to discuss the page.',
@@ -2608,9 +2608,9 @@ This message was something like "unlock move protection" in the past.',
 'invert'                        => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]]
 
 {{Identical|Invert selection}}',
-'tooltip-invert'                => "Used in [[Special:Recentchanges]] as a tooltip for the invert checkbox. See also the 'invert' message.",
+'tooltip-invert'                => 'Used in [[Special:Recentchanges]] as a tooltip for the invert checkbox. See also the message {{msg-mw|invert}}',
 'namespace_association'         => 'Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.',
-'tooltip-namespace_association' => 'Used in [[Special:Recentchanges]] as a tooltip for the associated namespace checkbox. See also namespace_association message.',
+'tooltip-namespace_association' => 'Used in [[Special:Recentchanges]] as a tooltip for the associated namespace checkbox. See also the message {{msg-mw|namespace_association}}',
 'blanknamespace'                => 'Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages.',
 
 # Contributions

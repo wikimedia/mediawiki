@@ -1227,7 +1227,9 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'prefs-skin'                    => 'Koža',
 'skin-preview'                  => 'Predogled',
 'datedefault'                   => 'Kakor koli',
+'prefs-beta'                    => 'Betafunkcije',
 'prefs-datetime'                => 'Datum in čas',
+'prefs-labs'                    => 'Funkcije laboratorija',
 'prefs-personal'                => 'Podatki o uporabniku',
 'prefs-rc'                      => 'Zadnje spremembe',
 'prefs-watchlist'               => 'Spisek nadzorov',
@@ -1974,7 +1976,7 @@ Prosimo, upoštevajte, da se lahko druge spletne strani povezujejo na datoteko z
 'booksources'               => 'Viri knjig',
 'booksources-search-legend' => 'Išči knjižne vire',
 'booksources-go'            => 'Pojdi',
-'booksources-text'          => 'Sledi seznam povezav do drugi spletnih strani, ki prodajajo nove in rabljene knjige, in imajo morda nadaljne informacije o knjigah, ki jih iščete:',
+'booksources-text'          => 'Sledi seznam povezav do drugi spletnih strani, ki prodajajo nove in rabljene knjige, in imajo morda nadaljnje informacije o knjigah, ki jih iščete:',
 'booksources-invalid-isbn'  => 'Za dani ISBN se ne zdi, da je veljaven; preverite za morebitne napake pri kopiranju iz prvotnega vira.',
 
 # Special:Log
@@ -2253,7 +2255,7 @@ Oglejte si [[Special:ProtectedPages|seznam zaščitenih strani]] za seznam trenu
 'protectexpiry'               => 'Poteče:',
 'protect_expiry_invalid'      => 'Čas izteka je neveljaven.',
 'protect_expiry_old'          => 'Čas izteka je v preteklosti.',
-'protect-unchain-permissions' => 'Odkleni nadaljne možnosti zaščite',
+'protect-unchain-permissions' => 'Odkleni nadaljnje možnosti zaščite',
 'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''$1'''.",
 'protect-locked-blocked'      => "Med blokado ne morete spreminjati stopenj zaščite.
 To so trenutne nastavitve za stran '''$1''':",
@@ -2938,7 +2940,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 
 Upoštevane so le postavke seznama (vrstice, ki se začnejo z *).
 Prva povezava v vrstici mora biti povezava do neželene datoteke.
-Vse nadaljne povezave v isti vrstici se štejejo za izjeme, tj. za strani, kjer je datoteka lahko vključena.',
+Vse nadaljnje povezave v isti vrstici se štejejo za izjeme, tj. za strani, kjer je datoteka lahko vključena.',
 
 # Metadata
 'metadata'          => 'Metapodatki',

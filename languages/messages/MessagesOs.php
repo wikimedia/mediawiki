@@ -82,13 +82,13 @@ $messages = array(
 'editfont-default' => 'Браузеры куыд у',
 
 # Dates
-'sunday'        => 'Хуыцаубон',
+'sunday'        => 'хуыцаубон',
 'monday'        => 'къуырисæр',
 'tuesday'       => 'дыццæг',
-'wednesday'     => 'Æртыццæг',
-'thursday'      => 'Цыппæрæм',
+'wednesday'     => 'æртыццæг',
+'thursday'      => 'цыппæрæм',
 'friday'        => 'майрæмбон',
-'saturday'      => 'Сабат',
+'saturday'      => 'сабат',
 'sun'           => 'Хцб',
 'mon'           => 'Крс',
 'tue'           => 'Дцг',
@@ -148,6 +148,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.',
 'listingcontinuesabbrev'         => 'размæ',
 'index-category'                 => 'Индексгонд фæрстæ',
+'noindex-category'               => 'Нæиндексгонд фæрстæ',
 
 'mainpagetext' => "'''Вики-скрипт «MediaWiki» æнтыстджынæй æвæрд æрцыд.'''",
 
@@ -430,6 +431,9 @@ $messages = array(
 'edit-conflict'                    => 'Иввдзинæдты конфликт.',
 'edit-already-exists'              => 'Ног фарс скæнæн нæй. Ахæм фарс ис.',
 
+# Parser/template warnings
+'post-expand-template-argument-category' => 'Фæрстæ, кæдоны ис шаблоны уагъд аргумент',
+
 # History pages
 'viewpagelogs'           => 'Ацы фарсæн йæ логтæ равдисын',
 'nohistory'              => 'Ацы фарсæн иввдзинæдты истори нæй.',
@@ -479,6 +483,7 @@ $messages = array(
 'revertmerge' => 'Ахицæн кæнын',
 
 # Diffs
+'history-title'           => '"$1" фарсы фæлтæрты истори',
 'difference'              => '(Дыууæ фæлтæры ’хсæн хъауджы)',
 'lineno'                  => 'Рæнхъ $1:',
 'compareselectedversions' => 'Абарын æвзæрст фæлтæртæ',
@@ -641,11 +646,12 @@ $3',
 'rc-enhanced-hide'                => 'Бамбæхсын бæстондæр информаци',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Баст ивдтытæ',
-'recentchangeslinked-feed'    => 'Баст ивдтытæ',
-'recentchangeslinked-toolbox' => 'Баст ивдтытæ',
-'recentchangeslinked-title'   => '"$1"-имæ баст ивдтытæ',
-'recentchangeslinked-page'    => 'Фарсы ном:',
+'recentchangeslinked'          => 'Баст ивдтытæ',
+'recentchangeslinked-feed'     => 'Баст ивдтытæ',
+'recentchangeslinked-toolbox'  => 'Баст ивдтытæ',
+'recentchangeslinked-title'    => '"$1"-имæ баст ивдтытæ',
+'recentchangeslinked-noresult' => 'Нæй баст фæрсты ивдтытæ амынд рæстæджы',
+'recentchangeslinked-page'     => 'Фарсы ном:',
 
 # Upload
 'upload'              => 'Ног файл сæвæр',
@@ -731,7 +737,7 @@ $3',
 'newpages'               => 'Ног фæрстæ',
 'newpages-username'      => 'Архайæг:',
 'ancientpages'           => 'Зæронддæр фæрстæ',
-'move'                   => 'Сæргонд баив',
+'move'                   => 'Ном ивын',
 'pager-newer-n'          => '{{PLURAL:$1|нæуæгдæр иу|нæуæгдæр $1}}',
 'pager-older-n'          => '{{PLURAL:$1|раздæр иу|раздæр $1}}',
 
@@ -764,7 +770,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch'      => 'Æддаг æрвитæнтæ',
-'linksearch-ok'   => 'Агур',
+'linksearch-ok'   => 'Агурын',
 'linksearch-line' => '$2 æрвиты $1-мæ',
 
 # Special:ListUsers
@@ -814,6 +820,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'deletepage'            => 'Схаф фарс',
 'exblank'               => 'фарс афтид уыдис',
 'delete-confirm'        => 'Схаф "$1"',
+'actioncomplete'        => 'Æххæст',
+'actionfailed'          => 'Нæ рауадис',
 'deletedarticle'        => 'схафта "[[$1]]"',
 'dellogpage'            => 'Аппарыны лог',
 'deletionlog'           => 'аппарыны лог',
@@ -929,7 +937,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'allmessages-language'   => 'Æвзаг:',
 
 # Thumbnails
-'thumbnail-more' => 'Фестырдæр кæнын',
+'thumbnail-more'  => 'Фестырдæр кæнын',
+'thumbnail_error' => 'Чысыл фæлтæр аразыны рæдыд: $1',
 
 # Special:Import
 'importnotext'          => 'Афтид у кæнæ текст дзы нæй',
@@ -1018,7 +1027,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:NewFiles
 'newimages'    => 'Ног нывты галерей',
 'showhidebots' => '(роботты куыст $1)',
-'ilsubmit'     => 'Агур',
+'ilsubmit'     => 'Агурын',
 'bydate'       => 'рæстæгмæ гæсгæ',
 
 # Bad image list
