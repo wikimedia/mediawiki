@@ -589,7 +589,7 @@ Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
 'permissionserrorstext-withaction' => 'Ma laguu ogolo in aad $2, ku sameysid  {{PLURAL:$1| sababtaan|sababahaan }} soo socota:',
 'recreate-moveddeleted-warn'       => "'''Digniin: waxaa dib u sameyn rabtaa bog mar hore la tirtiray.'''
 
-Waa in aad ka fikirtaa hadii ee habboontahay sii socoshada wax ka bedelka boggaan.
+Waa in aad dib uuga fikirtaa in ee habboontahay sii socoshada wax looga badalaayo boggaan.
 Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa meeshaan:",
 'moveddeleted-notice'              => 'Boggaan waa la tirtiray.
 Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa hoostaan.',

@@ -2632,18 +2632,36 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'tooltip-diff'                    => 'देखाऊ जे परिवर्त्तन अहाँ एहि लेखमे कएलहुँ।',
 'tooltip-compareselectedversions' => 'ऐ पन्नाक दू टा चयन कएल संशोधनक बीचक अन्तर देखू',
 'tooltip-watch'                   => 'ऐ पन्नाकेँ अपन साकांक्ष सूचीमे जोड़ू',
+'tooltip-recreate'                => 'पन्ना फेरसँ बनाउ तखनो जँ ई मेटा देल गेल हुअए',
 'tooltip-upload'                  => 'उपारोपण करू',
 'tooltip-rollback'                => '"प्रत्यावर्तन" ऐ पन्नाक अन्तिम योगदा करैबलाक सम्पादन (सम्पादन सभ) केँ एक क्लिकमे पुरान जगहपर लऽ जाउ',
 'tooltip-undo'                    => '"फेरसँ वएह" सम्पादनकेँ पूर्वस्थितिमे लऽ जाइए आ पूर्वावलोकन अवस्थामे सम्पादन फॉर्म खोलैए। ई सारांशमे कारण जोड़बाक विकल्प दैत अछि।',
 'tooltip-preferences-save'        => 'मोनपसंद के सुरक्षित करू',
 'tooltip-summary'                 => 'छोट संक्षेप दिअ',
 
+# Metadata
+'notacceptable' => 'विकी वितरक ओइ प्रारूपमे दत्तांश नै दऽ सकैए जे अहाँक ग्राहक पढ़ि सकए।',
+
 # Attribution
-'anonuser'      => '{{SITENAME}} नुकायल प्रयोक्ता $1',
-'othercontribs' => '$1 के काजुक तरहे',
-'others'        => 'दोसर, आन',
-'creditspage'   => 'पन्नाक श्रेय',
-'nocredits'     => 'अहि पन्नाक लेल क्रेडिट ज़ानकारी नहि अछि',
+'anonymous'        => 'अज्ञात {{अन्तर्जाल}} क  {{PLURAL:$1|प्रयोक्ता|प्रयोक्ता सभ}}',
+'siteuser'         => '{{अन्तर्जाल}} प्रयोक्ता $1',
+'anonuser'         => '{{SITENAME}} नुकायल प्रयोक्ता $1',
+'lastmodifiedatby' => 'ई पन्ना अंतिम बेर संवर्धित भेल $2, $1 द्वारा $3।',
+'othercontribs'    => '$1 के काजुक तरहे',
+'others'           => 'दोसर, आन',
+'siteusers'        => '{{अन्तर्जाल}} {{PLURAL:$2|प्रयोक्ता|प्रयोक्ता सभ}} $1',
+'anonusers'        => '{{अन्तर्जाल}} अज्ञात {{PLURAL:$2|प्रयोक्ता|प्रयोक्ता सभ}} $1',
+'creditspage'      => 'पन्नाक श्रेय',
+'nocredits'        => 'अहि पन्नाक लेल क्रेडिट ज़ानकारी नहि अछि',
+
+# Spam protection
+'spamprotectiontitle' => 'अनिष्ट सन्देश सुरक्षा छन्नी',
+'spamprotectiontext'  => 'जे पाठ अहाँ सुरक्षित करए चाहै छलहुँ तकरा अनिष्ट संकेत छन्ना प्रतिबन्धित केलक।
+ई प्रायः कोनो प्रतिबन्धित बाहरी जालस्थलक लागि द्वारे भेल अछि।',
+'spamprotectionmatch' => 'ई अछि पाठ जइ कारणसँ हमर अनिष्ट संकेत छन्ना सक्रिय भेल: $1',
+'spambot_username'    => 'मीडियाविकी अनिष्ट संकेत सफाइ',
+'spam_reverting'      => 'अन्तिम संशोधन लग घुरल जइमे $1 लागि नै अछि',
+'spam_blanking'       => 'सभटा संशोधन $1 लागिसँ युक्त अि, खतम कऽ रहल छी',
 
 # Info page
 'pageinfo-title'            => '"$1"पृष्ठक लेल नब गप',
@@ -2659,15 +2677,19 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'pageinfo-viewsperedit'     => 'प्रति सम्पादन देखल गेल',
 
 # Patrolling
-'markaspatrolleddiff'    => 'देखि लेल गेल, एहन चिन्ह लगाऊ',
-'markaspatrolledtext'    => 'देखि लेल गेल, एहन चिन्ह लगाऊ',
-'markedaspatrolled'      => 'देखि लेल गेल, एहन चिन्ह लगाऊ',
-'markedaspatrolledtext'  => '[[:$1]]चुनल गेल अवतरणपर देखहि गेल के चिन्ह लगायल गेल.',
-'rcpatroldisabled'       => 'हाल में भेल बदलाव सभ पर नजर राखब बंद क देल गेल अछि.',
-'rcpatroldisabledtext'   => 'हाल में भेल बदलाव पर नजरि राखि के सुविधा बंद क देल गेल अछि.',
-'markedaspatrollederror' => 'देख लेलिय, एहन चिन्ह नहि लगा सकब.',
+'markaspatrolleddiff'                 => 'देखि लेल गेल, एहन चिन्ह लगाऊ',
+'markaspatrolledtext'                 => 'देखि लेल गेल, एहन चिन्ह लगाऊ',
+'markedaspatrolled'                   => 'देखि लेल गेल, एहन चिन्ह लगाऊ',
+'markedaspatrolledtext'               => '[[:$1]]चुनल गेल अवतरणपर देखहि गेल के चिन्ह लगायल गेल.',
+'rcpatroldisabled'                    => 'हाल में भेल बदलाव सभ पर नजर राखब बंद क देल गेल अछि.',
+'rcpatroldisabledtext'                => 'हाल में भेल बदलाव पर नजरि राखि के सुविधा बंद क देल गेल अछि.',
+'markedaspatrollederror'              => 'देख लेलिय, एहन चिन्ह नहि लगा सकब.',
+'markedaspatrollederrortext'          => 'अहाँ कोनो संशोधनकेँ संचालित निर्दिष्ट करू।',
+'markedaspatrollederror-noautopatrol' => 'अहाँ अपन कएल संशोधनकेँ संचालित नै कहि सकै छी।',
 
 # Patrol log
+'patrol-log-page'      => 'संचालन वृत्तलेख',
+'patrol-log-header'    => 'ई संचालित संशोधन सभक वृत्तलेख छी।',
 'patrol-log-line'      => 'चेन्हासी देल $2 क $1 संचालित $3',
 'patrol-log-auto'      => '(स्वचालित)',
 'patrol-log-diff'      => 'संशोधन $1',
@@ -2779,8 +2801,10 @@ $1',
 'exif-artist'                      => 'लिखैबला',
 'exif-copyright'                   => 'सर्वाधिकारी',
 'exif-exifversion'                 => 'एक्जिफ संस्करण',
+'exif-flashpixversion'             => 'फ्लैशपिक्स संस्करण समर्थित',
 'exif-colorspace'                  => 'रंगक स्थान',
 'exif-componentsconfiguration'     => 'सभ घटकक अर्थ',
+'exif-compressedbitsperpixel'      => 'चित्र संकुचन अवस्था',
 'exif-pixelydimension'             => 'तस्वीरक चौडाई',
 'exif-pixelxdimension'             => 'तस्वीरक ऊँचाई',
 'exif-usercomment'                 => 'सदस्यक टिप्पणी',
@@ -2794,6 +2818,10 @@ $1',
 'exif-exposuretime-format'         => '$1 सेकंड ($2)',
 'exif-fnumber'                     => 'F संख्या',
 'exif-exposureprogram'             => 'एक्स्पोज़रक कार्यक्रम',
+'exif-spectralsensitivity'         => 'स्पेक्ट्रम सहनशीलता',
+'exif-isospeedratings'             => 'आइ.एस.ओ. गति अंकन',
+'exif-shutterspeedvalue'           => 'अपेक्स शटरक गति',
+'exif-aperturevalue'               => 'अपेक्स भूर',
 'exif-brightnessvalue'             => 'APEX चमक',
 'exif-exposurebiasvalue'           => 'APEX एक्सपोजर बायस',
 'exif-maxaperturevalue'            => 'अधिकतम लॅंड ऍपर्चर',
@@ -2849,10 +2877,13 @@ $1',
 'exif-gpsdestlongituderef'         => 'लक्ष्यक रेखांशक संदर्भ',
 'exif-gpsdestlongitude'            => 'रेखांशक लक्ष्य',
 'exif-gpsdestbearingref'           => 'गंतव्यक दूरीक संदर्भ',
+'exif-gpsdestbearing'              => 'लक्ष्यक संधान',
 'exif-gpsdestdistanceref'          => 'गंतव्यक दूरीक संदर्भ',
 'exif-gpsdestdistance'             => 'गंतव्यक दूरी',
+'exif-gpsprocessingmethod'         => 'जी.पी.एस. संसाधक विधि नाम',
 'exif-gpsareainformation'          => 'GPS विभागक नाम',
 'exif-gpsdatestamp'                => 'GPS दिनांक',
+'exif-gpsdifferential'             => 'जी.पी.एस. अंतर-संशोधन',
 'exif-jpegfilecomment'             => 'JPEG फ़ाईलक टिप्पणी',
 'exif-keywords'                    => 'कीवर्ड्स',
 'exif-worldregioncreated'          => 'विश्वक क्षेत्र, जकर तस्वीर लेल गेल अछि',
@@ -2893,6 +2924,7 @@ $1',
 'exif-serialnumber'                => 'कैमराक सीरियल संख्या',
 'exif-cameraownername'             => 'कैमराक मालिक',
 'exif-label'                       => 'सूचक पत्र',
+'exif-datetimemetadata'            => 'तिथि प्रदत्तांश अंतिम बेर संशोधित भेल',
 'exif-nickname'                    => 'तस्वीरक अनौपचारिक नाम',
 'exif-rating'                      => 'रेटिंग (पांच धरि)',
 'exif-rightscertificate'           => 'अधिकार प्रबंधन प्रमाणपत्र',
@@ -2920,6 +2952,9 @@ $1',
 
 # EXIF attributes
 'exif-compression-1' => 'असम्पीडित',
+'exif-compression-2' => 'सी.सी.आइ.टी.टी. वर्ग ३ १ - बीम संशोधित हफमैन कूट सोझ लम्बाइ',
+'exif-compression-3' => 'सी.सी.आइ.टी.टी. वर्ग ३ फैक्स संकूट',
+'exif-compression-4' => 'सी.सी.आइ.टी.टी. वर्ग ४ फैक्स संकूट',
 
 'exif-copyrighted-true'  => 'सर्वाधिकार',
 'exif-copyrighted-false' => 'पब्लिक डोमेन',
@@ -2927,17 +2962,30 @@ $1',
 'exif-unknowndate' => 'अज्ञात तारीख',
 
 'exif-orientation-1' => 'सामान्य',
+'exif-orientation-2' => 'अनुदैर्घ्य मिज्झर',
 'exif-orientation-3' => '180° पर घुमायल गेल',
+'exif-orientation-4' => 'अनुप्रस्थ मिज्झर',
+'exif-orientation-5' => '90° सी.सी.डब्लू. घुमाओल गेल आ अनुप्रस्थ रूपेँ मिज्झर कएल गेल',
 'exif-orientation-6' => '90° CW पर घुमायल गेल',
+'exif-orientation-7' => '९०° सी.डब्लू. घुमाओल गेल आ अनुप्रस्थ रूपेँ मिज्झर कएल गेल',
+'exif-orientation-8' => '९०° सी.सी.डब्लू. पर घुमाएल गेल',
 
+'exif-planarconfiguration-1' => 'मोटगर प्रारूप',
 'exif-planarconfiguration-2' => 'प्लानरक प्रारूप',
+
+'exif-colorspace-65535' => 'बिन नपनाक',
 
 'exif-componentsconfiguration-0' => 'अस्तित्व में नहि अछि',
 
 'exif-exposureprogram-0' => 'अव्यक्त',
 'exif-exposureprogram-1' => 'नियमावली',
 'exif-exposureprogram-2' => 'सामान्य कार्यक्रम',
+'exif-exposureprogram-3' => 'भूर प्राथमिकता',
 'exif-exposureprogram-4' => 'झांपक प्राथमिकता',
+'exif-exposureprogram-5' => 'रचनात्मक तंत्रांश (क्षेत्र गहींर हुअए केर प्रति साकांक्ष)',
+'exif-exposureprogram-6' => 'कार्य तंत्रांश (तेज शटर गति हुअए केर प्रति साकांक्ष)',
+'exif-exposureprogram-7' => 'प्रतिकृति रूप (लगक चित्र जइमे पूर्वदश्य फोकससँ बाहर भेल अछि, लेल)',
+'exif-exposureprogram-8' => 'परिदृश्य रूप (परिदृश्य फोटो जइमे पाछाँक दृश्य फोकसमे रहैए, लेल)',
 
 'exif-subjectdistance-value' => '$1 मीटर',
 
@@ -3040,7 +3088,15 @@ $1',
 'exif-gpslongitude-e' => 'पुबरिया रेखांश',
 'exif-gpslongitude-w' => 'पछबरिया  रेखांश',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|मीटर|मीटर}} समुद्र तलसँ ऊपर',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|मीटर|मीटर}} समुद्र तलसँ नीचाँ',
+
 'exif-gpsstatus-a' => 'नापी चलि रहल छै',
+'exif-gpsstatus-v' => 'नाप अन्तर-कार्य',
+
+'exif-gpsmeasuremode-2' => 'द्वि-बीमीय नाप',
+'exif-gpsmeasuremode-3' => 'त्रि-बीमीय नाप',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'कि.मी. प्रति घंटा',
@@ -3050,6 +3106,7 @@ $1',
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'किलोमीटर',
 'exif-gpsdestdistance-m' => 'माइल',
+'exif-gpsdestdistance-n' => 'समुद्री माइल',
 
 'exif-gpsdop-excellent' => '($1)!श्रेष्ठ',
 'exif-gpsdop-good'      => '($1) बढ़िया',
@@ -3063,10 +3120,13 @@ $1',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'असल दिश',
+'exif-gpsdirection-m' => 'चुम्बकीय दिशा',
 
 'exif-ycbcrpositioning-1' => 'केन्द्रित',
+'exif-ycbcrpositioning-2' => 'सह-उद्वाहन',
 
 'exif-dc-contributor' => 'योगदान दै बला लोक',
+'exif-dc-coverage'    => 'मीडियाक स्थान-कालिक क्षेत्र',
 'exif-dc-date'        => 'तारीख',
 'exif-dc-publisher'   => 'प्रकाशित करहि बला',
 'exif-dc-relation'    => 'संबंधित मीडिया',
@@ -3075,6 +3135,8 @@ $1',
 'exif-dc-type'        => 'माध्यमक प्रकार',
 
 'exif-rating-rejected' => 'अस्वीकृत',
+
+'exif-isospeedratings-overflow' => '६५५३५ सँ बेसी',
 
 'exif-iimcategory-ace' => 'कला, संस्कृति आ मनोरंजन',
 'exif-iimcategory-clj' => 'अपराध आ कानून',
@@ -3095,6 +3157,9 @@ $1',
 'exif-iimcategory-wea' => 'मौसम',
 
 'exif-urgency-normal' => 'सामान्य ($1)',
+'exif-urgency-low'    => 'कम ($1)',
+'exif-urgency-high'   => 'बेशी ($1)',
+'exif-urgency-other'  => 'प्रयोक्ता परिभाषित प्राथमिकता ($1)',
 
 # External editor support
 'edit-externally'      => 'ऐ फाइलकेँ बाहरी अनुप्रयोगसँ हटाउ',
@@ -3107,11 +3172,76 @@ $1',
 'limitall'      => 'सभटा',
 
 # E-mail address confirmation
-'confirmemail'    => ' ई-पत्र सत्यापित करू',
-'invalidateemail' => 'ई-मेल प्रमाणिकरण रद्द करू',
+'confirmemail'              => ' ई-पत्र सत्यापित करू',
+'confirmemail_noemail'      => 'अहाँ लग कोनो मान्य ई-पत्र संकेत नै अछि एतए [[Special:Preferences|प्रयोक्ताक पसिन्न सभ]] देबा लेल।',
+'confirmemail_text'         => '{{जालस्थल}}  चाहैए जे अहाँ अपन ई-पत्र सुविधा प्रयोग करबासँ पहिने अपन ई-पत्र संकेतक सत्यापन करू।
+अपना पतापर सत्यापन मेल पठेबा लेल निचुलका बटनकेँ क्रियाशील करू।
+मेलमे कूटशब्दयुक्त एकटा लागि रहत;
+अपन गवेषकमे ऐ लागिकेँ चढ़ाउ ई सत्यापित करबा लेल जे अहाँक ई-पत्र संकेत सही अछि।',
+'confirmemail_pending'      => 'एकटा सत्यापन कूटशब्द अहाँकेँ पहिनहिये ई-पत्र द्वारा पठा देल गेल अछि;
+जँ अहाँ हालमे ई खाता बनेने छी तँ नव आग्रह पठेबासँ पहिने अहाँ एकर अएबा लेल किछु मिनट लेल प्रतीक्षा करू।',
+'confirmemail_send'         => 'एकटा सत्यापन कूटशब्द ई-पत्रसँ पठाउ',
+'confirmemail_sent'         => 'सत्यापन ई-पत्र पठाओल गेल।',
+'confirmemail_oncreate'     => 'एकटा सत्यापन कूटशब्द अहाँक ई-पत्र संकेतपर पठाओल गेल।
+ई कूटशब्द सम्प्रवेश लेल आवश्यक नै अछि, मुदा अहाँकेँ विकीक कोनो ई-पत्र समर्थित सेवा उपभोग लेल ई देमए पड़त।',
+'confirmemail_sendfailed'   => '{{अन्तर्जाल}} अहाँकेँ सत्यापन मेल नै पठाएल जा सकल।
+अपन ई-पत्र संकेतमे अमान्य वर्ण-अक्षर-संकेत हटाउ।
+
+मेलर घुरेलक: $1',
+'confirmemail_invalid'      => 'अमान्य सत्यापन कूटशब्द।
+कूटशब्दक अवधि खतम भऽ गेल हएत।',
+'confirmemail_needlogin'    => 'अहाँकेँ करए पड़त $1 अपन ई-पत्र-संकेत सत्यापन लेल।',
+'confirmemail_success'      => 'अहाँक ई-पत्र संकेत सत्यापित कएल गेल।
+अहाँ आब [[Special:UserLogin|सम्प्रवेश]]आ विकीक प्रयोग करू।',
+'confirmemail_loggedin'     => 'अहाँक ई-पत्र संकेत आब सत्यापित भऽ गेल।',
+'confirmemail_error'        => 'सत्यापित करबा काल किछु गड़बड़ भऽ गेल।',
+'confirmemail_subject'      => '{{जालस्थल}} ई-पत्र संकेत सत्यापन',
+'confirmemail_body'         => 'कियो, सम्भवतः अहाँ, अनिकेत $1 सँ,
+खाता "$2" पंजीकृत करबेने छथि ऐ ई-पत्र संकेतसँ {{जालस्थल}} पर।
+
+ई खाता अहींक छी से सत्यापित करबाक लेल आ अपन ई-पत्र आधारित सेवाक {{जालस्थल}} पर प्रारम्भ लेल, ऐ लागिकेँ अपन गवेषकमे खोलू:
+
+$3
+
+जँ अहाँ ई खाता *नै* पंजीकृत करबेने छी तँ ऐ लागि संगे जाउ
+अपन ई-पत्र सत्यापनकेँ खतम करबा लेल:
+
+$5
+
+ई सत्यापन कूटशब्द $4 केँ खतम भऽ जाएत।',
+'confirmemail_body_changed' => 'कियो, सम्भवतः अहाँ, अनिकेत $1 सँ,
+खाता "$2" क ई-पत्र संकेत बदलनेने छथि ऐ  {{जालस्थल}} पर।
+
+ई खाता अहींक छी से सत्यापित करबाक लेल आ अपन ई-पत्र आधारित सेवाक {{जालस्थल}} पर प्रारम्भ लेल, ऐ लागिकेँ अपन गवेषकमे खोलू:
+
+$3
+
+जँ अहाँ ई खाता *नै* पंजीकृत करबेने छी तँ ऐ लागि संगे जाउ
+अपन ई-पत्र सत्यापनकेँ खतम करबा लेल:
+
+$5
+
+ई सत्यापन कूटशब्द $4 केँ खतम भऽ जाएत।',
+'confirmemail_body_set'     => 'कियो, सम्भवतः अहाँ, अनिकेत $1 सँ,
+खाता "$2" क ई-पत्र संकेत पठेने छथि ऐ  {{जालस्थल}} पर।
+
+ई खाता अहींक छी से सत्यापित करबाक लेल आ अपन ई-पत्र आधारित सेवाक {{जालस्थल}} पर प्रारम्भ लेल, ऐ लागिकेँ अपन गवेषकमे खोलू:
+
+$3
+
+जँ अहाँ ई खाता *नै* पंजीकृत करबेने छी तँ ऐ लागि संगे जाउ
+अपन ई-पत्र सत्यापनकेँ खतम करबा लेल:
+
+$5
+
+ई सत्यापन कूटशब्द $4 केँ खतम भऽ जाएत।',
+'confirmemail_invalidated'  => 'ई-पत्र संकेत सत्यापन खतम कएल गेल',
+'invalidateemail'           => 'ई-मेल प्रमाणिकरण रद्द करू',
 
 # Scary transclusion
-'scarytranscludetoolong' => 'यूआरएल बड़ पैग अछि',
+'scarytranscludedisabled' => '[अन्तरविकी समावेश अशक्त कएल गेल अछि]',
+'scarytranscludefailed'   => '[नमूना आनब विफल भेल $1 लेल]',
+'scarytranscludetoolong'  => 'यूआरएल बड़ पैग अछि',
 
 # Trackbacks
 'trackbackbox'      => 'अहि पृष्ठक लेल :<br />
@@ -3121,11 +3251,17 @@ $1',
 'trackbackdeleteok' => 'ट्रैकबैक के सफलता पूर्वक मिटा देल गेल',
 
 # Delete conflict
-'deletedwhileediting' => "'''Warning''': अहां जखन सें संपादन शुरू केने छी, ओकर बाद से ई पृष्ठ के मिटा देल गेल अछि.",
-'recreate'            => 'फेर सें बनाऊ',
+'deletedwhileediting'      => "'''Warning''': अहां जखन सें संपादन शुरू केने छी, ओकर बाद से ई पृष्ठ के मिटा देल गेल अछि.",
+'confirmrecreate'          => "प्रयोक्ता [[User:$1|$1]] ([[User talk:$1|वार्ता]]) अहाँक कारण सहित सम्पादनक बाद ऐ पन्नाकेँ मेटा देलक:
+: ''$2''
+कृपा कऽ अहाँ सुनिश्चित करू जे अहाँ ऐ पन्नाकेँ फेरसँ बनबऽ चाहै छी।",
+'confirmrecreate-noreason' => 'प्रयोक्ता [[User:$1|$1]] ([[User talk:$1|वार्ता]]) अहाँक सम्पादनक बाद ऐ पन्नाकेँ मेटा देलक| कृपा कऽ अहाँ सुनिश्चित करू जे अहाँ ऐ पन्नाकेँ फेरसँ बनबऽ चाहै छी।',
+'recreate'                 => 'फेर सें बनाऊ',
 
 # action=purge
 'confirm_purge_button' => 'ठीक अछि',
+'confirm-purge-top'    => 'ऐ पन्नाक उपस्मृति खतम कऽ दिअ?',
+'confirm-purge-bottom' => 'कोनो पन्नाक सफाइ उपस्मृतिकेँ खतम करैए आ अद्यतन संशोधनकेँ अएबाले जोर दैए।',
 
 # Multipage image navigation
 'imgmultipageprev' => 'पहिलुका पृष्ठ',
@@ -3147,15 +3283,43 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'पृष्ठ के खाली करल गेल',
+'autosumm-replace' => '"$1" सहित पाठ परिवर्तित भेल',
 'autoredircomment' => '[[$1]] के अनुप्रेषित',
 'autosumm-new'     => "'$1'संग नब पृष्ठ बनाओल गेल",
 
 # Live preview
 'livepreview-loading' => 'उपारोपण भऽ रहल अछि...',
 'livepreview-ready'   => 'उपारोपण भऽ रहल अछि...तैयार रहू!',
+'livepreview-failed'  => 'चल पूर्वदृश्य अफल!
+सामान्य पूर्वदृश्य प्रयोग करू।',
+'livepreview-error'   => 'जुड़बामे असफल: $1 "$2"।
+सामान्य पूर्वदृश्यक प्रयोग करू।',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 सँ नव बदलल गेल {{PLURAL:$1|सेकेण्ड|सेकेण्ड}} ऐ सूचीमे नै देखाएल गेल।',
+'lag-warn-high'   => 'उच्च दत्तनिधि वितरक देरीक कारण, $1 सँ नव परिवर्तन {{PLURAL:$1|सेकेण्ड|सेकेण्ड}} ऐ सूचीमे नै देखाएल जा सकल।',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'शीर्षक',
+'watchlistedit-numitems'       => 'अहाँक साकांक्ष-सूचीमे अछि {{PLURAL:$1|1 शीर्षक|$1 शीर्षक}}, वार्ता पन्नाकेँ छोड़ि कऽ।',
+'watchlistedit-noitems'        => 'अहाँक साकांक्ष-सूचीमे कोनो शीर्षक नै अछि।',
+'watchlistedit-normal-title'   => 'साकांक्षसूची बदलू',
+'watchlistedit-normal-legend'  => 'साकांक्ष सूचीसँ हटाउ',
+'watchlistedit-normal-explain' => 'अहाँक साकांक्ष-सूचीक शीर्षक नीचाँमे देल अछि।
+एकटा शीर्षककेँ हटेबाले, ओकर सोझाँक बक्शाकेँ सही करू, आ क्लिक करू "{{int:Watchlistedit-normal-submit}}"।
+अहाँ [[Special:EditWatchlist/raw|काँच-सूची सम्पादित करू]] ईहो कऽ सकै छी।',
+'watchlistedit-normal-submit'  => 'शीर्षक सभकेँ हटाउ',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1शीर्षक रहए|$1शीर्षक सभ रहए}} अहाँक साकांक्ष-सूचीसँ हटाएल गेल:',
+'watchlistedit-raw-title'      => 'काँच साकांक्षसूची संपादित करू',
+'watchlistedit-raw-legend'     => 'काँच साकांक्षसूची संपादित करू',
+'watchlistedit-raw-explain'    => 'अहाँक साकांक्ष-सूचीक शीर्षक सभ नीचाँ देल अछि, आ एकरा सूचीमे दऽ कऽ वा निकालि कऽ सम्पादित कएल जा सकैए;
+प्रति पाँती एक शीर्षक।
+जखन समाप्त भऽ जाए, क्लिक करू "{{int:Watchlistedit-raw-submit}}"।
+अहाँ [[Special:EditWatchlist|सामान्य सम्पादन-तंत्रांश प्रयोग करू]] ई सेहो कऽ सकै छी।',
+'watchlistedit-raw-titles'     => 'शीर्षक',
+'watchlistedit-raw-submit'     => 'साकांक्षसूची अद्यतन करू',
+'watchlistedit-raw-done'       => 'अहाँक साकांक्ष-सूची अद्यतन कएल गेल।',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 शीर्षक छल|$1शीर्षक सभ रहए}} जोड़ल गेल:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 शीर्षक छल|$1शीर्षक सभ रहए}} हटाएल गेल:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'सम्बन्धित परिवर्तन सभकेँ देखू',
@@ -3163,28 +3327,64 @@ $1',
 'watchlisttools-raw'  => 'काँच साकांक्षसूची संपादित करू',
 
 # Core parser functions
+'unknown_extension_tag' => 'अज्ञात बढ़ाएल चेन्ह "$1"',
 'duplicate-defaultsort' => '\'\'\'चेतौनी:\'\'\' पूर्वनिर्धारित विन्यास चाभी "$2" पहिलुका पूर्वनिर्धारित विन्यास चाभी "$1" केँ खतम करैए।',
 
 # Special:Version
-'version'                  => 'संस्करण',
-'version-extensions'       => 'संस्करणक आगाँ',
-'version-specialpages'     => 'खास पन्ना',
-'version-parserhooks'      => 'पार्सर हूक',
-'version-other'            => 'आन',
-'version-mediahandlers'    => 'मीडिया संचालक',
-'version-hooks'            => 'हूक',
-'version-software-product' => 'उत्पाद',
-'version-software-version' => 'संस्करण',
+'version'                       => 'संस्करण',
+'version-extensions'            => 'संस्करणक आगाँ',
+'version-specialpages'          => 'खास पन्ना',
+'version-parserhooks'           => 'पार्सर हूक',
+'version-variables'             => 'विकारी',
+'version-antispam'              => 'अनिष्ट संदेश प्रतिबन्ध',
+'version-skins'                 => 'रूप',
+'version-other'                 => 'आन',
+'version-mediahandlers'         => 'मीडिया संचालक',
+'version-hooks'                 => 'हूक',
+'version-extension-functions'   => 'प्रकार्य बढ़ाउ',
+'version-parser-extensiontags'  => 'विभाजन बढल चेन्ह',
+'version-parser-function-hooks' => 'विभाजक प्रकार्य खुट्टी',
+'version-hook-name'             => 'खुट्टीक नाम',
+'version-hook-subscribedby'     => 'ई सदस्यता लेलनि',
+'version-version'               => '(संस्करण $1)',
+'version-license'               => 'अधिकार',
+'version-poweredby-credits'     => "ई विकी चालित अछि '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2",
+'version-poweredby-others'      => 'आन',
+'version-license-info'          => 'मीडियाविकी एकटा मंगनीक तंत्रांश अछि; अहाँ एकरा बाँटि सकै छी आ/ वा संशोधित कऽ सकै छीगी.एन.यू. सामान्य जन लाइसेन्सक अन्तर्गत जेना फ्री सॉफ्टवेयर फाउन्डेशन एकरा प्रकाशित केने अछि; चाहे तँ लाइसेन्सक संस्करण २, वा (अहाँक विकल्पपर) कोनो बादक दोसर संस्करणक अन्तर्गत।
+
+मीडियाविकी ऐ आशामेँ बाँटल जा रहल अछि कि ई उपयोगी हएत, मुदा बिना कोनो गारन्टीक; बिना कोनो व्यापारिक अन्तर्निहित वारन्टीक वा कोनो विशेष काजक लेल उपयोगी हेबाले। देखू गी.एन.यू. सामान्य जन लाइसेन्स विशेष वर्णन लेल।
+
+अहाँ प्राप्त केने हएब [{{SERVER}}{{SCRIPTPATH}}/ अनुकरण गी.एन.यू. सामान्य जन लाइसेन्सक प्रति] ऐ तंत्रांशक संग; जँ नै, लिखू फ्री सॉफ्टवेयर फाउन्डेशन, आइ.एन.सी., ५१, फ्रैंकलिन स्ट्रीट, पाँचम तल, बोस्टन, एम.ए. ०२११०-१३०१, यू.एस.ए. वा [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html अन्तर्भूत पढ़बा लेल]।',
+'version-software'              => 'प्रतिष्ठापित तंत्रांश',
+'version-software-product'      => 'उत्पाद',
+'version-software-version'      => 'संस्करण',
 
 # Special:FilePath
-'filepath-page'   => 'संचिका',
-'filepath-submit' => 'जाऊ',
+'filepath'         => 'संचिकाक रस्ता',
+'filepath-page'    => 'संचिका',
+'filepath-submit'  => 'जाऊ',
+'filepath-summary' => 'ई विशेष पन्ना संचिकाक पूर्ण रस्ता देखबैत अछि।
+चित्र सभ पूर्ण आकारमे देखाएल जाइत अछि, दोसर संचिका प्रकार चालित होइए सोझे सम्बन्धित संविधि द्वारा।
+
+संचिका नाम दर्ज करू बिन "{{ns:file}}:" उपसर्गक।',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'ताकू',
+'fileduplicatesearch'           => 'द्वितीयक संचिका ताकू',
+'fileduplicatesearch-summary'   => 'हैश मानक आधारपर द्वितीयक संचिका ताकू।',
+'fileduplicatesearch-legend'    => 'द्वितीयक ताकू',
+'fileduplicatesearch-filename'  => 'संचिकानाम:',
+'fileduplicatesearch-submit'    => 'ताकू',
+'fileduplicatesearch-info'      => '$1 × $2 चित्राणु<br /> फाइल आकार: $3<br /> माइम प्रकार: $4',
+'fileduplicatesearch-result-1'  => 'संचिका "$1" लेल कोनो तादात्म्य द्वितीयक नै।',
+'fileduplicatesearch-result-n'  => 'संचिका "$1" केँ छै {{PLURAL:$2|1 तादात्म्य द्वितीयक|$2तादात्म्य द्वितीयक}}.',
+'fileduplicatesearch-noresults' => 'कोनो "$1" नाम्ना संचिका नै।',
 
 # Special:SpecialPages
 'specialpages'                   => 'विशेष पन्ना',
+'specialpages-note'              => '----
+*सामान्य विशेष पन्ना सभ।
+* <span class="mw-specialpagerestricted">प्रतिबन्धित विशेष पन्ना सभ।</span>
+* <span class="mw-specialpagecached">खाली उपस्मृतिबला पन्ना सभ।</span>',
 'specialpages-group-maintenance' => 'सुस्थापन प्रतिवेदन',
 'specialpages-group-other'       => 'दोसर विशेष पन्ना',
 'specialpages-group-login'       => 'सम्प्रवेश/ सम्प्रवेश आवेदन',
