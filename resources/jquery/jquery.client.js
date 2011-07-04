@@ -5,16 +5,22 @@
 
 	/* Private Members */
 
-	var profile;
+	/**
+	 * @var profileCache {Object} Keyed by userAgent string,
+	 * value is the parsed $.client.profile object for that user agent.
+	 */
+	var profileCache = {};
 
 	/* Public Methods */
 
 	$.client = {
 	
 		/**
-		 * Returns an object containing information about the browser
+		 * Get an object containing information about the client.
 		 *
-		 * The resulting client object will be in the following format:
+		 * @param nav {Object} An object with atleast a 'userAgent' and 'platform' key.=
+		 * Defaults to the global Navigator object.
+		 * @return {Object} The resulting client object will be in the following format:
 		 *  {
 		 *   'name': 'firefox',
 		 *   'layout': 'gecko',
@@ -25,9 +31,12 @@
 		 *   'versionNumber': 3.5,
 		 *  }
 		 */
-		profile: function() {
+		profile: function( nav ) {
+			if ( nav === undefined ) {
+				nav = window.navigator;
+			}
 			// Use the cached version if possible
-			if ( profile === undefined ) {
+			if ( profileCache[nav.userAgent] === undefined ) {
 	
 				/* Configuration */
 	
@@ -90,7 +99,7 @@
 	
 				/* Pre-processing  */
 	
-				var	userAgent = navigator.userAgent,
+				var	ua = nav.userAgent,
 					match,
 					name = uk,
 					layout = uk,
@@ -98,28 +107,28 @@
 					platform = uk,
 					version = x;
 
-				if ( match = new RegExp( '(' + wildUserAgents.join( '|' ) + ')' ).exec( userAgent ) ) {
+				if ( match = new RegExp( '(' + wildUserAgents.join( '|' ) + ')' ).exec( ua ) ) {
 					// Takes a userAgent string and translates given text into something we can more easily work with
-					userAgent = translate( userAgent, userAgentTranslations );
+					ua = translate( ua, userAgentTranslations );
 				}
 				// Everything will be in lowercase from now on
-				userAgent = userAgent.toLowerCase();
+				ua = ua.toLowerCase();
 	
 				/* Extraction */
 	
-				if ( match = new RegExp( '(' + names.join( '|' ) + ')' ).exec( userAgent ) ) {
+				if ( match = new RegExp( '(' + names.join( '|' ) + ')' ).exec( ua ) ) {
 					name = translate( match[1], nameTranslations );
 				}
-				if ( match = new RegExp( '(' + layouts.join( '|' ) + ')' ).exec( userAgent ) ) {
+				if ( match = new RegExp( '(' + layouts.join( '|' ) + ')' ).exec( ua ) ) {
 					layout = translate( match[1], layoutTranslations );
 				}
-				if ( match = new RegExp( '(' + layoutVersions.join( '|' ) + ')\\\/(\\d+)').exec( navigator.userAgent.toLowerCase() ) ) {
+				if ( match = new RegExp( '(' + layoutVersions.join( '|' ) + ')\\\/(\\d+)').exec( ua ) ) {
 					layoutversion = parseInt( match[2], 10 );
 				}
-				if ( match = new RegExp( '(' + platforms.join( '|' ) + ')' ).exec( navigator.platform.toLowerCase() ) ) {
+				if ( match = new RegExp( '(' + platforms.join( '|' ) + ')' ).exec( nav.platform.toLowerCase() ) ) {
 					platform = translate( match[1], platformTranslations );
 				}
-				if ( match = new RegExp( '(' + versionPrefixes.join( '|' ) + ')' + versionSuffix ).exec( userAgent ) ) {
+				if ( match = new RegExp( '(' + versionPrefixes.join( '|' ) + ')' + versionSuffix ).exec( ua ) ) {
 					version = match[3];
 				}
 	
@@ -131,13 +140,13 @@
 				}
 				// Expose Opera 10's lies about being Opera 9.8
 				if ( name === 'opera' && version >= 9.8) {
-					version = userAgent.match( /version\/([0-9\.]*)/i )[1] || 10;
+					version = ua.match( /version\/([0-9\.]*)/i )[1] || 10;
 				}
 				var versionNumber = parseFloat( version, 10 ) || 0.0;
 	
 				/* Caching */
 	
-				profile = {
+				profileCache[nav.userAgent] = {
 					'name': name,
 					'layout': layout,
 					'layoutVersion': layoutversion,
@@ -147,7 +156,7 @@
 					'versionNumber': versionNumber
 				};
 			}
-			return profile;
+			return profileCache[nav.userAgent];
 		},
 	
 		/**
@@ -171,12 +180,14 @@
 		 *   }
 		 * }
 		 *
-		 * @param map Object of browser support map
+		 * @param map {Object} Browser support map
+		 * @param profile {Object} (optional) a client-profile object.
 		 *
 		 * @return Boolean true if browser known or assumed to be supported, false if blacklisted
 		 */
-		test: function( map ) {
-			var profile = $.client.profile();
+		test: function( map, profile ) {
+			profile = $.isPlainObject( profile ) ? profile : $.client.profile();
+
 			var dir = $( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
 			// Check over each browser condition to determine if we are running in a compatible client
 			if ( typeof map[dir] !== 'object' || typeof map[dir][profile.name] === 'undefined' ) {
