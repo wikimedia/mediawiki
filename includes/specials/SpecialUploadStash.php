@@ -97,7 +97,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$message = $e->getMessage();
 		}
 
-		wfHttpError( $code, OutputPage::getStatusMessage( $code ), $message );
+		wfHttpError( $code, HttpStatus::getMessage( $code ), $message );
 		return false;
 	}
 
