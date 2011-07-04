@@ -2297,7 +2297,10 @@ class WikiPage extends Page {
 		$rt = Title::newFromRedirect( $newtext );
 
 		if ( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
-			return wfMsgForContent( 'autoredircomment', $rt->getFullText() );
+			$truncatedtext = $wgContLang->truncate(
+				str_replace( "\n", ' ', $newtext ),
+				max( 0, 200 - strlen( wfMsgForContent( 'autoredircomment' ) ) ) );
+			return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
 		}
 
 		# New page autosummaries
