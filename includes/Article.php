@@ -1764,7 +1764,7 @@ class Article extends Page {
 			"\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
 			$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
 
-		$wgOut->addHTML( $r );
+		$wgOut->setSubtitle( $r );
 	}
 
 	/* Caching functions */
