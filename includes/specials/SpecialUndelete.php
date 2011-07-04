@@ -619,7 +619,7 @@ class SpecialUndelete extends SpecialPage {
 		if( $this->mRestore || $this->mInvert ) {
 			$timestamps = array();
 			$this->mFileVersions = array();
-			foreach( $_REQUEST as $key => $val ) {
+			foreach( $this->mRequest->getValues() as $key => $val ) {
 				$matches = array();
 				if( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
 					array_push( $timestamps, $matches[1] );
