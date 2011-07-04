@@ -524,6 +524,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/libs
 	'CSSJanus' => 'includes/libs/CSSJanus.php',
 	'CSSMin' => 'includes/libs/CSSMin.php',
+	'HttpStatus' => 'includes/libs/HttpStatus.php',
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 	'IEUrlExtension' => 'includes/libs/IEUrlExtension.php',
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
