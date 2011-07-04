@@ -1634,7 +1634,6 @@ HTML
 	 * @return array An array in the format array( $label, $input )
 	 */
 	function getSummaryInput($summary = "", $labelText = null, $inputAttrs = null, $spanLabelAttrs = null) {
-		global $wgUser;
 		//Note: the maxlength is overriden in JS to 250 and to make it use UTF-8 bytes, not characters.
 		$inputAttrs = ( is_array($inputAttrs) ? $inputAttrs : array() ) + array(
 			'id' => 'wpSummary',
@@ -1642,7 +1641,7 @@ HTML
 			'tabindex' => '1',
 			'size' => 60,
 			'spellcheck' => 'true',
-		) + $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'summary' );
+		) + Linker::tooltipAndAccesskeyAttribs( 'summary' );
 
 		$spanLabelAttrs = ( is_array($spanLabelAttrs) ? $spanLabelAttrs : array() ) + array(
 			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',

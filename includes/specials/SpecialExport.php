@@ -215,7 +215,7 @@ class SpecialExport extends SpecialPage {
 			$wgRequest->wasPosted() ? $wgRequest->getCheck( 'wpDownload' ) : true
 		) . '<br />';
 
-		$form .= Xml::submitButton( wfMsg( 'export-submit' ), $this->getSkin()->tooltipAndAccessKeyAttribs( 'export' ) );
+		$form .= Xml::submitButton( wfMsg( 'export-submit' ), Linker::tooltipAndAccesskeyAttribs( 'export' ) );
 		$form .= Xml::closeElement( 'form' );
 
 		$wgOut->addHTML( $form );

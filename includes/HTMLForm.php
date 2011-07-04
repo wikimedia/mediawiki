@@ -460,7 +460,7 @@ class HTMLForm {
 		}
 
 		if ( isset( $this->mSubmitTooltip ) ) {
-			$attribs += Linker::tooltipAndAccessKeyAttribs( $this->mSubmitTooltip );
+			$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 		}
 
 		$attribs['class'] = 'mw-htmlform-submit';
@@ -1037,7 +1037,7 @@ abstract class HTMLFormField {
 		if ( empty( $this->mParams['tooltip'] ) ) {
 			return array();
 		}
-		return Linker::tooltipAndAccessKeyAttribs( $this->mParams['tooltip'] );
+		return Linker::tooltipAndAccesskeyAttribs( $this->mParams['tooltip'] );
 	}
 
 	/**

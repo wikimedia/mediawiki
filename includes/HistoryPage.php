@@ -397,7 +397,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->buttons = '<div>';
 		$this->buttons .= $this->submitButton( wfMsg( 'compareselectedversions' ),
 			array( 'class' => 'historysubmit' )
-				+ $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'compareselectedversions' )
+				+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' )
 		) . "\n";
 
 		if ( $wgUser->isAllowed( 'deleterevision' ) ) {
