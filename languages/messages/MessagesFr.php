@@ -578,7 +578,7 @@ $messages = array(
 'redirectedfrom'    => '(Redirigé depuis $1)',
 'redirectpagesub'   => 'Page de redirection',
 'lastmodifiedat'    => 'Dernière modification de cette page le $1 à $2.<br />',
-'viewcount'         => 'Cette page a été consultée $1 fois{{PLURAL:$1||}}.',
+'viewcount'         => 'Cette page a été consultée $1 fois.',
 'protectedpage'     => 'Page protégée',
 'jumpto'            => 'Aller à :',
 'jumptonavigation'  => 'Navigation',
@@ -1353,12 +1353,13 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'searchdisabled'                   => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.',
 
 # Quickbar
-'qbsettings'               => 'Barre d’outils',
-'qbsettings-none'          => 'Aucune',
-'qbsettings-fixedleft'     => 'Gauche',
-'qbsettings-fixedright'    => 'Droite',
-'qbsettings-floatingleft'  => 'Flottante à gauche',
-'qbsettings-floatingright' => 'Flottante à droite',
+'qbsettings'                => 'Barre d’outils',
+'qbsettings-none'           => 'Aucune',
+'qbsettings-fixedleft'      => 'Gauche',
+'qbsettings-fixedright'     => 'Droite',
+'qbsettings-floatingleft'   => 'Flottante à gauche',
+'qbsettings-floatingright'  => 'Flottante à droite',
+'qbsettings-directionality' => 'Fixe, en fonction de la directionnalité de votre langue',
 
 # Preferences page
 'preferences'                   => 'Préférences',
@@ -1585,10 +1586,11 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
 
 # User rights log
-'rightslog'      => 'Journal des modifications de droits d’utilisateurs',
-'rightslogtext'  => 'Voici l’historique des modifications des droits des utilisateurs.',
-'rightslogentry' => 'a modifié les droits de l’utilisateur « $1 » de $2 à $3',
-'rightsnone'     => '(aucun)',
+'rightslog'                  => 'Journal des modifications de droits d’utilisateurs',
+'rightslogtext'              => 'Voici l’historique des modifications des droits des utilisateurs.',
+'rightslogentry'             => 'a modifié les droits de l’utilisateur « $1 » de $2 à $3',
+'rightslogentry-autopromote' => 'a été automatiquement promu de $2 à $3',
+'rightsnone'                 => '(aucun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'lire cette page',
@@ -2371,11 +2373,11 @@ Veuillez cliquer sur « Précédent », rechargez la page d’où vous venez, pu
 
 # Protect
 'protectlogpage'              => 'Journal des protections',
-'protectlogtext'              => 'Voici une liste historique des protections et déprotections de pages.
+'protectlogtext'              => 'Voici une liste des modifications des protections de pages.
 Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la liste des protections actuellement opérationnelles.',
 'protectedarticle'            => 'a protégé « [[$1]] »',
 'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
-'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
+'unprotectedarticle'          => 'a supprimé la protection de « [[$1]] »',
 'movedarticleprotection'      => 'a déplacé les paramètres de protection depuis « [[$2]] » vers « [[$1]] »',
 'protect-title'               => 'Changer le niveau de protection pour « $1 »',
 'prot_1movedto2'              => '[[$1]] renommé en [[$2]]',
@@ -2486,10 +2488,12 @@ $1',
 'undelete-show-file-submit'    => 'Oui',
 
 # Namespace form on various pages
-'namespace'             => 'Espace de noms :',
-'invert'                => 'Inverser la sélection',
-'namespace_association' => 'Espace de noms associé',
-'blanknamespace'        => '(Principal)',
+'namespace'                     => 'Espace de noms :',
+'invert'                        => 'Inverser la sélection',
+'tooltip-invert'                => "Cochez cette case pour cacher les modifications des pages dans l'espace de noms sélectionné (et l'espace de noms associé si coché)",
+'namespace_association'         => 'Espace de noms associé',
+'tooltip-namespace_association' => "Cochez cette case pour inclure également l'espace de noms de discussion associé à l'espace de noms sélectionné",
+'blanknamespace'                => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contributions de l’utilisateur',
@@ -2892,7 +2896,7 @@ Veuillez utiliser le bouton de prévisualisation avant d’enregistrer.',
 Vous pouvez toutefois en visualiser la source.',
 'tooltip-ca-history'              => 'Les versions passées de cette page (avec leurs contributeurs)',
 'tooltip-ca-protect'              => 'Protéger cette page',
-'tooltip-ca-unprotect'            => 'Déprotéger cette page',
+'tooltip-ca-unprotect'            => 'Changer la protection de cette page',
 'tooltip-ca-delete'               => 'Supprimer cette page',
 'tooltip-ca-undelete'             => 'Rétablir les modifications faites sur cette page avant sa suppression',
 'tooltip-ca-move'                 => 'Renommer cette page',

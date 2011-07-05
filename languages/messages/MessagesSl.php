@@ -1210,12 +1210,13 @@ Medtem lahko iščete preko Googla.
 Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} morda zastareli.',
 
 # Quickbar
-'qbsettings'               => 'Nastavitve hitre vrstice',
-'qbsettings-none'          => 'Brez',
-'qbsettings-fixedleft'     => 'Levo nepomično',
-'qbsettings-fixedright'    => 'Desno nepomično',
-'qbsettings-floatingleft'  => 'Levo leteče',
-'qbsettings-floatingright' => 'Desno leteče',
+'qbsettings'                => 'Nastavitve hitre vrstice',
+'qbsettings-none'           => 'Brez',
+'qbsettings-fixedleft'      => 'Levo nepomično',
+'qbsettings-fixedright'     => 'Desno nepomično',
+'qbsettings-floatingleft'   => 'Levo leteče',
+'qbsettings-floatingright'  => 'Desno leteče',
+'qbsettings-directionality' => 'Stalno, odvisno od usmerjenosti vašega jezika',
 
 # Preferences page
 'preferences'                   => 'Nastavitve',

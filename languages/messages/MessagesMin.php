@@ -845,6 +845,8 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 # Preferences page
 'preferences'             => 'Preferensi',
 'mypreferences'           => 'Preferensi denai',
+'prefs-beta'              => 'Corak Beta',
+'prefs-labs'              => 'Corak Uji',
 'youremail'               => 'Surek Elektronik:',
 'yourrealname'            => 'Namo sabananyo:',
 'prefs-help-email'        => 'Alamaik surek elektronik ko hanyo tambahan se, namun paralu untuak maulang kato kunci, jiko awak ang lupo kato kunci.',

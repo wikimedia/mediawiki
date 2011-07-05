@@ -19,6 +19,7 @@
  * @author Danielsouzat
  * @author Diego Queiroz
  * @author Eduardo.mps
+ * @author Everton137
  * @author GKnedo
  * @author Giro720
  * @author GoEThe
@@ -1330,7 +1331,9 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'prefs-skin'                    => 'Tema',
 'skin-preview'                  => 'Pré-visualização',
 'datedefault'                   => 'Sem preferência',
+'prefs-beta'                    => 'Características beta',
 'prefs-datetime'                => 'Data e hora',
+'prefs-labs'                    => 'Características de laboratório',
 'prefs-personal'                => 'Perfil de usuário',
 'prefs-rc'                      => 'Mudanças recentes',
 'prefs-watchlist'               => 'Lista de páginas vigiadas',

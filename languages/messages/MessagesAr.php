@@ -1496,7 +1496,9 @@ $1",
 'prefs-skin'                    => 'واجهة',
 'skin-preview'                  => 'عاين',
 'datedefault'                   => 'لا تفضيل',
+'prefs-beta'                    => 'مزايا بيتا',
 'prefs-datetime'                => 'وقت وتاريخ',
+'prefs-labs'                    => 'مزايا مُختَبرية',
 'prefs-personal'                => 'ملف المستخدم',
 'prefs-rc'                      => 'أحدث التغييرات',
 'prefs-watchlist'               => 'قائمة المراقبة',
@@ -3151,6 +3153,9 @@ $1',
 'spambot_username'    => 'تنظيف سبام ميدياويكي',
 'spam_reverting'      => 'استرجاع آخر نسخة ليس بها وصلات إلى $1',
 'spam_blanking'       => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
+
+# Info page
+'pageinfo-header-edits' => 'التعديلات',
 
 # Skin names
 'skinname-standard'    => 'كلاسيك',

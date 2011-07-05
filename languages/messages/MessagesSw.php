@@ -1115,6 +1115,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'prefs-skin'                    => 'Umbo',
 'skin-preview'                  => 'Hakiki',
 'datedefault'                   => 'Chaguo-msingi',
+'prefs-beta'                    => 'Zana za Beta',
 'prefs-datetime'                => 'Tarehe na saa',
 'prefs-personal'                => 'Kuhusu mtumiaji',
 'prefs-rc'                      => 'Mabadiliko ya karibuni',
