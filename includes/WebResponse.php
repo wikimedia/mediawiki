@@ -77,6 +77,7 @@ class WebResponse {
 class FauxResponse extends WebResponse {
 	private $headers;
 	private $cookies;
+	private $code;
 
 	/**
 	 * Stores a HTTP header
@@ -85,10 +86,19 @@ class FauxResponse extends WebResponse {
 	 * @param $http_response_code null|int Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
-		list( $key, $val ) = explode( ":", $string, 2 );
+		$match = array();
+		if ( preg_match( '~^HTTP/1.\d (\d+)\D*$~', $string, $match ) ) {
+			$this->code = intval( $match[1] );
+		} else {
+			list( $key, $val ) = explode( ":", $string, 2 );
 
-		if( $replace || !isset( $this->headers[$key] ) ) {
-			$this->headers[$key] = $val;
+			if( $replace || !isset( $this->headers[$key] ) ) {
+				$this->headers[$key] = $val;
+			}
+		}
+
+		if ( $http_response_code !== null ) {
+			$this->code = intval( $http_response_code );
 		}
 	}
 
@@ -98,6 +108,15 @@ class FauxResponse extends WebResponse {
 	 */
 	public function getheader( $key ) {
 		return $this->headers[$key];
+	}
+
+	/**
+	 * Get the HTTP response code, null if not set
+	 *
+	 * @return Int or null
+	 */
+	public function getStatusCode() {
+		return $this->code;
 	}
 
 	/**
