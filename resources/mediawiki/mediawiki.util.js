@@ -1,9 +1,10 @@
 /**
  * Utilities
  */
-( function( $, mw ) {
+( function( $ ) {
 
-	mw.util = {
+	// Local cache and alias
+	var util = mw.util = {
 
 		/* Initialisation */
 		/**
@@ -14,8 +15,8 @@
 			if ( this.initialised === false ) {
 				this.initialised = true;
 
-				// Any initialisation after the DOM is ready
-				$( function() {
+				// Folllowing the initialisation after the DOM is ready
+				$(document).ready( function() {
 
 					/* Set up $.messageBox */
 					$.messageBoxNew( {
@@ -30,19 +31,19 @@
 
 					// Opera on any platform
 					if ( profile.name == 'opera' ) {
-						mw.util.tooltipAccessKeyPrefix = 'shift-esc-';
+						util.tooltipAccessKeyPrefix = 'shift-esc-';
 
 					// Chrome on any platform
 					} else if ( profile.name == 'chrome' ) {
 						// Chrome on Mac or Chrome on other platform ?
-						mw.util.tooltipAccessKeyPrefix = ( profile.platform == 'mac'
+						util.tooltipAccessKeyPrefix = ( profile.platform == 'mac'
 							? 'ctrl-option-' : 'alt-' );
 
 					// Non-Windows Safari with webkit_version > 526
 					} else if ( profile.platform !== 'win'
 						&& profile.name == 'safari'
 						&& profile.layoutVersion > 526 ) {
-						mw.util.tooltipAccessKeyPrefix = 'ctrl-alt-';
+						util.tooltipAccessKeyPrefix = 'ctrl-alt-';
 
 					// Safari/Konqueror on any platform, or any browser on Mac
 					// (but not Safari on Windows)
@@ -50,32 +51,32 @@
 									&& ( profile.name == 'safari'
 									|| profile.platform == 'mac'
 									|| profile.name == 'konqueror' ) ) {
-						mw.util.tooltipAccessKeyPrefix = 'ctrl-';
+						util.tooltipAccessKeyPrefix = 'ctrl-';
 
 					// Firefox 2.x
 					} else if ( profile.name == 'firefox' && profile.versionBase == '2' ) {
-						mw.util.tooltipAccessKeyPrefix = 'alt-shift-';
+						util.tooltipAccessKeyPrefix = 'alt-shift-';
 					}
 
 					/* Fill $content var */
 					if ( $( '#bodyContent' ).length ) {
 						// Vector, Monobook, Chick etc.
-						mw.util.$content = $( '#bodyContent' );
+						util.$content = $( '#bodyContent' );
 
 					} else if ( $( '#mw_contentholder' ).length ) {
 						// Modern
-						mw.util.$content = $( '#mw_contentholder' );
+						util.$content = $( '#mw_contentholder' );
 
 					} else if ( $( '#article' ).length ) {
 						// Standard, CologneBlue
-						mw.util.$content = $( '#article' );
+						util.$content = $( '#article' );
 
 					} else {
 						// #content is present on almost all if not all skins. Most skins (the above cases)
 						// have #content too, but as an outer wrapper instead of the article text container.
 						// The skins that don't have an outer wrapper do have #content for everything
 						// so it's a good fallback
-						mw.util.$content = $( '#content' );
+						util.$content = $( '#content' );
 					}
 
 					/* Table of Contents toggle */
@@ -89,7 +90,7 @@
 								.text( mw.msg( 'hidetoc' ) )
 								.click( function(e){
 									e.preventDefault();
-									mw.util.toggleToc( $(this) );
+									util.toggleToc( $(this) );
 							} );
 						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
 
@@ -271,9 +272,9 @@
 
 			$nodes.each( function ( i ) {
 				var tip = $(this).attr( 'title' );
-				if ( !!tip && mw.util.tooltipAccessKeyRegexp.exec( tip ) ) {
-					tip = tip.replace( mw.util.tooltipAccessKeyRegexp,
-						'[' + mw.util.tooltipAccessKeyPrefix + "$5]" );
+				if ( !!tip && util.tooltipAccessKeyRegexp.exec( tip ) ) {
+					tip = tip.replace( util.tooltipAccessKeyRegexp,
+						'[' + util.tooltipAccessKeyPrefix + "$5]" );
 					$(this).attr( 'title', tip );
 				}
 			} );
@@ -398,7 +399,7 @@
 
 				// Where to put our node ?
 				// - nextnode is a DOM element (before MW 1.17, in wikibits.js, this was the only option)
-				if ( nextnode && nextnode.parentNode == $ul[0]  ) {
+				if ( nextnode && nextnode.parentNode == $ul[0] ) {
 					$(nextnode).before( $item );
 
 				// - nextnode is a CSS selector for jQuery
@@ -442,8 +443,8 @@
 				var $messageDiv = $( '#mw-js-message' );
 				if ( !$messageDiv.length ) {
 					$messageDiv = $( '<div id="mw-js-message">' );
-					if ( mw.util.$content.parent().length ) {
-						mw.util.$content.parent().prepend( $messageDiv );
+					if ( util.$content.parent().length ) {
+						util.$content.parent().prepend( $messageDiv );
 					} else {
 						return false;
 					}
@@ -587,6 +588,6 @@
 
 	};
 
-	mw.util.init();
+	util.init();
 
-} )( jQuery, mediaWiki );
+} )( jQuery );
