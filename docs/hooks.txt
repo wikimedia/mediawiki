@@ -621,6 +621,11 @@ $catpage: CategoryPage instance
 $unpatrolled:  Whether or not we are showing unpatrolled changes.
 $watched:      Whether or not the change is watched by the user.
 
+'Collation::factory': Called if $wgCategoryCollation is an unknown collation
+$collationName: Name of the collation in question
+&$collationObject: Null. Replace with a subclass of the Collation class that implements
+the collation given in $collationName.
+
 'ConfirmEmailComplete': Called after a user's email has been confirmed successfully
 $user: user (object) whose email is being confirmed
 
