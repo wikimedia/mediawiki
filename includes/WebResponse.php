@@ -87,8 +87,9 @@ class FauxResponse extends WebResponse {
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
 		$match = array();
-		if ( preg_match( '~^HTTP/1.\d (\d+)\D*$~', $string, $match ) ) {
-			$this->code = intval( $match[1] );
+		if ( substr( $string, 0, 5 ) == 'HTTP/' ) {
+			$parts = explode( ' ', $string, 3 );
+			$this->code = intval( $parts[1] );
 		} else {
 			list( $key, $val ) = explode( ":", $string, 2 );
 
