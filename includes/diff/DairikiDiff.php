@@ -1015,7 +1015,7 @@ class ArrayDiffFormatter extends DiffFormatter {
 						$retval[] = array(
 							'action' => 'change',
 							'old' => $l,
-							'new' => @$edit->closing[$i],
+							'new' => isset( $edit->closing[$i] ) ? $edit->closing[$i] : null,
 							'oldline' => $oldline++,
 							'newline' => $newline++,
 						);
