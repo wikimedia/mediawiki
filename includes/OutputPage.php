@@ -1875,7 +1875,7 @@ class OutputPage {
 			wfProfileOut( __METHOD__ );
 			return;
 		} elseif ( $this->mStatusCode ) {
-			$message = self::getStatusMessage( $this->mStatusCode );
+			$message = HttpStatus::getMessage( $this->mStatusCode );
 			if ( $message ) {
 				$response->header( 'HTTP/1.1 ' . $this->mStatusCode . ' ' . $message );
 			}
