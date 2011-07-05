@@ -64,6 +64,9 @@ class UsersPager extends AlphabeticPager {
 		parent::__construct();
 	}
 
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Listusers' );
+	}
 
 	function getIndexField() {
 		return $this->creationSort ? 'user_id' : 'user_name';
