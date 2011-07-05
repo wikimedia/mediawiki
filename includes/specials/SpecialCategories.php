@@ -79,6 +79,10 @@ class CategoryPager extends AlphabeticPager {
 		);
 	}
 
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Categories' );
+	}
+
 	function getIndexField() {
 #		return array( 'abc' => 'cat_title', 'count' => 'cat_pages' );
 		return 'cat_title';
@@ -124,11 +128,10 @@ class CategoryPager extends AlphabeticPager {
 
 	public function getStartForm( $from ) {
 		global $wgScript;
-		$t = SpecialPage::getTitleFor( 'Categories' );
 
 		return
 			Xml::tags( 'form', array( 'method' => 'get', 'action' => $wgScript ),
-				Html::hidden( 'title', $t->getPrefixedText() ) .
+				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 				Xml::fieldset( wfMsg( 'categories' ),
 					Xml::inputLabel( wfMsg( 'categoriesfrom' ),
 						'from', 'from', 20, $from ) .

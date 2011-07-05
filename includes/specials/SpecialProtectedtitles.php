@@ -207,6 +207,10 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		return '';
 	}
 
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Protectedtitles' );
+	}
+
 	function formatRow( $row ) {
 		return $this->mForm->formatRow( $row );
 	}
