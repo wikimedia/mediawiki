@@ -142,7 +142,7 @@ abstract class IndexPager implements Pager {
 	 * has been kept minimal to make it overridable if necessary, to allow for
 	 * result sets formed from multiple DB queries.
 	 */
-	function doQuery() {
+	public function doQuery() {
 		# Use the child class name for profiling
 		$fname = __METHOD__ . ' (' . get_class( $this ) . ')';
 		wfProfileIn( $fname );
@@ -199,7 +199,7 @@ abstract class IndexPager implements Pager {
 			# Remove any table prefix from index field
 			$parts = explode( '.', $this->mIndexField );
 			$indexColumn = end( $parts );
-			
+
 			$row = $res->fetchRow();
 			$firstIndex = $row[$indexColumn];
 
@@ -707,7 +707,9 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	function getNavigationBar() {
 		global $wgLang;
 
-		if ( !$this->isNavigationBarShown() ) return '';
+		if ( !$this->isNavigationBarShown() ) {
+			return '';
+		}
 
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
@@ -1002,7 +1004,7 @@ abstract class TablePager extends IndexPager {
 	 */
 	function getLimitSelect() {
 		global $wgLang;
-		
+
 		# Add the current limit from the query string
 		# to avoid that the limit is lost after clicking Go next time
 		if ( !in_array( $this->mLimit, $this->mLimitsShown ) ) {
