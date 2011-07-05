@@ -1191,12 +1191,13 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'searchdisabled'                   => 'Ciri pencarian dalam {{SITENAME}} dimatikan. Anda boleh mencari melalui Google. Sila ambil perhatian bahawa indeks dalam Google mungkin bukan yang terkini.',
 
 # Quickbar
-'qbsettings'               => 'Bar pantas',
-'qbsettings-none'          => 'Tiada',
-'qbsettings-fixedleft'     => 'Tetap sebelah kiri',
-'qbsettings-fixedright'    => 'Tetap sebelah kanan',
-'qbsettings-floatingleft'  => 'Berubah-ubah sebelah kiri',
-'qbsettings-floatingright' => 'Berubah-ubah sebelah kanan',
+'qbsettings'                => 'Bar pantas',
+'qbsettings-none'           => 'Tiada',
+'qbsettings-fixedleft'      => 'Tetap sebelah kiri',
+'qbsettings-fixedright'     => 'Tetap sebelah kanan',
+'qbsettings-floatingleft'   => 'Berubah-ubah sebelah kiri',
+'qbsettings-floatingright'  => 'Berubah-ubah sebelah kanan',
+'qbsettings-directionality' => 'Tetap, bergantung pada kearahan bahasa anda',
 
 # Preferences page
 'preferences'                   => 'Keutamaan',
@@ -1208,7 +1209,9 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-skin'                    => 'Rupa',
 'skin-preview'                  => 'Pratonton',
 'datedefault'                   => 'Tiada keutamaan',
+'prefs-beta'                    => 'Ciri-ciri beta',
 'prefs-datetime'                => 'Tarikh dan waktu',
+'prefs-labs'                    => 'Ciri-ciri makmal',
 'prefs-personal'                => 'Profil',
 'prefs-rc'                      => 'Perubahan terkini',
 'prefs-watchlist'               => 'Senarai pantau',

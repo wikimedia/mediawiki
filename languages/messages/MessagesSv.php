@@ -16,6 +16,7 @@
  * @author Grillo
  * @author Habj
  * @author Habjchen
+ * @author Hannibal
  * @author Jon Harald Søby
  * @author Lejonel
  * @author Leo Johannes
@@ -1340,7 +1341,9 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-skin'                    => 'Utseende',
 'skin-preview'                  => 'förhandsvisning',
 'datedefault'                   => 'Ovidkommande',
+'prefs-beta'                    => 'Betafunktioner',
 'prefs-datetime'                => 'Datum och tid',
+'prefs-labs'                    => 'Testfunktioner',
 'prefs-personal'                => 'Mitt konto',
 'prefs-rc'                      => 'Senaste ändringar',
 'prefs-watchlist'               => 'Bevakningslista',

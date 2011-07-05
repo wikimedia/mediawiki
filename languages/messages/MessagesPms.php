@@ -1066,7 +1066,9 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'prefs-skin'                    => 'Facia',
 'skin-preview'                  => 'Preuva',
 'datedefault'                   => "Franch l'istess",
+'prefs-beta'                    => 'Caraterìstiche dla Beta',
 'prefs-datetime'                => 'Data e ora',
+'prefs-labs'                    => 'Caraterìstiche dël laboratòri',
 'prefs-personal'                => "Profil dl'utent",
 'prefs-rc'                      => 'Ùltime modìfiche',
 'prefs-watchlist'               => 'Ròba che as ten sot euj',
@@ -1873,15 +1875,15 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 # Special:Log/newusers
 'newuserlogpage'              => "Registr dla creassion dj'utent",
 'newuserlogpagetext'          => "Sossì a l'é un registr andova ch'as marco le creassion dj'utent.",
-'newuserlog-byemail'          => 'ciav spedìa via e-mail',
+'newuserlog-byemail'          => 'ciav spedìa për pòsta eletrònica',
 'newuserlog-create-entry'     => 'Neuv utent',
 'newuserlog-create2-entry'    => 'Creà ël neuv cont $1',
 'newuserlog-autocreate-entry' => 'Cont creà automaticament',
 
 # Special:ListGroupRights
 'listgrouprights'                      => "Drit dël grup d'utent",
-'listgrouprights-summary'              => "Ambelessì a-i é na lista dij grup utent definì an dzora a sta wiki-sì, con ij sò drit d'acess assocssià.
-A peulo ess-ie [[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissionaj]] an dzora a dij drit individuaj.",
+'listgrouprights-summary'              => "Ambelessì a-i é na lista dle partìe d'utent definìe ansima a costa wiki, con ij sò drit d'acess associà.
+A peulo ess-ie d'[[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissionaj]] ansima a dij drit individuaj.",
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Drit asignà</span>
 * <span class="listgrouprights-revoked">Drit revocà</span>',
 'listgrouprights-group'                => 'Grup',

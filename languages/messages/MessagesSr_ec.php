@@ -1435,12 +1435,13 @@ $1",
 Упамтите да његови пописи овог викија могу бити застарели.',
 
 # Quickbar
-'qbsettings'               => 'Бочна палета',
-'qbsettings-none'          => 'Ништа',
-'qbsettings-fixedleft'     => 'Причвршћена лево',
-'qbsettings-fixedright'    => 'Причвршћена десно',
-'qbsettings-floatingleft'  => 'Плутајућа лево',
-'qbsettings-floatingright' => 'Плутајућа десно',
+'qbsettings'                => 'Бочна палета',
+'qbsettings-none'           => 'Ништа',
+'qbsettings-fixedleft'      => 'Причвршћена лево',
+'qbsettings-fixedright'     => 'Причвршћена десно',
+'qbsettings-floatingleft'   => 'Плутајућа лево',
+'qbsettings-floatingright'  => 'Плутајућа десно',
+'qbsettings-directionality' => 'Чврсто, у зависности од усмерености писма вашег језика',
 
 # Preferences page
 'preferences'                   => 'Подешавања',

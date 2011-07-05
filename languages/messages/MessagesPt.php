@@ -1335,12 +1335,13 @@ Entretanto, pode realizar pesquisas através do Google.
 Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode estar desactualizada.',
 
 # Quickbar
-'qbsettings'               => 'Barra Rápida',
-'qbsettings-none'          => 'Nenhuma',
-'qbsettings-fixedleft'     => 'Fixo à esquerda',
-'qbsettings-fixedright'    => 'Fixo à direita',
-'qbsettings-floatingleft'  => 'Flutuando à esquerda',
-'qbsettings-floatingright' => 'Flutuando à direita',
+'qbsettings'                => 'Barra Rápida',
+'qbsettings-none'           => 'Nenhuma',
+'qbsettings-fixedleft'      => 'Fixa à esquerda',
+'qbsettings-fixedright'     => 'Fixa à direita',
+'qbsettings-floatingleft'   => 'Flutuante à esquerda',
+'qbsettings-floatingright'  => 'Flutuante à direita',
+'qbsettings-directionality' => 'Fixa, dependendo da direccionalidade da sua língua',
 
 # Preferences page
 'preferences'                   => 'Preferências',
@@ -1352,7 +1353,9 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-skin'                    => 'Tema',
 'skin-preview'                  => 'Antever tema',
 'datedefault'                   => 'Sem preferência',
+'prefs-beta'                    => 'Funcionalidades beta',
 'prefs-datetime'                => 'Data e hora',
+'prefs-labs'                    => 'Funcionalidades dos laboratórios',
 'prefs-personal'                => 'Perfil de utilizador',
 'prefs-rc'                      => 'Mudanças recentes',
 'prefs-watchlist'               => 'Páginas vigiadas',

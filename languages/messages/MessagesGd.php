@@ -573,6 +573,8 @@ Feuch ri ''all:'' a chuir air beulaibh an iarrtais agad gus rannsachadh a dhèan
 'changepassword' => 'Atharraich facal-faire',
 'prefs-skin'     => 'Bian',
 'skin-preview'   => 'Ro-shealladh',
+'prefs-beta'     => 'Feartan Beta',
+'prefs-labs'     => 'Feartan nan deuchainn-lannan',
 'prefs-personal' => "Pròifil a' chleachdaiche",
 'saveprefs'      => 'Sàbhail',
 'resetprefs'     => 'Falamhaich atharrachaidhean nach deach a shàbhaladh fhathast',

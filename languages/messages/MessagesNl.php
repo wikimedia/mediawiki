@@ -1392,12 +1392,13 @@ U kunt gebruik maken van Google.
 De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 
 # Quickbar
-'qbsettings'               => 'Menubalk',
-'qbsettings-none'          => 'Uitgeschakeld',
-'qbsettings-fixedleft'     => 'Links vast',
-'qbsettings-fixedright'    => 'Rechts vast',
-'qbsettings-floatingleft'  => 'Links zwevend',
-'qbsettings-floatingright' => 'Rechts zwevend',
+'qbsettings'                => 'Menubalk',
+'qbsettings-none'           => 'Uitgeschakeld',
+'qbsettings-fixedleft'      => 'Links vast',
+'qbsettings-fixedright'     => 'Rechts vast',
+'qbsettings-floatingleft'   => 'Links zwevend',
+'qbsettings-floatingright'  => 'Rechts zwevend',
+'qbsettings-directionality' => 'Vast, afhankelijk van de schrijfrichting van uw taal',
 
 # Preferences page
 'preferences'                   => 'Voorkeuren',
