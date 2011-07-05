@@ -86,7 +86,7 @@ class CategoryViewer {
 		$children, $children_start_char,
 		$showGallery, $imgsNoGalley,
 		$imgsNoGallery_start_char,
-		$skin, $imgsNoGallery;
+		$imgsNoGallery;
 
 	/**
 	 * @var 
@@ -201,24 +201,13 @@ class CategoryViewer {
 	}
 
 	/**
-	 * @return Skin
-	 */
-	function getSkin() {
-		if ( !$this->skin ) {
-			global $wgUser;
-			$this->skin = $wgUser->getSkin();
-		}
-		return $this->skin;
-	}
-
-	/**
 	 * Add a subcategory to the internal lists, using a Category object
 	 */
 	function addSubcategoryObject( Category $cat, $sortkey, $pageLength ) {
 		// Subcategory; strip the 'Category' namespace from the link text.
 		$title = $cat->getTitle();
 
-		$link = $this->getSkin()->link( $title, $title->getText() );
+		$link = Linker::link( $title, htmlspecialchars( $title->getText() ) );
 		if ( $title->isRedirect() ) {
 			// This didn't used to add redirect-in-category, but might
 			// as well be consistent with the rest of the sections
@@ -276,7 +265,7 @@ class CategoryViewer {
 				$this->gallery->add( $title );
 			}
 		} else {
-			$link = $this->getSkin()->link( $title );
+			$link = Linker::link( $title );
 			if ( $isRedirect ) {
 				// This seems kind of pointless given 'mw-redirect' class,
 				// but keeping for back-compatibility with user css.
@@ -295,7 +284,7 @@ class CategoryViewer {
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
 
-		$link = $this->getSkin()->link( $title );
+		$link = Linker::link( $title );
 		if ( $isRedirect ) {
 			// This seems kind of pointless given 'mw-redirect' class,
 			// but keeping for back-compatiability with user css.
@@ -615,7 +604,7 @@ class CategoryViewer {
 	 */
 	private function pagingLinks( $first, $last, $type = '' ) {
 		global $wgLang;
-		$sk = $this->getSkin();
+
 		$limitText = $wgLang->formatNum( $this->limit );
 
 		$prevLink = wfMsgExt( 'prevn', array( 'escape', 'parsemag' ), $limitText );
@@ -624,7 +613,7 @@ class CategoryViewer {
 			$prevQuery = $this->query;
 			$prevQuery["{$type}until"] = $first;
 			unset( $prevQuery["{$type}from"] );
-			$prevLink = $sk->linkKnown(
+			$prevLink = Linker::linkKnown(
 				$this->addFragmentToTitle( $this->title, $type ),
 				$prevLink,
 				array(),
@@ -638,7 +627,7 @@ class CategoryViewer {
 			$lastQuery = $this->query;
 			$lastQuery["{$type}from"] = $last;
 			unset( $lastQuery["{$type}until"] );
-			$nextLink = $sk->linkKnown(
+			$nextLink = Linker::linkKnown(
 				$this->addFragmentToTitle( $this->title, $type ),
 				$nextLink,
 				array(),
