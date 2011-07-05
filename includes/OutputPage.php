@@ -190,6 +190,8 @@ class OutputPage {
 	/// should be private. To include the variable {{REVISIONID}}
 	var $mRevisionId = null;
 
+	var $mFileVersion = null;
+
 	private $mContext;
 
 	/**
@@ -1290,12 +1292,34 @@ class OutputPage {
 	}
 
 	/**
-	 * Get the current revision ID
+	 * Get the displayed revision ID
 	 *
 	 * @return Integer
 	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;
+	}
+
+	/**
+	 * Set the displayed file version
+	 *
+	 * @param $file File|false
+	 * @return Mixed: previous value
+	 */
+	public function setFileVersion( $file ) {
+		if ( $file instanceof File && $file->exists() ) {
+			$val = array( 'time' => $file->getTimestamp(), 'sha1' => $file->getSha1() );
+		}
+		return wfSetVar( $this->mFileVersion, $val );
+	}
+
+	/**
+	 * Get the displayed file version
+	 *
+	 * @return Array|null ('time' => MW timestamp, 'sha1' => sha1)
+	 */
+	public function getFileVersion() {
+		return $this->mFileVersion;
 	}
 
 	/**
