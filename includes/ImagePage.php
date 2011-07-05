@@ -474,6 +474,7 @@ EOT
 				$wgRequest->response()->header( 'HTTP/1.1 404 Not Found' );
 			}
 		}
+		$wgOut->setFileVersion( $this->displayImg );
 	}
 
 	/**
