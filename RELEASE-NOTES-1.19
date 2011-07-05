@@ -64,6 +64,8 @@ production.
   the relevant section of the category.
 * (bug 29109) Allow the automatic edit summary for redirect creation
   show the first bit of the new redirect page.
+* (bug 5800) Added $formCallback as a parameter to the hook
+  EditPage::showEditForm:initial
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
