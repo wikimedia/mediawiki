@@ -137,6 +137,9 @@ production.
 * (bug 6100) Allow different directionality (LTR/RTL) for user interface
   and wiki content, when $wgBetterDirectionality is enabled, along with
   many RTL improvements (such as bugs 28030, 12406, 28349)
+* (bug 29712) Removed broken defaultUserOptionOverrides in MessagesXx files and
+  unneeded CSS flipping of quickbar. Instead, introduce option 5 which sets
+  left/right according to the directionality of your interface language.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
