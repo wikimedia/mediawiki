@@ -19,10 +19,11 @@ test( 'wikiUrlencode', function() {
 });
 
 test( 'wikiGetlink', function() {
-	expect(2);
+	expect(3);
 
 	// Not part of startUp module
 	mw.config.set( 'wgArticlePath', '/wiki/$1' );
+	mw.config.set( 'wgPageName', 'Foobar' );
 
 	var hrefA = mw.util.wikiGetlink( 'Sandbox' );
 	equal( hrefA, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
@@ -30,6 +31,9 @@ test( 'wikiGetlink', function() {
 	var hrefB = mw.util.wikiGetlink( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
 	equal( hrefB, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage',
 		'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
+
+	var hrefC = mw.util.wikiGetlink();
+	equal( hrefC, '/wiki/Foobar', 'Default title; Get link for current page ("Foobar")' );
 });
 
 test( 'wikiScript', function() {
