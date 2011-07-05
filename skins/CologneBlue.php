@@ -26,7 +26,6 @@ class SkinCologneBlue extends SkinLegacy {
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'skins.cologneblue' );
 
-		global $wgContLang;
 		$qb = $this->qbSetting();
 		$rules = array();
 
@@ -48,9 +47,6 @@ class SkinCologneBlue extends SkinLegacy {
 			$rules[] = "body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto ;bottom:4px;}"; # Hides from IE
 		}
 		$style = implode( "\n", $rules );
- 		if ( $wgContLang->getDir() === 'rtl' ) {
- 			$style = CSSJanus::transform( $style, true, false );
-		}
 		$out->addInlineStyle( $style );
 	}
 

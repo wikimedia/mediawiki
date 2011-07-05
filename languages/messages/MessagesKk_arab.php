@@ -45,13 +45,6 @@ $separatorTransformTable = array(
 	',' => '٬', # &#x066c;
 );
 
-$defaultUserOptionOverrides = array(
-	# Swap sidebar to right side by default
-	'quickbar' => 2,
-	# Underlines seriously harm legibility. Force off:
-	'underline' => 0,
-);
-
 $extraUserToggles = array(
 	'nolangconversion'
 );

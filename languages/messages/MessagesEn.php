@@ -23,8 +23,6 @@ $fallback = false;
 
 /**
  * Is the language written right-to-left?
- * Note that right-to-left languages generally also specify
- *    $defaultUserOptionOverrides = array( 'quickbar' => 2 );
  */
 $rtl = false;
 
@@ -43,11 +41,6 @@ $digitTransformTable = null;
  * Transform table for decimal point '.' and thousands separator ','
  */
 $separatorTransformTable = null;
-
-/**
- * Overrides for the default user options. This is mainly used by RTL languages.
- */
-$defaultUserOptionOverrides = array();
 
 /**
  * Extra user preferences which will be shown in Special:Preferences as
@@ -1739,12 +1732,13 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'opensearch-desc' => '{{SITENAME}} ({{CONTENTLANGUAGE}})', # do not translate or duplicate this message to other languages
 
 # Quickbar
-'qbsettings'               => 'Quickbar',
-'qbsettings-none'          => 'None',
-'qbsettings-fixedleft'     => 'Fixed left',
-'qbsettings-fixedright'    => 'Fixed right',
-'qbsettings-floatingleft'  => 'Floating left',
-'qbsettings-floatingright' => 'Floating right',
+'qbsettings'                => 'Quickbar',
+'qbsettings-none'           => 'None',
+'qbsettings-fixedleft'      => 'Fixed left',
+'qbsettings-fixedright'     => 'Fixed right',
+'qbsettings-floatingleft'   => 'Floating left',
+'qbsettings-floatingright'  => 'Floating right',
+'qbsettings-directionality' => 'Fixed, depending on the directionality of your language',
 
 # Preferences page
 'preferences'                   => 'Preferences',

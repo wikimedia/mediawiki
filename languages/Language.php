@@ -504,7 +504,8 @@ class Language {
 			$this->getMessage( 'qbsettings-fixedleft' ),
 			$this->getMessage( 'qbsettings-fixedright' ),
 			$this->getMessage( 'qbsettings-floatingleft' ),
-			$this->getMessage( 'qbsettings-floatingright' )
+			$this->getMessage( 'qbsettings-floatingright' ),
+			$this->getMessage( 'qbsettings-directionality' )
 		);
 	}
 
@@ -548,13 +549,6 @@ class Language {
 	 */
 	function getImageFile( $image ) {
 		return self::$dataCache->getSubitem( $this->mCode, 'imageFiles', $image );
-	}
-
-	/**
-	 * @return array
-	 */
-	function getDefaultUserOptionOverrides() {
-		return self::$dataCache->getItem( $this->mCode, 'defaultUserOptionOverrides' );
 	}
 
 	/**

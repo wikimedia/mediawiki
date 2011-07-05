@@ -135,11 +135,6 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'בלעטער_אָן_אינטערוויקי' ),
 );
 
-$defaultUserOptionOverrides = array(
-	# Swap sidebar to right side by default
-	'quickbar' => 2,
-);
-
 $magicWords = array(
 	'redirect'              => array( '0', '#ווייטערפירן', '#הפניה', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__קיין_אינהאלט_טאבעלע__', '__ללא_תוכן_עניינים__', '__ללא_תוכן__', '__NOTOC__' ),

@@ -1184,16 +1184,10 @@ class User {
 	 * @return Array of String options
 	 */
 	static function getDefaultOptions() {
-		global $wgNamespacesToBeSearchedDefault;
-		/**
-		 * Site defaults will override the global/language defaults
-		 */
-		global $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
-		$defOpt = $wgDefaultUserOptions + $wgContLang->getDefaultUserOptionOverrides();
+		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
 
-		/**
-		 * default language setting
-		 */
+		$defOpt = $wgDefaultUserOptions;
+		# default language setting
 		$variant = $wgContLang->getDefaultVariant();
 		$defOpt['variant'] = $variant;
 		$defOpt['language'] = $variant;
