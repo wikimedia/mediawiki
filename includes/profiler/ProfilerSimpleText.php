@@ -45,7 +45,8 @@ class ProfilerSimpleText extends ProfilerSimple {
 	}
 
 	static function format( $item, $key, $totalReal ) {
+		$perc = $totalReal ? $item['real']/$totalReal*100 : 0;
 		self::$out .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
-			$item['real']/$totalReal*100, $item['real'], $item['count'], $key );
+			$perc, $item['real'], $item['count'], $key );
 	}
 }
