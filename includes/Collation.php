@@ -27,17 +27,16 @@ abstract class Collation {
 				return new IcuCollation( 'root' );
 			default:
 				# Provide a mechanism for extensions to hook in.
-				if ( class_exists( $collationName ) ) {
-					$collationObject = new $collationName;
-					if ( $collationObject instanceof Collation ) {
-						return $collationObject;
-					} else {
-						throw new MWException( __METHOD__.": collation type \"$collationName\""
-							. " is not a subclass of Collation." );
-					}
-				} else {
-					throw new MWException( __METHOD__.": unknown collation type \"$collationName\"" );
+
+				$collationObject = null;
+				wfRunHooks( 'Collation::factory', array( $collationName, &$collationObject ) );
+
+				if ( $collationObject instanceof Collation ) {
+					return $collationObject;
 				}
+
+				// If all else fails...
+				throw new MWException( __METHOD__.": unknown collation type \"$collationName\"" );
 		}
 	}
 
