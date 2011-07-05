@@ -151,9 +151,9 @@ class RawPage {
 	}
 
 	function getRawText() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		if( $this->mGen ) {
-			$sk = $this->getSkin();
+			$sk = $wgUser->getSkin();
 			if( !StubObject::isRealObject( $wgOut ) ) {
 				$wgOut->_unstub( 2 );
 			}
