@@ -139,8 +139,8 @@
 		 * @return string Location for a page with name of 'str' or boolean false on error.
 		 */
 		'wikiGetlink' : function( str ) {
-
-			return mw.config.get( 'wgArticlePath' ).replace( '$1', this.wikiUrlencode( str ) );
+			return mw.config.get( 'wgArticlePath' ).replace( '$1',
+				this.wikiUrlencode( str || mw.config.get( 'wgPageName' ) ) );
 		},
 
 		/**

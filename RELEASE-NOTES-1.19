@@ -66,6 +66,7 @@ production.
   show the first bit of the new redirect page.
 * (bug 5800) Added $formCallback as a parameter to the hook
   EditPage::showEditForm:initial
+* (bug 29723) mw.util.wikiGetlink() now defaults to wgPageName.
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
