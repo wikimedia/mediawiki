@@ -54,6 +54,12 @@ class SkinLegacy extends SkinTemplate {
 			return 0;
 		}
 		$q = $wgUser->getOption( 'quickbar', 0 );
+		if( $q == 5 ) {
+			# 5 is the default, which chooses the setting
+			# depending on the directionality of your interface language
+			global $wgLang;
+			return $wgLang->isRTL() ? 2 : 1;
+		}
 		return $q;
 	}
 

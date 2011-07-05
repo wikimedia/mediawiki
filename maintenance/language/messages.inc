@@ -911,6 +911,7 @@ $wgMessageStructure = array(
 		'qbsettings-fixedright',
 		'qbsettings-floatingleft',
 		'qbsettings-floatingright',
+		'qbsettings-directionality',
 	),
 	'preferences' => array(
 		'preferences',

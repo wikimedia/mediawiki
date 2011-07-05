@@ -25,7 +25,6 @@ class SkinStandard extends SkinLegacy {
 		parent::setupSkinUserCss( $out );
 		$out->AddModuleStyles( 'skins.standard' );
 
-		global $wgContLang;
 		$qb = $this->qbSetting();
 		$rules = array();
 
@@ -44,9 +43,6 @@ class SkinStandard extends SkinLegacy {
 			$rules[] = "#article, #mw-data-after-content { margin-right: 152px; margin-left: 4px; }";
 		}
  		$style = implode( "\n", $rules );
- 		if ( $wgContLang->getDir() === 'rtl' ) {
- 			$style = CSSJanus::transform( $style, true, false );
-		}
 		$out->addInlineStyle( $style );
 	}
 

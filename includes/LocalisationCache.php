@@ -84,7 +84,7 @@ class LocalisationCache {
 		'fallback', 'namespaceNames', 'bookstoreList',
 		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns', 'digitTransformTable',
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
-		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases',
+		'linkTrail', 'namespaceAliases',
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
 		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
@@ -95,8 +95,7 @@ class LocalisationCache {
 	 * by a fallback sequence.
 	 */
 	static public $mergeableMapKeys = array( 'messages', 'namespaceNames',
-		'dateFormats', 'defaultUserOptionOverrides', 'imageFiles',
-		'preloadedMessages',
+		'dateFormats', 'imageFiles', 'preloadedMessages',
 	);
 
 	/**
@@ -130,8 +129,7 @@ class LocalisationCache {
 	/**
 	 * Keys which are loaded automatically by initLanguage()
 	 */
-	static public $preloadedKeys = array( 'dateFormats', 'namespaceNames',
-		'defaultUserOptionOverrides' );
+	static public $preloadedKeys = array( 'dateFormats', 'namespaceNames' );
 
 	/**
 	 * Constructor.
@@ -602,11 +600,6 @@ class LocalisationCache {
 		# Decouple the reference to prevent accidental damage
 		unset($page);
 
-		# Fix broken defaultUserOptionOverrides
-		if ( !is_array( $allData['defaultUserOptionOverrides'] ) ) {
-			$allData['defaultUserOptionOverrides'] = array();
-		}
-
 		# Set the list keys
 		$allData['list'] = array();
 		foreach ( self::$splitKeys as $key ) {
@@ -615,11 +608,6 @@ class LocalisationCache {
 
 		# Run hooks
 		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData ) );
-
-		if ( is_null( $allData['defaultUserOptionOverrides'] ) ) {
-			throw new MWException( __METHOD__.': Localisation data failed sanity check! ' .
-				'Check that your languages/messages/MessagesEn.php file is intact.' );
-		}
 
 		# Set the preload key
 		$allData['preload'] = $this->buildPreload( $allData );
