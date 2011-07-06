@@ -125,6 +125,10 @@ class OutputPage {
 	var $mTemplateIds = array();
 	var $mImageTimeKeys = array();
 
+    var $mRedirectCode = '';
+
+    var $mFeedLinksAppendQuery = null;
+
 	# What level of 'untrustworthiness' is allowed in CSS/JS modules loaded on this page?
 	# @see ResourceLoaderModule::$origin
 	# ResourceLoaderModule::ORIGIN_ALL is assumed unless overridden;
