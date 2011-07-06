@@ -2408,9 +2408,12 @@ $wgVectorShowVariantName = false;
 $wgEdititis = false;
 
 /**
- * Experimental better directionality support.
+ * Better directionality support (bug 6100 and related).
+ * Removed in 1.19, still kept here for LiquidThreads backwards compatibility.
+ *
+ * @deprecated since 1.19
  */
-$wgBetterDirectionality = false;
+$wgBetterDirectionality = true;
 
 
 /** @} */ # End of output format settings }

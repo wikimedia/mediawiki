@@ -299,36 +299,31 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'serverurl', $wgServer );
 		$tpl->setRef( 'logopath', $wgLogo );
 
-		$lang = wfUILang();
-		$tpl->set( 'lang', $lang->getCode() );
-		$tpl->set( 'dir', $lang->getDir() );
-		$tpl->set( 'rtl', $lang->isRTL() );
+		$contentlang = $wgContLang->getCode();
+		$contentdir  = $wgContLang->getDir();
+		$userlang = $wgLang->getCode();
+		$userdir  = $wgLang->getDir();
+
+		$tpl->set( 'lang', $userlang );
+		$tpl->set( 'dir', $userdir );
+		$tpl->set( 'rtl', $wgLang->isRTL() );
 
 		$tpl->set( 'capitalizeallnouns', $wgLang->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
 		$tpl->set( 'showjumplinks', $wgUser->getOption( 'showjumplinks' ) );
 		$tpl->set( 'username', $wgUser->isAnon() ? null : $this->username );
 		$tpl->setRef( 'userpage', $this->userpage );
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
-		$tpl->set( 'userlang', $wgLang->getCode() );
+		$tpl->set( 'userlang', $userlang );
 
 		// Users can have their language set differently than the
 		// content of the wiki. For these users, tell the web browser
 		// that interface elements are in a different language.
 		$tpl->set( 'userlangattributes', '' );
-		$tpl->set( 'specialpageattributes', '' );
+		$tpl->set( 'specialpageattributes', '' ); # obsolete
 
-		$lang = $wgLang->getCode();
-		$dir  = $wgLang->getDir();
-		if ( $lang !== $wgContLang->getCode() || $dir !== $wgContLang->getDir() ) {
-			$attrs = " lang='$lang' dir='$dir'";
-
+		if ( $userlang !== $contentlang || $userdir !== $contentdir ) {
+			$attrs = " lang='$userlang' dir='$userdir'";
 			$tpl->set( 'userlangattributes', $attrs );
-
-			// The content of SpecialPages should be presented in the
-			// user's language. Content of regular pages should not be touched.
-			if( $this->getTitle()->isSpecialPage() ) {
-				$tpl->set( 'specialpageattributes', $attrs );
-			}
 		}
 
 		$newtalks = $this->getNewtalks( $out );
@@ -454,19 +449,18 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'bottomscripts', $this->bottomScripts( $out ) );
 		$tpl->set( 'printfooter', $this->printSource() );
 
-		global $wgBetterDirectionality;
-		if ( $wgBetterDirectionality ) {
-			// not for special pages or file pages AND only when viewing AND if the page exists
-			// (or is in MW namespace, because that has default content)
-			if( !in_array( $this->getTitle()->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
-				in_array( $action, array( 'view', 'render', 'print' ) ) &&
-				( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
-				$pageLang = $this->getTitle()->getPageLanguage();
-				$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
-					'class' => 'mw-content-'.$pageLang->getDir() );
-				$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
-			}
+		# Add a <div class="mw-content-ltr/rtl"> around the body text
+		# not for special pages or file pages AND only when viewing AND if the page exists
+		# (or is in MW namespace, because that has default content)
+		if( !in_array( $this->getTitle()->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
+			in_array( $action, array( 'view', 'render', 'print' ) ) &&
+			( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
+			$pageLang = $this->getTitle()->getPageLanguage();
+			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
+				'class' => 'mw-content-'.$pageLang->getDir() );
+			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		}
+
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
 		# Language links

@@ -411,8 +411,7 @@ class AllmessagesTablePager extends TablePager {
 	}
 
 	function getCellAttrs( $field, $value ){
-		global $wgBetterDirectionality;
-		if( $field != 'am_title' && $wgBetterDirectionality ) {
+		if( $field != 'am_title' ) {
 			return array( 'lang' => $this->langcode, 'dir' => $this->lang->getDir() );
 		} elseif( $this->mCurrentRow->am_customised && $field == 'am_title' ) {
 			return array( 'rowspan' => '2', 'class' => $field );

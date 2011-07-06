@@ -910,17 +910,15 @@ function wfGetLangObj( $langcode = false ) {
 }
 
 /**
- * Use this instead of $wgContLang, when working with user interface.
- * User interface is currently hard coded according to wiki content language
- * in many ways, especially regarding to text direction. There is lots stuff
- * to fix, hence this function to keep the old behaviour unless the global
- * $wgBetterDirectionality is enabled (or removed when everything works).
+ * Old function when $wgBetterDirectionality existed
+ * Removed in core, kept in extensions for backwards compat.
  *
+ * @deprecated since 1.19
  * @return Language
  */
 function wfUILang() {
-	global $wgBetterDirectionality;
-	return wfGetLangObj( !$wgBetterDirectionality );
+	global $wgLang;
+	return $wgLang;
 }
 
 /**
@@ -2542,8 +2540,20 @@ function in_string( $needle, $str, $insensitive = false ) {
 	return $func( $str, $needle ) !== false;
 }
 
-function wfSpecialList( $page, $details ) {
-	$details = $details ? ' ' . wfUILang()->getDirMark() . "($details)" : '';
+/**
+ * Make a list item, used by various special pages
+ *
+ * @param $page String Page link
+ * @param $details String Text between brackets
+ * @param $oppositedm Boolean	Add the direction mark opposite to your
+ *								language, to display text properly
+ * @return String
+ */
+function wfSpecialList( $page, $details, $oppositedm = true ) {
+	global $wgLang;
+	$dirmark = ( $oppositedm ? $wgLang->getDirMark( true ) : '' ) .
+		$wgLang->getDirMark();
+	$details = $details ? $dirmark . "($details)" : '';
 	return $page . $details;
 }
 

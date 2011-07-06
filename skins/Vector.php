@@ -135,7 +135,7 @@ class VectorTemplate extends BaseTemplate {
 		<div id="mw-page-base" class="noprint"></div>
 		<div id="mw-head-base" class="noprint"></div>
 		<!-- content -->
-		<div id="content"<?php $this->html( 'specialpageattributes' ) ?>>
+		<div id="content">
 			<a id="top"></a>
 			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<?php if ( $this->data['sitenotice'] ): ?>
@@ -336,14 +336,14 @@ class VectorTemplate extends BaseTemplate {
 	 * @param $elements array
 	 */
 	private function renderNavigation( $elements ) {
-		global $wgVectorUseSimpleSearch, $wgVectorShowVariantName, $wgUser;
+		global $wgVectorUseSimpleSearch, $wgVectorShowVariantName, $wgUser, $wgLang;
 
 		// If only one element was given, wrap it in an array, allowing more
 		// flexible arguments
 		if ( !is_array( $elements ) ) {
 			$elements = array( $elements );
 		// If there's a series of elements, reverse them when in RTL mode
-		} elseif ( wfUILang()->isRTL() ) {
+		} elseif ( $wgLang->isRTL() ) {
 			$elements = array_reverse( $elements );
 		}
 		// Render elements

@@ -302,7 +302,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$classes = array();
 
-		$dm = wfUILang()->getDirMark();
+		$dm = $wgLang->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
 		$time = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),

@@ -627,7 +627,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			array( 'action' => 'history' )
 		);
 
-		$comment = wfUILang()->getDirMark() . $sk->revComment( $rev, false, true );
+		$comment = $wgLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
 		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
 			$d = $sk->linkKnown(
@@ -684,7 +684,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
 
 
-		$diffOut = ' . . ' . wfUILang()->getDirMark() . ( $this->showSizeDiff ?
+		$diffOut = ' . . ' . $wgLang->getDirMark() . ( $this->showSizeDiff ?
 			ChangesList::showCharacterDifference( $row->rc_old_len, $row->rc_new_len ) : Linker::formatRevisionSize( $row->rev_len ) );
 
 		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$diffOut}{$userlink} {$comment} {$topmarktext}";
