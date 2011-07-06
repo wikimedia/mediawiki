@@ -1477,25 +1477,6 @@ function wfShowingResults( $offset, $limit ) {
 }
 
 /**
- * @todo document
- *
- * @param $offset Int
- * @param $limit Int
- * @param $num Int
- * @return String
- */
-function wfShowingResultsNum( $offset, $limit, $num ) {
-	global $wgLang;
-	return wfMsgExt(
-		'showingresultsnum',
-		array( 'parseinline' ),
-		$wgLang->formatNum( $limit ),
-		$wgLang->formatNum( $offset + 1 ),
-		$wgLang->formatNum( $num )
-	);
-}
-
-/**
  * Generate (prev x| next x) (20|50|100...) type links for paging
  *
  * @param $offset String

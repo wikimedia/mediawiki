@@ -986,7 +986,11 @@ class SpecialSearch extends SpecialPage {
 			} elseif ( $resultsShown >= $this->limit ) {
 				$top = wfShowingResults( $this->offset, $this->limit );
 			} else {
-				$top = wfShowingResultsNum( $this->offset, $this->limit, $resultsShown );
+				$top =  wfMsgExt( 'showingresultsnum', array( 'parseinline' ),
+					$wgLang->formatNum( $this->limit ),
+					$wgLang->formatNum( $this->offset + 1 ),
+					$wgLang->formatNum( $resultsShown )
+				);
 			}
 			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ),
 				Xml::tags( 'ul', null, Xml::tags( 'li', null, $top ) )
