@@ -77,7 +77,7 @@ class MonoBookTemplate extends BaseTemplate {
 
 		$this->html( 'headelement' );
 ?><div id="globalWrapper">
-<div id="column-content"><div id="content"<?php $this->html("specialpageattributes") ?>>
+<div id="column-content"><div id="content">
 	<a id="top"></a>
 	<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 

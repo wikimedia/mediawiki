@@ -2351,10 +2351,14 @@ class Language {
 	/**
 	 * A hidden direction mark (LRM or RLM), depending on the language direction
 	 *
+	 * @param $opposite Boolean Get the direction mark opposite to your language
 	 * @return string
 	 */
-	function getDirMark() {
-		return $this->isRTL() ? "\xE2\x80\x8F" : "\xE2\x80\x8E";
+	function getDirMark( $opposite = false ) {
+		$rtl = "\xE2\x80\x8F";
+		$ltr = "\xE2\x80\x8E";
+		if( $opposite ) { return $this->isRTL() ? $ltr : $rtl; }
+		return $this->isRTL() ? $rtl : $ltr;
 	}
 
 	/**

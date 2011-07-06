@@ -124,8 +124,8 @@ class ImagePage extends Article {
 
 		# No need to display noarticletext, we use our own message, output in openShowImage()
 		if ( $this->mPage->getID() ) {
-			# When $wgBetterDirectionality is enabled, NS_FILE is in the user language,
-			# but this section (the actual wikitext) should be in page content language
+			# NS_FILE is in the user language, but this section (the actual wikitext)
+			# should be in page content language
 			$pageLang = $this->getTitle()->getPageLanguage();
 			$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
@@ -273,7 +273,7 @@ class ImagePage extends Article {
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
 		$sk = $wgUser->getSkin();
-		$dirmark = wfUILang()->getDirMark();
+		$dirmark = $wgLang->getDirMark();
 
 		if ( $this->displayImg->exists() ) {
 			# image

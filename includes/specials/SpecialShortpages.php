@@ -87,7 +87,7 @@ class ShortPagesPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
 		global $wgLang;
-		$dm = wfUILang()->getDirMark();
+		$dm = $wgLang->getDirMark();
 
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		if ( !$title ) {

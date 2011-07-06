@@ -4,6 +4,23 @@
  * another, but don't ignore the poor pre-Monobook users either.
  */
 
+/* GENERAL CLASSES FOR DIRECTIONALITY SUPPORT */
+/* These classes should be used for text depending on the content direction.
+Content stuff like editsection, ul/ol and TOC depend on this. */
+ /* @noflip */.mw-content-ltr { direction: ltr; }
+/* @noflip */.mw-content-rtl { direction: rtl; }
+/* Most input fields should be in site direction */
+/* @noflip */.sitedir-ltr textarea, .sitedir-ltr input { direction: ltr; }
+/* @noflip */.sitedir-rtl textarea, .sitedir-rtl input { direction: rtl; }
+/* Input types that should follow user direction, like buttons */
+input[type="submit"], input[type="button"], input[type="reset"], input[type="file"] { direction: ltr; }
+/* Override default values */
+/* @noflip */textarea[dir="ltr"], input[dir="ltr"] { direction: ltr; }
+/* @noflip */textarea[dir="rtl"], input[dir="rtl"] { direction: rtl; }
+
+.mw-float-start { float: left; }
+.mw-float-end { float: right; }
+
 /* The scripts of these languages are very hard to read with underlines */
 [lang="ar"] a, [lang="ckb"] a, [lang="fa"] a, [lang="kk-arab"] a,
 [lang="mzn"] a, [lang="ps"] a, [lang="ur"] a {
@@ -69,8 +86,8 @@ div#mw-js-message {
 	margin-left: 5px;
 }
 /* Correct directionality when page dir is different from site/user dir */
-/* @noflip */div#content [dir="ltr"] .editsection, div#content [dir="rtl"] [dir="ltr"] .editsection { float: right; }
-/* @noflip */div#content [dir="rtl"] .editsection, div#content [dir="ltr"] [dir="rtl"] .editsection { float: left; }
+/* @noflip */.mw-content-ltr .editsection, .mw-content-rtl .mw-content-ltr .editsection { float: right; }
+/* @noflip */.mw-content-rtl .editsection, .mw-content-ltr .mw-content-rtl .editsection { float: left; }
 /**
  * File histories
  */
@@ -625,12 +642,12 @@ div.gallerytext {
 }
 
 /* Correct directionality when page dir is different from site/user dir */
-/* @noflip */div#content [dir="ltr"] ul, div#content [dir="ltr"] ol,
-div#content [dir="rtl"] [dir="ltr"] ul, div#content [dir="rtl"] [dir="ltr"] ol {
+/* @noflip */.mw-content-ltr ul, .mw-content-ltr ol,
+.mw-content-rtl .mw-content-ltr ul, .mw-content-rtl .mw-content-ltr ol {
 	margin: .3em 0 0 1.5em;
 }
-/* @noflip */div#content [dir="rtl"] ul, div#content [dir="rtl"] ol,
-div#content [dir="ltr"] [dir="rtl"] ul, div#content [dir="ltr"] [dir="rtl"] ol {
+/* @noflip */.mw-content-rtl ul, .mw-content-rtl ol,
+.mw-content-ltr .mw-content-rtl ul, .mw-content-ltr .mw-content-rtl ol {
 	margin: .3em 1.5em 0 0;
 }
 /* Localised ordered list numbering for some languages */
@@ -660,22 +677,22 @@ ol:lang(or) li {
 }
 
 /* Correct directionality when page dir is different from site/user dir */
-/* @noflip */div#content [dir="ltr"] .toc ul, div#content [dir="ltr"] #toc ul,
-div#content [dir="rtl"] [dir="ltr"] .toc ul, div#content [dir="rtl"] [dir="ltr"] #toc ul {
+/* @noflip */.mw-content-ltr .toc ul, .mw-content-ltr #toc ul,
+.mw-content-rtl .mw-content-ltr .toc ul, .mw-content-rtl .mw-content-ltr #toc ul {
 	text-align: left;
 	margin-left: 0;
 }
-/* @noflip */div#content [dir="rtl"] .toc ul, div#content [dir="rtl"] #toc ul,
-div#content [dir="ltr"] [dir="rtl"] .toc ul, div#content [dir="ltr"] [dir="rtl"] #toc ul {
+/* @noflip */.mw-content-rtl .toc ul, .mw-content-rtl #toc ul,
+.mw-content-ltr .mw-content-rtl .toc ul, .mw-content-ltr .mw-content-rtl #toc ul {
 	text-align: right;
 	margin-right: 0;
 }
-/* @noflip */div#content [dir="ltr"] .toc ul ul, div#content [dir="ltr"] #toc ul ul,
-div#content [dir="rtl"] [dir="ltr"] .toc ul ul, div#content [dir="rtl"] [dir="ltr"] #toc ul ul {
+/* @noflip */.mw-content-ltr .toc ul ul, .mw-content-ltr #toc ul ul,
+.mw-content-rtl .mw-content-ltr .toc ul ul, .mw-content-rtl .mw-content-ltr #toc ul ul {
 	margin: 0 0 0 2em;
 }
-/* @noflip */div#content [dir="rtl"] .toc ul ul, div#content [dir="rtl"] #toc ul ul,
-div#content [dir="ltr"] [dir="rtl"] .toc ul ul, div#content [dir="ltr"] [dir="rtl"] #toc ul ul {
+/* @noflip */.mw-content-rtl .toc ul ul, .mw-content-rtl #toc ul ul,
+.mw-content-ltr .mw-content-rtl .toc ul ul, .mw-content-ltr .mw-content-rtl #toc ul ul {
 	margin: 0 2em 0 0;
 }
 

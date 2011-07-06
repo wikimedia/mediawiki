@@ -323,6 +323,7 @@ class ChangesList {
 	 * @return void
 	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
+		global $wgLang;
 		# If it's a new article, there is no diff link, but if it hasn't been
 		# patrolled yet, we need to give users a way to do so
 		$params = array();
@@ -354,7 +355,7 @@ class ChangesList {
 			$articlelink = "<strong class=\"mw-watched\">{$articlelink}</strong>";
 		}
 		# RTL/LTR marker
-		$articlelink .= wfUILang()->getDirMark();
+		$articlelink .= $wgLang->getDirMark();
 
 		wfRunHooks( 'ChangesListInsertArticleLink',
 			array(&$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched) );
@@ -590,7 +591,7 @@ class OldChangesList extends ChangesList {
 		# User tool links
 		$this->insertUserRelatedLinks( $s, $rc );
 		# LTR/RTL direction mark
-		$s .= wfUILang()->getDirMark();
+		$s .= $wgLang->getDirMark();
 		# Log action text (if any)
 		$this->insertAction( $s, $rc );
 		# Edit or log comment
@@ -868,7 +869,7 @@ class EnhancedChangesList extends ChangesList {
 		$users = array();
 		foreach( $userlinks as $userlink => $count) {
 			$text = $userlink;
-			$text .= wfUILang()->getDirMark();
+			$text .= $wgLang->getDirMark();
 			if( $count > 1 ) {
 				$text .= ' (' . $wgLang->formatNum( $count ) . '×)';
 			}
@@ -910,7 +911,7 @@ class EnhancedChangesList extends ChangesList {
 			$this->insertArticleLink( $r, $block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
 
-		$r .= wfUILang()->getDirMark();
+		$r .= $wgLang->getDirMark();
 
 		$queryParams['curid'] = $curId;
 		# Changes message

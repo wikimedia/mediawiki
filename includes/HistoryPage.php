@@ -410,15 +410,13 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	private function getRevisionButton( $name, $msg ) {
 		$this->preventClickjacking();
-		$float = wfUILang()->alignEnd();
 		# Note bug #20966, <button> is non-standard in IE<8
 		$element = Html::element( 'button',
 			array(
 				'type' => 'submit',
 				'name' => $name,
 				'value' => '1',
-				'style' => "float: $float;",
-				'class' => "mw-history-$name-button",
+				'class' => "mw-history-$name-button mw-float-end",
 			),
 			wfMsg( $msg )
 		) . "\n";
@@ -533,7 +531,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= " $del ";
 		}
 
-		$dirmark = wfUILang()->getDirMark();
+		$dirmark = $wgLang->getDirMark();
 
 		$s .= " $link";
 		$s .= $dirmark;

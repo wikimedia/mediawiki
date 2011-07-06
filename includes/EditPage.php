@@ -1814,12 +1814,9 @@ HTML
 			'style' => '' // avoid php notices when appending preferences (appending allows customAttribs['style'] to still work
 		);
 
-		global $wgBetterDirectionality;
-		if( $wgBetterDirectionality ) {
-			$pageLang = $this->mTitle->getPageLanguage();
-			$attribs['lang'] = $pageLang->getCode();
-			$attribs['dir'] = $pageLang->getDir();
-		}
+		$pageLang = $this->mTitle->getPageLanguage();
+		$attribs['lang'] = $pageLang->getCode();
+		$attribs['dir'] = $pageLang->getDir();
 
 		$wgOut->addHTML( Html::textarea( $name, $wikitext, $attribs ) );
 	}
@@ -2095,13 +2092,11 @@ HTML
 			'<h2 id="mw-previewheader">' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>" .
 			$wgOut->parse( $note ) . $conflict . "</div>\n";
 
-		global $wgBetterDirectionality;
-		if( $wgBetterDirectionality ) {
-			$pageLang = $this->mTitle->getPageLanguage();
-			$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
-				'class' => 'mw-content-'.$pageLang->getDir() );
-			$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
-		}
+		$pageLang = $this->mTitle->getPageLanguage();
+		$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
+			'class' => 'mw-content-'.$pageLang->getDir() );
+		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
+
 		wfProfileOut( __METHOD__ );
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}

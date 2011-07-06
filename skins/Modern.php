@@ -70,7 +70,7 @@ class ModernTemplate extends MonoBookTemplate {
 	<!-- contentholder does nothing by default, but it allows users to style the text inside
 	     the content area without affecting the meaning of 'em' in #mw_content, which is used
 	     for the margins -->
-	<div id="mw_contentholder" <?php $this->html("specialpageattributes") ?>>
+	<div id="mw_contentholder">
 		<div class='mw-topboxes'>
 			<div id="mw-js-message" style="display:none;"<?php $this->html('userlangattributes')?>></div>
 			<div class="mw-topbox" id="siteSub"><?php $this->msg('tagline') ?></div>

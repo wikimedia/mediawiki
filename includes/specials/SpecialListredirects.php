@@ -108,8 +108,9 @@ class ListredirectsPage extends QueryPage {
 		# Find out where the redirect leads
 		$target = $this->getRedirectTarget( $result );
 		if( $target ) {
+			global $wgLang;
 			# Make a link to the destination page
-			$arr = wfUILang()->getArrow() . wfUILang()->getDirMark();
+			$arr = $wgLang->getArrow() . $wgLang->getDirMark();
 			$targetLink = $skin->link( $target );
 			return "$rd_link $arr $targetLink";
 		} else {

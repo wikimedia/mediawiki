@@ -268,6 +268,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 	}
 
 	protected function listItem( $row, $nt, $notClose = false ) {
+		global $wgLang;
+		$dirmark = $wgLang->getDirMark();
+
 		# local message cache
 		static $msgcache = null;
 		if ( $msgcache === null ) {
@@ -310,7 +313,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
 		$wlh = Xml::wrapClass( "($wlhLink)", 'mw-whatlinkshere-tools' );
 
-		$dirmark = wfUILang()->getDirMark();
 		return $notClose ?
 			Xml::openElement( 'li' ) . "$link $propsText $dirmark $wlh\n" :
 			Xml::tags( 'li', null, "$link $propsText $dirmark $wlh" ) . "\n";

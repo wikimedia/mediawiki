@@ -126,14 +126,12 @@ class FileDuplicateSearchPage extends QueryPage {
 		}
 
 		if( $this->hash != '' ) {
-			$align = wfUILang()->alignEnd();
-
 			# Show a thumbnail of the file
 			$img = $this->file;
 			if ( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if( $thumb ) {
-					$wgOut->addHTML( '<div style="float:' . $align . '" id="mw-fileduplicatesearch-icon">' .
+					$wgOut->addHTML( '<div class="mw-float-end" id="mw-fileduplicatesearch-icon">' .
 						$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .
 						wfMsgExt( 'fileduplicatesearch-info', array( 'parse' ),
 							$wgLang->formatNum( $img->getWidth() ),

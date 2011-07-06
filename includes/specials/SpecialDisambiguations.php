@@ -122,13 +122,15 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
+		global $wgLang;
+
 		$title = Title::newFromID( $result->value );
 		$dp = Title::makeTitle( $result->namespace, $result->title );
 
 		$from = $skin->link( $title );
 		$edit = $skin->link( $title, wfMsgExt( 'parentheses', array( 'escape' ), wfMsg( 'editlink' ) ) ,
 			array(), array( 'redirect' => 'no', 'action' => 'edit' ) );
-		$arr  = wfUILang()->getArrow();
+		$arr  = $wgLang->getArrow();
 		$to   = $skin->link( $dp );
 
 		return "$from $edit $arr $to";

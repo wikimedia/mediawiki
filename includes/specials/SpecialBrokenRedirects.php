@@ -116,7 +116,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 			array(),
 			array( 'broken' )
 		);
-		$arr = wfUILang()->getArrow();
+		$arr = $wgLang->getArrow();
 
 		$out = $from . wfMsg( 'word-separator' );
 

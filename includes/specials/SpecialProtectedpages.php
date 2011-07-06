@@ -116,7 +116,7 @@ class SpecialProtectedpages extends SpecialPage {
 		}
 
 		if(!is_null($size = $row->page_len)) {
-			$stxt = wfUILang()->getDirMark() . ' ' . $skin->formatRevisionSize( $size );
+			$stxt = $wgLang->getDirMark() . ' ' . $skin->formatRevisionSize( $size );
 		}
 
 		# Show a link to the change protection form for allowed users otherwise a link to the protection log
@@ -145,7 +145,7 @@ class SpecialProtectedpages extends SpecialPage {
 		return Html::rawElement(
 			'li',
 			array(),
-			wfSpecialList( $link . $stxt, $wgLang->commaList( $description_items ) ) . $changeProtection ) . "\n";
+			wfSpecialList( $link . $stxt, $wgLang->commaList( $description_items ), false ) . $changeProtection ) . "\n";
 	}
 
 	/**

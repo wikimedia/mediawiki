@@ -259,7 +259,7 @@ class LogPage {
 					} elseif ( $type == 'protect' && count($params) == 3 ) {
 						// Restrictions and expiries
 						if( $skin ) {
-							$details .= htmlspecialchars( " {$params[1]}" );
+							$details .= $wgLang->getDirMark() . htmlspecialchars( " {$params[1]}" );
 						} else {
 							$details .= " {$params[1]}";
 						}
