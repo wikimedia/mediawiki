@@ -878,12 +878,6 @@ class GlobalTest extends MediaWikiTestCase {
 			// are less consistent.
 		);
 	}
-	
-	public function testUnserialize() {
-		$this->assertEquals( '', wfUnserialize( 's:0:"";') );
-		$this->assertEquals( false, wfUnserialize( '0' ),
-			'Invalid input to unserialize()' );
-	}
 
 	/* TODO: many more! */
 }
