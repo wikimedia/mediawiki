@@ -1311,12 +1311,13 @@ $1",
 'searchdisabled'                   => '{{SITENAME}} സം‌രംഭത്തിൽ തിരച്ചിൽ ദുർബലപ്പെടുത്തിയിരിക്കുന്നു. താങ്കൾക്ക് ഗൂഗിൾ ഉപയോഗിച്ച് തത്കാലം തിരച്ചിൽ നടത്താവുന്നതാണ്‌. പക്ഷെ ഗൂഗിളിൽ {{SITENAME}} സം‌രംഭത്തിന്റെ സൂചിക കാലഹരണപ്പെട്ടതായിരിക്കാൻ സാദ്ധ്യതയുണ്ട്.',
 
 # Quickbar
-'qbsettings'               => 'ദ്രുത സൗകര്യം',
-'qbsettings-none'          => 'ഒന്നുമില്ല',
-'qbsettings-fixedleft'     => 'സ്ഥിരമായ ഇടത്',
-'qbsettings-fixedright'    => 'സ്ഥിരമായ വലത്',
-'qbsettings-floatingleft'  => 'ഇടത്തേയ്ക്ക് ഒഴുകി നിൽക്കുക',
-'qbsettings-floatingright' => 'വലത്തേയ്ക്ക് ഒഴുകി നിൽക്കുക',
+'qbsettings'                => 'ദ്രുത സൗകര്യം',
+'qbsettings-none'           => 'ഒന്നുമില്ല',
+'qbsettings-fixedleft'      => 'സ്ഥിരമായ ഇടത്',
+'qbsettings-fixedright'     => 'സ്ഥിരമായ വലത്',
+'qbsettings-floatingleft'   => 'ഇടത്തേയ്ക്ക് ഒഴുകി നിൽക്കുക',
+'qbsettings-floatingright'  => 'വലത്തേയ്ക്ക് ഒഴുകി നിൽക്കുക',
+'qbsettings-directionality' => 'താങ്കളുടെ ഭാഷയുടെ എഴുത്ത് ദിശയനുസരിച്ച് ശരിയാക്കിയിരിക്കുന്നു',
 
 # Preferences page
 'preferences'                   => 'ക്രമീകരണങ്ങൾ',
