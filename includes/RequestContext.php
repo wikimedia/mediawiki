@@ -120,10 +120,7 @@ class RequestContext {
 	 */
 	public function getUser() {
 		if ( !isset($this->user) ) {
-			global $wgCommandLineMode;
-			$this->user = $wgCommandLineMode
-				? new User
-				: User::newFromSession( $this->getRequest() );
+			$this->user = User::newFromSession( $this->getRequest() );
 		}
 		return $this->user;
 	}

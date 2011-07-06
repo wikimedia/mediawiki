@@ -202,9 +202,9 @@ class User {
 		$mLocked, $mHideName, $mOptions;
 
 	/**
-	 * @var Skin
+	 * @var WebRequest
 	 */
-	var $mSkin;
+	private $mRequest;
 
 	/**
 	 * @var Block
@@ -407,11 +407,14 @@ class User {
 	 * Create a new user object using data from session or cookies. If the
 	 * login credentials are invalid, the result is an anonymous user.
 	 *
+	 * @param $request WebRequest object to use; $wgRequest will be used if
+	 *        ommited.
 	 * @return User
 	 */
-	static function newFromSession() {
+	static function newFromSession( WebRequest $request = null ) {
 		$user = new User;
 		$user->mFrom = 'session';
+		$user->mRequest = $request;
 		return $user;
 	}
 
@@ -851,8 +854,6 @@ class User {
 	function loadDefaults( $name = false ) {
 		wfProfileIn( __METHOD__ );
 
-		global $wgRequest;
-
 		$this->mId = 0;
 		$this->mName = $name;
 		$this->mRealName = '';
@@ -862,8 +863,9 @@ class User {
 		$this->mOptionOverrides = null;
 		$this->mOptionsLoaded = false;
 
-		if( $wgRequest->getCookie( 'LoggedOut' ) !== null ) {
-			$this->mTouched = wfTimestamp( TS_MW, $wgRequest->getCookie( 'LoggedOut' ) );
+		$loggedOut = $this->getRequest()->getCookie( 'LoggedOut' );
+		if( $loggedOut !== null ) {
+			$this->mTouched = wfTimestamp( TS_MW, $loggedOut );
 		} else {
 			$this->mTouched = '0'; # Allow any pages to be cached
 		}
@@ -914,7 +916,7 @@ class User {
 	 * @return Bool True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
-		global $wgRequest, $wgExternalAuthType, $wgAutocreatePolicy;
+		global $wgExternalAuthType, $wgAutocreatePolicy;
 
 		$result = null;
 		wfRunHooks( 'UserLoadFromSession', array( $this, &$result ) );
@@ -930,8 +932,10 @@ class User {
 			}
 		}
 
-		$cookieId = $wgRequest->getCookie( 'UserID' );
-		$sessId = $wgRequest->getSessionData( 'wsUserID' );
+		$request = $this->getRequest();
+
+		$cookieId = $request->getCookie( 'UserID' );
+		$sessId = $request->getSessionData( 'wsUserID' );
 
 		if ( $cookieId !== null ) {
 			$sId = intval( $cookieId );
@@ -941,7 +945,7 @@ class User {
 					cookie user ID ($sId) don't match!" );
 				return false;
 			}
-			$wgRequest->setSessionData( 'wsUserID', $sId );
+			$request->setSessionData( 'wsUserID', $sId );
 		} elseif ( $sessId !== null && $sessId != 0 ) {
 			$sId = $sessId;
 		} else {
@@ -949,11 +953,11 @@ class User {
 			return false;
 		}
 
-		if ( $wgRequest->getSessionData( 'wsUserName' ) !== null ) {
-			$sName = $wgRequest->getSessionData( 'wsUserName' );
-		} elseif ( $wgRequest->getCookie( 'UserName' ) !== null ) {
-			$sName = $wgRequest->getCookie( 'UserName' );
-			$wgRequest->setSessionData( 'wsUserName', $sName );
+		if ( $request->getSessionData( 'wsUserName' ) !== null ) {
+			$sName = $request->getSessionData( 'wsUserName' );
+		} elseif ( $request->getCookie( 'UserName' ) !== null ) {
+			$sName = $request->getCookie( 'UserName' );
+			$request->setSessionData( 'wsUserName', $sName );
 		} else {
 			$this->loadDefaults();
 			return false;
@@ -973,11 +977,11 @@ class User {
 			return false;
 		}
 
-		if ( $wgRequest->getSessionData( 'wsToken' ) !== null ) {
-			$passwordCorrect = $proposedUser->getToken() === $wgRequest->getSessionData( 'wsToken' );
+		if ( $request->getSessionData( 'wsToken' ) !== null ) {
+			$passwordCorrect = $proposedUser->getToken() === $request->getSessionData( 'wsToken' );
 			$from = 'session';
-		} elseif ( $wgRequest->getCookie( 'Token' ) !== null ) {
-			$passwordCorrect = $proposedUser->getToken() === $wgRequest->getCookie( 'Token' );
+		} elseif ( $request->getCookie( 'Token' ) !== null ) {
+			$passwordCorrect = $proposedUser->getToken() === $request->getCookie( 'Token' );
 			$from = 'cookie';
 		} else {
 			# No session or persistent login cookie
@@ -987,7 +991,7 @@ class User {
 
 		if ( ( $sName === $proposedUser->getName() ) && $passwordCorrect ) {
 			$this->loadFromUserObject( $proposedUser );
-			$wgRequest->setSessionData( 'wsToken', $this->mToken );
+			$request->setSessionData( 'wsToken', $this->mToken );
 			wfDebug( "User: logged in from $from\n" );
 			return true;
 		} else {
@@ -1166,7 +1170,6 @@ class User {
 		$this->mDatePreference = null;
 		$this->mBlockedby = -1; # Unset
 		$this->mHash = false;
-		$this->mSkin = null;
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
 		$this->mOptions = null;
@@ -2183,11 +2186,6 @@ class User {
 		$this->load();
 		$this->loadOptions();
 
-		if ( $oname == 'skin' ) {
-			# Clear cached skin, so the new one displays immediately in Special:Preferences
-			$this->mSkin = null;
-		}
-
 		// Explicitly NULL values should refer to defaults
 		global $wgDefaultUserOptions;
 		if( is_null( $val ) && isset( $wgDefaultUserOptions[$oname] ) ) {
@@ -2468,6 +2466,20 @@ class User {
 	}
 
 	/**
+	 * Get the WebRequest object to use with this object
+	 *
+	 * @return WebRequest
+	 */
+	public function getRequest() {
+		if ( $this->mRequest ) {
+			return $this->mRequest;
+		} else {
+			global $wgRequest;
+			return $wgRequest;
+		}
+	}
+
+	/**
 	 * Get the current skin, loading it if required
 	 * @return Skin The current skin
 	 * @todo FIXME: Need to check the old failback system [AV]
@@ -2625,8 +2637,7 @@ class User {
 	 *                   if 0 or not specified, use the default $wgCookieExpiration
 	 */
 	protected function setCookie( $name, $value, $exp = 0 ) {
-		global $wgRequest;
-		$wgRequest->response()->setcookie( $name, $value, $exp );
+		$this->getRequest()->response()->setcookie( $name, $value, $exp );
 	}
 
 	/**
@@ -2645,8 +2656,7 @@ class User {
 	 */
 	function setCookies( $request = null ) {
 		if ( $request === null ) {
-			global $wgRequest;
-			$request = $wgRequest;
+			$request = $this->getRequest();
 		}
 
 		$this->load();
@@ -2695,11 +2705,9 @@ class User {
 	 * @see logout()
 	 */
 	function doLogout() {
-		global $wgRequest;
-
 		$this->clearInstanceCache( 'defaults' );
 
-		$wgRequest->setSessionData( 'wsUserID', 0 );
+		$this->getRequest()->setSessionData( 'wsUserID', 0 );
 
 		$this->clearCookie( 'UserID' );
 		$this->clearCookie( 'Token' );
@@ -3056,8 +3064,7 @@ class User {
 	 */
 	function editToken( $salt = '', $request = null ) {
 		if ( $request == null ) {
-			global $wgRequest;
-			$request = $wgRequest;
+			$request = $this->getRequest();
 		}
 
 		if ( $this->isAnon() ) {
