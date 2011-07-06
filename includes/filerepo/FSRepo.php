@@ -592,14 +592,18 @@ class FSRepo extends FileRepo {
 			$good = true;
 			if ( file_exists( $archivePath ) ) {
 				# A file with this content hash is already archived
-				if ( !@unlink( $srcPath ) ) {
+				wfSuppressWarnings();
+				$good = unlink( $srcPath );
+				wfRestoreWarnings();
+				if ( !$good ) {
 					$status->error( 'filedeleteerror', $srcPath );
-					$good = false;
 				}
 			} else{
-				if ( !@rename( $srcPath, $archivePath ) ) {
+				wfSuppressWarnings();
+				$good = rename( $srcPath, $archivePath );
+				wfRestoreWarnings();
+				if ( !$good ) {
 					$status->error( 'filerenameerror', $srcPath, $archivePath );
-					$good = false;
 				} else {
 					$this->chmod( $archivePath );
 				}

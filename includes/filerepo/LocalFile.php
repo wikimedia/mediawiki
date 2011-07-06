@@ -697,7 +697,9 @@ class LocalFile extends File {
 			if ( strpos( $file, $this->getName() ) !== false ) {
 				$url = $this->getThumbUrl( $file );
 				$urls[] = $url;
-				@unlink( "$dir/$file" );
+				wfSuppressWarnings();
+				unlink( "$dir/$file" );
+				wfRestoreWarnings();
 			}
 		}
 

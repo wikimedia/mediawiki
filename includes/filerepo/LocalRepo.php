@@ -78,7 +78,10 @@ class LocalRepo extends FSRepo {
 			}
 			if ( !$inuse ) {
 				wfDebug( __METHOD__ . ": deleting $key\n" );
-				if ( !@unlink( $path ) ) {
+				wfSuppressWarnings();
+				$unlink = unlink( $path );
+				wfRestoreWarnings();
+				if ( !$unlink ) {
 					$status->error( 'undelete-cleanup-error', $path );
 					$status->failCount++;
 				}

@@ -98,11 +98,11 @@ class ForeignAPIFile extends File {
 
 	// Info we can get from API...
 	public function getWidth( $page = 1 ) {
-		return intval( @$this->mInfo['width'] );
+		return isset( $this->mInfo['width'] ) ? intval( @$this->mInfo['width'] ) : 0;
 	}
 	
 	public function getHeight( $page = 1 ) {
-		return intval( @$this->mInfo['height'] );
+		return isset( $this->mInfo['height'] ) ? intval( @$this->mInfo['height'] ) : 0;
 	}
 	
 	public function getMetadata() {

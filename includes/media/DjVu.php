@@ -120,7 +120,9 @@ class DjVuHandler extends ImageHandler {
 		// normaliseParams will inevitably give.
 		$xml = $image->getMetadata();
 		if ( !$xml ) {
-			return new MediaTransformError( 'thumbnail_error', @$params['width'], @$params['height'],
+			$width = isset( $params['width'] ) ? $params['width'] : 0;
+			$height = isset( $params['height'] ) ? $params['height'] : 0;
+			return new MediaTransformError( 'thumbnail_error', $width, $height,
 				wfMsg( 'djvu_no_xml' ) );
 		}
 
