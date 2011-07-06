@@ -584,11 +584,6 @@ li.gallerybox div.thumb {
 	margin: 2px;
 }
 
-li.gallerybox div.thumb img {
-	display: block;
-	margin: 0 auto;
-}
-
 div.gallerytext {
 	overflow: hidden;
 	font-size: 94%;
