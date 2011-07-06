@@ -51,31 +51,39 @@ class WantedPagesPage extends WantedQueryPage {
 	function getQueryInfo() {
 		global $wgWantedPagesThreshold;
 		$count = $wgWantedPagesThreshold - 1;
-		$query = array (
-			'tables' => array ( 'pagelinks', 'pg1' => 'page',
-					'pg2' => 'page' ),
-			'fields' => array ( 'pl_namespace AS namespace',
-					'pl_title AS title',
-					'COUNT(*) AS value' ),
-			'conds' => array ( 'pg1.page_namespace IS NULL',
-					"pl_namespace NOT IN ( '" . NS_USER .
-						"', '" . NS_USER_TALK . "' )",
-					"pg2.page_namespace != '" .
-						NS_MEDIAWIKI . "'" ),
-			'options' => array ( 'HAVING' => "COUNT(*) > $count",
-				'GROUP BY' => 'pl_namespace, pl_title' ),
-			'join_conds' => array (
-				'pg1' => array (
-					'LEFT JOIN', array (
-					'pg1.page_namespace = pl_namespace',
-					'pg1.page_title = pl_title' ) ),
-				'pg2' => array ( 'LEFT JOIN',
-					'pg2.page_id = pl_from' )
-				)
+		$query = array(
+			'tables' => array(
+				'pagelinks',
+				'pg1' => 'page',
+				'pg2' => 'page'
+			),
+			'fields' => array(
+				'pl_namespace AS namespace',
+				'pl_title AS title',
+				'COUNT(*) AS value'
+			),
+			'conds' => array(
+				'pg1.page_namespace IS NULL',
+				"pl_namespace NOT IN ( '" . NS_USER .
+					"', '" . NS_USER_TALK . "' )",
+				"pg2.page_namespace != '" . NS_MEDIAWIKI . "'"
+			),
+			'options' => array(
+				'HAVING' => "COUNT(*) > $count",
+				'GROUP BY' => 'pl_namespace, pl_title'
+			),
+			'join_conds' => array(
+				'pg1' => array(
+					'LEFT JOIN', array(
+						'pg1.page_namespace = pl_namespace',
+						'pg1.page_title = pl_title'
+					)
+				),
+				'pg2' => array( 'LEFT JOIN', 'pg2.page_id = pl_from' )
+			)
 		);
-		// Replacement WantedPages::getSQL
-		wfRunHooks( 'WantedPages::getQueryInfo',
-				array( &$this, &$query ) );
+		// Replacement for the WantedPages::getSQL hook
+		wfRunHooks( 'WantedPages::getQueryInfo', array( &$this, &$query ) );
 		return $query;
 	}
 }
