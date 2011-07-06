@@ -131,7 +131,7 @@ production.
   correctly.
 * (bug 29567) mw.util.addPortletLink should only wrap link in <span> for
   "vectorTabs" portlets.
-* (bug 8556) Incorrect session failure warning on preview-on-open 
+* (bug 8556) Incorrect session failure warning on preview-on-open
   namespaces (categories) when combined with $wgRawHtml.
 * Use content language in formatting of dates in revertpage message
   (rollback revert edit summary) and do not adjust for user timezone.
@@ -165,6 +165,7 @@ production.
 * (bug 27595) sha1 search of list=filearchive does not work
 * (bug 26763) Make RSS/Atom of user contributions more visible
 * (bug 25133) Allow redirects also for action=parse&pageid
+* (bug 29745) Fatal error in API search
 
 === Languages updated in 1.19 ===
 
