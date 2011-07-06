@@ -257,6 +257,8 @@ production.
   environments
 * (bug 14977) Fixed $wgServer detection in cases where an IPv6 address is used 
   as the server name.
+* (bug 19725) Do not list suppressed edits in the "View X deleted edits" link
+  if user cannot view suppressed edits.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result.

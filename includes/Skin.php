@@ -754,7 +754,9 @@ abstract class Skin {
 
 		if ( $this->getContext()->getUser()->isAllowed( 'deletedhistory' ) &&
 			( $this->getTitle()->getArticleId() == 0 || $action == 'history' ) ) {
-			$n = $this->getTitle()->isDeleted();
+
+			$includeSuppressed = $this->getContext()->getUser()->isAllowed( 'suppressrevision' );
+			$n = $this->getTitle()->isDeleted( $includeSuppressed );
 
 			if ( $n ) {
 				if ( $this->getContext()->getUser()->isAllowed( 'undelete' ) ) {
