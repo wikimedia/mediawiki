@@ -4247,6 +4247,12 @@ class Title {
 	 */
 	public function getCategorySortkey( $prefix = '' ) {
 		$unprefixed = $this->getText();
+
+		// Anything that uses this hook should only depend
+		// on the Title object passed in, and should probably
+		// tell the users to run updateCollations.php --force
+		// in order to re-sort existing category relations.
+		wfRunHooks( 'GetDefaultSortkey', array( $this, &$unprefixed ) );
 		if ( $prefix !== '' ) {
 			# Separate with a line feed, so the unprefixed part is only used as
 			# a tiebreaker when two pages have the exact same prefix.

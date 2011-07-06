@@ -67,6 +67,7 @@ production.
 * (bug 5800) Added $formCallback as a parameter to the hook
   EditPage::showEditForm:initial
 * (bug 29723) mw.util.wikiGetlink() now defaults to wgPageName.
+* (bug 29680) Add GetDefaultSortkey hook to override the default sortkey.
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
