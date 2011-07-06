@@ -48,45 +48,6 @@ jQuery( function( $ ) {
 		return true;
 	};
 
-	var fixCompare = function () {
-		var $diffList = $( '#pagehistory' ),
-		 $histForm = $( '#mw-history-compare' ),
-		 $buttons = $histForm.find( 'input.historysubmit' );
-
-		// There's only one rev, nothing to do here
-		if ( !$buttons.length ) {
-			return false;
-		}
-		var copyAttrs = ['title', 'accesskey'];
-		$buttons.each(function() {
-			var $button = $(this),
-				$compareLink= $( '<a></a>', {
-					'class': 'compare-link',
-					'text': $button.val()
-				}).button();
-			$.each( copyAttrs, function( i, name ) {
-				var val = $button.attr( name );
-				if (val) {
-					$compareLink.attr( name, val );
-				}
-			});
-			$button.replaceWith( $compareLink );
-		});
-		var updateCompare = function() {
-			var $radio = $histForm.find( 'input[type="radio"]:checked' );
-			var genLink = mw.config.get( 'wgScript' )
-				+ '?title=' + mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )
-				+ '&diff=' + $radio.eq(0).val()
-				+ '&oldid=' + $radio.eq(1).val();
-			$( '.compare-link' ).each( function() {
-				$(this).attr('href', genLink);
-			});
-		}
-		updateCompare();
-		$diffList.change( updateCompare );
-	};
-
 	$( '#pagehistory li input[name="diff"], #pagehistory li input[name="oldid"]' ).click( updateDiffRadios );
-	fixCompare();
 	updateDiffRadios();
 });
