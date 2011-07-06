@@ -326,6 +326,10 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $this->historyPage->getArticle();
 	}
 
+	function getTitle() {
+		return $this->title;
+	}
+
 	function getSqlComment() {
 		if ( $this->conds ) {
 			return 'history page filtered'; // potentially slow, see CR r58153
@@ -339,7 +343,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			'tables'  => array( 'revision' ),
 			'fields'  => Revision::selectFields(),
 			'conds'   => array_merge(
-				array( 'rev_page' => $this->historyPage->getTitle()->getArticleID() ),
+				array( 'rev_page' => $this->title->getArticleID() ),
 				$this->conds ),
 			'options' => array( 'USE INDEX' => array( 'revision' => 'page_timestamp' ) ),
 			'join_conds' => array( 'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),

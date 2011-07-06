@@ -60,6 +60,10 @@ class NewFilesPager extends ReverseChronologicalPager {
 		parent::__construct();
 	}
 
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Newimages' );
+	}
+
 	function getQueryInfo() {
 		global $wgMiserMode;
 		$conds = $jconds = array();
