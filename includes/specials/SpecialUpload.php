@@ -224,7 +224,7 @@ class SpecialUpload extends SpecialPage {
 	 */
 	protected function showUploadForm( $form ) {
 		# Add links if file was previously deleted
-		if ( !$this->mDesiredDestName ) {
+		if ( $this->mDesiredDestName ) {
 			$this->showViewDeletedLinks();
 		}
 
@@ -329,11 +329,6 @@ class SpecialUpload extends SpecialPage {
 					$wgOut->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
 				}
 			}
-		}
-
-		// Show the relevant lines from deletion log (for still deleted files only)
-		if( $title instanceof Title && $title->isDeletedQuick() && !$title->exists() ) {
-			$this->showDeletionLog( $wgOut, $title->getPrefixedText() );
 		}
 	}
 
