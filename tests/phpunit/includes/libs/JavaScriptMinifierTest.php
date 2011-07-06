@@ -7,20 +7,24 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			// Basic tokens
 			array( "\r\t\f \v\n\r", "" ),
 			array( "/* Foo *\n*bar\n*/", "" ),
-			array( "'  Foo  \\'  bar  \\\n  baz  \\'  quox  '  .", "'  Foo  \\'  bar  \\\n  baz  \\'  quox  '." ),
-			array( '\"  Foo  \\"  bar  \\\n  baz  \\"  quox  "  .', '\"  Foo  \\"  bar  \\\n  baz  \\"  quox  ".' ),
+			/**
+			 * '  Foo \' bar \
+			 *  baz \' quox '  .
+			 */
+			array( "'  Foo  \\'  bar  \\\n  baz  \\'  quox  '  .length", "'  Foo  \\'  bar  \\\n  baz  \\'  quox  '.length" ),
+			array( "\"  Foo  \\\"  bar  \\\n  baz  \\\"  quox  \"  .length", "\"  Foo  \\\"  bar  \\\n  baz  \\\"  quox  \".length" ),
 			array( "// Foo b/ar baz", "" ),
-			array( "/  Foo  \\/  bar  [  /  \\]  /  ]  baz  /  .", "/  Foo  \\/  bar  [  /  \\]  /  ]  baz  /." ),
+			array( "/  Foo  \\/  bar  [  /  \\]  /  ]  baz  /  .length", "/  Foo  \\/  bar  [  /  \\]  /  ]  baz  /.length" ),
 			// HTML comments
 			array( "<!-- Foo bar", "" ),
 			array( "<!-- Foo --> bar", "" ),
 			array( "--> Foo", "" ),
 			array( "x --> y", "x-->y" ),
 			// Semicolon insertion
-			array( "return\nx;", "return\nx;" ),
+			array( "(function(){return\nx;})", "(function(){return\nx;})" ),
 			array( "throw\nx;", "throw\nx;" ),
-			array( "continue\nx;", "continue\nx;" ),
-			array( "break\nx;", "break\nx;" ),
+			array( "while(p){continue\nx;}", "while(p){continue\nx;}" ),
+			array( "while(p){break\nx;}", "while(p){break\nx;}" ),
 			array( "var\nx;", "var x;" ),
 			array( "x\ny;", "x\ny;" ),
 			array( "x\n++y;", "x\n++y;" ),
@@ -39,7 +43,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			array( "x  /  /y/.exec(z)", "x/ /y/.exec(z)" ),
 			// State machine
 			array( "/  x/g", "/  x/g" ),
-			array( "return/  x/g", "return/  x/g" ),
+			array( "(function(){return/  x/g})", "(function(){return/  x/g})" ),
 			array( "+/  x/g", "+/  x/g" ),
 			array( "++/  x/g", "++/  x/g" ),
 			array( "x/  x/g", "x/x/g" ),
@@ -81,6 +85,15 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 	 * @dataProvider provideCases
 	 */
 	function testJavaScriptMinifierOutput( $code, $expectedOutput ) {
-		$this->assertEquals( $expectedOutput, JavaScriptMinifier::minify( $code ) );
+		$minified = JavaScriptMinifier::minify( $code );
+
+		// JSMin+'s parser will throw an exception if output is not valid JS.
+		// suppression of warnings needed for stupid crap
+		wfSuppressWarnings();
+		$parser = new JSParser();
+		wfRestoreWarnings();
+		$parser->parse( $minified, 'minify-test.js', 1 );
+
+		$this->assertEquals( $expectedOutput, $minified, "Minified output should be in the form expected." );
 	}
 }
