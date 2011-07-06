@@ -281,7 +281,10 @@ class ImageGallery {
 				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
-				$vpad = ( self::THUMB_PADDING + $this->mHeights - $thumb->height ) /2;
+				# We get layout problems with the margin, if the image is smaller 
+				# than the line-height (17), so we add less margin in these cases.
+				$minThumbHeight =  $thumb->height > 17 ? $thumb->height : 17;
+				$vpad = floor( ( self::THUMB_PADDING + $this->mHeights - $minThumbHeight ) /2 );
 
 				$imageParameters = array(
 					'desc-link' => true,
