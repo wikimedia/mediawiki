@@ -65,7 +65,8 @@ class UpdateSpecialPages extends Maintenance {
 		require_once( "$IP/includes/QueryPage.php" );
 
 		foreach ( $wgQueryPages as $page ) {
-			@list( $class, $special, $limit ) = $page;
+			list( $class, $special ) = $page;
+			$limit = isset( $page[2] ) ? $page[2] : null;
 
 			# --list : just show the name of pages
 			if ( $this->hasOption( 'list' ) ) {

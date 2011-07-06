@@ -55,11 +55,10 @@ class UpdateSearchIndex extends Maintenance {
 			# We can safely delete the file when we're done though.
 			$start = file_get_contents( 'searchUpdate.pos' );
 			unlink( 'searchUpdate.pos' );
+		} elseif( is_readable( $posFile ) ) {
+			$start = file_get_contents( $posFile );
 		} else {
-			$start = @file_get_contents( $posFile );
-			if ( !$start ) {
-				$start = wfTimestamp( TS_MW, time() - 86400 );
-			}
+			$start = wfTimestamp( TS_MW, time() - 86400 );
 		}
 		$lockTime = $this->getOption( 'l', 20 );
 
