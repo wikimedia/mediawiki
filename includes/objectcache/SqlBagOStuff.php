@@ -361,7 +361,9 @@ class SqlBagOStuff extends BagOStuff {
 	 */
 	protected function unserialize( $serial ) {
 		if ( function_exists( 'gzinflate' ) ) {
-			$decomp = @gzinflate( $serial );
+			wfSuppressWarnings();
+			$decomp = gzinflate( $serial );
+			wfRestoreWarnings();
 
 			if ( false !== $decomp ) {
 				$serial = $decomp;
