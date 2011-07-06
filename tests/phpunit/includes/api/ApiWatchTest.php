@@ -2,7 +2,6 @@
 
 /**
  * @group Database
- * @group Destructive
  * @todo This test suite is severly broken and need a full review 
  */
 class ApiWatchTest extends ApiTestCase {
