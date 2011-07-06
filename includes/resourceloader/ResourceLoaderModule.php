@@ -304,4 +304,54 @@ abstract class ResourceLoaderModule {
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
 		return false;
 	}
+
+
+	/** @var JSParser lazy-initialized; use self::javaScriptParser() */
+	private static $jsParser;
+	private static $parseCacheVersion = 1;
+
+	/**
+	 * Validate a given script file; if valid returns the original source.
+	 * If invalid, returns replacement JS source that throws an exception.
+	 *
+	 * @param string $fileName
+	 * @param string $contents
+	 * @return string JS with the original, or a replacement error
+	 */
+	protected function validateScriptFile( $fileName, $contents ) {
+		global $wgResourceLoaderValidateJS;
+		if ( $wgResourceLoaderValidateJS ) {
+			// Try for cache hit
+			// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
+			$key = wfMemcKey( 'resourceloader', 'jsparse', self::$parseCacheVersion, md5( $contents ) );
+			$cache = wfGetCache( CACHE_ANYTHING );
+			$cacheEntry = $cache->get( $key );
+			if ( is_string( $cacheEntry ) ) {
+				return $cacheEntry;
+			}
+
+			$parser = self::javaScriptParser();
+			try {
+				$parser->parse( $contents, $fileName, 1 );
+				$result = $contents;
+			} catch (Exception $e) {
+				// We'll save this to cache to avoid having to validate broken JS over and over...
+				$err = $e->getMessage();
+				$result = "throw new Error(" . Xml::encodeJsVar("JavaScript parse error: $err") . ");";
+			}
+			
+			$cache->set( $key, $result );
+			return $result;
+		} else {
+			return $contents;
+		}
+	}
+
+	protected static function javaScriptParser() {
+		if ( !self::$jsParser ) {
+			self::$jsParser = new JSParser();
+		}
+		return self::$jsParser;
+	}
+
 }

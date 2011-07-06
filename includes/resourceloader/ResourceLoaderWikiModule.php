@@ -82,6 +82,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 			$script = $this->getContent( $title );
 			if ( strval( $script ) !== '' ) {
+				$script = $this->validateScriptFile( $titleText, $script );
 				if ( strpos( $titleText, '*/' ) === false ) {
 					$scripts .=  "/* $titleText */\n";
 				}
