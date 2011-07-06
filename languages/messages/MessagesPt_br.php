@@ -1314,12 +1314,13 @@ Você poderá pesquisar através do Google enquanto isso.
 Note que os índices do sistema de busca externo poderão conter referências desatualizadas a {{SITENAME}}.',
 
 # Quickbar
-'qbsettings'               => 'Configurações da Barra Rápida',
-'qbsettings-none'          => 'Nenhuma',
-'qbsettings-fixedleft'     => 'Fixo à esquerda',
-'qbsettings-fixedright'    => 'Fixo à direita',
-'qbsettings-floatingleft'  => 'Flutuando à esquerda',
-'qbsettings-floatingright' => 'Flutuando à direita',
+'qbsettings'                => 'Configurações da Barra Rápida',
+'qbsettings-none'           => 'Nenhuma',
+'qbsettings-fixedleft'      => 'Fixo à esquerda',
+'qbsettings-fixedright'     => 'Fixo à direita',
+'qbsettings-floatingleft'   => 'Flutuando à esquerda',
+'qbsettings-floatingright'  => 'Flutuando à direita',
+'qbsettings-directionality' => 'Fixa, dependendo da direcionalidade da sua língua',
 
 # Preferences page
 'preferences'                   => 'Preferências',
@@ -1547,10 +1548,11 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-sendemail'             => 'Enviar email a outros usuários',
 
 # User rights log
-'rightslog'      => 'Registro de privilégios de usuário',
-'rightslogtext'  => 'Este é um registro de mudanças nos privilégios de usuários.',
-'rightslogentry' => 'foi alterado o grupo de acesso de $1 (de $2 para $3)',
-'rightsnone'     => '(nenhum)',
+'rightslog'                  => 'Registro de privilégios de usuário',
+'rightslogtext'              => 'Este é um registro de mudanças nos privilégios de usuários.',
+'rightslogentry'             => 'foi alterado o grupo de acesso de $1 (de $2 para $3)',
+'rightslogentry-autopromote' => 'foi automaticamente promovido de $2 para $3',
+'rightsnone'                 => '(nenhum)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'ler esta página',
@@ -2326,8 +2328,8 @@ Experimente usar o botão "Voltar" e atualizar a página de onde veio e tente no
 
 # Protect
 'protectlogpage'              => 'Registro de proteção',
-'protectlogtext'              => 'Abaixo encontra-se o registro de proteção e desproteção de páginas.
-Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
+'protectlogtext'              => 'Encontra-se abaixo o registro de proteção e desproteção de páginas.
+Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as páginas que se encontram protegidas neste momento.',
 'protectedarticle'            => 'protegeu "[[$1]]"',
 'modifiedarticleprotection'   => 'alterou o nível de proteção para "[[$1]]"',
 'unprotectedarticle'          => 'removeu a proteção de "[[$1]]"',
@@ -2435,10 +2437,12 @@ $1',
 'undelete-show-file-submit'    => 'Sim',
 
 # Namespace form on various pages
-'namespace'             => 'Espaço nominal:',
-'invert'                => 'Inverter seleção',
-'namespace_association' => 'Espaço nominal associado',
-'blanknamespace'        => '(Principal)',
+'namespace'                     => 'Espaço nominal:',
+'invert'                        => 'Inverter seleção',
+'tooltip-invert'                => 'Marque esta caixa para esconder as alterações a páginas no espaço nominal selecionado (e no espaço nominal associado, se escolheu fazê-lo)',
+'namespace_association'         => 'Espaço nominal associado',
+'tooltip-namespace_association' => 'Marque esta caixa para incluir também o espaço nominal de conteúdo ou de discussão associado à sua seleção',
+'blanknamespace'                => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contribuições do usuário',
@@ -2932,6 +2936,9 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-talkpage'         => 'Página de discussão',
 'pageinfo-watchers'         => 'Número de pessoas vigiando',
 'pageinfo-edits'            => 'Número de edições',
+'pageinfo-authors'          => 'Número de autores individuais',
+'pageinfo-views'            => 'Número de visitas',
+'pageinfo-viewsperedit'     => 'Visitas por edição',
 
 # Skin names
 'skinname-standard'    => 'Clássico',
@@ -2985,6 +2992,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'              => 'tamanho: $1, tipo MIME: $2',
 'file-info-size'         => '$1 × $2 pixels, tamanho: $3, tipo MIME: $4',
+'file-info-size-pages'   => '$1 × $2 pixels, tamanho do arquivo: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',
 'file-nohires'           => '<small>Sem resolução maior disponível.</small>',
 'svg-long-desc'          => 'arquivo SVG, de $1 × $2 pixels, tamanho: $3',
 'show-big-image'         => 'Resolução completa',
@@ -3217,6 +3225,8 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 
 # EXIF attributes
 'exif-compression-1' => 'Sem compressão',
+'exif-compression-3' => 'CCITT Grupo 3 codificação de fax',
+'exif-compression-4' => 'CCITT Grupo 4 codificação de fax',
 
 'exif-copyrighted-true'  => 'Direitos autorais reservados',
 'exif-copyrighted-false' => 'Domínio público',

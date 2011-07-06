@@ -1261,12 +1261,13 @@ $1",
 Вы можаце пашукаць з дапамогай Google, але заўважце, што там інфармацыя пра старонкі {{GRAMMAR:родны|{{SITENAME}}}} можа быць састарэлай.',
 
 # Quickbar
-'qbsettings'               => 'Панэль хуткага доступу',
-'qbsettings-none'          => 'Не паказваць',
-'qbsettings-fixedleft'     => 'Замацаваная зьлева',
-'qbsettings-fixedright'    => 'Замацаваная справа',
-'qbsettings-floatingleft'  => 'Рухомая зьлева',
-'qbsettings-floatingright' => 'Плавае справа',
+'qbsettings'                => 'Панэль хуткага доступу',
+'qbsettings-none'           => 'Не паказваць',
+'qbsettings-fixedleft'      => 'Замацаваная зьлева',
+'qbsettings-fixedright'     => 'Замацаваная справа',
+'qbsettings-floatingleft'   => 'Рухомая зьлева',
+'qbsettings-floatingright'  => 'Плавае справа',
+'qbsettings-directionality' => 'Замацаваная, у залежнасьці ад напісаньня ў Вашай мове',
 
 # Preferences page
 'preferences'                   => 'Налады',

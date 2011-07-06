@@ -1359,12 +1359,13 @@ $1",
 Да напоменеме дека нивното индексирање на {{SITENAME}} содржините може да биде застарено.',
 
 # Quickbar
-'qbsettings'               => 'Лента за брз избор',
-'qbsettings-none'          => 'Без мени',
-'qbsettings-fixedleft'     => 'Неподвижна лево',
-'qbsettings-fixedright'    => 'Неподвижна десно',
-'qbsettings-floatingleft'  => 'Променлива лево',
-'qbsettings-floatingright' => 'Променлива десно',
+'qbsettings'                => 'Лента за брз избор',
+'qbsettings-none'           => 'Без мени',
+'qbsettings-fixedleft'      => 'Неподвижна лево',
+'qbsettings-fixedright'     => 'Неподвижна десно',
+'qbsettings-floatingleft'   => 'Променлива лево',
+'qbsettings-floatingright'  => 'Променлива десно',
+'qbsettings-directionality' => 'Непроменливо зададен, во зависоност од насоката на пишување на вашиот јазик',
 
 # Preferences page
 'preferences'                   => 'Нагодувања',

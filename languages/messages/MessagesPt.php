@@ -1206,7 +1206,7 @@ Não tem acesso.',
 'revdelete-modify-no-access'  => 'Erro ao modificar o item datado de $2, $1: este item foi marcado como "restrito".
 Não tem acesso.',
 'revdelete-modify-missing'    => 'Erro ao modificar o item ID $1: não existe na base de dados!',
-'revdelete-no-change'         => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visibilidade solicitadas.",
+'revdelete-no-change'         => "'''Aviso:''' a revisão com data de $2, $1 já tem as configurações de visibilidade solicitadas.",
 'revdelete-concurrent-change' => 'Erro ao modificar o item com data/hora $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Verifique os registos, por favor.',
 'revdelete-only-restricted'   => 'Erro ao ocultar o item de $2 às $1: não pode impedir que os itens sejam vistos pelos administradores sem seleccionar também uma das outras opções de visibilidade.',
@@ -1476,10 +1476,10 @@ Esta informação será pública.',
 * Uma caixa de selecção desmarcada significa que o utilizador não se encontra no grupo.
 * Um asterisco (*) indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
 'userrights-reason'            => 'Motivo:',
-'userrights-no-interwiki'      => 'Não possui permissão de alterar os privilégios de utilizadores noutras wikis.',
+'userrights-no-interwiki'      => 'Não tem permissões para alterar os privilégios de utilizadores noutras wikis.',
 'userrights-nodatabase'        => 'A base de dados $1 não existe ou não é uma base de dados local.',
 'userrights-nologin'           => 'Precisa [[Special:UserLogin|autenticar-se]] com uma conta de administrador para atribuir privilégios aos utilizadores.',
-'userrights-notallowed'        => 'A sua conta não possui permissão para conceder privilégios a utilizadores.',
+'userrights-notallowed'        => 'A sua conta não tem permissões para conceder privilégios a utilizadores.',
 'userrights-changeable-col'    => 'Grupos que pode alterar',
 'userrights-unchangeable-col'  => 'Grupos que não pode alterar',
 
@@ -2022,7 +2022,7 @@ Agora redirecciona para [[$2]].',
 'brokenredirects-delete' => 'eliminar',
 
 'withoutinterwiki'         => 'Páginas sem links interlínguas',
-'withoutinterwiki-summary' => 'As seguintes páginas não possuem links para versões noutras línguas.',
+'withoutinterwiki-summary' => 'As seguintes páginas não têm links para versões noutras línguas.',
 'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Mostrar',
 
@@ -2514,9 +2514,9 @@ Para sua referência, encontra abaixo a entrada mais recente no registo de bloqu
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
-'whatlinkshere-title'      => 'Páginas que possuem links para "$1"',
+'whatlinkshere-title'      => 'Páginas que têm links para "$1"',
 'whatlinkshere-page'       => 'Página:',
-'linkshere'                => "As seguintes páginas possuem links para '''[[:$1]]''':",
+'linkshere'                => "As seguintes páginas têm links para '''[[:$1]]''':",
 'nolinkshere'              => "Não existem links para '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Não existem links para '''[[:$1]]''' no espaço nominal seleccionado.",
 'isredirect'               => 'página de redireccionamento',
@@ -2651,7 +2651,8 @@ Contacte o seu fornecedor de internet ou o serviço de apoio técnico e informe-
 'sorbsreason'                     => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}.",
 'sorbs_create_account_reason'     => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}. Não pode criar uma conta",
 'cant-block-while-blocked'        => 'Não pode bloquear outros utilizadores enquanto estiver bloqueado.',
-'cant-see-hidden-user'            => "O utilizador que está tentando bloquear já está bloqueado e oculto. Como não possui privilégio de bloquear utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
+'cant-see-hidden-user'            => "O utilizador que está tentando bloquear já está bloqueado e oculto.
+Como não tem o privilégio para ocultar utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
 'ipbblocked'                      => 'Não pode bloquear ou desbloquear outros, porque está bloqueado',
 'ipbnounblockself'                => 'Não lhe é permitido desbloquear-se a si mesmo',
 
@@ -2711,10 +2712,10 @@ Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la co
 'moveuserpage-warning'         => "'''Aviso:''' Está prestes a mover uma página de utilizador. Note que a página será apenas movida, ''sem'' alterar o nome do utilizador.",
 'movenologin'                  => 'Não autenticado',
 'movenologintext'              => 'Precisa de ser um utilizador registado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
-'movenotallowed'               => 'Não possui permissão para mover páginas.',
+'movenotallowed'               => 'Não tem permissão para mover páginas.',
 'movenotallowedfile'           => 'Não possui permissão para mover ficheiros.',
-'cant-move-user-page'          => 'Não possui permissão de mover páginas de utilizadores (pode mover sub-páginas).',
-'cant-move-to-user-page'       => 'Não possui permissão de mover uma página para uma página de utilizador (pode movê-la para uma subpágina de utilizador).',
+'cant-move-user-page'          => 'Não tem permissão para mover páginas de utilizador (pode mover sub-páginas).',
+'cant-move-to-user-page'       => 'Não tem permissão para mover uma página para uma página de utilizador (pode movê-la para uma subpágina de utilizador).',
 'newtitle'                     => 'Para novo título',
 'move-watch'                   => 'Vigiar esta página',
 'movepagebtn'                  => 'Mover página',
@@ -3520,8 +3521,8 @@ caso tenha criado a conta recentemente, é recomendado que aguarde alguns minuto
 'confirmemail_sent'         => 'Correio de confirmação enviado.',
 'confirmemail_oncreate'     => 'Foi enviado um código de confirmação para o seu endereço de correio electrónico.
 Este código não é necessário para se autenticar no sistema, mas será necessário para activar qualquer funcionalidade baseada no uso de correio na wiki.',
-'confirmemail_sendfailed'   => 'A {{SITENAME}} não conseguiu enviar o correio de confirmação.
-Verifique se o seu endereço de correio electrónico possui caracteres inválidos.
+'confirmemail_sendfailed'   => 'A {{SITENAME}} não conseguiu enviar a mensagem de confirmação.
+Verifique se o seu endereço de correio electrónico tem caracteres inválidos.
 
 O sistema de correio devolveu o erro: $1',
 'confirmemail_invalid'      => 'Código de confirmação inválido. O código poderá ter expirado.',

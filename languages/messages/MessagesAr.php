@@ -3156,6 +3156,7 @@ $1',
 
 # Info page
 'pageinfo-header-edits' => 'التعديلات',
+'pageinfo-subjectpage'  => 'الصفحة',
 
 # Skin names
 'skinname-standard'    => 'كلاسيك',

@@ -1236,12 +1236,13 @@ $1",
 'searchdisabled'                   => 'La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)',
 
 # Quickbar
-'qbsettings'               => 'Quickbar',
-'qbsettings-none'          => 'Nessuno',
-'qbsettings-fixedleft'     => 'Fisso a sinistra',
-'qbsettings-fixedright'    => 'Fisso a destra',
-'qbsettings-floatingleft'  => 'Fluttuante a sinistra',
-'qbsettings-floatingright' => 'Fluttuante a destra',
+'qbsettings'                => 'Quickbar',
+'qbsettings-none'           => 'Nessuno',
+'qbsettings-fixedleft'      => 'Fisso a sinistra',
+'qbsettings-fixedright'     => 'Fisso a destra',
+'qbsettings-floatingleft'   => 'Fluttuante a sinistra',
+'qbsettings-floatingright'  => 'Fluttuante a destra',
+'qbsettings-directionality' => 'Fisso, a seconda della direzionalità della tua lingua',
 
 # Preferences page
 'preferences'                   => 'Preferenze',

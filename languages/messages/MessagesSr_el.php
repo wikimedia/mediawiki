@@ -1241,6 +1241,7 @@ Pokušajte sa prefiksom '''sve:''' da pretražite ceo sadržaj (uključujući st
 'prefs-skin'                    => 'Koža',
 'skin-preview'                  => 'Pregled',
 'datedefault'                   => 'Nije bitno',
+'prefs-beta'                    => 'Beta funkcije',
 'prefs-datetime'                => 'Datum i vreme',
 'prefs-personal'                => 'Korisnička podešavanja',
 'prefs-rc'                      => 'Skorašnje izmene',

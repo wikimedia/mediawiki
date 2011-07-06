@@ -2167,6 +2167,7 @@ $1',
 'sp-contributions-talk'          => 'diskussjoni',
 'sp-contributions-search'        => 'Fittex għal kontribuzzjonijiet',
 'sp-contributions-username'      => 'Indirizz IP jew isem tal-utent:',
+'sp-contributions-toponly'       => 'Uri biss modifiki li huma l-aħħar reviżjonijiet għall-paġna',
 'sp-contributions-submit'        => 'Fittex',
 
 # What links here
