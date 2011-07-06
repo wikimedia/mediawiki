@@ -40,7 +40,6 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if ( is_null( $session ) ) {
 			$session = array();
 		}
-		$_SESSION = $session; // paranoia
 
 		$request = new FauxRequest( $params, true, $session );
 		$module = new ApiMain( $request, true );
