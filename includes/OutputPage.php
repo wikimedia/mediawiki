@@ -1307,10 +1307,11 @@ class OutputPage {
 	 * @return Mixed: previous value
 	 */
 	public function setFileVersion( $file ) {
+		$val = null;
 		if ( $file instanceof File && $file->exists() ) {
 			$val = array( 'time' => $file->getTimestamp(), 'sha1' => $file->getSha1() );
 		}
-		return wfSetVar( $this->mFileVersion, $val );
+		return wfSetVar( $this->mFileVersion, $val, true );
 	}
 
 	/**
