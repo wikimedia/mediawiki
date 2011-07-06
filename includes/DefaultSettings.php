@@ -2519,6 +2519,12 @@ $wgLegacyJavaScriptGlobals = true;
  */
 $wgResourceLoaderMaxQueryLength = -1;
 
+/**
+ * If set to true, JavaScript will be parsed prior to minification to validate it.
+ * Parse errors will result in a JS exception being thrown during module load.
+ */
+$wgResourceLoaderValidateJS = true;
+
 /** @} */ # End of resource loader settings }
 
 

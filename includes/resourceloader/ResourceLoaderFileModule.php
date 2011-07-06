@@ -495,6 +495,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			if ( $contents === false ) {
 				throw new MWException( __METHOD__.": script file not found: \"$localPath\"" );
 			}
+			$contents = $this->validateScriptFile( $fileName, $contents );
 			$js .= $contents . "\n";
 		}
 		return $js;
