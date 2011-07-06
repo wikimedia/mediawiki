@@ -42,6 +42,8 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * Fixed a bug in message transformation where the previous language could leak 
   into later transformations in the UI language.
 * (bug 29091) Fix form of native name for Ossetic language (Иронау -> Ирон)
+* Fixed maintenance scripts upgrade1_5.php and rebuildImages.php, they did not
+  work at all since 1.17 beta 1.
 
 === Changes since 1.17.0rc1 ===
 
