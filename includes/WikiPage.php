@@ -2299,7 +2299,10 @@ class WikiPage extends Page {
 		if ( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
 			$truncatedtext = $wgContLang->truncate(
 				str_replace( "\n", ' ', $newtext ),
-				max( 0, 200 - strlen( wfMsgForContent( 'autoredircomment' ) ) ) );
+				max( 0, 250
+					- strlen( wfMsgForContent( 'autoredircomment' ) )
+					- strlen( $rt->getFullText() )
+				) );
 			return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
 		}
 
