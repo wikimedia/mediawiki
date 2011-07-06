@@ -314,17 +314,20 @@ class SpecialUpload extends SpecialPage {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		// Show a subtitle link to deleted revisions (to sysops et al only)
 		if( $title instanceof Title ) {
-			$count = $title->isDeleted();
-			if ( $count > 0 && $wgUser->isAllowed( 'deletedhistory' ) ) {
-				$link = wfMsgExt(
-					$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
-					array( 'parse', 'replaceafter' ),
-					$this->getSkin()->linkKnown(
-						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
-						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
-					)
-				);
-				$wgOut->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
+			if ( $wgUser->isAllowed( 'deletedhistory' ) ) {
+				$canViewSuppress = $wgUser->isAllowed( 'suppressrevision' );
+				$count = $title->isDeleted( $canViewSuppress );
+				if ( $count > 0 ) {
+					$link = wfMsgExt(
+						$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
+						array( 'parse', 'replaceafter' ),
+						$this->getSkin()->linkKnown(
+							SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
+							wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
+						)
+					);
+					$wgOut->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
+				}
 			}
 		}
 
