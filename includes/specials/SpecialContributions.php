@@ -476,6 +476,10 @@ class ContribsPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Contributions' );
+	}
+
 	function getQueryInfo() {
 		global $wgUser, $wgMiserMode;
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();

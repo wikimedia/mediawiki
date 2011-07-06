@@ -170,7 +170,7 @@ class LogEventsList {
 			$query[$queryKey] = $hideVal;
 
 			$link = $this->skin->link(
-				$this->out->getTitle(),
+				$this->getDisplayTitle(),
 				$messages[$hideVal],
 				array(),
 				$query,
@@ -198,6 +198,16 @@ class LogEventsList {
 			unset( $this->mDefaultQuery['year'] );
 		}
 		return $this->mDefaultQuery;
+	}
+
+	/**
+	 * Get the Title object of the page the links should point to.
+	 * This is NOT the Title of the page the entries should be restricted to.
+	 *
+	 * @return Title object
+	 */
+	public function getDisplayTitle() {
+		return $this->out->getTitle();
 	}
 
 	/**
@@ -799,6 +809,10 @@ class LogPager extends ReverseChronologicalPager {
 		$query['month'] = $this->mMonth;
 		$query['year'] = $this->mYear;
 		return $query;
+	}
+
+	function getTitle() {
+		return $this->mLogEventsList->getDisplayTitle();
 	}
 
 	// Call ONLY after calling $this->limitType() already!

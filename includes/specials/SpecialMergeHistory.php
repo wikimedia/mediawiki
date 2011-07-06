@@ -481,6 +481,10 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		parent::__construct();
 	}
 
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Contributions' );
+	}
+
 	function getStartBody() {
 		wfProfileIn( __METHOD__ );
 		# Do a link batch query
