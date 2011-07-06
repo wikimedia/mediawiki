@@ -272,7 +272,6 @@ class ImagePage extends Article {
 		$max = $wgImageLimits[$sizeSel];
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
-		$sk = $wgUser->getSkin();
 		$dirmark = $wgLang->getDirMark();
 
 		if ( $this->displayImg->exists() ) {
@@ -297,7 +296,7 @@ class ImagePage extends Article {
 				# image
 
 				# "Download high res version" link below the image
-				# $msgsize = wfMsgHtml( 'file-info-size', $width_orig, $height_orig, $sk->formatSize( $this->displayImg->getSize() ), $mime );
+				# $msgsize = wfMsgHtml( 'file-info-size', $width_orig, $height_orig, Linker::formatSize( $this->displayImg->getSize() ), $mime );
 				# We'll show a thumbnail of this image
 				if ( $width > $maxWidth || $height > $maxHeight ) {
 					# Calculate the thumbnail size.
@@ -358,14 +357,14 @@ class ImagePage extends Article {
 
 					if ( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
-						$link = $sk->link(
+						$link = Linker::link(
 							$this->getTitle(),
 							$label,
 							array(),
 							array( 'page' => $page - 1 ),
 							array( 'known', 'noclasses' )
 						);
-						$thumb1 = $sk->makeThumbLinkObj( $this->getTitle(), $this->displayImg, $link, $label, 'none',
+						$thumb1 = Linker::makeThumbLinkObj( $this->getTitle(), $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page - 1 ) );
 					} else {
 						$thumb1 = '';
@@ -373,14 +372,14 @@ class ImagePage extends Article {
 
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
-						$link = $sk->link(
+						$link = Linker::link(
 							$this->getTitle(),
 							$label,
 							array(),
 							array( 'page' => $page + 1 ),
 							array( 'known', 'noclasses' )
 						);
-						$thumb2 = $sk->makeThumbLinkObj( $this->getTitle(), $this->displayImg, $link, $label, 'none',
+						$thumb2 = Linker::makeThumbLinkObj( $this->getTitle(), $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page + 1 ) );
 					} else {
 						$thumb2 = '';
@@ -556,19 +555,17 @@ EOT
 			return;
 		}
 
-		$sk = $wgUser->getSkin();
-
 		$wgOut->addHTML( "<br /><ul>\n" );
 
 		# "Upload a new version of this file" link
 		if ( UploadBase::userCanReUpload( $wgUser, $this->mPage->getFile()->name ) ) {
-			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
+			$ulink = Linker::makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
 			$wgOut->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
 		}
 
 		# External editing link
 		if ( $wgUseExternalEditor ) {
-			$elink = $sk->link(
+			$elink = Linker::link(
 				$this->getTitle(),
 				wfMsgHtml( 'edit-externally' ),
 				array(),
@@ -625,7 +622,7 @@ EOT
 	}
 
 	protected function imageLinks() {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgOut, $wgLang;
 
 		$limit = 100;
 
@@ -675,7 +672,6 @@ EOT
 			Html::openElement( 'ul',
 				array( 'class' => 'mw-imagepage-linkstoimage' ) ) . "\n"
 		);
-		$sk = $wgUser->getSkin();
 		$count = 0;
 
 		// Sort the list by namespace:title
@@ -689,7 +685,7 @@ EOT
 				break;
 			}
 
-			$link = $sk->linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
+			$link = Linker::linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
 			if ( !isset( $redirects[$element->page_title] ) ) {
 				$liContents = $link;
 			} else {
@@ -700,7 +696,7 @@ EOT
 						break;
 					}
 
-					$link2 = $sk->linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
+					$link2 = Linker::linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
 					$ul .= Html::rawElement(
 						'li',
 						array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
@@ -730,7 +726,7 @@ EOT
 	}
 
 	protected function imageDupes() {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgLang;
 
 		$this->loadFile();
 
@@ -745,11 +741,10 @@ EOT
 		);
 		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
-		$sk = $wgUser->getSkin();
 		foreach ( $dupes as $file ) {
 			$fromSrc = '';
 			if ( $file->isLocal() ) {
-				$link = $sk->link(
+				$link = Linker::link(
 					$file->getTitle(),
 					null,
 					array(),
@@ -757,7 +752,7 @@ EOT
 					array( 'known', 'noclasses' )
 				);
 			} else {
-				$link = $sk->makeExternalLink( $file->getDescriptionUrl(),
+				$link = Linker::makeExternalLink( $file->getDescriptionUrl(),
 					$file->getTitle()->getPrefixedText() );
 				$fromSrc = wfMsg( 'shared-repo-from', $file->getRepo()->getDisplayName() );
 			}
@@ -838,11 +833,6 @@ class ImageHistoryList {
 	 */
 	protected $imagePage;
 
-	/**
-	 * @var Skin
-	 */
-	protected $skin;
-
 	protected $repo, $showThumb;
 	protected $preventClickjacking = false;
 
@@ -850,8 +840,7 @@ class ImageHistoryList {
 	 * @param ImagePage $imagePage
 	 */
 	public function __construct( $imagePage ) {
-		global $wgUser, $wgShowArchiveThumbnails;
-		$this->skin = $wgUser->getSkin();
+		global $wgShowArchiveThumbnails;
 		$this->current = $imagePage->getFile();
 		$this->img = $imagePage->getDisplayedFile();
 		$this->title = $imagePage->getTitle();
@@ -861,10 +850,6 @@ class ImageHistoryList {
 
 	public function getImagePage() {
 		return $this->imagePage;
-	}
-
-	public function getSkin() {
-		return $this->skin;
 	}
 
 	public function getFile() {
@@ -918,7 +903,7 @@ class ImageHistoryList {
 				if ( !$iscur ) {
 					$q['oldimage'] = $img;
 				}
-				$row .= $this->skin->link(
+				$row .= Linker::link(
 					$this->title,
 					wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
 					array(), $q, array( 'known' )
@@ -932,7 +917,7 @@ class ImageHistoryList {
 				}
 				// If file is top revision or locked from this user, don't link
 				if ( $iscur || !$file->userCan( File::DELETED_RESTRICTED ) ) {
-					$del = $this->skin->revDeleteLinkDisabled( $canHide );
+					$del = Linker::revDeleteLinkDisabled( $canHide );
 				} else {
 					list( $ts, $name ) = explode( '!', $img, 2 );
 					$query = array(
@@ -940,7 +925,7 @@ class ImageHistoryList {
 						'target' => $this->title->getPrefixedText(),
 						'ids'    => $ts,
 					);
-					$del = $this->skin->revDeleteLink( $query,
+					$del = Linker::revDeleteLink( $query,
 						$file->isDeleted( File::DELETED_RESTRICTED ), $canHide );
 				}
 				$row .= $del;
@@ -956,7 +941,7 @@ class ImageHistoryList {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= wfMsgHtml( 'filehist-revert' );
 			} else {
-				$row .= $this->skin->link(
+				$row .= Linker::link(
 					$this->title,
 					wfMsgHtml( 'filehist-revert' ),
 					array(),
@@ -984,7 +969,7 @@ class ImageHistoryList {
 				$this->preventClickjacking();
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				# Make a link to review the image
-				$url = $this->skin->link(
+				$url = Linker::link(
 					$revdel,
 					$wgLang->timeAndDate( $timestamp, true ),
 					array(),
@@ -1013,7 +998,7 @@ class ImageHistoryList {
 		// Image dimensions + size
 		$row .= '<td>';
 		$row .= htmlspecialchars( $file->getDimensionsString() );
-		$row .= ' <span style="white-space: nowrap;">(' . $this->skin->formatSize( $file->getSize() ) . ')</span>';
+		$row .= ' <span style="white-space: nowrap;">(' . Linker::formatSize( $file->getSize() ) . ')</span>';
 		$row .= '</td>';
 
 		// Uploading user
@@ -1023,8 +1008,8 @@ class ImageHistoryList {
 			$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
 			if ( $local ) {
-				$row .= $this->skin->userLink( $user, $usertext ) . ' <span style="white-space: nowrap;">' .
-				$this->skin->userToolLinks( $user, $usertext ) . '</span>';
+				$row .= Linker::userLink( $user, $usertext ) . ' <span style="white-space: nowrap;">' .
+				Linker::userToolLinks( $user, $usertext ) . '</span>';
 			} else {
 				$row .= htmlspecialchars( $usertext );
 			}
@@ -1035,7 +1020,7 @@ class ImageHistoryList {
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 			$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
 		} else {
-			$row .= $this->skin->commentBlock( $description, $this->title );
+			$row .= Linker::commentBlock( $description, $this->title );
 		}
 		$row .= '</td>';
 
