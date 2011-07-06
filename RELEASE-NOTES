@@ -41,6 +41,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   client-side scripts on WebKit-based browsers.
 * Fixed a bug in message transformation where the previous language could leak 
   into later transformations in the UI language.
+* (bug 29091) Fix form of native name for Ossetic language (Иронау -> Ирон)
 
 === Changes since 1.17.0rc1 ===
 
