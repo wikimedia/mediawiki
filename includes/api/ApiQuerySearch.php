@@ -162,7 +162,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				}
 				if ( !is_null( $result->getSectionTitle() ) ) {
 					if ( isset( $prop['sectiontitle'] ) ) {
-						$vals['sectiontitle'] = $result->getSectionTitle();
+						$vals['sectiontitle'] = $result->getSectionTitle()->getFragment();
 					}
 					if ( isset( $prop['sectionsnippet'] ) ) {
 						$vals['sectionsnippet'] = $result->getSectionSnippet();

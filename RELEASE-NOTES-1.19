@@ -166,6 +166,8 @@ production.
 * (bug 26763) Make RSS/Atom of user contributions more visible
 * (bug 25133) Allow redirects also for action=parse&pageid
 * (bug 29745) Fatal error in API search
+* (bug 29476) API returns page title instead of sectiontitle for
+  srprop=sectiontitle
 
 === Languages updated in 1.19 ===
 
