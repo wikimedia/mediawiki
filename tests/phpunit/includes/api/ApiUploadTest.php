@@ -2,7 +2,6 @@
 
 /**
  * @group Database
- * @group Destructive
  */
 
 /**
@@ -20,7 +19,6 @@ require_once( 'ApiTestCaseUpload.php' );
 
 /**
  * @group Database
- * @group Destructive
  *
  * This is pretty sucky... needs to be prettified.
  */

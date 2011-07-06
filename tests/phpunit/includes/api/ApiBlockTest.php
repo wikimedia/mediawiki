@@ -2,7 +2,6 @@
 
 /**
  * @group Database
- * @group Destructive
  */
 class ApiBlockTest extends ApiTestCase {
 
