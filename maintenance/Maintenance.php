@@ -27,12 +27,9 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 // Make sure we're on PHP5 or better
-if ( version_compare( PHP_VERSION, '5.2.3' ) < 0 ) {
-	die ( "Sorry! This version of MediaWiki requires PHP 5.2.3; you are running " .
-		PHP_VERSION . ".\n\n" .
-		"If you are sure you already have PHP 5.2.3 or higher installed, it may be\n" .
-		"installed in a different path from PHP " . PHP_VERSION . ". Check with your system\n" .
-		"administrator.\n" );
+if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.2.3' ) < 0 ) {
+	require_once( dirname( __FILE__ ) . '/../includes/PHPVersionError.php' );
+	wfPHPVersionError( 'cli' );
 }
 
 // Wrapper for posix_isatty()
