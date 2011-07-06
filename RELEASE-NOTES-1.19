@@ -168,6 +168,7 @@ production.
 * (bug 29745) Fatal error in API search
 * (bug 29476) API returns page title instead of sectiontitle for
   srprop=sectiontitle
+* Correct the documentation of srprop properties
 
 === Languages updated in 1.19 ===
 
