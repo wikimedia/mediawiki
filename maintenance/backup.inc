@@ -120,7 +120,7 @@ class BackupDumper {
 						$sinks[] = $sink;
 					}
 					if ( !isset( $this->outputTypes[$val] ) ) {
-						wfDie( "Unrecognized output sink type '$val'\n" );
+						$this->fatalError( "Unrecognized output sink type '$val'" );
 					}
 					$type = $this->outputTypes[$val];
 					$sink = new $type( $param );
@@ -130,7 +130,7 @@ class BackupDumper {
 						$sink = new DumpOutput();
 					}
 					if ( !isset( $this->filterTypes[$val] ) ) {
-						wfDie( "Unrecognized filter type '$val'\n" );
+						$this->fatalError( "Unrecognized filter type '$val'" );
 					}
 					$type = $this->filterTypes[$val];
 					$filter = new $type( $sink, $param );
@@ -150,8 +150,8 @@ class BackupDumper {
 					if ( !function_exists( 'utf8_normalize' ) ) {
 						wfDl( "php_utfnormal.so" );
 						if ( !function_exists( 'utf8_normalize' ) ) {
-							wfDie( "Failed to load UTF-8 normalization extension. " .
-								"Install or remove --force-normal parameter to use slower code.\n" );
+							$this->fatalError( "Failed to load UTF-8 normalization extension. " .
+								"Install or remove --force-normal parameter to use slower code." );
 						}
 					}
 					break;
@@ -301,6 +301,11 @@ class BackupDumper {
 
 	function progress( $string ) {
 		fwrite( $this->stderr, $string . "\n" );
+	}
+
+	function fatalError( $msg ) {
+		$this->progress( "$msg\n" );
+		die(1);
 	}
 }
 
