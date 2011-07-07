@@ -609,9 +609,13 @@ class Article extends Page {
 	 * page views.
 	 */
 	protected function showCssOrJsPage() {
-		global $wgOut;
+		global $wgOut, $wgLang;
 
-		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache'>\n$1\n</div>", 'clearyourcache' );
+		$dir = $wgLang->getDir();
+		$lang = $wgLang->getCode();
+
+		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
+			'clearyourcache' );
 
 		// Give hooks a chance to customise the output
 		if ( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->getTitle(), $wgOut ) ) ) {
