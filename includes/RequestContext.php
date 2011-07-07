@@ -78,7 +78,7 @@ class RequestContext {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if ( !isset($this->title) ) {
+		if ( $this->title === null ) {
 			global $wgTitle; # fallback to $wg till we can improve this
 			$this->title = $wgTitle;
 		}
@@ -98,7 +98,7 @@ class RequestContext {
 	 * @return OutputPage object
 	 */
 	public function getOutput() {
-		if ( !isset( $this->output ) ) {
+		if ( $this->output === null ) {
 			$this->output = new OutputPage( $this );
 		}
 		return $this->output;
@@ -119,7 +119,7 @@ class RequestContext {
 	 * @return User
 	 */
 	public function getUser() {
-		if ( !isset($this->user) ) {
+		if ( $this->user === null ) {
 			$this->user = User::newFromSession( $this->getRequest() );
 		}
 		return $this->user;
@@ -131,7 +131,7 @@ class RequestContext {
 	 * @return Language
 	 */
 	public function getLang() {
-		if ( !isset($this->lang) ) {
+		if ( $this->lang === null ) {
 			global $wgLanguageCode, $wgContLang;
 			$code = $this->getRequest()->getVal(
 				'uselang',
@@ -164,7 +164,7 @@ class RequestContext {
 	 * @return Skin
 	 */
 	public function getSkin() {
-		if ( !isset($this->skin) ) {
+		if ( $this->skin === null ) {
 			wfProfileIn( __METHOD__ . '-createskin' );
 			
 			global $wgHiddenPrefs;
@@ -195,7 +195,7 @@ class RequestContext {
 	 */
 	public function msg() {
 		$args = func_get_args();
-		return call_user_func_array( 'wfMessage', $args )->inLanguage( $this->getLang() );
+		return call_user_func_array( 'wfMessage', $args )->inLanguage( $this->getLang() )->title( $this->getTitle() );
 	}
 
 	/** Static methods **/
@@ -207,7 +207,7 @@ class RequestContext {
 	 */
 	public static function getMain() {
 		static $instance = null;
-		if ( !isset($instance) ) {
+		if ( $instance === null ) {
 			$instance = new self;
 		}
 		return $instance;
