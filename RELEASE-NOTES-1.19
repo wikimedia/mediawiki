@@ -145,6 +145,7 @@ production.
   unneeded CSS flipping of quickbar. Instead, introduce option 5 which sets
   left/right according to the directionality of your interface language.
 * (bug 19514) Unordered list list-style-image should be IE6-compatible (8-bit)
+* (bug 27410) The tag filter on a history page is now within a <label> element
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
