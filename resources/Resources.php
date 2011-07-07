@@ -45,12 +45,12 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.cologneblue' => array(
-		'styles' => array( 'common/cologneblue.css' => array( 'media' => 'screen' ) ),
+		'styles' => array( 'cologneblue/main.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.nostalgia' => array(
-		'styles' => array( 'common/nostalgia.css' => array( 'media' => 'screen' ) ),
+		'styles' => array( 'nostalgia/main.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
