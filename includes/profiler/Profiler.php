@@ -356,7 +356,7 @@ class Profiler {
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
 
-		$total = @$this->mCollated['-total'];
+		$total = isset( $this->mCollated['-total'] ) ? $this->mCollated['-total'] : 0;
 
 		foreach( $this->mCollated as $fname => $elapsed ){
 			$calls = $this->mCalls[$fname];
