@@ -1,8 +1,5 @@
 <?php
 
-if( !defined( 'MEDIAWIKI' ) )
-	die;
-
 class ChangeTags {
 	static function formatSummaryRow( $tags, $page ) {
 		if( !$tags )
@@ -165,7 +162,8 @@ class ChangeTags {
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) )
 			return $fullForm ? '' : array();
 
-		$data = array( wfMsgExt( 'tag-filter', 'parseinline' ), Xml::input( 'tagfilter', 20, $selected ) );
+		$data = array( Xml::label( wfMsgExt( 'tag-filter', 'parseinline' ), 'tagfilter' ),
+			Xml::input( 'tagfilter', 20, $selected ) );
 
 		if ( !$fullForm ) {
 			return $data;
