@@ -101,6 +101,10 @@ class ImageListPager extends TablePager {
 		parent::__construct();
 	}
 
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Listfiles' );
+	}
+
 	/**
 	 * @return Array
 	 */
