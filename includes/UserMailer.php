@@ -55,16 +55,18 @@ class MailAddress {
 		# PHP's mail() implementation under Windows is somewhat shite, and
 		# can't handle "Joe Bloggs <joe@bloggs.com>" format email addresses,
 		# so don't bother generating them
-		if ( $this->name != '' && !wfIsWindows() ) {
-			global $wgEnotifUseRealName;
-			$name = ( $wgEnotifUseRealName && $this->realName ) ? $this->realName : $this->name;
-			$quoted = UserMailer::quotedPrintable( $name );
-			if ( strpos( $quoted, '.' ) !== false || strpos( $quoted, ',' ) !== false ) {
-				$quoted = '"' . $quoted . '"';
+		if ( $this->address ) {
+			if ( $this->name != '' && !wfIsWindows() ) {
+				global $wgEnotifUseRealName;
+				$name = ( $wgEnotifUseRealName && $this->realName ) ? $this->realName : $this->name;
+				$quoted = UserMailer::quotedPrintable( $name );
+				if ( strpos( $quoted, '.' ) !== false || strpos( $quoted, ',' ) !== false ) {
+					$quoted = '"' . $quoted . '"';
+				}
+				return "$quoted <{$this->address}>";
+			} else {
+				return $this->address;
 			}
-			return "$quoted <{$this->address}>";
-		} else {
-			return $this->address;
 		}
 	}
 
