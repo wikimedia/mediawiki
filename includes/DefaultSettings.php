@@ -2790,6 +2790,7 @@ $wgUrlProtocols = array(
 	'svn://',
 	'git://',
 	'mms://',
+	'//', // for protocol-relative URLs
 );
 
 /**
