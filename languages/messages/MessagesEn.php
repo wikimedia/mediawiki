@@ -789,7 +789,7 @@ XHTML id names.
 'vector-action-move'             => 'Move',
 'vector-action-protect'          => 'Protect',
 'vector-action-undelete'         => 'Undelete',
-'vector-action-unprotect'        => 'Unprotect',
+'vector-action-unprotect'        => 'Change protection',
 'vector-simplesearch-preference' => 'Enable enhanced search suggestions (Vector skin only)',
 'vector-view-create'             => 'Create',
 'vector-view-edit'               => 'Edit',
@@ -825,8 +825,8 @@ XHTML id names.
 'protect'           => 'Protect',
 'protect_change'    => 'change',
 'protectthispage'   => 'Protect this page',
-'unprotect'         => 'Unprotect',
-'unprotectthispage' => 'Unprotect this page',
+'unprotect'         => 'Change protection',
+'unprotectthispage' => 'Change protection of this page',
 'newpage'           => 'New page',
 'talkpage'          => 'Discuss this page',
 'talkpagelinktext'  => 'Talk',
@@ -1560,7 +1560,7 @@ Please check the logs.',
 # Suppression log
 'suppressionlog'     => 'Suppression log',
 'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from administrators.
-See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
+See the [[Special:BlockList|IP block list]] for the list of currently operational bans and blocks.',
 
 # History merging
 'mergehistory'                     => 'Merge page histories',
@@ -2769,11 +2769,11 @@ Go back to the previous page, reload that page and then try again.',
 
 # Protect
 'protectlogpage'              => 'Protection log',
-'protectlogtext'              => 'Below is a list of page protections and page unprotections.
+'protectlogtext'              => 'Below is a list of changes to page protections.
 See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'            => 'protected "[[$1]]"',
 'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
-'unprotectedarticle'          => 'unprotected "[[$1]]"',
+'unprotectedarticle'          => 'removed protection from "[[$1]]"',
 'movedarticleprotection'      => 'moved protection settings from "[[$2]]" to "[[$1]]"',
 'protect-title'               => 'Change protection level for "$1"',
 'prot_1movedto2'              => '[[$1]] moved to [[$2]]',
@@ -2933,7 +2933,7 @@ The latest block log entry is provided below for reference:',
 'nolinkshere-ns'           => "No pages link to '''[[:$1]]''' in the chosen namespace.",
 'isredirect'               => 'redirect page',
 'istemplate'               => 'transclusion',
-'isimage'                  => 'image link',
+'isimage'                  => 'file link',
 'whatlinkshere-prev'       => '{{PLURAL:$1|previous|previous $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|next|next $1}}',
 'whatlinkshere-links'      => '← links',
@@ -2979,7 +2979,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'badipaddress'                    => 'Invalid IP address',
 'blockipsuccesssub'               => 'Block succeeded',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] has been blocked.<br />
-See [[Special:IPBlockList|IP block list]] to review blocks.',
+See [[Special:BlockList|IP block list]] to review blocks.',
 'ipb-edit-dropdown'               => 'Edit block reasons',
 'ipb-unblock-addr'                => 'Unblock $1',
 'ipb-unblock'                     => 'Unblock a username or IP address',
@@ -2990,7 +2990,7 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'ipusubmit'                       => 'Remove this block',
 'unblocked'                       => '[[User:$1|$1]] has been unblocked',
 'unblocked-id'                    => 'Block $1 has been removed',
-'ipblocklist'                     => 'Blocked IP addresses and usernames',
+'ipblocklist'                     => 'Blocked users',
 'ipblocklist-legend'              => 'Find a blocked user',
 'ipblocklist-username'            => 'Username or IP address:',
 'ipblocklist-sh-userblocks'       => '$1 account blocks',
@@ -3025,7 +3025,7 @@ The suppress log is provided below for reference:',
 'reblock-logentry'                => 'changed block settings for [[$1]] with an expiry time of $2 $3',
 'blocklogtext'                    => 'This is a log of user blocking and unblocking actions.
 Automatically blocked IP addresses are not listed.
-See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
+See the [[Special:BlockList|IP block list]] for the list of currently operational bans and blocks.',
 'unblocklogentry'                 => 'unblocked $1',
 'block-log-flags-anononly'        => 'anonymous users only',
 'block-log-flags-nocreate'        => 'account creation disabled',
@@ -3370,7 +3370,7 @@ Please try again.',
 You can view its source',
 'tooltip-ca-history'              => 'Past revisions of this page',
 'tooltip-ca-protect'              => 'Protect this page',
-'tooltip-ca-unprotect'            => 'Unprotect this page',
+'tooltip-ca-unprotect'            => 'Change protection of this page',
 'tooltip-ca-delete'               => 'Delete this page',
 'tooltip-ca-undelete'             => 'Restore the edits done to this page before it was deleted',
 'tooltip-ca-move'                 => 'Move this page',
@@ -3640,7 +3640,7 @@ Variants for Chinese language
 If the file has been modified from its original state, some details may not fully reflect the modified file.',
 'metadata-expand'   => 'Show extended details',
 'metadata-collapse' => 'Hide extended details',
-'metadata-fields'   => 'EXIF metadata fields listed in this message will be included on image page display when the metadata table is collapsed.
+'metadata-fields'           => 'Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.
 Others will be hidden by default.
 * make
 * model
