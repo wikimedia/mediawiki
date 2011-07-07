@@ -213,7 +213,7 @@ class UserMailer {
 
 			$headers = array(
 				"MIME-Version: 1.0",
-				"Content-type: $contentType", 
+				"Content-type: $contentType",
 				"Content-Transfer-Encoding: 8bit",
 				"X-Mailer: MediaWiki mailer",
 				"From: " . $from->toString(),
@@ -292,7 +292,7 @@ class UserMailer {
 			return $string;
 		}
 		$out = "=?$charset?Q?";
-		$out .= preg_replace_callback( "/([$replace])/", 
+		$out .= preg_replace_callback( "/([$replace])/",
 			array( __CLASS__, 'quotedPrintableCallback' ), $string );
 		$out .= '?=';
 		return $out;
@@ -524,7 +524,7 @@ class EmailNotification {
 			 */
 			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
 					$this->title->getFullURL( "oldid={$this->oldid}&diff=next" ) );
-        }
+		}
 
 		$body = strtr( $body, $keys );
 		$pagetitle = $this->title->getPrefixedText();
@@ -545,8 +545,8 @@ class EmailNotification {
 		$adminAddress = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
 		$editorAddress = new MailAddress( $editor );
 		if ( $wgEnotifRevealEditorAddress
-		    && ( $editor->getEmail() != '' )
-		    && $editor->getOption( 'enotifrevealaddr' ) ) {
+			&& ( $editor->getEmail() != '' )
+			&& $editor->getOption( 'enotifrevealaddr' ) ) {
 			if ( $wgEnotifFromEditor ) {
 				$from    = $editorAddress;
 			} else {
