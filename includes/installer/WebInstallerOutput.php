@@ -113,11 +113,11 @@ class WebInstallerOutput {
 	}
 
 	/**
-	 * URL for index.php?css=foobar
+	 * <link> to index.php?css=foobar for the <head>
 	 * @return String
 	 */
 	private function getCssUrl( ) {
-		return $_SERVER['PHP_SELF'] . '?css=' . $this->getDir();
+		return Html::linkedStyle( $_SERVER['PHP_SELF'] . '?css=' . $this->getDir() );
 	}
 
 	public function useShortHeader( $use = true ) {
@@ -206,7 +206,7 @@ class WebInstallerOutput {
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo Html::linkedStyle( '../skins/common/shared.css' ) . "\n"; ?>
-	<?php echo Html::linkedStyle( $this->getCssUrl() ) . "\n"; ?>
+	<?php echo $this->getCssUrl() . "\n"; ?>
 	<?php echo Html::inlineScript(  "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ) . "\n"; ?>
@@ -260,7 +260,7 @@ class WebInstallerOutput {
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex, nofollow" />
 	<title><?php $this->outputTitle(); ?></title>
-	<?php echo Html::linkedStyle( $this->getCssUrl() ) . "\n"; ?>
+	<?php echo $this->getCssUrl() . "\n"; ?>
 	<?php echo $this->getJQuery(); ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ); ?>
 </head>
