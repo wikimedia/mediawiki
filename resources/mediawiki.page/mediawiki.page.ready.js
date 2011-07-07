@@ -18,4 +18,7 @@ jQuery( document ).ready( function( $ ) {
 	/* Enable CheckboxShiftClick */
 	$( 'input[type=checkbox]:not(.noshiftselect)' ).checkboxShiftClick();
 
+	/* Add accesskey hints to the tooltips */
+	mw.util.updateTooltipAccessKeys();
+
 } );

@@ -612,9 +612,6 @@ window.runOnloadHook = function() {
 	// might cause the function to terminate prematurely
 	doneOnloadHook = true;
 
-	updateTooltipAccessKeys( null );
-	setupCheckboxShiftClick();
-
 	// Run any added-on functions
 	for ( var i = 0; i < onloadFuncts.length; i++ ) {
 		onloadFuncts[i]();

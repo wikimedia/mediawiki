@@ -250,15 +250,12 @@
 		 * otherwise, all the nodes that will probably have accesskeys by
 		 * default are updated.
 		 *
-		 * @param nodeList mixed A jQuery object, or array of elements to update.
+		 * @param nodeList {Array|jQuery} (optional) A jQuery object, or array of elements to update.
 		 */
 		'updateTooltipAccessKeys' : function( nodeList ) {
 			var $nodes;
-			if ( nodeList instanceof jQuery ) {
-				$nodes = nodeList;
-			} else if ( nodeList ) {
-				$nodes = $( nodeList );
-			} else {
+			if ( !nodeList ) {
+			
 				// Rather than scanning all links, just the elements that
 				// contain the relevant links
 				this.updateTooltipAccessKeys(
@@ -267,7 +264,13 @@
 				// these are rare enough that no such optimization is needed
 				this.updateTooltipAccessKeys( $( 'input' ) );
 				this.updateTooltipAccessKeys( $( 'label' ) );
+
 				return;
+
+			} else if ( nodeList instanceof jQuery ) {
+				$nodes = nodeList;
+			} else {
+				$nodes = $( nodeList );
 			}
 
 			$nodes.each( function ( i ) {
