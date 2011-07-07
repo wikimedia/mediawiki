@@ -648,7 +648,7 @@ class SpecialPage {
 	}
 
 	/**
-	 * Shortcut to get the skin being used for this instance
+	 * Shortcut to get the User executing this instance
 	 *
 	 * @return User
 	 * @since 1.18
@@ -688,15 +688,13 @@ class SpecialPage {
 	}
 
 	/**
-	 * Wrapper around wfMessage that sets the current context. Currently this
-	 * is only the title.
+	 * Wrapper around wfMessage that sets the current context.
 	 *
 	 * @return Message
 	 * @see wfMessage
 	 */
 	public function msg( /* $args */ ) {
-		return call_user_func_array( 'wfMessage',
-			func_get_args() )->title( $this->getFullTitle() );
+		return call_user_func_array( array( $this->getContext(), 'msg' ), func_get_args() );
 	}
 
 	/**
