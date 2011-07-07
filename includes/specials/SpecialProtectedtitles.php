@@ -92,8 +92,6 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$description_items[] = $protType;
 
-		$stxt = '';
-
 		if ( $row->pt_expiry != 'infinity' && strlen($row->pt_expiry) ) {
 			$expiry = $wgLang->formatExpiry( $row->pt_expiry );
 
@@ -104,7 +102,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		wfProfileOut( __METHOD__ );
 
-		return '<li>' . wfSpecialList( $link . $stxt, implode( $description_items, ', ' ) ) . "</li>\n";
+		return '<li>' . wfSpecialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
 	}
 
 	/**
