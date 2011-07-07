@@ -53,8 +53,8 @@
 									|| profile.name == 'konqueror' ) ) {
 						util.tooltipAccessKeyPrefix = 'ctrl-';
 
-					// Firefox 2.x
-					} else if ( profile.name == 'firefox' && profile.versionBase == '2' ) {
+					// Firefox 2.x and later
+					} else if ( profile.name == 'firefox' && profile.versionBase > '1' ) {
 						util.tooltipAccessKeyPrefix = 'alt-shift-';
 					}
 
