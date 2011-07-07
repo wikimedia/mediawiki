@@ -818,7 +818,7 @@ XHTML id names.
 'undelete_short'    => 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
 'viewdeleted_short' => 'View {{PLURAL:$1|one deleted edit|$1 deleted edits}}',
 'protect'           => 'Protect',
-'protect_change'    => 'Change',
+'protect_change'    => 'change',
 'protectthispage'   => 'Protect this page',
 'unprotect'         => 'Change protection',
 'unprotectthispage' => 'Change protection of this page',
