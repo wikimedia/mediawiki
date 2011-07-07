@@ -159,6 +159,7 @@ class UserMailer {
 			}
 
 			$headers['From'] = $from->toString();
+			$headers['Return-Path'] = $from->toString();
 
 			if ( $wgEnotifImpersonal ) {
 				$headers['To'] = 'undisclosed-recipients:;';
