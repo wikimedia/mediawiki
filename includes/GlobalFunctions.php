@@ -2516,7 +2516,7 @@ function wfSpecialList( $page, $details, $oppositedm = true ) {
 	global $wgLang;
 	$dirmark = ( $oppositedm ? $wgLang->getDirMark( true ) : '' ) .
 		$wgLang->getDirMark();
-	$details = $details ? $dirmark . "($details)" : '';
+	$details = $details ? ' ' . $dirmark . "($details)" : '';
 	return $page . $details;
 }
 
