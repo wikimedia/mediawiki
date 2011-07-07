@@ -771,7 +771,7 @@ th.headerSortDown {
 	unicode-bidi: embed;
 }
 
-#mw-clearyourcache, #mw-sitecsspreview, #mw-sitejsspreview, #mw-usercsspreview, #mw-userjspreview {
+#mw-clearyourcache, #mw-sitecsspreview, #mw-sitejspreview, #mw-usercsspreview, #mw-userjspreview {
 	direction: ltr;
 	unicode-bidi: embed;
 }
