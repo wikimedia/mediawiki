@@ -198,7 +198,7 @@ $messages = array(
 'index-category'           => 'صفحه‌ئون نمایه بَیی',
 'noindex-category'         => 'صفحه‌ئون نمایه نَیی',
 
-'about'         => 'ده‌لـه‌واره',
+'about'         => 'درباره',
 'article'       => 'صفحه‌ی بنویشته‌ئون',
 'newwindow'     => '(ته‌رنه‌ روجین ده‌له‌ وا بونه)',
 'cancel'        => 'وه‌ل هـه‌کـارده‌ن',
@@ -249,8 +249,8 @@ $messages = array(
 'history_short'     => 'تاریخچه',
 'updatedmarker'     => 'عوض بَیی پس از آخرین بار که بی‌یمومه',
 'info_short'        => 'اطیلاعات',
-'printableversion'  => 'په‌رینت ده‌لـماج',
-'permalink'         => 'مـونـده‌نـه‌سـی لـیـنـک',
+'printableversion'  => 'پرینت‌هاکردنی صفحه',
+'permalink'         => 'بموندستنی لینک',
 'print'             => 'په‌ریـنت',
 'edit'              => 'دچی‌ین',
 'create'            => 'بـأئـیـتـه‌ن',
@@ -292,17 +292,18 @@ $2، $1',
 'jumpto'            => 'کپّل بیّن به:',
 'jumptonavigation'  => 'بگردستن',
 'jumptosearch'      => 'بخوندستن',
+'pool-queuefull'    => 'مخزن ِصف پر بیّه',
 'pool-errorunknown' => 'خطای ناشناخته',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}} درباره',
-'aboutpage'            => 'Project:About',
+'aboutsite'            => 'دربارهٔ {{SITENAME}}',
+'aboutpage'            => 'Project:درباره',
 'copyright'            => 'این صفحه ره بَنوشته‌ئون  $1  زیر شِمه دسـت دَرنه.',
 'copyrightpage'        => '{{ns:project}}:کـوپـی‌راسـت‌ئون',
 'currentevents'        => 'اسایی دکته‌ئون',
-'currentevents-url'    => 'پروژه:اسایی دکته‌ئون',
+'currentevents-url'    => 'Project:اسایی دکته‌ئون',
 'disclaimers'          => 'تکذیب‌نومه‌ئون',
-'disclaimerpage'       => 'پروژه:تکذیب‌نومهٔ همه‌گونی',
+'disclaimerpage'       => 'Project:تکذیب‌نومه',
 'edithelp'             => 'دأچـیه‌ن ره رانـه‌ما',
 'edithelppage'         => 'Help:دَچی‌ین',
 'helppage'             => 'Help:رونما',
@@ -316,8 +317,11 @@ $2، $1',
 
 'badaccess'        => 'نتوندی هچی ره هارشی',
 'badaccess-group0' => 'شما این کار ره نتونی هاکنین.',
+'badaccess-groups' => 'عملی که بخاستنی منحصر به کارورون {{PLURAL:$2|این گروه|این گروه‌ئون}} هسته: $1.',
 
-'versionrequired' => 'نوسخهٔ $1 نرم‌افزار مدیاویکی جه لازم هسّه',
+'versionrequired'     => 'نوسخهٔ $1 نرم‌افزار مدیاویکی جه لازم هسّه',
+'versionrequiredtext' => 'این صفحه‌ی بدی‌ین وسّه به نسخهٔ $1 نرم‌افزار مدیاویکی جه نیاز دارنی.
+به [[Special:Version|این صفحه]] بورین.',
 
 'ok'                      => 'خا',
 'retrievedfrom'           => '"$1" جه بیته بیّه',
@@ -369,12 +373,54 @@ $2، $1',
 اینان شاء صفحه‌ئون هستنه: [[Special:SpecialPages|{{int:specialpages}}]]',
 
 # General errors
-'error'           => 'خِطا',
-'databaseerror'   => 'خطای داده‌ئون پایگا',
-'badtitle'        => 'نقش عنوان',
-'viewsource'      => 'منبع ره بدی‌ین',
-'viewsourcefor'   => '$1 ره وسه',
-'actionthrottled' => 'شمه پیش ره بیتنه',
+'error'                => 'خِطا',
+'databaseerror'        => 'خطای داده‌ئون پایگا',
+'dberrortext'          => 'اشکال نحوی بخاستن دله برسنی‌یه بیّه به پایگاه داده.
+دلیل این مشکل بتونده ایرادی نرم‌افزار دله بائه.
+آخرین بخاسته‌یی که پایگاه وسّه برسنی‌بیَ‌بی‌یه اینتا بی‌یه:
+<blockquote style="direction:ltr;"><tt>$1</tt></blockquote>
+این بخاسته درون عملگر «<span class="ltr"><tt>$2</tt></span>» جه برسنی بیّه.
+پایگاه داده این خطا ره بردگاردنی‌یه:
+<div class="ltr"><tt>$3: $4</tt></div>',
+'dberrortextcl'        => 'اشکال نحوی در درخواست فرستاده شده به پایگاه داده رخ داد.
+آخرین درخواست که برای پایگاه داده فرستاد شد این بود:
+<div class="ltr">$1</div>
+این درخواست از درون عملگر «<span class="ltr">$2</span>» فرستاده شد.
+پایگاه داده این خطا را بازگرداند:
+<div class="ltr">$3: $4</div>',
+'laggedslavemode'      => "'''هشدار:''' صفحه ممکن هسته که جدید ِبه‌روزرسانی‌ئون ره شامل نواشه.",
+'readonly'             => 'پایگاه داده زلفن بزه‎بیّه',
+'enterlockreason'      => 'دلیلی زلفین بزوئن وسّه بارین، که حاوی تقریبی از زمونی بائه که زلفین بَیته وانه',
+'missingarticle-rev'   => '(نسخهٔ شماره: $1)',
+'missingarticle-diff'  => '(فرق: $1، $2)',
+'readonly_lag'         => 'پایگاه داده به طور خودکار زلفین بزه‌بیّه تا پشتیبون ِنسخه‌ئون با اصلی نسخه هماهنگ بواشِن',
+'internalerror'        => 'خطای دله‌یی',
+'internalerror_info'   => 'خطای دله‌یی: $1',
+'fileappenderrorread'  => 'طی پست امکان بخوندستن «$1» وجود نداشته.',
+'fileappenderror'      => 'نیّه «$1» ره به «$2» پُست هاکرده.',
+'filecopyerror'        => 'نیّه پروندهٔ «$1» جه روی «$2» نسخه‌برداری بواشه.',
+'filerenameerror'      => 'نیّه پروندهٔ «$1» به «$2» تغییرنوم پیداهاکنه.',
+'filedeleteerror'      => 'نیّه پروندهٔ «$1» پاک بواشه.',
+'directorycreateerror' => 'امکان بساتن پوشه $1 وجود نداشته.',
+'filenotfound'         => 'پروندهٔ «$1» پیدانیّه.',
+'fileexistserror'      => 'امکان بنویشتن روی پرونده $1 وجود ندانّه: پرونده از قبل وجود داشته.',
+'unexpected'           => 'مقدار غیرمنتظره: «$1»=«$2».',
+'formerror'            => 'خطا: ننشنه فرم ره برسنی‌ین',
+'badarticleerror'      => 'ننشنه این کار ره این صفحه دله هاکردن.',
+'cannotdelete'         => 'صفحه یا تصویر «$1» ره ننشنه پاک هاکردن.
+ممکنه قبلاً فرد دیگری وه ره پاک هاکردبوئه.',
+'badtitle'             => 'نقش عنوان',
+'perfcached'           => 'داده‌ئون زیر حافظهٔ موقت جه بَییته بَینه و ممکن هسته کاملاً به‌روز نوائن.',
+'wrong_wfQuery_params' => 'پارامترون wfQuery()‎ غلطه<br />
+تابع: $1<br />
+پرس‌وجو: $2',
+'viewsource'           => 'منبع ره بدی‌ین',
+'viewsourcefor'        => '$1 ره وسه',
+'actionthrottled'      => 'شمه پیش ره بیتنه',
+'protectedpagetext'    => 'این صفحه دچی‌ین وسّه زلفین بزه بیّه.',
+'viewsourcetext'       => 'بتونّی متن مبدأ این صفحه ره هارشین یا ونجه نسخه بَیرین:',
+'protectedinterface'   => 'این صفحه ارائه‌دهندهٔ متنی واسط کارور این نرم‌افزار هسته و به منظور پیشگیری از خرابکاری زلفین بزه‌بیّه.',
+'sqlhidden'            => '(دستور اس‌کیوال دپوشنی‌یه بیّه)',
 
 # Login and logout pages
 'welcomecreation'         => '==$1، خِش بمونی!==
@@ -426,7 +472,7 @@ $2، $1',
 'link_sample'     => 'لینک ِسرنوم',
 'link_tip'        => 'درونی لینک',
 'extlink_sample'  => 'http://www.example.com لینک ره نوم',
-'extlink_tip'     => 'دأیـا لـیـنـک (شـه‌مـه یـاد بـوئـه <span dir="ltr">http://</span> ره بـیـه‌لـیـن)',
+'extlink_tip'     => 'بیرون بگردستن (پیشوند http://‎ ره یادنکانین)',
 'headline_sample' => 'متن عنوان',
 'headline_tip'    => 'عنوان بند ۲',
 'math_sample'     => 'فورمـول ره ایجـه دأکـه‌ن',
@@ -508,7 +554,7 @@ $2، $1',
 
 # Search results
 'searchresults'             => 'چرخه‌توی هه‌دایی‌ئون',
-'searchsubtitle'            => 'شـه‌مـا \'\'\'[[:$1]]\'\'\' ره ده‌مـبـال بـورده‌نـی ([[Special:Prefixindex/$1|هـأمـه ولـگ‌ئونـی کـه وه‌شـون نـوم  "$1" هـه‌مـرا سـأر گـیـرنـه ره بـأویـنـه‌ن]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|هـأمه ولـگ‌ئونـی که  "$1" ره لـیـنـک وه‌شـون ده‌لـه دأره]])',
+'searchsubtitle'            => "شما '''[[:$1]]''' دمبال بگردستنی ([[Special:Prefixindex/$1|صفحه‌ئونی که با «$1» شروع وانّه]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|صفحه‌ئونی که به «$1» لینک هدانه]])",
 'notitlematches'            => 'هـیـچ ولـگـی شه‌مه گـب ره نـه‌مـاسـتـه',
 'prevn'                     => 'پـیـشـیـن {{PLURAL:$1|$1}}',
 'nextn'                     => 'تا پَس‌تر {{PLURAL:$1|$1}}',
@@ -742,7 +788,7 @@ $2، $1',
 'whatlinkshere'       => 'لینک‌ئون ِاینتا صفحه',
 'whatlinkshere-title' => 'وألـگ‌ئونی که "$1" ره لـیـنک هه‌دانه',
 'whatlinkshere-page'  => 'صفحه:',
-'linkshere'           => "ولـگ‌ئـونی کـه لـیـنـک هـه‌دائـه‌نـه '''[[:$1]]''' ره:",
+'linkshere'           => "اینان صفحه‌ئون به '''[[:$1]]''' لینک هدانه:",
 'whatlinkshere-prev'  => '{{PLURAL:$1|پـیـشـیـن|$1 تـای پـیـشـیـن}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|پَس|$1 تا پَس‌تر}}',
 'whatlinkshere-links' => '← لـیـنـک‌ئون',
@@ -817,6 +863,9 @@ $2، $1',
 'tooltip-ca-nstab-template'      => 'شـابـلـون بـأویـنـه‌ن',
 'tooltip-preview'                => 'شـه ده‌گـه‌ره‌سـه‌ئون ره پـیـشـاپـیـش بـأویـنـه‌ن،
  خـا‌هـه‌ش بـونـه، شـه کـارئون ره جـا دأکـه‌تـه‌ن پـیـش، ای ره کـار بـأزه‌نـی.',
+
+# Attribution
+'siteusers' => '$1، {{PLURAL:$2|کارور|کارورون}} {{SITENAME}}',
 
 # Browsing diffs
 'previousdiff' => 'کوهنه‌تر دچی‌ین ←',

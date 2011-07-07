@@ -299,7 +299,7 @@ $messages = array(
 'vector-action-move'             => 'Renominar',
 'vector-action-protect'          => 'Proteger',
 'vector-action-undelete'         => 'Restaurar',
-'vector-action-unprotect'        => 'Disproteger',
+'vector-action-unprotect'        => 'Cambiar protection',
 'vector-simplesearch-preference' => 'Activar le suggestiones de recerca meliorate (solmente in apparentia Vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Modificar',
@@ -335,8 +335,8 @@ $messages = array(
 'protect'           => 'Proteger',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Proteger iste pagina',
-'unprotect'         => 'Disproteger',
-'unprotectthispage' => 'Disproteger iste pagina',
+'unprotect'         => 'Cambiar protection',
+'unprotectthispage' => 'Cambiar le protection de iste pagina',
 'newpage'           => 'Nove pagina',
 'talkpage'          => 'Discuter iste pagina',
 'talkpagelinktext'  => 'Discussion',
@@ -369,7 +369,7 @@ Troppo de usatores tenta vider iste pagina.
 Per favor attende un momento ante que tu essaya acceder novemente a iste pagina.
 
 $1',
-'pool-timeout'      => 'Tempore limite excedite attendente le serratura',
+'pool-timeout'      => 'Tempore limite excedite durante le serratura',
 'pool-queuefull'    => 'Le cauda commun de processos es plen',
 'pool-errorunknown' => 'Error incognite',
 
@@ -518,7 +518,7 @@ Pro traductiones, per favor considera usar [http://translatewiki.net/wiki/Main_P
 'cascadeprotected'     => 'Iste pagina ha essite protegite contra modificationes, proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option "cascada":
 $2',
 'namespaceprotected'   => "Tu non ha le permission de modificar paginas in le spatio de nomines '''$1'''.",
-'customcssjsprotected' => 'Tu non ha le permission de modificar iste pagina, proque illo contine le configurationes personal de un altere usator.',
+'customcssjsprotected' => 'Tu non ha le permission de modificar iste pagina perque illo contine le configuration personal de un altere usator.',
 'ns-specialprotected'  => 'Le paginas special non es modificabile.',
 'titleprotected'       => "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].
 Le motivo specificate es ''$2''.",
@@ -2149,11 +2149,11 @@ Per favor preme "retro" e recarga le pagina de ubi tu ha venite, postea reprova.
 
 # Protect
 'protectlogpage'              => 'Registro de protectiones',
-'protectlogtext'              => 'Infra es un lista de protection e disprotection de paginas.
+'protectlogtext'              => 'Ecce un lista de cambios de protection de paginas.
 Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de protectiones de paginas actualmente in operation.',
 'protectedarticle'            => 'protegeva "[[$1]]"',
 'modifiedarticleprotection'   => 'cambiava nivello de protection de "[[$1]]"',
-'unprotectedarticle'          => 'disprotegeva "[[$1]]"',
+'unprotectedarticle'          => 'removeva le protection de "[[$1]]"',
 'movedarticleprotection'      => 'displaciava le configurationes de protection ab "[[$2]]" verso "[[$1]]"',
 'protect-title'               => 'Cambiar nivello de protection de "$1"',
 'prot_1movedto2'              => 'displaciava [[$1]] verso [[$2]]',
@@ -2307,7 +2307,7 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 'nolinkshere-ns'           => "Nulle pagina liga a '''[[:$1]]''' in le spatio de nomines seligite.",
 'isredirect'               => 'pagina de redirection',
 'istemplate'               => 'transclusion',
-'isimage'                  => 'ligamine al imagine',
+'isimage'                  => 'ligamine al file',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedente|precedente $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sequente|sequente $1}}',
 'whatlinkshere-links'      => '← ligamines',
@@ -2671,7 +2671,7 @@ Per favor usa le previsualisation ante de publicar.',
 'tooltip-ca-viewsource'           => 'Iste pagina es protegite. Tu pote vider su codice fonte.',
 'tooltip-ca-history'              => 'Versiones anterior de iste pagina',
 'tooltip-ca-protect'              => 'Proteger iste pagina',
-'tooltip-ca-unprotect'            => 'Disproteger iste pagina',
+'tooltip-ca-unprotect'            => 'Cambiar le protection de iste pagina',
 'tooltip-ca-delete'               => 'Deler iste pagina',
 'tooltip-ca-undelete'             => 'Restaurar le modificationes facite a iste pagina ante que illo esseva delite',
 'tooltip-ca-move'                 => 'Renominar iste pagina',

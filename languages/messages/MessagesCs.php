@@ -20,6 +20,7 @@
  * @author Ragimiri
  * @author Reaperman
  * @author Urhixidur
+ * @author Utar
  * @author לערי ריינהארט
  */
 
@@ -510,7 +511,7 @@ $messages = array(
 'vector-action-move'             => 'Přesunout',
 'vector-action-protect'          => 'Zamknout',
 'vector-action-undelete'         => 'Obnovit',
-'vector-action-unprotect'        => 'Odemknout',
+'vector-action-unprotect'        => 'Změnit zámek',
 'vector-simplesearch-preference' => 'Zapnout rozšířené návrhy hledání (pouze vzhled Vektor)',
 'vector-view-create'             => 'Založit',
 'vector-view-edit'               => 'Editovat',
@@ -546,8 +547,8 @@ $messages = array(
 'protect'           => 'Zamknout',
 'protect_change'    => 'změnit',
 'protectthispage'   => 'Zamknout stránku',
-'unprotect'         => 'Odemknout',
-'unprotectthispage' => 'Odemknout stránku',
+'unprotect'         => 'Změnit zámek',
+'unprotectthispage' => 'Změnit zámek této stránky',
 'newpage'           => 'Nová stránka',
 'talkpage'          => 'Diskusní stránka',
 'talkpagelinktext'  => 'diskuse',
@@ -2275,7 +2276,8 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 
 # Protect
 'protectlogpage'              => 'Kniha zamčení',
-'protectlogtext'              => 'Níže je uveden seznam všech zamčení a odemčení stránek.',
+'protectlogtext'              => 'Níže je uveden seznam všech změn zámků stránek.
+Můžete si prohlédnout též [[Special:ProtectedPages|seznam aktuálně platných zámků]].',
 'protectedarticle'            => 'zamyká „[[$1]]“',
 'modifiedarticleprotection'   => 'mění zámek stránky „[[$1]]“',
 'unprotectedarticle'          => 'odemyká „[[$1]]“',
@@ -2420,7 +2422,7 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'nolinkshere-ns'           => "Ve zvoleném jmenném prostoru na '''[[:$1]]''' neodkazuje žádná stránka.",
 'isredirect'               => 'přesměrování',
 'istemplate'               => 'vložení',
-'isimage'                  => 'vložení souboru',
+'isimage'                  => 'odkaz na soubor',
 'whatlinkshere-prev'       => '{{PLURAL:$1|předchozí|předchozí $1|předchozích $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|následující|následující $1|následujících $1}}',
 'whatlinkshere-links'      => '← odkazy',
@@ -2760,7 +2762,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'tooltip-ca-viewsource'           => 'Tato stránka je zamčena. Můžete si prohlédnout její zdrojový kód.',
 'tooltip-ca-history'              => 'Starší verze této stránky.',
 'tooltip-ca-protect'              => 'Zamknout tuto stránku.',
-'tooltip-ca-unprotect'            => 'Odemknout tuto stránku.',
+'tooltip-ca-unprotect'            => 'Změnit zámek této stránky.',
 'tooltip-ca-delete'               => 'Smazat tuto stránku.',
 'tooltip-ca-undelete'             => 'Obnovit editace této stránky provedené před jejím smazáním.',
 'tooltip-ca-move'                 => 'Přesunout tuto stránku',

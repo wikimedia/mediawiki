@@ -8,6 +8,7 @@
  * @file
  *
  * @author Anjoeli9806
+ * @author Erythrii
  * @author Jose77
  * @author Kguirnela
  * @author Tagimata
@@ -1117,15 +1118,23 @@ Ini indi dapat nga magsobra sa $1 {{PLURAL:$1|ka karakter|ka mga karakter}} ang 
 'gender-unknown'                => 'Wala masigurado',
 'gender-male'                   => 'Lalaki',
 'gender-female'                 => 'Babayi',
+'prefs-help-gender'             => '',
 'email'                         => 'E-mail',
+'prefs-signature'               => 'pirma',
 
 # Groups
+'group'       => 'Grupo:',
 'group-sysop' => 'Mga Administrador',
 
 'grouppage-sysop' => '{{ns:project}}:Mga Administrador',
 
+# Rights
+'right-read' => 'Basahan ang panid',
+'right-edit' => 'Ilisan ang panid',
+
 # User rights log
-'rightslog' => 'Karapatan sang naga-usar log',
+'rightslog'  => 'Karapatan sang naga-usar log',
+'rightsnone' => '(wala)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'islan ini nga pahina',
@@ -1135,6 +1144,7 @@ Ini indi dapat nga magsobra sa $1 {{PLURAL:$1|ka karakter|ka mga karakter}} ang 
 'recentchanges'                  => 'Mga Bag-o nga Inislan',
 'recentchanges-legend'           => 'Mga pililian sa bag-o lang na himo',
 'recentchanges-feed-description' => 'La-uton ang pina gid ka bag-o nga nahimo sa may wiki sa ini nga feed.',
+'recentchanges-label-minor'      => 'Diotay ilis ini',
 'rcnote'                         => "Diri sa idalum {{PLURAL:$1|ay '''1''' na bag-o|sang nagligad '''$1''' mga nabag-o}} sa naligad {{PLURAL:$2|adlaw|'''$2''' adlaw}}, sang mga $5, $4.",
 'rclistfrom'                     => 'Ipakita ang bag-o lang nahimo halin sa $1',
 'rcshowhideminor'                => '$1 menor nga mga inislan',
@@ -1170,6 +1180,10 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'uploadlogpage'     => 'Uplod log',
 'filedesc'          => 'Kabilogan',
 'fileuploadsummary' => 'Kabilogan:',
+'empty-file'        => 'Ang dokumeto ginapadala mo wala unod.',
+'file-too-large'    => 'Ang dokumeto ginapadala mo madako gid.',
+'filename-tooshort' => 'Ang ngalan sang dokumento malipot gid.',
+'filetype-banned'   => 'Ini sari ni dokumento madumili.',
 'uploadedimage'     => 'na-uplod "[[$1]]"',
 'watchthisupload'   => 'Bantayan ining panid',
 
@@ -1203,6 +1217,7 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|byte|bytes}}',
 'nmembers'          => '$1 {{PLURAL:$1|membro|mga membro}}',
+'popularpages'      => 'Ang panid nagakilala gid',
 'prefixindex'       => 'Tanan nga mga pahina nga may-ara prefiks',
 'newpages'          => 'Mga Bag-o nga Pahina',
 'newpages-username' => 'Ngalan sang Manog-gamit:',
@@ -1226,6 +1241,8 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'allpagesfrom'   => 'Ipakita ang mga pahina sugod sa:',
 'allpagesto'     => 'Ipakita ang mga pahina nga nagakatapos sa:',
 'allarticles'    => 'Tanan nga mga pahina',
+'allpagesprev'   => 'Nagligad',
+'allpagesnext'   => 'Dason',
 'allpagessubmit' => 'Sige',
 
 # Special:LinkSearch
@@ -1237,6 +1254,7 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'newuserlog-create-entry' => 'Bag-o na akawnt nga naga-usar',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'Grupo',
 'listgrouprights-members' => '(lista sang mga membro)',
 
 # E-mail user

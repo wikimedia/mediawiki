@@ -457,7 +457,7 @@ $messages = array(
 'vector-action-move'             => 'Mover',
 'vector-action-protect'          => 'Proteger',
 'vector-action-undelete'         => 'Restaurar',
-'vector-action-unprotect'        => 'Desproteger',
+'vector-action-unprotect'        => 'Alterar protecção',
 'vector-simplesearch-preference' => 'Activar sugestões de busca melhoradas (apenas no tema Vector)',
 'vector-view-create'             => 'Criar',
 'vector-view-edit'               => 'Editar',
@@ -493,8 +493,8 @@ $messages = array(
 'protect'           => 'Proteger',
 'protect_change'    => 'alterar',
 'protectthispage'   => 'Proteger esta página',
-'unprotect'         => 'Desproteger',
-'unprotectthispage' => 'Desproteger esta página',
+'unprotect'         => 'Alterar protecção',
+'unprotectthispage' => 'Alterar a protecção desta página',
 'newpage'           => 'Nova página',
 'talkpage'          => 'Discutir esta página',
 'talkpagelinktext'  => 'discussão',
@@ -1168,7 +1168,7 @@ Não tem acesso.',
 'revdelete-modify-no-access'  => 'Erro ao modificar o item datado de $2, $1: este item foi marcado como "restrito".
 Não tem acesso.',
 'revdelete-modify-missing'    => 'Erro ao modificar o item ID $1: não existe na base de dados!',
-'revdelete-no-change'         => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visibilidade solicitadas.",
+'revdelete-no-change'         => "'''Aviso:''' a revisão com data de $2, $1 já tem as configurações de visibilidade solicitadas.",
 'revdelete-concurrent-change' => 'Erro ao modificar o item com data/hora $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Verifique os registos, por favor.',
 'revdelete-only-restricted'   => 'Erro ao ocultar o item de $2 às $1: não pode impedir que os itens sejam vistos pelos administradores sem seleccionar também uma das outras opções de visibilidade.',
@@ -1298,10 +1298,10 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 # Quickbar
 'qbsettings'               => 'Barra Rápida',
 'qbsettings-none'          => 'Nenhuma',
-'qbsettings-fixedleft'     => 'Fixo à esquerda',
-'qbsettings-fixedright'    => 'Fixo à direita',
-'qbsettings-floatingleft'  => 'Flutuando à esquerda',
-'qbsettings-floatingright' => 'Flutuando à direita',
+'qbsettings-fixedleft'     => 'Fixa à esquerda',
+'qbsettings-fixedright'    => 'Fixa à direita',
+'qbsettings-floatingleft'  => 'Flutuante à esquerda',
+'qbsettings-floatingright' => 'Flutuante à direita',
 
 # Preferences page
 'preferences'                   => 'Preferências',
@@ -1437,10 +1437,10 @@ Também permite que outros entrem em contacto consigo através da sua página de
 * Uma caixa de selecção desmarcada significa que o utilizador não se encontra no grupo.
 * Um asterisco (*) indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
 'userrights-reason'            => 'Motivo:',
-'userrights-no-interwiki'      => 'Não possui permissão de alterar os privilégios de utilizadores noutras wikis.',
+'userrights-no-interwiki'      => 'Não tem permissões para alterar os privilégios de utilizadores noutras wikis.',
 'userrights-nodatabase'        => 'A base de dados $1 não existe ou não é uma base de dados local.',
 'userrights-nologin'           => 'Precisa [[Special:UserLogin|autenticar-se]] com uma conta de administrador para atribuir privilégios aos utilizadores.',
-'userrights-notallowed'        => 'A sua conta não possui permissão para conceder privilégios a utilizadores.',
+'userrights-notallowed'        => 'A sua conta não tem permissões para conceder privilégios a utilizadores.',
 'userrights-changeable-col'    => 'Grupos que pode alterar',
 'userrights-unchangeable-col'  => 'Grupos que não pode alterar',
 
@@ -1961,7 +1961,7 @@ Agora redirecciona para [[$2]].',
 'brokenredirects-delete' => 'eliminar',
 
 'withoutinterwiki'         => 'Páginas sem links interlínguas',
-'withoutinterwiki-summary' => 'As seguintes páginas não possuem links para versões noutras línguas.',
+'withoutinterwiki-summary' => 'As seguintes páginas não têm links para versões noutras línguas.',
 'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Mostrar',
 
@@ -2298,7 +2298,7 @@ Clique o botão "Voltar" e recarregue a página de onde veio, depois tente novam
 
 # Protect
 'protectlogpage'              => 'Registo de protecção',
-'protectlogtext'              => 'Abaixo encontra o registo de protecção e desprotecção de páginas.
+'protectlogtext'              => 'Encontra abaixo o registo de protecção e desprotecção de páginas.
 Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as páginas que se encontram protegidas neste momento.',
 'protectedarticle'            => 'protegeu "[[$1]]"',
 'modifiedarticleprotection'   => 'alterou o nível de protecção para "[[$1]]"',
@@ -2444,14 +2444,14 @@ Para sua referência, encontra abaixo a entrada mais recente no registo de bloqu
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
-'whatlinkshere-title'      => 'Páginas que possuem links para "$1"',
+'whatlinkshere-title'      => 'Páginas que têm links para "$1"',
 'whatlinkshere-page'       => 'Página:',
-'linkshere'                => "As seguintes páginas possuem links para '''[[:$1]]''':",
+'linkshere'                => "As seguintes páginas têm links para '''[[:$1]]''':",
 'nolinkshere'              => "Não existem links para '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Não existem links para '''[[:$1]]''' no espaço nominal seleccionado.",
 'isredirect'               => 'página de redireccionamento',
 'istemplate'               => 'inclusão',
-'isimage'                  => 'link para a imagem',
+'isimage'                  => 'link para o ficheiro',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|próximo|próximos $1}}',
 'whatlinkshere-links'      => '← links',
@@ -2570,7 +2570,8 @@ Contacte o seu fornecedor de internet ou o serviço de apoio técnico e informe-
 'sorbsreason'                     => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}.",
 'sorbs_create_account_reason'     => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}. Não pode criar uma conta",
 'cant-block-while-blocked'        => 'Não pode bloquear outros utilizadores enquanto estiver bloqueado.',
-'cant-see-hidden-user'            => "O utilizador que está tentando bloquear já está bloqueado e oculto. Como não possui privilégio de bloquear utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
+'cant-see-hidden-user'            => "O utilizador que está tentando bloquear já está bloqueado e oculto.
+Como não tem o privilégio para ocultar utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
 'ipbblocked'                      => 'Não pode bloquear ou desbloquear outros, porque está bloqueado',
 'ipbnounblockself'                => 'Não lhe é permitido desbloquear-se a si mesmo',
 
@@ -2629,10 +2630,10 @@ Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la co
 'moveuserpage-warning'         => "'''Aviso:''' Está prestes a mover uma página de utilizador. Note que a página será apenas movida, ''sem'' alterar o nome do utilizador.",
 'movenologin'                  => 'Não autenticado',
 'movenologintext'              => 'Precisa de ser um utilizador registado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
-'movenotallowed'               => 'Não possui permissão para mover páginas.',
+'movenotallowed'               => 'Não tem permissão para mover páginas.',
 'movenotallowedfile'           => 'Não possui permissão para mover ficheiros.',
-'cant-move-user-page'          => 'Não possui permissão de mover páginas de utilizadores (pode mover sub-páginas).',
-'cant-move-to-user-page'       => 'Não possui permissão de mover uma página para uma página de utilizador (pode movê-la para uma subpágina de utilizador).',
+'cant-move-user-page'          => 'Não tem permissão para mover páginas de utilizador (pode mover sub-páginas).',
+'cant-move-to-user-page'       => 'Não tem permissão para mover uma página para uma página de utilizador (pode movê-la para uma subpágina de utilizador).',
 'newtitle'                     => 'Para novo título',
 'move-watch'                   => 'Vigiar esta página',
 'movepagebtn'                  => 'Mover página',
@@ -2650,7 +2651,7 @@ Faça a fusão manual das páginas de discussão, por favor.'''",
 'move-subpages'                => 'Mover subpáginas (até $1)',
 'move-talk-subpages'           => 'Mover subpáginas da página de discussão (até $1)',
 'movepage-page-exists'         => 'A página $1 já existe e não pode ser substituída.',
-'movepage-page-moved'          => 'A página $1 foi movida para $2',
+'movepage-page-moved'          => 'A página $1 foi movida para $2.',
 'movepage-page-unmoved'        => 'Não foi possível mover a página $1 para $2.',
 'movepage-max-pages'           => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'                    => 'moveu [[$1]] para [[$2]]',
@@ -2806,7 +2807,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-ca-viewsource'           => 'Esta página está protegida; só pode ver o conteúdo.',
 'tooltip-ca-history'              => 'Edições anteriores desta página.',
 'tooltip-ca-protect'              => 'Proteger esta página',
-'tooltip-ca-unprotect'            => 'Desproteger esta página',
+'tooltip-ca-unprotect'            => 'Alterar a protecção desta página',
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-undelete'             => 'Restaurar edições feitas a esta página antes da eliminação',
 'tooltip-ca-move'                 => 'Mover esta página',
@@ -2913,7 +2914,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'infosubtitle'   => 'Informação para página',
 'numedits'       => 'Número de edições (página): $1',
 'numtalkedits'   => 'Número de edições (página de discussão): $1',
-'numwatchers'    => 'Número de pessoas vigiando: $1',
+'numwatchers'    => 'Número de vigilantes: $1',
 'numauthors'     => 'Número de autores distintos (página): $1',
 'numtalkauthors' => 'Número de autores distintos (página de discussão): $1',
 
@@ -3325,8 +3326,8 @@ caso tenha criado a conta recentemente, é recomendado que aguarde alguns minuto
 'confirmemail_sent'         => 'Correio de confirmação enviado.',
 'confirmemail_oncreate'     => 'Foi enviado um código de confirmação para o seu endereço de correio electrónico.
 Este código não é necessário para se autenticar no sistema, mas será necessário para activar qualquer funcionalidade baseada no uso de correio na wiki.',
-'confirmemail_sendfailed'   => 'A {{SITENAME}} não conseguiu enviar o correio de confirmação.
-Verifique se o seu endereço de correio electrónico possui caracteres inválidos.
+'confirmemail_sendfailed'   => 'A {{SITENAME}} não conseguiu enviar a mensagem de confirmação.
+Verifique se o seu endereço de correio electrónico tem caracteres inválidos.
 
 O sistema de correio devolveu o erro: $1',
 'confirmemail_invalid'      => 'Código de confirmação inválido. O código poderá ter expirado.',

@@ -13,6 +13,7 @@
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Amikeco
+ * @author Amire80
  * @author Assele
  * @author Chilin
  * @author Claymore
@@ -443,7 +444,7 @@ $messages = array(
 'vector-action-move'             => 'Переименовать',
 'vector-action-protect'          => 'Защитить',
 'vector-action-undelete'         => 'Восстановить',
-'vector-action-unprotect'        => 'Снять защиту',
+'vector-action-unprotect'        => 'Изменить защиту',
 'vector-simplesearch-preference' => 'Включить расширенные поисковые подсказки (только для оформления «Векторное»)',
 'vector-view-create'             => 'Создание',
 'vector-view-edit'               => 'Правка',
@@ -479,8 +480,8 @@ $messages = array(
 'protect'           => 'Защитить',
 'protect_change'    => 'изменить',
 'protectthispage'   => 'Защитить эту страницу',
-'unprotect'         => 'Снять защиту',
-'unprotectthispage' => 'Снять защиту',
+'unprotect'         => 'Изменить защиту',
+'unprotectthispage' => 'Изменить защиту этой страницы',
 'newpage'           => 'Новая страница',
 'talkpage'          => 'Обсудить эту страницу',
 'talkpagelinktext'  => 'обсуждение',
@@ -795,7 +796,7 @@ $2',
 'extlink_tip'     => 'Внешняя ссылка (помните о префиксе http:// )',
 'headline_sample' => 'Текст заголовка',
 'headline_tip'    => 'Заголовок 2-го уровня',
-'math_sample'     => 'Вставьте сюда формулу',
+'math_sample'     => 'Введите сюда формулу',
 'math_tip'        => 'Математическая формула (формат LaTeX)',
 'nowiki_sample'   => 'Вставьте сюда текст, который не нужно форматировать',
 'nowiki_tip'      => 'Игнорировать вики-форматирование',
@@ -2247,7 +2248,8 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => 'Журнал защиты',
-'protectlogtext'              => 'Ниже приведён журнал установок и снятий защиты со статей. Вы можете также просмотреть [[Special:ProtectedPages|список страниц, которые в данный момент защищены]].',
+'protectlogtext'              => 'Ниже приведён журнал изменений защиты страницы.
+Вы можете также просмотреть [[Special:ProtectedPages|список страниц, которые в данный момент защищены]].',
 'protectedarticle'            => 'защищена страница «[[$1]]»',
 'modifiedarticleprotection'   => 'изменён уровень защиты страницы «[[$1]]»',
 'unprotectedarticle'          => 'снята защита с «[[$1]]»',
@@ -2396,7 +2398,7 @@ $1',
 'nolinkshere-ns'           => "В выбранном пространстве имён нет страниц, ссылающихся на '''[[:$1]]'''.",
 'isredirect'               => 'страница-перенаправление',
 'istemplate'               => 'включение',
-'isimage'                  => 'ссылка для изображения',
+'isimage'                  => 'файловая ссылка',
 'whatlinkshere-prev'       => '{{PLURAL:$1|предыдущая|предыдущие|предыдущие}} $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|следующая|следующие|следующие}} $1',
 'whatlinkshere-links'      => '← ссылки',
@@ -2751,7 +2753,7 @@ $1',
 'tooltip-ca-viewsource'           => 'Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст',
 'tooltip-ca-history'              => 'Журнал изменений страницы',
 'tooltip-ca-protect'              => 'Защитить страницу от изменений',
-'tooltip-ca-unprotect'            => 'Снять защиту с этой страницы',
+'tooltip-ca-unprotect'            => 'Изменить защиту этой страницы',
 'tooltip-ca-delete'               => 'Удалить эту страницу',
 'tooltip-ca-undelete'             => 'Восстановить исправления страницы, сделанные до того, как она была удалена',
 'tooltip-ca-move'                 => 'Переименовать страницу',

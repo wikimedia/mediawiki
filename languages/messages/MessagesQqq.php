@@ -67,6 +67,7 @@
  * @author Nike
  * @author Node ue
  * @author Octahedron80
+ * @author Od1n
  * @author Onecountry
  * @author OsamaK
  * @author PhiLiP
@@ -355,7 +356,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 
 {{Identical|Error}}',
 'returnto'          => '{{Identical|Return to $1}}',
-'tagline'           => 'Used to idenify the source of copied information. Do not change <nowiki>{{SITENAME}}</nowiki>.',
+'tagline'           => 'Used to identify the source of copied information. Do not change <nowiki>{{SITENAME}}</nowiki>.',
 'help'              => 'General text (noun) used in the sidebar (by default).
 
 See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki:Edithelp/{{SUBPAGENAME}}|{{int:edithelp}}]].
@@ -406,7 +407,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'unprotect'         => 'Name of unprotect tab displayed for admins
 
 {{Identical|Unprotect}}',
-'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to unprotect the page in admin view.
+'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the anchor text for the link to unprotect the page in admin view.
 {{Identical|Unprotect this page}}',
 'newpage'           => '{{Identical|New page}}',
 'talkpage'          => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to discuss the page.',
@@ -864,7 +865,8 @@ Parameters:
 See also {{msg-mw|Noarticletext-nopermission}}.',
 'noarticletext-nopermission'       => 'See also {{msg-mw|Noarticletext}}.',
 'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki',
-'userpage-userdoesnotexist-view'   => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo].',
+'userpage-userdoesnotexist-view'   => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo]. Parameters:
+* $1 is a username.',
 'blocked-notice-logextract'        => 'Parameters:
 * $1 is the name of the blocked user (optional). Can be used for GENDER.',
 'clearyourcache'                   => 'Text at the top of .js/.css pages',
@@ -2722,7 +2724,7 @@ See also {{msg-mw|Blocklistline}}.',
 'reblock-logentry'             => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being reblocked
 * $2 is the expiry time of the block
-* $3 is the reason for the block',
+* $3 are extra parameters like "account creation blocked" (they are automatically between brackets)',
 'blocklogtext'                 => 'Appears on top of [[Special:Log/block]].',
 'unblocklogentry'              => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being unblocked',
@@ -3705,7 +3707,7 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 # Auto-summaries
 'autosumm-blank'   => 'The auto summary when blanking the whole page. This is not the same as deleting the page.',
 'autosumm-replace' => 'The auto summary when a user removes a lot of characters in the page.',
-'autoredircomment' => 'The auto summary when making a redirect. $1 is the page where it redirects to.',
+'autoredircomment' => 'The auto summary when making a redirect. $1 is the page where it redirects to. $2 is the first X number of characters of the redirect ($2 is usually only used when end users customize the message)',
 'autosumm-new'     => 'The auto summary when creating a new page. $1 are the first X number of characters of the new page.',
 
 # Size units

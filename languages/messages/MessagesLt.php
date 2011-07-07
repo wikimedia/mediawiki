@@ -10,6 +10,7 @@
  * @author Auwris
  * @author Break Through Pain
  * @author Dark Eagle
+ * @author Eitvys200
  * @author Garas
  * @author Homo
  * @author Hugo.arg
@@ -2963,6 +2964,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsareainformation'          => 'GPS zonos pavadinimas',
 'exif-gpsdatestamp'                => 'GPS data',
 'exif-gpsdifferential'             => 'GPS diferiancialo pataisymas',
+'exif-objectname'                  => 'Trumpas pavadinimas',
 
 # EXIF attributes
 'exif-compression-1' => 'Nesuspausta',
@@ -3273,6 +3275,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'version-specialpages'             => 'Specialieji puslapiai',
 'version-parserhooks'              => 'Analizatoriaus gaudliai',
 'version-variables'                => 'Kintamieji',
+'version-skins'                    => 'Išvaizda',
 'version-other'                    => 'Kita',
 'version-mediahandlers'            => 'Daugialypės terpės grotuvai',
 'version-hooks'                    => 'Gaudliai',

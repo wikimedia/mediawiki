@@ -31,6 +31,7 @@
  * @author Siebrand
  * @author Slomox
  * @author Tedjuh10
+ * @author Tjcool007
  * @author Troefkaart
  * @author Tvdm
  * @author לערי ריינהארט
@@ -491,7 +492,7 @@ $messages = array(
 'vector-action-move'             => 'Hernoemen',
 'vector-action-protect'          => 'Beveiligen',
 'vector-action-undelete'         => 'Terugplaatsen',
-'vector-action-unprotect'        => 'Beveiliging opheffen',
+'vector-action-unprotect'        => 'Beveiliging wijzigen',
 'vector-simplesearch-preference' => 'Verbeterde zoeksuggesties inschakelen (alleen voor het uiterlijk Vector)',
 'vector-view-create'             => 'Aanmaken',
 'vector-view-edit'               => 'Bewerken',
@@ -527,8 +528,8 @@ $messages = array(
 'protect'           => 'Beveiligen',
 'protect_change'    => 'wijzigen',
 'protectthispage'   => 'Deze pagina beveiligen',
-'unprotect'         => 'Beveiliging opheffen',
-'unprotectthispage' => 'Beveiliging van deze pagina opheffen',
+'unprotect'         => 'Beveiliging wijzigen',
+'unprotectthispage' => 'Beveiliging van deze pagina wijzigen',
 'newpage'           => 'Nieuwe pagina',
 'talkpage'          => 'Overlegpagina',
 'talkpagelinktext'  => 'Overleg',
@@ -1511,7 +1512,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'beheerder',
 'group-bureaucrat-member'    => 'bureaucraat',
-'group-suppress-member'      => 'Toezichthouder',
+'group-suppress-member'      => 'toezichthouder',
 
 'grouppage-user'          => '{{ns:project}}:Gebruikers',
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',
@@ -2266,7 +2267,7 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'watching'   => 'Bezig met plaatsen op volglijst…',
 'unwatching' => 'Bezig met verwijderen van volglijst…',
 
-'enotif_mailer'                => '{{SITENAME}} waarschuwingssysteem',
+'enotif_mailer'                => '{{SITENAME}}-waarschuwingssysteem',
 'enotif_reset'                 => "Alle pagina's markeren als bezocht",
 'enotif_newpagetext'           => 'Dit is een nieuwe pagina.',
 'enotif_impersonal_salutation' => 'gebruiker van {{SITENAME}}',
@@ -2365,7 +2366,7 @@ Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 
 # Protect
 'protectlogpage'              => 'Beveiligingslogboek',
-'protectlogtext'              => "Hieronder staan pagina's die recentelijk beveiligd zijn of waarvan de beveiliging is opgeheven.
+'protectlogtext'              => "Hieronder staan pagina's waarvan de beveiliging recentelijk gewijzigd is.
 Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveiligde pagina's.",
 'protectedarticle'            => 'beveiligde "[[$1]]"',
 'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[$1]]"',
@@ -2608,8 +2609,8 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 Het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'blocklog-showsuppresslog'        => 'Deze gebruiker is voorheen geblokkeerd geweest en er zijn (delen van) bewerkingen van deze gebruiker verborgen.
 Het verbergingslogboek wordt hieronder ter referentie weergegeven:',
-'blocklogentry'                   => 'blokkeerde "[[$1]]" voor de duur van $2 $3',
-'reblock-logentry'                => 'heeft de instellingen voor de blokkade voor [[$1]] gewijzigd. Deze vervalt nu op $2 om $3',
+'blocklogentry'                   => 'blokkeerde [[$1]] voor de duur van $2 $3',
+'reblock-logentry'                => 'heeft de instellingen voor de blokkade voor [[$1]] gewijzigd. Deze vervalt nu op $2 $3',
 'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen.
 Automatische blokkeringen en deblokkeringen komen niet in het logboek.
 Zie ook [[Special:IPBlockList|Geblokkeerde IP-adressen en gebruikers]].',
@@ -2734,7 +2735,7 @@ Combineer de overlegpagina's handmatig.'''",
 De overige pagina's worden niet automatisch hernoemd.",
 '1movedto2'                    => '[[$1]] hernoemd naar [[$2]]',
 '1movedto2_redir'              => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
-'move-redirect-suppressed'     => 'doorverwijzing onderdrukken',
+'move-redirect-suppressed'     => 'doorverwijzing onderdrukt',
 'movelogpage'                  => 'Hernoemingslogboek',
 'movelogpagetext'              => "Hieronder staan hernoemde pagina's.",
 'movesubpage'                  => "{{PLURAL:$1|Subpagina|Subpagina's}}",
@@ -2886,7 +2887,7 @@ De tijdelijke map is niet aanwezig.',
 'tooltip-ca-viewsource'           => 'Deze pagina is beveiligd. U kunt wel de broncode bekijken.',
 'tooltip-ca-history'              => 'Eerdere versies van deze pagina',
 'tooltip-ca-protect'              => 'Deze pagina beveiligen',
-'tooltip-ca-unprotect'            => 'De beveiliging voor deze pagina opheffen',
+'tooltip-ca-unprotect'            => 'De beveiliging voor deze pagina wijzigen',
 'tooltip-ca-delete'               => 'Deze pagina verwijderen',
 'tooltip-ca-undelete'             => 'Verwijderde bewerkingen van deze pagina terugplaatsen',
 'tooltip-ca-move'                 => 'Deze pagina hernoemen',

@@ -329,7 +329,7 @@ $messages = array(
 'tog-usenewrc'                => 'Cambios recientes mejorados (requiere JavaScript)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
 'tog-showtoolbar'             => 'Mostrar la barra de edición',
-'tog-editondblclick'          => 'Editar páginas con doble click (JavaScript)',
+'tog-editondblclick'          => 'Editar páginas con doble clic (requiere JavaScript)',
 'tog-editsection'             => 'Habilitar la edición de secciones usando el enlace [editar]',
 'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha en los títulos de secciones (requiere JavaScript)',
 'tog-showtoc'                 => 'Mostrar el índice (para páginas con más de 3 encabezados)',
@@ -484,7 +484,7 @@ $messages = array(
 'vector-action-move'             => 'Mover',
 'vector-action-protect'          => 'Proteger',
 'vector-action-undelete'         => 'Restaurar',
-'vector-action-unprotect'        => 'Desproteger',
+'vector-action-unprotect'        => 'Cambiar protección',
 'vector-simplesearch-preference' => 'Activar sugerencias de búsqueda mejoradas (piel Vector solamente)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Editar',
@@ -520,8 +520,8 @@ $messages = array(
 'protect'           => 'Proteger',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Proteger esta página',
-'unprotect'         => 'Desproteger',
-'unprotectthispage' => 'Desproteger esta página',
+'unprotect'         => 'Cambiar protección',
+'unprotectthispage' => 'Cambiar la protección de esta página',
 'newpage'           => 'Página nueva',
 'talkpage'          => 'Discutir esta página',
 'talkpagelinktext'  => 'Discusión',
@@ -726,7 +726,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'yourdomainname'             => 'Dominio',
 'externaldberror'            => 'Hubo un error de autenticación externa de la base de datos o bien no tienes autorización para actualizar tu cuenta externa.',
 'login'                      => 'Entrar',
-'nav-login-createaccount'    => 'Registrarse/Entrar',
+'nav-login-createaccount'    => 'Iniciar sesión / crear cuenta',
 'loginprompt'                => "Es necesario habilitar las ''cookies'' en el navegador para registrarse en {{SITENAME}}.",
 'userlogin'                  => 'Registrarse/Entrar',
 'userloginnocreate'          => 'Iniciar sesión',
@@ -781,7 +781,7 @@ Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLUR
 'mailerror'                  => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit' => 'Los visitantes a esta wiki usando su dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día, lo cual es lo máximo permitido en este periodo de tiempo.
 Como resultado, los visitantes usando esta dirección IP no pueden crear más cuentas en este momento.',
-'emailauthenticated'         => 'Su dirección electrónica fue autenticada en $2 a $3.',
+'emailauthenticated'         => 'Tu dirección de correo electrónico fue autenticada el $2 a $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'noemailprefs'               => 'Especifica una dirección electrónica para habilitar estas características.',
@@ -923,7 +923,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist'        => 'La cuenta de usuario «$1» no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'userpage-userdoesnotexist-view'   => 'La cuenta de usuario «$1» no está registrada.',
 'blocked-notice-logextract'        => 'Este usuario está actualmente bloqueado.
-La última entrada del registro de bloqueos es provista debajo para mayor referencia:',
+La última entrada del registro de bloqueos se proporciona debajo para mayor referencia:',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debes vaciar la caché del navegador para ver los cambios:
 
 *'''Mozilla / Firefox / Safari:''' pulsa ''Mayús.'' mientras haces clic en el botón ''Recargar'', o pulsa ''Ctrl+F5'' o ''Ctrl+R'' (''Comando+R'' en un Macintosh)
@@ -968,7 +968,8 @@ Si quieres grabar tus cambios, has de trasladarlos al área superior.
 '''Sólo''' el texto en el área de texto superior será grabado cuando pulses «{{int:savearticle}}».",
 'yourtext'                         => 'Tu texto',
 'storedversion'                    => 'Versión almacenada',
-'nonunicodebrowser'                => "'''Atención: Tu navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.'''",
+'nonunicodebrowser'                => "'''Atención: Tu navegador no cumple la norma Unicode.'''
+Se ha activado un sistema de edición alternativo que te permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.",
 'editingold'                       => "'''Aviso: Estás editando una versión antigua de esta página.'''
 Si la guardas, se perderán los cambios realizados desde esta revisión.",
 'yourdiff'                         => 'Diferencias',
@@ -1010,7 +1011,7 @@ El registro de borrado y traslados para esta página están provistos aquí por 
 'moveddeleted-notice'              => 'Esta página ha sido borrada.
 El registro de borrados y traslados para la página están provistos debajo como referencia.',
 'log-fulllog'                      => 'Ver el registro completo',
-'edit-hook-aborted'                => 'Edición abortada por la extensión.
+'edit-hook-aborted'                => 'Edición cancelada por la extensión.
 No dió explicaciones.',
 'edit-gone-missing'                => 'No se pudo actualizar la página.
 Parece que ha sido borrada.',
@@ -1251,7 +1252,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opciones de búsqueda',
 'searchmenu-exists'                => "'''Hay una página llamada \"[[:\$1]]\" en esta wiki.'''",
-'searchmenu-new'                   => "'''¡Crear la página «[[:$1]]» en esta wiki!'''",
+'searchmenu-new'                   => "'''¡Crea la página «[[:$1]]» en este wiki!'''",
 'searchhelp-url'                   => 'Help:Ayuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Otras páginas con este prefijo]]',
 'searchprofile-articles'           => 'Páginas de contenido',
@@ -1727,7 +1728,7 @@ A continuación se muestra el registro de borrado de este archivo:",
 
 Por favor, elige un nombre más descriptivo.",
 'upload-success-subj'         => 'Subida con éxito',
-'upload-success-msg'          => 'Tu carga de  [$2] fue existosa. Está disponible aquí: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Tu carga de [$2] fue exitosa. Está disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en la carga',
 'upload-failure-msg'          => 'Hubo un problema durante la carga desde [$2]:
 
@@ -2267,7 +2268,8 @@ Por favor, pulsa «Atrás», recarga la página de la que viniste e inténtalo d
 
 # Protect
 'protectlogpage'              => 'Registro de protección',
-'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:ProtectedPages|la lista de páginas protegidas]] para ver las protecciones activas en páginas.',
+'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página.
+Véase [[Special:ProtectedPages|la lista de páginas protegidas]] para ver las protecciones activas en páginas.',
 'protectedarticle'            => 'protegió «[[$1]]»',
 'modifiedarticleprotection'   => 'cambió el nivel de protección de «[[$1]]»',
 'unprotectedarticle'          => 'desprotegió «[[$1]]»',
@@ -2766,7 +2768,7 @@ No hay un directorio temporal.',
 'tooltip-ca-viewsource'           => 'Esta página está protegida; sólo puedes ver su código fuente',
 'tooltip-ca-history'              => 'Versiones anteriores de esta página y sus autores',
 'tooltip-ca-protect'              => 'Proteger esta página',
-'tooltip-ca-unprotect'            => 'Desproteger esta página',
+'tooltip-ca-unprotect'            => 'Cambiar protección de esta página',
 'tooltip-ca-delete'               => 'Borrar esta página',
 'tooltip-ca-undelete'             => 'Restaurar las ediciones hechas a esta página antes de que fuese borrada',
 'tooltip-ca-move'                 => 'Trasladar (renombrar) esta página',
@@ -2818,21 +2820,30 @@ Permite añadir una razón al resumen de edición.',
 'tooltip-summary'                 => 'Ingresar un breve resumen',
 
 # Stylesheets
-'common.css'   => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
-'monobook.css' => '/* cambie este archivo para personalizar la piel monobook para el sitio entero */',
-'vector.css'   => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector. */',
+'common.css'      => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
+'standard.css'    => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Standard */',
+'nostalgia.css'   => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Nostalgia */',
+'cologneblue.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Cologne Blue */',
+'monobook.css'    => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Monobook */',
+'myskin.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MySkin */',
+'chick.css'       => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Chick */',
+'simple.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Simple */',
+'modern.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Modern */',
+'vector.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
+'print.css'       => '/* Los estilos CSS colocados aquí afectarán la impresión */',
+'handheld.css'    => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
 
 # Scripts
-'common.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
-'standard.js'    => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar. */',
+'common.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página */',
+'standard.js'    => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar */',
 'nostalgia.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Nostalgia. */',
-'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul. */',
+'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul */',
 'monobook.js'    => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
-'myskin.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel. */',
-'chick.js'       => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito. */',
-'simple.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple. */',
-'modern.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna. */',
-'vector.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector. */',
+'myskin.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel */',
+'chick.js'       => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito */',
+'simple.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple */',
+'modern.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna */',
+'vector.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector */',
 
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF deshabilitados en este servidor.',
@@ -2961,6 +2972,10 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'ilsubmit'              => 'Búsqueda',
 'bydate'                => 'por fecha',
 'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'minutes-abbrev' => 'm',
+'hours-abbrev'   => 'h',
 
 # Bad image list
 'bad_image_list' => 'El formato es el siguiente:

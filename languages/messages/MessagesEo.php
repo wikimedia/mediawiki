@@ -2237,9 +2237,9 @@ La lasta redaktinto estis [[User:$3|$3]] ([[User talk:$3|diskuto]]{{int:pipe-sep
 
 # Edit tokens
 'sessionfailure-title' => 'Seanco malsukcesis',
-'sessionfailure'       => 'Ŝajnas ke estas problemo kun via ensalutado;
+'sessionfailure'       => 'Ŝajnas, ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
-Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
+Bonvolu alklaki la reirbutonon kaj reŝargi la paĝon el kiu vi venas, kaj provu denove.',
 
 # Protect
 'protectlogpage'              => 'Protokolo pri protektoj',
@@ -3481,7 +3481,7 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 # Database error messages
 'dberr-header'      => 'Ĉi tiu vikio havas problemon',
 'dberr-problems'    => 'Bedaŭrinde, ĉi tiu retejo suferas pro teknikaj problemoj.',
-'dberr-again'       => 'Bonvolu atendi kelkajn minutojn kaj reŝarĝi.',
+'dberr-again'       => 'Bonvolu atendi kelkajn minutojn kaj reŝargi.',
 'dberr-info'        => '(Ne povas kontakti la datenbazan servilon: $1)',
 'dberr-usegoogle'   => 'Vi povas serĉi Guglon dume.',
 'dberr-outofdate'   => 'Notu ke iliaj indeksoj de nia enhavo eble ne estas ĝisdatigaj.',

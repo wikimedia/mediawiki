@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Iketsi
  * @author Ushanka
  */
 
@@ -112,7 +113,7 @@ $messages = array(
 # Contributions
 'year' => 'Yia:',
 
-'sp-contributions-talk' => 'Toktok',
+'sp-contributions-talk' => 'toktok',
 
 # Block/unblock
 'proxyblocksuccess' => 'Finis.',

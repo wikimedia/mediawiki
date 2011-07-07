@@ -36,6 +36,7 @@
  * @author Ohgi
  * @author Penn Station
  * @author Suisui
+ * @author VZP10224
  * @author Vigorous action
  * @author W.CC
  * @author Web comic
@@ -1992,7 +1993,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'statistics-pages'             => '総ページ数',
 'statistics-pages-desc'        => 'トークページやリダイレクトなどを含んだこのウィキ内のすべてのページです。',
 'statistics-files'             => 'アップロードされたファイル数',
-'statistics-edits'             => '{{SITENAME}}が立ち上がってからの編集回数の総計',
+'statistics-edits'             => '{{SITENAME}}が開設されてからの編集回数の総計',
 'statistics-edits-average'     => '1ページあたりの編集回数',
 'statistics-views-total'       => '総閲覧回数',
 'statistics-views-total-desc'  => '存在しないページと特別ページに対する閲覧は含まれていません',
@@ -2517,7 +2518,7 @@ $1',
 'nolinkshere-ns'           => "選択された名前空間中で、'''[[:$1]]'''にリンクしているページはありません。",
 'isredirect'               => '転送ページ',
 'istemplate'               => '参照読み込み',
-'isimage'                  => '画像リンク',
+'isimage'                  => 'ファイルへのリンク',
 'whatlinkshere-prev'       => '{{PLURAL:$1|前|前の$1件}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|次|次の$1件}}',
 'whatlinkshere-links'      => '← リンク',
