@@ -1317,11 +1317,12 @@ Please check if you want to create/edit this page.',
 'userpage-userdoesnotexist-view'   => 'User account "$1" is not registered.',
 'blocked-notice-logextract'        => 'This user is currently blocked.
 The latest block log entry is provided below for reference:',
-'clearyourcache'                   => "'''Note: After saving, you may have to bypass your browser's cache to see the changes.'''
-'''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);
-'''Konqueror: '''click ''Reload'' or press ''F5'';
-'''Opera:''' clear the cache in ''Tools → Preferences'';
-'''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes.
+* '''Firefox / Safari:''' hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh)
+* '''Google Chrome:''' press ''Ctrl-Shift-R'' (''Command-Shift-R'' on a Macintosh)
+* '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''
+* '''Konqueror:''' click ''Reload'' or press ''F5''
+* '''Opera:''' clear the cache in ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Use the \"{{int:showpreview}}\" button to test your new CSS before saving.",
 'userjsyoucanpreview'              => "'''Tip:''' Use the \"{{int:showpreview}}\" button to test your new JavaScript before saving.",
 'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.'''
