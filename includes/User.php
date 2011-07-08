@@ -1477,7 +1477,9 @@ class User {
 				if( $count > $max ) {
 					wfDebug( __METHOD__ . ": tripped! $key at $count $summary\n" );
 					if( $wgRateLimitLog ) {
-						@file_put_contents( $wgRateLimitLog, wfTimestamp( TS_MW ) . ' ' . wfWikiID() . ': ' . $this->getName() . " tripped $key at $count $summary\n", FILE_APPEND );
+						wfSuppressWarnings();
+						file_put_contents( $wgRateLimitLog, wfTimestamp( TS_MW ) . ' ' . wfWikiID() . ': ' . $this->getName() . " tripped $key at $count $summary\n", FILE_APPEND );
+						wfRestoreWarnings();
 					}
 					$triggered = true;
 				} else {
