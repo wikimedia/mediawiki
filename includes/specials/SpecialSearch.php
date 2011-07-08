@@ -863,7 +863,6 @@ class SpecialSearch extends SpecialPage {
 						array(
 							'type'=>'button',
 							'id' => 'mw-search-toggleall',
-							'onclick' => 'mwToggleSearchCheckboxes("all");',
 							'value' => wfMsg( 'powersearch-toggleall' )
 						)
 					) .
@@ -872,7 +871,6 @@ class SpecialSearch extends SpecialPage {
 						array(
 							'type'=>'button',
 							'id' => 'mw-search-togglenone',
-							'onclick' => 'mwToggleSearchCheckboxes("none");',
 							'value' => wfMsg( 'powersearch-togglenone' )
 						)
 					)
@@ -1045,9 +1043,7 @@ class SpecialSearch extends SpecialPage {
 			'a',
 			array(
 				'href' => $this->getTitle()->getLocalURL( $stParams ),
-				'title' => $tooltip,
-				'onmousedown' => 'mwSearchHeaderClick(this);',
-				'onkeydown' => 'mwSearchHeaderClick(this);'),
+				'title' => $tooltip),
 			$label
 		);
 	}
