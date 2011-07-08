@@ -193,6 +193,24 @@ p.mw-revdel-editreasons {
 /*
  * OpenSearch ajax suggestions
  */
+.ui-autocomplete {
+	font-size: 95%!important;
+	border: 1px solid #AAA!important;
+	overflow: auto;
+	height: 100px;
+}
+.ui-autocomplete #ui-active-menuitem {
+	background: #4C59A6;
+	background: Highlight;
+	color: white;
+	color: HighlightText;
+	border-color: #4C59A6;
+	border-color: Highlight;
+}
+.ui-autocomplete .ui-menu-item a{
+	line-height: 1.1!important;
+	font-size: 95%!important;
+}
 .os-suggest {
 	overflow: auto;
 	overflow-x: hidden;
