@@ -2308,11 +2308,8 @@ $templates
 			$this->getTitle()->getNamespace() != NS_SPECIAL &&
 			in_array( $action, array( 'view', 'purge' ) ) &&
 			$this->getUser()->getOption( 'editondblclick' )
-		)
-		{
-			$editUrl = $this->getTitle()->getLocalUrl( $sk->editUrlOptions() );
-			$bodyAttrs['ondblclick'] = "document.location = '" .
-				Xml::escapeJsString( $editUrl ) . "'";
+		) {
+			$this->addModules( 'mediawiki.action.view.dblClickEdit' );
 		}
 
 		# Classes for LTR/RTL directionality support
