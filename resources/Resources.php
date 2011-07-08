@@ -477,6 +477,12 @@ return array(
 			'jquery.mwPrototypes',
 		),
 	),
+	'mediawiki.page.mwsuggest' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.mwsuggest.js',
+		'dependencies' => array( 
+			'jquery.ui.autocomplete',
+		),
+	),
 	'mediawiki.libs.jpegmeta' => array(
 		'scripts' => 'resources/mediawiki.libs/mediawiki.libs.jpegmeta.js',
 	),
@@ -647,13 +653,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
-	'mediawiki.legacy.mwsuggest' => array(
-		'scripts' => 'common/mwsuggest.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => array( 'mediawiki.legacy.wikibits', 'jquery.client' ),
-		'messages' => array( 'search-mwsuggest-enabled', 'search-mwsuggest-disabled' ),
 	),
 	'mediawiki.legacy.preview' => array(
 		'scripts' => 'common/preview.js',
