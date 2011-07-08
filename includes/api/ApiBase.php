@@ -174,6 +174,24 @@ abstract class ApiBase {
 	}
 
 	/**
+	 * Create a new RequestContext object to use e.g. for calls to other parts
+	 * the software.
+	 * The object will have the WebRequest and the User object set to the ones
+	 * used in this instance.
+	 *
+	 * @return RequestContext
+	 */
+	public function createContext() {
+		global $wgUser;
+
+		$context = new RequestContext;
+		$context->setRequest( $this->getMain()->getRequest() );
+		$context->setUser( $wgUser ); /// @todo FIXME: we should store the User object
+
+		return $context;
+	}
+
+	/**
 	 * Set warning section for this module. Users should monitor this
 	 * section to notice any changes in API. Multiple calls to this
 	 * function will result in the warning messages being separated by

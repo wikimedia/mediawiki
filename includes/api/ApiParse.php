@@ -373,9 +373,9 @@ class ApiParse extends ApiBase {
 	}
 
 	private function categoriesHtml( $categories ) {
-		global $wgOut, $wgUser;
-		$wgOut->addCategoryLinks( $categories );
-		return $wgUser->getSkin()->getCategories();
+		$context = $this->createContext();
+		$context->getOutput()->addCategoryLinks( $categories );
+		return $context->getSkin()->getCategories();
 	}
 
 	/**
