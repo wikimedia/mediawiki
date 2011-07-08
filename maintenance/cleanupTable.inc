@@ -101,7 +101,8 @@ class TableCleanup extends Maintenance {
 		}
 
 		$table = $params['table'];
-		$count = $dbr->selectField( $table, 'count(*)', $params['conds'], __METHOD__ );
+		// count(*) would melt the DB for huge tables, we can estimate here
+		$dbr->estimateRowCount( $table, '*', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
 
