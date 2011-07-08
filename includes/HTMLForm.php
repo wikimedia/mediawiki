@@ -676,7 +676,7 @@ class HTMLForm {
 	 * TODO: Document
 	 * @param $fields
 	 */
-	function displaySection( $fields, $sectionName = '' ) {
+	function displaySection( $fields, $sectionName = '', $displayTitle = false ) {
 		$tableHtml = '';
 		$subsectionHtml = '';
 		$hasLeftColumn = false;
@@ -699,7 +699,11 @@ class HTMLForm {
 				if ( isset( $this->mSectionFooters[$key] ) ) {
 					$section .= $this->mSectionFooters[$key];
 				}
-				$subsectionHtml .= Xml::fieldset( $legend, $section ) . "\n";
+				$attributes = array();
+				if ( $displayTitle ) { 
+					$attributes["title"] = $key; 
+				}
+				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
 			}
 		}
 

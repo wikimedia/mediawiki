@@ -1520,4 +1520,10 @@ class PreferencesForm extends HTMLForm {
 
 		return $data;
 	}
+	/**
+	 * Get the whole body of the form.
+	 */
+	function getBody() {
+		return $this->displaySection( $this->mFieldTree, '', true );
+	}
 }
