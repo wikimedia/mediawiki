@@ -56,7 +56,7 @@ class RequestContext {
 	 * @return WebRequest
 	 */
 	public function getRequest() {
-		if ( !isset($this->request) ) {
+		if ( $this->request === null ) {
 			global $wgRequest; # fallback to $wg till we can improve this
 			$this->request = $wgRequest;
 		}
