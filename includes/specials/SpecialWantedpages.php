@@ -29,6 +29,7 @@
 class WantedPagesPage extends WantedQueryPage {
 	function __construct( $name = 'Wantedpages' ) {
 		parent::__construct( $name );
+		$this->includable( true );
 	}
 
 	function execute( $par ) {
