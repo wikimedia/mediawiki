@@ -1,0 +1,60 @@
+/*
+** Diff rendering
+*/
+table.diff, td.diff-otitle, td.diff-ntitle {
+	background-color: white;
+}
+td.diff-otitle,
+td.diff-ntitle {
+	text-align: center;
+}
+td.diff-marker {
+	text-align: right;
+}
+td.diff-lineno {
+	font-weight: bold;
+}
+td.diff-addedline {
+	background: #cfc;
+	font-size: smaller;
+}
+td.diff-deletedline {
+	background: #ffa;
+	font-size: smaller;
+}
+td.diff-context {
+	background: #eee;
+	font-size: smaller;
+}
+.diffchange {
+	color: red;
+	font-weight: bold;
+	white-space: -moz-pre-wrap;
+	white-space: pre-wrap;
+}
+
+table.diff {
+	border: none;
+	width: 98%;
+	border-spacing: 4px;
+
+	/* Ensure that colums are of equal width */
+	table-layout: fixed;
+}
+table.diff td {
+	padding: 0;
+}
+table.diff col.diff-marker {
+	width: 2%;
+}
+table.diff col.diff-content {
+	width: 48%;
+}
+table.diff td div {
+	/* Force-wrap very long lines such as URLs or page-widening char strings.*/
+	word-wrap: break-word;
+
+	/* As fallback (FF<3.5, Opera <10.5), scrollbars will be added for very wide cells
+	   instead of text overflowing or widening */
+	overflow: auto;
+}

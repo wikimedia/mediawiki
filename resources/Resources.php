@@ -491,6 +491,10 @@ return array(
 		'dependencies' => 'jquery.ui.button',
 		'group' => 'mediawiki.action.history',
 	),
+	'mediawiki.action.history.diff' => array(
+		'styles' => 'resources/mediawiki.action/mediawiki.action.history.diff.css',
+		'group' => 'mediawiki.action.history',
+	),
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
 		'dependencies' => array(
@@ -636,12 +640,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
-	'mediawiki.legacy.diff' => array(
-		'styles' => 'common/diff.css',
-		'group' => 'mediawiki.action.history',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'mediawiki.legacy.edit' => array(
 		'scripts' => 'common/edit.js',
