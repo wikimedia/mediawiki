@@ -1,5 +1,5 @@
 /*
- * jQuery UI Autocomplete 1.8.11
+ * jQuery UI Autocomplete 1.8.14
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -352,8 +352,9 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_suggest: function( items ) {
-		var ul = this.menu.element
-			.empty()
+		var ul = this.menu.element;
+		ul.children().remove();
+		ul.empty()
 			.zIndex( this.element.zIndex() + 1 );
 		this._renderMenu( ul, items );
 		// TODO refresh should check if the active item is still in the dom, removing the need for a manual deactivate
@@ -470,10 +471,10 @@ $.widget("ui.menu", {
 		var self = this;
 
 		// don't refresh list items that are already adapted
-		var items = this.element.children("li:not(.ui-menu-item):has(a)")
-			.addClass("ui-menu-item")
-			.attr("role", "menuitem");
-		
+		 var items = this.element.children("li:not(.ui-menu-item):has(a)")
+		 	.addClass("ui-menu-item")
+		 	.attr("role", "menuitem");
+		// 
 		items.children("a")
 			.addClass("ui-corner-all")
 			.attr("tabindex", -1)
@@ -490,12 +491,12 @@ $.widget("ui.menu", {
 		this.deactivate();
 		if (this.hasScroll()) {
 			var offset = item.offset().top - this.element.offset().top,
-				scroll = this.element.attr("scrollTop"),
+				scroll = this.element.scrollTop(),
 				elementHeight = this.element.height();
 			if (offset < 0) {
-				this.element.attr("scrollTop", scroll + offset);
+				this.element.scrollTop( scroll + offset);
 			} else if (offset >= elementHeight) {
-				this.element.attr("scrollTop", scroll + offset - elementHeight + item.height());
+				this.element.scrollTop( scroll + offset - elementHeight + item.height());
 			}
 		}
 		this.active = item.eq(0)
@@ -601,7 +602,7 @@ $.widget("ui.menu", {
 	},
 
 	hasScroll: function() {
-		return this.element.height() < this.element.attr("scrollHeight");
+		return this.element.height() < this.element[ $.fn.prop ? "prop" : "attr" ]("scrollHeight");
 	},
 
 	select: function( event ) {
