@@ -1126,7 +1126,7 @@ class UploadForm extends HTMLForm {
 
 
 		$wgOut->addModules( array(
-			'mediawiki.legacy.edit', // For <charinsert> support
+			'mediawiki.action.edit', // For <charinsert> support
 			'mediawiki.legacy.upload', // Old form stuff...
 			'mediawiki.special.upload', // Newer extras for thumbnail preview.
 		) );
