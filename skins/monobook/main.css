@@ -1084,7 +1084,6 @@ div#userloginForm .captcha {
 	display: inline;
 	margin-bottom: 0;
 }
-* html div.editsection { font-size: smaller; }
 #pagehistory li.selected { position: relative; }
 
 /* Mac IE 5.0 fix; floated content turns invisible */
