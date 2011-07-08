@@ -2365,7 +2365,7 @@ $templates
 			}
 
 			if ( $wgEnableMWSuggest && !$this->getUser()->getOption( 'disablesuggest', false ) ) {
-				$this->addModules( 'mediawiki.legacy.mwsuggest' );
+				$this->addModules( 'mediawiki.page.mwsuggest' );
 			}
 		}
 

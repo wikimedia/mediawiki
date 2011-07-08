@@ -193,61 +193,25 @@ p.mw-revdel-editreasons {
 /*
  * OpenSearch ajax suggestions
  */
-.os-suggest {
-	overflow: auto;
-	overflow-x: hidden;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 0px;
-	background-color: white;
-	background-color: Window;
-	border-style: solid;
-	border-color: #AAAAAA;
-	border-width: 1px;
-	z-index:99;
-	font-size:95%;
-}
-
-table.os-suggest-results {
+.open-search-suggestions .ui-autocomplete {
 	font-size: 95%;
-	cursor: pointer;
-	border: 0;
-	border-collapse: collapse;
-	width: 100%;
+	border: 1px solid #AAA!important;
+	overflow: auto;
+	height: 100px;
+	background: #FFF;
+	background: Window;
 }
-
-.os-suggest-result, .os-suggest-result-hl {
-	white-space: nowrap;
-	background-color: white;
-	background-color: Window;
-	color: black;
-	color: WindowText;
-	padding: 2px;
-}
-.os-suggest-result-hl,
-.os-suggest-result-hl-webkit {
-	background-color: #4C59A6;
+.open-search-suggestions .ui-autocomplete #ui-active-menuitem {
+	background: #4C59A6;
+	background: Highlight;
 	color: white;
-}
-.os-suggest-result-hl {
-	/* System colors are misimplemented in Safari 3.0 and earlier,
-	   making highlighted text illegible... */
-	background-color: Highlight;
 	color: HighlightText;
+	border-color: #4C59A6;
+	border-color: Highlight;
 }
-
-.os-suggest-toggle {
-	position: relative;
-	left: 1ex;
-	font-size: 65%;
-}
-.os-suggest-toggle-def {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	font-size: 65%;
-	visibility: hidden;
+.open-search-suggestions .ui-autocomplete .ui-menu-item a{
+	line-height: 1.1!important;
+	font-size: 95%;
 }
 
 /* Page history styling */
