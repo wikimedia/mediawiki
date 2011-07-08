@@ -660,7 +660,7 @@ CONTROL;
 	 */
 	function showDiffStyle() {
 		global $wgOut;
-		$wgOut->addModuleStyles( 'mediawiki.legacy.diff' );
+		$wgOut->addModuleStyles( 'mediawiki.action.history.diff' );
 	}
 
 	/**
