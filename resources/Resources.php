@@ -502,9 +502,6 @@ return array(
 			'jquery.byteLimit',
 		),
 	),
-	'mediawiki.action.view.dblClickEdit' => array(
-		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
-	),
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	),
