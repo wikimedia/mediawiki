@@ -494,6 +494,10 @@ class DatabaseOracle extends DatabaseBase {
 			$val = null;
 		}
 
+		if ( $val === 'NULL' ) {
+			$val = null;
+		}
+
 		if ( $val === null ) {
 			if ( $col_info != false && $col_info->isNullable() == 0 && $col_info->defaultValue() != null ) {
 				$bind .= 'DEFAULT';
