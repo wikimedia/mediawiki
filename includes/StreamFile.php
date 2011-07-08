@@ -10,7 +10,9 @@
  * @param $headers array
  */
 function wfStreamFile( $fname, $headers = array() ) {
-	$stat = @stat( $fname );
+	wfSuppressWarnings();
+	$stat = stat( $fname );
+	wfRestoreWarnings();
 	if ( !$stat ) {
 		header( 'HTTP/1.0 404 Not Found' );
 		header( 'Cache-Control: no-cache' );
