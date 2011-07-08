@@ -2992,9 +2992,8 @@ class Language {
 	}
 
 	/**
-	 * Maybe translate block durations.  Note that this function is somewhat misnamed: it
-	 * deals with translating the *duration* ("1 week", "4 days", etc), not the expiry time
-	 * (which is an absolute timestamp).
+	 * This translates the duration ("1 week", "4 days", etc)
+	 * as well as the expiry time (which is an absolute timestamp).
 	 * @param $str String: the validated block duration in English
 	 * @return Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
@@ -3018,8 +3017,8 @@ class Language {
 				}
 			}
 		}
-		// If all else fails, return the original string.
-		return $str;
+		// If no duration is given, but a timestamp, display that
+		return $this->timeanddate( $str );
 	}
 
 	/**

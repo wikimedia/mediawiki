@@ -148,6 +148,7 @@ production.
 * (bug 27410) The tag filter on a history page is now within a <label> element
 * (bug 29779) DairikiDiff/WikiDiff <ins> and <del> should undo browser default
   styling (strike/underline).
+* Translate the block expiry date
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
