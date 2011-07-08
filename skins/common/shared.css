@@ -95,6 +95,15 @@ h2#filehistory {
 	clear: both;
 }
 
+/*
+* Add a checkered background image on hover for file description pages. Bug 26470
+*/
+.filehistory a img:hover,
+#file img:hover {
+    /* @embed */
+    background: white url(images/Checker-16x16.png) repeat;
+}
+
 table.filehistory th,
 table.filehistory td {
 	vertical-align: top;
