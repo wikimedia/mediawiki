@@ -535,6 +535,7 @@ return array(
 	),
 	'mediawiki.special.search' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
+		'styles'  => 'resources/mediawiki.special/mediawiki.special.search.css',
 	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
@@ -668,13 +669,6 @@ return array(
 			'mediawiki.legacy.wikibits',
 			'jquery.byteLimit',
 		),
-	),
-	'mediawiki.legacy.search' => array(
-		'scripts' => 'common/search.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'styles' => 'common/search.css',
-		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.shared' => array(
 		'styles' => array( 'common/shared.css' => array( 'media' => 'screen' ) ),

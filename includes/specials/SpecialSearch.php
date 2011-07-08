@@ -407,7 +407,6 @@ class SpecialSearch extends SpecialPage {
 			$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'searchresults-title', $term ) ) );
 		}
 		// add javascript specific to special:search
-		$wgOut->addModules( 'mediawiki.legacy.search' );
 		$wgOut->addModules( 'mediawiki.special.search' );
 	}
 
