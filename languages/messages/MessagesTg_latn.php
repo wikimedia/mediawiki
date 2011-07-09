@@ -1006,10 +1006,6 @@ Agar parvandai barrasişuda aksi xurd karda şudai on parvandai aslī ast, nijoz
 'destfilename'               => 'Nomi parvandai maqsad:',
 'upload-maxfilesize'         => 'Buzurgtarin andozai parvanda: $1',
 'filewasdeleted'             => 'Parvandae bo hamin nom peştar borguzorī va pas az on pok şudaast. Peş az borguzorī ba $1 nigared.',
-'upload-wasdeleted'          => "'''Huşdor: Şumo dar holi borguzoriji parvandae hasted, ki peş az in hazf şudaast.'''
-
-Şumo bojad biandeşed, ki ojo davom dodani borguzoriji in parvanda munosib ast jo na.
-Guzorişi hazfi marbut ba in parvanda dar zer ovarda şudaast:",
 'filename-bad-prefix'        => "Nomi parvandae, ki şumo borguzori kardanied bo '''\"\$1\"''' oƣoz meşavad, ki jak peşvandi maxsusi akshoi sabtşuda tavassuti aksbardorakhoi raqamī ast. Lutfan nomi behtari tavsifotī baroi parvanda intixob kuned.",
 'upload-success-subj'        => 'Firistodan bomuvaffaqijat',
 

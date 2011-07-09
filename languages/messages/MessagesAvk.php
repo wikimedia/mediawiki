@@ -1080,10 +1080,6 @@ Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel. [[Fi
 'destfilename'                => 'Warzaf iyeltakyolt:',
 'upload-maxfilesize'          => 'Cugafo iyeltakaldo : $1',
 'watchthisupload'             => 'Suzdara va batu bu',
-'upload-wasdeleted'           => "'''Obral: Rin va sulayan iyeltak djukalvajal.'''
-
-Gokrafial ede tolkalvajara va bat iyeltak tir vodanhafa.
-Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'upload-success-subj'         => 'Ksudanhara',
 
 'upload-proto-error'     => 'Kitsendaj',

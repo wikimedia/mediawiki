@@ -1429,10 +1429,6 @@ keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[File:$1|t
 'watchthisupload'             => 'Bul betti baqılaw',
 'filewasdeleted'              => 'Bul atawı bar faýl burın qotarıp berilgen de beri kele joýılğan.
 Bunı qaýta qotarıp berw aldınan $1 degendi tekserip şığıñız.',
-'upload-wasdeleted'           => "'''Qulaqtandırw: Aldında joýılğan faýldı qotarıp bermeksiz.'''
-
-Bul faýldı qotarıp berwin jalğastırw üşin bunıñ ıñğaýlığın tekserip şığwıñız jön.
-Qolaýlı bolwı üşin bul faýldıñ joyw jwrnalı keltirilgen:",
 'filename-bad-prefix'         => "Qotarıp bermek faýlıñızdıñ atawı '''«$1» ''' dep bastaladı, mınadaý sïpattawsız atawdı ädette sandıq kameralar özdiktik beredi.
 Faýlıñızğa sïpattılaw atawdı tañdañız.",
 'upload-success-subj'         => 'Sätti qotarıp berildi',

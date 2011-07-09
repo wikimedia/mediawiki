@@ -438,7 +438,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'vector-action-move'             => 'Teisalda',
 'vector-action-protect'          => 'Kaitse',
 'vector-action-undelete'         => 'Taasta',
-'vector-action-unprotect'        => 'Tühista kaitse',
+'vector-action-unprotect'        => 'Muuda kaitset',
 'vector-simplesearch-preference' => 'Luba täiustatud otsinguvihjed (ainult Vektori-kujunduses)',
 'vector-view-create'             => 'Loo',
 'vector-view-edit'               => 'Redigeeri',
@@ -475,8 +475,8 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'protect'           => 'Kaitse',
 'protect_change'    => 'muuda',
 'protectthispage'   => 'Kaitse seda lehekülge',
-'unprotect'         => 'Ära kaitse',
-'unprotectthispage' => 'Ära kaitse seda lehekülge',
+'unprotect'         => 'Muuda kaitset',
+'unprotectthispage' => 'Muuda selle lehekülje kaitset',
 'newpage'           => 'Uus lehekülg',
 'talkpage'          => 'Selle artikli arutelu',
 'talkpagelinktext'  => 'arutelu',
@@ -890,7 +890,11 @@ Palun mõtle järele, kas soovid seda lehte luua või muuta.',
 'userpage-userdoesnotexist-view'   => 'Kasutajakonto "$1" pole registreeritud.',
 'blocked-notice-logextract'        => 'See kasutaja on praegu blokeeritud.
 Allpool on toodud viimane blokeerimislogi sissekanne:',
-'clearyourcache'                   => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
+'clearyourcache'                   => "'''Märkus: Võimalik, et pärast salvestamist tuleb muudatuste nägemiseks veebilehitseja puhver tühjendada.'''
+'''Mozilla / Firefox / Safari:''' Hoia all ''Shift''-klahvi ja klõpsa ''Laadi uuesti'' või vajuta kas ''Ctrl-F5'' või ''Ctrl-R'' (Macis ''Command-R'').
+'''Konqueror:''' Klõpsa ''Reload'' või vajuta ''F5'';
+'''Opera:''' Tühjenda puhver asukohas ''Seaded → Eelistused'';
+'''Internet Explorer:''' Hoia all ''Ctrl''-klahvi ja klõpsa ''Värskenda'' või vajuta ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Vihje:''' Enne salvestamist kasuta oma uue CSSi proovimiseks nuppu \"{{int:showpreview}}\".",
 'userjsyoucanpreview'              => "'''Vihje:''' Enne salvestamist kasuta oma uue JavaScripti proovimiseks nuppu \"{{int:showpreview}}\".",
 'usercsspreview'                   => "'''Ära unusta, et seda versiooni sinu isiklikust stiililehest pole veel salvestatud!'''",
@@ -1690,10 +1694,6 @@ Palun vaata <code>file_uploads</code> sätet.',
 'watchthisupload'             => 'Jälgi seda lehekülge',
 'filewasdeleted'              => 'Selle nimega fail on lisatud ja kustutatud hiljuti.
 Kontrolli $1 enne jätkamist.',
-'upload-wasdeleted'           => "'''Hoiatus: Sa laadid üles faili, mis on eelnevalt kustutatud.'''
-
-Peaksid kaaluma, kas selle faili üleslaadimise jätkamine on sobilik.
-Selle faili kustutamislogi on toodud siinsamas:",
 'filename-bad-prefix'         => "Üleslaaditava faili nimi algab eesliitega '''\"\$1\"''', mis on omane digikaamera antud ebamäärastele nimedele.
 Palun vali oma failile kirjeldavam nimi.",
 'upload-success-subj'         => 'Üleslaadimine õnnestus',
@@ -2248,7 +2248,7 @@ Mine tagasi eelmisele leheküljele ja taaslaadi see, seejärel proovi uuesti.',
 
 # Protect
 'protectlogpage'              => 'Kaitsmislogi',
-'protectlogtext'              => 'Allpool on loetletud lehekülgede kaitsmised ja kaitsete eemaldamised. Praegu kaitstud lehekülgi vaata [[Special:ProtectedPages|kaitstud lehtede loetelust]].',
+'protectlogtext'              => 'Allpool on loetletud lehekülgede kaitsetasemete muutmised. Praegu kaitstud lehekülgi vaata [[Special:ProtectedPages|kaitstud lehtede loetelust]].',
 'protectedarticle'            => 'kaitses lehekülje "[[$1]]"',
 'modifiedarticleprotection'   => 'muutis lehekülje "[[$1]]" kaitsemäära',
 'unprotectedarticle'          => 'eemaldas lehekülje "[[$1]]" kaitse',
@@ -2315,9 +2315,8 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'viewdeletedpage'              => 'Kustutatud lehekülgede vaatamine',
 'undeletepagetext'             => '{{PLURAL:$1|Järgnev lehekülg on kustutatud|Järgnevad leheküljed on kustutatud}}, kuid arhiivis veel olemas ja taastatavad. Arhiivi sisu kustutatakse perioodiliselt.',
 'undelete-fieldset-title'      => 'Redaktsioonide taastamine',
-'undeleteextrahelp'            => "Kogu lehe ja selle ajaloo taastamiseks jätke kõik linnukesed tühjaks ja vajutage '''''Taasta'''''.
-Et taastada valikuliselt, tehke linnukesed kastidesse, mida soovite taastada ja vajutage '''''Taasta'''''.
-Nupu '''''Tühjenda''''' vajutamine tühjendab põhjusevälja ja eemaldab kõik linnukesed.",
+'undeleteextrahelp'            => "Kogu lehe ja selle ajaloo taastamiseks jäta kõik linnukesed tühjaks ja vajuta '''''{{int:undeletebtn}}'''''.
+Et taastada valikuliselt, tee linnukesed kastidesse, mida soovid taastada ja vajuta '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 arhiivitud {{PLURAL:$1|redaktsioon|redaktsiooni}}',
 'undeletehistory'              => 'Kui taastate lehekülje, taastuvad kõik versioonid artikli ajaloona.
 Kui vahepeal on loodud uus samanimeline lehekülg, ilmuvad taastatud versioonid varasema ajaloona.',
@@ -2404,7 +2403,7 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'nolinkshere-ns'           => 'Leheküljele <strong>[[:$1]]</strong> ei ole valitud nimeruumis linke.',
 'isredirect'               => 'ümbersuunamislehekülg',
 'istemplate'               => 'kasutamine mallina',
-'isimage'                  => 'link pildile',
+'isimage'                  => 'faililink',
 'whatlinkshere-prev'       => '{{PLURAL:$1|eelmine|eelmised $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|järgmine|järgmised $1}}',
 'whatlinkshere-links'      => '← lingid',
@@ -2437,7 +2436,7 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'ipbcreateaccount'                => 'Takista konto loomist',
 'ipbemailban'                     => 'Takista kasutajal e-kirjade saatmine',
 'ipbenableautoblock'              => 'Blokeeri automaatselt viimane IP-aadress, mida see kasutaja kasutas, ja ka järgnevad, mille alt ta võib proovida kaastööd teha',
-'ipbsubmit'                       => 'Blokeeri see aadress',
+'ipbsubmit'                       => 'Blokeeri see kasutaja',
 'ipbother'                        => 'Muu tähtaeg:',
 'ipboptions'                      => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite',
 'ipbotheroption'                  => 'muu tähtaeg',
@@ -2764,7 +2763,7 @@ Palun ürita uuesti.',
 Saad vaadata selle lähteteksti.',
 'tooltip-ca-history'              => 'Selle lehekülje varasemad versioonid.',
 'tooltip-ca-protect'              => 'Kaitse seda lehekülge',
-'tooltip-ca-unprotect'            => 'Eemalda lehekülje kaitse',
+'tooltip-ca-unprotect'            => 'Muuda selle lehekülje kaitset',
 'tooltip-ca-delete'               => 'Kustuta see lehekülg',
 'tooltip-ca-undelete'             => 'Taasta enne lehekülje kustutamist tehtud muudatused',
 'tooltip-ca-move'                 => 'Teisalda see lehekülg teise nime alla.',

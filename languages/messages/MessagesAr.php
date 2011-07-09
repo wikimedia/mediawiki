@@ -606,7 +606,7 @@ $messages = array(
 'vector-action-move'             => 'انقل',
 'vector-action-protect'          => 'احم',
 'vector-action-undelete'         => 'استرجع الحذف',
-'vector-action-unprotect'        => 'أزل الحماية',
+'vector-action-unprotect'        => 'تغيير الحماية',
 'vector-simplesearch-preference' => 'مكّن مقترحات البحث المُحسّنة (لواجهة فكتور فقط)',
 'vector-view-create'             => 'أنشئ',
 'vector-view-edit'               => 'عدل',
@@ -643,8 +643,8 @@ $messages = array(
 'protect'           => 'احم',
 'protect_change'    => 'غير',
 'protectthispage'   => 'احم هذه الصفحة',
-'unprotect'         => 'أزل الحماية',
-'unprotectthispage' => 'أزل حماية هذه الصفحة',
+'unprotect'         => 'تغيير الحماية',
+'unprotectthispage' => 'غير حماية هذه الصفحة',
 'newpage'           => 'صفحة جديدة',
 'talkpage'          => 'ناقش هذه الصفحة',
 'talkpagelinktext'  => 'نقاش',
@@ -832,6 +832,8 @@ $1',
 'cascadeprotected'     => 'تمت حماية هذه الصفحة من التعديل لأنها مدمجة في {{PLURAL:$1||الصفحة التالية، والتي|الصفحتين التاليتين، واللتين|الصفحات التالية، والتي}} تم استعمال خاصية "حماية الصفحات المدمجة" {{PLURAL:$1||بها|بهما|بها}}:
 $2',
 'namespaceprotected'   => "لا تمتلك الصلاحية لتعديل الصفحات في نطاق '''$1'''.",
+'customcssprotected'   => 'أنت لا تمتلك السماح لتعديل صفحة الCSS هذه، لأنها تحتوي على الإعدادات الشخصية لمستخدم آخر.',
+'customjsprotected'    => 'أنت لا تمتلك السماح لتعديل صفحة الجافاسكريبت هذه، لأنها تحتوي على الإعدادات الشخصية لمستخدم آخر.',
 'ns-specialprotected'  => 'الصفحات الخاصة لا يمكن تعديلها.',
 'titleprotected'       => "{{GENDER:$1|حمى|حمت}} [[User:$1|$1]] هذا العنوان من الإنشاء.
 السبب المعطى هو ''$2''.",
@@ -1095,7 +1097,12 @@ $2
 'userpage-userdoesnotexist-view'   => 'حساب المستخدم "$1" غير مسجل.',
 'blocked-notice-logextract'        => 'هذا المستخدم ممنوع حاليا.
 آخر مدخلة في سجل المنع موفرة بالأسفل كمرجع:',
-'clearyourcache'                   => "'''ملاحظة - بعد الحفظ, ربما ينبغي عليك إفراغ كاش متصفحك لرؤية التغييرات.''' '''موزيللا / فايرفوكس / سافاري:''' اضغط ''Shift'' أثناء ضغط ''Reload,'' أو اضغط أيا من ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''اضغط ''Reload'' أو اضغط ''F5;'' '''أوبرا:''' أفرغ الكاش في ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' اضغط ''Ctrl'' أثناء ضغط ''Refresh,'' أو اضغط ''Ctrl-F5.''",
+'clearyourcache'                   => "'''ملاحظة:''' بعد الحفظ, أنت ربما تحتاج إلى إفراغ كاش متصفحك لرؤية التغييرات.
+* '''فيرفكس / سفاري:''' اضغط ''Shift'' أثناء ضغط ''Reload'', أو اضغط أيا من ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش)
+* '''جوجل كروم:''' اضغط ''Ctrl-Shift-R'' (''Command-Shift-R'' على ماكنتوش)
+* '''إنترنت إكسبلورر:''' اضغط ''Ctrl'' أثناء ضغط ''Refresh''، أو اضغط ''Ctrl-F5''
+* '''كنكرر:''' اضغط ''Reload'' أو اضغط ''F5''
+* '''أوبرا:''' أفرغ الكاش في ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''ملاحظة:''' استعمل زر \"{{int:showpreview}}\" لتجربة CSS الجديد قبل حفظ الصفحة.",
 'userjsyoucanpreview'              => "'''ملاحظة:''' استعمل زر \"{{int:showpreview}}\" لتجربة جافاسكربت الجديدة قبل حفظ الصفحة.",
 'usercsspreview'                   => "'''تذكر أنك تقوم بعرض الأنماط المتراصة (CSS) الخاصة بك فقط
@@ -1479,12 +1486,13 @@ $1",
 لاحظ أن فهارسه لمحتوى {{SITENAME}} ربما تكون غير محدثة.',
 
 # Quickbar
-'qbsettings'               => 'لوح سريع',
-'qbsettings-none'          => 'بلا تحديد',
-'qbsettings-fixedleft'     => 'مثبت لليسار',
-'qbsettings-fixedright'    => 'مثبت لليمين',
-'qbsettings-floatingleft'  => 'حر لليسار',
-'qbsettings-floatingright' => 'حر لليمين',
+'qbsettings'                => 'لوح سريع',
+'qbsettings-none'           => 'بلا تحديد',
+'qbsettings-fixedleft'      => 'مثبت لليسار',
+'qbsettings-fixedright'     => 'مثبت لليمين',
+'qbsettings-floatingleft'   => 'حر لليسار',
+'qbsettings-floatingright'  => 'حر لليمين',
+'qbsettings-directionality' => 'ثابت، بالاعتماد على اتجاه لغتك',
 
 # Preferences page
 'preferences'                   => 'تفضيلات',
@@ -1712,10 +1720,11 @@ $1",
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
 
 # User rights log
-'rightslog'      => 'سجل صلاحيات المستخدمين',
-'rightslogtext'  => 'هذا سجل بالتغييرات في صلاحيات المستخدمين.',
-'rightslogentry' => 'غير صلاحيات $1 من $2 إلى $3',
-'rightsnone'     => '(لا شيء)',
+'rightslog'                  => 'سجل صلاحيات المستخدمين',
+'rightslogtext'              => 'هذا سجل بالتغييرات في صلاحيات المستخدمين.',
+'rightslogentry'             => 'غير صلاحيات $1 من $2 إلى $3',
+'rightslogentry-autopromote' => 'تمت ترقيته تلقائيا من $2 إلى $3',
+'rightsnone'                 => '(لا شيء)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'قراءة هذه الصفحة',
@@ -1911,10 +1920,6 @@ $1",
 'watchthisupload'             => 'راقب هذا الملف',
 'filewasdeleted'              => 'تم رفع ثم حذف ملف بهذا الاسم من قبل.
 من الأفضل مراجعة $1 قبل رفعه مرة أخرى.',
-'upload-wasdeleted'           => "'''تحذير: أنت تقوم برفع ملف تم حذفه في السابق.'''
-
-يجب عليك التيقن من أن الاستمرار برفع هذا الملف ملائم.
-سجل الحذف لهذا الملف معروض هنا للتيسير:",
 'filename-bad-prefix'         => "اسم الملف الذي ترفعه يبدأ ب'''\"\$1\"'''، وهو اسم غير وصفي عادة يوضع تلقائيا من الكاميرات الرقمية.
 من فضلك اختر اسما أكثر وصفا لملفك.",
 'filename-prefix-blacklist'   => ' #<!-- اترك هذا السطر تماما كما هو --> <pre>
@@ -2509,11 +2514,11 @@ $ أونواتشورل
 
 # Protect
 'protectlogpage'              => 'سجل الحماية',
-'protectlogtext'              => 'بالأسفل قائمة بالصفحات التي تمت حمايتها أو إزالة الحماية عنها.
+'protectlogtext'              => 'بالأسفل قائمة بالتغييرات في حماية الصفحات.
 انظر [[Special:ProtectedPages|قائمة الصفحات المحمية]] لقائمة بعمليات حماية الصفحات المفعلة حاليا.',
 'protectedarticle'            => 'حمى "[[$1]]"',
 'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
-'unprotectedarticle'          => 'أزال حماية [[$1]]',
+'unprotectedarticle'          => 'أزال الحماية من "[[$1]]"',
 'movedarticleprotection'      => 'نقل إعدادات الحماية من "[[$2]]" إلى "[[$1]]"',
 'protect-title'               => 'ضبط مستوى الحماية ل"$1"',
 'prot_1movedto2'              => '[[$1]] تم نقلها إلى [[$2]]',
@@ -2625,10 +2630,12 @@ $1',
 'undelete-show-file-submit'    => 'نعم',
 
 # Namespace form on various pages
-'namespace'             => 'النطاق:',
-'invert'                => 'اعكس الاختيار',
-'namespace_association' => 'النطاق المقترن',
-'blanknamespace'        => '(رئيسي)',
+'namespace'                     => 'النطاق:',
+'invert'                        => 'اعكس الاختيار',
+'tooltip-invert'                => 'علم على هذا الصندوق لإخفاء التغييرات للصفحات في النطاق المختار (والنطاق المصاحب لو معلم عليها)',
+'namespace_association'         => 'النطاق المقترن',
+'tooltip-namespace_association' => 'علم على هذا الصندوق لتضمين نطاق النقاش أو الموضوع لالمصاحب للنطاق المختار',
+'blanknamespace'                => '(رئيسي)',
 
 # Contributions
 'contributions'       => 'مساهمات المستخدم',
@@ -2668,7 +2675,7 @@ $1',
 'nolinkshere-ns'           => "لا تصل أي صفحة إلى '''[[:$1]]''' في النطاق المختار.",
 'isredirect'               => 'صفحة تحويل',
 'istemplate'               => 'مضمن',
-'isimage'                  => 'وصلة صورة',
+'isimage'                  => 'وصلة ملف',
 'whatlinkshere-prev'       => '{{PLURAL:$1|السابق|ال$1 السابقة}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|القادمة|ال$1 القادمة}}',
 'whatlinkshere-links'      => '← وصلات',
@@ -3045,7 +3052,7 @@ $1',
 يمكنك رؤية مصدرها.',
 'tooltip-ca-history'              => 'النسخ السابقة لهذه الصفحة',
 'tooltip-ca-protect'              => 'احم هذه الصفحة',
-'tooltip-ca-unprotect'            => 'أزل حماية هذه الصفحة',
+'tooltip-ca-unprotect'            => 'غير حماية هذه الصفحة',
 'tooltip-ca-delete'               => 'احذف هذه الصفحة',
 'tooltip-ca-undelete'             => 'استرجع التعديلات التي تمت على هذه الصفحة قبل حذفها',
 'tooltip-ca-move'                 => 'انقل هذه الصفحة',
@@ -3155,8 +3162,17 @@ $1',
 'spam_blanking'       => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
 
 # Info page
-'pageinfo-header-edits' => 'التعديلات',
-'pageinfo-subjectpage'  => 'الصفحة',
+'pageinfo-title'            => 'المعلومات ل"$1"',
+'pageinfo-header-edits'     => 'التعديلات',
+'pageinfo-header-watchlist' => 'قائمة المراقبة',
+'pageinfo-header-views'     => 'مشاهدات',
+'pageinfo-subjectpage'      => 'الصفحة',
+'pageinfo-talkpage'         => 'صفحة نقاش',
+'pageinfo-watchers'         => 'عدد المراقبين',
+'pageinfo-edits'            => 'عدد التعديلات',
+'pageinfo-authors'          => 'عدد المؤلفين المختلفين',
+'pageinfo-views'            => 'عدد المشاهدات',
+'pageinfo-viewsperedit'     => 'المشاهدات لكل تعديل',
 
 # Skin names
 'skinname-standard'    => 'كلاسيك',

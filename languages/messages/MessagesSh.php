@@ -828,7 +828,7 @@ Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Posljednje stavke evidencije blokiranja možete pogledati ispod:',
 'clearyourcache'                   => "'''Pažnja: Nakon što snimite izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
-'''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macintoshu);
+'''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macu);
 '''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
 '''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences'';
 '''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''.",
@@ -1639,10 +1639,6 @@ Postavljanje Java datoteka nije dopušteno, jer one mogu prouzrokovati zaobilaž
 'watchthisupload'             => 'Prati ovu datoteku',
 'filewasdeleted'              => 'Datoteka s ovim nazivom je ranije postavljana i nakon toga obrisana.
 Prije nego što nastavite da je ponovno postavite trebate provjeriti $1.',
-'upload-wasdeleted'           => "''Upozorenje: Postavljate datoteku koja je ranije obrisana.'''
-
-Potrebno je da razmotrite da li je u redu nastaviti sa postavljanjem ove datoteke.
-Registar brisanja za ovu datoteku je prikazan ovdje kao referenca:",
 'filename-bad-prefix'         => "Naziv datoteke koju postavljate počinje sa '''\"\$1\"''', što je naziv koji obično automatski dodjeljuju digitalni fotoaparati i kamere.
 Molimo Vas da odaberete naziv datoteke koji opisuje njen sadržaj.",
 'upload-success-subj'         => 'Uspješno slanje',

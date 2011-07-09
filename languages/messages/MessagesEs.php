@@ -957,7 +957,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 La última entrada del registro de bloqueos se proporciona debajo para mayor referencia:',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debes vaciar la caché del navegador para ver los cambios:
 
-*'''Mozilla / Firefox / Safari:''' pulsa ''Mayús.'' mientras haces clic en el botón ''Recargar'', o pulsa ''Ctrl+F5'' o ''Ctrl+R'' (''Comando+R'' en un Macintosh)
+*'''Mozilla / Firefox / Safari:''' pulsa ''Mayús.'' mientras haces clic en el botón ''Recargar'', o pulsa ''Ctrl+F5'' o ''Ctrl+R'' (''Comando+R'' en un Mac)
 *'''Konqueror: '''Haz clic en el botón ''Recargar'' o pulsa ''F5;''
 *'''Opera:''' Limpia la caché en ''Herramientas → Preferencias;''
 *'''Internet Explorer:''' pulsa ''Ctrl'' mientras haces clic en ''Actualizar,'' o pulsa ''Ctrl+F5.''",
@@ -1755,10 +1755,6 @@ No se permite subir archivos Java, porque pueden causar que se puedan saltar res
 'upload-options'              => 'Opciones de carga',
 'watchthisupload'             => 'Vigilar este archivo',
 'filewasdeleted'              => 'Un archivo con este nombre se subió con anterioridad y posteriormente ha sido borrado. Deberías revisar el $1 antes de subirlo de nuevo.',
-'upload-wasdeleted'           => "'''Atención: Estás subiendo un archivo que ha sido borrado previamente.'''
-
-Deberías considerar si resulta apropiado continuar cargándolo.
-A continuación se muestra el registro de borrado de este archivo:",
 'filename-bad-prefix'         => "El nombre del archivo que estás subiendo comienza por '''«$1»''', un nombre nada descriptivo de su contenido. Es un típico nombre de los que asignan automáticamente las cámaras digitales.
 
 Por favor, elige un nombre más descriptivo.",

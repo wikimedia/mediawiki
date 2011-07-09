@@ -648,7 +648,7 @@ Controllescha sch ti vuls propi crear/modiftgar questa pagina.',
 'blocked-notice-logextract'        => "Quai utilisader è bloccà actualmain. 
 L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
 'clearyourcache'                   => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.
-'''Mozilla / Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Macintosh);
+'''Mozilla / Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Mac);
 '''Konqueror: '''clicca ''Reload'' u smatga ''F5'';
 '''Opera:''' stizzar il cache sut ''Tools → Preferences'';
 '''Internet Explorer:''' tegna ''Ctrl'' durant cliccar ''Refresh,'' u smatga ''Ctrl-F5''.",

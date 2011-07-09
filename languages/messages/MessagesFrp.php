@@ -1348,12 +1348,13 @@ En atendent la rèactivacion, vos pouede fâre una rechèrche per Google.
 Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 
 # Quickbar
-'qbsettings'               => 'Bârra d’outils',
-'qbsettings-none'          => 'Niona',
-'qbsettings-fixedleft'     => 'Gôche',
-'qbsettings-fixedright'    => 'Drêta',
-'qbsettings-floatingleft'  => 'Fllotenta a gôche',
-'qbsettings-floatingright' => 'Fllotenta a drêta',
+'qbsettings'                => 'Bârra d’outils',
+'qbsettings-none'           => 'Niona',
+'qbsettings-fixedleft'      => 'Gôche',
+'qbsettings-fixedright'     => 'Drêta',
+'qbsettings-floatingleft'   => 'Fllotenta a gôche',
+'qbsettings-floatingright'  => 'Fllotenta a drêta',
+'qbsettings-directionality' => 'Fixa, d’aprés la dirèccionalitât de voutra lengoua',
 
 # Preferences page
 'preferences'                   => 'Prèferences',
@@ -1582,10 +1583,11 @@ Ceta enformacion serat publica.',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
 
 # User rights log
-'rightslog'      => 'Jornal des changements de statut d’utilisator',
-'rightslogtext'  => 'Vê-que lo jornal des changements de statut d’utilisator.',
-'rightslogentry' => 'at changiê los drêts a l’utilisator « $1 » de $2 a $3',
-'rightsnone'     => '(nion)',
+'rightslog'                  => 'Jornal des changements de statut d’utilisator',
+'rightslogtext'              => 'Vê-que lo jornal des changements de statut d’utilisator.',
+'rightslogentry'             => 'at changiê los drêts a l’utilisator « $1 » de $2 a $3',
+'rightslogentry-autopromote' => 'at étâ nomâ ôtomaticament de $2 a $3',
+'rightsnone'                 => '(nion)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'liére cela pâge',
@@ -1787,10 +1789,6 @@ Lo tèlèchargement de fichiérs Java est pas ôtorisâ, perce que pôvont entr�
 'watchthisupload'             => 'Siuvre ceti fichiér',
 'filewasdeleted'              => 'Un fichiér avouéc cél nom at ja étâ tèlèchargiê, et pués suprimâ.
 Vos devriâd controlar lo $1 devant que lo tornar tèlèchargiér.',
-'upload-wasdeleted'           => "'''Atencion : vos éte aprés tèlèchargiér un fichiér qu’at étâ suprimâ dês devant.'''
-
-Demandâd-vos se fôt franc continuar son tèlèchargement.
-Lo jornal de les suprèssions de cél fichiér est montrâ ce-desot :",
 'filename-bad-prefix'         => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est tipicament un nom balyê ôtomaticament per los aparèlys-fotô numericos.
 Volyéd chouèsir un nom de fichiér dèscriptif.",
 'filename-prefix-blacklist'   => '  #<!-- lèssiéd ceta legne justo d’ense --> <pre>
@@ -2504,10 +2502,12 @@ $1',
 'undelete-show-file-submit'    => 'Ouè',
 
 # Namespace form on various pages
-'namespace'             => 'Èspâço de noms :',
-'invert'                => 'Envèrsar lo chouèx',
-'namespace_association' => 'Èspâço de noms associyê',
-'blanknamespace'        => '(Principâl)',
+'namespace'                     => 'Èspâço de noms :',
+'invert'                        => 'Envèrsar lo chouèx',
+'tooltip-invert'                => 'Pouentâd ceta câsa por cachiér los changements de les pâges dens l’èspâço de noms chouèsi (et l’èspâço de noms associyê avouéc se pouentâ)',
+'namespace_association'         => 'Èspâço de noms associyê',
+'tooltip-namespace_association' => 'Pouentâd ceta câsa por encllure avouéc l’èspâço de noms de discussion associyê a l’èspâço de noms chouèsi',
+'blanknamespace'                => '(Principâl)',
 
 # Contributions
 'contributions'       => 'Contribucions a l’utilisator',

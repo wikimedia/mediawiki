@@ -821,10 +821,11 @@ atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}
 'blocked-notice-logextract'        => 'Pengguna ini sedang disekat.
 Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
-'''Mozilla/Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R'' (''Command+R'' dalam komputer Macintosh).
-'''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''.
-'''Opera:''' bersihkan cache melalui menu ''Tools → Preferences''.
-'''Internet Explorer:''' tahan ''Ctrl'' ketika mengklik ''Refresh'' atau tekan ''Ctrl+F5''.",
+*'''Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R''
+*'''Google Chrome:''' tekan ''Ctrl+Shift+R''  (''Command+Shift+R'' dalam komputer Mac)
+*'''Internet Explorer:''' tahan ''Ctrl'' ketika mengklik ''Refresh'' atau tekan ''Ctrl+F5''
+*'''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''
+*'''Opera:''' bersihkan cache melalui menu ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji CSS baru anda sebelum menyimpan.",
 'userjsyoucanpreview'              => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji JavaScript baru anda sebelum menyimpan.",
 'usercsspreview'                   => "'''Ingat bahawa anda hanya sedang melihat pratonton CSS peribadi anda. Laman ini belum lagi disimpan!'''",
@@ -1611,10 +1612,6 @@ Memuat naik fail Java tidak dibenarkan, kerana boleh menyebabkan sekatan keselam
 'upload-options'              => 'Pilihan muat naik',
 'watchthisupload'             => 'Pantau fail ini',
 'filewasdeleted'              => 'Sebuah fail dengan nama ini pernah dimuat naik, tetapi kemudiannya dihapuskan. Anda seharusnya menyemak $1 sebelum meneruskan percubaan untuk memuat naik fail ini.',
-'upload-wasdeleted'           => "'''Amaran: Anda sedang memuat naik sebuah fail yang pernah dihapuskan.'''
-
-Anda harus mempertimbangkan perlunya memuat naik fail ini.
-Untuk rujukan, yang berikut ialah log penghapusan bagi fail ini:",
 'filename-bad-prefix'         => "Nama bagi fail yang dimuat naik bermula dengan '''\"\$1\"''', yang mana merupakan nama yang tidak deskriptif yang biasanya ditetapkan oleh kamera digital secara automatik. Sila berikan nama yang lebih deskriptif bagi fail tersebut.",
 'upload-success-subj'         => 'Muat naik berjaya',
 'upload-success-msg'          => 'Muat naik anda dari [$2] berjaya. Ia ada di sini: [[:{{ns:file}}:$1]]',

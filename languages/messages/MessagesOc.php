@@ -1654,9 +1654,6 @@ S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom
 'upload-options'              => 'Opcions de telecargament',
 'watchthisupload'             => 'Seguir aqueste fichièr',
 'filewasdeleted'              => 'Un fichièr amb aqueste nom ja es estat copiat, puèi suprimit. Vos caldriá verificar lo $1 abans de procedir a una còpia novèla.',
-'upload-wasdeleted'           => "'''Atencion : Sètz a importar un fichièr que ja es estat suprimit deperabans.'''
-
-Deuriatz considerar se es oportun de contunhar l'impòrt d'aqueste fichièr. Lo jornal de las supressions vos donarà los elements d'informacion.",
 'filename-bad-prefix'         => "Lo nom del fichièr qu'importatz comença per '''\"\$1\"''' qu'es un nom generalament donat pels aparelhs de fòto numerica e que decritz pas lo fichièr. Causissetz un nom de fichièr descrivent vòstre fichièr.",
 'filename-prefix-blacklist'   => ' #<!-- daissatz aquesta linha coma es --> <pre>
 # La sintaxi es la seguenta :

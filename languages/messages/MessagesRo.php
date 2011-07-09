@@ -928,7 +928,7 @@ Asigurați-vă că doriți să creați/modificați această pagină.',
 'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
 Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referință:',
 'clearyourcache'                   => "'''Notă: După salvare, trebuie să treceți peste memoria cache a navigatorului pentru a vedea modificările.'''
-'''Mozilla / Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''Command-R'' pe un sistem Macintosh);
+'''Mozilla / Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''Command-R'' pe un sistem Mac);
 '''Konqueror:''' faceți clic pe ''Reîncărcare'' sau apăsați ''F5'';
 '''Opera:''' curățați memoria cache din ''Unelte → Preferințe'';
 '''Internet Explorer:''' țineți apăsat pe ''Ctrl'' în timp ce faceți clic pe ''Reîmprospătare'' sau apăsați ''Ctrl-F5''.",
@@ -1589,7 +1589,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'recentchanges-label-newpage'       => 'Această modificare a creat o pagină nouă',
 'recentchanges-label-minor'         => 'Aceasta este o modificare minoră',
 'recentchanges-label-bot'           => 'Această modificare a fost efectuată de un robot',
-'recentchanges-label-unpatrolled'   => 'Această modificare nu a fost patrulată încă',
+'recentchanges-label-unpatrolled'   => 'Această modificare nu a fost încă verificată',
 'rcnote'                            => "Mai jos se află {{PLURAL:$|ultima modificare|ultimele '''$1''' modificări}} din {{PLURAL:$2|ultima zi|ultimele '''$2''' zile}}, începând cu $5, $4.",
 'rcnotefrom'                        => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afișate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom'                        => 'Arată modificările începând cu $1',
@@ -1736,10 +1736,6 @@ Vă rugăm să verificați setările din file_uploads.',
 'upload-options'              => 'Opțiuni de încărcare',
 'watchthisupload'             => 'Urmărește acest fișier',
 'filewasdeleted'              => 'Un fișier cu acest nume a fost anterior încărcat și apoi șters. Ar trebui să verificați $1 înainte să îl încărcați din nou.',
-'upload-wasdeleted'           => "'''Atenție: Sunteți pe cale să încarcați un fișier șters anterior.'''
-
-Vă rugăm să aveți în vedere dacă este utilă reîncărcarea acestuia.
-Jurnalul pentru această ștergere este disponibil aici:",
 'filename-bad-prefix'         => "Numele fișierului pe care îl încărcați începe cu '''\"\$1\"''', care este un nume non-descriptiv alocat automat în general de camerele digitale.
 Vă rugăm, alegeți un nume mai descriptiv pentru fișerul dumneavoastră.",
 'upload-success-subj'         => 'Fișierul a fost trimis',
@@ -2966,26 +2962,26 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'skinname-vector'      => 'Vector',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Marchează ca patrulat',
-'markaspatrolledtext'                 => 'Marchează acest articol ca patrulat',
-'markedaspatrolled'                   => 'A fost marcat ca patrulat',
-'markedaspatrolledtext'               => 'Modificarea selectată a [[:$1]] a fost marcată ca patrulată.',
-'rcpatroldisabled'                    => 'Opțiunea de patrulare a modificărilor recente este dezactivată',
-'rcpatroldisabledtext'                => 'Patrularea modificărilor recente este în prezent dezactivată.',
-'markedaspatrollederror'              => 'Nu se poate marca ca patrulat',
-'markedaspatrollederrortext'          => 'Trebuie să specificați o revizie care să fie marcată ca patrulată.',
-'markedaspatrollederror-noautopatrol' => 'Nu puteți marca propriile modificări ca patrulate.',
+'markaspatrolleddiff'                 => 'Marchează pagina ca verificată',
+'markaspatrolledtext'                 => 'Marchează această pagină ca verificată',
+'markedaspatrolled'                   => 'Pagină nouă verificată',
+'markedaspatrolledtext'               => 'Versiunea selectată a paginii [[:$1]] a fost marcată ca verificată.',
+'rcpatroldisabled'                    => 'Opțiunea de verificare a modificărilor recente este dezactivată',
+'rcpatroldisabledtext'                => 'Opțiunea de verificare a modificărilor recente este în prezent dezactivată.',
+'markedaspatrollederror'              => 'Nu se poate marca ca verificat',
+'markedaspatrollederrortext'          => 'Trebuie să specificați o versiune care să fie marcată ca verificată.',
+'markedaspatrollederror-noautopatrol' => 'Nu puteți marca propriile modificări ca verificate.',
 
 # Patrol log
-'patrol-log-page'      => 'Jurnal patrulări',
-'patrol-log-header'    => 'Mai jos apare o listă a tuturor paginilor marcate ca verificate.',
-'patrol-log-line'      => 'a marcat versiunea $1 a $2 ca verificată $3',
+'patrol-log-page'      => 'Jurnal verificări',
+'patrol-log-header'    => 'Aceasta este o listă a tuturor versiunilor marcate ca verificate.',
+'patrol-log-line'      => 'a marcat $1 a paginii $2 ca verificată $3',
 'patrol-log-auto'      => '(automat)',
-'patrol-log-diff'      => 'revizia $1',
-'log-show-hide-patrol' => '$1 istoricul versiunilor patrulate',
+'patrol-log-diff'      => 'versiunea $1',
+'log-show-hide-patrol' => '$1 jurnalul versiunilor verificate',
 
 # Image deletion
-'deletedrevision'                 => 'A fost ștearsă vechea revizie $1.',
+'deletedrevision'                 => 'A fost ștearsă vechea versiune $1.',
 'filedeleteerror-short'           => 'Eroare la ștergerea fișierului: $1',
 'filedeleteerror-long'            => 'Au apărut erori când se încerca ștergerea fișierului:
 

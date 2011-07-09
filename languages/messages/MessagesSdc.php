@@ -1051,9 +1051,6 @@ Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla.
 'destfilename'                => 'Nommu di lu file di disthinazioni:',
 'watchthisupload'             => "Aggiungi a l'abbaidaddi ippiziari",
 'filewasdeleted'              => "Un file cun chist'innòmmu è già isthaddu cariggaddu e canzilladdu. Verifiggà $1 primma di turrà a cariggallu.",
-'upload-wasdeleted'           => "'''Attenzioni: sei carrigghendi un file chi prizzidentementi è già isthaddu canzilladdu.'''
-
-Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigisthru cu' la mutibazioni di la canzilladdura:",
 'filename-bad-prefix'         => "L'innòmmu di lu file chi sei carrigghendi ischumenza cun '''\"\$1\"''', ch'è un'innòmmu nò dischrittibu assignaddu automatiggamenti da li fotocameri. Pa piazieri sciubarà un'innòmmu più dischrittibu pa lu file tóiu.",
 'upload-success-subj'         => 'Carriggamentu cumpritaddu',
 

@@ -1510,10 +1510,6 @@ Xubir ficheros Java nun ta permitío, porque puen facer que se salten les torgue
 'watchthisupload'             => 'Vixilar esti ficheru',
 'filewasdeleted'              => 'Yá se xubió y se desanició depués un ficheru con esti nome.
 Habríes comprobar el $1 enantes de volver a xubilu.',
-'upload-wasdeleted'           => "'''Avisu: Tas xubiendo un ficheru que yá se desanició anteriormente.'''
-
-Habríes considerar si ye afechisco continuar xubiendo esti ficheru.
-Por comodidá s'amuesa equí'l rexistru de desaniciu d'esti ficheru:",
 'filename-bad-prefix'         => "El nome del ficheru que tas xubiendo entama con '''\"\$1\"''', que ye un nome non descriptivu que de vezu conseñen automáticamente les cámares dixitales.
 Por favor escueyi un nome más descriptivu pal to ficheru.",
 'filename-prefix-blacklist'   => ' #<!-- dexa esta llinia exactamente como ta --> <pre>

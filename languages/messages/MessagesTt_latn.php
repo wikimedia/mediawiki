@@ -1261,10 +1261,6 @@ Faylnı mäqälägä yökläw öçen Sez menä bu ürnäklärne qullana alasız:
 'upload-options'             => 'Yökläw parametrları',
 'watchthisupload'            => 'Bu faylnı küzätü',
 'filewasdeleted'             => 'Mondıy isemle fayl beterelgän bulğan inde. Zinhar,yañadan yökläw aldınnan $1 qarağız',
-'upload-wasdeleted'          => "'''İğtibar: Sez beterelgän fayl urınına yañasın yöklämäkçe bulasız.'''
-
-Sezgä çınnan da bu faylnı yökläw kiräkme?
-Tübändä faylnıñ beterü köndälege kiterelä:",
 'filename-bad-prefix'        => "Faylnıñ iseme '''«$1»''' dip başlana. Zinhar, faylnı taswirlawçı isem biregez.",
 'filename-prefix-blacklist'  => ' #<!-- niçek bar şulay qaldırığız --> <pre>
 # Sintaksis töbändägeçä:

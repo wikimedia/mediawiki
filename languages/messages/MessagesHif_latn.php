@@ -646,7 +646,7 @@ Check karo ki Ii panna ke aap banae/badle mangta hai.',
 'userpage-userdoesnotexist-view'   => 'User account "$1" abhi register nai karaa gais hae',
 'blocked-notice-logextract'        => 'Ii sadasya ke abhi rok dewa gais hae.
 Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:',
-'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Mac); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Salah:''' Bachae se pahile \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa CSS ke test karo.",
 'userjsyoucanpreview'              => "'''Salah:''' Bachae se pahile  \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa JavaScript ke test karo.",
 'usercsspreview'                   => "'''Yaad rakhna ki aap khali aapan CSS ke jhalak dekhta hai.
@@ -1447,9 +1447,6 @@ Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa na
 'watchthisupload'             => 'Ii panna pe dhyan rakhho',
 'filewasdeleted'              => 'Ii naam ke file ke pahile upload kar ke baad me delete karaa gais hai.
 Aap ke chaahi ki aap $1 check kar lo fir se upload kare se pahile.',
-'upload-wasdeleted'           => "'''Chetauni: Aap uu file ke upload karta hai jiske pahile delete karaa gais hai.'''
-Aap ke ii soche ke chaahi ki ii file ke upload karna appropriate hai ki nai.
-Aap ke subidha khatir deletion log hian pe hai:",
 'filename-bad-prefix'         => "Jon file aap upload kartaa hai uske naam '''\"\$1\"''' se suruu hoe hai, jon ki non-descriptive naam hai jiske jaada kar ke digital camera automatically assign kare hai.
 Meharbaani kar ke aur jaada descriptive filename chose karo.",
 'upload-success-subj'         => 'Upload safal bhais',

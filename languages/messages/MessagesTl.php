@@ -793,7 +793,7 @@ Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
 'blocked-notice-logextract'        => 'Kasalukuyang hinarang ang tagagamit na ito.
 Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa inyong pagsasangguni:',
 'clearyourcache'                   => "'''Tandaan: Pagkatapos magtala, dapat linisin mo ang baunan ng iyong pambasa-basa upang makita ang mga pagbabago.'''
-'''Mozilla / Firefox / Safari:''' panatilihing nakapindot ang ''Shift'' habang kiniklik ang ''Reload'', o pindutin ang ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sa isang Macintosh);
+'''Mozilla / Firefox / Safari:''' panatilihing nakapindot ang ''Shift'' habang kiniklik ang ''Reload'', o pindutin ang ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sa isang Mac);
 '''Konqueror:''' i-klik ang ''Reload'' o pindutin ang ''F5'';
 '''Opera:''' linisin ang baunan sa ''Tools → Preferences'';
 '''Internet Explorer:''' panatilihing nakapindot ang ''Ctrl'' habang kiniklik ang ''Refresh'', o pindutin ang ''Ctrl-F5''.",
@@ -1596,10 +1596,6 @@ bumalik at ikarga ang talaksan na ito sa bagong pangalan. [[File:$1|thumb|center
 'upload-options'              => 'Ikargang pataas ang mga pagpipilian',
 'watchthisupload'             => 'Bantayan ang talaksang ito',
 'filewasdeleted'              => 'Isang talaksan na may ganitong pangalan ay naikarga dati at nabura. Kailangan mong tingnan ang $1 bago magpatuloy sa pagkarga nito muli.',
-'upload-wasdeleted'           => "'''Babala: Kinakarga mo ang isang talaksan na nabura na.'''
-
-Ikunsidera mo kung nararapat ba na ipagpatuloy ang pagkarga ng talaksang ito.
-Ibinigay ang tala ng pagbura ng talaksang ito para konbinyente:",
 'filename-bad-prefix'         => "Ang talaksan na ikakarga mo ay nagsisimula sa '''\"\$1\"''', na isang hindi naglalarawang pangalan na karaniwang tinatakda ng mga kamerang digital. Paki pili ang isang mas naglalarawang pangalan para sa iyong talaksan.",
 'upload-success-subj'         => 'Matagumpay na pagkakarga',
 'upload-success-msg'          => 'Matagumpay ang ikinarga mo mula sa [$2].  Makukuha ito mula rito: [[:{{ns:file}}:$1]]',

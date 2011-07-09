@@ -639,7 +639,7 @@ Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
 'blocked-notice-logextract'        => 'Šis lietotājs pašlaik ir nobloķēts.
 
 Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
-'clearyourcache'                   => "'''Piezīme - Pēc saglabāšanas, lai būtu redzamas izmaiņas, var būt nepieciešamas iztīrīt pārlūka kešatmiņu.''' '''Mozilla / Firefox / Safari:''' turi nospiestu ''Shift'' un klikšķini ''Reload,'' vai arī spied ''Ctrl-F5'' vai ''Ctrl-R'' (''Command-R'' uz Macintosh); '''Konqueror: '''klikšķini ''Reload'' vai spied uz ''F5;'' '''Opera:''' kešu var iztīrīt ''Tools → Preferences;'' '''Internet Explorer:''' turi nospiestu ''Ctrl'' un klikšķini ''Refresh,'' vai spied ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Piezīme - Pēc saglabāšanas, lai būtu redzamas izmaiņas, var būt nepieciešamas iztīrīt pārlūka kešatmiņu.''' '''Mozilla / Firefox / Safari:''' turi nospiestu ''Shift'' un klikšķini ''Reload,'' vai arī spied ''Ctrl-F5'' vai ''Ctrl-R'' (''Command-R'' uz Mac); '''Konqueror: '''klikšķini ''Reload'' vai spied uz ''F5;'' '''Opera:''' kešu var iztīrīt ''Tools → Preferences;'' '''Internet Explorer:''' turi nospiestu ''Ctrl'' un klikšķini ''Refresh,'' vai spied ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Ieteikums:''' Lieto pogu \"{{int:showpreview}}\", lai pārbaudītu savu jauno CSS pirms saglabāšanas.",
 'userjsyoucanpreview'              => "'''Ieteikums:''' Lieto pogu \"{{int:showpreview}}\", lai pārbaudītu savu jauno JavaScript pirms saglabāšanas.",
 'usercsspreview'                   => "'''Atceries, ka šis ir tikai tava lietotāja CSS pirmskats, lapa vēl nav saglabāta!'''",
@@ -1347,10 +1347,6 @@ Lūdzu, pārbaudi file_uploads uzstādījumu.',
 'watchthisupload'            => 'Uzraudzīt šo failu',
 'filewasdeleted'             => 'Fails ar šādu nosaukumu jau ir bijis augšuplādēts un pēc tam izdzēsts.
 Apskaties $1 pirms turpini šo failu augšuplādēt atkārtoti.',
-'upload-wasdeleted'          => "'''Brīdinājums: Tu augšuplādē failu kas agrāk jau ir ticis izdzēsts.'''
-
-Apdomā labi, vai tiešām ir lietderīgi turpināt šī faila augšuplādi.
-Te var apskatīties dzēšanas reģistru, lai noskaidrotu kāpēc šo failu toreiz izdzēsa:",
 'filename-bad-prefix'        => "Faila vārds failam, kuru tu mēģini augšpulādēt, sākas ar '''\"\$1\"''', kas ir neaprakstošs vārds, kādu parasti uzģenerē digitālais fotoaparāts.
 Lūdzu izvēlies aprakstošāku vārdu šim failam.",
 'upload-success-subj'        => 'Augšupielāde veiksmīga',

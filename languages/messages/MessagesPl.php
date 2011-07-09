@@ -897,11 +897,12 @@ Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmod
 'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
-'clearyourcache'                   => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
-*'''Mozilla, Firefox lub Safari –''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5'' lub ''Ctrl‐R'' (''Cmd‐Shift‐R'' na Macintoshu)
-*'''Konqueror –''' kliknij przycisk ''Odśwież'' lub wciśnij ''F5''
-*'''Opera –''' wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''
-*'''Internet Explorer –''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5''",
+'clearyourcache'                   => "'''Uwaga:''' Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej, w przeciwnym razie nie będzie można zobaczyć efektu działania nowych ustawień.
+*'''Mozilla, Firefox lub Safari''' – przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5'' lub ''Ctrl‐R'' (''Command‐R'' na Macu)
+*'''Google Chrome'''  – przytrzymaj wciśnięty ''Ctrl'', ''Shift'' i wciśnij ''R'' (''Command-Shift-R'' na Macu)
+*'''Internet Explorer''' – przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5''
+*'''Konqueror''' – naciśnij przycisk ''Odśwież'' lub wciśnij ''F5''
+*'''Opera''' – wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''",
 'usercssyoucanpreview'             => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
 'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
@@ -1273,12 +1274,13 @@ W międzyczasie możesz skorzystać z wyszukiwania Google.
 Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google nieaktualne.',
 
 # Quickbar
-'qbsettings'               => 'Pasek szybkiego dostępu',
-'qbsettings-none'          => 'Brak',
-'qbsettings-fixedleft'     => 'Stały, z lewej',
-'qbsettings-fixedright'    => 'Stały, z prawej',
-'qbsettings-floatingleft'  => 'Unoszący się, z lewej',
-'qbsettings-floatingright' => 'Unoszący się, z prawej',
+'qbsettings'                => 'Pasek szybkiego dostępu',
+'qbsettings-none'           => 'Brak',
+'qbsettings-fixedleft'      => 'Stały, z lewej',
+'qbsettings-fixedright'     => 'Stały, z prawej',
+'qbsettings-floatingleft'   => 'Unoszący się, z lewej',
+'qbsettings-floatingright'  => 'Unoszący się, z prawej',
+'qbsettings-directionality' => 'Ustawione na stałe, zgodnie z kierunkiem pisania w Twoim języku',
 
 # Preferences page
 'preferences'                   => 'Preferencje',
@@ -1705,10 +1707,6 @@ Przesyłanie plików Java nie jest dozwolone, ponieważ mogłoby zostać użyte 
 'watchthisupload'             => 'Obserwuj ten plik',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został usunięty.
 Zanim załadujesz go ponownie, sprawdź $1.',
-'upload-wasdeleted'           => "'''Uwaga! Przesyłasz plik, który został usunięty.'''
-
-Zastanów się, czy powinno się przesyłać ten plik ponownie.
-Poniżej znajduje się historia usunięć tego pliku.",
 'filename-bad-prefix'         => "Nazwa pliku, który przesyłasz, zaczyna się od '''„$1”'''. Jest to nazwa zazwyczaj przypisywana automatycznie przez cyfrowe aparaty fotograficzne, która nie informuje o zawartości pliku.
 Zmień nazwę pliku na bardziej opisową.",
 'filename-prefix-blacklist'   => ' #<!-- nie modyfikuj tej linii --> <pre>

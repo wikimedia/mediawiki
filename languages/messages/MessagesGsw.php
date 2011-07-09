@@ -1518,10 +1518,6 @@ S Uffelade vu Java-Dateien isch nit gstattet, wel si s Umgoh vu Sicherheitsyysch
 'upload-options'              => 'Optione fir s Uffelade',
 'watchthisupload'             => 'Die Syte beobachte',
 'filewasdeleted'              => 'E Datei mit däm Name isch scho mol uffeglade wore un isch in dr Zwischezyt wider glescht wore. Bitte prief zerscht dr Yytrag im $1, voreb Du die Datei wirkli spycheresch.',
-'upload-wasdeleted'           => "'''Obacht: Du ladsch e Datei uffe, wu scho mol glescht woren isch.'''
-
-Bitte prief, eb s dr Richtlinie entspricht, wänn Du die Datei no mol uffeladesch..
-Zue Dyynere Information chunnt do s Lesch-Logbuech mit dr Begrindig fir di friejer Leschig:",
 'filename-bad-prefix'         => "Dr Dateiname fangt mit '''„$1“''' aa. Des isch isch normalerwyys dr Dateiname, wu vun ere Digitalkamera vorgee wird un d Datei nit bschryybt.
 Bitte gib dr Datei e Name, wu dr Inhalt besser bschryybt.",
 'upload-success-subj'         => 'Erfolgryych uffegelade',

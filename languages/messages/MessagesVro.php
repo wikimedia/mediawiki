@@ -608,7 +608,7 @@ Võit [[Special:Search/{{PAGENAME}}|otsiq soe lehe nimme]]  tõisi lehti päält
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uuriq muutmisnimekirjo] vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduolõva leheküle esiq luvvaq]</span>.',
 'userpage-userdoesnotexist'        => 'Pruukjanimme "<nowiki>$1</nowiki>" olõ-i kirjä pant. Kaeq perrä, kas olõt iks kimmäs, et tahat taad lehte toimõndaq.',
 'userpage-userdoesnotexist-view'   => 'Pruukjanimme "$1" olõ-õi kirjä pant.',
-'clearyourcache'                   => "'''Panõq tähele:''' perän pästmist piät muutmiisi nägemises uma võrgokaeja vaihõmälo tühäs tegemä. '''Mozillal / Firofoxil / Safaril''' hoiaq all nõstmisnuppi ''Shift'' ja vaodaq ''Reload'' vai ''Ctrl-R'' (Macintoshil ''Command-R''); Konqueroril vaodaq ''Reload'' vai ''F5''. Operal puhastaq vaihõmälo ja võtaq valikust ''Tools → Preferences''. Internet Exploreril hoiaq ''Ctrl'' ja vaodaq ''Refresh'' vai vaodaq  ''ctrl-f5''.",
+'clearyourcache'                   => "'''Panõq tähele:''' perän pästmist piät muutmiisi nägemises uma võrgokaeja vaihõmälo tühäs tegemä. '''Mozillal / Firofoxil / Safaril''' hoiaq all nõstmisnuppi ''Shift'' ja vaodaq ''Reload'' vai ''Ctrl-R'' (Macil ''Command-R''); Konqueroril vaodaq ''Reload'' vai ''F5''. Operal puhastaq vaihõmälo ja võtaq valikust ''Tools → Preferences''. Internet Exploreril hoiaq ''Ctrl'' ja vaodaq ''Refresh'' vai vaodaq  ''ctrl-f5''.",
 'usercssyoucanpreview'             => "'''Nõvvoannõq:''' Pruugiq nuppi 'Näütäq proovikaehust' uma vahtsõ CCS-i vai JavaScripti ülekaemisõs, inne ku taa ärq pästät.",
 'userjsyoucanpreview'              => "'''Nõvvoannõq:''' Pruugiq nuppi 'Näütäq proovikaehust' uma vahtsõ CCS-i vai JavaScripti ülekaemisõs, inne ku taa ärq pästät.",
 'usercsspreview'                   => "'''Seo um CSS-i proovikaehus. Määntsitki muutuisi olõ-i viil pästet.'''",
@@ -1065,9 +1065,6 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'destfilename'                => 'Teedüstü nimi vikin:',
 'watchthisupload'             => 'Kaeq taa lehe perrä',
 'filewasdeleted'              => 'Sääntse nimega teedüstü om jo üles laadit ja sis ärq kistutõt. Kaeq üle $1 inne ku nakkat jälq üles laatma.',
-'upload-wasdeleted'           => "'''Hoiatus: Sa proovit üles laatiq teedüstüt, miä om innemb ärq kistutõt.'''
-
-Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüstü ärqkistutamisõ kotsilõ:",
 'upload-success-subj'         => "Üleslaatminõ läts' kõrda",
 
 'upload-proto-error'      => 'Viganõ protokoll',

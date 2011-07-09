@@ -271,7 +271,7 @@ $messages = array(
 'tog-previewontop'            => '在编辑框上方显示预览',
 'tog-previewonfirst'          => '在首次编辑时显示预览',
 'tog-nocache'                 => '禁止浏览器页面缓存',
-'tog-enotifwatchlistpages'    => '当我的监视列表中的页面改变时发送电子邮件通知我',
+'tog-enotifwatchlistpages'    => '当我的监视列表中的页面更改时发送电子邮件通知我',
 'tog-enotifusertalkpages'     => '当我的讨论页更改时发送电子邮件通知我',
 'tog-enotifminoredits'        => '当页面有小修改时也发送电子邮件通知我',
 'tog-enotifrevealaddr'        => '在通知电子邮件中显示我的电子邮件地址',
@@ -414,7 +414,7 @@ $messages = array(
 'vector-action-move'             => '移动',
 'vector-action-protect'          => '保护',
 'vector-action-undelete'         => '恢复被删页面',
-'vector-action-unprotect'        => '解除保护',
+'vector-action-unprotect'        => '更改保护',
 'vector-simplesearch-preference' => '启用增强搜索建议（仅限Vector皮肤）',
 'vector-view-create'             => '创建',
 'vector-view-edit'               => '编辑',
@@ -451,8 +451,8 @@ $messages = array(
 'protect'           => '保护',
 'protect_change'    => '更改',
 'protectthispage'   => '保护此页',
-'unprotect'         => '解除保护',
-'unprotectthispage' => '解除此页保护',
+'unprotect'         => '更改保护',
+'unprotectthispage' => '更改此页面的保护',
 'newpage'           => '新建页面',
 'talkpage'          => '讨论本页',
 'talkpagelinktext'  => '讨论',
@@ -506,8 +506,8 @@ $1',
 'policy-url'           => 'Project:方针',
 'portal'               => '社区专页',
 'portal-url'           => 'Project:社区专页',
-'privacy'              => '隐私政策',
-'privacypage'          => 'Project:隐私政策',
+'privacy'              => '隐私权政策',
+'privacypage'          => 'Project:隐私权政策',
 
 'badaccess'        => '权限错误',
 'badaccess-group0' => '你被禁止执行你刚才请求的操作。',
@@ -826,7 +826,7 @@ $2
 'blockededitsource'                => "你对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'               => '登录后才可编辑',
 'whitelistedittext'                => '您必须先$1才可编辑页面。',
-'confirmedittext'                  => '在编辑此页之前您必须确认您的邮箱地址。请通过[[Special:Preferences|参数设置]]设置并验证您的邮箱地址。',
+'confirmedittext'                  => '你必须确认你的电子邮件地址才能编辑本页。请通过[[Special:Preferences|用户资料设置]]设置并确认你的电子邮件地址。',
 'nosuchsectiontitle'               => '没有这个段落',
 'nosuchsectiontext'                => '您尝试编辑的章节并不存在。
 可能是在您查看页面时已经移动或删除。',
@@ -848,7 +848,7 @@ $2
 'blocked-notice-logextract'        => '这位用户现正被封锁。
 下面有最近的封锁纪录以供参考：',
 'clearyourcache'                   => "'''注意：在保存以后，您必须清除浏览器的缓存才能看到所作出的改变。'''
-'''Mozilla / Firefox / Safari'''：按住''Shift''再点击''刷新''，或按下''Ctrl-F5''或''Ctrl-R''（在Macintosh上按下''Command-R''）；
+'''Mozilla / Firefox / Safari'''：按住''Shift''再点击''刷新''，或按下''Ctrl-F5''或''Ctrl-R''（在Mac上按下''Command-R''）；
 '''Konqueror'''：只需点击''刷新''或按下''F5''；
 '''Opera'''：在''工具→首选项''中完整清除它们的缓存，或按下''Alt-F5''；
 '''Internet Explorer'''：按住''Ctrl''再点击''刷新''，或按下''Ctrl-F5''。",
@@ -925,7 +925,7 @@ $2
 'sectioneditnotsupported-text'     => '此页面不支持编辑段落。',
 'permissionserrors'                => '权限错误',
 'permissionserrorstext'            => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作：',
-'permissionserrorstext-withaction' => '根据下列原因，你无权进行$2操作：',
+'permissionserrorstext-withaction' => '根据下列{{PLURAL:$1|原因|原因}}，你无权进行$2操作：',
 'recreate-moveddeleted-warn'       => "'''警告：你正在重新创建曾经被删除的页面。'''
 
 你应该考虑继续编辑本页是否合适。这里提供本页的删除和移动记录以供参考：",
@@ -1211,15 +1211,16 @@ $1",
 'searchdisabled'                   => '{{SITENAME}}的搜索已被禁用。您可以暂时使用Google进行搜索，须注意他们索引的{{SITENAME}}内容可能会过时。',
 
 # Quickbar
-'qbsettings'               => '快速导航栏',
-'qbsettings-none'          => '无',
-'qbsettings-fixedleft'     => '左侧固定',
-'qbsettings-fixedright'    => '右侧固定',
-'qbsettings-floatingleft'  => '左侧漂移',
-'qbsettings-floatingright' => '右侧漂移',
+'qbsettings'                => '快速导航栏',
+'qbsettings-none'           => '无',
+'qbsettings-fixedleft'      => '左侧固定',
+'qbsettings-fixedright'     => '右侧固定',
+'qbsettings-floatingleft'   => '左侧漂移',
+'qbsettings-floatingright'  => '右侧漂移',
+'qbsettings-directionality' => '固定的取决于您的语言的方向性',
 
 # Preferences page
-'preferences'                   => '参数设置',
+'preferences'                   => '系统设置',
 'mypreferences'                 => '设置',
 'prefs-edits'                   => '编辑数量：',
 'prefsnologin'                  => '尚未登录',
@@ -1239,10 +1240,10 @@ $1",
 'prefs-watchlist-edits'         => '在增强的监视列表中显示最多更改次数：',
 'prefs-watchlist-edits-max'     => '最多数量：1000',
 'prefs-watchlist-token'         => '监视列表权标：',
-'prefs-misc'                    => '杂项',
+'prefs-misc'                    => '其他',
 'prefs-resetpass'               => '更改密码',
-'prefs-email'                   => '邮箱选项',
-'prefs-rendering'               => '外观',
+'prefs-email'                   => '电子邮件选项',
+'prefs-rendering'               => '显示',
 'saveprefs'                     => '保存',
 'resetprefs'                    => '清除未保存的更改',
 'restoreprefs'                  => '恢复所有默认设置',
@@ -1441,10 +1442,11 @@ $1",
 'right-sendemail'             => '发电子邮件给其他用户',
 
 # User rights log
-'rightslog'      => '用户权限日志',
-'rightslogtext'  => '以下记录了用户权限的更改记录。',
-'rightslogentry' => '将 $1 的权限从 $2 改为 $3',
-'rightsnone'     => '（无）',
+'rightslog'                  => '用户权限日志',
+'rightslogtext'              => '以下记录了用户权限的更改记录。',
+'rightslogentry'             => '将 $1 的权限从 $2 改为 $3',
+'rightslogentry-autopromote' => '自动晋升从 $2 到 $3',
+'rightsnone'                 => '（无）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => '阅读这个页面',
@@ -1632,10 +1634,6 @@ $1",
 'upload-options'              => '上传选项',
 'watchthisupload'             => '监视这个文件',
 'filewasdeleted'              => '之前已经有一个同名文件被上传后又被删除了。在上传此文件之前您需要检查$1。',
-'upload-wasdeleted'           => "'''警告：您现在重新上传一个先前曾经删除过的文件。'''
-
-您应该要考虑一下继续上传一个文件页面是否合适。
-为方便起见，这一个文件的删除记录已经在下面提供:",
 'filename-bad-prefix'         => '您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。',
 'upload-success-subj'         => '上传成功',
 'upload-success-msg'          => '您在[$2]的上传已经成功，可以在这里找到：[[:{{ns:file}}:$1]]',
@@ -1721,7 +1719,7 @@ $1',
 'listfiles_name'        => '名称',
 'listfiles_user'        => '用户',
 'listfiles_size'        => '大小',
-'listfiles_description' => '描述',
+'listfiles_description' => '说明',
 'listfiles_count'       => '版本',
 
 # File description page
@@ -2028,9 +2026,7 @@ $1',
 
 # E-mail user
 'mailnologin'          => '无电邮地址',
-'mailnologintext'      => '您必须先[[Special:UserLogin|登录]]
-并在[[Special:Preferences|参数设置]]
-中有一个有效的电子邮箱地址才可以向其他用户发邮件。',
+'mailnologintext'      => '你必须[[Special:UserLogin|登录]]并在你的[[Special:Preferences|系统设置]]中拥有有效的电子邮件地址才能向其他用户发送电子邮件。',
 'emailuser'            => '给该用户发送电子邮件',
 'emailpage'            => '向用户发邮件',
 'emailpagetext'        => '您可以用下面的表格去寄一封电邮给这位用户。
@@ -2192,10 +2188,10 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => '保护记录',
-'protectlogtext'              => '下面是页面保护和取消保护的列表。请参考[[Special:ProtectedPages|保护页面列表]]以查看当前进行的页面保护。',
+'protectlogtext'              => '下面是页面保护的更改的列表。 ！N ！当前正在运行的页保护列表，请参阅 [[Special:ProtectedPages|保护页列表]]。',
 'protectedarticle'            => '保护“[[$1]]”',
 'modifiedarticleprotection'   => '已更改“[[$1]]”的保护等级',
-'unprotectedarticle'          => '已取消“[[$1]]”的保护',
+'unprotectedarticle'          => '删除保护从 "[[$1]]"',
 'movedarticleprotection'      => '已将“[[$2]]”的保护设置移动至“[[$1]]”',
 'protect-title'               => '更改“$1”的保护等级',
 'prot_1movedto2'              => '[[$1]]已移动至[[$2]]',
@@ -2299,7 +2295,7 @@ $1',
 'namespace'             => '名字空间：',
 'invert'                => '反向选定',
 'namespace_association' => '关联的命名空间',
-'blanknamespace'        => '（主）',
+'blanknamespace'        => '（主要）',
 
 # Contributions
 'contributions'       => '用户贡献',
@@ -2700,7 +2696,7 @@ $1被封禁的理由是：“$2”',
 'tooltip-ca-viewsource'           => '本页面已被保护。你可以查看其源代码。',
 'tooltip-ca-history'              => '本页面的早前修订版本',
 'tooltip-ca-protect'              => '保护此页',
-'tooltip-ca-unprotect'            => '解除保护此页',
+'tooltip-ca-unprotect'            => '更改此页面的保护',
 'tooltip-ca-delete'               => '删除本页',
 'tooltip-ca-undelete'             => '将这个页面恢复到被删除以前的状态',
 'tooltip-ca-move'                 => '移动此页',
@@ -2799,6 +2795,19 @@ $1被封禁的理由是：“$2”',
 'spambot_username'    => 'MediaWiki垃圾链接清理器',
 'spam_reverting'      => '恢复到不包含链接的最近修订版本$1',
 'spam_blanking'       => '消隐所有包含链接至$1的修订',
+
+# Info page
+'pageinfo-title'            => '"$1" 的信息',
+'pageinfo-header-edits'     => '编辑',
+'pageinfo-header-watchlist' => '监视列表',
+'pageinfo-header-views'     => '视图',
+'pageinfo-subjectpage'      => '页',
+'pageinfo-talkpage'         => '讨论页',
+'pageinfo-watchers'         => '监视者数目',
+'pageinfo-edits'            => '编辑数量',
+'pageinfo-authors'          => '作者数量',
+'pageinfo-views'            => '视图的数量',
+'pageinfo-viewsperedit'     => '每个编辑视图',
 
 # Skin names
 'skinname-standard'    => '标准',
@@ -3320,7 +3329,7 @@ Variants for Chinese language
 
 # E-mail address confirmation
 'confirmemail'              => '确认邮箱地址',
-'confirmemail_noemail'      => '您还没有在您的[[Special:Preferences|参数设置]]中设定一个有效的电子邮件地址。',
+'confirmemail_noemail'      => '你还没有在你的[[Special:Preferences|用户资料设置]]中设置有效的电子邮件地址。',
 'confirmemail_text'         => '{{SITENAME}}要求您在使用邮件功能之前验证您的邮箱地址。
 点击以下按钮可向您的邮箱发送一封确认邮件。该邮件包含有一行代码链接；
 请在您的浏览器中加载此链接以确认您的邮箱地址是有效的。',

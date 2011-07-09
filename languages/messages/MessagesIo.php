@@ -548,7 +548,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktar ica pagino]</span>.',
 Voluntez konfirmez se vu volas krear/redaktar ica pagino.',
 'userpage-userdoesnotexist-view'   => 'Uzanto-nomo "$1" no registragesis.',
 'clearyourcache'                   => "'''Atencez: Pos registragar, vu probable mustas renovigar la tempala-magazino di vua navigilo por vidar la chanji.'''
-'''Mozilla / Firefox / Safari:''' tenez ''Shift'' kliktante ''Reload'', o presez sive  ''Ctrl-F5'' sive ''Ctrl-R'' (''Command-R'' ye Macintosh);
+'''Mozilla / Firefox / Safari:''' tenez ''Shift'' kliktante ''Reload'', o presez sive  ''Ctrl-F5'' sive ''Ctrl-R'' (''Command-R'' ye Mac);
 '''Konqueror''': kliktez ''Reload'' o presez ''F5'';
 '''Opera:''' vakuigez la tempala-magazino en ''Tools → Preferences'';
 '''Internet Explorer:''' tenez ''Ctrl'' kliktante ''Refresh,'' o presez ''Ctrl-F5''.",

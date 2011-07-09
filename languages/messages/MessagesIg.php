@@ -112,7 +112,7 @@ $messages = array(
 'underline-default' => 'Ndatụ ihü njikota',
 
 # Font style option in Special:Preferences
-'editfont-style'     => 'Rüwa ámá éfi mkpúrù èdè:',
+'editfont-style'     => 'Rüwa ámá udị mkpúrù èdè:',
 'editfont-default'   => 'Ndatụ ihü njikota',
 'editfont-monospace' => 'Otụ ihe ná kechí mkpúrù èdè',
 'editfont-sansserif' => 'Mkpúrù èdè sans-serif',
@@ -187,6 +187,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'mewá.',
 'index-category'                 => 'Ẹdẹle Ihü',
 'noindex-category'               => 'Ihü ẹdẹlebu',
+'broken-file-category'           => 'Ihü nwere jkọdọ na ga fail gbajírí',
 
 'mainpagetext'      => "'''MediaWiki a banyélé nke oma.'''",
 'mainpagedocfooter' => "Gbàkpó [http://meta.wikimedia.org/wiki/Help:Contents Ǹdù Ọ'bànifé] màkà ụmá màkà Í jí ngwa orunotu bu wiki.
@@ -224,7 +225,7 @@ $messages = array(
 'vector-action-move'             => 'Páfụ',
 'vector-action-protect'          => 'Cẹdolu',
 'vector-action-undelete'         => 'Á gbàkashikwà',
-'vector-action-unprotect'        => 'É cẹdolu',
+'vector-action-unprotect'        => 'Nchẹdo mgbanwe',
 'vector-simplesearch-preference' => 'Kwe okwu ụmá nchöwa di (akpụkpọ Vector náni)',
 'vector-view-create'             => 'Ké',
 'vector-view-edit'               => 'Rüwa',
@@ -261,8 +262,8 @@ $messages = array(
 'protect'           => 'Cẹdolu',
 'protect_change'    => 'gbanwe',
 'protectthispage'   => 'Cẹdolu ihü nka',
-'unprotect'         => 'É cẹdolu',
-'unprotectthispage' => 'É cẹdolu ihü nka',
+'unprotect'         => 'Nchẹdo mgbanwe',
+'unprotectthispage' => 'Nchẹdo mgbanwe ihü nka',
 'newpage'           => 'Ihü ohúrù',
 'talkpage'          => 'Kuwa akíkó maka ihüá',
 'talkpagelinktext'  => 'Okwu',
@@ -295,6 +296,9 @@ Madu kachạrạ ndi choro ihu ihü nka.
 Biko chetukwa oge kà oruo mgbe I choro I banyé ihü nka ozor.
 
 $1',
+'pool-timeout'      => 'Ógè e zuole Í ché ncedọ',
+'pool-queuefull'    => 'Pool kyu zùrù',
+'pool-errorunknown' => 'Nsogbu nke námaghi',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Maka {{SITENAME}}',
@@ -339,6 +343,7 @@ Lé [[Special:Version|ụdì ihü]].',
 'toc'                     => 'Ihe dị ime',
 'showtoc'                 => 'zi',
 'hidetoc'                 => 'zonari',
+'collapsible-collapse'    => 'Zekpùdo',
 'collapsible-expand'      => 'Gbásà',
 'thisisdeleted'           => 'Lé ma tinyechárá $1?',
 'viewdeleted'             => 'Lé $1?',
@@ -351,6 +356,8 @@ Lé [[Special:Version|ụdì ihü]].',
 'page-rss-feed'           => "''$1'' ntabì RSS",
 'page-atom-feed'          => "''$1'' ntabì Atom",
 'red-link-title'          => '$1 (ihü a di gì)',
+'sort-descending'         => 'Dozi shí àlà',
+'sort-ascending'          => 'Dozi shí élú',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Ihü',
@@ -358,7 +365,7 @@ Lé [[Special:Version|ụdì ihü]].',
 'nstab-media'     => 'Ihü nkà',
 'nstab-special'   => 'Ihü mkpà',
 'nstab-project'   => 'Ihü orürü',
-'nstab-image'     => 'Ákwúkwó orunotu',
+'nstab-image'     => 'Fail',
 'nstab-mediawiki' => 'Ozi',
 'nstab-template'  => 'Àtụ',
 'nstab-help'      => 'Ihü ebe ha na nye áká',
@@ -494,7 +501,9 @@ I na á banye...',
 'resetpass-temp-password'   => 'mkpurụ okwu ejị a gafẹ I gi kushi ngwa ngwa:',
 
 # Special:PasswordReset
-'passwordreset' => 'Nkuwaria okwúngáfè',
+'passwordreset'              => 'Nkuwaria okwúngáfè',
+'passwordreset-emailelement' => "Áhà Ọ'banife: $1
+Passwod nke gi gbanwe: $2",
 
 # Edit page toolbar
 'bold_sample'     => 'Mkpúrù èdè íke',
@@ -694,7 +703,7 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 'editundo'                => 'emekwàlà',
 
 # Search results
-'searchresults'                    => 'Ihe futárá nchowá',
+'searchresults'                    => 'Ndọfùtà nchọwa',
 'searchresults-title'              => "Ihe futárá nchowá màkà ''$1''",
 'searchresulttext'                 => 'Màkà okwu nke ozor básárá í tu {{SITENAME}}, lé [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Í tụrụ \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ihü nílé bidóró "$1"]] {{int:pipe-separator}} [[Special:WhatLinksHere/$1|ihü nílé na gá "$1"]])',
@@ -795,7 +804,7 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'prefs-searchoptions'       => 'Màkà nchöwa',
 'prefs-namespaces'          => 'Áhàámá',
 'default'                   => 'nke éjị bịdó',
-'prefs-files'               => 'Ákwúkwó orunotu',
+'prefs-files'               => 'Fail',
 'prefs-custom-css'          => 'CSS nà áká mádu',
 'prefs-custom-js'           => 'JavaScript na áká mádu',
 'youremail'                 => 'E-mail:',
@@ -938,7 +947,7 @@ Ihü nọr na [[Special:Watchlist|ndétu ihe Í ne lé]] di na mkpụrụ edemed
 'nolicense'      => 'Ọ dígì nke áká di.',
 
 # Special:ListFiles
-'imgfile'               => 'ákwúkwó orunotu',
+'imgfile'               => 'fail',
 'listfiles'             => 'Ndétu ákwúkwó orunotu',
 'listfiles_date'        => 'Aka',
 'listfiles_name'        => 'Áhà',
@@ -948,7 +957,7 @@ Ihü nọr na [[Special:Watchlist|ndétu ihe Í ne lé]] di na mkpụrụ edemed
 'listfiles_count'       => 'Ùdị',
 
 # File description page
-'file-anchor-link'          => 'Ákwúkwó orunotu',
+'file-anchor-link'          => 'Fail',
 'filehist'                  => 'Akikó mbu nke akwukwu orúnotu',
 'filehist-help'             => 'Kpàtá na úbochi/ógè Í zí ákwúkwó orunotu ọtụ ȯ dị mgbe áhù.',
 'filehist-deleteall'        => 'gbakashia hanílé',
@@ -1642,7 +1651,7 @@ Nke ozor gí zonari na áká onwe ha.
 
 # Special:FilePath
 'filepath'        => 'Uzor njikota èdè',
-'filepath-page'   => 'Ákwúkwó orunotu',
+'filepath-page'   => 'Fail',
 'filepath-submit' => 'Gá',
 
 # Special:FileDuplicateSearch

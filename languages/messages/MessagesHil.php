@@ -679,7 +679,7 @@ Palihog tsek kon luyag mo nga himuon/ilisan ang ini nga panid.',
 'blocked-notice-logextract'        => 'Ang ini nga manuggamit ginapunggan karon.
 Ang pinaka-ulihi nga log sa pagpuggong yara sa idalom para mahibaluan nimo:',
 'clearyourcache'                   => "'''Pahibalo: Pagkatapos mo magtipon, mahimo nga kinahanglan mo pa nga laktawan ang talaguan sang imo brawser agod nga makita ang mga pag-ilis.'''
-'''Mozilla / Firefox / Safari:''' tum-ukon sang madugay ang ''Shift'' samtang ginatum-ok ang ''Reload'', ukon tum-ukon ang ''Ctrl-F5'' ukon ''Ctrl-R'' (''Command-R'' sa Macintosh);
+'''Mozilla / Firefox / Safari:''' tum-ukon sang madugay ang ''Shift'' samtang ginatum-ok ang ''Reload'', ukon tum-ukon ang ''Ctrl-F5'' ukon ''Ctrl-R'' (''Command-R'' sa Mac);
 '''Konqueror: '''tum-ukon ang ''Reload'' ukon ang ''F5'';
 '''Opera:''' panason ang talaguan sa ''Tools → Preferences'';
 '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5''.",

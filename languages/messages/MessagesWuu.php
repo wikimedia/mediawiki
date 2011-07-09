@@ -578,7 +578,7 @@ $2',
 'blocked-notice-logextract'        => '箇位用户箇歇畀封锁垃许。
 下头有最近个封锁纪录以供参考：',
 'clearyourcache'                   => "'''注意：垃拉保存之后，侬必须清除浏览器个缓存再好看见所作出个改变。'''
-'''Mozilla / Firefox / Safari'''：揿牢''Shift''再点击''刷新''，或揿''Ctrl-F5''或''Ctrl-R''（垃拉Macintosh上揿 ''Command-R''）；
+'''Mozilla / Firefox / Safari'''：揿牢''Shift''再点击''刷新''，或揿''Ctrl-F5''或''Ctrl-R''（垃拉Mac上揿 ''Command-R''）；
 '''Konqueror'''：只需点击''刷新''或揿''F5''；
 '''Opera'''：垃拉 ''工具→首选项''里向完整清除渠拉个缓存，或揿''Alt-F5''；
 '''Internet Explorer'''：揿牢''Ctrl''再点击''刷新''，或揿''Ctrl-F5''。",

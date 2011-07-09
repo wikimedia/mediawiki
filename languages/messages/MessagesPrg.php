@@ -582,7 +582,7 @@ anga [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigītun šin pāusan]</span>.'
 Izbāndais, anga tū perarwi kwaitīwuns teīktun/redigītun šin pāusan.',
 'userpage-userdoesnotexist-view'   => 'Tērpautajas rekkens "$1" ni ast registrītan.',
 'clearyourcache'                   => "'''Nōda: Kitawīdisnas pa enpeisāsnan stēisan nāunan ensadīnsenin mazzi ni būtwei widāminan. Prawerru skīstintun lasāltas rānkas minīsnan.'''
-*'''Mozilla, Firefox anga Safari - ''' zabāis \"Shift\" gnestan ne gnetteis \"Etnāunais\" anga gnetteis \"Ctrl-F5\" anga \"Ctrl-R\" (\"Command-R\" en Macintoshu);
+*'''Mozilla, Firefox anga Safari - ''' zabāis \"Shift\" gnestan ne gnetteis \"Etnāunais\" anga gnetteis \"Ctrl-F5\" anga \"Ctrl-R\" (\"Command-R\" en Macu);
 *'''Konqueror:''' gnetteis '''Etwārtai kraūneis\" anga \"F5\";
 '''Opera:''' skīstinais rānkas minīsnan en \"Ēnrankis-Pirminiskwas\";
 '''Internet Explorer:''' zabāis \"Ctrl\" gnettintei \"Etnāuninais\" anga gnetteis \"Ctrl-F5\".",
@@ -1248,10 +1248,6 @@ Izbāndais ensadīnsenin „file_uploads”.',
 'watchthisupload'             => 'Nadirēis šin zūrbrukin',
 'filewasdeleted'              => 'Zūrbrukis sen šan pabilīsnan ekzistīwuns, adder pastāi āupausintan.
 Pirzdau tū wīrst din etkūmps enkraūwuns(si), izbāndais $1.',
-'upload-wasdeleted'           => "'''Ēmpirssergīsenis:''' Tu enkraūne zūrbrukin, kawīds bēi jāu āupausintan.'''
-
-Tebbei prawerru prestun, anga ast tikrōmiskan ēmpirsin sadīntun enkraūtun šin zūrbrukin.
-Šisse zūrbrukes āupausisnas registerin ast waidīntan zemmais.",
 'filename-bad-prefix'         => "Enkraūtas zūrbrukes pabilisnā pagaūne si sen '''\"\$1\"'''. Sta ast nidekskriptīwa pabilisnā kawīda ast preipeisātan autōmatiskai pra digitālins kāmerans.
 Madli etrīnkais swajasmu zūrbrukin spārtais deskriptīwan pabilīsnan.",
 'upload-success-subj'         => 'Zūrbrukes enkraūsenis izpalla',

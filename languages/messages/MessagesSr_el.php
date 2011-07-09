@@ -1651,10 +1651,6 @@ Slanje java datoteka nije dozvoljeno jer one mogu izazvati zaobilaženje sigurno
 'upload-options'              => 'Opcije slanja',
 'watchthisupload'             => 'Nadgledaj ovaj fajl',
 'filewasdeleted'              => 'Fajl sa ovim imenom je ranije poslat, a kasnije obrisan. Trebalo bi da proverite $1 pre nego što nastavite sa ponovnim slanjem.',
-'upload-wasdeleted'           => "'''Pažnja: Šaljete fajl koji je prethodno obrisan.'''
-
-Razmislite da li ste sigurni da želite poslati ovaj fajl.
-Razlog brisanja ovog fajla ranije je:",
 'filename-bad-prefix'         => "Ime ovog fajla počinje sa '''\"\$1\"''', što nije opisno ime, najčešće je nazvan automatski sa digitalnim fotoaparatom. Molimo izaberite opisnije ime za vaš fajl.",
 'upload-success-subj'         => 'Uspešno slanje',
 'upload-success-msg'          => 'Datoteka iz [$2] je poslata. Dostupna je ovde: [[:{{ns:file}}:$1]]',

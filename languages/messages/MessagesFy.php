@@ -694,7 +694,7 @@ Oars kinne jo tebek mei de tebek-knop fan jo blêder.",
 Kontrolearje oft jo dizze side wol oanmeitsje/bewurkje wolle.',
 'clearyourcache'                   => "'''Opmerking:''' Nei it fêstlizzen kin it nedich wêze de oerslach fan dyn blêder te leegjen foardat de wizigings te sjen binne.
 
-'''Mozilla / Firefox / Safari:''' hâld ''Shift'' yntreaun wylst jo op ''Dizze side fernije'' klikke, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op in Macintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leegje jo cache yn ''Extra → Voorkeuren;'' '''Internet Explorer:''' hâld ''Ctrl'' yntreaun wylst jo ''Vernieuwen'' klikke of typ ''Ctrl-F5.''",
+'''Mozilla / Firefox / Safari:''' hâld ''Shift'' yntreaun wylst jo op ''Dizze side fernije'' klikke, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op in Mac); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leegje jo cache yn ''Extra → Voorkeuren;'' '''Internet Explorer:''' hâld ''Ctrl'' yntreaun wylst jo ''Vernieuwen'' klikke of typ ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tip:''' Brûk de knop 'Earst oerlêze' om jo nije CSS te testen foar it fêstlizzen.",
 'userjsyoucanpreview'              => "'''Tip:''' Brûk de knop 'Earst oerlêze' om jo nije JS te testen foar it fêstlizzen.",
 'usercsspreview'                   => "'''Dit is allinne mar it oerlêzen fan jo persoanlike CSS. Hy is noch net fêstlein!'''",
@@ -1363,10 +1363,6 @@ Rieplachtsje it fuorthel-logboek foar't jo fierder geane.",
 'watchthisupload'             => 'Folgje dizze side',
 'filewasdeleted'              => "Der is earder in triem mei dizze namme fuorthelle.
 Rieplachtsje it $1 foar't jo him op'e nij tafoegje.",
-'upload-wasdeleted'           => "'''Warskôging: jo binne in triem oan it oanbieden, dy't earder fuorthelle wie.'''
-
-Kontrolearje oft it wier jo bedoeling is de triem oan te bieden.
-It fuorthellogboek fan dizze triem kinne jo hjir sjen:",
 'filename-bad-prefix'         => "De namme fan de triem dy't jo oanbiede begjint mei '''\"\$1\"''', dit wiist op in namme dy't automatysk troch in digitale kamera oanmakke wurdt. Feroarje de namme as jo wolle yn ien dy't in omskriuwing jout fan de triem.",
 'filename-prefix-blacklist'   => " #<!-- lit dizze line exakt sa't er is --> <pre>
 # Syntax is as folget:

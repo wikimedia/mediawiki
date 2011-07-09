@@ -1078,10 +1078,6 @@ mibalik ka at ilulan (upload) me king lalam ning bayung lagyu. [[File:$1|thumb|c
 'watchthisupload'             => 'Banten ya ing bulung a ini',
 'filewasdeleted'              => 'Ating simpan (file) a makanian lagyu a sadiang milulan, at mebura kaibat na nita.
 Pakilawe me ing $1 bayu mu isundu ing pamaglulan kaniti.',
-'upload-wasdeleted'           => "'''Babala: Sadia neng mebura ing simpan (file) a kekang lululan.'''
-
-Pakaisipan mu sa nung ustu ing isundu mu ing pamaglulan kaniti.
-Makabili ya keni ing tala da reng mengabura ba meng asuri:",
 'filename-bad-prefix'         => "Magumpisa ya king '''\"\$1\"''' ing lagyu ning simpan (file) a kekang lululan. Iti metung yang lagyung tambing dang bibie deng digital camera, at ala yang kaugnayan ketang letratu.
 Mamili ka sanang lagyung mas maglarawan keng kekang simpan.",
 'upload-success-subj'         => 'Melaus ing pamaglulan',

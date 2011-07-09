@@ -1155,10 +1155,6 @@ Vide etiam [[Special:NewFiles|pinacothecam fasciculorum recentissimorum imposito
 'destfilename'        => 'Nomen fasciculi petitum:',
 'upload-maxfilesize'  => 'Maxima fasciculi magnitudo: $1',
 'watchthisupload'     => 'Custodire hunc fasciculum',
-'upload-wasdeleted'   => "'''Cave: fasciculum qui antea iam deletus est impones.'''
-
-Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit.
-Commodule notatio fasciculorum deletorum hic datur:",
 'upload-success-subj' => 'Impositum est perfectum',
 
 'upload-proto-error'  => 'Protocollum incorrectum',

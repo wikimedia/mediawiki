@@ -592,7 +592,7 @@ $2',
 'noarticletext'                    => 'Οὐδὲν ἐν τῇδε τῇ δέλτῳ γεγραμμένον, ἀλλὰ ἔξεστί σοι [[Special:Search/{{PAGENAME}}|δέλτον τινὰ οὕτως ὀνόματι ζητήσειν]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ζητήσειν τοὺς σχετικοὺς καταλόγους],
 ἢ [{{fullurl:{{FULLPAGENAME}}|action=edit}} τήνδε τὴν δέλτον μεταγράψειν]</span>.',
 'clearyourcache'                   => "'''Ἐπισημείωσις - Μετὰ τὸ καταγράφειν, ἐνδεχομένως δεῖ σε παρακάμψειν τὴν λανθάνουσαν μνήμην τοῦ πλοηγητηρίου σου πρὸ τοῦ ὁρᾶν τὰς μεταβολάς.'''
-'''Mozilla / Firefox / Safari:''' ἐρητυειν τὸ''Shift'' ἐνῷ θλίβεις τὸ ''Reload'', ἢ πίεσον εἴ τε ''Ctrl-F5'' ἢ ''Ctrl-R'' (''Command-R'' ἐν Macintosh);
+'''Mozilla / Firefox / Safari:''' ἐρητυειν τὸ''Shift'' ἐνῷ θλίβεις τὸ ''Reload'', ἢ πίεσον εἴ τε ''Ctrl-F5'' ἢ ''Ctrl-R'' (''Command-R'' ἐν Mac);
 '''Konqueror: '''θλίψον τὸ ''Reload'' ἢ πίεσον ''F5'';
 '''Opera:''' καθαίρειν τὴν λανθάνουσαν μνήμην ἐν ''Tools → Preferences'';
 '''Internet Explorer:''' ἐρητυειν τὸ ''Ctrl'' ἐνῷ θλίβεις τὸ ''Refresh,'' ἢ πίεσον ''Ctrl-F5''.",

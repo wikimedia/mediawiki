@@ -181,7 +181,7 @@ Je kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'
 Controleer of je deze pagina wel wilt aanmaken/bewerken.',
 'clearyourcache'                   => "'''Let op! Nadat je de wijzigingen hebt opgeslagen is het wellicht nodig je browsercache te legen.'''
 
-'''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl je op ''Huidige pagina vernieuwen'' klikt of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh);
+'''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl je op ''Huidige pagina vernieuwen'' klikt of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMac);
 '''Konqueror: '''klik ''Reload'' of typ ''F5;''
 '''Opera:''' leeg je cache in ''Extra → Voorkeuren;''
 '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl je op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
@@ -356,10 +356,6 @@ Raadpleeg het verwijderingslogboek voordat je verder gaat.',
 'uploadfromurl-queued'        => 'Je upload is in de wachtrij geplaatst.',
 'filewasdeleted'              => 'Er is eerder een bestand met deze naam verwijderd.
 Raadpleeg het $1 voordat je het opnieuw toevoegt.',
-'upload-wasdeleted'           => "'''Waarschuwing: je bent een bestand dat eerder verwijderd was aan het uploaden.'''
-
-Controleer of het inderdaad je bedoeling is dit bestand te uploaden.
-Het verwijderingslogboek van dit bestand kunt je hier zien:",
 'filename-bad-prefix'         => "De naam van het bestand dat je aan het uploaden bent begint met '''\"\$1\"''', wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven.
 Kies een duidelijke naam voor je bestand.",
 'upload-success-msg'          => 'Je upload van [$2] is geslaagd en is beschikbaar: [[:{{ns:file}}:$1]]',

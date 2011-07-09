@@ -1509,10 +1509,6 @@ Oraindik ere fitxategia igo nahi baduzu atzera itzuli eta izen berri bat erabili
 'upload-options'              => 'Igoera-aukerak',
 'watchthisupload'             => 'Fitxategi hau jarraitu',
 'filewasdeleted'              => 'Izen hau duen fitxategi bat igo eta ezabatu da jada. $1 aztertu beharko zenuke berriz igo aurretik.',
-'upload-wasdeleted'           => "'''Oharra: Lehenago ezabatutako fitxategia igotzen ari zara.'''
-
-Kontuan izan fitxategia igotzea egokia ote den.
-Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'filename-bad-prefix'         => "Igotzen ari zaren fitxategiaren izena '''\"\$1\"'''ekin hasten da, normalki kamera digitalek automatikoki ezartzen duten izen ez deskriptibo bat.
 Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'upload-success-subj'         => 'Igoera arrakastatsua',

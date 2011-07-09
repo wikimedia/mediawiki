@@ -665,7 +665,7 @@ T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́y
 'blocked-notice-logextract'        => 'Lọ́wọ́lọ́wọ́ oníṣe yìí jẹ́ dídílọ́nà.
 Àkọsílẹ̀ ìdínà àìpẹ́ nìyí nísàlẹ̀ fún ìtọ́kasí:',
 'clearyourcache'                   => "'''Àkíyèsí: Lẹ́yìn ìmúpamọ́, ó ṣe é ṣe kó jẹ́ pé ẹ gbọ́dọ̀ fo cache agbétàkùn yín láti rí àwọn ìyípadà.'''
-'''Mozilla / Firefox / Safari:''' ẹ di ''Shift'' mú bí ẹ ṣe ún tẹ ''Reload'', tàbí kí ẹ tẹ ''Ctrl-F5'' tàbí ''Ctrl-R'' (''Command-R'' lórí Macintosh);
+'''Mozilla / Firefox / Safari:''' ẹ di ''Shift'' mú bí ẹ ṣe ún tẹ ''Reload'', tàbí kí ẹ tẹ ''Ctrl-F5'' tàbí ''Ctrl-R'' (''Command-R'' lórí Mac);
 '''Konqueror: '''ẹ tẹ ''Reload'' tàbí kí ẹ tẹ ''F5'';
 '''Opera:''' ẹ pa cache rẹ́ nínú ''Tools → Preferences'';
 '''Internet Explorer:''' ẹ di ''Ctrl'' mú bí ẹ ṣe ún tẹ ''Refresh,'' tàbí kí ẹ tẹ ''Ctrl-F5''.",

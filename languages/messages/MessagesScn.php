@@ -1400,10 +1400,6 @@ Siddu si disponi dâ mmàggini ntâ risuluzzioni urigginali, si prega di carric�
 'upload-maxfilesize'          => 'Diminzioni màssima dû file: $1',
 'watchthisupload'             => 'Talìa stu file',
 'filewasdeleted'              => 'Nu file cu stu nomu hà statu già carricatu e cancillatu n passatu. Virificari $1 prima di carricàrilu di novu.',
-'upload-wasdeleted'           => "'''Accura: stai carricannu nu file chi fu già cancillatu.'''
-
-Virifica pi favuri la nicissitati di continuari cu lu carricamentu di chistu file.
-Pi tua cumoditati cca c'è la riggistrazioni dâ cancillazioni:",
 'filename-bad-prefix'         => "Lu nomu dô file chi stai carricannu ncigna cu '''\"\$1\"''', chi è nu nomu non descrittivu assignatu, di solitu, automaticamenti dê màchini fotugràfici diggitali. Pi favuri scegghia nu nomu cchiù descrtittivu pi lu tò file.",
 'filename-prefix-blacklist'   => ' #<!-- dassa sta lìnia comu è già --> <pre>
 # Chista di sèquitu è la sintassi:

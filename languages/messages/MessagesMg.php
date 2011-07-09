@@ -1620,9 +1620,6 @@ Misy kialo HTML na fango script mety tsy ho hain'ny navigateur sasany haseho ity
 'watchthisupload'             => 'Araho maso ity rakitra ity',
 'filewasdeleted'              => 'Efa nampidirina tato ary efa voafafa ny rakitra manana io anarana io.
 Tokony marina ny $1 aloha ny manao fampidirana vaovao.',
-'upload-wasdeleted'           => "'''Tandremo''' : Mamerina pejy efa voafafa ianao.''''
-
-Marino raha tsara tohizana ny fanovana eto amin'ity pejy ity. Ny tantaran'asan'ny famafana pejy sy ny fanovan-toerana dia eo ambany :",
 'filename-bad-prefix'         => "Ny anaran-drakitra ho ampidirinareo dia manomboka amin'ny '''« $1 »''', anarana omena an'ny fakan-tsary elektirônika.
 Misafidia anaran-drakitra mambangovango.",
 'upload-success-subj'         => 'Voaray soa aman-tsara ny rakitra',

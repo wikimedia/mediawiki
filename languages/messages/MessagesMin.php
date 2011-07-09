@@ -655,7 +655,7 @@ Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancaharian untuak judul lam
 'userpage-userdoesnotexist-view'   => 'Pangguno "$1" indak tadafta.',
 'blocked-notice-logextract'        => 'Pangguno iko sadang diblokir.
 Entri log pamblokiran tabaharu iko disadioan di bawah iko untuak referensi:',
-'clearyourcache'                   => "'''Catatan:''' Sasudah manyimpan preferensi, Sanak mungkin paralu mambarasiahan singgahan panjalajah web Sanak untuak maliek parubahan. '''Mozilla / Firefox / Safari:''' takan ''Ctrl-R'' (''Cmd-R'' pada Macintosh);
+'clearyourcache'                   => "'''Catatan:''' Sasudah manyimpan preferensi, Sanak mungkin paralu mambarasiahan singgahan panjalajah web Sanak untuak maliek parubahan. '''Mozilla / Firefox / Safari:''' takan ''Ctrl-R'' (''Cmd-R'' pada Mac);
 '''Konqueror:''': takan ''F5'';
 '''Opera''' barasiahan singgahan malalui menu ''Tools → Preferences'';
 '''Internet Explorer:''' takan ''Ctrl-F5''.",

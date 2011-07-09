@@ -939,7 +939,7 @@ Verifique se deseja mesmo criar/editar esta página.',
 'blocked-notice-logextract'        => 'Este usuário está atualmente bloqueado.
 O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'clearyourcache'                   => "'''Nota - Depois de salvar, você terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
-'''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Macintosh);
+'''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Mac);
 '''Konqueror:''' clique no botão ''Recarregar'' ou pressione ''F5'';
 '''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'');
 '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
@@ -1101,7 +1101,7 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-user-contribs'   => '[nome de usuário ou endereço de IP eliminado - edição ocultada das contribuições]',
 'rev-deleted-text-permission' => "Esta revisão desta página foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminações].",
 'rev-deleted-text-unhide'     => "Esta revisão desta página foi '''removida'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].
 Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
@@ -1742,10 +1742,6 @@ Não é permitido o upload de arquivos Java, porque estes podem contornar as res
 'upload-options'              => 'Opções de envio',
 'watchthisupload'             => 'Vigiar este arquivo',
 'filewasdeleted'              => 'Um arquivo com este nome foi carregado anteriormente e subsequentemente eliminado. Você precisa verificar o $1 antes de proceder ao carregamento novamente.',
-'upload-wasdeleted'           => "'''Atenção: Você está enviando um arquivo eliminado anteriormente.'''
-
-Verfique se é apropriado prosseguir enviando este arquivo.
-O registro de eliminação é exibido a seguir, para sua comodidade:",
 'filename-bad-prefix'         => "O nome do arquivo que você está enviando começa com '''\"\$1\"''', um nome pouco esclarecedor, comumente associado de forma automática por câmeras digitais. Por gentileza, escolha um nome de arquivo mais explicativo.",
 'filename-prefix-blacklist'   => ' #<!-- deixe esta linha exatamente como está --> <pre>
 # A sintaxe é a seguinte:
@@ -3225,6 +3221,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 
 # EXIF attributes
 'exif-compression-1' => 'Sem compressão',
+'exif-compression-2' => 'CCITT Grupo 3 Codificação run length de Huffman modificado unidimensional',
 'exif-compression-3' => 'CCITT Grupo 3 codificação de fax',
 'exif-compression-4' => 'CCITT Grupo 4 codificação de fax',
 

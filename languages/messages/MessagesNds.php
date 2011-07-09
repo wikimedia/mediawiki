@@ -1489,10 +1489,6 @@ Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en anne
 'upload-maxfilesize'          => 'Maximale Dateigrött: $1',
 'watchthisupload'             => 'Op disse Datei oppassen',
 'filewasdeleted'              => 'En Datei mit dissen Naam hett dat al mal geven un is denn wegsmeten worrn. Kiek doch toeerst in dat $1 na, ehrdat du de Datei afspiekerst.',
-'upload-wasdeleted'           => "'''Wohrschau: Du läädst en Datei hooch, de al ehrder mal wegsmeten worrn is.'''
-
-Bedenk di eerst, wat dat ok passt, dat du de Datei noch wedder hoochladen deist.
-Hier dat Logbook, wo insteiht, worüm de Sied wegsmeten worrn is:",
 'filename-bad-prefix'         => "De Naam vun de Datei fangt mit '''„$1“''' an. Dat is normalerwies en Naam, den de Datei automaatsch vun de Digitalkamera kriggt. De Naam beschrievt de Datei nich un seggt dor ok nix över ut. Söök di doch en Naam för de Datei ut, de ok wat över den Inholt seggt.",
 'upload-success-subj'         => 'Datei hoochladen hett Spood',
 

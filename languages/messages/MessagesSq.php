@@ -1584,10 +1584,6 @@ Ju lutemi kontrolloni parametrat e ngarkimeve të skedave.',
 'upload-options'              => 'Opsionet e ngarkimit',
 'watchthisupload'             => 'Mbikqyre këtë skedë',
 'filewasdeleted'              => 'Një skedë më këtë emër është ngarkuar një here dhe pastaj është grisur. Duhet të shikoni $1 përpara se ta ngarkoni përsëri.',
-'upload-wasdeleted'           => "'''Vini re: Po ngarkoni një skedë që është grisur më parë.'''
-
-Duhet të mendoheni nëse është e pranueshme ngarkimi i kësaj skede.
-Regjistri i grisjes së skedës jepet më poshtë:",
 'filename-bad-prefix'         => "Emri i skedës që po ngarkoni fillon me '''\"\$1\"''' dhe nuk është veçantisht përshkrues pasi përdoret nga shumë kamera.
 Ju lutem zgjidhni një emër më përshkrues për skedën tuaj.",
 'upload-success-subj'         => 'Dhënie e sukseshme',
