@@ -149,6 +149,8 @@ production.
 * (bug 29779) DairikiDiff/WikiDiff <ins> and <del> should undo browser default
   styling (strike/underline).
 * Translate the block expiry date
+* (bug 28630) Add iwlinks, langlinks, redirect to
+  RefreshLinks::deleteLinksFromNonexistent
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
