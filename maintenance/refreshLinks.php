@@ -251,6 +251,7 @@ class RefreshLinks extends Maintenance {
 			'categorylinks' => 'cl_from',
 			'templatelinks' => 'tl_from',
 			'externallinks' => 'el_from',
+			'iwlinks' => 'iwl_from',
 		);
 
 		foreach ( $linksTables as $table => $field ) {
