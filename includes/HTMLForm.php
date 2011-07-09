@@ -1375,7 +1375,8 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 
 	function __construct( $params ) {
 		if ( !in_array( 'other', $params['options'], true ) ) {
-			$params['options'][wfMsg( 'htmlform-selectorother-other' )] = 'other';
+			$msg = $params['other'] ? $params['other'] : wfMsg( 'htmlform-selectorother-other' );
+			$params['options'][$msg] = 'other';
 		}
 
 		parent::__construct( $params );
