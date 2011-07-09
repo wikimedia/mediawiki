@@ -51,11 +51,7 @@ class MarkpatrolledAction extends FormlessAction {
 			throw new ErrorPageError( 'markedaspatrollederror', 'markedaspatrollederrortext' );
 		}
 
-		# It would be nice to see where the user had actually come from, but for now just guess
-		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
-		$return = SpecialPage::getTitleFor( $returnto );
-
-		$errors = $rc->doMarkPatrolled();
+		$errors = $rc->doMarkPatrolled( $this->getUser() );
 
 		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {
 			throw new ErrorPageError( 'rcpatroldisabled', 'rcpatroldisabledtext' );
@@ -65,6 +61,10 @@ class MarkpatrolledAction extends FormlessAction {
 			// The hook itself has handled any output
 			return;
 		}
+
+		# It would be nice to see where the user had actually come from, but for now just guess
+		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
+		$return = SpecialPage::getTitleFor( $returnto );
 
 		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
 			$this->getOutput()->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
