@@ -3554,6 +3554,12 @@ class Parser {
 		if ( $file && !$title->equals( $file->getTitle() ) ) {
 			# Update fetched file title
 			$title = $file->getTitle();
+			if ( is_null( $file->getRedirectedTitle() ) ) {
+				# This file was not a redirect, but the title does not match.
+				# Register under the new name because otherwise the link will
+				# get lost.
+				$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
+			}
 		}
 		return array( $file, $title );
 	}
