@@ -162,7 +162,7 @@ class ChangeTags {
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) )
 			return $fullForm ? '' : array();
 
-		$data = array( Xml::label( wfMsgExt( 'tag-filter', 'parseinline' ), 'tagfilter' ),
+		$data = array( Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMsgExt( 'tag-filter', 'parseinline' ) ),
 			Xml::input( 'tagfilter', 20, $selected ) );
 
 		if ( !$fullForm ) {
