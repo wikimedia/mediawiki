@@ -268,24 +268,28 @@ class RecentChange {
 	 * @return Array See doMarkPatrolled(), or null if $change is not an existing rc_id
 	 */
 	public static function markPatrolled( $change, $auto = false ) {
+		global $wgUser;
+
 		$change = $change instanceof RecentChange
 			? $change
 			: RecentChange::newFromId($change);
+
 		if( !$change instanceof RecentChange ) {
 			return null;
 		}
-		return $change->doMarkPatrolled( $auto );
+		return $change->doMarkPatrolled( $wgUser, $auto );
 	}
 	
 	/**
 	 * Mark this RecentChange as patrolled
 	 *
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and 'markedaspatrollederror-noautopatrol' as errors
+	 * @param $user User object doing the action
 	 * @param $auto Boolean: for automatic patrol
 	 * @return array of permissions errors, see Title::getUserPermissionsErrors()
 	 */
-	public function doMarkPatrolled( $auto = false ) {
-		global $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
+	public function doMarkPatrolled( User $user, $auto = false ) {
+		global $wgUseRCPatrol, $wgUseNPPatrol;
 		$errors = array();
 		// If recentchanges patrol is disabled, only new pages
 		// can be patrolled
@@ -294,13 +298,13 @@ class RecentChange {
 		}
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
 		$right = $auto ? 'autopatrol' : 'patrol';
-		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $wgUser ) );
+		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $user ) );
 		if( !wfRunHooks('MarkPatrolled', array($this->getAttribute('rc_id'), &$wgUser, false)) ) {
 			$errors[] = array('hookaborted');
 		}
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
-		if( $wgUser->getName() == $this->getAttribute('rc_user_text') && !$wgUser->isAllowed('autopatrol') ) {
+		if( $user->getName() == $this->getAttribute('rc_user_text') && !$user->isAllowed('autopatrol') ) {
 			$errors[] = array('markedaspatrollederror-noautopatrol');
 		}
 		if( $errors ) {
@@ -314,7 +318,7 @@ class RecentChange {
 		$this->reallyMarkPatrolled();
 		// Log this patrol event
 		PatrolLog::record( $this, $auto );
-		wfRunHooks( 'MarkPatrolledComplete', array($this->getAttribute('rc_id'), &$wgUser, false) );
+		wfRunHooks( 'MarkPatrolledComplete', array($this->getAttribute('rc_id'), &$user, false) );
 		return array();
 	}
 	
