@@ -565,7 +565,7 @@ Pueis [[Special:Search/{{PAGENAME}}|landeal el entítulu del artículu]] en otra
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta d\'usuáriu "<nowiki>$1</nowiki>" nu está rustria. Pol favol, compreba que rialmenti quieis crial/eital esta páhina.',
-'clearyourcache'                   => "'''Nota:''' Aluspués d'emburacal el archivu, ebi gorvel a cargal la página pa vel los chambus. '''Mozilla / Firefox / Safari:''' Pursa la tecra ''Shift'' mentris das a ''Recargal'', u pursa ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' en Macintosh);
+'clearyourcache'                   => "'''Nota:''' Aluspués d'emburacal el archivu, ebi gorvel a cargal la página pa vel los chambus. '''Mozilla / Firefox / Safari:''' Pursa la tecra ''Shift'' mentris das a ''Recargal'', u pursa ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' en Mac);
 '''Konqueror:''' Pursa ''F5'' u ''Recargal'';
 '''Opera:''' Esborra el caché en ''Herramientas→Preferéncias''.
 '''Internet Explorer:''' Mantén ''Ctrl'' mentris pursas ''Atualizal'', u pursa ''Ctrl-F5''.",
@@ -1119,10 +1119,6 @@ Si acontinas queriendu empuntal el archivu, vai alatrás i escambia el nombri el
 'upload-maxfilesize'          => 'Grandol máisimu el archivu: $1',
 'watchthisupload'             => 'Vegilal esti archivu',
 'filewasdeleted'              => 'Un archivu con el mesmu nombri ya hue empuntau i alogu esborrau. Eberias comprebal el $1 enantis de gorvel a empuntalu.',
-'upload-wasdeleted'           => "'''Avisu: Estás tratandu d´empuntal un archivu que ya hue esborrau.'''
-
-Eberias arreparal en si es convenienti acontinal empuntandu el archivu u nu.
-Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'filename-bad-prefix'         => "El nombri del archivu qu'estás empuntandu esmiença pol '''\"\$1\"''', es izil, es un nombri nu descritivu (típicu nombri dau autumaticamenti pol cámaras dehitalis). Pol favol, chamba el nombri del tu archivu.",
 'upload-success-subj'         => 'Empuntu satisfatoriu',
 

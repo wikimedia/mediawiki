@@ -2781,7 +2781,7 @@ See also {{msg-mw|Blocklistline}}.',
 'reblock-logentry'            => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being reblocked
 * $2 is the expiry time of the block
-* $3 is the reason for the block',
+* $3 are extra parameters like "account creation blocked" (they are automatically between brackets)',
 'blocklogtext'                => 'Appears on top of [[Special:Log/block]].',
 'unblocklogentry'             => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being unblocked',

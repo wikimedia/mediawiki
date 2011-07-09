@@ -676,9 +676,6 @@ Mid ånderne Benutzer kåst du aa ywer de Benutzerdischkrirsaiten an Kontakt auf
 'uploadscripted'      => 'De Datei enthalt HTML- oda Scriptcode, der irrtümlichaweis von am Webbrowser ausgführt wern kinnat.',
 'watchthisupload'     => 'De Saiten beowochten',
 'filewasdeleted'      => 'A Datei mit dem Nama is scho oamoi hochgladn worn und zwischenzeitlich wieda glöscht worn. Bitte schaug erscht den Eintrag im $1 oo, bevor du de Datei wirklich speicherst.',
-'upload-wasdeleted'   => "'''Obacht: Du ladst aa Datei hoach, de scho friara glöscht worn is.'''
-Bittschee prüf gnau, ob as erneite Hoachladn de Richtlinien entspricht.
-Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorherige Löschung:",
 'upload-success-subj' => 'Erfolgreich hoachgladn',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

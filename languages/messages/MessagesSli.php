@@ -480,7 +480,7 @@ Du koast diesen Tittel uff dann andern Seyta [[Special:Search/{{PAGENAME}}|sicha
 oder ei dann zugehieriga <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbichern sicha].</span>',
 'userpage-userdoesnotexist'        => 'Doas Nutzerkonto „<nowiki>$1</nowiki>“ ies ne vurhanda. Bitte priefe, ob du diese Seyte wirklich erstalla/beoarbeeta wielst.',
 'userpage-userdoesnotexist-view'   => 'Nutzerkonto „$1“ existiert ne.',
-'clearyourcache'                   => "'''Hinweis - Laare noach damm Speichern dann Browser-Cache, im de Änderungen sahn zu kinna:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und uff ''Aktualisiera'' klicka oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) dricka; '''Konqueror: '''Uff ''Aktualisiera'' klicka oder ''F5'' dricka; '''Opera:''' Cache under ''Extras → Eenstellunga'' laara; '''Internet Explorer:''' ''Strg-F5'' dricka oder ''Strg'' gedrickt halta und dabei ''Aktualisiera'' oaklicka.",
+'clearyourcache'                   => "'''Hinweis - Laare noach damm Speichern dann Browser-Cache, im de Änderungen sahn zu kinna:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und uff ''Aktualisiera'' klicka oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Mac) dricka; '''Konqueror: '''Uff ''Aktualisiera'' klicka oder ''F5'' dricka; '''Opera:''' Cache under ''Extras → Eenstellunga'' laara; '''Internet Explorer:''' ''Strg-F5'' dricka oder ''Strg'' gedrickt halta und dabei ''Aktualisiera'' oaklicka.",
 'usercssyoucanpreview'             => "'''Tipp:''' Benutze dann Vurschau-Button, im dei neues CSS vur damm Speichern zu testa.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benutze dann Vurschau-Button, im dei neues JS vur damm Speichern zu testa.",
 'usercsspreview'                   => "== Vurschau Dennes Nutzer-CSS ==
@@ -1019,10 +1019,6 @@ Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade diese
 'upload-options'             => 'Huchloade-Optionen',
 'watchthisupload'            => 'Diese Datei beobachta',
 'filewasdeleted'             => 'Anne Datei miet diesem Noama wurde schunnt eemoll huchgeloada und zwischenzeitlich wieder geläscht. Bitte priefe zuerst dann Eintrag eim $1, bevor du de Datei wirklich speicherst.',
-'upload-wasdeleted'          => "'''Ochtiche: Du lädst anne Datei huch, de bereits frieher geläscht wurde.'''
-
-Bitte priefe sorgfältig, ob doas erneute Huchloada dann Richtlinien entspricht.
-Zu denner Information folgt doas Läsch-Logbuch miet dar Begrindung fier de vorhergehende Läschung:",
 'filename-bad-prefix'        => "Dar Dateinoame beginnt miet '''„$1“'''. Dies ies eim allgemeena dar vu a'r Digitalkamera vorgegebene Dateinoame und daher ne sehr aussagekräftig.
 Bitte gieb dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
 'upload-success-subj'        => 'Erfolgreich huchgeloada',

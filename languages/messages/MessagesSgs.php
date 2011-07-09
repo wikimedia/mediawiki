@@ -935,10 +935,6 @@ Prašuom ėšsėrėnktė kėta varda.",
 'destfilename'               => 'Nuorims faila pavadinims',
 'upload-maxfilesize'         => 'Dėdliausias faila dėdoms: $1',
 'watchthisupload'            => 'Keravuotė šėta poslapė',
-'upload-wasdeleted'          => "'''Parspiejėms: Tamsta ikeliat faila, katros unkstiau bova ėštrėnts.'''
-
-Tamsta torietomiet nusprēstė, a īr naudėnga tuoliau ikeldinietė ta faila.
-Tuo faila pašalinėma istuorėjė īr pateikta dielē patuogoma:",
 'upload-success-subj'        => 'Ikelt siekmėngā',
 
 'upload-proto-error'      => 'Nateisėngs protuokols',

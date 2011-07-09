@@ -1644,10 +1644,6 @@ Kyk na die "file_uploads"-instelling.',
 'watchthisupload'             => 'Hou die lêer dop',
 'filewasdeleted'              => "'n Lêer met hierdie naam is al voorheen opgelaai en daarna geskrap.
 Kyk asseblief na die $1 voor u aangaan om dit weer op te laai.",
-'upload-wasdeleted'           => "'''Waarskuwing: U is besig om 'n lêer op te laai wat voorheen verwyder is.'''
-
-Dink twee keer na of dit wel gepas is om die lêer hier op te laai.
-Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'filename-bad-prefix'         => "Die naam van die lêer wat u besig is om op te laai begin met '''\"\$1\"''', wat 'n nie-beskrywende term is, gewoonlik outomaties toegedien deur digitale kameras.
 Kies asseblief 'n meer beskrywende naam vir die lêer.",
 'upload-success-subj'         => 'Laai suksesvol',
@@ -2224,7 +2220,7 @@ Sien die [[Special:ProtectedPages|lys van beveiligde bladsye]] vir alle bladsye 
 'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
 'movedarticleprotection'      => 'het beskermings-instellings vanaf "[[$2]]" na "[[$1]]" geskuif',
 'protect-title'               => 'Beskerm "$1"',
-'prot_1movedto2'              => '[[$1]] geskuif na [[$2]]',
+'prot_1movedto2'              => 'het [[$1]] geskuif na [[$2]]',
 'protect-legend'              => 'Bevestig beskerming',
 'protectcomment'              => 'Rede:',
 'protectexpiry'               => 'Verval:',
@@ -2587,8 +2583,8 @@ Kies asseblief 'n ander naam.",
 'movepage-page-moved'          => 'Die bladsy $1 was na $2 geskuif.',
 'movepage-page-unmoved'        => 'Die bladsy $1 kon nie na $2 geskuif word nie.',
 'movepage-max-pages'           => 'Die maksimum van $1 {{PLURAL:$1|bladsy|bladsye}} is geskuif. Die oorblywende bladsye na nie outomaties geskuif word nie.',
-'1movedto2'                    => '[[$1]] geskuif na [[$2]]',
-'1movedto2_redir'              => '[[$1]] geskuif na [[$2]] oor bestaande aanstuur',
+'1movedto2'                    => 'het [[$1]] geskuif na [[$2]]',
+'1movedto2_redir'              => 'het [[$1]] geskuif na [[$2]] oor bestaande aanstuur',
 'move-redirect-suppressed'     => 'aanstuur is onderdruk',
 'movelogpage'                  => 'Skuiflogboek',
 'movelogpagetext'              => "Hier onder is 'n lys van geskuifde bladsye.",

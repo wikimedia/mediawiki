@@ -621,7 +621,7 @@ $2',
 'blocked-notice-logextract'        => '該簿現鎖也。
 下列之記鎖，以察之：',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
-'''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Macintosh為''Command-R''）。
+'''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Mac為''Command-R''）。
 '''Konqueror:'''點''Reload''，或押''F5''。
 ：''Opera:'''須至''Tools→Preferences''清謄本。
 '''Internet Explorer:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。",
@@ -1344,8 +1344,6 @@ $1",
 'upload-description'         => '檔述',
 'upload-options'             => '貢項',
 'watchthisupload'            => '派哨',
-'upload-wasdeleted'          => "'''警示：復獻棄檔，慎續之。'''
-誌刪如下：",
 'filename-bad-prefix'        => "獻檔以'''「$1」'''首，常由相機瞎造，惠更述之。",
 'upload-success-subj'        => '檔案安矣',
 'upload-success-msg'         => '爾自[$2]之貢安矣，見於此：[[:{{ns:file}}:$1]]',

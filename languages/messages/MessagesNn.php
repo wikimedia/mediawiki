@@ -1653,10 +1653,6 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'upload-options'              => 'Val for opplasting',
 'watchthisupload'             => 'Overvak denne fila',
 'filewasdeleted'              => 'Ei fil med same namnet er tidlegare vorte lasta opp og sletta. Du bør sjekke $1 før du prøver å laste henne opp att.',
-'upload-wasdeleted'           => "'''Åtvaring: Du nyopplastar ei fil som tidlegare har vorte sletta.'''
-
-Du bør tenkje over om det er lurt å halde fram med å laste opp denne fila.
-Sletteloggen for fila finn du her:",
 'filename-bad-prefix'         => "Namnet på fila du lastar opp byrjar med '''«$1»''', som er eit inkjeseiande namn som vanlegvis vert gjeve til bilete automatisk av digitale kamera. Ver venleg og vel eit meir skildrande namn på fila di.",
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntaksen er som følgjer:

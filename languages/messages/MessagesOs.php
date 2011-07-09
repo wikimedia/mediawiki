@@ -651,6 +651,7 @@ $3',
 'recentchangeslinked-toolbox'  => 'Баст ивдтытæ',
 'recentchangeslinked-title'    => '"$1"-имæ баст ивдтытæ',
 'recentchangeslinked-noresult' => 'Нæй баст фæрсты ивдтытæ амынд рæстæджы',
+'recentchangeslinked-summary'  => "Адон сты фæстаг рæстæджы ивдтытæ ахæм статьяты, кæдонмæ æрвиты амынд фарс (кæнæ амынд категорийы уæнгтæ). Дæ цæстдард фæрстæ сты '''бæзджынæй''' нысангонд.",
 'recentchangeslinked-page'     => 'Фарсы ном:',
 
 # Upload
@@ -674,20 +675,23 @@ $3',
 'license' => 'Лицензи:',
 
 # Special:ListFiles
-'listfiles' => 'Нывты номхыгъд',
+'listfiles'       => 'Нывты номхыгъд',
+'listfiles_thumb' => 'Къаддæргонд',
 
 # File description page
-'file-anchor-link'  => 'Ныв',
-'filehist'          => 'Файлы истори',
-'filehist-revert'   => 'раивын',
-'filehist-current'  => 'нырыккон',
-'filehist-datetime' => 'Датæ/рæстæг',
-'filehist-user'     => 'Архайæг',
-'filehist-filesize' => 'Файлы бæрцуат',
-'filehist-comment'  => 'Фиппаинаг',
-'imagelinks'        => 'Æрвитæнтæ файлмæ',
-'linkstoimage'      => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
-'nolinkstoimage'    => 'Нæй ахæм фæрстæ, кæдон æрвитынц ацы файлмæ.',
+'file-anchor-link'   => 'Ныв',
+'filehist'           => 'Файлы истори',
+'filehist-revert'    => 'раивын',
+'filehist-current'   => 'нырыккон',
+'filehist-datetime'  => 'Датæ/рæстæг',
+'filehist-thumb'     => 'Къаддæргонд',
+'filehist-thumbtext' => 'Къаддæргонд уыцы версийæн: $1',
+'filehist-user'      => 'Архайæг',
+'filehist-filesize'  => 'Файлы бæрцуат',
+'filehist-comment'   => 'Фиппаинаг',
+'imagelinks'         => 'Æрвитæнтæ файлмæ',
+'linkstoimage'       => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
+'nolinkstoimage'     => 'Нæй ахæм фæрстæ, кæдон æрвитынц ацы файлмæ.',
 
 # File deletion
 'filedelete-submit'           => 'Аппар',
@@ -996,6 +1000,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-watch'                  => 'Ацы фарс, дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъдмæ бафтау',
 'tooltip-rollback'               => '"Раздæхын" æздæхы ацы фарсы фæстаг архайæджы ивд(тытæ) иу хæстмæ',
 'tooltip-undo'                   => '"Раивын" æздæхы ацы ивд æмæ æвдисы ивæн фарс разбакаст уавæры. Уый дын дæ бавæрдæн фсон скæныны фадат дæтты.',
+'tooltip-summary'                => 'Бафысс чысыл æмбарынгæнæн',
 
 # Attribution
 'others' => 'æндæртæ',

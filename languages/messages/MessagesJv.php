@@ -1350,10 +1350,6 @@ Mangga priksa panyetèlan pangunggahan berkas.',
 'watchthisupload'             => 'Awasana berkas iki',
 'filewasdeleted'              => 'Sawijining berkas mawa jeneng iki wis tau diunggahaké lan sawisé dibusak.
 Mangga priksanen $1 sadurungé ngunggahaké berkas iku manèh.',
-'upload-wasdeleted'           => "'''PÈNGET: Panjenengan ngunggahaké sawijining berkas sing wis tau dibusak.'''
-
-Panjenengan kudu nggalih perlu utawa ora mbanjuraké pangunggahan berkas ini.
-Log pambusakan berkas iki kaya mangkéné:",
 'filename-bad-prefix'         => "Jeneng berkas sing panjenengan unggahaké, diawali mawa '''\"\$1\"''', sing sawijining jeneng non-dèskriptif sing biasané diwènèhaké sacara otomatis déning kamera digital. Mangga milih jeneng liyané sing luwih dèskriptif kanggo berkas panjenengan.",
 'upload-success-subj'         => 'Kasil diamot',
 'upload-failure-msg'          => 'Ana prakara karo pangunggahan panjenengan seka [$2]:

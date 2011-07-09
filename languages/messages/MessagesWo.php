@@ -1305,9 +1305,6 @@ Tànnal weneen tur.",
 'upload-maxfilesize'          => 'Dayoob ŋara wi warul romb: $1',
 'watchthisupload'             => 'Topp dencukaay bii',
 'filewasdeleted'              => 'Dencukaay bu tudd nii yeboon nañ ko fi ba noppi, faraat ko. Saytul $1 laataa nga koy yebaat.',
-'upload-wasdeleted'           => "'''Moytul: yaa ngi yebaat ab dencukaay buñ fi fare woon ci lu weesu'''
-
-Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'filename-bad-prefix'         => "Turu dencukaay bi ngay yeb moo ngi tambalee '''\"\$1\"''', te muy tur wu nosukaay bi di joxal boppam nataalukaay yi.
 Dila ñaan nga tànn tur wuy faramfacce dencukaay bi.",
 'upload-success-subj'         => 'Yeb gi jàll na',

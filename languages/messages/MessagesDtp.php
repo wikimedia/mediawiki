@@ -636,7 +636,7 @@ Mangai intangai nung mumang ko pomonsoi/mongidit do bolikon diti.',
 'blocked-notice-logextract'        => 'Maso do nantaban momomoguno diti.
 Riporon id siriba kokomoi nantaban di tohuri no:',
 'clearyourcache'                   => "'''Soroho: Opongoh do pogompi, mangai  pawayao dangkob pogigihumnu do mongintong di nopingalanan.'''
-'''Mozilla / Firefox / Safari:''' todoso ''Shift'' maso do mongotik ''Reload'', toi piandadon mononsok ''Ctrl-F5'' toi ''Ctrl-R'' (''Command-R'' id Macintosh);
+'''Mozilla / Firefox / Safari:''' todoso ''Shift'' maso do mongotik ''Reload'', toi piandadon mononsok ''Ctrl-F5'' toi ''Ctrl-R'' (''Command-R'' id Mac);
 '''Konqueror: '''kotiko ''Reload'' toi tonsoko ''F5'';
 '''Opera:''' imuhawai id dangkob  ''Tools → Preferences'';
 '''Internet Explorer:''' todoso ''Ctrl'' maso do mongotik ''Refresh,'' toi tonsoko ''Ctrl-F5''.",
@@ -1210,7 +1210,7 @@ Milo ko nogi do mongolon tingkat tingolig diti, nga ingaa it kosimbanon montok t
 'linkshere'                => "Bolikon diti poingoput kumaa id  '''[[:$1]]''':",
 'isredirect'               => 'bolikon pinotilombus',
 'istemplate'               => 'alanai',
-'isimage'                  => 'noputan upa',
+'isimage'                  => 'noputan do upa',
 'whatlinkshere-prev'       => '{{PLURAL:$1|nokopogulu|duluon $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|tohuri|dohuri $1}}',
 'whatlinkshere-links'      => '← noputan',

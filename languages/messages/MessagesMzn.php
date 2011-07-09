@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ali1986
+ * @author Ebraminio
  * @author Firuz
  * @author Spacebirdy
  * @author محک
@@ -910,7 +911,7 @@ $2، $1',
 'monthsall'     => 'هـأمـه',
 
 # E-mail address confirmation
-'confirmemail_body_changed' => 'ات نفر، احتمالأ خاد شمِا، از نشونی آی‌پی $1 نشونی پوست ایلکتورونیک حیساب «$2» {{SITENAME}} ره تغییر هدائه.
+'confirmemail_body_changed' => 'ات نفر، احتمالاً خاد شمِا، از نشونی آی‌پی $1 نشونی پوست ایلکتورونیک حیساب «$2» {{SITENAME}} ره تغییر هدائه.
 
 برای تایید این که این حیساب واقعاً شمه شه و فعال هکردن دبارهٔ ویژگی پوست ایلکتورونیک {{SITENAME}}، پیوند زیر دله ره شه مرورگر دله وا هکنین:
 

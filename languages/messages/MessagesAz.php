@@ -1328,10 +1328,6 @@ Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək is
 'upload-description'         => 'Faylın izahı',
 'upload-options'             => 'Yükləmə parametrləri',
 'watchthisupload'            => 'Bu faylı izlə',
-'upload-wasdeleted'          => "'''Diqqət! Siz əvvəl bu ad altında mövcud olmuş və silinmiş faylı yenidən yükləməkdəsiniz'''
-
-Əvvəlcədən bu faylı yenidən yükləməyin nə dərəcədə lazımlı olduğunu müəyyənləşdirməyiniz məsləhətdir.
-Bu səhifənin silmə qeydləri aşağıda göstərilmişdir:",
 'filename-prefix-blacklist'  => ' #<!-- Bu sətrə toxunmayın --> <pre>
 # Sintaksis aşağıdakı kimi görünür:
 #   * "#" simvolundan sətrin sonuna kimi yazılar şərhdir

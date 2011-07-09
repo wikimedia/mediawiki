@@ -705,7 +705,7 @@ u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 'clearyourcache'                   => "'''Pare cuenta: Si quiere veyer os cambeos dimpués d'alzar o fichero, puede estar que tienga que refrescar a caché d'o suyo navegador ta veyer os cambeos.'''
 
-*'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Macintosh);
+*'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Mac);
 *'''Konqueror: ''' punche ''Reload'' u prete ''F5;''
 *'''Opera:''' limpiar a caché en ''Tools → Preferences;''
 *'''Internet Explorer:''' prete ''Ctrl'' mientres puncha ''Refresh,'' u prete ''Ctrl-F5.''",
@@ -1470,9 +1470,6 @@ Si encara quiere cargar ixe fichero, torne y faiga servir un nuevo nombre. [[Fil
 'upload-options'              => 'Opcions de carga',
 'watchthisupload'             => 'Cosirar iste fichero',
 'filewasdeleted'              => 'Una fichero con iste mesmo nombre ya se cargó denantes y estió borrato dimpués. Habría de comprebar $1 antes de tornar a cargar-lo una atra vegada.',
-'upload-wasdeleted'           => "'''Pare cuenta: Ye cargando un fichero que ya estió borrato d'antes más.'''
-
-Habría de repensar si ye apropiato continar con a carga d'iste fichero. Aquí tiene o rechistro de borrau d'iste fichero ta que pueda comprebar a razón que se dio ta borrar-lo:",
 'filename-bad-prefix'         => "O nombre d'o fichero que ye cargando prencipia por '''\"\$1\"''', que ye un nombre no descriptivo que gosa clabar automaticament as camaras dichitals. Por favor, trigue un nombre más descriptivo ta iste fichero.",
 'filename-prefix-blacklist'   => ' #<!-- dixe ista linia esautament igual como ye --> <pre>
 # A sintacsis ye asinas:

@@ -1526,10 +1526,6 @@ Nagrawanje datajow Javy njejo dowólone, dokulaž mógli wobjeźenje wěstotnych
 'upload-options'              => 'Nagrawańske opcije',
 'watchthisupload'             => 'Toś tu dataju wobglědowaś',
 'filewasdeleted'              => 'Dataja z toś tym mjenim jo se južo raz nagrała a mjaztym zasej wulašowała. Pšosym kontrolěruj pjerwjej $1, nježli až nagrajoš dataju znowego.',
-'upload-wasdeleted'           => "'''Glědaj: Nagrawaš dataju, kótaraž jo južo raz se wulašowała.'''
-
-Pšosym kontrolěruj, lic wótpowědujo nowe nagraśe směrnicam.
-Aby se mógał informěrowaś jo how protokol z pśicynu wulašowanja:",
 'filename-bad-prefix'         => "Mě dataje, kótaruž nagrawaš, zachopijo z '''„$1“'''. Take mě jo wót digitalneje kamery pśedpódane a toś wjele njewugroni. Pšosym pómjeni dataju tak, aby mě wěcej wó jeje wopśimjeśu wugroniło.",
 'filename-prefix-blacklist'   => ' #<!-- Njezměń nic na toś tej rědce! --> <pre>
 # Syntaksa jo slědujuca:

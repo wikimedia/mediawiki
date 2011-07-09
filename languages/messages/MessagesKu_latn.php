@@ -1022,11 +1022,6 @@ Xêra xwe navekî din bibîne.",
 'upload-maxfilesize'      => "Mezinbûna data'yê ya herî mezin: $1",
 'watchthisupload'         => 'Vê rûpelê bişopîne',
 'filewasdeleted'          => "Data'yek bi vê navê hatibû barkirin û jêbirin. Xêra xwe li $1 seke ku barkirina te hêja ye ya na.",
-'upload-wasdeleted'       => "'''Hîşyar: Tu data'yekê bardikê yê berê hatibû jêbirin.'''
-
-Zanibe, ku ev barkirina kê were qebûlkirin ya na.
-
-Înformasyonan li ser jêbirinê kevin ra:",
 'filename-bad-prefix'     => "Nava wê data'yê, yê tu niha bardikê, bi '''\"\$1\"''' destpêdike. Kamêrayên dîjîtal wan navan didin wêneyên xwe. Ji kerema xwe navekî baştir binivisîne ji bo mirov zûtir zanibin ku şayeşê vê wêneyê çî ye.",
 'upload-success-subj'     => 'Barkirin serkeftî',
 

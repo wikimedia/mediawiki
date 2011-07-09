@@ -655,6 +655,7 @@ $messages = array(
 'timezoneregion-europe'    => 'ଇଉରୋପ',
 'prefs-namespaces'         => 'ନେମସ୍ପେସ',
 'prefs-files'              => 'ଫାଇଲ',
+'youremail'                => 'ଇ-ମେଲ:',
 'yourlanguage'             => 'ଭାଷା:',
 'prefs-help-email'         => 'ଇ-ମେଲ ଠିକଣାଟି ଇଚ୍ଛାଧୀନ, କିନ୍ତୁ ଆପଣ ପାସବାର୍ଡ଼ଟି ଯଦି ଭୁଲିଗଲେ ତାହା ଆଉଥରେ ତିଆରିବା ପାଇଁ ଏହା କାମରେ ଲାଗିବ ।',
 

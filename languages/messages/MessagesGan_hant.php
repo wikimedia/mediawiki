@@ -984,10 +984,6 @@ $2',
 'destfilename'                => '目標檔案名:',
 'watchthisupload'             => '眏到箇頁',
 'filewasdeleted'              => '先前有隻同名檔案上傳後又拕刪吥嘞。上傳箇隻檔案之前倷非要檢查$1。',
-'upload-wasdeleted'           => "'''警告: 倷於今上傳嗰檔案係先前刪過嗰。'''
-
-倷要想正係真嗰上傳箇隻檔案。
-為到方便起見，箇隻檔案嗰刪除記錄到下底提供嘞:",
 'filename-bad-prefix'         => "倷上傳嗰檔案名係以'''\"\$1\"'''做開頭嗰，通常箇種冇意義嗰名字係數碼相機度嗰自動編排。請到倷嗰檔案揀過隻更加有意義嗰名字。",
 'upload-success-subj'         => '上傳正嘞',
 
@@ -1701,8 +1697,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-pt-preferences'          => '汝嗰參數設置',
 'tooltip-pt-watchlist'            => '汝嗰監視列表嗰改動',
 'tooltip-pt-mycontris'            => '汝嗰貢獻列表',
-'tooltip-pt-login'                => '登入係伓強制嗰，但佢會有蠻多好處',
-'tooltip-pt-anonlogin'            => '登入係伓強制嗰，但佢會有蠻多好處',
+'tooltip-pt-login'                => '汝登入會得佢蠻多惠，但冇人訛得汝。',
+'tooltip-pt-anonlogin'            => '汝登入會得佢蠻多惠，但冇人訛得汝。',
 'tooltip-pt-logout'               => '登出',
 'tooltip-ca-talk'                 => '內容頁嗰討論',
 'tooltip-ca-edit'                 => '倷編得正箇頁，但勞煩倷望佢一眼起再存到佢。',
@@ -1710,7 +1706,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-viewsource'           => '箇頁已拕保護。但倷能望吖佢嗰原始碼。',
 'tooltip-ca-history'              => '箇頁早先嗰版本',
 'tooltip-ca-protect'              => '護到箇頁',
-'tooltip-ca-unprotect'            => '護得箇頁',
+'tooltip-ca-unprotect'            => '改吥箇頁嗰保護',
 'tooltip-ca-delete'               => '刪卟箇頁',
 'tooltip-ca-undelete'             => '拿箇頁還原到刪卟之前嗰樣子',
 'tooltip-ca-move'                 => '移動箇頁',

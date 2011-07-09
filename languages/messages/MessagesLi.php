@@ -1544,10 +1544,6 @@ Raodpleeg t verwiederingslogbook veurdet se wiejer geis.',
 'upload-options'              => 'Uploadinstellinge',
 'watchthisupload'             => 'Volg dit bestandj',
 'filewasdeleted'              => "d'r Is eerder 'n bestandj mit deze naam verwiederd. Raodpleeg 't $1 veurdetse 't opnuuj toevoegs.",
-'upload-wasdeleted'           => "'''Waarsjuwing: Doe bös 'n bestand det eerder verwiederd woor aan 't uploade.'''
-
-Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit bestand.
-'t verwiederingslogbook van dit bestand kinse hiej zeen:",
 'filename-bad-prefix'         => "De naam van 't bestand detse aan 't uploade bös begint met '''\"\$1\"''', wat 'ne neet-besjrievende naam is dae meestal automatisch door 'ne digitale camera wörd gegaeve. Kees estebleef 'ne dudelike naam veur dien bestand.",
 'upload-success-subj'         => 'De upload is geluk',
 'upload-success-msg'          => 'Dienen upload van [$2] is geslaag en is besjikbaar: [[:{{ns:file}}:$1]]',
