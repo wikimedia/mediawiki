@@ -3018,7 +3018,7 @@ class Language {
 			}
 		}
 		// If no duration is given, but a timestamp, display that
-		return $this->timeanddate( $str );
+		return ( strtotime( $str ) ? $this->timeanddate( strtotime( $str ) ) : $str );
 	}
 
 	/**
