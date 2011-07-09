@@ -20,6 +20,8 @@ input[type="submit"], input[type="button"], input[type="reset"], input[type="fil
 
 .mw-float-start { float: left; }
 .mw-float-end { float: right; }
+.mw-align-start { text-align: left; }
+.mw-align-end { text-align: left; }
 
 /* The scripts of these languages are very hard to read with underlines */
 [lang="ar"] a, [lang="ckb"] a, [lang="fa"] a, [lang="kk-arab"] a,
