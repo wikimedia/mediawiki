@@ -329,7 +329,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$namespaces[] = $opts['namespace'];
 
 			$inversionSuffix = $opts['invert'] ? '!' : '';
-			
+
 			if( $opts['associated'] ) {
 				# namespace association (bug 2429)
 				$namespaces[] = MWNamespace::getAssociated( $opts['namespace'] );

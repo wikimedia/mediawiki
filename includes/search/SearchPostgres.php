@@ -29,6 +29,11 @@
  * @ingroup Search
  */
 class SearchPostgres extends SearchEngine {
+
+	/**
+	 * @var DatabasePostgres
+	 */
+	protected $db;
 	/**
 	 * Creates an instance of this class
 	 * @param $db DatabaseSqlite: database object
@@ -56,6 +61,7 @@ class SearchPostgres extends SearchEngine {
 		}
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
 	}
+
 	function searchText( $term ) {
 		$q = $this->searchQuery( $term, 'textvector', 'old_text' );
 		$olderror = error_reporting(E_ERROR);
