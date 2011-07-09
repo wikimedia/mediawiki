@@ -126,6 +126,15 @@ class RequestContext {
 	}
 
 	/**
+	 * Set the Language object
+	 *
+	 * @param $l Language
+	 */
+	public function setLang( Language $l ) {
+		$this->lang = $l;
+	}
+
+	/**
 	 * Get the Language object
 	 *
 	 * @return Language
@@ -156,6 +165,16 @@ class RequestContext {
 			}
 		}
 		return $this->lang;
+	}
+
+	/**
+	 * Set the Skin object
+	 *
+	 * @param $s Skin
+	 */
+	public function setSkin( Skin $s ) {
+		$this->skin = clone $s;
+		$this->skin->setContext( $this );
 	}
 
 	/**
