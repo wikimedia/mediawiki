@@ -1140,6 +1140,14 @@ div#content .printfooter {
 	text-transform: none;
 }
 
+.redirectText {
+	font-size: 140%;
+}
+
+.redirectMsg img {
+	vertical-align: text-bottom;
+}
+
 .toccolours {
 	border: 1px solid #aaa;
 	background-color: #f9f9f9;
