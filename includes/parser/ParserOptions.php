@@ -17,7 +17,7 @@ class ParserOptions {
 	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
 	var $mAllowExternalImages;       # Allow external images inline
 	var $mAllowExternalImagesFrom;   # If not, any exception?
-	var $mEnableImageWhitelist;      # If not or it doesn't match, should we check an on-wiki whitelist? 
+	var $mEnableImageWhitelist;      # If not or it doesn't match, should we check an on-wiki whitelist?
 	var $mDateFormat = null;         # Date format index
 	var $mEditSection = true;        # Create "edit section" links
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
@@ -61,7 +61,7 @@ class ParserOptions {
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
 	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
 	function getEditSection()                   { return $this->mEditSection; }
-	function getNumberHeadings()                { $this->optionUsed('numberheadings');
+	function getNumberHeadings()                { $this->optionUsed( 'numberheadings' );
 												  return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
@@ -76,32 +76,32 @@ class ParserOptions {
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
-	function getMath()                          { $this->optionUsed('math');
+	function getMath()                          { $this->optionUsed( 'math' );
 												  return $this->mMath; }
-	function getThumbSize()                     { $this->optionUsed('thumbsize');
+	function getThumbSize()                     { $this->optionUsed( 'thumbsize' );
 												  return $this->mThumbSize; }
-	function getStubThreshold()                 { $this->optionUsed('stubthreshold');
+	function getStubThreshold()                 { $this->optionUsed( 'stubthreshold' );
 												  return $this->mStubThreshold; }
 
 	function getIsPreview()                     { return $this->mIsPreview; }
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
-	function getIsPrintable()                   { $this->optionUsed('printable');
+	function getIsPrintable()                   { $this->optionUsed( 'printable' );
 												  return $this->mIsPrintable; }
 	function getUser()                          { return $this->mUser; }
 	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
 
-	/** 	 
-	 * @param $title Title 	 
-	 * @return Skin 	 
+	/**
+	 * @param $title Title
+	 * @return Skin
 	 * @deprecated since 1.18 Use Linker::* instead
-	 */ 	 
-	function getSkin( $title = null ) { 	 
+	 */
+	function getSkin( $title = null ) {
 		wfDeprecated( __METHOD__ );
 		return new DummyLinker;
 	}
 
 	function getDateFormat() {
-		$this->optionUsed('dateformat');
+		$this->optionUsed( 'dateformat' );
 		if ( !isset( $this->mDateFormat ) ) {
 			$this->mDateFormat = $this->mUser->getDatePreference();
 		}
@@ -123,7 +123,7 @@ class ParserOptions {
 	 * @since 1.17
 	 */
 	function getUserLang() {
-		$this->optionUsed('userlang');
+		$this->optionUsed( 'userlang' );
 		return $this->mUserLang;
 	}
 
@@ -136,9 +136,9 @@ class ParserOptions {
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
 	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
-	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x); }
+	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x ); }
 	function setSkin( $x )                      { $this->mSkin = $x; }
-	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
+	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x ); }
 	function setTargetLanguage( $x )            { return wfSetVar( $this->mTargetLanguage, $x, true ); }
 	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
 	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
@@ -281,37 +281,43 @@ class ParserOptions {
 
 		$confstr = '';
 
-		if ( in_array( 'math', $forOptions ) )
+		if ( in_array( 'math', $forOptions ) ) {
 			$confstr .= $this->mMath;
-		else
+		} else {
 			$confstr .= '*';
+		}
 
 
 		// Space assigned for the stubthreshold but unused
 		// since it disables the parser cache, its value will always
 		// be 0 when this function is called by parsercache.
-		if ( in_array( 'stubthreshold', $forOptions ) )
+		if ( in_array( 'stubthreshold', $forOptions ) ) {
 			$confstr .= '!' . $this->mStubThreshold;
-		else
+		} else {
 			$confstr .= '!*' ;
+		}
 
-		if ( in_array( 'dateformat', $forOptions ) )
+		if ( in_array( 'dateformat', $forOptions ) ) {
 			$confstr .= '!' . $this->getDateFormat();
+		}
 
-		if ( in_array( 'numberheadings', $forOptions ) )
+		if ( in_array( 'numberheadings', $forOptions ) ) {
 			$confstr .= '!' . ( $this->mNumberHeadings ? '1' : '' );
-		else
+		} else {
 			$confstr .= '!*';
+		}
 
-		if ( in_array( 'userlang', $forOptions ) )
+		if ( in_array( 'userlang', $forOptions ) ) {
 			$confstr .= '!' . $this->mUserLang;
-		else
+		} else {
 			$confstr .= '!*';
+		}
 
-		if ( in_array( 'thumbsize', $forOptions ) )
+		if ( in_array( 'thumbsize', $forOptions ) ) {
 			$confstr .= '!' . $this->mThumbSize;
-		else
+		} else {
 			$confstr .= '!*';
+		}
 
 		// add in language specific options, if any
 		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
@@ -324,9 +330,10 @@ class ParserOptions {
 		} elseif ( !$this->mEditSection ) {
 			$confstr .= '!edit=0';
 		}
-		
-		if (  $this->mIsPrintable && in_array( 'printable', $forOptions ) )
+
+		if ( $this->mIsPrintable && in_array( 'printable', $forOptions ) ) {
 			$confstr .= '!printable=1';
+		}
 
 		if ( $this->mExtraKey != '' )
 			$confstr .= $this->mExtraKey;
