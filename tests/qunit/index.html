@@ -51,6 +51,8 @@
 	<!-- QUnit: Load framework -->
 	<link rel="stylesheet" href="../../resources/jquery/jquery.qunit.css" />
 	<script src="../../resources/jquery/jquery.qunit.js"></script>
+	<script src="../../resources/jquery/jquery.qunit.completenessTest.js"></script>
+	<script src="data/testrunner.js"></script>
 
 	<!-- QUnit: Load test suites (maintain the same order as above please) -->
 	<script src="suites/resources/mediawiki/mediawiki.js"></script>
@@ -67,19 +69,6 @@
 	<script src="suites/resources/jquery/jquery.tablesorter.test.js" charset="UTF-8"></script>
 	<script src="suites/resources/mediawiki/mediawiki.Title.js"></script>
 	<script src="suites/resources/mediawiki.special/mediawiki.special.recentchanges.js"></script>
-
-	<!-- TestSwarm: If a test swarm is running this,
-	     the following script will allow it to extract the results.
-	     Harmless otherwise. -->
-	<script src="testswarm.inject.js"></script>
-
-	<!-- CompletenessTest -->
-	<script>
-		if ( QUnit.urlParams.completenesstest ) {
-			document.write( '\x3Cscript src="../../resources/jquery/jquery.qunit.completenessTest.js">\x3C/script>' );
-			document.write( '\x3Cscript src="jquery.qunit.completenessTest.config.js">\x3C/script>' );
-		}
-	</script>
 </head>
 <body>
 	<h1 id="qunit-header">MediaWiki JavaScript Test Suite</h1>

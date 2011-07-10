@@ -67,7 +67,9 @@ var CompletenessTest = function ( masterVariable, ignoreFn ) {
 				html += '<br />' + mw.html.escape(key);
 			});
 			html += '<br /><br /><em>&mdash; CompletenessTest</em>';
-			return $( '<div>' ).css( style ).append( html );
+			var	$oldResult = $( '#qunit-completenesstest' ),
+				$result = $oldResult.length ? $oldResult : $( '<div id="qunit-completenesstest"></div>' );
+			return $result.css( style ).html( html );
 		};
 
 		if ( $.isEmptyObject( that.missingTests ) ) {
