@@ -1330,7 +1330,7 @@ abstract class Skin {
 					$bar[$heading][] = array_merge( array(
 						'text' => $text,
 						'href' => $href,
-						'id' => 'n-' . strtr( $line[1], ' ', '-' ),
+						'id' => 'n-' . Sanitizer::escapeId( strtr( $line[1], ' ', '-' ) ),
 						'active' => false
 					), $extraAttribs );
 				} elseif ( ( substr( $line, 0, 2 ) == '{{' ) && ( substr( $line, -2 ) == '}}' ) ) {
