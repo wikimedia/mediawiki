@@ -32,7 +32,6 @@ test( 'mw.Map', function() {
 	strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
 	strictEqual( conf.set( nummy, 'Nummy' ), false, 'Map.set returns boolean false if key was invalid (Number)' );
 	equal( conf.get( 'myKey' ), 'myValue', 'Map.get returns a single value value correctly' );
-	// @broken (these currently return the values object)
 	strictEqual( conf.get( nummy ), null, 'Map.get ruturns null if selection was invalid (Number)' );
 	strictEqual( conf.get( funky ), null, 'Map.get ruturns null if selection was invalid (Function)' );
 
