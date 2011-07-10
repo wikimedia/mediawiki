@@ -169,7 +169,7 @@ class LogEventsList {
 			$hideVal = 1 - intval($val);
 			$query[$queryKey] = $hideVal;
 
-			$link = $this->skin->link(
+			$link = Linker::link(
 				$this->getDisplayTitle(),
 				$messages[$hideVal],
 				array(),
@@ -352,10 +352,10 @@ class LogEventsList {
 			$userLinks = '<span class="history-deleted">' .
 				wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$userLinks = $this->skin->userLink( $row->log_user, $row->user_name );
+			$userLinks = Linker::userLink( $row->log_user, $row->user_name );
 			// Talk|Contribs links...
 			if( !( $this->flags & self::NO_EXTRA_USER_LINKS ) ) {
-				$userLinks .= $this->skin->userToolLinks(
+				$userLinks .= Linker::userToolLinks(
 					$row->log_user, $row->user_name, true, 0, $row->user_editcount );
 			}
 		}
@@ -380,7 +380,7 @@ class LogEventsList {
 		} else {
 			global $wgLang;
 			$comment = $wgLang->getDirMark() .
-				$this->skin->commentBlock( $row->log_comment );
+				Linker::commentBlock( $row->log_comment );
 		}
 		return $comment;
 	}
@@ -405,7 +405,7 @@ class LogEventsList {
 		if( self::typeAction( $row, 'move', 'move', 'move' ) && !empty( $paramArray[0] ) ) {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if( $destTitle ) {
-				$revert = '(' . $this->skin->link(
+				$revert = '(' . Linker::link(
 					SpecialPage::getTitleFor( 'Movepage' ),
 					$this->message['revertmove'],
 					array(),
@@ -425,7 +425,7 @@ class LogEventsList {
 			} else {
 				$viewdeleted = $this->message['undeletelink'];
 			}
-			$revert = '(' . $this->skin->link(
+			$revert = '(' . Linker::link(
 				SpecialPage::getTitleFor( 'Undelete' ),
 				$viewdeleted,
 				array(),
@@ -435,7 +435,7 @@ class LogEventsList {
 		// Show unblock/change block link
 		} elseif( self::typeAction( $row, array( 'block', 'suppress' ), array( 'block', 'reblock' ), 'block' ) ) {
 			$revert = '(' .
-				$this->skin->link(
+				Linker::link(
 					SpecialPage::getTitleFor( 'Unblock', $row->log_title ),
 					$this->message['unblocklink'],
 					array(),
@@ -443,7 +443,7 @@ class LogEventsList {
 					'known'
 				) .
 				$this->message['pipe-separator'] .
-				$this->skin->link(
+				Linker::link(
 					SpecialPage::getTitleFor( 'Block', $row->log_title ),
 					$this->message['change-blocklink'],
 					array(),
@@ -454,7 +454,7 @@ class LogEventsList {
 		// Show change protection link
 		} elseif( self::typeAction( $row, 'protect', array( 'modify', 'protect', 'unprotect' ) ) ) {
 			$revert .= ' (' .
-				$this->skin->link( $title,
+				Linker::link( $title,
 					$this->message['hist'],
 					array(),
 					array(
@@ -464,7 +464,7 @@ class LogEventsList {
 				);
 			if( $wgUser->isAllowed( 'protect' ) ) {
 				$revert .= $this->message['pipe-separator'] .
-					$this->skin->link( $title,
+					Linker::link( $title,
 						$this->message['protect_change'],
 						array(),
 						array( 'action' => 'protect' ),
@@ -473,7 +473,7 @@ class LogEventsList {
 			$revert .= ')';
 		// Show unmerge link
 		} elseif( self::typeAction( $row, 'merge', 'merge', 'mergehistory' ) ) {
-			$revert = '(' . $this->skin->link(
+			$revert = '(' . Linker::link(
 				SpecialPage::getTitleFor( 'MergeHistory' ),
 				$this->message['revertmerge'],
 				array(),
@@ -495,7 +495,7 @@ class LogEventsList {
 				// $paramArray[1] is a CSV of the IDs
 				$query = $paramArray[0];
 				// Link to each hidden object ID, $paramArray[1] is the url param
-				$revert = '(' . $this->skin->link(
+				$revert = '(' . Linker::link(
 					$revdel,
 					$this->message['revdel-restore'],
 					array(),
@@ -510,10 +510,10 @@ class LogEventsList {
 		// Self-created users
 		} elseif( self::typeAction( $row, 'newusers', 'create2' ) ) {
 			if( isset( $paramArray[0] ) ) {
-				$revert = $this->skin->userToolLinks( $paramArray[0], $title->getDBkey(), true );
+				$revert = Linker::userToolLinks( $paramArray[0], $title->getDBkey(), true );
 			} else {
 				# Fall back to a blue contributions link
-				$revert = $this->skin->userToolLinks( 1, $title->getDBkey() );
+				$revert = Linker::userToolLinks( 1, $title->getDBkey() );
 			}
 			if( wfTimestamp( TS_MW, $row->log_timestamp ) < '20080129000000' ) {
 				# Suppress $comment from old entries (before 2008-01-29),
@@ -548,7 +548,7 @@ class LogEventsList {
 				$canHide = $wgUser->isAllowed( 'deleterevision' );
 				// If event was hidden from sysops
 				if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
-					$del = $this->skin->revDeleteLinkDisabled( $canHide );
+					$del = Linker::revDeleteLinkDisabled( $canHide );
 				} else {
 					$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
 					$query = array(
@@ -556,7 +556,7 @@ class LogEventsList {
 						'type'   => 'logging',
 						'ids'    => $row->log_id,
 					);
-					$del = $this->skin->revDeleteLink( $query,
+					$del = Linker::revDeleteLink( $query,
 						self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
 				}
 			}
@@ -716,7 +716,7 @@ class LogEventsList {
 			# If there is exactly one log type, we can link to Special:Log?type=foo
 			if ( count( $types ) == 1 )
 				$urlParam['type'] = $types[0];
-			$s .= $wgUser->getSkin()->link(
+			$s .= Linker::link(
 				SpecialPage::getTitleFor( 'Log' ),
 				wfMsgHtml( 'log-fulllog' ),
 				array(),
