@@ -111,9 +111,13 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	public function getOptions() {
 		if ( $this->rcOptions === null ) {
-			global $wgRequest;
-			$feedFormat = $wgRequest->getVal( 'feed' );
-			$this->rcOptions = $feedFormat ? $this->feedSetup() : $this->setup( $this->rcSubpage );
+			if ( $this->including() ) {
+				$isFeed = false;
+			} else {
+				global $wgRequest;
+				$isFeed = (bool)$wgRequest->getVal( 'feed' );
+			}
+			$this->rcOptions = $isFeed ? $this->feedSetup() : $this->setup( $this->rcSubpage );
 		}
 		return $this->rcOptions;
 	}
@@ -127,7 +131,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	public function execute( $subpage ) {
 		global $wgRequest, $wgOut;
 		$this->rcSubpage = $subpage;
-		$feedFormat = $wgRequest->getVal( 'feed' );
+		$feedFormat = $this->including() ? null : $wgRequest->getVal( 'feed' );
 
 		# 10 seconds server-side caching max
 		$wgOut->setSquidMaxage( 10 );
