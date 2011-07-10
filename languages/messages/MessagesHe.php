@@ -990,10 +990,11 @@ $2
 'blocked-notice-logextract'        => 'משתמש זה חסום כרגע.
 פעולת יומן החסימות האחרונה מוצגת להלן:',
 'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (Cache) של הדפדפן כדי להבחין בשינויים.
-* '''מוזילה / פיירפוקס / ספארי:''' לחצו על מקש ה־Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו על ''Ctrl+F5'' או על ''Ctrl+R'' (או על ''Command+R'' במקינטוש).
-* '''Konqueror:''' לחצו על '''העלה מחדש''' (Reload), או הקישו על ''F5''.
-* '''אופרה''': נקו את המטמון ב'''כלים''' (Tools) > '''העדפות''' (Preferences).
-* '''אינטרנט אקספלורר:''' לחצו על מקש ה־Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl+F5''.",
+* '''פיירפוקס / ספארי:''' לחצו על Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו על ''Ctrl-F5'' או על ''Ctrl-R'' (או על ''Command+R'' במק)
+* '''Google Chrome:''' לחצו על ''Ctrl-Shift-R'' (או על ''Command-Shift-R'' במק)
+* '''אינטרנט אקספלורר:''' לחצו על Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl+F5''
+* '''Konqueror:''' לחצו על '''העלה מחדש''' (Reload) או הקישו על ''F5''
+* '''אופרה''': נקו את המטמון ב'''כלים''' (Tools) > '''העדפות''' (Preferences)",
 'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את גליון ה־CSS החדש שלכם לפני השמירה.",
 'userjsyoucanpreview'              => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את סקריפט ה־JavaScript החדש שלכם לפני השמירה.",
 'usercsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גליון ה־CSS שלכם.'''
@@ -1363,12 +1364,13 @@ $1",
 'searchdisabled'                   => 'לצערנו, עקב עומס על המערכת, לא ניתן לחפש כעת בטקסט המלא של הדפים. באפשרותכם להשתמש בינתיים בגוגל, אך שימו לב שייתכן שהוא אינו מעודכן.',
 
 # Quickbar
-'qbsettings'               => 'הגדרות סרגל כלים',
-'qbsettings-none'          => 'ללא',
-'qbsettings-fixedleft'     => 'קבוע משמאל',
-'qbsettings-fixedright'    => 'קבוע מימין',
-'qbsettings-floatingleft'  => 'צף משמאל',
-'qbsettings-floatingright' => 'צף מימין',
+'qbsettings'                => 'הגדרות סרגל כלים',
+'qbsettings-none'           => 'ללא',
+'qbsettings-fixedleft'      => 'קבוע משמאל',
+'qbsettings-fixedright'     => 'קבוע מימין',
+'qbsettings-floatingleft'   => 'צף משמאל',
+'qbsettings-floatingright'  => 'צף מימין',
+'qbsettings-directionality' => 'קבוע, תלוי בכיווניות של השפה',
 
 # Preferences page
 'preferences'                   => 'העדפות',
