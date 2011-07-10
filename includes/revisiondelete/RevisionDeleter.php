@@ -67,45 +67,36 @@ class RevisionDeleter {
 	 * @param $count Integer: The number of effected revisions.
 	 * @param $nbitfield Integer: The new bitfield for the revision.
 	 * @param $obitfield Integer: The old bitfield for the revision.
+	 * @param $language Language object to use
 	 * @param $isForLog Boolean
-	 * @param $forContent Boolean
 	 */
-	public static function getLogMessage( $count, $nbitfield, $obitfield, $isForLog = false, $forContent = false ) {
-		global $wgLang, $wgContLang;
-
-		$lang = $forContent ? $wgContLang : $wgLang;
-		$msgFunc = $forContent ? "wfMsgForContent" : "wfMsg";
-
+	public static function getLogMessage( $count, $nbitfield, $obitfield, $language, $isForLog = false ) {
 		$changes = self::getChanges( $nbitfield, $obitfield );
-		array_walk( $changes, array( __CLASS__, 'expandMessageArray' ), $forContent );
+		array_walk( $changes, array( __CLASS__, 'expandMessageArray' ), $language );
 
 		$changesText = array();
 
 		if( count( $changes[0] ) ) {
-			$changesText[] = $msgFunc( 'revdelete-hid', $lang->commaList( $changes[0] ) );
+			$changesText[] = wfMsgExt( 'revdelete-hid', array( 'parsemag', 'language' => $language ), $language->commaList( $changes[0] ) );
 		}
 		if( count( $changes[1] ) ) {
-			$changesText[] = $msgFunc( 'revdelete-unhid', $lang->commaList( $changes[1] ) );
+			$changesText[] = wfMsgExt( 'revdelete-unhid', array( 'parsemag', 'language' => $language ), $language->commaList( $changes[1] ) );
 		}
 
-		$s = $lang->semicolonList( $changesText );
+		$s = $language->semicolonList( $changesText );
 		if( count( $changes[2] ) ) {
 			$s .= $s ? ' (' . $changes[2][0] . ')' : ' ' . $changes[2][0];
 		}
 
 		$msg = $isForLog ? 'logdelete-log-message' : 'revdelete-log-message';
-		return wfMsgExt( $msg, $forContent ? array( 'parsemag', 'content' ) : array( 'parsemag' ), $s, $lang->formatNum($count) );
+		return wfMsgExt( $msg, array( 'parsemag', 'language' => $language ), $s, $language->formatNum($count) );
 	}
 
-	private static function expandMessageArray(& $msg, $key, $forContent) {
+	private static function expandMessageArray( &$msg, $key, $language ) {
 		if ( is_array ( $msg ) ) {
-			array_walk( $msg, array( __CLASS__, 'expandMessageArray' ), $forContent );
+			array_walk( $msg, array( __CLASS__, 'expandMessageArray' ), $language );
 		} else {
-			if ( $forContent ) {
-				$msg = wfMsgForContent($msg);
-			} else {
-				$msg = wfMsg($msg);
-			}
+			$msg = wfMsgExt( $msg, array( 'parsemag', 'language' => $language ) );
 		}
 	}
 
