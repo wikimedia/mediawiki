@@ -863,7 +863,12 @@ Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranic
 'userpage-userdoesnotexist-view'   => 'Korisnički nalog "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Podaci o poslednjem blokiranju su priloženi ispod kao dodatna informacija:',
-'clearyourcache'                   => "'''Zapamtite:''' Nakon snimanja, možda morate očistiti keš vašeg brauzera da biste videli promene. '''Mozilla / Firefox / Safari:''' držite ''Shift'' dok klikćete ''Reload'' ili pritisnite  ''Shift+Ctrl+R'' (''Cmd-Shift-R'' na ''Apple Mac'' mašini); '''IE:''' držite ''Ctrl'' dok klikćete ''Refresh'' ili pritisnite ''Ctrl-F5''; '''Konqueror:''': samo kliknite ''Reload'' dugme ili pritisnite ''F5''; korisnici '''Opera''' brauzera možda moraju da u potpunosti očiste svoj keš preko ''Tools→Preferences''.",
+'clearyourcache'                   => "'''Napomena:''' nakon čuvanja, možda ćete morati da očistite privremenu memoriju pregledača.
+*'''Fajerfoks i Safari:''' držite ''šift'' i kliknite na ''Osveži'', ili pritisnite ''šift+ktrl+R'' (''komand-R'' na Makintošu);
+*'''K-osvajač: '''kliknite na ''Osveži'' ili pritisnite ''F5'';
+*'''Opera:''' očistite privremenu memoriju preko menija ''Alatke → Postavke'';
+*'''Gugl kroum:''' pritisnite ''ktrl-šift-R'' (''komand-šift-R'' na Makintošu)
+*'''Internet eksplorer: '''držite ''ktrl'' i kliknite na ''Osveži'', ili pritisnite ''ktrl-F5'';",
 'usercssyoucanpreview'             => "'''Savet:''' Korisitite dugme \"{{int:showpreview}}\" dugme da biste testirali svoj novi CSS pre snimanja.",
 'userjsyoucanpreview'              => "'''Savet:''' Korisitite dugme \"{{int:showpreview}}\" da biste testirali svoj novi JavaScript pre snimanja.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo pretpregled vašeg CSS, još uvek nije snimljen!'''",

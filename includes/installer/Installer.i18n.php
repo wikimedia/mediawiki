@@ -2792,7 +2792,7 @@ allerdings können keine Zeichen außerhalb des [http://de.wikipedia.org/wiki/Ba
 	'config-db-schema' => 'Datenschema für MediaWiki',
 	'config-db-schema-help' => 'Dieses Datenschema ist in der Regel allgemein verwendbar.
 Nur Änderungen daran vornehmen, sofern es gute Gründe dafür gibt.',
-	'config-pg-test-error' => "Es kann keine Verbindung zur Datenbank '''$1''' hergestellt wreden: $2",
+	'config-pg-test-error' => "Es kann keine Verbindung zur Datenbank '''$1''' hergestellt werden: $2",
 	'config-sqlite-dir' => 'SQLite-Datenverzeichnis:',
 	'config-sqlite-dir-help' => "SQLite speichert alle Daten in einer einzigen Datei.
 
@@ -8090,6 +8090,7 @@ Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhla
 Et Ömrääschne en Minni-Beldsche weed ußjeschalldt.',
 	'config-no-uri' => "'''Fähler:''' Mer kunnte der aktoälle <i lang=\"en\">URI</i> nit erusfenge.
 Et Enreeschte es domet heh aam Engk.",
+	'config-using-server' => 'Mer nämmen dem ẞööver singe Name: „<nowiki>$1</nowiki>“.',
 	'config-uploads-not-safe' => "'''Opjepaß:''' Uß däm jewöhnlijje Verzeichnes för de huhjelaade Datteie, dat es <code>$1</code>, künnte öhnzwällsche Skrepte un Projramme ußjeföhrt wääde. Och wann MediaWiki de huhjelaade Datteie prööf, dat kein bekannte Risike dren sin, sullt mer doch dat [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sesherheitsloch] zoh maache, ih dat mer et Dattei Huhlaade zohlöht.",
 	'config-brokenlibxml' => 'Op Dingem Rääschner loufe Versione vun PHP un <code lang="en">libxml2</code> zosamme, di ävver nit zosamme paßße, un de Daate em MediaWiki un ander Web_Aanwändunge [http://bugs.php.net/bug.php?id=45996 bug kapott maache].
 Jangk op PHP 5.2.9 udder dohnoh un op <code lang="en">libxml2</code> 2.7.3 udder dohnoh.
@@ -8158,6 +8159,7 @@ allerdengs künne kein Zeishe ußerhalv vum [http://de.wikipedia.org/wiki/Basic_
 	'config-db-schema' => 'Et Schema en de Datebangk för MediaWiki:',
 	'config-db-schema-help' => 'För jewöhnlesch es dat Schema en Odenong.
 Donn bloß jät draan ändere, wann De sescher weiß, dat dat nüüdesch es.',
+	'config-pg-test-error' => "Mer krijje kein Verbendung zor Daatebank '''$1''': $2",
 	'config-sqlite-dir' => 'Dem <i lang="en">SQLite</i> sing Daateverzeishnes:',
 	'config-sqlite-dir-help' => '<i lang="en">SQLite</i> hät all sing Daate zosamme en en einzel Dattei.
 
@@ -8418,6 +8420,7 @@ Wann De noch Änderonge maache wells, dann kleck op „{{int:config-back}}“.',
 	'config-install-step-failed' => 'donävve jejange',
 	'config-install-extensions' => 'Zohsazprojramme enjeschloße',
 	'config-install-database' => 'Ben de Daatebangk aam ennreeschte.',
+	'config-install-schema' => 'Dat Schema en dä Daatebank weed aanjelaat.',
 	'config-install-pg-schema-not-exist' => 'Dat Scheema för <i lang="en">PostgreSQL</i> es nit doh.',
 	'config-install-pg-schema-failed' => 'Et Tabälle-Opsäze es donävve jejange.
 Donn doför sorrje, dat dä Daatebangk-Aanwänder „$1“ en dämm Daatebangkscheema „$2“ schrieve kann.',
@@ -8429,6 +8432,7 @@ Donn doför sorrje, dat dä Daatebangk-Aanwänder „$1“ en dämm Daatebangksc
 	'config-install-user-alreadyexists' => 'Dä Aanwender „$1“ för dä Zohjref op de Daatebangk kann nit aanjelaat wääde, et jidd_en alld.',
 	'config-install-user-create-failed' => 'Dä Aanwender „$1“ för dä Zohjref op de Daatebangk kunnt nit aanjelaat wääde, wäje: <code lang="en">$2</code>',
 	'config-install-user-grant-failed' => 'Däm Daatebangk-Aanwänder sing Beräschtijunge ze säze däät nit fluppe wääje: $2',
+	'config-install-user-missing' => 'Dä aanjejovve Metmaacher „$1“ jidd_et nit.',
 	'config-install-tables' => 'Ben de Daatebangk-Tabälle aam aanlääje.',
 	'config-install-tables-exist' => "'''Opjepaß''': Et schingk, dem MediaWiki sing Tabälle sin alt doh.
 Doh dom_mer nix aanlääje.",
@@ -8441,7 +8445,7 @@ Doh dom_mer nix dobei.",
 	'config-install-keys' => 'Jeheime Schlößel wääde opjebout.',
 	'config-insecure-keys' => "'''Opjepaß:''' {{PLURAL:$2|Ene jeheime Schlößel|Jeheim Schlößele|Keine jeheime Schlößel}} ($1) {{PLURAL:$2|es|sin|es}} automattesch aanjelaat woode. {{PLURAL:$2|Dä es|Di sin|Hä es}} ävver nit onbedengk janz sescher. Övverlääsch Der, {{PLURAL:$2|dä|di|en}} norr_ens vun Hand ze ändere.",
 	'config-install-sysop' => 'Dä Zohjang för der Wiki-Köbes weed aanjelaat.',
-	'config-install-subscribe-fail' => 'Mer künne de <i lang="en">e-mail</i>-Leß <code lang="en">mediawiki-announce</code> nit abonneere.',
+	'config-install-subscribe-fail' => 'Mer künne de <i lang="en">e-mail</i>-Leß <code lang="en">mediawiki-announce</code> nit abonneere: $1',
 	'config-install-mainpage' => 'Ben de Houpsigg med enem shtandatmääßeje Enhald aam aanlääje',
 	'config-install-extension-tables' => 'Ben Datebangk-Tabälle för de Zohsazprojramme aam ennreschte',
 	'config-install-mainpage-failed' => 'Kunnt de Houpsigg nit afshpeishere: $1',

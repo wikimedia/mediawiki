@@ -99,6 +99,21 @@ $messages = array(
 'qbmyoptions'    => 'Mi optiones',
 'qbspecialpages' => 'Págines special',
 
+# Vector skin
+'vector-action-addsection'       => 'Adjunter tema',
+'vector-action-delete'           => 'Deleter',
+'vector-action-move'             => 'Mover',
+'vector-action-protect'          => 'Gardar',
+'vector-action-undelete'         => 'Restituer',
+'vector-action-unprotect'        => 'Desgardar',
+'vector-simplesearch-preference' => 'Premisser suggestiones de sercha argumentat (pelle Vector solmen)',
+'vector-view-create'             => 'Crear',
+'vector-view-edit'               => 'Redacter',
+'vector-view-history'            => 'Vider historie',
+'vector-view-view'               => 'Leer',
+'vector-view-viewsource'         => 'Vider fonte',
+'variants'                       => 'Variantes',
+
 'errorpagetitle'    => 'Errore',
 'returnto'          => 'Retornar a $1.',
 'tagline'           => 'De {{SITENAME}}',
@@ -133,15 +148,21 @@ $messages = array(
 'toolbox'           => 'Buxe de utensiles',
 'userpage'          => 'Vider págine del usator',
 'imagepage'         => 'Vider págine del image',
+'viewhelppage'      => 'Vider págine de auxilie',
 'viewtalkpage'      => 'Vider li discussion',
 'otherlanguages'    => 'Altri lingues',
 'redirectedfrom'    => '(Redirectet de $1)',
 'redirectpagesub'   => 'Págine de redirecterion',
-'viewcount'         => 'Ti págine ha esset consultat {{PLURAL:$1|un vez|$1 vezes}}.',
+'viewcount'         => 'Ti págine ha esset accesset {{PLURAL:$1|un vez|$1 vezes}}.',
 'protectedpage'     => 'Un protectet págine',
 'jumpto'            => 'Saltar a:',
 'jumptonavigation'  => 'navigation',
 'jumptosearch'      => 'serchar',
+'view-pool-error'   => 'It me dole que li servitores es totalmen cargat in li moment.
+Anc mult usatores es provant vider ti págine.
+Pleser atende un témpor quelc ante que vu prova accesser ti págine denov.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Concernent {{SITENAME}}',
@@ -161,6 +182,10 @@ $messages = array(
 'portal-url'           => 'Project:Págine de comunité',
 'privacy'              => 'Politica de privatie',
 'privacypage'          => 'Project:Politica de privatie',
+
+'versionrequired'     => 'Version $1 de MediaWiki exiget',
+'versionrequiredtext' => 'Version $1 de MediaWiki es exiget por usar ti págine.
+Vider [[Special:Version|págine de version]].',
 
 'retrievedfrom'           => 'Recuperat de "$1"',
 'youhavenewmessages'      => 'Vu have $1 ($2).',
@@ -192,7 +217,7 @@ $messages = array(
 'wrong_wfQuery_params' => 'Normes íncorect por wfQuery()<br />
 Function: $1<br />
 Question: $2',
-'viewsource'           => 'Vider contenete',
+'viewsource'           => 'Vider fonte',
 'viewsourcefor'        => 'por $1',
 
 # Login and logout pages
@@ -285,6 +310,7 @@ Tui changes ancor ne ha esset conservat!",
 'undo-summary' => 'Desfat revision $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])',
 
 # History pages
+'viewpagelogs'        => 'Vider diariumes por ti págine',
 'currentrev'          => 'Ultim revision',
 'revisionasof'        => 'Revision de $1',
 'revision-info'       => 'Revision de $1 e il ha fabricat de $2',
@@ -379,6 +405,7 @@ Tui changes ancor ne ha esset conservat!",
 'upload-prohibited'   => 'Tipes de file prohibit: $1.',
 'uploadlogpage'       => 'Diarium de cargament',
 'filedesc'            => 'Descrition',
+'verification-error'  => 'Ti file ne passat per li verification de file.',
 'unknown-error'       => 'Un errore desconosset ocurret.',
 'savefile'            => 'Conservar file',
 'uploadedimage'       => 'cargat "[[$1]]"',
@@ -551,6 +578,7 @@ Vu posse provar in un témpor minu activ.',
 'restriction-move' => 'Mover',
 
 # Undelete
+'viewdeletedpage'        => 'Vider págines deletet',
 'undeletebtn'            => 'Restaurar',
 'undelete-search-submit' => 'Serchar',
 
@@ -688,6 +716,12 @@ Vu posse provar in un témpor minu activ.',
 'tooltip-preferences-save'        => 'Conservar preferenties',
 'tooltip-summary'                 => 'Intrar un summarium curt',
 
+# Stylesheets
+'vector.css' => '/* CSS colocat ci va afectar usatores de pelle Vector */',
+
+# Scripts
+'vector.js' => '/* Alquel JavaScript ci va esser cargat por usatores que usa li pelle Vector */',
+
 # Browsing diffs
 'previousdiff' => '← Redaction anteriori',
 'nextdiff'     => 'Proxim redaction →',
@@ -699,6 +733,9 @@ Vu posse provar in un témpor minu activ.',
 # Special:NewFiles
 'newimages' => 'Galerie de nov images',
 'ilsubmit'  => 'Serchar',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims' => '$1, $2×$3',
 
 # Metadata
 'metadata'      => 'Metadata',
@@ -723,8 +760,25 @@ Vu posse provar in un témpor minu activ.',
 'table_pager_limit_submit' => 'Ear',
 
 # Special:Version
-'version'       => 'Version',
-'version-other' => 'Altri',
+'version'                       => 'Version',
+'version-extensions'            => 'Extensiones installat',
+'version-specialpages'          => 'Págines special',
+'version-parserhooks'           => 'Croces analisatores',
+'version-variables'             => 'Variabiles',
+'version-other'                 => 'Altri',
+'version-mediahandlers'         => 'Manuettes de media',
+'version-hooks'                 => 'Croces',
+'version-extension-functions'   => 'Functiones de extension',
+'version-parser-extensiontags'  => 'Puntales de extension analisatores',
+'version-parser-function-hooks' => 'Croces de functiones analisatores',
+'version-hook-name'             => 'Nómine de croc',
+'version-hook-subscribedby'     => 'Subscrit per',
+'version-version'               => '(Version $1)',
+'version-svn-revision'          => '(r$2)',
+'version-license'               => 'Licentie',
+'version-software'              => 'Software installat',
+'version-software-product'      => 'Producte',
+'version-software-version'      => 'Version',
 
 # Special:FilePath
 'filepath-page' => 'Figura:',
