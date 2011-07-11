@@ -473,6 +473,7 @@ abstract class Skin {
 	 * @return String
 	 */
 	function getPageClasses( $title ) {
+		global $wgRequest;
 		$numeric = 'ns-' . $title->getNamespace();
 
 		if ( $title->getNamespace() == NS_SPECIAL ) {
@@ -491,8 +492,13 @@ abstract class Skin {
 		}
 
 		$name = Sanitizer::escapeClass( 'page-' . $title->getPrefixedText() );
-
-		return "$numeric $type $name";
+		
+		if ( $wgRequest->getVal('action') ) {
+			$action = 'action-' . $wgRequest->getVal('action');
+		} else {
+			$action = 'action-view';
+		}
+		return "$numeric $type $name $action";
 	}
 
 	/**
