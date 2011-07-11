@@ -29,6 +29,8 @@ class UserTest extends MediaWikiTestCase {
 		);
 	}
 	public function tearDown() {
+		parent::tearDown();
+		
 		$GLOBALS['wgGroupPermissions'] = $this->savedGroupPermissions;
 		$GLOBALS['wgRevokePermissions'] = $this->savedRevokedPermissions;
 	}
