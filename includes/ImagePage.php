@@ -883,7 +883,7 @@ class ImageHistoryList {
 	 * @return string
 	 */
 	public function imageHistoryLine( $iscur, $file ) {
-		global $wgUser, $wgLang;
+		global $wgUser, $wgLang, $wgContLang;
 
 		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
@@ -1014,15 +1014,14 @@ class ImageHistoryList {
 				$row .= htmlspecialchars( $usertext );
 			}
 		}
-		$row .= '</td><td>';
+		$row .= '</td>';
 
 		// Don't show deleted descriptions
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-			$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
+			$row .= '<td><span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span></td>';
 		} else {
-			$row .= Linker::commentBlock( $description, $this->title );
+			$row .= '<td dir="' . $wgContLang->getDir() . '">' . Linker::commentBlock( $description, $this->title ) . '</td>';
 		}
-		$row .= '</td>';
 
 		$rowClass = null;
 		wfRunHooks( 'ImagePageFileHistoryLine', array( $this, $file, &$row, &$rowClass ) );
