@@ -371,8 +371,6 @@ class Article extends Page {
 		# If we got diff in the query, we want to see a diff page instead of the article.
 		if ( $wgRequest->getCheck( 'diff' ) ) {
 			wfDebug( __METHOD__ . ": showing diff page\n" );
-			# Manually setting action=diff. Bug 25800
-			$wgRequest->setVal( 'action', 'historysubmit' );
 			$this->showDiffPage();
 			wfProfileOut( __METHOD__ );
 
