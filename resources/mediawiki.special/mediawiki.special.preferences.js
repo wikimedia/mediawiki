@@ -17,14 +17,15 @@ $( '#preferences' )
 					if ( i === 0 ) {
 						$(legend).parent().show();
 					}
+					var ident = $(legend).parent().attr( 'title' );
 					$( '#preftoc' ).append(
 						$( '<li></li>' )
 							.addClass( i === 0 ? 'selected' : null )
 							.append(
 								$( '<a></a>')
 									.text( $(legend).text() )
-									.attr( 'id', 'preftab-' + i + '-tab' )
-									.attr( 'href', '#preftab-' + i ) // Use #preftab-N instead of #prefsection-N to avoid jumping on click
+									.attr( 'id', 'preftab-' + ident + '-tab' )
+									.attr( 'href', '#preftab-' + ident ) // Use #preftab-N instead of #prefsection-N to avoid jumping on click
 									.click( function() {
 										$(this).parent().parent().find( 'li' ).removeClass( 'selected' );
 										$(this).parent().addClass( 'selected' );
@@ -41,7 +42,7 @@ $( '#preferences' )
 // On document ready:
 $( function() {
 	var hash = window.location.hash;
-	if( hash.match( /^#preftab-[\d]+$/ ) ) {
+	if( hash.match( /^#preftab-/ ) ) {
 		var $tab = $( hash + '-tab' );
 		$tab.click();
 	}

@@ -701,7 +701,7 @@ class HTMLForm {
 				}
 				$attributes = array();
 				if ( $displayTitle ) { 
-					$attributes["title"] = $key; 
+					$attributes["title"] = Sanitizer::escapeId( $key );
 				}
 				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
 			}
