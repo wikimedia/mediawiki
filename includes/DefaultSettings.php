@@ -2520,10 +2520,23 @@ $wgLegacyJavaScriptGlobals = true;
 $wgResourceLoaderMaxQueryLength = -1;
 
 /**
- * If set to true, JavaScript will be parsed prior to minification to validate it.
- * Parse errors will result in a JS exception being thrown during module load.
+ * If set to true, JavaScript modules loaded from wiki pages will be parsed prior
+ * to minification to validate it.
+ *
+ * Parse errors will result in a JS exception being thrown during module load,
+ * which avoids breaking other modules loaded in the same request.
  */
 $wgResourceLoaderValidateJS = true;
+
+/**
+ * If set to true, statically-sourced (file-backed) JavaScript resources will
+ * be parsed for validity before being bundled up into ResourceLoader modules.
+ *
+ * This can be helpful for development by providing better error messages in
+ * default (non-debug) mode, but JavaScript parsing is slow and memory hungry
+ * and may fail on large pre-bundled frameworks.
+ */
+$wgResourceLoaderValidateStaticJS = false;
 
 /** @} */ # End of resource loader settings }
 
