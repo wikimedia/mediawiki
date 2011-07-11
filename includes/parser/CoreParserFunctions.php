@@ -597,10 +597,18 @@ class CoreParserFunctions {
 		return implode( $restrictions, ',' );
 	}
 
-	static function language( $parser, $arg = '' ) {
+	static function language( $parser, $code = '', $language = '' ) {
 		global $wgContLang;
-		$lang = $wgContLang->getLanguageName( strtolower( $arg ) );
-		return $lang != '' ? $lang : $arg;
+		$code = strtolower( $code );
+		$language = strtolower( $language );
+
+		if ( $language !== '' ) {
+			$names = Language::getTranslatedLanguageNames( $language );
+			return isset( $names[$code] ) ? $names[$code] : wfBCP47( $code );
+		}
+
+		$lang = $wgContLang->getLanguageName( $code );
+		return $lang !== '' ? $lang : wfBCP47( $code );
 	}
 
 	/**
