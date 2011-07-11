@@ -43,9 +43,11 @@
 			}
 	
 			var len = $.byteLength( this.value );
+			// Note that keypress returns a character code point, not a keycode.
+			// However, this may not be super reliable depending on how keys come in...
+			var charLen = $.byteLength( String.fromCharCode( e.which ) );
 
-			// limit-3 as this doesn't count the character about to be inserted.
-			if ( len > ( limit-3 ) ) {
+			if ( ( len + charLen ) > limit ) {
 				e.preventDefault();
 			}
 		});
