@@ -151,5 +151,5 @@ byteLimitTest({
 	sample: mbSample,
 	useLimit: true,
 	limit: 12,
-	expected: 10 // 10 x 1-byte char. The next 3-byte char exceeds limit of 12
+	expected: 12 // 10 x 1-byte char. The next 3-byte char exceeds limit of 12, but 2 more 1-byte chars come in after.
 });
