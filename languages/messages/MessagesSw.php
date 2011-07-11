@@ -1755,6 +1755,7 @@ Sasa unaelekeza [[$2]].',
 'popularpages'            => 'Kurasa zinazopendelewa',
 'wantedcategories'        => 'Jamii zinazotakiwa',
 'wantedpages'             => 'Kurasa zinazotakiwa',
+'wantedpages-badtitle'    => 'Lipo jina batili katika matokeo: $1',
 'wantedfiles'             => 'Mafaili yanayokosekana',
 'wantedtemplates'         => 'Vigezo vinavyotakiwa',
 'mostlinked'              => 'Kurasa zinazoungwa kuliko zote',
@@ -2060,6 +2061,7 @@ ukurasa huu una mhariri mmoja tu.',
 'protectexpiry'               => 'Itakwisha:',
 'protect_expiry_invalid'      => 'Muda wa kwisha ni batilifu.',
 'protect_expiry_old'          => 'Muda wa kuishi umepita tayari.',
+'protect-unchain-permissions' => 'Fungua chaguzi zingine za ulinzi',
 'protect-text'                => "Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa '''$1'''.",
 'protect-locked-dblock'       => "Viwango vya ulindaji haviwezi kubadilishwa kwa sababu hifadhidata imefungwa.
 Hapo panaandikwa viwango vya ulindaji wa ukurasa '''$1''':",
@@ -2291,6 +2293,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 *ukifuta tiki katika kisanduku hapa chini.
 
 Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa kwa mkono ukitaka.",
+'moveuserpage-warning'         => "'''Ilani:''' Unatarajia kuhamisha ukurasa wa mtumiaji. Tafadhali kumbuka kwamba ni ukurasa tu utakaohamishwa; jina la mtumiaji ''haitabadilishwa''.",
 'movenologin'                  => 'Hujaingia',
 'movenologintext'              => 'Lazima uwe mtumiaji uliyesajiliwa na [[Special:UserLogin|uliyeingizwa]] ili uhamishe ukurasa.',
 'movenotallowed'               => 'Huna ruhusa ya kuhamisha kurasa.',
@@ -2499,9 +2502,12 @@ Tafadhali jaribu tena.',
 'nocredits'        => 'Taarifa kuhusu wandishi wa ukurasa huu haipatikana.',
 
 # Info page
-'pageinfo-header-edits' => 'Maharirio',
-'pageinfo-subjectpage'  => 'Ukurasa',
-'pageinfo-talkpage'     => 'Ukurasa wa majadiliano',
+'pageinfo-title'            => 'Taarifa juu ya "$1"',
+'pageinfo-header-edits'     => 'Maharirio',
+'pageinfo-header-watchlist' => 'Maangalizi',
+'pageinfo-subjectpage'      => 'Ukurasa',
+'pageinfo-talkpage'         => 'Ukurasa wa majadiliano',
+'pageinfo-edits'            => 'Idadi ya haririo',
 
 # Patrol log
 'patrol-log-line' => 'imewekewa alama $1 ya $2 kufanyiwa doria $3',

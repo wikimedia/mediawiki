@@ -2627,7 +2627,7 @@ $1',
 'blocklist-userblocks'            => 'Скриј блокирања на корис. сметки',
 'blocklist-tempblocks'            => 'Скриј привремени блокирања',
 'blocklist-addressblocks'         => 'Скри блокирања на поединечни IP-адреси',
-'blocklist-timestamp'             => 'Датум и време',
+'blocklist-timestamp'             => 'Време и датум',
 'blocklist-target'                => 'Цел',
 'blocklist-expiry'                => 'Истекува',
 'blocklist-by'                    => 'Блокирал',
@@ -3139,6 +3139,7 @@ $1',
 'seconds-abbrev' => 'с',
 'minutes-abbrev' => 'м',
 'hours-abbrev'   => 'ч',
+'days-abbrev'    => 'д',
 
 # Bad image list
 'bad_image_list' => 'Форматот е следниот:

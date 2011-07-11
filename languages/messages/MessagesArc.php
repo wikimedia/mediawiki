@@ -891,7 +891,7 @@ $1',
 'statistics-pages'        => 'ܦܐܬܬ̈ܐ',
 'statistics-users-active' => 'ܡܦܠܚܢ̈ܐ ܟܫܝܪ̈ܐ',
 
-'disambiguations'     => 'ܦܐܬܬ̈ܐ ܕܠܐ ܕܠܘܚܝܐ',
+'disambiguations'     => 'ܦܐܬܬ̈ܐ ܕܬܘܚܡܐ ܐܚܪܢܐ',
 'disambiguationspage' => 'Template:ܬܘܚܡܐ ܐܚܪܢܐ',
 
 'doubleredirects'            => 'ܨܘܝܒ̈ܐ ܥܦܝܦ̈ܐ',
