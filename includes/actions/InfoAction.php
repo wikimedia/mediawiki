@@ -45,12 +45,14 @@ class InfoAction extends FormlessAction {
 		return false;
 	}
 
+	protected function getPageTitle() {
+		return wfMsg( 'pageinfo-title', $this->getTitle()->getSubjectPage()->getPrefixedText() );
+	}
+
 	public function onView() {
 		global $wgDisableCounters;
 
 		$title = $this->getTitle()->getSubjectPage();
-
-		$this->getOutput()->setPagetitle( wfMsg( 'pageinfo-title', $title->getPrefixedText() ) );
 
 		$pageInfo = self::pageCountInfo( $title );
 		$talkInfo = self::pageCountInfo( $title->getTalkPage() );
