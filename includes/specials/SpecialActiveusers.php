@@ -59,6 +59,10 @@ class ActiveUsersPager extends UsersPager {
 		parent::__construct();
 	}
 
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Activeusers' );
+	}
+
 	public function setupOptions() {
 		global $wgRequest;
 
