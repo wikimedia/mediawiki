@@ -485,6 +485,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return String: Concatenated and remapped JavaScript data from $scripts
 	 */
 	protected function readScriptFiles( array $scripts ) {
+		global $wgResourceLoaderValidateStaticJS;
 		if ( empty( $scripts ) ) {
 			return '';
 		}
@@ -495,7 +496,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			if ( $contents === false ) {
 				throw new MWException( __METHOD__.": script file not found: \"$localPath\"" );
 			}
-			$contents = $this->validateScriptFile( $fileName, $contents );
+			if ( $wgResourceLoaderValidateStaticJS ) {
+				// Static files don't really need to be checked as often; unlike
+				// on-wiki module they shouldn't change unexpectedly without
+				// admin interference.
+				$contents = $this->validateScriptFile( $fileName, $contents );
+			}
 			$js .= $contents . "\n";
 		}
 		return $js;
