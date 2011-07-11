@@ -93,11 +93,6 @@ class AllmessagesTablePager extends TablePager {
 	public $mLimitsShown;
 
 	/**
-	 * @var Skin
-	 */
-	protected $mSkin;
-
-	/**
 	 * @var Language
 	 */
 	public $lang;
@@ -138,7 +133,6 @@ class AllmessagesTablePager extends TablePager {
 			$this->displayPrefix = false;
 			$this->prefix = false;
 		}
-		$this->getSkin();
 
 		// The suffix that may be needed for message names if we're in a
 		// different language (eg [[MediaWiki:Foo/fr]]: $suffix = '/fr'
@@ -351,9 +345,9 @@ class AllmessagesTablePager extends TablePager {
 				$talk  = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
 
 				if( $this->mCurrentRow->am_customised ){
-					$title = $this->mSkin->linkKnown( $title, $wgLang->lcfirst( $value ) );
+					$title = Linker::linkKnown( $title, $wgLang->lcfirst( $value ) );
 				} else {
-					$title = $this->mSkin->link(
+					$title = Linker::link(
 						$title,
 						$wgLang->lcfirst( $value ),
 						array(),
@@ -362,9 +356,9 @@ class AllmessagesTablePager extends TablePager {
 					);
 				}
 				if ( $this->mCurrentRow->am_talk_exists ) {
-					$talk = $this->mSkin->linkKnown( $talk , $this->talk );
+					$talk = Linker::linkKnown( $talk , $this->talk );
 				} else {
-					$talk = $this->mSkin->link(
+					$talk = Linker::link(
 						$talk,
 						$this->talk,
 						array(),
