@@ -19,7 +19,7 @@ $.addChars = function( $input, charstr ) {
 		var event = new jQuery.Event( 'keypress', { keyCode: code, which: code, charCode: code } );
 		$input.trigger( event );
 		if ( !event.isDefaultPrevented() ) {
-			$input.val( prevVal + charstr[i] );
+			$input.val( prevVal + charstr.charAt(i) );
 		}
 	}
 };
