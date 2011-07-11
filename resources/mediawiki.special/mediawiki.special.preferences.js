@@ -42,7 +42,7 @@ $( '#preferences' )
 // On document ready:
 $( function() {
 	var hash = window.location.hash;
-	if( hash.match( /^#preftab-/ ) ) {
+	if( hash.match( /^#preftab-[\w-]+/ ) ) {
 		var $tab = $( hash + '-tab' );
 		$tab.click();
 	}
