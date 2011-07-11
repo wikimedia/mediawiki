@@ -203,7 +203,8 @@ class Block {
 			$conds = array( 'ipb_address' => array() );
 		}
 
-		# Be aware that the != '' check is explicit, since empty values will be passed by some callers.
+		# Be aware that the != '' check is explicit, since empty values will be
+		# passed by some callers (bug 29116)
 		if( $vagueTarget != ''){
 			list( $target, $type ) = self::parseTarget( $vagueTarget );
 			switch( $type ) {
@@ -1037,6 +1038,14 @@ class Block {
 			}
 		} elseif( $target === null ){
 			return array( null, null );
+		}
+
+		# Consider the possibility that this is not a username at all
+		# but actually an old subpage (bug #29797)
+		if( strpos( $target, '/' ) !== false ){
+			# An old subpage, drill down to the user behind it
+			$parts = explode( '/', $target );
+			$target = $parts[0];
 		}
 
 		$userObj = User::newFromName( $target );
