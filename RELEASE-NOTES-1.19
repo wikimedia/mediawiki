@@ -68,6 +68,8 @@ production.
   EditPage::showEditForm:initial
 * (bug 29723) mw.util.wikiGetlink() now defaults to wgPageName.
 * (bug 29680) Add GetDefaultSortkey hook to override the default sortkey.
+* (bug 16699) {{#language:}} accepts second parameter to specify the language in
+  which the language name is wanted. Coverage depends on the cldr extension.
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
