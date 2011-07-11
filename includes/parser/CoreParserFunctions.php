@@ -597,6 +597,13 @@ class CoreParserFunctions {
 		return implode( $restrictions, ',' );
 	}
 
+	/**
+	 * Gives language names.
+	 * @param $parser Parser
+	 * @param $code String  Language code
+	 * @param $language String  Language code
+	 * @return String
+	 */
 	static function language( $parser, $code = '', $language = '' ) {
 		global $wgContLang;
 		$code = strtolower( $code );
