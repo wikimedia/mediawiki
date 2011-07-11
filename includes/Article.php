@@ -372,7 +372,7 @@ class Article extends Page {
 		if ( $wgRequest->getCheck( 'diff' ) ) {
 			wfDebug( __METHOD__ . ": showing diff page\n" );
 			# Manually setting action=diff. Bug 25800
-			$wgRequest->setVal( 'action', 'diff' );
+			$wgRequest->setVal( 'action', 'historysubmit' );
 			$this->showDiffPage();
 			wfProfileOut( __METHOD__ );
 
