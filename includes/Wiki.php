@@ -271,21 +271,21 @@ class MediaWiki {
 
 		// Check for disabled actions
 		if ( in_array( $action, $wgDisabledActions ) ) {
-			return 'nosuchaction';
-		}
-
-		// Workaround for bug #20966: inability of IE to provide an action dependent
-		// on which submit button is clicked.
-		if ( $action === 'historysubmit' ) {
+			$action = 'nosuchaction';
+		} elseif ( $action === 'historysubmit' ) {
+			// Workaround for bug #20966: inability of IE to provide an action dependent
+			// on which submit button is clicked.
 			if ( $request->getBool( 'revisiondelete' ) ) {
-				return 'revisiondelete';
+				$action = 'revisiondelete';
 			} else {
-				return 'view';
+				$action = 'view';
 			}
 		} elseif ( $action == 'editredlink' ) {
-			return 'edit';
+			$action = 'edit';
 		}
-
+		
+		// Write back the executed action
+		$request->setVal( 'action', $action );
 		return $action;
 	}
 
