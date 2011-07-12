@@ -54,8 +54,7 @@ class WatchAction extends FormAction {
 	}
 
 	/**
-	 * purge is slightly weird because it can be either formed or formless depending
-	 * on user permissions
+	 * This can be either formed or formless depending on the session token given
 	 */
 	public function show() {
 		$this->setHeaders();
