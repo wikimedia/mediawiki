@@ -937,7 +937,12 @@ Je kunnen [[Special:Search/{{PAGENAME}}|zeuken naor disse term]] in aandere pagi
 'userpage-userdoesnotexist-view'   => 'Gebruker "$1" steet hier neet in-eschreven',
 'blocked-notice-logextract'        => "Disse gebruker is op 't mement eblokkeerd.
 De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
-'clearyourcache'                   => "'''NB:''' naodat de wiezigingen op-esleugen bin, mut 't tussengeheugen van de webkieker nog leeg-emaak wönnen um 't te kunnen zien. '''Mozilla / Firefox / Safari:''' drok op ''Shift'' + ''Pagina verniejen,'' of ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Mac-computer); '''Konqueror: '''klik op ''verniejen'' of drok op ''F5;'' '''Opera:''' leeg 't tussengeheugen in ''Extra → Voorkeuren;'' '''Internet Explorer:''' hou ''Ctrl'' in-edrok terwiel je op ''Pagina verniejen'' klikken of ''Ctrl-F5'' gebruken.",
+'clearyourcache'                   => "'''Waort je:''' naodat de wiezigingen op-esleugen bin, mut 't tussengeheugen van de webkieker nog eleeg wönnen um 't te kunnen zien. 
+*'''Firefox / Safari:''' drok op ''Shift'' terwiel je op ''verniejen'' klikken, of gebruuk ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Mac-computer)
+* '''Google Chrome:''' drok op ''Ctrl-Shift-R'' (''Command-Shift-R'' op een Mac-computer)
+*'''Internet Explorer:''' drok op ''Ctrl'' terwiel je op ''verniejen'' klikken of drok op ''Ctrl-F5''
+*'''Konqueror: '''klik op ''verniejen'' of drok op ''F5''
+*'''Opera:''' leeg 't tussengeheugen in ''Extra → Voorkeuren\"",
 'usercssyoucanpreview'             => "'''Tip:''' gebruuk de knoppe \"{{int:showpreview}}\" um joew nieje css/js nao te kieken veurda-j 't opslaon.",
 'userjsyoucanpreview'              => "'''Tip:''' gebruuk de knoppe \"{{int:showpreview}}\" um joew nieje css/js nao te kieken veurda-j 't opslaon.",
 'usercsspreview'                   => "'''Dit is allinnig een controle van joew persoonlijke CSS.'''
@@ -1298,12 +1303,13 @@ Kiek de logboeken nao.",
 'searchdisabled'                   => 'Zeuken in {{SITENAME}} is neet meugelijk. Je kunnen gebruukmaken van Google. De gegevens over {{SITENAME}} bin meschien neet bie-ewörken.',
 
 # Quickbar
-'qbsettings'               => 'Paginalieste',
-'qbsettings-none'          => 'Gien',
-'qbsettings-fixedleft'     => 'Links, vaste',
-'qbsettings-fixedright'    => 'Rechs, vaste',
-'qbsettings-floatingleft'  => 'Links, zweven',
-'qbsettings-floatingright' => 'Rechs, zweven',
+'qbsettings'                => 'Paginalieste',
+'qbsettings-none'           => 'Gien',
+'qbsettings-fixedleft'      => 'Links, vaste',
+'qbsettings-fixedright'     => 'Rechs, vaste',
+'qbsettings-floatingleft'   => 'Links, zweven',
+'qbsettings-floatingright'  => 'Rechs, zweven',
+'qbsettings-directionality' => 'Vaste, ofhankelijk van de schriefrichtige van joew taol',
 
 # Preferences page
 'preferences'                   => 'Veurkeuren',

@@ -159,7 +159,7 @@ $messages = array(
 'moredotdotdot' => 'Фылдæр…',
 'mypage'        => 'Дæхи фарс',
 'mytalk'        => 'Мæ ныхас',
-'anontalk'      => 'Ацы IP-адрисы ныхасы',
+'anontalk'      => 'Ацы IP-адрисы ныхас',
 'navigation'    => 'Навигаци',
 'and'           => '&#32;æмæ',
 
