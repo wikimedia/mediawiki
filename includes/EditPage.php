@@ -1924,12 +1924,14 @@ HTML
 		$wgOut->addHTML( implode( $this->getEditButtons( $tabindex ), "\n" ) . "\n" );
 
 		$cancel = $this->getCancelLink();
-		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
+		if ( $cancel !== '' ) {
+			$cancel .= wfMsgExt( 'pipe-separator' , 'escapenoentities' );
+		}
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ) );
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
 			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
 			htmlspecialchars( wfMsg( 'newwindow' ) );
-		$wgOut->addHTML( "	<span class='editHelp'>{$cancel}{$separator}{$edithelp}</span>\n" );
+		$wgOut->addHTML( "	<span class='editHelp'>{$cancel}{$edithelp}</span>\n" );
 		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
 	}
 
