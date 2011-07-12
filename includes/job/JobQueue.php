@@ -56,15 +56,18 @@ abstract class Job {
 
 		$dbw = wfGetDB( DB_MASTER );
 
+		$dbw->begin();
+
 		$row = $dbw->selectRow(
 			'job',
 			'*',
 			array( 'job_cmd' => $type ),
 			__METHOD__,
-			array( 'LIMIT' => 1 )
+			array( 'LIMIT' => 1, 'FOR UPDATE' )
 		);
 
 		if ( $row === false ) {
+			$dbw->commit();
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
