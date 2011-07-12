@@ -65,15 +65,15 @@ class ArticleTest extends MediaWikiTestCase {
 
 	function testWikiPageFactory() {
 		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
-		$page = WikiPageFactory::newFromTitle( $title );
+		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiFilePage', get_class( $page ) );
 		
 		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
-		$page = WikiPageFactory::newFromTitle( $title );
+		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiCategoryPage', get_class( $page ) );
 		
 		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
-		$page = WikiPageFactory::newFromTitle( $title );
+		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiPage', get_class( $page ) );
 	}
 }

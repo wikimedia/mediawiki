@@ -48,6 +48,29 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Create a WikiPage object of the appropriate class for the given title.
+	 *
+	 * @param $title Title
+	 * @return WikiPage object of the appropriate type
+	 */
+	public static function factory( Title $title ) {
+		switch( $title->getNamespace() ) {
+			case NS_MEDIA:
+				throw new MWException( "NS_MEDIA is a virtual namespace" );
+			case NS_FILE:
+				$page = new WikiFilePage( $title );
+				break;
+			case NS_CATEGORY:
+				$page = new WikiCategoryPage( $title );
+				break;
+			default:
+				$page = new WikiPage( $title );
+		}
+
+		return $page;
+	}
+
+	/**
 	 * Constructor from a page id
 	 *
 	 * Always override this for all subclasses (until we use PHP with LSB)
