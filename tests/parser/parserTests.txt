@@ -715,6 +715,33 @@ second]
 !!end
 
 !! test
+External links: protocol-relative URL in brackets
+!! input
+[//example.com/ Test]
+!! result
+<p><a rel="nofollow" class="external text" href="//example.com/">Test</a>
+</p>
+!! end
+
+!! test
+External links: protocol-relative URL in brackets without text
+!! input
+[//example.com]
+!! result
+<p><a rel="nofollow" class="external autonumber" href="//example.com">[1]</a>
+</p>
+!! end
+
+!! test
+External links: protocol-relative URL in free text is left alone
+!! input
+//example.com/Foo
+!! result
+<p>//example.com/Foo
+</p>
+!!end
+
+!! test
 External image
 !! input
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
