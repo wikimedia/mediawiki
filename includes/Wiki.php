@@ -264,7 +264,7 @@ class MediaWiki {
 	 * @return String: action
 	 */
 	public function getAction() {
-		global $wgDisabledActions;
+		global $wgDisabledActions, $wgActions;
 
 		$request = $this->context->getRequest();
 		$action = $request->getVal( 'action', 'view' );
