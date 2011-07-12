@@ -58,6 +58,11 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
+		
+		// Copy the session key to the file key, for backward compatibility.
+		if( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
+			$this->mParams['filekey'] = $this->mParams['sessionkey'];
+		}
 
 		// Select an upload module
 		if ( !$this->selectUploadModule() ) {
@@ -103,7 +108,8 @@ class ApiUpload extends ApiBase {
 			// in case the warnings can be fixed with some further user action, let's stash this upload
 			// and return a key they can use to restart it
 			try {
-				$result['sessionkey'] = $this->performStash();
+				$result['filekey'] = $this->performStash();
+				$result['sessionkey'] = $result['filekey']; // backwards compatibility
 			} catch ( MWException $e ) {
 				$result['warnings']['stashfailed'] = $e->getMessage();
 			}
@@ -112,7 +118,8 @@ class ApiUpload extends ApiBase {
 			// In this case, a failure to stash ought to be fatal
 			try {
 				$result['result'] = 'Success';
-				$result['sessionkey'] = $this->performStash();
+				$result['filekey'] = $this->performStash();
+				$result['sessionkey'] = $result['filekey']; // backwards compatibility
 			} catch ( MWException $e ) {
 				$this->dieUsage( $e->getMessage(), 'stashfailed' );
 			}
@@ -133,18 +140,20 @@ class ApiUpload extends ApiBase {
 	}
 
 	/**
-	 * Stash the file and return the session key
+	 * Stash the file and return the file key
 	 * Also re-raises exceptions with slightly more informative message strings (useful for API)
 	 * @throws MWException
-	 * @return String session key
+	 * @return String file key
 	 */
 	function performStash() {
 		try {
-			$sessionKey = $this->mUpload->stashSessionFile()->getSessionKey();
+			$fileKey = $this->mUpload->stashFile()->getFileKey();
 		} catch ( MWException $e ) {
-			throw new MWException( 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage() );
+			$message = 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage();
+			wfDebug( __METHOD__ . ' ' . $message . "\n");
+			throw new MWException( $message );
 		}
-		return $sessionKey;
+		return $fileKey;
 	}
 
 	/**
@@ -158,7 +167,8 @@ class ApiUpload extends ApiBase {
 	 */
 	function dieRecoverableError( $error, $parameter, $data = array() ) {
 		try {
-			$data['sessionkey'] = $this->performStash();
+			$data['filekey'] = $this->performStash();
+			$data['sessionkey'] = $data['filekey'];
 		} catch ( MWException $e ) {
 			$data['stashfailed'] = $e->getMessage();
 		}
@@ -180,7 +190,7 @@ class ApiUpload extends ApiBase {
 
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
-			'sessionkey', 'file', 'url', 'statuskey' );
+			'filekey', 'file', 'url', 'statuskey' );
 
 		if ( $this->mParams['statuskey'] ) {
 			$this->checkAsyncDownloadEnabled();
@@ -204,17 +214,14 @@ class ApiUpload extends ApiBase {
 			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
 		}
 
-		if ( $this->mParams['sessionkey'] ) {
+		if ( $this->mParams['filekey'] ) {
 			// Upload stashed in a previous request
-			$sessionData = $request->getSessionData( UploadBase::getSessionKeyName() );
-			if ( !UploadFromStash::isValidSessionKey( $this->mParams['sessionkey'], $sessionData ) ) {
-				$this->dieUsageMsg( 'invalid-session-key' );
+			if ( !UploadFromStash::isValidKey( $this->mParams['filekey'] ) ) {
+				$this->dieUsageMsg( 'invalid-file-key' );
 			}
 
 			$this->mUpload = new UploadFromStash();
-			$this->mUpload->initialize( $this->mParams['filename'],
-				$this->mParams['sessionkey'],
-				$sessionData[$this->mParams['sessionkey']] );
+			$this->mUpload->initialize( $this->mParams['filekey'], $this->mParams['filename'] );
 
 		} elseif ( isset( $this->mParams['file'] ) ) {
 			$this->mUpload = new UploadFromFile();
@@ -463,7 +470,11 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => false,
 			'file' => null,
 			'url' => null,
-			'sessionkey' => null,
+			'filekey' => null,
+			'sessionkey' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 			'stash' => false,
 
 			'asyncdownload' => false,
@@ -485,12 +496,13 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'url' => 'Url to fetch the file from',
-			'sessionkey' => 'Session key that identifies a previous upload that was stashed temporarily.',
+			'filekey' => 'Key that identifies a previous upload that was stashed temporarily.',
+			'sessionkey' => 'Same as filekey, maintained for backward compatibility.',
 			'stash' => 'If set, the server will not add the file to the repository and stash it temporarily.',
 
 			'asyncdownload' => 'Make fetching a URL asynchronous',
 			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
-			'statuskey' => 'Fetch the upload status for this session key',
+			'statuskey' => 'Fetch the upload status for this file key',
 		);
 
 		return $params;
@@ -502,20 +514,18 @@ class ApiUpload extends ApiBase {
 			'Upload a file, or get the status of pending uploads. Several methods are available:',
 			' * Upload file contents directly, using the "file" parameter',
 			' * Have the MediaWiki server fetch a file from a URL, using the "url" parameter',
-			' * Complete an earlier upload that failed due to warnings, using the "sessionkey" parameter',
+			' * Complete an earlier upload that failed due to warnings, using the "filekey" parameter',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending the "file". Note also that queries using session keys must be',
-			'done in the same login session as the query that originally returned the key (i.e. do not',
-			'log out and then log back in). Also you must get and send an edit token before doing any upload stuff'
+			'sending the "file".  Also you must get and send an edit token before doing any upload stuff'
 		);
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'sessionkey', 'file', 'url', 'statuskey' ) ),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'filekey', 'file', 'url', 'statuskey' ) ),
 			array(
 				array( 'uploaddisabled' ),
-				array( 'invalid-session-key' ),
+				array( 'invalid-file-key' ),
 				array( 'uploaddisabled' ),
 				array( 'mustbeloggedin', 'upload' ),
 				array( 'badaccess-groups' ),
@@ -545,7 +555,7 @@ class ApiUpload extends ApiBase {
 			'Upload from a URL:',
 			'    api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png',
 			'Complete an upload that failed due to warnings:',
-			'    api.php?action=upload&filename=Wiki.png&sessionkey=sessionkey&ignorewarnings=1',
+			'    api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1',
 		);
 	}
 
