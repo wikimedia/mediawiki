@@ -36,9 +36,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 		global $wgPasswordResetRoutes, $wgAuth;
 
 		// Maybe password resets are disabled, or there are no allowable routes
-		if ( !is_array( $wgPasswordResetRoutes )
-			|| !in_array( true, array_values( $wgPasswordResetRoutes ) ) )
-		{
+		if ( !is_array( $wgPasswordResetRoutes ) ||
+			 !in_array( true, array_values( $wgPasswordResetRoutes ) ) ) {
 			throw new ErrorPageError( 'internalerror', 'passwordreset-disabled' );
 		}
 
@@ -223,5 +222,32 @@ class SpecialPasswordReset extends FormSpecialPage {
 	public function onSuccess() {
 		$this->getOutput()->addWikiMsg( 'passwordreset-emailsent' );
 		$this->getOutput()->returnToMain();
+	}
+
+	/**
+	 * Hide the password reset page if resets are disabled.
+	 * @return Bool
+	 */
+	function isListed() {
+		global $wgPasswordResetRoutes, $wgAuth;
+
+		// Maybe password resets are disabled, or there are no allowable routes
+		if ( !is_array( $wgPasswordResetRoutes ) ||
+			 !in_array( true, array_values( $wgPasswordResetRoutes ) ) ) {
+			return false;
+		}
+
+		// Maybe the external auth plugin won't allow local password changes
+		if ( !$wgAuth->allowPasswordChange() ) {
+			return false;
+		}
+
+		// Maybe the user is blocked (check this here rather than relying on the parent
+		// method as we have a more specific error message to use here
+		if ( $user->isBlocked() ) {
+			return false;
+		}
+
+		return parent::isListed();
 	}
 }
