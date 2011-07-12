@@ -88,7 +88,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			), $session );
 		} catch ( UsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "One of the parameters sessionkey, file, url, statuskey is required",
+			$this->assertEquals( "One of the parameters filekey, file, url, statuskey is required",
 				$e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
@@ -398,8 +398,9 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 		$this->assertEquals( $fileSize, ( int )$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
-		$this->assertTrue( isset( $result['upload']['sessionkey'] ) );
-		$sessionkey = $result['upload']['sessionkey'];
+		$this->assertTrue( isset( $result['upload']['filekey'] ) );
+		$this->assertEquals( $result['upload']['sessionkey'], $result['upload']['filekey'] );
+		$filekey = $result['upload']['filekey'];
 
 		// it should be visible from Special:UploadStash
 		// XXX ...but how to test this, with a fake WebRequest with the session?
@@ -407,12 +408,11 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		// now we should try to release the file from stash
 		$params = array(
 			'action' => 'upload',
-			'sessionkey' => $sessionkey,
+			'filekey' => $filekey,
 			'filename' => $fileName,
 			'comment' => 'dummy comment',
 			'text'	=> "This is the page text for $fileName, altered",
 		);
-		$session[ UploadBase::getSessionKeyname() ] = $_SESSION[ UploadBase::getSessionKeyname() ];
 
 		$this->clearFakeUploads();
 		$exception = false;

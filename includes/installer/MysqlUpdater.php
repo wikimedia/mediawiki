@@ -184,6 +184,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.19
 			array( 'addTable', 'config', 'patch-config.sql' ),
+			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
 		);
 	}
 
