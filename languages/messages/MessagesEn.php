@@ -2707,10 +2707,10 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'watchlistanontext'    => 'Please $1 to view or edit items on your watchlist.',
 'watchnologin'         => 'Not logged in',
 'watchnologintext'     => 'You must be [[Special:UserLogin|logged in]] to modify your watchlist.',
-'addedwatch'           => 'Added to watchlist',
+'addwatch'             => 'Add to watchlist',
 'addedwatchtext'       => "The page \"[[:\$1]]\" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
-'removedwatch'         => 'Removed from watchlist',
+'removewatch'          => 'Remove from watchlist',
 'removedwatchtext'     => 'The page "[[:$1]]" has been removed from [[Special:Watchlist|your watchlist]].',
 'watch'                => 'Watch',
 'watchthispage'        => 'Watch this page',
@@ -4283,6 +4283,14 @@ Please confirm that you really want to recreate this page.",
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Clear the cache of this page?',
 'confirm-purge-bottom' => 'Purging a page clears the cache and forces the most current revision to appear.',
+
+# action=watch
+'confirm-watch-button' => 'OK',
+'confirm-watch-top'    => 'Add this page to your watchlist?',
+
+# action=unwatch
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Remove this page to your watchlist?',
 
 # Separators for various lists, etc.
 'catseparator'        => '|', # only translate this message to other languages if you have to change it

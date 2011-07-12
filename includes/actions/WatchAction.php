@@ -20,7 +20,7 @@
  * @ingroup Actions
  */
 
-class WatchAction extends FormlessAction {
+class WatchAction extends FormAction {
 
 	public function getName() {
 		return 'watch';
@@ -35,35 +35,56 @@ class WatchAction extends FormlessAction {
 	}
 
 	protected function getDescription() {
-		return wfMsg( 'addedwatch' );
+		return wfMsg( 'addwatch' );
+	}
+
+	/**
+	 * Just get an empty form with a single submit button
+	 * @return array
+	 */
+	protected function getFormFields() {
+		return array();
+	}
+
+	public function onSubmit( $data ) {
+		wfProfileIn( __METHOD__ );
+		self::doWatch( $this->getTitle(), $this->getUser() );
+		wfProfileOut( __METHOD__ );
+		return true;
+	}
+
+	/**
+	 * purge is slightly weird because it can be either formed or formless depending
+	 * on user permissions
+	 */
+	public function show() {
+		$this->setHeaders();
+
+		$user = $this->getUser();
+		// This will throw exceptions if there's a problem
+		$this->checkCanExecute( $user );
+
+		// Must have valid token for this action/title
+		$salt = array( $this->getName(), $this->getTitle()->getDBkey() );
+
+		if ( $user->matchEditToken( $this->getRequest()->getVal( 'token' ), $salt ) ) {
+			$this->onSubmit( array() );
+			$this->onSuccess();
+		} else {
+			$form = $this->getForm();
+			if ( $form->show() ) {
+				$this->onSuccess();
+			}
+		}
 	}
 
 	protected function checkCanExecute( User $user ) {
-
 		// Must be logged in
 		if ( $user->isAnon() ) {
 			throw new ErrorPageError( 'watchnologin', 'watchnologintext' );
 		}
 
-		// Must have valid token for this action/title
-		$salt = array( $this->getName(), $this->getTitle()->getDBkey() );
-
-		if ( !$user->matchEditToken( $this->getRequest()->getVal( 'token' ), $salt ) ) {
-			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
-		}
-		
 		return parent::checkCanExecute( $user );
-	}
-
-	public function onView() {
-		wfProfileIn( __METHOD__ );
-
-		$user = $this->getUser();
-		self::doWatch( $this->getTitle(), $user );
-
-		wfProfileOut( __METHOD__ );
-
-		return wfMessage( 'addedwatchtext', $this->getTitle()->getPrefixedText() )->parse();
 	}
 
 	public static function doWatch( Title $title, User $user  ) {
@@ -119,6 +140,17 @@ class WatchAction extends FormlessAction {
 		return self::getWatchToken( $title, $user, $action );
 	}
 
+	protected function alterForm( HTMLForm $form ) {
+		$form->setSubmitText( wfMsg( 'confirm-watch-button' ) );
+	}
+
+	protected function preText() {
+		return wfMessage( 'confirm-watch-top' )->parse();
+	}
+
+	public function onSuccess() {
+		$this->getOutput()->addWikiMsg( 'addedwatchtext', $this->getTitle()->getPrefixedText() );
+	}
 }
 
 class UnwatchAction extends WatchAction {
@@ -128,17 +160,25 @@ class UnwatchAction extends WatchAction {
 	}
 
 	protected function getDescription() {
-		return wfMsg( 'removedwatch' );
+		return wfMsg( 'removewatch' );
 	}
 
-	public function onView() {
+	public function onSubmit( $data ) {
 		wfProfileIn( __METHOD__ );
-
-		$user = $this->getUser();
-		self::doUnwatch( $this->getTitle(), $user );
-
+		self::doUnwatch( $this->getTitle(), $this->getUser() );
 		wfProfileOut( __METHOD__ );
+		return true;
+	}
 
-		return wfMessage( 'removedwatchtext', $this->getTitle()->getPrefixedText() )->parse();
+	protected function alterForm( HTMLForm $form ) {
+		$form->setSubmitText( wfMsg( 'confirm-unwatch-button' ) );
+	}
+
+	protected function preText() {
+		return wfMessage( 'confirm-unwatch-top' )->parse();
+	}
+
+	public function onSuccess() {
+		$this->getOutput()->addWikiMsg( 'removedwatchtext', $this->getTitle()->getPrefixedText() );
 	}
 }

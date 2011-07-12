@@ -1799,9 +1799,9 @@ $wgMessageStructure = array(
 		'watchlistanontext',
 		'watchnologin',
 		'watchnologintext',
-		'addedwatch',
+		'addwatch',
 		'addedwatchtext',
-		'removedwatch',
+		'removewatch',
 		'removedwatchtext',
 		'watch',
 		'watchthispage',
@@ -3246,6 +3246,9 @@ $wgMessageStructure = array(
 		'lag-warn-normal',
 		'lag-warn-high',
 	),
+    'watch' => array(
+        'confirm-watch-button',
+    ),
 	'watchlisteditor' => array(
 		'watchlistedit-numitems',
 		'watchlistedit-noitems',
@@ -3450,6 +3453,9 @@ $wgMessageStructure = array(
 		'sqlite-has-fts',
 		'sqlite-no-fts',
 	),
+    'unwatch' => array(
+        'confirm-unwatch-button',
+    ),
 );
 
 /** Comments for each block */
