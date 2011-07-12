@@ -777,4 +777,5 @@ div.floatright, table.floatright, div.floatleft, table.floatleft {
 	position: relative;
 }
 
-.mw-link-nowrap { white-space: nowrap; }
+/* bug 12205 */
+#mw-credits a { unicode-bidi: embed; }

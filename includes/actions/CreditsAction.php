@@ -53,7 +53,7 @@ class CreditsAction extends FormlessAction {
 
 		wfProfileOut( __METHOD__ );
 
-		return $s;
+		return Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $s );
 	}
 
 	/**
@@ -196,10 +196,7 @@ class CreditsAction extends FormlessAction {
 			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
 			: $user->getUserPage();
 
-		return Html::rawElement( 'span',
-			array( 'class' => 'mw-link-nowrap' ), 
-			Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) )
-		);
+		return Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
 	}
 
 	/**
