@@ -1138,6 +1138,8 @@ class User {
 	 * @see $wgAutopromoteOnce
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
+		global $wgAutopromoteOnceLogInRC;
+
 		$toPromote = array();
 		if ( $this->getId() ) {
 			$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
@@ -1148,7 +1150,7 @@ class User {
 				}
 				$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
 
-				$log = new LogPage( 'rights', false /* not in RC */ );
+				$log = new LogPage( 'rights', $wgAutopromoteOnceLogInRC /* in RC? */ );
 				$log->addEntry( 'autopromote',
 					$this->getUserPage(),
 					'', // no comment

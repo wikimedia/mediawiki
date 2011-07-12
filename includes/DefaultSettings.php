@@ -3566,6 +3566,12 @@ $wgAutopromoteOnce = array(
 	'onView' => array()
 );
 
+/*
+ * Put user rights log entries for autopromotion in recent changes?
+ * @since 1.18
+ */
+$wgAutopromoteOnceLogInRC = true;
+
 /**
  * $wgAddGroups and $wgRemoveGroups can be used to give finer control over who
  * can assign which groups at Special:Userrights.  Example configuration:
