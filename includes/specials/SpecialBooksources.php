@@ -49,14 +49,13 @@ class SpecialBookSources extends SpecialPage {
 	 * @param $isbn ISBN passed as a subpage parameter
 	 */
 	public function execute( $isbn ) {
-		global $wgOut, $wgRequest;
 		$this->setHeaders();
-		$this->isbn = self::cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
-		$wgOut->addWikiMsg( 'booksources-summary' );
-		$wgOut->addHTML( $this->makeForm() );
+		$this->outputHeader();
+		$this->isbn = self::cleanIsbn( $isbn ? $isbn : $this->getRequest()->getText( 'isbn' ) );
+		$this->getOutput()->addHTML( $this->makeForm() );
 		if( strlen( $this->isbn ) > 0 ) {
 			if( !self::isValidISBN( $this->isbn ) ) {
-				$wgOut->wrapWikiMsg( "<div class=\"error\">\n$1\n</div>", 'booksources-invalid-isbn' );
+				$this->getOutput()->wrapWikiMsg( "<div class=\"error\">\n$1\n</div>", 'booksources-invalid-isbn' );
 			}
 			$this->showList();
 		}
@@ -115,10 +114,10 @@ class SpecialBookSources extends SpecialPage {
 	 */
 	private function makeForm() {
 		global $wgScript;
-		$title = self::getTitleFor( 'Booksources' );
+
 		$form  = '<fieldset><legend>' . wfMsgHtml( 'booksources-search-legend' ) . '</legend>';
 		$form .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$form .= Html::hidden( 'title', $title->getPrefixedText() );
+		$form .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'booksources-isbn' ), 'isbn', 'isbn', 20, $this->isbn );
 		$form .= '&#160;' . Xml::submitButton( wfMsg( 'booksources-go' ) ) . '</p>';
 		$form .= Xml::closeElement( 'form' );
@@ -133,27 +132,27 @@ class SpecialBookSources extends SpecialPage {
 	 * @return string
 	 */
 	private function showList() {
-		global $wgOut, $wgContLang;
+		global $wgContLang;
 
 		# Hook to allow extensions to insert additional HTML,
 		# e.g. for API-interacting plugins and so on
-		wfRunHooks( 'BookInformation', array( $this->isbn, &$wgOut ) );
+		wfRunHooks( 'BookInformation', array( $this->isbn, $this->getOutput() ) );
 
 		# Check for a local page such as Project:Book_sources and use that if available
 		$title = Title::makeTitleSafe( NS_PROJECT, wfMsgForContent( 'booksources' ) ); # Show list in content language
 		if( is_object( $title ) && $title->exists() ) {
 			$rev = Revision::newFromTitle( $title );
-			$wgOut->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
+			$this->getOutput()->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
 			return true;
 		}
 
 		# Fall back to the defaults given in the language file
-		$wgOut->addWikiMsg( 'booksources-text' );
-		$wgOut->addHTML( '<ul>' );
+		$this->getOutput()->addWikiMsg( 'booksources-text' );
+		$this->getOutput()->addHTML( '<ul>' );
 		$items = $wgContLang->getBookstoreList();
 		foreach( $items as $label => $url )
-			$wgOut->addHTML( $this->makeListItem( $label, $url ) );
-		$wgOut->addHTML( '</ul>' );
+			$this->getOutput()->addHTML( $this->makeListItem( $label, $url ) );
+		$this->getOutput()->addHTML( '</ul>' );
 		return true;
 	}
 
