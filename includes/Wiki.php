@@ -270,7 +270,7 @@ class MediaWiki {
 		$action = $request->getVal( 'action', 'view' );
 
 		// Check for disabled actions
-		if ( in_array( $action, $wgDisabledActions ) ) {
+		if ( in_array( $action, $wgDisabledActions ) || !in_array( $action, $wgActions ) ) {
 			$action = 'nosuchaction';
 		} elseif ( $action === 'historysubmit' ) {
 			// Workaround for bug #20966: inability of IE to provide an action dependent
