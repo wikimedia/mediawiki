@@ -257,20 +257,20 @@ class MediaWiki {
 	}
 
 	/**
-	 * Returns the action that will be executed, not necesserly the one passed
+	 * Returns the action that will be executed, not necessarily the one passed
 	 * passed through the "action" parameter. Actions disabled in
 	 * $wgDisabledActions will be replaced by "nosuchaction"
 	 *
 	 * @return String: action
 	 */
 	public function getAction() {
-		global $wgDisabledActions, $wgActions;
+		global $wgDisabledActions;
 
 		$request = $this->context->getRequest();
 		$action = $request->getVal( 'action', 'view' );
 
 		// Check for disabled actions
-		if ( in_array( $action, $wgDisabledActions ) || !in_array( $action, $wgActions ) ) {
+		if ( in_array( $action, $wgDisabledActions ) ) {
 			$action = 'nosuchaction';
 		} elseif ( $action === 'historysubmit' ) {
 			// Workaround for bug #20966: inability of IE to provide an action dependent
@@ -501,6 +501,7 @@ class MediaWiki {
 				break;
 			default:
 				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
+					$request->setVal( 'action', 'nosuchaction' );
 					$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
