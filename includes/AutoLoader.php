@@ -243,6 +243,7 @@ $wgAutoloadLocalClasses = array(
 	'WikiFilePage' =>  'includes/WikiFilePage.php',
 	'WikiImporter' => 'includes/Import.php',
 	'WikiPage' =>  'includes/WikiPage.php',
+	'WikiPageFactory' => 'includes/WikiPageFactory.php',
 	'WikiRevision' => 'includes/Import.php',
 	'WikiMap' => 'includes/WikiMap.php',
 	'WikiReference' => 'includes/WikiMap.php',
