@@ -45,7 +45,12 @@ class WikiImporter {
 
 		stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
 		$id = UploadSourceAdapter::registerSource( $source );
-		$this->reader->open( "uploadsource://$id" );
+		if (defined( 'LIBXML_PARSEHUGE' ) ) {
+			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
+		}
+		else {
+			$this->reader->open( "uploadsource://$id" );
+		}
 
 		// Default callbacks
 		$this->setRevisionCallback( array( $this, "importRevision" ) );

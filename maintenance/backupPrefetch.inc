@@ -51,7 +51,12 @@ class BaseDump {
 		$this->infiles = explode(';',$infile);
 		$this->reader = new XMLReader();
 		$infile = array_shift($this->infiles);
-		$this->reader->open( $infile );
+		if (defined( 'LIBXML_PARSEHUGE' ) ) {
+			$this->reader->open( $infile, null, LIBXML_PARSEHUGE );
+		}
+		else {
+			$this->reader->open( $infile );
+		}
 	}
 
 	/**
