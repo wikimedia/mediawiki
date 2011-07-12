@@ -1540,16 +1540,10 @@ class Parser {
 
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
-				# Autonumber if allowed. See bug #5918
-				if ( strpos( wfUrlProtocols(), substr( $protocol, 0, strpos( $protocol, ':' ) ) ) !== false ) {
-					$langObj = $this->getFunctionLang();
-					$text = '[' . $langObj->formatNum( ++$this->mAutonumber ) . ']';
-					$linktype = 'autonumber';
-				} else {
-					# Otherwise just use the URL
-					$text = htmlspecialchars( $url );
-					$linktype = 'free';
-				}
+				# Autonumber
+				$langObj = $this->getFunctionLang();
+				$text = '[' . $langObj->formatNum( ++$this->mAutonumber ) . ']';
+				$linktype = 'autonumber';
 			} else {
 				# Have link text, e.g. [http://domain.tld/some.link text]s
 				# Check for trail
