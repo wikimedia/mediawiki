@@ -196,7 +196,10 @@ class CreditsAction extends FormlessAction {
 			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
 			: $user->getUserPage();
 
-		return Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
+		return Html::rawElement( 'span',
+			array( 'class' => 'mw-link-nowrap' ), 
+			Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) )
+		);
 	}
 
 	/**

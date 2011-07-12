@@ -776,3 +776,5 @@ th.headerSortDown {
 div.floatright, table.floatright, div.floatleft, table.floatleft {
 	position: relative;
 }
+
+.mw-link-nowrap { white-space: nowrap; }

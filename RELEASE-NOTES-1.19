@@ -155,6 +155,8 @@ production.
   RefreshLinks::deleteLinksFromNonexistent
 * (bug 29797) Error: "Tried to load block with invalid type" when subpages
   are disabled for user pages.
+* (bug 12205) Bidirectional names in action=credits are split and displayed
+  incorrectly when wrapped to the next line.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
