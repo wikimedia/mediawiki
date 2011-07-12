@@ -68,7 +68,8 @@ class ApiPurge extends ApiBase {
 				$result[] = $r;
 				continue;
 			}
-			$context = RequestContext::getMain();
+			$context = $this->createContext();
+			$context->setTitle( $title );
 			$article = Article::newFromTitle( $title, $context );
 			$article->doPurge(); // Directly purge and skip the UI part of purge().
 			$r['purged'] = '';
