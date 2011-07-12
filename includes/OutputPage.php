@@ -1168,6 +1168,21 @@ class OutputPage {
 	 * @return Array of strings
 	 */
 	public function getCategories() {
+		// mCategories will only be filled if we're coming from the parser
+		if ($this->getRequest()->getVal('action') != 'view') {
+			$categories = array();
+			$dbr = wfGetDB( DB_SLAVE );
+			$res = $dbr->select(
+				'categorylinks',
+				array( 'cl_to' ),
+				'cl_from='. $this->getTitle()->getArticleId(),
+				__METHOD__
+			);
+			foreach( $res as $row ) {
+				$categories[] = $row->cl_to;
+			}
+			$this->mCategories = $categories;
+		}
 		return $this->mCategories;
 	}
 
