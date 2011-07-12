@@ -173,7 +173,7 @@ $messages = array(
 'vector-action-move'       => 'Scughey',
 'vector-action-protect'    => 'Coadee',
 'vector-action-undelete'   => 'Jee-scryss',
-'vector-action-unprotect'  => 'Jee-choadee',
+'vector-action-unprotect'  => 'Caghlaa coadey',
 'vector-view-create'       => 'Croo',
 'vector-view-edit'         => 'Reaghey',
 'vector-view-history'      => 'Jeeagh er shennaghys',
@@ -952,14 +952,21 @@ Cur fys er y reagheyder:
 post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Cha bee fograghyn elley er caghlaaghyn elley agh my vel shiu er jeet dys y duillag shen ynrican.
+Cha bee fograghyn elley er caghlaaghyn elley agh my jigys shiu dys y duillag shen ynrican.
 Foddee shiu aajeshaghey bratteeyn ny fograghyn ry hoi dagh duillag er dty rolley arrey.
 
              Dty chorys fograghyn caarjoil ec {{SITENAME}}
 
 --
-Dys kiartee dty rolley arrey y chaghlaa, cur keayrt er
+
+Dys toshiaghtyn fys post-y y chaghlaa, cur keayrt er
+{{fullurl:{{#special:Preferences}}}}
+
+Dys toshiaghtyn dty rolley arrey y chaghlaa, cur keayrt er
 {{fullurl:{{#special:EditWatchlist}}}}
+
+Dys scryssey duillag ass dty rolley arrey, cur keayrt er
+$UNWATCHURL
 
 Aaveaghey as cooney s\'odjey:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1279,7 +1286,7 @@ Kianglaghyn eiyrtyssagh erbee er yn linney shoh, t'ad goll er loaghtey myr lhimm
 My vel y coadan ceaghlit veih'n chummey bunneydagh, foddee nagh beagh mynphoyntyn ennagh cohoilshaghey yn coadan ceaghlit.",
 'metadata-expand'   => 'Taishbyney ny mynphointyn sheeynt',
 'metadata-collapse' => 'Follaghey ny mynphointyn sheeynt',
-'metadata-fields'   => "Bee magheryn metafysseree EXIF er y rolley 'sy çhaghteraght shoh currit er taishbynys duillag y jalloo nar ta taabyl ny metafysseree fillit.<br />
+'metadata-fields'   => 'Ny magheryn metafysseree jalloo heese, hie ad er goaill stiagh er duillag taishbyney jalloo tra ta taabyl ny metafysseree fillit.<br />
 Bee adsyn elley follit dy seyr-obbragh.<br />
 * make
 * model
@@ -1293,7 +1300,7 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude",
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'       => 'Lheead',

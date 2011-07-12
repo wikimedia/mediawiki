@@ -2281,9 +2281,9 @@ $1',
 
 # Special:Categories
 'categories'                    => 'تصنيفات',
-'categoriespagetext'            => '{{PLURAL:$1||التصنيف التالي يحتوي|التصنيفان التاليان يحتويان|التصنيفات التالية تحتوي}} على صفحات أو وسائط.
+'categoriespagetext'            => '{{PLURAL:$1|التصنيف التالي يحتوي|التصنيفات التالية تحتوي}} على صفحات أو وسائط.
 [[Special:UnusedCategories|التصنيفات غير المستخدمة]] غير معروضة هنا.
-انظر أيضا [[Special:WantedCategories|التصنيفات المطلوبة]].',
+أيضا انظر [[Special:WantedCategories|التصنيفات المطلوبة]].',
 'categoriesfrom'                => 'أظهر التصنيفات بدءا من:',
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'رتب هجائيا',

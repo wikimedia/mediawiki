@@ -149,7 +149,7 @@ $messages = array(
 'userpage'          => 'Vider págine del usator',
 'imagepage'         => 'Vider págine del image',
 'viewhelppage'      => 'Vider págine de auxilie',
-'viewtalkpage'      => 'Vider li discussion',
+'viewtalkpage'      => 'Vider discussion',
 'otherlanguages'    => 'Altri lingues',
 'redirectedfrom'    => '(Redirectet de $1)',
 'redirectpagesub'   => 'Págine de redirecterion',
@@ -194,6 +194,8 @@ Vider [[Special:Version|págine de version]].',
 'youhavenewmessagesmulti' => 'Vu have nov missages in $1',
 'editsection'             => 'redacter',
 'editold'                 => 'redacter',
+'viewsourceold'           => 'vider fonte',
+'viewsourcelink'          => 'vider fonte',
 'editsectionhint'         => 'Redacter division: $1',
 'toc'                     => 'Contenetes',
 'showtoc'                 => 'monstrar',
@@ -219,6 +221,12 @@ Function: $1<br />
 Question: $2',
 'viewsource'           => 'Vider fonte',
 'viewsourcefor'        => 'por $1',
+'viewsourcetext'       => 'Vu posse vider e copiar li contenete de ti págine:',
+
+# Virus scanner
+'virus-badscanner'     => "Configuration maliciosi: virus desconosset examinat: ''$1''",
+'virus-scanfailed'     => 'scandesion fallit (code $1)',
+'virus-unknownscanner' => 'antivírus desconosset:',
 
 # Login and logout pages
 'logouttext'                 => "'''Vu ha terminat vor session.'''
@@ -398,23 +406,42 @@ Tui changes ancor ne ha esset conservat!",
 'recentchangeslinked-toolbox' => 'Changes referet',
 
 # Upload
-'upload'              => 'Cargar file',
-'uploadbtn'           => 'Cargar file',
-'upload-permitted'    => 'Tipes de file permisset: $1.',
-'upload-preferred'    => 'Tipes de file preferet: $1.',
-'upload-prohibited'   => 'Tipes de file prohibit: $1.',
-'uploadlogpage'       => 'Diarium de cargament',
-'filedesc'            => 'Descrition',
-'verification-error'  => 'Ti file ne passat per li verification de file.',
-'unknown-error'       => 'Un errore desconosset ocurret.',
-'savefile'            => 'Conservar file',
-'uploadedimage'       => 'cargat "[[$1]]"',
-'upload-maxfilesize'  => 'Mesura maxim de file: $1',
-'upload-description'  => 'Descrition de file',
-'upload-options'      => 'Optiones de cargament',
-'watchthisupload'     => 'Vigilar ti file',
-'upload-failure-subj' => 'Problema de cargament',
-'upload-failure-msg'  => 'Ta esset un problema che tui cargament:
+'upload'               => 'Cargar file',
+'uploadbtn'            => 'Cargar file',
+'uploadnologin'        => 'Vu ne ha intrat',
+'uploadnologintext'    => 'Vu deve esser [[Special:UserLogin|registrat]] por cargar files.',
+'uploaderror'          => 'Errore de cargament',
+'uploadtext'           => "Usa li forme infra por cargar files.
+Por vider o serchar files cargat anteriorimen ear por li [[Special:FileList|liste de files cargat]], (re)cargamentes es anc registrat in li [[Special:Log/upload|diarium de cargament]], deletiones in li [[Special:Log/delete|diarium de deletion]].
+
+Por includer un file in un págine, usa un catenun in un de sequent formes:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' por usar li version complet de li file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' por usar un rendition larg de 200 pixel in un buxe in li márgine levul che 'alt text' quam descrition
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' por ligar inmediatmen por li file sin monstrar li file",
+'upload-permitted'     => 'Tipes de file permisset: $1.',
+'upload-preferred'     => 'Tipes de file preferet: $1.',
+'upload-prohibited'    => 'Tipes de file prohibit: $1.',
+'uploadlog'            => 'Diarium de cargament',
+'uploadlogpage'        => 'Diarium de cargament',
+'uploadlogpagetext'    => 'Infra es un liste de cargamentes de file max recent.
+Vider li [[Special:NewFiles|galerie de nov files]] por posser vider it.',
+'filedesc'             => 'Descrition',
+'verification-error'   => 'Ti file ne passat per li verification de file.',
+'unknown-error'        => 'Un errore desconosset ocurret.',
+'uploadwarning'        => 'Advertiment de cargament',
+'uploadwarning-text'   => 'Pleser modificar li descrition de file infra e prova denov.',
+'savefile'             => 'Conservar file',
+'uploadedimage'        => 'cargat "[[$1]]"',
+'uploadfromurl-queued' => 'Tui cargament ha esset fat.',
+'uploadscripted'       => 'Ti file contene HTML o code scrite que posse esser interpretet erroremen per un navigator web.',
+'uploadvirus'          => 'Li file contene un virus!
+Detallies: $1',
+'upload-maxfilesize'   => 'Mesura maxim de file: $1',
+'upload-description'   => 'Descrition de file',
+'upload-options'       => 'Optiones de cargament',
+'watchthisupload'      => 'Vigilar ti file',
+'upload-failure-subj'  => 'Problema de cargament',
+'upload-failure-msg'   => 'Ta esset un problema che tui cargament:
 $1',
 
 'upload-proto-error'      => 'Protocol incorect',
@@ -442,15 +469,16 @@ Vu posse provar in un témpor minu activ.',
 'listfiles' => 'Archives',
 
 # File description page
-'file-anchor-link'    => 'Figura',
-'filehist'            => 'Historic de figura',
-'filehist-current'    => 'current',
-'filehist-datetime'   => 'Date/Témpor',
-'filehist-user'       => 'Usator',
-'filehist-dimensions' => 'Dimensiones',
-'filehist-filesize'   => 'Mesura de file',
-'filehist-comment'    => 'Comentarie',
-'imagelinks'          => 'Catenunes por ti file',
+'file-anchor-link'          => 'Figura',
+'filehist'                  => 'Historic de figura',
+'filehist-current'          => 'current',
+'filehist-datetime'         => 'Date/Témpor',
+'filehist-user'             => 'Usator',
+'filehist-dimensions'       => 'Dimensiones',
+'filehist-filesize'         => 'Mesura de file',
+'filehist-comment'          => 'Comentarie',
+'imagelinks'                => 'Catenunes por ti file',
+'uploadnewversion-linktext' => 'Cargar un nov version de ti file',
 
 # File deletion
 'filedelete-submit' => 'Deleter',
@@ -493,7 +521,11 @@ Vu posse provar in un témpor minu activ.',
 'uncategorizedtemplates'  => 'Avises íncategorizet',
 'unusedcategories'        => 'Categories sin use',
 'unusedimages'            => 'Figuras sin use',
+'wantedcategories'        => 'Categories carit',
 'wantedpages'             => 'Págines carit',
+'wantedpages-badtitle'    => 'Titul ínvalid in serie de resultate: $1',
+'wantedfiles'             => 'Files carit',
+'wantedtemplates'         => 'Avises carit',
 'shortpages'              => 'Págines curt',
 'longpages'               => 'Págines long',
 'deadendpages'            => 'Págines sin exeada',
@@ -535,6 +567,7 @@ Vu posse provar in un témpor minu activ.',
 # Watchlist
 'watchlist'            => 'Liste de págines vigilat',
 'mywatchlist'          => 'Mi liste de págines vigilat',
+'watchlistanontext'    => 'Pleser $1 por vider o redacter articules in tui liste de págines vigilat.',
 'addedwatch'           => 'Adjuntet al liste',
 'addedwatchtext'       => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:RecentChanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
 'watch'                => 'Vigilar',
@@ -543,8 +576,10 @@ Vu posse provar in un témpor minu activ.',
 'watchlist-details'    => '{{PLURAL:$1|$1 págine|$1 págines}} in tui liste de págines vigilat, sin págines de discussion.',
 'wlheader-enotif'      => '* Li notification de e-mail es permisset.',
 'wlheader-showupdated' => "* Págines quel hat esset mutat desde tui ultim visitation es monstrat in '''nigri'''",
+'watchlistcontains'    => 'Tui liste de págines vigilat contene $1 {{PLURAL:$1|págine|págines}}.',
 'wlnote'               => "Infra {{PLURAL:$1|es li ultim change|es li ultim '''$1''' changes}} in li ultim {{PLURAL:$2|hor|'''$2''' hores}}.",
 'wlshowlast'           => 'Monstra ultim $1 hores $2 dies $3',
+'watchlist-options'    => 'Optiones de liste de págines vigilat',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigilant...',
@@ -758,6 +793,9 @@ Vu posse provar in un témpor minu activ.',
 
 # Table pager
 'table_pager_limit_submit' => 'Ear',
+
+# Watchlist editor
+'watchlistedit-noitems' => 'Tui liste de págines vigilat ne contene titules.',
 
 # Special:Version
 'version'                       => 'Version',
