@@ -35,21 +35,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 	public function userCanExecute( User $user ) {
 		global $wgPasswordResetRoutes, $wgAuth;
 
-		// Maybe password resets are disabled, or there are no allowable routes
-		if ( !is_array( $wgPasswordResetRoutes ) ||
-			 !in_array( true, array_values( $wgPasswordResetRoutes ) ) ) {
-			throw new ErrorPageError( 'internalerror', 'passwordreset-disabled' );
-		}
-
-		// Maybe the external auth plugin won't allow local password changes
-		if ( !$wgAuth->allowPasswordChange() ) {
+		$error = $this->canChangePassword( $user );
+		if ( is_string( $error ) ) {
+			throw new ErrorPageError( 'internalerror', $error );
+		} else if ( !$error ) {
 			throw new ErrorPageError( 'internalerror', 'resetpass_forbidden' );
-		}
-
-		// Maybe the user is blocked (check this here rather than relying on the parent
-		// method as we have a more specific error message to use here
-		if ( $user->isBlocked() ) {
-			throw new ErrorPageError( 'internalerror', 'blocked-mailpassword' );
 		}
 
 		return parent::userCanExecute( $user );
@@ -224,30 +214,41 @@ class SpecialPasswordReset extends FormSpecialPage {
 		$this->getOutput()->returnToMain();
 	}
 
-	/**
-	 * Hide the password reset page if resets are disabled.
-	 * @return Bool
-	 */
-	function isListed() {
+	function canChangePassword(User $user) {
 		global $wgPasswordResetRoutes, $wgAuth;
 
 		// Maybe password resets are disabled, or there are no allowable routes
 		if ( !is_array( $wgPasswordResetRoutes ) ||
 			 !in_array( true, array_values( $wgPasswordResetRoutes ) ) ) {
-			return false;
+			return 'passwordreset-disabled';
 		}
 
 		// Maybe the external auth plugin won't allow local password changes
 		if ( !$wgAuth->allowPasswordChange() ) {
-			return false;
+			return 'resetpass_forbidden';
 		}
 
 		// Maybe the user is blocked (check this here rather than relying on the parent
 		// method as we have a more specific error message to use here
 		if ( $user->isBlocked() ) {
-			return false;
+			return 'blocked-mailpassword';
 		}
 
-		return parent::isListed();
+		return true;
+	}
+
+
+	/**
+	 * Hide the password reset page if resets are disabled.
+	 * @return Bool
+	 */
+	function isListed() {
+		global $wgPasswordResetRoutes, $wgAuth, $wgUser;
+
+		if ( $this->canChangePassword( $wgUser ) === true ) {
+			return parent::isListed();
+		}
+
+		return false;
 	}
 }
