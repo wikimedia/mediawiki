@@ -145,7 +145,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		}
 
 		$firstUser = $users[0];
-		
+
 		if ( !$firstUser instanceof User || !$firstUser->getID() ) {
 			return array( array( 'nosuchuser', $data['Username'] ) );
 		}
