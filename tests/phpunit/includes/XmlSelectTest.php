@@ -79,9 +79,9 @@ class XmlSelectTest extends MediaWikiTestCase {
 		$this->select->addOption( 'bar1' );
 		$this->select->addOption( 'foo2' );
 		$this->assertEquals(
-'<select><option value="foo1">foo1</option>
-<option value="bar1" selected="selected">bar1</option>
-<option value="foo2">foo2</option></select>', $this->select->getHTML() );
+'<select><option value="foo1">foo1</option>' . "\n" .
+'<option value="bar1" selected="selected">bar1</option>' . "\n" .
+'<option value="foo2">foo2</option></select>', $this->select->getHTML() );
 	}
 
 	/**
@@ -95,9 +95,9 @@ class XmlSelectTest extends MediaWikiTestCase {
 		$this->select->addOption( 'foo2' );
 		$this->select->setDefault( 'bar1' ); # setting default after adding options
 		$this->assertEquals(
-'<select><option value="foo1">foo1</option>
-<option value="bar1" selected="selected">bar1</option>
-<option value="foo2">foo2</option></select>', $this->select->getHTML() );
+'<select><option value="foo1">foo1</option>' . "\n" .
+'<option value="bar1" selected="selected">bar1</option>' . "\n" .
+'<option value="foo2">foo2</option></select>', $this->select->getHTML() );
 	}
 
 	public function testGetAttributes() {

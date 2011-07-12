@@ -100,36 +100,36 @@ class XmlTest extends MediaWikiTestCase {
 
 
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="2011" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>
-<option value="1">January</option>
-<option value="2" selected="selected">February</option>
-<option value="3">March</option>
-<option value="4">April</option>
-<option value="5">May</option>
-<option value="6">June</option>
-<option value="7">July</option>
-<option value="8">August</option>
-<option value="9">September</option>
-<option value="10">October</option>
-<option value="11">November</option>
-<option value="12">December</option></select>',
+			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="2011" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
+'<option value="1">January</option>' . "\n" .
+'<option value="2" selected="selected">February</option>' . "\n" .
+'<option value="3">March</option>' . "\n" .
+'<option value="4">April</option>' . "\n" .
+'<option value="5">May</option>' . "\n" .
+'<option value="6">June</option>' . "\n" .
+'<option value="7">July</option>' . "\n" .
+'<option value="8">August</option>' . "\n" .
+'<option value="9">September</option>' . "\n" .
+'<option value="10">October</option>' . "\n" .
+'<option value="11">November</option>' . "\n" .
+'<option value="12">December</option></select>',
 			Xml::dateMenu( 2011, 02 ),
 			"Date menu for february 2011"
 		);
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="2011" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>
-<option value="1">January</option>
-<option value="2">February</option>
-<option value="3">March</option>
-<option value="4">April</option>
-<option value="5">May</option>
-<option value="6">June</option>
-<option value="7">July</option>
-<option value="8">August</option>
-<option value="9">September</option>
-<option value="10">October</option>
-<option value="11">November</option>
-<option value="12">December</option></select>',
+			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="2011" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
+'<option value="1">January</option>' . "\n" .
+'<option value="2">February</option>' . "\n" .
+'<option value="3">March</option>' . "\n" .
+'<option value="4">April</option>' . "\n" .
+'<option value="5">May</option>' . "\n" .
+'<option value="6">June</option>' . "\n" .
+'<option value="7">July</option>' . "\n" .
+'<option value="8">August</option>' . "\n" .
+'<option value="9">September</option>' . "\n" .
+'<option value="10">October</option>' . "\n" .
+'<option value="11">November</option>' . "\n" .
+'<option value="12">December</option></select>',
 			Xml::dateMenu( 2011, -1),
 			"Date menu with negative month for 'All'"
 		);
@@ -146,19 +146,19 @@ class XmlTest extends MediaWikiTestCase {
 
 		# @todo FIXME: Please note there is no year there!
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>
-<option value="1">January</option>
-<option value="2">February</option>
-<option value="3">March</option>
-<option value="4">April</option>
-<option value="5">May</option>
-<option value="6">June</option>
-<option value="7">July</option>
-<option value="8">August</option>
-<option value="9">September</option>
-<option value="10">October</option>
-<option value="11">November</option>
-<option value="12">December</option></select>',
+			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
+'<option value="1">January</option>' . "\n" .
+'<option value="2">February</option>' . "\n" .
+'<option value="3">March</option>' . "\n" .
+'<option value="4">April</option>' . "\n" .
+'<option value="5">May</option>' . "\n" .
+'<option value="6">June</option>' . "\n" .
+'<option value="7">July</option>' . "\n" .
+'<option value="8">August</option>' . "\n" .
+'<option value="9">September</option>' . "\n" .
+'<option value="10">October</option>' . "\n" .
+'<option value="11">November</option>' . "\n" .
+'<option value="12">December</option></select>',
 			Xml::dateMenu( '', ''),
 			"Date menu with neither year or month"
 		);
