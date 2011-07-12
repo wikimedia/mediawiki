@@ -27,7 +27,7 @@ class SquidUpdate {
 
 	/**
 	 * @param $title Title
-	 * 
+	 *
 	 * @return SquidUpdate
 	 */
 	static function newFromLinksTo( &$title ) {
@@ -85,6 +85,9 @@ class SquidUpdate {
 		return new SquidUpdate( $urlArr );
 	}
 
+	/**
+	 * Purges the list of URLs passed to the constructor
+	 */
 	function doUpdate() {
 		SquidUpdate::purge( $this->urlArr );
 	}
@@ -111,7 +114,7 @@ class SquidUpdate {
 		}
 
 		if ( $wgHTCPMulticastAddress && $wgHTCPPort ) {
-			return SquidUpdate::HTCPPurge( $urlArr );
+			SquidUpdate::HTCPPurge( $urlArr );
 		}
 
 		wfProfileIn( __METHOD__ );
@@ -139,6 +142,10 @@ class SquidUpdate {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * @throws MWException
+	 * @param $urlArr array
+	 */
 	static function HTCPPurge( $urlArr ) {
 		global $wgHTCPMulticastAddress, $wgHTCPMulticastTTL, $wgHTCPPort;
 		wfProfileIn( __METHOD__ );
