@@ -1143,7 +1143,7 @@ $wgMessageStructure = array(
 		'rightslog',
 		'rightslogtext',
 		'rightslogentry',
-        'rightslogentry-autopromote',
+		'rightslogentry-autopromote',
 		'rightsnone',
 	),
 	'action' => array(
@@ -3249,9 +3249,9 @@ $wgMessageStructure = array(
 		'lag-warn-normal',
 		'lag-warn-high',
 	),
-    'watch' => array(
-        'confirm-watch-button',
-    ),
+	'watch' => array(
+		'confirm-watch-button',
+	),
 	'watchlisteditor' => array(
 		'watchlistedit-numitems',
 		'watchlistedit-noitems',
@@ -3456,9 +3456,9 @@ $wgMessageStructure = array(
 		'sqlite-has-fts',
 		'sqlite-no-fts',
 	),
-    'unwatch' => array(
-        'confirm-unwatch-button',
-    ),
+	'unwatch' => array(
+		'confirm-unwatch-button',
+	),
 );
 
 /** Comments for each block */
