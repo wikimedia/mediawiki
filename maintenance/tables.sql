@@ -972,8 +972,8 @@ CREATE TABLE /*_*/uploadstash (
 	us_mime varchar(255),
 	us_media_type varchar(255),
 	-- image-specific properties
-	us_image_width smallint unsigned,
-	us_image_height smallint unsigned,
+	us_image_width int unsigned,
+	us_image_height int unsigned,
 	us_image_bits smallint unsigned
 	
 ) /*$wgDBTableOptions*/;
