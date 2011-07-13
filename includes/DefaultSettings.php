@@ -5008,6 +5008,7 @@ $wgSpecialPageGroups = array(
 	'Preferences'               => 'users',
 	'ChangePassword'            => 'users',
 	'DeletedContributions'      => 'users',
+	'PasswordReset'             => 'users',
 
 	'Mostlinked'                => 'highuse',
 	'Mostlinkedcategories'      => 'highuse',
