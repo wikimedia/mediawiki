@@ -10,6 +10,6 @@
  */
 class LanguageQqx extends Language {
 	function getMessage( $key ) {
-		return "[$key]";
+		return "($key)";
 	}
 }
