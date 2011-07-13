@@ -2856,8 +2856,9 @@ $wgAllowImageTag = false;
  * - $wgTidyBin should be set to the path of the binary and
  * - $wgTidyConf to the path of the configuration file.
  * - $wgTidyOpts can include any number of parameters.
- * - $wgTidyInternal controls the use of the PECL extension to use an in-
- *   process tidy library instead of spawning a separate program.
+ * - $wgTidyInternal controls the use of the PECL extension or the
+ *   libtidy (PHP >= 5) extension to use an in-process tidy library instead
+ *   of spawning a separate program.
  *   Normally you shouldn't need to override the setting except for
  *   debugging. To install, use 'pear install tidy' and add a line
  *   'extension=tidy.so' to php.ini.
