@@ -42,6 +42,9 @@ class UploadStash {
 	
 	// fileprops cache
 	protected $fileProps = array();
+	
+	// current user
+	protected $user, $userId, $isLoggedIn;
 
 	/**
 	 * Represents a temporary filestore, with metadata in the database.
@@ -49,16 +52,30 @@ class UploadStash {
 	 *
 	 * @param $repo FileRepo
 	 */
-	public function __construct( $repo ) {
+	public function __construct( $repo, $user = null ) {
 		// this might change based on wiki's configuration.
 		$this->repo = $repo;
+	
+		// if a user was passed, use it. otherwise, attempt to use the global.
+		// this keeps FileRepo from breaking when it creates an UploadStash object
+		if( $user ) {
+			$this->user = $user;
+		} else {
+			global $wgUser;
+			$this->user = $wgUser;
+		}
+		
+		if( is_object($this->user) ) {
+			$this->userId = $this->user->getId();
+			$this->isLoggedIn = $this->user->isLoggedIn();
+		}
 	}
 
 	/**
 	 * Get a file and its metadata from the stash.
 	 *
 	 * @param $key String: key under which file information is stored
-	 * @param $noauth Boolean (optional) Don't check authentication. Used by maintenance scripts.
+	 * @param $noAuth Boolean (optional) Don't check authentication. Used by maintenance scripts.
 	 * @throws UploadStashFileNotFoundException
 	 * @throws UploadStashNotLoggedInException
 	 * @throws UploadStashWrongOwnerException
@@ -66,18 +83,18 @@ class UploadStash {
 	 * @return UploadStashFile
 	 */
 	public function getFile( $key, $noAuth = false ) {
-		global $wgUser;
 		
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		}
 		
 		if( !$noAuth ) {
-			$userId = $wgUser->getId();
-			if( !$userId ) {
-				throw new UploadStashNotLoggedInException( 'No user is logged in, files must belong to users' );
+			if( !$this->isLoggedIn ) {
+				throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 			}
 		}
+		
+		$dbr = $this->repo->getSlaveDb();
 		
 		if ( !isset( $this->fileMetadata[$key] ) ) {
 			// try this first.  if it fails to find the row, check for lag, wait, try again. if its still missing, throw an exception.
@@ -115,7 +132,7 @@ class UploadStash {
 		}
 		
 		if( !$noAuth ) {
-			if( $this->fileMetadata[$key]['us_user'] != $userId ) {
+			if( $this->fileMetadata[$key]['us_user'] != $this->userId ) {
 				throw new UploadStashWrongOwnerException( "This file ($key) doesn't belong to the current user." );
 			}
 		}
@@ -157,7 +174,6 @@ class UploadStash {
 	 * @return UploadStashFile: file, or null on failure
 	 */
 	public function stashFile( $path, $sourceType = null, $key = null ) {
-		global $wgUser;
 		if ( ! file_exists( $path ) ) {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
@@ -214,13 +230,17 @@ class UploadStash {
 		$stashPath = $storeResult->value;
 		
 		// fetch the current user ID
-		$userId = $wgUser->getId();
-		if( !$userId ) {
-			throw new UploadStashNotLoggedInException( "No user is logged in, files must belong to users" );
+		if( !$this->isLoggedIn ) {
+			wfDebugCallstack();
+			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
 
+		// insert the file metadata into the db.
+		wfDebug( __METHOD__ . " inserting $stashPath under $key\n" );
+		$dbw = $this->repo->getMasterDb();
+		
 		$this->fileMetadata[$key] = array(
-			'us_user' => $userId,
+			'us_user' => $this->userId,
 			'us_key' => $key,
 			'us_orig_path' => $path,
 			'us_path' => $stashPath,
@@ -232,12 +252,11 @@ class UploadStash {
 			'us_image_height' => $fileProps['height'],
 			'us_image_bits' => $fileProps['bits'],
 			'us_source_type' => $sourceType,
-			'us_timestamp' => wfTimestamp( TS_MW )
+			'us_timestamp' => $dbw->timestamp(),
+			'us_status' => 'finished'
 		);
 				
-		// insert the file metadata into the db.
-		wfDebug( __METHOD__ . " inserting $stashPath under $key\n" );
-		$dbw = wfGetDB( DB_MASTER );
+
 		$dbw->insert(
 			'uploadstash',
 			$this->fileMetadata[$key],
@@ -261,18 +280,15 @@ class UploadStash {
 	 * @return boolean: success
 	 */
 	public function clear() {
-		global $wgUser;
-		
-		$userId = $wgUser->getId();
-		if( !$userId ) {
-			throw new UploadStashNotLoggedInException( 'No user is logged in, files must belong to users' );
+		if( !$this->isLoggedIn ) {
+			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
 		
 		wfDebug( __METHOD__ . " clearing all rows for user $userId\n" );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->repo->getMasterDb();
 		$dbw->delete(
 			'uploadstash',
-			array( 'us_user' => $userId ),
+			array( 'us_user' => $this->userId ),
 			__METHOD__	
 		);
 
@@ -291,14 +307,11 @@ class UploadStash {
 	 * @return boolean: success
 	 */
 	public function removeFile( $key ){
-		global $wgUser;
-		
-		$userId = $wgUser->getId();
-		if( !$userId ) {
-			throw new UploadStashNotLoggedInException( 'No user is logged in, files must belong to users' );
+		if( !$this->isLoggedIn ) {
+			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
 		
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->repo->getMasterDb();
 		
 		// this is a cheap query. it runs on the master so that this function still works when there's lag.
 		// it won't be called all that often.
@@ -309,7 +322,7 @@ class UploadStash {
 			__METHOD__
 		);
 		
-		if( $row->us_user != $userId ) {
+		if( $row->us_user != $this->userId ) {
 			throw new UploadStashWrongOwnerException( "Can't delete: the file ($key) doesn't belong to this user." );
 		}
 		
@@ -325,7 +338,7 @@ class UploadStash {
 	public function removeFileNoAuth( $key ) {
 		wfDebug( __METHOD__ . " clearing row $key\n" );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->repo->getMasterDb();
 		
 		// this gets its own transaction since it's called serially by the cleanupUploadStash maintenance script
 		$dbw->begin();
@@ -353,14 +366,11 @@ class UploadStash {
 	 * @return Array
 	 */
 	public function listFiles() {
-		global $wgUser;
-		
-		$userId = $wgUser->getId();
-		if( !$userId ) {
-			throw new UploadStashNotLoggedInException( 'No user is logged in, files must belong to users' );
+		if( !$this->isLoggedIn ) {
+			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
 		
-		$dbw = wfGetDB( DB_SLAVE );
+		$dbr = $this->repo->getSlaveDb();
 		$res = $dbr->select(
 			'uploadstash',
 			'us_key',
@@ -368,14 +378,15 @@ class UploadStash {
 			__METHOD__
 		);
 
-		if( !is_object( $res ) ) {
-			// nothing there.
+		if( !is_object( $res ) || $res->numRows() == 0 ) {
+			// nothing to do.
 			return false;
 		}
 
+		// finish the read before starting writes.
 		$keys = array();
-		while( $row = $dbr->fetchRow( $res ) ) {
-			array_push( $keys, $row['us_key'] );
+		foreach($res as $row) {
+			array_push( $keys, $row->us_key );
 		}
 
 		return $keys;
@@ -419,7 +430,7 @@ class UploadStash {
 	 */
 	protected function fetchFileMetadata( $key ) {
 		// populate $fileMetadata[$key]
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->repo->getSlaveDb();
 		$row = $dbr->selectRow(
 			'uploadstash',
 			'*',
@@ -444,7 +455,9 @@ class UploadStash {
 			'us_image_width' => $row->us_image_width,
 			'us_image_height' => $row->us_image_height,
 			'us_image_bits' => $row->us_image_bits,
-			'us_source_type' => $row->us_source_type
+			'us_source_type' => $row->us_source_type,
+			'us_timestamp' => $row->us_timestamp,
+			'us_status' => $row->us_status
 		);
 		
 		return true;

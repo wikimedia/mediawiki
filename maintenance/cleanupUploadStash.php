@@ -35,32 +35,33 @@ class UploadStashCleanup extends Maintenance {
   	}
 
   	public function execute() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$repo = RepoGroup::singleton()->getLocalRepo();
+	
+		$dbr = $repo->getSlaveDb();
 		
 		$this->output( "Getting list of files to clean up...\n" );
 		$res = $dbr->select(
 			'uploadstash',
 			'us_key',
-			'us_timestamp < ' . wfTimestamp( TS_MW, time() - UploadStash::REPO_AGE * 3600 ),
+			'us_timestamp < ' . $dbr->timestamp( time() - UploadStash::REPO_AGE * 3600 ),
 			__METHOD__
 		);
 		
-		if( !is_object( $res ) ) {
+		if( !is_object( $res ) || $res->numRows() == 0 ) {
 			// nothing to do.
 			return false;
 		}
 
 		// finish the read before starting writes.
 		$keys = array();
-		while( $row = $dbr->fetchRow( $res ) ) {
-			array_push( $keys, $row['us_key'] );
+		foreach($res as $row) {
+			array_push( $keys, $row->us_key );
 		}
 		
 		$this->output( 'Removing ' . count($keys) . " file(s)...\n" );
 		// this could be done some other, more direct/efficient way, but using
 		// UploadStash's own methods means it's less likely to fall accidentally
 		// out-of-date someday
-		$repo = RepoGroup::singleton()->getLocalRepo();
 		$stash = new UploadStash( $repo );
 		
 		foreach( $keys as $key ) {
