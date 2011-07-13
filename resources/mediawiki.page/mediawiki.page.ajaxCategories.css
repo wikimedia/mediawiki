@@ -1,0 +1,62 @@
+.mw-addcategory-prompt {
+	display: inline;
+}
+
+.mw-addcategory-prompt input {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+.mw-remove-category {
+	padding: 2px 8px;
+	display:inline;
+}
+
+#catlinks:hover .icon {
+	opacity: 1;
+}
+
+.mw-ajax-addcategory {
+	padding-left: 30px;
+	margin-right: 1em;
+	cursor: pointer;
+}
+#catlinks .icon {
+	cursor: pointer;
+	padding: 1px 8px;
+	margin: 0;
+	background: url('images/AJAXCategorySprite.png') 0 0 no-repeat;
+	opacity: 0.5;
+}
+#catlinks .icon-parent {
+	cursor: pointer;
+}
+#catlinks .icon-parent:hover .icon {
+	background-position-y: -16px;
+}
+#catlinks .no-text {
+}
+#catlinks .icon-close {
+	background-position: 0 0;
+}
+#catlinks .icon-edit {
+	background-position: -16px 0;
+}
+#catlinks .icon-tick {
+	background-position: -32px 0;
+}
+#catlinks .icon-add {
+	background-position: -64px 0;
+}
+#catlinks .icon-close:hover {
+	background-position: 0 -16px;
+}
+#catlinks .icon-edit:hover {
+	background-position: -16px -16px;
+}
+#catlinks .icon-tick:hover {
+	background-position: -32px -16px;
+}
+#catlinks .icon-add:hover {
+	background-position: -64px -16px;
+}
