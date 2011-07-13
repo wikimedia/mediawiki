@@ -486,6 +486,16 @@ class WebRequest {
 	}
 
 	/**
+	 * Returns the names of all input values excluding those in $exclude.
+	 *
+	 * @param $exclude Array
+	 * @return array
+	 */
+	public function getValueNames( $exclude = array() ) {
+		return array_diff( array_keys( $this->getValues() ), $exclude );
+	}
+
+	/**
 	 * Get the values passed in the query string.
 	 * No transformation is performed on the values.
 	 *
