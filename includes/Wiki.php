@@ -453,7 +453,7 @@ class MediaWiki {
 		$act = $this->getAction();
 
 		$action = Action::factory( $act, $article );
-		if( $action instanceof Action ){
+		if ( $action instanceof Action ) {
 			$action->show();
 			wfProfileOut( __METHOD__ );
 			return;
@@ -564,8 +564,9 @@ class MediaWiki {
 
 				wfProfileOut( __METHOD__ );
 
-				if ( !$abort )
+				if ( !$abort ) {
 					return false;
+				}
 				exit;
 			}
 		}
