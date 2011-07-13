@@ -522,7 +522,7 @@ abstract class Skin {
 	}
 
 	function getCategoryLinks() {
-		global $wgUseCategoryBrowser, $wgContLang;
+		global $wgUseCategoryBrowser;
 
 		$out = $this->getContext()->getOutput();
 
@@ -530,10 +530,7 @@ abstract class Skin {
 			return '';
 		}
 
-		// Use Unicode bidi embedding override characters,
-		// to make sure links don't smash each other up in ugly ways.
-		$dir = $wgContLang->getDir();
-		$embed = "<li dir='$dir'>";
+		$embed = "<li>";
 		$pop = "</li>";
 
 		$allCats = $out->getCategoryLinks();
