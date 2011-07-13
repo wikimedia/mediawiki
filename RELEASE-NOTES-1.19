@@ -73,6 +73,7 @@ production.
 * (bug 15802) An easy way to look up messages: language qqx which returns
   the message keys.
 * (bug 29868) Add support for passing parameters to mw.msg in jquery.localize.
+* (bug 29558) $wgMiserMode now disables update.php by default
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
