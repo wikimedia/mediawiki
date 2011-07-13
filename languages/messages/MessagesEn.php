@@ -4276,13 +4276,11 @@ Please confirm that you really want to recreate this page.",
 'confirm-purge-top'    => 'Clear the cache of this page?',
 'confirm-purge-bottom' => 'Purging a page clears the cache and forces the most current revision to appear.',
 
-# action=watch
-'confirm-watch-button' => 'OK',
-'confirm-watch-top'    => 'Add this page to your watchlist?',
-
-# action=unwatch
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Add this page to your watchlist?',
 'confirm-unwatch-button' => 'OK',
-'confirm-unwatch-top'    => 'Remove this page to your watchlist?',
+'confirm-unwatch-top'    => 'Remove this page from your watchlist?',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';&#32;', # only translate this message to other languages if you have to change it
