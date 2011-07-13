@@ -982,6 +982,8 @@ CREATE TABLE /*_*/uploadstash (
 CREATE INDEX /*i*/us_user ON /*_*/uploadstash (us_user);
 -- pick out files by key, enforce key uniqueness
 CREATE UNIQUE INDEX /*i*/us_key ON /*_*/uploadstash (us_key);
+-- the abandoned upload cleanup script needs this
+CREATE INDEX /*i*/us_timestamp ON /*_*/uploadstash (us_timestamp);
 
 
 --
