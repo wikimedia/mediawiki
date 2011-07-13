@@ -510,7 +510,6 @@ $preloadedMessages = array(
 	'accesskey-t-specialpages',
 	'accesskey-t-whatlinkshere',
 	'anonnotice',
-	'catseparator',
 	'colon-separator',
 	'currentevents',
 	'currentevents-url',
@@ -4293,7 +4292,6 @@ Please confirm that you really want to recreate this page.",
 'confirm-unwatch-top'    => 'Remove this page to your watchlist?',
 
 # Separators for various lists, etc.
-'catseparator'        => '|', # only translate this message to other languages if you have to change it
 'semicolon-separator' => ';&#32;', # only translate this message to other languages if you have to change it
 'comma-separator'     => ',&#32;', # only translate this message to other languages if you have to change it
 'colon-separator'     => ':&#32;', # only translate this message to other languages if you have to change it

@@ -179,6 +179,27 @@ input#wpSummary {
 .magnify { float: right; }
 
 /**
+ * Categories
+ */
+#catlinks ul, #catlinks li {
+	display:inline;
+	margin: 0px;
+	list-style:none;
+	list-style-type:none;
+	list-style-image:none;
+}
+
+#catlinks li {
+	padding: 0 .7em;
+	border-left: 1px solid #AAA;
+}
+
+#catlinks li:first-child {
+	padding-left: .4em;
+	border-left: none;
+}
+
+/**
  * Hidden categories
  */
 .mw-hidden-cats-hidden { display: none; }

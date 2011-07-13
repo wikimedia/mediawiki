@@ -77,7 +77,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= '<font size="-1"><span id="langlinks">';
 		$s .= str_replace( '<br />', '', $this->otherLanguages() );
-		$cat = $this->getSkin()->getCategoryLinks();
+		$cat = '<div id="catlinks" class="catlinks">' . $this->getSkin()->getCategoryLinks() . '</div>';
 		if( $cat ) {
 			$s .= "<br />$cat\n";
 		}

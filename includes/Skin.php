@@ -530,26 +530,23 @@ abstract class Skin {
 			return '';
 		}
 
-		# Separator
-		$sep = wfMsgExt( 'catseparator', array( 'parsemag', 'escapenoentities' ) );
-
 		// Use Unicode bidi embedding override characters,
 		// to make sure links don't smash each other up in ugly ways.
 		$dir = $wgContLang->getDir();
-		$embed = "<span dir='$dir'>";
-		$pop = '</span>';
+		$embed = "<li dir='$dir'>";
+		$pop = "</li>";
 
 		$allCats = $out->getCategoryLinks();
 		$s = '';
 		$colon = wfMsgExt( 'colon-separator', 'escapenoentities' );
 
 		if ( !empty( $allCats['normal'] ) ) {
-			$t = $embed . implode( "{$pop} {$sep} {$embed}" , $allCats['normal'] ) . $pop;
+			$t = $embed . implode( "{$pop} {$embed}" , $allCats['normal'] ) . $pop;
 
 			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escapenoentities' ), count( $allCats['normal'] ) );
 			$s .= '<div id="mw-normal-catlinks">' .
 				Linker::link( Title::newFromText( wfMsgForContent( 'pagecategorieslink' ) ), $msg )
-				. $colon . $t . '</div>';
+				. $colon . '<ul>' . $t . '</ul>' . '</div>';
 		}
 
 		# Hidden categories
@@ -564,7 +561,7 @@ abstract class Skin {
 
 			$s .= "<div id=\"mw-hidden-catlinks\" class=\"$class\">" .
 				wfMsgExt( 'hidden-categories', array( 'parsemag', 'escapenoentities' ), count( $allCats['hidden'] ) ) .
-				$colon . $embed . implode( "$pop $sep $embed", $allCats['hidden'] ) . $pop .
+				$colon . '<ul>' . $embed . implode( "{$pop} {$embed}" , $allCats['hidden'] ) . $pop . '</ul>' .
 				'</div>';
 		}
 
