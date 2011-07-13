@@ -164,6 +164,7 @@ production.
 * (bug 20781) Move 'mainpagetext' messages to installer's .i18n file.
 * (bug 29737) "MediaWiki:Qbsettings-directionality" should refer to script,
   not language.
+* (bug 26360) $wgSessionHandler was overriding system settings unconditionally.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.

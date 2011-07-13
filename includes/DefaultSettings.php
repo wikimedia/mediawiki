@@ -1533,7 +1533,7 @@ $wgSessionsInMemcached = false;
  * 'session_mysql.' Setting to null skips setting this entirely (which might be
  * useful if you're doing cross-application sessions, see bug 11381)
  */
-$wgSessionHandler = 'files';
+$wgSessionHandler = null;
 
 /** If enabled, will send MemCached debugging information to $wgDebugLogFile */
 $wgMemCachedDebug   = false;
