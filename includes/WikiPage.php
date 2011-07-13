@@ -336,12 +336,17 @@ class WikiPage extends Page {
 	 * Set the general counter, title etc data loaded from
 	 * some source.
 	 *
-	 * @param $data Object|String $res->fetchObject() object or the string "fromdb" to reload
+	 * @param $data Object|String One of the following:
+	 *		A DB query result object or...
+	 *		"fromdb" to get from a slave DB or...
+	 *		"fromdbmaster" to get from the master DB
 	 */
 	public function loadPageData( $data = 'fromdb' ) {
-		if ( $data === 'fromdb' ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$data = $this->pageDataFromTitle( $dbr, $this->mTitle );
+		if ( $data === 'fromdb' || $data === 'fromdbmaster' ) {
+			$db = ( $data == 'fromdbmaster' )
+				? wfGetDB( DB_MASTER )
+				: wfGetDB( DB_SLAVE );
+			$data = $this->pageDataFromTitle( $db, $this->mTitle );
 		}
 
 		$lc = LinkCache::singleton();
