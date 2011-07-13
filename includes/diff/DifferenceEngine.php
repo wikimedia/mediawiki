@@ -779,6 +779,8 @@ CONTROL;
 	function generateDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
+        wfProfileIn( __METHOD__ );
+
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
 
