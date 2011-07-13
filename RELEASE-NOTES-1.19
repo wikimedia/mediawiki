@@ -157,7 +157,9 @@ production.
   are disabled for user pages.
 * (bug 12205) Bidirectional names in action=credits are split and displayed
   incorrectly when wrapped to the next line.
-* (bug 120781) Move 'mainpagetext' messages to installer's .i18n file.
+* (bug 20781) Move 'mainpagetext' messages to installer's .i18n file.
+* (bug 29737) "MediaWiki:Qbsettings-directionality" should refer to script,
+  not language.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
