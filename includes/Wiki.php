@@ -101,6 +101,7 @@ class MediaWiki {
 		if ( $ret === null || ( $ret->getDBkey() == '' && $ret->getInterwiki() == '' ) ) {
 			$ret = new BadTitle;
 		}
+
 		return $ret;
 	}
 
@@ -126,7 +127,7 @@ class MediaWiki {
 	 *
 	 * @return void
 	 */
-	public function performRequest() {
+	private function performRequest() {
 		global $wgServer, $wgUsePathInfo;
 
 		wfProfileIn( __METHOD__ );
@@ -358,6 +359,7 @@ class MediaWiki {
 				$this->context->setTitle( $article->getTitle() );
 			}
 		}
+
 		wfProfileOut( __METHOD__ );
 		return $article;
 	}
@@ -521,7 +523,7 @@ class MediaWiki {
 	 * Run the current MediaWiki instance
 	 * index.php just calls this
 	 */
-	function run() {
+	public function run() {
 		try {
 			$this->checkMaxLag( true );
 			$this->main();
@@ -539,7 +541,7 @@ class MediaWiki {
 	 * script execution. False to return the result as a boolean.
 	 * @return boolean True if we passed the check, false if we surpass the maxlag
 	 */
-	function checkMaxLag( $abort ) {
+	private function checkMaxLag( $abort ) {
 		global $wgShowHostnames;
 
 		wfProfileIn( __METHOD__ );
@@ -571,7 +573,7 @@ class MediaWiki {
 		return true;
 	}
 
-	function main() {
+	private function main() {
 		global $wgUseFileCache, $wgTitle, $wgUseAjax;
 
 		wfProfileIn( __METHOD__ );
@@ -579,6 +581,7 @@ class MediaWiki {
 		# Set title from request parameters
 		$wgTitle = $this->getTitle();
 		$action = $this->getAction();
+		$user = $this->context->getUser();
 
 		# Send Ajax requests to the Ajax dispatcher.
 		if ( $wgUseAjax && $action == 'ajax' ) {
@@ -602,8 +605,8 @@ class MediaWiki {
 						$cache->loadFromFileCache();
 					}
 					# Do any stats increment/watchlist stuff
-					$article = Article::newFromTitle( $wgTitle, $this->context );
-					$article->viewUpdates();
+					$article = WikiPage::factory( $wgTitle );
+					$article->doViewUpdates( $user );
 					# Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
 					wfProfileOut( 'main-try-filecache' );
