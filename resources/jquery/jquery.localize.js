@@ -34,7 +34,10 @@
 $.fn.localize = function( options ) {
 	options = $.extend( { 'prefix': '', 'keys': {}, 'params': {} }, options );
 	function msg( key ) {
-		return mw.msg( options.prefix + ( key in options.keys ? options.keys[key] : key ), ( key in options.params ? options.params[key] : [] ) )
+		var args = key in options.params ? options.params[key] : [];
+		// Format: mw.msg( key [, p1, p2, ...] )
+		args.unshift( options.prefix + ( key in options.keys ? options.keys[key] : key ) );
+		return mw.msg.apply( mw, args );
 	};
 	return $(this)
 		.find( 'msg,html\\:msg' )
