@@ -70,6 +70,8 @@ production.
 * (bug 29680) Add GetDefaultSortkey hook to override the default sortkey.
 * (bug 16699) {{#language:}} accepts second parameter to specify the language in
   which the language name is wanted. Coverage depends on the cldr extension.
+* (bug 15802) An easy way to look up messages: language qqx which returns
+  the message keys
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the
