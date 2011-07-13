@@ -8,66 +8,58 @@ test( '-- Initial check', function() {
 test( 'Handle basic replacements', function() {
 	expect(4);
 
-	var html, $lc, expected;
+	var html, $lc;
 	mw.messages.set( 'basic', 'Basic stuff' );
 
 	// Tag: html:msg
-	html = '<div><span class="foobar"><html:msg key="basic"></span></div>';
+	html = '<span><html:msg key="basic"></span>';
 	$lc = $( html ).localize();
-	expected = '<span class="foobar">Basic stuff</span>';
 
-	strictEqual( $lc.html(), expected, 'Tag: html:msg' );
+	strictEqual( $lc.html(), 'Basic stuff', 'Tag: html:msg' );
 
 	// Tag: msg (deprecated)
-	html = '<div><span class="foobar"><msg key="basic"></span></div>';
+	html = '<span><msg key="basic"></span>';
 	$lc = $( html ).localize();
-	expected = '<span class="foobar">Basic stuff</span>';
 
-	strictEqual( $lc.html(), expected, 'Tag: msg' );
+	strictEqual( $lc.html(), 'Basic stuff', 'Tag: msg' );
 
 	// Attribute: title-msg
-	html = '<div><span class="foobar" title-msg="basic"></span></div>';
-	$lc = $( html ).localize();
-	expected = '<span class="foobar" title="Basic stuff"></span>';
+	html = '<div><span title-msg="basic"></span></div>';
+	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.html(), expected, 'Attribute: title-msg' );
+	strictEqual( $lc.attr( 'title' ), 'Basic stuff', 'Attribute: title-msg' );
 
 	// Attribute: alt-msg
-	html = '<div><span class="foobar" alt-msg="basic"></span></div>';
-	$lc = $( html ).localize();
-	expected = '<span class="foobar" alt="Basic stuff"></span>';
+	html = '<div><span alt-msg="basic"></span></div>';
+	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.html(), expected, 'Attribute: alt-msg' );
+	strictEqual( $lc.attr( 'alt' ), 'Basic stuff', 'Attribute: alt-msg' );
 } );
 
 test( 'Proper escaping', function() {
 	expect(2);
 
-	var html, $lc, expected;
+	var html, $lc;
 	mw.messages.set( 'properfoo', '<proper esc="test">' );
 
 	// This is handled by jQuery inside $.fn.localize, just a simple sanity checked
 	// making sure it is actually using text() and attr() (or something with the same effect)
 
 	// Text escaping
-	html = '<div><span class="foobar"><html:msg key="properfoo"></span></div>';
+	html = '<span><html:msg key="properfoo"></span>';
 	$lc = $( html ).localize();
-	expected = '<span class="foobar">&lt;proper esc="test"&gt;</span>';
 
-	strictEqual( $lc.html(), expected, 'Content is inserted as text, not as html.' );
+	strictEqual( $lc.text(), mw.msg( 'properfoo' ), 'Content is inserted as text, not as html.' );
 
 	// Attribute escaping
-	html = '<div><span class="foobar" title-msg="properbar"></span></div>';
-	$lc = $( html ).localize();
-	expected = '<span class="foobar" title="&lt;properbar&gt;"></span>';
+	html = '<div><span title-msg="properfoo"></span></div>';
+	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.html(), expected, 'Attributes are not inserted raw.' );
-
-
+	strictEqual( $lc.attr( 'title' ), mw.msg( 'properfoo' ), 'Attributes are not inserted raw.' );
 } );
 
 test( 'Options', function() {
-	expect(4);
+	expect(7);
 
 	mw.messages.set( {
 		'foo-lorem': 'Lorem',
@@ -78,16 +70,16 @@ test( 'Options', function() {
 		'foo-bazz-label': 'The Bazz ($1)',
 		'foo-welcome': 'Welcome to $1! (last visit: $2)'
 	} );
-	var html, $lc, expected, x, sitename = 'Wikipedia';
+	var html, $lc, attrs, x, sitename = 'Wikipedia';
 
 	// Message key prefix
 	html = '<div><span title-msg="lorem"><html:msg key="ipsum" /></span></div>';
 	$lc = $( html ).localize( {
 		prefix: 'foo-'
-	} );
-	expected = '<span title="Lorem">Ipsum</span>';
+	} ).find( 'span' );
 
-	strictEqual( $lc.html(), expected, 'Message key prefix' );
+	strictEqual( $lc.attr( 'title' ), 'Lorem', 'Message key prefix - attr' );
+	strictEqual( $lc.text(), 'Ipsum', 'Message key prefix - text' );
 
 	// Variable keys mapping
 	x = 'bar';
@@ -97,21 +89,20 @@ test( 'Options', function() {
 			'title': 'foo-' + x + '-title',
 			'label': 'foo-' + x + '-label'
 		}
-	} );
-	expected = '<span title="Read more about bars">The Bars</span>';
+	} ).find( 'span' );
 
-	strictEqual( $lc.html(), expected, 'Message prefix' );
+	strictEqual( $lc.attr( 'title' ), 'Read more about bars', 'Variable keys mapping - attr' );
+	strictEqual( $lc.text(), 'The Bars', 'Variable keys mapping - text' );
 
 	// Passing parameteters to mw.msg
-	html = '<div><span><html:msg key="foo-welcome" /></span></div>';
+	html = '<span><html:msg key="foo-welcome" /></span>';
 	$lc = $( html ).localize( {
 		params: {
 			'foo-welcome': [sitename, 'yesterday']
 		}
 	} );
-	expected = '<span>Welcome to Wikipedia! (last visit: yesterday)</span>';
 
-	strictEqual( $lc.html(), expected, 'Message prefix' );
+	strictEqual( $lc.text(), 'Welcome to Wikipedia! (last visit: yesterday)', 'Passing parameteters to mw.msg' );
 
 	// Combination of options prefix, params and keys
 	x = 'bazz';
@@ -127,8 +118,8 @@ test( 'Options', function() {
 			'label': [sitename, '3 minutes ago']
 
 		}
-	} );
-	expected = '<span title="Read more about bazz at Wikipedia (last modified: 3 minutes ago)">The Bazz (Wikipedia)</span>';
+	} ).find( 'span' );
 
-	strictEqual( $lc.html(), expected, 'Message prefix' );
+	strictEqual( $lc.text(), 'The Bazz (Wikipedia)', 'Combination of options prefix, params and keys - text' );
+	strictEqual( $lc.attr( 'title' ), 'Read more about bazz at Wikipedia (last modified: 3 minutes ago)', 'Combination of options prefix, params and keys - attr' );
 } );
