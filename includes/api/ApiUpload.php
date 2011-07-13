@@ -220,7 +220,9 @@ class ApiUpload extends ApiBase {
 				$this->dieUsageMsg( 'invalid-file-key' );
 			}
 
-			$this->mUpload = new UploadFromStash();
+			// context allows access to the current user without creating new $wgUser references
+			$context = $this->createContext();
+			$this->mUpload = new UploadFromStash( $context->getUser() );
 			$this->mUpload->initialize( $this->mParams['filekey'], $this->mParams['filename'] );
 
 		} elseif ( isset( $this->mParams['file'] ) ) {

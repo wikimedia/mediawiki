@@ -16,15 +16,23 @@ class UploadFromStash extends UploadBase {
 	//LocalFile repo
 	private $repo;
 	
-	public function __construct( $stash = false, $repo = false ) {
-		if( !$this->repo ) {
+	public function __construct( $user = false, $stash = false, $repo = false ) {
+		// user object. sometimes this won't exist, as when running from cron.
+		$this->user = $user;
+
+		if( $repo ) {
+			$this->repo = $repo;
+		} else {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
 		}
 
-		if( !$this->stash ) {
-			$this->stash = new UploadStash( $this->repo );
+		if( $stash ) {
+			$this->stash = $stash;
+		} else {
+			wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() . "\n" );
+			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
-		
+
 		return true;
 	}
 	
