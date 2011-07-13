@@ -86,12 +86,11 @@ class FauxResponse extends WebResponse {
 	 * @param $http_response_code null|int Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
-		$match = array();
 		if ( substr( $string, 0, 5 ) == 'HTTP/' ) {
 			$parts = explode( ' ', $string, 3 );
 			$this->code = intval( $parts[1] );
 		} else {
-			list( $key, $val ) = explode( ":", $string, 2 );
+			list( $key, $val ) = array_map( 'trim', explode( ":", $string, 2 ) );
 
 			if( $replace || !isset( $this->headers[$key] ) ) {
 				$this->headers[$key] = $val;
@@ -108,7 +107,10 @@ class FauxResponse extends WebResponse {
 	 * @return string
 	 */
 	public function getheader( $key ) {
-		return $this->headers[$key];
+		if ( isset( $this->headers[$key] ) ) {
+			return $this->headers[$key];
+		}
+		return null;
 	}
 
 	/**
