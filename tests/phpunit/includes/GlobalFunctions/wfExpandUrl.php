@@ -1,7 +1,6 @@
 <?php
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Unit tests for wfExpandUrl()
  */
 
 class wfExpandUrl extends MediaWikiTestCase {
