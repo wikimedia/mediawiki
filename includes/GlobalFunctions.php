@@ -437,7 +437,7 @@ function wfExpandUrl( $url ) {
 	global $wgServer;
 	if( substr( $url, 0, 2 ) == '//' ) {
 		$bits = wfParseUrl( $wgServer );
-		$scheme = $bits ? $bits['scheme'] : 'http';
+		$scheme = $bits && $bits['scheme'] !== '' ? $bits['scheme'] : 'http';
 		return $scheme . ':' . $url;
 	} elseif( substr( $url, 0, 1 ) == '/' ) {
 		return $wgServer . $url;
