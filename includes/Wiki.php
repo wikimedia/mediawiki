@@ -80,7 +80,9 @@ class MediaWiki {
 			$ret = Title::newFromURL( $title );
 			// check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
-			if ( count( $wgContLang->getVariants() ) > 1 && !is_null( $ret ) && $ret->getArticleID() == 0 ){
+			if ( count( $wgContLang->getVariants() ) > 1
+				&& !is_null( $ret ) && $ret->getArticleID() == 0 )
+			{
 				$wgContLang->findVariantLink( $title, $ret );
 			}
 		}
@@ -96,7 +98,7 @@ class MediaWiki {
 			}
 		}
 
-		if( $ret === null || ( $ret->getDBkey() == '' && $ret->getInterwiki() == '' ) ){
+		if ( $ret === null || ( $ret->getDBkey() == '' && $ret->getInterwiki() == '' ) ) {
 			$ret = new BadTitle;
 		}
 		return $ret;
@@ -162,7 +164,9 @@ class MediaWiki {
 				$url = $title->getFullURL( $query );
 			}
 			// Check for a redirect loop
-			if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url ) && $title->isLocal() ) {
+			if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url )
+				&& $title->isLocal() )
+			{
 				// 301 so google et al report the target as the actual url.
 				$output->redirect( $url, 301 );
 			} else {
@@ -172,8 +176,9 @@ class MediaWiki {
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
-			&& ( $request->getVal( 'title' ) === null || $title->getPrefixedDBKey() != $request->getVal( 'title' ) )
-			&& !count( array_diff( array_keys( $request->getValues() ), array( 'action', 'title' ) ) ) )
+			&& ( $request->getVal( 'title' ) === null ||
+				$title->getPrefixedDBKey() != $request->getVal( 'title' ) )
+			&& !count( $request->getValueNames( array( 'action', 'title' ) ) ) )
 		{
 			if ( $title->getNamespace() == NS_SPECIAL ) {
 				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
@@ -482,10 +487,14 @@ class MediaWiki {
 					$section = $request->getVal( 'section' );
 					$oldid = $request->getVal( 'oldid' );
 					if ( !$wgUseExternalEditor || $act == 'submit' || $internal ||
-					   $section || $oldid || ( !$user->getOption( 'externaleditor' ) && !$external ) ) {
+					   $section || $oldid ||
+					   ( !$user->getOption( 'externaleditor' ) && !$external ) )
+					{
 						$editor = new EditPage( $article );
 						$editor->submit();
-					} elseif ( $wgUseExternalEditor && ( $external || $user->getOption( 'externaleditor' ) ) ) {
+					} elseif ( $wgUseExternalEditor
+						&& ( $external || $user->getOption( 'externaleditor' ) ) )
+					{
 						$mode = $request->getVal( 'mode' );
 						$extedit = new ExternalEdit( $article, $mode );
 						$extedit->edit();
@@ -588,7 +597,8 @@ class MediaWiki {
 				$cache = new HTMLFileCache( $wgTitle, $action );
 				if ( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
 					/* Check incoming headers to see if client has this cached */
-					if ( !$this->context->getOutput()->checkLastModified( $cache->fileCacheTime() ) ) {
+					$timestamp = $cache->fileCacheTime();
+					if ( !$this->context->getOutput()->checkLastModified( $timestamp ) ) {
 						$cache->loadFromFileCache();
 					}
 					# Do any stats increment/watchlist stuff
