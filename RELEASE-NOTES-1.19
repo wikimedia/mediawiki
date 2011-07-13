@@ -65,13 +65,14 @@ production.
 * (bug 29109) Allow the automatic edit summary for redirect creation
   show the first bit of the new redirect page.
 * (bug 5800) Added $formCallback as a parameter to the hook
-  EditPage::showEditForm:initial
+  EditPage::showEditForm:initial.
 * (bug 29723) mw.util.wikiGetlink() now defaults to wgPageName.
 * (bug 29680) Add GetDefaultSortkey hook to override the default sortkey.
 * (bug 16699) {{#language:}} accepts second parameter to specify the language in
   which the language name is wanted. Coverage depends on the cldr extension.
 * (bug 15802) An easy way to look up messages: language qqx which returns
-  the message keys
+  the message keys.
+* (bug 29868) Add support for passing parameters to mw.msg in jquery.localize.
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the

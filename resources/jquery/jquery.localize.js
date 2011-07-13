@@ -32,9 +32,9 @@
  */
 
 $.fn.localize = function( options ) {
-	options = $.extend( { 'prefix': '', 'keys': {} }, options );
+	options = $.extend( { 'prefix': '', 'keys': {}, 'params': {} }, options );
 	function msg( key ) {
-		return mw.msg( options.prefix + ( key in options.keys ? options.keys[key] : key ) )
+		return mw.msg( options.prefix + ( key in options.keys ? options.keys[key] : key ), ( key in options.params ? options.params[key] : [] ) )
 	};
 	return $(this)
 		.find( 'msg,html\\:msg' )
