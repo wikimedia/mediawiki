@@ -256,9 +256,6 @@ $messages = array(
 'index-category'                 => 'Kaca nu diindéks',
 'noindex-category'               => 'Kaca nu teu diindéks',
 
-'mainpagetext'      => "'''''Software'' MediaWiki geus diinstal.'''",
-'mainpagedocfooter' => "Mangga tingal ''[http://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.",
-
 'about'         => 'Ngeunaan',
 'article'       => 'Kaca eusi',
 'newwindow'     => '(buka na jandéla anyar)',
@@ -1736,12 +1733,10 @@ Alamat surélék nu diasupkeun kana [[Special:Preferences|préferénsi pamaké a
 'watchlistanontext'    => 'Mangga $1 pikeun némbongkeun atawa ngarobah béréndélan awaskeuneun anjeun.',
 'watchnologin'         => 'Can asup log',
 'watchnologintext'     => 'Anjeun kudu [[Special:UserLogin|asup log]] pikeun ngarobah awaskeuneun.',
-'addedwatch'           => 'Geus ditambahkeun ka awaskeuneun',
 'addedwatchtext'       => "Kaca \"[[:\$1]]\" geus ditambahkeun ka [[Special:Watchlist|awaskeuneun]] anjeun.
 Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di dinya, sarta kacana bakal katémbong '''dikandelan''' dina kaca [[Special:RecentChanges|Nu anyar robah]] sangkan leuwih gampang ngawaskeunana.
 
 <p>Mun jaga anjeun moal deui ngawaskeun parobahan na kaca éta, klik tumbu \"Eureun ngawaskeun\" na lajursisi.",
-'removedwatch'         => 'Dikaluarkeun ti awaskeuneun',
 'removedwatchtext'     => 'Kaca "[[:$1]]" geus dikaluarkeun tina [[Special:Watchlist|daptar awaskeuneun]] anjeun.',
 'watch'                => 'awaskeun',
 'watchthispage'        => 'Awaskeun kaca ieu',

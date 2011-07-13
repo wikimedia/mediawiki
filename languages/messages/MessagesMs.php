@@ -321,15 +321,6 @@ $messages = array(
 'noindex-category'               => 'Laman tak diindeks',
 'broken-file-category'           => 'Laman yang ada pautan fail yang terputus',
 
-'mainpagetext'      => "'''MediaWiki telah berjaya dipasang.'''",
-'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
-
-== Untuk bermula ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Senarai tetapan konfigurasi]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Soalan Lazim MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Senarai mel bagi keluaran MediaWiki]',
-
 'about'         => 'Perihal',
 'article'       => 'Laman kandungan',
 'newwindow'     => '(dibuka di tetingkap baru)',
@@ -476,7 +467,7 @@ $1',
 'showtoc'                 => 'tunjukkan',
 'hidetoc'                 => 'sorokkan',
 'collapsible-collapse'    => 'Lipat',
-'collapsible-expand'      => 'Bentangkan',
+'collapsible-expand'      => 'Kembangkan',
 'thisisdeleted'           => 'Lihat atau pulihkan $1?',
 'viewdeleted'             => 'Lihat $1?',
 'restorelink'             => '{{PLURAL:$1|satu|$1}} suntingan dihapuskan',
@@ -1420,7 +1411,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-userrights-interwiki'  => 'Menyerahkan dan menarik balik hak pengguna di wiki lain',
 'right-siteadmin'             => 'Mengunci dan membuka kunci pangkalan data',
 'right-reset-passwords'       => 'Mengeset semula kata laluan pengguna lain',
-'right-override-export-depth' => 'Eksport laman termasuk laman dipaut sehingga kedalaman 5',
+'right-override-export-depth' => 'Mengeksport laman termasuk laman dipaut sehingga kedalaman 5',
 'right-sendemail'             => 'Mengirim e-mel kepada pengguna-pengguna lain',
 
 # User rights log
@@ -2053,14 +2044,12 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 'watchlistanontext'    => 'Sila $1 terlebih dahulu untuk melihat atau menyunting senarai pantau anda.',
 'watchnologin'         => 'Belum log masuk',
 'watchnologintext'     => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
-'addedwatch'           => 'Senarai pantau dikemaskinikan',
 'addedwatchtext'       => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
 Semua perubahan bagi laman tersebut dan laman perbincangannya akan disenaraikan di sana,
 dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Special:RecentChanges|senarai perubahan terkini]]
 untuk memudahkan anda.
 
 Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
-'removedwatch'         => 'Dibuang daripada senarai pantau',
 'removedwatchtext'     => 'Laman "[[:$1]]" telah dibuang daripada [[Special:Watchlist|senarai pantau anda]].',
 'watch'                => 'Pantau',
 'watchthispage'        => 'Pantau laman ini',

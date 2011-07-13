@@ -245,15 +245,6 @@ $messages = array(
 'noindex-category'               => 'Tudalennau heb eu mynegeio',
 'broken-file-category'           => 'Tudalennau a chysylltiadau toredig i ffeiliau ynddynt',
 
-'mainpagetext'      => "'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''",
-'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
-
-==Cychwyn arni==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Rhestr gosodiadau wrth gyflunio]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]',
-
 'about'         => 'Ynglŷn â',
 'article'       => 'Tudalen bwnc (erthygl/ffeil)',
 'newwindow'     => '(yn agor mewn ffenest newydd)',
@@ -1996,12 +1987,10 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chith
 'watchlistanontext'    => "Rhaid $1 er mwyn gweld neu ddiwygio'ch rhestr wylio.",
 'watchnologin'         => 'Nid ydych wedi mewngofnodi',
 'watchnologintext'     => "Mae'n rhaid i chi [[Special:UserLogin|fewngofnodi]] er mwyn newid eich rhestr wylio.",
-'addedwatch'           => 'Rhoddwyd ar eich rhestr wylio',
 'addedwatchtext'       => "Mae'r dudalen \"[[:\$1|\$1]]\" wedi cael ei hychwanegu at eich [[Special:Watchlist|rhestr wylio]].
 Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos ar eich rhestr wylio ac hefyd '''yn gryf''' ar restr y [[Special:RecentChanges|newidiadau diweddar]], fel ei bod yn haws eu gweld.
 
 Os ydych am ddiddymu'r dudalen o'r rhestr wylio, cliciwch ar \"Stopio gwylio\" yn y bar ar frig y dudalen.",
-'removedwatch'         => 'Tynnwyd oddi ar eich rhestr wylio',
 'removedwatchtext'     => 'Mae\'r dudalen "[[:$1]]" wedi\'i thynnu oddi ar [[Special:Watchlist|eich rhestr wylio]].',
 'watch'                => 'Gwylio',
 'watchthispage'        => 'Gwylier y dudalen hon',

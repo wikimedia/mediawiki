@@ -479,14 +479,6 @@ $messages = array(
 'noindex-category'               => '検索エンジンに収集されないページ',
 'broken-file-category'           => '壊れたファイルへのリンクがあるページ',
 
-'mainpagetext'      => "'''MediaWikiが正常にインストールされました。'''",
-'mainpagedocfooter' => 'ウィキソフトウェアの使い方に関する情報は[http://meta.wikimedia.org/wiki/Help:Contents 利用者案内]を参照してください。
-
-== はじめましょう ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings/ja 設定の一覧]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/ja MediaWiki よくある質問と回答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiリリース情報メーリングリスト]',
-
 'about'         => '解説',
 'article'       => '本文',
 'newwindow'     => '（新しいウィンドウが開きます）',
@@ -2284,10 +2276,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchlistanontext'    => 'ウォッチリストに入っている項目を表示または編集するには、$1してください。',
 'watchnologin'         => 'ログインしていません',
 'watchnologintext'     => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
-'addedwatch'           => 'ウォッチリストに追加しました',
 'addedwatchtext'       => "ページ 「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]に追加しました。
 このページと付属のトークページに変更があった際には、ウォッチリストに表示されます。また、ウォッチリストに登録されているページは[[Special:RecentChanges|最近の更新の一覧]]に'''太字'''で表示され、見つけやすくなります。",
-'removedwatch'         => 'ウォッチリストから除去しました',
 'removedwatchtext'     => 'ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]から除去しました。',
 'watch'                => 'ウォッチ',
 'watchthispage'        => 'このページをウォッチする',

@@ -962,13 +962,11 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 # Watchlist
 'watchlist'         => "Paginn ch'a tegni d'ögg",
 'mywatchlist'       => "Paginn che a tegni d'ögg",
-'addedwatch'        => 'Pagina giuntada a la lista di paginn sot ögg',
 'addedwatchtext'    => "La pagina \"[[:\$1]]\" l'è stada giuntada a la lista di [[Special:Watchlist|paginn da tegn d'ögg]].
 I cambiament che vegnarà fai a 'sta pagina chì e a la sóa pagina de discüssion
 i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev''' ins la
 [[Special:RecentChanges|lista dij cambiament recent]], giüst per metela in evidenza.
 <p>Se te vörat tö via quela pagina chì dala lista dij paginn da tegn d'ögg te pòdat schiscià 'l butón \"tegn pü d'ögg\".",
-'removedwatch'      => 'Scancelaa dala lista di usservazziún.',
 'removedwatchtext'  => 'La pagina "[[:$1]]" l\'è stada scancelada de la tò lista di [[Special:Watchlist|paginn sot ögg]].',
 'watch'             => "Tegn d'öcc",
 'watchthispage'     => "Tegn d'ögg quela pagina chì",

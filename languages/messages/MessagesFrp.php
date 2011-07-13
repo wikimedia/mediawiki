@@ -433,14 +433,6 @@ $messages = array(
 'noindex-category'               => 'Pâges pas endèxâs',
 'broken-file-category'           => 'Pâges avouéc des lims de fichiérs câssos',
 
-'mainpagetext'      => "'''MediaWiki at étâ enstalâ avouéc reusséta.'''",
-'mainpagedocfooter' => 'Vêde lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
-
-== Emmodar avouéc MediaWiki ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista des paramètres de configuracion]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FDQ sur MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion sur les distribucions de MediaWiki]',
-
 'about'         => 'A propôs',
 'article'       => 'Pâge de contegnu',
 'newwindow'     => '(ôvre una fenétra novèla)',
@@ -2259,10 +2251,8 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences
 'watchlistanontext'    => 'Vos volyéd $1 por fâre vêre ou changiér los èlèments de voutra lista de survelyence.',
 'watchnologin'         => 'Pas branchiê',
 'watchnologintext'     => 'Vos dête étre [[Special:UserLogin|branchiê]] por changiér voutra lista de survelyence.',
-'addedwatch'           => 'Apondua a la lista de survelyence',
 'addedwatchtext'       => "La pâge « [[:$1]] » at étâ apondua a voutra [[Special:Watchlist|lista de survelyence]].
 Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront listâs et la pâge aparètrat '''en grâs''' dedens la [[Special:RecentChanges|lista des dèrriérs changements]] por étre repèrâ ples facilament.",
-'removedwatch'         => 'Enlevâ de la lista de survelyence',
 'removedwatchtext'     => 'La pâge « [[:$1]] » at étâ enlevâ de voutra [[Special:Watchlist|lista de survelyence]].',
 'watch'                => 'Siuvre',
 'watchthispage'        => 'Siuvre ceta pâge',

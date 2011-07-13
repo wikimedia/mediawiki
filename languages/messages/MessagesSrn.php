@@ -263,15 +263,6 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|A file disi|Den $1 file disi}} de ini a grupu disi.',
 'listingcontinuesabbrev'         => 'moro',
 
-'mainpagetext'      => "'''MediaWiki seti kon bun.'''",
-'mainpagedocfooter' => 'Luku na ini a [http://meta.wikimedia.org/wiki/Help:Yepi yepibuku] fu si fa fu kebrouki a wikisoftware.
-
-== Moro yepi ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Den seti]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Sani di ben aksi furu (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Boskopu grupu gi nyun meki]',
-
 'about'         => 'Abra',
 'article'       => 'Papira',
 'newwindow'     => '(o opo ini wan nyun fensre)',
@@ -974,11 +965,9 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 # Watchlist
 'watchlist'         => 'Mi Tan Luku réy',
 'mywatchlist'       => 'Mi Tan luku réy',
-'addedwatch'        => 'Presi a yu sirey',
 'addedwatchtext'    => "A papira \"[[:\$1]]\" ben presi a yu [[Special:Watchlist|sirey]]. Folo kenki fu disi papira nanga a taki sey opo [[Special:Watchlist|yu sirey]] nanga sey '''deku''' ini a [[Special:RecentChanges|rey fu bakseywan kenki]].
 
 Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini a menu.",
-'removedwatch'      => 'Trowe fu yu sirey',
 'removedwatchtext'  => 'A papira "[[:$1]]" ben trowe fu yu sirey.',
 'watch'             => 'Tan luku',
 'watchthispage'     => 'Tan luku a papira disi',

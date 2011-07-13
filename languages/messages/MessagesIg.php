@@ -189,14 +189,6 @@ $messages = array(
 'noindex-category'               => 'Ihü ẹdẹlebu',
 'broken-file-category'           => 'Ihü nwere jkọdọ na ga fail gbajírí',
 
-'mainpagetext'      => "'''MediaWiki a banyélé nke oma.'''",
-'mainpagedocfooter' => "Gbàkpó [http://meta.wikimedia.org/wiki/Help:Contents Ǹdù Ọ'bànifé] màkà ụmá màkà Í jí ngwa orunotu bu wiki.
-
-== I bídó ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ndétu ndósé ihe]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce wéfù ndétu nke ozi MediaWiki]",
-
 'about'         => 'Abwátà',
 'article'       => 'Ihü ihe dị',
 'newwindow'     => '(o na mepo na onyonyo ohúrù)',
@@ -1135,10 +1127,8 @@ Ubwa, o na ga [[$2]].',
 'watchlist'         => 'Ndetu ihem ne lé',
 'mywatchlist'       => 'Ndetu ihem ne lé',
 'watchlistfor2'     => 'Maka $1 $2',
-'addedwatch'        => 'Tìrì na ndétu nlé',
 'addedwatchtext'    => "Ihü \"[[:\$1]]\" à bányéré [[Special:Watchlist|ndétu ihe Í ne lé]].
 Ihe gi gbanwe na ógè gi bya nà ihüá na ihü okwu ya gi di ndétu ngáhù, na ihü gi da na mkpụrụ édé '''sírí íke''' ímé [[Special:RecentChanges|ndétu gbanwere méré na ogè nso]] ka ȯ dí òfelè Í hü ya.",
-'removedwatch'      => 'Wéfùrù shí ndétu ihe Í ne lé',
 'removedwatchtext'  => 'Ihü "[[:$1]]" à fwüó lá [[Special:Watchlist|ihe ndétu ihe Í ne lé]].',
 'watch'             => 'Hü',
 'watchthispage'     => 'Lèwá ihüá',

@@ -164,14 +164,6 @@ $messages = array(
 'index-category'                 => 'Индексленнген бетле',
 'noindex-category'               => 'Индексленмеген бетле',
 
-'mainpagetext'      => "'''«MediaWiki» тыйыншлы салынды.'''",
-'mainpagedocfooter' => "Бу вики бла къалай ишлерге ангылатхан информацияны [http://meta.wikimedia.org/wiki/Help:Contents_User's_Guide къошулуучугъа юретиуде] табаргъа боллукъду.
-
-== Файдалы ресурсла ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings тюрлендириулени списогу (ингил.)];
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-ни юсюнден кёб берилген соруула];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ни джангы версиясыны чыкъгъанын билдириу письмола].",
-
 'about'         => 'Ачыкълау',
 'article'       => 'Статья',
 'newwindow'     => '(джангы терезеде ачылады)',
@@ -1870,10 +1862,8 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'watchlistanontext'    => 'Кёзюгюзде тургъан тизмегизни статьяланы кёрюр неда тюрлендирир ючюн $1.',
 'watchnologin'         => 'Системагъа кирирге керекди.',
 'watchnologintext'     => 'Кёзюгюзде тургъан тизмегизни тюрлендирир ючюн [[Special:UserLogin|системагъа кирирге керексиз]].',
-'addedwatch'           => 'Кёзде тургъан тизмеге къошулду',
 'addedwatchtext'       => '«[[:$1]]» бет [[Special:Watchlist|кёзюгюзде тургъан тизмегизге]] къошулду.
 Бу бетни эмда муну бла байламлы сюзюу бетни тюрлениулери ол тизмеде белгиленникдиле, [[Special:RecentChanges|джангы тюрлениулени тизмесини]] бетинде уа къалын шрифт бла чертилинникдиле, кёрюрге тынчыракъ болурча.',
-'removedwatch'         => 'Кёзюгюзде тургъан тизмегизден кетерилди',
 'removedwatchtext'     => '«[[:$1]]» бет сизни [[Special:Watchlist|кёзюгюзде тургъан тизмегизден]] кетерилгенди.',
 'watch'                => 'Кёзде тут',
 'watchthispage'        => 'Бу бетни кёзде тут',
@@ -3016,7 +3006,6 @@ $1',
 'confirm-purge-bottom' => 'Бетни кеши кетерилгенден сора, андан сора келген версиясы кёргюзюллюкдю.',
 
 # Separators for various lists, etc.
-'catseparator'        => '|',
 'semicolon-separator' => ';&#32;',
 'percent'             => '$1%',
 'parentheses'         => '($1)',

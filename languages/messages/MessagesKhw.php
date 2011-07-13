@@ -112,8 +112,6 @@ $messages = array(
 'listingcontinuesabbrev'   => 'جاری',
 'noindex-category'         => 'نو انڈیکس صفحات',
 
-'mainpagetext' => "\"<big>'''میڈیاوکیو کامیابیو سورا چالو کورونو بیتی شیر۔.'''</big>\"",
-
 'about'         => 'تعارف',
 'newwindow'     => 'نوغ کھیڑکیا',
 'cancel'        => 'کھینسل',
@@ -646,8 +644,6 @@ HTML tags لوڑے.',",
 'watchlist'         => 'مہ واچ لسٹ',
 'mywatchlist'       => 'مہ زیرنظرفہرست',
 'watchlistfor2'     => 'بچے',
-'addedwatch'        => 'زیر نظر فہرستہ اندراج کورونو ھوی',
-'removedwatch'      => 'زیرنظرفہرستاری خارج کورونو ھوی',
 'removedwatchtext'  => 'ھیہ صفحہ "[[:$1]]" خارج کورونو ھوی[[Special:Watchlist|تہ زیر نظر فہرستاری]].',
 'watch'             => 'زیرنظر',
 'watchthispage'     => 'ھیہ صفحو تان نظرا لاکھے',

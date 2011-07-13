@@ -168,15 +168,6 @@ $messages = array(
 'noindex-category'               => 'Индексктаммыт сирэйдэр суохтар',
 'broken-file-category'           => 'Билэҕэ сигэлэрэ алҕастаах сирэйдэр',
 
-'mainpagetext'      => "'''«MediaWiki» сөпкө туруорулунна.'''",
-'mainpagedocfooter' => 'Биики программатын туһунан [http://meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.
-
-== Саҕаланыыта ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Конфигурация уларытыытын параметрдара]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki релизтарын почтовай испииһэгэ]',
-
 'about'         => 'Бу туһунан',
 'article'       => 'Ыстатыйа',
 'newwindow'     => '(атын түннүккэ арыллар)',
@@ -1940,10 +1931,8 @@ $1',
 'watchlistanontext'    => 'Кэтэбилиҥ сирэйин көрөргөр эбэтэр уларытаргар маны оҥор: $1.',
 'watchnologin'         => 'Бэйэҕин билиһиннэр',
 'watchnologintext'     => 'Бэйэҕин [[Special:UserLogin|билиһиннэрдэххинэ]] кэтэбил сирэйгин уларытыаххын сөп.',
-'addedwatch'           => 'Кэтэбилгэ киирдэ',
 'addedwatchtext'       => '«[[:$1]]» сирэй [[Special:Watchlist|кэтэбилгэ]] киирдэ.
 Сирэй уларытыылара бүгүҥҥүттэн манна көстөр буолуохтара, эбиитин [[Special:RecentChanges|саҥа уларытыылар испииһэктэригэр]] модьу бичигинэн бэлиэтэнэн көстүөхтэрэ.',
-'removedwatch'         => 'Кэтэбилтэн сотулунна',
 'removedwatchtext'     => '[[:$1]]" сирэй [[Special:Watchlist|кэтэбилиҥ тиһигиттэн]] сотулунна.',
 'watch'                => 'Кэтээ',
 'watchthispage'        => 'Бу сирэйи кэтээ',

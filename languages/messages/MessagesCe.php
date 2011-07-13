@@ -336,14 +336,7 @@ $messages = array(
 'index-category'                 => 'Меттигтерахьйо агlонаш',
 'noindex-category'               => 'Дlахьушйоцу агlонаш',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "'''Вики-белха гlирс «MediaWiki» кхочуш дика дlахlоттийна.'''",
-'mainpagedocfooter' => 'Викийца болх бан хаамаш карор бу хlокху чохь [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 нисвохааман куьйгаллица].
-
-== Цхьаболу пайде гlирсаш ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Гlирс нисбан тарлушболу могlам];
-* [http://www.mediawiki.org/wiki/Manual:FAQ Сих сиха лушдолу хаттарш а жоьпаш оцу MediaWiki];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Хаам бохьуьйту араяларца башхонца керла MediaWiki].',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'Цуьнах лаьцна',
 'article'       => 'Яззам',
@@ -1093,10 +1086,8 @@ PICT # тайп тайпан
 'watchlist'         => 'Тергаме могlам',
 'mywatchlist'       => 'Тергаме могlам',
 'watchnologin'      => 'Хьо вовзита веза гlирсан',
-'addedwatch'        => 'Юькъатоьхна тергаме могlамна',
 'addedwatchtext'    => 'Хlар агlо «[[:$1]]» тlетоьхна хьан [[Special:Watchlist|тидаме могlам чу]].
 Тlаьхьабогlу хийцамаш хlокх агlонна а кхунца дозуш долу дийцаре агlо а дlаяздийра ду кху могlамашкахь, ишта къастина хирду уьш шуьрочу элпашца хlокх агlон чохь [[Special:RecentChanges|керла хийцаме могlамашкахь]], бгlаьран га атту болуш.',
-'removedwatch'      => 'Дlаяккхина оцу тергаме могlам юкъар',
 'removedwatchtext'  => 'Агlо «[[:$1]]» дlаяккхина йара хьан [[Special:Watchlist|тергаме могlам юкъар]].',
 'watch'             => 'Тидам бе',
 'watchthispage'     => 'Тергам бé хlокху агlон',

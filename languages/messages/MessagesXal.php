@@ -181,14 +181,6 @@ $messages = array(
 'index-category'                 => 'Индекссн халхс',
 'noindex-category'               => 'Индекссн биш халхс',
 
-'mainpagetext'      => "Йовудта Mediawiki гүүлһүдә тәвллһн.'''",
-'mainpagedocfooter' => 'Тер бики закллһна теткүл ю кеһәд олзлх туск [http://meta.wikimedia.org/wiki/Help:Contents көтлвр] дастн.
-
-== Туста заавр ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Көгүдә бүрткл]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki туск ЮмБи]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki шинҗллһнә бүрткл]',
-
 'about'         => 'Тодлҗ бичлһн',
 'article'       => 'Зүүл',
 'newwindow'     => '(шин терзд)',
@@ -880,10 +872,8 @@ $1',
 # Watchlist
 'watchlist'         => 'Шинҗллһнә сеткүл',
 'mywatchlist'       => 'Шинҗллһнә сеткүл',
-'addedwatch'        => 'Шинҗллһнә сеткүлд немв.',
 'addedwatchtext'    => "«[[:$1]]» гидг нерәдлһтә халх тана [[Special:Watchlist|шинҗллһнә сеткүлд]] немв.
 Тегәд тер халхна болн терүнә ухалврин сольлһн энд шиҗлсн болх. Эн халх '''тарһн'' үзгәр [[Special:RecentChanges|шидрә сольлһна]] халхд бичсн (амр умшхар) болх.",
-'removedwatch'      => 'Шинҗллһнә сеткүләс һарһв.',
 'removedwatchtext'  => '«[[:$1]]» халх тана [[Special:Watchlist|шинҗллһнә сеткүләс]] һарһв.',
 'watch'             => 'Шинҗлх',
 'watchthispage'     => 'Эн халхиг шинҗлх',

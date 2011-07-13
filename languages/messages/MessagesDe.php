@@ -493,15 +493,6 @@ $messages = array(
 'noindex-category'               => 'Nichtindizierte Seiten',
 'broken-file-category'           => 'Seiten mit kaputten Dateilinks',
 
-'mainpagetext'      => "'''MediaWiki wurde erfolgreich installiert.'''",
-'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
-
-== Starthilfen ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
-
 'about'         => 'Über',
 'article'       => 'Seite',
 'newwindow'     => '(wird in einem neuen Fenster geöffnet)',
@@ -1376,7 +1367,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'qbsettings-fixedright'     => 'Rechts, fest',
 'qbsettings-floatingleft'   => 'Links, schwebend',
 'qbsettings-floatingright'  => 'Rechts, schwebend',
-'qbsettings-directionality' => 'Fest, abhängig von der Schreibrichtung der gewählten Sprache',
+'qbsettings-directionality' => 'Fest, abhängig von der Schriftrichtung und der gewählten Sprache',
 
 # Preferences page
 'preferences'                   => 'Einstellungen',
@@ -2256,12 +2247,12 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'watchlistanontext'    => 'Du musst dich $1, um deine Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',
 'watchnologin'         => 'Du bist nicht angemeldet',
 'watchnologintext'     => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
-'addedwatch'           => 'Zur Beobachtungsliste hinzugefügt',
+'addwatch'             => 'Zur Beobachtungsliste hinzufügen',
 'addedwatchtext'       => 'Die Seite „[[:$1]]“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
 in der Übersicht der [[Special:RecentChanges|letzten Änderungen]] in Fettschrift dargestellt.',
-'removedwatch'         => 'Von der Beobachtungsliste entfernt',
+'removewatch'          => 'Von der Beobachtungsliste entfernen',
 'removedwatchtext'     => 'Die Seite „[[:$1]]“ wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watch'                => 'Beobachten',
 'watchthispage'        => 'Seite beobachten',
@@ -3605,6 +3596,12 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Diese Seite aus dem Server-Cache löschen?',
 'confirm-purge-bottom' => 'Leert den Cache einer Seite und erzwingt die Anzeige der aktuellen Version.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Diese Seite zur persönlichen Beobachtungsliste hinzufügen?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Diese Seite von der persönlichen Beobachtungsliste entfernen?',
 
 # Separators for various lists, etc.
 'ellipsis' => '…',

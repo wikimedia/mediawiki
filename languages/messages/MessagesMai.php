@@ -152,14 +152,6 @@ $messages = array(
 'noindex-category'               => 'क्रम नै कएल पन्ना सभ',
 'broken-file-category'           => 'पन्ना सभ जाइमे फाइल लिंक सभ टूटल हुअए',
 
-'mainpagetext'      => "'''मीडियाविकी नीक जकाँ प्रस्थापित भेल।'''",
-'mainpagedocfooter' => "सम्पर्क करू [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] विकी तंत्रांशक प्रयोगक जानकारी लेल।
-
-==प्रारम्भ कोना करी==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'विषयमे',
 'article'       => 'विषय सूची पन्ना',
 'newwindow'     => '(नव खिड़कीसँ खुजैछ)',
@@ -1923,10 +1915,8 @@ $1',
 'watchlistanontext'    => 'कृपा कऽ $1 अहाँक साकांक्ष-सूचीकेँ देखबा वा सम्पादित करबा लेल।',
 'watchnologin'         => 'सम्प्रवेशित नै',
 'watchnologintext'     => 'अहाँ [[Special:UserLogin|सम्प्रवेशित]] साकांक्ष-सूची संशोधित करबा लेल।',
-'addedwatch'           => 'साकांक्ष सूचीमे जोड़ू',
 'addedwatchtext'       => "पन्ना \"[[:\$1]]\" अहाँक [[Special:Watchlist|साकांक्ष सूची]] मे जोड़ल गेल।
 ऐ पन्नामे भविष्यक परिवर्तन आ एकर सम्बन्धित चौबटिया पन्ना एतए सूचीबद्ध रहत, आ पन्ना [[Special:RecentChanges|हालक परिवर्तन]]मे '''गाढ़''' देखाएत , जइसँ आसानीसँ एकरा चिन्हल जा सकत।",
-'removedwatch'         => 'साकांक्ष सूचीसँ हटाएल गेल',
 'removedwatchtext'     => 'पन्ना "[[:$1]]" हटाएल गेल [[Special:Watchlist|अहाँक साकांक्षसूची]] सँ।',
 'watch'                => 'ताकिमे',
 'watchthispage'        => 'ऐ पृष्ठपर नजरि राखू',

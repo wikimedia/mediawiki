@@ -766,11 +766,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => 'Kātaki, ʻe $1 kapau te ke fievakai pe fiefatu ha ngaahi meʻa ʻi hoʻo hokohoko leʻo.',
 'watchnologin'         => 'Teʻeki kau ki ai',
 'watchnologintext'     => 'ʻOku pau te ke [[Special:UserLogin|kau-ki-ai]] kapau te ke fieliliu hoʻo hokohoko leʻo.',
-'addedwatch'           => 'Kuo tānaki ki hoʻo hokohoko leʻo',
 'addedwatchtext'       => 'Ko e peesi "[[:$1]]" naʻe tānaki ia ki hoʻo [[Special:Watchlist|hokohoko leʻo]]. Ko e ngaahi liliu ʻo e kahaʻu ʻi he pēsí ni mo hono peesi aleá, ʻe ʻoatu ʻi heni mo ʻasi mai  ʻi he hokohoko ʻo e [[Special:RecentChanges|ngaahi toki liliu]], ʻoku sinolahi ke fanāfotu.
 
 Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomiʻi "taʻeleʻo" ʻi he pā tafaʻaki.',
-'removedwatch'         => 'Kuo toʻo mei he hokohoko leʻo',
 'removedwatchtext'     => 'Kuo toʻo ʻa e peesi "[[:$1]]" mei hoʻo hokohoko leʻo.',
 'watch'                => 'Leʻo',
 'watchthispage'        => 'Leʻo he pēsí ni',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ganesh
+ * @author Rajivkurjee
  */
 
 $namespaceNames = array(
@@ -50,6 +51,7 @@ $messages = array(
 'tog-hideminor'        => 'हाल के परिवर्तन में मामूली संपादन छुपाईं',
 'tog-numberheadings'   => 'स्वयं-सांख्यिकी शिर्षक',
 'tog-rememberpassword' => 'इ ब्राउजर पर हमार प्रवेश जारी रहे (अधिकतम $1 {{PLURAL:$1|दिन|दिन}})',
+'tog-previewontop'     => 'सम्पादन बक्सा से पहिले पुर्वदर्शन दिखाईं।',
 'tog-previewonfirst'   => 'पहिलका सम्पादन पर पूर्वावलोकन देखीं',
 
 'underline-always'  => 'हमेशा',

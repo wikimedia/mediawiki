@@ -144,14 +144,6 @@ $messages = array(
 'index-category'                 => '索引拉许个页面',
 'noindex-category'               => '弗曾索引拉许个页面',
 
-'mainpagetext'      => "'''MediaWiki安装成功哉！'''",
-'mainpagedocfooter' => '请访问[http://meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件个信息！
-
-== 入门 ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设置列表]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常见问题解答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
-
 'about'         => '关于',
 'article'       => '内容页面',
 'newwindow'     => '（垃拉新窗口里向开开来）',
@@ -1241,10 +1233,8 @@ $1",
 'mywatchlist'       => '我个监控列表',
 'nowatchlist'       => '倷个监控列表是空个。',
 'watchnologin'      => '朆登录',
-'addedwatch'        => '加到监控列表哉',
 'addedwatchtext'    => "该个页面 \"[[:\$1]]\" 已经加到侬个[[Special:Watchlist|监控列表]]哉。
 将来对该页面个改动搭仔搭界个讲张页个改动会列表垃该面，并且页面会垃拉[[Special:RecentChanges|近段辰光个改变列表]]里向显示成功'''黑体'''，实梗好外加便当拿渠拣出来。假使侬歇仔两日又想拿箇个页面登侬个监控列表里向拿脱个说法，垃侧条里向点击“弗要监控。",
-'removedwatch'      => '从监控列表里向拿脱哉',
 'removedwatchtext'  => '页面[[:$1]]已经从[[Special:Watchlist|侬个监控页面]]里向拿脱。',
 'watch'             => '监控',
 'watchthispage'     => '监控该只页面',

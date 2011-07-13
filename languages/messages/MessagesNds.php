@@ -341,10 +341,6 @@ $messages = array(
 'index-category'                 => 'indexeerte Sieden',
 'noindex-category'               => 'nich indexeerte Sieden',
 
-'mainpagetext'      => "'''De MediaWiki-Software is mit Spood installeert worrn.'''",
-'mainpagedocfooter' => 'Kiek de [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
-un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.',
-
 'about'         => 'Över',
 'article'       => 'Artikel',
 'newwindow'     => '(apent sik in en nieg Finster)',
@@ -1857,10 +1853,8 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'watchlistanontext'    => '$1, dat du dien Oppasslist ankieken oder ännern kannst.',
 'watchnologin'         => 'Du büst nich anmellt',
 'watchnologintext'     => 'Du must [[Special:UserLogin|anmellt]] wesen, wenn du dien Oppasslist ännern willst.',
-'addedwatch'           => 'To de Oppasslist toföögt',
 'addedwatchtext'       => 'De Siet „<nowiki>$1</nowiki>“ is to diene [[Special:Watchlist|Oppasslist]] toföögt worrn.
 Ännern, de in Tokumst an disse Siet un an de tohörige Diskuschoonssiet maakt warrt, sünd dor op oplist un de Siet is op de [[Special:RecentChanges|List vun de letzten Ännern]] fett markt. Wenn du de Siet nich mehr op diene Oppasslist hebben willst, klick op „Nich mehr oppassen“.',
-'removedwatch'         => 'De Siet is nich mehr op de Oppasslist',
 'removedwatchtext'     => 'De Sied „[[:$1]]“ is nich mehr op [[Special:Watchlist|dien Oppasslist]].',
 'watch'                => 'Oppassen',
 'watchthispage'        => 'Op disse Siet oppassen',

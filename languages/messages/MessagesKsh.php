@@ -335,15 +335,6 @@ $messages = array(
 'noindex-category'               => 'Sigge, di de Söhkmaschine nit opnämme sulle',
 'broken-file-category'           => 'Sigge met kappodde Lengks op Datteije',
 
-'mainpagetext'      => "'''MediaWiki es jetz enstalleet.'''",
-'mainpagedocfooter' => 'Luur en et (änglesche) [http://meta.wikimedia.org/wiki/Help:Contents Handboch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
-
-== För dä Aanfang ==
-Dat es och all op Änglesch:
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
-
 'about'         => 'Üvver',
 'article'       => 'Atikkel',
 'newwindow'     => '(Mäht e neu Finster op, wann Dinge Brauser dat kann)',
@@ -2263,7 +2254,7 @@ Alles klor?',
 'noemailtext'          => 'Dä Metmaacher hät kein jöltijje Adreß för sing <i lang="en">e-mail</i> enjedrage.<!-- oder hä well kein E-Mail krije. -->',
 'nowikiemailtitle'     => 'Kein <i lang="en">e-mail</i> zojelohße',
 'nowikiemailtext'      => 'Hee dä Metmaacher well kein <i lang="en">e-mail</i> vun ander Metmaachere jescheck krijje.',
-'emailnotarget'        => 'Et jitt keine Metmaacher met däm Naame, dämm mer <i lang="en">e-mail</i> schecke künnt.',
+'emailnotarget'        => 'Et jitt keine Metmaacher met däm Naame, dämm mer en <i lang="en">e-mail</i> schecke künnt.',
 'emailtarget'          => 'Jiff dä Metmaacher aan, dä di <i lang="en">e-mail</i> kritt',
 'emailusername'        => 'Metmaacher Name:',
 'emailusernamesubmit'  => 'Loß Jonn!',
@@ -2291,14 +2282,12 @@ Alles klor?',
 'watchlistanontext'    => 'Do muss $1, domet de en Ding Oppassliss erenluure kanns, oder jet dran ändere.',
 'watchnologin'         => 'Nit enjelogg',
 'watchnologintext'     => 'Öm Ding Oppassliss ze ändere, mööts de ald [[Special:UserLogin|enjelogg]] sin.',
-'addedwatch'           => 'En de Oppassliss jedon',
 'addedwatchtext'       => "Die Sigg „[[:$1]]“ es jetz en Ding [[Special:Watchlist|Oppassliss]].
 Av jetz, wann die Sigg verändert weed, oder ehr Klaafsigg, dann weed dat en de
 Oppassliss jezeich. Dä Endrach för die Sigg kütt en  '''Fettschreff''' en de
 „[[Special:RecentChanges|Neuste Änderunge]]“, domet De dä do och flöck fings.
 Wann de dä widder loss wääde wells us Dinger Oppassliss,
 dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
-'removedwatch'         => 'Us de Oppassliss jenomme',
 'removedwatchtext'     => 'Die Sigg „[[:$1]]“ es jetz us de [[Special:Watchlist|Oppassliss]] erusjenomme.',
 'watch'                => 'Drop Oppasse',
 'watchthispage'        => 'Op die Sigg oppasse',
@@ -3609,7 +3598,7 @@ Dä E-Mail-ẞööver hät jesaat: ''$1''",
 Jetz künns De och noch enlogge. Vill Spass!',
 'confirmemail_loggedin'     => 'Ding E-Mail Adress es jetz bestätich!',
 'confirmemail_error'        => 'Beim E-Mail Adress Bestätije es jet donevve jejange, de Bestätijung kunnt nit avjespeichert wääde.',
-'confirmemail_subject'      => 'Dun Ding <i lang="en">e-mail</i> Adress för {{GRAMMAR:Akkusativ|{{SITENAME}}}} bestäteje.',
+'confirmemail_subject'      => 'Dun Ding e-mail Adress för {{GRAMMAR:Akkusativ|{{SITENAME}}}} bestäteje.',
 'confirmemail_body'         => 'Künnt jod sin, Do wors et selver, vun de IP_Adress $1 hät sich
 jedenfalls einer jemeldt, un well dä Metmaacher "$2" {{GRAMMAR:vun|{{SITENAME}}}}
 sin, un hät en E-Mail Adress aanjejovve.

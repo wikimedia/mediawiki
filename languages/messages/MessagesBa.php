@@ -169,14 +169,6 @@ $messages = array(
 'noindex-category'               => 'Индексланмаған биттәр',
 'broken-file-category'           => 'Файлға һылтанмалары эшләмәгән биттәр',
 
-'mainpagetext'      => '«MediaWiki» уңышлы рәүештә ҡоролдо.',
-'mainpagedocfooter' => 'Был вики менән эшләү тураһында мәғлүмәтте [http://meta.wikimedia.org/wiki/Ярҙам:Белешмә ошонда] табып була.
-
-== Файҙалы сығанаҡтар ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Көйләүҙәр исемлеге (инг.)];
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki тураһында йыш бирелгән һорауҙар һәм яуаптар (инг.)];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ның яңы версиялары тураһында хәбәрҙәр алып тороу].',
-
 'about'         => 'Тасуирлау',
 'article'       => 'Мәҡәлә',
 'newwindow'     => '(яңы биттә)',
@@ -1896,10 +1888,8 @@ $1',
 'watchlistanontext'    => 'Күҙәтеү исемлеген ҡарау йәки мөхәррирләү өсөн $1 кәрәк.',
 'watchnologin'         => 'Үҙегеҙҙе танытырға кәрәк',
 'watchnologintext'     => 'Күҙәтеү исемлегегеҙҙе мөхәррирләү өсөн, һеҙгә [[Special:UserLogin|танылырға]] кәрәк.',
-'addedwatch'           => 'Күҙәтеү исемлегенә өҫтәлде',
 'addedwatchtext'       => "\"[[:\$1]]\" бите [[Special:Watchlist|күҙәтеү исемлегегеҙгә]] өҫтәлде.
 Был биттә һәм уның фекер алышыу битендә бөтә буласаҡ үҙгәртеүҙәр исемлектә һәм [[Special:RecentChanges|һуңғы үҙгәртеүҙәр]] исемлегендә уларҙы еңелерәк табыу өсөн '''ҡалын яҙыу''' менән күрһәтеләсәк.",
-'removedwatch'         => 'Күҙәтеү исемлегенән сығарылды',
 'removedwatchtext'     => '«[[:$1]]» бите [[Special:Watchlist|күҙәтеү исемлегегеҙҙән]] сығарылды.',
 'watch'                => 'Күҙәтергә',
 'watchthispage'        => 'Был битте күҙәтергә',

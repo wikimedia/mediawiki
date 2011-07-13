@@ -406,10 +406,6 @@ $messages = array(
 'noindex-category'               => 'Indeksita leheküljed',
 'broken-file-category'           => 'Katkiste pildilinkidega leheküljed',
 
-'mainpagetext'      => "'''MediaWiki tarkvara on edukalt paigaldatud.'''",
-'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
-ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].',
-
 'about'         => 'Tiitelandmed',
 'article'       => 'artikkel',
 'newwindow'     => '(avaneb uues aknas)',
@@ -2122,13 +2118,11 @@ Toetatud protokollid: <tt>$1</tt>',
 'watchlistanontext'    => 'Oma jälgimisloendi nägemiseks ja muutmiseks pead $1.',
 'watchnologin'         => 'Ei ole sisse logitud',
 'watchnologintext'     => 'Jälgimisloendi muutmiseks pead [[Special:UserLogin|sisse logima]].',
-'addedwatch'           => 'Lisatud jälgimisloendile',
 'addedwatchtext'       => "Lehekülg \"[[:\$1]]\" on sinu [[Special:Watchlist|jälgimisloendisse]] lisatud.
 
 Edasised muudatused käesoleval lehel ja sellega seotud aruteluleheküljel ilmuvad jälgimisloendisse ning [[Special:RecentChanges|viimaste muudatuste lehel]] tuuakse jälgitava lehe pealkiri esile '''rasvase''' kirja abil.
 
 Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"Lõpeta jälgimine\".",
-'removedwatch'         => 'Jälgimisloendist kustutatud',
 'removedwatchtext'     => 'Lehekülg "[[:$1]]" on [[Special:Watchlist|jälgimisloendist]] eemaldatud.',
 'watch'                => 'Jälgi',
 'watchthispage'        => 'Jälgi seda lehekülge',

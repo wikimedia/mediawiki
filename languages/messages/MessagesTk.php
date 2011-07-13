@@ -163,14 +163,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'index-category'                 => 'Indeksirlenen sahypalar',
 'noindex-category'               => 'Indeksirlenmedik sahypalar',
 
-'mainpagetext'      => "'''MediaWiki şowlulyk bilen guruldy.'''",
-'mainpagedocfooter' => 'Wiki programmasynyň ulanylyşy hakynda maglumat almak üçin [http://meta.wikimedia.org/wiki/Help:Contents ulanyjy gollanmasyna] serediň.
-
-== Öwrenjeler ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurasiýa sazlamalary]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçta sanawy]',
-
 'about'         => 'Hakynda',
 'article'       => 'Makala',
 'newwindow'     => '(täze penjirede açylýar)',
@@ -1859,13 +1851,11 @@ Goldanylýan protokollar: <tt>$1</tt>',
 'watchlistanontext'    => 'Gözegçilik sanawyňyzdaky sahypalary görmek ýa-da redaktirlemek üçin $1.',
 'watchnologin'         => 'Sessiýa açmansyňyz',
 'watchnologintext'     => 'Gözegçilik sanawyňyzy üýtgetmek üçin [[Special:UserLogin|sessiýa açmagyňyz]] zerurdyr.',
-'addedwatch'           => 'Gözegçilik sanawyna goşuldy',
 'addedwatchtext'       => "[[:$1]]  atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.
 
 Geljekde, bu sahypada we degişli çekişme sahypasynda ediljek üýtgeşmeler şu ýerde sanawlanjakdyr.
 
 Aňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýtgeşmeleriň sanawynda]] '''goýy''' harp bilen görkeziljekdir.",
-'removedwatch'         => 'Gözegçilik sanawyndan aýyryldy',
 'removedwatchtext'     => '"[[:$1]]" sahypasy [[Special:Watchlist|gözegçilik sanawyňyzdan]] aýyryldy.',
 'watch'                => 'Gözegçilikde sakla',
 'watchthispage'        => 'Bu sahypany gözegçilikde sakla',

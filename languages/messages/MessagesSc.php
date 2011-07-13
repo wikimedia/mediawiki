@@ -178,8 +178,7 @@ $messages = array(
 'index-category'                 => 'Pàginas indicizadas',
 'noindex-category'               => 'Pàginas no indicitzadas',
 
-'linkprefix'   => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext' => "'''MediaWiki est stadu installadu in modu currègidu.'''",
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'A propòsitu de',
 'article'       => 'Artìculu',
@@ -1070,10 +1069,8 @@ S'indiritzu chi as insertadu in is [[Special:Preferences|preferèntzias usuàriu
 'watchnologin'      => 'No intrau (log in)',
 'watchnologintext'  => 'Devi prima fare il [[Special:UserLogin|login]]
 per modificare la tua lista di osservati speciali.',
-'addedwatch'        => 'Agiuntu a sa watchlist tua',
 'addedwatchtext'    => "Sa pàgina \"[[:\$1]]\" est istada aciunta a sa [[Special:Watchlist|watchlist]] tua.
 Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere elencadas inoe, e su tìtulu at a aparire in '''grassetto''' in sa pàgina de is [[Special:RecentChanges|ùrtimas mudàntzias]] pro du bidere mengius.",
-'removedwatch'      => 'Bogadu dae sa watchlist tua',
 'removedwatchtext'  => 'Sa pàgina  "[[:$1]]" est istada tirada dae sa [[Special:Watchlist|watchlist tua]].',
 'watch'             => 'Pone in sa watchlist',
 'watchthispage'     => 'Pone ogru a custu artìculu',

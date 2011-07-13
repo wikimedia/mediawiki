@@ -175,15 +175,6 @@ $messages = array(
 'index-category'                 => 'ইনডেক্স করিসি পাতাহানি',
 'noindex-category'               => 'ইনডেক্স নাকরিসি পাতাহানি',
 
-'mainpagetext'      => "'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল.'''",
-'mainpagedocfooter' => 'উইকি সফটৱ্যার এহান আতানির বারে দরকার ইলে [http://meta.wikimedia.org/wiki/Help:Contents আতাকুরার গাইড]হানর পাঙলাক নেগা।
-
-== অকরানিহান ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings কনফিগারেশন সেটিংর তালিকাহান]
-* [http://www.mediawiki.org/wiki/Manual:FAQ মিডিয়া উইকি আঙলাক]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়া উইকির ফঙপার বারে মেইলর তালিকাহান]',
-
 'about'         => 'বারে',
 'article'       => 'মেথেলর পাতা',
 'newwindow'     => '(নুৱা উইন্ডত নিকুলতই)',
@@ -1233,11 +1224,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Watchlist
 'watchlist'         => 'মর তালাবি',
 'mywatchlist'       => 'মর তালাবি',
-'addedwatch'        => 'তালাবির তালিকাহাত থনা ইল',
 'addedwatchtext'    => "\"<nowiki>\$1</nowiki>\" পাতা এহান তর [[Special:Watchlist|আহির-আরুম তালিকা]]-ত তিলকরানি ইল। পিসেদে এরে পাতা এহান বারো পাতা এহানর লগে সাকেই আসে য়্যারী পাতাত অইতই হারি জাতর পতানি এহানাত তিলকরানি অইতই। অতাবাদেউ [[Special:RecentChanges|হাদি এহানর পতানিহানি]]-ত পাতা এহানরে '''গাঢ়করা''' মেয়েকে দেহা দেনা অইতই যাতে তি নুঙিকরে পাতা এহান চিনে পারবেতা।
 
 পিসেদে তি পাতা এহানরে থেইকরানি মনেইলে \"আহির-আরুমেত্ত থেইকরেদে\" ট্যাবগত ক্লিক করিস৷",
-'removedwatch'      => 'তালাবির পাতাত্ত গুসাদে',
 'removedwatchtext'  => 'এরে পাতা "[[:$1]]" এহান গুসানি ইলতা [[Special:Watchlist|তর তালাবির]] পাতাত্ত।',
 'watch'             => 'তালাবি',
 'watchthispage'     => 'পাতাএহান খিয়ালে থ',

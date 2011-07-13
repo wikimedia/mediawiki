@@ -380,14 +380,6 @@ $messages = array(
 'noindex-category'               => 'Неіндэксаваныя старонкі',
 'broken-file-category'           => 'Старонкі з няслушнымі спасылкамі на файлы',
 
-'mainpagetext'      => "'''MediaWiki пасьпяхова ўсталяваная.'''",
-'mainpagedocfooter' => 'Глядзіце [http://meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.
-
-== З чаго пачаць ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Частыя пытаньні MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]',
-
 'about'         => 'Пра',
 'article'       => 'Старонка зьместу',
 'newwindow'     => '(адкрываецца ў новым акне)',
@@ -2143,10 +2135,8 @@ $1',
 'watchlistanontext'    => 'Вам патрэбна $1, каб праглядаць альбо рэдагаваць сьпіс назіраньня.',
 'watchnologin'         => 'Вы не ўвайшлі ў сыстэму',
 'watchnologintext'     => 'Вам неабходна [[Special:UserLogin|ўвайсьці ў сыстэму]], каб зьмяніць Ваш сьпіс назіраньня.',
-'addedwatch'           => 'Дададзеная ў сьпіс назіраньня',
 'addedwatchtext'       => "Старонка «[[:$1]]» была дададзеная да Вашага [[Special:Watchlist|сьпісу назіраньня]].
 Наступныя зьмены ў гэтай старонцы і зьвязанай зь ёю старонцы абмеркаваньняў будуць бачныя там, а ў [[Special:RecentChanges|сьпісе апошніх зьменаў]] старонка будзе выглядаць '''тлустай''', каб зьмены было лягчэй заўважыць.",
-'removedwatch'         => 'Выдаленая са сьпісу назіраньня',
 'removedwatchtext'     => 'Старонка «[[:$1]]» была выдаленая з [[Special:Watchlist|Вашага сьпісу назіраньня]].',
 'watch'                => 'Назіраць',
 'watchthispage'        => 'Назіраць за гэтай старонкай',

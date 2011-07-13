@@ -394,14 +394,7 @@ $messages = array(
 'index-category'                 => 'Paġni indiċjati',
 'noindex-category'               => 'Paġni mhux indiċizzati',
 
-'linkprefix'        => '/^(.*?)([a-żA-Ż\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "'''MediaWiki ġie installat b'suċċess.'''",
-'mainpagedocfooter' => "Ikkonsulta l-[http://meta.wikimedia.org/wiki/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.
-
-== Biex tibda ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ta' preferenzi għall-konfigurazzjoni]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Mistoqsijiet rikorrenti fuq il-MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Il-lista tal-posta tħabbar 'l MediaWiki]",
+'linkprefix' => '/^(.*?)([a-żA-Ż\\x80-\\xff]+)$/sD',
 
 'about'         => 'Dwar',
 'article'       => 'artiklu',
@@ -1921,12 +1914,10 @@ Jista' jkun hemm [[{{MediaWiki:Listgrouprights-helppage}}|aktar informazzjoni]] 
 'watchlistanontext'    => "Sabiex tara u timmodifika l-lista ta' osservazzjoni tiegħek, hemm bżonn li $1.",
 'watchnologin'         => 'Għadek ma dħaltx ġewwa',
 'watchnologintext'     => "Biex tagħmel modifika fil-lista t'osservazzjoni speċjali huwa neċessarju li l-ewwel [[Special:UserLogin|tidħol]] fil-kont tiegħek.",
-'addedwatch'           => "Il-paġna ġiet miżjuda mal-lista ta' osservazzjoni",
 'addedwatchtext'       => "Il-paġna \"[[:\$1]]\" ġiet miżjuda mal-[[Special:Watchlist|lista ta' osservazzjoni]] tiegħek.
 Minn issa 'l quddiem, il-modifiki f'din il-paġna u fil-paġna ta' diskussjoni tagħha jiġu rreġistrati hawnhekk, u l-paġna tibda tidher b'tipa '''ħoxna''' fil-[[Special:RecentChanges|lista ta' modifiki riċenti]] sabiex tinsab iktar faċilment.
 
 Jekk f'xi ħin tkun tixtieq tneħħi l-paġna mil-lista ta' osservazzjoni tiegħek, kemm tagħfas fuq \"tibqax issegwi\" li tinsab fl-iżbarra ta' fuq.",
-'removedwatch'         => "Il-paġna tneħħiet mil-lista ta' osservazzjoni",
 'removedwatchtext'     => 'Il-paġna "[[:$1]]" tneħħiet mil-[[Special:Watchlist|lista ta\' osservazzjoni tiegħek]].',
 'watch'                => 'Segwi',
 'watchthispage'        => 'Segwi din il-paġna',

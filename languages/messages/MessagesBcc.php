@@ -258,14 +258,6 @@ $messages = array(
 'category-file-count-limited'    => 'جهلیگین {{PLURAL:$1|فایل|$1 فایلان}} ته هنوکین دسته اینت',
 'listingcontinuesabbrev'         => 'ادامه.',
 
-'mainpagetext'      => "'''مدیا وی کی گون موفقیت نصب بوت.'''",
-'mainpagedocfooter' => "مشورت کنیت گون  [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] په گشیترین اطلاعات په استفاده چه برنامه ویکی.
-
-== شروع بیت ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'باره',
 'article'       => 'محتوا صفحه',
 'newwindow'     => '(ته نوکین پنچره ی پچ کن)',
@@ -1795,10 +1787,8 @@ PICT # misc.
 'watchlistanontext'    => 'لطفا  $1 په دیستن یا اصلاح ایتیمان ته وتی لیست چارگء',
 'watchnologin'         => 'وارد نه بی تگیت',
 'watchnologintext'     => 'شما بایدن  [[Special:UserLogin|وارد بیت]] په تغییر داتن وتی لیست چارگء',
-'addedwatch'           => 'په لیست چارگ هور بوت',
 'addedwatchtext'       => 'صفحه  "[[:$1]]"  په شمی [[Special:Watchlist|watchlist]] هور بیت.
 دیمگی تغییرات په ای صفحه و آیاء صفحه گپ ادان لیست بنت، و صفحه پررنگ جاه کیت ته [[Special:RecentChanges|لیست نوکیت تغییرات]] په راحتر کتن شی که آی زورگ بیت.',
-'removedwatch'         => 'چه لیست چارگ زورگ بیت',
 'removedwatchtext'     => 'صفحه"[[:$1]]"  چه [[Special:Watchlist|شمی لیست چارگ]]. دربیت.',
 'watch'                => 'به چار',
 'watchthispage'        => 'ای صفحه ی بچار',

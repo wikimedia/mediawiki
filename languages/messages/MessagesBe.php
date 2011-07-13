@@ -198,15 +198,6 @@ $messages = array(
 'noindex-category'               => 'Неіндэксаваныя старонкі',
 'broken-file-category'           => 'Старонкі з няслушнымі спасылкамі на файлы',
 
-'mainpagetext'      => "'''MediaWiki паспяхова ўсталяваная.'''",
-'mainpagedocfooter' => 'Гл. [http://meta.wikimedia.org/wiki/Help:Contents Дапаможнік карыстальніка (англ.)] па далейшыя звесткі аб карыстанні вікі-праграмамі.
-
-== З чаго пачаць ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Пералік параметраў канфігурацыі (англ.)]
-* [http://www.mediawiki.org/wiki/Manual:FAQ ЧАПЫ MediaWiki (англ.)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ліставанне аб выпусках MediaWiki (англ.)]',
-
 'about'         => 'Што гэта',
 'article'       => 'Старонка змесціва',
 'newwindow'     => '(адкрыецца ў новым акне)',
@@ -1790,12 +1781,10 @@ $1",
 'watchlistanontext'    => 'Каб бачыць або правіць складнікі назіранага, трэба $1.',
 'watchnologin'         => 'Без прадстаўлення',
 'watchnologintext'     => 'Каб правіць свой спіс назіранага, трэба [[Special:UserLogin|ўвайсці ў сістэму]].',
-'addedwatch'           => 'Дапісана да назіранага',
 'addedwatchtext'       => "Старонка \"[[:\$1]]\" была дададзена да [[Special:Watchlist|назіраных]] вамі.
 Змяненні, якія адбудуцца з гэтай старонкай і з Размовай пра яе, будуць паказвацца там, і старонка будзе '''вылучацца шрыфтам''' у [[Special:RecentChanges|спісе нядаўніх змяненняў]], каб лягчэй пазнаваць яе.
 
 Калі вы не пажадаеце больш назіраць за гэтай старонкай, націсніце \"Не назіраць\" у бакоўцы.",
-'removedwatch'         => 'Вынята са спісу назіранага',
 'removedwatchtext'     => 'Старонка "[[:$1]]" была вынятая з вашага [[Special:Watchlist|спісу назіранага]].',
 'watch'                => 'Назіраць',
 'watchthispage'        => 'Назіраць за гэтай старонкай',

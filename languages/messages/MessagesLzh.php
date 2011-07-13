@@ -195,15 +195,6 @@ $messages = array(
 'index-category'                 => '已索之頁',
 'noindex-category'               => '未索之頁',
 
-'mainpagetext'      => "'''共筆臺已立'''",
-'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
-
-== 始 ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => '述',
 'article'       => '文',
 'newwindow'     => '啟窗',
@@ -1750,9 +1741,7 @@ $1',
 'watchlistanontext'    => '$1以治哨',
 'watchnologin'         => '未登簿',
 'watchnologintext'     => '[[Special:UserLogin|登簿]]以治哨。',
-'addedwatch'           => '派哨',
 'addedwatchtext'       => "\"[[:\$1]]\"哨派矣。後有易、議者可見於[[Special:Watchlist|哨站]]，且'''粗體'''列於[[Special:RecentChanges|近易]]。",
-'removedwatch'         => '撤哨',
 'removedwatchtext'     => '"[[:$1]]"[[Special:Watchlist|哨]]撤矣。',
 'watch'                => '派哨',
 'watchthispage'        => '哨此報',

@@ -115,8 +115,6 @@ $messages = array(
 'category-article-count'   => "{{PLURAL:$2|Chol catégorie o seulemint chol pache-lo.|{{PLURAL:$1|El pache-lo est|$1 Chés paches-lo sont}} din l'catégorie-lo, pou un total éd $2 .}}",
 'listingcontinuesabbrev'   => 'cont.',
 
-'mainpagetext' => "'''MediaWiki o té instalé aveuc victoère.'''",
-
 'about'         => 'À pérpos',
 'article'       => 'Étnu del pache',
 'newwindow'     => '(ouvrir din eune nouvèle fernéte)',
@@ -601,9 +599,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 # Watchlist
 'watchlist'         => 'Em lisse à suire',
 'mywatchlist'       => "M'lisse à suire",
-'addedwatch'        => "Rajouté su l'lisse à suire",
 'addedwatchtext'    => "L' pache « [[:$1]] » o té rajoutée à vote [[Special:Watchlist|lisse à suire]].<br /> Chés  canjemints à vnir del pache-lo pi del page éd pérlache sront mis din l'lisse. L'pache sro '''in cros''' din el [[Special:RecentChanges|lisse d'chés darins canjemints]] pou les értreuver fachilmint. Pou értirer chol pache del ''lisse à suire'', bukez su « {{MediaWiki:Unwatch}} ».",
-'removedwatch'      => 'Értiré del lisse à suire',
 'removedwatchtext'  => "L'pache « [[:$1]] » o té értirée éd vote [[Special:Watchlist|lisse à suire]].",
 'watch'             => 'Suire',
 'watchthispage'     => "Suire l'pache-lo",

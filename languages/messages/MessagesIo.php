@@ -219,14 +219,6 @@ $messages = array(
 'category-file-count-limited'    => 'La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en la aktuala kategorio.',
 'listingcontinuesabbrev'         => 'seq.',
 
-'mainpagetext'      => "'''MediaWiki instalesis sucese.'''",
-'mainpagedocfooter' => "Videz la [http://meta.wikimedia.org/wiki/Help:Contents Guidilo por Uzanti] por informo pri uzar la wiki programo.
-
-== Komencar ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo di ''Configuration setting'']
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki OQQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki nova versioni posto-listo]",
-
 'about'         => 'Pri',
 'article'       => 'artiklo',
 'newwindow'     => '(aparos en nova panelo)',
@@ -1084,11 +1076,9 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'nowatchlist'        => 'Vu ne havas objekti en vua listo di surveyaji.',
 'watchnologin'       => 'Vu ne startis sesiono',
 'watchnologintext'   => 'Vu mustas [[Special:UserLogin|enirir]] por modifikar vua surveyaji.',
-'addedwatch'         => 'Adjuntita a la listo de surveyaji',
 'addedwatchtext'     => "La pagino \"<nowiki>\$1</nowiki>\" atachesis a vua [[Special:Watchlist|listo de surveyaji]]. Futura chanji di ica pagino ed olua relatanta debato-pagini montresos ibe, ed la pagino aparos per '''dika literi''' en la [[Special:RecentChanges|listo de recenta chanji]] por faciligar sua trovebleso.
 
 <p> Se vu volas efacar la pagino de vua listo de surveyaji pose, presez \"Ne plus surveyar\" en la selektaro.",
-'removedwatch'       => 'Efacita de surveyo-listo',
 'removedwatchtext'   => 'La pagino "[[:$1]]" forigesis de [[Special:Watchlist|vua surveyado]].',
 'watch'              => 'Surveyar',
 'watchthispage'      => 'Surveyar ica pagino',

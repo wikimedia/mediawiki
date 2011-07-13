@@ -259,15 +259,7 @@ $messages = array(
 'index-category'                 => 'გვერდების ინდექსაცია',
 'noindex-category'               => 'არ არსებობს ინდექსირებული გვერდები',
 
-'linkprefix'        => '/^(.*?)(„|«)$/sD',
-'mainpagetext'      => "'''მედიავიკი წარმატებით ჩაიტვირთა.'''",
-'mainpagedocfooter' => 'ვიკი პროგრამის გამოყენების ინფორმაციისთვის იხილეთ [http://meta.wikimedia.org/wiki/Help:Contents მომხმარებლის მეგზური].
-
-== დაწყება ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings კონფიგურაციის მაჩვენებლების სია]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის გამოცემის დაგზავნის სია]',
+'linkprefix' => '/^(.*?)(„|«)$/sD',
 
 'about'         => 'შესახებ',
 'article'       => 'სტატია',
@@ -1980,9 +1972,7 @@ $1',
 იხილეთ ან რედაქტირება გაუკეთეთ თქვენი კონტროლის სიაში შეტანილ ერთეულებს.',
 'watchnologin'         => 'რეგისტრაცია ვერ შესრულდა',
 'watchnologintext'     => 'თქვენ უნდა მოახდინოთ [[Special:UserLogin|რეგისტრაცია]] თქვენი კონტროლის სიის მოდიფიცირებისათვის.',
-'addedwatch'           => 'შეტანილია კონტროლის სიაში',
 'addedwatchtext'       => "გვერდი \"[[:\$1]]\" დაემატა თქვენი [[Special:Watchlist|კონტროლის სიას]]. მომავალი ცვლილებები ამ გვერდსა და მის განხილვაზე მითითებული იქნება ამ სიაში, ხოლო ბმული ამ გვერდზე [[Special:RecentChanges|უკანასკნელი ცვლილებების სიაში]] გამოჩნდება '''სქლად''' თქვენთვის მათი შემჩნევის გასაადვილებლად.",
-'removedwatch'         => 'ამოღებულია კონტროლის სიიდან',
 'removedwatchtext'     => 'გვერდი "[[:$1]]" ამოღებულია თქვენი [[Special:Watchlist|კონტროლის სიიდან.]]',
 'watch'                => 'კონტროლი',
 'watchthispage'        => 'ამ გვერდის კონტროლი',

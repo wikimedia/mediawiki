@@ -169,13 +169,6 @@ $messages = array(
 'index-category'                 => 'Indeksiga leheq',
 'noindex-category'               => 'Indeksildä leheq',
 
-'mainpagetext'      => "'''MediaWiki tarkvara paika säet.'''",
-'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano:
-* [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)].
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Säädmiisi oppus (inglüse keelen)]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki kõgõ küsütümbäq küsümiseq (inglüse keelen)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
-
 'about'         => 'Pääteedüs',
 'article'       => 'Sisu',
 'newwindow'     => '(tulõ vallalõ vahtsõn aknõn)',
@@ -1325,9 +1318,7 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'watchlistanontext'    => 'Perräkaemisnimekirä pruukmisõs $1.',
 'watchnologin'         => 'Olõ-i nimega sisse mint',
 'watchnologintext'     => 'Perräkaemisnimekirä muutmisõs piät [[Special:UserLogin|nimega sisse minemä]].',
-'addedwatch'           => 'Perräkaemisnimekirjä pant',
 'addedwatchtext'       => "Lehekülg \"<nowiki>\$1</nowiki>\" om pant su [[Special:Watchlist|perräkaemisnimekirjä]]. Edespididseq muutmisõq seo lehe ja tä arotuskülgi pääl pandasõq ritta siin ja [[Special:RecentChanges|viimätside muutmiisi lehe pääl]] tuvvasõq '''paksun kirän'''. Ku tahat taad lehte perräkaemisnimekiräst vällä võttaq, klõpsaq nuppi \"Lõpõdaq perräkaeminõ ärq\".",
-'removedwatch'         => 'Perräkaemisnimekiräst vällä võet',
 'removedwatchtext'     => 'Leht "[[:$1]]" om [[Special:Watchlist|perräkaemisnimekiräst]] maaha võet.',
 'watch'                => 'Kaeq perrä',
 'watchthispage'        => 'Kaeq taad lehekülge perrä',

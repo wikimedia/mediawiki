@@ -136,14 +136,6 @@ Pāusai en kategōrijai "$1"',
 'index-category'                 => 'Indeksīntai pāusai',
 'noindex-category'               => 'Niindeksīntai pāusai',
 
-'mainpagetext'      => "'''MediaWiki's instalaciōni izpalla.'''",
-'mainpagedocfooter' => 'Wīdais [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] kāi gaūlai informaciōnei ezze wiki prōgramijas tērpausnan.
-
-== En pagaūseņu ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
-
 'about'         => 'Ezze',
 'article'       => 'Pāusas ēnturs',
 'newwindow'     => '(etwerre si en nāunai langstan)',
@@ -1616,10 +1608,8 @@ E-mail adressi kawīdan tū enpeisāi en [[Special:Preferences|twajjans pirminis
 'watchlistanontext'    => 'Madli $1, kāi widālai elāmentans stesse listin stēisan nadirītan.',
 'watchnologin'         => 'Ni assei engūbun',
 'watchnologintext'     => 'Tū turri būtwei[[Special:UserLogin|engūbun]], kāi kitawīdintun listin stēisan nadirītan.',
-'addedwatch'           => 'Preidātan prei listin stēisan nadirītan',
 'addedwatchtext'       => "Pāusan \"[[:\$1]]\" pastāi preidātan prei twajjan [[Special:Watchlist|nadirītan listin]].
 Eraīna šisse pāusas ēnturas kitawīdinsna anga diskusiōnis pāusas sēitan sen tennan kitawīdinsna wīrst būwusi enpeisātan en šissei listin. Pāusas tītels wīrst būwuns '''pastarīntan''' en [[Special:RecentChanges|listei stēisan panzdauman kitawīdinsnan]], kāi lānginlai ti endirītun kitawīdinsnan.",
-'removedwatch'         => 'Āupausintan iz listin stēisan nadirītan',
 'removedwatchtext'     => 'Pāusan "[[:$1]]" pastāi āupausintan iz [[Special:Watchlist|twajjan listin stēisan āupausintan]].',
 'watch'                => 'Nadirēis',
 'watchthispage'        => 'Nadirēis šin pāusan',

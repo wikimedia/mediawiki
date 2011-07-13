@@ -585,11 +585,9 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 # Watchlist
 'watchlist'         => 'Muns davēris saroksts',
 'mywatchlist'       => 'Muns davēris saroksts',
-'addedwatch'        => 'Davīnuots puorraugamū sarokstam.',
 'addedwatchtext'    => "Lopa \"[[:\$1]]\" ir davīnuota [[Special:Watchlist|tevis puorraugamajom lopom]], kur tiks paruodeitys izmainis, kas izdareitys itymā lopā voi ituos lopys sarunu lopā, kai ari itei lopa tiks īzeimāta '''pusrasna''' [[Special:RecentChanges|pādejūs izmaiņu lopā]], lai itū byutu vīgluok pamaneit.
 
 Ka vāluok puordūmuosi i nagribiesi vairs puorraudzeit itū lopu, spīd iz saitis '''napuorraudzeit''' reiku jūslā.",
-'removedwatch'      => 'Lopa vairs nateik puorraudzeita',
 'removedwatchtext'  => 'Lopa "[[:$1]]" ir izjimta nu tova [[Special:Watchlist|puorraugamūs lopu saroksta]].',
 'watch'             => 'Puorraudzeit',
 'watchthispage'     => 'Puorraudzeit itū lopu',

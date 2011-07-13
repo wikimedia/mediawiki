@@ -121,9 +121,6 @@ $messages = array(
 'hidden-category-category' => 'Skjulte klynger',
 'listingcontinuesabbrev'   => 'førtgøte',
 
-'mainpagetext'      => "'''MediaWiki er nu installeret.'''",
-'mainpagedocfooter' => "Se vores engelskspråĝede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentåsje tilpasnenge'm åf æ brugergrænseflade] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide æ brugervejlednenge] før åplysnenger åpsætnenge'm og anvendelse.",
-
 'about'         => 'Åm',
 'article'       => 'Ertikel',
 'newwindow'     => '(åbner i et nyt vendue)',
@@ -625,9 +622,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Watchlist
 'watchlist'         => 'Åvervågnengsliste',
 'mywatchlist'       => 'Åvervågnengsliste',
-'addedwatch'        => 'Tilføjet til din åvervågnengsliste',
 'addedwatchtext'    => "Æ side \"[[:\$1]]\" er blevet tilføjet til din [[Special:Watchlist|åvervågningsliste]]. Fremtidige ændrenger til denne side og den tilhørende diskusjeside hvil bleve listet der, og æ side hvil fremstå '''fremhævet''' i'n [[Special:RecentChanges|liste ve de seneste ændrenger]] før at gøre det lettere at finde den. Hves du senere hvilst fjerne'n side frå din åvervågningsliste, så klik \"Fjern åvervågnenge\".",
-'removedwatch'      => 'Fjernet frå åvervågnengsliste',
 'removedwatchtext'  => 'Æ side "[[:$1]]" er blevet fjernet frå din åvervågnengsliste.',
 'watch'             => 'Åvervåg',
 'watchthispage'     => 'Åvervåg side',

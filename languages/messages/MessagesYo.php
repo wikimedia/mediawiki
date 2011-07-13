@@ -180,14 +180,6 @@ $messages = array(
 'noindex-category'               => 'Àwọn ojúewé àìjẹ́ títọ́kasí',
 'broken-file-category'           => 'Àwọn ojúewé pẹ̀lú àwọn ìjápọ̀ gígé',
 
-'mainpagetext'      => "'''MediaWiki ti jẹ́ gbígbékọ́sínú láyọrísírere.'''",
-'mainpagedocfooter' => "Ẹ ṣàbẹ̀wò sí [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] fún ìfitólétí nípa líló atòlànà wíkì.
-
-== Láti bẹ̀rẹ̀ ==
-*  [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Nípa',
 'article'       => 'Ojúewé àkóónú',
 'newwindow'     => '(yíò sí nínú fèrèsè tuntun)',
@@ -1589,10 +1581,8 @@ Bákannáà ẹ wo [[Special:WantedCategories|àwọn ẹ̀ka wíwá]].',
 'watchlistanontext'    => 'Ẹ jọ̀wọ́ $1 láti wò tàbí ṣàtúnṣe àwọn ohun inú ìmójútó yín.',
 'watchnologin'         => 'Ẹ kò tíì wọlé',
 'watchnologintext'     => 'Ẹ gbọ́dọ̀ [[Special:UserLogin|wọlè]] láti ṣàtúnṣe ìmójútó yín.',
-'addedwatch'           => 'Ti fikún sí ìmójútó',
 'addedwatchtext'       => "A ti ṣ'àfikún \"[[:\$1]]\" sí [[Special:Watchlist|ìmójútó]] yín.
 A óò ṣ'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti ojúewé ọ̀rọ̀ rẹ̀ sí bẹ̀. Bákanáà ojúewé náà yíò hàn '''kedere''' nìnú [[Special:RecentChanges|àkójọ àwọn àtúnṣe tuntun]] kó le ba à rọrùn láti rí.",
-'removedwatch'         => 'Ti mú kúrò nínú ìmójútó',
 'removedwatchtext'     => 'A ti yọ ojúewé "[[:$1]]" kúrò nínú [[Special:Watchlist|ìmójútó yín]].',
 'watch'                => 'Ìmójútó',
 'watchthispage'        => "M'ójútó ojúewé yi",

@@ -108,15 +108,6 @@ $messages = array(
 'index-category'                 => 'Indizierte Seyta',
 'noindex-category'               => 'Neindizierte Seyta',
 
-'mainpagetext'      => "'''MediaWiki wourde erfolgreich installiert.'''",
-'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software fendest du eim [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbichl].
-
-== Stoarthilfa ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
-
 'about'         => 'Ieber',
 'article'       => 'Seyte',
 'newwindow'     => '(wird ei annem neua Fanster geöffnet)',
@@ -1326,14 +1317,12 @@ Ols Obsender werd de E-Mail-Adtresse aus denn [[Special:Preferences|Einstellunga
 'watchlistanontext'    => 'Du mußt diech $1, im denne Beobachtungsliste zu sahn oder Einträge uff ihr zu beoarbeeta.',
 'watchnologin'         => 'Du best ne oagemeldet',
 'watchnologintext'     => 'Du mußt [[Special:UserLogin|oagemeldet]] sei, im denne Beobachtungsliste zu beoarbeeta.',
-'addedwatch'           => 'Zerr Beobachtungsliste hinzugefiegt',
 'addedwatchtext'       => 'De Seyte „<nowiki>$1</nowiki>“ wurde zu denner [[Special:Watchlist|Beobachtungsliste]] hinzugefiegt.
 
 Spätere Änneronga oa dieser Seyte on dar dazugeheeriga Dischkursseite waan durt gelistet on
 ei dar Iebersicht dar [[Special:RecentChanges|letzta Änneronga]] ei Fettschrift dargestellt.
 
 Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke uff dar jeweiligen Seyte uff „nee meh beobachta“.',
-'removedwatch'         => 'Vun dar Beobachtungsliste entfernt',
 'removedwatchtext'     => 'De Seyte „[[:$1]]“ wurde vun denner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watch'                => 'Beobachta',
 'watchthispage'        => 'Seyte beobachta',

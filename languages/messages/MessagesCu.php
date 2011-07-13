@@ -589,7 +589,6 @@ $messages = array(
 # Watchlist
 'watchlist'        => 'моꙗ блюдєниꙗ',
 'mywatchlist'      => 'моꙗ блюдєниꙗ',
-'addedwatch'       => 'страница нꙑнѣ подъ твоимь блюдєниѥмь ѥстъ',
 'addedwatchtext'   => "страница ⁖ [[:$1]] ⁖ нꙑнѣ подъ твоимь [[Special:Watchlist|блюдєниѥмь]] ѥстъ ⁙
 всꙗ ѥѩ и ѥѩжє бєсѣдꙑ мѣнꙑ страницѧ ⁖ [[Special:Watchlist|моꙗ блюдєниꙗ]] ⁖ покаꙁанꙑ сѫтъ и  [[Special:RecentChanges|послѣдьнъ мѣнъ]] каталоꙃѣ '''чрьнꙑимъ''' сѧ авлꙗѭтъ",
 'removedwatchtext' => 'страница ⁖ [[:$1]] ⁖ нꙑнѣ твоѥго [[Special:Watchlist|блюдєниꙗ]] иꙁнєсєна ѥстъ',

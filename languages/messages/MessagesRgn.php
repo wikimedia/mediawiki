@@ -142,8 +142,6 @@ $messages = array(
 'index-category'                 => 'Pàgina indicizëda',
 'noindex-category'               => ' Pàgina non indicizëda',
 
-'mainpagetext' => "'''L'instalaziòn d'MediaWiki l'è andêda ben'''",
-
 'about'         => "A prupòsit d'",
 'article'       => 'Artècual',
 'newwindow'     => "(la s'avèra int'una fnèstra nova)",
@@ -490,10 +488,8 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 # Watchlist
 'watchlist'         => "Pàgin ch'a ten d'öcc",
 'mywatchlist'       => "Pàgin ch'a ten d'öcc",
-'addedwatch'        => "Mett insem a la lèsta d'pàgin sot öcc",
 'addedwatchtext'    => "La pàgina \"[[:\$1]]\" adès l'è int la lèsta dal [[Special:Watchlist|pàgin da tnì d'öcc]]. D'ôra inenz t'pù avdé tòt al mudèfic a sta pàgina e a la pàgina d'cunversaziòn int la [[Special:RecentChanges|lèsta d'j cambiamént rezent]], in '''gros''', acsè j 's'pò guardè mej.
 Se in un sgond temp t'vu cavé la pàgina dala lèsta da tnì d'öcc, s-cjaza un'ètra volta sora e' butòn \"ten d'öcc\".",
-'removedwatch'      => 'Cavé dala lèsta dal pàgin da tnì sot öcc',
 'removedwatchtext'  => 'La pàgina "[[:$1]]" l\'è stëda scanzlèda dala lèsta dal [[Special:Watchlist|pàgin da tnì sot öcc]].',
 'watch'             => "Tèn d'öcc",
 'watchthispage'     => "Ten d'öcc sta pagina",

@@ -203,15 +203,6 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|Bu kategoriyaa girer sadä aşaadaki sayfa.|Hepsi $2 den, aşaadaki {{PLURAL:$1|sayfa|$1 sayfa}} bu kategoriyadan.}}',
 'listingcontinuesabbrev' => '(devam)',
 
-'mainpagetext'      => "'''MediaWiki başarılan kuruldu.'''",
-'mainpagedocfooter' => "Vikilän iş uurunda bilgi almaa için [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız
-
-== Eni başlayanlar için ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Uurunda',
 'article'       => 'Yazı',
 'newwindow'     => '(eni bir pencerädä açılêr)',
@@ -824,7 +815,6 @@ Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' b
 # Watchlist
 'watchlist'         => 'Bakmaa listam',
 'mywatchlist'       => 'Bakmaa listam',
-'addedwatch'        => 'Bakmaa listasına registrat edildi.',
 'addedwatchtext'    => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|bakmaa listanıza]] registrat olundu.
 
 Gelecektä, bu sayfaya hem ilgili konuşmaa sayfasına yapılacêk diişmäkler burada yazılacêk.
@@ -832,7 +822,6 @@ Gelecektä, bu sayfaya hem ilgili konuşmaa sayfasına yapılacêk diişmäkler 
 [[Special:RecentChanges|Bitki diişmäkler listası]] başlıı altında yazılacêk kalın bukvalarnan neçin ki kolayca seçilsin.
 
 Ne zaman neetlendiniz sayfayı bakmaa listasınnan çıkarmaa tuşlayın "sayfaya bakmaa durgun" baalantısına.',
-'removedwatch'      => 'Bakmaa listanızdan silindi',
 'removedwatchtext'  => '"[[:$1]]" yapraı siir [[Special:Watchlist|listanızdan]] silindi.',
 'watch'             => 'Bak',
 'watchthispage'     => 'Bak bu sayfaya',

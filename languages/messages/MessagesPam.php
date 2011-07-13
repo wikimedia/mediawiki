@@ -131,14 +131,6 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'category-file-count-limited'    => '{{PLURAL:$1|Ing makatuking simpan kayabe ya|Deng makatuking $1 simpan kayabe la}} king salukuyang kategoriya.',
 'listingcontinuesabbrev'         => 'katuglung.',
 
-'mainpagetext'      => "'''Melaus ing pamipalyari ning MediaWiki.'''",
-'mainpagedocfooter' => "Basan me ing [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para king impormasiun keng pamangamit ning wiki software.
-
-== Pamagumpisa ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Tungkul',
 'article'       => 'Kalamnan ning bulung',
 'newwindow'     => '(mibusni ya king bayung awang)',
@@ -1364,14 +1356,12 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => 'Paki $1 ba mong akit o a-edit deng laman ning kekang tala ring babanten (watchlist).',
 'watchnologin'         => 'E maka-login',
 'watchnologintext'     => 'Kailangan kang [[Special:UserLogin|maka-login]] ba meng abayu ing kekang tala ding babanten (watchlist).',
-'addedwatch'           => 'Midagdag king babanten a tala.',
 'addedwatchtext'       => "Miragdag ya ing bulung a \"[[:\$1]]\" king kekang [[Special:Watchlist|watchlist]].
 Mitala la karin deng miyalilan king bulung a iti ampo ing kayang Talk page. Lunto ya
 muring '''pepakapal''' ing bulung ketang [[Special:RecentChanges|tala da reng bayung miyalilan]] ba kang e magkasakit maintun kaniti.
 
 Nung buri meng idayu potang kayi itang bulung ketang tala da reng babanten mu, paki
 click me ing \"Tuknangan ing pamagbante\" (Unwatch) king gilid na ning bulung.",
-'removedwatch'         => 'Milako ya king tala da reng babanten',
 'removedwatchtext'     => "Ing bulung a \"[[:\$1]]\" milako ya king [[Special:Watchlist|kekang listaan da reng babanten (''watchlist'')]].",
 'watch'                => 'Banten',
 'watchthispage'        => 'Banten ya ining bulung',

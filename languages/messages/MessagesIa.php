@@ -265,14 +265,6 @@ $messages = array(
 'noindex-category'               => 'Paginas non indexate',
 'broken-file-category'           => 'Paginas con ligamines rupte a files',
 
-'mainpagetext'      => "'''MediaWiki ha essite installate con successo.'''",
-'mainpagedocfooter' => 'Consulta le [http://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.
-
-== Pro initiar ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configurationes]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ a proposito de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]',
-
 'about'         => 'A proposito',
 'article'       => 'Pagina de contento',
 'newwindow'     => '(se aperi in un nove fenestra)',
@@ -1196,7 +1188,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'qbsettings-fixedright'     => 'Fixe a dextra',
 'qbsettings-floatingleft'   => 'Flottante a sinistra',
 'qbsettings-floatingright'  => 'Flottante a dextra',
-'qbsettings-directionality' => 'Fixe, dependente del direction de scriptura de tu lingua',
+'qbsettings-directionality' => 'Fixe, dependente del direction de scriptura e del lingua',
 
 # Preferences page
 'preferences'                   => 'Preferentias',
@@ -2092,12 +2084,12 @@ como le adresse del expeditor del e-mail, de modo que le destinatario pote respo
 'watchlistanontext'    => 'Tu debe $1 pro poter vider o modificar entratas in tu observatorio.',
 'watchnologin'         => 'Tu non ha aperite un session',
 'watchnologintext'     => 'Tu debe [[Special:UserLogin|aperir un session]] pro modificar tu observatorio.',
-'addedwatch'           => 'Addite al observatorio',
+'addwatch'             => 'Adder al observatorio',
 'addedwatchtext'       => "Le pagina \"[[:\$1]]\" ha essite addite a tu [[Special:Watchlist|observatorio]].
 Le modificationes futur in iste pagina e in su pagina de discussion essera listate ibi,
 e le pagina apparera '''in litteras grasse''' in le [[Special:RecentChanges|lista de modificationes recente]] pro
 render lo plus facile de deteger.",
-'removedwatch'         => 'Removite del observatorio',
+'removewatch'          => 'Remover del observatorio',
 'removedwatchtext'     => 'Le pagina "[[:$1]]" ha essite removite de [[Special:Watchlist|tu observatorio]].',
 'watch'                => 'Observar',
 'watchthispage'        => 'Observar iste pagina',
@@ -2767,7 +2759,7 @@ Per favor usa le previsualisation ante de publicar.',
 'tooltip-ca-undelete'             => 'Restaurar le modificationes facite a iste pagina ante que illo esseva delite',
 'tooltip-ca-move'                 => 'Renominar iste pagina',
 'tooltip-ca-watch'                => 'Adder iste pagina a tu observatorio',
-'tooltip-ca-unwatch'              => 'Eliminar iste pagina de tu observatorio',
+'tooltip-ca-unwatch'              => 'Remover iste pagina de tu observatorio',
 'tooltip-search'                  => 'Cercar in {{SITENAME}}',
 'tooltip-search-go'               => 'Visitar un pagina con iste nomine exacte si existe',
 'tooltip-search-fulltext'         => 'Cercar iste texto in le paginas',
@@ -3475,6 +3467,12 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Rader le cache de iste pagina?',
 'confirm-purge-bottom' => 'Purgar un pagina vacua le cache e fortia que appare le version le plus recente.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Adder iste pagina a tu observatorio?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Remover iste pagina de tu observatorio?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← precedente pagina',

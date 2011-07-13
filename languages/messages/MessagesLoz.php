@@ -722,12 +722,10 @@ dicon sa sosize ni sa meli di kupo sebelu.',
 'mywatchlist'       => 'Zwa mukoloko di kentezi',
 'watchnologin'      => 'A ni sa menuhile',
 'watchnologintext'  => "A sa [[Special:UserLogin|menuhile]] di hloli ye ng'i zwa mukoloko di kentezi.",
-'addedwatch'        => 'Tumbelize a mukoloko di kentezi',
 'addedwatchtext'    => "Petulo \"[[:\$1]]\" sa vugisize di zwa [[Special:Watchlist|mukoloko di kentezi]].
 Petuhoni di bye petulo e sa bulelezi sa mukolokosize ta, e '''ombelu''' kwa [[Special:RecentChanges|petuho nca]] di kwazidisize akusize.
 
 A sa afi kulobala di zwa mukoloko di kentezi, tampi \"ngambu kentezi\".",
-'removedwatch'      => 'Sa afi kulobala di zwa mukoloko di kentezi',
 'removedwatchtext'  => 'Petulo "[[:$1]]" sa afi kulobala di zwa mukoloko di kentezi.',
 'watch'             => 'Kentezi',
 'watchthispage'     => 'Kentezi bye petulo',

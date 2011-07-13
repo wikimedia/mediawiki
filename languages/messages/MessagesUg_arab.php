@@ -161,14 +161,6 @@ $messages = array(
 'index-category'                 => 'ئىندېكسلانغان بەتلەر',
 'noindex-category'               => 'ئىندېكسلانمىغان بەتلەر',
 
-'mainpagetext'      => "'''MediaWiki مۇۋەپپەقىيەتلىك قاچىلاندى.'''",
-'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents ئىشلەتكۈچى قوللانمىسى] نى زىيارەت قىلىپ wiki يۇمشاق دېتالىنى ئىشلىتىش ئۇچۇرىغا ئېرىشىڭ.
-
-== دەسلەپكى ساۋات ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings سەپلىمە تەڭشەك تىزىملىكى]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki كۆپ ئۇچرايدىغان مەسىلىلەرگە جاۋاب]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki تارقاتقان ئېلخەت تىزىملىكى]',
-
 'about'         => 'ھەققىدە',
 'article'       => 'مەزمۇن بېتى',
 'newwindow'     => '(يېڭى كۆزنەكتە ئاچ)',
@@ -1895,11 +1887,9 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'watchlistanontext'    => '$1 كۆزەت تىزىملىكىڭىزنى كۆرۈپ تەھرىرلەڭ.',
 'watchnologin'         => 'تىزىمغا كىرمىدى',
 'watchnologintext'     => 'سىز [[Special:UserLogin|تىزىمغا كىر]]گەندىلا ئاندىن كۆزەت تىزىملىكىڭىزنى ئۆزگەرتەلەيسىز.',
-'addedwatch'           => 'كۆزەت تىزىملىكىگە قوشۇلدى',
 'addedwatchtext'       => "\"[[:\$1]]\" بېتى [[Special:Watchlist|كۆزەت تىزىملىكى]]ڭىزگە قوشۇلدى.
 كەلگۈسىدە بۇ بەت ۋە ئۇنىڭ مۇنازىرە بېتىگە مۇناسىۋەتلىك ھەر قانداق ئۆزگەرتىش شۇ جايدا كۆرسىتىلىپلا قالماستىن،
 بەلكى  [[Special:RecentChanges|يېقىنقى ئۆزگەرتىش تىزىملىكى]]دىمۇ تېخىمۇ ئاسان پەرقلەندۈرۈش ئۈچۈن '''توم''' شەكلىدە كۆرسىتىلىدۇ.",
-'removedwatch'         => 'كۆزەت تىزىملىكىدىن چىقىرىۋەتتى',
 'removedwatchtext'     => '"[[:$1]]" بېتى [[Special:Watchlist|كۆزەت تىزىملىكىڭىز]]دىن چىقىرىۋېتىلدى.',
 'watch'                => 'كۆزەت',
 'watchthispage'        => 'بۇ بەتنى كۆزەت',

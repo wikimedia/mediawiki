@@ -341,14 +341,6 @@ $messages = array(
 'noindex-category'               => 'Páxinas non indexadas',
 'broken-file-category'           => 'Páxinas con ligazóns rotas cara a ficheiros',
 
-'mainpagetext'      => "'''MediaWiki instalouse correctamente.'''",
-'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.
-
-== Comezando ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opcións de configuración]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes sobre MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo das edicións de MediaWiki]',
-
 'about'         => 'Acerca de',
 'article'       => 'Artigo',
 'newwindow'     => '(abre unha ventá nova)',
@@ -2147,10 +2139,8 @@ O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]]
 'watchlistanontext'    => 'Faga o favor de $1 no sistema para ver ou editar os elementos da súa lista de vixilancia.',
 'watchnologin'         => 'Non accedeu ao sistema',
 'watchnologintext'     => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa lista de vixilancia.',
-'addedwatch'           => 'Engadido á lista de vixilancia',
 'addedwatchtext'       => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|lista de vixilancia]].
 Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:RecentChanges|lista de cambios recentes]] para facer máis sinxela a súa sinalización.",
-'removedwatch'         => 'Eliminado da lista de vixilancia',
 'removedwatchtext'     => 'A páxina "[[:$1]]" foi eliminada [[Special:Watchlist|da súa lista de vixilancia]].',
 'watch'                => 'Vixiar',
 'watchthispage'        => 'Vixiar esta páxina',

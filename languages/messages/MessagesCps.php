@@ -141,15 +141,6 @@ $messages = array(
 'index-category'                 => 'Na-index nga mga pahina',
 'noindex-category'               => 'Wala na-index nga mga pahina',
 
-'mainpagetext'      => "'''Madalag-on nga na-install ang MediaWiki.'''",
-'mainpagedocfooter' => 'Kunsultahon ang [http://meta.wikimedia.org/wiki/Help:Pagtuytoy sa Manug-usar] para sa impormasyon sa paggamit sang wiki nga "software".
-
-==Pag-umpisa==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista sang mga setting sang konpigurayon]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Mga perme napangkot sa MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista sang mga ginapadal-an sang sulat sang MediaWiki]',
-
 'about'         => 'Nahanungod sa',
 'article'       => 'Pahina sang ka-undan',
 'newwindow'     => '(gabukas sa bag-o nga bintana)',
@@ -668,10 +659,8 @@ Mga Pahina sa [[Special:Watchlist|imo watchlist]]  '''madukot'''.",
 # Watchlist
 'watchlist'         => 'Mga akon ginabantayan',
 'mywatchlist'       => 'Akon ginabantayan',
-'addedwatch'        => 'Gindugang sa lista sang ginabantayan',
 'addedwatchtext'    => "Ang pahina nga \"[[:\$1]]\" gindugang na sa imo [[Special:Watchlist|ginabantayan]].
 Ang mga pagbag-o sa buwas-damlag kag mga kaangot nga pahina sang istoryahanay pagalistahon diya, kag ang pahina maggwa nga '''madukot''' sa [[Special:RecentChanges|lista sang mga nagligad nga pagbag-o]] para mas mahapos makita.",
-'removedwatch'      => 'Ginkuha na sa lista sang ginabanatayan',
 'removedwatchtext'  => 'Ang pahina nga "[[:$1]]" ginkakas halin sa [[Special:Watchlist|imo lista sang ginabantayan]].',
 'watch'             => 'Bantayan',
 'watchthispage'     => 'Bantayan ang mini nga pahina',

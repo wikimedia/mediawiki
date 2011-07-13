@@ -173,15 +173,6 @@ $messages = array(
 'category-file-count-limited'    => 'ಪ್ರಸಕ್ತ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಫೈಲು ಇದೆ|$1 ಫೈಲುಗಳು ಇವೆ}}.',
 'listingcontinuesabbrev'         => 'ಮುಂದು.',
 
-'mainpagetext'      => "'''ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.'''",
-'mainpagedocfooter' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [http://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.
-
-== ಪ್ರಾರಂಭಿಸುವುದು ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
-
 'about'         => 'ನಮ್ಮ ಬಗ್ಗೆ',
 'article'       => 'ಲೇಖನ ಪುಟ',
 'newwindow'     => '(ಹೊಸ ಕಿಟಕಿಯನ್ನು ತೆರೆಯುತ್ತದೆ)',
@@ -1362,11 +1353,9 @@ $2',
 'watchlistanontext'    => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯನ್ನು ನೋಡಲು ಅಥವ ಸಂಪಾದಿಸಲು ದಯವಿಟ್ಟು $1 ಮಾಡಿ.',
 'watchnologin'         => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'watchnologintext'     => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯನ್ನು ಬದಲಾಯಿಸಲು ನೀವು [[Special:UserLogin|ಲಾಗಿನ್]] ಆಗಿರಬೇಕು.',
-'addedwatch'           => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸಲಾಯಿತು',
 'addedwatchtext'       => '"[[:$1]]" ಪುಟವನ್ನು ನಿಮ್ಮ [[Special:Watchlist|ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ]] ಸೇರಿಸಲಾಗಿದೆ. ಈ ಪುಟದ ಮತ್ತು ಇದರ ಚರ್ಚಾ ಪುಟದ ಮುಂದಿನ ಬದಲಾವಣೆಗಳು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಸಿಗುತ್ತವೆ, ಮತ್ತು [[Special:RecentChanges|ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳ]] ಪಟ್ಟಿಯಲ್ಲಿ ಈ ಪುಟಗಳನ್ನು ದಪ್ಪಕ್ಷರಗಳಲ್ಲಿ ಕಾಣಿಸಲಾಗುವುದು.
 
 <p>ಈ ಪುಟವನ್ನು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆಯಬಯಸಿದಲ್ಲಿ, ಮೇಲ್ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಿಸಿರುವ "ವೀಕ್ಷಣಾ ಪುಟದಿಂದ ತೆಗೆ" ಅನ್ನು ಕ್ಲಿಕ್ಕಿಸಿ.',
-'removedwatch'         => 'ವೀಕ್ಷಣಾಪಟ್ಟಿಯಿಂದ ತೆಗೆಯಲಾಗಿದೆ',
 'removedwatchtext'     => '"[[:$1]]" ಪುಟವನ್ನು ನಿಮ್ಮ [[Special:Watchlist|ವೀಕ್ಷಣಾಪಟ್ಟಿಯಿಂದ]] ತೆಗೆಯಲಾಗಿದೆ.',
 'watch'                => 'ವೀಕ್ಷಿಸಿ',
 'watchthispage'        => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',

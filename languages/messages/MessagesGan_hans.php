@@ -160,15 +160,6 @@ $messages = array(
 'index-category'                 => '做正索引𠮶页面',
 'noindex-category'               => '冇做索引𠮶页面',
 
-'mainpagetext'      => "'''安装正MediaWiki喽。'''",
-'mainpagedocfooter' => '参看[http://meta.wikimedia.org/wiki/Help:Contents 用户指南]里头会话到啷用wiki软件
-
-== 开始使用 ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设定列表]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 平常问题解答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布email清单]',
-
 'about'         => '关于',
 'article'       => '文章',
 'newwindow'     => '（开只新窗口）',
@@ -1234,9 +1225,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => '请$1眵吖或改吖倷𠮶监视列表。',
 'watchnologin'         => '冇登入',
 'watchnologintext'     => '倷要[[Special:UserLogin|登入]]起才改得正倷𠮶监视列表。',
-'addedwatch'           => '加到嘞监视列表',
 'addedwatchtext'       => "页面\"[[:\$1]]\" 加到嘞倷𠮶[[Special:Watchlist|监视列表]]。个页同佢𠮶讨论页𠮶全部改动以后都会列到许首，佢会用'''粗体''' 列到[[Special:RecentChanges|最近更改]]让倷更加容易识别。 倷以后要系拿佢到监视列表删卟佢𠮶话，就到导航条点吖“莫眏到”。",
-'removedwatch'         => '莫眏到',
 'removedwatchtext'     => '页面"$1"到倷𠮶监视列表删卟嘞。',
 'watch'                => '眏到',
 'watchthispage'        => '眏到个页',

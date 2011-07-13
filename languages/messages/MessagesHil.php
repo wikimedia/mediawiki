@@ -144,14 +144,6 @@ $messages = array(
 'noindex-category'               => 'Wala naka-index nga mga panid',
 'broken-file-category'           => 'Mga panid nga may guba nga link sang hilera',
 
-'mainpagetext'      => "'''Ang MediaWiki madinalag-on nga na-instala.'''",
-'mainpagedocfooter' => " Magkonsulta sa [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa mga impormasyon sa paggamit sang wiki nga software.
-
-== Pag-umpisa ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista sang mga konpigorasyon sang pagkay-o]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Mga Masami Pamangkoton sa MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista sang mga ginapadal-an sang sulat kon may paguha-on nga MediaWiki]",
-
 'about'         => 'Nahanungod',
 'article'       => 'Panid sang unod',
 'newwindow'     => '(gabukas sa bag-o nga bintana)',
@@ -1308,10 +1300,8 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'watchlist'         => 'Akon Ginabantayan',
 'mywatchlist'       => 'Akon Ginabantayan',
 'watchnologin'      => 'Wala naka-sulod',
-'addedwatch'        => 'Nadugang sa lista sang lantaw',
 'addedwatchtext'    => "Ang pahina \"[[:\$1]]\" ay nadugang sa imo [[Special:Watchlist|lista sang pagtan-aw]].
 Buwas-damlag nga pagbag-o sang pahina kag ang iya upod na hisayrany pahina ay ipagalista didto, kag ang pahina magapakita balang '''dukot''' sa may [[Special:RecentChanges|lista sang mga bag-o lang na-islan]] para mahapos lang ini kuhaon.",
-'removedwatch'      => 'Ginkakas halin sa lista sang lantaw',
 'removedwatchtext'  => 'Ang pahina "[[:$1]]" ay nakakas na sa [[Special:Watchlist|imo lista sang pagtan-aw]].',
 'watch'             => 'Bantayan',
 'watchthispage'     => 'Bantayan ining panid',

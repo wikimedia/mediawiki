@@ -275,17 +275,6 @@ $messages = array(
 'noindex-category'               => 'Pajine no indicisae',
 'broken-file-category'           => "Pajine co' i link roti",
 
-'mainpagetext'      => "'''Instałasion de MediaWiki conpletà coretamente.'''",
-'mainpagedocfooter' => "Varda ła [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] par majori informasion so l'uso de sto software wiki.
-
-== Par scumisiar ==
-
-I seguenti cołegamenti i xé en łengua inglese:
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Inpostasion de configurasion]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti so MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunsi MediaWiki]",
-
 'about'         => 'Informaxion',
 'article'       => 'Voxe',
 'newwindow'     => '(se verze in te na finestra nova)',
@@ -1932,10 +1921,8 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 'watchlistanontext'    => "Per vardar e modifegar l'ełenco de i osservati speciałi bisogna $1.",
 'watchnologin'         => 'Acesso mia efetuà',
 'watchnologintext'     => 'Te ghè prima da far el [[Special:UserLogin|login]] par modificar la to lista de osservati speciali.',
-'addedwatch'           => "Zontà a le pagine da tegner d'ocio",
 'addedwatchtext'       => "La pagina \"[[:\$1]]\" la xe stà zontà a la to [[Special:Watchlist|lista de pagine da tegner d'ocio]].
 I futuri canbiamenti a sta pagina e a la so pagina de discussion i se vedarà fora qua, e la pagina la se vedarà in '''grosso''' sui [[Special:RecentChanges|ultimi canbiamenti]] par tegnerla d'ocio mejo.",
-'removedwatch'         => "Cavà da le pagine da tegner d'ocio",
 'removedwatchtext'     => 'La pagina "[[:$1]]" la xe stà cavà da le to [[Special:Watchlist|pagine tegnùe de ocio]].',
 'watch'                => "Tien d'ocio",
 'watchthispage'        => "Tien d'ocio sta pagina",

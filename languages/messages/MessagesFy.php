@@ -267,15 +267,6 @@ $messages = array(
 'category-file-count-limited'    => 'Dizze kategory befettet {{PLURAL:$1|de folgjende triem|de folgjende $1 triemmen}}.',
 'listingcontinuesabbrev'         => '(ferfolch)',
 
-'mainpagetext'      => "'''MediaWiki-program goed ynstallearre.'''",
-'mainpagedocfooter' => "Rieplachtsje de [http://meta.wikimedia.org/wiki/Help:Ynhâldsopjefte hantlieding] foar ynformaasje oer it gebrûk fan 'e wikisoftware.
-
-== Mear help oer Mediawiki ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings List mei ynstellings]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Faak stelde fragen (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]",
-
 'about'         => 'Ynfo',
 'article'       => 'Ynhâld side',
 'newwindow'     => '(nij finster)',
@@ -1729,11 +1720,9 @@ De ûntfanger kin dus daliks nei jo reagearje.',
 'nowatchlist'        => 'Jo hawwe gjin siden op jo folchlist.',
 'watchnologin'       => 'Net oanmeld yn',
 'watchnologintext'   => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om jo folchlist te feroarjen.',
-'addedwatch'         => 'Oan folchlist tafoege',
 'addedwatchtext'     => "De side \"'''[[:\$1]]'''\" is tafoege oan jo [[Special:Watchlist|folchlist]]. Bewurkings fan dizze side en oerlisside wurde yn de takomst op jo folchlist oanjûn. Hja wurde foar jo ek '''fet''' printe op [[Special:RecentChanges|Koartlyn feroare]].
 
 At jo letter in side net mear folgje wolle, dan brûke jo op dy side de keppeling \"Ferjit dizze side.\" Jo [[Special:Watchlist|folchlist]] hat ek in keppeling \"Jo folchlist bewurkje,\" foar at jo mear as ien side \"ferjitte\" wolle.",
-'removedwatch'       => 'Net mear folgje',
 'removedwatchtext'   => 'De side "[[:$1]]" stiet net mear op jo folchlist.',
 'watch'              => 'Folgje',
 'watchthispage'      => 'Folgje dizze side',

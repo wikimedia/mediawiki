@@ -425,15 +425,6 @@ $messages = array(
 'noindex-category'               => 'अनुक्रम नसलेली पाने',
 'broken-file-category'           => 'तुटलेल्या संचिका दुव्यांसह असलेली पाने',
 
-'mainpagetext'      => "'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''",
-'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
-
-== सुरुवात ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगची यादी]
-* [http://www.mediawiki.org/wiki/Manual:FAQ मीडियाविकी नेहमी विचारले जाणारे प्रश्न]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
-
 'about'         => 'च्या विषयी',
 'article'       => 'लेख',
 'newwindow'     => '(नवीन खिडकीत उघडते.)',
@@ -2068,11 +2059,9 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'watchlistanontext'    => 'तुमच्या पहार्‍याच्या सूचीतील बाबी पाहण्याकरता किंवा संपादित करण्याकरता, कृपया $1.',
 'watchnologin'         => 'प्रवेश केलेला नाही',
 'watchnologintext'     => 'तुमची पहार्‍याची सूची बदलावयाची असेल तर तुम्ही [[Special:UserLogin|प्रवेश केलेला]] असलाच पाहीजे.',
-'addedwatch'           => 'हे पान पहार्‍याच्या सूचीत घातले.',
 'addedwatchtext'       => '"[[:$1]]"  हे पान तुमच्या  [[Special:Watchlist|पहार्‍याच्या सूचीत]] टाकले आहे. या पानावरील तसेच त्याच्या चर्चा पानावरील पुढील बदल येथे दाखवले जातील, आणि   [[Special:RecentChanges|अलीकडील बदलांमध्ये]] पान ठळक दिसेल.
 
 पहार्‍याच्या सूचीतून पान काढायचे असेल तर "पहारा काढा" वर टिचकी द्या.',
-'removedwatch'         => 'पहार्‍याच्या सूचीतून वगळले',
 'removedwatchtext'     => '"[[:$1]]" पान तुमच्या [[Special:Watchlist|पहार्‍याच्या सूची]]तून वगळण्यात आले आहे.',
 'watch'                => 'पहारा',
 'watchthispage'        => 'या पानावर बदलांसाठी लक्ष ठेवा.',

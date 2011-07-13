@@ -343,15 +343,6 @@ $messages = array(
 'noindex-category'               => 'Pejy tsy voasikajy',
 'broken-file-category'           => 'Pejy misy rohin-drakitra tapaka',
 
-'mainpagetext'      => "'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''",
-'mainpagedocfooter' => "Vangio ny [http://meta.wikimedia.org/wiki/Aide:Contenu Fanoroana ho an'ny mpampiasa] ra te hitady fanoroana momba ny fampiasan'ity rindrankajy ity.
-
-== Hanomboka amin'ny MediaWiki ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lisitra ny paramètre de configuration]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ momba ny MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Resaka momba ny fizaràn'ny MediaWiki]",
-
 'about'         => 'Mombamomba',
 'article'       => "Votoatin'ny pejy",
 'newwindow'     => '(sokafy anaty takila hafa)',
@@ -2030,13 +2021,11 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'watchlistanontext'    => "Andana $1 ianao mba hahita na hanova zavatra ao amin'ny pejy arahanao.",
 'watchnologin'         => 'Tsy tafiditra',
 'watchnologintext'     => 'Mila [[Special:UserLogin|miditra na misoratra anarana]] aloha ianao vao afaka manova ny lisitry ny pejy arahinao maso.',
-'addedwatch'           => "Tafiditra amin'ny lisitry ny pejy arahi-maso akaiky",
 'addedwatchtext'       => "Tafiditra anatin'ny lisitry ny [[Special:Watchlist|Pejy arahanao maso]] ny pejy \"[[:\$1]]\".
 Ny fanovana hisy amin'io pejy io sy ny pejin-dresaka miaraka aminy dia hiseho ao,
 ary rehefa miseho ao amin'ny [[Special:RecentChanges|lisitry ny pejy vao niova]] io pejy io dia hatao ''matavy'' mba hahamora ny fahitana azy.
 
 Aoriana, raha irinao ny hanaisotra azy ao amin'ny pejy arahanao maso, dia tsindrio ilay hoe \"aza arahi-maso intsony\" etsy amin'ny sisiny etsy.",
-'removedwatch'         => "Voaaisotra tao amin'ny lisitry ny pejy arahi-maso",
 'removedwatchtext'     => 'Voaaisotra tao amin\'ny lisitry ny [[Special:Watchlist|pejy arahinao maso]] ny pejy{{PLURAL:$1||}} "[[:$1]]".',
 'watch'                => 'Hanara-maso',
 'watchthispage'        => 'Araho maso ity pejy ity',

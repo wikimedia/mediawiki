@@ -428,25 +428,6 @@ $messages = array(
 'index-category'                 => 'Indeksoidut sivut',
 'noindex-category'               => 'Indeksointikiellolliset sivut',
 
-'mainpagetext'      => "'''MediaWiki on onnistuneesti asennettu.'''",
-'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
-
-=== Lisäohjeita ===
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Asetusten teko-ohjeita]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWikin FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sähköpostilista, jolla tiedotetaan MediaWikin uusista versioista]
-
-=== Asetukset ===
-
-Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LocalSettings.php:hen seuraavasti:
- \$wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';
- \$wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';
- \$wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';
- \$wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';
- \$wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';
-Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).",
-
 'about'         => 'Tietoja',
 'article'       => 'Sivu',
 'newwindow'     => '(avautuu uuteen ikkunaan)',
@@ -2100,9 +2081,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchlistanontext'    => 'Sinun täytyy $1, jos haluat käyttää tarkkailulistaa.',
 'watchnologin'         => 'Et ole kirjautunut sisään',
 'watchnologintext'     => 'Sinun pitää [[Special:UserLogin|kirjautua sisään]], jotta voisit käyttää tarkkailulistaasi.',
-'addedwatch'           => 'Lisätty tarkkailulistalle',
 'addedwatchtext'       => "Sivu '''<nowiki>$1</nowiki>''' on lisätty [[Special:Watchlist|tarkkailulistallesi]]. Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan täällä. Sivu on '''lihavoitu''' [[Special:RecentChanges|tuoreiden muutosten listassa]], jotta huomaisit sen helpommin. Jos haluat myöhemmin poistaa sivun tarkkailulistaltasi, napsauta linkkiä ''lopeta tarkkailu'' sivun reunassa.",
-'removedwatch'         => 'Poistettu tarkkailulistalta',
 'removedwatchtext'     => "Sivu '''[[:$1]]''' on poistettu [[Special:Watchlist|tarkkailulistaltasi]].",
 'watch'                => 'Tarkkaile',
 'watchthispage'        => 'Tarkkaile tätä sivua',

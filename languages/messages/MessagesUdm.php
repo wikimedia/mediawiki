@@ -132,8 +132,7 @@ $messages = array(
 'index-category'                 => 'Индексировать кароно бамъёс',
 'noindex-category'               => 'Индексировать каронтэм бамъёс',
 
-'linkprefix'   => '/^(.*?)(„|«)$/sDu',
-'mainpagetext' => "'''MediaWiki движок азинлыко пуктэмын.'''",
+'linkprefix' => '/^(.*?)(„|«)$/sDu',
 
 'about'      => 'Та сярысь',
 'article'    => 'Статья',

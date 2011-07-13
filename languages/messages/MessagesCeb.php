@@ -190,14 +190,6 @@ $messages = array(
 'category-file-count-limited'    => 'Ang mosunod nga {{PLURAL:$1|payl|$1 ka mga payl}} anaa niining kategoryaha.',
 'listingcontinuesabbrev'         => 'pad.',
 
-'mainpagetext'      => "'''Malamposon ang pag-instalar sa MediaWiki.'''",
-'mainpagedocfooter' => 'Konsultaha ang [http://meta.wikimedia.org/wiki/Help:Contents Giya sa mga gumagamit] alang sa impormasyon unsaon paggamit niining wiki nga software.
-
-== Pagsugod ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listahan sa mga setting sa kompigurasyon]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ sa MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce  Mailing list sa mga release sa MediaWiki]',
-
 'about'         => 'Mahitungod',
 'article'       => 'Panid sa sulod',
 'newwindow'     => "(maabli sa laing ''window'')",
@@ -1007,10 +999,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Watchlist
 'watchlist'         => 'Akong gibantayan',
 'mywatchlist'       => 'Akong gibantayan',
-'addedwatch'        => 'Nadugang sa gibantayan',
 'addedwatchtext'    => "Ang panid \"[[:\$1]]\" nadugang na sa imong [[Special:Watchlist|gibantayan]].
 Ang mga pag-usab puhon sa kining panid ug ang kaubang panid sa hisgot dinhi maitala, ug ang panid mopakita nga '''nakalugom''' sa [[Special:RecentChanges|talaan sa mga bag-ong pag-usab]] aron dali kini pilion.",
-'removedwatch'      => 'Natangtang sa gibantayan',
 'removedwatchtext'  => 'Ang panid nga "[[:$1]]" natangtang na sa imong [[Special:Watchlist|gibantayan]].',
 'watch'             => 'Bantayi',
 'watchthispage'     => 'Bantayi kining panid',

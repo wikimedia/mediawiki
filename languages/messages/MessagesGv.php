@@ -143,8 +143,6 @@ $messages = array(
 'noindex-category'               => 'Duillagyn nagh vel er ayndagh',
 'broken-file-category'           => 'Duillagyn as kianglaghyn brishtey coadan oc',
 
-'mainpagetext' => "'''Ta MediaWiki currit stiagh nish.'''",
-
 'about'         => 'Mychione',
 'article'       => 'Duillag chummal',
 'newwindow'     => '(foshlit ayns uinnag elley eh)',
@@ -914,10 +912,8 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'watchlist'         => 'My rolley arrey',
 'mywatchlist'       => 'My rolley arrey',
 'watchnologin'      => 'Cha nel oo loggit stiagh',
-'addedwatch'        => 'Currit rish y rolley arrey',
 'addedwatchtext'    => "Va'n duillag \"[[:\$1]]\" currit lesh dty [[Special:Watchlist|rolley arrey]].<br />
 Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y rolley shoh, as bee '''clou trome''' er ayns rolley ny [[Special:RecentChanges|caghlaaghyn s'noa]].",
-'removedwatch'      => 'Gowit ass y rolley arrey',
 'removedwatchtext'  => 'Va\'n duillag "[[:$1]]" goit veih dty [[Special:Watchlist|rolley arrey]].',
 'watch'             => 'Freill arrey',
 'watchthispage'     => 'Freill arrey er y duillag shoh',

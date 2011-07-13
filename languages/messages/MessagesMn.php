@@ -168,14 +168,6 @@ $messages = array(
 'index-category'                 => 'Индекслэгдсэн хуудсууд',
 'noindex-category'               => 'Индекслэгдээгүй хуудсууд',
 
-'mainpagetext'      => "'''МедиаВики амжилттай суулаа.'''",
-'mainpagedocfooter' => 'Вики программыг хэрэглэх талаар заавар авахын тулд [http://meta.wikimedia.org/wiki/Help:Contents хэрэглэгчийн гарын авлага]-г үзнэ үү.
-
-== Эхлэх ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Тохиргоо]
-* [http://www.mediawiki.org/wiki/Manual:FAQ МедиаВикигийн тогтмол тавигддаг асуултууд]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикигийн мэдээний мэйл явуулах жагсаалт]',
-
 'about'         => 'Тухай',
 'article'       => 'Өгүүлэл',
 'newwindow'     => '（шинэ цонх нээгдэнэ）',
@@ -1860,10 +1852,8 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'watchlistanontext'    => 'Та өөрийн хянах листийг өөрчлөх буюу үзэхийг хүсвэл $1 хэрэгтэй.',
 'watchnologin'         => 'Нэвтрээгүй байна.',
 'watchnologintext'     => 'Та өөрийн хянаж буй хуудаснуудын жагсаалтыг өөрчлөхийн тулд [[Special:UserLogin|нэвтэрсэн байх]] шаардлагатай.',
-'addedwatch'           => 'Хянах жагсаалтанд нэмэгдлээ',
 'addedwatchtext'       => "\"[[:\$1]]\" гэсэн хуудас таны [[Special:Watchlist|хянах жагсаалтанд]] нэмэгдлээ.
 Энэ хуудас эсвэл түүний хэлэлцүүлгийн хуудас засварлагдахад тэдгээр нь [[Special:RecentChanges|сүүлийн засваруудын жагсаалтад]] '''тодруулалттай''' харагдах болно.",
-'removedwatch'         => 'Хянах жагсаалтнаас хасагдлаа',
 'removedwatchtext'     => '"[[:$1]]" хуудас таны [[Special:Watchlist|хяналтын жагсаалтаас]] хасагдлаа.',
 'watch'                => 'Хянах',
 'watchthispage'        => 'Энэ хуудсыг хяна',

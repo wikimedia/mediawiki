@@ -305,15 +305,6 @@ $messages = array(
 'noindex-category'               => 'Neindeksuoti puslapiai',
 'broken-file-category'           => 'Puslapiai su neteisingomis nuorodomis į failus',
 
-'mainpagetext'      => "'''MediaWiki sėkmingai įdiegta.'''",
-'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [http://meta.wikimedia.org/wiki/Help:Contents žinyne].
-
-== Pradžiai ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki DUK]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
-
 'about'         => 'Apie',
 'article'       => 'Turinys',
 'newwindow'     => '(atsidaro naujame lange)',
@@ -812,7 +803,12 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'userpage-userdoesnotexist-view'   => 'Naudotojo paskyra „$1“ neužregistruota.',
 'blocked-notice-logextract'        => 'Šis naudotojas šiuo metu yra užblokuotas.
 Žemiau pateikiamas paskutinis blokavimo istorijos įrašas:',
-'clearyourcache'                   => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
+'clearyourcache'                   => "'''Dėmesio:''' Išsaugojus jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius.
+* '''Firefox / Safari:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-F5'' ar ''Ctrl-R'' (sistemoje Apple Mac ''Commandd-R'')
+* '''Google Chrome:''' spauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Command-Shift-R'')
+* '''Internet Explorer:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''
+* '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''
+* '''Opera''' pilnai išvalykite podėlį ''Priemonės→Nuostatos''.",
 'usercssyoucanpreview'             => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį CSS prieš išsaugant.",
 'userjsyoucanpreview'              => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį JS prieš išsaugant.",
 'usercsspreview'                   => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
@@ -2047,11 +2043,9 @@ El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustaty
 'watchlistanontext'    => 'Prašome $1, kad peržiūrėtumėte ar pakeistumėte elementus savo stebimųjų sąraše.',
 'watchnologin'         => 'Neprisijungęs',
 'watchnologintext'     => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]], kad pakeistumėte savo stebimųjų sąrašą.',
-'addedwatch'           => 'Pridėta į Stebimųjų sąrašą',
 'addedwatchtext'       => "Puslapis „[[:$1]]“ pridėtas į [[Special:Watchlist|stebimųjų sąrašą]].
 Būsimi puslapio bei atitinkamo aptarimo puslapio pakeitimai bus rodomi stebimųjų puslapių sąraše,
 taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąraše]], kad išsiskirtų iš kitų puslapių.",
-'removedwatch'         => 'Pašalinta iš stebimų',
 'removedwatchtext'     => 'Puslapis „[[:$1]]“ pašalintas iš jūsų [[Special:Watchlist|stebimųjų sąrašo]].',
 'watch'                => 'Stebėti',
 'watchthispage'        => 'Stebėti šį puslapį',
@@ -2283,11 +2277,12 @@ $1',
 'undelete-show-file-submit'    => 'Taip',
 
 # Namespace form on various pages
-'namespace'             => 'Vardų sritis:',
-'invert'                => 'Žymėti priešingai',
-'tooltip-invert'        => 'Įjunkite šią parinktį jei norite paslėpti nurodytos vardų srities (ir susijusių, jei įjungta parinktis) puslapių pakeitimus',
-'namespace_association' => 'Susiję vardų',
-'blanknamespace'        => '(Pagrindinė)',
+'namespace'                     => 'Vardų sritis:',
+'invert'                        => 'Žymėti priešingai',
+'tooltip-invert'                => 'Įjunkite šią parinktį jei norite paslėpti nurodytos vardų srities (ir susijusių, jei įjungta parinktis) puslapių pakeitimus',
+'namespace_association'         => 'Susiję vardų',
+'tooltip-namespace_association' => 'Įjunkite šią parinktį, kad taipogi įtrauktumėte pokalbių arba temos sritį, susieta su pasirinkta sritimi',
+'blanknamespace'                => '(Pagrindinė)',
 
 # Contributions
 'contributions'       => 'Naudotojo įnašas',
@@ -2486,6 +2481,7 @@ Prašome patvirtinti tai, ką ketinate padaryti.',
 'unlockdbsuccesstext' => 'Duomenų bazė buvo atrakinta.',
 'lockfilenotwritable' => 'Duomenų bazės užrakto failas nėra įrašomas. Norint užrakinti ar atrakinti duomenų bazę, tinklapio serveris privalo turėti įrašymo teises šiam failui.',
 'databasenotlocked'   => 'Duomenų bazė neužrakinta.',
+'lockedbyandtime'     => '(užrakino {{GENDER:$1|$1}}, diena $2, laikas $3)',
 
 # Move page
 'move-page'                    => 'Pervadinti $1',
@@ -2791,12 +2787,14 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'pageinfo-title'            => '„$1“ informacija',
 'pageinfo-header-edits'     => 'Pakeitimai',
 'pageinfo-header-watchlist' => 'Stebėjimo sąrašas',
+'pageinfo-header-views'     => 'Peržiūrėta',
 'pageinfo-subjectpage'      => 'Puslapis',
 'pageinfo-talkpage'         => 'Pokalbių puslapis',
 'pageinfo-watchers'         => 'Stebėtojų skaičius',
 'pageinfo-edits'            => 'Keitimų skaičius',
 'pageinfo-authors'          => 'Skirtingų autorių skaičius',
 'pageinfo-views'            => 'Peržiūrų skaičius',
+'pageinfo-viewsperedit'     => 'Peržiūrėta redaguojant',
 
 # Skin names
 'skinname-standard'    => 'Klasikinė',
@@ -2851,6 +2849,7 @@ Jį paleidus jūsų sistema gali būti pažeista.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
 'file-info'              => 'failo dydis: $1, MIME tipas: $2',
 'file-info-size'         => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4',
+'file-info-size-pages'   => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4, $5 {{PLURAL:$5|page|pages}}',
 'file-nohires'           => '<small>Geresnė raiška negalima.</small>',
 'svg-long-desc'          => 'SVG failas, formaliai $1 × $2 taškų, failo dydis: $3',
 'show-big-image'         => 'Pilna raiška',
@@ -3032,8 +3031,12 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-objectname'                  => 'Trumpas pavadinimas',
 'exif-specialinstructions'         => 'Specialiosios instrukcijos',
 'exif-headline'                    => 'Antraštė',
+'exif-credit'                      => 'Padėka/tiekėjas',
 'exif-source'                      => 'Šaltinis',
 'exif-urgency'                     => 'Skuba',
+'exif-locationdest'                => 'Rodoma vietovė',
+'exif-locationdestcode'            => 'Rodomos vietovės kodas',
+'exif-objectcycle'                 => 'Dienos laikas, kuriam skiriamas turinys',
 'exif-contact'                     => 'Kontaktinė informacija',
 'exif-writer'                      => 'Rašytojas',
 'exif-languagecode'                => 'Kalba',
@@ -3054,9 +3057,15 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-morepermissionsurl'          => 'Alternatyvi licencijavimo informacija',
 'exif-preferredattributionname'    => 'Kai naudojate ši darbą prašome nurodyti',
 'exif-pngfilecomment'              => 'JPEG failo komentaras',
+'exif-contentwarning'              => 'Turinio įspėjimas',
 'exif-giffilecomment'              => 'GIF failo komentaras',
 'exif-intellectualgenre'           => 'Elemento tipas',
 'exif-subjectnewscode'             => 'Objektas kodas',
+'exif-event'                       => 'Vaizduojamas įvykis',
+'exif-organisationinimage'         => 'Vaizduojama organizacija',
+'exif-personinimage'               => 'Vaizduojamas asmuo',
+'exif-originalimageheight'         => 'Piešinio aukštis prieš apkarpymą',
+'exif-originalimagewidth'          => 'Piešinio plotis prieš apkarpymą',
 
 # EXIF attributes
 'exif-compression-1' => 'Nesuspausta',

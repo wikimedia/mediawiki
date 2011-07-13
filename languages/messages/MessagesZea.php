@@ -155,15 +155,6 @@ $messages = array(
 'category-file-count-limited'    => "Deêze categorie bevat {{PLURAL:$1|'t volhende bestand|de volhende $1 bestan'n}}.",
 'listingcontinuesabbrev'         => 'vedder',
 
-'mainpagetext'      => "'''De installaotie van MediaWiki is geslaegd.'''",
-'mainpagedocfooter' => "Raedpleeg de [http://meta.wikimedia.org/wiki/ZEA_Ulpe:Inhoudsopgaeve andleidieng] voe informatie over 't gebruuk van de wikisoftware.
-
-== Meer ulpe over MediaWiki ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lieste mie instelliengen]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Veehestelde vraehen (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailienglieste voe ankondigiengen van nieuwe versies]",
-
 'about'         => 'Info',
 'article'       => 'Artikel',
 'newwindow'     => '(opent een nieuw scherm)',
@@ -1019,7 +1010,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'mywatchlist'       => 'Mien volglieste',
 'watchnologin'      => 'Je bin nie angemolde.',
 'watchnologintext'  => 'Je moe [[Special:UserLogin|angemolde]] weze om je volglieste an te passen.',
-'addedwatch'        => 'An de volglieste toegevoegd',
 'addedwatchtext'    => "De bladzie \"[[:\$1]]\" is an je [[Special:Watchlist|Volglieste]] toegevoegd.
 Veranderiengen an deêze bladzie en de overlegbladzie die-a d'rbie oort zulle ierop zichtbaer ore
 en de bladzie komt '''vet''' te staen in de [[Special:RecentChanges|lieste van wat-a juust veranderd is]], daermee 't makkeliker te vinden is.

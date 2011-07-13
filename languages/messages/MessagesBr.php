@@ -306,15 +306,6 @@ $messages = array(
 'noindex-category'               => "Pajennoù n'int ket menegeret",
 'broken-file-category'           => 'Pajennoù enno liamm torr war-zu restroù',
 
-'mainpagetext'      => "'''Meziant MediaWiki staliet.'''",
-'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
-
-== Kregiñ ganti ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Diwar-benn',
 'article'       => 'Pennad',
 'newwindow'     => '(digeriñ en ur prenestr nevez)',
@@ -1190,7 +1181,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'qbsettings-fixedright'     => 'Dehou',
 'qbsettings-floatingleft'   => 'War-neuñv a-gleiz',
 'qbsettings-floatingright'  => 'War-neuñv a-zehou',
-'qbsettings-directionality' => 'Stabil, hervez an tu ma vez skrivet ho yezh',
+'qbsettings-directionality' => 'Merket, hervez an tu ma vez skrivet ho yezh',
 
 # Preferences page
 'preferences'                   => 'Penndibaboù',
@@ -2074,12 +2065,12 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 'watchnologin'         => 'Digevreet',
 'watchnologintext'     => "Ret eo deoc'h bezañ [[Special:UserLogin|kevreet]]
 a-benn gellout kemmañ ho roll evezhiañ.",
-'addedwatch'           => "Ouzhpennet d'ar roll",
+'addwatch'             => "Ouzhpennañ d'ar roll evezhiañ",
 'addedwatchtext'       => 'Ouzh ho [[Special:Watchlist|rollad evezhiañ]] eo bet ouzhpennet ar bajenn "[[:$1]]".
 Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet amañ hag e teuio ar bajenn <b>e tev</b> er [[Special:RecentChanges|roll kemmoù diwezhañ]] evit bezañ gwelet aesoc\'h ganeoc\'h.
 
 Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da evezhiañ" er framm merdeiñ.',
-'removedwatch'         => 'Lamet a-ziwar ar rollad evezhiañ',
+'removewatch'          => 'Lemel a-ziwar ar roll evezhiañ',
 'removedwatchtext'     => 'Lamet eo bet ar bajenn "[[:$1]]" a-ziwar ho [[Special:Watchlist|roll evezhiañ]].',
 'watch'                => 'Evezhiañ',
 'watchthispage'        => 'Evezhiañ ar bajenn-mañ',
@@ -2754,7 +2745,7 @@ Enrollit ar bajenn war hoc'h urzhiataer ha kargit anezhi amañ.",
 'tooltip-preview'                 => "Rakwelet ar c'hemmoù; trugarez d'ober gantañ a-raok enrollañ!",
 'tooltip-diff'                    => "Diskouez ar c'hemmoù degaset ganeoc'h en destenn.",
 'tooltip-compareselectedversions' => "Sellet ouzh an diforc'hioù zo etre daou stumm diuzet ar bajenn-mañ.",
-'tooltip-watch'                   => 'Ouzhpennañ ar bajenn-mañ ouzh ho rollad evezhiañ',
+'tooltip-watch'                   => "Ouzhpennañ ar bajenn-mañ d'ho roll evezhiañ",
 'tooltip-recreate'                => 'Adkrouiñ ar bajenn ha pa vije bet diverket a-raok',
 'tooltip-upload'                  => 'Kregiñ da enporzhiañ',
 'tooltip-rollback'                => "\"Disteuler\" a zistaol en ur c'hlik ar c'hemm(où) bet degaset d'ar bajenn-mañ gant an implijer diwezhañ.",
@@ -3420,6 +3411,12 @@ Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 'confirm_purge_button' => 'Mat eo',
 'confirm-purge-top'    => 'Spurjañ krubuilh ar bajenn-mañ?',
 'confirm-purge-bottom' => 'Spurjañ ur bajenn a a naeta ar grubuilh hag a redi ar stumm nevesañ da zont war wel.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'Mat eo',
+'confirm-watch-top'      => "Ouzhpennañ ar bajenn-mañ d'ho roll evezhiañ",
+'confirm-unwatch-button' => 'Mat eo',
+'confirm-unwatch-top'    => 'Lemel ar bajenn-mañ a-ziwar ho roll evezhiañ',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; pajenn gent',

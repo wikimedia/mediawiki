@@ -284,15 +284,6 @@ $messages = array(
 'index-category'                 => 'Geïndexeerde paazjes',
 'noindex-category'               => 'Óngeïndexeerde paazjes',
 
-'mainpagetext'      => "'''MediaWiki software succesvol geïnsjtalleerd.'''",
-'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.
-
-== Mieë hölp ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lies mit instellinge]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki VGV (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]",
-
 'about'         => 'Informatie',
 'article'       => 'Pagina',
 'newwindow'     => '(in nuuj venster)',
@@ -1961,10 +1952,8 @@ Dae kin dös drek reazjere.",
 'watchlistanontext'    => '$1 is verplich om dien volglies in te zeen of te wiezige.',
 'watchnologin'         => 'De bis neet aangemèld',
 'watchnologintext'     => "De mós [[Special:UserLogin|aangemèld]] zeen veur 't verangere van dien volglies.",
-'addedwatch'           => 'Aan volglies toegeveug',
 'addedwatchtext'       => "De pagina \"[[:\$1]]\" is aan dien [[Special:Watchlist|volglies]] toegeveug.
 Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weure dao vermeld en de pagina weurt '''vèt''' weergegaeve in de [[Special:RecentChanges|lies van recènte verangeringe]].",
-'removedwatch'         => 'Van volglies aafhoale',
 'removedwatchtext'     => 'De pagina "[[:$1]]" is van dien [[Special:Watchlist|volglies]] eweggesjaf.',
 'watch'                => 'Volg',
 'watchthispage'        => 'Volg dees pagina',

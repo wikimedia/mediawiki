@@ -426,15 +426,6 @@ $messages = array(
 'noindex-category'               => '색인에서 제외되는 문서',
 'broken-file-category'           => '잘못된 링크가 있는 페이지',
 
-'mainpagetext'      => "'''미디어위키가 성공적으로 설치되었습니다.'''",
-'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
-
-== 시작하기 ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings 설정하기]
-* [http://www.mediawiki.org/wiki/Manual:FAQ 미디어위키 FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 발표 메일링 리스트]',
-
 'about'         => '소개',
 'article'       => '문서 내용',
 'newwindow'     => '(새 창으로 열림)',
@@ -2173,10 +2164,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchlistanontext'    => '주시문서 목록을 보거나 고치려면 $1 하세요.',
 'watchnologin'         => '로그인하지 않음',
 'watchnologintext'     => '주시문서 목록을 고치려면 [[Special:UserLogin|로그인]]해야 합니다.',
-'addedwatch'           => '주시문서 목록에 추가',
 'addedwatchtext'       => "\"[[:\$1]]\" 문서를 [[Special:Watchlist|주시문서 목록]]에 추가했습니다.
 앞으로 이 문서나 토론 문서가 바뀌면 [[Special:RecentChanges|최근 바뀜]]에서 알아보기 쉽게 '''굵은 글씨'''로 보일 것입니다.",
-'removedwatch'         => '주시문서 목록에서 제거',
 'removedwatchtext'     => '"[[:$1]]" 문서를 [[Special:Watchlist|주시문서 목록]]에서 뺐습니다.',
 'watch'                => '주시',
 'watchthispage'        => '주시하기',

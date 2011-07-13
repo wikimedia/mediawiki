@@ -142,14 +142,6 @@ $messages = array(
 'index-category'                 => 'Bolikon naka-abisi',
 'noindex-category'               => 'Bolikon awu naka-abisi',
 
-'mainpagetext'      => "'''Nopongo no do popodokot ot ModiaWiki.'''",
-'mainpagedocfooter' => 'Rujuko hilo [http://meta.wikimedia.org/wiki/Help:Contents Ponudukan Momomoguno] kokomoi koilaan do momoguno posusuang-suangon wiki.
-
-== Kopotimpuunan ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lis papatantu nuludan]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Ponguhatan Koinsoruan om Simbar ModiaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis pininsuratan pinolabus do ModiaWiki]',
-
 'about'         => 'Kokomoi',
 'article'       => 'Suang bolikon',
 'newwindow'     => '(ukabai id liligaon wagu)',
@@ -1119,10 +1111,8 @@ Kointalangan dilo [$2 kointalangan pail] okito id siriba.',
 # Watchlist
 'watchlist'         => 'Lis piintanganku',
 'mywatchlist'       => 'Lis piintanganku',
-'addedwatch'        => 'Poruhango id lis piintangan',
 'addedwatchtext'    => "Bolikon \"[[:\$1]]\" nokoruhang no id [[Special:Watchlist|lis piintangannu]].
 Kinaalanan id bolikon om kinoruhangan bolikon bolotok diti do maso dumontol maan posurato do hiti, om bolikon diti pokitonon do '''akapal''' id [[Special:RecentChanges|lis wagu kaalanai]] do poposikap mongintutun.",
-'removedwatch'      => 'Iduon mantad lis piintangan',
 'removedwatchtext'  => 'Bolikon "[[:$1]]" noidu no mantad [[Special:Watchlist|lis piintangannu]].',
 'watch'             => 'Mongintong',
 'watchthispage'     => 'Piintong bolikon diti',

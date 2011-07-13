@@ -204,8 +204,6 @@ $messages = array(
 'category-empty'         => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
 'listingcontinuesabbrev' => 'frh.',
 
-'mainpagetext' => "'''Innlegging av Wiki-ritbúnaði væleydnað.'''",
-
 'about'         => 'Um',
 'article'       => 'Innihaldssíða',
 'newwindow'     => '(kemur í nýggjan glugga)',
@@ -807,13 +805,11 @@ ella hevur hann valt ikki at taka ímóti t-posti frá øðrum brúkarum.',
 'mywatchlist'       => 'Mítt eftirlit',
 'nowatchlist'       => 'Tú hevur ongar lutir í eftirlitinum.',
 'watchnologin'      => 'Tú hevur ikki ritað inn',
-'addedwatch'        => 'Lagt undir eftirlit',
 'addedwatchtext'    => "Síðan \"<nowiki>\$1</nowiki>\" er løgd undir [[Special:Watchlist|eftirlit]] hjá tær.
 Framtíðar broytingar á hesi síðu og tilknýttu kjaksíðuni verða at síggja her.
 Tá sæst síðan sum '''feit skrift''' í [[Special:RecentChanges|broytingaryvirlitinum]] fyri at gera hana lættari at síggja.
 
 Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika eftirlit\" á síðuni.",
-'removedwatch'      => 'Strikað úr eftirliti',
 'removedwatchtext'  => 'Síðan "[[:$1]]" er strikað úr tínum eftirliti.',
 'watch'             => 'Eftirlit',
 'watchthispage'     => 'Hav eftirlit við hesi síðuni',

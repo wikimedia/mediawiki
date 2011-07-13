@@ -144,14 +144,6 @@ $messages = array(
 'noindex-category'               => 'Bina index karaa gais panna',
 'broken-file-category'           => 'Panna jisme tuuta file ke jorr hae',
 
-'mainpagetext'      => "'''MediaWiki ke safalta se install kar dewa gais hai.'''",
-'mainpagedocfooter' => "Wiki software ke use kare ke aur jaankari ke khatir [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.
-
-== Getting started ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Baare me',
 'article'       => 'Content waala panna',
 'newwindow'     => '(Nawaa window me khule hai)',
@@ -1885,10 +1877,8 @@ Jon e-mail address aap [[Special:Preferences|your user preferences]] me enter ka
 'watchlistanontext'    => 'Aapan dhyan suchi me ke dekhe nai to badle ke khatir meharbani kar ke $1 karo.',
 'watchnologin'         => 'Logged in nai hai',
 'watchnologintext'     => 'Aapan dhyan suchi ke badle ke khatir aap ke [[Special:UserLogin|logged in]] rahe ke chaahi.',
-'addedwatch'           => 'Dhyan suchi me jorro',
 'addedwatchtext'       => "Panna \"[[:\$1]]\" ke aap ke [[Special:Watchlist|watchlist]] me jorr dewa gais hae.
 Ii panna ke aage ke badlao aur usse jurra baat waala panna ki suchi hian pe hae, aur ii panna ke '''mota akchhar''' me dekhawa jaai [[Special:RecentChanges|abhi haali ke badlao ke suchi]] me jisse ki aap iske sahaj se dekhe sakta hae.",
-'removedwatch'         => 'Dhyan suchi me se hatao',
 'removedwatchtext'     => 'Panna "[[:$1]]" ke aap ke [[Special:Watchlist|aap ke dhyan suchi]] se hatae dewa gais hai.',
 'watch'                => 'Dekho',
 'watchthispage'        => 'Ii panna par dhyan rakho',

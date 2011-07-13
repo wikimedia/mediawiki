@@ -144,14 +144,6 @@ $messages = array(
 'noindex-category'               => 'Tungkaran kada tasusun bapadalakan kata',
 'broken-file-category'           => 'Tutungkaran lawan tatautan barakas pagat',
 
-'mainpagetext'      => "'''MediaWiki sudah tapasang awan sukses'''.",
-'mainpagedocfooter' => 'Carii panjalasan [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pamuruk] gasan mamuruk parangkat lunak wiki
-
-== Gasan bamula ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daptar konpigurasi setélan]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki nang rancak ditakunakan]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki rilis milis]',
-
 'about'         => 'Pasal',
 'article'       => 'Tungkaran isi',
 'newwindow'     => '(buka di lalungkang hanyar)',
@@ -1864,10 +1856,8 @@ Ngini wayah ini sudah diugahakan ka [[$2]].',
 'watchlistanontext' => 'Muhun $1 hagan maniringi atawa mambabak nang dalam daptar itihan Pian.',
 'watchnologin'      => 'Baluman babuat log',
 'watchnologintext'  => 'Pian musti [[Special:UserLogin|babuat log]] amun handak magaganti daptar itihan Pian.',
-'addedwatch'        => 'Sudah ditambahakan ka daptar itihan',
 'addedwatchtext'    => "Tungkaran \"[[:\$1]]\" sudah ditambahakan ke [[Special:Watchlist|daptar itihan]] Pian.
 Parubahan-parubahan salanjutnya pada tungkaran ini dan tungkaran pamandiran taraitnya akan takambit di sia, wan tungkaran itu akan ditampaiakan '''kandal''' pada [[Special:RecentChanges|daptar parubahan tahanyar]] cagar labih mudah diitihi.",
-'removedwatch'      => 'Sudah dibuang matan daptar itihan',
 'removedwatchtext'  => 'Tungkaran "[[:$1]]" sudah dihapus matan [[Special:Watchlist|daptar itihan]] Pian.',
 'watch'             => 'Itih',
 'watchthispage'     => 'Itihi tungkaran ini',

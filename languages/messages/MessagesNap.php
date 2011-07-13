@@ -359,7 +359,6 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'linksearch-ok' => 'Truova',
 
 # Watchlist
-'addedwatch'   => 'Aggiunto ai Osservate Speciale tue',
 'watch'        => 'Secuta',
 'notanarticle' => 'Chesta paggena nun è na voce',
 

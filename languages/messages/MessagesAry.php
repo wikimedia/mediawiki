@@ -144,14 +144,7 @@ $messages = array(
 'index-category'                 => 'sfahi mfhrssa',
 'noindex-category'               => 'shat mamfhtsach',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "'''MediaWiki ṫ'instala be najaḫ.'''",
-'mainpagedocfooter' => 'Ila bġiṫiw meĝlomaṫ ĥrin baċ ṫesṫeĝmlo had l-lojisyél siro ċofo [http://meta.wikimedia.org/wiki/Aide:Contenu Gid dyal l-mosṫeĥdim]
-
-== L-bdaya mĝa MediaWiki ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista dyal l-paramétraṫ dyal l-konfigurasyon]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ fe MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'ala',
 'article'       => 'sfht mohtawa',
@@ -1251,11 +1244,9 @@ PICT # misc.
 'watchlistanontext' => 'Ĝafak $1 baċ ṫċof ola baċ ṫṣayeb ṣ-ṣefḫaṫ li fe l-lista dyal s-suivi.',
 'watchnologin'      => 'nta mamkoniktich',
 'watchnologintext'  => 'Ĥaṣṣek ṫkon [[Special:UserLogin|dĥelṫi le ḫsabek]] baċ ṫṣayeb l-lista dyal s-suivi.',
-'addedwatch'        => 'Ṫzadeṫ le l-lista dyal s-suivi',
 'addedwatchtext'    => "Ṣ-Ṣefḫa \"[[:\$1]]\" ṫzadeṫ le [[Special:Watchlist|l-lista dyal s-suivi dyalṫek]].
 Ṫ-Ṫeġyiraṫ j-jayyin dyal had ṣ-ṣefḫa o dyal ṣ-ṣefḫa de n-niqaċ l-mnasba ġayṫċejjlo fiha.
 L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentChanges|l-lista dyal ṫ-ṫeĝdilaṫ l-leĥĥrin]] baċ ṫeshal ĝlik l-qadiya.",
-'removedwatch'      => 'Mmḫiya men l-lista dyal s-suivi',
 'removedwatchtext'  => 'Ṫemḫaṫ ṣ-ṣefḫa "[[:$1]]" men  [[Special:Watchlist|ṣ-ṣefḫa de s-suivi dyalṫek]].',
 'watch'             => 'Ḫḍi',
 'watchthispage'     => 'Ṫebbeĝ had ṣ-ṣefḫa',

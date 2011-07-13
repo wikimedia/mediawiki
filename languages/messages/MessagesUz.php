@@ -109,15 +109,7 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|Ushbu turkumda faqat bitta sahifa mavjud.|Ushbu turkumda quyidagi {{PLURAL:$1|sahifa|$1 sahifalar}}, hammasi boʻlib $2 ta sahifa mavjud.}}',
 'listingcontinuesabbrev' => 'davomi',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
-'mainpagetext'      => "'''MediaWiki muvaffaqiyatli o'rnatildi.'''",
-'mainpagedocfooter' => "Wiki dasturini ishlatish haqida ma'lumot olish uchun  [http://meta.wikimedia.org/wiki/Help:Contents Foydalanuvchi qo'llanmasi] sahifasiga murojaat qiling.
-
-== Dastlabki qadamlar ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Moslamalar ro'yxati]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqida ko'p so'raladigan savollar]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]",
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
 
 'about'      => 'Haqida',
 'newwindow'  => '(yangi oynada ochiladi)',
@@ -501,11 +493,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlist'        => 'Kuzatuv roʻyxatim',
 'mywatchlist'      => 'Kuzatuv roʻyxatim',
 'nowatchlist'      => "Kuzatuv ro'yxatingizda hech narsa yo'q.",
-'addedwatch'       => "Kuzatuv ro'yxatiga qo'shildi",
 'addedwatchtext'   => "\"[[:\$1]]\" sahifasi sizning [[Special:Watchlist|kuzatuv ro'yxatingizga]] qo'shildi. Bu sahifada va unga mos munozara sahifasida bo'ladigan kelajakdagi o'zgarishlar bu yerda ro'yxatga olinadi, hamda bu sahifa topish qulay bo'lishi uchun [[Special:RecentChanges|yangi o'zgarishlar ro'yxati]]da '''qalin''' harflar bilan ko'rsatiladi.
 
 Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmaslik\" yozuvini bosing.",
-'removedwatch'     => "Kuzatuv ro'yxatidan o'chirildi",
 'removedwatchtext' => '"[[:$1]]" sahifasi kuzatuv ro\'yxatingizdan o\'chirildi.',
 'watch'            => 'kuzatish',
 'watchthispage'    => 'Sahifani kuzatish',

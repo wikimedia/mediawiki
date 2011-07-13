@@ -306,14 +306,6 @@ $messages = array(
 'noindex-category'               => 'Hojas no arregladas en lista',
 'broken-file-category'           => 'Hojas que tienen atamientos rotos de arxivos',
 
-'mainpagetext'      => "'''MedyaViki ya se kureó con reuxitá.'''",
-'mainpagedocfooter' => 'Konsulta la [http://meta.wikimedia.org/wiki/Ayudo:Contenido Guía de usador] para tomar enformasyones encima de como usar el lojikal viki.
-
-== En Empeçando ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings La lista de los arreglamientos de la konfiggurasyón]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/lad DDS de MedyaViki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce La lista de las letrales (e-mail) de MedyaViki]',
-
 'about'         => 'Encima de',
 'article'       => 'Artícůlo de contenido',
 'newwindow'     => '(Se avre en una mueva ventana)',
@@ -833,11 +825,9 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Watchlist
 'watchlist'         => 'Mi lista de escogidas',
 'mywatchlist'       => 'Mi lista de akavidamientos',
-'addedwatch'        => 'Ajustado a la lista de escogidas',
 'addedwatchtext'    => "La hoja «[[:$1]]» fue ajustada a tu [[Special:Watchlist|lista de escogidas]]. Los trocamientos venideros en esta hoja i en tu hoja de diskussión associada se van indicar aí, i la hoja va aparecer '''gordo''' en la hoja de [[Special:RecentChanges|trocamientos freskos]] para hazerla más kolay de detektar.
 
 Cuando queres eliminar la hoja de tu lista de escogidas, piza «Dexar de cudiar» en el menú.",
-'removedwatch'      => 'Quitado de la lista de escogidas',
 'removedwatchtext'  => 'La hoja «[[:$1]]» fue eliminada de tu [[Special:Watchlist|lista de escogidas]].',
 'watch'             => 'cudia',
 'watchthispage'     => 'Cudia esta hoja',

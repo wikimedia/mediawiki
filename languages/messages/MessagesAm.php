@@ -166,15 +166,6 @@ $messages = array(
 'listingcontinuesabbrev'         => '(ተቀጥሏል)',
 'index-category'                 => ' ማውጫው ላይ የተመዘገብ ገጾች',
 
-'mainpagetext'      => "'''MediaWiki በትክክል ማስገባቱ ተከናወነ።'''",
-'mainpagedocfooter' => "ስለ ዊኪ ሶፍትዌር ጥቅም ለመረዳት፣ [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ያንብቡ።
-
-== ለመጀመር ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'ስለ',
 'article'       => 'መጣጥፍ',
 'newwindow'     => '(ባዲስ መስኮት ውስጥ ይከፈታል።)',
@@ -1361,11 +1352,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => 'የሚከታተሉት ገጾች ዝርዝርዎን ለመመልከት ወይም ለማስተካከል እባክዎ $1።',
 'watchnologin'         => 'ገና አልገቡም',
 'watchnologintext'     => 'የሚከታተሏቸውን ገጾች ዝርዝር ለመቀየር [[Special:UserLogin|መግባት]] ይኖርብዎታል።',
-'addedwatch'           => 'ወደሚከታተሉት ገጾች ተጨመረ',
 'addedwatchtext'       => "ገጹ «$1» [[Special:Watchlist|ለሚከታተሉት ገጾች]] ተጨምሯል። ወደፊት ይህ ገጽ ወይም የውይይቱ ገጽ ሲቀየር፣ በዚያ ዝርዝር ላይ ይታያል። በተጨማሪም [[Special:RecentChanges|«በቅርብ ጊዜ በተለወጡ» ገጾች]] ዝርዝር፣ በቀላሉ እንዲታይ በ'''ጉልህ ፊደላት''' ተጽፎ ይገኛል።
 
 በኋላ ጊዜ ገጹን ከሚከታተሉት ገጾች ለማስወግድ የፈለጉ እንደሆነ፣ በጫፉ ዳርቻ «አለመከታተል» የሚለውን ይጫኑ።",
-'removedwatch'         => 'ከሚከታተሉት ገጾች ተወገደ',
 'removedwatchtext'     => 'ይህ ገፅ "[[:$1]]" ከ [[Special:Watchlist|your watchlist]] ተወግዷል።',
 'watch'                => 'ለመከታተል',
 'watchthispage'        => 'ይህንን ገጽ ለመከታተል',

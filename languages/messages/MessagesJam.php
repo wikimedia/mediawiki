@@ -140,14 +140,6 @@ Lef aaf dif afta pofaamin ruolbak',
 'index-category'                 => 'Index piej',
 'noindex-category'               => 'No index piej',
 
-'mainpagetext'      => "'''MediaWiki don instaal soksesful.'''",
-'mainpagedocfooter' => "Kansolt di [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] fi infamieshan ou fi yuuz di wiki saafwier.
-
-== Taatop ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Bout',
 'article'       => 'Kantent piej',
 'newwindow'     => '(opn ina nyuu winda)',
@@ -844,10 +836,8 @@ Piej pahn [[Special:Watchlist|yu wachlis]] dem '''buol'''.",
 # Watchlist
 'watchlist'         => 'Mi wachlis',
 'mywatchlist'       => 'Mi wachlis',
-'addedwatch'        => 'Don ad tu wachlist',
 'addedwatchtext'    => "Di piej \"[[:\$1]]\" don ad tu yu [[Special:Watchlist|wachlis]].
 Fyuucha chienj tu dis piej ahn iasuosietid taak piej wi lis de, ahn di piej wi apier '''buoldid''' ina di [[Special:RecentChanges|lis a riisent chienjdem]] fi meki iizia fi pik out.",
-'removedwatch'      => 'Rimuuv gaan frahn wachlis',
 'removedwatchtext'  => 'Di piej "[[:$1]]" rimuuv gaan frahn [[Special:Watchlist|yu wachlis]].',
 'watch'             => 'Wach',
 'watchthispage'     => 'Wach dis piej',

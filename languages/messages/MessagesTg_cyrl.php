@@ -197,15 +197,6 @@ $messages = array(
 'index-category'                 => 'Саҳифаҳои намояшуда',
 'noindex-category'               => 'Саҳифаҳои намоиянашуда',
 
-'mainpagetext'      => "'''Нармафзори МедиаВики бо муваффақият насб шуд.'''",
-'mainpagedocfooter' => 'Аз [http://meta.wikimedia.org/wiki/Help:Contents Роҳнамои Корбарон] барои истифодаи нармафзори вики кӯмак бигиред.
-
-== Оғоз ба кор ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Феҳристи танзимоти пайгирбандӣ]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Пурсишҳои МедиаВики]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Феҳристи ройномаҳои нусхаҳои МедиаВики]',
-
 'about'         => 'Дар бораи',
 'article'       => 'Саҳифаи мӯҳтаво',
 'newwindow'     => '(дар равзанаи ҷадид боз мешавад)',
@@ -1453,13 +1444,11 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => 'Лутфан барои мушоҳида ва вироиши феҳристи пайгириҳои худ аз $1 истифода кунед.',
 'watchnologin'         => 'Вуруд нашуда',
 'watchnologintext'     => 'Барои тағйири феҳристи пайгириҳои худ бояд [[Special:UserLogin|ба систем ворид шавед]].',
-'addedwatch'           => 'Ба феҳристи пайгириҳо илова карда шуд',
 'addedwatchtext'       => "Ин саҳифа \"[[:\$1]]\" ва [[Special:Watchlist|феҳристи назароти]] Шумо илова шуд.
 Дигаргуниҳои ояндаи ин саҳифа ва саҳифи баҳси алоқаманд дар рӯихати онҷо хоҳад шуд,
 ва саҳифа '''ғафс''' дар [[Special:RecentChanges|рӯихати тағйироти охирин]] барои бо осони дарёфт кардан хоҳад ба назар расид.
 
 Агар шумо дертар аз феҳристи назаротатон ин саҳифаро ҳазв кардан хоҳед, дар меню \"Назар накардан\"-ро пахш кунед.",
-'removedwatch'         => 'Аз феҳристи пайгириҳо бардошта шуд',
 'removedwatchtext'     => 'Саҳифаи "[[:$1]]" аз [[Special:Watchlist|феҳристи пайгириҳои шумо]] бардошта шуд.',
 'watch'                => 'Назар кардан',
 'watchthispage'        => 'Пайгирии ин саҳифа',

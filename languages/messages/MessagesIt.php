@@ -380,16 +380,6 @@ $messages = array(
 'noindex-category'               => 'Pagine non indicizzate',
 'broken-file-category'           => 'Pagine con link danneggiati',
 
-'mainpagetext'      => "'''Installazione di MediaWiki completata correttamente.'''",
-'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
-
-== Per iniziare ==
-I seguenti collegamenti sono in lingua inglese:
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
-
 'about'         => 'Informazioni',
 'article'       => 'Voce',
 'newwindow'     => '(si apre in una nuova finestra)',
@@ -1247,7 +1237,7 @@ $1",
 'qbsettings-fixedright'     => 'Fisso a destra',
 'qbsettings-floatingleft'   => 'Fluttuante a sinistra',
 'qbsettings-floatingright'  => 'Fluttuante a destra',
-'qbsettings-directionality' => 'Fisso, a seconda della direzionalità della tua lingua',
+'qbsettings-directionality' => 'Fisso, a seconda della direzionalità dello script e della tua lingua',
 
 # Preferences page
 'preferences'                   => 'Preferenze',
@@ -2111,11 +2101,11 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'watchlistanontext'    => "Per visualizzare e modificare l'elenco degli osservati speciali è necessario $1.",
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:UserLogin|accesso al sito]].",
-'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
+'addwatch'             => 'Aggiungi agli osservati speciali',
 'addedwatchtext'       => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
 D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
 il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:RecentChanges|ultime modifiche]] per renderlo più visibile.",
-'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
+'removewatch'          => 'Rimuovi dagli osservati speciali',
 'removedwatchtext'     => 'La pagina "[[:$1]]" è stata eliminata dalla [[Special:Watchlist|lista degli osservati speciali]].',
 'watch'                => 'Segui',
 'watchthispage'        => 'Segui questa pagina',
@@ -2734,8 +2724,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-ca-delete'               => 'Cancella questa pagina',
 'tooltip-ca-undelete'             => "Ripristina la pagina com'era prima della cancellazione",
 'tooltip-ca-move'                 => 'Sposta questa pagina (cambia titolo)',
-'tooltip-ca-watch'                => 'Aggiungi questa pagina alla tua lista di osservati speciali',
-'tooltip-ca-unwatch'              => 'Elimina questa pagina dalla tua lista di osservati speciali',
+'tooltip-ca-watch'                => 'Aggiungi questa pagina alla tua lista degli osservati speciali',
+'tooltip-ca-unwatch'              => 'Elimina questa pagina dalla tua lista degli osservati speciali',
 'tooltip-search'                  => "Cerca all'interno di {{SITENAME}}",
 'tooltip-search-go'               => 'Vai a una pagina con il titolo indicato, se esiste',
 'tooltip-search-fulltext'         => 'Cerca il testo indicato nelle pagine',
@@ -2772,7 +2762,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-preview'                 => 'Anteprima delle modifiche (consigliata prima di salvare)',
 'tooltip-diff'                    => 'Guarda le modifiche apportate al testo',
 'tooltip-compareselectedversions' => 'Guarda le differenze tra le due versioni selezionate di questa pagina.',
-'tooltip-watch'                   => 'Aggiungi questa pagina alla lista degli osservati speciali',
+'tooltip-watch'                   => 'Aggiungi questa pagina alla tua lista degli osservati speciali',
 'tooltip-recreate'                => 'Ricrea la pagina anche se è stata cancellata',
 'tooltip-upload'                  => 'Inizia il caricamento',
 'tooltip-rollback'                => '"Rollback" annulla le modifiche a questa pagina dell\'ultimo contributore con un solo clic.',
@@ -3427,6 +3417,12 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 'confirm_purge_button' => 'Conferma',
 'confirm-purge-top'    => 'Vuoi pulire la cache di questa pagina?',
 'confirm-purge-bottom' => 'Ripulire la cache di una pagina consente di mostrare la sua versione più aggiornata.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Aggiungi questa pagina alla tua lista degli osservati speciali?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Elimina questa pagina dalla tua lista degli osservati speciali?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',

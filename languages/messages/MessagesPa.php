@@ -130,8 +130,6 @@ $messages = array(
 'category-media-header' => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡਿਆ',
 'category-empty'        => "''ਇਹ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਸ ਵੇਲੇ ਕੋਈ ਲੇਖ (ਆਰਟੀਕਲ) ਜਾਂ ਮੀਡਿਆ ਨਹੀਂ ਹੈ।''",
 
-'mainpagetext' => "'''ਮੀਡਿਆਵਿਕਿ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੋ ਗਿਆ ਹੈ।'''",
-
 'about'         => 'ਇਸ ਬਾਰੇ',
 'article'       => 'ਸਮੱਗਰੀ ਪੇਜ',
 'newwindow'     => '(ਨਵੀਂ ਵਿੰਡੋ ਵਿੱਚ ਖੋਲ੍ਹੋ)',
@@ -798,7 +796,6 @@ to upload files.',
 'watchlist'     => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ',
 'mywatchlist'   => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ',
 'watchnologin'  => 'ਲਾਗਇਨ ਨਹੀਂ',
-'addedwatch'    => 'ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ',
 'watch'         => 'ਵਾਚ',
 'watchthispage' => 'ਇਹ ਪੇਜ ਵਾਚ ਕਰੋ',
 'unwatch'       => 'ਅਣ-ਵਾਚ',

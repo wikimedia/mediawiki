@@ -170,15 +170,6 @@ $messages = array(
 'noindex-category'               => 'Неіндексованы сторінкы',
 'broken-file-category'           => 'Сторінкы, што ся одказують на неекзістуючі файлы',
 
-'mainpagetext'      => "'''MediaWiki была успішно наіншталована.'''",
-'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Мануял хоснователя] Вам порадить, як хосновати MediaWiki.
-
-== Про початок ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Наставлїня конфіґурації]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Часты вопросы о MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розосыланя повідомлїнь про новы верзії MediaWiki]',
-
 'about'         => 'О',
 'article'       => 'Обсягова сторінка',
 'newwindow'     => '(отворить ся в новім окнї)',
@@ -1907,10 +1898,8 @@ $1',
 'watchlistanontext'    => 'Про перезераня ці управу списку слїдованых сторінок ся мусите $1.',
 'watchnologin'         => 'Не сьте приголошеный(а)',
 'watchnologintext'     => 'Про слїдованя сторінок ся мусите [[Special:UserLogin|приголосити]].',
-'addedwatch'           => 'Придана до списку слїдованых сторінок',
 'addedwatchtext'       => "Сторінка «[[:$1]]» была придана до вашого [[Special:Watchlist|списку слїдованых]].
 Будучі зміны той статї і з нёв повязаной сторінков діскузії будуть зображены у тім списку, а тыж будуть выдїлены '''тучнї''' на сторінцї із [[Special:RecentChanges|списком послїднїх змін]], жебы їх было легше вшимнути.",
-'removedwatch'         => 'Вымазана зо список слїдованых сторінок',
 'removedwatchtext'     => 'Сторінка «[[:$1]]» вымазана з вашого [[Special:Watchlist|списку слїдованых сторінок]].',
 'watch'                => 'Слїдовати',
 'watchthispage'        => 'Слїдовати тоту сторінку',

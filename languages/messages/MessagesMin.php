@@ -144,15 +144,6 @@ $messages = array(
 'noindex-category'               => 'Laman nan indak diindeks',
 'broken-file-category'           => 'Laman jo gambar rusak',
 
-'mainpagetext'      => "'''MediaWiki alah tapasang jo sukses'''.",
-'mainpagedocfooter' => 'Silakan baco [http://www.mediawiki.org/wiki/Help:Contents/id Panduan Pangguno] untuak caro panggunoan parangkaik lunak wiki iko.
-
-== Mamulai panggunoan ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings/id Dafta pangaturan konfigurasi]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/id Dafta patanyoan nan acok diajukan manganai MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]',
-
 'about'         => 'Tentang',
 'article'       => 'Artikel',
 'newwindow'     => '(buka di jendela baru)',
@@ -990,10 +981,8 @@ Deskripsi dari [$2 laman deskripsi berkas] ditampilkan dibawah.',
 'watchlist'         => 'Senarai pantauan denai',
 'mywatchlist'       => 'Senarai pantauan den',
 'watchlistfor2'     => 'Untuak $1 $2',
-'addedwatch'        => 'Lah ditambahkan ka senarai pantauan',
 'addedwatchtext'    => "Laman \"[[:\$1]]\" lah ditambahkan ka [[Special:Watchlist|senarai pantauan awak]].
 Parubahan laman ko tamasuak laman otanyo akan ditampilkan dalam '''cetak taba''' pado [[Special:RecentChanges|senarai parubahan]] agar lebih mudah manjagonyo.",
-'removedwatch'      => 'Lah dihapuih dari senarai pantauan',
 'removedwatchtext'  => 'Laman "[[:$1]]" lah dihapuih dari [[Special:Watchlist|senarai pantauan awak]].',
 'watch'             => 'Pantau',
 'watchthispage'     => 'Pantau laman ko',

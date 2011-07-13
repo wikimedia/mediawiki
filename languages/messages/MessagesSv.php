@@ -438,15 +438,6 @@ $messages = array(
 'noindex-category'               => 'Icke-indexerade sidor',
 'broken-file-category'           => 'Sidor med trasiga fillänkar',
 
-'mainpagetext'      => "'''MediaWiki har installerats utan problem.'''",
-'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
-
-== Att komma igång ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista över konfigurationsinställningar]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]',
-
 'about'         => 'Om',
 'article'       => 'Innehållssida',
 'newwindow'     => '(öppnas i ett nytt fönster)',
@@ -2209,10 +2200,8 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'watchlistanontext'    => 'Du måste $1 för att se eller redigera din bevakningslista.',
 'watchnologin'         => 'Inte inloggad',
 'watchnologintext'     => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ändra din bevakningslista.',
-'addedwatch'           => 'Tillagd på bevakningslistan',
 'addedwatchtext'       => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
 Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:RecentChanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
-'removedwatch'         => 'Borttagen från bevakningslista',
 'removedwatchtext'     => 'Sidan "[[:$1]]" har tagits bort från [[Special:Watchlist|din bevakningslista]].',
 'watch'                => 'Bevaka',
 'watchthispage'        => 'Bevaka denna sida',

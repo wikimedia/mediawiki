@@ -549,8 +549,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 # Watchlist
 'watchlist'         => 'Mov sïektjedhlästoe',
 'mywatchlist'       => 'Mov sïektjedhlästoe',
-'addedwatch'        => 'Lissiehtidh gåajkoe sïektjedhlästoe',
-'removedwatch'      => 'Sihkojuvvon raejeste sïektjedhlästoe',
 'removedwatchtext'  => 'Bielie "[[:$1]]" lea sihkojuvvon raejeste [[Special:Watchlist|dov sïektjedhlästoe]].',
 'watch'             => 'Sïektjedh',
 'watchthispage'     => 'Sïektjedh dïhte bielie',

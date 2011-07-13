@@ -222,8 +222,6 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'noindex-category'               => 'Pagjinis no indicizadis',
 
-'mainpagetext' => "'''MediaWiki e je stade instalade cun sucès.'''",
-
 'about'         => 'Informazions',
 'article'       => 'Vôs',
 'newwindow'     => '(al vierç un gnûf barcon)',
@@ -1166,13 +1164,11 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 'nowatchlist'          => 'Nissun element al è tignût di voli.',
 'watchnologin'         => 'No tu sês jentrât',
 'watchnologintext'     => "Tu 'nd âs di [[Special:UserLogin|jentrâ]] par modificâ la liste des pagjinis tignudis di voli.",
-'addedwatch'           => 'Zontât aes pagjinis tignudis di voli',
 'addedwatchtext'       => "La pagjine \"<nowiki>\$1</nowiki>\" e je stade zontade ae [[Special:Watchlist|liste di chês tignudis di voli]].
 Tal futûr i cambiaments a cheste pagjine e ae pagjine di discussion relative a saran segnalâts ca,
 e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins cambiaments]] cussì che tu puedis notâle daurman.
 
 <p>Se tu vuelis gjavâle de liste pi indevant, frache su \"No stâ tignî di voli\" te sbare in alt.",
-'removedwatch'         => 'Gjavade de liste',
 'removedwatchtext'     => 'La pagjine "[[:$1]]" e je stade gjavade de [[Special:Watchlist|liste di chês tignudis di voli]].',
 'watch'                => 'Ten di voli',
 'watchthispage'        => 'Ten di voli cheste pagjine',

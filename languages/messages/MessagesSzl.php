@@ -150,14 +150,6 @@ $messages = array(
 'index-category'                 => 'Indeksowane zajty',
 'noindex-category'               => 'Ńyindeksowane zajty',
 
-'mainpagetext'      => "'''Sztalowańy MediaWiki śe udoło.'''",
-'mainpagedocfooter' => 'Uobezdrzij [http://meta.wikimedia.org/wiki/Help:Contents przewodńik sprowjacza], kaj sům informacyje uo dźołańu uoprogramowańo MediaWiki.
-
-== Na sztart ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista sztalowań konfiguracyje]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komuńikaty uo nowych wersyjach MediaWiki]',
-
 'about'         => 'Uo serwiśe',
 'article'       => 'zajta',
 'newwindow'     => '(uodmyko śe w nowym uokńy)',
@@ -1476,10 +1468,8 @@ Adres e-brifa, kery zostoł bez Ćebje wkludzůny we [[Special:Preferences|Twoji
 'watchlistanontext'    => '$1 coby uobejřeć abo sprowjać elymynty listy zajtůw, na kere dowoš pozůr',
 'watchnologin'         => 'Ńy jest žeś zalůgowany',
 'watchnologintext'     => 'Muśyš śe [[Special:UserLogin|zalůgować]] coby modyfikować lista zajtůw, na kere dowoš pozůr.',
-'addedwatch'           => 'Dodane do pozorlisty',
 'addedwatchtext'       => "Zajta \"[[:\$1]]\" zostoua dodano do Twojij [[Special:Watchlist|listy artiklůw, na kere dowoš pozůr]].
 Na tyi liśće bydźeš mjou rejer přišuych sprowjyń tyi zajty i jeji zajty godki, a mjano zajty bydźeš mjou škryflane '''tustym''' na [[Special:RecentChanges|liśće půmjyńanych na ůostatku]], cobyś mjou wygoda w jei pomjyńańa filować.",
-'removedwatch'         => 'Wyćepńjynte s pozorlisty',
 'removedwatchtext'     => 'Artikel "[[:$1]]" zostou wyćepńjynty s [[Special:Watchlist|Twojij pozorlisty]].',
 'watch'                => 'Dej pozůr',
 'watchthispage'        => 'Dej pozůr',

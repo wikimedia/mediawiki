@@ -263,7 +263,6 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 # Watchlist
 'mywatchlist'    => 'Listaan na babantayan ko',
 'watchnologin'   => 'Agka ni akaloob',
-'addedwatch'     => 'Enyarom ed listaan na bantayan',
 'addedwatchtext' => "Impila so bolong ya \"[[:\$1]]\" diad [[Special:Watchlist|listaan na babantayan]] mo. Isulat diman so saray ontombok ran idagdag o panagbalo ed sayan bolong san diad bolong na tongtongan. San akasulat ran '''mapatnag''' (bolded) ed [[Special:RecentChanges|listaan na saray sampot ran binalo]] umpian mas maganom ya nanengneng.
 
 No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"ekalen ed babantayan\" (unwatch) diad gilig ya bar.",

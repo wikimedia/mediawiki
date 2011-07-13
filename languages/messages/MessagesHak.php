@@ -119,15 +119,6 @@ $messages = array(
 'hidden-categories'      => '$1-ke Yún-chhòng fûn-lui',
 'listingcontinuesabbrev' => 'Chhṳ̀-siu̍k',
 
-'mainpagetext'      => "'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki.'''",
-'mainpagedocfooter' => 'chhiáng fóng-mun [http://meta.wikimedia.org/wiki/Help:Contents Yung-fu sú-chhak] yî-khi̍p sṳ́-yung chhṳ́ wiki ngiôn-khien ke sin-sit！
-
-== Ngi̍p-mùn  ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki Phi-chṳ sat-thin chhîn-tân]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Phìn-sòng mun-thì kié-tap]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
-
 'about'         => 'Kôan-yî',
 'article'       => 'Vùn-chông',
 'newwindow'     => '（chhai sîn sṳ-chhûng chûng tá-khôi）',
@@ -1069,9 +1060,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => 'Chhiáng $1 yî kiám-sṳ fe̍t-chá phiên-chho ngì-ke kam-sṳ lie̍t-péu.',
 'watchnologin'         => 'Hàn-mò tên-ngi̍p',
 'watchnologintext'     => 'Ngì pit-sî siên [[Special:UserLogin|tên-ngi̍p]] chhòi-nèn kiên-kói ngì-ke kam-sṳ lie̍t-péu.',
-'addedwatch'           => 'Kâ-ngi̍p to kam-sṳ lie̍t-péu',
 'addedwatchtext'       => "Hong-mien \"[[:\$1]]\" yí-kîn pûn kâ-ngi̍p to ngì-ke [[Special:Watchlist|Kam-sṳ chhîn-tân]] chûng. Chiông-lòi yû-kôan chhṳ́ hong-mien khi̍p khì-thâ thó-lun-hong ke ngim-hò siû-cháng chiông-voi chhai hong-mien lie̍t-chhut, song-chhiá hàn-voi chhai [[Special:RecentChanges|Chui-khiûn ke kiên-kói]] chûng ke '''chhû-thí''' hìn-sṳt lie̍t-chhut. Kó-yèn  ngì heu-lòi sióng chhiùng hong-mien kam-sṳ chhîn-tân chûng chhîn-chhù, hí-khó tiám-kit thô-hòng thiàu-chûng \"thìn-chṳ́ kam-sṳ\" ke lièn-kiet。",
-'removedwatch'         => 'Yí-kîn thìn-chṳ́ kam-sṳ',
 'removedwatchtext'     => 'Vùn-chông "[[:$1]]" yí-kîn chhiùng Ngì kekam-sṳ lie̍t-péu mien-chûng yì-chhù.',
 'watch'                => 'Kam-sṳ',
 'watchthispage'        => 'Kam-sṳ pún-chông',

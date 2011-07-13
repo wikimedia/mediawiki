@@ -162,14 +162,6 @@ $messages = array(
 'index-category'                 => 'Paginas inditgadas',
 'noindex-category'               => 'Paginas betg inditgadas',
 
-'mainpagetext'      => "'''MediaWiki è vegnì installà cun success.'''",
-'mainpagedocfooter' => "Consultai il [http://meta.wikimedia.org/wiki/Help:Contents manual per utilisaders] per infurmaziuns davart l'utilisaziun da questa software da wiki.
-
-== Cumenzar ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Glista da las opziuns per la configuraziun]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Glista da mail da MediaWiki cun annunzias da novas versiuns]",
-
 'about'         => 'Surda',
 'article'       => 'artitgel',
 'newwindow'     => '(avra ina nova fanestra)',
@@ -1675,10 +1667,8 @@ L'adressa dad e-mail che ti has endatà en [[Special:Preferences|tias preferenza
 'watchlistanontext'    => "Ti stos $1 per vesair u modifitgar elements sin tia glista d'observaziun",
 'watchnologin'         => "Ti n'es betg t'annunzià!",
 'watchnologintext'     => "Ti stos [[Special:UserLogin|t'annunziar]] per midar tia glista d'observaziun.",
-'addedwatch'           => 'Agiuntà a la glista dad observaziun',
 'addedwatchtext'       => "L'artitgel \"[[:\$1]]\" è vegnì agiuntà a vossa [[Special:Watchlist|glista dad observaziun]].
 Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan enumeradas là e l'artitgel vegn marcà '''grass''' en la [[Special:RecentChanges|glista da las ultimas midadas]].",
-'removedwatch'         => "Allontanà da la glista d'observaziun",
 'removedwatchtext'     => 'La pagina "[[:$1]]" è vegnida stizzada da [[Special:Watchlist|tia glista d\'observaziun]].',
 'watch'                => 'Observar',
 'watchthispage'        => 'Observar questa pagina!',
