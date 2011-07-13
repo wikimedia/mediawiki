@@ -161,8 +161,6 @@ $wgMessageStructure = array(
 	),
 	'mainpage' => array(
 		'linkprefix',
-		'mainpagetext',
-		'mainpagedocfooter',
 	),
 	'miscellaneous1' => array(
 		'about',
