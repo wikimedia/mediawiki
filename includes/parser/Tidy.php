@@ -40,6 +40,7 @@ class MWTidyWrapper {
 		$this->mUniqPrefix = "\x7fUNIQ" .
 			dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 		$this->mMarkerIndex = 0;
+	
 		$wrappedtext = preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
 			array( &$this, 'replaceEditSectionLinksCallback' ), $text );
 
@@ -82,7 +83,6 @@ class MWTidyWrapper {
  * @ingroup Parser
  */
 class MWTidy {
-
 	/**
 	 * Interface with html tidy, used if $wgUseTidy = true.
 	 * If tidy isn't able to correct the markup, the original will be
@@ -97,12 +97,17 @@ class MWTidy {
 		$wrapper = new MWTidyWrapper;
 		$wrappedtext = $wrapper->getWrapped( $text );
 
-		if( $wgTidyInternal ) {
-			$correctedtext = self::execInternalTidy( $wrappedtext );
+		$retVal = null;
+		if ( $wgTidyInternal ) {
+			$correctedtext = self::execInternalTidy( $wrappedtext, false, $retVal );
 		} else {
-			$correctedtext = self::execExternalTidy( $wrappedtext );
+			$correctedtext = self::execExternalTidy( $wrappedtext, false, $retVal );
 		}
-		if( is_null( $correctedtext ) ) {
+
+		if ( $retVal < 0 ) {
+			wfDebug( "Possible tidy configuration error!\n" );
+			return $text . "\n<!-- Tidy was unable to run -->\n";
+		} elseif ( is_null( $correctedtext ) ) {
 			wfDebug( "Tidy error detected!\n" );
 			return $text . "\n<!-- Tidy found serious XHTML errors -->\n";
 		}
@@ -132,6 +137,7 @@ class MWTidy {
 		} else {
 			$errorStr = self::execExternalTidy( $text, true, $retval );
 		}
+
 		return ( $retval < 0 && $errorStr == '' ) || $retval == 0;
 	}
 
@@ -140,7 +146,7 @@ class MWTidy {
 	 * Also called in OutputHandler.php for full page validation
 	 *
 	 * @param $text String: HTML to check
-	 * @param $stderr Boolean: Whether to read from STDERR rather than STDOUT
+	 * @param $stderr Boolean: Whether to read result from STDERR rather than STDOUT
 	 * @param &$retval Exit code (-1 on internal error)
 	 * @return mixed String or null
 	 */
@@ -151,7 +157,7 @@ class MWTidy {
 		$cleansource = '';
 		$opts = ' -utf8';
 
-		if( $stderr ) {
+		if ( $stderr ) {
 			$descriptorspec = array(
 				0 => array( 'pipe', 'r' ),
 				1 => array( 'file', wfGetNull(), 'a' ),
@@ -168,79 +174,82 @@ class MWTidy {
 		$readpipe = $stderr ? 2 : 1;
 		$pipes = array();
 
-		if( function_exists( 'proc_open' ) ) {
-			$process = proc_open( "$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes );
-			if ( is_resource( $process ) ) {
-				// Theoretically, this style of communication could cause a deadlock
-				// here. If the stdout buffer fills up, then writes to stdin could
-				// block. This doesn't appear to happen with tidy, because tidy only
-				// writes to stdout after it's finished reading from stdin. Search
-				// for tidyParseStdin and tidySaveStdout in console/tidy.c
-				fwrite( $pipes[0], $text );
-				fclose( $pipes[0] );
-				while ( !feof( $pipes[$readpipe] ) ) {
-					$cleansource .= fgets( $pipes[$readpipe], 1024 );
-				}
-				fclose( $pipes[$readpipe] );
-				$retval = proc_close( $process );
-			} else {
-				$retval = -1;
+		$process = proc_open(
+			"$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes );
+
+		if ( is_resource( $process ) ) {
+			// Theoretically, this style of communication could cause a deadlock
+			// here. If the stdout buffer fills up, then writes to stdin could
+			// block. This doesn't appear to happen with tidy, because tidy only
+			// writes to stdout after it's finished reading from stdin. Search
+			// for tidyParseStdin and tidySaveStdout in console/tidy.c
+			fwrite( $pipes[0], $text );
+			fclose( $pipes[0] );
+			while ( !feof( $pipes[$readpipe] ) ) {
+				$cleansource .= fgets( $pipes[$readpipe], 1024 );
 			}
+			fclose( $pipes[$readpipe] );
+			$retval = proc_close( $process );
 		} else {
-			$retval = -1;	
+			wfWarn( "Unable to start external tidy process" );
+			$retval = -1;
 		}
 
-		if( !$stderr && $cleansource == '' && $text != '' ) {
+		if ( !$stderr && $cleansource == '' && $text != '' ) {
 			// Some kind of error happened, so we couldn't get the corrected text.
 			// Just give up; we'll use the source text and append a warning.
 			$cleansource = null;
 		}
+
 		wfProfileOut( __METHOD__ );
 		return $cleansource;
 	}
 
 	/**
-	 * Use the HTML tidy PECL extension to use the tidy library in-process,
+	 * Use the HTML tidy extension to use the tidy library in-process,
 	 * saving the overhead of spawning a new process.
 	 *
-	 * 'pear install tidy' should be able to compile the extension module.
-	 *
-	 * @param $text
-	 * @param $stderr
-	 * @param $retval
-	 *
-	 * @return string
+	 * @param $text String: HTML to check
+	 * @param $stderr Boolean: Whether to read result from error status instead of output
+	 * @param &$retval Exit code (-1 on internal error)
+	 * @return mixed String or null
 	 */
 	private static function execInternalTidy( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgDebugTidy;
 		wfProfileIn( __METHOD__ );
 
+		if ( !MWInit::classExists( 'tidy' ) ) {
+			wfWarn( "Unable to load internal tidy class." );
+			$retval = -1;
+			return null;
+		}
+
 		$tidy = new tidy;
 		$tidy->parseString( $text, $wgTidyConf, 'utf8' );
 
-		if( $stderr ) {
+		if ( $stderr ) {
 			$retval = $tidy->getStatus();
+
 			wfProfileOut( __METHOD__ );
 			return $tidy->errorBuffer;
 		} else {
 			$tidy->cleanRepair();
 			$retval = $tidy->getStatus();
-			if( $retval == 2 ) {
+			if ( $retval == 2 ) {
 				// 2 is magic number for fatal error
 				// http://www.php.net/manual/en/function.tidy-get-status.php
 				$cleansource = null;
 			} else {
 				$cleansource = tidy_get_output( $tidy );
-			}
-			if ( $wgDebugTidy && $retval > 0 ) {
-				$cleansource .= "<!--\nTidy reports:\n" .
-					str_replace( '-->', '--&gt;', $tidy->errorBuffer ) .
-					"\n-->";
+				if ( $wgDebugTidy && $retval > 0 ) {
+					$cleansource .= "<!--\nTidy reports:\n" .
+						str_replace( '-->', '--&gt;', $tidy->errorBuffer ) .
+						"\n-->";
+				}
 			}
 	
 			wfProfileOut( __METHOD__ );
 			return $cleansource;
 		}
 	}
-
 }
