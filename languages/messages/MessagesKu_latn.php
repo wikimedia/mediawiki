@@ -201,15 +201,6 @@ $messages = array(
 'category-file-count-limited'    => "Ev {{PLURAL:$1|data'yê|$1 datayên}} jêr di vê kategorîyê da ne.",
 'listingcontinuesabbrev'         => 'dewam',
 
-'mainpagetext'      => "'''MediaWiki serketî hate çêkirin.'''",
-'mainpagedocfooter' => 'Alîkarî ji bo bikaranîn û guherandin yê datayê Wîkî tu di bin [http://meta.wikimedia.org/wiki/Help:Contents pirtûka alîkarîyê ji bikarhêneran] da dikarê bibînê.
-
-== Alîkarî ji bo destpêkê ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lîsteya varîyablên konfîgûrasîyonê]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]',
-
 'about'         => 'Der barê',
 'article'       => 'Gotar',
 'newwindow'     => '(di rûpelekî din da yê were nîşandan)',
@@ -1263,7 +1254,6 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'watchlistanontext'    => 'Ji bo sekirinê ya xeyrandinê lîsteya te ya şopandinê tu gireke xwe $1.',
 'watchnologin'         => 'Te xwe qeyd nekirîye.',
 'watchnologintext'     => 'Ji bo xeyrandinê lîsteya te ya şopandinê tu gireke xwe [[Special:UserLogin|qedy kiribe]].',
-'addedwatch'           => 'Hat îlawekirinî listeya şopandinê',
 'addedwatchtext'       => "Rûpela \"<nowiki>\$1</nowiki>\" çû ser [[Special:Watchlist|lîsteya te ya şopandinê]].
 Li dahatû de her guhartoyek li wê rûpelê û rûpela guftûgo ya wê were kirin li vir dêt nîşan dan,
 
@@ -1271,7 +1261,6 @@ Li rûpela [[Special:RecentChanges|Guherandinên dawî]] jî ji bo hasan dîtina
 
 
 <p>Her dem tu bixwazî ew rûpel li nav lîsteya te ya şopandinê derbikî, li ser wê rûpelê, klîk bike \"êdî neşopîne\".</p>",
-'removedwatch'         => 'Ji lîsteya şopandinê hate jêbirin',
 'removedwatchtext'     => 'Rûpela "[[:$1]]" ji lîsteya te ya şopandinê hate jêbirin.',
 'watch'                => 'Bişopîne',
 'watchthispage'        => 'Vê rûpelê bişopîne',

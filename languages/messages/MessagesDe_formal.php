@@ -31,13 +31,6 @@ $messages = array(
 # User preference toggles
 'tog-enotifrevealaddr' => 'Ihre E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 
-'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
-
-== Starthilfen ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
-
 'view-pool-error' => 'Entschuldigung, die Server sind im Moment überlastet.
 Zu viele Benutzer versuchen diese Seite zu besuchen.
 Bitte warten Sie einige Minuten, bevor Sie es noch einmal versuchen.

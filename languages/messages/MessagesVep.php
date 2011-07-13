@@ -215,14 +215,6 @@ $messages = array(
 'index-category'                 => 'Indeksiruidud lehtpoled',
 'noindex-category'               => 'Indeksiruimatomad lehtpoled',
 
-'mainpagetext'      => "'''MediaWiki-likutim om seižutadud jügedusita.'''",
-'mainpagedocfooter' => 'Kc. [http://meta.wikimedia.org/wiki/Help:Kävutajan abukirj], miše sada informacijad wikin kävutamižes.
-
-== Erased tarbhaižed resursad ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Järgendusiden nimikirjutez]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce počtnimikirjutez]',
-
 'about'         => 'Andmused',
 'article'       => "Südäimištlehtpol'",
 'newwindow'     => '(avaidase udes iknas)',
@@ -1685,9 +1677,7 @@ Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
 'nowatchlist'        => "Teiden kaclendnimikirjutez om pall'az.",
 'watchlistanontext'  => 'Olgat hüväd, $1, miše lugeda vai redaktiruida teiden kaclendnimikirjutez.',
 'watchnologin'       => 'Pidab kirjutadas sistemha',
-'addedwatch'         => 'Om ližatud kaclendnimikirjuteshe',
 'addedwatchtext'     => '"[[:$1]]"-lehtpol\' om ližadud teiden [[Special:Watchlist|kaclendnimikirjuteshe]]. Necen lehtpolen (i sidotud lehtpoliden) tulebiš toižetusiš voiškandeb tedištada neciš nimikirjutesespäi; necen polhe kirjutaškatas mugažo [[Special:RecentChanges|uziden toižetusiden lehtpolel]] lihavoitud kirjamil, miše oliži kebnemb homaita.',
-'removedwatch'       => 'Om heittud kaclendnimikirjutesespäi',
 'removedwatchtext'   => '"[[:$1]]"-lehtpol\' om heittud [[Special:Watchlist|teiden kaclendnimikirjutesespäi]].',
 'watch'              => 'Pida sil’miš',
 'watchthispage'      => "Kacelta necidä lehtpol't",

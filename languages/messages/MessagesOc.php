@@ -419,15 +419,6 @@ $messages = array(
 'index-category'                 => 'Paginas indexadas',
 'noindex-category'               => 'Paginas pas indexadas',
 
-'mainpagetext'      => "'''MediaWiki es estat installat amb succès.'''",
-'mainpagedocfooter' => "Consultatz lo [http://meta.wikimedia.org/wiki/Ajuda:Contengut Guida de l'utilizaire] per mai d'entresenhas sus l'utilizacion d'aqueste logicial.
-
-== Començar amb MediaWiki ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista dels paramètres de configuracion]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussions de las parucions de MediaWiki]",
-
 'about'         => 'A prepaus',
 'article'       => 'Article',
 'newwindow'     => '(dobrís una fenèstra novèla)',
@@ -2078,10 +2069,8 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'watchnologin'         => 'Vos sètz pas identificat(ada)',
 'watchnologintext'     => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 per modificar vòstra lista de seguiment.',
-'addedwatch'           => 'Apondut a la tièra',
 'addedwatchtext'       => 'La pagina "[[:$1]]" es estada aponduda a vòstra [[Special:Watchlist|lista de seguiment]].
 Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associada seràn repertoriadas aicí, e la pagina apareisserà <b>en gras</b> dins la [[Special:RecentChanges|tièra dels darrièrs cambiaments]] per èsser localizada mai aisidament.',
-'removedwatch'         => 'Suprimida de la lista de seguiment',
 'removedwatchtext'     => 'La pagina « [[:$1]] » es estada levada de vòstra [[Special:Watchlist|lista de seguiment]].',
 'watch'                => 'Seguir',
 'watchthispage'        => 'Seguir aquesta pagina',

@@ -359,14 +359,6 @@ $messages = array(
 'noindex-category'               => 'Неиндексирани страници',
 'broken-file-category'           => 'Страници с неработещи препратки към файлове',
 
-'mainpagetext'      => "'''Уикито беше успешно инсталирано.'''",
-'mainpagedocfooter' => 'Разгледайте [http://meta.wikimedia.org/wiki/Help:Contents ръководството] за подробна информация относно използването на софтуера.
-
-== Първи стъпки ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Конфигурационни настройки]
-* [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ за МедияУики]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]',
-
 'about'         => 'За {{SITENAME}}',
 'article'       => 'Страница',
 'newwindow'     => '(отваря се в нов прозорец)',
@@ -2095,10 +2087,8 @@ $1',
 'watchlistanontext'    => 'За преглеждане и редактиране на списъка за наблюдение се изисква $1 в системата.',
 'watchnologin'         => 'Не сте влезли',
 'watchnologintext'     => 'Необходимо е да [[Special:UserLogin|влезете]], за да може да променяте списъка си за наблюдение.',
-'addedwatch'           => 'Добавено в списъка за наблюдение',
 'addedwatchtext'       => "Страницата „'''[[:$1]]'''“ беше добавена към [[Special:Watchlist|списъка ви за наблюдение]].
 Нейните бъдещи промени, както и на съответната й дискусионна страница, ще се описват там, а тя ще се появява в '''получер''' в [[Special:RecentChanges|списъка на последните промени]], което ще направи по-лесно избирането й.",
-'removedwatch'         => 'Премахнато от списъка за наблюдение',
 'removedwatchtext'     => 'Страницата „[[:$1]]“ беше премахната от [[Special:Watchlist|списъка ви за наблюдение]].',
 'watch'                => 'Наблюдение',
 'watchthispage'        => 'Наблюдаване на страницата',

@@ -377,14 +377,7 @@ $messages = array(
 'noindex-category'               => 'Неіндексовані сторінки',
 'broken-file-category'           => 'Сторінки, що посилаються на неіснуючі файли',
 
-'linkprefix'        => '/^(.*?)(„|«)$/sD',
-'mainpagetext'      => 'Програмне забезпечення «MediaWiki» успішно встановлене.',
-'mainpagedocfooter' => 'Інформацію про роботу з цією вікі можна знайти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 посібнику користувача].
-
-== Деякі корисні ресурси ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Список налаштувань];
-* [http://www.mediawiki.org/wiki/Manual:FAQ Часті питання з приводу MediaWiki];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розсилка повідомлень про появу нових версій MediaWiki].',
+'linkprefix' => '/^(.*?)(„|«)$/sD',
 
 'about'         => 'Про',
 'article'       => 'Стаття',
@@ -2156,10 +2149,8 @@ $1',
 'watchlistanontext'    => 'Вам необхідно $1, щоб переглянути чи редагувати список спостереження.',
 'watchnologin'         => 'Ви не ввійшли до системи',
 'watchnologintext'     => 'Ви повинні [[Special:UserLogin|ввійти до системи]], щоб мати можливість змінювати список спостереження.',
-'addedwatch'           => 'Додана до списку спостереження',
 'addedwatchtext'       => "Сторінка «[[:$1]]» додана до вашого [[Special:Watchlist|списку спостереження]].
 Наступні редагування цієї статті і пов'язаної з нею сторінки обговорення будуть відображатися в цьому списку, а також будуть виділені '''жирним шрифтом''' на сторінці зі [[Special:RecentChanges|списком останніх редагувань]], щоб їх було легше помітити.",
-'removedwatch'         => 'Вилучена зі списку спостереження',
 'removedwatchtext'     => 'Сторінка «[[:$1]]» вилучена з вашого [[Special:Watchlist|списку спостереження]].',
 'watch'                => 'Спостерігати',
 'watchthispage'        => 'Спостерігати за цією сторінкою',

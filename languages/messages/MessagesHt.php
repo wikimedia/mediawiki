@@ -269,15 +269,6 @@ $messages = array(
 'index-category'                 => 'Paj endèkse yo',
 'noindex-category'               => 'Paj ki pa endèkse yo',
 
-'mainpagetext'      => "'''MedyaWiki byen enstale l.'''",
-'mainpagedocfooter' => 'Konsilte [http://meta.wikimedia.org/wiki/Help:Konteni Gid Itilizatè] pou enfòmasyon sou kijan pou w itilize logisyèl wiki a.
-
-== Kijan pou kòmanse ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lis paramèt yo pou konfigirasyon]
-* [http://www.mediawiki.org/wiki/Manyèl:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis diskisyon ki parèt sou MediaWiki]',
-
 'about'         => 'Apwopo',
 'article'       => 'Atik',
 'newwindow'     => '(Ouvè nan yon lòt fenèt)',
@@ -1139,10 +1130,8 @@ Gade tou [[Special:WantedCategories|kategori moun mande]].',
 # Watchlist
 'watchlist'         => 'Lis swivi mwen',
 'mywatchlist'       => 'Lis swivi mwen',
-'addedwatch'        => 'Ajoute nan lis swivi',
 'addedwatchtext'    => 'Paj « [[:$1]] » te byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
 Depi kounye a, tout modifikasyon nan paj sa a ak nan paj diskisyon li pral parèt <b>fonse</b> nan [[Special:RecentChanges|lis chanjman ki fèk fèt]] pou ou ka wè yo pi byen.',
-'removedwatch'      => 'Retire nan lis swivi',
 'removedwatchtext'  => 'Paj "[[:$1]]" byen retire nan [[Special:Watchlist|lis swivi ou an]].',
 'watch'             => 'Swiv',
 'watchthispage'     => 'Swiv paj sa a',

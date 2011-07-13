@@ -144,15 +144,6 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'noindex-category'               => 'Noindexed pages',
 
-'mainpagetext'      => "'''MediaWiki haes been installit wi speed.'''",
-'mainpagedocfooter' => "Aks the [http://meta.wikimedia.org/wiki/Help:Contents Uiser's Manual] for speirins aboot using the wiki saftware.
-
-== Gettin startit ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settins leet]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki releese mailin leet]",
-
 'about'         => 'Aboot',
 'article'       => 'Content page',
 'newwindow'     => '(opens in new windae)',
@@ -1097,9 +1088,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'nowatchlist'       => 'Ye hivna onie eitems on yer watchleet.',
 'watchnologin'      => 'Nae loggit in',
 'watchnologintext'  => 'Ye maun be [[Special:UserLogin|loggit in]] tae modify yer watchleet.',
-'addedwatch'        => 'Eikit ti watchleet',
 'addedwatchtext'    => "The page \"<nowiki>\$1</nowiki>\" haes been eikit ti yer [[Special:Watchlist|watchleet]]. Futur chynges ti this page an its associate Collogue page will be leetit thare, an the page will kythe '''bauldit''' in the [[Special:RecentChanges|leet o recent chynges]] ti mak it mair eith tae pick oot. <p>Gin ye want ti remuve the page frae yer watchleet later, dab \"Stop watching\" in the sidebar.",
-'removedwatch'      => 'Remuved frae watchleet',
 'removedwatchtext'  => 'The page "[[:$1]]" haes been remuved frae yer watchleet.',
 'watch'             => 'Watch',
 'watchthispage'     => 'Leuk ower this page',

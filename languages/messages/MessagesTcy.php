@@ -127,15 +127,6 @@ $messages = array(
 'category-file-count-limited'    => 'ಪ್ರಸಕ್ತ ವರ್ಗೊಡು ಈ ತಿರ್ತ್’ದ {{PLURAL:$1|ಫೈಲ್ ಉಂಡು|$1 ಫೈಲ್’ಲು ಉಂಡು}}.',
 'listingcontinuesabbrev'         => 'ಮುಂದು.',
 
-'mainpagetext'      => "'''ಮೀಡಿಯವಿಕಿ ಯಶಸ್ವಿಯಾದ್ ಇನ್’ಸ್ಟಾಲ್ ಆಂಡ್.'''",
-'mainpagedocfooter' => 'ವಿಕಿ ತಂತ್ರಾಂಶನ್ ಉಪಗೋಗ ಮನ್ಪುನ ಬಗ್ಗೆ ಮಾಹಿತಿಗ್ [http://meta.wikimedia.org/wiki/Help:Contents ಸದಸ್ಯೆರ್ನ ನಿರ್ದೇಶನ ಪುಟ] ತೂಲೆ.
-
-== ಎಂಚ ಶುರು ಮಲ್ಪುನಿ ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
-
 'about'         => 'ಎಂಕ್ಲೆನ ಬಗ್ಗೆ',
 'article'       => 'ಲೇಖನ ಪುಟ',
 'newwindow'     => '(ಪೊಸ ಕಂಡಿನ್ ಓಪನ್ ಮಲ್ಪುಂಡು)',

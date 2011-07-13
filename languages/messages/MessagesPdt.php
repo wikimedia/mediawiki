@@ -421,7 +421,6 @@ Bitte nemm eenen aundren.',
 
 # Watchlist
 'mywatchlist'   => 'Miene Oppaussied',
-'addedwatch'    => "No Oppausssied bieje'done",
 'watch'         => 'Oppausse',
 'watchthispage' => 'Op dise Sied oppausse',
 'unwatch'       => 'Nijch mea oppausse',

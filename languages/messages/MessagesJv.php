@@ -176,13 +176,6 @@ $messages = array(
 'index-category'                 => 'Kaca sing diindhèks',
 'noindex-category'               => 'Kaca sing ora diindhèks',
 
-'mainpagetext'      => "'''Prangkat empuk wiki wis suksès dipasang.'''",
-'mainpagedocfooter' => "Mangga maca [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] kanggo katrangan luwih langkung prakara panggunan prangkat empuk wiki
-== Miwiti panggunan  ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
-
 'about'         => 'Prakara',
 'article'       => 'Artikel',
 'newwindow'     => '(buka ing jendhéla anyar)',
@@ -1733,10 +1726,8 @@ Alamat layang-e sing panjenengan lebokaké ing [[Special:Preferences|préferèsi
 'watchlistanontext'    => 'Mangga $1 kanggo mirsani utawa nyunting daftar pangawasan panjenengan.',
 'watchnologin'         => 'Durung mlebu log',
 'watchnologintext'     => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] kanggo ngowahi daftar artikel pilihan.',
-'addedwatch'           => 'Sampun katambahaken wonten ing daftar artikel pilihan.',
 'addedwatchtext'       => "Kaca \"[[:\$1]]\" wis ditambahaké menyang [[Special:Watchlist|daftar pangawasan]].
 Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhèng, bakal dipacak ing kéné, lan kaca iku bakal dituduhaké '''kandel''' ing [[Special:RecentChanges|daftar owah-owahan iku]] supados luwih gampang katon.",
-'removedwatch'         => 'Wis dibusak saka daftar pangawasan',
 'removedwatchtext'     => 'Kaca "[[:$1]]" wis dibusak saka [[Special:Watchlist|daftar pangawasan]].',
 'watch'                => 'tutana',
 'watchthispage'        => 'Periksa kaca iki',

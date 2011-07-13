@@ -558,6 +558,7 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
  * @author Platonides
  * @author Purodha
  * @author Raymond
+ * @author SPQRobin
  * @author Siebrand
  * @author Umherirrender
  */
@@ -650,6 +651,9 @@ This message refers to a block of HTML being embedded into the installer page. I
 	'config-download-localsettings' => 'The link text used in the download link in config-install-done.',
 	'config-help' => 'This is used in help boxes.
 {{Identical|Help}}',
+	'mainpagetext' => 'Along with {{msg|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
+	'mainpagedocfooter' => 'Along with {{msg|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
+This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example.',
 );
 
 /** Magyar (magázó) (Magyar (magázó))
@@ -723,6 +727,37 @@ Ez tartalmazza az összes beállítást.
 '''Megjegyzés''': Ha ezt most nem teszi meg, és kilép, a generált fájl nem lesz elérhető a későbbiekben.
 
 Ha ezzel készen van, '''[$2 beléphet a wikibe]'''.",
+	'mainpagedocfooter' => "Ha segítségre van szüksége a wikiszoftver használatához, akkor keresse fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
+
+== Alapok (angol nyelven) ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Beállítások listája]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki GyIK]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
+);
+
+/** Moroccan Spoken Arabic (Maġribi)
+ * @author Enzoreg
+ */
+$messages['ary'] = array(
+	'mainpagetext' => "'''MediaWiki ṫ'instala be najaḫ.'''",
+	'mainpagedocfooter' => 'Ila bġiṫiw meĝlomaṫ ĥrin baċ ṫesṫeĝmlo had l-lojisyél siro ċofo [http://meta.wikimedia.org/wiki/Aide:Contenu Gid dyal l-mosṫeĥdim]
+
+== L-bdaya mĝa MediaWiki ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista dyal l-paramétraṫ dyal l-konfigurasyon]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ fe MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]',
+);
+
+/** Español (formal) (Español (formal))
+ * @author Dferg
+ */
+$messages['es-formal'] = array(
+	'mainpagedocfooter' => 'Consulte usted la [http://meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
+
+== Empezando ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustes de configuración]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/es FAQ de MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]',
 );
 
 /** Afrikaans (Afrikaans)
@@ -901,6 +936,67 @@ U sal dit moet [$1 aflaai] en dit in die hoofgids van u wiki-installasie plaas; 
 As dit gedoen is, kan u '''[u $2 wiki besoek]'''.",
 	'config-download-localsettings' => 'Laai LocalSettings.php af',
 	'config-help' => 'hulp',
+	'mainpagetext' => "'''MediaWiki is suksesvol geïnstalleer.'''",
+	'mainpagedocfooter' => "Konsulteer '''[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]''' vir inligting oor hoe om die wikisagteware te gebruik.
+
+== Hoe om te Begin ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Gheg Albanian (Gegë)
+ * @author Bresta
+ */
+$messages['aln'] = array(
+	'mainpagetext' => "'''MediaWiki software u instalue me sukses.'''",
+	'mainpagedocfooter' => 'Për mâ shumë informata rreth përdorimit të softwareit wiki, ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin].
+
+
+== Për fillim ==
+
+* [http://www.mediawiki.org/wiki/Help:Configuration_settings Konfigurimi i MediaWikit]
+* [http://www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWikit]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWikit]',
+);
+
+/** Amharic (አማርኛ) */
+$messages['am'] = array(
+	'mainpagetext' => "'''MediaWiki በትክክል ማስገባቱ ተከናወነ።'''",
+	'mainpagedocfooter' => "ስለ ዊኪ ሶፍትዌር ጥቅም ለመረዳት፣ [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ያንብቡ።
+
+== ለመጀመር ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Aragonese (Aragonés)
+ * @author Juanpabl
+ */
+$messages['an'] = array(
+	'mainpagetext' => "'''O programa MediaWiki s'ha instalato correctament.'''",
+	'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar información sobre cómo usar o software wiki.
+
+== Ta prencipiar ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de caracteristicas confegurables]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas cutianas sobre MediaWiki (FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correu sobre ta anuncios de MediaWiki]",
+);
+
+/** Old English (Ænglisc)
+ * @author Gott wisst
+ */
+$messages['ang'] = array(
+	'mainpagetext' => "'''MediaǷiki hafaþ ȝeƿorden spēdiȝe inseted.'''",
+	'mainpagedocfooter' => 'Þeahta þone [http://meta.wikimedia.org/wiki/Help:Contents Brūcenda Lǣdend]  on helpe mid þǣre nytte of ƿikisōftƿare.
+
+== Beȝinnunȝ ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Onfæstnunȝa ȝesetednessa ȝetæl]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Ȝetæl oft ascodra ascunȝa ymb MediaǷiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ǣrendunȝȝetæl nīƿra MediaǷiki forþsendnessa]',
 );
 
 /** Arabic (العربية)
@@ -920,6 +1016,14 @@ $messages['ar'] = array(
 	'config-type-sqlite' => 'إس كيو لايت',
 	'config-type-oracle' => 'أوراكل',
 	'config-admin-email' => 'عنوان البريد الإلكتروني:',
+	'mainpagetext' => "'''تم تثبيت ميدياويكي بنجاح.'''",
+	'mainpagedocfooter' => 'استشر [http://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.
+
+== البداية ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings قائمة إعدادات الضبط]
+* [http://www.mediawiki.org/wiki/Manual:FAQ أسئلة متكررة حول ميدياويكي]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]',
 );
 
 /** Aramaic (ܐܪܡܝܐ)
@@ -943,8 +1047,52 @@ $messages['arc'] = array(
 	'config-email-settings' => 'ܛܘܝܒ̈ܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
 );
 
+/** Egyptian Spoken Arabic (مصرى) */
+$messages['arz'] = array(
+	'mainpagetext' => "''' ميدياويكى اتنزلت بنجاح.'''",
+	'mainpagedocfooter' => 'اسال [http://meta.wikimedia.org/wiki/Help:Contents دليل اليوزر] للمعلومات حوالين استخدام برنامج الويكى.
+
+== البداية ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings لستة اعدادات الضبط]
+* [http://www.mediawiki.org/wiki/Manual:FAQ أسئلة بتكرر حوالين الميدياويكى]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الميدياويكى]',
+);
+
+/** Assamese (অসমীয়া)
+ * @author Chaipau
+ * @author Gitartha.bordoloi
+ */
+$messages['as'] = array(
+	'mainpagetext' => "'''মিডিয়াৱিকি সফলভাবে ইন্সটল কৰা হ'ল ।'''",
+	'mainpagedocfooter' => "ৱিকি চ'ফটৱেৰ কেনেকৈ ব্যৱহাৰ কৰিব [http://meta.wikimedia.org/wiki/Help:Contents সদস্যৰ সহায়িকা] চাওঁক ।
+
+== আৰম্ভণি কৰিবলৈ ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Asturian (Asturianu) */
+$messages['ast'] = array(
+	'mainpagetext' => "'''MediaWiki instalóse correchamente.'''",
+	'mainpagedocfooter' => "Visita la [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuariu] pa saber cómo usar esti software wiki.
+
+== Empecipiando ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Llista de les opciones de configuración]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]",
+);
+
+/** Kotava (Kotava) */
+$messages['avk'] = array(
+	'mainpagetext' => "'''MediaWiki inkeyen talpeyot.'''",
+);
+
 /** Azerbaijani (Azərbaycanca)
  * @author Cekli829
+ * @author Wertuose
  */
 $messages['az'] = array(
 	'config-page-language' => 'Dil',
@@ -958,6 +1106,75 @@ $messages['az'] = array(
 	'config-admin-password' => 'Parol:',
 	'config-admin-email' => 'E-poçt ünvanı',
 	'config-help' => 'kömək',
+	'mainpagetext' => "'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''",
+	'mainpagedocfooter' => 'Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [http://meta.wikimedia.org/wiki/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.
+
+== Faydalı keçidlər ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Tənzimləmələrin siyahısı]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçt siyahısı]',
+);
+
+/** Bashkir (Башҡортса)
+ * @author Haqmar
+ */
+$messages['ba'] = array(
+	'mainpagetext' => '«MediaWiki» уңышлы рәүештә ҡоролдо.',
+	'mainpagedocfooter' => 'Был вики менән эшләү тураһында мәғлүмәтте [http://meta.wikimedia.org/wiki/Ярҙам:Белешмә ошонда] табып була.
+
+== Файҙалы сығанаҡтар ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Көйләүҙәр исемлеге (инг.)];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki тураһында йыш бирелгән һорауҙар һәм яуаптар (инг.)];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ның яңы версиялары тураһында хәбәрҙәр алып тороу].',
+);
+
+/** Bavarian (Boarisch)
+ * @author Mucalexx
+ */
+$messages['bar'] = array(
+	'mainpagetext' => "'''MediaWiki is erfoigraich installird worn.'''",
+	'mainpagedocfooter' => 'A Hüife zur da Benytzung und Konfigurazion vo da Wiki-Software findst auf [http://meta.wikimedia.org/wiki/Help:Contents Benytzerhåndbuach].
+
+== Starthüifm ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listen vo de Konfigurazionsvariablen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mäilinglisten vo de naichen MediaWiki-Versionen]',
+);
+
+/** Southern Balochi (بلوچی مکرانی) */
+$messages['bcc'] = array(
+	'mainpagetext' => "'''مدیا وی کی گون موفقیت نصب بوت.'''",
+	'mainpagedocfooter' => "مشورت کنیت گون  [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] په گشیترین اطلاعات په استفاده چه برنامه ویکی.
+
+== شروع بیت ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Bikol Central (Bikol Central) */
+$messages['bcl'] = array(
+	'mainpagetext' => "'''Instalado na an MediaWiki.'''",
+	'mainpagedocfooter' => "Konsultarón tabì an [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa impormasyon sa paggamit nin progama kaining wiki.
+
+== Pagpopoon ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Belarusian (Беларуская) */
+$messages['be'] = array(
+	'mainpagetext' => "'''MediaWiki паспяхова ўсталяваная.'''",
+	'mainpagedocfooter' => 'Гл. [http://meta.wikimedia.org/wiki/Help:Contents Дапаможнік карыстальніка (англ.)] па далейшыя звесткі аб карыстанні вікі-праграмамі.
+
+== З чаго пачаць ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Пералік параметраў канфігурацыі (англ.)]
+* [http://www.mediawiki.org/wiki/Manual:FAQ ЧАПЫ MediaWiki (англ.)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ліставанне аб выпусках MediaWiki (англ.)]',
 );
 
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
@@ -1491,6 +1708,13 @@ $3
 Калі Вы гэта зробіце, Вы можаце '''[$2 ўвайсьці ў Вашую вікі]'''.",
 	'config-download-localsettings' => 'Загрузіць LocalSettings.php',
 	'config-help' => 'дапамога',
+	'mainpagetext' => "'''MediaWiki пасьпяхова ўсталяваная.'''",
+	'mainpagedocfooter' => 'Глядзіце [http://meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.
+
+== З чаго пачаць ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Частыя пытаньні MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]',
 );
 
 /** Bulgarian (Български)
@@ -2001,6 +2225,27 @@ $3
 Когато файлът вече е в основната директория, '''[$2 уикито ще е достъпно на този адрес]'''.",
 	'config-download-localsettings' => 'Изтегляне на LocalSettings.php',
 	'config-help' => 'помощ',
+	'mainpagetext' => "'''Уикито беше успешно инсталирано.'''",
+	'mainpagedocfooter' => 'Разгледайте [http://meta.wikimedia.org/wiki/Help:Contents ръководството] за подробна информация относно използването на софтуера.
+
+== Първи стъпки ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Конфигурационни настройки]
+* [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ за МедияУики]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]',
+);
+
+/** Bahasa Banjar (Bahasa Banjar)
+ * @author Ezagren
+ * @author J Subhi
+ */
+$messages['bjn'] = array(
+	'mainpagetext' => "'''MediaWiki sudah tapasang awan sukses'''.",
+	'mainpagedocfooter' => 'Carii panjalasan [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pamuruk] gasan mamuruk parangkat lunak wiki
+
+== Gasan bamula ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daptar konpigurasi setélan]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki nang rancak ditakunakan]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki rilis milis]',
 );
 
 /** Bengali (বাংলা)
@@ -2107,6 +2352,26 @@ $messages['bn'] = array(
 	'config-install-tables' => 'টেবিল তৈরি',
 	'config-install-keys' => 'গোপন কি তৈরি',
 	'config-help' => 'সাহায্য',
+	'mainpagetext' => "'''মিডিয়াউইকি সফলভাবে ইন্সটল করা হয়েছে।'''",
+	'mainpagedocfooter' => 'কী ভাবে উইকি সফটওয়্যারটি ব্যবহারকার করবেন, তা জানতে [http://meta.wikimedia.org/wiki/Help:Contents ব্যবহারকারী সহায়িকা] দেখুন।
+
+== কোথা থেকে শুরু করবেন ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings কনফিগারেশন সেটিংস তালিকা]
+* [http://www.mediawiki.org/wiki/Manual:FAQ প্রশ্নোত্তরে মিডিয়াউইকি]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়াউইকি রিলিজের মেইলিং লিস্ট]',
+);
+
+/** Bishnupria Manipuri (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী) */
+$messages['bpy'] = array(
+	'mainpagetext' => "'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল.'''",
+	'mainpagedocfooter' => 'উইকি সফটৱ্যার এহান আতানির বারে দরকার ইলে [http://meta.wikimedia.org/wiki/Help:Contents আতাকুরার গাইড]হানর পাঙলাক নেগা।
+
+== অকরানিহান ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings কনফিগারেশন সেটিংর তালিকাহান]
+* [http://www.mediawiki.org/wiki/Manual:FAQ মিডিয়া উইকি আঙলাক]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়া উইকির ফঙপার বারে মেইলর তালিকাহান]',
 );
 
 /** Breton (Brezhoneg)
@@ -2489,6 +2754,14 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-mainpage-failed' => "Ne c'haller ket ensoc'hañ ar bajenn bennañ: $1",
 	'config-download-localsettings' => 'Pellgargañ LocalSettings.php',
 	'config-help' => 'skoazell',
+	'mainpagetext' => "'''Meziant MediaWiki staliet.'''",
+	'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
+
+== Kregiñ ganti ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 );
 
 /** Bosnian (Bosanski)
@@ -2568,6 +2841,25 @@ Ako želite regenerisati vašu datoteku <code>LocalSettings.php</code>, kliknite
 Ovo '''nije preporučeno''' osim ako nemate problema s vašom wiki.",
 	'config-admin-name' => 'Vaše ime:',
 	'config-admin-password' => 'Šifra:',
+	'mainpagetext' => "'''MediaViki softver is uspješno instaliran.'''",
+	'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
+
+== Početak ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista postavki]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki najčešće postavljana pitanja]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]',
+);
+
+/** Catalan (Català) */
+$messages['ca'] = array(
+	'mainpagetext' => "'''El programari del MediaWiki s'ha instaŀlat correctament.'''",
+	'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
+
+== Per a començar ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Llista de característiques configurables]
+* [http://www.mediawiki.org/wiki/Manual:FAQ PMF del MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
 );
 
 /** Chechen (Нохчийн)
@@ -2575,9 +2867,78 @@ Ovo '''nije preporučeno''' osim ako nemate problema s vašom wiki.",
  */
 $messages['ce'] = array(
 	'config-no-fts3' => "'''Тергам бе''': SQLite гулйина хуттург йоцуш [http://sqlite.org/fts3.html FTS3] — лахар болхбеш хир дац оцу бухца.",
+	'mainpagetext' => "'''Вики-белха гlирс «MediaWiki» кхочуш дика дlахlоттийна.'''",
+	'mainpagedocfooter' => 'Викийца болх бан хаамаш карор бу хlокху чохь [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 нисвохааман куьйгаллица].
+
+== Цхьаболу пайде гlирсаш ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Гlирс нисбан тарлушболу могlам];
+* [http://www.mediawiki.org/wiki/Manual:FAQ Сих сиха лушдолу хаттарш а жоьпаш оцу MediaWiki];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Хаам бохьуьйту араяларца башхонца керла MediaWiki].',
 );
 
-/** Czech (Česky) */
+/** Cebuano (Cebuano) */
+$messages['ceb'] = array(
+	'mainpagetext' => "'''Malamposon ang pag-instalar sa MediaWiki.'''",
+	'mainpagedocfooter' => 'Konsultaha ang [http://meta.wikimedia.org/wiki/Help:Contents Giya sa mga gumagamit] alang sa impormasyon unsaon paggamit niining wiki nga software.
+
+== Pagsugod ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listahan sa mga setting sa kompigurasyon]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ sa MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce  Mailing list sa mga release sa MediaWiki]',
+);
+
+/** Sorani (کوردی)
+ * @author Asoxor
+ */
+$messages['ckb'] = array(
+	'mainpagetext' => "'''میدیاویکی بە سەرکەوتوویی دامەزرا.'''",
+	'mainpagedocfooter' => 'پرس بکە بە [http://meta.wikimedia.org/wiki/Help:Contents ڕێنوێنیی بەکارھێنەران] بۆ زانیاری سەبارەت بە بەکارھێنانی نەرمامێری ویکی.
+
+== دەستپێکردن ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings لیستی ڕێکخستنەکان شێوەپێدان]
+* [http://www.mediawiki.org/wiki/Manual:FAQ پرسیارە دوپاتکراوەکانی میدیاویکی (MediaWiki FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لیستی ئیمەیلی وەشانەکانی میدیاویکی]',
+);
+
+/** Capiznon (Capiceño)
+ * @author Oxyzen
+ */
+$messages['cps'] = array(
+	'mainpagetext' => "'''Madalag-on nga na-install ang MediaWiki.'''",
+	'mainpagedocfooter' => 'Kunsultahon ang [http://meta.wikimedia.org/wiki/Help:Pagtuytoy sa Manug-usar] para sa impormasyon sa paggamit sang wiki nga "software".
+
+==Pag-umpisa==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista sang mga setting sang konpigurayon]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Mga perme napangkot sa MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista sang mga ginapadal-an sang sulat sang MediaWiki]',
+);
+
+/** Crimean Turkish (Latin) (Qırımtatarca (Latin)) */
+$messages['crh-latn'] = array(
+	'mainpagetext' => "'''MediaWiki muvafaqiyetnen quruldı.'''",
+	'mainpagedocfooter' => "Bu vikiniñ yol-yoruğını [http://meta.wikimedia.org/wiki/Help:Contents User's Guide qullanıcı qılavuzından] ögrenip olasıñız.
+
+== Bazı faydalı saytlar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Olucı sazlamalar cedveli];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki boyunca sıq berilgen suallernen cevaplar];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-niñ yañı versiyalarınıñ çıquvından haber yiberüv].",
+);
+
+/** Crimean Turkish (Cyrillic) (Qırımtatarca (Cyrillic)) */
+$messages['crh-cyrl'] = array(
+	'mainpagetext' => "'''MediaWiki мувафакъиетнен къурулды.'''",
+	'mainpagedocfooter' => "Бу викининъ ёл-ёругъыны [http://meta.wikimedia.org/wiki/Help:Contents User's Guide къулланыджы къылавузындан] огренип оласынъыз.
+
+== Базы файдалы сайтлар ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Олуджы сазламалар джедвели];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki боюнджа сыкъ берильген суаллернен джеваплар];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-нинъ янъы версияларынынъ чыкъувындан хабер йиберюв].",
+);
+
+/** Czech (Česky)
+ * @author Danny B.
+ */
 $messages['cs'] = array(
 	'config-information' => 'Informace',
 	'config-continue' => 'Pokračovat →',
@@ -2593,6 +2954,48 @@ $messages['cs'] = array(
 	'config-admin-email' => 'E-mailová adresa:',
 	'config-email-settings' => 'Nastavení e-mailu',
 	'config-install-step-failed' => 'selhaly',
+	'mainpagetext' => "'''MediaWiki byla úspěšně nainstalována.'''",
+	'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
+
+== Začínáme ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Nastavení konfigurace]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Často kladené otázky o MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]',
+);
+
+/** Kashubian (Kaszëbsczi) */
+$messages['csb'] = array(
+	'mainpagetext' => "'''MediaWiki òsta zainstalowónô.'''",
+);
+
+/** Chuvash (Чӑвашла) */
+$messages['cv'] = array(
+	'mainpagetext' => "'''«MediaWiki» вики-движока лартасси ăнăçлă вĕçленчĕ.'''",
+	'mainpagedocfooter' => 'Ку википе ĕçлеме пулăшакан информацине [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 усăç руководствинче] тупма пултаратăр.
+
+== Пулăшма пултарĕç ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ĕнерлевсен списокĕ];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki тăрăх час-часах ыйтакан ыйтусемпе хуравсем];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].',
+);
+
+/** Welsh (Cymraeg) */
+$messages['cy'] = array(
+	'mainpagetext' => "'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''",
+	'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
+
+==Cychwyn arni==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Rhestr gosodiadau wrth gyflunio]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]',
+);
+
+/** Danish (Dansk) */
+$messages['da'] = array(
+	'mainpagetext' => "'''MediaWiki er nu installeret.'''",
+	'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
 );
 
 /** German (Deutsch)
@@ -3123,9 +3526,73 @@ $3
 Sobald dies alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]'''.",
 	'config-download-localsettings' => 'LocalSettings.php herunterladen',
 	'config-help' => 'Hilfe',
+	'mainpagetext' => "'''MediaWiki wurde erfolgreich installiert.'''",
+	'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
+
+== Starthilfen ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+);
+
+/** German (formal address) (‪Deutsch (Sie-Form)‬)
+ * @author MichaelFrey
+ */
+$messages['de-formal'] = array(
+	'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
+
+== Starthilfen ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+);
+
+/** Zazaki (Zazaki) */
+$messages['diq'] = array(
+	'mainpagetext' => "'''MediaWiki vıst ra ser, vıraziya.'''",
+	'mainpagedocfooter' => 'Seba gurenayış u eyarkerdışê Wiki-Softwarey [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
+
+== Yardımê Sıftekerdışi ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista eyaranê vıraştışi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-dayışê postey]',
+);
+
+/** Lower Sorbian (Dolnoserbski) */
+$messages['dsb'] = array(
+	'mainpagetext' => "'''MediaWiki jo se wuspěšnje instalěrowało.'''",
+	'mainpagedocfooter' => "Pomoc pśi wužywanju softwary wiki namakajoš pód [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
+
+== Na zachopjenje ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfiguracija lisćiny połoženjow]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ (pšašanja a wótegrona)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lisćina e-mailowych nakładow MediaWiki]",
+);
+
+/** Central Dusun (Dusun Bundu-liwan)
+ * @author FRANELYA
+ */
+$messages['dtp'] = array(
+	'mainpagetext' => "'''Nopongo no do popodokot ot ModiaWiki.'''",
+	'mainpagedocfooter' => 'Rujuko hilo [http://meta.wikimedia.org/wiki/Help:Contents Ponudukan Momomoguno] kokomoi koilaan do momoguno posusuang-suangon wiki.
+
+== Kopotimpuunan ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lis papatantu nuludan]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Ponguhatan Koinsoruan om Simbar ModiaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis pininsuratan pinolabus do ModiaWiki]',
+);
+
+/** Greek (Ελληνικά) */
+$messages['el'] = array(
+	'mainpagetext' => "'''To λογισμικό MediaWiki εγκαταστάθηκε με επιτυχία.'''",
+	'mainpagedocfooter' => 'Περισσότερες πληροφορίες σχετικά με τη χρήση και με τη ρύθμιση παραμέτρων θα βρείτε στους συνδέσμους: [http://meta.wikimedia.org/wiki/MediaWiki_localisation Οδηγίες για τροποποίηση του περιβάλλοντος εργασίας] και [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Εγχειρίδιο χρήστη].',
 );
 
 /** Esperanto (Esperanto)
+ * @author Airon90
  * @author Yekrats
  */
 $messages['eo'] = array(
@@ -3139,11 +3606,20 @@ $messages['eo'] = array(
 	'config-page-options' => 'Agordoj',
 	'config-page-install' => 'Instali',
 	'config-page-complete' => 'Farita!',
+	'mainpagetext' => "'''MediaWiki estis sukcese instalita.'''",
+	'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
+
+==Kiel komenci==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfiguraĵoj] (angla)
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Oftaj Demandoj] (angla)
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)",
 );
 
 /** Spanish (Español)
  * @author Crazymadlover
  * @author Danke7
+ * @author Locos epraix
  * @author Od1n
  * @author Platonides
  * @author Sanbec
@@ -3456,6 +3932,20 @@ Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
 Se omitirá la lista predeterminada.",
 	'config-install-keys' => 'Generación de claves secretas',
 	'config-install-sysop' => 'Creando cuenta de usuario del administrador',
+	'mainpagetext' => "'''MediaWiki ha sido instalado con éxito.'''",
+	'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
+
+== Empezando ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustes de configuración]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/es FAQ de MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]',
+);
+
+/** Estonian (Eesti) */
+$messages['et'] = array(
+	'mainpagetext' => "'''MediaWiki tarkvara on edukalt paigaldatud.'''",
+	'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
+ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].',
 );
 
 /** Basque (Euskara)
@@ -3530,6 +4020,26 @@ $messages['eu'] = array(
 	'config-email-settings' => 'E-posta hobespenak',
 	'config-logo' => 'Logo URL:',
 	'config-install-step-done' => 'egina',
+	'mainpagetext' => "'''MediaWiki arrakastaz instalatu da.'''",
+	'mainpagedocfooter' => 'Ikus [http://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.
+
+== Nola hasi ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurazio balioen zerrenda]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]',
+);
+
+/** Extremaduran (Estremeñu) */
+$messages['ext'] = array(
+	'mainpagetext' => "'''MeyaGüiqui s'á istalau satihatoriamenti.'''",
+	'mainpagedocfooter' => "Consurta la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pa sabel mas al tentu el huncionamientu el software güiqui.
+
+== Esminciandu ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 );
 
 /** Persian (فارسی)
@@ -3539,6 +4049,15 @@ $messages['fa'] = array(
 	'config-your-language' => 'زبان شما:',
 	'config-wiki-language' => 'زبان ویکی:',
 	'config-page-language' => 'زبان',
+	'mainpagetext' => "'''نرم‌افزار ویکی با موفقیت نصب شد.'''",
+	'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
+برای استفاده از نرم‌افزار ویکی کمک بگیرید.
+
+== آغاز به کار ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings تنظیم پیکربندی]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki پرسش‌های متداول]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست پست الکترونیکی نسخه‌های مدیاویکی]',
 );
 
 /** Finnish (Suomi)
@@ -3656,6 +4175,29 @@ Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoitta
 	'config-install-step-done' => 'tehty',
 	'config-install-step-failed' => 'epäonnistui',
 	'config-help' => 'ohje',
+	'mainpagetext' => "'''MediaWiki on onnistuneesti asennettu.'''",
+	'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
+
+=== Lisäohjeita ===
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Asetusten teko-ohjeita]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWikin FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sähköpostilista, jolla tiedotetaan MediaWikin uusista versioista]
+
+=== Asetukset ===
+
+Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LocalSettings.php:hen seuraavasti:
+ \$wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';
+Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).",
+);
+
+/** Faroese (Føroyskt) */
+$messages['fo'] = array(
+	'mainpagetext' => "'''Innlegging av Wiki-ritbúnaði væleydnað.'''",
 );
 
 /** French (Français)
@@ -4185,6 +4727,25 @@ $3
 Lorsque c'est fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
 	'config-download-localsettings' => 'Télécharger LocalSettings.php',
 	'config-help' => 'aide',
+	'mainpagetext' => "'''MediaWiki a été installé avec succès.'''",
+	'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
+
+== Démarrer avec MediaWiki ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste des paramètres de configuration]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ sur MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]',
+);
+
+/** Cajun French (Français cadien) */
+$messages['frc'] = array(
+	'mainpagetext' => "'''Vous avez bien installé MediaWiki.'''",
+	'mainpagedocfooter' => 'Lisez la [http://meta.wikimedia.org/wiki/Help:Contents Guide des Useurs] pour apprendre à user le wiki software.
+
+== Pour Commencer ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Réglage]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: Questions Souvent Posées]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki Liste à Malle]',
 );
 
 /** Franco-Provençal (Arpetan)
@@ -4336,6 +4897,101 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-install-mainpage-failed' => 'Empossiblo d’entrebetar la pâge principâla : $1',
 	'config-download-localsettings' => 'Tèlèchargiér LocalSettings.php',
 	'config-help' => 'éde',
+	'mainpagetext' => "'''MediaWiki at étâ enstalâ avouéc reusséta.'''",
+	'mainpagedocfooter' => 'Vêde lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
+
+== Emmodar avouéc MediaWiki ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista des paramètres de configuracion]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FDQ sur MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion sur les distribucions de MediaWiki]',
+);
+
+/** Northern Frisian (Nordfriisk)
+ * @author Pyt
+ */
+$messages['frr'] = array(
+	'mainpagetext' => "'''MediaWiki wörd ma erfolch instaliird.'''",
+	'mainpagedocfooter' => 'Heelp tu jü benjüting än konfigurasjoon foon e Wiki-software fanst dü önj dåt [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
+
+
+== Startheelpe ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+);
+
+/** Friulian (Furlan) */
+$messages['fur'] = array(
+	'mainpagetext' => "'''MediaWiki e je stade instalade cun sucès.'''",
+);
+
+/** Western Frisian (Frysk) */
+$messages['fy'] = array(
+	'mainpagetext' => "'''MediaWiki-program goed ynstallearre.'''",
+	'mainpagedocfooter' => "Rieplachtsje de [http://meta.wikimedia.org/wiki/Help:Ynhâldsopjefte hantlieding] foar ynformaasje oer it gebrûk fan 'e wikisoftware.
+
+== Mear help oer Mediawiki ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings List mei ynstellings]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Faak stelde fragen (FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]",
+);
+
+/** Irish (Gaeilge) */
+$messages['ga'] = array(
+	'mainpagetext' => "'''D'éirigh le suiteáil MediaWiki.'''",
+	'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
+agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.',
+);
+
+/** Gagauz (Gagauz) */
+$messages['gag'] = array(
+	'mainpagetext' => "'''MediaWiki başarılan kuruldu.'''",
+	'mainpagedocfooter' => "Vikilän iş uurunda bilgi almaa için [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız
+
+== Eni başlayanlar için ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Simplified Gan script (‪赣语(简体)‬) */
+$messages['gan-hans'] = array(
+	'mainpagetext' => "'''安装正MediaWiki喽。'''",
+	'mainpagedocfooter' => '参看[http://meta.wikimedia.org/wiki/Help:Contents 用户指南]里头会话到啷用wiki软件
+
+== 开始使用 ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设定列表]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 平常问题解答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布email清单]',
+);
+
+/** Traditional Gan script (‪贛語(繁體)‬) */
+$messages['gan-hant'] = array(
+	'mainpagetext' => "'''安裝正MediaWiki嘍。'''",
+	'mainpagedocfooter' => '參看[http://meta.wikimedia.org/wiki/Help:Contents 用戶指南]裡頭會話到啷用wiki軟件
+
+== 開始使用 ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定列表]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 平常問題解答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈email清單]',
+);
+
+/** Scottish Gaelic (Gàidhlig)
+ * @author Akerbeltz
+ */
+$messages['gd'] = array(
+	'mainpagetext' => "'''Chaidh MediaWiki a stàladh gu soirbheachail.'''",
+	'mainpagedocfooter' => "Cuir sùil air [http://meta.wikimedia.org/wiki/Help:Contents treòir nan cleachdaichean] airson fiosrachadh mu chleachdadh a' bhathar-bhog wiki.
+
+== Toiseach tòiseachaidh ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liosta suidheachadh nan roghainnean]
+* [http://www.mediawiki.org/wiki/Manual:FAQ CÀBHA MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liosta puist nan sgaoilidhean MediaWiki]",
 );
 
 /** Galician (Galego)
@@ -4867,6 +5523,26 @@ $3
 Cando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
 	'config-download-localsettings' => 'Descargar o LocalSettings.php',
 	'config-help' => 'axuda',
+	'mainpagetext' => "'''MediaWiki instalouse correctamente.'''",
+	'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.
+
+== Comezando ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opcións de configuración]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes sobre MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo das edicións de MediaWiki]',
+);
+
+/** Ancient Greek (Ἀρχαία ἑλληνικὴ)
+ * @author Omnipaedista
+ */
+$messages['grc'] = array(
+	'mainpagetext' => "'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''",
+	'mainpagedocfooter' => 'Βουλευθήσεσθε τὰς [http://meta.wikimedia.org/wiki/Help:Contents βουλὰς τοῖς Χρωμένοις] ἵνα πληροφορηθῇτε περὶ τοῦ βίκιλογισμικοῦ.
+
+== Ἄρξασθε ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Διαλογή παραμέτρων διαμορφώσεως]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: τὰ πολλάκις αἰτηθέντα]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Διαλογή διαλέξεων ἐπὶ τῶν διανομῶν τῆς MediaWiki]',
 );
 
 /** Swiss German (Alemannisch)
@@ -4977,6 +5653,43 @@ S Objäktcaching isch wäge däm nit aktiviert.",
 	'config-imagemagick' => 'ImageMagick isch gfunde wore: <code>$1</code>.
 Miniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch.',
 	'config-help' => 'Hilf',
+	'mainpagetext' => "'''MediaWiki isch erfolgrich inschtalliert worre.'''",
+	'mainpagedocfooter' => 'Lueg uf d [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle.',
+);
+
+/** Gujarati (ગુજરાતી)
+ * @author Dineshjk
+ */
+$messages['gu'] = array(
+	'mainpagetext' => "'''મિડીયાવિકિ સફળતાપૂર્વક ઇન્સટોલ થયું છે.'''",
+	'mainpagedocfooter' => 'વિકિ સોફ્ટવેર વાપરવાની માહીતિ માટે [http://meta.wikimedia.org/wiki/Help:Contents સભ્ય માર્ગદર્શિકા] જુઓ.
+
+== શરૂઆતના તબક્કે ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings કોનફીગ્યુરેશન સેટીંગ્સની યાદી]
+* [http://www.mediawiki.org/wiki/Manual:FAQ વારંવાર પુછાતા પ્રશ્નો]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce મિડીયાવિકિ રીલીઝ મેઇલીંગ લીસ્ટ]',
+);
+
+/** Manx (Gaelg) */
+$messages['gv'] = array(
+	'mainpagetext' => "'''Ta MediaWiki currit stiagh nish.'''",
+);
+
+/** Hakka (Hak-kâ-fa) */
+$messages['hak'] = array(
+	'mainpagetext' => "'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki.'''",
+	'mainpagedocfooter' => 'chhiáng fóng-mun [http://meta.wikimedia.org/wiki/Help:Contents Yung-fu sú-chhak] yî-khi̍p sṳ́-yung chhṳ́ wiki ngiôn-khien ke sin-sit！
+
+== Ngi̍p-mùn  ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki Phi-chṳ sat-thin chhîn-tân]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Phìn-sòng mun-thì kié-tap]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
+);
+
+/** Hawaiian (Hawai`i) */
+$messages['haw'] = array(
+	'mainpagetext' => "'''Ua pono ka ho‘ouka ‘ana o MediaWiki.'''",
 );
 
 /** Hebrew (עברית)
@@ -5503,6 +6216,57 @@ $3
 אחרי שתעשו את זה, תוכלו '''[$2 להיכנס לוויקי שלכם]'''.",
 	'config-download-localsettings' => 'הורדת LocalSettings.php',
 	'config-help' => 'עזרה',
+	'mainpagetext' => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
+	'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
+
+== קישורים שימושיים ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]
+* [http://www.mediawiki.org/wiki/Manual:FAQ שאלות נפוצות]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]',
+);
+
+/** Hindi (हिन्दी) */
+$messages['hi'] = array(
+	'mainpagetext' => "'''मीडियाविकिका इन्स्टॉलेशन पूरा हो गया हैं ।'''",
+	'mainpagedocfooter' => 'विकि सॉफ्टवेयरके इस्तेमाल के लिये [http://meta.wikimedia.org/wiki/Help:Contents उपयोगकर्ता गाईड] देखें ।
+
+== शुरुवात करें ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगकी सूची]
+* [http://www.mediawiki.org/wiki/Manual:FAQ मीडियाविकिके बारे में प्राय: पूछे जाने वाले सवाल]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
+);
+
+/** Fiji Hindi (Latin) (Fiji Hindi (Latin))
+ * @author Thakurji
+ */
+$messages['hif-latn'] = array(
+	'mainpagetext' => "'''MediaWiki ke safalta se install kar dewa gais hai.'''",
+	'mainpagedocfooter' => "Wiki software ke use kare ke aur jaankari ke khatir [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.
+
+== Getting started ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Hiligaynon (Ilonggo)
+ * @author Anjoeli9806
+ */
+$messages['hil'] = array(
+	'mainpagetext' => "'''Ang MediaWiki madinalag-on nga na-instala.'''",
+	'mainpagedocfooter' => " Magkonsulta sa [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa mga impormasyon sa paggamit sang wiki nga software.
+
+== Pag-umpisa ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista sang mga konpigorasyon sang pagkay-o]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Mga Masami Pamangkoton sa MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista sang mga ginapadal-an sang sulat kon may paguha-on nga MediaWiki]",
+);
+
+/** Croatian (Hrvatski) */
+$messages['hr'] = array(
+	'mainpagetext' => "'''Softver MediaWiki je uspješno instaliran.'''",
+	'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
+i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
@@ -5817,6 +6581,28 @@ Standardna lisćina sp přeskakuje.",
 	'config-install-mainpage-failed' => 'Powěsć njeda so zasunyć: $1',
 	'config-download-localsettings' => 'LocalSettings.php sćahnyć',
 	'config-help' => 'pomoc',
+	'mainpagetext' => "'''MediaWiki bu wuspěšnje instalowany.'''",
+	'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
+
+== Za nowačkow ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Wo nastajenjach]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+);
+
+/** Haitian (Kreyòl ayisyen)
+ * @author Boukman
+ */
+$messages['ht'] = array(
+	'mainpagetext' => "'''MedyaWiki byen enstale l.'''",
+	'mainpagedocfooter' => 'Konsilte [http://meta.wikimedia.org/wiki/Help:Konteni Gid Itilizatè] pou enfòmasyon sou kijan pou w itilize logisyèl wiki a.
+
+== Kijan pou kòmanse ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lis paramèt yo pou konfigirasyon]
+* [http://www.mediawiki.org/wiki/Manyèl:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis diskisyon ki parèt sou MediaWiki]',
 );
 
 /** Hungarian (Magyar)
@@ -6332,6 +7118,25 @@ $3
 Ha végeztél a fájl elhelyezésével, '''[$2 beléphetsz a wikibe]'''.",
 	'config-download-localsettings' => 'LocalSettings.php letöltése',
 	'config-help' => 'segítség',
+	'mainpagetext' => "'''A MediaWiki telepítése sikeresen befejeződött.'''",
+	'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
+
+== Alapok (angol nyelven) ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Beállítások listája]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki GyIK]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
+);
+
+/** Armenian (Հայերեն) */
+$messages['hy'] = array(
+	'mainpagetext' => "'''«MediaWiki» ծրագիրը հաջողությամբ տեղադրվեց։'''",
+	'mainpagedocfooter' => "Այցելեք [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]՝ վիքի ծրագրային ապահովման օգտագործման մասին տեղեկությունների համար։
+
+== Որոշ օգտակար ռեսուրսներ ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 );
 
 /** Interlingua (Interlingua)
@@ -6863,6 +7668,13 @@ $3
 Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
 	'config-download-localsettings' => 'Discargar LocalSettings.php',
 	'config-help' => 'adjuta',
+	'mainpagetext' => "'''MediaWiki ha essite installate con successo.'''",
+	'mainpagedocfooter' => 'Consulta le [http://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.
+
+== Pro initiar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configurationes]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ a proposito de MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -7374,6 +8186,19 @@ $3
 Setelah melakukannya, Anda dapat '''[$2 memasuki wiki Anda]'''.",
 	'config-download-localsettings' => 'Unduh LocalSettings.php',
 	'config-help' => 'bantuan',
+	'mainpagetext' => "'''MediaWiki telah terpasang dengan sukses'''.",
+	'mainpagedocfooter' => 'Silakan baca [http://www.mediawiki.org/wiki/Help:Contents/id Panduan Pengguna] untuk cara penggunaan perangkat lunak wiki ini.
+
+== Memulai penggunaan ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings/id Daftar pengaturan konfigurasi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/id Daftar pertanyaan yang sering diajukan mengenai MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]',
+);
+
+/** Interlingue (Interlingue) */
+$messages['ie'] = array(
+	'mainpagetext' => "'''Software del wiki installat con successe.'''",
 );
 
 /** Igbo (Igbo)
@@ -7382,6 +8207,43 @@ Setelah melakukannya, Anda dapat '''[$2 memasuki wiki Anda]'''.",
 $messages['ig'] = array(
 	'config-admin-password' => 'Okwúngáfè:',
 	'config-admin-password-confirm' => 'Okwúngáfè mgbe ozor:',
+	'mainpagetext' => "'''MediaWiki a banyélé nke oma.'''",
+	'mainpagedocfooter' => "Gbàkpó [http://meta.wikimedia.org/wiki/Help:Contents Ǹdù Ọ'bànifé] màkà ụmá màkà Í jí ngwa orunotu bu wiki.
+
+== I bídó ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ndétu ndósé ihe]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce wéfù ndétu nke ozi MediaWiki]",
+);
+
+/** Iloko (Ilokano) */
+$messages['ilo'] = array(
+	'mainpagetext' => "'''Sibaballigi a nainstolar ti MediaWiki.'''",
+);
+
+/** Ido (Ido)
+ * @author Wyvernoid
+ */
+$messages['io'] = array(
+	'mainpagetext' => "'''MediaWiki instalesis sucese.'''",
+	'mainpagedocfooter' => "Videz la [http://meta.wikimedia.org/wiki/Help:Contents Guidilo por Uzanti] por informo pri uzar la wiki programo.
+
+== Komencar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo di ''Configuration setting'']
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki OQQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki nova versioni posto-listo]",
+);
+
+/** Icelandic (Íslenska) */
+$messages['is'] = array(
+	'mainpagetext' => "'''Uppsetning á MediaWiki heppnaðist.'''",
+	'mainpagedocfooter' => 'Ráðfærðu þig við [http://meta.wikimedia.org/wiki/Help:Contents Notandahandbókina] fyrir frekari upplýsingar um notkun wiki-hugbúnaðarins.
+
+== Fyrir byrjendur ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listi yfir uppsetningarstillingar]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Algengar spurningar MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]',
 );
 
 /** Italian (Italiano)
@@ -7447,6 +8309,15 @@ Non è possibile installare MediaWiki.",
 	'config-env-php' => 'PHP $1 è installato.',
 	'config-env-php-toolow' => 'PHP $1 è installato.
 Tuttavia, MediaWiki richiede PHP $2 o superiore.',
+	'mainpagetext' => "'''Installazione di MediaWiki completata correttamente.'''",
+	'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
+
+== Per iniziare ==
+I seguenti collegamenti sono in lingua inglese:
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
 );
 
 /** Japanese (日本語)
@@ -7928,9 +8799,138 @@ $3
 それを完了すれば、'''[$2 ウィキに入る]'''ことができます。",
 	'config-download-localsettings' => 'LocalSettings.phpをダウンロード',
 	'config-help' => 'ヘルプ',
+	'mainpagetext' => "'''MediaWikiが正常にインストールされました。'''",
+	'mainpagedocfooter' => 'ウィキソフトウェアの使い方に関する情報は[http://meta.wikimedia.org/wiki/Help:Contents 利用者案内]を参照してください。
+
+== はじめましょう ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings/ja 設定の一覧]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/ja MediaWiki よくある質問と回答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiリリース情報メーリングリスト]',
+);
+
+/** Jamaican Creole English (Patios)
+ * @author Yocahuna
+ */
+$messages['jam'] = array(
+	'mainpagetext' => "'''MediaWiki don instaal soksesful.'''",
+	'mainpagedocfooter' => "Kansolt di [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] fi infamieshan ou fi yuuz di wiki saafwier.
+
+== Taatop ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Jutish (Jysk)
+ * @author Huslåke
+ */
+$messages['jut'] = array(
+	'mainpagetext' => "'''MediaWiki er nu installeret.'''",
+	'mainpagedocfooter' => "Se vores engelskspråĝede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentåsje tilpasnenge'm åf æ brugergrænseflade] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide æ brugervejlednenge] før åplysnenger åpsætnenge'm og anvendelse.",
+);
+
+/** Javanese (Basa Jawa) */
+$messages['jv'] = array(
+	'mainpagetext' => "'''Prangkat empuk wiki wis suksès dipasang.'''",
+	'mainpagedocfooter' => "Mangga maca [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] kanggo katrangan luwih langkung prakara panggunan prangkat empuk wiki
+== Miwiti panggunan  ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
+);
+
+/** Georgian (ქართული) */
+$messages['ka'] = array(
+	'mainpagetext' => "'''მედიავიკი წარმატებით ჩაიტვირთა.'''",
+	'mainpagedocfooter' => 'ვიკი პროგრამის გამოყენების ინფორმაციისთვის იხილეთ [http://meta.wikimedia.org/wiki/Help:Contents მომხმარებლის მეგზური].
+
+== დაწყება ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings კონფიგურაციის მაჩვენებლების სია]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის გამოცემის დაგზავნის სია]',
+);
+
+/** Kara-Kalpak (Qaraqalpaqsha) */
+$messages['kaa'] = array(
+	'mainpagetext' => "'''MediaWiki tabıslı ornatıldı.'''",
+	'mainpagedocfooter' => "Wiki bag'darlamasın qollanıw haqqındag'i mag'lıwmat usın [http://meta.wikimedia.org/wiki/Help:Contents Paydalanıwshılar qollanbasınan] ken'es alın'.
+
+== Baslaw ushın ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfiguratsiya sazlaw dizimi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWikidin' Ko'p Soralatug'ın Sorawları]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki haqqında xat tarqatıw dizimi]",
+);
+
+/** Kabardian (Cyrillic) (Къэбэрдеибзэ / Qabardjajəbza (Cyrillic))
+ * @author Bogups
+ */
+$messages['kbd-cyrl'] = array(
+	'mainpagetext' => "'''«MediaWiki» узыншу хэгъува.'''",
+	'mainpagedocfooter' => 'Мы виким и лэжьыгъэ хъыбархэр здэбгъуэтыфынур [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 дэӀэпыкъуэгъу тхылъым].
+
+
+== Къыщхьэпэгъуэ хъуфынухэр ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Зэгъэзэхуэгъуэ гуэрэхэм я тхылъ];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-м упщӀэ нахъыбу ятхэмрэ я жэуапхэмрэ];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-м и версиэ щӀэуэ къэжахэм я къэӀохугъуэ].',
+);
+
+/** کھوار (کھوار)
+ * @author Rachitrali
+ */
+$messages['khw'] = array(
+	'mainpagetext' => "\"<big>'''میڈیاوکیو کامیابیو سورا چالو کورونو بیتی شیر۔.'''</big>\"",
+);
+
+/** Kirmanjki (Kırmancki)
+ * @author Mirzali
+ */
+$messages['kiu'] = array(
+	'mainpagetext' => "'''MediaWiki fist ra ser, vıraziya.'''",
+	'mainpagedocfooter' => "Serba melumatê gurenaena ''wiki software''i [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
+
+== Gamê verêni ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ayarunê vırastene]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-daena postey]",
+);
+
+/** Kazakh (Arabic script) (‫قازاقشا (تٴوتە)‬) */
+$messages['kk-arab'] = array(
+	'mainpagetext' => "'''مەدىياۋىيكىي بۋماسى ٴساتتى ورناتىلدى.'''",
+	'mainpagedocfooter' => 'ۋىيكىي باعدارلامالىق جاساقتاماسىن قالاي قولداناتىن اقپاراتى ٴۇشىن [http://meta.wikimedia.org/wiki/Help:Contents پايدالانۋشىلىق نۇسقاۋلارىنان] كەڭەس الىڭىز.
+
+== باستاۋ ٴۇشىن ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings باپتالىم قالاۋلارىنىڭ ٴتىزىمى]
+* [http://www.mediawiki.org/wiki/Manual:FAQ مەدىياۋىيكىيدىڭ جىيى قويىلعان ساۋالدارى]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce مەدىياۋىيكىي شىعۋ تۋرالى حات تاراتۋ ٴتىزىمى]',
+);
+
+/** Kazakh (Cyrillic) (Қазақша (Cyrillic)) */
+$messages['kk-cyrl'] = array(
+	'mainpagetext' => "'''МедиаУики бумасы сәтті орнатылды.'''",
+	'mainpagedocfooter' => 'Уики бағдарламалық жасақтамасын қалай қолданатын ақпараты үшін [http://meta.wikimedia.org/wiki/Help:Contents Пайдаланушылық нұсқауларынан] кеңес алыңыз.
+
+== Бастау үшін ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Бапталым қалауларының тізімі]
+* [http://www.mediawiki.org/wiki/Manual:FAQ МедиаУикидің Жиы Қойылған Сауалдары]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаУики шығу туралы хат тарату тізімі]',
+);
+
+/** Kazakh (Latin) (Қазақша (Latin)) */
+$messages['kk-latn'] = array(
+	'mainpagetext' => "'''MedïaWïkï bwması sätti ornatıldı.'''",
+	'mainpagedocfooter' => 'Wïkï bağdarlamalıq jasaqtamasın qalaý qoldanatın aqparatı üşin [http://meta.wikimedia.org/wiki/Help:Contents Paýdalanwşılıq nusqawlarınan] keñes alıñız.
+
+== Bastaw üşin ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Baptalım qalawlarınıñ tizimi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MedïaWïkïdiñ Jïı Qoýılğan Sawaldarı]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï şığw twralı xat taratw tizimi]',
 );
 
 /** Khmer (ភាសាខ្មែរ)
+ * @author Thearith
  * @author គីមស៊្រុន
  */
 $messages['km'] = array(
@@ -7949,6 +8949,51 @@ $messages['km'] = array(
 	'config-page-complete' => 'បញ្ចប់!',
 	'config-page-restart' => 'តំលើងឡើងវិញ',
 	'config-help' => 'ជំនួយ',
+	'mainpagetext' => "'''មេឌាវិគីត្រូវបានដំឡើងសំរេចហើយ​។'''",
+	'mainpagedocfooter' => 'សូមពិនិត្យមើល [http://meta.wikimedia.org/wiki/ជំនួយ​៖ ខ្លឹមសារ​ណែនាំ​ប្រើប្រាស់]សម្រាប់​ព័ត៌មាន​​បន្ថែមចំពោះ​ការប្រើប្រាស់ ផ្នែកទន់វិគី​។
+
+== ចាប់ផ្ដើមជាមួយមេឌាវិគី ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings បញ្ជីកំណត់ទម្រង់]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/km សំណួរញឹកញាប់​មេឌាវិគី]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce បញ្ជី​ពិភាក្សា​ការផ្សព្វផ្សាយ​របស់​មេឌាវិគី]',
+);
+
+/** Kannada (ಕನ್ನಡ) */
+$messages['kn'] = array(
+	'mainpagetext' => "'''ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.'''",
+	'mainpagedocfooter' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [http://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.
+
+== ಪ್ರಾರಂಭಿಸುವುದು ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+);
+
+/** Korean (한국어) */
+$messages['ko'] = array(
+	'mainpagetext' => "'''미디어위키가 성공적으로 설치되었습니다.'''",
+	'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
+
+== 시작하기 ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings 설정하기]
+* [http://www.mediawiki.org/wiki/Manual:FAQ 미디어위키 FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 발표 메일링 리스트]',
+);
+
+/** Karachay-Balkar (Къарачай-Малкъар)
+ * @author Iltever
+ */
+$messages['krc'] = array(
+	'mainpagetext' => "'''«MediaWiki» тыйыншлы салынды.'''",
+	'mainpagedocfooter' => "Бу вики бла къалай ишлерге ангылатхан информацияны [http://meta.wikimedia.org/wiki/Help:Contents_User's_Guide къошулуучугъа юретиуде] табаргъа боллукъду.
+
+== Файдалы ресурсла ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings тюрлендириулени списогу (ингил.)];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-ни юсюнден кёб берилген соруула];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ни джангы версиясыны чыкъгъанын билдириу письмола].",
 );
 
 /** Colognian (Ripoarisch)
@@ -8105,6 +9150,7 @@ Heh jeihd et nit wigger.',
 	'config-using531' => 'MediaWiki läuf nit met PHP $1 zosamme wääje enem [http://bugs.php.net/bug.php?id=50394 Fähler em Zosammehang met Parrameetere för <code lang="en">__call()</code>].
 Jangk op de Version 5.3.2 vum <i lang="en">PHP</i> ov dohnoh, udder op de Version 5.3.0 udder dovöör, öm dat Problem ze ömjonn.
 Heh jeiht et nit wigger.',
+	'config-suhosin-max-value-length' => '<i lang="en">Suhosin</i> es enschtalleet. Dröm kann ene <code lang="en">GET</code>-Parrameeter nit övver {{PLURAL:$1|ei Byte|$q Bytes|noll Byte}} lang wääde. En MediaWiki singe  ResouceLoader kütt doh zwa drömeröm, ävver dat brems. Wann müjelesch, doht <code lang="en">suhosin.get.max_value_length</code> en dä Dattei <code lang="en">php.ini</code> op 1024 Bytes udder drövver enschtälle. un dann moß <code lang="en">$wgResourceLoaderMaxQueryLength</code> en dä Dattei <code lang="en">LocalSettings.php</code> op däsälve Wäät jesaz wääde.',
 	'config-db-type' => 'De Zoot Daatebangk:',
 	'config-db-host' => 'Dä Name vun däm Rääschner met dä Daatebangk:',
 	'config-db-host-help' => 'Wann Dinge ẞööver för de Daatebangk ob enem andere Rääschner es, donn heh dämm singe Name udder <i lang="en">IP</i>-Addräß enjävve.
@@ -8260,7 +9306,7 @@ Mer kann dat Wiki jäz [$1 bruche].',
 	'config-regenerate' => 'Donn de Dattei <code lang="en">LocalSettings.php</code> neu opsäze →',
 	'config-show-table-status' => 'Et Kommando <code lang="en">SHOW TABLE STATUS</code> aan de Daatebangk es donävve jejange!',
 	'config-unknown-collation' => "'''Opjepaß:''' De Daatabangk deiht en onbikannte Reijefollsch bruche, för Booshtaabe un Zeishe ze verjliishe un ze zotteere.",
-	'config-db-web-account' => 'Dä Zohjang zor Daatebangk fö et Wiki',
+	'config-db-web-account' => 'Dä Zohjang zor Daatebangk för et Wiki',
 	'config-db-web-help' => 'Donn ene Name un e Paßwoot för der Zohjang zor Daatebangk för et Wiki em nomaale Bedrief aanjävve.',
 	'config-db-web-account-same' => 'Donn dersällve Zohjang nämme, wi heh beim Opsäze.',
 	'config-db-web-create' => 'Donn dä Zohjang aanlääje, wann dä noch nit doh es.',
@@ -8320,7 +9366,7 @@ De kanns dat Fäld ävver och läddesch lohße.',
 Do sullts se abbonneere, un Ding MediWiki_Projramme op der neue Shtand bränge, wann neu Version eruß kumme.',
 	'config-almost-done' => 'Do bes beinah dorsh!
 Do künnts jez der Räß vun de einzel Enshtellunge övverjonn, un et Wiki tiräktemang fäädesch opsäze.',
-	'config-optional-continue' => 'Wells De noch mieh Frore jeshtallt krijje un noch mieh Enshtällunge maache?',
+	'config-optional-continue' => 'De wells noch mieh Frore jeshtallt krijje un noch mieh Enshtällunge maache?',
 	'config-optional-skip' => 'Nä, lohß dä Ömshtand, donn eifarr_et Wiki opsäze.',
 	'config-profile' => 'Enshtällunge för de Metmaacher ier Rääschte:',
 	'config-profile-wiki' => 'E tradizjonäll offe Wiki',
@@ -8440,6 +9486,8 @@ Donn doför sorrje, dat dä Daatebangk-Aanwänder „$1“ en dämm Daatebangksc
 	'config-install-user-create-failed' => 'Dä Aanwender „$1“ för dä Zohjref op de Daatebangk kunnt nit aanjelaat wääde, wäje: <code lang="en">$2</code>',
 	'config-install-user-grant-failed' => 'Däm Daatebangk-Aanwänder sing Beräschtijunge ze säze däät nit fluppe wääje: $2',
 	'config-install-user-missing' => 'Dä aanjejovve Metmaacher „$1“ jidd_et nit.',
+	'config-install-user-missing-create' => '{{int:Config-install-user-missing}}
+Donn e Höhksche en et Käßje „{{int:Createaccount}}“ onge, wann De dä aanlääje wells.',
 	'config-install-tables' => 'Ben de Daatebangk-Tabälle aam aanlääje.',
 	'config-install-tables-exist' => "'''Opjepaß''': Et schingk, dem MediaWiki sing Tabälle sin alt doh.
 Doh dom_mer nix aanlääje.",
@@ -8468,11 +9516,19 @@ Wann domet jet nit jeflupp hät, udder De di Dattei norr_ens han wells, donn op 
 
 \$3
 
-'''Opjepaß''': Wann De dat jez nit deihß es Alles verschött wat De jemaat häs, weil di Dattei fott es en däm Momang, woh heh dat Projamm aam Engk es.
+'''Opjepaß''': Wann De dat jez nit deihß, es alles verschött, wat De bes jöz enjejovve häs, weil di Dattei fott es en däm Momang, woh heh dat Projamm aam Engk es.
 
 Wann De mem Ronger- un widder Huhlaade fäädesh bes, kanns De '''[\$2 en Ding Wiki jonn]'''.",
-	'config-download-localsettings' => 'Donn de Dattei <code lang="en">LocalSettings.php</code> eronger laade',
+	'config-download-localsettings' => 'Donn di Dattei <code lang="en">LocalSettings.php</code> eronger laade',
 	'config-help' => 'Hölp',
+	'mainpagetext' => "'''MediaWiki es jetz enstalleet.'''",
+	'mainpagedocfooter' => 'Luur en et (änglesche) [http://meta.wikimedia.org/wiki/Help:Contents Handboch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
+
+== För dä Aanfang ==
+Dat es och all op Änglesch:
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 );
 
 /** Kurdish (Latin) (Kurdî (Latin))
@@ -8481,6 +9537,27 @@ Wann De mem Ronger- un widder Huhlaade fäädesh bes, kanns De '''[\$2 en Ding W
 $messages['ku-latn'] = array(
 	'config-page-language' => 'Ziman',
 	'config-page-name' => 'Nav',
+	'mainpagetext' => "'''MediaWiki serketî hate çêkirin.'''",
+	'mainpagedocfooter' => 'Alîkarî ji bo bikaranîn û guherandin yê datayê Wîkî tu di bin [http://meta.wikimedia.org/wiki/Help:Contents pirtûka alîkarîyê ji bikarhêneran] da dikarê bibînê.
+
+== Alîkarî ji bo destpêkê ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lîsteya varîyablên konfîgûrasîyonê]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]',
+);
+
+/** Ladino (Ladino)
+ * @author Universal Life
+ */
+$messages['lad'] = array(
+	'mainpagetext' => "'''MedyaViki ya se kureó con reuxitá.'''",
+	'mainpagedocfooter' => 'Konsulta la [http://meta.wikimedia.org/wiki/Ayudo:Contenido Guía de usador] para tomar enformasyones encima de como usar el lojikal viki.
+
+== En Empeçando ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings La lista de los arreglamientos de la konfiggurasyón]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/lad DDS de MedyaViki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce La lista de las letrales (e-mail) de MedyaViki]',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -8670,6 +9747,67 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-keys' => 'Generéiere vum Geheimschlëssel',
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
 	'config-help' => 'Hëllef',
+	'mainpagetext' => "'''MediaWiki gouf installéiert.'''",
+	'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren.
+
+== Starthëllefen ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Hëllef bei der Konfiguratioun]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]",
+);
+
+/** Lingua Franca Nova (Lingua Franca Nova) */
+$messages['lfn'] = array(
+	'mainpagetext' => "'''MediaWiki es aora instalada.'''",
+	'mainpagedocfooter' => 'Atenda la [http://meta.wikimedia.org/wiki/Help:Contents Gida per Usores] per informa supra la usa de la programa de vici.
+
+== Comensa ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustas de la desinia]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Demandas comun de MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista per receta anunsias de novas supra MediaWiki]',
+);
+
+/** Ganda (Luganda)
+ * @author Kizito
+ */
+$messages['lg'] = array(
+	'mainpagetext' => 'MediaWiki kati ewangidwa ku sisitemu yo',
+	'mainpagedocfooter' => "Okuyiga ku nkozesa ya sofutiweya owa wiki, kebera [http://meta.wikimedia.org/wiki/Help:Contents Okulagirira Abakozesa].
+
+== Amagezi agakuyamba okutandika ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lukalala lw'eby'enteekateeka yo]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Ebiter'okubuuzibwa ku MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Wewandise ofunenga amawulire aga email ag'ebifa ku MediaWiki]",
+);
+
+/** Limburgish (Limburgs) */
+$messages['li'] = array(
+	'mainpagetext' => "'''MediaWiki software succesvol geïnsjtalleerd.'''",
+	'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.
+
+== Mieë hölp ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lies mit instellinge]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki VGV (FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]",
+);
+
+/** Lao (ລາວ) */
+$messages['lo'] = array(
+	'mainpagetext' => "'''ຕິດຕັ້ງມີເດຍວິກິນີ້ສຳເລັດແລ້ວ.'''",
+);
+
+/** Lithuanian (Lietuvių) */
+$messages['lt'] = array(
+	'mainpagetext' => "'''MediaWiki sėkmingai įdiegta.'''",
+	'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [http://meta.wikimedia.org/wiki/Help:Contents žinyne].
+
+== Pradžiai ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki DUK]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
 );
 
 /** Latvian (Latviešu)
@@ -8690,6 +9828,63 @@ $messages['lv'] = array(
 	'config-page-restart' => 'Pārstartēt instalāciju',
 	'config-page-readme' => 'Lasīt mani',
 	'config-page-releasenotes' => 'Informācija par laidienu',
+	'mainpagetext' => "'''MediaWiki veiksmīgi ieinstalēts'''",
+	'mainpagedocfooter' => 'Izlasi [http://meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.
+
+== Pirmie soļi ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurācijas iespēju saraksts]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki J&A]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]',
+);
+
+/** Literary Chinese (文言) */
+$messages['lzh'] = array(
+	'mainpagetext' => "'''共筆臺已立'''",
+	'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
+
+== 始 ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Lazuri (Lazuri)
+ * @author Bombola
+ */
+$messages['lzz'] = array(
+	'mainpagetext' => "'''Mediawiki dido k'ai ik'idu.'''",
+	'mainpagedocfooter' => "Vik'i şeni muç'o ixmarinen ya mutxanepe oguru şeni [http://meta.wikimedia.org/wiki/Help:Contents oxmaruşi rexberis] o3'k'edit.
+
+== Ağani na gyoç’k’u maxmarepe ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ok'iduşi ayarepeşi liste]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki P'anda Na-k'itxu K'itxalape]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-mailepeşiş liste]",
+);
+
+/** Maithili (मैथिली)
+ * @author Umeshberma
+ */
+$messages['mai'] = array(
+	'mainpagetext' => "'''मीडियाविकी नीक जकाँ प्रस्थापित भेल।'''",
+	'mainpagedocfooter' => "सम्पर्क करू [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] विकी तंत्रांशक प्रयोगक जानकारी लेल।
+
+==प्रारम्भ कोना करी==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Moksha (Мокшень) */
+$messages['mdf'] = array(
+	'mainpagetext' => "'''МедиаВикить арафтозь лац.'''",
+	'mainpagedocfooter' => 'Ванк [http://meta.wikimedia.org/wiki/Help:Contents Ветямовал Тиинди] тяса ули кода содамс Вики програпнень эрявикснень колга.
+
+== Эрявикс сюлмафксне ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Васьфневи арафнематнень кярькссь]
+* [http://www.mediawiki.org/wiki/Manual:FAQ МедиаВикить Сидеста Кеподеви Кизефксне]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикить од верзиятнень колга кулянь пачфтема]',
 );
 
 /** Malagasy (Malagasy)
@@ -8740,6 +9935,33 @@ $messages['mg'] = array(
 	'config-install-stats' => 'Fanombohana ny statistika',
 	'config-install-keys' => 'Fanamboarana lakile miafina$',
 	'config-help' => 'fanoroana',
+	'mainpagetext' => "'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''",
+	'mainpagedocfooter' => "Vangio ny [http://meta.wikimedia.org/wiki/Aide:Contenu Fanoroana ho an'ny mpampiasa] ra te hitady fanoroana momba ny fampiasan'ity rindrankajy ity.
+
+== Hanomboka amin'ny MediaWiki ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lisitra ny paramètre de configuration]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ momba ny MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Resaka momba ny fizaràn'ny MediaWiki]",
+);
+
+/** Eastern Mari (Олык Марий) */
+$messages['mhr'] = array(
+	'mainpagetext' => "'''MediaWiki сай шындыме.'''",
+);
+
+/** Minangkabau (Baso Minangkabau)
+ * @author Luthfi94
+ */
+$messages['min'] = array(
+	'mainpagetext' => "'''MediaWiki alah tapasang jo sukses'''.",
+	'mainpagedocfooter' => 'Silakan baco [http://www.mediawiki.org/wiki/Help:Contents/id Panduan Pangguno] untuak caro panggunoan parangkaik lunak wiki iko.
+
+== Mamulai panggunoan ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings/id Dafta pangaturan konfigurasi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/id Dafta patanyoan nan acok diajukan manganai MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]',
 );
 
 /** Macedonian (Македонски)
@@ -9269,6 +10491,13 @@ $3
 Откога ќе завршите со тоа, можете да '''[$2 влезете на вашето вики]'''.",
 	'config-download-localsettings' => 'Преземи го LocalSettings.php',
 	'config-help' => 'помош',
+	'mainpagetext' => "'''МедијаВики е успешно инсталиран.'''",
+	'mainpagedocfooter' => 'Погледнете го [http://meta.wikimedia.org/wiki/Help:Contents Упатството за корисници] за подетални иформации како се користи вики-програмот.
+
+==Од каде да почнете==
+* [http://meta.wikimedia.org/wiki/Manual:Configuration_settings Список на нагодувања]
+* [http://meta.wikimedia.org/wiki/Manual:FAQ ЧПП (често поставувани прашања) за МедијаВики].
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Поштенски список на МедијаВики за нови верзии]',
 );
 
 /** Malayalam (മലയാളം)
@@ -9416,6 +10645,13 @@ $1
 '''ശ്രദ്ധിക്കുക''': ഇത് ഇപ്പോൾ ചെയ്തില്ലെങ്കിൽ, സൃഷ്ടിക്കപ്പെട്ട കോൺഫിഗറേഷൻ ഫയൽ എടുക്കാതെ ഇൻസ്റ്റലേഷൻ പ്രക്രിയയിൽ നിന്ന് പുറത്തിറങ്ങിയാൽ പിന്നീട് ലഭ്യമായിരിക്കില്ല.
 
 ചെയ്തശേഷം, താങ്കൾക്ക് '''[$2 വിക്കിയിൽ പ്രവേശിക്കാം]'''.",
+	'mainpagetext' => "'''മീഡിയവിക്കി വിജയകരമായി സജ്ജീകരിച്ചിരിക്കുന്നു.'''",
+	'mainpagedocfooter' => 'വിക്കി സോഫ്റ്റ്‌വെയർ ഉപയോഗിക്കുന്നതിനെ കുറിച്ചുള്ള വിശദാംശങ്ങൾക്ക്  [http://meta.wikimedia.org/wiki/Help:Contents സോഫ്റ്റ്‌വെയർ സഹായി] കാണുക.
+
+== പ്രാരംഭസഹായികൾ ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings ക്രമീകരണങ്ങളുടെ പട്ടിക]
+* [http://www.mediawiki.org/wiki/Manual:FAQ മീഡിയവിക്കി പതിവുചോദ്യങ്ങൾ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce മീഡിയവിക്കി പ്രകാശന മെയിലിങ് ലിസ്റ്റ്]',
 );
 
 /** Mongolian (Монгол)
@@ -9423,6 +10659,25 @@ $1
  */
 $messages['mn'] = array(
 	'config-page-language' => 'Хэл',
+	'mainpagetext' => "'''МедиаВики амжилттай суулаа.'''",
+	'mainpagedocfooter' => 'Вики программыг хэрэглэх талаар заавар авахын тулд [http://meta.wikimedia.org/wiki/Help:Contents хэрэглэгчийн гарын авлага]-г үзнэ үү.
+
+== Эхлэх ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Тохиргоо]
+* [http://www.mediawiki.org/wiki/Manual:FAQ МедиаВикигийн тогтмол тавигддаг асуултууд]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикигийн мэдээний мэйл явуулах жагсаалт]',
+);
+
+/** Marathi (मराठी) */
+$messages['mr'] = array(
+	'mainpagetext' => "'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''",
+	'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
+
+== सुरुवात ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगची यादी]
+* [http://www.mediawiki.org/wiki/Manual:FAQ मीडियाविकी नेहमी विचारले जाणारे प्रश्न]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
 );
 
 /** Malay (Bahasa Melayu)
@@ -9473,6 +10728,34 @@ Bagaimanapun, MediaWiki memerlukan PHP $2 ke atas.',
 	'config-email-settings' => 'Tetapan e-mel',
 	'config-install-step-done' => 'siap',
 	'config-install-step-failed' => 'gagal',
+	'mainpagetext' => "'''MediaWiki telah berjaya dipasang.'''",
+	'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
+
+== Untuk bermula ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Senarai tetapan konfigurasi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Soalan Lazim MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Senarai mel bagi keluaran MediaWiki]',
+);
+
+/** Maltese (Malti)
+ * @author Chrisportelli
+ */
+$messages['mt'] = array(
+	'mainpagetext' => "'''MediaWiki ġie installat b'suċċess.'''",
+	'mainpagedocfooter' => "Ikkonsulta l-[http://meta.wikimedia.org/wiki/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.
+
+== Biex tibda ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ta' preferenzi għall-konfigurazzjoni]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Mistoqsijiet rikorrenti fuq il-MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Il-lista tal-posta tħabbar 'l MediaWiki]",
+);
+
+/** Burmese (မြန်မာဘာသာ)
+ * @author Lionslayer
+ */
+$messages['my'] = array(
+	'mainpagetext' => "'''မီဒီယာဝီကီကို အောင်မြင်စွာ သွင်းပြီးပါပြီ။'''",
 );
 
 /** Erzya (Эрзянь)
@@ -9487,6 +10770,46 @@ $messages['myv'] = array(
 	'config-admin-password-confirm' => 'Совамо валот одов:',
 	'config-admin-email' => 'Е-сёрма паргот:',
 	'config-install-step-done' => 'теезь',
+	'mainpagetext' => "'''МедияВикинь тевс аравтомазо парсте лиссь.'''",
+);
+
+/** Nahuatl (Nāhuatl) */
+$messages['nah'] = array(
+	'mainpagetext' => "'''MediaHuiqui cualli ōmotlahtlāli.'''",
+);
+
+/** Low German (Plattdüütsch) */
+$messages['nds'] = array(
+	'mainpagetext' => "'''De MediaWiki-Software is mit Spood installeert worrn.'''",
+	'mainpagedocfooter' => 'Kiek de [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
+un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.',
+);
+
+/** Nedersaksisch (Nedersaksisch)
+ * @author Servien
+ */
+$messages['nds-nl'] = array(
+	'mainpagetext' => "'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''",
+	'mainpagedocfooter' => "Bekiek de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
+
+== Meer hulpe ==
+* [http://www.mediawiki.org/wiki/Help:Configuration_settings Lieste mit instellingen]
+* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki-vragen dee vake esteld wönnen]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-poslieste veur nieje versies]",
+);
+
+/** Nepali (नेपाली)
+ * @author Bhawani Gautam
+ * @author RajeshPandey
+ */
+$messages['ne'] = array(
+	'mainpagetext' => "'''मीडिया सफलतापूर्वक कम्प्यूटरमा स्थापित भयो ।'''",
+	'mainpagedocfooter' => ' विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents प्रयोगकर्ता सहायता] हेर्नुहोस्
+
+== सुरू गर्नको लागि  ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings विन्यास सेटिङ्ग सूची]
+* [http://www.mediawiki.org/wiki/Manual:FAQ मेडियाविकि सामान्य प्रश्नका उत्तरहरु]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मेडियाविकि सुचना मेलिङ्ग सूची]',
 );
 
 /** Dutch (Nederlands)
@@ -10030,9 +11353,18 @@ $3
 Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]'''.",
 	'config-download-localsettings' => 'LocalSettings.php downloaden',
 	'config-help' => 'hulp',
+	'mainpagetext' => "'''De installatie van MediaWiki is geslaagd.'''",
+	'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
+
+== Meer hulp over MediaWiki ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lijst met instellingen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Veelgestelde vragen (FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+ * @author Harald Khan
  * @author Nghtwlkr
  */
 $messages['nn'] = array(
@@ -10073,6 +11405,13 @@ Berre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).',
 	'config-postgres-old' => 'PostgreSQL $1 eller seinare krevst, du har $2.',
 	'config-email-settings' => 'E-postinnstillingar',
 	'config-logo' => 'Logo-URL:',
+	'mainpagetext' => "'''MediaWiki er no installert.'''",
+	'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.
+
+==Kome i gang==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste over oppsettsinnstillingar]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Spørsmål og svar om MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]',
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
@@ -10492,13 +11831,67 @@ For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man 
 	'config-install-tables' => 'Oppretter tabeller',
 	'config-install-mainpage-failed' => 'Kunne ikke sette inn hovedside: $1',
 	'config-help' => 'hjelp',
+	'mainpagetext' => "'''MediaWiki-programvaren er nå installert.'''",
+	'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
+
+==Å starte==
+*[http://www.mediawiki.org/wiki/Manual:Configuration_settings Oppsettsliste]
+*[http://www.mediawiki.org/wiki/Manual:FAQ Ofte stilte spørsmål]
+*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
 );
 
-/** Ossetic (Иронау)
+/** Occitan (Occitan) */
+$messages['oc'] = array(
+	'mainpagetext' => "'''MediaWiki es estat installat amb succès.'''",
+	'mainpagedocfooter' => "Consultatz lo [http://meta.wikimedia.org/wiki/Ajuda:Contengut Guida de l'utilizaire] per mai d'entresenhas sus l'utilizacion d'aqueste logicial.
+
+== Començar amb MediaWiki ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista dels paramètres de configuracion]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussions de las parucions de MediaWiki]",
+);
+
+/** Ossetic (Ирон)
  * @author Amikeco
  */
 $messages['os'] = array(
 	'config-page-language' => 'Æвзаг',
+	'mainpagetext' => "'''Вики-скрипт «MediaWiki» æнтыстджынæй æвæрд æрцыд.'''",
+);
+
+/** Punjabi (ਪੰਜਾਬੀ) */
+$messages['pa'] = array(
+	'mainpagetext' => "'''ਮੀਡਿਆਵਿਕਿ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੋ ਗਿਆ ਹੈ।'''",
+);
+
+/** Pampanga (Kapampangan) */
+$messages['pam'] = array(
+	'mainpagetext' => "'''Melaus ing pamipalyari ning MediaWiki.'''",
+	'mainpagedocfooter' => "Basan me ing [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para king impormasiun keng pamangamit ning wiki software.
+
+== Pamagumpisa ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Picard (Picard) */
+$messages['pcd'] = array(
+	'mainpagetext' => "'''MediaWiki o té instalé aveuc victoère.'''",
+);
+
+/** Deitsch (Deitsch)
+ * @author Xqt
+ */
+$messages['pdc'] = array(
+	'mainpagedocfooter' => "Hilf fer's Yuuse unn Konfiguriere vun de Wiki-Software kansch finne im [http://meta.wikimedia.org/wiki/Help:Contents Handbuch fer Yuuser].
+
+== Hilf zum Schtaerte ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lischt vun Gnepp zum Konfiguriere]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Eposchde-Lischt fer neie MediaWiki-Versione]",
 );
 
 /** Polish (Polski)
@@ -10869,6 +12262,13 @@ Tworzenie domyślnej listy pominięto.",
 	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej – $1',
 	'config-download-localsettings' => 'Pobierz LocalSettings.php',
 	'config-help' => 'pomoc',
+	'mainpagetext' => "'''Instalacja MediaWiki powiodła się.'''",
+	'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
+
+== Na początek ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ustawień konfiguracyjnych]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]',
 );
 
 /** Piedmontese (Piemontèis)
@@ -11291,6 +12691,33 @@ A dovrà [$1 dëscarielo] e butelo ant la bas ëd l'instalassion ëd soa wiki (�
 
 Quand che a l'é stàit fàit, a peul '''[$2 intré an soa wiki]'''.",
 	'config-help' => 'agiut',
+	'mainpagetext' => "'''MediaWiki a l'é staita anstalà a la përfession.'''",
+	'mainpagedocfooter' => "Che a varda la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] për avèj dj'anformassion ant sël coma dovré ël programa dla wiki.
+
+== Për anandiesse a travajé ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista dij paràmeter ëd configurassion]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Chestion frequente]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista ëd discussion an sla distribussion ëd MediaWiki]",
+);
+
+/** Pontic (Ποντιακά)
+ * @author Sinopeus
+ */
+$messages['pnt'] = array(
+	'mainpagetext' => "'''To λογισμικόν MediaWiki εθέκεν.'''",
+);
+
+/** Prussian (Prūsiskan)
+ * @author Nertiks
+ */
+$messages['prg'] = array(
+	'mainpagetext' => "'''MediaWiki's instalaciōni izpalla.'''",
+	'mainpagedocfooter' => 'Wīdais [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] kāi gaūlai informaciōnei ezze wiki prōgramijas tērpausnan.
+
+== En pagaūseņu ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 );
 
 /** Pashto (پښتو)
@@ -11332,6 +12759,13 @@ $messages['ps'] = array(
 	'config-profile-wiki' => 'دوديزه ويکي',
 	'config-email-settings' => 'د برېښليک امستنې',
 	'config-install-step-done' => 'ترسره شو',
+	'mainpagetext' => "'''MediaWiki په برياليتوب سره نصب شو.'''",
+	'mainpagedocfooter' => 'د ويکي ساوترې د کارولو د  مالوماتو په اړه [http://meta.wikimedia.org/wiki/Help:Contents د کارن لارښود] سره سلا وکړۍ.
+
+== پيلول ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings د امستنو د سازونې لړليک]
+* [http://www.mediawiki.org/wiki/Manual:FAQ د ميډياويکي ډېرځليزې پوښتنې]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce د مېډياويکي د برېښليکونو لړليک]',
 );
 
 /** Portuguese (Português)
@@ -11866,6 +13300,14 @@ $3
 Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",
 	'config-download-localsettings' => 'Download do LocalSettings.php',
 	'config-help' => 'ajuda',
+	'mainpagetext' => "'''MediaWiki instalado com sucesso.'''",
+	'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações sobre o uso do software wiki.
+
+== Onde começar ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Perguntas e respostas frequentes sobre o MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Subscreva a lista de divulgação de novas versões do MediaWiki]',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -11952,9 +13394,48 @@ O MediaWiki funcionará mesmo assim, mas o seu servidor ficará exposto a potenc
 Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
 
 Se você não pretende usar um logotipo, deixe este campo em branco.',
+	'mainpagetext' => "'''MediaWiki instalado com sucesso.'''",
+	'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Manual de Usuário] para informações de como usar o software wiki.
+
+== Começando ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ do MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]',
+);
+
+/** Quechua (Runa Simi) */
+$messages['qu'] = array(
+	'mainpagetext' => "'''MediaWiki nisqa llamp'u kaqqa aypaylla takyachisqañam.'''",
+	'mainpagedocfooter' => "Wiki llamp'u kaqmanta willasunaykipaqqa [http://meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.
+
+== Qallarichkaspa ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Romagnol (Rumagnôl) */
+$messages['rgn'] = array(
+	'mainpagetext' => "'''L'instalaziòn d'MediaWiki l'è andêda ben'''",
+);
+
+/** Romansh (Rumantsch)
+ * @author Gion-andri
+ */
+$messages['rm'] = array(
+	'mainpagetext' => "'''MediaWiki è vegnì installà cun success.'''",
+	'mainpagedocfooter' => "Consultai il [http://meta.wikimedia.org/wiki/Help:Contents manual per utilisaders] per infurmaziuns davart l'utilisaziun da questa software da wiki.
+
+== Cumenzar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Glista da las opziuns per la configuraziun]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Glista da mail da MediaWiki cun annunzias da novas versiuns]",
 );
 
 /** Romanian (Română)
+ * @author Minisarm
  * @author Stelistcristi
  */
 $messages['ro'] = array(
@@ -11984,6 +13465,13 @@ $messages['ro'] = array(
 	'config-missing-db-name' => 'Trebuie să introduci o valoare pentru „Numele bazei de date”',
 	'config-ns-generic' => 'Proiect',
 	'config-admin-password' => 'Parolă:',
+	'mainpagetext' => "'''Programul Wiki a fost instalat cu succes.'''",
+	'mainpagedocfooter' => 'Consultați [http://meta.wikimedia.org/wiki/Help:Contents Ghidul utilizatorului (en)] pentru informații despre utilizarea software-ului wiki.
+
+== Primii pași ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista parametrilor configurabili (en)]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Întrebări frecvente despre MediaWiki (en)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discuții a MediaWiki (en)]',
 );
 
 /** Tarandíne (Tarandíne)
@@ -11991,11 +13479,19 @@ $messages['ro'] = array(
  */
 $messages['roa-tara'] = array(
 	'config-help' => 'ajute',
+	'mainpagetext' => "'''MediaUicchi ha state 'nstallete.'''",
+	'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
+
+== Pe accumenzà ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste pe le configuraziune]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste d'a poste de MediaWiki]",
 );
 
 /** Russian (Русский)
  * @author DCamer
  * @author Eleferen
+ * @author Kaganer
  * @author Krinkle
  * @author Lockal
  * @author MaxSem
@@ -12524,6 +14020,143 @@ $3
 По окончании действий, описанных выше, вы сможете '''[$2 войти в вашу вики]'''.",
 	'config-download-localsettings' => 'Загрузить LocalSettings.php',
 	'config-help' => 'справка',
+	'mainpagetext' => "'''Вики-движок «MediaWiki» успешно установлен.'''",
+	'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 справочном руководстве].
+
+== Некоторые полезные ресурсы ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Список возможных настроек];
+* [http://www.mediawiki.org/wiki/Manual:FAQ Часто задаваемые вопросы и ответы по MediaWiki];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].',
+);
+
+/** Rusyn (Русиньскый)
+ * @author Gazeb
+ */
+$messages['rue'] = array(
+	'mainpagetext' => "'''MediaWiki была успішно наіншталована.'''",
+	'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Мануял хоснователя] Вам порадить, як хосновати MediaWiki.
+
+== Про початок ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Наставлїня конфіґурації]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Часты вопросы о MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розосыланя повідомлїнь про новы верзії MediaWiki]',
+);
+
+/** Sanskrit (संस्कृत)
+ * @author Hemant wikikosh1
+ */
+$messages['sa'] = array(
+	'mainpagetext' => 'मीडियाविकि तु सफलतया अन्तःस्थापितमस्ति',
+);
+
+/** Yakut (Саха тыла) */
+$messages['sah'] = array(
+	'mainpagetext' => "'''«MediaWiki» сөпкө туруорулунна.'''",
+	'mainpagedocfooter' => 'Биики программатын туһунан [http://meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.
+
+== Саҕаланыыта ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Конфигурация уларытыытын параметрдара]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki релизтарын почтовай испииһэгэ]',
+);
+
+/** Sardinian (Sardu)
+ * @author Andria
+ */
+$messages['sc'] = array(
+	'mainpagetext' => "'''MediaWiki est stadu installadu in modu currègidu.'''",
+);
+
+/** Sicilian (Sicilianu) */
+$messages['scn'] = array(
+	'mainpagetext' => "'''Nstallazzioni di MediaWiki cumplitata currettamenti.'''",
+	'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni di stu software wiki.
+
+== P'accuminzari ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Alencu di mpustazzioni di cunfigurazzioni]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list dî rilassi di MediaWiki]",
+);
+
+/** Scots (Scots) */
+$messages['sco'] = array(
+	'mainpagetext' => "'''MediaWiki haes been installit wi speed.'''",
+	'mainpagedocfooter' => "Aks the [http://meta.wikimedia.org/wiki/Help:Contents Uiser's Manual] for speirins aboot using the wiki saftware.
+
+== Gettin startit ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settins leet]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki releese mailin leet]",
+);
+
+/** Sassaresu (Sassaresu) */
+$messages['sdc'] = array(
+	'mainpagetext' => "'''Isthallazioni di MediaWiki accabadda currentementi.'''",
+	'mainpagedocfooter' => "Cunsultha la [http://meta.wikimedia.org/wiki/Aggiuddu:Summàriu Ghia utenti] pa maggiori infuimmazioni i l'usu di chisthu software wiki.
+
+== Pa ischuminzà ==
+Li sighenti cullegamenti so in linga ingrese:
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impusthazioni di cunfigurazioni]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Prigonti friquenti i MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]",
+);
+
+/** Cmique Itom (Cmique Itom) */
+$messages['sei'] = array(
+	'mainpagetext' => "'''MediaWiki coccebj installöx successua zo mii.'''",
+);
+
+/** Serbo-Croatian (Srpskohrvatski / Српскохрватски)
+ * @author OC Ripper
+ */
+$messages['sh'] = array(
+	'mainpagetext' => "'''MediaWiki softver is uspješno instaliran.'''",
+	'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
+
+== Početak ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista postavki]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki najčešće postavljana pitanja]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]',
+);
+
+/** Tachelhit (Tašlḥiyt)
+ * @author Dalinanir
+ */
+$messages['shi'] = array(
+	'mainpagetext' => "'''MediaWiki tǧizn (tsrbk) bla tamukrist.'''",
+	'mainpagedocfooter' => 'Ẓr taǧttnn  [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] bac ad tawit inɣmisn yaḍn f manik sa tswwurt asɣẓan ad.
+
+== Izwir d MediaWiki ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Umuɣ n iɣwwarn n usgadda ]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/fr Isqqsitn f MidyWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Umuɣ n imsgdaln f imbḍitn n MidyaWiki]',
+);
+
+/** Sinhala (සිංහල) */
+$messages['si'] = array(
+	'mainpagetext' => "'''මාධ්‍යවිකි සාර්ථක ලෙස ස්ථාපනය කරන ලදි.'''",
+	'mainpagedocfooter' => 'විකි මෘදුකාංග භාවිතා කිරීම පිළිබඳ තොරතුරු සඳහා  [http://meta.wikimedia.org/wiki/Help:Contents පරිශීලකයන් සඳහා නියමුව] හදාරන්න.
+
+== ඇරඹුම ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings වින්‍යාස පරිස්ථිතීන් ලැයිස්තුව]
+* [http://www.mediawiki.org/wiki/Manual:FAQ මාධ්‍යවිකි නිතර-අසන-පැන]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce මාධ්‍යවිකි නිකුතුව තැපැල් ලැයිස්තුව]',
+);
+
+/** Slovak (Slovenčina) */
+$messages['sk'] = array(
+	'mainpagetext' => "'''Softvér MediaWiki bol úspešne nainštalovaný.'''",
+	'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [http://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
+
+== Začíname ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Zoznam konfiguračných nastavení]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list nových verzií MediaWiki]',
 );
 
 /** Slovenian (Slovenščina)
@@ -12732,12 +14365,103 @@ Vnesite ime dovoljenja ročno.',
 	'config-install-tables' => 'Ustvarjanje tabel',
 	'config-download-localsettings' => 'Prenesi LocalSettings.php',
 	'config-help' => 'pomoč',
+	'mainpagetext' => "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
+	'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
+in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
 );
 
-/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬) */
+/** Lower Silesian (Schläsch)
+ * @author Äberlausitzer
+ */
+$messages['sli'] = array(
+	'mainpagetext' => "'''MediaWiki wourde erfolgreich installiert.'''",
+	'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software fendest du eim [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbichl].
+
+== Stoarthilfa ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+);
+
+/** Somali (Soomaaliga)
+ * @author Maax
+ */
+$messages['so'] = array(
+	'mainpagetext' => "'''MediaWiki Si fiican oo kuugu install gareeyay.'''",
+	'mainpagedocfooter' => "Meeshaan ka akhriso sidii aad u isticmaali leheed brogramka wiki [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]  .
+== Bilaaw ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Albanian (Shqip) */
+$messages['sq'] = array(
+	'mainpagetext' => "'''MediaWiki software u instalua me sukses.'''",
+	'mainpagedocfooter' => 'Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
+
+== Sa për fillim==
+* [http://www.mediawiki.org/wiki/Help:Configuration_settings Parazgjedhjet e MediaWiki-t]
+* [http://www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWiki-t]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]',
+);
+
+/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
+ * @author Rancher
+ */
 $messages['sr-ec'] = array(
 	'config-continue' => 'Настави →',
 	'config-page-language' => 'Језик',
+	'mainpagetext' => "'''Медијавики је успешно инсталиран.'''",
+	'mainpagedocfooter' => 'Погледајте [http://meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.
+
+== Увод ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Помоћ у вези са подешавањима]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Често постављена питања]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]',
+);
+
+/** Serbian Latin ekavian (‪Srpski (latinica)‬) */
+$messages['sr-el'] = array(
+	'mainpagetext' => "'''MedijaViki je uspešno instaliran.'''",
+	'mainpagedocfooter' => 'Molimo vidite [http://meta.wikimedia.org/wiki/Help:Contents korisnički vodič] za informacije o upotrebi viki softvera.
+
+== Za početak ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Najčešće postavljena pitanja]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
+);
+
+/** Sranan Tongo (Sranantongo) */
+$messages['srn'] = array(
+	'mainpagetext' => "'''MediaWiki seti kon bun.'''",
+	'mainpagedocfooter' => 'Luku na ini a [http://meta.wikimedia.org/wiki/Help:Yepi yepibuku] fu si fa fu kebrouki a wikisoftware.
+
+== Moro yepi ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Den seti]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Sani di ben aksi furu (FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Boskopu grupu gi nyun meki]',
+);
+
+/** Swati (SiSwati) */
+$messages['ss'] = array(
+	'mainpagetext' => "'''i-MediaWiki seyifakeke ngalokuphelele.'''",
+);
+
+/** Seeltersk (Seeltersk)
+ * @author Maartenvdbent
+ */
+$messages['stq'] = array(
+	'mainpagetext' => "'''Ju MediaWiki Software wuude mäd Ärfoulch installierd.'''",
+	'mainpagedocfooter' => 'Sjuch ju [http://meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [http://meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.',
+);
+
+/** Sundanese (Basa Sunda) */
+$messages['su'] = array(
+	'mainpagetext' => "'''''Software'' MediaWiki geus diinstal.'''",
+	'mainpagedocfooter' => "Mangga tingal ''[http://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.",
 );
 
 /** Swedish (Svenska)
@@ -12804,6 +14528,40 @@ Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bin
 Kontrollera värden, användarnamnet och lösenordet nedan och försök igen',
 	'config-invalid-schema' => '"$1" är ett ogiltigt schema för MediaWiki.
 Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bindestreck (-).',
+	'mainpagetext' => "'''MediaWiki har installerats utan problem.'''",
+	'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
+
+== Att komma igång ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista över konfigurationsinställningar]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]',
+);
+
+/** Swahili (Kiswahili)
+ * @author Lloffiwr
+ */
+$messages['sw'] = array(
+	'mainpagetext' => "'''MediaWiki imefanikiwa kuingizwa.'''",
+	'mainpagedocfooter' => 'Shauriana na [http://meta.wikimedia.org/wiki/Help:Contents Mwongozo wa Mtumiaji] kwa habari juu ya utumiaji wa bidhaa pepe ya wiki.
+
+== Msaada wa kianzio ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Orodha ya mipangilio ya msingi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ ya MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Orodha ya utoaji wa habari za MediaWiki]',
+);
+
+/** Silesian (Ślůnski)
+ * @author Djpalar
+ */
+$messages['szl'] = array(
+	'mainpagetext' => "'''Sztalowańy MediaWiki śe udoło.'''",
+	'mainpagedocfooter' => 'Uobezdrzij [http://meta.wikimedia.org/wiki/Help:Contents przewodńik sprowjacza], kaj sům informacyje uo dźołańu uoprogramowańo MediaWiki.
+
+== Na sztart ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista sztalowań konfiguracyje]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komuńikaty uo nowych wersyjach MediaWiki]',
 );
 
 /** Tamil (தமிழ்)
@@ -12817,6 +14575,26 @@ $messages['ta'] = array(
 	'config-page-language' => 'மொழி',
 	'config-page-name' => 'பெயர்',
 	'config-page-options' => 'விருப்பத்தேர்வுகள்',
+	'mainpagetext' => "'''விக்கி மென்பொருள் வெற்றிகரமாக உள்ளிடப்பட்டது.'''",
+	'mainpagedocfooter' => 'விக்கி மென்பொருளைப் பயன்படுத்துவது தொடர்பாக [http://meta.wikimedia.org/wiki/Help:Contents பயனர் வழிகாட்டியைப்] பார்க்க.
+
+== தொடக்கப்படிகள் ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings அமைப்புக்களை மாற்றம் செய்தல்]
+* [http://www.mediawiki.org/wiki/Manual:FAQ மிடியாவிக்கி பொதுவான கேள்விகள்]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce மீடியாவிக்கி வெளியீடு மின்னஞ்சல் பட்டியல்]',
+);
+
+/** Tulu (ತುಳು) */
+$messages['tcy'] = array(
+	'mainpagetext' => "'''ಮೀಡಿಯವಿಕಿ ಯಶಸ್ವಿಯಾದ್ ಇನ್’ಸ್ಟಾಲ್ ಆಂಡ್.'''",
+	'mainpagedocfooter' => 'ವಿಕಿ ತಂತ್ರಾಂಶನ್ ಉಪಗೋಗ ಮನ್ಪುನ ಬಗ್ಗೆ ಮಾಹಿತಿಗ್ [http://meta.wikimedia.org/wiki/Help:Contents ಸದಸ್ಯೆರ್ನ ನಿರ್ದೇಶನ ಪುಟ] ತೂಲೆ.
+
+== ಎಂಚ ಶುರು ಮಲ್ಪುನಿ ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 );
 
 /** Telugu (తెలుగు)
@@ -12871,6 +14649,14 @@ $messages['te'] = array(
 	'config-install-step-done' => 'పూర్తయింది',
 	'config-install-step-failed' => 'విఫలమైంది',
 	'config-help' => 'సహాయం',
+	'mainpagetext' => "'''మీడియా వికీని విజయవంతంగా ప్రతిష్టించాం.'''",
+	'mainpagedocfooter' => 'వికీ సాఫ్టువేరును వాడటనికి కావలిసిన సమాచారం కోసం [http://meta.wikimedia.org/wiki/Help:Contents వాడుకరుల గైడు]ను సందర్శించండి.
+
+== మొదలు పెట్టండి ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings మీడియావికీ పనితీరు, అమరిక మార్చుకునేందుకు వీలుకల్పించే చిహ్నాల జాబితా]
+* [http://www.mediawiki.org/wiki/Manual:FAQ మీడియావికీపై తరుచుగా అడిగే ప్రశ్నలు]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce మీడియావికీ సాఫ్టువేరు కొత్త వెర్షను విడుదలల గురించి తెలిపే మెయిలింగు లిస్టు]',
 );
 
 /** Tetum (Tetun)
@@ -12879,6 +14665,59 @@ $messages['te'] = array(
 $messages['tet'] = array(
 	'config-page-language' => 'Lian',
 	'config-page-name' => 'Naran',
+);
+
+/** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic)) */
+$messages['tg-cyrl'] = array(
+	'mainpagetext' => "'''Нармафзори МедиаВики бо муваффақият насб шуд.'''",
+	'mainpagedocfooter' => 'Аз [http://meta.wikimedia.org/wiki/Help:Contents Роҳнамои Корбарон] барои истифодаи нармафзори вики кӯмак бигиред.
+
+== Оғоз ба кор ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Феҳристи танзимоти пайгирбандӣ]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Пурсишҳои МедиаВики]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Феҳристи ройномаҳои нусхаҳои МедиаВики]',
+);
+
+/** Tajik (Latin) (Тоҷикӣ (Latin))
+ * @author Liangent
+ */
+$messages['tg-latn'] = array(
+	'mainpagetext' => "'''Narmafzori MediaViki bo muvaffaqijat nasb şud.'''",
+	'mainpagedocfooter' => 'Az [http://meta.wikimedia.org/wiki/Help:Contents Rohnamoi Korbaron] baroi istifodai narmafzori viki kūmak bigired.
+
+== Oƣoz ba kor ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Fehristi tanzimoti pajgirbandī]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Pursişhoi MediaViki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Fehristi rojnomahoi nusxahoi MediaViki]',
+);
+
+/** Thai (ไทย)
+ * @author Korrawit
+ */
+$messages['th'] = array(
+	'mainpagetext' => "'''ติดตั้งซอฟต์แวร์มีเดียวิกิเรียบร้อย'''",
+	'mainpagedocfooter' => 'ศึกษา[http://meta.wikimedia.org/wiki/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ
+
+== เริ่มต้น ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)
+* [http://www.mediawiki.org/wiki/Manual:FAQ คำถามที่ถามบ่อยในมีเดียวิกิ] (ภาษาอังกฤษ)
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]',
+);
+
+/** Turkmen (Türkmençe)
+ * @author Hanberke
+ */
+$messages['tk'] = array(
+	'mainpagetext' => "'''MediaWiki şowlulyk bilen guruldy.'''",
+	'mainpagedocfooter' => 'Wiki programmasynyň ulanylyşy hakynda maglumat almak üçin [http://meta.wikimedia.org/wiki/Help:Contents ulanyjy gollanmasyna] serediň.
+
+== Öwrenjeler ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurasiýa sazlamalary]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçta sanawy]',
 );
 
 /** Tagalog (Tagalog)
@@ -13164,6 +15003,71 @@ $3
 Kapag nagawa na iyan, maaari ka nang '''[$2 pumasok sa wiki mo]'''.",
 	'config-download-localsettings' => 'Ikargang paibaba ang LocalSettings.php',
 	'config-help' => 'saklolo',
+	'mainpagetext' => "'''Matagumpay na ininstala ang MediaWiki.'''",
+	'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents Patnubay sa Tagagamit] (''\"User's Guide\"'') para sa kaalaman sa paggamit ng wiking ''software''.
+
+== Pagsisimula ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Tala ng mga nakatakdang kumpigurasyon]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Mga malimit itanong sa MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Tala ng mga pinadadalhan ng liham ng MediaWiki]",
+);
+
+/** Turkish (Türkçe) */
+$messages['tr'] = array(
+	'mainpagetext' => "'''MediaWiki başarı ile kuruldu.'''",
+	'mainpagedocfooter' => 'Viki yazılımının kullanımı hakkında bilgi almak için [http://meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.
+
+== Yeni Başlayanlar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Yapılandırma ayarlarının listesi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]',
+);
+
+/** Tatar (Cyrillic) (Татарча/Tatarça (Cyrillic))
+ * @author KhayR
+ */
+$messages['tt-cyrl'] = array(
+	'mainpagetext' => '«MediaWiki» уңышлы куелды.',
+	'mainpagedocfooter' => "Бу вики турында мәгълүматны [http://meta.wikimedia.org/wiki/Ярдәм:Эчтәлек биредә] табып була.
+
+== Кайбер файдалы ресурслар ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Көйләнмәләр исемлеге (инг.)];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki турында еш бирелгән сораулар һәм җаваплар (инг.)];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'ның яңа версияләре турында хәбәрләр яздырып алу].",
+);
+
+/** Tatar (Latin) (Татарча/Tatarça (Latin))
+ * @author Don Alessandro
+ */
+$messages['tt-latn'] = array(
+	'mainpagetext' => '«MediaWiki» uñışlı quyıldı.',
+	'mainpagedocfooter' => "Bu wiki turında mäğlümatnı [http://meta.wikimedia.org/wiki/Yärdäm:Eçtälek biredä] tabıp bula.
+
+== Qayber faydalı resurslar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Köylänmälär isemlege (ing.)];
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki turında yış birelgän sorawlar häm cawaplar (ing.)];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'nıñ yaña versiäläre turında xäbärlär yazdırıp alu].",
+);
+
+/** Udmurt (Удмурт)
+ * @author Andrewboltachev
+ */
+$messages['udm'] = array(
+	'mainpagetext' => "'''MediaWiki движок азинлыко пуктэмын.'''",
+);
+
+/** ئۇيغۇرچە (ئۇيغۇرچە)
+ * @author Sahran
+ */
+$messages['ug-arab'] = array(
+	'mainpagetext' => "'''MediaWiki مۇۋەپپەقىيەتلىك قاچىلاندى.'''",
+	'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents ئىشلەتكۈچى قوللانمىسى] نى زىيارەت قىلىپ wiki يۇمشاق دېتالىنى ئىشلىتىش ئۇچۇرىغا ئېرىشىڭ.
+
+== دەسلەپكى ساۋات ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings سەپلىمە تەڭشەك تىزىملىكى]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki كۆپ ئۇچرايدىغان مەسىلىلەرگە جاۋاب]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki تارقاتقان ئېلخەت تىزىملىكى]',
 );
 
 /** Ukrainian (Українська)
@@ -13260,6 +15164,149 @@ $messages['uk'] = array(
 	'config-install-step-done' => 'виконано',
 	'config-install-step-failed' => 'не вдалося',
 	'config-install-interwiki-list' => 'Не вдалося знайти файл <code>interwiki.list</code>.',
+	'mainpagetext' => 'Програмне забезпечення «MediaWiki» успішно встановлене.',
+	'mainpagedocfooter' => 'Інформацію про роботу з цією вікі можна знайти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 посібнику користувача].
+
+== Деякі корисні ресурси ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Список налаштувань];
+* [http://www.mediawiki.org/wiki/Manual:FAQ Часті питання з приводу MediaWiki];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розсилка повідомлень про появу нових версій MediaWiki].',
+);
+
+/** Urdu (اردو) */
+$messages['ur'] = array(
+	'mainpagetext' => "'''میڈیاوکی کو کامیابی سے چالو کردیا گیا ہے۔.'''",
+);
+
+/** Uzbek (O'zbek) */
+$messages['uz'] = array(
+	'mainpagetext' => "'''MediaWiki muvaffaqiyatli o'rnatildi.'''",
+	'mainpagedocfooter' => "Wiki dasturini ishlatish haqida ma'lumot olish uchun  [http://meta.wikimedia.org/wiki/Help:Contents Foydalanuvchi qo'llanmasi] sahifasiga murojaat qiling.
+
+== Dastlabki qadamlar ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Moslamalar ro'yxati]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqida ko'p so'raladigan savollar]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]",
+);
+
+/** Vèneto (Vèneto)
+ * @author Vajotwo
+ */
+$messages['vec'] = array(
+	'mainpagetext' => "'''Instałasion de MediaWiki conpletà coretamente.'''",
+	'mainpagedocfooter' => "Varda ła [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] par majori informasion so l'uso de sto software wiki.
+
+== Par scumisiar ==
+
+I seguenti cołegamenti i xé en łengua inglese:
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Inpostasion de configurasion]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti so MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunsi MediaWiki]",
+);
+
+/** Veps (Vepsan kel')
+ * @author Игорь Бродский
+ */
+$messages['vep'] = array(
+	'mainpagetext' => "'''MediaWiki-likutim om seižutadud jügedusita.'''",
+	'mainpagedocfooter' => 'Kc. [http://meta.wikimedia.org/wiki/Help:Kävutajan abukirj], miše sada informacijad wikin kävutamižes.
+
+== Erased tarbhaižed resursad ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Järgendusiden nimikirjutez]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce počtnimikirjutez]',
+);
+
+/** Vietnamese (Tiếng Việt) */
+$messages['vi'] = array(
+	'mainpagetext' => "'''MediaWiki đã được cài đặt thành công.'''",
+	'mainpagedocfooter' => 'Xin đọc [http://meta.wikimedia.org/wiki/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.
+
+== Để bắt đầu ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Danh sách các thiết lập cấu hình]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Các câu hỏi thường gặp MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Danh sách gửi thư về việc phát hành MediaWiki]',
+);
+
+/** Volapük (Volapük) */
+$messages['vo'] = array(
+	'mainpagetext' => "'''El MediaWiki pestiton benosekiko.'''",
+	'mainpagedocfooter' => 'Konsultolös [http://meta.wikimedia.org/wiki/Help:Contents Gebanageidian] ad tuvön nünis dö geb programema vükik.
+
+== Nüdugot ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Parametalised]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: SSP]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Potalised tefü fomams nulik ela MediaWiki]',
+);
+
+/** Võro (Võro) */
+$messages['vro'] = array(
+	'mainpagetext' => "'''MediaWiki tarkvara paika säet.'''",
+	'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano:
+* [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)].
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Säädmiisi oppus (inglüse keelen)]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki kõgõ küsütümbäq küsümiseq (inglüse keelen)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
+);
+
+/** Walloon (Walon) */
+$messages['wa'] = array(
+	'mainpagetext' => "'''Li programe Wiki a stî astalé a l' idêye.'''",
+);
+
+/** Waray (Winaray)
+ * @author Harvzsf
+ */
+$messages['war'] = array(
+	'mainpagetext' => "'''Malinamposon an pag-instalar han MediaWiki.'''",
+	'mainpagedocfooter' => "Kitaa an [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para hin impormasyon ha paggamit han wiki nga softweyr.
+
+== Ha pagtikang==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Wolof (Wolof) */
+$messages['wo'] = array(
+	'mainpagetext' => "'''Campug MediaWiki gi sotti na . '''",
+	'mainpagedocfooter' => 'Saytul [http://meta.wikimedia.org/wiki/Ndimbal:Ndefu Gindikaayu jëfandikukat bi] ngir yeneeni xibaar ci jëfandiku gu tëriin gi.
+
+== Tambali ak MediaWiki ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Limu jumtukaayi kocc-koccal gi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Limu waxtaan ci liy-génn ci MediaWiki]',
+);
+
+/** Wu (吴语)
+ * @author Wu-chinese.com
+ */
+$messages['wuu'] = array(
+	'mainpagetext' => "'''MediaWiki安装成功哉！'''",
+	'mainpagedocfooter' => '请访问[http://meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件个信息！
+
+== 入门 ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设置列表]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常见问题解答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
+);
+
+/** Kalmyk (Хальмг)
+ * @author Huuchin
+ */
+$messages['xal'] = array(
+	'mainpagetext' => "Йовудта Mediawiki гүүлһүдә тәвллһн.'''",
+	'mainpagedocfooter' => 'Тер бики закллһна теткүл ю кеһәд олзлх туск [http://meta.wikimedia.org/wiki/Help:Contents көтлвр] дастн.
+
+== Туста заавр ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Көгүдә бүрткл]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki туск ЮмБи]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki шинҗллһнә бүрткл]',
 );
 
 /** Yiddish (ייִדיש)
@@ -13267,11 +15314,55 @@ $messages['uk'] = array(
  */
 $messages['yi'] = array(
 	'config-admin-name' => 'אײַער נאָמען:',
+	'mainpagetext' => "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
+	'mainpagedocfooter' => "גיט זיך אן עצה מיט [http://meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.
+
+== נוצליכע וועבלינקען פֿאַר אנהייבערס ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings רשימה פון קאנפֿיגוראציעס]
+* [http://www.mediawiki.org/wiki/Manual:FAQ אפֿט געפֿרעגטע שאלות]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מעדיעוויקי באפֿרײַאונג פאסטליסטע]",
+);
+
+/** Yoruba (Yorùbá)
+ * @author Demmy
+ */
+$messages['yo'] = array(
+	'mainpagetext' => "'''MediaWiki ti jẹ́ gbígbékọ́sínú láyọrísírere.'''",
+	'mainpagedocfooter' => "Ẹ ṣàbẹ̀wò sí [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] fún ìfitólétí nípa líló atòlànà wíkì.
+
+== Láti bẹ̀rẹ̀ ==
+*  [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+);
+
+/** Cantonese (粵語) */
+$messages['yue'] = array(
+	'mainpagetext' => "'''MediaWiki已經裝好。'''",
+	'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
+
+==開始使用==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings 配置設定清單]（英）
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題]（英）
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英）',
+);
+
+/** Zeeuws (Zeêuws) */
+$messages['zea'] = array(
+	'mainpagetext' => "'''De installaotie van MediaWiki is geslaegd.'''",
+	'mainpagedocfooter' => "Raedpleeg de [http://meta.wikimedia.org/wiki/ZEA_Ulpe:Inhoudsopgaeve andleidieng] voe informatie over 't gebruuk van de wikisoftware.
+
+== Meer ulpe over MediaWiki ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lieste mie instelliengen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Veehestelde vraehen (FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailienglieste voe ankondigiengen van nieuwe versies]",
 );
 
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Hydra
  * @author PhiLiP
+ * @author Xiaomingyan
  * @author 阿pp
  */
 $messages['zh-hans'] = array(
@@ -13641,6 +15732,13 @@ $3
 当本步骤完成后，您可以 '''[$2 进入您的wiki]'''。",
 	'config-download-localsettings' => '下载LocalSettings.php',
 	'config-help' => '帮助',
+	'mainpagetext' => "'''已成功安装MediaWiki。'''",
+	'mainpagedocfooter' => '请查阅[http://meta.wikimedia.org/wiki/Help:Contents 用户指南]以获取使用本wiki软件的信息！
+
+== 入门 ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设置列表]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/zh-hans MediaWiki常见问题]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]',
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
@@ -13706,5 +15804,35 @@ $messages['zh-hant'] = array(
 	'config-install-step-failed' => '失敗',
 	'config-install-pg-commit' => '提交更改',
 	'config-help' => '說明',
+	'mainpagetext' => "'''已成功安裝 MediaWiki。'''",
+	'mainpagedocfooter' => '請參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟體的訊息！
+
+== 入門 ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題解答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件清單]',
+);
+
+/** Chinese (Hong Kong) (‪中文(香港)‬)
+ * @author Mark85296341
+ */
+$messages['zh-hk'] = array(
+	'mainpagedocfooter' => '請參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟件的訊息！
+
+== 入門 ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題解答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件清單]',
+);
+
+/** Chinese (Taiwan) (‪中文(台灣)‬) */
+$messages['zh-tw'] = array(
+	'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 使用者手冊] 以獲得使用此 wiki 軟體的訊息！
+
+== 入門 ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題解答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件清單]',
 );
 

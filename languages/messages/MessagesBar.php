@@ -143,15 +143,6 @@ $messages = array(
 'index-category'                 => 'Indizirde Saiten',
 'noindex-category'               => 'Ned-indizirde Saiten',
 
-'mainpagetext'      => "'''MediaWiki is erfoigraich installird worn.'''",
-'mainpagedocfooter' => 'A Hüife zur da Benytzung und Konfigurazion vo da Wiki-Software findst auf [http://meta.wikimedia.org/wiki/Help:Contents Benytzerhåndbuach].
-
-== Starthüifm ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listen vo de Konfigurazionsvariablen]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mäilinglisten vo de naichen MediaWiki-Versionen]',
-
 'about'         => 'Ywer',
 'article'       => 'Artike',
 'newwindow'     => '(werd in am naichen Fenster aufgmocht)',
@@ -817,12 +808,10 @@ Links aus Namensräume wern da net aufglistet.',
 'mywatchlist'       => 'Beowochtungslisten',
 'watchlistanontext' => 'Sie miaßn si $1, um Eanane Beobachtungslistn zum seng oda Einträge auf ihr zum bearbatn.',
 'watchnologin'      => 'Sie san net ogmeidt',
-'addedwatch'        => 'Zua Beobachtungslistn dazuado',
 'addedwatchtext'    => 'De Seitn „[[:$1]]“ is zua deina [[Special:Watchlist|Beobachtungslistn]] dazuado worn.
 Änderunga an dera Seitn und vo da Diskussionsseitn wern da glistet und
 in da Übasicht vo de [[Special:RecentChanges|letztn Änderungen]] in Fettschrift ozoagt.
 Wennst de Seitn wieder vo deina Beobachtungslistn wegdoa mechtn, klickst auf da jeweiligen Seitn auf „nimma beobachten“.',
-'removedwatch'      => 'vu da Beobåchtungslistn weg nemma',
 'removedwatchtext'  => "D'Seitn „[[:$1]]“ is vu deina [[Special:Watchlist|Beobåchtungslistn]] weg gnumma woan.",
 'watch'             => 'Beobåchtn',
 'watchthispage'     => 'Seitn beobachtn',

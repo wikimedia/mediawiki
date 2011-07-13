@@ -205,15 +205,6 @@ $messages = array(
 'category-file-count-limited'    => 'Wii wàll moo ëmb {{PLURAL:$1|dencukaay biy toftal|$1 dencukaay yiy toftal}}.',
 'listingcontinuesabbrev'         => '(desit)',
 
-'mainpagetext'      => "'''Campug MediaWiki gi sotti na . '''",
-'mainpagedocfooter' => 'Saytul [http://meta.wikimedia.org/wiki/Ndimbal:Ndefu Gindikaayu jëfandikukat bi] ngir yeneeni xibaar ci jëfandiku gu tëriin gi.
-
-== Tambali ak MediaWiki ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Limu jumtukaayi kocc-koccal gi]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Limu waxtaan ci liy-génn ci MediaWiki]',
-
 'about'         => 'Ci mbirum',
 'article'       => 'Jukki',
 'newwindow'     => '(Day ubbeeku ci beneen palanteer)',
@@ -1637,10 +1628,8 @@ Man ngaa fee gis itam [[{{MediaWiki:Listgrouprights-helppage}}|yeneen xibaar]] �
 'watchlistanontext'    => 'Ngir mana gis walla soppi jëfkayu sa limu toppte, faw nga  $1.',
 'watchnologin'         => 'Duggoo de',
 'watchnologintext'     => 'Yaa wara nekk [[Special:UserLogin|duggal]] ngir soppi lim gi.',
-'addedwatch'           => 'Yokk ci sa limu toppte',
 'addedwatchtext'       => "Xët wii di « [[:$1]] » yokk nañu ko ci sa [[Special:Watchlist|limu toppte]].
 Coppite yiy ñëw yu xët wi ak xëtu waxtaanuwaay wi mu àndal di nañu leen fa dugal, dañula koy won mu '''duuf''' ci [[Special:RecentChanges|limu coppite yu mujj yi]] ngir xammee gi yomb.",
-'removedwatch'         => 'Jëlee ci sa limu toppte',
 'removedwatchtext'     => 'Xët wii di « [[:$1]] » jële nañu ko ci sa [[Special:Watchlist|limu toppte]].',
 'watch'                => 'Topp',
 'watchthispage'        => 'Topp xët wii',

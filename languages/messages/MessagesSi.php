@@ -320,14 +320,7 @@ $messages = array(
 'noindex-category'               => 'සූචිගත නොකළ පිටු',
 'broken-file-category'           => 'භින්න වූ ගොනු සබැඳි සහිත පිටු',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "'''මාධ්‍යවිකි සාර්ථක ලෙස ස්ථාපනය කරන ලදි.'''",
-'mainpagedocfooter' => 'විකි මෘදුකාංග භාවිතා කිරීම පිළිබඳ තොරතුරු සඳහා  [http://meta.wikimedia.org/wiki/Help:Contents පරිශීලකයන් සඳහා නියමුව] හදාරන්න.
-
-== ඇරඹුම ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings වින්‍යාස පරිස්ථිතීන් ලැයිස්තුව]
-* [http://www.mediawiki.org/wiki/Manual:FAQ මාධ්‍යවිකි නිතර-අසන-පැන]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce මාධ්‍යවිකි නිකුතුව තැපැල් ලැයිස්තුව]',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'පිළිබඳ',
 'article'       => 'පටුන',
@@ -2109,10 +2102,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'watchlistanontext'    => 'ඔබගේ මුර-ලැයිස්තුවෙහි අයිතම නැරඹීමට හෝ සංස්කරණය කිරීමට හෝ කරුණාකර $1 සපුරන්න.',
 'watchnologin'         => 'ප්‍රවිෂ්ට වී නොමැත',
 'watchnologintext'     => 'ඔබගේ මුරලැයිස්තුව විකරණය කිරීමට පෙරාතුව ඔබ [[Special:UserLogin|ප්‍රවිෂ්ට වී]] සිටිය යුතුය.',
-'addedwatch'           => 'මුර-ලැයිස්තුවට එක් කරන ලදි',
 'addedwatchtext'       => "\"[[:\$1]]\" පිටුව ඔබගේ [[Special:Watchlist|මුර-ලැයිස්තුවට]] එක් කොට ඇත.
 මෙම පිටුවට සහ එයට අදාළ සාකච්ඡා පිටුවට ඉදිරියෙහිදී සිදු කෙරෙන වෙනස්කිරීම් ලයිස්තුගත වන අතර, ‍තෝරාගැනීමේගැනීමෙහි පහසුව තකා,  [[Special:RecentChanges|මෑත වෙනස්වීම් ලැයිස්තුව]]  තුල මෙම පිටුව  '''තදකුරු''' වලින් දක්වනු ඇත.",
-'removedwatch'         => 'මුර-ලැයිස්තුවෙන් ඉවත් කරන ලදි',
 'removedwatchtext'     => 'මෙම "[[:$1]]"  පිටුව  [[Special:Watchlist|ඔබගේ  මුර-ලැයිස්තුවෙන්]] ඉවත් කරන ලදි.',
 'watch'                => 'මුර කරන්න',
 'watchthispage'        => 'මෙම පිටුව මුර කරන්න',

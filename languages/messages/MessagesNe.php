@@ -182,14 +182,6 @@ $messages = array(
 'noindex-category'               => 'क्रमांकन नगरिएका पृष्ठहरु',
 'broken-file-category'           => 'टुटेको फाइल लिंकसितको पृष्ठ',
 
-'mainpagetext'      => "'''मीडिया सफलतापूर्वक कम्प्यूटरमा स्थापित भयो ।'''",
-'mainpagedocfooter' => ' विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents प्रयोगकर्ता सहायता] हेर्नुहोस्
-
-== सुरू गर्नको लागि  ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings विन्यास सेटिङ्ग सूची]
-* [http://www.mediawiki.org/wiki/Manual:FAQ मेडियाविकि सामान्य प्रश्नका उत्तरहरु]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मेडियाविकि सुचना मेलिङ्ग सूची]',
-
 'about'         => 'बारेमा',
 'article'       => 'सामाग्री पृष्ठ',
 'newwindow'     => '(नयाँ विन्डोमा खुल्छ)',
@@ -1796,10 +1788,8 @@ $1',
 'nowatchlist'          => 'तपाईको अवलोकन सूचीमा कुनै पनि सामाग्री छैन।',
 'watchnologin'         => 'प्रवेश (लग ईन) नगरिएको',
 'watchnologintext'     => 'आफ्नो अवलोकनलाइ परिवर्तन गर्नको लागि त तपाइ यसमा [[Special:UserLogin|प्रवेश(लगइन)]] गर्नुपर्छ।',
-'addedwatch'           => 'अवलोकनसूची मा थपियो',
 'addedwatchtext'       => '"[[:$1]]" पृष्ठ [[Special:Watchlist|अवलोकनसूची]]मा थपियो
 यो पृष्ठ र यससित सम्बद्ध वार्तालाप पृष्ठमा भविष्यमा हुने परिवर्तन  सूचिबद्ध गरिनेछ र यो पृष्ठ [[Special:RecentChanges|नयाँ परिवर्तनहरु]]मा छान्न सजिलोकोलागि गाढा अक्षरमा देखा पर्नेछ।',
-'removedwatch'         => 'निगरानी सूचीबाट हटाइयो',
 'removedwatchtext'     => 'पृष्ठ "[[:$1]]" [[Special:Watchlist|तपाईको निगरानी सूची]]बाट हटाइएको छ।',
 'watch'                => 'अवलोकन',
 'watchthispage'        => 'यो पृष्ठ अवलोकन गर्नुहोस्',

@@ -424,14 +424,6 @@ $messages = array(
 'noindex-category'               => "Pagina's dee neet indexeerd bin",
 'broken-file-category'           => "Pagina's mit verkeerde bestaansverwiezingen",
 
-'mainpagetext'      => "'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''",
-'mainpagedocfooter' => "Bekiek de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
-
-== Meer hulpe ==
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Lieste mit instellingen]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki-vragen dee vake esteld wönnen]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-poslieste veur nieje versies]",
-
 'about'         => 'Informasie',
 'article'       => 'Artikel',
 'newwindow'     => '(niej vienster)',
@@ -2180,10 +2172,8 @@ De ontvanger kan dus drek beantwoorden.",
 'watchlistanontext'    => '$1 is verplich um joew volglieste te bekieken of te wiezigen.',
 'watchnologin'         => 'Neet an-emeld',
 'watchnologintext'     => 'Um je volglieste an te passen mu-j eers [[Special:UserLogin|an-emeld]] ween.',
-'addedwatch'           => 'Disse pagina steet noen op joew volglieste',
 'addedwatchtext'       => "De pagina \"[[:\$1]]\" steet noen op joew [[Special:Watchlist|volglieste]].
 Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld wonnen, oek zullen disse pagina's '''vet-edrok''' ween in de lieste mit de [[Special:RecentChanges|leste wiezigingen]] zoda-j 't makkelijker zien kunnen.",
-'removedwatch'         => 'Van volglieste ofhaolen',
 'removedwatchtext'     => 'De pagina "[[:$1]]" is van [[Special:Watchlist|joew volglieste]] of-ehaold.',
 'watch'                => 'Volgen',
 'watchthispage'        => 'Volg disse pagina',

@@ -271,14 +271,6 @@ $messages = array(
 'category-file-count-limited'    => 'ئەم {{PLURAL:$1|پەڕگە|پەڕگانە}} لەم هاوپۆلەدایە.',
 'listingcontinuesabbrev'         => '(درێژە)',
 
-'mainpagetext'      => "'''میدیاویکی بە سەرکەوتوویی دامەزرا.'''",
-'mainpagedocfooter' => 'پرس بکە بە [http://meta.wikimedia.org/wiki/Help:Contents ڕێنوێنیی بەکارھێنەران] بۆ زانیاری سەبارەت بە بەکارھێنانی نەرمامێری ویکی.
-
-== دەستپێکردن ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings لیستی ڕێکخستنەکان شێوەپێدان]
-* [http://www.mediawiki.org/wiki/Manual:FAQ پرسیارە دوپاتکراوەکانی میدیاویکی (MediaWiki FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لیستی ئیمەیلی وەشانەکانی میدیاویکی]',
-
 'about'         => 'سه‌باره‌ت',
 'article'       => 'بابەت',
 'newwindow'     => '(لە پەڕەیەکی نوێ دەکرێتەوە)',
@@ -1898,10 +1890,8 @@ $1',
 'watchlistanontext'    => 'تکایە بۆ دیتن و دەستکاری بابەتەکانی لە ناو لیستی چاودێریەکەت‌دا $1.',
 'watchnologin'         => 'لە ژوورەوە نیت.',
 'watchnologintext'     => 'دەبی لە [[Special:UserLogin|ژوورەوە]] بیت بۆ ئەوەی بتوانی گۆڕانکاری بکەیت لە لیستی چاودێریەکەت‌دا.',
-'addedwatch'           => 'بە لیستی چاودێریت زێدەکرا',
 'addedwatchtext'       => 'پەڕەی «[[:$1]]» خرایە سەر [[Special:Watchlist|لیستی چاودێرییەکەت]].
 گۆڕانکارییەکانی داھاتووی ئەم پەڕە و پەڕەی وتووێژەکەی، لەوێدا ڕیزدەکرێ و پەڕەکە لە [[Special:RecentChanges|لیستی دوایین گۆڕانکارییەکاندا]] ئەستوورکراو دەردەکەوێت بۆ ئەوەی ئاسانتر دەستکەوێت.',
-'removedwatch'         => 'لە لیستی چاودێری لابرا',
 'removedwatchtext'     => 'پەڕەی «[[:$1]]» لە [[Special:Watchlist|لیستی چاودێریەکەت]] لابرا.',
 'watch'                => 'چاودێری بکە',
 'watchthispage'        => 'چاودێریی ئەم پەڕە بکە',

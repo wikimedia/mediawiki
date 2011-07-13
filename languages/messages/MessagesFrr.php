@@ -147,16 +147,6 @@ $messages = array(
 'index-category'                 => 'Indisiirde side',
 'noindex-category'               => 'Ai indisiirde side',
 
-'mainpagetext'      => "'''MediaWiki wörd ma erfolch instaliird.'''",
-'mainpagedocfooter' => 'Heelp tu jü benjüting än konfigurasjoon foon e Wiki-software fanst dü önj dåt [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
-
-
-== Startheelpe ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
-
 'about'         => 'Ouer',
 'article'       => 'Sid',
 'newwindow'     => '(wårt önj en nai waning änäämmååged)',
@@ -1065,14 +1055,12 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 # Watchlist
 'watchlist'         => 'Eefterkiikliste',
 'mywatchlist'       => 'Eefterkiikliste',
-'addedwatch'        => 'Tu eefterkiiksid tubaifäiged',
 'addedwatchtext'    => 'Jü sid „[[:$1]]“ wörd tu din [[Special:Watchlist|eefterkiiklist]] tubaifäiged.
 
 Lääsere änringe bai jüdeer sid än jü deertuhiirende diskusjoonssid wårde deer listed än
 önj e ouersicht foon da [[Special:RecentChanges|leeste änringe]] önj fåtschraft deerstald.
 
 Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jüdeer sid aw „{{int:Unwatch}}“.',
-'removedwatch'      => 'Foon jü eefterlöksid wächhååld',
 'removedwatchtext'  => 'Jü sid „[[:$1]]“ wörd foon din [[Special:Watchlist|eefterkiiklist]] wächhååld.',
 'watch'             => 'Kiike eefter',
 'watchthispage'     => 'Side eefterkiike',

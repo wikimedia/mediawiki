@@ -309,15 +309,6 @@ $messages = array(
 'index-category'                 => 'หน้าที่มีดัชนี',
 'noindex-category'               => 'หน้าที่ไม่มีดัชนี',
 
-'mainpagetext'      => "'''ติดตั้งซอฟต์แวร์มีเดียวิกิเรียบร้อย'''",
-'mainpagedocfooter' => 'ศึกษา[http://meta.wikimedia.org/wiki/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ
-
-== เริ่มต้น ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)
-* [http://www.mediawiki.org/wiki/Manual:FAQ คำถามที่ถามบ่อยในมีเดียวิกิ] (ภาษาอังกฤษ)
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]',
-
 'about'         => 'เว็บไซต์นี้',
 'article'       => 'หน้าเนื้อหา',
 'newwindow'     => '(เปิดหน้าต่างใหม่)',
@@ -1993,11 +1984,9 @@ $1',
 'watchlistanontext'    => 'กรุณา $1 เพื่อที่จะดูหรือแก้ไขหน้าในรายการเฝ้าดู',
 'watchnologin'         => 'ไม่ได้ล็อกอิน',
 'watchnologintext'     => 'ต้อง[[Special:UserLogin|ล็อกอิน]]เพื่อที่จะแก้ไขรายการเฝ้าดู',
-'addedwatch'           => 'ถูกใส่เข้ารายการเฝ้าดู',
 'addedwatchtext'       => 'หน้า "[[:$1]]" ถูกใส่เข้าไปใน[[Special:Watchlist|รายการเฝ้าดู]]ของคุณ ถ้ามีการเปลี่ยนแปลงเกิดขึ้นในหน้าเหล่านี้ รวมถึงหน้าพูดคุยของหน้านี้
 รายชื่อหน้าจะแสดงเป็นตัวหนาในส่วนของ[[Special:RecentChanges|หน้าการเปลี่ยนแปลงล่าสุด]]เพื่อให้โดดเด่นเป็นที่สังเกต
 ถ้าไม่ต้องการเฝ้าดูให้กดที่  "เลิกเฝ้าดู" ในส่วนของเมนู',
-'removedwatch'         => 'ถูกนำออกจากรายการเฝ้าดู',
 'removedwatchtext'     => 'หน้า "[[:$1]]" ถูกนำออกจาก[[Special:Watchlist|รายการเฝ้าดูของท่าน]]',
 'watch'                => 'เฝ้าดู',
 'watchthispage'        => 'เฝ้าดูหน้านี้',

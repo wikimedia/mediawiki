@@ -342,14 +342,6 @@ $messages = array(
 'noindex-category'               => 'Neindeksirane stranice',
 'broken-file-category'           => 'Stranice s neispravnim vezama do datoteka',
 
-'mainpagetext'      => "'''MedijaViki je uspešno instaliran.'''",
-'mainpagedocfooter' => 'Molimo vidite [http://meta.wikimedia.org/wiki/Help:Contents korisnički vodič] za informacije o upotrebi viki softvera.
-
-== Za početak ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Najčešće postavljena pitanja]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
-
 'about'         => 'O...',
 'article'       => 'Članak',
 'newwindow'     => '(novi prozor)',
@@ -2098,12 +2090,10 @@ Adresa e-pošte koju ste vi uneli u svojim [[Special:Preferences|korisničkim po
 'watchlistanontext'    => 'Morate biti $1 da biste gledali ili menjali stavke na vašem spisku nadgledanja.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste menjali spisak nadgledanja.',
-'addedwatch'           => 'Dodato spisku nadgledanja',
 'addedwatchtext'       => 'Stranica „[[:$1]]“ je dodata na vaš [[Special:Watchlist|spisak nadgledanja]].
 Buduće izmene ove stranice i njene stranice za razgovor biće navedene ovde, a stranica će biti <b>podebljana</b> u [[Special:RecentChanges|spisku skorašnjih izmena]] da bi se lakše uočila.
 
 Ukoliko budete želeli da uklonite stranicu sa spiska nadgledanja, kliknite opet na zvezdicu u gornjoj paleti.',
-'removedwatch'         => 'Uklonjeno sa spiska nadgledanja',
 'removedwatchtext'     => 'Stranica „[[:$1]]“ je obrisana sa [[Special:Watchlist|Vašeg spiska nadgledanja]].',
 'watch'                => 'nadgledaj',
 'watchthispage'        => 'Nadgledaj ovu stranicu',

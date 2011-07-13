@@ -472,14 +472,6 @@ $messages = array(
 'noindex-category'               => 'דפים המוסתרים ממנועי חיפוש',
 'broken-file-category'           => 'דפים עם קישורים שבורים לקבצים',
 
-'mainpagetext'      => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
-'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
-
-== קישורים שימושיים ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]
-* [http://www.mediawiki.org/wiki/Manual:FAQ שאלות נפוצות]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]',
-
 'about'         => 'אודות',
 'article'       => 'דף תוכן',
 'newwindow'     => '(נפתח בחלון חדש)',
@@ -2259,11 +2251,9 @@ $1',
 'watchlistanontext'    => 'עליכם $1 כדי לצפות או לערוך פריטים ברשימת המעקב.',
 'watchnologin'         => 'לא נכנסתם לחשבון',
 'watchnologintext'     => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] כדי לערוך את רשימת המעקב.',
-'addedwatch'           => 'הדף נוסף לרשימת המעקב',
 'addedwatchtext'       => 'הדף [[:$1]] נוסף ל[[Special:Watchlist|רשימת המעקב]]. שינויים שייערכו בעתיד, בדף זה ובדף השיחה שלו, יוצגו ברשימת המעקב.
 
 בנוסף, הדף יופיע בכתב מודגש ב[[Special:RecentChanges|רשימת השינויים האחרונים]], כדי להקל עליכם את המעקב אחריו.',
-'removedwatch'         => 'הדף הוסר מרשימת המעקב',
 'removedwatchtext'     => 'הדף [[:$1]] הוסר מ[[Special:Watchlist|רשימת המעקב]].',
 'watch'                => 'מעקב',
 'watchthispage'        => 'מעקב אחרי דף זה',

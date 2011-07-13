@@ -399,15 +399,6 @@ $messages = array(
 'index-category'                 => 'Ինդեքսավորված էջեր',
 'noindex-category'               => 'Ինդեքսավորված էջեր չկան',
 
-'mainpagetext'      => "'''«MediaWiki» ծրագիրը հաջողությամբ տեղադրվեց։'''",
-'mainpagedocfooter' => "Այցելեք [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]՝ վիքի ծրագրային ապահովման օգտագործման մասին տեղեկությունների համար։
-
-== Որոշ օգտակար ռեսուրսներ ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Էությունը',
 'article'       => 'Հոդված',
 'newwindow'     => '(բացվելու է նոր պատուհանի մեջ)',
@@ -1636,11 +1627,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => 'Անհրաժեշտ է $1՝ հսկացանկը դիտելու կամ խմբագրելու համար։',
 'watchnologin'         => 'Չեք մտել համակարգ',
 'watchnologintext'     => 'Անհրաժեշտ է [[Special:UserLogin|մտնել համակարգ]]՝ հսկացանկը փոփոխելու համար։',
-'addedwatch'           => 'Ավելացված է հսկացանկին',
 'addedwatchtext'       => '«[[:$1]]» էջը ավելացված է ձեր [[Special:Watchlist|հսկացանկին]]։ Այս էջի և նրան կապված քննարկումների էջի հետագա փոփոխությունները կգրանցվեն այդտեղ, և կցուցադրվեն թավատառ [[Special:RecentChanges|վերջին փոփոխությունների]] ցանկում։
 
 Հետագայում հսկացանկից էջը հեռացնելու ցանկության դեպքում մատնահարեք էջի վերնամասի ընտրացանկում գտնվող «հանել հսկումից» կոճակին։',
-'removedwatch'         => 'Հանված է հսկման ցանկից',
 'removedwatchtext'     => '«[[:$1]]» էջը հանված է [[Special:Watchlist|ձեր հսկացանկից]]։',
 'watch'                => 'Հսկել',
 'watchthispage'        => 'Հսկել այս էջը',

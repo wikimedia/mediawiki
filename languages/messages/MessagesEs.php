@@ -458,14 +458,6 @@ $messages = array(
 'noindex-category'               => 'Páginas no indexadas',
 'broken-file-category'           => 'Páginas con enlaces rotos a archivos',
 
-'mainpagetext'      => "'''MediaWiki ha sido instalado con éxito.'''",
-'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
-
-== Empezando ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustes de configuración]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/es FAQ de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]',
-
 'about'         => 'Acerca de',
 'article'       => 'Artículo',
 'newwindow'     => '(Se abre en una ventana nueva)',
@@ -2198,9 +2190,7 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 'watchlistanontext'    => 'Para ver o editar las entradas de tu lista de seguimiento es necesario $1.',
 'watchnologin'         => 'No has iniciado sesión',
 'watchnologintext'     => 'Debes [[Special:UserLogin|iniciar sesión]] para modificar tu lista de seguimiento.',
-'addedwatch'           => 'Añadido a la lista de seguimiento',
 'addedwatchtext'       => "La página «[[:$1]]» ha sido añadida a tu [[Special:Watchlist|lista de seguimiento]]. Los cambios futuros en esta página y en su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Special:RecentChanges|lista de cambios recientes]] para hacerla más fácil de detectar.",
-'removedwatch'         => 'Eliminada de la lista de seguimiento',
 'removedwatchtext'     => 'La página «[[:$1]]» ha sido eliminada de tu [[Special:Watchlist|lista de seguimiento]].',
 'watch'                => 'Vigilar',
 'watchthispage'        => 'Vigilar esta página',

@@ -140,14 +140,6 @@ $messages = array(
 'noindex-category'               => "Empapula ezigaanidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
 'broken-file-category'           => 'Empapula eziriko ennyunzi ezitalina kwe zigguka',
 
-'mainpagetext'      => 'MediaWiki kati ewangidwa ku sisitemu yo',
-'mainpagedocfooter' => "Okuyiga ku nkozesa ya sofutiweya owa wiki, kebera [http://meta.wikimedia.org/wiki/Help:Contents Okulagirira Abakozesa].
-
-== Amagezi agakuyamba okutandika ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lukalala lw'eby'enteekateeka yo]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Ebiter'okubuuzibwa ku MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Wewandise ofunenga amawulire aga email ag'ebifa ku MediaWiki]",
-
 'about'         => 'Okutangaaza',
 'article'       => 'Lupapula lwa nsonga',
 'newwindow'     => '(bijjira mu kadirisa kapya)',
@@ -1042,14 +1034,12 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 # Watchlist
 'watchlist'         => 'Empapula zengoberera',
 'mywatchlist'       => 'Empapula zengoberera',
-'addedwatch'        => "Kigattiddwa ku by'ogoberera",
 'addedwatchtext'    => 'Olupapula "[[:$1]]" kati luli mu [[Special:Watchlist|by\'ogoberera]].
 Buli olupapula olwo oba olw\'emboozi lwalwo lwe binaakyusibwamu, enkyukakyuka ezo
 zijjakulabika wano. Era erinnya lyalwo mu [[Special:RecentChanges|lukalala olw\'ebyakakyusibwa]]
 lijja okuba mu nukuta enziggumivu oyanguyirwe okuliraba.
 
 Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali.',
-'removedwatch'      => "Lugyidwamu mu lukalala lw'empapula z'ogoberera",
 'removedwatchtext'  => 'Olupapula "[[:$1]]" lugyidwamu mu [[Special:Watchlist|lukalala lw\'empapula z\'ogoberera]].',
 'watch'             => 'Goberera olupapula luno',
 'watchthispage'     => 'Goberera olupapula luno',

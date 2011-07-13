@@ -215,16 +215,6 @@ $messages = array(
 'category-article-count'   => "{{PLURAL:$2|Chistha categuria cunteni un'unica pagina, indicadda inogghi.|Chistha categuria cunteni {{PLURAL:$1|la pagina indicadda|li $1 pagini indicaddi}} inogghi, i' un tutari di $2.}}",
 'listingcontinuesabbrev'   => '(séguiddu)',
 
-'mainpagetext'      => "'''Isthallazioni di MediaWiki accabadda currentementi.'''",
-'mainpagedocfooter' => "Cunsultha la [http://meta.wikimedia.org/wiki/Aggiuddu:Summàriu Ghia utenti] pa maggiori infuimmazioni i l'usu di chisthu software wiki.
-
-== Pa ischuminzà ==
-Li sighenti cullegamenti so in linga ingrese:
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impusthazioni di cunfigurazioni]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Prigonti friquenti i MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]",
-
 'about'         => 'Infuimmazioni',
 'article'       => 'Pagina',
 'newwindow'     => "(s'abbri in d'unu nobu balchoni)",
@@ -1305,12 +1295,10 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'watchlistanontext'    => "Pa visuarizzà e mudìfiggà l'erencu di l'abbaidaddi ippiziari è nezzessàriu $1.",
 'watchnologin'         => 'Intradda nò effettuadda',
 'watchnologintext'     => "Pa mudìfiggà la listha di l'abbaidaddi ippiziari è nezzessàriu primma [[Special:UserLogin|intrà]].",
-'addedwatch'           => "Pàgina aggiunta a la listha di l'abbaidaddi ippiziari",
 'addedwatchtext'       => "La pàgina  \"[[:\$1]]\" è isthadda aggiunta a la propria [[Special:Watchlist|listha di l'abbaidaddi ippiziari]]. D'abà innanzi, tutti li mudìfigghi arriggaddi a la pàgina e a la sóia dischussioni sarani erencaddi in chidda listha; lu tìturu di la pàgina apparirà in '''grasseddu''' i' la pàgina
 di l'[[Special:RecentChanges|ulthimi mudìfigghi]] pa rindiru più visìbiri.
 
 Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii, fà clic i' \"nò sighì\" i' la barra in althu.",
-'removedwatch'         => "Pàgina eliminadda da la listha di l'abbaidaddi ippiziari",
 'removedwatchtext'     => 'La pàgina  "[[:$1]]" è isthadda eliminadda da la listha di l\'abbaidaddi ippiziari.',
 'watch'                => 'Sighi',
 'watchthispage'        => 'Sighi chistha pàgina',

@@ -163,8 +163,6 @@ $messages = array(
 'category-article-count'        => '{{PLURAL:$2|Na kategòrëjô zamëkôw w se blós jedną starnã.|Niżi mómë $1 westrzód $2 starów w ti kategòrëji.}}',
 'listingcontinuesabbrev'        => 'kònt.',
 
-'mainpagetext' => "'''MediaWiki òsta zainstalowónô.'''",
-
 'about'         => 'Ò serwise',
 'article'       => 'Artikel',
 'newwindow'     => '(òtmëkô sã w nowim òczenkù)',
@@ -932,12 +930,10 @@ Mòżesz zawãżëc wëszłosc przez wëbranié ôrtu registru, miona brëkòwni
 'watchlist'            => 'Lësta ùzérónëch artiklów',
 'mywatchlist'          => 'Lësta ùzérónëch artiklów',
 'watchnologin'         => 'Felënk logòwóniô',
-'addedwatch'           => 'Dodónô do lëstë ùzérónëch',
 'addedwatchtext'       => "Starna \"[[:\$1]]\" òsta dodónô do twòji [[Special:Watchlist|lëstë ùzérónëch artiklów]].
 Na ti lësce są registre przińdnëch zjinak ti starne ë na ji starnie dyskùsëji, a samò miono starnë mdze '''wëtłëszczone''' na [[Special:RecentChanges|lësce slédnich edicëji]], bë të mògł to òbaczëc.
 
 Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj ùzérac''.",
-'removedwatch'         => 'Rëmóné z lëstë ùzérónëch',
 'removedwatchtext'     => 'Starna "[[:$1]]" òsta rëmniãtô z Twòji [[Special:Watchlist|lëstë ùzérónych]].',
 'watch'                => 'Ùzérôj',
 'watchthispage'        => 'Ùzérôj ną starnã',

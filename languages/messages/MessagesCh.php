@@ -902,10 +902,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Watchlist
 'watchlist'         => 'Listan pinilan-hu',
 'mywatchlist'       => 'Listan pinilan-hu',
-'addedwatch'        => "Mapo'lo gi listan pinilan",
 'addedwatchtext'    => "Mana'suha i påhina \"[[:\$1]]\" para iyo-mu [[Special:Watchlist|Listan pinilan]].
 I tinilaika siha mo'na gi tiempo kontodu i påhinan kombetsasion siha para u fana'lista guihi, yan para u '''na'potpot''' i påhina gi halom [[Special:RecentChanges|i listan tinilaika gi halacha]] para un ayek ha' mas libianu.",
-'removedwatch'      => "Mana'suha gi listan pinilan",
 'removedwatchtext'  => 'Mana\'suha i påhinan "[[:$1]]" gi [[Special:Watchlist|listan pinilan-mu]].',
 'watch'             => 'Pulan',
 'watchthispage'     => 'Pulan este na påhina',

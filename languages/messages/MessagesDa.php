@@ -310,9 +310,6 @@ $messages = array(
 'noindex-category'               => 'Ikke-indekserede sider',
 'broken-file-category'           => 'Sider med brudte filhenvisninger',
 
-'mainpagetext'      => "'''MediaWiki er nu installeret.'''",
-'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
-
 'about'         => 'Om',
 'article'       => 'Artikel',
 'newwindow'     => '(åbner i et nyt vindue)',
@@ -1187,7 +1184,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'qbsettings-fixedright'     => 'Fast højre',
 'qbsettings-floatingleft'   => 'Flydende venstre',
 'qbsettings-floatingright'  => 'Flydende højre',
-'qbsettings-directionality' => 'Fast, afhængigt af retningen, dit sprog skrives i',
+'qbsettings-directionality' => 'Fast, afhængigt af dit sprog og retningen, det skrives i',
 
 # Preferences page
 'preferences'                   => 'Indstillinger',
@@ -2046,9 +2043,9 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'watchlistanontext'    => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
 'watchnologin'         => 'Ikke logget på',
 'watchnologintext'     => 'Du skal være [[Special:UserLogin|logget på]] for at kunne ændre din overvågningsliste.',
-'addedwatch'           => 'Tilføjet til din overvågningsliste',
+'addwatch'             => 'Tilføj til overvågningsliste',
 'addedwatchtext'       => "Siden \"[[:\$1]]\" er blevet tilføjet til din [[Special:Watchlist|overvågningsliste]]. Fremtidige ændringer til denne side og den tilhørende diskussionsside vil blive listet der, og siden vil fremstå '''fremhævet''' i [[Special:RecentChanges|listen med de seneste ændringer]] for at gøre det lettere at finde den. Hvis du senere vil fjerne siden fra din overvågningsliste, så klik \"Fjern overvågning\".",
-'removedwatch'         => 'Fjernet fra overvågningsliste',
+'removewatch'          => 'Fjern fra overvågningsliste',
 'removedwatchtext'     => 'Siden "[[:$1]]" er blevet fjernet fra [[Special:Watchlist||din overvågningsliste]].',
 'watch'                => 'Overvåg',
 'watchthispage'        => 'Overvåg side',
@@ -3353,6 +3350,12 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'confirm_purge_button' => 'O.k.',
 'confirm-purge-top'    => "Slet denne side fra serverens mellemlager (''cache'')?",
 'confirm-purge-bottom' => 'Rensning af en side sletter mellemlageret og fremtvinger den nyeste version.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Tilføj denne side til din overvågningsliste?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Fjern denne side fra din overvågningsliste?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',

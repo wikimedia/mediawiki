@@ -145,15 +145,6 @@ $messages = array(
 'index-category'                 => 'Индекс зырат напэкӀуэцӀхэр',
 'noindex-category'               => 'НапэкӀуэцӀ индекс зыхуэмыныкуъэхэр',
 
-'mainpagetext'      => "'''«MediaWiki» узыншу хэгъува.'''",
-'mainpagedocfooter' => 'Мы виким и лэжьыгъэ хъыбархэр здэбгъуэтыфынур [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 дэӀэпыкъуэгъу тхылъым].
-
-
-== Къыщхьэпэгъуэ хъуфынухэр ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Зэгъэзэхуэгъуэ гуэрэхэм я тхылъ];
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-м упщӀэ нахъыбу ятхэмрэ я жэуапхэмрэ];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-м и версиэ щӀэуэ къэжахэм я къэӀохугъуэ].',
-
 'about'         => 'И гугъу',
 'article'       => 'Тхыгъэ',
 'newwindow'     => '(щӀэуэ зэӀухын)',
@@ -1066,10 +1057,8 @@ $1",
 # Watchlist
 'watchlist'         => 'Си кӀэлъыплъыгъуэхэм я тхылъ',
 'mywatchlist'       => 'СызыкӀэлъыплъхэм я тхылъ',
-'addedwatch'        => 'КӀэлъыплъыгъуэхэм я тхылъым хэтхащ',
 'addedwatchtext'    => 'НапэкӀуцӀ «[[:$1]]» уи [[Special:Watchlist|щӀэлъыплъыгъуэхэм я тхылъым]] халъхьа.
 ЯужкӀэ мы напэкӀуэцӀым и зэхъуэкӀыныгъэхэмрэ абым епха напэкӀуэцӀ тепсэлъыхьыныгъэмрэ мы тхылъым къыхэкӀху хъунущ, икӀи хьэрыф бгъуэуэ къыхэгъэкӀауэ напэкӀуэцӀ [[Special:RecentChanges|зэхъуэкӀыныгъэ щӀэхэм я тхылъэхэм]] хэтыну, нэхъыфӀу къэлъэгъуным щхьэкӀэ.',
-'removedwatch'      => 'ЩӀэлъыплъыгъуэ тхылъым хэгъэкӀыжащ',
 'removedwatchtext'  => 'НапэкӀуэцӀ «[[:$1]]» уи [[Special:Watchlist|щӀэлъыплъыгъуэ тхылъым]] хэгъэкӀа.',
 'watch'             => 'КӀэлъплъын',
 'watchthispage'     => 'НапэкӀуэцӀым кӀэлъыплъын',

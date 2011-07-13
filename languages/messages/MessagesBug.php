@@ -363,7 +363,6 @@ $messages = array(
 'categories' => 'Maneŋ kategori',
 
 # Watchlist
-'addedwatch'     => 'Tamba ri jagaan',
 'addedwatchtext' => "Halamang \"[[:\$1]]\" ni ritamba ri ida [[Special:Watchlist|watchlist]].
 Halamang bicara éréngé gabungan halamang bicara pada wettu depan didaftarkan koe,
 éréngé halamang akan wessi '''umpek''' ri [[Special:RecentChanges|daftar pinra tanappa]] barak lebih lemmak ita.

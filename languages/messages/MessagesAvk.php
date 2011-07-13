@@ -210,8 +210,6 @@ $messages = array(
 'category-file-count-limited'    => 'Bat iyeltak {{PLURAL:$1|tir|$1 tid}} koe noeltafa loma.',
 'listingcontinuesabbrev'         => 'loon',
 
-'mainpagetext' => "'''MediaWiki inkeyen talpeyot.'''",
-
 'about'         => 'Icdeuca',
 'article'       => 'Teliz',
 'newwindow'     => '(ko ar dilk fenkur)',
@@ -1369,12 +1367,10 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 'watchlistanontext'    => 'Ta wira ik betara va ra ke rinafi suzdasiki vay $1.',
 'watchnologin'         => 'Dogluyariskaf',
 'watchnologintext'     => 'Ta betara va suzdasiki gotil [[Special:UserLogin|dogluyarakiraf]].',
-'addedwatch'           => 'Loplekuyun ko suzdasiki',
 'addedwatchtext'       => "« $1 » bu ko rinafi [[Special:Watchlist|Suzdasiki]] fu zo loplekur.
 Va moniyaf betareem va batu bu is dofu prilarabu batlize zo bonjatad, ise ta lokaliafa tcalutera telu '''ton bold''' koe bu dem [[Special:RecentChanges|noeltaf betakseem]] turowinaweter.
 
 Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vulegal.",
-'removedwatch'         => 'Sulayanu div suzdasiki',
 'removedwatchtext'     => '« [[:$1]] » bu div rinafi suzdasiki al zo sular.',
 'watch'                => 'Suzdá',
 'watchthispage'        => 'Va batu bu suzdá',

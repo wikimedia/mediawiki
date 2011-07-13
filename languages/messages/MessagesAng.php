@@ -158,14 +158,6 @@ $messages = array(
 'index-category'                 => 'Ȝebēacniende trametas',
 'noindex-category'               => 'Unȝebēacniende trametas',
 
-'mainpagetext'      => "'''MediaǷiki hafaþ ȝeƿorden spēdiȝe inseted.'''",
-'mainpagedocfooter' => 'Þeahta þone [http://meta.wikimedia.org/wiki/Help:Contents Brūcenda Lǣdend]  on helpe mid þǣre nytte of ƿikisōftƿare.
-
-== Beȝinnunȝ ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Onfæstnunȝa ȝesetednessa ȝetæl]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Ȝetæl oft ascodra ascunȝa ymb MediaǷiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ǣrendunȝȝetæl nīƿra MediaǷiki forþsendnessa]',
-
 'about'         => 'Ymbe',
 'article'       => 'Innunȝsīde',
 'newwindow'     => '(openaþ in nīƿum ēaȝþyrelum)',
@@ -879,8 +871,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Watchlist
 'watchlist'         => 'Mīnu ƿæcceȝetalu',
 'mywatchlist'       => 'Mīnu ƿæcceȝetalu',
-'addedwatch'        => 'To ƿæcceȝetale ēacod',
-'removedwatch'      => 'Fornōm fram ƿæccȝetale',
 'removedwatchtext'  => 'Sēo sīde "[[:$1]]" ƿæs fram [[Special:Watchlist|þīnre ƿæccȝetale]] fornōm.',
 'watch'             => 'Ƿæccan',
 'watchthispage'     => 'Þās sīdan ƿæccan',

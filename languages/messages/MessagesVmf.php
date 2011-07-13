@@ -665,14 +665,12 @@ S'gajd awâr aa â [[Special:WhatLinksHere/$2|lisdn mid alâ fârwajs]].",
 # Watchlist
 'watchlist'         => 'Maj beoobachdungs-lisdn',
 'mywatchlist'       => 'Mâj beoobachdungslisdn',
-'addedwatch'        => 'Wärd ab jeds beoobachd',
 'addedwatchtext'    => "Di sajdn „[[:$1]]“ schdäd eds mid af dajnâr [[Special:Watchlist|beoobachdungs-lisdn]] .
 
 Wen sich af der sajdn oda iirâr disghusjoons-sajdn was duud, wärd se ab eds
  af di „[[Special:RecentChanges|Ledsdn ändrunga]]“ fäd dâdsuugschriim.
 
 Wenns'd dii sajdn irchendwan amôl nimä fârfolchn wilsd, musd bloos af „{{int:Unwatch}}“ glign.",
-'removedwatch'      => 'Wärd eds nimä´ beoobachd',
 'removedwatchtext'  => 'Dii sajdn „[[:$1]]“ is fo Dajnâr [[Special:Watchlist|beoobachdungslisdn]] nundârgnumma.',
 'watch'             => 'Beoobachdn',
 'watchthispage'     => 'Dii sajdn undâr beoobachdung nämâ',

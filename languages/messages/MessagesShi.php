@@ -140,14 +140,6 @@ $messages = array(
 'index-category'                 => 'Tisniwin su umatar',
 'noindex-category'               => 'Tisniwin bla amatar',
 
-'mainpagetext'      => "'''MediaWiki tǧizn (tsrbk) bla tamukrist.'''",
-'mainpagedocfooter' => 'Ẓr taǧttnn  [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] bac ad tawit inɣmisn yaḍn f manik sa tswwurt asɣẓan ad.
-
-== Izwir d MediaWiki ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Umuɣ n iɣwwarn n usgadda ]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/fr Isqqsitn f MidyWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Umuɣ n imsgdaln f imbḍitn n MidyaWiki]',
-
 'about'         => 'F',
 'article'       => 'Mayllan ɣ tasna',
 'newwindow'     => 'Murzemt ɣ tasatmt tamaynut',
@@ -917,9 +909,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 # Watchlist
 'watchlist'         => 'Umuɣ n imtfrn',
 'mywatchlist'       => 'Umuɣ inu lli tsaggaɣ',
-'addedwatch'        => 'Zayd tin i umuɣ n umtfr',
 'addedwatchtext'    => 'tasna « [[:$1]] » tllan ɣ [[Special:Watchlist|umuɣ n umtfr]]. Imbdln lli dyuckan d tasna lli dis iṭṭuzn rad asn nskr agmmaḍ nsn. Tasna radd ttbayan s "uḍnay" ɣ [[Special:RecentChanges|Umuɣ n imbddeln imaynutn]]',
-'removedwatch'      => 'Kkist s umuɣ n umtfr',
 'removedwatchtext'  => 'Tasna "[[:$1]]" ḥra ttuykkas z [[Special:Watchlist|your watchlist]].',
 'watch'             => 'zaydtin i tochwafin-niw',
 'watchthispage'     => 'Ṭfr tasna yad',

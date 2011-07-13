@@ -461,15 +461,6 @@ $messages = array(
 'noindex-category'               => "Niet te indexeren pagina's",
 'broken-file-category'           => "Pagina's met onjuiste bestandsverwijzingen",
 
-'mainpagetext'      => "'''De installatie van MediaWiki is geslaagd.'''",
-'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
-
-== Meer hulp over MediaWiki ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lijst met instellingen]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Veelgestelde vragen (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]',
-
 'about'         => 'Over',
 'article'       => 'Pagina',
 'newwindow'     => '(opent in een nieuw venster)',
@@ -2309,10 +2300,10 @@ De ontvanger kan dus direct naar u reageren.',
 'watchlistanontext'    => '$1 is noodzakelijk om uw volglijst in te zien of te wijzigen.',
 'watchnologin'         => 'U bent niet aangemeld',
 'watchnologintext'     => 'U dient [[Special:UserLogin|aangemeld]] te zijn om uw volglijst te bewerken.',
-'addedwatch'           => 'Toegevoegd aan volglijst',
+'addwatch'             => 'Toevoegen aan volglijst',
 'addedwatchtext'       => "De pagina \"[[:\$1]]\" is toegevoegd aan uw [[Special:Watchlist|volglijst]].
 Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden op [[Special:Watchlist|uw volglijst]] vermeld en worden '''vet''' weergegeven in de [[Special:RecentChanges|lijst van recente wijzigingen]].",
-'removedwatch'         => 'Verwijderd van volglijst',
+'removewatch'          => 'Verwijderen uit volglijst',
 'removedwatchtext'     => 'De pagina "[[:$1]]" is van [[Special:Watchlist|uw volglijst]] verwijderd.',
 'watch'                => 'Volgen',
 'watchthispage'        => 'Pagina volgen',
@@ -3693,6 +3684,12 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.',
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'De cache van deze pagina legen?',
 'confirm-purge-bottom' => 'Het opschonen van de cache zorgt ervoor dat de meest recente versie van een pagina wordt weergegeven.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Deze pagina toevoegen aan uw volglijst?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Deze pagina verwijderen uit uw volglijst?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige pagina',

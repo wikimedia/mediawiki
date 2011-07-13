@@ -371,8 +371,6 @@ Ná radbadal ák deskáne atíko matano.",
 # Watchlist
 'watchlist'         => 'Kaná xiálí rid',
 'mywatchlist'       => 'Kaná xiálí rid',
-'addedwatch'        => 'Xiálírid aŧí avár kanningá',
-'removedwatch'      => 'Xiálírid án kaşşingá',
 'removedwatchtext'  => 'Panna "[[:$1]]" e [[Special:Watchlist|ná xiálírid]] án kaşşingáne.',
 'watch'             => 'Xiálí mar',
 'watchthispage'     => 'Dá panna ná xiálí mar',

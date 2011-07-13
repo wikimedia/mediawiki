@@ -452,10 +452,8 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 # Watchlist
 'watchlist'         => 'Beowachdungslischd',
 'mywatchlist'       => 'Mai Beowachdungslischd',
-'addedwatch'        => 'Zu de Beowachdungslischt zufieche',
 'addedwatchtext'    => "Die Said \"[[:\$1]]\" isch zu Dainer [[Special:Watchlist|Beowachdungslischt]] zugefiecht worre.
 Zukimftiche Ännerunge an derre Said un de Dischbediersaid, wu dezu ghert, werre doo aagezaicht, un d Said werd '''fett''' aagezaicht in de [[Special:RecentChanges|Letschte Ännerunge]] fer dass es ääfacher isch zum finne.",
-'removedwatch'      => 'Aus de Beowachdungslischt rausgenumme',
 'removedwatchtext'  => 'D Said "[[:$1]]" isch aus [[Special:Watchlist|Dainer Beowachdungslischt]] rausgenumme worre.',
 'watch'             => 'Beowachde',
 'watchthispage'     => 'Die Said beowachde',

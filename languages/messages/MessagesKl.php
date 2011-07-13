@@ -420,7 +420,6 @@ Aamma takuuk [[Special:WantedCategories|sunut atassusinut kissaatigineqartut]].'
 # Watchlist
 'watchlist'      => 'Ersersimasut',
 'mywatchlist'    => 'Nuisatiffikka',
-'addedwatch'     => 'Nakkutilliinermi allattorsimaffimmut ilanngunneqarsimavoq',
 'addedwatchtext' => 'Una qupperneq "[[:$1]]" ersersimatitannut ilanngunneqarpoq. Siunissami allannguutit ilinnut malugeqquneqartassapput aamma [[Special:RecentChanges|allannguutini kingullerni]] issusuumik allanneqartuusassallutik. Ersersimatikkusunngikkukku [[Special:Watchlist|piiginnassavat]] ersersimasuutitanni.',
 'watch'          => 'Ersilli',
 'watchthispage'  => 'Qupperneq ersersimatiguk',

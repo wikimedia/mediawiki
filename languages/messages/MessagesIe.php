@@ -79,8 +79,6 @@ $messages = array(
 'category-media-header'  => 'Multimedia in categorie "$1"',
 'listingcontinuesabbrev' => 'cont.',
 
-'mainpagetext' => "'''Software del wiki installat con successe.'''",
-
 'about'         => 'Concernent',
 'article'       => 'Articul',
 'newwindow'     => '(inaugurar in nov planca de fenestre)',
@@ -568,7 +566,6 @@ Vu posse provar in un témpor minu activ.',
 'watchlist'            => 'Liste de págines vigilat',
 'mywatchlist'          => 'Mi liste de págines vigilat',
 'watchlistanontext'    => 'Pleser $1 por vider o redacter articules in tui liste de págines vigilat.',
-'addedwatch'           => 'Adjuntet al liste',
 'addedwatchtext'       => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:RecentChanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
 'watch'                => 'Vigilar',
 'watchthispage'        => 'Vigilar ti págine',

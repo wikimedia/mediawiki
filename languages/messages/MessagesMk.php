@@ -447,14 +447,7 @@ $messages = array(
 'noindex-category'               => 'Неиндексирани страници',
 'broken-file-category'           => 'Страници со прекинати врски до податотеки',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "'''МедијаВики е успешно инсталиран.'''",
-'mainpagedocfooter' => 'Погледнете го [http://meta.wikimedia.org/wiki/Help:Contents Упатството за корисници] за подетални иформации како се користи вики-програмот.
-
-==Од каде да почнете==
-* [http://meta.wikimedia.org/wiki/Manual:Configuration_settings Список на нагодувања]
-* [http://meta.wikimedia.org/wiki/Manual:FAQ ЧПП (често поставувани прашања) за МедијаВики].
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Поштенски список на МедијаВики за нови верзии]',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'Информации за',
 'article'       => 'Статија',
@@ -2267,10 +2260,8 @@ $1',
 'watchlistanontext'    => 'Се бара $1 за да можете да го прегледувате и уредувате списокот на набљудувања.',
 'watchnologin'         => 'Не сте најавени',
 'watchnologintext'     => 'Мора да бидете [[Special:UserLogin|најавени]] за да го менувате списокот на набљудувања.',
-'addedwatch'           => 'Додадено во списокот на набљудувања',
 'addedwatchtext'       => "Страницата „[[:$1]]“ е додадена во [[Special:Watchlist|списокот на набљудувања]].
 Идните промени на оваа страница и поврзаните со неа страници за разговор ќе бидат прикажани овде, а страницата ќе се прикаже '''задебелена''' во [[Special:RecentChanges|списокот на скорешни промени]] за да можете полесно да ја препознаете.",
-'removedwatch'         => 'Отстрането од списокот на набљудувања',
 'removedwatchtext'     => 'Страницата „[[:$1]]“ е отстранета од [[Special:Watchlist|списокот на набљудувања]].',
 'watch'                => 'Набљудувај',
 'watchthispage'        => 'Набљудувај ја оваа страница',

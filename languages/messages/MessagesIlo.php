@@ -126,8 +126,6 @@ $messages = array(
 'category-file-count-limited'    => 'Ti sumaganad a {{PLURAL:$1|file|$1 files}} ket adda iti agdama a categoria.',
 'listingcontinuesabbrev'         => 'tuloy.',
 
-'mainpagetext' => "'''Sibaballigi a nainstolar ti MediaWiki.'''",
-
 'about'         => 'Maipapan iti',
 'article'       => 'Panid ti linaon',
 'newwindow'     => '(aglukat iti sabali a tawa)',
@@ -1051,10 +1049,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'nowatchlist'       => 'Awan ti pampanid iti listaan dagiti bambantayam.',
 'watchnologin'      => 'Saan a nakastrek',
 'watchnologintext'  => 'Nasken a [[Special:UserLogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',
-'addedwatch'        => 'Nainayon kadagiti bambantayan',
 'addedwatchtext'    => "Nainayonen ti panid a \"[[:\$1]]\" iti [[Special:Watchlist|listaan ti bambantayam]].
 Mailistanto ditoy dagiti pannkabalbaliw daytoy a panid iti masakbayan agraman ti kanaigna a panid-tungtongan, ket agparang ti panid a kas '''napuskol''' iti [[Special:RecentChanges|listaan ti naudi a balbaliw]] tapno nalaklaka a malasin.",
-'removedwatch'      => 'Naikkaten kadagiti bambantayan',
 'removedwatchtext'  => 'Naikkaten ti panid a "[[:$1]]" iti listaan ti bambantayam.',
 'watch'             => 'bantayan',
 'watchthispage'     => 'Bantayan daytoy a panid',

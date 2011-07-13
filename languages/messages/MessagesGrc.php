@@ -164,14 +164,6 @@ $messages = array(
 'index-category'                 => 'Δέλτοι μετὰ δεικτῶν',
 'noindex-category'               => 'Δέλτοι ἄνευ δεικτῶν',
 
-'mainpagetext'      => "'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''",
-'mainpagedocfooter' => 'Βουλευθήσεσθε τὰς [http://meta.wikimedia.org/wiki/Help:Contents βουλὰς τοῖς Χρωμένοις] ἵνα πληροφορηθῇτε περὶ τοῦ βίκιλογισμικοῦ.
-
-== Ἄρξασθε ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Διαλογή παραμέτρων διαμορφώσεως]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: τὰ πολλάκις αἰτηθέντα]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Διαλογή διαλέξεων ἐπὶ τῶν διανομῶν τῆς MediaWiki]',
-
 'about'         => 'Περὶ',
 'article'       => 'Ἡ ἐγγραφή',
 'newwindow'     => '(ἀνοίξεται ἐν νέᾳ θυρίδι)',
@@ -1554,10 +1546,8 @@ $1",
 'watchlistanontext'  => '$1 πρὸ τοῦ ὁρᾶν ἢ τοῦ μεταγράφειν τεμάχια τινὰ ἐν τῇ ἐφοροδιαλογῇ σου.',
 'watchnologin'       => 'Μὴ συνδεδεμένος',
 'watchnologintext'   => 'Δεῖ σε [[Special:UserLogin|συνδεῖσθαι]] πρὸ τοῦ μεταβάλλειν τὴν ἐφοροδιαλογήν σου.',
-'addedwatch'         => 'Δέλτος προστεθειμένη εἰς τὸν ἐποπτευομένων κατάλογον ἐστίν',
 'addedwatchtext'     => "Ἡ δέλτος \"[[:\$1]]\" προσετέθη ἐν τῷ [[Special:Watchlist|καταλόγῳ ἐφορωμένων]] σου.
 Μελλοντικαὶ ἀλλαγαὶ τῆσδε τῆς δέλτου καὶ τῆς σχετικῆς δέλτου διαλέξεως καταλεχθήσονται ἐκεῖσε καὶ ἡ δέλτος ἐμφανίσεται '''ἔντονος''' ἐν τῷ [[Special:RecentChanges|καταλόγῳ προσφάτων ἀλλαγῶν]] οὕτως ὥστε εὐχερεστέρα ᾖ ἡ διάκρισις αὐτῆς.",
-'removedwatch'       => 'Ἀνεώραται ἥδε ἡ δέλτος',
 'removedwatchtext'   => 'Ἡ δέλτος "[[:$1]]" ἀφῃρέθη ἐκ τοῦ [[Special:Watchlist|καταλόγου ἐφορωμένων σου]].',
 'watch'              => 'Ἐφορᾶν',
 'watchthispage'      => 'Ἐφορᾶν τήνδε τὴν δέλτον',

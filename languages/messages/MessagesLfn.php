@@ -136,15 +136,6 @@ $messages = array(
 'hidden-category-category' => 'Categorias ascondeda',
 'listingcontinuesabbrev'   => 'cont.',
 
-'mainpagetext'      => "'''MediaWiki es aora instalada.'''",
-'mainpagedocfooter' => 'Atenda la [http://meta.wikimedia.org/wiki/Help:Contents Gida per Usores] per informa supra la usa de la programa de vici.
-
-== Comensa ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustas de la desinia]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Demandas comun de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista per receta anunsias de novas supra MediaWiki]',
-
 'about'         => 'Supra',
 'article'       => 'Paje de contenis',
 'newwindow'     => '(va abri en fenetra nova)',
@@ -685,12 +676,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlist'         => 'Pajes oservada',
 'mywatchlist'       => 'Me lista de pajes oservada',
 'nowatchlist'       => 'Tu ave no cosas en tu lista oservada',
-'addedwatch'        => 'Juntada a la lista de pajes oservada',
 'addedwatchtext'    => "La paje \"[[:\$1]]\" ia es juntada a tu [[Special:Watchlist|lista de pajes oservada]].
 Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:RecentChanges|lista de cambias resente]] per es plu fasil oservada.
 
 Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"no oserva\" en la bara a la lado.",
-'removedwatch'      => 'Sutraeda de la lista de pajes oservada',
 'removedwatchtext'  => 'La paje "[[:$1]]" ia es sutraeda de [[Special:Watchlist|tu lista de pajes oservada]].',
 'watch'             => 'Oserva',
 'watchthispage'     => 'Oserva esta paje',

@@ -386,11 +386,9 @@ Tšüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on
 # Watchlist
 'watchlist'         => 'Minu kattsõspiiska',
 'mywatchlist'       => 'Minu kattsõspiiska',
-'addedwatch'        => 'Lisättü kattsospiizgallõ',
 'addedwatchtext'    => "Tšültši \"[[:\$1]]\" on lisättü Teďďee [[Special:Watchlist|kattsospiizgallõ]].
 Tšültšese ja sene juttutšültšese tehäväd tulõvaizõd muutuhsõd leeväd tšisloitõtud siäll.
 Tšültši leeb tširjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall viimeizije muutuhsijõ]].",
-'removedwatch'      => 'Pantu kattsõspiizgalt poiz',
 'removedwatchtext'  => 'Tšültši "[[:$1]]" on pantu [[Special:Watchlist|teďďee kattsõspiizgalt]] poiz.',
 'watch'             => 'Katso',
 'watchthispage'     => 'Katso sitä tšültšiä',

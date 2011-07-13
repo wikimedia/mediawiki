@@ -139,13 +139,6 @@ $messages = array(
 'index-category'                 => 'Maqaalada indeksed',
 'noindex-category'               => 'Maqaalada noindeksed',
 
-'mainpagetext'      => "'''MediaWiki Si fiican oo kuugu install gareeyay.'''",
-'mainpagedocfooter' => "Meeshaan ka akhriso sidii aad u isticmaali leheed brogramka wiki [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]  .
-== Bilaaw ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Ku saabsan',
 'article'       => 'Qoraalka bogga oo kooban',
 'newwindow'     => '(dariishad cusub aa furmeeyso)',
@@ -1030,14 +1023,12 @@ si aad ugu dirto E-boosto isticmaalayaasha kale.',
 'watchlistanontext' => 'Fadlan $1 si aad u fiirisid ama wax uga bedeshid qoraalada ku jira liiska waardiyeyska.',
 'watchnologin'      => 'Gudaha kuma jirtid',
 'watchnologintext'  => 'Waa ina aad [[Special:UserLogin|gudaha ku jirtaa]] si aad wax uga bedeshid liiskaaga waardiyeynta.',
-'addedwatch'        => 'Kudar liiska-waardiyaha',
 'addedwatchtext'    => "Bogga \"[[:\$1]]\" waxaa lagudaray [[Special:Watchlist|liiska-waardiyahaaga]].
 Isbedelka mustaqbalka ku dhaca boggan iyo bogga wadahadalka la'xiriira waxaa lagu soo qoridoonaa inta,
 boggana wuxuu noqonaayaa mid la' '''nuuriyey''' dhinaca [[Special:RecentChanges|Liiska isbedelada show]] si
 ay u fududdayso sidii loo dalbanlahaa.
 
 Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeynin\" oo ku yaala dhinaca.",
-'removedwatch'      => 'Ka tirtir liiska-waardiyaha',
 'removedwatchtext'  => 'Bogga "[[:$1]]" waa laga tirtiray liiskaaga waardiyeynta.',
 'watch'             => 'Waardiyey',
 'watchthispage'     => 'Boggaan waardiyeey',

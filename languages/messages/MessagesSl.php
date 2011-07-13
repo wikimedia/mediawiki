@@ -312,10 +312,6 @@ $messages = array(
 'noindex-category'               => 'Neindeksirane strani',
 'broken-file-category'           => 'Strani s pretrganimi povezavami do datotek',
 
-'mainpagetext'      => "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
-'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
-in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
-
 'about'         => 'O projektu',
 'article'       => 'Članek',
 'newwindow'     => '(odpre se novo okno)',
@@ -2117,10 +2113,8 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'watchlistanontext'    => 'Za pregled ali urejanje vsebine vašega spiska nadzorov se morate $1.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Za urejanje spiska nadzorov morate biti [[Special:UserLogin|prijavljeni]].',
-'addedwatch'           => 'Dodano na spisek nadzorov',
 'addedwatchtext'       => "Stran »[[:$1]]« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]].
 Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tukaj, v [[Special:RecentChanges|seznamu zadnjih sprememb]] pa bodo za lažjo izbiro označene '''krepko'''.",
-'removedwatch'         => 'Odstranjeno s spiska nadzorov',
 'removedwatchtext'     => 'Stran »[[:$1]]« je bila odstranjena z vašega [[Special:Watchlist|spiska nadzorov]].',
 'watch'                => 'Opazuj',
 'watchthispage'        => 'Opazuj stran',

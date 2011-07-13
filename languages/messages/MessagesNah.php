@@ -185,8 +185,6 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Inìn tlâkuilòlèwalli kä|Inîkë $1 tlâkuilòlèwaltìn katêkë}} ìpan inìn tlaìxmatkàtlàlilòtl.',
 'listingcontinuesabbrev'         => 'niman',
 
-'mainpagetext' => "'''MediaHuiqui cualli ōmotlahtlāli.'''",
-
 'about'         => 'Ītechpa',
 'article'       => 'Tlâkuilòpilli',
 'newwindow'     => '(Motlapoāz cē yancuīc tlanexillōtl)',
@@ -1029,8 +1027,6 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 'watchlist'         => 'Notlachiyaliz',
 'mywatchlist'       => 'Notlachiyaliz',
 'watchnologin'      => 'Ahmo ōtimocalac',
-'addedwatch'        => 'Ōmocētili tlachiyalizpan',
-'removedwatch'      => 'Ōmopolo īpan motlachiyaliz',
 'removedwatchtext'  => 'Zāzanilli "[[:$1]]" ōmopolo [[Special:Watchlist|motlachiyalizco]].',
 'watch'             => 'Tictlachiyāz',
 'watchthispage'     => 'Tictlachiyāz inīn zāzanilli',

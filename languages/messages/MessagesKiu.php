@@ -143,14 +143,7 @@ href="" class="internal"}?{/a}) basne.',
 'noindex-category'               => 'Pelê bêendeksıni',
 'broken-file-category'           => 'Peli be gıreunê dosyeunê sıkıtau',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "'''MediaWiki fist ra ser, vıraziya.'''",
-'mainpagedocfooter' => "Serba melumatê gurenaena ''wiki software''i [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
-
-== Gamê verêni ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ayarunê vırastene]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-daena postey]",
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'Heqa',
 'article'       => 'Pela tedeesteyu',
@@ -1061,10 +1054,8 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 # Watchlist
 'watchlist'         => 'Pela mına şêrkerdene',
 'mywatchlist'       => 'Lista mına şêrkerdışi',
-'addedwatch'        => 'Kerd be lista şêrkerdişi ser',
 'addedwatchtext'    => "Pela \"[[:\$1]]\"i ilawe biye be [[Special:Watchlist|pela şêrkerdişi]].
 Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, u pele [[Special:RecentChanges|lista vurnaisunê peyênu]] de '''qolınd''' asena ke cı ra asan weçiniyo.",
-'removedwatch'      => 'Lista şêrkerdişi ra vet',
 'removedwatchtext'  => 'Na pele "[[:$1]]" [[Special:Watchlist|lista tuya şêrkerdişi]] ra esteriya.',
 'watch'             => 'Şêr ke',
 'watchthispage'     => 'Na pele de şêr ke',

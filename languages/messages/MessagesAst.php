@@ -186,15 +186,6 @@ $messages = array(
 'noindex-category'               => 'Páxines ensin indexar',
 'broken-file-category'           => 'Páxines con enllaces frañaos a ficheros',
 
-'mainpagetext'      => "'''MediaWiki instalóse correchamente.'''",
-'mainpagedocfooter' => "Visita la [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuariu] pa saber cómo usar esti software wiki.
-
-== Empecipiando ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Llista de les opciones de configuración]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]",
-
 'about'         => 'Tocante a',
 'article'       => 'Conteníu de la páxina',
 'newwindow'     => '(abriráse nuna ventana nueva)',
@@ -1968,11 +1959,9 @@ La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences
 'watchlistanontext'    => 'Por favor $1 pa ver o editar entraes na to llista de vixilancia.',
 'watchnologin'         => 'Non identificáu',
 'watchnologintext'     => 'Tienes que tar [[Special:UserLogin|identificáu]] pa poder camudar la to llista de vixilancia.',
-'addedwatch'           => 'Añadida a la llista de vixilancia',
 'addedwatchtext'       => 'Añadióse la páxina "[[:$1]]" a la to [[Special:Watchlist|llista de vixilancia]]. Los cambeos nesta páxina y la so páxina d\'alderique asociada van salite en negrina na llista de [[Special:RecentChanges|cambeos recientes]] pa que seya más fácil de vela.
 
 Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixilar" nel menú llateral.',
-'removedwatch'         => 'Eliminada de la llista de vixilancia',
 'removedwatchtext'     => 'Desapuntóse la páxina "[[:$1]]" de la [[Special:Watchlist|to llista de vixilancia]].',
 'watch'                => 'Vixilar',
 'watchthispage'        => 'Vixilar esta páxina',

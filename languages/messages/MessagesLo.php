@@ -203,8 +203,6 @@ $messages = array(
 'category-article-count'        => '{{PLURAL:$2|ໝວດນີ້ມີໜ້າຢູ່ພຽງໜ້າດຽວ|ມີ {{PLURAL:$1|ໜ້າດຽວ|$1 ໜ້າ}} ໃນໝວດນີ້ ເຕັມ $2}}',
 'listingcontinuesabbrev'        => 'ຕໍ່.',
 
-'mainpagetext' => "'''ຕິດຕັ້ງມີເດຍວິກິນີ້ສຳເລັດແລ້ວ.'''",
-
 'about'         => 'ກ່ຽວກັບ',
 'article'       => 'ບົດຄວາມ',
 'newwindow'     => '(ເປີດເປັນ ປ່ອງຢ້ຽມ(ວິນໂດ)ໃໝ່ )',
@@ -721,9 +719,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'mywatchlist'          => 'ລາຍການຕິດຕາມ',
 'watchlistanontext'    => 'ກະລຸນາ $1 ເພື່ອເບິ່ງ ຫຼື ດັດແກ້ ໜ້າຢູ່ໃນລາຍການຕິດຕາມຂອງທ່ານ.',
 'watchnologin'         => 'ບໍ່ໄດ້ເຊັນເຂົ້າ',
-'addedwatch'           => 'ເພີ່ມໃສ່ລາຍການຕິດຕາມແລ້ວ',
 'addedwatchtext'       => 'ໜ້າ "[[:$1]]" ໄດ້ຖືກເພີ່ມໃສ່  [[Special:Watchlist|ລາຍການຕິດຕາມ]] ຂອງ ທ່ານ',
-'removedwatch'         => 'ເອົາອອກຈາກລາຍການຕິດຕາມ',
 'removedwatchtext'     => 'ໜ້າ "[[:$1]]" ໄດ້ຖືກເອົາອອກຈາກ ລາຍການຕິດຕາມ ຂອງ ທ່ານ.',
 'watch'                => 'ຕິດຕາມ',
 'watchthispage'        => 'ຕິດຕາມໜ້ານີ້',

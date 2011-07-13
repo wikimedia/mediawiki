@@ -307,7 +307,6 @@ $messages = array(
 # Watchlist
 'watchlist'         => 'Байкоо тизмем',
 'watchnologin'      => 'Катталган жок',
-'addedwatch'        => 'Байкоо тизмеге кошумчаланды',
 'watch'             => 'Байкоо',
 'watchlistcontains' => 'Байкоо тизмеңизде $1 {{PLURAL:$1|барак бар|барак бар}}.',
 'wlshowlast'        => 'Соңку $1 саат $2 күн $3 көрсөт.',

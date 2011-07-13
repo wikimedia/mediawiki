@@ -411,14 +411,6 @@ $messages = array(
 'noindex-category'               => 'Неиндексируемые страницы',
 'broken-file-category'           => 'Страниц с неработающими файловыми ссылками',
 
-'mainpagetext'      => "'''Вики-движок «MediaWiki» успешно установлен.'''",
-'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 справочном руководстве].
-
-== Некоторые полезные ресурсы ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Список возможных настроек];
-* [http://www.mediawiki.org/wiki/Manual:FAQ Часто задаваемые вопросы и ответы по MediaWiki];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].',
-
 'about'         => 'Описание',
 'article'       => 'Статья',
 'newwindow'     => '(в новом окне)',
@@ -2197,10 +2189,8 @@ $1',
 'watchlistanontext'    => 'Вы должны $1, чтобы просмотреть или отредактировать список наблюдения.',
 'watchnologin'         => 'Нужно представиться системе',
 'watchnologintext'     => 'Вы должны [[Special:UserLogin|представиться системе]], чтобы иметь возможность изменять свой список наблюдения',
-'addedwatch'           => 'Добавлена в список наблюдения',
 'addedwatchtext'       => 'Страница «[[:$1]]» была добавлена в ваш [[Special:Watchlist|список наблюдения]].
 Последующие изменения этой страницы и связанной с ней страницы обсуждения будут отмечаться в этом списке, а также будут выделены жирным шрифтом на странице со [[Special:RecentChanges|списком свежих изменений]], чтобы их было легче заметить.',
-'removedwatch'         => 'Удалена из списка наблюдения',
 'removedwatchtext'     => 'Страница «[[:$1]]» была удалена из вашего [[Special:Watchlist|списка наблюдения]].',
 'watch'                => 'Следить',
 'watchthispage'        => 'Наблюдать за этой страницей',

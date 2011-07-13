@@ -569,15 +569,6 @@ $messages = array(
 'noindex-category'               => 'صفحات غير مفهرسة',
 'broken-file-category'           => 'صفحات تحتوي وصلات ملفات معطوبة',
 
-'mainpagetext'      => "'''تم تثبيت ميدياويكي بنجاح.'''",
-'mainpagedocfooter' => 'استشر [http://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.
-
-== البداية ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings قائمة إعدادات الضبط]
-* [http://www.mediawiki.org/wiki/Manual:FAQ أسئلة متكررة حول ميدياويكي]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]',
-
 'about'         => 'عن',
 'article'       => 'صفحة محتوى',
 'newwindow'     => '(تفتح في نافذة جديدة)',
@@ -2388,10 +2379,8 @@ $1',
 'watchlistanontext'    => 'الرجاء $1 لعرض أو تعديل الصفحات في قائمة مراقبتك.',
 'watchnologin'         => 'غير مسجل',
 'watchnologintext'     => 'يجب أن تكون [[Special:UserLogin|مسجلا الدخول]] لتعدل قائمة مراقبتك.',
-'addedwatch'           => 'تمت الإضافة لقائمة المراقبة',
 'addedwatchtext'       => "أضيفت الصفحة  \"[[:\$1]]\" إلى [[Special:Watchlist|قائمة مراقبتك]].
 التغييرات القادمة على هذه الصفحة وصفحة نقاشها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
-'removedwatch'         => 'تمت الإزالة من قائمة المراقبة',
 'removedwatchtext'     => 'الصفحة "[[:$1]]" تمت إزالتها من [[Special:Watchlist|قائمة مراقبتك]].',
 'watch'                => 'راقب',
 'watchthispage'        => 'راقب هذه الصفحة',

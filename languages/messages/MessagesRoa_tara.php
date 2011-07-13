@@ -153,14 +153,6 @@ $messages = array(
 'noindex-category'               => 'Pàggene none indicizzate',
 'broken-file-category'           => 'Pàggene cu collegaminde a le file scuasciate',
 
-'mainpagetext'      => "'''MediaUicchi ha state 'nstallete.'''",
-'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
-
-== Pe accumenzà ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste pe le configuraziune]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste d'a poste de MediaWiki]",
-
 'about'         => 'Sus a',
 'article'       => 'Pàgene de le condenute',
 'newwindow'     => "(iapre jndr'à 'na fenestra nova)",
@@ -1962,10 +1954,8 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 'watchlistanontext'    => 'Pe piacere $1 pe vedè o cangià le vosce sus a liste de le pàggene condrollete.',
 'watchnologin'         => 'Non ge sinde colleghete',
 'watchnologintext'     => 'Tu a essere [[Special:UserLogin|colleghete]] pe cangià le pàggene condrollete tue.',
-'addedwatch'           => "Mise jndr'à le pàggene condrollete",
 'addedwatchtext'       => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
 Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le puè acchià aqquà, e 'a pàgene avène signete cu 'u '''grascette''' jndr'à [[Special:RecentChanges|liste de le cangiaminde recende]] pe facilità l'identificazione.",
-'removedwatch'         => 'Live da le pàggene condrollate',
 'removedwatchtext'     => '\'A pàgene "[[:$1]]" ha state scangillete da [[Special:Watchlist|le pàggene condrollete tue]].',
 'watch'                => 'Condrolle',
 'watchthispage'        => 'Condrolle sta pàgene',

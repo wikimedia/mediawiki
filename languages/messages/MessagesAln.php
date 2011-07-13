@@ -192,16 +192,6 @@ $messages = array(
 'index-category'                 => 'Faqe e indeksume',
 'noindex-category'               => 'Faqe e paindeksume',
 
-'mainpagetext'      => "'''MediaWiki software u instalue me sukses.'''",
-'mainpagedocfooter' => 'Për mâ shumë informata rreth përdorimit të softwareit wiki, ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin].
-
-
-== Për fillim ==
-
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Konfigurimi i MediaWikit]
-* [http://www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWikit]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWikit]',
-
 'about'         => 'Rreth',
 'article'       => 'Artikulli',
 'newwindow'     => '(çelet në nji dritare të re)',
@@ -1315,10 +1305,8 @@ Faqet në [[Special:Watchlist|listën tuej të mbikëqyrjes]] janë '''të theks
 # Watchlist
 'watchlist'         => 'Mbikëqyrjet e mija',
 'mywatchlist'       => 'Lista mbikqyrëse',
-'addedwatch'        => 'U shtu te lista mbikqyrëse',
 'addedwatchtext'    => "Faqja \"[[:\$1]]\" iu shtue [[Special:Watchlist|listës suej të mbikëqyrjes]].
 Ndryshimet e ardhshme të kësaj faqeje dhe të faqes gjegjëse të diskutimit kanë me u listue këte, dhe faqja do të tregohet '''e theksueme''' në [[Special:RecentChanges|listën e ndryshimeve të fundit]] për me râ në sy.",
-'removedwatch'      => 'U hjek nga lista mibkqyrëse',
 'removedwatchtext'  => 'Faqja "[[:$1]]" âsht hjekë prej [[Special:Watchlist|listës së mbikëqyrjes]].',
 'watch'             => 'Mbikqyre',
 'watchthispage'     => 'Mbikëqyr këtë faqe',

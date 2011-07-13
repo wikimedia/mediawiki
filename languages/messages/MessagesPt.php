@@ -426,15 +426,6 @@ $messages = array(
 'noindex-category'               => 'Páginas não indexadas',
 'broken-file-category'           => 'Páginas com links quebrados para ficheiros',
 
-'mainpagetext'      => "'''MediaWiki instalado com sucesso.'''",
-'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações sobre o uso do software wiki.
-
-== Onde começar ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Perguntas e respostas frequentes sobre o MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Subscreva a lista de divulgação de novas versões do MediaWiki]',
-
 'about'         => 'Sobre',
 'article'       => 'Página de conteúdo',
 'newwindow'     => '(abre numa janela nova)',
@@ -2233,11 +2224,9 @@ O endereço de correio que introduziu nas suas [[Special:Preferences|preferênci
 'watchlistanontext'    => '$1 para ver ou editar a sua lista de páginas vigiadas, por favor.',
 'watchnologin'         => 'Não está autenticado',
 'watchnologintext'     => 'Precisa de estar [[Special:UserLogin|autenticado]] para modificar a sua lista de páginas vigiadas.',
-'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua lista de [[Special:Watchlist|páginas vigiadas]], onde serão indicadas quaisquer
 modificações futuras desta página e da respectiva página de discussão.
 O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:RecentChanges|mudanças recentes]], para que a encontre facilmente.",
-'removedwatch'         => 'Removida da lista de páginas vigiadas',
 'removedwatchtext'     => 'A página "[[:$1]]" foi removida da sua lista de [[Special:Watchlist|páginas vigiadas]].',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',

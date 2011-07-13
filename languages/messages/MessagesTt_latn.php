@@ -221,14 +221,7 @@ $messages = array(
 'index-category'                 => 'İndekslanğan bitlär',
 'noindex-category'               => 'İndekslanmağan bitlär',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => '«MediaWiki» uñışlı quyıldı.',
-'mainpagedocfooter' => "Bu wiki turında mäğlümatnı [http://meta.wikimedia.org/wiki/Yärdäm:Eçtälek biredä] tabıp bula.
-
-== Qayber faydalı resurslar ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Köylänmälär isemlege (ing.)];
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki turında yış birelgän sorawlar häm cawaplar (ing.)];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'nıñ yaña versiäläre turında xäbärlär yazdırıp alu].",
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'Taswirlama',
 'article'       => 'Mäqälä',
@@ -1525,10 +1518,8 @@ Asta [[Special:UnusedCategories|qullanılmağan törkemnär]] kärsätelgän.
 'nowatchlist'       => 'Küzätü isemlegegezdä bitlär yuq.',
 'watchnologin'      => 'Kermädegez',
 'watchnologintext'  => 'Küzätü isemlegegezne üzgärtü öçen, sez [[Special:UserLogin|kerergä]] tieşsez.',
-'addedwatch'        => 'Küzätü isemlegenä östägän',
 'addedwatchtext'    => "\"[[:\$1]]\" bite [[Special:Watchlist|küzätü isemlegegezgä]] östälde.
 Bu bittä häm anıñ bäxäslegendä barlıq bulaçaq üzgärtülär şunda kürsäteler, häm, [[Special:RecentChanges|soñğı üzgärtülär]] isemlegendä bu bitne ciñelräk tabu öçen, ul '''qalın mäten''' belän kürsäteler.",
-'removedwatch'      => 'Küzätü isemlegennän beterelgän',
 'removedwatchtext'  => '«[[:$1]]» bite [[Special:Watchlist|sezneñ küzätü isemlegennän]] beterelde.',
 'watch'             => 'Küzätü',
 'watchthispage'     => 'Bu bitne küzätü',

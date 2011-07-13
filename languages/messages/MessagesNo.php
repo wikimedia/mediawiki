@@ -363,14 +363,6 @@ $messages = array(
 'noindex-category'               => 'Ikke-indekserte sider',
 'broken-file-category'           => 'SIder med brutte fillenker',
 
-'mainpagetext'      => "'''MediaWiki-programvaren er nå installert.'''",
-'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
-
-==Å starte==
-*[http://www.mediawiki.org/wiki/Manual:Configuration_settings Oppsettsliste]
-*[http://www.mediawiki.org/wiki/Manual:FAQ Ofte stilte spørsmål]
-*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
-
 'about'         => 'Om',
 'article'       => 'Innholdsside',
 'newwindow'     => '(åpnes i et nytt vindu)',
@@ -876,7 +868,12 @@ Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] i andre sider, 
 'userpage-userdoesnotexist-view'   => 'Kontoen «$1» er ikke registrert.',
 'blocked-notice-logextract'        => 'Denne brukeren er for tiden blokkert.
 Siste blokkeringsloggelement kan sees nedenfor.',
-'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
+'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter hurtiglageret sitt for at endringene skal tre i kraft.
+* '''Firefox / Safari:''' hold ''Shift'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på en Mac)
+* '''Google Chrome:''' trykk ''Ctrl-Shift-R'' (''Command-Shift-R'' på en Mac)
+* '''Internet Explorer:''' hold ''Ctrl'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5''
+* '''Konqueror:''' klikk ''Oppdater'' eller trykk ''F5''
+* '''Opera:''' tøm hurtiglageret i ''Verktøy → Innstillinger''",
 'usercssyoucanpreview'             => "'''Tips:''' Bruk '{{int:showpreview}}'-knappen for å teste din nye CSS før du lagrer.",
 'userjsyoucanpreview'              => "'''Tips:''' Bruk '{{int:showpreview}}'-knappen for å teste ditt nye JS før du lagrer.",
 'usercsspreview'                   => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
@@ -1237,12 +1234,13 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'searchdisabled'                   => 'Søkefunksjonen er slått av. Du kan søke via Google i mellomtiden. Merk at Googles indeksering av {{SITENAME}} muligens er utdatert.',
 
 # Quickbar
-'qbsettings'               => 'Brukerinnstillinger for hurtigmeny.',
-'qbsettings-none'          => 'Ingen',
-'qbsettings-fixedleft'     => 'Fast venstre',
-'qbsettings-fixedright'    => 'Fast høyre',
-'qbsettings-floatingleft'  => 'Flytende venstre',
-'qbsettings-floatingright' => 'Flytende til høyre',
+'qbsettings'                => 'Brukerinnstillinger for hurtigmeny.',
+'qbsettings-none'           => 'Ingen',
+'qbsettings-fixedleft'      => 'Fast venstre',
+'qbsettings-fixedright'     => 'Fast høyre',
+'qbsettings-floatingleft'   => 'Flytende venstre',
+'qbsettings-floatingright'  => 'Flytende til høyre',
+'qbsettings-directionality' => 'Fast, avhengig av retningen på skriptet ditt og språket ditt',
 
 # Preferences page
 'preferences'                   => 'Innstillinger',
@@ -2115,10 +2113,10 @@ Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil
 'watchlistanontext'    => 'Vennligst $1 for å vise eller redigere sider på overvåkningslisten din.',
 'watchnologin'         => 'Ikke logget inn',
 'watchnologintext'     => 'Du må være [[Special:UserLogin|logget inn]] for å kunne endre overvåkningslisten.',
-'addedwatch'           => 'Lagt til overvåkningsliste',
+'addwatch'             => 'Legg til i overvåkningslisten',
 'addedwatchtext'       => "Siden «[[:$1]]» er lagt til [[Special:Watchlist|overvåkningslisten]].
 Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir listet opp her, og siden vil fremstå '''uthevet''' i [[Special:RecentChanges|listen over siste endringer]] for å gjøre det lettere å finne den.",
-'removedwatch'         => 'Fjernet fra overvåkningsliste',
+'removewatch'          => 'Fjern fra overvåkningslisten',
 'removedwatchtext'     => 'Siden «[[:$1]]» er fjernet fra [[Special:Watchlist|overvåkningslisten din]].',
 'watch'                => 'Overvåk',
 'watchthispage'        => 'Overvåk denne siden',
@@ -3447,6 +3445,12 @@ $1',
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden?",
 'confirm-purge-bottom' => 'Rensing av en side sletter mellomlageret og tvinger frem den nyeste versjonen.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Legg denne siden til overvåkningslisten din?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Fjern denne siden fra overvåkningslisten din?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',

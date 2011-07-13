@@ -313,15 +313,6 @@ $messages = array(
 'noindex-category'               => 'Pàgines no indexades',
 'broken-file-category'           => 'Pàgines amb enllaços a fitxer trencats',
 
-'mainpagetext'      => "'''El programari del MediaWiki s'ha instaŀlat correctament.'''",
-'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
-
-== Per a començar ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Llista de característiques configurables]
-* [http://www.mediawiki.org/wiki/Manual:FAQ PMF del MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
-
 'about'         => 'Quant a',
 'article'       => 'Pàgina de contingut',
 'newwindow'     => '(obre en una nova finestra)',
@@ -2034,10 +2025,8 @@ L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres prefe
 'watchnologin'         => 'No heu iniciat la sessió',
 'watchnologintext'     => "Heu d'[[Special:UserLogin|entrar]]
 per modificar el vostre llistat de seguiment.",
-'addedwatch'           => "S'ha afegit la pàgina a la llista de seguiment",
 'addedwatchtext'       => "S'ha afegit la pàgina «[[:$1]]» a la vostra [[Special:Watchlist|llista de seguiment]].
 S'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corresponent discussió. A més la pàgina estarà ressaltada '''en negreta''' a la [[Special:RecentChanges|llista de canvis recents]] perquè pugueu adonar-vos dels canvis amb més facilitat.",
-'removedwatch'         => "S'ha tret de la llista de seguiment",
 'removedwatchtext'     => "S'ha tret la pàgina «[[:$1]]» de la vostra [[Special:Watchlist|llista de seguiment]].",
 'watch'                => 'Vigila',
 'watchthispage'        => 'Vigila aquesta pàgina',

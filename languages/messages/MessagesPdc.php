@@ -128,14 +128,6 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Sell Feil iss|Selle $1 Feils sin}} in daer Abdeeling drin:',
 'listingcontinuesabbrev'         => '(weider)',
 
-'mainpagedocfooter' => "Hilf fer's Yuuse unn Konfiguriere vun de Wiki-Software kansch finne im [http://meta.wikimedia.org/wiki/Help:Contents Handbuch fer Yuuser].
-
-== Hilf zum Schtaerte ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lischt vun Gnepp zum Konfiguriere]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Eposchde-Lischt fer neie MediaWiki-Versione]",
-
 'about'         => 'Iwwer',
 'article'       => 'Blatt',
 'newwindow'     => '(in em nei Fenschder)',
@@ -672,7 +664,6 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # Watchlist
 'watchlist'         => 'Mei Watsch-Lischt',
 'mywatchlist'       => 'Mei Watsch-Lischt',
-'addedwatch'        => 'Zu de Watsch-Lischt dezu geduh',
 'watch'             => 'watsche',
 'watchthispage'     => 'watsch des Blatt',
 'unwatch'           => 'Nimmi watsche',

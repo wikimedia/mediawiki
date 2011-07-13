@@ -407,15 +407,6 @@ $messages = array(
 'noindex-category'               => 'neindexované stránky',
 'broken-file-category'           => 'Stránky s poškodenými odkazmi súbor',
 
-'mainpagetext'      => "'''Softvér MediaWiki bol úspešne nainštalovaný.'''",
-'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [http://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
-
-== Začíname ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Zoznam konfiguračných nastavení]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list nových verzií MediaWiki]',
-
 'about'         => 'Projekt',
 'article'       => 'Stránka s obsahom',
 'newwindow'     => '(otvorí v novom okne)',
@@ -2176,11 +2167,9 @@ Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniac
 'watchlistanontext'    => 'Prosím $1 pre prezeranie alebo úpravu vášho zoznamu sledovaných stránok.',
 'watchnologin'         => 'Nie ste prihlásený/á',
 'watchnologintext'     => 'Musíte byť [[Special:UserLogin|prihlásený/á]], aby ste mohli modifikovať vaše sledované stránky.',
-'addedwatch'           => 'Pridaná do zoznamu sledovaných stránok',
 'addedwatchtext'       => "Stránka [[$1]] bola pridaná do [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:RecentChanges|zozname posledných úprav]], aby ste ju ľahšie našli.
 
 Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na „{{int:unwatch}}“ v záložkách na vrchu.",
-'removedwatch'         => 'Odstránená zo zoznamu sledovaných stránok',
 'removedwatchtext'     => 'Stránka „[[:$1]]“ bola odstránená z vášho [[Special:Watchlist|zoznamu sledovaných stránok]].',
 'watch'                => 'Sledovať',
 'watchthispage'        => 'Sledovať túto stránku',

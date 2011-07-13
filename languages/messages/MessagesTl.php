@@ -262,15 +262,6 @@ $messages = array(
 'noindex-category'               => 'Mga pahinang walang talatuntunan',
 'broken-file-category'           => 'Mga pahina na may sirang mga kawing ng talaksan',
 
-'mainpagetext'      => "'''Matagumpay na ininstala ang MediaWiki.'''",
-'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents Patnubay sa Tagagamit] (''\"User's Guide\"'') para sa kaalaman sa paggamit ng wiking ''software''.
-
-== Pagsisimula ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Tala ng mga nakatakdang kumpigurasyon]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Mga malimit itanong sa MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Tala ng mga pinadadalhan ng liham ng MediaWiki]",
-
 'about'         => 'Patungkol',
 'article'       => 'Pahina ng nilalaman',
 'newwindow'     => '(magbubukas sa bagong bintana)',
@@ -2041,10 +2032,8 @@ Ang ipinasok mong adres ng e-liham sa [[Special:Preferences|iyong mga kagustuhan
 'watchlistanontext'    => 'Paki $1 upang makita o mabago ang mga aytem sa iyong binabantayan.',
 'watchnologin'         => 'Di ka naka-lagda',
 'watchnologintext'     => 'Dapat kang [[Special:UserLogin|nakalagda]] upang mabago ang talaan mo ng mga binabantayan.',
-'addedwatch'           => 'Dinagdag na sa mga Babantayan',
 'addedwatchtext'       => "Dinagdag na ang pahinang \"[[:\$1]]\" sa iyong [[Special:Watchlist|Babantayan]].
 Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang usapang pahina, at ang pahina ay makikitang sa '''malalaking titik''' ('''''bold''''') sa [[Special:RecentChanges|tala ng mga huling binago]] para madaling makita.",
-'removedwatch'         => 'Tinigil na ang pagbabantay',
 'removedwatchtext'     => 'Ang pahinang "[[:$1]]" ay tinanggal na mula sa [[Special:Watchlist|iyong talaan ng binabantayan]].',
 'watch'                => 'Bantayan ito',
 'watchthispage'        => 'Bantayan ang pahinang ito',

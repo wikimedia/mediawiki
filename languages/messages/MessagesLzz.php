@@ -93,14 +93,6 @@ $messages = array(
 'index-category'                => "Indexi na uğun but'k'ape",
 'noindex-category'              => 'Indexi muşi na var uğun sayfape',
 
-'mainpagetext'      => "'''Mediawiki dido k'ai ik'idu.'''",
-'mainpagedocfooter' => "Vik'i şeni muç'o ixmarinen ya mutxanepe oguru şeni [http://meta.wikimedia.org/wiki/Help:Contents oxmaruşi rexberis] o3'k'edit.
-
-== Ağani na gyoç’k’u maxmarepe ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ok'iduşi ayarepeşi liste]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki P'anda Na-k'itxu K'itxalape]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-mailepeşiş liste]",
-
 'about'         => 'Şeni',
 'newwindow'     => '(ağne penceres guin3ʼkʼen)',
 'cancel'        => 'İpʼtʼali qʼvi',
@@ -480,7 +472,6 @@ Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (o
 # Watchlist
 'watchlist'         => 'çkimi gotxozu listʼe',
 'mywatchlist'       => 'Çkimi gotxozu listʼe',
-'addedwatch'        => 'Skani gotxozu listʼeşa ikʼayitʼinu.',
 'addedwatchtext'    => '"<nowiki>[[:$1]]</nowiki>" coxoni butʼkʼa [[Special:Watchlist|gotxozu listʼes]] ikʼayitʼinu.
 
 Na moxtasen oras, am butʼkʼaşa do am butʼkʼa kʼala alakʼali na ren oğarğaluşi butʼkʼaşa na ixvenasen oktirobape ak ilistʼelinasen.
@@ -488,7 +479,6 @@ Na moxtasen oras, am butʼkʼaşa do am butʼkʼa kʼala alakʼali na ren oğar�
 Dido kʼai o3xunu şeni doloxe muşis [[Special:RecentChanges|çodinaşi oktirobapeşi listʼe]] stʼatʼias dolom3ʼkʼupineri harfepete ilistʼelinasenan.
 
 Butʼkʼai gotxozu listʼeşen ojilu şeni "gotxozu naşkʼvi" linkʼişa gebaz*git.',
-'removedwatch'      => "Skani gotxozu list'eşen nijilu",
 'removedwatchtext'  => '"[[:$1]]" but\'k\'a, [[Special:Watchlist|skani gotxozu list\'eşen]] nijilu.',
 'watch'             => 'Amus gatxozi',
 'watchthispage'     => 'Butʼkʼa gatxozi',

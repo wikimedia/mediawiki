@@ -335,14 +335,6 @@ $messages = array(
 'noindex-category'               => 'Ongeïndekseerde bladsye',
 'broken-file-category'           => 'Bladsye met gebreekte lêer skakels',
 
-'mainpagetext'      => "'''MediaWiki is suksesvol geïnstalleer.'''",
-'mainpagedocfooter' => "Konsulteer '''[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]''' vir inligting oor hoe om die wikisagteware te gebruik.
-
-== Hoe om te Begin ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Aangaande',
 'article'       => 'Inhoudbladsy',
 'newwindow'     => '(verskyn in nuwe venster)',
@@ -2089,11 +2081,9 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'watchnologin'         => 'Nie ingeteken nie',
 'watchnologintext'     => 'U moet [[Special:UserLogin|ingeteken]]
 wees om u dophoulys te verander.',
-'addedwatch'           => 'Bygevoeg tot dophoulys',
 'addedwatchtext'       => "Die bladsy \"[[:\$1]]\" is by u [[Special:Watchlist|dophoulys]] bygevoeg. Toekomstige wysigings aan hierdie bladsy en sy verwante besprekingsblad sal op [[Special:Watchlist|u dophoulys]] gelys word en sal in '''vetdruk''' in die [[Special:RecentChanges|lys van onlangse wysigings]] vertoon word, sodat u dit makliker kan raaksien.
 
 As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoulys\" in die kieslys bo-aan die bladsy.",
-'removedwatch'         => 'Afgehaal van dophoulys',
 'removedwatchtext'     => 'Die bladsy "[[:$1]]" is van [[Special:Watchlist|u dophoulys]] afgehaal.',
 'watch'                => 'Hou dop',
 'watchthispage'        => 'Hou hierdie bladsy dop',

@@ -137,15 +137,6 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El siguienti archivu está|Los siguientis $1 archivus están}} nesta categoria.',
 'listingcontinuesabbrev'         => 'acont.',
 
-'mainpagetext'      => "'''MeyaGüiqui s'á istalau satihatoriamenti.'''",
-'mainpagedocfooter' => "Consurta la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pa sabel mas al tentu el huncionamientu el software güiqui.
-
-== Esminciandu ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
-
 'about'         => 'Al tentu',
 'article'       => 'Artículu',
 'newwindow'     => "(s'abrirá nuna nueva ventana)",
@@ -1422,13 +1413,11 @@ La direción email qu'aigas escrebiu enas tus preferéncias apaicirá cumu remit
 'watchlistanontext'    => 'Pa vel u eital las entrás ena tu lista e seguimientu es mestel $1.',
 'watchnologin'         => 'Nu estás rustriu',
 'watchnologintext'     => 'Ebis [[Special:UserLogin|abril la tu cuenta]] pa puel hazel chambus ena tu lista e seguimientu.',
-'addedwatch'           => 'Añiiu a la lista e seguimientu',
 'addedwatchtext'       => "S´á añiiu la páhina \"[[:\$1]]\" a la tu [[Special:Watchlist|lista e seguimientu]].
 Los huturus chambus de la páhina i ena su caraba se muestrarán aquí,
 i el su entítulu apaicirá en '''negrina''' ena [[Special:RecentChanges|lista d´úrtimus chambus]].
 
 Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
-'removedwatch'         => 'Esborrau e la lista e seguimientu',
 'removedwatchtext'     => 'La página "[[:$1]]" á siu esborrá de la tu [[Special:Watchlist|lista de seguimientu]].',
 'watch'                => 'Vegilal',
 'watchthispage'        => 'Vehilal esta páhina',

@@ -431,15 +431,6 @@ $messages = array(
 'index-category'                 => 'صفحات متفهرسه',
 'noindex-category'               => 'صفحات مش متفهرسه',
 
-'mainpagetext'      => "''' ميدياويكى اتنزلت بنجاح.'''",
-'mainpagedocfooter' => 'اسال [http://meta.wikimedia.org/wiki/Help:Contents دليل اليوزر] للمعلومات حوالين استخدام برنامج الويكى.
-
-== البداية ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings لستة اعدادات الضبط]
-* [http://www.mediawiki.org/wiki/Manual:FAQ أسئلة بتكرر حوالين الميدياويكى]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الميدياويكى]',
-
 'about'         => 'عن',
 'article'       => 'صفحة محتوى',
 'newwindow'     => '(بتفتح ويندو جديده)',
@@ -2100,10 +2091,8 @@ PICT # misc.
 'watchlistanontext'    => 'لو سمحت $1 لعرض أو تعديل الصفحات فى لستة مراقبتك.',
 'watchnologin'         => 'مش متسجل',
 'watchnologintext'     => 'لازم تكون [[Special:UserLogin|مسجل الدخول]] علشان تعدل لستة المراقبة بتاعتك.',
-'addedwatch'           => 'تمت الاضافه للستة الصفحات اللى بتراقبها',
 'addedwatchtext'       => 'تمت إضافة الصفحه  "$1"  [[Special:Watchlist|للستة الصفحات اللى بتراقبها]].
 التعديلات اللى بعد كده ها تتحط على الصفحه دى، وصفحة المناقش الخاصه بها ها تتحط هناك. واسم الصفحة هايظهر  بخط <b>عريض</b> فى صفحة [[Special:RecentChanges|أحدث التعديلات]] لتسهيل تحديدها واكتشافها.',
-'removedwatch'         => 'اتشالت  من لستة الصفحات اللى بتراقبها',
 'removedwatchtext'     => 'الصفحه دى اتشالت "[[:$1]]" من [[Special:Watchlist|لستة الصفحات اللى بتراقبها]].',
 'watch'                => 'راقب',
 'watchthispage'        => 'راقب الصفحه دى',

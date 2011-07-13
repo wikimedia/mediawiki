@@ -268,15 +268,6 @@ $messages = array(
 'noindex-category'               => 'సూచీకరించని పేజీలు',
 'broken-file-category'           => 'తెగిపోయిన ఫైలులింకులు గల పేజీలు',
 
-'mainpagetext'      => "'''మీడియా వికీని విజయవంతంగా ప్రతిష్టించాం.'''",
-'mainpagedocfooter' => 'వికీ సాఫ్టువేరును వాడటనికి కావలిసిన సమాచారం కోసం [http://meta.wikimedia.org/wiki/Help:Contents వాడుకరుల గైడు]ను సందర్శించండి.
-
-== మొదలు పెట్టండి ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings మీడియావికీ పనితీరు, అమరిక మార్చుకునేందుకు వీలుకల్పించే చిహ్నాల జాబితా]
-* [http://www.mediawiki.org/wiki/Manual:FAQ మీడియావికీపై తరుచుగా అడిగే ప్రశ్నలు]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce మీడియావికీ సాఫ్టువేరు కొత్త వెర్షను విడుదలల గురించి తెలిపే మెయిలింగు లిస్టు]',
-
 'about'         => 'గురించి',
 'article'       => 'వ్యాసము',
 'newwindow'     => '(కొత్త కిటికీలో వస్తుంది)',
@@ -1996,10 +1987,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'watchlistanontext'    => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు లేదా మార్చేందుకు మీరు $1 ఉండాలి.',
 'watchnologin'         => 'లాగిన్‌ అయిలేరు',
 'watchnologintext'     => 'మీ వీక్షణ జాబితాను మార్చడానికి మీరు [[Special:UserLogin|లాగిన్‌]] అయి ఉండాలి.',
-'addedwatch'           => 'వీక్షణ జాబితాలో చేరింది',
 'addedwatchtext'       => "\"[[:\$1]]\" అనే పుట మీ [[Special:Watchlist|వీక్షణ జాబితా]]లో చేరింది.
 భవిష్యత్తులో ఈ పుటకి మరియు సంబంధిత చర్చాపుటకి జరిగే మార్పులు అక్కడ కనిపిస్తాయి, మరియు  [[Special:RecentChanges|ఇటీవలి మార్పుల జాబితా]]లో సులభంగా గుర్తించడానికి ఈ పుట '''బొద్దుగా''' కనిపిస్తుంది.",
-'removedwatch'         => 'వీక్షణ జాబితా నుండి తొలగించబడినది',
 'removedwatchtext'     => '"[[:$1]]" అనే పేజీ [[Special:Watchlist|మీ వీక్షణ జాబితా]] నుండి తొలగించబడినది.',
 'watch'                => 'వీక్షించు',
 'watchthispage'        => 'ఈ పుట మీద కన్నేసి ఉంచు',

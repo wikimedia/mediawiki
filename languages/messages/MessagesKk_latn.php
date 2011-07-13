@@ -477,14 +477,6 @@ $messages = array(
 'category-file-count-limited'    => 'Ağımdağı sanatta kelesi $1 faýl bar.',
 'listingcontinuesabbrev'         => '(jalğ.)',
 
-'mainpagetext'      => "'''MedïaWïkï bwması sätti ornatıldı.'''",
-'mainpagedocfooter' => 'Wïkï bağdarlamalıq jasaqtamasın qalaý qoldanatın aqparatı üşin [http://meta.wikimedia.org/wiki/Help:Contents Paýdalanwşılıq nusqawlarınan] keñes alıñız.
-
-== Bastaw üşin ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Baptalım qalawlarınıñ tizimi]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MedïaWïkïdiñ Jïı Qoýılğan Sawaldarı]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï şığw twralı xat taratw tizimi]',
-
 'about'         => 'Joba twralı',
 'article'       => 'Mağlumat beti',
 'newwindow'     => '(jaña terezede)',
@@ -1730,10 +1722,8 @@ Qatıswşı baptawıñızda engizgen e-poşta mekenjaýıñız «Kimnen» degen 
 'watchlistanontext'    => 'Baqılaw tizimiñizdegi danalardı qaraw, ne öñdew üşin $1 kerek.',
 'watchnologin'         => 'Kirmegensiz',
 'watchnologintext'     => 'Baqılaw tizimiñizdi özgertw üşin [[Special:UserLogin|kirwiñiz]] jön.',
-'addedwatch'           => 'Baqılaw tizimine üsteldi',
 'addedwatchtext'       => "«[[:$1]]» beti [[{{#special:Watchlist}}|baqılaw tizimiñizge]] üsteldi.
 Bul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mında tizimdelinedi de, jäne bettiñ atawı jeñil tabılw üşin [[{{#special:Recentchanges}}|jwıqtağı özgerister tiziminde]] '''jwan ärpimen''' körsetiledi.",
-'removedwatch'         => 'Baqılaw tizimiñizden alastaldı',
 'removedwatchtext'     => '«[[:$1]]» beti baqılaw tizimiñizden alastaldı.',
 'watch'                => 'Baqılaw',
 'watchthispage'        => 'Betti baqılaw',

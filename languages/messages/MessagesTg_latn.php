@@ -139,15 +139,6 @@ $messages = array(
 'index-category'                 => 'Sahifahoi namojaşuda',
 'noindex-category'               => 'Sahifahoi namoijanaşuda',
 
-'mainpagetext'      => "'''Narmafzori MediaViki bo muvaffaqijat nasb şud.'''",
-'mainpagedocfooter' => 'Az [http://meta.wikimedia.org/wiki/Help:Contents Rohnamoi Korbaron] baroi istifodai narmafzori viki kūmak bigired.
-
-== Oƣoz ba kor ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Fehristi tanzimoti pajgirbandī]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Pursişhoi MediaViki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Fehristi rojnomahoi nusxahoi MediaViki]',
-
 'about'         => 'Dar borai',
 'article'       => 'Sahifai mūhtavo',
 'newwindow'     => '(dar ravzanai çadid boz meşavad)',
@@ -1286,13 +1277,11 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 'watchlistanontext'    => 'Lutfan baroi muşohida va viroişi fehristi pajgirihoi xud az $1 istifoda kuned.',
 'watchnologin'         => 'Vurud naşuda',
 'watchnologintext'     => 'Baroi taƣjiri fehristi pajgirihoi xud bojad [[Special:UserLogin|ba sistem vorid şaved]].',
-'addedwatch'           => 'Ba fehristi pajgiriho ilova karda şud',
 'addedwatchtext'       => "In sahifa \"[[:\$1]]\" va [[Special:Watchlist|fehristi nazaroti]] Şumo ilova şud.
 Digargunihoi ojandai in sahifa va sahifi bahsi aloqamand dar rūixati onço xohad şud,
 va sahifa '''ƣafs''' dar [[Special:RecentChanges|rūixati taƣjiroti oxirin]] baroi bo osoni darjoft kardan xohad ba nazar rasid.
 
 Agar şumo dertar az fehristi nazarotaton in sahifaro hazv kardan xohed, dar menju \"Nazar nakardan\"-ro paxş kuned.",
-'removedwatch'         => 'Az fehristi pajgiriho bardoşta şud',
 'removedwatchtext'     => 'Sahifai "[[:$1]]" az [[Special:Watchlist|fehristi pajgirihoi şumo]] bardoşta şud.',
 'watch'                => 'Nazar kardan',
 'watchthispage'        => 'Pajgiriji in sahifa',

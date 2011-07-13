@@ -176,8 +176,6 @@ $messages = array(
 'hidden-category-category' => 'Nā mahele hūnā',
 'listingcontinuesabbrev'   => '(ho‘omau ‘ia)',
 
-'mainpagetext' => "'''Ua pono ka ho‘ouka ‘ana o MediaWiki.'''",
-
 'about'         => 'E pili ana',
 'newwindow'     => '(wehe i loko o kekahi pukaaniani ʻē aʻe)',
 'cancel'        => 'Ho‘ōki',
@@ -660,7 +658,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Watchlist
 'watchlist'         => 'Kaʻu papa nānā pono',
 'mywatchlist'       => 'Ka‘u papa nānā pono',
-'removedwatch'      => 'Wehe ʻia mai kāu papa nānā pono',
 'removedwatchtext'  => 'Wehe ʻia ʻo "[[:$1]]" mai [[Special:Watchlist|kāu papa nānā pono]].',
 'watch'             => 'E kia‘i',
 'watchthispage'     => 'E nānā pono i kēia mea',

@@ -333,14 +333,7 @@ $messages = array(
 'noindex-category'               => 'Индексланмаган битләр',
 'broken-file-category'           => 'Эшләми торган файл сылтамаларлы битләр',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => '«MediaWiki» уңышлы куелды.',
-'mainpagedocfooter' => "Бу вики турында мәгълүматны [http://meta.wikimedia.org/wiki/Ярдәм:Эчтәлек биредә] табып була.
-
-== Кайбер файдалы ресурслар ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Көйләнмәләр исемлеге (инг.)];
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki турында еш бирелгән сораулар һәм җаваплар (инг.)];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'ның яңа версияләре турында хәбәрләр яздырып алу].",
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'Тасвирлама',
 'article'       => 'Мәкалә',
@@ -1670,10 +1663,8 @@ PICT # төрле
 'nowatchlist'       => 'Күзәтү исемлегегездә битләр юк.',
 'watchnologin'      => 'Кермәдегез',
 'watchnologintext'  => 'Күзәтү исемлегегезне үзгәртү өчен сез [[Special:UserLogin|керергә]] тиешсез.',
-'addedwatch'        => 'Күзәтү исемлегенә өстәгән',
 'addedwatchtext'    => "\"[[:\$1]]\" бите [[Special:Watchlist|күзәтү исемлегегезгә]] өстәлде.
 Бу биттә һәм аның бәхәслегендә барлык булачак үзгәртүләр шунда күрсәтелер, һәм, [[Special:RecentChanges|соңгы үзгәртүләр]] исемлегендә бу битне җиңелрәк табу өчен, ул '''калын мәтен''' белән күрсәтелер.",
-'removedwatch'      => 'Күзәтү исемлегеннән бетерелгән',
 'removedwatchtext'  => '«[[:$1]]» бите [[Special:Watchlist|сезнең күзәтү исемлегеннән]] бетерелде.',
 'watch'             => 'Күзәтү',
 'watchthispage'     => 'Бу битне күзәтү',
@@ -1992,11 +1983,23 @@ $1',
 'thumbnail_error' => 'Кечкенә сүрәт төзүе хатасы: $1',
 
 # Special:Import
-'import-interwiki-submit' => 'Импортлау',
-'import-upload-filename'  => 'Файл исеме:',
-'import-comment'          => 'Искәрмә:',
-'importstart'             => 'Битләрне импортлау...',
-'importnotext'            => 'Буш яки текст юк',
+'import'                     => 'Битләр кертү',
+'importinterwiki'            => 'Викиара кертү',
+'import-interwiki-text'      => 'Викины һәм кертелүче битнең исемен языгыз.
+Үзгәртүләр вакыты һәм аның авторлары сакланачак.
+Бөтен викиара күчерүләр [[Special:Log/import|махсус журналда]] сакланачак.',
+'import-interwiki-source'    => 'Вики-чыганак/бит:',
+'import-interwiki-history'   => 'Бу битнең барлык үзгәртү тарихын күчермәләү',
+'import-interwiki-templates' => 'Барлык үрнәкләрне кертү',
+'import-interwiki-submit'    => 'Импортлау',
+'import-interwiki-namespace' => 'Исемнәр тирәлеге:',
+'import-upload-filename'     => 'Файл исеме:',
+'import-comment'             => 'Искәрмә:',
+'importtext'                 => 'Зинһар өчен, битне күчерү өчен [[Special:Export|махсус корал]] кулланыгыз. Файлны дискка саклагыз, аннан соң монда йөкләгез.',
+'importstart'                => 'Битләрне импортлау...',
+'import-revision-count'      => '$1 {{PLURAL:$1|юрама|юрама|юрама}}',
+'importnopages'              => 'Импортлау өчен битләр юк.',
+'importnotext'               => 'Буш яки текст юк',
 
 # Import log
 'importlogpage'             => 'Кертү көндәлеге',

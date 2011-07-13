@@ -823,12 +823,10 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 # Watchlist
 'watchlist'         => 'Lenano la ditlhapetšo tša ka',
 'mywatchlist'       => 'Lenano la ditlhapetšo tša ka',
-'addedwatch'        => 'Loketšwe go lenano la ditlhapetšo',
 'addedwatchtext'    => "Letlakala \"[[:\$1]]\" le tsene go [[Special:Watchlist|watchlist]] ya gago.
 Go tloga bjale, diphetogo letlakaleng le, le letlakaleng la dipoledišano la gona, di tla bontšhwa ka mongalo wa '''bold''' gare ga [[Special:RecentChanges|list of recent changes]] gore go be bonolo gore oa bone.
 
 Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiša \"Tloša tlhapetšo\" go sidebar.",
-'removedwatch'      => 'Tlošitšwe go lenano la ditlhapetšo',
 'removedwatchtext'  => 'Letlakala "[[:$1]]" letlošitšwe go [[Special:Watchlist|lenano la gago la ditlhapetšo]].',
 'watch'             => 'Tlhapetša',
 'watchthispage'     => 'Tlhapetša letlakala le',

@@ -152,14 +152,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ку категоринче $1 файл.',
 'listingcontinuesabbrev'         => '(малалли)',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff«"]+)$/sD',
-'mainpagetext'      => "'''«MediaWiki» вики-движока лартасси ăнăçлă вĕçленчĕ.'''",
-'mainpagedocfooter' => 'Ку википе ĕçлеме пулăшакан информацине [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 усăç руководствинче] тупма пултаратăр.
-
-== Пулăшма пултарĕç ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ĕнерлевсен списокĕ];
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki тăрăх час-часах ыйтакан ыйтусемпе хуравсем];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff«"]+)$/sD',
 
 'about'         => 'Ăнлантаркăч',
 'article'       => 'Статья',
@@ -920,10 +913,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'nowatchlist'      => 'Эсир пăхса тăракан страницăсен списокĕ пушă.',
 'watchnologin'     => 'Системăна хăвăр ята каламалла',
 'watchnologintext' => 'Сăнав списокне улăштармашкăн сирĕн системăна [[Special:UserLogin|хăвăр ята каламалла]].',
-'addedwatch'       => 'Сăнамалли шутне кĕртрĕмĕр',
 'addedwatchtext'   => '«[[:$1]]» страницăна сирĕн [[Special:Watchlist|сăнав списока]] хушрăмăр. Малашне [[Special:RecentChanges|юлашки улшăнусене кăтартакан страницăра]] унпа çыхăннă улшăнусене хылăм шрифтпа курăнĕç.
 Енчен те сирĕн ку страницăна сăнас кăмăл пĕтсен, «ан сăна» пускăч çине пусăр.',
-'removedwatch'     => 'Сăнамалли списокран кăларса пăрахнă',
 'removedwatchtext' => '«[[:$1]]» страницăна сирĕн сăнамалли списокран кăларса пăрахнă.',
 'watch'            => 'Сăна',
 'watchthispage'    => 'Ку страницăна сăнаса тăр',

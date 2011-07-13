@@ -413,14 +413,7 @@ $messages = array(
 'noindex-category'               => 'Ikkje-indekserte sider',
 'broken-file-category'           => 'Sider med brotne fillenkjer',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "'''MediaWiki er no installert.'''",
-'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.
-
-==Kome i gang==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste over oppsettsinnstillingar]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Spørsmål og svar om MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'Om',
 'article'       => 'Innhaldsside',
@@ -2073,11 +2066,9 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'watchlistanontext'    => 'Du lyt $1 for å vise eller endre sider på overvakingslista di.',
 'watchnologin'         => 'Ikkje innlogga',
 'watchnologintext'     => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna endre overvakingslista.',
-'addedwatch'           => 'Lagt til overvakingslista',
 'addedwatchtext'       => "Sida «[[:$1]]» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
 
 Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
-'removedwatch'         => 'Fjerna frå overvakingslista',
 'removedwatchtext'     => 'Sida «[[:$1]]» er fjerna frå [[Special:Watchlist|overvakingslista di]].',
 'watch'                => 'Overvak',
 'watchthispage'        => 'Overvak denne sida',

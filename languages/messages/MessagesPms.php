@@ -172,14 +172,6 @@ dj'artìcoj ancó pa scrit",
 'noindex-category'               => 'Pàgine pa indicisà',
 'broken-file-category'           => 'Pàgine con colegament pa giust a archivi',
 
-'mainpagetext'      => "'''MediaWiki a l'é staita anstalà a la përfession.'''",
-'mainpagedocfooter' => "Che a varda la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] për avèj dj'anformassion ant sël coma dovré ël programa dla wiki.
-
-== Për anandiesse a travajé ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista dij paràmeter ëd configurassion]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Chestion frequente]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista ëd discussion an sla distribussion ëd MediaWiki]",
-
 'about'         => 'A propòsit ëd',
 'article'       => 'Pàgina ëd contnù',
 'newwindow'     => '(as deurb ant na fnestra neuva)',
@@ -1890,8 +1882,8 @@ A peulo ess-ie d'[[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissiona
 'listgrouprights-addgroup'             => 'Gionté a {{PLURAL:$2|la partìa|le partìe}}: $1',
 'listgrouprights-removegroup'          => 'Gavé {{PLURAL:$2|la partìa|le partìe}}: $1',
 'listgrouprights-addgroup-all'         => 'Gionté tute le partìe',
-'listgrouprights-removegroup-all'      => 'Gava tute le partìe',
-'listgrouprights-addgroup-self'        => 'Gionta {{PLURAL:$2|la partìa|le partìe}} al tò cont: $1',
+'listgrouprights-removegroup-all'      => 'Gavé tute le partìe',
+'listgrouprights-addgroup-self'        => 'Gionté {{PLURAL:$2|la partìa|le partìe}} al sò cont: $1',
 'listgrouprights-removegroup-self'     => 'Gava {{PLURAL:$2|la partìa|le partìe}} da tò cont: $1',
 'listgrouprights-addgroup-self-all'    => 'Gionta tute le partìe a tò cont',
 'listgrouprights-removegroup-self-all' => 'Gava tute le partìe da tò cont',
@@ -1941,10 +1933,8 @@ L'adrëssa e-mail ch'it l'has butà an [[Special:Preferences|Ij sò gust]] a sar
 'watchnologin'         => "A l'é ancó nen rintrà ant ël sistema",
 'watchnologintext'     => "A l'ha da manca prima ëd tut dë [[Special:UserLogin|rintré ant ël sistema]]
 për podej modifiché soa lista dla ròba dë tnì sot euj.",
-'addedwatch'           => "Sòn a l'é stait giontà a le pàgine che it ten-e sot euj",
 'addedwatchtext'       => 'La pàgina  "[[:$1]]" a l\'é staita giontà a soa [[Special:Watchlist|lista dla ròba da tnì sot-euj]].
 Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairërà ën <b>grassèt</b> ant la pàgina ëd j\'[[Special:RecentChanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d\'euj.',
-'removedwatch'         => "Gavà via da 'nt la lista dla ròba da tnì sot euj",
 'removedwatchtext'     => 'La pàgina "[[:$1]]" a l\'è staita gavà via da [[Special:Watchlist|soa lista dla ròba da tnì sot euj]].',
 'watch'                => 'ten sot euj',
 'watchthispage'        => "Ten sot euj st'artìcol-sì",

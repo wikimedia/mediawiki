@@ -1466,11 +1466,9 @@ Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis 
 'watchlistanontext'  => 'Necesse est $1 ad indicem paginarum custoditarum inspiciendum vel recensendum.',
 'watchnologin'       => 'Conventum non est apertum',
 'watchnologintext'   => '[[Special:UserLogin|Conventum aperire]] debes ut indicem paginarum custoditarum mutes.',
-'addedwatch'         => 'Pagina custodita',
 'addedwatchtext'     => "Pagina \"[[:\$1]]\" in [[Special:Watchlist|paginas tuas custoditas]] addita est. Mutationes posthac huic paginae et paginae disputationis ibi notabuntur, et pagina '''litteris pinguibus''' apparebit in [[Special:RecentChanges|nuper mutatorum]] indice, ut sit facilius electu.
 
 Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\" ab summa pagina.",
-'removedwatch'       => 'Non iam custodita',
 'removedwatchtext'   => 'Pagina "[[:$1]]" ex [[Special:Watchlist|indice paginarum custoditarum]] remota est.',
 'watch'              => 'Custodire',
 'watchthispage'      => 'Custodire hanc paginam',

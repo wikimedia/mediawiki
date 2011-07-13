@@ -526,14 +526,6 @@ $messages = array(
 'noindex-category'               => 'Непописане странице',
 'broken-file-category'           => 'Странице с неисправним везама до датотека',
 
-'mainpagetext'      => "'''Медијавики је успешно инсталиран.'''",
-'mainpagedocfooter' => 'Погледајте [http://meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.
-
-== Увод ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Помоћ у вези са подешавањима]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Често постављена питања]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]',
-
 'about'         => 'О нама',
 'article'       => 'Чланак',
 'newwindow'     => '(отвара у новом прозору)',
@@ -2328,12 +2320,10 @@ $1',
 'watchlistanontext'    => 'Морате бити $1 да бисте гледали и уређивали ставке на вашем списку надгледања.',
 'watchnologin'         => 'Нисте пријављени',
 'watchnologintext'     => 'Морате бити [[Special:UserLogin|пријављени]] да бисте мењали списак надгледања.',
-'addedwatch'           => 'Додато на списак надгледања',
 'addedwatchtext'       => 'Страница „[[:$1]]“ је додата на ваш [[Special:Watchlist|списак надгледања]].
 Будуће измене ове странице и њене странице за разговор биће наведене овде, а страница ће бити <b>подебљана</b> у [[Special:RecentChanges|списку скорашњих измена]] да би се лакше уочила.
 
 Уколико будете желели да уклоните страницу са списка надгледања, кликните опет на звездицу у горњој палети.',
-'removedwatch'         => 'Уклоњено са списка надгледања',
 'removedwatchtext'     => 'Страница „[[:$1]]“ је уклоњена с вашег [[Special:Watchlist|списка надгледања]].',
 'watch'                => 'Надгледај',
 'watchthispage'        => 'Надгледај ову страницу',

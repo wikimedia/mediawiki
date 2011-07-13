@@ -404,14 +404,6 @@ $messages = array(
 'noindex-category'               => 'Neindeksirane stranice',
 'broken-file-category'           => 'Stranice sa neispravnim linkovima do datoteka',
 
-'mainpagetext'      => "'''MediaViki softver is uspješno instaliran.'''",
-'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
-
-== Početak ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista postavki]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki najčešće postavljana pitanja]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]',
-
 'about'         => 'O',
 'article'       => 'Članak',
 'newwindow'     => '(otvara se u novom prozoru)',
@@ -2205,11 +2197,9 @@ E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim posta
 'watchlistanontext'    => 'Molimo da $1 da možete vidjeti ili urediti stavke na Vašem spisku praćenja.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[Special:UserLogin|prijavljeni]] da bi ste mijenjali spisak praćenih članaka.',
-'addedwatch'           => 'Dodato u spisak praćenih članaka',
 'addedwatchtext'       => 'Stranica "[[:$1]]" je dodata vašem [[Special:Watchlist|spisku praćenih članaka]]. Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti navedene ovde, i stranica će biti <b>podebljana</b> u [[Special:RecentChanges|spisku]] nedavnih izmjena da bi se lakše uočila.
 
 Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kliknite na "prekini praćenje" na paleti.',
-'removedwatch'         => 'Uklonjeno iz spiska praćenih članaka',
 'removedwatchtext'     => 'Stranica "[[:$1]]" je uklonjena iz [[Special:Watchlist|vašeg spiska praćenih članaka]].',
 'watch'                => 'Prati članak',
 'watchthispage'        => 'Prati ovu stranicu',

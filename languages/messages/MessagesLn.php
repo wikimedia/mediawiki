@@ -480,9 +480,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Watchlist
 'watchlist'         => 'Nkásá nalandí',
 'mywatchlist'       => 'Nkásá nalandí',
-'addedwatch'        => 'Ebakísámí na nkásá olandí',
 'addedwatchtext'    => "Lonkásá «[[:$1]]» lobakísámí na [[Special:Watchlist|nkásá olandí]]. Mbóngwana o lonkásá loye mpé o lonkásá la ntembe ikomɔ́nisama áwa, ikokɔ́mana '''mbinga''' o [[Special:RecentChanges|Lístɛ ya mbóngwana ya nsúka]] mpɔ̂ na mpási tɛ̂.",
-'removedwatch'      => 'Elongólámí na nkásá olandí',
 'watch'             => 'Kolanda',
 'watchthispage'     => 'Kolanda lonkásá óyo',
 'unwatch'           => 'Kolanda tɛ́',

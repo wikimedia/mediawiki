@@ -349,7 +349,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Watchlist
 'watchlist'   => 'Articuli seguitati',
 'mywatchlist' => 'Articuli seguitati',
-'addedwatch'  => "Aghjuntu à u listinu di l'articuli seguitati",
 'watch'       => 'Seguità',
 
 'enotif_reset'       => 'Marcà tutte e pagine visitate',

@@ -297,14 +297,12 @@ Bo e-mail adrès (manera ta pará den bo preferensianan) lo aparesé den e e-mai
 'watchlist'         => 'Mi lista di observashon',
 'nowatchlist'       => 'Bo lista di observashon ta bashí.',
 'watchnologintext'  => 'Bo mester [[Special:UserLogin|outentiká bo mes]] pa modifiká bo lista di observashon.',
-'addedwatch'        => 'Añadí na lista di observashon',
 'addedwatchtext'    => "E página \"[[:\$1]]\" tabata añadí na bo [[Special:Watchlist|lista di observashon]].
 Lo lista kambionan hasí na e página aki i su página di diskushon einan,
 i e página lo aparesé '''vet''' den e [[Special:RecentChanges|lista di kambionan resien]] pa
 e ta mas fásil pa bo mira.
 
 Si despues bo ke kita e página for di bo lista di observashon, primi \"Stop di observá\" den e menú ariba.",
-'removedwatch'      => 'Kitá for di lista di observashon',
 'watch'             => 'Observá',
 'watchthispage'     => 'Observá e página aki',
 'unwatch'           => 'Stop di observá',

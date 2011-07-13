@@ -433,14 +433,6 @@ $messages = array(
 'noindex-category'               => 'Nem indexelt lapok',
 'broken-file-category'           => 'Hibás fájlhivatkozásokat tartalmazó lapok',
 
-'mainpagetext'      => "'''A MediaWiki telepítése sikeresen befejeződött.'''",
-'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
-
-== Alapok (angol nyelven) ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Beállítások listája]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki GyIK]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
-
 'about'         => 'Névjegy',
 'article'       => 'Szócikk',
 'newwindow'     => '(új ablakban nyílik meg)',
@@ -2180,10 +2172,8 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
 'watchnologin'         => 'Nem vagy bejelentkezve',
 'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:UserLogin|be kell lépned]].',
-'addedwatch'           => 'Figyelőlistához hozzáfűzve',
 'addedwatchtext'       => "A(z) „[[:$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
 Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:RecentChanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.",
-'removedwatch'         => 'Figyelőlistáról eltávolítva',
 'removedwatchtext'     => 'A(z) „[[:$1]]” lapot eltávolítottam a [[Special:Watchlist|figyelőlistáról]].',
 'watch'                => 'Lap figyelése',
 'watchthispage'        => 'Lap figyelése',

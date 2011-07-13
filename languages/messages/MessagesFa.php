@@ -545,16 +545,6 @@ $messages = array(
 'noindex-category'               => 'صفحه‌های نمایه نشده',
 'broken-file-category'           => 'صفحه‌های دارای پیوندهای پروندهٔ خراب',
 
-'mainpagetext'      => "'''نرم‌افزار ویکی با موفقیت نصب شد.'''",
-'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
-برای استفاده از نرم‌افزار ویکی کمک بگیرید.
-
-== آغاز به کار ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings تنظیم پیکربندی]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki پرسش‌های متداول]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست پست الکترونیکی نسخه‌های مدیاویکی]',
-
 'about'         => 'درباره',
 'article'       => 'صفحهٔ محتوا',
 'newwindow'     => '(در پنجرهٔ جدید باز می‌شود)',
@@ -2366,10 +2356,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'watchlistanontext'    => 'برای مشاهده و ویرایش فهرست پی‌گیری‌های خود از $1 استفاده کنید.',
 'watchnologin'         => 'به سامانه وارد نشده‌اید',
 'watchnologintext'     => 'برای تغییر فهرست پی‌گیری‌هایتان باید [[Special:UserLogin|به سامانه وارد شوید]].',
-'addedwatch'           => 'به فهرست پی‌گیری افزوده شد',
 'addedwatchtext'       => "صفحهٔ «[[:$1]]» به [[Special:Watchlist|فهرست پی‌گیری‌های]] شما اضافه شد.
 تغییرات این صفحه و صفحهٔ بحث متناظرش در آینده در اینجا فهرست خواهد شد؛ به‌علاوه، این صفحه، برای واضح‌تر دیده شدن در [[Special:RecentChanges|فهرست تغییرات اخیر]] به شکل '''پررنگ''' نمایش خواهد یافت.",
-'removedwatch'         => 'از فهرست پی‌گیری‌ها برداشته شد',
 'removedwatchtext'     => 'صفحهٔ «<nowiki>[[:$1]]</nowiki>» از [[Special:Watchlist|فهرست پی‌گیری‌های شما]] برداشته شد.',
 'watch'                => 'پی‌گیری',
 'watchthispage'        => 'پی‌گیری این صفحه',

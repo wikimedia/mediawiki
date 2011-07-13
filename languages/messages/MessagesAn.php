@@ -252,15 +252,6 @@ $messages = array(
 'index-category'                 => 'Pachinas indexadas',
 'noindex-category'               => 'Pachinas sin indexar',
 
-'mainpagetext'      => "'''O programa MediaWiki s'ha instalato correctament.'''",
-'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar información sobre cómo usar o software wiki.
-
-== Ta prencipiar ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de caracteristicas confegurables]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas cutianas sobre MediaWiki (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correu sobre ta anuncios de MediaWiki]",
-
 'about'         => 'Información sobre',
 'article'       => 'Articlo',
 'newwindow'     => "(s'ubre en una nueva finestra)",
@@ -1898,9 +1889,7 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferencias
 'watchlistanontext'    => "Ha de $1 ta veyer u editar as dentradas d'a suya lista de seguimiento.",
 'watchnologin'         => 'No ha encetato a sesión',
 'watchnologintext'     => "Ha d'estar [[Special:UserLogin|identificato]] ta poder cambiar a suya lista de seguimiento.",
-'addedwatch'           => 'Adhibiu a la suya lista de seguimiento',
 'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adhibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdevenideros en ista pachina y en a suya pachina de descusión asociata s'indicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:RecentChanges|lista de cambios recients]] ta que se veiga millor. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de cosirar\" en o menú.",
-'removedwatch'         => "Borrata d'a lista de seguimiento",
 'removedwatchtext'     => 'A pachina "[[:$1]]" s\'ha sacau d\'a suya [[Special:Watchlist|lista de seguimiento]].',
 'watch'                => 'Cosirar',
 'watchthispage'        => 'Cosirar ista pachina',

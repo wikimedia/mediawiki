@@ -500,10 +500,8 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 # Watchlist
 'watchlist'         => 'Jerina na bin sawu',
 'mywatchlist'       => 'Jerina na bin sawu',
-'addedwatch'        => 'An daɗa a cikin jerin bin sawu',
 'addedwatchtext'    => "An daɗa shafin \"[[:\$1]]\" a cikin [[Special:Watchlist|jerinku na bin sawu]].
 A nan ne kuma za a yi rajistan dukkan sauye-sauye ga shafin ko shafinsa na muhawara, kuma sunan shafin zai kasance '''mai gwaɓi''' a cikin [[Special:RecentChanges|jerin sauye-sauyen baya-bayan nan]] don sauƙin gani.",
-'removedwatch'      => 'An fitar daga cikin jerin bin sawu',
 'removedwatchtext'  => 'An fitar da shafin "[[:$1]]" daga [[Special:Watchlist|jerinku na bin sawu]].',
 'watch'             => 'Bin sawu',
 'watchthispage'     => 'Bin sawun wannan shafi',

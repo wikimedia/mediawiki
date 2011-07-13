@@ -144,15 +144,7 @@ $messages = array(
 'index-category'                 => 'Pelê endeksıni',
 'noindex-category'               => 'Pelê ke endeksıni niyê',
 
-'linkprefix'        => "'''MediaWiki niya ro.'''",
-'mainpagetext'      => "'''MediaWiki vıst ra ser, vıraziya.'''",
-'mainpagedocfooter' => 'Seba gurenayış u eyarkerdışê Wiki-Softwarey [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
-
-== Yardımê Sıftekerdışi ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista eyaranê vıraştışi]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-dayışê postey]',
+'linkprefix' => "'''MediaWiki niya ro.'''",
 
 'about'         => 'Heqa',
 'article'       => 'Pela tedeesteyan',
@@ -1807,10 +1799,8 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'watchlistanontext'    => 'qey vurnayişê maddeya listeya temaşakerdişi $1.',
 'watchnologin'         => 'hesab akerde niyo',
 'watchnologintext'     => 'qey vurnayişê listeya temaşakerdışi [[Special:UserLogin|gani şıma hesab akeri]].',
-'addedwatch'           => 'Kerd be lista seyrkerdışi ser',
 'addedwatchtext'       => 'Ma pele "[[:$1]]" zerri [[Special:Watchlist|watchlist]]ê tı kerd de.
 Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni. Hem zi çı dem ma tu ri heber dun, zerri [[Special:RecentChanges|list of recent changes]] name pele beno qalın. Tı ri beno qolay çıta vurnaye biyo.',
-'removedwatch'         => 'Lista seyrkerdışi ra vet',
 'removedwatchtext'     => 'Ena pela "[[:$1]]" biya wedariya [[Special:Watchlist|listeyê seyr-kerdışi şıma]].',
 'watch'                => 'bıgê seyr-kerdış',
 'watchthispage'        => 'Ena pele seyr ke',

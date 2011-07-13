@@ -274,14 +274,6 @@ $messages = array(
 'index-category'                 => '做咗索引嘅版',
 'noindex-category'               => '未做索引嘅版',
 
-'mainpagetext'      => "'''MediaWiki已經裝好。'''",
-'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
-
-==開始使用==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings 配置設定清單]（英）
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題]（英）
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英）',
-
 'about'         => '關於',
 'article'       => '內容頁',
 'newwindow'     => '（響新視窗度打開）',
@@ -1962,10 +1954,8 @@ Template:搞清楚',
 'watchlistanontext'    => '請先$1去睇或者改響你監視清單度嘅項目。',
 'watchnologin'         => '未登入',
 'watchnologintext'     => '你必須先[[Special:UserLogin|登入]]至可以更改你嘅監視清單。',
-'addedwatch'           => '加到監視清單度',
 'addedwatchtext'       => "頁面「[[:$1]]」已加入到你嘅[[Special:Watchlist|監視清單]]度。
 呢個頁面以及佢個討論頁以後嘅修改都會列喺嗰度，佢喺[[Special:RecentChanges|最近更改清單]]度會以'''粗體'''顯示，等你可以容易啲睇到佢。",
-'removedwatch'         => '已經由監視清單中刪除',
 'removedwatchtext'     => '頁面「[[:$1]]」已經喺[[Special:Watchlist|你嘅監視清單]]度刪除。',
 'watch'                => '監視',
 'watchthispage'        => '監視呢頁',

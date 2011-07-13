@@ -253,14 +253,6 @@ $messages = array(
 'noindex-category'               => 'Kurasa zisizokuu',
 'broken-file-category'           => 'Kurasa zenye viungo vilivyovunjika',
 
-'mainpagetext'      => "'''MediaWiki imefanikiwa kuingizwa.'''",
-'mainpagedocfooter' => 'Shauriana na [http://meta.wikimedia.org/wiki/Help:Contents Mwongozo wa Mtumiaji] kwa habari juu ya utumiaji wa bidhaa pepe ya wiki.
-
-== Msaada wa kianzio ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Orodha ya mipangilio ya msingi]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ ya MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Orodha ya utoaji wa habari za MediaWiki]',
-
 'about'         => 'Kuhusu',
 'article'       => 'Makala',
 'newwindow'     => '(Itafungua kwa dirisha jipya)',
@@ -1928,14 +1920,12 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'watchlistanontext'    => 'Tafadhali $1 ili kutazama au kuhariri vitu vilivyopo katika orodha yako ya maangalizi.',
 'watchnologin'         => 'Hujaingia',
 'watchnologintext'     => 'Lazima uwe [[Special:UserLogin|umeshaingia]] ili uweze kuhariri orodha ya maangalizi yako.',
-'addedwatch'           => 'Imeongezwa kwenye maangalizi yako',
 'addedwatchtext'       => "Ukurasa \"[[:\$1]]\" umewekwa kwenye [[Special:Watchlist|maangalizi]] yako.
 Mabadiliko katika ukurasa huo na ukurasa wake wa majadiliano utaonekana hapo,
 na ukurasa utaonyeshwa wenye '''koze''' kwenye [[Special:RecentChanges|orodha ya mabadiliko ya karibuni]]
 ili kukusaidia kutambua.
 
 Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuatilia\" katika mwamba pembeni.",
-'removedwatch'         => 'Imefutwa kutoka maangalizi yako',
 'removedwatchtext'     => 'Ukurasa "[[:$1]]" umeondoshwa kutoka katika [[Special:Watchlist|maangalizi yako]].',
 'watch'                => 'Fuatilia',
 'watchthispage'        => 'Fuatilia ukurasa huu',

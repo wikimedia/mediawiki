@@ -509,14 +509,6 @@ $messages = array(
 'category-file-count-limited'    => 'اعىمداعى ساناتتا كەلەسى $1 فايل بار.',
 'listingcontinuesabbrev'         => '(جالع.)',
 
-'mainpagetext'      => "'''مەدىياۋىيكىي بۋماسى ٴساتتى ورناتىلدى.'''",
-'mainpagedocfooter' => 'ۋىيكىي باعدارلامالىق جاساقتاماسىن قالاي قولداناتىن اقپاراتى ٴۇشىن [http://meta.wikimedia.org/wiki/Help:Contents پايدالانۋشىلىق نۇسقاۋلارىنان] كەڭەس الىڭىز.
-
-== باستاۋ ٴۇشىن ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings باپتالىم قالاۋلارىنىڭ ٴتىزىمى]
-* [http://www.mediawiki.org/wiki/Manual:FAQ مەدىياۋىيكىيدىڭ جىيى قويىلعان ساۋالدارى]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce مەدىياۋىيكىي شىعۋ تۋرالى حات تاراتۋ ٴتىزىمى]',
-
 'about'         => 'جوبا تۋرالى',
 'article'       => 'ماعلۇمات بەتى',
 'newwindow'     => '(جاڭا تەرەزەدە)',
@@ -1762,10 +1754,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => 'باقىلاۋ تىزىمىڭىزدەگى دانالاردى قاراۋ, نە وڭدەۋ ٴۇشىن $1 كەرەك.',
 'watchnologin'         => 'كىرمەگەنسىز',
 'watchnologintext'     => 'باقىلاۋ ٴتىزىمىڭىزدى وزگەرتۋ ٴۇشىن [[Special:UserLogin|كىرۋىڭىز]] ٴجون.',
-'addedwatch'           => 'باقىلاۋ تىزىمىنە ۇستەلدى',
 'addedwatchtext'       => "«[[:$1]]» بەتى [[{{#special:Watchlist}}|باقىلاۋ تىزىمىڭىزگە]] ۇستەلدى.
 بۇل بەتتىڭ جانە بايلانىستى تالقىلاۋ بەتىنىڭ كەلەشەكتەگى وزگەرىستەرى مىندا تىزىمدەلىنەدى دە, جانە بەتتىڭ اتاۋى جەڭىل تابىلۋ ٴۇشىن [[{{#special:Recentchanges}}|جۋىقتاعى وزگەرىستەر تىزىمىندە]] '''جۋان ارپىمەن''' كورسەتىلەدى.",
-'removedwatch'         => 'باقىلاۋ تىزىمىڭىزدەن الاستالدى',
 'removedwatchtext'     => '«[[:$1]]» بەتى باقىلاۋ تىزىمىڭىزدەن الاستالدى.',
 'watch'                => 'باقىلاۋ',
 'watchthispage'        => 'بەتتى باقىلاۋ',

@@ -474,14 +474,6 @@ $messages = array(
 'category-file-count-limited'    => 'Ағымдағы санатта келесі $1 файл бар.',
 'listingcontinuesabbrev'         => '(жалғ.)',
 
-'mainpagetext'      => "'''МедиаУики бумасы сәтті орнатылды.'''",
-'mainpagedocfooter' => 'Уики бағдарламалық жасақтамасын қалай қолданатын ақпараты үшін [http://meta.wikimedia.org/wiki/Help:Contents Пайдаланушылық нұсқауларынан] кеңес алыңыз.
-
-== Бастау үшін ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Бапталым қалауларының тізімі]
-* [http://www.mediawiki.org/wiki/Manual:FAQ МедиаУикидің Жиы Қойылған Сауалдары]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаУики шығу туралы хат тарату тізімі]',
-
 'about'         => 'Жоба туралы',
 'article'       => 'Мағлұмат беті',
 'newwindow'     => '(жаңа терезеде)',
@@ -1750,10 +1742,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => 'Бақылау тізіміңіздегі даналарды қарау, не өңдеу үшін $1 керек.',
 'watchnologin'         => 'Кірмегенсіз',
 'watchnologintext'     => 'Бақылау тізіміңізді өзгерту үшін [[{{#special:Userlogin}}|кіруіңіз]] жөн.',
-'addedwatch'           => 'Бақылау тізіміне үстелді',
 'addedwatchtext'       => "«[[:$1]]» беті [[{{#special:Watchlist}}|бақылау тізіміңізге]] үстелді.
 Бұл беттің және байланысты талқылау бетінің келешектегі өзгерістері мында тізімделінеді де, және беттің атауы жеңіл табылу үшін [[{{#special:Recentchanges}}|жуықтағы өзгерістер тізімінде]] '''жуан әрпімен''' көрсетіледі.",
-'removedwatch'         => 'Бақылау тізіміңізден аласталды',
 'removedwatchtext'     => '«[[:$1]]» беті бақылау тізіміңізден аласталды.',
 'watch'                => 'Бақылау',
 'watchthispage'        => 'Бетті бақылау',

@@ -141,14 +141,6 @@ $messages = array(
 'index-category'                => "Duilleagan air a' chlàr-innse",
 'noindex-category'              => "Duilleagan nach eil air a' chlàr-innse",
 
-'mainpagetext'      => "'''Chaidh MediaWiki a stàladh gu soirbheachail.'''",
-'mainpagedocfooter' => "Cuir sùil air [http://meta.wikimedia.org/wiki/Help:Contents treòir nan cleachdaichean] airson fiosrachadh mu chleachdadh a' bhathar-bhog wiki.
-
-== Toiseach tòiseachaidh ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liosta suidheachadh nan roghainnean]
-* [http://www.mediawiki.org/wiki/Manual:FAQ CÀBHA MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liosta puist nan sgaoilidhean MediaWiki]",
-
 'about'         => 'Mu',
 'article'       => 'Duilleag susbainte',
 'newwindow'     => "(a' fosgladh ann an uinneag ùr)",
@@ -750,10 +742,8 @@ Thoir sùil air na [[Special:WantedCategories|roinntean-seòrsa a thathar 'gan i
 'watchlist'          => 'Mo chlàr-faire',
 'mywatchlist'        => 'Mo chlàr-faire',
 'nowatchlist'        => "Chan eil rud sam bith air a' chlàr-fhaire agad.",
-'addedwatch'         => 'Air a chur ri do chlàr-faire',
 'addedwatchtext'     => "Chaidh an duilleag \"[[:\$1]]\" a chur ri [[Special:Watchlist|do chlàr-faire]].
 Nochdaidh mùthaidhean a nithear air an duilleag seo 's air an duilleag deasbaireachd a tha co-cheangailte ris an-seo san àm ri teachd agus nochdaidh an duilleag ann an litrichean '''troma''' ann an [[Special:RecentChanges|liosta nam mùthaidhean ùra]] gum bi e furasta ri fhaicinn.",
-'removedwatch'       => 'Air a thoir air falbh o do chlàr-faire',
 'removedwatchtext'   => 'Chaidh an duilleag "[[:$1]]" a thoirt air falbh o [[Special:Watchlist|do chlàr-faire]].',
 'watch'              => 'Cum sùil air',
 'watchthispage'      => 'Cum sùil air an duilleag seo',

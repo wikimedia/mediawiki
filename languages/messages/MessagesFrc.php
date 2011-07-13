@@ -56,6 +56,9 @@ $messages = array(
 'tog-watchlisthideown'        => 'Cacher mes changements dans la liste des pages guettées',
 'tog-watchlisthidebots'       => 'Cacher les changements faits par les bots dans la liste des pages guettées',
 'tog-watchlisthideminor'      => 'Cacher les petits changements dans la liste des pages guettées',
+'tog-watchlisthideliu'        => 'Cacher édites de useurs anonymes du liste de pages guettées',
+'tog-watchlisthideanons'      => 'Cacher édites de useurs anonymes du liste de pages guettées',
+'tog-watchlisthidepatrolled'  => 'Cacher les changements faits par les bots dans la liste des pages guettées',
 'tog-nolangconversion'        => 'Arrêter le changement des différences de langue',
 'tog-ccmeonemails'            => "Envoyer une copie des e-mails que j'envoye aux autres useurs",
 'tog-diffonly'                => 'Couper la page sous les diffs',
@@ -122,15 +125,6 @@ $messages = array(
 'subcategories'         => 'Sous-classes',
 'category-media-header' => 'Média dans classe "$1"',
 'category-empty'        => "''À présent, cette classe a ni articles ni média.''",
-
-'mainpagetext'      => "'''Vous avez bien installé MediaWiki.'''",
-'mainpagedocfooter' => 'Lisez la [http://meta.wikimedia.org/wiki/Help:Contents Guide des Useurs] pour apprendre à user le wiki software.
-
-== Pour Commencer ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Réglage]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: Questions Souvent Posées]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki Liste à Malle]',
 
 'about'         => 'Info',
 'article'       => 'Page des matières',
@@ -344,18 +338,21 @@ Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENA
 'createaccount'              => 'Créer un compte',
 'gotaccount'                 => "Vous avez un compte déjà? '''$1'''.",
 'gotaccountlink'             => 'Connectez',
+'userlogin-resetlink'        => 'Oublié vôtre détailes de log in?',
 'createaccountmail'          => 'par e-mail',
 'badretype'                  => 'Les mots de passe que vous avez mis sont pas pareils.',
 'userexists'                 => "Le nom d'useur choisi est déjà usé.  Choissez donc un autre nom.",
 'loginerror'                 => "Erreur d'identification",
 'nocookiesnew'               => "Votre compte a été créé, mais vous êtes pas connecté.  {{SITENAME}} use les cookies pour connecter les useurs.  Partez les cookies et connectez avec votre nouveau nom d'useur et votre mot de passe, s'il vous plaît.",
 'nocookieslogin'             => '{{SITENAME}} use les cookies pour connecter les useurs.  Partez donc les cookies et assayez encore.',
+'nocookiesfornew'            => "Le conte d'useur n'était pas fait, à cause qu'on pouvait pas confirmer la source.  Ensurer que tu as des cookies, reload ce page et essayer encore.",
 'noname'                     => "Vous avez pas mis un bon nom d'useur.",
 'loginsuccesstitle'          => 'Vous êtes connecté',
 'loginsuccess'               => "'''Asteur vous êtes connecté à {{SITENAME}} comme \"\$1\".'''",
 'nosuchuser'                 => 'Y a aucun utilisateur avec le nom "$1".  Les noms d\'utilisateur respectent les majuscules et minuscules. Vérifiez l\'orthographe, ou créez un nouveau compte.',
 'nosuchusershort'            => 'Y a aucun useur avec le nom "$1".  Regardez donc l\'espellage.',
 'nouserspecified'            => "Il faut mettre un nom d'useur.",
+'login-userblocked'          => 'Cet useur est blockée.  Log in pas accépté.',
 'wrongpassword'              => "Mauvais mot de passe.  Assayez encore s'il vous plaît.",
 'wrongpasswordempty'         => "Le mot de passe était vide.  Assayez encore s'il vous plaît.",
 'passwordtooshort'           => "Votre mot de passe est soit pas bon ou trop court.  Un mot de passe devrait avoir au moins $1 caractères et être différent de votre nom d'useur.",
@@ -604,6 +601,8 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'preferences'         => 'Réglage',
 'mypreferences'       => 'Mon réglage',
 'skin-preview'        => "Vue d'avance",
+'prefs-custom-css'    => 'Custom CSS',
+'prefs-custom-js'     => 'Custom JavaScript',
 'username'            => "Nom d'useur:",
 'uid'                 => "Numéro d'useur:",
 'yourrealname'        => 'Vrai nom:',
@@ -612,6 +611,8 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'yournick'            => "'Tit nom:",
 'badsig'              => 'Votre signature brute est pas bonne.  Regardez-voir les tags HTML.',
 'badsiglength'        => "Votre 'tit nom est trop long.  Il faut que ça soye moins que $1 caractères.",
+'gender-male'         => 'Male',
+'gender-female'       => 'Female',
 'prefs-help-realname' => 'Votre vrai nom est pas nécessaire.  Si vous choisirait de le mettre, ça serait usé pour vous donner du crédit pour votre ouvrage.',
 'prefs-help-email'    => "Votre adresse e-mail est pas nécessaire, mais ça quitte le monde vous contacter par votre page d'useur ou votre page de discussion sans montrer votre identité.",
 

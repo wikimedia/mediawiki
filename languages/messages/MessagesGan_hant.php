@@ -183,15 +183,6 @@ $messages = array(
 'index-category'                 => '做正索引嗰頁面',
 'noindex-category'               => '冇做索引嗰頁面',
 
-'mainpagetext'      => "'''安裝正MediaWiki嘍。'''",
-'mainpagedocfooter' => '參看[http://meta.wikimedia.org/wiki/Help:Contents 用戶指南]裡頭會話到啷用wiki軟件
-
-== 開始使用 ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定列表]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 平常問題解答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈email清單]',
-
 'about'         => '關於',
 'article'       => '文章',
 'newwindow'     => '（開隻新窗口）',
@@ -1264,9 +1255,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistanontext'    => '請$1眵吖或改吖倷嗰監視列表。',
 'watchnologin'         => '冇登入',
 'watchnologintext'     => '倷要[[Special:UserLogin|登入]]起才改得正倷嗰監視列表。',
-'addedwatch'           => '加到嘞監視列表',
 'addedwatchtext'       => "頁面「[[:$1]]」加到嘞倷嗰[[Special:Watchlist|監視列表]]。箇頁同佢嗰討論頁嗰全部改動以後都會列到許首，佢會用'''粗體''' 列到[[Special:RecentChanges|最近更改]]讓倷更加容易識別。 倷以後要係拿佢到監視列表刪卟佢嗰話，就到導航條點吖「莫眏到」。",
-'removedwatch'         => '莫眏到',
 'removedwatchtext'     => '頁面[[:$1]]到[[Special:Watchlist|倷嗰監視列表]]刪卟哩。',
 'watch'                => '眏到',
 'watchthispage'        => '眏到箇頁',
