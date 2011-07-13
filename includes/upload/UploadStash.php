@@ -23,6 +23,9 @@ class UploadStash {
 	// behind, throw an exception instead. (at what point is broken better than slow?)
 	const MAX_LAG = 30;
 
+	// Age of the repository in hours.  That is, after how long will files be assumed abandoned and deleted?
+	const REPO_AGE = 6;
+
 	/**
 	 * repository that this uses to store temp files
 	 * public because we sometimes need to get a LocalFile within the same repo.
@@ -55,24 +58,27 @@ class UploadStash {
 	 * Get a file and its metadata from the stash.
 	 *
 	 * @param $key String: key under which file information is stored
+	 * @param $noauth Boolean (optional) Don't check authentication. Used by maintenance scripts.
 	 * @throws UploadStashFileNotFoundException
 	 * @throws UploadStashNotLoggedInException
 	 * @throws UploadStashWrongOwnerException
 	 * @throws UploadStashBadPathException
 	 * @return UploadStashFile
 	 */
-	public function getFile( $key ) {
+	public function getFile( $key, $noAuth = false ) {
 		global $wgUser;
 		
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		}
-
-		$userId = $wgUser->getId();
-		if( !$userId ) {
-			throw new UploadStashNotLoggedInException( 'No user is logged in, files must belong to users' );
+		
+		if( !$noAuth ) {
+			$userId = $wgUser->getId();
+			if( !$userId ) {
+				throw new UploadStashNotLoggedInException( 'No user is logged in, files must belong to users' );
+			}
 		}
-
+		
 		if ( !isset( $this->fileMetadata[$key] ) ) {
 			// try this first.  if it fails to find the row, check for lag, wait, try again. if its still missing, throw an exception.
 			// this more complex solution keeps things moving for page loads with many requests 
@@ -108,10 +114,12 @@ class UploadStash {
 			$this->fileProps[$key] = File::getPropsFromPath( $path );
 		}
 		
-		if( $this->fileMetadata[$key]['us_user'] != $userId ) {
-			throw new UploadStashWrongOwnerException( "This file ($key) doesn't belong to the current user." );
+		if( !$noAuth ) {
+			if( $this->fileMetadata[$key]['us_user'] != $userId ) {
+				throw new UploadStashWrongOwnerException( "This file ($key) doesn't belong to the current user." );
+			}
 		}
-
+		
 		return $this->files[$key];
 	}
 
@@ -275,14 +283,14 @@ class UploadStash {
 		return true;
 	}
 
-
 	/**
 	 * Remove a particular file from the stash.  Also removes it from the repo.
 	 *
 	 * @throws UploadStashNotLoggedInException
+	 * @throws UploadStashWrongOwnerException
 	 * @return boolean: success
 	 */
-	public function removeFile( $key ) {
+	public function removeFile( $key ){
 		global $wgUser;
 		
 		$userId = $wgUser->getId();
@@ -290,7 +298,6 @@ class UploadStash {
 			throw new UploadStashNotLoggedInException( 'No user is logged in, files must belong to users' );
 		}
 		
-		wfDebug( __METHOD__ . " clearing row $key for user $userId\n" );
 		$dbw = wfGetDB( DB_MASTER );
 		
 		// this is a cheap query. it runs on the master so that this function still works when there's lag.
@@ -306,11 +313,28 @@ class UploadStash {
 			throw new UploadStashWrongOwnerException( "Can't delete: the file ($key) doesn't belong to this user." );
 		}
 		
+		return $this->removeFileNoAuth( $key );
+	}
+
+
+	/**
+	 * Remove a file (see removeFile), but doesn't check ownership first.
+	 *
+	 * @return boolean: success
+	 */
+	public function removeFileNoAuth( $key ) {
+		wfDebug( __METHOD__ . " clearing row $key\n" );
+
+		$dbw = wfGetDB( DB_MASTER );
+		
+		// this gets its own transaction since it's called serially by the cleanupUploadStash maintenance script
+		$dbw->begin();
 		$dbw->delete(
 			'uploadstash',
-			array( 'us_key' => $key, 'us_user' => $userId ),
+			array( 'us_key' => $key),
 			__METHOD__	
 		);
+		$dbw->commit();
 		
 		// TODO: look into UnregisteredLocalFile and find out why the rv here is sometimes wrong (false when file was removed)
 		// for now, ignore.
