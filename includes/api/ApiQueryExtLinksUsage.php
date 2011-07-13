@@ -126,6 +126,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $fld_url ) {
+					// We *could* run this through wfExpandUrl() but I think it's better to output the link verbatim, even if it's protocol-relative --Roan
 					$vals['url'] = $row->el_to;
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
@@ -183,7 +184,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		foreach ( $wgUrlProtocols as $p ) {
 			$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
 		}
-	    return $protocols;
+		return $protocols;
 	}
 
 	public static function getProtocolPrefix( $protocol ) {
