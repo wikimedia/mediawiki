@@ -3192,7 +3192,6 @@ $wgMessageStructure = array(
 		'confirm-purge-bottom',
 	),
 	'separators' => array(
-		'catseparator',
 		'semicolon-separator',
 		'comma-separator',
 		'colon-separator',

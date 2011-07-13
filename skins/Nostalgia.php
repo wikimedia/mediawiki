@@ -54,7 +54,7 @@ class NostalgiaTemplate extends LegacyTemplate {
 			$s .= '<br />' . $ol;
 		}
 
-		$cat = $this->getSkin()->getCategoryLinks();
+		$cat = '<div id="catlinks" class="catlinks">' . $this->getSkin()->getCategoryLinks() . '</div>';
 		if( $cat ) {
 			$s .= '<br />' . $cat;
 		}
