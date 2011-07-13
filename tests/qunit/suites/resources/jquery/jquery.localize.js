@@ -12,16 +12,16 @@ test( 'Handle basic replacements', function() {
 	mw.messages.set( 'basic', 'Basic stuff' );
 
 	// Tag: html:msg
-	html = '<span><html:msg key="basic"></span>';
-	$lc = $( html ).localize();
+	html = '<div><span><html:msg key="basic"></span></div>';
+	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.html(), 'Basic stuff', 'Tag: html:msg' );
+	strictEqual( $lc.text(), 'Basic stuff', 'Tag: html:msg' );
 
 	// Tag: msg (deprecated)
-	html = '<span><msg key="basic"></span>';
-	$lc = $( html ).localize();
+	html = '<div><span><msg key="basic"></span></div>';
+	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.html(), 'Basic stuff', 'Tag: msg' );
+	strictEqual( $lc.text(), 'Basic stuff', 'Tag: msg' );
 
 	// Attribute: title-msg
 	html = '<div><span title-msg="basic"></span></div>';
@@ -46,8 +46,8 @@ test( 'Proper escaping', function() {
 	// making sure it is actually using text() and attr() (or something with the same effect)
 
 	// Text escaping
-	html = '<span><html:msg key="properfoo"></span>';
-	$lc = $( html ).localize();
+	html = '<div><span><html:msg key="properfoo"></span></div>';
+	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.text(), mw.msg( 'properfoo' ), 'Content is inserted as text, not as html.' );
 
@@ -95,12 +95,12 @@ test( 'Options', function() {
 	strictEqual( $lc.text(), 'The Bars', 'Variable keys mapping - text' );
 
 	// Passing parameteters to mw.msg
-	html = '<span><html:msg key="foo-welcome" /></span>';
+	html = '<div><span><html:msg key="foo-welcome" /></span></div>';
 	$lc = $( html ).localize( {
 		params: {
 			'foo-welcome': [sitename, 'yesterday']
 		}
-	} );
+	} ).find( 'span' );
 
 	strictEqual( $lc.text(), 'Welcome to Wikipedia! (last visit: yesterday)', 'Passing parameteters to mw.msg' );
 
