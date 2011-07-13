@@ -583,32 +583,6 @@ div.gallerytext {
 	word-wrap: break-word;
 }
 
-#mw-addcategory-prompt {
-	display: inline;
-	margin-left: 1em;
-}
-
-#mw-addcategory-prompt input {
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-}
-
-.mw-remove-category {
-	padding: 8px;
-	/* @embed */
-	background-image: url(images/remove.png);
-	background-position: center center;
-	background-repeat: no-repeat;
-}
-
-.mw-ajax-addcategory {
-	padding-left: 20px;
-	/* @embed */
-	background-image: url(images/add.png);
-	background-position: left center;
-	background-repeat: no-repeat;
-}
-
 .mw-ajax-loader {
 	/* @embed */
 	background-image: url(images/ajax-loader.gif);
