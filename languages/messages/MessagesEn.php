@@ -4606,4 +4606,5 @@ Click "Save" to save your edit.',
 This usually occurs when the category has been added to the page in a template.',
 'ajax-edit-category-error'     => 'It was not possible to edit this category.
 This usually occurs when the category has been added to the page in a template.',
+'ajax-category-already-present' => 'This page already has the category you specified.',
 );
