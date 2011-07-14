@@ -54,9 +54,15 @@ class WikiPage extends Page {
 	 * @return WikiPage object of the appropriate type
 	 */
 	public static function factory( Title $title ) {
-		switch( $title->getNamespace() ) {
-			case NS_MEDIA:
-				throw new MWException( "NS_MEDIA is a virtual namespace" );
+		$ns = $title->getNamespace();
+
+		if ( $ns == NS_MEDIA ) {
+			throw new MWException( "NS_MEDIA is a virtual namespace; use NS_FILE." );
+		} elseif ( $ns < 0 ) {
+			throw new MWException( "Invalid or virtual namespace $ns given." );
+		}
+
+		switch ( $ns ) {
 			case NS_FILE:
 				$page = new WikiFilePage( $title );
 				break;
