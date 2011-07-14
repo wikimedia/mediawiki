@@ -1162,7 +1162,7 @@ class LoginForm extends SpecialPage {
 				$lang = trim( $lang, '* ' );
 				$parts = explode( '|', $lang );
 				if ( count( $parts ) >= 2 ) {
-					$links[] = $this->makeLanguageSelectorLink( $parts[0], $parts[1] );
+					$links[] = $this->makeLanguageSelectorLink( $parts[0], trim( $parts[1] ) );
 				}
 			}
 			return count( $links ) > 0 ? wfMsgHtml( 'loginlanguagelabel', $wgLang->pipeList( $links ) ) : '';
@@ -1187,8 +1187,7 @@ class LoginForm extends SpecialPage {
 		if( $this->mReturnTo ) {
 			$attr['returnto'] = $this->mReturnTo;
 		}
-		$skin = $this->getSkin();
-		return $skin->linkKnown(
+		return Linker::linkKnown(
 			$self,
 			htmlspecialchars( $text ),
 			array(),
