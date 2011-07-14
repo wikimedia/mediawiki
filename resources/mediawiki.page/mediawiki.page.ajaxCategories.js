@@ -4,10 +4,9 @@
 //     Something like: "Category:Foo added. Reason"
 //     Requirement: Be able to get msg with lang option.
 // * Handle uneditable cats. Needs serverside changes!
-// * Add Hooks for change, delete, add
 // * Add Hooks for soft redirect
 // * Handle normal redirects
-// * Simple / MultiEditMode
+
 
 ( function( $, mw ) {
 
@@ -253,11 +252,15 @@ var ajaxCategories = function ( options ) {
 				newtext = fns[i]( newtext );
 			}
 			return newtext;
-		}
+		};
 		var doneFn = function() {
 			//Remove saveAllButton
 			_saveAllButton.hide();
-			
+
+			// Clean stash
+			_stash.fns = [];
+			_stash.summaries = [];
+
 			// TODO
 			// Any link with $link.css('text-decoration', 'line-through');
 			// needs to be removed
@@ -400,8 +403,9 @@ var ajaxCategories = function ( options ) {
 
 		_confirmEdit(
 			function( oldText ) {
+				newText = _runHooks ( oldText, 'beforeDelete' );
 				//TODO Cleanup whitespace safely?
-				var newText = oldText.replace( categoryRegex, '' );
+				var newText = newText.replace( categoryRegex, '' );
 
 				if ( newText == oldText ) {
 					var error = mw.msg( 'ajax-remove-category-error' );
@@ -438,7 +442,10 @@ var ajaxCategories = function ( options ) {
 		var summary = mw.msg( 'ajax-add-category-summary', category );
 
 		_confirmEdit(
-			function( oldText ) { return oldText + appendText },
+			function( oldText ) {
+				newText = _runHooks ( oldText, 'beforeAdd' );
+				return newText + appendText;
+			},
 			summary,
 			function() {
 				_insertCatDOM( category, false );
@@ -469,7 +476,9 @@ var ajaxCategories = function ( options ) {
 
 		_confirmEdit(
 			function( oldText ) {
-				var matches = oldText.match( categoryRegex );
+				newText = _runHooks ( oldText, 'beforeChange' );
+
+				var matches = newText.match( categoryRegex );
 				
 				//Old cat wasn't found, likely to be transcluded
 				if ( !$.isArray( matches ) ) {
@@ -616,12 +625,40 @@ var ajaxCategories = function ( options ) {
 										mw.msg( 'ajax-confirm-save-all' ) 
 										);
 		_saveAllButton.click( _handleStashedCategories ).hide();
-		$containerNormal.append( _saveAllButton )
+		$containerNormal.append( _saveAllButton );
 	};
 	
 	_stash = {
 		summaries : [],
 		fns : []
+	};
+	_hooks = {
+		beforeAdd : [],
+		beforeChange : [],
+		beforeDelete : []
+	};
+	_runHooks = function( oldtext, type ) {
+		// No hooks registered
+		if ( !_hooks[type] ) {
+			return oldtext;
+		} else {
+			for (var i = 0; i < _hooks[type].length; i++) {
+				oldtext = _hooks[type][i]( oldtext );
+			}
+			return oldtext;
+		}
+	};
+	/**
+	 * Add hooks
+	 * Currently available: beforeAdd, beforeChange, beforeDelete
+	 *
+	 * @param string type Type of hook to add
+	 * @param function fn Hook function. This function is the old text passed 
+	 *					  and it needs to return the modified text
+	 */
+	this.addHook = function( type, fn ) {
+		if ( !_hooks[type] ) return;
+		else hooks[type].push( fn );
 	};
 };
 // Now make a new version
