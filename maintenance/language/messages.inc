@@ -3467,6 +3467,7 @@ $wgMessageStructure = array(
 		'ajax-confirm-title',
 		'ajax-confirm-prompt',
 		'ajax-confirm-save',
+		'ajax-confirm-save-all',
 		'ajax-add-category-summary',
 		'ajax-edit-category-summary',
 		'ajax-remove-category-summary',

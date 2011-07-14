@@ -501,6 +501,7 @@ return array(
 			'ajax-confirm-prompt',
 			'ajax-confirm-title',
 			'ajax-confirm-save',
+			'ajax-confirm-save-all',
 			'ajax-add-category-summary',
 			'ajax-remove-category-summary',
 			'ajax-edit-category-summary',
@@ -509,6 +510,7 @@ return array(
 			'ajax-error-dismiss',
 			'ajax-remove-category-error',
 			'ajax-edit-category-error',
+			'ajax-category-already-present',
 		),
 	),
 	'mediawiki.libs.jpegmeta' => array(

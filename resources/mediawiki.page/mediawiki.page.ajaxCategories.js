@@ -157,8 +157,37 @@ var ajaxCategories = function ( options ) {
 		return _getCats().filter( function() { return $.ucFirst(this) == $.ucFirst(cat); } ).length !== 0;
 	};
 	
-	_confirmEdit = function ( page, fn, actionSummary, doneFn ) {
+	/**
+	 * This get's called by all action buttons
+	 * Displays a dialog to confirm the action
+	 * Afterwords do the actual edit
+	 *
+	 * @param function fn text-modifying function 
+	 * @param string actionSummary Changes done
+	 * @param function fn doneFn callback after everything is done
+	 * @return boolean True for exists
+	 */
+	_confirmEdit = function ( fn, actionSummary, doneFn, all ) {
+		// Check whether to use multiEdit mode
+		if ( mw.config.get('AJAXCategoriesMulti') && !all ) {
+			// Stash away
+			_stash.summaries.push( actionSummary );
+			_stash.fns.push( fn );
+			_stash.doneFns.push( doneFn );
 
+			// Make sure we have a save button
+			if ( !_saveAllButton ) {
+				//TODO Make more clickable
+				_saveAllButton = _createButton( 'icon-tick', 
+												mw.msg( 'ajax-confirm-save-all' ), 
+												'', 
+												mw.msg( 'ajax-confirm-save-all' ) 
+												);
+				_saveAllButton.click( _handleStashedCategories );
+			}
+
+			return;
+		}
 		// Produce a confirmation dialog
 		var dialog = $( '<div/>' );
 
@@ -190,7 +219,7 @@ var ajaxCategories = function ( options ) {
 		var submitFunction = function() {
 			_addProgressIndicator( dialog );
 			_doEdit(
-				page,
+				mw.config.get( 'wgPageName' ),
 				fn,
 				reasonBox.val(),
 				function() {
@@ -201,7 +230,7 @@ var ajaxCategories = function ( options ) {
 			);
 		};
 
-		var buttons = { };
+		var buttons = {};
 		buttons[mw.msg( 'ajax-confirm-save' )] = submitFunction;
 		var dialogOptions = {
 			'AutoOpen' : true,
@@ -211,6 +240,33 @@ var ajaxCategories = function ( options ) {
 
 		$( '#catlinks' ).prepend( dialog );
 		dialog.dialog( dialogOptions );
+	};
+
+	/**
+	 * When multiEdit mode is enabled,
+	 * this is called when the user clicks "save all"
+	 * Combines the summaries and edit functions
+	 */
+	_handleStashedCategories = function() {
+		// Save fns
+		fns = _stash.fns;
+		
+		//TODO do I need a space?
+		var summary = _stash.summaries.join(' ');
+		var combinedFn = function( oldtext ) {
+			// Run the text through all action functions
+			newtext = oldtext;
+			for ( var i = 0; i < fns.length; i++ ) {
+				newtext = fns[i]( newtext );
+			};
+			return newtext;
+		}
+		var doneFn = function() {
+			//Remove saveAllButton
+			_saveAllButton.remove();
+			_saveAllButton = undefined;
+		};
+
 	};
 
 	_doEdit = function ( page, fn, summary, doneFn ) {
@@ -282,7 +338,7 @@ var ajaxCategories = function ( options ) {
 	 * @param string Regex string.
 	 * @return string Processed regex string
 	 */
-	_makeCaseInsensitiv = function ( string ) {
+	_makeCaseInsensitive = function ( string ) {
 		var newString = '';
 		for (var i=0; i < string.length; i++) {
 			newString += '[' + string[i].toUpperCase() + string[i].toLowerCase() + ']';
@@ -296,7 +352,7 @@ var ajaxCategories = function ( options ) {
 			if ( id == 14 ) {
 				// The parser accepts stuff like cATegORy, 
 				// we need to do the same
-				categoryNSFragment += '|' + _makeCaseInsensitiv ( $.escapeRE(name) );
+				categoryNSFragment += '|' + _makeCaseInsensitive ( $.escapeRE(name) );
 			}
 		} );
 		categoryNSFragment = categoryNSFragment.substr( 1 ); // Remove leading |
@@ -347,7 +403,6 @@ var ajaxCategories = function ( options ) {
 		var summary = mw.msg( 'ajax-remove-category-summary', category );
 
 		_confirmEdit(
-			mw.config.get('wgPageName'),
 			function( oldText ) {
 				//TODO Cleanup whitespace safely?
 				var newText = oldText.replace( categoryRegex, '' );
@@ -382,7 +437,6 @@ var ajaxCategories = function ( options ) {
 		var summary = mw.msg( 'ajax-add-category-summary', category );
 
 		_confirmEdit(
-			mw.config.get( 'wgPageName' ),
 			function( oldText ) { return oldText + appendText },
 			summary,
 			function() {
@@ -413,7 +467,6 @@ var ajaxCategories = function ( options ) {
 		var summary = mw.msg( 'ajax-edit-category-summary', category, categoryNew );
 
 		_confirmEdit(
-			mw.config.get( 'wgPageName' ),
 			function( oldText ) {
 				var matches = oldText.match( categoryRegex );
 				
@@ -537,7 +590,6 @@ var ajaxCategories = function ( options ) {
 		// Unhide hidden category holders.
 		$('#mw-hidden-catlinks').show();
 
-
 		// Create [Add Category] link
 		var addLink = _createButton('icon-add', 
 									mw.msg( 'ajax-add-category' ), 
@@ -558,18 +610,11 @@ var ajaxCategories = function ( options ) {
 
 		clElement.append( promptContainer );
 	};
-
-	_tasks = {
-		list : [],
-		executed : [],
-		add : function( obj ) {
-			this.list.push( obj );
-		},
-		next : function() {
-			var task = this.list.shift();
-			//run task
-			this.executed.push( task );
-		}
+	
+	_stash = {
+		summaries : [],
+		fns : [],
+		doneFns : [],
 	};
 };
 // Now make a new version
