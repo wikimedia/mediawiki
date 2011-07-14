@@ -74,6 +74,9 @@ production.
   the message keys.
 * (bug 29868) Add support for passing parameters to mw.msg in jquery.localize.
 * (bug 29558) $wgMiserMode now disables update.php by default
+* AjaxCategories: Easily add, edit or delete categories on article pages.
+  Suggests possible categories when typing, all saves are done via AJAX.
+  Supports editing of multiple categories and then saving them in one batch.
 
 === Bug fixes in 1.19 ===
 * (bug 28868) Show total pages in the subtitle of an image on the

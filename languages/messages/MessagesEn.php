@@ -4596,6 +4596,7 @@ This site is experiencing technical difficulties.',
 'ajax-confirm-prompt'          => 'You can provide an edit summary below.
 Click "Save" to save your edit.',
 'ajax-confirm-save'            => 'Save',
+'ajax-confirm-save-all'        => 'Save all changes',
 'ajax-add-category-summary'    => 'Add category "$1"',
 'ajax-edit-category-summary'   => 'Change category "$1" to "$2"',
 'ajax-remove-category-summary' => 'Remove category "$1"',
@@ -4606,5 +4607,5 @@ Click "Save" to save your edit.',
 This usually occurs when the category has been added to the page in a template.',
 'ajax-edit-category-error'     => 'It was not possible to edit this category.
 This usually occurs when the category has been added to the page in a template.',
-'ajax-category-already-present' => 'This page already has the category you specified.',
+'ajax-category-already-present' => 'This page already belongs to the category $1',
 );
