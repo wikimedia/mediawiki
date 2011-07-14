@@ -238,6 +238,30 @@ class UploadStash {
 		// insert the file metadata into the db.
 		wfDebug( __METHOD__ . " inserting $stashPath under $key\n" );
 		$dbw = $this->repo->getMasterDb();
+
+		// select happens on the master so this can all be in a transaction, which
+		// avoids a race condition that's likely with multiple people uploading from the same
+		// set of files
+		$dbw->begin();
+		// first, check to see if it's already there.
+		$row = $dbw->selectRow(
+			'uploadstash',
+			'us_user, us_timestamp',
+			array('us_key' => $key),
+			__METHOD__
+		);
+		
+		// The current user can't have this key if:
+		// - the key is owned by someone else and
+		// - the age of the key is less than REPO_AGE
+		if( is_object( $row ) ) {
+			if( $row->us_user != $this->userId &&
+				$row->wfTimestamp( TS_UNIX, $row->us_timestamp ) > time() - UploadStash::REPO_AGE * 3600
+			) {
+				$dbw->rollback();
+				throw new UploadStashWrongOwnerException( "Attempting to upload a duplicate of a file that someone else has stashed" );
+			}
+		}
 		
 		$this->fileMetadata[$key] = array(
 			'us_user' => $this->userId,
@@ -255,13 +279,15 @@ class UploadStash {
 			'us_timestamp' => $dbw->timestamp(),
 			'us_status' => 'finished'
 		);
-				
-
-		$dbw->insert(
+		
+		// if a row exists but previous checks on it passed, let the current user take over this key.	
+		$dbw->replace(
 			'uploadstash',
+			'us_key',
 			$this->fileMetadata[$key],
 			__METHOD__	
 		);
+		$dbw->commit();
 
 		// store the insertid in the class variable so immediate retrieval (possibly laggy) isn't necesary.
 		$this->fileMetadata[$key]['us_id'] = $dbw->insertId();
