@@ -110,6 +110,7 @@ return array(
 	),
 	'jquery.expandableField' => array(
 		'scripts' => 'resources/jquery/jquery.expandableField.js',
+		'dependencies' => 'jquery.delayedBind',
 	),
 	'jquery.form' => array(
 		'scripts' => 'resources/jquery/jquery.form.js',
