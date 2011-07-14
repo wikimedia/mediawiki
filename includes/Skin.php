@@ -538,7 +538,7 @@ abstract class Skin {
 		$colon = wfMsgExt( 'colon-separator', 'escapenoentities' );
 
 		if ( !empty( $allCats['normal'] ) ) {
-			$t = $embed . implode( "{$pop} {$embed}" , $allCats['normal'] ) . $pop;
+			$t = $embed . implode( "{$pop}{$embed}" , $allCats['normal'] ) . $pop;
 
 			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escapenoentities' ), count( $allCats['normal'] ) );
 			$s .= '<div id="mw-normal-catlinks">' .
@@ -558,7 +558,7 @@ abstract class Skin {
 
 			$s .= "<div id=\"mw-hidden-catlinks\" class=\"$class\">" .
 				wfMsgExt( 'hidden-categories', array( 'parsemag', 'escapenoentities' ), count( $allCats['hidden'] ) ) .
-				$colon . '<ul>' . $embed . implode( "{$pop} {$embed}" , $allCats['hidden'] ) . $pop . '</ul>' .
+				$colon . '<ul>' . $embed . implode( "{$pop}{$embed}" , $allCats['hidden'] ) . $pop . '</ul>' .
 				'</div>';
 		}
 
