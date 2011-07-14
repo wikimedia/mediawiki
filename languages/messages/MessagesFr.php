@@ -1351,7 +1351,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'qbsettings-fixedright'     => 'Droite',
 'qbsettings-floatingleft'   => 'Flottante à gauche',
 'qbsettings-floatingright'  => 'Flottante à droite',
-'qbsettings-directionality' => 'Fixe, en fonction de la directionnalité de votre langue',
+'qbsettings-directionality' => 'Fixe, en fonction de la directionnalité de votre script et de votre langue',
 
 # Preferences page
 'preferences'                   => 'Préférences',
@@ -2235,7 +2235,9 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchlistanontext'    => 'Veuillez vous $1 pour visualiser ou modifier les éléments de votre liste de suivi.',
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:UserLogin|identifié]] pour modifier votre liste de suivi.',
+'addwatch'             => 'Ajouter à la liste de suivi',
 'addedwatchtext'       => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées. La page apparaîtra '''en gras''' dans la [[Special:RecentChanges|liste des modifications récentes]] pour en faciliter le repérage.",
+'removewatch'          => 'Supprimer de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',
 'watchthispage'        => 'Suivre cette page',
@@ -3598,6 +3600,12 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'confirm-purge-top'    => 'Voulez-vous rafraîchir cette page (purger le cache) ?',
 'confirm-purge-bottom' => 'Purger une page l’efface du cache de rendu et force sa dernière version à être régénérée et affichée.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Ajouter cette page à votre liste de suivi ?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Supprimer cette page de votre liste de suivi ?',
+
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator'     => '&nbsp;:&#32;',
@@ -3810,5 +3818,20 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 # SQLite database support
 'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',
 'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Ajouter une catégorie',
+'ajax-add-category-submit'     => 'Ajouter',
+'ajax-confirm-title'           => 'Confirmer l’action',
+'ajax-confirm-prompt'          => 'Vous pouvez fournir un résumé de la modification ci-dessous.
+Cliquez sur « Publier » pour enregistrer votre modification.',
+'ajax-confirm-save'            => 'Publier',
+'ajax-add-category-summary'    => 'Ajouter la catégorie « $1 »',
+'ajax-remove-category-summary' => 'Enlever la catégorie « $1 »',
+'ajax-confirm-actionsummary'   => 'Action à mener :',
+'ajax-error-title'             => 'Erreur',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Il n’a pas été possible de retirer cette catégorie.
+Ceci survient généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
 
 );

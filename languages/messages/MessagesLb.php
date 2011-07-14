@@ -2026,9 +2026,11 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 'watchlistanontext'    => "Dir musst $1 fir Säiten op ärer Iwwerwaachungslëscht ze gesinn oder z'änneren.",
 'watchnologin'         => 'Net ageloggt',
 'watchnologintext'     => "Dir musst [[Special:UserLogin|ugemellt]] sinn, fir Är Iwwerwaachungslëscht z'änneren.",
+'addwatch'             => "Op d'Iwwerwaachungslëscht derbäisetzen",
 'addedwatchtext'       => "D'Säit \"[[:\$1]]\" gouf op är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit ginn hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:RecentChanges|rezenten Ännerungen]] aus, fir se méi séier erëmzefannen.
 
 Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" uewen op der Säit.",
+'removewatch'          => 'Vun der Iwwerwaachungslëscht erofhuelen',
 'removedwatchtext'     => 'D\'Säit "[[:$1]]" gouf vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] erofgeholl.',
 'watch'                => 'Iwwerwaachen',
 'watchthispage'        => 'Dës Säit iwwerwaachen',
@@ -2670,7 +2672,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-ca-delete'               => 'Dës Säit läschen',
 'tooltip-ca-undelete'             => 'Dës Säit restauréieren',
 'tooltip-ca-move'                 => 'Dës Säit réckelen',
-'tooltip-ca-watch'                => 'Dës Säit op är Iwwerwaachungslëscht bäisetzen',
+'tooltip-ca-watch'                => 'Dës Säit op Är Iwwerwaachungslëscht bäisetzen',
 'tooltip-ca-unwatch'              => 'Dës Säit vun der Iwwerwaachungslëscht erofhuelen',
 'tooltip-search'                  => 'Op {{SITENAME}} sichen',
 'tooltip-search-go'               => 'Direkt op genee déi Säit goen, wann et se gëtt.',
@@ -3325,6 +3327,12 @@ $1",
 'confirm-purge-top'    => 'Dës Säit aus dem Server-Cache läschen?',
 'confirm-purge-bottom' => "Mécht de Cache vun enger Säit eidel a forcéiert d'Uweise vun der aktueller Versioun.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Dës Säit op Är Iwwerwaachungslëscht bäisetzen?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Dës Säit vun Ärer Iwwerwaachungslëscht erofhuelen?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← Vireg Säit',
 'imgmultipagenext' => 'nächst Säit →',
@@ -3517,5 +3525,20 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 # SQLite database support
 'sqlite-has-fts' => "$1 ënnerstëtzt d'Volltextsich",
 'sqlite-no-fts'  => "$1 ënnerstëtzt d'Volltextsich net",
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategorie derbäisetzen',
+'ajax-add-category-submit'     => 'Derbäisetzen',
+'ajax-confirm-title'           => 'Aktioun confirméieren',
+'ajax-confirm-prompt'          => 'Dir kënnt e Resumé vun der Ännerung ënnedrënner uginn.
+Klickt "Späicheren" fir Är Ännerung ze späicheren.',
+'ajax-confirm-save'            => 'Späicheren',
+'ajax-add-category-summary'    => 'Kategorie "$1" derbäisetzen',
+'ajax-remove-category-summary' => 'Kategorie "$1" ewechhuelen',
+'ajax-confirm-actionsummary'   => 'Wat soll gemaach ginn:',
+'ajax-error-title'             => 'Feeler',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => "Et war net méiglech dës Kategorie ewechzehuelen.
+Dëst geschitt gewéinlech da wann eng Kategorie duerch eng Schabloun op d'Säit derbäi gesat gouf.",
 
 );

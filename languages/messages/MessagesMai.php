@@ -1915,8 +1915,10 @@ $1',
 'watchlistanontext'    => 'कृपा कऽ $1 अहाँक साकांक्ष-सूचीकेँ देखबा वा सम्पादित करबा लेल।',
 'watchnologin'         => 'सम्प्रवेशित नै',
 'watchnologintext'     => 'अहाँ [[Special:UserLogin|सम्प्रवेशित]] साकांक्ष-सूची संशोधित करबा लेल।',
+'addwatch'             => 'साकांक्ष सूचीमे जोड़ू',
 'addedwatchtext'       => "पन्ना \"[[:\$1]]\" अहाँक [[Special:Watchlist|साकांक्ष सूची]] मे जोड़ल गेल।
 ऐ पन्नामे भविष्यक परिवर्तन आ एकर सम्बन्धित चौबटिया पन्ना एतए सूचीबद्ध रहत, आ पन्ना [[Special:RecentChanges|हालक परिवर्तन]]मे '''गाढ़''' देखाएत , जइसँ आसानीसँ एकरा चिन्हल जा सकत।",
+'removewatch'          => 'साकांक्ष सूचीसँ हटाउ',
 'removedwatchtext'     => 'पन्ना "[[:$1]]" हटाएल गेल [[Special:Watchlist|अहाँक साकांक्षसूची]] सँ।',
 'watch'                => 'ताकिमे',
 'watchthispage'        => 'ऐ पृष्ठपर नजरि राखू',
@@ -3248,6 +3250,12 @@ $1',
 'confirm_purge_button' => 'ठीक अछि',
 'confirm-purge-top'    => 'ऐ पन्नाक उपस्मृति खतम कऽ दिअ?',
 'confirm-purge-bottom' => 'कोनो पन्नाक सफाइ उपस्मृतिकेँ खतम करैए आ अद्यतन संशोधनकेँ अएबाले जोर दैए।',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'ठीक अछि',
+'confirm-watch-top'      => 'ऐ पन्नाकेँ अपन साकांक्ष सूचीमे जोड़ू',
+'confirm-unwatch-button' => 'ठीक अछि',
+'confirm-unwatch-top'    => 'ऐ पन्नाकेँ हमर साकांक्ष सूचीसँ हटाउ',
 
 # Multipage image navigation
 'imgmultipageprev' => 'पहिलुका पृष्ठ',

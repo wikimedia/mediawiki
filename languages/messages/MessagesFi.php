@@ -3494,4 +3494,19 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'sqlite-has-fts' => '$1, jossa on tuki kokotekstihaulle',
 'sqlite-no-fts'  => '$1, jossa ei ole tukea kokotekstihaulle',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Lisää luokka',
+'ajax-add-category-submit'     => 'Lisää',
+'ajax-confirm-title'           => 'Vahvista toiminto',
+'ajax-confirm-prompt'          => 'Voit kirjoittaa alle muokkausyhteenvedon.
+Muokkaus tallentuu, kun napsautat »Tallenna».',
+'ajax-confirm-save'            => 'Tallenna',
+'ajax-add-category-summary'    => 'Lisää luokka ”$1”',
+'ajax-remove-category-summary' => 'Luokan ”$1” poisto',
+'ajax-confirm-actionsummary'   => 'Suoritettava toiminto:',
+'ajax-error-title'             => 'Virhe',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Luokan poistaminen ei onnistunut.
+Yleensä näin käy, kun luokka on lisätty sivulle mallineessa.',
+
 );

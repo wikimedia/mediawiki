@@ -118,8 +118,6 @@ $messages = array(
 'category-empty'         => "''Cayliib danjobam nihíl''",
 'listingcontinuesabbrev' => 'korb.',
 
-'mainpagetext' => "'''MediaWiki coccebj installöx successua zo mii.'''",
-
 'about'         => 'Miixaz',
 'article'       => 'Artículo',
 'newwindow'     => '(dansinám precquen)',
@@ -886,8 +884,6 @@ iitom e-iitomde diijömde caitóm.',
 'nowatchlist'      => 'Hecoccebj 0 itémii helistade cáminot iti.',
 'watchnologin'     => 'Necaápo',
 'watchnologintext' => 'Zo coccebj Neces [[Special:UserLogin|caápo]] ticpatlöx helistade cáminot.',
-'addedwatch'       => 'Plusöxaj listade cáminot',
-'removedwatch'     => 'Delatajde he listade cáminot',
 'removedwatchtext' => 'Páhina zo "[[:$1]]" coccebj delataj me listade cáminot.',
 'watch'            => 'Cáminot',
 'watchthispage'    => 'Cáminot jan páhina',

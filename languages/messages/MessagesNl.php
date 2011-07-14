@@ -3906,4 +3906,19 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Categorie toevoegen',
+'ajax-add-category-submit'     => 'Toevoegen',
+'ajax-confirm-title'           => 'Handeling bevestigen',
+'ajax-confirm-prompt'          => 'U kunt hieronder een bewerkingssamenvatting opgeven.
+Klik "Opslaan" om uw bewerking op te slaan.',
+'ajax-confirm-save'            => 'Opslaan',
+'ajax-add-category-summary'    => 'Categorie "$1" toevoegen',
+'ajax-remove-category-summary' => 'Categorie "$1" verwijderen',
+'ajax-confirm-actionsummary'   => 'Uit te voeren handeling:',
+'ajax-error-title'             => 'Fout',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Het was niet mogelijk deze categorie te verwijderen.
+Dit gebeurt meestal als de categorie via een sjabloon aan de pagina is toegevoegd.',
+
 );

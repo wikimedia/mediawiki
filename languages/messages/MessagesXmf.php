@@ -942,4 +942,7 @@ $messages = array(
 # Special:Tags
 'tag-filter' => '[[Special:Tags|ხინტკეფიშ]] ტკიბირი:',
 
+# Add categories per AJAX
+'ajax-error-dismiss' => 'OK',
+
 );

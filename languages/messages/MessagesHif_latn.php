@@ -172,7 +172,7 @@ $messages = array(
 'vector-action-move'             => 'Naam badlo',
 'vector-action-protect'          => 'Bachao',
 'vector-action-undelete'         => 'Pahile jaise karo',
-'vector-action-unprotect'        => 'Nai bachao',
+'vector-action-unprotect'        => 'Surakchha ke badlo',
 'vector-simplesearch-preference' => 'Aur achchhaa se khoje salah do (Khaali vector skin)',
 'vector-view-create'             => 'Banao',
 'vector-view-edit'               => 'Badlo',
@@ -210,7 +210,7 @@ $messages = array(
 'protect_change'    => 'badlo',
 'protectthispage'   => 'Ii panna ke bacaho',
 'unprotect'         => 'Nai bachao',
-'unprotectthispage' => 'Ii panna ke nai bachao',
+'unprotectthispage' => 'Ii panna ke surakchha ke badlo',
 'newpage'           => 'Nawaa panna',
 'talkpage'          => 'Ii panna ke baare me salah karo',
 'talkpagelinktext'  => 'Baat',
@@ -302,6 +302,8 @@ $1',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
 'red-link-title'          => '$1 (panna abhi likha nai gais hai)',
+'sort-descending'         => 'Barraa se chhota karo',
+'sort-ascending'          => 'Chhota se barraa karo',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Panna',
@@ -391,6 +393,8 @@ Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=en translate
 'cascadeprotected'     => 'Ii panna ke badlao se bachawa gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit hae "cascading" option turned on ke saathe me rakkhaa gais hai:
 $2',
 'namespaceprotected'   => "Aap ke paas '''$1''' namespace me panna ke badle ke adhikar nai hai.",
+'customcssprotected'   => 'Aap ke ii CSS panna ke badle ke ijaajat nai hae, kaahe ki isme duusra sadasya ke personal settings hae.',
+'customjsprotected'    => 'Aap ke ii JavaScript panna ke badle ke ijaajat nai hae, kaahe ki isme duusra sadasya ke personal settings hae.',
 'ns-specialprotected'  => 'Khaas panna ke badla nai jae sake hai.',
 'titleprotected'       => "Ii title ke banae se [[User:$1|$1]] rokis hai.
 Iske kaaran hai ''$2''.",
@@ -526,6 +530,7 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 'passwordreset-text'         => 'Aapan account ke baare me jaankari ke receive kare ke khatir ii fom ke bharo.',
 'passwordreset-legend'       => 'Password ke badlo',
 'passwordreset-disabled'     => 'II wiki me password ke badle ke ijaajat nai hae.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Niche ke ek data ke likho}}',
 'passwordreset-username'     => 'Sadasya ke naam:',
 'passwordreset-email'        => 'E-mail ke address',
 'passwordreset-emailtitle'   => '{{SITENAME}} me account ke jaankari',
@@ -638,7 +643,12 @@ Check karo ki Ii panna ke aap banae/badle mangta hai.',
 'userpage-userdoesnotexist-view'   => 'User account "$1" abhi register nai karaa gais hae',
 'blocked-notice-logextract'        => 'Ii sadasya ke abhi rok dewa gais hae.
 Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:',
-'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Mac); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Note:''' - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.
+* '''Mozilla / Firefox / Safari:'''  ''Shift'' ke dabae ke ''Reload,'' pe click karo, nai to chaahe ''Ctrl-F5'' nai to ''Ctrl-R'' (''Command-R''  Mac pe)
+* '''Google Chrome:'''  ''Ctrl-Shift-R'' dabao (''Command-Shift-R'' Mac pe)
+*  '''Internet Explorer:'''  ''Ctrl'' dabae ke  ''Refresh'' pe click karo, nai to  ''Ctrl-F5'' dabao
+*  '''Konqueror: ''' ''Reload''  click karo nai to  ''F5 dabao;'' 
+* '''Opera:'''  ''Tools → Preferences''  me se cache ke safaa karo",
 'usercssyoucanpreview'             => "'''Salah:''' Bachae se pahile \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa CSS ke test karo.",
 'userjsyoucanpreview'              => "'''Salah:''' Bachae se pahile  \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa JavaScript ke test karo.",
 'usercsspreview'                   => "'''Yaad rakhna ki aap khali aapan CSS ke jhalak dekhta hai.
@@ -1066,7 +1076,7 @@ Hian pe ek, apne se banaa sabd hae, jiske aap kaam me laae saktaa hae: $1',
 'savedprefs'                    => 'Aap ke pasand ke save kar lewa gais hai.',
 'timezonelegend'                => 'Time ke zone:',
 'localtime'                     => 'Sthaniye samay:',
-'timezoneuseserverdefault'      => 'Server default ke use karo',
+'timezoneuseserverdefault'      => 'Wiki default ke kaam me laao ($1)',
 'timezoneuseoffset'             => 'Aur koi (offset ke specify karo)',
 'timezoneoffset'                => 'Offset¹:',
 'servertime'                    => 'Server ke time:',
@@ -1927,11 +1937,16 @@ wiki: $PAGEEDITOR_WIKI
 
 Aur koi notifications nai rahii, kahe ki koi aur badlao hoe sake hai, jab talak aap ii panna ke visit nai karta hai.
 Aap aapan dhyan suchi me sab dhyan me rakha gais panna pe notification flags ke reset kare sakta hai.
-             Aap ke  dayalu {{SITENAME}} notification system
+
+Aap ke  dayalu {{SITENAME}} notification system
 
 --
+Aapan Email notofication setting ke badle ke khatir, jaao
+{{fullurl:{{#special:Preferences}}}}
+
 Aapan dhyan ke settings ke badle ke khatir, jaao
 {{fullurl:{{#special:EditWatchlist}}}}
+
 
 Aapan dhyan suchi se panna ke mitae ke khatir, jaao
 $UNWATCHURL
@@ -2000,11 +2015,11 @@ Meharbani kar ke  "back" ke press kar ke jon pana se aap aae rahaa ke fir se loa
 
 # Protect
 'protectlogpage'              => 'Surakchha suchi',
-'protectlogtext'              => 'Niche panna ke lock aur unlock ke suchi hai
-Abhi ke laabu panna protection ke dekho [[Special:ProtectedPages|protected pages list]]',
+'protectlogtext'              => 'Panna surakchha ke suchi niche dewa gais hae.
+Abhi ke laabu panna surakchha ke dekho [[Special:ProtectedPages|protected pages list]] me',
 'protectedarticle'            => 'bachawal "[[$1]]"',
 'modifiedarticleprotection'   => '[[$1]]" ke protection level ke badal dia hai',
-'unprotectedarticle'          => 'bina bachawal "[[$1]]"',
+'unprotectedarticle'          => 'surakchha suchi "[[$1]]" me se hatawa gais',
 'movedarticleprotection'      => 'protection settings ke "[[$2]]" se "[[$1]]" kae dia hai',
 'protect-title'               => '"$1" ke protection level ke badlo',
 'prot_1movedto2'              => '[[$1]] ke naam badal ke [[$2]] kar dewa gae hai',
@@ -2071,8 +2086,8 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 'undeletepagetext'             => 'Niche dekhawa gais {{PLURAL:$1|panna ke mitae dewa gais hai lekin|$1 panna ke mitae dewa gais hai lekin}} abhi archive me hai aur iske pahile jaise karaa jaawe sake hai.
 Archive ke time time se safaa karaa jaawe hai.',
 'undelete-fieldset-title'      => 'Badlao ke pahile jaise karo',
-'undeleteextrahelp'            => "Panna ke itihaas ke pahile jaise kare ke khatir sab checkboxes me kuch nai karna aur '''''Restore''''' ke click karo.
-Chuna gais panna ke pahile jaise kare ke khatir, uu box ke check karo jon badlao ke aap pahile jaise kare mangta hai aur '''''Restore''''' ke click karo.
+'undeleteextrahelp'            => "Panna ke itihaas ke pahile jaise kare ke khatir sab checkboxes me kuch nai karna aur ''''{{int:undeletebtn}}''''' ke click karo.
+Chuna gais panna ke pahile jaise kare ke khatir, uu box ke check karo jon badlao ke aap pahile jaise kare mangta hai aur ''''{{int:undeletebtn}}''''' ke click karo.
 '''''Reset''''' click kare se comment field aur sab checkboxes clear hoe jaai.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|badlao|badlao}} ke archive kar dewa gais hai',
 'undeletehistory'              => 'Agar aap panna ke pahile jaise karaa tab sab badlao itihass me restore hoe jaai.
@@ -2160,7 +2175,7 @@ Sab se nawaa roke ke suchi ke, aap ke khatir, niche dewa gais hae.',
 'nolinkshere-ns'           => "Chuna gais namespace me koi panna '''[[:$1]]''' se nai jiurre hai.",
 'isredirect'               => 'panna ke redirect karo',
 'istemplate'               => 'milao',
-'isimage'                  => 'chapa ke jorr',
+'isimage'                  => 'file ke jorr',
 'whatlinkshere-prev'       => '{{PLURAL:$1|pahile waala|pahile waala $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|aage waala|aage waala $1}}',
 'whatlinkshere-links'      => '← jorr',
@@ -2508,7 +2523,7 @@ Meharbani kar ke, fir se kosis karo.',
 'tooltip-ca-viewsource'           => 'Ii panna surakchhit hai. Aap iske sooti dekhe sakta hai.',
 'tooltip-ca-history'              => 'Ii panna ke pahile ke badlao',
 'tooltip-ca-protect'              => 'Ii panna ke bachao',
-'tooltip-ca-unprotect'            => 'Ii panna ke nai bachao',
+'tooltip-ca-unprotect'            => 'Ii panna ke surakchha ke badlo',
 'tooltip-ca-delete'               => 'Ii panna ke delete karo',
 'tooltip-ca-undelete'             => 'Ii panna ke mitae se pahile ke sab badlao ke pahile jaise karo',
 'tooltip-ca-move'                 => 'Ii panna ke duusra jagah karo',
@@ -2867,5 +2882,15 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # HTML forms
 'htmlform-reset'               => 'Badlao ke pahile jaise karo',
 'htmlform-selectorother-other' => 'Duusra',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Vibhag jorro',
+'ajax-add-category-submit'     => 'Jorro',
+'ajax-confirm-save'            => 'Bachao',
+'ajax-add-category-summary'    => 'Vibhag "$1" ke jorro',
+'ajax-remove-category-summary' => 'Vibhag "$1" ke hatao',
+'ajax-confirm-actionsummary'   => 'Kon chij kare ke hae:',
+'ajax-error-title'             => 'Galti',
+'ajax-error-dismiss'           => 'Thik hae',
 
 );

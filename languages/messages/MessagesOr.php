@@ -439,6 +439,7 @@ $messages = array(
 'nstab-image'     => 'ଫାଇଲ',
 'nstab-mediawiki' => 'ଖବର',
 'nstab-template'  => 'ଟେମ୍ପଲେଟ',
+'nstab-help'      => 'ସାହାଯ୍ୟ ପୃଷ୍ଠା',
 'nstab-category'  => 'ଶ୍ରେଣୀ:',
 
 # General errors

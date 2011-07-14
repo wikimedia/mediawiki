@@ -3631,4 +3631,19 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'sqlite-has-fts' => '$1 gant enklask eus an destenn a-bezh embreget',
 'sqlite-no-fts'  => '$1 hep enklask eus an destenn a-bezh embreget',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Ouzhpennañ ur rummad',
+'ajax-add-category-submit'     => 'Ouzhpennañ',
+'ajax-confirm-title'           => 'Kadarnaat an oberiadenn',
+'ajax-confirm-prompt'          => 'Gallout a rit merkañ a-is un diverrañ eus ar c\'hemmoù degaset.
+Klikit war "Enrollañ da enrollañ ho degasadenn.',
+'ajax-confirm-save'            => 'Enrollañ',
+'ajax-add-category-summary'    => 'Ouzhpennañ ar rummad "$1"',
+'ajax-remove-category-summary' => 'Diverkañ ar rummad "$1"',
+'ajax-confirm-actionsummary'   => 'Tra da ober :',
+'ajax-error-title'             => 'Fazi',
+'ajax-error-dismiss'           => 'Mat eo',
+'ajax-remove-category-error'   => "N'eus ket bet gallet diverkañ ar rummad-mañ. 
+C'hoarvezout a ra p'eo bet ouzhpennet ar rummad er bajenn dre ur patrom",
+
 );

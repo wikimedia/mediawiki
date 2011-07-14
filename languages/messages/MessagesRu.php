@@ -1307,7 +1307,7 @@ $1",
 'qbsettings-fixedright'     => 'Неподвижная справа',
 'qbsettings-floatingleft'   => 'Плавающая слева',
 'qbsettings-floatingright'  => 'Плавающая справа',
-'qbsettings-directionality' => 'Закреплённая в зависимости от письменности вашего языка',
+'qbsettings-directionality' => 'Закреплённая, в зависимости от письменности вашего языка',
 
 # Preferences page
 'preferences'                   => 'Настройки',
@@ -2189,8 +2189,10 @@ $1',
 'watchlistanontext'    => 'Вы должны $1, чтобы просмотреть или отредактировать список наблюдения.',
 'watchnologin'         => 'Нужно представиться системе',
 'watchnologintext'     => 'Вы должны [[Special:UserLogin|представиться системе]], чтобы иметь возможность изменять свой список наблюдения',
+'addwatch'             => 'Добавить в список наблюдения',
 'addedwatchtext'       => 'Страница «[[:$1]]» была добавлена в ваш [[Special:Watchlist|список наблюдения]].
 Последующие изменения этой страницы и связанной с ней страницы обсуждения будут отмечаться в этом списке, а также будут выделены жирным шрифтом на странице со [[Special:RecentChanges|списком свежих изменений]], чтобы их было легче заметить.',
+'removewatch'          => 'Удалить из списка наблюдения',
 'removedwatchtext'     => 'Страница «[[:$1]]» была удалена из вашего [[Special:Watchlist|списка наблюдения]].',
 'watch'                => 'Следить',
 'watchthispage'        => 'Наблюдать за этой страницей',
@@ -3545,6 +3547,12 @@ $1',
 'confirm-purge-top'    => 'Очистить кеш этой страницы?',
 'confirm-purge-bottom' => 'После очистки кеша страницы будет показана её последняя версия.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'ОК',
+'confirm-watch-top'      => 'Добавить эту страницу в ваш список наблюдения?',
+'confirm-unwatch-button' => 'ОК',
+'confirm-unwatch-top'    => 'Удалить эту страницу из вашего списка наблюдения?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← предыдущая страница',
 'imgmultipagenext' => 'следующая страница →',
@@ -3785,5 +3793,20 @@ MediaWiki распространяется в надежде, что она бу
 # SQLite database support
 'sqlite-has-fts' => '$1 с поддержкой полнотекстового поиска',
 'sqlite-no-fts'  => '$1 без поддержки полнотекстового поиска',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Добавить категорию',
+'ajax-add-category-submit'     => 'Добавить',
+'ajax-confirm-title'           => 'Подтвердить действие',
+'ajax-confirm-prompt'          => 'Ниже вы можете указать описание изменений.
+Нажмите «Сохранить», чтобы сохранить ваши изменения.',
+'ajax-confirm-save'            => 'Сохранить',
+'ajax-add-category-summary'    => 'Добавлена категория «$1»',
+'ajax-remove-category-summary' => 'Удалена категория «$1»',
+'ajax-confirm-actionsummary'   => 'Предпринимаемые действия:',
+'ajax-error-title'             => 'Ошибка',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Не удалось убрать эту категорию.
+Обычно это происходит в случае, когда категория была добавлена через шаблон.',
 
 );
