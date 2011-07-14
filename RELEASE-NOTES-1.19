@@ -168,6 +168,8 @@ production.
 * (bug 29737) "MediaWiki:Qbsettings-directionality" should refer to script,
   not language.
 * (bug 26360) $wgSessionHandler was overriding system settings unconditionally.
+* Removed AjaxFunctions.php. The last remaining function js_unescape() was moved
+  to the FCKEditor extension.
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.

@@ -6,10 +6,6 @@
  * @ingroup Ajax
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
-
 /**
  * Handle responses for Ajax requests (send headers, print
  * content, that sort of thing)

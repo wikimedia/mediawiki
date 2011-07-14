@@ -7,12 +7,6 @@
  * Handle ajax requests and send them to the proper handler.
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
-
-require_once( 'AjaxFunctions.php' );
-
 /**
  * Object-Oriented Ajax functions.
  * @ingroup Ajax
