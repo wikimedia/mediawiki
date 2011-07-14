@@ -11,7 +11,9 @@
 	padding: 2px 8px;
 	display:inline;
 }
-
+.mw-removed-category {
+	text-decoration: line-through;
+}
 #catlinks:hover .icon {
 	opacity: 1;
 }

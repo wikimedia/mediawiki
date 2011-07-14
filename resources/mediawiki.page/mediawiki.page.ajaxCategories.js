@@ -7,6 +7,8 @@
 // * Add Hooks for soft redirect
 // * Handle normal redirects
 
+// * Fixme on narrow windows
+// * Enter to submit
 
 ( function( $, mw ) {
 
@@ -26,6 +28,8 @@ var ajaxCategories = function ( options ) {
 	var categoryNamespaceId = namespaceIds['category'];
 	var categoryNamespace = mw.config.get( 'wgFormattedNamespaces' )[categoryNamespaceId];
 	var _saveAllButton;
+	var _cancelAllButton;
+	var _multiEdit = ( wgUserGroups.indexOf("user") != -1 );
 	
 	/**
 	 * Helper function for $.fn.suggestion
@@ -169,13 +173,15 @@ var ajaxCategories = function ( options ) {
 	 */
 	_confirmEdit = function ( fn, actionSummary, doneFn, all ) {
 		// Check whether to use multiEdit mode
-		if ( wgUserGroups.indexOf("user") != -1 && !all ) {
+		if ( _multiEdit && !all ) {
 			// Stash away
 			_stash.summaries.push( actionSummary );
 			_stash.fns.push( fn );
 
+			//TODO add Cancel button
 			_saveAllButton.show();
-			
+			//_cancelAllButton.show();
+
 			// This only does visual changes
 			doneFn( true );
 			return;
@@ -253,19 +259,25 @@ var ajaxCategories = function ( options ) {
 			}
 			return newtext;
 		};
-		var doneFn = function() {
-			//Remove saveAllButton
-			_saveAllButton.hide();
+		var doneFn = _resetToActual;
 
-			// Clean stash
-			_stash.fns = [];
-			_stash.summaries = [];
-
-			// TODO
-			// Any link with $link.css('text-decoration', 'line-through');
-			// needs to be removed
-		};
 		_confirmEdit( combinedFn, summary, doneFn, true );
+	};
+
+	_resetToActual = function() {
+		//Remove saveAllButton
+		_saveAllButton.hide();
+		_cancelAllButton.hide();
+
+		// Clean stash
+		_stash.fns = [];
+		_stash.summaries = [];
+
+		// TODO
+		$container.find('.mw-removed-category').parent().remove();
+		// Any link with $link.css('text-decoration', 'line-through');
+		// needs to be removed
+
 	};
 
 	_doEdit = function ( page, fn, summary, doneFn ) {
@@ -373,7 +385,10 @@ var ajaxCategories = function ( options ) {
 		var $link = $this.parent().find( 'a:not(.icon)' );
 		var category = $link.text();
 		
-		var $input = _makeSuggestionBox( category, _handleCategoryEdit, mw.msg( 'ajax-confirm-save' ) );
+		var $input = _makeSuggestionBox( category, 
+						_handleCategoryEdit, 
+						_multiEdit ? mw.msg( 'ajax-confirm-ok' ) : mw.msg( 'ajax-confirm-save' ) 
+					);
 		$link.after( $input ).hide();
 		_catElements[category].editButton.hide();
 		_catElements[category].deleteButton.unbind('click').click( function() {
@@ -420,8 +435,8 @@ var ajaxCategories = function ( options ) {
 			summary, 
 			function( unsaved ) {
 				if ( unsaved ) {
-					//TODO flesh out: Make it a class, make revertable
-					$link.css('text-decoration', 'line-through');
+					//TODO Make revertable
+					$link.addClass('.mw-removed-category');
 				} else {
 					$this.parent().remove();
 				}
@@ -435,7 +450,7 @@ var ajaxCategories = function ( options ) {
 		category = $.ucFirst( category );
 
 		if ( _containsCat(category) ) {
-			_showError( mw.msg( 'ajax-category-already-present' ) );
+			_showError( mw.msg( 'ajax-category-already-present', category ) );
 			return;
 		}
 		var appendText = "\n[[" + categoryNamespace + ":" + category + "]]\n";
@@ -454,6 +469,7 @@ var ajaxCategories = function ( options ) {
 	};
 
 	_handleCategoryEdit = function ( e ) {
+		//FIXME: in MultiEdit Mode handle successive edits to same category
 		e.preventDefault();
 
 		// Grab category text
@@ -464,10 +480,9 @@ var ajaxCategories = function ( options ) {
 		var $link = $this.parent().parent().find( 'a:not(.icon)' );
 		var category = $link.text();
 
-		// User didn't change anything. Just close the box
+		// User didn't change anything.
 		if ( category == categoryNew ) {
-			$this.parent().remove();
-			$link.show();
+			_catElements[category].deleteButton.click();
 			return;
 		}
 		categoryRegex = _buildRegex( category );
@@ -505,8 +520,9 @@ var ajaxCategories = function ( options ) {
 			summary, 
 			function() {
 				// Remove input box & button
-				$this.parent().remove();
-
+				_catElements[category].deleteButton.click();
+				_catElements[categoryNew] = _catElements[category];
+				delete _catElements[category];
 				// Update link text and href
 				$link.show().text( categoryNew ).attr( 'href', _catLink( categoryNew ) );
 			}
@@ -624,8 +640,15 @@ var ajaxCategories = function ( options ) {
 										'', 
 										mw.msg( 'ajax-confirm-save-all' ) 
 										);
+		_cancelAllButton = _createButton( 'icon-tick', 
+										mw.msg( 'ajax-confirm-save-all' ), 
+										'', 
+										mw.msg( 'ajax-confirm-save-all' ) 
+										);
 		_saveAllButton.click( _handleStashedCategories ).hide();
-		$containerNormal.append( _saveAllButton );
+		_cancelAllButton.hide();
+
+		$containerNormal.append( _saveAllButton ).append( _cancelAllButton );
 	};
 	
 	_stash = {
