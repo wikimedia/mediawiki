@@ -2,48 +2,58 @@
  * JavaScript for Special:Preferences
  */
 ( function( $, mw ) {
-
 $( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
-$( '#preferences' )
+var $preftoc = $('<ul id="preftoc"></ul>');
+var $preferences = $( '#preferences' )
 	.addClass( 'jsprefs' )
-	.before( $( '<ul id="preftoc"></ul>' ) )
-	.children( 'fieldset' )
-		.hide()
-		.addClass( 'prefsection' )
-		.children( 'legend' )
-			.addClass( 'mainLegend' )
-			.each( function( i, legend ) {
-					$(legend).parent().attr( 'id', 'prefsection-' + i );
-					if ( i === 0 ) {
-						$(legend).parent().show();
-					}
-					var ident = $(legend).parent().attr( 'title' );
-					$( '#preftoc' ).append(
-						$( '<li></li>' )
-							.addClass( i === 0 ? 'selected' : null )
-							.append(
-								$( '<a></a>')
-									.text( $(legend).text() )
-									.attr( 'id', 'preftab-' + ident + '-tab' )
-									.attr( 'href', '#preftab-' + ident ) // Use #preftab-N instead of #prefsection-N to avoid jumping on click
-									.click( function() {
-										$(this).parent().parent().find( 'li' ).removeClass( 'selected' );
-										$(this).parent().addClass( 'selected' );
-										$( '#preferences > fieldset' ).hide();
-										$( '#prefsection-' + i ).show();
-									} )
-							)
-					);
-				}
-			);
+	.before( $preftoc );
+
+var $fieldsets = $preferences.children( 'fieldset' )
+	.hide()
+	.addClass( 'prefsection' );
+
+var $legends = $fieldsets.children( 'legend' )
+	.addClass( 'mainLegend' );
+
+// Populate the prefToc
+$legends.each( function( i, legend ) {
+	var $legend = $(legend);
+	if ( i === 0 ) {
+		$legend.parent().show();
+	}
+	var ident = $legend.parent().attr( 'id' );
+	
+	var $li = $( '<li/>', {
+		'class' : ( i === 0 ) ? 'selected' : null
+	});
+	var $a = $( '<a/>', {
+		text : $legend.text(),
+		id   : ident.replace('prefsection', 'preftab'),
+		href : '#' + ident
+	}).click( function( e ) {
+		e.preventDefault();
+		// Handle hash manually to prevent jumping
+		// Therefore save and restore scrollTop to prevent jumping
+		var scrollTop = $(window).scrollTop();
+		window.location.hash = $(this).attr('href');
+		$(window).scrollTop(scrollTop);
+		
+		$preftoc.find( 'li' ).removeClass( 'selected' );
+		$(this).parent().addClass( 'selected' );
+		$( '#preferences > fieldset' ).hide();
+		$( '#' + ident ).show();
+	});
+	$li.append( $a );
+	$preftoc.append( $li );
+} );
 
 // If we've reloaded the page or followed an open-in-new-window,
 // make the selected tab visible.
 // On document ready:
 $( function() {
 	var hash = window.location.hash;
-	if( hash.match( /^#preftab-[\w-]+/ ) ) {
-		var $tab = $( hash + '-tab' );
+	if( hash.match( /^#prefsection-[\w-]+/ ) ) {
+		var $tab = $( hash.replace('prefsection', 'preftab') );
 		$tab.click();
 	}
 } );
