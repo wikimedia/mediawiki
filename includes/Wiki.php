@@ -498,7 +498,7 @@ class MediaWiki {
 						&& ( $external || $user->getOption( 'externaleditor' ) ) )
 					{
 						$mode = $request->getVal( 'mode' );
-						$extedit = new ExternalEdit( $article, $mode );
+						$extedit = new ExternalEdit( $article->getTitle(), $mode );
 						$extedit->edit();
 					}
 				}
