@@ -19,38 +19,54 @@
  *
  */
 class ExternalEdit {
+	/**
+	 * Title to perform the edit on
+	 * @var Title
+	 */
+	private $title;
 
-	function __construct( $article, $mode ) {
-		$this->mArticle =& $article;
-		$this->mTitle = $article->getTitle();
-		$this->mCharset = 'UTF-8';
-		$this->mMode = $mode;
+	/**
+	 * Mode of editing
+	 * @var String
+	 */
+	private $mode;
+
+	/**
+	 * Constructor
+	 * @param $title Title object we're performing the edit on
+	 * @param $mode String What mode we're using. Only 'file' has any effect
+	 */
+	public function __construct( $title, $mode ) {
+		$this->title = $article->getTitle();
+		$this->mode = $mode;
 	}
 
-	function edit() {
+	/**
+	 * Output the information for the external editor
+	 */
+	public function edit() {
 		global $wgOut, $wgScript, $wgScriptPath, $wgServer, $wgLang;
 		$wgOut->disable();
-		$name=$this->mTitle->getText();
-		$pos=strrpos($name,".")+1;
-		header ( "Content-type: application/x-external-editor; charset=".$this->mCharset );
-		header( "Cache-control: no-cache" );
+		header( 'Content-type: application/x-external-editor; charset=utf-8' );
+		header( 'Cache-control: no-cache' );
 
 		# $type can be "Edit text", "Edit file" or "Diff text" at the moment
 		# See the protocol specifications at [[m:Help:External editors/Tech]] for
 		# details.
-		if(!isset($this->mMode)) {
-			$type="Edit text";
-			$url=$this->mTitle->getFullURL("action=edit&internaledit=true");
+		if( $this->mode == "file" ) {
+			$type = "Edit file";
+			$image = wfLocalFile( $this->title );
+			$url = $image->getFullURL();
+			$extension = $image->getExtension();
+		} else {
+			$type = "Edit text";
+			$url = $this->title->getFullURL(
+				array( 'action' => 'edit', 'internaledit' => 'true' ) );
 			# *.wiki file extension is used by some editors for syntax
 			# highlighting, so we follow that convention
-			$extension="wiki";
-		} elseif($this->mMode=="file") {
-			$type="Edit file";
-			$image = wfLocalFile( $this->mTitle );
-			$url = $image->getFullURL();
-			$extension=substr($name, $pos);
+			$extension = "wiki";
 		}
-		$special=$wgLang->getNsText(NS_SPECIAL);
+		$special = $wgLang->getNsText( NS_SPECIAL );
 		$control = <<<CONTROL
 ; You're seeing this file because you're using Mediawiki's External Editor
 ; feature. This is probably because you selected use external editor
