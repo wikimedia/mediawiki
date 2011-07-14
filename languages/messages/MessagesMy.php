@@ -266,6 +266,11 @@ $messages = array(
 'jumpto'            => 'ဤနေရာသို့သွားရန် -',
 'jumptonavigation'  => 'အ​ညွှန်း​',
 'jumptosearch'      => 'ရှာ​ဖွေ​ရန်​',
+'view-pool-error'   => 'ဆာဗာသည် ယခုအချိန်တွင် မမျှသောဝန်ကို ထမ်းနေရသည်။
+အသုံးပြုသူ အမြောက်အများက ဤစာမျက်နှာကို ကြည့်ရှုရန် ကြိုးပမ်းနေကြသည်။
+ဤစာမျက်နှာကို နောက်တစ်ကြိမ် ပြန်မကြည့်မီ ခဏတာမျှ စောင့်ပါ။
+
+$1',
 'pool-errorunknown' => 'အမည်မသိအမှား',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -361,6 +366,7 @@ $messages = array(
 'badtitletext'         => 'တောင်းဆိုထားသော စာမျက်နှာ ခေါင်းစဉ်သည် တရားမဝင်ပါ (သို့) ဗလာဖြစ်နေသည် (သို့) အခြားဘာသာများ(inter-language or inter-wiki title)သို့ မှားယွင်းစွာ လင့်ချိတ်ထားသည်။',
 'viewsource'           => 'ရင်းမြစ်ကို ကြည့်ရန်',
 'viewsourcefor'        => '$1 အတွက်',
+'protectedpagetext'    => 'ဤစာမျက်နှာအား တည်းဖြတ်မရနိုင်ရန် ထိန်းသိမ်းထားသည်။',
 'namespaceprotected'   => "'''$1''' စာညွှန်းဖြင့် စာမျက်နှာကို တည်းဖြတ်ရန် ခွင့်ပြုချက် မရှိပါ။",
 'ns-specialprotected'  => 'အထူးစာမျက်နှာများကို တည်းဖြတ်မရနိုင်ပါ။',
 
@@ -368,6 +374,9 @@ $messages = array(
 'virus-unknownscanner' => 'အမည်မသိအန်တီဗိုင်းရပ်စ် -',
 
 # Login and logout pages
+'logouttext'               => 'သင်သည် လော့ဂ်အောက် လုပ်လိုက်ပြီဖြစ်သည်။
+သင့်အနေနှင့် ဤ {{SITENAME}} ဝက်ဘ်ဆိုက်ဒ်ကို အမည်မသိ အသုံးပြုသူ အနေနှင့် ဆက်လက် အသုံးပြုနိုင်သည်။ သို့မဟုတ် ယခင် အသုံးပြုသူ အမည် သို့ အသုံးပြုသူ အခြားအမည်တစ်ခုဖြင့် [[Special:UserLogin|နောက်တစ်ကြိမ် လော့ဂ်အင်ပြန်ဝင်]] နိုင်သည်။
+သင်၏ ဘရောက်ဆာမှ cache ကို ရှင်းလင်းသည့် အချိန် အထိ အချို့သော စာမျက်နှာ များသည် သင် လော့ဂ်အင် ဝင်ထားစဉ်က အတိုင်းပင် ဆက်လက် ပြသနေမည်ဖြစ်သည်။',
 'welcomecreation'          => '== မင်္ဂလာပါ $1! ==
 သင့်အကောင့်ကို ဖန်တီးပြီးပါပြီ။
 [[Special:Preferences|{{SITENAME}} စိတ်​ကြိုက်​ရွေးချယ်စရာတို့]]ကို ပြောင်းရန် မမေ့ပါနှင့်။',
@@ -545,6 +554,7 @@ $messages = array(
 'post-expand-template-inclusion-warning'  => "'''သတိပေးချက် -''' တမ်းပလိတ်အရွယ်အစား ကြီးလွန်းနေသည်။
 အချို့တမ်းပလိတ်တို့ ပါဝင်မည်မဟုတ်။",
 'post-expand-template-inclusion-category' => 'ထည့်သွင်းနိုင်သော တမ်းပလိတ်အရွယ်အစားပြည့်သွားပြီဖြစ်သော စာမျက်နှာများ',
+'parser-template-loop-warning'            => 'တမ်းပလိတ်များ လှည့်ပတ်ဆက်စပ် နေသည်ကို တွေ့ရသည်။ [[$1]]',
 
 # History pages
 'viewpagelogs'           => 'ဤစာမျက်နှာအတွက် မှတ်တမ်းများကို ကြည့်ရန်',
@@ -561,7 +571,7 @@ $messages = array(
 'last'                   => 'ယခုမတိုင်မီ',
 'page_first'             => 'ပထမဆုံး',
 'page_last'              => 'အနောက်ဆုံး',
-'histlegend'             => "တည်းဖြတ်မူများကို နှိုင်းယဉ်ရန် radio boxes လေးများကို မှတ်သားပြီးနောက် Enter ရိုက်ချပါ သို့ အောက်ခြေမှ ခလုတ်ကို နှိပ်ပါ။<br />
+'histlegend'             => "တည်းဖြတ်မူများကို နှိုင်းယှဉ်ရန် radio boxes လေးများကို မှတ်သားပြီးနောက် Enter ရိုက်ချပါ သို့ အောက်ခြေမှ ခလုတ်ကို နှိပ်ပါ။<br />
 Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် ကွဲပြားချက် '''({{int:last}})''' = ယင်းရှေ့မူနှင့် ကွဲပြားချက်, '''{{int:minoreditletter}}''' = အရေးမကြီးသော ပြုပြင်မှု.",
 'history-fieldset-title' => 'ရာဇဝင်ရှာကြည့်ရန်',
 'history-show-deleted'   => 'ဖျက်ထားသည်များသာ',

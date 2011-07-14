@@ -779,11 +779,11 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'notloggedin'                => 'Nicht angemeldet',
 'nologin'                    => "Du hast kein Benutzerkonto? '''$1'''.",
 'nologinlink'                => 'Neues Benutzerkonto anlegen',
-'createaccount'              => 'Benutzerkonto anlegen',
+'createaccount'              => 'Anlegen (ggf. Bestätigungslinkzusendung)',
 'gotaccount'                 => "Du hast bereits ein Benutzerkonto? '''$1'''.",
 'gotaccountlink'             => 'Anmelden',
 'userlogin-resetlink'        => 'Die Anmeldedaten vergessen?',
-'createaccountmail'          => 'per E-Mail',
+'createaccountmail'          => 'Anlegen (mit Passwortzusendung)',
 'createaccountreason'        => 'Grund:',
 'badretype'                  => 'Die beiden Passwörter stimmen nicht überein.',
 'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wähle einen anderen.',
@@ -3814,5 +3814,27 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',
 'sqlite-no-fts'  => 'Version $1 ohne Unterstützung für die Volltextsuche',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Kategorie hinzufügen',
+'ajax-remove-category'          => 'Kategorie entfernen',
+'ajax-edit-category'            => 'Kategorie bearbeiten',
+'ajax-add-category-submit'      => 'Hinzufügen',
+'ajax-confirm-title'            => 'Aktion bestätigen',
+'ajax-confirm-prompt'           => 'Du kannst unten eine Zusammenfassung eingeben.
+Klicke „Speichern“ um die Bearbeitung zu speichern.',
+'ajax-confirm-save'             => 'Speichern',
+'ajax-confirm-save-all'         => 'Alle Änderungen speichern',
+'ajax-add-category-summary'     => 'Kategorie „$1“ hinzufügen',
+'ajax-edit-category-summary'    => 'Kategorie „$1“ zu „$2“ ändern',
+'ajax-remove-category-summary'  => 'Kategorie „$1“ entfernen',
+'ajax-confirm-actionsummary'    => 'Auszuführende Aktion:',
+'ajax-error-title'              => 'Fehler',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Es war nicht möglich, die Kategorie zu entfernen.
+Dies passiert normalerweise, wenn die Kategorie über eine Vorlage eingebunden ist.',
+'ajax-edit-category-error'      => 'Es war nicht möglich, diese Kategorie zu bearbeiten.
+Dies passiert normalerweise, wenn die Kategorie zur Seite in einer Vorlage hinzugefügt wurde.',
+'ajax-category-already-present' => 'Diese Seite gehört bereits zur Kategorie $1',
 
 );

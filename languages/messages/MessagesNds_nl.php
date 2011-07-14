@@ -1453,7 +1453,7 @@ Disse infermasie is zichbaor veur aandere gebrukers.',
 'group-all'           => '(alles)',
 
 'group-user-member'          => 'gebruker',
-'group-autoconfirmed-member' => 'Autobevestigen gebruker',
+'group-autoconfirmed-member' => 'an-emelde gebruker',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'beheerder',
 'group-bureaucrat-member'    => 'burocraot',
@@ -2172,8 +2172,10 @@ De ontvanger kan dus drek beantwoorden.",
 'watchlistanontext'    => '$1 is verplich um joew volglieste te bekieken of te wiezigen.',
 'watchnologin'         => 'Neet an-emeld',
 'watchnologintext'     => 'Um je volglieste an te passen mu-j eers [[Special:UserLogin|an-emeld]] ween.',
+'addwatch'             => 'Op mien volglieste zetten',
 'addedwatchtext'       => "De pagina \"[[:\$1]]\" steet noen op joew [[Special:Watchlist|volglieste]].
 Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld wonnen, oek zullen disse pagina's '''vet-edrok''' ween in de lieste mit de [[Special:RecentChanges|leste wiezigingen]] zoda-j 't makkelijker zien kunnen.",
+'removewatch'          => 'Van mien volglieste ofhaolen',
 'removedwatchtext'     => 'De pagina "[[:$1]]" is van [[Special:Watchlist|joew volglieste]] of-ehaold.',
 'watch'                => 'Volgen',
 'watchthispage'        => 'Volg disse pagina',
@@ -3481,6 +3483,12 @@ $1',
 'confirm-purge-top'    => "Klik op 'bevestig' um 't tussengeheugen van disse pagina te legen.",
 'confirm-purge-bottom' => "'t Leegmaken van 't tussengeheugen zörg derveur da-j de leste versie van een pagina zien.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'Oké',
+'confirm-watch-top'      => 'Disse pagina op joew volglieste zetten?',
+'confirm-unwatch-button' => 'Oké',
+'confirm-unwatch-top'    => 'Disse pagina van joew volglieste ofhaolen?',
+
 # Multipage image navigation
 'imgmultipageprev' => '&larr; veurige',
 'imgmultipagenext' => 'volgende &rarr;',
@@ -3676,5 +3684,27 @@ Voer de bestaansnaam in zonder 't veurvoegsel \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 mit ondersteuning veur "full-text" zeuken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning veur "full-text" zeuken',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Kattegerie derbie doon',
+'ajax-remove-category'          => 'Kattegerie vortdoon',
+'ajax-edit-category'            => 'Bewark kattegerie',
+'ajax-add-category-submit'      => 'Derbie doon',
+'ajax-confirm-title'            => 'Haandeling bevestigen',
+'ajax-confirm-prompt'           => 'Je kunnen hieronder een bewarkingsamenvatting opgeven.
+Klik "Pagina opslaon" um joew bewarking op te slaon.',
+'ajax-confirm-save'             => 'Opslaon',
+'ajax-confirm-save-all'         => 'Alle wiezigingen opslaon',
+'ajax-add-category-summary'     => 'Kattegerie "$1" derbie doon',
+'ajax-edit-category-summary'    => 'Wiezig kattegerie "$1" naor "$2"',
+'ajax-remove-category-summary'  => 'Kattegerie "$1" vortdoon',
+'ajax-confirm-actionsummary'    => 'Haandeling dee uut-evoerd mut wonnen:',
+'ajax-error-title'              => 'Fout',
+'ajax-error-dismiss'            => 'Oké',
+'ajax-remove-category-error'    => 'Kon disse kattegerie neet vortdoon.
+Dit gebeurt meestentieds as de kattegerie via een mal op de pagina ezet is.',
+'ajax-edit-category-error'      => "'t Was neet meugelijk um disse kattegerie te wiezigen.
+Dit gebeurt as de kattegerie op een pagina steet in een mal.",
+'ajax-category-already-present' => 'Disse pagina steet al in de kattegerie $1',
 
 );

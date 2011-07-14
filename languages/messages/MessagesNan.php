@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ianbu
  */
 
 $datePreferences = array(
@@ -24,9 +25,12 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Liân-kiat oē té-sûn:',
 'tog-highlightbroken'         => 'Khang-ia̍h ê liân-kiat <a href="" class="new">án-ne</a> hián-sī (mài chhiūⁿ án-ne<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'pâi-chê  tōaⁿ-lo̍h',
 'tog-hideminor'               => 'Am chòe-kīn ê sió kái-piàn',
-'tog-extendwatchlist'         => 'Khok-chhiong kàm-sī-toaⁿ kàu hián-sī só͘-ū ê kái-piàn',
-'tog-usenewrc'                => 'Ka-kiông pán ê chòe-kīn-ê-kái-piàn (su-iàu JavaScript)',
+'tog-hidepatrolled'           => 'Am sûn koè--ê chòe-kīn kái-piàn',
+'tog-newpageshidepatrolled'   => 'Sin-ia̍h ê chheng-toaⁿ am sûn koè--ê',
+'tog-extendwatchlist'         => 'Tián-khui kàm-sī-toaⁿ khoàⁿ só͘-ū ê kái-piàn, m̄-chí sī choè-kīn--ê',
+'tog-usenewrc'                => 'Ēng ka-kiông pán ê chòe-kīn-ê-kái-piàn (su-iàu JavaScript)',
 'tog-numberheadings'          => 'Phiau-tê chū-tōng pian-hō',
 'tog-showtoolbar'             => 'Hián-sī pian-chi̍p ke-si-tiâu (su-iàu JavaScript)',
 'tog-editondblclick'          => 'Siang-ji̍h ia̍h-bīn to̍h ē-tàng pian-chi̍p (su-iàu JavaScript)',
@@ -117,14 +121,15 @@ $messages = array(
 'subcategories'          => 'Ē-lūi-pia̍t',
 'listingcontinuesabbrev' => '(chiap-sòa thâu-chêng)',
 
-'about'      => 'Koan-hē',
-'newwindow'  => '(ē khui sin thang-á hián-sī)',
-'cancel'     => 'Chhú-siau',
-'mypage'     => 'Góa ê ia̍h',
-'mytalk'     => 'Góa ê thó-lūn',
-'anontalk'   => 'Chit ê IP ê thó-lūn-ia̍h',
-'navigation' => 'Se̍h chām',
-'and'        => '&#32;kap',
+'about'         => 'Koan-hē',
+'newwindow'     => '(ē khui sin thang-á hián-sī)',
+'cancel'        => 'Chhú-siau',
+'moredotdotdot' => 'Iáu-ū',
+'mypage'        => 'Góa ê ia̍h',
+'mytalk'        => 'Góa ê thó-lūn',
+'anontalk'      => 'Chit ê IP ê thó-lūn-ia̍h',
+'navigation'    => 'Se̍h chām',
+'and'           => '&#32;kap',
 
 # Cologne Blue skin
 'qbedit'         => 'Siu-kái',

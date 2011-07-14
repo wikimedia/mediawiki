@@ -929,11 +929,12 @@ Verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view'   => 'A conta de usuário "$1" não está registrada.',
 'blocked-notice-logextract'        => 'Este usuário está atualmente bloqueado.
 O registro de bloqueio mais recente é fornecido abaixo, para referência:',
-'clearyourcache'                   => "'''Nota - Depois de salvar, você terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
-'''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Mac);
-'''Konqueror:''' clique no botão ''Recarregar'' ou pressione ''F5'';
-'''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'');
-'''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
+'clearyourcache'                   => "'''Nota:''' Depois de salvar, você terá de limpar o ''cache'' do seu navegador para ver as alterações.
+* '''Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Mac);
+* '''Google Chrome:''' pressione ''Ctrl-Shift-R'' (''Command-Shift-R'' em um Mac)
+* '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';
+* '''Konqueror:''' clique no botão ''Recarregar'' ou pressione ''F5'';
+* '''Opera:''' limpe o ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
 'usercssyoucanpreview'             => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo CSS antes de salvar.",
 'userjsyoucanpreview'              => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo JavaScript antes de salvar.",
 'usercsspreview'                   => "'''Lembre-se de que você está apenas previsualizando o seu CSS particular.'''
@@ -1311,7 +1312,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'qbsettings-fixedright'     => 'Fixo à direita',
 'qbsettings-floatingleft'   => 'Flutuando à esquerda',
 'qbsettings-floatingright'  => 'Flutuando à direita',
-'qbsettings-directionality' => 'Fixa, dependendo da direcionalidade da sua língua',
+'qbsettings-directionality' => 'Fixa, dependendo da direcionalidade do seu alfabeto e da sua língua',
 
 # Preferences page
 'preferences'                   => 'Preferências',
@@ -2187,8 +2188,10 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de páginas vigiadas.',
 'watchnologin'         => 'Não está autenticado',
 'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de páginas vigiadas.',
+'addwatch'             => 'Adicionar às páginas vigiadas',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
 Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, e a página aparecerá em '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que você possa encontrá-la com maior facilidade.",
+'removewatch'          => 'Remover das páginas vigiadas',
 'removedwatchtext'     => 'A página "[[:$1]]" foi removida de sua [[Special:Watchlist|lista de páginas vigiadas]].',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',
@@ -3521,6 +3524,12 @@ Por favor, confirme que realmente deseja recriar esta página.",
 'confirm-purge-top'    => 'Limpar a memória cache desta página?',
 'confirm-purge-bottom' => "Purgar uma página limpa o ''cache'' e força a sua versão mais recente a aparecer.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Adicionar esta página às suas páginas vigiadas?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Remover esta página das páginas vigiadas?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
 'imgmultipagenext' => 'próxima página →',
@@ -3715,5 +3724,20 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Adicionar categoria',
+'ajax-add-category-submit'     => 'Adicionar',
+'ajax-confirm-title'           => 'Confirmar ação',
+'ajax-confirm-prompt'          => 'Você pode fornecer um sumário de edição abaixo.
+Clique "Salvar" para salvar sua edição.',
+'ajax-confirm-save'            => 'Salvar',
+'ajax-add-category-summary'    => 'Adicionar categoria "$1"',
+'ajax-remove-category-summary' => 'Remover categoria "$1"',
+'ajax-confirm-actionsummary'   => 'Ação a tomar:',
+'ajax-error-title'             => 'Erro',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Não foi possível remover esta categoria.
+Isto geralmente ocorre quando a categoria foi adicionada através de uma predefinição.',
 
 );

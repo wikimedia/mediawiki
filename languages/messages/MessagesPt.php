@@ -1333,7 +1333,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'qbsettings-fixedright'     => 'Fixa à direita',
 'qbsettings-floatingleft'   => 'Flutuante à esquerda',
 'qbsettings-floatingright'  => 'Flutuante à direita',
-'qbsettings-directionality' => 'Fixa, dependendo da direccionalidade da sua língua',
+'qbsettings-directionality' => 'Fixa, dependendo da direccionalidade do seu alfabeto e da sua língua',
 
 # Preferences page
 'preferences'                   => 'Preferências',
@@ -2224,9 +2224,11 @@ O endereço de correio que introduziu nas suas [[Special:Preferences|preferênci
 'watchlistanontext'    => '$1 para ver ou editar a sua lista de páginas vigiadas, por favor.',
 'watchnologin'         => 'Não está autenticado',
 'watchnologintext'     => 'Precisa de estar [[Special:UserLogin|autenticado]] para modificar a sua lista de páginas vigiadas.',
+'addwatch'             => 'Adicionar às páginas vigiadas',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua lista de [[Special:Watchlist|páginas vigiadas]], onde serão indicadas quaisquer
 modificações futuras desta página e da respectiva página de discussão.
 O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:RecentChanges|mudanças recentes]], para que a encontre facilmente.",
+'removewatch'          => 'Remover das páginas vigiadas',
 'removedwatchtext'     => 'A página "[[:$1]]" foi removida da sua lista de [[Special:Watchlist|páginas vigiadas]].',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',
@@ -3591,6 +3593,12 @@ Confirme que deseja realmente recriar esta página, por favor.",
 'confirm-purge-top'    => 'Limpar a memória cache desta página?',
 'confirm-purge-bottom' => 'Purgar uma página limpa a cache e força a sua versão mais recente a aparecer.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Adicionar esta página às suas páginas vigiadas?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Remover esta página das páginas vigiadas?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
 'imgmultipagenext' => 'página seguinte →',
@@ -3787,5 +3795,20 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Adicionar categoria',
+'ajax-add-category-submit'     => 'Adicionar',
+'ajax-confirm-title'           => 'Confirme a operação',
+'ajax-confirm-prompt'          => 'Pode colocar abaixo um resumo da edição.
+Clique "Gravar página" para gravar a sua edição.',
+'ajax-confirm-save'            => 'Gravar',
+'ajax-add-category-summary'    => 'Adicionar categoria "$1"',
+'ajax-remove-category-summary' => 'Remover categoria "$1"',
+'ajax-confirm-actionsummary'   => 'Operação a executar:',
+'ajax-error-title'             => 'Erro',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Não foi possível remover esta categoria.
+Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
 
 );

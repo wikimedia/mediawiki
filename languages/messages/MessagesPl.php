@@ -1272,7 +1272,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'qbsettings-fixedright'     => 'Stały, z prawej',
 'qbsettings-floatingleft'   => 'Unoszący się, z lewej',
 'qbsettings-floatingright'  => 'Unoszący się, z prawej',
-'qbsettings-directionality' => 'Ustawione na stałe, zgodnie z kierunkiem pisania w Twoim języku',
+'qbsettings-directionality' => 'Ustawione na stałe, zgodnie z kierunkiem zapisywania w wybranym języku',
 
 # Preferences page
 'preferences'                   => 'Preferencje',
@@ -2160,8 +2160,10 @@ Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferenc
 'watchlistanontext'    => '$1, aby obejrzeć lub edytować elementy listy obserwowanych.',
 'watchnologin'         => 'Nie jesteś zalogowany',
 'watchnologintext'     => 'Musisz się [[Special:UserLogin|zalogować]] przed modyfikacją listy obserwowanych stron.',
+'addwatch'             => 'Dodaj do listy obserwowanych',
 'addedwatchtext'       => "Strona „[[:$1|$1]]” została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].
 Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie odnotowana na tej liście. Dodatkowo nazwa strony zostanie '''wytłuszczona''' na [[Special:RecentChanges|liście ostatnich zmian]], aby ułatwić Ci zauważenie faktu zmiany.",
+'removewatch'          => 'Usuń z listy obserwowanych',
 'removedwatchtext'     => 'Strona „[[:$1]]” została usunięta z Twojej [[Special:Watchlist|listy obserwowanych]].',
 'watch'                => 'Obserwuj',
 'watchthispage'        => 'Obserwuj',
@@ -3534,6 +3536,12 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'confirm-purge-top'    => 'Wyczyścić pamięć podręczną dla tej strony?',
 'confirm-purge-bottom' => 'Odświeżenie strony wyczyści pamięć podręczną i wymusi pokazanie jej aktualnej wersji.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Dodać tę stronę do listy obserwowanych?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Usunąć tę stronę z listy obserwowanych?',
+
 # Separators for various lists, etc.
 'autocomment-prefix' => '–&#32;',
 'percent'            => '$1&nbsp;%',
@@ -3775,5 +3783,27 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
 'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Dodaj kategorię',
+'ajax-remove-category'          => 'Usuń z kategorii',
+'ajax-edit-category'            => 'Edytuj kategorię',
+'ajax-add-category-submit'      => 'Dodaj',
+'ajax-confirm-title'            => 'Potwierdź',
+'ajax-confirm-prompt'           => 'Możesz podać poniżej opis edycji.
+Kliknij „Zapisz”, aby zapisać zmiany.',
+'ajax-confirm-save'             => 'Zapisz',
+'ajax-confirm-save-all'         => 'Zapisz wszystkie zmiany',
+'ajax-add-category-summary'     => 'Dodaj kategorię „$1”',
+'ajax-edit-category-summary'    => 'Zmiana kategorii z „$1“ na „$2“',
+'ajax-remove-category-summary'  => 'Usuń kategorię „$1”',
+'ajax-confirm-actionsummary'    => 'Cel działania',
+'ajax-error-title'              => 'Błąd',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Usunięcie strony z tej kategorii nie jest możliwe.
+Problem zazwyczaj występuje, jeśli kategoria została dodana do strony przez szablon.',
+'ajax-edit-category-error'      => 'Zmiana kategorii nie była możliwa.
+Taki problem zazwyczaj występuje, gdy kategoria została dodana do strony przez szablon.',
+'ajax-category-already-present' => 'Strona już jest w kategorii $1',
 
 );

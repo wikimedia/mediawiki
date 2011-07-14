@@ -1264,7 +1264,7 @@ $1",
 'qbsettings-fixedright'     => 'Замацаваная справа',
 'qbsettings-floatingleft'   => 'Рухомая зьлева',
 'qbsettings-floatingright'  => 'Плавае справа',
-'qbsettings-directionality' => 'Замацаваная, у залежнасьці ад напісаньня ў Вашай мове',
+'qbsettings-directionality' => 'Замацаваная, у залежнасьці ад накірунку Вашага напісаньня і Вашай мовы',
 
 # Preferences page
 'preferences'                   => 'Налады',
@@ -2135,8 +2135,10 @@ $1',
 'watchlistanontext'    => 'Вам патрэбна $1, каб праглядаць альбо рэдагаваць сьпіс назіраньня.',
 'watchnologin'         => 'Вы не ўвайшлі ў сыстэму',
 'watchnologintext'     => 'Вам неабходна [[Special:UserLogin|ўвайсьці ў сыстэму]], каб зьмяніць Ваш сьпіс назіраньня.',
+'addwatch'             => 'Дадаць ў сьпіс назіраньня',
 'addedwatchtext'       => "Старонка «[[:$1]]» была дададзеная да Вашага [[Special:Watchlist|сьпісу назіраньня]].
 Наступныя зьмены ў гэтай старонцы і зьвязанай зь ёю старонцы абмеркаваньняў будуць бачныя там, а ў [[Special:RecentChanges|сьпісе апошніх зьменаў]] старонка будзе выглядаць '''тлустай''', каб зьмены было лягчэй заўважыць.",
+'removewatch'          => 'Выдаліць са сьпісу назіраньня',
 'removedwatchtext'     => 'Старонка «[[:$1]]» была выдаленая з [[Special:Watchlist|Вашага сьпісу назіраньня]].',
 'watch'                => 'Назіраць',
 'watchthispage'        => 'Назіраць за гэтай старонкай',
@@ -3461,6 +3463,12 @@ $1',
 'confirm-purge-top'    => 'Ачысьціць кэш гэтай старонкі?',
 'confirm-purge-bottom' => 'Ачыстка кэшу старонкі прывядзе да адлюстраваньня яе апошняй вэрсіі.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'Добра',
+'confirm-watch-top'      => 'Дадаць гэтую старонку ў Ваш сьпіс назіраньня?',
+'confirm-unwatch-button' => 'Добра',
+'confirm-unwatch-top'    => 'Выдаліць гэтую старонку з Вашага сьпісу назіраньня?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',
 'imgmultipagenext' => 'наступная старонка →',
@@ -3662,5 +3670,20 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 # SQLite database support
 'sqlite-has-fts' => '$1 з падтрымкай поўнатэкстнага пошуку',
 'sqlite-no-fts'  => '$1 без падтрымкі поўнатэкстнага пошуку',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Дадаць катэгорыю',
+'ajax-add-category-submit'     => 'Дадаць',
+'ajax-confirm-title'           => 'Пацьвердзіць дзеяньне',
+'ajax-confirm-prompt'          => 'Ніжэй Вы можаце ўвесьці кароткае апісаньне зьменаў.
+Націсьніце «Захаваць», каб захаваць Вашае рэдагаваньне.',
+'ajax-confirm-save'            => 'Захаваць',
+'ajax-add-category-summary'    => 'Дададзеная катэгорыя «$1»',
+'ajax-remove-category-summary' => 'Выдаленая катэгорыя «$1»',
+'ajax-confirm-actionsummary'   => 'Дзеяньне да выкананьня:',
+'ajax-error-title'             => 'Памылка',
+'ajax-error-dismiss'           => 'Добра',
+'ajax-remove-category-error'   => 'Немагчыма выдаліць гэтую катэгорыю.
+Звычайна гэта здараецца, калі катэгорыя была дададзеная на старонку праз шаблён.',
 
 );

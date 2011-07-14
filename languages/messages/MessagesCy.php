@@ -3499,4 +3499,19 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 gyda chymorth chwilio yr holl destun',
 'sqlite-no-fts'  => '$1 heb gymorth chwiliad yr holl destun',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Ychwanegu categori',
+'ajax-add-category-submit'     => 'Ychwanegu',
+'ajax-confirm-title'           => "Cadarnhau'r weithred",
+'ajax-confirm-prompt'          => 'Gallwch ysgrifennu crynodeb o\'r golygiad isod.
+Pwyswch ar "Cadw" i roi\'ch golygiad ar gadw.',
+'ajax-confirm-save'            => 'Cadw',
+'ajax-add-category-summary'    => 'Ychwanegu\'r categori "$1"',
+'ajax-remove-category-summary' => 'Tynnu\'r categori "$1"',
+'ajax-confirm-actionsummary'   => 'Dewiswch weithred:',
+'ajax-error-title'             => 'Gwall',
+'ajax-error-dismiss'           => 'Iawn',
+'ajax-remove-category-error'   => "Nid oedd yn bosibl tynnu'r categori hwn i ffwrdd.
+Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.",
+
 );

@@ -566,13 +566,18 @@ Vu posse provar in un témpor minu activ.',
 'watchlist'            => 'Liste de págines vigilat',
 'mywatchlist'          => 'Mi liste de págines vigilat',
 'watchlistanontext'    => 'Pleser $1 por vider o redacter articules in tui liste de págines vigilat.',
+'watchnologin'         => 'Vu ne ha intrat',
+'watchnologintext'     => 'Vu deve esser [[Special:UserLogin|registrat]] por redacter tui liste de págines vigilat.',
 'addedwatchtext'       => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:RecentChanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
 'watch'                => 'Vigilar',
 'watchthispage'        => 'Vigilar ti págine',
 'unwatch'              => 'Desvigilar',
+'watchnochange'        => 'Nequant de tui tui partes vigilat esset redactet in li periode de témpor monstrat.',
 'watchlist-details'    => '{{PLURAL:$1|$1 págine|$1 págines}} in tui liste de págines vigilat, sin págines de discussion.',
 'wlheader-enotif'      => '* Li notification de e-mail es permisset.',
 'wlheader-showupdated' => "* Págines quel hat esset mutat desde tui ultim visitation es monstrat in '''nigri'''",
+'watchmethod-recent'   => 'controlant nov redactiones por págines vigilat',
+'watchmethod-list'     => 'controlant págines vigilat por nov redactiones',
 'watchlistcontains'    => 'Tui liste de págines vigilat contene $1 {{PLURAL:$1|págine|págines}}.',
 'wlnote'               => "Infra {{PLURAL:$1|es li ultim change|es li ultim '''$1''' changes}} in li ultim {{PLURAL:$2|hor|'''$2''' hores}}.",
 'wlshowlast'           => 'Monstra ultim $1 hores $2 dies $3',
@@ -792,7 +797,30 @@ Vu posse provar in un témpor minu activ.',
 'table_pager_limit_submit' => 'Ear',
 
 # Watchlist editor
-'watchlistedit-noitems' => 'Tui liste de págines vigilat ne contene titules.',
+'watchlistedit-numitems'       => 'Tui liste de págines vigilat contene {{PLURAL:$1|1 titul|$1 titules}}, excludent págines de discussion.',
+'watchlistedit-noitems'        => 'Tui liste de págines vigilat ne contene titules.',
+'watchlistedit-normal-title'   => 'Redacter liste de págines vigilat',
+'watchlistedit-normal-legend'  => 'Remove titules del liste de págines vigilat',
+'watchlistedit-normal-explain' => 'Titules in tui liste de págines vigilat es monstrat infra.
+Por remover un titul, controla li buxe proxim por it, e clacca "{{int:Watchlistedit-normal-submit}}".
+Vu posse anc [[Special:EditWatchlist/raw|redacter li liste vulnerosi]].',
+'watchlistedit-normal-submit'  => 'Remover titules',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titul esset|$1 titules esset}} removet de tui liste de págines vigilat:',
+'watchlistedit-raw-title'      => 'Redacter liste de págines vigilat vulnerosi',
+'watchlistedit-raw-legend'     => 'Redacter liste de págines vigilat vulnerosi',
+'watchlistedit-raw-explain'    => 'Titules in tui liste de págines vigilat es monstrat in infra, e posse esser redactet solmen adjuntent por e removent de li liste; un titul per linea.
+Quande terminat, clacca "{{int:Watchlistedit-raw-submit}}".
+Vu posse anc [[Special:EditWatchlist|usar li redactor uniform]].',
+'watchlistedit-raw-titles'     => 'Titules:',
+'watchlistedit-raw-submit'     => 'Modernisar liste de págines vigilat',
+'watchlistedit-raw-done'       => 'Tui liste de págines vigilat ha esset modernisat.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titul esset|$1 titules esset}} adjuntet:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titul esset|$1 titules esset}} removet:',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Vider changes aplicabil',
+'watchlisttools-edit' => 'Vider e redacter liste de págines vigilat',
+'watchlisttools-raw'  => 'Redacter liste de págines vigilat vulnerosi',
 
 # Special:Version
 'version'                       => 'Version',

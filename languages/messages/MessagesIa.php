@@ -3668,4 +3668,19 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 con supporto de recerca de texto integre',
 'sqlite-no-fts'  => '$1 sin supporto de recerca de texto integre',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Adder categoria',
+'ajax-add-category-submit'     => 'Adder',
+'ajax-confirm-title'           => 'Confirmar action',
+'ajax-confirm-prompt'          => 'Tu pote fornir un summario del modification ci infra.
+Clicca super "Publicar" pro confirmar le modification.',
+'ajax-confirm-save'            => 'Publicar',
+'ajax-add-category-summary'    => 'Adder categoria "$1"',
+'ajax-remove-category-summary' => 'Remover categoria "$1"',
+'ajax-confirm-actionsummary'   => 'Action a prender:',
+'ajax-error-title'             => 'Error',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Il non esseva possibile remover iste categoria.
+Isto occurre generalmente quando le categoria ha essite addite al pagina per un patrono.',
+
 );

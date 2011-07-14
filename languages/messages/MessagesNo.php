@@ -3676,4 +3676,19 @@ Normale spesialsider.
 'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
 'sqlite-no-fts'  => '$1 uten støtte for fulltekstsøk',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Legg til kategori',
+'ajax-add-category-submit'     => 'Legg til',
+'ajax-confirm-title'           => 'Bekreft handling',
+'ajax-confirm-prompt'          => 'Du kan oppgi redigeringsforklaring nedenfir.
+Klikk på «Lagre» for å lagre endringen.',
+'ajax-confirm-save'            => 'Lagre',
+'ajax-add-category-summary'    => 'Legg til kategorien «$1»',
+'ajax-remove-category-summary' => 'Fjern kategorien «$1»',
+'ajax-confirm-actionsummary'   => 'Handling:',
+'ajax-error-title'             => 'Feil',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Det var umulig å fjerne kategorien.
+Dette skjer som regel fordi kategorien har blitt lagt til via en mal.',
+
 );
