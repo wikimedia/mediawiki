@@ -100,10 +100,10 @@ class UploadFromStash extends UploadBase {
 	 * There is no need to stash the image twice
 	 */
 	public function stashFile( $key = null ) {
-		if ( !empty( $this->mFileKey ) ) {
-			return $this->mFileKey;
+		if ( !empty( $this->mLocalFile ) ) {
+			return $this->mLocalFile;
 		}
-		return parent::stashFileGetKey();
+		return parent::stashFile( $key );
 	}
 
 	/**
@@ -118,7 +118,16 @@ class UploadFromStash extends UploadBase {
 	 * @return success
 	 */
 	public function unsaveUploadedFile() {
-		return $stash->removeFile( $this->mFileKey );
+		return $this->stash->removeFile( $this->mFileKey );
+	}
+
+	/**
+	 * Perform the upload, then remove the database record afterward.
+	 */
+	public function performUpload( $comment, $pageText, $watch, $user ) {
+		$rv = parent::performUpload( $comment, $pageText, $watch, $user );
+		$this->unsaveUploadedFile();
+		return $rv;
 	}
 
 }

@@ -131,6 +131,11 @@ class UploadStash {
 			$this->fileProps[$key] = File::getPropsFromPath( $path );
 		}
 		
+		if ( ! $this->files[$key]->exists() ) {
+			wfDebug( __METHOD__ . " tried to get file at $key, but it doesn't exist\n" );
+			throw new UploadStashBadPathException( "path doesn't exist" );
+		}
+		
 		if( !$noAuth ) {
 			if( $this->fileMetadata[$key]['us_user'] != $this->userId ) {
 				throw new UploadStashWrongOwnerException( "This file ($key) doesn't belong to the current user." );
@@ -669,6 +674,10 @@ class UploadStashFile extends UnregisteredLocalFile {
 		}
 		
 		return $this->repo->freeTemp( $this->path );
+	}
+
+	public function exists() {
+		return $this->repo->fileExists( $this->path, FileRepo::FILES_ONLY );
 	}
 
 }
