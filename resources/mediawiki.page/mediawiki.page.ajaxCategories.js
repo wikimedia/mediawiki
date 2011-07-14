@@ -16,16 +16,17 @@ var ajaxCategories = function ( options ) {
 	
 	var catLinkWrapper = '<li/>';
 	var $container = $( '.catlinks' );
+	var $containerNormal = $( '#mw-normal-catlinks' );
 	
 	var categoryLinkSelector = '#mw-normal-catlinks li a';
 	var _request;
 	
 	var _catElements = {};
 
-	var namespaceIds = mw.config.get( 'wgNamespaceIds' )
+	var namespaceIds = mw.config.get( 'wgNamespaceIds' );
 	var categoryNamespaceId = namespaceIds['category'];
 	var categoryNamespace = mw.config.get( 'wgFormattedNamespaces' )[categoryNamespaceId];
-	
+	var _saveAllButton;
 	
 	/**
 	 * Helper function for $.fn.suggestion
@@ -169,23 +170,15 @@ var ajaxCategories = function ( options ) {
 	 */
 	_confirmEdit = function ( fn, actionSummary, doneFn, all ) {
 		// Check whether to use multiEdit mode
-		if ( mw.config.get('AJAXCategoriesMulti') && !all ) {
+		if ( wgUserGroups.indexOf("user") != -1 && !all ) {
 			// Stash away
 			_stash.summaries.push( actionSummary );
 			_stash.fns.push( fn );
-			_stash.doneFns.push( doneFn );
 
-			// Make sure we have a save button
-			if ( !_saveAllButton ) {
-				//TODO Make more clickable
-				_saveAllButton = _createButton( 'icon-tick', 
-												mw.msg( 'ajax-confirm-save-all' ), 
-												'', 
-												mw.msg( 'ajax-confirm-save-all' ) 
-												);
-				_saveAllButton.click( _handleStashedCategories );
-			}
-
+			_saveAllButton.show();
+			
+			// This only does visual changes
+			doneFn( true );
 			return;
 		}
 		// Produce a confirmation dialog
@@ -251,22 +244,25 @@ var ajaxCategories = function ( options ) {
 		// Save fns
 		fns = _stash.fns;
 		
-		//TODO do I need a space?
-		var summary = _stash.summaries.join(' ');
+		// RTL?
+		var summary = _stash.summaries.join('. ');
 		var combinedFn = function( oldtext ) {
 			// Run the text through all action functions
 			newtext = oldtext;
 			for ( var i = 0; i < fns.length; i++ ) {
 				newtext = fns[i]( newtext );
-			};
+			}
 			return newtext;
 		}
 		var doneFn = function() {
 			//Remove saveAllButton
-			_saveAllButton.remove();
-			_saveAllButton = undefined;
+			_saveAllButton.hide();
+			
+			// TODO
+			// Any link with $link.css('text-decoration', 'line-through');
+			// needs to be removed
 		};
-
+		_confirmEdit( combinedFn, summary, doneFn, true );
 	};
 
 	_doEdit = function ( page, fn, summary, doneFn ) {
@@ -398,7 +394,7 @@ var ajaxCategories = function ( options ) {
 		var $link = $this.parent().find( 'a:not(.icon)' );
 		var category = $link.text();
 
-		categoryRegex = _buildRegex( category );
+		var categoryRegex = _buildRegex( category );
 
 		var summary = mw.msg( 'ajax-remove-category-summary', category );
 
@@ -418,8 +414,13 @@ var ajaxCategories = function ( options ) {
 				return newText;
 			},
 			summary, 
-			function() {
-				$this.parent().remove();
+			function( unsaved ) {
+				if ( unsaved ) {
+					//TODO flesh out: Make it a class, make revertable
+					$link.css('text-decoration', 'line-through');
+				} else {
+					$this.parent().remove();
+				}
 			}
 		);
 	};
@@ -585,8 +586,6 @@ var ajaxCategories = function ( options ) {
 		// Only do it for articles.
 		if ( !mw.config.get( 'wgIsArticle' ) ) return;
 
-		var clElement = $( '#mw-normal-catlinks' );
-
 		// Unhide hidden category holders.
 		$('#mw-hidden-catlinks').show();
 
@@ -597,7 +596,7 @@ var ajaxCategories = function ( options ) {
 									mw.msg( 'ajax-add-category' )
 								   );
 		addLink.click( _handleAddLink );
-		clElement.append( addLink );
+		$containerNormal.append( addLink );
 
 		// Create add category prompt
 		var promptContainer = _makeSuggestionBox( '', _handleCategoryAdd, mw.msg( 'ajax-add-category-submit' ) );
@@ -608,13 +607,21 @@ var ajaxCategories = function ( options ) {
 			_createCatButtons( this );
 		});
 
-		clElement.append( promptContainer );
+		$containerNormal.append( promptContainer );
+		
+		//TODO Make more clickable
+		_saveAllButton = _createButton( 'icon-tick', 
+										mw.msg( 'ajax-confirm-save-all' ), 
+										'', 
+										mw.msg( 'ajax-confirm-save-all' ) 
+										);
+		_saveAllButton.click( _handleStashedCategories ).hide();
+		$containerNormal.append( _saveAllButton )
 	};
 	
 	_stash = {
 		summaries : [],
-		fns : [],
-		doneFns : [],
+		fns : []
 	};
 };
 // Now make a new version
