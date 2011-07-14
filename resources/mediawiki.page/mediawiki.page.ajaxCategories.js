@@ -7,31 +7,37 @@
 // * Add Hooks for change, delete, add
 // * Add Hooks for soft redirect
 // * Handle normal redirects
-// * api.php / api.php5
 // * Simple / MultiEditMode
 
 ( function( $, mw ) {
-	var catLinkWrapper = '<li/>'
+
+var ajaxCategories = function ( options ) {
+	// TODO grab these out of option object.
+	
+	var catLinkWrapper = '<li/>';
 	var $container = $( '.catlinks' );
 	
 	var categoryLinkSelector = '#mw-normal-catlinks li a';
 	var _request;
 	
 	var _catElements = {};
-	var _otherElements = {};
 
 	var namespaceIds = mw.config.get( 'wgNamespaceIds' )
 	var categoryNamespaceId = namespaceIds['category'];
 	var categoryNamespace = mw.config.get( 'wgFormattedNamespaces' )[categoryNamespaceId];
-	var wgScriptPath = mw.config.get( 'wgScriptPath' );
-
-	function _fetchSuggestions ( query ) {
-		//SYNCED
+	
+	
+	/**
+	 * Helper function for $.fn.suggestion
+	 * 
+	 * @param string Query string.
+	 */
+	_fetchSuggestions = function ( query ) {
 		var _this = this;
 		// ignore bad characters, they will be stripped out
 		var catName = _stripIllegals( $( this ).val() );
 		var request = $.ajax( {
-			url: wgScriptPath + '/api.php',
+			url: mw.util.wikiScript( 'api' ),
 			data: {
 				'action': 'query',
 				'list': 'allpages',
@@ -55,13 +61,19 @@
 		} );
 		//TODO
 		_request = request;
-	}
+	};
 
-	function _stripIllegals( cat ) {
+	_stripIllegals = function ( cat ) {
 		return cat.replace( /[\x00-\x1f\x3c\x3e\x5b\x5d\x7b\x7c\x7d\x7f]+/g, '' );
-	}
+	};
 	
-	function _insertCatDOM( cat, isHidden ) {
+	/**
+	 * Insert a newly added category into the DOM
+	 * 
+	 * @param string category name.
+	 * @param boolean isHidden (unused)
+	 */
+	_insertCatDOM = function ( cat, isHidden ) {
 		// User can implicitely state a sort key.
 		// Remove before display
 		cat = cat.replace(/\|.*/, '');
@@ -83,9 +95,9 @@
 			$container.find( '#mw-normal-catlinks ul' ).append( $catLinkWrapper );
 		}
 		_createCatButtons( $anchor.get(0) );
-	}
+	};
 	
-	function _makeSuggestionBox( prefill, callback, buttonVal ) {
+	_makeSuggestionBox = function ( prefill, callback, buttonVal ) {
 		// Create add category prompt
 		var promptContainer = $( '<div class="mw-addcategory-prompt"/>' );
 		var promptTextbox = $( '<input type="text" size="45" class="mw-addcategory-input"/>' );
@@ -114,24 +126,38 @@
 		promptContainer.append( addButton );
 
 		return promptContainer;
-	}
+	};
 	
-	// Create a valid link to the category.
-	function _catLink ( cat ) {
-		//SYNCED
+	/**
+	 * Build URL for passed Category
+	 * 
+	 * @param string category name.
+	 * @return string Valid URL
+	 */
+	_catLink = function ( cat ) {
 		return mw.util.wikiGetlink( categoryNamespace + ':' + $.ucFirst( cat ) );
-	}
+	};
 	
-	function _getCats() {
+	/**
+	 * Parse the DOM $container and build a list of
+	 * present categories
+	 * 
+	 * @return array Array of all categories
+	 */
+	_getCats = function () {
 		return $container.find( categoryLinkSelector ).map( function() { return $.trim( $( this ).text() ); } );
-	}
+	};
 
-	function _containsCat( cat ) {
-		//TODO: SYNC
+	/**
+	 * Check whether a passed category is present in the DOM
+	 * 
+	 * @return boolean True for exists
+	 */
+	_containsCat = function ( cat ) {
 		return _getCats().filter( function() { return $.ucFirst(this) == $.ucFirst(cat); } ).length !== 0;
-	}
+	};
 	
-	function _confirmEdit ( page, fn, actionSummary, doneFn ) {
+	_confirmEdit = function ( page, fn, actionSummary, doneFn ) {
 
 		// Produce a confirmation dialog
 		var dialog = $( '<div/>' );
@@ -185,9 +211,9 @@
 
 		$( '#catlinks' ).prepend( dialog );
 		dialog.dialog( dialogOptions );
-	}
+	};
 
-	function _doEdit ( page, fn, summary, doneFn ) {
+	_doEdit = function ( page, fn, summary, doneFn ) {
 		// Get an edit token for the page.
 		var getTokenVars = {
 			'action':'query',
@@ -198,7 +224,7 @@
 			'format':'json'
 		};
 
-		$.get( wgScriptPath + '/api.php', getTokenVars,
+		$.get( mw.util.wikiScript( 'api' ), getTokenVars,
 			function( reply ) {
 				var infos = reply.query.pages;
 				$.each(
@@ -222,33 +248,48 @@
 							'format':'json'
 						};
 
-						$.post( wgScriptPath + '/api.php', postEditVars, doneFn, 'json' );
+						$.post( mw.util.wikiScript( 'api' ), postEditVars, doneFn, 'json' );
 					}
 				);
 			}
 		, 'json' );
-	}
-
-	function _addProgressIndicator ( elem ) {
+	};
+	
+	/**
+	 * Append spinner wheel to element
+	 * @param DOMObject element.
+	 */
+	_addProgressIndicator = function ( elem ) {
 		var indicator = $( '<div/>' );
 
 		indicator.addClass( 'mw-ajax-loader' );
 
 		elem.append( indicator );
-	}
+	};
 
-	function _removeProgressIndicator ( elem ) {
+	/**
+	 * Find and remove spinner wheel from inside element
+	 * @param DOMObject parent element.
+	 */
+	_removeProgressIndicator = function ( elem ) {
 		elem.find( '.mw-ajax-loader' ).remove();
-	}
+	};
 	
-	function _makeCaseInsensitiv( string ) {
+	/**
+	 * Makes regex string caseinsensitive.
+	 * Useful when 'i' flag can't be used.
+	 * Return stuff like [Ff][Oo][Oo]
+	 * @param string Regex string.
+	 * @return string Processed regex string
+	 */
+	_makeCaseInsensitiv = function ( string ) {
 		var newString = '';
 		for (var i=0; i < string.length; i++) {
 			newString += '[' + string[i].toUpperCase() + string[i].toLowerCase() + ']';
-		};
+		}
 		return newString;
-	}
-	function _buildRegex ( category ) {
+	};
+	_buildRegex = function ( category ) {
 		// Build a regex that matches legal invocations of that category.
 		var categoryNSFragment = '';
 		$.each( namespaceIds, function( name, id ) {
@@ -269,9 +310,9 @@
 		var categoryRegex = '\\[\\[(' + categoryNSFragment + '):' + titleFragment + '(\\|[^\\]]*)?\\]\\]';
 
 		return new RegExp( categoryRegex, 'g' );
-	}
+	};
 	
-	function _handleEditLink ( e ) {
+	_handleEditLink = function ( e ) {
 		e.preventDefault();
 		var $this = $( this );
 		var $link = $this.parent().find( 'a:not(.icon)' );
@@ -286,15 +327,15 @@
 			_catElements[category].editButton.show();
 			$( this ).unbind('click').click( _handleDeleteLink );
 		});
-	}
+	};
 	
-	function _handleAddLink ( e ) {
+	_handleAddLink = function ( e ) {
 		e.preventDefault();
 
 		$container.find( '#mw-normal-catlinks>.mw-addcategory-prompt' ).toggle();
-	}
+	};
 	
-	function _handleDeleteLink ( e ) {
+	_handleDeleteLink = function ( e ) {
 		e.preventDefault();
 
 		var $this = $( this );
@@ -326,15 +367,15 @@
 				$this.parent().remove();
 			}
 		);
-	}
+	};
 
-	function _handleCategoryAdd ( e ) {
+	_handleCategoryAdd = function ( e ) {
 		// Grab category text
 		var category = $( this ).parent().find( '.mw-addcategory-input' ).val();
 		category = $.ucFirst( category );
 
 		if ( _containsCat(category) ) {
-			// TODO add info alert
+			_showError( mw.msg( 'ajax-category-already-present' ) );
 			return;
 		}
 		var appendText = "\n[[" + categoryNamespace + ":" + category + "]]\n";
@@ -348,9 +389,9 @@
 				_insertCatDOM( category, false );
 			}
 		);
-	}
+	};
 
-	function _handleCategoryEdit ( e ) {
+	_handleCategoryEdit = function ( e ) {
 		e.preventDefault();
 
 		// Grab category text
@@ -407,8 +448,14 @@
 				$link.show().text( categoryNew ).attr( 'href', _catLink( categoryNew ) );
 			}
 		);
-	}
-	function _showError ( str ) {
+	};
+	
+	/**
+	 * Open a dismissable error dialog 
+	 *
+	 * @param string str The error description
+	 */
+	_showError = function ( str ) {
 		var dialog = $( '<div/>' );
 		dialog.text( str );
 
@@ -425,24 +472,40 @@
 		};
 
 		dialog.dialog( dialogOptions );
-	}
+	};
 
-	function _createButton ( icon, title, category, text ){
-		var button = $( '<a>' ).addClass( category || '' )
+	/**
+	 * Manufacture iconed button, with or without text 
+	 *
+	 * @param string icon The icon class.
+	 * @param string title Title attribute.
+	 * @param string className (optional) Additional classes to be added to the button.
+	 * @param string text (optional) Text of button.
+	 *
+	 * @return jQueryObject The button
+	 */
+	_createButton = function ( icon, title, className, text ){
+		var $button = $( '<a>' ).addClass( className || '' )
 			.attr('title', title);
 		
 		if ( text ) {
-			var icon = $( '<a>' ).addClass( 'icon ' + icon );
-			button.addClass( 'icon-parent' ).append( icon ).append( text );
+			var $icon = $( '<a>' ).addClass( 'icon ' + icon );
+			$button.addClass( 'icon-parent' ).append( $icon ).append( text );
 		} else {
-			button.addClass( 'icon ' + icon );
+			$button.addClass( 'icon ' + icon );
 		}
-		return button;
-	}
-	function _createCatButtons ( element ) {
+		return $button;
+	};
+	
+	/**
+	 * Append edit and remove buttons to a given category link 
+	 *
+	 * @param DOMElement element Anchor element, to which the buttons should be appended.
+	 */
+	_createCatButtons = function( element ) {
 		// Create remove & edit buttons
 		var deleteButton = _createButton('icon-close', mw.msg( 'ajax-remove-category' ) );
-		var editButton   = _createButton('icon-edit', mw.msg( 'ajax-edit-category' ) );
+		var editButton = _createButton('icon-edit', mw.msg( 'ajax-edit-category' ) );
 
 		//Not yet used
 		var saveButton = _createButton('icon-tick', mw.msg( 'ajax-confirm-save' ) ).hide();
@@ -460,8 +523,8 @@
 			deleteButton: deleteButton,
 			editButton 	: editButton
 		};
-	}
-	function _setup() {
+	};
+	this.setup = function () {
 		// Could be set by gadgets like HotCat etc.
 		if ( mw.config.get('disableAJAXCategories') ) {
 			return;
@@ -494,10 +557,8 @@
 		});
 
 		clElement.append( promptContainer );
-	}
-	function _teardown() {
-		
-	}
+	};
+
 	_tasks = {
 		list : [],
 		executed : [],
@@ -509,7 +570,13 @@
 			//run task
 			this.executed.push( task );
 		}
-	}
-	$(document).ready( function() {_setup()});
+	};
+};
+// Now make a new version
+mw.ajaxCategories = new ajaxCategories();
+
+// Executing only on doc.ready, so that everyone 
+// gets a chance to set mw.config.set('disableAJAXCategories')
+$( document ).ready( mw.ajaxCategories.setup() );
 
 } )( jQuery, mediaWiki );

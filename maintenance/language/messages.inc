@@ -3475,6 +3475,7 @@ $wgMessageStructure = array(
 		'ajax-error-dismiss',
 		'ajax-remove-category-error',
 		'ajax-edit-category-error',
+		'ajax-category-already-present',
 	),
 
 );
