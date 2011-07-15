@@ -595,6 +595,10 @@ $image: File
 &$scalerParams: Array with scaler parameters 
 &$mto: null, set to a MediaTransformOutput
 
+'PerformRetroactiveAutoblock': called before a retroactive autoblock is applied to a user
+$block: Block object (which is set to be autoblocking)
+&$blockIds: Array of block IDs of the autoblock
+
 'BlockIp': before an IP address or user is blocked
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
