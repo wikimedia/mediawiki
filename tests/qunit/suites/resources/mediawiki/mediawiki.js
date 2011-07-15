@@ -154,7 +154,7 @@ test( 'mw.loader', function() {
 		);
 
 	// Asynchronous ahead
-	stop(1500);
+	stop(5000);
 
 	// Extract path
 	var tests_path = rePath.exec( location.href );
