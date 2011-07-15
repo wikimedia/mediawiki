@@ -353,6 +353,10 @@ class UploadStash {
 			__METHOD__
 		);
 
+		if( !$row ) {
+			throw new UploadStashNoSuchKeyException( "No such key ($key), cannot remove" );
+		}
+
 		if ( $row->us_user != $this->userId ) {
 			throw new UploadStashWrongOwnerException( "Can't delete: the file ($key) doesn't belong to this user." );
 		}
@@ -690,3 +694,4 @@ class UploadStashZeroLengthFileException extends MWException {};
 class UploadStashNotLoggedInException extends MWException {};
 class UploadStashWrongOwnerException extends MWException {};
 class UploadStashMaxLagExceededException extends MWException {};
+class UploadStashNoSuchKeyException extends MWException {};
