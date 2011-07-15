@@ -7,7 +7,7 @@
  *	  Mostly all of them are the same except for storing some custom fields, which we subsume into the data array.
  *   - enable applications to find said files later, as long as the db table or temp files haven't been purged.
  *   - enable the uploading user (and *ONLY* the uploading user) to access said files, and thumbnails of said files, via a URL.
- *     We accomplish this using a database table, with ownership checking as you might expect. See SpecialUploadStash, which 
+ *     We accomplish this using a database table, with ownership checking as you might expect. See SpecialUploadStash, which
  *     implements a web interface to some files stored this way.
  *
  * UploadStash represents the entire stash of temporary files.
@@ -18,7 +18,7 @@ class UploadStash {
 
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
 	const KEY_FORMAT_REGEX = '/^[\w-]+\.\w*$/';
-	
+
 	// When a given stashed file can't be loaded, wait for the slaves to catch up.  If they're more than MAX_LAG
 	// behind, throw an exception instead. (at what point is broken better than slow?)
 	const MAX_LAG = 30;
@@ -36,13 +36,13 @@ class UploadStash {
 
 	// array of initialized repo objects
 	protected $files = array();
-	
+
 	// cache of the file metadata that's stored in the database
 	protected $fileMetadata = array();
-	
+
 	// fileprops cache
 	protected $fileProps = array();
-	
+
 	// current user
 	protected $user, $userId, $isLoggedIn;
 
@@ -55,17 +55,17 @@ class UploadStash {
 	public function __construct( $repo, $user = null ) {
 		// this might change based on wiki's configuration.
 		$this->repo = $repo;
-	
+
 		// if a user was passed, use it. otherwise, attempt to use the global.
 		// this keeps FileRepo from breaking when it creates an UploadStash object
-		if( $user ) {
+		if ( $user ) {
 			$this->user = $user;
 		} else {
 			global $wgUser;
 			$this->user = $wgUser;
 		}
-		
-		if( is_object($this->user) ) {
+
+		if ( is_object( $this->user ) ) {
 			$this->userId = $this->user->getId();
 			$this->isLoggedIn = $this->user->isLoggedIn();
 		}
@@ -83,39 +83,39 @@ class UploadStash {
 	 * @return UploadStashFile
 	 */
 	public function getFile( $key, $noAuth = false ) {
-		
+
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		}
-		
-		if( !$noAuth ) {
-			if( !$this->isLoggedIn ) {
+
+		if ( !$noAuth ) {
+			if ( !$this->isLoggedIn ) {
 				throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 			}
 		}
-		
+
 		$dbr = $this->repo->getSlaveDb();
-		
+
 		if ( !isset( $this->fileMetadata[$key] ) ) {
 			// try this first.  if it fails to find the row, check for lag, wait, try again. if its still missing, throw an exception.
-			// this more complex solution keeps things moving for page loads with many requests 
+			// this more complex solution keeps things moving for page loads with many requests
 			// (ie. validating image ownership) when replag is high
-			if( !$this->fetchFileMetadata($key) ) {
+			if ( !$this->fetchFileMetadata( $key ) ) {
 				$lag = $dbr->getLag();
-				if( $lag > 0 && $lag <= self::MAX_LAG ) {
+				if ( $lag > 0 && $lag <= self::MAX_LAG ) {
 					// if there's not too much replication lag, just wait for the slave to catch up to our last insert.
 					sleep( ceil( $lag ) );
-				} elseif($lag > self::MAX_LAG ) {
+				} elseif ( $lag > self::MAX_LAG ) {
 					// that's a lot of lag to introduce into the middle of the UI.
 					throw new UploadStashMaxLagExceededException(
 						'Couldn\'t load stashed file metadata, and replication lag is above threshold: (MAX_LAG=' . self::MAX_LAG . ')'
 					);
 				}
-				
+
 				// now that the waiting has happened, try again
-				$this->fetchFileMetadata($key);
+				$this->fetchFileMetadata( $key );
 			}
-			
+
 			if ( !isset( $this->fileMetadata[$key] ) ) {
 				throw new UploadStashFileNotFoundException( "key '$key' not found in stash" );
 			}
@@ -130,18 +130,18 @@ class UploadStash {
 			}
 			$this->fileProps[$key] = File::getPropsFromPath( $path );
 		}
-		
+
 		if ( ! $this->files[$key]->exists() ) {
 			wfDebug( __METHOD__ . " tried to get file at $key, but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
 		}
-		
-		if( !$noAuth ) {
-			if( $this->fileMetadata[$key]['us_user'] != $this->userId ) {
+
+		if ( !$noAuth ) {
+			if ( $this->fileMetadata[$key]['us_user'] != $this->userId ) {
 				throw new UploadStashWrongOwnerException( "This file ($key) doesn't belong to the current user." );
 			}
 		}
-		
+
 		return $this->files[$key];
 	}
 
@@ -153,7 +153,7 @@ class UploadStash {
 	 */
 	public function getMetadata ( $key ) {
 		$this->getFile( $key );
-		return $this->fileMetadata[$key];		
+		return $this->fileMetadata[$key];
 	}
 
 	/**
@@ -164,7 +164,7 @@ class UploadStash {
 	 */
 	public function getFileProps ( $key ) {
 		$this->getFile( $key );
-		return $this->fileProps[$key];		
+		return $this->fileProps[$key];
 	}
 
 	/**
@@ -205,17 +205,17 @@ class UploadStash {
 		}
 
 		$this->fileProps[$key] = $fileProps;
-		
+
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		}
-		
+
 		wfDebug( __METHOD__ . " key for '$path': $key\n" );
 
 		// if not already in a temporary area, put it there
 		$storeResult = $this->repo->storeTemp( basename( $path ), $path );
 
-		if( ! $storeResult->isOK() ) {
+		if ( ! $storeResult->isOK() ) {
 			// It is a convention in MediaWiki to only return one error per API exception, even if multiple errors
 			// are available. We use reset() to pick the "first" thing that was wrong, preferring errors to warnings.
 			// This is a bit lame, as we may have more info in the $storeResult and we're throwing it away, but to fix it means
@@ -233,9 +233,9 @@ class UploadStash {
 			throw new UploadStashFileException( "error storing file in '$path': " . implode( '; ', $error ) );
 		}
 		$stashPath = $storeResult->value;
-		
+
 		// fetch the current user ID
-		if( !$this->isLoggedIn ) {
+		if ( !$this->isLoggedIn ) {
 			wfDebugCallstack();
 			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
@@ -252,22 +252,22 @@ class UploadStash {
 		$row = $dbw->selectRow(
 			'uploadstash',
 			'us_user, us_timestamp',
-			array('us_key' => $key),
+			array( 'us_key' => $key ),
 			__METHOD__
 		);
-		
+
 		// The current user can't have this key if:
 		// - the key is owned by someone else and
 		// - the age of the key is less than REPO_AGE
-		if( is_object( $row ) ) {
-			if( $row->us_user != $this->userId &&
+		if ( is_object( $row ) ) {
+			if ( $row->us_user != $this->userId &&
 				$row->wfTimestamp( TS_UNIX, $row->us_timestamp ) > time() - UploadStash::REPO_AGE * 3600
 			) {
 				$dbw->rollback();
 				throw new UploadStashWrongOwnerException( "Attempting to upload a duplicate of a file that someone else has stashed" );
 			}
 		}
-		
+
 		$this->fileMetadata[$key] = array(
 			'us_user' => $this->userId,
 			'us_key' => $key,
@@ -284,13 +284,13 @@ class UploadStash {
 			'us_timestamp' => $dbw->timestamp(),
 			'us_status' => 'finished'
 		);
-		
-		// if a row exists but previous checks on it passed, let the current user take over this key.	
+
+		// if a row exists but previous checks on it passed, let the current user take over this key.
 		$dbw->replace(
 			'uploadstash',
 			'us_key',
 			$this->fileMetadata[$key],
-			__METHOD__	
+			__METHOD__
 		);
 		$dbw->commit();
 
@@ -299,7 +299,7 @@ class UploadStash {
 
 		# create the UploadStashFile object for this file.
 		$this->initFile( $key );
-				
+
 		return $this->getFile( $key );
 	}
 
@@ -311,22 +311,22 @@ class UploadStash {
 	 * @return boolean: success
 	 */
 	public function clear() {
-		if( !$this->isLoggedIn ) {
+		if ( !$this->isLoggedIn ) {
 			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
-		
+
 		wfDebug( __METHOD__ . " clearing all rows for user $userId\n" );
 		$dbw = $this->repo->getMasterDb();
 		$dbw->delete(
 			'uploadstash',
 			array( 'us_user' => $this->userId ),
-			__METHOD__	
+			__METHOD__
 		);
 
 		# destroy objects.
 		$this->files = array();
 		$this->fileMetadata = array();
-		
+
 		return true;
 	}
 
@@ -337,26 +337,26 @@ class UploadStash {
 	 * @throws UploadStashWrongOwnerException
 	 * @return boolean: success
 	 */
-	public function removeFile( $key ){
-		if( !$this->isLoggedIn ) {
+	public function removeFile( $key ) {
+		if ( !$this->isLoggedIn ) {
 			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
-		
+
 		$dbw = $this->repo->getMasterDb();
-		
+
 		// this is a cheap query. it runs on the master so that this function still works when there's lag.
 		// it won't be called all that often.
 		$row = $dbw->selectRow(
 			'uploadstash',
 			'us_user',
-			array('us_key' => $key),
+			array( 'us_key' => $key ),
 			__METHOD__
 		);
-		
-		if( $row->us_user != $this->userId ) {
+
+		if ( $row->us_user != $this->userId ) {
 			throw new UploadStashWrongOwnerException( "Can't delete: the file ($key) doesn't belong to this user." );
 		}
-		
+
 		return $this->removeFileNoAuth( $key );
 	}
 
@@ -370,23 +370,23 @@ class UploadStash {
 		wfDebug( __METHOD__ . " clearing row $key\n" );
 
 		$dbw = $this->repo->getMasterDb();
-		
+
 		// this gets its own transaction since it's called serially by the cleanupUploadStash maintenance script
 		$dbw->begin();
 		$dbw->delete(
 			'uploadstash',
-			array( 'us_key' => $key),
-			__METHOD__	
+			array( 'us_key' => $key ),
+			__METHOD__
 		);
 		$dbw->commit();
-		
+
 		// TODO: look into UnregisteredLocalFile and find out why the rv here is sometimes wrong (false when file was removed)
 		// for now, ignore.
 		$this->files[$key]->remove();
-		
+
 		unset( $this->files[$key] );
 		unset( $this->fileMetadata[$key] );
-		
+
 		return true;
 	}
 
@@ -397,26 +397,26 @@ class UploadStash {
 	 * @return Array
 	 */
 	public function listFiles() {
-		if( !$this->isLoggedIn ) {
+		if ( !$this->isLoggedIn ) {
 			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
-		
+
 		$dbr = $this->repo->getSlaveDb();
 		$res = $dbr->select(
 			'uploadstash',
 			'us_key',
-			array('us_key' => $key),
+			array( 'us_key' => $key ),
 			__METHOD__
 		);
 
-		if( !is_object( $res ) || $res->numRows() == 0 ) {
+		if ( !is_object( $res ) || $res->numRows() == 0 ) {
 			// nothing to do.
 			return false;
 		}
 
 		// finish the read before starting writes.
 		$keys = array();
-		foreach($res as $row) {
+		foreach ( $res as $row ) {
 			array_push( $keys, $row->us_key );
 		}
 
@@ -465,15 +465,15 @@ class UploadStash {
 		$row = $dbr->selectRow(
 			'uploadstash',
 			'*',
-			array('us_key' => $key),
+			array( 'us_key' => $key ),
 			__METHOD__
 		);
-		
-		if( !is_object( $row ) ) {
+
+		if ( !is_object( $row ) ) {
 			// key wasn't present in the database. this will happen sometimes.
 			return false;
 		}
-		
+
 		$this->fileMetadata[$key] = array(
 			'us_user' => $row->us_user,
 			'us_key' => $row->us_key,
@@ -490,10 +490,10 @@ class UploadStash {
 			'us_timestamp' => $row->us_timestamp,
 			'us_status' => $row->us_status
 		);
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Helper function: Initialize the UploadStashFile for a given file.
 	 *
@@ -668,11 +668,11 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return Status: success
 	 */
 	public function remove() {
-		if( !$this->repo->fileExists( $this->path, FileRepo::FILES_ONLY ) ) {
+		if ( !$this->repo->fileExists( $this->path, FileRepo::FILES_ONLY ) ) {
 			// Maybe the file's already been removed? This could totally happen in UploadBase.
 			return true;
 		}
-		
+
 		return $this->repo->freeTemp( $this->path );
 	}
 
