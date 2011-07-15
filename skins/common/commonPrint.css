@@ -127,7 +127,7 @@ li#about,
 li#disclaimer,
 li#privacy,
 #footer-places,
-#mw-hidden-catlinks {
+#catlinks {
 	/* Hides all the elements irrelevant for printing */
 	display: none;
 }
@@ -146,7 +146,8 @@ ul {
 #footer {
 	background : white;
 	color : black;
-	border-top: 1px solid black;
+	margin-top: 1em;
+	border-top: 1px solid #AAA;
 	direction: ltr;
 }
 
