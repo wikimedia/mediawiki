@@ -170,6 +170,7 @@ production.
 * (bug 26360) $wgSessionHandler was overriding system settings unconditionally.
 * Removed AjaxFunctions.php. The last remaining function js_unescape() was moved
   to the FCKEditor extension.
+* (bug 28762) Resizing to specified height broken for very thin images
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
