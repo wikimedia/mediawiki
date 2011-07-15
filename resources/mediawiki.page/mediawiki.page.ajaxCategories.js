@@ -85,7 +85,7 @@ var ajaxCategories = function ( options ) {
 		// strip out bad characters
 		cat = _stripIllegals ( cat );
 
-		if ( $.isEmpty( cat ) || _containsCat( cat ) ) { 
+		if ( $.isEmpty( cat ) || this.containsCat( cat ) ) { 
 			return; 
 		}
 
@@ -157,7 +157,7 @@ var ajaxCategories = function ( options ) {
 	 * 
 	 * @return boolean True for exists
 	 */
-	_containsCat = function ( cat ) {
+	this.containsCat = function ( cat ) {
 		return _getCats().filter( function() { return $.ucFirst(this) == $.ucFirst(cat); } ).length !== 0;
 	};
 	
@@ -449,7 +449,7 @@ var ajaxCategories = function ( options ) {
 		var category = $( this ).parent().find( '.mw-addcategory-input' ).val();
 		category = $.ucFirst( category );
 
-		if ( _containsCat(category) ) {
+		if ( this.containsCat(category) ) {
 			_showError( mw.msg( 'ajax-category-already-present', category ) );
 			return;
 		}
@@ -463,6 +463,7 @@ var ajaxCategories = function ( options ) {
 			},
 			summary,
 			function() {
+				$container.find( '#mw-normal-catlinks>.mw-addcategory-prompt' ).toggle();
 				_insertCatDOM( category, false );
 			}
 		);
@@ -686,9 +687,5 @@ var ajaxCategories = function ( options ) {
 };
 // Now make a new version
 mw.ajaxCategories = new ajaxCategories();
-
-// Executing only on doc.ready, so that everyone 
-// gets a chance to set mw.config.set('disableAJAXCategories')
-$( document ).ready( mw.ajaxCategories.setup() );
 
 } )( jQuery, mediaWiki );
