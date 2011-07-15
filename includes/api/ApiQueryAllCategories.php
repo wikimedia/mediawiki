@@ -152,7 +152,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 					'descending'
 				),
 			),
-			'mine' => array(
+			'min' => array(
 				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_TYPE => 'integer'
 			),
