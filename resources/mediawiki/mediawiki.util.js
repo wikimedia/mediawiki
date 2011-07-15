@@ -99,12 +99,6 @@
 							$tocToggleLink.click();
 						}
 					}
-					/* Ajax Categories */
-					if ( mw.ajaxCategories ) {
-						// Execute only on doc.ready, so that everyone 
-						// gets a chance to set mw.config.set('disableAJAXCategories')
-						mw.ajaxCategories.setup()
-					}
 				} );
 
 				return true;

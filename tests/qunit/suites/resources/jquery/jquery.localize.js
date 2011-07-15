@@ -12,14 +12,16 @@ test( 'Handle basic replacements', function() {
 	mw.messages.set( 'basic', 'Basic stuff' );
 
 	// Tag: html:msg
-	html = '<div><span><html:msg key="basic"></span></div>';
+	html = '<div><span><html:msg key="basic"/></span></div>';
 	$lc = $( html ).localize().find( 'span' );
+	console.log($lc.length);
 
 	strictEqual( $lc.text(), 'Basic stuff', 'Tag: html:msg' );
 
 	// Tag: msg (deprecated)
-	html = '<div><span><msg key="basic"></span></div>';
+	html = '<div><span><msg key="basic"/></span></div>';
 	$lc = $( html ).localize().find( 'span' );
+	$('body').append($lc);
 
 	strictEqual( $lc.text(), 'Basic stuff', 'Tag: msg' );
 
@@ -46,7 +48,7 @@ test( 'Proper escaping', function() {
 	// making sure it is actually using text() and attr() (or something with the same effect)
 
 	// Text escaping
-	html = '<div><span><html:msg key="properfoo"></span></div>';
+	html = '<div><span><html:msg key="properfoo"/></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.text(), mw.msg( 'properfoo' ), 'Content is inserted as text, not as html.' );
