@@ -116,10 +116,6 @@ class MWTidy {
 
 		return $correctedtext;
 	}
-	
-	function replaceEditSectionLinksCallback( $m ) {
-		
-	}
 
 	/**
 	 * Check HTML for errors, used if $wgValidateAllHtml = true.
