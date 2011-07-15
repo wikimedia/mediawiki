@@ -111,7 +111,6 @@ production.
   even in RTL text.
 * (bug 29055) Make "don't send email on minor edits" preference apply to
   changes to talk page in addition to watchlist edits.
-* (bug 29071) mediawiki.action.watch.ajax.js should pass uselang to API.
 * (bug 28272) Special:AllMessages should have only one "Go" button.
 * (bug 29101) Special:FileDuplicateSearch no longer shows silly message.
 * (bug 29048) jQuery.tabIndex: firstTabIndex() should not output the same
