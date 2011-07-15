@@ -30,7 +30,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public function execute( $mode ) {
 		if( wfReadOnly() ) {
 			throw new ReadOnlyError;
-			return;
 		}
 
 		$out = $this->getOutput();
