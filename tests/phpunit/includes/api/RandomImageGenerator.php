@@ -77,7 +77,11 @@ class RandomImageGenerator {
 
 		// find the dictionary file, to generate random names
 		if ( !isset( $this->dictionaryFile ) ) {
-			foreach ( array( '/usr/share/dict/words', '/usr/dict/words' ) as $dictionaryFile ) {
+			foreach ( array( 
+					'/usr/share/dict/words', 
+					'/usr/dict/words', 
+					dirname( __FILE__ ) . '/words.txt' ) 
+					as $dictionaryFile ) {
 				if ( is_file( $dictionaryFile ) and is_readable( $dictionaryFile ) ) {
 					$this->dictionaryFile = $dictionaryFile;
 					break;
@@ -86,6 +90,14 @@ class RandomImageGenerator {
 		}
 		if ( !isset( $this->dictionaryFile ) ) {
 			throw new Exception( "RandomImageGenerator: dictionary file not found or not specified properly" );
+		}
+		
+		if ( !class_exists( 'Imagick' ) ) {
+			throw new Exception( 'No Imagick extension' );
+		}
+		global $wgExiv2Command;
+		if ( !$wgExiv2Command || !is_executable( $wgExiv2Command ) ) {
+			throw new Exception( 'exiv2 not executable or $wgExiv2Command not set' );
 		}
 	}
 
@@ -281,10 +293,6 @@ class RandomImageGenerator {
 		// because the above setImageOrientation call doesn't work... nor can I get an external imagemagick binary to do this either...
 		// hacking this for now (only works if you have exiv2 installed, a program to read and manipulate exif)
 		if ( $wgExiv2Command ) {
-			# Make sure we have exiv2 command
-			if( !is_executable( $wgExiv2Command ) ) {
-				throw new MWException( __METHOD__ . ": '$wgExiv2Command' not found or not executable\n" );
-			}
 			$cmd = wfEscapeShellArg( $wgExiv2Command )
 				. " -M "
 				. wfEscapeShellArg( "set Exif.Image.Orientation " . $orientation['exifCode'] )
