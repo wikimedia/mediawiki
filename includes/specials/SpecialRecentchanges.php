@@ -296,7 +296,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
 
-
 		$hidePatrol = $this->getUser()->useRCPatrol() && $opts['hidepatrolled'];
 		$hideLoggedInUsers = $opts['hideliu'] && !$forcebot;
 		$hideAnonymousUsers = $opts['hideanons'] && !$forcebot;

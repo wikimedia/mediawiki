@@ -7,7 +7,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.18 is an alpha-quality branch and is not recommended for use in 
+MediaWiki 1.18 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.18 ===
@@ -61,7 +61,7 @@ production.
 * The spyc library is now no longer included in phase3.
 * (bug 28343) Unused preferences contextlines/contextchars have been removed
 * $wgSkinExtensionFunctions has been removed. Use $wgExtensionFunctions instead.
-* $wgProto has been removed. You now only need to set $wgServer to change the 
+* $wgProto has been removed. You now only need to set $wgServer to change the
   URL protocol.
 
 === New features in 1.18 ===
@@ -132,6 +132,7 @@ production.
 * (bug 23495) Allow createAndPromote.php to create non-sysop users
 
 === Bug fixes in 1.18 ===
+* mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
 * (bug 23119) WikiError class and subclasses are now marked as deprecated.
 * (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer
   treated as wikitext on preview.
@@ -248,6 +249,7 @@ production.
   left-to-right.
 * (bug 28719) Do not call mLinkHolders __destruct explicitly
 * (bug 21196) Article::getContributors() no longer fails on PostgreSQL.
+* (bug 28752) XCache doesn't work in CLI mode.
 * (bug 28076) Thumbnail height limited to 360 pixels on Special:Listfiles
 * (bug 22227) Special:Listfiles no longer throws an error on bogus file entries
 * (bug 19408) user_properties.up_property: 32 bytes is not enough.
@@ -255,11 +257,12 @@ production.
 * (bug 29263) Add LTR class to the shared CSS to be used for left-to-right text
   such as SQL queries shown in dberrortext and similar messages in RTL
   environments
-* (bug 14977) Fixed $wgServer detection in cases where an IPv6 address is used 
+* (bug 14977) Fixed $wgServer detection in cases where an IPv6 address is used
   as the server name.
 * (bug 19725) Do not list suppressed edits in the "View X deleted edits" link
   if user cannot view suppressed edits.
 * The View X deleted revisions is now shown again on Special:Upload.
+* (bug 29071) mediawiki.action.watch.ajax.js should pass uselang to API.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result.
@@ -405,7 +408,7 @@ changes to languages because of Bugzilla reports.
 
 MediaWiki 1.18 requires PHP 5.2.3. PHP 4 is no longer supported.
 
-MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but 
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
 support for them is somewhat less mature. There is experimental support for IBM
 DB2 and Microsoft SQL Server.
 
@@ -421,8 +424,8 @@ The supported versions are:
 1.18 has several database changes since 1.17, and will not work without schema
 updates.
 
-If upgrading from before 1.11, and you are using a wiki as a commons 
-repository, make sure that it is updated as well. Otherwise, errors may arise 
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
 due to database schema changes.
 
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
@@ -438,8 +441,8 @@ For notes on 1.17.x and older releases, see HISTORY.
 
 == Online documentation ==
 
-Documentation for both end-users and site administrators is available on 
-MediaWiki.org, and is covered under the GNU Free Documentation License (except 
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
 for pages that explicitly state that their contents are in the public domain):
 
 	http://www.mediawiki.org/wiki/Documentation

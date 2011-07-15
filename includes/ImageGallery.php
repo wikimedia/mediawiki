@@ -221,7 +221,7 @@ class ImageGallery {
 
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING + self::GB_BORDERS );
-			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : ''; 
+			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : '';
 			# _width is ignored by any sane browser. IE6 doesn't know max-width so it uses _width instead
 			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
 		}
