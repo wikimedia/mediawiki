@@ -37,7 +37,7 @@ class ExternalEdit {
 	 * @param $mode String What mode we're using. Only 'file' has any effect
 	 */
 	public function __construct( $title, $mode ) {
-		$this->title = $article->getTitle();
+		$this->title = $title;
 		$this->mode = $mode;
 	}
 
