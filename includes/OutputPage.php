@@ -2379,7 +2379,7 @@ $templates
 			$title = $this->getTitle();
 
 			if( empty( $wgAJAXCategoriesNamespaces ) || in_array( $title->getNamespace(), $wgAJAXCategoriesNamespaces ) ) {
-				$this->addModules( 'mediawiki.page.ajaxCategories' );
+				$this->addModules( 'mediawiki.page.ajaxCategories.init' );
 			}
 		}
 	}
