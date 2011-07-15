@@ -179,7 +179,9 @@
 	'krc' => 'Къарачай-Малкъар', # Karachay-Balkar
 	'kri' => 'Krio', # Krio
 	'krj' => 'Kinaray-a', # Kinaray-a
-	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
+	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri (multiple scripts - defaults to Perso-Arabic)
+	'ks-arab' => 'كشميري',	# Kashmiri (Perso-Arabic script)
+	'ks-deva' => 'कश्मीरी',	# Kashmiri (Devanagari script)
 	'ksh' => 'Ripoarisch',	# Ripuarian
 	'ku'  => 'Kurdî',	# Kurdish (multiple scripts - defaults to Latin)
 	'ku-latn' => "\xE2\x80\xAAKurdî (latînî)\xE2\x80\xAC",	# Northern Kurdish (Latin script)
@@ -269,7 +271,7 @@
 	'ps' => 'پښتو',	# Pashto, Northern/Paktu/Pakhtu/Pakhtoo/Afghan/Pakhto/Pashtu/Pushto/Yusufzai Pashto
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
-	'qu' => 'Runa Simi',	# Quechua
+	'qu' => 'Runa Simi',	# Southern Quechua
 	'rgn' => 'Rumagnôl',	# Romagnol
 	'rif' => 'Tarifit',	# Tarifit
 	'rm' => 'Rumantsch',	# Raeto-Romance

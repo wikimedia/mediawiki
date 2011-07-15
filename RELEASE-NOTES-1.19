@@ -206,6 +206,8 @@ changes to languages because of Bugzilla reports.
 * (bug 29031) When translating block log entries, indefinite, infinite, and
   infinity are now considered the same.
 * Aromanian (rup) (renamed from "rua-rup").
+* Kashmiri (ks) split into Kashmiri (Perso-Arabic) (ks-arab) and Kashmiri
+  (Devanagari) (ks-deva). Defaults to ks-arab.
 
 === Other changes in 1.19 ===
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
