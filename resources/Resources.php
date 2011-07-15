@@ -493,6 +493,7 @@ return array(
 		'dependencies' => array(
 			'jquery.suggestions',
 			'jquery.ui.dialog',
+			'mediawiki.Title',
 		),
 		'messages' => array(
 			'ajax-add-category',
@@ -517,6 +518,12 @@ return array(
 			'ajax-remove-category-error',
 			'ajax-edit-category-error',
 			'ajax-category-already-present',
+		),
+	),
+	'mediawiki.page.ajaxCategories.init' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.init.js',
+		'dependencies' => array(
+			'mediawiki.page.ajaxCategories',
 		),
 	),
 	'mediawiki.libs.jpegmeta' => array(
