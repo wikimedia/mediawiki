@@ -4,26 +4,24 @@
 //     Something like: "Category:Foo added. Reason"
 //     Requirement: Be able to get msg with lang option.
 // * Handle uneditable cats. Needs serverside changes!
-// * Add Hooks for soft redirect
 // * Handle normal redirects
-
-// * Fixme on narrow windows
 // * Enter to submit
 
 ( function( $, mw ) {
 
 var ajaxCategories = function ( options ) {
+	//Save scope in shortcut
+	var aC = this;
+
 	// TODO grab these out of option object.
 	
 	var catLinkWrapper = '<li/>';
 	var $container = $( '.catlinks' );
 	var $containerNormal = $( '#mw-normal-catlinks' );
 	
-	var categoryLinkSelector = '#mw-normal-catlinks li a';
+	var categoryLinkSelector = '#mw-normal-catlinks li a:not(.icon)';
 	var _request;
 	
-	var _catElements = {};
-
 	var namespaceIds = mw.config.get( 'wgNamespaceIds' );
 	var categoryNamespaceId = namespaceIds['category'];
 	var categoryNamespace = mw.config.get( 'wgFormattedNamespaces' )[categoryNamespaceId];
@@ -75,9 +73,9 @@ var ajaxCategories = function ( options ) {
 	 * Insert a newly added category into the DOM
 	 * 
 	 * @param string category name.
-	 * @param boolean isHidden (unused)
+	 * @return jQuery object
 	 */
-	_insertCatDOM = function ( cat, isHidden ) {
+	_createCatDOM = function ( cat ) {
 		// User can implicitely state a sort key.
 		// Remove before display
 		cat = cat.replace(/\|.*/, '');
@@ -85,7 +83,7 @@ var ajaxCategories = function ( options ) {
 		// strip out bad characters
 		cat = _stripIllegals ( cat );
 
-		if ( $.isEmpty( cat ) || this.containsCat( cat ) ) { 
+		if ( $.isEmpty( cat ) || aC.containsCat( cat ) ) { 
 			return; 
 		}
 
@@ -93,12 +91,10 @@ var ajaxCategories = function ( options ) {
 		var $anchor = $( '<a/>' ).append( cat );
 		$catLinkWrapper.append( $anchor );
 		$anchor.attr( { target: "_blank", href: _catLink( cat ) } );
-		if ( isHidden ) {
-			$container.find( '#mw-hidden-catlinks ul' ).append( $catLinkWrapper );
-		} else {
-			$container.find( '#mw-normal-catlinks ul' ).append( $catLinkWrapper );
-		}
+
 		_createCatButtons( $anchor.get(0) );
+
+		return $anchor;
 	};
 	
 	_makeSuggestionBox = function ( prefill, callback, buttonVal ) {
@@ -162,7 +158,7 @@ var ajaxCategories = function ( options ) {
 	};
 	
 	/**
-	 * This get's called by all action buttons
+	 * This gets called by all action buttons
 	 * Displays a dialog to confirm the action
 	 * Afterwords do the actual edit
 	 *
@@ -171,12 +167,14 @@ var ajaxCategories = function ( options ) {
 	 * @param function fn doneFn callback after everything is done
 	 * @return boolean True for exists
 	 */
-	_confirmEdit = function ( fn, actionSummary, doneFn, all ) {
+	_confirmEdit = function ( fn, actionSummary, doneFn, $link, action ) {
 		// Check whether to use multiEdit mode
-		if ( _multiEdit && !all ) {
+		if ( _multiEdit && action != 'all' ) {
 			// Stash away
+			$link.data('stashIndex', _stash.fns.length );
 			_stash.summaries.push( actionSummary );
 			_stash.fns.push( fn );
+
 
 			//TODO add Cancel button
 			_saveAllButton.show();
@@ -249,19 +247,25 @@ var ajaxCategories = function ( options ) {
 		// Save fns
 		fns = _stash.fns;
 		
-		// RTL?
-		var summary = _stash.summaries.join('. ');
+		//TODO Add spaces in msg
+		var summary = _stash.summaries.join();
+		if ( summary == '' ) {
+			_saveAllButton.hide();
+			return;
+		}
 		var combinedFn = function( oldtext ) {
 			// Run the text through all action functions
 			newtext = oldtext;
 			for ( var i = 0; i < fns.length; i++ ) {
-				newtext = fns[i]( newtext );
+				if ( $.isFunction ( fns[i] ) ) {
+					newtext = fns[i]( newtext );	
+				}
 			}
 			return newtext;
 		};
 		var doneFn = _resetToActual;
 
-		_confirmEdit( combinedFn, summary, doneFn, true );
+		_confirmEdit( combinedFn, summary, doneFn, '', 'all' );
 	};
 
 	_resetToActual = function() {
@@ -390,11 +394,11 @@ var ajaxCategories = function ( options ) {
 						_multiEdit ? mw.msg( 'ajax-confirm-ok' ) : mw.msg( 'ajax-confirm-save' ) 
 					);
 		$link.after( $input ).hide();
-		_catElements[category].editButton.hide();
-		_catElements[category].deleteButton.unbind('click').click( function() {
+		$link.data('editButton').hide();
+		$link.data('deleteButton').unbind('click').click( function() {
 			$input.remove();
 			$link.show();
-			_catElements[category].editButton.show();
+			$link.data('editButton').show();
 			$( this ).unbind('click').click( _handleDeleteLink );
 		});
 	};
@@ -406,11 +410,17 @@ var ajaxCategories = function ( options ) {
 	};
 	
 	_handleDeleteLink = function ( e ) {
-		e.preventDefault();
-
 		var $this = $( this );
 		var $link = $this.parent().find( 'a:not(.icon)' );
 		var category = $link.text();
+
+		if ( $link.hasClass('mw-added-category') ) {
+			// We're just cancelling the addition
+			_removeStashItem ( $link );
+
+			$link.parent().remove();
+			return;
+		}
 
 		var categoryRegex = _buildRegex( category );
 
@@ -436,20 +446,26 @@ var ajaxCategories = function ( options ) {
 			function( unsaved ) {
 				if ( unsaved ) {
 					//TODO Make revertable
-					$link.addClass('.mw-removed-category');
+					$link.addClass('mw-removed-category');
 				} else {
 					$this.parent().remove();
 				}
-			}
+			},
+			$link,
+			'delete'
 		);
 	};
 
 	_handleCategoryAdd = function ( e ) {
+		var $this = $( this );
+
 		// Grab category text
-		var category = $( this ).parent().find( '.mw-addcategory-input' ).val();
+		var category = $this.parent().find( '.mw-addcategory-input' ).val();
 		category = $.ucFirst( category );
 
-		if ( this.containsCat(category) ) {
+		var $link = _createCatDOM( category );
+
+		if ( aC.containsCat(category) ) {
 			_showError( mw.msg( 'ajax-category-already-present', category ) );
 			return;
 		}
@@ -462,28 +478,41 @@ var ajaxCategories = function ( options ) {
 				return newText + appendText;
 			},
 			summary,
-			function() {
+			function( unsaved ) {
 				$container.find( '#mw-normal-catlinks>.mw-addcategory-prompt' ).toggle();
-				_insertCatDOM( category, false );
-			}
+				$container.find( '#mw-normal-catlinks ul' ).append( $link.parent() );
+				if ( unsaved ) {
+					$link.addClass( 'mw-added-category' );
+				}
+			},
+			$link,
+			'add'
 		);
 	};
 
 	_handleCategoryEdit = function ( e ) {
-		//FIXME: in MultiEdit Mode handle successive edits to same category
-		e.preventDefault();
+		var $this = $( this );
 
 		// Grab category text
-		var categoryNew = $( this ).parent().find( '.mw-addcategory-input' ).val();
+		var categoryNew = $this.parent().find( '.mw-addcategory-input' ).val();
 		categoryNew = $.ucFirst( categoryNew );
 		
-		var $this = $( this );
 		var $link = $this.parent().parent().find( 'a:not(.icon)' );
-		var category = $link.text();
+		if ( $link.hasClass('mw-removed-category') ) {
+			_removeStashItem ( $link );
+			$link.removeClass( 'mw-removed-category' );
+		}
+		if ( $link.data( 'origCat' ) ) {
+			var category = $link.data( 'origCat' );
+			_removeStashItem ( $link );
+		} else {
+			var category = $link.text();
+		}
+		
 
 		// User didn't change anything.
 		if ( category == categoryNew ) {
-			_catElements[category].deleteButton.click();
+			$link.data('deleteButton').click();
 			return;
 		}
 		categoryRegex = _buildRegex( category );
@@ -519,14 +548,18 @@ var ajaxCategories = function ( options ) {
 				return newText;
 			},
 			summary, 
-			function() {
+			function( unsaved ) {
 				// Remove input box & button
-				_catElements[category].deleteButton.click();
-				_catElements[categoryNew] = _catElements[category];
-				delete _catElements[category];
+				$link.data('deleteButton').click();
+
 				// Update link text and href
 				$link.show().text( categoryNew ).attr( 'href', _catLink( categoryNew ) );
-			}
+				if ( unsaved ) {
+					$link.data( 'origCat', category ).addClass( 'mw-changed-category' );
+				}
+			},
+			$link,
+			'edit'
 		);
 	};
 	
@@ -596,13 +629,11 @@ var ajaxCategories = function ( options ) {
 		$( element ).after( deleteButton ).after( editButton );
 
 		//Save references to all links and buttons
-		_catElements[$( element ).text()] = {
-			link		: $( element ),
-			parent		: $( element ).parent(),
+		$( element ).data({
 			saveButton 	: saveButton,
 			deleteButton: deleteButton,
 			editButton 	: editButton
-		};
+		});
 	};
 	this.setup = function () {
 		// Could be set by gadgets like HotCat etc.
@@ -615,6 +646,10 @@ var ajaxCategories = function ( options ) {
 		// Unhide hidden category holders.
 		$('#mw-hidden-catlinks').show();
 
+		var $li = $('<li>', {
+			'class' : 'mw-ajax-addcategory-holder'
+		});
+		// $containerNormal.find('ul').append( $li)
 		// Create [Add Category] link
 		var addLink = _createButton('icon-add', 
 									mw.msg( 'ajax-add-category' ), 
@@ -629,7 +664,7 @@ var ajaxCategories = function ( options ) {
 		promptContainer.hide();
 
 		// Create edit & delete link for each category.
-		$( '#catlinks li a' ).each( function( e ) {
+		$( '#catlinks li a' ).each( function() {
 			_createCatButtons( this );
 		});
 
@@ -648,7 +683,7 @@ var ajaxCategories = function ( options ) {
 										);
 		_saveAllButton.click( _handleStashedCategories ).hide();
 		_cancelAllButton.hide();
-
+		//TODO wrap in div display:inline-block
 		$containerNormal.append( _saveAllButton ).append( _cancelAllButton );
 	};
 	
@@ -656,6 +691,11 @@ var ajaxCategories = function ( options ) {
 		summaries : [],
 		fns : []
 	};
+	_removeStashItem = function ( $link ) {
+		var i = $link.data( 'stashIndex' );
+		delete _stash.fns[i];
+		delete _stash.summaries[i];
+	}
 	_hooks = {
 		beforeAdd : [],
 		beforeChange : [],
