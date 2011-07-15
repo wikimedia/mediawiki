@@ -59,8 +59,6 @@ class SvgHandler extends ImageHandler {
 			return false;
 		}
 		# Don't make an image bigger than wgMaxSVGSize
-		$params['physicalWidth'] = $params['width'];
-		$params['physicalHeight'] = $params['height'];
 		if ( $params['physicalWidth'] > $wgSVGMaxSize ) {
 			$srcWidth = $image->getWidth( $params['page'] );
 			$srcHeight = $image->getHeight( $params['page'] );

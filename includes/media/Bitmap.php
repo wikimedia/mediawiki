@@ -35,16 +35,14 @@ class BitmapHandler extends ImageHandler {
 				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotated $rotation degrees\n" );
 
 				$swapDimensions = true;
-				$width = $params['width'];
-				$params['width'] = $params['height'];
-				$params['height'] = $width;
+				list( $params['width'], $params['height'] ) = 
+					array(  $params['width'], $params['height'] );
+				list( $params['physicalWidth'], $params['physicalHeight'] ) = 
+					array( $params['physicalWidth'], $params['physicalHeight'] );
 			}
 		}
 
 		# Don't make an image bigger than the source
-		$params['physicalWidth'] = $params['width'];
-		$params['physicalHeight'] = $params['height'];
-
 		if ( $params['physicalWidth'] >= $srcWidth ) {
 			if ( $swapDimensions ) {
 				$params['physicalWidth'] = $srcHeight;
@@ -53,10 +51,11 @@ class BitmapHandler extends ImageHandler {
 				$params['physicalWidth'] = $srcWidth;
 				$params['physicalHeight'] = $srcHeight;
 			}
-			# Skip scaling limit checks if no scaling is required
-			if ( !$image->mustRender() )
-				return true;
 		}
+		
+		# Skip scaling limit checks if no scaling is required
+		if ( !$image->mustRender() )
+			return true;		
 
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
