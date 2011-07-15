@@ -28,11 +28,13 @@ class BitmapHandler extends ImageHandler {
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
 
+		$swapDimensions = false;
 		if ( self::canRotate() ) {
 			$rotation = $this->getRotation( $image );
 			if ( $rotation == 90 || $rotation == 270 ) {
 				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotated $rotation degrees\n" );
 
+				$swapDimensions = true;
 				$width = $params['width'];
 				$params['width'] = $params['height'];
 				$params['height'] = $width;
@@ -44,8 +46,13 @@ class BitmapHandler extends ImageHandler {
 		$params['physicalHeight'] = $params['height'];
 
 		if ( $params['physicalWidth'] >= $srcWidth ) {
-			$params['physicalWidth'] = $srcWidth;
-			$params['physicalHeight'] = $srcHeight;
+			if ( $swapDimensions ) {
+				$params['physicalWidth'] = $srcHeight;
+				$params['physicalHeight'] = $srcWidth;				
+			} else {
+				$params['physicalWidth'] = $srcWidth;
+				$params['physicalHeight'] = $srcHeight;
+			}
 			# Skip scaling limit checks if no scaling is required
 			if ( !$image->mustRender() )
 				return true;
@@ -62,6 +69,25 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		return true;
+	}
+	
+	/**
+	 * Extracts the width/height if the image will be scaled before rotating
+	 * 
+	 * @param $params array Parameters as returned by normaliseParams
+	 * @param $rotation int The rotation angle that will be applied
+	 * @return array ($width, $height) array
+	 */
+	public function extractPreRotationDimensions( $params, $rotation ) {
+		if ( $rotation == 90 || $rotation == 270 ) {
+			# We'll resize before rotation, so swap the dimensions again
+			$width = $params['physicalHeight'];
+			$height = $params['physicalWidth'];
+		} else {
+			$width = $params['physicalWidth'];
+			$height = $params['physicalHeight'];
+		}
+		return array( $width, $height );
 	}
 
 
@@ -287,6 +313,9 @@ class BitmapHandler extends ImageHandler {
 		if ( strval( $wgImageMagickTempDir ) !== '' ) {
 			$env['MAGICK_TMPDIR'] = $wgImageMagickTempDir;
 		}
+		
+		$rotation = $this->getRotation( $image );
+		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
 		$cmd  =
 			wfEscapeShellArg( $wgImageMagickConvertCommand ) .
@@ -299,7 +328,7 @@ class BitmapHandler extends ImageHandler {
 			// For the -thumbnail option a "!" is needed to force exact size,
 			// or ImageMagick may decide your ratio is wrong and slice off
 			// a pixel.
-			" -thumbnail " . wfEscapeShellArg( "{$params['physicalDimensions']}!" ) .
+			" -thumbnail " . wfEscapeShellArg( "{$width}x{$height}!" ) .
 			// Add the source url as a comment to the thumb, but don't add the flag if there's no comment
 			( $params['comment'] !== ''
 				? " -set comment " . wfEscapeShellArg( $this->escapeMagickProperty( $params['comment'] ) )
@@ -362,14 +391,7 @@ class BitmapHandler extends ImageHandler {
 			}
 
 			$rotation = $this->getRotation( $image );
-			if ( $rotation == 90 || $rotation == 270 ) {
-				// We'll resize before rotation, so swap the dimensions again
-				$width = $params['physicalHeight'];
-				$height = $params['physicalWidth'];
-			} else {
-				$width = $params['physicalWidth'];
-				$height = $params['physicalHeight'];
-			}
+			list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
 			$im->setImageBackgroundColor( new ImagickPixel( 'white' ) );
 
@@ -509,14 +531,7 @@ class BitmapHandler extends ImageHandler {
 		$src_image = call_user_func( $loader, $params['srcPath'] );
 
 		$rotation = function_exists( 'imagerotate' ) ? $this->getRotation( $image ) : 0;
-		if ( $rotation == 90 || $rotation == 270 ) {
-			# We'll resize before rotation, so swap the dimensions again
-			$width = $params['physicalHeight'];
-			$height = $params['physicalWidth'];
-		} else {
-			$width = $params['physicalWidth'];
-			$height = $params['physicalHeight'];
-		}
+		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 		$dst_image = imagecreatetruecolor( $width, $height );
 
 		// Initialise the destination image to transparent instead of
