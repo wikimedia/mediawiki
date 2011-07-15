@@ -17,7 +17,7 @@
 class UploadStash {
 
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
-	const KEY_FORMAT_REGEX = '/^[\w-]+\.\w*$/';
+	const KEY_FORMAT_REGEX = '/^[\w-\.]+\.\w*$/';
 
 	// When a given stashed file can't be loaded, wait for the slaves to catch up.  If they're more than MAX_LAG
 	// behind, throw an exception instead. (at what point is broken better than slow?)
@@ -184,7 +184,6 @@ class UploadStash {
 			throw new UploadStashBadPathException( "path doesn't exist" );
 		}
 		$fileProps = File::getPropsFromPath( $path );
-
 		wfDebug( __METHOD__ . " stashing file at '$path'\n" );
 
 		// we will be initializing from some tmpnam files that don't have extensions.
@@ -198,10 +197,17 @@ class UploadStash {
 			$path = $pathWithGoodExtension;
 		}
 
-		// If no key was supplied, use content hash. Also has the nice property of collapsing multiple identical files
-		// uploaded this session, which could happen if uploads had failed.
+		// If no key was supplied, make one.  a mysql insertid would be totally reasonable here, except
+		// that some users of this function might expect to supply the key instead of using the generated one.
 		if ( is_null( $key ) ) {
-			$key = $fileProps['sha1'] . "." . $extension;
+			// some things that when combined will make a suitably unique key.
+			// see: http://www.jwz.org/doc/mid.html
+			list ($usec, $sec) = explode( ' ', microtime() );
+			$usec = substr($usec, 2);
+			$key = wfBaseConvert( $sec . $usec, 10, 36 ) . '.' .
+				wfBaseConvert( mt_rand(), 10, 36 ) . '.'.
+				$this->userId . '.' . 
+				$extension;
 		}
 
 		$this->fileProps[$key] = $fileProps;
