@@ -109,6 +109,17 @@
 		/* Main body */
 
 		/**
+		 * Wether a value is in an array. Using jQuery's inArray cross-browser utility,
+		 * (for browsers without Array indexOf support).
+		 * @param val {Mixed} Needle
+		 * @param arr {Array} Haystack
+		 * @return Boolean
+		 */
+		'inArray' : function( val, arr ) {
+			return $.inArray( val, arr ) !== -1;
+		},
+
+		/**
 		 * Encode the string like PHP's rawurlencode
 		 *
 		 * @param str string String to be encoded
