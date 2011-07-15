@@ -12,19 +12,19 @@ test( 'Handle basic replacements', function() {
 	mw.messages.set( 'basic', 'Basic stuff' );
 
 	// Tag: html:msg
-	html = '<div><span><html:msg key="basic"></span></div>';
+	html = '<div><span><html:msg key="basic" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.text(), 'Basic stuff', 'Tag: html:msg' );
 
 	// Attribute: title-msg
-	html = '<div><span title-msg="basic"></span></div>';
+	html = '<div><span title-msg="basic" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.attr( 'title' ), 'Basic stuff', 'Attribute: title-msg' );
 
 	// Attribute: alt-msg
-	html = '<div><span alt-msg="basic"></span></div>';
+	html = '<div><span alt-msg="basic" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.attr( 'alt' ), 'Basic stuff', 'Attribute: alt-msg' );
@@ -40,13 +40,13 @@ test( 'Proper escaping', function() {
 	// making sure it is actually using text() and attr() (or something with the same effect)
 
 	// Text escaping
-	html = '<div><span><html:msg key="properfoo"></span></div>';
+	html = '<div><span><html:msg key="properfoo" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.text(), mw.msg( 'properfoo' ), 'Content is inserted as text, not as html.' );
 
 	// Attribute escaping
-	html = '<div><span title-msg="properfoo"></span></div>';
+	html = '<div><span title-msg="properfoo" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.attr( 'title' ), mw.msg( 'properfoo' ), 'Attributes are not inserted raw.' );
