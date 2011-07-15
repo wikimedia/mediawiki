@@ -772,7 +772,7 @@ class Title {
 	}
 
 	/**
-	 * Get the base name, i.e. the leftmost parts before the /
+	 * Get the base page name, i.e. the leftmost part before any slashes
 	 *
 	 * @return String Base name
 	 */
@@ -790,7 +790,7 @@ class Title {
 	}
 
 	/**
-	 * Get the lowest-level subpage name, i.e. the rightmost part after /
+	 * Get the lowest-level subpage name, i.e. the rightmost part after any slashes
 	 *
 	 * @return String Subpage name
 	 */
