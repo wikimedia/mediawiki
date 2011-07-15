@@ -3261,14 +3261,6 @@ $wgBlockCIDRLimit = array(
 );
 
 /**
- * Functions to handle autoblocking users. The default handlers will be used
- * where null is given. They can otherwise be overridden with custom callbacks.
- *
- * 'retroactiveAutoblock' handlers must return the array of autoblock IDs
- */
-$wgAutoblockHandlers = array( 'retroactiveAutoblock' => null );
-
-/**
  * If true, blocked users will not be allowed to login. When using this with
  * a public wiki, the effect of logging out blocked users may actually be
  * avers: unless the user's address is also blocked (e.g. auto-block),

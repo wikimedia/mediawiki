@@ -486,27 +486,18 @@ class Block {
 	 * @return Array: block IDs of retroactive autoblocks made
 	 */
 	protected function doRetroactiveAutoblock() {
-		global $wgAutoblockHandlers;
-
 		$blockIds = array();
 		# If autoblock is enabled, autoblock the LAST IP(s) used
 		if ( $this->isAutoblocking() && $this->getType() == self::TYPE_USER ) {
 			wfDebug( "Doing retroactive autoblocks for " . $this->getTarget() . "\n" );
 
-			$call = isset( $wgAutoblockHandlers['retroactiveAutoblock'] )
-				? $wgAutoblockHandlers['retroactiveAutoblock']
-				: null; // default
+			$continue = wfRunHooks(
+				'PerformRetroactiveAutoblock', array( $this, &$blockIds ) );
 
-			if ( is_callable( $call ) ) { // custom handler
-				$blockIds = MWFunction::call( $call, $this );
-			} else { // regular handler
-				if ( $call !== null ) { // something given, but bad
-					wfWarn( 'doRetroactiveAutoblock given uncallable handler, check $wgAutoblockHandlers; using default handler.' );
-				}
-				$blockIds = self::defaultRetroactiveAutoblock( $this );
+			if ( $continue ) {
+				self::defaultRetroactiveAutoblock( $this, $blockIds );
 			}
 		}
-
 		return $blockIds;
 	}
 
@@ -514,9 +505,11 @@ class Block {
 	 * Retroactively autoblocks the last IP used by the user (if it is a user)
 	 * blocked by this Block. This will use the recentchanges table.
 	 *
+	 * @param Block $block
+	 * @param Array &$blockIds
 	 * @return Array: block IDs of retroactive autoblocks made
 	 */
-	protected static function defaultRetroactiveAutoblock( Block $block ) {
+	protected static function defaultRetroactiveAutoblock( Block $block, array &$blockIds ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
@@ -539,8 +532,6 @@ class Block {
 				}
 			}
 		}
-
-		return $blockIds;
 	}
 
 	/**
