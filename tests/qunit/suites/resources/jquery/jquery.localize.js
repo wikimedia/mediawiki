@@ -6,7 +6,7 @@ test( '-- Initial check', function() {
 } );
 
 test( 'Handle basic replacements', function() {
-	expect(4);
+	expect(3);
 
 	var html, $lc;
 	mw.messages.set( 'basic', 'Basic stuff' );
@@ -16,12 +16,6 @@ test( 'Handle basic replacements', function() {
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.text(), 'Basic stuff', 'Tag: html:msg' );
-
-	// Tag: msg (deprecated)
-	html = '<div><span><msg key="basic"></span></div>';
-	$lc = $( html ).localize().find( 'span' );
-
-	strictEqual( $lc.text(), 'Basic stuff', 'Tag: msg' );
 
 	// Attribute: title-msg
 	html = '<div><span title-msg="basic"></span></div>';

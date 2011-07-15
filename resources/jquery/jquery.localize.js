@@ -1,14 +1,11 @@
 /**
  * Simple Placeholder-based Localization
  *
- * Call on a selection of HTML which contains <msg key="message-key" /> elements or elements with
- * title-msg="message-key" or alt-msg="message-key" attributes. <msg /> elements will be replaced
+ * Call on a selection of HTML which contains <html:msg key="message-key" /> elements or elements with
+ * title-msg="message-key" or alt-msg="message-key" attributes. <html:msg /> elements will be replaced
  * with localized text, elements with title-msg and alt-msg attributes will receive localized title
  * and alt attributes.
- *
- * Note that "msg" elements must have html namespacing such as "<html:msg />" to be compatible with
- * Internet Explorer.
- *
+ * *
  * Example:
  *		<p class="somethingCool">
  *			<html:msg key="my-message" />
@@ -23,7 +20,7 @@
  */
 ( function( $ ) {
 /**
- * Localizes a DOM selection by replacing <msg /> elements with localized text and adding
+ * Localizes a DOM selection by replacing <html:msg /> elements with localized text and adding
  * localized title and alt attributes to elements with title-msg and alt-msg attributes
  * respectively.
  *
@@ -40,7 +37,7 @@ $.fn.localize = function( options ) {
 		return mw.msg.apply( mw, args );
 	};
 	return $(this)
-		.find( 'msg,html\\:msg' )
+		.find( 'html\\:msg' )
 			.each( function() {
 				var $el = $(this);
 				$el
