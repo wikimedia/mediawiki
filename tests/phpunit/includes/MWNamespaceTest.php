@@ -271,7 +271,14 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertFalse( MWNamespace::hasSubpages( NS_SPECIAL ) );
 
 		// namespaces without subpages
-		$this->assertFalse( MWNamespace::hasSubpages( NS_MAIN ) );
+		global $wgNamespacesWithSubpages;
+		if(    array_key_exists( NS_MAIN, $wgNamespacesWithSubpages )
+			&& $wgNamespacesWithSubpages[NS_MAIN] === true
+		) {
+			$this->markTestSkipped( "Main namespace has subpages enabled" );
+		} else {
+			$this->assertFalse( MWNamespace::hasSubpages( NS_MAIN ) );
+		}
 
 		// Some namespaces with subpages
 		$this->assertTrue( MWNamespace::hasSubpages( NS_TALK      ) );
