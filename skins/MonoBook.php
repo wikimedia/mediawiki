@@ -44,9 +44,6 @@ class SkinMonoBook extends SkinTemplate {
 		//$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
 		//$out->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
 
-		// TODO: migrate
-		//$out->addStyle( 'monobook/rtl.css', 'screen', '', 'rtl' );
-
 	}
 }
 
