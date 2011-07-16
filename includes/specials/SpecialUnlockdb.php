@@ -33,12 +33,13 @@ class SpecialUnlockdb extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgUser, $wgRequest;
 
 		$this->setHeaders();
 
-		if( !$wgUser->isAllowed( 'siteadmin' ) ) {
-			$wgOut->permissionRequired( 'siteadmin' );
+		# Permission check
+		if( !$this->userCanExecute( $wgUser ) ) {
+			$this->displayRestrictionError();
 			return;
 		}
 

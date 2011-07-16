@@ -38,8 +38,9 @@ class SpecialLockdb extends SpecialPage {
 
 		$this->setHeaders();
 
-		if( !$wgUser->isAllowed( 'siteadmin' ) ) {
-			$wgOut->permissionRequired( 'siteadmin' );
+		# Permission check
+		if( !$this->userCanExecute( $wgUser ) ) {
+			$this->displayRestrictionError();
 			return;
 		}
 
