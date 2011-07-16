@@ -29,6 +29,7 @@ production.
   hooks have been removed.
 * New hook "Collation::factory" to allow extensions to create custom
   category collations.
+* $wgGroupPermissions now supports per namespace permissions.
 
 === New features in 1.19 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.

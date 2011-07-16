@@ -2240,16 +2240,29 @@ class User {
 
 	/**
 	 * Get the permissions this user has.
+	 * @param $ns int If numeric, get permissions for this namespace
 	 * @return Array of String permission names
 	 */
-	function getRights() {
+	function getRights( $ns = null ) {
+		$key = is_null( $ns ) ? '*' : intval( $ns );
+		
 		if ( is_null( $this->mRights ) ) {
-			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
-			wfRunHooks( 'UserGetRights', array( $this, &$this->mRights ) );
-			// Force reindexation of rights when a hook has unset one of them
-			$this->mRights = array_values( $this->mRights );
+			$this->mRights = array();
 		}
-		return $this->mRights;
+		
+		if ( !isset( $this->mRights[$key] ) ) {
+			$this->mRights[$key] = self::getGroupPermissions( $this->getEffectiveGroups(), $ns );
+			wfRunHooks( 'UserGetRights', array( $this, &$this->mRights[$key], $ns ) );
+			// Force reindexation of rights when a hook has unset one of them
+			$this->mRights[$key] = array_values( $this->mRights[$key] );
+		}
+		if ( is_null( $ns ) ) {
+			return $this->mRights[$key];
+		} else {
+			// Merge non namespace specific rights
+			return array_merge( $this->mRights[$key], $this->getRights() );
+		}
+		
 	}
 
 	/**
@@ -2351,7 +2364,7 @@ class User {
 		}
 		$this->loadGroups();
 		$this->mGroups[] = $group;
-		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
+		$this->mRights = null;
 
 		$this->invalidateCache();
 	}
@@ -2381,7 +2394,7 @@ class User {
 		}
 		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
-		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
+		$this->mRights = null;
 
 		$this->invalidateCache();
 	}
@@ -2434,9 +2447,10 @@ class User {
 	/**
 	 * Internal mechanics of testing a permission
 	 * @param $action String
+	 * @paramn $ns int Namespace optional
 	 * @return bool
 	 */
-	public function isAllowed( $action = '' ) {
+	public function isAllowed( $action = '', $ns = null ) {
 		if ( $action === '' ) {
 			return true; // In the spirit of DWIM
 		}
@@ -2448,7 +2462,7 @@ class User {
 		}
 		# Use strict parameter to avoid matching numeric 0 accidentally inserted
 		# by misconfiguration: 0 == 'foo'
-		return in_array( $action, $this->getRights(), true );
+		return in_array( $action, $this->getRights( $ns ), true );
 	}
 
 	/**
@@ -3397,25 +3411,50 @@ class User {
 	 * @param $groups Array of Strings List of internal group names
 	 * @return Array of Strings List of permission key names for given groups combined
 	 */
-	static function getGroupPermissions( $groups ) {
+	static function getGroupPermissions( $groups, $ns = null ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		$rights = array();
-		// grant every granted permission first
+		
+		// Grant every granted permission first
 		foreach( $groups as $group ) {
 			if( isset( $wgGroupPermissions[$group] ) ) {
-				$rights = array_merge( $rights,
-					// array_filter removes empty items
-					array_keys( array_filter( $wgGroupPermissions[$group] ) ) );
+				$rights = array_merge( $rights, self::extractRights(
+					$wgGroupPermissions[$group], $ns ) );
 			}
 		}
-		// now revoke the revoked permissions
+		
+		// Revoke the revoked permissions
 		foreach( $groups as $group ) {
 			if( isset( $wgRevokePermissions[$group] ) ) {
-				$rights = array_diff( $rights,
-					array_keys( array_filter( $wgRevokePermissions[$group] ) ) );
+				$rights = array_diff( $rights, self::extractRights( 
+					$wgRevokePermissions[$group], $ns ) );
 			}
 		}
 		return array_unique( $rights );
+	}
+	
+	/**
+	 * Helper for User::getGroupPermissions
+	 * @param array $list
+	 * @param int $ns
+	 * @return array
+	 */
+	private static function extractRights( $list, $ns ) {
+		$rights = array();
+		foreach( $list as $right => $value ) {
+			if ( is_array( $value ) ) {
+				# This is a list of namespaces where the permission applies
+				if ( !is_null( $ns ) && !empty( $value[$ns] ) ) {
+					$rights[] = $right;
+				}
+			} else {
+				# This is a boolean indicating that the permission applies
+				if ( $value ) {
+					$rights[] = $right;
+				}
+			}
+		}
+		return $rights;	
 	}
 
 	/**
@@ -3424,11 +3463,11 @@ class User {
 	 * @param $role String Role to check
 	 * @return Array of Strings List of internal group names with the given permission
 	 */
-	static function getGroupsWithPermission( $role ) {
+	static function getGroupsWithPermission( $role, $ns = null ) {
 		global $wgGroupPermissions;
 		$allowedGroups = array();
 		foreach ( $wgGroupPermissions as $group => $rights ) {
-			if ( isset( $rights[$role] ) && $rights[$role] ) {
+			if ( in_array( $role, self::getGroupPermissions( array( $group ), $ns ), true ) ) {
 				$allowedGroups[] = $group;
 			}
 		}
