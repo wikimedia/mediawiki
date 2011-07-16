@@ -27,6 +27,7 @@
  * @author Lord Anubis
  * @author MK
  * @author Majid Al-Dharrab
+ * @author Malhargan
  * @author Menasim
  * @author Meno25
  * @author Mido
@@ -1483,7 +1484,7 @@ $1",
 'qbsettings-fixedright'     => 'مثبت لليمين',
 'qbsettings-floatingleft'   => 'حر لليسار',
 'qbsettings-floatingright'  => 'حر لليمين',
-'qbsettings-directionality' => 'ثابت، بالاعتماد على اتجاه لغتك',
+'qbsettings-directionality' => 'ثابت ، اعتمادا على اتجاهها من السيناريو الخاص ولغتك',
 
 # Preferences page
 'preferences'                   => 'تفضيلات',
@@ -2379,8 +2380,10 @@ $1',
 'watchlistanontext'    => 'الرجاء $1 لعرض أو تعديل الصفحات في قائمة مراقبتك.',
 'watchnologin'         => 'غير مسجل',
 'watchnologintext'     => 'يجب أن تكون [[Special:UserLogin|مسجلا الدخول]] لتعدل قائمة مراقبتك.',
+'addwatch'             => 'إضافة إلى قائمة الرغبات',
 'addedwatchtext'       => "أضيفت الصفحة  \"[[:\$1]]\" إلى [[Special:Watchlist|قائمة مراقبتك]].
 التغييرات القادمة على هذه الصفحة وصفحة نقاشها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
+'removewatch'          => 'إزالة من قائمة المراقبة',
 'removedwatchtext'     => 'الصفحة "[[:$1]]" تمت إزالتها من [[Special:Watchlist|قائمة مراقبتك]].',
 'watch'                => 'راقب',
 'watchthispage'        => 'راقب هذه الصفحة',
@@ -3800,6 +3803,12 @@ $1',
 'confirm-purge-top'    => 'امسح مختزن هذه الصفحة؟',
 'confirm-purge-bottom' => 'إفراغ مختزن الصفحة يمحو المختزن ويجبر أحدث نسخة على الظهور.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'موافق',
+'confirm-watch-top'      => 'إضافة هذه الصفحة إلى قائمة مراقبتك؟',
+'confirm-unwatch-button' => 'موافق',
+'confirm-unwatch-top'    => 'إزالة هذه الصفحة من قائمة مراقبتك؟',
+
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',
@@ -4066,5 +4075,30 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 بدعم البحث في كامل النص',
 'sqlite-no-fts'  => '$1 بدون دعم البحث في كامل النص',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'أضف تصنيفا',
+'ajax-remove-category'          => 'إزالة الفئة',
+'ajax-edit-category'            => 'تحرير الفئة',
+'ajax-add-category-submit'      => 'أضف',
+'ajax-confirm-ok'               => 'موافق',
+'ajax-confirm-title'            => 'أكد الإجراء',
+'ajax-confirm-prompt'           => 'بإمكانك تقديم ملخص تعديل أدناه.
+انقر "احفظ" لحفظ تعديلك.',
+'ajax-confirm-save'             => 'احفظ',
+'ajax-confirm-save-all'         => 'حفظ كافة التغييرات',
+'ajax-cancel'                   => 'إلغاء عمليات التحرير',
+'ajax-add-category-summary'     => 'إضافة التصنيف "$1"',
+'ajax-edit-category-summary'    => 'تغيير الفئة "$1" إلى "$2"',
+'ajax-remove-category-summary'  => 'إزالة التصنيف "$1"',
+'ajax-add-category-question'    => 'لماذا تريد إضافة فئة "SAR4"؟',
+'ajax-edit-category-question'   => 'لماذا تريد تغيير الفئة "SAR4" إلى "SAR8"؟',
+'ajax-confirm-actionsummary'    => 'الإجراء المتخذ:',
+'ajax-error-title'              => 'خطأ',
+'ajax-error-dismiss'            => 'موافق',
+'ajax-remove-category-error'    => 'لا يمكن إزالة هذا التصنيف.
+يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
+'ajax-edit-category-error'      => 'لم يكن من الممكن لتحرير هذه الفئة.! N! يحدث هذا عادة عندما تمت إضافة فئة إلى الصفحة في قالب.',
+'ajax-category-already-present' => 'هذه الصفحة بالفعل ينتمي إلى فئة $1',
 
 );

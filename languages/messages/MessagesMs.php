@@ -1189,7 +1189,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'qbsettings-fixedright'     => 'Tetap sebelah kanan',
 'qbsettings-floatingleft'   => 'Berubah-ubah sebelah kiri',
 'qbsettings-floatingright'  => 'Berubah-ubah sebelah kanan',
-'qbsettings-directionality' => 'Tetap, bergantung pada kearahan bahasa anda',
+'qbsettings-directionality' => 'Tetap, bergantung pada kearahan tulisan dan bahasa anda',
 
 # Preferences page
 'preferences'                   => 'Keutamaan',
@@ -2044,12 +2044,14 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 'watchlistanontext'    => 'Sila $1 terlebih dahulu untuk melihat atau menyunting senarai pantau anda.',
 'watchnologin'         => 'Belum log masuk',
 'watchnologintext'     => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
+'addwatch'             => 'Tambahkan ke senarai pantau',
 'addedwatchtext'       => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
 Semua perubahan bagi laman tersebut dan laman perbincangannya akan disenaraikan di sana,
 dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Special:RecentChanges|senarai perubahan terkini]]
 untuk memudahkan anda.
 
 Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
+'removewatch'          => 'Buang daripada senarai pantau',
 'removedwatchtext'     => 'Laman "[[:$1]]" telah dibuang daripada [[Special:Watchlist|senarai pantau anda]].',
 'watch'                => 'Pantau',
 'watchthispage'        => 'Pantau laman ini',
@@ -3363,6 +3365,12 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'confirm-purge-top'    => 'Kosongkan fail simpanan bagi laman ini?',
 'confirm-purge-bottom' => 'Kosongkan cache dan papar versi semasa.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Tambahkan laman ini ke dalam senarai pantau anda?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Buang laman ini daripada senarai pantau anda?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← halaman sebelumnya',
 'imgmultipagenext' => 'halaman berikutnya →',
@@ -3569,5 +3577,32 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 dengan sokongan carian teks penuh',
 'sqlite-no-fts'  => '$1 tanpa sokongan carian teks penuh',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Tambahkan kategori',
+'ajax-remove-category'          => 'Buang kategori',
+'ajax-edit-category'            => 'Sunting kategori',
+'ajax-add-category-submit'      => 'Tambahkan',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Sahkan tindakan',
+'ajax-confirm-prompt'           => 'Anda boleh memberikan ringkasan suntingan di bawah.
+Klik "Simpan" untuk menyimpan suntingan anda.',
+'ajax-confirm-save'             => 'Simpan',
+'ajax-confirm-save-all'         => 'Simpan semua perubahan',
+'ajax-cancel'                   => 'Batalkan suntingan',
+'ajax-add-category-summary'     => 'Tambahkan kategori "$1"',
+'ajax-edit-category-summary'    => 'Tukar kategori "$1" ke "$2"',
+'ajax-remove-category-summary'  => 'Buang kategori "$1"',
+'ajax-add-category-question'    => 'Mengapa anda mahu menambahkan kategori "$1"?',
+'ajax-edit-category-question'   => 'Mengapa anda mahu mengubah kategori "$1" kepada "$2"?',
+'ajax-remove-category-question' => 'Mengapa anda mahu membuang kategori "$1"?',
+'ajax-confirm-actionsummary'    => 'Tindakan untuk diambil:',
+'ajax-error-title'              => 'Ralat',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Kategori ini tidak boleh dibuang.
+Ini biasanya berlaku apabila kategori ditambahkan pada laman dengan menggunakan templat.',
+'ajax-edit-category-error'      => 'Kategori ini tidak boleh disunting.
+Ini biasanya berlaku apabila kategori ditambahkan pada laman dengan menggunakan templat.',
+'ajax-category-already-present' => 'Laman ini sudah tergolong dalam kategori $1',
 
 );

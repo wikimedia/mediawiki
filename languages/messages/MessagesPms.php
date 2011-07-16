@@ -1884,8 +1884,8 @@ A peulo ess-ie d'[[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissiona
 'listgrouprights-addgroup-all'         => 'Gionté tute le partìe',
 'listgrouprights-removegroup-all'      => 'Gavé tute le partìe',
 'listgrouprights-addgroup-self'        => 'Gionté {{PLURAL:$2|la partìa|le partìe}} al sò cont: $1',
-'listgrouprights-removegroup-self'     => 'Gava {{PLURAL:$2|la partìa|le partìe}} da tò cont: $1',
-'listgrouprights-addgroup-self-all'    => 'Gionta tute le partìe a tò cont',
+'listgrouprights-removegroup-self'     => 'Gavé {{PLURAL:$2|la partìa|le partìe}} da sò cont: $1',
+'listgrouprights-addgroup-self-all'    => 'Gionté tute le partìe a sò cont',
 'listgrouprights-removegroup-self-all' => 'Gava tute le partìe da tò cont',
 
 # E-mail user
@@ -3466,5 +3466,20 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 con arserca an test pien mantnùa',
 'sqlite-no-fts'  => '$1 sensa arserca an test pien mantnùa',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Gionta categorìa',
+'ajax-add-category-submit'     => 'Gionta',
+'ajax-confirm-title'           => 'Conferma assion',
+'ajax-confirm-prompt'          => 'It peule dé sì sota un resumé dla modìfica.
+Sgnaca "Salva" për salvé la modìfica.',
+'ajax-confirm-save'            => 'Salva',
+'ajax-add-category-summary'    => 'Gionta la categorìa "$1"',
+'ajax-remove-category-summary' => 'Gava la categorìa "$1"',
+'ajax-confirm-actionsummary'   => 'Assion da fé:',
+'ajax-error-title'             => 'Eror',
+'ajax-error-dismiss'           => 'Va bin',
+'ajax-remove-category-error'   => "A l'era pa possìbil gavé sta categorìa-sì.
+Sòn-sì a càpita normalment quand la categorìa a l'é stàita giontà a la pàgina ant në stamp.",
 
 );

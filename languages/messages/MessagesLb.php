@@ -3527,18 +3527,30 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 'sqlite-no-fts'  => "$1 ënnerstëtzt d'Volltextsich net",
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Kategorie derbäisetzen',
-'ajax-add-category-submit'     => 'Derbäisetzen',
-'ajax-confirm-title'           => 'Aktioun confirméieren',
-'ajax-confirm-prompt'          => 'Dir kënnt e Resumé vun der Ännerung ënnedrënner uginn.
+'ajax-add-category'             => 'Kategorie derbäisetzen',
+'ajax-remove-category'          => 'Kategorie ewechhuelen',
+'ajax-edit-category'            => 'Kategorie änneren',
+'ajax-add-category-submit'      => 'Derbäisetzen',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Aktioun confirméieren',
+'ajax-confirm-prompt'           => 'Dir kënnt e Resumé vun der Ännerung ënnedrënner uginn.
 Klickt "Späicheren" fir Är Ännerung ze späicheren.',
-'ajax-confirm-save'            => 'Späicheren',
-'ajax-add-category-summary'    => 'Kategorie "$1" derbäisetzen',
-'ajax-remove-category-summary' => 'Kategorie "$1" ewechhuelen',
-'ajax-confirm-actionsummary'   => 'Wat soll gemaach ginn:',
-'ajax-error-title'             => 'Feeler',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "Et war net méiglech dës Kategorie ewechzehuelen.
+'ajax-confirm-save'             => 'Späicheren',
+'ajax-confirm-save-all'         => 'All Ännerunge späicheren',
+'ajax-cancel'                   => 'Ännerungen annuléieren',
+'ajax-add-category-summary'     => 'Kategorie "$1" derbäisetzen',
+'ajax-edit-category-summary'    => 'Kategorie "$1" op "$2" änneren',
+'ajax-remove-category-summary'  => 'Kategorie "$1" ewechhuelen',
+'ajax-add-category-question'    => 'Firwat wëllt Dir d\'Kategorie "$1" derbäisetzen?',
+'ajax-edit-category-question'   => 'Firwat wëllt Dir d\'Kategorie "$1" op "$2" änneren?',
+'ajax-remove-category-question' => 'Firwat wëllt Dir d\'Kategorie "$1" ewechhuelen?',
+'ajax-confirm-actionsummary'    => 'Wat soll gemaach ginn:',
+'ajax-error-title'              => 'Feeler',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => "Et war net méiglech dës Kategorie ewechzehuelen.
 Dëst geschitt gewéinlech da wann eng Kategorie duerch eng Schabloun op d'Säit derbäi gesat gouf.",
+'ajax-edit-category-error'      => "Et war net méiglech dës Kategorie z'änneren.
+Dat geschitt gewéinlech wann d'Kategorie duerch eng Schabloun op d'Säit derbäigesat gouf.",
+'ajax-category-already-present' => 'Dës Säit ass schonn an der Kategorie $1',
 
 );

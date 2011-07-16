@@ -2190,8 +2190,10 @@ Adresa de e-mail introdusă de tine în [[Special:Preferences|preferințele de u
 'watchlistanontext'    => 'Te rugăm să $1 pentru a vizualiza sau edita itemii de pe lista ta de urmărire.',
 'watchnologin'         => 'Nu sunteți autentificat',
 'watchnologintext'     => 'Trebuie să fiți [[Special:UserLogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
+'addwatch'             => 'Adăugă la lista de pagini urmărite',
 'addedwatchtext'       => 'Pagina „[[:$1]]” a fost adăugată la lista dumneavoastră de [[Special:Watchlist|pagini urmărite]].
 Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de discuție asociată vor fi listate acolo și, în plus, ele vor apărea cu <b>caractere îngroșate</b> în pagina cu [[Special:RecentChanges|schimbări recente]] pentru evidențiere.',
+'removewatch'          => 'Elimină din lista de pagini urmărite',
 'removedwatchtext'     => 'Pagina „[[:$1]]” a fost eliminată din [[Special:Watchlist|lista de pagini urmărite]].',
 'watch'                => 'Urmărire',
 'watchthispage'        => 'Urmărește pagina',
@@ -3167,6 +3169,13 @@ Altele vor fi ascunse implicit.
 'exif-gpsdifferential'             => 'Corecția diferențială GPS',
 'exif-jpegfilecomment'             => 'Comentarii la fișierul JPEG',
 'exif-keywords'                    => 'Cuvinte cheie',
+'exif-worldregioncreated'          => 'Regiunea lumii în care a fost făcută fotografia',
+'exif-countrycreated'              => 'Țara în care a fost făcută fotografia',
+'exif-provinceorstatecreated'      => 'Provincia sau statul în care a fost făcută fotografia',
+'exif-citycreated'                 => 'Orașul în care a fost făcută fotografia',
+'exif-countrydest'                 => 'Țara ilustrată',
+'exif-countrycodedest'             => 'Codul țării ilustrate',
+'exif-citydest'                    => 'Orașul ilustrat',
 'exif-objectname'                  => 'Titlu scurt',
 'exif-specialinstructions'         => 'Instrucțiuni speciale',
 'exif-headline'                    => 'Titlu detaliat',
@@ -3174,6 +3183,8 @@ Altele vor fi ascunse implicit.
 'exif-source'                      => 'Sursă',
 'exif-editstatus'                  => 'Statutul editorial al imaginii',
 'exif-urgency'                     => 'Urgență',
+'exif-locationdest'                => 'Locația ilustrată',
+'exif-locationdestcode'            => 'Codul locației ilustrate',
 'exif-contact'                     => 'Informații de contact',
 'exif-languagecode'                => 'Limbă',
 'exif-iimversion'                  => 'Versiune IIM',
@@ -3399,6 +3410,7 @@ Altele vor fi ascunse implicit.
 'exif-iimcategory-edu' => 'Educație',
 'exif-iimcategory-evn' => 'Mediu înconjurător',
 'exif-iimcategory-hth' => 'Sănătate',
+'exif-iimcategory-hum' => 'Interes uman',
 'exif-iimcategory-lif' => 'Stil de viață și timp liber',
 'exif-iimcategory-pol' => 'Politică',
 'exif-iimcategory-rel' => 'Religie și credință',
@@ -3505,6 +3517,12 @@ Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest 
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Doriți să reîncărcați pagina?',
 'confirm-purge-bottom' => 'Actualizaea unei pagini șterge cache-ul și forțează cea mai recentă variantă să apară.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Adăugați această pagină la lista de pagini urmărite?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Eliminați această pagină din lista de pagini urmărite?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina anterioară',
@@ -3699,5 +3717,27 @@ Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 cu suport de căutare în tot textul',
 'sqlite-no-fts'  => '$1 fără suport de căutare în tot textul',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Adaugă categorie',
+'ajax-remove-category'          => 'Elimină categoria',
+'ajax-edit-category'            => 'Modifică categoria',
+'ajax-add-category-submit'      => 'Adaugă',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Confirmați acțiunea',
+'ajax-confirm-prompt'           => 'Puteți trimite o descriere a modificărilor mai jos.
+Apăsați "Salvează pagina" pentru a salva modificarea.',
+'ajax-confirm-save'             => 'Salvare',
+'ajax-confirm-save-all'         => 'Salvează toate schimbările',
+'ajax-cancel'                   => 'Anulare modificări',
+'ajax-add-category-summary'     => 'Adaugă categoria "$1"',
+'ajax-edit-category-summary'    => 'Modificare categoria „$1” în „$2”',
+'ajax-remove-category-summary'  => 'Elimină categoria "$1"',
+'ajax-confirm-actionsummary'    => 'Acțiune de făcut:',
+'ajax-error-title'              => 'Eroare',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Eliminarea categoriei nu a fost posibilă.
+Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagină printr-un format.',
+'ajax-category-already-present' => 'Această pagină aparține deja categoriei $1',
 
 );

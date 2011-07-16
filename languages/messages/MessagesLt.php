@@ -3560,4 +3560,19 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'sqlite-has-fts' => '$1 su visatekstės paieškos palaikymu',
 'sqlite-no-fts'  => '$1 be visatekstės paieškos palaikymo',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Pridėti kategoriją',
+'ajax-add-category-submit'     => 'Pridėti',
+'ajax-confirm-title'           => 'Patvirtinti veiksmą',
+'ajax-confirm-prompt'          => 'Čia jūs galite įrašyti redagavimo komentarą.
+Spauskite "Išsaugoti", kad išsaugotumėte pakeitimą.',
+'ajax-confirm-save'            => 'Išsaugoti',
+'ajax-add-category-summary'    => 'Pridėti kategoriją „$1“',
+'ajax-remove-category-summary' => 'Panaikinti kategoriją „$1“',
+'ajax-confirm-actionsummary'   => 'Atlikti veiksmą:',
+'ajax-error-title'             => 'Klaida',
+'ajax-error-dismiss'           => 'Gerai',
+'ajax-remove-category-error'   => 'Nepavyko pašalinti šios kategorijos.
+Dažniausiai taip nutinka, kai kategorija būna pridėta į šabloną, kuris naudojamas puslapyje.',
+
 );

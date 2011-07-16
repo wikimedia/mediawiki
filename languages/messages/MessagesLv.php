@@ -1574,8 +1574,8 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'unusedcategoriestext'    => 'Šīs kategorijas eksistē, tomēr nevienā rakstā vai kategorijās tās nav izmantotas.',
 'nopagetitle'             => 'Nav tādas mērķa lapas',
 'nopagetext'              => 'Mērķa lapa, ko Jūs norādījāt, nepastāv.',
-'pager-newer-n'           => '{{PLURAL:$1|jaunāko 1|jaunākās $1}}',
-'pager-older-n'           => '{{PLURAL:$1|senāko 1|senākās $1}}',
+'pager-newer-n'           => '{{PLURAL:$1|jaunāku 1|jaunākas $1}}',
+'pager-older-n'           => '{{PLURAL:$1|senāku 1|senākas $1}}',
 'querypage-disabled'      => 'Šī īpašā lapā ir atspējota veiktspējas iemeslu dēļ.',
 
 # Book sources
@@ -2886,5 +2886,15 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 # SQLite database support
 'sqlite-has-fts' => '$1 ar pilnteksta meklēšanas atbalstu',
 'sqlite-no-fts'  => '$1 bez pilnteksta meklēšanas atbalsta',
+
+# Add categories per AJAX
+'ajax-add-category'         => 'Pievienot kategoriju',
+'ajax-add-category-submit'  => 'Pievienot',
+'ajax-confirm-prompt'       => 'Te apakšā var norādīt izmaiņu kopsavilkumu.
+Uzspied uz "Saglabāt" lai saglabātu izmaiņas.',
+'ajax-confirm-save'         => 'Saglabāt',
+'ajax-add-category-summary' => 'Pievienot kategoriju "$1"',
+'ajax-error-title'          => 'Kļūda (Error)',
+'ajax-error-dismiss'        => 'OK',
 
 );

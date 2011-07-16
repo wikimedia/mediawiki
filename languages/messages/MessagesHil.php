@@ -1156,6 +1156,7 @@ Ini indi dapat nga magsobra sa $1 {{PLURAL:$1|ka karakter|ka mga karakter}} ang 
 'gender-female'                 => 'Babayi',
 'prefs-help-gender'             => '',
 'email'                         => 'E-mail',
+'prefs-help-email-required'     => 'Kinahanglan ang imo e-mail',
 'prefs-signature'               => 'pirma',
 
 # Groups

@@ -1,5 +1,5 @@
 <?php
-/** Kashmiri (Devanagari) (कश्मीरी)
+/** कश्मीरी (कश्मीरी)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -27,4 +27,5 @@ $digitTransformTable = array(
 $messages = array(
 # Recent changes
 'recentchanges' => 'नवि तबदीली',
+
 );

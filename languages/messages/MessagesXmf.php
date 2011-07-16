@@ -103,8 +103,8 @@ $messages = array(
 'category_header'          => 'სტატიეფ "$1"  კატეგორიას',
 'subcategories'            => 'გიმენკატეგორიეფ',
 'category-media-header'    => 'მედია კატეგორიას "$1"',
-'category-empty'           => "''თენა კატეგორიას ვარენა ხასილეფ დო მედია''",
-'hidden-categories'        => '{{ბრელოფეფ:$1|ტყობინაფილ კატეგორია|ტყობინაფილ კატეგორიეფ}}',
+'category-empty'           => "''თე კატეგორიას ასე ვაკათ ხასჷლეფი ვარდა მედია''",
+'hidden-categories'        => '{{PLURAL:$1|ტყობინაფილი კატეგორია|ტყობინაფილი კატეგორიეფი}}',
 'hidden-category-category' => 'ფულირი კატეგორიეფი',
 'category-subcat-count'    => '{{PLURAL:$2|თე კატეგორია იკათუანს ხვალე ათე გიმენკატეგორიას.|თე კატეგორიას მოჩამილი რე $1 გიმენკატეგორია $2-შე.}}',
 'category-article-count'   => '{{PLURAL:$2|ათე კატეგორია იკათუანს ხვალე გეჸვენჯ ხასილას.|გეჸვენჯ {{PLURAL:$1|ხასილა რე|$1 ხასილეფ რე}} თე კატეგორიას, გვალო $2–შე.}}',
@@ -128,7 +128,7 @@ $messages = array(
 'qbpageoptions'  => 'თენა ხასილა',
 'qbpageinfo'     => 'კონტექსტ',
 'qbmyoptions'    => 'ჩქიმ ხასილეფ',
-'qbspecialpages' => 'სპეციალურ ხასილეფ',
+'qbspecialpages' => 'გჷშაკერძაფილი ხასჷლეფი',
 'faq'            => 'ბხშირი კითხვეფი',
 
 # Vector skin
@@ -168,11 +168,11 @@ $messages = array(
 'newpage'          => 'ახალ ხასილა',
 'talkpage'         => 'მოჩამილ ხასილაშ სხუნუა',
 'talkpagelinktext' => 'სხუნუა',
-'specialpage'      => 'სპეციალურ ხასილა',
+'specialpage'      => 'გჷშაკერძაფილი ხასჷლა',
 'personaltools'    => 'პერსონალურ ხეჭკუდეფ',
 'talk'             => 'სხუნუა',
-'views'            => 'ძირაფეფ',
-'toolbox'          => 'ინსტრუმენტეფ',
+'views'            => 'ძირაფეფი',
+'toolbox'          => 'ინსტრუმენტეფი',
 'otherlanguages'   => 'შხვა ნინეფს',
 'redirectedfrom'   => '(გინოწურაფილი რე $1-შე)',
 'redirectpagesub'  => 'ხასილაშა გინოწურაფა',
@@ -186,7 +186,7 @@ $messages = array(
 'aboutpage'            => 'Project:შენი',
 'copyright'            => 'დინორე მიწორინაფილი რე $1–იშ ჯოხოთ.',
 'copyrightpage'        => '{{ns:project}}:ავტორიშ ნებეფ',
-'currentevents'        => 'მიმალ მოლინეფ',
+'currentevents'        => 'მიმალ მოლინეფი',
 'currentevents-url'    => 'Project:მიმალ მოლინეფ',
 'disclaimers'          => 'გამამინჯალაშ ვარება',
 'disclaimerpage'       => 'Project:გამამინჯალაშ ვარება',
@@ -229,7 +229,7 @@ $messages = array(
 'nstab-special'  => 'სპეციალური ხასილა',
 'nstab-project'  => 'პროექტიშ ხასილა',
 'nstab-image'    => 'ფაილი',
-'nstab-template' => 'თარგი',
+'nstab-template' => 'თანგი',
 'nstab-category' => 'კატეგორია',
 
 # Main script and global functions
@@ -334,8 +334,8 @@ $messages = array(
 ვა გოკონა თქვან ნახანდაქ დუდშულო   რედაქტირებულქ დო გიონოჯღონელქ იყ’უას–და, ვა მიშეყ’ონათ თინა თაქ.<br />
 თქვა ხოლო პიჯალას დუთმოდვანთ, ნამდა თე ტექსტი თქვან ნაჭარა რე, ვარა გინოღალირ რე ოირკოჩე დომენშე დო ვარა თიშ მანგურ დუდიშულ წყუშე. 
 '''ვა მიშეღათ ოავტორე ნებეფით თხილერ ნახანდი ავტორიშ ქოყ’იაშ უმშო!'''\"",
-'templatesused'                    => 'თე ხასილას გიმორინაფილ {{PLURAL:$1|თარგ|თარგეფ}}:',
-'templatesusedpreview'             => '{{PLURAL:$1|თარგი|თარგეფ}} ნამუთ თე გჷწოთოლორაფას რე გიმორინაფილი',
+'templatesused'                    => 'თე ხასჷლას გიმორინაფილი {{PLURAL:$1|თანგი|თანგეფი}}:',
+'templatesusedpreview'             => '{{PLURAL:$1|თანგი|თანგეფი}} ნამუთ თე გჷწოთოლორაფას რე გიმორინაფილი',
 'template-protected'               => '(თხილერი)',
 'template-semiprotected'           => '(გვერდო თხილერ)',
 'hiddencategories'                 => 'თე ხასილა ოკათუ {{PLURAL:$1|1 ტყობინაფილ კატეგორიას|$1 ტყობინაფილ კატეგორიეფს}}:',
@@ -462,8 +462,10 @@ $messages = array(
 'prefs-help-email-others' => 'თქვა შეილებუნა ალობა მეჩათ შხვეფს დჷგეკონტაქტან ელ-ფოშტათ თქვან ანგარიშის ვარა ოჩიებელ ხასჷლაშ ლინკიშ გეჸუნათ. თქვანი ელ-ფოშტაშ მიოწურაფუ ვანკორჩქინდჷ მუჟამს შხვა მახვარებუეფი დჷგეკავშირებუნანი.',
 
 # Groups
+'group-user'  => 'მახვარებუეფ',
 'group-sysop' => 'ადმინისტრატორეფი',
 
+'grouppage-user'  => '{{ns:project}}:მახვარებუეფ',
 'grouppage-sysop' => '{{ns:project}}:ადმინისტრატორეფ',
 
 # User rights log
@@ -586,7 +588,7 @@ $messages = array(
 'booksources-go'            => 'გინულა',
 
 # Special:Log
-'specialloguserlabel'  => 'მახვარებელ:',
+'specialloguserlabel'  => 'მახვარებუ:',
 'speciallogtitlelabel' => 'სათაურ:',
 'log'                  => 'ჟურნალეფ',
 'all-logs-page'        => 'ირ ჟურნალ',
@@ -602,7 +604,7 @@ $messages = array(
 'allpagessubmit' => 'გინულა',
 
 # Special:Categories
-'categories' => 'კატეგორიეფ',
+'categories' => 'კატეგორიეფი',
 
 # Special:LinkSearch
 'linksearch'      => 'გალენ რცხიეფ',
@@ -613,7 +615,7 @@ $messages = array(
 'newuserlog-create-entry' => 'ახალ მახვარებუ',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(მაკათურეფიშ ერკებულ)',
+'listgrouprights-members' => '(მაკათურეფიშ ერკებული)',
 
 # E-mail user
 'emailuser' => 'მიდუჯღონით ელ.ფოშტა ათე მახვარებუს',
@@ -714,12 +716,12 @@ $messages = array(
 # What links here
 'whatlinkshere'            => 'სოვრეშე რე თე ხასილა წურაფილ',
 'whatlinkshere-title'      => 'ხასილეფ, ნამუთ გინორცხილ რე $1-შა',
-'whatlinkshere-page'       => 'ხასილა:',
+'whatlinkshere-page'       => 'ხასჷლა:',
 'linkshere'                => "გეყ’ვენჯ ხასილეფ გინარცხუაფუ '''[[:$1]]'''-ეფს",
 'nolinkshere'              => "ნამთინ ხასილა ვა რე გინორცხილ '''[[:$1]]'''-შა.",
 'isredirect'               => 'გინოწურაფაშ ხასილა',
 'istemplate'               => 'ტრანსკლუზია',
-'isimage'                  => 'ნახანტიშ რცხი',
+'isimage'                  => 'ფაილიშ რცხი',
 'whatlinkshere-prev'       => '{{PLURAL:$1|წოხოლენ|წოხოლენ $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|უკულიან|უკულიან $1}}',
 'whatlinkshere-links'      => '← რცხიეფ',
@@ -842,7 +844,7 @@ $messages = array(
 'tooltip-ca-nstab-special'        => 'თქვა ასე რეთ სპეციალურ ხასილას, თქვა ვა შეილებუნა ათე ხასილაშ რედაქტირაფა',
 'tooltip-ca-nstab-project'        => 'პროექტიშ ხასილაშ ძირაფა',
 'tooltip-ca-nstab-image'          => 'ფაილიშ ხასილაშ ძირაფა',
-'tooltip-ca-nstab-template'       => 'თარგიშ ძირაფა',
+'tooltip-ca-nstab-template'       => 'თანგიშ ძირაფა',
 'tooltip-ca-nstab-help'           => 'ქოძირეთ დახვარებაშ გვერდ',
 'tooltip-ca-nstab-category'       => 'ხასილაშ კატეგორიაშ ძირაფა',
 'tooltip-minoredit'               => 'ქიმიოღანკი, მუჭოთ ჭიჭე რედაქტირაფა [alt-i]',

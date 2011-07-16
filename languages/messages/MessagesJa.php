@@ -390,7 +390,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'ウォッチリストにログイン利用者の編集を表示しない',
 'tog-watchlisthideanons'      => 'ウォッチリストに匿名利用者の編集を表示しない',
 'tog-watchlisthidepatrolled'  => 'ウォッチリストに巡回済みの編集を表示しない',
-'tog-nolangconversion'        => '変種言語の変換を無効にする',
+'tog-nolangconversion'        => '言語変種変換を無効にする',
 'tog-ccmeonemails'            => '他の利用者に送信したメールの控えを自分にも送る',
 'tog-diffonly'                => '差分表示の下にページの内容を表示しない',
 'tog-showhiddencats'          => '隠しカテゴリを表示する',
@@ -1582,7 +1582,7 @@ HTMLタグを見直してください。',
 'right-proxyunbannable'       => 'プロキシの自動ブロックを回避',
 'right-unblockself'           => '自分自身に対するブロックを解除',
 'right-protect'               => '保護レベルの変更と保護されたページの編集',
-'right-editprotected'         => '保護ページの編集（連続保護を除く）',
+'right-editprotected'         => '保護ページの編集（カスケード保護を除く）',
 'right-editinterface'         => 'ユーザーインターフェースの編集',
 'right-editusercssjs'         => '他利用者のCSSとJavaScriptファイルの編集',
 'right-editusercss'           => '他利用者のCSSファイルの編集',
@@ -1962,6 +1962,7 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 'shared-repo-from'                  => '$1より',
 'shared-repo'                       => '共有リポジトリ',
 'shared-repo-name-wikimediacommons' => 'ウィキメディア・コモンズ',
+'filepage.css'                      => '/* ここに記述したCSSはファイル解説ページにて読み込まれます。また外部のクライアントウィキにも影響します */',
 
 # File reversion
 'filerevert'                => '$1を差し戻す',
@@ -2402,7 +2403,7 @@ $2による最後の版へ変更されました。',
 
 # Protect
 'protectlogpage'              => '保護記録',
-'protectlogtext'              => '以下はページの保護の保護解除の記録です。
+'protectlogtext'              => '以下はページ保護に対する変更の記録です。
 現在、保護レベルを変更できるページについては[[Special:ProtectedPages|保護ページ一覧]]を参照してください。',
 'protectedarticle'            => '「[[$1]]」を保護しました',
 'modifiedarticleprotection'   => '「[[$1]]」の保護レベルを変更しました',
@@ -2423,8 +2424,8 @@ $2による最後の版へ変更されました。',
 ページ'''$1'''の現在の状態は以下の通りです：",
 'protect-locked-access'       => "アカウントに、ページの保護レベルを変更する権限がありません。
 ページ'''$1'''の現在の状態は以下の通りです：",
-'protect-cascadeon'           => 'このページは現在、連続保護が有効になっている以下の{{PLURAL:$1|ページ}}から読み込まれているため、保護されています。
-このページの保護制限を変更することは可能ですが、連続保護には影響しません。',
+'protect-cascadeon'           => 'このページは現在、カスケード保護が有効になっている以下の{{PLURAL:$1|ページ}}から読み込まれているため、保護されています。
+このページの保護制限を変更することは可能ですが、カスケード保護には影響しません。',
 'protect-default'             => 'すべての利用者を許可',
 'protect-fallback'            => '「$1」権限が必要',
 'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
@@ -2432,7 +2433,7 @@ $2による最後の版へ変更されました。',
 'protect-summary-cascade'     => '連続',
 'protect-expiring'            => '$1(UTC)で自動的に解除',
 'protect-expiry-indefinite'   => '無期限',
-'protect-cascade'             => 'このページに読み込まれているページを保護する（連続保護）',
+'protect-cascade'             => 'このページに読み込まれているページを保護する（カスケード保護）',
 'protect-cantedit'            => 'このページの編集権限がないため、保護レベルを変更できません。',
 'protect-othertime'           => 'その他の期間：',
 'protect-othertime-op'        => 'その他の期間',
@@ -2529,7 +2530,7 @@ $1',
 'mycontris'           => '自分の投稿記録',
 'contribsub2'         => '利用者:$1（$2）',
 'nocontribs'          => 'これらの条件に一致する変更は見つかりませんでした。',
-'uctop'               => '（最新）',
+'uctop'               => '(最新)',
 'month'               => 'これ以前の月：',
 'year'                => 'これ以前の年：',
 
@@ -2936,7 +2937,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 ページのソースを閲覧できます。',
 'tooltip-ca-history'              => 'このページの過去の版',
 'tooltip-ca-protect'              => 'このページを保護',
-'tooltip-ca-unprotect'            => 'このページの保護を解除',
+'tooltip-ca-unprotect'            => 'このページの保護を変更',
 'tooltip-ca-delete'               => 'このページを削除',
 'tooltip-ca-undelete'             => '削除される前になされた編集を復元',
 'tooltip-ca-move'                 => 'このページを移動',
@@ -3817,5 +3818,18 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # SQLite database support
 'sqlite-has-fts' => '$1（全文検索あり）',
 'sqlite-no-fts'  => '$1（全文検索なし）',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'カテゴリー追加',
+'ajax-add-category-submit'     => '追加',
+'ajax-confirm-title'           => '操作確認',
+'ajax-confirm-prompt'          => '編集内容の要約を以下に述べることができます。「保存」をクリックすると編集が保存されます。',
+'ajax-confirm-save'            => '保存',
+'ajax-add-category-summary'    => 'カテゴリー「$1」を追加',
+'ajax-remove-category-summary' => 'カテゴリー「$1」を除去',
+'ajax-confirm-actionsummary'   => '実行する操作:',
+'ajax-error-title'             => 'エラー',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'このカテゴリーを除去することができませんでした。これは通常、カテゴリーがテンプレートによってページに追加されている場合に起こります。',
 
 );

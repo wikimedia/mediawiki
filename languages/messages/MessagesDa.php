@@ -3552,4 +3552,31 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
 'sqlite-no-fts'  => '$1 uden fuld-tekst søgnings support',
 
+# Add categories per AJAX
+'ajax-add-category'             => 'Tilføj kategori',
+'ajax-remove-category'          => 'Fjern kategori',
+'ajax-edit-category'            => 'Rediger kategori',
+'ajax-add-category-submit'      => 'Tilføj',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Bekræft handling',
+'ajax-confirm-prompt'           => 'Du kan lave en redigeringsbeskrivelse nedenfor.
+Klik på "Gem" for at gemme redigeringen.',
+'ajax-confirm-save'             => 'Gem',
+'ajax-confirm-save-all'         => 'Gem alle ændringer',
+'ajax-cancel'                   => 'Fortryd redigeringer',
+'ajax-add-category-summary'     => 'Tilføj kategorien "$1"',
+'ajax-edit-category-summary'    => 'Skift kategori "$1" til "$2"',
+'ajax-remove-category-summary'  => 'Fjern kategorien "$1"',
+'ajax-add-category-question'    => 'Hvorfor ønsker du at tilføje kategorien "$1"?',
+'ajax-edit-category-question'   => 'Hvorfor ønsker du at udskifte kategorien "$1" med "$2"?',
+'ajax-remove-category-question' => 'Hvorfor ønsker du at fjerne kategorien "$1"?',
+'ajax-confirm-actionsummary'    => 'Handling:',
+'ajax-error-title'              => 'Fejl',
+'ajax-error-dismiss'            => 'O.k.',
+'ajax-remove-category-error'    => 'Det var ikke muligt af fjerne kategorien.
+Det skyldes oftest at kategorien er blevet tilføjet til siden i en skabelon.',
+'ajax-edit-category-error'      => 'Det var ikke muligt at redigere denne kategori.
+Den mest almindelige grund til denne fejl er, at kategorien er blevet tilføjet til siden via en skabelon.',
+'ajax-category-already-present' => 'Denne side er allerede i kategorien $1',
+
 );
