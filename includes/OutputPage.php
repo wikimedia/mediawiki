@@ -2019,15 +2019,14 @@ class OutputPage {
 		$this->setArticleRelated( false );
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = Linker::link(
+		$loginLink = Linker::linkKnown(
 			$loginTitle,
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
-			array( 'returnto' => $this->getTitle()->getPrefixedText() ),
-			array( 'known', 'noclasses' )
+			array( 'returnto' => $this->getTitle()->getPrefixedText() )
 		);
-		$this->addWikiMsgArray( 'loginreqpagetext', array( $loginLink ), array( 'replaceafter' ) );
-		$this->addHTML( "\n<!--" . $this->getTitle()->getPrefixedUrl() . '-->' );
+		$this->addHTML( wfMessage( 'loginreqpagetext' )->rawParams( $loginLink )->parse() .
+			"\n<!--" . $this->getTitle()->getPrefixedUrl() . '-->' );
 
 		# Don't return to the main page if the user can't read it
 		# otherwise we'll end up in a pointless loop

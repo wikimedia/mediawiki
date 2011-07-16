@@ -63,8 +63,8 @@ class RollbackAction extends FormlessAction {
 				$current = $details['current'];
 
 				if ( $current->getComment() != '' ) {
-					$this->getOutput()->addWikiMsgArray( 'editcomment', array(
-						Linker::formatComment( $current->getComment() ) ), array( 'replaceafter' ) );
+					$this->getOutput()->addHTML( wfMessage( 'editcomment' )->rawParams(
+						Linker::formatComment( $current->getComment() ) )->parse() );
 				}
 			}
 
