@@ -59,15 +59,15 @@ class SpecialBlock extends SpecialPage {
 	public function execute( $par ) {
 		global $wgUser, $wgOut, $wgRequest;
 
-		# Can't block when the database is locked
-		if( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
 		# Permission check
 		if( !$this->userCanExecute( $wgUser ) ) {
-			$wgOut->permissionRequired( 'block' );
+			$this->displayRestrictionError();
 			return;
+		}
+
+		# Can't block when the database is locked
+		if( wfReadOnly() ) {
+			throw new ReadOnlyError;
 		}
 
 		# Extract variables from the request.  Try not to get into a situation where we

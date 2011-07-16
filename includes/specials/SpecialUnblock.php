@@ -38,13 +38,14 @@ class SpecialUnblock extends SpecialPage {
 		global $wgUser, $wgOut, $wgRequest;
 
 		# Check permissions
-		if( !$wgUser->isAllowed( 'block' ) ) {
-			$wgOut->permissionRequired( 'block' );
+		if( !$this->userCanExecute( $wgUser ) ) {
+			$this->displayRestrictionError();
 			return;
 		}
+
 		# Check for database lock
 		if( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
+			throw new ReadOnlyError;
 			return;
 		}
 
