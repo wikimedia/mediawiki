@@ -2164,8 +2164,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchlistanontext'    => '주시문서 목록을 보거나 고치려면 $1 하세요.',
 'watchnologin'         => '로그인하지 않음',
 'watchnologintext'     => '주시문서 목록을 고치려면 [[Special:UserLogin|로그인]]해야 합니다.',
+'addwatch'             => '주시문서 목록에 추가',
 'addedwatchtext'       => "\"[[:\$1]]\" 문서를 [[Special:Watchlist|주시문서 목록]]에 추가했습니다.
 앞으로 이 문서나 토론 문서가 바뀌면 [[Special:RecentChanges|최근 바뀜]]에서 알아보기 쉽게 '''굵은 글씨'''로 보일 것입니다.",
+'removewatch'          => '주시문서 목록에서 제거',
 'removedwatchtext'     => '"[[:$1]]" 문서를 [[Special:Watchlist|주시문서 목록]]에서 뺐습니다.',
 'watch'                => '주시',
 'watchthispage'        => '주시하기',
@@ -3579,5 +3581,20 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 (본문 전체 검색)',
 'sqlite-no-fts'  => '$1 (본문은 검색에서 제외)',
+
+# Add categories per AJAX
+'ajax-add-category'            => '분류 추가',
+'ajax-add-category-submit'     => '추가',
+'ajax-confirm-title'           => '편집 확인',
+'ajax-confirm-prompt'          => '아래에 편집 요약을 쓸 수 있습니다.
+저장하려면 "저장"을 누르세요.',
+'ajax-confirm-save'            => '저장',
+'ajax-add-category-summary'    => '"$1" 분류 더하기',
+'ajax-remove-category-summary' => '"$1" 분류 지우기',
+'ajax-confirm-actionsummary'   => '할 일:',
+'ajax-error-title'             => '오류',
+'ajax-error-dismiss'           => '확인',
+'ajax-remove-category-error'   => '이 분류를 지울 수 없습니다.
+분류가 틀로 추가되었을 수 있습니다.',
 
 );

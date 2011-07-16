@@ -761,8 +761,13 @@ You may ignore this message, if this account was created in error.',
 'resetpass-temp-password'   => 'अस्थिर रहस्यवाक् :',
 
 # Special:PasswordReset
-'passwordreset-username' => 'योजकनामन्:',
-'passwordreset-email'    => 'परमाणुपत्रसङ्गेत:',
+'passwordreset-pretext'      => '{{PLURAL:$1| |समंकेषु एकम् अधस्यात् प्रविष्टीकरोतु।}}',
+'passwordreset-username'     => 'योजकनामन्:',
+'passwordreset-email'        => 'परमाणुपत्रसङ्गेत:',
+'passwordreset-emailtitle'   => '{{SITENAME}} इत्यत्र लेखा-विवरणम्',
+'passwordreset-emailelement' => 'प्रयोक्तृनाम: $1
+अल्पकालिकः कूटशब्दः : $2',
+'passwordreset-emailsent'    => 'एकः स्मारकः विद्युत्सन्देशः प्रेषितोऽस्ति।',
 
 # Edit page toolbar
 'bold_sample'     => 'स्थूलाक्षरम्',
@@ -810,9 +815,17 @@ You may ignore this message, if this account was created in error.',
 'blockededitsource'                => " '''$1''' इत्यत्र '''भवतः सम्पादनानां''' पाठः अधस्तात् प्रदर्शितम्:",
 'whitelistedittitle'               => 'सम्पादनार्थं सत्रारम्भः (प्रवेशः) आवश्यकः',
 'whitelistedittext'                => 'पृष्ठाणां सम्पादनार्थं $1 इति कार्यम् आवश्यकम्।',
+'confirmedittext'                  => 'सम्पादनात् पूर्वं भवता स्वकीयं विद्युत्सन्देशसंकेतः परिपुष्टीकरणीयः।
+कृपया स्वकीयः विद्युत्सन्देशसंकेतः [[Special:Preferences|प्रयोक्तृ-वरीयांसि]] इत्येतद्द्वारा प्रददातु तथा च प्रमाणीकरोतु।',
+'nosuchsectiontitle'               => 'एतादृशः कोप्यनुभागः न लब्धः',
+'nosuchsectiontext'                => 'भवता एतादृश एकोऽनुभागः सम्पादितुं चेष्टितं, यन्न हि विद्यते।
+तत्तु पश्यति भवति एव प्रचालितम् अथवा अपाकृतं स्यात्।',
 'loginreqtitle'                    => 'प्रवेशनम् आविश्यकम्',
 'loginreqlink'                     => 'प्रविशतु',
+'loginreqpagetext'                 => 'अन्यानि पृष्ठाणि द्रष्टुं भवता $1 इति अवश्यमेव कर्त्तव्यम्।',
 'accmailtitle'                     => 'पास्वेड् पप्रेषितम्',
+'accmailtext'                      => " [[User talk:$1|$1]] इत्येतदर्थं एकः यादृच्छिकतया उत्पादितः कूटशब्दः $2 इत्येतत् प्रति प्रेषितोऽस्ति।
+सत्रारम्भपश्चात् नूतनायाः अस्याः लेखायाः कूटशब्दः  ''[[User talk:$1|$1]]'' इति पृष्ठे परिवर्तितुं शक्यते।",
 'newarticle'                       => '(नवीनम्)',
 'newarticletext'                   => "भवता एतादृशमेकं पृष्टं प्रति संबंधनम् अनुसृतम्, यत्पृष्ठं न इदानींयावत् विद्यते।
 
@@ -859,6 +872,8 @@ You may ignore this message, if this account was created in error.',
 'template-protected'               => '(संरक्षितम्)',
 'template-semiprotected'           => '(अर्धसंरक्षितम्)',
 'hiddencategories'                 => 'इदं पृष्ठं {{PLURAL:$1|1 निगूढस्य श्रेण्याः |$1 निगूढानां श्रेणीनां}} सदस्यत्वेन विद्यते :',
+'permissionserrors'                => 'अनुज्ञा-विभ्रमाः',
+'permissionserrorstext'            => 'भवान् तत् कर्तुं अनुज्ञां न धारयति {{PLURAL:$1|अधोऽङ्कितात् कारणात् |अधोऽङ्कितेभ्यः कारणेभ्यः:}}',
 'permissionserrorstext-withaction' => 'भवान् $2 इत्येतदर्थम् अनुज्ञां न धारयति, अस्य {{PLURAL:$1|कारणम्|कारणानि}}:',
 'moveddeleted-notice'              => 'इदं पृष्ठम् अपाकृतम् अस्ति।
 एतत्पृष्ठार्थं अपाकरणस्य तथा च स्थानान्तरणस्य अभिलेखाः सन्दर्भार्थं अधस्तात् प्रदत्तानि।',
@@ -879,9 +894,29 @@ You may ignore this message, if this account was created in error.',
 'post-expand-template-inclusion-warning'  => "'''पूर्वसूचना:''' बिम्बधराणां इन्क्लूड् इत्येतस्य आकारः अतिविशालः वर्तते।
 केचित् बिम्बधराः न समाहितीभविष्यन्ति।",
 'post-expand-template-inclusion-category' => 'पृष्ठाणि यत्र अतोऽधिकाः बिम्बधराः समाहितीकर्तुं न शक्यन्ते।',
+'post-expand-template-argument-warning'   => "'''पूर्वसूचना:''' अस्मिन् पृष्ठे न्यूनान्नयूनं एकः एतादृशः बिम्बधरः अस्ति यस्तु संवर्धने बृहदाकारः भवति।
+एतादृशः बिम्बधरः लुप्तीकृतः अस्ति।",
+'post-expand-template-argument-category'  => 'एतादृशानि पृष्ठाणि यत्र तु बिम्बधराः लुप्तीकृताः सन्ति।',
+'parser-template-loop-warning'            => 'बिम्बधर-पाशः प्राप्तः: [[$1]]',
+'parser-template-recursion-depth-warning' => 'बिम्बधर-पुनरावर्तनार्थं गहनतायाः सीमा अतिक्रान्ताऽस्ति ($1)',
+'language-converter-depth-warning'        => 'भाषा-परिवर्तकस्य गहनतायाः सीमा अतिक्रान्ताऽस्ति (*$1)',
+
+# "Undo" feature
+'undo-success' => 'सम्पादनमिदं विपरीतीकर्तुं शक्यते।
+कृपया अधस्तात् तुलनां दृष्ट्वा निश्चितीकरोतु यत् भवान् एवमेव कर्तुमिच्छति। तदा भवान् विपरीतीकर्तुं निम्नांकितानि परिवर्तनानि रक्षतु।',
+'undo-failure' => 'सम्पादनम् अकर्तुं न पारयत् यस्मात् मध्ये परस्परविरोधीनि सम्पादनानि अभवन्।',
+'undo-norev'   => 'इदं सम्पादनं अकर्तुं न पारयत् यस्मात् एतत् न विद्यते अथवा अपाकृतस्ति।',
+'undo-summary' => ' [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) इत्यनेन कृताम् $1 इति आवृत्तिम् अकरोतु',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'लेखा स्रष्टुं न शक्यते',
+'cantcreateaccount-text' => "('''$1''') इति आइपिसंकेतात् लेखासृजनम् [[User:$3|$3]] इत्यनेन अवरुद्धीकृतः अस्ति।
+एतदर्थं $3 इत्यनेन प्रदत्तं कारणम्''$2'' इत्यस्ति।",
 
 # History pages
 'viewpagelogs'           => 'अस्य पृष्ठस्य लॉंग् इत्येतद् दर्शयतु',
+'nohistory'              => 'अस्य पृष्ठस्य कृते पृष्ठेतिहासः न वर्तते।',
+'currentrev'             => 'सद्यःकालीना आवृत्तिः',
 'currentrev-asof'        => 'वर्तमती आवृत्तिः $1 इति समये',
 'revisionasof'           => '$1 इत्यस्य आवृत्तिः',
 'revision-info'          => '$1इति समयस्य आवृत्तिः $2 इत्यनेन',
@@ -889,6 +924,7 @@ You may ignore this message, if this account was created in error.',
 'nextrevision'           => 'नूतनतरा आवृत्तिः →',
 'currentrevisionlink'    => 'सद्यःकालीना आवृत्तिः',
 'cur'                    => 'नवतरम्',
+'next'                   => 'आगामि',
 'last'                   => 'पूर्वतनम्',
 'page_first'             => 'प्रथमम्',
 'page_last'              => 'अन्तिमम्',
@@ -896,11 +932,22 @@ You may ignore this message, if this account was created in error.',
 'history-show-deleted'   => 'केवलम् विलोपित',
 'histfirst'              => 'पुरातनतमम्',
 'histlast'               => 'नूतनतमम्',
+'historysize'            => '({{PLURAL:$1|1 बैटम्|$1 बैटानि}})',
+'historyempty'           => '(रिक्तम्)',
 
 # Revision feed
+'history-feed-title'          => 'आवर्तनेतिहासः',
+'history-feed-description'    => 'विक्याम् अस्य पृष्ठस्य आवर्तनेतिहासः',
 'history-feed-item-nocomment' => '$2 मद्ये $1',
+'history-feed-empty'          => 'याचितं पृष्ठं न विद्यते।
+इदं विकितः अपाकृतम् अथवा पुनर्नामितं स्यात्।
+सम्बन्धितानि नूतनानि पृष्ठाणि सम्प्राप्तुं [[Special:Search|विक्याम् अन्वेषणं]] करोतु।',
 
 # Revision deletion
+'rev-deleted-comment'        => '(सम्पादनस्य सारः अपाकृतमस्ति)',
+'rev-deleted-user'           => '(प्रयोक्तृनाम अपाकृतमस्ति)',
+'rev-deleted-event'          => '(अभिलेखन-क्रिया अपाकृताऽस्ति)',
+'rev-deleted-user-contribs'  => '[प्रयोक्तृनाम अथवा आइपीसंकेतः अपाकृतः - सम्पादनं योगदानेभ्यः निगूढमस्ति]',
 'rev-delundel'               => 'दर्शयतु/गोपयतु',
 'rev-showdeleted'            => 'दर्शयतु',
 'revdelete-nooldid-title'    => 'लक्ष्यरूपा आवृत्तिः अमान्याऽस्ति।',

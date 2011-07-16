@@ -3795,18 +3795,27 @@ MediaWiki распространяется в надежде, что она бу
 'sqlite-no-fts'  => '$1 без поддержки полнотекстового поиска',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Добавить категорию',
-'ajax-add-category-submit'     => 'Добавить',
-'ajax-confirm-title'           => 'Подтвердить действие',
-'ajax-confirm-prompt'          => 'Ниже вы можете указать описание изменений.
+'ajax-add-category'             => 'Добавить категорию',
+'ajax-remove-category'          => 'Удалить категорию',
+'ajax-edit-category'            => 'Изменить категорию',
+'ajax-add-category-submit'      => 'Добавить',
+'ajax-confirm-ok'               => 'ОК',
+'ajax-confirm-title'            => 'Подтвердить действие',
+'ajax-confirm-prompt'           => 'Ниже вы можете указать описание изменений.
 Нажмите «Сохранить», чтобы сохранить ваши изменения.',
-'ajax-confirm-save'            => 'Сохранить',
-'ajax-add-category-summary'    => 'Добавлена категория «$1»',
-'ajax-remove-category-summary' => 'Удалена категория «$1»',
-'ajax-confirm-actionsummary'   => 'Предпринимаемые действия:',
-'ajax-error-title'             => 'Ошибка',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Не удалось убрать эту категорию.
+'ajax-confirm-save'             => 'Сохранить',
+'ajax-confirm-save-all'         => 'Сохранить все изменения',
+'ajax-cancel'                   => 'Отменить изменения',
+'ajax-add-category-summary'     => 'Добавлена категория «$1»',
+'ajax-edit-category-summary'    => 'Изменить категорию «$1» на «$2»',
+'ajax-remove-category-summary'  => 'Удалена категория «$1»',
+'ajax-confirm-actionsummary'    => 'Предпринимаемые действия:',
+'ajax-error-title'              => 'Ошибка',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Не удалось убрать эту категорию.
 Обычно это происходит в случае, когда категория была добавлена через шаблон.',
+'ajax-edit-category-error'      => 'Не удалось изменить эту категорию.
+Это обычно происходит, когда категория была добавлена на страницу с помощью шаблона.',
+'ajax-category-already-present' => 'Эта страница уже относится к данной категории $1',
 
 );

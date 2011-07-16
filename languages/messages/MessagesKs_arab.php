@@ -1,5 +1,5 @@
 <?php
-/** Kashmiri (Perso-Arabic) (كشميري)
+/** كشميري (كشميري)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -30,4 +30,5 @@ $digitTransformTable = array(
 $messages = array(
 # Recent changes
 'recentchanges' => 'نَوِ تبدیلی',
+
 );

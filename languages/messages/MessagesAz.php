@@ -2882,4 +2882,10 @@ Variants for Chinese language
 'sqlite-has-fts' => '$1 tam mətn axtarma ilə',
 'sqlite-no-fts'  => '$1 tam mətn axtarma olmadan',
 
+# Add categories per AJAX
+'ajax-add-category-submit' => 'Əlavə et',
+'ajax-confirm-save'        => 'Qeyd et',
+'ajax-error-title'         => 'Xəta',
+'ajax-error-dismiss'       => 'OK',
+
 );

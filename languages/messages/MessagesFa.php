@@ -3163,9 +3163,9 @@ $1',
 'show-big-image-preview' => '<small>اندازهٔ این پیش‌نمایش: $1.</small>',
 'show-big-image-other'   => '<small>کیفیت‌های دیگر: $1.</small>',
 'show-big-image-size'    => '<span dir="ltr">$1 × $2</span> پیکسل',
-'file-info-gif-looped'   => 'حلقه‌ای',
+'file-info-gif-looped'   => 'چرخش‌دار',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|قاب|قاب}}',
-'file-info-png-looped'   => 'حلقه‌ای',
+'file-info-png-looped'   => 'چرخش‌دار',
 'file-info-png-repeat'   => '$1 {{PLURAL:$1|بار|بار}} پخش شد',
 'file-info-png-frames'   => '$1 {{PLURAL:$1|قاب|قاب}}',
 
@@ -3955,5 +3955,20 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 با پشتیبانی از جستجو در متن کامل',
 'sqlite-no-fts'  => '$1 بدون پشتیبانی از جستجو در متن کامل',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'افزودن رده',
+'ajax-add-category-submit'     => 'افزودن',
+'ajax-confirm-title'           => 'تأیید عمل',
+'ajax-confirm-prompt'          => 'شما می‌توانید خلاصهٔ ویرایش را در زیر وارد کنید.
+دکمه «ذخیره» را بزنید تا ویرایش‌تان ذخیره شود.',
+'ajax-confirm-save'            => 'ذخیره',
+'ajax-add-category-summary'    => 'افزودن رده «$1»',
+'ajax-remove-category-summary' => 'حذف رده «$1»',
+'ajax-confirm-actionsummary'   => 'عمل پیش رو:',
+'ajax-error-title'             => 'خطا',
+'ajax-error-dismiss'           => 'تأیید',
+'ajax-remove-category-error'   => 'امکان حذف این رده وجود نداشت.
+این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
 
 );

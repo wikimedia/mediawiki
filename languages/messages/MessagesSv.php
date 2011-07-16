@@ -2200,8 +2200,10 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'watchlistanontext'    => 'Du måste $1 för att se eller redigera din bevakningslista.',
 'watchnologin'         => 'Inte inloggad',
 'watchnologintext'     => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ändra din bevakningslista.',
+'addwatch'             => 'Lägg till i bevakningslistan',
 'addedwatchtext'       => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
 Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:RecentChanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
+'removewatch'          => 'Ta bort från bevakningslistan',
 'removedwatchtext'     => 'Sidan "[[:$1]]" har tagits bort från [[Special:Watchlist|din bevakningslista]].',
 'watch'                => 'Bevaka',
 'watchthispage'        => 'Bevaka denna sida',
@@ -3543,6 +3545,12 @@ Bekräfta att du verkligen vill återskapa sidan.",
 'confirm-purge-top'    => 'Rensa denna sidas cache?',
 'confirm-purge-bottom' => 'Rensning av en sida tömmer cachen och tvingar fram den senaste versionen.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Lägg till denna sida till din bevakningslista?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Ta bort denna sida från din bevakningslista?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← föregående sida',
 'imgmultipagenext' => 'nästa sida →',
@@ -3743,5 +3751,32 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 med stöd för fulltextsökning',
 'sqlite-no-fts'  => '$1 utan stöd för fulltextsökning',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Lägg till kategori',
+'ajax-remove-category'          => 'Ta bort kategori',
+'ajax-edit-category'            => 'Redigera kategori',
+'ajax-add-category-submit'      => 'Lägg till',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Bekräfta handling',
+'ajax-confirm-prompt'           => 'Du kan skriva en redigeringssammanfattning nedanför.
+Klicka på "Spara" för att spara din redigering.',
+'ajax-confirm-save'             => 'Spara',
+'ajax-confirm-save-all'         => 'Spara alla ändringar',
+'ajax-cancel'                   => 'Avbryt redigering',
+'ajax-add-category-summary'     => 'Lägg till kategorin "$1"',
+'ajax-edit-category-summary'    => 'Ändra kategori "$1" till "$2"',
+'ajax-remove-category-summary'  => 'Tag bort kategorin "$1"',
+'ajax-add-category-question'    => 'Varför vill du lägga till kategorin "$1"?',
+'ajax-edit-category-question'   => 'Varför vill du ändra kategorin "$1" till "$2"?',
+'ajax-remove-category-question' => 'Varför vill du ta bort kategorin "$1"?',
+'ajax-confirm-actionsummary'    => 'Handling att utföra:',
+'ajax-error-title'              => 'Fel',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Det var inte möjligt att ta bort den här kategorin.
+Oftast beror det på att kategorin har lagts till genom användande av en mall.',
+'ajax-edit-category-error'      => 'Det gick inte att redigera denna kategori.
+Detta inträffar vanligen när kategorin har lagts till sidan i en mall.',
+'ajax-category-already-present' => 'Denna sida tillhör redan kategorin $1',
 
 );

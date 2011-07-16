@@ -3814,4 +3814,19 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'sqlite-has-fts' => '$1 với sự hỗ trợ tìm kiếm toàn văn',
 'sqlite-no-fts'  => '$1 không có hỗ trợ tìm kiếm toàn văn',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Thêm thể loại',
+'ajax-add-category-submit'     => 'Thêm',
+'ajax-confirm-title'           => 'Xác nhận tác vụ',
+'ajax-confirm-prompt'          => 'Bạn có thể thêm tóm lược sửa đổi vào bên dưới.
+Nhấn “Lưu” để lưu sửa đổi của bạn.',
+'ajax-confirm-save'            => 'Lưu',
+'ajax-add-category-summary'    => 'Thêm thể loại “$1”',
+'ajax-remove-category-summary' => 'Gỡ thể loại “$1”',
+'ajax-confirm-actionsummary'   => 'Tác vụ thực hiện:',
+'ajax-error-title'             => 'Lỗi',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Không thể bỏ thể loại này.
+Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
+
 );

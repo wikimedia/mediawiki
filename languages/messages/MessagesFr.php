@@ -990,7 +990,7 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
 'sitecsspreview'                   => "'''Souvenez-vous que vous êtes seulement en train de prévisualiser cette feuille de style.'''
 '''Elle n’a pas encore été enregistrée !'''",
-'sitejspreview'                    => "'''Souvenez-vous que vous êtes seulement en train de prévisualiser ce code Javascript.'''
+'sitejspreview'                    => "'''Souvenez-vous que vous êtes seulement en train de prévisualiser ce code JavaScript.'''
 '''Il n’a pas encore été enregistré !'''",
 'userinvalidcssjstitle'            => "'''Attention :''' il n’existe pas d’habillage « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/vector.css et non {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Mis à jour)',
@@ -3820,18 +3820,30 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Ajouter une catégorie',
-'ajax-add-category-submit'     => 'Ajouter',
-'ajax-confirm-title'           => 'Confirmer l’action',
-'ajax-confirm-prompt'          => 'Vous pouvez fournir un résumé de la modification ci-dessous.
+'ajax-add-category'             => 'Ajouter une catégorie',
+'ajax-remove-category'          => 'Supprimer la catégorie',
+'ajax-edit-category'            => 'Modifier une catégorie',
+'ajax-add-category-submit'      => 'Ajouter',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Confirmer l’action',
+'ajax-confirm-prompt'           => 'Vous pouvez fournir un résumé de la modification ci-dessous.
 Cliquez sur « Publier » pour enregistrer votre modification.',
-'ajax-confirm-save'            => 'Publier',
-'ajax-add-category-summary'    => 'Ajouter la catégorie « $1 »',
-'ajax-remove-category-summary' => 'Enlever la catégorie « $1 »',
-'ajax-confirm-actionsummary'   => 'Action à mener :',
-'ajax-error-title'             => 'Erreur',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Il n’a pas été possible de retirer cette catégorie.
-Ceci survient généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
+'ajax-confirm-save'             => 'Publier',
+'ajax-confirm-save-all'         => 'Enregistrer toutes les modifications',
+'ajax-cancel'                   => 'Annuler les modifications',
+'ajax-add-category-summary'     => 'Ajouter la catégorie « $1 »',
+'ajax-edit-category-summary'    => 'Changer la catégorie « $1 » vers « $2 »',
+'ajax-remove-category-summary'  => 'Enlever la catégorie « $1 »',
+'ajax-add-category-question'    => 'Pourquoi voulez-vous ajouter la catégorie « $1 » ?',
+'ajax-edit-category-question'   => 'Pourquoi voulez-vous changer la catégorie « $1 » vers « $2 » ?',
+'ajax-remove-category-question' => 'Pourquoi voulez-vous enlever la catégorie « $1 » ?',
+'ajax-confirm-actionsummary'    => 'Action à mener :',
+'ajax-error-title'              => 'Erreur',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Il n’a pas été possible de retirer cette catégorie.
+Cela se produit généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
+'ajax-edit-category-error'      => 'Il n’a pas été possible de modifier cette catégorie.
+Cela se produit généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
+'ajax-category-already-present' => 'Cette page appartient déjà à la catégorie $1',
 
 );

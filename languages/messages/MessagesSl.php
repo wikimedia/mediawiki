@@ -1217,7 +1217,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'qbsettings-fixedright'     => 'Desno nepomično',
 'qbsettings-floatingleft'   => 'Levo leteče',
 'qbsettings-floatingright'  => 'Desno leteče',
-'qbsettings-directionality' => 'Stalno, odvisno od usmerjenosti vašega jezika',
+'qbsettings-directionality' => 'Stalno, odvisno od usmerjenosti vašega skripta in vašega jezika',
 
 # Preferences page
 'preferences'                   => 'Nastavitve',
@@ -2113,8 +2113,10 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'watchlistanontext'    => 'Za pregled ali urejanje vsebine vašega spiska nadzorov se morate $1.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Za urejanje spiska nadzorov morate biti [[Special:UserLogin|prijavljeni]].',
+'addwatch'             => 'Dodaj na spisek nadzorov',
 'addedwatchtext'       => "Stran »[[:$1]]« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]].
 Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tukaj, v [[Special:RecentChanges|seznamu zadnjih sprememb]] pa bodo za lažjo izbiro označene '''krepko'''.",
+'removewatch'          => 'Odstrani s spiska nadzorov',
 'removedwatchtext'     => 'Stran »[[:$1]]« je bila odstranjena z vašega [[Special:Watchlist|spiska nadzorov]].',
 'watch'                => 'Opazuj',
 'watchthispage'        => 'Opazuj stran',
@@ -3454,6 +3456,12 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 'confirm-purge-top'    => 'Osvežim predpomnjenje strani?',
 'confirm-purge-bottom' => 'Osvežitev strani počisti predpomnilnik in prisili prikaz najnovejše različice.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'V redu',
+'confirm-watch-top'      => 'Dodam stran na vaš spisek nadzorov?',
+'confirm-unwatch-button' => 'V redu',
+'confirm-unwatch-top'    => 'Odstranim stran z vašega spiska nadzorov?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← prejšnja stran',
 'imgmultipagenext' => 'naslednja stran →',
@@ -3649,5 +3657,32 @@ Ta stran se sooča s tehničnimi težavami.',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporo iskanju polnih besedil',
 'sqlite-no-fts'  => '$1 brez podpore iskanju polnih besedil',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Dodaj kategorijo',
+'ajax-remove-category'          => 'Odstrani kategorijo',
+'ajax-edit-category'            => 'Uredi kategorijo',
+'ajax-add-category-submit'      => 'Dodaj',
+'ajax-confirm-ok'               => 'V redu',
+'ajax-confirm-title'            => 'Potrdi dejanje',
+'ajax-confirm-prompt'           => 'Spodaj lahko navedete povzetek urejanja.
+Kliknite »Shrani«, da shranite svoje urejanje.',
+'ajax-confirm-save'             => 'Shrani',
+'ajax-confirm-save-all'         => 'Shrani vse spremembe',
+'ajax-cancel'                   => 'Prekliči urejanja',
+'ajax-add-category-summary'     => 'Dodaj kategorijo »$1«',
+'ajax-edit-category-summary'    => 'Spremeni kategorijo »$1« v »$2«',
+'ajax-remove-category-summary'  => 'Odstrani kategorijo »$1«',
+'ajax-add-category-question'    => 'Zakaj želite dodati kategorijo »$1«?',
+'ajax-edit-category-question'   => 'Zakaj želite spremeniti kategorijo »$1« v »$2«?',
+'ajax-remove-category-question' => 'Zakaj želite odstraniti kategorijo »$1«?',
+'ajax-confirm-actionsummary'    => 'Izvedi dejanje:',
+'ajax-error-title'              => 'Napaka',
+'ajax-error-dismiss'            => 'V redu',
+'ajax-remove-category-error'    => 'Kategorije ni bilo mogoče odstraniti.
+To se po navadi zgodi, ko je kategorija dodana strani v predlogi.',
+'ajax-edit-category-error'      => 'Kategorije ni bilo mogoče urediti.
+To se po navadi zgodi, ko je kategorija dodana strani preko predloge.',
+'ajax-category-already-present' => 'Stran že pripada kategoriji $1',
 
 );

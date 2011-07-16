@@ -1349,7 +1349,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'qbsettings-fixedright'     => 'Drêta',
 'qbsettings-floatingleft'   => 'Fllotenta a gôche',
 'qbsettings-floatingright'  => 'Fllotenta a drêta',
-'qbsettings-directionality' => 'Fixa, d’aprés la dirèccionalitât de voutra lengoua',
+'qbsettings-directionality' => 'Fixa, d’aprés la dirèccionalitât de voutron alfabèt et de voutra lengoua',
 
 # Preferences page
 'preferences'                   => 'Prèferences',
@@ -2240,8 +2240,9 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences
 'emailuserfooter'      => 'Ceti mèssâjo at étâ mandâ per « $1 » a « $2 » per la fonccion « Lui mandar un mèssâjo » de {{SITENAME}}.',
 
 # User Messenger
-'usermessage-summary' => 'At lèssiê un mèssâjo sistèmo.',
-'usermessage-editor'  => 'Mèssagiér du sistèmo',
+'usermessage-summary'  => 'At lèssiê un mèssâjo sistèmo.',
+'usermessage-editor'   => 'Mèssagiér du sistèmo',
+'usermessage-template' => 'MediaWiki:MèssâjoUtilisator',
 
 # Watchlist
 'watchlist'            => 'Lista de survelyence',
@@ -2251,8 +2252,10 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences
 'watchlistanontext'    => 'Vos volyéd $1 por fâre vêre ou changiér los èlèments de voutra lista de survelyence.',
 'watchnologin'         => 'Pas branchiê',
 'watchnologintext'     => 'Vos dête étre [[Special:UserLogin|branchiê]] por changiér voutra lista de survelyence.',
+'addwatch'             => 'Apondre a la lista de survelyence',
 'addedwatchtext'       => "La pâge « [[:$1]] » at étâ apondua a voutra [[Special:Watchlist|lista de survelyence]].
 Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront listâs et la pâge aparètrat '''en grâs''' dedens la [[Special:RecentChanges|lista des dèrriérs changements]] por étre repèrâ ples facilament.",
+'removewatch'          => 'Enlevar de la lista de survelyence',
 'removedwatchtext'     => 'La pâge « [[:$1]] » at étâ enlevâ de voutra [[Special:Watchlist|lista de survelyence]].',
 'watch'                => 'Siuvre',
 'watchthispage'        => 'Siuvre ceta pâge',
@@ -3639,6 +3642,12 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.',
 'confirm-purge-top'    => 'Voléd-vos purgiér lo cache de ceta pâge ?',
 'confirm-purge-bottom' => 'Purgiér una pâge èface lo cache et pués fôrce la dèrriére vèrsion a étre montrâ.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'D’acôrd',
+'confirm-watch-top'      => 'Apondre ceta pâge a voutra lista de survelyence ?',
+'confirm-unwatch-button' => 'D’acôrd',
+'confirm-unwatch-top'    => 'Enlevar ceta pâge de voutra lista de survelyence ?',
+
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator'     => '&nbsp;:&#32;',
@@ -3905,5 +3914,29 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 # SQLite database support
 'sqlite-has-fts' => '$1 avouéc rechèrche en tèxto complèt recognua',
 'sqlite-no-fts'  => '$1 sen rechèrche en tèxto complèt recognua',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Apondre una catègorie',
+'ajax-remove-category'          => 'Enlevar la catègorie',
+'ajax-edit-category'            => 'Changiér la catègorie',
+'ajax-add-category-submit'      => 'Apondre',
+'ajax-confirm-ok'               => 'D’acôrd',
+'ajax-confirm-title'            => 'Confirmar l’accion',
+'ajax-confirm-prompt'           => 'Vos pouede balyér un rèsumâ de changement ce-desot.
+Clicâd dessus « Sôvar » por encartar voutron changement.',
+'ajax-confirm-save'             => 'Sôvar',
+'ajax-confirm-save-all'         => 'Encartar tôs los changements',
+'ajax-cancel'                   => 'Anular des changements',
+'ajax-add-category-summary'     => 'Apondre la catègorie « $1 »',
+'ajax-edit-category-summary'    => 'Changiér la catègorie « $1 » a « $2 »',
+'ajax-remove-category-summary'  => 'Enlevar la catègorie « $1 »',
+'ajax-confirm-actionsummary'    => 'Accion a menar :',
+'ajax-error-title'              => 'Èrror',
+'ajax-error-dismiss'            => 'D’acôrd',
+'ajax-remove-category-error'    => 'O at pas étâ possiblo d’enlevar ceta catègorie.
+En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge avouéc un modèlo.',
+'ajax-edit-category-error'      => 'O ére pas possiblo de changiér cela catègorie.
+En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge dens un modèlo.',
+'ajax-category-already-present' => 'Ceta pâge est ja a la catègorie $1',
 
 );

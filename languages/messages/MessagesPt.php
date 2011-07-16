@@ -3797,18 +3797,27 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Adicionar categoria',
-'ajax-add-category-submit'     => 'Adicionar',
-'ajax-confirm-title'           => 'Confirme a operação',
-'ajax-confirm-prompt'          => 'Pode colocar abaixo um resumo da edição.
+'ajax-add-category'             => 'Adicionar categoria',
+'ajax-remove-category'          => 'Remover categoria',
+'ajax-edit-category'            => 'Editar categoria',
+'ajax-add-category-submit'      => 'Adicionar',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Confirme a operação',
+'ajax-confirm-prompt'           => 'Pode colocar abaixo um resumo da edição.
 Clique "Gravar página" para gravar a sua edição.',
-'ajax-confirm-save'            => 'Gravar',
-'ajax-add-category-summary'    => 'Adicionar categoria "$1"',
-'ajax-remove-category-summary' => 'Remover categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Operação a executar:',
-'ajax-error-title'             => 'Erro',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Não foi possível remover esta categoria.
+'ajax-confirm-save'             => 'Gravar',
+'ajax-confirm-save-all'         => 'Gravar todas as alterações',
+'ajax-cancel'                   => 'Cancelar as edições',
+'ajax-add-category-summary'     => 'Adicionar categoria "$1"',
+'ajax-edit-category-summary'    => 'Alterar a categoria "$1" para "$2"',
+'ajax-remove-category-summary'  => 'Remover categoria "$1"',
+'ajax-confirm-actionsummary'    => 'Operação a executar:',
+'ajax-error-title'              => 'Erro',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Não foi possível remover esta categoria.
 Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
+'ajax-edit-category-error'      => 'Não foi possível editar esta categoria.
+Isso normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
+'ajax-category-already-present' => 'Esta página já está na categoria $1',
 
 );

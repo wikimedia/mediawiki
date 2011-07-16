@@ -743,7 +743,7 @@ XHTML id names.
 'noindex-category'               => 'Noindexed pages',
 'broken-file-category'           => 'Pages with broken file links',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 
 'about'         => 'About',
 'article'       => 'Content page',
@@ -4586,31 +4586,31 @@ This site is experiencing technical difficulties.',
 'sqlite-has-fts' => '$1 with full-text search support',
 'sqlite-no-fts'  => '$1 without full-text search support',
 
-
 # Add categories per AJAX
-'ajax-add-category'            => 'Add category',
-'ajax-remove-category'         => 'Remove category',
-'ajax-edit-category'           => 'Edit category',
-'ajax-add-category-submit'     => 'Add',
-'ajax-confirm-ok'              => 'OK',
-'ajax-confirm-title'           => 'Confirm action',
-'ajax-confirm-prompt'          => 'You can provide an edit summary below.
+'ajax-add-category'             => 'Add category',
+'ajax-remove-category'          => 'Remove category',
+'ajax-edit-category'            => 'Edit category',
+'ajax-add-category-submit'      => 'Add',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Confirm action',
+'ajax-confirm-prompt'           => 'You can provide an edit summary below.
 Click "Save" to save your edit.',
-'ajax-confirm-save'            => 'Save',
-'ajax-confirm-save-all'        => 'Save all changes',
-'ajax-cancel'                  => 'Cancel edits',
-'ajax-add-category-summary'    => 'Add category "$1"',
-'ajax-edit-category-summary'   => 'Change category "$1" to "$2"',
-'ajax-remove-category-summary' => 'Remove category "$1"',
-'ajax-add-category-question'   => 'Why do you want to add category "$1"?',
-'ajax-edit-category-question'  => 'Why do you want to change category "$1" to "$2"?',
-'ajax-remove-category-question'=> 'Why do you want to remove category "$1"?',
-'ajax-confirm-actionsummary'   => 'Action to take:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'It was not possible to remove this category.
+'ajax-confirm-save'             => 'Save',
+'ajax-confirm-save-all'         => 'Save all changes',
+'ajax-cancel'                   => 'Cancel edits',
+'ajax-add-category-summary'     => 'Add category "$1"',
+'ajax-edit-category-summary'    => 'Change category "$1" to "$2"',
+'ajax-remove-category-summary'  => 'Remove category "$1"',
+'ajax-add-category-question'    => 'Why do you want to add category "$1"?',
+'ajax-edit-category-question'   => 'Why do you want to change category "$1" to "$2"?',
+'ajax-remove-category-question' => 'Why do you want to remove category "$1"?',
+'ajax-confirm-actionsummary'    => 'Action to take:',
+'ajax-error-title'              => 'Error',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'It was not possible to remove this category.
 This usually occurs when the category has been added to the page in a template.',
-'ajax-edit-category-error'     => 'It was not possible to edit this category.
+'ajax-edit-category-error'      => 'It was not possible to edit this category.
 This usually occurs when the category has been added to the page in a template.',
 'ajax-category-already-present' => 'This page already belongs to the category $1',
+
 );

@@ -2257,7 +2257,7 @@ $UNWATCHURL
 'undeletereset'                => '重设',
 'undeleteinvert'               => '反向选择',
 'undeletecomment'              => '理由：',
-'undeletedarticle'             => '已恢复的"[[$1]]"',
+'undeletedarticle'             => '已恢复“[[$1]]”',
 'undeletedrevisions'           => '$1个修订版本已恢复',
 'undeletedrevisions-files'     => '$1个修订版本和$2个文件已经被恢复',
 'undeletedfiles'               => '$1个文件已经被恢复',
@@ -3603,5 +3603,20 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 # SQLite database support
 'sqlite-has-fts' => '带全文搜索的版本$1',
 'sqlite-no-fts'  => '不带全文搜索的版本$1',
+
+# Add categories per AJAX
+'ajax-add-category'            => '加入分类',
+'ajax-add-category-submit'     => '加入',
+'ajax-confirm-title'           => '确认动作',
+'ajax-confirm-prompt'          => '您可以在下面提供一个编辑摘要。
+点击“保存”去保存您的编辑。',
+'ajax-confirm-save'            => '保存',
+'ajax-add-category-summary'    => '加入分类“$1”',
+'ajax-remove-category-summary' => '移除分类“$1”',
+'ajax-confirm-actionsummary'   => '已进行的动作：',
+'ajax-error-title'             => '错误',
+'ajax-error-dismiss'           => '确定',
+'ajax-remove-category-error'   => '不能移除这个分类。
+通常是发生在一个模板中加入该分类。',
 
 );

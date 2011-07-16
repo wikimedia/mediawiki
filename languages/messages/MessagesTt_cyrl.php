@@ -2425,4 +2425,13 @@ $1',
 'htmlform-reset'               => 'Үзгәртүләрне кире кайтару',
 'htmlform-selectorother-other' => 'Башка',
 
+# Add categories per AJAX
+'ajax-add-category'          => 'Бүлек өстәргә',
+'ajax-add-category-submit'   => 'Өстәргә',
+'ajax-confirm-save'          => 'Саклау',
+'ajax-error-title'           => 'Хата',
+'ajax-error-dismiss'         => 'ОК',
+'ajax-remove-category-error' => 'Бу бүлекне алып ташлап булмады.
+Гадәттә шаблон аша өстәлгән бүлекләрдә шушындый хаталар чыга.',
+
 );

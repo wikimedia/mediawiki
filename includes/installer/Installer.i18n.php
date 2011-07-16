@@ -1132,14 +1132,14 @@ $messages['ba'] = array(
  * @author Mucalexx
  */
 $messages['bar'] = array(
-	'mainpagetext' => "'''MediaWiki is erfoigraich installird worn.'''",
-	'mainpagedocfooter' => 'A Hüife zur da Benytzung und Konfigurazion vo da Wiki-Software findst auf [http://meta.wikimedia.org/wiki/Help:Contents Benytzerhåndbuach].
+	'mainpagetext' => "'''MediaWiki is erfoigreich installird worn.'''",
+	'mainpagedocfooter' => 'A Hüf zur da Benützung und Konfigurazion voh da Wiki-Software findst auf [http://meta.wikimedia.org/wiki/Help:Contents Benützerhåndbuach].
 
-== Starthüifm ==
+== Starthüfe ==
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listen vo de Konfigurazionsvariablen]
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listen voh de Konfigurazionsvariaablen]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mäilinglisten vo de naichen MediaWiki-Versionen]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglisten voh de neichen MediaWiki-Versionen]',
 );
 
 /** Southern Balochi (بلوچی مکرانی) */
@@ -8248,6 +8248,7 @@ $messages['is'] = array(
 
 /** Italian (Italiano)
  * @author Beta16
+ * @author Karika
  */
 $messages['it'] = array(
 	'config-desc' => 'Il programma di installazione per MediaWiki',
@@ -8309,6 +8310,9 @@ Non è possibile installare MediaWiki.",
 	'config-env-php' => 'PHP $1 è installato.',
 	'config-env-php-toolow' => 'PHP $1 è installato.
 Tuttavia, MediaWiki richiede PHP $2 o superiore.',
+	'config-ns-generic' => 'Progetto',
+	'config-ns-site-name' => 'Stesso nome wiki: $1',
+	'config-email-settings' => 'Impostazioni e-mail',
 	'mainpagetext' => "'''Installazione di MediaWiki completata correttamente.'''",
 	'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
 
@@ -9655,6 +9659,7 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'MySQL-Astellungen',
 	'config-header-postgres' => 'PostgreSQL-Astellungen',
 	'config-header-sqlite' => 'SQLite-Astellungen',
