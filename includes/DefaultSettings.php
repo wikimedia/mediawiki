@@ -3304,6 +3304,10 @@ $wgEmailConfirmToEdit = false;
  * unable to perform certain essential tasks or access new functionality
  * when new permissions are introduced and default grants established.
  *
+ * If set to an array instead of a boolean, it is assumed that the array is in
+ * NS => bool form in order to support per-namespace permissions. Note that 
+ * this feature does not fully work for all permission types.
+ *
  * Functionality to make pages inaccessible has not been extensively tested
  * for security. Use at your own risk!
  *

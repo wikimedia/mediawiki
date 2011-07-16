@@ -56,11 +56,17 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	}
 
 	function setUserPerm( $perm ) {
-		if ( is_array( $perm ) ) {
-			$this->user->mRights = $perm;
-		} else {
-			$this->user->mRights = array( $perm );
+		// Setting member variables is evil!!!
+
+		if ( !is_array( $perm ) ) {
+			$perm = array( $perm );
 		}
+		for ($i = 0; $i < 100; $i++) {
+			$this->user->mRights[$i] = $perm;
+		}
+		
+		// Hack, hack hack ...
+		$this->user->mRights['*'] = $perm;
 	}
 
 	function setTitle( $ns, $title = "Main_Page" ) {
