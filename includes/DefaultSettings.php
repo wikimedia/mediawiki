@@ -1835,7 +1835,6 @@ $wgDummyLanguageCodes = array(
 	'als',
 	'bat-smg',
 	'be-x-old',
-	'dk',
 	'fiu-vro',
 	'iu',
 	'nb',
