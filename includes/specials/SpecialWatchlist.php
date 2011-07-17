@@ -62,7 +62,7 @@ class SpecialWatchlist extends SpecialPage {
 				array(),
 				array( 'returnto' => $this->getTitle()->getPrefixedText() )
 			);
-			$output->addWikiMsgArray( 'watchlistanontext', array( $llink ), array( 'replaceafter' ) );
+			$out->addHTML( wfMessage( 'watchlistanontext' )->rawParam( $llink )->parse() );
 			return;
 		}
 
@@ -380,7 +380,7 @@ class SpecialWatchlist extends SpecialPage {
 		$linkBatch->execute();
 		$dbr->dataSeek( $res, 0 );
 
-		$list = ChangesList::newFromUser( $this->getUser() );
+		$list = ChangesList::newFromContext( $this->getContext() );
 		$list->setWatchlistDivs();
 
 		$s = $list->beginRecentChangesList();

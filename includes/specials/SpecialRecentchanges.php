@@ -71,8 +71,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return FormOptions
 	 */
 	public function setup( $parameters ) {
-		global $wgRequest;
-
 		$opts = $this->getDefaultOptions();
 
 		$this->customFilters = array();
@@ -81,7 +79,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$opts->add( $key, $params['default'] );
 		}
 
-		$opts->fetchValuesFromRequest( $wgRequest );
+		$opts->fetchValuesFromRequest( $this->getRequest() );
 
 		// Give precedence to subpage syntax
 		if( $parameters !== null ) {
@@ -98,10 +96,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return FormOptions
 	 */
 	public function feedSetup() {
-		global $wgFeedLimit, $wgRequest;
+		global $wgFeedLimit;
 		$opts = $this->getDefaultOptions();
 		# Feed is cached on limit,hideminor,namespace; other params would randomly not work
-		$opts->fetchValuesFromRequest( $wgRequest, array( 'limit', 'hideminor', 'namespace' ) );
+		$opts->fetchValuesFromRequest( $this->getRequest(), array( 'limit', 'hideminor', 'namespace' ) );
 		$opts->validateIntBounds( 'limit', 0, $wgFeedLimit );
 		return $opts;
 	}
@@ -114,8 +112,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			if ( $this->including() ) {
 				$isFeed = false;
 			} else {
-				global $wgRequest;
-				$isFeed = (bool)$wgRequest->getVal( 'feed' );
+				$isFeed = (bool)$this->getRequest()->getVal( 'feed' );
 			}
 			$this->rcOptions = $isFeed ? $this->feedSetup() : $this->setup( $this->rcSubpage );
 		}
@@ -129,12 +126,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param $subpage String
 	 */
 	public function execute( $subpage ) {
-		global $wgRequest, $wgOut;
 		$this->rcSubpage = $subpage;
-		$feedFormat = $this->including() ? null : $wgRequest->getVal( 'feed' );
+		$feedFormat = $this->including() ? null : $this->getRequest()->getVal( 'feed' );
 
 		# 10 seconds server-side caching max
-		$wgOut->setSquidMaxage( 10 );
+		$this->getOutput()->setSquidMaxage( 10 );
 		# Check if the client has a cached version
 		$lastmod = $this->checkLastModified( $feedFormat );
 		if( $lastmod === false ) {
@@ -453,14 +449,13 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Send output to $wgOut, only called if not used feeds
+	 * Send output to the OutputPage object, only called if not used feeds
 	 *
 	 * @param $rows Array of database rows
 	 * @param $opts FormOptions
 	 */
 	public function webOutput( $rows, $opts ) {
-		global $wgOut, $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
-		global $wgAllowCategorizedRecentChanges;
+		global $wgRCShowWatchingUsers, $wgShowUpdatedMarker, $wgAllowCategorizedRecentChanges;
 
 		$limit = $opts['limit'];
 
@@ -470,7 +465,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		// And now for the content
-		$wgOut->setFeedAppendQuery( $this->getFeedQuery() );
+		$this->getOutput()->setFeedAppendQuery( $this->getFeedQuery() );
 
 		if( $wgAllowCategorizedRecentChanges ) {
 			$this->filterByCategories( $rows, $opts );
@@ -482,7 +477,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$counter = 1;
-		$list = ChangesList::newFromUser( $this->getUser() );
+		$list = ChangesList::newFromContext( $this->getContext() );
 
 		$s = $list->beginRecentChangesList();
 		foreach( $rows as $obj ) {
@@ -518,7 +513,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			--$limit;
 		}
 		$s .= $list->endRecentChangesList();
-		$wgOut->addHTML( $s );
+		$this->getOutput()->addHTML( $s );
 	}
 
 	/**
@@ -536,9 +531,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return String: XHTML
 	 */
 	public function doHeader( $opts ) {
-		global $wgScript, $wgOut;
+		global $wgScript;
 
-		$this->setTopText( $wgOut, $opts );
+		$this->setTopText( $opts );
 
 		$defaults = $opts->getAllValues();
 		$nondefaults = $opts->getChangedValues();
@@ -584,11 +579,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
-		$wgOut->addHTML(
+		$this->getOutput()->addHTML(
 			Xml::fieldset( wfMsg( 'recentchanges-legend' ), $panelString, array( 'class' => 'rcoptions' ) )
 		);
 
-		$this->setBottomText( $wgOut, $opts );
+		$this->setBottomText( $opts );
 	}
 
 	/**
@@ -618,21 +613,19 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Send the text to be displayed above the options
 	 *
-	 * @param $out OutputPage
 	 * @param $opts FormOptions
 	 */
-	function setTopText( OutputPage $out, FormOptions $opts ) {
-		$out->addWikiText( wfMsgForContentNoTrans( 'recentchangestext' ) );
+	function setTopText( FormOptions $opts ) {
+		$this->getOutput()->addWikiText( wfMsgForContentNoTrans( 'recentchangestext' ) );
 	}
 
 	/**
 	 * Send the text to be displayed after the options, for use in
 	 * Recentchangeslinked
 	 *
-	 * @param $out OutputPage
 	 * @param $opts FormOptions
 	 */
-	function setBottomText( OutputPage $out, FormOptions $opts ) {}
+	function setBottomText( FormOptions $opts ) {}
 
 	/**
 	 * Creates the choose namespace selection
@@ -747,16 +740,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $override + $options;
+		$text = htmlspecialchars( $title );
 		if ( $active ) {
-			return $this->getSkin()->link(
-				$this->getTitle(),
-				'<strong>' . htmlspecialchars( $title ) . '</strong>',
-				array(), $params, array( 'known' ) );
-		} else {
-			return $this->getSkin()->link(
-				$this->getTitle(), htmlspecialchars( $title ), array(),
-				$params, array( 'known' ) );
+			$text = '<strong>' . $text . '</strong>';
 		}
+		return Linker::linkKnown( $this->getTitle(), $text, array(), $params );
 	}
 
 	/**
@@ -766,7 +754,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param $nondefaults Array
 	 */
 	function optionsPanel( $defaults, $nondefaults ) {
-		global $wgLang, $wgRCLinkLimits, $wgRCLinkDays;
+		global $wgRCLinkLimits, $wgRCLinkDays;
 
 		$options = $nondefaults + $defaults;
 
@@ -777,10 +765,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 		if( $options['from'] ) {
 			$note .= wfMsgExt( 'rcnotefrom', array( 'parseinline' ),
-				$wgLang->formatNum( $options['limit'] ),
-				$wgLang->timeanddate( $options['from'], true ),
-				$wgLang->date( $options['from'], true ),
-				$wgLang->time( $options['from'], true ) ) . '<br />';
+				$this->getLang()->formatNum( $options['limit'] ),
+				$this->getLang()->timeanddate( $options['from'], true ),
+				$this->getLang()->date( $options['from'], true ),
+				$this->getLang()->time( $options['from'], true ) ) . '<br />';
 		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
@@ -793,17 +781,17 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		// limit links
 		foreach( $wgRCLinkLimits as $value ) {
-			$cl[] = $this->makeOptionsLink( $wgLang->formatNum( $value ),
+			$cl[] = $this->makeOptionsLink( $this->getLang()->formatNum( $value ),
 				array( 'limit' => $value ), $nondefaults, $value == $options['limit'] );
 		}
-		$cl = $wgLang->pipeList( $cl );
+		$cl = $this->getLang()->pipeList( $cl );
 
 		// day links, reset 'from' to none
 		foreach( $wgRCLinkDays as $value ) {
-			$dl[] = $this->makeOptionsLink( $wgLang->formatNum( $value ),
+			$dl[] = $this->makeOptionsLink( $this->getLang()->formatNum( $value ),
 				array( 'days' => $value, 'from' => '' ), $nondefaults, $value == $options['days'] );
 		}
-		$dl = $wgLang->pipeList( $dl );
+		$dl = $this->getLang()->pipeList( $dl );
 
 
 		// show/hide links
@@ -833,13 +821,13 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		// show from this onward link
 		$timestamp = wfTimestampNow();
-		$now = $wgLang->timeanddate( $timestamp, true );
+		$now = $this->getLang()->timeanddate( $timestamp, true );
 		$tl = $this->makeOptionsLink(
 			$now, array( 'from' => $timestamp ), $nondefaults
 		);
 
 		$rclinks = wfMsgExt( 'rclinks', array( 'parseinline', 'replaceafter' ),
-			$cl, $dl, $wgLang->pipeList( $links ) );
+			$cl, $dl, $this->getLang()->pipeList( $links ) );
 		$rclistfrom = wfMsgExt( 'rclistfrom', array( 'parseinline', 'replaceafter' ), $tl );
 		return "{$note}$rclinks<br />$rclistfrom";
 	}
@@ -848,8 +836,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * add javascript specific to the [[Special:RecentChanges]] page
 	 */
 	function addRecentChangesJS() {
-		global $wgOut;
-		$wgOut->addModules( array(
+		$this->getOutput()->addModules( array(
 			'mediawiki.special.recentchanges',
 		) );
 	}
