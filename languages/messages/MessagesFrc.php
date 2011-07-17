@@ -16,6 +16,8 @@
  * @author Zetud
  */
 
+$fallback = 'frc';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souligner les liens:',
