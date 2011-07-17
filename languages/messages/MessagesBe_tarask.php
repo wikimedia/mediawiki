@@ -3672,18 +3672,30 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'sqlite-no-fts'  => '$1 без падтрымкі поўнатэкстнага пошуку',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Дадаць катэгорыю',
-'ajax-add-category-submit'     => 'Дадаць',
-'ajax-confirm-title'           => 'Пацьвердзіць дзеяньне',
-'ajax-confirm-prompt'          => 'Ніжэй Вы можаце ўвесьці кароткае апісаньне зьменаў.
+'ajax-add-category'             => 'Дадаць катэгорыю',
+'ajax-remove-category'          => 'Выдаліць катэгорыю',
+'ajax-edit-category'            => 'Рэдагаваць катэгорыю',
+'ajax-add-category-submit'      => 'Дадаць',
+'ajax-confirm-ok'               => 'Добра',
+'ajax-confirm-title'            => 'Пацьвердзіць дзеяньне',
+'ajax-confirm-prompt'           => 'Ніжэй Вы можаце ўвесьці кароткае апісаньне зьменаў.
 Націсьніце «Захаваць», каб захаваць Вашае рэдагаваньне.',
-'ajax-confirm-save'            => 'Захаваць',
-'ajax-add-category-summary'    => 'Дададзеная катэгорыя «$1»',
-'ajax-remove-category-summary' => 'Выдаленая катэгорыя «$1»',
-'ajax-confirm-actionsummary'   => 'Дзеяньне да выкананьня:',
-'ajax-error-title'             => 'Памылка',
-'ajax-error-dismiss'           => 'Добра',
-'ajax-remove-category-error'   => 'Немагчыма выдаліць гэтую катэгорыю.
+'ajax-confirm-save'             => 'Захаваць',
+'ajax-confirm-save-all'         => 'Захаваць усе зьмены',
+'ajax-cancel'                   => 'Скасаваць зьмены',
+'ajax-add-category-summary'     => 'Дададзеная катэгорыя «$1»',
+'ajax-edit-category-summary'    => 'Зьмяніць катэгорыю «$1» на «$2»',
+'ajax-remove-category-summary'  => 'Выдаленая катэгорыя «$1»',
+'ajax-add-category-question'    => 'Якая мэта дадаваньня катэгорыя «$1»?',
+'ajax-edit-category-question'   => 'Якая мэта замены катэгорыя «$1» на «$2»?',
+'ajax-remove-category-question' => 'Якая мэта выдаленьня катэгорыі «$1»?',
+'ajax-confirm-actionsummary'    => 'Дзеяньне да выкананьня:',
+'ajax-error-title'              => 'Памылка',
+'ajax-error-dismiss'            => 'Добра',
+'ajax-remove-category-error'    => 'Немагчыма выдаліць гэтую катэгорыю.
 Звычайна гэта здараецца, калі катэгорыя была дададзеная на старонку праз шаблён.',
+'ajax-edit-category-error'      => 'Немагчыма рэдагаваць гэтую катэгорыю.
+Звычайна такая праблема ўзьнікае калі катэгорыя была даданая на старонку праз шаблён.',
+'ajax-category-already-present' => 'Гэтая старонка ўжо належыць катэгорыі $1',
 
 );

@@ -183,7 +183,7 @@ $messages = array(
 'errorpagetitle'    => 'Marranys',
 'returnto'          => 'Gow er ash gys $1.',
 'tagline'           => 'Ass {{SITENAME}}.',
-'help'              => 'Cooin lhien',
+'help'              => 'Cooney',
 'search'            => 'Ronsee',
 'searchbutton'      => 'Ronsee',
 'go'                => 'Gow',
@@ -666,7 +666,7 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'rightsnone' => '(veg)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'duillag shoh y reaghey',
+'action-edit' => 'yn duillag shoh y reaghey',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|caghlaa|chaghlaa|chaghlaa|caghlaaghyn}}',
@@ -674,6 +674,8 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'recentchanges-legend'           => "Reihyssyn da ny caghlaaghyn s'noa",
 'recentchangestext'              => "Shirr ny caghlaaghyn s'noa da'n wiki er y duillag shoh.",
 'recentchanges-feed-description' => "Shirr ny caghlaaghyn jeianagh er y wiki 'sy scoltey shoh.",
+'recentchanges-label-newpage'    => 'Ren y reaghey shoh croo duillag noa',
+'recentchanges-label-bot'        => 'Ren bot y reaghey shoh',
 'rcnote'                         => "Ny ta heese, she {{PLURAL:$1|ny '''$1''' caghlaa|yn '''$1''' chaghlaa|ny '''$1''' chaghlaa|ny '''$1''' caghlaaghyn}} s'jerree ayns {{PLURAL:$2|ny '''$2''' laa|yn '''$2''' laa|ny '''$2''' laa|ny '''$2''' laaghyn}} s'jerree, kiart ec $4, $5.",
 'rcnotefrom'                     => "Shoh heese ny caghlaaghyn veih '''$2''' (gys '''$1''' taishbynit).",
 'rclistfrom'                     => "Taishbyn ny caghlaaghyn s'noa veih $1",
@@ -883,8 +885,9 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
 
 # Special:LinkSearch
-'linksearch'    => 'Kianglaghyn çheumooie',
-'linksearch-ok' => 'Ronsee',
+'linksearch'      => 'Kianglaghyn çheumooie',
+'linksearch-ok'   => 'Ronsee',
+'linksearch-line' => 'Ta kiangley ayn veih $2 gys $1',
 
 # Special:ListUsers
 'listusers-submit' => 'Taishbyn',

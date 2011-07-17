@@ -1987,10 +1987,12 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chith
 'watchlistanontext'    => "Rhaid $1 er mwyn gweld neu ddiwygio'ch rhestr wylio.",
 'watchnologin'         => 'Nid ydych wedi mewngofnodi',
 'watchnologintext'     => "Mae'n rhaid i chi [[Special:UserLogin|fewngofnodi]] er mwyn newid eich rhestr wylio.",
+'addwatch'             => 'Ychwanegu at y rhestr wylio',
 'addedwatchtext'       => "Mae'r dudalen \"[[:\$1|\$1]]\" wedi cael ei hychwanegu at eich [[Special:Watchlist|rhestr wylio]].
 Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos ar eich rhestr wylio ac hefyd '''yn gryf''' ar restr y [[Special:RecentChanges|newidiadau diweddar]], fel ei bod yn haws eu gweld.
 
 Os ydych am ddiddymu'r dudalen o'r rhestr wylio, cliciwch ar \"Stopio gwylio\" yn y bar ar frig y dudalen.",
+'removewatch'          => 'Tynnu oddi ar eich rhestr wylio',
 'removedwatchtext'     => 'Mae\'r dudalen "[[:$1]]" wedi\'i thynnu oddi ar [[Special:Watchlist|eich rhestr wylio]].',
 'watch'                => 'Gwylio',
 'watchthispage'        => 'Gwylier y dudalen hon',
@@ -3306,6 +3308,12 @@ Cadarnhewch eich bod chi wir am ail-greu'r dudalen.",
 'confirm-purge-top'    => "Clirio'r dudalen o'r storfa?",
 'confirm-purge-bottom' => "Mae carthu tudalen yn clirio'r celc ac yn gorfodi'r fersiwn diweddaraf i ymddangos.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'Iawn',
+'confirm-watch-top'      => 'Ychwaneger y dudalen hon at eich rhestr wylio?',
+'confirm-unwatch-button' => 'Iawn',
+'confirm-unwatch-top'    => 'Tynner y dudalen hon oddi ar eich rhestr wylio?',
+
 # Multipage image navigation
 'imgmultipageprev' => "← i'r dudalen gynt",
 'imgmultipagenext' => "i'r dudalen nesaf →",
@@ -3500,18 +3508,25 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'sqlite-no-fts'  => '$1 heb gymorth chwiliad yr holl destun',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Ychwanegu categori',
-'ajax-add-category-submit'     => 'Ychwanegu',
-'ajax-confirm-title'           => "Cadarnhau'r weithred",
-'ajax-confirm-prompt'          => 'Gallwch ysgrifennu crynodeb o\'r golygiad isod.
+'ajax-add-category'             => 'Ychwanegu categori',
+'ajax-remove-category'          => "Tynnu'r categori",
+'ajax-edit-category'            => "Golygu'r categori",
+'ajax-add-category-submit'      => 'Ychwanegu',
+'ajax-confirm-ok'               => 'Iawn',
+'ajax-confirm-title'            => "Cadarnhau'r weithred",
+'ajax-confirm-prompt'           => 'Gallwch ysgrifennu crynodeb o\'r golygiad isod.
 Pwyswch ar "Cadw" i roi\'ch golygiad ar gadw.',
-'ajax-confirm-save'            => 'Cadw',
-'ajax-add-category-summary'    => 'Ychwanegu\'r categori "$1"',
-'ajax-remove-category-summary' => 'Tynnu\'r categori "$1"',
-'ajax-confirm-actionsummary'   => 'Dewiswch weithred:',
-'ajax-error-title'             => 'Gwall',
-'ajax-error-dismiss'           => 'Iawn',
-'ajax-remove-category-error'   => "Nid oedd yn bosibl tynnu'r categori hwn i ffwrdd.
+'ajax-confirm-save'             => 'Cadwer',
+'ajax-confirm-save-all'         => 'Cadwer yr holl newidiadau',
+'ajax-cancel'                   => "Diddymu'r golygiadau",
+'ajax-add-category-summary'     => 'Ychwanegu\'r categori "$1"',
+'ajax-edit-category-summary'    => 'Newid y categori "$1" i "$2"',
+'ajax-remove-category-summary'  => 'Tynnu\'r categori "$1"',
+'ajax-confirm-actionsummary'    => 'Rydych ar fin:',
+'ajax-error-title'              => 'Gwall',
+'ajax-error-dismiss'            => 'Iawn',
+'ajax-remove-category-error'    => "Nid oedd yn bosibl tynnu'r categori hwn i ffwrdd.
 Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.",
+'ajax-category-already-present' => "Mae'r dudalen hon yn perthyn i'r categori $1 yn barod",
 
 );

@@ -565,6 +565,8 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 'page-rss-feed'           => '"$1" RSS-toide',
 'page-atom-feed'          => '"$1" Atom-toide',
 'red-link-title'          => '$1 (pole veel kirjutatud)',
+'sort-descending'         => 'Sordi kahanevas järjestuses',
+'sort-ascending'          => 'Sordi kasvavas järjestuses',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikkel',
@@ -2133,7 +2135,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"
 'watchnochange'        => 'Valitud ajavahemiku jooksul pole ühelgi jälgitaval leheküljel muudatusi tehtud.',
 'watchlist-details'    => 'Jälgimisloendis on {{PLURAL:$1|$1 lehekülg|$1 lehekülge}} (ei arvestata arutelulehekülgi).',
 'wlheader-enotif'      => '* E-posti teel teavitamine on aktiveeritud.',
-'wlheader-showupdated' => "* Leheküljed, mida on muudetud peale sinu viimast külastust, on '''rasvases kirjas'''",
+'wlheader-showupdated' => "* Leheküljed, mida on muudetud peale sinu viimast külastust, on '''rasvases kirjas'''.",
 'watchmethod-recent'   => 'jälgitud lehekülgedel tehtud viimaste muudatuste läbivaatamine',
 'watchmethod-list'     => 'jälgitavate lehekülgede viimased muudatused',
 'watchlistcontains'    => 'Sinu jälgimisloendis on $1 {{PLURAL:$1|lehekülg|lehekülge}}.',
@@ -3526,5 +3528,30 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'htmlform-submit'              => 'Saada',
 'htmlform-reset'               => 'Tühista muudatused',
 'htmlform-selectorother-other' => 'Muu',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Lisa kategooria',
+'ajax-remove-category'          => 'Eemalda kategooria',
+'ajax-edit-category'            => 'Muuda kategooriat',
+'ajax-add-category-submit'      => 'Lisa',
+'ajax-confirm-ok'               => 'Sobib',
+'ajax-confirm-title'            => 'Toimingu kinnitamine',
+'ajax-confirm-prompt'           => 'Saad allpool muudatuse resümeega varustada.
+Muudatuse salvestamiseks klõpsa nuppu "Salvesta".',
+'ajax-confirm-save'             => 'Salvesta',
+'ajax-add-category-summary'     => 'Kategooria "$1" lisamine',
+'ajax-edit-category-summary'    => 'Kategooria "$1" asendamine kategooriaga "$2"',
+'ajax-remove-category-summary'  => 'Kategooria "$1" eemaldamine',
+'ajax-add-category-question'    => 'Miks tahad lisada kategooria "$1"?',
+'ajax-edit-category-question'   => 'Miks tahad asendada kategooria "$1" kategooriaga "$2"?',
+'ajax-remove-category-question' => 'Miks tahad eemaldada kategooria "$1"?',
+'ajax-confirm-actionsummary'    => 'Sooritatav toiming:',
+'ajax-error-title'              => 'Tõrge',
+'ajax-error-dismiss'            => 'Sobib',
+'ajax-remove-category-error'    => 'Seda kategooriat pole võimalik eemaldada.
+Tõrge ilmneb harilikult siis, kui kategooria on lisatud malliga.',
+'ajax-edit-category-error'      => 'Seda kategooriat polnud võimalik muuta.
+Harilikult juhtub nii, kui kategooria on lisatud malliga.',
+'ajax-category-already-present' => 'See lehekülg on juba kategoorias $1.',
 
 );
