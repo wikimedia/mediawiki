@@ -27,7 +27,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 }
 
 # Create a site configuration object. Not used for much in a default install.
-# Note: this (and other things) will break if the autoloader is not enabled. 
+# Note: this (and other things) will break if the autoloader is not enabled.
 # Please include includes/AutoLoader.php before including this file.
 $wgConf = new SiteConfiguration;
 /** @endcond */
@@ -619,7 +619,7 @@ $wgImageMagickTempDir = false;
 $wgCustomConvertCommand = false;
 
 /**
- * Some tests and extensions use exiv2 to manipulate the EXIF metadata in some image formats. 
+ * Some tests and extensions use exiv2 to manipulate the EXIF metadata in some image formats.
  */
 $wgExiv2Command = '/usr/bin/exiv2';
 
@@ -3305,7 +3305,7 @@ $wgEmailConfirmToEdit = false;
  * when new permissions are introduced and default grants established.
  *
  * If set to an array instead of a boolean, it is assumed that the array is in
- * NS => bool form in order to support per-namespace permissions. Note that 
+ * NS => bool form in order to support per-namespace permissions. Note that
  * this feature does not fully work for all permission types.
  *
  * Functionality to make pages inaccessible has not been extensively tested
@@ -3775,7 +3775,7 @@ $wgCookieDomain = '';
 
 
 /**
- * Set this variable if you want to restrict cookies to a certain path within 
+ * Set this variable if you want to restrict cookies to a certain path within
  * the domain specified by $wgCookieDomain.
  */
 $wgCookiePath = '/';
@@ -3789,8 +3789,8 @@ $wgCookiePath = '/';
 $wgCookieSecure = 'detect';
 
 /**
- * By default, MediaWiki checks if the client supports cookies during the 
- * login process, so that it can display an informative error message if 
+ * By default, MediaWiki checks if the client supports cookies during the
+ * login process, so that it can display an informative error message if
  * cookies are disabled. Set this to true if you want to disable this cookie
  * check.
  */
@@ -4465,12 +4465,31 @@ $wgUseTagFilter = true;
  * @{
  */
 
-/** Override for copyright metadata.
- * TODO: these options need documentation
+/**
+ * Override for copyright metadata.
+ *
+ * This is the name of the page containing information about the wiki's copyright status,
+ * which will be added as a link in the footer if it is specified. It overrides
+ * $wgRightsUrl if both are specified.
  */
 $wgRightsPage = null;
+
+/**
+ * Set this to specify an external URL containing details about the content license used on your wiki.
+ * If $wgRightsPage is set then this setting is ignored.
+ */
 $wgRightsUrl = null;
+
+/**
+ * If either $wgRightsUrl or $wgRightsPage is specified then this variable gives the text for the link.
+ * If using $wgRightsUrl then this value must be specified. If using $wgRightsPage then the name of the
+ * page will also be used as the link if this variable is not set.
+ */
 $wgRightsText = null;
+
+/**
+ * Override for copyright metadata.
+ */
 $wgRightsIcon = null;
 
 /**
@@ -5382,7 +5401,7 @@ $wgUpdateRowsPerQuery = 100;
  */
 
 /**
- * The build directory for HipHop compilation. 
+ * The build directory for HipHop compilation.
  * Defaults to $IP/maintenance/hiphop/build.
  */
 $wgHipHopBuildDirectory = false;
@@ -5401,24 +5420,24 @@ $wgHipHopCompilerProcs = 'detect';
 /**
  * Filesystem extensions directory. Defaults to $IP/../extensions.
  *
- * To compile extensions with HipHop, set $wgExtensionsDirectory correctly, 
+ * To compile extensions with HipHop, set $wgExtensionsDirectory correctly,
  * and use code like:
- *    
+ *
  *    require( MWInit::extensionSetupPath( 'Extension/Extension.php' ) );
  *
- * to include the extension setup file from LocalSettings.php. It is not 
+ * to include the extension setup file from LocalSettings.php. It is not
  * necessary to set this variable unless you use MWInit::extensionSetupPath().
  */
 $wgExtensionsDirectory = false;
 
 /**
- * A list of files that should be compiled into a HipHop build, in addition to 
- * those listed in $wgAutoloadClasses. Add to this array in an extension setup 
- * file in order to add files to the build. 
+ * A list of files that should be compiled into a HipHop build, in addition to
+ * those listed in $wgAutoloadClasses. Add to this array in an extension setup
+ * file in order to add files to the build.
  *
- * The files listed here must either be either absolute paths under $IP or 
+ * The files listed here must either be either absolute paths under $IP or
  * under $wgExtensionsDirectory, or paths relative to the virtual source root
- * "$IP/..", i.e. starting with "phase3" for core files, and "extensions" for 
+ * "$IP/..", i.e. starting with "phase3" for core files, and "extensions" for
  * extension files.
  */
 $wgCompiledFiles = array();
