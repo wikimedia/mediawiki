@@ -257,8 +257,7 @@ abstract class ApiBase {
 				$msg .= "\nThis module only accepts POST requests";
 			}
 			if ( $this->isReadMode() || $this->isWriteMode() ||
-					$this->mustBePosted() )
-			{
+					$this->mustBePosted() ) {
 				$msg .= "\n";
 			}
 
@@ -268,20 +267,8 @@ abstract class ApiBase {
 				$msg .= "Parameters:\n$paramsMsg";
 			}
 
-			// Examples
-			$examples = $this->getExamples();
-			if ( $examples !== false ) {
-				if ( !is_array( $examples ) ) {
-					$examples = array(
-						$examples
-					);
-				}
-
-				if ( count( $examples ) > 0 ) {
-					$msg .= 'Example' . ( count( $examples ) > 1 ? 's' : '' ) . ":\n  ";
-					$msg .= implode( $lnPrfx, $examples ) . "\n";
-				}
-			}
+			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Example", $this->getExamples() );
+			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrl() );
 
 			if ( $this->getMain()->getShowVersions() ) {
 				$versions = $this->getVersion();
@@ -302,6 +289,30 @@ abstract class ApiBase {
 		}
 
 		return $msg;
+	}
+
+	/**
+	 * @param $prefix string Text to split output items
+	 * @param $title string What is being output
+	 * @param $input string|array
+	 * @return string
+	 */
+	protected function makeHelpArrayToString( $prefix, $title, $input ) {
+		if ( $input !== false ) {
+			return '';
+		}
+		if ( !is_array( $input ) ) {
+			$input = array(
+				$input
+			);
+		}
+
+		if ( count( $input ) > 0 ) {
+			$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
+			$msg .= implode( $prefix, $input ) . "\n";
+			return $msg;
+		}
+		return '';
 	}
 
 	/**
@@ -468,8 +479,8 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Returns usage examples for this module. Return null if no examples are available.
-	 * @return mixed string or array of strings
+	 * Returns usage examples for this module. Return false if no examples are available.
+	 * @return false|string|array
 	 */
 	protected function getExamples() {
 		return false;
@@ -1295,6 +1306,13 @@ abstract class ApiBase {
 			$user = $wgUser;
 		}
 		return $user;
+	}
+
+	/**
+	 * @return false|string|array Returns a false if the module has no help url, else returns a (array of) string
+	 */
+	public function getHelpUrl() {
+		return false;
 	}
 
 	/**

@@ -212,6 +212,10 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
+	public function getHelpUrl() {
+		return 'http://www.mediawiki.org/wiki/API:Login';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}
