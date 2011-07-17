@@ -168,6 +168,10 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Properties#duplicatefiles_.2F_df';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

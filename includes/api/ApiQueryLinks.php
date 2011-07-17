@@ -238,6 +238,14 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		if ( $this->prefix === 'pl' ) {
+			return 'http://www.mediawiki.org/wiki/API:Properties#links_.2F_pl';
+		} else { // tl
+			return 'http://www.mediawiki.org/wiki/API:Properties#templates_.2F_tl';
+		}
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

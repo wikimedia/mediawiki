@@ -126,7 +126,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return '';
+		return 'http://www.mediawiki.org/wiki/API:Opensearch';
 	}
 
 	public function getVersion() {

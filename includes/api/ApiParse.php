@@ -586,7 +586,7 @@ class ApiParse extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return '';
+		return 'http://www.mediawiki.org/wiki/API:Parsing_wikitext#parse';
 	}
 
 	public function getVersion() {

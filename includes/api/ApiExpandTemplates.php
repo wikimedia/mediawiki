@@ -116,7 +116,7 @@ class ApiExpandTemplates extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Parsing_wikitext';
+		return 'http://www.mediawiki.org/wiki/API:Parsing_wikitext#expandtemplates';
 	}
 
 	public function getVersion() {

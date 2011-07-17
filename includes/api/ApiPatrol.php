@@ -111,7 +111,7 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return '';
+		return 'http://www.mediawiki.org/wiki/API:Patrol';
 	}
 
 	public function getVersion() {

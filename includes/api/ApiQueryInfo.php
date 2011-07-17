@@ -728,6 +728,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Properties#info_.2F_in';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}
