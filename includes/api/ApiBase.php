@@ -268,7 +268,7 @@ abstract class ApiBase {
 			}
 
 			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Example", $this->getExamples() );
-			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrl() );
+			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrls() );
 
 			if ( $this->getMain()->getShowVersions() ) {
 				$versions = $this->getVersion();
@@ -298,7 +298,7 @@ abstract class ApiBase {
 	 * @return string
 	 */
 	protected function makeHelpArrayToString( $prefix, $title, $input ) {
-		if ( $input !== false ) {
+		if ( $input === false ) {
 			return '';
 		}
 		if ( !is_array( $input ) ) {
@@ -1311,7 +1311,7 @@ abstract class ApiBase {
 	/**
 	 * @return false|string|array Returns a false if the module has no help url, else returns a (array of) string
 	 */
-	public function getHelpUrl() {
+	public function getHelpUrls() {
 		return false;
 	}
 
