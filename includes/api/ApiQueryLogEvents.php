@@ -451,6 +451,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Logevents';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

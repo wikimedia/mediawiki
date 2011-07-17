@@ -398,6 +398,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return '';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

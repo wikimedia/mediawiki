@@ -63,17 +63,20 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		'backlinks' => array(
 			'code' => 'bl',
 			'prefix' => 'pl',
-			'linktbl' => 'pagelinks'
+			'linktbl' => 'pagelinks',
+			'helpurl' => 'http://www.mediawiki.org/wiki/API:Backlinks',
 		),
 		'embeddedin' => array(
 			'code' => 'ei',
 			'prefix' => 'tl',
-			'linktbl' => 'templatelinks'
+			'linktbl' => 'templatelinks',
+			'helpurl' => 'http://www.mediawiki.org/wiki/API:Embeddedin',
 		),
 		'imageusage' => array(
 			'code' => 'iu',
 			'prefix' => 'il',
-			'linktbl' => 'imagelinks'
+			'linktbl' => 'imagelinks',
+			'helpurl' => 'http://www.mediawiki.org/wiki/API:Imageusage',
 		)
 	);
 
@@ -88,6 +91,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->bl_from = $prefix . '_from';
 		$this->bl_table = $settings['linktbl'];
 		$this->bl_code = $code;
+		$this->helpUrl = $settings['helpurl'];
 
 		$this->hasNS = $moduleName !== 'imageusage';
 		if ( $this->hasNS ) {
@@ -524,6 +528,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		);
 
 		return $examples[$this->getModuleName()];
+	}
+
+	public function getHelpUrls() {
+		return $this->helpUrl;
 	}
 
 	public function getVersion() {

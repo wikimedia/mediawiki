@@ -162,8 +162,8 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 				$file = $repo->newFileFromRow( $row );
 				$info = array_merge( array( 'name' => $row->img_name ),
 					ApiQueryImageInfo::getInfo( $file, $prop, $result ) );
-				self::addTitleInfo( $info, $file->getTitle() ); 
-					
+				self::addTitleInfo( $info, $file->getTitle() );
+
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $info );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->img_name ) );
@@ -258,6 +258,10 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			' Show info about 4 images starting at the letter "T"',
 			'  api.php?action=query&generator=allimages&gailimit=4&gaifrom=T&prop=imageinfo',
 		);
+	}
+
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Allimages';
 	}
 
 	public function getVersion() {
