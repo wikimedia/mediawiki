@@ -702,7 +702,7 @@ class ApiQuery extends ApiBase {
 		);
 	}
 
-	public function getHelpUrl() {
+	public function getHelpUrls() {
 		return array(
 			'http://www.mediawiki.org/wiki/API:Meta',
 			'http://www.mediawiki.org/wiki/API:Properties',
