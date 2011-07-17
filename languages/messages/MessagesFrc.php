@@ -16,7 +16,7 @@
  * @author Zetud
  */
 
-$fallback = 'frc';
+$fallback = 'fr';
 
 $messages = array(
 # User preference toggles
