@@ -201,10 +201,6 @@ class ApiFeedContributions extends ApiBase {
 		);
 	}
 
-	public function getHelpUrls() {
-		return '';
-	}
-
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

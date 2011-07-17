@@ -119,6 +119,10 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		return 'api.php?action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar';
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Properties#categoryinfo_.2F_ci';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}
