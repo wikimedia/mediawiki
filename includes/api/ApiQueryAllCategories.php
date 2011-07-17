@@ -203,6 +203,10 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Allcategories';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

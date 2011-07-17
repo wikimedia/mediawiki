@@ -224,7 +224,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 			} else {
 				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) ) {
-					$result->setIndexedTagName( $data[$u]['groups'], 'g' );	
+					$result->setIndexedTagName( $data[$u]['groups'], 'g' );
 				}
 				if ( isset( $this->prop['rights'] ) && isset( $data[$u]['rights'] ) ) {
 					$result->setIndexedTagName( $data[$u]['rights'], 'r' );
@@ -320,6 +320,10 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	protected function getExamples() {
 		return 'api.php?action=query&list=users&ususers=brion|TimStarling&usprop=groups|editcount|gender';
+	}
+
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Users';
 	}
 
 	public function getVersion() {

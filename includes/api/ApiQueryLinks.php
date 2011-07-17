@@ -39,7 +39,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	const LINKS = 'links';
 	const TEMPLATES = 'templates';
 
-	private $table, $prefix, $description;
+	private $table, $prefix, $description, $helpUrl;
 
 	public function __construct( $query, $moduleName ) {
 		switch ( $moduleName ) {
@@ -48,12 +48,14 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->prefix = 'pl';
 				$this->description = 'link';
 				$this->titlesParam = 'titles';
+				$this->helpUrl = 'http://www.mediawiki.org/wiki/API:Properties#links_.2F_pl';
 				break;
 			case self::TEMPLATES:
 				$this->table = 'templatelinks';
 				$this->prefix = 'tl';
 				$this->description = 'template';
 				$this->titlesParam = 'templates';
+				$this->helpUrl = 'http://www.mediawiki.org/wiki/API:Properties#templates_.2F_tl';
 				break;
 			default:
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
@@ -239,11 +241,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		if ( $this->prefix === 'pl' ) {
-			return 'http://www.mediawiki.org/wiki/API:Properties#links_.2F_pl';
-		} else { // tl
-			return 'http://www.mediawiki.org/wiki/API:Properties#templates_.2F_tl';
-		}
+		return $this->helpUrl;
 	}
 
 	public function getVersion() {
