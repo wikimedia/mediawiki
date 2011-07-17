@@ -260,6 +260,10 @@ class ApiMove extends ApiBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Move';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

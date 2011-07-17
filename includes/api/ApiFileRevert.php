@@ -55,20 +55,20 @@ class ApiFileRevert extends ApiBase {
 
 		// Check whether we're allowed to revert this file
 		$this->checkPermissions( $wgUser );
-		
+
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
 		$status = $this->file->upload( $sourceUrl, $this->params['comment'], $this->params['comment'] );
 
 		if ( $status->isGood() ) {
 			$result = array( 'result' => 'Success' );
 		} else {
-			$result = array( 
-				'result' => 'Failure', 
+			$result = array(
+				'result' => 'Failure',
 				'errors' => $this->getResult()->convertStatusToArray( $status ),
 			);
 		}
 
-		$this->getResult()->addValue( null, $this->getModuleName(), $result );	
+		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 
 	}
 
@@ -131,7 +131,7 @@ class ApiFileRevert extends ApiBase {
 			),
 			'archivename' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,			
+				ApiBase::PARAM_REQUIRED => true,
 			),
 			'token' => null,
 		);
@@ -181,6 +181,10 @@ class ApiFileRevert extends ApiBase {
 			'Revert Wiki.png to the version of 20110305152740:',
 			'    api.php?action=filerevert&filename=Wiki.png&comment=Revert&archivename=20110305152740!Wiki.png&token=+\\',
 		);
+	}
+
+	public function getHelpUrls() {
+		return '';
 	}
 
 	public function getVersion() {

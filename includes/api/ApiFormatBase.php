@@ -294,6 +294,10 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		return 'api.php?action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName();
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Data_formats';
+	}
+
 	public function getDescription() {
 		return $this->getIsHtml() ? ' (pretty-print in HTML)' : '';
 	}

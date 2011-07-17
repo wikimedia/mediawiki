@@ -154,6 +154,14 @@ class ApiHelp extends ApiBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return array(
+			'http://www.mediawiki.org/wiki/API:Main_page',
+			'http://www.mediawiki.org/wiki/API:FAQ',
+			'http://www.mediawiki.org/wiki/API:Quick_start_guide',
+		);
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

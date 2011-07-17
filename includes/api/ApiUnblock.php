@@ -148,6 +148,10 @@ class ApiUnblock extends ApiBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Block';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}
