@@ -159,6 +159,10 @@ class ApiUndelete extends ApiBase {
 		);
 	}
 
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Undelete';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

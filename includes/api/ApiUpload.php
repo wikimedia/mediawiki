@@ -58,7 +58,7 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
-		
+
 		// Copy the session key to the file key, for backward compatibility.
 		if( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
 			$this->mParams['filekey'] = $this->mParams['sessionkey'];
@@ -560,6 +560,10 @@ class ApiUpload extends ApiBase {
 			'Complete an upload that failed due to warnings:',
 			'    api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1',
 		);
+	}
+
+	public function getHelpUrls() {
+		return 'http://www.mediawiki.org/wiki/API:Upload';
 	}
 
 	public function getVersion() {

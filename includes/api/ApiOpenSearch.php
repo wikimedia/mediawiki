@@ -60,7 +60,7 @@ class ApiOpenSearch extends ApiBase {
 
 			$searches = PrefixSearch::titleSearch( $search, $limit,
 				$namespaces );
-			
+
 			// if the content language has variants, try to retrieve fallback results
 			$fallbackLimit = $limit - count( $searches );
 			if ( $fallbackLimit > 0 ) {
@@ -123,6 +123,10 @@ class ApiOpenSearch extends ApiBase {
 		return array(
 			'api.php?action=opensearch&search=Te'
 		);
+	}
+
+	public function getHelpUrls() {
+		return '';
 	}
 
 	public function getVersion() {
