@@ -94,7 +94,6 @@ class ApiParamInfo extends ApiBase {
 		$retval['classname'] = get_class( $obj );
 		$retval['description'] = implode( "\n", (array)$obj->getDescription() );
 		$retval['examples'] = implode( "\n", (array)$obj->getExamples() );
-		$retval['helpurl'] = implode( "\n", (array)$obj->getHelpUrls() );
 		$retval['version'] = implode( "\n", (array)$obj->getVersion() );
 		$retval['prefix'] = $obj->getModulePrefix();
 
@@ -115,6 +114,9 @@ class ApiParamInfo extends ApiBase {
 		if ( !is_array( $allowedParams ) ) {
 			return $retval;
 		}
+
+		$retval['helpurls'] = (array)$obj->getHelpUrls();
+		$result->setIndexedTagName( $retval['helpurls'], 'helpurl' );
 
 		$retval['parameters'] = array();
 		$paramDesc = $obj->getFinalParamDescription();
@@ -197,7 +199,6 @@ class ApiParamInfo extends ApiBase {
 
 		// Errors
 		$retval['errors'] = $this->parseErrors( $obj->getPossibleErrors() );
-
 		$result->setIndexedTagName( $retval['errors'], 'error' );
 
 		return $retval;
