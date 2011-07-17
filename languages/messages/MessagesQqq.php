@@ -2389,6 +2389,7 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 'nowatchlist'          => 'Displayed when there is no pages in the watchlist.',
 'watchlistanontext'    => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'watchnologin'         => '{{Identical|Not logged in}}',
+'addwatch'             => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.',
 'addedwatchtext'       => 'Explanation shown when clicking on the {{msg|watch}} tab. See also {{msg|addedwatch}}.',
 'removedwatchtext'     => "After a page has been removed from a user's watchlist by clicking the {{msg|unwatch}} tab at the top of an article, this message appears just below the title of the article. $1 is the title of the article. See also {{msg|removedwatch}} and {{msg|addedwatchtext}}.",
 'watch'                => 'Name of the Watch tab. Should be in the imperative mood.',
@@ -3897,6 +3898,10 @@ Do ''not'' change the leading ;  and the first : as it is wiki markup.
 # action=purge
 'confirm_purge_button' => '{{Identical|OK}}',
 
+# action=watch/unwatch
+'confirm-watch-button'   => '{{Identical|OK}}',
+'confirm-unwatch-button' => '{{Identical|OK}}',
+
 # Separators for various lists, etc.
 'comma-separator' => '{{optional}}',
 'colon-separator' => "Optional message. Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
@@ -4233,10 +4238,16 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
 
 # Add categories per AJAX
-'ajax-add-category-submit'   => '{{Identical|Add}}',
-'ajax-confirm-save'          => '{{Identical|Save}}',
-'ajax-confirm-actionsummary' => 'This message is followed by one of the following messages; {{msg-mw|ajax-add-category-summary}}, {{msg-mw|ajax-remove-category-summary}}.',
-'ajax-error-title'           => '{{Identical|Error}}',
-'ajax-error-dismiss'         => '{{Identical|OK}}',
+'ajax-remove-category'          => 'Tooltip for link to remove a category from the page, displayed after each category at the foot of a page. Refers to the specific category. "Remove this category" is also correct.',
+'ajax-edit-category'            => 'Tooltip for the edit link displayed after each category at the foot of a page. Refers to the specific category. "Edit this category" is also correct.',
+'ajax-add-category-submit'      => '{{Identical|Add}}',
+'ajax-confirm-save'             => 'Submit button
+
+{{Identical|Save}}',
+'ajax-edit-category-summary'    => 'Automatic edit summary that can be copied to the summary box. $1 and $2 are both category names.',
+'ajax-confirm-actionsummary'    => 'This message is followed by one of the following messages; {{msg-mw|ajax-add-category-summary}}, {{msg-mw|ajax-remove-category-summary}}, {{msg-mw|ajax-edit-category-summary}}.',
+'ajax-error-title'              => '{{Identical|Error}}',
+'ajax-error-dismiss'            => '{{Identical|OK}}',
+'ajax-category-already-present' => 'Error message. $1 is the category name',
 
 );

@@ -1292,7 +1292,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'qbsettings-fixedright'     => 'Cố định phải',
 'qbsettings-floatingleft'   => 'Nổi bên trái',
 'qbsettings-floatingright'  => 'Nổi bên phải',
-'qbsettings-directionality' => 'Cố định, tùy hướng viết ngôn ngữ của bạn',
+'qbsettings-directionality' => 'Cố định, theo hướng viết ngôn ngữ của bạn',
 
 # Preferences page
 'preferences'                   => 'Tùy chọn',
@@ -2173,9 +2173,11 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'watchlistanontext'    => 'Xin hãy $1 để xem hay sửa đổi các trang được theo dõi.',
 'watchnologin'         => 'Chưa đăng nhập',
 'watchnologintext'     => 'Bạn phải [[Special:UserLogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
+'addwatch'             => 'Thêm vào danh sách theo dõi',
 'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[Special:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[Special:RecentChanges|danh sách các thay đổi mới]].
 
 Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "Ngừng theo dõi" ở trên.',
+'removewatch'          => 'Gỡ khỏi danh sách theo dõi',
 'removedwatchtext'     => 'Trang “[[:$1]]” đã được đưa ra khỏi [[Special:Watchlist|danh sách theo dõi]] của bạn.',
 'watch'                => 'Theo dõi',
 'watchthispage'        => 'Theo dõi trang này',
@@ -3565,9 +3567,15 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'recreate'                 => 'Tạo ra lại',
 
 # action=purge
-'confirm_purge_button' => 'OK',
+'confirm_purge_button' => 'Làm mới',
 'confirm-purge-top'    => 'Làm sạch vùng nhớ đệm của trang này?',
 'confirm-purge-bottom' => 'Làm mới một trang sẽ giúp xóa bộ đệm và buộc hiển thị phiên bản gần nhất.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'Theo dõi',
+'confirm-watch-top'      => 'Bạn có muốn thêm trang này vào danh sách theo dõi của bạn?',
+'confirm-unwatch-button' => 'Ngừng theo dõi',
+'confirm-unwatch-top'    => 'Bạn có muốn gỡ trang này khỏi danh sách theo dõi của bạn?',
 
 # Separators for various lists, etc.
 'ellipsis' => '…',
@@ -3613,7 +3621,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'watchlistedit-numitems'       => 'Danh sách theo dõi của bạn có $1 {{PLURAL:$1|tựa đề|tựa đề}}, không tính các trang thảo luận.',
 'watchlistedit-noitems'        => 'Danh sách các trang bạn theo dõi hiện không có gì.',
 'watchlistedit-normal-title'   => 'Sửa các trang tôi theo dõi',
-'watchlistedit-normal-legend'  => 'Bỏ các trang đang theo dõi ra khỏi danh sách',
+'watchlistedit-normal-legend'  => 'Gỡ trang khỏi danh sách',
 'watchlistedit-normal-explain' => 'Tên các trang bạn theo dõi được hiển thị dưới đây. Để xóa một tên trang, chọn vào hộp kiểm bên cạnh nó, rồi nhấn “{{int:Watchlistedit-normal-submit}}”. Bạn cũng có thể [[Special:EditWatchlist/raw|sửa danh sách theo dạng thô]].',
 'watchlistedit-normal-submit'  => 'Bỏ trang đã chọn',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|tựa đề|tựa đề}} đã được xóa khỏi danh sách các trang theo dõi:',
@@ -3815,18 +3823,30 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'sqlite-no-fts'  => '$1 không có hỗ trợ tìm kiếm toàn văn',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Thêm thể loại',
-'ajax-add-category-submit'     => 'Thêm',
-'ajax-confirm-title'           => 'Xác nhận tác vụ',
-'ajax-confirm-prompt'          => 'Bạn có thể thêm tóm lược sửa đổi vào bên dưới.
+'ajax-add-category'             => 'Thêm thể loại',
+'ajax-remove-category'          => 'Gỡ thể loại',
+'ajax-edit-category'            => 'Sửa thể loại',
+'ajax-add-category-submit'      => 'Thêm',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Xác nhận tác vụ',
+'ajax-confirm-prompt'           => 'Bạn có thể thêm tóm lược sửa đổi vào bên dưới.
 Nhấn “Lưu” để lưu sửa đổi của bạn.',
-'ajax-confirm-save'            => 'Lưu',
-'ajax-add-category-summary'    => 'Thêm thể loại “$1”',
-'ajax-remove-category-summary' => 'Gỡ thể loại “$1”',
-'ajax-confirm-actionsummary'   => 'Tác vụ thực hiện:',
-'ajax-error-title'             => 'Lỗi',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Không thể bỏ thể loại này.
+'ajax-confirm-save'             => 'Lưu',
+'ajax-confirm-save-all'         => 'Lưu tất cả thay đổi',
+'ajax-cancel'                   => 'Hủy bỏ các sửa đổi',
+'ajax-add-category-summary'     => 'Thêm thể loại “$1”',
+'ajax-edit-category-summary'    => 'Thay thể loại “$1” bằng “$2”',
+'ajax-remove-category-summary'  => 'Gỡ thể loại “$1”',
+'ajax-add-category-question'    => 'Tại sao bạn muốn xếp vào thể loại “$1”?',
+'ajax-edit-category-question'   => 'Tại sao bạn muốn thay thể loại “$1” bằng “$2”?',
+'ajax-remove-category-question' => 'Tại sao bạn muốn gỡ thể loại “$1”?',
+'ajax-confirm-actionsummary'    => 'Tác vụ thực hiện:',
+'ajax-error-title'              => 'Lỗi',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Không thể gỡ bỏ thể loại này.
 Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
+'ajax-edit-category-error'      => 'Không thể sửa đổi thể loại này.
+Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
+'ajax-category-already-present' => 'Trang này đã nằm trong thể loại “$1”.',
 
 );

@@ -1920,12 +1920,14 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'watchlistanontext'    => 'Tafadhali $1 ili kutazama au kuhariri vitu vilivyopo katika orodha yako ya maangalizi.',
 'watchnologin'         => 'Hujaingia',
 'watchnologintext'     => 'Lazima uwe [[Special:UserLogin|umeshaingia]] ili uweze kuhariri orodha ya maangalizi yako.',
+'addwatch'             => 'Ongeza kwenye orodha ya maangalizi',
 'addedwatchtext'       => "Ukurasa \"[[:\$1]]\" umewekwa kwenye [[Special:Watchlist|maangalizi]] yako.
 Mabadiliko katika ukurasa huo na ukurasa wake wa majadiliano utaonekana hapo,
 na ukurasa utaonyeshwa wenye '''koze''' kwenye [[Special:RecentChanges|orodha ya mabadiliko ya karibuni]]
 ili kukusaidia kutambua.
 
 Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuatilia\" katika mwamba pembeni.",
+'removewatch'          => 'Ondoa kutoka orodha ya maangalizi',
 'removedwatchtext'     => 'Ukurasa "[[:$1]]" umeondoshwa kutoka katika [[Special:Watchlist|maangalizi yako]].',
 'watch'                => 'Fuatilia',
 'watchthispage'        => 'Fuatilia ukurasa huu',
@@ -2831,6 +2833,12 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 'confirm-purge-top'    => 'Ghili ya ukurasa huu ifutwe?',
 'confirm-purge-bottom' => 'Unaposafisha ukurasa ghili yake inasafishwa na haririo la kisasa linaonekana.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'Sawa',
+'confirm-watch-top'      => 'Je, ukurasa huu uongezwe katika maangalizi yako?',
+'confirm-unwatch-button' => 'Sawa',
+'confirm-unwatch-top'    => 'Je, ukurasa huu uondolewe kutoka maangalizi yako?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← ukurasa uliotangulia',
 'imgmultipagenext' => 'ukurasa ujao →',
@@ -3003,5 +3011,27 @@ Tovuti hii inapata matatatizo wakati huu.',
 'htmlform-submit'              => 'Wasilisha',
 'htmlform-reset'               => 'Tengua mabadiliko',
 'htmlform-selectorother-other' => 'Nyingine',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Ongeza jamii',
+'ajax-remove-category'          => 'Ondoa jamii',
+'ajax-edit-category'            => 'Hariri jamii',
+'ajax-add-category-submit'      => 'Ongeza',
+'ajax-confirm-ok'               => 'Sawa',
+'ajax-confirm-title'            => 'Uthibitishe kitendo',
+'ajax-confirm-prompt'           => 'Unaweza kuandika muhtasari wa sahihisho chini. 
+Bonyeza "Hifadhi" ili kuhifadhi sahihisho yako.',
+'ajax-confirm-save'             => 'Hifadhi',
+'ajax-confirm-save-all'         => 'Hifadhi mabadiliko yote',
+'ajax-cancel'                   => 'Futa maharirio',
+'ajax-add-category-summary'     => 'Ongeza jamii ya "$1"',
+'ajax-edit-category-summary'    => 'Jamii ya "$1" imebadilishwa iwe "$2"',
+'ajax-remove-category-summary'  => 'Ondoa jamii ya "$1"',
+'ajax-confirm-actionsummary'    => 'Chagua kitendo:',
+'ajax-error-title'              => 'Hitilafu',
+'ajax-error-dismiss'            => 'Sawa',
+'ajax-remove-category-error'    => ' Jamii hii haikuweza kuondolewa.
+Huwa jamii haiwezi kuondolewa kwenye ukurasa wakati jamii imeingizwa ndani ya kigezo fulani.',
+'ajax-category-already-present' => 'Ukarasa huu tayari uko katika jamii ya $1',
 
 );

@@ -3444,4 +3444,19 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'sqlite-has-fts' => '$1 толору тиэкистээх көрдөөһүнү өйүүр',
 'sqlite-no-fts'  => '$1 толору тиэкистээх көрдөөһүнү өйөөбөт',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Категория эбии',
+'ajax-add-category-submit'     => 'Эп',
+'ajax-confirm-title'           => 'Дьайыыны бигэргэт',
+'ajax-confirm-prompt'          => 'Аллара уларытыыҥ туһунан суруйуоххун сөп.
+"Бигэргэт" диэни баттаан уларытыыгын бигэргэт.',
+'ajax-confirm-save'            => 'Бигэргэт',
+'ajax-add-category-summary'    => '«$1» категория эбилиннэ',
+'ajax-remove-category-summary' => '«$1» категория сотулунна',
+'ajax-confirm-actionsummary'   => 'Оҥоһуллар дьайыылар:',
+'ajax-error-title'             => 'Алҕас',
+'ajax-error-dismiss'           => 'Сөп',
+'ajax-remove-category-error'   => 'Бу категорияны сотор табыллыбата.
+Үксүгэр категория халыып нөҥүө эбиллибит түгэнигэр итинник буолар.',
+
 );

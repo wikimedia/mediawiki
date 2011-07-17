@@ -761,6 +761,8 @@ You may ignore this message, if this account was created in error.',
 'resetpass-temp-password'   => 'अस्थिर रहस्यवाक् :',
 
 # Special:PasswordReset
+'passwordreset'              => 'कूटशब्द पुनःस्थापनम्',
+'passwordreset-disabled'     => 'अस्मिन् विक्यां कूटशब्द पुनःस्थापनं असमर्थीकृतमस्ति।',
 'passwordreset-pretext'      => '{{PLURAL:$1| |समंकेषु एकम् अधस्यात् प्रविष्टीकरोतु।}}',
 'passwordreset-username'     => 'योजकनामन्:',
 'passwordreset-email'        => 'परमाणुपत्रसङ्गेत:',
@@ -824,8 +826,8 @@ You may ignore this message, if this account was created in error.',
 'loginreqlink'                     => 'प्रविशतु',
 'loginreqpagetext'                 => 'अन्यानि पृष्ठाणि द्रष्टुं भवता $1 इति अवश्यमेव कर्त्तव्यम्।',
 'accmailtitle'                     => 'पास्वेड् पप्रेषितम्',
-'accmailtext'                      => " [[User talk:$1|$1]] इत्येतदर्थं एकः यादृच्छिकतया उत्पादितः कूटशब्दः $2 इत्येतत् प्रति प्रेषितोऽस्ति।
-सत्रारम्भपश्चात् नूतनायाः अस्याः लेखायाः कूटशब्दः  ''[[User talk:$1|$1]]'' इति पृष्ठे परिवर्तितुं शक्यते।",
+'accmailtext'                      => "[[User talk:$1|$1]] इत्येतदर्थं एकः यादृच्छिकतया उत्पादितः कूटशब्दः $2 इत्येतत् प्रति प्रेषितोऽस्ति।
+सत्रारम्भपश्चात् नूतनायाः अस्याः लेखायाः कूटशब्दः  '''[[Special:ChangePassword|कूटशब्दं परिवर्तताम्]]'' इति पृष्ठे परिवर्तितुं शक्यते।",
 'newarticle'                       => '(नवीनम्)',
 'newarticletext'                   => "भवता एतादृशमेकं पृष्टं प्रति संबंधनम् अनुसृतम्, यत्पृष्ठं न इदानींयावत् विद्यते।
 
@@ -836,6 +838,12 @@ You may ignore this message, if this account was created in error.',
 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}  related logs अन्विष्टुं शक्नोति],
 अथवा [{{fullurl:{{FULLPAGENAME}}|action=edit}} इदं पृष्ठं स्रष्टुं शक्नोति]</span>.',
+'noarticletext-nopermission'       => 'सम्प्रति अस्मिन् पृष्ठे न कोऽपि पाठः विद्यते।
+भवान् अस्य पृष्ठस्य शीर्षकं अन्येषु पृष्ठेषु [[Special:Search/{{PAGENAME}}|अन्विष्टुं शक्नोति]],
+अथवा <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} सम्बन्धितान् अभिलेखान् अन्विष्टुं शक्नोति]</span>',
+'userpage-userdoesnotexist'        => '"$1" इति प्रयोक्तृलेखा पञ्जीकृता नास्ति।
+चेद्भवान् एतत्पृष्ठं स्रष्टुमिच्छति सम्पादयितुमिच्छति वा तदा कृपया पुनरीक्षताम्।',
+'userpage-userdoesnotexist-view'   => '"$1" इति प्रयोक्तृलेखा पञ्जीकृता नास्ति।',
 'blocked-notice-logextract'        => 'अयं प्रयोक्ता सम्प्रति अवरुद्धः वर्तते।
 नूतनतमा अवरोधाभिलेख-प्रविष्टिः सन्दर्भार्थम् अधस्तात् प्रदत्ताऽस्ति:',
 'userjsyoucanpreview'              => "'''सूचना :''' रक्षणात्पूर्वं स्वकीयं जावास्क्रिप्ट् इति लिपिं परीक्षितुं \"{{int:showpreview}}\" इति गण्डं प्रयोजयतु।",
@@ -859,6 +867,11 @@ You may ignore this message, if this account was created in error.',
 चेदेतत् अधुनाऽपि न कार्यशीलं स्यात्, [[Special:UserLogout|सत्राद्बहिः गत्वा]] पुनः प्रवेशं करोतु।",
 'editing'                          => '$1 सम्पाद्यते',
 'editingsection'                   => '$1 संपादनम् (विभागः)',
+'editconflict'                     => 'सम्पादनयोः/सम्पादनानाम् अन्तर्विरोधः : $1',
+'yourtext'                         => 'भवतः पाठः',
+'storedversion'                    => 'रक्षिता आवृत्तिः',
+'nonunicodebrowser'                => "'''पूर्वसूचना: भवतः विचरकं यूनीकोड्-अनुकूलम् नास्ति।'''
+भवान् सुरक्षिततया सम्पादनं करोतु इत्येतदर्थं एका युक्तिः कृताऽस्ति: आस्की-इतराणि अक्षराणि सम्पादनपिटके षौडशिक(hexadecimal) कूटेषु द्रक्ष्यन्ते।",
 'yourdiff'                         => 'अन्तरानि',
 'copyrightwarning'                 => "कृपया संस्मर्तव्यं यत् {{SITENAME}} इत्येतद् प्रति कृतानि सर्वाणि योगदानानि $2 इत्यस्य प्रतिबंधांतर्गतानि सन्ति (अधिकाय ज्ञानाय $1 इत्येतद् पश्यतु)।
 
@@ -951,6 +964,9 @@ You may ignore this message, if this account was created in error.',
 'rev-delundel'               => 'दर्शयतु/गोपयतु',
 'rev-showdeleted'            => 'दर्शयतु',
 'revdelete-nooldid-title'    => 'लक्ष्यरूपा आवृत्तिः अमान्याऽस्ति।',
+'revdelete-nologtype-title'  => 'अभिलेखस्य प्रकारः न प्रदत्तः',
+'revdelete-nologtype-text'   => 'अस्यै क्रियायै भवता न कोऽपि अभिलेखप्रकारः निर्दिष्टः।',
+'revdelete-nologid-title'    => 'अमान्या अभिलेख-प्रविष्टिः',
 'revdelete-show-file-submit' => 'हाँ',
 'revdelete-hide-user'        => 'सम्पादकस्य प्रयोकतृनाम/आइपिसंकेतं गोपयतु।',
 'revdelete-hide-restricted'  => 'प्रबन्धकेभ्यः अन्येभ्यश्च समंकं गोपयतु।',
@@ -971,6 +987,7 @@ You may ignore this message, if this account was created in error.',
 'revdelete-hid'              => 'आवृत $1',
 'revdelete-otherreason'      => 'अन्य/अधिक कारणम् :',
 'revdelete-reasonotherlist'  => 'अन्य कारणानि',
+'revdelete-edit-reasonlist'  => 'सम्पादनस्य अपाकरणाय कारणानि',
 
 # History merging
 'mergehistory-reason' => 'कारणम् :',

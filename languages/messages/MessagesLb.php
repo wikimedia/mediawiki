@@ -2767,6 +2767,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-watchers'         => 'Zuel vun de Benotzer déi iwwerwaachen',
 'pageinfo-edits'            => 'Zuel vun den Ännerungen',
 'pageinfo-authors'          => 'Zuel vun de verschiddenen Auteuren',
+'pageinfo-views'            => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
 'pageinfo-viewsperedit'     => 'Affichage pro Ännerung',
 
 # Skin names
@@ -3022,11 +3023,14 @@ Déi aner sinn am Standard verstoppt.
 'exif-datetimemetadata'            => 'Datum vun der leschter Ännerung vun de Metadaten',
 'exif-nickname'                    => 'Informellen Numm vum Bild',
 'exif-rating'                      => 'Bewäertung (vu 5)',
+'exif-copyrighted'                 => 'Copyright Status',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
 'exif-usageterms'                  => 'Benotzungsbedingungen',
 'exif-licenseurl'                  => 'URL vum Copyright (Lizenz)',
 'exif-morepermissionsurl'          => 'Alternativ Lizenzinformatiounen',
+'exif-attributionurl'              => 'Wann dëst Wierk weiderbenotzt gëtt, da linkt w.e.g. op',
 'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
+'exif-disclaimer'                  => 'Limitatioun vun der Responsabilitéit',
 'exif-contentwarning'              => 'Warnung iwwer den Inhalt',
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
 'exif-subjectnewscode'             => 'Code vum Sujet',

@@ -3491,4 +3491,19 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
 
+# Add categories per AJAX
+'ajax-add-category'            => "Aggiunge 'a categorije",
+'ajax-add-category-submit'     => 'Aggiunge',
+'ajax-confirm-title'           => "Conferme l'azione",
+'ajax-confirm-prompt'          => 'Tu puè fà \'nu riepileghe de le cangiaminde aqquà sotte.
+Cazze "Reggistre" pe reggistrà \'u cangiamende tue.',
+'ajax-confirm-save'            => 'Reggistre',
+'ajax-add-category-summary'    => 'Aggiunge \'a categorije "$1"',
+'ajax-remove-category-summary' => 'Live \'a categorije "$1"',
+'ajax-confirm-actionsummary'   => 'Azione da fà:',
+'ajax-error-title'             => 'Errore',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => "Non g'è possibbele luà sta categorije.
+Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
+
 );

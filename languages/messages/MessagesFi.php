@@ -11,6 +11,7 @@
  * @author Centerlink
  * @author Cimon Avaro
  * @author Crt
+ * @author Harriv
  * @author Jaakonam
  * @author Jack Phoenix
  * @author Mobe
@@ -427,6 +428,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'jatkuu',
 'index-category'                 => 'Indeksoidut sivut',
 'noindex-category'               => 'Indeksointikiellolliset sivut',
+'broken-file-category'           => 'Sivut joilla toimimattomia tiedostolinkkejä',
 
 'about'         => 'Tietoja',
 'article'       => 'Sivu',
@@ -587,6 +589,8 @@ $1',
 'page-rss-feed'           => '$1 (RSS-syöte)',
 'page-atom-feed'          => '$1 (Atom-syöte)',
 'red-link-title'          => '$1 (sivua ei ole)',
+'sort-descending'         => 'Lajittele laskevassa järjestyksessä',
+'sort-ascending'          => 'Lajittele nousevassa järjestyksessä',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Sivu',
@@ -670,6 +674,8 @@ Viestien kääntäminen tulisi tehdä [http://translatewiki.net/wiki/Main_Page?s
 'cascadeprotected'     => 'Tämä sivu on suojattu muokkauksilta, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}:
 $2',
 'namespaceprotected'   => "Et voi muokata sivuja nimiavaruudessa '''$1'''.",
+'customcssprotected'   => 'Sinulla ei ole oikeutta muuttaa tätä CSS-sivua, koska se sisältää toisen käyttäjän henkilökohtaisia asetuksia.',
+'customjsprotected'    => 'Sinulla ei ole oikeutta muuttaa tätä JavaScript-sivua, koska se sisältää toisen käyttäjän henkilökohtaisia asetuksia.',
 'ns-specialprotected'  => 'Toimintosivuja ei voi muokata.',
 'titleprotected'       => "Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: ''$2''.",
 
@@ -784,6 +790,7 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 
 # Special:PasswordReset
 'passwordreset'          => 'Salasanan alustus',
+'passwordreset-text'     => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
 'passwordreset-legend'   => 'Salasanan vaihto',
 'passwordreset-username' => 'Käyttäjätunnus:',
 'passwordreset-email'    => 'Sähköpostiosoite',

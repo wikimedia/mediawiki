@@ -2968,7 +2968,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 
 # Metadata
 'metadata'          => 'Metadatenoj',
-'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonita de la cifereca fotilo aŭ skanilo uzata krei aux skani ĝin. Se la dosiero estis modifita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
+'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aux skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
 'metadata-expand'   => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',
 'metadata-fields'   => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivita en la paĝoj de bidloj kiam la metadatuma tabelo estas disfaldigita. 
@@ -3663,5 +3663,20 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 # SQLite database support
 'sqlite-has-fts' => '$1 kun tut-teksta subteno',
 'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Aldoni kategorion',
+'ajax-add-category-submit'     => 'Aldoni',
+'ajax-confirm-title'           => 'Konfirmi agon',
+'ajax-confirm-prompt'          => 'Vi povas provizi redaktan resumon suben.
+Klaku butonon "Konservi" por konservi vian redakton.',
+'ajax-confirm-save'            => 'Konservi',
+'ajax-add-category-summary'    => 'Aldoni kategorion "$1"',
+'ajax-remove-category-summary' => 'Forigi kategorion "$1"',
+'ajax-confirm-actionsummary'   => 'Ago por fari:',
+'ajax-error-title'             => 'Eraro',
+'ajax-error-dismiss'           => 'Ek!',
+'ajax-remove-category-error'   => 'Ne eblas forigi ĉi tiun kategorion.
+Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
 
 );

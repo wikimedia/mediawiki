@@ -1434,7 +1434,7 @@ $1",
 'qbsettings-fixedright'     => 'Причвршћена десно',
 'qbsettings-floatingleft'   => 'Плутајућа лево',
 'qbsettings-floatingright'  => 'Плутајућа десно',
-'qbsettings-directionality' => 'Чврсто, у зависности од усмерености писма вашег језика',
+'qbsettings-directionality' => 'Померено, у зависности од смера писања вашег језика',
 
 # Preferences page
 'preferences'                   => 'Подешавања',
@@ -2320,10 +2320,12 @@ $1',
 'watchlistanontext'    => 'Морате бити $1 да бисте гледали и уређивали ставке на вашем списку надгледања.',
 'watchnologin'         => 'Нисте пријављени',
 'watchnologintext'     => 'Морате бити [[Special:UserLogin|пријављени]] да бисте мењали списак надгледања.',
+'addwatch'             => 'Додај на списак надгледања',
 'addedwatchtext'       => 'Страница „[[:$1]]“ је додата на ваш [[Special:Watchlist|списак надгледања]].
 Будуће измене ове странице и њене странице за разговор биће наведене овде, а страница ће бити <b>подебљана</b> у [[Special:RecentChanges|списку скорашњих измена]] да би се лакше уочила.
 
 Уколико будете желели да уклоните страницу са списка надгледања, кликните опет на звездицу у горњој палети.',
+'removewatch'          => 'Уклони са списка надгледања',
 'removedwatchtext'     => 'Страница „[[:$1]]“ је уклоњена с вашег [[Special:Watchlist|списка надгледања]].',
 'watch'                => 'Надгледај',
 'watchthispage'        => 'Надгледај ову страницу',
@@ -3663,6 +3665,12 @@ $1',
 'confirm-purge-top'    => 'Очистити привремену меморију ове стране?',
 'confirm-purge-bottom' => 'Чишћење привремене меморије стране приморава софтвер да прикаже њену најновију ревизију.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'У реду',
+'confirm-watch-top'      => 'Додати ову страницу на списак надгледања?',
+'confirm-unwatch-button' => 'У реду',
+'confirm-unwatch-top'    => 'Уклонити ову страницу са списка надгледања?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← претходна страница',
 'imgmultipagenext' => 'следећа страница →',
@@ -3859,18 +3867,30 @@ $1',
 'sqlite-no-fts'  => '$1 без подршке претраге пуног текста',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Додај категорију',
-'ajax-add-category-submit'     => 'Додај',
-'ajax-confirm-title'           => 'Потврди акцију',
-'ajax-confirm-prompt'          => 'Испод можете да додате опис измене.
+'ajax-add-category'             => 'Додај категорију',
+'ajax-remove-category'          => 'Уклони категорију',
+'ajax-edit-category'            => 'Уреди категорију',
+'ajax-add-category-submit'      => 'Додај',
+'ajax-confirm-ok'               => 'У реду',
+'ajax-confirm-title'            => 'Потврди акцију',
+'ajax-confirm-prompt'           => 'Испод можете да додате опис измене.
 Притисните "Сними" да бисте снимили своју измену.',
-'ajax-confirm-save'            => 'Сачувај',
-'ajax-add-category-summary'    => 'Додај категорију "$1"',
-'ajax-remove-category-summary' => 'Уклони категорију "$1"',
-'ajax-confirm-actionsummary'   => 'Акција за извршење:',
-'ajax-error-title'             => 'Грешка',
-'ajax-error-dismiss'           => 'У реду',
-'ajax-remove-category-error'   => 'Није било могуће уклонити ову категорију.
+'ajax-confirm-save'             => 'Сачувај',
+'ajax-confirm-save-all'         => 'Сачувај све измене',
+'ajax-cancel'                   => 'Откажи измене',
+'ajax-add-category-summary'     => 'Додај категорију "$1"',
+'ajax-edit-category-summary'    => 'Промени категорију „$1“ у „$2“',
+'ajax-remove-category-summary'  => 'Уклони категорију "$1"',
+'ajax-add-category-question'    => 'Зашто желите да додате категорију „$1“?',
+'ajax-edit-category-question'   => 'Зашто желите да промените категорију „$1“ у „$2“?',
+'ajax-remove-category-question' => 'Зашто желите да уклоните категорију „$1“?',
+'ajax-confirm-actionsummary'    => 'Акција за извршење:',
+'ajax-error-title'              => 'Грешка',
+'ajax-error-dismiss'            => 'У реду',
+'ajax-remove-category-error'    => 'Није било могуће уклонити ову категорију.
 То се обично дешава када је категорија додата страници преко шаблона.',
+'ajax-edit-category-error'      => 'Не могу да променим ову категорију.
+Ово се обично деси када је она додата на страницу у виду шаблона.',
+'ajax-category-already-present' => 'Ова страница већ припада категорији $1',
 
 );

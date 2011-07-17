@@ -3988,18 +3988,30 @@ $1',
 'sqlite-no-fts'  => '$1 без поддршка за пребарување по цели текстови',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Додај категорија',
-'ajax-add-category-submit'     => 'Додај',
-'ajax-confirm-title'           => 'Потврди дејство',
-'ajax-confirm-prompt'          => 'Подолу можете да дадете краток опис на вашите уредувања.
+'ajax-add-category'             => 'Додај категорија',
+'ajax-remove-category'          => 'Отстрани категорија',
+'ajax-edit-category'            => 'Уреди категорија',
+'ajax-add-category-submit'      => 'Додај',
+'ajax-confirm-ok'               => 'ОК',
+'ajax-confirm-title'            => 'Потврди дејство',
+'ajax-confirm-prompt'           => 'Подолу можете да дадете краток опис на вашите уредувања.
 Кликнете на копчето „Зачувај“ за да ги зачувате вашите уредувања.',
-'ajax-confirm-save'            => 'Зачувај',
-'ajax-add-category-summary'    => 'Додај категорија "$1"',
-'ajax-remove-category-summary' => 'Избриши категорија "$1"',
-'ajax-confirm-actionsummary'   => 'Мерка за преземање:',
-'ajax-error-title'             => 'Грешка',
-'ajax-error-dismiss'           => 'ОК',
-'ajax-remove-category-error'   => 'Не беше можно да се избрише оваа категорија.
+'ajax-confirm-save'             => 'Зачувај',
+'ajax-confirm-save-all'         => 'Зачувај ги сите промени',
+'ajax-cancel'                   => 'Откажи уредувања',
+'ajax-add-category-summary'     => 'Додај категорија "$1"',
+'ajax-edit-category-summary'    => 'Замена на категоријата „$1“ со „$2“',
+'ajax-remove-category-summary'  => 'Избриши категорија "$1"',
+'ajax-add-category-question'    => 'Зошто сакате да ја додадете категоријата „$1“?',
+'ajax-edit-category-question'   => 'Зошто сакате да ја смените категоријата „$1“ со „$2“?',
+'ajax-remove-category-question' => 'Зошто сакате да ја отстраните категоријата „$1“?',
+'ajax-confirm-actionsummary'    => 'Мерка за преземање:',
+'ajax-error-title'              => 'Грешка',
+'ajax-error-dismiss'            => 'ОК',
+'ajax-remove-category-error'    => 'Не беше можно да се избрише оваа категорија.
 Ова вообичаено се случува кога категоријата е додадена на страница преку некој шаблон.',
+'ajax-edit-category-error'      => 'Категоријава не можеше да се уреди.
+Ова претежно се случува кога на страницата ѝ е додадена категорија во шаблон.',
+'ajax-category-already-present' => 'Страницава веќе ѝ припаѓа на категоријата $1',
 
 );
