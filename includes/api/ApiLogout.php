@@ -73,6 +73,10 @@ class ApiLogout extends ApiBase {
 		);
 	}
 
+	public function getHelpUrl() {
+		return 'http://www.mediawiki.org/wiki/API:Logout';
+	}
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}
