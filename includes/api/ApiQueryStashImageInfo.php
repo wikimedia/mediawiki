@@ -41,11 +41,15 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 		$result = $this->getResult();
 
+		if ( !$params['filekey'] && !$params['sessionkey'] ) {
+			$this->dieUsage( "One of filekey or sessionkey must be supplied", 'nofilekey');
+		}
+
 		try {
 			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 
-			foreach ( $params['sessionkey'] as $sessionkey ) {
-				$file = $stash->getFile( $sessionkey );
+			foreach ( $params['filekey'] as $filekey ) {
+				$file = $stash->getFile( $filekey );
 				$finalThumbParam = $this->mergeThumbParams( $file, $scale, $params['urlparam'] );
 				$imageInfo = ApiQueryImageInfo::getInfo( $file, $prop, $result, $finalThumbParam );
 				$result->addValue( array( 'query', $this->getModuleName() ), null, $imageInfo );
@@ -68,9 +72,13 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	public function getAllowedParams() {
 		return array(
+			'filekey' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_DFLT => null
+			),
 			'sessionkey' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_DFLT => null
 			),
 			'prop' => array(
@@ -101,7 +109,8 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		$p = $this->getModulePrefix();
 		return array(
 			'prop' => self::getPropertyDescriptions( $this->propertyFilter ),
-			'sessionkey' => 'Session key that identifies a previous upload that was stashed temporarily.',
+			'filekey' => 'Key that identifies a previous upload that was stashed temporarily.',
+			'sessionkey' => 'Alias for filekey, for backward compatibility.',
 			'urlwidth' => "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
 			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
@@ -115,8 +124,8 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=query&prop=stashimageinfo&siisessionkey=124sd34rsdf567',
-			'api.php?action=query&prop=stashimageinfo&siisessionkey=b34edoe3|bceffd4&siiurlwidth=120&siiprop=url',
+			'api.php?action=query&prop=stashimageinfo&siifilekey=124sd34rsdf567',
+			'api.php?action=query&prop=stashimageinfo&siifilekey=b34edoe3|bceffd4&siiurlwidth=120&siiprop=url',
 		);
 	}
 
