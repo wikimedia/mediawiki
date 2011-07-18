@@ -644,7 +644,7 @@ class Block {
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
 
 		 $dbr = wfGetDB( DB_SLAVE );
-		if ( $timestamp == 'infinity' ) {
+		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
 			$autoblock->mExpiry = Block::getAutoblockExpiry( $timestamp );
 		} else {
