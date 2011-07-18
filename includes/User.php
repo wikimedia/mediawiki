@@ -199,7 +199,7 @@ class User {
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
 	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mRights,
-		$mBlockreason, $mEffectiveGroups, $mFormerGroups, $mBlockedGlobally,
+		$mBlockreason, $mEffectiveGroups, $mImplicitGroups, $mFormerGroups, $mBlockedGlobally,
 		$mLocked, $mHideName, $mOptions;
 
 	/**
@@ -1180,6 +1180,7 @@ class User {
 		$this->mHash = false;
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
+		$this->mImplicitGroups = null;
 		$this->mOptions = null;
 
 		if ( $reloadFrom ) {
@@ -2296,22 +2297,44 @@ class User {
 	public function getEffectiveGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
 			wfProfileIn( __METHOD__ );
-			$this->mEffectiveGroups = $this->getGroups();
-			$this->mEffectiveGroups[] = '*';
-			if( $this->getId() ) {
-				$this->mEffectiveGroups[] = 'user';
-
-				$this->mEffectiveGroups = array_unique( array_merge(
-					$this->mEffectiveGroups,
-					Autopromote::getAutopromoteGroups( $this )
-				) );
-
-				# Hook for additional groups
-				wfRunHooks( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
-			}
+			$this->mEffectiveGroups = array_unique( array_merge(
+				$this->getGroups(), // explicit groups
+				$this->getAutomaticGroups( $recache ) // implicit groups
+			) );
+			# Hook for additional groups
+			wfRunHooks( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
 			wfProfileOut( __METHOD__ );
 		}
 		return $this->mEffectiveGroups;
+	}
+
+	/**
+	 * Get the list of implicit group memberships this user has.
+	 * This includes 'user' if logged in, '*' for all accounts,
+	 * and autopromoted groups
+	 * @param $recache Bool Whether to avoid the cache
+	 * @return Array of String internal group names
+	 */
+	public function getAutomaticGroups( $recache = false ) {
+		if ( $recache || is_null( $this->mImplicitGroups ) ) {
+			wfProfileIn( __METHOD__ );
+			$this->mImplicitGroups = array( '*' );
+			if ( $this->getId() ) {
+				$this->mImplicitGroups[] = 'user';
+
+				$this->mImplicitGroups = array_unique( array_merge(
+					$this->mImplicitGroups,
+					Autopromote::getAutopromoteGroups( $this )
+				) );
+			}
+			if ( $recache ) {
+				# Assure data consistency with rights/groups,
+				# as getEffectiveGroups() depends on this function
+				$this->mEffectiveGroups = null;
+			}
+			wfProfileOut( __METHOD__ );
+		}
+		return $this->mImplicitGroups;
 	}
 
 	/**
