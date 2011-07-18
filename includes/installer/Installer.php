@@ -1466,10 +1466,14 @@ abstract class Installer {
 			$params['language'] = $myLang;
 		}
 
-		$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
-			array( 'method' => 'POST', 'postData' => $params ) )->execute();
-		if( !$res->isOK() ) {
-			$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
+		if( MWHttpRequest::canMakeRequests() ) {
+			$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
+				array( 'method' => 'POST', 'postData' => $params ) )->execute();
+			if( !$res->isOK() ) {
+				$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
+			}
+		} else {
+			$s->warning( 'config-install-subscribe-notpossible' );
 		}
 	}
 

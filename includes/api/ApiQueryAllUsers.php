@@ -248,7 +248,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			if ( $fld_rights ) {
 				if ( !isset( $lastUserData['rights'] ) ) {
-					$lastUserData['rights'] =  User::getGroupPermissions( User::getImplicitGroups() );
+					$lastUserData['rights'] =  User::getGroupPermissions( User::newFromName( $lastUser )->getAutomaticGroups() );
 				}
 				if ( !is_null( $row->ug_group2 ) ) {
 					$lastUserData['rights'] = array_unique( array_merge( $lastUserData['rights'],
