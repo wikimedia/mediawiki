@@ -62,7 +62,7 @@ class ChangesList extends ContextSource {
 	 * Fetch an appropriate changes list class for the main context
 	 * This first argument used to be an User object.
 	 *
-	 * @deprecated in 1.19; use newFromContext() instead
+	 * @deprecated in 1.18; use newFromContext() instead
 	 * @param $unused Unused
 	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
 	 */

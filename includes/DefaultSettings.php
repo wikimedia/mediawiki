@@ -33,7 +33,7 @@ $wgConf = new SiteConfiguration;
 /** @endcond */
 
 /** MediaWiki version number */
-$wgVersion = '1.19alpha';
+$wgVersion = '1.18';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
@@ -2409,9 +2409,9 @@ $wgEdititis = false;
 
 /**
  * Better directionality support (bug 6100 and related).
- * Removed in 1.19, still kept here for LiquidThreads backwards compatibility.
+ * Removed in 1.18, still kept here for LiquidThreads backwards compatibility.
  *
- * @deprecated since 1.19
+ * @deprecated since 1.18
  */
 $wgBetterDirectionality = true;
 
@@ -2983,7 +2983,7 @@ $wgArticleCountMethod = null;
 
 /**
  * Backward compatibility setting, will set $wgArticleCountMethod if it is null.
- * @deprecated since 1.19; use $wgArticleCountMethod instead
+ * @deprecated since 1.18; use $wgArticleCountMethod instead
  */
 $wgUseCommaCount = false;
 

@@ -1698,7 +1698,7 @@ class Linker {
 		global $wgEnableTooltipsAndAccesskeys;
 		if ( !$wgEnableTooltipsAndAccesskeys )
 			return false;
-		
+
 		wfProfileIn( __METHOD__ );
 
 		$message = wfMessage( "tooltip-$name" );
@@ -1986,7 +1986,7 @@ class Linker {
 }
 
 /**
- * @since 1.19
+ * @since 1.18
  */
 class DummyLinker {
 

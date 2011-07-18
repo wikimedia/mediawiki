@@ -228,7 +228,7 @@ class MediaWiki {
 				/**
 				 * $wgArticle is deprecated, do not use it. This will possibly be removed
 				 * entirely in 1.20 or 1.21
-				 * @deprecated since 1.19
+				 * @deprecated since 1.18
 				 */
 				global $wgArticle;
 				$wgArticle = $article;
@@ -253,7 +253,7 @@ class MediaWiki {
 	/**
 	 * Create an Article object of the appropriate class for the given page.
 	 *
-	 * @deprecated in 1.19; use Article::newFromTitle() instead
+	 * @deprecated in 1.18; use Article::newFromTitle() instead
 	 * @param $title Title
 	 * @param $context RequestContext
 	 * @return Article object
@@ -289,7 +289,7 @@ class MediaWiki {
 		} elseif ( $action == 'editredlink' ) {
 			$action = 'edit';
 		}
-		
+
 		// Write back the executed action
 		$request->setVal( 'action', $action );
 		return $action;

@@ -1128,7 +1128,7 @@ class Article extends Page {
 
 	/**
 	 * Removes trackback record for current article from trackbacks table
-	 * @deprecated since 1.19
+	 * @deprecated since 1.18
 	 */
 	public function deletetrackback() {
 		return Action::factory( 'deletetrackback', $this )->show();
@@ -1154,7 +1154,7 @@ class Article extends Page {
 
 	/**
 	 * Mark this particular edit/page as patrolled
-	 * @deprecated since 1.19
+	 * @deprecated since 1.18
 	 */
 	public function markpatrolled() {
 		Action::factory( 'markpatrolled', $this )->show();
@@ -1162,7 +1162,7 @@ class Article extends Page {
 
 	/**
 	 * User-interface handler for the "watch" action.
-	 * Requires Request to pass a token as of 1.19.
+	 * Requires Request to pass a token as of 1.18.
 	 * @deprecated since 1.18
 	 */
 	public function watch() {
@@ -1184,7 +1184,7 @@ class Article extends Page {
 
 	/**
 	 * User interface handler for the "unwatch" action.
-	 * Requires Request to pass a token as of 1.19.
+	 * Requires Request to pass a token as of 1.18.
 	 * @deprecated since 1.18
 	 */
 	public function unwatch() {
@@ -1243,7 +1243,7 @@ class Article extends Page {
 	 * Output a redirect back to the article.
 	 * This is typically used after an edit.
 	 *
-	 * @deprecated in 1.19; call $wgOut->redirect() directly
+	 * @deprecated in 1.18; call $wgOut->redirect() directly
 	 * @param $noRedir Boolean: add redirect=no
 	 * @param $sectionAnchor String: section to redirect to, including "#"
 	 * @param $extraQuery String: extra query params

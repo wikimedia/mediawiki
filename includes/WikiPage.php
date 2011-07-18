@@ -2075,7 +2075,7 @@ class WikiPage extends Page {
 	 * @todo This is a shitty interface function. Kill it and replace the
 	 * other shitty functions like doEditUpdates and such so it's not needed
 	 * anymore.
-	 * @deprecated since 1.19, use doEditUpdates()
+	 * @deprecated since 1.18, use doEditUpdates()
 	 */
 	public function createUpdates( $rev ) {
 		global $wgUser;
@@ -2524,7 +2524,7 @@ class WikiPage extends Page {
 	}
 
 	/*
-	* @deprecated since 1.19
+	* @deprecated since 1.18
 	*/
 	public function quickEdit( $text, $comment = '', $minor = 0 ) {
 		global $wgUser;
@@ -2532,7 +2532,7 @@ class WikiPage extends Page {
 	}
 
 	/*
-	* @deprecated since 1.19
+	* @deprecated since 1.18
 	*/
 	public function viewUpdates() {
 		global $wgUser;
@@ -2540,7 +2540,7 @@ class WikiPage extends Page {
 	}
 
 	/*
-	* @deprecated since 1.19
+	* @deprecated since 1.18
 	*/
 	public function useParserCache( $oldid ) {
 		global $wgUser;
