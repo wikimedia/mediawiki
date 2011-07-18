@@ -597,10 +597,14 @@ abstract class Maintenance {
 			} elseif ( substr( $arg, 0, 2 ) == '--' ) {
 				# Long options
 				$option = substr( $arg, 2 );
+				if ( array_key_exists( $option, $options ) ) {
+					$this->error( "\nERROR: $option parameter given twice\n" );
+					$this->maybeHelp( true );
+				}
 				if ( isset( $this->mParams[$option] ) && $this->mParams[$option]['withArg'] ) {
 					$param = next( $argv );
 					if ( $param === false ) {
-						$this->error( "\nERROR: $option needs a value after it\n" );
+						$this->error( "\nERROR: $option parameter needs a value after it\n" );
 						$this->maybeHelp( true );
 					}
 					$options[$option] = $param;
@@ -621,10 +625,14 @@ abstract class Maintenance {
 					if ( !isset( $this->mParams[$option] ) && isset( $this->mShortParamsMap[$option] ) ) {
 						$option = $this->mShortParamsMap[$option];
 					}
+					if ( array_key_exists( $option, $options ) ) {
+						$this->error( "\nERROR: $option parameter given twice\n" );
+						$this->maybeHelp( true );
+					}
 					if ( isset( $this->mParams[$option]['withArg'] ) && $this->mParams[$option]['withArg'] ) {
 						$param = next( $argv );
 						if ( $param === false ) {
-							$this->error( "\nERROR: $option needs a value after it\n" );
+							$this->error( "\nERROR: $option parameter needs a value after it\n" );
 							$this->maybeHelp( true );
 						}
 						$options[$option] = $param;
