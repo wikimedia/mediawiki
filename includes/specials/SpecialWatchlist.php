@@ -62,7 +62,7 @@ class SpecialWatchlist extends SpecialPage {
 				array(),
 				array( 'returnto' => $this->getTitle()->getPrefixedText() )
 			);
-			$out->addHTML( wfMessage( 'watchlistanontext' )->rawParams( $llink )->parse() );
+			$output->addHTML( wfMessage( 'watchlistanontext' )->rawParams( $llink )->parse() );
 			return;
 		}
 
