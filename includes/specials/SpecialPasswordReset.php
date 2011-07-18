@@ -33,8 +33,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function userCanExecute( User $user ) {
-		global $wgPasswordResetRoutes, $wgAuth;
-
 		$error = $this->canChangePassword( $user );
 		if ( is_string( $error ) ) {
 			throw new ErrorPageError( 'internalerror', $error );
@@ -243,7 +241,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return Bool
 	 */
 	function isListed() {
-		global $wgPasswordResetRoutes, $wgAuth, $wgUser;
+		global $wgUser;
 
 		if ( $this->canChangePassword( $wgUser ) === true ) {
 			return parent::isListed();

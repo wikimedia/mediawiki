@@ -46,7 +46,6 @@ class SpecialUnblock extends SpecialPage {
 		# Check for database lock
 		if( wfReadOnly() ) {
 			throw new ReadOnlyError;
-			return;
 		}
 
 		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $wgRequest );

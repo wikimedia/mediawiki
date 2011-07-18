@@ -34,7 +34,7 @@ class SpecialLockdb extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgUser, $wgRequest;
 
 		$this->setHeaders();
 

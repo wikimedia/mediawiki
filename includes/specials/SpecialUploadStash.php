@@ -333,7 +333,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$form->prepareForm();
 		$formResult = $form->tryAuthorizedSubmit();
 
-
 		// show the files + form, if there are any, or just say there are none
 		$refreshHtml = Html::element( 'a',
 			array( 'href' => $this->getTitle()->getLocalURL() ),
