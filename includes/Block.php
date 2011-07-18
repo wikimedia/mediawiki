@@ -643,8 +643,8 @@ class Block {
 		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
 
-		$dbr = wfGetDB( DB_SLAVE );
-		if ( $this->mExpiry == $dbr->getInfinity() ) {
+		 $dbr = wfGetDB( DB_SLAVE );
+		if ( $timestamp == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
 			$autoblock->mExpiry = Block::getAutoblockExpiry( $timestamp );
 		} else {
