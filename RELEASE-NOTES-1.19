@@ -198,6 +198,7 @@ production.
 * Correct the documentation of srprop properties
 * (bug 28817) Add reference help page link to API Modules
 * (bug 29935) Improve formatting of examples in ApiParamInfo
+* (bug 29938) list=users&usprop=rights shows rights the user doesn't have
 
 === Languages updated in 1.19 ===
 
