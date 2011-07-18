@@ -469,7 +469,7 @@ class OutputPage {
 	 *
 	 * @param $filter
 	 * @param $position
-	 * 
+	 *
 	 * @return Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
@@ -1832,9 +1832,9 @@ class OutputPage {
 	 *
 	 * @param $code Integer: status code
 	 * @return String or null: message or null if $code is not in the list of
-	 *         messages 
+	 *         messages
 	 *
-	 * @deprecated since 1.19 Use HttpStatus::getMessage() instead.
+	 * @deprecated since 1.18 Use HttpStatus::getMessage() instead.
 	 */
 	public static function getStatusMessage( $code ) {
 		wfDeprecated( __METHOD__ );
@@ -2339,7 +2339,7 @@ $templates
 	 * Add the default ResourceLoader modules to this object
 	 */
 	private function addDefaultModules() {
-		global $wgIncludeLegacyJavaScript, $wgUseAjax, 
+		global $wgIncludeLegacyJavaScript, $wgUseAjax,
 			$wgAjaxWatch, $wgEnableMWSuggest, $wgUseAJAXCategories;
 
 		// Add base resources
@@ -2371,7 +2371,7 @@ $templates
 		if ( $this->getUser()->getBoolOption( 'editsectiononrightclick' ) ) {
 			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
 		}
-		
+
 		if ( $wgUseAJAXCategories ) {
 			global $wgAJAXCategoriesNamespaces;
 
