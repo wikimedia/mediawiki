@@ -197,6 +197,7 @@ production.
   srprop=sectiontitle
 * Correct the documentation of srprop properties
 * (bug 28817) Add reference help page link to API Modules
+* (bug 29935) Improve formatting of examples in ApiParamInfo
 
 === Languages updated in 1.19 ===
 
