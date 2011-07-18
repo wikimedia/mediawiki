@@ -366,7 +366,7 @@ class SpecialPage {
 	public function __call( $fName, $a ) {
 		// Sometimes $fName is SpecialPage, sometimes it's specialpage. <3 PHP
 		if( strtolower( $fName ) == 'specialpage' ) {
-			// Deprecated messages now, remove in 1.19 or 1.20?
+			// Deprecated messages now, remove in 1.18 or 1.20?
 			wfDeprecated( __METHOD__ );
 
 			$name = isset( $a[0] ) ? $a[0] : '';
@@ -671,7 +671,7 @@ class SpecialPage {
 	 * Shortcut to get user's language
 	 *
 	 * @return Language
-	 * @since 1.19
+	 * @since 1.18
 	 */
 	public function getLang() {
 		return $this->getContext()->getLang();

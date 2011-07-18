@@ -926,7 +926,7 @@ function wfGetLangObj( $langcode = false ) {
  * Old function when $wgBetterDirectionality existed
  * Removed in core, kept in extensions for backwards compat.
  *
- * @deprecated since 1.19
+ * @deprecated since 1.18
  * @return Language
  */
 function wfUILang() {
@@ -2948,7 +2948,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
  *
  * @param $name String
  * @param $p Array: parameters
- * @deprecated since 1.18, warnings in 1.19, removal in 1.20
+ * @deprecated since 1.18, warnings in 1.18, removal in 1.20
  */
 function wfCreateObject( $name, $p ) {
 	wfDeprecated( __FUNCTION__ );
@@ -3331,7 +3331,7 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
 
 /**
  * Used to be used for outputting text in the installer/updater
- * @deprecated since 1.18, warnings in 1.19, remove in 1.20
+ * @deprecated since 1.18, warnings in 1.18, remove in 1.20
  */
 function wfOut( $s ) {
 	wfDeprecated( __METHOD__ );

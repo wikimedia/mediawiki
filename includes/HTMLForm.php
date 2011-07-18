@@ -115,7 +115,7 @@ class HTMLForm {
 	/**
 	 * Build a new HTMLForm from an array of field attributes
 	 * @param $descriptor Array of Field constructs, as described above
-	 * @param $context RequestContext available since 1.18, will become compulsory in 1.19.
+	 * @param $context RequestContext available since 1.18, will become compulsory in 1.18.
 	 *     Obviates the need to call $form->setTitle()
 	 * @param $messagePrefix String a prefix to go in front of default messages
 	 */

@@ -3,7 +3,7 @@
  *
  * @author Neil Kandalgaonkar, 2010
  * @author Timo Tijhof, 2011
- * @since 1.19
+ * @since 1.18
  *
  * Relies on: mw.config (wgFormattedNamespaces, wgNamespaceIds, wgCaseSensitiveNamespaces), mw.util.wikiGetlink
  */

@@ -42,7 +42,7 @@ function wfGetForwardedFor() {
  * Returns the browser/OS data from the request header
  * Note: headers are spoofable
  *
- * @deprecated in 1.19; use $wgRequest->getHeader( 'User-Agent' ) instead.
+ * @deprecated in 1.18; use $wgRequest->getHeader( 'User-Agent' ) instead.
  * @return string
  */
 function wfGetAgent() {

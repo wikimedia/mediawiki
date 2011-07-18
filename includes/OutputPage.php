@@ -1834,7 +1834,7 @@ class OutputPage {
 	 * @return String or null: message or null if $code is not in the list of
 	 *         messages 
 	 *
-	 * @deprecated since 1.19 Use HttpStatus::getMessage() instead.
+	 * @deprecated since 1.18 Use HttpStatus::getMessage() instead.
 	 */
 	public static function getStatusMessage( $code ) {
 		wfDeprecated( __METHOD__ );

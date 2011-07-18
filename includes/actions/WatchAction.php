@@ -113,7 +113,7 @@ class WatchAction extends FormAction {
 	 * @param User $title User for whom the action is going to be performed
 	 * @param string $action Optionally override the action to 'unwatch'
 	 * @return string Token
-	 * @since 1.19
+	 * @since 1.18
 	 */
 	public static function getWatchToken( Title $title, User $user, $action = 'watch' ) {
 		if ( $action != 'unwatch' ) {
@@ -133,7 +133,7 @@ class WatchAction extends FormAction {
 	 * @param User $title User for whom the action is going to be performed
 	 * @param string $action Optionally override the action to 'watch'
 	 * @return string Token
-	 * @since 1.19
+	 * @since 1.18
 	 */
 	public static function getUnwatchToken( Title $title, User $user, $action = 'unwatch' ) {
 		return self::getWatchToken( $title, $user, $action );

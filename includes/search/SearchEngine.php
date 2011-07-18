@@ -64,7 +64,7 @@ class SearchEngine {
 
 	/**
 	 * If this search backend can list/unlist redirects
-	 * @deprecated since 1.19 Call supports( 'list-redirects' );
+	 * @deprecated since 1.18 Call supports( 'list-redirects' );
 	 */
 	function acceptListRedirects() {
 		return $this->supports( 'list-redirects' );
