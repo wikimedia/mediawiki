@@ -4188,30 +4188,42 @@ class Parser {
 		}
 
 		# split up and insert constructed headlines
-
 		$blocks = preg_split( '/<H[1-6].*?' . '>.*?<\/H[1-6]>/i', $text );
 		$i = 0;
-
-		foreach ( $blocks as $block ) {
-			if ( $showEditLink && $headlineCount > 0 && $i == 0 && $block !== "\n" ) {
-				# This is the [edit] link that appears for the top block of text when
-				# section editing is enabled
-
-				# Disabled because it broke block formatting
-				# For example, a bullet point in the top line
-				# $full .= $sk->editSectionLink(0);
-			}
-			$full .= $block;
-			if ( $enoughToc && !$i && $isMain && !$this->mForceTocPosition ) {
-				# Top anchor now in skin
-				$full = $full.$toc;
+		
+		// build an array of document sections
+		$sections = array();
+		foreach ( $blocks as $block ) {			
+			// $head is zero-based, sections aren't.
+			if ( empty( $head[$i - 1] ) ) {
+				$sections[$i] = $block;
+			} else {
+				$sections[$i] = $head[$i - 1] . $block;
 			}
 
-			if ( !empty( $head[$i] ) ) {
-				$full .= $head[$i];
-			}
+			/**
+			 * Send a hook, one per section.
+			 * The idea here is to be able to make section-level DIVs, but to do so in a
+			 * lower-impact, more correct way than r50769
+			 *
+			 * $this : caller
+			 * $section : the section number
+			 * &$sectionContent : ref to the content of the section
+			 * $showEditLinks : boolean describing whether this section has an edit link
+			 */
+			wfRunHooks( 'ParserSectionCreate', array( $this, $i, &$sections[$i], $showEditLink ) );
+		
 			$i++;
 		}
+
+		if ( $enoughToc && $isMain && !$this->mForceTocPosition ) {
+			// append the TOC at the beginning
+			// Top anchor now in skin
+			$sections[0] = $sections[0] . $toc . "\n";
+		}
+		
+		$full .= join( '', $sections );
+		
 		if ( $this->mForceTocPosition ) {
 			return str_replace( '<!--MWTOC-->', $toc, $full );
 		} else {
