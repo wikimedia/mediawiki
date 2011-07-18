@@ -77,7 +77,11 @@ class Block {
 		$this->mAuto = $auto;
 		$this->isHardblock( !$anonOnly );
 		$this->prevents( 'createaccount', $createAccount );
-		$this->mExpiry = $expiry;
+		if ( $expiry == 'infinity' || $expiry == Block::infinity() ) {
+			$this->mExpiry = 'infinity';
+		} else {
+			$this->mExpiry = wfTimestamp( TS_MW, $expiry );
+		}
 		$this->isAutoblocking( $enableAutoblock );
 		$this->mHideName = $hideName;
 		$this->prevents( 'sendemail', $blockEmail );
@@ -342,13 +346,20 @@ class Block {
 	protected function initFromRow( $row ) {
 		$this->setTarget( $row->ipb_address );
 		$this->setBlocker( User::newFromId( $row->ipb_by ) );
-
+		
 		$this->mReason = $row->ipb_reason;
 		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
 		$this->mAuto = $row->ipb_auto;
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
-		$this->mExpiry = $row->ipb_expiry;
+		
+		// I wish I didn't have to do this
+		$db = wfGetDB( DB_SLAVE );
+		if ( $row->ipb_expiry == $db->getInfinity() ) {
+			$this->mExpiry = 'infinity';
+		} else {
+			$this->mExpiry = wfTimestamp( TS_MW, $row->ipb_expiry );
+		}
 
 		$this->isHardblock( !$row->ipb_anon_only );
 		$this->isAutoblocking( $row->ipb_enable_autoblock );
@@ -455,7 +466,7 @@ class Block {
 		if( !$db ){
 			$db = wfGetDB( DB_SLAVE );
 		}
-		$this->mExpiry = $db->encodeExpiry( $this->mExpiry );
+		$expiry = $db->encodeExpiry( $this->mExpiry );
 
 		$a = array(
 			'ipb_address'          => (string)$this->target,
@@ -468,7 +479,7 @@ class Block {
 			'ipb_anon_only'        => !$this->isHardblock(),
 			'ipb_create_account'   => $this->prevents( 'createaccount' ),
 			'ipb_enable_autoblock' => $this->isAutoblocking(),
-			'ipb_expiry'           => $this->mExpiry,
+			'ipb_expiry'           => $expiry,
 			'ipb_range_start'      => $this->getRangeStart(),
 			'ipb_range_end'        => $this->getRangeEnd(),
 			'ipb_deleted'	       => intval( $this->mHideName ), // typecast required for SQLite
