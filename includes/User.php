@@ -169,7 +169,7 @@ class User {
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
 		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups, $mOptionOverrides,
-		$mCookiePassword;
+		$mCookiePassword, $mEditCount, $mAllowUsertalk;
 	//@}
 
 	/**
@@ -211,6 +211,10 @@ class User {
 	 * @var Block
 	 */
 	var $mBlock;
+
+	/**
+	 * @var Block
+	 */
 	private $mBlockedFromCreateAccount = false;
 
 	static $idCacheByName = array();
@@ -229,6 +233,9 @@ class User {
 		$this->clearInstanceCache( 'defaults' );
 	}
 
+	/**
+	 * @return String
+	 */
 	function __toString(){
 		return $this->getName();
 	}
@@ -437,7 +444,6 @@ class User {
 	}
 
 	//@}
-
 
 	/**
 	 * Get the username corresponding to a given user ID
@@ -738,6 +744,8 @@ class User {
 	 *                - 'valid'      Valid for batch processes
 	 *                - 'usable'     Valid for batch processes and login
 	 *                - 'creatable'  Valid for batch processes, login and account creation
+	 *
+	 * @return bool|string
 	 */
 	public static function getCanonicalName( $name, $validate = 'valid' ) {
 		# Force usernames to capital
@@ -848,6 +856,8 @@ class User {
 	 *
 	 * @note This no longer clears uncached lazy-initialised properties;
 	 *       the constructor does that instead.
+	 *
+	 * @param $name string
 	 */
 	private function loadDefaults( $name = false ) {
 		wfProfileIn( __METHOD__ );
@@ -1159,7 +1169,7 @@ class User {
 
 	/**
 	 * Clear various cached data stored in this object.
-	 * @param $reloadFrom String Reload user and user_groups table data from a
+	 * @param $reloadFrom bool|String Reload user and user_groups table data from a
 	 *   given source. May be "name", "id", "defaults", "session", or false for
 	 *   no reload.
 	 */
@@ -1349,6 +1359,9 @@ class User {
 
 	/**
 	 * Check if an IP address is in the local proxy list
+	 *
+	 * @param $ip string
+	 *
 	 * @return bool
 	 */
 	public static function isLocallyBlockedProxy( $ip ) {
@@ -1882,6 +1895,8 @@ class User {
 	/**
 	 * Validate the cache for this account.
 	 * @param $timestamp String A timestamp in TS_MW format
+	 *
+	 * @return bool
 	 */
 	public function validateCache( $timestamp ) {
 		$this->load();
@@ -1910,6 +1925,8 @@ class User {
 	 *
 	 * @param $str String New password to set
 	 * @throws PasswordError on failure
+	 *
+	 * @return bool
 	 */
 	public function setPassword( $str ) {
 		global $wgAuth;
@@ -1974,7 +1991,7 @@ class User {
 	 * Set the random token (used for persistent authentication)
 	 * Called from loadDefaults() among other places.
 	 *
-	 * @param $token String If specified, set the token to this value
+	 * @param $token String|bool If specified, set the token to this value
 	 */
 	public function setToken( $token = false ) {
 		global $wgSecretKey, $wgProxyKey;
@@ -2218,6 +2235,8 @@ class User {
 
 	/**
 	 * Get the user preferred stub threshold
+	 *
+	 * @return int
 	 */
 	public function getStubThreshold() {
 		global $wgMaxArticleSize; # Maximum article size, in Kb
@@ -2409,8 +2428,11 @@ class User {
 
 	/**
 	 * Check if user is allowed to access a feature / make an action
-	 * @param varargs String permissions to test
+	 *
+	 * @internal param \String $varargs permissions to test
 	 * @return Boolean: True if user is allowed to perform *any* of the given actions
+	 *
+	 * @return bool
 	 */
 	public function isAllowedAny( /*...*/ ){
 		$permissions = func_get_args();
@@ -2423,7 +2445,8 @@ class User {
 	}
 
 	/**
-	 * @param varargs String
+	 *
+	 * @internal param $varargs string
 	 * @return bool True if the user is allowed to perform *all* of the given actions
 	 */
 	public function isAllowedAll( /*...*/ ){
@@ -2439,7 +2462,7 @@ class User {
 	/**
 	 * Internal mechanics of testing a permission
 	 * @param $action String
-	 * @paramn $ns int Namespace optional
+	 * @param $ns int|null Namespace optional
 	 * @return bool
 	 */
 	public function isAllowed( $action = '', $ns = null ) {
@@ -3043,6 +3066,9 @@ class User {
 	/**
 	 * Check if the given clear-text password matches the temporary password
 	 * sent by e-mail for password reset operations.
+	 *
+	 * @param $plaintext string
+	 *
 	 * @return Boolean: True if matches, false otherwise
 	 */
 	public function checkTemporaryPassword( $plaintext ) {
@@ -3197,7 +3223,7 @@ class User {
 	 * @note Call saveSettings() after calling this function to commit
 	 * this change to the database.
 	 *
-	 * @param[out] &$expiration \mixed Accepts the expiration time
+	 * @param &$expiration \mixed Accepts the expiration time
 	 * @return String New token
 	 */
 	private function confirmationToken( &$expiration ) {
@@ -3258,6 +3284,8 @@ class User {
 	 * Mark the e-mail address confirmed.
 	 *
 	 * @note Call saveSettings() after calling this function to commit the change.
+	 *
+	 * @return true
 	 */
 	public function confirmEmail() {
 		$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
@@ -3397,6 +3425,8 @@ class User {
 	 * Get the permissions associated with a given list of groups
 	 *
 	 * @param $groups Array of Strings List of internal group names
+	 * @param $ns int
+	 *
 	 * @return Array of Strings List of permission key names for given groups combined
 	 */
 	public static function getGroupPermissions( $groups, $ns = null ) {
@@ -3423,8 +3453,8 @@ class User {
 
 	/**
 	 * Helper for User::getGroupPermissions
-	 * @param array $list
-	 * @param int $ns
+	 * @param $list array
+	 * @param $ns int
 	 * @return array
 	 */
 	private static function extractRights( $list, $ns ) {
@@ -3449,6 +3479,9 @@ class User {
 	 * Get all the groups who have a given permission
 	 *
 	 * @param $role String Role to check
+	 * @param $ns int
+	 *
+	 *
 	 * @return Array of Strings List of internal group names with the given permission
 	 */
 	public static function getGroupsWithPermission( $role, $ns = null ) {
@@ -3768,7 +3801,8 @@ class User {
 	 * Make a new-style password hash
 	 *
 	 * @param $password String Plain-text password
-	 * @param $salt String Optional salt, may be random or the user ID.
+	 * @param bool|string $salt Optional salt, may be random or the user ID.
+
 	 *                     If unspecified or false, will generate one automatically
 	 * @return String Password hash
 	 */
@@ -3796,8 +3830,9 @@ class User {
 	 *
 	 * @param $hash String Password hash
 	 * @param $password String Plain-text password to compare
-	 * @param $userId String User ID for old-style password salt
-	 * @return Boolean:
+	 * @param $userId String|bool User ID for old-style password salt
+	 *
+	 * @return Boolean
 	 */
 	public static function comparePasswords( $hash, $password, $userId = false ) {
 		$type = substr( $hash, 0, 3 );
@@ -3873,6 +3908,9 @@ class User {
 		return true;
 	}
 
+	/**
+	 * @todo document
+	 */
 	protected function loadOptions() {
 		$this->load();
 		if ( $this->mOptionsLoaded || !$this->getId() )
@@ -3909,6 +3947,9 @@ class User {
 		wfRunHooks( 'UserLoadOptions', array( $this, &$this->mOptions ) );
 	}
 
+	/**
+	 * @todo document
+	 */
 	protected function saveOptions() {
 		global $wgAllowPrefChange;
 
@@ -3923,8 +3964,9 @@ class User {
 
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
-		if( !wfRunHooks( 'UserSaveOptions', array( $this, &$saveOptions ) ) )
+		if( !wfRunHooks( 'UserSaveOptions', array( $this, &$saveOptions ) ) ) {
 			return;
+		}
 
 		foreach( $saveOptions as $key => $value ) {
 			# Don't bother storing default values
