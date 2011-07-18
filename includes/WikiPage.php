@@ -82,6 +82,8 @@ class WikiPage extends Page {
 	 * Always override this for all subclasses (until we use PHP with LSB)
 	 *
 	 * @param $id Int article ID to load
+	 *
+	 * @return WikiPage
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
@@ -278,6 +280,8 @@ class WikiPage extends Page {
 	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new page.
+	 *
+	 * @return array
 	 */
 	public static function selectFields() {
 		return array(
@@ -535,7 +539,7 @@ class WikiPage extends Page {
 	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @return String|false The text of the current revision
-	 */	
+	 */
 	public function getText( $audience = Revision::FOR_PUBLIC ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
