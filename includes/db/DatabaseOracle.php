@@ -775,13 +775,20 @@ class DatabaseOracle extends DatabaseBase {
 		foreach ( $rows as $row ) {
 			# Delete rows which collide
 			if ( $uniqueIndexes ) {
-				$condsDelete = array();
-				foreach ( $uniqueIndexes as $index ) {
-					$condsDelete[$index] = $row[$index];
+				$deleteConds = array();
+				foreach ( $uniqueIndexes as $key=>$index ) {
+					if ( is_array( $index ) ) {
+						$deleteConds2 = array();
+						foreach ( $index as $col ) {
+							$deleteConds2[$col] = $row[$col];
+						}
+						$deleteConds[$key] = $this->makeList( $deleteConds2, LIST_AND );
+					} else {
+						$deleteConds[$index] = $row[$index];
+					}
 				}
-				if ( count( $condsDelete ) > 0 ) {
-					$this->delete( $table, $condsDelete, $fname );
-				}
+				$deleteConds = array( $this->makeList( $deleteConds, LIST_OR ) );
+				$this->delete( $table, $deleteConds, $fname );
 			}
 
 			if ( $sequenceData !== false && !isset( $row[$sequenceData['column']] ) ) {
