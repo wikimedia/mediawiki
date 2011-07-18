@@ -256,7 +256,7 @@ class UsersPager extends AlphabeticPager {
 	 */
 	protected static function getGroups( $uid ) {
 		$user = User::newFromId( $uid );
-		$groups = array_diff( $user->getEffectiveGroups(), $user->getImplicitGroups() );
+		$groups = array_diff( $user->getEffectiveGroups(), User::getImplicitGroups() );
 		return $groups;
 	}
 

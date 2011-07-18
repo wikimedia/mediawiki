@@ -76,7 +76,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$groups = array_merge( $groups, User::getGroupsWithPermission( $r ) );
 			}
 
-			$groups = array_diff( array_unique( $groups ), User::getImplicitGroups() );
+			$groups = array_unique( $groups );
 
 			if ( is_null( $params['group'] ) ) {
 				$params['group'] = $groups;
