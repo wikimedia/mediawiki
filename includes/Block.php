@@ -346,13 +346,13 @@ class Block {
 	protected function initFromRow( $row ) {
 		$this->setTarget( $row->ipb_address );
 		$this->setBlocker( User::newFromId( $row->ipb_by ) );
-		
+
 		$this->mReason = $row->ipb_reason;
 		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
 		$this->mAuto = $row->ipb_auto;
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
-		
+
 		// I wish I didn't have to do this
 		$db = wfGetDB( DB_SLAVE );
 		if ( $row->ipb_expiry == $db->getInfinity() ) {
@@ -643,7 +643,6 @@ class Block {
 		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
 
-		 $dbr = wfGetDB( DB_SLAVE );
 		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
 			$autoblock->mExpiry = Block::getAutoblockExpiry( $timestamp );
