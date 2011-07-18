@@ -168,7 +168,8 @@ class User {
 	//@{
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
-		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups, $mOptionOverrides;
+		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups, $mOptionOverrides,
+		$mCookiePassword;
 	//@}
 
 	/**
@@ -235,7 +236,7 @@ class User {
 	/**
 	 * Load the user table data for this object from the source given by mFrom.
 	 */
-	function load() {
+	public function load() {
 		if ( $this->mLoadedItems === true ) {
 			return;
 		}
@@ -273,9 +274,8 @@ class User {
 	/**
 	 * Load user table data, given mId has already been set.
 	 * @return Bool false if the ID does not exist, true otherwise
-	 * @private
 	 */
-	function loadFromId() {
+	private function loadFromId() {
 		global $wgMemc;
 		if ( $this->mId == 0 ) {
 			$this->loadDefaults();
@@ -311,7 +311,7 @@ class User {
 	/**
 	 * Save user data to the shared cache
 	 */
-	function saveToCache() {
+	public function saveToCache() {
 		$this->load();
 		$this->loadGroups();
 		$this->loadOptions();
@@ -328,7 +328,6 @@ class User {
 		global $wgMemc;
 		$wgMemc->set( $key, $data );
 	}
-
 
 	/** @name newFrom*() static factory methods */
 	//@{
@@ -349,7 +348,7 @@ class User {
 	 *    username is not present in the database, the result will be a user object
 	 *    with a name, zero user ID and default settings.
 	 */
-	static function newFromName( $name, $validate = 'valid' ) {
+	public static function newFromName( $name, $validate = 'valid' ) {
 		if ( $validate === true ) {
 			$validate = 'valid';
 		}
@@ -372,7 +371,7 @@ class User {
 	 * @param $id Int Valid user ID
 	 * @return User The corresponding User object
 	 */
-	static function newFromId( $id ) {
+	public static function newFromId( $id ) {
 		$u = new User;
 		$u->mId = $id;
 		$u->mFrom = 'id';
@@ -390,7 +389,7 @@ class User {
 	 * @param $code String Confirmation code
 	 * @return User
 	 */
-	static function newFromConfirmationCode( $code ) {
+	public static function newFromConfirmationCode( $code ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$id = $dbr->selectField( 'user', 'user_id', array(
 			'user_email_token' => md5( $code ),
@@ -411,7 +410,7 @@ class User {
 	 *        ommited.
 	 * @return User
 	 */
-	static function newFromSession( WebRequest $request = null ) {
+	public static function newFromSession( WebRequest $request = null ) {
 		$user = new User;
 		$user->mFrom = 'session';
 		$user->mRequest = $request;
@@ -431,7 +430,7 @@ class User {
 	 * @param $row Array A row from the user table
 	 * @return User
 	 */
-	static function newFromRow( $row ) {
+	public static function newFromRow( $row ) {
 		$user = new User;
 		$user->loadFromRow( $row );
 		return $user;
@@ -456,7 +455,7 @@ class User {
 	 * @param $id Int User ID
 	 * @return String The corresponding user's real name
 	 */
-	static function whoIsReal( $id ) {
+	public static function whoIsReal( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'user', 'user_real_name', array( 'user_id' => $id ), __METHOD__ );
 	}
@@ -466,7 +465,7 @@ class User {
 	 * @param $name String Username
 	 * @return Int|Null The corresponding user's ID, or null if user is nonexistent
 	 */
-	static function idFromName( $name ) {
+	public static function idFromName( $name ) {
 		$nt = Title::makeTitleSafe( NS_USER, $name );
 		if( is_null( $nt ) ) {
 			# Illegal name
@@ -518,7 +517,7 @@ class User {
 	 * @param $name String to match
 	 * @return Bool
 	 */
-	static function isIP( $name ) {
+	public static function isIP( $name ) {
 		return preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/',$name) || IP::isIPv6($name);
 	}
 
@@ -533,7 +532,7 @@ class User {
 	 * @param $name String to match
 	 * @return Bool
 	 */
-	static function isValidUserName( $name ) {
+	public static function isValidUserName( $name ) {
 		global $wgContLang, $wgMaxNameChars;
 
 		if ( $name == ''
@@ -587,7 +586,7 @@ class User {
 	 * @param $name String to match
 	 * @return Bool
 	 */
-	static function isUsableName( $name ) {
+	public static function isUsableName( $name ) {
 		global $wgReservedUsernames;
 		// Must be a valid username, obviously ;)
 		if ( !self::isValidUserName( $name ) ) {
@@ -624,7 +623,7 @@ class User {
 	 * @param $name String to match
 	 * @return Bool
 	 */
-	static function isCreatableName( $name ) {
+	public static function isCreatableName( $name ) {
 		global $wgInvalidUsernameCharacters;
 
 		// Ensure that the username isn't longer than 235 bytes, so that
@@ -654,7 +653,7 @@ class User {
 	 * @param $password String Desired password
 	 * @return Bool
 	 */
-	function isValidPassword( $password ) {
+	public function isValidPassword( $password ) {
 		//simple boolean wrapper for getPasswordValidity
 		return $this->getPasswordValidity( $password ) === true;
 	}
@@ -665,7 +664,7 @@ class User {
 	 * @param $password String Desired password
 	 * @return mixed: true on success, string or array of error message on failure
 	 */
-	function getPasswordValidity( $password ) {
+	public function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 
 		static $blockedLogins = array(
@@ -740,7 +739,7 @@ class User {
 	 *                - 'usable'     Valid for batch processes and login
 	 *                - 'creatable'  Valid for batch processes, login and account creation
 	 */
-	static function getCanonicalName( $name, $validate = 'valid' ) {
+	public static function getCanonicalName( $name, $validate = 'valid' ) {
 		# Force usernames to capital
 		global $wgContLang;
 		$name = $wgContLang->ucfirst( $name );
@@ -794,7 +793,7 @@ class User {
 	 * @param $uid Int User ID to check
 	 * @return Int the user's edit count
 	 */
-	static function edits( $uid ) {
+	public static function edits( $uid ) {
 		wfProfileIn( __METHOD__ );
 		$dbr = wfGetDB( DB_SLAVE );
 		// check if the user_editcount field has been initialized
@@ -830,7 +829,7 @@ class User {
 	 *
 	 * @return String new random password
 	 */
-	static function randomPassword() {
+	public static function randomPassword() {
 		global $wgMinimalPasswordLength;
 		$pwchars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz';
 		$l = strlen( $pwchars ) - 1;
@@ -849,9 +848,8 @@ class User {
 	 *
 	 * @note This no longer clears uncached lazy-initialised properties;
 	 *       the constructor does that instead.
-	 * @private
 	 */
-	function loadDefaults( $name = false ) {
+	private function loadDefaults( $name = false ) {
 		wfProfileIn( __METHOD__ );
 
 		$this->mId = 0;
@@ -1007,9 +1005,8 @@ class User {
 	 * $this->mId must be set, this is how the user is identified.
 	 *
 	 * @return Bool True if the user exists, false if the user is anonymous
-	 * @private
 	 */
-	function loadFromDatabase() {
+	private function loadFromDatabase() {
 		# Paranoia
 		$this->mId = intval( $this->mId );
 
@@ -1043,7 +1040,7 @@ class User {
 	 *
 	 * @param $row Array Row from the user table to load.
 	 */
-	function loadFromRow( $row ) {
+	public function loadFromRow( $row ) {
 		$all = true;
 
 		if ( isset( $row->user_name ) ) {
@@ -1107,9 +1104,8 @@ class User {
 
 	/**
 	 * Load the groups from the database if they aren't already loaded.
-	 * @private
 	 */
-	function loadGroups() {
+	private function loadGroups() {
 		if ( is_null( $this->mGroups ) ) {
 			$dbr = wfGetDB( DB_MASTER );
 			$res = $dbr->select( 'user_groups',
@@ -1167,7 +1163,7 @@ class User {
 	 *   given source. May be "name", "id", "defaults", "session", or false for
 	 *   no reload.
 	 */
-	function clearInstanceCache( $reloadFrom = false ) {
+	public function clearInstanceCache( $reloadFrom = false ) {
 		$this->mNewtalk = -1;
 		$this->mDatePreference = null;
 		$this->mBlockedby = -1; # Unset
@@ -1188,7 +1184,7 @@ class User {
 	 *
 	 * @return Array of String options
 	 */
-	static function getDefaultOptions() {
+	public static function getDefaultOptions() {
 		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
 
 		$defOpt = $wgDefaultUserOptions;
@@ -1222,13 +1218,12 @@ class User {
 
 	/**
 	 * Get blocking information
-	 * @private
 	 * @param $bFromSlave Bool Whether to check the slave database first. To
 	 *                    improve performance, non-critical checks are done
 	 *                    against slaves. Check when actually saving should be
 	 *                    done against master.
 	 */
-	function getBlockedStatus( $bFromSlave = true ) {
+	private function getBlockedStatus( $bFromSlave = true ) {
 		global $wgProxyWhitelist, $wgUser;
 
 		if ( -1 != $this->mBlockedby ) {
@@ -1301,7 +1296,7 @@ class User {
 	 * @param $checkWhitelist Bool: whether to check the whitelist first
 	 * @return Bool True if blacklisted.
 	 */
-	function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
+	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
 		global $wgEnableSorbs, $wgEnableDnsBlacklist,
 			$wgSorbsUrl, $wgDnsBlacklistUrls, $wgProxyWhitelist;
 
@@ -1322,7 +1317,7 @@ class User {
 	 * @param $bases String|Array of Strings: URL of the DNS blacklist
 	 * @return Bool True if blacklisted.
 	 */
-	function inDnsBlacklist( $ip, $bases ) {
+	public function inDnsBlacklist( $ip, $bases ) {
 		wfProfileIn( __METHOD__ );
 
 		$found = false;
@@ -1409,7 +1404,7 @@ class User {
 	 * @param $action String Action to enforce; 'edit' if unspecified
 	 * @return Bool True if a rate limiter was tripped
 	 */
-	function pingLimiter( $action = 'edit' ) {
+	public function pingLimiter( $action = 'edit' ) {
 		# Call the 'PingLimiter' hook
 		$result = false;
 		if( !wfRunHooks( 'PingLimiter', array( &$this, $action, $result ) ) ) {
@@ -1504,7 +1499,7 @@ class User {
 	 * @param $bFromSlave Bool Whether to check the slave database instead of the master
 	 * @return Bool True if blocked, false otherwise
 	 */
-	function isBlocked( $bFromSlave = true ) { // hacked from false due to horrible probs on site
+	public function isBlocked( $bFromSlave = true ) { // hacked from false due to horrible probs on site
 		$this->getBlockedStatus( $bFromSlave );
 		return $this->mBlock instanceof Block && $this->mBlock->prevents( 'edit' );
 	}
@@ -1539,7 +1534,7 @@ class User {
 	 * If user is blocked, return the name of the user who placed the block
 	 * @return String name of blocker
 	 */
-	function blockedBy() {
+	public function blockedBy() {
 		$this->getBlockedStatus();
 		return $this->mBlockedby;
 	}
@@ -1548,7 +1543,7 @@ class User {
 	 * If user is blocked, return the specified reason for the block
 	 * @return String Blocking reason
 	 */
-	function blockedFor() {
+	public function blockedFor() {
 		$this->getBlockedStatus();
 		return $this->mBlockreason;
 	}
@@ -1557,7 +1552,7 @@ class User {
 	 * If user is blocked, return the ID for the block
 	 * @return Int Block ID
 	 */
-	function getBlockId() {
+	public function getBlockId() {
 		$this->getBlockedStatus();
 		return ( $this->mBlock ? $this->mBlock->getId() : false );
 	}
@@ -1570,7 +1565,7 @@ class User {
 	 * @param $ip String IP address, uses current client if none given
 	 * @return Bool True if blocked, false otherwise
 	 */
-	function isBlockedGlobally( $ip = '' ) {
+	public function isBlockedGlobally( $ip = '' ) {
 		if( $this->mBlockedGlobally !== null ) {
 			return $this->mBlockedGlobally;
 		}
@@ -1591,7 +1586,7 @@ class User {
 	 *
 	 * @return Bool True if locked, false otherwise
 	 */
-	function isLocked() {
+	public function isLocked() {
 		if( $this->mLocked !== null ) {
 			return $this->mLocked;
 		}
@@ -1606,7 +1601,7 @@ class User {
 	 *
 	 * @return Bool True if hidden, false otherwise
 	 */
-	function isHidden() {
+	public function isHidden() {
 		if( $this->mHideName !== null ) {
 			return $this->mHideName;
 		}
@@ -1623,7 +1618,7 @@ class User {
 	 * Get the user's ID.
 	 * @return Int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
-	function getId() {
+	public function getId() {
 		if( $this->mId === null && $this->mName !== null
 		&& User::isIP( $this->mName ) ) {
 			// Special case, we know the user is anonymous
@@ -1639,7 +1634,7 @@ class User {
 	 * Set the user and reload all fields according to a given ID
 	 * @param $v Int User ID to reload
 	 */
-	function setId( $v ) {
+	public function setId( $v ) {
 		$this->mId = $v;
 		$this->clearInstanceCache( 'id' );
 	}
@@ -1648,7 +1643,7 @@ class User {
 	 * Get the user name, or the IP of an anonymous user
 	 * @return String User's name or IP address
 	 */
-	function getName() {
+	public function getName() {
 		if ( $this->isItemLoaded( 'name', 'only' ) ) {
 			# Special case optimisation
 			return $this->mName;
@@ -1675,7 +1670,7 @@ class User {
 	 * does not exist.
 	 * @param $str String New user name to set
 	 */
-	function setName( $str ) {
+	public function setName( $str ) {
 		$this->load();
 		$this->mName = $str;
 	}
@@ -1684,7 +1679,7 @@ class User {
 	 * Get the user's name escaped by underscores.
 	 * @return String Username escaped by underscores.
 	 */
-	function getTitleKey() {
+	public function getTitleKey() {
 		return str_replace( ' ', '_', $this->getName() );
 	}
 
@@ -1692,7 +1687,7 @@ class User {
 	 * Check if the user has new messages.
 	 * @return Bool True if the user has new messages
 	 */
-	function getNewtalk() {
+	public function getNewtalk() {
 		$this->load();
 
 		# Load the newtalk status if it is unloaded (mNewtalk=-1)
@@ -1725,7 +1720,7 @@ class User {
 	 * Return the talk page(s) this user has new messages on.
 	 * @return Array of String page URLs
 	 */
-	function getNewMessageLinks() {
+	public function getNewMessageLinks() {
 		$talks = array();
 		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) )
 			return $talks;
@@ -1802,7 +1797,7 @@ class User {
 	 * Update the 'You have new messages!' status.
 	 * @param $val Bool Whether the user has new messages
 	 */
-	function setNewtalk( $val ) {
+	public function setNewtalk( $val ) {
 		if( wfReadOnly() ) {
 			return;
 		}
@@ -1866,7 +1861,7 @@ class User {
 	 * Updates user_touched field, and removes account data from memcached
 	 * for reload on the next hit.
 	 */
-	function invalidateCache() {
+	public function invalidateCache() {
 		if( wfReadOnly() ) {
 			return;
 		}
@@ -1888,7 +1883,7 @@ class User {
 	 * Validate the cache for this account.
 	 * @param $timestamp String A timestamp in TS_MW format
 	 */
-	function validateCache( $timestamp ) {
+	public function validateCache( $timestamp ) {
 		$this->load();
 		return ( $timestamp >= $this->mTouched );
 	}
@@ -1897,7 +1892,7 @@ class User {
 	 * Get the user touched timestamp
 	 * @return String timestamp
 	 */
-	function getTouched() {
+	public function getTouched() {
 		$this->load();
 		return $this->mTouched;
 	}
@@ -1916,7 +1911,7 @@ class User {
 	 * @param $str String New password to set
 	 * @throws PasswordError on failure
 	 */
-	function setPassword( $str ) {
+	public function setPassword( $str ) {
 		global $wgAuth;
 
 		if( $str !== null ) {
@@ -1952,7 +1947,7 @@ class User {
 	 *
 	 * @param $str String New password to set
 	 */
-	function setInternalPassword( $str ) {
+	public function setInternalPassword( $str ) {
 		$this->load();
 		$this->setToken();
 
@@ -1970,7 +1965,7 @@ class User {
 	 * Get the user's current token.
 	 * @return String Token
 	 */
-	function getToken() {
+	public function getToken() {
 		$this->load();
 		return $this->mToken;
 	}
@@ -1980,9 +1975,8 @@ class User {
 	 * Called from loadDefaults() among other places.
 	 *
 	 * @param $token String If specified, set the token to this value
-	 * @private
 	 */
-	function setToken( $token = false ) {
+	public function setToken( $token = false ) {
 		global $wgSecretKey, $wgProxyKey;
 		$this->load();
 		if ( !$token ) {
@@ -2003,9 +1997,8 @@ class User {
 	 * Set the cookie password
 	 *
 	 * @param $str String New cookie password
-	 * @private
 	 */
-	function setCookiePassword( $str ) {
+	private function setCookiePassword( $str ) {
 		$this->load();
 		$this->mCookiePassword = md5( $str );
 	}
@@ -2016,7 +2009,7 @@ class User {
 	 * @param $str String New password to set
 	 * @param $throttle Bool If true, reset the throttle timestamp to the present
 	 */
-	function setNewpassword( $str, $throttle = true ) {
+	public function setNewpassword( $str, $throttle = true ) {
 		$this->load();
 		$this->mNewpassword = self::crypt( $str );
 		if ( $throttle ) {
@@ -2029,7 +2022,7 @@ class User {
 	 * $wgPasswordReminderResendTime hours?
 	 * @return Bool
 	 */
-	function isPasswordReminderThrottled() {
+	public function isPasswordReminderThrottled() {
 		global $wgPasswordReminderResendTime;
 		$this->load();
 		if ( !$this->mNewpassTime || !$wgPasswordReminderResendTime ) {
@@ -2043,7 +2036,7 @@ class User {
 	 * Get the user's e-mail address
 	 * @return String User's email address
 	 */
-	function getEmail() {
+	public function getEmail() {
 		$this->load();
 		wfRunHooks( 'UserGetEmail', array( $this, &$this->mEmail ) );
 		return $this->mEmail;
@@ -2053,7 +2046,7 @@ class User {
 	 * Get the timestamp of the user's e-mail authentication
 	 * @return String TS_MW timestamp
 	 */
-	function getEmailAuthenticationTimestamp() {
+	public function getEmailAuthenticationTimestamp() {
 		$this->load();
 		wfRunHooks( 'UserGetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
 		return $this->mEmailAuthenticated;
@@ -2063,7 +2056,7 @@ class User {
 	 * Set the user's e-mail address
 	 * @param $str String New e-mail address
 	 */
-	function setEmail( $str ) {
+	public function setEmail( $str ) {
 		$this->load();
 		$this->mEmail = $str;
 		wfRunHooks( 'UserSetEmail', array( $this, &$this->mEmail ) );
@@ -2073,7 +2066,7 @@ class User {
 	 * Get the user's real name
 	 * @return String User's real name
 	 */
-	function getRealName() {
+	public function getRealName() {
 		if ( !$this->isItemLoaded( 'realname' ) ) {
 			$this->load();
 		}
@@ -2085,7 +2078,7 @@ class User {
 	 * Set the user's real name
 	 * @param $str String New real name
 	 */
-	function setRealName( $str ) {
+	public function setRealName( $str ) {
 		$this->load();
 		$this->mRealName = $str;
 	}
@@ -2100,7 +2093,7 @@ class User {
 	 * @see getBoolOption()
 	 * @see getIntOption()
 	 */
-	function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
+	public function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
 		global $wgHiddenPrefs;
 		$this->loadOptions();
 
@@ -2159,10 +2152,9 @@ class User {
 	 * @return Bool User's current value for the option
 	 * @see getOption()
 	 */
-	function getBoolOption( $oname ) {
+	public function getBoolOption( $oname ) {
 		return (bool)$this->getOption( $oname );
 	}
-
 
 	/**
 	 * Get the user's current setting for a given option, as a boolean value.
@@ -2172,7 +2164,7 @@ class User {
 	 * @return Int User's current value for the option
 	 * @see getOption()
 	 */
-	function getIntOption( $oname, $defaultOverride=0 ) {
+	public function getIntOption( $oname, $defaultOverride=0 ) {
 		$val = $this->getOption( $oname );
 		if( $val == '' ) {
 			$val = $defaultOverride;
@@ -2186,7 +2178,7 @@ class User {
 	 * @param $oname String The option to set
 	 * @param $val mixed New value to set
 	 */
-	function setOption( $oname, $val ) {
+	public function setOption( $oname, $val ) {
 		$this->load();
 		$this->loadOptions();
 
@@ -2202,7 +2194,7 @@ class User {
 	/**
 	 * Reset all options to the site defaults
 	 */
-	function resetOptions() {
+	public function resetOptions() {
 		$this->mOptions = self::getDefaultOptions();
 	}
 
@@ -2210,7 +2202,7 @@ class User {
 	 * Get the user's preferred date format.
 	 * @return String User's preferred date format
 	 */
-	function getDatePreference() {
+	public function getDatePreference() {
 		// Important migration for old data rows
 		if ( is_null( $this->mDatePreference ) ) {
 			global $wgLang;
@@ -2227,7 +2219,7 @@ class User {
 	/**
 	 * Get the user preferred stub threshold
 	 */
-	function getStubThreshold() {
+	public function getStubThreshold() {
 		global $wgMaxArticleSize; # Maximum article size, in Kb
 		$threshold = intval( $this->getOption( 'stubthreshold' ) );
 		if ( $threshold > $wgMaxArticleSize * 1024 ) {
@@ -2243,13 +2235,13 @@ class User {
 	 * @param $ns int If numeric, get permissions for this namespace
 	 * @return Array of String permission names
 	 */
-	function getRights( $ns = null ) {
+	public function getRights( $ns = null ) {
 		$key = is_null( $ns ) ? '*' : intval( $ns );
-		
+
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = array();
 		}
-		
+
 		if ( !isset( $this->mRights[$key] ) ) {
 			$this->mRights[$key] = self::getGroupPermissions( $this->getEffectiveGroups(), $ns );
 			wfRunHooks( 'UserGetRights', array( $this, &$this->mRights[$key], $ns ) );
@@ -2262,7 +2254,7 @@ class User {
 			// Merge non namespace specific rights
 			return array_merge( $this->mRights[$key], $this->getRights() );
 		}
-		
+
 	}
 
 	/**
@@ -2270,7 +2262,7 @@ class User {
 	 * The implicit * and user groups are not included.
 	 * @return Array of String internal group names
 	 */
-	function getGroups() {
+	public function getGroups() {
 		$this->load();
 		return $this->mGroups;
 	}
@@ -2282,7 +2274,7 @@ class User {
 	 * @param $recache Bool Whether to avoid the cache
 	 * @return Array of String internal group names
 	 */
-	function getEffectiveGroups( $recache = false ) {
+	public function getEffectiveGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
 			wfProfileIn( __METHOD__ );
 			$this->mEffectiveGroups = $this->getGroups();
@@ -2312,7 +2304,7 @@ class User {
 	 *
 	 * @return array Names of the groups the user has belonged to.
 	 */
-	function getFormerGroups() {
+	public function getFormerGroups() {
 		if( is_null( $this->mFormerGroups ) ) {
 			$dbr = wfGetDB( DB_MASTER );
 			$res = $dbr->select( 'user_former_groups',
@@ -2331,7 +2323,7 @@ class User {
 	 * Get the user's edit count.
 	 * @return Int
 	 */
-	function getEditCount() {
+	public function getEditCount() {
 		if( $this->getId() ) {
 			if ( !isset( $this->mEditCount ) ) {
 				/* Populate the count, if it has not been populated yet */
@@ -2349,7 +2341,7 @@ class User {
 	 * This takes immediate effect.
 	 * @param $group String Name of the group to add
 	 */
-	function addGroup( $group ) {
+	public function addGroup( $group ) {
 		if( wfRunHooks( 'UserAddGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			if( $this->getId() ) {
@@ -2374,7 +2366,7 @@ class User {
 	 * This takes immediate effect.
 	 * @param $group String Name of the group to remove
 	 */
-	function removeGroup( $group ) {
+	public function removeGroup( $group ) {
 		$this->load();
 		if( wfRunHooks( 'UserRemoveGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
@@ -2403,7 +2395,7 @@ class User {
 	 * Get whether the user is logged in
 	 * @return Bool
 	 */
-	function isLoggedIn() {
+	public function isLoggedIn() {
 		return $this->getID() != 0;
 	}
 
@@ -2411,7 +2403,7 @@ class User {
 	 * Get whether the user is anonymous
 	 * @return Bool
 	 */
-	function isAnon() {
+	public function isAnon() {
 		return !$this->isLoggedIn();
 	}
 
@@ -2503,7 +2495,7 @@ class User {
 	 * @todo FIXME: Need to check the old failback system [AV]
 	 * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
 	 */
-	function getSkin() {
+	public function getSkin() {
 		return RequestContext::getMain()->getSkin();
 	}
 
@@ -2512,7 +2504,7 @@ class User {
 	 * @param $title Title of the article to look at
 	 * @return Bool
 	 */
-	function isWatched( $title ) {
+	public function isWatched( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		return $wl->isWatched();
 	}
@@ -2521,7 +2513,7 @@ class User {
 	 * Watch an article.
 	 * @param $title Title of the article to look at
 	 */
-	function addWatch( $title ) {
+	public function addWatch( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		$wl->addWatch();
 		$this->invalidateCache();
@@ -2531,7 +2523,7 @@ class User {
 	 * Stop watching an article.
 	 * @param $title Title of the article to look at
 	 */
-	function removeWatch( $title ) {
+	public function removeWatch( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		$wl->removeWatch();
 		$this->invalidateCache();
@@ -2543,7 +2535,7 @@ class User {
 	 * the next change of the page if it's watched etc.
 	 * @param $title Title of the article to look at
 	 */
-	function clearNotification( &$title ) {
+	public function clearNotification( &$title ) {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 
 		# Do nothing if the database is locked to writes
@@ -2600,7 +2592,7 @@ class User {
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of any watched page.
 	 */
-	function clearAllNotifications() {
+	public function clearAllNotifications() {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
 			$this->setNewtalk( false );
@@ -2624,9 +2616,8 @@ class User {
 	/**
 	 * Set this user's options from an encoded string
 	 * @param $str String Encoded options to import
-	 * @private
 	 */
-	function decodeOptions( $str ) {
+	private function decodeOptions( $str ) {
 		if( !$str )
 			return;
 
@@ -2672,7 +2663,7 @@ class User {
 	 * @param $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
 	 */
-	function setCookies( $request = null ) {
+	public function setCookies( $request = null ) {
 		if ( $request === null ) {
 			$request = $this->getRequest();
 		}
@@ -2711,7 +2702,7 @@ class User {
 	/**
 	 * Log this user out.
 	 */
-	function logout() {
+	public function logout() {
 		if( wfRunHooks( 'UserLogout', array( &$this ) ) ) {
 			$this->doLogout();
 		}
@@ -2719,10 +2710,9 @@ class User {
 
 	/**
 	 * Clear the user's cookies and session, and reset the instance cache.
-	 * @private
 	 * @see logout()
 	 */
-	function doLogout() {
+	private function doLogout() {
 		$this->clearInstanceCache( 'defaults' );
 
 		$this->getRequest()->setSessionData( 'wsUserID', 0 );
@@ -2738,7 +2728,7 @@ class User {
 	 * Save this user's settings into the database.
 	 * @todo Only rarely do all these fields need to be set!
 	 */
-	function saveSettings() {
+	public function saveSettings() {
 		$this->load();
 		if ( wfReadOnly() ) { return; }
 		if ( 0 == $this->mId ) { return; }
@@ -2776,7 +2766,7 @@ class User {
 	 * If only this user's username is known, and it exists, return the user ID.
 	 * @return Int
 	 */
-	function idForName() {
+	public function idForName() {
 		$s = trim( $this->getName() );
 		if ( $s === '' ) return 0;
 
@@ -2804,7 +2794,7 @@ class User {
 	 *
 	 * @return User object, or null if the username already exists
 	 */
-	static function createNew( $name, $params = array() ) {
+	public static function createNew( $name, $params = array() ) {
 		$user = new User;
 		$user->load();
 		if ( isset( $params['options'] ) ) {
@@ -2843,7 +2833,7 @@ class User {
 	/**
 	 * Add this existing user object to the database
 	 */
-	function addToDatabase() {
+	public function addToDatabase() {
 		$this->load();
 		$dbw = wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
@@ -2875,7 +2865,7 @@ class User {
 	 * If this (non-anonymous) user is blocked, block any IP address
 	 * they've successfully logged in from.
 	 */
-	function spreadBlock() {
+	public function spreadBlock() {
 		wfDebug( __METHOD__ . "()\n" );
 		$this->load();
 		if ( $this->mId == 0 ) {
@@ -2904,7 +2894,7 @@ class User {
 	 * @deprecated since 1.17 use the ParserOptions object to get the relevant options
 	 * @return String Page rendering hash
 	 */
-	function getPageRenderingHash() {
+	public function getPageRenderingHash() {
 		global $wgUseDynamicDates, $wgRenderHashAppend, $wgLang, $wgContLang;
 		if( $this->mHash ){
 			return $this->mHash;
@@ -2946,7 +2936,7 @@ class User {
 	 * Get whether the user is explicitly blocked from account creation.
 	 * @return Bool|Block
 	 */
-	function isBlockedFromCreateAccount() {
+	public function isBlockedFromCreateAccount() {
 		$this->getBlockedStatus();
 		if( $this->mBlock && $this->mBlock->prevents( 'createaccount' ) ){
 			return $this->mBlock;
@@ -2967,7 +2957,7 @@ class User {
 	 * Get whether the user is blocked from using Special:Emailuser.
 	 * @return Bool
 	 */
-	function isBlockedFromEmailuser() {
+	public function isBlockedFromEmailuser() {
 		$this->getBlockedStatus();
 		return $this->mBlock && $this->mBlock->prevents( 'sendemail' );
 	}
@@ -2985,7 +2975,7 @@ class User {
 	 *
 	 * @return Title: User's personal page title
 	 */
-	function getUserPage() {
+	public function getUserPage() {
 		return Title::makeTitle( NS_USER, $this->getName() );
 	}
 
@@ -2994,7 +2984,7 @@ class User {
 	 *
 	 * @return Title: User's talk page title
 	 */
-	function getTalkPage() {
+	public function getTalkPage() {
 		$title = $this->getUserPage();
 		return $title->getTalkPage();
 	}
@@ -3004,7 +2994,7 @@ class User {
 	 * anonymous IPs, or the most recently created accounts.
 	 * @return Bool
 	 */
-	function isNewbie() {
+	public function isNewbie() {
 		return !$this->isAllowed( 'autoconfirmed' );
 	}
 
@@ -3013,7 +3003,7 @@ class User {
 	 * @param $password String: user password.
 	 * @return Boolean: True if the given password is correct, otherwise False.
 	 */
-	function checkPassword( $password ) {
+	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
 		$this->load();
 
@@ -3055,7 +3045,7 @@ class User {
 	 * sent by e-mail for password reset operations.
 	 * @return Boolean: True if matches, false otherwise
 	 */
-	function checkTemporaryPassword( $plaintext ) {
+	public function checkTemporaryPassword( $plaintext ) {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
@@ -3080,7 +3070,7 @@ class User {
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return String The new edit token
 	 */
-	function editToken( $salt = '', $request = null ) {
+	public function editToken( $salt = '', $request = null ) {
 		if ( $request == null ) {
 			$request = $this->getRequest();
 		}
@@ -3122,7 +3112,7 @@ class User {
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return Boolean: Whether the token matches
 	 */
-	function matchEditToken( $val, $salt = '', $request = null ) {
+	public function matchEditToken( $val, $salt = '', $request = null ) {
 		$sessionToken = $this->editToken( $salt, $request );
 		if ( $val != $sessionToken ) {
 			wfDebug( "User::matchEditToken: broken session data\n" );
@@ -3139,7 +3129,7 @@ class User {
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return Boolean: Whether the token matches
 	 */
-	function matchEditTokenNoSuffix( $val, $salt = '', $request = null ) {
+	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null ) {
 		$sessionToken = $this->editToken( $salt, $request );
 		return substr( $sessionToken, 0, 32 ) == substr( $val, 0, 32 );
 	}
@@ -3151,7 +3141,7 @@ class User {
 	 * @param $type String: message to send, either "created", "changed" or "set"
 	 * @return Status object
 	 */
-	function sendConfirmationMail( $type = 'created' ) {
+	public function sendConfirmationMail( $type = 'created' ) {
 		global $wgLang;
 		$expiration = null; // gets passed-by-ref and defined in next line.
 		$token = $this->confirmationToken( $expiration );
@@ -3188,7 +3178,7 @@ class User {
 	 * @param $replyto String Reply-To address
 	 * @return Status
 	 */
-	function sendMail( $subject, $body, $from = null, $replyto = null ) {
+	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
 		if( is_null( $from ) ) {
 			global $wgPasswordSender, $wgPasswordSenderName;
 			$sender = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
@@ -3209,9 +3199,8 @@ class User {
 	 *
 	 * @param[out] &$expiration \mixed Accepts the expiration time
 	 * @return String New token
-	 * @private
 	 */
-	function confirmationToken( &$expiration ) {
+	private function confirmationToken( &$expiration ) {
 		global $wgUserEmailConfirmationTokenExpiry;
 		$now = time();
 		$expires = $now + $wgUserEmailConfirmationTokenExpiry;
@@ -3228,9 +3217,8 @@ class User {
 	* Return a URL the user can use to confirm their email address.
 	 * @param $token String Accepts the email confirmation token
 	 * @return String New token URL
-	 * @private
 	 */
-	function confirmationTokenUrl( $token ) {
+	private function confirmationTokenUrl( $token ) {
 		return $this->getTokenUrl( 'ConfirmEmail', $token );
 	}
 
@@ -3238,9 +3226,8 @@ class User {
 	 * Return a URL the user can use to invalidate their email address.
 	 * @param $token String Accepts the email confirmation token
 	 * @return String New token URL
-	 * @private
 	 */
-	function invalidationTokenUrl( $token ) {
+	private function invalidationTokenUrl( $token ) {
 		return $this->getTokenUrl( 'Invalidateemail', $token );
 	}
 
@@ -3272,7 +3259,7 @@ class User {
 	 *
 	 * @note Call saveSettings() after calling this function to commit the change.
 	 */
-	function confirmEmail() {
+	public function confirmEmail() {
 		$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
 		wfRunHooks( 'ConfirmEmailComplete', array( $this ) );
 		return true;
@@ -3283,6 +3270,7 @@ class User {
 	 * address if it was already confirmed.
 	 *
 	 * @note Call saveSettings() after calling this function to commit the change.
+	 * @return true
 	 */
 	function invalidateEmail() {
 		$this->load();
@@ -3308,7 +3296,7 @@ class User {
 	 * site configuration?
 	 * @return Bool
 	 */
-	function canSendEmail() {
+	public function canSendEmail() {
 		global $wgEnableEmail, $wgEnableUserEmail;
 		if( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
 			return false;
@@ -3323,7 +3311,7 @@ class User {
 	 * site configuration?
 	 * @return Bool
 	 */
-	function canReceiveEmail() {
+	public function canReceiveEmail() {
 		return $this->isEmailConfirmed() && !$this->getOption( 'disablemail' );
 	}
 
@@ -3337,7 +3325,7 @@ class User {
 	 *
 	 * @return Bool
 	 */
-	function isEmailConfirmed() {
+	public function isEmailConfirmed() {
 		global $wgEmailAuthentication;
 		$this->load();
 		$confirmed = true;
@@ -3361,7 +3349,7 @@ class User {
 	 * Check whether there is an outstanding request for e-mail confirmation.
 	 * @return Bool
 	 */
-	function isEmailConfirmationPending() {
+	public function isEmailConfirmationPending() {
 		global $wgEmailAuthentication;
 		return $wgEmailAuthentication &&
 			!$this->isEmailConfirmed() &&
@@ -3411,10 +3399,10 @@ class User {
 	 * @param $groups Array of Strings List of internal group names
 	 * @return Array of Strings List of permission key names for given groups combined
 	 */
-	static function getGroupPermissions( $groups, $ns = null ) {
+	public static function getGroupPermissions( $groups, $ns = null ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		$rights = array();
-		
+
 		// Grant every granted permission first
 		foreach( $groups as $group ) {
 			if( isset( $wgGroupPermissions[$group] ) ) {
@@ -3422,17 +3410,17 @@ class User {
 					$wgGroupPermissions[$group], $ns ) );
 			}
 		}
-		
+
 		// Revoke the revoked permissions
 		foreach( $groups as $group ) {
 			if( isset( $wgRevokePermissions[$group] ) ) {
-				$rights = array_diff( $rights, self::extractRights( 
+				$rights = array_diff( $rights, self::extractRights(
 					$wgRevokePermissions[$group], $ns ) );
 			}
 		}
 		return array_unique( $rights );
 	}
-	
+
 	/**
 	 * Helper for User::getGroupPermissions
 	 * @param array $list
@@ -3454,7 +3442,7 @@ class User {
 				}
 			}
 		}
-		return $rights;	
+		return $rights;
 	}
 
 	/**
@@ -3463,7 +3451,7 @@ class User {
 	 * @param $role String Role to check
 	 * @return Array of Strings List of internal group names with the given permission
 	 */
-	static function getGroupsWithPermission( $role, $ns = null ) {
+	public static function getGroupsWithPermission( $role, $ns = null ) {
 		global $wgGroupPermissions;
 		$allowedGroups = array();
 		foreach ( $wgGroupPermissions as $group => $rights ) {
@@ -3480,7 +3468,7 @@ class User {
 	 * @param $group String Internal group name
 	 * @return String Localized descriptive group name
 	 */
-	static function getGroupName( $group ) {
+	public static function getGroupName( $group ) {
 		$msg = wfMessage( "group-$group" );
 		return $msg->isBlank() ? $group : $msg->text();
 	}
@@ -3491,7 +3479,7 @@ class User {
 	 * @param $group String Internal group name
 	 * @return String Localized name for group member
 	 */
-	static function getGroupMember( $group ) {
+	public static function getGroupMember( $group ) {
 		$msg = wfMessage( "group-$group-member" );
 		return $msg->isBlank() ? $group : $msg->text();
 	}
@@ -3502,7 +3490,7 @@ class User {
 	 * are not included, as they are defined automatically, not in the database.
 	 * @return Array of internal group names
 	 */
-	static function getAllGroups() {
+	public static function getAllGroups() {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		return array_diff(
 			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
@@ -3514,7 +3502,7 @@ class User {
 	 * Get a list of all available permissions.
 	 * @return Array of permission names
 	 */
-	static function getAllRights() {
+	public static function getAllRights() {
 		if ( self::$mAllRights === false ) {
 			global $wgAvailableRights;
 			if ( count( $wgAvailableRights ) ) {
@@ -3544,7 +3532,7 @@ class User {
 	 * @param $group String Internal group name
 	 * @return Title|Bool Title of the page if it exists, false otherwise
 	 */
-	static function getGroupPage( $group ) {
+	public static function getGroupPage( $group ) {
 		$msg = wfMessage( 'grouppage-' . $group )->inContentLanguage();
 		if( $msg->exists() ) {
 			$title = Title::newFromText( $msg->text() );
@@ -3562,7 +3550,7 @@ class User {
 	 * @param $text String The text of the link
 	 * @return String HTML link to the group
 	 */
-	static function makeGroupLinkHTML( $group, $text = '' ) {
+	public static function makeGroupLinkHTML( $group, $text = '' ) {
 		if( $text == '' ) {
 			$text = self::getGroupName( $group );
 		}
@@ -3582,7 +3570,7 @@ class User {
 	 * @param $text String The text of the link
 	 * @return String Wikilink to the group
 	 */
-	static function makeGroupLinkWiki( $group, $text = '' ) {
+	public static function makeGroupLinkWiki( $group, $text = '' ) {
 		if( $text == '' ) {
 			$text = self::getGroupName( $group );
 		}
@@ -3604,7 +3592,7 @@ class User {
 	 *     'add-self' => array( addablegroups to self),
 	 *     'remove-self' => array( removable groups from self) )
 	 */
-	static function changeableByGroup( $group ) {
+	public static function changeableByGroup( $group ) {
 		global $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
 		$groups = array( 'add' => array(), 'remove' => array(), 'add-self' => array(), 'remove-self' => array() );
@@ -3668,7 +3656,7 @@ class User {
 	 *  'add-self' => array( addablegroups to self),
 	 *  'remove-self' => array( removable groups from self) )
 	 */
-	function changeableGroups() {
+	public function changeableGroups() {
 		if( $this->isAllowed( 'userrights' ) ) {
 			// This group gives the right to modify everything (reverse-
 			// compatibility with old "userrights lets you change
@@ -3708,7 +3696,7 @@ class User {
 	 * Increment the user's edit-count field.
 	 * Will have no effect for anonymous users.
 	 */
-	function incEditCount() {
+	public function incEditCount() {
 		if( !$this->isAnon() ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'user',
@@ -3754,7 +3742,7 @@ class User {
 	 * @param $right String Right to query
 	 * @return String Localized description of the right
 	 */
-	static function getRightDescription( $right ) {
+	public static function getRightDescription( $right ) {
 		$key = "right-$right";
 		$msg = wfMessage( $key );
 		return $msg->isBlank() ? $right : $msg->text();
@@ -3767,7 +3755,7 @@ class User {
 	 * @param $userId String User ID
 	 * @return String Password hash
 	 */
-	static function oldCrypt( $password, $userId ) {
+	public static function oldCrypt( $password, $userId ) {
 		global $wgPasswordSalt;
 		if ( $wgPasswordSalt ) {
 			return md5( $userId . '-' . md5( $password ) );
@@ -3784,7 +3772,7 @@ class User {
 	 *                     If unspecified or false, will generate one automatically
 	 * @return String Password hash
 	 */
-	static function crypt( $password, $salt = false ) {
+	public static function crypt( $password, $salt = false ) {
 		global $wgPasswordSalt;
 
 		$hash = '';
@@ -3811,7 +3799,7 @@ class User {
 	 * @param $userId String User ID for old-style password salt
 	 * @return Boolean:
 	 */
-	static function comparePasswords( $hash, $password, $userId = false ) {
+	public static function comparePasswords( $hash, $password, $userId = false ) {
 		$type = substr( $hash, 0, 3 );
 
 		$result = false;
