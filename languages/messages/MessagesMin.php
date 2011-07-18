@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bennylin
  * @author Luthfi94
  * @author Naval Scene
  * @author Rahmatdenas
@@ -632,7 +633,7 @@ Subbagian iko mungkin dipindahan atau dihapuih katiko Sanak mambukanyo.',
 Kato sandi untuak akun baharu iko dapek diubah di laman ''[[Special:ChangePassword|pangubahan kato sandi]]'' satalah masuak log.",
 'newarticle'                       => '(Baru)',
 'newarticletext'                   => "Laman nan awak cari alun ado.
-Untuak mambuek laman tu, mulailah dengan menulis dalam kotak dibawah (lihek [[{{MediaWiki:Helppage}}|laman bantuan]] untuak maklumat lanjut).
+Untuak mambuek laman tu, mulailah dengan menulis dalam kotak di bawah (lihek [[{{MediaWiki:Helppage}}|laman bantuan]] untuak maklumat lanjut).
 Jiko awak indak sangajo sampai ka laman ko, klik tombol '''back''' pado penjelajah web awak.",
 'anontalkpagetext'                 => "----''Iko adolah laman pambicaraan saurang pangguno anonim nan alun mambuek akun atau indak manggunoannyo.
 Jadi, kami tapaso harus mamakai alamat IP nan basangkutan untuak maidentifikasikannyo.
@@ -696,7 +697,7 @@ Alah tadapek sabuah solusi agar Sanak dapek manyuntiang laman jo aman: karakter 
 Sanak manyuntiang revisi lama suatu laman.
 Jikok Sanak manyimpannyo, parubahan-parubahan nan dibuek sajak revisi iko akan hilang.'''",
 'yourdiff'                         => 'Pambedoan',
-'copyrightwarning'                 => "Untuak diingek bahwa apo nan disumbang kapado {{SITENAME}} dianggap lah dilapeh dibawah $2 (lihek $1 untuak lengkapnyo).
+'copyrightwarning'                 => "Untuak diingek bahwa apo nan disumbang kapado {{SITENAME}} dianggap lah dilapeh di bawah $2 (lihek $1 untuak lengkapnyo).
 Jiko awak indak ingin apo nan ditulis tu disuntiang dan disebarkan, jan dikirim tulisan tu ka siko.<br />
 Awak juo mesti bajanji bahwa itu adolah hasil karya awak surang, atau disalin dari sumber milik basamo atau sumber bebas lainnyo.
 '''Jan dikirim karya punyo hak cipta tanpa izin!'''",
@@ -922,7 +923,7 @@ Laman pado [[Special:Watchlist|Senarai pantauan]] ditandoi '''cetak taba'''.",
 'nolinkstoimage'            => 'Indak ado laman nan ado batauik ka berkas ko.',
 'sharedupload'              => 'Berkas ko barasal dari $1 dan mungkin digunoan oleh berbagai proyek lain.',
 'sharedupload-desc-here'    => 'Berkas ko dari $1 dan mungkin digunoan untuak proyek-proyek lain.
-Deskripsi dari [$2 laman deskripsi berkas] ditampilkan dibawah.',
+Deskripsi dari [$2 laman deskripsi berkas] ditampilkan di bawah.',
 'uploadnewversion-linktext' => 'Unggah versi baru dari berkas ko',
 
 # Random page
@@ -1267,7 +1268,7 @@ Nan lainnyo akan tasuruak sacaro default.
 
 # External image whitelist
 'external_image_whitelist' => '#Bia se barih ko apo adonyo<pre>
-#Latakan fragmen tando regular (hanyo bagian antaro //) dibawah ko
+#Latakan fragmen tando regular (hanyo bagian antaro //) di bawah ko
 #Iko akan dicocokan jo URL gambar lua (tahubuang langsuang)
 #Yang mano cocok akan ditampilkan sabagai gambar, sisonyo hanyo sabagai tautan sajo
 #Barih dimulai jo # dipalakuan sabagai komentar

@@ -3591,7 +3591,7 @@ Confirme que deseja realmente recriar esta página, por favor.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Limpar a memória cache desta página?',
-'confirm-purge-bottom' => 'Purgar uma página limpa a cache e força a sua versão mais recente a aparecer.',
+'confirm-purge-bottom' => 'Purgar uma página, limpa a cache e força a sua versão mais recente a aparecer.',
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'OK',

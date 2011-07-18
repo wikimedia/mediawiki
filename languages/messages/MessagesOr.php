@@ -884,10 +884,14 @@ $messages = array(
 'watching'   => 'ଦେଖୁଛି...',
 'unwatching' => 'ଦେଖୁନାହିଁ...',
 
-'changed' => 'ବଦଳାଇବା',
+'changed'            => 'ବଦଳାଇବା',
+'enotif_anon_editor' => 'ଅଜ୍ଞାତ ବ୍ୟବହାରକାରୀ $1',
 
 # Delete
 'deletepage'            => 'ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ',
+'confirm'               => 'ନିଶ୍ଚିତନ',
+'delete-confirm'        => 'ଲିଭେଇବେ $1',
+'delete-legend'         => 'ଲିଭେଇବେ',
 'confirmdeletetext'     => 'ଆପଣ ଗୋଟିଏ ପୃଷ୍ଠାର ଇତିହାସ ସହ ତାହାକୁ ଲିଭାଇବାକୁ ଯାଉଛନ୍ତି ।
 ଏହା ଥୟ କରନ୍ତୁ ଯେ ଆପଣ ଏହାର ପରିଣତି ଜାଣିଛନ୍ତି ଓ ଏହା [[{{MediaWiki:Policy-url}}|ମିଡ଼ିଆଉଇକିର ନିୟମ]] ଅନୁସାରେ କରୁଛନ୍ତି ।',
 'actioncomplete'        => 'କାମଟି ପୁରା ହେଲା',
@@ -919,6 +923,7 @@ $messages = array(
 'protect-cantedit'            => 'ଆପଣ ଏହି ସୁରକ୍ଷା ସ୍ତରକୁ ବଦଳାଇ ପାରିବେ ନାହିଁ, କାହିଁକି ନା ଏହାକୁ ବଦଳାଇବା ପାଇଁ ଆପଣଁକୁ ଅନୁମତି ନାହିଁ .',
 'restriction-type'            => 'ଅନୁମତି',
 'restriction-level'           => 'ପ୍ରତିରକ୍ଷା ସ୍ତର',
+'pagesize'                    => '(ବାଇଟ୍)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'ବଦଳାଇବେ',
@@ -1006,8 +1011,10 @@ $messages = array(
 *ଆପଣ ତଳ ବାକ୍ସକୁ ନ ବାଛନ୍ତି
 ତେବେ ଏହି ପ୍ରୁଷ୍ଠା ସହ ଯୋଡାଯାଇଥିବା ଆଲୋଚନା ପ୍ରୁଷ୍ଠାକୁ ଆପେ ଆପେ ଘୁଞ୍ଚାଇଦିଆଯିବ ।
 ସେହି ଯାଗାରେ, ଆପଣଙ୍କୁ ପ୍ରୁଷ୍ଠାଟିକୁ ଘୁଞ୍ଚାଇବାକୁ/ମିଶାଇବାକୁ ପଡ଼ିବ ।',
+'movearticle'             => 'ପୃଷ୍ଠା ଘୁଞ୍ଚେଇବା:',
 'cant-move-user-page'     => 'ଆପଣଙ୍କୁ ଏହି ସଭ୍ୟ ପୃଷ୍ଠାଟିକୁ ଘୁଞ୍ଚାଇବା ଲାଗି ଅନୁମତି ମିଳିନାହିଁ, କିନ୍ତୁ ନିଜର ଉପପୃଷ୍ଠା ସବୁ ଘୁଞ୍ଚାଇ ପାରିବେ ।',
 'newtitle'                => 'ନୂଆ ନାଆଁକୁ:',
+'movepagebtn'             => 'ପୃଷ୍ଠା ଘୁଞ୍ଚେଇବା',
 'pagemovedsub'            => 'ଘୁଞ୍ଚାଇବା ସଫଳ ହେଲା',
 'movepage-moved'          => '\'\'\'"$1"ରୁ "$2"\'\'\'କୁ ଘୁଞ୍ଚାଇ ଦିଆଗଲା ।',
 'movepage-moved-redirect' => 'ପୃଷ୍ଠାଟିର ନାଆଁକୁ ଘୁଞ୍ଚାଇଦିଆଗଲା ।',
@@ -1036,6 +1043,7 @@ $messages = array(
 'thumbnail-more' => 'ବଡ଼କର',
 
 # Special:Import
+'import'                  => 'ପୃଷ୍ଠା ଆମଦାନୀ',
 'import-interwiki-submit' => 'ଆମଦାନୀ',
 'import-upload-filename'  => 'ଫାଇଲ ନାମ:',
 'import-comment'          => 'ମତାମତ:',

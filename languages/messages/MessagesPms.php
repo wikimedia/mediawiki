@@ -1886,10 +1886,10 @@ A peulo ess-ie d'[[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissiona
 'listgrouprights-addgroup-self'        => 'Gionté {{PLURAL:$2|la partìa|le partìe}} al sò cont: $1',
 'listgrouprights-removegroup-self'     => 'Gavé {{PLURAL:$2|la partìa|le partìe}} da sò cont: $1',
 'listgrouprights-addgroup-self-all'    => 'Gionté tute le partìe a sò cont',
-'listgrouprights-removegroup-self-all' => 'Gava tute le partìe da tò cont',
+'listgrouprights-removegroup-self-all' => 'Gavé tute le partìe da sò cont',
 
 # E-mail user
-'mailnologin'          => 'A-i é pa gnun-a adrëssa për mandé ël messagi',
+'mailnologin'          => "A-i é pa l'adrëssa për mandé ël mëssagi",
 'mailnologintext'      => "A dev [[Special:UserLogin|rintré ant ël sistema]]
 e avej registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podej mandé dij messagi ëd pòsta eletrònica a j'àutri Utent.",
 'emailuser'            => "Mand-je un messagi eletrònich a st'Utent-sì",

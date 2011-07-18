@@ -2547,8 +2547,8 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'autoblocker'                     => 'Diblokir secara otomatis karena alamat IP Anda digunakan oleh "[[User:$1|$1]]".
 Alasan yang diberikan untuk pemblokiran $1 adalah: "$2"',
 'blocklogpage'                    => 'Log pemblokiran',
-'blocklog-showlog'                => 'Pengguna ini telah diblokir sebelumnya. Log pemblokiran di sediakan dibawah untuk referensi:',
-'blocklog-showsuppresslog'        => 'Pengguna ini telah diblokir dan disembunyikan sebelumnya. Log penekanan disediakan dibawah untuk referensi:',
+'blocklog-showlog'                => 'Pengguna ini telah diblokir sebelumnya. Log pemblokiran disediakan di bawah untuk referensi:',
+'blocklog-showsuppresslog'        => 'Pengguna ini telah diblokir dan disembunyikan sebelumnya. Log supresi disediakan di bawah untuk referensi:',
 'blocklogentry'                   => 'memblokir [[$1]] dengan waktu kedaluwarsa $2 $3',
 'reblock-logentry'                => 'mengubah pemblokiran [[$1]] dengan waktu kedaluwarsa $2 $3',
 'blocklogtext'                    => 'Di bawah ini adalah log pemblokiran dan pembukaan blokir terhadap pengguna.
@@ -2684,9 +2684,9 @@ Halaman yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapu
 'fix-double-redirects'         => 'Perbaiki semua pengalihan ganda yang mungkin terjadi',
 'move-leave-redirect'          => 'Buat pengalihan ke judul baru',
 'protectedpagemovewarning'     => "'''Peringatan''': Halaman ini telah dikunci sehingga hanya pengguna dengan hak akses pengurus yang bisa memindahkannya.
-Entri catatan terakhir disediakan dibawah untuk referensi:",
+Entri catatan terakhir disediakan di bawah untuk referensi:",
 'semiprotectedpagemovewarning' => "'''Catatan:''' Halaman ini telah dikunci sehingga hanya pengguna terdaftar yang dapat memindahkannya.
-Entri catatan terakhir disediakan dibawah untuk referensi:",
+Entri catatan terakhir disediakan di bawah untuk referensi:",
 'move-over-sharedrepo'         => '== Berkas sudah ada ==
 
 [[:$1]] sudah ada pada penyimpanan bersama. Memindahkan berkas ke judul ini akan menimpa berkas bersama.',
@@ -3738,8 +3738,8 @@ Keterangan tampilan:
 'ajax-add-category'            => 'Tambah kategori',
 'ajax-add-category-submit'     => 'Tambah',
 'ajax-confirm-title'           => 'Konfirmasi aksi',
-'ajax-confirm-prompt'          => 'Anda dapat menambahkan ringkasan suntingan dibawah.
-Click "Simpan" untuk menyimpan suntingan anda.',
+'ajax-confirm-prompt'          => 'Anda dapat menambahkan ringkasan suntingan di bawah.
+Tekan "Simpan" untuk menyimpan suntingan Anda.',
 'ajax-confirm-save'            => 'Simpan',
 'ajax-add-category-summary'    => 'Tambah kategori "$1"',
 'ajax-remove-category-summary' => 'Hapus kategori "$1"',

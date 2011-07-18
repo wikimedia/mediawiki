@@ -2172,8 +2172,10 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
 'watchnologin'         => 'Nem vagy bejelentkezve',
 'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:UserLogin|be kell lépned]].',
+'addwatch'             => 'Hozzáadás a figyelőlistához',
 'addedwatchtext'       => "A(z) „[[:$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
 Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:RecentChanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.",
+'removewatch'          => 'Eltávolítás a figyelőlistáról',
 'removedwatchtext'     => 'A(z) „[[:$1]]” lapot eltávolítottam a [[Special:Watchlist|figyelőlistáról]].',
 'watch'                => 'Lap figyelése',
 'watchthispage'        => 'Lap figyelése',
@@ -2194,8 +2196,9 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'watchlist-options'    => 'A figyelőlista beállításai',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Figyelés...',
-'unwatching' => 'Figyelés befejezése...',
+'watching'       => 'Figyelés...',
+'unwatching'     => 'Figyelés befejezése...',
+'watcherrortext' => 'Hiba történt a(z) „$1” lapra vonatkozó figyelőlista-beállítások módosítása közben.',
 
 'enotif_mailer'                => '{{SITENAME}} Értesítéspostázó',
 'enotif_reset'                 => 'Az összes lap megjelölése felkeresettként',
@@ -3481,6 +3484,12 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'confirm-purge-top'    => 'Törlöd az oldal gyorsítótárban (cache) található változatát?',
 'confirm-purge-bottom' => 'A lap ürítésével törlődik annak gyorsítótárazott változata, és a legújabb tartalom fog megjelenni.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Hozzá szeretnéd adni a lapot a figyelőlistádhoz?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'El szeretnéd távolítani a lapot a figyelőlistádról?',
+
 # Separators for various lists, etc.
 'ellipsis' => '…',
 
@@ -3675,5 +3684,32 @@ Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 # SQLite database support
 'sqlite-has-fts' => '$1 teljes szöveges keresés támogatással',
 'sqlite-no-fts'  => '$1 teljes szöveges keresés támogatása nélkül',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'Kategória hozzáadása',
+'ajax-remove-category'          => 'Kategória eltávolítása',
+'ajax-edit-category'            => 'Kategória szerkesztése',
+'ajax-add-category-submit'      => 'Hozzáadás',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Művelet megerősítése',
+'ajax-confirm-prompt'           => 'Alább megadhatsz egy szerkesztési összefoglalót.
+Kattints a „Mentés” gombra a szerkesztés elmentéséhez.',
+'ajax-confirm-save'             => 'Mentés',
+'ajax-confirm-save-all'         => 'Összes változtatás mentése',
+'ajax-cancel'                   => 'Szerkesztések visszavonása',
+'ajax-add-category-summary'     => '„$1” kategória hozzáadása',
+'ajax-edit-category-summary'    => '„$1” kategória cseréje a következőre: „$2”',
+'ajax-remove-category-summary'  => '„$1” kategória eltávolítása',
+'ajax-add-category-question'    => 'Miért akarod hozzáadni a következő kategóriát: „$1”?',
+'ajax-edit-category-question'   => 'Miért akarod megváltoztatni a(z) „$1” kategóriát a következőre: „$2”?',
+'ajax-remove-category-question' => 'Miért akarod eltávolítani a következő kategóriát: „$1”?',
+'ajax-confirm-actionsummary'    => 'Elvégzendő művelet:',
+'ajax-error-title'              => 'Hiba',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Nem sikerült eltávolítani a kategóriát.
+Ez általában akkor fordul elő, ha a kategóriát egy sablon adja hozzá a laphoz.',
+'ajax-edit-category-error'      => 'Nem lehet szerkeszteni a kategóriát.
+Ez általában akkor fordul elő, ha a lapot egy sablon sorolja be az adott kategóriába.',
+'ajax-category-already-present' => 'Ez a lap már a(z) „$1” kategória tagja.',
 
 );

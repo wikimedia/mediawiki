@@ -2282,12 +2282,14 @@ Alles klor?',
 'watchlistanontext'    => 'Do muss $1, domet de en Ding Oppassliss erenluure kanns, oder jet dran ändere.',
 'watchnologin'         => 'Nit enjelogg',
 'watchnologintext'     => 'Öm Ding Oppassliss ze ändere, mööts de ald [[Special:UserLogin|enjelogg]] sin.',
+'addwatch'             => 'En de Oppassliss don',
 'addedwatchtext'       => "Die Sigg „[[:$1]]“ es jetz en Ding [[Special:Watchlist|Oppassliss]].
 Av jetz, wann die Sigg verändert weed, oder ehr Klaafsigg, dann weed dat en de
 Oppassliss jezeich. Dä Endrach för die Sigg kütt en  '''Fettschreff''' en de
 „[[Special:RecentChanges|Neuste Änderunge]]“, domet De dä do och flöck fings.
 Wann de dä widder loss wääde wells us Dinger Oppassliss,
 dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
+'removewatch'          => 'Us de Oppassliss nämme',
 'removedwatchtext'     => 'Die Sigg „[[:$1]]“ es jetz us de [[Special:Watchlist|Oppassliss]] erusjenomme.',
 'watch'                => 'Drop Oppasse',
 'watchthispage'        => 'Op die Sigg oppasse',
@@ -3687,6 +3689,12 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 'confirm-purge-top'    => 'Dä Zweschespeicher för die Sigg fottschmieße?',
 'confirm-purge-bottom' => 'Dä Zweschespeicher för de Sigg fottzeschmieße sorresch doför, dat af dann de neuste Version vun dä Sigg (de Version vun jetz) aanjezeich weet.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'Lohß Jonn!',
+'confirm-watch-top'      => 'Sulle mer di Sigg en Ding Oppaßleß opnemme?',
+'confirm-unwatch-button' => 'Lohß Jonn!',
+'confirm-unwatch-top'    => 'Sulle mer di Sigg uß Dinger Oppaßleß erußnämme?',
+
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
 'autocomment-prefix'  => '-',
@@ -3921,18 +3929,30 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'sqlite-no-fts'  => 'Version $1 (kann ävver nit en janze Täxte söhke)',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Saachjropp dobei donn',
-'ajax-add-category-submit'     => 'Lohß jonn!',
-'ajax-confirm-title'           => 'Akßjuhn beschtähtejje',
-'ajax-confirm-prompt'          => 'Do kanns ene Enndraach för „{{int:summary}}“ maache, onge.
+'ajax-add-category'             => 'Saachjropp dobei donn',
+'ajax-remove-category'          => 'Donn heh di Saachjrupp fottnämme',
+'ajax-edit-category'            => 'Donn heh di Saachjropp tuusche',
+'ajax-add-category-submit'      => 'Lohß jonn!',
+'ajax-confirm-ok'               => 'Lohß Jonn!',
+'ajax-confirm-title'            => 'Akßjuhn beschtähtejje',
+'ajax-confirm-prompt'           => 'Do kanns ene Enndraach för „{{int:summary}}“ maache, onge.
 Donn op „{{int:savearticle}}“ kleke, öm Ding Ändernug faßzehallde.',
-'ajax-confirm-save'            => 'Avshpeishere',
-'ajax-add-category-summary'    => 'Donn de Saachjropp „$1“ derbei.',
-'ajax-remove-category-summary' => 'Saachjropp „$1“ eruß nämme',
-'ajax-confirm-actionsummary'   => 'Wat jedonn wääde sull:',
-'ajax-error-title'             => 'Fähler',
-'ajax-error-dismiss'           => 'Han esch jelässe',
-'ajax-remove-category-error'   => 'Et wohr nit müjjelesch, di Saachjropp eruß ze nämme.
+'ajax-confirm-save'             => 'Avshpeishere',
+'ajax-confirm-save-all'         => 'All di Änderunge faßhallde',
+'ajax-cancel'                   => 'Nix Ändere!',
+'ajax-add-category-summary'     => 'Donn de Saachjropp „$1“ derbei.',
+'ajax-edit-category-summary'    => 'Uß dä Saachjropp „$1“ eruß un en de Saachjropp „$2“ erin jedonn',
+'ajax-remove-category-summary'  => 'Saachjropp „$1“ eruß nämme',
+'ajax-add-category-question'    => 'Woröm wells De di Saachjropp „$1“ dobei han?',
+'ajax-edit-category-question'   => 'Woröm wells De di Saachjropp „$1“ nit mieh han un doför di Saachjropp „$2“ entuusche?',
+'ajax-remove-category-question' => 'Woröm wells De di Saachjropp „$1“ nit mieh han?',
+'ajax-confirm-actionsummary'    => 'Wat jedonn wääde sull:',
+'ajax-error-title'              => 'Fähler',
+'ajax-error-dismiss'            => 'Han esch jelässe',
+'ajax-remove-category-error'    => 'Et wohr nit müjjelesch, di Saachjropp eruß ze nämme.
 Dat es fö jewöhnlej_esu, wann di Saachjropp övver en Schabloon en di Sigg jekumme es.',
+'ajax-edit-category-error'      => 'Mer kunnte di Saachjropp nit tuusche.
+Dat kütt öff dovun, dat se övver en Schabloon enjedraare weed.',
+'ajax-category-already-present' => 'Heh di Sigg es ald en dä Saachjropp „$1“dren.',
 
 );

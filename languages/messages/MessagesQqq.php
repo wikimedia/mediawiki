@@ -526,7 +526,7 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 'editsection-brackets'    => '{{optional}}',
 'editold'                 => '{{Identical|Edit}}',
 'viewsourceold'           => '{{Identical|View source}}',
-'editlink'                => 'Text dari pranala yang terlihat disebelah setiap templat yang dapat disunting (tidak di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
+'editlink'                => 'Teks dari pranala yang terlihat di sebelah setiap templat yang dapat disunting (tidak diproteksi) pada daftar templat di bawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
 'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.
@@ -4241,6 +4241,7 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'ajax-remove-category'          => 'Tooltip for link to remove a category from the page, displayed after each category at the foot of a page. Refers to the specific category. "Remove this category" is also correct.',
 'ajax-edit-category'            => 'Tooltip for the edit link displayed after each category at the foot of a page. Refers to the specific category. "Edit this category" is also correct.',
 'ajax-add-category-submit'      => '{{Identical|Add}}',
+'ajax-confirm-ok'               => '{{Identical|OK}}',
 'ajax-confirm-save'             => 'Submit button
 
 {{Identical|Save}}',
