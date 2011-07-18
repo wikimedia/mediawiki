@@ -171,6 +171,8 @@ production.
 * Removed AjaxFunctions.php. The last remaining function js_unescape() was moved
   to the FCKEditor extension.
 * (bug 28762) Resizing to specified height broken for very thin images
+* (bug 29959) Installer fatal when cURL and allow_url_fopen is disabled and user
+  tries to subsribe to mediawiki-announce
 
 === API changes in 1.19 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
