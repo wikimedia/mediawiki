@@ -11,196 +11,12 @@ MediaWiki 1.19 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.19 ===
-* $wgRateLimitsExcludedGroups (deprecated in 1.13) has been removed
-* $wgInputEncoding and $wgOutputEncoding (deprecated in 1.5) have now been removed
-* $wgAllowUserSkin (deprecated in 1.16) has now been removed
-* $wgExtraRandompageSQL (deprecated in 1.16) has now been removed
-* LogReader and LogViewer classes (deprecated in 1.14) have now been removed
-* (bug 26033) Added $wgArticleCountMethod to select the method to use to say
-  whether a page is an article or not. $wgUseCommaCount is now deprecated.
-* $wgEnableDublinCoreRdf and $wgEnableCreativeCommonsRdf no longer work in core,
-  and the functionality has been moved to the relevant extensions. See
-  http://www.mediawiki.org/wiki/Extension:DublinCoreRdf and
-  http://www.mediawiki.org/wiki/Extension:CreativeCoreRdf as appropriate
-* (bug 21107) Split error "customcssjsprotected" into separate messages for JS and CSS
-* Removed $wgCheckCopyrightUpload from DefaultSettings, since the relevant feature
-  was removed in about 1.5.
-* LogPageValidTypes, LogPageLogName, LogPageLogHeader and LogPageActionText
-  hooks have been removed.
-* New hook "Collation::factory" to allow extensions to create custom
-  category collations.
-* $wgGroupPermissions now supports per namespace permissions.
 
 === New features in 1.19 ===
-* BREAKING CHANGE: action=watch / action=unwatch now requires a token.
-* (bug 28916) A way to to toggle mw.config legacy globals settings from
-  LocalSettings.php has been created by introducing $wgLegacyJavaScriptGlobals.
-* (bug 28503) Support for ircs:// URL protocols
-* (bug 26033) It is now possible to count all non-redirect pages in content
-  namespaces as articles
-* Images can now be embedded in an XML dump stream using backupDump.php
-  --include-files and can be imported using importDump.php --uploads;
-  furthermore, it can import files from the filesystem using --image-base-path
-* Three new hooks in Special:Undelete, 'UndeleteForm::showHistory',
-  'UndeleteForm::showRevision' and 'UndeleteForm::undelete', so that extensions
-  may override the usage of PageArchive class and replace it with their own
-  class that extends PageArchive.
-* (bug 28915) Implement QUnit test suite for MediaWiki JavaScript.
-  Also built-in support for distribution through a TestSwarm instance.
-* (bug 29036) For cascade-protected pages, the mw-textarea-cprotected class is
-  added to the textarea on the edit form.
-* mw.util.wikiScript has been implemented (like wfScript in GlobalFunctions.php)
-* (bug 29067) Expose user.tokens (like we do user.options) in ResourceLoader.
-* New 'Debug' hook used by wfDebug() and wfDebugLog()
-* (bug 27655) Require token for watching/unwatching pages)
-* (bug 28904) (bug 29773) Update jQuery version from 1.4.4 to 1.6.2 (the latest version)
-* (bug 29441) Expose CapitalLinks config in JS to allow modules to properly
-  handle titles on case-sensitive wikis.
-* (bug 29397) Implement mw.Title module in core.
-* In MySQL 4.1.9+ with replication enabled, the slave lag should come from
-  SHOW SLAVE STATUS instead of SHOW PROCESSLIST.
-* Language codes in $wgDummyLanguageCodes are now excluded on localization
-  statistics (maintenance/language/transstat.php)
-* (bug 29586) Make the (next 200) links on categories link directly to
-  the relevant section of the category.
-* (bug 29109) Allow the automatic edit summary for redirect creation
-  show the first bit of the new redirect page.
-* (bug 5800) Added $formCallback as a parameter to the hook
-  EditPage::showEditForm:initial.
-* (bug 29723) mw.util.wikiGetlink() now defaults to wgPageName.
-* (bug 29680) Add GetDefaultSortkey hook to override the default sortkey.
-* (bug 16699) {{#language:}} accepts second parameter to specify the language in
-  which the language name is wanted. Coverage depends on the cldr extension.
-* (bug 15802) An easy way to look up messages: language qqx which returns
-  the message keys.
-* (bug 29868) Add support for passing parameters to mw.msg in jquery.localize.
-* (bug 29558) $wgMiserMode now disables update.php by default
-* AjaxCategories: Easily add, edit or delete categories on article pages.
-  Suggests possible categories when typing, all saves are done via AJAX.
-  Supports editing of multiple categories and then saving them in one batch.
 
 === Bug fixes in 1.19 ===
-* (bug 28868) Show total pages in the subtitle of an image on the
-  file description page for multi-paged documents.
-* (bug 28883) Message names for different compression types commonly
-  used in Tiff files.
-* When translcuding a special page, do not let it interpret url parameters.
-* (bug 28887) Special page classes are no longer re-used during 1 request.
-* (bug 28888) Searching for something starting with a # sign no longer tells
-  the user a page named [[:]] already exists.
-* (bug 23002) Imagelinks table not updated after imagemove.
-* (bug 27864) Transcluding {{Special:Prefix}} with empty prefix now lists all
-  pages.
-* (bug 18803) JPEG2000 images should not be uploadable as .jpg files.
-* (bug 11868) If using links to count articles, the checking will now be based
-  on the real presence of an internal link instead of the "[[" string
-* (bug 28287) The "your changes" box for edit conflicts is now read-only.
-* (bug 28940) When making a thumb of an SVG, and only specifying the height
-  make the width be the max SVG size, not the natrual width of the SVG.
-* (bug 1780) Uploading files with non-ascii characters are now forbidden on
-  Windows.
-* (bug 23464) File: prefixes are now chopped off during uploading.
-* (bug 28174) Message config-logo-help amended to not explicitly assume any
-  LTR/RTL screen layout.
-* (bug 28992) Revision numbers in the patrol log are transformed in the user
-  language.
-* (bug 27073) ResourceLoaderDynamicStyles marker should be dynamically appended to
-  the document head if it doesn't exist.
-* (bug 27023) After the document is ready, mw.loader is broken (calls callback
-  before module is parsed).
-* (bug 4330) External URLs without a custom title should be treated as LTR,
-  even in RTL text.
-* (bug 29055) Make "don't send email on minor edits" preference apply to
-  changes to talk page in addition to watchlist edits.
-* (bug 28272) Special:AllMessages should have only one "Go" button.
-* (bug 29101) Special:FileDuplicateSearch no longer shows silly message.
-* (bug 29048) jQuery.tabIndex: firstTabIndex() should not output the same
-  as lastTabIndex().
-* (bug 29332) Warn if user requests mediawiki-announce subscription but does not
-  enter an e-mail address.
-* (bug 25375) Add canonical namespaces to "wgNamespaceIds" in mw.config.
-* The class JpegOrTiffHandler was renamed ExifBitmapHandler.
-* (bug 29443) Special:Undelete should use JavaScript to invert all checkboxes
-  instead of reloading the page.
-* (bug 29325) Setting $wgStrictFileExtensions to false no longer gives incorrect warning
-* (bug 29437) Multiple apostrophes in deleted article title cause odd rendering
-* (bug 29485) RSS feed of Special:RecentChange grouped together multiple
-  consecutive edits by same user in included diff, but then linked to
-  a single ungrouped diff.
-* Do not try to group together a page creation and edit in the RSS feed of RC.
-* (bug 29342) Patrol preferences shouldn't be visible to users who don't have
-  patrol permissions
-* (bug 29471) Exception no longer thrown for files with invalid date in metadata
-* (bug 29492) Long-running steps in the installer (such as Upgrade and Install)
-  no longer cause timeouts
-* (bug 29507) Change 'image link' to 'file link' in Special:Whatlinkshere
-* If the db is really screwed up, and doesn't have a recentchanges table,
-  make the updater throw an exception instead of a fatal.
-* wfArrayToCGI() and wfCgiToArray() now handle nested and associative arrays
-  correctly.
-* (bug 29567) mw.util.addPortletLink should only wrap link in <span> for
-  "vectorTabs" portlets.
-* (bug 8556) Incorrect session failure warning on preview-on-open
-  namespaces (categories) when combined with $wgRawHtml.
-* Use content language in formatting of dates in revertpage message
-  (rollback revert edit summary) and do not adjust for user timezone.
-* (bug 29277) MediaWiki:Filepage.css is also shown on the local wiki
-* Make sure Backlink cache does not retrieve interwiki redirects when looking for
-  redirects to a local page.
-* (bug 6100) Allow different directionality (LTR/RTL) for user interface
-  and wiki content, along with many other RTL and directionality improvements
-  (such as bugs 28030, 12406, 28349)
-* (bug 29712) Removed broken defaultUserOptionOverrides in MessagesXx files and
-  unneeded CSS flipping of quickbar. Instead, introduce option 5 which sets
-  left/right according to the directionality of your interface language.
-* (bug 19514) Unordered list list-style-image should be IE6-compatible (8-bit)
-* (bug 27410) The tag filter on a history page is now within a <label> element
-* (bug 29779) DairikiDiff/WikiDiff <ins> and <del> should undo browser default
-  styling (strike/underline).
-* Translate the block expiry date
-* (bug 28630) Add iwlinks, langlinks, redirect to
-  RefreshLinks::deleteLinksFromNonexistent
-* (bug 29797) Error: "Tried to load block with invalid type" when subpages
-  are disabled for user pages.
-* (bug 12205) Bidirectional names in action=credits are split and displayed
-  incorrectly when wrapped to the next line.
-* (bug 20781) Move 'mainpagetext' messages to installer's .i18n file.
-* (bug 29737) "MediaWiki:Qbsettings-directionality" should refer to script,
-  not language.
-* (bug 26360) $wgSessionHandler was overriding system settings unconditionally.
-* Removed AjaxFunctions.php. The last remaining function js_unescape() was moved
-  to the FCKEditor extension.
-* (bug 28762) Resizing to specified height broken for very thin images
-* (bug 29959) Installer fatal when cURL and allow_url_fopen is disabled and user
-  tries to subsribe to mediawiki-announce
 
 === API changes in 1.19 ===
-* BREAKING CHANGE: action=watch now requires POST and token.
-* (bug 27790) Add query type for querymodules to output of ApiParamInfo
-* (bug 28963) Add langbacklinks query module to the api
-* (bug 27593) API should return error message when sha1/sha1base36 is invalid
-* (bug 28578) API's parse module should not silently override invalid
-  title inputs
-* (bug 20699) Watchlist API should list log-events
-* (bug 29070) Require a token in API action=watch
-* (bug 29221) Expose oldrevid in ApiQueryWatchlist output
-* (bug 29267) Always give the servername for meta=siteinfo&siprop=dbrepllag
-* (bug 28897) rvparse now respects rvsection for action=query&prop=revisions
-* (bug 25734) API: Possible issue with revids validation
-* (bug 28002) Internal error in ApiFormatRaw::getMimeType
-* (bug 29237) ApiQuery now has an option to output the "iwurl" attribute.
-* (bug 28392) Mark action=undelete&timestamps as type "timestamp"
-* (bug 21346) Make deleted images searchable by hash (disabled in Miser Mode)
-* (bug 27595) sha1 search of list=filearchive does not work
-* (bug 26763) Make RSS/Atom of user contributions more visible
-* (bug 25133) Allow redirects also for action=parse&pageid
-* (bug 29745) Fatal error in API search
-* (bug 29476) API returns page title instead of sectiontitle for
-  srprop=sectiontitle
-* Correct the documentation of srprop properties
-* (bug 28817) Add reference help page link to API Modules
-* (bug 29935) Improve formatting of examples in ApiParamInfo
-* (bug 29938) list=users&usprop=rights shows rights the user doesn't have
 
 === Languages updated in 1.19 ===
 
@@ -208,17 +24,8 @@ MediaWiki supports over 330 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-* Bhojpuri (bho) (renamed from "bh").
-* (bug 29031) When translating block log entries, indefinite, infinite, and
-  infinity are now considered the same.
-* Aromanian (rup) (renamed from "rua-rup").
-* Kashmiri (ks) split into Kashmiri (Perso-Arabic) (ks-arab) and Kashmiri
-  (Devanagari) (ks-deva). Defaults to ks-arab.
 
 === Other changes in 1.19 ===
-* Removed legacy wgAjaxWatch javascript global object, no longer in use.
-* (bug 28556) Upload support for MacBinary files has been removed (Used by
-  Internet Explorer 5 for Mac OS 9)
 
 == Compatibility ==
 
@@ -237,7 +44,7 @@ The supported versions are:
 
 == Upgrading ==
 
-1.19 has several database changes since 1.17, and will not work without schema
+1.19 has several database changes since 1.18, and will not work without schema
 updates.
 
 If upgrading from before 1.11, and you are using a wiki as a commons
