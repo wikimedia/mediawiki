@@ -282,7 +282,7 @@ class User {
 	 * Load user table data, given mId has already been set.
 	 * @return Bool false if the ID does not exist, true otherwise
 	 */
-	private function loadFromId() {
+	public function loadFromId() {
 		global $wgMemc;
 		if ( $this->mId == 0 ) {
 			$this->loadDefaults();
@@ -859,7 +859,7 @@ class User {
 	 *
 	 * @param $name string
 	 */
-	private function loadDefaults( $name = false ) {
+	public function loadDefaults( $name = false ) {
 		wfProfileIn( __METHOD__ );
 
 		$this->mId = 0;
@@ -1016,7 +1016,7 @@ class User {
 	 *
 	 * @return Bool True if the user exists, false if the user is anonymous
 	 */
-	private function loadFromDatabase() {
+	public function loadFromDatabase() {
 		# Paranoia
 		$this->mId = intval( $this->mId );
 
@@ -2758,7 +2758,7 @@ class User {
 	 * Clear the user's cookies and session, and reset the instance cache.
 	 * @see logout()
 	 */
-	private function doLogout() {
+	public function doLogout() {
 		$this->clearInstanceCache( 'defaults' );
 
 		$this->getRequest()->setSessionData( 'wsUserID', 0 );
