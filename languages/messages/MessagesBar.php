@@ -149,10 +149,11 @@ $messages = array(
 'listingcontinuesabbrev'         => '(Furtsétzung)',
 'index-category'                 => 'Indizirde Seiten',
 'noindex-category'               => 'Ned-indizirde Seiten',
+'broken-file-category'           => 'Seiten mid kaputte Daateilinks',
 
 'about'         => 'Ywer',
 'article'       => 'Artike',
-'newwindow'     => '(werd in am naichen Fenster aufgmocht)',
+'newwindow'     => '(werd in am neichen Fenster aufgmocht)',
 'cancel'        => 'Obbrecher',
 'moredotdotdot' => 'Merer',
 'mypage'        => 'Eigane Seiten',
@@ -163,6 +164,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Finden',
+'qbbrowse'       => 'Blaadeln',
 'qbedit'         => 'werkeln',
 'qbpageoptions'  => 'Seitenopzionen',
 'qbpageinfo'     => 'Seitendaaten',
@@ -202,6 +204,7 @@ $messages = array(
 'printableversion'  => 'Version zum Ausdrucker',
 'permalink'         => 'Permanenter Link',
 'print'             => 'Drucken',
+'view'              => 'Leesen',
 'edit'              => 'beorweiten',
 'create'            => 'Erstön',
 'editthispage'      => 'Seiten beorweiten',
@@ -209,6 +212,7 @@ $messages = array(
 'delete'            => 'leschen',
 'deletethispage'    => 'De Seiten leschen',
 'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versionen}} wiederherstön',
+'viewdeleted_short' => '{{PLURAL:$1|Oah geléschde Versión|$1 geléschde Versiónen}} åschauh',
 'protect'           => 'Schytzen',
 'protect_change'    => 'endern',
 'protectthispage'   => 'Seiten schytzen',
@@ -408,7 +412,7 @@ Vagiss bittschee ned, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] �
 
 # Special:PasswordReset
 'passwordreset'          => 'Passwoat zrucksetzn',
-'passwordreset-username' => 'Benutzanãm:',
+'passwordreset-username' => 'Benutzernåm:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fetter Text',
@@ -431,7 +435,7 @@ Vagiss bittschee ned, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] �
 # Edit pages
 'summary'                          => 'Zåmmfossung:',
 'subject'                          => 'Bedreff',
-'minoredit'                        => 'Netter Kloanigkaiten san vaendert worn',
+'minoredit'                        => 'Netter Kloanigkeiten san vaänderd worn',
 'watchthis'                        => "D' Seiten beówochten",
 'savearticle'                      => 'Seiten speichern',
 'preview'                          => 'Vurschau',
@@ -596,8 +600,10 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'localtime'                 => 'Ortszaid:',
 'timezoneuseserverdefault'  => 'Standardzaid vom Server',
 'guesstimezone'             => 'Vom Browser übanehma',
-'allowemail'                => 'E-Mail-Empfang vo andere Benutzer möglich macha.',
-'username'                  => 'Benutzernam:',
+'allowemail'                => 'E-Mail-Empfång voh anderne Benutzer méglé mochen.',
+'prefs-searchoptions'       => 'Suachopziónen',
+'prefs-namespaces'          => 'Nåmensreim',
+'username'                  => 'Benutzernåm:',
 'yourrealname'              => 'Da echte Nåm:',
 'yourlanguage'              => 'Sprooch vo da Benutzerowerflächen',
 'prefs-help-realname'       => 'Opzionoi. Dodamid kå dai byrgerlicher Nåm daine Baiträg zuagordnet wern.',
@@ -633,7 +639,7 @@ Mid ånderne Benutzer kåst du aa ywer de Benutzerdischkrirsaiten an Kontakt auf
 # Rights
 'right-read'  => 'Seiten leesen',
 'right-edit'  => 'Seiten beorweiten',
-'right-block' => 'Benutzer sperrn (Schreibrecht)',
+'right-block' => 'Benutzer sperrn (Schreiwrecht)',
 
 # User rights log
 'rightslog' => 'Rechte-Logbiache',
@@ -1146,7 +1152,7 @@ Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki
 'tooltip-t-contributions'         => "d'Listn vu de Beiträg vu dem Benutza ãschau",
 'tooltip-t-emailuser'             => 'Dem Benutza E-Post schicka',
 'tooltip-t-upload'                => 'Datein auffeloon',
-'tooltip-t-specialpages'          => 'Listen vo olle Speziaalseiten',
+'tooltip-t-specialpages'          => 'Listen voh olle Speziaalseiten',
 'tooltip-t-print'                 => 'Druckåsicht vo derer Seiten',
 'tooltip-t-permalink'             => 'Dauerhofter Link zua derer Seitenversion',
 'tooltip-ca-nstab-main'           => 'Seiteninhoid åzoang',

@@ -3005,6 +3005,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-specialinstructions'         => 'Besonnesch Instruktiounen',
 'exif-headline'                    => 'Iwwerschrëft',
 'exif-source'                      => 'Quell',
+'exif-editstatus'                  => 'Redaktionnelle Statut vum Bild',
 'exif-urgency'                     => 'Urgence',
 'exif-fixtureidentifier'           => 'Numm vun der Rubrik',
 'exif-objectcycle'                 => 'Zäit vum Dag fir deen dëse Fichier geduecht ass',

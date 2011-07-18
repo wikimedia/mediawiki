@@ -136,6 +136,7 @@ $messages = array(
 'mypage'        => 'Ma page',
 'mytalk'        => 'Ma page de discussion',
 'anontalk'      => 'Discussion avec cette adresse IP',
+'navigation'    => 'Navigation',
 
 # Cologne Blue skin
 'qbfind'         => 'Charcher',
@@ -147,6 +148,10 @@ $messages = array(
 'qbspecialpages' => 'Pages espéciales',
 'faq'            => 'Questions Communes',
 'faqpage'        => 'Project:Questions Communes',
+
+# Vector skin
+'vector-action-delete'  => 'Supprimer',
+'vector-action-protect' => 'Protéger',
 
 'errorpagetitle'    => 'Erreur',
 'returnto'          => 'Retourner back à la page $1.',
@@ -179,6 +184,7 @@ $messages = array(
 'personaltools'     => 'Outils personnels',
 'postcomment'       => 'Nouvelle section',
 'articlepage'       => "Voir l'article",
+'talk'              => 'Discussion',
 'views'             => 'Vues',
 'toolbox'           => "Boëte d'outils",
 'userpage'          => "Page d'useur",
@@ -241,8 +247,10 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 changement ôté|$1 changements ôtés}}',
 'feedlinks'               => 'Distribution RSS:',
 'feed-invalid'            => 'Mauvaise qualité de distribution RSS.',
+'red-link-title'          => "$1 (page n'existe pas)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'Page',
 'nstab-user'     => 'Useur',
 'nstab-media'    => 'Média',
 'nstab-special'  => 'Page espécial',
@@ -325,7 +333,7 @@ Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENA
 'yourname'                   => "Nom d'useur:",
 'yourpassword'               => 'Mot de passe:',
 'yourpasswordagain'          => 'Mot de passe encore:',
-'remembermypassword'         => 'Se rappeler de mon mot de passe (pour un maximum de $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'         => 'Garder mon mot de passe dans cette browser (pour un maximum of $1 {{PLURAL:$1|jour|jours}})',
 'yourdomainname'             => 'Votre domaine:',
 'externaldberror'            => "Soit y avait une erreur avec la base d'information de certification extérieur, soit vous avez pas la permission de renouveler votre compte extérieur.",
 'login'                      => 'Connecter',
@@ -404,7 +412,7 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'image_sample'    => 'Exemple.jpg',
 'image_tip'       => 'Mettez un portrait',
 'media_sample'    => 'Exemple.ogg',
-'media_tip'       => 'Lien dossier média',
+'media_tip'       => 'Lien dossier',
 'sig_tip'         => 'Votre signature avec la date',
 'hr_tip'          => 'Ligne horizontale (Abusez-lé pas.)',
 
@@ -595,9 +603,10 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'diff-multi'              => '({{PLURAL:$1|Un changement moyen caché|$1 changements moyens cachés}})',
 
 # Search results
-'searchresults'    => 'Résultats de la charche',
-'searchresulttext' => "Pour plus d'information pour vous aider à charcher dans {{SITENAME}}, voyez [[{{MediaWiki:Helppage}}|{{int:help}}]].",
-'searchhelp-url'   => 'Help:Aide',
+'searchresults'      => 'Résultats de la charche',
+'searchresulttext'   => "Pour plus d'information pour vous aider à charcher dans {{SITENAME}}, voyez [[{{MediaWiki:Helppage}}|{{int:help}}]].",
+'searchhelp-url'     => 'Help:Aide',
+'search-result-size' => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 
 # Preferences page
 'preferences'         => 'Réglage',
@@ -621,6 +630,9 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # User rights
 'editinguser' => "Changement de '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'Faire un changement',
+
 # File description page
 'file-anchor-link' => 'Dossier',
 
@@ -642,5 +654,16 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'mycontris'     => 'Mes changements',
 
 'sp-contributions-talk' => 'Discuter',
+
+# Block/unblock
+'contribslink' => 'changes',
+
+# Tooltip help for the actions
+'tooltip-search'          => 'Charche {{SITENAME}}',
+'tooltip-search-fulltext' => 'Charche les pages pour ce texte',
+'tooltip-p-logo'          => "Visitez la page d'acceuil",
+'tooltip-n-recentchanges' => 'La liste de changement récent dans ce wiki',
+'tooltip-n-help'          => 'La place pour savoir',
+'tooltip-t-specialpages'  => 'Liste de tout les pages speciales',
 
 );

@@ -547,6 +547,9 @@ Yer block ID is $5. Please include this ID in ony argies ye mak.',
 Ye can [[Special:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rake th\' related logs],
  or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].</span>',
+'noarticletext-nopermission'       => 'The\'r nae text on this page the nou. 
+Ye ken [[Special:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rake th\' related logs].',
 'userpage-userdoesnotexist'        => 'Uiser accoont "<nowiki>$1</nowiki>" hasnae been registerit. Please check gin ye wint tae mak or edit this page.',
 'clearyourcache'                   => "'''Tak tent:''' Efter hainin, ye micht hae tae bypass yer brouser's cache for tae see the chynges. '''Mozilla / Firefox / Safari:''' haud doun ''Shift'' while dabbin on ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' haud doun ''Ctrl'' while dabbin on ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''' juist dab on the ''Reload'' button, or press ''F5''; '''Opera''' users micht hae tae haillie dicht thair cache in ''Tools&rarr;Preferences''.",
 'usercssyoucanpreview'             => "'''Tip:''' Uise the 'Show preview' button tae proof yer new CSS afore savin.",
@@ -923,21 +926,23 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'listfiles_size' => 'Size',
 
 # File description page
-'file-anchor-link'    => 'Eimage',
-'filehist'            => 'File history',
-'filehist-help'       => "Click oan a date/time tae view th' file as it appeared at that time.",
-'filehist-deleteone'  => 'delete',
-'filehist-revert'     => 'revert',
-'filehist-current'    => 'current',
-'filehist-datetime'   => 'Date/Time',
-'filehist-thumb'      => 'Thumbnail',
-'filehist-thumbtext'  => 'Thumbnail for version as of $1',
-'filehist-user'       => 'Uiser',
-'filehist-dimensions' => 'Dimensions',
-'filehist-comment'    => 'Comment',
-'imagelinks'          => 'File airtins',
-'linkstoimage'        => 'The follaein {{PLURAL:$1|page airts|$1 pages airt}} tae this file:',
-'nolinkstoimage'      => "The'r nae pages airts tae this eimage.",
+'file-anchor-link'       => 'Eimage',
+'filehist'               => 'File history',
+'filehist-help'          => "Click oan a date/time tae view th' file as it appeared at that time.",
+'filehist-deleteone'     => 'delete',
+'filehist-revert'        => 'revert',
+'filehist-current'       => 'current',
+'filehist-datetime'      => 'Date/Time',
+'filehist-thumb'         => 'Thumbnail',
+'filehist-thumbtext'     => 'Thumbnail for version as of $1',
+'filehist-user'          => 'Uiser',
+'filehist-dimensions'    => 'Dimensions',
+'filehist-comment'       => 'Comment',
+'imagelinks'             => 'File airtins',
+'linkstoimage'           => 'The follaein {{PLURAL:$1|page airts|$1 pages airt}} tae this file:',
+'nolinkstoimage'         => "The'r nae pages airts tae this eimage.",
+'sharedupload-desc-here' => "This file is frae $1 and may be used bi other projects.
+Th' description oan tis [$2 file description page] thare is shown below.",
 
 # File reversion
 'filerevert'        => 'Revert $1',
@@ -1235,7 +1240,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'ipbreason'                   => 'Raeson:',
 'ipbsubmit'                   => 'Block this uiser',
 'ipbother'                    => 'Ither time',
-'ipboptions'                  => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
+'ipboptions'                  => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite',
 'ipbotheroption'              => 'ither',
 'badipaddress'                => 'That IP address is nae guid',
 'blockipsuccesssub'           => 'Block succeedit',
@@ -1455,7 +1460,23 @@ You ken view its source',
 Ainlie list items (lines starting wi' *) are considered. Th' foremaist link oan a line mist be a link tae a ill image. Ony subsequent links oan th' same line are considered tae be exceptions, i,e., pages whaur th' image kin occur inline.",
 
 # Metadata
-'metadata' => 'Metadata',
+'metadata'        => 'Metadata',
+'metadata-help'   => "This file contains additional speirins, likelie added frae th' digital camera or scanner used tae create or digitize it. 
+If th' file haes bin modified frae tis original state, some details kin nae fully reflect th' modified file.",
+'metadata-fields' => "Image metadata fields listed in this message wull be included oan image page display whin th' metadata buird is collapsed. Others wull be hidden by default. 
+*mak
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyricht
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-copyright'               => 'Copyricht hauder',
@@ -1551,6 +1572,16 @@ Please confirm that ye really want tae recreate this airticle.",
 'specialpages'             => 'Byordinar pages',
 'specialpages-group-users' => 'Uisers an richts',
 'specialpages-group-pages' => 'leet o pages',
+
+# External image whitelist
+'external_image_whitelist' => ' #Leave this line exactly as it is<pre>
+#Put regular expression fragments (just the part that goes between the //) below
+#These will be matched with the URLs of external (hotlinked) images
+#Those that match will be displayed as images, otherwise only a link to the image will be shown
+#Lines beginning with # are treated as comments
+#This is case-insensitive
+
+#Put all regex fragments above this line. Leave this line exactly as it is</pre>',
 
 # Special:Tags
 'tag-filter'        => '[[Special:Tags|Tag]] filter:',
