@@ -1986,7 +1986,7 @@ class Linker {
 }
 
 /**
- * @since 1.19
+ * @since 1.18
  */
 class DummyLinker {
 
