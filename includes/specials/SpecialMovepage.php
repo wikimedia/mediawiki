@@ -579,7 +579,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	}
 
 	function showSubpages( $title, $out ) {
-		global $wgUser, $wgLang;
+		global $wgLang;
 
 		if( !MWNamespace::hasSubpages( $title->getNamespace() ) )
 			return;
