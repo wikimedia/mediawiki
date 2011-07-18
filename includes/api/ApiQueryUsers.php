@@ -154,7 +154,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				if ( isset( $this->prop['rights'] ) ) {
 					if ( !isset( $data[$name]['rights'] ) ) {
-						$data[$name]['rights'] = User::getGroupPermissions( User::getImplicitGroups() );
+						$data[$name]['rights'] = User::getGroupPermissions( $user->getAutomaticGroups() );
 					}
 
 					if ( !is_null( $row->ug_group ) ) {
