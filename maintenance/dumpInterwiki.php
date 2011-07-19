@@ -118,7 +118,7 @@ class DumpInterwiki extends Maintenance {
 			$this->error( "m:Interwiki_map not found", true );
 		}
 
-		# Global iterwiki map
+		# Global interwiki map
 		foreach ( $lines as $line ) {
 			if ( preg_match( '/^\|\s*(.*?)\s*\|\|\s*(.*?)\s*$/', $line, $matches ) ) {
 				$prefix = $wgContLang->lc( $matches[1] );
@@ -195,6 +195,17 @@ class DumpInterwiki extends Maintenance {
 		foreach ( $extraLinks as $link ) {
 			$this->makeLink( $link, "__global" );
 		}
+
+		# List prefixes for each source
+		foreach ( $this->prefixLists as $source => $hash ) {
+			$list = array_keys( $hash );
+			sort( $list );
+			if ( $this->dbFile ) {
+				$this->dbFile->set( "__list:{$source}", implode( ' ', $list ) );
+			} else {
+				print "__list:{$source} " . implode( ' ', $list ) . "\n";
+			}
+		}
 	}
 
 	# ------------------------------------------------------------------------------------------
@@ -229,6 +240,9 @@ class DumpInterwiki extends Maintenance {
 		} else {
 			$this->output( "{$source}:{$entry['iw_prefix']} {$entry['iw_url']} {$entry['iw_local']}\n" );
 		}
+
+		# Add to list of prefixes
+		$this->prefixLists[$source][$entry['iw_prefix']] = 1;
 	}
 }
 
