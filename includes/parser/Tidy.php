@@ -217,6 +217,8 @@ class MWTidy {
 		if ( !MWInit::classExists( 'tidy' ) ) {
 			wfWarn( "Unable to load internal tidy class." );
 			$retval = -1;
+			
+			wfProfileOut( __METHOD__ );
 			return null;
 		}
 

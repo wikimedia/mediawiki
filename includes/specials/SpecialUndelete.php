@@ -80,7 +80,7 @@ class PageArchive {
 		);
 
 		// bug 19725
-		$suppressedText = REVISION::DELETED_TEXT | REVISION::DELETED_RESTRICTED;
+		$suppressedText = Revision::DELETED_TEXT | Revision::DELETED_RESTRICTED;
 		if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
                         $conds[] = $dbr->bitAnd('ar_deleted', $suppressedText ) .
                                 ' != ' . $suppressedText;

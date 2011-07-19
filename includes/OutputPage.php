@@ -2261,14 +2261,16 @@ $templates
 	 * @return String: The doctype, opening <html>, and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgUseTrackbacks, $wgLang;
+		global $wgLang, $wgContLang, $wgUseTrackbacks;
+		$userdir = $wgLang->getDir();
+		$sitedir = $wgContLang->getDir();
 
 		if ( $sk->commonPrintStylesheet() ) {
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
 		}
 		$sk->setupUserCss( $this );
 
-		$ret = Html::htmlHeader( array( 'lang' => $wgLang->getCode(), 'dir' => $wgLang->getDir() ) );
+		$ret = Html::htmlHeader( array( 'lang' => $wgLang->getCode(), 'dir' => $userdir ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( wfMsg( 'pagetitle', $this->getPageTitle() ) );
@@ -2315,9 +2317,6 @@ $templates
 		}
 
 		# Classes for LTR/RTL directionality support
-		global $wgLang, $wgContLang;
-		$userdir = $wgLang->getDir();
-		$sitedir = $wgContLang->getDir();
 		$bodyAttrs['class'] = "mediawiki $userdir sitedir-$sitedir";
 
 		if ( $this->getContext()->getLang()->capitalizeAllNouns() ) {
