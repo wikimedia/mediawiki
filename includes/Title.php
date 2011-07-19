@@ -2356,7 +2356,7 @@ class Title {
 			$conditions = array( 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() );
 
 			if( !$includeSuppressed ) {
-				$suppressedTextBits = REVISION::DELETED_TEXT | REVISION::DELETED_RESTRICTED;
+				$suppressedTextBits = Revision::DELETED_TEXT | Revision::DELETED_RESTRICTED;
 				$conditions[] = $dbr->bitAnd('ar_deleted', $suppressedTextBits ) .
 				' != ' . $suppressedTextBits;
 			}
@@ -2368,7 +2368,7 @@ class Title {
 			if ( $this->getNamespace() == NS_FILE ) {
 				$fconditions = array( 'fa_name' => $this->getDBkey() );
 				if( !$includeSuppressed ) {
-					$suppressedTextBits = FILE::DELETED_FILE | FILE::DELETED_RESTRICTED;
+					$suppressedTextBits = File::DELETED_FILE | File::DELETED_RESTRICTED;
 					$fconditions[] = $dbr->bitAnd('fa_deleted', $suppressedTextBits ) .
 					' != ' . $suppressedTextBits;
 				}
