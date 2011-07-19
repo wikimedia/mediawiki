@@ -3,6 +3,9 @@
 define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
+/**
+ * @group Database
+ */
 class UserTest extends MediaWikiTestCase {
 	protected $savedGroupPermissions, $savedRevokedPermissions;
 	protected $user;
