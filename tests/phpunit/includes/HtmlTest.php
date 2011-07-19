@@ -36,6 +36,7 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	public function testExpandAttributesForBooleans() {
+		global $wgHtml5;
 		$this->AssertEquals(
 			'',
 			Html::expandAttributes( array( 'selected'=>false) ),
@@ -48,12 +49,12 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 
 		$this->AssertEquals(
-			' selected="selected"',
+			$wgHtml5 ? ' selected=""' : ' selected="selected"',
 			Html::expandAttributes( array( 'selected'=>true ) ),
 			'Boolean attributes skip value output'
 		);
 		$this->AssertEquals(
-			' selected="selected"',
+			$wgHtml5 ? ' selected=""' : ' selected="selected"',
 			Html::expandAttributes( array( 'selected' ) ),
 			'Boolean attributes (ex: selected) do not need a value'
 		);
