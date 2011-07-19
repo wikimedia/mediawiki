@@ -204,7 +204,6 @@ class Interwiki {
 	 * @param $local If set, limits output to local/non-local interwikis
 	 * @return Array List of prefixes
 	 * @since 1.19
-	 * @static
 	 */
 	protected static function getAllPrefixesCached( $local ) {
 		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
@@ -269,34 +268,24 @@ class Interwiki {
 	 * @param $local If set, limits output to local/non-local interwikis
 	 * @return Array List of prefixes
 	 * @since 1.19
-	 * @static
 	 */
-	protected static function getAllPrefixesDb( $local ) {
+	protected static function getAllPrefixesDB( $local ) {
 		$db = wfGetDB( DB_SLAVE );
 
 		$where = array();
 
-		if ( isset($local) ) {
+		if ( isset( $local ) ) {
 			if ( $local == 1 ) {
 				$where['iw_local'] = 1;
-			}
-			elseif ( $local == 0 ) {
+			} elseif ( $local == 0 ) {
 				$where['iw_local'] = 0;
 			}
 		}
 
-		$res = $db->select( 'interwiki',
+		return $db->select( 'interwiki',
 			array( 'iw_prefix', 'iw_url', 'iw_api', 'iw_wikiid', 'iw_local', 'iw_trans' ),
 			$where, __METHOD__, array( 'ORDER BY' => 'iw_prefix' )
 		);
-
-		$data = array();
-		while( $row = $db->fetchRow($res) ) {
-			$data[] = $row;
-		}
-		$db->freeResult( $res );
-
-		return $data;
 	}
 
 	/**
@@ -305,7 +294,6 @@ class Interwiki {
 	 * @param $local If set, limits output to local/non-local interwikis
 	 * @return Array List of prefixes
 	 * @since 1.19
-	 * @static
 	 */
 	public static function getAllPrefixes( $local ) {
 		global $wgInterwikiCache;
@@ -313,7 +301,7 @@ class Interwiki {
 		if ( $wgInterwikiCache ) {
 			return self::getAllPrefixesCached( $local );
 		} else {
-			return self::getAllPrefixesDb( $local );
+			return self::getAllPrefixesDB( $local );
 		}
 	}
 
