@@ -212,7 +212,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		$this->getOutput()->returnToMain();
 	}
 
-	function canChangePassword(User $user) {
+	function canChangePassword( User $user ) {
 		global $wgPasswordResetRoutes, $wgAuth;
 
 		// Maybe password resets are disabled, or there are no allowable routes
