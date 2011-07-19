@@ -107,7 +107,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @param $out OutputPage
 	 */
-	function setupSkinUserCss( OutputPage $out ){
+	function setupSkinUserCss( OutputPage $out ) {
 		$out->addModuleStyles( array( 'mediawiki.legacy.shared', 'mediawiki.legacy.commonPrint' ) );
 	}
 
@@ -133,7 +133,7 @@ class SkinTemplate extends Skin {
 	 */
 	function outputPage( OutputPage $out ) {
 		global $wgUser, $wgLang, $wgContLang;
-		global $wgScript, $wgStylePath, $wgLanguageCode;
+		global $wgScript, $wgStylePath;
 		global $wgMimeType, $wgJsMimeType, $wgRequest;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
 		global $wgDisableCounters, $wgLogo, $wgHideInterlanguageLinks;
