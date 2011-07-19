@@ -257,8 +257,6 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	 * @return string
 	 */
 	protected function formatHTML( $text ) {
-		global $wgUrlProtocols;
-
 		// Escape everything first for full coverage
 		$text = htmlspecialchars( $text );
 
