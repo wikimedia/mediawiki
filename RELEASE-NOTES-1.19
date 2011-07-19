@@ -13,11 +13,13 @@ production.
 === Configuration changes in 1.19 ===
 
 === New features in 1.19 ===
+* (bug 19838) Possibility to get all interwiki prefixes if the interwiki
+  cache is used.
 
 === Bug fixes in 1.19 ===
-* (bug 19838) API does not use interwiki cache.
 
 === API changes in 1.19 ===
+* (bug 19838) siprop=interwikimap can now use the interwiki cache.
 
 === Languages updated in 1.19 ===
 
