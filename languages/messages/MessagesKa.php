@@ -2223,7 +2223,7 @@ $1',
 'sp-contributions-uploads'             => 'ატვირთვები',
 'sp-contributions-logs'                => 'ჟურნალები',
 'sp-contributions-talk'                => 'განხილვა',
-'sp-contributions-userrights'          => 'ომხმარებელთა უფლებების მართვა',
+'sp-contributions-userrights'          => 'მომხმარებელთა უფლებების მართვა',
 'sp-contributions-blocked-notice'      => 'ეს მომხმარებელი ამჟამად დაბლოკილია. ქვემოთ მოყვანილია ამონაწერი წაშლათა ჟურნალიდან:',
 'sp-contributions-blocked-notice-anon' => 'ეს მომხმარებელი ამჟამად დაბლოკილია.
 ქვემოთ მოყვანილია ამონაწერი წაშლათა ჟურნალიდან:',

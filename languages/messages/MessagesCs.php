@@ -974,7 +974,11 @@ Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných
 'userpage-userdoesnotexist-view'   => 'Uživatelský účet „$1“ není zaregistrován.',
 'blocked-notice-logextract'        => 'Tento uživatel je momentálně zablokován.
 Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
-'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
+'clearyourcache'                   => "'''Poznámka: Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte.'''
+'''Mozilla / Firefox / Safari:''' při kliknutí na ''Aktualizovat'' držte ''Shift'', nebo stiskněte ''Ctrl-F5'' nebo ''Ctrl-R'' (na Macintoshi ''Command-R'');
+'''Konqueror''': klikněte na ''Aktualizovat'' nebo stiskněte ''F5'';
+'''Opera:''' smažte obsah cache v menu ''Nástroje → Nastavení'';
+'''Internet Explorer:''' při kliknutí na ''Aktualizovat'' držte ''Ctrl'', nebo stiskněte ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového CSS před uložením.",
 'userjsyoucanpreview'              => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového JavaScriptu před uložením.",
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
@@ -2215,7 +2219,9 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'watchlistanontext'    => 'Pro prohlížení či úpravu seznamu sledovaných stránek se musíte $1.',
 'watchnologin'         => 'Nejste přihlášen(a)',
 'watchnologintext'     => 'Pro sledování stránek se musíte [[Special:UserLogin|přihlásit]].',
+'addwatch'             => 'Přidat do sledovaných stránek',
 'addedwatchtext'       => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které [[Special:Watchlist|sledujete]]. Budoucí změny této stránky se objeví <b>tučně</b> v [[Special:RecentChanges|seznamu posledních změn]], aby bylo snadnější si jí povšimnout. Pokud budete později chtít stránku ze seznamu sledovaných smazat, klikněte na „Nesledovat tuto stránku“ v liště nástrojů.',
+'removewatch'          => 'Vyřadit ze sledovaných stránek',
 'removedwatchtext'     => 'Stránka „[[:$1]]“ byla vyřazena z vašeho [[Special:Watchlist|seznamu sledovaných stránek]].',
 'watch'                => 'Sledovat',
 'watchthispage'        => 'Sledovat tuto stránku',
@@ -3538,6 +3544,12 @@ Opravdu si přejete znovu tuto stránku založit?',
 'confirm-purge-top'    => 'Aktualizovat cachovanou verzi této stránky?',
 'confirm-purge-bottom' => 'Aktualizace stránky vymaže cache a vynutí zobrazení nejaktuálnější verze.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Přidat tuto stránku mezi sledované?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Vyjmout tuto stránku ze sledovaných?',
+
 # Separators for various lists, etc.
 'percent' => '$1&nbsp;%',
 
@@ -3790,5 +3802,20 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',
 'sqlite-no-fts'  => '$1 bez podpory plnotextového vyhledávání',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Přidat kategorii',
+'ajax-add-category-submit'     => 'Přidat',
+'ajax-confirm-title'           => 'Potvrdit změnu',
+'ajax-confirm-prompt'          => 'Níže můžete vyplnit shrnutí editace.
+Kliknutím na „Uložit“ se vaše změna uloží.',
+'ajax-confirm-save'            => 'Uložit',
+'ajax-add-category-summary'    => 'Přidání kategorie „$1“',
+'ajax-remove-category-summary' => 'Odebrání kategorie „$1“',
+'ajax-confirm-actionsummary'   => 'Zamýšlená změna:',
+'ajax-error-title'             => 'Chyba',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Tuto kategorii se nepodařilo odstranit.
+To se obvykle stává v případě, že byla stránka do kategorie přidána prostřednictvím šablony.',
 
 );

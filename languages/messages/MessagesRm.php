@@ -249,7 +249,7 @@ $messages = array(
 'otherlanguages'    => 'En autras linguas',
 'redirectedfrom'    => '(renvià da $1)',
 'redirectpagesub'   => "questa pagina renviescha tar in'auter artitgel",
-'lastmodifiedat'    => "L'ultima modificaziun da questa pagina: ils $1 a las $2.",
+'lastmodifiedat'    => "Questa pagina è vegnida modifitgada l'ultima giada ils $1 a las $2.",
 'viewcount'         => 'Questa pagina è vegnida contemplada {{PLURAL:$1|ina giada|$1 giadas}}.',
 'protectedpage'     => 'Pagina protegida',
 'jumpto'            => 'Midar tar:',
@@ -289,7 +289,7 @@ $1',
 'badaccess-groups' => "L'acziun che vus vulais far dastgan mo utilisaders en {{PLURAL:$2|las gruppas|la gruppa}} $1 exequir.",
 
 'versionrequired'     => 'Versiun $1 da MediaWiki è necessaria',
-'versionrequiredtext' => 'Ti dovras versiun $1 da mediawiki per duvrar questa pagina. Guarda [[Special:Version| qua!]]',
+'versionrequiredtext' => 'Ti dovras versiun $1 da MediaWiki per duvrar questa pagina. Guarda [[Special:Version| qua!]]',
 
 'ok'                      => "D'accord",
 'retrievedfrom'           => 'Da "$1"',
@@ -406,7 +406,7 @@ Emprova danovamain en in per minutas.',
 'protectedpagetext'    => "Questa pagina è vegnida bloccada per evitar ch'ella vegn modifitgada.",
 'viewsourcetext'       => 'Ti pos guardar e copiar il code-fundamental da questa pagina:',
 'protectedinterface'   => "Questa pagina cuntegna text per l'interfatscha da la software ed è protegida per evitar abus.",
-'editinginterface'     => "'''Attenziun:''' Questa pagina cuntegn text che vegn duvra da software da mediawiki. Midadas influenzeschan directamain l'interface da l'utilisader. Sche ti vuls far translaziuns u correcturas: Studegia da far quai sin [http://translatewiki.net/wiki/Main_Page?setlang=rm translatewiki.net], per che las midadas pon vegnidas surprendidas da tut ils projects.",
+'editinginterface'     => "'''Attenziun:''' Questa pagina cuntegna text che vegn duvra da la software MediaWiki. Midadas influenzeschan directamain l'interfatscha da l'utilisader. Sche ti vuls far translaziuns u correcturas: Studegia da far quai sin [http://translatewiki.net/wiki/Main_Page?setlang=rm translatewiki.net], per che las midadas pon vegnidas surprendidas da tut ils projects.",
 'sqlhidden'            => '(Zuppentà la dumonda da SQL)',
 'cascadeprotected'     => "Questa pagina è protegida da modificaziuns perquai ch'ella è integrada en suandanta{{PLURAL:$1| pagina, ch'è protegida|s paginas, ch'èn protegidas}} entras l'opziun «protecziun ertada»: 
 $2",
@@ -939,7 +939,7 @@ Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar e
 'powersearch-redir'                => 'Mussar sviaments',
 'powersearch-field'                => 'Tschertgar',
 'powersearch-togglelabel'          => 'Tscherna:',
-'powersearch-toggleall'            => 'tuts',
+'powersearch-toggleall'            => 'Tuts',
 'powersearch-togglenone'           => 'Nagins',
 'search-external'                  => 'Tschertga externa',
 'searchdisabled'                   => "La tschertga sin {{SITENAME}} è deactivada. 
@@ -1490,7 +1490,7 @@ Betg emblida da controllar sche autras colliaziuns mainan als models avant ch'al
 'statistics-users-active-desc' => "Utilisaders che han fatg almain ina acziun {{PLURAL:$1|l'ultim di|ils ultims $1 dis}}",
 'statistics-mostpopular'       => 'Paginas visitadas il pli savens',
 
-'disambiguations'     => 'pagina per la decleraziun da noziuns',
+'disambiguations'     => 'Paginas per la decleraziun da noziuns',
 'disambiguationspage' => 'Template:disambiguiziun',
 
 'doubleredirects'            => 'Renviaments dubels',
@@ -1546,7 +1546,7 @@ I renviescha uss a [[$2]].',
 'prefixindex'             => 'Tut las paginas cun prefix',
 'shortpages'              => 'Paginas curtas',
 'longpages'               => 'Artitgels lungs',
-'deadendpages'            => 'artitgels senza colliaziuns internas che mainan enavant',
+'deadendpages'            => 'Artitgels senza colliaziuns internas',
 'protectedpages'          => 'Paginas protegidas',
 'protectedtitles'         => 'Titels bloccads',
 'protectedtitlestext'     => 'Suandants titels èn bloccads per vegnir creads.',
@@ -1663,7 +1663,7 @@ L'adressa dad e-mail che ti has endatà en [[Special:Preferences|tias preferenza
 'emailuserfooter'  => 'Quest e-mail è vegnì tramess da $1 a $2 cun agid da la funcziun da trametter e-mails ad utilisaders sin {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => "mia glista d'observaziun",
+'watchlist'            => "Mia glista d'observaziun",
 'mywatchlist'          => "Mia glista d'observaziun",
 'watchlistfor2'        => 'Per $1 $2',
 'nowatchlist'          => "Ti n'has nagins elements sin tia glista d'observaziun.",
@@ -1728,7 +1728,7 @@ L'ultima modificaziun vid questa pagina è da [[User:$3|$3]] ([[User talk:$3|tal
 'protectlogpage'              => 'Log da las protecziuns',
 'protectedarticle'            => 'bloccà "[[$1]]"',
 'modifiedarticleprotection'   => 'Midà il livel da protecziun per "[[$1]]"',
-'prot_1movedto2'              => 'Spustà [[$1]] tar [[$2]]',
+'prot_1movedto2'              => 'ha spustà [[$1]] tar [[$2]]',
 'protect-legend'              => 'Midar il status da protecziun da la pagina.',
 'protectcomment'              => 'Motiv:',
 'protectexpiry'               => 'Pretegì enfin:',
@@ -1775,7 +1775,7 @@ Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant bet
 'blanknamespace' => '(principal)',
 
 # Contributions
-'contributions'       => "contribuziuns da l'utilisader",
+'contributions'       => "Contribuziuns da l'utilisader",
 'contributions-title' => "Contribuziuns d'utilisader da $1",
 'mycontris'           => 'Mias contribuziuns',
 'contribsub2'         => 'Per $1 ($2)',
@@ -1986,8 +1986,8 @@ En quests cas as ti da spustar u colliar manualmain las paginas, sche giavischà
 'movetalk'                  => "Spustar la pagina da discussiun che tutga tar l'artitgel",
 'movepage-page-moved'       => 'La pagina $1 è vegnida spustada a $2.',
 'movepage-page-unmoved'     => 'Betg pussaivel da spustar la pagina $1 a $2.',
-'1movedto2'                 => 'Spustà [[$1]] a [[$2]]',
-'1movedto2_redir'           => 'Spustà [[$1]] a [[$2]] cun in renviament',
+'1movedto2'                 => 'ha spustà [[$1]] a [[$2]]',
+'1movedto2_redir'           => 'ha spustà [[$1]] a [[$2]] cun in renviament',
 'move-redirect-suppressed'  => 'Impedì renviament',
 'movelogpage'               => 'Log dal spustar',
 'movereason'                => 'Motiv:',
@@ -2010,12 +2010,12 @@ L\'artitgel da destinaziun "[[:$1]]" exista gia. Vul ti stizzar el per far plaz 
 'export-templates' => 'Includer models',
 
 # Namespace 8 related
-'allmessages'                   => 'communicaziuns dal sistem',
+'allmessages'                   => 'Messadis dal sistem',
 'allmessagesname'               => 'num',
 'allmessagesdefault'            => 'text original',
 'allmessagescurrent'            => 'text actual',
-'allmessagestext'               => 'Quai è ina glista da tut las communicaziuns dals differents tips da paginas da MediaWiki che vegnan utilisadas da la software da MediaWiki.
-Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] sche ti vuls gidar da translatar la software da MediaWiki.',
+'allmessagestext'               => 'Quai è ina glista da tut ils messadis dals differents tips da paginas da MediaWiki che vegnan utilisadas da la software MediaWiki.
+Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] sche ti vuls gidar da translatar la software MediaWiki.',
 'allmessagesnotsupportedDB'     => "Questa pagina na po betg vegnir mussada, perquai che '''\$wgUseDatabaseMessages''' è vegnì deactivà.",
 'allmessages-filter-legend'     => 'Filtrar',
 'allmessages-filter'            => 'Filtrar tenor standi da modificaziun:',
