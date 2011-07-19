@@ -779,7 +779,7 @@ CONTROL;
 	function generateDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
-        wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ );
 
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
@@ -791,6 +791,7 @@ CONTROL;
 			# input text to be HTML-escaped already
 			$otext = htmlspecialchars ( $wgContLang->segmentForDiff( $otext ) );
 			$ntext = htmlspecialchars ( $wgContLang->segmentForDiff( $ntext ) );
+			wfProfileOut( __METHOD__ );
 			return $wgContLang->unsegmentForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) ) .
 			$this->debug( 'wikidiff1' );
 		}
@@ -802,6 +803,7 @@ CONTROL;
 			$text = wikidiff2_do_diff( $otext, $ntext, 2 );
 			$text .= $this->debug( 'wikidiff2' );
 			wfProfileOut( 'wikidiff2_do_diff' );
+			wfProfileOut( __METHOD__ );
 			return $text;
 		}
 		if ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
