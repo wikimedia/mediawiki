@@ -15,6 +15,7 @@
  * Usage: $minified = JSMinPlus::minify($script [, $filename])
  *
  * Versionlog (see also changelog.txt):
+ * 19-07-2011 - expanded operator and keyword defines. Fixes the notices when creating several JSTokenizer
  * 17-05-2009 - fixed hook:colon precedence, fixed empty body in loop and if-constructs
  * 18-04-2009 - fixed crashbug in PHP 5.2.9 and several other bugfixes
  * 12-04-2009 - some small bugfixes and performance improvements
@@ -88,6 +89,83 @@ define('JS_LIST', 113);
 define('DECLARED_FORM', 0);
 define('EXPRESSED_FORM', 1);
 define('STATEMENT_FORM', 2);
+
+/* Operators */
+define('OP_SEMICOLON', ';');
+define('OP_COMMA', ',');
+define('OP_HOOK', '?');
+define('OP_COLON', ':');
+define('OP_OR', '||');
+define('OP_AND', '&&');
+define('OP_BITWISE_OR', '|');
+define('OP_BITWISE_XOR', '^');
+define('OP_BITWISE_AND', '&');
+define('OP_STRICT_EQ', '===');
+define('OP_EQ', '==');
+define('OP_ASSIGN', '=');
+define('OP_STRICT_NE', '!==');
+define('OP_NE', '!=');
+define('OP_LSH', '<<');
+define('OP_LE', '<=');
+define('OP_LT', '<');
+define('OP_URSH', '>>>');
+define('OP_RSH', '>>');
+define('OP_GE', '>=');
+define('OP_GT', '>');
+define('OP_INCREMENT', '++');
+define('OP_DECREMENT', '--');
+define('OP_PLUS', '+');
+define('OP_MINUS', '-');
+define('OP_MUL', '*');
+define('OP_DIV', '/');
+define('OP_MOD', '%');
+define('OP_NOT', '!');
+define('OP_BITWISE_NOT', '~');
+define('OP_DOT', '.');
+define('OP_LEFT_BRACKET', '[');
+define('OP_RIGHT_BRACKET', ']');
+define('OP_LEFT_CURLY', '{');
+define('OP_RIGHT_CURLY', '}');
+define('OP_LEFT_PAREN', '(');
+define('OP_RIGHT_PAREN', ')');
+define('OP_CONDCOMMENT_END', '@*/');
+
+define('OP_UNARY_PLUS', 'U+');
+define('OP_UNARY_MINUS', 'U-');
+
+/* Keywords */
+define('KEYWORD_BREAK', 'break');
+define('KEYWORD_CASE', 'case');
+define('KEYWORD_CATCH', 'catch');
+define('KEYWORD_CONST', 'const');
+define('KEYWORD_CONTINUE', 'continue');
+define('KEYWORD_DEBUGGER', 'debugger');
+define('KEYWORD_DEFAULT', 'default');
+define('KEYWORD_DELETE', 'delete');
+define('KEYWORD_DO', 'do');
+define('KEYWORD_ELSE', 'else');
+define('KEYWORD_ENUM', 'enum');
+define('KEYWORD_FALSE', 'false');
+define('KEYWORD_FINALLY', 'finally');
+define('KEYWORD_FOR', 'for');
+define('KEYWORD_FUNCTION', 'function');
+define('KEYWORD_IF', 'if');
+define('KEYWORD_IN', 'in');
+define('KEYWORD_INSTANCEOF', 'instanceof');
+define('KEYWORD_NEW', 'new');
+define('KEYWORD_NULL', 'null');
+define('KEYWORD_RETURN', 'return');
+define('KEYWORD_SWITCH', 'switch');
+define('KEYWORD_THIS', 'this');
+define('KEYWORD_THROW', 'throw');
+define('KEYWORD_TRUE', 'true');
+define('KEYWORD_TRY', 'try');
+define('KEYWORD_TYPEOF', 'typeof');
+define('KEYWORD_VAR', 'var');
+define('KEYWORD_VOID', 'void');
+define('KEYWORD_WHILE', 'while');
+define('KEYWORD_WITH', 'with');
+
 
 class JSMinPlus
 {
@@ -1646,16 +1724,6 @@ class JSTokenizer
 	public function __construct()
 	{
 		$this->opRegExp = '#^(' . implode('|', array_map('preg_quote', array_keys($this->opTypeNames))) . ')#';
-
-		// this is quite a hidden yet convenient place to create the defines for operators and keywords
-		foreach ($this->opTypeNames as $operand => $name)
-			define('OP_' . $name, $operand);
-
-		define('OP_UNARY_PLUS', 'U+');
-		define('OP_UNARY_MINUS', 'U-');
-
-		foreach ($this->keywords as $keyword)
-			define('KEYWORD_' . strtoupper($keyword), $keyword);
 	}
 
 	public function init($source, $filename = '', $lineno = 1)
@@ -1977,4 +2045,3 @@ class JSToken
 	public $assignOp;
 }
 
-?>
