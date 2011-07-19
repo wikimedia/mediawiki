@@ -47,14 +47,13 @@ class HtmlTest extends MediaWikiTestCase {
 			'Boolean attributes do not generates output when value is null'
 		);
 
-		### FIXME: maybe they should just output 'selected'
 		$this->AssertEquals(
-			' selected=""',
+			' selected="selected"',
 			Html::expandAttributes( array( 'selected'=>true ) ),
 			'Boolean attributes skip value output'
 		);
 		$this->AssertEquals(
-			' selected=""',
+			' selected="selected"',
 			Html::expandAttributes( array( 'selected' ) ),
 			'Boolean attributes (ex: selected) do not need a value'
 		);
