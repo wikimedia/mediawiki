@@ -48,7 +48,7 @@ File.php defines an abstract class File.
         ForeignDBFile.php extends LocalFile
         Image.php extends LocalFile
     UnregisteredLocalFile.php extends File.
-FileRepo.php defined an abstract class FileRepo.
+FileRepo.php defines an abstract class FileRepo.
     ForeignAPIRepo.php extends FileRepo
     FSRepo extends FileRepo
         LocalRepo.php extends FSRepo
@@ -57,3 +57,4 @@ FileRepo.php defined an abstract class FileRepo.
     NullRepo extends FileRepo
 
 Russ Nelson, March 2011
+

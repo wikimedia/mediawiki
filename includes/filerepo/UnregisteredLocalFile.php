@@ -74,7 +74,7 @@ class UnregisteredLocalFile extends File {
 		$this->dims = array();
 	}
 
-	function getPageDimensions( $page = 1 ) {
+	private function cachePageDimensions( $page = 1 ) {
 		if ( !isset( $this->dims[$page] ) ) {
 			if ( !$this->getHandler() ) {
 				return false;
@@ -85,19 +85,19 @@ class UnregisteredLocalFile extends File {
 	}
 
 	function getWidth( $page = 1 ) {
-		$dim = $this->getPageDimensions( $page );
+		$dim = $this->cachePageDimensions( $page );
 		return $dim['width'];
 	}
 
 	function getHeight( $page = 1 ) {
-		$dim = $this->getPageDimensions( $page );
+		$dim = $this->cachePageDimensions( $page );
 		return $dim['height'];
 	}
 
 	function getMimeType() {
 		if ( !isset( $this->mime ) ) {
 			$magic = MimeMagic::singleton();
-			$this->mime = $magic->guessMimeType( $this->path );
+			$this->mime = $magic->guessMimeType( $this->getPath() );
 		}
 		return $this->mime;
 	}
