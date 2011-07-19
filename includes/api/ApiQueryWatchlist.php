@@ -292,7 +292,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
-			global $wgUser;
 			$vals['parsedcomment'] = $this->getSkin()->formatComment( $row->rc_comment, $title );
 		}
 
