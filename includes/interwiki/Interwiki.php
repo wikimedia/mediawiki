@@ -199,6 +199,125 @@ class Interwiki {
 	}
 
 	/**
+	 * Fetch all interwiki prefixes from interwiki cache
+	 *
+	 * @param $local If set, limits output to local/non-local interwikis
+	 * @return Array List of prefixes
+	 * @since 1.19
+	 * @static
+	 */
+	protected static function getAllPrefixesCached( $local ) {
+		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
+		static $db, $site;
+
+		wfDebug( __METHOD__ . "()\n" );
+		if( !$db ) {
+			$db = CdbReader::open( $wgInterwikiCache );
+		}
+		/* Resolve site name */
+		if( $wgInterwikiScopes >= 3 && !$site ) {
+			$site = $db->get( '__sites:' . wfWikiID() );
+			if ( $site == '' ) {
+				$site = $wgInterwikiFallbackSite;
+			}
+		}
+
+		// List of interwiki sources
+		$sources = array();
+		// Global Level
+		if ( $wgInterwikiScopes >= 2 ) {
+			$sources[] = '__global';
+		}
+		// Site level
+		if ( $wgInterwikiScopes >= 3 ) {
+			$sources[] = '_' . $site;
+		}
+		$sources[] = wfWikiID();
+
+		$data = array();
+
+		foreach( $sources as $source ) {
+			$list = $db->get( "__list:{$source}" );
+			foreach ( explode( ' ', $list ) as $iw_prefix ) {
+				$row = $db->get( "{$source}:{$iw_prefix}" );
+				if( !$row ) {
+					continue;
+				}
+
+				list( $iw_local, $iw_url ) = explode( ' ', $row );
+
+				if ( isset( $local ) && $local != $iw_local ) {
+					continue;
+				}
+
+				$data[$iw_prefix] = array(
+					'iw_prefix' => $iw_prefix,
+					'iw_url'    => $iw_url,
+					'iw_local'  => $iw_local,
+				);
+			}
+		}
+
+		ksort( $data );
+
+		return array_values( $data );
+	}
+
+	/**
+	 * Fetch all interwiki prefixes from DB
+	 *
+	 * @param $local If set, limits output to local/non-local interwikis
+	 * @return Array List of prefixes
+	 * @since 1.19
+	 * @static
+	 */
+	protected static function getAllPrefixesDb( $local ) {
+		$db = wfGetDB( DB_SLAVE );
+
+		$where = array();
+
+		if ( isset($local) ) {
+			if ( $local == 1 ) {
+				$where['iw_local'] = 1;
+			}
+			elseif ( $local == 0 ) {
+				$where['iw_local'] = 0;
+			}
+		}
+
+		$res = $db->select( 'interwiki',
+			array( 'iw_prefix', 'iw_url', 'iw_api', 'iw_wikiid', 'iw_local', 'iw_trans' ),
+			$where, __METHOD__, array( 'ORDER BY' => 'iw_prefix' )
+		);
+
+		$data = array();
+		while( $row = $db->fetchRow($res) ) {
+			$data[] = $row;
+		}
+		$db->freeResult( $res );
+
+		return $data;
+	}
+
+	/**
+	 * Returns all interwiki prefixes
+	 *
+	 * @param $local If set, limits output to local/non-local interwikis
+	 * @return Array List of prefixes
+	 * @since 1.19
+	 * @static
+	 */
+	public static function getAllPrefixes( $local ) {
+		global $wgInterwikiCache;
+
+		if ( $wgInterwikiCache ) {
+			return self::getAllPrefixesCached( $local );
+		} else {
+			return self::getAllPrefixesDb( $local );
+		}
+	}
+
+	/**
 	 * Get the URL for a particular title (or with $1 if no title given)
 	 *
 	 * @param $title String: what text to put for the article name

@@ -256,37 +256,36 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendInterwikiMap( $property, $filter ) {
-		$this->resetQueryParams();
-		$this->addTables( 'interwiki' );
-		$this->addFields( array( 'iw_prefix', 'iw_local', 'iw_url', 'iw_wikiid', 'iw_api' ) );
-
+		$local = null;
 		if ( $filter === 'local' ) {
-			$this->addWhere( 'iw_local = 1' );
+			$local = 1;
 		} elseif ( $filter === '!local' ) {
-			$this->addWhere( 'iw_local = 0' );
+			$local = 0;
 		} elseif ( $filter ) {
 			ApiBase::dieDebug( __METHOD__, "Unknown filter=$filter" );
 		}
 
-		$this->addOption( 'ORDER BY', 'iw_prefix' );
-
-		$res = $this->select( __METHOD__ );
-
+		$getPrefixes = Interwiki::getAllPrefixes( $local );
 		$data = array();
 		$langNames = Language::getLanguageNames();
-		foreach ( $res as $row ) {
+		foreach ( $getPrefixes as $row ) {
+			$prefix = $row['iw_prefix'];
 			$val = array();
-			$val['prefix'] = $row->iw_prefix;
-			if ( $row->iw_local == '1' ) {
+			$val['prefix'] = $prefix;
+			if ( $row['iw_local'] == '1' ) {
 				$val['local'] = '';
 			}
-			// $val['trans'] = intval( $row->iw_trans ); // should this be exposed?
-			if ( isset( $langNames[$row->iw_prefix] ) ) {
-				$val['language'] = $langNames[$row->iw_prefix];
+			// $val['trans'] = intval( $row['iw_trans'] ); // should this be exposed?
+			if ( isset( $langNames[$prefix] ) ) {
+				$val['language'] = $langNames[$prefix];
 			}
-			$val['url'] = wfExpandUrl( $row->iw_url );
-			$val['wikiid'] = $row->iw_wikiid;
-			$val['api'] = $row->iw_api;
+			$val['url'] = wfExpandUrl( $row['iw_url'] );
+			if( isset( $row['iw_wikiid'] ) ) {
+				$val['wikiid'] = $row['iw_wikiid'];
+			}
+			if( isset( $row['iw_api'] ) ) {
+				$val['api'] = $row['iw_api'];
+			}
 
 			$data[] = $val;
 		}
