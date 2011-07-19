@@ -1077,11 +1077,11 @@ $2
 'userpage-userdoesnotexist-view'   => 'حساب کاربری «$1» ثبت نشده‌است.',
 'blocked-notice-logextract'        => 'دسترسی این کاربر در حال حاضر بسته است.
 آخرین مورد سیاهه قطع دسترسی در زیر آمده‌است:',
-'clearyourcache'                   => "'''نکته: پس از ذخیره‌سازی ممکن است برای دیدن تغییرات نیاز باشد که حافظهٔ نهانی مرورگر خود را خالی کنید.'''
-'''موزیلا / فایرفاکس / سافاری:'''  کلید ''Shift'' را نگه‌دارید و روی دکمهٔ ''Reload'' کلیک کنید، یا کلید‌های ''Ctrl-F5'' یا ''Ctrl-R'' را با هم فشار دهید (در رایانه‌های اپل مکینتاش کلید‌های ''Cmd-R'')؛
-'''کانکوئرر:''' روی دکمهٔ ''Reload'' کلیک کنید و یا کلید ''F5'' را فشار دهید؛
-'''اپرا:''' حافظهٔ نهانی مرورگر را از طریق منوی ''Tools &rarr; Preferences'' خالی کنید؛
-'''اینترنت اکسپلورر:''' کلید ''Ctrl'' را نگه‌دارید و روی دکمهٔ ''Refresh'' کلیک‌ کنید، یا کلید‌های ''Ctrl-F5'' را با هم فشار دهید.",
+'clearyourcache'                   => "'''نکته:''' پس از ذخیره‌سازی ممکن است برای دیدن تغییرات نیاز باشد که حافظهٔ نهانی مرورگر خود را خالی کنید.
+'''فایرفاکس / سافاری:'''  کلید ''Shift'' را نگه‌دارید و روی دکمهٔ ''Reload'' کلیک کنید، یا کلید‌های ''Ctrl-F5'' یا ''Ctrl-R'' را با هم فشار دهید (در رایانه‌های اپل مکینتاش کلید‌های ''Cmd-R'')
+'''اینترنت اکسپلورر:''' کلید ''Ctrl'' را نگه‌دارید و روی دکمهٔ ''Refresh'' کلیک‌ کنید، یا کلید‌های ''Ctrl-F5'' را با هم فشار دهید
+'''کانکوئرر:''' روی دکمهٔ ''Reload'' کلیک کنید و یا کلید ''F5'' را فشار دهید
+'''اپرا:''' حافظهٔ نهانی مرورگر را از طریق منوی ''Tools &rarr; Preferences'' خالی کنید",
 'usercssyoucanpreview'             => "'''نکته:''' قبل از این که فایل CSS یا JS خود را ذخیره کنید، با استفاده از دکمه '''{{int:showpreview}}''' آن را آزمایش کنید.",
 'userjsyoucanpreview'              => "'''نکته:''' قبل از این که فایل CSS یا JS خود را ذخیره کنید، با استفاده از دکمه '''{{int:showpreview}}''' آن را آزمایش کنید.",
 'usercsspreview'                   => "'''فراموش مکنید که شما فقط دارید پیش‌نمایش سی‌اس‌اس کاربری‌تان را می‌بینید.'''
@@ -1461,12 +1461,13 @@ $1",
 توجه کنید که نتایج حاصل از جستجو با آن روش ممکن است به‌روز نباشند.',
 
 # Quickbar
-'qbsettings'               => 'نوار سریع',
-'qbsettings-none'          => 'نباشد',
-'qbsettings-fixedleft'     => 'ثابت چپ',
-'qbsettings-fixedright'    => 'ثابت راست',
-'qbsettings-floatingleft'  => 'شناور چپ',
-'qbsettings-floatingright' => 'شناور راست',
+'qbsettings'                => 'نوار سریع',
+'qbsettings-none'           => 'نباشد',
+'qbsettings-fixedleft'      => 'ثابت چپ',
+'qbsettings-fixedright'     => 'ثابت راست',
+'qbsettings-floatingleft'   => 'شناور چپ',
+'qbsettings-floatingright'  => 'شناور راست',
+'qbsettings-directionality' => 'ثابت، بسته به جهت نگارش خط و زبان شما',
 
 # Preferences page
 'preferences'                   => 'ترجیحات',
@@ -1585,7 +1586,7 @@ $1",
 'prefs-diffs'                   => 'تفاوت‌ها',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => 'نشانی رایانامه معتبر به نظر می‌رسد',
+'email-address-validity-valid'   => 'نشانی پست الکترونیکی معتبر به نظر می رسد',
 'email-address-validity-invalid' => 'نشانی پست الکترونیکی معتبر وارد کنید',
 
 # User rights
@@ -1697,10 +1698,11 @@ $1",
 'right-sendemail'             => 'ارسال نامه الکترونیکی به دیگر کاربران',
 
 # User rights log
-'rightslog'      => 'سیاههٔ اختیارات کاربر',
-'rightslogtext'  => 'این سیاههٔ تغییرات اختیارات کاربر است.',
-'rightslogentry' => 'عضویت $1 را از گروه $2 به $3 تغییر داد',
-'rightsnone'     => '(هیچ)',
+'rightslog'                  => 'سیاههٔ اختیارات کاربر',
+'rightslogtext'              => 'این سیاههٔ تغییرات اختیارات کاربر است.',
+'rightslogentry'             => 'عضویت $1 را از گروه $2 به $3 تغییر داد',
+'rightslogentry-autopromote' => 'به طور خودکار از $2 به $3 ارتقا یافت',
+'rightsnone'                 => '(هیچ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'خواندن این صفحه',
@@ -2356,8 +2358,10 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'watchlistanontext'    => 'برای مشاهده و ویرایش فهرست پی‌گیری‌های خود از $1 استفاده کنید.',
 'watchnologin'         => 'به سامانه وارد نشده‌اید',
 'watchnologintext'     => 'برای تغییر فهرست پی‌گیری‌هایتان باید [[Special:UserLogin|به سامانه وارد شوید]].',
+'addwatch'             => 'افزودن به فهرست پی‌گیری',
 'addedwatchtext'       => "صفحهٔ «[[:$1]]» به [[Special:Watchlist|فهرست پی‌گیری‌های]] شما اضافه شد.
 تغییرات این صفحه و صفحهٔ بحث متناظرش در آینده در اینجا فهرست خواهد شد؛ به‌علاوه، این صفحه، برای واضح‌تر دیده شدن در [[Special:RecentChanges|فهرست تغییرات اخیر]] به شکل '''پررنگ''' نمایش خواهد یافت.",
+'removewatch'          => 'حذف از فهرست پی‌گیری',
 'removedwatchtext'     => 'صفحهٔ «<nowiki>[[:$1]]</nowiki>» از [[Special:Watchlist|فهرست پی‌گیری‌های شما]] برداشته شد.',
 'watch'                => 'پی‌گیری',
 'watchthispage'        => 'پی‌گیری این صفحه',
@@ -2598,10 +2602,12 @@ $1',
 'undelete-show-file-submit'    => 'بله',
 
 # Namespace form on various pages
-'namespace'             => 'فضای نام:',
-'invert'                => 'انتخاب برعکس شود',
-'namespace_association' => 'فضای نام مرتبط',
-'blanknamespace'        => '(اصلی)',
+'namespace'                     => 'فضای نام:',
+'invert'                        => 'انتخاب برعکس شود',
+'tooltip-invert'                => 'این جعبه را علامت بزنید تا تغییرات صفحه‌های داخل فضای نام انتخاب شده (و دیگر فضاهای نام علامت زده‌ شده) پنهان شوند',
+'namespace_association'         => 'فضای نام مرتبط',
+'tooltip-namespace_association' => 'این جعبه را علامت بزنید تا فضای نام بحث یا موضوع مرتبط با فضای نام انتخاب شده هم شامل شود',
+'blanknamespace'                => '(اصلی)',
 
 # Contributions
 'contributions'       => 'مشارکت‌های کاربری',
@@ -3011,7 +3017,7 @@ $1',
 'tooltip-ca-viewsource'           => 'این صفحه محافظت‌شده است. می‌توانید متن مبدأ آن را مشاهده کنید.',
 'tooltip-ca-history'              => 'نسخه‌های پیشین این صفحه',
 'tooltip-ca-protect'              => 'محافظت از این صفحه',
-'tooltip-ca-unprotect'            => 'به در آوردن این صفحه از محافظت',
+'tooltip-ca-unprotect'            => 'تغییر محافظت این صفحه',
 'tooltip-ca-delete'               => 'حذف این صفحه',
 'tooltip-ca-undelete'             => 'بازگرداندن نسخه‌های صفحهٔ حذف‌شده',
 'tooltip-ca-move'                 => 'انتقال این صفحه',
@@ -3694,6 +3700,12 @@ $1',
 'confirm-purge-top'    => 'پاک کردن نسخهٔ حافظهٔ نهانی (Cache) این صفحه را تأیید می‌کنید؟',
 'confirm-purge-bottom' => 'خالی کردن میانگیر یک صفحه باعث می‌شود که آخرین نسخهٔ آن نمایش یابد.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'تأیید',
+'confirm-watch-top'      => 'این صفحه به فهرست پی‌گیری‌های شما افزوده شود؟',
+'confirm-unwatch-button' => 'تأیید',
+'confirm-unwatch-top'    => 'این صفحه از فهرست پی‌گیری‌های شما حذف شود؟',
+
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',
@@ -3957,18 +3969,30 @@ $1',
 'sqlite-no-fts'  => '$1 بدون پشتیبانی از جستجو در متن کامل',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'افزودن رده',
-'ajax-add-category-submit'     => 'افزودن',
-'ajax-confirm-title'           => 'تأیید عمل',
-'ajax-confirm-prompt'          => 'شما می‌توانید خلاصهٔ ویرایش را در زیر وارد کنید.
+'ajax-add-category'             => 'افزودن رده',
+'ajax-remove-category'          => 'حذف رده',
+'ajax-edit-category'            => 'ویرایش رده',
+'ajax-add-category-submit'      => 'افزودن',
+'ajax-confirm-ok'               => 'تأیید',
+'ajax-confirm-title'            => 'تأیید عمل',
+'ajax-confirm-prompt'           => 'شما می‌توانید خلاصهٔ ویرایش را در زیر وارد کنید.
 دکمه «ذخیره» را بزنید تا ویرایش‌تان ذخیره شود.',
-'ajax-confirm-save'            => 'ذخیره',
-'ajax-add-category-summary'    => 'افزودن رده «$1»',
-'ajax-remove-category-summary' => 'حذف رده «$1»',
-'ajax-confirm-actionsummary'   => 'عمل پیش رو:',
-'ajax-error-title'             => 'خطا',
-'ajax-error-dismiss'           => 'تأیید',
-'ajax-remove-category-error'   => 'امکان حذف این رده وجود نداشت.
+'ajax-confirm-save'             => 'ذخیره',
+'ajax-confirm-save-all'         => 'ذخیره کردن تمام تغییرات',
+'ajax-cancel'                   => 'لغو ویرایش‌ها',
+'ajax-add-category-summary'     => 'افزودن رده «$1»',
+'ajax-edit-category-summary'    => 'تغییر رده «$1» به «$2»',
+'ajax-remove-category-summary'  => 'حذف رده «$1»',
+'ajax-add-category-question'    => 'چرا می‌خواهید رده «$1» را بیفزایید؟',
+'ajax-edit-category-question'   => 'چرا می‌خواهید رده «$1» را به «$2» تغییر دهید؟',
+'ajax-remove-category-question' => 'چرا می‌خواهید رده «$1» را حذف کنید؟',
+'ajax-confirm-actionsummary'    => 'عمل پیش رو:',
+'ajax-error-title'              => 'خطا',
+'ajax-error-dismiss'            => 'تأیید',
+'ajax-remove-category-error'    => 'امکان حذف این رده وجود نداشت.
 این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
+'ajax-edit-category-error'      => 'امکان ویرایش این رده وجود نداشت.
+این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
+'ajax-category-already-present' => 'این صحفه از قبل در رده $1 قرار دارد',
 
 );
