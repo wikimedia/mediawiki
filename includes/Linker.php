@@ -768,7 +768,7 @@ class Linker {
 	 * @return String
 	 */
 	public static function makeBrokenImageLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '', $time = false ) {
-		global $wgEnableUploads, $wgUploadMissingFileUrl;
+		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		if ( ! $title instanceof Title ) {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
@@ -779,7 +779,7 @@ class Linker {
 		if ( $text == '' )
 			$text = htmlspecialchars( $title->getPrefixedText() );
 
-		if ( ( $wgUploadMissingFileUrl || $wgEnableUploads ) && !$currentExists ) {
+		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads ) && !$currentExists ) {
 			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
 
 			if ( $redir ) {
@@ -807,13 +807,15 @@ class Linker {
 	 * @return String: urlencoded URL
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
-		global $wgUploadMissingFileUrl;
+		global $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		$q = 'wpDestFile=' . $destFile->getPartialUrl();
 		if ( $query != '' )
 			$q .= '&' . $query;
 
 		if ( $wgUploadMissingFileUrl ) {
 			return wfAppendQuery( $wgUploadMissingFileUrl, $q );
+		} elseif( $wgUploadNavigationUrl ) {
+			return wfAppendQuery( $wgUploadNavigationUrl, $q );
 		} else {
 			$upload = SpecialPage::getTitleFor( 'Upload' );
 			return $upload->getLocalUrl( $q );
