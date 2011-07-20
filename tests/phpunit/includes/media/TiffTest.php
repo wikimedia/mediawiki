@@ -1,18 +1,28 @@
 <?php
 class TiffTest extends MediaWikiTestCase {
 
-	public function testInvalidFile() {
+	public function setUp() {
 		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		$this->showExif = $wgShowEXIF;
+		$wgShowEXIF = true;
+	}
+
+	public function tearDown() {
+		global $wgShowEXIF;
+		$wgShowEXIF = $this->showExif;
+	}
+
+	public function testInvalidFile() {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$tiff = new TiffHandler;
 		$res = $tiff->getMetadata( null, dirname( __FILE__ ) . '/README' );
 		$this->assertEquals( ExifBitmapHandler::BROKEN_FILE, $res );
 	}
+
 	public function testTiffFile() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$tiff = new TiffHandler;
