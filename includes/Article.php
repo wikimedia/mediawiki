@@ -609,10 +609,10 @@ class Article extends Page {
 	 * page views.
 	 */
 	protected function showCssOrJsPage() {
-		global $wgOut, $wgLang;
+		global $wgOut;
 
-		$dir = $wgLang->getDir();
-		$lang = $wgLang->getCode();
+		$dir = $this->getLang()->getDir();
+		$lang = $this->getLang()->getCode();
 
 		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
 			'clearyourcache' );
