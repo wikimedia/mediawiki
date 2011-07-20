@@ -432,7 +432,7 @@ class SpecialBlock extends SpecialPage {
 	 * @param $par String subpage parameter passed to setup, or data value from
 	 *     the HTMLForm
 	 * @param $request WebRequest optionally try and get data from a request too
-	 * @return void
+	 * @return array( User|string|null, Block::TYPE_ constant|null )
 	 */
 	public static function getTargetAndType( $par, WebRequest $request = null ){
 		$i = 0;
