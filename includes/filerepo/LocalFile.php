@@ -991,11 +991,12 @@ class LocalFile extends File {
 				$log->getRcComment(),
 				false
 			);
-			$nullRevision->insertOn( $dbw );
+			if (!is_null($nullRevision)) {
+				$nullRevision->insertOn( $dbw );
 
-			wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $user ) );
-			$article->updateRevisionOn( $dbw, $nullRevision );
-
+				wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $user ) );
+				$article->updateRevisionOn( $dbw, $nullRevision );
+			}
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
 			$descTitle->purgeSquid();
