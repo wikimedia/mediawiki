@@ -13,6 +13,9 @@ production.
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
   WantedPages::getQueryInfo. This may break older extensions.
+* The SkinTemplateBuildContentActionUrlsAfterSpecialPage,
+  SkinTemplateContentActions and SkinTemplateTabs hooks have been removed in
+  favor of SkinTemplateNavigation and SkinTemplateNavigation::SpecialPage
 * $wgUseCombinedLoginLink controls whether to output a combined
   login / create account link in the personal bar, or to output separate login
   and create account links.
