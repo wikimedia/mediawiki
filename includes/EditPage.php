@@ -2330,10 +2330,8 @@ HTML
 		 * filename of the button image (without path), the opening
 		 * tag, the closing tag, optionally a sample text that is
 		 * inserted between the two when no selection is highlighted
-		 * and an option to select which switches the automatic
-		 * selection of inserted text (default is true, see
-		 * mw-editbutton-image).  The tip text is shown when the user
-		 * moves the mouse over the button.
+		 * and.  The tip text is shown when the user moves the mouse
+		 * over the button.
 		 *
 		 * Also here: accesskeys (key), which are not used yet until
 		 * someone can figure out a way to make them work in
@@ -2394,7 +2392,6 @@ HTML
 				'sample' => wfMsg( 'image_sample' ),
 				'tip'    => wfMsg( 'image_tip' ),
 				'key'    => 'D',
-				'select' => true
 			) : false,
 			$imagesAvailable ? array(
 				'image'  => $wgLang->getImageFile( 'button-media' ),
@@ -2448,10 +2445,6 @@ HTML
 		foreach ( $toolarray as $tool ) {
 			if ( !$tool ) {
 				continue;
-			}
-
-			if( !isset( $tool['select'] ) ) {
-			  $tool['select'] = true;
 			}
 
 			$params = array(
