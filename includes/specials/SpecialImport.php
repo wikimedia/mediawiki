@@ -384,11 +384,13 @@ class ImportReporter {
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $title->getLatestRevID();
 			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleId(), $comment, true );
-			$nullRevision->insertOn( $dbw );
-			$article = new Article( $title );
-			# Update page record
-			$article->updateRevisionOn( $dbw, $nullRevision );
-			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest, $wgUser) );
+			if (!is_null($nullRevision)) {
+				$nullRevision->insertOn( $dbw );
+				$article = new Article( $title );
+				# Update page record
+				$article->updateRevisionOn( $dbw, $nullRevision );
+				wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest, $wgUser) );
+			}
 		} else {
 			$wgOut->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
 				wfMsgHtml( 'import-nonewrevisions' ) . "</li>\n" );
