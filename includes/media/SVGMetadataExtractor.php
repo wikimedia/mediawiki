@@ -177,7 +177,7 @@ class SVGReader {
 			return;
 		}
 		// TODO: find and store type of xml snippet. metadata['metadataType'] = "rdf"
-		if( method_exists( $this->reader, 'readInnerXML()' ) ) {
+		if( method_exists( $this->reader, 'readInnerXML' ) ) {
 			$this->metadata[$metafield] = trim( $this->reader->readInnerXML() );
 		} else {
 			throw new MWException( "The PHP XMLReader extension does not come with readInnerXML() method. Your libxml is probably out of date (need 2.6.20 or later)." );
