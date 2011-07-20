@@ -9,8 +9,6 @@
  *
  */
 
-# @todo FIXME: Inherit almost everything for now
-
 $digitTransformTable = array(
 	'0' => '०', # &#x0966;
 	'1' => '१', # &#x0967;
@@ -27,5 +25,4 @@ $digitTransformTable = array(
 $messages = array(
 # Recent changes
 'recentchanges' => 'नवि तबदीली',
-
 );
