@@ -51,13 +51,6 @@ class SpecialUnblock extends SpecialPage {
 		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $wgRequest );
 		$this->block = Block::newFromTarget( $this->target );
 
-		# bug 15810: blocked admins should have limited access here.  This won't allow sysops
-		# to remove autoblocks on themselves, but they should have ipblock-exempt anyway
-		$status = SpecialBlock::checkUnblockSelf( $this->target );
-		if ( $status !== true ) {
-			throw new ErrorPageError( 'badaccess', $status );
-		}
-
 		$wgOut->setPageTitle( wfMsg( 'unblockip' ) );
 		$wgOut->addModules( 'mediawiki.special' );
 
@@ -160,6 +153,14 @@ class SpecialUnblock extends SpecialPage {
 
 		if( !$block instanceof Block ){
 			return array( array( 'ipb_cant_unblock', $target ) );
+		}
+
+		# bug 15810: blocked admins should have limited access here.  This
+		# won't allow sysops to remove autoblocks on themselves, but they
+		# should have ipblock-exempt anyway
+		$status = SpecialBlock::checkUnblockSelf( $target );
+		if ( $status !== true ) {
+			throw new ErrorPageError( 'badaccess', $status );
 		}
 
 		# If the specified IP is a single address, and the block is a range block, don't
