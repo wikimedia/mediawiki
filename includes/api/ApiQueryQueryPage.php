@@ -73,7 +73,6 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	public function run( $resultPageSet = null ) {
 		global $wgUser;
@@ -178,6 +177,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
+			 array( 'specialpage-cantexecute' )
 		) );
 	}
 
