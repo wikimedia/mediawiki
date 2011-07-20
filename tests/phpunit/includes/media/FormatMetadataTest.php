@@ -1,8 +1,7 @@
 <?php
 class FormatMetadataTest extends MediaWikiTestCase {
 	public function testInvalidDate() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		
