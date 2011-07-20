@@ -141,53 +141,58 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	/**
 	 * @todo Implement testExists().
 	 */
+/*
 	public function testExists() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-
+*/
 	/**
 	 * @todo Implement testGetCanonicalNamespaces().
 	 */
+/*
 	public function testGetCanonicalNamespaces() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-
+*/
 	/**
 	 * @todo Implement testGetCanonicalName().
 	 */
+/*
 	public function testGetCanonicalName() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-
+*/
 	/**
 	 * @todo Implement testGetCanonicalIndex().
 	 */
+/*
 	public function testGetCanonicalIndex() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-
+*/
 	/**
 	 * @todo Implement testGetValidNamespaces().
 	 */
+/*
 	public function testGetValidNamespaces() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-
+*/
 	/**
 	 */
 	public function testCanTalk() {
