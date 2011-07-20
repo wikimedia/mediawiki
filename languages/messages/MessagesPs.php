@@ -924,7 +924,7 @@ $1',
 'powersearch-ns'                   => 'په نوم-تشيالونو کې پلټنه:',
 'powersearch-redir'                => 'مخ ګرځونې په لړليک کې اوډل',
 'powersearch-field'                => 'پلټنه د',
-'powersearch-togglelabel'          => 'کره کتل:',
+'powersearch-togglelabel'          => 'نښه کول:',
 'powersearch-toggleall'            => 'ټول',
 'powersearch-togglenone'           => 'هېڅ',
 'search-external'                  => 'باندنۍ پلټنه',
@@ -2360,5 +2360,14 @@ $5
 'htmlform-submit'              => 'سپارل',
 'htmlform-reset'               => 'بدلونونه ناکړل',
 'htmlform-selectorother-other' => 'بل',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'وېشنيزه ورګډول',
+'ajax-add-category-submit'     => 'ورګډول',
+'ajax-confirm-save'            => 'خوندي کول',
+'ajax-add-category-summary'    => 'د "$1" وېشنيزه ورګډول',
+'ajax-remove-category-summary' => 'د "$1" وېشنيزه ليرې کول',
+'ajax-error-title'             => 'ستونزه',
+'ajax-error-dismiss'           => 'ښه',
 
 );

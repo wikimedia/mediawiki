@@ -20,6 +20,7 @@
  * @author Diego Queiroz
  * @author Eduardo.mps
  * @author Everton137
+ * @author Francisco Leandro
  * @author GKnedo
  * @author Giro720
  * @author GoEThe
@@ -1098,12 +1099,12 @@ Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].
 Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
 'rev-suppressed-text-unhide'  => "Esta revisão desta página foi '''removida'''.
-Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].
 Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
 'rev-deleted-text-view'       => "A revisão desta página foi '''eliminada'''.
-Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-text-view'    => "A revisão desta página foi '''eliminada'''.
-Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-no-diff'         => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-no-diff'      => "Você não pode ver esta comparação porque uma das revisões foi '''eliminada'''.",

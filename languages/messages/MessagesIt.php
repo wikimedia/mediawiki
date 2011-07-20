@@ -3626,18 +3626,30 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 'sqlite-no-fts'  => '$1 senza la possibilità di ricerca completa nel testo',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Aggiungi categoria',
-'ajax-add-category-submit'     => 'Aggiungi',
-'ajax-confirm-title'           => "Conferma l'azione",
-'ajax-confirm-prompt'          => 'È possibile fornire di seguito un oggetto per la modifica. 
+'ajax-add-category'             => 'Aggiungi categoria',
+'ajax-remove-category'          => 'Elimina categoria',
+'ajax-edit-category'            => 'Modifica categoria',
+'ajax-add-category-submit'      => 'Aggiungi',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => "Conferma l'azione",
+'ajax-confirm-prompt'           => 'È possibile fornire di seguito un oggetto per la modifica. 
 Fare clic su "Salva" per salvare la modifica.',
-'ajax-confirm-save'            => 'Salva',
-'ajax-add-category-summary'    => 'Aggiungere categoria "$1"',
-'ajax-remove-category-summary' => 'Rimuovere categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Azione da intraprendere:',
-'ajax-error-title'             => 'Errore',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Non è stato possibile rimuovere questa categoria.
+'ajax-confirm-save'             => 'Salva',
+'ajax-confirm-save-all'         => 'Salva tutte le modifiche',
+'ajax-cancel'                   => 'Annulla le modifiche',
+'ajax-add-category-summary'     => 'Aggiungere categoria "$1"',
+'ajax-edit-category-summary'    => 'Modificata categoria "$1" in "$2"',
+'ajax-remove-category-summary'  => 'Rimuovere categoria "$1"',
+'ajax-add-category-question'    => 'Perché vuoi aggiungere la categoria "$1"?',
+'ajax-edit-category-question'   => 'Perché vuoi cambiare la categoria "$1" in "$2"?',
+'ajax-remove-category-question' => 'Perché vuoi eliminare la categoria "$1"?',
+'ajax-confirm-actionsummary'    => 'Azione da intraprendere:',
+'ajax-error-title'              => 'Errore',
+'ajax-error-dismiss'            => 'OK',
+'ajax-remove-category-error'    => 'Non è stato possibile rimuovere questa categoria.
 Ciò si verifica in genere quando la categoria è stata aggiunta alla pagina in un template.',
+'ajax-edit-category-error'      => 'Non è stato possibile modificare questa categoria.
+Di solito avviene quando la categoria è stata aggiunta alla pagina da un template.',
+'ajax-category-already-present' => 'Questa pagina appartiene già alla categoria $1',
 
 );

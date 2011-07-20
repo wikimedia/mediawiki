@@ -1891,8 +1891,8 @@ A peulo ess-ie d'[[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissiona
 # E-mail user
 'mailnologin'          => "A-i é pa l'adrëssa për mandé ël mëssagi",
 'mailnologintext'      => "A dev [[Special:UserLogin|rintré ant ël sistema]]
-e avej registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podej mandé dij messagi ëd pòsta eletrònica a j'àutri Utent.",
-'emailuser'            => "Mand-je un messagi eletrònich a st'Utent-sì",
+e avèj registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podèj mandé dij mëssagi ëd pòsta eletrònica a j'àutri Utent.",
+'emailuser'            => "Mandeje un mëssagi eletrònich a st'utent-sì",
 'emailpage'            => "Mand-je un messagi ëd pòsta eletrònica a st'utent-sì",
 'emailpagetext'        => "It peule dovré la forma ambelessì për mandé un messagi e-mail a st'utent-sì.
 L'adrëssa e-mail ch'it l'has butà an [[Special:Preferences|Ij sò gust]] a sarà butò ant l'adrëssa \"From\" ëd toa e-mail, parèj ël ricevent a podrà arsponde diretament a ti.",

@@ -352,7 +352,7 @@ $messages = array(
 'vector-action-move'             => '移動',
 'vector-action-protect'          => '保護',
 'vector-action-undelete'         => '恢復被刪頁面',
-'vector-action-unprotect'        => '解除保護',
+'vector-action-unprotect'        => '更改保護',
 'vector-simplesearch-preference' => '啟用加強搜尋建議（僅限 Vector 外觀）',
 'vector-view-create'             => '建立',
 'vector-view-edit'               => '編輯',
@@ -389,8 +389,8 @@ $messages = array(
 'protect'           => '保護',
 'protect_change'    => '更改',
 'protectthispage'   => '保護本頁',
-'unprotect'         => '解除保護',
-'unprotectthispage' => '解除此頁保護',
+'unprotect'         => '更改保護',
+'unprotectthispage' => '更改此頁保護',
 'newpage'           => '新頁面',
 'talkpage'          => '討論本頁',
 'talkpagelinktext'  => '對話',
@@ -814,7 +814,7 @@ $2
 'userpage-userdoesnotexist-view'   => '未曾建立用戶名「$1」。',
 'blocked-notice-logextract'        => '這位用戶現正被封鎖。
 下面有最近的封鎖紀錄以供參考：',
-'clearyourcache'                   => "'''注意：在儲存以後，您必須清除瀏覽器的快取才能看到所作出的改變。'''
+'clearyourcache'                   => "''注意'''：在儲存以後，您必須清除瀏覽器的快取才能看到所作出的改變。
 '''Mozilla / Firefox / Safari''': 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''（在Mac上按下''Command-R''）；
 '''Konqueror''': 只需點擊 ''重新整理''或按下''F5''；
 '''Opera''': 在 ''工具→設定'' 中完整地清除它們的快取，或按下''Alt-F5''；
@@ -1182,12 +1182,13 @@ $1",
 'searchdisabled'                   => '{{SITENAME}}由於性能方面的原因，全文搜索已被暫時停用。您可以暫時透過Google搜索。請留意他們的索引可能會過時。',
 
 # Quickbar
-'qbsettings'               => '快速導航條',
-'qbsettings-none'          => '無',
-'qbsettings-fixedleft'     => '左側固定',
-'qbsettings-fixedright'    => '右側固定',
-'qbsettings-floatingleft'  => '左側漂移',
-'qbsettings-floatingright' => '右側漂移',
+'qbsettings'                => '快速導航條',
+'qbsettings-none'           => '無',
+'qbsettings-fixedleft'      => '左側固定',
+'qbsettings-fixedright'     => '右側固定',
+'qbsettings-floatingleft'   => '左側漂移',
+'qbsettings-floatingright'  => '右側漂移',
+'qbsettings-directionality' => '固定，取決於你的語言及腳本的方向',
 
 # Preferences page
 'preferences'                   => '偏好設定',
@@ -1414,10 +1415,11 @@ $1",
 'right-sendemail'             => '發電子郵件給其他用戶',
 
 # User rights log
-'rightslog'      => '用戶權限日誌',
-'rightslogtext'  => '以下記錄了用戶權限的更改記錄。',
-'rightslogentry' => '將 $1 的權限從 $2 改為 $3',
-'rightsnone'     => '無',
+'rightslog'                  => '用戶權限日誌',
+'rightslogtext'              => '以下記錄了用戶權限的更改記錄。',
+'rightslogentry'             => '將 $1 的權限從 $2 改為 $3',
+'rightslogentry-autopromote' => '自動由$2晉升至$3',
+'rightsnone'                 => '無',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => '閱讀這個頁面',
@@ -2051,6 +2053,7 @@ Template:消除歧義',
 'watchnologin'         => '未登入',
 'watchnologintext'     => '您必須先[[Special:UserLogin|登入]]
 才能更改您的監視列表',
+'addwatch'             => '加至監視列表',
 'addedwatchtext'       => "頁面「[[:$1]]」已經被加入到您的[[Special:Watchlist|監視清單]]中。將來有關此頁面及其討論頁的任何修改將會在那裡列出，而且還會在[[Special:RecentChanges|近期變動]]中以'''粗體'''形式列出以使起更容易識別。",
 'removedwatchtext'     => '[[:$1]]已經從[[Special:Watchlist|您的監視頁面]]中移除。',
 'watch'                => '監視',
@@ -2323,7 +2326,7 @@ $1',
 'nolinkshere-ns'           => '在所選的名字空間內沒有頁面連結到[[:$1]]。',
 'isredirect'               => '重定向頁',
 'istemplate'               => '包含',
-'isimage'                  => '檔案連結',
+'isimage'                  => '文件連結',
 'whatlinkshere-prev'       => '前$1個',
 'whatlinkshere-next'       => '後$1個',
 'whatlinkshere-links'      => '← 連入',
