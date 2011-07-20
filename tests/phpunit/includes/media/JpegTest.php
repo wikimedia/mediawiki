@@ -1,9 +1,10 @@
 <?php
+wfDl('exif');
+
 class JpegTest extends MediaWikiTestCase {
 
 	public function testInvalidFile() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$jpeg = new JpegHandler;
@@ -11,8 +12,7 @@ class JpegTest extends MediaWikiTestCase {
 		$this->assertEquals( ExifBitmapHandler::BROKEN_FILE, $res );
 	}
 	public function testTiffFile() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$h = new JpegHandler;

@@ -1,9 +1,9 @@
 <?php
+
 class ExifBitmapTest extends MediaWikiTestCase {
 
 	public function testIsOldBroken() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$handler = new ExifBitmapHandler;
@@ -11,8 +11,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		$this->assertEquals( ExifBitmapHandler::METADATA_COMPATIBLE, $res );
 	}
 	public function testIsBrokenFile() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$handler = new ExifBitmapHandler;
@@ -20,8 +19,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		$this->assertEquals( ExifBitmapHandler::METADATA_GOOD, $res );
 	}
 	public function testIsInvalid() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$handler = new ExifBitmapHandler;
@@ -29,8 +27,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		$this->assertEquals( ExifBitmapHandler::METADATA_BAD, $res );
 	}
 	public function testGoodMetadata() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$handler = new ExifBitmapHandler;
@@ -39,8 +36,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		$this->assertEquals( ExifBitmapHandler::METADATA_GOOD, $res );
 	}
 	public function testIsOldGood() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$handler = new ExifBitmapHandler;
@@ -51,8 +47,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 	// Handle metadata from paged tiff handler (gotten via instant commons)
 	// gracefully.
 	public function testPagedTiffHandledGracefully() {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 		$handler = new ExifBitmapHandler;
