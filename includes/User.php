@@ -1339,7 +1339,17 @@ class User {
 
 			foreach( (array)$bases as $base ) {
 				# Make hostname
-				$host = "$ipReversed.$base";
+				# If we have an access key, use that too (ProjectHoneypot, etc.)
+				if( is_array( $base ) ) {
+					if( count( $base ) >= 2 ) {
+						# Access key is 1, base URL is 0
+						$host = "{$base[1]}.$ipReversed.{$base[0]}";
+					} else {
+						$host = "$ipReversed.{$base[0]}";
+					}
+				} else {
+					$host = "$ipReversed.$base";
+				}
 
 				# Send query
 				$ipList = gethostbynamel( $host );

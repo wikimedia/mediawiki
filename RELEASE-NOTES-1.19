@@ -15,6 +15,9 @@ production.
 === New features in 1.19 ===
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki
   cache is used.
+* $wgDnsBlacklistUrls now accepts an array with url and key as the
+  elements to work with DNSBLs that require keys, such as
+  Project Honeypot.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
