@@ -1167,16 +1167,11 @@ class Title {
 	 * Determines if $user is unable to edit this page because it has been protected
 	 * by $wgNamespaceProtection.
 	 *
-	 * @param $user User object, $wgUser will be used if not passed
+	 * @param $user User object to check permissions
 	 * @return Bool
 	 */
-	public function isNamespaceProtected( User $user = null ) {
+	public function isNamespaceProtected( User $user ) {
 		global $wgNamespaceProtection;
-
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
 
 		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
 			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
