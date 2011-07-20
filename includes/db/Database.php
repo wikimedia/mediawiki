@@ -324,7 +324,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return The previous table prefix.
 	 */
 	function tablePrefix( $prefix = null ) {
-		return wfSetVar( $this->mTablePrefix, $prefix, true );
+		return wfSetVar( $this->mTablePrefix, $prefix );
 	}
 
 	/**
