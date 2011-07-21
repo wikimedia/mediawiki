@@ -376,11 +376,6 @@ $wgAutoloadLocalClasses = array(
 	'TitleDependency' => 'includes/cache/CacheDependency.php',
 	'TitleListDependency' => 'includes/cache/CacheDependency.php',
 
-	# includes/conf
-	'Conf' => 'includes/conf/Conf.php',
-	'DatabaseConf' => 'includes/conf/DatabaseConf.php',
-	'DefaultSettings' => 'includes/conf/DefaultSettings.php',
-
 	# includes/db
 	'Blob' => 'includes/db/DatabaseUtility.php',
 	'ChronologyProtector' => 'includes/db/LBFactory.php',
