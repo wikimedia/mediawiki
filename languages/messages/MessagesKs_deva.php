@@ -25,4 +25,5 @@ $digitTransformTable = array(
 $messages = array(
 # Recent changes
 'recentchanges' => 'नवि तबदीली',
+
 );

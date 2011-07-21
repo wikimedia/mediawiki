@@ -2043,6 +2043,36 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'enotif_lastvisited'           => 'আপোনাৰ শেষ পৰিদৰ্শনৰ পিছত হোৱা সকলো সালসলনিৰ বাবে $1 চাওক |',
 'enotif_lastdiff'              => 'এই পৰিৱৰ্তনটো চাবৰ বাবে $1 চাওক |',
 'enotif_anon_editor'           => 'বেনামী সদস্য $1',
+'enotif_body'                  => 'প্ৰিয় $WATCHINGUSERNAME,
+
+
+{{SITENAME}}ৰ $PAGETITLE শিৰোনামাৰ পৃষ্ঠাটি $PAGEEDITDATE তাৰিখত $PAGEEDITORএ $CHANGEDORCREATED কৰিছে, সাম্প্ৰতিক সংশোধনৰ বাবে $PAGETITLE_URL চাওক |
+
+$NEWPAGE
+
+সম্পাদকৰ সাৰাংশ: $PAGESUMMARY $PAGEMINOREDIT
+
+সম্পাদকজনৰ লগত যোগাযোগ:
+মেইল: $PAGEEDITOR_EMAIL
+ৱিকি: $PAGEEDITOR_WIKI
+
+আপুনি এই পৃষ্ঠাখন নোচোৱালৈকে আন সালসলনিৰ কোনো জাননী দিয়া নহ’ব |
+আপুনি আপোনাৰ লক্ষ্য-তালিকাৰ পৃষ্ঠাবোৰৰ জাননী ফ্লেগ পূৰ্বৰ অৱস্থালৈও ঘূৰাই নিব পাৰে |
+
+আপোনাৰ {{SITENAME}} জাননী ব্যৱস্থা
+
+--
+আপোনাৰ ই-মেইল জাননী ছেটিং সলনি কৰিবলৈ এইখন চাওক
+{{fullurl:{{#special:Preferences}}}}
+
+আপোনাৰ লক্ষ্য-তালিকাৰ ছেটিং সলনি কৰিবলৈ এইখন চাওক
+{{fullurl:{{#special:EditWatchlist}}}}
+
+আপোনাৰ লক্ষ্য-তালিকাৰ পৰা পৃষ্ঠা বিলোপ কৰিবলৈ এইখন চাওক
+$UNWATCHURL
+
+প্ৰতিক্ৰিয়া আৰু অধিক সহযোগিতাৰ বাবে:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'পৃষ্ঠা বিলোপ কৰক',
@@ -2470,6 +2500,9 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'movereason'                   => 'কাৰণ:',
 'revertmove'                   => 'আগৰ অৱ্স্থালৈ ঘুৰি যাওক',
 'delete_and_move'              => 'বিলোপ আৰু স্থানান্তৰ কৰক',
+'delete_and_move_text'         => '== বিলোপণ আৱশ্যক ==
+লক্ষ্য পৃষ্ঠা "[[:$1]]" ইতিমেধ্যে আছেই |
+আপুনি স্থানান্তৰ কৰিবলৈ এইখন বিলোপ কৰিব খুজিছে নেকি ?',
 'delete_and_move_confirm'      => 'হয়, পৃষ্ঠাখন বিলোপ কৰক',
 'delete_and_move_reason'       => 'স্থানান্তৰৰ স্বাৰ্থত বিলোপ কৰা হৈছে',
 'selfmove'                     => 'উত্‍স আৰু লক্ষ্য শিৰোনামা একেই;
@@ -2511,11 +2544,12 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'allmessages-filter-submit'     => 'যাওঁক',
 
 # Thumbnails
-'thumbnail-more'          => 'ডাঙৰকৈ চাওক',
-'filemissing'             => 'ফাইল বিচাৰি পোৱা নগ’ল',
-'thumbnail_error'         => 'থাম্বনেইল বনাব অসুবিধা হৈছে: $1',
-'thumbnail_image-type'    => 'চিত্ৰৰ ধৰণ সমৰ্থিত নহয় |',
-'thumbnail_image-missing' => 'ফাইল সম্ভৱতঃ নাই: $1',
+'thumbnail-more'           => 'ডাঙৰকৈ চাওক',
+'filemissing'              => 'ফাইল বিচাৰি পোৱা নগ’ল',
+'thumbnail_error'          => 'থাম্বনেইল বনাব অসুবিধা হৈছে: $1',
+'thumbnail_dest_directory' => 'গন্তব্য ডিৰেক্টৰী সৃষ্টি কৰিব পৰা নগ’ল',
+'thumbnail_image-type'     => 'চিত্ৰৰ ধৰণ সমৰ্থিত নহয় |',
+'thumbnail_image-missing'  => 'ফাইল সম্ভৱতঃ নাই: $1',
 
 # Special:Import
 'import'                     => 'পৃষ্ঠা আমদানি কৰক',
@@ -2769,6 +2803,42 @@ $1',
 'monthsall'     => 'সকলো',
 'limitall'      => 'সকলোবোৰ',
 
+# E-mail address confirmation
+'confirmemail_needlogin'    => 'আপোনাৰ ই-মেইল ঠিকনা নিশ্চিতকৰণৰ বাবে $1 কৰক |',
+'confirmemail_success'      => 'আপোনাৰ ই-মেইল ঠিকনা নিশ্চিতকৰণ কৰা হৈছে |
+আপুনি এতিয়া [[Special:UserLogin|log in]] কৰক আৰু ৱিকি উপভোগ কৰক |',
+'confirmemail_loggedin'     => 'আপোনাৰ ই-মেইল ঠিকনা নিশ্চিত কৰা হৈছে |',
+'confirmemail_error'        => 'আপোনাৰ নিশ্চিতকৰণ সংৰক্ষণ কৰাত কিছু সমস্যা হৈছে |',
+'confirmemail_subject'      => '{{SITENAME}} ই-মেইল ঠিকনা নিশ্চিতকৰণ',
+'confirmemail_body'         => 'কোনোবাই (সম্ভৱতঃ আপুনি) আই.পি. ঠিকনা $1ৰ পৰা এইটো ই-মেইল ঠিকনা ব্যৱহাৰ কৰি {{SITENAME}}ত
+এটা একাউণ্ট "$2" পঞ্জীয়ন কৰিছে |
+
+এই একাউণ্ট আপোনাৰ হয়নে নহয় নিশ্চিত কৰাৰ বাবে আৰু {{SITENAME}}ত ই-মেইল বৈশিষ্টসমূহ সক্ৰিয় কৰাৰ বাবে
+আপোনাৰ ব্ৰাউজাৰত এই সংযোগটো খুলক:
+
+$3
+
+যদি আপুনি একাউণ্টটো পঞ্জীয়ন কৰা *নাই*, তেন্তে ই-মেইল ঠিকনা নিশ্চিতকৰণ বাতিলৰ বাবে
+এই সংযোগটো চাওক:
+
+$5
+
+এই নিশ্চিতকৰণ সংকেতৰ ম্যাদ $4ত উকলিব |',
+'confirmemail_body_changed' => 'কোনোবাই (সম্ভৱতঃ আপুনি) আই.পি. ঠিকনা $1ৰ পৰা {{SITENAME}}ত
+একাউণ্ট "$2"ৰ ই-মেইল ঠিকনা সলনি  কৰিছে |
+
+এই একাউণ্ট আপোনাৰ হয়নে নহয় নিশ্চিত কৰাৰ বাবে আৰু {{SITENAME}}ত ই-মেইল বৈশিষ্টসমূহ পুনৰ সক্ৰিয় কৰাৰ বাবে
+আপোনাৰ ব্ৰাউজাৰত এই সংযোগটো খুলক:
+
+$3
+
+যদি একাউণ্টটো আপোনাৰ *নহয়*, তেন্তে ই-মেইল ঠিকনা নিশ্চিতকৰণ বাতিলৰ বাবে
+এই সংযোগটো চাওক:
+
+$5
+
+এই নিশ্চিতকৰণ সংকেতৰ ম্যাদ $4ত উকলিব |',
+
 # Delete conflict
 'recreate' => 'পুনৰ সৃষ্টি কৰক',
 
@@ -2906,12 +2976,16 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'htmlform-selectorother-other' => 'অন্য',
 
 # Add categories per AJAX
-'ajax-add-category'         => 'শ্ৰেণী সংযুগ কৰক',
-'ajax-add-category-submit'  => 'যোগ',
-'ajax-confirm-title'        => 'কায্য নিশ্চিত কৰক:',
-'ajax-confirm-save'         => 'সাঁচি থওঁক',
-'ajax-add-category-summary' => 'শ্ৰেণী "$1" সংযুগ কৰক',
-'ajax-error-title'          => 'ভুল',
-'ajax-error-dismiss'        => "অ'কে",
+'ajax-add-category'             => 'শ্ৰেণী সংযুগ কৰক',
+'ajax-add-category-submit'      => 'যোগ',
+'ajax-confirm-title'            => 'কায্য নিশ্চিত কৰক:',
+'ajax-confirm-save'             => 'সাঁচি থওঁক',
+'ajax-add-category-summary'     => 'শ্ৰেণী "$1" সংযুগ কৰক',
+'ajax-add-category-question'    => 'আপুনি "$1" শ্ৰেণীটো কিয় যোগ কৰিব খুজিছে ?',
+'ajax-edit-category-question'   => 'আপুনি "$1" শ্ৰেণীটো "$2"লৈ কিয় সলাব খুজিছে ?',
+'ajax-remove-category-question' => 'আপুনি "$1" শ্ৰেণীটো কিয় আঁতৰাব খুজিছে ?',
+'ajax-error-title'              => 'ভুল',
+'ajax-error-dismiss'            => "অ'কে",
+'ajax-category-already-present' => 'এই পৃষ্ঠাখন ইতিমধ্যে $1 শ্ৰেণীত আছে',
 
 );

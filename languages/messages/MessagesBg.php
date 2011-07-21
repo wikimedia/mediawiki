@@ -3206,6 +3206,8 @@ $1',
 'exif-dc-date'   => 'Дата(и)',
 'exif-dc-rights' => 'Права',
 
+'exif-isospeedratings-overflow' => 'По-голяма от 65535',
+
 'exif-iimcategory-ace' => 'Изкуствa, култура и забавление',
 'exif-iimcategory-clj' => 'Престъпност и право',
 'exif-iimcategory-dis' => 'Бедствия и аварии',

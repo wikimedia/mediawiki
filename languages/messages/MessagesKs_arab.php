@@ -31,4 +31,5 @@ $separatorTransformTable = array(
 $messages = array(
 # Recent changes
 'recentchanges' => 'نَوِ تبدیلی',
+
 );
