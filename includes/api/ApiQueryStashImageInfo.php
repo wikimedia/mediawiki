@@ -45,6 +45,11 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			$this->dieUsage( "One of filekey or sessionkey must be supplied", 'nofilekey');
 		}
 
+		// Alias sessionkey to filekey, but give an existing filekey precedence.
+		if ( !$params['filekey'] && $params['sessionkey'] ) {
+			$params['filekey'] = $params['sessionkey'];
+		}
+
 		try {
 			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 
