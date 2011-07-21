@@ -322,7 +322,7 @@ abstract class Skin extends ContextSource {
 			|| !$this->getUser()->matchEditToken(
 				$this->getRequest()->getVal( 'wpEditToken' ) )
 		) {
-			#return false;
+			return false;
 		}
 		if ( !$this->getTitle()->isJsSubpage() && !$this->getTitle()->isCssSubpage() ) {
 			return false;
