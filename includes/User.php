@@ -2673,7 +2673,7 @@ class User {
 	 * Set this user's options from an encoded string
 	 * @param $str String Encoded options to import
 	 */
-	private function decodeOptions( $str ) {
+	public function decodeOptions( $str ) {
 		if( !$str )
 			return;
 
