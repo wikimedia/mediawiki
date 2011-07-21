@@ -2628,8 +2628,7 @@ $templates
 
 		// Add user JS if enabled
 		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() ) {
-			$action = $this->getRequest()->getVal( 'action', 'view' );
-			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $sk->userCanPreview( $action ) ) {
+			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $sk->userCanPreview() ) {
 				# XXX: additional security check/prompt?
 				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {

@@ -1296,10 +1296,8 @@ class SkinTemplate extends Skin {
 		global $wgRequest, $wgJsMimeType;
 		wfProfileIn( __METHOD__ );
 
-		$action = $wgRequest->getVal( 'action', 'view' );
-
 		if( $allowUserJs && $this->loggedin ) {
-			if( $this->getTitle()->isJsSubpage() and $this->userCanPreview( $action ) ) {
+			if( $this->getTitle()->isJsSubpage() and $this->userCanPreview() ) {
 				# XXX: additional security check/prompt?
 				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText( 'wpTextbox1' ) . ' /*]]>*/';
 			} else {

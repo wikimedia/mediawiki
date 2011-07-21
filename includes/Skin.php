@@ -314,25 +314,21 @@ abstract class Skin extends ContextSource {
 	 * passed back with the preview request, we won't render
 	 * the code.
 	 *
-	 * @param $action String: 'edit', 'submit' etc.
 	 * @return bool
 	 */
-	public function userCanPreview( $action ) {
-		if ( $action != 'submit' ) {
-			return false;
+	public function userCanPreview() {
+		if ( $this->getRequest()->getVal( 'action' ) != 'submit'
+			|| !$this->getRequest()->wasPosted()
+			|| !$this->getUser()->matchEditToken(
+				$this->getRequest()->getVal( 'wpEditToken' ) )
+		) {
+			#return false;
 		}
-		if ( !$this->getRequest()->wasPosted() ) {
-			return false;
-		}
-		if ( !$this->getTitle()->userCanEditCssSubpage() ) {
-			return false;
-		}
-		if ( !$this->getTitle()->userCanEditJsSubpage() ) {
+		if ( !$this->getTitle()->isJsSubpage() && !$this->getTitle()->isCssSubpage() ) {
 			return false;
 		}
 
-		return $this->getUser()->matchEditToken(
-			$this->getRequest()->getVal( 'wpEditToken' ) );
+		return !count( $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getUser() ) );
 	}
 
 	/**
@@ -386,7 +382,7 @@ abstract class Skin extends ContextSource {
 
 		// Per-user custom styles
 		if ( $wgAllowUserCss ) {
-			if ( $this->getTitle()->isCssSubpage() && $this->userCanPreview( $this->getRequest()->getVal( 'action' ) ) ) {
+			if ( $this->getTitle()->isCssSubpage() && $this->userCanPreview() ) {
 				// @todo FIXME: Properly escape the cdata!
 				$out->addInlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
 			} else {
