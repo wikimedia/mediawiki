@@ -183,14 +183,10 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ . '-stuff' );
 
 		wfProfileIn( __METHOD__ . '-stuff-head' );
-		if ( $this->useHeadElement ) {
-			$pagecss = $this->setupPageCss();
-			if( $pagecss )
-				$out->addInlineStyle( $pagecss );
-		} else {
+		if ( !$this->useHeadElement ) {
 			$this->setupUserCss( $out );
 
-			$tpl->set( 'pagecss', $this->setupPageCss() );
+			$tpl->set( 'pagecss', false );
 			$tpl->set( 'usercss', false );
 
 			$this->userjs = $this->userjsprev = false;
@@ -1305,20 +1301,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Code for extensions to hook into to provide per-page CSS, see
-	 * extensions/PageCSS/PageCSS.php for an implementation of this.
-	 *
-	 * @private
-	 */
-	function setupPageCss() {
-		wfProfileIn( __METHOD__ );
-		$out = false;
-		wfRunHooks( 'SkinTemplateSetupPageCss', array( &$out ) );
-		wfProfileOut( __METHOD__ );
-		return $out;
 	}
 
 	public function commonPrintStylesheet() {

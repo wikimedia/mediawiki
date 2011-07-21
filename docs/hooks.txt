@@ -1563,9 +1563,6 @@ starts page output
 $sktemplate: SkinTemplate object
 $res: set to true to prevent active tabs
 
-'SkinTemplateSetupPageCss': use this to provide per-page CSS
-$out: Css to return
-
 'SkinTemplateTabAction': Override SkinTemplate::tabAction().
 You can either create your own array, or alter the parameters for
 the normal one.

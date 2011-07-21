@@ -11,6 +11,7 @@ MediaWiki 1.19 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.19 ===
+* Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
 
 === New features in 1.19 ===
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki
