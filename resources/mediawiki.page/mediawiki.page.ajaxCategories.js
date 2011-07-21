@@ -44,7 +44,7 @@ mw.ajaxCategories = function( options ) {
 
 	var _saveAllButton;
 	var _cancelAllButton;
-	var _multiEdit = mw.util.inArray( mw.config.get( 'wgUserGroups' ), 'user' );
+	var _multiEdit = $.inArray( 'user', mw.config.get( 'wgUserGroups' ) ) !== -1;
 
 	/**
 	 * Helper function for $.fn.suggestion
