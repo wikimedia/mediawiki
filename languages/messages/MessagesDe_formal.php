@@ -13,6 +13,7 @@
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Kghbln
  * @author Leithian
+ * @author Merlissimo
  * @author MichaelFrey
  * @author Michawiki
  * @author Pill
@@ -306,6 +307,7 @@ Stellen Sie sicher, dass die Versionsgeschichte einer Seite historisch korrekt i
 'searchsubtitle'        => 'Ihre Suchanfrage: „[[:$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid' => 'Ihre Suchanfrage: „$1“.',
 'toomanymatches'        => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuchen Sie eine andere Abfrage.',
+'searchmenu-new'        => "'''Erstellen Sie die Seite „[[:$1]]“ in diesem Wiki.'''",
 'search-suggest'        => 'Meinten Sie „$1“?',
 'nonefound'             => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setzen Sie ''all:'' vor Ihren Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
 'search-nonefound'      => 'Für Ihre Suchanfrage wurden keine Ergebnisse gefunden.',

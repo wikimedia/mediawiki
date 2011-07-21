@@ -3633,11 +3633,16 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 
 # Add categories per AJAX
 'ajax-add-category'            => 'Ouzhpennañ ur rummad',
+'ajax-remove-category'         => 'Tennañ ar rummad kuit',
+'ajax-edit-category'           => 'Kemmañ ur rummad',
 'ajax-add-category-submit'     => 'Ouzhpennañ',
+'ajax-confirm-ok'              => 'Mat eo',
 'ajax-confirm-title'           => 'Kadarnaat an oberiadenn',
 'ajax-confirm-prompt'          => 'Gallout a rit merkañ a-is un diverrañ eus ar c\'hemmoù degaset.
 Klikit war "Enrollañ da enrollañ ho degasadenn.',
 'ajax-confirm-save'            => 'Enrollañ',
+'ajax-confirm-save-all'        => 'Enrollañ an holl gemmoù',
+'ajax-cancel'                  => "Nullañ ar c'hemmoù",
 'ajax-add-category-summary'    => 'Ouzhpennañ ar rummad "$1"',
 'ajax-remove-category-summary' => 'Diverkañ ar rummad "$1"',
 'ajax-confirm-actionsummary'   => 'Tra da ober :',
