@@ -157,7 +157,6 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $this->getTitle()->getPrefixedDBkey();
-		$this->thisurl = $this->getTitle()->getPrefixedURL();
 		$query = array();
 		if ( !$wgRequest->wasPosted() ) {
 			$query = $wgRequest->getValues();
@@ -165,7 +164,7 @@ class SkinTemplate extends Skin {
 			unset( $query['returnto'] );
 			unset( $query['returntoquery'] );
 		}
-		$this->thisquery = wfUrlencode( wfArrayToCGI( $query ) );
+		$this->thisquery = wfArrayToCGI( $query );
 		$this->loggedin = $wgUser->isLoggedIn();
 		$this->iscontent = ( $this->getTitle()->getNamespace() != NS_SPECIAL );
 		$this->iseditable = ( $this->iscontent and !( $action == 'edit' or $action == 'submit' ) );
@@ -565,27 +564,13 @@ class SkinTemplate extends Skin {
 		/* set up the default links for the personal toolbar */
 		$personal_urls = array();
 		
-		// Get the returnto and returntoquery parameters from the query string
-		// or fall back on $this->thisurl or $this->thisquery
-		// We can't use getVal()'s default value feature here because
-		// stuff from $wgRequest needs to be escaped, but thisurl and thisquery
-		// are already escaped.
-		$page = $wgRequest->getVal( 'returnto' );
-		if ( !is_null( $page ) ) {
-			$page = wfUrlencode( $page );
-		} else {
-			$page = $this->thisurl;
-		}
-		$query = $wgRequest->getVal( 'returntoquery' );
-		if ( !is_null( $query ) ) {
-			$query = wfUrlencode( $query );
-		} else {
-			$query = $this->thisquery;
-		}
-		$returnto = "returnto=$page";
+		$page = $wgRequest->getVal( 'returnto', $this->thispage );
+		$query = $wgRequest->getVal( 'returntoquery', $this->thisquery );
+		$a = array( 'returnto' => $page );
 		if( $query != '' ) {
-			$returnto .= "&returntoquery=$query";
+			$a['returntoquery'] = $query;
 		}
+		$returnto = wfArrayToCGI( $a );
 		if( $this->loggedin ) {
 			$personal_urls['userpage'] = array(
 				'text' => $this->username,
