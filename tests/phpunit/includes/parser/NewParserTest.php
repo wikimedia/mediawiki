@@ -551,7 +551,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 */
 	function testFuzzTests() {
 		
-		$this->markTestIncomplete( "Somebody is serializing PDO objects, that's a no-no" );
+		$this->markTestIncomplete( 'Breaks tesla due to memory restrictions' );
 		
 		global $wgParserTestFiles;
 		
@@ -564,6 +564,8 @@ class NewParserTest extends MediaWikiTestCase {
 		$dict = $this->getFuzzInput( $files );
 		$dictSize = strlen( $dict );
 		$logMaxLength = log( $this->maxFuzzTestLength );
+		
+		ini_set( 'memory_limit', $this->memoryLimit * 1048576 );
 
 		$user = new User;
 		$opts = ParserOptions::newFromUser( $user );
