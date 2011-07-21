@@ -97,6 +97,11 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			}
 		}
 		$result->addValue( array( 'query' ), $this->getModuleName(), $r );
+		
+		if ( $qp->isCached() && !$qp->isCacheable() ) {
+			// Disabled query page, don't run the query
+			return;
+		}
 
 		$res = $qp->doQuery( $params['limit'] + 1, $params['offset'] );
 		$count = 0;
