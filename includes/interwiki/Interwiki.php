@@ -201,7 +201,7 @@ class Interwiki {
 	/**
 	 * Fetch all interwiki prefixes from interwiki cache
 	 *
-	 * @param $local If set, limits output to local/non-local interwikis
+	 * @param $local If not null, limits output to local/non-local interwikis
 	 * @return Array List of prefixes
 	 * @since 1.19
 	 */
@@ -245,7 +245,7 @@ class Interwiki {
 
 				list( $iw_local, $iw_url ) = explode( ' ', $row );
 
-				if ( isset( $local ) && $local != $iw_local ) {
+				if ( $local !== null && $local != $iw_local ) {
 					continue;
 				}
 
@@ -265,7 +265,7 @@ class Interwiki {
 	/**
 	 * Fetch all interwiki prefixes from DB
 	 *
-	 * @param $local If set, limits output to local/non-local interwikis
+	 * @param $local If not null, limits output to local/non-local interwikis
 	 * @return Array List of prefixes
 	 * @since 1.19
 	 */
@@ -274,7 +274,7 @@ class Interwiki {
 
 		$where = array();
 
-		if ( isset( $local ) ) {
+		if ( $local !== null ) {
 			if ( $local == 1 ) {
 				$where['iw_local'] = 1;
 			} elseif ( $local == 0 ) {
@@ -282,10 +282,15 @@ class Interwiki {
 			}
 		}
 
-		return $db->select( 'interwiki',
+		$res = $db->select( 'interwiki',
 			array( 'iw_prefix', 'iw_url', 'iw_api', 'iw_wikiid', 'iw_local', 'iw_trans' ),
 			$where, __METHOD__, array( 'ORDER BY' => 'iw_prefix' )
 		);
+		$retval = array();
+		foreach ( $res as $row ) {
+			$retval[] = (array)$row;
+		}
+		return $retval;
 	}
 
 	/**
@@ -295,7 +300,7 @@ class Interwiki {
 	 * @return Array List of prefixes
 	 * @since 1.19
 	 */
-	public static function getAllPrefixes( $local ) {
+	public static function getAllPrefixes( $local = null ) {
 		global $wgInterwikiCache;
 
 		if ( $wgInterwikiCache ) {
