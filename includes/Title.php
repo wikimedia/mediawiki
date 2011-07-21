@@ -1400,8 +1400,6 @@ class Title {
 	private function checkCSSandJSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		# Protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
-		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssSubpage()
-		#      and $this->userCanEditJsSubpage() from working
 		# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
 		if ( $action != 'patrol' && !$user->isAllowed( 'editusercssjs' )
 				&& !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
@@ -2006,11 +2004,12 @@ class Title {
 	 * Protect css subpages of user pages: can $wgUser edit
 	 * this page?
 	 *
+	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
 	 * @return Bool
-	 * @todo XXX: this might be better using restrictions
 	 */
 	public function userCanEditCssSubpage() {
 		global $wgUser;
+		wfDeprecated( __METHOD__ );
 		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'editusercss' ) )
 			|| preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
 	}
@@ -2019,11 +2018,12 @@ class Title {
 	 * Protect js subpages of user pages: can $wgUser edit
 	 * this page?
 	 *
+	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
 	 * @return Bool
-	 * @todo XXX: this might be better using restrictions
 	 */
 	public function userCanEditJsSubpage() {
 		global $wgUser;
+		wfDeprecated( __METHOD__ );
 		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
 			   || preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
 	}
