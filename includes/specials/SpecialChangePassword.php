@@ -207,7 +207,7 @@ class SpecialChangePassword extends SpecialPage {
 	protected function attemptReset( $newpass, $retype ) {
 		$user = User::newFromName( $this->mUserName );
 		if( !$user || $user->isAnon() ) {
-			throw new PasswordError( 'no such user' );
+			throw new PasswordError( wfMsg( 'nosuchusershort', $this->mUserName ) );
 		}
 
 		if( $newpass !== $retype ) {
