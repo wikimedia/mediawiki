@@ -67,7 +67,8 @@ class PatrolLog {
 			return wfMsgHtml( 'patrol-log-line', $diff, $link, $auto );
 		} else {
 			$text = $title->getPrefixedText();
-			return wfMsgForContent( 'patrol-log-line', wfMsgHtml('patrol-log-diff',$cur), "[[$text]]", '' );
+			$diff = htmlspecialchars( wfMsgForContent( 'patrol-log-diff', $cur ) );
+			return wfMsgForContent( 'patrol-log-line', $diff, "[[$text]]", '' );
 		}
 	}
 
