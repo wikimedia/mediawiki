@@ -308,30 +308,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * To make it harder for someone to slip a user a fake
-	 * user-JavaScript or user-CSS preview, a random token
-	 * is associated with the login session. If it's not
-	 * passed back with the preview request, we won't render
-	 * the code.
-	 *
-	 * @return bool
-	 */
-	public function userCanPreview() {
-		if ( $this->getRequest()->getVal( 'action' ) != 'submit'
-			|| !$this->getRequest()->wasPosted()
-			|| !$this->getUser()->matchEditToken(
-				$this->getRequest()->getVal( 'wpEditToken' ) )
-		) {
-			return false;
-		}
-		if ( !$this->getTitle()->isJsSubpage() && !$this->getTitle()->isCssSubpage() ) {
-			return false;
-		}
-
-		return !count( $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getUser() ) );
-	}
-
-	/**
 	 * Generated JavaScript action=raw&gen=js
 	 * This used to load MediaWiki:Common.js and the skin-specific style
 	 * before the ResourceLoader.
@@ -354,48 +330,6 @@ abstract class Skin extends ContextSource {
 	 */
 	public function generateUserStylesheet() {
 		return '';
-	}
-
-	/**
-	 * @private
-	 * @todo document
-	 * @param $out OutputPage
-	 */
-	function setupUserCss( OutputPage $out ) {
-		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs;
-
-		wfProfileIn( __METHOD__ );
-
-		$this->setupSkinUserCss( $out );
-		// Add any extension CSS
-		foreach ( $out->getExtStyle() as $url ) {
-			$out->addStyle( $url );
-		}
-
-		// Per-site custom styles
-		if ( $wgUseSiteCss ) {
-			$out->addModuleStyles( array( 'site', 'noscript' ) );
-			if( $this->getUser()->isLoggedIn() ){
-				$out->addModuleStyles( 'user.groups' );
-			}
-		}
-
-		// Per-user custom styles
-		if ( $wgAllowUserCss ) {
-			if ( $this->getTitle()->isCssSubpage() && $this->userCanPreview() ) {
-				// @todo FIXME: Properly escape the cdata!
-				$out->addInlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
-			} else {
-				$out->addModuleStyles( 'user' );
-			}
-		}
-
-		// Per-user preference styles
-		if ( $wgAllowUserCssPrefs ) {
-			$out->addModuleStyles( 'user.options' );
-		}
-
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -695,7 +629,7 @@ abstract class Skin extends ContextSource {
 		// TODO and the suckage continues. This function is really just a wrapper around
 		// OutputPage::getBottomScripts() which takes a Skin param. This should be cleaned
 		// up at some point
-		$bottomScriptText = $out->getBottomScripts( $this );
+		$bottomScriptText = $out->getBottomScripts();
 		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
 
 		return $bottomScriptText;

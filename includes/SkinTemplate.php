@@ -208,8 +208,8 @@ class SkinTemplate extends Skin {
 			$tpl->setRef( 'xhtmldefaultnamespace', $wgXhtmlDefaultNamespace );
 			$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
 			$tpl->set( 'html5version', $wgHtml5Version );
-			$tpl->set( 'headlinks', $out->getHeadLinks( $this ) );
-			$tpl->set( 'csslinks', $out->buildCssLinks( $this ) );
+			$tpl->set( 'headlinks', $out->getHeadLinks() );
+			$tpl->set( 'csslinks', $out->buildCssLinks() );
 
 			if( $wgUseTrackbacks && $out->isArticleRelated() ) {
 				$tpl->set( 'trackbackhtml', $out->getTitle()->trackbackRDF() );
@@ -1278,7 +1278,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ );
 
 		if( $allowUserJs && $this->loggedin ) {
-			if( $this->getTitle()->isJsSubpage() and $this->userCanPreview() ) {
+			if( $this->getTitle()->isJsSubpage() and $this->getOutput()->userCanPreview() ) {
 				# XXX: additional security check/prompt?
 				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText( 'wpTextbox1' ) . ' /*]]>*/';
 			} else {

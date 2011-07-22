@@ -2269,7 +2269,6 @@ $templates
 		if ( $sk->commonPrintStylesheet() ) {
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
 		}
-		$sk->setupUserCss( $this );
 
 		$ret = Html::htmlHeader( array( 'lang' => $wgLang->getCode(), 'dir' => $userdir ) );
 
@@ -2286,9 +2285,9 @@ $templates
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
 		$ret .= implode( "\n", array(
-			$this->getHeadLinks( $sk, true ),
-			$this->buildCssLinks( $sk ),
-			$this->getHeadScripts( $sk ),
+			$this->getHeadLinks( null, true ),
+			$this->buildCssLinks(),
+			$this->getHeadScripts(),
 			$this->getHeadItems()
 		) );
 
@@ -2397,13 +2396,12 @@ $templates
 
 	/**
 	 * TODO: Document
-	 * @param $skin Skin
 	 * @param $modules Array/string with the module name
 	 * @param $only String ResourceLoaderModule TYPE_ class constant
 	 * @param $useESI boolean
 	 * @return string html <script> and <style> tags
 	 */
-	protected function makeResourceLoaderLink( Skin $skin, $modules, $only, $useESI = false ) {
+	protected function makeResourceLoaderLink( $modules, $only, $useESI = false ) {
 		global $wgLoadScript, $wgResourceLoaderUseESI,
 			$wgResourceLoaderInlinePrivateModules;
 		// Lazy-load ResourceLoader
@@ -2411,7 +2409,7 @@ $templates
 		$baseQuery = array(
 			'lang' => $this->getContext()->getLang()->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
-			'skin' => $skin->getSkinName(),
+			'skin' => $this->getSkin()->getSkinName(),
 			'only' => $only,
 		);
 		// Propagate printable and handheld parameters if present
@@ -2436,7 +2434,7 @@ $templates
 				// Recursively call us for every item
 				$links = '';
 				foreach ( $modules as $name ) {
-					$links .= $this->makeResourceLoaderLink( $skin, $name, $only, $useESI );
+					$links .= $this->makeResourceLoaderLink( $name, $only, $useESI );
 				}
 				return $links;
 			}
@@ -2501,6 +2499,7 @@ $templates
 						)
 					);
 				}
+				$links .= "\n";
 				continue;
 			}
 			// Special handling for the user group; because users might change their stuff
@@ -2553,12 +2552,11 @@ $templates
 	 * JS stuff to put in the <head>. This is the startup module, config
 	 * vars and modules marked with position 'top'
 	 *
-	 * @param $sk Skin object to use
 	 * @return String: HTML fragment
 	 */
-	function getHeadScripts( Skin $sk ) {
+	function getHeadScripts() {
 		// Startup - this will immediately load jquery and mediawiki modules
-		$scripts = $this->makeResourceLoaderLink( $sk, 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
+		$scripts = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
 
 		// Load config before anything else
 		$scripts .= Html::inlineScript(
@@ -2569,8 +2567,8 @@ $templates
 
 		// Script and Messages "only" requests marked for top inclusion
 		// Messages should go first
-		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleMessages( true, 'top' ), ResourceLoaderModule::TYPE_MESSAGES );
-		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleScripts( true, 'top' ), ResourceLoaderModule::TYPE_SCRIPTS );
+		$scripts .= $this->makeResourceLoaderLink( $this->getModuleMessages( true, 'top' ), ResourceLoaderModule::TYPE_MESSAGES );
+		$scripts .= $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'top' ), ResourceLoaderModule::TYPE_SCRIPTS );
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the top
@@ -2590,17 +2588,15 @@ $templates
 	 * JS stuff to put at the bottom of the <body>: modules marked with position 'bottom',
 	 * legacy scripts ($this->mScripts), user preferences, site JS and user JS
 	 *
-	 * @param $sk Skin
-	 *
 	 * @return string
 	 */
-	function getBottomScripts( Skin $sk ) {
+	function getBottomScripts() {
 		global $wgUseSiteJs, $wgAllowUserJs;
 
 		// Script and Messages "only" requests marked for bottom inclusion
 		// Messages should go first
-		$scripts = $this->makeResourceLoaderLink( $sk, $this->getModuleMessages( true, 'bottom' ), ResourceLoaderModule::TYPE_MESSAGES );
-		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleScripts( true, 'bottom' ), ResourceLoaderModule::TYPE_SCRIPTS );
+		$scripts = $this->makeResourceLoaderLink( $this->getModuleMessages( true, 'bottom' ), ResourceLoaderModule::TYPE_MESSAGES );
+		$scripts .= $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ), ResourceLoaderModule::TYPE_SCRIPTS );
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the bottom
@@ -2620,7 +2616,7 @@ $templates
 
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
-			$scripts .= $this->makeResourceLoaderLink( $sk, 'site', ResourceLoaderModule::TYPE_SCRIPTS );
+			$scripts .= $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS );
 			if( $this->getUser()->isLoggedIn() ){
 				$userScripts[] = 'user.groups';
 			}
@@ -2628,7 +2624,7 @@ $templates
 
 		// Add user JS if enabled
 		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() ) {
-			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $sk->userCanPreview() ) {
+			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
 				# XXX: additional security check/prompt?
 				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {
@@ -2637,7 +2633,7 @@ $templates
 				$userScripts[] = 'user';
 			}
 		}
-		$scripts .= $this->makeResourceLoaderLink( $sk, $userScripts, ResourceLoaderModule::TYPE_SCRIPTS );
+		$scripts .= $this->makeResourceLoaderLink( $userScripts, ResourceLoaderModule::TYPE_SCRIPTS );
 
 		return $scripts;
 	}
@@ -2697,12 +2693,36 @@ $templates
 	}
 
 	/**
-	 * @param $sk Skin
+	 * To make it harder for someone to slip a user a fake
+	 * user-JavaScript or user-CSS preview, a random token
+	 * is associated with the login session. If it's not
+	 * passed back with the preview request, we won't render
+	 * the code.
+	 *
+	 * @return bool
+	 */
+	public function userCanPreview() {
+		if ( $this->getRequest()->getVal( 'action' ) != 'submit'
+			|| !$this->getRequest()->wasPosted()
+			|| !$this->getUser()->matchEditToken(
+				$this->getRequest()->getVal( 'wpEditToken' ) )
+		) {
+			return false;
+		}
+		if ( !$this->getTitle()->isJsSubpage() && !$this->getTitle()->isCssSubpage() ) {
+			return false;
+		}
+
+		return !count( $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getUser() ) );
+	}
+
+	/**
+	 * @param $unused Unused
 	 * @param $addContentType bool
 	 *
 	 * @return string HTML tag links to be put in the header.
 	 */
-	public function getHeadLinks( Skin $sk, $addContentType = false ) {
+	public function getHeadLinks( $unused = null, $addContentType = false ) {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
 			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
@@ -2974,17 +2994,46 @@ $templates
 	/**
 	 * Build a set of <link>s for the stylesheets specified in the $this->styles array.
 	 * These will be applied to various media & IE conditionals.
-	 * @param $sk Skin object
 	 *
 	 * @return string
 	 */
-	public function buildCssLinks( $sk ) {
-		$ret = '';
+	public function buildCssLinks() {
+		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs;
+
+		$this->getSkin()->setupSkinUserCss( $this );
+
 		// Add ResourceLoader styles
 		// Split the styles into four groups
 		$styles = array( 'other' => array(), 'user' => array(), 'site' => array(), 'private' => array(), 'noscript' => array() );
 		$resourceLoader = $this->getResourceLoader();
-		foreach ( $this->getModuleStyles() as $name ) {
+
+		$moduleStyles = $this->getModuleStyles();
+
+		// Per-site custom styles
+		if ( $wgUseSiteCss ) {
+			$moduleStyles[] = 'site';
+			$moduleStyles[] = 'noscript';
+			if( $this->getUser()->isLoggedIn() ){
+				$moduleStyles[] = 'user.groups';
+			}
+		}
+
+		// Per-user custom styles
+		if ( $wgAllowUserCss ) {
+			if ( $this->getTitle()->isCssSubpage() && $this->userCanPreview() ) {
+				// @todo FIXME: Properly escape the cdata!
+				$out->addInlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
+			} else {
+				$moduleStyles[] = 'user';
+			}
+		}
+
+		// Per-user preference styles
+		if ( $wgAllowUserCssPrefs ) {
+			$moduleStyles[] = 'user.options';
+		}
+
+		foreach ( $moduleStyles as $name ) {
 			$group = $resourceLoader->getModule( $name )->getGroup();
 			// Modules in groups named "other" or anything different than "user", "site" or "private"
 			// will be placed in the "other" group
@@ -2995,7 +3044,7 @@ $templates
 		// dynamically added styles to override statically added styles from other modules. So the order
 		// has to be other, dynamic, site, private, user
 		// Add statically added styles for other modules
-		$ret .= $this->makeResourceLoaderLink( $sk, $styles['other'], ResourceLoaderModule::TYPE_STYLES );
+		$ret = $this->makeResourceLoaderLink( $styles['other'], ResourceLoaderModule::TYPE_STYLES );
 		// Add normal styles added through addStyle()/addInlineStyle() here
 		$ret .= implode( "\n", $this->buildCssLinksArray() ) . $this->mInlineStyles;
 		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
@@ -3006,7 +3055,7 @@ $templates
 		// 'private' at present only contains user.options, so put that before 'user'
 		// Any future private modules will likely have a similar user-specific character
 		foreach ( array( 'site', 'noscript', 'private', 'user' ) as $group ) {
-			$ret .= $this->makeResourceLoaderLink( $sk, $styles[$group],
+			$ret .= $this->makeResourceLoaderLink( $styles[$group],
 					ResourceLoaderModule::TYPE_STYLES
 			);
 		}
@@ -3015,6 +3064,13 @@ $templates
 
 	public function buildCssLinksArray() {
 		$links = array();
+
+		// Add any extension CSS
+		foreach ( $this->mExtStyles as $url ) {
+			$this->addStyle( $url );
+		}
+		$this->mExtStyles = array();
+
 		foreach( $this->styles as $file => $options ) {
 			$link = $this->styleLink( $file, $options );
 			if( $link ) {
