@@ -225,6 +225,11 @@ class SpecialChangePassword extends SpecialPage {
 			throw new PasswordError( wfMsg( 'resetpass-wrong-oldpass' ) );
 		}
 
+		// Please reset throttle for successful logins, thanks!
+		if ( $throttleCount ) {
+			LoginForm::clearLoginThrottle( $this->mUserName );
+		}
+
 		try {
 			$user->setPassword( $this->mNewpass );
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
