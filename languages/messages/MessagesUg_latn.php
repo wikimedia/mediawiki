@@ -12,8 +12,6 @@
  * @author לערי ריינהארט
  */
 
-$rtl = true;
-
 $messages = array(
 # Dates
 'sunday'    => 'Yekshenbe',
