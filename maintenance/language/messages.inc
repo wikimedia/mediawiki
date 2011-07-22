@@ -3459,31 +3459,6 @@ $wgMessageStructure = array(
 	'unwatch' => array(
 		'confirm-unwatch-button',
 	),
-	'ajax-category' => array(
-		'ajax-add-category',
-		'ajax-remove-category',
-		'ajax-edit-category',
-		'ajax-add-category-submit',
-		'ajax-confirm-ok',
-		'ajax-confirm-title',
-		'ajax-confirm-prompt',
-		'ajax-confirm-save',
-		'ajax-confirm-save-all',
-		'ajax-cancel',
-		'ajax-add-category-summary',
-		'ajax-edit-category-summary',
-		'ajax-remove-category-summary',
-		'ajax-add-category-question',
-		'ajax-edit-category-question',
-		'ajax-remove-category-question',
-		'ajax-confirm-actionsummary',
-		'ajax-error-title',
-		'ajax-error-dismiss',
-		'ajax-remove-category-error',
-		'ajax-edit-category-error',
-		'ajax-category-already-present',
-	),
-
 );
 
 /** Comments for each block */
