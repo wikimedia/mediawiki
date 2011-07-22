@@ -253,16 +253,16 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
-			$context = new RequestContext;
+			$context = $this->createContext();
+			$context->setTitle( $titleObj );
 			$context->getOutput()->addParserOutputNoText( $p_result );
 
 			if ( isset( $prop['headitems'] ) ) {
 				$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
 
-				$context->getSkin()->setupUserCss( $context->getOutput() );
 				$css = $this->formatCss( $context->getOutput()->buildCssLinksArray() );
 
-				$scripts = array( $context->getOutput()->getHeadScripts( $context->getSkin() ) );
+				$scripts = array( $context->getOutput()->getHeadScripts() );
 
 				$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
 			}
