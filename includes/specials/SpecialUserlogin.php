@@ -587,7 +587,7 @@ class LoginForm extends SpecialPage {
 	 * @param $username string The user name
 	 * @return Bool|Integer The integer hit count or True if it is already at the limit
 	 */
-	public function incLoginThrottle( $username ) {
+	public static function incLoginThrottle( $username ) {
 		global $wgPasswordAttemptThrottle, $wgMemc;
 
 		$throttleCount = 0;
@@ -614,7 +614,7 @@ class LoginForm extends SpecialPage {
 	 * @param $username string The user name
 	 * @return void
 	 */
-	public function clearLoginThrottle( $username ) {
+	public static function clearLoginThrottle( $username ) {
 		global $wgMemc;
 
 		$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $username ) );
