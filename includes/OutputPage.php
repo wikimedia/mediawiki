@@ -3022,7 +3022,7 @@ $templates
 		if ( $wgAllowUserCss ) {
 			if ( $this->getTitle()->isCssSubpage() && $this->userCanPreview() ) {
 				// @todo FIXME: Properly escape the cdata!
-				$out->addInlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
+				$this->addInlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
 			} else {
 				$moduleStyles[] = 'user';
 			}
