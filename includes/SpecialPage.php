@@ -748,9 +748,6 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected function getForm() {
 		$this->fields = $this->getFormFields();
 
-		// Give hooks a chance to alter the form, adding extra fields or text etc
-		wfRunHooks( "Special{$this->getName()}ModifyFormFields", array( &$this->fields ) );
-
 		$form = new HTMLForm( $this->fields, $this->getContext() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
 		$form->setWrapperLegend( wfMessage( strtolower( $this->getName() ) . '-legend' ) );
