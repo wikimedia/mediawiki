@@ -449,7 +449,7 @@ class LoginForm extends SpecialPage {
 	 * creation.
 	 */
 	public function authenticateUserData() {
-		global $wgUser, $wgAuth, $wgMemc;
+		global $wgUser, $wgAuth;
 
 		if ( $this->mUsername == '' ) {
 			return self::NO_NAME;
@@ -470,22 +470,9 @@ class LoginForm extends SpecialPage {
 			return self::NEED_TOKEN;
 		}
 
-		global $wgPasswordAttemptThrottle;
-
-		$throttleCount = 0;
-		if ( is_array( $wgPasswordAttemptThrottle ) ) {
-			$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mUsername ) );
-			$count = $wgPasswordAttemptThrottle['count'];
-			$period = $wgPasswordAttemptThrottle['seconds'];
-
-			$throttleCount = $wgMemc->get( $throttleKey );
-			if ( !$throttleCount ) {
-				$wgMemc->add( $throttleKey, 1, $period ); // start counter
-			} elseif ( $throttleCount < $count ) {
-				$wgMemc->incr( $throttleKey );
-			} elseif ( $throttleCount >= $count ) {
-				return self::THROTTLED;
-			}
+		$throttleCount = self::incLoginThrottle( $this->mUsername );
+		if ( $throttleCount === true ) {
+			return self::THROTTLED;
 		}
 
 		// Validate the login token
@@ -579,8 +566,8 @@ class LoginForm extends SpecialPage {
 			$wgUser = $u;
 
 			// Please reset throttle for successful logins, thanks!
-			if( $throttleCount ) {
-				$wgMemc->delete( $throttleKey );
+			if ( $throttleCount ) {
+				self::clearLoginThrottle( $this->mUsername );
 			}
 
 			if ( $isAutoCreated ) {
@@ -592,6 +579,46 @@ class LoginForm extends SpecialPage {
 		}
 		wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $retval ) );
 		return $retval;
+	}
+
+	/*
+	 * Increment the login attempt throttle hit count for a user
+	 * and then check if the (username,IP) combination is throttled.
+	 * @param $username string The user name
+	 * @return Bool|Integer The integer hit count or True if it is already at the limit
+	 */
+	public function incLoginThrottle( $username ) {
+		global $wgPasswordAttemptThrottle, $wgMemc;
+
+		$throttleCount = 0;
+		if ( is_array( $wgPasswordAttemptThrottle ) ) {
+			$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $username ) );
+			$count = $wgPasswordAttemptThrottle['count'];
+			$period = $wgPasswordAttemptThrottle['seconds'];
+
+			$throttleCount = $wgMemc->get( $throttleKey );
+			if ( !$throttleCount ) {
+				$wgMemc->add( $throttleKey, 1, $period ); // start counter
+			} elseif ( $throttleCount < $count ) {
+				$wgMemc->incr( $throttleKey );
+			} elseif ( $throttleCount >= $count ) {
+				return true;
+			}
+		}
+
+		return $throttleCount;
+	}
+
+	/*
+	 * Clear the login attempt throttle hit count for a user
+	 * @param $username string The user name
+	 * @return void
+	 */
+	public function clearLoginThrottle( $username ) {
+		global $wgMemc;
+
+		$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $username ) );
+		$wgMemc->delete( $throttleKey );
 	}
 
 	/**
