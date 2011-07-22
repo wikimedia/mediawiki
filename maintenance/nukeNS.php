@@ -41,11 +41,13 @@ class NukeNS extends Maintenance {
 		$this->mDescription = "Remove pages with only 1 revision from any namespace";
 		$this->addOption( 'delete', "Actually delete the page" );
 		$this->addOption( 'ns', 'Namespace to delete from, default NS_MEDIAWIKI', false, true );
+		$this->addOption( 'all', 'Delete everything regardless of revision count' );
 	}
 
 	public function execute() {
 		$ns = $this->getOption( 'ns', NS_MEDIAWIKI );
 		$delete = $this->getOption( 'delete', false );
+		$all = $this->getOption( 'all', false );
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 
@@ -70,7 +72,7 @@ class NukeNS extends Maintenance {
 			$count = count( $revs );
 
 			// skip anything that looks modified (i.e. multiple revs)
-			if ( $count == 1 ) {
+			if ( $all || $count == 1 ) {
 				# echo $title->getPrefixedText(), "\t", $count, "\n";
 				$this->output( "delete: " . $title->getPrefixedText() . "\n" );
 
@@ -80,7 +82,7 @@ class NukeNS extends Maintenance {
 					$dbw->query( "DELETE FROM $tbl_pag WHERE page_id = $id" );
 					$dbw->commit();
 					// Delete revisions as appropriate
-					$child = $this->runChild( 'NukePage', 'NukePage.php' );
+					$child = $this->runChild( 'NukePage', 'nukePage.php' );
 					$child->deleteRevisions( $revs );
 					$this->purgeRedundantText( true );
 					$n_deleted ++;
