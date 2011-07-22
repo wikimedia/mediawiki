@@ -179,7 +179,8 @@ class HTMLForm {
 
 	/**
 	 * Initialise a new Object for the field
-	 * @param $descriptor input Descriptor, as described above
+     * @param $fieldname string
+	 * @param $descriptor string input Descriptor, as described above
 	 * @return HTMLFormField subclass
 	 */
 	static function loadInputFromParameters( $fieldname, $descriptor ) {
