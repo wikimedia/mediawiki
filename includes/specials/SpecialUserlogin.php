@@ -582,8 +582,8 @@ class LoginForm extends SpecialPage {
 	}
 
 	/*
-	 * Increment the login attempt throttle hit count for a user
-	 * and then check if the (username,IP) combination is throttled.
+	 * Increment the login attempt throttle hit count for the (username,current IP)
+	 * tuple unless the throttle was already reached.
 	 * @param $username string The user name
 	 * @return Bool|Integer The integer hit count or True if it is already at the limit
 	 */
@@ -610,7 +610,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	/*
-	 * Clear the login attempt throttle hit count for a user
+	 * Clear the login attempt throttle hit count for the (username,current IP) tuple.
 	 * @param $username string The user name
 	 * @return void
 	 */
