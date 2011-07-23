@@ -342,7 +342,7 @@
 			switch ( mw.config.get( 'skin' ) ) {
 			case 'standard' :
 			case 'cologneblue' :
-				$( '#quickbar' ).append( $link.after( '<br />' ) );
+				$( '#quickbar' ).append( $link.after( '<br/>' ) );
 				return $link[0];
 			case 'nostalgia' :
 				$( '#searchform' ).before( $link).before( ' &#124; ' );
