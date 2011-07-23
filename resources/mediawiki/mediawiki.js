@@ -359,7 +359,8 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			var	pad = function( a, b, c ) {
 					return [a < 10 ? '0' + a : a, b < 10 ? '0' + b : b, c < 10 ? '0' + c : c].join( '' );
 				},
-				d = new Date().setTime( timestamp * 1000 );
+				d = new Date();
+				d.setTime( timestamp * 1000 );
 			return [
 				pad( d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate() ), 'T',
 				pad( d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds() ), 'Z'
