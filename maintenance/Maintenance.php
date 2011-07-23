@@ -133,18 +133,25 @@ abstract class Maintenance {
 	/**
 	 * Should we execute the maintenance script, or just allow it to be included
 	 * as a standalone class? It checks that the call stack only includes this
-	 * function and a require (meaning was called from the file scope)
+	 * function and "requires" (meaning was called from the file scope)
 	 *
 	 * @return Boolean
 	 */
 	public static function shouldExecute() {
 		$bt = debug_backtrace();
-		if( count( $bt ) !== 2 ) {
-			return false;
+		if ( count( $bt ) < 2 ) {
+			return false; // sanity
 		}
-		return in_array( $bt[1]['function'], array( 'require_once', 'require', 'include' ) ) &&
-			$bt[0]['class'] == 'Maintenance' &&
-			$bt[0]['function'] == 'shouldExecute';
+		if ( $bt[0]['class'] !== 'Maintenance' || $bt[0]['function'] !== 'shouldExecute' ) {
+			return false; // last call should be to this function
+		}
+		$includeFuncs = array( 'require_once', 'require', 'include' );
+		for( $i=1; $i < count( $bt ); $i++ ) {
+			if ( !in_array( $bt[$i]['function'], $includeFuncs ) ) {
+				return false; // previous calls should all be "requires"
+			}
+		}
+		return true;
 	}
 
 	/**
