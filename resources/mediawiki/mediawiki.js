@@ -147,7 +147,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			// Return <key> if key does not exist
 			return '<' + this.key + '>';
 		}
-		var	text = this.map.get( this.key );
+		var	text = this.map.get( this.key ),
 			parameters = this.parameters;
 
 		text = text.replace( /\$(\d+)/g, function( string, match ) {
