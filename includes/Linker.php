@@ -867,7 +867,7 @@ class Linker {
 	 * a message key from the link text.
 	 * Usage example: $skin->specialLink( 'recentchanges' )
 	 *
-	 * @return bool
+	 * @return string
 	 */
 	static function specialLink( $name, $key = '' ) {
 		if ( $key == '' ) {
