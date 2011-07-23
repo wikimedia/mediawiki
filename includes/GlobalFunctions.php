@@ -294,6 +294,11 @@ function wfRandom() {
 */
 function wfUrlencode( $s ) {
 	static $needle;
+	if ( is_null( $s ) ) {
+		$needle = null;
+		return;
+	}
+	
 	if ( is_null( $needle ) ) {
 		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F' );
 		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) || ( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false ) ) {
