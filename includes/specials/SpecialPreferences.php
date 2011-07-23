@@ -61,11 +61,6 @@ class SpecialPreferences extends SpecialPage {
 			);
 		}
 
-		if ( $wgRequest->getCheck( 'eauth' ) ) {
-			$wgOut->wrapWikiMsg( "<div class='error' style='clear: both;'>\n$1\n</div>",
-									'eauthentsent', $wgUser->getName() );
-		}
-
 		$htmlForm = Preferences::getFormObject( $wgUser );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
 

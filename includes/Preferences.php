@@ -353,13 +353,20 @@ class Preferences {
 				$helpMessages[] = 'prefs-help-email-others';
 			}
 
+			$link = $wgUser->getSkin()->link(
+				SpecialPage::getTitleFor( 'ChangeEmail' ),
+				wfMsgHtml( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' ),
+				array(),
+				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' ) ) );
+
 			$defaultPreferences['emailaddress'] = array(
-				'type' => $wgAuth->allowPropChange( 'emailaddress' ) ? 'email' : 'info',
-				'default' => $user->getEmail(),
-				'section' => 'personal/email',
+				'type' => 'info',
+				'raw' => true,
+				'default' => $user->getEmail()
+					? htmlspecialchars( $user->getEmail() ) . " ($link)"
+					: $link,
 				'label-message' => 'youremail',
-				'help-messages' => $helpMessages,
-				'validation-callback' => array( 'Preferences', 'validateEmail' ),
+				'section' => 'personal/email',
 			);
 
 			global $wgEmailAuthentication;
@@ -1342,7 +1349,7 @@ class Preferences {
 	 * @return bool|Status|string
 	 */
 	static function tryFormSubmit( $formData, $entryPoint = 'internal' ) {
-		global $wgUser, $wgEmailAuthentication, $wgEnableEmail;
+		global $wgUser;
 
 		$result = true;
 
@@ -1359,34 +1366,6 @@ class Preferences {
 			'realname',
 			'emailaddress',
 		);
-
-		if ( $wgEnableEmail ) {
-			$newaddr = $formData['emailaddress'];
-			$oldaddr = $wgUser->getEmail();
-			if ( ( $newaddr != '' ) && ( $newaddr != $oldaddr ) ) {
-				# the user has supplied a new email address on the login page
-				# new behaviour: set this new emailaddr from login-page into user database record
-				$wgUser->setEmail( $newaddr );
-				# but flag as "dirty" = unauthenticated
-				$wgUser->invalidateEmail();
-				if ( $wgEmailAuthentication ) {
-					# Mail a temporary password to the dirty address.
-					# User can come back through the confirmation URL to re-enable email.
-					$type = $oldaddr != '' ? 'changed' : 'set';
-					$result = $wgUser->sendConfirmationMail( $type );
-					if ( !$result->isGood() ) {
-						return htmlspecialchars( $result->getWikiText( 'mailerror' ) );
-					} elseif ( $entryPoint == 'ui' ) {
-						$result = 'eauth';
-					}
-				}
-			} else {
-				$wgUser->setEmail( $newaddr );
-			}
-			if ( $oldaddr != $newaddr ) {
-				wfRunHooks( 'PrefsEmailAudit', array( $wgUser, $oldaddr, $newaddr ) );
-			}
-		}
 
 		// Fortunately, the realname field is MUCH simpler
 		global $wgHiddenPrefs;
@@ -1445,6 +1424,46 @@ class Preferences {
 		}
 
 		return Status::newGood();
+	}
+
+	/*
+	 * Try to set a user's email address.
+	 * This does *not* try to validate the address.
+	 * @param $user User
+	 * @param $newaddr string New email address
+	 * @return Array (true on success or Status on failure, info string)
+	 */
+	public static function trySetUserEmail( User $user, $newaddr ) {
+		global $wgEnableEmail, $wgEmailAuthentication;
+		$info = ''; // none
+
+		if ( $wgEnableEmail ) {
+			$oldaddr = $user->getEmail();
+			if ( ( $newaddr != '' ) && ( $newaddr != $oldaddr ) ) {
+				# The user has supplied a new email address on the login page
+				# new behaviour: set this new emailaddr from login-page into user database record
+				$user->setEmail( $newaddr );
+				# But flag as "dirty" = unauthenticated
+				$user->invalidateEmail();
+				if ( $wgEmailAuthentication ) {
+					# Mail a temporary password to the dirty address.
+					# User can come back through the confirmation URL to re-enable email.
+					$type = $oldaddr != '' ? 'changed' : 'set';
+					$result = $user->sendConfirmationMail( $type );
+					if ( !$result->isGood() ) {
+						return array( $result, 'mailerror' );
+					}
+					$info = 'eauth';
+				}
+			} else {
+				$user->setEmail( $newaddr );
+			}
+			if ( $oldaddr != $newaddr ) {
+				wfRunHooks( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
+			}
+		}
+
+		return array( true, $info );
 	}
 
 	/**
