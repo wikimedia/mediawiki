@@ -25,6 +25,7 @@ class DifferenceEngine {
 	var $mOldid, $mNewid;
 	var $mOldtitle, $mNewtitle, $mPagetitle;
 	var $mOldtext, $mNewtext;
+	var $mDiffLang;
 
 	/**
 	 * @var Title
@@ -73,6 +74,9 @@ class DifferenceEngine {
 			$this->mTitle = $wgTitle; // @TODO: get rid of this
 		}
 		wfDebug( "DifferenceEngine old '$old' new '$new' rcid '$rcid'\n" );
+
+		# Default language in which the diff text is written.
+		$this->mDiffLang = $this->mTitle->getPageLanguage();
 
 		if ( 'prev' === $new ) {
 			# Show diff between revision $old and the previous one.
@@ -938,10 +942,9 @@ CONTROL;
 	 * @return string
 	 */
 	function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
-		// shared.css sets diff in interface language/dir,
-		// but the actual content should be in the page language/dir
-		$pageLang = $this->mTitle->getPageLanguage();
-		$tableClass = 'diff diff-contentalign-' . htmlspecialchars( $pageLang->alignStart() );
+		// shared.css sets diff in interface language/dir, but the actual content
+		// is often in a different language, mostly the page content language/dir
+		$tableClass = 'diff diff-contentalign-' . htmlspecialchars( $this->mDiffLang->alignStart() );
 		$header = "<table class='$tableClass'>";
 		if ( $diff ) { // Safari/Chrome show broken output if cols not used
 			$header .= "
@@ -979,6 +982,15 @@ CONTROL;
 		$this->mNewtext = $newText;
 		$this->mTextLoaded = 2;
 		$this->mRevisionsLoaded = true;
+	}
+
+	/**
+	 * Set the language in which the diff text is written
+	 * (Defaults to page content language).
+	 * @since 1.19
+	 */
+	function setDiffLang( $lang ) {
+		$this->mDiffLang = wfGetLangObj( $lang );
 	}
 
 	/**
