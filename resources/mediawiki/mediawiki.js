@@ -788,7 +788,7 @@ window.mediaWiki = new ( function( $ ) {
 
 					// If the request would become too long, create a new one,
 					// but don't create empty requests
-					if ( limit > 0 &&  reqs[r] != {} && l + bytesAdded > limit ) {
+					if ( limit > 0 && !$.isEmptyObject( reqs[r] ) && l + bytesAdded > limit ) {
 						// This request would become too long, create a new one
 						r++;
 						reqs[r] = {};
