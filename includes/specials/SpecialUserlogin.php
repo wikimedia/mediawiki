@@ -589,6 +589,7 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function incLoginThrottle( $username ) {
 		global $wgPasswordAttemptThrottle, $wgMemc;
+		$username = trim( $username ); // sanity
 
 		$throttleCount = 0;
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
@@ -616,6 +617,7 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function clearLoginThrottle( $username ) {
 		global $wgMemc;
+		$username = trim( $username ); // sanity
 
 		$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $username ) );
 		$wgMemc->delete( $throttleKey );
