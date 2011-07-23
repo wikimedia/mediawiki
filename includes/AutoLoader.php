@@ -743,6 +743,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialBlockme' => 'includes/specials/SpecialBlockme.php',
 	'SpecialBookSources' => 'includes/specials/SpecialBooksources.php',
 	'SpecialCategories' => 'includes/specials/SpecialCategories.php',
+	'SpecialChangeEmail' => 'includes/specials/SpecialChangeEmail.php',
 	'SpecialChangePassword' => 'includes/specials/SpecialChangePassword.php',
 	'SpecialComparePages' => 'includes/specials/SpecialComparePages.php',
 	'SpecialContributions' => 'includes/specials/SpecialContributions.php',

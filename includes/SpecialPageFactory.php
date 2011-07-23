@@ -160,6 +160,7 @@ class SpecialPageFactory {
 	static function getList() {
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
+		global $wgEnableEmail;
 
 		if ( !is_object( self::$mList ) ) {
 			wfProfileIn( __METHOD__ );
@@ -175,6 +176,10 @@ class SpecialPageFactory {
 			if ( $wgEmailAuthentication ) {
 				self::$mList['Confirmemail'] = 'EmailConfirmation';
 				self::$mList['Invalidateemail'] = 'EmailInvalidation';
+			}
+
+			if ( $wgEnableEmail ) {
+				self::$mList['ChangeEmail'] = 'SpecialChangeEmail';
 			}
 
 			// Add extension special pages
@@ -512,7 +517,7 @@ class SpecialPageFactory {
 	static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
 		$aliases = $wgContLang->getSpecialPageAliases();
-		
+
 		if ( isset( $aliases[$name][0] ) ) {
 			$name = $aliases[$name][0];
 		} else {
