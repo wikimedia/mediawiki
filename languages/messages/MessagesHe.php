@@ -225,7 +225,8 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'משאבי_ספרות', 'משאבי_ספרות_חיצוניים' ),
 	'BrokenRedirects'           => array( 'הפניות_לא_תקינות', 'הפניות_שבורות' ),
 	'Categories'                => array( 'קטגוריות', 'רשימת_קטגוריות' ),
-	'ChangePassword'            => array( 'שינוי_סיסמה', 'איפוס_סיסמה' ),
+	'ChangeEmail'            	=> array( 'שינוי_דואר_אלקטרוני', 'שינוי_דואל' ),
+	'ChangePassword'            => array( 'שינוי_סיסמה' ),
 	'ComparePages'              => array( 'השוואת_דפים' ),
 	'Confirmemail'              => array( 'אימות_כתובת_דואר' ),
 	'Contributions'             => array( 'תרומות', 'תרומות_המשתמש' ),
@@ -269,6 +270,7 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'ההעלאות_שלי' ),
 	'Newimages'                 => array( 'קבצים_חדשים', 'תמונות_חדשות', 'גלריית_קבצים_חדשים', 'גלריית_תמונות_חדשות' ),
 	'Newpages'                  => array( 'דפים_חדשים' ),
+	'PasswordReset'             => array( 'איפוס_סיסמה' ),
 	'PermanentLink'             => array( 'קישור_קבוע' ),
 	'Popularpages'              => array( 'הדפים_הנצפים_ביותר', 'דפים_פופולריים' ),
 	'Preferences'               => array( 'העדפות', 'ההעדפות_שלי' ),
@@ -883,6 +885,17 @@ $2
 סיסמה זמנית: $2',
 'passwordreset-emailsent'      => 'נשלח דואר אלקטרוני עם תזכורת.',
 
+# Special:ChangeEmail
+'changeemail'          => 'שינוי כתובת דוא"ל',
+'changeemail-header'   => 'שינוי כתוב דוא"ל של חשבון',
+'changeemail-text'     => 'מלאו טופס זה כדי לשנות את כתובת הדואר האלקטרוני שלכם. יהיה עליכם למלא סיסמה כדי לאשר את השינוי.',
+'changeemail-no-info'  => 'עליכם להיכנס לחשבון כדי לגשת לדף זה ישירות.',
+'changeemail-oldemail' => 'כתובת דוא"ל נוכחית:',
+'changeemail-newemail' => 'כתובת דוא"ל חדשה:',
+'changeemail-none'     => '(אין)',
+'changeemail-submit'   => 'שינוי כתובת הדוא"ל',
+'changeemail-cancel'   => 'ביטול',
+
 # Edit page toolbar
 'bold_sample'     => 'טקסט מודגש',
 'bold_tip'        => 'טקסט מודגש',
@@ -1362,7 +1375,7 @@ $1",
 'qbsettings-fixedright'     => 'קבוע מימין',
 'qbsettings-floatingleft'   => 'צף משמאל',
 'qbsettings-floatingright'  => 'צף מימין',
-'qbsettings-directionality' => 'קבוע, תלוי בכיווניות של השפה',
+'qbsettings-directionality' => 'קבוע, תלוי בכיווניות של הכתב ושל השפה',
 
 # Preferences page
 'preferences'                   => 'העדפות',
@@ -1387,6 +1400,8 @@ $1",
 'prefs-watchlist-token'         => 'אסימון לרשימת המעקב:',
 'prefs-misc'                    => 'שונות',
 'prefs-resetpass'               => 'שינוי סיסמה',
+'prefs-changeemail'				=> 'שינוי כתובת דוא"ל',
+'prefs-setemail'				=> 'הגדרת כתובת דוא"ל',
 'prefs-email'                   => 'אפשרויות דוא"ל',
 'prefs-rendering'               => 'מראה',
 'saveprefs'                     => 'שמירת העדפות',
@@ -2251,9 +2266,11 @@ $1',
 'watchlistanontext'    => 'עליכם $1 כדי לצפות או לערוך פריטים ברשימת המעקב.',
 'watchnologin'         => 'לא נכנסתם לחשבון',
 'watchnologintext'     => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] כדי לערוך את רשימת המעקב.',
+'addwatch'             => 'הוספה לרשימת המעקב',
 'addedwatchtext'       => 'הדף [[:$1]] נוסף ל[[Special:Watchlist|רשימת המעקב]]. שינויים שייערכו בעתיד, בדף זה ובדף השיחה שלו, יוצגו ברשימת המעקב.
 
 בנוסף, הדף יופיע בכתב מודגש ב[[Special:RecentChanges|רשימת השינויים האחרונים]], כדי להקל עליכם את המעקב אחריו.',
+'removewatch'          => 'הסרה מרשימת המעקב',
 'removedwatchtext'     => 'הדף [[:$1]] הוסר מ[[Special:Watchlist|רשימת המעקב]].',
 'watch'                => 'מעקב',
 'watchthispage'        => 'מעקב אחרי דף זה',
@@ -3606,6 +3623,12 @@ $1',
 'confirm-purge-top'    => 'לנקות את המטמון של דף זה?',
 'confirm-purge-bottom' => 'ניקוי המטמון של דף גורם לגרסה החדשה ביותר להופיע.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'אישור',
+'confirm-watch-top'      => 'להוסיף דף זה לרשימת המעקב שלך?',
+'confirm-unwatch-button' => 'אישור',
+'confirm-unwatch-top'    => 'להסיר דף זה מרשימת המעקב שלך?',
+
 # Multipage image navigation
 'imgmultipageprev' => '→ לדף הקודם',
 'imgmultipagenext' => 'לדף הבא ←',
@@ -3865,18 +3888,30 @@ $1',
 'sqlite-no-fts'  => '$1 ללא תמיכה בחיפוש בטקסט מלא',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'הוספת קטגוריה',
-'ajax-add-category-submit'     => 'הוספה',
-'ajax-confirm-title'           => 'אישור הפעולה',
-'ajax-confirm-prompt'          => 'באפשרותכם לכתוב תקציר עריכה למטה.
-לחצו על "{{int:ajax-confirm-save}}" כדי לשמור את העריכה.',
-'ajax-confirm-save'            => 'שמירה',
-'ajax-add-category-summary'    => 'הוספת הקטגוריה "$1"',
-'ajax-remove-category-summary' => 'הסרת הקטגוריה "$1"',
-'ajax-confirm-actionsummary'   => 'הפעולה לביצוע:',
-'ajax-error-title'             => 'שגיאה',
-'ajax-error-dismiss'           => 'אישור',
-'ajax-remove-category-error'   => 'לא ניתן היה להסיר קטגוריה זו.
+'ajax-add-category'             => 'הוספת קטגוריה',
+'ajax-remove-category'          => 'הסרת קטגוריה',
+'ajax-edit-category'            => 'עריכת קטגוריה',
+'ajax-add-category-submit'      => 'הוספה',
+'ajax-confirm-ok'               => 'אישור',
+'ajax-confirm-title'            => 'אישור הפעולה',
+'ajax-confirm-prompt'           => 'באפשרותכם לכתוב תקציר עריכה למטה.
+לחצו על "שמירה" כדי לשמור את העריכה.',
+'ajax-confirm-save'             => 'שמירה',
+'ajax-confirm-save-all'         => 'שמירת כל השינויים',
+'ajax-cancel'                   => 'ביטול העריכות',
+'ajax-add-category-summary'     => 'הוספת הקטגוריה "$1"',
+'ajax-edit-category-summary'    => 'שינוי הקטגוריה "$1" ל"$2"',
+'ajax-remove-category-summary'  => 'הסרת הקטגוריה "$1"',
+'ajax-add-category-question'    => 'מדוע אתם רוצים להוסיף את הקטגוריה "$1"?',
+'ajax-edit-category-question'   => 'מדוע אתם רוצים לשנות את הקטגוריה "$1" ל"$2"?',
+'ajax-remove-category-question' => 'מדוע אתם רוצים להסיר את הקטגוריה "$1"?',
+'ajax-confirm-actionsummary'    => 'הפעולה לביצוע:',
+'ajax-error-title'              => 'שגיאה',
+'ajax-error-dismiss'            => 'אישור',
+'ajax-remove-category-error'    => 'לא ניתן היה להסיר קטגוריה זו.
 הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
+'ajax-edit-category-error'      => 'לא ניתן היה לערוך קטגוריה זו.
+הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
+'ajax-category-already-present' => 'דף זה כבר שייך לקטגוריה $1',
 
 );
