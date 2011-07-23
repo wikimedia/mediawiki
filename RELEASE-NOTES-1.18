@@ -198,6 +198,11 @@ production.
 * AjaxCategories: Easily add, edit or delete categories on article pages.
   Suggests possible categories when typing, all saves are done via AJAX.
   Supports editing of multiple categories and then saving them in one batch.
+* $wgAutopromoteOnce was added, allowing for users to be automatically promoted to explicit usergroups.
+  If a group is removed from a user via Special:UserRights, it will not automatically be re-added.
+  Configuration is similar to $wgAutopromote (see DefaultSettings.php)
+* The PerformRetroactiveAutoblock hook was added to allow overriding or complementing 
+  retroactive autoblock handling. This runs when blocking a user with the 'autoblock' option. 
 
 === Bug fixes in 1.18 ===
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
