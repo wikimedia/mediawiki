@@ -42,7 +42,7 @@ class SpecialChangePassword extends SpecialPage {
 			return;
 		}
 
-		$this->mUserName = $wgRequest->getVal( 'wpName' );
+		$this->mUserName = trim( $wgRequest->getVal( 'wpName' ) );
 		$this->mOldpass = $wgRequest->getVal( 'wpPassword' );
 		$this->mNewpass = $wgRequest->getVal( 'wpNewPassword' );
 		$this->mRetype = $wgRequest->getVal( 'wpRetype' );
