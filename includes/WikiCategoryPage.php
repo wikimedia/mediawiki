@@ -6,6 +6,8 @@ class WikiCategoryPage extends WikiPage {
 	/**
 	 * Constructor from a page id
 	 * @param $id Int article ID to load
+	 *
+	 * @return WikiCategoryPage
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
@@ -18,6 +20,8 @@ class WikiCategoryPage extends WikiPage {
 	 * Don't return a 404 for categories in use.
 	 * In use defined as: either the actual page exists
 	 * or the category currently has members.
+	 *
+	 * @return bool
 	 */
 	public function hasViewableContent() {
 		if ( parent::hasViewableContent() ) {

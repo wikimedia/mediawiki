@@ -4190,10 +4190,10 @@ class Parser {
 		# split up and insert constructed headlines
 		$blocks = preg_split( '/<H[1-6].*?' . '>.*?<\/H[1-6]>/i', $text );
 		$i = 0;
-		
+
 		// build an array of document sections
 		$sections = array();
-		foreach ( $blocks as $block ) {			
+		foreach ( $blocks as $block ) {
 			// $head is zero-based, sections aren't.
 			if ( empty( $head[$i - 1] ) ) {
 				$sections[$i] = $block;
@@ -4212,7 +4212,7 @@ class Parser {
 			 * $showEditLinks : boolean describing whether this section has an edit link
 			 */
 			wfRunHooks( 'ParserSectionCreate', array( $this, $i, &$sections[$i], $showEditLink ) );
-		
+
 			$i++;
 		}
 
@@ -4221,9 +4221,9 @@ class Parser {
 			// Top anchor now in skin
 			$sections[0] = $sections[0] . $toc . "\n";
 		}
-		
+
 		$full .= join( '', $sections );
-		
+
 		if ( $this->mForceTocPosition ) {
 			return str_replace( '<!--MWTOC-->', $toc, $full );
 		} else {
@@ -5128,6 +5128,10 @@ class Parser {
 	 *
 	 * Transparent tag hooks are like regular XML-style tag hooks, except they
 	 * operate late in the transformation sequence, on HTML instead of wikitext.
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	function replaceTransparentTags( $text ) {
 		$matches = array();
@@ -5414,6 +5418,10 @@ class Parser {
 	 * Try to guess the section anchor name based on a wikitext fragment
 	 * presumably extracted from a heading, for example "Header" from
 	 * "== Header ==".
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	public function guessSectionNameFromWikiText( $text ) {
 		# Strip out wikitext links(they break the anchor)

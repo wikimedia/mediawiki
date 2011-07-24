@@ -19,10 +19,13 @@ class UploadFromUrl extends UploadBase {
 	 * user is allowed, pass on permissions checking to the parent.
 	 *
 	 * @param $user User
+	 *
+	 * @return bool
 	 */
 	public static function isAllowed( $user ) {
-		if ( !$user->isAllowed( 'upload_by_url' ) )
+		if ( !$user->isAllowed( 'upload_by_url' ) ) {
 			return 'upload_by_url';
+		}
 		return parent::isAllowed( $user );
 	}
 

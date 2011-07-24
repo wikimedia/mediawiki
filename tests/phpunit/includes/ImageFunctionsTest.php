@@ -32,7 +32,9 @@ class ImageFunctionsTest extends MediaWikiTestCase {
 					17 => 4,
 					18 => 4 ) ) );
 		foreach ( $vals as $row ) {
-			extract( $row );
+			$tests = $row['tests'];
+			$height = $row['height'];
+			$width = $row['width'];
 			foreach ( $tests as $max => $expected ) {
 				$y = round( $expected * $height / $width );
 				$result = wfFitBoxWidth( $width, $height, $max );

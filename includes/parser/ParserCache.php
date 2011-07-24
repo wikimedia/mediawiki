@@ -15,6 +15,8 @@ class ParserCache {
 
 	/**
 	 * Get an instance of this object
+	 *
+	 * @return ParserCache
 	 */
 	public static function singleton() {
 		static $instance;
