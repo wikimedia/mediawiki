@@ -29,79 +29,81 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 		return this;
 	}
 
-	/**
-	 * Get the value of one or multiple a keys.
-	 *
-	 * If called with no arguments, all values will be returned.
-	 *
-	 * @param selection mixed String key or array of keys to get values for.
-	 * @param fallback mixed Value to use in case key(s) do not exist (optional).
-	 * @return mixed If selection was a string returns the value or null,
-	 *  If selection was an array, returns an object of key/values (value is null if not found),
-	 *  If selection was not passed or invalid, will return the 'values' object member (be careful as
-	 *  objects are always passed by reference in JavaScript!).
-	 * @return Values as a string or object, null if invalid/inexistant.
-	 */
-	Map.prototype.get = function( selection, fallback ) {
-		if ( $.isArray( selection ) ) {
-			selection = $.makeArray( selection );
-			var results = {};
-			for ( var i = 0; i < selection.length; i++ ) {
-				results[selection[i]] = this.get( selection[i], fallback );
-			}
-			return results;
-		} else if ( typeof selection === 'string' ) {
-			if ( this.values[selection] === undefined ) {
-				if ( fallback !== undefined ) {
-					return fallback;
+	Map.prototype = {
+		/**
+		 * Get the value of one or multiple a keys.
+		 *
+		 * If called with no arguments, all values will be returned.
+		 *
+		 * @param selection mixed String key or array of keys to get values for.
+		 * @param fallback mixed Value to use in case key(s) do not exist (optional).
+		 * @return mixed If selection was a string returns the value or null,
+		 *  If selection was an array, returns an object of key/values (value is null if not found),
+		 *  If selection was not passed or invalid, will return the 'values' object member (be careful as
+		 *  objects are always passed by reference in JavaScript!).
+		 * @return Values as a string or object, null if invalid/inexistant.
+		 */
+		get: function( selection, fallback ) {
+			if ( $.isArray( selection ) ) {
+				selection = $.makeArray( selection );
+				var results = {};
+				for ( var i = 0; i < selection.length; i++ ) {
+					results[selection[i]] = this.get( selection[i], fallback );
 				}
-				return null;
-			}
-			return this.values[selection];
-		}
-		if ( selection === undefined ) {
-			return this.values;
-		} else {
-			return null; // invalid selection key
-		}
-	};
-
-	/**
-	 * Sets one or multiple key/value pairs.
-	 *
-	 * @param selection mixed String key or array of keys to set values for.
-	 * @param value mixed Value to set (optional, only in use when key is a string)
-	 * @return bool This returns true on success, false on failure.
-	 */
-	Map.prototype.set = function( selection, value ) {
-		if ( $.isPlainObject( selection ) ) {
-			for ( var s in selection ) {
-				this.values[s] = selection[s];
-			}
-			return true;
-		} else if ( typeof selection === 'string' && value !== undefined ) {
-			this.values[selection] = value;
-			return true;
-		}
-		return false;
-	};
-
-	/**
-	 * Checks if one or multiple keys exist.
-	 *
-	 * @param selection mixed String key or array of keys to check
-	 * @return boolean Existence of key(s)
-	 */
-	Map.prototype.exists = function( selection ) {
-		if ( typeof selection === 'object' ) {
-			for ( var s = 0; s < selection.length; s++ ) {
-				if ( !( selection[s] in this.values ) ) {
-					return false;
+				return results;
+			} else if ( typeof selection === 'string' ) {
+				if ( this.values[selection] === undefined ) {
+					if ( fallback !== undefined ) {
+						return fallback;
+					}
+					return null;
 				}
+				return this.values[selection];
 			}
-			return true;
-		} else {
-			return selection in this.values;
+			if ( selection === undefined ) {
+				return this.values;
+			} else {
+				return null; // invalid selection key
+			}
+		},
+
+		/**
+		 * Sets one or multiple key/value pairs.
+		 *
+		 * @param selection mixed String key or array of keys to set values for.
+		 * @param value mixed Value to set (optional, only in use when key is a string)
+		 * @return bool This returns true on success, false on failure.
+		 */
+		set: function( selection, value ) {
+			if ( $.isPlainObject( selection ) ) {
+				for ( var s in selection ) {
+					this.values[s] = selection[s];
+				}
+				return true;
+			} else if ( typeof selection === 'string' && value !== undefined ) {
+				this.values[selection] = value;
+				return true;
+			}
+			return false;
+		},
+
+		/**
+		 * Checks if one or multiple keys exist.
+		 *
+		 * @param selection mixed String key or array of keys to check
+		 * @return boolean Existence of key(s)
+		 */
+		exists: function( selection ) {
+			if ( typeof selection === 'object' ) {
+				for ( var s = 0; s < selection.length; s++ ) {
+					if ( !( selection[s] in this.values ) ) {
+						return false;
+					}
+				}
+				return true;
+			} else {
+				return selection in this.values;
+			}
 		}
 	};
 
@@ -124,91 +126,93 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 		return this;
 	}
 
-	/**
-	 * Appends (does not replace) parameters for replacement to the .parameters property.
-	 *
-	 * @param parameters Array
-	 * @return Message
-	 */
-	Message.prototype.params = function( parameters ) {
-		for ( var i = 0; i < parameters.length; i++ ) {
-			this.parameters.push( parameters[i] );
-		}
-		return this;
-	};
+	Message.prototype = {
+		/**
+		 * Appends (does not replace) parameters for replacement to the .parameters property.
+		 *
+		 * @param parameters Array
+		 * @return Message
+		 */
+		params: function( parameters ) {
+			for ( var i = 0; i < parameters.length; i++ ) {
+				this.parameters.push( parameters[i] );
+			}
+			return this;
+		},
 
-	/**
-	 * Converts message object to it's string form based on the state of format.
-	 *
-	 * @return string Message as a string in the current form or <key> if key does not exist.
-	 */
-	Message.prototype.toString = function() {
-		if ( !this.map.exists( this.key ) ) {
-			// Return <key> if key does not exist
-			return '<' + this.key + '>';
-		}
-		var	text = this.map.get( this.key ),
-			parameters = this.parameters;
+		/**
+		 * Converts message object to it's string form based on the state of format.
+		 *
+		 * @return string Message as a string in the current form or <key> if key does not exist.
+		 */
+		toString: function() {
+			if ( !this.map.exists( this.key ) ) {
+				// Return <key> if key does not exist
+				return '<' + this.key + '>';
+			}
+			var	text = this.map.get( this.key ),
+				parameters = this.parameters;
 
-		text = text.replace( /\$(\d+)/g, function( string, match ) {
-			var index = parseInt( match, 10 ) - 1;
-			return index in parameters ? parameters[index] : '$' + match;
-		} );
+			text = text.replace( /\$(\d+)/g, function( string, match ) {
+				var index = parseInt( match, 10 ) - 1;
+				return index in parameters ? parameters[index] : '$' + match;
+			} );
 
-		if ( this.format === 'plain' ) {
+			if ( this.format === 'plain' ) {
+				return text;
+			}
+			if ( this.format === 'escaped' ) {
+				// According to Message.php this needs {{-transformation, which is
+				// still todo
+				return mw.html.escape( text );
+			}
+
+			/* This should be fixed up when we have a parser
+			if ( this.format === 'parse' && 'language' in mw ) {
+				text = mw.language.parse( text );
+			}
+			*/
 			return text;
+		},
+
+		/**
+		 * Changes format to parse and converts message to string
+		 *
+		 * @return {string} String form of parsed message
+		 */
+		parse: function() {
+			this.format = 'parse';
+			return this.toString();
+		},
+
+		/**
+		 * Changes format to plain and converts message to string
+		 *
+		 * @return {string} String form of plain message
+		 */
+		plain: function() {
+			this.format = 'plain';
+			return this.toString();
+		},
+
+		/**
+		 * Changes the format to html escaped and converts message to string
+		 *
+		 * @return {string} String form of html escaped message
+		 */
+		escaped: function() {
+			this.format = 'escaped';
+			return this.toString();
+		},
+
+		/**
+		 * Checks if message exists
+		 *
+		 * @return {string} String form of parsed message
+		 */
+		exists: function() {
+			return this.map.exists( this.key );
 		}
-		if ( this.format === 'escaped' ) {
-			// According to Message.php this needs {{-transformation, which is
-			// still todo
-			return mw.html.escape( text );
-		}
-
-		/* This should be fixed up when we have a parser
-		if ( this.format === 'parse' && 'language' in mw ) {
-			text = mw.language.parse( text );
-		}
-		*/
-		return text;
-	};
-
-	/**
-	 * Changes format to parse and converts message to string
-	 *
-	 * @return {string} String form of parsed message
-	 */
-	Message.prototype.parse = function() {
-		this.format = 'parse';
-		return this.toString();
-	};
-
-	/**
-	 * Changes format to plain and converts message to string
-	 *
-	 * @return {string} String form of plain message
-	 */
-	Message.prototype.plain = function() {
-		this.format = 'plain';
-		return this.toString();
-	};
-
-	/**
-	 * Changes the format to html escaped and converts message to string
-	 *
-	 * @return {string} String form of html escaped message
-	 */
-	Message.prototype.escaped = function() {
-		this.format = 'escaped';
-		return this.toString();
-	};
-
-	/**
-	 * Checks if message exists
-	 *
-	 * @return {string} String form of parsed message
-	 */
-	Message.prototype.exists = function() {
-		return this.map.exists( this.key );
 	};
 
 	/* Public Members */
@@ -360,7 +364,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 					return [a < 10 ? '0' + a : a, b < 10 ? '0' + b : b, c < 10 ? '0' + c : c].join( '' );
 				},
 				d = new Date();
-				d.setTime( timestamp * 1000 );
+			d.setTime( timestamp * 1000 );
 			return [
 				pad( d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate() ), 'T',
 				pad( d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds() ), 'Z'
@@ -501,11 +505,10 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 							} ) );
 						}
 					} else if ( typeof style === 'string' ) {
-						getMarker().before( mw.html.element(
-							'style',
-							{ 'type': 'text/css', 'media': media },
-							new mw.html.Cdata( style )
-						) );
+						getMarker().before( mw.html.element( 'style', {
+							'type': 'text/css',
+							'media': media
+						}, new mw.html.Cdata( style ) ) );
 					}
 				}
 			}
@@ -673,12 +676,12 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 		 * @param callback Function: Optional callback which will be run when the script is done
 		 */
 		function addScript( src, callback ) {
+			var done = false, script;
 			if ( ready ) {
 				// jQuery's getScript method is NOT better than doing this the old-fassioned way
 				// because jQuery will eval the script's code, and errors will not have sane
 				// line numbers.
-				var	done = false,
-					script = document.createElement( 'script' );
+				script = document.createElement( 'script' );
 				script.setAttribute( 'src', src );
 				script.setAttribute( 'type', 'text/javascript' );
 				if ( $.isFunction( callback ) ) {
@@ -1163,8 +1166,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;
 
-/* Auto-register from pre-loaded startup scripts */
-
+// Auto-register from pre-loaded startup scripts
 if ( jQuery.isFunction( startUp ) ) {
 	startUp();
 	delete startUp;
