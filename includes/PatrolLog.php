@@ -13,6 +13,8 @@ class PatrolLog {
 	 *
 	 * @param $rc Mixed: change identifier or RecentChange object
 	 * @param $auto Boolean: was this patrol event automatic?
+	 *
+	 * @return bool
 	 */
 	public static function record( $rc, $auto = false ) {
 		if( !( $rc instanceof RecentChange ) ) {

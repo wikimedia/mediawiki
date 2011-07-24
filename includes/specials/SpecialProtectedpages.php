@@ -83,7 +83,7 @@ class SpecialProtectedpages extends SpecialPage {
 		static $skin = null, $infinity = null;
 
 		if( is_null( $skin ) ){
-			$skin = $wgUser->getSkin();
+			$skin = $this->getSkin();
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 

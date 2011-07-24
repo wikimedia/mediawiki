@@ -260,8 +260,8 @@ class Preprocessor_HipHop implements Preprocessor {
 			if ( $found === 'angle' ) {
 				$matches = false;
 				// Handle </onlyinclude>
-				if ( $enableOnlyinclude 
-					&& substr( $text, $i, strlen( '</onlyinclude>' ) ) === '</onlyinclude>' ) 
+				if ( $enableOnlyinclude
+					&& substr( $text, $i, strlen( '</onlyinclude>' ) ) === '</onlyinclude>' )
 				{
 					$findOnlyinclude = true;
 					continue;
@@ -362,7 +362,7 @@ class Preprocessor_HipHop implements Preprocessor {
 				}
 
 				$tagStartPos = $i;
-				$inner = $close = '';
+				$close = '';
 				if ( $text[$tagEndPos-1] === '/' ) {
 					// Short end tag
 					$attrEnd = $tagEndPos - 1;

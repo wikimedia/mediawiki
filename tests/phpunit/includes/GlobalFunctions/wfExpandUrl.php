@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * Unit tests for wfExpandUrl()
  */
 
@@ -11,6 +11,8 @@ class wfExpandUrl extends MediaWikiTestCase {
 
 	/**
 	 * Provider of URL examples for testing wfExpandUrl()
+	 *
+	 * @return array
 	 */
 	public function provideExpandableUrls() {
 		global $wgServer;
