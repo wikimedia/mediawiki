@@ -1,7 +1,7 @@
 <?php
 
 /**
- * JSMinPlus version 1.3
+ * JSMinPlus version 1.4
  *
  * Minifies a javascript file using a javascript parser
  *
@@ -15,8 +15,10 @@
  * Usage: $minified = JSMinPlus::minify($script [, $filename])
  *
  * Versionlog (see also changelog.txt):
- * 19-07-2011 - expanded operator and keyword defines. Fixes the notices when creating several JSTokenizer
- * 17-05-2009 - fixed hook:colon precedence, fixed empty body in loop and if-constructs
+ * 23-07-2011 - remove dynamic creation of OP_* and KEYWORD_* defines and declare them on top
+ *              reduce memory footprint by minifying by block-scope
+ *              some small byte-saving and performance improvements
+ * 12-05-2009 - fixed hook:colon precedence, fixed empty body in loop and if-constructs
  * 18-04-2009 - fixed crashbug in PHP 5.2.9 and several other bugfixes
  * 12-04-2009 - some small bugfixes and performance improvements
  * 09-04-2009 - initial open sourced version 1.0
@@ -46,7 +48,7 @@
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s): Tino Zijdel <crisp@tweakers.net>
- * PHP port, modifications and minifier routine are (C) 2009
+ * PHP port, modifications and minifier routine are (C) 2009-2011
  *
  * Alternatively, the contents of this file may be used under the terms of
  * either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -85,6 +87,8 @@ define('JS_GETTER', 110);
 define('JS_SETTER', 111);
 define('JS_GROUP', 112);
 define('JS_LIST', 113);
+
+define('JS_MINIFIED', 999);
 
 define('DECLARED_FORM', 0);
 define('EXPRESSED_FORM', 1);
@@ -188,7 +192,7 @@ class JSMinPlus
 
 	private function __construct()
 	{
-		$this->parser = new JSParser();
+		$this->parser = new JSParser($this);
 	}
 
 	public static function minify($js, $filename='')
@@ -217,22 +221,18 @@ class JSMinPlus
 		return false;
 	}
 
-	private function parseTree($n, $noBlockGrouping = false)
+	public function parseTree($n, $noBlockGrouping = false)
 	{
 		$s = '';
 
 		switch ($n->type)
 		{
-			case KEYWORD_FUNCTION:
-				$s .= 'function' . ($n->name ? ' ' . $n->name : '') . '(';
-				$params = $n->params;
-				for ($i = 0, $j = count($params); $i < $j; $i++)
-					$s .= ($i ? ',' : '') . $params[$i];
-				$s .= '){' . $this->parseTree($n->body, true) . '}';
+			case JS_MINIFIED:
+				$s = $n->value;
 			break;
 
 			case JS_SCRIPT:
-				// we do nothing with funDecls or varDecls
+				// we do nothing yet with funDecls or varDecls
 				$noBlockGrouping = true;
 			// FALL THROUGH
 
@@ -277,6 +277,14 @@ class JSMinPlus
 				{
 					$s = '{' . $s . '}';
 				}
+			break;
+
+			case KEYWORD_FUNCTION:
+				$s .= 'function' . ($n->name ? ' ' . $n->name : '') . '(';
+				$params = $n->params;
+				for ($i = 0, $j = count($params); $i < $j; $i++)
+					$s .= ($i ? ',' : '') . $params[$i];
+				$s .= '){' . $this->parseTree($n->body, true) . '}';
 			break;
 
 			case KEYWORD_IF:
@@ -385,19 +393,14 @@ class JSMinPlus
 			break;
 
 			case KEYWORD_THROW:
-				$s = 'throw ' . $this->parseTree($n->exception);
-			break;
-
 			case KEYWORD_RETURN:
-				$s = 'return';
+				$s = $n->type;
 				if ($n->value)
 				{
 					$t = $this->parseTree($n->value);
 					if (strlen($t))
 					{
-						if (	$t[0] != '(' && $t[0] != '[' && $t[0] != '{' &&
-							$t[0] != '"' && $t[0] != "'" && $t[0] != '/'
-						)
+						if ($this->isWordChar($t[0]) || $t[0] == '\\')
 							$s .= ' ';
 
 						$s .= $t;
@@ -421,6 +424,40 @@ class JSMinPlus
 					if ($u)
 						$s .= '=' . $this->parseTree($u);
 				}
+			break;
+
+			case KEYWORD_IN:
+			case KEYWORD_INSTANCEOF:
+				$left = $this->parseTree($n->treeNodes[0]);
+				$right = $this->parseTree($n->treeNodes[1]);
+
+				$s = $left;
+
+				if ($this->isWordChar(substr($left, -1)))
+					$s .= ' ';
+
+				$s .= $n->type;
+
+				if ($this->isWordChar($right[0]) || $right[0] == '\\')
+					$s .= ' ';
+
+				$s .= $right;
+			break;
+
+			case KEYWORD_DELETE:
+			case KEYWORD_TYPEOF:
+				$right = $this->parseTree($n->treeNodes[0]);
+
+				$s = $n->type;
+
+				if ($this->isWordChar($right[0]) || $right[0] == '\\')
+					$s .= ' ';
+
+				$s .= $right;
+			break;
+
+			case KEYWORD_VOID:
+				$s = 'void(' . $this->parseTree($n->treeNodes[0]) . ')';
 			break;
 
 			case KEYWORD_DEBUGGER:
@@ -495,26 +532,6 @@ class JSMinPlus
 					default:
 						$s = $left . $n->type . $right;
 				}
-			break;
-
-			case KEYWORD_IN:
-				$s = $this->parseTree($n->treeNodes[0]) . ' in ' . $this->parseTree($n->treeNodes[1]);
-			break;
-
-			case KEYWORD_INSTANCEOF:
-				$s = $this->parseTree($n->treeNodes[0]) . ' instanceof ' . $this->parseTree($n->treeNodes[1]);
-			break;
-
-			case KEYWORD_DELETE:
-				$s = 'delete ' . $this->parseTree($n->treeNodes[0]);
-			break;
-
-			case KEYWORD_VOID:
-				$s = 'void(' . $this->parseTree($n->treeNodes[0]) . ')';
-			break;
-
-			case KEYWORD_TYPEOF:
-				$s = 'typeof ' . $this->parseTree($n->treeNodes[0]);
 			break;
 
 			case OP_NOT:
@@ -606,13 +623,33 @@ class JSMinPlus
 				$s .= '}';
 			break;
 
+			case TOKEN_NUMBER:
+				$s = $n->value;
+				if (preg_match('/^([1-9]+)(0{3,})$/', $s, $m))
+					$s = $m[1] . 'e' . strlen($m[2]);
+			break;
+
 			case KEYWORD_NULL: case KEYWORD_THIS: case KEYWORD_TRUE: case KEYWORD_FALSE:
-			case TOKEN_IDENTIFIER: case TOKEN_NUMBER: case TOKEN_STRING: case TOKEN_REGEXP:
+			case TOKEN_IDENTIFIER: case TOKEN_STRING: case TOKEN_REGEXP:
 				$s = $n->value;
 			break;
 
 			case JS_GROUP:
-				$s = '(' . $this->parseTree($n->treeNodes[0]) . ')';
+				if (in_array(
+					$n->treeNodes[0]->type,
+					array(
+						JS_ARRAY_INIT, JS_OBJECT_INIT, JS_GROUP,
+						TOKEN_NUMBER, TOKEN_STRING, TOKEN_REGEXP, TOKEN_IDENTIFIER,
+						KEYWORD_NULL, KEYWORD_THIS, KEYWORD_TRUE, KEYWORD_FALSE
+					)
+				))
+				{
+					$s = $this->parseTree($n->treeNodes[0]);
+				}
+				else
+				{
+					$s = '(' . $this->parseTree($n->treeNodes[0]) . ')';
+				}
 			break;
 
 			default:
@@ -626,11 +663,17 @@ class JSMinPlus
 	{
 		return preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $string) && !in_array($string, $this->reserved);
 	}
+
+	private function isWordChar($char)
+	{
+		return $char == '_' || $char == '$' || ctype_alnum($char);
+	}
 }
 
 class JSParser
 {
 	private $t;
+	private $minifier;
 
 	private $opPrecedence = array(
 		';' => 0,
@@ -680,8 +723,9 @@ class JSParser
 		TOKEN_CONDCOMMENT_START => 1, TOKEN_CONDCOMMENT_END => 1
 	);
 
-	public function __construct()
+	public function __construct($minifier=null)
 	{
+		$this->minifier = $minifier;
 		$this->t = new JSTokenizer();
 	}
 
@@ -704,6 +748,19 @@ class JSParser
 		$n->type = JS_SCRIPT;
 		$n->funDecls = $x->funDecls;
 		$n->varDecls = $x->varDecls;
+
+		// minify by scope
+		if ($this->minifier)
+		{
+			$n->value = $this->minifier->parseTree($n);
+
+			// clear tree from node to save memory
+			$n->treeNodes = null;
+			$n->funDecls = null;
+			$n->varDecls = null;
+
+			$n->type = JS_MINIFIED;
+		}
 
 		return $n;
 	}
@@ -963,7 +1020,7 @@ class JSParser
 
 			case KEYWORD_THROW:
 				$n = new JSNode($this->t);
-				$n->exception = $this->Expression($x);
+				$n->value = $this->Expression($x);
 			break;
 
 			case KEYWORD_RETURN:
@@ -1678,44 +1735,11 @@ class JSTokenizer
 	);
 
 	private $opTypeNames = array(
-		';'	=> 'SEMICOLON',
-		','	=> 'COMMA',
-		'?'	=> 'HOOK',
-		':'	=> 'COLON',
-		'||'	=> 'OR',
-		'&&'	=> 'AND',
-		'|'	=> 'BITWISE_OR',
-		'^'	=> 'BITWISE_XOR',
-		'&'	=> 'BITWISE_AND',
-		'==='	=> 'STRICT_EQ',
-		'=='	=> 'EQ',
-		'='	=> 'ASSIGN',
-		'!=='	=> 'STRICT_NE',
-		'!='	=> 'NE',
-		'<<'	=> 'LSH',
-		'<='	=> 'LE',
-		'<'	=> 'LT',
-		'>>>'	=> 'URSH',
-		'>>'	=> 'RSH',
-		'>='	=> 'GE',
-		'>'	=> 'GT',
-		'++'	=> 'INCREMENT',
-		'--'	=> 'DECREMENT',
-		'+'	=> 'PLUS',
-		'-'	=> 'MINUS',
-		'*'	=> 'MUL',
-		'/'	=> 'DIV',
-		'%'	=> 'MOD',
-		'!'	=> 'NOT',
-		'~'	=> 'BITWISE_NOT',
-		'.'	=> 'DOT',
-		'['	=> 'LEFT_BRACKET',
-		']'	=> 'RIGHT_BRACKET',
-		'{'	=> 'LEFT_CURLY',
-		'}'	=> 'RIGHT_CURLY',
-		'('	=> 'LEFT_PAREN',
-		')'	=> 'RIGHT_PAREN',
-		'@*/'	=> 'CONDCOMMENT_END'
+		';', ',', '?', ':', '||', '&&', '|', '^',
+		'&', '===', '==', '=', '!==', '!=', '<<', '<=',
+		'<', '>>>', '>>', '>=', '>', '++', '--', '+',
+		'-', '*', '/', '%', '!', '~', '.', '[',
+		']', '{', '}', '(', ')', '@*/'
 	);
 
 	private $assignOps = array('|', '^', '&', '<<', '>>', '>>>', '+', '-', '*', '/', '%');
@@ -1723,7 +1747,7 @@ class JSTokenizer
 
 	public function __construct()
 	{
-		$this->opRegExp = '#^(' . implode('|', array_map('preg_quote', array_keys($this->opTypeNames))) . ')#';
+		$this->opRegExp = '#^(' . implode('|', array_map('preg_quote', $this->opTypeNames)) . ')#';
 	}
 
 	public function init($source, $filename = '', $lineno = 1)
@@ -1874,22 +1898,38 @@ class JSTokenizer
 		{
 			switch ($input[0])
 			{
-				case '0': case '1': case '2': case '3': case '4':
-				case '5': case '6': case '7': case '8': case '9':
-					if (preg_match('/^\d+\.\d*(?:[eE][-+]?\d+)?|^\d+(?:\.\d*)?[eE][-+]?\d+/', $input, $match))
+				case '0':
+					// hexadecimal
+					if (($input[1] == 'x' || $input[1] == 'X') && preg_match('/^0x[0-9a-f]+/i', $input, $match))
 					{
 						$tt = TOKEN_NUMBER;
+						break;
 					}
-					else if (preg_match('/^0[xX][\da-fA-F]+|^0[0-7]*|^\d+/', $input, $match))
+				// FALL THROUGH
+
+				case '1': case '2': case '3': case '4': case '5':
+				case '6': case '7': case '8': case '9':
+					// should always match
+					preg_match('/^\d+(?:\.\d*)?(?:[eE][-+]?\d+)?/', $input, $match);
+					$tt = TOKEN_NUMBER;
+				break;
+
+				case "'":
+					if (preg_match('/^\'(?:[^\\\\\'\r\n]++|\\\\(?:.|\r?\n))*\'/', $input, $match))
 					{
-						// this should always match because of \d+
-						$tt = TOKEN_NUMBER;
+						$tt = TOKEN_STRING;
+					}
+					else
+					{
+						if ($chunksize)
+							return $this->get(null); // retry with a full chunk fetch
+
+						throw $this->newSyntaxError('Unterminated string literal');
 					}
 				break;
 
 				case '"':
-				case "'":
-					if (preg_match('/^"(?:\\\\(?:.|\r?\n)|[^\\\\"\r\n]+)*"|^\'(?:\\\\(?:.|\r?\n)|[^\\\\\'\r\n]+)*\'/', $input, $match))
+					if (preg_match('/^"(?:[^\\\\"\r\n]++|\\\\(?:.|\r?\n))*"/', $input, $match))
 					{
 						$tt = TOKEN_STRING;
 					}
@@ -2044,4 +2084,3 @@ class JSToken
 	public $lineno;
 	public $assignOp;
 }
-
