@@ -838,7 +838,13 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 
 		/**
 		 * Registers a module, letting the system know about it and its
-		 * dependencies. loader.js files contain calls to this function.
+		 * properties. Startup modules contain calls to this function.
+		 *
+		 * @param module {String}: Module name
+		 * @param version {Number}: Module version number as a timestamp (falls backs to 0)
+		 * @param dependencies {String|Array|Function}: One string or array of strings of module
+		 *  names on which this module depends, or a function that returns that array.
+		 * @param group {String}: Group which the module is in (optional, defaults to null)
 		 */
 		this.register = function( module, version, dependencies, group ) {
 			// Allow multiple registration
