@@ -145,10 +145,6 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ );
 		Profiler::instance()->setTemplated( true );
 
-		$oldid = $wgRequest->getVal( 'oldid' );
-		$diff = $wgRequest->getVal( 'diff' );
-		$action = $wgRequest->getVal( 'action', 'view' );
-
 		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
 
@@ -157,6 +153,7 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $this->getTitle()->getPrefixedDBkey();
+		$this->userpage = $this->getUser()->getUserPage()->getPrefixedText();
 		$query = array();
 		if ( !$wgRequest->wasPosted() ) {
 			$query = $wgRequest->getValues();
@@ -166,8 +163,6 @@ class SkinTemplate extends Skin {
 		}
 		$this->thisquery = wfArrayToCGI( $query );
 		$this->loggedin = $wgUser->isLoggedIn();
-		$this->iscontent = ( $this->getTitle()->getNamespace() != NS_SPECIAL );
-		$this->iseditable = ( $this->iscontent and !( $action == 'edit' or $action == 'submit' ) );
 		$this->username = $wgUser->getName();
 
 		if ( $wgUser->isLoggedIn() || $this->showIPinHeader() ) {
@@ -183,8 +178,6 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff-head' );
 		if ( !$this->useHeadElement ) {
-			$this->setupUserCss( $out );
-
 			$tpl->set( 'pagecss', false );
 			$tpl->set( 'usercss', false );
 
@@ -216,6 +209,9 @@ class SkinTemplate extends Skin {
 			} else {
 				$tpl->set( 'trackbackhtml', null );
 			}
+
+			$tpl->set( 'pageclass', $this->getPageClasses( $this->getTitle() ) );
+			$tpl->set( 'skinnameclass', ( 'skin-' . Sanitizer::escapeClass( $this->getSkinName() ) ) );
 		}
 		wfProfileOut( __METHOD__ . '-stuff-head' );
 
@@ -223,19 +219,10 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'title', $out->getPageTitle() );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
-		$tpl->set( 'pageclass', $this->getPageClasses( $this->getTitle() ) );
-		$tpl->set( 'skinnameclass', ( 'skin-' . Sanitizer::escapeClass( $this->getSkinName() ) ) );
 
-		$nsname = MWNamespace::exists( $this->getTitle()->getNamespace() ) ?
-					MWNamespace::getCanonicalName( $this->getTitle()->getNamespace() ) :
-					$this->getTitle()->getNsText();
-
-		$tpl->set( 'nscanonical', $nsname );
-		$tpl->set( 'nsnumber', $this->getTitle()->getNamespace() );
 		$tpl->set( 'titleprefixeddbkey', $this->getTitle()->getPrefixedDBKey() );
 		$tpl->set( 'titletext', $this->getTitle()->getText() );
 		$tpl->set( 'articleid', $this->getTitle()->getArticleId() );
-		$tpl->set( 'currevisionid', $this->getTitle()->getLatestRevID() );
 
 		$tpl->set( 'isarticle', $out->isArticle() );
 
@@ -321,74 +308,49 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'userlangattributes', $attrs );
 		}
 
-		$newtalks = $this->getNewtalks( $out );
-
 		wfProfileOut( __METHOD__ . '-stuff2' );
 
 		wfProfileIn( __METHOD__ . '-stuff3' );
-		$tpl->setRef( 'newtalk', $newtalks );
+		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->setRef( 'skin', $this );
 		$tpl->set( 'logo', $this->logoText() );
-		if ( $out->isArticle() && ( !isset( $oldid ) || isset( $diff ) ) &&
-			$this->getTitle()->exists() )
-		{
-			$article = new Article( $this->getTitle(), 0 );
-			if ( !$wgDisableCounters ) {
-				$viewcount = $wgLang->formatNum( $article->getCount() );
-				if ( $viewcount ) {
-					$tpl->set( 'viewcount', wfMsgExt( 'viewcount', array( 'parseinline' ), $viewcount ) );
-				} else {
-					$tpl->set( 'viewcount', false );
-				}
-			} else {
-				$tpl->set( 'viewcount', false );
-			}
 
-			if( $wgPageShowWatchingUsers ) {
-				$dbr = wfGetDB( DB_SLAVE );
-				$res = $dbr->select( 'watchlist',
-					array( 'COUNT(*) AS n' ),
-					array( 'wl_title' => $dbr->strencode( $this->getTitle()->getDBkey() ), 'wl_namespace' => $this->getTitle()->getNamespace() ),
-					__METHOD__
-				);
-				$x = $dbr->fetchObject( $res );
-				$numberofwatchingusers = $x->n;
-				if( $numberofwatchingusers > 0 ) {
-					$tpl->set( 'numberofwatchingusers',
-						wfMsgExt( 'number_of_watching_users_pageview', array( 'parseinline' ),
-						$wgLang->formatNum( $numberofwatchingusers ) )
+		$tpl->set( 'copyright', false );
+		$tpl->set( 'viewcount', false );
+		$tpl->set( 'lastmod', false );
+		$tpl->set( 'credits', false );
+		$tpl->set( 'numberofwatchingusers', false );
+		if ( $out->isArticle() && $this->getTitle()->exists() ) {
+			if ( $this->isRevisionCurrent() ) {
+				$article = new Article( $this->getTitle(), 0 );
+				if ( !$wgDisableCounters ) {
+					$viewcount = $wgLang->formatNum( $article->getCount() );
+					if ( $viewcount ) {
+						$tpl->set( 'viewcount', wfMsgExt( 'viewcount', array( 'parseinline' ), $viewcount ) );
+					}
+				}
+
+				if( $wgPageShowWatchingUsers ) {
+					$dbr = wfGetDB( DB_SLAVE );
+					$num = $dbr->selectField( 'watchlist', 'COUNT(*)',
+						array( 'wl_title' => $this->getTitle()->getDBkey(), 'wl_namespace' => $this->getTitle()->getNamespace() ),
+						__METHOD__
 					);
-				} else {
-					$tpl->set( 'numberofwatchingusers', false );
+					if( $num > 0 ) {
+						$tpl->set( 'numberofwatchingusers',
+							wfMsgExt( 'number_of_watching_users_pageview', array( 'parseinline' ),
+							$wgLang->formatNum( $num ) )
+						);
+					}
 				}
-			} else {
-				$tpl->set( 'numberofwatchingusers', false );
+
+				if ( $wgMaxCredits != 0 ) {
+					$tpl->set( 'credits', Action::factory( 'credits', $article )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
+				} else {
+					$tpl->set( 'lastmod', $this->lastModified( $article ) );
+				}
 			}
-
 			$tpl->set( 'copyright', $this->getCopyright() );
-
-			$this->credits = false;
-
-			if( $wgMaxCredits != 0 ){
-				$this->credits = Action::factory( 'credits', $article )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax );
-			} else {
-				$tpl->set( 'lastmod', $this->lastModified( $article ) );
-			}
-
-			$tpl->setRef( 'credits', $this->credits );
-
-		} elseif ( isset( $oldid ) && !isset( $diff ) ) {
-			$tpl->set( 'copyright', $this->getCopyright() );
-			$tpl->set( 'viewcount', false );
-			$tpl->set( 'lastmod', false );
-			$tpl->set( 'credits', false );
-			$tpl->set( 'numberofwatchingusers', false );
-		} else {
-			$tpl->set( 'copyright', false );
-			$tpl->set( 'viewcount', false );
-			$tpl->set( 'lastmod', false );
-			$tpl->set( 'credits', false );
-			$tpl->set( 'numberofwatchingusers', false );
 		}
 		wfProfileOut( __METHOD__ . '-stuff3' );
 
@@ -441,14 +403,14 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'reporttime', wfReportTime() );
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
-		$tpl->set( 'bottomscripts', $this->bottomScripts( $out ) );
+		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
 
 		# Add a <div class="mw-content-ltr/rtl"> around the body text
 		# not for special pages or file pages AND only when viewing AND if the page exists
 		# (or is in MW namespace, because that has default content)
 		if( !in_array( $this->getTitle()->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
-			in_array( $action, array( 'view', 'historysubmit' ) ) &&
+			$wgRequest->getVal( 'action', 'view' ) == 'view' &&
 			( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
 			$pageLang = $this->getTitle()->getPageLanguage();
 			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
@@ -1167,7 +1129,7 @@ class SkinTemplate extends Skin {
 
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
-		if( $this->iscontent && ( $action == 'view' || $action == 'purge' ) ) {
+		if( $this->getTitle()->getNamespace() != NS_SPECIAL && ( $action == 'view' || $action == 'purge' ) ) {
 			if ( !$out->isPrintable() ) {
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),
