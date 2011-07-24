@@ -685,23 +685,30 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 				script.setAttribute( 'src', src );
 				script.setAttribute( 'type', 'text/javascript' );
 				if ( $.isFunction( callback ) ) {
-					// Attach handlers for all browsers -- this is based on jQuery.getScript
+					// Attach handlers for all browsers -- this is based on jQuery.ajax
 					script.onload = script.onreadystatechange = function() {
+
 						if (
 							!done
 							&& (
-								!this.readyState
-								|| this.readyState === 'loaded'
-								|| this.readyState === 'complete'
+								!script.readyState
+								|| /loaded|complete/.test( script.readyState )
 							)
 						) {
+
 							done = true;
-							callback();
+
 							// Handle memory leak in IE
 							script.onload = script.onreadystatechange = null;
+
+							callback();
+
 							if ( script.parentNode ) {
 								script.parentNode.removeChild( script );
 							}
+
+							// Dereference the script
+							script = undefined;
 						}
 					};
 				}
