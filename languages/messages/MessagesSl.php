@@ -735,6 +735,17 @@ svojega starega gesla.',
 Začasno geslo: $2',
 'passwordreset-emailsent'      => 'Opomnilna e-pošta je bila poslana.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Sprememba e-poštnega naslova',
+'changeemail-header'   => 'Sprememba e-poštnega naslova računa',
+'changeemail-text'     => 'Izpolnite obrazec za spremembo vašega e-poštnega naslova. Za potrditev spremembe boste morali vnesti svoje geslo.',
+'changeemail-no-info'  => 'Za neposredni dostop do strani morate biti prijavljeni.',
+'changeemail-oldemail' => 'Trenutni e-poštni naslov:',
+'changeemail-newemail' => 'Novi e-poštni naslov:',
+'changeemail-none'     => '(noben)',
+'changeemail-submit'   => 'Spremeni e-pošto',
+'changeemail-cancel'   => 'Prekliči',
+
 # Edit page toolbar
 'bold_sample'     => 'Krepko besedilo',
 'bold_tip'        => 'Krepko besedilo',
@@ -1242,6 +1253,8 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'prefs-watchlist-token'         => 'Ključ spiska nadzorov:',
 'prefs-misc'                    => 'Druge nastavitve',
 'prefs-resetpass'               => 'Spremeni geslo',
+'prefs-changeemail'             => 'Spremeni e-pošto',
+'prefs-setemail'                => 'Nastavi e-poštni naslov',
 'prefs-email'                   => 'Možnosti e-pošte',
 'prefs-rendering'               => 'Videz',
 'saveprefs'                     => 'Shrani',

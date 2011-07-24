@@ -140,6 +140,10 @@ $2
 
 {{PLURAL:$3|Dieses temporäre Passwort läuft|Diese temporären Passwörter laufen}} innerhalb von {{PLURAL:$5|einem Tag|$5 Tagen}} ab. Sie sollten sich anmelden und ein neues Passwort vergeben. Falls jemand anderes diese Anfrage getätigt hat oder Sie sich wieder an Ihr ursprüngliches Passwort erinnern können und es nicht ändern möchten, können Sie diese Nachricht ignorieren und weiterhin Ihr altes Passwort benutzen.',
 
+# Special:ChangeEmail
+'changeemail-text'    => 'Füllen Sie dieses Formular vollständig aus, um Ihre E-Mail-Adresse zu ändern. Sie müssen Ihr Passwort angeben, um diese Änderung zu bestätigen.',
+'changeemail-no-info' => 'Sie müssen angemeldet sein, um direkt auf diese Seite zugreifen zu können.',
+
 # Edit page toolbar
 'sig_tip' => 'Ihre Signatur mit Zeitstempel',
 

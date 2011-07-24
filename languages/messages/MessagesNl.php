@@ -888,6 +888,17 @@ Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelfs heeft gedaa
 Tijdelijk wachtwoord: $2',
 'passwordreset-emailsent'      => 'Er is per e-mail een herinnering verzonden.',
 
+# Special:ChangeEmail
+'changeemail'          => 'E-mailadres wijzigen',
+'changeemail-header'   => 'Het e-mailadres van mijn gebruiker wijzigen',
+'changeemail-text'     => 'Vul dit formulier in om uw e-mailadres te wijzigen. U moet uw wachtwoord invoeren om deze wijziging te bevestigen.',
+'changeemail-no-info'  => 'U moet aangemeld zijn om rechtstreeks toegang te hebben tot deze pagina.',
+'changeemail-oldemail' => 'Huidig e-mailadres:',
+'changeemail-newemail' => 'Nieuw e-mailadres:',
+'changeemail-none'     => '(geen)',
+'changeemail-submit'   => 'E-mailadres wijzigen',
+'changeemail-cancel'   => 'Annuleren',
+
 # Edit page toolbar
 'bold_sample'     => 'Vetgedrukte tekst',
 'bold_tip'        => 'Vet',
@@ -1417,6 +1428,8 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'prefs-watchlist-token'         => 'Volglijstsleutel:',
 'prefs-misc'                    => 'Diversen',
 'prefs-resetpass'               => 'Wachtwoord wijzigen',
+'prefs-changeemail'             => 'E-mailadres wijzigen',
+'prefs-setemail'                => 'Een e-mailadres instellen',
 'prefs-email'                   => 'E-mail',
 'prefs-rendering'               => 'Uiterlijk',
 'saveprefs'                     => 'Opslaan',

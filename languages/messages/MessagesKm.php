@@ -418,7 +418,7 @@ $messages = array(
 'vector-action-move'             => 'ប្តូរទីតាំង',
 'vector-action-protect'          => 'ការពារ',
 'vector-action-undelete'         => 'ឈប់លុបចោល',
-'vector-action-unprotect'        => 'ឈប់ការពារ',
+'vector-action-unprotect'        => 'ប្ដូរការការពារ',
 'vector-simplesearch-preference' => 'ប្រើអនុសាសន៍ពាក្យចង់ស្វែងរក (សំរាប់តែសំបក វ៉ិចទ័រប៉ុណ្ណោះ)',
 'vector-view-create'             => 'បង្កើត​',
 'vector-view-edit'               => 'កែប្រែ​',
@@ -426,7 +426,7 @@ $messages = array(
 'vector-view-view'               => 'អាន',
 'vector-view-viewsource'         => 'មើល​កូដ',
 'actions'                        => 'សកម្មភាព​',
-'namespaces'                     => 'ប្រភេទ',
+'namespaces'                     => 'លំហឈ្មោះ',
 'variants'                       => 'អថេរ',
 
 'errorpagetitle'    => 'មានបញ្ហា',
@@ -455,7 +455,7 @@ $messages = array(
 'protect'           => 'ការពារ',
 'protect_change'    => 'ផ្លាស់ប្តូរការការពារ',
 'protectthispage'   => 'ការពារទំព័រនេះ',
-'unprotect'         => 'ឈប់ការពារ',
+'unprotect'         => 'ប្ដូរការការពារ',
 'unprotectthispage' => 'ឈប់ការពារទំព័រនេះ',
 'newpage'           => 'ទំព័រថ្មី',
 'talkpage'          => 'ពិភាក្សាទំព័រនេះ',
@@ -1316,7 +1316,7 @@ $1",
 'resultsperpage'                => 'ចំនួនលទ្ធផលក្នុងមួយទំព័រ៖',
 'stub-threshold'                => 'ទំហំអប្បបរមាសំរាប់ដាក់ជាទំរង់<a href="#" class="stub">តំណភ្ជាប់ទៅទំព័រកំប៉ិចកំប៉ុក</a> (គិតជាបៃ)៖',
 'stub-threshold-disabled'       => 'មិនប្រើ',
-'recentchangesdays'             => 'ចំនួនថ្ងៃបង្ហាញក្នុងទំព័របំលាស់ប្តូរថ្មីៗ៖',
+'recentchangesdays'             => 'ចំនួនថ្ងៃបង្ហាញក្នុង ទំព័របំលាស់ប្តូរថ្មីៗ៖',
 'recentchangesdays-max'         => '(អតិបរមា $1 {{PLURAL:$1|ថ្ងៃ|ថ្ងៃ}})',
 'recentchangescount'            => 'ចំនួន​កំណែប្រែ​ដែល​ត្រូវ​បង្ហាញ​តាមលំនាំដើម:',
 'prefs-help-recentchangescount' => 'រាប់បញ្ចូលទាំងការកែប្រែនាពេលថ្មី ប្រវត្តិទំព័រនិងកំណត់ហេតុនានា។',
@@ -1542,7 +1542,7 @@ $1",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|បំលាស់ប្ដូរ|បំលាស់ប្ដូរ}}',
-'recentchanges'                     => 'បន្លាស់ប្ដូរ​ថ្មីៗ',
+'recentchanges'                     => 'បំលាស់ប្ដូរ​ថ្មីៗ',
 'recentchanges-legend'              => 'ជម្រើសនានា​ សម្រាប់ការបង្ហាញបន្លាស់ប្ដូរថ្មីៗ',
 'recentchangestext'                 => 'តាមដានរាល់បន្លាស់ប្ដូររថ្មីៗបំផុត ចំពោះវិគីនៅលើទំព័រនេះ។',
 'recentchanges-feed-description'    => 'តាមដាន​បន្លាស់ប្ដូរថ្មីៗ​បំផុត​នៃ​វិគី​នេះក្នុង​មតិព័ត៌មាន​នេះ​។',
@@ -2399,7 +2399,7 @@ $1',
 'undelete-show-file-submit'    => 'បាទ/ចាស',
 
 # Namespace form on various pages
-'namespace'      => 'ប្រភេទ៖',
+'namespace'      => 'លំហឈ្មោះ:',
 'invert'         => 'ក្រៅពីនោះ',
 'blanknamespace' => '(ទូទៅ)',
 
@@ -3416,5 +3416,19 @@ $1',
 'htmlform-submit'              => 'ដាក់ស្នើ',
 'htmlform-reset'               => 'ធ្វើដូចដើមវិញ',
 'htmlform-selectorother-other' => 'ផ្សេងទៀត',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'បន្ថែម​ចំណាត់ថ្នាក់​ក្រុម​',
+'ajax-add-category-submit'     => 'បន្ថែម​',
+'ajax-confirm-title'           => 'បញ្ជាក់​សកម្មភាព​',
+'ajax-confirm-prompt'          => 'អ្នកអាចដាក់ចំណារពន្យល់ខាងក្រោម។
+
+សូមចុចលើប៊ូតុង "រក្សាទុក" ដើម្បីធ្វើការរក្សាទុកកំណែប្រែរបស់អ្នក។',
+'ajax-confirm-save'            => 'រក្សាទុក',
+'ajax-add-category-summary'    => 'បន្ថែម​ចំណាត់ថ្នាក់​ក្រុម​ "$1"',
+'ajax-remove-category-summary' => 'ដកចេញ​​ចំណាត់ថ្នាក់​ក្រុម​ "$1"',
+'ajax-confirm-actionsummary'   => 'សកម្មភាព​ត្រូវ​អនុវត្ត៖',
+'ajax-error-title'             => 'កំហុស​',
+'ajax-error-dismiss'           => 'យល់ព្រម​',
 
 );

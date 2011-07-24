@@ -25,6 +25,7 @@
  * @author Samat
  * @author Terik
  * @author Tgr
+ * @author Xbspiro
  */
 
 $namespaceNames = array(
@@ -1389,7 +1390,7 @@ A műveletet nem lehet visszavonni.',
 'gender-unknown'                => 'Nincs megadva',
 'gender-male'                   => 'Férfi',
 'gender-female'                 => 'Nő',
-'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemalapú üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
+'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemtől függő üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 'prefs-help-email'              => 'Az e-mail cím megadása nem kötelező, de szükséges új jelszó kéréséhez, ha elfelejtenéd a meglévőt.',

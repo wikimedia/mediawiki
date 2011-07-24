@@ -68,9 +68,9 @@ $messages = array(
 'may_long'      => 'მესი',
 'june'          => 'ივანობა',
 'july'          => 'კვირკვე',
-'august'        => 'მარაშნათუთა',
+'august'        => 'მარაშინათუთა',
 'september'     => 'ეკენია',
-'october'       => 'გიმათუთა',
+'october'       => 'გჷმათუთა',
 'november'      => 'გერგობათუთა',
 'december'      => 'ქირსეთუთა',
 'january-gen'   => 'იანარიშ',
@@ -80,9 +80,9 @@ $messages = array(
 'may-gen'       => 'მესიშ',
 'june-gen'      => 'ივანობაშ',
 'july-gen'      => 'კვირკვეშ',
-'august-gen'    => 'მარაშნათუთაშ',
+'august-gen'    => 'მარაშინათუთაშ',
 'september-gen' => 'ეკენიაშ',
-'october-gen'   => 'გიმათუთაშ',
+'october-gen'   => 'გჷმათუთაშ',
 'november-gen'  => 'გერგებათუთაშ',
 'december-gen'  => 'ქირსეთუთაშ',
 'jan'           => 'იან',
@@ -94,7 +94,7 @@ $messages = array(
 'jul'           => 'კვ.',
 'aug'           => 'მარ.',
 'sep'           => 'ეკ.',
-'oct'           => 'გიმ.',
+'oct'           => 'გჷმ.',
 'nov'           => 'გერ.',
 'dec'           => 'ქირ.',
 
@@ -125,7 +125,7 @@ $messages = array(
 # Cologne Blue skin
 'qbfind'         => 'დოგორ',
 'qbedit'         => 'რედაქტირება',
-'qbpageoptions'  => 'თენა ხასილა',
+'qbpageoptions'  => 'თე ხასჷლა',
 'qbpageinfo'     => 'კონტექსტ',
 'qbmyoptions'    => 'ჩქიმ ხასილეფ',
 'qbspecialpages' => 'გჷშაკერძაფილი ხასჷლეფი',
@@ -454,7 +454,7 @@ $messages = array(
 
 # Preferences page
 'preferences'             => 'კონფიგურაცია',
-'mypreferences'           => 'ჩქიმ კონფიგურაციეფ',
+'mypreferences'           => 'ჩქიმ კონფიგურაციეფი',
 'youremail'               => 'ელ-ფოშტა:',
 'yourrealname'            => 'ნანდულ სახელ *',
 'yourlanguage'            => 'ნინა:',
@@ -462,11 +462,11 @@ $messages = array(
 'prefs-help-email-others' => 'თქვა შეილებუნა ალობა მეჩათ შხვეფს დჷგეკონტაქტან ელ-ფოშტათ თქვან ანგარიშის ვარა ოჩიებელ ხასჷლაშ ლინკიშ გეჸუნათ. თქვანი ელ-ფოშტაშ მიოწურაფუ ვანკორჩქინდჷ მუჟამს შხვა მახვარებუეფი დჷგეკავშირებუნანი.',
 
 # Groups
-'group-user'  => 'მახვარებუეფ',
+'group-user'  => 'მახვარებუეფი',
 'group-sysop' => 'ადმინისტრატორეფი',
 
 'grouppage-user'  => '{{ns:project}}:მახვარებუეფ',
-'grouppage-sysop' => '{{ns:project}}:ადმინისტრატორეფ',
+'grouppage-sysop' => '{{ns:project}}:ხემანჯღვერეფი',
 
 # User rights log
 'rightslog' => 'მახვარებუშ ნებეფიშ ჟურნალ',
@@ -476,7 +476,7 @@ $messages = array(
 
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|თირაფა|თირაფეფ}}',
-'recentchanges'                   => 'ასერდენ თირაფეფ',
+'recentchanges'                   => 'ასეიანი თირაფეფი',
 'recentchanges-legend'            => 'ასერდენ თირაფეფიშ ოფციეფ',
 'recentchangestext'               => 'თე ხასჷლას ქაძირი ვიკიშა მიშაღალირ არძოშ უახალაშ თირაფეფი.',
 'recentchanges-feed-description'  => "ვიკიშ უახალაშ თირაფეფიშა თოლყ'უჯიშ მეყ'უნაფა თე არხის",

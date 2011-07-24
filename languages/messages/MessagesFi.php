@@ -428,7 +428,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'jatkuu',
 'index-category'                 => 'Indeksoidut sivut',
 'noindex-category'               => 'Indeksointikiellolliset sivut',
-'broken-file-category'           => 'Sivut joilla toimimattomia tiedostolinkkejä',
+'broken-file-category'           => 'Sivut, joilla toimimattomia tiedostolinkkejä',
 
 'about'         => 'Tietoja',
 'article'       => 'Sivu',
@@ -789,11 +789,19 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'resetpass-temp-password'   => 'Väliaikainen salasana:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Salasanan alustus',
-'passwordreset-text'     => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
-'passwordreset-legend'   => 'Salasanan vaihto',
-'passwordreset-username' => 'Käyttäjätunnus:',
-'passwordreset-email'    => 'Sähköpostiosoite',
+'passwordreset'              => 'Salasanan alustus',
+'passwordreset-text'         => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
+'passwordreset-legend'       => 'Salasanan vaihto',
+'passwordreset-username'     => 'Käyttäjätunnus:',
+'passwordreset-email'        => 'Sähköpostiosoite',
+'passwordreset-emailelement' => 'Käyttäjätunnus: $1
+Väliaikainen salasana: $2',
+
+# Special:ChangeEmail
+'changeemail-oldemail' => 'Nykyinen sähköpostiosoite',
+'changeemail-newemail' => 'Uusi sähköpostiosoite',
+'changeemail-submit'   => 'Muuta sähköpostiosoite',
+'changeemail-cancel'   => 'Peruuta',
 
 # Edit page toolbar
 'bold_sample'     => 'Lihavoitu teksti',
@@ -894,11 +902,12 @@ tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist-view'   => 'Käyttäjätunnusta ”$1” ei ole rekisteröity.',
 'blocked-notice-logextract'        => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
-'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
-'''Mozilla, Firefox ja Safari:''' napsauta Vaihto-näppäin pohjassa Päivitä tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''Command-R'' Macilla);
-'''Konqueror''': napsauta Päivitä tai paina ''F5'';
-'''Opera:''' tyhjennä välimuisti: ''Tools→Preferences'';
-'''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa Päivitä tai paina ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan.
+* '''Firefox ja Safari:''' napsauta ''Shift''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''Command-R'' Macilla)
+* '''Google Chrome:''' paina ''Ctrl-Shift-R'' (''Command-Shift-R'' Macilla)
+* '''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5''
+* '''Konqueror''': napsauta ''Päivitä'' tai paina ''F5''
+* '''Opera:''' tyhjennä välimuisti: ''Tools→Preferences''",
 'usercssyoucanpreview'             => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'userjsyoucanpreview'              => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
@@ -1278,6 +1287,8 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-watchlist-token'         => 'Tarkkailulistan avain',
 'prefs-misc'                    => 'Muut',
 'prefs-resetpass'               => 'Muuta salasana',
+'prefs-changeemail'             => 'Muuta sähköpostiosoite',
+'prefs-setemail'                => 'Aseta sähköpostiosoite',
 'prefs-email'                   => 'Sähköpostiasetukset',
 'prefs-rendering'               => 'Ulkoasu',
 'saveprefs'                     => 'Tallenna asetukset',
@@ -1301,7 +1312,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'savedprefs'                    => 'Asetuksesi tallennettiin onnistuneesti.',
 'timezonelegend'                => 'Aikavyöhyke',
 'localtime'                     => 'Paikallinen aika',
-'timezoneuseserverdefault'      => 'Käytä palvelimen oletusta',
+'timezoneuseserverdefault'      => 'Käytä oletusta ($1)',
 'timezoneuseoffset'             => 'Muu (määritä aikaero)',
 'timezoneoffset'                => 'Aikaero',
 'servertime'                    => 'Palvelimen aika',
@@ -2088,7 +2099,9 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchlistanontext'    => 'Sinun täytyy $1, jos haluat käyttää tarkkailulistaa.',
 'watchnologin'         => 'Et ole kirjautunut sisään',
 'watchnologintext'     => 'Sinun pitää [[Special:UserLogin|kirjautua sisään]], jotta voisit käyttää tarkkailulistaasi.',
+'addwatch'             => 'Lisää tarkkailulistalle',
 'addedwatchtext'       => "Sivu '''<nowiki>$1</nowiki>''' on lisätty [[Special:Watchlist|tarkkailulistallesi]]. Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan täällä. Sivu on '''lihavoitu''' [[Special:RecentChanges|tuoreiden muutosten listassa]], jotta huomaisit sen helpommin. Jos haluat myöhemmin poistaa sivun tarkkailulistaltasi, napsauta linkkiä ''lopeta tarkkailu'' sivun reunassa.",
+'removewatch'          => 'Poista tarkkailulistalta',
 'removedwatchtext'     => "Sivu '''[[:$1]]''' on poistettu [[Special:Watchlist|tarkkailulistaltasi]].",
 'watch'                => 'Tarkkaile',
 'watchthispage'        => 'Tarkkaile tätä sivua',
@@ -2203,7 +2216,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protectlogtext'              => 'Alla on loki sivujen suojauksista ja suojauksien poistoista. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:ProtectedPages|suojattujen sivujen luettelosta]].',
 'protectedarticle'            => 'suojasi sivun [[$1]]',
 'modifiedarticleprotection'   => 'muutti sivun [[$1]] suojaustasoa',
-'unprotectedarticle'          => 'poisti suojauksen sivulta $1',
+'unprotectedarticle'          => 'poisti suojauksen sivulta [[$1]]',
 'movedarticleprotection'      => 'siirsi suojausasetukset sivulta [[$2]] sivulle [[$1]]',
 'protect-title'               => 'Sivun $1 suojaus',
 'prot_1movedto2'              => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
@@ -2263,7 +2276,8 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'viewdeletedpage'              => 'Poistettujen sivujen selaus',
 'undeletepagetext'             => '{{PLURAL:$1|Seuraava sivu|Seuraavat sivut}} on poistettu, mutta {{PLURAL:$1|se löytyy|ne löytyvät}} vielä arkistosta, joten {{PLURAL:$1|se on|ne ovat}} palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
 'undelete-fieldset-title'      => 'Palauta versiot',
-'undeleteextrahelp'            => "Palauttaaksesi sivun koko muutoshistorian, jätä kaikki valintalaatikot tyhjiksi ja napsauta '''''Palauta'''''. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa. Voit tyhjentää kommenttikentän ja kaikki valintalaatikot napsauttamalla '''''Tyhjennä'''''.",
+'undeleteextrahelp'            => "Palauttaaksesi sivun koko muutoshistorian, jätä kaikki valintalaatikot tyhjiksi ja napsauta '''''{{int:undeletebtn}}'''''.
+Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.",
 'undeleterevisions'            => '{{PLURAL:$1|Versio|$1 versiota}} arkistoitu.',
 'undeletehistory'              => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan.',
 'undeleterevdel'               => 'Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain poistettu. Tässä tilanteessa poista uusimman poistettavan version piilotus. Tiedostoversioita, joihin sinulla ei ole katseluoikeutta ei palauteta.',
@@ -2774,6 +2788,11 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'spambot_username'    => 'MediaWikin mainospoistaja',
 'spam_reverting'      => 'Palautettu viimeisimpään versioon, joka ei sisällä linkkejä kohteeseen $1.',
 'spam_blanking'       => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
+
+# Info page
+'pageinfo-header-watchlist' => 'Tarkkailulista',
+'pageinfo-subjectpage'      => 'Sivu',
+'pageinfo-talkpage'         => 'Keskustelusivu',
 
 # Skin names
 'skinname-standard'    => 'Perus',
@@ -3503,11 +3522,13 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 
 # Add categories per AJAX
 'ajax-add-category'            => 'Lisää luokka',
+'ajax-remove-category'         => 'Poista luokka',
 'ajax-add-category-submit'     => 'Lisää',
 'ajax-confirm-title'           => 'Vahvista toiminto',
 'ajax-confirm-prompt'          => 'Voit kirjoittaa alle muokkausyhteenvedon.
 Muokkaus tallentuu, kun napsautat »Tallenna».',
 'ajax-confirm-save'            => 'Tallenna',
+'ajax-confirm-save-all'        => 'Tallenna kaikki muutokset',
 'ajax-add-category-summary'    => 'Lisää luokka ”$1”',
 'ajax-remove-category-summary' => 'Luokan ”$1” poisto',
 'ajax-confirm-actionsummary'   => 'Suoritettava toiminto:',
