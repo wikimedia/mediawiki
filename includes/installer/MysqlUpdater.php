@@ -181,7 +181,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'doUserNewTalkTimestampNotNull' ),
 			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
-			array( 'addTable', 'config', 'patch-config.sql' ),
 			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
 		);
 	}
