@@ -160,11 +160,6 @@ abstract class Skin extends ContextSource {
 		return $skin;
 	}
 
-	/** @return string path to the skin stylesheet */
-	function getStylesheet() {
-		return 'common/wikistandard.css';
-	}
-
 	/** @return string skin name */
 	public function getSkinName() {
 		return $this->skinname;
@@ -174,7 +169,6 @@ abstract class Skin extends ContextSource {
 		wfProfileIn( __METHOD__ );
 
 		$this->preloadExistence();
-		$this->setMembers();
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -200,13 +194,6 @@ abstract class Skin extends ContextSource {
 		$lb = new LinkBatch( $titles );
 		$lb->setCaller( __METHOD__ );
 		$lb->execute();
-	}
-
-	/**
-	 * Set some local variables
-	 */
-	protected function setMembers() {
-		$this->userpage = $this->getUser()->getUserPage()->getPrefixedText();
 	}
 
 	/**
@@ -417,15 +404,15 @@ abstract class Skin extends ContextSource {
 		global $wgUseCategoryBrowser;
 
 		$out = $this->getOutput();
+		$allCats = $out->getCategoryLinks();
 
-		if ( count( $out->mCategoryLinks ) == 0 ) {
+		if ( !count( $allCats ) ) {
 			return '';
 		}
 
 		$embed = "<li>";
 		$pop = "</li>";
 
-		$allCats = $out->getCategoryLinks();
 		$s = '';
 		$colon = wfMsgExt( 'colon-separator', 'escapenoentities' );
 
@@ -493,7 +480,7 @@ abstract class Skin extends ContextSource {
 
 			# add our current element to the list
 			$eltitle = Title::newFromText( $element );
-			$return .=  Linker::link( $eltitle, $eltitle->getText() );
+			$return .=  Linker::link( $eltitle, htmlspecialchars( $eltitle->getText() ) );
 		}
 
 		return $return;
@@ -622,14 +609,14 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * This gets called shortly before the </body> tag.
-	 * @param $out OutputPage object
+	 *
 	 * @return String HTML-wrapped JS code to be put before </body>
 	 */
-	function bottomScripts( $out ) {
+	function bottomScripts() {
 		// TODO and the suckage continues. This function is really just a wrapper around
 		// OutputPage::getBottomScripts() which takes a Skin param. This should be cleaned
 		// up at some point
-		$bottomScriptText = $out->getBottomScripts();
+		$bottomScriptText = $this->getOutput()->getBottomScripts();
 		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
 
 		return $bottomScriptText;
@@ -659,12 +646,9 @@ abstract class Skin extends ContextSource {
 
 				return wfMsg(
 					$msg,
-					Linker::link(
+					Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Undelete', $this->getTitle()->getPrefixedDBkey() ),
-						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $this->getLang()->formatNum( $n ) ),
-						array(),
-						array(),
-						array( 'known', 'noclasses' )
+						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $this->getLang()->formatNum( $n ) )
 					)
 				);
 			}
@@ -696,12 +680,9 @@ abstract class Skin extends ContextSource {
 					$linkObj = Title::newFromText( $growinglink );
 
 					if ( is_object( $linkObj ) && $linkObj->exists() ) {
-						$getlink = $this->link(
+						$getlink = Linker::linkKnown(
 							$linkObj,
-							htmlspecialchars( $display ),
-							array(),
-							array(),
-							array( 'known', 'noclasses' )
+							htmlspecialchars( $display )
 						);
 
 						$c++;
@@ -864,7 +845,7 @@ abstract class Skin extends ContextSource {
 			$a = '';
 		}
 
-		$mp = wfMsg( 'mainpage' );
+		$mp = wfMsgHtml( 'mainpage' );
 		$mptitle = Title::newMainPage();
 		$url = ( is_object( $mptitle ) ? $mptitle->escapeLocalURL() : '' );
 
@@ -903,12 +884,9 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function mainPageLink() {
-		$s = Linker::link(
+		$s = Linker::linkKown(
 			Title::newMainPage(),
-			wfMsg( 'mainpage' ),
-			array(),
-			array(),
-			array( 'known', 'noclasses' )
+			wfMsgHtml( 'mainpage' )
 		);
 
 		return $s;
@@ -1274,20 +1252,18 @@ abstract class Skin extends ContextSource {
 			$userTalkTitle = $userTitle->getTalkPage();
 
 			if ( !$userTalkTitle->equals( $out->getTitle() ) ) {
-				$newMessagesLink = $this->link(
+				$newMessagesLink = Linker::linkKown(
 					$userTalkTitle,
 					wfMsgHtml( 'newmessageslink' ),
 					array(),
-					array( 'redirect' => 'no' ),
-					array( 'known', 'noclasses' )
+					array( 'redirect' => 'no' )
 				);
 
-				$newMessagesDiffLink = $this->link(
+				$newMessagesDiffLink = Linker::linkKown(
 					$userTalkTitle,
 					wfMsgHtml( 'newmessagesdifflink' ),
 					array(),
-					array( 'diff' => 'cur' ),
-					array( 'known', 'noclasses' )
+					array( 'diff' => 'cur' )
 				);
 
 				$ntl = wfMsg(
