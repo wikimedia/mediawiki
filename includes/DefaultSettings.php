@@ -5030,6 +5030,7 @@ $wgSpecialPageGroups = array(
 	'Block'                     => 'users',
 	'Unblock'                   => 'users',
 	'Preferences'               => 'users',
+	'ChangeEmail'               => 'users',
 	'ChangePassword'            => 'users',
 	'DeletedContributions'      => 'users',
 	'PasswordReset'             => 'users',
