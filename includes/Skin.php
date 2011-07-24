@@ -884,7 +884,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function mainPageLink() {
-		$s = Linker::linkKown(
+		$s = Linker::linkKnown(
 			Title::newMainPage(),
 			wfMsgHtml( 'mainpage' )
 		);
@@ -1252,14 +1252,14 @@ abstract class Skin extends ContextSource {
 			$userTalkTitle = $userTitle->getTalkPage();
 
 			if ( !$userTalkTitle->equals( $out->getTitle() ) ) {
-				$newMessagesLink = Linker::linkKown(
+				$newMessagesLink = Linker::linkKnown(
 					$userTalkTitle,
 					wfMsgHtml( 'newmessageslink' ),
 					array(),
 					array( 'redirect' => 'no' )
 				);
 
-				$newMessagesDiffLink = Linker::linkKown(
+				$newMessagesDiffLink = Linker::linkKnown(
 					$userTalkTitle,
 					wfMsgHtml( 'newmessagesdifflink' ),
 					array(),
