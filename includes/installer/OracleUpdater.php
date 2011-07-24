@@ -34,8 +34,9 @@ class OracleUpdater extends DatabaseUpdater {
 			//1.18
 			array( 'addIndex',	'user',          'i02',       'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
-			array( 'addTable', 'config', 'patch-config.sql' ),
 
+			// 1.19
+			array( 'addTable', 'config', 'patch-config.sql' ),
 
 			// till 2.0 i guess
 			array( 'doRebuildDuplicateFunction' ),
