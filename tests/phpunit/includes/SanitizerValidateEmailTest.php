@@ -1,12 +1,12 @@
 <?php
 
-class UserIsValidEmailAddrTest extends MediaWikiTestCase {
+class SanitizerValidateEmailTest extends MediaWikiTestCase {
 
 	private function checkEmail( $addr, $expected = true, $msg = '') {
 		if( $msg == '' ) { $msg = "Testing $addr"; }
 		$this->assertEquals(
 			$expected,
-			User::isValidEmailAddr( $addr ),
+			Sanitizer::validateEmail( $addr ),
 			$msg
 		);
 	}
