@@ -319,6 +319,7 @@ Waxaa meeshaan ka heli kartaa liiska bogyaasha khaaska ah oo jiro  [[Special:Spe
 'error'                => 'Qalad',
 'databaseerror'        => 'Qalad ka dhacday database;ka',
 'laggedslavemode'      => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku soo kordhin.',
+'readonly'             => 'Databaska waa la xiray',
 'enterlockreason'      => 'Ku qor sababta loo xiraayo, kuna siidar waqtigii la soo fasaxaayo maqaalka.',
 'missing-article'      => 'Database-ka ma soo helin qoraalkii bogga oo laga rabay in oo soo helo, oo la dhoho  "$1" $2.
 
@@ -573,6 +574,7 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",
 'protectedpagewarning'             => "'''Digniin: Boggaan waa la difaacay si ee isticmaalada heesto maamulnimada kaliya wax uuga badali karaan'''
 Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
 'semiprotectedpagewarning'         => "'''Fiiro gaar ah:''' Beyjkan waa laxiray, kuwa magaca gudagal ka leh kaliya ayaa wax ka badalikara.",
+'cascadeprotectedwarning'          => "'''Digniin:''' Boggaan waa la difaacay si ee maamulada kaliya wax uuga badalaan, sababtoo ah waxaa ku jirto kaskadyadaan la difaacay oo soo sosocoto {{PLURAL:$1|bog|boggaga}}:",
 'templatesused'                    => '{{PLURAL:$1|Tusmo|Tusmooyinka}} lagu isticmaalay boggaan:',
 'template-protected'               => '(waa la difaacay)',
 'template-semiprotected'           => '(difaaca-fudud)',
@@ -1019,6 +1021,7 @@ si aad ugu dirto E-boosto isticmaalayaasha kale.',
 # Watchlist
 'watchlist'         => 'Liiskeyga waardiyeynta',
 'mywatchlist'       => 'Liiskeyga waardiyeynta',
+'watchlistfor2'     => 'Ku socoto $1 $2',
 'nowatchlist'       => 'Waxba kuma jiraan liiskaaga waardiyeynta.',
 'watchlistanontext' => 'Fadlan $1 si aad u fiirisid ama wax uga bedeshid qoraalada ku jira liiska waardiyeyska.',
 'watchnologin'      => 'Gudaha kuma jirtid',

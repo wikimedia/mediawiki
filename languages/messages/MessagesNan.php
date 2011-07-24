@@ -49,6 +49,9 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Kam-sī-tuann ū ē bûn-tsiunn nā ū kái-piàn, kià tiān-tsú-phue hōo guá.',
 'tog-enotifusertalkpages'     => 'Guá ê thó-lūn ia̍h  nā ū lâng kái,  kià tiān-tsú-phue hōo guá.',
 'tog-enotifminoredits'        => 'Sió pian-chi̍p mā kià tiān-tsú-phue hōo guá.',
+'tog-enotifrevealaddr'        => 'Hō͘ pat-lâng khoàⁿ ê tio̍h oá ê tiān-chú-phoe tē-chí',
+'tog-shownumberswatching'     => 'Hián-sī tng leh khoàⁿ ê iōng-chiá sò͘-bo̍k',
+'tog-oldsig'                  => 'Khoàⁿ chìn-chêng ê chhiam-miâ:',
 'tog-fancysig'                => 'Chhiam-miâ mài chò liân-kiat',
 'tog-externaleditor'          => 'Iōng gōa-pō· pian-chi̍p-khì (kan-na hō͘ ko-chhiú, he ài tī lí ê tiān-náu koh siat-tēng. [http://www.mediawiki.org/wiki/Manual:External_editors Siông-chêng.])',
 'tog-externaldiff'            => 'Iōng gōa-pō· diff (kan-na hō͘ ko-chhiú, he ài tī lí ê tiān-noá koh siat-tēng. [http://www.mediawiki.org/wiki/Manual:External_editors Siông-chêng.])',
@@ -182,10 +185,12 @@ $messages = array(
 'redirectpagesub'   => 'Choán-ia̍h',
 'viewcount'         => 'Pún-ia̍h kàu taⁿ ū $1 pái access.',
 'protectedpage'     => 'Siū pó-hō͘ ê ia̍h',
+'jumpto'            => 'Thiàu khì:',
 'jumptosearch'      => 'chhiau-chhoē',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'hían-sī',
+'aboutpage'            => 'Project:koan-hē',
 'currentevents'        => 'Sin-bûn sū-kiāⁿ',
 'currentevents-url'    => 'Project:Sin-bûn sū-kiāⁿ',
 'disclaimers'          => 'Bô-hū-chek seng-bêng',
@@ -194,6 +199,7 @@ $messages = array(
 'helppage'             => 'Help:Bo̍k-lio̍k',
 'mainpage'             => 'Thâu-ia̍h',
 'mainpage-description' => 'Thâu-ia̍h',
+'policy-url'           => 'Project:Chèng-chhek',
 'portal'               => 'Siā-lí mn̂g-chhùi-kháu',
 'portal-url'           => 'Project:Siā-lí mn̂g-chhùi-kháu',
 'privacy'              => 'Ín-su chèng-chhek',
@@ -356,9 +362,12 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'storedversion'              => 'Chu-liāu-khò· ê pán-pún',
 'editingold'                 => "'''KÉNG-KÒ: Lí tng teh siu-kái chit ia̍h ê 1 ê kū siu-tēng-pún. Lí nā kā pó-chûn khí lâi, chit ê siu-tēng-pún sòa-āu ê jīm-hô kái-piàn ē bô khì.'''",
 'yourdiff'                   => 'Chha-pia̍t',
-'readonlywarning'            => "'''CHÙ-Ì: Chu-liāu-khò· taⁿ só tiâu leh thang pān î-siu khang-khòe, só·-í lí hiān-chú-sî bô thang pó-chûn jīn-hô phian-chi̍p hāng-bo̍k. Lí ē-sái kā siong-koan pō·-hūn tah--ji̍p-khì 1-ê bûn-jī tóng-àn pó-chûn, āu-chhiú chiah koh kè-sio̍k.'''",
-'protectedpagewarning'       => "'''KÉNG-KÒ: Pún ia̍h só tiâu leh. Kan-taⁿ ū hêng-chèng te̍k-koân ê iōng-chiá (sysop) ē-sái siu-kái.'''",
-'templatesused'              => 'Chit ia̍h iōng chia ê pang-bô·:',
+'readonlywarning'            => "'''CHÙ-Ì: Chu-liāu-khò· taⁿ só tiâu leh thang pān î-siu khang-khòe, só·-í lí hiān-chú-sî bô thang pó-chûn jīn-hô phian-chi̍p hāng-bo̍k. Lí ē-sái kā siong-koan pō·-hūn tah--ji̍p-khì 1-ê bûn-jī tóng-àn pó-chûn, āu-chhiú chiah koh kè-sio̍k.'''
+
+Kā só tiâu ê koán-lí-goân ū lâu oē: $1",
+'protectedpagewarning'       => "'''KÉNG-KÒ: Pún ia̍h só tiâu leh. Kan-taⁿ ū hêng-chèng te̍k-koân ê iōng-chiá (sysop) ē-sái siu-kái.'''
+Ē-kha ū choè-kīn ê kì-lo̍k thang chham-khó:",
+'templatesused'              => 'Chit ia̍h iōng {{PLURAL:$1|Template|Templates}} chia ê pang-bô· :',
 'templatesusedpreview'       => 'Chit ê preview iōng chia ê pang-bô͘:',
 'templatesusedsection'       => 'Chit ê section iōng chia ê pang-bô͘:',
 'template-protected'         => '(pó-hō͘)',
@@ -438,9 +447,9 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'recentchangescount'    => 'Hián-sī kúi tiâu chòe-kīn ê kái-piàn:',
 'savedprefs'            => 'Lí ê iōng-chiá siat-tēng í-keng pó-chûn khí lâi ah.',
 'timezonelegend'        => 'Sî-khu',
-'localtime'             => 'Chāi-tē sî-kan sī',
-'timezoneoffset'        => 'Sî-chha¹',
-'servertime'            => 'Server sî-kan hiān-chāi sī',
+'localtime'             => 'Chāi-tē sî-kan sī:',
+'timezoneoffset'        => 'Sî-chha¹:',
+'servertime'            => 'Server sî-kan hiān-chāi sī:',
 'guesstimezone'         => 'Tùi liû-lám-khì chhau--lâi',
 'allowemail'            => 'Ún-chún pa̍t-ê iōng-chiá kià email kòe-lâi',
 'defaultns'             => 'Tī chiah ê miâ-khong-kan chhiau-chhōe:',
@@ -497,7 +506,7 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'uploaddisabled'      => 'Pháiⁿ-sè, sàng chiūⁿ-bāng ê kong-lêng bô khui.',
 'sourcefilename'      => 'Tóng-àn goân miâ:',
 'destfilename'        => 'Tóng-àn sin miâ:',
-'watchthisupload'     => 'Kàm-sī chit ia̍h',
+'watchthisupload'     => 'Kàm-sī chit ê tóng-àn',
 'upload-success-subj' => 'Sàng-chiūⁿ-bāng sêng-kong',
 
 # Special:ListFiles
@@ -510,7 +519,7 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 
 # File description page
 'file-anchor-link' => 'Tóng-àn',
-'imagelinks'       => 'Iáⁿ-siōng liân-kiat',
+'imagelinks'       => 'Tóng-àn liân-kiat',
 'linkstoimage'     => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
 'nolinkstoimage'   => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
 

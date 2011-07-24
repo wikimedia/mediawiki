@@ -892,6 +892,17 @@ $2
 Temporäres Passwort: $2',
 'passwordreset-emailsent'      => 'Eine Erinnerung wurde per E-Mail versandt.',
 
+# Special:ChangeEmail
+'changeemail'          => 'E-Mail-Adresse ändern',
+'changeemail-header'   => 'E-Mail-Adresse ändern',
+'changeemail-text'     => 'Fülle dieses Formular vollständig aus, um deine E-Mail-Adresse zu ändern. Du musst dein Passwort angeben, um diese Änderung zu bestätigen.',
+'changeemail-no-info'  => 'Du musst angemeldet sein, um direkt auf diese Seite zugreifen zu können.',
+'changeemail-oldemail' => 'Aktuelle E-Mail-Adresse:',
+'changeemail-newemail' => 'Neue E-Mail-Adresse:',
+'changeemail-none'     => '(keine)',
+'changeemail-submit'   => 'E-Mail-Adresse ändern',
+'changeemail-cancel'   => 'Abbrechen',
+
 # Edit page toolbar
 'bold_sample'     => 'Fetter Text',
 'bold_tip'        => 'Fetter Text',
@@ -1392,6 +1403,8 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'prefs-watchlist-token'         => 'Beobachtungslisten-Token:',
 'prefs-misc'                    => 'Verschiedenes',
 'prefs-resetpass'               => 'Passwort ändern',
+'prefs-changeemail'             => 'E-Mail-Adresse ändern',
+'prefs-setemail'                => 'E-Mail-Adresse festlegen',
 'prefs-email'                   => 'E-Mail-Optionen',
 'prefs-rendering'               => 'Aussehen',
 'saveprefs'                     => 'Einstellungen speichern',

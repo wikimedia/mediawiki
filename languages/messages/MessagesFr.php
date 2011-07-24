@@ -980,9 +980,12 @@ ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'userpage-userdoesnotexist-view'   => 'Le compte utilisateur « $1 » n’est pas enregistré.',
 'blocked-notice-logextract'        => 'Cet utilisateur est actuellement bloqué.
 La dernière entrée du registre des blocages est indiquée ci-dessous à titre d’information :',
-'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
-'''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant sur le bouton ''Actualiser'' (''Reload'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ;
-'''Internet Explorer / Opera :''' maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
+* '''Firefox / Safari :''' maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''Cmd-R'' sur un Mac) ;
+* '''Google Chrome :''' pressez ''Ctrl-Maj-R'' (''Cmd-Maj-R'' sur un Mac) ;
+* '''Internet Explorer :''' maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ;
+* '''Konqueror :''' cliquez sur ''Actualiser'' ou pressez ''F5'' ;
+* '''Opera :''' videz le cache dans ''Outils → Préférences''.",
 'usercssyoucanpreview'             => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille CSS avant de l’enregistrer.",
 'userjsyoucanpreview'              => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille JavaScript avant de l’enregistrer.",
 'usercsspreview'                   => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''

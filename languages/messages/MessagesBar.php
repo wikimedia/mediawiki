@@ -156,8 +156,8 @@ $messages = array(
 'newwindow'     => '(werd in am neichen Fenster aufgmocht)',
 'cancel'        => 'Obbrecher',
 'moredotdotdot' => 'Merer',
-'mypage'        => 'Eigane Seiten',
-'mytalk'        => 'Eigane Diskussion',
+'mypage'        => 'Eigerne Seiten',
+'mytalk'        => 'Eigerne Diskussion',
 'anontalk'      => 'Dischkrirseiten voh derer IP-Adress',
 'navigation'    => 'Navigazion',
 'and'           => '&#32;und',
@@ -591,7 +591,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 
 # Preferences page
 'preferences'               => 'Eistellungen',
-'mypreferences'             => 'Eigane Eihstellungen',
+'mypreferences'             => 'Eigerne Eihstellungen',
 'changepassword'            => 'Posswort ändern',
 'prefs-editing'             => 'Beorweiten',
 'prefs-edit-boxsize'        => 'Gress vom Beorweitungsfenster',
@@ -650,7 +650,7 @@ Mid ånderne Benutzer kåst du aa ywer de Benutzerdischkrirsaiten an Kontakt auf
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit'       => 'an derer Seiten duast werkeln',
-'action-autopatrol' => 'eigane Beorweitungen ois kontroilird markirn',
+'action-autopatrol' => 'eigerne Beorweitungen ois kontroilird markirn',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|Änderrung|Änderrungen}}',
@@ -956,7 +956,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 # Contributions
 'contributions'       => 'Benutzerbeiträg',
 'contributions-title' => 'Benutzabeiträg vu „$1“',
-'mycontris'           => 'Eigane Beitreeg',
+'mycontris'           => 'Eigerne Beitreeg',
 'contribsub2'         => 'Fia $1 ($2)',
 'uctop'               => '(aktuöi)',
 'month'               => 'und Monat',
@@ -1123,7 +1123,7 @@ Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Deih Benutzerseiten',
 'tooltip-pt-mytalk'               => 'Deih Diskussiónsseiten',
-'tooltip-pt-preferences'          => 'Eigane Eihstellunger',
+'tooltip-pt-preferences'          => 'Eigerne Eihstellungen',
 'tooltip-pt-watchlist'            => "Listen voh d' Seiten, dést beówochst",
 'tooltip-pt-mycontris'            => 'Liste vo eigene Beiträg',
 'tooltip-pt-login'                => 'Das ma se ånmödt, werd zwor gern gseeng, is ower koa Pflicht ned.',
