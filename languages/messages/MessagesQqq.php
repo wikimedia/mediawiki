@@ -4238,17 +4238,22 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
 
 # Add categories per AJAX
-'ajax-remove-category'          => 'Tooltip for link to remove a category from the page, displayed after each category at the foot of a page. Refers to the specific category. "Remove this category" is also correct.',
+'ajax-remove-category'          => 'Tooltip for link to remove a category from the page, displayed after each category at the foot of a page. 
+Refers to the specific category. "Remove this category" is also correct.',
 'ajax-edit-category'            => 'Tooltip for the edit link displayed after each category at the foot of a page. Refers to the specific category. "Edit this category" is also correct.',
 'ajax-add-category-submit'      => '{{Identical|Add}}',
 'ajax-confirm-ok'               => '{{Identical|OK}}',
-'ajax-confirm-save'             => 'Submit button
-
-{{Identical|Save}}',
-'ajax-edit-category-summary'    => 'Automatic edit summary that can be copied to the summary box. $1 and $2 are both category names.',
-'ajax-confirm-actionsummary'    => 'This message is followed by one of the following messages; {{msg-mw|ajax-add-category-summary}}, {{msg-mw|ajax-remove-category-summary}}, {{msg-mw|ajax-edit-category-summary}}.',
+'ajax-confirm-title'            => 'Title for a dialog box in which the user is asked for an edit summary',
+'ajax-confirm-save'             => 'Submit button {{Identical|Save}}',
+'ajax-confirm-save-all'         => 'Submit button to save all changes',
+'ajax-add-category-summary'     => 'See {{msg-mw|ajax-category-question}}. $1 is a category name. This is used inside a sentence, make sure that the case is correct.',
+'ajax-edit-category-summary'    => 'See {{msg-mw|ajax-category-question}}. $1 and $2 are both category names. This is used inside a sentence, make sure that the case is correct.',
+'ajax-remove-category-summary'  => 'See {{msg-mw|ajax-category-question}}. $1 is a category name. This is used inside a sentence, make sure that the case is correct.',
+'ajax-category-question'        => 'Question the user is asked before submit. $1 is filled with a list of one or more of the following messages; 
+{{msg-mw|ajax-add-category-summary}}, {{msg-mw|ajax-remove-category-summary}}, {{msg-mw|ajax-edit-category-summary}}. 
+The last of the inserted messages is prefaced by {{msg-mw|ajax-category-and}}. The result would be something like:
+Why do you want to remove Category:A and add Category:C ?',
+'ajax-category-and'             => 'Used to join multiple list items. Eg. "Edit foo, move bar and add foobar"',
 'ajax-error-title'              => '{{Identical|Error}}',
-'ajax-error-dismiss'            => '{{Identical|OK}}',
 'ajax-category-already-present' => 'Error message. $1 is the category name',
-
 );

@@ -1,12 +1,13 @@
-// TODO
-//
-// * The edit summary should contain the added/removed category name too. 
-//     Something like: "Category:Foo added. Reason"
-//     Requirement: Be able to get msg with lang option.
-// * Handle uneditable cats. Needs serverside changes!
-// * Handle normal redirects
-// * Enter to submit
-
+/**
+ * mediaWiki.page.ajaxCategories
+ *
+ * @author Michael Dale, 2009
+ * @author Leo Koppelkamm, 2011
+ * @since 1.18
+ *
+ * Relies on: mw.config (wgFormattedNamespaces, wgNamespaceIds, wgCaseSensitiveNamespaces, wgUserGroups), 
+ *   mw.util.wikiGetlink, mw.user.getId
+ */
 ( function( $ ) {
 
 	/* Local scope */
@@ -25,33 +26,16 @@
 	 * @param string category name.
 	 * @return string Valid URL
 	 */
-	catLink = function( cat ) {
+	catUrl = function( cat ) {
 		return mw.util.wikiGetlink( new mw.Title( cat, catNsId ) );
 	};
-
-mw.ajaxCategories = function( options ) {
-	//Save scope in shortcut
-	var aC = this;
-
-	// TODO grab these out of option object.
-
-	var catLinkWrapper = '<li/>';
-	var $container = $( '.catlinks' );
-	var $containerNormal = $( '#mw-normal-catlinks' );
-
-	var categoryLinkSelector = '#mw-normal-catlinks li a:not(.icon)';
-	var _request;
-
-	var _saveAllButton;
-	var _cancelAllButton;
-	var _multiEdit = $.inArray( 'user', mw.config.get( 'wgUserGroups' ) ) !== -1;
 
 	/**
 	 * Helper function for $.fn.suggestion
 	 * 
 	 * @param string Query string.
 	 */
-	_fetchSuggestions = function( query ) {
+	fetchSuggestions = function( query ) {
 		var _this = this;
 		// ignore bad characters, they will be stripped out
 		var catName = clean( $( this ).val() );
@@ -78,9 +62,96 @@ mw.ajaxCategories = function( options ) {
 				$( _this ).suggestions( 'suggestions', titleArr );
 			}
 		} );
-		//TODO
 		_request = request;
 	};
+	
+	/**
+	* Replace <nowiki> and comments with unique keys
+	*/
+	replaceNowikis = function( text, id, array ) {
+		var matches = text.match( /(<nowiki\>[\s\S]*?<\/nowiki>|<\!--[\s\S]*?--\>)/g );
+		for ( var i = 0; matches && i < matches.length; i++ ) {
+			array[i] = matches[i];
+			text = text.replace( matches[i], id + i + '-' );
+		}
+		return text;
+	};
+	
+	/**
+	* Restore <nowiki> and comments  from unique keys
+	*/
+	restoreNowikis = function( text, id, array ) {
+		for ( var i = 0; i < array.length; i++ ) {
+			text = text.replace( id + i + '-', array[i] );
+		}
+		return text;
+	};
+	
+	/**
+	 * Makes regex string caseinsensitive.
+	 * Useful when 'i' flag can't be used.
+	 * Return stuff like [Ff][Oo][Oo]
+	 * @param string Regex string.
+	 * @return string Processed regex string
+	 */
+	makeCaseInsensitive = function( string ) {
+		if ( $.inArray( 14, mw.config.get( 'wgCaseSensitiveNamespaces' ) ) + 1 ) {
+			return string;
+		}
+		var newString = '';
+		for ( var i=0; i < string.length; i++ ) {
+			newString += '[' + string.charAt( i ).toUpperCase() + string.charAt( i ).toLowerCase() + ']';
+		}
+		return newString;
+	};
+	
+	/**
+	 * Build a regex that matches legal invocations 
+	 * of the passed category.
+	 * @param string category.
+	 * @param boolean Match one following linebreak as well?
+	 * @return Regex
+	 */
+	buildRegex = function( category, matchLineBreak ) {
+		var categoryNSFragment = '';
+		$.each( mw.config.get( 'wgNamespaceIds' ), function( name, id ) {
+			if ( id == 14 ) {
+				// The parser accepts stuff like cATegORy, 
+				// we need to do the same
+				// ( Well unless we have wgCaseSensitiveNamespaces, but that's being checked for )
+				categoryNSFragment += '|' + makeCaseInsensitive ( $.escapeRE( name ) );
+			}
+		} );
+		categoryNSFragment = categoryNSFragment.substr( 1 ); // Remove leading pipe
+
+		// Build the regex
+		var titleFragment = $.escapeRE( category ).replace( /( |_)/g, '[ _]' );
+		
+		firstChar = titleFragment.charAt( 0 );
+		firstChar = '[' + firstChar.toUpperCase() + firstChar.toLowerCase() + ']';
+		titleFragment = firstChar + titleFragment.substr( 1 );
+		var categoryRegex = '\\[\\[(' + categoryNSFragment + '):' + '[ _]*' +titleFragment + '(\\|[^\\]]*)?\\]\\]';
+		if ( matchLineBreak ) {
+			categoryRegex += '[ \\t\\r]*\\n?';
+		}
+		return new RegExp( categoryRegex, 'g' );
+	};
+	
+
+mw.ajaxCategories = function( options ) {
+	//Save scope in shortcut
+	var that = this, _request, _saveAllButton, _cancelAllButton, _addContainer, defaults;
+	
+	defaults = { 
+		catLinkWrapper   : '<li/>',
+		$container       : $( '.catlinks' ),
+		$containerNormal : $( '#mw-normal-catlinks' ),
+		categoryLinkSelector : 'li a:not(.icon)',
+		multiEdit        : $.inArray( 'user', mw.config.get( 'wgUserGroups' ) ) + 1,
+		resolveRedirects : true
+	};
+	// merge defaults and options, without modifying defaults */
+	options = $.extend( {}, defaults, options );
 
 	/**
 	 * Insert a newly added category into the DOM
@@ -88,32 +159,91 @@ mw.ajaxCategories = function( options ) {
 	 * @param string category name.
 	 * @return jQuery object
 	 */
-	_createCatDOM = function( cat ) {
+	this.createCatLink = function( cat ) {
 		// User can implicitely state a sort key.
 		// Remove before display
-		cat = cat.replace(/\|.*/, '');
+		cat = cat.replace(/\|.*/, '' );
 
 		// strip out bad characters
 		cat = clean ( cat );
 
-		if ( $.isEmpty( cat ) || aC.containsCat( cat ) ) { 
+		if ( $.isEmpty( cat ) || that.containsCat( cat ) ) { 
 			return; 
 		}
 
-		var $catLinkWrapper = $( catLinkWrapper );
+		var $catLinkWrapper = $( options.catLinkWrapper );
 		var $anchor = $( '<a/>' ).append( cat );
 		$catLinkWrapper.append( $anchor );
-		$anchor.attr( { target: "_blank", href: catLink( cat ) } );
+		$anchor.attr( { target: "_blank", href: catUrl( cat ) } );
 
-		_createCatButtons( $anchor.get(0) );
+		_createCatButtons( $anchor );
 
 		return $anchor;
 	};
 
-	_makeSuggestionBox = function( prefill, callback, buttonVal ) {
+	/**
+	 * Takes a category link element
+	 * and strips all data from it.
+	 * 
+	 * @param jQuery object
+	 */
+	this.resetCatLink = function( $link, del, dontRestoreText ) {
+		$link.removeClass( 'mw-removed-category mw-added-category mw-changed-category' );
+		var data = $link.data();
+
+		if ( typeof data.stashIndex == "number" ) {
+			_removeStashItem( data.stashIndex );			
+		}
+		if ( del ) {
+			$link.parent.remove();
+			return;
+		}
+		if ( data.origCat && !dontRestoreText ) {
+			$link.text( data.origCat );
+			$link.attr( 'href', catUrl( data.origCat ) );
+		}
+
+		$link.removeData();
+
+		//Readd static.
+		$link.data({
+			saveButton 	: data.saveButton,
+			deleteButton: data.deleteButton,
+			editButton 	: data.editButton
+		});
+	};
+
+	/**
+	 * Reset all data from the category links and the stash.
+	 * @param Boolean del Delete any category links with .mw-removed-category
+	 */
+	this.resetAll = function( del ) {
+		var $links = options.$container.find( options.categoryLinkSelector ), $del = $();
+		if ( del ) {
+			$del = $links.filter( '.mw-removed-category' ).parent();
+		}
+
+		$links.each( function() {
+			that.resetCatLink( $( this ), false, del );
+		});
+		
+		$del.remove();
+
+		if ( !options.$container.find( '#mw-hidden-catlinks li' ).length ) {
+			options.$container.find( '#mw-hidden-catlinks' ).remove();
+		}
+	};
+	
+	/**
+	 * Create a suggestion box for use in edit/add dialogs
+	 * @param str prefill Prefill input
+	 * @param function callback on submit
+	 * @param str buttonVal Button text
+	 */
+	this._makeSuggestionBox = function( prefill, callback, buttonVal ) {
 		// Create add category prompt
 		var promptContainer = $( '<div class="mw-addcategory-prompt"/>' );
-		var promptTextbox = $( '<input type="text" size="45" class="mw-addcategory-input"/>' );
+		var promptTextbox = $( '<input type="text" size="30" class="mw-addcategory-input"/>' );
 		if ( prefill !== '' ) {
 			promptTextbox.val( prefill );
 		}
@@ -121,9 +251,11 @@ mw.ajaxCategories = function( options ) {
 		addButton.val( buttonVal );
 
 		addButton.click( callback );
-
+		promptTextbox.keyup( function( e ) {
+    		if ( e.keyCode == 13 ) addButton.click();
+		});
 		promptTextbox.suggestions( {
-			'fetch':_fetchSuggestions,
+			'fetch': fetchSuggestions,
 			'cancel': function() {
 				var req = _request;
 				// XMLHttpRequest.abort is unimplemented in IE6, also returns nonstandard value of "unknown" for typeof
@@ -147,8 +279,8 @@ mw.ajaxCategories = function( options ) {
 	 * 
 	 * @return array Array of all categories
 	 */
-	_getCats = function() {
-		return $container.find( categoryLinkSelector ).map( function() { return $.trim( $( this ).text() ); } );
+	this.getCats = function() {
+		return options.$container.find( options.categoryLinkSelector ).map( function() { return $.trim( $( this ).text() ); } );
 	};
 
 	/**
@@ -157,31 +289,32 @@ mw.ajaxCategories = function( options ) {
 	 * @return boolean True for exists
 	 */
 	this.containsCat = function( cat ) {
-		return _getCats().filter( function() { return $.ucFirst(this) == $.ucFirst(cat); } ).length !== 0;
+		return that.getCats().filter( function() { return $.ucFirst( this ) == $.ucFirst( cat ); } ).length !== 0;
 	};
 
 	/**
 	 * This gets called by all action buttons
 	 * Displays a dialog to confirm the action
-	 * Afterwords do the actual edit
+	 * Afterwards do the actual edit
 	 *
 	 * @param function fn text-modifying function 
 	 * @param string actionSummary Changes done
+	 * @param string shortSummary Changes, short version
 	 * @param function fn doneFn callback after everything is done
 	 * @return boolean True for exists
 	 */
-	_confirmEdit = function( fn, actionSummary, doneFn, $link, action ) {
+	this._confirmEdit = function( fn, actionSummary, shortSummary, doneFn, $link, action ) {
 		// Check whether to use multiEdit mode
-		if ( _multiEdit && action != 'all' ) {
+		if ( options.multiEdit && action != 'all' ) {
 			// Stash away
-			$link.data('stashIndex', _stash.fns.length );
+			$link.data( 'stashIndex', _stash.fns.length );
+			$link.data( 'summary', actionSummary );
 			_stash.summaries.push( actionSummary );
+			_stash.shortSum.push( shortSummary );
 			_stash.fns.push( fn );
 
-
-			//TODO add Cancel button
 			_saveAllButton.show();
-			//_cancelAllButton.show();
+			_cancelAllButton.show();
 
 			// This only does visual changes
 			doneFn( true );
@@ -193,17 +326,9 @@ mw.ajaxCategories = function( options ) {
 		dialog.addClass( 'mw-ajax-confirm-dialog' );
 		dialog.attr( 'title', mw.msg( 'ajax-confirm-title' ) );
 
-		// Intro text.
-		var confirmIntro = $( '<p/>' );
-		confirmIntro.text( mw.msg( 'ajax-confirm-prompt' ) );
-		dialog.append( confirmIntro );
-
 		// Summary of the action to be taken
 		var summaryHolder = $( '<p/>' );
-		var summaryLabel = $( '<strong/>' );
-		summaryLabel.text( mw.msg( 'ajax-confirm-actionsummary' ) + " " );
-		summaryHolder.text( actionSummary );
-		summaryHolder.prepend( summaryLabel );
+		summaryHolder.html( mw.msg( 'ajax-category-question', actionSummary ) );
 		dialog.append( summaryHolder );
 
 		// Reason textbox.
@@ -216,15 +341,15 @@ mw.ajaxCategories = function( options ) {
 		submitButton.val( mw.msg( 'ajax-confirm-save' ) );
 
 		var submitFunction = function() {
-			_addProgressIndicator( dialog );
-			_doEdit(
+			that._addProgressIndicator( dialog );
+			that._doEdit(
 				mw.config.get( 'wgPageName' ),
 				fn,
-				reasonBox.val(),
+				shortSummary + ': ' + reasonBox.val(),
 				function() {
 					doneFn();
 					dialog.dialog( 'close' );
-					_removeProgressIndicator( dialog );
+					that._removeProgressIndicator( dialog );
 				}
 			);
 		};
@@ -239,6 +364,11 @@ mw.ajaxCategories = function( options ) {
 
 		$( '#catlinks' ).prepend( dialog );
 		dialog.dialog( dialogOptions );
+
+		// Close on enter
+		dialog.keyup( function( e ) {
+    		if ( e.keyCode == 13 ) submitFunction();
+		});
 	};
 
 	/**
@@ -246,48 +376,60 @@ mw.ajaxCategories = function( options ) {
 	 * this is called when the user clicks "save all"
 	 * Combines the summaries and edit functions
 	 */
-	_handleStashedCategories = function() {
-		// Save fns
-		fns = _stash.fns;
+	this._handleStashedCategories = function() {
+		var summary = '', fns = _stash.fns;
 
-		//TODO Add spaces in msg
-		var summary = _stash.summaries.join();
-		if ( summary == '' ) {
+		// Remove "holes" in array
+		summary = $.grep( _stash.summaries, function( n, i ) {
+			return ( n );
+		});
+		if ( summary.length < 1 ) {
+			// Nothing to do here.
 			_saveAllButton.hide();
+			_cancelAllButton.hide();
 			return;
+		} else if ( summary.length == 1 ) {
+			summary = summary.pop();
+		} else {
+			var lastSummary = summary.pop();
+			summary = summary.join( ', ');
+			summary += mw.msg( 'ajax-category-and' ) + lastSummary;
+			summary = summary.substring( 0, summary.length - 2 );
 		}
+		// Remove "holes" in array
+		summaryShort = $.grep( _stash.shortSum, function( n,i ) {
+			return ( n );
+		});
+		summaryShort = summaryShort.join( ', ' );
+
 		var combinedFn = function( oldtext ) {
 			// Run the text through all action functions
 			newtext = oldtext;
 			for ( var i = 0; i < fns.length; i++ ) {
-				if ( $.isfunction( fns[i] ) ) {
+				if ( $.isFunction( fns[i] ) ) {
 					newtext = fns[i]( newtext );
+					if ( newtext === false ) {
+						return false;
+					}
 				}
 			}
 			return newtext;
 		};
-		var doneFn = _resetToActual;
+		var doneFn = function() { that.resetAll( true ); };
 
-		_confirmEdit( combinedFn, summary, doneFn, '', 'all' );
+		that._confirmEdit( combinedFn, summary, shortSummary, doneFn, '', 'all' );
 	};
 
-	_resetToActual = function() {
-		//Remove saveAllButton
-		_saveAllButton.hide();
-		_cancelAllButton.hide();
-
-		// Clean stash
-		_stash.fns = [];
-		_stash.summaries = [];
-
-		// TODO
-		$container.find('.mw-removed-category').parent().remove();
-		// Any link with $link.css('text-decoration', 'line-through');
-		// needs to be removed
-
-	};
-
-	_doEdit = function( page, fn, summary, doneFn ) {
+	/**
+	 * Do the actual edit.
+	 * Gets token & text from api, runs it through fn
+	 * and saves it with summary.
+	 * @param str page Pagename
+	 * @param function fn edit function
+	 * @param str summary
+	 * @param str doneFn Callback after all is done
+	 */
+	this._doEdit = function( page, fn, summary, doneFn ) {
 		// Get an edit token for the page.
 		var getTokenVars = {
 			'action':'query',
@@ -298,7 +440,7 @@ mw.ajaxCategories = function( options ) {
 			'format':'json'
 		};
 
-		$.get( mw.util.wikiScript( 'api' ), getTokenVars,
+		$.post( mw.util.wikiScript( 'api' ), getTokenVars,
 			function( reply ) {
 				var infos = reply.query.pages;
 				$.each(
@@ -308,9 +450,17 @@ mw.ajaxCategories = function( options ) {
 						var timestamp = data.revisions[0].timestamp;
 						var oldText = data.revisions[0]['*'];
 
+						// Replace all nowiki and comments with unique keys
+						var key = mw.user.generateId();
+						var nowiki = [];
+						oldText = replaceNowikis( oldText, key, nowiki );
+						
+						// Then do the changes
 						var newText = fn( oldText );
-
 						if ( newText === false ) return;
+						
+						// And restore them back
+						newText = restoreNowikis( newText, key, nowiki );
 
 						var postEditVars = {
 							'action':'edit',
@@ -322,241 +472,245 @@ mw.ajaxCategories = function( options ) {
 							'format':'json'
 						};
 
-						$.post( mw.util.wikiScript( 'api' ), postEditVars, doneFn, 'json' );
+						$.post( mw.util.wikiScript( 'api' ), postEditVars, doneFn, 'json' )
+						 .error( function( xhr, text, error ) {
+							_showError( mw.msg( 'ajax-api-error', text, error ) );
+						});
 					}
 				);
 			}
-		, 'json' );
+		, 'json' ).error( function( xhr, text, error ) {
+			_showError( mw.msg( 'ajax-api-error', text, error ) );
+		});
 	};
-
 	/**
 	 * Append spinner wheel to element
 	 * @param DOMObject element.
 	 */
-	_addProgressIndicator = function( elem ) {
-		var indicator = $( '<div/>' );
-
-		indicator.addClass( 'mw-ajax-loader' );
-
-		elem.append( indicator );
+	this._addProgressIndicator = function( elem ) {
+		elem.append( $( '<div/>' ).addClass( 'mw-ajax-loader' ) );
 	};
 
 	/**
 	 * Find and remove spinner wheel from inside element
 	 * @param DOMObject parent element.
 	 */
-	_removeProgressIndicator = function( elem ) {
+	this._removeProgressIndicator = function( elem ) {
 		elem.find( '.mw-ajax-loader' ).remove();
 	};
-
+	
 	/**
-	 * Makes regex string caseinsensitive.
-	 * Useful when 'i' flag can't be used.
-	 * Return stuff like [Ff][Oo][Oo]
-	 * @param string Regex string.
-	 * @return string Processed regex string
+	 * Checks the API whether the category in question is a redirect.
+	 * Also returns existance info ( to color link red/blue )
+	 * @param string category.
+	 * @param function callback
 	 */
-	_makeCaseInsensitive = function( string ) {
-		var newString = '';
-		for (var i=0; i < string.length; i++) {
-			newString += '[' + string[i].toUpperCase() + string[i].toLowerCase() + ']';
-		}
-		return newString;
-	};
-	_buildRegex = function( category ) {
-		// Build a regex that matches legal invocations of that category.
-		var categoryNSFragment = '';
-		$.each( mw.config.get( 'wgNamespaceIds' ), function( name, id ) {
-			if ( id == 14 ) {
-				// The parser accepts stuff like cATegORy, 
-				// we need to do the same
-				categoryNSFragment += '|' + _makeCaseInsensitive ( $.escapeRE(name) );
-			}
-		} );
-		categoryNSFragment = categoryNSFragment.substr( 1 ); // Remove leading |
-
-		// Build the regex
-		var titleFragment = $.escapeRE(category);
-
-		firstChar = category.charAt( 0 );
-		firstChar = '[' + firstChar.toUpperCase() + firstChar.toLowerCase() + ']';
-		titleFragment = firstChar + category.substr( 1 );
-		var categoryRegex = '\\[\\[(' + categoryNSFragment + '):' + titleFragment + '(\\|[^\\]]*)?\\]\\]';
-
-		return new RegExp( categoryRegex, 'g' );
-	};
-
-	_handleEditLink = function( e ) {
-		e.preventDefault();
-		var $this = $( this );
-		var $link = $this.parent().find( 'a:not(.icon)' );
-		var category = $link.text();
-
-		var $input = _makeSuggestionBox( category, 
-						_handleCategoryEdit, 
-						_multiEdit ? mw.msg( 'ajax-confirm-ok' ) : mw.msg( 'ajax-confirm-save' ) 
-					);
-		$link.after( $input ).hide();
-		$link.data('editButton').hide();
-		$link.data('deleteButton').unbind('click').click( function() {
-			$input.remove();
-			$link.show();
-			$link.data('editButton').show();
-			$( this ).unbind('click').click( _handleDeleteLink );
-		});
-	};
-
-	_handleAddLink = function( e ) {
-		e.preventDefault();
-
-		$container.find( '#mw-normal-catlinks>.mw-addcategory-prompt' ).toggle();
-	};
-
-	_handleDeleteLink = function( e ) {
-		var $this = $( this );
-		var $link = $this.parent().find( 'a:not(.icon)' );
-		var category = $link.text();
-
-		if ( $link.hasClass('mw-added-category') ) {
-			// We're just cancelling the addition
-			_removeStashItem ( $link );
-
-			$link.parent().remove();
+	this._resolveRedirects = function( category, callback ) {
+		if ( !options.resolveRedirects ) {
+			callback( category );
 			return;
 		}
+		var queryVars = {
+			'action':'query',
+			'titles': new mw.Title( category,  catNsId ).toString(),
+			'redirects':'',
+			'format' : 'json'
+		};
 
-		var categoryRegex = _buildRegex( category );
-
-		var summary = mw.msg( 'ajax-remove-category-summary', category );
-
-		_confirmEdit(
-			function( oldText ) {
-				newText = _runHooks ( oldText, 'beforeDelete' );
-				//TODO Cleanup whitespace safely?
-				var newText = newText.replace( categoryRegex, '' );
-
-				if ( newText == oldText ) {
-					var error = mw.msg( 'ajax-remove-category-error' );
-					_showError( error );
-					_removeProgressIndicator( $( '.mw-ajax-confirm-dialog' ) );
-					$( '.mw-ajax-confirm-dialog' ).dialog( 'close' );
-					return false;
+		$.get( mw.util.wikiScript( 'api' ), queryVars,
+			function( reply ) {
+				var redirect = reply.query.redirects;
+				if ( redirect ) {
+					category = new mw.Title( redirect[0].to )._name;
 				}
-
-				return newText;
-			},
-			summary, 
-			function( unsaved ) {
-				if ( unsaved ) {
-					//TODO Make revertable
-					$link.addClass('mw-removed-category');
-				} else {
-					$this.parent().remove();
-				}
-			},
-			$link,
-			'delete'
-		);
+				callback( category, !reply.query.pages[-1] );
+			}
+		, 'json' );
 	};
-
-	_handleCategoryAdd = function( e ) {
-		var $this = $( this );
+	
+	/**
+	 * Handle add category submit. Not to be called directly
+	 */
+	this._handleAddLink = function( e ) {
+		var $this = $( this ), $link = $();
 
 		// Grab category text
 		var category = $this.parent().find( '.mw-addcategory-input' ).val();
 		category = $.ucFirst( category );
 
-		var $link = _createCatDOM( category );
-
-		if ( aC.containsCat(category) ) {
+		// Resolve redirects
+		that._resolveRedirects( category, function( resolvedCat, exists ) {
+			that.handleCategoryAdd( $link, resolvedCat, false, exists );
+		} );
+	};
+	/**
+	 * Execute or queue an category add
+	 */
+	this.handleCategoryAdd = function( $link, category, noAppend, exists ) {
+		if ( !$link.length ) {
+			$link = that.createCatLink( category );
+		}
+		// Mark red if missing
+		$link.toggleClass( 'new', exists === false );
+		
+		// Handle sortkey
+		var arr = category.split( '|' ), sortkey = '';
+		
+		if ( arr.length > 1 ) {
+			category = arr.shift();
+			sortkey = '|' + arr.join( '|' );
+			if ( sortkey == '|' ) sortkey = '';
+		}
+		
+		//Replace underscores 
+		category = category.replace(/_/g, ' ' );
+		
+		if ( that.containsCat( category ) ) {
 			_showError( mw.msg( 'ajax-category-already-present', category ) );
 			return;
 		}
-		var appendText = "\n[[" + new mw.Title( category,  catNsId ) + "]]\n";
+		var catFull = new mw.Title( category,  catNsId ).toString().replace(/_/g, ' ' );
+		var appendText = "\n[[" + catFull + sortkey + "]]\n";
 		var summary = mw.msg( 'ajax-add-category-summary', category );
-
-		_confirmEdit(
+		var shortSummary = '+[[' + catFull + ']]';
+		that._confirmEdit(
 			function( oldText ) {
-				newText = _runHooks ( oldText, 'beforeAdd' );
-				return newText + appendText;
+				newText = _runHooks ( oldText, 'beforeAdd', category );
+				newText = newText + appendText;
+				return _runHooks ( newText, 'afterAdd', category );
 			},
 			summary,
+			shortSummary,
 			function( unsaved ) {
-				$container.find( '#mw-normal-catlinks>.mw-addcategory-prompt' ).toggle();
-				$container.find( '#mw-normal-catlinks ul' ).append( $link.parent() );
+				if ( !noAppend ) {
+					options.$container.find( '#mw-normal-catlinks>.mw-addcategory-prompt' ).children( 'input' ).hide();
+					options.$container.find( '#mw-normal-catlinks ul' ).append( $link.parent() );
+				} else {
+					// Remove input box & button
+					$link.data( 'deleteButton' ).click();
+
+					// Update link text and href
+					$link.show().text( category ).attr( 'href', catUrl( category ) );
+				}
 				if ( unsaved ) {
 					$link.addClass( 'mw-added-category' );
 				}
+				$( '.mw-ajax-addcategory' ).click();
 			},
 			$link,
 			'add'
 		);
 	};
-
-	_handleCategoryEdit = function( e ) {
-		var $this = $( this );
-
+	this._createEditInterface = function( e ) {
+		var $this = $( this ),
+			$link = $this.data( 'link' ),
+			category = $link.text();
+		var $input = that._makeSuggestionBox( category, 
+						that._handleEditLink, 
+						options.multiEdit ? mw.msg( 'ajax-confirm-ok' ) : mw.msg( 'ajax-confirm-save' ) 
+			);
+		$link.after( $input ).hide();
+		$input.find( '.mw-addcategory-input' ).focus();
+		$link.data( 'editButton' ).hide();
+		$link.data( 'deleteButton' ).unbind( 'click' ).click( function() {
+			$input.remove();
+			$link.show();
+			$link.data( 'editButton' ).show();
+			$( this ).unbind( 'click' ).click( that._handleDeleteLink )
+				.attr( 'title', mw.msg( 'ajax-remove-category' ));
+		}).attr( 'title', mw.msg( 'ajax-cancel' ));	
+	};
+	
+	/**
+	 * Handle edit category submit. Not to be called directly
+	 */
+	this._handleEditLink = function( e ) {
+		var $this = $( this ),
+			$link = $this.parent().parent().find( 'a:not(.icon)' ),
+			categoryNew, sortkey = '';
+		
 		// Grab category text
-		var categoryNew = $this.parent().find( '.mw-addcategory-input' ).val();
-		categoryNew = $.ucFirst( categoryNew );
-
-		var $link = $this.parent().parent().find( 'a:not(.icon)' );
-		if ( $link.hasClass('mw-removed-category') ) {
-			_removeStashItem ( $link );
-			$link.removeClass( 'mw-removed-category' );
-		}
-		if ( $link.data( 'origCat' ) ) {
-			var category = $link.data( 'origCat' );
-			_removeStashItem ( $link );
-		} else {
-			var category = $link.text();
+		categoryNew = $this.parent().find( '.mw-addcategory-input' ).val();
+		categoryNew = $.ucFirst( categoryNew.replace(/_/g, ' ' ) );
+		
+		// Strip sortkey
+		var arr = categoryNew.split( '|' );
+		if ( arr.length > 1 ) {
+			categoryNew = arr.shift();
+			sortkey = '|' + arr.join( '|' );
 		}
 
+		// Grab text
+		var added = $link.hasClass( 'mw-added-category' );
+		that.resetCatLink ( $link );
+		var category = $link.text();
 
-		// User didn't change anything.
-		if ( category == categoryNew ) {
-			$link.data('deleteButton').click();
+		// Check for dupes ( exluding itself )
+		if ( category != categoryNew && that.containsCat( categoryNew ) ) {
+			$link.data( 'deleteButton' ).click();
 			return;
 		}
-		categoryRegex = _buildRegex( category );
 
+		// Resolve redirects
+		that._resolveRedirects( categoryNew, function( resolvedCat, exists ) {
+			that.handleCategoryEdit( $link, category, resolvedCat, sortkey, exists, added );
+		});
+	};
+	/**
+	 * Execute or queue an category edit
+	 */
+	this.handleCategoryEdit = function( $link, category, categoryNew, sortkeyNew, exists, added ) {
+		// Category add needs to be handled differently
+		if ( added ) {
+			// Pass sortkey back
+			that.handleCategoryAdd( $link, categoryNew + sortkeyNew, true );
+			return;
+		}
+		// User didn't change anything.
+		if ( category == categoryNew + sortkeyNew ) {
+			$link.data( 'deleteButton' ).click();
+			return;
+		}
+		// Mark red if missing
+		$link.toggleClass( 'new', exists === false );
+	
+		categoryRegex = buildRegex( category );
+		
 		var summary = mw.msg( 'ajax-edit-category-summary', category, categoryNew );
-
-		_confirmEdit(
+		var shortSummary = '[[' + new mw.Title( category,  catNsId ) + ']] -> [[' + new mw.Title( categoryNew,  catNsId ) + ']]';
+		that._confirmEdit(
 			function( oldText ) {
-				newText = _runHooks ( oldText, 'beforeChange' );
+				newText = _runHooks ( oldText, 'beforeChange', category, categoryNew );
 
 				var matches = newText.match( categoryRegex );
 
 				//Old cat wasn't found, likely to be transcluded
 				if ( !$.isArray( matches ) ) {
-					var error = mw.msg( 'ajax-edit-category-error' );
-					_showError( error );
-					_removeProgressIndicator( $( '.mw-ajax-confirm-dialog' ) );
-					$( '.mw-ajax-confirm-dialog' ).dialog( 'close' );
+					_showError( mw.msg( 'ajax-edit-category-error' ) );
 					return false;
 				}
-				var sortkey = matches[0].replace( categoryRegex, '$2' );
-				var newCategoryString = "[[" + new mw.Titel( categoryNew, catNsId ) + sortkey + ']]';
+				var sortkey = sortkeyNew || matches[0].replace( categoryRegex, '$2' );
+				var newCategoryString = "[[" + new mw.Title( categoryNew, catNsId ) + sortkey + ']]';
 
-				if (matches.length > 1) {
+				if ( matches.length > 1 ) {
 					// The category is duplicated.
 					// Remove all but one match
-					for (var i = 1; i < matches.length; i++) {
-						oldText = oldText.replace( matches[i], ''); 
+					for ( var i = 1; i < matches.length; i++ ) {
+						oldText = oldText.replace( matches[i], '' ); 
 					}
 				}
 				var newText = oldText.replace( categoryRegex, newCategoryString );
 
-				return newText;
+				return _runHooks ( newText, 'afterChange', category, categoryNew );
 			},
 			summary, 
+			shortSummary,
 			function( unsaved ) {
 				// Remove input box & button
-				$link.data('deleteButton').click();
+				$link.data( 'deleteButton' ).click();
 
 				// Update link text and href
-				$link.show().text( categoryNew ).attr( 'href', catLink( categoryNew ) );
+				$link.show().text( categoryNew ).attr( 'href', catUrl( categoryNew ) );
 				if ( unsaved ) {
 					$link.data( 'origCat', category ).addClass( 'mw-changed-category' );
 				}
@@ -565,6 +719,61 @@ mw.ajaxCategories = function( options ) {
 			'edit'
 		);
 	};
+	
+	/**
+	 * Handle delete category submit. Not to be called directly
+	 */
+	this._handleDeleteLink = function() {
+		var $this = $( this ),
+			$link = $this.parent().find( 'a:not(.icon)' ),
+			category = $link.text();
+
+		if ( $link.is( '.mw-added-category, .mw-changed-category' ) ) {
+			// We're just cancelling the addition or edit
+			that.resetCatLink ( $link, $link.hasClass( 'mw-added-category' ) );
+			return;
+		} else if ( $link.is( '.mw-removed-category' ) ) {
+			// It's already removed...
+			return;
+		}
+		that.handleCategoryDelete( $link, category );
+	};
+	
+	/**
+	 * Execute or queue an category delete
+	 */
+	this.handleCategoryDelete = function( $link, category ) {
+		var categoryRegex = buildRegex( category, true );
+
+		var summary = mw.msg( 'ajax-remove-category-summary', category );
+		var shortSummary = '-[[' + new mw.Title( category,  catNsId ) + ']]';
+
+		that._confirmEdit(
+			function( oldText ) {
+				newText = _runHooks ( oldText, 'beforeDelete', category );
+				var newText = newText.replace( categoryRegex, '' );
+
+				if ( newText == oldText ) {
+					_showError( mw.msg( 'ajax-remove-category-error' ) );
+					return false;
+				}
+
+				return _runHooks ( newText, 'afterDelete', category );
+			},
+			summary,
+			shortSummary,
+			function( unsaved ) {
+				if ( unsaved ) {
+					$link.addClass( 'mw-removed-category' );
+				} else {
+					$link.parent().remove();
+				}
+			},
+			$link,
+			'delete'
+		);
+	};
+	
 
 	/**
 	 * Open a dismissable error dialog 
@@ -572,13 +781,17 @@ mw.ajaxCategories = function( options ) {
 	 * @param string str The error description
 	 */
 	_showError = function( str ) {
+		var oldDialog = $( '.mw-ajax-confirm-dialog' );
+		that._removeProgressIndicator( oldDialog );
+		oldDialog.dialog( 'close' );
+		
 		var dialog = $( '<div/>' );
 		dialog.text( str );
 
 		mw.util.$content.append( dialog );
 
 		var buttons = { };
-		buttons[mw.msg( 'ajax-error-dismiss' )] = function( e ) {
+		buttons[mw.msg( 'ajax-confirm-ok' )] = function( e ) {
 			dialog.dialog( 'close' );
 		};
 		var dialogOptions = {
@@ -588,6 +801,11 @@ mw.ajaxCategories = function( options ) {
 		};
 
 		dialog.dialog( dialogOptions );
+
+		// Close on enter
+		dialog.keyup( function( e ) {
+    		if ( e.keyCode == 13 ) dialog.dialog( 'close' );
+		});
 	};
 
 	/**
@@ -601,11 +819,12 @@ mw.ajaxCategories = function( options ) {
 	 * @return jQueryObject The button
 	 */
 	_createButton = function( icon, title, className, text ){
+		// We're adding a zero width space for IE7, it's got problems with empty nodes apparently
 		var $button = $( '<a>' ).addClass( className || '' )
-			.attr('title', title);
+			.attr( 'title', title ).html( '&#8203;' );
 
 		if ( text ) {
-			var $icon = $( '<a>' ).addClass( 'icon ' + icon );
+			var $icon = $( '<span>' ).addClass( 'icon ' + icon ).html( '&#8203;' );
 			$button.addClass( 'icon-parent' ).append( $icon ).append( text );
 		} else {
 			$button.addClass( 'icon ' + icon );
@@ -618,60 +837,64 @@ mw.ajaxCategories = function( options ) {
 	 *
 	 * @param DOMElement element Anchor element, to which the buttons should be appended.
 	 */
-	_createCatButtons = function( element ) {
+	_createCatButtons = function( $element ) {
 		// Create remove & edit buttons
-		var deleteButton = _createButton('icon-close', mw.msg( 'ajax-remove-category' ) );
-		var editButton = _createButton('icon-edit', mw.msg( 'ajax-edit-category' ) );
+		var deleteButton = _createButton( 'icon-close', mw.msg( 'ajax-remove-category' ) );
+		var editButton = _createButton( 'icon-edit', mw.msg( 'ajax-edit-category' ) );
 
 		//Not yet used
-		var saveButton = _createButton('icon-tick', mw.msg( 'ajax-confirm-save' ) ).hide();
+		var saveButton = _createButton( 'icon-tick', mw.msg( 'ajax-confirm-save' ) ).hide();
 
-		deleteButton.click( _handleDeleteLink );
-		editButton.click( _handleEditLink );
+		deleteButton.click( that._handleDeleteLink );
+		editButton.click( that._createEditInterface );
 
-		$( element ).after( deleteButton ).after( editButton );
+		$element.after( deleteButton ).after( editButton );
 
 		//Save references to all links and buttons
-		$( element ).data({
+		$element.data({
 			saveButton 	: saveButton,
 			deleteButton: deleteButton,
 			editButton 	: editButton
 		});
+		editButton.data({
+			link 	: $element
+		});
 	};
+
+	/**
+	 * Create the UI 
+	 */
 	this.setup = function() {
 		// Could be set by gadgets like HotCat etc.
-		if ( mw.config.get('disableAJAXCategories') ) {
-			return;
+		if ( mw.config.get( 'disableAJAXCategories' ) ) {
+			return false;
 		}
 		// Only do it for articles.
 		if ( !mw.config.get( 'wgIsArticle' ) ) return;
 
-		// Unhide hidden category holders.
-		$('#mw-hidden-catlinks').show();
-
-		var $li = $('<li>', {
-			'class' : 'mw-ajax-addcategory-holder'
-		});
-		// $containerNormal.find('ul').append( $li)
 		// Create [Add Category] link
-		var addLink = _createButton('icon-add', 
+		var addLink = _createButton( 'icon-add', 
 									mw.msg( 'ajax-add-category' ), 
 									'mw-ajax-addcategory', 
 									mw.msg( 'ajax-add-category' )
 								   );
-		addLink.click( _handleAddLink );
-		$containerNormal.append( addLink );
+		addLink.click( function() {
+			$( this ).nextAll().toggle().filter( '.mw-addcategory-input' ).focus();
+		});
+		
 
 		// Create add category prompt
-		var promptContainer = _makeSuggestionBox( '', _handleCategoryAdd, mw.msg( 'ajax-add-category-submit' ) );
-		promptContainer.hide();
+		_addContainer = that._makeSuggestionBox( '', that._handleAddLink, mw.msg( 'ajax-add-category-submit' ) );
+		_addContainer.children().hide();
+
+		_addContainer.prepend( addLink );
 
 		// Create edit & delete link for each category.
 		$( '#catlinks li a' ).each( function() {
-			_createCatButtons( this );
+			_createCatButtons( $( this ) );
 		});
 
-		$containerNormal.append( promptContainer );
+		options.$containerNormal.append( _addContainer );
 
 		//TODO Make more clickable
 		_saveAllButton = _createButton( 'icon-tick', 
@@ -679,53 +902,78 @@ mw.ajaxCategories = function( options ) {
 										'', 
 										mw.msg( 'ajax-confirm-save-all' ) 
 										);
-		_cancelAllButton = _createButton( 'icon-tick', 
-										mw.msg( 'ajax-confirm-save-all' ), 
+		_cancelAllButton = _createButton( 'icon-close', 
+										mw.msg( 'ajax-cancel-all' ), 
 										'', 
-										mw.msg( 'ajax-confirm-save-all' ) 
+										mw.msg( 'ajax-cancel-all' ) 
 										);
-		_saveAllButton.click( _handleStashedCategories ).hide();
-		_cancelAllButton.hide();
-		//TODO wrap in div display:inline-block
-		$containerNormal.append( _saveAllButton ).append( _cancelAllButton );
+		_saveAllButton.click( that._handleStashedCategories ).hide();
+		_cancelAllButton.click( function() { that.resetAll( false ); } ).hide();
+		options.$containerNormal.append( _saveAllButton ).append( _cancelAllButton );
+		options.$container.append( _addContainer );
 	};
 
 	_stash = {
 		summaries : [],
+		shortSum : [],
 		fns : []
 	};
-	_removeStashItem = function( $link ) {
-		var i = $link.data( 'stashIndex' );
+	_removeStashItem = function( i ) {
+		if ( typeof i != "number" ) {
+			i = i.data( 'stashIndex' );
+		}
 		delete _stash.fns[i];
 		delete _stash.summaries[i];
-	}
+		if ( $.isEmpty( _stash.fns ) ) {
+			_stash.fns = [];
+			_stash.summaries = [];
+			_stash.shortSum = [];
+			_saveAllButton.hide();
+			_cancelAllButton.hide();
+		}
+	};
 	_hooks = {
 		beforeAdd : [],
 		beforeChange : [],
-		beforeDelete : []
+		beforeDelete : [],
+		afterAdd : [],
+		afterChange : [],
+		afterDelete : []
 	};
-	_runHooks = function( oldtext, type ) {
+	_runHooks = function( oldtext, type, category, categoryNew ) {
 		// No hooks registered
-		if ( !_hooks[type] ) {
+		if ( !_hooks[type] ) {	
 			return oldtext;
 		} else {
-			for (var i = 0; i < _hooks[type].length; i++) {
-				oldtext = _hooks[type][i]( oldtext );
+			for ( var i = 0; i < _hooks[type].length; i++ ) {
+				oldtext = _hooks[type][i]( oldtext, category, categoryNew );
+				if ( oldtext === false ) {
+					_showError( mw.msg( 'ajax-category-hook-error', category ) );
+					return;
+				}
 			}
 			return oldtext;
 		}
 	};
 	/**
 	 * Add hooks
-	 * Currently available: beforeAdd, beforeChange, beforeDelete
+	 * Currently available: beforeAdd, beforeChange, beforeDelete,
+	 *						afterAdd, afterChange, afterDelete
+	 * If the hook function returns false, all changes are aborted.
 	 *
 	 * @param string type Type of hook to add
-	 * @param function fn Hook function. This function is the old text passed 
-	 *					  and it needs to return the modified text
+	 * @param function fn Hook function. The following vars are passed to it:
+	 *									1. oldtext: The wikitext before the hook
+	 *									2. category: The deleted, added, or changed category
+	 *									3. (only for beforeChange/afterChange): newcategory
 	 */
 	this.addHook = function( type, fn ) {
-		if ( !_hooks[type] ) return;
-		else hooks[type].push( fn );
+		if ( !_hooks[type] || !$.isFunction( fn ) ) {
+			return;
+		}
+		else {
+			hooks[type].push( fn );
+		}
 	};
 };
 
