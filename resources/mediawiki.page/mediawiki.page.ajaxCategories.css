@@ -17,11 +17,16 @@
 #catlinks:hover .icon {
 	opacity: 1;
 }
-
+#catlinks ul {
+	margin-right: 2em;
+}
+.mw-ajax-addcategory-holder {
+	display: inline-block;
+}
 .mw-ajax-addcategory {
-	padding-left: 30px;
 	margin-right: 1em;
 	cursor: pointer;
+	display:inline-block;
 }
 #catlinks .icon {
 	cursor: pointer;
@@ -29,9 +34,11 @@
 	margin: 0;
 	background: url('images/AJAXCategorySprite.png') 0 0 no-repeat;
 	opacity: 0.5;
+
 }
 #catlinks .icon-parent {
 	cursor: pointer;
+	margin-right: 1em;
 }
 #catlinks .icon-parent:hover .icon {
 	background-position-y: -16px;
