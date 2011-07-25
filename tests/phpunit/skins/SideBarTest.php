@@ -1,6 +1,6 @@
 <?php
 
-class SideBarTest extends MediaWikiTestCase {
+class SideBarTest extends MediaWikiLangTestCase {
 
 	/** A skin template, reinitialized before each test */
 	private $skin;
@@ -8,7 +8,6 @@ class SideBarTest extends MediaWikiTestCase {
 	private $messages;
 
 	function __construct() {
-		$this->initMessagesHref();
 		parent::__construct();
 	}
 
@@ -32,9 +31,12 @@ class SideBarTest extends MediaWikiTestCase {
 	}
 
 	function setUp() {
+		parent::setUp();
+		$this->initMessagesHref();
 		$this->skin = new SkinTemplate();
 	}
 	function tearDown() {
+		parent::tearDown();
 		$this->skin = null;
 	}
 
