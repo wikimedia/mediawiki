@@ -118,7 +118,7 @@ class UserMailer {
 	 * @param $contentType String: optional custom Content-Type (default: text/plain; charset=UTF-8)
 	 * @return Status object
 	 */
-	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = 'text/plain; charset=UTF-8') {
+	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = 'text/plain; charset=UTF-8' ) {
 		global $wgSMTP, $wgEnotifImpersonal;
 		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
