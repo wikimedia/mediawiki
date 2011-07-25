@@ -44,7 +44,10 @@ set $wgCacheDirectory to a writable path on the local filesystem. Make sure
 you have the DBA extension for PHP installed, this will improve performance 
 further.
 
-== Changes since 1.16.4
+== Changes since 1.16.5 ==
+* Fixed undefined variable error in recentchanges API module.
+
+== Changes since 1.16.4 ==
 
 * (bug 28534) Fixed XSS vulnerability for IE 6 clients. This is the third 
   attempt at fixing bug 28235.
