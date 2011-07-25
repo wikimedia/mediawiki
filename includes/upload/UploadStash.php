@@ -219,18 +219,18 @@ class UploadStash {
 		wfDebug( __METHOD__ . " key for '$path': $key\n" );
 
 		// if not already in a temporary area, put it there
-		$storeResult = $this->repo->storeTemp( basename( $path ), $path );
+		$storeStatus = $this->repo->storeTemp( basename( $path ), $path );
 
-		if ( ! $storeResult->isOK() ) {
+		if ( ! $storeStatus->isOK() ) {
 			// It is a convention in MediaWiki to only return one error per API exception, even if multiple errors
 			// are available. We use reset() to pick the "first" thing that was wrong, preferring errors to warnings.
-			// This is a bit lame, as we may have more info in the $storeResult and we're throwing it away, but to fix it means
+			// This is a bit lame, as we may have more info in the $storeStatus and we're throwing it away, but to fix it means
 			// redesigning API errors significantly.
-			// $storeResult->value just contains the virtual URL (if anything) which is probably useless to the caller
-			$error = $storeResult->getErrorsArray();
+			// $storeStatus->value just contains the virtual URL (if anything) which is probably useless to the caller
+			$error = $storeStatus->getErrorsArray();
 			$error = reset( $error );
 			if ( ! count( $error ) ) {
-				$error = $storeResult->getWarningsArray();
+				$error = $storeStatus->getWarningsArray();
 				$error = reset( $error );
 				if ( ! count( $error ) ) {
 					$error = array( 'unknown', 'no error recorded' );
@@ -238,11 +238,10 @@ class UploadStash {
 			}
 			throw new UploadStashFileException( "error storing file in '$path': " . implode( '; ', $error ) );
 		}
-		$stashPath = $storeResult->value;
+		$stashPath = $storeStatus->value;
 
 		// fetch the current user ID
 		if ( !$this->isLoggedIn ) {
-			wfDebugCallstack();
 			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
 
