@@ -145,7 +145,7 @@ abstract class Maintenance {
 		if ( $bt[0]['class'] !== 'Maintenance' || $bt[0]['function'] !== 'shouldExecute' ) {
 			return false; // last call should be to this function
 		}
-		$includeFuncs = array( 'require_once', 'require', 'include' );
+		$includeFuncs = array( 'require_once', 'require', 'include', 'include_once' );
 		for( $i=1; $i < count( $bt ); $i++ ) {
 			if ( !in_array( $bt[$i]['function'], $includeFuncs ) ) {
 				return false; // previous calls should all be "requires"
