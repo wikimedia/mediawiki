@@ -181,12 +181,13 @@ input#wpSummary {
 /**
  * Categories
  */
-#catlinks ul, #catlinks li {
+#catlinks ul {
 	display:inline;
 	margin: 0px;
 	list-style:none;
 	list-style-type:none;
 	list-style-image:none;
+	vertical-align: middle !ie;
 }
 
 #catlinks li {
@@ -195,13 +196,14 @@ input#wpSummary {
 	padding: 0 .7em;
 	border-left: 1px solid #AAA;
 	margin: 0.3em 0;
+	zoom: 1;
+	display:inline !ie;
 }
 
 #catlinks li:first-child {
 	padding-left: .4em;
 	border-left: none;
 }
-
 /**
  * Hidden categories
  */
