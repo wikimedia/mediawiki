@@ -3095,4 +3095,15 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 'htmlform-reset'               => 'Vurnayişî reyna biyar',
 'htmlform-selectorother-other' => 'Bin',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategorî de bike',
+'ajax-add-category-submit'     => 'De bike',
+'ajax-confirm-title'           => 'Hereketî konfirme bike',
+'ajax-confirm-save'            => 'Qeyt bik',
+'ajax-add-category-summary'    => 'Kategorî de bike "$1"',
+'ajax-remove-category-summary' => 'kategoriyê "$1"i biwedarne',
+'ajax-error-title'             => 'Xeta',
+'ajax-remove-category-error'   => 'Ma nieşkenî ena kategorî wedarne.
+Çi wext yew kategorî yew template de ca geno, ena probelem bena.',
+
 );

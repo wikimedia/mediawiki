@@ -3397,4 +3397,15 @@ $1',
 'sqlite-has-fts' => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటుతో',
 'sqlite-no-fts'  => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటు లేకుండా',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'వర్గాన్ని చేర్చండి',
+'ajax-add-category-submit'     => 'చేర్చు',
+'ajax-confirm-title'           => 'చర్యని నిర్ధారించండి',
+'ajax-confirm-save'            => 'భద్రపరచు',
+'ajax-add-category-summary'    => '"$1" వర్గాన్ని చేర్చండి',
+'ajax-remove-category-summary' => '"$1" వర్గాన్ని తొలగించండి',
+'ajax-error-title'             => 'పొరపాటు',
+'ajax-remove-category-error'   => 'ఈ వర్గాన్ని తొలగించడం సాధ్యం కాలేదు.
+పేజీకి ఆ వర్గం ఒక మూస ద్వారా చేరినప్పుడు సాధారణంగా ఇలా జరుగుతుంది.',
+
 );

@@ -3580,4 +3580,15 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'sqlite-has-fts' => 'Weergawe $1 met ondersteuning vir vol-teks soektogte ("full-text search")',
 'sqlite-no-fts'  => 'Weergawe $1 sonder ondersteuning vir vol-teks soektogte ("full-text search")',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Voeg kategorie by',
+'ajax-add-category-submit'     => 'Byvoeg',
+'ajax-confirm-title'           => 'Bevestig aksie',
+'ajax-confirm-save'            => 'Stoor',
+'ajax-add-category-summary'    => 'Voeg kategorie "$1" by',
+'ajax-remove-category-summary' => 'Verwyder kategorie "$1"',
+'ajax-error-title'             => 'Fout',
+'ajax-remove-category-error'   => "Ongelukkig was nie moontlik om die kategorie te verwyder nie.
+Dit gebeur gewoonlik as die kategorie via 'n sjabloon by die bladsy bygevoeg is.",
+
 );

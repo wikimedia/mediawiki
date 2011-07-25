@@ -1284,6 +1284,5 @@ $5
 'ajax-confirm-ok'          => 'ଠିକ ଅଛି',
 'ajax-confirm-save'        => 'ସଂରକ୍ଷଣ',
 'ajax-error-title'         => 'ତ୍ରୁଟି',
-'ajax-error-dismiss'       => 'ଠିକ ଅଛି',
 
 );

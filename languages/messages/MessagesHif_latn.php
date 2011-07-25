@@ -2889,8 +2889,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'ajax-confirm-save'            => 'Bachao',
 'ajax-add-category-summary'    => 'Vibhag "$1" ke jorro',
 'ajax-remove-category-summary' => 'Vibhag "$1" ke hatao',
-'ajax-confirm-actionsummary'   => 'Kon chij kare ke hae:',
 'ajax-error-title'             => 'Galti',
-'ajax-error-dismiss'           => 'Thik hae',
 
 );

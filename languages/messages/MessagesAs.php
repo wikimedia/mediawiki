@@ -2985,11 +2985,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'ajax-confirm-title'            => 'কায্য নিশ্চিত কৰক:',
 'ajax-confirm-save'             => 'সাঁচি থওঁক',
 'ajax-add-category-summary'     => 'শ্ৰেণী "$1" সংযুগ কৰক',
-'ajax-add-category-question'    => 'আপুনি "$1" শ্ৰেণীটো কিয় যোগ কৰিব খুজিছে ?',
-'ajax-edit-category-question'   => 'আপুনি "$1" শ্ৰেণীটো "$2"লৈ কিয় সলাব খুজিছে ?',
-'ajax-remove-category-question' => 'আপুনি "$1" শ্ৰেণীটো কিয় আঁতৰাব খুজিছে ?',
 'ajax-error-title'              => 'ভুল',
-'ajax-error-dismiss'            => "অ'কে",
 'ajax-category-already-present' => 'এই পৃষ্ঠাখন ইতিমধ্যে $1 শ্ৰেণীত আছে',
 
 );

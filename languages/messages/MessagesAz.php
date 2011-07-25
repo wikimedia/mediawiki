@@ -2886,6 +2886,5 @@ Variants for Chinese language
 'ajax-add-category-submit' => 'Əlavə et',
 'ajax-confirm-save'        => 'Qeyd et',
 'ajax-error-title'         => 'Xəta',
-'ajax-error-dismiss'       => 'OK',
 
 );

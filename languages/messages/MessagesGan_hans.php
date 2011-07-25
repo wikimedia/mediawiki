@@ -2216,4 +2216,12 @@ $1',
 'specialpages'                 => '特殊页',
 'specialpages-group-redirects' => '重定向特殊页面',
 
+# Add categories per AJAX
+'ajax-confirm-save'            => '存到',
+'ajax-add-category-summary'    => '添进分类「$1」',
+'ajax-remove-category-summary' => '搦开分类「$1」',
+'ajax-error-title'             => '错误',
+'ajax-remove-category-error'   => '搦个只分类不开。
+通常发生嘚一只拕包入分类𠮶模板。',
+
 );

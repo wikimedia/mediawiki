@@ -3801,20 +3801,13 @@ MediaWiki распространяется в надежде, что она бу
 'ajax-add-category-submit'      => 'Добавить',
 'ajax-confirm-ok'               => 'ОК',
 'ajax-confirm-title'            => 'Подтвердить действие',
-'ajax-confirm-prompt'           => 'Ниже вы можете указать описание изменений.
-Нажмите «Сохранить», чтобы сохранить ваши изменения.',
 'ajax-confirm-save'             => 'Сохранить',
 'ajax-confirm-save-all'         => 'Сохранить все изменения',
 'ajax-cancel'                   => 'Отменить изменения',
 'ajax-add-category-summary'     => 'Добавлена категория «$1»',
 'ajax-edit-category-summary'    => 'Изменить категорию «$1» на «$2»',
 'ajax-remove-category-summary'  => 'Удалена категория «$1»',
-'ajax-add-category-question'    => 'Почему вы хотите добавить категорию «$1»?',
-'ajax-edit-category-question'   => 'Почему вы хотите изменить категорию «$1» на «$2»?',
-'ajax-remove-category-question' => 'Почему вы хотите удалить категорию «$1»?',
-'ajax-confirm-actionsummary'    => 'Предпринимаемые действия:',
 'ajax-error-title'              => 'Ошибка',
-'ajax-error-dismiss'            => 'OK',
 'ajax-remove-category-error'    => 'Не удалось убрать эту категорию.
 Обычно это происходит в случае, когда категория была добавлена через шаблон.',
 'ajax-edit-category-error'      => 'Не удалось изменить эту категорию.

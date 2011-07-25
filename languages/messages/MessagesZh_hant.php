@@ -3531,14 +3531,10 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'ajax-add-category'            => '加入分類',
 'ajax-add-category-submit'     => '加入',
 'ajax-confirm-title'           => '確認動作',
-'ajax-confirm-prompt'          => '您可以在下面提供一個編輯摘要。
-點擊「保存」去保存您的編輯。',
 'ajax-confirm-save'            => '儲存',
 'ajax-add-category-summary'    => '加入分類「$1」',
 'ajax-remove-category-summary' => '移除分類「$1」',
-'ajax-confirm-actionsummary'   => '已進行的動作：',
 'ajax-error-title'             => '錯誤',
-'ajax-error-dismiss'           => '好',
 'ajax-remove-category-error'   => '不能移除這個分類。
 通常是發生在一個模板中加入該分類。',
 

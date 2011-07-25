@@ -3271,4 +3271,15 @@ Sartu fitxategiaren izena "{{ns:file}}:" aurrizkia gabe.',
 'htmlform-reset'               => 'Aldaketak desegin',
 'htmlform-selectorother-other' => 'Beste bat',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategoria gehitu',
+'ajax-add-category-submit'     => 'Gehitu',
+'ajax-confirm-title'           => 'Ekintza egiaztatu',
+'ajax-confirm-save'            => 'Gorde',
+'ajax-add-category-summary'    => '"$1" kategoria gehitu',
+'ajax-remove-category-summary' => '"$1" kategoria ezabatu',
+'ajax-error-title'             => 'Errorea',
+'ajax-remove-category-error'   => 'Ezin izan da kategoria ezabatu.
+Arrazoia izan ohi da kategoria hori txantiloi batek erantsi diola orrialdera.',
+
 );

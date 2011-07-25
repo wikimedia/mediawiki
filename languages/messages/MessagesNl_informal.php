@@ -649,8 +649,4 @@ Samen met dit programma hoor je een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 # HTML forms
 'htmlform-float-invalid' => 'De waarde die je hebt opgegeven is geen getal.',
 
-# Add categories per AJAX
-'ajax-confirm-prompt' => 'Je kunt hieronder een bewerkingssamenvatting opgeven.
-Klik "Opslaan" om je bewerking op te slaan.',
-
 );

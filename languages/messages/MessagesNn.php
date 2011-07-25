@@ -3402,14 +3402,10 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'ajax-add-category'            => 'Legg til kategori',
 'ajax-add-category-submit'     => 'Legg til',
 'ajax-confirm-title'           => 'Stadfest handling',
-'ajax-confirm-prompt'          => 'Du kan laga ei redigeringsskildring nedanfor.
-Klikk på "Lagre" for å lagra redigeringa.',
 'ajax-confirm-save'            => 'Lagre',
 'ajax-add-category-summary'    => 'Legg til kategorien "$1"',
 'ajax-remove-category-summary' => 'Fjern kategorien "$1"',
-'ajax-confirm-actionsummary'   => 'Handling:',
 'ajax-error-title'             => 'Feil',
-'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => 'Det var ikkje mogleg å fjerna kategorien.
 Det skuldast som oftast at kategorien er vorte lagd til i sida innan ein mal.',
 

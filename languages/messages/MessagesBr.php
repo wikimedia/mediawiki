@@ -3638,16 +3638,12 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'ajax-add-category-submit'     => 'Ouzhpennañ',
 'ajax-confirm-ok'              => 'Mat eo',
 'ajax-confirm-title'           => 'Kadarnaat an oberiadenn',
-'ajax-confirm-prompt'          => 'Gallout a rit merkañ a-is un diverrañ eus ar c\'hemmoù degaset.
-Klikit war "Enrollañ da enrollañ ho degasadenn.',
 'ajax-confirm-save'            => 'Enrollañ',
 'ajax-confirm-save-all'        => 'Enrollañ an holl gemmoù',
 'ajax-cancel'                  => "Nullañ ar c'hemmoù",
 'ajax-add-category-summary'    => 'Ouzhpennañ ar rummad "$1"',
 'ajax-remove-category-summary' => 'Diverkañ ar rummad "$1"',
-'ajax-confirm-actionsummary'   => 'Tra da ober :',
 'ajax-error-title'             => 'Fazi',
-'ajax-error-dismiss'           => 'Mat eo',
 'ajax-remove-category-error'   => "N'eus ket bet gallet diverkañ ar rummad-mañ. 
 C'hoarvezout a ra p'eo bet ouzhpennet ar rummad er bajenn dre ur patrom",
 

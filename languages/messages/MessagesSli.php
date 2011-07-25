@@ -2273,9 +2273,7 @@ De Eengabe muuß ohne dann Zusatz „{{ns:file}}:“ erfolga.',
 'ajax-confirm-save'            => 'Speichern',
 'ajax-add-category-summary'    => 'Kategorie „$1“ hinzufiega',
 'ajax-remove-category-summary' => 'Kategorie „$1“ entferna',
-'ajax-confirm-actionsummary'   => 'Auszufiehrende Aksjonn:',
 'ajax-error-title'             => 'Fahler',
-'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => 'Is woar ne meeglich, de Kategorie zu entferna.
 Dies passiert normalerweise, wenn de Kategorie ieber anne Vurloage eingebunda ies.',
 

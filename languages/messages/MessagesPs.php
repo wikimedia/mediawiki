@@ -2368,6 +2368,5 @@ $5
 'ajax-add-category-summary'    => 'د "$1" وېشنيزه ورګډول',
 'ajax-remove-category-summary' => 'د "$1" وېشنيزه ليرې کول',
 'ajax-error-title'             => 'ستونزه',
-'ajax-error-dismiss'           => 'ښه',
 
 );

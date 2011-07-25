@@ -3713,14 +3713,10 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 'ajax-add-category'            => 'Engadir unha categoría',
 'ajax-add-category-submit'     => 'Engadir',
 'ajax-confirm-title'           => 'Confirmar a acción',
-'ajax-confirm-prompt'          => 'Pode proporcionar un resumo de edición a continuación.
-Prema sobre o botón "Gardar" para gardar a súa edición.',
 'ajax-confirm-save'            => 'Gardar',
 'ajax-add-category-summary'    => 'Engadir a categoría "$1"',
 'ajax-remove-category-summary' => 'Eliminar a categoría "$1"',
-'ajax-confirm-actionsummary'   => 'Acción a levar a cabo:',
 'ajax-error-title'             => 'Erro',
-'ajax-error-dismiss'           => 'De acordo',
 'ajax-remove-category-error'   => 'Non se puido eliminar esta categoría.
 Normalmente isto ocorre cando a categoría foi engadida á páxina a través dun modelo.',
 

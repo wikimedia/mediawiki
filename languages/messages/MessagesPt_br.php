@@ -3730,14 +3730,10 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 'ajax-add-category'            => 'Adicionar categoria',
 'ajax-add-category-submit'     => 'Adicionar',
 'ajax-confirm-title'           => 'Confirmar ação',
-'ajax-confirm-prompt'          => 'Você pode fornecer um sumário de edição abaixo.
-Clique "Salvar" para salvar sua edição.',
 'ajax-confirm-save'            => 'Salvar',
 'ajax-add-category-summary'    => 'Adicionar categoria "$1"',
 'ajax-remove-category-summary' => 'Remover categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Ação a tomar:',
 'ajax-error-title'             => 'Erro',
-'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => 'Não foi possível remover esta categoria.
 Isto geralmente ocorre quando a categoria foi adicionada através de uma predefinição.',
 

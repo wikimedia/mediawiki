@@ -2754,4 +2754,14 @@ Coba ku sawangan normal.',
 'htmlform-reset'               => 'Bolaykeun parobahan',
 'htmlform-selectorother-other' => 'Lianna',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Tambah kategori',
+'ajax-add-category-submit'     => 'Tambah',
+'ajax-confirm-save'            => 'Simpen',
+'ajax-add-category-summary'    => 'Tambah kategori "$1"',
+'ajax-remove-category-summary' => 'Hapus kategori "$1"',
+'ajax-error-title'             => 'Éror',
+'ajax-remove-category-error'   => 'Ieu kategori teu mungkin dihapus.
+Hal ieu ilaharna dilarapkeun kana kategori anu ditambahkeun kana citakan.',
+
 );

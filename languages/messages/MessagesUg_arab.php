@@ -3216,14 +3216,10 @@ $1',
 'ajax-add-category'            => 'تۈر قوش',
 'ajax-add-category-submit'     => 'قوش',
 'ajax-confirm-title'           => 'ھەرىكەت جەزملە',
-'ajax-confirm-prompt'          => 'سىز تۆۋەندە تەھرىر ئۈزۈندىسىنى تەمىنلىيەلەيسىز.
-"ساقلا" چېكىلسە تەھرىرلىگىنىڭىز ساقلىنىدۇ.',
 'ajax-confirm-save'            => 'ساقلا',
 'ajax-add-category-summary'    => '"$1" تۈرنى قوش',
 'ajax-remove-category-summary' => '"$1" تۈرنى چىقىرىۋەت',
-'ajax-confirm-actionsummary'   => 'ئېلىپ بېرىلىدىغان مەشغۇلات:',
 'ajax-error-title'             => 'خاتالىق',
-'ajax-error-dismiss'           => 'جەزملە',
 'ajax-remove-category-error'   => 'بۇ تۈرنى چىقىرىۋەتكىلى بولمايدۇ.
 مەلۇم بىر قېلىپقا بۇ تۈر قوشۇلغان بولسا مۇشۇ خىل ئەھۋال يۈز بېرىدۇ.',
 

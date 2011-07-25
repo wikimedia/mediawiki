@@ -2805,8 +2805,7 @@ $1',
 #Путт сембе васу валзюлмафксонь пакшензон тя луфть (строкать) вельфке. Катт тя луфть (строкать) стамкс кодамкс сон ульсь</pre>',
 
 # Add categories per AJAX
-'ajax-confirm-save'  => 'Ванфтомс',
-'ajax-error-title'   => 'Эльбятькс',
-'ajax-error-dismiss' => 'ОК',
+'ajax-confirm-save' => 'Ванфтомс',
+'ajax-error-title'  => 'Эльбятькс',
 
 );
