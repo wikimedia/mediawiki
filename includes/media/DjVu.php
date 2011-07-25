@@ -141,13 +141,13 @@ class DjVuHandler extends ImageHandler {
 			return new ThumbnailImage( $image, $dstUrl, $width, $height, $dstPath, $page );
 		}
 
-		if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
+		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
 			return new MediaTransformError( 'thumbnail_error', $width, $height, wfMsg( 'thumbnail_dest_directory' ) );
 		}
 
 		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
 		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
-		$cmd = '(' . wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page}" . 
+		$cmd = '(' . wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page}" .
 			" -size={$params['physicalWidth']}x{$params['physicalHeight']} " .
 			wfEscapeShellArg( $srcPath );
 		if ( $wgDjvuPostProcessor ) {

@@ -300,7 +300,7 @@ class ForeignAPIRepo extends FileRepo {
 			return false;
 		}
 		if ( !is_dir($localPath) ) {
-			if( !wfMkdirParents($localPath) ) {
+			if( !wfMkdirParents( $localPath, null, __METHOD__ ) ) {
 				wfDebug(  __METHOD__ . " could not create directory $localPath for thumb\n" );
 				return $foreignUrl;
 			}

@@ -184,8 +184,8 @@ class HTMLFileCache {
 		$mydir2 = substr($filename,0,strrpos($filename,'/')); # subdirectory level 2
 		$mydir1 = substr($mydir2,0,strrpos($mydir2,'/')); # subdirectory level 1
 
-		wfMkdirParents( $mydir1 );
-		wfMkdirParents( $mydir2 );
+		wfMkdirParents( $mydir1, null, __METHOD__ );
+		wfMkdirParents( $mydir2, null, __METHOD__ );
 	}
 
 	public function saveToFileCache( $text ) {

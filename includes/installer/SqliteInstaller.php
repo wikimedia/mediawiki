@@ -102,7 +102,7 @@ class SqliteInstaller extends DatabaseInstaller {
 			# if it's still writable
 			if ( $create ) {
 				wfSuppressWarnings();
-				$ok = wfMkdirParents( $dir, 0700 );
+				$ok = wfMkdirParents( $dir, 0700, __METHOD__ );
 				wfRestoreWarnings();
 				if ( !$ok ) {
 					return Status::newFatal( 'config-sqlite-mkdir-error', $dir );

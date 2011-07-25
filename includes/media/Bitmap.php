@@ -35,9 +35,9 @@ class BitmapHandler extends ImageHandler {
 				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotated $rotation degrees\n" );
 
 				$swapDimensions = true;
-				list( $params['width'], $params['height'] ) = 
+				list( $params['width'], $params['height'] ) =
 					array(  $params['width'], $params['height'] );
-				list( $params['physicalWidth'], $params['physicalHeight'] ) = 
+				list( $params['physicalWidth'], $params['physicalHeight'] ) =
 					array( $params['physicalWidth'], $params['physicalHeight'] );
 			}
 		}
@@ -46,16 +46,16 @@ class BitmapHandler extends ImageHandler {
 		if ( $params['physicalWidth'] >= $srcWidth ) {
 			if ( $swapDimensions ) {
 				$params['physicalWidth'] = $srcHeight;
-				$params['physicalHeight'] = $srcWidth;				
+				$params['physicalHeight'] = $srcWidth;
 			} else {
 				$params['physicalWidth'] = $srcWidth;
 				$params['physicalHeight'] = $srcHeight;
 			}
 		}
-		
+
 		# Skip scaling limit checks if no scaling is required
 		if ( !$image->mustRender() )
-			return true;		
+			return true;
 
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
@@ -69,10 +69,10 @@ class BitmapHandler extends ImageHandler {
 
 		return true;
 	}
-	
+
 	/**
 	 * Extracts the width/height if the image will be scaled before rotating
-	 * 
+	 *
 	 * @param $params array Parameters as returned by normaliseParams
 	 * @param $rotation int The rotation angle that will be applied
 	 * @return array ($width, $height) array
@@ -157,7 +157,7 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		# Try to make a target path for the thumbnail
-		if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
+		if ( !wfMkdirParents( dirname( $dstPath, null, __METHOD__ ) ) ) {
 			wfDebug( __METHOD__ . ": Unable to create thumbnail destination directory, falling back to client scaling\n" );
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
@@ -234,7 +234,7 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		if ( $scaler != 'client' && $dstPath ) {
-			if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
+			if ( !wfMkdirParents( dirname( $dstPath, null, __METHOD__ ) ) ) {
 				# Unable to create a path for the thumbnail
 				return 'client';
 			}
@@ -312,7 +312,7 @@ class BitmapHandler extends ImageHandler {
 		if ( strval( $wgImageMagickTempDir ) !== '' ) {
 			$env['MAGICK_TMPDIR'] = $wgImageMagickTempDir;
 		}
-		
+
 		$rotation = $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 

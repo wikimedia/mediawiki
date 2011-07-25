@@ -162,18 +162,18 @@ class FSRepo extends FileRepo {
 	 *                             same contents as the source
 	 */
 	function storeBatch( $triplets, $flags = 0 ) {
-		wfDebug( __METHOD__  . ': Storing ' . count( $triplets ) . 
+		wfDebug( __METHOD__  . ': Storing ' . count( $triplets ) .
 			" triplets; flags: {$flags}\n" );
-		
+
 		// Try creating directories
-		if ( !wfMkdirParents( $this->directory ) ) {
+		if ( !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
 			return $this->newFatal( 'upload_directory_missing', $this->directory );
 		}
 		if ( !is_writable( $this->directory ) ) {
 			return $this->newFatal( 'upload_directory_read_only', $this->directory );
 		}
-		
-		// Validate each triplet 
+
+		// Validate each triplet
 		$status = $this->newGood();
 		foreach ( $triplets as $i => $triplet ) {
 			list( $srcPath, $dstZone, $dstRel ) = $triplet;
@@ -191,7 +191,7 @@ class FSRepo extends FileRepo {
 
 			// Create destination directories for this triplet
 			if ( !is_dir( $dstDir ) ) {
-				if ( !wfMkdirParents( $dstDir ) ) {
+				if ( !wfMkdirParents( $dstDir, null, __METHOD__ ) ) {
 					return $this->newFatal( 'directorycreateerror', $dstDir );
 				}
 				if ( $dstZone == 'deleted' ) {
@@ -199,7 +199,7 @@ class FSRepo extends FileRepo {
 				}
 			}
 
-			// Resolve source 
+			// Resolve source
 			if ( self::isVirtualUrl( $srcPath ) ) {
 				$srcPath = $triplets[$i][0] = $this->resolveVirtualUrl( $srcPath );
 			}
@@ -208,7 +208,7 @@ class FSRepo extends FileRepo {
 				$status->fatal( 'filenotfound', $srcPath );
 				continue;
 			}
-			
+
 			// Check overwriting
 			if ( !( $flags & self::OVERWRITE ) && file_exists( $dstPath ) ) {
 				if ( $flags & self::OVERWRITE_SAME ) {
@@ -256,11 +256,11 @@ class FSRepo extends FileRepo {
 					$hashSource = sha1_file( $srcPath );
 					$hashDest = sha1_file( $dstPath );
 					wfRestoreWarnings();
-					
+
 					if ( $hashDest === false || $hashSource !== $hashDest ) {
-						wfDebug( __METHOD__ . ': File copy validation failed: ' . 
+						wfDebug( __METHOD__ . ': File copy validation failed: ' .
 							"$srcPath ($hashSource) to $dstPath ($hashDest)\n" );
-						
+
 						$status->error( 'filecopyerror', $srcPath, $dstPath );
 						$good = false;
 					}
@@ -276,12 +276,12 @@ class FSRepo extends FileRepo {
 		}
 		return $status;
 	}
-	
+
 	/**
 	 * Deletes a batch of files. Each file can be a (zone, rel) pairs, a
-	 * virtual url or a real path. It will try to delete each file, but 
+	 * virtual url or a real path. It will try to delete each file, but
 	 * ignores any errors that may occur
-	 * 
+	 *
 	 * @param $pairs array List of files to delete
 	 */
 	function cleanupBatch( $files ) {
@@ -293,14 +293,14 @@ class FSRepo extends FileRepo {
 				$path = "$root/$rel";
 			} else {
 				if ( self::isVirtualUrl( $file ) ) {
-					// This is a virtual url, resolve it 
+					// This is a virtual url, resolve it
 					$path = $this->resolveVirtualUrl( $file );
 				} else {
 					// This is a full file name
 					$path = $file;
 				}
 			}
-			
+
 			wfSuppressWarnings();
 			unlink( $path );
 			wfRestoreWarnings();
@@ -432,7 +432,7 @@ class FSRepo extends FileRepo {
 	 */
 	function publishBatch( $triplets, $flags = 0 ) {
 		// Perform initial checks
-		if ( !wfMkdirParents( $this->directory ) ) {
+		if ( !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
 			return $this->newFatal( 'upload_directory_missing', $this->directory );
 		}
 		if ( !is_writable( $this->directory ) ) {
@@ -457,10 +457,10 @@ class FSRepo extends FileRepo {
 			$dstDir = dirname( $dstPath );
 			$archiveDir = dirname( $archivePath );
 			// Abort immediately on directory creation errors since they're likely to be repetitive
-			if ( !is_dir( $dstDir ) && !wfMkdirParents( $dstDir ) ) {
+			if ( !is_dir( $dstDir ) && !wfMkdirParents( $dstDir, null, __METHOD__ ) ) {
 				return $this->newFatal( 'directorycreateerror', $dstDir );
 			}
-			if ( !is_dir( $archiveDir ) && !wfMkdirParents( $archiveDir ) ) {
+			if ( !is_dir( $archiveDir ) && !wfMkdirParents( $archiveDir, null, __METHOD__ ) ) {
 				return $this->newFatal( 'directorycreateerror', $archiveDir );
 			}
 			if ( !is_file( $srcPath ) ) {
@@ -563,7 +563,7 @@ class FSRepo extends FileRepo {
 			$archivePath = "{$this->deletedDir}/$archiveRel";
 			$archiveDir = dirname( $archivePath );
 			if ( !is_dir( $archiveDir ) ) {
-				if ( !wfMkdirParents( $archiveDir ) ) {
+				if ( !wfMkdirParents( $archiveDir, null, __METHOD__ ) ) {
 					$status->fatal( 'directorycreateerror', $archiveDir );
 					continue;
 				}
