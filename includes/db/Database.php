@@ -1883,6 +1883,12 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 		$prefix = $this->mTablePrefix; # Default prefix
 
+		# A database name has been specified in input. We don't want any 
+		# prefixes added.
+		if ( isset( $database ) ) {
+			$prefix = '';
+		}
+
 		# Note that we use the long format because php will complain in in_array if
 		# the input is not an array, and will complain in is_array if it is not set.
 		if ( !isset( $database ) # Don't use shared database if pre selected.
@@ -1898,7 +1904,6 @@ abstract class DatabaseBase implements DatabaseType {
 		# Quote the $database and $table and apply the prefix if not quoted.
 		if ( isset( $database ) ) {
 			$database = ( !$quoted || $this->isQuotedIdentifier( $database ) ? $database : $this->addIdentifierQuotes( $database ) );
-			$prefix = '';
 		}
 
 		$table = "{$prefix}{$table}";
