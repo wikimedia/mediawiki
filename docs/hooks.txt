@@ -397,32 +397,32 @@ Use this to change the content in this area or how it is loaded.
  $output: the OutputPage object ($wgOut)
 
 'ArticleDelete': before an article is deleted
-$article: the article (object) being deleted
+$article: the WikiPage (object) being deleted
 $user: the user (object) deleting the article
 $reason: the reason (string) the article is being deleted
 $error: if the deletion was prohibited, the (raw HTML) error message to display
   (added in 1.13)
 
 'ArticleDeleteComplete': after an article is deleted
-$article: the article that was deleted
+$article: the WikiPage that was deleted
 $user: the user that deleted the article
 $reason: the reason the article was deleted
 $id: id of the article that was deleted
 
 'ArticleEditUpdateNewTalk': before updating user_newtalk when a user talk page
 was changed
-$article: article (object) of the user talk page
+$article: WikiPage (object) of the user talk page
 
 'ArticleEditUpdates': when edit updates (mainly link tracking) are made when an
 article has been changed
-$article: the article (object)
+$article: the WikiPage (object)
 $editInfo: data holder that includes the parser output ($editInfo->output) for
 that page after the change
 $changed: bool for if the page was changed
 
 'ArticleEditUpdatesDeleteFromRecentchanges': before deleting old entries from
 recentchanges table, return false to not delete old entries
-$article: article (object) being modified
+$article: WikiPage (object) being modified
 
 'ArticleFromTitle': when creating an article object from a title object using
 Wiki::articleFromTitle()
@@ -430,7 +430,7 @@ $title: title (object) used to create the article object
 $article: article (object) that will be returned
 
 'ArticleInsertComplete': After a new article is created
-$article: Article created
+$article: WikiPage created
 $user: User creating the article
 $text: New content
 $summary: Edit summary/comment
@@ -445,33 +445,33 @@ $targetTitle: target title (object)
 $destTitle: destination title (object)
 
 'ArticlePageDataAfter': after loading data of an article from the database
-$article: article (object) whose data were loaded
+$article: WikiPage (object) whose data were loaded
 $row: row (object) returned from the database server
 
 'ArticlePageDataBefore': before loading data of an article from the database
-$article: article (object) that data will be loaded
+$article: WikiPage (object) that data will be loaded
 $fields: fileds (array) to load from the database
 
 'ArticlePrepareTextForEdit': called when preparing text to be saved
-$article: the article being saved
+$article: the WikiPage being saved
 $popts: parser options to be used for pre-save transformation
 
 'ArticleProtect': before an article is protected
-$article: the article being protected
+$article: the WikiPage being protected
 $user: the user doing the protection
 $protect: boolean whether this is a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether this is for move only or not
 
 'ArticleProtectComplete': after an article is protected
-$article: the article that was protected
+$article: the WikiPage that was protected
 $user: the user who did the protection
 $protect: boolean whether it was a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether it was for move only or not
 
 'ArticlePurge': before executing "&action=purge"
-$article: article (object) to purge
+$article: WikiPage (object) to purge
 
 'ArticleRevisionVisibilitySet': called when changing visibility of one or more
 revision of an article
@@ -483,13 +483,13 @@ $revision: the revision
 $oldPageID: the page ID of the revision when archived (may be null)
 
 'ArticleRollbackComplete': after an article rollback is completed
-$article: the article that was edited
+$article: the WikiPage that was edited
 $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
 
 'ArticleSave': before an article is saved
-$article: the article (object) being saved
+$article: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $text: the new article text
 $summary: the article summary (comment)
@@ -498,7 +498,7 @@ $iswatch: watch flag
 $section: section #
 
 'ArticleSaveComplete': After an article has been updated
-$article: Article modified
+$article: WikiPage modified
 $user: User performing the modification
 $text: New content
 $summary: Edit summary/comment
@@ -1219,7 +1219,7 @@ using this hook.
 
 'NewRevisionFromEditComplete': called when a revision was inserted
 due to an edit
-$article: the article edited
+$article: the WikiPage edited
 $rev: the new revision
 $baseID: the revision ID this was based off, if any
 $user: the editing user
