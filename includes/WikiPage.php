@@ -350,19 +350,28 @@ class WikiPage extends Page {
 	 *		A DB query result object or...
 	 *		"fromdb" to get from a slave DB or...
 	 *		"fromdbmaster" to get from the master DB
+	 * @return void
 	 */
 	public function loadPageData( $data = 'fromdb' ) {
-		if ( $data === 'fromdb' || $data === 'fromdbmaster' ) {
-			$db = ( $data == 'fromdbmaster' )
-				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_SLAVE );
-			$data = $this->pageDataFromTitle( $db, $this->mTitle );
+		if ( $data === 'fromdbmaster' ) {
+			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
+		} elseif ( $data === 'fromdb' ) { // slave
+			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
+			# Use a "last rev inserted" timestamp key to dimish the issue of slave lag.
+			# Note that DB also stores the master position in the session and checks it.
+			$touched = $this->getCachedLastEditTime();
+			if ( $touched ) { // key set
+				if ( !$data || $touched > wfTimestamp( TS_MW, $data->page_touched ) ) {
+					$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
+				}
+			}
 		}
 
 		$lc = LinkCache::singleton();
 
 		if ( $data ) {
-			$lc->addGoodLinkObj( $data->page_id, $this->mTitle, $data->page_len, $data->page_is_redirect, $data->page_latest );
+			$lc->addGoodLinkObj( $data->page_id, $this->mTitle,
+				$data->page_len, $data->page_is_redirect, $data->page_latest );
 
 			$this->mTitle->loadFromRow( $data );
 
@@ -814,10 +823,11 @@ class WikiPage extends Page {
 			$conditions['page_latest'] = $lastRevision;
 		}
 
+		$now = wfTimestampNow();
 		$dbw->update( 'page',
 			array( /* SET */
 				'page_latest'      => $revision->getId(),
-				'page_touched'     => $dbw->timestamp(),
+				'page_touched'     => $dbw->timestamp( $now ),
 				'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
 				'page_is_redirect' => $rt !== null ? 1 : 0,
 				'page_len'         => strlen( $text ),
@@ -828,10 +838,32 @@ class WikiPage extends Page {
 		$result = $dbw->affectedRows() != 0;
 		if ( $result ) {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
+			$this->setCachedLastEditTime( $now );
 		}
 
 		wfProfileOut( __METHOD__ );
 		return $result;
+	}
+
+	/**
+	 * Get the cached timestamp for the last time the page changed
+	 * @return string MW timestamp
+	 */
+	protected function getCachedLastEditTime() {
+		global $wgMemc;
+		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
+		return $wgMemc->get( $key );
+	}
+
+	/**
+	 * Set the cached timestamp for the last time the page changed
+	 * @param $timestamp string
+	 * @return void
+	 */
+	protected function setCachedLastEditTime( $timestamp ) {
+		global $wgMemc;
+		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
+		$wgMemc->set( $key, wfTimestamp( TS_MW, $timestamp ), 60*15 );
 	}
 
 	/**
