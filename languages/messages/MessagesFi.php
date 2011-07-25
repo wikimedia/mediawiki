@@ -2213,7 +2213,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 
 # Protect
 'protectlogpage'              => 'Suojausloki',
-'protectlogtext'              => 'Alla on loki sivujen suojauksista ja suojauksien poistoista. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:ProtectedPages|suojattujen sivujen luettelosta]].',
+'protectlogtext'              => 'Alla on loki muutoksista sivujen suojauksiin. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:ProtectedPages|suojattujen sivujen luettelosta]].',
 'protectedarticle'            => 'suojasi sivun [[$1]]',
 'modifiedarticleprotection'   => 'muutti sivun [[$1]] suojaustasoa',
 'unprotectedarticle'          => 'poisti suojauksen sivulta [[$1]]',
@@ -3523,17 +3523,15 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 # Add categories per AJAX
 'ajax-add-category'            => 'Lisää luokka',
 'ajax-remove-category'         => 'Poista luokka',
+'ajax-edit-category'           => 'Muokkaa luokkaa',
 'ajax-add-category-submit'     => 'Lisää',
 'ajax-confirm-title'           => 'Vahvista toiminto',
-'ajax-confirm-prompt'          => 'Voit kirjoittaa alle muokkausyhteenvedon.
-Muokkaus tallentuu, kun napsautat »Tallenna».',
 'ajax-confirm-save'            => 'Tallenna',
 'ajax-confirm-save-all'        => 'Tallenna kaikki muutokset',
+'ajax-cancel'                  => 'Peruuta muutokset',
 'ajax-add-category-summary'    => 'Lisää luokka ”$1”',
 'ajax-remove-category-summary' => 'Luokan ”$1” poisto',
-'ajax-confirm-actionsummary'   => 'Suoritettava toiminto:',
 'ajax-error-title'             => 'Virhe',
-'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => 'Luokan poistaminen ei onnistunut.
 Yleensä näin käy, kun luokka on lisätty sivulle mallineessa.',
 

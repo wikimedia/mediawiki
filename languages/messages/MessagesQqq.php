@@ -4256,4 +4256,5 @@ Why do you want to remove Category:A and add Category:C ?',
 'ajax-category-and'             => 'Used to join multiple list items. Eg. "Edit foo, move bar and add foobar"',
 'ajax-error-title'              => '{{Identical|Error}}',
 'ajax-category-already-present' => 'Error message. $1 is the category name',
+
 );

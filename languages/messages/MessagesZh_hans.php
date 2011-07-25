@@ -3608,14 +3608,10 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'ajax-add-category'            => '加入分类',
 'ajax-add-category-submit'     => '加入',
 'ajax-confirm-title'           => '确认动作',
-'ajax-confirm-prompt'          => '您可以在下面提供一个编辑摘要。
-点击“保存”去保存您的编辑。',
 'ajax-confirm-save'            => '保存',
 'ajax-add-category-summary'    => '加入分类“$1”',
 'ajax-remove-category-summary' => '移除分类“$1”',
-'ajax-confirm-actionsummary'   => '已进行的动作：',
 'ajax-error-title'             => '错误',
-'ajax-error-dismiss'           => '确定',
 'ajax-remove-category-error'   => '不能移除这个分类。
 通常是发生在一个模板中加入该分类。',
 

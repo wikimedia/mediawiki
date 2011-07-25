@@ -1305,7 +1305,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'nolinkshere-ns'           => "No son pagjine leadis a '''[[:$1]]''' intal spazi dai nons sielt.",
 'isredirect'               => 'pagjine di reindirizament',
 'istemplate'               => 'includude',
-'isimage'                  => 'leam figure',
+'isimage'                  => 'leam a figure',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedent|precedents $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sucessîf|sucessîfs $1}}',
 'whatlinkshere-links'      => '← leams',
@@ -1718,5 +1718,14 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 # HTML forms
 'htmlform-submit'              => 'Invie',
 'htmlform-selectorother-other' => 'Altris',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Zonte categorie',
+'ajax-add-category-submit'     => 'Zonte',
+'ajax-confirm-title'           => "Conferme l'azion",
+'ajax-confirm-save'            => 'Salve',
+'ajax-add-category-summary'    => "Zonte la categorie ''$1''",
+'ajax-remove-category-summary' => "Gjave la categorie ''$1''",
+'ajax-error-title'             => 'Erôr',
 
 );

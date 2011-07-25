@@ -1702,8 +1702,6 @@ Nke ozor gí zonari na áká onwe ha.
 'ajax-confirm-save'            => 'Donyéré',
 'ajax-add-category-summary'    => "Tonyé ébéanọr ''$1''",
 'ajax-remove-category-summary' => "Wefu ébéanọr ''$1''",
-'ajax-confirm-actionsummary'   => 'Ihe I gi me:',
 'ajax-error-title'             => 'Nsogbú',
-'ajax-error-dismiss'           => 'Ngwanu',
 
 );

@@ -3738,14 +3738,10 @@ Keterangan tampilan:
 'ajax-add-category'            => 'Tambah kategori',
 'ajax-add-category-submit'     => 'Tambah',
 'ajax-confirm-title'           => 'Konfirmasi aksi',
-'ajax-confirm-prompt'          => 'Anda dapat menambahkan ringkasan suntingan di bawah.
-Tekan "Simpan" untuk menyimpan suntingan Anda.',
 'ajax-confirm-save'            => 'Simpan',
 'ajax-add-category-summary'    => 'Tambah kategori "$1"',
 'ajax-remove-category-summary' => 'Hapus kategori "$1"',
-'ajax-confirm-actionsummary'   => 'Aksi yang dilakukan:',
 'ajax-error-title'             => 'Kesalahan',
-'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => 'Tidak mungkin menghapus kategori ini.
 Biasanya karena kategori di tambahkan kehalaman melalui templat.',
 

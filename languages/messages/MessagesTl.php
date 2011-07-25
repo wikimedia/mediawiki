@@ -3605,14 +3605,10 @@ Ipasok ang pangalan ng talaksan na hindi kasama ang unlaping "{{ns:image}}:".',
 'ajax-add-category'            => 'Magdagdag ng kategorya',
 'ajax-add-category-submit'     => 'Idagdag',
 'ajax-confirm-title'           => 'Tiyakin ang galaw',
-'ajax-confirm-prompt'          => 'Maaari kang magbigay ng buod ng pagbabago sa ibaba.
-Pindutin ang "Itala"upang maitala ang iyong pagbabago.',
 'ajax-confirm-save'            => 'Sagipin',
 'ajax-add-category-summary'    => 'Idagdag ang kategoryang "$1"',
 'ajax-remove-category-summary' => 'Tanggalin ang kategoryang "$1"',
-'ajax-confirm-actionsummary'   => 'Ang gagawing galaw:',
 'ajax-error-title'             => 'Kamalian',
-'ajax-error-dismiss'           => 'Okey',
 'ajax-remove-category-error'   => 'Hindi naging maaari ang pagtanggal ng ganitong kategorya.
 Karaniwang nagaganap ito kapag nadaragdag ang kategorya sa pahinang nasa loob ng isang suleras.',
 

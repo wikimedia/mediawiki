@@ -4624,4 +4624,5 @@ This usually occurs when the category has been added to the page in a template.'
 'ajax-category-already-present' => 'This page already belongs to the category "$1"',
 'ajax-category-hook-error'      => 'A local function prevented the changes from being saved',
 'ajax-api-error'                => 'The API returned an error: $1: $2',
+
 );

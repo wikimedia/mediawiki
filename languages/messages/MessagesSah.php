@@ -1,5 +1,5 @@
 <?php
-/** Yakut (Саха тыла)
+/** Sakha (Саха тыла)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -3448,14 +3448,10 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'ajax-add-category'            => 'Категория эбии',
 'ajax-add-category-submit'     => 'Эп',
 'ajax-confirm-title'           => 'Дьайыыны бигэргэт',
-'ajax-confirm-prompt'          => 'Аллара уларытыыҥ туһунан суруйуоххун сөп.
-"Бигэргэт" диэни баттаан уларытыыгын бигэргэт.',
 'ajax-confirm-save'            => 'Бигэргэт',
 'ajax-add-category-summary'    => '«$1» категория эбилиннэ',
 'ajax-remove-category-summary' => '«$1» категория сотулунна',
-'ajax-confirm-actionsummary'   => 'Оҥоһуллар дьайыылар:',
 'ajax-error-title'             => 'Алҕас',
-'ajax-error-dismiss'           => 'Сөп',
 'ajax-remove-category-error'   => 'Бу категорияны сотор табыллыбата.
 Үксүгэр категория халыып нөҥүө эбиллибит түгэнигэр итинник буолар.',
 

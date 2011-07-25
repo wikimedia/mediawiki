@@ -3271,4 +3271,14 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'sqlite-has-fts' => '$1 mit Unterstitzig vu dr Volltextsuechi',
 'sqlite-no-fts'  => '$1 ohni Unterstitzig vu dr Volltextsuechi',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategorii zuefiege',
+'ajax-add-category-submit'     => 'Zuefiege',
+'ajax-confirm-title'           => 'Aktion bstetige',
+'ajax-confirm-save'            => 'Spychere',
+'ajax-add-category-summary'    => 'Kategorii „$1“ zuefiege',
+'ajax-remove-category-summary' => 'Kategorii „$1“ uuseneh',
+'ajax-error-title'             => 'Fähler',
+'ajax-remove-category-error'   => 'S isch nit megli gsi, die Kategorii uusezneh. Normalerwys git s des, wänn d Kategorii iber e Vorlag yybunden isch.',
+
 );

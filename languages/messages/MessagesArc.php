@@ -1515,6 +1515,5 @@ $1',
 'ajax-confirm-save'            => 'ܢܛܘܪ',
 'ajax-remove-category-summary' => 'ܠܚܝ ܣܕܪܐ "$1"',
 'ajax-error-title'             => 'ܦܘܕܐ',
-'ajax-error-dismiss'           => 'ܛܒ',
 
 );

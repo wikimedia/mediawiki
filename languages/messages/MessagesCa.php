@@ -3534,14 +3534,10 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 'ajax-add-category'            => 'Afegeix categoria',
 'ajax-add-category-submit'     => 'Afegeir',
 'ajax-confirm-title'           => "Confirma l'acció",
-'ajax-confirm-prompt'          => "Pots incloure un sumari d'edició a sota.
-Clica a ''Desa'' per desar l'edició.",
 'ajax-confirm-save'            => 'Desa',
 'ajax-add-category-summary'    => "Afageix la categoria ''$1''",
 'ajax-remove-category-summary' => "Elimina la categoria ''$1''",
-'ajax-confirm-actionsummary'   => 'Mesura a prendre:',
 'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => "No ha estat possible eliminar aquesta categoria.
 Això sol passar quan la categoria s'ha afegit a la pàgina en una plantilla.",
 

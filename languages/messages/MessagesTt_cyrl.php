@@ -2430,7 +2430,6 @@ $1',
 'ajax-add-category-submit'   => 'Өстәргә',
 'ajax-confirm-save'          => 'Саклау',
 'ajax-error-title'           => 'Хата',
-'ajax-error-dismiss'         => 'ОК',
 'ajax-remove-category-error' => 'Бу бүлекне алып ташлап булмады.
 Гадәттә шаблон аша өстәлгән бүлекләрдә шушындый хаталар чыга.',
 

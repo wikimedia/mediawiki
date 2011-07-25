@@ -685,8 +685,4 @@ Sie können auch die [[Special:EditWatchlist|Standard-Bearbeitungsseite]] benutz
 'dberr-usegoogle' => 'Sie könnten in der Zwischenzeit mit Google suchen.',
 'dberr-outofdate' => 'Beachten Sie, dass der Suchindex unserer Inhalte bei Google veraltet sein kann.',
 
-# Add categories per AJAX
-'ajax-confirm-prompt' => 'Sie können unten eine Zusammenfassung eingeben.
-Klicken Sie „Speichern“ um die Bearbeitung zu speichern.',
-
 );

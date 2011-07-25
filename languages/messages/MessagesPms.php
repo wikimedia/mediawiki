@@ -1896,8 +1896,8 @@ e avèj registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Pre
 'emailpage'            => "Mandeje un mëssagi ëd pòsta eletrònica a st'utent-sì",
 'emailpagetext'        => "A peule dovré ël formolari sì-sota për mandé un mëssagi ëd pòsta eletrònica a st'utent-sì.
 L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|Ij sò gust]] a sarà butà ant l'adrëssa «Da» ëd sò mëssagi, parèj chi ch'a l'arsèiv a podrà rësponde diretament a chiel.",
-'usermailererror'      => "L'oget che a goèrna la pòsta eletrònica a l'ha dait eror:",
-'defemailsubject'      => 'Messagi da {{SITENAME}}',
+'usermailererror'      => "L'oget che a goèrna la pòsta eletrònica a l'ha dàit eror:",
+'defemailsubject'      => 'Mëssagi da {{SITENAME}}',
 'usermaildisabled'     => "Pòsta eletrònica dl'utent disabilità",
 'usermaildisabledtext' => "A peul pa mandé ëd mësagi ëd pòsta eletrònica a d'àutri utent dzora a sta wiki-sì",
 'noemailtitle'         => 'Pa gnun-a adrëssa ëd pòsta eletrònica',
@@ -3471,14 +3471,10 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'ajax-add-category'            => 'Gionta categorìa',
 'ajax-add-category-submit'     => 'Gionta',
 'ajax-confirm-title'           => 'Conferma assion',
-'ajax-confirm-prompt'          => 'It peule dé sì sota un resumé dla modìfica.
-Sgnaca "Salva" për salvé la modìfica.',
 'ajax-confirm-save'            => 'Salva',
 'ajax-add-category-summary'    => 'Gionta la categorìa "$1"',
 'ajax-remove-category-summary' => 'Gava la categorìa "$1"',
-'ajax-confirm-actionsummary'   => 'Assion da fé:',
 'ajax-error-title'             => 'Eror',
-'ajax-error-dismiss'           => 'Va bin',
 'ajax-remove-category-error'   => "A l'era pa possìbil gavé sta categorìa-sì.
 Sòn-sì a càpita normalment quand la categorìa a l'é stàita giontà a la pàgina ant në stamp.",
 

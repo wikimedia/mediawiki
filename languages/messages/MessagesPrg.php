@@ -2762,6 +2762,5 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 'ajax-add-category-summary'    => 'Preidāis kategōrijan "$1"',
 'ajax-remove-category-summary' => 'Āupausinais kategōrijan "$1"',
 'ajax-error-title'             => 'Blānda',
-'ajax-error-dismiss'           => 'Labbai',
 
 );

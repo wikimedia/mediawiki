@@ -2697,7 +2697,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 Het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'blocklog-showsuppresslog'        => 'Deze gebruiker is voorheen geblokkeerd geweest en er zijn (delen van) bewerkingen van deze gebruiker verborgen.
 Het verbergingslogboek wordt hieronder ter referentie weergegeven:',
-'blocklogentry'                   => 'blokkeerde [[$1]] met als vervaldatum $2 $3',
+'blocklogentry'                   => 'blokkeerde [[$1]] met als vervaltijd $2 $3',
 'reblock-logentry'                => 'heeft de blokkade voor [[$1]] gewijzigd met als vervaldatum $2 $3',
 'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen.
 Automatische blokkeringen en deblokkeringen komen niet in het logboek.
@@ -3926,20 +3926,13 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'ajax-add-category-submit'      => 'Toevoegen',
 'ajax-confirm-ok'               => 'OK',
 'ajax-confirm-title'            => 'Handeling bevestigen',
-'ajax-confirm-prompt'           => 'U kunt hieronder een bewerkingssamenvatting opgeven.
-Klik "Opslaan" om uw bewerking op te slaan.',
 'ajax-confirm-save'             => 'Opslaan',
 'ajax-confirm-save-all'         => 'Alle wijzigingen opslaan',
 'ajax-cancel'                   => 'Bewerkingen annuleren',
 'ajax-add-category-summary'     => 'Categorie "$1" toevoegen',
 'ajax-edit-category-summary'    => 'Categorie "$1" naar "$2" wijzigen',
 'ajax-remove-category-summary'  => 'Categorie "$1" verwijderen',
-'ajax-add-category-question'    => 'Waarom wilt u categorie "$1" toevoegen?',
-'ajax-edit-category-question'   => 'Waarom wilt u categorie "$1" naar "$2" wijzigen?',
-'ajax-remove-category-question' => 'Waarom wilt u categorie "$1" verwijderen?',
-'ajax-confirm-actionsummary'    => 'Uit te voeren handeling:',
 'ajax-error-title'              => 'Fout',
-'ajax-error-dismiss'            => 'OK',
 'ajax-remove-category-error'    => 'Het was niet mogelijk deze categorie te verwijderen.
 Dit gebeurt meestal als de categorie via een sjabloon aan de pagina is toegevoegd.',
 'ajax-edit-category-error'      => 'Het was niet mogelijk om deze categorie te bewerken.

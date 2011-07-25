@@ -2402,8 +2402,7 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'dberr-usegoogle' => 'Þú getur notað Google til að leita á meðan.',
 
 # Add categories per AJAX
-'ajax-confirm-save'  => 'Vista',
-'ajax-error-title'   => 'Villa',
-'ajax-error-dismiss' => 'Í lagi',
+'ajax-confirm-save' => 'Vista',
+'ajax-error-title'  => 'Villa',
 
 );
