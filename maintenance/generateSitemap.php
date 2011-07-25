@@ -194,7 +194,7 @@ class GenerateSitemap extends Maintenance {
 		}
 		# Create directory if needed
 		if ( $fspath && !is_dir( $fspath ) ) {
-			wfMkdirParents( $fspath ) or die( "Can not create directory $fspath.\n" );
+			wfMkdirParents( $fspath, null, __METHOD__ ) or die( "Can not create directory $fspath.\n" );
 		}
 
 		return realpath( $fspath ) . DIRECTORY_SEPARATOR ;

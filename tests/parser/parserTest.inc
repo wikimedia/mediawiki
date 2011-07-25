@@ -901,9 +901,9 @@ class ParserTest {
 			return $dir;
 		}
 
-		wfMkdirParents( $dir . '/3/3a' );
+		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
-		wfMkdirParents( $dir . '/0/09' );
+		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
 
 		return $dir;

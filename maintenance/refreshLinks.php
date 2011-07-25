@@ -213,12 +213,13 @@ class RefreshLinks extends Maintenance {
 		if ( is_null( $title ) ) {
 			return;
 		}
-		$dbw->begin();
 
 		$revision = Revision::newFromTitle( $title );
 		if ( !$revision ) {
 			return;
 		}
+
+		$dbw->begin();
 
 		$options = new ParserOptions;
 		$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
@@ -229,7 +230,7 @@ class RefreshLinks extends Maintenance {
 
 	/**
 	 * Removes non-existing links from pages from pagelinks, imagelinks,
-	 * categorylinks, templatelinks and externallinks tables.
+	 * categorylinks, templatelinks, externallinks, interwikilinks, langlinks and redirect tables.
 	 *
 	 * @param $maxLag
 	 * @param $batchSize The size of deletion batches
@@ -271,7 +272,6 @@ class RefreshLinks extends Maintenance {
 			$counter = 0;
 			$list = array();
 			$this->output( "0.." );
-
 			foreach ( $results as $row ) {
 				$counter++;
 				$list[] = $row->$field;

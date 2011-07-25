@@ -176,7 +176,7 @@ class MessageCache {
 		global $wgCacheDirectory;
 
 		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
-		wfMkdirParents( $wgCacheDirectory ); // might fail
+		wfMkdirParents( $wgCacheDirectory, null, __METHOD__ ); // might fail
 
 		wfSuppressWarnings();
 		$file = fopen( $filename, 'w' );
@@ -199,7 +199,7 @@ class MessageCache {
 
 		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
 		$tempFilename = $filename . '.tmp';
-		wfMkdirParents( $wgCacheDirectory ); // might fail
+		wfMkdirParents( $wgCacheDirectory, null, __METHOD__ ); // might fail
 
 		wfSuppressWarnings();
 		$file = fopen( $tempFilename, 'w' );
