@@ -139,14 +139,15 @@ abstract class Maintenance {
 	 */
 	public static function shouldExecute() {
 		$bt = debug_backtrace();
-		if ( count( $bt ) < 2 ) {
+		$count = count( $bt );
+		if ( $count < 2 ) {
 			return false; // sanity
 		}
 		if ( $bt[0]['class'] !== 'Maintenance' || $bt[0]['function'] !== 'shouldExecute' ) {
 			return false; // last call should be to this function
 		}
-		$includeFuncs = array( 'require_once', 'require', 'include', 'include_once' );
-		for( $i=1; $i < count( $bt ); $i++ ) {
+		$includeFuncs = array( 'require_once', 'require', 'include' );
+		for( $i=1; $i < $count; $i++ ) {
 			if ( !in_array( $bt[$i]['function'], $includeFuncs ) ) {
 				return false; // previous calls should all be "requires"
 			}
