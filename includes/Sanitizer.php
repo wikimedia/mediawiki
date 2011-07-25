@@ -1617,6 +1617,8 @@ class Sanitizer {
 	 * to be liberal enough for wide use. Some invalid addresses will still
 	 * pass validation here.
 	 *
+	 * @since 1.18
+	 *
 	 * @param $addr String E-mail address
 	 * @return Bool
 	 */
