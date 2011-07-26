@@ -99,7 +99,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			case 'badaccess':
 				throw new PermissionsError( 'sendemail' );
 			case 'blockedemailuser':
-				throw new UserBlockedError( $this->getUser()->mBlock );
+				throw new UserBlockedError( $this->getUser()->getBlock() );
 			case 'actionthrottledtext':
 				throw new ThrottledError;
 			case 'mailnologin':

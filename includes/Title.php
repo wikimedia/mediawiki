@@ -1565,39 +1565,11 @@ class Title {
 		} elseif( ( $action == 'edit' || $action == 'create' ) && !$user->isBlockedFrom( $this ) ){
 			// Don't block the user from editing their own talk page unless they've been
 			// explicitly blocked from that too.
-		} elseif( $user->isBlocked() && $user->mBlock->prevents( $action ) !== false ) {
-			$block = $user->mBlock;
-
-			// This is from OutputPage::blockedPage
-			// Copied at r23888 by werdna
-
-			$id = $user->blockedBy();
-			$reason = $user->blockedFor();
-			if ( $reason == '' ) {
-				$reason = wfMsg( 'blockednoreason' );
-			}
-			$ip = wfGetIP();
-
-			if ( is_numeric( $id ) ) {
-				$name = User::whoIs( $id );
-			} else {
-				$name = $id;
-			}
-
-			$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
-			$blockid = $block->getId();
-			$blockExpiry = $user->mBlock->mExpiry;
-			$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $user->mBlock->mTimestamp ), true );
-			if ( $blockExpiry == 'infinity' ) {
-				$blockExpiry = wfMessage( 'infiniteblock' )->text();
-			} else {
-				$blockExpiry = $wgLang->timeanddate( wfTimestamp( TS_MW, $blockExpiry ), true );
-			}
-
-			$intended = strval( $user->mBlock->getTarget() );
-
-			$errors[] = array( ( $block->mAuto ? 'autoblockedtext' : 'blockedtext' ), $link, $reason, $ip, $name,
-				$blockid, $blockExpiry, $intended, $blockTimestamp );
+		} elseif( $user->isBlocked() && $user->getBlock()->prevents( $action ) !== false ) {
+			$e = new UserBlockedError( $user->getBlock() );
+			$params = $e->params;
+			array_unshift( $params, $e->msg );
+			$errors[] = $params;
 		}
 
 		return $errors;

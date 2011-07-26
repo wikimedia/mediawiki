@@ -746,7 +746,7 @@ class LoginForm extends SpecialPage {
 				$this->resetLoginForm( wfMsg( 'resetpass_announce' ) );
 				break;
 			case self::CREATE_BLOCKED:
-				$this->userBlockedMessage( $wgUser->mBlock );
+				$this->userBlockedMessage( $wgUser->getBlock() );
 				break;
 			case self::THROTTLED:
 				$this->mainLoginForm( wfMsg( 'login-throttled' ) );
