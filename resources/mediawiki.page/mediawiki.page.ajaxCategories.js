@@ -328,7 +328,7 @@ mw.ajaxCategories = function( options ) {
 
 		// Summary of the action to be taken
 		var summaryHolder = $( '<p/>' );
-		summaryHolder.html( mw.msg( 'ajax-category-question', actionSummary ) );
+		summaryHolder.html( '<strong>' + mw.msg( 'ajax-category-question' ) + '</strong><br>' + actionSummary );
 		dialog.append( summaryHolder );
 
 		// Reason textbox.
@@ -388,13 +388,8 @@ mw.ajaxCategories = function( options ) {
 			_saveAllButton.hide();
 			_cancelAllButton.hide();
 			return;
-		} else if ( summary.length == 1 ) {
-			summary = summary.pop();
 		} else {
-			var lastSummary = summary.pop();
-			summary = summary.join( ', ');
-			summary += mw.msg( 'ajax-category-and' ) + lastSummary;
-			summary = summary.substring( 0, summary.length - 2 );
+			summary = summary.join( '<br>' );
 		}
 		// Remove "holes" in array
 		summaryShort = $.grep( _stash.shortSum, function( n,i ) {
@@ -417,7 +412,7 @@ mw.ajaxCategories = function( options ) {
 		};
 		var doneFn = function() { that.resetAll( true ); };
 
-		that._confirmEdit( combinedFn, summary, shortSummary, doneFn, '', 'all' );
+		that._confirmEdit( combinedFn, summary, summaryShort, doneFn, '', 'all' );
 	};
 
 	/**
