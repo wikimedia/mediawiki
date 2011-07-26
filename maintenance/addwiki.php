@@ -50,7 +50,7 @@ class AddWiki extends Maintenance {
 	public function execute() {
 		global $IP, $wgDefaultExternalStore, $wgVersionNumber;
 		if ( !$wgVersionNumber ) { // set in CommonSettings.php
-			$this->error( '$wgVersionNumber is not set', true );
+			$this->error( '$wgVersionNumber is not set, please use MWScript.php wrapper.', true );
 		}
 
 		$lang = $this->getArg( 0 );
