@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @group Database
+ */
 class UploadStashTest extends MediaWikiTestCase {
 	/**
 	 * @var Array of UploadStashTestUser
