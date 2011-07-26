@@ -69,6 +69,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$search->setNamespaces( $params['namespace'] );
 		$search->showRedirects = $params['redirects'];
 
+		$query = $search->transformSearchTerm( $query );
+		$query = $search->replacePrefixes( $query );
+
 		// Perform the actual search
 		if ( $what == 'text' ) {
 			$matches = $search->searchText( $query );
