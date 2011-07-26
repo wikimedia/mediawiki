@@ -543,7 +543,7 @@ class LogEventsList {
 		}
 		$del = '';
 		// Don't show useless link to people who cannot hide revisions
-		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
+		if( $wgUser->isAllowed( 'deletedhistory' ) && !$wgUser->isBlocked() ) {
 			if( $row->log_deleted || $wgUser->isAllowed( 'deleterevision' ) ) {
 				$canHide = $wgUser->isAllowed( 'deleterevision' );
 				// If event was hidden from sysops
@@ -891,9 +891,9 @@ class LogPager extends ReverseChronologicalPager {
 			global $wgUser;
 			$this->mConds['log_user'] = $userid;
 			// Paranoia: avoid brute force searches (bug 17342)
-			if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
+			if( !$wgUser->isAllowed( 'deletedhistory' ) || $wgUser->isBlocked() ) {
 				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_USER) . ' = 0';
-			} elseif( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+			} elseif( !$wgUser->isAllowed( 'suppressrevision' ) || $wgUser->isBlocked() ) {
 				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_USER) .
 					' != ' . LogPage::SUPPRESSED_USER;
 			}
@@ -940,9 +940,9 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
 		// Paranoia: avoid brute force searches (bug 17342)
-		if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
+		if( !$wgUser->isAllowed( 'deletedhistory' ) || $wgUser->isBlocked() ) {
 			$this->mConds[] = $db->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0';
-		} elseif( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+		} elseif( !$wgUser->isAllowed( 'suppressrevision' ) || $wgUser->isBlocked() ) {
 			$this->mConds[] = $db->bitAnd('log_deleted', LogPage::SUPPRESSED_ACTION) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}

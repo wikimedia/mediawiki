@@ -924,7 +924,7 @@ class SkinTemplate extends Skin {
 				}
 			} else {
 				// article doesn't exist or is deleted
-				if ( $wgUser->isAllowed( 'deletedhistory' ) ) {
+				if ( $wgUser->isAllowed( 'deletedhistory' ) && !$wgUser->isBlocked() ) {
 					$includeSuppressed = $wgUser->isAllowed( 'suppressrevision' );
 					$n = $title->isDeleted( $includeSuppressed );
 					if( $n ) {

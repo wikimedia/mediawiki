@@ -281,6 +281,10 @@ class DeletedContributionsPage extends SpecialPage {
 			return;
 		}
 
+		if( $wgUser->isBlocked() ){
+			throw new UserBlockedError( $wgUser->getBlock() );
+		}
+
 		global $wgOut, $wgRequest;
 
 		$wgOut->setPageTitle( wfMsgExt( 'deletedcontributions-title', array( 'parsemag' ) ) );
