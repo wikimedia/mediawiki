@@ -825,6 +825,17 @@ $2
 Временный пароль: $2',
 'passwordreset-emailsent'      => 'По электронной почте было отправлено напоминание.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Изменить адрес электронной почты',
+'changeemail-header'   => 'Изменение адреса электронной почты',
+'changeemail-text'     => 'Заполните эту форму, чтобы изменить свой адрес электронной почты. Вам нужно будет ввести пароль, чтобы подтвердить изменение.',
+'changeemail-no-info'  => 'Чтобы обращаться непосредственно к этой странице, вам следует представиться системе.',
+'changeemail-oldemail' => 'Текущий адрес электронной почты:',
+'changeemail-newemail' => 'Новый адрес электронной почты:',
+'changeemail-none'     => '(нет)',
+'changeemail-submit'   => 'Измененить адрес',
+'changeemail-cancel'   => 'Отмена',
+
 # Edit page toolbar
 'bold_sample'     => 'Полужирное начертание',
 'bold_tip'        => 'Полужирное начертание',
@@ -1332,6 +1343,8 @@ $1",
 'prefs-watchlist-token'         => 'Токен списка наблюдения:',
 'prefs-misc'                    => 'Другие настройки',
 'prefs-resetpass'               => 'Изменить пароль',
+'prefs-changeemail'             => 'Изменения эл. почты',
+'prefs-setemail'                => 'Установка адреса эл. почты',
 'prefs-email'                   => 'Параметры электронной почты',
 'prefs-rendering'               => 'Внешний вид',
 'saveprefs'                     => 'Сохранить',
@@ -3804,14 +3817,18 @@ MediaWiki распространяется в надежде, что она бу
 'ajax-confirm-save'             => 'Сохранить',
 'ajax-confirm-save-all'         => 'Сохранить все изменения',
 'ajax-cancel'                   => 'Отменить изменения',
-'ajax-add-category-summary'     => 'Добавлена категория «$1»',
-'ajax-edit-category-summary'    => 'Изменить категорию «$1» на «$2»',
-'ajax-remove-category-summary'  => 'Удалена категория «$1»',
+'ajax-cancel-all'               => 'Отменить все изменения',
+'ajax-add-category-summary'     => 'добавить категорию «$1»',
+'ajax-edit-category-summary'    => 'изменить категорию «$1» на «$2»',
+'ajax-remove-category-summary'  => 'удалить категорию «$1»',
+'ajax-category-question'        => '<strong>Почему</strong> вы хотите $1?',
 'ajax-error-title'              => 'Ошибка',
-'ajax-remove-category-error'    => 'Не удалось убрать эту категорию.
+'ajax-remove-category-error'    => 'Не удалось убрать категорию «$1».
 Обычно это происходит в случае, когда категория была добавлена через шаблон.',
-'ajax-edit-category-error'      => 'Не удалось изменить эту категорию.
+'ajax-edit-category-error'      => 'Не удалось изменить категорию «$1».
 Это обычно происходит, когда категория была добавлена на страницу с помощью шаблона.',
 'ajax-category-already-present' => 'Эта страница уже относится к данной категории $1',
+'ajax-category-hook-error'      => 'Локальная функция помешала сохранению изменений',
+'ajax-api-error'                => 'API возвратил ошибку: $1: $2',
 
 );

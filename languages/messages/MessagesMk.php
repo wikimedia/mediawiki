@@ -878,6 +878,9 @@ $2
 'changeemail-no-info'  => 'Мора да бидете најавени ако сакате да имате директен пристап до оваа страница.',
 'changeemail-oldemail' => 'Тековна е-пошта:',
 'changeemail-newemail' => 'Нова е-пошта:',
+'changeemail-none'     => '(нема)',
+'changeemail-submit'   => 'Смени е-пошта',
+'changeemail-cancel'   => 'Откажи',
 
 # Edit page toolbar
 'bold_sample'     => 'Задебелен текст',
@@ -1392,6 +1395,8 @@ $1",
 'prefs-watchlist-token'         => 'Жетон на список на набљудувања:',
 'prefs-misc'                    => 'Други нагодувања',
 'prefs-resetpass'               => 'Смени лозинка',
+'prefs-changeemail'             => 'Смени е-пошта',
+'prefs-setemail'                => 'Поставање на е-пошта',
 'prefs-email'                   => 'Нагодувања за е-пошта',
 'prefs-rendering'               => 'Изглед',
 'saveprefs'                     => 'Зачувај',
@@ -4005,14 +4010,18 @@ $1',
 'ajax-confirm-save'             => 'Зачувај',
 'ajax-confirm-save-all'         => 'Зачувај ги сите промени',
 'ajax-cancel'                   => 'Откажи уредувања',
+'ajax-cancel-all'               => 'Откажи ги сите промени',
 'ajax-add-category-summary'     => 'Додај категорија "$1"',
 'ajax-edit-category-summary'    => 'Замена на категоријата „$1“ со „$2“',
 'ajax-remove-category-summary'  => 'Избриши категорија "$1"',
+'ajax-category-question'        => '<strong>Зошто</strong> сакате да $1?',
 'ajax-error-title'              => 'Грешка',
-'ajax-remove-category-error'    => 'Не беше можно да се избрише оваа категорија.
-Ова вообичаено се случува кога категоријата е додадена на страница преку некој шаблон.',
-'ajax-edit-category-error'      => 'Категоријава не можеше да се уреди.
-Ова претежно се случува кога на страницата ѝ е додадена категорија во шаблон.',
+'ajax-remove-category-error'    => 'Не можев да ја отстранам категоријата „$1“.
+Ова обично се случува кога категоријата е додадена на страница преку некој шаблон.',
+'ajax-edit-category-error'      => 'Категоријата „$1“ не можеше да се уреди.
+Ова обично се случува кога категоријата е додадена на страница преку некој шаблон.',
 'ajax-category-already-present' => 'Страницава веќе ѝ припаѓа на категоријата $1',
+'ajax-category-hook-error'      => 'Локална функција го спречи зачувувањето на измените',
+'ajax-api-error'                => 'API врати грешка: $1: $2',
 
 );

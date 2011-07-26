@@ -832,6 +832,17 @@ $2
 Palavra-chave temporária: $2',
 'passwordreset-emailsent'      => 'Foi enviado um correio electrónico de recuperação dos dados da conta.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Alterar o endereço de correio electrónico',
+'changeemail-header'   => 'Alterar o endereço de correio electrónico da conta',
+'changeemail-text'     => 'Preencha este formulário para alterar o endereço de correio electrónico. Para confirmar esta alteração terá de introduzir a sua palavra-chave.',
+'changeemail-no-info'  => 'Para aceder directamente a esta página tem de estar autenticado.',
+'changeemail-oldemail' => 'Correio electrónico actual:',
+'changeemail-newemail' => 'Correio electrónico novo:',
+'changeemail-none'     => '(nenhum)',
+'changeemail-submit'   => 'Alterar correio electrónico',
+'changeemail-cancel'   => 'Cancelar',
+
 # Edit page toolbar
 'bold_sample'     => 'Texto a negrito',
 'bold_tip'        => 'Texto a negrito',
@@ -1358,6 +1369,8 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-watchlist-token'         => 'Senha secreta da lista de {{lc:{{int:watchlist}}}}:',
 'prefs-misc'                    => 'Diversos',
 'prefs-resetpass'               => 'Alterar palavra-chave',
+'prefs-changeemail'             => 'Alterar correio electrónico',
+'prefs-setemail'                => 'Definir um endereço de correio electrónico',
 'prefs-email'                   => 'Opções do correio electrónico',
 'prefs-rendering'               => 'Aparência',
 'saveprefs'                     => 'Gravar',
@@ -3806,14 +3819,18 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 'ajax-confirm-save'             => 'Gravar',
 'ajax-confirm-save-all'         => 'Gravar todas as alterações',
 'ajax-cancel'                   => 'Cancelar as edições',
-'ajax-add-category-summary'     => 'Adicionar categoria "$1"',
-'ajax-edit-category-summary'    => 'Alterar a categoria "$1" para "$2"',
-'ajax-remove-category-summary'  => 'Remover categoria "$1"',
+'ajax-cancel-all'               => 'Cancelar todas as alterações',
+'ajax-add-category-summary'     => 'adicionar a categoria "$1"',
+'ajax-edit-category-summary'    => 'alterar a categoria "$1" para "$2"',
+'ajax-remove-category-summary'  => 'remover a categoria "$1"',
+'ajax-category-question'        => '<strong>Porque</strong> é que pretende $1?',
 'ajax-error-title'              => 'Erro',
-'ajax-remove-category-error'    => 'Não foi possível remover esta categoria.
+'ajax-remove-category-error'    => 'Não foi possível remover a categoria "$1".
 Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
-'ajax-edit-category-error'      => 'Não foi possível editar esta categoria.
+'ajax-edit-category-error'      => 'Não foi possível editar a categoria "$1".
 Isso normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
 'ajax-category-already-present' => 'Esta página já está na categoria $1',
+'ajax-category-hook-error'      => 'Uma função local impediu que as alterações fossem gravadas',
+'ajax-api-error'                => 'A API retornou um erro: $1: $2',
 
 );

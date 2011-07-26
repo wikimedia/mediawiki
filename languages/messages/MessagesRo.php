@@ -3732,7 +3732,7 @@ Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 'ajax-edit-category-summary'    => 'Modificare categoria „$1” în „$2”',
 'ajax-remove-category-summary'  => 'Elimină categoria "$1"',
 'ajax-error-title'              => 'Eroare',
-'ajax-remove-category-error'    => 'Eliminarea categoriei nu a fost posibilă.
+'ajax-remove-category-error'    => 'Eliminarea categoriei „$1” nu a fost posibilă.
 Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagină printr-un format.',
 'ajax-category-already-present' => 'Această pagină aparține deja categoriei $1',
 

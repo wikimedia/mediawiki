@@ -656,6 +656,10 @@ Tafadhali ingia sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hi
 Neno la siri la muda: $2',
 'passwordreset-emailsent'      => 'Barua pepe ya ukumbusho imetumwa.',
 
+# Special:ChangeEmail
+'changeemail-none'   => '(hakuna)',
+'changeemail-cancel' => 'Batilisha',
+
 # Edit page toolbar
 'bold_sample'     => 'Maandishi ya kooze',
 'bold_tip'        => 'Kukoozesha maandishi',

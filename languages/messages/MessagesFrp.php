@@ -851,6 +851,7 @@ Mot de pâssa temporèro : $2',
 # Special:ChangeEmail
 'changeemail'          => 'Changiér l’adrèce èlèctronica',
 'changeemail-header'   => 'Changiér l’adrèce èlèctronica',
+'changeemail-text'     => 'Rempléd ceti formulèro por changiér voutra adrèce èlèctronica. Vos devréd buchiér voutron mot de pâssa por confirmar cél changement.',
 'changeemail-no-info'  => 'Vos dête étre branchiê por avêr accès a cela pâge.',
 'changeemail-oldemail' => 'Adrèce èlèctronica d’ora :',
 'changeemail-newemail' => 'Novèla adrèce èlèctronica :',
@@ -3937,13 +3938,14 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'ajax-confirm-save'             => 'Sôvar',
 'ajax-confirm-save-all'         => 'Encartar tôs los changements',
 'ajax-cancel'                   => 'Anular des changements',
+'ajax-cancel-all'               => 'Anular tôs los changements',
 'ajax-add-category-summary'     => 'Apondre la catègorie « $1 »',
 'ajax-edit-category-summary'    => 'Changiér la catègorie « $1 » a « $2 »',
 'ajax-remove-category-summary'  => 'Enlevar la catègorie « $1 »',
 'ajax-error-title'              => 'Èrror',
-'ajax-remove-category-error'    => 'O at pas étâ possiblo d’enlevar ceta catègorie.
+'ajax-remove-category-error'    => 'O at pas étâ possiblo d’enlevar la catègorie « $1 ».
 En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge avouéc un modèlo.',
-'ajax-edit-category-error'      => 'O ére pas possiblo de changiér cela catègorie.
+'ajax-edit-category-error'      => 'O at pas étâ possiblo de changiér la catègorie « $1 ».
 En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge dens un modèlo.',
 'ajax-category-already-present' => 'Ceta pâge est ja a la catègorie $1',
 

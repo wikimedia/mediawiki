@@ -10803,13 +10803,13 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
  * @author Servien
  */
 $messages['nds-nl'] = array(
-	'mainpagetext' => "'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''",
-	'mainpagedocfooter' => "Bekiek de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
+	'mainpagetext' => "'''’t Installeren van de MediaWiki programmatuur is succesvol.'''",
+	'mainpagedocfooter' => 'Bekiek de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur informasie over t gebruuk van de wikiprogrammatuur.
 
 == Meer hulpe ==
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Lieste mit instellingen]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki-vragen dee vake esteld wönnen]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-poslieste veur nieje versies]",
+* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki-vragen die vake esteld wörden]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-postlieste veur nieje versies]',
 );
 
 /** Nepali (नेपाली)
