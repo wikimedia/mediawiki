@@ -109,7 +109,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			}
 			$entry = array( 'prefix' => $row->iwl_prefix );
 
-			if ( !is_null( $params['url'] ) ) {
+			if ( $params['url'] ) {
 				$title = Title::newFromText( "{$row->iwl_prefix}:{$row->iwl_title}" );
 				if ( $title ) {
 					$entry['url'] = wfExpandUrl( $title->getFullURL() );
@@ -131,7 +131,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
-			'url' => null,
+			'url' => false,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
