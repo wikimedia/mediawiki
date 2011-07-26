@@ -638,6 +638,10 @@ Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd 
 Y cyfrinair dros dro: $2",
 'passwordreset-emailsent'      => 'Anfonwyd nodyn atgoffa drwy e-bost.',
 
+# Special:ChangeEmail
+'changeemail-none'   => '(dim)',
+'changeemail-cancel' => 'Dilëer',
+
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
 'bold_tip'        => 'Testun cryf',

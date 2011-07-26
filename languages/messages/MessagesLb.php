@@ -683,6 +683,15 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 Temporärt Passwuert: $2',
 'passwordreset-emailsent'    => 'Eng Erënnerungs-Mail gouf geschéckt.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Mailadress änneren',
+'changeemail-no-info'  => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
+'changeemail-oldemail' => 'Aktuell Mailadress:',
+'changeemail-newemail' => 'Nei Mailadress:',
+'changeemail-none'     => '(keng)',
+'changeemail-submit'   => 'Mailadress änneren',
+'changeemail-cancel'   => 'Ofbriechen',
+
 # Edit page toolbar
 'bold_sample'     => 'Fettgedréckten Text',
 'bold_tip'        => 'Fettgedréckten Text',
@@ -1183,6 +1192,8 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'prefs-watchlist-token'         => 'Iwwerwaachungslëscht-Token:',
 'prefs-misc'                    => 'Verschiddenes',
 'prefs-resetpass'               => 'Passwuert änneren',
+'prefs-changeemail'             => 'Mailadress änneren',
+'prefs-setemail'                => 'Eng Mailadress festleeën',
 'prefs-email'                   => 'E-Mail-Optiounen',
 'prefs-rendering'               => 'Ausgesinn',
 'saveprefs'                     => 'Späicheren',
@@ -3541,14 +3552,18 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 'ajax-confirm-save'             => 'Späicheren',
 'ajax-confirm-save-all'         => 'All Ännerunge späicheren',
 'ajax-cancel'                   => 'Ännerungen annuléieren',
+'ajax-cancel-all'               => 'All Ännerungen annulléieren',
 'ajax-add-category-summary'     => 'Kategorie "$1" derbäisetzen',
 'ajax-edit-category-summary'    => 'Kategorie "$1" op "$2" änneren',
 'ajax-remove-category-summary'  => 'Kategorie "$1" ewechhuelen',
+'ajax-category-question'        => "<strong>Firwat</strong> wëllt Dir d'$1?",
 'ajax-error-title'              => 'Feeler',
-'ajax-remove-category-error'    => "Et war net méiglech dës Kategorie ewechzehuelen.
+'ajax-remove-category-error'    => "Et war net méiglech d'Kategorie $1 ewechzehuelen.
 Dëst geschitt gewéinlech da wann eng Kategorie duerch eng Schabloun op d'Säit derbäi gesat gouf.",
-'ajax-edit-category-error'      => "Et war net méiglech dës Kategorie z'änneren.
+'ajax-edit-category-error'      => "Et war net méiglech d'Kategorie $1 z'änneren.
 Dat geschitt gewéinlech wann d'Kategorie duerch eng Schabloun op d'Säit derbäigesat gouf.",
 'ajax-category-already-present' => 'Dës Säit ass schonn an der Kategorie $1',
+'ajax-category-hook-error'      => "Eng lokal Fonctioun huet verhënnert datt d'Ännerunge gespäichert goufen",
+'ajax-api-error'                => 'Den API huet e Feeler signaliséiert: $1: $2',
 
 );

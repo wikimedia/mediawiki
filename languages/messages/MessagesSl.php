@@ -3681,14 +3681,18 @@ Ta stran se sooča s tehničnimi težavami.',
 'ajax-confirm-save'             => 'Shrani',
 'ajax-confirm-save-all'         => 'Shrani vse spremembe',
 'ajax-cancel'                   => 'Prekliči urejanja',
-'ajax-add-category-summary'     => 'Dodaj kategorijo »$1«',
-'ajax-edit-category-summary'    => 'Spremeni kategorijo »$1« v »$2«',
-'ajax-remove-category-summary'  => 'Odstrani kategorijo »$1«',
+'ajax-cancel-all'               => 'Prekliči vse spremembe',
+'ajax-add-category-summary'     => 'dodati kategorijo »$1«',
+'ajax-edit-category-summary'    => 'spremeniti kategorijo »$1« v »$2«',
+'ajax-remove-category-summary'  => 'odstraniti kategorijo »$1«',
+'ajax-category-question'        => '<strong>Zakaj</strong> želite $1?',
 'ajax-error-title'              => 'Napaka',
-'ajax-remove-category-error'    => 'Kategorije ni bilo mogoče odstraniti.
+'ajax-remove-category-error'    => 'Kategorije »$1« ni bilo mogoče odstraniti.
 To se po navadi zgodi, ko je kategorija dodana strani v predlogi.',
-'ajax-edit-category-error'      => 'Kategorije ni bilo mogoče urediti.
+'ajax-edit-category-error'      => 'Kategorije »$1« ni bilo mogoče urediti.
 To se po navadi zgodi, ko je kategorija dodana strani preko predloge.',
 'ajax-category-already-present' => 'Stran že pripada kategoriji $1',
+'ajax-category-hook-error'      => 'Lokalna funkcija je preprečila shranitev sprememb',
+'ajax-api-error'                => 'API je vrnil napako: $1: $2',
 
 );

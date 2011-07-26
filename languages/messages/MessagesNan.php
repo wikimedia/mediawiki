@@ -221,6 +221,7 @@ $messages = array(
 'hidetoc'                 => 'siu',
 'thisisdeleted'           => 'Khoàⁿ a̍h-sī kiù $1?',
 'feedlinks'               => 'Chhī-liāu:',
+'red-link-title'          => '$1 (bô hit ia̍h)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bûn-chiuⁿ',
@@ -435,6 +436,8 @@ Kā só tiâu ê koán-lí-goân ū lâu oē: $1",
 'nextn'              => 'āu {{PLURAL:$1|$1}} hāng',
 'viewprevnext'       => 'Khoàⁿ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'     => 'Help:Bo̍k-lio̍k',
+'search-result-size' => '$1 ({{PLURAL:$2|1 jī-goân|$2 jī-goân}})',
+'searchall'          => 'choân-pō·',
 'showingresults'     => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
 'showingresultsnum'  => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
 'powersearch'        => 'Kiám-sek',
@@ -547,6 +550,7 @@ Kā só tiâu ê koán-lí-goân ū lâu oē: $1",
 
 # File description page
 'file-anchor-link' => 'Tóng-àn',
+'filehist-user'    => 'Iōng-chiá',
 'imagelinks'       => 'Tóng-àn liân-kiat',
 'linkstoimage'     => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
 'nolinkstoimage'   => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
@@ -832,7 +836,16 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'import' => 'Su-ji̍p ia̍h',
 
 # Tooltip help for the actions
-'tooltip-ca-delete' => 'Thâi chit ia̍h',
+'tooltip-pt-logout'         => 'Teng-chhut',
+'tooltip-ca-delete'         => 'Thâi chit ia̍h',
+'tooltip-search'            => 'Chhoé {{SITENAME}}',
+'tooltip-search-fulltext'   => 'Chhoé ū chia-ê jī ê ia̍h',
+'tooltip-p-logo'            => 'Khì thâu-ia̍h',
+'tooltip-n-mainpage'        => 'Khì thâu-ia̍h',
+'tooltip-n-recentchanges'   => 'Choè-kīn tī wiki ū kái--koè ê lia̍t-toaⁿ',
+'tooltip-n-help'            => 'Beh chhoé ê só͘-chāi',
+'tooltip-t-specialpages'    => 'Só͘-ū te̍k-sû-ia̍h ê lia̍t-toaⁿ',
+'tooltip-ca-nstab-category' => 'Khoàⁿ lūi-pia̍t ia̍h',
 
 # Attribution
 'anonymous'     => '{{SITENAME}} bô kì-miâ ê iōng-chiá',

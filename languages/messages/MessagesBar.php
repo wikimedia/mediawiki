@@ -104,8 +104,8 @@ $messages = array(
 'july'          => 'Juli',
 'august'        => 'August',
 'september'     => 'September',
-'october'       => 'Oktower',
-'november'      => 'November',
+'october'       => 'Óktówer',
+'november'      => 'Nóvember',
 'december'      => 'Dezember',
 'january-gen'   => 'Jänner',
 'february-gen'  => 'Feewer',
@@ -280,12 +280,12 @@ $messages = array(
 'editsectionhint'         => 'Obschnit beorweiten: $1',
 'toc'                     => 'Inhoidsvazeichnis',
 'showtoc'                 => 'Åzoang',
-'hidetoc'                 => 'vastecka',
-'thisisdeleted'           => '$1 åschaun oder wiiderherstöin?',
+'hidetoc'                 => 'vastecken',
+'thisisdeleted'           => '$1 åschauh óder wiederherstön?',
 'viewdeleted'             => '$1 åzoang?',
-'restorelink'             => '$1 gleschte {{PLURAL:$1|Version|Versionen}}',
+'restorelink'             => '$1 gléschde {{PLURAL:$1|Versión|Versiónen}}',
 'feedlinks'               => 'Feed:',
-'feed-invalid'            => 'Ungüitiger Feed-Abonnement-Typ.',
+'feed-invalid'            => 'Néd gütiger Feed-Abonnement-Typ.',
 'site-rss-feed'           => 'RSS-Feed fyr $1',
 'site-atom-feed'          => 'Atom-Feed fyr $1',
 'page-rss-feed'           => 'RSS-Feed fyr „$1“',
@@ -314,17 +314,17 @@ $messages = array(
 'dberrortextcl'        => "Tschuidigung! Es hod an Syntaxfeeler in da Daatenbånkobfrog geem.
 D' letzte Daatenbånkobfrog hod  „$1“ aus da Funkzion „<tt>$2</tt>“ glautt.
 De Daatenbånk möidt 'n Feeler: „<tt>$3: $4</tt>“.",
-'laggedslavemode'      => "'''Ochtung:''' De åzoagte Saiten kunntad unter Umständ ned d' letzten Beorwaitungen enthoiden.",
-'readonly'             => 'Daatenbånk gsperd',
-'enterlockreason'      => 'Bittschee gib an Grund å, warum de Daatenbånk gsperrd wern soi und a Obschätzung ywer de Dauer vo da Sperrung',
-'readonlytext'         => 'De Daatenbånk is vorywergeehend fyr Neieihtreeg und Änderrungen gsperrd. Bittschee vasuchs spaader nuamoi.
+'laggedslavemode'      => "'''Ochtung:''' De åzoagte Seiten kunnterd unter Umständ ned d' letzden Beorweitungen enthoiden.",
+'readonly'             => 'Daatenbånk gsperrd',
+'enterlockreason'      => 'Bittscheh gib an Grund å, warum de Daatenbånk gsperrd wern soi und a Obschätzung ywer de Dauer voh da Sperrung',
+'readonlytext'         => 'De Daatenbånk is vurywergeehend fyr Neieihtreeg und Änderrungen gsperrd. Bittschee vasuchs spaader nuamoi.
 
 Grund voh da Sperrung: $1',
-'missing-article'      => 'Der Text vo „$1“ $2 is ned in da Daatenbank gfunden worn.
+'missing-article'      => 'Der Text voh „$1“ $2 is ned in da Daatenbank gfunden worn.
 
-De Saiten is meglicherwais glescht oder vaschoom worn.
+De Seiten is meglicherweis gleschd oder vaschom worn.
 
-Fois des ned zuatrifft, host eventuöi an Feeler in da Software gfunden. Bittschee möid des am [[Special:ListUsers/sysop|Åmtmåå (Administrator)]] unter da Nennung vo da URL.',
+Fois des ned zuatriffd, host eventuö an Feeler in da Software gfunden. Bittschee möd des am [[Special:ListUsers/sysop|Administraator]] unter da Nennung voh da URL.',
 'missingarticle-rev'   => '(Versionsnummer: $1)',
 'missingarticle-diff'  => '(Unterschiad zwischen Versionen: $1, $2)',
 'readonly_lag'         => "De Daatenbånk is automaatisch fyr Schraibzuagriff gsperrt, damid se d' vatailten Daatenbånkserver (slaves) mim Hauptdaatenbånkserver (master) obglaichen kennan.",
@@ -876,20 +876,43 @@ Wennst de Seitn wieder vo deina Beobachtungslistn wegdoa mechtn, klickst auf da 
 'watching'   => 'Beowochten ...',
 'unwatching' => 'Net beobachtn …',
 
-'enotif_reset'       => 'Alle Seiten als besuacht markiern',
-'enotif_newpagetext' => 'Des is a neie Seitn.',
-'changed'            => 'gändert',
-'enotif_lastvisited' => 'Alle Änderungen auf oan Blick: $1',
-'enotif_body'        => 'Liaba/e $WATCHINGUSERNAME,
-de {{SITENAME}} Seitn "$PAGETITLE" is vo $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED worn.
-Zusammenfassung vom Bearbeiter: $PAGESUMMARY $PAGEMINOREDIT
-Es wern solang koae weitern Benachrichtigungsmails gsendt, bis Sie de Seitn wieder besuacht ham. Auf Eanana Beobachtungsseitn kinnans S\' alle Benachrichtigungsmarker zsamm zrucksetzen.
-             Eana {{SITENAME}} Benachrichtigungssystem
+'enotif_reset'                 => 'Olle Seiten ois bsuacht markirn',
+'enotif_newpagetext'           => 'Dés is a neiche Seiten.',
+'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
+'changed'                      => 'gänderd',
+'created'                      => 'erstöd',
+'enotif_lastvisited'           => 'Olle Änderrungen auf oahn Blick: $1',
+'enotif_lastdiff'              => 'Schaug auf $1 noch derer Änderrung.',
+'enotif_anon_editor'           => 'Anonymer Benutzer $1',
+'enotif_body'                  => 'Servas $WATCHINGUSERNAME,
+
+dé {{SITENAME}}-Seiten „$PAGETITLE“ is voh $PAGEEDITOR am $PAGEEDITDATE um $PAGEEDITTIME Uar $CHANGEDORCREATED.
+
+Aktuöe Versión: $PAGETITLE_URL
+
+$NEWPAGE
+
+Zåmmfossung vom Beorweiter: $PAGESUMMARY $PAGEMINOREDIT
+
+Kontakt zum Beorweiter:
+E-Mail: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Es wern da sólång koane weidern Benoochrichtigungsmails gsendt, bis du dé Seiten wieder bsuachst. Auf deiner Beówochtungslisten kåst olle Benoochrichtigunsmarkiarungen zåmm zrucksétzen.
+             Deih freindlichs {{SITENAME}}-Benoochrichtigungssystém
+
 --
-Um die Einstellungen Ihrer Beobachtungslistn anzupassen bsuachans bitte: {{fullurl:Special:Watchlist/edit}}',
+Um d\' Eihstöungen voh da E-Mail-Benoochrichtigung åzpassen, bsuachst {{fullurl:{{#special:Preferences}}}}
+
+Um d\' Eihstöungen voh deine Beówochtungslisten åzpassen, bsuachst {{fullurl:{{#special:EditWatchlist}}}}
+
+Um d\' Seiten voh deiner Beówochtungslisten ower z\' doah, bsuachst $UNWATCHURL
+
+Ryckmödungen und a weidre Hüf: {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Seiten leschen',
+'confirm'               => 'Bstäting',
 'excontent'             => "Oider Inhoid: '$1'",
 'exblank'               => "D' Seiten is laar gween",
 'historywarning'        => "'''Ochtung:''' De Saiten, de du leschen mechst, hod a Versionsgschicht mid epper $1 {{PLURAL:$1|Version|Versionen}}:",
@@ -911,41 +934,44 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 
 # Protect
 'protectlogpage'              => 'Seitenschutz-Logbuach',
-'protectedarticle'            => 'håd „[[$1]]“ gschützt',
-'modifiedarticleprotection'   => 'håd in Schutz vu „[[$1]]“ gändat',
-'prot_1movedto2'              => 'håt [[$1]] nåch [[$2]] verschom',
+'protectedarticle'            => 'hod „[[$1]]“ gschytzd',
+'modifiedarticleprotection'   => 'hod an Schutz voh „[[$1]]“ gänderd',
+'unprotectedarticle'          => 'Schutz voh „[[$1]]“ aufghóm',
+'prot_1movedto2'              => 'hod [[$1]] noch [[$2]] vaschóm',
+'protect-legend'              => 'Seitenschutzstaatus ändern',
 'protectcomment'              => 'Grund:',
-'protectexpiry'               => 'Sperrdaua:',
-'protect_expiry_invalid'      => "D'eigemne Daua is ungüitig.",
-'protect_expiry_old'          => "D'Sperrzeid liegt in da Vagãngnheid",
+'protectexpiry'               => 'Sperrdauer:',
+'protect_expiry_invalid'      => "D' eihgéwerne Dauer is ungütig",
+'protect_expiry_old'          => "D' Sperrzeid liegt in da Vagångenheit.",
 'protect-text'                => "Då kãnnst nåchschau und ändan, wia d'Seitn „$1“ gschützt is.",
 'protect-locked-access'       => "Dai Benytzerkonto vafiagt ned ywer de notwending Rechtt zur Endarung vom Saitenschutz. Do san de aktuöin Saitenschutzaistöiungen vo da Saiten '''„$1“:'''",
 'protect-cascadeon'           => 'De Saiten is geengwärtig a Tail vo ner Kaskadenperrn. Sii is in de {{PLURAL:$1|folgende Seite|foiganden Saiten}} aibunden, de durch de Kaskadensperropzion geschytzt {{PLURAL:$1|ist|san}}. Der Saitenschutzstaatus vo derer Saiten kå gändert wern, des hod ower koan Aifluss auf de Kaskadensperrn:',
 'protect-default'             => 'Ålle Benutza',
 'protect-fallback'            => "D'„$1“-Berechtigung is notwendig.",
 'protect-level-autoconfirmed' => 'Sperrung fia net registrierte Benutzer',
-'protect-level-sysop'         => 'Netta Administratoan',
+'protect-level-sysop'         => 'Netter Administraatorn',
 'protect-summary-cascade'     => 'kaskadiarnd',
 'protect-expiring'            => 'bis zum $2 um $3 Uhr (UTC)',
 'protect-cascade'             => 'Kaskadiarade Sperr – ålle Voalång, de in dea Seitn eibundn han, wean emfåis gspead.',
 'protect-cantedit'            => "Du kãnnst de Spea vu dea Seitn ned ändan, weu'st dafia ned de passnde Berechtigung håst.",
 'restriction-type'            => 'Schutzstaatus:',
-'restriction-level'           => 'Schutzhechn:',
+'restriction-level'           => 'Schutzheechen:',
+'minimum-size'                => 'Mindestgress',
 
 # Restrictions (nouns)
 'restriction-move' => 'vaschiam',
 
 # Undelete
-'undelete'               => 'Gleschte Saiten wiiderherstöin',
+'undelete'               => 'Gléschde Seiten weiderherstön',
 'undeletehistorynoadmin' => 'De Seitn is glöscht worn. Da Grund fia de Löschung is in da Zsammafassung oogem,
 genau wia Details zum letztn Benutza der de Seitn vor da Löschung bearbat håt.
 Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
-'undeletebtn'            => 'Wiiderherstöin',
-'undeletelink'           => 'åschaun/wiiderherstöin',
-'undeletereset'          => 'Abbrecha',
-'undeletedarticle'       => 'håt „[[$1]]“ wieda hergstellt',
+'undeletebtn'            => 'Wiederherstön',
+'undeletelink'           => 'åschauh/wiederherstön',
+'undeletereset'          => 'Zrucksétzen',
+'undeletedarticle'       => 'hod „[[$1]]“ wiederhergstöd',
 'undeletedfiles'         => '$1 {{plural:$1|Datei|Dateien}} san wieda hergstellt worn',
-'undelete-search-box'    => 'Suach nach glöschte Seitn',
+'undelete-search-box'    => 'Suach noch gléschde Seiten',
 'undelete-search-submit' => 'Suach',
 
 # Namespace form on various pages
@@ -958,25 +984,25 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'contributions-title' => 'Benutzabeiträg vu „$1“',
 'mycontris'           => 'Eigerne Beitreeg',
 'contribsub2'         => 'Fia $1 ($2)',
-'uctop'               => '(aktuöi)',
-'month'               => 'und Monat',
-'year'                => 'bis zum Joa:',
+'uctop'               => '(aktuö)',
+'month'               => 'und Monad',
+'year'                => 'bis zum Jor:',
 
-'sp-contributions-newbies'     => 'Netta de Beiträg vu de neichn Benutza ãnzoang',
-'sp-contributions-newbies-sub' => 'Fia Neiling',
+'sp-contributions-newbies'     => "Netter dé Beitrég voh d' neichen Benutzer åzoang",
+'sp-contributions-newbies-sub' => 'Fyr Neiling',
 'sp-contributions-blocklog'    => 'Sperrlogbiache',
 'sp-contributions-talk'        => 'Diskussion',
 'sp-contributions-search'      => 'Suach nach Benutzerbeiträge',
-'sp-contributions-username'    => 'IP-Adress oda Benutzanãm:',
-'sp-contributions-submit'      => 'Suacha',
+'sp-contributions-username'    => 'IP-Adress óder Benutzernåm:',
+'sp-contributions-submit'      => 'Suachen',
 
 # What links here
 'whatlinkshere'            => 'Links auf de Seiten',
-'whatlinkshere-title'      => 'Seitn, de nåch „$1“ valinkn',
-'whatlinkshere-page'       => 'Seitn:',
-'linkshere'                => "Dé foiganden Saiten valinken auf '''„[[:$1]]“''':",
-'isredirect'               => 'Weiterleitungsseitn',
-'istemplate'               => 'Voalãngeibindung',
+'whatlinkshere-title'      => 'Seiten, dé noch „$1“ valinken',
+'whatlinkshere-page'       => 'Seiten:',
+'linkshere'                => "D' vóigernden Seiten valinken noch '''„[[:$1]]“''':",
+'isredirect'               => 'Weiderloatungsseiten',
+'istemplate'               => 'Vurlongeihbindung',
 'isimage'                  => 'Dateilink',
 'whatlinkshere-prev'       => "{{PLURAL:$1|vorige|d'voring $1}}",
 'whatlinkshere-next'       => "{{PLURAL:$1|nexde|d'nexdn $1}}",
@@ -998,14 +1024,14 @@ Gib bittschee an Grund fyr d' Sperrn å.",
 'ipbexpiry'                => 'Sperrdauer:',
 'ipbreason'                => 'Grund:',
 'ipbreasonotherlist'       => 'Åndarer Grund:',
-'ipbreason-dropdown'       => "*Oigmoane Sperrgrynd:
-**Aifyng vo foische Informazionen
-**'s Laarn vo Saiten
-**a mossenwaiss Aifyng vo externe Links
-**Aistöin vo unsinnige Inhoite in Saiten
-**Ned åbrochts Vahoiten
-**Missbrauch mid mererne Benytzerkontos
-**Ned åbrochter Benyternåm",
+'ipbreason-dropdown'       => '* Oigmoahne Sperrgrynd
+** Eihfyng voh voische Informaziónen
+** Laarn voh Seiten
+** Massenweiss Eihfyng voh externe Links
+** Eihstön voh unsinnige Inhoite auf Seiten
+** néd åbrochts Vahoiden
+** Missbrauch mid mererne Benutzerkontós
+** néd geigneter Benutzernåm',
 'ipbcreateaccount'         => "D' Erstöiung vo Benytzerkontos vahindern",
 'ipbemailban'              => 'E-Mäil-Vasånd sperrn',
 'ipbenableautoblock'       => "Sperr de aktuöi vo dem Benytzer gnytzte IP-Adress sowia automaatisch olle foiganden, vo denen aus er Beorwaitungen oder 's Åleeng vo naiche Benytzerkontos vasuacht",
@@ -1102,17 +1128,17 @@ Bitte nehmans an andern Nam.',
 'selfmove'               => 'Ursprungs- und Zielname sand gleich; a Seitn kann net auf sich selber verschom wern.',
 
 # Export
-'export' => 'Seitn expoatian',
+'export' => 'Seiten exportirn',
 
 # Namespace 8 related
-'allmessagesname'           => 'Nam',
+'allmessagesname'           => 'Nåm:',
 'allmessagescurrent'        => 'Aktuella Text',
 'allmessagestext'           => 'Des is a Listen vo de MediaWiki-Systemtextt.
 Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisiarung] und [http://translatewiki.net translatewiki.net], wånn du de ån da Lokalisiarung vo MediaWiki betailing mechadst.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' is im Moment net möglich, wei de Datenbank offline is.",
 
 # Thumbnails
-'thumbnail-more' => 'vagreßan',
+'thumbnail-more' => 'vagressern',
 
 # Special:Import
 'importnotext' => 'Laar oder koa Text',
@@ -1161,6 +1187,7 @@ Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki
 'tooltip-t-permalink'             => 'Dauerhofter Link zua derer Seitenversion',
 'tooltip-ca-nstab-main'           => 'Seiteninhoid åzoang',
 'tooltip-ca-nstab-user'           => 'Benutzerseiten åzoang',
+'tooltip-ca-nstab-media'          => 'Meediendaateiseiten åzoang',
 'tooltip-ca-nstab-special'        => 'Des is a Speziaalsaiten, dest ned beorwaiten kååst.',
 'tooltip-ca-nstab-project'        => 'Portoiseiten åzoang',
 'tooltip-ca-nstab-image'          => "D'Dateiseitn ãnzoang",
@@ -1182,7 +1209,7 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 # Attribution
 'lastmodifiedatby' => 'De Seitn is zletzt am $1 um $2 vo $3 gändert worn.',
 'othercontribs'    => 'Basiert auf da Arbat vo $1',
-'creditspage'      => 'Seitninformationa',
+'creditspage'      => 'Seiteninformaziónen',
 
 # Patrolling
 'markedaspatrollederrortext' => 'Sie miaßn a Seitnänderung auswähln.',
@@ -1218,7 +1245,8 @@ Dodrauf foigende Links auf Seiten in da söwen Zeun definirn Ausnåmen, in denen
 'metadata-help'     => 'Dé Datai enthoit waiderne Informaziónen, dé in da Reegl vo da Digitoikamera óder am vawendaten Scanner ståmman. Durch a nochträgliche Beorwaitung vo da Originoidatai kennan oanige Details vaéndert worn sai.',
 'metadata-expand'   => 'Erweitate Deteus eiblendn',
 'metadata-collapse' => "D'eaweidatn Deteus ausblendn",
-'metadata-fields'   => 'Dé foiganden Föider vo de ESIF-Metadaaten in dém MediaWiki-Systémtext wern auf de Büidlbeschraiwungssaiten åzoagt; waiderne standardmässég "aikloppte" Details kennan åzoagt wern.
+'metadata-fields'   => "D' fóigernden Föder voh dé EXIF-Metadaaten, dé in dém MediaWiki-Systémtext ågeem san, wern auf Büdelbschreiwungsseiten mid eihkloppter Metadaatentabön åzoagt.
+Weiderne wern standardmässig néd åzoagt.
 * make
 * model
 * datetimeoriginal
@@ -1231,12 +1259,12 @@ Dodrauf foigende Links auf Seiten in da söwen Zeun definirn Ausnåmen, in denen
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude',
+* gpsaltitude",
 
 # EXIF tags
-'exif-gpsspeed' => 'Geschwindigkeit vom GPS-Empfänger',
+'exif-gpsspeed' => 'Gschwindigkeid vom GPS-Empfänger',
 
-'exif-componentsconfiguration-0' => "Gibt's net",
+'exif-componentsconfiguration-0' => 'Gibts néd',
 
 # External editor support
 'edit-externally'      => 'De Datei mid am exteanen Programm beåawatn',
@@ -1258,19 +1286,31 @@ Dodrauf foigende Links auf Seiten in da söwen Zeun definirn Ausnåmen, in denen
 'imgmultipagenext' => 'nächste Seitn →',
 
 # Table pager
-'table_pager_next'  => 'Nächste Seitn',
-'table_pager_first' => 'Erste Seitn',
-'table_pager_last'  => 'Letzte Seitn',
-'table_pager_empty' => 'Koane Ergebnisse',
+'ascending_abbrev'         => 'auf',
+'descending_abbrev'        => 'ob',
+'table_pager_next'         => 'Naxde Seiten',
+'table_pager_prev'         => 'Vurherige Seiten',
+'table_pager_first'        => 'Erste Seiten',
+'table_pager_last'         => 'Letzde Seiten',
+'table_pager_limit'        => 'Zoag $1 Eihträg pró Seiten',
+'table_pager_limit_label'  => 'Pósiziónen pró Seiten:',
+'table_pager_limit_submit' => 'Lós',
+'table_pager_empty'        => 'Koane Ergeebniss',
 
 # Auto-summaries
-'autosumm-blank'   => 'De Seitn is gleert worn.',
-'autosumm-replace' => "Da Seitninhalt is durch an andern Text ersetzt worn: '$1'",
-'autoredircomment' => 'Weiterleitung nåch [[$1]] is erstellt worn',
-'autosumm-new'     => 'De Seitn is nei oglegt worn: $1',
+'autosumm-blank'   => 'Dé Seiten is glaard worn.',
+'autosumm-replace' => "Da Seiteninhoid is durch an åndern Text ersétzt worn: '$1'",
+'autoredircomment' => 'Weiderloatung noch [[$1]] is erstöd worn',
+'autosumm-new'     => 'Dé Seiten is neich åglégt worn: $1',
 
 # Size units
 'size-bytes' => '$1 Bytes',
+
+# Live preview
+'livepreview-loading' => 'Loon ...',
+'livepreview-ready'   => 'Loon … Ferdig!',
+'livepreview-failed'  => "Dé sófurtige Vurschau is néd méglich!
+Bittscheh d' noraale Vurschau bnutzen.",
 
 # Watchlist editor
 'watchlistedit-noitems'        => 'Dei Beobachtungslistn is laar.',
@@ -1278,7 +1318,10 @@ Dodrauf foigende Links auf Seiten in da söwen Zeun definirn Ausnåmen, in denen
 'watchlistedit-normal-legend'  => 'Eiträge vo da Beobachtungslistn wegnehma',
 'watchlistedit-normal-explain' => "Des san de Eiträg vo deiner Beowochtungslisten. Um de Eiträg z' entferna, markir de Kastln neem de Eiträg und druck am End vo da Seiten auf „{{int:Watchlistedit-normal-submit}}“. Du kåst dei Beowochtungslisten aa im  [[Special:EditWatchlist/raw|Listenformat beorweiten]].",
 'watchlistedit-normal-submit'  => 'Eiträge wegnehma',
-'watchlistedit-raw-titles'     => 'Eiträg:',
+'watchlistedit-raw-title'      => 'Beówochtungslisten im Listenformaat beorweiten',
+'watchlistedit-raw-legend'     => 'Beówochtungslisten im Listenformaat beorweiten',
+'watchlistedit-raw-titles'     => 'Eihträg:',
+'watchlistedit-raw-submit'     => 'Beówochtungslisten aktualisirn',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ändarungen vafoing',
@@ -1288,7 +1331,31 @@ Dodrauf foigende Links auf Seiten in da söwen Zeun definirn Ausnåmen, in denen
 # Special:Version
 'version-hook-subscribedby' => 'Aufruf vo',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Dóppéde Daatein suachen',
+'fileduplicatesearch-summary'  => 'Suach noch dóppéde Daatein auf da Baasis vo eanerm Hash-Wert.',
+'fileduplicatesearch-legend'   => 'Suach noch Duplikaate',
+'fileduplicatesearch-filename' => 'Daateinåm:',
+'fileduplicatesearch-submit'   => 'Suachen',
+'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Daateigress: $3<br />MIME-Typ: $4',
+'fileduplicatesearch-result-1' => 'Dé Daatei „$1“ hod koane identischen Duplikaate.',
+
 # Special:SpecialPages
-'specialpages' => 'Speziaalseiten',
+'specialpages'                   => 'Speziaalseiten',
+'specialpages-group-maintenance' => 'Wartungslisten',
+'specialpages-group-other'       => 'Åndre Speziaalseiten',
+'specialpages-group-login'       => 'Åmöden',
+'specialpages-group-changes'     => 'Létzde Änderrungen und Logbiacher',
+'specialpages-group-media'       => 'Meedien',
+'specialpages-group-users'       => 'Benutzer und Rechtt',
+'specialpages-group-highuse'     => 'Haiffig brauchte Seiten',
+'specialpages-group-pages'       => 'Listen voh Seiten',
+'specialpages-group-pagetools'   => 'Seitenwerkzeig',
+'specialpages-group-wiki'        => 'Systémdaaten und Werzeig',
+'specialpages-group-redirects'   => 'Weiderloattende Speziaalseiten',
+'specialpages-group-spam'        => 'Spam-Werkzeig',
+
+# Special:BlankPage
+'blankpage' => 'Laare Seiten',
 
 );

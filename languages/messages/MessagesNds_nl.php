@@ -415,7 +415,7 @@ $messages = array(
 'hidden-category-category'       => 'Verbörgen kategorieën',
 'category-subcat-count'          => '{{PLURAL:$2|Disse kategorie hef de volgende subkategorie.|Disse kategorie hef de volgende {{PLURAL:$1|subkategorie|$1 subkategorieën}}, van in totaal $2.}}',
 'category-subcat-count-limited'  => 'Disse kategorie hef de volgende {{PLURAL:$1|subkategorie|$1 subkategorieën}}.',
-'category-article-count'         => "In disse kategorie {{PLURAL:$2|steet de volgende pagina|staon de volgende pagina's, van in totaal $2}}.",
+'category-article-count'         => "{{PLURAL:$2|In disse kategorie steet allenig de volgende pagina.|De volgende {{PLURAL:$1|pagina steet|$1 pagina's staon}} in disse kategorie, van in totaal $2.}}",
 'category-article-count-limited' => "In disse kategorie {{PLURAL:$1|steet de volgende pagina|staon de volgende $1 pagina's}}.",
 'category-file-count'            => 'In disse kategorie {{PLURAL:$2|steet t volgende bestaand|staon de volgende $1 bestaanden, van in totaal $2}}.',
 'category-file-count-limited'    => 'In disse kategorie {{PLURAL:$1|steet t volgende bestaand|staon de volgende $1 bestaanden}}.',
@@ -1199,7 +1199,7 @@ Kiek de logboeken nao.',
 
 # Suppression log
 'suppressionlog'     => 'Verbargingslogboek',
-'suppressionlogtext' => "In de onderstaande lieste staon de pagina's die vortedaon bin en blokkeringen die veur beheerders verbörgen bin. In de [[Special:IPBlockList|IP-blokkeerlieste]] bin de blokkeringen die noen van toepassing bin te bekieken.",
+'suppressionlogtext' => "In de onderstaande lieste staon de vortedaone pagina's en blokkeringen die veur beheerders verbörgen bin. In de [[Special:BlockList|IP-blokkeerlieste]] bin de blokkeringen, die noen van toepassing bin, te bekieken.",
 
 # History merging
 'mergehistory'                     => "Geschiedenisse van pagina's bie mekaar doon",
@@ -1587,7 +1587,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
 'recentchanges'                     => 'Leste wiezigingen',
-'recentchanges-legend'              => 'Opties veur leste wiezigingen',
+'recentchanges-legend'              => 'Opsies veur leste wiezigingen',
 'recentchangestext'                 => "Op disse pagina ku'j de leste wiezigingen van disse wiki bekieken.",
 'recentchanges-feed-description'    => 'Zeuk naor de alderleste wiezingen op disse wiki in disse voer.',
 'recentchanges-label-newpage'       => 'Mit disse bewarking is een nieje pagina an-emaakt',
@@ -1864,7 +1864,7 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'duplicatesoffile'          => '{{PLURAL:$1|t Volgende bestaand is|De volgende $1 bestaanden bin}} liek alleens as dit bestaand ([[Special:FileDuplicateSearch/$2|meer informasie]]):',
 'sharedupload'              => "Dit is een edeeld bestaand op $1 en ku'j oek gebruken veur aandere projekten.",
 'sharedupload-desc-there'   => "Dit is een edeeld bestaand op $1 en ku'j oek gebruken veur aandere projekten. Bekiek de [$2 beschrieving van t bestaand] veur meer informasie.",
-'sharedupload-desc-here'    => "Dit is een edeeld bestaand op $1 en ku'j oek gebruken veur aandere projekten. De [$2 beschrieving van t bestaand] derginse, steet hieronder.",
+'sharedupload-desc-here'    => "Dit is een edeeld bestaand op $1 en ku'j oek gebruken veur aandere projekten. De [$2 beschrieving van t bestaand] dergindse, steet hieronder.",
 'filepage-nofile'           => 'Der besteet gien bestaand mit disse naam.',
 'filepage-nofile-link'      => 'Der besteet gien bestaand mit disse naam, mer je kunnen t [$1 opsturen].',
 'uploadnewversion-linktext' => 'Een niejere versie van dit bestaand opsturen.',
@@ -2206,7 +2206,7 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'iteminvalidname'      => "Verkeerde naam '$1'",
 'wlnote'               => 'Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|t aofeleupen ure|de leste $2 uren}}.',
 'wlshowlast'           => 'Laot de aofeleupen $1 ure $2 dagen $3 zien',
-'watchlist-options'    => 'Opties veur de volglieste',
+'watchlist-options'    => 'Opsies veur de volglieste',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'       => 'Volg...',
@@ -2294,7 +2294,7 @@ Wees veurzichtig',
 'rollbacklink'      => 'Weerummedreien',
 'rollbackfailed'    => 'Wieziging herstellen is mislokt',
 'cantrollback'      => 'De wiezigingen konnen niet hersteld wörden; der is mer 1 auteur.',
-'alreadyrolled'     => 'Kan de leste wieziging van de pagina [[$1]] deur [[User:$2|$2]] ([[User talk:$2|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niet weerummedreien.
+'alreadyrolled'     => 'Kan de leste wieziging van de pagina [[:$1]] deur [[User:$2|$2]] ([[User talk:$2|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niet weerummedreien.
 Een aander hef disse pagina al bewarkt of hersteld naor een eerdere versie.
 
 De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
@@ -2392,7 +2392,7 @@ In dat geval mö'j de leste versie as zichtbaor instellen.",
 'undeletereset'                => 'Herstel',
 'undeleteinvert'               => 'Seleksie ummekeren',
 'undeletecomment'              => 'Reden:',
-'undeletedarticle'             => '"$1" is weerummeplaots',
+'undeletedarticle'             => '"[[$1]]" is weerummeplaotst',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} weerummeplaotst',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestaand|$2 bestaanden}} bin weerummeplaotst',
 'undeletedfiles'               => '{{PLURAL:$1|1 bestaand|$1 bestaanden}} weerummeplaotst',
@@ -3427,55 +3427,55 @@ Aandere velden wörden verbörgen.
 Kontroleer joew netpostadres op ongeldige tekens.
 
 Fout bie t versturen: $1',
-'confirmemail_invalid'      => 'Ongeldige bevestigingscode. De code kan verlopen ween.',
-'confirmemail_needlogin'    => 'Je mutten $1 um joew netposadres te bevestigen.',
-'confirmemail_success'      => 'Joew netposadres is bevestig. Je kunnen noen anmelden en {{SITENAME}} gebruken.',
-'confirmemail_loggedin'     => 'Joew netposadres is noen bevestig.',
-'confirmemail_error'        => "Der is iets fout egaon bie 't opslaon van joew bevestiging.",
-'confirmemail_subject'      => 'Bevestiging netposadres veur {{SITENAME}}',
-'confirmemail_body'         => 'Ene mit IP-adres $1, werschienlijk jie zelf, hef zien eigen mit dit netposadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
+'confirmemail_invalid'      => 'Ongeldige bevestigingskode. De kode kan verlopen ween.',
+'confirmemail_needlogin'    => 'Je mötten $1 um joew netpostadres te bevestigen.',
+'confirmemail_success'      => 'Joew netpostadres is bevestigd. Je kunnen noen [[Special:UserLogin|anmelden]] en {{SITENAME}} gebruken.',
+'confirmemail_loggedin'     => 'Joew netpostadres is noen bevestig.',
+'confirmemail_error'        => 'Der is iets fout egaon bie t opslaon van joew bevestiging.',
+'confirmemail_subject'      => 'Bevestiging netpostadres veur {{SITENAME}}',
+'confirmemail_body'         => 'Ene mit IP-adres $1, warschienlik jie zelf, hef zien eigen mit dit netpostadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
 
-Klik op de volgende verwiezing um te bevestigen da-jie disse gebruker bin en um de netposmeugelijkheen op {{SITENAME}} te activeren:
-
-$3
-
-A-j joe eigen *neet* an-emeld hemmen, klik dan neet op disse verwiezing um de bevestiging van joew netposadres of te breken:
-
-$5
-
-De bevestigingscode zal verlopen op $4.',
-'confirmemail_body_changed' => 'Ene mit IP-adres $1, werschienlijk jie zelf,
-hef zien eigen mit dit netposadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
-
-Klik op de volgende verwiezing um te bevestigen da-jie disse gebruker bin en um de netposmeugelijkheen op {{SITENAME}} te activeren:
+Klik op de volgende verwiezing um te bevestigen da\'jie disse gebruker bin en um de netpostmeugelikheen op {{SITENAME}} te aktiveren:
 
 $3
 
-A-j joe eigen *neet* an-emeld hemmen, klik dan neet op disse verwiezing
-um de bevestiging van joew netposadres of te breken:
+A\'j joe eigen *niet* an-emeld hebben, klik dan niet op disse verwiezing um de bevestiging van joew netpostadres aof te breken:
 
 $5
 
-De bevestigingscode zal verlopen op $4.',
-'confirmemail_body_set'     => 'Ene mit IP-adres $1, werschienlijk jie zelf,
-hef zien eigen mit dit netposadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
+De bevestigingskode zal verlopen op $4.',
+'confirmemail_body_changed' => 'Ene mit IP-adres $1, warschienlik jie zelf,
+hef zien eigen mit dit netpostadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
 
-Klik op de volgende verwiezing um te bevestigen da-jie disse gebruker bin en um de netposmeugelijkheen op {{SITENAME}} te activeren:
+Klik op de volgende verwiezing um te bevestigen da\'jie disse gebruker bin en um de netpostmeugelikheen op {{SITENAME}} te aktiveren:
 
 $3
 
-A-j joe eigen *neet* an-emeld hemmen, klik dan neet op disse verwiezing
-um de bevestiging van joew netposadres of te zegen:
+A\'j joe eigen *niet* an-emeld hebben, klik dan niet op disse verwiezing
+um de bevestiging van joew netpostadres aof te breken:
 
 $5
 
-De bevestigingscode zal verlopen op $4.',
-'confirmemail_invalidated'  => 'De netposbevestiging is of-ebreuken',
-'invalidateemail'           => 'Netposbevestiging aofbreken',
+De bevestigingskode zal verlopen op $4.',
+'confirmemail_body_set'     => 'Ene mit IP-adres $1, warschienlik jie zelf,
+hef zien eigen mit dit netpostadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
+
+Klik op de volgende verwiezing um te bevestigen da\'jie disse gebruker bin en um de netpostmeugelikheen op {{SITENAME}} te aktiveren:
+
+$3
+
+A\'j joe eigen *niet* an-emeld hebben, klik dan niet op disse verwiezing
+um de bevestiging van joew netpostadres of te zegen:
+
+$5
+
+De bevestigingskode zal verlopen op $4.',
+'confirmemail_invalidated'  => 'De netpostbevestiging is aofebreuken',
+'invalidateemail'           => 'Netpostbevestiging ofbreken',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Interwiki-intergrasie is uut-eschakeld]',
-'scarytranscludefailed'   => '[De mal $1 kon neet op-ehaold wönnen]',
+'scarytranscludedisabled' => '[Interwiki-intergrasie is uuteschakeld]',
+'scarytranscludefailed'   => '[De mal $1 kon niet op-ehaold wörden]',
 'scarytranscludetoolong'  => '[URL is te lang]',
 
 # Trackbacks
@@ -3483,24 +3483,24 @@ De bevestigingscode zal verlopen op $4.',
 $1',
 'trackbackremove'   => '([$1 vortdoon])',
 'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'De trackback is vort-edaon.',
+'trackbackdeleteok' => 'De trackback is vortedaon.',
 
 # Delete conflict
-'deletedwhileediting'      => "'''Waorschuwing''': disse pagina is vort-edaon terwiel jie 't an 't bewarken wanen!",
-'confirmrecreate'          => "Gebruker [[User:$1|$1]] ([[User talk:$1|Overleg]]) hef disse pagina vort-edaon naoda-j  begunnen bin mit joew wieziging, mit opgave van de volgende reden: ''$2''. Bevestig da-j 't artikel herschrieven willen.",
-'confirmrecreate-noreason' => "Gebruker [[User:$1|$1]] ([[User talk:$1|overleg]]) hef disse pagina vort-edaon naoda-j  begunnen bin mit joew wieziging. Bevestig da-j 't artikel herschrieven willen.",
+'deletedwhileediting'      => "'''Waorschuwing''': disse pagina is vortedaon terwiel jie t an t bewarken waren!",
+'confirmrecreate'          => "Gebruker [[User:$1|$1]] ([[User talk:$1|Overleg]]) hef disse pagina vortedaon naoda'j  begunnen bin mit joew wieziging, mit opgave van de volgende reden: ''$2''. Bevestig da'j t artikel herschrieven willen.",
+'confirmrecreate-noreason' => "Gebruker [[User:$1|$1]] ([[User talk:$1|overleg]]) hef disse pagina vortedaon naoda'j  begunnen bin mit joew wieziging. Bevestig da'j t artikel herschrieven willen.",
 'recreate'                 => 'Herschrieven',
 
 # action=purge
 'confirm_purge_button' => 'Bevestig',
-'confirm-purge-top'    => "Klik op 'bevestig' um 't tussengeheugen van disse pagina te legen.",
-'confirm-purge-bottom' => "'t Leegmaken van 't tussengeheugen zörg derveur da-j de leste versie van een pagina zien.",
+'confirm-purge-top'    => "Klik op 'bevestig' um t tussengeheugen van disse pagina te legen.",
+'confirm-purge-bottom' => "t leegmaken van t tussengeheugen zörgt derveur da'j de leste versie van een pagina zien.",
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'Oké',
 'confirm-watch-top'      => 'Disse pagina op joew volglieste zetten?',
 'confirm-unwatch-button' => 'Oké',
-'confirm-unwatch-top'    => 'Disse pagina van joew volglieste ofhaolen?',
+'confirm-unwatch-top'    => 'Disse pagina van joew volglieste aofhaolen?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; veurige',
@@ -3509,8 +3509,8 @@ $1',
 'imgmultigoto'     => 'Gao naor de pagina $1',
 
 # Table pager
-'ascending_abbrev'         => 'daol',
-'descending_abbrev'        => 'stieg',
+'ascending_abbrev'         => 'aofl.',
+'descending_abbrev'        => 'opl.',
 'table_pager_next'         => 'Volgende',
 'table_pager_prev'         => 'Veurige',
 'table_pager_first'        => 'Eerste pagina',
@@ -3518,47 +3518,47 @@ $1',
 'table_pager_limit'        => 'Laot $1 onderwarpen per pagina zien',
 'table_pager_limit_label'  => 'Onderwarpen per pagina:',
 'table_pager_limit_submit' => 'Zeuk',
-'table_pager_empty'        => 'Gien risseltaoten',
+'table_pager_empty'        => 'Gien resultaoten',
 
 # Auto-summaries
-'autosumm-blank'   => 'Pagina leeg-emaak',
-'autosumm-replace' => "Tekse vervungen deur '$1'",
+'autosumm-blank'   => 'Pagina leegemaakt',
+'autosumm-replace' => "Tekste vervungen deur '$1'",
 'autoredircomment' => 'deurverwiezing naor [[$1]]',
 'autosumm-new'     => "Nieje pagina: '$1'",
 
 # Live preview
-'livepreview-loading' => "An 't laojen…",
-'livepreview-ready'   => "An 't laojen… ree!",
-'livepreview-failed'  => 'Rechstreeks naokieken is neet meugelijk!
-Kiek de pagina op de normale meniere nao.',
-'livepreview-error'   => 'Verbiending neet meugelijk: $1 "$2"
-Kiek de pagina op de normale meniere nao.',
+'livepreview-loading' => 'An t laojen…',
+'livepreview-ready'   => 'An t laojen… ree!',
+'livepreview-failed'  => 'Rechtstreeks naokieken is niet meugelik!
+Kiek de pagina op de normale maniere nao.',
+'livepreview-error'   => 'Verbiending niet meugelik: $1 "$2"
+Kiek de pagina op de normale maniere nao.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Wiezigingen dee niejer bin as $1 {{PLURAL:$1|seconde|seconden}} staon meschien nog neet in de lieste.',
-'lag-warn-high'   => 'De databanke is aorig zwaor belas. Wiezigingen dee niejer bin as $1 {{PLURAL:$1|seconde|seconden}} staon daorumme meschien nog neet in de lieste.',
+'lag-warn-normal' => 'Wiezigingen die niejer bin as $1 {{PLURAL:$1|seconde|seconden}} staon misschien nog niet in de lieste.',
+'lag-warn-high'   => 'De databanke is aorig zwaor belast. Wiezigingen die niejer bin as $1 {{PLURAL:$1|sekonde|sekonden}} staon daorumme misschien nog niet in de lieste.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => "Der {{PLURAL:$1|steet 1 pagina|staon $1 pagina's}} op joew volglieste, zonder overlegpagina's.",
 'watchlistedit-noitems'        => 'Joew volglieste is leeg.',
 'watchlistedit-normal-title'   => 'Volglieste bewarken',
-'watchlistedit-normal-legend'  => "Disse pagina's van mien volglieste ofhaolen.",
-'watchlistedit-normal-explain' => 'Pagina\'s dee op joew volglieste staon, zie-j hieronder.
-Um een pagina van joew volglieste of te haolen mu-j \'t vakjen dernaos anklikken, en klik dan op "{{int:Watchlistedit-normal-submit}}".
-Je kunnen oek [[Special:EditWatchlist/raw|de roewe lieste bewarken]].',
-'watchlistedit-normal-submit'  => "Pagina's derof haolen",
-'watchlistedit-normal-done'    => "Der {{PLURAL:$1|is 1 pagina|bin $1 pagina's}} vort-edaon uut joew volglieste:",
+'watchlistedit-normal-legend'  => "Disse pagina's van mien volglieste aofhaolen.",
+'watchlistedit-normal-explain' => "Pagina's die op joew volglieste staon, zie'j hieronder.
+Um een pagina van joew volglieste aof te haolen mö'j t vakjen dernaost anklikken, en klik dan op \"{{int:Watchlistedit-normal-submit}}\".
+Je kunnen oek [[Special:EditWatchlist/raw|de roewe lieste bewarken]].",
+'watchlistedit-normal-submit'  => "Pagina's deraof haolen",
+'watchlistedit-normal-done'    => "Der {{PLURAL:$1|is 1 pagina|bin $1 pagina's}} vortedaon uut joew volglieste:",
 'watchlistedit-raw-title'      => 'Roewe volglieste bewarken',
 'watchlistedit-raw-legend'     => 'Roewe volglieste bewarken',
-'watchlistedit-raw-explain'    => "Pagina's dee op joew volglieste staon, zie-j hieronder. Je kunnen de lieste bewarken deur pagina's deruut vort te haolen en derbie te te zetten.
+'watchlistedit-raw-explain'    => "Pagina's die op joew volglieste staon, zie'j hieronder. Je kunnen de lieste bewarken deur pagina's deruut vort te haolen en derbie te te zetten.
 Eén pagina per regel.
-A-j klaor bin, klik dan op \"{{int:Watchlistedit-raw-submit}}\".
-Je kunnen oek [[Special:EditWatchlist|'t standardbewarkingsscharm gebruken]].",
+A'j klaor bin, klik dan op \"{{int:Watchlistedit-raw-submit}}\".
+Je kunnen oek [[Special:EditWatchlist|t standardbewarkingsscharm gebruken]].",
 'watchlistedit-raw-titles'     => 'Titels:',
 'watchlistedit-raw-submit'     => 'Volglieste biewarken',
 'watchlistedit-raw-done'       => 'Joew volglieste is bie-ewörken.',
 'watchlistedit-raw-added'      => "Der {{PLURAL:$1|is 1 pagina|bin $1 pagina's}} bie edaon:",
-'watchlistedit-raw-removed'    => "Der {{PLURAL:$1|is 1 pagina|bin $1 pagina's}} vort-edaon:",
+'watchlistedit-raw-removed'    => "Der {{PLURAL:$1|is 1 pagina|bin $1 pagina's}} vortedaon:",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Wiezigingen bekieken',
@@ -3567,96 +3567,96 @@ Je kunnen oek [[Special:EditWatchlist|'t standardbewarkingsscharm gebruken]].",
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekende tag "$1"',
-'duplicate-defaultsort' => 'Waorschuwing: De standardsortering "$2" krig veurrang veur de sortering "$1".',
+'duplicate-defaultsort' => 'Waorschuwing: de standardsortering "$2" krig veurrang veur de sortering "$1".',
 
 # Special:Version
 'version'                       => 'Versie',
-'version-extensions'            => 'Uutbreidingen dee eïnstelleerd bin',
-'version-specialpages'          => "Speciale pagina's",
-'version-parserhooks'           => 'Parserhooks',
-'version-variables'             => 'Variabelen',
-'version-antispam'              => 'Veurkoemen van ongewunste reclame',
+'version-extensions'            => 'Uutbreidingen die installeerd bin',
+'version-specialpages'          => "Spesiale pagina's",
+'version-parserhooks'           => 'Parserhoeken',
+'version-variables'             => 'Variabels',
+'version-antispam'              => 'Veurkoemen van ongewunste bewarkingen',
 'version-skins'                 => 'Vormgevingen',
 'version-api'                   => 'Api',
 'version-other'                 => 'Overige',
 'version-mediahandlers'         => 'Mediaverwarkers',
-'version-hooks'                 => 'Hooks',
-'version-extension-functions'   => 'Uutbreidingsfuncties',
+'version-hooks'                 => 'Hoeken',
+'version-extension-functions'   => 'Uutbreidingsfunksies',
 'version-parser-extensiontags'  => 'Parseruutbreidingsplaotjes',
-'version-parser-function-hooks' => 'Parserfunctiehooks',
+'version-parser-function-hooks' => 'Parserfunksiehoeken',
 'version-hook-name'             => 'Hooknaam',
 'version-hook-subscribedby'     => 'In-eschreven deur',
 'version-version'               => '(Versie $1)',
-'version-license'               => 'Licentie',
-'version-poweredby-credits'     => "Disse wiki wönnen an-estuurd deur '''[http://www.mediawiki.org/ MediaWiki]''', kopierech © 2001-$1 $2.",
+'version-license'               => 'Lisensie',
+'version-poweredby-credits'     => "Disse wiki wörden an-estuurd deur '''[http://www.mediawiki.org/ MediaWiki]''', auteursrecht © 2001-$1 $2.",
 'version-poweredby-others'      => 'aanderen',
-'version-license-info'          => "MediaWiki is vrieje programmatuur; je kunnen MediaWiki verspreien en/of anpassen onder de veurweerden van de GNU General Public License zoas epubliceerd deur de Free Software Foundation; of versie 2 van de Licentie, of - naor eigen wuns - een laotere versie.
+'version-license-info'          => 'MediaWiki is vrieje programmatuur; je kunnen MediaWiki verspreien en/of anpassen onder de veurweerden van de GNU General Public License zo as epubliceerd deur de Free Software Foundation; of versie 2 van de Lisensie, of - naor eigen wuns - een laotere versie.
 
-MediaWiki wönnen verspreid in de hoop dat 't nuttig is, mer ZONDER ENIGE GARANTIE; zonder zelfs de daoronder begrepen garantie van VERKOOPBAORHEID of GESCHIKTHEID VEUR ENIG DOEL IN 'T BIEZUNDER. Zie de GNU General Public License veur meer infermasie.
+MediaWiki wörden verspreid in de hoop dat t nuttig is, mer ZONDER ENIGE GARANSIE; zonder zelfs de daoronder begrepen garansie van VERKOOPBAORHEID of GESCHIKTHEID VEUR ENIG DOEL IN T BIEZUNDER. Zie de GNU General Public License veur meer informasie.
 
-Samen mit dit pregramma heur jie een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te hemmen ekregen; as dat neet zo is, schrief dan naor de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees de licentie op 't internet].",
-'version-software'              => 'Pregrammetuur dee eïnstalleerd is',
-'version-software-product'      => 'Preduk',
+Samen mit dit programma heur je een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te hebben ekregen; as dat niet zo is, schrief dan naor de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees de lisensie op t internet].',
+'version-software'              => 'Programmatuur die installeerd is',
+'version-software-product'      => 'Produkt',
 'version-software-version'      => 'Versie',
 
 # Special:FilePath
-'filepath'         => 'Bestaanslokasie',
+'filepath'         => 'Bestaandslokasie',
 'filepath-page'    => 'Bestaand:',
 'filepath-submit'  => 'Zeuken',
-'filepath-summary' => "Disse speciale pagina geef 't hele pad veur een bestaand. Ofbeeldingen wonnen in resolusie helemaole weer-egeven. Aandere bestaanstypen wonnen gelieke in 't mit 't MIME-type verbunnen pregramma los edaon.
+'filepath-summary' => 'Disse spesiale pagina geef t hele pad veur een bestaand. Aofbeeldingen wörden in resolusie helemaole weeregeven. Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma los edaon.
 
-Voer de bestaansnaam in zonder 't veurvoegsel \"{{ns:file}}:\".",
+Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'           => 'Dubbele bestanen zeuken',
-'fileduplicatesearch-summary'   => 'Dubbele bestanen zeuken op baosis van de hashweerde.',
-'fileduplicatesearch-legend'    => 'Dubbele bestanen zeuken',
-'fileduplicatesearch-filename'  => 'Bestaansnaam:',
+'fileduplicatesearch'           => 'Dubbele bestaanden zeuken',
+'fileduplicatesearch-summary'   => 'Dubbele bestaanden zeuken op baosis van de hashweerde.',
+'fileduplicatesearch-legend'    => 'Dubbele bestaanden zeuken',
+'fileduplicatesearch-filename'  => 'Bestaandsnaam:',
 'fileduplicatesearch-submit'    => 'Zeuken',
-'fileduplicatesearch-info'      => '$1 × $2 beeldpunten<br />Bestaansgrootte: $3<br />MIME-type: $4',
-'fileduplicatesearch-result-1'  => 'Der bin gien bestanen dee liekeleens bin as "$1".',
-'fileduplicatesearch-result-n'  => 'Der {{PLURAL:$2|is één bestaand|bin $2 bestanen}} dee liekeleens bin as "$1".',
+'fileduplicatesearch-info'      => '$1 × $2 beeldpunten<br />Bestaandsgrootte: $3<br />MIME-type: $4',
+'fileduplicatesearch-result-1'  => 'Der bin gien bestaanden die liek alleens bin as "$1".',
+'fileduplicatesearch-result-n'  => 'Der {{PLURAL:$2|is één bestaand|bin $2 bestaanden}} die liek alleens bin as "$1".',
 'fileduplicatesearch-noresults' => 'Der is gien bestaand mit de naam "$1" evunnen.',
 
 # Special:SpecialPages
-'specialpages'                   => "Speciale pagina's",
+'specialpages'                   => "Spesiale pagina's",
 'specialpages-note'              => '----
-* Normale speciale pagina\'s
-* <strong class="mw-specialpagerestricted">Bepark toegankelijke speciale pagina\'s</strong>
-* <span class="mw-specialpagecached">Speciale pagina\'s mit allinnig gegevens uut \'t tussengeheugen</span>',
+* Normale spesiale pagina\'s
+* <strong class="mw-specialpagerestricted">Beparkt toegankelike spesiale pagina\'s</strong>
+* <span class="mw-specialpagecached">Spesiale pagina\'s mit allenig gegevens uut t tussengeheugen</span>',
 'specialpages-group-maintenance' => 'Onderhoudsliesten',
-'specialpages-group-other'       => "Overige speciale pagina's",
+'specialpages-group-other'       => "Overige spesiale pagina's",
 'specialpages-group-login'       => 'Anmelden / inschrieven',
 'specialpages-group-changes'     => 'Leste wiezigingen en logboeken',
-'specialpages-group-media'       => 'Media-overzichen en nieje bestanen',
-'specialpages-group-users'       => 'Gebrukers en rechen',
+'specialpages-group-media'       => 'Media-overzichten en nieje bestaanden',
+'specialpages-group-users'       => 'Gebrukers en rechten',
 'specialpages-group-highuse'     => "Veulgebruken pagina's",
 'specialpages-group-pages'       => 'Paginaliesten',
 'specialpages-group-pagetools'   => 'Paginahulpmiddels',
 'specialpages-group-wiki'        => 'Wikigegevens en -hulpmiddels',
-'specialpages-group-redirects'   => "Deurverwiezende speciale pagina's",
-'specialpages-group-spam'        => 'Hulpmiddels tegen ongewunste verwiezingen',
+'specialpages-group-redirects'   => "Deurverwiezende spesiale pagina's",
+'specialpages-group-spam'        => 'Hulpmiddels tegen ongewunste bewarkingen',
 
 # Special:BlankPage
 'blankpage'              => 'Lege pagina',
-'intentionallyblankpage' => 'Disse pagina is bewus leeg eleuten.',
+'intentionallyblankpage' => 'Disse pagina is bewust leeg eleuten.',
 
 # External image whitelist
-'external_image_whitelist' => " #Laot disse regel onveraanderd<pre>
-#Hieronder kunnen delen van regeliere uutdrokkingen ('t deel tussen //) an-egeven wonnen.
-#'t Wonnen mit de webadressen van ofbeeldingen uut bronnen van butenof vergeleken
-#Een positief vergeliekingsrisseltaot zörg derveur dat de ofbeelding weer-egeven wonnen, aanders wonnen de ofbeelding allinnig as verwiezing weer-egeven
-#Regels dee mit een # beginnen, wonnen as commetaar behaandeld
-#De regels in de lieste bin neet heuflettergeleuvig
+'external_image_whitelist' => ' #Laot disse regel onveraanderd<pre>
+#Hieronder kunnen delen van reguliere uutdrokkingen (t deel tussen //) an-egeven wörden.
+#t Wörden mit de webadressen van aofbeeldingen uut bronnen van butenof vergeleken
+#Een positief vergeliekingsresultaot zörgt derveur dat de aofbeelding weeregeven wörden, aanders wörden de aofbeelding allenig as verwiezing weeregeven
+#Regels die mit een # beginnen, wörden as kommentaar behaandeld
+#De regels in de lieste bin niet heufdlettergeveulig
 
-#Delen van regeliere uutdrokkingen boven disse regel plaosen. Laot disse regel onveraanderd</pre>",
+#Delen van reguliere uutdrokkingen boven disse regel plaotsen. Laot disse regel onveraanderd</pre>',
 
 # Special:Tags
 'tags'                    => 'Geldige wiezigingsetiketten',
 'tag-filter'              => '[[Special:Tags|Etiketfilter]]:',
 'tag-filter-submit'       => 'Filtreren',
 'tags-title'              => 'Etiket',
-'tags-intro'              => 'Op disse pagina staon de etiketten waormee de pregrammetuur elke bewarking kan markeren, en de betekenisse dervan.',
+'tags-intro'              => 'Op disse pagina staon de etiketten waormee de programmatuur elke bewarking kan markeren, en de betekenisse dervan.',
 'tags-tag'                => 'Etiketnaam',
 'tags-display-header'     => 'Weergave in wiezigingsliesten',
 'tags-description-header' => 'Beschrieving van de betekenisse',
@@ -3674,22 +3674,22 @@ Voer de bestaansnaam in zonder 't veurvoegsel \"{{ns:file}}:\".",
 'compare-submit'   => 'Vergelieken',
 
 # Database error messages
-'dberr-header'      => 'Disse wiki hef een prebleem',
-'dberr-problems'    => "'t Spiet ons, mar disse webstee hef op 't mement wat technische preblemen.",
-'dberr-again'       => "Wach een paor menuten en prebeer 't daornao opniej.",
+'dberr-header'      => 'Disse wiki hef een probleem',
+'dberr-problems'    => 't Spiet ons, mer disse webstee hef op t moment wat techniese problemen.',
+'dberr-again'       => 'Wach een paor minuten en probeer t daornao opniej.',
 'dberr-info'        => '(Kan gien verbiending maken mit de databankeserver: $1)',
-'dberr-usegoogle'   => 'Meschien ku-j ondertussen zeuken via Google.',
-'dberr-outofdate'   => "Let op: indexen de zee hemmen van onze pagina's bin meschien neet actueel.",
-'dberr-cachederror' => "Disse pagina is een kopie uut 't tussengeheugen en is meschien neet actueel.",
+'dberr-usegoogle'   => "Misschien ku'j ondertussen zeuken via Google.",
+'dberr-outofdate'   => "Let op: indexen die zee hebben van onze pagina's bin misschien niet aktueel.",
+'dberr-cachederror' => 'Disse pagina is een kopie uut t tussengeheugen en is misschien niet aktueel.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Der bin preblemen mit een paor in-egeven weerden',
+'htmlform-invalid-input'       => 'Der bin problemen mit een paor in-egeven weerden',
 'htmlform-select-badoption'    => 'De in-egeven weerde is ongeldig.',
 'htmlform-int-invalid'         => 'De in-egeven weerde is gien geheel getal.',
-'htmlform-float-invalid'       => 'De weerde dee-j op-egeven hemmen is gien getal.',
+'htmlform-float-invalid'       => "De weerde die'j op-egeven hebben is gien getal.",
 'htmlform-int-toolow'          => 'De in-egeven weerde lig onder de minimumweerde van $1',
 'htmlform-int-toohigh'         => 'De in-egeven weerde lig boven de maximumweerde van $1',
-'htmlform-required'            => 'Disse weerde is verplich',
+'htmlform-required'            => 'Disse weerde is verplicht',
 'htmlform-submit'              => 'Opslaon',
 'htmlform-reset'               => 'Wiezigingen ongedaonmaken',
 'htmlform-selectorother-other' => 'Aanders',
@@ -3699,23 +3699,27 @@ Voer de bestaansnaam in zonder 't veurvoegsel \"{{ns:file}}:\".",
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning veur "full-text" zeuken',
 
 # Add categories per AJAX
-'ajax-add-category'             => 'Kattegerie derbie doon',
-'ajax-remove-category'          => 'Kattegerie vortdoon',
-'ajax-edit-category'            => 'Bewark kattegerie',
+'ajax-add-category'             => 'Kategorie derbie doon',
+'ajax-remove-category'          => 'Kategorie vortdoon',
+'ajax-edit-category'            => 'Bewark kategorie',
 'ajax-add-category-submit'      => 'Derbie doon',
 'ajax-confirm-ok'               => 'Oké',
 'ajax-confirm-title'            => 'Haandeling bevestigen',
 'ajax-confirm-save'             => 'Opslaon',
 'ajax-confirm-save-all'         => 'Alle wiezigingen opslaon',
-'ajax-cancel'                   => 'Bewarkingen aofbreken',
-'ajax-add-category-summary'     => 'Kattegerie "$1" derbie doon',
-'ajax-edit-category-summary'    => 'Wiezig kattegerie "$1" naor "$2"',
-'ajax-remove-category-summary'  => 'Kattegerie "$1" vortdoon',
+'ajax-cancel'                   => 'Bewarkingen ofbreken',
+'ajax-cancel-all'               => 'Alle wiezigingen aofbreken',
+'ajax-add-category-summary'     => 'Kategorie "$1" derbie doon',
+'ajax-edit-category-summary'    => 'Wiezig kategorie "$1" naor "$2"',
+'ajax-remove-category-summary'  => 'Kategorie "$1" vortdoon',
+'ajax-category-question'        => "Waorumme wi'j de volgende wiezigingen anbrengen:",
 'ajax-error-title'              => 'Fout',
-'ajax-remove-category-error'    => 'Kon disse kattegerie neet vortdoon.
-Dit gebeurt meestentieds as de kattegerie via een mal op de pagina ezet is.',
-'ajax-edit-category-error'      => "'t Was neet meugelijk um disse kattegerie te wiezigen.
-Dit gebeurt as de kattegerie op een pagina steet in een mal.",
-'ajax-category-already-present' => 'Disse pagina steet al in de kattegerie $1',
+'ajax-remove-category-error'    => 'Kon de kategorie "$1" niet vortdoon.
+Dit gebeurt meestentieds as de kategorie via een mal op de pagina ezet is.',
+'ajax-edit-category-error'      => 't Was niet meugelik um de kategorie "$1" te wiezigen.
+Dit gebeurt meestentieds as de kategorie via een mal op de pagina ezet is.',
+'ajax-category-already-present' => 'Disse pagina steet al in de kategorie $1',
+'ajax-category-hook-error'      => 'Een lokale funksie verhinderden t opslaon van de wiezigingen',
+'ajax-api-error'                => 'De API gaf een foutmelding: $1: $2',
 
 );

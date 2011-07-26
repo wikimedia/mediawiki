@@ -779,6 +779,17 @@ Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password origi
 Password temporanea: $2',
 'passwordreset-emailsent'      => 'È stata inviata una e-mail di promemoria.',
 
+# Special:ChangeEmail
+'changeemail'          => "Modifica l'indirizzo e-mail",
+'changeemail-header'   => "Modifica l'indirizzo e-mail dell'account",
+'changeemail-text'     => 'Completa questo modulo per cambiare il tuo indirizzo e-mail. Sarà necessario inserire la password per confermare la modifica.',
+'changeemail-no-info'  => "Devi aver effettuato l'accesso per accedere a questa pagina direttamente.",
+'changeemail-oldemail' => 'Indirizzo e-mail attuale:',
+'changeemail-newemail' => 'Nuovo indirizzo e-mail:',
+'changeemail-none'     => '(nessuno)',
+'changeemail-submit'   => 'Modifica e-mail',
+'changeemail-cancel'   => 'Annulla',
+
 # Edit page toolbar
 'bold_sample'     => 'Grassetto',
 'bold_tip'        => 'Grassetto',
@@ -1262,6 +1273,8 @@ $1",
 'prefs-watchlist-token'         => 'Token Osservati speciali:',
 'prefs-misc'                    => 'Varie',
 'prefs-resetpass'               => 'Cambia password',
+'prefs-changeemail'             => 'Modifica e-mail',
+'prefs-setemail'                => 'Imposta un indirizzo e-mail',
 'prefs-email'                   => 'Opzioni email',
 'prefs-rendering'               => 'Aspetto',
 'saveprefs'                     => 'Salva le preferenze',
@@ -3635,14 +3648,17 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 'ajax-confirm-save'             => 'Salva',
 'ajax-confirm-save-all'         => 'Salva tutte le modifiche',
 'ajax-cancel'                   => 'Annulla le modifiche',
-'ajax-add-category-summary'     => 'Aggiungere categoria "$1"',
-'ajax-edit-category-summary'    => 'Modificata categoria "$1" in "$2"',
-'ajax-remove-category-summary'  => 'Rimuovere categoria "$1"',
+'ajax-cancel-all'               => 'Annulla tutte le modifiche',
+'ajax-add-category-summary'     => 'aggiungere la categoria "$1"',
+'ajax-edit-category-summary'    => 'modificare la categoria "$1" in "$2"',
+'ajax-remove-category-summary'  => 'rimuovere la categoria "$1"',
+'ajax-category-question'        => '<strong>Perché</strong> vuoi $1?',
 'ajax-error-title'              => 'Errore',
-'ajax-remove-category-error'    => 'Non è stato possibile rimuovere questa categoria.
+'ajax-remove-category-error'    => 'Non è stato possibile rimuovere la categoria "$1".
 Ciò si verifica in genere quando la categoria è stata aggiunta alla pagina in un template.',
-'ajax-edit-category-error'      => 'Non è stato possibile modificare questa categoria.
+'ajax-edit-category-error'      => 'Non è stato possibile modificare la categoria "$1".
 Di solito avviene quando la categoria è stata aggiunta alla pagina da un template.',
 'ajax-category-already-present' => 'Questa pagina appartiene già alla categoria $1',
+'ajax-category-hook-error'      => 'Una funzione locale ha impedito che le modifiche vengano salvate',
 
 );

@@ -589,6 +589,14 @@ Ola bilər siz parolu müvəffəqiyyətlə dəyişmisiniz yaxud müvəqqəti par
 Müvəqqəti parol: $2',
 'passwordreset-emailsent'    => 'Xəbərdarlıq məktubu e-maillə göndərildi.',
 
+# Special:ChangeEmail
+'changeemail'          => 'E-məktub ünvanını dəyiş',
+'changeemail-oldemail' => 'Hazırki e-poçt ünvanı:',
+'changeemail-newemail' => 'Yeni E-poçt ünvanı:',
+'changeemail-none'     => '(heç biri)',
+'changeemail-submit'   => 'E-poçtu dəyiş',
+'changeemail-cancel'   => 'İmtina',
+
 # Edit page toolbar
 'bold_sample'     => 'Qalın mətn',
 'bold_tip'        => 'Qalın mətn',
@@ -978,6 +986,7 @@ $1",
 'prefs-watchlist-token'         => 'İzləmə siyahısı nişanı:',
 'prefs-misc'                    => 'Digər seçimlər',
 'prefs-resetpass'               => 'Parolu dəyiş',
+'prefs-changeemail'             => 'E-poçtu dəyiş',
 'prefs-email'                   => 'E-mailin parametrləri',
 'prefs-rendering'               => 'Görünüş',
 'saveprefs'                     => 'Qeyd et',
@@ -1001,7 +1010,7 @@ Təsadüfi yolla seçilmiş bu paroldan istifadə edə bilərsiniz: $1',
 'savedprefs'                    => 'Seçiminiz qeyd edildi.',
 'timezonelegend'                => 'Vaxt zonası:',
 'localtime'                     => 'Yerli vaxt:',
-'timezoneuseserverdefault'      => 'Susmaya görə serverdən istifadə',
+'timezoneuseserverdefault'      => 'Susmaya görə serverdən istifadə ($1)',
 'timezoneuseoffset'             => 'Digər (fərqi göstərmək)',
 'timezoneoffset'                => 'Vaxt fərqi¹:',
 'servertime'                    => 'Server vaxtı:',
@@ -1313,6 +1322,8 @@ Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək is
 'copyuploaddisabled'         => 'URL-dən yükləmə baş tutmadı.',
 'uploadfromurl-queued'       => 'Yükləməniz növbə gözləyir',
 'uploaddisabledtext'         => 'Fayl yüklənməsi baş tutmadı.',
+'uploadvirus'                => 'Faylda virus var! 
+Detallar: $1',
 'upload-source'              => 'Mənbə faylı',
 'sourcefilename'             => 'Fayl adı mənbələri',
 'sourceurl'                  => 'URL mənbəsi:',
@@ -2280,6 +2291,11 @@ Zəhmət olmasa başqa ad seçin.',
 'spamprotectiontitle' => 'Spam qoruma süzgəci',
 'spambot_username'    => 'MediaViki spam təmizləməsi',
 
+# Info page
+'pageinfo-header-edits' => 'Redaktələr',
+'pageinfo-subjectpage'  => 'Səhifə',
+'pageinfo-edits'        => 'Redaktələrin sayı',
+
 # Skin names
 'skinname-standard'    => 'Classic',
 'skinname-nostalgia'   => 'Nostalgia',
@@ -2745,6 +2761,10 @@ Variants for Chinese language
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Bu səhifə keşdən (cache) silinsin?',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-unwatch-button' => 'OK',
+
 # Multipage image navigation
 'imgmultipageprev' => '&larr; əvvəlki səhifə',
 'imgmultipagenext' => 'sonrakı səhifə &rarr;',
@@ -2883,8 +2903,12 @@ Variants for Chinese language
 'sqlite-no-fts'  => '$1 tam mətn axtarma olmadan',
 
 # Add categories per AJAX
+'ajax-edit-category'       => 'Kateqoriyanı redaktə et',
 'ajax-add-category-submit' => 'Əlavə et',
+'ajax-confirm-ok'          => 'OK',
 'ajax-confirm-save'        => 'Qeyd et',
+'ajax-cancel'              => 'Redaktəni ləğv et',
+'ajax-cancel-all'          => 'Bütün dəyişiklikləri ləğv et',
 'ajax-error-title'         => 'Xəta',
 
 );
