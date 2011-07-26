@@ -42,14 +42,14 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'sqliteSetupSearchindex' ),
 
 			// 1.17
-			array( 'addTable', 'iwlinks',                            'patch-iwlinks.sql' ),
-			array( 'addTable', 'user_former_groups',             'patch-user_former_groups.sql'),
+			array( 'addTable', 'iwlinks',                           'patch-iwlinks.sql' ),
+			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
 			array( 'addIndex', 'iwlinks',   'iwl_prefix_title_from', 'patch-rename-iwl_prefix.sql' ),
-			array( 'addField', 'updatelog', 'ul_value',              'patch-ul_value.sql' ),
+			array( 'addField', 'updatelog', 'ul_value',             'patch-ul_value.sql' ),
 			array( 'addField', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
-			array( 'dropIndex', 'iwlinks', 'iwl_prefix',  'patch-kill-iwl_prefix.sql' ),
+			array( 'dropIndex', 'iwlinks', 'iwl_prefix',            'patch-kill-iwl_prefix.sql' ),
 			array( 'dropIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-kill-iwl_pft.sql' ),
-			array( 'addField', 'categorylinks', 'cl_collation', 'patch-categorylinks-better-collation.sql' ),
+			array( 'addField', 'categorylinks', 'cl_collation',     'patch-categorylinks-better-collation.sql' ),
 			array( 'doCollationUpdate' ),
 			array( 'addTable', 'msg_resource',                      'patch-msg_resource.sql' ),
 			array( 'addTable', 'module_deps',                       'patch-module_deps.sql' ),
@@ -58,10 +58,11 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.18
 			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
-			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
+			array( 'addTable', 'uploadstash',                       'patch-uploadstash.sql' ),
 
 			// 1.19
-			array( 'addTable', 'config', 'patch-config.sql' ),
+			array( 'addTable', 'config',                            'patch-config.sql' ),
+			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
 		);
 	}
 
