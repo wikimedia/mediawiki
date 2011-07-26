@@ -643,6 +643,11 @@ class SpecialUndelete extends SpecialPage {
 			$this->displayRestrictionError();
 			return;
 		}
+
+		if ( $this->getUser()->isBlocked() ) {
+			throw new UserBlockedError( $this->getUser()->getBlock() );
+		}
+
 		$this->outputHeader();
 
 		$this->loadRequest();

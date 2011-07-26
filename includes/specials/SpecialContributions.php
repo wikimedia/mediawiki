@@ -317,7 +317,7 @@ class SpecialContributions extends SpecialPage {
 		);
 
 		# Add link to deleted user contributions for priviledged users
-		if( $subject->isAllowed( 'deletedhistory' ) ) {
+		if( $subject->isAllowed( 'deletedhistory' ) && !$subject->isBlocked() ) {
 			$tools[] = $sk->linkKnown(
 				SpecialPage::getTitleFor( 'DeletedContributions', $username ),
 				wfMsgHtml( 'sp-contributions-deleted' )
@@ -486,7 +486,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
 		// Paranoia: avoid brute force searches (bug 17342)
-		if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
+		if( !$wgUser->isAllowed( 'deletedhistory' ) || $wgUser->isBlocked() ) {
 			$conds[] = $this->mDb->bitAnd('rev_deleted',Revision::DELETED_USER) . ' = 0';
 		} elseif( !$wgUser->isAllowed( 'suppressrevision' ) ) {
 			$conds[] = $this->mDb->bitAnd('rev_deleted',Revision::SUPPRESSED_USER) .

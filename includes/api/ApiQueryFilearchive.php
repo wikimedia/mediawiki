@@ -45,7 +45,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	public function execute() {
 		global $wgUser;
 		// Before doing anything at all, let's check permissions
-		if ( !$wgUser->isAllowed( 'deletedhistory' ) ) {
+		if ( !$wgUser->isAllowed( 'deletedhistory' ) || $wgUser->isBlocked() ) {
 			$this->dieUsage( 'You don\'t have permission to view deleted file information', 'permissiondenied' );
 		}
 
