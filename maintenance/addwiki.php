@@ -48,7 +48,10 @@ class AddWiki extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgDefaultExternalStore;
+		global $IP, $wgDefaultExternalStore, $wgVersionNumber;
+		if ( !$wgVersionNumber ) { // set in CommonSettings.php
+			$this->error( '$wgVersionNumber is not set', true );
+		}
 
 		$lang = $this->getArg( 0 );
 		$site = $this->getArg( 1 );
@@ -144,6 +147,13 @@ class AddWiki extends Maintenance {
 
 		# Update the sublists
 		shell_exec( "cd $common && ./refresh-dblist" );
+
+		# Add to wikiversions.dat
+		$file = fopen( "$common/wikiversions.dat", "a" );
+		fwrite( $file, "$dbName php-$wgVersionNumber\n" );
+		fclose( $file );
+		# Rebuild wikiversions.cdb
+		shell_exec( "cd $common/multiversion && ./refreshWikiversionsCDB" );
 
 		# print "Constructing interwiki SQL\n";
 		# Rebuild interwiki tables
