@@ -31,7 +31,7 @@ class SpecialPage {
 
 	// The canonical name of this special page
 	// Also used for the default <h1> heading, @see getDescription()
-	/*private*/ var $mName;
+	private $mName;
 
 	// The local name of this special page
 	private $mLocalName;
