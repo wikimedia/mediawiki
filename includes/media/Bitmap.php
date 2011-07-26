@@ -157,7 +157,7 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		# Try to make a target path for the thumbnail
-		if ( !wfMkdirParents( dirname( $dstPath, null, __METHOD__ ) ) ) {
+		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
 			wfDebug( __METHOD__ . ": Unable to create thumbnail destination directory, falling back to client scaling\n" );
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
