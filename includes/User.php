@@ -1524,8 +1524,18 @@ class User {
 	 * @return Bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $bFromSlave = true ) { // hacked from false due to horrible probs on site
+		return $this->getBlock( $bFromSlave ) instanceof Block && $this->getBlock()->prevents( 'edit' );
+	}
+
+	/**
+	 * Get the block affecting the user, or null if the user is not blocked
+	 *
+	 * @param $bFromSlave Bool Whether to check the slave database instead of the master
+	 * @return Block|null
+	 */
+	public function getBlock( $bFromSlave = true ){
 		$this->getBlockedStatus( $bFromSlave );
-		return $this->mBlock instanceof Block && $this->mBlock->prevents( 'edit' );
+		return $this->mBlock instanceof Block ? $this->mBlock : null;
 	}
 
 	/**
