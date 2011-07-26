@@ -137,6 +137,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$out = '';
 		$registrations = array();
 		$resourceLoader = $context->getResourceLoader();
+
+		// Register sources
+		$out .= ResourceLoader::makeLoaderSourcesScript( $resourceLoader->getSources() );
+
+		// Register modules
 		foreach ( $resourceLoader->getModuleNames() as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			// Support module loader scripts
@@ -144,9 +149,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( $loader !== false ) {
 				$deps = $module->getDependencies();
 				$group = $module->getGroup();
+				$source = $module->getSource();
 				$version = wfTimestamp( TS_ISO_8601_BASIC,
 					$module->getModifiedTime( $context ) );
-				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $loader );
+				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $source, $loader );
 			}
 			// Automatically register module
 			else {
@@ -154,22 +160,28 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				// seem to do that, and custom implementations might forget. Coerce it to TS_UNIX
 				$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
 				$mtime = max( $moduleMtime, wfTimestamp( TS_UNIX, $wgCacheEpoch ) );
-				// Modules without dependencies or a group pass two arguments (name, timestamp) to
+				// Modules without dependencies, a group or a foreign source pass two arguments (name, timestamp) to
 				// mw.loader.register()
-				if ( !count( $module->getDependencies() && $module->getGroup() === null ) ) {
+				if ( !count( $module->getDependencies() && $module->getGroup() === null && $module->getSource() === 'local' ) ) {
 					$registrations[] = array( $name, $mtime );
 				}
-				// Modules with dependencies but no group pass three arguments
+				// Modules with dependencies but no group or foreign source pass three arguments
 				// (name, timestamp, dependencies) to mw.loader.register()
-				elseif ( $module->getGroup() === null ) {
+				elseif ( $module->getGroup() === null && $module->getSource() === 'local' ) {
 					$registrations[] = array(
 						$name, $mtime,  $module->getDependencies() );
 				}
-				// Modules with dependencies pass four arguments (name, timestamp, dependencies, group)
+				// Modules with a group but no foreign source pass four arguments (name, timestamp, dependencies, group)
+				// to mw.loader.register()
+				else if ( $module->getSource() === 'local' ) {
+					$registrations[] = array(
+						$name, $mtime,  $module->getDependencies(), $module->getGroup() );
+				}
+				// Modules with a foreign source pass five arguments (name, timestamp, dependencies, group, source)
 				// to mw.loader.register()
 				else {
 					$registrations[] = array(
-						$name, $mtime,  $module->getDependencies(), $module->getGroup() );
+						$name, $mtime, $module->getDependencies(), $module->getGroup(), $module->getSource() );
 				}
 			}
 		}

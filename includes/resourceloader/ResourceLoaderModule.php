@@ -159,6 +159,16 @@ abstract class ResourceLoaderModule {
 		// Stub, override expected
 		return null;
 	}
+
+	/**
+	 * Get the origin of this module. Should only be overridden for foreign modules.
+	 * 
+	 * @return String: Origin name, 'local' for local modules
+	 */
+	public function getSource() {
+		// Stub, override expected
+		return 'local';
+	}
 	
 	/**
 	 * Where on the HTML page should this module's JS be loaded?
