@@ -1226,6 +1226,7 @@ CREATE INDEX /*i*/page_time ON /*_*/logging (log_namespace, log_title, log_times
 CREATE INDEX /*i*/times ON /*_*/logging (log_timestamp);
 CREATE INDEX /*i*/log_user_type_time ON /*_*/logging (log_user, log_type, log_timestamp);
 CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
+CREATE INDEX /*i*/type_action ON /*_*/logging(log_type, log_action);
 
 
 CREATE TABLE /*_*/log_search (
