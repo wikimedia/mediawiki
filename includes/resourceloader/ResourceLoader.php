@@ -30,11 +30,16 @@ class ResourceLoader {
 
 	/* Protected Static Members */
 	protected static $filterCacheVersion = 4;
+	protected static $requiredSourceProperties = array( 'loadScript' );
 
 	/** Array: List of module name/ResourceLoaderModule object pairs */
 	protected $modules = array();
+
 	/** Associative array mapping module name to info associative array */
 	protected $moduleInfos = array();
+
+	/** array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) ) **/
+	protected $sources = array();
 
 	/* Protected Methods */
 
@@ -178,9 +183,15 @@ class ResourceLoader {
 	 * Registers core modules and runs registration hooks.
 	 */
 	public function __construct() {
-		global $IP, $wgResourceModules;
+		global $IP, $wgResourceModules, $wgResourceLoaderSources, $wgLoadScript;
 
 		wfProfileIn( __METHOD__ );
+
+		// Add 'local' source first
+		$this->addSource( 'local', array( 'loadScript' => $wgLoadScript ) );
+
+		// Add other sources
+		$this->addSource( $wgResourceLoaderSources );
 
 		// Register core modules
 		$this->register( include( "$IP/resources/Resources.php" ) );
@@ -250,7 +261,43 @@ class ResourceLoader {
 		wfProfileOut( __METHOD__ );
 	}
 
- 	/**
+	/**
+	 * Add a foreign source of modules.
+	 * 
+	 * Source properties:
+	 * 'loadScript': URL (either fully-qualified or protocol-relative) of load.php for this source
+	 * 
+	 * @param $id Mixed: source ID (string), or array( id1 => props1, id2 => props2, ... )
+	 * @param $properties Array: source properties
+	 */
+	public function addSource( $id, $properties = null) {
+		// Allow multiple sources to be registered in one call
+		if ( is_array( $id ) ) {
+			foreach ( $id as $key => $value ) {
+				$this->addSource( $key, $value );
+			}
+			return;
+		}
+
+		// Disallow duplicates
+		if ( isset( $this->sources[$id] ) ) {
+			throw new MWException(
+				'ResourceLoader duplicate source addition error. ' .
+				'Another source has already been registered as ' . $id
+			);
+		}
+
+		// Validate properties
+		foreach ( self::$requiredSourceProperties as $prop ) {
+			if ( !isset( $properties[$prop] ) ) {
+				throw new MWException( "Required property $prop missing from source ID $id" );
+			}
+		}
+
+		$this->sources[$id] = $properties;
+	}
+
+	/**
 	 * Get a list of module names
 	 *
 	 * @return Array: List of module names
@@ -289,6 +336,15 @@ class ResourceLoader {
 		}
 
 		return $this->modules[$name];
+	}
+
+	/**
+	 * Get the list of sources
+	 * 
+	 * @return Array: array( id => array of properties, .. )
+	 */
+	public function getSources() {
+		return $this->sources;
 	}
 
 	/**
@@ -660,30 +716,31 @@ class ResourceLoader {
 	 * @param $version Integer: Module version number as a timestamp
 	 * @param $dependencies Array: List of module names on which this module depends
 	 * @param $group String: Group which the module is in.
+	 * @param $source String: Source of the module, or 'local' if not foreign.
 	 * @param $script String: JavaScript code
 	 *
 	 * @return string
 	 */
-	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $script ) {
+	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $source, $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
 		return Xml::encodeJsCall(
-			"( function( name, version, dependencies, group ) {\n\t$script\n} )",
-			array( $name, $version, $dependencies, $group ) );
+			"( function( name, version, dependencies, group, source ) {\n\t$script\n} )",
+			array( $name, $version, $dependencies, $group, $source ) );
 	}
 
 	/**
 	 * Returns JS code which calls mw.loader.register with the given
 	 * parameters. Has three calling conventions:
 	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group ):
+	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group, $source ):
 	 *       Register a single module.
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( array( $name1, $name2 ) ):
 	 *       Register modules with the given names.
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( array(
-	 *        array( $name1, $version1, $dependencies1, $group1 ),
-	 *        array( $name2, $version2, $dependencies1, $group2 ),
+	 *        array( $name1, $version1, $dependencies1, $group1, $source1 ),
+	 *        array( $name2, $version2, $dependencies1, $group2, $source2 ),
 	 *        ...
 	 *     ) ):
 	 *        Registers modules with the given names and parameters.
@@ -692,18 +749,40 @@ class ResourceLoader {
 	 * @param $version Integer: Module version number as a timestamp
 	 * @param $dependencies Array: List of module names on which this module depends
 	 * @param $group String: group which the module is in.
+	 * @param $source String: source of the module, or 'local' if not foreign
 	 *
 	 * @return string
 	 */
 	public static function makeLoaderRegisterScript( $name, $version = null,
-		$dependencies = null, $group = null )
+		$dependencies = null, $group = null, $source = null )
 	{
 		if ( is_array( $name ) ) {
 			return Xml::encodeJsCall( 'mw.loader.register', array( $name ) );
 		} else {
 			$version = (int) $version > 1 ? (int) $version : 1;
 			return Xml::encodeJsCall( 'mw.loader.register',
-				array( $name, $version, $dependencies, $group ) );
+				array( $name, $version, $dependencies, $group, $source ) );
+		}
+	}
+
+	/**
+	 * Returns JS code which calls mw.loader.addSource() with the given
+	 * parameters. Has two calling conventions:
+	 * 
+	 *   - ResourceLoader::makeLoaderSourcesScript( $id, $properties ):
+	 *       Register a single source
+	 * 
+	 *   - ResourceLoader::makeLoaderSourcesScript( array( $id1 => $props1, $id2 => $props2, ... ) );
+	 *       Register sources with the given IDs and properties.
+	 * 
+	 * @param $id String: source ID
+	 * @param $properties Array: source properties (see addSource())
+	 */
+	public static function makeLoaderSourcesScript( $id, $properties = null ) {
+		if ( is_array( $id ) ) {
+			return Xml::encodeJsCall( 'mw.loader.addSource', array( $id ) );
+		} else {
+			return Xml::encodeJsCall( 'mw.loader.addSource', array( $id, $properties ) );
 		}
 	}
 

@@ -299,18 +299,34 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 		 * making it impossible to hold back registration of jquery until after
 		 * mediawiki.
 		 *
+		 * For exact details on support for script, style and messages, look at
+		 * mw.loader.implement.
+		 *
 		 * Format:
 		 *	{
 		 *		'moduleName': {
-		 *		'dependencies': ['required module', 'required module', ...], (or) function() {}
-		 *		'state': 'registered', 'loading', 'loaded', 'ready', or 'error'
-		 *		'script': function() {},
-		 *		'style': 'css code string',
-		 *		'messages': { 'key': 'value' },
-		 *		'version': ############## (unix timestamp)
+		 *			'version': ############## (unix timestamp),
+		 *			'dependencies': ['required.foo', 'bar.also', ...], (or) function() {}
+		 *			'group': 'somegroup', (or) null,
+		 *			'source': 'local', 'someforeignwiki', (or) null
+		 *			'state': 'registered', 'loading', 'loaded', 'ready', or 'error'
+		 *			'script': ...,
+		 *			'style': ...,
+		 *			'messages': { 'key': 'value' },
+		 *		}
 		 *	}
 		 */
 		var	registry = {},
+			/**
+			 * Mapping of sources, keyed by source-id, values are objects.
+			 * Format:
+			 *	{
+			 *		'sourceId': {
+			 *			'loadScript': 'http://foo.bar/w/load.php'
+			 *		}
+			 *	}
+			 */
+			sources = {},
 			// List of modules which will be loaded as when ready
 			batch = [],
 			// List of modules to be loaded
@@ -724,24 +740,41 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			}
 		}
 
+		/**
+		 * Asynchronously append a script tag to the end of the body
+		 * that invokes load.php
+		 * @param moduleMap {Object}: Module map, see buildModulesString()
+		 * @param currReqBase {Object}: Object with other parameters (other than 'modules') to use in the request
+		 * @param sourceLoadScript {String}: URL of load.php
+		 */
+		function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
+			var request = $.extend(
+				{ 'modules': buildModulesString( moduleMap ) },
+				currReqBase
+			);
+			request = sortQuery( request );
+			// Asynchronously append a script tag to the end of the body
+			// Append &* to avoid triggering the IE6 extension check
+			addScript( sourceLoadScript + '?' + $.param( request ) + '&*' );
+		}
+
 		/* Public Methods */
 
 		/**
 		 * Requests dependencies from server, loading and executing when things when ready.
 		 */
 		this.work = function() {
-				// Build a list of request parameters
-			var	base = {
-					'skin': mw.config.get( 'skin' ),
-					'lang': mw.config.get( 'wgUserLanguage' ),
-					'debug': mw.config.get( 'debug' )
+				// Build a list of request parameters common to all requests.
+			var	reqBase = {
+					skin: mw.config.get( 'skin' ),
+					lang: mw.config.get( 'wgUserLanguage' ),
+					debug: mw.config.get( 'debug' )
 				},
-				// Extend request parameters with a list of modules in the batch
-				requests = [],
-				// Split into groups
-				groups = {};
+				// Split module batch by source and by group.
+				splits = {},
+				maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', -1 );
 
-			// Appends a list of modules to the batch
+			// Appends a list of modules from the queue to the batch
 			for ( var q = 0; q < queue.length; q++ ) {
 				// Only request modules which are undefined or registered
 				if ( !( queue[q] in registry ) || registry[queue[q]].state === 'registered' ) {
@@ -755,85 +788,125 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 					}
 				}
 			}
-			// Early exit if there's nothing to load
+			// Early exit if there's nothing to load...
 			if ( !batch.length ) {
 				return;
 			}
-			// Clean up the queue
+
+			// The queue has been processed into the batch, clear up the queue.
 			queue = [];
+
 			// Always order modules alphabetically to help reduce cache
-			// misses for otherwise identical content
+			// misses for otherwise identical content.
 			batch.sort();
+
+			// Split batch by source and by group.
 			for ( var b = 0; b < batch.length; b++ ) {
-				var bGroup = registry[batch[b]].group;
-				if ( !( bGroup in groups ) ) {
-					groups[bGroup] = [];
+				var	bSource = registry[batch[b]].source,
+					bGroup = registry[batch[b]].group;
+				if ( !( bSource in splits ) ) {
+					splits[bSource] = {};
 				}
-				groups[bGroup][groups[bGroup].length] = batch[b];
+				if ( !( bGroup in splits[bSource] ) ) {
+					splits[bSource][bGroup] = [];
+				}
+				var bSourceGroup = splits[bSource][bGroup];
+				bSourceGroup[bSourceGroup.length] = batch[b];
 			}
-			for ( var group in groups ) {
-				// Calculate the highest timestamp
-				var version = 0;
-				for ( var g = 0; g < groups[group].length; g++ ) {
-					if ( registry[groups[group][g]].version > version ) {
-						version = registry[groups[group][g]].version;
-					}
-				}
 
-				var	reqBase = $.extend( { 'version': formatVersionNumber( version ) }, base ),
-					reqBaseLength = $.param( reqBase ).length,
-					reqs = [],
-					limit = mw.config.get( 'wgResourceLoaderMaxQueryLength', -1 ),
-					// We may need to split up the request to honor the query string length limit,
-					// so build it piece by piece.
-					l = reqBaseLength + 9, // '&modules='.length == 9
-					r = 0;
-
-				reqs[0] = {}; // { prefix: [ suffixes ] }
-
-				for ( var i = 0; i < groups[group].length; i++ ) {
-						// Determine how many bytes this module would add to the query string
-					var	lastDotIndex = groups[group][i].lastIndexOf( '.' ),
-						// Note that these substr() calls work even if lastDotIndex == -1
-						prefix = groups[group][i].substr( 0, lastDotIndex ),
-						suffix = groups[group][i].substr( lastDotIndex + 1 ),
-						bytesAdded = prefix in reqs[r]
-							? suffix.length + 3 // '%2C'.length == 3
-							: groups[group][i].length + 3; // '%7C'.length == 3
-
-					// If the request would become too long, create a new one,
-					// but don't create empty requests
-					if ( limit > 0 && !$.isEmptyObject( reqs[r] ) && l + bytesAdded > limit ) {
-						// This request would become too long, create a new one
-						r++;
-						reqs[r] = {};
-						l = reqBaseLength + 9;
-					}
-					if ( !( prefix in reqs[r] ) ) {
-						reqs[r][prefix] = [];
-					}
-					reqs[r][prefix].push( suffix );
-					l += bytesAdded;
-				}
-				for ( var r = 0; r < reqs.length; r++ ) {
-					requests[requests.length] = $.extend(
-						{ 'modules': buildModulesString( reqs[r] ) }, reqBase
-					);
-				}
-			}
-			// Clear the batch - this MUST happen before we append the
-			// script element to the body or it's possible that the script
+			// Clear the batch - this MUST happen before we append any
+			// script elements to the body or it's possible that a script
 			// will be locally cached, instantly load, and work the batch
 			// again, all before we've cleared it causing each request to
-			// include modules which are already loaded
+			// include modules which are already loaded.
 			batch = [];
-			// Asynchronously append a script tag to the end of the body
-			for ( var r = 0; r < requests.length; r++ ) {
-				requests[r] = sortQuery( requests[r] );
-				// Append &* to avoid triggering the IE6 extension check
-				var src = mw.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] ) + '&*';
-				addScript( src );
+
+			var source, group, modules, maxVersion, sourceLoadScript;
+
+			for ( source in splits ) {
+
+				sourceLoadScript = sources[source].loadScript;
+
+				for ( group in splits[source] ) {
+
+					// Cache access to currently selected list of
+					// modules for this group from this source.
+					modules = splits[source][group];
+
+					// Calculate the highest timestamp
+					maxVersion = 0;
+					for ( var g = 0; g < modules.length; g++ ) {
+						if ( registry[modules[g]].version > maxVersion ) {
+							maxVersion = registry[modules[g]].version;
+						}
+					}
+
+					var	currReqBase = $.extend( { 'version': formatVersionNumber( maxVersion ) }, reqBase ),
+						currReqBaseLength = $.param( currReqBase ).length,
+						moduleMap = {},
+						// We may need to split up the request to honor the query string length limit,
+						// so build it piece by piece.
+						l = currReqBaseLength + 9; // '&modules='.length == 9
+
+					moduleMap = {}; // { prefix: [ suffixes ] }
+
+					for ( var i = 0; i < modules.length; i++ ) {
+							// Determine how many bytes this module would add to the query string
+						var	lastDotIndex = modules[i].lastIndexOf( '.' ),
+							// Note that these substr() calls work even if lastDotIndex == -1
+							prefix = modules[i].substr( 0, lastDotIndex ),
+							suffix = modules[i].substr( lastDotIndex + 1 ),
+							bytesAdded = prefix in moduleMap
+								? suffix.length + 3 // '%2C'.length == 3
+								: modules[i].length + 3; // '%7C'.length == 3
+
+						// If the request would become too long, create a new one,
+						// but don't create empty requests
+						if ( maxQueryLength > 0 && !$.isEmptyObject( moduleMap ) && l + bytesAdded > maxQueryLength ) {
+							// This request would become too long, create a new one
+							// and fire off the old one
+							doRequest( moduleMap, currReqBase, sourceLoadScript );
+							moduleMap = {};
+							l = currReqBaseLength + 9;
+						}
+						if ( !( prefix in moduleMap ) ) {
+							moduleMap[prefix] = [];
+						}
+						moduleMap[prefix].push( suffix );
+						l += bytesAdded;
+					}
+					// If there's anything left in moduleMap, request that too
+					if ( !$.isEmptyObject( moduleMap ) ) {
+						doRequest( moduleMap, currReqBase, sourceLoadScript );
+					}
+				}
 			}
+		};
+
+		/**
+		 * Register a source.
+		 *
+		 * @param id {String}: Short lowercase a-Z string representing a source, only used internally.
+		 * @param props {Object}: Object containing only the loadScript property which is a url to
+		 * the load.php location of the source.
+		 * @return {Boolean}
+		 */
+		this.addSource = function( id, props ) {
+			// Allow multiple additions
+			if ( typeof id === 'object' ) {
+				for ( var source in id ) {
+					mw.loader.addSource( source, id[source] );
+				}
+				return true;
+			}
+
+			if ( sources[id] !== undefined ) {
+				throw new Error( 'source already registered: ' + id );
+			}
+
+			sources[id] = props;
+
+			return true;
 		};
 
 		/**
@@ -845,13 +918,16 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 		 * @param dependencies {String|Array|Function}: One string or array of strings of module
 		 *  names on which this module depends, or a function that returns that array.
 		 * @param group {String}: Group which the module is in (optional, defaults to null)
+		 * @param source {String}: Name of the source. Defaults to local.
 		 */
-		this.register = function( module, version, dependencies, group ) {
+		this.register = function( module, version, dependencies, group, source ) {
 			// Allow multiple registration
 			if ( typeof module === 'object' ) {
 				for ( var m = 0; m < module.length; m++ ) {
+					// module is an array of module names
 					if ( typeof module[m] === 'string' ) {
 						mw.loader.register( module[m] );
+					// module is an array of arrays
 					} else if ( typeof module[m] === 'object' ) {
 						mw.loader.register.apply( mw.loader, module[m] );
 					}
@@ -867,10 +943,11 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			}
 			// List the module as registered
 			registry[module] = {
-				'state': 'registered',
-				'group': typeof group === 'string' ? group : null,
+				'version': version !== undefined ? parseInt( version, 10 ) : 0,
 				'dependencies': [],
-				'version': version !== undefined ? parseInt( version, 10 ) : 0
+				'group': typeof group === 'string' ? group : null,
+				'source': typeof source === 'string' ? source: 'local',
+				'state': 'registered'
 			};
 			if ( typeof dependencies === 'string' ) {
 				// Allow dependencies to be given as a single module name

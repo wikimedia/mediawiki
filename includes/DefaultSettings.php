@@ -2439,6 +2439,16 @@ $wgBetterDirectionality = true;
 $wgResourceModules = array();
 
 /**
+ * Extensions should register foreign module sources here. 'local' is a
+ * built-in source that is not in this array, but defined by
+ * ResourceLoader::__construct() so that it cannot be unset.
+ *
+ * Example:
+ *   $wgResourceLoaderSources['foo'] = array( 'loadScript' => 'http://example.org/w/load.php' );
+ */
+$wgResourceLoaderSources = array();
+
+/**
  * Maximum time in seconds to cache resources served by the resource loader
  */
 $wgResourceLoaderMaxage = array(
