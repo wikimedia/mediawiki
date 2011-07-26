@@ -30,6 +30,8 @@ production.
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
 * (bug 29748) Add API search prefix support
 * (bug 29684) Set forgotten parameter types in ApiQueryIWLinks
+* (bug 29685) do not output NULL parentid with
+  list=deletedrevs&drprop=parentid
 
 === Languages updated in 1.19 ===
 
