@@ -19,6 +19,7 @@ production.
 * $wgDnsBlacklistUrls now accepts an array with url and key as the
   elements to work with DNSBLs that require keys, such as
   Project Honeypot.
+* (bug 30022) Add support for custom loadScript sources to ResourceLoader.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
