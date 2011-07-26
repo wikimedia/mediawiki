@@ -4246,13 +4246,10 @@ Refers to the specific category. "Remove this category" is also correct.',
 'ajax-confirm-title'            => 'Title for a dialog box in which the user is asked for an edit summary',
 'ajax-confirm-save'             => 'Submit button {{Identical|Save}}',
 'ajax-confirm-save-all'         => 'Submit button to save all changes',
-'ajax-add-category-summary'     => 'See {{msg-mw|ajax-category-question}}. $1 is a category name. This is used inside a sentence, make sure that the case is correct.',
-'ajax-edit-category-summary'    => 'See {{msg-mw|ajax-category-question}}. $1 and $2 are both category names. This is used inside a sentence, make sure that the case is correct.',
-'ajax-remove-category-summary'  => 'See {{msg-mw|ajax-category-question}}. $1 is a category name. This is used inside a sentence, make sure that the case is correct.',
-'ajax-category-question'        => 'Question the user is asked before submit. $1 is filled with a list of one or more of the following messages; 
-{{msg-mw|ajax-add-category-summary}}, {{msg-mw|ajax-remove-category-summary}}, {{msg-mw|ajax-edit-category-summary}}. 
-The last of the inserted messages is prefaced by {{msg-mw|ajax-category-and}}. The result would be something like:
-Why do you want to remove Category:A and add Category:C ?',
+'ajax-add-category-summary'     => 'See {{msg-mw|ajax-category-question}}. $1 is a category name.',
+'ajax-edit-category-summary'    => 'See {{msg-mw|ajax-category-question}}. $1 and $2 are both category names.',
+'ajax-remove-category-summary'  => 'See {{msg-mw|ajax-category-question}}. $1 is a category name. ',
+'ajax-category-question'        => 'Question the user is asked before submit. It\'s followed by a list of the changes.',
 'ajax-category-and'             => 'Used to join multiple list items. Eg. "Edit foo, move bar and add foobar"',
 'ajax-error-title'              => '{{Identical|Error}}',
 'ajax-category-already-present' => 'Error message. $1 is the category name',

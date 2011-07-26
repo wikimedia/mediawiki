@@ -3487,7 +3487,6 @@ $wgMessageStructure = array(
 		'ajax-edit-category-summary',
 		'ajax-remove-category-summary',
 		'ajax-category-question',
-		'ajax-category-and',
 		'ajax-error-title',
 		'ajax-remove-category-error',
 		'ajax-edit-category-error',
