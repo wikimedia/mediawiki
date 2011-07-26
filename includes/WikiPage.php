@@ -1655,6 +1655,7 @@ class WikiPage extends Page {
 				'ar_timestamp'  => 'rev_timestamp',
 				'ar_minor_edit' => 'rev_minor_edit',
 				'ar_rev_id'     => 'rev_id',
+				'ar_parent_id'  => 'rev_parent_id',
 				'ar_text_id'    => 'rev_text_id',
 				'ar_text'       => '\'\'', // Be explicit to appease
 				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
