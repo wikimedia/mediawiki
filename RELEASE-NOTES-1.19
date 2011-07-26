@@ -29,6 +29,7 @@ production.
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
 * (bug 29748) Add API search prefix support
+* (bug 29684) Set forgotten parameter types in ApiQueryIWLinks
 
 === Languages updated in 1.19 ===
 
