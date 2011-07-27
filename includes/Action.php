@@ -198,7 +198,8 @@ abstract class Action {
 		}
 
 		if ( $this->requiresUnblock() && $user->isBlocked() ) {
-			throw new UserBlockedError( $user->getBlock() );
+			$block = $user->mBlock;
+			throw new UserBlockedError( $block );
 		}
 	}
 
