@@ -883,7 +883,8 @@ select {
 .toc ul {
 	list-style-type: none;
 	list-style-image: none;
-	padding: 0 .4em;
+	margin-left: 0;
+	padding-left: 0;
 	text-align: left;
 }
 #toc ul ul,
