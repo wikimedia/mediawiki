@@ -144,7 +144,7 @@ class VectorTemplate extends BaseTemplate {
 			<!-- /sitenotice -->
 			<?php endif; ?>
 			<!-- firstHeading -->
-			<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ) ?></h1>
+			<div class="mw-h1 firstHeading"><h1><?php $this->html( 'title' ) ?></h1></div>
 			<!-- /firstHeading -->
 			<!-- bodyContent -->
 			<div id="bodyContent">

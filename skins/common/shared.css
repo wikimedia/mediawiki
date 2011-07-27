@@ -82,14 +82,22 @@ div#mw-js-message {
 	background-color: #fcfcfc;
 }
 
-/* Edit section links */
+/* Display headings on the same line as edit link */
+h1, h2, h3, h4, h5, h6 { display: inline; margin: 0; }
+/* But then we have to reintroduce the margin.  We use the W3 recommended mar-
+ * gins <http://www.w3.org/TR/CSS21/sample.html>, multiplying by the recom-
+ * mended font-size. */
+.mw-h1 { margin: 1.34em 0; }
+.mw-h2 { margin: 1.13em 0; }
+.mw-h3 { margin: 0.97em 0; }
+.mw-h4 { margin: 1.12em 0; }
+.mw-h5 { margin: 1.25em 0; }
+.mw-h6 { margin: 1.25em 0; }
+
+/* Give edi section link some space */
 .editsection {
-	float: right;
-	margin-left: 5px;
+	margin: 0 .8em;
 }
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */.mw-content-ltr .editsection, .mw-content-rtl .mw-content-ltr .editsection { float: right; }
-/* @noflip */.mw-content-rtl .editsection, .mw-content-ltr .mw-content-rtl .editsection { float: left; }
 /**
  * File histories
  */
