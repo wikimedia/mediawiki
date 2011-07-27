@@ -235,10 +235,12 @@ class CologneBlueTemplate extends LegacyTemplate {
 				}
 				$s .= "\n<h6>" . htmlspecialchars( $h ) . "</h6>";
 			}
-			foreach ( $browseLinks as $link ) {
-				if ( $link['text'] != '-' ) {
-					$s .= "<a href=\"{$link['href']}\">" .
-						htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+			if( is_array( $browseLinks ) ) {
+				foreach ( $browseLinks as $link ) {
+					if ( $link['text'] != '-' ) {
+						$s .= "<a href=\"{$link['href']}\">" .
+							htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+					}
 				}
 			}
 			$barnumber++;
