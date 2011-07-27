@@ -815,6 +815,17 @@ mật khẩu cũ.',
 Mật khẩu tạm: $2',
 'passwordreset-emailsent'      => 'Đã gửi thư điện tử nhắc nhở.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Đổi địa chỉ thư điện tử',
+'changeemail-header'   => 'Đổi địa chỉ thư điện tử của tài khoản',
+'changeemail-text'     => 'Điền biểu mẫu này để đổi địa chỉ thư điện tử. Bạn sẽ cần phải nhập mật khẩu để xác nhận thay đổi này.',
+'changeemail-no-info'  => 'Bạn phải đăng nhập mới có thể truy cập trực tiếp trang này.',
+'changeemail-oldemail' => 'Địa chỉ thư điện tử hiện tại:',
+'changeemail-newemail' => 'Địa chỉ thư điện tử mới:',
+'changeemail-none'     => '(không có)',
+'changeemail-submit'   => 'Đổi địa chỉ',
+'changeemail-cancel'   => 'Hủy bỏ',
+
 # Edit page toolbar
 'bold_sample'     => 'Chữ đậm',
 'bold_tip'        => 'Chữ đậm',
@@ -1317,6 +1328,8 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prefs-watchlist-token'         => 'Số thẻ Danh sách theo dõi:',
 'prefs-misc'                    => 'Linh tinh',
 'prefs-resetpass'               => 'Thay đổi mật khẩu',
+'prefs-changeemail'             => 'Đổi địa chỉ thư điện tử',
+'prefs-setemail'                => 'Đặt địa chỉ thư điện tử',
 'prefs-email'                   => 'Tùy chọn thư điện tử',
 'prefs-rendering'               => 'Bề ngoài',
 'saveprefs'                     => 'Lưu tùy chọn',
@@ -3832,14 +3845,18 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'ajax-confirm-save'             => 'Lưu',
 'ajax-confirm-save-all'         => 'Lưu tất cả thay đổi',
 'ajax-cancel'                   => 'Hủy bỏ các sửa đổi',
+'ajax-cancel-all'               => 'Hủy bỏ tất cả thay đổi',
 'ajax-add-category-summary'     => 'Thêm thể loại “$1”',
 'ajax-edit-category-summary'    => 'Thay thể loại “$1” bằng “$2”',
 'ajax-remove-category-summary'  => 'Gỡ thể loại “$1”',
+'ajax-category-question'        => 'Tại sao bạn muốn thực hiện những thay đổi sau:',
 'ajax-error-title'              => 'Lỗi',
-'ajax-remove-category-error'    => 'Không thể gỡ bỏ thể loại này.
+'ajax-remove-category-error'    => 'Không thể gỡ bỏ thể loại “$1”.
 Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
-'ajax-edit-category-error'      => 'Không thể sửa đổi thể loại này.
+'ajax-edit-category-error'      => 'Không thể sửa đổi thể loại “$1”.
 Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
 'ajax-category-already-present' => 'Trang này đã nằm trong thể loại “$1”.',
+'ajax-category-hook-error'      => 'Một hàm địa phương năng đã chặn không lưu được những thay đổi',
+'ajax-api-error'                => 'API cho ra lỗi: $1: $2',
 
 );

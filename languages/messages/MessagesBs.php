@@ -815,6 +815,16 @@ možete zanemariti ovu poruku i nastaviti koristiti staru šifru.',
 Privremena šifra: $2',
 'passwordreset-emailsent'      => 'E-mail podsjetnik je poslan.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Promijeni e-mail adresu',
+'changeemail-header'   => 'Promijeni e-mail adresu korisničkog računa',
+'changeemail-text'     => 'Ispunite ovaj formular da biste promijenili svoju e-mail adresu. Morat ćete upisati svoj pasvord da potvrdite ovu promjenu.',
+'changeemail-oldemail' => 'Trenutna e-mail adresa:',
+'changeemail-newemail' => 'Nova e-mail adresa:',
+'changeemail-none'     => '(ništa)',
+'changeemail-submit'   => 'Promijeni e-mail',
+'changeemail-cancel'   => 'Otkaži',
+
 # Edit page toolbar
 'bold_sample'     => 'Podebljan tekst',
 'bold_tip'        => 'Podebljan tekst',
@@ -3056,7 +3066,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 
 # Metadata
 'metadata'          => 'Metapodaci',
-'metadata-help'     => 'Ova datoteka sadržava dodatne podatke koje je vjerojatno dodala digitalna kamera ili skener u procesu snimanja odnosno digitalizacije. Ako je datoteka mijenjana, podatci možda nisu u skladu sa stvarnim stanjem.',
+'metadata-help'     => 'Ova datoteka sadržava dodatne podatke koje je vjerovatno dodala digitalna kamera ili skener u procesu snimanja, odnosno digitalizacije. Ako je datoteka mijenjana, podaci možda nisu u skladu sa stvarnim stanjem.',
 'metadata-expand'   => 'Pokaži sve detalje',
 'metadata-collapse' => 'Sakrij dodatne podatke',
 'metadata-fields'   => 'Polja metapodataka slika su prikazani ispod slike će biti uključeni u prikaz stranice slike kada je sakrivena tabela metapodataka. U suprotnom će biti sakrivena po postavkama.

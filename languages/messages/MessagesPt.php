@@ -3823,7 +3823,7 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 'ajax-add-category-summary'     => 'adicionar a categoria "$1"',
 'ajax-edit-category-summary'    => 'alterar a categoria "$1" para "$2"',
 'ajax-remove-category-summary'  => 'remover a categoria "$1"',
-'ajax-category-question'        => '<strong>Porque</strong> é que pretende $1?',
+'ajax-category-question'        => 'Porque é que pretende fazer as seguintes alterações:',
 'ajax-error-title'              => 'Erro',
 'ajax-remove-category-error'    => 'Não foi possível remover a categoria "$1".
 Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',

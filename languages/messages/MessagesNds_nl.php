@@ -1405,7 +1405,7 @@ Disse haandeling kan niet ongedaonemaakt wörden.',
 t Möt minder as {{PLURAL:$1|letter|letters}} hebben.',
 'yourgender'                    => 'Geslachte:',
 'gender-unknown'                => 'Niet an-egeven',
-'gender-male'                   => 'Keel',
+'gender-male'                   => 'Keerl',
 'gender-female'                 => 'Deerne',
 'prefs-help-gender'             => 'Opsioneel: dit gebruken wie um gebrukers op een juuste maniere an te spreken in de programmatuur.
 Disse informasie is zichtbaor veur aandere gebrukers.',

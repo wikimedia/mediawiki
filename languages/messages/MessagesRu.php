@@ -3821,7 +3821,7 @@ MediaWiki распространяется в надежде, что она бу
 'ajax-add-category-summary'     => 'добавить категорию «$1»',
 'ajax-edit-category-summary'    => 'изменить категорию «$1» на «$2»',
 'ajax-remove-category-summary'  => 'удалить категорию «$1»',
-'ajax-category-question'        => '<strong>Почему</strong> вы хотите $1?',
+'ajax-category-question'        => 'Почему вы хотите сделать следующие изменения:',
 'ajax-error-title'              => 'Ошибка',
 'ajax-remove-category-error'    => 'Не удалось убрать категорию «$1».
 Обычно это происходит в случае, когда категория была добавлена через шаблон.',

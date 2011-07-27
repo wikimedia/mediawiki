@@ -3030,7 +3030,7 @@ Tovuti hii inapata matatatizo wakati huu.',
 'ajax-edit-category-summary'    => 'Jamii ya "$1" imebadilishwa iwe "$2"',
 'ajax-remove-category-summary'  => 'Ondoa jamii ya "$1"',
 'ajax-error-title'              => 'Hitilafu',
-'ajax-remove-category-error'    => ' Jamii hii haikuweza kuondolewa.
+'ajax-remove-category-error'    => ' Jamii "$1" haikuweza kuondolewa.
 Huwa jamii haiwezi kuondolewa kwenye ukurasa wakati jamii imeingizwa ndani ya kigezo fulani.',
 'ajax-category-already-present' => 'Ukarasa huu tayari uko katika jamii ya $1',
 
