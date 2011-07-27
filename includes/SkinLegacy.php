@@ -252,7 +252,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		$s = array(
 			$this->getSkin()->mainPageLink(),
-			$this->getSkin()->specialLink( 'Recentchanges' )
+			Linker::specialLink( 'Recentchanges' )
 		);
 
 		if ( $wgOut->isArticleRelated() ) {
@@ -505,7 +505,7 @@ class LegacyTemplate extends BaseTemplate {
 		}
 
 		if ( 'history' == $action || isset( $diff ) || isset( $oldid ) ) {
-			$s[] .= $this->getSkin()->link(
+			$s[] .= Linker::link(
 					$this->getSkin()->getTitle(),
 					wfMsg( 'currentrev' ),
 					array(),
@@ -518,7 +518,7 @@ class LegacyTemplate extends BaseTemplate {
 			# do not show "You have new messages" text when we are viewing our
 			# own talk page
 			if ( !$this->getSkin()->getTitle()->equals( $wgUser->getTalkPage() ) ) {
-				$tl = $this->getSkin()->link(
+				$tl = Linker::link(
 					$wgUser->getTalkPage(),
 					wfMsgHtml( 'newmessageslink' ),
 					array(),
@@ -526,7 +526,7 @@ class LegacyTemplate extends BaseTemplate {
 					array( 'known', 'noclasses' )
 				);
 
-				$dl = $this->getSkin()->link(
+				$dl = Linker::link(
 					$wgUser->getTalkPage(),
 					wfMsgHtml( 'newmessagesdifflink' ),
 					array(),
@@ -615,7 +615,7 @@ class LegacyTemplate extends BaseTemplate {
 				$t = wfMsg( 'viewsource' );
 			}
 
-			$s = $this->getSkin()->link(
+			$s = Linker::link(
 				$this->getSkin()->getTitle(),
 				$t,
 				array(),
@@ -635,7 +635,7 @@ class LegacyTemplate extends BaseTemplate {
 		if ( $this->getSkin()->getTitle()->getArticleId() && ( !$diff ) && $wgUser->isAllowed( 'delete' ) ) {
 			$t = wfMsg( 'deletethispage' );
 
-			$s = $this->getSkin()->link(
+			$s = Linker::link(
 				$this->getSkin()->getTitle(),
 				$t,
 				array(),
@@ -663,7 +663,7 @@ class LegacyTemplate extends BaseTemplate {
 				$query = array( 'action' => 'protect' );
 			}
 
-			$s = $this->getSkin()->link(
+			$s = Linker::link(
 				$this->getSkin()->getTitle(),
 				$text,
 				array(),
@@ -701,7 +701,7 @@ class LegacyTemplate extends BaseTemplate {
 				$id = 'mw-watch-link' . $this->mWatchLinkNum;
 			}
 
-			$s = $this->getSkin()->link(
+			$s = Linker::link(
 				$title,
 				$text,
 				array( 'id' => $id ),
@@ -717,7 +717,7 @@ class LegacyTemplate extends BaseTemplate {
 
 	function moveThisPage() {
 		if ( $this->getSkin()->getTitle()->quickUserCan( 'move' ) ) {
-			return $this->getSkin()->link(
+			return Linker::link(
 				SpecialPage::getTitleFor( 'Movepage' ),
 				wfMsg( 'movethispage' ),
 				array(),
@@ -731,7 +731,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function historyLink() {
-		return $this->getSkin()->link(
+		return Linker::link(
 			$this->getSkin()->getTitle(),
 			wfMsgHtml( 'history' ),
 			array( 'rel' => 'archives' ),
@@ -740,7 +740,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function whatLinksHere() {
-		return $this->getSkin()->link(
+		return Linker::link(
 			SpecialPage::getTitleFor( 'Whatlinkshere', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
 			wfMsgHtml( 'whatlinkshere' ),
 			array(),
@@ -750,7 +750,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function userContribsLink() {
-		return $this->getSkin()->link(
+		return Linker::link(
 			SpecialPage::getTitleFor( 'Contributions', $this->getSkin()->getTitle()->getDBkey() ),
 			wfMsgHtml( 'contributions' ),
 			array(),
@@ -760,7 +760,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function emailUserLink() {
-		return $this->getSkin()->link(
+		return Linker::link(
 			SpecialPage::getTitleFor( 'Emailuser', $this->getSkin()->getTitle()->getDBkey() ),
 			wfMsg( 'emailuser' ),
 			array(),
@@ -775,7 +775,7 @@ class LegacyTemplate extends BaseTemplate {
 		if ( !$wgOut->isArticleRelated() ) {
 			return '(' . wfMsg( 'notanarticle' ) . ')';
 		} else {
-			return $this->getSkin()->link(
+			return Linker::link(
 				SpecialPage::getTitleFor( 'Recentchangeslinked', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
 				wfMsg( 'recentchangeslinked-toolbox' ),
 				array(),
@@ -836,7 +836,7 @@ class LegacyTemplate extends BaseTemplate {
 			$text = wfMsg( 'talkpage' );
 		}
 
-		$s = $this->getSkin()->link( $link, $text, array(), array(), $linkOptions );
+		$s = Linker::link( $link, $text, array(), array(), $linkOptions );
 
 		return $s;
 	}
@@ -859,7 +859,7 @@ class LegacyTemplate extends BaseTemplate {
 			$title = $this->getSkin()->getTitle()->getTalkPage();
 		}
 
-		return $this->getSkin()->link(
+		return Linker::link(
 			$title,
 			wfMsg( 'postcomment' ),
 			array(),
@@ -876,9 +876,9 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $wgUploadNavigationUrl ) {
 			# Using an empty class attribute to avoid automatic setting of "external" class
-			return $this->makeExternalLink( $wgUploadNavigationUrl, wfMsgHtml( 'upload' ), false, null, array( 'class' => '' ) );
+			return Linker::makeExternalLink( $wgUploadNavigationUrl, wfMsgHtml( 'upload' ), false, null, array( 'class' => '' ) );
 		} else {
-			return $this->getSkin()->link(
+			return Linker::link(
 				SpecialPage::getTitleFor( 'Upload' ),
 				wfMsgHtml( 'upload' ),
 				array(),
@@ -899,7 +899,7 @@ class LegacyTemplate extends BaseTemplate {
 			if ( $this->getSkin()->showIPinHeader() ) {
 				$name = wfGetIP();
 
-				$talkLink = $this->getSkin()->link( $wgUser->getTalkPage(),
+				$talkLink = Linker::link( $wgUser->getTalkPage(),
 					$wgLang->getNsText( NS_TALK ) );
 
 				$ret .= "$name ($talkLink)";
@@ -917,30 +917,30 @@ class LegacyTemplate extends BaseTemplate {
 			$loginlink = $wgUser->isAllowed( 'createaccount' )
 				? 'nav-login-createaccount'
 				: 'login';
-			$ret .= "\n<br />" . $this->getSkin()->link(
+			$ret .= "\n<br />" . Linker::link(
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				wfMsg( $loginlink ), array(), $query
 			);
 		} else {
 			$returnTo = $this->getSkin()->getTitle()->getPrefixedDBkey();
-			$talkLink = $this->getSkin()->link( $wgUser->getTalkPage(),
+			$talkLink = Linker::link( $wgUser->getTalkPage(),
 				$wgLang->getNsText( NS_TALK ) );
 
-			$ret .= $this->getSkin()->link( $wgUser->getUserPage(),
+			$ret .= Linker::link( $wgUser->getUserPage(),
 				htmlspecialchars( $wgUser->getName() ) );
 			$ret .= " ($talkLink)<br />";
 			$ret .= $wgLang->pipeList( array(
-				$this->getSkin()->link(
+				Linker::link(
 					SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
 					array(), array( 'returnto' => $returnTo )
 				),
-				$this->getSkin()->specialLink( 'Preferences' ),
+				Linker::specialLink( 'Preferences' ),
 			) );
 		}
 
 		$ret = $wgLang->pipeList( array(
 			$ret,
-			$this->getSkin()->link(
+			Linker::link(
 				Title::newFromText( wfMsgForContent( 'helppage' ) ),
 				wfMsg( 'help' )
 			),
