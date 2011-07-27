@@ -47,7 +47,13 @@ class OutputPage {
 	var $mHTMLtitle = '';
 
 	/// Should be private. Is the displayed content related to the source of the corresponding wiki article.
-	var $mIsarticle = true;
+	var $mIsarticle = false;
+
+	/**
+	 * Should be private. Has get/set methods properly documented.
+	 * Stores "article flag" toggle.
+	 */
+	var $mIsArticleRelated = true;
 
 	/**
 	 * Should be private. We have to set isPrintable(). Some pages should
@@ -144,12 +150,6 @@ class OutputPage {
 
 	// Parser related.
 	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
-
-	/**
-	 * Should be private. Has get/set methods properly documented.
-	 * Stores "article flag" toggle.
-	 */
-	var $mIsArticleRelated = true;
 
 	/// lazy initialised, use parserOptions()
 	protected $mParserOptions = null;
@@ -2303,14 +2303,7 @@ $templates
 		$bodyAttrs = array();
 
 		# Crazy edit-on-double-click stuff
-		$action = $this->getRequest()->getVal( 'action', 'view' );
-
-		if (
-			$this->getTitle()->getNamespace() != NS_SPECIAL &&
-			in_array( $action, array( 'view', 'purge' ) ) &&
-			$this->getUser()->getOption( 'editondblclick' )
-		)
-		{
+		if ( $this->isArticle() && $this->getUser()->getOption( 'editondblclick' ) ) {
 			$editUrl = $this->getTitle()->getLocalUrl( $sk->editUrlOptions() );
 			$bodyAttrs['ondblclick'] = "document.location = '" .
 				Xml::escapeJsString( $editUrl ) . "'";

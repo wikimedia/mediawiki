@@ -728,9 +728,7 @@ abstract class Skin extends ContextSource {
 		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 
 		if ( $type == 'detect' ) {
-			$diff = $this->getRequest()->getVal( 'diff' );
-
-			if ( is_null( $diff ) && !$this->isRevisionCurrent() && wfMsgForContent( 'history_copyright' ) !== '-' ) {
+			if ( !$this->isRevisionCurrent() && wfMsgForContent( 'history_copyright' ) !== '-' ) {
 				$type = 'history';
 			} else {
 				$type = 'normal';

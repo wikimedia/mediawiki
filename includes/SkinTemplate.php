@@ -1111,8 +1111,6 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ );
 
-		$action = $wgRequest->getVal( 'action', 'view' );
-
 		$nav_urls = array();
 		$nav_urls['mainpage'] = array( 'href' => self::makeMainPageUrl() );
 		if( $wgUploadNavigationUrl ) {
@@ -1129,7 +1127,7 @@ class SkinTemplate extends Skin {
 
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
-		if( $this->getTitle()->getNamespace() != NS_SPECIAL && ( $action == 'view' || $action == 'purge' ) ) {
+		if( $out->isArticle() ) {
 			if ( !$out->isPrintable() ) {
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),

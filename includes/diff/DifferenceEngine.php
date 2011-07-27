@@ -223,7 +223,6 @@ CONTROL;
 			return;
 		}
 
-		$wgOut->setArticleFlag( false );
 		if ( !$this->loadRevisionData() ) {
 			// Sounds like a deleted revision... Let's see what we can do.
 			$t = $this->mTitle->getPrefixedText();
@@ -237,10 +236,6 @@ CONTROL;
 		}
 
 		wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ) );
-
-		if ( $this->mNewRev->isCurrent() ) {
-			$wgOut->setArticleFlag( true );
-		}
 
 		# mOldid is false if the difference engine is called with a "vague" query for
 		# a diff between a version V and its previous version V' AND the version V
@@ -521,6 +516,7 @@ CONTROL;
 
 			$this->loadNewText();
 			$wgOut->setRevisionId( $this->mNewRev->getId() );
+			$wgOut->setArticleFlag( true );
 
 			if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
 				// Stolen from Article::view --AG 2007-10-11
@@ -592,12 +588,8 @@ CONTROL;
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-		if ( $this->mNewRev->isCurrent() ) {
-			$wgOut->setArticleFlag( true );
-		}
 
 		# Check if user is allowed to look at this page. If not, bail out.
-		#
 		if ( !$this->mTitle->userCanRead() ) {
 			$wgOut->loginToUse();
 			$wgOut->output();

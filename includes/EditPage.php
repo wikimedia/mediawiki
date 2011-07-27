@@ -374,9 +374,6 @@ class EditPage {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__.": enter\n" );
 
-		// This is not an article
-		$wgOut->setArticleFlag( false );
-
 		$this->importFormData( $wgRequest );
 		$this->firsttime = false;
 
