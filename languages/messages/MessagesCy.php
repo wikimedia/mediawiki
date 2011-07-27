@@ -3525,8 +3525,8 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'ajax-edit-category-summary'    => 'Newid y categori "$1" i "$2"',
 'ajax-remove-category-summary'  => 'Tynnu\'r categori "$1"',
 'ajax-error-title'              => 'Gwall',
-'ajax-remove-category-error'    => "Nid oedd yn bosibl tynnu'r categori hwn i ffwrdd.
-Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.",
+'ajax-remove-category-error'    => 'Nid oedd yn bosibl tynnu\'r categori "$1" i ffwrdd.
+Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.',
 'ajax-category-already-present' => "Mae'r dudalen hon yn perthyn i'r categori $1 yn barod",
 
 );

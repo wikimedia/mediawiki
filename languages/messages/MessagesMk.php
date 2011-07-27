@@ -4014,7 +4014,7 @@ $1',
 'ajax-add-category-summary'     => 'Додај категорија "$1"',
 'ajax-edit-category-summary'    => 'Замена на категоријата „$1“ со „$2“',
 'ajax-remove-category-summary'  => 'Избриши категорија "$1"',
-'ajax-category-question'        => '<strong>Зошто</strong> сакате да $1?',
+'ajax-category-question'        => 'Зошто сакате да ги извршите следниве измени:',
 'ajax-error-title'              => 'Грешка',
 'ajax-remove-category-error'    => 'Не можев да ја отстранам категоријата „$1“.
 Ова обично се случува кога категоријата е додадена на страница преку некој шаблон.',

@@ -3685,7 +3685,7 @@ Ta stran se sooča s tehničnimi težavami.',
 'ajax-add-category-summary'     => 'dodati kategorijo »$1«',
 'ajax-edit-category-summary'    => 'spremeniti kategorijo »$1« v »$2«',
 'ajax-remove-category-summary'  => 'odstraniti kategorijo »$1«',
-'ajax-category-question'        => '<strong>Zakaj</strong> želite $1?',
+'ajax-category-question'        => 'Zakaj želite narediti naslednje spremembe:',
 'ajax-error-title'              => 'Napaka',
 'ajax-remove-category-error'    => 'Kategorije »$1« ni bilo mogoče odstraniti.
 To se po navadi zgodi, ko je kategorija dodana strani v predlogi.',

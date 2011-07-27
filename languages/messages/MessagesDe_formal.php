@@ -440,7 +440,7 @@ Als Absender wird die E-Mail-Adresse aus ihren [[Special:Preferences|Einstellung
 'emailsenttext'   => 'Ihre E-Mail wurde verschickt.',
 
 # Watchlist
-'nowatchlist'       => 'Sie haben keine Einträge auf Ihrer Beobachtungsliste.',
+'nowatchlist'       => 'Es befinden sich keine Einträge auf Ihrer Beobachtungsliste.',
 'watchlistanontext' => 'Sie müssen sich $1, um Ihre Beobachtungsliste sehen oder Einträge auf ihr bearbeiten zu können.',
 'watchnologin'      => 'Sie sind nicht angemeldet',
 'watchnologintext'  => 'Sie müssen [[Special:UserLogin|angemeldet]] sein, um Ihre Beobachtungsliste bearbeiten zu können.',

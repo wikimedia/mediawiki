@@ -2531,8 +2531,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-subpages'                => 'Ënnersäite (bis zu $1) réckelen',
 'move-talk-subpages'           => 'Ënnersäite vun der Diskussiounssäit (bis zu $1), matréckelen',
 'movepage-page-exists'         => "D'Säit $1 gëtt et schonn a kann net automatesch iwwerschriwwe ginn.",
-'movepage-page-moved'          => "D'Säit $1 gouf schonn op $2 geréckelt.",
-'movepage-page-unmoved'        => "D'Säit $1 konnt nett op $2 geréckelt ginn.",
+'movepage-page-moved'          => "D'Säit $1 gouf op $2 geréckelt.",
+'movepage-page-unmoved'        => "D'Säit $1 konnt net op $2 geréckelt ginn.",
 'movepage-max-pages'           => 'Déi Maximalzuel vu(n) $1 {{PLURAL:$1|Säit gouf|Säite goufe}} gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.',
 '1movedto2'                    => '[[$1]] gouf op [[$2]] geréckelt',
 '1movedto2_redir'              => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Viruleedung iwwerschriwwen.',
@@ -3028,6 +3028,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-iimsupplementalcategory'     => 'Zousätzlech Kategorien',
 'exif-datetimeexpires'             => 'Net benotzen nom',
 'exif-datetimereleased'            => 'Erausginn den',
+'exif-identifier'                  => 'Identifiant',
 'exif-lens'                        => 'Objektiv dat benotzt gouf',
 'exif-serialnumber'                => 'Seriennummer vun der Kamera',
 'exif-cameraownername'             => 'Besëtzer vun der Kamera',
@@ -3045,6 +3046,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-disclaimer'                  => 'Limitatioun vun der Responsabilitéit',
 'exif-contentwarning'              => 'Warnung iwwer den Inhalt',
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
+'exif-intellectualgenre'           => 'Typ vum Element',
 'exif-subjectnewscode'             => 'Code vum Sujet',
 'exif-organisationinimage'         => 'Organisatioun um Bild',
 'exif-personinimage'               => 'Persoun um Bild',
@@ -3054,6 +3056,7 @@ Déi aner sinn am Standard verstoppt.
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',
 
+'exif-copyrighted-true'  => 'Duerch Copyright geschützt',
 'exif-copyrighted-false' => 'Ëffentlechen Domaine',
 
 'exif-unknowndate' => 'Onbekannten Datum',
@@ -3556,7 +3559,7 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 'ajax-add-category-summary'     => 'Kategorie "$1" derbäisetzen',
 'ajax-edit-category-summary'    => 'Kategorie "$1" op "$2" änneren',
 'ajax-remove-category-summary'  => 'Kategorie "$1" ewechhuelen',
-'ajax-category-question'        => "<strong>Firwat</strong> wëllt Dir d'$1?",
+'ajax-category-question'        => 'Firwat wëllt Dir dës Ännerunge maachen:',
 'ajax-error-title'              => 'Feeler',
 'ajax-remove-category-error'    => "Et war net méiglech d'Kategorie $1 ewechzehuelen.
 Dëst geschitt gewéinlech da wann eng Kategorie duerch eng Schabloun op d'Säit derbäi gesat gouf.",

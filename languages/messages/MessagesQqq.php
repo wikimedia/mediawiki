@@ -796,12 +796,16 @@ Used on [[Special:ResetPass]]',
 * $4 - base URL of the wiki',
 
 # Special:ChangeEmail
-'changeemail'         => 'Title of [[Special:ChangeEmail|special page]].',
-'changeemail-header'  => 'Header on [[Special:ChangeEmail]].',
-'changeemail-text'    => 'Text of [[Special:ChangeEmail]].',
-'changeemail-no-info' => 'Error message for [[Special:ChangeEmail]].',
-'changeemail-none'    => '{{Identical|None}}',
-'changeemail-cancel'  => '{{Identical|Cancel}}',
+'changeemail'          => 'Title of [[Special:ChangeEmail|special page]].',
+'changeemail-header'   => 'Header on [[Special:ChangeEmail]].',
+'changeemail-text'     => 'Text of [[Special:ChangeEmail]].',
+'changeemail-no-info'  => 'Error message for [[Special:ChangeEmail]].',
+'changeemail-oldemail' => 'Label for e-mail address field in [[Special:ChangeEmail]].',
+'changeemail-newemail' => 'Label for e-mail address field in [[Special:ChangeEmail]].',
+'changeemail-none'     => "Probably appears in 'Current E-mail address' field when no address held, in [[Special:ChangeEmail]].
+
+{{Identical|None}}",
+'changeemail-cancel'   => '{{Identical|Cancel}}',
 
 # Edit page toolbar
 'bold_sample'     => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.
