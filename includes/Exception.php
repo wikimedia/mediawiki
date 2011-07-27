@@ -368,7 +368,7 @@ class UserBlockedError extends ErrorPageError {
 
 		parent::__construct(
 			'blockedtitle',
-			$block->mAuto ? 'autoblocketext' : 'blockedtext',
+			$block->mAuto ? 'autoblockedtext' : 'blockedtext',
 			array(
 				$link,
 				$reason,
