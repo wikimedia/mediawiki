@@ -334,17 +334,12 @@ span.editsection {
 	font-size: small;
 }
 
-.mw-h1,
-.mw-h2,
-.mw-h3,
-.mw-h4,
-.mw-h5,
-.mw-h6 {
-	overflow: hidden;
+h1, h2 {
 	border-bottom: solid 1px #036;
 }
-.mw-h3, .mw-h4, .mw-h5, .mw-h6 {
-	border-bottom: none;
+
+h1, h2, h3, h4, h5, h6 {
+	overflow: hidden;
 }
 
 #preftoc {

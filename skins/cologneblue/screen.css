@@ -164,6 +164,10 @@ h1 {
 	line-height: 21pt;
 }
 
+h1 .editsection {
+	font-size: 55.6%;
+}
+
 h1.pagetitle {
 	padding-bottom: 0;
 	margin-bottom: 0;
@@ -203,7 +207,7 @@ a.new, #quickbar a.new {
 	color: #CC2200;
 }
 
-.mw-h2, .mw-h3, .mw-h4, .mw-h5, .mw-h6 {
+h2, h3, h4, h5, h6 {
 	margin-bottom: 0;
 }
 
