@@ -876,7 +876,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $wgUploadNavigationUrl ) {
 			# Using an empty class attribute to avoid automatic setting of "external" class
-			return $this->makeExternalLink( $wgUploadNavigationUrl, wfMsgHtml( 'upload' ), false, null, array( 'class' => '' ) );
+			return Linker::makeExternalLink( $wgUploadNavigationUrl, wfMsgHtml( 'upload' ), false, null, array( 'class' => '' ) );
 		} else {
 			return $this->getSkin()->link(
 				SpecialPage::getTitleFor( 'Upload' ),
