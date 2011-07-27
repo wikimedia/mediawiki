@@ -1265,14 +1265,13 @@ class User {
 		}
 
 		# User/IP blocking
-		$block = Block::newFromTarget( $this->getName(), $ip, !$bFromSlave );
-		if ( $block instanceof Block ) {
+		$this->mBlock = Block::newFromTarget( $this->getName(), $ip, !$bFromSlave );
+		if ( $this->mBlock instanceof Block ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
-			$this->mBlock = $block;
-			$this->mBlockedby = $block->getByName();
-			$this->mBlockreason = $block->mReason;
-			$this->mHideName = $block->mHideName;
-			$this->mAllowUsertalk = !$block->prevents( 'editownusertalk' );
+			$this->mBlockedby = $this->mBlock->getByName();
+			$this->mBlockreason = $this->mBlock->mReason;
+			$this->mHideName = $this->mBlock->mHideName;
+			$this->mAllowUsertalk = !$this->mBlock->prevents( 'editownusertalk' );
 			if ( $this->isLoggedIn() && $wgUser->getID() == $this->getID() ) {
 				$this->spreadBlock();
 			}

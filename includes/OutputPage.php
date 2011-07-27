@@ -1934,7 +1934,7 @@ class OutputPage {
 	 * @deprecated since 1.18
 	 */
 	function blockedPage() {
-		throw new UserBlockedError( $this->getUser()->getBlock() );
+		throw new UserBlockedError( $this->getUser()->mBlock );
 	}
 
 	/**
