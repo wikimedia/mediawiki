@@ -19,6 +19,11 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 			# Less than minimum, ignore
 			return;
 		}
+		
+		if ( !function_exists( 'socket_create' ) )
+			# Sockets are not enabled
+			return;
+		}
 
 		$sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
 		$plength=0;
