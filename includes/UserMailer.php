@@ -167,7 +167,7 @@ class UserMailer {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
 			else {
-				$headers['To'] = implode( ", ", (array )$dest );
+				$headers['To'] = implode( ', ', (array)$dest );
 			}
 
 			if ( $replyto ) {
@@ -215,14 +215,14 @@ class UserMailer {
 			}
 
 			$headers = array(
-				"MIME-Version: 1.0",
+				'MIME-Version: 1.0',
 				"Content-type: $contentType",
-				"Content-Transfer-Encoding: 8bit",
-				"X-Mailer: MediaWiki mailer",
-				"From: " . $from->toString(),
+				'Content-Transfer-Encoding: 8bit',
+				'X-Mailer: MediaWiki mailer',
+				'From: ' . $from->toString(),
 			);
 			if ( $replyto ) {
-				$headers[] = "Reply-To: " . $replyto->toString();
+				$headers[] = 'Reply-To: ' . $replyto->toString();
 			}
 
 			$headers = implode( $endl, $headers );
@@ -386,13 +386,14 @@ class EmailNotification {
 
 		if ( $wgEnotifUseJobQ ) {
 			$params = array(
-				"editor" => $editor->getName(),
-				"editorID" => $editor->getID(),
-				"timestamp" => $timestamp,
-				"summary" => $summary,
-				"minorEdit" => $minorEdit,
-				"oldid" => $oldid,
-				"watchers" => $watchers );
+				'editor' => $editor->getName(),
+				'editorID' => $editor->getID(),
+				'timestamp' => $timestamp,
+				'summary' => $summary,
+				'minorEdit' => $minorEdit,
+				'oldid' => $oldid,
+				'watchers' => $watchers
+			);
 			$job = new EnotifNotifyJob( $title, $params );
 			$job->insert();
 		} else {
