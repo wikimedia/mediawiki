@@ -364,7 +364,6 @@ class Article extends Page {
 			return;
 		}
 
-		$wgOut->setArticleFlag( true );
 		# Set page title (may be overridden by DISPLAYTITLE)
 		$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
 
@@ -377,6 +376,7 @@ class Article extends Page {
 			return;
 		}
 
+		$wgOut->setArticleFlag( true );
 		# Allow frames by default
 		$wgOut->allowClickjacking();
 
