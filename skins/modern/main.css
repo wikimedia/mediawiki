@@ -561,6 +561,11 @@ img.thumbborder {
 	border: solid 1px #bbb;
 }
 
+#toc tr, #toc td {
+	margin: 0;
+	padding: 0;
+}
+
 #toctitle {
 	border-bottom: solid 1px #3c78b5;
 	background-color: #ddd;
@@ -587,7 +592,7 @@ img.thumbborder {
 	list-style-type: none;
 	list-style-image: none;
 	margin: 0 1em;
-	padding: 0;
+	padding-left: 0;
 	text-align: left;
 }
 
