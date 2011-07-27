@@ -68,9 +68,11 @@ class Parser {
 
 	# Constants needed for external link processing
 	# Everything except bracket, space, or control characters
-	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F]';
-	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F]+)
-		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sx';
+	# \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
+	# as well as U+3000 is IDEOGRAPHIC SPACE for bug 19052
+	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}]';
+	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
+		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
 
 	# State constants for the definition list colon extraction
 	const COLON_STATE_TEXT = 0;
@@ -184,7 +186,7 @@ class Parser {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[((' . wfUrlProtocols() . ')'.
-			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/S';
+			self::EXT_LINK_URL_CLASS.'+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} elseif ( defined( 'MW_COMPILED' ) ) {
@@ -1197,7 +1199,7 @@ class Parser {
 					(?: [0-9]  [\ \-]? ){9} # 9 digits with opt. delimiters
 					[0-9Xx]                 # check digit
 					\b)
-			)!x', array( &$this, 'magicLinkCallback' ), $text );
+			)!xu', array( &$this, 'magicLinkCallback' ), $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -4963,7 +4965,7 @@ class Parser {
 								$value = true;
 								$validated = true;
 							} elseif ( preg_match( "/^$prots/", $value ) ) {
-								if ( preg_match( "/^($prots)$chars+$/", $value, $m ) ) {
+								if ( preg_match( "/^($prots)$chars+$/u", $value, $m ) ) {
 									$paramName = 'link-url';
 									$this->mOutput->addExternalLink( $value );
 									if ( $this->mOptions->getExternalLinkTarget() ) {

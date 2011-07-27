@@ -9248,6 +9248,32 @@ Text&apos;s been normalized?
 </p>
 !! end
 
+!! test
+Bug 19052 U+3000 IDEOGRAPHIC SPACE should terminate free external links
+!! input
+http://www.example.org/　<-- U+3000 (vim: ^Vu3000)
+!! result
+<p><a rel="nofollow" class="external free" href="http://www.example.org/">http://www.example.org/</a>　&lt;-- U+3000 (vim: ^Vu3000)
+</p>
+!! end
+
+!! test
+Bug 19052 U+3000 IDEOGRAPHIC SPACE should terminate bracketed external links
+!! input
+[http://www.example.org/　ideograms]
+!! result
+<p><a rel="nofollow" class="external text" href="http://www.example.org/">ideograms</a>
+</p>
+!! end
+
+!! test
+Bug 19052 U+3000 IDEOGRAPHIC SPACE should terminate external images links
+!! input
+http://www.example.org/pic.png　<-- U+3000 (vim: ^Vu3000)
+!! result
+<p><img src="http://www.example.org/pic.png" alt="pic.png" />　&lt;-- U+3000 (vim: ^Vu3000)
+</p>
+!! end
 
 TODO:
 more images
