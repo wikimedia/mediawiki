@@ -1456,10 +1456,10 @@ class Linker {
 	static function tocList( $toc, $lang = false ) {
 		$title = wfMsgExt( 'toc', array( 'language' => $lang, 'escape' ) );
 		return
-		   '<table id="toc" class="toc"><tr><td>'
+		   '<div id="toc" class="toc">'
 		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
 		 . $toc
-		 . "</ul>\n</td></tr></table>\n";
+		 . "</ul>\n</div>\n";
 	}
 
 	/**
