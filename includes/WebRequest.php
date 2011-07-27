@@ -131,13 +131,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public static function detectServer() {
-		if ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on') {
-			$proto = 'https';
-			$stdPort = 443;
-		} else {
-			$proto = 'http';
-			$stdPort = 80;
-		}
+		list( $proto, $stdPort ) = self::detectProtocolAndStdPort();
 
 		$varNames = array( 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' );
 		$host = 'localhost';
@@ -163,6 +157,15 @@ class WebRequest {
 		}
 
 		return $proto . '://' . IP::combineHostAndPort( $host, $port, $stdPort );
+	}
+	
+	public static function detectProtocolAndStdPort() {
+		return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ? array( 'https', 443 ) : array( 'http', 80 );
+	}
+	
+	public static function detectProtocol() {
+		list( $proto, $stdPort ) = self::detectProtocolAndStdPort();
+		return $proto;
 	}
 
 	/**
