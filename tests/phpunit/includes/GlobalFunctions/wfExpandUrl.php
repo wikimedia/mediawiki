@@ -32,7 +32,7 @@ class wfExpandUrl extends MediaWikiTestCase {
 	public function provideExpandableUrls() {
 		$modes = array( 'http', 'https' );
 		$servers = array( 'http' => 'http://example.com', 'https' => 'https://example.com', 'protocol-relative' => '//example.com' );
-		$defaultProtos = array( 'http' => PROT_HTTP, 'https' => PROT_HTTPS, 'protocol-relative' => PROT_RELATIVE, 'current' => PROT_CURRENT );
+		$defaultProtos = array( 'http' => PROTO_HTTP, 'https' => PROTO_HTTPS, 'protocol-relative' => PROTO_RELATIVE, 'current' => PROTO_CURRENT );
 		
 		$retval = array();
 		foreach ( $modes as $mode ) {

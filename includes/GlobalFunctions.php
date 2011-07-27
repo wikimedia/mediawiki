@@ -428,10 +428,10 @@ function wfAppendQuery( $url, $query ) {
 	return $url;
 }
 
-define( 'PROT_HTTP', 'http://' );
-define( 'PROT_HTTPS', 'https://' );
-define( 'PROT_RELATIVE', '//' );
-define( 'PROT_CURRENT', null );
+define( 'PROTO_HTTP', 'http://' );
+define( 'PROTO_HTTPS', 'https://' );
+define( 'PROTO_RELATIVE', '//' );
+define( 'PROTO_CURRENT', null );
 
 /**
  * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
@@ -447,12 +447,12 @@ define( 'PROT_CURRENT', null );
  * like "subdir/foo.html", etc.
  *
  * @param $url String: either fully-qualified or a local path + query
- * @param $defaultProto Mixed: one of the PROT_* constants. Determines the protocol to use if $url or $wgServer is protocol-relative
+ * @param $defaultProto Mixed: one of the PROTO_* constants. Determines the protocol to use if $url or $wgServer is protocol-relative
  * @return string Fully-qualified URL
  */
-function wfExpandUrl( $url, $defaultProto = PROT_CURRENT ) {
+function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	global $wgServer;
-	if ( $defaultProto === PROT_CURRENT ) {
+	if ( $defaultProto === PROTO_CURRENT ) {
 		$defaultProto = WebRequest::detectProtocol() . '://';
 	}
 	
