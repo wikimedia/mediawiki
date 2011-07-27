@@ -586,6 +586,13 @@ img.thumbborder {
 	text-align: left;
 }
 
+.mw-content-ltr .toc ul,
+.mw-content-rtl .toc ul,
+.mw-content-ltr #toc ul,
+.mw-content-rtl #toc ul {
+	margin: 0 1em;
+}
+
 #toc ul ul,
 .toc ul ul {
 	margin: 0 0 0 2em;
