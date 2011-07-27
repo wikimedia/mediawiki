@@ -348,8 +348,7 @@ table.small {
 .toc ul {
 	list-style-type: none;
 	list-style-image: none;
-	margin-left: 0;
-	padding-left: 0;
+	padding: 0 .4em;
 	text-align: left;
 }
 #toc ul ul,
