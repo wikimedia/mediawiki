@@ -265,9 +265,18 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			ApiBase::dieDebug( __METHOD__, "Unknown filter=$filter" );
 		}
 
+		$params = $this->extractRequestParams();
+		$langCode = isset( $params['languagecode'] ) ? $params['languagecode'] : '';
+
+		if( $langCode ) {
+			$langNames = Language::getTranslatedLanguageNames( $langCode );
+		} else {
+			$langNames = Language::getLanguageNames();
+		}
+
 		$getPrefixes = Interwiki::getAllPrefixes( $local );
 		$data = array();
-		$langNames = Language::getLanguageNames();
+
 		foreach ( $getPrefixes as $row ) {
 			$prefix = $row['iw_prefix'];
 			$val = array();
@@ -462,8 +471,18 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendLanguages( $property ) {
+		$params = $this->extractRequestParams();
+		$langCode = isset( $params['languagecode'] ) ? $params['languagecode'] : '';
+
+		if( $langCode ) {
+			$langNames = Language::getTranslatedLanguageNames( $langCode );
+		} else {
+			$langNames = Language::getLanguageNames();
+		}
+
 		$data = array();
-		foreach ( Language::getLanguageNames() as $code => $name ) {
+
+		foreach ( $langNames as $code => $name ) {
 			$lang = array( 'code' => $code );
 			ApiResult::setContent( $lang, $name );
 			$data[] = $lang;
@@ -560,6 +579,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			),
 			'showalldb' => false,
 			'numberingroup' => false,
+			'languagecode' => null,
 		);
 	}
 
@@ -573,13 +593,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' specialpagealiases    - List of special page aliases',
 				' magicwords            - List of magic words and their aliases',
 				' statistics            - Returns site statistics',
-				' interwikimap          - Returns interwiki map (optionally filtered)',
+				' interwikimap          - Returns interwiki map (optionally filtered, (optionally localised))',
 				' dbrepllag             - Returns database server with the highest replication lag',
 				' usergroups            - Returns user groups and the associated permissions',
 				' extensions            - Returns extensions installed on the wiki',
 				' fileextensions        - Returns list of file extensions allowed to be uploaded',
 				' rightsinfo            - Returns wiki rights (license) information if available',
-				' languages             - Returns a list of languages MediaWiki supports',
+				' languages             - Returns a list of languages MediaWiki supports (optionally localised)',
 				' skins                 - Returns a list of all enabled skins',
 				' extensiontags         - Returns a list of parser extension tags',
 				' functionhooks         - Returns a list of parser function hooks',
@@ -588,6 +608,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
 			'numberingroup' => 'Lists the number of users in user groups',
+			'languagecode' => 'Language code for localised language names (best effort, use CLDR extension)',
 		);
 	}
 
