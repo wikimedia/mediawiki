@@ -143,11 +143,22 @@ class UserMailer {
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->toString();
 
+		$dest = array();
+		if ( is_array( $to ) ) {
+			foreach ( $to as $u ) {
+				if ( $u->address ) {
+					$dest[] = $u->address;
+				}
+			}
+		} else if( $to->address ) {
+			$dest[] = $to->address;
+		}
+
 		if ( $wgEnotifImpersonal ) {
 			$headers['To'] = 'undisclosed-recipients:;';
 		}
 		else {
-			$headers['To'] = implode( ", ", (array )$dest );
+			$headers['To'] = implode( ", ", $dest );
 		}
 
 		if ( $replyto ) {
@@ -180,15 +191,6 @@ class UserMailer {
 				$msgid .= '.' . posix_getpid();
 			}
 
-			if ( is_array( $to ) ) {
-				$dest = array();
-				foreach ( $to as $u ) {
-					$dest[] = $u->address;
-				}
-			} else {
-				$dest = $to->address;
-			}
-
 			wfSuppressWarnings();
 
 			// Create the mail object using the Mail::factory method
@@ -199,8 +201,8 @@ class UserMailer {
 				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
 			}
 
-			wfDebug( "Sending mail via PEAR::Mail to $dest\n" );
-			$chunks = array_chunk( (array)$dest, $wgEnotifMaxRecips );
+			wfDebug( "Sending mail via PEAR::Mail\n" );
+			$chunks = array_chunk( $dest, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
 				if ( !$status->isOK() ) {
@@ -244,7 +246,7 @@ class UserMailer {
 				return Status::newFatal( 'php-mail-error', self::$mErrorString );
 			} elseif ( ! $sent ) {
 				// mail function only tells if there's an error
-				wfDebug( "Error sending mail\n" );
+				wfDebug( "Unknown error sending mail\n" );
 				return Status::newFatal( 'php-mail-error-unknown' );
 			} else {
 				return Status::newGood();
