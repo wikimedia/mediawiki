@@ -1,5 +1,7 @@
 ( function( $ ) {
 
+	mw.page = {};
+
 	/* Client profile classes for <html> */
 
 	var prof = $.client.profile();

@@ -9,30 +9,34 @@
 
 .mw-remove-category {
 	padding: 2px 8px;
-	display:inline;
+	display: inline;
 }
 .mw-removed-category {
 	text-decoration: line-through;
 }
+
 #catlinks:hover .icon {
 	opacity: 1;
 }
 #catlinks ul {
 	margin-right: 2em;
 }
+
 .mw-ajax-addcategory-holder {
 	display: inline-block;
 }
 .mw-ajax-addcategory {
 	margin-right: 1em;
 	cursor: pointer;
-	display:inline-block;
+	display: inline-block;
 }
+
 #catlinks .icon {
 	cursor: pointer;
 	padding: 1px 8px;
 	margin: 0;
-	background: url('images/AJAXCategorySprite.png') 0 0 no-repeat;
+	background-position: 0 0 ;
+	background-repeat: no-repeat;
 	opacity: 0.5;
 
 }
@@ -40,32 +44,27 @@
 	cursor: pointer;
 	margin-right: 1em;
 }
-#catlinks .icon-parent:hover .icon {
-	background-position-y: -16px;
-}
-#catlinks .no-text {
-}
 #catlinks .icon-close {
-	background-position: 0 0;
+	/* @embed */ background-image: url(images/ajaxcat-close.png);
 }
 #catlinks .icon-edit {
-	background-position: -16px 0;
+	/* @embed */ background-image: url(images/ajaxcat-edit.png);
 }
 #catlinks .icon-tick {
-	background-position: -32px 0;
+	/* @embed */ background-image: url(images/ajaxcat-tick.png);
 }
 #catlinks .icon-add {
-	background-position: -64px 0;
+	/* @embed */ background-image: url(images/ajaxcat-add.png);
 }
 #catlinks .icon-close:hover {
-	background-position: 0 -16px;
+	/* @embed */ background-image: url(images/ajaxcat-close-hover.png);
 }
 #catlinks .icon-edit:hover {
-	background-position: -16px -16px;
+	/* @embed */ background-image: url(images/ajaxcat-edit-hover.png);
 }
 #catlinks .icon-tick:hover {
-	background-position: -32px -16px;
+	/* @embed */ background-image: url(images/ajaxcat-tick-hover.png);
 }
 #catlinks .icon-add:hover {
-	background-position: -64px -16px;
+	/* @embed */ background-image: url(images/ajaxcat-add-hover.png);
 }
