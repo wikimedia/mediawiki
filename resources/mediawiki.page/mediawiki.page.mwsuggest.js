@@ -2,7 +2,7 @@ jQuery( document ).ready( function( $ ) {
 	var $container = $( '<div>', { 'class' : 'open-search-suggestions' } ),
 		cache = {},
 		$suggestionList,
-		url = mw.config.get( 'wgScriptPath' ) + '/api.php?format=json&action=opensearch&search=',
+		url = mw.util.wikiScript( 'api' ),
 		maxRowWindow;
 	
 	//Append the container which will hold the menu to the body
@@ -14,19 +14,19 @@ jQuery( document ).ready( function( $ ) {
 	 */
 	var getNamespaces = function() {
 		var namespaces = [];
-		$('form#powersearch, form#search').find( '[name^="ns"]' ).each(function() {
+		$( 'form#powersearch, form#search' ).find( '[name^="ns"]' ).each(function() {
 			if ( this.checked || ( this.type == 'hidden' && this.value == '1' ) ) {
 				namespaces.push( this.name.substring( 2 ) );
 			}
 		});
 		if ( !namespaces.length ) {
-			namespaces = mw.config.get('wgSearchNamespaces');
+			namespaces = mw.config.get( 'wgSearchNamespaces' );
 		}
 		return namespaces.join('|');
 	};
 
 	/* Helper function to make sure that the list doesn't expand below the visible part of the window */
-	var deliverResult = function( obj, response, maxRowWindow ) {
+	var deliverResult = function( obj, response ) {
 		if ( obj && obj.length > 1 ) {
 			response( obj[1] );
 			// Get the lowest from multiple numbers using fn.apply
@@ -45,13 +45,19 @@ jQuery( document ).ready( function( $ ) {
 			// We're caching queries for performance
 			var term = request.term + namespaces;
 			if ( term in cache ) {
-				deliverResult( cache[term], response, maxRowWindow );
+				deliverResult( cache[term], response );
 				return;
 			}
-			$.getJSON( url + mw.util.rawurlencode( request.term ) + '&namespace=' + namespaces, function ( obj ) {
+			var params = {
+				format : 'json',
+				action : 'opensearch',
+				search : request.term,
+				namespaces : namespaces
+			};
+			$.getJSON( url, params, function ( obj ) {
 				// Save to cache
 				cache[ term ] = obj;
-				deliverResult( obj, response, maxRowWindow );
+				deliverResult( obj, response );
 			});
 		},
 		select : function() {
