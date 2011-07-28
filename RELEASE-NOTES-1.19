@@ -29,7 +29,6 @@ production.
   until the second was introduced in 1.17.
 * (bug 25355) Parser generates edit section links for special pages
 * (bug 13766) Change table of content syntax to be semantically correct
-* (bug 11270 & bug 11555) Make editsection link more understandable by positioning it next to the header.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
