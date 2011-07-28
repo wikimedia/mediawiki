@@ -267,7 +267,7 @@ class SpecialPageFactory {
 	 */
 	public static function setGroup( $page, $group ) {
 		global $wgSpecialPageGroups;
-		$name = is_object( $page ) ? $page->mName : $page;
+		$name = is_object( $page ) ? $page->getName() : $page;
 		$wgSpecialPageGroups[$name] = $group;
 	}
 
@@ -277,23 +277,25 @@ class SpecialPageFactory {
 	 * @param $page SpecialPage
 	 */
 	public static function getGroup( &$page ) {
+		$name = $page->getName();
+
 		global $wgSpecialPageGroups;
 		static $specialPageGroupsCache = array();
-		if ( isset( $specialPageGroupsCache[$page->mName] ) ) {
-			return $specialPageGroupsCache[$page->mName];
+		if ( isset( $specialPageGroupsCache[$name] ) ) {
+			return $specialPageGroupsCache[$name];
 		}
-		$msg = wfMessage( 'specialpages-specialpagegroup-' . strtolower( $page->mName ) );
+		$msg = wfMessage( 'specialpages-specialpagegroup-' . strtolower( $name ) );
 		if ( !$msg->isBlank() ) {
 			$group = $msg->text();
 		} else {
-			$group = isset( $wgSpecialPageGroups[$page->mName] )
-				? $wgSpecialPageGroups[$page->mName]
+			$group = isset( $wgSpecialPageGroups[$name] )
+				? $wgSpecialPageGroups[$name]
 				: '-';
 		}
 		if ( $group == '-' ) {
 			$group = 'other';
 		}
-		$specialPageGroupsCache[$page->mName] = $group;
+		$specialPageGroupsCache[$name] = $group;
 		return $group;
 	}
 
