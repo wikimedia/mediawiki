@@ -28,7 +28,6 @@ production.
   $wgUploadMissingFileUrl is not set. The first was used for this
   until the second was introduced in 1.17.
 * (bug 25355) Parser generates edit section links for special pages
-* (bug 13766) Change table of content syntax to be semantically correct
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

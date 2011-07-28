@@ -784,14 +784,4 @@ div.floatright, table.floatright, div.floatleft, table.floatleft {
 }
 
 /* bug 12205 */
-#mw-credits a { 
-	unicode-bidi: embed;
-}
-
-/* Standard toc */
-#toc {
-	display: inline-block;
-	/* IE6+7 workaround */
-	zoom: 1;
-	display: inline !ie;
-}
+#mw-credits a { unicode-bidi: embed; }
