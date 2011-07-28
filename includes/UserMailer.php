@@ -67,6 +67,8 @@ class MailAddress {
 			} else {
 				return $this->address;
 			}
+		} else {
+			return "";
 		}
 	}
 
@@ -153,6 +155,9 @@ class UserMailer {
 		} else if( $to->address ) {
 			$dest[] = $to->address;
 		}
+		if ( count( $dest ) == 0 ) {
+			return Status::newFatal( 'user-mail-no-addy' );
+		}
 
 		if ( $wgEnotifImpersonal ) {
 			$headers['To'] = 'undisclosed-recipients:;';
@@ -231,11 +236,8 @@ class UserMailer {
 			ini_set( 'html_errors', '0' );
 			set_error_handler( 'UserMailer::errorHandler' );
 
-			if ( !is_array( $to ) ) {
-				$to = array( $to );
-			}
-			foreach ( $to as $recip ) {
-				$sent = mail( $recip->toString(), self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+			foreach ( $dest as $recip ) {
+				$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
 			}
 
 			restore_error_handler();
