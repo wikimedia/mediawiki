@@ -496,7 +496,7 @@ class ApiEditPage extends ApiBase {
 			'captchaid' => 'CAPTCHA ID from previous request',
 			'captchaword' => 'Answer to the CAPTCHA',
 			'md5' => array(	"The MD5 hash of the {$p}text parameter, or the {$p}prependtext and {$p}appendtext parameters concatenated.",
-				 	'If set, the edit won\'t be done unless the hash is correct' ),
+					'If set, the edit won\'t be done unless the hash is correct' ),
 			'prependtext' => "Add this text to the beginning of the page. Overrides {$p}text",
 			'appendtext' => "Add this text to the end of the page. Overrides {$p}text",
 			'undo' => "Undo this revision. Overrides {$p}text, {$p}prependtext and {$p}appendtext",
