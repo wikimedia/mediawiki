@@ -19,8 +19,8 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 			# Less than minimum, ignore
 			return;
 		}
-		
-		if ( !function_exists( 'socket_create' ) )
+
+		if ( !function_exists( 'socket_create' ) ) {
 			# Sockets are not enabled
 			return;
 		}
