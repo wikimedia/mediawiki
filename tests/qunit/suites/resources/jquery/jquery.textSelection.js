@@ -50,14 +50,23 @@ var encapsulateTest = function( options ) {
 		//$textarea.textSelection( 'setContents', opt.before.text); // this method is actually missing atm...
 		$textarea.val( opt.before.text ); // won't work with the WikiEditor iframe?
 
+		var	start = opt.before.start,
+			end = opt.before.end;
+		if ( window.opera ) {
+			// Compensate for Opera's craziness converting "\n" to "\r\n" and counting that as two chars
+			var	newLinesBefore = opt.before.text.substring( 0, start ).split( "\n" ).length - 1,
+				newLinesInside = opt.before.text.substring( start, end ).split( "\n" ).length - 1;
+			start += newLinesBefore;
+			end += newLinesBefore + newLinesInside;
+		}
 		$textarea.textSelection( 'setSelection', {
-			start: opt.before.start,
-			end: opt.before.end
+			start: start,
+			end: end
 		});
 
 		$textarea.textSelection( 'encapsulateSelection', opt.replace );
 
-		var text = $textarea.textSelection( 'getContents' );
+		var text = $textarea.textSelection( 'getContents' ).replace( /\r\n/g, "\n" );
 
 		equal( text, opt.after.text, 'Checking full text after encapsulation' );
 
