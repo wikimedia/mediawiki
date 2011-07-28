@@ -137,18 +137,8 @@ class UserMailer {
 		global $wgSMTP, $wgEnotifImpersonal;
 		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
-		if ( is_array( $to ) ) {
-			$emails = '';
-			// This wouldn't be necessary if implode() worked on arrays of
-			// objects using __toString(). http://bugs.php.net/bug.php?id=36612
-			foreach ( $to as $t ) {
-					$emails .= $t->toString() . ",";
-			}
-			$emails = rtrim( $emails, ',' );
-			wfDebug( __METHOD__ . ': sending mail to ' . $emails . "\n" );
-		} else {
-			wfDebug( __METHOD__ . ': sending mail to ' . implode( ',', array( $to->toString() ) ) . "\n" );
-		}
+		$emails = '';
+		wfDebug( __METHOD__ . ': sending mail to ' . implode( ',', array( $to->toString() ) ) . "\n" );
 
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->toString();
