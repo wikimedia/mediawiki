@@ -163,6 +163,7 @@ encapsulateSelection: function( options ) {
 				range3.moveEnd( 'character', 1 );
 				if ( range3.text != "\r" && range3.text != "\n" && range3.text != "" ) {
 					insertText += "\n";
+					post += "\n";
 				}
 			}
 			
