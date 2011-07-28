@@ -549,8 +549,10 @@ class ResourceLoader {
 				switch ( $context->getOnly() ) {
 					case 'scripts':
 						if ( is_string( $scripts ) ) {
+							// Load scripts raw...
 							$out .= $scripts;
 						} elseif ( is_array( $scripts ) ) {
+							// ...except when $scripts is an array of URLs
 							$out .= self::makeLoaderImplementScript( $name, $scripts, array(), array() );
 						}
 						break;

@@ -2403,8 +2403,10 @@ $templates
 			'lang' => $this->getContext()->getLang()->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 			'skin' => $this->getSkin()->getSkinName(),
-			'only' => $only,
 		);
+		if ( $only !== ResourceLoaderModule::TYPE_COMBINED ) {
+			$baseQuery['only'] = $only;
+		}
 		// Propagate printable and handheld parameters if present
 		if ( $this->isPrintable() ) {
 			$baseQuery['printable'] = 1;
@@ -2622,11 +2624,14 @@ $templates
 				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {
 				# @todo FIXME: This means that User:Me/Common.js doesn't load when previewing
-				# User:Me/Vector.js, and vice versa (bug26283)
-				$userScripts[] = 'user';
+				# User:Me/Vector.js, and vice versa (bug 26283)
+				
+				// We can't do $userScripts[] = 'user'; because the user module would end up
+				// being wrapped in a closure, so load it raw like 'site'
+				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS );
 			}
 		}
-		$scripts .= $this->makeResourceLoaderLink( $userScripts, ResourceLoaderModule::TYPE_SCRIPTS );
+		$scripts .= $this->makeResourceLoaderLink( $userScripts, ResourceLoaderModule::TYPE_COMBINED );
 
 		return $scripts;
 	}
