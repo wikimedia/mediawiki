@@ -112,11 +112,13 @@ encapsulateSelection: function( options ) {
 				insertText = doSplitLines( selText, pre, post );
 			}
 			if ( options.ownline ) {
-				if ( startPos != 0 && this.value.charAt( startPos - 1 ) != "\n" ) {
+				if ( startPos != 0 && this.value.charAt( startPos - 1 ) != "\n" && this.value.charAt( startPos - 1 ) != "\r" ) {
 					insertText = "\n" + insertText;
+					pre += "\n";
 				}
-				if ( this.value.charAt( endPos ) != "\n" ) {
+				if ( this.value.charAt( endPos ) != "\n" && this.value.charAt( endPos ) != "\r" ) {
 					insertText += "\n";
+					post += "\n";
 				}
 			}
 			this.value = this.value.substring( 0, startPos ) + insertText +
@@ -157,6 +159,7 @@ encapsulateSelection: function( options ) {
 				// FIXME: Which check is correct?
 				if ( range2.text != "\r" && range2.text != "\n" && range2.text != "" ) {
 					insertText = "\n" + insertText;
+					pre += "\n";
 				}
 				var range3 = document.selection.createRange();
 				range3.collapse( false );
@@ -292,7 +295,7 @@ setSelection: function( options ) {
 			var length = this.value.length;
 			// IE doesn't count \n when computing the offset, so we won't either
 			var newLines = this.value.match( /\n/g );
-			if ( newLines) length = length - newLines.length;
+			if ( newLines ) length = length - newLines.length;
 			selection.moveStart( 'character', options.start );
 			selection.moveEnd( 'character', -length + options.end );
 			
