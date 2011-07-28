@@ -84,6 +84,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
+		// FIXME: This stuff should really be in its own module, because it gets double-loaded otherwise
+		// (once through a <link>, once when embedded as JS)
 		global $wgAllowUserCssPrefs;
 
 		if ( $wgAllowUserCssPrefs ) {
@@ -128,5 +130,9 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 */
 	public function getGroup() {
 		return 'private';
+	}
+	
+	public function getDependencies() {
+		return array( 'mediawiki.user' );
 	}
 }

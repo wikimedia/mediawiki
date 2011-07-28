@@ -60,4 +60,8 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	public function getGroup() {
 		return 'private';
 	}
+	
+	public function getDependencies() {
+		return array( 'mediawiki.user' );
+	}
 }
