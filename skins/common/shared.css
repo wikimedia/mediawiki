@@ -85,6 +85,7 @@ div#mw-js-message {
 /* Edit section links */
 .editsection {
 	margin-left: 5px;
+	unicode-bidi: embed;
 }
 /**
  * File histories
