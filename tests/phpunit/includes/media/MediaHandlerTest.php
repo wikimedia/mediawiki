@@ -1,6 +1,6 @@
 <?php
 
-class ImageFunctionsTest extends MediaWikiTestCase {
+class MediaHandlerTest extends MediaWikiTestCase {
 	function testFitBoxWidth() {
 		$vals = array(
 			array(
@@ -37,7 +37,7 @@ class ImageFunctionsTest extends MediaWikiTestCase {
 			$width = $row['width'];
 			foreach ( $tests as $max => $expected ) {
 				$y = round( $expected * $height / $width );
-				$result = wfFitBoxWidth( $width, $height, $max );
+				$result = MediaHandler::fitBoxWidth( $width, $height, $max );
 				$y2 = round( $result * $height / $width );
 				$this->assertEquals( $expected,
 					$result,
