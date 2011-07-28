@@ -441,6 +441,24 @@ abstract class MediaHandler {
 			$file->getMimeType() );
 	}
 
+	/**
+	 * Calculate the largest thumbnail width for a given original file size
+	 * such that the thumbnail's height is at most $maxHeight.
+	 * @param $boxWidth Integer Width of the thumbnail box.
+	 * @param $boxHeight Integer Height of the thumbnail box.
+	 * @param $maxHeight Integer Maximum height expected for the thumbnail.
+	 * @return Integer.
+	 */
+	public static function fitBoxWidth( $boxWidth, $boxHeight, $maxHeight ) {
+		$idealWidth = $boxWidth * $maxHeight / $boxHeight;
+		$roundedUp = ceil( $idealWidth );
+		if( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight ) {
+			return floor( $idealWidth );
+		} else {
+			return $roundedUp;
+		}
+	}
+
 	function getDimensionsString( $file ) {
 		return '';
 	}
@@ -575,7 +593,7 @@ abstract class ImageHandler extends MediaHandler {
 			# Height & width were both set
 			if ( $params['width'] * $srcHeight > $params['height'] * $srcWidth ) {
 				# Height is the relative smaller dimension, so scale width accordingly
-				$params['width'] = wfFitBoxWidth( $srcWidth, $srcHeight, $params['height'] );
+				$params['width'] = self::fitBoxWidth( $srcWidth, $srcHeight, $params['height'] );
 				
 				if ( $params['width'] == 0 ) {
 					# Very small image, so we need to rely on client side scaling :(
