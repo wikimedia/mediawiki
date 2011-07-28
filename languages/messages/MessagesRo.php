@@ -820,6 +820,17 @@ Ar trebui să vă autentificați și să alegeți acum o nouă parolă. Dacă al
 Parolă temporară: $2',
 'passwordreset-emailsent'      => 'A fost trimis un e-mail de reamintire.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Modificare adresă de e-mail',
+'changeemail-header'   => 'Modificare adresă de e-mail asociată contului',
+'changeemail-text'     => 'Completați acest formular pentru a vă modifica adresa de e-mail. Va trebui să introduceți și parola pentru a confirma această modificare.',
+'changeemail-no-info'  => 'Trebuie să fiți autentificat pentru a accesa această pagină direct.',
+'changeemail-oldemail' => 'Adresa de e-mail actuală:',
+'changeemail-newemail' => 'Noua adresă de e-mail:',
+'changeemail-none'     => '(niciuna)',
+'changeemail-submit'   => 'Modifică adresa de e-mail',
+'changeemail-cancel'   => 'Revocare',
+
 # Edit page toolbar
 'bold_sample'     => 'Text aldin',
 'bold_tip'        => 'Text aldin',
@@ -1328,6 +1339,8 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-watchlist-token'         => 'Jeton pentru lista de pagini urmărite:',
 'prefs-misc'                    => 'Parametri diverși',
 'prefs-resetpass'               => 'Modifică parola',
+'prefs-changeemail'             => 'Modifică adresa de e-mail',
+'prefs-setemail'                => 'Setează o adresă de e-mail',
 'prefs-email'                   => 'Opțiuni e-mail',
 'prefs-rendering'               => 'Aspect',
 'saveprefs'                     => 'Salvează preferințele',
@@ -3728,12 +3741,18 @@ Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 'ajax-confirm-save'             => 'Salvare',
 'ajax-confirm-save-all'         => 'Salvează toate schimbările',
 'ajax-cancel'                   => 'Anulare modificări',
+'ajax-cancel-all'               => 'Anulează toate modificările',
 'ajax-add-category-summary'     => 'Adaugă categoria "$1"',
 'ajax-edit-category-summary'    => 'Modificare categoria „$1” în „$2”',
 'ajax-remove-category-summary'  => 'Elimină categoria "$1"',
+'ajax-category-question'        => 'De ce doriți să efectuați următoarele modificări:',
 'ajax-error-title'              => 'Eroare',
 'ajax-remove-category-error'    => 'Eliminarea categoriei „$1” nu a fost posibilă.
 Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagină printr-un format.',
+'ajax-edit-category-error'      => 'Modificarea categoriei „$1” nu a fost posibilă.
+Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagină printr-un format.',
 'ajax-category-already-present' => 'Această pagină aparține deja categoriei $1',
+'ajax-category-hook-error'      => 'O funcție locală a împiedicat salvarea modificărilor',
+'ajax-api-error'                => 'API a returnat o eroare: $1: $2',
 
 );

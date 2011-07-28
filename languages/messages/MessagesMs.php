@@ -713,6 +713,17 @@ $2
 Kata laluan sementara: $2',
 'passwordreset-emailsent'      => 'E-mel peringatan telah dihantar.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Tukar alamat e-mel',
+'changeemail-header'   => 'Tukar alamat e-mel akaun',
+'changeemail-text'     => 'Lengkapkan borang ini untuk menukar alamat e-mel anda. Anda akan perlu mengisikan kata laluan untuk mengesahkan perubahan ini.',
+'changeemail-no-info'  => 'Anda hendaklah log masuk terlebih dahulu untuk mencapai laman ini secara terus.',
+'changeemail-oldemail' => 'Alamat e-mel sekarang:',
+'changeemail-newemail' => 'Alamat e-mel baru:',
+'changeemail-none'     => '(tiada)',
+'changeemail-submit'   => 'Tukar E-mel',
+'changeemail-cancel'   => 'Batalkan',
+
 # Edit page toolbar
 'bold_sample'     => 'Teks tebal',
 'bold_tip'        => 'Teks tebal',
@@ -1214,6 +1225,8 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-watchlist-token'         => 'Token senarai pantau:',
 'prefs-misc'                    => 'Pelbagai',
 'prefs-resetpass'               => 'Tukar kata laluan',
+'prefs-changeemail'             => 'Tukar E-mel',
+'prefs-setemail'                => 'Tetapkan alamat e-mel',
 'prefs-email'                   => 'Pilihan e-mel',
 'prefs-rendering'               => 'Penampilan',
 'saveprefs'                     => 'Simpan',
@@ -3588,14 +3601,18 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'ajax-confirm-save'             => 'Simpan',
 'ajax-confirm-save-all'         => 'Simpan semua perubahan',
 'ajax-cancel'                   => 'Batalkan suntingan',
+'ajax-cancel-all'               => 'Batalkan semua perubahan',
 'ajax-add-category-summary'     => 'Tambahkan kategori "$1"',
 'ajax-edit-category-summary'    => 'Tukar kategori "$1" ke "$2"',
 'ajax-remove-category-summary'  => 'Buang kategori "$1"',
+'ajax-category-question'        => 'Mengapakah anda ingin membuat perubahan-perubahan berikut:',
 'ajax-error-title'              => 'Ralat',
-'ajax-remove-category-error'    => 'Kategori ini tidak boleh dibuang.
+'ajax-remove-category-error'    => 'Kategori "$1" tidak boleh dibuang.
 Ini biasanya berlaku apabila kategori ditambahkan pada laman dengan menggunakan templat.',
-'ajax-edit-category-error'      => 'Kategori ini tidak boleh disunting.
+'ajax-edit-category-error'      => 'Kategori "$1" tidak boleh disunting.
 Ini biasanya berlaku apabila kategori ditambahkan pada laman dengan menggunakan templat.',
 'ajax-category-already-present' => 'Laman ini sudah tergolong dalam kategori $1',
+'ajax-category-hook-error'      => 'Fungsi setempat menghalang perubahan daripada disimpan',
+'ajax-api-error'                => 'API memulangkan ralat: $1: $2',
 
 );

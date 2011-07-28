@@ -2741,7 +2741,7 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 # Thumbnails
 'thumbnail-more'           => 'Pligrandigi',
 'filemissing'              => 'Mankanta dosiero',
-'thumbnail_error'          => 'Okazis eraro kreante antaŭvidan bildeton: $1',
+'thumbnail_error'          => 'Okazis eraro ĉe kreado de antaŭvida bildeto: $1',
 'djvu_page_error'          => 'DjVu-a paĝo el intervalo',
 'djvu_no_xml'              => 'Ne povas akiri XML por DjVu dosiero',
 'thumbnail_invalid_params' => 'Nevalidaj bildetaj parametroj',

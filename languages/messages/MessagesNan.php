@@ -61,13 +61,18 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Kàm-sī-toaⁿ bián hián-sī sió siu-kái',
 'tog-ccmeonemails'            => 'Kià hō͘ pa̍t-lâng ê email sūn-soà kià copy hō͘ goá',
 'tog-diffonly'                => 'Diff ē-pêng bián hián-sī ia̍h ê loē-iông',
+'tog-showhiddencats'          => 'Hián-sī chhàng khí--lâi ê lūi-pia̍t',
 
 'underline-always'  => 'Tiāⁿ-tio̍h',
 'underline-never'   => 'Tiāⁿ-tio̍h mài',
 'underline-default' => 'Tòe liû-lám-khì ê default',
 
 # Font style option in Special:Preferences
-'editfont-default' => 'Tòe liû-lám-khì ê default',
+'editfont-style'     => 'Pian-chi̍p sî ēng ê jī-thé hêng-sek:',
+'editfont-default'   => 'Tòe liû-lám-khì ê default',
+'editfont-monospace' => 'Monospaced jī-thé',
+'editfont-sansserif' => 'Sans-serif jī-thé',
+'editfont-serif'     => 'Serif jī-thé',
 
 # Dates
 'sunday'        => 'Lé-pài',
@@ -122,10 +127,11 @@ $messages = array(
 'dec'           => '12g',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
-'category_header'        => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
-'subcategories'          => 'Ē-lūi-pia̍t',
-'listingcontinuesabbrev' => '(chiap-sòa thâu-chêng)',
+'pagecategories'           => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
+'category_header'          => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
+'subcategories'            => 'Ē-lūi-pia̍t',
+'hidden-category-category' => 'Chhàng khí--lâi ê lūi piat',
+'listingcontinuesabbrev'   => '(chiap-sòa thâu-chêng)',
 
 'about'         => 'Koan-hē',
 'newwindow'     => '(ē khui sin thang-á hián-sī)',

@@ -639,6 +639,7 @@ Y cyfrinair dros dro: $2",
 'passwordreset-emailsent'      => 'Anfonwyd nodyn atgoffa drwy e-bost.',
 
 # Special:ChangeEmail
+'changeemail'        => 'Newid y cyfeiriad e-bost',
 'changeemail-none'   => '(dim)',
 'changeemail-cancel' => 'Dilëer',
 
@@ -1623,7 +1624,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 
 'license'            => 'Trwyddedu:',
 'license-header'     => 'Trwyddedu',
-'nolicense'          => 'Heb ddewis dim un',
+'nolicense'          => 'Heb ddewis trwydded',
 'license-nopreview'  => '(Dim rhagolwg ar gael)',
 'upload_source_url'  => " (URL dilys, ar gael i'r cyhoedd)",
 'upload_source_file' => ' (ffeil ar eich cyfrifiadur)',

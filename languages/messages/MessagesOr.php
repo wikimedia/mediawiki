@@ -426,7 +426,7 @@ $messages = array(
 'toc'                     => 'ଭିତର ଚିଜ',
 'showtoc'                 => 'ଦେଖାଇବେ',
 'hidetoc'                 => 'ଲୁଚାଇବେ',
-'collapsible-expand'      => 'ସମ୍ପ୍ରସାରଣ',
+'collapsible-expand'      => 'ବଢ଼ାଇବେ',
 'viewdeleted'             => 'ଦେଖିବା $1?',
 'site-rss-feed'           => '$1 ଆରେସେସ ଫିଡ଼',
 'site-atom-feed'          => '$1 ଆଟମ ଫିଡ଼',
@@ -889,7 +889,7 @@ $messages = array(
 
 # Delete
 'deletepage'            => 'ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ',
-'confirm'               => 'ନିଶ୍ଚିତନ',
+'confirm'               => 'ଥୟ କରିବେ',
 'delete-confirm'        => 'ଲିଭେଇବେ $1',
 'delete-legend'         => 'ଲିଭେଇବେ',
 'confirmdeletetext'     => 'ଆପଣ ଗୋଟିଏ ପୃଷ୍ଠାର ଇତିହାସ ସହ ତାହାକୁ ଲିଭାଇବାକୁ ଯାଉଛନ୍ତି ।
