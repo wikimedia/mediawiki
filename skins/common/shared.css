@@ -543,7 +543,6 @@ table.mw_metadata ul.metadata-langlist {
 /* Don't forget to update commonPrint.css */
 li.gallerybox {
 	vertical-align: top;
-	background-color: #f9f9f9;
 	border: solid 2px white;
 	display: -moz-inline-box;
 	display: inline-block;
@@ -570,6 +569,7 @@ li.gallerycaption {
 li.gallerybox div.thumb {
 	text-align: center;
 	border: 1px solid #ccc;
+	background-color: #f9f9f9;
 	margin: 2px;
 }
 

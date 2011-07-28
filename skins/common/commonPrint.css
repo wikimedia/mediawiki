@@ -240,7 +240,6 @@ span.texhtml { font-family: serif; }
 /* Galleries (see shared.css for more info) */
 li.gallerybox {
 	vertical-align: top;
-	background-color: #f9f9f9;
 	border: solid 2px white;
 	display: -moz-inline-box;
 	display: inline-block;
