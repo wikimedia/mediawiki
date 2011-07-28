@@ -657,6 +657,7 @@ Neno la siri la muda: $2',
 'passwordreset-emailsent'      => 'Barua pepe ya ukumbusho imetumwa.',
 
 # Special:ChangeEmail
+'changeemail'        => 'Kubadilisha anwani ya barua pepe',
 'changeemail-none'   => '(hakuna)',
 'changeemail-cancel' => 'Batilisha',
 

@@ -708,6 +708,17 @@ Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har anmo
 Midlertidig adgangskode: $2',
 'passwordreset-emailsent'      => 'En påmindelse er blevet sendt som e-mail.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Ændr email-adresse',
+'changeemail-header'   => 'Ændr kontoens email-adresse',
+'changeemail-text'     => 'Udfyld denne formular for at ændre din email-adresse. Du skal indtaste dit kodeord for at bekræfte denne ændring.',
+'changeemail-no-info'  => 'Du skal være logget på for at komme direkte til denne side.',
+'changeemail-oldemail' => 'Nuværende email-adresse:',
+'changeemail-newemail' => 'Ny email-adresse:',
+'changeemail-none'     => '(ingen)',
+'changeemail-submit'   => 'Ændr email',
+'changeemail-cancel'   => 'Afbryd',
+
 # Edit page toolbar
 'bold_sample'     => 'Fed tekst',
 'bold_tip'        => 'Fed tekst',
@@ -1209,6 +1220,8 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-watchlist-token'         => 'Overvågningslistenøgle:',
 'prefs-misc'                    => 'Forskelligt',
 'prefs-resetpass'               => 'Skift adgangskode',
+'prefs-changeemail'             => 'Ændr email',
+'prefs-setemail'                => 'Angiv en email-adresse',
 'prefs-email'                   => 'Indstillinger for e-mail',
 'prefs-rendering'               => 'Udseende',
 'saveprefs'                     => 'Gem indstillinger',
@@ -3562,14 +3575,18 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'ajax-confirm-save'             => 'Gem',
 'ajax-confirm-save-all'         => 'Gem alle ændringer',
 'ajax-cancel'                   => 'Fortryd redigeringer',
+'ajax-cancel-all'               => 'Fortryd alle ændringer',
 'ajax-add-category-summary'     => 'Tilføj kategorien "$1"',
 'ajax-edit-category-summary'    => 'Skift kategori "$1" til "$2"',
 'ajax-remove-category-summary'  => 'Fjern kategorien "$1"',
+'ajax-category-question'        => 'Hvorfor ønsker du at foretage følgende ændringer:',
 'ajax-error-title'              => 'Fejl',
-'ajax-remove-category-error'    => 'Det var ikke muligt af fjerne kategorien.
+'ajax-remove-category-error'    => 'Det var ikke muligt at fjerne kategorien "$1".
 Det skyldes oftest at kategorien er blevet tilføjet til siden i en skabelon.',
-'ajax-edit-category-error'      => 'Det var ikke muligt at redigere denne kategori.
+'ajax-edit-category-error'      => 'Det var ikke muligt at redigere kategorien "$1".
 Den mest almindelige grund til denne fejl er, at kategorien er blevet tilføjet til siden via en skabelon.',
 'ajax-category-already-present' => 'Denne side er allerede i kategorien $1',
+'ajax-category-hook-error'      => 'En lokal funktion forhindrede at ændringerne blev gemt',
+'ajax-api-error'                => 'API gav en fejlbesked: $1: $2',
 
 );

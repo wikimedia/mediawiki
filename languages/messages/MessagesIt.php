@@ -3652,7 +3652,7 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 'ajax-add-category-summary'     => 'aggiungere la categoria "$1"',
 'ajax-edit-category-summary'    => 'modificare la categoria "$1" in "$2"',
 'ajax-remove-category-summary'  => 'rimuovere la categoria "$1"',
-'ajax-category-question'        => '<strong>Perché</strong> vuoi $1?',
+'ajax-category-question'        => 'Perché vuoi apportare le seguenti modifiche:',
 'ajax-error-title'              => 'Errore',
 'ajax-remove-category-error'    => 'Non è stato possibile rimuovere la categoria "$1".
 Ciò si verifica in genere quando la categoria è stata aggiunta alla pagina in un template.',

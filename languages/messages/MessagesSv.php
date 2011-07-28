@@ -1505,7 +1505,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-purge'                 => 'Rensa cachen för sidor utan att behöva bekräfta',
 'right-autoconfirmed'         => 'Redigera halvlåsta sidor',
 'right-bot'                   => 'Behandlas som en automatisk process',
-'right-nominornewtalk'        => 'Får inte meddelanden om nya ändringar på diskussionssidan vid mindre ändringar.',
+'right-nominornewtalk'        => 'Mindre ändringar på diskussionssidor ger inte besked om nya meddelanden',
 'right-apihighlimits'         => 'Använda högre gränser i API-frågor',
 'right-writeapi'              => 'Använda skriv-API:t',
 'right-delete'                => 'Radera sidor',

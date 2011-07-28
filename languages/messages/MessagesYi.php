@@ -1010,12 +1010,19 @@ $1",
 'logdelete-log-message'       => '$1 פֿאר {{PLURAL:$2|איין פאסירונג|$2 פאסירונגען}}',
 'revdelete-hide-current'      => 'פֿעלער בײַם באַהאַלטן דעם איינהייט פֿון $2, $1: דאָס איז די לויפֿיגע ווערסיע.
 מען קען זי נישט פֿאַרבאָרגן.',
-'revdelete-modify-missing'    => 'פֿעלער בײַ מאדיפֿיצירן  דעם איינס ID $1: ער פֿעלט פֿון דער דאַטנבאַזע the database!',
+'revdelete-show-no-access'    => 'פֿעלער בײַם ווייַזן דעם איינהייט פֿון $2 , $1 : דער איינהייט איז אָנגעצייכנט געווארן "באַשרענקט".
+איר האט נישט קיין צוטריט צו אים.',
+'revdelete-modify-no-access'  => 'פֿעלער בײַם מאדיפֿיצירן דעם איינהייט פֿון $2 , $1 : דער איינהייט איז אָנגעצייכנט געווארן "באַשרענקט".
+איר האט נישט קיין צוטריט צו אים.',
+'revdelete-modify-missing'    => 'פֿעלער בײַ מאדיפֿיצירן  דעם איינס ID $1: ער פֿעלט פֿון דער דאַטנבאַזע!',
+'revdelete-no-change'         => "'''ווארענונג:''' דער איינהייט פֿון $2 , $1 האט שוין די געבעטענע זעבאַרקייט איינשטעלונגען.",
+'revdelete-concurrent-change' => 'גרײַז בײַם מאדיפֿיצירן דעם איינהייט פֿון דאַטע $2 , $1 : ווײַזט אויס אַז זייַן סטאַטוס איז געווארן געענדערט דורך א צווייטן בשעת איר האט געפרוווט צו מאָדיפיצירן אים
+ביטע זײַט בודק די לאָגביכער.',
 'revdelete-only-restricted'   => 'פֿעלער בײַם באַהאַלטן דאס איינסל פֿון  $2, $1: איר קענט נישט באהאלטן פרטים פון אַדמיניסטראטורן נאר אויב איר וויילט אויס איינע פון די אַנדערע באַהאַלטן ברירות.',
 'revdelete-reason-dropdown'   => '*אלגעמיינע אויסמעקן סיבות
 ** קאפירעכט ברעכן
-** פערזענלעכע אינפֿארמאציע
-** אינפארמאציע מעגלעך צו זיין לשון הרע',
+** פערזענלעכע אינפֿארמאַציע
+** אינפֿארמאַציע מעגלעך צו זיין לשון הרע',
 'revdelete-otherreason'       => 'אנדער/צוגעגעבענע סיבה:',
 'revdelete-reasonotherlist'   => 'אנדער סיבה',
 'revdelete-edit-reasonlist'   => 'רעדאַקטירן אויסמעקן סיבות',
@@ -1026,6 +1033,8 @@ $1",
 
 # History merging
 'mergehistory'                     => 'צונויפֿגיסן בלאט היסטאריעס',
+'mergehistory-header'              => 'דער בלאַט דערלויבט אײַך צונויפֿגיסן רעוויזיעס פֿון דער היסטאריע פֿון א מקור בלאַט אין א נײַערן בלאַט.
+שטעלט פֿעסט אַז די ענדערונג וועט האַלטן דעם סדר פֿון דער היסטאריע.',
 'mergehistory-box'                 => 'צונויפֿגיסן רעוויזיעס פֿון צוויי בלעטער:',
 'mergehistory-from'                => 'מקור בלאַט:',
 'mergehistory-into'                => 'פֿארציל בלאַט:',
@@ -1130,12 +1139,13 @@ $1",
 געב אכט אז ס'איז מעגלעך אַז זייער אינדעקס פֿון {{SITENAME}} אינהאַלט איז אפשר פֿאַרעלטערט.",
 
 # Quickbar
-'qbsettings'               => 'גיכפאַס',
-'qbsettings-none'          => 'גארנישט',
-'qbsettings-fixedleft'     => 'קבוע לינקס',
-'qbsettings-fixedright'    => 'קבוע רעכטס',
-'qbsettings-floatingleft'  => 'שווימנדיג לינקס',
-'qbsettings-floatingright' => 'שווימנדיג רעכטס',
+'qbsettings'                => 'גיכפאַס',
+'qbsettings-none'           => 'גארנישט',
+'qbsettings-fixedleft'      => 'קבוע לינקס',
+'qbsettings-fixedright'     => 'קבוע רעכטס',
+'qbsettings-floatingleft'   => 'שווימנדיג לינקס',
+'qbsettings-floatingright'  => 'שווימנדיג רעכטס',
+'qbsettings-directionality' => 'פֿעסט, אפהענגיק אויף דער ריכטונג פֿון דער שריפֿט און דער שפראַך.',
 
 # Preferences page
 'preferences'                   => 'פרעפֿערענצן',
@@ -1160,6 +1170,8 @@ $1",
 'prefs-watchlist-token'         => 'אויפֿפאַסונג ליסטע סימן:',
 'prefs-misc'                    => 'פֿאַרשידנס',
 'prefs-resetpass'               => 'טוישן פאַסווארט',
+'prefs-changeemail'             => 'ענדערן ע־פאסט אדרעס',
+'prefs-setemail'                => 'שטעלן אַן ע-פּאָסט אַדרעס',
 'prefs-email'                   => 'ע־פאסט אפציעס',
 'prefs-rendering'               => 'אויסזען',
 'saveprefs'                     => 'אויפֿהיטן',
@@ -1204,7 +1216,7 @@ $1",
 'prefs-custom-css'              => 'באַניצער דעפֿינירט CSS',
 'prefs-custom-js'               => 'באַניצער דעפֿינירט JS',
 'prefs-common-css-js'           => 'שותפֿותדיקער CSS/JS פֿאַר אַלע אויספֿארמירונגען:',
-'prefs-reset-intro'             => 'איר קענט ניצן דעם בלאַט צוריקצושטעלן אײַערע פרעפֿערענצן גרונטלעך פֿאַרן ארט.  to reset your preferences to the site defaults.
+'prefs-reset-intro'             => 'איר קענט ניצן דעם בלאַט צוריקצושטעלן אײַערע פרעפֿערענצן גרונטלעך פֿאַרן ארט.
 מען קען דאָס נישט אַנולירן.',
 'prefs-emailconfirm-label'      => 'ע-פאסט באַשטעטיקונג:',
 'prefs-textboxsize'             => 'גרייס פֿון רעדאַקטירונג פֿענסטער',
@@ -1236,14 +1248,14 @@ $1",
 'prefs-signature'               => 'אונטערשריפֿט',
 'prefs-dateformat'              => 'דאַטע פֿארמאַט',
 'prefs-timeoffset'              => 'צײַט אונטערשייד',
-'prefs-advancedediting'         => 'אדוואנסירטע אפציעס',
-'prefs-advancedrc'              => 'אדוואנסירטע אפציעס',
-'prefs-advancedrendering'       => 'אדוואנסירטע אפציעס',
-'prefs-advancedsearchoptions'   => 'אדוואנסירטע אפציעס',
-'prefs-advancedwatchlist'       => 'אדוואנסירטע אפציעס',
-'prefs-displayrc'               => 'ווייז אפציעס',
-'prefs-displaysearchoptions'    => 'ווײַז אפציעס',
-'prefs-displaywatchlist'        => 'ווײַז אפציעס',
+'prefs-advancedediting'         => 'פֿארגעשריטענע אפציעס',
+'prefs-advancedrc'              => 'פֿארגעשריטענע אפציעס',
+'prefs-advancedrendering'       => 'פֿארגעשריטענע אפציעס',
+'prefs-advancedsearchoptions'   => 'פֿארגעשריטענע אפציעס',
+'prefs-advancedwatchlist'       => 'פֿארגעשריטענע אפציעס',
+'prefs-displayrc'               => 'ווײַזן אפציעס',
+'prefs-displaysearchoptions'    => 'ווײַזן אפציעס',
+'prefs-displaywatchlist'        => 'ווײַזן אפציעס',
 'prefs-diffs'                   => 'צווישנשיידן',
 
 # User preference: e-mail validation using jQuery
@@ -1255,7 +1267,7 @@ $1",
 'userrights-lookup-user'       => 'פֿאַרוואַלטן באניצער גרופעס',
 'userrights-user-editname'     => 'לייגט אריין א באנוצער-נאמען:',
 'editusergroup'                => 'עדיט באנוצער גרופעס',
-'editinguser'                  => "ענדערן באניצער רעכטן פון באניצער user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "ענדערן באַניצער רעכטן פון באַניצער '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'     => 'רעדאַקטירן באַניצער גרופעס',
 'saveusergroups'               => 'אָפהיטן באַניצער גרופעס',
 'userrights-groupsmember'      => 'מיטגליד פון:',
@@ -1313,6 +1325,7 @@ $1",
 'right-reupload-own'         => "איבערשרײַבן עקזיסטירנדע טעקעס וואָס מ'האט אַליין אַרויפֿגעלאָדן",
 'right-upload_by_url'        => 'ארויפֿלאָדן טעקעס פֿון אַ URL',
 'right-autoconfirmed'        => 'רעדאקטירן האלב-געשיצטע בלעטער',
+'right-bot'                  => 'באַהאַנדלונג ווי אַן אויטאמאַטישער פראצעס',
 'right-delete'               => 'מעקן בלעטער',
 'right-bigdelete'            => 'אויסמעקן בלעטער מיט לאַנגע היסטאריעס',
 'right-deleterevision'       => 'מעקן און צוריקשטעלן ספעציפישע רעוויזיעס פון בלעטער',
@@ -1333,6 +1346,7 @@ $1",
 'right-import'               => 'אימפארטירן בלעטער פון אנדערע וויקיס',
 'right-importupload'         => 'אימפארטירן בלעטער דורך ארויפֿלאָדן טעקע',
 'right-patrol'               => 'צייכנען די רעדאַקטירונגען פֿון אַנדערע ווי פאַטראלירט',
+'right-autopatrol'           => 'אייגענע באַאַרבעטונגען אויטאמאַטיש מאַרקירט ווי קאנטראלירט',
 'right-patrolmarks'          => 'באַקוקן לעצטע ענדערונגען פּאַטראָל מאַרקירונגען',
 'right-unwatchedpages'       => 'באַקוקן די ליסטע פֿון נישט אויפֿגעפאַסטע בלעטער',
 'right-mergehistory'         => 'צונויפֿגיסן די היסטאריע פֿון בלעטער',
@@ -2907,6 +2921,7 @@ $5
 'livepreview-ready'   => 'לאדנדיג… גרייט!',
 
 # Watchlist editor
+'watchlistedit-numitems'      => 'אײַער אויפֿפאַסונג ליסטע אַנטהאַלט {{PLURAL:$1|1 טיטל|$1 טיטלען}}, אויסשליסנדיק שמועסבלעטער.',
 'watchlistedit-noitems'       => 'אײַער אויפֿפאַסן ליסטע איז ליידיג.',
 'watchlistedit-normal-title'  => 'רעדאַקטירן די אויפֿפאַסונג ליסטע',
 'watchlistedit-normal-legend' => 'אַראָפנעמען בלעטער פון דער אויפֿפאסן ליסטע',
@@ -3057,5 +3072,13 @@ $5
 # SQLite database support
 'sqlite-has-fts' => '$1 מיט פולן-טעקסט זוכן שטיץ',
 'sqlite-no-fts'  => '$1 אָן פֿולן-טעקסט זוכן שטיץ',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'צולייגן קאַטעגאריע',
+'ajax-add-category-submit'     => 'צולייגן',
+'ajax-confirm-save'            => 'אויפֿהיטן',
+'ajax-add-category-summary'    => 'צולייגן קאַטעגאריע "$1"',
+'ajax-remove-category-summary' => 'אַוועקנעמען קאַטעגאריע "$1"',
+'ajax-error-title'             => 'גרײַז',
 
 );
