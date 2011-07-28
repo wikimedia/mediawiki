@@ -741,8 +741,6 @@ abstract class Skin extends ContextSource {
 			$msg = 'copyright';
 		}
 
-		$out = '';
-
 		if ( $wgRightsPage ) {
 			$title = Title::newFromText( $wgRightsPage );
 			$link = Linker::linkKnown( $title, $wgRightsText );
@@ -752,7 +750,7 @@ abstract class Skin extends ContextSource {
 			$link = $wgRightsText;
 		} else {
 			# Give up now
-			return $out;
+			return '';
 		}
 
 		// Allow for site and per-namespace customization of copyright notice.
@@ -761,12 +759,10 @@ abstract class Skin extends ContextSource {
 		wfRunHooks( 'SkinCopyrightFooter', array( $this->getTitle(), $type, &$msg, &$link, &$forContent ) );
 
 		if ( $forContent ) {
-			$out .= wfMsgForContent( $msg, $link );
+			return wfMsgForContent( $msg, $link );
 		} else {
-			$out .= wfMsg( $msg, $link );
+			return wfMsg( $msg, $link );
 		}
-
-		return $out;
 	}
 
 	function getCopyrightIcon() {
