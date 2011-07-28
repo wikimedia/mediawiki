@@ -23,12 +23,12 @@ class SiteConfiguration {
 	 * Array of domains that are local and can be handled by the same server
 	 */
 	public $localVHosts = array();
-	
+
 	/**
 	 * Optional callback to load full configuration data.
 	 */
 	public $fullLoadCallback = null;
-	
+
 	/** Whether or not all data has been loaded */
 	public $fullLoadDone = false;
 
@@ -308,7 +308,7 @@ class SiteConfiguration {
 	}
 
 	/**
-	 * Merge params beetween the ones passed to the function and the ones given
+	 * Merge params between the ones passed to the function and the ones given
 	 * by self::$siteParamsCallback for backward compatibility
 	 * Values returned by self::getWikiParams() have the priority.
 	 *
