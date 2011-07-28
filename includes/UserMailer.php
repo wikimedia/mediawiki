@@ -105,6 +105,21 @@ class UserMailer {
 	}
 
 	/**
+	 * Creates a single string from an associative array
+	 *
+	 * @param $header Associative Array: keys are header field names,
+	 *                values are ... values.
+	 * @param $endl String: The end of line character.  Defaults to "\n"
+	 * @return String
+	 */
+	static function arrayToHeaderString( $headers, $endl = "\n" ) {
+		foreach( $headers as $name => $value ) {
+			$string[] = "$name: $value";
+		}
+		return implode( $endl, $string );
+	}
+
+	/**
 	 * This function will perform a direct (authenticated) login to
 	 * a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
 	 * array of parameters. It requires PEAR:Mail to do that.
@@ -127,13 +142,37 @@ class UserMailer {
 			// This wouldn't be necessary if implode() worked on arrays of
 			// objects using __toString(). http://bugs.php.net/bug.php?id=36612
 			foreach ( $to as $t ) {
-				$emails .= $t->toString() . ",";
+					$emails .= $t->toString() . ",";
 			}
 			$emails = rtrim( $emails, ',' );
 			wfDebug( __METHOD__ . ': sending mail to ' . $emails . "\n" );
 		} else {
 			wfDebug( __METHOD__ . ': sending mail to ' . implode( ',', array( $to->toString() ) ) . "\n" );
 		}
+
+		$headers['From'] = $from->toString();
+		$headers['Return-Path'] = $from->toString();
+
+		if ( $wgEnotifImpersonal ) {
+			$headers['To'] = 'undisclosed-recipients:;';
+		}
+		else {
+			$headers['To'] = implode( ", ", (array )$dest );
+		}
+
+		if ( $replyto ) {
+			$headers['Reply-To'] = $replyto->toString();
+		}
+		$headers['Subject'] = self::quotedPrintable( $subject );
+		$headers['Date'] = date( 'r' );
+		$headers['MIME-Version'] = '1.0';
+		$headers['Content-type'] = ( is_null( $contentType ) ?
+			'text/plain; charset=UTF-8' : $contentType );
+		$headers['Content-transfer-encoding'] = '8bit';
+		// @todo FIXME
+		$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>';
+		$headers['X-Mailer'] = 'MediaWiki mailer';
+		$headers['From'] = $from->toString();
 
 		if ( is_array( $wgSMTP ) ) {
 			if ( function_exists( 'stream_resolve_include_path' ) ) {
@@ -159,29 +198,6 @@ class UserMailer {
 			} else {
 				$dest = $to->address;
 			}
-
-			$headers['From'] = $from->toString();
-			$headers['Return-Path'] = $from->toString();
-
-			if ( $wgEnotifImpersonal ) {
-				$headers['To'] = 'undisclosed-recipients:;';
-			}
-			else {
-				$headers['To'] = implode( ', ', (array)$dest );
-			}
-
-			if ( $replyto ) {
-				$headers['Reply-To'] = $replyto->toString();
-			}
-			$headers['Subject'] = self::quotedPrintable( $subject );
-			$headers['Date'] = date( 'r' );
-			$headers['MIME-Version'] = '1.0';
-			$headers['Content-type'] = ( is_null( $contentType ) ?
-					'text/plain; charset=UTF-8' : $contentType );
-			$headers['Content-transfer-encoding'] = '8bit';
-			// @todo FIXME
-			$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>';
-			$headers['X-Mailer'] = 'MediaWiki mailer';
 
 			wfSuppressWarnings();
 
@@ -214,18 +230,7 @@ class UserMailer {
 				$endl = "\n";
 			}
 
-			$headers = array(
-				'MIME-Version: 1.0',
-				"Content-type: $contentType",
-				'Content-Transfer-Encoding: 8bit',
-				'X-Mailer: MediaWiki mailer',
-				'From: ' . $from->toString(),
-			);
-			if ( $replyto ) {
-				$headers[] = 'Reply-To: ' . $replyto->toString();
-			}
-
-			$headers = implode( $endl, $headers );
+			$headers = self::arrayToHeaderString( $headers, $endl );
 
 			wfDebug( "Sending mail via internal mail() function\n" );
 
