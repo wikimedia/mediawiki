@@ -84,12 +84,8 @@ div#mw-js-message {
 
 /* Edit section links */
 .editsection {
-	float: right;
 	margin-left: 5px;
 }
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */.mw-content-ltr .editsection, .mw-content-rtl .mw-content-ltr .editsection { float: right; }
-/* @noflip */.mw-content-rtl .editsection, .mw-content-ltr .mw-content-rtl .editsection { float: left; }
 /**
  * File histories
  */
