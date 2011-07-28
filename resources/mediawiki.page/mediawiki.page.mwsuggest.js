@@ -1,18 +1,18 @@
 jQuery( document ).ready( function( $ ) {
-	var $container = $('<div>', {'class' : 'open-search-suggestions'}),
+	var $container = $( '<div>', { 'class' : 'open-search-suggestions' } ),
 		cache = {},
 		$suggestionList,
-		url = mw.config.get('wgScriptPath') + '/api.php?format=json&action=opensearch&search=',
+		url = mw.config.get( 'wgScriptPath' ) + '/api.php?format=json&action=opensearch&search=',
 		maxRowWindow;
 	
 	//Append the container which will hold the menu to the body
-	$('body').append( $container );
+	$( 'body' ).append( $container );
 
 	/* Grabs namespaces from search form or
 	 * in case we're not on a search page, take it from wgSearchNamespaces.
 	 * @return Array: List of Namespaces that should be searched
 	 */
-	getNamespaces = function() {
+	var getNamespaces = function() {
 		var namespaces = [];
 		$('form#powersearch, form#search').find( '[name^="ns"]' ).each(function() {
 			if ( this.checked || ( this.type == 'hidden' && this.value == '1' ) ) {
@@ -26,7 +26,7 @@ jQuery( document ).ready( function( $ ) {
 	};
 
 	/* Helper function to make sure that the list doesn't expand below the visible part of the window */
-	deliverResult = function( obj, response, maxRowWindow ) {
+	var deliverResult = function( obj, response, maxRowWindow ) {
 		if ( obj && obj.length > 1 ) {
 			response( obj[1] );
 			// Get the lowest from multiple numbers using fn.apply
@@ -38,33 +38,33 @@ jQuery( document ).ready( function( $ ) {
 	};
 
 	/* The actual autocomplete setup */
-	$("#searchInput").autocomplete({
+	$( "#searchInput" ).autocomplete({
 		minLength: 2,
 		source: function ( request, response ) {
 			var namespaces = getNamespaces();
 			// We're caching queries for performance
 			var term = request.term + namespaces;
-			if (term in cache) {
+			if ( term in cache ) {
 				deliverResult( cache[term], response, maxRowWindow );
 				return;
 			}
-			$.getJSON(url + mw.util.rawurlencode( request.term ) + '&namespace=' + namespaces, function ( obj ) {
+			$.getJSON( url + mw.util.rawurlencode( request.term ) + '&namespace=' + namespaces, function ( obj ) {
 				// Save to cache
-				cache[term] = obj;
+				cache[ term ] = obj;
 				deliverResult( obj, response, maxRowWindow );
 			});
 		},
-		select: function() {
-			$('#searchGoButton').click();
+		select : function() {
+			$( '#searchGoButton' ).click();
 		},
 		create : function() {
-			$suggestionList = $container.find('ul');
+			$suggestionList = $container.find( 'ul' );
 		},
-		appendTo: '.open-search-suggestions',
-		open: function() {
-			maxRowWindow = Math.floor( 
-				( $(window).height() - $suggestionList.offset().top + $(window).scrollTop() ) / 
-				$suggestionList.find( '.ui-menu-item' ).eq( 0 ).height()
+		appendTo : '.open-search-suggestions',
+		open : function() {
+			maxRowWindow = Math.floor(
+				( $( window ).height() - $suggestionList.offset().top + $( window ).scrollTop() ) /
+					$suggestionList.find( '.ui-menu-item' ).eq( 0 ).height()
 			);
 		}
 	});
