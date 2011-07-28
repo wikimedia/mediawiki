@@ -180,6 +180,13 @@ class UserMailer {
 		$headers['X-Mailer'] = 'MediaWiki mailer';
 		$headers['From'] = $from->toString();
 
+		$ret = wfRunHooks( 'AlternateUserMailer', array( $this, $headers, $to, $from, $subject, $body, $replyto, $contentType ) ) ) {
+		if ( $ret === false ) {
+			return Status::newGood();
+		} else if ( $ret != true ) {
+			return Status::newFatal( 'php-mail-error', $ret );
+		}
+
 		if ( is_array( $wgSMTP ) ) {
 			if ( function_exists( 'stream_resolve_include_path' ) ) {
 				$found = stream_resolve_include_path( 'Mail.php' );
