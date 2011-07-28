@@ -75,20 +75,3 @@ function wfIsBadImage( $name, $contextTitle = false ) {
 	wfProfileOut( __METHOD__ );
 	return $bad;
 }
-
-/**
- * Calculate the largest thumbnail width for a given original file size
- * such that the thumbnail's height is at most $maxHeight.
- * @param $boxWidth Integer Width of the thumbnail box.
- * @param $boxHeight Integer Height of the thumbnail box.
- * @param $maxHeight Integer Maximum height expected for the thumbnail.
- * @return Integer.
- */
-function wfFitBoxWidth( $boxWidth, $boxHeight, $maxHeight ) {
-	$idealWidth = $boxWidth * $maxHeight / $boxHeight;
-	$roundedUp = ceil( $idealWidth );
-	if( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight )
-		return floor( $idealWidth );
-	else
-		return $roundedUp;
-}
