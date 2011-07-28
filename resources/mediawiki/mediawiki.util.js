@@ -84,15 +84,15 @@
 						$tocTitle = $( '#toctitle' ),
 						$tocToggleLink = $( '#togglelink' );
 					// Only add it if there is a TOC and there is no toggle added already
-					if ( $tocContainer.size() && $tocTitle.size() && !$tocToggleLink.size() ) {
+					if ( $tocContainer.length && $tocTitle.length && !$tocToggleLink.length ) {
 						var	hideTocCookie = $.cookie( 'mw_hidetoc' );
-							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink">' )
+							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
 								.text( mw.msg( 'hidetoc' ) )
 								.click( function(e){
 									e.preventDefault();
 									util.toggleToc( $(this) );
 							} );
-						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
+						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle"></span>' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
 
 						if ( hideTocCookie == '1' ) {
 							// Cookie says user want toc hidden
@@ -187,7 +187,7 @@
 
 			// This function shouldn't be called if there's no TOC,
 			// but just in case...
-			if ( $tocList.size() ) {
+			if ( $tocList.length ) {
 				if ( $tocList.is( ':hidden' ) ) {
 					$tocList.slideDown( 'fast', callback );
 					$toggleLink.text( mw.msg( 'hidetoc' ) );
@@ -255,7 +255,7 @@
 		'updateTooltipAccessKeys' : function( nodeList ) {
 			var $nodes;
 			if ( !nodeList ) {
-			
+
 				// Rather than scanning all links, just the elements that
 				// contain the relevant links
 				this.updateTooltipAccessKeys(
