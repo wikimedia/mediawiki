@@ -122,6 +122,18 @@ class UserMailer {
 	}
 
 	/**
+	 * Create a value suitable for the MessageId Header
+	 *
+	 * @return String
+	 */
+	static function makeMsgId() {
+		global $wgServer;
+
+		$msgid = uniqid( "UserMailer", true ); /* true required for cygwin */
+		return "<$msgid@$wgServer>";
+	}
+
+	/**
 	 * This function will perform a direct (authenticated) login to
 	 * a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
 	 * array of parameters. It requires PEAR:Mail to do that.
@@ -175,8 +187,8 @@ class UserMailer {
 		$headers['Content-type'] = ( is_null( $contentType ) ?
 			'text/plain; charset=UTF-8' : $contentType );
 		$headers['Content-transfer-encoding'] = '8bit';
-		// @todo FIXME
-		$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>';
+
+		$headers['Message-ID'] = self::makeMsgId();
 		$headers['X-Mailer'] = 'MediaWiki mailer';
 		$headers['From'] = $from->toString();
 
@@ -197,11 +209,6 @@ class UserMailer {
 				throw new MWException( 'PEAR mail package is not installed' );
 			}
 			require_once( 'Mail.php' );
-
-			$msgid = str_replace( " ", "_", microtime() );
-			if ( function_exists( 'posix_getpid' ) ) {
-				$msgid .= '.' . posix_getpid();
-			}
 
 			wfSuppressWarnings();
 
