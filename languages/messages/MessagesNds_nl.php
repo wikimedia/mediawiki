@@ -782,6 +782,7 @@ Je mötten effen wachten veurda'j t opniej proberen kunnen.",
 
 # E-mail sending
 'php-mail-error-unknown' => 'Der was een onbekende fout mit de mail()-funksie van PHP',
+'user-mail-no-addy'      => 'Eprobeerd een berichjen te versturen zonder een netpostadres',
 
 # Change password dialog
 'resetpass'                 => 'Wachtwoord wiezigen',

@@ -153,7 +153,7 @@ $messages = array(
 'about'         => 'Афыст',
 'article'       => 'Статья',
 'newwindow'     => '(кæны ног рудзынджы)',
-'cancel'        => 'Фæстæмæ',
+'cancel'        => 'Ныууадзын',
 'moredotdotdot' => 'Фылдæр…',
 'mypage'        => 'Дæхи фарс',
 'mytalk'        => 'Мæ ныхас',
@@ -364,10 +364,10 @@ $messages = array(
 # Change password dialog
 'resetpass_text'            => '<!-- Бахæсс дæ текст ам -->',
 'oldpassword'               => 'Раздæры пароль:',
-'newpassword'               => 'Новый пароль',
+'newpassword'               => 'Нæуæг пароль:',
 'resetpass_forbidden'       => 'Пароль баивæн нæй',
-'resetpass-submit-loggedin' => 'Пароль баив',
-'resetpass-submit-cancel'   => 'Нæ хъæуы',
+'resetpass-submit-loggedin' => 'Пароль фæивын',
+'resetpass-submit-cancel'   => 'Ныууадзын',
 'resetpass-temp-password'   => 'Рæстæгмæ пароль:',
 
 # Special:PasswordReset
@@ -375,6 +375,9 @@ $messages = array(
 'passwordreset-email'        => 'Электрон посты адрис:',
 'passwordreset-emailelement' => 'Архайæджы ном: $1
 Рæстæгмæ пароль: $2',
+
+# Special:ChangeEmail
+'changeemail-cancel' => 'Ныууадзын',
 
 # Edit page toolbar
 'bold_sample'     => 'Бæзджын текст',
@@ -539,7 +542,7 @@ $messages = array(
 # Preferences page
 'mypreferences'             => 'Мæ фадæттæ',
 'prefsnologin'              => 'Системæйæн дæхи нæ бацамыдтай',
-'changepassword'            => 'Пароль баив',
+'changepassword'            => 'Пароль ивæн',
 'skin-preview'              => 'Разæркаст',
 'prefs-datetime'            => 'Датæ æмæ рæстæг',
 'prefs-watchlist'           => 'Дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъд',

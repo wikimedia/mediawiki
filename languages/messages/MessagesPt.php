@@ -789,6 +789,7 @@ Aguarde antes de tentar novamente, por favor.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
+'user-mail-no-addy'      => 'Tentou enviar uma mensagem sem um endereço de correio electrónico',
 
 # Change password dialog
 'resetpass'                 => 'Alterar palavra-chave',

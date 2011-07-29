@@ -819,6 +819,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Непозната грешка во функцијата mail() на PHP',
+'user-mail-no-addy'      => 'Се обидовте да испратите порака без да внесете адреса',
 
 # Change password dialog
 'resetpass'                 => 'Промена на лозинка',

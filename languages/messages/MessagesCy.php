@@ -594,6 +594,7 @@ Oedwch ychydig cyn mentro eto.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Gwall anhysbys yng ngweithrediad post() PHP',
+'user-mail-no-addy'      => 'Wedi ceisio anfon e-bost heb gyfeiriad e-bost',
 
 # Change password dialog
 'resetpass'                 => 'Newid cyfrinair y cyfrif',
@@ -639,9 +640,10 @@ Y cyfrinair dros dro: $2",
 'passwordreset-emailsent'      => 'Anfonwyd nodyn atgoffa drwy e-bost.',
 
 # Special:ChangeEmail
-'changeemail'        => 'Newid y cyfeiriad e-bost',
-'changeemail-none'   => '(dim)',
-'changeemail-cancel' => 'Dilëer',
+'changeemail'          => 'Newid y cyfeiriad e-bost',
+'changeemail-newemail' => 'Cyfeiriad e-bost newydd:',
+'changeemail-none'     => '(dim)',
+'changeemail-cancel'   => 'Dilëer',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',

@@ -792,6 +792,7 @@ Vänta innan du försöker igen.',
 
 # E-mail sending
 'php-mail-error-unknown' => "Okänt fel i PHP's mail()-funktion",
+'user-mail-no-addy'      => 'Försökte skicka e-post utan en e-postadress',
 
 # Change password dialog
 'resetpass'                 => 'Ändra lösenord',
@@ -835,6 +836,15 @@ Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna 
 'passwordreset-emailelement'   => 'Användarnamn: $1
 Tillfälligt lösenord: $2',
 'passwordreset-emailsent'      => 'En påminnelse via e-post har skickats.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Ändra e-postadress',
+'changeemail-header'   => 'Ändra kontots e-postadress',
+'changeemail-oldemail' => 'Nuvarande e-postadress:',
+'changeemail-newemail' => 'Ny e-postadress:',
+'changeemail-none'     => '(ingen)',
+'changeemail-submit'   => 'Ändra e-post',
+'changeemail-cancel'   => 'Avbryt',
 
 # Edit page toolbar
 'bold_sample'     => 'Fet text',
@@ -1346,6 +1356,8 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-watchlist-token'         => 'Bevakningslistsnyckel:',
 'prefs-misc'                    => 'Diverse',
 'prefs-resetpass'               => 'Ändra lösenord',
+'prefs-changeemail'             => 'Ändra e-post',
+'prefs-setemail'                => 'Ange en e-postadress',
 'prefs-email'                   => 'Alternativ för e-post',
 'prefs-rendering'               => 'Utseende',
 'saveprefs'                     => 'Spara',
@@ -3762,9 +3774,11 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'ajax-confirm-save'             => 'Spara',
 'ajax-confirm-save-all'         => 'Spara alla ändringar',
 'ajax-cancel'                   => 'Avbryt redigering',
+'ajax-cancel-all'               => 'Avbryt alla ändringar',
 'ajax-add-category-summary'     => 'Lägg till kategorin "$1"',
 'ajax-edit-category-summary'    => 'Ändra kategori "$1" till "$2"',
 'ajax-remove-category-summary'  => 'Tag bort kategorin "$1"',
+'ajax-category-question'        => 'Varför vill du göra följande ändringar:',
 'ajax-error-title'              => 'Fel',
 'ajax-remove-category-error'    => 'Det var inte möjligt att ta bort den här kategorin.
 Oftast beror det på att kategorin har lagts till genom användande av en mall.',

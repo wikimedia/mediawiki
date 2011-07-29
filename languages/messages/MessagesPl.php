@@ -739,6 +739,7 @@ Odczekaj chwilę zanim ponowisz próbę.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Wystąpił nieznany błąd w funkcji PHP mail()',
+'user-mail-no-addy'      => 'Próba wysłania e‐maila bez adresu odbiorcy',
 
 # Change password dialog
 'resetpass'                 => 'Zmień hasło',
@@ -783,6 +784,17 @@ Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni popr
 'passwordreset-emailelement'   => 'Nazwa użytkownika – $1
 Tymczasowe hasło – $2',
 'passwordreset-emailsent'      => 'Przypominający e‐mail został wysłany.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Zmiana adresu e‐mail',
+'changeemail-header'   => 'Zmiana adresu e‐mail',
+'changeemail-text'     => 'Wypełnij formularz, jeśli chcesz zmienić swój adres poczty elektronicznej. Będziesz musiał wprowadzić hasło, aby potwierdzić tę zmianę.',
+'changeemail-no-info'  => 'Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.',
+'changeemail-oldemail' => 'Obecny adres e‐mail',
+'changeemail-newemail' => 'Nowy adres e-mail',
+'changeemail-none'     => '(brak)',
+'changeemail-submit'   => 'Zapisz nowy',
+'changeemail-cancel'   => 'Anuluj',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst tłustą czcionką',
@@ -1297,6 +1309,8 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-watchlist-token'         => 'Identyfikator listy obserwowanych',
 'prefs-misc'                    => 'Ustawienia różne',
 'prefs-resetpass'               => 'Zmień hasło',
+'prefs-changeemail'             => 'Zmień adres e‐mail',
+'prefs-setemail'                => 'Ustaw adres e‐mail',
 'prefs-email'                   => 'E‐mail',
 'prefs-rendering'               => 'Wygląd',
 'saveprefs'                     => 'Zapisz',
@@ -3794,14 +3808,18 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 'ajax-confirm-save'             => 'Zapisz',
 'ajax-confirm-save-all'         => 'Zapisz wszystkie zmiany',
 'ajax-cancel'                   => 'Wycofaj zmiany',
+'ajax-cancel-all'               => 'Anuluj wszystkie zmiany',
 'ajax-add-category-summary'     => 'Dodaj kategorię „$1”',
 'ajax-edit-category-summary'    => 'Zmiana kategorii z „$1“ na „$2“',
 'ajax-remove-category-summary'  => 'Usuń kategorię „$1”',
+'ajax-category-question'        => 'Dlaczego chcesz wprowadzić następujące zmiany:',
 'ajax-error-title'              => 'Błąd',
-'ajax-remove-category-error'    => 'Usunięcie strony z tej kategorii nie jest możliwe.
+'ajax-remove-category-error'    => 'Usunięcie strony z kategorii „$1“ nie jest możliwe.
 Problem zazwyczaj występuje, jeśli kategoria została dodana do strony przez szablon.',
-'ajax-edit-category-error'      => 'Zmiana kategorii nie była możliwa.
-Taki problem zazwyczaj występuje, gdy kategoria została dodana do strony przez szablon.',
+'ajax-edit-category-error'      => 'Zmiana kategorii „$1“ nie jest możliwa.
+Ten problem zazwyczaj występuje, jeśli kategoria została dodana do strony przez szablon.',
 'ajax-category-already-present' => 'Strona już jest w kategorii $1',
+'ajax-category-hook-error'      => 'Lokalna funkcja uniemożliwia zapisanie zmian',
+'ajax-api-error'                => 'Interfejs API zwrócił błąd – $1: $2',
 
 );
