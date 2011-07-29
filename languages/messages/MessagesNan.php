@@ -55,6 +55,8 @@ $messages = array(
 'tog-fancysig'                => 'Chhiam-miâ mài chò liân-kiat',
 'tog-externaleditor'          => 'Iōng gōa-pō· pian-chi̍p-khì (kan-na hō͘ ko-chhiú, he ài tī lí ê tiān-náu koh siat-tēng. [http://www.mediawiki.org/wiki/Manual:External_editors Siông-chêng.])',
 'tog-externaldiff'            => 'Iōng gōa-pō· diff (kan-na hō͘ ko-chhiú, he ài tī lí ê tiān-noá koh siat-tēng. [http://www.mediawiki.org/wiki/Manual:External_editors Siông-chêng.])',
+'tog-showjumplinks'           => 'Hō͘ "thiàu khì" chit ê liân-chiap ē-sái',
+'tog-uselivepreview'          => 'Ēng sui khoàⁿ-māi (ài ū JavaScript) (chhì-giām--ê)',
 'tog-forceeditsummary'        => 'Pian-chi̍p khài-iàu bô thiⁿ ê sî-chūn, kā goá thê-chhéⁿ',
 'tog-watchlisthideown'        => 'Kàm-sī-toaⁿ bián hián-sī goá ê pian-chi̍p',
 'tog-watchlisthidebots'       => 'Kàm-sī-toaⁿ bián hián-sī ki-khì pian-chi̍p',
@@ -130,10 +132,13 @@ $messages = array(
 'pagecategories'           => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
 'category_header'          => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
 'subcategories'            => 'Ē-lūi-pia̍t',
+'category-media-header'    => 'Tī lūi-pia̍t "$1" ê mûi-thé',
+'category-empty'           => "''Chit-má chit ê lūi-pia̍t  bô ia̍h ia̍h-sī mûi-thé.''",
 'hidden-category-category' => 'Chhàng khí--lâi ê lūi piat',
 'listingcontinuesabbrev'   => '(chiap-sòa thâu-chêng)',
 
 'about'         => 'Koan-hē',
+'article'       => 'Loē-iông ia̍h',
 'newwindow'     => '(ē khui sin thang-á hián-sī)',
 'cancel'        => 'Chhú-siau',
 'moredotdotdot' => 'Iáu-ū',
@@ -144,8 +149,10 @@ $messages = array(
 'and'           => '&#32;kap',
 
 # Cologne Blue skin
+'qbfind'         => 'Chhoé',
 'qbedit'         => 'Siu-kái',
 'qbpageoptions'  => 'Chit ia̍h',
+'qbmyoptions'    => 'Goá ê ia̍h',
 'qbspecialpages' => 'Te̍k-sû-ia̍h',
 
 # Vector skin
@@ -187,16 +194,24 @@ $messages = array(
 'personaltools'     => 'Kò-jîn kang-khū',
 'postcomment'       => 'Hoat-piáu phêng-lūn',
 'talk'              => 'thó-lūn',
+'views'             => 'Khoàⁿ',
 'toolbox'           => 'Ke-si kheh-á',
 'userpage'          => 'Khoàⁿ iōng-chiá ê Ia̍h',
 'projectpage'       => 'Khoàⁿ sū-kang ia̍h',
+'imagepage'         => 'Khoàⁿ tóng-àn ia̍h',
+'mediawikipage'     => 'Khoàⁿ sìn-sit ia̍h',
+'templatepage'      => 'Khoàⁿ pang-bô͘ ia̍h',
+'viewhelppage'      => 'Khoàⁿ pang-chō͘ ia̍h',
+'categorypage'      => 'Khoàⁿ lūi-pia̍t ia̍h',
 'viewtalkpage'      => 'Khoàⁿ thó-lūn',
 'otherlanguages'    => 'Kî-thaⁿ ê gí-giân',
 'redirectedfrom'    => '(Tùi $1 choán--lâi)',
 'redirectpagesub'   => 'Choán-ia̍h',
+'lastmodifiedat'    => 'Chit ia̍h tī $1,  $2 ū kái--koè',
 'viewcount'         => 'Pún-ia̍h kàu taⁿ ū $1 pái access.',
 'protectedpage'     => 'Siū pó-hō͘ ê ia̍h',
 'jumpto'            => 'Thiàu khì:',
+'jumptonavigation'  => 'Se̍h chām',
 'jumptosearch'      => 'chhiau-chhoē',
 'pool-errorunknown' => 'M̄-chai siáⁿ chhò-gō͘',
 
@@ -223,6 +238,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Lí tī $1 ū sin sìn-sit',
 'editsection'             => 'siu-kái',
 'editold'                 => 'siu-kái',
+'editlink'                => 'siu-kái',
 'editsectionhint'         => 'Pian-chi̍p toān-lo̍h: $1',
 'toc'                     => 'Bo̍k-lo̍k',
 'showtoc'                 => 'khui',
@@ -240,6 +256,7 @@ $messages = array(
 'nstab-image'     => 'Tóng-àn',
 'nstab-mediawiki' => 'Sìn-sit',
 'nstab-template'  => 'Pang-bô·',
+'nstab-help'      => 'Pang-chō͘ ia̍h',
 'nstab-category'  => 'Lūi-pia̍t',
 
 # Main script and global functions
@@ -250,6 +267,8 @@ $messages = array(
 'databaseerror'      => 'Chu-liāu-khò· chhò-gō·',
 'readonly'           => 'Chu-liāu-khò· só tiâu leh',
 'readonlytext'       => 'Chu-liāu-khò· hiān-chú-sî só tiâu leh, bô khai-hòng hō· lâng siu-kái. Che tāi-khài sī in-ūi teh pān î-siu khang-khòe, oân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. Hū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1',
+'internalerror'      => 'Loē-pō͘ ê chhò-ngō͘',
+'internalerror_info' => 'Loē-pō͘ ê chhò-ngō͘: $1',
 'filecopyerror'      => 'Bô-hoat-tō· kā tóng-àn "$1" khó·-pih khì "$2".',
 'filerenameerror'    => 'Bô-hoat-tō· kā tóng-àn "$1" kái-miâ chò "$2".',
 'filedeleteerror'    => 'Bô-hoat-tō· kā tóng-àn "$1" thâi tiāu',
@@ -322,13 +341,16 @@ Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh k
 'emailconfirmlink'           => 'Chhiáⁿ khak-jīn lí ê e-mail chū-chí ū-hāu',
 
 # Change password dialog
-'oldpassword' => 'Kū bi̍t-bé:',
-'newpassword' => 'Sin bi̍t-bé:',
-'retypenew'   => 'Têng phah sin bi̍t-bé:',
+'resetpass'               => 'Kái bi̍t-bé',
+'oldpassword'             => 'Kū bi̍t-bé:',
+'newpassword'             => 'Sin bi̍t-bé:',
+'retypenew'               => 'Têng phah sin bi̍t-bé:',
+'resetpass-temp-password' => 'Lîm-sî ê bi̍t-bé:',
 
 # Special:PasswordReset
-'passwordreset'       => 'Têng siat bi̍t-bé',
-'passwordreset-email' => 'Tiān-chú-phoe tē-chí:',
+'passwordreset'          => 'Têng siat bi̍t-bé',
+'passwordreset-username' => 'Lí ê iōng-chiá miâ-chheng:',
+'passwordreset-email'    => 'Tiān-chú-phoe tē-chí:',
 
 # Special:ChangeEmail
 'changeemail'        => 'Kái tiān-chú-phoe ê tē-chí',

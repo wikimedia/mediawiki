@@ -760,6 +760,7 @@ Xin hãy đợi chốc lát rồi thử lại.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Lỗi không rõ trong hàm PHP mail()',
+'user-mail-no-addy'      => 'Không có địa chỉ để gửi thư điện tử đến',
 
 # Change password dialog
 'resetpass'                 => 'Đổi mật khẩu',

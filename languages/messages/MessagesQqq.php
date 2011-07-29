@@ -805,7 +805,10 @@ Used on [[Special:ResetPass]]',
 'changeemail-none'     => "Probably appears in 'Current E-mail address' field when no address held, in [[Special:ChangeEmail]].
 
 {{Identical|None}}",
-'changeemail-cancel'   => '{{Identical|Cancel}}',
+'changeemail-submit'   => 'Submit button on [[Special:ChangeEmail]]',
+'changeemail-cancel'   => 'Cancel button on [[Special:ChangeEmail]]
+
+{{Identical|Cancel}}',
 
 # Edit page toolbar
 'bold_sample'     => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.

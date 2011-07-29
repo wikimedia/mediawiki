@@ -840,6 +840,7 @@ Wacht even voordat u het opnieuw probeert.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',
+'user-mail-no-addy'      => 'Geprobeerd een e-mail te verzenden zonder een e-mailadres',
 
 # Change password dialog
 'resetpass'                 => 'Wachtwoord wijzigen',

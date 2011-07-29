@@ -891,6 +891,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Непозната грешка у функцији PHP mail()',
+'user-mail-no-addy'      => 'Покушали сте да пошаљете поруку без е-адресе',
 
 # Change password dialog
 'resetpass'                 => 'Промена лозинке',
@@ -937,6 +938,17 @@ $2
 'passwordreset-emailelement'   => 'Корисничко име: $1
 Привремена лозинка: $2',
 'passwordreset-emailsent'      => 'Подсетник о лозинци је послат на вашу адресу.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Промена е-адресе',
+'changeemail-header'   => 'Промените е-адресу налога',
+'changeemail-text'     => 'Попуните овај образац да бисте променили своју е-адресу. Мораћете да унесете лозинку да потврдите измену.',
+'changeemail-no-info'  => 'Морате бити пријављени да бисте приступили овој страници.',
+'changeemail-oldemail' => 'Тренутна е-адреса:',
+'changeemail-newemail' => 'Нова е-адреса:',
+'changeemail-none'     => '(ништа)',
+'changeemail-submit'   => 'Промени',
+'changeemail-cancel'   => 'Откажи',
 
 # Edit page toolbar
 'bold_sample'     => 'Подебљан текст',
@@ -1459,6 +1471,8 @@ $1",
 'prefs-watchlist-token'         => 'Печат списка надгледања:',
 'prefs-misc'                    => 'Разно',
 'prefs-resetpass'               => 'Промени лозинку',
+'prefs-changeemail'             => 'Промени е-адресу',
+'prefs-setemail'                => 'Постави е-адресу',
 'prefs-email'                   => 'Поставке е-поште',
 'prefs-rendering'               => 'Изглед',
 'saveprefs'                     => 'Сачувај',
@@ -3876,14 +3890,16 @@ $1',
 'ajax-confirm-save'             => 'Сачувај',
 'ajax-confirm-save-all'         => 'Сачувај све измене',
 'ajax-cancel'                   => 'Откажи измене',
+'ajax-cancel-all'               => 'Откажи све измене',
 'ajax-add-category-summary'     => 'Додај категорију "$1"',
 'ajax-edit-category-summary'    => 'Промени категорију „$1“ у „$2“',
 'ajax-remove-category-summary'  => 'Уклони категорију "$1"',
+'ajax-category-question'        => 'Разлог за стварање измена:',
 'ajax-error-title'              => 'Грешка',
-'ajax-remove-category-error'    => 'Није било могуће уклонити ову категорију.
-То се обично дешава када је категорија додата страници преко шаблона.',
-'ajax-edit-category-error'      => 'Не могу да променим ову категорију.
-Ово се обично деси када је она додата на страницу у виду шаблона.',
+'ajax-remove-category-error'    => 'Не могу да уклоним категорију „$1“.
+Ово се обично дешава када је категорија додата на страницу преко шаблона.',
+'ajax-edit-category-error'      => 'Не могу да променим категорију „$1“.
+Ово се обично дешава када је категорија додата на страницу преко шаблона.',
 'ajax-category-already-present' => 'Ова страница већ припада категорији $1',
 
 );

@@ -156,7 +156,7 @@ $messages = array(
 'april'         => 'avrêl',
 'may_long'      => 'gulan',
 'june'          => 'pûşper',
-'july'          => 'Tîrmeh',
+'july'          => 'tîrmeh',
 'august'        => 'tebax',
 'september'     => 'rezber',
 'october'       => 'kewçêr',
@@ -437,7 +437,7 @@ Bila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd
 Hesabê te hate afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe di {{SITENAME}}]] de biguherînî.',
 'yourname'                   => 'Navê bikarhêner:',
 'yourpassword'               => 'Şîfre:',
-'yourpasswordagain'          => 'Şîfreyê dîsa binîvîse:',
+'yourpasswordagain'          => 'Şîfreyê dîsa binivîse:',
 'remembermypassword'         => 'Şifreya min di her têketina min de bîne bîra xwe (herî zêde $1 {{PLURAL:$1|rojekê|rojan}})',
 'yourdomainname'             => 'Domaînê te',
 'externaldberror'            => 'Çewtiyeke bingeha daneyan heye, an jî destûra te ya rojanekirina hesabê xweyê navxweyî nîne.',
@@ -446,7 +446,7 @@ Hesabê te hate afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe 
 'loginprompt'                => "<b>Eger tu xwe nû qeyd bikî, nav û şîfreya xwe hilbijêre.</b> Ji bo xwe qeyd kirinê di {{SITENAME}} de divê ku ''cookies'' gengaz be.",
 'userlogin'                  => 'Têkeve an hesabeke nû çêke',
 'userloginnocreate'          => 'Têkeve',
-'logout'                     => 'Derkeve (log out)',
+'logout'                     => 'Derkeve',
 'userlogout'                 => 'Derkeve',
 'notloggedin'                => 'Xwe qeyd nekir (not logged in)',
 'nologin'                    => 'Hesabê te nîne? $1.',
@@ -553,7 +553,7 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'missingcommenttext'               => 'Ji kerema xwe kurteya naverokê li jêr binivisîne.',
 'missingcommentheader'             => "<span style=\"color:#990000;\">'''Zanibe:'''</span> Te sernavek nenivîsandiye. Heke tu niha carekî din li ser ''tomar bike'' bitikînî, ev guherandina vê sernavê wê were tomarkirin.",
 'summary-preview'                  => 'Pêşdîtina kurtenivîsê:',
-'subject-preview'                  => 'Pêşdîtinê sernivîsê:',
+'subject-preview'                  => 'Pêşdîtina sernivîsê:',
 'blockedtitle'                     => 'Bikarhêner hate astengkirin',
 'blockedtext'                      => "'''Navê te yê bikarhêneriyê an jî IP'ya te hate astengkirin.'''
 
@@ -626,8 +626,8 @@ Divê tû wan bikî yek.
 Heke niha tomar bikî, '''bi tene''' nivîsara qutiya jor wê bê tomarkirin.",
 'yourtext'                         => 'Nivîsara te',
 'storedversion'                    => 'Versiyona qeydkirî',
-'editingold'                       => "'''HÎŞYAR: Tu ser revîsyoneke kevn a vê rûpelê dixebitî.
-Eger tu qeyd bikî, hemû guhertinên ji vê revîzyonê piştre winda dibin.
+'editingold'                       => "'''Hişyarî: Tu li ser guhertoyeke kevn a vê rûpelê dixebitî.
+Heke tu qeyd bikî, hemû guhertinên piştî vê revîzyonê winda dibin.
 '''",
 'yourdiff'                         => 'Ciyawazî',
 'copyrightwarning'                 => "Hişyarî: Hemû tevkariyên {{SITENAME}} di bin $2 de tên belav kirin (ji bo hûragahiyan li $1 binêre). Eger tu nexwazî ku nivîsên te bê dilrehmî bên guherandin û li gora keyfa herkesî bên belavkirin, li vir neweşîne.<br />

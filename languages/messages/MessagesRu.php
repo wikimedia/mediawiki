@@ -771,6 +771,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Неизвестная ошибка в PHP-функции mail()',
+'user-mail-no-addy'      => 'Попытался отправить электронное письмо без адреса электронной почты',
 
 # Change password dialog
 'resetpass'                 => 'Изменение пароля',

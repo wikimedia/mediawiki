@@ -737,6 +737,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Узьнікла невядомая памылка ў функцыі PHP mail()',
+'user-mail-no-addy'      => 'Спроба даслаць электронны ліст без адрасу дастаўкі',
 
 # Change password dialog
 'resetpass'                 => 'Зьмяніць пароль',
