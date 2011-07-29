@@ -846,7 +846,8 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Get the cached timestamp for the last time the page changed
+	 * Get the cached timestamp for the last time the page changed.
+	 * This is only used to help handle slave lag by comparing to page_touched.
 	 * @return string MW timestamp
 	 */
 	protected function getCachedLastEditTime() {
@@ -856,7 +857,8 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Set the cached timestamp for the last time the page changed
+	 * Set the cached timestamp for the last time the page changed.
+	 * This is only used to help handle slave lag by comparing to page_touched.
 	 * @param $timestamp string
 	 * @return void
 	 */

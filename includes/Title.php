@@ -3232,6 +3232,7 @@ class Title {
 		if ( $u ) {
 			$u->doUpdate();
 		}
+
 		# Update message cache for interface messages
 		if ( $this->getNamespace() == NS_MEDIAWIKI ) {
 			# @bug 17860: old article can be deleted, if this the case,
@@ -3324,10 +3325,11 @@ class Title {
 		}
 		$nullRevId = $nullRevision->insertOn( $dbw );
 
+		$now = wfTimestampNow();
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array(
-				'page_touched'   => $dbw->timestamp(),
+				'page_touched'   => $dbw->timestamp( $now ),
 				'page_namespace' => $nt->getNamespace(),
 				'page_title'     => $nt->getDBkey(),
 				'page_latest'    => $nullRevId,
@@ -3339,6 +3341,7 @@ class Title {
 
 		$article = new Article( $nt );
 		wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $wgUser ) );
+		$article->setCachedLastEditTime( $now );
 
 		# Recreate the redirect, this time in the other direction.
 		if ( $createRedirect || !$wgUser->isAllowed( 'suppressredirect' ) ) {
