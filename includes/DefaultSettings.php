@@ -180,6 +180,11 @@ $wgArticlePath      = false;
 $wgUploadPath       = false;
 
 /**
+ * The maximum age of temporary (incomplete) uploaded files
+ */
+$wgUploadStashMaxAge = 6 * 3600; // 6 hours
+
+/**
  * The filesystem path of the images directory. Defaults to "{$IP}/images".
  */
 $wgUploadDirectory	= false;

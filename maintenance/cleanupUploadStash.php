@@ -38,12 +38,18 @@ class UploadStashCleanup extends Maintenance {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 	
 		$dbr = $repo->getSlaveDb();
+
+		// how far back should this look for files to delete?
+		global $wgUploadStashMaxAge;
+		if( $wgUploadStashMaxAge === null ) {
+			$wgUploadStashMaxAge = 6 * 3600; // default: 6 hours.
+		}
 		
 		$this->output( "Getting list of files to clean up...\n" );
 		$res = $dbr->select(
 			'uploadstash',
 			'us_key',
-			'us_timestamp < ' . $dbr->timestamp( time() - UploadStash::REPO_AGE * 3600 ),
+			'us_timestamp < ' . $dbr->timestamp( time() - $wgUploadStashMaxAge ),
 			__METHOD__
 		);
 		
