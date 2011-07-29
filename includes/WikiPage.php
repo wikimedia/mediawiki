@@ -862,7 +862,7 @@ class WikiPage extends Page {
 	 * @param $timestamp string
 	 * @return void
 	 */
-	protected function setCachedLastEditTime( $timestamp ) {
+	public function setCachedLastEditTime( $timestamp ) {
 		global $wgMemc;
 		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
 		$wgMemc->set( $key, wfTimestamp( TS_MW, $timestamp ), 60*15 );
