@@ -297,7 +297,6 @@ $EditPage: the EditPage object
 
 'AlternateUserMailer': Called before mail is sent so that mail could
 be logged (or something else) instead of using PEAR or SMTP
-$UserMailer: the EditPage object
 $headers: Associative array of headers for the email
 $to: MailAddress object or array
 $from: From address
