@@ -23,9 +23,6 @@ class UploadStash {
 	// behind, throw an exception instead. (at what point is broken better than slow?)
 	const MAX_LAG = 30;
 
-	// Age of the repository in hours.  That is, after how long will files be assumed abandoned and deleted?
-	const REPO_AGE = 6;
-
 	/**
 	 * repository that this uses to store temp files
 	 * public because we sometimes need to get a LocalFile within the same repo.
@@ -68,6 +65,12 @@ class UploadStash {
 		if ( is_object( $this->user ) ) {
 			$this->userId = $this->user->getId();
 			$this->isLoggedIn = $this->user->isLoggedIn();
+		}
+
+		// Age of the repository in seconds.  That is, after how long will files be assumed abandoned and deleted?
+		global $wgUploadStashMaxAge;
+		if( $wgUploadStashMaxAge === null ) {
+			$wgUploadStashMaxAge = 6 * 3600; // default: 6 hours.
 		}
 	}
 
@@ -263,10 +266,10 @@ class UploadStash {
 
 		// The current user can't have this key if:
 		// - the key is owned by someone else and
-		// - the age of the key is less than REPO_AGE
+		// - the age of the key is less than $wgUploadStashMaxAge
 		if ( is_object( $row ) ) {
 			if ( $row->us_user != $this->userId &&
-				$row->wfTimestamp( TS_UNIX, $row->us_timestamp ) > time() - UploadStash::REPO_AGE * 3600
+				$row->wfTimestamp( TS_UNIX, $row->us_timestamp ) > time() - $wgUploadStashMaxAge
 			) {
 				$dbw->rollback();
 				throw new UploadStashWrongOwnerException( "Attempting to upload a duplicate of a file that someone else has stashed" );
