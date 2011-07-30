@@ -573,6 +573,10 @@ Tu avissa trasè e scacchià 'na passuord nova. Ce quacchedun'otre ha fatte sta 
 Passuord temboranèe: $2',
 'passwordreset-emailsent'      => "'N'e-mail pe arrecurdarte ha state mannate.",
 
+# Special:ChangeEmail
+'changeemail-none'   => '(ninde)',
+'changeemail-cancel' => 'Annulle',
+
 # Edit page toolbar
 'bold_sample'     => 'Teste grascette',
 'bold_tip'        => 'Teste grascette',
@@ -678,11 +682,12 @@ Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'userpage-userdoesnotexist-view'   => '\'U cunde utende "$1" non g\'è reggistrate.',
 'blocked-notice-logextract'        => "Stu utende jè correndemende bloccate.<br />
 L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
-'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
-*'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboranemende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sus a 'nu Mac);
+'clearyourcache'                   => "''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
+*'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboraneamende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sus a 'nu Mac);
+*'''Google Chrome:''' cazze ''Ctrl-Shift-R'' (''Command-Shift-R'' sus a 'nu Mac)
+*'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.
 *'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
-*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);
-*'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.",
+*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);",
 'usercssyoucanpreview'             => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u CSS nuève apprime de reggistrà.",
 'userjsyoucanpreview'              => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u JavaScript nuève apprime de reggistrà.",
 'usercsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
@@ -3296,6 +3301,10 @@ Pe piacere conferme ca tu vuè avveramende reccrejà sta pàgene.",
 'confirm-purge-top'    => "Pulizze 'a cache de sta pàgene?",
 'confirm-purge-bottom' => "Pulezzanne 'a cache d'a pàgene se pò vedè 'a versiona cchiù aggiornate d'a pàgene.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-unwatch-button' => 'OK',
+
 # Multipage image navigation
 'imgmultipageprev' => '← pàgena precedende',
 'imgmultipagenext' => 'pàgena successive →',
@@ -3494,12 +3503,13 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 # Add categories per AJAX
 'ajax-add-category'            => "Aggiunge 'a categorije",
 'ajax-add-category-submit'     => 'Aggiunge',
+'ajax-confirm-ok'              => 'OK',
 'ajax-confirm-title'           => "Conferme l'azione",
 'ajax-confirm-save'            => 'Reggistre',
 'ajax-add-category-summary'    => 'Aggiunge \'a categorije "$1"',
 'ajax-remove-category-summary' => 'Live \'a categorije "$1"',
 'ajax-error-title'             => 'Errore',
-'ajax-remove-category-error'   => "Non g'è possibbele luà sta categorije.
+'ajax-remove-category-error'   => "Non g'è possibbele luà 'a categorije \"\$1\".
 Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
 
 );

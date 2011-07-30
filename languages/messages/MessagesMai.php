@@ -509,6 +509,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'पी.एच.पी.क संदेश कार्य() मे अज्ञात दोष',
+'user-mail-no-addy'      => 'बिन ई-पत्र संकेतक ई-पत्र पठेबाक प्रयास',
 
 # Change password dialog
 'resetpass'                 => 'कूटशब्द बदलू',
@@ -551,6 +552,17 @@ $2
 'passwordreset-emailelement'   => 'प्रयोक्ता: $1
 अस्थायी कूटशब्द: $2',
 'passwordreset-emailsent'      => 'एकटा ई-पत्र मोन पाड़बा लेल पठाओल गेल अछि।',
+
+# Special:ChangeEmail
+'changeemail'          => 'ई-पत्र संकेत बदलू',
+'changeemail-header'   => 'ई-पत्र पता खाता बदलू',
+'changeemail-text'     => 'अपन ई-पत्र संकेत बदलबा लेल ऐ आवेदनकेँ भरू। अहाँकेँ ऐ परिवर्तनक अनुमोदन लेल अपन कूटशब्द भरए पड़त।',
+'changeemail-no-info'  => 'अहाँकेँ ऐ पन्नाकेँ सोझे देखबाले सम्प्रवेशित हुअए पड़त।',
+'changeemail-oldemail' => 'अखुनका ई-पत्र संकेत:',
+'changeemail-newemail' => 'नव ई-पत्र संकेत:',
+'changeemail-none'     => '(कोनो नै)',
+'changeemail-submit'   => 'ई-पत्र संकेत बदलू',
+'changeemail-cancel'   => 'खतम',
 
 # Edit page toolbar
 'bold_sample'     => 'गँहीर लेखन',
@@ -651,7 +663,7 @@ $2
 'userpage-userdoesnotexist-view'   => 'प्रयोक्ता खाता "$1" पंजीकृत नै अछि।',
 'blocked-notice-logextract'        => 'ई प्रयोक्ता अखन प्रतिबन्धित अछि।
 अद्यतन प्रतिबन्धित  वृत्तलेख लेखा सन्दर्भ लेल नीचाँ देल अछि:',
-'clearyourcache'                   => "'''टिप्पणी: संरक्षणक बाद, अहाँकेँ परिवर्तन देखबा लेल अपन गवेषकक उपस्मृतिकेँ हटबए पड़त।'''
+'clearyourcache'                   => "'''टिप्पणी:''' संरक्षणक बाद, अहाँकेँ परिवर्तन देखबा लेल अपन गवेषकक उपस्मृतिकेँ हटबए पड़त।
 ''' मोजिल्ला/ फायरफॉक्स/ सफारी:''' दाबि कऽ राखू ''शिफ्ट'' केँ ''पुनर्भारित'' क्लिक करबाक समए, वा दाबू चाहे ''Ctrl-F5'' वा ''Ctrl-R'' (''Command-R'' मैकिनटोशपर);
 '''कन्करर: ''' क्लिक करू ''पुनर्भारित करू'' वा दाबू''F5'';
 '''ओपेरा:''' उपस्मृति खतम करू ''Tools → Preferences'';
@@ -1030,12 +1042,13 @@ $3 द्वारा देल कारण अछि ''$2''",
 मोन राखू जे तकर विवरणी {{अन्तर्जाल}} सामिग्री समयातीत भऽ सकैए।',
 
 # Quickbar
-'qbsettings'               => 'त्वरित दृश्य',
-'qbsettings-none'          => 'कोनो नै',
-'qbsettings-fixedleft'     => 'वाम कात सटल',
-'qbsettings-fixedright'    => 'दहिन दिस सटल',
-'qbsettings-floatingleft'  => 'वाम कात घुमैत',
-'qbsettings-floatingright' => 'दहिन कात घुमैत',
+'qbsettings'                => 'त्वरित दृश्य',
+'qbsettings-none'           => 'कोनो नै',
+'qbsettings-fixedleft'      => 'वाम कात सटल',
+'qbsettings-fixedright'     => 'दहिन दिस सटल',
+'qbsettings-floatingleft'   => 'वाम कात घुमैत',
+'qbsettings-floatingright'  => 'दहिन कात घुमैत',
+'qbsettings-directionality' => 'कीलित, अहाँक लिपि आ भाषाक दिशा-निर्देशपर आधारित',
 
 # Preferences page
 'preferences'                   => 'विकल्प',
@@ -1060,6 +1073,8 @@ $3 द्वारा देल कारण अछि ''$2''",
 'prefs-watchlist-token'         => 'साकांक्ष-सूची खेप:',
 'prefs-misc'                    => 'आर',
 'prefs-resetpass'               => 'कूटशब्द बदलू',
+'prefs-changeemail'             => 'ई-पत्र संकेत बदलू',
+'prefs-setemail'                => 'ई-पत्र संकेत निर्धारित करू',
 'prefs-email'                   => 'ई-पत्र चुनाव',
 'prefs-rendering'               => 'मुँहकान',
 'saveprefs'                     => 'सुरक्षित करू',
@@ -3453,5 +3468,29 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 पूर्ण-पाठ खोज सहायता युक्त',
 'sqlite-no-fts'  => '$1 बिन पूर्ण-पाठ खोज सहायताक',
+
+# Add categories per AJAX
+'ajax-add-category'             => 'संवर्ग जोड़ू',
+'ajax-remove-category'          => 'संवर्ग हटाउ',
+'ajax-edit-category'            => 'संवर्ग सम्पादित करू',
+'ajax-add-category-submit'      => 'जोडू',
+'ajax-confirm-ok'               => 'ठीक अछि',
+'ajax-confirm-title'            => 'क्रिया संपुष्टि',
+'ajax-confirm-save'             => 'सुरक्षित करू',
+'ajax-confirm-save-all'         => 'अपन सभ परिवर्त्तनकेँ सुरक्षित करू',
+'ajax-cancel'                   => 'सम्पादन रद्द करू',
+'ajax-cancel-all'               => 'सभ परिवर्त्तनकेँ रद्द करू',
+'ajax-add-category-summary'     => 'जोड़ू संवर्ग "$1"',
+'ajax-edit-category-summary'    => 'संवर्ग "$1" केँ "$2" मे बदलू',
+'ajax-remove-category-summary'  => 'संवर्ग "$1" हटाउ',
+'ajax-category-question'        => 'अहाँ ई सभ परिवर्तन किए करए चाहै छी:',
+'ajax-error-title'              => 'भ्रम',
+'ajax-remove-category-error'    => 'संवर्ग "$1" केँ हटेनाइ सम्भव नै छल।
+ई तखने होइए जखन कोनो नमूनामे संवर्ग जोड़ल जाइए।',
+'ajax-edit-category-error'      => 'संवर्ग "$1" क सम्पादन सम्भव नै छल।
+ई तखने होइए जखन कोनो नमूनामे संवर्ग जोड़ल जाइए।',
+'ajax-category-already-present' => 'ई पन्ना पहिनहियेसँ संवर्ग "$1" मे अछि।',
+'ajax-category-hook-error'      => 'कोनो स्थानीय प्रकार्य ऐ परिवर्तन सभक सुरक्षामे बाधक बनल।',
+'ajax-api-error'                => 'ए.पी.आइ. सँ भ्रम आएल:: $1: $2',
 
 );

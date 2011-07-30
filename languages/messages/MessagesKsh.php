@@ -801,6 +801,12 @@ moß De jäz jaa nix donn, un kanns Ding Paßwoot wigger bruche.',
 Eijmohl-Paßwoot: $2',
 'passwordreset-emailsent'      => 'En <i lang="en">e-mail</i> met Aanjaabe zom Zohjang heh es verscheck.',
 
+# Special:ChangeEmail
+'changeemail'          => 'Donn Ding Address för de <i lang="en">e-mail</i> ändere',
+'changeemail-no-info'  => 'Do mööts ald enjelogg sin, öm tiräk op di Sigg jonn ze dörve',
+'changeemail-oldemail' => 'Ding Address för de <i lang="en">e-mail</i> es jäz:',
+'changeemail-newemail' => 'Ding neue Address för de <i lang="en">e-mail</i> sull wääde:',
+
 # Edit page toolbar
 'bold_sample'     => 'Fätte Schreff',
 'bold_tip'        => 'Fätte Schreff',

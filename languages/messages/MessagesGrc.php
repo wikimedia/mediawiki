@@ -2366,7 +2366,8 @@ $1',
 # EXIF attributes
 'exif-compression-1' => 'Ἀσυμπίεστος',
 
-'exif-copyrighted-true' => 'Ὑποκείμενον έν δικαιώμασιν',
+'exif-copyrighted-true'  => 'Ὑποκείμενον έν δικαιώμασιν',
+'exif-copyrighted-false' => 'Κοινὸ κτῆμα',
 
 'exif-unknowndate' => 'Ἄγνωτος χρονολογία',
 

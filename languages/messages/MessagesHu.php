@@ -821,6 +821,16 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 Ideiglenes jelszó: $2',
 'passwordreset-emailsent'    => 'Emlékeztető e-mail elküldve.',
 
+# Special:ChangeEmail
+'changeemail'          => 'E-mail cím megváltoztatása',
+'changeemail-header'   => 'A fiókhoz tartozó e-mail cím megváltoztatása',
+'changeemail-text'     => 'Az e-mail címed megváltoztatásához ki kell töltened az alábbi űrlapot. Megerősítésképpen meg kell adnod a jelszavadat is.',
+'changeemail-oldemail' => 'Jelenlegi e-mail cím:',
+'changeemail-newemail' => 'Új e-mail cím:',
+'changeemail-none'     => '(nincs)',
+'changeemail-submit'   => 'E-mail cím megváltoztatása',
+'changeemail-cancel'   => 'Mégse',
+
 # Edit page toolbar
 'bold_sample'     => 'Félkövér szöveg',
 'bold_tip'        => 'Félkövér szöveg',
@@ -1322,6 +1332,8 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-watchlist-token'         => 'A figyelőlista kulcsa:',
 'prefs-misc'                    => 'Egyéb',
 'prefs-resetpass'               => 'Jelszó megváltoztatása',
+'prefs-changeemail'             => 'e-mail cím megváltoztatása',
+'prefs-setemail'                => 'e-mail cím megadása',
 'prefs-email'                   => 'Levelezés',
 'prefs-rendering'               => 'Lapok megjelenítése',
 'saveprefs'                     => 'Mentés',
@@ -2294,7 +2306,8 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 
 # Protect
 'protectlogpage'              => 'Lapvédelmi_napló',
-'protectlogtext'              => 'Ez a lapok lezárásának és megnyitásának listája. A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
+'protectlogtext'              => 'Alább látható a lapvédelemmel kapcsolatos változtatások listája.
+A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
 'modifiedarticleprotection'   => 'megváltoztatta a(z) „[[$1]]” lap védelmi szintjét',
 'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[$1]]” lapról',
@@ -2409,10 +2422,12 @@ $1',
 'undelete-show-file-submit'    => 'Igen',
 
 # Namespace form on various pages
-'namespace'             => 'Névtér:',
-'invert'                => 'Kijelölés megfordítása',
-'namespace_association' => 'Kapcsolódó névtér',
-'blanknamespace'        => '(Fő)',
+'namespace'                     => 'Névtér:',
+'invert'                        => 'Kijelölés megfordítása',
+'tooltip-invert'                => 'Pipáld ki a dobozt, ha el szeretnéd rejteni a kiválasztott névterekben történt változtatásokat (és a kapcsolódó névterekben, amennyiben úgy van beállítva)',
+'namespace_association'         => 'Kapcsolódó névtér',
+'tooltip-namespace_association' => 'Pipáld ki ezt a dobozt, ha a kiválasztott névtérhez tartozó vita- vagy tárgynévteret is bele szeretnéd venni.',
+'blanknamespace'                => '(Fő)',
 
 # Contributions
 'contributions'       => 'Szerkesztő közreműködései',
@@ -2818,7 +2833,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'tooltip-ca-viewsource'           => 'Ez egy védett lap. Ide kattintva megnézheted a forrását.',
 'tooltip-ca-history'              => 'A lap korábbi változatai',
 'tooltip-ca-protect'              => 'A lap levédése',
-'tooltip-ca-unprotect'            => 'Lapvédelem feloldása',
+'tooltip-ca-unprotect'            => 'Lapvédelem módosítása',
 'tooltip-ca-delete'               => 'A lap törlése',
 'tooltip-ca-undelete'             => 'A törölt lapváltozatok visszaállítása',
 'tooltip-ca-move'                 => 'A lap áthelyezése',
@@ -2915,6 +2930,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-header-views'     => 'Megtekintések',
 'pageinfo-subjectpage'      => 'Lap',
 'pageinfo-talkpage'         => 'Vitalap',
+'pageinfo-watchers'         => 'Figyelők száma',
 'pageinfo-edits'            => 'Szerkesztések száma',
 'pageinfo-authors'          => 'Egyedi szerkesztők száma',
 'pageinfo-views'            => 'Megtekintések száma',

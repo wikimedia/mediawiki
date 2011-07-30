@@ -184,7 +184,7 @@ $messages = array(
 'tog-watchdefault'            => 'Säiten déi ech änneren op meng Iwwerwaachungslëscht setzen',
 'tog-watchmoves'              => 'Säiten déi ech réckelen automatesch op meng Iwwerwaachungslëscht setzen',
 'tog-watchdeletion'           => 'Säiten déi ech läschen op meng Iwwerwaachungslëscht setzen',
-'tog-minordefault'            => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
+'tog-minordefault'            => "All Ännerungen automatesch als 'Kleng Ännerungen' markéieren.",
 'tog-previewontop'            => "Déi ''nach-net gespäichert Versioun'' iwwer der Ännerungsfënster weisen",
 'tog-previewonfirst'          => "Beim éischten Änneren déi  ''nach net gespäichert Versioun'' weisen.",
 'tog-nocache'                 => 'Säitecache vum Browser desaktivéieren',
@@ -650,6 +650,7 @@ Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekannte Feeler an der PHP-Mail-Fonctioun',
+'user-mail-no-addy'      => 'Huet versicht eng Mail ouni Mailadress ze schécken',
 
 # Change password dialog
 'resetpass'                 => 'Passwuert änneren',
@@ -685,6 +686,7 @@ Temporärt Passwuert: $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'Mailadress änneren',
+'changeemail-header'   => 'Mailadress vum Benotzerkont änneren',
 'changeemail-no-info'  => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
 'changeemail-oldemail' => 'Aktuell Mailadress:',
 'changeemail-newemail' => 'Nei Mailadress:',
@@ -3355,7 +3357,7 @@ $1",
 # Multipage image navigation
 'imgmultipageprev' => '← Vireg Säit',
 'imgmultipagenext' => 'nächst Säit →',
-'imgmultigo'       => 'Lass',
+'imgmultigo'       => 'Lass!',
 'imgmultigoto'     => "Géi op d'Säit $1",
 
 # Table pager
@@ -3512,13 +3514,16 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 
 # Special:ComparePages
-'comparepages'     => 'Säite vergläichen',
-'compare-selector' => 'Versioune vu Säite vergläichen',
-'compare-page1'    => 'Säit 1',
-'compare-page2'    => 'Säit 2',
-'compare-rev1'     => 'Versioun 1',
-'compare-rev2'     => 'Versioun 2',
-'compare-submit'   => 'Vergläichen',
+'comparepages'                => 'Säite vergläichen',
+'compare-selector'            => 'Versioune vu Säite vergläichen',
+'compare-page1'               => 'Säit 1',
+'compare-page2'               => 'Säit 2',
+'compare-rev1'                => 'Versioun 1',
+'compare-rev2'                => 'Versioun 2',
+'compare-submit'              => 'Vergläichen',
+'compare-invalid-title'       => 'Den Titel deen Dir uginn hutt ass net valabel.',
+'compare-title-not-exists'    => 'Den Titel deen Dir uginn hutt gëtt et net.',
+'compare-revision-not-exists' => "D'Versioun déi Dir uginn hutt gëtt et net.",
 
 # Database error messages
 'dberr-header'      => 'Dës Wiki huet e Problem',
