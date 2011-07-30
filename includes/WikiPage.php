@@ -1605,7 +1605,7 @@ class WikiPage extends Page {
 	public function doDeleteArticle(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		global $wgDeferredUpdateList, $wgUseTrackbacks, $wgUser;
+		global $wgDeferredUpdateList, $wgUseTrackbacks, $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 
 		wfDebug( __METHOD__ . "\n" );
@@ -1708,6 +1708,14 @@ class WikiPage extends Page {
 			$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
 			$dbw->delete( 'iwlinks', array( 'iwl_from' => $id ) );
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ) );
+
+			if ( $wgEnableInterwikiTemplatesTracking && $wgGlobalDatabase ) {
+				$dbw2 = wfGetDB( DB_MASTER, array(), $wgGlobalDatabase );
+				$dbw2->delete( 'globaltemplatelinks',
+							array(  'gtl_from_wiki' => wfGetID(),
+									'gtl_from_page' => $id )
+							);
+			}
 		}
 
 		# If using cleanup triggers, we can skip some manual deletes
@@ -2212,6 +2220,8 @@ class WikiPage extends Page {
 	 * @param $title Title object
 	 */
 	public static function onArticleCreate( $title ) {
+		global $wgDeferredUpdateList;
+
 		# Update existence markers on article/talk tabs...
 		if ( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
@@ -2225,6 +2235,9 @@ class WikiPage extends Page {
 		$title->touchLinks();
 		$title->purgeSquid();
 		$title->deleteTitleProtection();
+
+		# Invalidate caches of distant articles which transclude this page
+		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'globaltemplatelinks' );
 	}
 
 	/**
@@ -2233,6 +2246,8 @@ class WikiPage extends Page {
 	 * @param $title Title
 	 */
 	public static function onArticleDelete( $title ) {
+		global $wgMessageCache, $wgDeferredUpdateList;
+
 		# Update existence markers on article/talk tabs...
 		if ( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
@@ -2268,6 +2283,9 @@ class WikiPage extends Page {
 
 		# Image redirects
 		RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $title );
+
+		# Invalidate caches of distant articles which transclude this page
+		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'globaltemplatelinks' );
 	}
 
 	/**
@@ -2281,6 +2299,9 @@ class WikiPage extends Page {
 
 		// Invalidate caches of articles which include this page
 		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'templatelinks' );
+
+		// Invalidate caches of distant articles which transclude this page
+		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'globaltemplatelinks' );
 
 		// Invalidate the caches of all pages which redirect here
 		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'redirect' );
@@ -2317,6 +2338,40 @@ class WikiPage extends Page {
 		if ( $res !== false ) {
 			foreach ( $res as $row ) {
 				$result[] = Title::makeTitle( $row->tl_namespace, $row->tl_title );
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Return a list of distant templates used by this article.
+	 * Uses the globaltemplatelinks table
+	 *
+	 * @return Array of Title objects
+	 */
+	public function getUsedDistantTemplates() {
+		global $wgGlobalDatabase;
+
+		$result = array();
+
+		if ( $wgGlobalDatabase ) {
+			$id = $this->mTitle->getArticleID();
+
+			if ( $id == 0 ) {
+				return array();
+			}
+
+			$dbr = wfGetDB( DB_SLAVE, array(), $wgGlobalDatabase );
+			$res = $dbr->select( 'globaltemplatelinks',
+				array( 'gtl_to_prefix', 'gtl_to_namespace', 'gtl_to_title' ),
+				array( 'gtl_from_wiki' => wfWikiID( ), 'gtl_from_page' => $id ),
+				__METHOD__ );
+
+			if ( $res !== false ) {
+				foreach ( $res as $row ) {
+					$result[] = Title::makeTitle( $row->gtl_to_namespace, $row->gtl_to_title, null, $row->gtl_to_prefix );
+				}
 			}
 		}
 

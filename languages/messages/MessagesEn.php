@@ -456,6 +456,8 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Watchlist' ),
 	'Whatlinkshere'             => array( 'WhatLinksHere' ),
 	'Withoutinterwiki'          => array( 'WithoutInterwiki' ),
+	'Globalfileusage'           => array( 'GlobalFileUsage' ),
+	'Globaltemplateusage'       => array( 'GlobalTemplateUsage' ),
 );
 
 /**
@@ -1400,6 +1402,9 @@ The latest log entry is provided below for reference:",
 'templatesused'                    => '{{PLURAL:$1|Template|Templates}} used on this page:',
 'templatesusedpreview'             => '{{PLURAL:$1|Template|Templates}} used in this preview:',
 'templatesusedsection'             => '{{PLURAL:$1|Template|Templates}} used in this section:',
+'distanttemplatesused'             => 'Distant {{PLURAL:$1|template|templates}} used on this page:',
+'distanttemplatesusedpreview'      => 'Distant {{PLURAL:$1|template|templates}} used in this preview:',
+'distanttemplatesusedsection'      => 'Distant {{PLURAL:$1|template|templates}} used in this section:',
 'template-protected'               => '(protected)',
 'template-semiprotected'           => '(semi-protected)',
 'hiddencategories'                 => 'This page is a member of {{PLURAL:$1|1 hidden category|$1 hidden categories}}:',
@@ -4577,6 +4582,30 @@ Enter the file name without the "{{ns:file}}:" prefix.',
 'compare-invalid-title'       => 'The title you specified is invalid.',
 'compare-title-not-exists'    => 'The title you specified does not exist.',
 'compare-revision-not-exists' => 'The revision you specified does not exist.',
+
+# Special:GlobalFileUsage
+'globalfileusage'      => 'Global file usage',
+'globalfileusage-for'  => 'Global file usage for "$1"',
+'globalfileusage-desc' => '[[Special:GlobalFileUsage|Special page]] to view global file usage',
+'globalfileusage-ok'   => 'Search',
+'globalfileusage-text' => 'Search global file usage',
+'globalfileusage-no-results' => '[[$1]] is not used on other wikis.',
+'globalfileusage-on-wiki' => 'Usage on $2',
+'globalfileusage-of-file' => 'The following other wikis use this file:',
+'globalfileusage-more' => 'View [[{{#Special:GlobalUsage}}/$1|more global usage]] of this file.',
+'globalfileusage-filterlocal' => 'Do not show local usage',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'      => 'Global template usage',
+'globaltemplateusage-for'  => 'Global template usage for "$1"',
+'globaltemplateusage-desc' => '[[Special:GlobalTemplateUsage|Special page]] to view global template usage',
+'globaltemplateusage-ok'   => 'Search',
+'globaltemplateusage-text' => 'Search global template usage',
+'globaltemplateusage-no-results' => '[[$1]] is not used on other wikis.',
+'globaltemplateusage-on-wiki' => 'Usage on $2',
+'globaltemplateusage-of-file' => 'The following other wikis use this template:',
+'globaltemplateusage-more' => 'View [[{{#Special:GlobalUsage}}/$1|more global usage]] of this template.',
+'globaltemplateusage-filterlocal' => 'Do not show local usage',
 
 # Database error messages
 'dberr-header'      => 'This wiki has a problem',

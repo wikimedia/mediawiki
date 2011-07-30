@@ -4251,6 +4251,16 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 
 {{Identical|Other}}',
 
+# Special:GlobalFileUsage
+'globalfileusage-for'  => '$1 is a file name',
+'globalfileusage-no-results' => '$1 is a file name',
+'globalfileusage-on-wiki' => '$2 is a wiki name',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage-for'  => '$1 is a template name',
+'globaltemplateusage-no-results' => '$1 is a template name',
+'globaltemplateusage-on-wiki' => '$2 is a wiki name',
+
 # SQLite database support
 'sqlite-has-fts' => 'Shown on Special:Version, $1 is version',
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',

@@ -1039,7 +1039,8 @@ class PPFrame_DOM implements PPFrame {
 						$params = array(
 							'title' => new PPNode_DOM( $title ),
 							'parts' => new PPNode_DOM( $parts ),
-							'lineStart' => $lineStart );
+							'lineStart' => $lineStart,
+							'interwiki' => $this->title->getInterwiki( ) );
 						$ret = $this->parser->braceSubstitution( $params, $this );
 						if ( isset( $ret['object'] ) ) {
 							$newIterator = $ret['object'];
