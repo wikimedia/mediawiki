@@ -134,3 +134,63 @@ test( 'Namespace detection and conversion', function() {
 		title.setNamespace( 'Entirely Unknown' );
 	});
 });
+
+test( 'Case-sensivity', function() {
+	expect(3);
+	_titleConfig();
+
+	var title;
+
+	// Default config
+	mw.config.set( 'wgCaseSensitiveNamespaces', [] );
+
+	title = new mw.Title( 'article' );
+	equal( title.toString(), 'Article', 'Default config: No sensitive namespaces by default. First-letter becomes uppercase' );
+
+	// $wgCapitalLinks = false;
+	mw.config.set( 'wgCaseSensitiveNamespaces', [0, -2, 1, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15] );
+
+	title = new mw.Title( 'article' );
+	equal( title.toString(), 'article', '$wgCapitalLinks=false: Article namespace is sensitive, first-letter case stays lowercase' );
+
+	title = new mw.Title( 'john', 2 );
+	equal( title.toString(), 'User:John', '$wgCapitalLinks=false: User namespace is insensitive, first-letter becomes uppercase' );
+});
+
+test( 'Exists', function() {
+	expect(3);
+	_titleConfig();
+
+	var title;
+
+	// Empty registry, checks default to null
+
+	title = new mw.Title( 'Some random page', 4 );
+	strictEqual( title.exists(), null, 'Return null with empty existance registry' );
+
+	// Basic registry, checks default to boolean
+	mw.Title.exist.set( ['Does_exist', 'User_talk:NeilK', 'Wikipedia:Sandbox_rules'], true );
+	mw.Title.exist.set( ['Does_not_exist', 'User:John', 'Foobar'], false );
+
+	title = new mw.Title( 'Project:Sandbox rules' );
+	assertTrue( title.exists(), 'Return true for page titles marked as existing' );
+	title = new mw.Title( 'Foobar' );
+	assertFalse( title.exists(), 'Return false for page titles marked as inexisting' );
+
+});
+
+test( 'Url', function() {
+	expect(2);
+	_titleConfig();
+
+	var title;
+
+	// Config
+	mw.config.set( 'wgArticlePath', '/wiki/$1' );
+
+	title = new mw.Title( 'Foobar' );
+	equal( title.getUrl(), '/wiki/Foobar', 'Basic functionally, toString passing to wikiGetlink' );
+
+	title = new mw.Title( 'John Doe', 3 );
+	equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
+});
