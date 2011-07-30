@@ -57,6 +57,7 @@ class SpecialComparePages extends SpecialPage {
 				'label-message' => 'compare-page1',
 				'size' => '40',
 				'section' => 'page1',
+				'validation-callback' => array( $this, 'checkExistingTitle' ),
 			),
 			'Revision1' => array(
 				'type' => 'int',
@@ -64,6 +65,7 @@ class SpecialComparePages extends SpecialPage {
 				'label-message' => 'compare-rev1',
 				'size' => '8',
 				'section' => 'page1',
+				'validation-callback' => array( $this, 'checkExistingRevision' ),
 			),
 			'Page2' => array(
 				'type' => 'text',
@@ -71,6 +73,7 @@ class SpecialComparePages extends SpecialPage {
 				'label-message' => 'compare-page2',
 				'size' => '40',
 				'section' => 'page2',
+				'validation-callback' => array( $this, 'checkExistingTitle' ),
 			),
 			'Revision2' => array(
 				'type' => 'int',
@@ -78,6 +81,7 @@ class SpecialComparePages extends SpecialPage {
 				'label-message' => 'compare-rev2',
 				'size' => '8',
 				'section' => 'page2',
+				'validation-callback' => array( $this, 'checkExistingRevision' ),
 			),
 			'Action' => array(
 				'type' => 'hidden',
@@ -87,16 +91,15 @@ class SpecialComparePages extends SpecialPage {
 				'type' => 'hidden',
 				'name' => 'diffonly',
 			),
-		), 'compare' );
+		), $this->getContext(), 'compare' );
 		$form->setSubmitText( wfMsg( 'compare-submit' ) );
 		$form->suppressReset();
 		$form->setMethod( 'get' );
-		$form->setTitle( $this->getTitle() );
+		$form->setSubmitCallback( array( __CLASS__, 'showDiff' ) );
 
 		$form->loadData();
 		$form->displayForm( '' );
-
-		self::showDiff( $form->mFieldData );
+		$form->trySubmit();
 	}
 
 	public static function showDiff( $data ){
@@ -124,5 +127,30 @@ class SpecialComparePages extends SpecialPage {
 			}
 		}
 		return null;
+	}
+
+	public function checkExistingTitle( $value, $alldata ) {
+		if ( $value === '' ) {
+			return true;
+		}
+		$title = Title::newFromText( $value );
+		if ( !$title instanceof Title ) {
+			return wfMsgExt( 'compare-invalid-title', 'parse' );
+		}
+		if ( !$title->exists() ) {
+			return wfMsgExt( 'compare-title-not-exists', 'parse' );
+		}
+		return true;
+	}
+
+	public function checkExistingRevision( $value, $alldata ) {
+		if ( $value === '' ) {
+			return true;
+		}
+		$revision = Revision::newFromId( $value );
+		if ( $revision === null ) {
+			return wfMsgExt( 'compare-revision-not-exists', 'parse' );
+		}
+		return true;
 	}
 }

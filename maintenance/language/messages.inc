@@ -3444,6 +3444,9 @@ $wgMessageStructure = array(
 		'compare-rev1',
 		'compare-rev2',
 		'compare-submit',
+		'compare-invalid-title',
+		'compare-title-not-exists',
+		'compare-revision-not-exists',
 	),
 	'db-error-messages' => array(
 		'dberr-header',
