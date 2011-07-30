@@ -652,7 +652,7 @@ abstract class Installer {
 	 * Environment check for register_globals.
 	 */
 	protected function envCheckRegisterGlobals() {
-		if( wfIniGetBool( "magic_quotes_runtime" ) ) {
+		if( wfIniGetBool( 'register_globals' ) ) {
 			$this->showMessage( 'config-register-globals' );
 		}
 	}
