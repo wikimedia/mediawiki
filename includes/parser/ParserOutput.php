@@ -121,8 +121,6 @@ class ParserOutput extends CacheTime {
 		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
 		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
 		$mTemplateIds = array(),      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
-		$mDistantTemplates = array(),   # 3-D map of WIKIID/NS/DBK to ID for the template references. ID=zero for broken.
-		$mDistantTemplateIds = array(), # 3-D map of WIKIID/NS/DBK to rev ID for the template references. ID=zero for broken.
 		$mImages = array(),           # DB keys of the images used, in the array key only
 		$mImageTimeKeys = array(),	  # DB keys of the images used mapped to sha1 and MW timestamp
 		$mExternalLinks = array(),    # External link URLs, in the key only
@@ -190,8 +188,6 @@ class ParserOutput extends CacheTime {
 	function getEditSectionTokens()      { return $this->mEditSectionTokens; }
 	function &getLinks()                 { return $this->mLinks; }
 	function &getTemplates()             { return $this->mTemplates; }
-	function &getDistantTemplates()      { return $this->mDistantTemplates; }
-	function &getDistantTemplateIds()    { return $this->mDistantTemplateIds; }
 	function &getTemplateIds()           { return $this->mTemplateIds; }
 	function &getImages()                { return $this->mImages; }
 	function &getImageTimeKeys()         { return $this->mImageTimeKeys; }
@@ -308,31 +304,6 @@ class ParserOutput extends CacheTime {
 			$this->mTemplateIds[$ns] = array();
 		}
 		$this->mTemplateIds[$ns][$dbk] = $rev_id; // For versioning
-	}
-	
-	function addDistantTemplate( $title, $page_id, $rev_id ) {
-		$prefix = $title->getInterwiki();
-		if ( $prefix !=='' ) {
-			$ns = $title->getNamespace();
-			$dbk = $title->getDBkey();
-			
-			if ( !isset( $this->mDistantTemplates[$prefix] ) ) {
-				$this->mDistantTemplates[$prefix] = array();
-			}
-			if ( !isset( $this->mDistantTemplates[$prefix][$ns] ) ) {
-				$this->mDistantTemplates[$prefix][$ns] = array();
-			}
-			$this->mDistantTemplates[$prefix][$ns][$dbk] = $page_id;
-
-			// For versioning
-			if ( !isset( $this->mDistantTemplateIds[$prefix] ) ) {
-				$this->mDistantTemplateIds[$prefix] = array();
-			}
-			if ( !isset( $this->mDistantTemplateIds[$prefix][$ns] ) ) {
-				$this->mDistantTemplateIds[$prefix][$ns] = array();
-			}
-			$this->mDistantTemplateIds[$prefix][$ns][$dbk] = $rev_id;
-		}
 	}
 	
 	/**

@@ -1646,42 +1646,6 @@ class Linker {
 	}
 
 	/**
-	 * Returns HTML for the "templates used on this page" list.
-	 *
-	 * @param $templates Array of templates from Article::getUsedTemplate
-	 * or similar
-	 * @param $preview Boolean: whether this is for a preview
-	 * @param $section Boolean: whether this is for a section edit
-	 * @return String: HTML output
-	 */
-	public static function formatDistantTemplates( $templates, $preview = false, $section = false ) {
-		wfProfileIn( __METHOD__ );
-
-		$outText = '';
-		if ( count( $templates ) > 0 ) {
-
-			# Construct the HTML
-			$outText = '<div class="mw-templatesUsedExplanation">';
-			if ( $preview ) {
-				$outText .= wfMsgExt( 'distanttemplatesusedpreview', array( 'parse' ), count( $templates ) );
-			} elseif ( $section ) {
-				$outText .= wfMsgExt( 'distanttemplatesusedsection', array( 'parse' ), count( $templates ) );
-			} else {
-				$outText .= wfMsgExt( 'distanttemplatesused', array( 'parse' ), count( $templates ) );
-			}
-			$outText .= "</div><ul>\n";
-
-			usort( $templates, array( 'Title', 'compare' ) );
-			foreach ( $templates as $titleObj ) {
-				$outText .= '<li>' . self::link( $titleObj ) . '</li>';
-			}
-			$outText .= '</ul>';
-		}
-		wfProfileOut( __METHOD__  );
-		return $outText;
-	}
-
-	/**
 	 * Returns HTML for the "hidden categories on this page" list.
 	 *
 	 * @param $hiddencats Array of hidden categories from Article::getHiddenCategories

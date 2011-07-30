@@ -2958,34 +2958,12 @@ $wgExpensiveParserFunctionLimit = 100;
 $wgPreprocessorCacheThreshold = 1000;
 
 /**
- * Enable interwiki transcluding.  Only when iw_trans=1 in the interwiki table.
- * If the interwiki prefix is associated with a wiki ID in the interwiki table,
- * then the distant templates will be retrieved in the distant DB. If there is
- * no wiki ID but a API URL for that prefix, the distant templates will be
- * retrieved using the API and cached in memcached.
+ * Enable interwiki transcluding.  Only when iw_trans=1.
  */
-$wgEnableInterwikiTranscluding = false;
+$wgEnableScaryTranscluding = false;
 
 /**
- * If $wgEnableInterwikiTranscluding is set to true and if an interwiki prefix
- * is associated with a wiki ID, then, this option should be set to true to
- * enable the cache invalidation of the distant pages when the local templates
- * are edited and also to display the list of the distant templates used by
- * the local pages. Enabling this requires to set up a global shared database
- * (see next option $wgGlobalDatabase). 
- */
-$wgEnableInterwikiTemplatesTracking = false;
-
-/**
- * If $wgEnableInterwikiTemplatesTracking is set to true, this option should
- * contain the wiki ID of the database that hosts the globaltemplatelinks table.
- */
-$wgGlobalDatabase = ''; 
-
-/**
- * If $wgEnableInterwikiTranscluding is set to true and if an interwiki
- * prefix is associated with an API URL and no wiki ID, this will be
- * the expiry time for the transcluded templates cached in memcached.
+ * Expiry time for interwiki transclusion
  */
 $wgTranscludeCacheExpiry = 3600;
 
@@ -5101,8 +5079,6 @@ $wgSpecialPageGroups = array(
 	'Export'                    => 'pagetools',
 	'Import'                    => 'pagetools',
 	'Whatlinkshere'             => 'pagetools',
-	'GlobalFileUsage'           => 'pagetools',
-	'GlobalTemplateUsage'       => 'pagetools',
 
 	'Statistics'                => 'wiki',
 	'Version'                   => 'wiki',
