@@ -63,6 +63,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.19
 			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
+			array( 'addTable', 'globaltemplatelinks', 'patch-globaltemplatelinks.sql' ),
+			array( 'addTable', 'globalnamespaces', 'patch-globalnamespaces.sql' ),
+			array( 'addTable', 'globalinterwiki', 'patch-globalinterwiki.sql' ),
 		);
 	}
 
