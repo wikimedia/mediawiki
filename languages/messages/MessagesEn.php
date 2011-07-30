@@ -4567,13 +4567,16 @@ Enter the file name without the "{{ns:file}}:" prefix.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|change|changes}}',
 
 # Special:ComparePages
-'comparepages'     => 'Compare pages',
-'compare-selector' => 'Compare page revisions',
-'compare-page1'    => 'Page 1',
-'compare-page2'    => 'Page 2',
-'compare-rev1'     => 'Revision 1',
-'compare-rev2'     => 'Revision 2',
-'compare-submit'   => 'Compare',
+'comparepages'                => 'Compare pages',
+'compare-selector'            => 'Compare page revisions',
+'compare-page1'               => 'Page 1',
+'compare-page2'               => 'Page 2',
+'compare-rev1'                => 'Revision 1',
+'compare-rev2'                => 'Revision 2',
+'compare-submit'              => 'Compare',
+'compare-invalid-title'       => 'The title you specified is invalid.',
+'compare-title-not-exists'    => 'The title you specified does not exist.',
+'compare-revision-not-exists' => 'The revision you specified does not exist.',
 
 # Database error messages
 'dberr-header'      => 'This wiki has a problem',
