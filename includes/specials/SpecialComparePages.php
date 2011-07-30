@@ -130,7 +130,7 @@ class SpecialComparePages extends SpecialPage {
 	}
 
 	public function checkExistingTitle( $value, $alldata ) {
-		if ( $value === '' ) {
+		if ( $value === '' || $value === null ) {
 			return true;
 		}
 		$title = Title::newFromText( $value );
@@ -144,7 +144,7 @@ class SpecialComparePages extends SpecialPage {
 	}
 
 	public function checkExistingRevision( $value, $alldata ) {
-		if ( $value === '' ) {
+		if ( $value === '' || $value === null ) {
 			return true;
 		}
 		$revision = Revision::newFromId( $value );
