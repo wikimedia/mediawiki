@@ -2095,6 +2095,9 @@ class OutputPage {
 	 * @param $action    String: action that was denied or null if unknown
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
+		global $wgUser, $wgEnableInterwikiTranscluding, $wgEnableInterwikiTemplatesTracking;
+		$skin = $wgUser->getSkin();
+
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
@@ -2140,6 +2143,12 @@ class OutputPage {
 $templates
 </div>
 " );
+			if ( $wgEnableInterwikiTranscluding && $wgEnableInterwikiTemplatesTracking ) {
+				$this->addHTML( "<div class='distantTemplatesUsed'>
+{$skin->formatDistantTemplates( $article->getUsedDistantTemplates( ) )}
+</div>
+" );
+			}
 		}
 
 		# If the title doesn't exist, it's fairly pointless to print a return
