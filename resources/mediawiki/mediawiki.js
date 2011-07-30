@@ -630,8 +630,12 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			if ( typeof dependencies === 'string' ) {
 				dependencies = [dependencies];
 				if ( dependencies[0] in registry ) {
-					for ( var n = 0; n < registry[dependencies[0]].dependencies.length; n++ ) {
-						dependencies[dependencies.length] = registry[dependencies[0]].dependencies[n];
+					// Cache repetitively accessed deep level object member
+					var regItemDeps = registry[dependencies[0]].dependencies,
+					// Cache to avoid looped access to length property
+					regItemDepLen = regItemDeps.length;
+					for ( var n = 0; n < regItemDepLen; n++ ) {
+						dependencies[dependencies.length] = regItemDeps[n];
 					}
 				}
 			}
