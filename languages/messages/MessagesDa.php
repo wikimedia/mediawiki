@@ -664,6 +664,7 @@ Vent venligst før du prøver igen.',
 
 # E-mail sending
 'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
+'user-mail-no-addy'      => 'Forsøgte at sende email uden en email-adresse',
 
 # Change password dialog
 'resetpass'                 => 'Skift adgangskode',

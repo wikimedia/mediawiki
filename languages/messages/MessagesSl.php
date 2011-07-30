@@ -3638,13 +3638,16 @@ Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
 
 # Special:ComparePages
-'comparepages'     => 'Primerjaj strani',
-'compare-selector' => 'Primerjaj redakcije strani',
-'compare-page1'    => 'Stran 1',
-'compare-page2'    => 'Stran 2',
-'compare-rev1'     => 'Redakcija 1',
-'compare-rev2'     => 'Redakcija 2',
-'compare-submit'   => 'Primerjaj',
+'comparepages'                => 'Primerjaj strani',
+'compare-selector'            => 'Primerjaj redakcije strani',
+'compare-page1'               => 'Stran 1',
+'compare-page2'               => 'Stran 2',
+'compare-rev1'                => 'Redakcija 1',
+'compare-rev2'                => 'Redakcija 2',
+'compare-submit'              => 'Primerjaj',
+'compare-invalid-title'       => 'Navedeni naslov ni veljaven.',
+'compare-title-not-exists'    => 'Navedeni naslov ne obstaja.',
+'compare-revision-not-exists' => 'Navedena redakcija ne obstaja.',
 
 # Database error messages
 'dberr-header'      => 'Ta wiki ima težavo',

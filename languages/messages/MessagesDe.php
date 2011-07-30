@@ -3796,13 +3796,16 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
 
 # Special:ComparePages
-'comparepages'     => 'Seiten vergleichen',
-'compare-selector' => 'Seitenversionen vergleichen',
-'compare-page1'    => 'Seite 1',
-'compare-page2'    => 'Seite 2',
-'compare-rev1'     => 'Version 1',
-'compare-rev2'     => 'Version 2',
-'compare-submit'   => 'Vergleichen',
+'comparepages'                => 'Seiten vergleichen',
+'compare-selector'            => 'Seitenversionen vergleichen',
+'compare-page1'               => 'Seite 1',
+'compare-page2'               => 'Seite 2',
+'compare-rev1'                => 'Version 1',
+'compare-rev2'                => 'Version 2',
+'compare-submit'              => 'Vergleichen',
+'compare-invalid-title'       => 'Der angegebene Seitenname ist ungültig.',
+'compare-title-not-exists'    => 'Der angegebene Seitenname ist nicht vorhanden.',
+'compare-revision-not-exists' => 'Die angegebene Version ist nicht vorhanden.',
 
 # Database error messages
 'dberr-header'      => 'Dieses Wiki hat ein Problem',

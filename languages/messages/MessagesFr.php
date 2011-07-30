@@ -55,6 +55,7 @@
  * @author Skalman
  * @author The Evil IP address
  * @author TouzaxA
+ * @author Tpt
  * @author Urhixidur
  * @author Verdy p
  * @author Wyz
@@ -838,6 +839,7 @@ Veuillez attendre avant d’essayer à nouveau.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
+'user-mail-no-addy'      => 'Tenté d’envoyer un courriel sans adresse de courriel',
 
 # Change password dialog
 'resetpass'                 => 'Changer de mot de passe',
@@ -3802,13 +3804,16 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 'tags-hitcount'           => '$1 modification{{PLURAL:$1||s}}',
 
 # Special:ComparePages
-'comparepages'     => 'Comparer des pages',
-'compare-selector' => 'Comparer les versions des pages',
-'compare-page1'    => 'Page 1',
-'compare-page2'    => 'Page 2',
-'compare-rev1'     => 'Version 1',
-'compare-rev2'     => 'Version 2',
-'compare-submit'   => 'Comparer',
+'comparepages'                => 'Comparer des pages',
+'compare-selector'            => 'Comparer les versions des pages',
+'compare-page1'               => 'Page 1',
+'compare-page2'               => 'Page 2',
+'compare-rev1'                => 'Version 1',
+'compare-rev2'                => 'Version 2',
+'compare-submit'              => 'Comparer',
+'compare-invalid-title'       => "Le titre que vous avez spécifié n'est pas valide.",
+'compare-title-not-exists'    => "Le titre que vous avez spécifié n'existe pas.",
+'compare-revision-not-exists' => "La révision que vous avez spécifié n'existe pas.",
 
 # Database error messages
 'dberr-header'      => 'Ce wiki a un problème',
@@ -3845,14 +3850,18 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 'ajax-confirm-save'             => 'Publier',
 'ajax-confirm-save-all'         => 'Enregistrer toutes les modifications',
 'ajax-cancel'                   => 'Annuler les modifications',
+'ajax-cancel-all'               => 'Annuler tous les changements',
 'ajax-add-category-summary'     => 'Ajouter la catégorie « $1 »',
 'ajax-edit-category-summary'    => 'Changer la catégorie « $1 » vers « $2 »',
 'ajax-remove-category-summary'  => 'Enlever la catégorie « $1 »',
+'ajax-category-question'        => 'Pourquoi voulez-vous faire les changements suivants :',
 'ajax-error-title'              => 'Erreur',
-'ajax-remove-category-error'    => 'Il n’a pas été possible de retirer cette catégorie.
+'ajax-remove-category-error'    => 'Il n’a pas été possible de retirer la catégorie « $1 ».
 Cela se produit généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
-'ajax-edit-category-error'      => 'Il n’a pas été possible de modifier cette catégorie.
+'ajax-edit-category-error'      => 'Il n’a pas été possible de modifier la catégorie « $1 ».
 Cela se produit généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
 'ajax-category-already-present' => 'Cette page appartient déjà à la catégorie $1',
+'ajax-category-hook-error'      => 'Une fonction locale a empêché d’enregistrer les changements',
+'ajax-api-error'                => 'L’API a retourné une erreur : $1 : $2',
 
 );
