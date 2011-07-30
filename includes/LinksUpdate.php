@@ -378,9 +378,15 @@ class LinksUpdate {
 			$this->mDb->delete( $table, $where, __METHOD__ );
 		}
 		if ( count( $insertions ) ) {
-			$this->mDb->insert( 'globaltemplatelinks', $insertions['globaltemplatelinks'], __METHOD__, 'IGNORE' );
-			$this->mDb->insert( 'globalnamespaces', $insertions['globalnamespaces'], __METHOD__, 'IGNORE' );
-			$this->mDb->insert( 'globalinterwiki', $insertions['globalinterwiki'], __METHOD__, 'IGNORE' );
+			if ( isset( $insertions['globaltemplatelinks'] ) ) {
+				$this->mDb->insert( 'globaltemplatelinks', $insertions['globaltemplatelinks'], __METHOD__, 'IGNORE' );
+			}
+			if ( isset( $insertions['globalnamespaces'] ) ) {
+				$this->mDb->insert( 'globalnamespaces', $insertions['globalnamespaces'], __METHOD__, 'IGNORE' );
+			}
+			if ( isset( $insertions['globalinterwiki'] ) ) {
+				$this->mDb->insert( 'globalinterwiki', $insertions['globalinterwiki'], __METHOD__, 'IGNORE' );
+			}
 		}
 	}
 
