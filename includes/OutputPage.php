@@ -18,7 +18,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  *
  * @todo document
  */
-class OutputPage {
+class OutputPage extends ContextSource {
 	/// Should be private. Used with addMeta() which adds <meta>
 	var $mMetatags = array();
 
@@ -196,8 +196,6 @@ class OutputPage {
 
 	var $mFileVersion = null;
 
-	private $mContext;
-
 	/**
 	 * An array of stylesheet filenames (relative from skins path), with options
 	 * for CSS media, IE conditions, and RTL/LTR direction.
@@ -226,11 +224,12 @@ class OutputPage {
 	 * a OutputPage tied to that context.
 	 */
 	function __construct( RequestContext $context = null ) {
-		if ( !isset($context) ) {
+		if ( $context === null ) {
 			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
 			wfDeprecated( __METHOD__ );
+		} else {
+			$this->setContext( $context );
 		}
-		$this->mContext = $context;
 	}
 
 	/**
@@ -788,29 +787,6 @@ class OutputPage {
 	}
 
 	/**
-	 * Get the RequestContext used in this instance
-	 *
-	 * @return RequestContext
-	 */
-	private function getContext() {
-		if ( !isset($this->mContext) ) {
-			wfDebug( __METHOD__ . " called and \$mContext is null. Using RequestContext::getMain(); for sanity\n" );
-			$this->mContext = RequestContext::getMain();
-		}
-		return $this->mContext;
-	}
-
-	/**
-	 * Get the WebRequest being used for this instance
-	 *
-	 * @return WebRequest
-	 * @since 1.18
-	 */
-	public function getRequest() {
-		return $this->getContext()->getRequest();
-	}
-
-	/**
 	 * Set the Title object to use
 	 *
 	 * @param $t Title object
@@ -819,34 +795,6 @@ class OutputPage {
 		$this->getContext()->setTitle( $t );
 	}
 
-	/**
-	 * Get the Title object used in this instance
-	 *
-	 * @return Title
-	 */
-	public function getTitle() {
-		return $this->getContext()->getTitle();
-	}
-
-	/**
-	 * Get the User object used in this instance
-	 *
-	 * @return User
-	 * @since 1.18
-	 */
-	public function getUser() {
-		return $this->getContext()->getUser();
-	}
-
-	/**
-	 * Get the Skin object used to render this instance
-	 *
-	 * @return Skin
-	 * @since 1.18
-	 */
-	public function getSkin() {
-		return $this->getContext()->getSkin();
-	}
 
 	/**
 	 * Replace the subtile with $str
@@ -2262,15 +2210,15 @@ $templates
 	 * @return String: The doctype, opening <html>, and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgLang, $wgContLang, $wgUseTrackbacks;
-		$userdir = $wgLang->getDir();
+		global $wgContLang, $wgUseTrackbacks;
+		$userdir = $this->getLang()->getDir();
 		$sitedir = $wgContLang->getDir();
 
 		if ( $sk->commonPrintStylesheet() ) {
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
 		}
 
-		$ret = Html::htmlHeader( array( 'lang' => $wgLang->getCode(), 'dir' => $userdir ) );
+		$ret = Html::htmlHeader( array( 'lang' => $this->getLang()->getCode(), 'dir' => $userdir ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( wfMsg( 'pagetitle', $this->getPageTitle() ) );
@@ -3088,8 +3036,7 @@ $templates
 	 */
 	protected function styleLink( $style, $options ) {
 		if( isset( $options['dir'] ) ) {
-			global $wgLang;
-			if( $wgLang->getDir() != $options['dir'] ) {
+			if( $this->getLang()->getDir() != $options['dir'] ) {
 				return '';
 			}
 		}
