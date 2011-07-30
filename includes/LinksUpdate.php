@@ -490,7 +490,7 @@ class LinksUpdate {
 					);
 					$arr['globalinterwiki'][] = array(
 						'giw_wikiid'		 => $wikiid,
-						'giw_prefix'		 => $prefix
+						'giw_prefix'		 => $prefix, // FIXME: $prefix ix undefined
 					);
 					$arr['globalnamespaces'][] = array(
 						'gn_wiki'			 => wfWikiID( ),
