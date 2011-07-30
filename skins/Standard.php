@@ -23,7 +23,7 @@ class SkinStandard extends SkinLegacy {
 	 */
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
-		$out->AddModuleStyles( 'skins.standard' );
+		$out->addModuleStyles( 'skins.standard' );
 
 		$qb = $this->qbSetting();
 		$rules = array();
@@ -111,7 +111,8 @@ class StandardTemplate extends LegacyTemplate {
 
 		$action = $wgRequest->getText( 'action' );
 		$wpPreview = $wgRequest->getBool( 'wpPreview' );
-		$tns = $this->getSkin()->getTitle()->getNamespace();
+		$title = $this->getSkin()->getTitle();
+		$tns = $title->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
 		$s .= "\n" . $this->getSkin()->logoText() . "\n<hr class='sep' />";
@@ -151,7 +152,7 @@ class StandardTemplate extends LegacyTemplate {
 		}
 
 		$s .= "\n<hr class='sep' />";
-		$articleExists = $this->getSkin()->getTitle()->getArticleId();
+		$articleExists = $title->getArticleId();
 		if ( $wgOut->isArticle() || $action == 'edit' || $action == 'history' || $wpPreview ) {
 			if( $wgOut->isArticle() ) {
 				$s .= '<strong>' . $this->editThisPage() . '</strong>';
@@ -196,14 +197,14 @@ class StandardTemplate extends LegacyTemplate {
 							$text = wfMsg( 'articlepage' );
 					}
 
-					$link = $this->getSkin()->getTitle()->getText();
+					$link = $title->getText();
 					$nstext = $wgContLang->getNsText( $tns );
 					if( $nstext ) { # add namespace if necessary
 						$link = $nstext . ':' . $link;
 					}
 
 					$s .= Linker::link( Title::newFromText( $link ), $text );
-				} elseif( $this->getSkin()->getTitle()->getNamespace() != NS_SPECIAL ) {
+				} elseif( $title->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
 					$s .= '<strong>' . wfMsg( 'newpage' ) . '</strong>';
@@ -211,16 +212,15 @@ class StandardTemplate extends LegacyTemplate {
 			}
 
 			# "Post a comment" link
-			if( ( $this->getSkin()->getTitle()->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
-				$s .= '<br />' . $this->getSkin()->link(
-					$this->getSkin()->getTitle(),
+			if( ( $title->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
+				$s .= '<br />' . Linker::link(
+					$title,
 					wfMsg( 'postcomment' ),
 					array(),
 					array(
 						'action' => 'edit',
 						'section' => 'new'
-					),
-					array( 'known', 'noclasses' )
+					)
 				);
 
 			/*
@@ -233,7 +233,7 @@ class StandardTemplate extends LegacyTemplate {
 				if( $action != 'edit' && $action != 'submit' ) {
 					$s .= $sep . $this->watchThisPage();
 				}
-				if ( $this->getSkin()->getTitle()->userCan( 'edit' ) )
+				if ( $title->userCan( 'edit' ) )
 					$s .= $sep . $this->moveThisPage();
 			}
 			if ( $wgUser->isAllowed( 'delete' ) && $articleExists ) {
@@ -251,12 +251,12 @@ class StandardTemplate extends LegacyTemplate {
 			}
 
 			if (
-				NS_USER == $this->getSkin()->getTitle()->getNamespace() ||
-				$this->getSkin()->getTitle()->getNamespace() == NS_USER_TALK
+				NS_USER == $title->getNamespace() ||
+				$title->getNamespace() == NS_USER_TALK
 			) {
 
-				$id = User::idFromName( $this->getSkin()->getTitle()->getText() );
-				$ip = User::isIP( $this->getSkin()->getTitle()->getText() );
+				$id = User::idFromName( $title->getText() );
+				$ip = User::isIP( $title->getText() );
 
 				if( $id || $ip ){
 					$s .= $sep . $this->userContribsLink();
