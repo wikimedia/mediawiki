@@ -791,6 +791,9 @@ abstract class Installer {
 		$caches = array();
 		foreach ( $this->objectCaches as $name => $function ) {
 			if ( function_exists( $function ) ) {
+				if ( $name == 'xcache' && !wfIniGetBool( 'xcache.var_size' ) ) {
+					continue;
+				}
 				$caches[$name] = true;
 			}
 		}
