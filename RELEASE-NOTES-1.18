@@ -432,6 +432,7 @@ production.
 * (bug 27427) mw.util.getParamValue shouldn't return value from hash even if
   param is only present in hash.
 * Installer checked for magic_quotes_runtime instead of register_globals.
+* (bug 30131) XCache with variable caching disabled no longer used for variable caching (CACHE_ACCEL)
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
