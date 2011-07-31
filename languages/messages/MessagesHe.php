@@ -832,6 +832,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'שגיאה לא ידועה בפונקציה mail()‎ של PHP',
+'user-mail-no-addy'      => 'ניסיון לשלוח דוא"ל ללא כתובת דוא"ל',
 
 # Change password dialog
 'resetpass'                 => 'שינוי סיסמה',
@@ -3854,13 +3855,16 @@ $1',
 'tags-hitcount'           => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
 
 # Special:ComparePages
-'comparepages'     => 'השוואת דפים',
-'compare-selector' => 'השוואת גרסאות של דפים',
-'compare-page1'    => 'דף 1',
-'compare-page2'    => 'דף 2',
-'compare-rev1'     => 'גרסה 1',
-'compare-rev2'     => 'גרסה 2',
-'compare-submit'   => 'השוואה',
+'comparepages'                => 'השוואת דפים',
+'compare-selector'            => 'השוואת גרסאות של דפים',
+'compare-page1'               => 'דף 1',
+'compare-page2'               => 'דף 2',
+'compare-rev1'                => 'גרסה 1',
+'compare-rev2'                => 'גרסה 2',
+'compare-submit'              => 'השוואה',
+'compare-invalid-title'       => 'שם הדף שציינתם אינו תקין.',
+'compare-title-not-exists'    => 'הדף שציינתם אינו קיים.',
+'compare-revision-not-exists' => 'הגרסה שציינתם אינה קיימת.',
 
 # Database error messages
 'dberr-header'      => 'בעיה בוויקי',
@@ -3896,15 +3900,19 @@ $1',
 'ajax-confirm-title'            => 'אישור הפעולה',
 'ajax-confirm-save'             => 'שמירה',
 'ajax-confirm-save-all'         => 'שמירת כל השינויים',
-'ajax-cancel'                   => 'ביטול העריכות',
+'ajax-cancel'                   => 'ביטול העריכה',
+'ajax-cancel-all'               => 'ביטול כל השינויים',
 'ajax-add-category-summary'     => 'הוספת הקטגוריה "$1"',
 'ajax-edit-category-summary'    => 'שינוי הקטגוריה "$1" ל"$2"',
 'ajax-remove-category-summary'  => 'הסרת הקטגוריה "$1"',
+'ajax-category-question'        => 'הסיבה לשינויים המוצגים להלן:',
 'ajax-error-title'              => 'שגיאה',
-'ajax-remove-category-error'    => 'לא ניתן היה להסיר קטגוריה זו.
+'ajax-remove-category-error'    => 'לא ניתן היה להסיר את הקטגוריה "$1".
 הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
-'ajax-edit-category-error'      => 'לא ניתן היה לערוך קטגוריה זו.
+'ajax-edit-category-error'      => 'לא ניתן היה את הקטגוריה "$1".
 הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
 'ajax-category-already-present' => 'דף זה כבר שייך לקטגוריה $1',
+'ajax-category-hook-error'      => 'פונקציה מקומית מנעה את שמירת השינויים',
+'ajax-api-error'                => 'ה־API החזיר שגיאה: $1: $2',
 
 );
