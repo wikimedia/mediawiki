@@ -542,6 +542,20 @@ table.mw_metadata ul.metadata-langlist {
 	margin: 0;
 }
 
+/* Correct directionality when page dir is different from site/user dir */
+/* @noflip */.mw-content-ltr ul, .mw-content-rtl .mw-content-ltr ul {
+	margin: .3em 0 0 1.5em;
+}
+/* @noflip */.mw-content-rtl ul, .mw-content-ltr .mw-content-rtl ul {
+	margin: .3em 1.5em 0 0;
+}
+/* @noflip */.mw-content-ltr ol, .mw-content-rtl .mw-content-ltr ol {
+	margin: .3em 0 0 3.2em;
+}
+/* @noflip */.mw-content-rtl ol, .mw-content-ltr .mw-content-rtl ol {
+	margin: .3em 3.2em 0 0;
+}
+
 /* Galleries */
 /* These display attributes look nonsensical, but are needed to support IE and FF2 */
 /* Don't forget to update commonPrint.css */
@@ -606,20 +620,6 @@ div.gallerytext {
 	background-image: url(images/spinner.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
-}
-
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */.mw-content-ltr ul, .mw-content-rtl .mw-content-ltr ul {
-	margin: .3em 0 0 1.5em;
-}
-/* @noflip */.mw-content-rtl ul, .mw-content-ltr .mw-content-rtl ul {
-	margin: .3em 1.5em 0 0;
-}
-/* @noflip */.mw-content-ltr ol, .mw-content-rtl .mw-content-ltr ol {
-	margin: .3em 0 0 3.2em;
-}
-/* @noflip */.mw-content-rtl ol, .mw-content-ltr .mw-content-rtl ol {
-	margin: .3em 3.2em 0 0;
 }
 
 /* Localised ordered list numbering for some languages */
