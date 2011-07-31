@@ -22,7 +22,9 @@
  * written for LTR to RTL.
  *
  * The original Python version of CSSJanus is Copyright 2008 by Google Inc. and
- * is distributed under the Apache license.
+ * is distributed under the Apache license. This PHP port is Copyright 2010 by
+ * Roan Kattouw and is dual-licensed under the GPL (as in the comment above) and
+ * the Apache (as in the original code) licenses.
  *
  * Original code: http://code.google.com/p/cssjanus/source/browse/trunk/cssjanus.py
  * License of original code: http://code.google.com/p/cssjanus/source/browse/trunk/LICENSE
