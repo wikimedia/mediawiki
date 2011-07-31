@@ -93,7 +93,7 @@ class ObjectCache {
 			$id = 'eaccelerator';
 		} elseif ( function_exists( 'apc_fetch') ) {
 			$id = 'apc';
-		} elseif( function_exists( 'xcache_get' ) ) {
+		} elseif( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
 			$id = 'xcache';
 		} elseif( function_exists( 'wincache_ucache_get' ) ) {
 			$id = 'wincache';
