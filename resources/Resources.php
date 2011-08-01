@@ -479,6 +479,10 @@ return array(
 		'styles' => 'resources/mediawiki.action/mediawiki.action.history.diff.css',
 		'group' => 'mediawiki.action.history',
 	),
+	'mediawiki.action.view.dblClickEdit' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
+		'dependencies' => 'mediawiki.util',
+	),
 	'mediawiki.action.view.metadata' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.metadata.js',
 		'messages' => array(

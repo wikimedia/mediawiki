@@ -2250,13 +2250,6 @@ $templates
 
 		$bodyAttrs = array();
 
-		# Crazy edit-on-double-click stuff
-		if ( $this->isArticle() && $this->getUser()->getOption( 'editondblclick' ) ) {
-			$editUrl = $this->getTitle()->getLocalUrl( $sk->editUrlOptions() );
-			$bodyAttrs['ondblclick'] = "document.location = '" .
-				Xml::escapeJsString( $editUrl ) . "'";
-		}
-
 		# Classes for LTR/RTL directionality support
 		$bodyAttrs['class'] = "mediawiki $userdir sitedir-$sitedir";
 
@@ -2310,6 +2303,11 @@ $templates
 
 		if ( $this->getUser()->getBoolOption( 'editsectiononrightclick' ) ) {
 			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
+		}
+
+		# Crazy edit-on-double-click stuff
+		if ( $this->isArticle() && $this->getUser()->getOption( 'editondblclick' ) ) {
+			$this->addModules( 'mediawiki.action.view.dblClickEdit' );
 		}
 
 		if ( $wgUseAJAXCategories ) {
