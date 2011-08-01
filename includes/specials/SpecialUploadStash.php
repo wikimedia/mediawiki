@@ -226,8 +226,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$req = MWHttpRequest::factory( $scalerThumbUrl, $httpOptions );
 		$status = $req->execute();
 		if ( ! $status->isOK() ) {
-			$errors = $status->getWikiTextArray( $status->getErrorsArray() );
-			throw new MWException( "Fetching thumbnail failed: " . print_r( $errors, 1 ) );
+			$errors = $status->getErrorsArray();
+			$errorStr = "Fetching thumbnail failed: " . print_r( $errors, 1 );
+			$errorStr .= "\nurl = $scalerThumbUrl\n";
+			throw new MWException( $errorStr );
 		}
 		$contentType = $req->getResponseHeader( "content-type" );
 		if ( ! $contentType ) {
