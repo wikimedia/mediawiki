@@ -2,7 +2,7 @@
 
 return array(
 
-	/* Special resources who have their own classes */
+	/* Special modules who have their own classes */
 
 	'site' => array( 'class' => 'ResourceLoaderSiteModule' ),
 	'noscript' => array( 'class' => 'ResourceLoaderNoscriptModule' ),
@@ -64,7 +64,7 @@ return array(
 
 	'jquery' => array(
 		'scripts' => 'resources/jquery/jquery.js',
-		'debugRaw' => false
+		'debugRaw' => false,
 	),
 
 	/* jQuery Plugins */
@@ -164,6 +164,9 @@ return array(
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
 	),
+
+	/* jQuery Tipsy */
+
 	'jquery.tipsy' => array(
 		'scripts' => 'resources/jquery.tipsy/jquery.tipsy.js',
 		'styles' => 'resources/jquery.tipsy/jquery.tipsy.css',
@@ -457,76 +460,15 @@ return array(
 			'jquery.cookie',
 		),
 	),
-	'mediawiki.page.startup' => array(
-		'scripts' => 'resources/mediawiki.page/mediawiki.page.startup.js',
+
+	/* MediaWiki Action */
+
+	'mediawiki.action.edit' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
 		'dependencies' => array(
-			'jquery.client',
+			'jquery.textSelection',
+			'jquery.byteLimit',
 		),
-		'position' => 'top',
-	),
-	'mediawiki.page.ready' => array(
-		'scripts' => 'resources/mediawiki.page/mediawiki.page.ready.js',
-		'dependencies' => array(
-			'jquery.checkboxShiftClick',
-			'jquery.makeCollapsible',
-			'jquery.placeholder',
-		),
-	),
-	'mediawiki.util' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.util.js',
-		'dependencies' => array(
-			'jquery.client',
-			'jquery.cookie',
-			'jquery.messageBox',
-			'jquery.mwPrototypes',
-		),
-	),
-	'mediawiki.page.mwsuggest' => array(
-		'scripts' => 'resources/mediawiki.page/mediawiki.page.mwsuggest.js',
-		'dependencies' => array( 
-			'jquery.ui.autocomplete',
-		),
-	),
-	'mediawiki.page.ajaxCategories' => array(
-		'scripts' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.js',
-		'styles' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.css',
-		'dependencies' => array(
-			'jquery.suggestions',
-			'jquery.ui.dialog',
-			'mediawiki.Title',
-		),
-		'messages' => array(
-			'ajax-add-category',
-			'ajax-remove-category',
-			'ajax-edit-category',
-			'ajax-add-category-submit',
-			'ajax-confirm-ok',
-			'ajax-confirm-title',
-			'ajax-confirm-save',
-			'ajax-confirm-save-all',
-			'ajax-cancel',
-			'ajax-cancel-all',
-			'ajax-add-category-summary',
-			'ajax-edit-category-summary',
-			'ajax-remove-category-summary',
-			'ajax-category-question',
-			'ajax-category-and',
-			'ajax-error-title',
-			'ajax-remove-category-error',
-			'ajax-edit-category-error',
-			'ajax-category-already-present',
-			'ajax-category-hook-error',
-			'ajax-api-error',
-		),
-	),
-	'mediawiki.page.ajaxCategories.init' => array(
-		'scripts' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.init.js',
-		'dependencies' => array(
-			'mediawiki.page.ajaxCategories',
-		),
-	),
-	'mediawiki.libs.jpegmeta' => array(
-		'scripts' => 'resources/mediawiki.libs/mediawiki.libs.jpegmeta.js',
 	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
@@ -537,19 +479,15 @@ return array(
 		'styles' => 'resources/mediawiki.action/mediawiki.action.history.diff.css',
 		'group' => 'mediawiki.action.history',
 	),
-	'mediawiki.action.edit' => array(
-		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
-		'dependencies' => array(
-			'jquery.textSelection',
-			'jquery.byteLimit',
+	'mediawiki.action.view.metadata' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.metadata.js',
+		'messages' => array(
+			'metadata-expand',
+			'metadata-collapse',
 		),
 	),
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
-	),
-	'mediawiki.action.view.metadata' => array(
-		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.metadata.js',
-		'messages' => array( 'metadata-expand', 'metadata-collapse' ),
 	),
 	'mediawiki.action.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
@@ -564,53 +502,7 @@ return array(
 		),
 	),
 
-	/* Special pages */
-
-	'mediawiki.special' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.js',
-		'styles' => 'resources/mediawiki.special/mediawiki.special.css',
-	),
-	'mediawiki.special.preferences' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
-		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
-		'messages' => array( 'email-address-validity-valid', 'email-address-validity-invalid' ),
-	),
-	'mediawiki.special.changeslist' => array(
-		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
-		'dependencies' => array( 'jquery.makeCollapsible' ),
-	),
-	'mediawiki.special.search' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
-		'styles'  => 'resources/mediawiki.special/mediawiki.special.search.css',
-	),
-	'mediawiki.special.block' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
-	),
-	'mediawiki.special.undelete' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.undelete.js',
-	),
-	'mediawiki.special.movePage' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
-		'dependencies' => 'jquery.byteLimit',
-	),
-	'mediawiki.special.recentchanges' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
-		'dependencies' => array( 'mediawiki.special' ),
-		'position' => 'top',
-	),
-	'mediawiki.special.upload' => array(
-		// @TODO: merge in remainder of mediawiki.legacy.upload
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',
-		'messages' => array(
-			'widthheight',
-			'size-bytes',
-			'size-kilobytes',
-			'size-megabytes',
-			'size-gigabytes',
-			'largefileserver',
-		),
-		'dependencies' => array( 'mediawiki.libs.jpegmeta' ),
-	),
+	/* MediaWiki Language */
 
 	'mediawiki.language' => array(
 		'scripts' => 'resources/mediawiki.language/mediawiki.language.js',
@@ -663,7 +555,133 @@ return array(
 		),
 	),
 
-	/* mediawiki Legacy */
+	/* MediaWiki Libs */
+
+	'mediawiki.libs.jpegmeta' => array(
+		'scripts' => 'resources/mediawiki.libs/mediawiki.libs.jpegmeta.js',
+	),
+
+	/* MediaWiki Page */
+
+	'mediawiki.util' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.util.js',
+		'dependencies' => array(
+			'jquery.client',
+			'jquery.cookie',
+			'jquery.messageBox',
+			'jquery.mwPrototypes',
+		),
+	),
+	'mediawiki.page.ajaxCategories' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.js',
+		'styles' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.css',
+		'dependencies' => array(
+			'jquery.suggestions',
+			'jquery.ui.dialog',
+			'mediawiki.Title',
+		),
+		'messages' => array(
+			'ajax-add-category',
+			'ajax-remove-category',
+			'ajax-edit-category',
+			'ajax-add-category-submit',
+			'ajax-confirm-ok',
+			'ajax-confirm-title',
+			'ajax-confirm-save',
+			'ajax-confirm-save-all',
+			'ajax-cancel',
+			'ajax-cancel-all',
+			'ajax-add-category-summary',
+			'ajax-edit-category-summary',
+			'ajax-remove-category-summary',
+			'ajax-category-question',
+			'ajax-category-and',
+			'ajax-error-title',
+			'ajax-remove-category-error',
+			'ajax-edit-category-error',
+			'ajax-category-already-present',
+			'ajax-category-hook-error',
+			'ajax-api-error',
+		),
+	),
+	'mediawiki.page.ajaxCategories.init' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.init.js',
+		'dependencies' => array(
+			'mediawiki.page.ajaxCategories',
+		),
+	),
+	'mediawiki.page.mwsuggest' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.mwsuggest.js',
+		'dependencies' => array( 
+			'jquery.ui.autocomplete',
+		),
+	),
+	'mediawiki.page.ready' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.ready.js',
+		'dependencies' => array(
+			'jquery.checkboxShiftClick',
+			'jquery.makeCollapsible',
+			'jquery.placeholder',
+		),
+	),
+	'mediawiki.page.startup' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.startup.js',
+		'dependencies' => array(
+			'jquery.client',
+		),
+		'position' => 'top',
+	),
+	
+
+	/* MediaWiki Special pages */
+
+	'mediawiki.special' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.js',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.css',
+	),
+	'mediawiki.special.preferences' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
+		'messages' => array( 'email-address-validity-valid', 'email-address-validity-invalid' ),
+	),
+	'mediawiki.special.changeslist' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
+		'dependencies' => array( 'jquery.makeCollapsible' ),
+	),
+	'mediawiki.special.search' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
+		'styles'  => 'resources/mediawiki.special/mediawiki.special.search.css',
+	),
+	'mediawiki.special.block' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
+	),
+	'mediawiki.special.undelete' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.undelete.js',
+	),
+	'mediawiki.special.movePage' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
+		'dependencies' => 'jquery.byteLimit',
+	),
+	'mediawiki.special.recentchanges' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
+		'dependencies' => array( 'mediawiki.special' ),
+		'position' => 'top',
+	),
+	'mediawiki.special.upload' => array(
+		// @TODO: merge in remainder of mediawiki.legacy.upload
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',
+		'messages' => array(
+			'widthheight',
+			'size-bytes',
+			'size-kilobytes',
+			'size-megabytes',
+			'size-gigabytes',
+			'largefileserver',
+		),
+		'dependencies' => array( 'mediawiki.libs.jpegmeta' ),
+	),
+
+	/* MediaWiki Legacy */
 
 	'mediawiki.legacy.ajax' => array(
 		'scripts' => 'common/ajax.js',
