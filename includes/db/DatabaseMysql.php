@@ -175,7 +175,7 @@ class DatabaseMysql extends DatabaseBase {
 		return $row;
 	}
 
- 	function fetchRow( $res ) {
+	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -432,7 +432,7 @@ class DatabaseMysql extends DatabaseBase {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Wait for the slave to catch up to a given master position.
 	 *
@@ -672,7 +672,7 @@ class DatabaseMysql extends DatabaseBase {
 		}
 		$this->query( $query, $fname );
 	}
-	
+
 	/**
 	 * List all tables on the database
 	 *
@@ -692,7 +692,7 @@ class DatabaseMysql extends DatabaseBase {
 				$endArray[] = $table;
 			}
 		}
-		
+
 		return $endArray;
 	}
 

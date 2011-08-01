@@ -135,7 +135,7 @@ class LinksUpdate {
 		# External links
 		$existing = $this->getExistingExternals();
 		$this->incrTableUpdate( 'externallinks', 'el', $this->getExternalDeletions( $existing ),
-	        $this->getExternalInsertions( $existing ) );
+			$this->getExternalInsertions( $existing ) );
 
 		# Language links
 		$existing = $this->getExistingInterlangs();
@@ -497,16 +497,16 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getInterlangInsertions( $existing = array() ) {
-	    $diffs = array_diff_assoc( $this->mInterlangs, $existing );
-	    $arr = array();
-	    foreach( $diffs as $lang => $title ) {
-	        $arr[] = array(
-	            'll_from'  => $this->mId,
-	            'll_lang'  => $lang,
-	            'll_title' => $title
-	        );
-	    }
-	    return $arr;
+		$diffs = array_diff_assoc( $this->mInterlangs, $existing );
+		$arr = array();
+		foreach( $diffs as $lang => $title ) {
+			$arr[] = array(
+				'll_from'  => $this->mId,
+				'll_lang'  => $lang,
+				'll_title' => $title
+			);
+		}
+		return $arr;
 	}
 
 	/**
@@ -612,7 +612,7 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getInterlangDeletions( $existing ) {
-	    return array_diff_assoc( $existing, $this->mInterlangs );
+		return array_diff_assoc( $existing, $this->mInterlangs );
 	}
 
 	/**
