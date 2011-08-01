@@ -5,7 +5,7 @@
  * @file
  * @ingroup Parser
  */
- 
+
 /**
  * @todo document
  * @ingroup Parser
@@ -16,7 +16,7 @@ class CacheTime {
 		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
 		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncachable. Used in ParserCache.
 		$mContainsOldMagic;           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
-		
+
 	function getCacheTime()              { return $this->mCacheTime; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
@@ -30,17 +30,17 @@ class CacheTime {
 	 */
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
 
-	/** 
+	/**
 	 * Sets the number of seconds after which this object should expire.
 	 * This value is used with the ParserCache.
-	 * If called with a value greater than the value provided at any previous call, 
+	 * If called with a value greater than the value provided at any previous call,
 	 * the new call has no effect. The value returned by getCacheExpiry is smaller
-	 * or equal to the smallest number that was provided as an argument to 
+	 * or equal to the smallest number that was provided as an argument to
 	 * updateCacheExpiry().
 	 *
 	 * @param $seconds number
 	 */
-	function updateCacheExpiry( $seconds ) { 
+	function updateCacheExpiry( $seconds ) {
 		$seconds = (int)$seconds;
 
 		if ( $this->mCacheExpiry === null || $this->mCacheExpiry > $seconds ) {
@@ -52,23 +52,23 @@ class CacheTime {
 			$this->mCacheTime = -1;
 		}
 	}
-	
+
 	/**
 	 * Returns the number of seconds after which this object should expire.
 	 * This method is used by ParserCache to determine how long the ParserOutput can be cached.
 	 * The timestamp of expiry can be calculated by adding getCacheExpiry() to getCacheTime().
-	 * The value returned by getCacheExpiry is smaller or equal to the smallest number 
+	 * The value returned by getCacheExpiry is smaller or equal to the smallest number
 	 * that was provided to a call of updateCacheExpiry(), and smaller or equal to the
 	 * value of $wgParserCacheExpireTime.
 	 */
-	function getCacheExpiry() { 
+	function getCacheExpiry() {
 		global $wgParserCacheExpireTime;
 
 		if ( $this->mCacheTime < 0 ) {
 			return 0;
 		} // old-style marker for "not cachable"
 
-		$expire = $this->mCacheExpiry; 
+		$expire = $this->mCacheExpiry;
 
 		if ( $expire === null ) {
 			$expire = $wgParserCacheExpireTime;
@@ -78,7 +78,7 @@ class CacheTime {
 
 		if( $this->containsOldMagic() ) { //compatibility hack
 			$expire = min( $expire, 3600 ); # 1 hour
-		} 
+		}
 
 		if ( $expire <= 0 ) {
 			return 0; // not cachable
@@ -90,7 +90,7 @@ class CacheTime {
 	/**
 	 * @return bool
 	 */
-	function isCacheable() { 
+	function isCacheable() {
 		return $this->getCacheExpiry() > 0;
 	}
 
@@ -105,14 +105,14 @@ class CacheTime {
 	public function expired( $touched ) {
 		global $wgCacheEpoch;
 		return !$this->isCacheable() || // parser says it's uncacheable
-		       $this->getCacheTime() < $touched ||
-		       $this->getCacheTime() <= $wgCacheEpoch ||
-		       $this->getCacheTime() < wfTimestamp( TS_MW, time() - $this->getCacheExpiry() ) || // expiry period has passed
-		       !isset( $this->mVersion ) ||
-		       version_compare( $this->mVersion, Parser::VERSION, "lt" );
-	}		
+			   $this->getCacheTime() < $touched ||
+			   $this->getCacheTime() <= $wgCacheEpoch ||
+			   $this->getCacheTime() < wfTimestamp( TS_MW, time() - $this->getCacheExpiry() ) || // expiry period has passed
+			   !isset( $this->mVersion ) ||
+			   version_compare( $this->mVersion, Parser::VERSION, "lt" );
+	}
 }
- 
+
 class ParserOutput extends CacheTime {
 	var $mText,                       # The output text
 		$mLanguageLinks,              # List of the full text of language links, in the order they appear
@@ -158,7 +158,7 @@ class ParserOutput extends CacheTime {
 		}
 		return $this->mText;
 	}
-	
+
 	/**
 	 * callback used by getText to replace editsection tokens
 	 * @private
@@ -235,7 +235,7 @@ class ParserOutput extends CacheTime {
 		# We don't register links pointing to our own server, unless... :-)
 		global $wgServer, $wgRegisterInternalExternals;
 		if( $wgRegisterInternalExternals or stripos($url,$wgServer.'/')!==0)
-			$this->mExternalLinks[$url] = 1; 
+			$this->mExternalLinks[$url] = 1;
 	}
 
 	/**
@@ -305,7 +305,7 @@ class ParserOutput extends CacheTime {
 		}
 		$this->mTemplateIds[$ns][$dbk] = $rev_id; // For versioning
 	}
-	
+
 	/**
 	 * @param $title Title object, must be an interwiki link
 	 * @throws MWException if given invalid input
@@ -333,7 +333,7 @@ class ParserOutput extends CacheTime {
 			$this->mHeadItems[] = $section;
 		}
 	}
-	
+
 	function addModules( $modules ) {
 		$this->mModules = array_merge( $this->mModules, (array) $modules );
 	}
@@ -391,10 +391,10 @@ class ParserOutput extends CacheTime {
 		}
 		return $this->mProperties;
 	}
-	
-	
+
+
 	/**
-	 * Returns the options from its ParserOptions which have been taken 
+	 * Returns the options from its ParserOptions which have been taken
 	 * into account to produce this output or false if not available.
 	 * @return mixed Array/false
 	 */
@@ -404,7 +404,7 @@ class ParserOutput extends CacheTime {
 		}
 		return array_keys( $this->mAccessedOptions );
 	 }
-	 
+
 	 /**
 	  * Callback passed by the Parser to the ParserOptions to keep track of which options are used.
 	  * @access private
