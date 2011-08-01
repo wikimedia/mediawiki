@@ -396,11 +396,11 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Returns the options from its ParserOptions which have been taken
 	 * into account to produce this output or false if not available.
-	 * @return mixed Array/false
+	 * @return mixed Array
 	 */
 	 public function getUsedOptions() {
 		if ( !isset( $this->mAccessedOptions ) ) {
-			return false;
+			return array();
 		}
 		return array_keys( $this->mAccessedOptions );
 	 }
