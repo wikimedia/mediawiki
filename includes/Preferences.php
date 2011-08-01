@@ -1250,7 +1250,7 @@ class Preferences {
 		if ( $wgLocalTZoffset == date( 'Z' ) / 60 ) {
 			$server_tz_msg = wfMsg( 'timezoneuseserverdefault', $wgLocaltimezone );
 		} else {
-		 	$tzstring = sprintf( '%+03d:%02d', floor( $wgLocalTZoffset / 60 ), abs( $wgLocalTZoffset ) % 60 );
+			$tzstring = sprintf( '%+03d:%02d', floor( $wgLocalTZoffset / 60 ), abs( $wgLocalTZoffset ) % 60 );
 			$server_tz_msg = wfMsg( 'timezoneuseserverdefault', $tzstring );
 		}
 		$opt[$server_tz_msg] = "System|$wgLocalTZoffset";
