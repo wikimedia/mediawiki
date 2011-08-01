@@ -1156,6 +1156,18 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			return null;
 		};
 
+		/**
+		 * Get names of all registered modules.
+		 *
+		 * @return {Array}
+		 */
+		this.getModuleNames = function() {
+			var names = $.map( registry, function( i, key ) {
+				return key;
+			} );
+			return names;
+		};
+
 		/* Cache document ready status */
 
 		$(document).ready( function() { ready = true; } );

@@ -22,6 +22,7 @@ production.
 * (bug 30022) Add support for custom loadScript sources to ResourceLoader.
 * (bug 19052) Unicode space separator characters (Zs) now terminates external
   links and images links.
+* (bug 30160) Add public method to mw.loader to get module names from registry.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
