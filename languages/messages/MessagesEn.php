@@ -1145,8 +1145,8 @@ Please wait before trying again.',
 # E-mail sending
 'pear-mail-error'        => '$1', # do not translate or duplicate this message to other languages
 'php-mail-error'         => '$1', # do not translate or duplicate this message to other languages
-'php-mail-error-unknown' => "Unknown error in PHP's mail() function",
-'user-mail-no-addy'      => 'Tried to send e-mail without an e-mail address',
+'php-mail-error-unknown' => "Unknown error in PHP's mail() function.",
+'user-mail-no-addy'      => 'Tried to send e-mail without an e-mail address.',
 
 # Change password dialog
 'resetpass'                 => 'Change password',
