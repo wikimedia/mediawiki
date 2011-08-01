@@ -4123,7 +4123,7 @@ $8', # only translate this message to other languages if you have to change it
 'exif-gpsspeed-n' => 'Knots',
 
 # Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometres',
+'exif-gpsdestdistance-k' => 'Kilometers',
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Nautical miles',
 
