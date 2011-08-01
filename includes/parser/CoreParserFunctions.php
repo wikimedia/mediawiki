@@ -620,7 +620,7 @@ class CoreParserFunctions {
 
 	/**
 	 * Unicode-safe str_pad with the restriction that $length is forced to be <= 500
- 	 */
+	 */
 	static function pad( $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
 		$lengthOfPadding = mb_strlen( $padding );
 		if ( $lengthOfPadding == 0 ) return $string;
@@ -717,7 +717,7 @@ class CoreParserFunctions {
 		if ( $file ) {
 			$url = $file->getFullUrl();
 
-			// If a size is requested...			
+			// If a size is requested...
 			if ( is_integer( $size ) ) {
 				$mto = $file->transform( array( 'width' => $size ) );
 				// ... and we can
