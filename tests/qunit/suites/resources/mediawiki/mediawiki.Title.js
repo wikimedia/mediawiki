@@ -63,76 +63,56 @@ test( '-- Initial check', function() {
 	ok( mw.Title, 'mw.Title defined' );
 });
 
-test( 'Filename', function() {
-	expect(4);
-	_titleConfig();
-
-	var title = new mw.Title( 'File:foo_bar.JPG' );
-
-	equal( title.getMain(), 'Foo_bar.jpg' );
-	equal( title.getMainText(), 'Foo bar.jpg' );
-	equal( title.getNameText(), 'Foo bar' );
-	equal( title.toString(), 'File:Foo_bar.jpg' );
-});
-
-test( 'Transform between Text to Db', function() {
-	expect(6);
-	_titleConfig();
-
-	var title = new mw.Title( 'File:foo_bar.JPG' );
-	title.setName( 'quux pif' );
-
-	equal( title.getMain(), 'Quux_pif.jpg' );
-	equal( title.getMainText(), 'Quux pif.jpg' );
-	equal( title.getNameText(), 'Quux pif' );
-	equal( title.toString(), 'File:Quux_pif.jpg' );
-
-	title.setName( 'glarg_foo_glang' );
-
-	equal( title.toString(), 'File:Glarg_foo_glang.jpg' );
-	equal( title.getMainText(), 'Glarg foo glang.jpg' );
-});
-
-test( 'Initiate from name and set namespace', function() {
-	expect(1);
-	_titleConfig();
-
-	var title = new mw.Title( 'catalonian_penguins.PNG' );
-	title.setNamespace( 'file' );
-	equal( title.toString(), 'File:Catalonian_penguins.png' );
-});
-
-test( 'Namespace detection and conversion', function() {
-	expect(7);
+test( 'Transform between Text and Db', function() {
+	expect(2);
 	_titleConfig();
 
 	var title;
 
-	title = new mw.Title( 'something.PDF' );
-	title.setNamespace( 'file' );
+	title = new mw.Title( 'File:quux pif.jpg' );
+	equal( title.getName(), 'Quux_pif' );
+
+	title = new mw.Title( 'File:Glarg_foo_glang.jpg' );
+	equal( title.getNameText(), 'Glarg foo glang' );
+});
+
+test( 'Main text for filename', function() {
+	expect(8);
+	_titleConfig();
+
+	var title = new mw.Title( 'File:foo_bar.JPG' );
+
+	equal( title.getNamespaceId(), 6 );
+	equal( title.getNamespacePrefix(), 'File:' );
+	equal( title.getName(), 'Foo_bar' );
+	equal( title.getNameText(), 'Foo bar' );
+	equal( title.getMain(), 'Foo_bar.jpg' );
+	equal( title.getMainText(), 'Foo bar.jpg' );
+	equal( title.getExtension(), 'jpg' );
+	equal( title.getDotExtension(), '.jpg' );
+});
+
+test( 'Namespace detection and conversion', function() {
+	expect(6);
+	_titleConfig();
+
+	var title;
+
+	title = new mw.Title( 'something.PDF', 6 );
 	equal( title.toString(), 'File:Something.pdf' );
 
-	title = new mw.Title( 'NeilK' );
-	title.setNamespace( 'user_talk' );
+	title = new mw.Title( 'NeilK', 3 );
 	equal( title.toString(), 'User_talk:NeilK' );
 	equal( title.toText(), 'User talk:NeilK' );
 
-	title = new mw.Title( 'Frobisher' );
-	title.setNamespaceById( 100 );
+	title = new mw.Title( 'Frobisher', 100 );
 	equal( title.toString(), 'Penguins:Frobisher' );
 
-	title = new mw.Title( 'flightless_yet_cute.jpg' );
-	title.setNamespace( 'antarctic_waterfowl' );
+	title = new mw.Title( 'antarctic_waterfowl:flightless_yet_cute.jpg' );
 	equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 
-	title = new mw.Title( 'flightless_yet_cute.jpg' );
-	title.setNamespace( 'Penguins' );
+	title = new mw.Title( 'Penguins:flightless_yet_cute.jpg' );
 	equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
-
-	title = new mw.Title( 'flightless_yet_cute.jpg' );
-	raises( function() {
-		title.setNamespace( 'Entirely Unknown' );
-	});
 });
 
 test( 'Case-sensivity', function() {
@@ -155,6 +135,16 @@ test( 'Case-sensivity', function() {
 
 	title = new mw.Title( 'john', 2 );
 	equal( title.toString(), 'User:John', '$wgCapitalLinks=false: User namespace is insensitive, first-letter becomes uppercase' );
+});
+
+test( 'toString / toText', function() {
+	expect(2);
+	_titleConfig();
+
+	var title = new mw.Title( 'Some random page' );
+
+	equal( title.toString(), title.getPrefixedDb() );
+	equal( title.toText(), title.getPrefixedText() );
 });
 
 test( 'Exists', function() {

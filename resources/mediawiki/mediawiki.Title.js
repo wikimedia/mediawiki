@@ -7,7 +7,7 @@
  *
  * Relies on: mw.config (wgFormattedNamespaces, wgNamespaceIds, wgCaseSensitiveNamespaces), mw.util.wikiGetlink
  */
-(function( $ ) {
+( function( $ ) {
 
 	/* Local space */
 
@@ -26,15 +26,10 @@ var	Title = function( title, namespace ) {
 			this._ext = null; // extension
 
 			if ( arguments.length === 2 ) {
-				this.setNameAndExtension( title ).setNamespaceById( namespace );
+				setNameAndExtension( this, title );
+				this._ns = fixNsId( namespace );
 			} else if ( arguments.length === 1 ) {
-				// If title is like "Blabla: Hello" ignore exception by setNamespace(),
-				// and instead assume NS_MAIN and keep prefix
-				try {
-					this.setAll( title );
-				} catch(e) {
-					this.setNameAndExtension( title );
-				}
+				setAll( this, title );
 			}
 			return this;
 	},
@@ -63,7 +58,100 @@ var	Title = function( title, namespace ) {
 		} else {
 			return '';
 		}
+	},
+
+	/**
+	 * Sanatize name.
+	 */
+	fixName = function( s ) {
+		return clean( $.trim( s ) );
+	},
+
+	/**
+	 * Sanatize name.
+	 */
+	fixExt = function( s ) {
+		return clean( s.toLowerCase() );
+	},
+
+	/**
+	 * Sanatize namespace id.
+	 * @param id {Number} Namespace id.
+	 * @return {Number|Boolean} The id as-is or boolean false if invalid.
+	 */
+	fixNsId = function( id ) {
+		// wgFormattedNamespaces is an object of *string* key-vals (ie. arr["0"] not arr[0] )
+		var ns = mw.config.get( 'wgFormattedNamespaces' )[id.toString()];
+
+		// Check only undefined (may be false-y, such as '' (main namespace) ).
+		if ( ns === undefined ) {
+			return false;
+		} else {
+			return Number( id );
+		}
+	},
+
+	/**
+	 * Get namespace id from namespace name by any known namespace/id pair (localized, canonical or alias).
+	 *
+	 * @example On a German wiki this would return 6 for any of 'File', 'Datei', 'Image' or even 'Bild'.
+	 * @param ns {String} Namespace name (case insensitive, leading/trailing space ignored).
+	 * @return {Number|Boolean} Namespace id or boolean false if unrecognized.
+	 */
+	getNsIdByName = function( ns ) {
+		// toLowerCase throws exception on null/undefined. Return early.
+		if ( ns == null ) {
+			return false;
+		}
+		ns = clean( $.trim( ns.toLowerCase() ) ); // Normalize
+		var id = mw.config.get( 'wgNamespaceIds' )[ns];
+		if ( id === undefined ) {
+			mw.log( 'mw.Title: Unrecognized namespace: ' + ns );
+			return false;
+		}
+		return fixNsId( id );
+	},
+
+	/**
+	 * Helper to extract namespace, name and extension from a string.
+	 *
+	 * @param title {mw.Title}
+	 * @param raw {String}
+	 * @return {mw.Title}
+	 */
+	setAll = function( title, s ) {
+		var	matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w{1,5}))?$/ );
+			ns_match = getNsIdByName( matches[1] );
+		if ( matches.length && ns_match ) {
+			if ( matches[1] ) { title._ns = ns_match; }
+			if ( matches[2] ) { title._name = fixName( matches[2] ); }
+			if ( matches[3] ) { title._ext = fixExt( matches[3] ); }
+		} else {
+			// Consistency with MediaWiki: Unknown namespace > fallback to main namespace.
+			title._ns = 0;
+			setNameAndExtension( title, s );
+		}
+		return title;
+	},
+
+	/**
+	 * Helper to extract name and extension from a string.
+	 *
+	 * @param title {mw.Title}
+	 * @param raw {String}
+	 * @return {mw.Title}
+	 */
+	setNameAndExtension = function( title, raw ) {
+		var matches = raw.match( /^(?:)?(.*?)(?:\.(\w{1,5}))?$/ );
+		if ( matches.length ) {
+			if ( matches[1] ) { title._name = fixName( matches[1] ); }
+			if ( matches[2] ) { title._ext = fixExt( matches[2] ); }
+		} else {
+			throw new Error( 'mw.Title: Could not parse title "' + raw + '"' );
+		}
+		return title;
 	};
+	 
 
 	/* Static space */
 
@@ -118,37 +206,6 @@ var	Title = function( title, namespace ) {
 
 	var fn = {
 		constructor: Title,
-		/**
-		 * @param id {Number} Canonical namespace id.
-		 * @return {mw.Title} this
-		 */
-		setNamespaceById: function( id ) {
-			// wgFormattedNamespaces is an object of *string* key-vals,
-			var ns = mw.config.get( 'wgFormattedNamespaces' )[id.toString()];
-
-			// Cannot cast to boolean, ns may be '' (main namespace)
-			if ( ns === undefined ) {
-				this._ns = false;
-			} else {
-				this._ns = Number( id );
-			}
-			return this;
-		},
-
-		/**
-		 * Set namespace by any known namespace/id pair (localized, canonical or alias)
-		 * On a German wiki this could be 'File', 'Datei', 'Image' or even 'Bild' for NS_FILE.
-		 * @param ns {String} A namespace name (case insensitive, space insensitive)
-		 * @return {mw.Title} this
-		 */
-		setNamespace: function( ns ) {
-			ns = clean( $.trim( ns.toLowerCase() ) ); // Normalize
-			var id = mw.config.get( 'wgNamespaceIds' )[ns];
-			if ( id === undefined ) {
-				throw new Error( 'mw.Title: Unrecognized canonical namespace: ' + ns );
-			}
-			return this.setNamespaceById( id );
-		},
 
 		/**
 		 * Get the namespace number.
@@ -165,16 +222,6 @@ var	Title = function( title, namespace ) {
 		 */
 		getNamespacePrefix: function(){
 			return mw.config.get( 'wgFormattedNamespaces' )[this._ns].replace( / /g, '_' ) + (this._ns === 0 ? '' : ':');
-		},
-
-		/**
-		 * Set the "name" portion, removing illegal characters.
-		 * @param s {String} Page name (without namespace prefix)
-		 * @return {mw.Title} this
-		 */
-		setName: function( s ) {
-			this._name = clean( $.trim( s ) );
-			return this;
 		},
 
 		/**
@@ -230,16 +277,6 @@ var	Title = function( title, namespace ) {
 		},
 
 		/**
-		 * Set the "extension" portion, removing illegal characters.
-		 * @param s {String}
-		 * @return {mw.Title} this
-		 */
-		setExtension: function( s ) {
-			this._ext = clean( s.toLowerCase() );
-			return this;
-		},
-
-		/**
 		 * Get the extension (returns null if there was none)
 		 * @return {String|null} extension
 		 */
@@ -253,37 +290,6 @@ var	Title = function( title, namespace ) {
 		 */
 		getDotExtension: function() {
 			return this._ext === null ? '' : '.' + this._ext;
-		},
-
-		/**
-		 * @param s {String}
-		 * @return {mw.Title} this
-		 */
-		setAll: function( s ) {
-			var matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w{1,5}))?$/ );
-			if ( matches.length ) {
-				if ( matches[1] ) { this.setNamespace( matches[1] ); }
-				if ( matches[2] ) { this.setName( matches[2] ); }
-				if ( matches[3] ) { this.setExtension( matches[3] ); }
-			} else {
-				throw new Error( 'mw.Title: Could not parse title "' + s + '"' );
-			}
-			return this;
-		},
-
-		/**
-		 * @param s {String}
-		 * @return {mw.Title} this
-		 */
-		setNameAndExtension: function( s ) {
-			var matches = s.match( /^(?:)?(.*?)(?:\.(\w{1,5}))?$/ );
-			if ( matches.length ) {
-				if ( matches[1] ) { this.setName( matches[1] ); }
-				if ( matches[2] ) { this.setExtension( matches[2] ); }
-			} else {
-				throw new Error( 'mw.Title: Could not parse title "' + s + '"' );
-			}
-			return this;
 		},
 
 		/**
