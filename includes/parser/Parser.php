@@ -3267,7 +3267,7 @@ class Parser {
 					$ret = SpecialPageFactory::capturePath( $title, $context );
 					if ( $ret ) {
 						$text = $context->getOutput()->getHTML();
-						$this->mOutput->addOutputPage( $context->getOutput() );
+						$this->mOutput->addOutputPageMetadata( $context->getOutput() );
 						$found = true;
 						$isHTML = true;
 						$this->disableCache();
