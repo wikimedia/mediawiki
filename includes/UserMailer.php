@@ -192,10 +192,10 @@ class UserMailer {
 		$headers['X-Mailer'] = 'MediaWiki mailer';
 		$headers['From'] = $from->toString();
 
-		$ret = wfRunHooks( 'AlternateUserMailer', array( $headers, $to, $from, $subject, $body, $replyto, $contentType ) );
+		$ret = wfRunHooks( 'AlternateUserMailer', array( $headers, $to, $from, $subject, $body ) );
 		if ( $ret === false ) {
 			return Status::newGood();
-		} else if ( $ret != true ) {
+		} else if ( $ret !== true ) {
 			return Status::newFatal( 'php-mail-error', $ret );
 		}
 
