@@ -296,7 +296,10 @@ on &action=edit.
 $EditPage: the EditPage object
 
 'AlternateUserMailer': Called before mail is sent so that mail could
-be logged (or something else) instead of using PEAR or SMTP
+be logged (or something else) instead of using PEAR or PHP's mail().
+Return false to skip the regular method of sending mail.  Return a
+string to return a php-mail-error message containing the error.
+Returning true will continue with sending email in the regular way.
 $headers: Associative array of headers for the email
 $to: MailAddress object or array
 $from: From address
