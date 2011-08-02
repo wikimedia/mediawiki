@@ -8,7 +8,7 @@
  *
  * Intended to compress very well if you use a JS-parsing minifier.
  *
- * Dependencies: mw, mw.Utilities, jQuery
+ * Dependencies: mw, jQuery
  *
  * Example:
  *
@@ -64,7 +64,7 @@
 	 */ 
 	mw.uri = function( uri, strictMode ) {
 		strictMode = !!strictMode;
-		if ( !mw.isEmpty( uri ) ) { 
+		if ( typeof uri !== 'undefined' && uri !== null || uri !== '' ) { 
 			if ( typeof uri === 'string' ) { 
 				this._parse( uri, strictMode );
 			} else if ( typeof uri === 'object' ) {
@@ -72,7 +72,7 @@
 				$.each( this._properties, function( i, property ) {
 					_this[property] = uri[property];
 				} );
-				if ( !mw.isDefined( this.query ) ) {
+				if ( typeof this.query === 'undefined' ) {
 					this.query = {};
 				}
 			}
@@ -114,7 +114,11 @@
 	 * @return {String}
 	 */
 	function _cat( pre, val, post, raw ) {
-		return mw.isEmpty( val ) ? '' : pre + ( raw ? val : mw.uri.encode( val ) ) + post;
+		if ( typeof val === 'undefined' || val === null || val === '' ) { 
+			return '';
+		} else {
+			return pre + ( raw ? val : mw.uri.encode( val ) ) + post;
+		}
 	}
 
 	mw.uri.prototype = {
