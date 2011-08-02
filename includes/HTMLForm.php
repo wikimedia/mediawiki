@@ -179,7 +179,7 @@ class HTMLForm {
 
 	/**
 	 * Initialise a new Object for the field
-     * @param $fieldname string
+	 * @param $fieldname string
 	 * @param $descriptor string input Descriptor, as described above
 	 * @return HTMLFormField subclass
 	 */
