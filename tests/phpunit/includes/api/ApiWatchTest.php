@@ -41,6 +41,7 @@ class ApiWatchTest extends ApiTestCase {
 
 	/**
 	 * @depends testWatchEdit
+	 * @group Broken
 	 */
 	function testWatchClear() {
 	
