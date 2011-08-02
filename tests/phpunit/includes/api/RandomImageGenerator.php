@@ -69,7 +69,7 @@ class RandomImageGenerator {
 
 
 	public function __construct( $options = array() ) {
-		foreach ( array( 'dictionaryFile', 'minWidth', 'minHeight', 'maxHeight', 'shapesToDraw' ) as $property ) {
+		foreach ( array( 'dictionaryFile', 'minWidth', 'minHeight', 'maxWidth', 'maxHeight', 'shapesToDraw' ) as $property ) {
 			if ( isset( $options[$property] ) ) {
 				$this->$property = $options[$property];
 			}
