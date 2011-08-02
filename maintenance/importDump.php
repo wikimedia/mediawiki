@@ -63,6 +63,7 @@ TEXT;
 		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
 		$this->addOption( 'debug', 'Output extra verbose debug information' );
 		$this->addOption( 'uploads', 'Process file upload data if included (experimental)' );
+		$this->addOption( 'no-updates', 'Disable link table updates. Is faster but leaves the wiki in an inconsistent state' );
 		$this->addOption( 'image-base-path', 'Import files from a specified path', false, true );
 		$this->addArg( 'file', 'Dump file to import [else use stdin]', false );
 	}
@@ -242,6 +243,9 @@ TEXT;
 
 		if( $this->hasOption( 'debug' ) ) {
 			$importer->setDebug( true );
+		}
+		if ( $this->hasOption( 'no-updates' ) ) {
+			$importer->setNoUpdates( true );
 		}
 		$importer->setPageCallback( array( &$this, 'reportPage' ) );
 		$this->importCallback =  $importer->setRevisionCallback(
