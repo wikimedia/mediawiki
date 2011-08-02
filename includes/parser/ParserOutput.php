@@ -361,7 +361,7 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @param $out OutputPage object
 	 */
-	public function addOutputPage( OutputPage $out ) {
+	public function addOutputPageMetadata( OutputPage $out ) {
 		$this->addModules( $out->getModules() );
 		$this->addModuleScripts( $out->getModuleScripts() );
 		$this->addModuleStyles( $out->getModuleStyles() );
