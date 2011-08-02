@@ -78,10 +78,12 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		wfProfileIn( __METHOD__ );
 
-		static $skin =  null;
+		static $skin =  null, $infinity = null;
 
-		if( is_null( $skin ) )
+		if( is_null( $skin ) ){
 			$skin = $this->getSkin();
+			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
+		}
 
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
 		$link = $skin->link( $title );
@@ -92,12 +94,12 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$description_items[] = $protType;
 
-		if ( $row->pt_expiry != 'infinity' && strlen($row->pt_expiry) ) {
-			$expiry = $wgLang->formatExpiry( $row->pt_expiry );
+		$expiry = strlen( $row->pt_expiry ) ? $wgLang->formatExpiry( $row->pt_expiry, TS_MW ) : $infinity;
+		if( $expiry != $infinity ) {
 
 			$expiry_description = wfMsg( 'protect-expiring', $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
 
-			$description_items[] = $expiry_description;
+			$description_items[] = htmlspecialchars($expiry_description);
 		}
 
 		wfProfileOut( __METHOD__ );
