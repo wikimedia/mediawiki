@@ -10,6 +10,9 @@
  *     We accomplish this using a database table, with ownership checking as you might expect. See SpecialUploadStash, which
  *     implements a web interface to some files stored this way.
  *
+ * UploadStash right now is *mostly* intended to show you one user's slice of the entire stash. The user parameter is only optional
+ * because there are few cases where we clean out the stash from an automated script. In the future we might refactor this.
+ *
  * UploadStash represents the entire stash of temporary files.
  * UploadStashFile is a filestore for the actual physical disk files.
  * UploadFromStash extends UploadBase, and represents a single stashed file as it is moved from the stash to the regular file repository
@@ -76,6 +79,7 @@ class UploadStash {
 
 	/**
 	 * Get a file and its metadata from the stash.
+	 * The noAuth param is a bit janky but is required for automated scripts which clean out the stash.
 	 *
 	 * @param $key String: key under which file information is stored
 	 * @param $noAuth Boolean (optional) Don't check authentication. Used by maintenance scripts.
