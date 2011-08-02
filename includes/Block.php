@@ -892,7 +892,7 @@ class Block {
 	 * @param $expiry String: Database expiry format
 	 * @param $timestampType Int Requested timestamp format
 	 * @return String
-	 * @deprecated since 1.18; use $wgLang->decodeExpiry() instead
+	 * @deprecated since 1.18; use $wgLang->formatExpiry() instead
 	 */
 	public static function decodeExpiry( $expiry, $timestampType = TS_MW ) {
 		global $wgContLang;
