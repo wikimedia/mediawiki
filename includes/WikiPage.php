@@ -1409,7 +1409,7 @@ class WikiPage extends Page {
 
 					$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
 					if ( $restrictions != '' ) {
-						$protect_description .= "[$action=$restrictions] (";
+						$protect_description .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
 						if ( $encodedExpiry[$action] != 'infinity' ) {
 							$protect_description .= wfMsgForContent( 'protect-expiring',
 								$wgContLang->timeanddate( $expiry[$action], false, false ) ,

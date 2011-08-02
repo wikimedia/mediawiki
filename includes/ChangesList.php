@@ -589,6 +589,8 @@ class OldChangesList extends ChangesList {
 		$s .= $this->getLang()->getDirMark();
 		# Log action text (if any)
 		$this->insertAction( $s, $rc );
+		# LTR/RTL direction mark
+		$s .= $this->getLang()->getDirMark();
 		# Edit or log comment
 		$this->insertComment( $s, $rc );
 		# Tags
