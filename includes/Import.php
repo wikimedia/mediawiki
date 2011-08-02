@@ -36,6 +36,7 @@ class WikiImporter {
 	private $mSiteInfoCallback, $mTargetNamespace, $mPageOutCallback;
 	private $mDebug;
 	private $mImportUploads, $mImageBasePath;
+	private $mNoUpdates = false;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -89,6 +90,13 @@ class WikiImporter {
 	 */
 	function setDebug( $debug ) {
 		$this->mDebug = $debug;
+	}
+	
+	/**
+	 * Set 'no updates' mode. In this mode, the link tables will not be updated by the importer
+	 */
+	function setNoUpdates( $noupdates ) {
+		$this->mNoUpdates = $noupdates;
 	}
 
 	/**
@@ -453,6 +461,7 @@ class WikiImporter {
 		$revision->setTimestamp( $logInfo['timestamp'] );
 		$revision->setParams( $logInfo['params'] );
 		$revision->setTitle( Title::newFromText( $logInfo['logtitle'] ) );
+		$revision->setNoUpdates( $this->mNoUpdates );
 
 		if ( isset( $logInfo['comment'] ) ) {
 			$revision->setComment( $logInfo['comment'] );
@@ -587,6 +596,7 @@ class WikiImporter {
 		if ( isset( $revisionInfo['contributor']['username'] ) ) {
 			$revision->setUserName( $revisionInfo['contributor']['username'] );
 		}
+		$revision->setNoUpdates( $this->mNoUpdates );
 
 		return $this->revisionCallback( $revision );
 	}
@@ -677,6 +687,7 @@ class WikiImporter {
 		if ( isset( $uploadInfo['contributor']['username'] ) ) {
 			$revision->setUserName( $uploadInfo['contributor']['username'] );
 		}
+		$revision->setNoUpdates( $this->mNoUpdates );
 
 		return call_user_func( $this->mUploadCallback, $revision );
 	}
@@ -853,6 +864,7 @@ class WikiRevision {
 	var $sha1base36 = false;
 	var $isTemp = false;
 	var $archiveName = '';
+	private $mNoUpdates = false;
 
 	function setTitle( $title ) {
 		if( is_object( $title ) ) {
@@ -925,6 +937,10 @@ class WikiRevision {
 
 	function setParams( $params ) {
 		$this->params = $params;
+	}
+	
+	public function setNoUpdates( $noupdates ) {
+		$this->mNoUpdates = $noupdates;
 	}
 
 	/**
@@ -1056,8 +1072,9 @@ class WikiRevision {
 		$revision->insertOn( $dbw );
 		$changed = $article->updateIfNewerOn( $dbw, $revision );
 
-		if ( $changed !== false ) {
+		if ( $changed !== false && !$this->mNoUpdates ) {
 			wfDebug( __METHOD__ . ": running updates\n" );
+			throw new MWException("BROKEN: calling doEditUpdates()");
 			$article->doEditUpdates( $revision, $userObj, array( 'created' => $created, 'oldcountable' => $oldcountable ) );
 		}
 
