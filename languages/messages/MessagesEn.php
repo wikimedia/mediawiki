@@ -2875,6 +2875,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-level-sysop'         => 'Administrators only',
 'protect-summary-cascade'     => 'cascading',
 'protect-expiring'            => 'expires $1 (UTC)',
+'protect-expiring-local'      => 'expires $1',
 'protect-expiry-indefinite'   => 'indefinite',
 'protect-cascade'             => 'Protect pages included in this page (cascading protection)',
 'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
