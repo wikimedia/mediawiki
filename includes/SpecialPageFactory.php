@@ -471,40 +471,47 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Just like executePath() except it returns the HTML instead of outputting it
-	 * Returns false if there was no such special page, or a title object if it was
+	 * Just like executePath() but will override global variables and execute
+	 * the page in "inclusion" mode. Returns true if the excution was successful
+	 * or false if there was no such special page, or a title object if it was
 	 * a redirect.
 	 *
-	 * Also saves the current $wgTitle, $wgOut, and $wgRequest variables so that
-	 * the special page will get the context it'd expect on a normal request,
-	 * and then restores them to their previous values after.
+	 * Also saves the current $wgTitle, $wgOut, $wgRequest, $wgUser and $wgLang
+	 * variables so that the special page will get the context it'd expect on a
+	 * normal request, and then restores them to their previous values after.
 	 *
 	 * @param $title Title
+	 * @param $context RequestContext
 	 *
 	 * @return String: HTML fragment
 	 */
-	static function capturePath( &$title ) {
-		global $wgOut, $wgTitle, $wgRequest;
+	static function capturePath( Title $title, RequestContext $context ) {
+		global $wgOut, $wgTitle, $wgRequest, $wgUser, $wgLang;
 
+		// Save current globals
 		$oldTitle = $wgTitle;
 		$oldOut = $wgOut;
 		$oldRequest = $wgRequest;
+		$oldUser = $wgUser;
+		$oldLang = $wgLang;
 
-		// Don't want special pages interpreting ?feed=atom parameters.
-		$wgRequest = new FauxRequest( array() );
-
-		$context = new RequestContext;
-		$context->setTitle( $title );
-		$context->setRequest( $wgRequest );
+		// Set the globals to the current context
+		$wgTitle = $title;
 		$wgOut = $context->getOutput();
+		$wgRequest = $context->getRequest();
+		$wgUser = $context->getUser();
+		$wgLang = $context->getLang();
 
+		// The useful part
 		$ret = self::executePath( $title, $context, true );
-		if ( $ret === true ) {
-			$ret = $wgOut->getHTML();
-		}
+
+		// And restore that globals
 		$wgTitle = $oldTitle;
 		$wgOut = $oldOut;
 		$wgRequest = $oldRequest;
+		$wgUser = $oldUser;
+		$wgLang = $oldLang;
+
 		return $ret;
 	}
 

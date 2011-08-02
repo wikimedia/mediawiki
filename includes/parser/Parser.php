@@ -3250,8 +3250,24 @@ class Parser {
 					&& $this->mOptions->getAllowSpecialInclusion()
 					&& $this->ot['html'] )
 				{
-					$text = SpecialPageFactory::capturePath( $title );
-					if ( is_string( $text ) ) {
+					$pageArgs = array();
+					for ( $i = 0; $i < $args->getLength(); $i++ ) {
+						$bits = $args->item( $i )->splitArg();
+						if ( strval( $bits['index'] ) === '' ) {
+							$name = trim( $frame->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
+							$value = trim( $frame->expand( $bits['value'] ) );
+							$pageArgs[$name] = $value;
+						}
+					}
+					$context = new RequestContext;
+					$context->setTitle( $title );
+					$context->setRequest( new FauxRequest( $pageArgs ) );
+					$context->setUser( $this->getUser() );
+					$context->setLang( Language::factory( $this->mOptions->getUserLang() ) );
+					$ret = SpecialPageFactory::capturePath( $title, $context );
+					if ( $ret ) {
+						$text = $context->getOutput()->getHTML();
+						$this->mOutput->addOutputPage( $context->getOutput() );
 						$found = true;
 						$isHTML = true;
 						$this->disableCache();
