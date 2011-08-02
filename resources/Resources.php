@@ -576,6 +576,15 @@ return array(
 			'jquery.mwPrototypes',
 		),
 	),
+	'mediawiki.uri' => array( 
+		'scripts' => 'resources/mediawiki/mediawiki.uri.js',
+	),
+	'mediawiki.page.mwsuggest' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.mwsuggest.js',
+		'dependencies' => array( 
+			'jquery.ui.autocomplete',
+		),
+	),
 	'mediawiki.page.ajaxCategories' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.js',
 		'styles' => 'resources/mediawiki.page/mediawiki.page.ajaxCategories.css',
