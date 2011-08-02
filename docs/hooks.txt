@@ -1743,6 +1743,10 @@ $res: database result used to create the object
 $title: The title in question.
 &$types: The types of protection available.
 
+'TitleIsCssOrJsPage': Called when determining if a page is a CSS or JS page
+$title: Title object that is being checked
+$result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page. Hooks may change this value to override the return value of Title::isCssOrJsPage()
+
 'TitleMoveComplete': after moving an article (title)
 $old: old title
 $nt: new title

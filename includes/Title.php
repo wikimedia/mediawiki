@@ -1949,8 +1949,10 @@ class Title {
 	 * @return Bool
 	 */
 	public function isCssOrJsPage() {
-		return $this->mNamespace == NS_MEDIAWIKI
+		$retval = $this->mNamespace == NS_MEDIAWIKI
 			&& preg_match( '!\.(?:css|js)$!u', $this->mTextform ) > 0;
+		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$retval ) );
+		return $retval;
 	}
 
 	/**
