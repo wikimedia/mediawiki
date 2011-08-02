@@ -1273,7 +1273,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 window.$j = jQuery;
 
 // Auto-register from pre-loaded startup scripts
-if ( jQuery.isFunction( startUp ) ) {
+if ( typeof startUp !== 'undefined' && jQuery.isFunction( startUp ) ) {
 	startUp();
 	delete startUp;
 }
