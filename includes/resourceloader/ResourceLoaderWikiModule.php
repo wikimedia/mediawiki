@@ -44,6 +44,20 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	abstract protected function getPages( ResourceLoaderContext $context );
 	
 	/* Protected Methods */
+	
+	/**
+	 * Get the Database object used in getTitleMTimes(). Defaults to the local slave DB
+	 * but subclasses may want to override this to return a remote DB object.
+	 * 
+	 * NOTE: This ONLY works for getTitleMTimes() and getModifiedTime(), NOT FOR ANYTHING ELSE.
+	 * In particular, it doesn't work for getting the content of JS and CSS pages. That functionality
+	 * will use the local DB irrespective of the return value of this method.
+	 * 
+	 * @return DatabaseBase
+	 */
+	protected function getDB() {
+		return wfGetDB( DB_SLAVE );
+	}
 
 	/**
 	 * @param $title Title
@@ -168,7 +182,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 		
 		if ( !$batch->isEmpty() ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = $this->getDB();
 			$res = $dbr->select( 'page',
 				array( 'page_namespace', 'page_title', 'page_touched' ),
 				$batch->constructSet( 'page', $dbr ),
