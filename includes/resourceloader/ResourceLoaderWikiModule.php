@@ -68,7 +68,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$message = wfMessage( $title->getDBkey() )->inContentLanguage();
 			return $message->exists() ? $message->plain() : '';
 		}
-		if ( !$title->isCssJsSubpage() ) {
+		if ( !$title->isCssJsSubpage() && !$title->isCssOrJsPage() ) {
 			return null;
 		}
 		$revision = Revision::newFromTitle( $title );
