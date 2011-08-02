@@ -58,6 +58,7 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
+		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
 
 		// Copy the session key to the file key, for backward compatibility.
 		if( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
@@ -85,7 +86,14 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Check if the uploaded file is sane
-		$this->verifyUpload();
+		if ( $this->mParams['chunk'] ) {
+			$maxSize = $this->mUpload->getMaxUploadSize( );
+			if( $this->mParams['filesize'] > $maxSize ) {
+				$this->dieUsage( 'The file you submitted was too large', 'file-too-large' );
+			}
+        } else {
+			$this->verifyUpload();
+        }
 
 
 		// Check if the user has the rights to modify or overwrite the requested title
@@ -113,6 +121,26 @@ class ApiUpload extends ApiBase {
 			} catch ( MWException $e ) {
 				$result['warnings']['stashfailed'] = $e->getMessage();
 			}
+		} elseif ( $this->mParams['chunk'] ) {
+		    $result['result'] = 'Continue';
+			$chunk = $request->getFileTempName( 'chunk' );
+			$chunkSize = $request->getFileSize( 'chunk' );
+            if ($this->mParams['offset'] == 0) {
+				$result['filekey'] = $this->performStash();
+            } else {
+                $status = $this->mUpload->appendChunk($chunk, $chunkSize,
+                                                      $this->mParams['offset']);
+		        if ( !$status->isGood() ) {
+				    $this->dieUsage( $status->getWikiText(), 'stashfailed' );
+                } else {
+                    $result['filekey'] = $this->mParams['filekey'];
+                    if($this->mParams['offset'] + $chunkSize == $this->mParams['filesize']) {
+                        $this->mUpload->finalizeFile();
+                        $result['result'] = 'Done';
+                    }
+                }
+            }
+            $result['offset'] = $this->mParams['offset'] + $chunkSize;
 		} elseif ( $this->mParams['stash'] ) {
 			// Some uploads can request they be stashed, so as not to publish them immediately.
 			// In this case, a failure to stash ought to be fatal
@@ -188,9 +216,10 @@ class ApiUpload extends ApiBase {
 	protected function selectUploadModule() {
 		$request = $this->getMain()->getRequest();
 
-		// One and only one of the following parameters is needed
-		$this->requireOnlyOneParameter( $this->mParams,
-			'filekey', 'file', 'url', 'statuskey' );
+		// chunk or one and only one of the following parameters is needed
+		if(!$this->mParams['chunk'])
+			$this->requireOnlyOneParameter( $this->mParams,
+					'filekey', 'file', 'url', 'statuskey' );
 
 		if ( $this->mParams['statuskey'] ) {
 			$this->checkAsyncDownloadEnabled();
@@ -234,6 +263,13 @@ class ApiUpload extends ApiBase {
 			
 			$this->mUpload->initialize( $this->mParams['filekey'], $this->mParams['filename'] );
 
+		} elseif ( isset( $this->mParams['chunk'] ) ) {
+			// Start new Chunk upload
+			$this->mUpload = new UploadFromFile();
+			$this->mUpload->initialize(
+				$this->mParams['filename'],
+				$request->getUpload( 'chunk' )
+			);
 		} elseif ( isset( $this->mParams['file'] ) ) {
 			$this->mUpload = new UploadFromFile();
 			$this->mUpload->initialize(
@@ -488,6 +524,10 @@ class ApiUpload extends ApiBase {
 			),
 			'stash' => false,
 
+			'filesize' => null,
+			'offset' => null,
+			'chunk' => null,
+
 			'asyncdownload' => false,
 			'leavemessage' => false,
 			'statuskey' => null,
@@ -510,6 +550,10 @@ class ApiUpload extends ApiBase {
 			'filekey' => 'Key that identifies a previous upload that was stashed temporarily.',
 			'sessionkey' => 'Same as filekey, maintained for backward compatibility.',
 			'stash' => 'If set, the server will not add the file to the repository and stash it temporarily.',
+
+			'chunk' => 'Chunk contents',
+			'offset' => 'Offset of chunk in bytes',
+			'filesize' => 'Filesize of entire upload',
 
 			'asyncdownload' => 'Make fetching a URL asynchronous',
 			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
