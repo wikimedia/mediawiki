@@ -91,9 +91,9 @@ class ApiUpload extends ApiBase {
 			if( $this->mParams['filesize'] > $maxSize ) {
 				$this->dieUsage( 'The file you submitted was too large', 'file-too-large' );
 			}
-        } else {
+		} else {
 			$this->verifyUpload();
-        }
+		}
 
 
 		// Check if the user has the rights to modify or overwrite the requested title
@@ -122,25 +122,25 @@ class ApiUpload extends ApiBase {
 				$result['warnings']['stashfailed'] = $e->getMessage();
 			}
 		} elseif ( $this->mParams['chunk'] ) {
-		    $result['result'] = 'Continue';
+			$result['result'] = 'Continue';
 			$chunk = $request->getFileTempName( 'chunk' );
 			$chunkSize = $request->getFileSize( 'chunk' );
-            if ($this->mParams['offset'] == 0) {
+			if ($this->mParams['offset'] == 0) {
 				$result['filekey'] = $this->performStash();
-            } else {
-                $status = $this->mUpload->appendChunk($chunk, $chunkSize,
-                                                      $this->mParams['offset']);
-		        if ( !$status->isGood() ) {
-				    $this->dieUsage( $status->getWikiText(), 'stashfailed' );
-                } else {
-                    $result['filekey'] = $this->mParams['filekey'];
-                    if($this->mParams['offset'] + $chunkSize == $this->mParams['filesize']) {
-                        $this->mUpload->finalizeFile();
-                        $result['result'] = 'Done';
-                    }
-                }
-            }
-            $result['offset'] = $this->mParams['offset'] + $chunkSize;
+			} else {
+				$status = $this->mUpload->appendChunk($chunk, $chunkSize,
+													  $this->mParams['offset']);
+				if ( !$status->isGood() ) {
+					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+				} else {
+					$result['filekey'] = $this->mParams['filekey'];
+					if($this->mParams['offset'] + $chunkSize == $this->mParams['filesize']) {
+						$this->mUpload->finalizeFile();
+						$result['result'] = 'Done';
+					}
+				}
+			}
+			$result['offset'] = $this->mParams['offset'] + $chunkSize;
 		} elseif ( $this->mParams['stash'] ) {
 			// Some uploads can request they be stashed, so as not to publish them immediately.
 			// In this case, a failure to stash ought to be fatal
