@@ -433,6 +433,7 @@ production.
   param is only present in hash.
 * Installer checked for magic_quotes_runtime instead of register_globals.
 * (bug 30131) XCache with variable caching disabled no longer used for variable caching (CACHE_ACCEL)
+* $wgSVGMaxSize is now applied to the smaller of width or height, making very wide pano/timeline/diagram SVGs renderable at saner sizes
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
