@@ -526,6 +526,15 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Get an array of head items
+	 *
+	 * @return Array
+	 */
+	function getHeadItemsArray() {
+		return $this->mHeadItems;
+	}
+
+	/**
 	 * Get all header items in a string
 	 *
 	 * @return String
@@ -1405,6 +1414,9 @@ class OutputPage extends ContextSource {
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
+		$this->addModuleScripts( $parserOutput->getModuleScripts() );
+		$this->addModuleStyles( $parserOutput->getModuleStyles() );
+		$this->addModuleMessages( $parserOutput->getModuleMessages() );
 
 		// Template versioning...
 		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {
