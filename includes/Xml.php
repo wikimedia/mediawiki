@@ -360,7 +360,7 @@ class Xml {
 	public static function label( $label, $id, $attribs = array() ) {
 		$a = array( 'for' => $id );
 
-		# FIXME avoid copy pasting below: 
+		# FIXME avoid copy pasting below:
 		if( isset( $attribs['class'] ) ){
 				$a['class'] = $attribs['class'];
 		}
@@ -506,19 +506,24 @@ class Xml {
 					$optgroup = false;
 				}
 			}
+
 			if( $optgroup ) $options .= self::closeElement('optgroup');
 
 		$attribs = array();
+
 		if( $name ) {
 			$attribs['id'] = $name;
 			$attribs['name'] = $name;
 		}
+
 		if( $class ) {
 			$attribs['class'] = $class;
 		}
+
 		if( $tabindex ) {
 			$attribs['tabindex'] = $tabindex;
 		}
+
 		return Xml::openElement( 'select', $attribs )
 			. "\n"
 			. $options
@@ -537,9 +542,11 @@ class Xml {
 	 */
 	public static function fieldset( $legend = false, $content = false, $attribs = array() ) {
 		$s = Xml::openElement( 'fieldset', $attribs ) . "\n";
+
 		if ( $legend ) {
 			$s .= Xml::element( 'legend', null, $legend ) . "\n";
 		}
+
 		if ( $content !== false ) {
 			$s .= $content . "\n";
 			$s .= Xml::closeElement( 'fieldset' ) . "\n";
@@ -600,6 +607,7 @@ class Xml {
 			"\xe2\x80\x8c" => "\\u200c", // ZERO WIDTH NON-JOINER
 			"\xe2\x80\x8d" => "\\u200d", // ZERO WIDTH JOINER
 		);
+
 		return strtr( $string, $pairs );
 	}
 
@@ -641,6 +649,7 @@ class Xml {
 				if ( $s != '{' ) {
 					$s .= ', ';
 				}
+
 				$s .= '"' . self::escapeJsString( $name ) . '": ' .
 					self::encodeJsVar( $elt );
 			}
@@ -666,18 +675,21 @@ class Xml {
 	public static function encodeJsCall( $name, $args ) {
 		$s = "$name(";
 		$first = true;
+
 		foreach ( $args as $arg ) {
 			if ( $first ) {
 				$first = false;
 			} else {
 				$s .= ', ';
 			}
+
 			$s .= Xml::encodeJsVar( $arg );
 		}
+
 		$s .= ");\n";
+
 		return $s;
 	}
-
 
 	/**
 	 * Check if a string is well-formed XML.
@@ -702,7 +714,9 @@ class Xml {
 			xml_parser_free( $parser );
 			return false;
 		}
+
 		xml_parser_free( $parser );
+
 		return true;
 	}
 
@@ -720,6 +734,7 @@ class Xml {
 			'<html>' .
 			$text .
 			'</html>';
+
 		return Xml::isWellFormed( $html );
 	}
 
@@ -765,7 +780,6 @@ class Xml {
 
 		$form .= "</tbody></table>";
 
-
 		return $form;
 	}
 
@@ -778,19 +792,31 @@ class Xml {
 	 */
 	public static function buildTable( $rows, $attribs = array(), $headers = null ) {
 		$s = Xml::openElement( 'table', $attribs );
+
 		if ( is_array( $headers ) ) {
 			foreach( $headers as $id => $header ) {
 				$attribs = array();
-				if ( is_string( $id ) ) $attribs['id'] = $id;
+
+				if ( is_string( $id ) ) {
+					$attribs['id'] = $id;
+				}
+
 				$s .= Xml::element( 'th', $attribs, $header );
 			}
 		}
+
 		foreach( $rows as $id => $row ) {
 			$attribs = array();
-			if ( is_string( $id ) ) $attribs['id'] = $id;
+
+			if ( is_string( $id ) ) {
+				$attribs['id'] = $id;
+			}
+
 			$s .= Xml::buildTableRow( $attribs, $row );
 		}
+
 		$s .= Xml::closeElement( 'table' );
+
 		return $s;
 	}
 
@@ -802,12 +828,20 @@ class Xml {
 	 */
 	public static function buildTableRow( $attribs, $cells ) {
 		$s = Xml::openElement( 'tr', $attribs );
+
 		foreach( $cells as $id => $cell ) {
+
 			$attribs = array();
-			if ( is_string( $id ) ) $attribs['id'] = $id;
+
+			if ( is_string( $id ) ) {
+				$attribs['id'] = $id;
+			}
+
 			$s .= Xml::element( 'td', $attribs, $cell );
 		}
+
 		$s .= Xml::closeElement( 'tr' );
+
 		return $s;
 	}
 }
@@ -821,9 +855,11 @@ class XmlSelect {
 		if ( $name ) {
 			$this->setAttribute( 'name', $name );
 		}
+
 		if ( $id ) {
 			$this->setAttribute( 'id', $id );
 		}
+
 		if ( $default !== false ) {
 			$this->default = $default;
 		}
@@ -863,6 +899,7 @@ class XmlSelect {
 	public function addOption( $name, $value = false ) {
 		// Stab stab stab
 		$value = ($value !== false) ? $value : $name;
+
 		$this->options[] = array( $name => $value );
 	}
 
@@ -888,6 +925,7 @@ class XmlSelect {
 	 */
 	static function formatOptions( $options, $default = false ) {
 		$data = '';
+
 		foreach( $options as $label => $value ) {
 			if ( is_array( $value ) ) {
 				$contents = self::formatOptions( $value, $default );
@@ -905,12 +943,13 @@ class XmlSelect {
 	 */
 	public function getHTML() {
 		$contents = '';
+
 		foreach ( $this->options as $options ) {
 			$contents .= self::formatOptions( $options, $this->default );
 		}
+
 		return Xml::tags( 'select', $this->attributes, rtrim( $contents ) );
 	}
-
 }
 
 /**
