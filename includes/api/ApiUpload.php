@@ -136,7 +136,7 @@ class ApiUpload extends ApiBase {
 					$result['filekey'] = $this->mParams['filekey'];
 					if($this->mParams['offset'] + $chunkSize == $this->mParams['filesize']) {
 						$this->mUpload->finalizeFile();
-						$result['result'] = 'Done';
+						$result['result'] = 'Success';
 					}
 				}
 			}
