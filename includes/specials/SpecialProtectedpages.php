@@ -106,10 +106,10 @@ class SpecialProtectedpages extends SpecialPage {
 		if( $expiry != $infinity ) {
 
 			$expiry_description = wfMsg(
-				'protect-expiring',
-				$wgLang->timeanddate( $expiry ),
-				$wgLang->date( $expiry ),
-				$wgLang->time( $expiry )
+				'protect-expiring-local',
+				$wgLang->timeanddate( $expiry, true ),
+				$wgLang->date( $expiry, true ),
+				$wgLang->time( $expiry, true )
 			);
 
 			$description_items[] = htmlspecialchars($expiry_description);

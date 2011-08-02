@@ -1923,6 +1923,7 @@ $wgMessageStructure = array(
 		'protect-level-sysop',
 		'protect-summary-cascade',
 		'protect-expiring',
+		'protect-expiring-local',
 		'protect-expiry-indefinite',
 		'protect-cascade',
 		'protect-cantedit',

@@ -97,7 +97,12 @@ class SpecialProtectedtitles extends SpecialPage {
 		$expiry = strlen( $row->pt_expiry ) ? $wgLang->formatExpiry( $row->pt_expiry, TS_MW ) : $infinity;
 		if( $expiry != $infinity ) {
 
-			$expiry_description = wfMsg( 'protect-expiring', $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
+			$expiry_description = wfMsg(
+				'protect-expiring-local',
+				$wgLang->timeanddate( $expiry, true ),
+				$wgLang->date( $expiry, true ),
+				$wgLang->time( $expiry, true )
+			);
 
 			$description_items[] = htmlspecialchars($expiry_description);
 		}
