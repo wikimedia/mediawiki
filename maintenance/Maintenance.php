@@ -32,15 +32,6 @@ if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.2
 	wfPHPVersionError( 'cli' );
 }
 
-// Wrapper for posix_isatty()
-if ( !function_exists( 'posix_isatty' ) ) {
-	# We default as considering stdin a tty (for nice readline methods)
-	# but treating stout as not a tty to avoid color codes
-	function posix_isatty( $fd ) {
-		return !$fd;
-	}
-}
-
 /**
  * Abstract maintenance class for quickly writing and churning out
  * maintenance scripts with minimal effort. All that _must_ be defined
@@ -1195,6 +1186,22 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Wrapper for posix_isatty()
+	 * We default as considering stdin a tty (for nice readline methods)
+	 * but treating stout as not a tty to avoid color codes
+	 *
+	 * @param $fd int File descriptor
+	 * @return bool
+	 */
+	public static function posix_isatty( $fd ) {
+		if ( !MWInit::functionExists( 'posix_isatty' ) ) {
+			return !$fd;
+		} else {
+			return posix_isatty( $fd );
+		}
+}
+
+	/**
 	 * Prompt the console for input
 	 * @param $prompt String what to begin the line with, like '> '
 	 * @return String response
@@ -1202,7 +1209,7 @@ abstract class Maintenance {
 	public static function readconsole( $prompt = '> ' ) {
 		static $isatty = null;
 		if ( is_null( $isatty ) ) {
-			$isatty = posix_isatty( 0 /*STDIN*/ );
+			$isatty = self::posix_isatty( 0 /*STDIN*/ );
 		}
 
 		if ( $isatty && function_exists( 'readline' ) ) {

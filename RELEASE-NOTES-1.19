@@ -33,6 +33,8 @@ production.
 * (bug 25355) Parser generates edit section links for special pages.
 * (bug 27894) Move 'editondblclick' event listener down from body to
   div#bodyContent.
+* (bug 30172) The check for posix_isatty() in maintenance scripts did not detect
+  when the function exists but is disabled. Introduced Maintenance::posix_isatty()
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

@@ -229,7 +229,7 @@ TEXT;
 
 	function importFromStdin() {
 		$file = fopen( 'php://stdin', 'rt' );
-		if( posix_isatty( $file ) ) {
+		if( self::posix_isatty( $file ) ) {
 			$this->maybeHelp( true );
 		}
 		return $this->importFromHandle( $file );
