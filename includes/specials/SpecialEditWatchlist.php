@@ -485,9 +485,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return int
 	 */
 	public static function getMode( $request, $par ) {
-		$act  = $request->getVal( 'action' );
-		$mode = ( $act == 'view' ) ? $par : $act;
-		$mode = strtolower( $mode );
+		$mode = strtolower( $request->getVal( 'action', $par ) );
 		switch( $mode ) {
 			case 'clear':
 			case self::EDIT_CLEAR:

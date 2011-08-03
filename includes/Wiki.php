@@ -277,21 +277,21 @@ class MediaWiki {
 
 		// Check for disabled actions
 		if ( in_array( $action, $wgDisabledActions ) ) {
-			$action = 'nosuchaction';
-		} elseif ( $action === 'historysubmit' ) {
-			// Workaround for bug #20966: inability of IE to provide an action dependent
-			// on which submit button is clicked.
-			if ( $request->getBool( 'revisiondelete' ) ) {
-				$action = 'revisiondelete';
-			} else {
-				$action = 'view';
-			}
-		} elseif ( $action == 'editredlink' ) {
-			$action = 'edit';
+			return 'nosuchaction';
 		}
 
-		// Write back the executed action
-		$request->setVal( 'action', $action );
+		// Workaround for bug #20966: inability of IE to provide an action dependent
+		// on which submit button is clicked.
+		if ( $action === 'historysubmit' ) {
+			if ( $request->getBool( 'revisiondelete' ) ) {
+				return 'revisiondelete';
+			} else {
+				return 'view';
+			}
+		} elseif ( $action == 'editredlink' ) {
+			return 'edit';
+		}
+
 		return $action;
 	}
 
@@ -512,7 +512,6 @@ class MediaWiki {
 				break;
 			default:
 				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
-					$request->setVal( 'action', 'nosuchaction' );
 					$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
