@@ -428,11 +428,6 @@ function wfAppendQuery( $url, $query ) {
 	return $url;
 }
 
-define( 'PROTO_HTTP', 'http://' );
-define( 'PROTO_HTTPS', 'https://' );
-define( 'PROTO_RELATIVE', '//' );
-define( 'PROTO_CURRENT', null );
-
 /**
  * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
  * is correct.
