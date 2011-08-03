@@ -353,7 +353,7 @@ class ApiParse extends ApiBase {
 
 			$entry['lang'] = $bits[0];
 			if ( $title ) {
-				$entry['url'] = wfExpandUrl( $title->getFullURL() );
+				$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_HTTP );
 			}
 			$this->getResult()->setContent( $entry, $bits[1] );
 			$result[] = $entry;
@@ -435,7 +435,7 @@ class ApiParse extends ApiBase {
 
 				$title = Title::newFromText( "{$prefix}:{$title}" );
 				if ( $title ) {
-					$entry['url'] = wfExpandUrl( $title->getFullURL() );
+					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_HTTP );
 				}
 
 				$this->getResult()->setContent( $entry, $title->getFullText() );
