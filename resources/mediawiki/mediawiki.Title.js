@@ -61,21 +61,21 @@ var	Title = function( title, namespace ) {
 	},
 
 	/**
-	 * Sanatize name.
+	 * Sanitize name.
 	 */
 	fixName = function( s ) {
 		return clean( $.trim( s ) );
 	},
 
 	/**
-	 * Sanatize name.
+	 * Sanitize name.
 	 */
 	fixExt = function( s ) {
 		return clean( s.toLowerCase() );
 	},
 
 	/**
-	 * Sanatize namespace id.
+	 * Sanitize namespace id.
 	 * @param id {Number} Namespace id.
 	 * @return {Number|Boolean} The id as-is or boolean false if invalid.
 	 */
