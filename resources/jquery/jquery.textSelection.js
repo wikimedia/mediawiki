@@ -454,7 +454,7 @@ scrollToCaretPosition: function( options ) {
 		context.fn.restoreSelection();
 		needSave = true;
 	}
-	retval = ( hasIframe ? context.fn : fn )[command].call( this, options );
+	var retval = ( hasIframe ? context.fn : fn )[command].call( this, options );
 	if ( hasIframe && needSave ) {
 		context.fn.saveSelection();
 	}
