@@ -375,9 +375,9 @@ class ProtectionForm {
 
 			$expiryFormOptions = '';
 			if ( $this->mExistingExpiry[$action] && $this->mExistingExpiry[$action] != 'infinity' ) {
-				$timestamp = $wgLang->timeanddate( $this->mExistingExpiry[$action] );
-				$d = $wgLang->date( $this->mExistingExpiry[$action] );
-				$t = $wgLang->time( $this->mExistingExpiry[$action] );
+				$timestamp = $wgLang->timeanddate( $this->mExistingExpiry[$action], true );
+				$d = $wgLang->date( $this->mExistingExpiry[$action], true );
+				$t = $wgLang->time( $this->mExistingExpiry[$action], true );
 				$expiryFormOptions .=
 					Xml::option(
 						wfMsg( 'protect-existing-expiry', $timestamp, $d, $t ),
