@@ -1739,6 +1739,13 @@ $wgUseESI = false;
 /** Send X-Vary-Options header for better caching (requires patched Squid) */
 $wgUseXVO = false;
 
+/** Add X-Forwarded-Proto to the Vary and X-Vary-Options headers for API
+ * requests. Use this if you have an SSL termination setup and want to split
+ * the cache between HTTP and HTTPS for API requests. This does not affect
+ * 'regular' requests.
+ */
+$wgVaryOnXFPForAPI = false;
+
 /**
  * Internal server name as known to Squid, if different. Example:
  * <code>
