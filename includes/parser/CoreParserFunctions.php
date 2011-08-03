@@ -723,7 +723,7 @@ class CoreParserFunctions {
 				// ... and we can
 				if ( $mto && !$mto->isError() ) {
 					// ... change the URL to point to a thumbnail.
-					$url = wfExpandUrl( $mto->getUrl(), PROT_RELATIVE );
+					$url = wfExpandUrl( $mto->getUrl(), PROTO_RELATIVE );
 				}
 			}
 			if ( $option == 'nowiki' ) {

@@ -3321,7 +3321,7 @@ class User {
 				'$1',
 				"Special:$page/$token",
 				$wgArticlePath ),
-			PROT_HTTP
+			PROTO_HTTP
 		);
 	}
 
