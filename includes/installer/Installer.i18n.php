@@ -147,10 +147,13 @@ Image thumbnailing will be enabled if you enable uploads.',
 Image thumbnailing will be disabled.',
 	'config-no-uri'                   => "'''Error:''' Could not determine the current URI.
 Installation aborted.",
+	'config-no-cli-uri'               => "'''Warning''': No --scriptpath specified, using default: <code>$1</code>.",
 	'config-using-server'             => 'Using server name "<nowiki>$1</nowiki>".',
 	'config-using-uri'                => 'Using server URL "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe'         => "'''Warning:''' Your default directory for uploads <code>$1</code> is vulnerable to arbitrary scripts execution.
 Although MediaWiki checks all uploaded files for security threats, it is highly recommended to [http://www.mediawiki.org/wiki/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
+	'config-no-cli-uploads-check'     => "'''Warning:''' Your default directory for uploads (<code>$1</code>) is not checked for vulnerability
+to arbitrary script execution during the CLI install.",
 	'config-brokenlibxml'             => 'Your system has a combination of PHP and libxml2 versions which is buggy and can cause hidden data corruption in MediaWiki and other web applications.
 Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later ([http://bugs.php.net/bug.php?id=45996 bug filed with PHP]).
 Installation aborted.',
