@@ -1887,6 +1887,7 @@ class Article extends Page {
 		} else {
 			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
 			if ( $rev === null ) {
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			$text = $rev->getText();
