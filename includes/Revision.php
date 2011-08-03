@@ -335,15 +335,17 @@ class Revision {
 			$this->mTimestamp =         $row->rev_timestamp;
 			$this->mDeleted   = intval( $row->rev_deleted );
 
-			if( !isset( $row->rev_parent_id ) )
+			if( !isset( $row->rev_parent_id ) ) {
 				$this->mParentId = is_null($row->rev_parent_id) ? null : 0;
-			else
+			} else {
 				$this->mParentId  = intval( $row->rev_parent_id );
+			}
 
-			if( !isset( $row->rev_len ) || is_null( $row->rev_len ) )
+			if( !isset( $row->rev_len ) || is_null( $row->rev_len ) ) {
 				$this->mSize = null;
-			else
+			} else {
 				$this->mSize = intval( $row->rev_len );
+			}
 
 			if( isset( $row->page_latest ) ) {
 				$this->mCurrent = ( $row->rev_id == $row->page_latest );
@@ -445,8 +447,7 @@ class Revision {
 				   'rev_id' => $this->mId ),
 			'Revision::getTitle' );
 		if( $row ) {
-			$this->mTitle = Title::makeTitle( $row->page_namespace,
-											  $row->page_title );
+			$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
 		return $this->mTitle;
 	}
@@ -592,7 +593,7 @@ class Revision {
 	}
 
 	/**
-	 * int $field one of DELETED_* bitfield constants
+	 * @param $field int one of DELETED_* bitfield constants
 	 *
 	 * @return Boolean
 	 */
@@ -602,6 +603,8 @@ class Revision {
 
 	/**
 	 * Get the deletion bitfield of the revision
+	 *
+	 * @return int
 	 */
 	public function getVisibility() {
 		return (int)$this->mDeleted;
@@ -1098,11 +1101,3 @@ class Revision {
 		return 0;
 	}
 }
-
-/**
- * Aliases for backwards compatibility with 1.6
- */
-define( 'MW_REV_DELETED_TEXT', Revision::DELETED_TEXT );
-define( 'MW_REV_DELETED_COMMENT', Revision::DELETED_COMMENT );
-define( 'MW_REV_DELETED_USER', Revision::DELETED_USER );
-define( 'MW_REV_DELETED_RESTRICTED', Revision::DELETED_RESTRICTED );
