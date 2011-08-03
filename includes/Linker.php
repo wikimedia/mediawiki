@@ -1769,6 +1769,50 @@ class Linker {
 	}
 
 	/**
+	 * Get a revision-deletion link, or disabled link, or nothing, depending
+	 * on user permissions & the settings on the revision.
+	 *
+	 * Will use forward-compatible revision ID in the Special:RevDelete link
+	 * if possible, otherwise the timestamp-based ID which may break after
+	 * undeletion.
+	 *
+	 * @param User $user
+	 * @param Revision $rev
+	 * @param Revision $title
+	 * @return string HTML fragment
+	 */
+	public static function getRevDeleteLink( User $user, Revision $rev, Title $title ) {
+		$canHide = $user->isAllowed( 'deleterevision' );
+		if ( $canHide || ( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
+			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+				$revdlink = Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
+			} else {
+				if ( $rev->getId() ) {
+					// RevDelete links using revision ID are stable across
+					// page deletion and undeletion; use when possible.
+					$query = array(
+						'type'   => 'revision',
+						'target' => $title->getPrefixedDBkey(),
+						'ids'    => $rev->getId()
+					);
+				} else {
+					// Older deleted entries didn't save a revision ID.
+					// We have to refer to these by timestamp, ick!
+					$query = array(
+						'type'   => 'archive',
+						'target' => $title->getPrefixedDBkey(),
+						'ids'    => $rev->getTimestamp()
+					);
+				}
+				return Linker::revDeleteLink( $query,
+					$rev->isDeleted( File::DELETED_RESTRICTED ), $canHide );
+			}
+		} else {
+			return '';
+		}
+	}
+
+	/**
 	 * Creates a (show/hide) link for deleting revisions/log entries
 	 *
 	 * @param $query Array: query parameters to be passed to link()
@@ -2003,4 +2047,3 @@ class DummyLinker {
 		return call_user_func_array( array( 'Linker', $fname ), $args );
 	}
 }
-
