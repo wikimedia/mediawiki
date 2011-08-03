@@ -348,7 +348,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			if ( !is_null( $thumbParams ) ) {
 				$mto = $file->transform( $thumbParams );
 				if ( $mto && !$mto->isError() ) {
-					$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
+					$vals['thumburl'] = wfExpandUrl( $mto->getUrl(), PROTO_HTTP );
 
 					// bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
 					// thumbnail sizes for the thumbnail actual size
