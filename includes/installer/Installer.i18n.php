@@ -148,6 +148,7 @@ Image thumbnailing will be disabled.',
 	'config-no-uri'                   => "'''Error:''' Could not determine the current URI.
 Installation aborted.",
 	'config-using-server'             => 'Using server name "<nowiki>$1</nowiki>".',
+	'config-using-uri'                => 'Using server URL "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe'         => "'''Warning:''' Your default directory for uploads <code>$1</code> is vulnerable to arbitrary scripts execution.
 Although MediaWiki checks all uploaded files for security threats, it is highly recommended to [http://www.mediawiki.org/wiki/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
 	'config-brokenlibxml'             => 'Your system has a combination of PHP and libxml2 versions which is buggy and can cause hidden data corruption in MediaWiki and other web applications.
@@ -4690,8 +4691,8 @@ Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 »."
 	'config-install-pg-plpgsql' => 'Vérification du language PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Vous devez installer le langage PL/pgSQL dans la base de données $1',
 	'config-pg-no-create-privs' => "Le compte que vous avez spécifié pour l'installation n'a pas suffisamment de privilèges pour créer un compte.",
-	'config-pg-not-in-role' => "Le compte que vous avez spécifié pour l'utilisateur web existe déjà ! 
-Le compte que vous avez spécifié pour l'installation n'est pas un super-utilisateur et n'est pas membre du rôle de l'internaute, il est donc incapable de créer des objets appartenant à l'utilisateur web.! 
+	'config-pg-not-in-role' => "Le compte que vous avez spécifié pour l'utilisateur web existe déjà !
+Le compte que vous avez spécifié pour l'installation n'est pas un super-utilisateur et n'est pas membre du rôle de l'internaute, il est donc incapable de créer des objets appartenant à l'utilisateur web.!
 
 MediaWiki exige actuellement que les tableaux soient possédés par un utilisateur web. S'il vous plaît, spécifier un autre nom de compte web, ou cliquez sur \"retour\" et spécifier un utilisateur avec les privilèges suffisants.",
 	'config-install-user' => "Création d'un utilisateur de la base de données",
@@ -4699,7 +4700,7 @@ MediaWiki exige actuellement que les tableaux soient possédés par un utilisate
 	'config-install-user-create-failed' => "Échec lors de la création de l'utilisateur « $1 » : $2",
 	'config-install-user-grant-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
 	'config-install-user-missing' => 'L\'utilisateur "$1" n\'existe pas.',
-	'config-install-user-missing-create' => 'L\'utilisateur "$1" n\'existe pas ! 
+	'config-install-user-missing-create' => 'L\'utilisateur "$1" n\'existe pas !
 S\'il vous plaît, cocher "Compte de créer" dans la case ci-dessous si vous voulez le créer.',
 	'config-install-tables' => 'Création des tables',
 	'config-install-tables-exist' => "'''Avertissement:''' Les tables MediaWiki semblent déjà exister.
@@ -12046,7 +12047,7 @@ Powinieneś [http://www.mediawiki.org/wiki/Unicode_normalization_considerations 
 	'config-no-db' => 'Nie można odnaleźć właściwego sterownika bazy danych! Musisz zainstalować sterownik bazy danych dla PHP.
 Można użyć następujących typów baz danych: $1.
 
-Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych. 
+Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych.
 Jeśli skompilowałeś PHP samodzielnie, skonfiguruj je ponownie z włączonym klientem bazy danych, na przykład za pomocą polecenia <code>./configure --with-mysql</code>.
 Jeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować moduł php5-mysql.',
 	'config-no-fts3' => "'''Uwaga''' – SQLite został skompilowany bez [http://sqlite.org/fts3.html modułu FTS3] – funkcje wyszukiwania nie będą dostępne.",
