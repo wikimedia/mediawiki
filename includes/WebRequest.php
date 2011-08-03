@@ -595,6 +595,8 @@ class WebRequest {
 	 * Return the request URI with the canonical service and hostname, path,
 	 * and query string. This will be suitable for use as an absolute link
 	 * in HTML or other output.
+	 * 
+	 * NOTE: This will output a protocol-relative URL if $wgServer is protocol-relative
 	 *
 	 * @return String
 	 */
