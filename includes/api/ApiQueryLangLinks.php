@@ -106,7 +106,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			if ( $params['url'] ) {
 				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
 				if ( $title ) {
-					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_HTTP );
+					$entry['url'] = wfExpandUrl( $title->getFullURL() );
 				}
 			}
 			ApiResult::setContent( $entry, $row->ll_title );

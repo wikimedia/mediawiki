@@ -117,7 +117,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = array();
 		$mainPage = Title::newMainPage();
 		$data['mainpage'] = $mainPage->getPrefixedText();
-		$data['base'] = wfExpandUrl( $mainPage->getFullUrl(), PROTO_HTTP );
+		$data['base'] = wfExpandUrl( $mainPage->getFullUrl() );
 		$data['sitename'] = $GLOBALS['wgSitename'];
 		$data['generator'] = "MediaWiki {$GLOBALS['wgVersion']}";
 		$data['phpversion'] = phpversion();
@@ -288,7 +288,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( isset( $langNames[$prefix] ) ) {
 				$val['language'] = $langNames[$prefix];
 			}
-			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_HTTP );
+			$val['url'] = wfExpandUrl( $row['iw_url'] );
 			if( isset( $row['iw_wikiid'] ) ) {
 				$val['wikiid'] = $row['iw_wikiid'];
 			}
@@ -456,7 +456,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendRightsInfo( $property ) {
 		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 		$title = Title::newFromText( $wgRightsPage );
-		$url = $title ? wfExpandUrl( $title->getFullURL(), PROTO_HTTP ) : $wgRightsUrl;
+		$url = $title ? wfExpandUrl( $title->getFullURL() ) : $wgRightsUrl;
 		$text = $wgRightsText;
 		if ( !$text && $title ) {
 			$text = $title->getPrefixedText();
