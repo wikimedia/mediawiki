@@ -437,11 +437,11 @@ define( 'PROTO_CURRENT', null );
  * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
  * is correct.
  * 
- * The meaning of the PROT_* constants is as follows:
- * PROT_HTTP: Output a URL starting with http://
- * PROT_HTTPS: Output a URL starting with https://
- * PROT_RELATIVE: Output a URL starting with // (protocol-relative URL)
- * PROT_CURRENT: Output a URL starting with either http:// or https:// , depending on which protocol was used for the current incoming request
+ * The meaning of the PROTO_* constants is as follows:
+ * PROTO_HTTP: Output a URL starting with http://
+ * PROTO_HTTPS: Output a URL starting with https://
+ * PROTO_RELATIVE: Output a URL starting with // (protocol-relative URL)
+ * PROTO_CURRENT: Output a URL starting with either http:// or https:// , depending on which protocol was used for the current incoming request
  *
  * @todo this won't work with current-path-relative URLs
  * like "subdir/foo.html", etc.
