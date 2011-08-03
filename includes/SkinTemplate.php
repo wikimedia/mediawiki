@@ -1337,12 +1337,10 @@ abstract class QuickTemplate {
 	 * @private
 	 */
 	function msgWiki( $str ) {
-		global $wgParser, $wgOut;
+		global $wgOut;
 
 		$text = $this->translator->translate( $str );
-		$parserOutput = $wgParser->parse( $text, $wgOut->getTitle(),
-			$wgOut->parserOptions(), true );
-		echo $parserOutput->getText();
+		echo $wgOut->parse( $text );
 	}
 
 	/**
