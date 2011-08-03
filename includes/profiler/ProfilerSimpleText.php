@@ -41,7 +41,6 @@ class ProfilerSimpleText extends ProfilerSimple {
 		}
 	}
 
-	/* dense is good */
 	static function sort( $a, $b ) {
 		return $a['real'] < $b['real']; /* sort descending by time elapsed */
 	}
