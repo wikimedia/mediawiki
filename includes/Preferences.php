@@ -131,7 +131,7 @@ class Preferences {
 	 * @return void
 	 */
 	static function profilePreferences( $user, &$defaultPreferences ) {
-		global $wgLang, $wgUser;
+		global $wgLang;
 		## User info #####################################
 		// Information panel
 		$defaultPreferences['username'] = array(
@@ -224,7 +224,7 @@ class Preferences {
 		);
 
 		if ( $wgAuth->allowPasswordChange() ) {
-			$link = $wgUser->getSkin()->link( SpecialPage::getTitleFor( 'ChangePassword' ),
+			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
 				wfMsgHtml( 'prefs-resetpass' ), array(),
 				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' ) ) );
 
@@ -353,7 +353,7 @@ class Preferences {
 				$helpMessages[] = 'prefs-help-email-others';
 			}
 
-			$link = $wgUser->getSkin()->link(
+			$link = Linker::link(
 				SpecialPage::getTitleFor( 'ChangeEmail' ),
 				wfMsgHtml( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' ),
 				array(),
@@ -389,14 +389,10 @@ class Preferences {
 						$disableEmailPrefs = false;
 					} else {
 						$disableEmailPrefs = true;
-						$skin = $wgUser->getSkin();
 						$emailauthenticated = wfMsgExt( 'emailnotauthenticated', 'parseinline' ) . '<br />' .
-							$skin->link(
+							Linker::linkKnown(
 								SpecialPage::getTitleFor( 'Confirmemail' ),
-								wfMsg( 'emailconfirmlink' ),
-								array(),
-								array(),
-								array( 'known', 'noclasses' )
+								wfMsg( 'emailconfirmlink' )
 							) . '<br />';
 					}
 				} else {
@@ -489,17 +485,16 @@ class Preferences {
 		# This code is basically copied from generateSkinOptions().  It'd
 		# be nice to somehow merge this back in there to avoid redundancy.
 		if ( $wgAllowUserCss || $wgAllowUserJs ) {
-			$sk = $user->getSkin();
 			$linkTools = array();
 
 			if ( $wgAllowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/common.css' );
-				$linkTools[] = $sk->link( $cssPage, wfMsgHtml( 'prefs-custom-css' ) );
+				$linkTools[] = Linker::link( $cssPage, wfMsgHtml( 'prefs-custom-css' ) );
 			}
 
 			if ( $wgAllowUserJs ) {
 				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/common.js' );
-				$linkTools[] = $sk->link( $jsPage, wfMsgHtml( 'prefs-custom-js' ) );
+				$linkTools[] = Linker::link( $jsPage, wfMsgHtml( 'prefs-custom-js' ) );
 			}
 
 			$defaultPreferences['commoncssjs'] = array(
@@ -1065,7 +1060,6 @@ class Preferences {
 			}
 		}
 		asort( $validSkinNames );
-		$sk = $user->getSkin();
 
 		foreach ( $validSkinNames as $skinkey => $sn ) {
 			$linkTools = array();
@@ -1082,12 +1076,12 @@ class Preferences {
 			# Create links to user CSS/JS pages
 			if ( $wgAllowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.css' );
-				$linkTools[] = $sk->link( $cssPage, wfMsgHtml( 'prefs-custom-css' ) );
+				$linkTools[] = Linker::link( $cssPage, wfMsgHtml( 'prefs-custom-css' ) );
 			}
 
 			if ( $wgAllowUserJs ) {
 				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.js' );
-				$linkTools[] = $sk->link( $jsPage, wfMsgHtml( 'prefs-custom-js' ) );
+				$linkTools[] = Linker::link( $jsPage, wfMsgHtml( 'prefs-custom-js' ) );
 			}
 
 			$display = $sn . ' ' . wfMsg( 'parentheses', $wgLang->pipeList( $linkTools ) );
@@ -1504,12 +1498,9 @@ class PreferencesForm extends HTMLForm {
 	function getButtons() {
 		$html = parent::getButtons();
 
-		global $wgUser;
-
-		$sk = $wgUser->getSkin();
 		$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
 
-		$html .= "\n" . $sk->link( $t, wfMsgHtml( 'restoreprefs' ) );
+		$html .= "\n" . Linker::link( $t, wfMsgHtml( 'restoreprefs' ) );
 
 		$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
 
