@@ -139,7 +139,7 @@ class CSSMin {
 					$origLength = strlen( $match['file'][0] );
 					$lengthIncrease = strlen( $expanded ) - $origLength;
 					$source = substr_replace( $source, wfExpandUrl( $match['file'][0], PROTO_RELATIVE ),
-						$match['file'][1], $origLength,
+						$match['file'][1], $origLength
 					);
 				}
 				// Move the offset to the end of the match, leaving it alone
