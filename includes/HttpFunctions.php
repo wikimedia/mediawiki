@@ -32,7 +32,7 @@ class Http {
 	 * @return Mixed: (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $options = array() ) {
-		$url = wfExpandUrl( $url, PROT_HTTP );
+		$url = wfExpandUrl( $url, PROTO_HTTP );
 		wfDebug( "HTTP: $method: $url\n" );
 		$options['method'] = strtoupper( $method );
 

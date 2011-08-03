@@ -138,7 +138,7 @@ class CSSMin {
 					$expanded = wfExpandUrl( $match['file'][0] );
 					$origLength = strlen( $match['file'][0] );
 					$lengthIncrease = strlen( $expanded ) - $origLength;
-					$source = substr_replace( $source, wfExpandUrl( $match['file'][0], PROT_RELATIVE ),
+					$source = substr_replace( $source, wfExpandUrl( $match['file'][0], PROTO_RELATIVE ),
 						$match['file'][1], $origLength,
 					);
 				}
