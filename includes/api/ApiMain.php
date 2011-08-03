@@ -399,6 +399,7 @@ class ApiMain extends ApiBase {
 	}
 
 	protected function sendCacheHeaders() {
+		global $wgUseXVO, $wgOut, $wgVaryOnXFPForAPI;
 		$response = $this->getRequest()->response();
 
 		if ( $this->mCacheMode == 'private' ) {
@@ -407,9 +408,12 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
-			global $wgUseXVO, $wgOut;
-			$response->header( 'Vary: Accept-Encoding, Cookie' );
+			$xfp = $wgVaryOnXFPForAPI ? ', X-Forwarded-Proto' : '';
+			$response->header( 'Vary: Accept-Encoding, Cookie' . $xfp );
 			if ( $wgUseXVO ) {
+				if ( $wgVaryOnXFPForAPI ) {
+					$wgOut->addVaryHeader( 'X-Forwarded-Proto' );
+				}
 				$response->header( $wgOut->getXVO() );
 				if ( $wgOut->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
@@ -423,6 +427,15 @@ class ApiMain extends ApiBase {
 				$response->header( 'Cache-Control: private' );
 				return;
 			} // else no XVO and anonymous, send public headers below
+		}
+		
+		// Send public headers
+		if ( $wgVaryOnXFPForAPI ) {
+			$response->header( 'Vary: Accept-Encoding, X-Forwarded-Proto' );
+			if ( $wgUseXVO ) {
+				// Bleeeeegh. Our header setting system sucks
+				$response->header( 'X-Vary-Options: Accept-Encoding;list-contains=gzip, X-Forwarded-Proto' );
+			}
 		}
 
 		// If nobody called setCacheMaxAge(), use the (s)maxage parameters
