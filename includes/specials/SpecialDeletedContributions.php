@@ -213,21 +213,8 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		// Revision delete link
-		$canHide = $wgUser->isAllowed( 'deleterevision' );
-		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
-			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$del = $this->mSkin->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
-			} else {
-				$query = array(
-					'type' => 'archive',
-					'target' => $page->getPrefixedDbkey(),
-					'ids' => $rev->getTimestamp() );
-				$del = $this->mSkin->revDeleteLink( $query,
-					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide ) . ' ';
-			}
-		} else {
-			$del = '';
-		}
+		$del = Linker::getRevDeleteLink( $wgUser, $rev, $page );
+		if ( $del ) $del .= ' ';
 
 		$tools = Html::rawElement(
 			'span',

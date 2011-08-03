@@ -844,9 +844,9 @@ class SpecialUndelete extends SpecialPage {
 
 		// Revision delete links
 		if ( !$this->mDiff ) {
-			$revdel = $this->revDeleteLink( $rev );
+			$revdel = Linker::getRevDeleteLink( $this->getUser(), $rev, $this->mTargetObj );
 			if ( $revdel ) {
-				$out->addHTML( $revdel );
+				$out->addHTML( "$revdel " );
 			}
 		}
 
@@ -894,48 +894,6 @@ class SpecialUndelete extends SpecialPage {
 				'value' => wfMsg( 'showdiff' ) ) ) .
 			Xml::closeElement( 'form' ) .
 			Xml::closeElement( 'div' ) );
-	}
-
-	/**
-	 * Get a revision-deletion link, or disabled link, or nothing, depending
-	 * on user permissions & the settings on the revision.
-	 *
-	 * Will use forward-compatible revision ID in the Special:RevDelete link
-	 * if possible, otherwise the timestamp-based ID which may break after
-	 * undeletion.
-	 *
-	 * @param Revision $rev
-	 * @return string HTML fragment
-	 */
-	function revDeleteLink( $rev ) {
-		$canHide = $this->getUser()->isAllowed( 'deleterevision' );
-		if( $canHide || ( $rev->getVisibility() && $this->getUser()->isAllowed( 'deletedhistory' ) ) ) {
-			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$revdlink = Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
-			} else {
-				if ( $rev->getId() ) {
-					// RevDelete links using revision ID are stable across
-					// page deletion and undeletion; use when possible.
-					$query = array(
-						'type'   => 'revision',
-						'target' => $this->mTargetObj->getPrefixedDBkey(),
-						'ids'    => $rev->getId()
-					);
-				} else {
-					// Older deleted entries didn't save a revision ID.
-					// We have to refer to these by timestamp, ick!
-					$query = array(
-						'type'   => 'archive',
-						'target' => $this->mTargetObj->getPrefixedDBkey(),
-						'ids'    => $rev->getTimestamp()
-					);
-				}
-				return Linker::revDeleteLink( $query,
-					$rev->isDeleted( File::DELETED_RESTRICTED ), $canHide );
-			}
-		} else {
-			return '';
-		}
 	}
 
 	/**
@@ -991,7 +949,8 @@ class SpecialUndelete extends SpecialPage {
 			$targetQuery = array( 'oldid' => $rev->getId() );
 		}
 		// Add show/hide deletion links if available
-		$del = $this->revDeleteLink( $rev );
+		$rdel = Linker::getRevDeleteLink( $this->getUser(), $rev, $this->mTargetObj );
+		if ( $rdel ) $rdel = " $rdel";
 		return
 			'<div id="mw-diff-' . $prefix . 'title1"><strong>' .
 				Linker::link(
@@ -1011,7 +970,7 @@ class SpecialUndelete extends SpecialPage {
 				Linker::revUserTools( $rev ) . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-'.$prefix.'title3">' .
-				Linker::revComment( $rev ) . $del . '<br />' .
+				Linker::revComment( $rev ) . $rdel . '<br />' .
 			'</div>';
 	}
 
@@ -1274,7 +1233,7 @@ class SpecialUndelete extends SpecialPage {
 		// Edit summary
 		$comment = Linker::revComment( $rev );
 		// Revision delete links
-		$revdlink = $this->revDeleteLink( $rev );
+		$revdlink = Linker::getRevDeleteLink( $this->getUser(), $rev, $this->mTargetObj );
 		return "<li>$checkBox $revdlink ($last) $pageLink . . $userLink $stxt $comment</li>";
 	}
 
@@ -1300,6 +1259,7 @@ class SpecialUndelete extends SpecialPage {
 			')';
 		$data = htmlspecialchars( $data );
 		$comment = $this->getFileComment( $file );
+
 		// Add show/hide deletion links if available
 		$canHide = $this->getUser()->isAllowed( 'deleterevision' );
 		if( $canHide || ( $file->getVisibility() && $this->getUser()->isAllowed( 'deletedhistory' ) ) ) {
@@ -1317,6 +1277,7 @@ class SpecialUndelete extends SpecialPage {
 		} else {
 			$revdlink = '';
 		}
+
 		return "<li>$checkBox $revdlink $pageLink . . $userLink $data $comment</li>\n";
 	}
 
