@@ -130,15 +130,16 @@ class CSSMin {
 			// URLs with absolute paths like /w/index.php need to be expanded
 			// to absolute URLs but otherwise left alone
 			if ( $match['file'][0] !== '' && $match['file'][0][0] === '/' ) {
-				// Replace the file path with an expanded URL
-				// ...but only if wfExpandUrl() is even available. This will not be the case if we're running outside of MW
+				// Replace the file path with an expanded (possibly protocol-relative) URL
+				// ...but only if wfExpandUrl() is even available.
+				// This will not be the case if we're running outside of MW
 				$lengthIncrease = 0;
 				if ( function_exists( 'wfExpandUrl' ) ) {
 					$expanded = wfExpandUrl( $match['file'][0] );
 					$origLength = strlen( $match['file'][0] );
 					$lengthIncrease = strlen( $expanded ) - $origLength;
-					$source = substr_replace( $source, wfExpandUrl( $match['file'][0] ),
-						$match['file'][1], $origLength
+					$source = substr_replace( $source, wfExpandUrl( $match['file'][0], PROT_RELATIVE ),
+						$match['file'][1], $origLength,
 					);
 				}
 				// Move the offset to the end of the match, leaving it alone

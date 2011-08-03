@@ -14,7 +14,7 @@ class Http {
 	 * Perform an HTTP request
 	 *
 	 * @param $method String: HTTP method. Usually GET/POST
-	 * @param $url String: full URL to act on
+	 * @param $url String: full URL to act on. If protocol-relative, will be expanded to an http:// URL
 	 * @param $options Array: options to pass to MWHttpRequest object.
 	 *	Possible keys for the array:
 	 *    - timeout             Timeout length in seconds
@@ -32,7 +32,7 @@ class Http {
 	 * @return Mixed: (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $options = array() ) {
-		$url = wfExpandUrl( $url );
+		$url = wfExpandUrl( $url, PROT_HTTP );
 		wfDebug( "HTTP: $method: $url\n" );
 		$options['method'] = strtoupper( $method );
 
