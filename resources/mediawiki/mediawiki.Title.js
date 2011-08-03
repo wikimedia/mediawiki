@@ -120,7 +120,7 @@ var	Title = function( title, namespace ) {
 	 * @return {mw.Title}
 	 */
 	setAll = function( title, s ) {
-		var	matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w{1,5}))?$/ );
+		var	matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w{1,5}))?$/ ),
 			ns_match = getNsIdByName( matches[1] );
 		if ( matches.length && ns_match ) {
 			if ( matches[1] ) { title._ns = ns_match; }
