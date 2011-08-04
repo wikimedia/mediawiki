@@ -41,9 +41,6 @@ class UploadStashCleanup extends Maintenance {
 
 		// how far back should this look for files to delete?
 		global $wgUploadStashMaxAge;
-		if( $wgUploadStashMaxAge === null ) {
-			$wgUploadStashMaxAge = 6 * 3600; // default: 6 hours.
-		}
 		
 		$this->output( "Getting list of files to clean up...\n" );
 		$res = $dbr->select(
