@@ -114,9 +114,10 @@ abstract class Conf {
 	 * @return Conf child
 	 */
 	public static function load( $wiki = false ) {
+		throw new MWException( "Not working yet, don't attempt to use this" );
 		if( !self::$__instance ) {
-			global $wgConfiguration;
-			self::$__instance = self::newFromSettings( $wgConfiguration );
+			/**global $wgConfiguration;
+			self::$__instance = self::newFromSettings( $wgConfiguration );*/
 		}
 		if( $wiki && $wiki != self::$__instance->getWikiId() ) {
 			// Load configuration for a different wiki, not sure how
