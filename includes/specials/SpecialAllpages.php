@@ -249,7 +249,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 								$nsForm .
 							'</td>
 							<td class="mw-allpages-nav">' .
-								$this->getSkin()->link( $this->getTitle(), wfMsgHtml ( 'allpages' ),
+								Linker::link( $this->getTitle(), wfMsgHtml ( 'allpages' ),
 									array(), array(), 'known' ) .
 							"</td>
 						</tr>" .
@@ -293,9 +293,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param $to String: list all pages to this name (default FALSE)
 	 */
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false ) {
-		global $wgContLang, $wgLang;
+		global $wgContLang;
 		$output = $this->getOutput();
-		$sk = $this->getSkin();
 
 		$fromList = $this->getNamespaceKeyAndText($namespace, $from);
 		$toList = $this->getNamespaceKeyAndText( $namespace, $to );
@@ -338,7 +337,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					$t = Title::newFromRow( $s );
 					if( $t ) {
 						$link = ( $s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
-							$sk->link( $t ) .
+							Linker::link( $t ) .
 							($s->page_is_redirect ? '</div>' : '' );
 					} else {
 						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
@@ -411,7 +410,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 								$nsForm .
 							'</td>
 							<td class="mw-allpages-nav">' .
-								$sk->link( $self, wfMsgHtml ( 'allpages' ) );
+								Linker::link( $self, wfMsgHtml ( 'allpages' ) );
 
 			# Do we put a previous link ?
 			if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
@@ -420,13 +419,13 @@ class SpecialAllpages extends IncludableSpecialPage {
 				if( $namespace )
 					$query['namespace'] = $namespace;
 
-				$prevLink = $sk->linkKnown(
+				$prevLink = Linker::linkKnown(
 					$self,
 					wfMessage( 'prevpage', $pt )->escaped(),
 					array(),
 					$query
 				);
-				$out2 = $wgLang->pipeList( array( $out2, $prevLink ) );
+				$out2 = $this->getLang()->pipeList( array( $out2, $prevLink ) );
 			}
 
 			if( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
@@ -437,13 +436,13 @@ class SpecialAllpages extends IncludableSpecialPage {
 				if( $namespace )
 					$query['namespace'] = $namespace;
 
-				$nextLink = $sk->linkKnown(
+				$nextLink = Linker::linkKnown(
 					$self,
 					wfMessage( 'nextpage', $t->getText() )->escaped(),
 					array(),
 					$query
 				);
-				$out2 = $wgLang->pipeList( array( $out2, $nextLink ) );
+				$out2 = $this->getLang()->pipeList( array( $out2, $nextLink ) );
 			}
 			$out2 .= "</td></tr></table>";
 		}
@@ -458,7 +457,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$output->addHTML(
 				Html::element( 'hr' ) .
 				Html::rawElement( 'div', array( 'class' => 'mw-allpages-nav' ),
-					$wgLang->pipeList( $links )
+					$this->getLang()->pipeList( $links )
 				) );
 		}
 
