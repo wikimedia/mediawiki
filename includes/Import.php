@@ -1074,7 +1074,6 @@ class WikiRevision {
 
 		if ( $changed !== false && !$this->mNoUpdates ) {
 			wfDebug( __METHOD__ . ": running updates\n" );
-			throw new MWException("BROKEN: calling doEditUpdates()");
 			$article->doEditUpdates( $revision, $userObj, array( 'created' => $created, 'oldcountable' => $oldcountable ) );
 		}
 
