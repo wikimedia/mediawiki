@@ -111,7 +111,7 @@ $wgScript           = false;
  *
  * Defaults to "{$wgScriptPath}/redirect{$wgScriptExtension}".
  */
-$wgRedirectScript   = false; ///< defaults to
+$wgRedirectScript   = false;
 
 /**
  * The URL path to load.php.
