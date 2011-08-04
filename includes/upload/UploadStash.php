@@ -69,12 +69,6 @@ class UploadStash {
 			$this->userId = $this->user->getId();
 			$this->isLoggedIn = $this->user->isLoggedIn();
 		}
-
-		// Age of the repository in seconds.  That is, after how long will files be assumed abandoned and deleted?
-		global $wgUploadStashMaxAge;
-		if( $wgUploadStashMaxAge === null ) {
-			$wgUploadStashMaxAge = 6 * 3600; // default: 6 hours.
-		}
 	}
 
 	/**
@@ -272,6 +266,7 @@ class UploadStash {
 		// - the key is owned by someone else and
 		// - the age of the key is less than $wgUploadStashMaxAge
 		if ( is_object( $row ) ) {
+			global $wgUploadStashMaxAge;
 			if ( $row->us_user != $this->userId &&
 				$row->wfTimestamp( TS_UNIX, $row->us_timestamp ) > time() - $wgUploadStashMaxAge
 			) {
