@@ -92,7 +92,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	private function isInactiveAccount( $id, $master = false ) {
 		$dbo = wfGetDB( $master ? DB_MASTER : DB_SLAVE );
 		$checks = array( 'revision' => 'rev', 'archive' => 'ar', 'logging' => 'log',
-						 'image' => 'img', 'oldimage' => 'oi' );
+						 'image' => 'img', 'oldimage' => 'oi', 'filearchive' => 'fa' );
 		$count = 0;
 
 		$dbo->begin();
