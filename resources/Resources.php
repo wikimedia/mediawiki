@@ -142,6 +142,9 @@ return array(
 		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
 		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
 	),
+	'jquery.mockjax' => array(
+		'scripts' => 'resources/jquery/jquery.mockjax.js',
+	),
 	'jquery.mwPrototypes' => array(
 		'scripts' => 'resources/jquery/jquery.mwPrototypes.js',
 	),
@@ -163,6 +166,9 @@ return array(
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
+	),
+	'jquery.xmldom' => array(
+		'scripts' => 'resources/jquery/jquery.xmldom.js',
 	),
 
 	/* jQuery Tipsy */
