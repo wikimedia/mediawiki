@@ -54,7 +54,7 @@ function donorm( $str ) {
 
 	# UnicodeString constructor fails if the string ends with a head byte.
 	# Add a junk char at the end, we'll strip it off
-	return rtrim( utf8_normalize( $str . "\x01", UNORM_NFC ), "\x01" );
+	return rtrim( utf8_normalize( $str . "\x01", UtfNormal::UNORM_NFC ), "\x01" );
 }
 
 function wfMsg($x) {
