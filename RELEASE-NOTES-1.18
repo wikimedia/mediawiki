@@ -185,8 +185,6 @@ production.
   the relevant section of the category.
 * (bug 29109) Allow the automatic edit summary for redirect creation
   show the first bit of the new redirect page.
-* (bug 5800) Added $formCallback as a parameter to the hook
-  EditPage::showEditForm:initial.
 * (bug 29723) mw.util.wikiGetlink() now defaults to wgPageName.
 * (bug 29680) Add GetDefaultSortkey hook to override the default sortkey.
 * (bug 16699) {{#language:}} accepts second parameter to specify the language in

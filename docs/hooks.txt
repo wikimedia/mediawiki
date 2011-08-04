@@ -741,7 +741,6 @@ return value is ignored (should always return true)
 
 'EditPage::showEditForm:initial': before showing the edit form
 $editor: EditPage instance (object)
-$formCallback: Array for callback of modifying the edit form
 
 Return false to halt editing; you'll need to handle error messages, etc.
 yourself. Alternatively, modifying $error and returning true will cause the
