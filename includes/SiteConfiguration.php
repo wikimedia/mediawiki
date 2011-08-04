@@ -205,10 +205,6 @@ class SiteConfiguration {
 		return $this->wikis;
 	}
 
-	/** A no-op */
-	function initialise() {
-	}
-
 	/**
 	 * Retrieves the value of a given setting, and places it in a variable passed by reference.
 	 * @param $setting String ID of the setting name to retrieve
