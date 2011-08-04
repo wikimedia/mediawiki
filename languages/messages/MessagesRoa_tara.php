@@ -527,6 +527,7 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 
 # E-mail sending
 'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
+'user-mail-no-addy'      => "E' pruvate a mannà 'na mail senze 'u 'ndirizze mail",
 
 # Change password dialog
 'resetpass'                 => "Cange 'a password",
@@ -574,8 +575,15 @@ Passuord temboranèe: $2',
 'passwordreset-emailsent'      => "'N'e-mail pe arrecurdarte ha state mannate.",
 
 # Special:ChangeEmail
-'changeemail-none'   => '(ninde)',
-'changeemail-cancel' => 'Annulle',
+'changeemail'          => "Cange 'u 'ndirizze e-mail",
+'changeemail-header'   => "Cange 'u 'ndirizze e-mail d'u cunde",
+'changeemail-text'     => "Comblete stu module pe cangià 'u 'ndirizze mail tune. Tu è abbesogne de sckaffà 'a passuord toje pe confermà 'u cangiamende.",
+'changeemail-no-info'  => 'Tu a essere collegate pe accedere a sta pàgene direttamende.',
+'changeemail-oldemail' => 'Indirizze e-mail de mò:',
+'changeemail-newemail' => 'Indirizze e-mail nuève:',
+'changeemail-none'     => '(ninde)',
+'changeemail-submit'   => 'Cange e-mail',
+'changeemail-cancel'   => 'Annulle',
 
 # Edit page toolbar
 'bold_sample'     => 'Teste grascette',
@@ -1068,12 +1076,13 @@ Tu puè cercà ausanne Google.
 Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàggene ca non ge sonde aggiornate.",
 
 # Quickbar
-'qbsettings'               => 'Barra veloce',
-'qbsettings-none'          => 'Ninde',
-'qbsettings-fixedleft'     => 'Fissete a sinistre (Fixed left)',
-'qbsettings-fixedright'    => 'Fissete a destre (Fixed right)',
-'qbsettings-floatingleft'  => 'Volanne a sinistre (Floating left)',
-'qbsettings-floatingright' => 'Volanne a destre (Floating right)',
+'qbsettings'                => 'Barra veloce',
+'qbsettings-none'           => 'Ninde',
+'qbsettings-fixedleft'      => 'Fissete a sinistre (Fixed left)',
+'qbsettings-fixedright'     => 'Fissete a destre (Fixed right)',
+'qbsettings-floatingleft'   => 'Volanne a sinistre (Floating left)',
+'qbsettings-floatingright'  => 'Volanne a destre (Floating right)',
+'qbsettings-directionality' => "Corrette, depende da 'a direzionalità d'u script tune e da 'a lènga toje",
 
 # Preferences page
 'preferences'                   => 'Me piece accussì',
@@ -1098,6 +1107,8 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-watchlist-token'         => 'Token de le pàggene condrollate:',
 'prefs-misc'                    => 'Misc',
 'prefs-resetpass'               => "Cange a 'password",
+'prefs-changeemail'             => 'Cange e-mail',
+'prefs-setemail'                => "Mitte 'n'indirizze e-mail",
 'prefs-email'                   => "Opziune de l'e-mail",
 'prefs-rendering'               => 'Aspette',
 'saveprefs'                     => 'Reggistre',
@@ -1959,8 +1970,10 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 'watchlistanontext'    => 'Pe piacere $1 pe vedè o cangià le vosce sus a liste de le pàggene condrollete.',
 'watchnologin'         => 'Non ge sinde colleghete',
 'watchnologintext'     => 'Tu a essere [[Special:UserLogin|colleghete]] pe cangià le pàggene condrollete tue.',
+'addwatch'             => "Mitte jndr'à le pàggene condrollate",
 'addedwatchtext'       => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
 Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le puè acchià aqquà, e 'a pàgene avène signete cu 'u '''grascette''' jndr'à [[Special:RecentChanges|liste de le cangiaminde recende]] pe facilità l'identificazione.",
+'removewatch'          => 'Live da le pàggene condrollate',
 'removedwatchtext'     => '\'A pàgene "[[:$1]]" ha state scangillete da [[Special:Watchlist|le pàggene condrollete tue]].',
 'watch'                => 'Condrolle',
 'watchthispage'        => 'Condrolle sta pàgene',
@@ -3303,7 +3316,9 @@ Pe piacere conferme ca tu vuè avveramende reccrejà sta pàgene.",
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Vuè ccu mitte sta pàgene da chidde condrollate?',
 'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Vuè ccu live sta pàgene da chidde condrollate?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàgena precedende',
@@ -3467,13 +3482,16 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 'tags-hitcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 
 # Special:ComparePages
-'comparepages'     => 'Combronde le pàggene',
-'compare-selector' => "Combronde le revisiune d'à pàgene",
-'compare-page1'    => 'Pàgene 1',
-'compare-page2'    => 'Pàgene 2',
-'compare-rev1'     => 'Revisione 1',
-'compare-rev2'     => 'Revisione 2',
-'compare-submit'   => 'Combronde',
+'comparepages'                => 'Combronde le pàggene',
+'compare-selector'            => "Combronde le revisiune d'à pàgene",
+'compare-page1'               => 'Pàgene 1',
+'compare-page2'               => 'Pàgene 2',
+'compare-rev1'                => 'Revisione 1',
+'compare-rev2'                => 'Revisione 2',
+'compare-submit'              => 'Combronde',
+'compare-invalid-title'       => "'U titele ca è specificate jè invalide.",
+'compare-title-not-exists'    => "'U titele ca è specificate non g'esiste.",
+'compare-revision-not-exists' => "'A revisione ca è specificate non g'esiste.",
 
 # Database error messages
 'dberr-header'      => "Sta Uicchi tène 'nu probbleme",
@@ -3501,15 +3519,27 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
 
 # Add categories per AJAX
-'ajax-add-category'            => "Aggiunge 'a categorije",
-'ajax-add-category-submit'     => 'Aggiunge',
-'ajax-confirm-ok'              => 'OK',
-'ajax-confirm-title'           => "Conferme l'azione",
-'ajax-confirm-save'            => 'Reggistre',
-'ajax-add-category-summary'    => 'Aggiunge \'a categorije "$1"',
-'ajax-remove-category-summary' => 'Live \'a categorije "$1"',
-'ajax-error-title'             => 'Errore',
-'ajax-remove-category-error'   => "Non g'è possibbele luà 'a categorije \"\$1\".
+'ajax-add-category'             => "Aggiunge 'a categorije",
+'ajax-remove-category'          => "Live 'a categorije",
+'ajax-edit-category'            => "Cange 'a categorije",
+'ajax-add-category-submit'      => 'Aggiunge',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => "Conferme l'azione",
+'ajax-confirm-save'             => 'Reggistre',
+'ajax-confirm-save-all'         => 'Reggistre tutte le cangiaminde',
+'ajax-cancel'                   => "Annulle 'u cangiamende",
+'ajax-cancel-all'               => 'Annulle tutte le cangiaminde',
+'ajax-add-category-summary'     => 'Aggiunge \'a categorije "$1"',
+'ajax-edit-category-summary'    => 'Cange \'a categorije "$1" jndr\'à "$2"',
+'ajax-remove-category-summary'  => 'Live \'a categorije "$1"',
+'ajax-category-question'        => 'Purcè tu vuè ccu face ste cangiaminde:',
+'ajax-error-title'              => 'Errore',
+'ajax-remove-category-error'    => "Non g'è possibbele luà 'a categorije \"\$1\".
 Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
+'ajax-edit-category-error'      => "Non g'è possibbele cangià 'a categorije \"\$1\".
+Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
+'ajax-category-already-present' => 'Sta pàgene già stè jndr\'à categorije "$1"',
+'ajax-category-hook-error'      => "'Na funziona locale non ge face fà le cangiaminde apprime de reggistrarle",
+'ajax-api-error'                => "L'API ha turnate 'n'errore: $1: $2",
 
 );

@@ -554,6 +554,9 @@ $1',
 'post-expand-template-inclusion-warning'  => "'''သတိပေးချက် -''' တမ်းပလိတ်အရွယ်အစား ကြီးလွန်းနေသည်။
 အချို့တမ်းပလိတ်တို့ ပါဝင်မည်မဟုတ်။",
 'post-expand-template-inclusion-category' => 'ထည့်သွင်းနိုင်သော တမ်းပလိတ်အရွယ်အစားပြည့်သွားပြီဖြစ်သော စာမျက်နှာများ',
+'post-expand-template-argument-warning'   => "'''သတိပေးချက် -''' ဤစာမျက်နှာတွင် ပမာဏအားဖြင့် ကြီးမားကျယ်ပြန့်သော template argument တစ်ခုပါဝင်သည်။
+ယင်း arguments များကို ဖယ်ထုတ်လိုက်သည်။",
+'post-expand-template-argument-category'  => 'ဖယ်ထုတ်ထားသော template arguments များပါဝင်သည့် စာမျက်နှာများ',
 'parser-template-loop-warning'            => 'တမ်းပလိတ်များ လှည့်ပတ်ဆက်စပ် နေသည်ကို တွေ့ရသည်။ [[$1]]',
 
 # History pages
@@ -620,6 +623,7 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'revdelete-unrestricted'     => 'အက်ဒမင်များအတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားရန်',
 'revdelete-hid'              => '$1 ကို ဝှက်ထားသည်',
 'revdelete-unhid'            => '$1 ကို မဝှက်တော့ပါ',
+'revdelete-log-message'      => '$1 အတွက် တည်းဖြတ်မူ $2 {{PLURAL:$2|ခု|ခု}}',
 'revdelete-otherreason'      => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
 'revdelete-reasonotherlist'  => 'အခြား အကြောင်းပြချက်',
 'revdelete-edit-reasonlist'  => 'ဖျက်ပစ်လိုက်ရသော အကြောင်းရင်းများကို တည်းဖြတ်ရန်',
@@ -656,6 +660,7 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'compareselectedversions'  => 'ရွေးချယ်ထားသော မူများကို နှိုင်းယှဉ်ရန်',
 'showhideselectedversions' => 'ရွေးချယ်ထားသော မူများကို ပြရန်/ဝှက်ရန်',
 'editundo'                 => 'နောက်ပြန် ပြန်ပြင်ရန်',
+'diff-multi'               => '({{PLURAL:$2|အသုံးပြုသူတစ်ဦး|အသုံးပြုသူ $2 ဦး}}၏{{PLURAL:$1|အလယ်အလတ်တည်းဖြတ်မူတစ်ခု|အလယ်အလတ်တည်းဖြတ်မူ $1 ခု}}ကို မပြပါ)',
 
 # Search results
 'searchresults'                    => 'ရှာဖွေမှု ရလဒ်များ',
@@ -690,6 +695,7 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'searchprofile-everything-tooltip' => '(ဆွေးနွေးချက်စာမျက်နှာများအပါအဝင်) ရှိသမျှအားလုံးတွင် ရှာရန်',
 'searchprofile-advanced-tooltip'   => 'စိတ်ကြိုက်အမည်ညွှန်းများတွင် ရှာရန်',
 'search-result-size'               => '$1 ({{PLURAL:$2|စကားလုံး 1 လုံး|စကားလုံး $2 လုံး}})',
+'search-result-category-size'      => '{{PLURAL:$1|အသင်းဝင်တစ်ခု|အသင်းဝင် $1 ခု}} ({{PLURAL:$2|ကဏ္ဍခွဲတစ်ခု|ကဏ္ဍခွဲ $2 ခု}}, {{PLURAL:$3|ဖိုင်တစ်ခု|ဖိုင် $3 ခု}})',
 'search-result-score'              => 'ကိုက်ညီမှုရာနှုန်း - $1%',
 'search-redirect'                  => '($1 သို့ ပြန်ညွှန်းသည်)',
 'search-section'                   => '(အပိုင်း $1)',
@@ -810,6 +816,10 @@ HTML tags ကို စစ်ဆေးပါ။',
 'gender-female'                 => 'မ',
 'email'                         => 'အီးမေး',
 'prefs-help-email'              => 'အီးမေးလ်လိပ်စာ ပေးမည် မပေးမည်မှာ သင့်သဘောသာ ဖြစ်ပါသည်။ သို့သော်လည်း သင် စကားဝှက်ကို မေ့သွားပါက စကားဝှက်ကို reset လုပ်ရန် အီးမေးလ်လိပ်စာ လိုအပ်ပါလိမ့်မည်။',
+'prefs-help-email-others'       => 'You can also choose to let others contact you by e-mail through a link on your user or talk page.
+သင့်ယူဆာစာမျက်နှာ သို့မဟုတ် ဆွေးနွေးရန်စာမျက်နှာရှိ လင့်မှတဆင့် သင့်ထံ အခြားသူများ အီးမေးမှဆက်သွယ်ရန်လည်း ရွေးချယ်နိုင်သည်။
+Your e-mail address is not revealed when other users contact you.
+အခြားသူများ သင့်ထံဆက်သွယ်သည့်အခါ သင့်အီးမေးကို သူတို့ကို ဖော်ပြမည်မဟုတ်ပါ။',
 'prefs-help-email-required'     => 'အီးမေးလိပ်စာ လိုအပ်ပါသည်။',
 'prefs-info'                    => 'အခြေခံသတင်းအချက်အလက်',
 'prefs-i18n'                    => 'နိုင်ငံတကာအဆင့်မီပြုလုပ်ခြင်း',
@@ -1677,6 +1687,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'others' => 'အခြား',
 
 # Patrol log
+'patrol-log-line' => '$3 စောင့်ကြည့်နေသော $2 ၏ $1 ကို မှတ်သားလိုက်သည်',
 'patrol-log-diff' => 'မူ $1',
 
 # Image deletion
@@ -1849,6 +1860,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 'watchlisttools-edit' => 'စောင့်ကြည့်စာရင်းများကို ကြည့်ပြီး တည်းဖြတ်ပါ။',
 'watchlisttools-raw'  => 'စောင့်ကြည့်စာရင်း အကြမ်းကို တည်းဖြတ်ရန်',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'သတိပေးချက် -\'\'\' ပုံမှန် sort key "$2" oသည် ယခင်ပုံမှန်ဖြစ်သော sort key "$1" ကို override ထပ်ရေးမည်ဖြစ်သည်.',
+
 # Special:Version
 'version'                  => 'ဗားရှင်း',
 'version-specialpages'     => 'အ​ထူး ​စာ​မျက်​နှာ​များ',
@@ -1887,6 +1901,16 @@ HTML tags ကို စစ်ဆေးပါ။',
 # Special:BlankPage
 'blankpage'              => 'ဗလာစာမျက်နှာ',
 'intentionallyblankpage' => 'ဤစာမျက်နှာသည် တမင်ရည်ရွယ်ချက်ရှိရှိ ဗလာထားခဲ့ခြင်း ဖြစ်သည်။',
+
+# External image whitelist
+'external_image_whitelist' => ' #ဤစာကြောင်းကို ဤအတိုင်းထားပါ<pre>
+#regular expression fragments ကို(// နှစ်ခုကြားရှိ အစိတ်အပိုင်းသာ) အောက်တွင်ထားပါ
+#ယင်းတို့ကို external (hotlinked) ပုံတို့၏URL များနှင့် တွဲညှိပေးမည်ဖြစ်သည်
+#ကိုက်ညီသည်များကို ပုံအဖြစ်ပြမည်ဖြစ်ပြီး မကိုက်ညီပါက ပုံထံပြန်ညွှန်းသည့် လင့်အဖြစ်သာပြမည်ဖြစ်သည်
+## နှင့်စသော စာကြောင်းများကို ကွန်းမန့်အဖြစ် ယူဆမည်ဖြစ်သည်
+#ဤသည်တွင် အက္ခရာအကြီးအသေး မှန်ကန်ရမည်ဖြစ်သည်
+
+#regex fragments အားလုံးကို စာကြောင်း၏အပေါ်တွင်ထားပါ။ ဤစာကြောင်းကို ဤအတိုင်းထားပါ</pre>',
 
 # Special:Tags
 'tags'              => 'အသုံးပြုနေသော အပြောင်းအလဲစာတွဲများ',

@@ -2575,6 +2575,10 @@ $1',
 'confirm-purge-top'    => 'Καθαίρειν τὴν λανθάνουσαν μνήμην τῆσδε τῆς δέλτου.',
 'confirm-purge-bottom' => 'Τὸ ἐκκαθαίρειν δέλτον τινὰ συμβάλλει τῷ καθαίρειν τῆν λανθάνουσαν μνήμην καὶ ἀναγκάζει τὴν παροῦσαν ἀναθεώρησιν ἵνα φανθῇ.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'εἶεν',
+'confirm-unwatch-button' => 'εἶεν',
+
 # Multipage image navigation
 'imgmultipageprev' => '← ἡ δέλτος ἡ προτέρα',
 'imgmultipagenext' => 'ἡ δέλτος ἡ ἑπομένη →',
@@ -2748,6 +2752,7 @@ $1',
 # Add categories per AJAX
 'ajax-add-category'            => 'Προστιθέναι κατηγορίαν',
 'ajax-add-category-submit'     => 'Προστιθέναι',
+'ajax-confirm-ok'              => 'εἶεν',
 'ajax-confirm-title'           => 'Καταβεβαιοῦν δρᾶσιν',
 'ajax-confirm-save'            => 'Γράφειν',
 'ajax-add-category-summary'    => 'Προστιθέναι κατηγορίαν "$1"',

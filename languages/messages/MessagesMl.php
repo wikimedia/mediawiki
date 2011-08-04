@@ -791,6 +791,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'പി.എച്ച്.പി.യുടെ main() ഫങ്ഷനിൽ അപരിചിതമായ പിഴവ്',
+'user-mail-no-addy'      => 'ഇമെയിൽ വിലാസം ഇല്ലാതെയാണ് ഇമെയിൽ അയയ്ക്കാൻ ശ്രമിച്ചത്',
 
 # Change password dialog
 'resetpass'                 => 'രഹസ്യവാക്ക് മാറ്റുക',
@@ -1875,7 +1876,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 ഈ [$2 പ്രമാണത്തിന്റെ വിവരണ താളിലുള്ള] വിവരങ്ങൾ താഴെ കൊടുത്തിരിക്കുന്നു.',
 'filepage-nofile'                   => 'ഈ പേരിൽ ഒരു പ്രമാണവും നിലവിലില്ല.',
 'filepage-nofile-link'              => 'ഈ പേരിൽ ഒരു പ്രമാണവും നിലവിലില്ല, താങ്കൾക്ക് [$1 അത് അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്‌]',
-'uploadnewversion-linktext'         => 'ഈ ചിത്രത്തിലും മെച്ചപ്പെട്ടത് അപ്‌ലോഡ് ചെയ്യുക',
+'uploadnewversion-linktext'         => 'ഈ പ്രമാണത്തിന്റെ പുതിയ പതിപ്പ് അപ്‌ലോഡ് ചെയ്യുക',
 'shared-repo-from'                  => '$1 സംരംഭത്തിൽ നിന്ന്',
 'shared-repo'                       => 'ഒരു പങ്കുവെക്കപ്പെട്ട സംഭരണി',
 'shared-repo-name-wikimediacommons' => 'വിക്കിമീഡിയ കോമൺസ്',
@@ -3667,13 +3668,16 @@ $1',
 'tags-hitcount'           => '{{PLURAL:$1|ഒരു മാറ്റം|$1 മാറ്റങ്ങൾ}}',
 
 # Special:ComparePages
-'comparepages'     => 'താളുകൾ താരതമ്യപ്പെടുത്തുക',
-'compare-selector' => 'താളിന്റെ നാൾപ്പതിപ്പുകൾ താരതമ്യപ്പെടുത്തുക',
-'compare-page1'    => 'താൾ 1',
-'compare-page2'    => 'താൾ 2',
-'compare-rev1'     => 'നാൾപ്പതിപ്പ് 1',
-'compare-rev2'     => 'നാൾപ്പതിപ്പ് 2',
-'compare-submit'   => 'താരതമ്യം ചെയ്യുക',
+'comparepages'                => 'താളുകൾ താരതമ്യപ്പെടുത്തുക',
+'compare-selector'            => 'താളിന്റെ നാൾപ്പതിപ്പുകൾ താരതമ്യപ്പെടുത്തുക',
+'compare-page1'               => 'താൾ 1',
+'compare-page2'               => 'താൾ 2',
+'compare-rev1'                => 'നാൾപ്പതിപ്പ് 1',
+'compare-rev2'                => 'നാൾപ്പതിപ്പ് 2',
+'compare-submit'              => 'താരതമ്യം ചെയ്യുക',
+'compare-invalid-title'       => 'താങ്കൾ നൽകിയ തലക്കെട്ട് അസാധുവാണ്.',
+'compare-title-not-exists'    => 'താങ്കൾ നൽകിയ തലക്കെട്ട് നിലവിലില്ല.',
+'compare-revision-not-exists' => 'താങ്കൾ വ്യക്തമാക്കിയ നാൾപ്പതിപ്പ് നിലവിലില്ല.',
 
 # Database error messages
 'dberr-header'      => 'ഈ വിക്കിയിൽ പ്രശ്നമുണ്ട്',

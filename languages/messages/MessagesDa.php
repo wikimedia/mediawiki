@@ -2204,6 +2204,7 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sideb
 'protect-level-sysop'         => 'Kun administratorer',
 'protect-summary-cascade'     => 'nedarvende',
 'protect-expiring'            => 'til $1 (UTC)',
+'protect-expiring-local'      => 'udløber $1',
 'protect-expiry-indefinite'   => 'på ubestemt tid',
 'protect-cascade'             => 'Beskyt sider som er inkluderet på denne side (nedarvende beskyttelse)',
 'protect-cantedit'            => 'Du kan ikke ændre beskyttelsesniveau for denne side, da du ikke har tilladelse til at redigere den.',
@@ -3533,13 +3534,16 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'tags-hitcount'           => '{{PLURAL:$1|en ændring|$1 ændringer}}',
 
 # Special:ComparePages
-'comparepages'     => 'Sammenlign sider',
-'compare-selector' => 'Sammenlign sideversioner',
-'compare-page1'    => 'Side 1',
-'compare-page2'    => 'Side 2',
-'compare-rev1'     => 'Version 1',
-'compare-rev2'     => 'Version 2',
-'compare-submit'   => 'Sammenlign',
+'comparepages'                => 'Sammenlign sider',
+'compare-selector'            => 'Sammenlign sideversioner',
+'compare-page1'               => 'Side 1',
+'compare-page2'               => 'Side 2',
+'compare-rev1'                => 'Version 1',
+'compare-rev2'                => 'Version 2',
+'compare-submit'              => 'Sammenlign',
+'compare-invalid-title'       => 'Den titel, du har angivet, er ugyldig.',
+'compare-title-not-exists'    => 'Den titel, du har angivet, findes ikke.',
+'compare-revision-not-exists' => 'Den version, du har angivet, findes ikke.',
 
 # Database error messages
 'dberr-header'      => 'Wikien har et problem',

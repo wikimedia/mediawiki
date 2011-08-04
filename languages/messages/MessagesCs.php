@@ -829,6 +829,7 @@ Počkejte chvíli, než to zkusíte znovu.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
+'user-mail-no-addy'      => 'Pokus o odeslání e-mailu bez e-mailové adresy',
 
 # Change password dialog
 'resetpass'                 => 'Změna hesla',
@@ -878,6 +879,17 @@ tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní hes
 'passwordreset-emailelement'   => 'Uživatelské jméno: $1
 Dočasné heslo: $2',
 'passwordreset-emailsent'      => 'E-mail s heslem byl odeslán.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Změna e-mailové adresy',
+'changeemail-header'   => 'Změna e-mailové adresy k účtu',
+'changeemail-text'     => 'Vyplněním tohoto formuláře si změníte e-mailovou adresu. Pro potvrzení změny budete muset zadat své heslo.',
+'changeemail-no-info'  => 'K této stránce mají přímý přístup jen přihlášení uživatelé.',
+'changeemail-oldemail' => 'Stávající e-mailová adresa:',
+'changeemail-newemail' => 'Nová e-mailová adresa:',
+'changeemail-none'     => '(žádná)',
+'changeemail-submit'   => 'Změnit e-mail',
+'changeemail-cancel'   => 'Storno',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',
@@ -1343,12 +1355,13 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'searchdisabled'                   => '<p>Omlouváme se. Plnotextové vyhledávání je dočasně nedostupné. Zatím můžete zkusit vyhledávání Googlem; je ale možné, že jeho výsledky nemusí být aktuální.</p>',
 
 # Quickbar
-'qbsettings'               => 'Nastavení lišty nástrojů',
-'qbsettings-none'          => 'Žádný',
-'qbsettings-fixedleft'     => 'Leží vlevo',
-'qbsettings-fixedright'    => 'Leží vpravo',
-'qbsettings-floatingleft'  => 'Plovoucí vlevo',
-'qbsettings-floatingright' => 'Plovoucí vpravo',
+'qbsettings'                => 'Nastavení lišty nástrojů',
+'qbsettings-none'           => 'Žádný',
+'qbsettings-fixedleft'      => 'Leží vlevo',
+'qbsettings-fixedright'     => 'Leží vpravo',
+'qbsettings-floatingleft'   => 'Plovoucí vlevo',
+'qbsettings-floatingright'  => 'Plovoucí vpravo',
+'qbsettings-directionality' => 'Pevný v závislosti na směrovosti vašeho jazyka a písma',
 
 # Preferences page
 'preferences'                   => 'Nastavení',
@@ -1373,6 +1386,8 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-watchlist-token'         => 'Klíč k seznamu sledovaných stránek:',
 'prefs-misc'                    => 'Různé',
 'prefs-resetpass'               => 'Změnit heslo',
+'prefs-changeemail'             => 'Změnit e-mail',
+'prefs-setemail'                => 'Nastavit e-mailovou adresu',
 'prefs-email'                   => 'Nastavení e-mailu',
 'prefs-rendering'               => 'Vzhled',
 'saveprefs'                     => 'Uložit nastavení',
@@ -2366,6 +2381,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-level-sysop'         => 'Pouze správci',
 'protect-summary-cascade'     => 'kaskádový',
 'protect-expiring'            => 'vyprší $1 (UTC)',
+'protect-expiring-local'      => 'vyprší $1',
 'protect-expiry-indefinite'   => 'do odvolání',
 'protect-cascade'             => 'Zamknout stránky vložené do této stránky (kaskádový zámek)',
 'protect-cantedit'            => 'Nemůžete měnit nastavení zámků této stránky, protože nemáte povoleno tuto stránku editovat.',
@@ -3770,13 +3786,16 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změny|změn}}',
 
 # Special:ComparePages
-'comparepages'     => 'Porovnání stránek',
-'compare-selector' => 'Porovnání revizí stránek',
-'compare-page1'    => 'Stránka 1',
-'compare-page2'    => 'Stránka 2',
-'compare-rev1'     => 'Revize 1',
-'compare-rev2'     => 'Revize 2',
-'compare-submit'   => 'Porovnat',
+'comparepages'                => 'Porovnání stránek',
+'compare-selector'            => 'Porovnání revizí stránek',
+'compare-page1'               => 'Stránka 1',
+'compare-page2'               => 'Stránka 2',
+'compare-rev1'                => 'Revize 1',
+'compare-rev2'                => 'Revize 2',
+'compare-submit'              => 'Porovnat',
+'compare-invalid-title'       => 'Zadaný název je neplatný.',
+'compare-title-not-exists'    => 'Zadaný název neexistuje.',
+'compare-revision-not-exists' => 'Zadaná revize neexistuje.',
 
 # Database error messages
 'dberr-header'      => 'Tato wiki má nějaké potíže',
@@ -3806,17 +3825,25 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 # Add categories per AJAX
 'ajax-add-category'             => 'Přidat kategorii',
 'ajax-remove-category'          => 'Odebrat kategorii',
+'ajax-edit-category'            => 'Upravit kategorii',
 'ajax-add-category-submit'      => 'Přidat',
 'ajax-confirm-ok'               => 'OK',
 'ajax-confirm-title'            => 'Potvrdit změnu',
 'ajax-confirm-save'             => 'Uložit',
 'ajax-confirm-save-all'         => 'Uložit všechny změny',
 'ajax-cancel'                   => 'Stornovat změny',
+'ajax-cancel-all'               => 'Stornovat všechny změny',
 'ajax-add-category-summary'     => 'Přidání kategorie „$1“',
+'ajax-edit-category-summary'    => 'Změnit kategorii „$1“ na „$2“',
 'ajax-remove-category-summary'  => 'Odebrání kategorie „$1“',
+'ajax-category-question'        => 'Proč chcete provést následující změny:',
 'ajax-error-title'              => 'Chyba',
-'ajax-remove-category-error'    => 'Tuto kategorii se nepodařilo odstranit.
+'ajax-remove-category-error'    => 'Nepodařilo se odstranit kategorii „$1“.
+To se obvykle stává v případě, že byla stránka do kategorie přidána prostřednictvím šablony.',
+'ajax-edit-category-error'      => 'Nepodařilo se upravit kategorii „$1“.
 To se obvykle stává v případě, že byla stránka do kategorie přidána prostřednictvím šablony.',
 'ajax-category-already-present' => 'Tato stránka již do kategorie $1 patří',
+'ajax-category-hook-error'      => 'Místní funkce zabránila uložení změn',
+'ajax-api-error'                => 'API vrátilo chybu: $1: $2',
 
 );

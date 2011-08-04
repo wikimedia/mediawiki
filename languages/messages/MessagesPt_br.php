@@ -785,6 +785,7 @@ Por favor aguarde antes de tentar novamente.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
+'user-mail-no-addy'      => 'Tentou enviar uma mensagem sem um endereço de e-mail.',
 
 # Change password dialog
 'resetpass'                 => 'Alterar senha',
@@ -827,6 +828,17 @@ $2
 'passwordreset-emailelement'   => 'Usuário: $1
 Senha temporária: $2',
 'passwordreset-emailsent'      => 'Foi enviado um e-mail de lembrete.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Alterar o endereço de e-mail',
+'changeemail-header'   => 'Alterar o endereço de e-mail da conta',
+'changeemail-text'     => 'Preencha este formulário para alterar o endereço de e-mail. Para confirmar esta alteração terá de introduzir a sua senha.',
+'changeemail-no-info'  => 'Para aceder diretamente a esta página você tem de estar autenticado.',
+'changeemail-oldemail' => 'Endereço de e-mail atual:',
+'changeemail-newemail' => 'Novo endereço de e-mail:',
+'changeemail-none'     => '(nenhum)',
+'changeemail-submit'   => 'Alterar e-mail',
+'changeemail-cancel'   => 'Cancelar',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto em negrito',
@@ -1338,6 +1350,8 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'prefs-watchlist-token'         => 'Senha para a lista de páginas vigiadas:',
 'prefs-misc'                    => 'Diversos',
 'prefs-resetpass'               => 'Alterar senha',
+'prefs-changeemail'             => 'Alterar e-mail',
+'prefs-setemail'                => 'Definir um endereço de e-mail',
 'prefs-email'                   => 'Opções de email',
 'prefs-rendering'               => 'Aparência',
 'saveprefs'                     => 'Salvar',
@@ -2344,6 +2358,7 @@ Esta é a configuração atual para a página '''$1''':",
 'protect-level-sysop'         => 'Apenas administradores',
 'protect-summary-cascade'     => 'p. progressiva',
 'protect-expiring'            => 'expira em $1 (UTC)',
+'protect-expiring-local'      => 'expira $1',
 'protect-expiry-indefinite'   => 'indefinido',
 'protect-cascade'             => '"Proteção progressiva" - proteja quaisquer páginas que estejam incluídas nesta.',
 'protect-cantedit'            => 'Você não pode alterar o nível de proteção desta página uma vez que você não se encontra habilitado a editá-la.',
@@ -3693,13 +3708,16 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 'tags-hitcount'           => '$1 {{PLURAL:$1|modificação|modificações}}',
 
 # Special:ComparePages
-'comparepages'     => 'Comparar páginas',
-'compare-selector' => 'Comparar edições da página',
-'compare-page1'    => 'Página 1',
-'compare-page2'    => 'Página 2',
-'compare-rev1'     => 'Edição 1',
-'compare-rev2'     => 'Edição 2',
-'compare-submit'   => 'Comparar',
+'comparepages'                => 'Comparar páginas',
+'compare-selector'            => 'Comparar edições da página',
+'compare-page1'               => 'Página 1',
+'compare-page2'               => 'Página 2',
+'compare-rev1'                => 'Edição 1',
+'compare-rev2'                => 'Edição 2',
+'compare-submit'              => 'Comparar',
+'compare-invalid-title'       => 'O título que você especificou é inválido.',
+'compare-title-not-exists'    => 'O título que você especificou não existe.',
+'compare-revision-not-exists' => 'A revisão que você especificou não existe.',
 
 # Database error messages
 'dberr-header'      => 'Este wiki tem um problema',
@@ -3727,14 +3745,27 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Adicionar categoria',
-'ajax-add-category-submit'     => 'Adicionar',
-'ajax-confirm-title'           => 'Confirmar ação',
-'ajax-confirm-save'            => 'Salvar',
-'ajax-add-category-summary'    => 'Adicionar categoria "$1"',
-'ajax-remove-category-summary' => 'Remover categoria "$1"',
-'ajax-error-title'             => 'Erro',
-'ajax-remove-category-error'   => 'Não foi possível remover esta categoria.
-Isto geralmente ocorre quando a categoria foi adicionada através de uma predefinição.',
+'ajax-add-category'             => 'Adicionar categoria',
+'ajax-remove-category'          => 'Remover categoria',
+'ajax-edit-category'            => 'Editar categoria',
+'ajax-add-category-submit'      => 'Adicionar',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Confirmar ação',
+'ajax-confirm-save'             => 'Salvar',
+'ajax-confirm-save-all'         => 'Salvar todas as alterações',
+'ajax-cancel'                   => 'Cancelar as edições',
+'ajax-cancel-all'               => 'Cancelar todas as alterações',
+'ajax-add-category-summary'     => 'Adicionar categoria "$1"',
+'ajax-edit-category-summary'    => 'Alterar a categoria "$1" para "$2"',
+'ajax-remove-category-summary'  => 'Remover categoria "$1"',
+'ajax-category-question'        => 'Porque você pretende fazer as seguintes alterações:',
+'ajax-error-title'              => 'Erro',
+'ajax-remove-category-error'    => 'Não foi possível remover a categoria "$1".
+Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
+'ajax-edit-category-error'      => 'Não foi possível editar a categoria "$1".
+Isso normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
+'ajax-category-already-present' => 'Esta página já está na categoria $1',
+'ajax-category-hook-error'      => 'Uma função local impediu que as alterações fossem salvas.',
+'ajax-api-error'                => 'A API retornou um erro: $1: $2.',
 
 );

@@ -881,6 +881,13 @@ $2',
 仮パスワード： $2',
 'passwordreset-emailsent'    => '確認のメールが送信されました。',
 
+# Special:ChangeEmail
+'changeemail'          => 'メールアドレスの変更',
+'changeemail-oldemail' => '現在のメールアドレス：',
+'changeemail-newemail' => '新しいメールアドレス：',
+'changeemail-none'     => '(なし)',
+'changeemail-cancel'   => '中止',
+
 # Edit page toolbar
 'bold_sample'     => '太字',
 'bold_tip'        => '太字',

@@ -12,6 +12,7 @@
  * @author ChrisPtDe
  * @author Coyau
  * @author Crochet.david
+ * @author Csisc
  * @author Damouns
  * @author Delhovlyn
  * @author Dereckson
@@ -50,6 +51,7 @@
  * @author Quentinv57
  * @author Remember the dot
  * @author Robby
+ * @author Sandji
  * @author Seb35
  * @author Sherbrooke
  * @author Skalman
@@ -1545,11 +1547,11 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'right-move-rootuserpages'    => 'Renommer la page principale d’un utilisateur',
 'right-movefile'              => 'Renommer des fichiers',
 'right-suppressredirect'      => 'Ne pas créer de redirection depuis le titre d’origine en renommant une page',
-'right-upload'                => 'Téléverser des fichiers',
+'right-upload'                => 'Importer des fichiers',
 'right-reupload'              => 'Écraser un fichier existant',
-'right-reupload-own'          => 'Écraser un fichier que l’on a soi-même téléversé',
+'right-reupload-own'          => 'Écraser un fichier que l’on a soi-même importé',
 'right-reupload-shared'       => 'Écraser localement un fichier présent sur un dépôt partagé',
-'right-upload_by_url'         => 'Téléverser un fichier depuis une adresse URL',
+'right-upload_by_url'         => 'Importer un fichier depuis une adresse URL',
 'right-purge'                 => 'Purger le cache des pages sans demande de confirmation',
 'right-autoconfirmed'         => 'Modifier les pages semi-protégées',
 'right-bot'                   => 'Être traité comme un processus automatisé',
@@ -1613,10 +1615,10 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'action-move-subpages'        => 'renommer cette page et ses sous-pages',
 'action-move-rootuserpages'   => 'renommer la page principale d’un utilisateur',
 'action-movefile'             => 'renommer ce fichier',
-'action-upload'               => 'téléverser ce fichier',
+'action-upload'               => 'importer ce fichier',
 'action-reupload'             => 'écraser ce fichier existant',
 'action-reupload-shared'      => 'outrepasser localement ce fichier présent sur un dépôt partagé',
-'action-upload_by_url'        => 'téléverser ce fichier à partir d’une adresse URL',
+'action-upload_by_url'        => 'importer ce fichier à partir d’une adresse URL',
 'action-writeapi'             => 'utiliser l‘API d’écriture',
 'action-delete'               => 'supprimer cette page',
 'action-deleterevision'       => 'supprimer cette version',
@@ -1628,7 +1630,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'action-block'                => 'bloquer en écriture cet utilisateur',
 'action-protect'              => 'modifier les niveaux de protection pour cette page',
 'action-import'               => 'importer cette page à partir d’un autre wiki',
-'action-importupload'         => 'importer cette page à partir d’un fichier téléversé',
+'action-importupload'         => 'importer cette page à partir d’un fichier',
 'action-patrol'               => 'marquer la modification des autres comme relue',
 'action-autopatrol'           => 'avoir votre modification marquée comme relue',
 'action-unwatchedpages'       => 'voir la liste des pages non suivies',
@@ -1683,20 +1685,20 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'recentchangeslinked-to'       => 'Afficher les modifications des pages qui comportent un lien vers la page donnée plutôt que l’inverse',
 
 # Upload
-'upload'                      => 'Téléverser un fichier',
-'uploadbtn'                   => 'Téléverser le fichier',
-'reuploaddesc'                => 'Annuler et retourner au formulaire de téléversement',
+'upload'                      => 'Importer un fichier',
+'uploadbtn'                   => 'Importer le fichier',
+'reuploaddesc'                => "Annuler et retourner au formulaire d'import",
 'upload-tryagain'             => 'Envoyer la description du fichier modifiée',
 'uploadnologin'               => 'Non connecté(e)',
-'uploadnologintext'           => 'Vous devez être [[Special:UserLogin|connecté(e)]] pour téléverser des fichiers sur le serveur.',
-'upload_directory_missing'    => 'Le répertoire de téléversement ($1) est introuvable et n’a pas pu être créé par le serveur web.',
-'upload_directory_read_only'  => 'Le répertoire de téléversement ($1) n’est pas accessible en écriture depuis le serveur web.',
-'uploaderror'                 => 'Erreur de téléversement',
+'uploadnologintext'           => 'Vous devez être [[Special:UserLogin|connecté(e)]] pour importer des fichiers sur le serveur.',
+'upload_directory_missing'    => "Le répertoire d'import de fichier ($1) est introuvable et n’a pas pu être créé par le serveur web.",
+'upload_directory_read_only'  => "Le répertoire d'import de fichier ($1) n’est pas accessible en écriture depuis le serveur web.",
+'uploaderror'                 => "Erreur lors de l'import",
 'upload-recreate-warning'     => "'''Attention : Un fichier portant ce nom a été supprimé ou déplacé.'''
 
 Le journal des suppressions et celui des déplacements de cette page sont affichés ici pour informations :",
-'uploadtext'                  => "Utilisez ce formulaire pour téléverser des fichiers sur le serveur.
-Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. Les téléversements sont aussi enregistrés dans le [[Special:Log/upload|journal des téléversements]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
+'uploadtext'                  => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
+Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. L'import est aussi enregistrés dans le [[Special:Log/upload|journal d'import des fichiers]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
 
 Pour inclure un fichier dans une page, utilisez un lien de la forme :
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
@@ -1705,9 +1707,9 @@ Pour inclure un fichier dans une page, utilisez un lien de la forme :
 'upload-permitted'            => 'Formats de fichiers autorisés : $1.',
 'upload-preferred'            => 'Formats de fichiers préférés : $1.',
 'upload-prohibited'           => 'Formats de fichiers interdits : $1.',
-'uploadlog'                   => 'Journal des téléversements',
-'uploadlogpage'               => 'Journal des téléversements de fichiers',
-'uploadlogpagetext'           => 'Voici la liste des derniers fichiers téléversés sur le serveur.
+'uploadlog'                   => "Journal d'import de fichiers",
+'uploadlogpage'               => "Journal d'import de fichiers",
+'uploadlogpagetext'           => 'Voici la liste des derniers fichiers importés sur le serveur.
 Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentation plus visuelle.',
 'filename'                    => 'Nom du fichier',
 'filedesc'                    => 'Description',
@@ -1715,15 +1717,15 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'filereuploadsummary'         => 'Modifications du fichier :',
 'filestatus'                  => 'Statut du droit d’auteur :',
 'filesource'                  => 'Source :',
-'uploadedfiles'               => 'Fichiers téléversés',
+'uploadedfiles'               => 'Fichiers importés',
 'ignorewarning'               => 'Ignorer l’avertissement et sauvegarder le fichier quand même',
 'ignorewarnings'              => 'Ignorer les avertissements',
 'minlength1'                  => 'Le noms de fichiers doivent comprendre au moins une lettre.',
-'illegalfilename'             => 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le téléverser à nouveau.',
+'illegalfilename'             => "Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de l'importer à nouveau.",
 'badfilename'                 => 'Le fichier a été renommé en « $1 ».',
 'filetype-mime-mismatch'      => 'L’extension du fichier « .$1 » ne correspond pas au type MIME détecté du fichier ($2).',
-'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être téléversés.',
-'filetype-bad-ie-mime'        => 'Le fichier ne peut pas être téléversé parce qu’il serait détecté comme « $1 » par Internet Explorer, ce qui correspond à un type de fichier interdit car potentiellement dangereux.',
+'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être importés.',
+'filetype-bad-ie-mime'        => 'Le fichier ne peut pas être importé parce qu’il serait détecté comme « $1 » par Internet Explorer, ce qui correspond à un type de fichier interdit car potentiellement dangereux.',
 'filetype-unwanted-type'      => "'''« .$1 »''' est un format de fichier non désiré.
 {{PLURAL:$3|Le type de fichier préconisé est|Les types de fichiers préconisés sont}} $2.",
 'filetype-banned-type'        => "''' « .$1 » '''{{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}. 
@@ -1740,11 +1742,11 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'unknown-error'               => 'Une erreur inconnue s’est produite.',
 'tmp-create-error'            => 'Impossible de créer le fichier temporaire.',
 'tmp-write-error'             => 'Erreur d’écriture du fichier temporaire.',
-'large-file'                  => 'Les fichiers téléversés ne devraient pas dépasser $1 ; ce fichier fait $2.',
+'large-file'                  => 'Les fichiers importés ne devraient pas dépasser $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
-'emptyfile'                   => 'Le fichier que vous voulez téléverser semble vide.
+'emptyfile'                   => 'Le fichier que vous voulez importer semble vide.
 Ceci peut être dû à une erreur dans le nom du fichier.
-Veuillez vérifier que vous désirez vraiment téléverser ce fichier.',
+Veuillez vérifier que vous désirez vraiment importer ce fichier.',
 'windows-nonascii-filename'   => 'Ce wiki ne supporte pas les noms de fichiers avec des caractères spéciaux.',
 'fileexists'                  => "Un fichier existe déjà sous ce nom.
 Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n’êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
@@ -1753,7 +1755,7 @@ Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n’êtes pas certain{{GENDER:
 Le résumé que vous allez spécifier n’apparaîtra pas sur la page de description.
 Pour que ce soit le cas, vous devrez modifier manuellement la page. [[$1|thumb]]",
 'fileexists-extension'        => "Un fichier existe avec un nom proche : [[$2|thumb]]
-* Nom du fichier à téléverser : '''<tt>[[:$1]]</tt>'''
+* Nom du fichier à importer : '''<tt>[[:$1]]</tt>'''
 * Nom du fichier existant : '''<tt>[[:$2]]</tt>'''
 Veuillez choisir un autre nom.",
 'fileexists-thumbnail-yes'    => "Le fichier semble être une image en taille réduite ''(vignette)''. [[$1|thumb]]
@@ -1763,21 +1765,21 @@ Si le fichier vérifié est la même image avec la taille initiale, il n’y a p
 Il est possible qu’il s’agisse d’une version réduite ''(vignette)''.
 Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez modifier son nom.",
 'fileexists-forbidden'        => 'Un fichier avec ce nom existe déjà et ne peut pas être écrasé.
-Si vous voulez toujours téléverser votre fichier, merci de retourner en arrière et d’utiliser un nouveau nom. [[File:$1|thumb|center|$1]]',
+Si vous voulez toujours importer votre fichier, merci de retourner en arrière et d’utiliser un nouveau nom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichier portant ce nom existe déjà dans le dépôt de fichiers partagé.
-Si vous voulez toujours téléverser votre fichier, veuillez revenir en arrière et utiliser un autre nom. [[File:$1|thumb|center|$1]]',
+Si vous voulez toujours importer votre fichier, veuillez revenir en arrière et utiliser un autre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ce fichier est un doublon {{PLURAL:$1|du fichier suivant|des fichiers suivants}} :',
-'file-deleted-duplicate'      => 'Un fichier identique à celui-ci ([[:$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de le téléverser à nouveau.',
+'file-deleted-duplicate'      => "Un fichier identique à celui-ci ([[:$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de l'importer à nouveau.",
 'uploadwarning'               => 'Attention !',
 'uploadwarning-text'          => 'Modifiez la description du fichier et essayez de nouveau.',
 'savefile'                    => 'Sauvegarder le fichier',
-'uploadedimage'               => 'a téléversé « [[$1]] »',
-'overwroteimage'              => 'a téléversé une nouvelle version de « [[$1]] »',
-'uploaddisabled'              => 'Désolé, le téléversement de fichiers est désactivé.',
-'copyuploaddisabled'          => 'Téléversement de fichier par URL désactivé.',
-'uploadfromurl-queued'        => 'Votre téléversement a été mis dans la file d’attente.',
-'uploaddisabledtext'          => 'Le téléversement de fichiers est désactivé sur ce wiki.',
-'php-uploaddisabledtext'      => 'Le téléversement de fichiers a été désactivé dans PHP. Vérifiez l’option de configuration file_uploads.',
+'uploadedimage'               => 'a importé « [[$1]] »',
+'overwroteimage'              => 'a importé une nouvelle version de « [[$1]] »',
+'uploaddisabled'              => "Désolé, l'import de fichiers est désactivé.",
+'copyuploaddisabled'          => 'Import de fichier par URL désactivé.',
+'uploadfromurl-queued'        => 'Votre fichier a été mis dans la file d’attente.',
+'uploaddisabledtext'          => "L'import de fichiers est désactivé sur ce wiki.",
+'php-uploaddisabledtext'      => "L'import de fichiers a été désactivé dans PHP. Vérifiez l’option de configuration file_uploads.",
 'uploadscripted'              => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur web.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
 'uploadjava'                  => "C'est un fichier ZIP qui contient un fichier Java .class.
@@ -1788,11 +1790,11 @@ Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent entra�
 'destfilename'                => 'Nom sous lequel le fichier sera enregistré :',
 'upload-maxfilesize'          => 'Taille maximale du fichier : $1',
 'upload-description'          => 'Description du fichier',
-'upload-options'              => 'Options de téléversement',
+'upload-options'              => "Options d'import de fichiers",
 'watchthisupload'             => 'Suivre ce fichier',
-'filewasdeleted'              => 'Un fichier avec ce nom a déjà été téléversé, puis supprimé.
-Vous devriez vérifier le $1 avant de procéder à un nouveau téléversement.',
-'filename-bad-prefix'         => "Le nom du fichier que vous téléversez commence par '''« $1 »''' qui est typiquement un nom attribué automatiquement par les appareils photo numériques.
+'filewasdeleted'              => "Un fichier avec ce nom a déjà été importé, puis supprimé.
+Vous devriez vérifier $1 avant de l'importer à nouveau.",
+'filename-bad-prefix'         => "Le nom du fichier commence par '''« $1 »''' qui est typiquement un nom attribué automatiquement par les appareils photo numériques.
 Veuillez choisir un nom de fichier descriptif.",
 'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --><pre>
 # La syntaxe est la suivante :
@@ -1808,23 +1810,23 @@ JD # Jenoptik
 MGP # Pentax
 PICT # divers
  #</pre><!-- laisser cette ligne telle quelle -->',
-'upload-success-subj'         => 'Téléversement effectué avec succès',
-'upload-success-msg'          => 'Votre téléversement depuis [$2] a réussi. Il est disponible ici : [[:{{ns:file}}:$1]]',
-'upload-failure-subj'         => 'Problème de téléversement',
+'upload-success-subj'         => 'Import effectué avec succès',
+'upload-success-msg'          => 'Votre import depuis [$2] a réussi. Il est disponible ici : [[:{{ns:file}}:$1]]',
+'upload-failure-subj'         => "Problème d'import",
 'upload-failure-msg'          => 'Il y a eu un problème avec votre import depuis [$2] :
 
 $1',
-'upload-warning-subj'         => 'Avertissement lors du téléversement',
-'upload-warning-msg'          => 'Un problème est survenu lors de votre téléversement depuis [$2]. Vous pouvez revenir au [[Special:Upload/stash/$1|formulaire de téléversement]] pour le résoudre.',
+'upload-warning-subj'         => "Avertissement lors de l'import",
+'upload-warning-msg'          => "Un problème est survenu lors de l'import depuis [$2]. Vous pouvez revenir au [[Special:Upload/stash/$1|formulaire d'import]] pour le résoudre.",
 
 'upload-proto-error'        => 'Protocole incorrect',
-'upload-proto-error-text'   => 'Le téléversement requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.',
+'upload-proto-error-text'   => "L'import requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.",
 'upload-file-error'         => 'Erreur interne',
 'upload-file-error-text'    => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un [[Special:ListUsers/sysop|administrateur]].',
-'upload-misc-error'         => 'Erreur de téléversement inconnue',
-'upload-misc-error-text'    => 'Une erreur inconnue est survenue pendant le téléversement.
+'upload-misc-error'         => "Erreur d'import inconnue",
+'upload-misc-error-text'    => "Une erreur inconnue est survenue pendant l'import.
 Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau.
-Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].',
+Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].",
 'upload-too-many-redirects' => 'L’URL contient trop de redirections.',
 'upload-unknown-size'       => 'Taille inconnue',
 'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
@@ -1852,7 +1854,7 @@ Il ne peut pas être correctement vérifé pour la sécurité.',
 Votre serveur n’est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_auth.
 Consultez http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'         => 'Le chemin demandé n’est pas le répertoire de téléversement configuré.',
+'img-auth-notindir'         => "Le chemin demandé n’est pas le répertoire d'import configuré.",
 'img-auth-badtitle'         => 'Impossible de construire un titre valide à partir de « $1 ».',
 'img-auth-nologinnWL'       => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
 'img-auth-nofile'           => 'Le fichier « $1 » n’existe pas.',
@@ -1878,7 +1880,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL injoignable',
 'upload-curl-error6-text'  => 'L’URL fournie ne peut pas être atteinte. Veuillez vérifier que l’URL est correcte et que le site est en ligne.',
-'upload-curl-error28'      => 'Dépassement du délai lors du téléversement',
+'upload-curl-error28'      => "Dépassement du délai lors de l'import",
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
 'license'            => 'Licence',
@@ -1889,8 +1891,8 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 'upload_source_file' => ' (un fichier sur votre ordinateur)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Cette page spéciale permet de lister tous les fichiers téléversés.
-Par défaut, les derniers fichiers téléversés sont affichés en tête de liste.
+'listfiles-summary'     => 'Cette page spéciale permet de lister tous les fichiers importés.
+Par défaut, les derniers fichiers importés sont affichés en tête de liste.
 Cliquer sur un en-tête de colonne permet de changer l’ordre d’affichage.',
 'listfiles_search_for'  => 'Rechercher un nom de média :',
 'imgfile'               => 'fichier',
@@ -1935,8 +1937,8 @@ Veuillez consulter [$2 sa page de description] pour plus d’informations.',
 'sharedupload-desc-here'            => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.
 Sa description sur sa [$2 page de description] est affichée ci-dessous.',
 'filepage-nofile'                   => 'Aucun fichier de ce nom existe.',
-'filepage-nofile-link'              => 'Aucun fichier de ce nom n’existe, mais vous pouvez [$1 en téléverser un].',
-'uploadnewversion-linktext'         => 'Téléverser une nouvelle version de ce fichier',
+'filepage-nofile-link'              => 'Aucun fichier de ce nom n’existe, mais vous pouvez [$1 en importer un].',
+'uploadnewversion-linktext'         => 'Importer une nouvelle version de ce fichier',
 'shared-repo-from'                  => 'de : $1',
 'shared-repo'                       => 'un dépôt partagé',
 'shared-repo-name-wikimediacommons' => 'Wikimédia Commons',
@@ -2007,7 +2009,7 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 'statistics-articles'          => 'Pages de contenu',
 'statistics-pages'             => 'Pages',
 'statistics-pages-desc'        => 'Toutes les pages du wiki, y compris les pages de discussion, les redirections, etc.',
-'statistics-files'             => 'Fichers téléversés',
+'statistics-files'             => 'Fichers importés',
 'statistics-edits'             => 'Modifications de pages depuis l’installation de {{SITENAME}}',
 'statistics-edits-average'     => 'Nombre moyen de modifications par page',
 'statistics-views-total'       => 'Visites',
@@ -2408,6 +2410,7 @@ Voici les réglages actuels de la page '''$1''' :",
 'protect-level-sysop'         => 'Administrateurs uniquement',
 'protect-summary-cascade'     => 'protection en cascade',
 'protect-expiring'            => 'expire le $1 (UTC)',
+'protect-expiring-local'      => 'expire le $1',
 'protect-expiry-indefinite'   => 'infini',
 'protect-cascade'             => 'Protège aussi les pages incluses dans celle-ci (protection en cascade)',
 'protect-cantedit'            => 'Vous ne pouvez pas changer les niveaux de protection de cette page car vous n’avez pas la permission de la modifier.',
@@ -2433,7 +2436,7 @@ Voici les réglages actuels de la page '''$1''' :",
 'restriction-edit'   => 'Modifier',
 'restriction-move'   => 'Renommer',
 'restriction-create' => 'Créer',
-'restriction-upload' => 'Téléverser',
+'restriction-upload' => 'Import de fichiers',
 
 # Restriction levels
 'restriction-level-sysop'         => 'protection complète',
@@ -2848,7 +2851,7 @@ Toutes les actions d’importation inter-wiki sont consignées dans l’[[Specia
 'import-upload-filename'     => 'Nom du fichier :',
 'import-comment'             => 'Commentaire :',
 'importtext'                 => 'Veuillez exporter le fichier depuis le wiki d’origine en utilisant son [[Special:Export|outil d’exportation]].
-Sauvegardez-le sur votre disque dur puis téléversez-le ici.',
+Sauvegardez-le sur votre disque dur puis importez-le ici.',
 'importstart'                => 'Importation des pages…',
 'import-revision-count'      => '$1 version{{PLURAL:$1||s}}',
 'importnopages'              => 'Aucune page à importer.',
@@ -2860,26 +2863,26 @@ Sauvegardez-le sur votre disque dur puis téléversez-le ici.',
 'importnotext'               => 'Vide ou sans texte',
 'importsuccess'              => 'L’importation a réussi !',
 'importhistoryconflict'      => 'Un conflit a été détecté dans l’historique des versions (cette page a pu être importée auparavant).',
-'importnosources'            => 'Aucune source d’importation inter-wiki n’a été définie et les téléversements directs d’historiques sont désactivés.',
-'importnofile'               => 'Aucun fichier d’importation n’a été téléversé.',
-'importuploaderrorsize'      => 'Le téléversement du fichier à importer a échoué.
-Sa taille est supérieure au maximum autorisé pour les téléversements.',
-'importuploaderrorpartial'   => 'Le téléversement du fichier à importer a échoué.
-Son contenu n’a été transféré que partiellement.',
-'importuploaderrortemp'      => 'Le téléversement du fichier à importer a échoué.
-Un dossier temporaire est manquant.',
+'importnosources'            => "Aucune source d’importation inter-wiki n’a été définie et l'import direct d’historiques est désactivé.",
+'importnofile'               => 'Aucun fichier d’importation n’a été envoyé.',
+'importuploaderrorsize'      => "L'import du fichier a échoué.
+Sa taille est supérieure au maximum autorisé pour l'import de fichier.",
+'importuploaderrorpartial'   => "L'import du fichier échoué.
+Son contenu n’a été transféré que partiellement.",
+'importuploaderrortemp'      => "L'import du fichier a échoué.
+Un dossier temporaire est manquant.",
 'import-parse-failure'       => 'Échec lors de l’analyse du XML à importer',
 'import-noarticle'           => 'Aucune page à importer !',
 'import-nonewrevisions'      => 'Toutes les versions ont été importées auparavant.',
 'xml-error-string'           => '$1 à la ligne $2, colonne $3 (octet $4) : $5',
-'import-upload'              => 'Téléversement de données XML',
+'import-upload'              => 'Import de données XML',
 'import-token-mismatch'      => 'Perte des données de session. Veuillez réessayez.',
 'import-invalid-interwiki'   => 'Impossible d’importer depuis le wiki spécifié.',
 
 # Import log
 'importlogpage'                    => 'Journal des importations',
 'importlogpagetext'                => 'Importations administratives de pages avec leur historique de modifications depuis d’autres wikis.',
-'import-logentry-upload'           => 'a importé [[$1]] par téléversement de fichier',
+'import-logentry-upload'           => 'a importé [[$1]] par envoi de fichier',
 'import-logentry-upload-detail'    => '$1 version{{PLURAL:$1||s}}',
 'import-logentry-interwiki'        => 'a importé $1 d’un wiki à l’autre',
 'import-logentry-interwiki-detail' => '$1 version{{PLURAL:$1||s}} depuis $2',
@@ -2947,7 +2950,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-compareselectedversions' => 'Afficher les différences entre deux versions de cette page',
 'tooltip-watch'                   => 'Ajouter cette page à votre liste de suivi',
 'tooltip-recreate'                => 'Recréer la page même si celle-ci a été effacée',
-'tooltip-upload'                  => 'Démarrer le téléversement',
+'tooltip-upload'                  => "Démarrer l'import",
 'tooltip-rollback'                => '« Révoquer » annule en un clic la ou les modification(s) de cette page par son dernier contributeur.',
 'tooltip-undo'                    => '« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
 Permet de rétablir la version précédente et d’ajouter un motif dans la boîte de résumé.',
@@ -3767,7 +3770,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 'specialpages-group-other'       => 'Autres pages spéciales',
 'specialpages-group-login'       => 'S’identifier / s’inscrire',
 'specialpages-group-changes'     => 'Modifications récentes et journaux',
-'specialpages-group-media'       => 'Rapports et téléversements de fichiers médias',
+'specialpages-group-media'       => 'Rapports et import de fichiers médias',
 'specialpages-group-users'       => 'Utilisateurs et droits rattachés',
 'specialpages-group-highuse'     => 'Pages d’utilisation intensive',
 'specialpages-group-pages'       => 'Listes de pages',

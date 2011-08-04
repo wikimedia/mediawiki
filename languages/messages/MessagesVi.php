@@ -3803,13 +3803,16 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',
 
 # Special:ComparePages
-'comparepages'     => 'So sánh trang',
-'compare-selector' => 'So sánh phiên bản trang',
-'compare-page1'    => 'Trang 1',
-'compare-page2'    => 'Trang 2',
-'compare-rev1'     => 'Phiên bản 1',
-'compare-rev2'     => 'Phiên bản 2',
-'compare-submit'   => 'So sánh',
+'comparepages'                => 'So sánh trang',
+'compare-selector'            => 'So sánh phiên bản trang',
+'compare-page1'               => 'Trang 1',
+'compare-page2'               => 'Trang 2',
+'compare-rev1'                => 'Phiên bản 1',
+'compare-rev2'                => 'Phiên bản 2',
+'compare-submit'              => 'So sánh',
+'compare-invalid-title'       => 'Tựa trang chỉ định không hợp lệ.',
+'compare-title-not-exists'    => 'Tựa trang chỉ định không tồn tại.',
+'compare-revision-not-exists' => 'Phiên bản chỉ định không tồn tại.',
 
 # Database error messages
 'dberr-header'      => 'Wiki này đang gặp trục trặc',

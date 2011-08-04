@@ -61,6 +61,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Kàm-sī-toaⁿ bián hián-sī goá ê pian-chi̍p',
 'tog-watchlisthidebots'       => 'Kàm-sī-toaⁿ bián hián-sī ki-khì pian-chi̍p',
 'tog-watchlisthideminor'      => 'Kàm-sī-toaⁿ bián hián-sī sió siu-kái',
+'tog-watchlisthideliu'        => 'Kàm-sī-toaⁿ am iōng-chiá ū teng-ji̍p ê pian-chi̍p',
 'tog-ccmeonemails'            => 'Kià hō͘ pa̍t-lâng ê email sūn-soà kià copy hō͘ goá',
 'tog-diffonly'                => 'Diff ē-pêng bián hián-sī ia̍h ê loē-iông',
 'tog-showhiddencats'          => 'Hián-sī chhàng khí--lâi ê lūi-pia̍t',

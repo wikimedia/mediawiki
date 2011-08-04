@@ -635,6 +635,7 @@ Per favor attende ante de probar lo novemente.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Error incognite in le function mail() de PHP',
+'user-mail-no-addy'      => 'Tentava inviar e-mail sin adresse de e-mail',
 
 # Change password dialog
 'resetpass'                 => 'Cambiar contrasigno',
@@ -688,6 +689,17 @@ contrasigno.',
 'passwordreset-emailelement'   => 'Nomine de usator: $1
 Contrasigno temporari: $2',
 'passwordreset-emailsent'      => 'Un e-mail de rememoration ha essite inviate.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Cambiar adresse de e-mail',
+'changeemail-header'   => 'Cambiar le adresse de e-mail del conto',
+'changeemail-text'     => 'Completa iste formulario pro cambiar tu adresse de e-mail. Essera necessari entrar tu contrasigno pro confirmar iste cambio.',
+'changeemail-no-info'  => 'Tu debe aperir un session pro poter acceder directemente a iste pagina.',
+'changeemail-oldemail' => 'Adresse de e-mail actual:',
+'changeemail-newemail' => 'Adresse de e-mail nove:',
+'changeemail-none'     => '(nulle)',
+'changeemail-submit'   => 'Cambiar e-mail',
+'changeemail-cancel'   => 'Cancellar',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto grasse',
@@ -1213,6 +1225,8 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-watchlist-token'         => 'Indicio pro le observatorio:',
 'prefs-misc'                    => 'Misc',
 'prefs-resetpass'               => 'Cambiar contrasigno',
+'prefs-changeemail'             => 'Cambiar e-mail',
+'prefs-setemail'                => 'Definir un adresse de e-mail',
 'prefs-email'                   => 'Optiones de e-mail',
 'prefs-rendering'               => 'Apparentia',
 'saveprefs'                     => 'Confirmar',
@@ -2246,6 +2260,7 @@ Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le
 'protect-level-sysop'         => 'Administratores solmente',
 'protect-summary-cascade'     => 'in cascada',
 'protect-expiring'            => 'expira le $1 (UTC)',
+'protect-expiring-local'      => 'expira le $1',
 'protect-expiry-indefinite'   => 'infinite',
 'protect-cascade'             => 'Proteger le paginas includite in iste pagina (protection in cascada)',
 'protect-cantedit'            => 'Tu non pote cambiar le nivellos de protection de iste pagina proque tu non ha le permission de modificar lo.',
@@ -3512,12 +3527,12 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',
 'watchlistedit-noitems'        => 'Tu observatorio contine nulle titulos.',
 'watchlistedit-normal-title'   => 'Modificar observatorio',
-'watchlistedit-normal-legend'  => 'Eliminar titulos del observatorio',
+'watchlistedit-normal-legend'  => 'Remover titulos del observatorio',
 'watchlistedit-normal-explain' => 'Le titulos in tu observatorio es monstrate hic infra.
 Pro eliminar un titulo, marca le quadrato correspondente, e clicca "{{int:Watchlistedit-normal-submit}}".
 Tu pote etiam [[Special:EditWatchlist/raw|modificar le lista in forma crude]].',
-'watchlistedit-normal-submit'  => 'Eliminar titulos',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate de tu observatorio:',
+'watchlistedit-normal-submit'  => 'Remover titulos',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite de tu observatorio:',
 'watchlistedit-raw-title'      => 'Modification del observatorio in forma crude',
 'watchlistedit-raw-legend'     => 'Modification del observatorio in forma de un lista simple de titulos',
 'watchlistedit-raw-explain'    => 'Le titulos in tu observatorio es monstrate hic infra, e pote esser modificate per adder e eliminar entratas del lista;
@@ -3528,7 +3543,7 @@ Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'watchlistedit-raw-submit'     => 'Actualisar observatorio',
 'watchlistedit-raw-done'       => 'Tu observatorio ha essite actualisate.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite addite:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vider modificationes pertinente',
@@ -3635,13 +3650,16 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 'tags-hitcount'           => '$1 {{PLURAL:$1|modification|modificationes}}',
 
 # Special:ComparePages
-'comparepages'     => 'Comparar paginas',
-'compare-selector' => 'Comparar versiones de pagina',
-'compare-page1'    => 'Pagina 1',
-'compare-page2'    => 'Pagina 2',
-'compare-rev1'     => 'Version 1',
-'compare-rev2'     => 'Version 2',
-'compare-submit'   => 'Comparar',
+'comparepages'                => 'Comparar paginas',
+'compare-selector'            => 'Comparar versiones de pagina',
+'compare-page1'               => 'Pagina 1',
+'compare-page2'               => 'Pagina 2',
+'compare-rev1'                => 'Version 1',
+'compare-rev2'                => 'Version 2',
+'compare-submit'              => 'Comparar',
+'compare-invalid-title'       => 'Le titulo que tu specificava es invalide.',
+'compare-title-not-exists'    => 'Le titulo que tu specificava non existe.',
+'compare-revision-not-exists' => 'Le version que tu specificava non existe.',
 
 # Database error messages
 'dberr-header'      => 'Iste wiki ha un problema',
@@ -3678,14 +3696,18 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 'ajax-confirm-save'             => 'Publicar',
 'ajax-confirm-save-all'         => 'Salveguardar tote le modificationes',
 'ajax-cancel'                   => 'Cancellar modificationes',
+'ajax-cancel-all'               => 'Cancellar tote le modificationes',
 'ajax-add-category-summary'     => 'Adder categoria "$1"',
 'ajax-edit-category-summary'    => 'Cambiar le categoria "$1" a "$2"',
 'ajax-remove-category-summary'  => 'Remover categoria "$1"',
+'ajax-category-question'        => 'Proque vole tu facer le sequente modificationes:',
 'ajax-error-title'              => 'Error',
-'ajax-remove-category-error'    => 'Il non esseva possibile remover iste categoria.
-Isto occurre generalmente quando le categoria ha essite addite al pagina per un patrono.',
-'ajax-edit-category-error'      => 'Non esseva possibile modificar iste categoria.
-Isto normalmente occurre si le categoria ha essite addite al pagina per medio de un patrono.',
+'ajax-remove-category-error'    => 'Il non esseva possibile remover le categoria "$1".
+Isto occurre generalmente si le categoria ha essite addite al pagina per medio de un patrono.',
+'ajax-edit-category-error'      => 'Non esseva possibile modificar le categoria "$1".
+sto occurre generalmente si le categoria ha essite addite al pagina per medio de un patrono.',
 'ajax-category-already-present' => 'Iste pagina pertine jam al categoria $1',
+'ajax-category-hook-error'      => 'Un function local ha impedite le salveguarda del modificationes',
+'ajax-api-error'                => 'Le API retornava un error: $1: $2',
 
 );

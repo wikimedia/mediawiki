@@ -731,6 +731,7 @@ Riprovare più tardi.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Errore sconosciuto nella funzione PHP mail()',
+'user-mail-no-addy'      => 'Hai cercato di inviare una e-mail senza un indirizzo.',
 
 # Change password dialog
 'resetpass'                 => 'Cambia la password',
@@ -3605,13 +3606,16 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 'tags-hitcount'           => '$1 {{PLURAL:$1|modifica|modifiche}}',
 
 # Special:ComparePages
-'comparepages'     => 'Confronta le pagine',
-'compare-selector' => 'Confronta le revisioni di una pagina',
-'compare-page1'    => 'Pagina 1',
-'compare-page2'    => 'Pagina 2',
-'compare-rev1'     => 'Revisione 1',
-'compare-rev2'     => 'Revisione 2',
-'compare-submit'   => 'Confronta',
+'comparepages'                => 'Confronta le pagine',
+'compare-selector'            => 'Confronta le revisioni di una pagina',
+'compare-page1'               => 'Pagina 1',
+'compare-page2'               => 'Pagina 2',
+'compare-rev1'                => 'Revisione 1',
+'compare-rev2'                => 'Revisione 2',
+'compare-submit'              => 'Confronta',
+'compare-invalid-title'       => 'Il titolo che hai specificato non è valido.',
+'compare-title-not-exists'    => 'Il titolo che hai specificato non esiste.',
+'compare-revision-not-exists' => 'La revisione che hai specificato non esiste.',
 
 # Database error messages
 'dberr-header'      => 'Questa wiki ha un problema',
@@ -3660,5 +3664,6 @@ Ciò si verifica in genere quando la categoria è stata aggiunta alla pagina in 
 Di solito avviene quando la categoria è stata aggiunta alla pagina da un template.',
 'ajax-category-already-present' => 'Questa pagina appartiene già alla categoria $1',
 'ajax-category-hook-error'      => 'Una funzione locale ha impedito che le modifiche vengano salvate',
+'ajax-api-error'                => "L'API ha restituito un errore: $1: $2",
 
 );

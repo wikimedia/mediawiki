@@ -2305,6 +2305,7 @@ $UNWATCHURL
 'protect-level-sysop'         => 'Толькі адміністратары',
 'protect-summary-cascade'     => 'каскадная',
 'protect-expiring'            => 'сканчаецца $1 (UTC)',
+'protect-expiring-local'      => 'канчаецца $1',
 'protect-expiry-indefinite'   => 'бестэрмінова',
 'protect-cascade'             => 'Абараняць старонкі, якія ўключаныя ў гэтую старонку (каскадная абарона)',
 'protect-cantedit'            => 'Вы ня можаце зьмяніць узровень абароны гэтай старонкі, таму што Вы ня маеце дазволу на яе рэдагаваньне.',
@@ -3652,13 +3653,16 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'tags-hitcount'           => '$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}',
 
 # Special:ComparePages
-'comparepages'     => 'Параўнаньне старонак',
-'compare-selector' => 'Параўнаньне вэрсіяў старонак',
-'compare-page1'    => 'Старонка 1',
-'compare-page2'    => 'Старонка 2',
-'compare-rev1'     => 'Вэрсія 1',
-'compare-rev2'     => 'Вэрсія 2',
-'compare-submit'   => 'Параўнаць',
+'comparepages'                => 'Параўнаньне старонак',
+'compare-selector'            => 'Параўнаньне вэрсіяў старонак',
+'compare-page1'               => 'Старонка 1',
+'compare-page2'               => 'Старонка 2',
+'compare-rev1'                => 'Вэрсія 1',
+'compare-rev2'                => 'Вэрсія 2',
+'compare-submit'              => 'Параўнаць',
+'compare-invalid-title'       => 'Пазначаная няслушная назва.',
+'compare-title-not-exists'    => 'Пазначаная старонка не існуе.',
+'compare-revision-not-exists' => 'Пазначаная вэрсія не існуе.',
 
 # Database error messages
 'dberr-header'      => 'Гэтая вікі не функцыянуе спраўна',
