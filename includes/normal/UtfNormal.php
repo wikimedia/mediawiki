@@ -52,7 +52,7 @@ class UtfNormal {
 	const UNORM_NONE = 1;
 	const UNORM_NFD  = 2;
 	const UNORM_NFKD = 3;
-	const UNORM_NFC  = UNORM_NFC;
+	const UNORM_NFC  = 4;
 	const UNORM_NFKC = 5;
 	const UNORM_FCD  = 6;
 	const UNORM_DEFAULT = self::UNORM_NFC;
