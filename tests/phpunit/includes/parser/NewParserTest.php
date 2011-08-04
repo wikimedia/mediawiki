@@ -164,12 +164,7 @@ class NewParserTest extends MediaWikiTestCase {
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats',
 			array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ),
-			__METHOD__,
-			/**
-			 * @todo Fixme! Same as above!
-			 */
-			array( 'IGNORE' )
-		);
+			__METHOD__ );
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
