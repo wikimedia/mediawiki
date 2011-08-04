@@ -99,7 +99,7 @@ class ApiFeedContributions extends ApiBase {
 		if( $title ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
-			$revision = Revision::newFromTitle( $title, $row->rev_id );
+			$revision = Revision::newFromRow( $row);
 
 			return new FeedItem(
 				$title->getPrefixedText(),
