@@ -38,20 +38,23 @@ class SpecialPrefixindex extends SpecialAllpages {
 	 * @param $par String: becomes "FOO" when called like Special:Prefixindex/FOO (default null)
 	 */
 	function execute( $par ) {
-		global $wgRequest, $wgOut, $wgContLang;
+		global $wgContLang;
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->addModuleStyles( 'mediawiki.special' );
+
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.special' );
 
 		# GET values
-		$from = $wgRequest->getVal( 'from', '' );
-		$prefix = $wgRequest->getVal( 'prefix', '' );
-		$ns = $wgRequest->getIntOrNull( 'namespace' );
+		$request = $this->getRequest();
+		$from = $request->getVal( 'from', '' );
+		$prefix = $request->getVal( 'prefix', '' );
+		$ns = $request->getIntOrNull( 'namespace' );
 		$namespace = (int)$ns; // if no namespace given, use 0 (NS_MAIN).
 
 		$namespaces = $wgContLang->getNamespaces();
-		$wgOut->setPagetitle(
+		$out->setPagetitle(
 			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) )
 				? wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
 				: wfMsg( 'prefixindex' )
@@ -71,7 +74,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		if ( $this->including() || $showme != '' || $ns !== null ) {
 			$this->showPrefixChunk( $namespace, $showme, $from );
 		} else {
-			$wgOut->addHTML( $this->namespacePrefixForm( $namespace, null ) );
+			$out->addHTML( $this->namespacePrefixForm( $namespace, null ) );
 		}
 	}
 
@@ -82,11 +85,10 @@ class SpecialPrefixindex extends SpecialAllpages {
 	*/
 	function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
 		global $wgScript;
-		$t = $this->getTitle();
 
 		$out  = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$out .= Html::hidden( 'title', $t->getPrefixedText() );
+		$out .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
 		$out .= Xml::openElement( 'fieldset' );
 		$out .= Xml::element( 'legend', null, wfMsg( 'allpages' ) );
 		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
@@ -120,11 +122,11 @@ class SpecialPrefixindex extends SpecialAllpages {
 	 * @param $from String: list all pages from this name (default FALSE)
 	 */
 	function showPrefixChunk( $namespace = NS_MAIN, $prefix, $from = null ) {
-		global $wgOut, $wgContLang, $wgLang;
+		global $wgContLang;
 
-		$sk = $this->getSkin();
-
-		if (!isset($from)) $from = $prefix;
+		if ( $from === null ) {
+			$from = $prefix;
+		}
 
 		$fromList = $this->getNamespaceKeyAndText($namespace, $from);
 		$prefixList = $this->getNamespaceKeyAndText($namespace, $prefix);
@@ -169,7 +171,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 					if( $t ) {
 						$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
-							$sk->linkKnown(
+							Linker::linkKnown(
 								$t,
 								htmlspecialchars( $t->getText() )
 							) .
@@ -217,9 +219,9 @@ class SpecialPrefixindex extends SpecialAllpages {
 					$query['namespace'] = $namespace;
 				}
 
-				$out2 = $wgLang->pipeList( array(
+				$out2 = $this->getLang()->pipeList( array(
 					$out2,
-					$sk->linkKnown(
+					Linker::linkKnown(
 						$self,
 						wfMsgHtml( 'nextpage', str_replace( '_',' ', htmlspecialchars( $s->page_title ) ) ),
 						array(),
@@ -231,6 +233,6 @@ class SpecialPrefixindex extends SpecialAllpages {
 				Xml::closeElement( 'table' );
 		}
 
-		$wgOut->addHTML( $out2 . $out );
+		$this->getOutput()->addHTML( $out2 . $out );
 	}
 }
