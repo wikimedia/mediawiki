@@ -1031,7 +1031,7 @@ abstract class Installer {
 		 */
 		if( $utf8 ) {
 			$useNormalizer = 'utf8';
-			$utf8 = utf8_normalize( $not_normal_c, UNORM_NFC );
+			$utf8 = utf8_normalize( $not_normal_c, UtfNormal::UNORM_NFC );
 			if ( $utf8 !== $normal_c ) $needsUpdate = true;
 		}
 		if( $intl ) {

@@ -28,17 +28,6 @@
  * @defgroup UtfNormal UtfNormal
  */
 
-/**
- * For using the ICU wrapper
- */
-define( 'UNORM_NONE', 1 );
-define( 'UNORM_NFD',  2 );
-define( 'UNORM_NFKD', 3 );
-define( 'UNORM_NFC',  4 );
-define( 'UNORM_DEFAULT', UNORM_NFC );
-define( 'UNORM_NFKC', 5 );
-define( 'UNORM_FCD',  6 );
-
 define( 'NORMALIZE_ICU', function_exists( 'utf8_normalize' ) );
 define( 'NORMALIZE_INTL', function_exists( 'normalizer_normalize' ) );
 
@@ -57,6 +46,17 @@ define( 'NORMALIZE_INTL', function_exists( 'normalizer_normalize' ) );
  * @ingroup UtfNormal
  */
 class UtfNormal {
+	/**
+	 * For using the ICU wrapper
+	 */
+	const UNORM_NONE = 1;
+	const UNORM_NFD  = 2;
+	const UNORM_NFKD = 3;
+	const UNORM_NFC  = UNORM_NFC;
+	const UNORM_NFKC = 5;
+	const UNORM_FCD  = 6;
+	const UNORM_DEFAULT = self::UNORM_NFC;
+
 	static $utfCombiningClass = null;
 	static $utfCanonicalComp = null;
 	static $utfCanonicalDecomp = null;
@@ -82,7 +82,7 @@ class UtfNormal {
 
 			# UnicodeString constructor fails if the string ends with a
 			# head byte. Add a junk char at the end, we'll strip it off.
-			return rtrim( utf8_normalize( $string . "\x01", UNORM_NFC ), "\x01" );
+			return rtrim( utf8_normalize( $string . "\x01", self::UNORM_NFC ), "\x01" );
 		} elseif( NORMALIZE_INTL ) {
 			$string = self::replaceForNativeNormalize( $string );
 			$norm = normalizer_normalize( $string, Normalizer::FORM_C );
@@ -121,7 +121,7 @@ class UtfNormal {
 		if( NORMALIZE_INTL )
 			return normalizer_normalize( $string, Normalizer::FORM_C );
 		elseif( NORMALIZE_ICU )
-			return utf8_normalize( $string, UNORM_NFC );
+			return utf8_normalize( $string, self::UNORM_NFC );
 		elseif( UtfNormal::quickIsNFC( $string ) )
 			return $string;
 		else
@@ -139,7 +139,7 @@ class UtfNormal {
 		if( NORMALIZE_INTL )
 			return normalizer_normalize( $string, Normalizer::FORM_D );
 		elseif( NORMALIZE_ICU )
-			return utf8_normalize( $string, UNORM_NFD );
+			return utf8_normalize( $string, self::UNORM_NFD );
 		elseif( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFD( $string );
 		else
@@ -158,7 +158,7 @@ class UtfNormal {
 		if( NORMALIZE_INTL )
 			return normalizer_normalize( $string, Normalizer::FORM_KC );
 		elseif( NORMALIZE_ICU )
-			return utf8_normalize( $string, UNORM_NFKC );
+			return utf8_normalize( $string, self::UNORM_NFKC );
 		elseif( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFKC( $string );
 		else
@@ -177,7 +177,7 @@ class UtfNormal {
 		if( NORMALIZE_INTL )
 			return normalizer_normalize( $string, Normalizer::FORM_KD );
 		elseif( NORMALIZE_ICU )
-			return utf8_normalize( $string, UNORM_NFKD );
+			return utf8_normalize( $string, self::UNORM_NFKD );
 		elseif( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFKD( $string );
 		else
