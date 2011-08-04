@@ -91,14 +91,6 @@ class RandomImageGenerator {
 		if ( !isset( $this->dictionaryFile ) ) {
 			throw new Exception( "RandomImageGenerator: dictionary file not found or not specified properly" );
 		}
-		
-		if ( !class_exists( 'Imagick' ) ) {
-			throw new Exception( 'No Imagick extension' );
-		}
-		global $wgExiv2Command;
-		if ( !$wgExiv2Command || !is_executable( $wgExiv2Command ) ) {
-			throw new Exception( 'exiv2 not executable or $wgExiv2Command not set' );
-		}
 	}
 
 	/**
@@ -129,7 +121,8 @@ class RandomImageGenerator {
 			return 'writeSvg';
 		} else {
 			// figure out how to write images
-			if ( class_exists( 'Imagick' ) ) {
+			global $wgExiv2Command;
+			if ( class_exists( 'Imagick' ) && $wgExiv2Command && is_executable( $wgExiv2Command ) ) {
 				return 'writeImageWithApi';
 			} elseif ( $wgUseImageMagick && $wgImageMagickConvertCommand && is_executable( $wgImageMagickConvertCommand ) ) {
 				return 'writeImageWithCommandLine';
@@ -304,9 +297,7 @@ class RandomImageGenerator {
 			if ( $retval !== 0 ) {
 				print "Error with $cmd: $retval, $err\n";
 			}
-                }
-
-
+		}
 	}
 
 	/**

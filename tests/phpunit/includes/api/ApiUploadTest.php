@@ -107,12 +107,12 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		try {
 			$randomImageGenerator = new RandomImageGenerator();
+			$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
 		}
 		catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
-		$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
 		$filePath = $filePaths[0];
 		$fileSize = filesize( $filePath );
 		$fileName = basename( $filePath );
@@ -204,12 +204,12 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		try {
 			$randomImageGenerator = new RandomImageGenerator();
+			$filePaths = $randomImageGenerator->writeImages( 2, $extension, wfTempDir() );
 		}
 		catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
-		$filePaths = $randomImageGenerator->writeImages( 2, $extension, wfTempDir() );
 		// we'll reuse this filename
 		$fileName = basename( $filePaths[0] );
 
@@ -278,11 +278,12 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		try {
 			$randomImageGenerator = new RandomImageGenerator();
+			$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
 		}
 		catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
-		$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
+
 		$fileNames[0] = basename( $filePaths[0] );
 		$fileNames[1] = "SameContentAs" . $fileNames[0];
 
@@ -361,12 +362,12 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		try {
 			$randomImageGenerator = new RandomImageGenerator();
+			$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
 		}
 		catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
-		$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
 		$filePath = $filePaths[0];
 		$fileSize = filesize( $filePath );
 		$fileName = basename( $filePath );
