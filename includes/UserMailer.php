@@ -523,7 +523,7 @@ class EmailNotification {
 		$keys    = array();
 
 		if ( $this->oldid ) {
-			$difflink = $this->title->getFullUrl( 'diff=0&oldid=' . $this->oldid );
+			$difflink = wfExpandUrl( $this->title->getFullUrl( 'diff=0&oldid=' . $this->oldid ), PROTO_HTTP );
 			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited', $difflink );
 			$keys['$OLDID']   = $this->oldid;
 			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'changed' );
@@ -540,17 +540,17 @@ class EmailNotification {
 			 * revision.
 			 */
 			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
-					$this->title->getFullURL( "oldid={$this->oldid}&diff=next" ) );
+					wfExpandUrl( $this->title->getFullURL( "oldid={$this->oldid}&diff=next" ), PROTO_HTTP ) );
 		}
 
 		$body = strtr( $body, $keys );
 		$pagetitle = $this->title->getPrefixedText();
 		$keys['$PAGETITLE']          = $pagetitle;
-		$keys['$PAGETITLE_URL']      = $this->title->getFullUrl();
+		$keys['$PAGETITLE_URL']      = wfExpandUrl( $this->title->getFullUrl(), PROTO_HTTP );
 
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
-		$keys['$UNWATCHURL']         = $this->title->getFullUrl( 'action=unwatch' );
+		$keys['$UNWATCHURL']         = wfExpandUrl( $this->title->getFullUrl( 'action=unwatch' ), PROTO_HTTP );
 
 		$subject = strtr( $subject, $keys );
 
@@ -585,10 +585,10 @@ class EmailNotification {
 			$subject = str_replace( '$PAGEEDITOR', $name, $subject );
 			$keys['$PAGEEDITOR']          = $name;
 			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $name );
-			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getFullUrl();
+			$keys['$PAGEEDITOR_EMAIL'] = wfExpandUrl( $emailPage->getFullUrl(), PROTO_HTTP );
 		}
 		$userPage = $editor->getUserPage();
-		$keys['$PAGEEDITOR_WIKI'] = $userPage->getFullUrl();
+		$keys['$PAGEEDITOR_WIKI'] = wfExpandUrl( $userPage->getFullUrl(), PROTO_HTTP );
 		$body = strtr( $body, $keys );
 		$body = wordwrap( $body, 72 );
 
