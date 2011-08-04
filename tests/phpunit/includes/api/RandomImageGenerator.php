@@ -32,7 +32,6 @@ class RandomImageGenerator {
 	private $minHeight = 400;
 	private $maxHeight = 800;
 	private $shapesToDraw = 5;
-	private $imageWriteMethod;
 
 	/**
 	 * Orientations: 0th row, 0th column, EXIF orientation code, rotation 2x2 matrix that is opposite of orientation
