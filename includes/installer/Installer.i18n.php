@@ -602,6 +602,7 @@ Parameters:
 	'config-apc' => 'Message indicates if this program is available',
 	'config-eaccel' => 'Message indicates if this program is available',
 	'config-wincache' => 'Message indicates if this program is available',
+	'config-no-cli-uploads-check' => 'CLI = Call Level Interface',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
 	'config-db-account-lock' => "It might be easier to translate ''normal operation'' as \"also after the installation process\"",
@@ -3147,9 +3148,12 @@ Miniaturansichten von Bildern werden möglich sein, sobald das Hochladen von Dat
 Miniaturansichten von Bildern sind daher nicht möglich.',
 	'config-no-uri' => "'''Fehler:''' Die aktuelle URL konnte nicht ermittelt werden.
 Der Installationsvorgang wurde daher abgebrochen.",
+	'config-no-cli-uri' => "'''Warnung''': Es wurde kein Pfad zum Skipt (--scriptpath) angegeben. Daher wird der Standardpfad genutzt: <code>$1</code>.",
 	'config-using-server' => 'Der Servername „<nowiki>$1</nowiki>“ wird verwendet.',
+	'config-using-uri' => 'Verwende Server-URL „<nowiki>$1$2</nowiki>“.',
 	'config-uploads-not-safe' => "'''Warnung:''' Das Standardverzeichnis für hochgeladene Dateien <code>$1</code> ist für die willkürliche Ausführung von Skripten anfällig.
 Obwohl MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen diese [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
+	'config-no-cli-uploads-check' => "'''Warnung''': Das Standardverzeichnis für hochgeladene Dateien (<code>$1</code>) wird nicht auf Sicherheitsanfälligkeiten bezüglich willkürlicher Skriptausführungen während der Installation des ''Call Level Interface'' (CLI) geprüft.",
 	'config-brokenlibxml' => 'Das System nutzt eine Kombination aus PHP- und libxml2-Versionen, die fehleranfällig ist und versteckte Datenfehler bei MediaWiki und anderen Webanwendungen verursachen kann.
 PHP muss auf Version 5.2.9 oder später sowie libxml2 auf die Version 2.7.3 oder später aktualisiert werden, um das Problem zu lösen. Installationsabbruch ([http://bugs.php.net/bug.php?id=45996 siehe hierzu die Fehlermeldung bei PHP]).',
 	'config-using531' => 'MediaWiki kann nicht zusammen mit PHP $1 verwendet werden. Grund hierfür ist ein Fehler im Zusammenhang mit den Verweisparametern zu <code>__call()</code>.
@@ -8219,7 +8223,7 @@ $messages['ig'] = array(
 	'config-admin-password' => 'Okwúngáfè:',
 	'config-admin-password-confirm' => 'Okwúngáfè mgbe ozor:',
 	'mainpagetext' => "'''MediaWiki a banyélé nke oma.'''",
-	'mainpagedocfooter' => "Gbàkpó [http://meta.wikimedia.org/wiki/Help:Contents Ǹdù Ọ'bànifé] màkà ụmá màkà Í jí ngwa orunotu bu wiki.
+	'mainpagedocfooter' => "Gbàkpó [http://meta.wikimedia.org/wiki/Help:Contents Ǹdù Ọ'bànifé] màkà ụmá màkà Í jí ngwa nsónùsòrò bu wiki.
 
 == I bídó ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ndétu ndósé ihe]
@@ -13696,7 +13700,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 Возможность использования миниатюр изображений будет отключена.',
 	'config-no-uri' => "'''Ошибка:''' Не могу определить текущий URI.
 Установка прервана.",
-	'config-using-server' => 'Использование имени сервера «<nowiki>$1</nowiki>».',
+	'config-using-server' => 'Будет использовано имя сервера «<nowiki>$1</nowiki>».',
 	'config-uploads-not-safe' => "'''Внимание:''' директория, используемая по умолчанию для загрузок (<code>$1</code>) уязвима к выполнению произвольных скриптов.
 Хотя MediaWiki проверяет все загружаемые файлы на наличие угроз, настоятельно рекомендуется [http://www.mediawiki.org/wiki/Manual:Security#Upload_security закрыть данную уязвимость] перед включением загрузки файлов.",
 	'config-brokenlibxml' => 'В вашей системе имеется сочетание версий PHP и libxml2, могущее привести к скрытым повреждениям данных в MediaWiki и других веб-приложениях.

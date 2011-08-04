@@ -27,6 +27,7 @@
  * @author Remember the dot
  * @author Saper
  * @author Sp5uhe
+ * @author Stlmch
  * @author Stv
  * @author Szczepan1990
  * @author Timpul
@@ -2324,6 +2325,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'protect-level-sysop'         => 'Dostęp mają tylko administratorzy',
 'protect-summary-cascade'     => 'dziedziczenie',
 'protect-expiring'            => 'wygasa $1 (UTC)',
+'protect-expiring-local'      => 'wygasa $1',
 'protect-expiry-indefinite'   => 'na zawsze',
 'protect-cascade'             => 'Dziedziczenie zabezpieczenia – zabezpiecz wszystkie strony zawarte na tej stronie.',
 'protect-cantedit'            => 'Nie możesz zmienić poziomu zabezpieczenia tej strony, ponieważ nie masz uprawnień do jej edycji.',
@@ -3100,7 +3102,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-fnumber-format'              => 'f&nbsp;/&nbsp;$1',
 'exif-exposureprogram'             => 'Program ekspozycji',
 'exif-spectralsensitivity'         => 'Czułość widmowa',
-'exif-isospeedratings'             => 'Szybkość aparatu zgodnie z ISO12232',
+'exif-isospeedratings'             => 'Czułość aparatu zgodnie z&nbsp;normą ISO&nbsp;12232',
 'exif-shutterspeedvalue'           => 'Szybkość migawki',
 'exif-aperturevalue'               => 'Przysłona obiektywu',
 'exif-brightnessvalue'             => 'Jasność',
@@ -3765,13 +3767,16 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
 
 # Special:ComparePages
-'comparepages'     => 'Porównanie stron',
-'compare-selector' => 'Porównanie wersji stron',
-'compare-page1'    => 'Strona 1',
-'compare-page2'    => 'Strona 2',
-'compare-rev1'     => 'Wersja 1',
-'compare-rev2'     => 'Wersja 2',
-'compare-submit'   => 'Porównaj',
+'comparepages'                => 'Porównanie stron',
+'compare-selector'            => 'Porównanie wersji stron',
+'compare-page1'               => 'Strona 1',
+'compare-page2'               => 'Strona 2',
+'compare-rev1'                => 'Wersja 1',
+'compare-rev2'                => 'Wersja 2',
+'compare-submit'              => 'Porównaj',
+'compare-invalid-title'       => 'Tytuł jest nieprawidłowy.',
+'compare-title-not-exists'    => 'Tytuł, który podałeś nie istnieje.',
+'compare-revision-not-exists' => 'Zmiana, którą wybrałeś nie istnieje.',
 
 # Database error messages
 'dberr-header'      => 'Ta wiki nie działa poprawnie',

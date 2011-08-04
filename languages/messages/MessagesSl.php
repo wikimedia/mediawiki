@@ -2283,6 +2283,7 @@ Stopnjo zaščite te strani lahko spremenite, vendar to ne bo vplivalo na kaskad
 'protect-level-sysop'         => 'Samo administratorji',
 'protect-summary-cascade'     => 'kaskadno',
 'protect-expiring'            => 'poteče $1 (UTC)',
+'protect-expiring-local'      => 'poteče $1',
 'protect-expiry-indefinite'   => 'nedoločeno',
 'protect-cascade'             => 'Zaščiti strani, ki so vključene v to stran (kaskadna zaščita)',
 'protect-cantedit'            => 'Ne morete spreminjati stopnje zaščite te strani, ker nimate dovoljenja za njeno urejanje.',

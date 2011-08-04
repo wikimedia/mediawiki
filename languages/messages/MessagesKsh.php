@@ -744,6 +744,7 @@ Et süht us, wi wann ene kappodde Brauser udder <i lang=\"en\">proxy</i>ẞööv
 
 # E-mail sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler met dä Funxjohn <code lang="en">mail()</code> vum PHP',
+'user-mail-no-addy'      => 'Do häs versöhg en <i lang="en">e-mail</i> der ohne en Adräß ze verschecke',
 
 # Change password dialog
 'resetpass'                 => 'Passwood tuusche udder neu ußjävve',
@@ -803,9 +804,15 @@ Eijmohl-Paßwoot: $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'Donn Ding Address för de <i lang="en">e-mail</i> ändere',
+'changeemail-header'   => 'Donn en Adräß för de <i lang="en">e-mail</i> ändere',
+'changeemail-text'     => 'Föll dat Fommulaa uß, öm Ding Adräß för de <i lang="en">e-mail</i> ze ändere.
+Do moß Ding Paßwoot enjävve, öm Ding Änderong ze bschtäätejje.',
 'changeemail-no-info'  => 'Do mööts ald enjelogg sin, öm tiräk op di Sigg jonn ze dörve',
 'changeemail-oldemail' => 'Ding Address för de <i lang="en">e-mail</i> es jäz:',
 'changeemail-newemail' => 'Ding neue Address för de <i lang="en">e-mail</i> sull wääde:',
+'changeemail-none'     => '(kein)',
+'changeemail-submit'   => 'Lohß jonn!',
+'changeemail-cancel'   => 'Ophüre',
 
 # Edit page toolbar
 'bold_sample'     => 'Fätte Schreff',
@@ -1371,6 +1378,8 @@ dat dänne ihr Daate topaktuell sin,
 'prefs-watchlist-token'         => 'Oppassleß-Kennzeishe:',
 'prefs-misc'                    => 'Söns',
 'prefs-resetpass'               => 'Dat Passwood ändere',
+'prefs-changeemail'             => 'Donn en Adräß för de <i lang="en">e-mail</i> ändere',
+'prefs-setemail'                => 'Donn en Adräß för de <i lang="en">e-mail</i> faßlääje',
 'prefs-email'                   => '<i lang="en">e-mail</i>',
 'prefs-rendering'               => 'Et Sigge-Aanzeije',
 'saveprefs'                     => 'Fasshalde',
@@ -2027,10 +2036,10 @@ All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 
 'disambiguations'      => '„(Wat es dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',
-'disambiguations-text' => 'En de Sigge hee noh sin Links dren op en „(Watt ėßß datt?)“-Sigg.
-De Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
+'disambiguations-text' => 'En de Sigge hee noh sin Links dren, di op en „(Watt ėßß datt?)“-Sigg jonn.
+Esu en Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
 
-(En Atikel jellt als en „(Watt ėßß datt?)“-Sigg un weed hee jeliss, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren is. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt)',
+Ene Atikel jelld als en „(Watt ėßß datt?)“-Sigg, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren es. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt.',
 
 'doubleredirects'                   => 'Ömleitunge op Ömleitunge',
 'doubleredirectstext'               => 'Hee fings De en jede Reih ene Link op de iertste un de zweite Ömleitung, donoh ene Link op de Sigg, wo de
@@ -3900,13 +3909,16 @@ Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 'tags-hitcount'           => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|kein Änderunge}}',
 
 # Special:ComparePages
-'comparepages'     => 'Sigge verjliesche',
-'compare-selector' => 'Versione vun Sigge verjlieshe',
-'compare-page1'    => 'De ein Sigg',
-'compare-page2'    => 'De ander Sigg',
-'compare-rev1'     => 'de ein Version',
-'compare-rev2'     => 'de ander Version',
-'compare-submit'   => 'Verjlieshe!',
+'comparepages'                => 'Sigge verjliesche',
+'compare-selector'            => 'Versione vun Sigge verjlieshe',
+'compare-page1'               => 'De ein Sigg',
+'compare-page2'               => 'De ander Sigg',
+'compare-rev1'                => 'de ein Version',
+'compare-rev2'                => 'de ander Version',
+'compare-submit'              => 'Verjlieshe!',
+'compare-invalid-title'       => 'Dä aanjejovve Tettel es nit jöltesch',
+'compare-title-not-exists'    => 'De aanjejovve Sigg jidd_et nit.',
+'compare-revision-not-exists' => 'Dä aanjejovve Version jidd_et jaa nit.',
 
 # Database error messages
 'dberr-header'      => 'Dat Wiki heh häd en Schwierischkeit',
@@ -3944,14 +3956,18 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'ajax-confirm-save'             => 'Avshpeishere',
 'ajax-confirm-save-all'         => 'All di Änderunge faßhallde',
 'ajax-cancel'                   => 'Nix Ändere!',
+'ajax-cancel-all'               => 'Donn all di Änderunge wider verjäße',
 'ajax-add-category-summary'     => 'Donn de Saachjropp „$1“ derbei.',
 'ajax-edit-category-summary'    => 'Uß dä Saachjropp „$1“ eruß un en de Saachjropp „$2“ erin jedonn',
 'ajax-remove-category-summary'  => 'Saachjropp „$1“ eruß nämme',
+'ajax-category-question'        => 'Woröm wells De heh di Änderonge maache:',
 'ajax-error-title'              => 'Fähler',
-'ajax-remove-category-error'    => 'Et wohr nit müjjelesch, di Saachjropp eruß ze nämme.
-Dat es fö jewöhnlej_esu, wann di Saachjropp övver en Schabloon en di Sigg jekumme es.',
-'ajax-edit-category-error'      => 'Mer kunnte di Saachjropp nit tuusche.
-Dat kütt öff dovun, dat se övver en Schabloon enjedraare weed.',
+'ajax-remove-category-error'    => 'Et wohr nit müjjelesch, di Saachjropp „$1“ eruß ze nämme.
+Dat es fö jewöhnlej_esu, wann di Saachjropp övver en Schabloon en di Sigg enjedraare es.',
+'ajax-edit-category-error'      => 'Mer kunnte di Saachjropp „$1“ nit ußtuusche.
+Dat künnt dovun kumme, dat se övver en Schabloon enjedraare weed.',
 'ajax-category-already-present' => 'Heh di Sigg es ald en dä Saachjropp „$1“dren.',
+'ajax-category-hook-error'      => 'En  lokaale Funxjuhn löht di Änderunge nit zoh.',
+'ajax-api-error'                => 'Dat API hädd ene Fähler jemäldt: $1: $2',
 
 );

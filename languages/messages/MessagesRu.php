@@ -1100,7 +1100,7 @@ $3 указал следующую причину: ''$2''",
 'rev-deleted-comment'         => '(описание правки удалено)',
 'rev-deleted-user'            => '(имя автора стёрто)',
 'rev-deleted-event'           => '(запись удалена)',
-'rev-deleted-user-contribs'   => '[имя участника или IP-адрес удалёны — правка скрыта со страницы вклада]',
+'rev-deleted-user-contribs'   => '[имя участника или IP-адрес удалены — правка скрыта со страницы вклада]',
 'rev-deleted-text-permission' => "Эта версия страницы была '''удалена'''.
 Возможно, объяснения даны в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
 'rev-deleted-text-unhide'     => "Эта версия страницы была '''удалена'''.
@@ -2358,6 +2358,7 @@ $UNWATCHURL
 'protect-level-sysop'         => 'Только администраторы',
 'protect-summary-cascade'     => 'каскадная',
 'protect-expiring'            => 'истекает $1 (UTC)',
+'protect-expiring-local'      => 'истекает $1',
 'protect-expiry-indefinite'   => 'бессрочно',
 'protect-cascade'             => 'Защищать страницы, включённые в эту страницу (каскадная защита)',
 'protect-cantedit'            => 'Вы не можете изменить уровень защиты этой страницы, потому что у вас нет прав для её редактирования.',
@@ -3775,13 +3776,16 @@ MediaWiki распространяется в надежде, что она бу
 'tags-hitcount'           => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
 
 # Special:ComparePages
-'comparepages'     => 'Сравнение страниц',
-'compare-selector' => 'Сравнение версий страниц',
-'compare-page1'    => 'Первая страница',
-'compare-page2'    => 'Вторая страница',
-'compare-rev1'     => 'Первая версия',
-'compare-rev2'     => 'Вторая версия',
-'compare-submit'   => 'Сравнить',
+'comparepages'                => 'Сравнение страниц',
+'compare-selector'            => 'Сравнение версий страниц',
+'compare-page1'               => 'Первая страница',
+'compare-page2'               => 'Вторая страница',
+'compare-rev1'                => 'Первая версия',
+'compare-rev2'                => 'Вторая версия',
+'compare-submit'              => 'Сравнить',
+'compare-invalid-title'       => 'Указанное вами название недопустимо.',
+'compare-title-not-exists'    => 'Не существует указанного вами названия.',
+'compare-revision-not-exists' => 'Указанной вами версии не существует.',
 
 # Database error messages
 'dberr-header'      => 'Эта вики испытывает затруднения',

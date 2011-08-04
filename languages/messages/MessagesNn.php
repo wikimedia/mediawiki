@@ -573,6 +573,8 @@ $1',
 'page-rss-feed'           => '«$1» RSS-kjelde',
 'page-atom-feed'          => '«$1» Atom-kjelde',
 'red-link-title'          => '$1 (sida finst ikkje)',
+'sort-descending'         => '↓Sorter fallande',
+'sort-ascending'          => '↓Sorter stigande',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Side',
@@ -649,6 +651,8 @@ Ho kan allereie vere sletta av andre.',
 'cascadeprotected'     => 'Denne sida er verna mot endring fordi ho er inkludert i {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på:
 $2',
 'namespaceprotected'   => "Du har ikkje tilgang til å endre sidene i '''$1'''-namnerommet.",
+'customcssprotected'   => '↓Du har ikkje tilgang til å endre denne sida, fordi ho inneheld ein annan brukar sine personlege innstillingar.',
+'customjsprotected'    => '↓Du har ikkje tilgang til å endra denne JavaScript-sida fordi ho inneheld ein annen brukar sine personlege innstillingar.',
 'ns-specialprotected'  => 'Sider i {{ns:special}}-namnerommet kan ikkje endrast.',
 'titleprotected'       => "Denne sidetittelen er verna mot oppretting av [[User:$1|$1]].
 Grunnen som er gjeven er: ''$2''.",
@@ -747,6 +751,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 
 # E-mail sending
 'php-mail-error-unknown' => 'Ukjend feil i PHPs mail()-funksjon',
+'user-mail-no-addy'      => '↓Prøvde å senda e-post utan e-postadresse',
 
 # Change password dialog
 'resetpass'                 => 'Endra passord',
@@ -767,8 +772,28 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'resetpass-temp-password'   => 'Mellombels passord:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Attendestilling av passord',
-'passwordreset-username' => 'Brukarnamn:',
+'passwordreset'              => 'Attendestilling av passord',
+'passwordreset-text'         => '↓Fyll ut dette skjemaet for å motta ei påminning om kontoopplysningane dine i ein e-post.',
+'passwordreset-legend'       => '↓Nullstill passordet',
+'passwordreset-disabled'     => '↓Tilbakestilling av passord er ikkje aktivert på denne wikien',
+'passwordreset-pretext'      => '↓{{PLURAL:$1||Tast inn ein av datadelane nedanfor}}',
+'passwordreset-username'     => 'Brukarnamn:',
+'passwordreset-email'        => '↓E-postadresse:',
+'passwordreset-emailtitle'   => '↓Kontodetaljar på {{SITENAME}}',
+'passwordreset-emailelement' => '↓Brukarnamn: $1
+Mellombels passord: $2',
+'passwordreset-emailsent'    => '↓Ei påminning har vorte sendt på e-post.',
+
+# Special:ChangeEmail
+'changeemail'          => '↓Endre e-postadresse',
+'changeemail-header'   => '↓Endre kontoen si e-postadresse',
+'changeemail-text'     => '↓Fyll ut dette skjemaet for å endra di e-postadresse. Du må oppgje passordet ditt for å stadfesta endringa.',
+'changeemail-no-info'  => '↓Du må vera pålogga for å få tilgang direkte til denne sida.',
+'changeemail-oldemail' => '↓Noverande e-postadresse:',
+'changeemail-newemail' => 'Ny e-postadresse:',
+'changeemail-none'     => '↓(ingen)',
+'changeemail-submit'   => '↓Endre e-post',
+'changeemail-cancel'   => '↓Avbryt',
 
 # Edit page toolbar
 'bold_sample'     => 'Halvfeit skrift',
@@ -1258,6 +1283,8 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-watchlist-token'         => 'Emne på overvakingslista:',
 'prefs-misc'                    => 'Andre',
 'prefs-resetpass'               => 'Endra passord',
+'prefs-changeemail'             => '↓Endre e-postadresse',
+'prefs-setemail'                => '↓Oppgje ei e-postadresse',
 'prefs-email'                   => 'Val for e-post',
 'prefs-rendering'               => 'Utsjånad',
 'saveprefs'                     => 'Lagre',
@@ -1281,7 +1308,7 @@ Her er det framlegg til eit tal som kan nyttast, tilfelleleg henta fram: $1',
 'savedprefs'                    => 'Brukarinnstillingane er lagra.',
 'timezonelegend'                => 'Tidssone:',
 'localtime'                     => 'Lokaltid:',
-'timezoneuseserverdefault'      => 'Nytt standardinnstillinga til tenaren',
+'timezoneuseserverdefault'      => '↓Nytt standardinnstillinga til wikien ($1)',
 'timezoneuseoffset'             => 'Anna (oppgje skilnad)',
 'timezoneoffset'                => 'Skilnad¹:',
 'servertime'                    => 'Tenartid:',
@@ -1459,10 +1486,11 @@ Dette kan ikke tilbakestillast.',
 'right-sendemail'             => 'Senda e-post til andre brukarar',
 
 # User rights log
-'rightslog'      => 'Brukartilgangslogg',
-'rightslogtext'  => 'Dette er ein logg over endringar av brukartilgang.',
-'rightslogentry' => 'endra brukartilgangen til $1 frå $2 til $3',
-'rightsnone'     => '(ingen)',
+'rightslog'                  => 'Brukartilgangslogg',
+'rightslogtext'              => 'Dette er ein logg over endringar av brukartilgang.',
+'rightslogentry'             => 'endra brukartilgangen til $1 frå $2 til $3',
+'rightslogentry-autopromote' => '↓vart automatisk forfremja frå $2 til $3',
+'rightsnone'                 => '(ingen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'sjå denne sida',
@@ -2066,6 +2094,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'watchlistanontext'    => 'Du lyt $1 for å vise eller endre sider på overvakingslista di.',
 'watchnologin'         => 'Ikkje innlogga',
 'watchnologintext'     => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna endre overvakingslista.',
+'addwatch'             => '↓Legg til i overvakingslista',
 'addedwatchtext'       => "Sida «[[:$1]]» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
 
 Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",

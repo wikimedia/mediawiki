@@ -2242,7 +2242,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-cantedit'            => 'Et voi muuttaa sivun suojaustasoa, koska sinulla ei ole oikeutta muokata sivua.',
 'protect-othertime'           => 'Muu kesto',
 'protect-othertime-op'        => 'muu kesto',
-'protect-existing-expiry'     => 'Nykyinen vanhenemisaika: $3 kello $2',
+'protect-existing-expiry'     => 'Nykyinen vanhenemisaika: $2 kello $3',
 'protect-otherreason'         => 'Muu syy tai tarkennus',
 'protect-otherreason-op'      => 'Muu syy',
 'protect-dropdown'            => '*Yleiset suojaussyyt

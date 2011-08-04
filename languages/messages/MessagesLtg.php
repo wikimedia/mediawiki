@@ -131,7 +131,7 @@ $messages = array(
 'vector-action-delete'     => 'Iztreit',
 'vector-action-move'       => 'Puorceļt',
 'vector-action-protect'    => 'Apsorguot',
-'vector-action-unprotect'  => 'Nūjimt apsardzeibu',
+'vector-action-unprotect'  => 'Puormeit apsardzeibu',
 'vector-view-edit'         => 'Pataiseit',
 'vector-view-history'      => 'Viesture',
 'vector-view-view'         => 'Vērtīs',
@@ -161,7 +161,7 @@ $messages = array(
 'protect'          => 'Apsorguot',
 'protect_change'   => 'puormeit',
 'protectthispage'  => 'Apsorguot itū puslopu',
-'unprotect'        => 'Nūjimt apsardzeibu',
+'unprotect'        => 'Puormeit apsardzeibu',
 'newpage'          => 'Jauna puslopa',
 'talkpage'         => 'Apmīgt itū puslopu',
 'talkpagelinktext' => 'sprīža',
@@ -675,7 +675,7 @@ Pašreizejī lopys '''$1''' īstatejumi ir:",
 'linkshere'                => "Itamuos lopuos ir nūruodis iz lopu '''[[:$1]]''':",
 'isredirect'               => 'puoradresiešonys puslopa',
 'istemplate'               => 'izsaukts',
-'isimage'                  => 'atvaiga saita',
+'isimage'                  => 'Faila saita',
 'whatlinkshere-prev'       => '{{PLURAL:$1|īprīškejū|īprīškejūs $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|nuokamū|nuokamūs $1}}',
 'whatlinkshere-links'      => '← saitys',
@@ -887,5 +887,12 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 
 # Special:SpecialPages
 'specialpages' => 'Specialuos puslopys',
+
+# Add categories per AJAX
+'ajax-add-category'         => 'Dalikt kategoreju',
+'ajax-add-category-submit'  => 'Dalikt',
+'ajax-confirm-save'         => 'Izglobuot',
+'ajax-add-category-summary' => 'Dalikt kategoreju "$1"',
+'ajax-error-title'          => 'Klaida',
 
 );

@@ -671,6 +671,7 @@ Sila tunggu sebentar dan cuba lagi.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
+'user-mail-no-addy'      => 'E-eml cuba dihantar tanpa alamat e-mel',
 
 # Change password dialog
 'resetpass'                 => 'Tukar kata laluan',
@@ -2214,6 +2215,7 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 'protect-level-sysop'         => 'Pentadbir sahaja',
 'protect-summary-cascade'     => 'melata',
 'protect-expiring'            => 'sehingga $1 (UTC)',
+'protect-expiring-local'      => 'luput $1',
 'protect-expiry-indefinite'   => 'tak terbatas',
 'protect-cascade'             => 'Lindungi semua laman yang terkandung dalam laman ini (perlindungan melata)',
 'protect-cantedit'            => 'Anda tidak dibenarkan menukar peringkat perlindungan bagi laman ini.',
@@ -3558,13 +3560,16 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'tags-hitcount'           => '$1 perubahan',
 
 # Special:ComparePages
-'comparepages'     => 'Perbandingan laman',
-'compare-selector' => 'Bandingkan semakan laman',
-'compare-page1'    => 'Laman 1',
-'compare-page2'    => 'Laman 2',
-'compare-rev1'     => 'Semakan 1',
-'compare-rev2'     => 'Semakan 2',
-'compare-submit'   => 'Bandingkan',
+'comparepages'                => 'Perbandingan laman',
+'compare-selector'            => 'Bandingkan semakan laman',
+'compare-page1'               => 'Laman 1',
+'compare-page2'               => 'Laman 2',
+'compare-rev1'                => 'Semakan 1',
+'compare-rev2'                => 'Semakan 2',
+'compare-submit'              => 'Bandingkan',
+'compare-invalid-title'       => 'Tajuk yang anda nyatakan tidak sah.',
+'compare-title-not-exists'    => 'Tajuk yang anda nyatakan tidak wujud.',
+'compare-revision-not-exists' => 'Semakan yang anda nyatakan tidak wujud.',
 
 # Database error messages
 'dberr-header'      => 'Wiki ini dilanda masalah',

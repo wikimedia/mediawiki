@@ -713,6 +713,7 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',
+'user-mail-no-addy'      => 'Forsøkte å sende e-post uten e-postadresse',
 
 # Change password dialog
 'resetpass'                 => 'Endre passord',
@@ -765,6 +766,17 @@ passord.',
 'passwordreset-emailelement'   => 'Brukernavn: $1
 Midlertidig passord: $2',
 'passwordreset-emailsent'      => 'En påminnelse har blitt sendt på e-post.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Endre e-postadresse',
+'changeemail-header'   => 'Endre kontoens e-postadresse',
+'changeemail-text'     => 'Fyll ut dette skjemaet for å endre din e-postadresse. Du må oppgi ditt passord for å bekrefte endringen.',
+'changeemail-no-info'  => 'Du må være innlogget for å få tilgang direkte til denne siden.',
+'changeemail-oldemail' => 'Nåværende e-postadresse:',
+'changeemail-newemail' => 'Ny e-postadresse:',
+'changeemail-none'     => '(ingen)',
+'changeemail-submit'   => 'Endre e-post',
+'changeemail-cancel'   => 'Avbryt',
 
 # Edit page toolbar
 'bold_sample'     => 'Fet tekst',
@@ -1266,6 +1278,8 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'prefs-watchlist-token'         => 'Nøkkel for overvåkningsliste',
 'prefs-misc'                    => 'Diverse',
 'prefs-resetpass'               => 'Endre passord',
+'prefs-changeemail'             => 'Endre e-postadresse',
+'prefs-setemail'                => 'Oppgi en e-postadresse',
 'prefs-email'                   => 'Alternativer for e-post',
 'prefs-rendering'               => 'Utseende',
 'saveprefs'                     => 'Lagre',
@@ -3644,13 +3658,16 @@ Normale spesialsider.
 'tags-hitcount'           => '{{PLURAL:$1|én endring|$1 endringer}}',
 
 # Special:ComparePages
-'comparepages'     => 'Sammenlign sider',
-'compare-selector' => 'Sammenlign siderevisjoner',
-'compare-page1'    => 'Side 1',
-'compare-page2'    => 'Side 2',
-'compare-rev1'     => 'Revisjon 1',
-'compare-rev2'     => 'Revisjon 2',
-'compare-submit'   => 'Sammenlign',
+'comparepages'                => 'Sammenlign sider',
+'compare-selector'            => 'Sammenlign siderevisjoner',
+'compare-page1'               => 'Side 1',
+'compare-page2'               => 'Side 2',
+'compare-rev1'                => 'Revisjon 1',
+'compare-rev2'                => 'Revisjon 2',
+'compare-submit'              => 'Sammenlign',
+'compare-invalid-title'       => 'Tittelen du oppga er ugyldig.',
+'compare-title-not-exists'    => 'Tittelen du oppga eksisterer ikke.',
+'compare-revision-not-exists' => 'Versjonen du oppga eksisterer ikke.',
 
 # Database error messages
 'dberr-header'      => 'Wikien har et problem',
@@ -3687,14 +3704,18 @@ Normale spesialsider.
 'ajax-confirm-save'             => 'Lagre',
 'ajax-confirm-save-all'         => 'Lagre alle endringer',
 'ajax-cancel'                   => 'Avbryt redigeringer',
+'ajax-cancel-all'               => 'Avbryt alle endringer',
 'ajax-add-category-summary'     => 'Legg til kategorien «$1»',
 'ajax-edit-category-summary'    => 'Endre kategori «$1» til «$2»',
 'ajax-remove-category-summary'  => 'Fjern kategorien «$1»',
+'ajax-category-question'        => 'Hvorfor ønsker du å gjøre følgende endringer:',
 'ajax-error-title'              => 'Feil',
-'ajax-remove-category-error'    => 'Det var umulig å fjerne kategorien.
+'ajax-remove-category-error'    => 'Det var umulig å fjerne kategorien «$1».
 Dette skjer som regel fordi kategorien har blitt lagt til via en mal.',
-'ajax-edit-category-error'      => 'Det var ikke mulig å redigere denne kategorien.
+'ajax-edit-category-error'      => 'Det var ikke mulig å redigere kategorien «$1».
 Dette skjer vanligvis når kategorien har blitt lagt til siden gjennom en mal.',
 'ajax-category-already-present' => 'Denne siden tilhører allerede kategorien $1',
+'ajax-category-hook-error'      => 'En lokal funksjon hindret endringene fra å bli lagret',
+'ajax-api-error'                => 'API-en returnerte en feilmelding: $1: $2',
 
 );

@@ -803,6 +803,7 @@ Volyéd atendre devant que tornar èprovar.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Èrror encognua dens la fonccion mail() de PHP.',
+'user-mail-no-addy'      => 'Tâchiê de mandar un mèssâjo sen adrèce èlèctronica',
 
 # Change password dialog
 'resetpass'                 => 'Changiér lo mot de pâssa',
@@ -3895,13 +3896,16 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'tags-hitcount'           => '$1 changement{{PLURAL:$1||s}}',
 
 # Special:ComparePages
-'comparepages'     => 'Comparar des pâges',
-'compare-selector' => 'Comparar les vèrsions de les pâges',
-'compare-page1'    => 'Pâge 1',
-'compare-page2'    => 'Pâge 2',
-'compare-rev1'     => 'Vèrsion 1',
-'compare-rev2'     => 'Vèrsion 2',
-'compare-submit'   => 'Comparar',
+'comparepages'                => 'Comparar des pâges',
+'compare-selector'            => 'Comparar les vèrsions de les pâges',
+'compare-page1'               => 'Pâge 1',
+'compare-page2'               => 'Pâge 2',
+'compare-rev1'                => 'Vèrsion 1',
+'compare-rev2'                => 'Vèrsion 2',
+'compare-submit'              => 'Comparar',
+'compare-invalid-title'       => 'Lo titro que vos éd spècefiâ est fôx.',
+'compare-title-not-exists'    => 'Lo titro que vos éd spècefiâ ègziste pas.',
+'compare-revision-not-exists' => 'La vèrsion que vos éd spècefiâ ègziste pas.',
 
 # Database error messages
 'dberr-header'      => 'Ceti vouiqui at un problèmo',
@@ -3942,11 +3946,14 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'ajax-add-category-summary'     => 'Apondre la catègorie « $1 »',
 'ajax-edit-category-summary'    => 'Changiér la catègorie « $1 » a « $2 »',
 'ajax-remove-category-summary'  => 'Enlevar la catègorie « $1 »',
+'ajax-category-question'        => 'Porquè voléd-vos fâre cetos changements :',
 'ajax-error-title'              => 'Èrror',
 'ajax-remove-category-error'    => 'O at pas étâ possiblo d’enlevar la catègorie « $1 ».
 En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge avouéc un modèlo.',
 'ajax-edit-category-error'      => 'O at pas étâ possiblo de changiér la catègorie « $1 ».
 En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge dens un modèlo.',
 'ajax-category-already-present' => 'Ceta pâge est ja a la catègorie $1',
+'ajax-category-hook-error'      => 'Una fonccion locala at empachiê d’encartar los changements',
+'ajax-api-error'                => 'L’API at retornâ una èrror : $1 : $2',
 
 );
