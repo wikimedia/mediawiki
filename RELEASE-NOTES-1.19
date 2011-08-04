@@ -44,6 +44,7 @@ production.
 * (bug 29685) do not output NULL parentid with list=deletedrevs&drprop=parentid.
 * siprop=interwikimap and siprop=languages can use silanguagecode to have
   a best effort language name translation. Use CLDR extension for best result.
+* (bug 30230) action=expandtemplates should not silently override invalid title inputs
 
 === Languages updated in 1.19 ===
 

@@ -52,7 +52,7 @@ class ApiExpandTemplates extends ApiBase {
 		// Create title for parser
 		$title_obj = Title::newFromText( $params['title'] );
 		if ( !$title_obj ) {
-			$title_obj = Title::newFromText( 'API' ); // default
+			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
 		$result = $this->getResult();
@@ -107,6 +107,12 @@ class ApiExpandTemplates extends ApiBase {
 
 	public function getDescription() {
 		return 'Expands all templates in wikitext';
+	}
+
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'invalidtitle', 'title' ),
+		) );
 	}
 
 	protected function getExamples() {
