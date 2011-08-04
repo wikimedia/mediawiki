@@ -1893,8 +1893,9 @@ class Article extends Page {
 			$text = $rev->getText();
 		}
 
+		$output = $this->getOutputFromWikitext( $text, $useParserCache );
 		wfProfileOut( __METHOD__ );
-		return $this->getOutputFromWikitext( $text, $useParserCache );
+		return $output;
 	}
 
 	/**
