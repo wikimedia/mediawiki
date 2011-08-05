@@ -3283,9 +3283,6 @@ class Title {
 		$oldid = $this->getArticleID();
 		$latest = $this->getLatestRevID();
 
-		$oldns = $this->getNamespace();
-		$olddbk = $this->getDBkey();
-
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( $moveOverRedirect ) {
@@ -3370,17 +3367,6 @@ class Title {
 				__METHOD__ );
 			$redirectSuppressed = false;
 		} else {
-			// Get rid of old new page entries in Special:NewPages and RC.
-			// Needs to be before $this->resetArticleID( 0 ).
-			$dbw->delete( 'recentchanges', array(
-					'rc_timestamp' => $dbw->timestamp( $this->getEarliestRevTime() ),
-					'rc_namespace' => $oldns,
-					'rc_title' => $olddbk,
-					'rc_new' => 1
-				),
-				__METHOD__
-			);
-
 			$this->resetArticleID( 0 );
 			$redirectSuppressed = true;
 		}
