@@ -710,6 +710,7 @@ Por favor, agarde antes de probar outra vez.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP',
+'user-mail-no-addy'      => 'Intentou enviar un correo sen enderezo de correo electrónico.',
 
 # Change password dialog
 'resetpass'                 => 'Cambiar o contrasinal',
@@ -764,6 +765,8 @@ Contrasinal temporal: $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'Cambiar o enderezo de correo electrónico',
+'changeemail-header'   => 'Cambiar o enderezo de correo electrónico da conta',
+'changeemail-text'     => 'Encha este formulario para cambiar o seu enderezo de correo electrónico. Terá que escribir o seu contrasinal para confirmar este cambio.',
 'changeemail-no-info'  => 'Debe rexistrarse para acceder directamente a esta páxina.',
 'changeemail-oldemail' => 'Enderezo de correo electrónico actual:',
 'changeemail-newemail' => 'Novo enderezo de correo electrónico:',
@@ -872,11 +875,12 @@ ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'userpage-userdoesnotexist-view'   => 'A conta de usuario "$1" non está rexistrada.',
 'blocked-notice-logextract'        => 'Este usuario está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
-'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
-'''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Mac);
-'''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5'';
-'''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias'';
-'''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nota:''' Despois de gardar, cómpre limpar a memoria caché do seu navegador para ver os cambios.
+* '''Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Mac)
+* '''Google Chrome:''' prema en ''Ctrl-Shift-R'' (''Command-Shift-R'' nos Mac)
+* '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
+* '''Konqueror:''' prema en ''Recargar'' ou prema en ''F5''
+* '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''",
 'usercssyoucanpreview'             => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
 'userjsyoucanpreview'              => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
@@ -1253,12 +1257,13 @@ Mentres tanto pode procurar usando o Google.
 Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.',
 
 # Quickbar
-'qbsettings'               => 'Opcións da barra rápida',
-'qbsettings-none'          => 'Ningunha',
-'qbsettings-fixedleft'     => 'Fixa á esquerda',
-'qbsettings-fixedright'    => 'Fixa á dereita',
-'qbsettings-floatingleft'  => 'Flotante á esquerda',
-'qbsettings-floatingright' => 'Flotante á dereita',
+'qbsettings'                => 'Opcións da barra rápida',
+'qbsettings-none'           => 'Ningunha',
+'qbsettings-fixedleft'      => 'Fixa á esquerda',
+'qbsettings-fixedright'     => 'Fixa á dereita',
+'qbsettings-floatingleft'   => 'Flotante á esquerda',
+'qbsettings-floatingright'  => 'Flotante á dereita',
+'qbsettings-directionality' => 'Fixa, segundo a dirección de escritura da súa lingua',
 
 # Preferences page
 'preferences'                   => 'Preferencias',
@@ -2307,6 +2312,7 @@ Pode mudar o nivel de protección da páxina pero iso non afectará á protecci�
 'protect-level-sysop'         => 'Só os administradores',
 'protect-summary-cascade'     => 'protección en serie',
 'protect-expiring'            => 'remata o $2 ás $3 (UTC)',
+'protect-expiring-local'      => 'caduca o $1',
 'protect-expiry-indefinite'   => 'indefinido',
 'protect-cascade'             => 'Protexer as páxinas incluídas nesta (protección en serie)',
 'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten os permisos necesarios para editala.',
@@ -3732,20 +3738,27 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 'sqlite-no-fts'  => '$1 sen soporte para procuras de texto completo',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Engadir unha categoría',
-'ajax-remove-category'         => 'Eliminar a categoría',
-'ajax-edit-category'           => 'Editar a categoría',
-'ajax-add-category-submit'     => 'Engadir',
-'ajax-confirm-ok'              => 'Aceptar',
-'ajax-confirm-title'           => 'Confirmar a acción',
-'ajax-confirm-save'            => 'Gardar',
-'ajax-confirm-save-all'        => 'Gardar todos os cambios',
-'ajax-cancel'                  => 'Cancelar a edición',
-'ajax-cancel-all'              => 'Rexeitar todos os cambios',
-'ajax-add-category-summary'    => 'Engadir a categoría "$1"',
-'ajax-remove-category-summary' => 'Eliminar a categoría "$1"',
-'ajax-error-title'             => 'Erro',
-'ajax-remove-category-error'   => 'Non se puido eliminar esta categoría.
-Normalmente isto ocorre cando a categoría foi engadida á páxina a través dun modelo.',
+'ajax-add-category'             => 'Engadir unha categoría',
+'ajax-remove-category'          => 'Eliminar a categoría',
+'ajax-edit-category'            => 'Editar a categoría',
+'ajax-add-category-submit'      => 'Engadir',
+'ajax-confirm-ok'               => 'Aceptar',
+'ajax-confirm-title'            => 'Confirmar a acción',
+'ajax-confirm-save'             => 'Gardar',
+'ajax-confirm-save-all'         => 'Gardar todos os cambios',
+'ajax-cancel'                   => 'Cancelar a edición',
+'ajax-cancel-all'               => 'Rexeitar todos os cambios',
+'ajax-add-category-summary'     => 'Engadir a categoría "$1"',
+'ajax-edit-category-summary'    => 'Cambiar a categoría "$1" por "$2"',
+'ajax-remove-category-summary'  => 'Eliminar a categoría "$1"',
+'ajax-category-question'        => 'Por que quere facer as seguintes modificacións?:',
+'ajax-error-title'              => 'Erro',
+'ajax-remove-category-error'    => 'Non se puido eliminar a categoría "$1".
+Isto ocorre xeralmente cando a páxina está incluída na categoría a través dun modelo.',
+'ajax-edit-category-error'      => 'Non se puido editar a categoría "$1".
+Isto ocorre xeralmente cando a páxina está incluída na categoría a través dun modelo.',
+'ajax-category-already-present' => 'Esta páxina xa pertence á categoría "$1"',
+'ajax-category-hook-error'      => 'Unha función local impediu que se gardasen os cambios.',
+'ajax-api-error'                => 'O API devolveu un erro: $1: $2.',
 
 );

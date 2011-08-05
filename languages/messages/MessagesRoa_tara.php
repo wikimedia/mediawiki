@@ -2131,6 +2131,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'protect-level-sysop'         => 'Sulamende pe le Sysops',
 'protect-summary-cascade'     => 'a caschete',
 'protect-expiring'            => "more 'u $1 (UTC)",
+'protect-expiring-local'      => "scade 'u $1",
 'protect-expiry-indefinite'   => 'indefinite',
 'protect-cascade'             => "Le pàggene prutette 'ngludene sta pàgene (protezione a caschete)",
 'protect-cantedit'            => 'Tu non ge puè cangià le levèlle de protezzione de sta pàgene, purcè tu non ge tine le diritte pe cangiarle.',

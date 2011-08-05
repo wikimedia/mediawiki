@@ -816,6 +816,14 @@ $2
 임시 비밀번호: $2',
 'passwordreset-emailsent'      => '비밀번호 찾기 이메일을 보냈습니다.',
 
+# Special:ChangeEmail
+'changeemail'          => 'E-mail 주소 변경',
+'changeemail-header'   => '계정 메일 주소 변경',
+'changeemail-no-info'  => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',
+'changeemail-oldemail' => '현재 E-mail 주소 :',
+'changeemail-newemail' => '새 이메일 주소:',
+'changeemail-none'     => '(없음)',
+
 # Edit page toolbar
 'bold_sample'     => '굵은 글씨',
 'bold_tip'        => '굵은 글씨',

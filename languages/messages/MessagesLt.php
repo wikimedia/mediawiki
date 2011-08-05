@@ -666,6 +666,7 @@ Palaukite prieš bandant vėl.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
+'user-mail-no-addy'      => 'Bandyta išsiųsti elektroninį laišką be el. pašto adreso.',
 
 # Change password dialog
 'resetpass'                 => 'Keisti slaptažodį',
@@ -678,7 +679,7 @@ Palaukite prieš bandant vėl.',
 'resetpass_submit'          => 'Nustatyti slaptažodį ir prisijungti',
 'resetpass_success'         => 'Jūsų slaptažodis pakeistas sėkmingai! Dabar prisijungiama...',
 'resetpass_forbidden'       => 'Slaptažodžiai negali būti pakeisti',
-'resetpass-no-info'         => 'Jūs turite būti prisijugęs, kad pasiektumėte puslapį tiesiogiai.',
+'resetpass-no-info'         => 'Jūs turite būti prisijungęs, kad pasiektumėte puslapį tiesiogiai.',
 'resetpass-submit-loggedin' => 'Keisti slaptažodį',
 'resetpass-submit-cancel'   => 'Atšaukti',
 'resetpass-wrong-oldpass'   => 'Klaidingas laikinas ar esamas slaptažodis.
@@ -699,6 +700,17 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'passwordreset-emailelement'   => 'Naudotojo vardas: $1
 Laikinas slaptažodis: $2',
 'passwordreset-emailsent'      => 'Priminimo laiškas buvo išsiųstas.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Pakeisti el. pašto adresą',
+'changeemail-header'   => 'Keisti paskyros el. pašto adresą',
+'changeemail-text'     => 'Užpildykite šią formą, jei norite pakeisti savo el. pašto adresą. Jums reikės įvesti savo slaptažodį, siekiant patvirtinti šį pakeitimą.',
+'changeemail-no-info'  => 'Jūs turite būti prisijungęs, kad pasiektumėte puslapį tiesiogiai.',
+'changeemail-oldemail' => 'Dabartinis el. pašto adresas:',
+'changeemail-newemail' => 'Naujas el. pašto adresas:',
+'changeemail-none'     => '(nėra)',
+'changeemail-submit'   => 'Keisti el. pašto adresą',
+'changeemail-cancel'   => 'Atšaukti',
 
 # Edit page toolbar
 'bold_sample'     => 'Paryškintas tekstas',
@@ -1180,7 +1192,7 @@ Prašome patikrinti sąrašus.',
 'qbsettings-fixedright'     => 'Fiksuoti dešinėje',
 'qbsettings-floatingleft'   => 'Plaukiojantis kairėje',
 'qbsettings-floatingright'  => 'Plaukiojantis dešinėje',
-'qbsettings-directionality' => 'Pataisyta, priklausomai nuo jūsų kalbos krypties',
+'qbsettings-directionality' => 'Pataisyta, priklausomai nuo jūsų rašybos ir kalbos krypties',
 
 # Preferences page
 'preferences'                   => 'Nustatymai',
@@ -1205,6 +1217,8 @@ Prašome patikrinti sąrašus.',
 'prefs-watchlist-token'         => 'Stebimųjų sąrašo raktas:',
 'prefs-misc'                    => 'Įvairūs nustatymai',
 'prefs-resetpass'               => 'Keisti slaptažodį',
+'prefs-changeemail'             => 'Keisti el. pašto adresą',
+'prefs-setemail'                => 'Nustatyti el. pašto adresą',
 'prefs-email'                   => 'El. pašto nustatymai',
 'prefs-rendering'               => 'Išvaizda',
 'saveprefs'                     => 'Išsaugoti',
@@ -2043,9 +2057,11 @@ El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustaty
 'watchlistanontext'    => 'Prašome $1, kad peržiūrėtumėte ar pakeistumėte elementus savo stebimųjų sąraše.',
 'watchnologin'         => 'Neprisijungęs',
 'watchnologintext'     => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]], kad pakeistumėte savo stebimųjų sąrašą.',
+'addwatch'             => 'Pridėti į stebimųjų sąrašą',
 'addedwatchtext'       => "Puslapis „[[:$1]]“ pridėtas į [[Special:Watchlist|stebimųjų sąrašą]].
 Būsimi puslapio bei atitinkamo aptarimo puslapio pakeitimai bus rodomi stebimųjų puslapių sąraše,
 taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąraše]], kad išsiskirtų iš kitų puslapių.",
+'removewatch'          => 'Pašalinti iš stebimųjų sąrašo',
 'removedwatchtext'     => 'Puslapis „[[:$1]]“ pašalintas iš jūsų [[Special:Watchlist|stebimųjų sąrašo]].',
 'watch'                => 'Stebėti',
 'watchthispage'        => 'Stebėti šį puslapį',
@@ -2195,6 +2211,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 'protect-level-sysop'         => 'Tik administratoriai',
 'protect-summary-cascade'     => 'pakopinė apsauga',
 'protect-expiring'            => 'baigia galioti $1 (UTC)',
+'protect-expiring-local'      => 'baigia galioti $1',
 'protect-expiry-indefinite'   => 'neribotai',
 'protect-cascade'             => 'Apsaugoti puslapius, įtrauktus į šį puslapį (pakopinė apsauga).',
 'protect-cantedit'            => 'Jūs negalite keisti šio puslapio apsaugojimo lygių, nes neturite teisių jo redaguoti.',
@@ -3033,7 +3050,9 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-headline'                    => 'Antraštė',
 'exif-credit'                      => 'Padėka/tiekėjas',
 'exif-source'                      => 'Šaltinis',
+'exif-editstatus'                  => 'Paveikslėlio redagavimo būsena',
 'exif-urgency'                     => 'Skuba',
+'exif-fixtureidentifier'           => 'Pastovių duomenų pavadinimas',
 'exif-locationdest'                => 'Rodoma vietovė',
 'exif-locationdestcode'            => 'Rodomos vietovės kodas',
 'exif-objectcycle'                 => 'Dienos laikas, kuriam skiriamas turinys',
@@ -3042,25 +3061,35 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-languagecode'                => 'Kalba',
 'exif-iimversion'                  => 'IIM versija',
 'exif-iimcategory'                 => 'Kategorija',
+'exif-iimsupplementalcategory'     => 'Papildomos kategorijos',
 'exif-datetimeexpires'             => 'Nenaudokite po',
 'exif-datetimereleased'            => 'Išleista',
+'exif-originaltransmissionref'     => 'Pradinis perdavimo vietos kodas',
 'exif-identifier'                  => 'Identifikatorius',
+'exif-lens'                        => 'Naudotas objektyvas',
 'exif-serialnumber'                => 'kameros serijinis numeris',
 'exif-cameraownername'             => 'Fotoaparato savininkas',
 'exif-label'                       => 'Etiketė',
+'exif-datetimemetadata'            => 'Paskutinį kartą metadata duomenys keisti',
+'exif-nickname'                    => 'Neoficialus paveikslėlio pavadinimas',
 'exif-rating'                      => 'Vertinimas (iki 5)',
+'exif-rightscertificate'           => 'Teisių valdymo sertifikatas',
 'exif-copyrighted'                 => 'Autorių teisių statusas',
 'exif-copyrightowner'              => 'Autorystės teisių savininkas',
 'exif-usageterms'                  => 'Naudojimo sąlygos',
+'exif-webstatement'                => 'Autorių teisių pareiškimas internete',
 'exif-originaldocumentid'          => 'Unikalus ID orginalus dokumentas',
 'exif-licenseurl'                  => 'Autorių teisių licencijos URL',
 'exif-morepermissionsurl'          => 'Alternatyvi licencijavimo informacija',
+'exif-attributionurl'              => 'Kai pakartotinai naudojate ši darbą, prašome nurodyti į',
 'exif-preferredattributionname'    => 'Kai naudojate ši darbą prašome nurodyti',
 'exif-pngfilecomment'              => 'JPEG failo komentaras',
+'exif-disclaimer'                  => 'Atsakomybės apribojimas',
 'exif-contentwarning'              => 'Turinio įspėjimas',
 'exif-giffilecomment'              => 'GIF failo komentaras',
 'exif-intellectualgenre'           => 'Elemento tipas',
 'exif-subjectnewscode'             => 'Objektas kodas',
+'exif-scenecode'                   => 'IPTC scenos kodas',
 'exif-event'                       => 'Vaizduojamas įvykis',
 'exif-organisationinimage'         => 'Vaizduojama organizacija',
 'exif-personinimage'               => 'Vaizduojamas asmuo',
@@ -3069,6 +3098,9 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 
 # EXIF attributes
 'exif-compression-1' => 'Nesuspausta',
+'exif-compression-2' => 'CCITT grupės 3 1-Dimensijos Modifikuotas Hafmano duomenų paleidimo ilgio kodavimas.',
+'exif-compression-3' => 'CCITT 3 grupės fakso kodavimas',
+'exif-compression-4' => 'CCITT 4 grupės fakso kodavimas',
 
 'exif-copyrighted-true'  => 'Autorinės teisės',
 'exif-copyrighted-false' => 'Viešas domenas',
@@ -3089,6 +3121,8 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 
 'exif-xyresolution-i' => '$1 taškai colyje',
 'exif-xyresolution-c' => '$1 taškai centimetre',
+
+'exif-colorspace-65535' => 'Spalvos nekalibruotos',
 
 'exif-componentsconfiguration-0' => 'neegzistuoja',
 
@@ -3237,31 +3271,44 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsdirection-t' => 'Tikroji kryptis',
 'exif-gpsdirection-m' => 'Magnetinė kryptis',
 
-'exif-dc-date'      => 'Data (-os)',
-'exif-dc-publisher' => 'Leidėjas',
-'exif-dc-rights'    => 'Teisės',
-'exif-dc-type'      => 'Laikmenos tipas',
+'exif-ycbcrpositioning-1' => 'Centruotas',
+'exif-ycbcrpositioning-2' => 'Bendras išdėstymas',
+
+'exif-dc-contributor' => 'Autoriai',
+'exif-dc-coverage'    => 'Erdvės ar laiko apimtis',
+'exif-dc-date'        => 'Data (-os)',
+'exif-dc-publisher'   => 'Leidėjas',
+'exif-dc-relation'    => 'Susijusi medija',
+'exif-dc-rights'      => 'Teisės',
+'exif-dc-source'      => 'Šaltinis',
+'exif-dc-type'        => 'Laikmenos tipas',
 
 'exif-rating-rejected' => 'Atmesta',
 
 'exif-isospeedratings-overflow' => 'Didesnis už 65535',
 
+'exif-iimcategory-ace' => 'Menas, kultūra ir pramogos',
 'exif-iimcategory-clj' => 'Nusikalstamumas ir įstatymas',
 'exif-iimcategory-dis' => 'Nelaimės ir nelaimingi atsitikimai',
 'exif-iimcategory-fin' => 'Ekonomika ir verslas',
 'exif-iimcategory-edu' => 'Švietimas',
+'exif-iimcategory-evn' => 'Aplinka',
 'exif-iimcategory-hth' => 'Sveikata',
+'exif-iimcategory-hum' => 'Žmogaus interesai',
 'exif-iimcategory-lab' => 'Darbas',
+'exif-iimcategory-lif' => 'Gyvenimo būdas ir laisvalaikis',
 'exif-iimcategory-pol' => 'Politika',
 'exif-iimcategory-rel' => 'Raligija ir tikėjimas',
 'exif-iimcategory-sci' => 'Mokslas ir technologijos',
 'exif-iimcategory-soi' => 'Socialiniai klausimai',
 'exif-iimcategory-spo' => 'Sportas',
+'exif-iimcategory-war' => 'Karas, konfliktas ir neramumai',
 'exif-iimcategory-wea' => 'Oras',
 
 'exif-urgency-normal' => 'Normalus ( $1 )',
 'exif-urgency-low'    => 'Žemas ( $1 )',
 'exif-urgency-high'   => 'Aukštas ( $1 )',
+'exif-urgency-other'  => 'Vartotojo nustatyta pirmenybė ($1)',
 
 # External editor support
 'edit-externally'      => 'Atverti išoriniame redaktoriuje',
@@ -3351,16 +3398,23 @@ $1',
 'trackbackdeleteok' => 'Trackback buvo sėkmingai ištrintas.',
 
 # Delete conflict
-'deletedwhileediting' => 'Dėmesio: Šis puslapis ištrintas po to, kai pradėjote redaguoti!',
-'confirmrecreate'     => "Naudotojas [[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
+'deletedwhileediting'      => 'Dėmesio: Šis puslapis ištrintas po to, kai pradėjote redaguoti!',
+'confirmrecreate'          => "Naudotojas [[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
 : ''$2''
 Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
-'recreate'            => 'Atkurti',
+'confirmrecreate-noreason' => 'Naudotojas [[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai jūs pradėjote redaguoti. Prašome patvirtinti, jog jūs tikrai norite atkurti šį puslapį.',
+'recreate'                 => 'Atkurti',
 
 # action=purge
 'confirm_purge_button' => 'Gerai',
 'confirm-purge-top'    => 'Išvalyti šio puslapio podėlį?',
 'confirm-purge-bottom' => 'Puslapio perkūrimas išvalo podėlį ir priverčia sugeneruoti pačią naujausią puslapio versiją.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'Gerai',
+'confirm-watch-top'      => 'Pridėti šį puslapį į stebimųjų sąrašą?',
+'confirm-unwatch-button' => 'Gerai',
+'confirm-unwatch-top'    => 'Pašalinti šį puslapį iš jūsų stebimųjų sąrašo?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ankstesnis puslapis',
@@ -3527,13 +3581,16 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'tags-hitcount'           => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
 
 # Special:ComparePages
-'comparepages'     => 'Palyginti puslapius',
-'compare-selector' => 'Palyginti puslapio keitimus',
-'compare-page1'    => 'Puslapis 1',
-'compare-page2'    => 'Puslapis 2',
-'compare-rev1'     => 'Pirma versija',
-'compare-rev2'     => 'Antra versija',
-'compare-submit'   => 'Palyginti',
+'comparepages'                => 'Palyginti puslapius',
+'compare-selector'            => 'Palyginti puslapio keitimus',
+'compare-page1'               => 'Puslapis 1',
+'compare-page2'               => 'Puslapis 2',
+'compare-rev1'                => 'Pirma versija',
+'compare-rev2'                => 'Antra versija',
+'compare-submit'              => 'Palyginti',
+'compare-invalid-title'       => 'Jūsų nurodytas pavadinimas neleistinas.',
+'compare-title-not-exists'    => 'Pavadinimas, kurį nurodėte, neegzistuoja.',
+'compare-revision-not-exists' => 'Keitimas, kurį nurodėte, neegzistuoja.',
 
 # Database error messages
 'dberr-header'      => 'Ši svetainė turi problemų.',
@@ -3561,14 +3618,27 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'sqlite-no-fts'  => '$1 be visatekstės paieškos palaikymo',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Pridėti kategoriją',
-'ajax-add-category-submit'     => 'Pridėti',
-'ajax-confirm-title'           => 'Patvirtinti veiksmą',
-'ajax-confirm-save'            => 'Išsaugoti',
-'ajax-add-category-summary'    => 'Pridėti kategoriją „$1“',
-'ajax-remove-category-summary' => 'Panaikinti kategoriją „$1“',
-'ajax-error-title'             => 'Klaida',
-'ajax-remove-category-error'   => 'Nepavyko pašalinti šios kategorijos.
+'ajax-add-category'             => 'Pridėti kategoriją',
+'ajax-remove-category'          => 'Pašalinti kategoriją',
+'ajax-edit-category'            => 'Redaguoti kategoriją',
+'ajax-add-category-submit'      => 'Pridėti',
+'ajax-confirm-ok'               => 'Gerai',
+'ajax-confirm-title'            => 'Patvirtinti veiksmą',
+'ajax-confirm-save'             => 'Išsaugoti',
+'ajax-confirm-save-all'         => 'Išsaugoti visus pakeitimus',
+'ajax-cancel'                   => 'Atšaukti redagavimą',
+'ajax-cancel-all'               => 'Atšaukti visus pakeitimus',
+'ajax-add-category-summary'     => 'Pridėti kategoriją „$1“',
+'ajax-edit-category-summary'    => 'Keisti kategoriją "$1" į "$2"',
+'ajax-remove-category-summary'  => 'Panaikinti kategoriją „$1“',
+'ajax-category-question'        => 'Kodėl jūs norite atlikti šiuos keitimus:',
+'ajax-error-title'              => 'Klaida',
+'ajax-remove-category-error'    => 'Nepavyko pašalinti kategorijos "$1".
 Dažniausiai taip nutinka, kai kategorija būna pridėta į šabloną, kuris naudojamas puslapyje.',
+'ajax-edit-category-error'      => 'Kategorijos "$1" nepavyko redaguoti.
+Dažniausiai taip nutinka, kai kategorija būna pridėta į šabloną, kuris naudojamas puslapyje.',
+'ajax-category-already-present' => 'Šis puslapis jau priskirtas kategorijai "$1"',
+'ajax-category-hook-error'      => 'Vietinė funkcija neleido išsaugoti pakeitimų.',
+'ajax-api-error'                => 'API grąžino klaidą: $1 : $2 .',
 
 );

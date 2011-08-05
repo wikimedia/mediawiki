@@ -7292,9 +7292,13 @@ Le miniaturas de imagines essera activate si tu activa le incargamento de files.
 Le miniaturas de imagines essera disactivate.',
 	'config-no-uri' => "'''Error:''' Non poteva determinar le URI actual.
 Installation abortate.",
+	'config-no-cli-uri' => "'''Attention''': Cammino al script (--scriptpath) non specificate. Le predefinition es usate: <code>$1</code>.",
 	'config-using-server' => 'Es usate le nomine de servitor "<nowiki>$1</nowiki>".',
+	'config-using-uri' => 'Le URL de servitor "<nowiki>$1$2</nowiki>" es usate.',
 	'config-uploads-not-safe' => "'''Aviso:''' Le directorio predefinite pro files incargate <code>$1</code> es vulnerabile al execution arbitrari de scripts.
 Ben que MediaWiki verifica tote le files incargate contra le menacias de securitate, il es altemente recommendate [http://www.mediawiki.org/wiki/Manual:Security#Upload_security remediar iste vulnerabilitate de securitate] ante de activar le incargamento de files.",
+	'config-no-cli-uploads-check' => "'''Attention:''' Le directorio predefinite pro files incargate (<code>$1</code>) non es verificate contra le vulnerabilitate
+al execution arbitrari de scripts durante le installation de CLI.",
 	'config-brokenlibxml' => 'Vostre systema ha un combination de versiones de PHP e libxml2 que es defectuose e pote causar corruption celate de datos in MediaWiki e altere applicationes web.
 Actualisa a PHP 5.2.9 o plus recente e libxml2 2.7.3 o plus recente ([http://bugs.php.net/bug.php?id=45996 problema reportate presso PHP]).
 Installation abortate.',
@@ -10169,9 +10173,13 @@ $1
 Минијатуризацијата на сликите ќе биде оневозможена.',
 	'config-no-uri' => "'''Грешка:''' Не можев да го утврдам тековниот URI.
 Инсталацијата е откажана.",
+	'config-no-cli-uri' => "'''Предупредување''': Нема наведено --scriptpath. Ќе се користи основниот: <code>$1</code>.",
 	'config-using-server' => 'Користите опслужувач под името „<nowiki>$1</nowiki>“.',
+	'config-using-uri' => 'Користите опслужувач со URL-адреса „<nowiki>$1$2</nowiki>“.',
 	'config-uploads-not-safe' => "'''Предупредување:''' Вашата матична папка за подигање <code>$1</code> е подложна на извршување (пуштање) на произволни скрипти.
 Иако МедијаВики врши безбедносни проверки на сите подигнати податотеки, ве советуваме [http://www.mediawiki.org/wiki/Manual:Security#Upload_security да ја затворите оваа безбедносна дупка] пред да овозможите подигање.",
+	'config-no-cli-uploads-check' => "'''Предупредување:''' Вашата основна папка за подигања (<code>$1</code>) не е проверена дали е подложна
+произволно извршување на скрипти во текот на инсталацијата на посредникот на повикувачко ниво (CLI).",
 	'config-brokenlibxml' => 'Вашиот систем има комбинација од PHP и libxml2 верзии и затоа има грешки и може да предизвика скриено расипување на податоците кај МедијаВики и други мрежни програми.
 Надградете го на PHP 5.2.9 и libxml2 2.7.3 или нивни понови верзии! ПРЕКИНУВАМ ([http://bugs.php.net/bug.php?id=45996 грешката е заведена во PHP]).',
 	'config-using531' => 'МедијаВики не може да се користи со PHP $1 поради грешка кај упатните параметри за <code>__call()</code>.
@@ -12976,9 +12984,12 @@ Se possibilitar uploads, a miniaturização de imagens será activada.',
 A miniaturização de imagens será desactivada.',
 	'config-no-uri' => "'''Erro:''' Não foi possível determinar a URI actual.
 A instalação foi abortada.",
-	'config-using-server' => 'A utilizar o nome de servidor "<nowiki>$1</nowiki>".',
+	'config-no-cli-uri' => "'''Aviso''':  Não foi especificado um --scriptpath; por omissão, será usado: <code>$1</code>.",
+	'config-using-server' => 'Será usado o nome do servidor "<nowiki>$1</nowiki>".',
+	'config-using-uri' => 'Será usada a URL do servidor "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe' => "'''Aviso:''' O directório por omissão para uploads <code>$1</code>, está vulnerável à execução arbitrária de scripts.
 Embora o MediaWiki verifique a existência de ameaças de segurança em todos os ficheiros enviados, é altamente recomendado que [http://www.mediawiki.org/wiki/Manual:Security#Upload_security vede esta vulnerabilidade de segurança] antes de possibilitar uploads.",
+	'config-no-cli-uploads-check' => "'''Aviso:''' Durante a instalação da CLI (\"Call Level Interface\", a Interface ao Nível da Chamada de Execução), o directório por omissão para uploads, <code>\$1</code>, não é verificado para determinar se é vulnerável à execução de código arbitrário.",
 	'config-brokenlibxml' => 'O seu sistema tem uma combinação de versões de PHP e libxml2 conhecida por ser problemática, podendo causar corrupção de dados no MediaWiki e outras aplicações da internet.
 Actualize para o PHP versão 5.2.9 ou posterior e libxml2 versão 2.7.3 ou posterior ([http://bugs.php.net/bug.php?id=45996 incidência reportada no PHP]).
 Instalação interrompida.',
@@ -15438,7 +15449,7 @@ $messages['zh-hans'] = array(
 	'config-title' => 'MediaWiki $1配置',
 	'config-information' => '信息',
 	'config-localsettings-upgrade' => '已检测到<code>LocalSettings.php</code>文件。要升级该配置，请在下面的框中输入<code>$wgUpgradeKey</code>的值。您可以在LocalSettings.php中找到它。',
-	'config-localsettings-cli-upgrade' => '已检测到LocalSettings.php文件。要升级该配置，请使用--upgrade=yes选项。',
+	'config-localsettings-cli-upgrade' => '已检测到LocalSettings.php文件。要升级该配置，请直接运行update.php。',
 	'config-localsettings-key' => '升级密钥：',
 	'config-localsettings-badkey' => '您提供的密钥不正确。',
 	'config-upgrade-key-missing' => '检测到MediaWiki的配置已经存在。若要升级该配置，请将下面一行文本添加到LocalSettings.php的底部：
@@ -15486,17 +15497,25 @@ $1',
 
 您应已收到附随于本程序的<doclink href=\"Copying\">GNU通用公共授权的副本</doclink>；如果没有，请写信至自由软件基金会：59 Temple Place - Suite 330, Boston, Ma 02111-1307, USA，或[http://www.gnu.org/copyleft/gpl.html 在线阅读]。",
 	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/zh-hans MediaWiki首页]
-* [http://www.mediawiki.org/wiki/Help:Contents/zh-hans 用户帮助]
-* [http://www.mediawiki.org/wiki/Manual:Contents 管理员帮助]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/zh-hans 常见问题解答]',
+* [http://www.mediawiki.org/wiki/Help:Contents/zh-hans 用户指南]
+* [http://www.mediawiki.org/wiki/Manual:Contents 管理员指南]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/zh-hans 常见问题解答]
+----
+* <doclink href=Readme>自述文件</doclink>
+* <doclink href=ReleaseNotes>发行说明</doclink>
+* <doclink href=Copying>复制</doclink>
+* <doclink href=UpgradeDoc>升级</doclink>',
 	'config-env-good' => '环境检查已经完成。您可以安装MediaWiki。',
 	'config-env-bad' => '环境检查已经完成。您不能安装MediaWiki。',
 	'config-env-php' => 'PHP $1已安装。',
+	'config-env-php-toolow' => '已安装PHP $1；但是，MediaWiki需要PHP $2或更高版本。',
 	'config-unicode-using-utf8' => '使用Brion Vibber的utf8_normalize.so实现Unicode正常化。',
 	'config-unicode-using-intl' => '使用[http://pecl.php.net/intl intl PECL扩展]实现Unicode正常化。',
 	'config-unicode-pure-php-warning' => "'''警告'''：[http://pecl.php.net/intl intl PECL扩展]无法处理Unicode正常化，故只能退而采用运行较慢的纯PHP实现的方法。如果您运行着一个高流量的站点，请参阅[http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode正常化]一文。",
 	'config-unicode-update-warning' => "'''警告'''：Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。如果您需要使用Unicode，请将其[http://www.mediawiki.org/wiki/Unicode_normalization_considerations 升级]。",
-	'config-no-db' => '找不到合适的数据库驱动！',
+	'config-no-db' => '找不到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库：$1。
+
+如果您正在使用共享主机，请向您的主机提供商申请安装合适的数据库驱动。如果您通过自行编译安装的PHP，请对其进行重新配置以启用数据库客户端，例如使用<code>./configure --with-mysql</code>。如果您通过Debian或Ubuntu包安装的PHP，您还需要安装php5-mysql模块。',
 	'config-no-fts3' => "'''警告'''：已编译的SQLite不包含[http://sqlite.org/fts3.html FTS3模块]，后台搜索功能将不可用。",
 	'config-register-globals' => "'''警告：PHP的<code>[http://php.net/register_globals register_globals]</code>选项被启用。请尽量禁用该功能，'''虽然不会影响MediaWiki的运行，但您的服务器会被暴露给潜在的安全漏洞。",
 	'config-magic-quotes-runtime' => "'''致命错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]被启用！'''
@@ -15524,9 +15543,14 @@ Object caching is not enabled.",
 	'config-gd' => '已找到内建的GD图形库。如果你启用了上传功能，缩略图功能也将被启用。',
 	'config-no-scaling' => '找不到GD库或ImageMagick。缩略图功能将不可用。',
 	'config-no-uri' => "'''错误：'''无法确定当前的URI。安装已中断。",
+	'config-no-cli-uri' => "'''警告'''：未指定--scriptpath参数，使用默认值：<code>$1</code>。",
+	'config-using-server' => '使用服务器名“<nowiki>$1</nowiki>”。',
+	'config-using-uri' => '使用服务器URL“<nowiki>$1$2</nowiki>”。',
 	'config-uploads-not-safe' => "'''警告：'''您的默认上传目录<code>$1</code>存在允许执行任意脚本的漏洞。尽管MediaWiki会对所有已上传的文件进行安全检查，但我们仍然强烈建议您在启用上传功能前[http://www.mediawiki.org/wiki/Manual:Security#Upload_security 关闭该安全漏洞]。",
+	'config-no-cli-uploads-check' => "'''警告'''：在CLI安装过程中，没有对您的默认上传目录（<code>$1</code>）进行执行任意脚本的漏洞检查。",
 	'config-brokenlibxml' => '您的系统安装的PHP和libxml2版本组合存在故障，并可能在MediaWiki和其他web应用程序中造成隐藏的数据损坏。请将PHP升级到5.2.9或以上，libxml2升级到2.7.3或以上（[http://bugs.php.net/bug.php?id=45996 PHP的故障报告]）。安装已中断。',
-	'config-using531' => '由于函数<code>__call()</code>的引用参数存在故障，PHP $1和MediaWiki无法兼容。请升级到PHP 5.3.2或以上版本，或降级到PHP 5.3.0以修复该问题（[http://bugs.php.net/bug.php?id=50394 PHP的故障报告]）。安装已中断。',
+	'config-using531' => '由于函数<code>__call()</code>的引用参数存在故障，PHP $1和MediaWiki无法兼容。请升级到PHP 5.3.2或更高版本，或降级到PHP 5.3.0以修复该问题。安装已中断。',
+	'config-suhosin-max-value-length' => 'Suhosin已经安装并将GET请求的参数长度限制在$1字节。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能会被降低。如果可能，请在php.ini中将suhosin.get.max_value_length设为1024或更高值，并在LocalSettings.php中将$wgResourceLoaderMaxQueryLength设为同一值。',
 	'config-db-type' => '数据库类型：',
 	'config-db-host' => '数据库主机：',
 	'config-db-host-help' => '如果您的数据库位于另一台服务器上，在此输入主机名或IP地址。
@@ -15542,9 +15566,15 @@ Object caching is not enabled.",
 
 如果您正在使用共享web主机，您的主机提供商或会给您指定一个数据库名称，或会让您通过控制面板创建数据库。',
 	'config-db-name-oracle' => '数据库模式：',
+	'config-db-account-oracle-warn' => '现有三种已支持方案可以将Oracle设置为后端数据库：
+
+如果您希望在安装过程中创建数据库帐户，请为安装程序提供具有SYSDBA角色的数据库帐户，并为web访问帐户指定所需身份证明；否则您可以手动创建web访问的账户并仅须提供该帐户（确保帐户已有创建方案对象（schema object）的所需权限）；或提供两个不同的帐户，其一具有创建权限，另一则被限制为web访问。
+
+具有所需权限账户的创建脚本存放于本程序的“maintenance/oracle/”目录下。请注意，使用受限制的帐户将禁用默认帐户的所有维护性功能。',
 	'config-db-install-account' => '用于安装的用户帐号',
 	'config-db-username' => '数据库用户名：',
 	'config-db-password' => '数据库密码：',
+	'config-db-password-empty' => '请为新数据库用户$1输入密码。尽管您可以创建不使用密码的用户，但这样做并不安全。',
 	'config-db-install-username' => '请输入在安装过程中用于连接数据库的用户名。请勿输入MediaWiki帐号的用户名，请输入您数据库的用户名。',
 	'config-db-install-password' => '请输入在安装过程中用于连接数据库的密码。请勿输入MediaWiki帐号的密码，请输入您数据库的密码。',
 	'config-db-install-help' => '请输入在安装过程中用于连接数据库的用户名和密码。',
@@ -15567,7 +15597,8 @@ Object caching is not enabled.",
 	'config-mysql-old' => '需要MySQL $1或更新的版本，您的版本为$2。',
 	'config-db-port' => '数据库端口：',
 	'config-db-schema' => 'MediaWiki的数据库模式',
-	'config-db-schema-help' => '上述数据库模式的设置通常是正确的。请在有此需求时才更改它们。',
+	'config-db-schema-help' => '此数据库模式通常是正确的，请在有明确需求时才改动之。',
+	'config-pg-test-error' => "无法连接到数据库'''$1'''：$2",
 	'config-sqlite-dir' => 'SQLite数据目录：',
 	'config-sqlite-dir-help' => "SQLite会将所有的数据存储于单一文件中。
 
@@ -15580,19 +15611,22 @@ Object caching is not enabled.",
 请考虑将数据库统一放置在某处，如<code>/var/lib/mediawiki/yourwiki</code>下。",
 	'config-oracle-def-ts' => '默认表空间：',
 	'config-oracle-temp-ts' => '临时表空间：',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki支持以下数据库系统：
 
 $1
 
 如果您在下面列出的数据库系统中没有找到您希望使用的系统，请根据上方链向的指引启用支持。',
 	'config-support-mysql' => '* $1是MediaWiki的首选数据库，对它的支持最为完备（[http://www.php.net/manual/en/mysql.installation.php 如何将对MySQL的支持编译进PHP中]）',
-	'config-support-postgres' => '* $1是一种流行的开源数据库系统，可作为MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中]）',
+	'config-support-postgres' => '* $1是一种流行的开源数据库系统，可作为MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中]）。本程序中可能依然存在一些小而明显的错误，因此并不建议在生产环境中使用该数据库系统。',
 	'config-support-sqlite' => '* $1是一种轻量级的数据库系统，能被良好地支持。（[http://www.php.net/manual/en/pdo.installation.php 如何将对SQLite的支持编译进PHP中]，须使用PDO）',
 	'config-support-oracle' => '* $1是一种商用企业级的数据库。（[http://www.php.net/manual/en/oci8.installation.php 如何将对OCI8的支持编译进PHP中]）',
+	'config-support-ibm_db2' => '* $1是一种商用企业级数据库。',
 	'config-header-mysql' => 'MySQL设置',
 	'config-header-postgres' => 'PostgreSQL设置',
 	'config-header-sqlite' => 'SQLite设置',
 	'config-header-oracle' => 'Oracle设置',
+	'config-header-ibm_db2' => 'IBM DB2设置',
 	'config-invalid-db-type' => '无效的数据库类型',
 	'config-missing-db-name' => '您必须为“数据库名称”输入内容',
 	'config-missing-db-host' => '您必须为“数据库主机”输入内容',
@@ -15604,6 +15638,8 @@ $1
 
 请检查下列的主机、用户名和密码设置后重试。',
 	'config-invalid-schema' => '无效的MediaWiki数据库模式“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）和下划线（_）。',
+	'config-db-sys-create-oracle' => '安装程序仅支持使用SYSDBA帐户创建新帐户。',
+	'config-db-sys-user-exists-oracle' => '用户帐户“$1”已经存在。SYSDBA仅可用于创建新帐户！',
 	'config-postgres-old' => '需要PostgreSQL $1或更新的版本，您的版本为$2。',
 	'config-sqlite-name-help' => '请为您的wiki指定一个用于标识的名称。请勿使用空格或连字号，该名称将被用作SQLite的数据文件名。',
 	'config-sqlite-parent-unwritable-group' => '由于父目录<code><nowiki>$2</nowiki></code>对网页服务器不可写，无法创建数据目录<code><nowiki>$1</nowiki></code>。
@@ -15649,6 +15685,13 @@ chmod a+w $3</pre>',
 	'config-mysql-engine' => '存储引擎：',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''警告'''：您选择了MyISAM作为MySQL的存储引擎，MediaWiki并不推荐您这么做，因为：
+* 它仅能通过表锁定来勉强支持并发
+* 与其他引擎相比，它更容易被损坏
+* MediaWiki代码库并不总会去处理MyISAM
+
+如果您的MySQL程序支持InnoDB，我们高度推荐您使用该引擎替代MyISAM。
+如果您的MySQL程序不支持InnoDB，请考虑升级。",
 	'config-mysql-engine-help' => "'''InnoDB'''通常是最佳选项，因为它对并发操作有着良好的支持。
 
 '''MyISAM'''在单用户或只读环境下可能会有更快的性能表现。但MyISAM数据库出错的概率一般要大于InnoDB数据库。",
@@ -15658,6 +15701,7 @@ chmod a+w $3</pre>',
 	'config-mysql-charset-help' => "在'''二进制模式'''下，MediaWiki会将UTF-8编码的文本存于数据库的二进制字段中。相对于MySQL的UTF-8模式，这种方法效率更高，并允许您使用全范围的Unicode字符。
 
 在'''UTF-8模式'''下，MySQL将知道您数据使用的字符集，并能适当地提供和转换内容。但这样做您将无法在数据库中存储[http://zh.wikipedia.org/wiki/基本多文种平面 基本多文种平面]以外的字符。",
+	'config-ibm_db2-low-db-pagesize' => "您的DB2数据库默认表空间的页长（pagesize）不足。至少需要'''32K'''或更大的页长。",
 	'config-site-name' => 'Wiki的名称：',
 	'config-site-name-help' => '填入的内容会出现在浏览器的标题栏以及其他多处位置中。',
 	'config-site-name-blank' => '输入网站的名称。',
@@ -15668,6 +15712,7 @@ chmod a+w $3</pre>',
 	'config-ns-other-default' => '我的Wiki',
 	'config-project-namespace-help' => "依循维基百科形成的惯例，许多wiki将他们的方针页面存放在与内容页面不同的“'''项目名字空间'''”中。所有位于该名字空间下的页面标题都会被冠以固定的前缀，您可以在此处指定这一前缀。传统上，这一前缀应与wiki的命名保持一致，但请勿在其中使用标点符号，如“#”或“:”。",
 	'config-ns-invalid' => '指定的名字空间“<nowiki>$1</nowiki>”无效，请为项目名字空间指定其他名称。',
+	'config-ns-conflict' => '指定的名称空间“<nowiki>$1</nowiki>”与默认的MediaWiki名称空间冲突。请指定一个不同的项目名称空间。',
 	'config-admin-box' => '管理员帐号',
 	'config-admin-name' => '您的名字：',
 	'config-admin-password' => '密码：',
@@ -15679,12 +15724,13 @@ chmod a+w $3</pre>',
 	'config-admin-password-same' => '密码不能和用户名相同。',
 	'config-admin-password-mismatch' => '两次输入的密码并不相同。',
 	'config-admin-email' => '电子邮件地址：',
-	'config-admin-email-help' => '在此输入电子邮件地址，这样您将可以收到本wiki上的其他用户发来的电子邮件，可以重置您的密码，并能在监视列表中的页面被更改时收到邮件通知。',
+	'config-admin-email-help' => '输入电子邮件地址后，您可以收到此wiki上其他用户发来的电子邮件，并能重置您的密码，还可在监视列表中页面被更改时收到邮件通知。您可以将此字段留空。',
 	'config-admin-error-user' => '在创建用户名为“<nowiki>$1</nowiki>”的管理员帐号时发生内部错误。',
 	'config-admin-error-password' => '在为管理员“<nowiki>$1</nowiki>”设置密码时发生内部错误：<pre>$2</pre>',
 	'config-admin-error-bademail' => '您输入了无效的电子邮件地址。',
 	'config-subscribe' => '订阅[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 发行公告邮件列表]。',
 	'config-subscribe-help' => '此低流量的邮件列表仅用于发行公告，其中包括重要安全公告。请订阅该列表以便在新的版本推出时升级您的MediaWiki。',
+	'config-subscribe-noemail' => '您选择了订阅发行公告邮件列表，但没有提供电子邮件地址。请提供一个电子邮件地址以订阅邮件列表。',
 	'config-almost-done' => '您几乎已经完成了！现在您可以跳过剩下的配置流程并立即安装wiki。',
 	'config-optional-continue' => '多问我一些问题吧。',
 	'config-optional-skip' => '我已经不耐烦了，赶紧安装我的wiki。',
@@ -15705,14 +15751,17 @@ chmod a+w $3</pre>',
 	'config-license' => '版权和许可证：',
 	'config-license-none' => '页脚无许可证',
 	'config-license-cc-by-sa' => '知识共享署名-相同方式分享',
+	'config-license-cc-by' => '知识共享署名',
 	'config-license-cc-by-nc-sa' => '知识共享署名-非商业性使用-相同方式共享',
+	'config-license-cc-0' => '知识共享Zero（公有领域）',
+	'config-license-gfdl' => 'GNU自由文档许可证1.3或更高版本',
 	'config-license-pd' => '公有领域',
 	'config-license-cc-choose' => '选择自定义的知识共享许可证',
 	'config-license-help' => "许多公共wiki会以[http://freedomdefined.org/Definition 自由许可证]的方式释放出编者的所有贡献。这有助于构建社区的主人翁意识，并能鼓励长期贡献。对于非公共wiki或公司wiki，这并非必要条件。
 
 如果您希望使用来自维基百科的内容，并希望维基百科能接受复制自您的wiki的内容，请选择'''知识共享署名-相同方式共享'''。
 
-GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今有效。然而，该许可证的一些特性会增加重用或演绎内容的难度。",
+GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今有效。然而，该许可证难以理解，并会增加重用内容的难度。",
 	'config-email-settings' => '电子邮件设置',
 	'config-enable-email' => '启用出站电子邮件',
 	'config-enable-email-help' => '如果您希望使用电子邮件功能，请正确配置[http://www.php.net/manual/en/mail.configuration.php PHP的邮件设定]。如果您不需要任何电子邮件功能，请在此处禁用它。',
@@ -15734,7 +15783,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-upload-deleted' => '已删除文件的目录：',
 	'config-upload-deleted-help' => '指定用于存放被删除文件的目录。理想情况下，该目录不应能通过web访问。',
 	'config-logo' => '标志URL：',
-	'config-logo-help' => '在MediaWiki的默认外观中，左上角部位有一块135x160像素的区域可用于展示站点的标志。请上传一幅相应大小的图像，并在此输入URL。
+	'config-logo-help' => '在MediaWiki的默认外观中，左侧栏菜单之上有一块135x160像素的标志区。请上传一幅相应大小的图像，并在此输入URL。
 
 如果您不希望使用标志，请将本处留空。',
 	'config-instantcommons' => '启用即时共享资源',
@@ -15751,13 +15800,19 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-cache-accel' => 'PHP对象缓存（APC、eAccelerator、XCache或WinCache）',
 	'config-cache-memcached' => '使用Memcached（需要另外安装并配置）',
 	'config-memcached-servers' => 'Memcached服务器：',
-	'config-memcached-help' => '用于Memcached的IP地址列表。请以半角逗号分割，并指定要使用的端口（例如：127.0.0.1:11211, 192.168.1.25:11211）。',
+	'config-memcached-help' => '用于Memcached的IP地址列表。请保持每行一条，并指定要使用的端口。例如：
+127.0.0.1:11211
+192.168.1.25:1234',
+	'config-memcache-needservers' => '您选择了Memcached作为您的缓存，但并未指定任何服务器。',
+	'config-memcache-badip' => '您为Memcached输入了无效的IP地址：$1。',
+	'config-memcache-noport' => '您没有指定Memcached服务器的端口：$1。如果您不清楚端口是多少，默认值为11211。',
+	'config-memcache-badport' => 'Memcached的端口号应该在$1到$2之间。',
 	'config-extensions' => '扩展',
 	'config-extensions-help' => '已在您的<code>./extensions</code>目录中发现下列扩展。
 
 您可能要对它们进行额外的配置，但您现在可以启用它们。',
 	'config-install-alreadydone' => "'''警告：'''您似乎已经安装了MediaWiki，并试图重新安装它。请前往下一个页面。",
-	'config-install-begin' => '点击继续后，您将开始安装MediaWiki。如果您还想对配置作一些修改，请点击后退。',
+	'config-install-begin' => '点击“{{int:config-continue}}”后，您将开始安装MediaWiki。如果您还想对配置作一些修改，请点击后退。',
 	'config-install-step-done' => '完成',
 	'config-install-step-failed' => '失败',
 	'config-install-extensions' => '正在启用扩展',
@@ -15769,8 +15824,16 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-install-pg-plpgsql' => '正在检查PL/pgSQL语言',
 	'config-pg-no-plpgsql' => '您需要为数据库$1安装PL/pgSQL语言',
 	'config-pg-no-create-privs' => '为安装程序指定的帐号缺少创建帐号的权限。',
+	'config-pg-not-in-role' => '您指定为web用户的帐户已经存在。
+您给本程序指定的帐户不是超级用户，也不是web用户角色的成员，所以它不能创建web用户所拥有的对象。
+
+MediaWiki当前需要使用由web用户所有的表。请指定另一个web帐户名称，或点击“后退”并指定具有适当权限的安装用户。',
 	'config-install-user' => '正在创建数据库用户',
+	'config-install-user-alreadyexists' => '用户“$1”已存在',
+	'config-install-user-create-failed' => '创建用户“$1”失败：$2',
 	'config-install-user-grant-failed' => '授予用户“$1”权限失败：$2',
+	'config-install-user-missing' => '指定的用户“$1”不存在。',
+	'config-install-user-missing-create' => '指定的用户“$1”不存在。如果您想要创建一名，请点选“创建帐户”下面的复选框。',
 	'config-install-tables' => '正在创建数据表',
 	'config-install-tables-exist' => "'''警告'''：MediaWiki的数据表似乎已经存在，跳过创建。",
 	'config-install-tables-failed' => "'''错误'''：创建数据表出错，下为错误信息：$1",
@@ -15778,9 +15841,11 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-install-interwiki-list' => '找不到文件<code>interwiki.list</code>。',
 	'config-install-interwiki-exists' => "'''警告'''：跨wiki数据表似乎已有内容，跳过默认列表。",
 	'config-install-stats' => '初始化统计',
-	'config-install-keys' => '正在生成密钥',
+	'config-install-keys' => '生成密钥中',
+	'config-insecure-keys' => "'''警告'''：在安装过程中生成的{{PLURAL:$2|安全密钥|安全密钥}}（$1）{{PLURAL:$2|并|并}}不一定安全。请考虑手动更改{{PLURAL:$2|它|它们}}。",
 	'config-install-sysop' => '正在创建管理员用户帐号',
-	'config-install-subscribe-fail' => '无法订阅mediawiki-announce',
+	'config-install-subscribe-fail' => '无法订阅mediawiki-announce：$1',
+	'config-install-subscribe-notpossible' => '没有安装cURL，allow_url_fopen也不可用。',
 	'config-install-mainpage' => '正在创建显示默认内容的首页',
 	'config-install-extension-tables' => '正在为已启用扩展创建数据表',
 	'config-install-mainpage-failed' => '无法插入首页:$1',
