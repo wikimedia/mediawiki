@@ -12,7 +12,7 @@ production.
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
-* (bug 27132) movefile right granted by default
+* (bug 27132) movefile right granted by default to registered users.
 
 === New features in 1.19 ===
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki
