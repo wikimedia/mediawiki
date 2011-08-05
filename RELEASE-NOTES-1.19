@@ -45,6 +45,7 @@ production.
 * siprop=interwikimap and siprop=languages can use silanguagecode to have
   a best effort language name translation. Use CLDR extension for best result.
 * (bug 30230) action=expandtemplates should not silently override invalid title inputs
+* (bug 18634) Create API to fetch MediaWiki's language fallback tree structure
 
 === Languages updated in 1.19 ===
 
