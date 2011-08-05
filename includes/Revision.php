@@ -123,7 +123,7 @@ class Revision {
 
 	/**
 	 * @since 1.19
-	 * 
+	 *
 	 * @param $row
 	 * @return Revision
 	 */

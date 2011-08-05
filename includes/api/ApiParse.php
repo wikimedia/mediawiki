@@ -99,6 +99,7 @@ class ApiParse extends ApiBase {
 				if ( $titleObj->getLatestRevID() === intval( $oldid ) )  {
 					$articleObj = new Article( $titleObj, 0 );
 
+					// May get from/save to parser cache
 					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid,
 						 isset( $prop['wikitext'] ) ) ;
 				} else { // This is an old revision, so get the text differently
@@ -110,7 +111,7 @@ class ApiParse extends ApiBase {
 						$this->text = $this->getSectionText( $this->text, 'r' . $rev->getId() );
 					}
 
-					// Do we want to save old revision parses to the parser cache?
+					// Should we save old revision parses to the parser cache?
 					$p_result = $wgParser->parse( $this->text, $titleObj, $popts );
 				}
 			} else { // Not $oldid, but $pageid or $page
@@ -182,6 +183,7 @@ class ApiParse extends ApiBase {
 			}
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out
+				$result_array = array();
 				$result_array['text'] = array();
 				$result->setContent( $result_array['text'], $this->pstText );
 				if ( isset( $prop['wikitext'] ) ) {
@@ -321,7 +323,7 @@ class ApiParse extends ApiBase {
 		if ( $this->section !== false ) {
 			global $wgParser;
 
-			$this->text = $this->getSectionText( $articleObj->getRawText(), !is_null ( $pageId )
+			$this->text = $this->getSectionText( $articleObj->getRawText(), !is_null( $pageId )
 					? 'page id ' . $pageId : $titleObj->getText() );
 
 			// Not cached (save or load)
