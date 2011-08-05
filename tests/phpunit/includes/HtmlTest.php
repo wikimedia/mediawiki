@@ -3,19 +3,23 @@
 
 class HtmlTest extends MediaWikiTestCase {
 	private static $oldLang;
+	private static $oldContLang;
 
 	public function setUp() {
-		global $wgLang, $wgLanguageCode;
+		global $wgLang, $wgContLang, $wgLanguageCode;
 		
 		self::$oldLang = $wgLang;
+		self::$oldContLang = $wgContLang;
+		
 		$wgLanguageCode = 'en';
-		$wgLang = Language::factory( $wgLanguageCode );
+		$wgContLang = $wgLang = Language::factory( $wgLanguageCode );
 	}
 	
 	public function tearDown() {
-		global $wgLang, $wgLanguageCode;
+		global $wgLang, $wgContLang, $wgLanguageCode;
 		$wgLang = self::$oldLang;
-		$wgLanguageCode = $wgLang->getCode();
+		$wgContLang = self::$oldContLang;
+		$wgLanguageCode = $wgContLang->getCode();
 	}
 
 	public function testExpandAttributesSkipsNullAndFalse() {
