@@ -110,9 +110,10 @@ class ApiParse extends ApiBase {
 						$this->text = $this->getSectionText( $this->text, 'r' . $rev->getId() );
 					}
 
+					// Do we want to save old revision parses to the parser cache?
 					$p_result = $wgParser->parse( $this->text, $titleObj, $popts );
 				}
-			} else { // Not $oldid
+			} else { // Not $oldid, but $pageid or $page
 				if ( $params['redirects'] ) {
 					$reqParams = array(
 						'action' => 'query',
@@ -159,6 +160,7 @@ class ApiParse extends ApiBase {
 					$oldid = $articleObj->getRevIdFetched();
 				}
 
+				// Potentially cached
 				$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid,
 					 isset( $prop['wikitext'] ) ) ;
 			}
@@ -189,6 +191,7 @@ class ApiParse extends ApiBase {
 				$result->addValue( null, $this->getModuleName(), $result_array );
 				return;
 			}
+			// Not cached (save or load)
 			$p_result = $wgParser->parse( $params['pst'] ? $this->pstText : $this->text, $titleObj, $popts );
 		}
 
@@ -321,9 +324,11 @@ class ApiParse extends ApiBase {
 			$this->text = $this->getSectionText( $articleObj->getRawText(), !is_null ( $pageId )
 					? 'page id ' . $pageId : $titleObj->getText() );
 
+			// Not cached (save or load)
 			return $wgParser->parse( $this->text, $titleObj, $popts );
 		} else {
 			// Try the parser cache first
+			// getParserOutput will save to Parser cache if able
 			$pout = $articleObj->getParserOutput();
 			if ( $getWikitext ) {
 				$rev = Revision::newFromTitle( $titleObj );
@@ -337,6 +342,7 @@ class ApiParse extends ApiBase {
 
 	private function getSectionText( $text, $what ) {
 		global $wgParser;
+		// Not cached (save or load)
 		$text = $wgParser->getSection( $text, $this->section, false );
 		if ( $text === false ) {
 			$this->dieUsage( "There is no section {$this->section} in " . $what, 'nosuchsection' );
