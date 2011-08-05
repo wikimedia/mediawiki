@@ -2425,6 +2425,7 @@ Vos pouede changiér lo nivél de protèccion de ceta pâge sen que cen afècte 
 'protect-level-sysop'         => 'Ren que los administrators',
 'protect-summary-cascade'     => 'protèccion en cascâda',
 'protect-expiring'            => 'èxpire lo $1 (UTC)',
+'protect-expiring-local'      => 'èxpire lo $1',
 'protect-expiry-indefinite'   => 'sen fin',
 'protect-cascade'             => 'Protège asse-ben les pâges encllues dens ceta (protèccion en cascâda).',
 'protect-cantedit'            => 'Vos pouede pas changiér los nivéls de protèccion de ceta pâge perce que vos avéd pas la pèrmission de la changiér.',
@@ -3718,7 +3719,7 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.',
 'watchlistedit-normal-explain' => 'Los titros de voutra lista de survelyence sont montrâs ce-desot.
 Por enlevar un titro (et sa pâge de discussion), pouentâd la câsa a coutâ et pués clicâd sur lo boton « {{int:Watchlistedit-normal-submit}} ».
 Vos pouede asse-ben changiér la [[Special:EditWatchlist/raw|lista en fôrma bruta]].',
-'watchlistedit-normal-submit'  => 'Enlevar los titros chouèsis',
+'watchlistedit-normal-submit'  => 'Enlevar los titros',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Yon titro at étâ enlevâ|$1 titros ont étâ enlevâs}} de voutra lista de survelyence :',
 'watchlistedit-raw-title'      => 'Changiér la lista de survelyence en fôrma bruta',
 'watchlistedit-raw-legend'     => 'Changement de la lista de survelyence en fôrma bruta',

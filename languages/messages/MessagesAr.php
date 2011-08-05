@@ -10,6 +10,7 @@
  * @author ;Hiba;1
  * @author Abanima
  * @author AhmadSherif
+ * @author Alexknight12
  * @author Alnokta
  * @author Antime
  * @author Bassem JARKAS
@@ -501,7 +502,7 @@ $messages = array(
 
 # Dates
 'sunday'        => 'الأحد',
-'monday'        => 'الإثنين',
+'monday'        => 'الاثنين',
 'tuesday'       => 'الثلاثاء',
 'wednesday'     => 'الأربعاء',
 'thursday'      => 'الخميس',

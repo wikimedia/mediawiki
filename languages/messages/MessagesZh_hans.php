@@ -717,6 +717,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 函数中的未知错误',
+'user-mail-no-addy'      => '尝试发送邮件而不附带电子邮件地址。',
 
 # Change password dialog
 'resetpass'                 => '更改密码',
@@ -850,11 +851,12 @@ $2
 'userpage-userdoesnotexist-view'   => '用户账户“$1”未曾创建。',
 'blocked-notice-logextract'        => '这位用户现正被封锁。
 下面有最近的封锁纪录以供参考：',
-'clearyourcache'                   => "'''注意：在保存以后，您必须清除浏览器的缓存才能看到所作出的改变。'''
-'''Mozilla / Firefox / Safari'''：按住''Shift''再点击''刷新''，或按下''Ctrl-F5''或''Ctrl-R''（在Mac上按下''Command-R''）；
-'''Konqueror'''：只需点击''刷新''或按下''F5''；
-'''Opera'''：在''工具→首选项''中完整清除它们的缓存，或按下''Alt-F5''；
-'''Internet Explorer'''：按住''Ctrl''再点击''刷新''，或按下''Ctrl-F5''。",
+'clearyourcache'                   => "'''注意：在保存以后，您必须绕过浏览器缓存才能看到所作出的改变。'''
+* '''火狐（Firefox）／Safari'''：按住“Shift”键再点击“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上为“Command-R”）
+* '''谷歌浏览器（Google Chrome）'''：按下“Ctrl-Shift-R”（Mac上为“Command-Shift-R”）
+* '''Internet Explorer'''：按住“Ctrl”键再点击“刷新”，或按下“Ctrl-F5”
+* '''Konqueror'''：点击“刷新”或按下“F5”
+* '''Opera'''：在“工具→首选项”中清除缓存",
 'usercssyoucanpreview'             => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 CSS 。",
 'userjsyoucanpreview'              => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 JavaScript 。",
 'usercsspreview'                   => "'''记住您只是在预览您的个人 CSS。'''
@@ -879,7 +881,7 @@ $2
 'token_suffix_mismatch'            => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。'''
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
 'edit_form_incomplete'             => "'''编辑表单的某些部分没有到达服务器 ；请检查您的编辑内容是否完整并再试一次。'''",
-'editing'                          => '编辑$1中',
+'editing'                          => '正在编辑 $1',
 'editingsection'                   => '编辑$1（段落）',
 'editingcomment'                   => '编辑$1中（新段落）',
 'editconflict'                     => '编辑冲突：$1',
@@ -2217,6 +2219,7 @@ $UNWATCHURL
 'protect-level-sysop'         => '仅管理员',
 'protect-summary-cascade'     => '联锁',
 'protect-expiring'            => '终止于$1（UTC）',
+'protect-expiring-local'      => '$1到期',
 'protect-expiry-indefinite'   => '无期',
 'protect-cascade'             => '保护本页中包含的页面（连锁保护）',
 'protect-cantedit'            => '您无法更改这个页面的保护等级，因为您没有权限去编辑它。',
@@ -2297,10 +2300,12 @@ $1',
 'undelete-show-file-submit'    => '是',
 
 # Namespace form on various pages
-'namespace'             => '名称空间：',
-'invert'                => '反向选定',
-'namespace_association' => '关联的命名空间',
-'blanknamespace'        => '（主要）',
+'namespace'                     => '名称空间：',
+'invert'                        => '反向选定',
+'tooltip-invert'                => '选中此复选框可在选择的名称空间（以及关联的名称空间）内隐藏页面更改',
+'namespace_association'         => '关联的命名空间',
+'tooltip-namespace_association' => '选中此复选框可将与选择的名称空间相关的讨论页或子页面包括在内',
+'blanknamespace'                => '（主要）',
 
 # Contributions
 'contributions'       => '用户贡献',
@@ -3117,6 +3122,9 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => '未压缩',
+'exif-compression-2' => 'CCITT第3组一维修改霍夫曼游程编码',
+'exif-compression-3' => 'CCITT第3组传真编码',
+'exif-compression-4' => 'CCITT第4组传真编码',
 'exif-compression-6' => 'JPEG（旧）',
 
 'exif-copyrighted-true'  => '版权',
@@ -3286,6 +3294,7 @@ Variants for Chinese language
 'exif-gpsdirection-m' => '地磁方位',
 
 'exif-ycbcrpositioning-1' => '居中',
+'exif-ycbcrpositioning-2' => '色相定位',
 
 'exif-dc-contributor' => '贡献者',
 'exif-dc-coverage'    => '介质的空间或时间范围',
@@ -3458,7 +3467,7 @@ $1',
 'size-bytes' => '$1字节',
 
 # Live preview
-'livepreview-loading' => '正在载入...',
+'livepreview-loading' => '载入中……',
 'livepreview-ready'   => '载入中……完成！',
 'livepreview-failed'  => '实时预览失败！
 尝试标准预览。',
@@ -3592,13 +3601,16 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'tags-hitcount'           => '$1次更改',
 
 # Special:ComparePages
-'comparepages'     => '比较页面',
-'compare-selector' => '比较页面的修订',
-'compare-page1'    => '第1页',
-'compare-page2'    => '第2页',
-'compare-rev1'     => '修订版本1',
-'compare-rev2'     => '修订版本2',
-'compare-submit'   => '比较',
+'comparepages'                => '比较页面',
+'compare-selector'            => '比较页面的修订',
+'compare-page1'               => '第1页',
+'compare-page2'               => '第2页',
+'compare-rev1'                => '修订版本1',
+'compare-rev2'                => '修订版本2',
+'compare-submit'              => '比较',
+'compare-invalid-title'       => '您指定的标题无效。',
+'compare-title-not-exists'    => '您指定的标题不存在。',
+'compare-revision-not-exists' => '您指定的修订不存在。',
 
 # Database error messages
 'dberr-header'      => '本wiki出现了问题',
@@ -3627,21 +3639,25 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'sqlite-no-fts'  => '不带全文搜索的版本$1',
 
 # Add categories per AJAX
-'ajax-add-category'            => '加入分类',
-'ajax-remove-category'         => '删除类别',
-'ajax-edit-category'           => '编辑类别',
-'ajax-add-category-submit'     => '加入',
-'ajax-confirm-ok'              => '确定',
-'ajax-confirm-title'           => '确认动作',
-'ajax-confirm-save'            => '保存',
-'ajax-confirm-save-all'        => '保存所有更改',
-'ajax-cancel'                  => '取消编辑',
-'ajax-cancel-all'              => '取消所有更改',
-'ajax-add-category-summary'    => '加入分类“$1”',
-'ajax-edit-category-summary'   => '更改类别 "$1" 至 "$2"',
-'ajax-remove-category-summary' => '移除分类“$1”',
-'ajax-error-title'             => '错误',
-'ajax-remove-category-error'   => '不能移除这个分类。
-通常是发生在一个模板中加入该分类。',
+'ajax-add-category'             => '加入分类',
+'ajax-remove-category'          => '删除类别',
+'ajax-edit-category'            => '编辑类别',
+'ajax-add-category-submit'      => '加入',
+'ajax-confirm-ok'               => '确定',
+'ajax-confirm-title'            => '确认动作',
+'ajax-confirm-save'             => '保存',
+'ajax-confirm-save-all'         => '保存所有更改',
+'ajax-cancel'                   => '取消编辑',
+'ajax-cancel-all'               => '取消所有更改',
+'ajax-add-category-summary'     => '加入分类“$1”',
+'ajax-edit-category-summary'    => '更改类别 "$1" 至 "$2"',
+'ajax-remove-category-summary'  => '移除分类“$1”',
+'ajax-category-question'        => '您为什么要进行以下修改：',
+'ajax-error-title'              => '错误',
+'ajax-remove-category-error'    => '不能移除分类“$1”。这通常是由于该分类是随模板加入页面的。',
+'ajax-edit-category-error'      => '不能编辑分类“$1”。这通常是由于该分类是随模板加入页面的。',
+'ajax-category-already-present' => '分类“$1”下已有该页面',
+'ajax-category-hook-error'      => '本地的一则函数阻止了保存更改的操作。',
+'ajax-api-error'                => 'API返回了错误：$1：$2。',
 
 );

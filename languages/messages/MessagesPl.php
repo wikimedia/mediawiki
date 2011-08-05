@@ -2528,7 +2528,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'blocklist-userblocks'            => 'Ukryj blokady konta',
 'blocklist-tempblocks'            => 'Ukryj tymczasowe blokady',
 'blocklist-addressblocks'         => 'Ukryj blokady pojedynczych adresów IP',
-'blocklist-timestamp'             => 'Znacznik czasu',
+'blocklist-timestamp'             => 'Sygnatura czasowa',
 'blocklist-target'                => 'Cel',
 'blocklist-expiry'                => 'Upływa',
 'blocklist-by'                    => 'Zarządzanie blokowaniem',

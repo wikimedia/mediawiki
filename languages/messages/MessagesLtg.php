@@ -135,12 +135,13 @@ $messages = array(
 'vector-view-edit'         => 'Pataiseit',
 'vector-view-history'      => 'Viesture',
 'vector-view-view'         => 'Vērtīs',
+'actions'                  => 'Darbeibys',
 'namespaces'               => 'Vuordu pluoti',
 'variants'                 => 'Varianti',
 
 'errorpagetitle'   => 'Klaida',
 'returnto'         => 'Grīztīs da puslopys $1.',
-'tagline'          => 'Nu {{SITENAME}}',
+'tagline'          => 'Materials nu {{grammar:genitive|{{SITENAME}}}}',
 'help'             => 'Paleigs',
 'search'           => 'Maklātivs',
 'searchbutton'     => 'Meklēt',
@@ -266,8 +267,16 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'loginlanguagelabel'      => 'Volūda: $1',
 
 # Change password dialog
-'resetpass_text'          => '<!-- Dalikt tekstu ite -->',
-'resetpass-submit-cancel' => 'Atsaukt',
+'resetpass_text'            => '<!-- Dalikt tekstu ite -->',
+'resetpass-submit-loggedin' => 'Puormeit paroļu',
+'resetpass-submit-cancel'   => 'Atsaukt',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Slāgvuords:',
+'passwordreset-email'    => 'E-posta adress:',
+
+# Special:ChangeEmail
+'changeemail-cancel' => 'Atsaukt',
 
 # Edit page toolbar
 'bold_sample'     => 'Pamalnais roksts',
@@ -401,30 +410,43 @@ n = nasvareigs lobuojums.',
 'powersearch-togglenone'    => 'Nikas',
 
 # Preferences page
-'preferences'      => 'Īstatejumi',
-'mypreferences'    => 'Muni īstatejumi',
-'datedefault'      => 'Piec nūklusiejuma',
-'prefs-datetime'   => 'Data i laiks',
-'saveprefs'        => 'Izglobuot',
-'timezonelegend'   => 'Laika zona:',
-'prefs-namespaces' => 'Vuordu pluoti',
-'username'         => 'Slāgvuords:',
-'uid'              => 'Lītuotuoja ID:',
-'yourlanguage'     => 'Volūda:',
-'yourgender'       => 'Kuorta:',
-'gender-unknown'   => 'Nava nūruodeits',
-'gender-male'      => 'Veirīts',
-'gender-female'    => 'Sīvīts',
-'prefs-info'       => 'Pamatinformaceja',
+'preferences'           => 'Īstatejumi',
+'mypreferences'         => 'Muni īstatejumi',
+'changepassword'        => 'Puormeit paroļu',
+'datedefault'           => 'Piec nūklusiejuma',
+'prefs-datetime'        => 'Data i laiks',
+'saveprefs'             => 'Izglobuot',
+'timezonelegend'        => 'Laika zona:',
+'localtime'             => 'Vītejais laiks:',
+'timezoneregion-africa' => 'Afrika',
+'timezoneregion-asia'   => 'Azeja',
+'timezoneregion-europe' => 'Europa',
+'prefs-namespaces'      => 'Vuordu pluoti',
+'prefs-files'           => 'Faili',
+'youremail'             => 'Tovs e-posta adress:',
+'username'              => 'Slāgvuords:',
+'uid'                   => 'Lītuotuoja ID:',
+'yourrealname'          => 'Jiusu eistyns vuords:',
+'yourlanguage'          => 'Volūda:',
+'yourgender'            => 'Kuorta:',
+'gender-unknown'        => 'Nava nūruodeits',
+'gender-male'           => 'Veirīts',
+'gender-female'         => 'Sīvīts',
+'email'                 => 'E-posts',
+'prefs-info'            => 'Pamatinformaceja',
+'prefs-signature'       => 'Paroksts',
 
 # Groups
 'group'       => 'Grupa:',
 'group-user'  => 'Lītuotuoji',
 'group-bot'   => 'Boti',
 'group-sysop' => 'Administratori',
+'group-all'   => '(vysi)',
 
-'group-user-member'  => 'lītuotuojs',
-'group-sysop-member' => 'Administrators',
+'group-user-member'       => 'lītuotuojs',
+'group-bot-member'        => 'robots',
+'group-sysop-member'      => 'administrators',
+'group-bureaucrat-member' => 'birokrats',
 
 'grouppage-user'  => '{{ns:project}}:Lītuotuoji',
 'grouppage-bot'   => '{{ns:project}}:Boti',
@@ -433,6 +455,7 @@ n = nasvareigs lobuojums.',
 # Rights
 'right-upload'        => 'Īsyuteit failus',
 'right-upload_by_url' => 'Īsyuteit failu nu URL adresa',
+'right-delete'        => 'Iztreit puslopys',
 
 # User rights log
 'rightslog'  => 'Lītuotuoju tīseibu registrs',

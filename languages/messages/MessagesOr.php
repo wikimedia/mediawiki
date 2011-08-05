@@ -596,12 +596,13 @@ $messages = array(
 'revertmerge' => 'ମିଶାଇବା ନାହିଁ',
 
 # Diffs
-'history-title'           => '"$1" ପାଇଁ ସଙ୍କଳନ ଇତିହାସ',
-'difference'              => '(ସଙ୍କଳନ ଭିତରେ ଥିବା ତଫାତ)',
-'lineno'                  => '$1 କ ଧାଡ଼ି:',
-'compareselectedversions' => 'ବଛାହୋଇଥିବା ସଙ୍କଳନ ଗୁଡ଼ିକୁ ତଉଲିବେ',
-'editundo'                => 'ପଛକୁ ଫେରିବା',
-'diff-multi'              => '({{PLURAL:$2|ଜଣେ ବ୍ୟବହାରକାରୀ|$2 ଜଣ ବ୍ୟବହାରକାରୀ}}ଙ୍କ ଦେଇ ହୋଇଥିବା {{PLURAL:$1|ଗୋଟିଏ ମଝି ସଙ୍କଳନ|$1ଟି ମଝି ସଙ୍କଳନ}} ଦେଖାଯାଉନାହିଁ)',
+'history-title'            => '"$1" ପାଇଁ ସଙ୍କଳନ ଇତିହାସ',
+'difference'               => '(ସଙ୍କଳନ ଭିତରେ ଥିବା ତଫାତ)',
+'lineno'                   => '$1 କ ଧାଡ଼ି:',
+'compareselectedversions'  => 'ବଛାହୋଇଥିବା ସଙ୍କଳନ ଗୁଡ଼ିକୁ ତଉଲିବେ',
+'showhideselectedversions' => 'ବଛା ହୋଇଥିବା ସଙ୍କଳନ ଗୁଡ଼ିକୁ ଦେଖାଇବେ/ଲୁଚାଇବେ',
+'editundo'                 => 'ପଛକୁ ଫେରିବା',
+'diff-multi'               => '({{PLURAL:$2|ଜଣେ ବ୍ୟବହାରକାରୀ|$2 ଜଣ ବ୍ୟବହାରକାରୀ}}ଙ୍କ ଦେଇ ହୋଇଥିବା {{PLURAL:$1|ଗୋଟିଏ ମଝି ସଙ୍କଳନ|$1ଟି ମଝି ସଙ୍କଳନ}} ଦେଖାଯାଉନାହିଁ)',
 
 # Search results
 'searchresults'                    => 'ଖୋଜିବାରୁ ମିଳିଲା',
@@ -831,6 +832,9 @@ $messages = array(
 'specialloguserlabel'  => 'ବ୍ୟବାହାରକାରୀ:',
 'speciallogtitlelabel' => 'ନାଆଁ:',
 'log'                  => 'ଲଗ',
+'all-logs-page'        => 'ସାଧାରଣ ଲଗସବୁ',
+'alllogstext'          => ' {{SITENAME}} ସହିତ ଯୋଡ଼ା ମିଳୁଥିବା ଲଗସବୁ ।
+ଆପଣ ଲଗର ପ୍ରକାର ଅନୁସାରେ ବି ସେସବୁକୁ ବାଛି ପାରିବେ । ଇଉଜରନାଆଁଟି ଛୋଟ ଓ ବଡ଼ ଅକ୍ଷର ଅନୁସାରେ ଅଲଗା ହୋଇଥାଏ, ପୃଷ୍ଠାର ନାଆଁ ସବୁ ବି ଛୋଟ ଓ ବଡ଼ ଇଂରାଜି ଅକ୍ଷର ଅନୁସାରେ ଅଲଗା ହୋଇଥାଏ ।',
 'logempty'             => 'ଲଗରେ ଥିବା ଲେଖା ସହ ମେଳଖାଉ ନାହିଁ ।',
 
 # Special:AllPages
@@ -1114,6 +1118,9 @@ $messages = array(
 'pageinfo-header-views' => 'ଦେଖଣା',
 'pageinfo-subjectpage'  => 'ପୃଷ୍ଠା',
 'pageinfo-talkpage'     => 'ଆଲୋଚନା ପୃଷ୍ଠା',
+
+# Patrol log
+'patrol-log-auto' => '(ଆପେ ଆପେ)',
 
 # Browsing diffs
 'previousdiff' => '← ପୁରୁଣା ବଦଳ',

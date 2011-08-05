@@ -2277,6 +2277,7 @@ Du kan endre sidens beskyttelsesnivå, men det vil ikke påvirke dypbeskyttelsen
 'protect-level-sysop'         => 'Kun administratorer',
 'protect-summary-cascade'     => 'dypbeskyttelse',
 'protect-expiring'            => 'utløper $1 (UTC)',
+'protect-expiring-local'      => 'løper ut $1',
 'protect-expiry-indefinite'   => 'ubestemt',
 'protect-cascade'             => 'Beskytt sider som er inkludert på denne siden (dypbeskyttelse)',
 'protect-cantedit'            => 'Du kan ikke endre beskyttelsesnivået til denne siden fordi du ikke har tillatelse til å redigere den.',

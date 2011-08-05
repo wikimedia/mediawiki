@@ -840,6 +840,8 @@ Tillfälligt lösenord: $2',
 # Special:ChangeEmail
 'changeemail'          => 'Ändra e-postadress',
 'changeemail-header'   => 'Ändra kontots e-postadress',
+'changeemail-text'     => 'Fyll i detta formulär för att ändra din e-postadress. Du måste ange ditt lösenord för att bekräfta ändringen.',
+'changeemail-no-info'  => 'Du måste vara inloggad för att komma åt den här sidan direkt.',
 'changeemail-oldemail' => 'Nuvarande e-postadress:',
 'changeemail-newemail' => 'Ny e-postadress:',
 'changeemail-none'     => '(ingen)',
@@ -1326,12 +1328,13 @@ Du kan istället göra sökningar med hjälp av Google.
 Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 
 # Quickbar
-'qbsettings'               => 'Snabbmeny',
-'qbsettings-none'          => 'Ingen',
-'qbsettings-fixedleft'     => 'Fast vänster',
-'qbsettings-fixedright'    => 'Fast höger',
-'qbsettings-floatingleft'  => 'Flytande vänster',
-'qbsettings-floatingright' => 'Flytande höger',
+'qbsettings'                => 'Snabbmeny',
+'qbsettings-none'           => 'Ingen',
+'qbsettings-fixedleft'      => 'Fast vänster',
+'qbsettings-fixedright'     => 'Fast höger',
+'qbsettings-floatingleft'   => 'Flytande vänster',
+'qbsettings-floatingright'  => 'Flytande höger',
+'qbsettings-directionality' => 'Fast, beroende på riktningen av ditt skript och språk',
 
 # Preferences page
 'preferences'                   => 'Inställningar',
@@ -2363,6 +2366,7 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'protect-level-sysop'         => 'Enbart administratörer',
 'protect-summary-cascade'     => 'kaskaderande',
 'protect-expiring'            => 'upphör den $1 (UTC)',
+'protect-expiring-local'      => 'löper ut $1',
 'protect-expiry-indefinite'   => 'på obestämd tid',
 'protect-cascade'             => 'Skydda sidor som är inkluderade i den här sidan (kaskaderande skydd)',
 'protect-cantedit'            => 'Du kan inte ändra skyddsnivån för den här sidan, eftersom du inte har behörighet att redigera den.',
@@ -2445,10 +2449,12 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'             => 'Namnrymd:',
-'invert'                => 'Uteslut vald namnrymd',
-'namespace_association' => 'Associerade namnutrymmen',
-'blanknamespace'        => '(Huvudnamnrymden)',
+'namespace'                     => 'Namnrymd:',
+'invert'                        => 'Uteslut vald namnrymd',
+'tooltip-invert'                => 'Markera denna ruta för att dölja ändringar på sidor inom det valda namnrymden (och tillhörande namnrymden om det är markerat)',
+'namespace_association'         => 'Associerade namnutrymmen',
+'tooltip-namespace_association' => 'Markera denna ruta för att även inkludera diskussions- eller ämnesnamnrymden som är associerad med den valda namnrymden',
+'blanknamespace'                => '(Huvudnamnrymden)',
 
 # Contributions
 'contributions'       => 'Användarbidrag',
@@ -3209,6 +3215,7 @@ Andra kommer att gömmas som standard
 'exif-source'                      => 'Källa',
 'exif-editstatus'                  => 'Bildens redaktionella status',
 'exif-urgency'                     => 'Brådskande',
+'exif-fixtureidentifier'           => 'Fixturnamn',
 'exif-locationdest'                => 'Plats avbildad',
 'exif-locationdestcode'            => 'Avbildad platskod',
 'exif-objectcycle'                 => 'Tid på dagen median är avsedd för',
@@ -3220,6 +3227,7 @@ Andra kommer att gömmas som standard
 'exif-iimsupplementalcategory'     => 'Tilläggskategorier',
 'exif-datetimeexpires'             => 'Använd inte efter',
 'exif-datetimereleased'            => 'Släpptes den',
+'exif-originaltransmissionref'     => 'Ursprunglig positionskod för transmission',
 'exif-identifier'                  => 'Identifierare',
 'exif-lens'                        => 'Objektiv',
 'exif-serialnumber'                => 'Kamerans serienummer',
@@ -3424,6 +3432,7 @@ Andra kommer att gömmas som standard
 'exif-gpsdirection-m' => 'Magnetisk bäring',
 
 'exif-ycbcrpositioning-1' => 'Centrerad',
+'exif-ycbcrpositioning-2' => 'Sammanfallande',
 
 'exif-dc-contributor' => 'Bidragsgivare',
 'exif-dc-coverage'    => 'Rumslig och tidsmässig omfattning av media',
@@ -3731,13 +3740,16 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'tags-hitcount'           => '$1 {{PLURAL:$1|ändring|ändringar}}',
 
 # Special:ComparePages
-'comparepages'     => 'Jämför sidor',
-'compare-selector' => 'Jämför sidversioner',
-'compare-page1'    => 'Sida 1',
-'compare-page2'    => 'Sida 2',
-'compare-rev1'     => 'Version 1',
-'compare-rev2'     => 'Version 2',
-'compare-submit'   => 'Jämför',
+'comparepages'                => 'Jämför sidor',
+'compare-selector'            => 'Jämför sidversioner',
+'compare-page1'               => 'Sida 1',
+'compare-page2'               => 'Sida 2',
+'compare-rev1'                => 'Version 1',
+'compare-rev2'                => 'Version 2',
+'compare-submit'              => 'Jämför',
+'compare-invalid-title'       => 'Titeln du angav är ogiltig.',
+'compare-title-not-exists'    => 'Titeln du angav finns inte.',
+'compare-revision-not-exists' => 'Versionen du angav finns inte.',
 
 # Database error messages
 'dberr-header'      => 'Den här wikin har ett problem',
@@ -3780,10 +3792,12 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'ajax-remove-category-summary'  => 'Tag bort kategorin "$1"',
 'ajax-category-question'        => 'Varför vill du göra följande ändringar:',
 'ajax-error-title'              => 'Fel',
-'ajax-remove-category-error'    => 'Det var inte möjligt att ta bort den här kategorin.
+'ajax-remove-category-error'    => 'Det var inte möjligt att ta bort kategorin "$1".
 Oftast beror det på att kategorin har lagts till genom användande av en mall.',
-'ajax-edit-category-error'      => 'Det gick inte att redigera denna kategori.
+'ajax-edit-category-error'      => 'Det gick inte att redigera kategorin "$1".
 Detta inträffar vanligen när kategorin har lagts till sidan i en mall.',
 'ajax-category-already-present' => 'Denna sida tillhör redan kategorin $1',
+'ajax-category-hook-error'      => 'En lokal funktion förhindrade ändringarna från att sparas.',
+'ajax-api-error'                => 'API rapporterade ett fel: $1: $2.',
 
 );
