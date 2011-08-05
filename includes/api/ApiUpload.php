@@ -124,7 +124,7 @@ class ApiUpload extends ApiBase {
 		} elseif ( $this->mParams['chunk'] ) {
 			$result['result'] = 'Continue';
 			$chunk = $request->getFileTempName( 'chunk' );
-			$chunkSize = $request->getFileSize( 'chunk' );
+			$chunkSize = $request->getUpload( 'chunk' )->getSize();
 			if ($this->mParams['offset'] == 0) {
 				$result['filekey'] = $this->performStash();
 			} else {
