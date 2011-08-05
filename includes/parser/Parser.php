@@ -148,6 +148,7 @@ class Parser {
 	var $mTplExpandCache; # empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
 	var $mExpensiveFunctionCount; # number of expensive parser function calls
+	var $mShowToc, $mForceTocPosition;
 
 	/**
 	 * @var User
@@ -181,6 +182,8 @@ class Parser {
 
 	/**
 	 * Constructor
+	 *
+	 * @param $conf array
 	 */
 	public function __construct( $conf = array() ) {
 		$this->mConf = $conf;
@@ -797,6 +800,10 @@ class Parser {
 	 * Add an item to the strip state
 	 * Returns the unique tag which must be inserted into the stripped text
 	 * The tag will be replaced with the original text in unstrip()
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	function insertStripItem( $text ) {
 		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
@@ -809,6 +816,10 @@ class Parser {
 	 * parse the wiki syntax used to render tables
 	 *
 	 * @private
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	function doTableStuff( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -1020,10 +1031,13 @@ class Parser {
 	 * Helper function for doTableStuff(). This converts the structured array into html.
 	 *
 	 * @private
+	 *
+	 * @param $table array
+	 *
+	 * @return string
 	 */
 	function generateTableHTML( &$table ) {
-		$return = "";
-		$return .= str_repeat( '<dl><dd>' , $table['indent'] );
+		$return = str_repeat( '<dl><dd>' , $table['indent'] );
 		$return .= '<table';
 		$return .= isset( $table['attributes'] ) ? $table['attributes'] : '';
 		$return .= '>';
@@ -1105,6 +1119,8 @@ class Parser {
 	 * no numric elements and an array itself if not previously defined.
 	 *
 	 * @private
+	 *
+	 * @param $arr array
 	 */
 	function &last ( &$arr ) {
 		for ( $i = count( $arr ); ( !isset( $arr[$i] ) && $i > 0 ); $i-- ) {  }
@@ -1116,8 +1132,14 @@ class Parser {
 	 * HTML. Only called for $mOutputType == self::OT_HTML.
 	 *
 	 * @private
+	 *
+	 * @param $text string
+	 * @param $isMain bool
+	 * @param $frame bool
+	 *
+	 * @return string
 	 */
-	function internalParse( $text, $isMain = true, $frame=false ) {
+	function internalParse( $text, $isMain = true, $frame = false ) {
 		wfProfileIn( __METHOD__ );
 
 		$origText = $text;
@@ -1183,6 +1205,10 @@ class Parser {
 	 *
 	 * DML
 	 * @private
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	function doMagicLinks( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -1256,7 +1282,10 @@ class Parser {
 
 	/**
 	 * Make a free external link, given a user-supplied URL
-	 * @return HTML
+	 *
+	 * @param $url string
+	 *
+	 * @return string HTML
 	 * @private
 	 */
 	function makeFreeExternalLink( $url ) {
@@ -1309,6 +1338,10 @@ class Parser {
 	 * Parse headers and return html
 	 *
 	 * @private
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	function doHeadings( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -1324,6 +1357,9 @@ class Parser {
 	/**
 	 * Replace single quotes with HTML markup
 	 * @private
+	 *
+	 * @param $text string
+	 *
 	 * @return string the altered text
 	 */
 	function doAllQuotes( $text ) {
@@ -1340,6 +1376,10 @@ class Parser {
 
 	/**
 	 * Helper function for doAllQuotes()
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	public function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
@@ -1504,6 +1544,10 @@ class Parser {
 	 * Make sure to run maintenance/parserTests.php if you change this code.
 	 *
 	 * @private
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	function replaceExternalLinks( $text ) {
 		global $wgContLang;
@@ -1580,9 +1624,9 @@ class Parser {
 	 * (depending on configuration, namespace, and the URL's domain) and/or a
 	 * target attribute (depending on configuration).
 	 *
-	 * @param $url String: optional URL, to extract the domain from for rel =>
+	 * @param $url String|bool optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
-	 * @return Array: associative array of HTML attributes
+	 * @return Array associative array of HTML attributes
 	 */
 	function getExternalLinkAttribs( $url = false ) {
 		$attribs = array();
@@ -1629,6 +1673,10 @@ class Parser {
 	/**
 	 * Callback function used in replaceUnusualEscapes().
 	 * Replaces unusual URL escape codes with their equivalent character
+	 *
+	 * @param $matches array
+	 *
+	 * @return string
 	 */
 	private static function replaceUnusualEscapesCallback( $matches ) {
 		$char = urldecode( $matches[0] );
@@ -1647,6 +1695,10 @@ class Parser {
 	 * make an image if it's allowed, either through the global
 	 * option, through the exception, or through the on-wiki whitelist
 	 * @private
+	 *
+	 * $param $url string
+	 *
+	 * @return string
 	 */
 	function maybeMakeExternalImage( $url ) {
 		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
@@ -1693,6 +1745,9 @@ class Parser {
 
 	/**
 	 * Process [[ ]] wikilinks
+	 *
+	 * @param $s string
+	 *
 	 * @return String: processed text
 	 *
 	 * @private
@@ -2121,6 +2176,11 @@ class Parser {
 	 * getCommon() returns the length of the longest common substring
 	 * of both arguments, starting at the beginning of both.
 	 * @private
+	 *
+	 * @param $st1 string
+	 * @param $st2 string
+	 *
+	 * @return int
 	 */
 	function getCommon( $st1, $st2 ) {
 		$fl = strlen( $st1 );
@@ -2141,6 +2201,8 @@ class Parser {
 	 * These next three functions open, continue, and close the list
 	 * element appropriate to the prefix character passed into them.
 	 * @private
+	 *
+	 * @param $char char
 	 *
 	 * @return string
 	 */
@@ -2405,10 +2467,10 @@ class Parser {
 	 * Split up a string on ':', ignoring any occurences inside tags
 	 * to prevent illegal overlapping.
 	 *
-	 * @param $str String: the string to split
-	 * @param &$before String: set to everything before the ':'
-	 * @param &$after String: set to everything after the ':'
-	 * return String: the position of the ':', or false if none found
+	 * @param $str String the string to split
+	 * @param &$before String set to everything before the ':'
+	 * @param &$after String set to everything after the ':'
+	 * @return String the position of the ':', or false if none found
 	 */
 	function findColonNoLinks( $str, &$before, &$after ) {
 		wfProfileIn( __METHOD__ );
@@ -2573,8 +2635,10 @@ class Parser {
 	 *
 	 * @param $index integer
 	 * @param $frame PPFrame
+	 *
+	 * @return string
 	 */
-	function getVariableValue( $index, $frame=false ) {
+	function getVariableValue( $index, $frame = false ) {
 		global $wgContLang, $wgSitename, $wgServer;
 		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
@@ -2879,8 +2943,9 @@ class Parser {
 				}
 		}
 
-		if ( $index )
+		if ( $index ) {
 			$this->mVarCache[$index] = $value;
+		}
 
 		return $value;
 	}
@@ -2932,6 +2997,8 @@ class Parser {
 	/**
 	 * Return a three-element array: leading whitespace, string contents, trailing whitespace
 	 *
+	 * @param $s string
+	 *
 	 * @return array
 	 */
 	public static function splitWhitespace( $s ) {
@@ -2957,11 +3024,11 @@ class Parser {
 	 *  self::OT_PREPROCESS: templates but not extension tags
 	 *  self::OT_HTML: all templates and extension tags
 	 *
-	 * @param $text String: the text to transform
+	 * @param $text String the text to transform
 	 * @param $frame PPFrame Object describing the arguments passed to the template.
 	 *        Arguments may also be provided as an associative array, as was the usual case before MW1.12.
 	 *        Providing arguments this way may be useful for extensions wishing to perform variable replacement explicitly.
-	 * @param $argsOnly Boolean: only do argument (triple-brace) expansion, not double-brace expansion
+	 * @param $argsOnly Boolean only do argument (triple-brace) expansion, not double-brace expansion
 	 * @private
 	 *
 	 * @return string
@@ -2990,6 +3057,8 @@ class Parser {
 
 	/**
 	 * Clean up argument array - refactored in 1.9 so parserfunctions can use it, too.
+	 *
+	 * @param $args array
 	 *
 	 * @return array
 	 */
@@ -3394,6 +3463,8 @@ class Parser {
 	 * Get the semi-parsed DOM representation of a template with a given title,
 	 * and its redirect destination title. Cached.
 	 *
+	 * @param $title Title
+	 *
 	 * @return array
 	 */
 	function getTemplateDom( $title ) {
@@ -3459,6 +3530,9 @@ class Parser {
 	/**
 	 * Static function to get a template
 	 * Can be overridden via ParserOptions::setTemplateCallback().
+	 *
+	 * @parma $title Title
+	 * @param $parser Parser
 	 *
 	 * @return array
 	 */
@@ -3537,7 +3611,7 @@ class Parser {
 	 * @param Title $title
 	 * @param string $time MW timestamp
 	 * @param string $sha1 base 36 SHA-1
-	 * @return mixed File or false
+	 * @return File|false
 	 */
 	function fetchFile( $title, $time = false, $sha1 = false ) {
 		$res = $this->fetchFileAndTitle( $title, $time, $sha1 );
@@ -3800,6 +3874,10 @@ class Parser {
 	/**
 	 * Strip double-underscore items like __NOGALLERY__ and __NOTOC__
 	 * Fills $this->mDoubleUnderscores, returns the modified text
+	 *
+	 * @param $text string
+	 *
+	 * @return string
 	 */
 	function doDoubleUnderscore( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -4281,6 +4359,11 @@ class Parser {
 	/**
 	 * Pre-save transform helper function
 	 * @private
+	 *
+	 * @param $text string
+	 * @param $user User
+	 *
+	 * @return string
 	 */
 	function pstPass2( $text, $user ) {
 		global $wgContLang, $wgLocaltimezone;
@@ -4372,8 +4455,8 @@ class Parser {
 	 * as it may have changed if it's the $wgParser.
 	 *
 	 * @param $user User
-	 * @param $nickname String: nickname to use or false to use user's default nickname
-	 * @param $fancySig Boolean: whether the nicknname is the complete signature
+	 * @param $nickname String|bool nickname to use or false to use user's default nickname
+	 * @param $fancySig Boolean|null whether the nicknname is the complete signature
 	 *                  or null to use default value
 	 * @return string
 	 */
@@ -4435,7 +4518,7 @@ class Parser {
 	 * 2) Substitute all transclusions
 	 *
 	 * @param $text String
-	 * @param $parsing Whether we're cleaning (preferences save) or parsing
+	 * @param $parsing bool Whether we're cleaning (preferences save) or parsing
 	 * @return String: signature text
 	 */
 	function cleanSig( $text, $parsing = false ) {
@@ -4485,11 +4568,22 @@ class Parser {
 	/**
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
+	 *
+	 * @param $title Title|null
+	 * @param $options ParserOptions
+	 * @param $outputType
+	 * @param $clearState bool
 	 */
 	public function startExternalParse( Title $title = null, ParserOptions $options, $outputType, $clearState = true ) {
 		$this->startParse( $title, $options, $outputType, $clearState );
 	}
 
+	/**
+	 * @param $title Title|null
+	 * @param $options ParserOptions
+	 * @param $outputType
+	 * @param $clearState bool
+	 */
 	private function startParse( Title $title = null, ParserOptions $options, $outputType, $clearState = true ) {
 		$this->setTitle( $title );
 		$this->mOptions = $options;
@@ -4720,7 +4814,11 @@ class Parser {
 	 * @todo FIXME: Update documentation. makeLinkObj() is deprecated.
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 * Placeholders created in Skin::makeLinkObj()
-	 * Returns an array of link CSS classes, indexed by PDBK.
+	 *
+	 * @param $text string
+	 * @param $options int
+	 *
+	 * @return array of link CSS classes, indexed by PDBK.
 	 */
 	function replaceLinkHolders( &$text, $options = 0 ) {
 		return $this->mLinkHolders->replace( $text );
@@ -4747,7 +4845,7 @@ class Parser {
 	 * 'A tree'.
 	 *
 	 * @param string $text
-	 * @param array $param
+	 * @param array $params
 	 * @return string HTML
 	 */
 	function renderImageGallery( $text, $params ) {
@@ -4832,6 +4930,10 @@ class Parser {
 		return $ig->toHTML();
 	}
 
+	/**
+	 * @param $handler
+	 * @return array
+	 */
 	function getImageParams( $handler ) {
 		if ( $handler ) {
 			$handlerClass = get_class( $handler );
@@ -4877,7 +4979,7 @@ class Parser {
 	 *
 	 * @param $title Title
 	 * @param $options String
-	 * @param $holders LinkHolderArray
+	 * @param $holders LinkHolderArray|false
 	 * @return string HTML
 	 */
 	function makeImage( $title, $options, $holders = false ) {
@@ -5499,6 +5601,11 @@ class Parser {
 	/**
 	 * strip/replaceVariables/unstrip for preprocessor regression testing
 	 *
+	 * @param $text string
+	 * @param $title Title
+	 * @param $options ParserOptions
+	 * @param $outputType int
+	 *
 	 * @return string
 	 */
 	function testSrvus( $text, Title $title, ParserOptions $options, $outputType = self::OT_HTML ) {
@@ -5510,10 +5617,22 @@ class Parser {
 		return $text;
 	}
 
+	/**
+	 * @param $text string
+	 * @param $title Title
+	 * @param $options ParserOptions
+	 * @return string
+	 */
 	function testPst( $text, Title $title, ParserOptions $options ) {
 		return $this->preSaveTransform( $text, $title, $options->getUser(), $options );
 	}
 
+	/**
+	 * @param $text
+	 * @param $title Title
+	 * @param $options ParserOptions
+	 * @return string
+	 */
 	function testPreprocess( $text, Title $title, ParserOptions $options ) {
 		return $this->testSrvus( $text, $title, $options, self::OT_PREPROCESS );
 	}
@@ -5528,6 +5647,9 @@ class Parser {
 	 * This will call the callback function twice, with 'aaa' and 'bbb'. Those
 	 * two strings will be replaced with the value returned by the callback in
 	 * each case.
+	 *
+	 * @param $s string
+	 * @param $callback
 	 *
 	 * @return string
 	 */
@@ -5566,6 +5688,8 @@ class Parser {
 	 * array can later be loaded into another parser instance with
 	 * unserializeHalfParsedText(). The text can then be safely incorporated into
 	 * the return value of a parser hook.
+	 *
+	 * @param $text string
 	 *
 	 * @return array
 	 */
