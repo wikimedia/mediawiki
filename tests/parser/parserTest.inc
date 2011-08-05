@@ -452,8 +452,7 @@ class ParserTest {
 			$replace = $opts['replace'][1];
 			$out = $parser->replaceSection( $input, $section, $replace );
 		} elseif ( isset( $opts['comment'] ) ) {
-			$linker = $user->getSkin();
-			$out = $linker->formatComment( $input, $title, $local );
+			$out = Linker::formatComment( $input, $title, $local );
 		} elseif ( isset( $opts['preload'] ) ) {
 			$out = $parser->getpreloadText( $input, $title, $options );
 		} else {
