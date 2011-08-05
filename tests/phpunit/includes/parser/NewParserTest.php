@@ -164,7 +164,7 @@ class NewParserTest extends MediaWikiTestCase {
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats',
 			array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ),
-			__METHOD__ );
+			__METHOD__, array( 'IGNORE' ) );
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
@@ -500,8 +500,7 @@ class NewParserTest extends MediaWikiTestCase {
 			$replace = $opts['replace'][1];
 			$out = $parser->replaceSection( $input, $section, $replace );
 		} elseif ( isset( $opts['comment'] ) ) {
-			$linker = $user->getSkin();
-			$out = $linker->formatComment( $input, $title, $local );
+			$out = Linker::formatComment( $input, $title, $local );
 		} elseif ( isset( $opts['preload'] ) ) {
 			$out = $parser->getpreloadText( $input, $title, $options );
 		} else {
