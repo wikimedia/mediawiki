@@ -15,45 +15,6 @@
  * @author Wong128hk
  */
 
-$bookstoreList = array(
-	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
-	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
-	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'亞馬遜' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
-	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
-	'三民書店' => 'http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1',
-	'天下書店' => 'http://www.cwbook.com.tw/search/result1.jsp?field=2&keyWord=$1',
-	'新絲路書店' => 'http://www.silkbook.com/function/Search_list_book_data.asp?item=5&text=$1'
-);
-
-$datePreferences = array(
-	'default',
-	'yue dmy',
-	'yue mdy',
-	'yue ymd',
-	'ISO 8601',
-);
-
-$defaultDateFormat = 'yue';
-
-$dateFormats = array(
-	'yue time' => 'H:i',
-	'yue date' => 'Y年n月j號 (l)',
-	'yue both' => 'Y年n月j號 (D) H:i',
-
-	'yue dmy time' => 'H:i',
-	'yue dmy date' => 'j-n-Y',
-	'yue dmy both' => 'j-n-Y H:i',
-
-	'yue mdy time' => 'H:i',
-	'yue mdy date' => 'n-j-Y',
-	'yue mdy both' => 'n-j-Y H:i',
-
-	'yue ymd time' => 'H:i',
-	'yue ymd date' => 'Y-n-j',
-	'yue ymd both' => 'Y-n-j H:i',
-);
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
@@ -134,14 +95,145 @@ $namespaceAliases = array(
 	"分类 讨论" 		=> NS_CATEGORY_TALK,
 );
 
-$linkTrail = '/^([a-z]+)(.*)$/sD';
+$specialPageAliases = array(
+	'Activeusers'               => array( '活躍用戶名單' ),
+	'Allmessages'               => array( '系統信息' ),
+	'Allpages'                  => array( '所有頁' ),
+	'Ancientpages'              => array( '舊版' ),
+	'Blankpage'                 => array( '空版' ),
+	'Block'                     => array( '封' ),
+	'Blockme'                   => array( '封我' ),
+	'Booksources'               => array( '書本來源' ),
+	'BrokenRedirects'           => array( '斷鏈' ),
+	'Categories'                => array( '分類' ),
+	'ChangePassword'            => array( '改密碼' ),
+	'ComparePages'              => array( '比較頁面' ),
+	'Confirmemail'              => array( '確認電郵' ),
+	'Contributions'             => array( '貢獻' ),
+	'CreateAccount'             => array( '開戶' ),
+	'Deadendpages'              => array( '掘頭頁' ),
+	'DeletedContributions'      => array( '刪咗嘅貢獻' ),
+	'Disambiguations'           => array( '搞清楚頁' ),
+	'DoubleRedirects'           => array( '雙重跳轉' ),
+	'EditWatchlist'             => array( '改監視清單' ),
+	'Emailuser'                 => array( '電郵用戶' ),
+	'Export'                    => array( '匯出' ),
+	'Fewestrevisions'           => array( '最少修訂版本' ),
+	'FileDuplicateSearch'       => array( '搵重複文件' ),
+	'Filepath'                  => array( '檔案路徑' ),
+	'Import'                    => array( '匯入' ),
+	'Invalidateemail'           => array( '錯電郵' ),
+	'BlockList'                 => array( '封咗嘅列表' ),
+	'LinkSearch'                => array( '搵連結' ),
+	'Listadmins'                => array( '管理員列表' ),
+	'Listbots'                  => array( '機械人列表' ),
+	'Listfiles'                 => array( '檔案列表' ),
+	'Listgrouprights'           => array( '用戶組權限' ),
+	'Listredirects'             => array( '重定向列表' ),
+	'Listusers'                 => array( '用戶列表' ),
+	'Lockdb'                    => array( '鎖資料庫' ),
+	'Log'                       => array( '日誌' ),
+	'Lonelypages'               => array( '無鏈頁面' ),
+	'Longpages'                 => array( '長頁' ),
+	'MergeHistory'              => array( '合併歷史' ),
+	'MIMEsearch'                => array( 'MIME搜索' ),
+	'Mostcategories'            => array( '最多分類' ),
+	'Mostimages'                => array( '最多鏈嘅檔案' ),
+	'Mostlinked'                => array( '最多鏈嘅頁' ),
+	'Mostlinkedcategories'      => array( '最多鏈嘅分類' ),
+	'Mostlinkedtemplates'       => array( '最多鏈嘅模' ),
+	'Mostrevisions'             => array( '最多版本' ),
+	'Movepage'                  => array( '搬頁' ),
+	'Mycontributions'           => array( '我嘅貢獻' ),
+	'Mypage'                    => array( '我嘅頁面' ),
+	'Mytalk'                    => array( '我嘅傾偈' ),
+	'Myuploads'                 => array( '我嘅上傳' ),
+	'Newimages'                 => array( '新文件' ),
+	'Newpages'                  => array( '新版' ),
+	'PasswordReset'             => array( '重設密碼' ),
+	'PermanentLink'             => array( '永久鏈' ),
+	'Popularpages'              => array( '最歡迎頁' ),
+	'Preferences'               => array( '喜好設定' ),
+	'Prefixindex'               => array( '全部頁嘅前綴' ),
+	'Protectedpages'            => array( '保護頁' ),
+	'Protectedtitles'           => array( '保護咗嘅標題' ),
+	'Randompage'                => array( '是但一版' ),
+	'Randomredirect'            => array( '是但一個跳轉' ),
+	'Recentchanges'             => array( '最近修改' ),
+	'Recentchangeslinked'       => array( '外鏈修改' ),
+	'Revisiondelete'            => array( '修訂版本刪除' ),
+	'RevisionMove'              => array( '修訂版本移動' ),
+	'Search'                    => array( '搜索' ),
+	'Shortpages'                => array( '短版' ),
+	'Specialpages'              => array( '特別頁' ),
+	'Statistics'                => array( '統計' ),
+	'Tags'                      => array( '標籤' ),
+	'Unblock'                   => array( '解封' ),
+	'Uncategorizedcategories'   => array( '無樓上嘅分類' ),
+	'Uncategorizedimages'       => array( '無分類嘅檔案' ),
+	'Uncategorizedpages'        => array( '無分類嘅頁' ),
+	'Uncategorizedtemplates'    => array( '無分類嘅模' ),
+	'Undelete'                  => array( '反刪除' ),
+	'Unlockdb'                  => array( '解鎖資料庫' ),
+	'Unusedcategories'          => array( '未用分類' ),
+	'Unusedimages'              => array( '未用檔案' ),
+	'Unusedtemplates'           => array( '未用模' ),
+	'Unwatchedpages'            => array( '無人監視嘅版' ),
+	'Upload'                    => array( '上傳' ),
+	'Userlogin'                 => array( '簽到' ),
+	'Userlogout'                => array( '簽走' ),
+	'Userrights'                => array( '用戶權限' ),
+	'Version'                   => array( '版本' ),
+	'Wantedcategories'          => array( '要求嘅分類' ),
+	'Wantedfiles'               => array( '要求嘅文件' ),
+	'Wantedpages'               => array( '要求嘅頁面' ),
+	'Wantedtemplates'           => array( '要求嘅模' ),
+	'Watchlist'                 => array( '監視清單' ),
+	'Whatlinkshere'             => array( '邊度鏈去呢版' ),
+	'Withoutinterwiki'          => array( '無連去其他話嘅版' ),
+);
 
-# -------------------------------------------------------------------
-# Default messages
-# -------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
+$bookstoreList = array(
+	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
+	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
+	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
+	'亞馬遜' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
+	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
+	'三民書店' => 'http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1',
+	'天下書店' => 'http://www.cwbook.com.tw/search/result1.jsp?field=2&keyWord=$1',
+	'新絲路書店' => 'http://www.silkbook.com/function/Search_list_book_data.asp?item=5&text=$1'
+);
+
+$datePreferences = array(
+	'default',
+	'yue dmy',
+	'yue mdy',
+	'yue ymd',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'yue';
+
+$dateFormats = array(
+	'yue time' => 'H:i',
+	'yue date' => 'Y年n月j號 (l)',
+	'yue both' => 'Y年n月j號 (D) H:i',
+
+	'yue dmy time' => 'H:i',
+	'yue dmy date' => 'j-n-Y',
+	'yue dmy both' => 'j-n-Y H:i',
+
+	'yue mdy time' => 'H:i',
+	'yue mdy date' => 'n-j-Y',
+	'yue mdy both' => 'n-j-Y H:i',
+
+	'yue ymd time' => 'H:i',
+	'yue ymd date' => 'Y-n-j',
+	'yue ymd both' => 'Y-n-j H:i',
+);
+
+
+$linkTrail = '/^([a-z]+)(.*)$/sD';
 
 $messages = array(
 # User preference toggles

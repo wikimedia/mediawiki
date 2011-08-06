@@ -225,6 +225,7 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'משאבי_ספרות', 'משאבי_ספרות_חיצוניים' ),
 	'BrokenRedirects'           => array( 'הפניות_לא_תקינות', 'הפניות_שבורות' ),
 	'Categories'                => array( 'קטגוריות', 'רשימת_קטגוריות' ),
+	'ChangeEmail'               => array( 'שינוי_דואר_אלקטרוני', 'שינוי_דואל' ),
 	'ChangePassword'            => array( 'שינוי_סיסמה', 'איפוס_סיסמה' ),
 	'ComparePages'              => array( 'השוואת_דפים' ),
 	'Confirmemail'              => array( 'אימות_כתובת_דואר' ),
