@@ -125,6 +125,9 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'Interwikinnaq', 'Wikipurannaq' ),
 );
 
+#!!# Translation <b>HORA_ACTUAL</b> is used more than once for <a href="#mw-sp-magic-currenttime">currenttime</a> and <a href="#mw-sp-magic-currenthour">currenthour</a>.
+#!!# Translation <b>HORAACTUAL</b> is used more than once for <a href="#mw-sp-magic-currenttime">currenttime</a> and <a href="#mw-sp-magic-currenthour">currenthour</a>.
+#!!# Translation <b>HORALOCAL</b> is used more than once for <a href="#mw-sp-magic-localtime">localtime</a> and <a href="#mw-sp-magic-localhour">localhour</a>.
 $magicWords = array(
 	'redirect'              => array( '0', '#PUSAPUNA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__YUYARINANNAQ__', '__NOTDC__', '__NOTOC__' ),

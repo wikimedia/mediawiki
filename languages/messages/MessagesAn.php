@@ -52,7 +52,7 @@ $magicWords = array(
 	'displaytitle'          => array( '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ),
 	'currentversion'        => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ),
 	'language'              => array( '0', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ),
-	'special'               => array( '0', 'espezial', 'especial', 'special' ),
+	'special'               => array( '0', 'especial', 'espezial', 'special' ),
 );
 
 $specialPageAliases = array(
