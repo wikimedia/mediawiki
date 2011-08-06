@@ -21,9 +21,6 @@ class SkinSimple extends SkinTemplate {
 	var $skinname = 'simple', $stylename = 'simple',
 		$template = 'MonoBookTemplate', $useHeadElement = true;
 
-	/**
-	 * @param $out OutputPage
-	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 

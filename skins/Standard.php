@@ -18,9 +18,6 @@ class SkinStandard extends SkinLegacy {
 	var $skinname = 'standard', $stylename = 'standard',
 		$template = 'StandardTemplate';
 
-	/**
-	 * @param $out OutputPage
-	 */
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'skins.standard' );
@@ -50,9 +47,6 @@ class SkinStandard extends SkinLegacy {
 
 class StandardTemplate extends LegacyTemplate {
 
-	/**
-	 * @return string
-	 */
 	function doAfterContent() {
 		global $wgContLang, $wgLang;
 		wfProfileIn( __METHOD__ );
@@ -101,9 +95,6 @@ class StandardTemplate extends LegacyTemplate {
 		return $s;
 	}
 
-	/**
-	 * @return string
-	 */
 	function quickBar() {
 		global $wgOut, $wgUser, $wgRequest, $wgContLang;
 
