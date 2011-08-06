@@ -346,6 +346,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 	'Disambiguations'           => array( 'توضيحات' ),
 	'DoubleRedirects'           => array( 'تحويلات_مزدوجة' ),
+	'EditWatchlist'             => array( 'تعديل_قائمة_المراقبة' ),
 	'Emailuser'                 => array( 'مراسلة_المستخدم' ),
 	'Export'                    => array( 'تصدير' ),
 	'Fewestrevisions'           => array( 'الأقل_تعديلا' ),
