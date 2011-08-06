@@ -109,6 +109,7 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'As_miñas_subidas' ),
 	'Newimages'                 => array( 'Imaxes_novas' ),
 	'Newpages'                  => array( 'Páxinas_novas' ),
+	'PasswordReset'             => array( 'Restablecer_o_contrasinal' ),
 	'PermanentLink'             => array( 'Ligazón_permanente' ),
 	'Popularpages'              => array( 'Páxinas_populares' ),
 	'Preferences'               => array( 'Preferencias' ),
