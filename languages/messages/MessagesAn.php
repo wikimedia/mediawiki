@@ -21,7 +21,7 @@ $fallback = 'es';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Espezial',
+	NS_SPECIAL          => 'Especial',
 	NS_TALK             => 'Descusión',
 	NS_USER             => 'Usuario',
 	NS_USER_TALK        => 'Descusión_usuario',
@@ -36,6 +36,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Descusión_aduya',
 	NS_CATEGORY         => 'Categoría',
 	NS_CATEGORY_TALK    => 'Descusión_categoría',
+);
+
+$namespaceAliases = array(
+	'Espezial' => NS_SPECIAL,
 );
 
 $magicWords = array(

@@ -22,22 +22,22 @@ $separatorTransformTable = array(
 $linkPrefixExtension = true;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Срѣ́дьства',
-	NS_SPECIAL          => 'Наро́чьна',
-	NS_TALK             => 'Бєсѣ́да',
-	NS_USER             => 'По́льꙃєватєл҄ь',
-	NS_USER_TALK        => 'По́льꙃєватєлꙗ_бєсѣ́да',
-	NS_PROJECT_TALK     => '{{GRAMMAR:genitive|$1}}_бєсѣ́да',
-	NS_FILE             => 'Дѣ́ло',
-	NS_FILE_TALK        => 'Дѣ́ла_бєсѣ́да',
+	NS_MEDIA            => 'Срѣдьства',
+	NS_SPECIAL          => 'Нарочьна',
+	NS_TALK             => 'Бєсѣда',
+	NS_USER             => 'Польꙃєватєл҄ь',
+	NS_USER_TALK        => 'Польꙃєватєлꙗ_бєсѣда',
+	NS_PROJECT_TALK     => '{{GRAMMAR:genitive|$1}}_бєсѣда',
+	NS_FILE             => 'Дѣло',
+	NS_FILE_TALK        => 'Дѣла_бєсѣда',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_бєсѣ́да',
-	NS_TEMPLATE         => 'Обраꙁь́ць',
-	NS_TEMPLATE_TALK    => 'Обраꙁьца́_бєсѣ́да',
-	NS_HELP             => 'По́мощь',
-	NS_HELP_TALK        => 'По́мощи бєсѣ́да',
-	NS_CATEGORY         => 'Катигорі́ꙗ',
-	NS_CATEGORY_TALK    => 'Катигорі́ѩ_бєсѣ́да',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_бєсѣда',
+	NS_TEMPLATE         => 'Обраꙁьць',
+	NS_TEMPLATE_TALK    => 'Обраꙁьца_бєсѣда',
+	NS_HELP             => 'Помощь',
+	NS_HELP_TALK        => 'Помощи_бєсѣда',
+	NS_CATEGORY         => 'Катигорїꙗ',
+	NS_CATEGORY_TALK    => 'Катигорїѩ_бєсѣда',
 );
 
 $namespaceAliases = array(
