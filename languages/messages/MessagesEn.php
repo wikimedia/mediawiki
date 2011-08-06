@@ -1144,7 +1144,7 @@ Please wait before trying again.',
 # E-mail sending
 'pear-mail-error'        => '$1', # do not translate or duplicate this message to other languages
 'php-mail-error'         => '$1', # do not translate or duplicate this message to other languages
-'php-mail-error-unknown' => "Unknown error in PHP's mail() function",
+'php-mail-error-unknown' => "Unknown error in PHP's mail() function.",
 
 # Change password dialog
 'resetpass'                 => 'Change password',
@@ -4108,7 +4108,7 @@ $8', # only translate this message to other languages if you have to change it
 'exif-gpsspeed-n' => 'Knots',
 
 # Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometres',
+'exif-gpsdestdistance-k' => 'Kilometers',
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Nautical miles',
 
