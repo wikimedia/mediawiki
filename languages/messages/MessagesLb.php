@@ -141,6 +141,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
+	'redirect'              => array( '0', '#VIRULEEDUNG', '#WEITERLEITUNG', '#REDIRECT' ),
 	'numberofarticles'      => array( '1', 'Artikelen', 'ARTIKELANZAHL', 'NUMBEROFARTICLES' ),
 	'numberoffiles'         => array( '1', 'Fichieren', 'DATEIANZAHL', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'Benotzerzuel', 'BENUTZERANZAHL', 'NUMBEROFUSERS' ),

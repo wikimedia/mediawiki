@@ -16,6 +16,25 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_TALK             => 'Discussion',
+	NS_USER             => 'Usator',
+	NS_USER_TALK        => 'Usator_Discussion',
+	NS_PROJECT_TALK     => '$1_Discussion',
+	NS_FILE             => 'File',
+	NS_FILE_TALK        => 'File_Discussion',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Discussion',
+	NS_TEMPLATE         => 'Avise',
+	NS_TEMPLATE_TALK    => 'Avise_Discussion',
+	NS_HELP             => 'Auxilie',
+	NS_HELP_TALK        => 'Auxilie_Discussion',
+	NS_CATEGORY         => 'Categorie',
+	NS_CATEGORY_TALK    => 'Categorie_Discussion',
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Usatores_activ' ),
 	'Allmessages'               => array( 'Omni_li_missages' ),

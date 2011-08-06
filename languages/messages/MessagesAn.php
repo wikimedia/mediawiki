@@ -21,7 +21,7 @@ $fallback = 'es';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Espezial',
+	NS_SPECIAL          => 'Especial',
 	NS_TALK             => 'Descusión',
 	NS_USER             => 'Usuario',
 	NS_USER_TALK        => 'Descusión_usuario',
@@ -38,6 +38,10 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Descusión_categoría',
 );
 
+$namespaceAliases = array(
+	'Espezial' => NS_SPECIAL,
+);
+
 $magicWords = array(
 	'redirect'              => array( '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ),
 	'namespace'             => array( '1', 'ESPACIODENOMBRES', 'ESPACIODENOMBRE', 'NAMESPACE' ),
@@ -48,7 +52,7 @@ $magicWords = array(
 	'displaytitle'          => array( '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ),
 	'currentversion'        => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ),
 	'language'              => array( '0', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ),
-	'special'               => array( '0', 'espezial', 'especial', 'special' ),
+	'special'               => array( '0', 'especial', 'espezial', 'special' ),
 );
 
 $specialPageAliases = array(

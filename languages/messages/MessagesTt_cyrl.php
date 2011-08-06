@@ -55,8 +55,8 @@ $namespaceNames = array(
 	NS_FILE_TALK        => 'Файл_бәхәсе',
 	NS_MEDIAWIKI        => 'МедиаВики',
 	NS_MEDIAWIKI_TALK   => 'МедиаВики_бәхәсе',
-	NS_TEMPLATE         => 'Үрнәк',
-	NS_TEMPLATE_TALK    => 'Үрнәк_бәхәсе',
+	NS_TEMPLATE         => 'Калып',
+	NS_TEMPLATE_TALK    => 'Калып_бәхәсе',
 	NS_HELP             => 'Ярдәм',
 	NS_HELP_TALK        => 'Ярдәм_бәхәсе',
 	NS_CATEGORY         => 'Төркем',
@@ -80,6 +80,8 @@ $namespaceAliases = array(
 	'Обсуждение_MediaWiki'               => NS_MEDIAWIKI_TALK,
 	'Медиа_Вики'                         => NS_MEDIAWIKI,
 	'Медиа_Вики_бәхәсе'                  => NS_MEDIAWIKI_TALK,
+	'Үрнәк'                              => NS_TEMPLATE,
+	'Үрнәк_бәхәсе'                       => NS_TEMPLATE_TALK,
 	'Шаблон'                             => NS_TEMPLATE,
 	'Обсуждение_шаблона'                 => NS_TEMPLATE_TALK,
 	'Шаблон_бәхәсе'                      => NS_TEMPLATE_TALK,
@@ -88,7 +90,7 @@ $namespaceAliases = array(
 	'Категория'                          => NS_CATEGORY,
 	'Обсуждение_категории'               => NS_CATEGORY_TALK,
 
-	// tt-latn namespace names
+	// 'tt-latn' namespace names.
 	'Maxsus'           => NS_SPECIAL,
 	'Bäxäs'            => NS_TALK,
 	'Äğzä'             => NS_USER,
