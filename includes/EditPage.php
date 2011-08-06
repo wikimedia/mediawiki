@@ -1028,14 +1028,11 @@ class EditPage {
 						$this->isConflict = false;
 						wfDebug( __METHOD__ .": conflict suppressed; new section\n" );
 					}
+				} elseif ( $this->section == '' && $this->userWasLastToEdit( $wgUser->getId(), $this->edittime ) ) {
+					# Suppress edit conflict with self, except for section edits where merging is required.
+					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
+					$this->isConflict = false;
 				}
-			}
-			$userid = $wgUser->getId();
-
-			# Suppress edit conflict with self, except for section edits where merging is required.
-			if ( $this->isConflict && $this->section == '' && $this->userWasLastToEdit( $userid, $this->edittime ) ) {
-				wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
-				$this->isConflict = false;
 			}
 
 			if ( $this->isConflict ) {
@@ -1068,8 +1065,6 @@ class EditPage {
 				return self::AS_CONFLICT_DETECTED;
 			}
 
-			$oldtext = $this->mArticle->getContent();
-
 			// Run post-section-merge edit filter
 			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError, $this->summary ) ) ) {
 				# Error messages etc. could be handled within the hook...
@@ -1082,7 +1077,8 @@ class EditPage {
 			}
 
 			# Handle the user preference to force summaries here, but not for null edits
-			if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp( $oldtext, $text )
+			if ( $this->section != 'new' && !$this->allowBlankSummary
+				&& 0 != strcmp( $this->mArticle->getContent(), $text )
 				&& !Title::newFromRedirect( $text ) ) # check if it's not a redirect
 			{
 				if ( md5( $this->summary ) == $this->autoSumm ) {
