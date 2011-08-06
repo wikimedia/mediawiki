@@ -18,9 +18,6 @@ class SkinNostalgia extends SkinLegacy {
 	var $skinname = 'nostalgia', $stylename = 'nostalgia',
 		$template = 'NostalgiaTemplate';
 
-	/**
-	 * @param $out OutputPage
-	 */
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'skins.nostalgia' );
@@ -30,9 +27,6 @@ class SkinNostalgia extends SkinLegacy {
 
 class NostalgiaTemplate extends LegacyTemplate {
 
-	/**
-	 * @return string
-	 */
 	function doBeforeContent() {
 		$s = "\n<div id='content'>\n<div id='top'>\n";
 		$s .= '<div id="logo">' . $this->getSkin()->logoText( 'right' ) . '</div>';
@@ -65,9 +59,6 @@ class NostalgiaTemplate extends LegacyTemplate {
 		return $s;
 	}
 
-	/**
-	 * @return string
-	 */
 	function topLinks() {
 		global $wgOut, $wgUser;
 		$sep = " |\n";
@@ -114,9 +105,6 @@ class NostalgiaTemplate extends LegacyTemplate {
 		return $s;
 	}
 
-	/**
-	 * @return string
-	 */
 	function doAfterContent() {
 		$s = "\n</div><br clear='all' />\n";
 
