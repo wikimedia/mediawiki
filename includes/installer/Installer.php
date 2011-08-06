@@ -97,6 +97,7 @@ abstract class Installer {
 		'envCheckPCRE',
 		'envCheckMemory',
 		'envCheckCache',
+		'envCheckModSecurity',
 		'envCheckDiff3',
 		'envCheckGraphics',
 		'envCheckServer',
@@ -806,6 +807,15 @@ abstract class Installer {
 	}
 
 	/**
+	 * Scare user to death if they have mod_security
+	 */
+	protected function envCheckModSecurity() {
+		if ( !self::apacheModulePresent( 'mod_security' ) ) {
+			$this->showMessage( 'config-mod-security' );
+		}
+	}
+
+	/**
 	 * Search for GNU diff3.
 	 */
 	protected function envCheckDiff3() {
@@ -1166,6 +1176,23 @@ abstract class Installer {
 		wfRestoreWarnings();
 
 		return false;
+	}
+
+	/**
+	 * Checks for presence of an Apache module. Works only if PHP is running as an Apache module, too.
+	 * 
+	 * @param $moduleName String: Name of module to check.
+	 * @return bool
+	 */
+	public static function apacheModulePresent( $moduleName ) {
+		if ( function_exists( 'apache_get_modules' ) && in_array( $moduleName, apache_get_modules() ) ) {
+			return true;
+		}
+		// try it the hard way
+		ob_start();
+		phpinfo( INFO_MODULES );
+		$info = ob_get_clean();
+		return strpos( $info, $moduleName ) !== false;
 	}
 
 	/**
