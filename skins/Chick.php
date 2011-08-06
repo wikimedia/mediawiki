@@ -21,9 +21,6 @@ class SkinChick extends SkinTemplate {
 	var $skinname = 'chick', $stylename = 'chick',
 	$template = 'MonoBookTemplate', $useHeadElement = true;
 
-	/**
-	 * @param $out OutputPage
-	 */
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
 

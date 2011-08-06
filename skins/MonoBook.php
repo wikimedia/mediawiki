@@ -23,9 +23,6 @@ class SkinMonoBook extends SkinTemplate {
 	var $skinname = 'monobook', $stylename = 'monobook',
 		$template = 'MonoBookTemplate', $useHeadElement = true;
 
-	/**
-	 * @param $out OutputPage
-	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		global $wgHandheldStyle;
 		parent::setupSkinUserCss( $out );
@@ -219,8 +216,6 @@ echo $footerEnd;
 	/**
 	 * Prints the cactions bar.
 	 * Shared between MonoBook and Modern
-	 *
-	 * @param $skin Skin
 	 */
 	function cactions() {
 ?>
