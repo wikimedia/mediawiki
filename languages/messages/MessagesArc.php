@@ -14,6 +14,8 @@
  * @author The Thadman
  */
 
+$rtl = true;
+
 $namespaceNames = array(
 	NS_MEDIA            => 'ܡܝܕܝܐ',
 	NS_SPECIAL          => 'ܕܝܠܢܝܐ',
@@ -91,8 +93,6 @@ $magicWords = array(
 	'url_path'              => array( '0', 'ܫܒܝܠܐ', 'PATH' ),
 	'url_wiki'              => array( '0', 'ܘܝܩܝ', 'WIKI' ),
 );
-
-$rtl = true;
 
 $messages = array(
 # User preference toggles
