@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Skin
+ */
 class SideBarTest extends MediaWikiLangTestCase {
 
 	/** A skin template, reinitialized before each test */

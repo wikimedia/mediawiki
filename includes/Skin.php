@@ -1125,6 +1125,7 @@ abstract class Skin extends ContextSource {
 			if ( strpos( $line, '*' ) !== 0 ) {
 				continue;
 			}
+			$line = rtrim( $line, "\r" ); // for Windows compat
 
 			if ( strpos( $line, '**' ) !== 0 ) {
 				$heading = trim( $line, '* ' );
