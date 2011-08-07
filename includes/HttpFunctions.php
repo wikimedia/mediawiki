@@ -200,6 +200,15 @@ class MWHttpRequest {
 	}
 
 	/**
+	 * Simple function to test if we can make any sort of requests at all, using
+	 * cURL or fopen()
+	 * @return bool
+	 */
+	public static function canMakeRequests() {
+		return function_exists( 'curl_init' ) || wfIniGetBool( 'allow_url_fopen' );
+	}
+
+	/**
 	 * Generate a new request object
 	 * @see MWHttpRequest::__construct
 	 */

@@ -51,7 +51,9 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 19514) Unordered list list-style-image should be IE6-compatible (8-bit).
 * Installer checked for magic_quotes_runtime instead of register_globals.
 * $wgSVGMaxSize is now applied to the smaller of width or height, making very
-  wide pano/timeline/diagram SVGs renderable at saner sizes
+  wide pano/timeline/diagram SVGs renderable at saner sizes.
+* (bug 29959) Installer fatal when cURL and allow_url_fopen is disabled and user
+  tries to subsribe to mediawiki-announce.
 
 === Changes since 1.17.0rc1 ===
 
