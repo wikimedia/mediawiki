@@ -182,12 +182,25 @@ class MWException extends Exception {
 
 			$wgOut->output();
 		} else {
+			header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki Error', true, 500 );
+			header( 'Content-type: text/html; charset=UTF-8' );
+			header( 'Cache-control: none' );
+			header( 'Pragma: nocache' );
+
 			$hookResult = $this->runHooks( get_class( $this ) . "Raw" );
 			if ( $hookResult ) {
 				die( $hookResult );
 			}
 
+			echo "<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<title>" . $this->getPageTitle() . "</title>
+</head>
+<body>
+";
 			echo $this->getHTML();
+			echo "\n</body></html>";
 			die(1);
 		}
 	}
