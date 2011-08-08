@@ -48,14 +48,16 @@ var byteLimitTest = function( options ) {
 
 		// Simulate pressing keys for each of the sample characters
 		$.addChars( opt.$input, opt.sample );
-		var newVal = opt.$input.val();
+		var	rawVal = opt.$input.val(),
+			fn = opt.$input.data( 'byteLimit-callback' ),
+			newVal = $.isFunction( fn ) ? fn( rawVal ) : rawVal;
 
 		if ( opt.hasLimit ) {
 			expect(3);
 
 			ltOrEq( $.byteLength( newVal ), opt.limit, 'Prevent keypresses after byteLimit was reached, length never exceeded the limit' );
-			equal( $.byteLength( newVal ), $.byteLength( opt.expected ), 'Not preventing keypresses too early, length has reached the expected length' );
-			equal( newVal, opt.expected, 'New value matches the expected string' );
+			equal( $.byteLength( rawVal ), $.byteLength( opt.expected ), 'Not preventing keypresses too early, length has reached the expected length' );
+			equal( rawVal, opt.expected, 'New value matches the expected string' );
 
 		} else {
 			expect(2);
@@ -153,4 +155,41 @@ byteLimitTest({
 	hasLimit: true,
 	limit: 12,
 	expected: '1234567890' + '12'
+});
+
+byteLimitTest({
+	description: 'Pass the limit and a callback as input filter',
+	$input: $( '<input>' )
+		.attr( {
+			'type': 'text'
+		})
+		.byteLimit( 6, function( val ) {
+			_titleConfig();
+
+			// Return without namespace prefix
+			return new mw.Title( '' + val ).getMain();
+		} ),
+	sample: 'User:Sample',
+	hasLimit: true,
+	limit: 6, // 'Sample' length
+	expected: 'User:Sample'
+});
+
+byteLimitTest({
+	description: 'Limit using the maxlength attribute and pass a callback as input filter',
+	$input: $( '<input>' )
+		.attr( {
+			'type': 'text',
+			'maxLength': '6'
+		})
+		.byteLimit( function( val ) {
+			_titleConfig();
+
+			// Return without namespace prefix
+			return new mw.Title( '' + val ).getMain();
+		} ),
+	sample: 'User:Sample',
+	hasLimit: true,
+	limit: 6, // 'Sample' length
+	expected: 'User:Sample'
 });

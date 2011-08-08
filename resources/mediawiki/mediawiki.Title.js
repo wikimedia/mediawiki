@@ -123,9 +123,9 @@ var	Title = function( title, namespace ) {
 		var	matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w{1,5}))?$/ ),
 			ns_match = getNsIdByName( matches[1] );
 		if ( matches.length && ns_match ) {
-			if ( matches[1] ) { title._ns = ns_match; }
-			if ( matches[2] ) { title._name = fixName( matches[2] ); }
-			if ( matches[3] ) { title._ext = fixExt( matches[3] ); }
+			if ( matches[1] != null ) { title._ns = ns_match; }
+			if ( matches[2] != null ) { title._name = fixName( matches[2] ); }
+			if ( matches[3] != null ) { title._ext = fixExt( matches[3] ); }
 		} else {
 			// Consistency with MediaWiki: Unknown namespace > fallback to main namespace.
 			title._ns = 0;
@@ -144,8 +144,8 @@ var	Title = function( title, namespace ) {
 	setNameAndExtension = function( title, raw ) {
 		var matches = raw.match( /^(?:)?(.*?)(?:\.(\w{1,5}))?$/ );
 		if ( matches.length ) {
-			if ( matches[1] ) { title._name = fixName( matches[1] ); }
-			if ( matches[2] ) { title._ext = fixExt( matches[2] ); }
+			if ( matches[1] != null ) { title._name = fixName( matches[1] ); }
+			if ( matches[2] != null ) { title._ext = fixExt( matches[2] ); }
 		} else {
 			throw new Error( 'mw.Title: Could not parse title "' + raw + '"' );
 		}

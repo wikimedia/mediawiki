@@ -27,6 +27,7 @@ production.
 * (bug 15558) Parameters to special pages included in wikitext can now be passed
   as with templates.
 * Installer now issues a warning if mod_security is present.
+* (bug 29455) Add support for a filter callback function in jQuery byteLimit plugin.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
