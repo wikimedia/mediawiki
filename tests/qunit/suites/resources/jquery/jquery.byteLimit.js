@@ -23,45 +23,46 @@ $.addChars = function( $input, charstr ) {
 		}
 	}
 };
-var blti = 0;
+
 /**
  * Test factory for $.fn.byteLimit
  *
  * @param $input {jQuery} jQuery object in an input element
- * @param useLimit {Boolean} Wether a limit should apply at all
+ * @param hasLimit {Boolean} Wether a limit should apply at all
  * @param limit {Number} Limit (if used) otherwise undefined
- * The limit should be less than 20 (the sample data's length) 
+ * The limit should be less than 20 (the sample data's length)
  */
 var byteLimitTest = function( options ) {
 	var opt = $.extend({
 		description: '',
 		$input: null,
 		sample: '',
-		useLimit: false,
-		expected: 0,
+		hasLimit: false,
+		expected: '',
 		limit: null
 	}, options);
-	var i = blti++;
 
 	test( opt.description, function() {
 
 		opt.$input.appendTo( 'body' );
-	
+
 		// Simulate pressing keys for each of the sample characters
 		$.addChars( opt.$input, opt.sample );
 		var newVal = opt.$input.val();
-	
-		if ( opt.useLimit ) {
-			expect(2);
-	
+
+		if ( opt.hasLimit ) {
+			expect(3);
+
 			ltOrEq( $.byteLength( newVal ), opt.limit, 'Prevent keypresses after byteLimit was reached, length never exceeded the limit' );
-			equal( $.byteLength( newVal ), opt.expected, 'Not preventing keypresses too early, length has reached the expected length' );
-	
+			equal( $.byteLength( newVal ), $.byteLength( opt.expected ), 'Not preventing keypresses too early, length has reached the expected length' );
+			equal( newVal, opt.expected, 'New value matches the expected string' );
+
 		} else {
-			expect(1);
-			equal( $.byteLength( newVal ), opt.expected, 'Unlimited scenarios are not affected, expected length reached' );
+			expect(2);
+			equal( newVal, opt.expected, 'New value matches the expected string' );
+			equal( $.byteLength( newVal ), $.byteLength( opt.expected ), 'Unlimited scenarios are not affected, expected length reached' );
 		}
-	
+
 		opt.$input.remove();
 	} );
 };
@@ -83,8 +84,8 @@ byteLimitTest({
 			'type': 'text'
 		}),
 	sample: simpleSample,
-	useLimit: false,
-	expected: $.byteLength( simpleSample )
+	hasLimit: false,
+	expected: simpleSample
 });
 
 byteLimitTest({
@@ -96,9 +97,9 @@ byteLimitTest({
 		})
 		.byteLimit(),
 	sample: simpleSample,
-	useLimit: true,
+	hasLimit: true,
 	limit: 10,
-	expected: 10
+	expected: '1234567890'
 });
 
 byteLimitTest({
@@ -109,9 +110,9 @@ byteLimitTest({
 		})
 		.byteLimit( 10 ),
 	sample: simpleSample,
-	useLimit: true,
+	hasLimit: true,
 	limit: 10,
-	expected: 10
+	expected: '1234567890'
 });
 
 byteLimitTest({
@@ -123,9 +124,9 @@ byteLimitTest({
 		})
 		.byteLimit( 15 ),
 	sample: simpleSample,
-	useLimit: true,
+	hasLimit: true,
 	limit: 15,
-	expected: 15
+	expected: '123456789012345'
 });
 
 byteLimitTest({
@@ -136,9 +137,9 @@ byteLimitTest({
 		})
 		.byteLimit( 14 ),
 	sample: mbSample,
-	useLimit: true,
+	hasLimit: true,
 	limit: 14,
-	expected: 14 // (10 x 1-byte char) + (1 x 3-byte char) + (1 x 1-byte char)
+	expected: '1234567890' + U_20AC + '1'
 });
 
 byteLimitTest({
@@ -149,7 +150,7 @@ byteLimitTest({
 		})
 		.byteLimit( 12 ),
 	sample: mbSample,
-	useLimit: true,
+	hasLimit: true,
 	limit: 12,
-	expected: 12 // 10 x 1-byte char. The next 3-byte char exceeds limit of 12, but 2 more 1-byte chars come in after.
+	expected: '1234567890' + '12'
 });
