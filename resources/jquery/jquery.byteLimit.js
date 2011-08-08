@@ -6,23 +6,45 @@
 ( function( $ ) {
 
 	/**
-	 * Enforces a byte limit to a textbox, so that UTF-8 entries are not arbitrarily truncated.
+	 * Enforces a byte limit to a textbox, so that UTF-8 entries are counted as well, when, for example,
+	 * a databae field has a byte limit rather than a character limit.
+	 * Plugin rationale: Browser has native maxlength for number of characters, this plugin exists to
+	 * limit number of bytes instead.
+	 *
+	 * Can be called with a custom limit (to use that limit instead of the maxlength attribute value),
+	 * a filter function (in case the limit should apply to something other than the exact input value),
+	 * or both. Order of arguments is important!
+	 *
+	 * @context {jQuery} Instance of jQuery for one or more input elements
+	 * @param limit {Number} (optional) Limit to enforce, fallsback to maxLength-attribute,
+	 * called with fetched value as argument.
+	 * @param fn {Function} (optional) Function to call on the input string before assessing the length
+	 * @return {jQuery} The context
 	 */
-	$.fn.byteLimit = function( limit ) {
+	$.fn.byteLimit = function( limit, fn ) {
+		// If the first argument is the function,
+		// set fn to the first argument's value and ignore the second argument.
+		if ( $.isFunction( limit ) ) {
+			fn = limit;
+			limit = undefined;
+		}
 
-		// Default to current attribute value
-		if ( limit == null ) {
+		// Default limit to current attribute value
+		if ( limit === undefined ) {
 			limit = this.attr( 'maxLength' );
 
-		// If passed, update/set attribute value instead
+		// If limit passed, update/set attribute value instead
 		} else {
 			this.attr( 'maxLength', limit );
 		}
 
 		// Nothing passed and/or empty attribute, return without binding an event.
-		if ( limit == null ) {
+		if ( limit === undefined ) {
 			return this;
 		}
+
+		// Save function for reference
+		this.data( 'byteLimit-callback', fn );
 
 		// We've got something, go for it:
 		return this.keypress( function( e ) {
@@ -41,11 +63,12 @@
 			{
 				return true; //a special key (backspace, etc) so don't interfere.
 			}
-	
-			var len = $.byteLength( this.value );
-			// Note that keypress returns a character code point, not a keycode.
-			// However, this may not be super reliable depending on how keys come in...
-			var charLen = $.byteLength( String.fromCharCode( e.which ) );
+
+			var	val = fn !== undefined ? fn( $( this ).val() ): $( this ).val(),
+				len = $.byteLength( val ),
+				// Note that keypress returns a character code point, not a keycode.
+				// However, this may not be super reliable depending on how keys come in...
+				charLen = $.byteLength( String.fromCharCode( e.which ) );
 
 			if ( ( len + charLen ) > limit ) {
 				e.preventDefault();
