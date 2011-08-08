@@ -882,7 +882,7 @@ Tillfälligt lösenord: $2',
 'showdiff'                         => 'Visa ändringar',
 'anoneditwarning'                  => "'''Varning:''' Du är inte inloggad.
 Din IP-adress kommer att sparas i historiken för den här sidan.",
-'anonpreviewwarning'               => "''Du är inte inloggad. Vid spara kommer att din IP-adress registreras på denna sidas redigeringshistorik.''",
+'anonpreviewwarning'               => "''Du är inte inloggad. Om du sparar kommer din IP-adress registreras på denna sidas redigeringshistorik.''",
 'missingsummary'                   => "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar.
 Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'missingcommenttext'               => 'Var god och skriv in en kommentar nedan.',
@@ -950,12 +950,12 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view'   => 'Kontot "$1" är inte registrerat.',
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
-'clearyourcache'                   => "'''Observera:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
-*'''Firefox / Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
-* '''Google Chrome:''' tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
-*'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5''
+'clearyourcache'                   => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
+*'''Firefox / Safari:''' håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
+*'''Google Chrome:''' tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
+*'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
 *'''Konqueror:''': klicka ''Reload'' eller tryck ''F5''
-*'''Opera:''' rensa cachen i ''Tools → Preferences''",
+*'''Opera:''' rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
 'userjsyoucanpreview'              => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
@@ -2202,7 +2202,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'emailccme'            => 'Skicka en kopia av meddelandet till mig.',
 'emailccsubject'       => 'Kopia av ditt meddelande till $1: $2',
 'emailsent'            => 'E-post har nu skickats',
-'emailsenttext'        => 'Din e-post har skickats.',
+'emailsenttext'        => 'Ditt e-postmeddelande har skickats',
 'emailuserfooter'      => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
 
 # User Messenger
@@ -3214,6 +3214,7 @@ Andra kommer att gömmas som standard
 'exif-objectname'                  => 'Kort titel',
 'exif-specialinstructions'         => 'Specialinstruktioner',
 'exif-headline'                    => 'Rubrik',
+'exif-credit'                      => 'Erkännande/leverantör',
 'exif-source'                      => 'Källa',
 'exif-editstatus'                  => 'Bildens redaktionella status',
 'exif-urgency'                     => 'Brådskande',

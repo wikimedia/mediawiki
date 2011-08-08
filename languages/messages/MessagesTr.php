@@ -809,6 +809,12 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'passwordreset-emailelement' => 'Kullanıcı adı: $1
 Geçici şifre: $2',
 
+# Special:ChangeEmail
+'changeemail-oldemail' => 'Mevcut E-posta adresi:',
+'changeemail-newemail' => 'Yeni E-posta adresi:',
+'changeemail-submit'   => "E-posta'yı değiştir",
+'changeemail-cancel'   => 'İptal',
+
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
 'bold_tip'        => 'Kalın yazı',
@@ -1305,6 +1311,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-watchlist-token'         => 'İzleme listesi nişanı:',
 'prefs-misc'                    => 'Diğer ayarlar',
 'prefs-resetpass'               => 'Parolayı değiştir',
+'prefs-changeemail'             => "E-posta'yı değiştir",
 'prefs-email'                   => 'E-posta seçenekleri',
 'prefs-rendering'               => 'Görünüm',
 'saveprefs'                     => 'Kaydet',
@@ -2307,6 +2314,7 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 'protect-level-sysop'         => 'sadece hizmetliler',
 'protect-summary-cascade'     => 'kademeli',
 'protect-expiring'            => 'bitiş tarihi $1 (UTC)',
+'protect-expiring-local'      => '$1 tarihinde bitiyor',
 'protect-expiry-indefinite'   => 'süresiz',
 'protect-cascade'             => 'Bu sayfada kullanılan tüm sayfaları korumaya al (kademeli koruma)',
 'protect-cantedit'            => 'Bu sayfanın koruma düzeyini değiştiremezsiniz; çünkü bunu yapmaya yetkiniz yok.',
@@ -2872,6 +2880,15 @@ Geçici dosya kayıp.',
 'spam_reverting'      => '$1 ile bağlantı içermeyen son sürüme geri dönülüyor',
 'spam_blanking'       => 'Tüm revizyonlar $1 sayfasına bağlantı içeriyor, boşaltılıyor',
 
+# Info page
+'pageinfo-title'            => 'Bilgi için "$1"',
+'pageinfo-header-edits'     => 'Değişiklikler',
+'pageinfo-header-watchlist' => 'İzleme listesi',
+'pageinfo-header-views'     => 'Görüntüle',
+'pageinfo-subjectpage'      => 'Sayfa',
+'pageinfo-talkpage'         => 'Tartışma sayfası',
+'pageinfo-viewsperedit'     => 'Değişiklik başına görüntüleme',
+
 # Skin names
 'skinname-standard'  => 'Klasik',
 'skinname-nostalgia' => 'Nostaljik',
@@ -3104,6 +3121,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-writer'                      => 'Yazar',
 'exif-languagecode'                => 'Dil',
 'exif-iimcategory'                 => 'Kategori',
+'exif-label'                       => 'Etiket',
 
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
@@ -3403,6 +3421,10 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'confirm-purge-top'    => 'Sayfa önbelleği temizlensin mi?',
 'confirm-purge-bottom' => 'Bir sayfayı tasfiye etmek önbelleği temizler ve en güncel sürümün görünmesine zorlar.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'TAMAM',
+'confirm-unwatch-button' => 'TAMAM',
+
 # Separators for various lists, etc.
 'percent' => '%$1',
 
@@ -3601,7 +3623,9 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 
 # Add categories per AJAX
 'ajax-add-category'            => 'Kategori ekle',
+'ajax-edit-category'           => 'Kategori düzenle',
 'ajax-add-category-submit'     => 'Ekle',
+'ajax-confirm-ok'              => 'TAMAM',
 'ajax-confirm-title'           => 'İşlemi onayla',
 'ajax-confirm-save'            => 'Kaydet',
 'ajax-add-category-summary'    => '"$1" kategorisini ekle',

@@ -15505,7 +15505,7 @@ $1',
 ----
 * <doclink href=Readme>自述文件</doclink>
 * <doclink href=ReleaseNotes>发行说明</doclink>
-* <doclink href=Copying>复制</doclink>
+* <doclink href=Copying>协议副本</doclink>
 * <doclink href=UpgradeDoc>升级</doclink>',
 	'config-env-good' => '环境检查已经完成。您可以安装MediaWiki。',
 	'config-env-bad' => '环境检查已经完成。您不能安装MediaWiki。',
@@ -15714,7 +15714,7 @@ chmod a+w $3</pre>',
 	'config-ns-other-default' => '我的Wiki',
 	'config-project-namespace-help' => "依循维基百科形成的惯例，许多wiki将他们的方针页面存放在与内容页面不同的“'''项目名字空间'''”中。所有位于该名字空间下的页面标题都会被冠以固定的前缀，您可以在此处指定这一前缀。传统上，这一前缀应与wiki的命名保持一致，但请勿在其中使用标点符号，如“#”或“:”。",
 	'config-ns-invalid' => '指定的名字空间“<nowiki>$1</nowiki>”无效，请为项目名字空间指定其他名称。',
-	'config-ns-conflict' => '指定的名称空间“<nowiki>$1</nowiki>”与默认的MediaWiki名称空间冲突。请指定一个不同的项目名称空间。',
+	'config-ns-conflict' => '指定的名字空间“<nowiki>$1</nowiki>”与默认的MediaWiki名字空间冲突。请指定一个不同的项目名字空间。',
 	'config-admin-box' => '管理员帐号',
 	'config-admin-name' => '您的名字：',
 	'config-admin-password' => '密码：',
