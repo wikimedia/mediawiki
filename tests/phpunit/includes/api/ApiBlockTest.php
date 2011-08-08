@@ -46,7 +46,7 @@ class ApiBlockTest extends ApiTestCase {
 		$data = $this->doApiRequest( array(
 			'action' => 'block',
 			'user' => 'UTBlockee',
-			'reason' => BlockTest::REASON,
+			'reason' => 'Some reason',
 			'token' => $pageinfo['blocktoken'] ), $data );
 
 		$block = Block::newFromTarget('UTBlockee');

@@ -5,8 +5,6 @@
  */
 class BlockTest extends MediaWikiLangTestCase {
 
-	const REASON = "Some reason";
-
 	private $block, $madeAt;
 
 	/* variable used to save up the blockID we insert in this test suite */
@@ -37,7 +35,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 
 		$this->block = new Block( 'UTBlockee', 1, 0,
-			self::REASON
+			'Parce que'
 		);
 		$this->madeAt = wfTimestamp( TS_MW );
 
@@ -68,7 +66,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		// $this->dumpBlocks();
 
 		$this->assertTrue( $this->block->equals( Block::newFromTarget('UTBlockee') ), "newFromTarget() returns the same block as the one that was made");
-
+		
 		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made");
 
 	}
