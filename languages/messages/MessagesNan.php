@@ -67,6 +67,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Kià hō͘ pa̍t-lâng ê email sūn-soà kià copy hō͘ goá',
 'tog-diffonly'                => 'Diff ē-pêng bián hián-sī ia̍h ê loē-iông',
 'tog-showhiddencats'          => 'Hián-sī chhàng khí--lâi ê lūi-pia̍t',
+'tog-norollbackdiff'          => 'ká tńg-khí liáu bián-koán cheng-chha goā-chē',
 
 'underline-always'  => 'Tiāⁿ-tio̍h',
 'underline-never'   => 'Tiāⁿ-tio̍h mài',
@@ -165,6 +166,7 @@ $messages = array(
 'vector-action-protect'   => 'Pó-hō·',
 'vector-action-unprotect' => 'Chhú-siau pó-hō·',
 'vector-view-edit'        => 'Siu-kái',
+'vector-view-history'     => 'khoàⁿ le̍k-sú',
 'vector-view-view'        => 'Tha̍k',
 'vector-view-viewsource'  => 'Khoàⁿ goân-sú lōe-iông',
 'actions'                 => 'Tōng-chok',
@@ -553,19 +555,21 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'action-edit' => 'Siu-kái chit ia̍h',
 
 # Recent changes
-'recentchanges'   => 'Chòe-kīn ê kái-piàn',
-'rcnotefrom'      => 'Ē-kha sī <b>$2</b> kàu taⁿ ê kái-piàn (ke̍k-ke hián-sī <b>$1</b> hāng).',
-'rclistfrom'      => 'Hián-sī tùi $1 kàu taⁿ ê sin kái-piàn',
-'rcshowhideminor' => '$1 sió siu-kái',
-'rcshowhideliu'   => '$1 teng-ji̍p ê iōng-chiá',
-'rcshowhideanons' => '$1 bû-bêng-sī',
-'rcshowhidemine'  => '$1 góa ê pian-chi̍p',
-'rclinks'         => 'Hían-sī $2 ji̍t lāi siōng sin ê $1 hāng kái-piàn<br />$3',
-'hist'            => 'ls',
-'hide'            => 'am',
-'show'            => 'hían-sī',
-'minoreditletter' => '~',
-'newpageletter'   => '!',
+'recentchanges'               => 'Chòe-kīn ê kái-piàn',
+'recentchanges-label-newpage' => 'Chit ê siu-kái ē sán-seng sin ia̍h',
+'recentchanges-label-minor'   => 'Che sī sió siu-kái',
+'rcnotefrom'                  => 'Ē-kha sī <b>$2</b> kàu taⁿ ê kái-piàn (ke̍k-ke hián-sī <b>$1</b> hāng).',
+'rclistfrom'                  => 'Hián-sī tùi $1 kàu taⁿ ê sin kái-piàn',
+'rcshowhideminor'             => '$1 sió siu-kái',
+'rcshowhideliu'               => '$1 teng-ji̍p ê iōng-chiá',
+'rcshowhideanons'             => '$1 bû-bêng-sī',
+'rcshowhidemine'              => '$1 góa ê pian-chi̍p',
+'rclinks'                     => 'Hían-sī $2 ji̍t lāi siōng sin ê $1 hāng kái-piàn<br />$3',
+'hist'                        => 'ls',
+'hide'                        => 'am',
+'show'                        => 'hían-sī',
+'minoreditletter'             => '~',
+'newpageletter'               => '!',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siong-koan ê kái-piàn',
@@ -609,6 +613,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 
 # File description page
 'file-anchor-link' => 'Tóng-àn',
+'filehist'         => 'Tóng-àn ê le̍k-sú',
 'filehist-user'    => 'Iōng-chiá',
 'imagelinks'       => 'Tóng-àn liân-kiat',
 'linkstoimage'     => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
@@ -653,6 +658,7 @@ Template:Khu-pia̍t-ia̍h',
 'fewestrevisions' => 'Siōng bô siu-tēng ê bûn-chiuⁿ',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|jī-goân|jī-goân}}',
 'ncategories'             => '$1 {{PLURAL:$1|ê lūi-pia̍t |ê lūi-pia̍t}}',
 'nlinks'                  => '$1 ê liân-kiat',
 'nmembers'                => '$1 ê sêng-oân',
@@ -896,6 +902,10 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'import' => 'Su-ji̍p ia̍h',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'            => 'Lí chit ê iōng-chiá ê ia̍h',
+'tooltip-pt-mytalk'              => 'Lí ê thó-lūn ia̍h',
+'tooltip-pt-preferences'         => 'Lí ê siat-tēng',
+'tooltip-pt-mycontris'           => 'Lí ê kòng-hiàn lia̍t-toaⁿ',
 'tooltip-pt-login'               => 'Hi-bāng lí teng-ji̍p; m̄-ko bô kiông-chè',
 'tooltip-pt-logout'              => 'Teng-chhut',
 'tooltip-ca-talk'                => 'Loē-iông ê thó-lūn',
@@ -911,7 +921,10 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'tooltip-n-help'                 => 'Beh chhoé ê só͘-chāi',
 'tooltip-t-whatlinkshere'        => 'Só͘-ū liân kàu chia ê liat-toaⁿ',
 'tooltip-t-specialpages'         => 'Só͘-ū te̍k-sû-ia̍h ê lia̍t-toaⁿ',
+'tooltip-ca-nstab-image'         => 'Khoàⁿ tóng-àn ia̍h',
 'tooltip-ca-nstab-category'      => 'Khoàⁿ lūi-pia̍t ia̍h',
+'tooltip-save'                   => 'Pó-chhûn lí chò ê kái-piàn',
+'tooltip-preview'                => 'Chhiáⁿ tī pó-chûn chìn-chêng,  sian khoàⁿ lí chò ê kái-piàn !',
 
 # Attribution
 'anonymous'     => '{{SITENAME}} bô kì-miâ ê iōng-chiá',

@@ -1656,7 +1656,7 @@ Nke ozor gí zonari na áká onwe ha.
 'specialpages-group-highuse'   => 'Ihü éjị áká nke ukwu',
 'specialpages-group-pages'     => 'Ndétu nke ihü',
 'specialpages-group-pagetools' => 'Ngwa ihü',
-'specialpages-group-wiki'      => 'Ùmá Wiki na ngwa orü ya',
+'specialpages-group-wiki'      => 'Ùmá Wiki na ngwa ọru ya',
 'specialpages-group-redirects' => 'Na kufù ihü mkpà',
 'specialpages-group-spam'      => 'Ngwa ụrú',
 

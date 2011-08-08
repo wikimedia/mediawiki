@@ -667,7 +667,7 @@ La causa de esto suele deberse a un ''diff'' anacrónico o un enlace al historia
 Si no fuera el caso, puedes haber encontrado un fallo en el software.
 
 Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de la URL.",
-'missingarticle-rev'   => '(nº. de revisión: $1)',
+'missingarticle-rev'   => '(n.º de revisión: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'La base de datos se ha bloqueado temporalmente mientras los servidores se sincronizan.',
 'internalerror'        => 'Error interno',
@@ -753,21 +753,25 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'userexists'                 => 'El nombre indicado ya está en uso.
 Por favor, indica un nombre diferente.',
 'loginerror'                 => 'Error de inicio de sesión',
-'createaccounterror'         => 'No se pudo crear cuenta: $1',
-'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero en este momento no has iniciado la sesión. {{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados, pero parecen deshabilitadas. Por favor, habilítalas e identifícate con nombre de usuario y contraseña.',
-'nocookieslogin'             => '{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Las <em>cookies</em> están deshabilitadas en tu navegador. Por favor, actívalas e inténtalo de nuevo.',
+'createaccounterror'         => 'No se pudo crear la cuenta: $1',
+'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero no has iniciado sesión.
+{{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados.
+Tu navegador tiene desactivadas las cookies.
+Por favor, actívalas e inicia sesión con tu nuevo nombre de usuario y contraseña.',
+'nocookieslogin'             => '{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Las <em>cookies</em> están desactivadas en tu navegador. Por favor, actívalas e inténtalo de nuevo.',
 'nocookiesfornew'            => 'No se pudo crear la cuenta de usuario, porque no pudimos confirmar su origen.
-Asegurarse de que tiene las cookies habilitadas, luego recargue esta página e inténtelo otra vez.',
+Asegúrate de que tienes las cookies activadas, luego recarga esta página e inténtalo de nuevo.',
 'noname'                     => 'No se ha especificado un nombre de usuario válido.',
 'loginsuccesstitle'          => 'Inicio de sesión exitoso',
-'loginsuccess'               => 'Has iniciado sesión en {{SITENAME}} como «$1».',
+'loginsuccess'               => "'''Has iniciado sesión en {{SITENAME}} como «$1».'''",
 'nosuchuser'                 => 'No existe ningún usuario llamado «$1».
 Los nombres de usuario son sensibles a las mayúsculas.
 Revisa la ortografía, o [[Special:UserLogin/signup|crea una cuenta nueva]].',
 'nosuchusershort'            => 'No hay un usuario con el nombre «$1». Comprueba que lo has escrito correctamente.',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
 'login-userblocked'          => 'Este usuario está bloqueado. Inicio de sesión no permitido.',
-'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtalo de nuevo.',
+'wrongpassword'              => 'La contraseña indicada es incorrecta.
+Por favor, inténtalo de nuevo.',
 'wrongpasswordempty'         => 'No has escrito una contraseña.
 Por favor, inténtalo de nuevo.',
 'passwordtooshort'           => 'Las contraseñas deben tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
@@ -790,7 +794,7 @@ Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las i
 'throttled-mailpassword'     => 'Ya se ha enviado un recordatorio de password en {{PLURAL:$1|la última hora|las últimas $1 horas}}.
 Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error al enviar correo: $1',
-'acct_creation_throttle_hit' => 'Los visitantes a esta wiki usando su dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día, lo cual es lo máximo permitido en este periodo de tiempo.
+'acct_creation_throttle_hit' => 'Los visitantes a este wiki usando tu dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día, lo cual es lo máximo permitido en este periodo de tiempo.
 Como resultado, los visitantes usando esta dirección IP no pueden crear más cuentas en este momento.',
 'emailauthenticated'         => 'Tu dirección de correo electrónico fue autenticada el $2 a $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
@@ -814,20 +818,22 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP',
+'user-mail-no-addy'      => 'Se ha intentado enviar correo electrónico sin una dirección de correo electrónico.',
 
 # Change password dialog
 'resetpass'                 => 'Cambiar la contraseña',
 'resetpass_announce'        => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico.
 Por favor, introduce una nueva contraseña aquí:',
 'resetpass_text'            => '<!-- Añada texto aquí -->',
-'resetpass_header'          => 'Cambiar la contraseña',
+'resetpass_header'          => 'Cambiar la contraseña de la cuenta',
 'oldpassword'               => 'Contraseña antigua:',
 'newpassword'               => 'Contraseña nueva:',
-'retypenew'                 => 'Confirmar la nueva contraseña:',
-'resetpass_submit'          => 'Cambiar la contraseña e identificarse',
-'resetpass_success'         => 'La contraseña ha sido cambiada. Iniciando sesión...',
-'resetpass_forbidden'       => 'No se puede cambiar contraseñas',
-'resetpass-no-info'         => 'Debes identificarte para acceder directamente a esta página.',
+'retypenew'                 => 'Confirmar la contraseña nueva:',
+'resetpass_submit'          => 'Establecer contraseña e iniciar sesión',
+'resetpass_success'         => 'La contraseña ha sido cambiada con éxito.
+Iniciando sesión...',
+'resetpass_forbidden'       => 'No se pueden cambiar las contraseñas',
+'resetpass-no-info'         => 'Debes iniciar sesión para acceder directamente a esta página.',
 'resetpass-submit-loggedin' => 'Cambiar contraseña',
 'resetpass-submit-cancel'   => 'Cancelar',
 'resetpass-wrong-oldpass'   => 'La contraseña antigua no es correcta.
@@ -843,6 +849,16 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'passwordreset-username'     => 'Nombre de usuario:',
 'passwordreset-email'        => 'Dirección de correo electrónico:',
 'passwordreset-emailtitle'   => 'Detalles de la cuenta en {{SITENAME}}',
+'passwordreset-emailtext-ip' => 'Alguien (probablemente tú, desde la dirección IP $1) pidió un recordatorio de tus
+datos de cuenta para {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}
+con esta dirección de correo electrónico:
+
+$2
+
+{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} expirarán en {{PLURAL:$5|un día|$5 días}}.
+Deberías iniciar sesión y establecer una contraseña nueva ahora. Si alguien más hizo este pedido,
+o recuerdas tu contraseña original, y no deseas cambiarla, puedes
+ignorar este mensaje y continuar usando tu contraseña anterior.',
 'passwordreset-emailelement' => 'Nombre de usuario: $1
 Contraseña temporal: $2',
 'passwordreset-emailsent'    => 'Se ha enviado un correo electrónico de recordatorio.',
@@ -851,7 +867,7 @@ Contraseña temporal: $2',
 'changeemail'          => 'Cambiar la dirección de correo-e',
 'changeemail-header'   => 'Cambiar la dirección de correo-e de la cuenta',
 'changeemail-text'     => 'Rellena este formulario para cambiar tu dirección de correo electrónico. Debes introducir la contraseña para confirmar este cambio.',
-'changeemail-no-info'  => 'Debes identificarte para acceder directamente a esta página.',
+'changeemail-no-info'  => 'Debes iniciar sesión para acceder directamente a esta página.',
 'changeemail-oldemail' => 'Dirección de correo-e actual:',
 'changeemail-newemail' => 'Nueva dirección de correo-e:',
 'changeemail-none'     => '(ninguna)',
@@ -867,8 +883,8 @@ Contraseña temporal: $2',
 'link_tip'        => 'Enlace interno',
 'extlink_sample'  => 'http://www.ejemplo.com Título del enlace',
 'extlink_tip'     => 'Enlace externo (recuerda añadir el prefijo http://)',
-'headline_sample' => 'Texto de titular',
-'headline_tip'    => 'Titular de nivel 2',
+'headline_sample' => 'Texto de encabezado',
+'headline_tip'    => 'Encabezado de nivel 2',
 'nowiki_sample'   => 'Insertar aquí texto sin formato',
 'nowiki_tip'      => 'Ignorar el formato wiki',
 'image_sample'    => 'Ejemplo.jpg',
@@ -880,7 +896,7 @@ Contraseña temporal: $2',
 
 # Edit pages
 'summary'                          => 'Resumen:',
-'subject'                          => 'Asunto/titular:',
+'subject'                          => 'Asunto/encabezado:',
 'minoredit'                        => 'Esta es una edición menor',
 'watchthis'                        => 'Vigilar esta página',
 'savearticle'                      => 'Grabar la página',
@@ -935,8 +951,8 @@ Por favor incluye todos los datos aquí mostrados en cualquier consulta que haga
 'nosuchsectiontitle'               => 'Sección no encontrada',
 'nosuchsectiontext'                => 'Has intentado editar una sección que no existe.
 Quizá ha sido movida o borrada mientras visitabas la página.',
-'loginreqtitle'                    => 'Se requiere identificación',
-'loginreqlink'                     => 'identificarte',
+'loginreqtitle'                    => 'Es necesario iniciar sesión',
+'loginreqlink'                     => 'iniciar sesión',
 'loginreqpagetext'                 => 'Debes $1 para ver otras páginas.',
 'accmailtitle'                     => 'La contraseña ha sido enviada.',
 'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] ha sido enviada a $2.

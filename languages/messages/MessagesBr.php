@@ -703,6 +703,13 @@ Mat e vefe deoc'h kevreañ ha dibab ur ger-tremen nevez bremañ. Mard eo bet gou
 Ger-tremen da c'hortoz : $2",
 'passwordreset-emailsent'      => "Kaset ez eus bet ur postel da zegas soñj deoc'h.",
 
+# Special:ChangeEmail
+'changeemail'          => "Kemmañ ar chomlec'h postel",
+'changeemail-header'   => "Kemmañ chomlec'h postel ar gont",
+'changeemail-no-info'  => "Ret eo deoc'h bezañ kevreet a-benn mont d'ar bajenn-se war-eeun.",
+'changeemail-oldemail' => "Chomlec'h postel a-vremañ :",
+'changeemail-newemail' => "Chomlec'h postel nevez :",
+
 # Edit page toolbar
 'bold_sample'     => 'Testenn dev',
 'bold_tip'        => 'Testenn dev',
@@ -1129,7 +1136,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'searchmenu-legend'                => 'Dibarzhioù klask',
 'searchmenu-exists'                => "'''Ur bajenn anvet\"[[:\$1]]\" zo war ar wiki-mañ'''",
 'searchmenu-new'                   => "'''Krouiñ ar bajenn \"[[:\$1]]\" war ar wiki-mañ !'''",
-'searchmenu-new-nocreate'          => 'Un anv pajenn direizh eo "$1"ha n\'hall ket bezañ krouet ganeoc\'h.',
+'searchmenu-new-nocreate'          => 'Un anv pajenn direizh eo "$1" ha n\'hall ket bezañ krouet ganeoc\'h.',
 'searchhelp-url'                   => 'Help:Skoazell',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Furchal er pajennoù a grog gant ar rakger-mañ]]',
 'searchprofile-articles'           => 'Pajennoù gant boued',

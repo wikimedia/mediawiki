@@ -826,9 +826,12 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'withoutinterwiki-legend'  => 'Prefixe',
 'withoutinterwiki-submit'  => 'Monstrar',
 
+'fewestrevisions' => 'Págines che max poc revisiones',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categorie|categories}}',
+'nlinks'                  => '$1 {{PLURAL:$1|catenun|catenunes}}',
 'nmembers'                => '$1 {{PLURAL:$1|usator|usatores}}',
 'lonelypages'             => 'Orfani págines',
 'uncategorizedpages'      => 'Págines íncategorizet',

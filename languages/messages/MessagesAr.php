@@ -510,7 +510,7 @@ $messages = array(
 'friday'        => 'الجمعة',
 'saturday'      => 'السبت',
 'sun'           => 'أحد',
-'mon'           => 'إثنين',
+'mon'           => 'اثنين',
 'tue'           => 'ثلاثاء',
 'wed'           => 'أربعاء',
 'thu'           => 'خميس',
@@ -942,6 +942,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
+'user-mail-no-addy'      => 'لقد حاولت إرسال بريد إلكتروني دون عنوان بريد إلكتروني.',
 
 # Change password dialog
 'resetpass'                 => 'تغيير كلمة السر',
@@ -992,6 +993,7 @@ $2
 # Special:ChangeEmail
 'changeemail'          => 'تغيير عنوان البريد الإلكتروني',
 'changeemail-header'   => 'تغيير عنوان البريد الإلكتروني للحساب',
+'changeemail-text'     => 'أكمل هذا النموذج لتغيير عنوان البريد الإلكتروني. سوف تحتاج إلى إدخال كلمة السر الخاصة بك لتأكيد هذا التغيير.',
 'changeemail-no-info'  => 'يجب تسجيل الدخول للوصول إلى هذه الصفحة مباشرة.',
 'changeemail-oldemail' => 'عنوان البريد الإلكتروني الحالي:',
 'changeemail-newemail' => 'عنوان البريد الإلكتروني الجديد:',
@@ -1376,7 +1378,7 @@ $1",
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
-'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفي من الإداريين.
+'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفيا من الإداريين.
 انظر [[Special:IPBlockList|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
 
 # History merging
@@ -4057,13 +4059,16 @@ $1',
 'tags-hitcount'           => '$1 {{PLURAL:$1|تغيير|تغيير}}',
 
 # Special:ComparePages
-'comparepages'     => 'قارن صفحات',
-'compare-selector' => 'قارن مراجعات الصفحة',
-'compare-page1'    => 'صفحة 1',
-'compare-page2'    => 'صفحة 2',
-'compare-rev1'     => 'مراجعة 1',
-'compare-rev2'     => 'مراجعة 2',
-'compare-submit'   => 'قارن',
+'comparepages'                => 'قارن صفحات',
+'compare-selector'            => 'قارن مراجعات الصفحة',
+'compare-page1'               => 'صفحة 1',
+'compare-page2'               => 'صفحة 2',
+'compare-rev1'                => 'مراجعة 1',
+'compare-rev2'                => 'مراجعة 2',
+'compare-submit'              => 'قارن',
+'compare-invalid-title'       => 'العنوان الذي حددته غير متاح.',
+'compare-title-not-exists'    => 'العنوان الذي حددته غير موجود.',
+'compare-revision-not-exists' => 'المراجعة التي حددتها غير موجودة.',
 
 # Database error messages
 'dberr-header'      => 'هذا الويكي به مشكلة',
@@ -4104,6 +4109,7 @@ $1',
 'ajax-add-category-summary'     => 'إضافة التصنيف "$1"',
 'ajax-edit-category-summary'    => 'تغيير الفئة "$1" إلى "$2"',
 'ajax-remove-category-summary'  => 'إزالة التصنيف "$1"',
+'ajax-category-question'        => 'لماذا تريد القيام بالتغييرات التالية:',
 'ajax-error-title'              => 'خطأ',
 'ajax-remove-category-error'    => 'لا يمكن إزالة هذا التصنيف.
 يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
