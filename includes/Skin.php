@@ -352,7 +352,6 @@ abstract class Skin extends ContextSource {
 	 * @return String
 	 */
 	function getPageClasses( $title ) {
-		global $wgRequest;
 		$numeric = 'ns-' . $title->getNamespace();
 
 		if ( $title->getNamespace() == NS_SPECIAL ) {
@@ -371,13 +370,8 @@ abstract class Skin extends ContextSource {
 		}
 
 		$name = Sanitizer::escapeClass( 'page-' . $title->getPrefixedText() );
-		
-		if ( $wgRequest->getVal('action') ) {
-			$action = 'action-' . $wgRequest->getVal('action');
-		} else {
-			$action = 'action-view';
-		}
-		return "$numeric $type $name $action";
+
+		return "$numeric $type $name";
 	}
 
 	/**
