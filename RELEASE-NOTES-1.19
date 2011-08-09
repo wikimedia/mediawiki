@@ -38,6 +38,8 @@ production.
   div#bodyContent.
 * (bug 30172) The check for posix_isatty() in maintenance scripts did not detect
   when the function exists but is disabled. Introduced Maintenance::posix_isatty()
+* (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
+  instead require() for included extensions.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
