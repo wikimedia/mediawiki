@@ -542,11 +542,12 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * Run a fuzz test series
 	 * Draw input from a set of test files
+	 *
+	 * @todo @fixme Needs some work to not eat memory until the world explodes
+	 *
+	 * @group Broken
 	 */
 	function testFuzzTests() {
-
-		$this->markTestIncomplete( 'Breaks tesla due to memory restrictions' );
-
 		global $wgParserTestFiles;
 
 		$files = $wgParserTestFiles;
