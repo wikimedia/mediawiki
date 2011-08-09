@@ -117,7 +117,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
 				$out->addHTML( '<p class="error">' . wfMessage( $ret )->parse() . '</p>' );
 			}
-			$out->addHTML( self::userForm( $this->mTarget ) );
+			$out->addHTML( $this->userForm( $this->mTarget ) );
 			return false;
 		}
 
@@ -219,17 +219,16 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @param $name String: user name submitted.
 	 * @return String: form asking for user name.
 	 */
-
-	function userForm( $name ) {
-		global $wgScript ;
+	protected function userForm( $name ) {
+		global $wgScript;
 		$string = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'askusername' ) ) .
-				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::openElement( 'fieldset' ) .
-				Html::rawElement( 'legend', null, wfMessage( 'emailtarget' )->parse() ) .
-				Xml::inputLabel( wfMessage( 'emailusername' )->text(), 'target', 'emailusertarget', 30, $name ) . ' ' .
-				Xml::submitButton( wfMessage( 'emailusernamesubmit' )->text() ) .
-				Xml::closeElement( 'fieldset' ) .
-				Xml::closeElement( 'form' ) . "\n";
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Xml::openElement( 'fieldset' ) .
+			Html::rawElement( 'legend', null, wfMessage( 'emailtarget' )->parse() ) .
+			Xml::inputLabel( wfMessage( 'emailusername' )->text(), 'target', 'emailusertarget', 30, $name ) . ' ' .
+			Xml::submitButton( wfMessage( 'emailusernamesubmit' )->text() ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' ) . "\n";
 		return $string;
 	}
 
