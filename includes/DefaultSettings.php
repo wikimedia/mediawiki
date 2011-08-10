@@ -2276,7 +2276,7 @@ $wgHandheldForIPhone = false;
  * This enables a lot of neat customizations, but may
  * increase security risk to users and server load.
  */
-$wgAllowUserJs = false;
+$wgAllowUserJs = true;
 
 /**
  * Allow user Cascading Style Sheets (CSS)?
@@ -2487,7 +2487,7 @@ $wgResourceLoaderInlinePrivateModules = true;
  * The default debug mode (on/off) for of ResourceLoader requests. This will still
  * be overridden when the debug URL parameter is used.
  */
-$wgResourceLoaderDebug = false;
+$wgResourceLoaderDebug = true;
 
 /**
  * Enable embedding of certain resources using Edge Side Includes. This will
@@ -2500,7 +2500,7 @@ $wgResourceLoaderUseESI = false;
  * Put each statement on its own line when minifying JavaScript. This makes
  * debugging in non-debug mode a bit easier.
  */
-$wgResourceLoaderMinifierStatementsOnOwnLine = false;
+$wgResourceLoaderMinifierStatementsOnOwnLine = true;
 
 /**
  * Maximum line length when minifying JavaScript. This is not a hard maximum:
