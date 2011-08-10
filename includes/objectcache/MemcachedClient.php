@@ -948,6 +948,12 @@ class MWMemcached {
 		} else {
 			$this->stats[$cmd] = 1;
 		}
+		
+		// Memcached doesn't seem to handle very high TTL values very well,
+		// so clamp them at 30 days
+		if ( $exp > 2592000 ) {
+			$exp = 2592000;
+		}
 
 		$flags = 0;
 
