@@ -43,29 +43,37 @@ class WebResponse {
 	 * @param $name String: name of cookie
 	 * @param $value String: value to give cookie
 	 * @param $expire Int: number of seconds til cookie expires
+	 * @param $prefix String: Prefix to use, if not $wgCookiePrefix (use '' for no prefix)
+	 * @param @domain String: Cookie domain to use, if not $wgCookieDomain
 	 */
-	public function setcookie( $name, $value, $expire = 0 ) {
+	public function setcookie( $name, $value, $expire = 0, $prefix = null, $domain = null ) {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure,$wgCookieExpiration, $wgCookieHttpOnly;
 		if ( $expire == 0 ) {
 			$expire = time() + $wgCookieExpiration;
 		}
+		if( $prefix === null ) {
+			$prefix = $wgCookiePrefix;
+		}
+		if( $domain === null ) {
+			$domain = $wgCookieDomain;
+		}
 		$httpOnlySafe = wfHttpOnlySafe() && $wgCookieHttpOnly;
 		wfDebugLog( 'cookie',
 			'setcookie: "' . implode( '", "',
 				array(
-					$wgCookiePrefix . $name,
+					$prefix . $name,
 					$value,
 					$expire,
 					$wgCookiePath,
-					$wgCookieDomain,
+					$domain,
 					$wgCookieSecure,
 					$httpOnlySafe ) ) . '"' );
-		setcookie( $wgCookiePrefix . $name,
+		setcookie( $prefix . $name,
 			$value,
 			$expire,
 			$wgCookiePath,
-			$wgCookieDomain,
+			$domain,
 			$wgCookieSecure,
 			$httpOnlySafe );
 	}
