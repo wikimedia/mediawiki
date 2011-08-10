@@ -1235,7 +1235,7 @@ class Title {
 	 */
 	private function checkQuickPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		$ns = $this->getNamespace();
-		
+
 		if ( $action == 'create' ) {
 			if ( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk', $ns ) ) ||
 				 ( !$this->isTalkPage() && !$user->isAllowed( 'createpage', $ns ) ) ) {
@@ -1256,9 +1256,9 @@ class Title {
 			if ( !$user->isAllowed( 'move', $ns) ) {
 				// User can't move anything
 
-				$userCanMove = in_array( 'move', User::getGroupPermissions( 
+				$userCanMove = in_array( 'move', User::getGroupPermissions(
 					array( 'user' ), $ns ), true );
-				$autoconfirmedCanMove = in_array( 'move', User::getGroupPermissions( 
+				$autoconfirmedCanMove = in_array( 'move', User::getGroupPermissions(
 					array( 'autoconfirmed' ), $ns ), true );
 
 				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
@@ -1511,8 +1511,8 @@ class Title {
 				if( $title_protection['pt_create_perm'] == 'sysop' ) {
 					$title_protection['pt_create_perm'] = 'protect'; // B/C
 				}
-				if( $title_protection['pt_create_perm'] == '' || 
-						!$user->isAllowed( $title_protection['pt_create_perm'], 
+				if( $title_protection['pt_create_perm'] == '' ||
+						!$user->isAllowed( $title_protection['pt_create_perm'],
 						$this->mNamespace ) ) {
 					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
 				}
@@ -2369,7 +2369,7 @@ class Title {
 					$fconditions[] = $dbr->bitAnd('fa_deleted', $suppressedTextBits ) .
 					' != ' . $suppressedTextBits;
 				}
-				
+
 				$n += $dbr->selectField( 'filearchive',
 					'COUNT(*)',
 					$fconditions,
@@ -3339,7 +3339,8 @@ class Title {
 		$nt->resetArticleID( $oldid );
 
 		$article = new Article( $nt );
-		wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $wgUser ) );
+		wfRunHooks( 'NewRevisionFromEditComplete',
+			array( $article, $nullRevision, $latest, $wgUser ) );
 		$article->setCachedLastEditTime( $now );
 
 		# Recreate the redirect, this time in the other direction.
@@ -3348,24 +3349,27 @@ class Title {
 			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 			$redirectArticle = new Article( $this );
 			$newid = $redirectArticle->insertOn( $dbw );
-			$redirectRevision = new Revision( array(
-				'page'    => $newid,
-				'comment' => $comment,
-				'text'    => $redirectText ) );
-			$redirectRevision->insertOn( $dbw );
-			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
+			if ( $newid ) { // sanity
+				$redirectRevision = new Revision( array(
+					'page'    => $newid,
+					'comment' => $comment,
+					'text'    => $redirectText ) );
+				$redirectRevision->insertOn( $dbw );
+				$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 
-			wfRunHooks( 'NewRevisionFromEditComplete', array( $redirectArticle, $redirectRevision, false, $wgUser ) );
+				wfRunHooks( 'NewRevisionFromEditComplete',
+					array( $redirectArticle, $redirectRevision, false, $wgUser ) );
 
-			# Now, we record the link from the redirect to the new title.
-			# It should have no other outgoing links...
-			$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
-			$dbw->insert( 'pagelinks',
-				array(
-					'pl_from'      => $newid,
-					'pl_namespace' => $nt->getNamespace(),
-					'pl_title'     => $nt->getDBkey() ),
-				__METHOD__ );
+				# Now, we record the link from the redirect to the new title.
+				# It should have no other outgoing links...
+				$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
+				$dbw->insert( 'pagelinks',
+					array(
+						'pl_from'      => $newid,
+						'pl_namespace' => $nt->getNamespace(),
+						'pl_title'     => $nt->getDBkey() ),
+					__METHOD__ );
+			}
 			$redirectSuppressed = false;
 		} else {
 			$this->resetArticleID( 0 );
