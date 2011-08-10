@@ -34,12 +34,10 @@ function wfProfileOut( $functionname = 'missing' ) {
  * @todo document
  */
 class Profiler {
-	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
-	var $mCalls = array (), $mTotals = array ();
-	var $mTemplated = false;
-	var $mTimeMetric = 'wall';
-	private $mCollateDone = false;
-	protected $mProfileID = false;
+	protected $mStack = array(), $mWorkStack = array (), $mCollated = array (),
+		$mCalls = array (), $mTotals = array ();
+	protected $mTimeMetric = 'wall';
+	protected $mProfileID = false, $mCollateDone = false, $mTemplated = false;
 	private static $__instance = null;
 
 	function __construct( $params ) {
@@ -54,6 +52,9 @@ class Profiler {
 		if ( isset( $params['timeMetric'] ) ) {
 			$this->mTimeMetric = $params['timeMetric'];
 		}
+		if ( isset( $params['profileID'] ) ) {
+			$this->mProfileID = $params['profileID'];
+		}
 	}
 
 	/**
@@ -64,11 +65,19 @@ class Profiler {
 		if( is_null( self::$__instance ) ) {
 			global $wgProfiler;
 			if( is_array( $wgProfiler ) ) {
-				$class = isset( $wgProfiler['class'] ) ? $wgProfiler['class'] : 'ProfilerStub';
+				if( !isset( $wgProfiler['class'] ) ) {
+					wfDebug( __METHOD__ . " called without \$wgProfiler['class']"
+						. ' set, falling back to ProfilerStub for safety' );
+					$class = 'ProfilerStub';
+				} else {
+					$class = $wgProfiler['class'];
+				}
 				self::$__instance = new $class( $wgProfiler );
 			} elseif( $wgProfiler instanceof Profiler ) {
 				self::$__instance = $wgProfiler; // back-compat
 			} else {
+				wfDebug( __METHOD__ . ' called without bogus $wgProfiler setting,'
+						. ' falling back to ProfilerStub for safety' );
 				self::$__instance = new ProfilerStub( $wgProfiler );
 			}
 		}
