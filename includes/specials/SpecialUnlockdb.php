@@ -79,10 +79,11 @@ class SpecialUnlockdb extends SpecialPage {
 <table>
 	<tr>
 		" . Html::openElement( 'td', array( 'style' => 'text-align:right' ) ) . "
-			" . Html::input( 'wpLockConfirm', null, 'checkbox' ) . "
+			" . Html::input( 'wpLockConfirm', null, 'checkbox',  array( 'id' => 'mw-input-wpunlockconfirm' )  ) . "
 		</td>
 		" . Html::openElement( 'td', array( 'style' => 'text-align:left' ) ) .
-			wfMsgHtml( 'unlockconfirm' ) . "</td>
+		    Html::openElement( 'label', array( 'for' => 'mw-input-wpunlockconfirm' ) ) .
+			wfMsgHtml( 'unlockconfirm' ) . "</label></td>
 	</tr>
 	<tr>
 		<td>&#160;</td>
