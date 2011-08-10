@@ -35,10 +35,8 @@ class SpecialUnblock extends SpecialPage {
 	}
 
 	public function execute( $par ){
-		global $wgUser, $wgOut, $wgRequest;
-
 		# Check permissions
-		if( !$this->userCanExecute( $wgUser ) ) {
+		if( !$this->userCanExecute( $this->getUser() ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
@@ -48,11 +46,12 @@ class SpecialUnblock extends SpecialPage {
 			throw new ReadOnlyError;
 		}
 
-		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $wgRequest );
+		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $this->getRequest() );
 		$this->block = Block::newFromTarget( $this->target );
 
-		$wgOut->setPageTitle( wfMsg( 'unblockip' ) );
-		$wgOut->addModules( 'mediawiki.special' );
+		$out = $this->getOutput();
+		$out->setPageTitle( wfMsg( 'unblockip' ) );
+		$out->addModules( 'mediawiki.special' );
 
 		$form = new HTMLForm( $this->getFields(), $this->getContext() );
 		$form->setWrapperLegend( wfMsg( 'unblockip' ) );
@@ -64,14 +63,14 @@ class SpecialUnblock extends SpecialPage {
 			switch( $this->type ){
 				case Block::TYPE_USER:
 				case Block::TYPE_IP:
-					$wgOut->addWikiMsg( 'unblocked',  $this->target );
+					$out->addWikiMsg( 'unblocked',  $this->target );
 					break;
 				case Block::TYPE_RANGE:
-					$wgOut->addWikiMsg( 'unblocked-range', $this->target );
+					$out->addWikiMsg( 'unblocked-range', $this->target );
 					break;
 				case Block::TYPE_ID:
 				case Block::TYPE_AUTO:
-					$wgOut->addWikiMsg( 'unblocked-id', $this->target );
+					$out->addWikiMsg( 'unblocked-id', $this->target );
 					break;
 			}
 		}
@@ -113,8 +112,7 @@ class SpecialUnblock extends SpecialPage {
 				switch( $type ){
 					case Block::TYPE_USER:
 					case Block::TYPE_IP:
-						$skin = $this->getSkin();
-						$fields['Name']['default'] = $skin->link(
+						$fields['Name']['default'] = Linker::link(
 							$target->getUserPage(),
 							$target->getName()
 						);
