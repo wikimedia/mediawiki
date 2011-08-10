@@ -410,7 +410,7 @@ class SkinTemplate extends Skin {
 		# not for special pages or file pages AND only when viewing AND if the page exists
 		# (or is in MW namespace, because that has default content)
 		if( !in_array( $this->getTitle()->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
-			$wgRequest->getVal( 'action', 'view' ) == 'view' &&
+			in_array( $wgRequest->getVal( 'action', 'view' ), array( 'view', 'historysubmit' ) ) &&
 			( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
 			$pageLang = $this->getTitle()->getPageLanguage();
 			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
