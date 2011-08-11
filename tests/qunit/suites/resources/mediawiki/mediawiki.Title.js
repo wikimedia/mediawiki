@@ -115,6 +115,17 @@ test( 'Namespace detection and conversion', function() {
 	equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 });
 
+test( 'Throw error on invalid title', function() {
+	expect(1);
+	_titleConfig();
+
+	raises(function() {
+	
+		var title = new mw.Title( '' );
+	
+	}, new RegExp( $.escapeRE( 'Could not parse title' ) ), 'Throw error "Could not parse title" on empty string' );
+});
+
 test( 'Case-sensivity', function() {
 	expect(3);
 	_titleConfig();

@@ -120,14 +120,20 @@ var	Title = function( title, namespace ) {
 	 * @return {mw.Title}
 	 */
 	setAll = function( title, s ) {
+		// In normal browsers the match-array contains null/undefined if there's no match,
+		// IE returns an empty string.
 		var	matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w{1,5}))?$/ ),
 			ns_match = getNsIdByName( matches[1] );
-		if ( matches.length && ns_match ) {
-			if ( matches[1] != null ) { title._ns = ns_match; }
-			if ( matches[2] != null ) { title._name = fixName( matches[2] ); }
-			if ( matches[3] != null ) { title._ext = fixExt( matches[3] ); }
+
+		// Namespace must be valid, and title must be a non-empty string.
+		if ( ns_match && typeof matches[2] === 'string' && matches[2] !== '' ) {
+			title._ns = ns_match;
+			title._name = fixName( matches[2] );
+			if ( typeof matches[3] === 'string' && matches[3] !== '' ) {
+				title._ext = fixExt( matches[3] );
+			}
 		} else {
-			// Consistency with MediaWiki: Unknown namespace > fallback to main namespace.
+			// Consistency with MediaWiki PHP: Unknown namespace -> fallback to main namespace.
 			title._ns = 0;
 			setNameAndExtension( title, s );
 		}
@@ -142,10 +148,16 @@ var	Title = function( title, namespace ) {
 	 * @return {mw.Title}
 	 */
 	setNameAndExtension = function( title, raw ) {
+		// In normal browsers the match-array contains null/undefined if there's no match,
+		// IE returns an empty string.
 		var matches = raw.match( /^(?:)?(.*?)(?:\.(\w{1,5}))?$/ );
-		if ( matches.length ) {
-			if ( matches[1] != null ) { title._name = fixName( matches[1] ); }
-			if ( matches[2] != null ) { title._ext = fixExt( matches[2] ); }
+
+		// Title must be a non-empty string.
+		if ( typeof matches[1] === 'string' && matches[1] !== '' ) {
+			title._name = fixName( matches[1] );
+			if ( typeof matches[2] === 'string' && matches[2] !== '' ) {
+				title._ext = fixExt( matches[2] );
+			}
 		} else {
 			throw new Error( 'mw.Title: Could not parse title "' + raw + '"' );
 		}
