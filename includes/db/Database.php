@@ -2799,6 +2799,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Begin a transaction, committing any previously open transaction
+	 *
+	 * @param $fname string
 	 */
 	function begin( $fname = 'DatabaseBase::begin' ) {
 		$this->query( 'BEGIN', $fname );
