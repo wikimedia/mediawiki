@@ -3532,7 +3532,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 
 # Add categories per AJAX
 'ajax-add-category'            => 'Afegeix categoria',
-'ajax-add-category-submit'     => 'Afegeir',
+'ajax-add-category-submit'     => 'Afegeix',
 'ajax-confirm-title'           => "Confirma l'acció",
 'ajax-confirm-save'            => 'Desa',
 'ajax-add-category-summary'    => "Afageix la categoria ''$1''",

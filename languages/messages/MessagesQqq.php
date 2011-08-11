@@ -758,6 +758,9 @@ Parameters:
 'loginlanguagelabel'         => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true.
 {{Identical|Language}}',
 
+# E-mail sending
+'user-mail-no-addy' => 'This is the error message in case an e-mail could not be sent because there was no e-mail address to send it to.',
+
 # Change password dialog
 'resetpass'                 => 'The caption of [[Special:ChangePassword]]
 
@@ -766,7 +769,7 @@ Parameters:
 
 {{Identical|Reset password}}',
 'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
-'newpassword'               => 'Contraseña nueva:',
+'newpassword'               => '{{Identical|New password}}',
 'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit'          => 'Submit button on [[Special:ChangePassword]]',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
@@ -4271,5 +4274,8 @@ Refers to the specific category. "Remove this category" is also correct.',
 'ajax-category-question'        => "Question the user is asked before submit. It's followed by a list of the changes.",
 'ajax-error-title'              => '{{Identical|Error}}',
 'ajax-category-already-present' => 'Error message. $1 is the category name',
+'ajax-api-error'                => 'API = [http://en.wikipedia.org/wiki/Application_programming_interface Application programming interface].
+
+"returned" here means "reported".',
 
 );

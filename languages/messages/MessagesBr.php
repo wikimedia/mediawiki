@@ -660,6 +660,7 @@ Gortozit a-raok klask en-dro.",
 
 # E-mail sending
 'php-mail-error-unknown' => "Fazi dianav en arc'hwel postel () PHP",
+'user-mail-no-addy'      => "Klasket kas ur postel hep lakaat ur chomlec'h postel.",
 
 # Change password dialog
 'resetpass'                 => 'Cheñch ar ger-tremen',
@@ -706,9 +707,12 @@ Ger-tremen da c'hortoz : $2",
 # Special:ChangeEmail
 'changeemail'          => "Kemmañ ar chomlec'h postel",
 'changeemail-header'   => "Kemmañ chomlec'h postel ar gont",
+'changeemail-text'     => "Leugnit ar furmskrid-mañ da cheñch ho chomlec'h postel. Ret e vo deoc'h merkañ ho ker-tremen evit kadarnaat ar c'hemm-se.",
 'changeemail-no-info'  => "Ret eo deoc'h bezañ kevreet a-benn mont d'ar bajenn-se war-eeun.",
 'changeemail-oldemail' => "Chomlec'h postel a-vremañ :",
 'changeemail-newemail' => "Chomlec'h postel nevez :",
+'changeemail-submit'   => "Cheñch chomlec'h postel",
+'changeemail-cancel'   => 'Nullañ',
 
 # Edit page toolbar
 'bold_sample'     => 'Testenn dev',
@@ -1213,6 +1217,8 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'prefs-watchlist-token'         => 'Jedouer evit ar roll evezhiañ :',
 'prefs-misc'                    => 'Penndibaboù liesseurt',
 'prefs-resetpass'               => 'Cheñch ar ger-tremen',
+'prefs-changeemail'             => "Cheñch chomlec'h postel",
+'prefs-setemail'                => "Termeniñ ur chomlec'h postel",
 'prefs-email'                   => 'Dibarzhioù postel',
 'prefs-rendering'               => 'Neuz',
 'saveprefs'                     => 'Enrollañ ar penndibaboù',
@@ -3648,7 +3654,9 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'ajax-confirm-save'            => 'Enrollañ',
 'ajax-confirm-save-all'        => 'Enrollañ an holl gemmoù',
 'ajax-cancel'                  => "Nullañ ar c'hemmoù",
+'ajax-cancel-all'              => 'Nullañ an holl gemmoù',
 'ajax-add-category-summary'    => 'Ouzhpennañ ar rummad "$1"',
+'ajax-edit-category-summary'   => 'Cheñch ar rummad eus "$1" da "$2"',
 'ajax-remove-category-summary' => 'Diverkañ ar rummad "$1"',
 'ajax-error-title'             => 'Fazi',
 'ajax-remove-category-error'   => "N'eus ket bet gallet diverkañ ar rummad-mañ. 
