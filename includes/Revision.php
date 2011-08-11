@@ -110,7 +110,9 @@ class Revision {
 			'minor_edit' => $row->ar_minor_edit,
 			'text_id'    => isset( $row->ar_text_id ) ? $row->ar_text_id : null,
 			'deleted'    => $row->ar_deleted,
-			'len'        => $row->ar_len);
+			'len'        => $row->ar_len,
+			'sha1'       => $row->ar_sha1
+		);
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
@@ -301,7 +303,8 @@ class Revision {
 			'rev_minor_edit',
 			'rev_deleted',
 			'rev_len',
-			'rev_parent_id'
+			'rev_parent_id',
+			'rev_sha1'
 		);
 	}
 
@@ -357,6 +360,12 @@ class Revision {
 				$this->mSize = intval( $row->rev_len );
 			}
 
+			if ( !isset( $row->rev_sha1 ) ) {
+				$this->mSha1 = null;
+			} else {
+				$this->mSha1 = $row->rev_sha1;
+			}
+
 			if( isset( $row->page_latest ) ) {
 				$this->mCurrent = ( $row->rev_id == $row->page_latest );
 				$this->mTitle = Title::newFromRow( $row );
@@ -375,7 +384,7 @@ class Revision {
 			}
 		} elseif( is_array( $row ) ) {
 			// Build a new revision to be saved...
-			global $wgUser;
+			global $wgUser; // ugh
 
 			$this->mId        = isset( $row['id']         ) ? intval( $row['id']         ) : null;
 			$this->mPage      = isset( $row['page']       ) ? intval( $row['page']       ) : null;
@@ -387,6 +396,7 @@ class Revision {
 			$this->mDeleted   = isset( $row['deleted']    ) ? intval( $row['deleted']    ) : 0;
 			$this->mSize      = isset( $row['len']        ) ? intval( $row['len']        ) : null;
 			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
+			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
@@ -899,8 +909,12 @@ class Revision {
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 				'rev_deleted'    => $this->mDeleted,
 				'rev_len'        => $this->mSize,
-				'rev_parent_id'  => is_null($this->mParentId) ?
-					$this->getPreviousRevisionId( $dbw ) : $this->mParentId
+				'rev_parent_id'  => is_null( $this->mParentId )
+					? $this->getPreviousRevisionId( $dbw )
+					: $this->mParentId,
+				'rev_sha1'       => is_null( $this->mSha1 )
+					? Revision::base36Sha1( $this->mText )
+					: $this->mSha1
 			), __METHOD__
 		);
 
@@ -910,6 +924,15 @@ class Revision {
 
 		wfProfileOut( __METHOD__ );
 		return $this->mId;
+	}
+
+	/**
+	 * Get the base 36 SHA-1 value for a string of text
+	 * @param $text String
+	 * @return String
+	 */
+	public static function base36Sha1( $text ) {
+		return wfBaseConvert( sha1( $text ), 16, 36, 31 );
 	}
 
 	/**
