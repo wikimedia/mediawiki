@@ -4277,6 +4277,7 @@ class Title {
 	 * Defaults to $wgContLang, but in certain cases it can be e.g.
 	 * $wgLang (such as special pages, which are in the user language).
 	 *
+	 * @since 1.18
 	 * @return object Language
 	 */
 	public function getPageLanguage() {

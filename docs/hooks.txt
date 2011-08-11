@@ -1290,6 +1290,12 @@ $categories: associative array, keys are category names, values are category
 $links: array, intended to hold the result. Must be an associative array with
 	category types as keys and arrays of HTML links as values.
 
+'PageContentLanguage': allows changing the language in which the content of
+a page is written. Defaults to the wiki content language ($wgContLang).
+$title: Title object
+&$pageLang: the page content language (either an object or a language code)
+$wgLang: the user language
+
 'PageHistoryBeforeList': When a history page list is about to be constructed.
 $article: the article that the history is loading for
 
