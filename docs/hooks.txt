@@ -545,6 +545,11 @@ viewing.
 follwed an redirect
 $article: target article (object)
 
+'ArticleViewCustom': allows to output the text of the article in a different format than wikitext
+$text: text of the page
+$title: title of the page
+$output: reference to $wgOut
+
 'AuthPluginAutoCreate': Called when creating a local account for an user logged
 in from an external authentication method
 $user: User object created locally
@@ -1754,6 +1759,11 @@ $title: The title in question.
 'TitleIsCssOrJsPage': Called when determining if a page is a CSS or JS page
 $title: Title object that is being checked
 $result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page. Hooks may change this value to override the return value of Title::isCssOrJsPage()
+
+'TitleIsWikitextPage': Called when determining if a page is a wikitext or should
+be handled by seperate handler (via ArticleViewCustom)
+$title: Title object that is being checked
+$result: Boolean; whether MediaWiki currently thinks this is a wikitext page. Hooks may change this value to override the return value of Title::isWikitextPage()
 
 'TitleMoveComplete': after moving an article (title)
 $old: old title

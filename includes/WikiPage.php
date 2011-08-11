@@ -716,8 +716,7 @@ class WikiPage extends Page {
 			&& $user->getStubThreshold() == 0
 			&& $this->exists()
 			&& empty( $oldid )
-			&& !$this->mTitle->isCssOrJsPage()
-			&& !$this->mTitle->isCssJsSubpage();
+			&& $this->mTitle->isWikitextPage();
 	}
 
 	/**
