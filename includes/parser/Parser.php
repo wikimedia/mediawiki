@@ -4524,10 +4524,7 @@ class Parser {
 	function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
 			global $wgTitle;
-			$this->mOptions = new ParserOptions;
-			$this->clearState();
-			$this->setTitle( $wgTitle );
-			$this->setOutputType = self::OT_PREPROCESS;
+			$this->startParse( $wgTitle, new ParserOptions, self::OT_PREPROCESS, true );
 		}
 
 		# Option to disable this feature
