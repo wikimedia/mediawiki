@@ -1943,6 +1943,17 @@ class Title {
 	}
 
 	/**
+	 * Does that page contain wikitext, or it is JS, CSS or whatever?
+	 * 
+	 * @return Bool
+	 */
+	public function isWikitextPage() {
+		$retval = !$this->isCssOrJsPage() && !$this->isCssJsSubpage();
+		wfRunHooks( 'TitleIsWikitextPage', array( $this, &$retval ) );
+		return $retval;
+	}
+
+	/**
 	 * Could this page contain custom CSS or JavaScript, based
 	 * on the title?
 	 *

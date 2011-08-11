@@ -510,6 +510,9 @@ class Article extends Page {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
+					} elseif( !wfRunHooks( 'ArticleViewCustom', array( $this->mContent, $this->getTitle(), $wgOut ) ) ) {
+						# Allow extensions do their own custom view for certain pages
+						$outputDone = true;
 					} else {
 						$rt = Title::newFromRedirectArray( $text );
 						if ( $rt ) {
