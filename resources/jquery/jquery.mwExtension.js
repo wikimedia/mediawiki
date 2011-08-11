@@ -3,26 +3,25 @@
  */
 
 jQuery.extend({
-	trimLeft : function( str ) {
+	trimLeft: function( str ) {
 		return str === null ? '' : str.toString().replace( /^\s+/, '' );
 	},
-	trimRight : function( str ) {
+	trimRight: function( str ) {
 		return str === null ?
 				'' : str.toString().replace( /\s+$/, '' );
 	},
-	ucFirst : function( str ) {
+	ucFirst: function( str ) {
 		return str.substr( 0, 1 ).toUpperCase() + str.substr( 1 );
 	},
-	escapeRE : function( str ) {
+	escapeRE: function( str ) {
 		return str.replace ( /([\\{}()|.?*+\-^$\[\]])/g, "\\$1" );
 	},
-	isDomElement : function( el ) {
+	isDomElement: function( el ) {
 		return !!el && !!el.nodeType;
 	},
-	isEmpty : function( v ) {
-		var key;
-		if ( v === "" || v === 0 || v === "0" || v === null
-			|| v === false || typeof v === 'undefined' )
+	isEmpty: function( v ) {
+		if ( v === '' || v === 0 || v === '0' || v === null
+			|| v === false || v === undefined )
 		{
 			return true;
 		}
@@ -32,14 +31,14 @@ jQuery.extend({
 			return true;
 		}
 		if ( typeof v === 'object' ) {
-			for ( key in v ) {
+			for ( var key in v ) {
 				return false;
 			}
 			return true;
 		}
 		return false;
 	},
-	compareArray : function( arrThis, arrAgainst ) {
+	compareArray: function( arrThis, arrAgainst ) {
 		if ( arrThis.length != arrAgainst.length ) {
 			return false;
 		}
@@ -54,7 +53,7 @@ jQuery.extend({
 		}
 		return true;
 	},
-	compareObject : function( objectA, objectB ) {
+	compareObject: function( objectA, objectB ) {
 
 		// Do a simple check if the types match
 		if ( typeof objectA == typeof objectB ) {
