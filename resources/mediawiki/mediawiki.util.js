@@ -15,7 +15,7 @@
 			if ( this.initialised === false ) {
 				this.initialised = true;
 
-				// Folllowing the initialisation after the DOM is ready
+				// Following the initialisation after the DOM is ready
 				$(document).ready( function() {
 
 					/* Set up $.messageBox */

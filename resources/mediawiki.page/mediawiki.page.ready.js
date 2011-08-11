@@ -5,7 +5,7 @@ jQuery( document ).ready( function( $ ) {
 		$( 'input[placeholder]' ).placeholder();
 	}
 
-	/* Enable makeCollapse */
+	/* Enable makeCollapsible */
 	$( '.mw-collapsible' ).makeCollapsible();
 
 	/* Lazy load jquery.tablesorter */

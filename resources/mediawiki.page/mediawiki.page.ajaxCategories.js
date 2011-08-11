@@ -446,7 +446,7 @@ mw.ajaxCategories.prototype = {
 	 * @return {jQuery}
 	 */
 	createCatLink: function( cat ) {
-		// User can implicitely state a sort key.
+		// User can implicitly state a sort key.
 		// Remove before display.
 		// strip out bad characters
 		cat = clean( cat.replace( /\|.*/, '' ) );
@@ -517,7 +517,7 @@ mw.ajaxCategories.prototype = {
 	},
 
 	/**
-	 * Execute or queue an category add.
+	 * Execute or queue a category add.
 	 * @param $link {jQuery}
 	 * @param category
 	 * @param noAppend
@@ -594,7 +594,7 @@ mw.ajaxCategories.prototype = {
 	},
 
 	/**
-	 * Execute or queue an category edit.
+	 * Execute or queue a category edit.
 	 * @param $link {jQuery}
 	 * @param category
 	 * @param categoryNew
@@ -771,7 +771,7 @@ mw.ajaxCategories.prototype = {
 	},
 
 	/**
-	 * Execute or queue an category delete.
+	 * Execute or queue a category delete.
 	 *
 	 * @param $link {jQuery}
 	 * @param category
