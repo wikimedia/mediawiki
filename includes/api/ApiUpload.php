@@ -260,7 +260,7 @@ class ApiUpload extends ApiBase {
 				global $wgUser;
 				$this->mUpload = new UploadFromStash( $wgUser );
 			}
-			
+
 			$this->mUpload->initialize( $this->mParams['filekey'], $this->mParams['filename'] );
 
 		} elseif ( isset( $this->mParams['chunk'] ) ) {

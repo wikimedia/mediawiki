@@ -48,7 +48,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 	function execute( $par ) {
 		$out = $this->getOutput();
-		
+
 		$this->setHeaders();
 
 		$opts = new FormOptions();
