@@ -166,6 +166,11 @@ byteLimitTest({
 		.byteLimit( 6, function( val ) {
 			_titleConfig();
 
+			// Invalid title
+			if ( val == '' ) {
+				return '';
+			}
+
 			// Return without namespace prefix
 			return new mw.Title( '' + val ).getMain();
 		} ),
@@ -184,6 +189,11 @@ byteLimitTest({
 		})
 		.byteLimit( function( val ) {
 			_titleConfig();
+
+			// Invalid title
+			if ( val === '' ) {
+				return '';
+			}
 
 			// Return without namespace prefix
 			return new mw.Title( '' + val ).getMain();
