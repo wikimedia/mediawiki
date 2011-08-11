@@ -145,8 +145,8 @@ return array(
 	'jquery.mockjax' => array(
 		'scripts' => 'resources/jquery/jquery.mockjax.js',
 	),
-	'jquery.mwPrototypes' => array(
-		'scripts' => 'resources/jquery/jquery.mwPrototypes.js',
+	'jquery.mwExtension' => array(
+		'scripts' => 'resources/jquery/jquery.mwExtension.js',
 	),
 	'jquery.qunit' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.js',
@@ -579,7 +579,7 @@ return array(
 			'jquery.client',
 			'jquery.cookie',
 			'jquery.messageBox',
-			'jquery.mwPrototypes',
+			'jquery.mwExtension',
 		),
 	),
 	'mediawiki.uri' => array( 
