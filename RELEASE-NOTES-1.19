@@ -40,6 +40,7 @@ production.
   when the function exists but is disabled. Introduced Maintenance::posix_isatty()
 * (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
   instead require() for included extensions.
+* Do not convert text in the user interface language to another script.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
