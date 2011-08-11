@@ -294,11 +294,11 @@ class Status {
 		}
 		return $result;
 	}
-	
+
 	/**
 	 * Returns a list of status messages of the given type, with message and
 	 * params left untouched, like a sane version of getStatusArray
-	 * 
+	 *
 	 * @param $type String
 	 *
 	 * @return Array
@@ -308,7 +308,7 @@ class Status {
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
 				$result[] = $error;
-			}		
+			}
 		}
 		return $result;
 	}
@@ -329,7 +329,7 @@ class Status {
 	}
 
 	/**
-	 * If the specified source message exists, replace it with the specified 
+	 * If the specified source message exists, replace it with the specified
 	 * destination message, but keep the same parameters as in the original error.
 	 *
 	 * Return true if the replacement was done, false otherwise.
