@@ -88,8 +88,8 @@ class SpecialLockdb extends SpecialPage {
 		</td>
 		" . Html::openElement( 'td', array( 'style' => 'text-align:left' ) ) .
 			Html::openElement( 'label', array( 'for' => 'mw-input-wplockconfirm' ) ) .
-
-			wfMsgHtml( 'lockconfirm' ) . "</label></td>
+			wfMsgHtml( 'lockconfirm' ) . "</label>
+		</td>
 	</tr>
 	<tr>
 		<td>&#160;</td>
