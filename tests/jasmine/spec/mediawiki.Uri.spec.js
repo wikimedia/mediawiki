@@ -1,6 +1,6 @@
-( function( mw ) {
+( function() {
 
-	describe( "mw.uri", function() {
+	describe( "mw.Uri", function() {
 
 		describe( "should work well in loose and strict mode", function() {
 
@@ -11,9 +11,9 @@
 					var uriString = 'http://www.ietf.org/rfc/rfc2396.txt';
 					var uri;
 					if ( strict ) {
-						uri = new mw.uri( uriString, strict );
+						uri = new mw.Uri( uriString, strict );
 					} else {
-						uri = new mw.uri( uriString );
+						uri = new mw.Uri( uriString );
 					}
 
 					it( "should have basic object properties", function() {
@@ -64,7 +64,7 @@
 		} );
 
 		it( "should parse a simple ftp URI correctly with user and password", function() {
-			var uri = new mw.uri( 'ftp://usr:pwd@192.0.2.16/' );
+			var uri = new mw.Uri( 'ftp://usr:pwd@192.0.2.16/' );
 			expect( uri.protocol ).toEqual( 'ftp' );
 			expect( uri.user ).toEqual( 'usr' );
 			expect( uri.password ).toEqual( 'pwd' );
@@ -76,7 +76,7 @@
 		} );
 
 		it( "should parse a simple querystring", function() {
-			var uri = new mw.uri( 'http://www.google.com/?q=uri' );
+			var uri = new mw.Uri( 'http://www.google.com/?q=uri' );
 			expect( uri.protocol ).toEqual( 'http' );
 			expect( uri.host ).toEqual( 'www.google.com' );
 			expect( uri.port ).not.toBeDefined();
@@ -88,7 +88,7 @@
 		} );
 
 		describe( "should handle multiple value query args", function() {
-			var uri = new mw.uri( 'http://www.sample.com/dir/?m=foo&m=bar&n=1' );
+			var uri = new mw.Uri( 'http://www.sample.com/dir/?m=foo&m=bar&n=1' );
 			it ( "should parse with multiple values", function() {
 				expect( uri.query.m.length ).toEqual( 2 );
 				expect( uri.query.m[0] ).toEqual( 'foo' );
@@ -111,7 +111,7 @@
 		} );
 
 		describe( "should deal with an all-dressed URI with everything", function() {
-			var uri = new mw.uri( 'http://auth@www.sample.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=value+%28escaped%29#top' );
+			var uri = new mw.Uri( 'http://auth@www.sample.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=value+%28escaped%29#top' );
 
 			it( "should have basic object properties", function() {
 				expect( uri.protocol ).toEqual( 'http' );
@@ -155,7 +155,7 @@
 		} );
 
 		describe( "should be able to clone itself", function() {
-			var original = new mw.uri( 'http://en.wiki.local/w/api.php?action=query&foo=bar' );			
+			var original = new mw.Uri( 'http://en.wiki.local/w/api.php?action=query&foo=bar' );			
 			var clone = original.clone();
 
 			it( "should make clones equivalent", function() { 
@@ -175,12 +175,12 @@
 
 		describe( "should be able to construct URL from object", function() {
 			it ( "should construct given basic arguments", function() {  
-				var uri = new mw.uri( { protocol: 'http', host: 'www.foo.local',  path: '/this' } );
+				var uri = new mw.Uri( { protocol: 'http', host: 'www.foo.local',  path: '/this' } );
 				expect( uri.toString() ).toEqual( 'http://www.foo.local/this' );
 			} );
 		
 			it ( "should construct given more complex arguments", function() {  
-				var uri = new mw.uri( { 
+				var uri = new mw.Uri( { 
 					protocol: 'http', 
 					host: 'www.foo.local',  
 					path: '/this', 
@@ -192,8 +192,8 @@
 
 			it ( "should fail to construct without required properties", function() {  
 				expect( function() { 
-					var uri = new mw.uri( { protocol: 'http', host: 'www.foo.local' } );
-				} ).toThrow( "bad constructor arguments" );
+					var uri = new mw.Uri( { protocol: 'http', host: 'www.foo.local' } );
+				} ).toThrow( "Bad constructor arguments" );
 			} );
 		} );
 
@@ -201,7 +201,7 @@
 			var uri;
 
 			beforeEach( function() { 
-				uri = new mw.uri( 'http://en.wiki.local/w/api.php' );			
+				uri = new mw.Uri( 'http://en.wiki.local/w/api.php' );			
 			} );
 
 			it( "can add a fragment", function() {
@@ -240,35 +240,35 @@
 
 		it( "should throw error on no arguments to constructor", function() {
 			expect( function() { 
-				uri = new mw.uri();
-			} ).toThrow( "bad constructor arguments" );
+				uri = new mw.Uri();
+			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 		it( "should throw error on empty string as argument to constructor", function() {
 			expect( function() { 
-				uri = new mw.uri( '' );
-			} ).toThrow( "bad constructor arguments" );
+				uri = new mw.Uri( '' );
+			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 		it( "should throw error on non-URI as argument to constructor", function() {
 			expect( function() { 
-				uri = new mw.uri( 'glaswegian penguins' );
-			} ).toThrow( "bad constructor arguments" );
+				uri = new mw.Uri( 'glaswegian penguins' );
+			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 		it( "should throw error on improper URI as argument to constructor", function() {
 			expect( function() { 
-				uri = new mw.uri( 'http:/foo.com' );
-			} ).toThrow( "bad constructor arguments" );
+				uri = new mw.Uri( 'http:/foo.com' );
+			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 		it( "should throw error on URI without protocol as argument to constructor", function() {
 			expect( function() { 
-				uri = new mw.uri( 'foo.com/bar/baz' );
-			} ).toThrow( "bad constructor arguments" );
+				uri = new mw.Uri( 'foo.com/bar/baz' );
+			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 
 	} );
 
-} )( mediaWiki );
+} )();
