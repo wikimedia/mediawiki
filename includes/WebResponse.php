@@ -135,7 +135,7 @@ class FauxResponse extends WebResponse {
 	 * @param $value String: value to give cookie
 	 * @param $expire Int: number of seconds til cookie expires
 	 */
-	public function setcookie( $name, $value, $expire = 0 ) {
+	public function setcookie( $name, $value, $expire = 0, $prefix = null, $domain = null ) {
 		$this->cookies[$name] = $value;
 	}
 
