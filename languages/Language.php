@@ -218,6 +218,7 @@ class Language {
 	 *
 	 * @param $code string
 	 *
+	 * @since 1.18
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
