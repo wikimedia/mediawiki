@@ -55,7 +55,7 @@ class SVGReader {
 		$size = filesize( $source );
 		if ( $size === false ) {
 			throw new MWException( "Error getting filesize of SVG." );
-		} 
+		}
 
 		if ( $size > $wgSVGMetadataCutoff ) {
 			$this->debug( "SVG is $size bytes, which is bigger than $wgSVGMetadataCutoff. Truncating." );
@@ -157,7 +157,7 @@ class SVGReader {
 		}
 		$keepReading = $this->reader->read();
 		while( $keepReading ) {
-			if( $this->reader->localName == $name && $this->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
+			if( $this->reader->localName == $name && $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
 			} elseif( $this->reader->nodeType == XmlReader::TEXT ){
 				$this->metadata[$metafield] = trim( $this->reader->value );
