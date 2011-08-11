@@ -460,6 +460,9 @@ return array(
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
 	),
+	'mediawiki.Uri' => array( 
+		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
+	),
 	'mediawiki.user' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.user.js',
 		'dependencies' => array(
@@ -581,9 +584,6 @@ return array(
 			'jquery.messageBox',
 			'jquery.mwExtension',
 		),
-	),
-	'mediawiki.uri' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.uri.js',
 	),
 	'mediawiki.page.mwsuggest' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.mwsuggest.js',
