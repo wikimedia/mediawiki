@@ -1998,15 +1998,6 @@ class Parser {
 				}
 				wfProfileOut( __METHOD__."-interwiki" );
 
-				# Interprojects
-				wfProfileIn( __METHOD__."-interproject" );
-				global $wgInterProjectLinks;
-				if ( is_array( $wgInterProjectLinks ) && isset( $wgInterProjectLinks[$iw] ) && $nottalk ) {
-					$this->mOutput->addInterProjectLink( $iw, $nt, ( $wasblank ? '' : $text ) );
-					wfProfileOut( __METHOD__."-interproject" );
-				}
-				wfProfileOut( __METHOD__."-interproject" );
-
 				if ( $ns == NS_FILE ) {
 					wfProfileIn( __METHOD__."-image" );
 					if ( !wfIsBadImage( $nt->getDBkey(), $this->mTitle ) ) {
