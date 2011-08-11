@@ -555,7 +555,7 @@ class SpecialBlock extends SpecialPage {
 			# to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
 			# permission anyway, although the code does allow for it
 			if( $target === $wgUser->getName() &&
-				( $data['PreviousTarget'] != $data['Target'] || !$data['Confirm'] ) )
+				( $data['PreviousTarget'] !== $data['Target'] || !$data['Confirm'] ) )
 			{
 				return array( 'ipb-blockingself' );
 			}
