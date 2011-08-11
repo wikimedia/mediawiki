@@ -445,13 +445,8 @@ mw.ajaxCategories.prototype = {
 	 * @return {jQuery}
 	 */
 	createCatLink: function( catTitle ) {
-		var catName = catTitle.getMainText();
-
-		if ( this.containsCat( catName ) ) {
-			return;
-		}
-
-		var	$catLinkWrapper = $( this.options.catLinkWrapper ),
+		var	catName = catTitle.getMainText(),
+			$catLinkWrapper = $( this.options.catLinkWrapper ),
 			$anchor = $( '<a>' )
 				.text( catName )
 				.attr( {
@@ -528,20 +523,13 @@ mw.ajaxCategories.prototype = {
 			catName = catTitle.getMainText(),
 			catFull = catTitle.toText();
 
-		if ( !$link.length ) {
-			$link = this.createCatLink( catTitle );
-		}
-
 		if ( this.containsCat( catName ) ) {
 			this.showError( mw.msg( 'ajax-category-already-present', catName ) );
 			return this;
 		}
 
-		// Sometimes createCatLink returns undefined/null, previously caused an exception
-		// in the following lines, catching now.. @todo
-		if ( !$link ) {
-			this.showError( 'Unexpected error occurred. $link undefined.' );
-			return this;
+		if ( !$link.length ) {
+			$link = this.createCatLink( catTitle );
 		}
 
 		// Mark red if missing
