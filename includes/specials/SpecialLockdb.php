@@ -87,7 +87,7 @@ class SpecialLockdb extends SpecialPage {
 			" . Html::input( 'wpLockConfirm', null, 'checkbox', array( 'id' => 'mw-input-wplockconfirm' ) ) . "
 		</td>
 		" . Html::openElement( 'td', array( 'style' => 'text-align:left' ) ) .
-		    Html::openElement( 'label', array( 'for' => 'mw-input-wplockconfirm' ) ) .
+			Html::openElement( 'label', array( 'for' => 'mw-input-wplockconfirm' ) ) .
 
 			wfMsgHtml( 'lockconfirm' ) . "</label></td>
 	</tr>
