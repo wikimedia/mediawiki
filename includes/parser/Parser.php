@@ -362,14 +362,16 @@ class Parser {
 		$this->replaceLinkHolders( $text );
 
 		/**
-		 * The page doesn't get language converted if
+		 * The input doesn't get language converted if
 		 * a) It's disabled
 		 * b) Content isn't converted
 		 * c) It's a conversion table
+		 * d) it is an interface message (which is in the user language)
 		 */
 		if ( !( $wgDisableLangConversion
 				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
-				|| $this->mTitle->isConversionTable() ) ) {
+				|| $this->mTitle->isConversionTable()
+				|| $this->mOptions->getInterfaceMessage() ) ) {
 
 			# The position of the convert() call should not be changed. it
 			# assumes that the links are all replaced and the only thing left
@@ -1995,6 +1997,15 @@ class Parser {
 					continue;
 				}
 				wfProfileOut( __METHOD__."-interwiki" );
+
+				# Interprojects
+				wfProfileIn( __METHOD__."-interproject" );
+				global $wgInterProjectLinks;
+				if ( is_array( $wgInterProjectLinks ) && isset( $wgInterProjectLinks[$iw] ) && $nottalk ) {
+					$this->mOutput->addInterProjectLink( $iw, $nt, ( $wasblank ? '' : $text ) );
+					wfProfileOut( __METHOD__."-interproject" );
+				}
+				wfProfileOut( __METHOD__."-interproject" );
 
 				if ( $ns == NS_FILE ) {
 					wfProfileIn( __METHOD__."-image" );

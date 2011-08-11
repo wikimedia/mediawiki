@@ -172,16 +172,16 @@ class CategoryViewer {
 		// Give a proper message if category is empty
 		if ( $r == '' ) {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
+		} else {
+			$pageLang = $this->title->getPageLanguage();
+			$langAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
+			# close the previous div, show the headings in user language,
+			# then open a new div with the page content language again
+			$r = '</div>' . $r . Html::openElement( 'div', $langAttribs );
 		}
 
-		$pageLang = $this->title->getPageLanguage();
-		$langAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
-		# close the previous div, show the headings in user language,
-		# then open a new div with the page content language again
-		$r = '</div>' . $r . Html::openElement( 'div', $langAttribs );
-
 		wfProfileOut( __METHOD__ );
-		return $wgContLang->convert( $r );
+		return $r;
 	}
 
 	function clearCategoryState() {
