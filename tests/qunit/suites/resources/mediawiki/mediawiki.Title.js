@@ -120,10 +120,8 @@ test( 'Throw error on invalid title', function() {
 	_titleConfig();
 
 	raises(function() {
-	
 		var title = new mw.Title( '' );
-	
-	}, new RegExp( $.escapeRE( 'Could not parse title' ) ), 'Throw error "Could not parse title" on empty string' );
+	}, 'Throw error on empty string' );
 });
 
 test( 'Case-sensivity', function() {
