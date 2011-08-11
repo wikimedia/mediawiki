@@ -22,7 +22,7 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
-class PopulateSha1 extends Maintenance {
+class PopulateImageSha1 extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populate the img_sha1 field";
@@ -95,5 +95,5 @@ class PopulateSha1 extends Maintenance {
 	}
 }
 
-$maintClass = "PopulateSha1";
+$maintClass = "PopulateImageSha1";
 require_once( RUN_MAINTENANCE_IF_MAIN );
