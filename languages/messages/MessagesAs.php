@@ -598,6 +598,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'পি-এইছ-পি mail() ফলনত অজ্ঞাত ত্ৰুটি',
+'user-mail-no-addy'      => 'ই-মেইল ঠিকনা নোহোৱাকৈয়ে ই-মেইল পঠোৱাৰ চেষ্টা কৰা হৈছে |',
 
 # Change password dialog
 'resetpass'                 => 'গুপ্তশব্দ সলনি কৰক',
@@ -641,8 +642,15 @@ $2
 'passwordreset-emailsent'      => 'এখন স্মৰণকাৰক ই-মেইল পঠোৱা হৈছে |',
 
 # Special:ChangeEmail
-'changeemail'        => 'ই-মেইল ঠিকনা সলনি কৰক',
-'changeemail-header' => 'একাউণ্টৰ ই-মেইল ঠিকনা সলনি কৰক',
+'changeemail'          => 'ই-মেইল ঠিকনা সলনি কৰক',
+'changeemail-header'   => 'একাউণ্টৰ ই-মেইল ঠিকনা সলনি কৰক',
+'changeemail-text'     => 'আপোনাৰ ই-মেইল ঠিকনা সলাবলৈ এই প্ৰপত্ৰখন পূৰাওক | এই সালসলনি নিশ্চিত কৰিবলৈ আপোনাৰ গুপ্তশব্দ দিব লাগিব |',
+'changeemail-no-info'  => 'এই পৃষ্ঠা প্ৰত্যক্ষ্য ভা্ৱে ঢুকি পাবলৈ আপুনি প্ৰৱেশ কৰিব লাগিব ।',
+'changeemail-oldemail' => 'বৰ্তমানৰ ই-মেইল ঠিকনা:',
+'changeemail-newemail' => 'নতুন ই-মেইল ঠিকনা:',
+'changeemail-none'     => '(নাই)',
+'changeemail-submit'   => 'ই-মেইল ঠিকনা সলনি কৰক',
+'changeemail-cancel'   => 'বাতিল কৰক',
 
 # Edit page toolbar
 'bold_sample'     => 'গাঢ় পাঠ্য',
@@ -1167,6 +1175,8 @@ $1",
 'prefs-watchlist-token'         => 'লক্ষ্যতালিকা টোকেন:',
 'prefs-misc'                    => 'অন্যান্য',
 'prefs-resetpass'               => 'গুপ্তশব্দ শলনি কৰক',
+'prefs-changeemail'             => 'ই-মেইল ঠিকনা সলনি কৰক',
+'prefs-setemail'                => 'এটা ই-মেইল ঠিকনা দিয়ক',
 'prefs-email'                   => 'ই-মেইল বিকল্প',
 'prefs-rendering'               => 'ৰূপ',
 'saveprefs'                     => 'সাঁচি থওক',
@@ -1911,6 +1921,9 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 
 # Special:Categories
 'categories'                    => 'শ্ৰেণী',
+'categoriespagetext'            => 'এই {{PLURAL:$1|বিষয়শ্রেণীত|বিষয়শ্রেণীসমূহত}}  পৃষ্ঠা বা মিডিয়া ফাইল আছে |
+[[Special:UnusedCategories|অব্যৱহৃত শ্ৰেণীসমূহ]]  ইয়াত দেখুওৱা হোৱা নাই |
+অধিক তথ্যৰ বাবে [[Special:WantedCategories|আৱশ্যক শ্ৰেণীসমূহ]] চাওক |',
 'categoriesfrom'                => 'ইয়াৰে আৰম্ভ হোৱা শ্ৰেণীসমূহ দেখুৱাওক:',
 'special-categories-sort-count' => 'গণনাৰ ভিত্তিত সজাওক',
 'special-categories-sort-abc'   => 'বৰ্ণানুক্ৰমে সজাওক',
@@ -1925,6 +1938,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'linksearch-pat'  => 'অনুসন্ধান আৰ্হি:',
 'linksearch-ns'   => 'নামস্থান:',
 'linksearch-ok'   => 'অনুসন্ধান',
+'linksearch-text' => '"*.wikipedia.org"ৰ দৰে ৱাইল্ডকাৰ্ড ব্যৱহাৰ কৰিব পৰা যায় |<br />
+সমৰ্থিত প্ৰট’ক’লসমূহ: <tt>$1</tt>',
 'linksearch-line' => '$2 পৰা $1 সংযোগ কৰা হৈছে',
 
 # Special:ListUsers
@@ -1954,6 +1969,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'listgrouprights'                      => 'ব্যৱহাৰকাৰী গোটৰ অধিকাৰ',
 'listgrouprights-summary'              => 'এই ৱিকিত থকা গোটসমূহৰ তালিকা সেইবোৰৰ প্ৰৱেশাধিকাৰসহ তলত দিয়া হ’ল |
 সুকীয়া অধিকাৰ সম্পৰ্কে [[{{MediaWiki:Listgrouprights-helppage}}|অধিক তথ্য]] থাকিব পাৰে |',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">অনুমোদিত অধিকাৰ</span>
+* <span class="listgrouprights-revoked">প্ৰত্যাহাৰ কৰা অধিকাৰ</span>',
 'listgrouprights-group'                => 'গোট',
 'listgrouprights-rights'               => 'অধিকাৰসমূহ',
 'listgrouprights-helppage'             => 'Help: গোটৰ অধিকাৰ',
@@ -1974,6 +1991,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'emailpage'            => 'ই-পত্ৰ ব্যৱ্হাৰকাৰী',
 'emailpagetext'        => 'তলৰ প্ৰপত্ৰখন ব্যৱহাৰ কৰি আপুনি এই সদস্যজনলৈ ই-মেইল পঠাব পাৰে |
 আপুনি [[Special:Preferences|আপোনাৰ সদস্য পছন্দসমূহ]]ত প্ৰৱেশ কৰা ই-মেইল ঠিকনাটো প্ৰেৰকৰ ঠিকনা হিছাপে দেখা যাব, যাতে মেইলৰ প্ৰাপকে আপোনাক উত্তৰ দিব পাৰে |',
+'usermailererror'      => 'মেইল বিষয়বস্তুৰ ত্ৰুটি:',
 'defemailsubject'      => '{{SITENAME}} ই-মেইল',
 'usermaildisabled'     => 'ব্যৱহাৰকাৰীৰ ই-মেইল নিষ্ক্ৰিয়',
 'usermaildisabledtext' => 'আপুনি এই ৱিকিত আন সদস্যলৈ ই-পত্ৰ পঠিয়াব নোৱাৰে',
@@ -2164,6 +2182,7 @@ $UNWATCHURL
 'protect-level-sysop'         => 'কেবল প্ৰশাসকবৃন্দৰ বাবে',
 'protect-summary-cascade'     => 'কেছকেডইং',
 'protect-expiring'            => ' $1 (UTC) ত সময় শেষ হব',
+'protect-expiring-local'      => 'ম্যাদ উকলিব $1',
 'protect-expiry-indefinite'   => 'অনিৰ্দিষ্ট',
 'protect-cascade'             => 'এই পৃষ্ঠাটোৰ লগত জৰিত সকলো পৃষ্ঠা সুৰক্ষিত কৰক (সুৰক্ষা জখলা)',
 'protect-cantedit'            => 'আপুনি এই পৃষ্ঠাটোৰ সুৰক্ষা-স্তৰ সলনি কৰিব নোৱৰে, কাৰণ আপোনাক সেই অনুমতি দিয়া হোৱা নাই।',
@@ -2238,6 +2257,7 @@ $UNWATCHURL
 'undelete-search-submit'       => 'সন্ধান',
 'undelete-no-results'          => 'অৱলুপ্তি আৰ্কাইভত কোনো মিল থকা পৃষ্ঠা পোৱা নগ’ল |',
 'undelete-filename-mismatch'   => '$1 সময়-মোহৰ থকা ফাইল সংশোধনটো বিলোপ কৰিব পৰা নাযাব: ফাইলৰ নাম মিলা নাই',
+'undelete-bad-store-key'       => '$1 সময়চিহ্নৰ বিলোপ কৰা ফাইল সংশোধনী ঘূৰাই আনিব নোৱাৰি: বিলোপ কৰাৰ আগেয়েই ফাইলটো নাছিল |',
 'undelete-cleanup-error'       => 'অব্যৱহৃত আৰ্কাইভ ফাইল "$1" বিলোপ কৰাত সমস্যা হৈছে |',
 'undelete-missing-filearchive' => 'ফাইল আৰ্কাইভ ID $1 পুনৰুদ্ধাৰ কৰিব পৰা নগ’ল কাৰণ এইটো তথ্যভঁৰালত নাই |
 এইটো সম্ভৱত: আগতেই পুনৰুদ্ধাৰ কৰা হৈছে |',
@@ -2249,10 +2269,12 @@ $1',
 'undelete-show-file-submit'    => 'অঁ',
 
 # Namespace form on various pages
-'namespace'             => 'নামস্থান:',
-'invert'                => 'নিৰ্বাচন ওলোটা কৰক',
-'namespace_association' => 'সাংসৰ্গিক নামস্থান',
-'blanknamespace'        => '(মুখ্য)',
+'namespace'                     => 'নামস্থান:',
+'invert'                        => 'নিৰ্বাচন ওলোটা কৰক',
+'tooltip-invert'                => 'নিৰ্বাচিত সময়স্থানৰ (আৰু সহযোগী সময়স্থানসমূহৰ) ভিতৰত থকা পৃষ্ঠাসমূহৰ সালসলনি গোপন কৰিবলৈ এই ঘৰটো চিহ্নিত কৰক (আৰু সহযোগী পৃষ্ঠাসমূহো)',
+'namespace_association'         => 'সাংসৰ্গিক নামস্থান',
+'tooltip-namespace_association' => 'নিৰ্বাচিত সময়স্থানৰ লগত থকা আলোচনা বা বিষয় সময়স্থান সন্নিৱিষ্ট কৰিবলৈ এই ঘৰটো চিহ্নিত কৰক',
+'blanknamespace'                => '(মুখ্য)',
 
 # Contributions
 'contributions'       => 'সদস্যৰ বৰঙণিসমূহ',
@@ -2337,6 +2359,8 @@ $1',
 'ipb-confirm'                 => 'প্ৰতিবন্ধক নিশ্চিত কৰক',
 'badipaddress'                => 'অগ্ৰহনযোগ্য আই-পি ঠিকনা',
 'blockipsuccesssub'           => "বাৰণ কৰা সফল হ'ল",
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]ক বাধা দিয়া হৈছে |<br />
+প্ৰতিবন্ধকৰ পুনৰ্বিবেচনাৰ বাবে [[Special:BlockList|IP প্ৰতিবন্ধক তালিকা]]',
 'ipb-blockingself'            => 'আপুনি নিজকে বাধাপ্ৰদান কৰিব বিচাৰিছে ! আপুনি নিশ্চিতনে আপুনি এনে কৰিব ?',
 'ipb-edit-dropdown'           => 'প্ৰতিবন্ধকৰ কাৰণসমূহ সম্পাদনা কৰক',
 'ipb-unblock-addr'            => '$1-পৰা বাৰণ উঠাই লওঁক',
@@ -2396,6 +2420,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'block-log-flags-noemail'     => 'ই-মেইল অৱৰোধ কৰা হৈছে',
 'block-log-flags-nousertalk'  => 'নিজৰ কথা-বতৰা পৃষ্ঠা সম্পাদনা কৰিব নোৱাৰি',
 'block-log-flags-hiddenname'  => 'সদস্যনাম গোপন কৰা হ’ল',
+'range_block_disabled'        => 'প্ৰশাসকৰ পৰিসীমা প্ৰতিবন্ধক সৃষ্টি কৰিব পৰা ক্ষমতা নিষ্ক্ৰিয় কৰা হৈছে |',
 'ipb_expiry_invalid'          => 'অবৈধ ম্যাদ উকলা সময়',
 'ipb_expiry_temp'             => 'গুপ্ত সদস্যনাম অৱৰোধ স্থায়ী হ;ব লাগিব |',
 'ipb_hide_invalid'            => 'এই বিষয়বস্তু নিবাৰণ কৰিব পৰা নগ’ল; ইয়াত বহুতো সম্পাদনা আছে |',
@@ -2551,6 +2576,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'thumbnail-more'           => 'ডাঙৰকৈ চাওক',
 'filemissing'              => 'ফাইল বিচাৰি পোৱা নগ’ল',
 'thumbnail_error'          => 'থাম্বনেইল বনাব অসুবিধা হৈছে: $1',
+'thumbnail_invalid_params' => 'অবৈধ ক্ষুদ্ৰাকৃতি পাৰামিটাৰ',
 'thumbnail_dest_directory' => 'গন্তব্য ডিৰেক্টৰী সৃষ্টি কৰিব পৰা নগ’ল',
 'thumbnail_image-type'     => 'চিত্ৰৰ ধৰণ সমৰ্থিত নহয় |',
 'thumbnail_image-missing'  => 'ফাইল সম্ভৱতঃ নাই: $1',
@@ -2558,11 +2584,13 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 # Special:Import
 'import'                     => 'পৃষ্ঠা আমদানি কৰক',
 'import-interwiki-source'    => 'উৎস ৱিকি/পৃষ্ঠা:',
+'import-interwiki-history'   => 'এই পৃষ্ঠাৰ সকলো সংশোধনৰ ইতিহাস কপী কৰক',
 'import-interwiki-templates' => 'সকলো সাঁচ অন্তৰ্ভুক্ত কৰক',
 'import-interwiki-submit'    => 'আমদানি',
 'import-interwiki-namespace' => 'গন্তব্য নামস্থান:',
 'import-upload-filename'     => 'ফাইলনাম:',
 'import-comment'             => 'মন্তব্য:',
+'importnopages'              => 'আমদানি কৰিবলৈ কোনো পৃষ্ঠা নাই |',
 'importbadinterwiki'         => 'আন্ত:ৱিকি সংযোগ বেয়া',
 'importnotext'               => 'খালী বা পাঠ বিহীন',
 'import-upload'              => 'XML তথ্য আপল’ড কৰক',
@@ -2575,6 +2603,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'আপোনাৰ সদস্য পৃষ্ঠা',
 'tooltip-pt-mytalk'               => 'আপোনাৰ আলোচনা পৃষ্ঠা',
+'tooltip-pt-anontalk'             => 'এই আই.পি. ঠিকনাৰ পৰা কৰা সম্পাদনাসমূহৰ আলোচনা',
 'tooltip-pt-preferences'          => 'মোৰ পচন্দ',
 'tooltip-pt-watchlist'            => 'আপুনি সালসলনিৰ গতিবিধি লক্ষ্য কৰি থকা পৃষ্ঠাসমূহৰ সুচী',
 'tooltip-pt-mycontris'            => 'আপোনাৰ আৰিহনাৰ তালিকা',
@@ -2646,6 +2675,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'spamprotectiontitle' => 'স্পাম প্ৰতিৰক্ষা চাকনী',
 
 # Info page
+'pageinfo-title'            => '"$1" ৰ তথ্য',
 'pageinfo-header-edits'     => 'সম্পাদনাসমূহ',
 'pageinfo-header-watchlist' => 'লক্ষ্যতালিকা',
 'pageinfo-header-views'     => 'দৰ্শন',

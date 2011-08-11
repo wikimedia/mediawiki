@@ -1866,6 +1866,7 @@ $1
 	'config-no-uri' => "'''Грешка:''' Не може да се определи текущия адрес.
 Инсталация беше прекратена.",
 	'config-using-server' => 'Използване на сървърното име "<nowiki>$1</nowiki>".',
+	'config-using-uri' => 'Използване на сървърния адрес (URL) "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe' => "'''Предупреждение:''' Папката по подразбиране за качване <code>$1</code> е уязвима от изпълнение на зловредни скриптове.
 Въпреки че МедияУики извършва проверка за заплахи в сигурността на всички качени файлове, силно препоръчително е да се [http://www.mediawiki.org/wiki/Manual:Security#Upload_security затвори тази уязвимост в сигурността] преди разрешаване за качване на файлове.",
 	'config-brokenlibxml' => 'Вашата система използа комбинация от версии на PHP и libxml2, които са с много грешки и могат да причинят скрити повреди на данните в МедияУики или други уеб приложения.
@@ -3141,6 +3142,8 @@ Der Installationsvorgang könnte daher scheitern!",
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ist installiert',
 	'config-no-cache' => "'''Warnung:''' [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] konnten nicht gefunden werden.
 Das Objektcaching ist daher nicht aktiviert.",
+	'config-mod-security' => "'''Warnung:''' Auf dem Webserver wurde [http://modsecurity.org/ ModSecurity] aktiviert. Sofern falsch konfiguriert, kann dies zu Problemen mit MediaWiki sowie anderer Software auf dem Server führen und es Benutzern ermöglichen beliebige Inhalte im Wiki einzustellen.
+Für weitere Informationen empfehlen wir die [http://modsecurity.org/documentation/ Dokumentation zu ModSecurity] oder den Kontakt zum Hoster, sofern Fehler auftreten.",
 	'config-diff3-bad' => 'GNU diff3 wurde nicht gefunden.',
 	'config-imagemagick' => 'ImageMagick wurde gefunden: <code>$1</code>.
 Miniaturansichten von Bildern werden möglich sein, sobald das Hochladen von Dateien aktiviert wurde.',
@@ -7285,6 +7288,8 @@ Le installation pote faller!",
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] es installate',
 	'config-no-cache' => "'''Aviso:''' Non poteva trovar [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
 Le cache de objectos non es activate.",
+	'config-mod-security' => "'''Attention''': [http://modsecurity.org/ mod_security] es active in tu servitor web. Si mal configurate, isto pote causar problemas pro MediaWiki o altere software que permitte al usatores de publicar contento arbitrari.
+Consulta le [http://modsecurity.org/documentation/ documentation de mod_security] o contacta le servicio de adjuta de tu host si tu incontra estranie errores.",
 	'config-diff3-bad' => 'GNU diff3 non trovate.',
 	'config-imagemagick' => 'ImageMagick trovate: <code>$1</code>.
 Le miniaturas de imagines essera activate si tu activa le incargamento de files.',
@@ -10004,7 +10009,7 @@ $messages['mg'] = array(
 	'config-install-user' => "Famoronana mpapiasan'ny banky angona",
 	'config-install-tables' => 'Famoronana tabilao',
 	'config-install-stats' => 'Fanombohana ny statistika',
-	'config-install-keys' => 'Fanamboarana lakile miafina$',
+	'config-install-keys' => 'Fanamboarana lakile miafina',
 	'config-help' => 'fanoroana',
 	'mainpagetext' => "'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''",
 	'mainpagedocfooter' => "Vangio ny [http://meta.wikimedia.org/wiki/Aide:Contenu Fanoroana ho an'ny mpampiasa] ra te hitady fanoroana momba ny fampiasan'ity rindrankajy ity.
@@ -10166,6 +10171,8 @@ $1
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
 	'config-no-cache' => "'''Предупредување:''' Не можев да го најдам [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
 Кеширањето на објекти не е овозможено.",
+	'config-mod-security' => "'''Предупредување''': на вашиот опслужувач има овозможено [http://modsecurity.org/ mod_security]. Ако не е поставено како што треба, ова може да предизвика проблеми кај МедијаВики и други програми што им овозможуваат на корисниците да објавуваат произволни содржини.
+Погледнете ја [http://modsecurity.org/documentation/ mod_security документацијата] или обратете се кај домаќинот ако наидете на случајни грешки.",
 	'config-diff3-bad' => 'GNU diff3 не е пронајден.',
 	'config-imagemagick' => 'Пронајден е ImageMagick: <code>$1</code>.
 Ако овозможите подигање, тогаш ќе биде овозможена минијатуризација на сликите.',

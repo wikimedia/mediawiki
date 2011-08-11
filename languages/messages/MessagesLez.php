@@ -123,7 +123,7 @@ $messages = array(
 'go'               => 'Фин',
 'searcharticle'    => 'Фин',
 'history'          => 'Хъувун тарих',
-'history_short'    => 'Тарих',
+'history_short'    => 'Кьиспес (тарих)',
 'printableversion' => ' Акъудунин кхьинриз жуьре',
 'permalink'        => 'Гьамишан алукьунин цlар',
 'print'            => 'Акъудун',
@@ -181,7 +181,7 @@ $messages = array(
 'editold'             => 'дегишарун',
 'viewsourceold'       => 'Тамашун',
 'editlink'            => 'Дигишарун',
-'viewsourcelink'      => 'къалурун булах',
+'viewsourcelink'      => 'Тамашун',
 'editsectionhint'     => 'Дегишарун пай: $1',
 'toc'                 => 'Къейда',
 'showtoc'             => 'къаларун',
@@ -213,7 +213,7 @@ $messages = array(
 'missingarticle-rev' => '(жуьре#: $1)',
 'badtitle'           => 'Чарчин тlар',
 'badtitletext'       => 'Жагъурзавай чар дуьз туш, ичlизва, чlурукl къалурна чlалан арада ва вики титул.                                                                               Ада жеда сад ва гзаф  кхьнар, гьабур тlарцlе ишлемиш жедач.',
-'viewsource'         => 'Къаларун булах',
+'viewsource'         => 'Тамашунин пенжер',
 'viewsourcefor'      => 'идаз $1',
 
 # Login and logout pages

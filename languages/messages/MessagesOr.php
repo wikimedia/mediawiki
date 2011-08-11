@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ansumang
  * @author Jayantanth
  * @author Jose77
  * @author Odisha1
@@ -330,7 +331,7 @@ $messages = array(
 'qbfind'         => 'ଖୋଜିବା',
 'qbbrowse'       => 'ଖୋଜିବା',
 'qbedit'         => 'ବଦଳାଇବା',
-'qbpageoptions'  => 'ଏଇଟା ଫର୍ଦ',
+'qbpageoptions'  => 'ଏହି ଫର୍ଦଟି',
 'qbpageinfo'     => 'ଭିତର ଚିଜ',
 'qbmyoptions'    => 'ମୋର ଫର୍ଦ',
 'qbspecialpages' => 'ନିଆରା ପୃଷ୍ଠା',
@@ -374,14 +375,19 @@ $messages = array(
 'deletethispage'    => 'ଏହି ପୃଷ୍ଠାଟି ଲିଭାଇବେ',
 'protect'           => 'କିଳିବେ',
 'protect_change'    => 'ବଦଳାଇବା',
+'protectthispage'   => 'ଏହି ପୃଷ୍ଠାଟିକୁ କିଳିବେ',
 'newpage'           => 'ନୂଆ ପୃଷ୍ଠା',
+'talkpage'          => 'ପୃଷ୍ଠାକୁ ଆଲୋଚନା କରନ୍ତୁ',
 'talkpagelinktext'  => 'କଥାଭାଷା',
 'specialpage'       => 'ନିଆରା ପୃଷ୍ଠା',
 'personaltools'     => 'ନିଜର ଟୁଲ',
 'talk'              => 'ଆଲୋଚନା',
 'views'             => 'ଦେଖା',
 'toolbox'           => 'ଜନ୍ତ୍ର ପେଡ଼ି',
+'userpage'          => 'ବ୍ୟବହାରକାରୀଙ୍କ ପୃଷ୍ଠା ଦେଖନ୍ତୁ',
 'imagepage'         => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
+'categorypage'      => 'ଶ୍ରେଣୀ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
+'viewtalkpage'      => 'ଆଲୋଚନାଗୁଡ଼ିକୁ ଦେଖନ୍ତୁ',
 'otherlanguages'    => 'ଅଲଗା ଭାଷା',
 'redirectedfrom'    => '($1 ରୁ ଲେଉଟି ଆସିଛି)',
 'redirectpagesub'   => 'ଆଉଥରେ ଫେରିବା ପୃଷ୍ଠା',
@@ -505,6 +511,9 @@ $messages = array(
 # Special:PasswordReset
 'passwordreset-username' => 'ବ୍ୟବାହରକାରୀଙ୍କର ନାଆଁ:',
 
+# Special:ChangeEmail
+'changeemail-cancel' => 'ବାତିଲ',
+
 # Edit page toolbar
 'bold_sample'     => 'ବୋଲ୍ଡ ଲେଖା',
 'bold_tip'        => 'ବୋଲ୍ଡ ଲେଖା',
@@ -586,6 +595,7 @@ $messages = array(
 
 # Revision deletion
 'rev-delundel'      => 'ଦେଖାଇବା/ଲୁଚାଇବା',
+'rev-showdeleted'   => 'ଦେଖାଇବେ',
 'revdelete-log'     => 'କାରଣ:',
 'revdel-restore'    => 'ଦେଖଣାକୁ ବଦଳାଇବେ',
 'revdelete-content' => 'ଭିତର ଚିଜ',
@@ -732,6 +742,7 @@ $messages = array(
 'minoreditletter'                 => 'ଟିକେ',
 'newpageletter'                   => 'ନୂଆ',
 'boteditletter'                   => 'ବଟ',
+'rc_categories_any'               => 'ଯେ କୌଣସି',
 'rc-enhanced-expand'              => 'ପୁରା ଦେଖାଇବେ (ଜାଭାସ୍କ୍ରିପଟ ଦରକାର)',
 'rc-enhanced-hide'                => 'ବେଶି କଥାସବୁ ଲୁଚାଇଦିଅ',
 
@@ -753,14 +764,16 @@ $messages = array(
 'fileuploadsummary' => 'ସାରକଥା:',
 'filesource'        => 'ଉତ୍ସ:',
 'uploadedimage'     => '"[[$1]]" ଅପଲୋଡ କରାଗଲା',
+'sourceurl'         => 'ଉତ୍ସ ୟୁ.ଆର୍.ଏଲ୍.:',
 
 # Special:ListFiles
-'imgfile'         => 'ଫାଇଲ',
-'listfiles_thumb' => 'ଛୋଟ ଛବି',
-'listfiles_name'  => 'ନାମ',
-'listfiles_user'  => 'ବ୍ୟବାହାରକାରୀ',
-'listfiles_size'  => 'ଆକାର',
-'listfiles_count' => 'ସଂସ୍କରଣ',
+'imgfile'               => 'ଫାଇଲ',
+'listfiles_thumb'       => 'ଛୋଟ ଛବି',
+'listfiles_name'        => 'ନାମ',
+'listfiles_user'        => 'ବ୍ୟବାହାରକାରୀ',
+'listfiles_size'        => 'ଆକାର',
+'listfiles_description' => 'ବର୍ଣ୍ଣନା',
+'listfiles_count'       => 'ସଂସ୍କରଣ',
 
 # File description page
 'file-anchor-link'          => 'ଫାଇଲ',
@@ -1003,6 +1016,7 @@ $messages = array(
 
 # Move page
 'move-page'               => '$1କୁ ଘୁଞ୍ଚାଇବେ',
+'move-page-legend'        => 'ପୃଷ୍ଠା ଘୁଞ୍ଚାଇବେ',
 'movepagetext'            => "ଏହି ଫର୍ମଟି ବ୍ୟବହାର କରି ଆପଣ ତଳ ପୃଷ୍ଠାଟିକୁ ବଦଳାଇ ପାରିବେ, ଏହାର ସବୁ ଇତିହାସ ଏକ ନୂଆ ନାଆଁକୁ ବଦଳିଯିବ ।
 ପୁରୁଣା ନାଆଁଟି ଏକ ପୁରୁଣା ନାଆଁ ଭାବରେ ଏହି ପୃଷ୍ଠା ଭାବରେ ବାଟ କଢ଼ାଇବ ।
 ଆପଣ ମୂଳ ଲେଖାକୁ ସେହି ପୁରୁଣା ନାଆଁ ଦେଇ ଆପେଆପେ ପଢ଼ିପାରିବେ ।
@@ -1023,6 +1037,7 @@ $messages = array(
 'movearticle'             => 'ପୃଷ୍ଠା ଘୁଞ୍ଚେଇବା:',
 'cant-move-user-page'     => 'ଆପଣଙ୍କୁ ଏହି ସଭ୍ୟ ପୃଷ୍ଠାଟିକୁ ଘୁଞ୍ଚାଇବା ଲାଗି ଅନୁମତି ମିଳିନାହିଁ, କିନ୍ତୁ ନିଜର ଉପପୃଷ୍ଠା ସବୁ ଘୁଞ୍ଚାଇ ପାରିବେ ।',
 'newtitle'                => 'ନୂଆ ନାଆଁକୁ:',
+'move-watch'              => 'ମୂଳ ପୃଷ୍ଠା ଓ ବଦଳାଇବାକୁ ଚାହୁଁଥିବା ପୃଷ୍ଠା ଦେଖାଇବେ',
 'movepagebtn'             => 'ପୃଷ୍ଠା ଘୁଞ୍ଚେଇବେ',
 'pagemovedsub'            => 'ଘୁଞ୍ଚାଇବା ସଫଳ ହେଲା',
 'movepage-moved'          => '\'\'\'"$1"ରୁ "$2"\'\'\'କୁ ଘୁଞ୍ଚାଇ ଦିଆଗଲା ।',
@@ -1035,6 +1050,7 @@ $messages = array(
 'movenosubpage'           => 'ଏହି ପୃଷ୍ଠାର ଉପପୃଷ୍ଠା ନାହିଁ ।',
 'movereason'              => 'କାରଣ:',
 'revertmove'              => 'ପଛକୁ ଫେରାଇବେ',
+'move-leave-redirect'     => 'ପଛକୁ ଫେରିବା ପୃଷ୍ଠାଟିଏ ଛାଡ଼ିଯାନ୍ତୁ',
 
 # Export
 'export'        => 'ଫରଦସବୁ ରପ୍ତାନି କର',
@@ -1157,6 +1173,7 @@ $messages = array(
 # EXIF tags
 'exif-imagewidth'   => 'ଓସାର',
 'exif-imagelength'  => 'ଉଚ୍ଚତା',
+'exif-orientation'  => 'ଅନୁସ୍ଥାପନ',
 'exif-artist'       => 'ଲେଖକ',
 'exif-flash'        => 'ଫ୍ଲାସ',
 'exif-saturation'   => 'ପରିପୃକ୍ତ',
@@ -1281,6 +1298,7 @@ $5
 
 # Special:Tags
 'tag-filter-submit' => 'ଛାଣିବା',
+'tags-title'        => 'ସୂଚକ',
 'tags-edit'         => 'ବଦଳାଇବେ',
 
 # Special:ComparePages

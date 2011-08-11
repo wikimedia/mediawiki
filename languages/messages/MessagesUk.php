@@ -15,6 +15,7 @@
  * @author AlexSm
  * @author Andrijko Z.
  * @author Arturyatsko
+ * @author Dim Grits
  * @author DixonD
  * @author Dubyk
  * @author EugeneZelenko
@@ -349,7 +350,7 @@ $messages = array(
 'feb'           => 'лют',
 'mar'           => 'бер',
 'apr'           => 'квіт',
-'may'           => 'травень',
+'may'           => 'трав',
 'jun'           => 'чер',
 'jul'           => 'лип',
 'aug'           => 'сер',
@@ -2269,11 +2270,11 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => 'Журнал захисту',
-'protectlogtext'              => 'Нижче наведено список установлень і знять захисту зі сторінки.
+'protectlogtext'              => 'Нижче наведено список встановлень і зняття захисту зі сторінки.
 Ви також можете переглянути [[Special:ProtectedPages|список захищених сторінок]].',
 'protectedarticle'            => 'захист на [[$1]] встановлено',
 'modifiedarticleprotection'   => 'змінено рівень захисту сторінки «[[$1]]»',
-'unprotectedarticle'          => 'знято захист зі сторінки «[[$1]]»',
+'unprotectedarticle'          => 'знято захист зі сторінки "[[$1]]"',
 'movedarticleprotection'      => 'переніс налаштування захисту з «[[$2]]» на «[[$1]]»',
 'protect-title'               => 'Встановлення захисту для «$1»',
 'prot_1movedto2'              => '«[[$1]]» перейменована на «[[$2]]»',
@@ -3019,8 +3020,8 @@ $1',
 'exif-colorspace'                  => 'Колірний простір',
 'exif-componentsconfiguration'     => 'Конфігурація кольорових компонентів',
 'exif-compressedbitsperpixel'      => 'Глибина кольору після стиснення',
-'exif-pixelydimension'             => 'Повна висота зображення',
-'exif-pixelxdimension'             => 'Повна ширина зображення',
+'exif-pixelydimension'             => 'Ширина зображення',
+'exif-pixelxdimension'             => 'Висота зображення',
 'exif-usercomment'                 => 'Додатковий коментар',
 'exif-relatedsoundfile'            => 'Файл звукового коментаря',
 'exif-datetimeoriginal'            => 'Оригинальні дата й час',

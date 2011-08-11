@@ -635,7 +635,7 @@ Per favor attende ante de probar lo novemente.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Error incognite in le function mail() de PHP',
-'user-mail-no-addy'      => 'Tentava inviar e-mail sin adresse de e-mail',
+'user-mail-no-addy'      => 'Tentava inviar e-mail sin adresse de e-mail.',
 
 # Change password dialog
 'resetpass'                 => 'Cambiar contrasigno',

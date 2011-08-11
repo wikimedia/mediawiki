@@ -1147,6 +1147,8 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'prefs-watchlist-token'         => 'Tocyn y rhestr wylio:',
 'prefs-misc'                    => 'Amrywiol',
 'prefs-resetpass'               => 'Newid y cyfrinair',
+'prefs-changeemail'             => 'Newid y cyfeiriad e-bost',
+'prefs-setemail'                => 'Gosod cyfeiriad e-bost',
 'prefs-email'                   => 'E-bostio',
 'prefs-rendering'               => 'Ymddangosiad',
 'saveprefs'                     => "Cadw'r dewisiadau",
@@ -3531,5 +3533,6 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'ajax-remove-category-error'    => 'Nid oedd yn bosibl tynnu\'r categori "$1" i ffwrdd.
 Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.',
 'ajax-category-already-present' => "Mae'r dudalen hon yn perthyn i'r categori $1 yn barod",
+'ajax-api-error'                => 'Dychwelodd yr API wall: $1: $2.',
 
 );

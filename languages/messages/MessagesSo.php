@@ -483,6 +483,7 @@ Ereysirka kumeelgaarka ah: $2',
 'italic_sample'   => 'Farta caatada ah',
 'italic_tip'      => 'Farta caatada ah',
 'link_sample'     => 'Qoraalka linkiga',
+'extlink_sample'  => 'http://www.example.com qoraalka linkiga',
 'extlink_tip'     => 'Xiriirka tixraaca (xasuuso http:// prefix)',
 'headline_sample' => 'Qoraalka madaxa hore',
 'headline_tip'    => 'Qeybta 2aad ee ciwaanka kore',
@@ -563,7 +564,7 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 ''Sababtoo ah {{SITENAME}}han wuxuu leeyahay HTML ceyriin ah, horfiirintiisa waxaa loo qariyey si looga hortago weerar ka yimaada JavaScriptga.''
 
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
-'editing'                          => 'Waxaa wax ka badaloosaa $1',
+'editing'                          => 'Waxaa badaloosaa $1',
 'editingsection'                   => 'Waxaa wax ka badaloosaa $1 (qeyb yar)',
 'editingcomment'                   => 'Waxaa wax ka badaloosaa $1 (qeyb yar)',
 'editconflict'                     => 'Isku dhac badalaadka: $1',

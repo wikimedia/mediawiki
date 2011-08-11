@@ -1127,6 +1127,8 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'prefs-watchlist-token'         => 'Ufunguo wa orodha ya maangalizi:',
 'prefs-misc'                    => 'Mengineyo',
 'prefs-resetpass'               => 'Kubadilisha neno la siri',
+'prefs-changeemail'             => 'Badilisha anwani ya barua pepe',
+'prefs-setemail'                => 'Weka anwani ya barua pepe',
 'prefs-email'                   => 'Hitiari za barua pepe',
 'prefs-rendering'               => 'Umbo',
 'saveprefs'                     => 'Hifadhi',
@@ -3035,5 +3037,6 @@ Tovuti hii inapata matatatizo wakati huu.',
 'ajax-remove-category-error'    => ' Jamii "$1" haikuweza kuondolewa.
 Huwa jamii haiwezi kuondolewa kwenye ukurasa wakati jamii imeingizwa ndani ya kigezo fulani.',
 'ajax-category-already-present' => 'Ukarasa huu tayari uko katika jamii ya $1',
+'ajax-api-error'                => 'API iliripoti hitilafu: $1: $2.',
 
 );
