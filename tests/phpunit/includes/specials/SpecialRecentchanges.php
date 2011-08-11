@@ -18,13 +18,12 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 
 	/** helper to test SpecialRecentchanges::buildMainQueryConds() */
 	private function assertConditions( $expected, $requestOptions = null, $message = '' ) {
-		global $wgRequest;
-		$savedGlobal = $wgRequest;
+		$context = new RequestContext;
+		$context->setRequest( new FauxRequest( $requestOptions ) );
 
-		# Initialize a WebRequest object ...
-		$wgRequest = new FauxRequest( $requestOptions );
-		# ... then setup the rc object (which use wgRequest internally)
+		# setup the rc object
 		$this->rc = new SpecialRecentChanges();
+		$this->rc->setContext( $context );
 		$formOptions = $this->rc->setup( null );
 
 		# Filter out rc_timestamp conditions which depends on the test runtime
@@ -40,8 +39,6 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			$queryConditions,
 			$message
 		);
-
-		$wgRequest = $savedGlobal;
 	}
 
 	/** return false if condition begin with 'rc_timestamp ' */
@@ -88,7 +85,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			array( # expected
 				#0 => "rc_timestamp >= '20110223000000'",
 				'rc_bot' => 0,
-				1 => sprintf( "(rc_namespace = '%s' OR rc_namespace = '%s')", $ns1, $ns2 ),
+				1 => sprintf( "rc_namespace IN ('%s','%s')", $ns1, $ns2 ),
 			),
 			array(
 				'namespace' => $ns1,
@@ -107,7 +104,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			array( # expected
 				#0 => "rc_timestamp >= '20110223000000'",
 				'rc_bot' => 0,
-				1 => sprintf( "(rc_namespace != '%s' AND rc_namespace != '%s')", $ns1, $ns2 ),
+				1 => sprintf( "rc_namespace NOT IN ('%s','%s')", $ns1, $ns2 ),
 			),
 			array(
 				'namespace'  => $ns1,
