@@ -186,6 +186,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.19
 			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
+			array( 'addField', 'revision',      'rev_sha1',         'patch-rev_sha1.sql' ),
+			array( 'addField', 'archive',       'ar_sha1',          'patch-ar_sha1.sql' ),
+			array( 'doPopulateRevSha1' )
 		);
 	}
 
@@ -854,5 +857,15 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "Making user_last_timestamp nullable... " );
 		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql' );
 		$this->output( "done.\n" );
+	}
+
+	protected function doPopulateRevSha1() {
+		if ( $this->updateRowExists( 'populate rev_sha1' ) ) {
+			$this->output( "...rev_sha1/ar_sha1 columns already populated.\n" );
+			return;
+		}
+
+		$task = $this->maintenance->runChild( 'PopulateRevisionSha1' );
+		$task->execute();
 	}
 }
