@@ -151,6 +151,10 @@ return array(
 	'jquery.qunit' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.js',
 		'styles' => 'resources/jquery/jquery.qunit.css',
+		'position' => 'top',
+	),
+	'jquery.qunit.completenessTest' => array(
+		'scripts' => 'resources/jquery/jquery.qunit.completenessTest.js',
 	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
