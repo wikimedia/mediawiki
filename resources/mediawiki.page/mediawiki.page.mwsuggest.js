@@ -52,7 +52,7 @@ jQuery( document ).ready( function( $ ) {
 				format : 'json',
 				action : 'opensearch',
 				search : request.term,
-				namespaces : namespaces
+				namespace : namespaces
 			};
 			$.getJSON( url, params, function ( obj ) {
 				// Save to cache
