@@ -75,9 +75,9 @@ var processResult = function( response, $link ) {
 	// Bug 12395 - update the watch checkbox on edit pages when the
 	// page is watched or unwatched via the tab.
 	if ( watchResponse.watched !== undefined ) {
-		$( '#wpWatchthis' ).attr( 'checked', 'checked' );
+		$( '#wpWatchthis' ).prop( 'checked', 'checked' );
 	} else {
-		$( '#wpWatchthis' ).removeAttr( 'checked' );
+		$( '#wpWatchthis' ).removeProp( 'checked' );
 	}
 	return true;
 };

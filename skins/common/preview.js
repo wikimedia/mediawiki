@@ -37,8 +37,8 @@
 					//  with the content of the loaded page
 					var copyContent = page.find( copyElements[i] ).contents();
 					$(copyElements[i]).empty().append( copyContent );
-					var newClasses = page.find( copyElements[i] ).attr('class');
-					$(copyElements[i]).attr( 'class', newClasses );
+					var newClasses = page.find( copyElements[i] ).prop('class');
+					$(copyElements[i]).prop( 'class', newClasses );
 				}
 
 				$.each( copyElements, function(k,v) {

@@ -31,7 +31,7 @@
 
 		// Default limit to current attribute value
 		if ( limit === undefined ) {
-			limit = this.attr( 'maxLength' );
+			limit = this.prop( 'maxLength' );
 		}
 
 		// Update/set attribute value, but only if there is no callback set.
@@ -40,10 +40,10 @@
 		// Usually this isn't a problem since browsers ignore maxLength when setting
 		// the value property through JavaScript, but Safari 4 violates that rule, so
 		// we have to remove or not set the property if we have a callback.
-		if ( fn === undefined ) {
-			this.attr( 'maxLength', limit );
+		if ( fn == undefined ) {
+			this.prop( 'maxLength', limit );
 		} else {
-			this.removeAttr( 'maxLength' );
+			this.removeProp( 'maxLength' );
 		}
 
 		// Nothing passed and/or empty attribute, return without binding an event.

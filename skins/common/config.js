@@ -67,9 +67,9 @@
 		$( '.enableForOther' ).click( function() {
 			var $textbox = $( '#' + $(this).attr( 'rel' ) );
 			if ( $(this).val() == 'other' ) { // FIXME: Ugh, this is ugly
-				$textbox.removeAttr( 'readonly' ).closest( '.config-block' ).slideDown( 'fast' );
+				$textbox.removeProp( 'readonly' ).closest( '.config-block' ).slideDown( 'fast' );
 			} else {
-				$textbox.attr( 'readonly', 'readonly' ).closest( '.config-block' ).slideUp( 'fast' );
+				$textbox.prop( 'readonly', true ).closest( '.config-block' ).slideUp( 'fast' );
 			}
 		} );
 		

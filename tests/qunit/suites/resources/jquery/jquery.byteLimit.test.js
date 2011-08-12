@@ -93,10 +93,8 @@ byteLimitTest({
 byteLimitTest({
 	description: 'Limit using the maxlength attribute',
 	$input: $( '<input>' )
-		.attr( {
-			'type': 'text',
-			'maxlength': '10'
-		})
+		.attr( 'type', 'text' )
+		.prop( 'maxLength', '10' )
 		.byteLimit(),
 	sample: simpleSample,
 	hasLimit: true,
@@ -120,10 +118,8 @@ byteLimitTest({
 byteLimitTest({
 	description: 'Limit using a custom value, overriding maxlength attribute',
 	$input: $( '<input>' )
-		.attr( {
-			'type': 'text',
-			'maxLength': '10'
-		})
+		.attr( 'type', 'text' )
+		.prop( 'maxLength', '10' )
 		.byteLimit( 15 ),
 	sample: simpleSample,
 	hasLimit: true,
@@ -183,10 +179,8 @@ byteLimitTest({
 byteLimitTest({
 	description: 'Limit using the maxlength attribute and pass a callback as input filter',
 	$input: $( '<input>' )
-		.attr( {
-			'type': 'text',
-			'maxLength': '6'
-		})
+		.attr( 'type', 'text' )
+		.prop( 'maxLength', '6' )
 		.byteLimit( function( val ) {
 			_titleConfig();
 
