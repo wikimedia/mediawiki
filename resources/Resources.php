@@ -462,10 +462,10 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 	),
 	'mediawiki.Title' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
+		'scripts' => 'resources/mediawiki/mediawiki.title.js',
 	),
 	'mediawiki.Uri' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
+		'scripts' => 'resources/mediawiki/mediawiki.uri.js',
 	),
 	'mediawiki.user' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.user.js',
