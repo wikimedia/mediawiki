@@ -909,6 +909,7 @@ class Title {
 					$url = str_replace( '$1', $dbkey, $url  );
 				} else {
 					$url = str_replace( '$1', $dbkey, $wgArticlePath );
+					wfRunHooks( 'GetLocalURL::Article', array( &$this, &$url ) );
 				}
 			} else {
 				global $wgActionPaths;
@@ -937,6 +938,8 @@ class Title {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
+			
+			wfRunHooks( 'GetLocalURL::Internal', array( &$this, &$url, $query, $variant ) );
 
 			// @todo FIXME: This causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
@@ -944,7 +947,7 @@ class Title {
 				$url = $wgServer . $url;
 			}
 		}
-		wfRunHooks( 'GetLocalURL', array( &$this, &$url, $query ) );
+		wfRunHooks( 'GetLocalURL', array( &$this, &$url, $query, $variant ) );
 		return $url;
 	}
 
