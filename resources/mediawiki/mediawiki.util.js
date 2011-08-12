@@ -267,7 +267,7 @@
 
 				return;
 
-			} else if ( nodeList instanceof jQuery ) {
+			} else if ( nodeList instanceof $ ) {
 				$nodes = nodeList;
 			} else {
 				$nodes = $( nodeList );

@@ -38,7 +38,7 @@ $.fn.makeCollapsible = function() {
 				if ( typeof $defaultToggle == 'undefined' ) {
 					$defaultToggle = null;
 				}
-				if ( $defaultToggle !== null && !($defaultToggle instanceof jQuery) ) {
+				if ( $defaultToggle !== null && !($defaultToggle instanceof $) ) {
 					// is optional (may be undefined), but if defined it must be an instance of jQuery.
 					// If it's not, abort right away.
 					// After this $defaultToggle is either null or a valid jQuery instance.
