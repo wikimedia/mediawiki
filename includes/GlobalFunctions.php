@@ -1178,7 +1178,8 @@ function wfMsgWikiHtml( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReplaceArgs(
-		MessageCache::singleton()->parse( wfMsgGetKey( $key ), null, /* can't be set to false */ true )->getText(),
+		MessageCache::singleton()->parse( wfMsgGetKey( $key ), null,
+		/* can't be set to false */ true, /* interface */ true )->getText(),
 		$args );
 }
 
