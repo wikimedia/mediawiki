@@ -62,8 +62,8 @@ changes to languages because of Bugzilla reports.
 
 === Other changes in 1.19 ===
 * jquery.mwPrototypes module was renamed to jquery.mwExtension.
-* The maintenance script populateImageSha1.php was renamed to the more concise
-  populateSha1.php
+* The maintenance script populateSha1.php was renamed to the more concise
+  populateImageSha1.php
 
 == Compatibility ==
 
