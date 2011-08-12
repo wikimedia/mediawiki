@@ -625,6 +625,7 @@ return array(
 			'ajax-category-already-present',
 			'ajax-category-hook-error',
 			'ajax-api-error',
+			'ajax-api-unknown-error',
 		),
 	),
 	'mediawiki.page.ajaxCategories.init' => array(
