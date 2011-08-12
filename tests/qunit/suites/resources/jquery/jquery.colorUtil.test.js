@@ -1,4 +1,4 @@
-module( 'jquery.colorUtil.js' );
+module( 'jquery.colorUtil' );
 
 test( '-- Initial check', function() {
 	expect(1);

@@ -1,4 +1,4 @@
-module( 'jquery.mwExtension.js' );
+module( 'jquery.mwExtension' );
 
 test( 'String functions', function() {
 

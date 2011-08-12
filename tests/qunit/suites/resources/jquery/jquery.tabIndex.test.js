@@ -1,4 +1,4 @@
-module( 'jquery.tabIndex.js' );
+module( 'jquery.tabIndex' );
 
 test( '-- Initial check', function() {
 	expect(2);

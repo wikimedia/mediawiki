@@ -1,4 +1,4 @@
-module( 'jquery.byteLimit.js' );
+module( 'jquery.byteLimit' );
 
 test( '-- Initial check', function() {
 	expect(1);
