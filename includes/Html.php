@@ -48,7 +48,7 @@
  * @since 1.16
  */
 class Html {
-	# List of void elements from HTML5, section 9.1.2 as of 2009-08-10
+	# List of void elements from HTML5, section 8.1.2 as of 2011-08-12
 	private static $voidElements = array(
 		'area',
 		'base',
@@ -64,16 +64,19 @@ class Html {
 		'meta',
 		'param',
 		'source',
+		'track',
+		'wbr',
 	);
 
 	# Boolean attributes, which may have the value omitted entirely.  Manually
-	# collected from the HTML5 spec as of 2010-06-07.
+	# collected from the HTML5 spec as of 2011-08-12.
 	private static $boolAttribs = array(
 		'async',
 		'autofocus',
 		'autoplay',
 		'checked',
 		'controls',
+		'default',
 		'defer',
 		'disabled',
 		'formnovalidate',
@@ -82,6 +85,7 @@ class Html {
 		'itemscope',
 		'loop',
 		'multiple',
+		'muted',
 		'novalidate',
 		'open',
 		'pubdate',
@@ -91,6 +95,8 @@ class Html {
 		'scoped',
 		'seamless',
 		'selected',
+		'truespeed',
+		'typemustmatch',
 	);
 
 	/**
