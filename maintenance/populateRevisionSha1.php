@@ -1,6 +1,7 @@
 <?php
 /**
- * Fills the rev_sha1 and ar_sha1 columns of revision & archive tables.
+ * Fills the rev_sha1 and ar_sha1 columns of revision
+ * and archive tables for revisions created before MW 1.19.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,45 +23,56 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
-class PopulateRevisionSha1 extends Maintenance {
+class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populates the rev_sha1 and ar_sha1 fields";
 		$this->setBatchSize( 200 );
 	}
 
-	public function execute() {
-		$db = $this->getDB( DB_MASTER );
-
-		$this->output( "Populating rev_sha1 column\n" );
-		$this->doSha1Updates( $db, 'revision', 'rev_id', 'rev' );
-
-		$this->output( "Populating ar_sha1 column\n" );
-		$this->doSha1Updates( $db, 'archive', 'ar_rev_id', 'ar' );
-
-		if ( $db->insert(
-				'updatelog',
-				array( 'ul_key' => 'populate rev_sha1' ),
-				__METHOD__,
-				'IGNORE'
-			)
-		) {
-			$this->output( "rev_sha1 and ar_sha1 population complete.\n" );
-			return true;
-		} else {
-			$this->output( "Could not insert rev_sha1 population row.\n" );
-			return false;
-		}
+	protected function getUpdateKey() {
+		return 'populate rev_sha1';
 	}
 
+	protected function updateSkippedMessage() {
+		return 'rev_sha1 column of revision table already populated.';
+	}
+
+	protected function updatelogFailedMessage() {
+		return 'Could not insert rev_sha1 population row.';
+	}
+
+	protected function doDBUpdates() {
+		$db = $this->getDB( DB_MASTER );
+		if ( !$db->tableExists( 'revision' ) ) {
+			$this->error( "revision table does not exist", true );
+		}
+		if ( !$db->tableExists( 'archive' ) ) {
+			$this->error( "archive table does not exist", true );
+		}
+
+		$this->output( "Populating rev_sha1 column\n" );
+		$rc = $this->doSha1Updates( $db, 'revision', 'rev_id', 'rev' );
+
+		$this->output( "Populating ar_sha1 column\n" );
+		$ac = $this->doSha1Updates( $db, 'archive', 'ar_rev_id', 'ar' );
+
+		$this->output( "rev_sha1 and ar_sha1 population complete [$rc revision rows, $ac archive rows].\n" );
+		return true;
+	}
+
+	/**
+	 * @return Integer Rows changed
+	 */
 	protected function doSha1Updates( $db, $table, $idCol, $prefix ) {
-		$start = $db->selectField( $table, "MIN($idCol)", "$idCol IS NOT NULL", __METHOD__ );
-		if ( !$start ) {
-			$this->output( "Nothing to do.\n" );
+		$start = $db->selectField( $table, "MIN($idCol)", false, __METHOD__ );
+		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
+		if ( !$start || !$end ) {
+			$this->output( "...revision table seems to be empty.\n" );
 			return true;
 		}
-		$end = $db->selectField( $table, "MAX($idCol)", "$idCol IS NOT NULL", __METHOD__ );
 
+		$count = 0;
 		# Do remaining chunk
 		$end += $this->mBatchSize - 1;
 		$blockStart = $start;
@@ -68,7 +80,7 @@ class PopulateRevisionSha1 extends Maintenance {
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
 			$cond = "$idCol BETWEEN $blockStart AND $blockEnd
-				AND $idCol IS NOT NULL AND {$prefix}_sha1 != ''";
+				AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
 			$res = $db->select( $table, '*', $cond, __METHOD__ );
 
 			$db->begin();
@@ -87,6 +99,7 @@ class PopulateRevisionSha1 extends Maintenance {
 						array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
 						array( $idCol => $row->$idCol ),
 						__METHOD__ );
+					$count++;
 				}
 			}
 			$db->commit();
@@ -95,6 +108,7 @@ class PopulateRevisionSha1 extends Maintenance {
 			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves();
 		}
+		return $count;
 	}
 }
 
