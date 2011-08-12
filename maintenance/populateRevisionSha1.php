@@ -26,7 +26,7 @@ class PopulateRevisionSha1 extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populates the rev_sha1 and ar_sha1 fields";
-		$this->setBatchSize( 150 );
+		$this->setBatchSize( 200 );
 	}
 
 	public function execute() {
@@ -78,10 +78,16 @@ class PopulateRevisionSha1 extends Maintenance {
 				} else {
 					$rev = new Revision( $row );
 				}
-				$db->update( $table,
-					array( "{$prefix}_sha1" => Revision::base36Sha1( $rev->getRawText() ) ),
-					array( $idCol => $row->$idCol ),
-					__METHOD__ );
+				$text = $rev->getRawText();
+				if ( !is_string( $text ) ) {
+					# This should not happen, but sometimes does (bug 20757)
+					$this->output( "Text of revision {$row->$idCol} unavailable!\n" );
+				} else {
+					$db->update( $table,
+						array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
+						array( $idCol => $row->$idCol ),
+						__METHOD__ );
+				}
 			}
 			$db->commit();
 
