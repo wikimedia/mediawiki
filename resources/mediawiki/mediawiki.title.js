@@ -163,7 +163,7 @@ var	Title = function( title, namespace ) {
 		}
 		return title;
 	};
-	 
+
 
 	/* Static space */
 

@@ -46,7 +46,7 @@ $.fn.placeholder = function() {
 						// text somewhere in the middle of the placeholder string,
 						// we want to set the contents of the search box to the
 						// dropped text.
-						
+
 						// IE wants getData( 'text' ) but Firefox wants getData( 'text/plain' )
 						// Firefox fails gracefully with an empty string, IE barfs with an error
 						try {
@@ -56,7 +56,7 @@ $.fn.placeholder = function() {
 							// Got an exception, so use the IE way
 							this.value = e.originalEvent.dataTransfer.getData( 'text' );
 						}
-						
+
 						// On Firefox, drop fires after the dropped text has been inserted,
 						// but on IE it fires before. If we don't prevent the default action,
 						// IE will insert the dropped text twice.

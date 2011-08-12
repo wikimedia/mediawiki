@@ -82,9 +82,7 @@ var
 byteLimitTest({
 	description: 'Plain text input',
 	$input: $( '<input>' )
-		.attr( {
-			'type': 'text'
-		}),
+		.attr( 'type', 'text' ),
 	sample: simpleSample,
 	hasLimit: false,
 	expected: simpleSample
@@ -105,9 +103,7 @@ byteLimitTest({
 byteLimitTest({
 	description: 'Limit using a custom value',
 	$input: $( '<input>' )
-		.attr( {
-			'type': 'text'
-		})
+		.attr( 'type', 'text' )
 		.byteLimit( 10 ),
 	sample: simpleSample,
 	hasLimit: true,
@@ -130,9 +126,7 @@ byteLimitTest({
 byteLimitTest({
 	description: 'Limit using a custom value (multibyte)',
 	$input: $( '<input>' )
-		.attr( {
-			'type': 'text'
-		})
+		.attr( 'type', 'text' )
 		.byteLimit( 14 ),
 	sample: mbSample,
 	hasLimit: true,
@@ -143,9 +137,7 @@ byteLimitTest({
 byteLimitTest({
 	description: 'Limit using a custom value (multibyte) overlapping a byte',
 	$input: $( '<input>' )
-		.attr( {
-			'type': 'text'
-		})
+		.attr( 'type', 'text' )
 		.byteLimit( 12 ),
 	sample: mbSample,
 	hasLimit: true,
@@ -156,9 +148,7 @@ byteLimitTest({
 byteLimitTest({
 	description: 'Pass the limit and a callback as input filter',
 	$input: $( '<input>' )
-		.attr( {
-			'type': 'text'
-		})
+		.attr( 'type', 'text' )
 		.byteLimit( 6, function( val ) {
 			_titleConfig();
 

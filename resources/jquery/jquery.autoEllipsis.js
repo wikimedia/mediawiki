@@ -25,7 +25,7 @@ $.fn.autoEllipsis = function( options ) {
 				$el.text( $el.data( 'autoEllipsis.originalText' ) );
 			}
 		}
-		
+
 		// container element - used for measuring against
 		var $container = $el;
 		// trimmable text element - only the text within this element will be trimmed
@@ -43,7 +43,7 @@ $.fn.autoEllipsis = function( options ) {
 				.empty()
 				.append( $trimmableText );
 		}
-		
+
 		var text = $container.text();
 		var trimmableText = $trimmableText.text();
 		var w = $container.width();
@@ -81,7 +81,7 @@ $.fn.autoEllipsis = function( options ) {
 				return;
 			}
 		}
-		
+
 		if ( $trimmableText.width() + pw > w ) {
 			switch ( options.position ) {
 				case 'right':
@@ -136,7 +136,7 @@ $.fn.autoEllipsis = function( options ) {
 		} else {
 			cache[text][w][options.position] = $container.html();
 		}
-		
+
 	} );
 };
 

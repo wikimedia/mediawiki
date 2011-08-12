@@ -2,12 +2,8 @@ module( 'mediawiki.special.recentchanges' );
 
 test( '-- Initial check', function() {
 	expect( 2 );
-	ok( mw.special.recentchanges.init,
-	   'mw.special.recentchanges.init defined'
-	  );
-	ok( mw.special.recentchanges.updateCheckboxes,
-	   'mw.special.recentchanges.updateCheckboxes defined'
-	  );
+	ok( mw.special.recentchanges.init, 'mw.special.recentchanges.init defined' );
+	ok( mw.special.recentchanges.updateCheckboxes, 'mw.special.recentchanges.updateCheckboxes defined' );
 	// TODO: verify checkboxes == [ 'nsassociated', 'nsinvert' ]
 });
 
@@ -61,7 +57,7 @@ test( '"all" namespace disable checkboxes', function() {
 	$options.eq(1).removeProp( 'selected' );
 	$options.eq(0).prop( 'selected', true );
 	$( '#namespace' ).change();
-	
+
 	// ... and checkboxes should now be disabled
 	strictEqual( $( '#nsinvert' ).prop( 'disabled' ), true );
 	strictEqual( $( '#nsassociated' ).prop( 'disabled' ), true );

@@ -159,7 +159,7 @@ test( 'mw.loader', function() {
 	// Extract path
 	var tests_path = rePath.exec( location.href );
 
-	mw.loader.implement( 'is.awesome', [QUnit.fixurl( tests_path + 'data/defineTestCallback.js')], {}, {} );
+	mw.loader.implement( 'is.awesome', [QUnit.fixurl( tests_path + 'data/defineTestCallback.js' )], {}, {} );
 
 	mw.loader.using( 'is.awesome', function() {
 

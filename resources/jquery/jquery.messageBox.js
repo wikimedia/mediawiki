@@ -58,7 +58,7 @@ $.messageBox = function( options ) {
 		'group': 'default',
 		'replace': false, // if true replaces any previous message in this group
 		'target': 'js-messagebox'
-	}, options );	  
+	}, options );
 	var $target = $.messageBoxNew( { id: options.target } );
 	var groupID = options.target + '-' + options.group;
 	var $group = $( '#' + groupID );

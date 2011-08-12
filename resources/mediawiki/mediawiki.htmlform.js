@@ -1,7 +1,7 @@
 /**
  * Utility functions for jazzing up HTMLForm elements
  */
-( function( $ ) { 
+( function( $ ) {
 
 /**
  * jQuery plugin to fade or snap to visible state.

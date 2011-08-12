@@ -4,7 +4,7 @@ test( 'String functions', function() {
 
 	equal( $.trimLeft( '  foo bar  ' ), 'foo bar  ', 'trimLeft' );
 	equal( $.trimRight( '  foo bar  ' ), '  foo bar', 'trimRight' );
-	equal( $.ucFirst( 'foo'), 'Foo', 'ucFirst' );
+	equal( $.ucFirst( 'foo' ), 'Foo', 'ucFirst' );
 
 	equal( $.escapeRE( '<!-- ([{+mW+}]) $^|?>' ),
 	 '<!\\-\\- \\(\\[\\{\\+mW\\+\\}\\]\\) \\$\\^\\|\\?>', 'escapeRE - Escape specials' );

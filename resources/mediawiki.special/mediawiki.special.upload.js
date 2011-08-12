@@ -51,12 +51,12 @@ jQuery( function( $ ) {
 					'</div>' );
 		thumb.find( '.filename' ).text( file.name ).end()
 			.find( '.fileinfo' ).text( prettySize( file.size ) ).end();
-		
+
 		var	ctx = thumb.find( 'canvas' )[0].getContext( '2d' ),
 			spinner = new Image();
-		spinner.onload = function() { 
-			ctx.drawImage( spinner, (previewSize - spinner.width) / 2, 
-					(previewSize - spinner.height) / 2 ); 
+		spinner.onload = function() {
+			ctx.drawImage( spinner, (previewSize - spinner.width) / 2,
+					(previewSize - spinner.height) / 2 );
 		};
 		spinner.src = mw.config.get( 'wgScriptPath' ) + '/skins/common/images/spinner.gif';
 		$( '#mw-htmlform-source' ).parent().prepend( thumb );
@@ -65,7 +65,7 @@ jQuery( function( $ ) {
 		fetchPreview( file, function( dataURL ) {
 			var	img = new Image(),
 				rotation = 0;
-			
+
 			if ( meta && meta.tiff && meta.tiff.Orientation ) {
 				rotation = (360 - function () {
 					// See includes/media/Bitmap.php
@@ -81,7 +81,7 @@ jQuery( function( $ ) {
 					}
 				}() ) % 360;
 			}
-			
+
 			img.onload = function() {
 				var width, height, x, y, dx, dy;
 				// Fit the image within the previewSizexpreviewSize box
@@ -97,7 +97,7 @@ jQuery( function( $ ) {
 				dy = (180 - height) / 2;
 				switch ( rotation ) {
 					// If a rotation is applied, the direction of the axis
-					// changes as well. You can derive the values below by 
+					// changes as well. You can derive the values below by
 					// drawing on paper an axis system, rotate it and see
 					// where the positive axis direction is
 					case 0:
@@ -105,7 +105,7 @@ jQuery( function( $ ) {
 						y = dy;
 						break;
 					case 90:
-						
+
 						x = dx;
 						y = dy - previewSize;
 						break;
@@ -118,11 +118,11 @@ jQuery( function( $ ) {
 						y = dy;
 						break;
 				}
-				
+
 				ctx.clearRect( 0, 0, 180, 180 );
 				ctx.rotate( rotation / 180 * Math.PI );
 				ctx.drawImage( img, x, y, width, height );
-				
+
 				// Image size
 				var info = mw.msg( 'widthheight', img.width, img.height ) +
 					', ' + prettySize( file.size );
@@ -191,7 +191,7 @@ jQuery( function( $ ) {
 	function clearPreview() {
 		$( '#mw-upload-thumbnail' ).remove();
 	}
-	
+
 	/**
 	 * Check if the file does not exceed the maximum size
 	 */
@@ -204,18 +204,18 @@ jQuery( function( $ ) {
 			return sizes['*'];
 		}
 		$( '.mw-upload-source-error' ).remove();
-		
-		var maxSize = getMaxUploadSize( 'file' ); 
+
+		var maxSize = getMaxUploadSize( 'file' );
 		if ( file.size > maxSize ) {
-			var error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' + 
+			var error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' +
 					mw.message( 'largefileserver', file.size, maxSize ).escaped() + '</p>' );
 			$( '#wpUploadFile' ).after( error );
 			return false;
 		}
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * Initialization
 	 */
@@ -226,11 +226,11 @@ jQuery( function( $ ) {
 			if ( this.files && this.files.length ) {
 				// Note: would need to be updated to handle multiple files.
 				var file = this.files[0];
-				
+
 				if ( !checkMaxUploadSize( file ) ) {
 					return;
 				}
-				
+
 				if ( fileIsPreviewable( file ) ) {
 					showPreview( file );
 				}

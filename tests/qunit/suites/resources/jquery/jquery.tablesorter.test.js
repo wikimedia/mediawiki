@@ -3,9 +3,9 @@
 module( 'jquery.tablesorter' );
 
 // setup hack
-mw.config.set('wgMonthNames', window.wgMonthNames = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
-mw.config.set('wgMonthNamesShort', window.wgMonthNamesShort = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
-mw.config.set('wgDefaultDateFormat', window.wgDefaultDateFormat = 'dmy');
+mw.config.set( 'wgMonthNames', window.wgMonthNames = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+mw.config.set( 'wgMonthNamesShort', window.wgMonthNamesShort = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+mw.config.set( 'wgDefaultDateFormat', window.wgDefaultDateFormat = 'dmy' );
 
 test( '-- Initial check', function() {
 	expect(1);
@@ -21,23 +21,23 @@ test( '-- Initial check', function() {
  * @return jQuery
  */
 var tableCreate = function( header, data ) {
-	var $table = $('<table class="sortable"><thead></thead><tbody></tbody></table>'),
-		$thead = $table.find('thead'),
-		$tbody = $table.find('tbody');
-	var $tr = $('<tr>');
-	$.each(header, function(i, str) {
-		var $th = $('<th>');
-		$th.text(str).appendTo($tr);
+	var $table = $( '<table class="sortable"><thead></thead><tbody></tbody></table>' ),
+		$thead = $table.find( 'thead' ),
+		$tbody = $table.find( 'tbody' );
+	var $tr = $( '<tr>' );
+	$.each( header, function( i, str ) {
+		var $th = $( '<th>' );
+		$th.text( str ).appendTo( $tr );
 	});
-	$tr.appendTo($thead);
+	$tr.appendTo( $thead );
 
 	for (var i = 0; i < data.length; i++) {
-		$tr = $('<tr>');
-		$.each(data[i], function(j, str) {
-			var $td = $('<td>');
-			$td.text(str).appendTo($tr);
+		$tr = $( '<tr>' );
+		$.each( data[i], function( j, str ) {
+			var $td = $( '<td>' );
+			$td.text( str ).appendTo( $tr );
 		});
-		$tr.appendTo($tbody);
+		$tr.appendTo( $tbody );
 	}
 	return $table;
 };
@@ -50,12 +50,12 @@ var tableCreate = function( header, data ) {
  */
 var tableExtract = function( $table ) {
 	var data = [];
-	$table.find('tbody').find('tr').each(function(i, tr) {
+	$table.find( 'tbody' ).find( 'tr' ).each( function( i, tr ) {
 		var row = [];
-		$(tr).find('td,th').each(function(i, td) {
-			row.push($(td).text());
+		$( tr ).find( 'td,th' ).each( function( i, td ) {
+			row.push( $( td ).text() );
 		});
-		data.push(row);
+		data.push( row );
 	});
 	return data;
 };
@@ -75,7 +75,7 @@ var tableTest = function( msg, header, data, expected, callback ) {
 		expect(1);
 
 		var $table = tableCreate( header, data );
-		//$('body').append($table);
+		//$( 'body' ).append($table);
 
 		// Give caller a chance to set up sorting and manipulate the table.
 		callback( $table );
@@ -114,7 +114,7 @@ tableTest(
 	ascendingName,
 	function( $table ) {
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 tableTest(
@@ -124,7 +124,7 @@ tableTest(
 	ascendingName,
 	function( $table ) {
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 tableTest(
@@ -134,7 +134,7 @@ tableTest(
 	reversed(ascendingName),
 	function( $table ) {
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click().click();
+		$table.find( '.headerSort:eq(0)' ).click().click();
 	}
 );
 tableTest(
@@ -144,7 +144,7 @@ tableTest(
 	ascendingRadius,
 	function( $table ) {
 		$table.tablesorter();
-		$table.find('.headerSort:eq(1)').click();
+		$table.find( '.headerSort:eq(1)' ).click();
 	}
 );
 tableTest(
@@ -154,7 +154,7 @@ tableTest(
 	reversed(ascendingRadius),
 	function( $table ) {
 		$table.tablesorter();
-		$table.find('.headerSort:eq(1)').click().click();
+		$table.find( '.headerSort:eq(1)' ).click().click();
 	}
 );
 
@@ -181,9 +181,9 @@ tableTest(
 	],
 	function( $table ) {
 		// @fixme reset it at end or change module to allow us to override it
-		mw.config.set('wgDefaultDateFormat', window.wgDefaultDateFormat = 'dmy');
+		mw.config.set( 'wgDefaultDateFormat', window.wgDefaultDateFormat = 'dmy' );
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 tableTest(
@@ -207,9 +207,9 @@ tableTest(
 	],
 	function( $table ) {
 		// @fixme reset it at end or change module to allow us to override it
-		mw.config.set('wgDefaultDateFormat', window.wgDefaultDateFormat = 'mdy');
+		mw.config.set( 'wgDefaultDateFormat', window.wgDefaultDateFormat = 'mdy' );
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 
@@ -242,7 +242,7 @@ tableTest(
 	ipv4Sorted,
 	function( $table ) {
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 tableTest(
@@ -252,7 +252,7 @@ tableTest(
 	reversed(ipv4Sorted),
 	function( $table ) {
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click().click();
+		$table.find( '.headerSort:eq(0)' ).click().click();
 	}
 );
 
@@ -286,10 +286,10 @@ tableTest(
 	umlautWords,
 	umlautWordsSorted,
 	function( $table ) {
-		mw.config.set('tableSorterCollation', {'ä':'ae', 'ö' : 'oe', 'ß': 'ss', 'ü':'ue'});
+		mw.config.set( 'tableSorterCollation', {'ä':'ae', 'ö' : 'oe', 'ß': 'ss', 'ü':'ue'});
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
-		mw.config.set('tableSorterCollation', {});
+		$table.find( '.headerSort:eq(0)' ).click();
+		mw.config.set( 'tableSorterCollation', {} );
 	}
 );
 
@@ -303,10 +303,10 @@ tableTest(
 	planetsRowspan,
 	function( $table ) {
 		//Quick&Dirty mod
-		$table.find('tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)').remove();
-		$table.find('tr:eq(2) td:eq(1)').prop('rowspan', '3');
+		$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
+		$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan', '3' );
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 tableTest(
@@ -316,10 +316,10 @@ tableTest(
 	planetsRowspanII,
 	function( $table ) {
 		//Quick&Dirty mod
-		$table.find('tr:eq(3) td:eq(0), tr:eq(4) td:eq(0)').remove();
-		$table.find('tr:eq(2) td:eq(0)').prop('rowspan', '3');
+		$table.find( 'tr:eq(3) td:eq(0), tr:eq(4) td:eq(0)' ).remove();
+		$table.find( 'tr:eq(2) td:eq(0)' ).prop( 'rowspan', '3' );
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 
@@ -346,9 +346,9 @@ tableTest(
 	complexMDYDates,
 	complexMDYSorted,
 	function( $table ) {
-		mw.config.set('wgDefaultDateFormat', window.wgDefaultDateFormat = 'mdy');
+		mw.config.set( 'wgDefaultDateFormat', window.wgDefaultDateFormat = 'mdy' );
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 
@@ -362,9 +362,9 @@ tableTest(
 	planets,
 	ascendingNameLegacy,
 	function( $table ) {
-		$table.find('tr:last').addClass('sortbottom');
+		$table.find( 'tr:last' ).addClass( 'sortbottom' );
 		$table.tablesorter();
-		$table.find('.headerSort:eq(0)').click();
+		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 
