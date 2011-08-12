@@ -20,7 +20,7 @@
 
 			// Iterates over checkboxes and propagate the selected option
 			$.each( checkboxes, function( i, id ) {
-				$( '#' + id ).attr( 'disabled', isAllNS );
+				$( '#' + id ).prop( 'disabled', isAllNS );
 			});
 		},
 

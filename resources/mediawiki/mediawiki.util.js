@@ -454,7 +454,7 @@
 				}
 
 				if ( className ) {
-					$messageDiv.attr( 'class', 'mw-js-message-' + className );
+					$messageDiv.prop( 'class', 'mw-js-message-' + className );
 				}
 
 				if ( typeof message === 'object' ) {

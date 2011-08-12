@@ -304,7 +304,7 @@ tableTest(
 	function( $table ) {
 		//Quick&Dirty mod
 		$table.find('tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)').remove();
-		$table.find('tr:eq(2) td:eq(1)').attr('rowspan', '3');
+		$table.find('tr:eq(2) td:eq(1)').prop('rowspan', '3');
 		$table.tablesorter();
 		$table.find('.headerSort:eq(0)').click();
 	}
@@ -317,7 +317,7 @@ tableTest(
 	function( $table ) {
 		//Quick&Dirty mod
 		$table.find('tr:eq(3) td:eq(0), tr:eq(4) td:eq(0)').remove();
-		$table.find('tr:eq(2) td:eq(0)').attr('rowspan', '3');
+		$table.find('tr:eq(2) td:eq(0)').prop('rowspan', '3');
 		$table.tablesorter();
 		$table.find('.headerSort:eq(0)').click();
 	}

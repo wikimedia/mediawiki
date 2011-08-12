@@ -18,7 +18,7 @@ $.fn.checkboxShiftClick = function( text ) {
 			$box.slice(
 			  Math.min( $box.index( prevCheckbox ), $box.index( e.target ) ),
 			  Math.max( $box.index( prevCheckbox ), $box.index( e.target ) ) + 1
-			).attr( {checked: e.target.checked ? 'checked' : ''} );
+			).prop( {checked: e.target.checked ? true : false} );
 		}
 		// Either way, update the prevCheckbox variable to the one clicked now
 		prevCheckbox = e.target;

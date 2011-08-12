@@ -252,9 +252,9 @@ jQuery( function ( $ ) {
 				$( '.mw-upload-source-error' ).remove();
 				if ( this.checked ) {
 					// Disable all inputs
-					$( 'input[name!="wpSourceType"]', rows ).attr( 'disabled', true );
+					$( 'input[name!="wpSourceType"]', rows ).prop( 'disabled', 'disabled' );
 					// Re-enable the current one
-					$( 'input', currentRow ).attr( 'disabled', false );
+					$( 'input', currentRow ).prop( 'disabled', false );
 				}
 			};
 		}() );
