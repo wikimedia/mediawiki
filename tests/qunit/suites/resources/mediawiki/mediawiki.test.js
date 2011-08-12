@@ -1,4 +1,4 @@
-module( 'mediawiki.js' );
+module( 'mediawiki' );
 
 test( '-- Initial check', function() {
 	expect(8);

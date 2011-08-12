@@ -1,4 +1,4 @@
-module( 'jquery.textSelection.js' );
+module( 'jquery.textSelection' );
 
 test( '-- Initial check', function() {
 	expect(1);

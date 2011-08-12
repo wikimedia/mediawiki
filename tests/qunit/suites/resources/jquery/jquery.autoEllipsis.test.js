@@ -1,4 +1,4 @@
-module( 'jquery.autoEllipsis.js' );
+module( 'jquery.autoEllipsis' );
 
 test( '-- Initial check', function() {
 	expect(1);

@@ -1,4 +1,4 @@
-module( 'jquery.localize.js' );
+module( 'jquery.localize' );
 
 test( '-- Initial check', function() {
 	expect(1);

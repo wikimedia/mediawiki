@@ -1,4 +1,4 @@
-module( 'jquery.client.js' );
+module( 'jquery.client' );
 
 test( '-- Initial check', function() {
 	expect(1);

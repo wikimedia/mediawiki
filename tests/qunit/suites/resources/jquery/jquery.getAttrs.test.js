@@ -1,4 +1,4 @@
-module( 'jquery.getAttrs.js' );
+module( 'jquery.getAttrs' );
 
 test( '-- Initial check', function() {
 	expect(1);

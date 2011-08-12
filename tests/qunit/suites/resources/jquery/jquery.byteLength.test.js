@@ -1,4 +1,4 @@
-module( 'jquery.byteLength.js' );
+module( 'jquery.byteLength' );
 
 test( '-- Initial check', function() {
 	expect(1);
