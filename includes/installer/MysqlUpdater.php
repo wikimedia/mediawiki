@@ -158,7 +158,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'doUpdateTranscacheField' ),
 			array( 'renameEuWikiId' ),
 			array( 'doUpdateMimeMinorField' ),
-			array( 'doPopulateRevLen' ),
 
 			// 1.17
 			array( 'addTable', 'iwlinks',                           'patch-iwlinks.sql' ),
@@ -187,8 +186,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
 			array( 'addField', 'revision',      'rev_sha1',         'patch-rev_sha1.sql' ),
-			array( 'addField', 'archive',       'ar_sha1',          'patch-ar_sha1.sql' ),
-			array( 'doPopulateRevSha1' )
+			array( 'addField', 'archive',       'ar_sha1',          'patch-ar_sha1.sql' )
 		);
 	}
 
@@ -810,16 +808,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "Altering all *_mime_minor fields to 100 bytes in size ... " );
 		$this->applyPatch( 'patch-mime_minor_length.sql' );
 		$this->output( "done.\n" );
-	}
-
-	protected function doPopulateRevLen() {
-		if ( $this->updateRowExists( 'populate rev_len' ) ) {
-			$this->output( "...rev_len column already populated.\n" );
-			return;
-		}
-
-		$task = $this->maintenance->runChild( 'PopulateRevisionLength' );
-		$task->execute();
 	}
 
 	protected function doClFieldsUpdate() {

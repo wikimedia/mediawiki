@@ -40,7 +40,9 @@ abstract class DatabaseUpdater {
 	protected $shared = false;
 
 	protected $postDatabaseUpdateMaintenance = array(
-		'DeleteDefaultMessages'
+		'DeleteDefaultMessages',
+		'PopulateRevisionLength',
+		'PopulateRevisionSha1'
 	);
 
 	/**
@@ -571,16 +573,6 @@ abstract class DatabaseUpdater {
 		}
 
 		$task = $this->maintenance->runChild( 'UpdateCollation' );
-		$task->execute();
-	}
-
-	protected function doPopulateRevSha1() {
-		if ( $this->updateRowExists( 'populate rev_sha1' ) ) {
-			$this->output( "...rev_sha1/ar_sha1 columns already populated.\n" );
-			return;
-		}
-
-		$task = $this->maintenance->runChild( 'PopulateRevisionSha1' );
 		$task->execute();
 	}
 }
