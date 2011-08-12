@@ -3,9 +3,9 @@
 module( 'jquery.tablesorter' );
 
 // setup hack
-mw.config.set( 'wgMonthNames', window.wgMonthNames = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
-mw.config.set( 'wgMonthNamesShort', window.wgMonthNamesShort = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
-mw.config.set( 'wgDefaultDateFormat', window.wgDefaultDateFormat = 'dmy' );
+mw.config.set( 'wgMonthNames', ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+mw.config.set( 'wgMonthNamesShort', ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 
 test( '-- Initial check', function() {
 	expect(1);
@@ -181,7 +181,7 @@ tableTest(
 	],
 	function( $table ) {
 		// @fixme reset it at end or change module to allow us to override it
-		mw.config.set( 'wgDefaultDateFormat', window.wgDefaultDateFormat = 'dmy' );
+		mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
@@ -207,7 +207,7 @@ tableTest(
 	],
 	function( $table ) {
 		// @fixme reset it at end or change module to allow us to override it
-		mw.config.set( 'wgDefaultDateFormat', window.wgDefaultDateFormat = 'mdy' );
+		mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
@@ -346,7 +346,7 @@ tableTest(
 	complexMDYDates,
 	complexMDYSorted,
 	function( $table ) {
-		mw.config.set( 'wgDefaultDateFormat', window.wgDefaultDateFormat = 'mdy' );
+		mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
