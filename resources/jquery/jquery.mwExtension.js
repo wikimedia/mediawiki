@@ -43,7 +43,7 @@ jQuery.extend({
 			return false;
 		}
 		for ( var i = 0; i < arrThis.length; i++ ) {
-			if ( arrThis[i] instanceof Array ) {
+			if ( $.isArray(arrThis[i]) ) {
 				if ( !$.compareArray( arrThis[i], arrAgainst[i] ) ) {
 					return false;
 				}
