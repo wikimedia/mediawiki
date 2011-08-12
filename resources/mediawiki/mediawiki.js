@@ -558,7 +558,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 						} );
 					}
 				} else if ( $.isFunction( script ) ) {
-					script( jQuery );
+					script( $ );
 					markModuleReady();
 				}
 			} catch ( e ) {
