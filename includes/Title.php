@@ -851,15 +851,13 @@ class Title {
 				$url = $wgServer . $url;
 			}
 		} else {
-			$baseUrl = $interwiki->getURL();
-
-			$namespace = wfUrlencode( $this->getNsText() );
+			$namespace = $this->getNsText();
 			if ( $namespace != '' ) {
 				# Can this actually happen? Interwikis shouldn't be parsed.
 				# Yes! It can in interwiki transclusion. But... it probably shouldn't.
 				$namespace .= ':';
 			}
-			$url = str_replace( '$1', $namespace . $this->mUrlform, $baseUrl );
+			$url = $interwiki->getURL( $namespace . $this->getDBkey() );
 			$url = wfAppendQuery( $url, $query );
 		}
 
