@@ -441,22 +441,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Remove one or more modules recognized by the resource loader.
-	 *
-	 * @param $modules Mixed: module name (string) or array of module names
-	 */
-	public function removeModules( $modules ) {
-		$this->mModules = array_diff( $this->mModules, (array)$modules );
-	}
-
-	/**
-	 * Removes all modules for resource loader.
-	 */
-	public function resetModules() {
-		$this->mModules = array();
-	}
-
-	/**
 	 * Get the list of module JS to include on this page
 	 *
 	 * @param $filter
@@ -2599,7 +2583,7 @@ $templates
 			} else {
 				# @todo FIXME: This means that User:Me/Common.js doesn't load when previewing
 				# User:Me/Vector.js, and vice versa (bug 26283)
-
+				
 				// We can't do $userScripts[] = 'user'; because the user module would end up
 				// being wrapped in a closure, so load it raw like 'site'
 				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS );
