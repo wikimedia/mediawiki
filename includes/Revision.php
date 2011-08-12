@@ -405,9 +405,14 @@ class Revision {
 
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
-			# If we still have no len_size, see it we have the text to figure it out
-			if ( !$this->mSize )
-				$this->mSize      = is_null( $this->mText ) ? null : strlen( $this->mText );
+			# If we still have no length, see it we have the text to figure it out
+			if ( !$this->mSize ) {
+				$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText );
+			}
+			# Same for sha1
+			if ( $this->mSha1 === null ) {
+				$this->mSha1 = is_null( $this->mText ) ? null : self::base36Sha1( $this->mText );
+			}
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -448,6 +453,15 @@ class Revision {
 	 */
 	public function getSize() {
 		return $this->mSize;
+	}
+
+	/**
+	 * Returns the base36 sha1 of the text in this revision, or null if unknown.
+	 *
+	 * @return String
+	 */
+	public function getSha1() {
+		return $this->mSha1;
 	}
 
 	/**
