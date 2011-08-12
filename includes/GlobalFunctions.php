@@ -516,7 +516,9 @@ function wfParseUrl( $url ) {
 	wfSuppressWarnings();
 	$bits = parse_url( $url );
 	wfRestoreWarnings();
-	if ( !$bits ) {
+	// parse_url() returns an array without scheme for some invalid URLs, e.g.
+	// parse_url("%0Ahttp://example.com") == array( 'host' => '%0Ahttp', 'path' => 'example.com' )
+	if ( !$bits || !isset( $bits['scheme'] ) ) {
 		return false;
 	}
 
