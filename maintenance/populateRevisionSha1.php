@@ -68,7 +68,7 @@ class PopulateRevisionSha1 extends Maintenance {
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
 			$cond = "$idCol BETWEEN $blockStart AND $blockEnd
-				AND $idCol IS NOT NULL AND {$prefix}_sha1 IS NOT NULL";
+				AND $idCol IS NOT NULL AND {$prefix}_sha1 != ''";
 			$res = $db->select( $table, '*', $cond, __METHOD__ );
 
 			$db->begin();
