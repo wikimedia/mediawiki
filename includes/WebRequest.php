@@ -109,6 +109,8 @@ class WebRequest {
 					}
 					$matches = self::extractTitle( $path, $variantPaths, 'variant' );
 				}
+
+				wfRunHooks( 'WebRequestGetPathInfoRequestURI', array( $path, &$matches ) );
 			}
 		} elseif ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
 			// Mangled PATH_INFO
@@ -192,7 +194,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Internal URL rewriting function; tries to extract page title and,
+	 * URL rewriting function; tries to extract page title and,
 	 * optionally, one other fixed parameter value from a URL path.
 	 *
 	 * @param $path string: the URL path given from the client
@@ -201,7 +203,7 @@ class WebRequest {
 	 *             passed on as the value of this URL parameter
 	 * @return array of URL variables to interpolate; empty if no match
 	 */
-	private static function extractTitle( $path, $bases, $key = false ) {
+	static function extractTitle( $path, $bases, $key = false ) {
 		foreach( (array)$bases as $keyValue => $base ) {
 			// Find the part after $wgArticlePath
 			$base = str_replace( '$1', '', $base );
