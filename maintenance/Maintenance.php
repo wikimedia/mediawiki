@@ -1305,7 +1305,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 
 	/**
 	 * Do the actual work. All child classes will need to implement this.
-	 * Return true to log the update as done or false on failure.
+	 * Return true to log the update as done or false (usually on failure).
 	 * @return Bool
 	 */
 	abstract protected function doDBUpdates();

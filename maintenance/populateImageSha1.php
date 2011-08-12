@@ -22,16 +22,29 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
-class PopulateImageSha1 extends Maintenance {
+class PopulateImageSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populate the img_sha1 field";
 		$this->addOption( 'method', "Use 'pipe' to pipe to mysql command line,\n" .
 			"\t\tdefault uses Database class", false, true );
 		$this->addOption( 'file', 'Fix for a specific file, without File: namespace prefixed', false, true );
+		$this->setBatchSize( 200 );
 	}
 
-	public function execute() {
+	protected function getUpdateKey() {
+		return 'populate img_sha1';
+	}
+
+	protected function updateSkippedMessage() {
+		return 'img_sha1 column of image table already populated.';
+	}
+
+	protected function updatelogFailedMessage() {
+		return 'Could not insert img_sha1 population row.';
+	}
+
+	public function doDBUpdates() {
 		$method = $this->getOption( 'method', 'normal' );
 		$file = $this->getOption( 'file' );
 
@@ -46,11 +59,15 @@ class PopulateImageSha1 extends Maintenance {
 			);
 			if ( !$res ) {
 				$this->error( "No such file: $file", true );
-				return;
+				return false;
 			}
+			$this->output( "Populating img_sha1 field for specified files\n" );
 		} else {
-			$res = $dbw->select( 'image', array( 'img_name' ), array( 'img_sha1' => '' ), __METHOD__ );
+			$res = $dbw->select( 'image',
+				array( 'img_name' ), array( 'img_sha1' => '' ), __METHOD__ );
+			$this->output( "Populating img_sha1 field\n" );
 		}
+
 		$imageTable = $dbw->tableName( 'image' );
 
 		if ( $method == 'pipe' ) {
@@ -66,7 +83,7 @@ class PopulateImageSha1 extends Maintenance {
 		$numRows = $res->numRows();
 		$i = 0;
 		foreach ( $res as $row ) {
-			if ( $i % 100 == 0 ) {
+			if ( $i % $this->mBatchSize == 0 ) {
 				$this->output( sprintf( "Done %d of %d, %5.3f%%  \r", $i, $numRows, $i / $numRows * 100 ) );
 				wfWaitForSlaves();
 			}
@@ -92,6 +109,12 @@ class PopulateImageSha1 extends Maintenance {
 		}
 		$t += microtime( true );
 		$this->output( sprintf( "\nDone %d files in %.1f seconds\n", $numRows, $t ) );
+
+		if ( $file ) {
+			return false; // we only updated *some* files, don't log
+		} else {
+			return true;
+		}
 	}
 }
 
