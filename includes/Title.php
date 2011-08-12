@@ -837,30 +837,14 @@ class Title {
 	public function getFullURL( $query = '', $variant = false ) {
 		global $wgServer, $wgRequest;
 
-		if ( is_array( $query ) ) {
-			$query = wfArrayToCGI( $query );
-		}
-
-		$interwiki = Interwiki::fetch( $this->mInterwiki );
-		if ( !$interwiki ) {
-			$url = $this->getLocalURL( $query, $variant );
-
-			// Ugly quick hack to avoid duplicate prefixes (bug 4571 etc)
-			// Correct fix would be to move the prepending elsewhere.
-			if ( $wgRequest->getVal( 'action' ) != 'render' ) {
-				$url = $wgServer . $url;
-			}
-		} else {
-			$namespace = $this->getNsText();
-			if ( $namespace != '' ) {
-				# Can this actually happen? Interwikis shouldn't be parsed.
-				# Yes! It can in interwiki transclusion. But... it probably shouldn't.
-				$namespace .= ':';
-			}
-			$url = $interwiki->getURL( $namespace . $this->getDBkey() );
-			$url = wfAppendQuery( $url, $query );
-		}
-
+		# Hand off all the decisions on urls to getLocalURL
+		$url = $this->getLocalURL( $query, $variant );
+		
+		# Expand the url to make it a full url. Note that getLocalURL has the
+		# potential to output full urls for a variety of reasons, so we use
+		# wfExpandUrl instead of simply prepending $wgServer
+		$url = wfExpandUrl( $url );
+		
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
 
@@ -887,15 +871,16 @@ class Title {
 			$query = wfArrayToCGI( $query );
 		}
 
-		if ( $this->isExternal() ) {
-			$url = $this->getFullURL();
-			if ( $query ) {
-				// This is currently only used for edit section links in the
-				// context of interwiki transclusion. In theory we should
-				// append the query to the end of any existing query string,
-				// but interwiki transclusion is already broken in that case.
-				$url .= "?$query";
+		$interwiki = Interwiki::fetch( $this->mInterwiki );
+		if ( $interwiki ) {
+			$namespace = $this->getNsText();
+			if ( $namespace != '' ) {
+				# Can this actually happen? Interwikis shouldn't be parsed.
+				# Yes! It can in interwiki transclusion. But... it probably shouldn't.
+				$namespace .= ':';
 			}
+			$url = $interwiki->getURL( $namespace . $this->getDBkey() );
+			$url = wfAppendQuery( $url, $query );
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
