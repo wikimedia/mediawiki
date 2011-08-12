@@ -1,4 +1,4 @@
-module( 'mediawiki.Title.js' );
+module( 'mediawiki.title.js' );
 
 // mw.Title relies on these three config vars
 // Restore them after each test run
