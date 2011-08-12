@@ -157,7 +157,7 @@ test( 'addPortletLink', function() {
 	var	tbMW = mw.util.addPortletLink( 'p-tb', 'http://mediawiki.org/',
 			'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', tbRL ),
 		$tbMW = $( tbMW );
-		
+
 
 	equal( $tbMW.attr( 'id' ), 't-mworg', 'Link has correct ID set' );
 	equal( $tbMW.closest( '.portlet' ).attr( 'id' ), 'p-tb', 'Link was inserted within correct portlet' );
@@ -172,7 +172,7 @@ test( 'addPortletLink', function() {
 
 	strictEqual( $tbMW.find( 'span').length, 0, 'No <span> element should be added for porlets without vectorTabs class.' );
 	strictEqual( $( caFoo ).find( 'span').length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
-	
+
 	// Clean up
 	$( [tbRL, tbMW, tbRLDM, caFoo] )
 		.add( $mwPanel )

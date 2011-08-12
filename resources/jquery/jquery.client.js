@@ -14,7 +14,7 @@
 	/* Public Methods */
 
 	$.client = {
-	
+
 		/**
 		 * Get an object containing information about the client.
 		 *
@@ -37,18 +37,18 @@
 			}
 			// Use the cached version if possible
 			if ( profileCache[nav.userAgent] === undefined ) {
-	
+
 				/* Configuration */
-	
+
 				// Name of browsers or layout engines we don't recognize
 				var uk = 'unknown';
 				// Generic version digit
 				var x = 'x';
 				// Strings found in user agent strings that need to be conformed
-				var wildUserAgents = [ 'Opera', 'Navigator', 'Minefield', 'KHTML', 'Chrome', 'PLAYSTATION 3'];
+				var wildUserAgents = ['Opera', 'Navigator', 'Minefield', 'KHTML', 'Chrome', 'PLAYSTATION 3'];
 				// Translations for conforming user agent strings
 				var userAgentTranslations = [
-				    // Tons of browsers lie about being something they are not
+					// Tons of browsers lie about being something they are not
 					[/(Firefox|MSIE|KHTML,\slike\sGecko|Konqueror)/, ''],
 					// Chrome lives in the shadow of Safari still
 					['Chrome Safari', 'Chrome'],
@@ -86,9 +86,9 @@
 				var platforms = ['win', 'mac', 'linux', 'sunos', 'solaris', 'iphone'];
 				// Translations for conforming operating system names
 				var platformTranslations = [['sunos', 'solaris']];
-	
+
 				/* Methods */
-	
+
 				// Performs multiple replacements on a string
 				var translate = function( source, translations ) {
 					for ( var i = 0; i < translations.length; i++ ) {
@@ -96,9 +96,9 @@
 					}
 					return source;
 				};
-	
-				/* Pre-processing  */
-	
+
+				/* Pre-processing */
+
 				var	ua = nav.userAgent,
 					match,
 					name = uk,
@@ -113,9 +113,9 @@
 				}
 				// Everything will be in lowercase from now on
 				ua = ua.toLowerCase();
-	
+
 				/* Extraction */
-	
+
 				if ( match = new RegExp( '(' + names.join( '|' ) + ')' ).exec( ua ) ) {
 					name = translate( match[1], nameTranslations );
 				}
@@ -131,9 +131,9 @@
 				if ( match = new RegExp( '(' + versionPrefixes.join( '|' ) + ')' + versionSuffix ).exec( ua ) ) {
 					version = match[3];
 				}
-	
+
 				/* Edge Cases -- did I mention about how user agent string lie? */
-	
+
 				// Decode Safari's crazy 400+ version numbers
 				if ( name.match( /safari/ ) && version > 400 ) {
 					version = '2.0';
@@ -143,9 +143,9 @@
 					version = ua.match( /version\/([0-9\.]*)/i )[1] || 10;
 				}
 				var versionNumber = parseFloat( version, 10 ) || 0.0;
-	
+
 				/* Caching */
-	
+
 				profileCache[nav.userAgent] = {
 					'name': name,
 					'layout': layout,
@@ -158,7 +158,7 @@
 			}
 			return profileCache[nav.userAgent];
 		},
-	
+
 		/**
 		 * Checks the current browser against a support map object to determine if the browser has been black-listed or
 		 * not. If the browser was not configured specifically it is assumed to work. It is assumed that the body

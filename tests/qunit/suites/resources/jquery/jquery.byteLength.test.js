@@ -25,7 +25,7 @@ test( 'Simple text', function() {
 test( 'Special text', window.foo = function() {
 	expect(5);
 
-	// http://en.wikipedia.org/wiki/UTF-8 
+	// http://en.wikipedia.org/wiki/UTF-8
 	var	U_0024 = '\u0024',
 		U_00A2 = '\u00A2',
 		U_20AC = '\u20AC',

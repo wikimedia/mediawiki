@@ -4,7 +4,7 @@
 ( function( $ ) {
 /**
  * Finds the lowerst tabindex in use within a selection
- * 
+ *
  * @return number Lowest tabindex on the page
  */
 $.fn.firstTabIndex = function() {
@@ -29,7 +29,7 @@ $.fn.firstTabIndex = function() {
 
 /**
  * Finds the highest tabindex in use within a selection
- * 
+ *
  * @return number Highest tabindex on the page
  */
 $.fn.lastTabIndex = function() {

@@ -70,7 +70,7 @@ test( 'profile userAgent support', function() {
 				"version": "4.0.1",
 				"versionBase": "4",
 				"versionNumber": 4
-			} 
+			}
 		},
 		// Firefox 5
 		// Safari 3
@@ -86,7 +86,7 @@ test( 'profile userAgent support', function() {
 				"version": "4.0.5",
 				"versionBase": "4",
 				"versionNumber": 4
-			} 
+			}
 		},
 		'Mozilla/5.0 (Windows; U; Windows NT 6.0; cs-CZ) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7': {
 			title: 'Safari 4',

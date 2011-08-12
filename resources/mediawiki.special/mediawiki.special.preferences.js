@@ -22,13 +22,13 @@ $legends.each( function( i, legend ) {
 		$legend.parent().show();
 	}
 	var ident = $legend.parent().attr( 'id' );
-	
+
 	var $li = $( '<li/>', {
 		'class' : ( i === 0 ) ? 'selected' : null
 	});
 	var $a = $( '<a/>', {
 		text : $legend.text(),
-		id   : ident.replace('prefsection', 'preftab'),
+		id : ident.replace('prefsection', 'preftab'),
 		href : '#' + ident
 	}).click( function( e ) {
 		e.preventDefault();
@@ -37,7 +37,7 @@ $legends.each( function( i, legend ) {
 		var scrollTop = $(window).scrollTop();
 		window.location.hash = $(this).attr('href');
 		$(window).scrollTop(scrollTop);
-		
+
 		$preftoc.find( 'li' ).removeClass( 'selected' );
 		$(this).parent().addClass( 'selected' );
 		$( '#preferences > fieldset' ).hide();
@@ -145,7 +145,7 @@ var updateTimezoneSelection = function() {
 		$tzTextbox.val( minutesToHours( minuteDiff ) );
 		$tzSelect.val( 'other' );
 		$tzTextbox.get( 0 ).disabled = false;
-	} else if ( type == 'other'  ) {
+	} else if ( type == 'other' ) {
 		// Grab data from the textbox, parse it.
 		minuteDiff = hoursToMinutes( $tzTextbox.val() );
 	} else {

@@ -6,7 +6,7 @@ test( '-- Initial check', function() {
 } );
 
 /**
- * Test factory for $.fn.textSelection('encapsulateText')
+ * Test factory for $.fn.textSelection( 'encapsulateText' )
  *
  * @param options {object} associative array containing:
  *   description {string}
@@ -14,7 +14,7 @@ test( '-- Initial check', function() {
  *   output {string}
  *   start {int} starting char for selection
  *   end {int} ending char for selection
- *   params {object} add'l parameters for $().textSelection('encapsulateText')
+ *   params {object} add'l parameters for $().textSelection( 'encapsulateText' )
  */
 var encapsulateTest = function( options ) {
 	var opt = $.extend({
@@ -41,11 +41,11 @@ var encapsulateTest = function( options ) {
 		}
 		expect(tests);
 
-		var $fixture = $('<div id="qunit-fixture"></div>');
-		var $textarea = $('<textarea>');
+		var $fixture = $( '<div id="qunit-fixture"></div>' );
+		var $textarea = $( '<textarea>' );
 
 		$fixture.append($textarea);
-		$('body').append($fixture);
+		$( 'body' ).append($fixture);
 
 		//$textarea.textSelection( 'setContents', opt.before.text); // this method is actually missing atm...
 		$textarea.val( opt.before.text ); // won't work with the WikiEditor iframe?

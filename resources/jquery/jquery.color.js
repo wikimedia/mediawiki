@@ -15,7 +15,7 @@
 					fx.start = getColor( fx.elem, attr );
 					fx.end = $.colorUtil.getRGB( fx.end );
 				}
-		
+
 				fx.elem.style[attr] = 'rgb(' + [
 					Math.max(Math.min( parseInt((fx.pos * (fx.end[0] - fx.start[0])) + fx.start[0]), 255), 0),
 					Math.max(Math.min( parseInt((fx.pos * (fx.end[1] - fx.start[1])) + fx.start[1]), 255), 0),
@@ -24,7 +24,7 @@
 			}
 		}
 	);
-	
+
 	function getColor(elem, attr) {
 		var color;
 
@@ -33,12 +33,12 @@
 
 			// Keep going until we find an element that has color, or we hit the body
 			if ( color != '' && color != 'transparent' || $.nodeName(elem, 'body') )
-				break; 
+				break;
 
 			attr = 'backgroundColor';
 		} while ( elem = elem.parentNode );
 
 		return $.colorUtil.getRGB(color);
 	};
-	
+
 } )( jQuery );

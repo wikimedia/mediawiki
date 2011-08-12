@@ -54,7 +54,7 @@ getSelection: function() {
 encapsulateSelection: function( options ) {
 	return this.each( function() {
 		var pre = options.pre, post = options.post;
-		
+
 		/**
 		 * Check if the selected text is the same as the insert text
 		 */
@@ -77,10 +77,10 @@ encapsulateSelection: function( options ) {
 				}
 			}
 		}
-		
+
 		/**
 		 * Do the splitlines stuff.
-		 * 
+		 *
 		 * Wrap each line of the selected text with pre and post
 		 */
 		function doSplitLines( selText, pre, post ) {
@@ -94,7 +94,7 @@ encapsulateSelection: function( options ) {
 			}
 			return insertText;
 		}
-		
+
 		var isSample = false;
 		if ( this.style.display == 'none' ) {
 			// Do nothing
@@ -106,8 +106,8 @@ encapsulateSelection: function( options ) {
 			var endPos = this.selectionEnd;
 			var scrollTop = this.scrollTop;
 			checkSelectedText();
-			
-			var insertText = pre + selText  + post;
+
+			var insertText = pre + selText + post;
 			if ( options.splitlines ) {
 				insertText = doSplitLines( selText, pre, post );
 			}
@@ -146,9 +146,9 @@ encapsulateSelection: function( options ) {
 			var selText = $(this).textSelection( 'getSelection' );
 			var scrollTop = this.scrollTop;
 			var range = document.selection.createRange();
-			
+
 			checkSelectedText();
-			var insertText = pre + selText  + post;
+			var insertText = pre + selText + post;
 			if ( options.splitlines ) {
 				insertText = doSplitLines( selText, pre, post );
 			}
@@ -169,7 +169,7 @@ encapsulateSelection: function( options ) {
 					post += "\n";
 				}
 			}
-			
+
 			range.text = insertText;
 			if ( isSample && options.selectPeri && range.moveStart ) {
 				range.moveStart( 'character', - post.length - selText.length );
@@ -298,7 +298,7 @@ setSelection: function( options ) {
 			if ( newLines ) length = length - newLines.length;
 			selection.moveStart( 'character', options.start );
 			selection.moveEnd( 'character', -length + options.end );
-			
+
 			// This line can cause an error under certain circumstances (textarea empty, no selection)
 			// Silence that error
 			try {
@@ -447,7 +447,7 @@ scrollToCaretPosition: function( options ) {
 	}
 	var context = $(this).data( 'wikiEditor-context' );
 	var hasIframe = typeof context !== 'undefined' && context && typeof context.$iframe !== 'undefined';
-	
+
 	// IE selection restore voodoo
 	var needSave = false;
 	if ( hasIframe && context.savedSelection !== null ) {

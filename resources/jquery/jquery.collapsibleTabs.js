@@ -7,7 +7,7 @@
 		if( !this.length ) return this;
 		//merge options into the defaults
 		var $settings = $.extend( {}, $.collapsibleTabs.defaults, options );
-	
+
 		this.each( function() {
 			var $this = $( this );
 			// add the element to our array of collapsible managers
@@ -20,7 +20,7 @@
 				$.collapsibleTabs.addData( $( this ) );
 			} );
 		} );
-		
+
 		// if we haven't already bound our resize hanlder, bind it now
 		if( !$.collapsibleTabs.boundEvent ) {
 			$( window )
@@ -70,15 +70,15 @@
 			$.collapsibleTabs.instances.each( function() {
 				var $this = $( this ), data = $.collapsibleTabs.getSettings( $this );
 				if( data.shifting ) return;
-	
+
 				// if the two navigations are colliding
 				if( $this.children( data.collapsible ).length > 0 && data.collapseCondition() ) {
-					
+
 					$this.trigger( "beforeTabCollapse" );
 					// move the element to the dropdown menu
 					$.collapsibleTabs.moveToCollapsed( $this.children( data.collapsible + ':last' ) );
 				}
-	
+
 				// if there are still moveable items in the dropdown menu,
 				// and there is sufficient space to place them in the tab container
 				if( $( data.collapsedContainer + ' ' + data.collapsible ).length > 0

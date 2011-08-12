@@ -4,7 +4,7 @@ jQuery( document ).ready( function( $ ) {
 		$suggestionList,
 		url = mw.util.wikiScript( 'api' ),
 		maxRowWindow;
-	
+
 	//Append the container which will hold the menu to the body
 	$( 'body' ).append( $container );
 
