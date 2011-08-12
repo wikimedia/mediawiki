@@ -319,7 +319,7 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 		link.setAttribute( 'title', tooltip );
 	}
 	if ( accesskey && tooltip ) {
-		updateTooltipAccessKeys( new Array( link ) );
+		updateTooltipAccessKeys( [link] );
 	}
 
 	if ( nextnode && nextnode.parentNode == node ) {
@@ -445,7 +445,7 @@ window.checkboxClickHandler = function( e ) {
 	From http://www.robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/
 */
 window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
-	var arrReturnElements = new Array();
+	var arrReturnElements = [];
 	if ( typeof( oElm.getElementsByClassName ) == 'function' ) {
 		/* Use a native implementation where possible FF3, Saf3.2, Opera 9.5 */
 		var arrNativeReturn = oElm.getElementsByClassName( oClassNames );
@@ -460,7 +460,7 @@ window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
 		return arrReturnElements;
 	}
 	var arrElements = ( strTagName == '*' && oElm.all ) ? oElm.all : oElm.getElementsByTagName( strTagName );
-	var arrRegExpClassNames = new Array();
+	var arrRegExpClassNames = [];
 	if( typeof oClassNames == 'object' ) {
 		for( var i = 0; i < oClassNames.length; i++ ) {
 			arrRegExpClassNames[arrRegExpClassNames.length] =
