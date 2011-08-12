@@ -858,14 +858,4 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql' );
 		$this->output( "done.\n" );
 	}
-
-	protected function doPopulateRevSha1() {
-		if ( $this->updateRowExists( 'populate rev_sha1' ) ) {
-			$this->output( "...rev_sha1/ar_sha1 columns already populated.\n" );
-			return;
-		}
-
-		$task = $this->maintenance->runChild( 'PopulateRevisionSha1' );
-		$task->execute();
-	}
 }

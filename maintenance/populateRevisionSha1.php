@@ -30,7 +30,7 @@ class PopulateRevisionSha1 extends Maintenance {
 	}
 
 	public function execute() {
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 
 		$this->output( "Populating rev_sha1 column\n" );
 		$this->doSha1Updates( $db, 'revision', 'rev_id', 'rev' );
