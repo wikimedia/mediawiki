@@ -129,11 +129,13 @@ class WikiReference {
 	 */
 	public function getDisplayName() {
 		$url = $this->getUrl( '' );
-		$url = preg_replace( '!^https?://!', '', $url );
-		$url = preg_replace( '!/index\.php(\?title=|/)$!', '/', $url );
-		$url = preg_replace( '!/wiki/$!', '/', $url );
-		$url = preg_replace( '!/$!', '', $url );
-		return $url;
+		$parsed = wfParseUrl( $url );
+		if ( $parsed ) {
+			return $parsed['host'];
+		} else {
+			// Invalid URL. There's no sane thing to do here, so just return it
+			return $url;
+		}
 	}
 
 	/**
