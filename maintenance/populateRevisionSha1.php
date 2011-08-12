@@ -68,7 +68,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$start = $db->selectField( $table, "MIN($idCol)", false, __METHOD__ );
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
 		if ( !$start || !$end ) {
-			$this->output( "...revision table seems to be empty.\n" );
+			$this->output( "...$table table seems to be empty.\n" );
 			return true;
 		}
 
