@@ -664,14 +664,19 @@ mw.ajaxCategories.prototype = {
 			var	redirect = json.query.redirects,
 				exists = !json.query.pages[-1];
 
+			// If it's a redirect 'exists' is for the target, not the origin
+			if ( redirect ) {
+				// Register existance of redirect origin as well,
+				// a non-existent page can't be a redirect.
+				mw.Title.exist.set( catTitle.toString(), true );
+
+				// Override title with the redirect target
+				catTitle = new mw.Title( redirect[0].to ).getMainText();
+			}
+
 			// Register existence
 			mw.Title.exist.set( catTitle.toString(), exists );
 
-			if ( redirect ) {
-				catTitle = new mw.Title( redirect[0].to ).getMainText();
-				// Redirect existence as well (non-existant pages can't be redirects)
-				mw.Title.exist.set( catTitle.toString(), true );
-			}
 			callback( catTitle );
 		} );
 	},
@@ -824,7 +829,7 @@ mw.ajaxCategories.prototype = {
 
 		$link.removeData();
 
-		// Read static.
+		// Re-add data
 		$link.data( {
 			saveButton: data.saveButton,
 			deleteButton: data.deleteButton,
@@ -855,8 +860,17 @@ mw.ajaxCategories.prototype = {
 		$.post(
 			mw.util.wikiScript( 'api' ),
 			getTokenVars,
-			function( reply ) {
-				var infos = reply.query.pages;
+			function( json ) {
+				if ( 'error' in json ) {
+					ajaxcat.showError( mw.msg( 'ajax-api-error', json.error.code, json.error.info ) );
+					return;
+				} else if ( json.query && json.query.pages ) {
+					var infos = json.query.pages;
+				} else {
+					ajaxcat.showError( mw.msg( 'ajax-api-unknown-error' ) );
+					return;
+				}
+
 				$.each( infos, function( pageid, data ) {
 					var	token = data.edittoken,
 						timestamp = data.revisions[0].timestamp,
@@ -910,8 +924,8 @@ mw.ajaxCategories.prototype = {
 	 *
 	 * @param props {Object}:
 	 * - modFn {Function} text-modifying function
-	 * - dialogDescription {String} Changes done (HTML in the dialog)
-	 * - editSummary {String} Changes done (text for edit summary)
+	 * - dialogDescription {String} Changes done (HTML for in the dialog, escape before hand if needed)
+	 * - editSummary {String} Changes done (text for the edit summary)
 	 * - doneFn {Function} callback after everything is done
 	 * - $link {jQuery}
 	 * - action
@@ -952,7 +966,7 @@ mw.ajaxCategories.prototype = {
 
 		// Summary of the action to be taken
 		summaryHolder = $( '<p>' )
-			.html( '<strong>' + mw.msg( 'ajax-category-question' ) + '</strong><br/>' + props.dialogDescription );
+			.html( '<strong>' + mw.message( 'ajax-category-question' ).escaped() + '</strong><br/>' + props.dialogDescription );
 
 		// Reason textbox.
 		reasonBox = $( '<input type="text" size="45"></input>' )
