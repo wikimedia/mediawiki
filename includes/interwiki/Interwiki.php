@@ -315,11 +315,14 @@ class Interwiki {
 	 *
 	 * @param $title String: what text to put for the article name
 	 * @return String: the URL
+	 * @note Prior to 1.19 getURL did not urlencode the $title, if you use this
+	 *       arg in an extension that supports MW earlier than 1.19 please ensure
+	 *       you wfUrlencode it when installed in earlier versions of MW.
 	 */
 	public function getURL( $title = null ) {
 		$url = $this->mURL;
 		if( $title != null ) {
-			$url = str_replace( "$1", $title, $url );
+			$url = str_replace( "$1", wfUrlencode( $title ), $url );
 		}
 		return $url;
 	}
