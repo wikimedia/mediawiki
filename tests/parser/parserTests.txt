@@ -452,7 +452,7 @@ Bug 6200: Preformatted in <blockquote>
 <nowiki> and <pre> preference (first one wins)
 !! input
 <pre>
-<nowiki>
+<nowiki>Foobar
 </pre>
 </nowiki>
 </pre>

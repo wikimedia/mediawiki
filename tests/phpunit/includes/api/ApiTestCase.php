@@ -49,7 +49,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if( $appendModule ) {
 			$results[] = $module;
 		}
-
+		return array();
 		return $results;
 	}
 
