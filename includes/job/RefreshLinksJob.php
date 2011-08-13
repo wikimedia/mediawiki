@@ -89,7 +89,7 @@ class RefreshLinksJob2 extends Job {
 			return false;
 		}
 		$titles = $this->title->getBacklinkCache()->getLinks( 
-			'templatelinks', $this->params['start'], $this->params['end']);
+			$this->params['table'], $this->params['start'], $this->params['end']);
 		
 		# Not suitable for page load triggered job running!
 		# Gracefully switch to refreshLinks jobs if this happens.
