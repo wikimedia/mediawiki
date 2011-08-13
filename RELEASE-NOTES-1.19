@@ -54,6 +54,8 @@ production.
   a best effort language name translation. Use CLDR extension for best result.
 * (bug 30230) action=expandtemplates should not silently override invalid title inputs
 * (bug 18634) Create API to fetch MediaWiki's language fallback tree structure
+* (bug 26885) Allow show/hide of account blocks, temporary blocks and single IP blocks
+  for list=blocks
 
 === Languages updated in 1.19 ===
 
