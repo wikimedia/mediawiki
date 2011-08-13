@@ -2355,8 +2355,6 @@ $templates
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false ) {
 		global $wgLoadScript, $wgResourceLoaderUseESI,
 			$wgResourceLoaderInlinePrivateModules;
-		// Lazy-load ResourceLoader
-		// TODO: Should this be a static function of ResourceLoader instead?
 		$baseQuery = array(
 			'lang' => $this->getContext()->getLang()->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
