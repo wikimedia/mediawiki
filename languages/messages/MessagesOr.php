@@ -386,7 +386,7 @@ $messages = array(
 'toolbox'           => 'ଜନ୍ତ୍ର ପେଡ଼ି',
 'userpage'          => 'ବ୍ୟବହାରକାରୀଙ୍କ ପୃଷ୍ଠା ଦେଖନ୍ତୁ',
 'imagepage'         => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
-'categorypage'      => 'ଶ୍ରେଣୀ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
+'categorypage'      => 'ବିଭାଗ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
 'viewtalkpage'      => 'ଆଲୋଚନାଗୁଡ଼ିକୁ ଦେଖନ୍ତୁ',
 'otherlanguages'    => 'ଅଲଗା ଭାଷା',
 'redirectedfrom'    => '($1 ରୁ ଲେଉଟି ଆସିଛି)',
@@ -453,7 +453,7 @@ $messages = array(
 'nstab-mediawiki' => 'ଖବର',
 'nstab-template'  => 'ଟେମ୍ପଲେଟ',
 'nstab-help'      => 'ସାହାଯ୍ୟ ପୃଷ୍ଠା',
-'nstab-category'  => 'ଶ୍ରେଣୀ:',
+'nstab-category'  => 'ବିଭାଗ',
 
 # General errors
 'error'           => 'ଭୁଲ',
@@ -1180,7 +1180,7 @@ $messages = array(
 'exif-keywords'     => 'ସୂଚକ ଶବ୍ଦ',
 'exif-source'       => 'ଉତ୍ସ',
 'exif-languagecode' => 'ଭାଷା',
-'exif-iimcategory'  => 'ଶ୍ରେଣୀ',
+'exif-iimcategory'  => 'ବିଭାଗ',
 'exif-identifier'   => 'ସୂଚକ',
 'exif-label'        => 'ଛାପ',
 

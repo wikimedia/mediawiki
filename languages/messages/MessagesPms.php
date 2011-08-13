@@ -418,6 +418,8 @@ Arcesta: $2',
 'sqlhidden'            => "(l'anterogassion SQL a l'é stërmà)",
 'cascadeprotected'     => 'Ant sta pàgina-sì as peulo pa fé ëd modìfiche, përché a-i intra ant {{PLURAL:$1|la pàgina|le pàgine}} butà sot a protession con la fonsion "a tombé" viscà ansima a: $2',
 'namespaceprotected'   => "A l'ha nen ël përmess dë feje dle modìfiche a le pàgine dlë spassi nominal '''$1'''.",
+'customcssprotected'   => "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina ëd CSS, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",
+'customjsprotected'    => "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina ëd JavaScript, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",
 'ns-specialprotected'  => 'As peulo nen modifichesse le pàgine dlë spassi nominal {{ns:special}}.',
 'titleprotected'       => "La creassion ëd pàgine con ës tìtol-sì a l'é stàita proibìa da [[User:$1|$1]].
 Coma rason a l'ha butà: ''$2''.",
@@ -526,6 +528,7 @@ Për piasì speta prima ëd prové torna.",
 
 # E-mail sending
 'php-mail-error-unknown' => 'Eror pa conossù ant la funsion PHP mail()',
+'user-mail-no-addy'      => "Provà a spedì e-mail sensa n'adrëssa e-mail.",
 
 # Change password dialog
 'resetpass'                 => 'Cambia la ciav',
@@ -570,6 +573,10 @@ A dovrìa intré ant ël sistema e serne na ciav neuva adess. Se quaidun d'àutr
 'passwordreset-emailelement'   => 'Stranòm: $1
 Ciav a temp: $2',
 'passwordreset-emailsent'      => "Un mëssagi ëd pòsta eletrònica për giuté a arcordé a l'é stàit spedì.",
+
+# Special:ChangeEmail
+'changeemail'        => "Cangé l'adrëssa ëd pòsta eletrònica",
+'changeemail-header' => "Cangé l'adrëssa e-mail dël cont",
 
 # Edit page toolbar
 'bold_sample'     => 'Test an grassèt',
