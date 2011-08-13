@@ -1355,6 +1355,7 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'prefs-resetpass'               => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].
 
 {{Identical|Change password}}',
+'prefs-changeemail'             => 'Link on [[Special:Preferences]] to [[Special:ChangeEmail]].',
 'prefs-rendering'               => 'Title of tab in [[Special:Preferences]].',
 'saveprefs'                     => 'Button for saving changes in the preferences page.
 
@@ -2535,6 +2536,7 @@ This message was something like "unlock move protection" in the past.',
 * $3 is a time (optional)
 
 {{Identical|Expires $1 (UTC)}}',
+'protect-expiring-local'      => '$1 is a timestamp like "22:51, 23 July 2011 (UTC)" depending on the wiki content language.',
 'protect-cascade'             => 'See [[meta:Protect]] for more information.',
 'protect-othertime'           => 'Used on the page protection form as label for the following input field (text)
 {{Identical|Other time}}',

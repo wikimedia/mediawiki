@@ -1187,6 +1187,7 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 'searchmenu-legend'                => 'Safidy mikasika ny fitadiavana',
 'searchmenu-exists'                => "'''Misy pejy mitondra anarana « [[:$1]] » eto amin'ity wiki ity'''",
 'searchmenu-new'                   => "'''Hanamboatra ny pejy « [[:$1|$1]] » eto amin'ity wiki ity !'''",
+'searchmenu-new-nocreate'          => 'Anaram-pejy tsy manara-petra « $1 » ka noho izany dia tsy azo foronina.',
 'searchhelp-url'                   => 'Help:Fanoroana',
 'searchmenu-prefix'                => "[[Special:PrefixIndex/$1|Hitady pejy manomboka amin'io tovona io]]",
 'searchprofile-articles'           => 'Pejy misy votoatiny',
@@ -1216,6 +1217,7 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 'searchall'                        => 'rehetra',
 'showingresults'                   => "Omeo ny valiny{{PLURAL:$1||}} miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
 'showingresultsnum'                => 'Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.{{PLURAL:||}}',
+'showingresultsheader'             => "{{PLURAL:$5}}Valim-pikaronhana '''$1x–$2''' an'i '''$3''' ho an'i '''$4'''",
 'nonefound'                        => "'''Fanamarihana''': ny mahatonga ny fikarohana tsy hahita vokany matetika dia ny
 fampiasanao teny miasa matetika toy ny \"izay\" sy ny \"tsy\",
 na ny fanomezanao teny mihoatra ny iray (ny pejy ahitana ny teny rehetra hokarohina
@@ -1335,6 +1337,8 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'email'                         => 'Imailaka',
 'prefs-help-realname'           => "Anarana marina (afaka tsy fenoina): raha fenoinao ity dia hampiasaina hanomezana anao tambin'ny asa izay efainao eto.",
 'prefs-help-email'              => "Imailaka (afaka tsy asiana): Hahafahan'ny olona mifandray aminao amin'ny alalan'ny pejinao manokana na ny pejin-dresakao, nefa tsy aseho azy ny anaranao.",
+'prefs-help-email-others'       => "Azonareo atao ny misafidy mba hamela ny hafa hifandray aminao eo amin'ny alanana rohy iray eo amin'ny pejin-dresakao.
+Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa.",
 'prefs-help-email-required'     => 'Ilaina ny adiresy imailaka',
 'prefs-info'                    => 'Fampahalalàna fototra',
 'prefs-i18n'                    => 'Fanatontoloana',
@@ -1756,6 +1760,8 @@ Tsindrio eo amin'ny lohan-tsanganana raha hanova ny laharam-pisehoana.",
 'nolinkstoimage'            => "Tsy misy pejy mirohy amin'ity sary ity.",
 'morelinkstoimage'          => "Hijery [[Special:WhatLinksHere/$1|rohy fanampiny]] makany amin'io rakitra io.",
 'sharedupload'              => "Mety ho rakitra itambarana amin'ny tetikasa hafa ny rakitra $1.",
+'sharedupload-desc-here'    => "Avy amin'i $1 io rakitra io ary mety ampiasain'ny tetikasa hafa.
+Aseho eo ambany ny [$2 famisavisana ilay rakitra].",
 'filepage-nofile'           => 'Tsy nahitana rakitra mitondra io anarana io.',
 'filepage-nofile-link'      => 'Tsy misy rakitra mitondra io anarana io, fa afaka [$1 mampiditra azy ianao].',
 'uploadnewversion-linktext' => "Andefa version vaovao n'ity rakitra ity",
@@ -3049,6 +3055,7 @@ Andramo ny topi-maso tsotra',
 
 # Core parser functions
 'unknown_extension_tag' => 'Balizy mitondra itatra « $1 » tsy fantatra',
+'duplicate-defaultsort' => '\'\'\'Tandremo\'\'\' : manitsaka ny sort key taloha "$1" ilay sort key ankehitriny "$2".',
 
 # Special:Version
 'version'                   => 'Santiôna',
