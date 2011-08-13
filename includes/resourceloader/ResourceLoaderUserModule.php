@@ -35,7 +35,7 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	protected function getPages( ResourceLoaderContext $context ) {
 		if ( $context->getUser() ) {
 			$username = $context->getUser();
-			return array(
+			$pages = array(
 				"User:$username/common.js" => array( 'type' => 'script' ),
 				"User:$username/" . $context->getSkin() . '.js' => 
 					array( 'type' => 'script' ),
@@ -43,6 +43,15 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 				"User:$username/" . $context->getSkin() . '.css' => 
 					array( 'type' => 'style' ),
 			);
+			
+			// Hack for bug 26283: if we're on a preview page for a CSS/JS page,
+			// we need to exclude that page from this module. In that case, the excludepage
+			// parameter will be set to the name of the page we need to exclude.
+			$excludepage = $context->getRequest()->getVal( 'excludepage' );
+			if ( isset( $pages[$excludepage] ) ) {
+				unset( $pages[$excludepage] );
+			}
+			return $pages;
 		}
 		return array();
 	}
