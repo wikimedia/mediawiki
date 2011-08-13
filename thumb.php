@@ -15,8 +15,6 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 
 $wgTrivialMimeDetection = true; //don't use fancy mime detection, just check the file extension for jpg/gif/png.
 
-require_once( "$IP/includes/StreamFile.php" );
-
 wfThumbMain();
 wfLogProfilingData();
 
@@ -126,7 +124,7 @@ function wfThumbMain() {
 			$thumbPath = $img->getThumbPath( $thumbName );
 
 			if ( is_file( $thumbPath ) ) {
-				wfStreamFile( $thumbPath, $headers );
+				StreamFile::stream( $thumbPath, $headers );
 				wfProfileOut( __METHOD__ );
 				return;
 			}
@@ -155,7 +153,7 @@ function wfThumbMain() {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'Image was not scaled, ' .
 			'is the requested width bigger than the source?' );
 	} else {
-		wfStreamFile( $thumb->getPath(), $headers );
+		StreamFile::stream( $thumb->getPath(), $headers );
 	}
 	if ( $errorMsg !== false ) {
 		wfThumbError( 500, $errorMsg );

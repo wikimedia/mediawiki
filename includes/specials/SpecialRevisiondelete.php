@@ -316,12 +316,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->getRequest()->response()->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
 		$this->getRequest()->response()->header( 'Pragma: no-cache' );
 
-		# Stream the file to the client
-		global $IP;
-		require_once( "$IP/includes/StreamFile.php" );
 		$key = $oimage->getStorageKey();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
-		wfStreamFile( $path );
+		StreamFile::stream( $path );
 	}
 
 	/**
