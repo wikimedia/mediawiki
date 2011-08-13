@@ -2347,19 +2347,20 @@ $templates
 
 	/**
 	 * TODO: Document
-	 * @param $modules Array/string with the module name
+	 * @param $modules Array/string with the module name(s)
 	 * @param $only String ResourceLoaderModule TYPE_ class constant
 	 * @param $useESI boolean
+	 * @param $extraQuery Array with extra query parameters to add to each request. array( param => value )
 	 * @return string html <script> and <style> tags
 	 */
-	protected function makeResourceLoaderLink( $modules, $only, $useESI = false ) {
+	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array() ) {
 		global $wgLoadScript, $wgResourceLoaderUseESI,
 			$wgResourceLoaderInlinePrivateModules;
 		$baseQuery = array(
 			'lang' => $this->getContext()->getLang()->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 			'skin' => $this->getSkin()->getSkinName(),
-		);
+		) + $extraQuery;
 		if ( $only !== ResourceLoaderModule::TYPE_COMBINED ) {
 			$baseQuery['only'] = $only;
 		}
@@ -2577,11 +2578,15 @@ $templates
 		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() ) {
 			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
 				# XXX: additional security check/prompt?
+				// We're on a preview of a JS subpage
+				// Exclude this page from the user module in case it's in there (bug 26283)
+				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
+					array( 'excludepage' => $this->getTitle()->getPrefixedText() )
+				);
+				// Load the previewed JS
 				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {
-				# @todo FIXME: This means that User:Me/Common.js doesn't load when previewing
-				# User:Me/Vector.js, and vice versa (bug 26283)
-				
+				// Include the user module normally
 				// We can't do $userScripts[] = 'user'; because the user module would end up
 				// being wrapped in a closure, so load it raw like 'site'
 				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS );
@@ -2961,6 +2966,7 @@ $templates
 		// Add ResourceLoader styles
 		// Split the styles into four groups
 		$styles = array( 'other' => array(), 'user' => array(), 'site' => array(), 'private' => array(), 'noscript' => array() );
+		$otherTags = ''; // Tags to append after the normal <link> tags
 		$resourceLoader = $this->getResourceLoader();
 
 		$moduleStyles = $this->getModuleStyles();
@@ -2977,9 +2983,15 @@ $templates
 		// Per-user custom styles
 		if ( $wgAllowUserCss ) {
 			if ( $this->getTitle()->isCssSubpage() && $this->userCanPreview() ) {
-				// @todo FIXME: Properly escape the cdata!
-				$this->addInlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
+				// We're on a preview of a CSS subpage
+				// Exclude this page from the user module in case it's in there (bug 26283)
+				$otherTags .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES, false,
+					array( 'excludepage' => $this->getTitle()->getPrefixedText() )
+				);
+				// Load the previewed CSS
+				$otherTags .= Html::inlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );;
 			} else {
+				// Load the user styles normally
 				$moduleStyles[] = 'user';
 			}
 		}
@@ -3015,6 +3027,9 @@ $templates
 					ResourceLoaderModule::TYPE_STYLES
 			);
 		}
+		
+		// Add stuff in $otherTags (previewed user CSS if applicable)
+		$ret .= $otherTags;
 		return $ret;
 	}
 
