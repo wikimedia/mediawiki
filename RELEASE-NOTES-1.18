@@ -201,7 +201,10 @@ production.
   Configuration is similar to $wgAutopromote (see DefaultSettings.php)
 * The PerformRetroactiveAutoblock hook was added to allow overriding or complementing 
   retroactive autoblock handling. This runs when blocking a user with the 'autoblock' option. 
-* MediaWiki now supports using protocol-relative URLs in links, interwiki targets and $wgServer
+* MediaWiki now supports using protocol-relative URLs in links, interwiki
+  targets and $wgServer.
+* Introduced $wgVaryOnXFPForAPI which will cause the API to send
+  Vary: X-Forwarded-Proto headers.
 
 === Bug fixes in 1.18 ===
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
@@ -435,6 +438,8 @@ production.
 * $wgSVGMaxSize is now applied to the smaller of width or height, making very wide pano/timeline/diagram SVGs renderable at saner sizes
 * (bug 30219) The page shown when LocalSettings.php does not exist was broken on
   Windows servers.
+* (bug 30074) Moving user JS subpages resulted in JS errors because
+  #REDIRECT [[Foo]] is invalid JS
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
