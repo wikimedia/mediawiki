@@ -407,7 +407,7 @@ class SiteStatsInit {
 
 	/**
 	 * Do all updates and commit them. More or less a replacement
-	 * for the original initStats, but without the calls to wfOut()
+	 * for the original initStats, but without output.
 	 *
 	 * @param $database Boolean or DatabaseBase:
 	 * - Boolean: whether to use the master DB
