@@ -564,6 +564,16 @@ $args: arguments
 $user: user
 $result: result of checking autopromote condition
 
+'BacklinkCacheGetPrefix': allows to set prefix for a spefific link table
+$table: table name
+&$prefix: prefix
+
+'BacklinkCacheGetConditions': allows to set conditions for query when links to certain title
+are fetched
+$table: table name
+$title: title of the page to which backlinks are sought
+&$conds: query conditions
+
 'BadImage': When checking against the bad image list
 $name: Image name being checked
 &$bad: Whether or not the image is "bad"

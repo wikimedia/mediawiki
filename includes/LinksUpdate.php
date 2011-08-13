@@ -241,6 +241,7 @@ class LinksUpdate {
 		foreach ( $batches as $batch ) {
 			list( $start, $end ) = $batch;
 			$params = array(
+				'table' => 'templatelinks',
 				'start' => $start,
 				'end' => $end,
 			);
