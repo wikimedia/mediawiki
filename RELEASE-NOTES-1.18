@@ -201,6 +201,7 @@ production.
   Configuration is similar to $wgAutopromote (see DefaultSettings.php)
 * The PerformRetroactiveAutoblock hook was added to allow overriding or complementing 
   retroactive autoblock handling. This runs when blocking a user with the 'autoblock' option. 
+* MediaWiki now supports using protocol-relative URLs in links, interwiki targets and $wgServer
 
 === Bug fixes in 1.18 ===
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
