@@ -49,11 +49,12 @@ class SpecialVersion extends SpecialPage {
 	 * main()
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgSpecialVersionShowHooks, $wgRequest;
+		global $wgSpecialVersionShowHooks;
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->allowClickjacking();
+		$out = $this->getOutput();
+		$out->allowClickjacking();
 
 		$text =
 			$this->getMediaWikiCredits() .
@@ -63,10 +64,10 @@ class SpecialVersion extends SpecialPage {
 			$text .= $this->getWgHooks();
 		}
 
-		$wgOut->addWikiText( $text );
-		$wgOut->addHTML( $this->IPInfo() );
+		$out->addWikiText( $text );
+		$out->addHTML( $this->IPInfo() );
 
-		if ( $wgRequest->getVal( 'easteregg' ) ) {
+		if ( $this->getRequest()->getVal( 'easteregg' ) ) {
 			if ( $this->showEasterEgg() ) {
 				// TODO: put something interesting here
 			}
@@ -357,11 +358,10 @@ class SpecialVersion extends SpecialPage {
 	 * Callback to sort extensions by type.
 	 */
 	function compare( $a, $b ) {
-		global $wgLang;
 		if( $a['name'] === $b['name'] ) {
 			return 0;
 		} else {
-			return $wgLang->lc( $a['name'] ) > $wgLang->lc( $b['name'] )
+			return $this->getLang()->lc( $a['name'] ) > $this->getLang()->lc( $b['name'] )
 				? 1
 				: -1;
 		}
@@ -542,11 +542,10 @@ class SpecialVersion extends SpecialPage {
 		} elseif ( $cnt == 0 ) {
 			return '';
 		} else {
-			global $wgLang;
 			if ( $sort ) {
 				sort( $list );
 			}
-			return $wgLang->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
+			return $this->getLang()->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
 		}
 	}
 
