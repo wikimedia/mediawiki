@@ -31,6 +31,7 @@ production.
 * Extensions can now participate in the extraction of titles from url paths
 * Added two new GetLocalURL hooks to better serve extensions working on a limited
   type of titles.
+* Added a --no-updates flag to importDump.php that skips updating the links tables.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
