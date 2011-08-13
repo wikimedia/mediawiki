@@ -32,7 +32,6 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 }
 wfProfileIn( 'img_auth.php' );
-require_once( dirname( __FILE__ ) . '/includes/StreamFile.php' );
 
 $wgActionPaths[] = $_SERVER['SCRIPT_NAME'];
 // See if this is a public Wiki (no protections)
@@ -95,7 +94,7 @@ if( !$title->userCanRead() )
 
 // Stream the requested file
 wfDebugLog( 'img_auth', "Streaming `".$filename."`." );
-wfStreamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
+StreamFile::stream( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
 wfLogProfilingData();
 
 /**

@@ -213,6 +213,7 @@ $wgAutoloadLocalClasses = array(
 	'SquidPurgeClient' => 'includes/SquidPurgeClient.php',
 	'SquidPurgeClientPool' => 'includes/SquidPurgeClient.php',
 	'Status' => 'includes/Status.php',
+	'StreamFile' => 'includes/StreamFile.php',
 	'StringUtils' => 'includes/StringUtils.php',
 	'StubContLang' => 'includes/StubObject.php',
 	'StubObject' => 'includes/StubObject.php',

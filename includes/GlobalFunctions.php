@@ -3197,6 +3197,14 @@ function wfLocalFile( $title ) {
 }
 
 /**
+ * Stream a file to the browser. Back-compat alias for StreamFile::stream()
+ * @deprecated since 1.19
+ */
+function wfStreamFile( $fname, $headers = array() ) {
+	StreamFile::stream( $fname, $headers );
+}
+
+/**
  * Should low-performance queries be disabled?
  *
  * @return Boolean

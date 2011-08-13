@@ -1013,11 +1013,9 @@ class SpecialUndelete extends SpecialPage {
 		$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
 		$response->header( 'Pragma: no-cache' );
 
-		global $IP;
-		require_once( "$IP/includes/StreamFile.php" );
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
-		wfStreamFile( $path );
+		StreamFile::stream( $path );
 	}
 
 	private function showHistory() {
