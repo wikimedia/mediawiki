@@ -27,11 +27,18 @@ td.diff-context {
 	font-size: smaller;
 }
 .diffchange {
-	color: red;
 	font-weight: bold;
 	white-space: -moz-pre-wrap;
 	white-space: pre-wrap;
 	text-decoration: none;
+}
+
+td.diff-addedline .diffchange {
+	background: #0c0;
+}
+
+td.diff-deletedline .diffchange {
+	background: #cc0;
 }
 
 table.diff {

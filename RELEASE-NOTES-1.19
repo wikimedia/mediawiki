@@ -46,6 +46,7 @@ production.
   instead require() for included extensions.
 * Do not convert text in the user interface language to another script.
 * (bug 26283) Previewing user JS/CSS pages doesn't load other user JS/CSS pages
+* (bug 11374) Improved diff readability for colorblind people.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
