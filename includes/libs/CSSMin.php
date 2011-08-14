@@ -135,10 +135,10 @@ class CSSMin {
 				// This will not be the case if we're running outside of MW
 				$lengthIncrease = 0;
 				if ( function_exists( 'wfExpandUrl' ) ) {
-					$expanded = wfExpandUrl( $match['file'][0] );
+					$expanded = wfExpandUrl( $match['file'][0], PROTO_RELATIVE );
 					$origLength = strlen( $match['file'][0] );
 					$lengthIncrease = strlen( $expanded ) - $origLength;
-					$source = substr_replace( $source, wfExpandUrl( $match['file'][0], PROTO_RELATIVE ),
+					$source = substr_replace( $source, $expanded,
 						$match['file'][1], $origLength
 					);
 				}
