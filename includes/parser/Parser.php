@@ -511,6 +511,22 @@ class Parser {
 	}
 
 	/**
+	 * Recursive parser entry point that can be called from an extension tag
+	 * hook.
+	 *
+	 * @param $text String: text to be expanded
+	 * @param $frame PPFrame: The frame to use for expanding any template variables
+	 * @return String
+	 */
+	public function recursivePreprocess( $text, $frame = false ) {
+		wfProfileIn( __METHOD__ );
+		$text = $this->replaceVariables( $text, $frame );
+		$text = $this->mStripState->unstripBoth( $text );
+		wfProfileOut( __METHOD__ );
+		return $text;
+	}
+
+	/**
 	 * Process the wikitext for the ?preload= feature. (bug 5210)
 	 *
 	 * <noinclude>, <includeonly> etc. are parsed as for template transclusion,
