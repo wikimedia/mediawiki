@@ -843,7 +843,7 @@ class Title {
 		# Expand the url to make it a full url. Note that getLocalURL has the
 		# potential to output full urls for a variety of reasons, so we use
 		# wfExpandUrl instead of simply prepending $wgServer
-		$url = wfExpandUrl( $url );
+		$url = wfExpandUrl( $url, PROTO_RELATIVE );
 		
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
