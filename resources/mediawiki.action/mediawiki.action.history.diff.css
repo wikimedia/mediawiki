@@ -15,11 +15,11 @@ td.diff-lineno {
 	font-weight: bold;
 }
 td.diff-addedline {
-	background: #cfc;
+	background: #D1E7F6;
 	font-size: smaller;
 }
 td.diff-deletedline {
-	background: #ffa;
+	background: #F6E0D1;
 	font-size: smaller;
 }
 td.diff-context {
@@ -31,14 +31,16 @@ td.diff-context {
 	white-space: -moz-pre-wrap;
 	white-space: pre-wrap;
 	text-decoration: none;
+	padding: 2px 1px;
+	border: 1px solid gray;
 }
 
 td.diff-addedline .diffchange {
-	background: #0c0;
+	background: #75BCD8;
 }
 
 td.diff-deletedline .diffchange {
-	background: #cc0;
+	background: #D98462;
 }
 
 table.diff {
