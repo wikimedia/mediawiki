@@ -39,6 +39,14 @@ class Sanitizer {
 		 |&\#[xX]([0-9A-Fa-f]+);
 		 |(&)/x';
 
+	/**
+	 * Blacklist for evil uris like javascript:
+	 * WARNING: DO NOT use this in any place that actually requires blacklisting
+	 * for security reasons. There are NUMEROUS[1] ways to bypass blacklisting, the
+	 * only way to be secure from javascript: uri based xss vectors is to whitelist
+	 * things that you know are safe and deny everything else.
+	 * [1]: http://ha.ckers.org/xss.html
+	 */
 	const EVIL_URI_PATTERN = '!(^|\s|\*/\s*)(javascript|vbscript)([^\w]|$)!i';
 	const XMLNS_ATTRIBUTE_PATTERN = "/^xmlns:[:A-Z_a-z-.0-9]+$/";
 
