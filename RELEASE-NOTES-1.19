@@ -33,6 +33,9 @@ production.
 * Added two new GetLocalURL hooks to better serve extensions working on a limited
   type of titles.
 * Added a --no-updates flag to importDump.php that skips updating the links tables.
+* Most presentational html attributes like valign are now converted to inline
+  css style rules. These attributes were removed from html5 and so we clean them up
+  when $wgHtml5 is enabled. This can be disabled using $wgCleanupPresentationalAttributes. 
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
