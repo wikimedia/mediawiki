@@ -321,7 +321,7 @@ class Interwiki {
 	 */
 	public function getURL( $title = null ) {
 		$url = $this->mURL;
-		if( isset($title) ) {
+		if( $title !== null ) {
 			$url = str_replace( "$1", wfUrlencode( $title ), $url );
 		}
 		return $url;
