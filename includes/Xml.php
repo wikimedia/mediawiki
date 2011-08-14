@@ -794,7 +794,7 @@ class Xml {
 		$s = Xml::openElement( 'table', $attribs );
 
 		if ( is_array( $headers ) ) {
-			$s = Xml::openElement( 'thead', $attribs );
+			$s .= Xml::openElement( 'thead', $attribs );
 
 			foreach( $headers as $id => $header ) {
 				$attribs = array();
@@ -805,7 +805,7 @@ class Xml {
 
 				$s .= Xml::element( 'th', $attribs, $header );
 			}
-			$s = Xml::closeElement( 'thead' );
+			$s .= Xml::closeElement( 'thead' );
 		}
 
 		foreach( $rows as $id => $row ) {
