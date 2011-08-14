@@ -34,12 +34,10 @@ class SpecialLockdb extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgUser, $wgRequest;
-
 		$this->setHeaders();
 
 		# Permission check
-		if( !$this->userCanExecute( $wgUser ) ) {
+		if( !$this->userCanExecute( $this->getUser() ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
@@ -49,17 +47,18 @@ class SpecialLockdb extends SpecialPage {
 		# If the lock file isn't writable, we can do sweet bugger all
 		global $wgReadOnlyFile;
 		if( !is_writable( dirname( $wgReadOnlyFile ) ) ) {
-			self::notWritable();
+			$this->getOutput()->addWikiMsg( 'lockfilenotwritable' );
 			return;
 		}
 
-		$action = $wgRequest->getVal( 'action' );
-		$this->reason = $wgRequest->getVal( 'wpLockReason', '' );
+		$request = $this->getRequest();
+		$action = $request->getVal( 'action' );
+		$this->reason = $request->getVal( 'wpLockReason', '' );
 
 		if ( $action == 'success' ) {
 			$this->showSuccess();
-		} elseif ( $action == 'submit' && $wgRequest->wasPosted() &&
-			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		} elseif ( $action == 'submit' && $request->wasPosted() &&
+			$this->getUser()->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			$this->doSubmit();
 		} else {
 			$this->showForm();
@@ -67,16 +66,15 @@ class SpecialLockdb extends SpecialPage {
 	}
 
 	private function showForm( $err = '' ) {
-		global $wgOut, $wgUser;
-
-		$wgOut->addWikiMsg( 'lockdbtext' );
+		$out = $this->getOutput();
+		$out->addWikiMsg( 'lockdbtext' );
 
 		if ( $err != '' ) {
-			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
+			$out->setSubtitle( wfMsg( 'formerror' ) );
+			$out->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
 		}
 
-		$wgOut->addHTML(
+		$out->addHTML(
 			Html::openElement( 'form', array( 'id' => 'lockdb', 'method' => 'POST',
 				'action' => $this->getTitle()->getLocalURL( 'action=submit' ) ) ). "\n" .
 			wfMsgHtml( 'enterlockreason' ) . ":\n" .
@@ -98,17 +96,16 @@ class SpecialLockdb extends SpecialPage {
 		</td>
 	</tr>
 </table>\n" .
-			Html::hidden( 'wpEditToken', $wgUser->editToken() ) . "\n" .
+			Html::hidden( 'wpEditToken', $this->getUser()->editToken() ) . "\n" .
 			Html::closeElement( 'form' )
 		);
 
 	}
 
 	private function doSubmit() {
-		global $wgOut, $wgUser, $wgContLang, $wgRequest;
-		global $wgReadOnlyFile;
+		global $wgContLang, $wgReadOnlyFile;
 
-		if ( ! $wgRequest->getCheck( 'wpLockConfirm' ) ) {
+		if ( !$this->getRequest()->getCheck( 'wpLockConfirm' ) ) {
 			$this->showForm( wfMsg( 'locknoconfirm' ) );
 			return;
 		}
@@ -121,7 +118,7 @@ class SpecialLockdb extends SpecialPage {
 			# This used to show a file not found error, but the likeliest reason for fopen()
 			# to fail at this point is insufficient permission to write to the file...good old
 			# is_writable() is plain wrong in some cases, it seems...
-			self::notWritable();
+			$this->getOutput()->addWikiMsg( 'lockfilenotwritable' );
 			return;
 		}
 		fwrite( $fp, $this->reason );
@@ -129,25 +126,19 @@ class SpecialLockdb extends SpecialPage {
 		fwrite( $fp, "\n<p>" . wfMsgExt(
 			'lockedbyandtime',
 			array( 'content', 'parsemag' ),
-			$wgUser->getName(),
+			$this->getUser()->getName(),
 			$wgContLang->date( $timestamp ),
 			$wgContLang->time( $timestamp )
 		) . "</p>\n" );
 		fclose( $fp );
 
-		$wgOut->redirect( $this->getTitle()->getFullURL( 'action=success' ) );
+		$this->getOutput()->redirect( $this->getTitle()->getFullURL( 'action=success' ) );
 	}
 
 	private function showSuccess() {
-		global $wgOut;
-
-		$wgOut->setPagetitle( wfMsg( 'lockdb' ) );
-		$wgOut->setSubtitle( wfMsg( 'lockdbsuccesssub' ) );
-		$wgOut->addWikiMsg( 'lockdbsuccesstext' );
-	}
-
-	public static function notWritable() {
-		global $wgOut;
-		$wgOut->showErrorPage( 'lockdb', 'lockfilenotwritable' );
+		$out = $this->getOutput();
+		$out->setPagetitle( wfMsg( 'lockdb' ) );
+		$out->setSubtitle( wfMsg( 'lockdbsuccesssub' ) );
+		$out->addWikiMsg( 'lockdbsuccesstext' );
 	}
 }

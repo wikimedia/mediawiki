@@ -33,24 +33,23 @@ class SpecialUnlockdb extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgUser, $wgRequest;
-
 		$this->setHeaders();
 
 		# Permission check
-		if( !$this->userCanExecute( $wgUser ) ) {
+		if( !$this->userCanExecute( $this->getUser() ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
 
 		$this->outputHeader();
 
-		$action = $wgRequest->getVal( 'action' );
+		$request = $this->getRequest();
+		$action = $request->getVal( 'action' );
 
 		if ( $action == 'success' ) {
 			$this->showSuccess();
-		} elseif ( $action == 'submit' && $wgRequest->wasPosted() &&
-			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		} elseif ( $action == 'submit' && $request->wasPosted() &&
+			$this->getUser()->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			$this->doSubmit();
 		} else {
 			$this->showForm();
@@ -58,22 +57,23 @@ class SpecialUnlockdb extends SpecialPage {
 	}
 
 	private function showForm( $err = '' ) {
-		global $wgOut, $wgUser;
-
 		global $wgReadOnlyFile;
+
+		$out = $this->getOutput();
+
 		if( !file_exists( $wgReadOnlyFile ) ) {
-			$wgOut->addWikiMsg( 'databasenotlocked' );
+			$out->addWikiMsg( 'databasenotlocked' );
 			return;
 		}
 
-		$wgOut->addWikiMsg( 'unlockdbtext' );
+		$out->addWikiMsg( 'unlockdbtext' );
 
 		if ( $err != '' ) {
-			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
+			$out->setSubtitle( wfMsg( 'formerror' ) );
+			$out->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
 		}
 
-		$wgOut->addHTML(
+		$out->addHTML(
 			Html::openElement( 'form', array( 'id' => 'unlockdb', 'method' => 'POST',
 				'action' => $this->getTitle()->getLocalURL( 'action=submit' ) ) ) . "
 <table>
@@ -93,17 +93,16 @@ class SpecialUnlockdb extends SpecialPage {
 		</td>
 	</tr>
 </table>\n" .
-			Html::hidden( 'wpEditToken', $wgUser->editToken() ) . "\n" .
+			Html::hidden( 'wpEditToken', $this->getUser()->editToken() ) . "\n" .
 			Html::closeElement( 'form' )
 		);
 
 	}
 
 	private function doSubmit() {
-		global $wgOut, $wgRequest, $wgReadOnlyFile;
+		global $wgReadOnlyFile;
 
-		$wpLockConfirm = $wgRequest->getCheck( 'wpLockConfirm' );
-		if ( !$wpLockConfirm ) {
+		if ( !$this->getRequest()->getCheck( 'wpLockConfirm' ) ) {
 			$this->showForm( wfMsg( 'locknoconfirm' ) );
 			return;
 		}
@@ -112,18 +111,16 @@ class SpecialUnlockdb extends SpecialPage {
 		$res = unlink( $wgReadOnlyFile );
 		wfRestoreWarnings();
 
-		if ( !$res ) {
-			$wgOut->showFileDeleteError( $wgReadOnlyFile );
-			return;
+		if ( $res ) {
+			$this->getOutput()->redirect( $this->getTitle()->getFullURL( 'action=success' ) );
+		} else {
+			$this->getOutput()->addWikiMsg( 'filedeleteerror', $wgReadOnlyFile );
 		}
-
-		$wgOut->redirect( $this->getTitle()->getFullURL( 'action=success' ) );
 	}
 
 	private function showSuccess() {
-		global $wgOut;
-
-		$wgOut->setSubtitle( wfMsg( 'unlockdbsuccesssub' ) );
-		$wgOut->addWikiMsg( 'unlockdbsuccesstext' );
+		$out = $this->getOutput();
+		$out->setSubtitle( wfMsg( 'unlockdbsuccesssub' ) );
+		$out->addWikiMsg( 'unlockdbsuccesstext' );
 	}
 }
