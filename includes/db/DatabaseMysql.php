@@ -368,7 +368,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * versions of MySQL, it uses SHOW PROCESSLIST, which requires the PROCESS
 	 * privilege.
 	 *
-	 * @result int
+	 * @return int
 	 */
 	function getLag() {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
@@ -383,6 +383,9 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @return bool|int
+	 */
 	function getLagFromSlaveStatus() {
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		if ( !$res ) {
@@ -399,6 +402,9 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @return bool|int
+	 */
 	function getLagFromProcesslist() {
 		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
 		if( !$res ) {
