@@ -2816,7 +2816,9 @@ $templates
 			$tags[] = Html::element( 'link', array(
 				'rel' => 'EditURI',
 				'type' => 'application/rsd+xml',
-				'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ) ),
+				// Output a protocol-relative URL here if $wgServer is protocol-relative
+				// Whether RSD accepts relative or protocol-relative URLs is completely undocumented, though
+				'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ), PROTO_RELATIVE ),
 			) );
 		}
 
@@ -2838,7 +2840,7 @@ $templates
 			} else {
 				$tags[] = Html::element( 'link', array(
 					'rel' => 'canonical',
-					'href' => $this->getTitle()->getFullURL() )
+					'href' => wfExpandUrl( $this->getTitle()->getFullURL(), PROTO_HTTP ) )
 				);
 			}
 		}

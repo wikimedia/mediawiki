@@ -195,6 +195,10 @@ production.
 * AjaxCategories: Easily add, edit or delete categories on article pages.
   Suggests possible categories when typing, all saves are done via AJAX.
   Supports editing of multiple categories and then saving them in one batch.
+* MediaWiki now supports using protocol-relative URLs in links, interwiki
+  targets and $wgServer.
+* Introduced $wgVaryOnXFPForAPI which will cause the API to send
+  Vary: X-Forwarded-Proto headers.
 
 === Bug fixes in 1.18 ===
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
@@ -420,10 +424,14 @@ production.
   to the FCKEditor extension.
 * (bug 28762) Resizing to specified height broken for very thin images
 * (bug 29959) Installer fatal when cURL and allow_url_fopen is disabled and user
-  tries to subsribe to mediawiki-announce
+  tries to subsribe to mediawiki-announce.
+* (bug 27427) mw.util.getParamValue shouldn't return value from hash even if
+  param is only present in hash.
 * Installer checked for magic_quotes_runtime instead of register_globals.
 * (bug 30131) XCache with variable caching disabled no longer used for variable caching (CACHE_ACCEL)
 * $wgSVGMaxSize is now applied to the smaller of width or height, making very wide pano/timeline/diagram SVGs renderable at saner sizes
+* (bug 30074) Moving user JS subpages resulted in JS errors because
+  #REDIRECT [[Foo]] is invalid JS
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.

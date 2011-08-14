@@ -423,24 +423,44 @@ function wfAppendQuery( $url, $query ) {
 	return $url;
 }
 
+define( 'PROTO_HTTP', 'http://' );
+define( 'PROTO_HTTPS', 'https://' );
+define( 'PROTO_RELATIVE', '//' );
+define( 'PROTO_CURRENT', null );
+
 /**
  * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
  * is correct.
+ * 
+ * The meaning of the PROTO_* constants is as follows:
+ * PROTO_HTTP: Output a URL starting with http://
+ * PROTO_HTTPS: Output a URL starting with https://
+ * PROTO_RELATIVE: Output a URL starting with // (protocol-relative URL)
+ * PROTO_CURRENT: Output a URL starting with either http:// or https:// , depending on which protocol was used for the current incoming request
  *
  * @todo this won't work with current-path-relative URLs
  * like "subdir/foo.html", etc.
  *
  * @param $url String: either fully-qualified or a local path + query
+ * @param $defaultProto Mixed: one of the PROTO_* constants. Determines the protocol to use if $url or $wgServer is protocol-relative
  * @return string Fully-qualified URL
  */
-function wfExpandUrl( $url ) {
+function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	global $wgServer;
+	if ( $defaultProto === PROTO_CURRENT ) {
+		$defaultProto = WebRequest::detectProtocol() . '://';
+	}
+	
+	// Analyze $wgServer to obtain its protocol
+	$bits = wfParseUrl( $wgServer );
+	$serverHasProto = $bits && $bits['scheme'] != '';
+	$defaultProtoWithoutSlashes = substr( $defaultProto, 0, -2 );
+	
 	if( substr( $url, 0, 2 ) == '//' ) {
-		$bits = wfParseUrl( $wgServer );
-		$scheme = $bits && $bits['scheme'] !== '' ? $bits['scheme'] : 'http';
-		return $scheme . ':' . $url;
+		return $defaultProtoWithoutSlashes . $url;
 	} elseif( substr( $url, 0, 1 ) == '/' ) {
-		return $wgServer . $url;
+		// If $wgServer is protocol-relative, prepend $defaultProtoWithoutSlashes, otherwise leave it alone
+		return ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $wgServer . $url;
 	} else {
 		return $url;
 	}
