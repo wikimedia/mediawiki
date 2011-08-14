@@ -794,6 +794,8 @@ class Xml {
 		$s = Xml::openElement( 'table', $attribs );
 
 		if ( is_array( $headers ) ) {
+			$s = Xml::openElement( 'thead', $attribs );
+
 			foreach( $headers as $id => $header ) {
 				$attribs = array();
 
@@ -803,6 +805,7 @@ class Xml {
 
 				$s .= Xml::element( 'th', $attribs, $header );
 			}
+			$s = Xml::closeElement( 'thead' );
 		}
 
 		foreach( $rows as $id => $row ) {
@@ -822,8 +825,8 @@ class Xml {
 
 	/**
 	 * Build a row for a table
-	 * @param $attribs An array of attributes to apply to the tr tag
-	 * @param $cells An array of strings to put in <td>
+	 * @param $attribs array An array of attributes to apply to the tr tag
+	 * @param $cells array An array of strings to put in <td>
 	 * @return string
 	 */
 	public static function buildTableRow( $attribs, $cells ) {
