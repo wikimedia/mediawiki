@@ -122,6 +122,14 @@ class Revision {
 	}
 
 	/**
+	 * @param $row
+	 * @return Revision
+	 */
+	public static function newFromRow( $row ) {
+		return new self( $row );
+	}
+
+	/**
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *

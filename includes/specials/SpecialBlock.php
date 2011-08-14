@@ -346,12 +346,10 @@ class SpecialBlock extends SpecialPage {
 	protected function doPostText( HTMLForm &$form ){
 		global $wgUser, $wgLang;
 
-		$skin = $wgUser->getSkin();
-
 		# Link to the user's contributions, if applicable
 		if( $this->target instanceof User ){
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
-			$links[] = $skin->link(
+			$links[] = Linker::link(
 				$contribsPage,
 				wfMsgExt( 'ipb-blocklist-contribs', 'escape', $this->target->getName() )
 			);
@@ -365,17 +363,17 @@ class SpecialBlock extends SpecialPage {
 			$message = wfMsgExt( 'ipb-unblock', array( 'parseinline' ) );
 			$list = SpecialPage::getTitleFor( 'Unblock' );
 		}
-		$links[] = $skin->linkKnown( $list, $message, array() );
+		$links[] = Linker::linkKnown( $list, $message, array() );
 
 		# Link to the block list
-		$links[] = $skin->linkKnown(
+		$links[] = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'BlockList' ),
 			wfMsg( 'ipb-blocklist' )
 		);
 
 		# Link to edit the block dropdown reasons, if applicable
 		if ( $wgUser->isAllowed( 'editinterface' ) ) {
-			$links[] = $skin->link(
+			$links[] = Linker::link(
 				Title::makeTitle( NS_MEDIAWIKI, 'Ipbreason-dropdown' ),
 				wfMsgHtml( 'ipb-edit-dropdown' ),
 				array(),
@@ -476,6 +474,8 @@ class SpecialBlock extends SpecialPage {
 	/**
 	 * HTMLForm field validation-callback for Target field.
 	 * @since 1.18
+	 * @param $value String
+	 * @param $alldata Array
 	 * @return Message
 	 */
 	public static function validateTargetField( $value, $alldata = null ) {
@@ -636,7 +636,7 @@ class SpecialBlock extends SpecialPage {
 		if( !$status ) {
 			# Show form unless the user is already aware of this...
 			if( !$data['Confirm'] || ( array_key_exists( 'PreviousTarget', $data )
-				&& $data['PreviousTarget'] !== htmlspecialchars( $block->getTarget() ) ) )
+				&& $data['PreviousTarget'] !== $block->getTarget() ) )
 			{
 				return array( array( 'ipb_already_blocked', $block->getTarget() ) );
 			# Otherwise, try to update the block...
@@ -715,6 +715,8 @@ class SpecialBlock extends SpecialPage {
 	 * Get an array of suggested block durations from MediaWiki:Ipboptions
 	 * @todo FIXME: This uses a rather odd syntax for the options, should it be converted
 	 *     to the standard "**<duration>|<displayname>" format?
+	 * @param $lang Language|null the language to get the durations in, or null to use
+	 *     the wiki's content language
 	 * @return Array
 	 */
 	public static function getSuggestedDurations( $lang = null ){
@@ -775,6 +777,7 @@ class SpecialBlock extends SpecialPage {
 	 * others, and probably shouldn't be able to unblock themselves
 	 * either.
 	 * @param $user User|Int|String
+	 * @return Bool|String true or error message key
 	 */
 	public static function checkUnblockSelf( $user ) {
 		global $wgUser;
@@ -787,6 +790,9 @@ class SpecialBlock extends SpecialPage {
 			if( $user instanceof User && $user->getId() == $wgUser->getId() ) {
 				# User is trying to unblock themselves
 				if ( $wgUser->isAllowed( 'unblockself' ) ) {
+					return true;
+				# User blocked themselves and is now trying to reverse it
+				} elseif ( $wgUser->blockedBy() === $wgUser->getName() ) {
 					return true;
 				} else {
 					return 'ipbnounblockself';

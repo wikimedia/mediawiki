@@ -107,12 +107,15 @@ test( 'toggleToc', function() {
 });
 
 test( 'getParamValue', function() {
-	expect(2);
+	expect(3);
 
-	var url = 'http://mediawiki.org/?foo=wrong&foo=right#&foo=bad';
+	var	url1 = 'http://mediawiki.org/?foo=wrong&foo=right#&foo=bad';
 
-	equal( mw.util.getParamValue( 'foo', url ), 'right', 'Use latest one, ignore hash' );
-	strictEqual( mw.util.getParamValue( 'bar', url ), null, 'Return null when not found' );
+	equal( mw.util.getParamValue( 'foo', url1 ), 'right', 'Use latest one, ignore hash' );
+	strictEqual( mw.util.getParamValue( 'bar', url1 ), null, 'Return null when not found' );
+
+	var url2 = 'http://mediawiki.org/#&foo=bad';
+	strictEqual( mw.util.getParamValue( 'foo', url2 ), null, 'Ignore hash if param is not in querystring but in hash (bug 27427)' );
 });
 
 test( 'tooltipAccessKey', function() {
