@@ -117,6 +117,9 @@ class ApiParamInfo extends ApiBase {
 		}
 
 		$retval['helpurls'] = (array)$obj->getHelpUrls();
+		if ( isset( $retval['helpurls'][0] ) && $retval['helpurls'][0] === false ) {
+			$retval['helpurls'] = array();
+		}
 		$result->setIndexedTagName( $retval['helpurls'], 'helpurl' );
 
 		$retval['allexamples'] = $examples;
