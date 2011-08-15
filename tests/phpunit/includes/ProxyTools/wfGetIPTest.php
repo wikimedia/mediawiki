@@ -35,6 +35,9 @@ class wfGetIPTest extends MediaWikiTestCase {
 		$wgCommandLineMode = $save;
 	}
 
+	/**
+	 * @group Broken
+	 */
 	function testGetFromServerRemoteAddr() {
 		global $_SERVER;
 		$save = null;
