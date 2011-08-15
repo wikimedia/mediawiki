@@ -3915,5 +3915,6 @@ $1',
 'ajax-category-already-present' => 'דף זה כבר שייך לקטגוריה $1',
 'ajax-category-hook-error'      => 'פונקציה מקומית מנעה את שמירת השינויים',
 'ajax-api-error'                => 'ה־API החזיר שגיאה: $1: $2',
+'ajax-api-unknown-error'        => 'ה־API החזיר שגיאה לא ידועה.',
 
 );
