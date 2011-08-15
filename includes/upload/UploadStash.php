@@ -161,7 +161,7 @@ class UploadStash {
 	 * @throws UploadStashNotLoggedInException
 	 * @return UploadStashFile: file, or null on failure
 	 */
-	public function stashFile( $path, $sourceType = null, $key = null ) {
+	public function stashFile( $path, $sourceType = null ) {
 		if ( ! file_exists( $path ) ) {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
@@ -181,17 +181,16 @@ class UploadStash {
 		}
 
 		// If no key was supplied, make one.  a mysql insertid would be totally reasonable here, except
-		// that some users of this function might expect to supply the key instead of using the generated one.
-		if ( is_null( $key ) ) {
-			// some things that when combined will make a suitably unique key.
-			// see: http://www.jwz.org/doc/mid.html
-			list ($usec, $sec) = explode( ' ', microtime() );
-			$usec = substr($usec, 2);
-			$key = wfBaseConvert( $sec . $usec, 10, 36 ) . '.' .
-				wfBaseConvert( mt_rand(), 10, 36 ) . '.'.
-				$this->userId . '.' . 
-				$extension;
-		}
+		// that for historical reasons, the key is this random thing instead.  At least it's not guessable.
+		//
+		// some things that when combined will make a suitably unique key.
+		// see: http://www.jwz.org/doc/mid.html
+		list ($usec, $sec) = explode( ' ', microtime() );
+		$usec = substr($usec, 2);
+		$key = wfBaseConvert( $sec . $usec, 10, 36 ) . '.' .
+			wfBaseConvert( mt_rand(), 10, 36 ) . '.'.
+			$this->userId . '.' . 
+			$extension;
 
 		$this->fileProps[$key] = $fileProps;
 
@@ -232,31 +231,6 @@ class UploadStash {
 		wfDebug( __METHOD__ . " inserting $stashPath under $key\n" );
 		$dbw = $this->repo->getMasterDb();
 
-		// select happens on the master so this can all be in a transaction, which
-		// avoids a race condition that's likely with multiple people uploading from the same
-		// set of files
-		$dbw->begin();
-		// first, check to see if it's already there.
-		$row = $dbw->selectRow(
-			'uploadstash',
-			'us_user, us_timestamp',
-			array( 'us_key' => $key ),
-			__METHOD__
-		);
-
-		// The current user can't have this key if:
-		// - the key is owned by someone else and
-		// - the age of the key is less than $wgUploadStashMaxAge
-		if ( is_object( $row ) ) {
-			global $wgUploadStashMaxAge;
-			if ( $row->us_user != $this->userId &&
-				$row->wfTimestamp( TS_UNIX, $row->us_timestamp ) > time() - $wgUploadStashMaxAge
-			) {
-				$dbw->rollback();
-				throw new UploadStashWrongOwnerException( "Attempting to upload a duplicate of a file that someone else has stashed" );
-			}
-		}
-
 		$this->fileMetadata[$key] = array(
 			'us_user' => $this->userId,
 			'us_key' => $key,
@@ -275,13 +249,11 @@ class UploadStash {
 		);
 
 		// if a row exists but previous checks on it passed, let the current user take over this key.
-		$dbw->replace(
+		$dbw->insert(
 			'uploadstash',
-			'us_key',
 			$this->fileMetadata[$key],
 			__METHOD__
 		);
-		$dbw->commit();
 
 		// store the insertid in the class variable so immediate retrieval (possibly laggy) isn't necesary.
 		$this->fileMetadata[$key]['us_id'] = $dbw->insertId();
