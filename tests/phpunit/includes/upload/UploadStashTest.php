@@ -45,11 +45,35 @@ class UploadStashTest extends MediaWikiTestCase {
 		
 		$stash->removeFile( $file->getFileKey() );
 	}
+
+	public function testValidRequest() {
+		$request = new FauxRequest( array( 'wpFileKey' => 'foo') );
+		$this->assertFalse( UploadFromStash::isValidRequest($request), 'Check failure on bad wpFileKey' );
+
+		$request = new FauxRequest( array( 'wpSessionKey' => 'foo') );
+		$this->assertFalse( UploadFromStash::isValidRequest($request), 'Check failure on bad wpSessionKey' );
+
+		$request = new FauxRequest( array( 'wpFileKey' => 'testkey-test.test') );
+		$this->assertTrue( UploadFromStash::isValidRequest($request), 'Check good wpFileKey' );
+
+		$request = new FauxRequest( array( 'wpFileKey' => 'testkey-test.test') );
+		$this->assertTrue( UploadFromStash::isValidRequest($request), 'Check good wpSessionKey' );
+
+		$request = new FauxRequest( array( 'wpFileKey' => 'testkey-test.test', 'wpSessionKey' => 'foo') );
+		$this->assertTrue( UploadFromStash::isValidRequest($request), 'Check key precedence' );
+	}
+
+
 	
 	public function tearDown() {
 		parent::tearDown();
 		
-		unlink( $this->bug29408File . "." );
-		
+		if( file_exists( $this->bug29408File . "." ) ) {
+			unlink( $this->bug29408File . "." );
+		}
+
+		if( file_exists( $this->bug29408File ) ) {
+			unlink( $this->bug29408File );
+		}
 	}
 }

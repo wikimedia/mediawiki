@@ -416,7 +416,7 @@ class UploadStash {
 		$res = $dbr->select(
 			'uploadstash',
 			'us_key',
-			array( 'us_key' => $key ),
+			array( 'us_user' => $this->userId ),
 			__METHOD__
 		);
 
