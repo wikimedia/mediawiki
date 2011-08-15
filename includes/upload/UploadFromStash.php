@@ -38,7 +38,7 @@ class UploadFromStash extends UploadBase {
 	
 	public static function isValidKey( $key ) {
 		// this is checked in more detail in UploadStash
-		return preg_match( UploadStash::KEY_FORMAT_REGEX, $key );
+		return preg_match( UploadStash::KEY_FORMAT_REGEX, $key ) ? true : false;
 	}
 
 	/**
@@ -47,7 +47,10 @@ class UploadFromStash extends UploadBase {
 	 * @return Boolean
 	 */
 	public static function isValidRequest( $request ) {
-		return self::isValidKey( $request->getText( 'wpFileKey' ) || $request->getText( 'wpSessionKey' ) );
+		// this passes wpSessionKey to getText() as a default when wpFileKey isn't set.
+		// wpSessionKey has no default which guarantees failure if both are missing
+		// (though that should have been caught earlier)
+		return self::isValidKey( $request->getText( 'wpFileKey', $request->getText( 'wpSessionKey' ) ) );
 	}
 
 	public function initialize( $key, $name = 'upload_file' ) {
@@ -74,12 +77,12 @@ class UploadFromStash extends UploadBase {
 	 * @param $request WebRequest
 	 */
 	public function initializeFromRequest( &$request ) {
-		$fileKey = $request->getText( 'wpFileKey' ) || $request->getText( 'wpSessionKey' );
+		// sends wpSessionKey as a default when wpFileKey is missing
+		$fileKey = $request->getText( 'wpFileKey', $request->getText( 'wpSessionKey' ) );
 
-		$desiredDestName = $request->getText( 'wpDestFile' );
-		if( !$desiredDestName ) {
-			$desiredDestName = $request->getText( 'wpUploadFile' ) || $request->getText( 'filename' );
-		}
+		// chooses one of wpDestFile, wpUploadFile, filename in that order.
+		$desiredDestName = $request->getText( 'wpDestFile', $request->getText( 'wpUploadFile', $request->getText( 'filename' ) ) );
+
 		return $this->initialize( $fileKey, $desiredDestName );
 	}
 
@@ -100,7 +103,7 @@ class UploadFromStash extends UploadBase {
 	 * There is no need to stash the image twice
 	 */
 	public function stashFile( $key = null ) {
-		if ( !empty( $this->mLocalFile ) ) {
+		if ( !$this->mLocalFile ) {
 			return $this->mLocalFile;
 		}
 		return parent::stashFile( $key );
