@@ -92,7 +92,7 @@ abstract class Action {
 	 * @return Bool
 	 */
 	public final static function exists( $name ) {
-		return self::getClass( $name ) !== null;
+		return self::getClass( $name, array() ) !== null;
 	}
 
 	/**
