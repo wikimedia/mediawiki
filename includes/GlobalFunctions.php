@@ -477,9 +477,10 @@ function wfUrlProtocols( $includeProtocolRelative = true ) {
 	global $wgUrlProtocols;
 
 	// Cache return values separately based on $includeProtocolRelative
-	static $retval = array( true => null, false => null );
-	if ( !is_null( $retval[$includeProtocolRelative] ) ) {
-		return $retval[$includeProtocolRelative];
+	static $withProtRel = null, $withoutProtRel = null;
+	$cachedValue = $includeProtocolRelative ? $withProtRel : $withoutProtRel;
+	if ( !is_null( $cachedValue ) ) {
+		return $cachedValue;
 	}
 
 	// Support old-style $wgUrlProtocols strings, for backwards compatibility
@@ -493,15 +494,22 @@ function wfUrlProtocols( $includeProtocolRelative = true ) {
 			}
 		}
 
-		$retval[$includeProtocolRelative] = implode( '|', $protocols );
+		$retval = implode( '|', $protocols );
 	} else {
 		// Ignore $includeProtocolRelative in this case
 		// This case exists for pre-1.6 compatibility, and we can safely assume
 		// that '//' won't appear in a pre-1.6 config because protocol-relative
 		// URLs weren't supported until 1.18
-		$retval[$includeProtocolRelative] = $wgUrlProtocols;
+		$retval = $wgUrlProtocols;
 	}
-	return $retval[$includeProtocolRelative];
+	
+	// Cache return value
+	if ( $includeProtocolRelative ) {
+		$withProtRel = $retval;
+	} else {
+		$withoutProtRel = $retval;
+	}
+	return $retval;
 }
 
 /**
