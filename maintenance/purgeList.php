@@ -68,64 +68,63 @@ class PurgeList extends Maintenance {
 
 	/** Purge a namespace given by --namespace */
 	private function purgeNamespace() {
-        $dbr = wfGetDB( DB_SLAVE );
-        $ns = $dbr->addQuotes( $this->getOption( 'namespace') );
+		$dbr = wfGetDB( DB_SLAVE );
+		$ns = $dbr->addQuotes( $this->getOption( 'namespace') );
 
-        $result = $dbr->select(
-            array( 'page' ),
-            array( 'page_namespace', 'page_title' ),
-            array( "page_namespace = $ns" ),
-            __METHOD__,
-            array( 'ORDER BY' => 'page_id' )
-        );
+		$result = $dbr->select(
+			array( 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array( "page_namespace = $ns" ),
+			__METHOD__,
+			array( 'ORDER BY' => 'page_id' )
+		);
 
-        $start   = 0;
-        $end = $dbr->numRows( $result );
-        $this->output( "Will purge $end pages from namespace $ns\n" );
+		$start   = 0;
+		$end = $dbr->numRows( $result );
+		$this->output( "Will purge $end pages from namespace $ns\n" );
 
-        # Do remaining chunk
-        $end += $this->mBatchSize - 1;
-        $blockStart = $start;
-        $blockEnd = $start + $this->mBatchSize - 1;
+		# Do remaining chunk
+		$end += $this->mBatchSize - 1;
+		$blockStart = $start;
+		$blockEnd = $start + $this->mBatchSize - 1;
 
-        while( $blockEnd <= $end ) {
-            # Select pages we will purge:
-            $result = $dbr->select(
-                array( 'page' ),
-                array( 'page_namespace', 'page_title' ),
-                array( "page_namespace = $ns" ),
-                __METHOD__,
-                array( # conditions
-                    'ORDER BY' => 'page_id',
-                    'LIMIT'    => $this->mBatchSize,
-                    'OFFSET'   => $blockStart,
-                 )
-            );
-            # Initialize/reset URLs to be purged
-            $urls = array();
-            foreach( $result as $row ) {
-                $title = Title::makeTitle( $row->page_namespace, $row->page_title );
-                $url = $title->getFullUrl();
-                $urls[] = $url;
-            }
+		while( $blockEnd <= $end ) {
+			# Select pages we will purge:
+			$result = $dbr->select(
+				array( 'page' ),
+				array( 'page_namespace', 'page_title' ),
+				array( "page_namespace = $ns" ),
+				__METHOD__,
+				array( # conditions
+					'ORDER BY' => 'page_id',
+					'LIMIT'    => $this->mBatchSize,
+					'OFFSET'   => $blockStart,
+				)
+			);
+			# Initialize/reset URLs to be purged
+			$urls = array();
+			foreach( $result as $row ) {
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$url = $title->getFullUrl();
+				$urls[] = $url;
+			}
 
-            $this->sendPurgeRequest( $urls );
+			$this->sendPurgeRequest( $urls );
 
-            $blockStart += $this->mBatchSize;
-            $blockEnd   += $this->mBatchSize;
-        }
-    }
+			$blockStart += $this->mBatchSize;
+			$blockEnd   += $this->mBatchSize;
+		}
+	}
 
 	/**
 	 * Helper to purge an array of $urls
 	 * @param $urls array List of URLS to purge from squids
 	 */
-    private function sendPurgeRequest( $urls ) {
-        $this->output( "Purging " . count( $urls ). " urls\n" );
-        $u = new SquidUpdate( $urls );
-        $u->doUpdate();
-    }
-
+	private function sendPurgeRequest( $urls ) {
+		$this->output( "Purging " . count( $urls ). " urls\n" );
+		$u = new SquidUpdate( $urls );
+		$u->doUpdate();
+	}
 
 }
 
