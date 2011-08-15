@@ -7,7 +7,7 @@
 
 /**
  * Extracts the XFF string from the request header
- * Checks first for "X-Forwarded-For", then "Client-ip"
+ * Checks first for "X-Forwarded-For", then "Client-ip", then "X-Real-IP"
  * Note: headers are spoofable
  * @return string
  */
@@ -21,11 +21,13 @@ function wfGetForwardedFor() {
 		}
 		$index = strtoupper ( 'X-Forwarded-For' );
 		$index2 = strtoupper ( 'Client-ip' );
+		$index3 = strtoupper ( 'X-Real-IP' );
 	} else {
 		// Subject to spoofing with headers like X_Forwarded_For
 		$set = $_SERVER;
 		$index = 'HTTP_X_FORWARDED_FOR';
 		$index2 = 'CLIENT-IP';
+		$index3 = 'HTTP_X_REAL_IP';
 	}
 
 	#Try a couple of headers
@@ -33,6 +35,8 @@ function wfGetForwardedFor() {
 		return $set[$index];
 	} elseif( isset( $set[$index2] ) ) {
 		return $set[$index2];
+	} elseif( isset( $set[$index3] ) ) {
+		return $set[$index3];
 	} else {
 		return null;
 	}
