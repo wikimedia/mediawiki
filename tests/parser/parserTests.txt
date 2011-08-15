@@ -742,6 +742,15 @@ External links: protocol-relative URL in free text is left alone
 !!end
 
 !! test
+External links: protocol-relative URL in the middle of a word is left alone (bug 30269)
+!! input
+foo//example.com/Foo
+!! result
+<p>foo//example.com/Foo
+</p>
+!! end
+
+!! test
 External image
 !! input
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
