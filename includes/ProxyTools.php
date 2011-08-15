@@ -64,11 +64,17 @@ function wfGetAgent() {
 /**
  * Work out the IP address based on various globals
  * For trusted proxies, use the XFF client IP (first of the chain)
+ * @param $reset boolean Used to reset the internal static variable
+ * tracking the IP address. (default: false)
  * @return string
  */
-function wfGetIP() {
+function wfGetIP( $reset = false ) {
 	global $wgUsePrivateIPs, $wgCommandLineMode;
 	static $ip = false;
+
+	if( $reset ) {
+		$ip = false;
+	}
 
 	# Return cached result
 	if ( !empty( $ip ) ) {
