@@ -545,7 +545,7 @@ class SpecialPage {
 		if ( $this->userCanExecute( $this->getUser() ) ) {
 			$func = $this->mFunction;
 			// only load file if the function does not exist
-			if(!is_callable($func) and $this->mFile) {
+			if( !is_callable($func) && $this->mFile ) {
 				require_once( $this->mFile );
 			}
 			$this->outputHeader();
