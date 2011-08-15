@@ -485,22 +485,7 @@ class UploadStash {
 			return false;
 		}
 
-		$this->fileMetadata[$key] = array(
-			'us_user' => $row->us_user,
-			'us_key' => $row->us_key,
-			'us_orig_path' => $row->us_orig_path,
-			'us_path' => $row->us_path,
-			'us_size' => $row->us_size,
-			'us_sha1' => $row->us_sha1,
-			'us_mime' => $row->us_mime,
-			'us_media_type' => $row->us_media_type,
-			'us_image_width' => $row->us_image_width,
-			'us_image_height' => $row->us_image_height,
-			'us_image_bits' => $row->us_image_bits,
-			'us_source_type' => $row->us_source_type,
-			'us_timestamp' => $row->us_timestamp,
-			'us_status' => $row->us_status
-		);
+		$this->fileMetadata[$key] = (array)$row;
 
 		return true;
 	}
