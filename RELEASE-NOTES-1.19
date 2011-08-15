@@ -36,8 +36,6 @@ production.
 * Most presentational html attributes like valign are now converted to inline
   css style rules. These attributes were removed from html5 and so we clean them up
   when $wgHtml5 is enabled. This can be disabled using $wgCleanupPresentationalAttributes. 
-* When MediaWiki is being run behind a proxy, the X-Real-IP header is now also checked
-  to determine the client's actual IP address.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
@@ -80,6 +78,8 @@ changes to languages because of Bugzilla reports.
 * jquery.mwPrototypes module was renamed to jquery.mwExtension.
 * The maintenance script populateSha1.php was renamed to the more concise
   populateImageSha1.php
+* The Client-IP header is no longer checked for when trying to resolve a client's
+  real IP address.
 
 == Compatibility ==
 
