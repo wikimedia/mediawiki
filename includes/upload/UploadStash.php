@@ -22,10 +22,6 @@ class UploadStash {
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
 	const KEY_FORMAT_REGEX = '/^[\w-\.]+\.\w*$/';
 
-	// When a given stashed file can't be loaded, wait for the slaves to catch up.  If they're more than MAX_LAG
-	// behind, throw an exception instead. (at what point is broken better than slow?)
-	const MAX_LAG = 30;
-
 	/**
 	 * repository that this uses to store temp files
 	 * public because we sometimes need to get a LocalFile within the same repo.
@@ -98,23 +94,9 @@ class UploadStash {
 		$dbr = $this->repo->getSlaveDb();
 
 		if ( !isset( $this->fileMetadata[$key] ) ) {
-			// try this first.  if it fails to find the row, check for lag, wait, try again. if its still missing, throw an exception.
-			// this more complex solution keeps things moving for page loads with many requests
-			// (ie. validating image ownership) when replag is high
 			if ( !$this->fetchFileMetadata( $key ) ) {
-				$lag = $dbr->getLag();
-				if ( $lag > 0 && $lag <= self::MAX_LAG ) {
-					// if there's not too much replication lag, just wait for the slave to catch up to our last insert.
-					sleep( ceil( $lag ) );
-				} elseif ( $lag > self::MAX_LAG ) {
-					// that's a lot of lag to introduce into the middle of the UI.
-					throw new UploadStashMaxLagExceededException(
-						'Couldn\'t load stashed file metadata, and replication lag is above threshold: (MAX_LAG=' . self::MAX_LAG . ')'
-					);
-				}
-
-				// now that the waiting has happened, try again
-				$this->fetchFileMetadata( $key );
+				// If nothing was received, it's likely due to replication lag.  Check the master to see if the record is there.
+				$this->fetchFileMetadata( $key, true );
 			}
 
 			if ( !isset( $this->fileMetadata[$key] ) ) {
@@ -470,9 +452,16 @@ class UploadStash {
 	 * @param $key String: key
 	 * @return boolean
 	 */
-	protected function fetchFileMetadata( $key ) {
+	protected function fetchFileMetadata( $key, $readFromMaster = false ) {
 		// populate $fileMetadata[$key]
-		$dbr = $this->repo->getSlaveDb();
+		$dbr = null;
+		if( $readFromMaster ) {
+			// sometimes reading from the master is necessary, if there's replication lag.
+			$dbr = $this->repo->getMasterDb();
+		} else {
+			$dbr = $this->repo->getSlaveDb();
+		}
+
 		$row = $dbr->selectRow(
 			'uploadstash',
 			'*',
@@ -685,5 +674,4 @@ class UploadStashFileException extends MWException {};
 class UploadStashZeroLengthFileException extends MWException {};
 class UploadStashNotLoggedInException extends MWException {};
 class UploadStashWrongOwnerException extends MWException {};
-class UploadStashMaxLagExceededException extends MWException {};
 class UploadStashNoSuchKeyException extends MWException {};
