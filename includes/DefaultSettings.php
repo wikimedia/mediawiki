@@ -3681,7 +3681,20 @@ $wgEnableDnsBlacklist = false;
 $wgEnableSorbs = false;
 
 /**
- * List of DNS blacklists to use, if $wgEnableDnsBlacklist is true
+ * List of DNS blacklists to use, if $wgEnableDnsBlacklist is true. This is an
+ * array of either a URL or an array with the URL and a key (should the blacklist
+ * require a key). For example:
+ * @code
+ * $wgDnsBlacklistUrls = array(
+ *   // String containing URL
+ *   'http.dnsbl.sorbs.net',
+ *   // Array with URL and key, for services that require a key
+ *   array( 'dnsbl.httpbl.net', 'mykey' ),
+ *   // Array with just the URL. While this works, it is recommended that you
+ *   // just use a string as shown above
+ *   array( 'opm.tornevall.org' )
+ * );
+ * @endcode
  * @since 1.16
  */
 $wgDnsBlacklistUrls = array( 'http.dnsbl.sorbs.net.' );
