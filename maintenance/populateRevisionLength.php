@@ -22,39 +22,29 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
-class PopulateRevisionLength extends LoggedUpdateMaintenance {
+class PopulateRevisionLength extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populates the rev_len field";
+		$this->mDescription = "Populates rev_len";
 		$this->setBatchSize( 200 );
 	}
 
-	protected function getUpdateKey() {
-		return 'populate rev_len';
-	}
-
-	protected function updateSkippedMessage() {
-		return 'rev_len column of revision table already populated.';
-	}
-
-	protected function updatelogFailedMessage() {
-		return 'Could not insert rev_len population row.';
-	}
-
-	public function doDBUpdates() {
+	public function execute() {
 		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'revision' ) ) {
 			$this->error( "revision table does not exist", true );
 		}
 		$this->output( "Populating rev_len column\n" );
-
-		$start = $db->selectField( 'revision', 'MIN(rev_id)', false, __METHOD__ );
-		$end = $db->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
-		if ( !$start || !$end ) {
+		$start = $db->selectField( 'revision', 'MIN(rev_id)', false, __FUNCTION__ );
+		$end = $db->selectField( 'revision', 'MAX(rev_id)', false, __FUNCTION__ );
+		if ( is_null( $start ) || is_null( $end ) ) {
 			$this->output( "...revision table seems to be empty.\n" );
-			return true;
+			$db->insert( 'updatelog',
+				array( 'ul_key' => 'populate rev_len' ),
+				__METHOD__,
+				'IGNORE' );
+			return;
 		}
-
 		# Do remaining chunks
 		$blockStart = intval( $start );
 		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
@@ -90,9 +80,17 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves();
 		}
-
-		$this->output( "rev_len population complete ... {$count} rows changed ({$missing} missing)\n" );
-		return true;
+		$logged = $db->insert( 'updatelog',
+			array( 'ul_key' => 'populate rev_len' ),
+			__METHOD__,
+			'IGNORE' );
+		if ( $logged ) {
+			$this->output( "rev_len population complete ... {$count} rows changed ({$missing} missing)\n" );
+			return true;
+		} else {
+			$this->output( "Could not insert rev_len population row.\n" );
+			return false;
+		}
 	}
 }
 
