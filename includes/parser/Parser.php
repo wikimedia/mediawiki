@@ -1230,7 +1230,7 @@ class Parser {
 	 */
 	function doMagicLinks( $text ) {
 		wfProfileIn( __METHOD__ );
-		$prots = $this->mUrlProtocols;
+		$prots = wfUrlProtocolsWithoutProtRel();
 		$urlChar = self::EXT_LINK_URL_CLASS;
 		$text = preg_replace_callback(
 			'!(?:                           # Start cases

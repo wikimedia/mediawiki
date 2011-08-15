@@ -469,14 +469,17 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 /**
  * Returns a regular expression of url protocols
  *
+ * @param $includeProtocolRelative bool If false, remove '//' from the returned protocol list.
+ *        DO NOT USE this directy, use wfUrlProtocolsWithoutProtRel() instead
  * @return String
  */
-function wfUrlProtocols() {
+function wfUrlProtocols( $includeProtocolRelative = true ) {
 	global $wgUrlProtocols;
 
-	static $retval = null;
-	if ( !is_null( $retval ) ) {
-		return $retval;
+	// Cache return values separately based on $includeProtocolRelative
+	static $retval = array( true => null, false => null );
+	if ( !is_null( $retval[$includeProtocolRelative] ) ) {
+		return $retval[$includeProtocolRelative];
 	}
 
 	// Support old-style $wgUrlProtocols strings, for backwards compatibility
@@ -484,14 +487,30 @@ function wfUrlProtocols() {
 	if ( is_array( $wgUrlProtocols ) ) {
 		$protocols = array();
 		foreach ( $wgUrlProtocols as $protocol ) {
-			$protocols[] = preg_quote( $protocol, '/' );
+			// Filter out '//' if !$includeProtocolRelative
+			if ( $includeProtocolRelative || $protocol !== '//' ) {
+				$protocols[] = preg_quote( $protocol, '/' );
+			}
 		}
 
-		$retval = implode( '|', $protocols );
+		$retval[$includeProtocolRelative] = implode( '|', $protocols );
 	} else {
-		$retval = $wgUrlProtocols;
+		// Ignore $includeProtocolRelative in this case
+		// This case exists for pre-1.6 compatibility, and we can safely assume
+		// that '//' won't appear in a pre-1.6 config because protocol-relative
+		// URLs weren't supported until 1.18
+		$retval[$includeProtocolRelative] = $wgUrlProtocols;
 	}
-	return $retval;
+	return $retval[$includeProtocolRelative];
+}
+
+/**
+ * Like wfUrlProtocols(), but excludes '//' from the protocol list. Use this if
+ * you need a regex that matches all URL protocols but does not match protocol-
+ * relative URLs
+ */
+function wfUrlProtocolsWithoutProtRel() {
+	return wfUrlProtocols( false );
 }
 
 /**
