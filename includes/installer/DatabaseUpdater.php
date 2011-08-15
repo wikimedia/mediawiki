@@ -40,7 +40,8 @@ abstract class DatabaseUpdater {
 	protected $shared = false;
 
 	protected $postDatabaseUpdateMaintenance = array(
-		'DeleteDefaultMessages'
+		'DeleteDefaultMessages',
+		'PopulateRevisionLength'
 	);
 
 	/**

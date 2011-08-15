@@ -1199,7 +1199,7 @@ abstract class Maintenance {
 		} else {
 			return posix_isatty( $fd );
 		}
-}
+	}
 
 	/**
 	 * Prompt the console for input
