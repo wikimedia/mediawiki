@@ -863,6 +863,25 @@ class LocalFile extends File {
 	/**
 	 * Record a file upload in the upload log and the image table
 	 */
+	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
+		$watch = false, $timestamp = false )
+	{
+		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
+
+		if ( !$this->recordUpload2( $oldver, $desc, $pageText ) ) {
+			return false;
+		}
+
+		if ( $watch ) {
+			global $wgUser;
+			$wgUser->addWatch( $this->getTitle() );
+		}
+		return true;
+	}
+
+	/**
+	 * Record a file upload in the upload log and the image table
+	 */
 	function recordUpload2(
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null
 	) {
