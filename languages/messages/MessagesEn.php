@@ -4526,7 +4526,7 @@ Enter the file name without the "{{ns:file}}:" prefix.',
 'specialpages-note'              => '----
 * Normal special pages.
 * <span class="mw-specialpagerestricted">Restricted special pages.</span>
-* <span class="mw-specialpagecached">Cached-only special pages.</span>',
+* <span class="mw-specialpagecached">Cached special pages (might be obsolete).</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
 'specialpages-group-login'       => 'Login / sign up',
