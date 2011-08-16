@@ -5,7 +5,7 @@
  * libraries. Written to be used in enviroments with jQuery and QUnit.
  * Requires jQuery 1.5.2 or higher.
  *
- * Globals: jQuery, $, QUnit, console.log
+ * Globals: jQuery, QUnit, console.log
  *
  * Built for and tested with:
  * - Safari 5
@@ -13,11 +13,7 @@
  *
  * @author Timo Tijhof, 2011
  */
-(function(){
-
-/* Private members */
-var TYPE_SIMPLEFUNC = 101;
-var TYPE_OBJCONSTRFUNC = 100;
+( function( $ ) {
 
 /**
  * CompletenessTest
@@ -159,7 +155,7 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 					$.each( currVar.prototype, function( key, value ) {
 						if ( key === 'constructor' ) return;
 
-						// Clone and brake reference to parentPathArray
+						// Clone and break reference to parentPathArray
 						var tmpPathArray = $.extend( [], parentPathArray );
 						tmpPathArray.push( 'prototype' ); tmpPathArray.push( key );
 
@@ -174,11 +170,9 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 				if ( !currVar.prototype || $.isEmptyObject( currVar.prototype ) ) {
 
 					// Inject check
-					that.injectCheck( masterVariable, parentPathArray, function(){
-
+					that.injectCheck( masterVariable, parentPathArray, function() {
 						that.methodCallTracker[ parentPathArray.join( '.' ) ] = true;
-
-					}, TYPE_SIMPLEFUNC );
+					} );
 
 				// We don't support checking object constructors yet...
 				} else {
@@ -187,7 +181,7 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 					$.each( currVar.prototype, function( key, value ) {
 						if ( key === 'constructor' ) return;
 
-						// Clone and brake reference to parentPathArray
+						// Clone and break reference to parentPathArray
 						var tmpPathArray = $.extend( [], parentPathArray );
 						tmpPathArray.push( 'prototype' ); tmpPathArray.push( key );
 
@@ -197,12 +191,12 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 
 			}
 
-		// Recursively. After all, this *is* the completness test
+		// Recursively. After all, this *is* the completeness test
 		} else if ( type === 'object' ) {
 
 			$.each( currVar, function( key, value ) {
 
-				// Clone and brake reference to parentPathArray
+				// Clone and break reference to parentPathArray
 				var tmpPathArray = $.extend( [], parentPathArray );
 				tmpPathArray.push( key );
 
@@ -211,8 +205,6 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 			} );
 
 		}
-
-		return 'End of checkTests';
 	},
 
 	/**
@@ -220,13 +212,13 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 	 *
 	 * Checks if the given method name (ie. 'my.foo.bar')
 	 * was called during the test suite (as far as the tracker knows).
-	 * If so it adds it to missingTests.
+	 * If not it adds it to missingTests.
 	 *
 	 * @param fnName {String}
 	 * @return {Boolean}
 	 */
 	hasTest: function( fnName ) {
-		if ( !(fnName in this.methodCallTracker) ) {
+		if ( !( fnName in this.methodCallTracker ) ) {
 			this.missingTests[fnName] = true;
 			return false;
 		}
@@ -248,14 +240,14 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 			curr = masterVariable,
 			lastMember;
 
-		$.each( objectPathArray, function(i, memberName){
+		$.each( objectPathArray, function( i, memberName ) {
 			prev = curr;
 			curr = prev[memberName];
 			lastMember = memberName;
 		});
 
 		// Objects are by reference, members (unless objects) are not.
-		prev[lastMember] = function(){
+		prev[lastMember] = function() {
 			injectFn();
 			return curr.apply( this, arguments );
 		};
@@ -264,4 +256,4 @@ CompletenessTest.fn = CompletenessTest.prototype = {
 
 window.CompletenessTest = CompletenessTest;
 
-})();
+} )( jQuery );
