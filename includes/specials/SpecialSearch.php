@@ -40,6 +40,26 @@ class SpecialSearch extends SpecialPage {
 	/// No idea, apparently used by some other classes
 	protected $mPrefix;
 
+	/**
+	 * @var int
+	 */
+	protected $limit, $offset;
+
+	/**
+	 * @var array
+	 */
+	protected $namespaces;
+
+	/**
+	 * @var bool
+	 */
+	protected $searchRedirects;
+
+	/**
+	 * @var string
+	 */
+	protected $didYouMeanHtml, $fulltext;
+
 	const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
@@ -213,8 +233,9 @@ class SpecialSearch extends SpecialPage {
 		$rewritten = $search->replacePrefixes($term);
 
 		$titleMatches = $search->searchTitle( $rewritten );
-		if( !($titleMatches instanceof SearchResultTooMany))
+		if( !( $titleMatches instanceof SearchResultTooMany ) ) {
 			$textMatches = $search->searchText( $rewritten );
+		}
 
 		// did you mean... suggestions
 		if( $textMatches && $textMatches->hasSuggestion() ) {
@@ -223,8 +244,9 @@ class SpecialSearch extends SpecialPage {
 			# mirror Go/Search behaviour of original request ..
 			$didYouMeanParams = array( 'search' => $textMatches->getSuggestionQuery() );
 
-			if($this->fulltext != null)
+			if( $this->fulltext != null ) {
 				$didYouMeanParams['fulltext'] = $this->fulltext;
+			}
 
 			$stParams = array_merge(
 				$didYouMeanParams,
@@ -233,8 +255,9 @@ class SpecialSearch extends SpecialPage {
 
 			$suggestionSnippet = $textMatches->getSuggestionSnippet();
 
-			if( $suggestionSnippet == '' )
+			if( $suggestionSnippet == '' ) {
 				$suggestionSnippet = null;
+			}
 
 			$suggestLink = Linker::linkKnown(
 				$st,
@@ -365,6 +388,9 @@ class SpecialSearch extends SpecialPage {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * @param $t Title
+	 */
 	protected function showCreateLink( $t ) {
 		// show direct page/create link if applicable
 		// Check DBkey !== '' in case of fragment link only.
@@ -387,7 +413,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 *
+	 * @param $term string
 	 */
 	protected function setupPage( $term ) {
 		# Should advanced UI be used?
@@ -441,6 +467,8 @@ class SpecialSearch extends SpecialPage {
 	 * Show whole set of results
 	 *
 	 * @param $matches SearchResultSet
+	 *
+	 * @return string
 	 */
 	protected function showMatches( &$matches ) {
 		global $wgContLang;
@@ -470,6 +498,8 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @param $result SearchResult
 	 * @param $terms Array: terms to highlight
+	 *
+	 * @return string
 	 */
 	protected function showHit( $result, $terms ) {
 		wfProfileIn( __METHOD__ );
@@ -650,6 +680,8 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @param $matches SearchResultSet
 	 * @param $query String
+	 *
+	 * @return string
 	 */
 	protected function showInterwiki( &$matches, $query ) {
 		global $wgContLang;
@@ -691,6 +723,8 @@ class SpecialSearch extends SpecialPage {
 	 * @param $terms Array
 	 * @param $query String
 	 * @param $customCaptions Array: iw prefix -> caption
+	 *
+	 * @return string
 	 */
 	protected function showInterwikiHit( $result, $lastInterwiki, $terms, $query, $customCaptions) {
 		wfProfileIn( __METHOD__ );
@@ -734,10 +768,10 @@ class SpecialSearch extends SpecialPage {
 		$out = "";
 		// display project name
 		if(is_null($lastInterwiki) || $lastInterwiki != $t->getInterwiki()) {
-			if( key_exists($t->getInterwiki(),$customCaptions) )
+			if( key_exists($t->getInterwiki(),$customCaptions) ) {
 				// captions from 'search-interwiki-custom'
 				$caption = $customCaptions[$t->getInterwiki()];
-			else{
+			} else {
 				// default is to show the hostname of the other wiki which might suck
 				// if there are many wikis on one hostname
 				$parsed = parse_url($t->getFullURL());
@@ -763,6 +797,11 @@ class SpecialSearch extends SpecialPage {
 		return $out;
 	}
 
+	/**
+	 * @param $profile
+	 * @param $term
+	 * @return String
+	 */
 	protected function getProfileForm( $profile, $term ) {
 		// Hidden stuff
 		$opts = array();
@@ -782,6 +821,7 @@ class SpecialSearch extends SpecialPage {
 	 * Generates the power search box at [[Special:Search]]
 	 *
 	 * @param $term String: search term
+	 * @param $opts array
 	 * @return String: HTML form
 	 */
 	protected function powerSearchBox( $term, $opts ) {
@@ -872,6 +912,9 @@ class SpecialSearch extends SpecialPage {
 			Xml::closeElement( 'fieldset' );
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function getSearchProfiles() {
 		// Builds list of Search Types (profiles)
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
@@ -920,6 +963,12 @@ class SpecialSearch extends SpecialPage {
 		return $profiles;
 	}
 
+	/**
+	 * @param $term
+	 * @param $resultsShown
+	 * @param $totalNum
+	 * @return string
+	 */
 	protected function formHeader( $term, $resultsShown, $totalNum ) {
 		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
 
@@ -990,6 +1039,10 @@ class SpecialSearch extends SpecialPage {
 		return $out;
 	}
 
+	/**
+	 * @param $term string
+	 * @return string
+	 */
 	protected function shortDialog( $term ) {
 		$out = Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		// Term box
@@ -1072,6 +1125,8 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * @since 1.18
+	 *
+	 * @return SearchEngine
 	 */
 	public function getSearchEngine() {
 		if ( $this->searchEngine === null ) {
@@ -1085,6 +1140,9 @@ class SpecialSearch extends SpecialPage {
 	 * add more params to links to not lose selection when
 	 * user navigates search results.
 	 * @since 1.18
+	 *
+	 * @param $key
+	 * @param $value
 	 */
 	public function setExtraParam( $key, $value ) {
 		$this->extraParams[$key] = $value;
