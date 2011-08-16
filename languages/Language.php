@@ -3513,7 +3513,7 @@ class Language {
 	 * Format a size in bytes for output, using an appropriate
 	 * unit (B, KB, MB or GB) according to the magnitude in question
 	 *
-	 * @param $size Size to format
+	 * @param $size int Size to format
 	 * @return string Plain text (not HTML)
 	 */
 	function formatSize( $size ) {
