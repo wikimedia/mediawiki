@@ -463,6 +463,7 @@ return array(
 	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.title.js',
+		'dependencies' => 'mediawiki.util',
 	),
 	'mediawiki.Uri' => array( 
 		'scripts' => 'resources/mediawiki/mediawiki.uri.js',
