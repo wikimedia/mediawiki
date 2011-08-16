@@ -236,19 +236,6 @@ class SpecialPage {
 	}
 
 	/**
-	 * Just like executePath() except it returns the HTML instead of outputting it
-	 * Returns false if there was no such special page, or a title object if it was
-	 * a redirect.
-	 *
-	 * @param $title Title
-	 * @return String: HTML fragment
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function capturePath( &$title ) {
-		return SpecialPageFactory::capturePath( $title );
-	}
-
-	/**
 	 * Get the local name for a specified canonical name
 	 *
 	 * @param $name String
