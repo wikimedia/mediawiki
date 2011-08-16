@@ -28,17 +28,17 @@ production.
 * (bug 15558) Parameters to special pages included in wikitext can now be passed
   as with templates.
 * Installer now issues a warning if mod_security is present.
-* (bug 29455) Add support for a filter callback function in jQuery byteLimit plugin.
+* (bug 29455) Add support for a filter callback function in jQuery byteLimit
+  plugin.
 * Extensions can now participate in the extraction of titles from url paths
-* Added two new GetLocalURL hooks to better serve extensions working on a limited
-  type of titles.
-* Added a --no-updates flag to importDump.php that skips updating the links tables.
+* Added two new GetLocalURL hooks to better serve extensions working on a
+  limited type of titles.
+* Added a --no-updates flag to importDump.php that skips updating the links
+  tables.
 * Most presentational html attributes like valign are now converted to inline
-  css style rules. These attributes were removed from html5 and so we clean them up
-  when $wgHtml5 is enabled. This can be disabled using $wgCleanupPresentationalAttributes. 
-* Magic words (time and number-formatting ones, plus DIRECTIONMARK, but not NAMESPACE)
-  now depend on the page content language instead of the site language. In theory
-  this sets the right magic words in system messages, although they are not used there.
+  css style rules. These attributes were removed from html5 and so we clean
+  them up when $wgHtml5 is enabled. This can be disabled using
+  $wgCleanupPresentationalAttributes.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
@@ -48,14 +48,15 @@ production.
 * (bug 27894) Move 'editondblclick' event listener down from body to
   div#bodyContent.
 * (bug 30172) The check for posix_isatty() in maintenance scripts did not detect
-  when the function exists but is disabled. Introduced Maintenance::posix_isatty()
-* (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
-  instead require() for included extensions.
+  when the function exists but is disabled. Introduced
+  Maintenance::posix_isatty().
+* (bug 30264) Changed installer-generated LocalSettings.php to use
+  require_once() instead require() for included extensions.
 * Do not convert text in the user interface language to another script.
 * (bug 26283) Previewing user JS/CSS pages doesn't load other user JS/CSS pages
 * (bug 11374) Improved diff readability for colorblind people.
 * (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
-  warnings/notices to be thrown
+  warnings/notices to be thrown.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
@@ -64,10 +65,11 @@ production.
 * (bug 29685) do not output NULL parentid with list=deletedrevs&drprop=parentid.
 * siprop=interwikimap and siprop=languages can use silanguagecode to have
   a best effort language name translation. Use CLDR extension for best result.
-* (bug 30230) action=expandtemplates should not silently override invalid title inputs
-* (bug 18634) Create API to fetch MediaWiki's language fallback tree structure
-* (bug 26885) Allow show/hide of account blocks, temporary blocks and single IP blocks
-  for list=blocks
+* (bug 30230) action=expandtemplates should not silently override invalid title
+  inputs.
+* (bug 18634) Create API to fetch MediaWiki's language fallback tree structure.
+* (bug 26885) Allow show/hide of account blocks, temporary blocks and single IP
+  address blocks for list=blocks.
 
 === Languages updated in 1.19 ===
 
