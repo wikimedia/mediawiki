@@ -2952,4 +2952,10 @@ Katrangan tampilan:
 'htmlform-reset'               => 'Batalna pangowahan',
 'htmlform-selectorother-other' => 'Liya',
 
+# Add categories per AJAX
+'ajax-add-category'        => 'Tambah kategori',
+'ajax-add-category-submit' => 'Tambah',
+'ajax-confirm-save'        => 'Simpen',
+'ajax-error-title'         => 'Kaluputan',
+
 );

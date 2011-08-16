@@ -250,9 +250,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
-'category_header'                => 'სტატიები კატეგორიაში "$1"',
+'category_header'                => 'სტატიები კატეგორიაში „$1“',
 'subcategories'                  => 'ქვეკატეგორიები',
-'category-media-header'          => 'მედია კატეგორიაში "$1"',
+'category-media-header'          => 'მედია კატეგორიაში „$1“',
 'category-empty'                 => "''ეს კატეგორია ამჟამად გვერდებს ან მედიას არ შეიცავს.''",
 'hidden-categories'              => 'დამალული {{PLURAL:$1|კატეგორია|კატეგორიები}}',
 'hidden-category-category'       => 'დამალული კატეგორიები',
@@ -1035,7 +1035,7 @@ $1",
 'mergelogpagetext'   => 'ქვემოთ წარმოდგენილია ამ გვერდის ბოლო გაერთიანებათა სია',
 
 # Diffs
-'history-title'            => '"$1" ცვლილებათა ისტორია',
+'history-title'            => 'ცვლილებათა ისტორია სტატიაში „$1“',
 'difference'               => '(სხვაობა ვერსიებს შორის)',
 'difference-multipage'     => '(განსხვავება გვერდებს შორის)',
 'lineno'                   => 'ხაზი $1:',

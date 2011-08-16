@@ -3826,5 +3826,6 @@ Ten problem zazwyczaj występuje, jeśli kategoria została dodana do strony prz
 'ajax-category-already-present' => 'Strona już jest w kategorii $1',
 'ajax-category-hook-error'      => 'Lokalna funkcja uniemożliwia zapisanie zmian',
 'ajax-api-error'                => 'Interfejs API zwrócił błąd – $1: $2',
+'ajax-api-unknown-error'        => 'Interfejs API zwrócił nieznany błąd.',
 
 );

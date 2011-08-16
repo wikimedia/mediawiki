@@ -3758,5 +3758,6 @@ Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagin
 'ajax-category-already-present' => 'Această pagină aparține deja categoriei $1',
 'ajax-category-hook-error'      => 'O funcție locală a împiedicat salvarea modificărilor',
 'ajax-api-error'                => 'API a returnat o eroare: $1: $2',
+'ajax-api-unknown-error'        => 'API a returnat o eroare necunoscută.',
 
 );

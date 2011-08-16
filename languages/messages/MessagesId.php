@@ -12,6 +12,7 @@
  * @author Bennylin
  * @author Borgx
  * @author Farras
+ * @author Gombang
  * @author Irwangatot
  * @author IvanLanin
  * @author Iwan Novirion
@@ -520,7 +521,7 @@ $messages = array(
 'protect_change'    => 'ubah',
 'protectthispage'   => 'Lindungi halaman ini',
 'unprotect'         => 'Pelindungan',
-'unprotectthispage' => 'Buka pelindungan halaman ini',
+'unprotectthispage' => 'Buka perlindungan halaman ini',
 'newpage'           => 'Halaman baru',
 'talkpage'          => 'Bicarakan halaman ini',
 'talkpagelinktext'  => 'Bicara',

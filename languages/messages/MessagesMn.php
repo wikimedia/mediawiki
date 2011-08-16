@@ -3111,4 +3111,7 @@ $1',
 'sqlite-has-fts' => '$1 (бүх текстээрх хайлтыг дэмждэг)',
 'sqlite-no-fts'  => '$1 (бүх текстээрх хайлтыг дэмждэггүй)',
 
+# Add categories per AJAX
+'ajax-add-category-submit' => 'Нэмэх',
+
 );

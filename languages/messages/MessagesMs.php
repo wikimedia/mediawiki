@@ -3619,5 +3619,6 @@ Ini biasanya berlaku apabila kategori ditambahkan pada laman dengan menggunakan 
 'ajax-category-already-present' => 'Laman ini sudah tergolong dalam kategori $1',
 'ajax-category-hook-error'      => 'Fungsi setempat menghalang perubahan daripada disimpan',
 'ajax-api-error'                => 'API memulangkan ralat: $1: $2',
+'ajax-api-unknown-error'        => 'API memulangkan ralat yang tidak dikenali.',
 
 );

@@ -3596,5 +3596,6 @@ Den mest almindelige grund til denne fejl er, at kategorien er blevet tilføjet 
 'ajax-category-already-present' => 'Denne side er allerede i kategorien $1',
 'ajax-category-hook-error'      => 'En lokal funktion forhindrede at ændringerne blev gemt',
 'ajax-api-error'                => 'API gav en fejlbesked: $1: $2',
+'ajax-api-unknown-error'        => "API'en returnerede en ukendt fejl.",
 
 );

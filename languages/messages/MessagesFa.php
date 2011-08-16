@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alnokta
+ * @author Armandaneshjoo
  * @author Asoxor
  * @author Behdarvandyani
  * @author Ebraminio
@@ -919,6 +920,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'خطای ناشناخته در تابع  mail()‎ پی‌اچ‌پی',
+'user-mail-no-addy'      => 'تلاش برای ارسال نامه بدون یک آدرس پست الکترونیک.',
 
 # Change password dialog
 'resetpass'                 => 'تغییر گذرواژه',
@@ -965,6 +967,17 @@ $2
 'passwordreset-emailelement'   => 'نام کاربری: $1
 گذرواژهٔ موقت: $2',
 'passwordreset-emailsent'      => 'یک نامهٔ یادآور فرستاده شده است.',
+
+# Special:ChangeEmail
+'changeemail'          => 'تغییر آدرس پست الکترونیک',
+'changeemail-header'   => 'تغییر آدرس ایمیل حساب کاربری',
+'changeemail-text'     => 'این فرم را تکمیل کنید تا آدرس پست الکترونیکی تان تغییر یابد. شما نیاز به تایید رمز عبور خود خواهید داشت تا این تغییر را تایید کنید.',
+'changeemail-no-info'  => 'برای دسترسی مستقیم به این صفحه شما باید به سامانه وارد شده باشید.',
+'changeemail-oldemail' => 'نشانی پست الکترونیکی کنونی:',
+'changeemail-newemail' => 'نشانی پست الکترونیکی جدید:',
+'changeemail-none'     => '(هیچ)',
+'changeemail-submit'   => 'تغییر پست الکترونیکی',
+'changeemail-cancel'   => 'انصراف',
 
 # Edit page toolbar
 'bold_sample'     => 'متن ضخیم',
@@ -1492,6 +1505,8 @@ $1",
 'prefs-watchlist-token'         => 'رمز فهرست پی‌گیری:',
 'prefs-misc'                    => 'تنظیمات متفرقه',
 'prefs-resetpass'               => 'تغییر گذرواژه',
+'prefs-changeemail'             => 'تغییر پست الکترونیکی',
+'prefs-setemail'                => 'تغیین آدرس پست الکترونیکی',
 'prefs-email'                   => 'گزینه‌های پست الکترونیک',
 'prefs-rendering'               => 'نمایش صفحه',
 'saveprefs'                     => 'ذخیره',
@@ -2515,6 +2530,7 @@ $NEWPAGE
 'protect-level-sysop'         => 'فقط مدیران',
 'protect-summary-cascade'     => 'آبشاری',
 'protect-expiring'            => 'زمان سرآمدن $1 (UTC)',
+'protect-expiring-local'      => 'منقضی $1',
 'protect-expiry-indefinite'   => 'بی‌پایان',
 'protect-cascade'             => 'محافظت آبشاری - از همهٔ صفحه‌هایی که در این صفحه آمده‌اند نیز محافظت می‌شود.',
 'protect-cantedit'            => 'شما نمی‌تواند وضعیت محافظت این صفحه را تغییر دهید، چون اجازه ویرایش آن را ندارید.',
@@ -3934,13 +3950,16 @@ $1',
 'tags-hitcount'           => '$1 {{PLURAL:$1|تغییر|تغییر}}',
 
 # Special:ComparePages
-'comparepages'     => 'مقایسه صفحه‌ها',
-'compare-selector' => 'مقایسه نسخه‌های صفحه‌ها',
-'compare-page1'    => 'صفحه ۱',
-'compare-page2'    => 'صفحه ۲',
-'compare-rev1'     => 'نسخه ۱',
-'compare-rev2'     => 'نسخه ۲',
-'compare-submit'   => 'مقایسه',
+'comparepages'                => 'مقایسه صفحه‌ها',
+'compare-selector'            => 'مقایسه نسخه‌های صفحه‌ها',
+'compare-page1'               => 'صفحه ۱',
+'compare-page2'               => 'صفحه ۲',
+'compare-rev1'                => 'نسخه ۱',
+'compare-rev2'                => 'نسخه ۲',
+'compare-submit'              => 'مقایسه',
+'compare-invalid-title'       => 'عنوان تعیین‌شده نامعتبر است.',
+'compare-title-not-exists'    => 'عنوان مشخص شده وجود ندارد.',
+'compare-revision-not-exists' => 'پالایهٔ مشخص شده وجود ندارد.',
 
 # Database error messages
 'dberr-header'      => 'این ویکی یک ایراد دارد',
@@ -3978,14 +3997,17 @@ $1',
 'ajax-confirm-save'             => 'ذخیره',
 'ajax-confirm-save-all'         => 'ذخیره کردن تمام تغییرات',
 'ajax-cancel'                   => 'لغو ویرایش‌ها',
+'ajax-cancel-all'               => 'لغو همه تغییرات',
 'ajax-add-category-summary'     => 'افزودن رده «$1»',
 'ajax-edit-category-summary'    => 'تغییر رده «$1» به «$2»',
 'ajax-remove-category-summary'  => 'حذف رده «$1»',
+'ajax-category-question'        => 'چرا می خواهید تغییرات زیر را ایجاد کنید:',
 'ajax-error-title'              => 'خطا',
 'ajax-remove-category-error'    => 'امکان حذف این رده وجود نداشت.
 این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
 'ajax-edit-category-error'      => 'امکان ویرایش این رده وجود نداشت.
 این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
 'ajax-category-already-present' => 'این صحفه از قبل در رده $1 قرار دارد',
+'ajax-category-hook-error'      => 'یک تابع محلی از ذخیره تغییرات جلوگیری کرد.',
 
 );

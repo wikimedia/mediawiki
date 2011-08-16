@@ -959,4 +959,9 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'htmlform-reset'               => 'Enneringe zerick nemme',
 'htmlform-selectorother-other' => 'Annere',
 
+# Add categories per AJAX
+'ajax-add-category'         => 'Abdeeling dezu duh',
+'ajax-add-category-submit'  => 'Dezu duh',
+'ajax-add-category-summary' => 'Abdeeling „$1“ dezu duh',
+
 );

@@ -2953,4 +2953,12 @@ $1',
 'htmlform-reset'               => 'পরিবর্তন বাতিল',
 'htmlform-selectorother-other' => 'অন্য',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'বিষয়শ্রেণী যোগ',
+'ajax-add-category-submit'     => 'যোগ',
+'ajax-confirm-save'            => 'সংরক্ষণ',
+'ajax-add-category-summary'    => '"$1" বিষয়শ্রেণী যোগ',
+'ajax-remove-category-summary' => '"$1" বিষয়শ্রেণী অপসারণ',
+'ajax-error-title'             => 'ত্রুটি',
+
 );

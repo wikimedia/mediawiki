@@ -3699,5 +3699,6 @@ To se po navadi zgodi, ko je kategorija dodana strani preko predloge.',
 'ajax-category-already-present' => 'Stran že pripada kategoriji $1',
 'ajax-category-hook-error'      => 'Lokalna funkcija je preprečila shranitev sprememb',
 'ajax-api-error'                => 'API je vrnil napako: $1: $2',
+'ajax-api-unknown-error'        => 'API je vrnil neznano napako.',
 
 );
