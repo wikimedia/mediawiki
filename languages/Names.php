@@ -272,6 +272,7 @@
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
 	'qu' => 'Runa Simi',	# Southern Quechua
+	'qug' => 'Runa shimi',	# Chimborazo Highland Quichua
 	'rgn' => 'Rumagnôl',	# Romagnol
 	'rif' => 'Tarifit',	# Tarifit
 	'rm' => 'Rumantsch',	# Raeto-Romance
