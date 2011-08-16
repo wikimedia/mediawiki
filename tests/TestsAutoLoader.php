@@ -21,9 +21,6 @@ $wgAutoloadClasses += array(
 	'RandomImageGenerator' => "$testFolder/phpunit/includes/api/RandomImageGenerator.php",
 	'UserWrapper' => "$testFolder/phpunit/includes/api/ApiTestCase.php",
 
-	//Parser
-	'ParserTestFileIterator' => "$testFolder/phpunit/includes/parser/NewParserHelpers.php",
-
 	//Selenium
 	'SeleniumTestConstants' => "$testFolder/selenium/SeleniumTestConstants.php",
 

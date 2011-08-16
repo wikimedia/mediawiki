@@ -1,6 +1,4 @@
 <?php
-
-require_once( dirname( __FILE__ ) . '/ParserHelpers.php' );
 require_once( dirname( __FILE__ ) . '/NewParserTest.php' );
 
 /**
