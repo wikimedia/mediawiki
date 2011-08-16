@@ -3848,7 +3848,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'specialpages-note'              => '----
 * Normale speciale pagina\'s
 * <strong class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</strong>
-* <span class="mw-specialpagecached">Speciale pagina\'s met alleen gegevens uit de cache</span>',
+* <span class="mw-specialpagecached">Speciale pagina\'s met alleen gegevens uit de cache (mogelijk verouderd)</span>',
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Aanmelden / registreren',
@@ -3949,5 +3949,6 @@ Dit gebeurt meestal wanneer de categorie is toegevoegd aan de pagina door een sj
 'ajax-category-already-present' => 'Deze pagina behoort al tot categorie $1',
 'ajax-category-hook-error'      => 'Een lokale functie verhinderde het opslaan van de wijzigingen',
 'ajax-api-error'                => 'De API gaf een foutmelding: $1: $2',
+'ajax-api-unknown-error'        => 'De API gaf een onbekende foutmelding.',
 
 );

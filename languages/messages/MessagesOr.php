@@ -243,7 +243,15 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'ଏହି ବ୍ରାଉଜରରେ (ସବୁଠୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|day|ଦିନ}}) ପାଇଁ ମୋ ଲଗଇନ ମନେ ରଖିଥିବେ',
+'tog-justify'             => 'ପାରାଗ୍ରାଫଗୁଡ଼ିକୁ ଯଷ୍ଟିଫାଏ କରିବେ',
+'tog-numberheadings'      => 'ଅଟୋ-ନମ୍ବର ନାମଗୁଡ଼ିକ',
+'tog-showtoolbar'         => 'ସମ୍ପାଦନା ଟୁଲବାର ଦେଖାଇବେ (ଜାଭାସ୍କ୍ରିପ୍ଟ ସଚଳ କରିବେ)',
+'tog-rememberpassword'    => 'ଏହି ବ୍ରାଉଜରରେ (ସବୁଠୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|day|ଦିନ}}) ପାଇଁ ମୋ ଲଗଇନ ମନେ ରଖିଥିବେ',
+'tog-previewontop'        => 'ଏଡ଼ିଟ ବାକ୍ସ ଆଗରୁ ଦେଖଣା ଦେଖାଇବେ',
+'tog-previewonfirst'      => 'ପ୍ରଥମ ବଦଳର ଦେଖଣା ଦେଖାଇବେ',
+'tog-enotifrevealaddr'    => 'ସୂଚନା ଇ-ମେଲ ରେ ମୋର ଇ-ମେଲ ଠିକଣା ଦେଖାଇବେ',
+'tog-shownumberswatching' => 'ଦେଖୁଥିବା ବ୍ୟବାହାରକାରୀଙ୍କ ସଂଖ୍ୟା ଦେଖାଇବେ',
+'tog-oldsig'              => 'ଏବେ ଥିବା ଦସ୍ତଖତର ଦେଖଣା',
 
 'underline-always' => 'ସବୁବେଳେ',
 'underline-never'  => 'କେବେନୁହେଁ',
@@ -631,6 +639,7 @@ $messages = array(
 'nextn-title'                      => 'ଆଗର $1ଟି  {{PLURAL:$1|result|ଫଳସବୁ}}',
 'shown-title'                      => '$1 ପ୍ରତି ପୃଷ୍ଠାର {{PLURAL:$1|ଫଳାଫଳ|ଫଳାଫଳ}} ଦେଖାଇବେ ।',
 'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖିବେ',
+'searchmenu-exists'                => "'''ଏହି ଉଇକିରେ \"[[:\$1]]\" ନାଆଁରେ ପୃଷ୍ଠାଟିଏ ଅଛି ।'''",
 'searchmenu-new'                   => "'''\"[[:\$1]]\"ଟି ଏହି ଉଇକିରେ ତିଆରି କରିବେ!'''",
 'searchhelp-url'                   => 'Help:ସୂଚୀପତ୍ର',
 'searchprofile-articles'           => 'ସୂଚୀ ପୃଷ୍ଠା',
@@ -673,6 +682,8 @@ $messages = array(
 # Preferences page
 'preferences'               => 'ପସନ୍ଦ',
 'mypreferences'             => 'ମୋ ପସନ୍ଦ',
+'prefsnologin'              => 'ଲଗ‌‌ଇନ କରାଯାାଇନାହ୍ିଁ',
+'prefsnologintext'          => 'ବ୍ୟବହାରକାରୀଙ୍କ ପସନ୍ଦସବୁ ବଦଳାଇବା ପାଇଁ ଆପଣଙ୍କୁ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ଲଗ ଇନ]</span> କରିବାକୁ ପଡ଼ିବ ।',
 'skin-preview'              => 'ଦେଖଣା',
 'saveprefs'                 => 'ସାଇତିବେ',
 'rows'                      => 'ଧାଡ଼ି:',

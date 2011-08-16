@@ -789,7 +789,8 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'createaccountmail'          => 'Benutzerkonto anlegen (mit Passwortzusendung)',
 'createaccountreason'        => 'Grund:',
 'badretype'                  => 'Die beiden Passwörter stimmen nicht überein.',
-'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wähle einen anderen.',
+'userexists'                 => 'Dieser Benutzername ist schon vergeben.
+Bitte wähle einen anderen.',
 'loginerror'                 => 'Fehler bei der Anmeldung',
 'createaccounterror'         => 'Benutzerkonto konnte nicht erstellt werden: $1',
 'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber du bist nicht angemeldet. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktiviere diese und melde dich dann mit deinem neuen Benutzernamen und dem zugehörigen Passwort an.',
@@ -1050,7 +1051,7 @@ Bitte füge deine Änderungen in das obere Textfeld ein.
 'yourtext'                         => 'Dein Text',
 'storedversion'                    => 'Gespeicherte Version',
 'nonunicodebrowser'                => "'''Achtung:''' Dein Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwende einen anderen Browser um Seiten zu bearbeiten.",
-'editingold'                       => "'''Achtung: Du bearbeitest eine alte Version dieser Seite. Wenn du speicherst, werden alle neueren Versionen überschrieben.'''",
+'editingold'                       => "'''Achtung: Du bearbeitest eine alte Version dieser Seite. Sofern du sie speicherst, werden alle neueren Versionen überschrieben.'''",
 'yourdiff'                         => 'Unterschiede',
 'copyrightwarning'                 => "'''Bitte kopiere keine Webseiten, die nicht deine eigenen sind, benutze keine urheberrechtlich geschützten Werke ohne Erlaubnis des Urhebers!'''<br />
 Du gibst uns hiermit deine Zusage, dass du den Text '''selbst verfasst''' hast, dass der Text Allgemeingut '''(public domain)''' ist, oder dass der '''Urheber''' seine '''Zustimmung''' gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weise bitte auf der Diskussionsseite darauf hin.
@@ -3758,7 +3759,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'specialpages-note'              => '----
 * Reguläre Spezialseiten
 * <span class="mw-specialpagerestricted">Zugriffsbeschränkte Spezialseiten</span>
-* <span class="mw-specialpagecached">Cachegenerierte Spezialseiten</span>',
+* <span class="mw-specialpagecached">Gecachte Spezialseiten (Deren Inhalt ist möglicherweise veraltet.)</span>',
 'specialpages-group-maintenance' => 'Wartungslisten',
 'specialpages-group-other'       => 'Andere Spezialseiten',
 'specialpages-group-login'       => 'Anmelden',
@@ -3859,5 +3860,6 @@ Dies passiert normalerweise, wenn die Kategorie zur Seite in einer Vorlage hinzu
 'ajax-category-already-present' => 'Diese Seite gehört bereits zur Kategorie $1',
 'ajax-category-hook-error'      => 'Eine lokale Funktion verhindert, dass die Änderungen gespeichert werden',
 'ajax-api-error'                => 'Die API hat einen Fehler zurückgegeben: $1: $2',
+'ajax-api-unknown-error'        => 'Die API hat einen unbekannten Fehler ausgegeben.',
 
 );

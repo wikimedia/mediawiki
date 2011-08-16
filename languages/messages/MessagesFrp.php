@@ -3957,5 +3957,6 @@ En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge dens 
 'ajax-category-already-present' => 'Ceta pâge est ja a la catègorie $1',
 'ajax-category-hook-error'      => 'Una fonccion locala at empachiê d’encartar los changements',
 'ajax-api-error'                => 'L’API at retornâ una èrror : $1 : $2',
+'ajax-api-unknown-error'        => 'L’API at retornâ una èrror encognua',
 
 );

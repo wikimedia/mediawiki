@@ -256,6 +256,7 @@ $1',
 'portal'               => 'Siā-lí mn̂g-chhùi-kháu',
 'portal-url'           => 'Project:Siā-lí mn̂g-chhùi-kháu',
 'privacy'              => 'Ín-su chèng-chhek',
+'privacypage'          => 'Project:Ún-su chèng-chhek',
 
 'badaccess' => 'Siū-khoân chhò-ngō͘',
 

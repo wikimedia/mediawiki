@@ -1580,4 +1580,8 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 # HTML forms
 'htmlform-selectorother-other' => 'Àteru',
 
+# Add categories per AJAX
+'ajax-confirm-save' => 'Sarba',
+'ajax-error-title'  => 'Faddina',
+
 );

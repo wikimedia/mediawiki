@@ -660,9 +660,11 @@ Neno la siri la muda: $2',
 'changeemail'          => 'Kubadilisha anwani ya barua pepe',
 'changeemail-header'   => 'Badilisha anwani ya barua pepe ya akaunti yako',
 'changeemail-text'     => 'Jaza fomu hii ili kubadilisha anwani yako ya barua pepe. Itabidi uingize neno lako la siri ili kukamilisha badiliko hilo.',
+'changeemail-no-info'  => 'Lazima uwe umeingia ili kuweza kutumia kurasa hii moja kwa moja.',
 'changeemail-oldemail' => 'Anwani ya barua pepe iliyopo sasa:',
 'changeemail-newemail' => 'Anwani mpya ya barua pepe:',
 'changeemail-none'     => '(hakuna)',
+'changeemail-submit'   => 'Badilisha anwani ya barua pepe',
 'changeemail-cancel'   => 'Batilisha',
 
 # Edit page toolbar
@@ -2511,6 +2513,7 @@ Tafadhali jaribu tena.',
 'pageinfo-header-watchlist' => 'Maangalizi',
 'pageinfo-subjectpage'      => 'Ukurasa',
 'pageinfo-talkpage'         => 'Ukurasa wa majadiliano',
+'pageinfo-watchers'         => 'Idadi ya wanaofuatilia',
 'pageinfo-edits'            => 'Idadi ya haririo',
 
 # Patrol log
@@ -2537,6 +2540,7 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'widthheightpage'        => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
 'file-info'              => 'ukubwa wa faili: $1, aina ya MIME: $2',
 'file-info-size'         => 'piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4',
+'file-info-size-pages'   => 'Piseli $1 × $2, ukubwa wa faili: $3, aina ya MIME: $4, {{PLURAL:$5|ukurasa|kurasa}} $5',
 'file-nohires'           => '<small>Hakuna saizi kubwa zaidi.</small>',
 'svg-long-desc'          => 'faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3',
 'show-big-image'         => 'Ukubwa wa awali',
@@ -2636,6 +2640,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-copyrightowner'              => 'Mwenye hatimiliki',
 'exif-pngfilecomment'              => 'Maoni juu ya faili la PNG',
 'exif-giffilecomment'              => 'Maoni juu ya faili la GIF',
+'exif-personinimage'               => 'Mtu aliyepigwa picha',
 
 'exif-unknowndate' => 'Tarehe haijulikani',
 
@@ -2994,13 +2999,16 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'tags-hitcount'           => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
 
 # Special:ComparePages
-'comparepages'     => 'Linganisha kurasa',
-'compare-selector' => 'Kulinganisha mapitio',
-'compare-page1'    => 'Ukurasa wa kwanza',
-'compare-page2'    => 'Ukurasa wa pili',
-'compare-rev1'     => 'Pitio la kwanza',
-'compare-rev2'     => 'Pitio la pili',
-'compare-submit'   => 'Linganisha',
+'comparepages'                => 'Linganisha kurasa',
+'compare-selector'            => 'Kulinganisha mapitio',
+'compare-page1'               => 'Ukurasa wa kwanza',
+'compare-page2'               => 'Ukurasa wa pili',
+'compare-rev1'                => 'Pitio la kwanza',
+'compare-rev2'                => 'Pitio la pili',
+'compare-submit'              => 'Linganisha',
+'compare-invalid-title'       => 'Jina la ukurasa uliloliandika ni batili.',
+'compare-title-not-exists'    => 'Jina la ukurasa ulilotaja halipatikani.',
+'compare-revision-not-exists' => 'Pitio ulilotaja halipatikani.',
 
 # Database error messages
 'dberr-header'      => 'Wiki imekuta tatizo',
@@ -3038,10 +3046,14 @@ Tovuti hii inapata matatatizo wakati huu.',
 'ajax-add-category-summary'     => 'Ongeza jamii ya "$1"',
 'ajax-edit-category-summary'    => 'Jamii ya "$1" imebadilishwa iwe "$2"',
 'ajax-remove-category-summary'  => 'Ondoa jamii ya "$1"',
+'ajax-category-question'        => 'Kwa nini unataka kufanya mabadiliko yafuatayo:',
 'ajax-error-title'              => 'Hitilafu',
 'ajax-remove-category-error'    => ' Jamii "$1" haikuweza kuondolewa.
 Huwa jamii haiwezi kuondolewa kwenye ukurasa wakati jamii imeingizwa ndani ya kigezo fulani.',
+'ajax-edit-category-error'      => 'Ilikuwa si ​​rahisi kuhariri jamii ya "$1". 
+Hii kwa kawaida hutokea wakati jamii imekuwa imeingizwa katika ukurasa ndani ya kigezo.',
 'ajax-category-already-present' => 'Ukarasa huu tayari uko katika jamii ya $1',
 'ajax-api-error'                => 'API iliripoti hitilafu: $1: $2.',
+'ajax-api-unknown-error'        => 'API iliripoti hitilafu isiyojulikana.',
 
 );

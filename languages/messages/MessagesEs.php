@@ -2395,7 +2395,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'Pueden editar',
+'restriction-edit'   => 'Editar',
 'restriction-move'   => 'Pueden trasladar',
 'restriction-create' => 'Crear',
 'restriction-upload' => 'Subir',

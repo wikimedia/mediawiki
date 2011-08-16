@@ -556,4 +556,7 @@ Aamma takuuk [[Special:WantedCategories|sunut atassusinut kissaatigineqartut]].'
 # Special:SpecialPages
 'specialpages' => 'Quppernerit immikkut ittut',
 
+# Add categories per AJAX
+'ajax-confirm-save' => 'Toqqoruk',
+
 );

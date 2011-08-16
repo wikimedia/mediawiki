@@ -3709,5 +3709,6 @@ sto occurre generalmente si le categoria ha essite addite al pagina per medio de
 'ajax-category-already-present' => 'Iste pagina pertine jam al categoria $1',
 'ajax-category-hook-error'      => 'Un function local ha impedite le salveguarda del modificationes',
 'ajax-api-error'                => 'Le API retornava un error: $1: $2',
+'ajax-api-unknown-error'        => 'Le API retornava un error incognite.',
 
 );

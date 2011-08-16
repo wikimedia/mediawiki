@@ -24,6 +24,7 @@
  * @author Fryed-peach
  * @author Grondin
  * @author Guillom
+ * @author Hashar
  * @author Hercule
  * @author Houcinee1
  * @author Hégésippe Cormier
@@ -776,8 +777,8 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'createaccountmail'          => 'par courriel',
 'createaccountreason'        => 'Motif :',
 'badretype'                  => 'Les mots de passe que vous avez saisis ne correspondent pas.',
-'userexists'                 => 'Le nom d’utilisateur que vous avez saisi est déjà utilisé.
-Veuillez en choisir un autre.',
+'userexists'                 => 'Nom d’utilisateur entré déjà utilisé.
+Veuillez choisir un nom différent.',
 'loginerror'                 => 'Erreur de connexion',
 'createaccounterror'         => 'Impossible de créer le compte : $1',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
@@ -3765,7 +3766,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 'specialpages-note'              => '----
 * Pages spéciales normales.
 * <span class="mw-specialpagerestricted">Pages spéciales restreintes.</span>
-* <span class="mw-specialpagecached">Pages spéciales seulement en cache.</span>',
+* <span class="mw-specialpagecached">Pages spéciales seulement en cache (pourrait être obsolètes).</span>',
 'specialpages-group-maintenance' => 'Rapports de maintenance',
 'specialpages-group-other'       => 'Autres pages spéciales',
 'specialpages-group-login'       => 'S’identifier / s’inscrire',
@@ -3866,5 +3867,6 @@ Cela se produit généralement lorsque la catégorie a été ajoutée à la page
 'ajax-category-already-present' => 'Cette page appartient déjà à la catégorie $1',
 'ajax-category-hook-error'      => 'Une fonction locale a empêché d’enregistrer les changements',
 'ajax-api-error'                => 'L’API a retourné une erreur : $1 : $2',
+'ajax-api-unknown-error'        => "L'API a retourné une erreur inconnue",
 
 );

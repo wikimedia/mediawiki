@@ -2063,4 +2063,8 @@ $5
 # HTML forms
 'htmlform-selectorother-other' => 'ಇತರ',
 
+# Add categories per AJAX
+'ajax-add-category-submit' => 'ಸೇರಿಸು',
+'ajax-confirm-save'        => 'ಉಳಿಸಿ',
+
 );

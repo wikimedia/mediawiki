@@ -3712,5 +3712,6 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'ajax-category-already-present' => 'Гэтая старонка ўжо належыць катэгорыі $1',
 'ajax-category-hook-error'      => 'Лякальная функцыя перадухіліла захаваньне зьменаў',
 'ajax-api-error'                => 'API вярнуў памылку: $1: $2',
+'ajax-api-unknown-error'        => 'API вярнуў невядомую памылку.',
 
 );

@@ -847,6 +847,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'PHPのmail()関数で不明なエラー',
+'user-mail-no-addy'      => '電子メールアドレスなしで、電子メールを送信しようとしました。',
 
 # Change password dialog
 'resetpass'                 => 'パスワードの変更',
@@ -883,9 +884,13 @@ $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'メールアドレスの変更',
+'changeemail-header'   => 'アカウントのメールアドレスを変更',
+'changeemail-text'     => 'このフォームへ入力することで、メールアドレスを変更することができます。メールアドレスの変更を完了するためには、パスワードを入力する必要があります。',
+'changeemail-no-info'  => 'このページに直接アクセスするためにはログインしている必要があります。',
 'changeemail-oldemail' => '現在のメールアドレス：',
 'changeemail-newemail' => '新しいメールアドレス：',
 'changeemail-none'     => '(なし)',
+'changeemail-submit'   => 'メールアドレスを変更',
 'changeemail-cancel'   => '中止',
 
 # Edit page toolbar
@@ -1409,6 +1414,8 @@ $1",
 'prefs-watchlist-token'         => 'ウォッチリストのトークン：',
 'prefs-misc'                    => 'その他',
 'prefs-resetpass'               => 'パスワードの変更',
+'prefs-changeemail'             => 'メールアドレスを変更',
+'prefs-setemail'                => 'メールアドレスを設定',
 'prefs-email'                   => 'メールの設定',
 'prefs-rendering'               => '表示',
 'saveprefs'                     => '保存',
@@ -1613,10 +1620,11 @@ HTMLタグを見直してください。',
 'right-sendemail'             => '他の利用者へ電子メールを送る',
 
 # User rights log
-'rightslog'      => '利用者権限変更記録',
-'rightslogtext'  => '以下は利用者権限の変更記録です。',
-'rightslogentry' => '$1の所属グループを$2から$3へ変更しました',
-'rightsnone'     => '（なし）',
+'rightslog'                  => '利用者権限変更記録',
+'rightslogtext'              => '以下は利用者権限の変更記録です。',
+'rightslogentry'             => '$1の所属グループを$2から$3へ変更しました',
+'rightslogentry-autopromote' => '$2 から $3 に自動的に昇格',
+'rightsnone'                 => '（なし）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'このページの閲覧',
@@ -2284,8 +2292,10 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchlistanontext'    => 'ウォッチリストに入っている項目を表示または編集するには、$1してください。',
 'watchnologin'         => 'ログインしていません',
 'watchnologintext'     => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
+'addwatch'             => 'ウォッチリストに追加',
 'addedwatchtext'       => "ページ 「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]に追加しました。
 このページと付属のトークページに変更があった際には、ウォッチリストに表示されます。また、ウォッチリストに登録されているページは[[Special:RecentChanges|最近の更新の一覧]]に'''太字'''で表示され、見つけやすくなります。",
+'removewatch'          => 'ウォッチリストから除去',
 'removedwatchtext'     => 'ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]から除去しました。',
 'watch'                => 'ウォッチ',
 'watchthispage'        => 'このページをウォッチする',
@@ -2306,8 +2316,9 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchlist-options'    => 'ウォッチリストのオプション',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'ウォッチリストに追加しています・・・',
-'unwatching' => 'ウォッチリストから除去しています・・・',
+'watching'       => 'ウォッチリストに追加しています・・・',
+'unwatching'     => 'ウォッチリストから除去しています・・・',
+'watcherrortext' => 'ウォッチリストの「$1」の設定を変更中にエラーが発生しました。',
 
 'enotif_mailer'                => '{{SITENAME}} 通知メール',
 'enotif_reset'                 => 'すべてのページを訪問済みにする',
@@ -2439,6 +2450,7 @@ $2による最後の版へ変更されました。',
 'protect-level-sysop'         => '管理者のみ',
 'protect-summary-cascade'     => '連続',
 'protect-expiring'            => '$1(UTC)で自動的に解除',
+'protect-expiring-local'      => '期限 $1',
 'protect-expiry-indefinite'   => '無期限',
 'protect-cascade'             => 'このページに読み込まれているページを保護する（カスケード保護）',
 'protect-cantedit'            => 'このページの編集権限がないため、保護レベルを変更できません。',
@@ -2480,8 +2492,7 @@ $2による最後の版へ変更されました。',
 保存版は定期的に消去される可能性があります。',
 'undelete-fieldset-title'      => '削除された版の復元',
 'undeleteextrahelp'            => "すべての版を復元する場合は、チェックボックスをどれも選択していない状態で'''''{{int:undeletebtn}}'''''をクリックしてください。
-特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で'''''{{int:undeletebtn}}'''''をクリックしてください。
-'''''{{int:undeletereset}}'''''をクリックすると、コメント欄と全てのチェックボックスが消去されます。",
+特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で'''''{{int:undeletebtn}}'''''をクリックしてください。",
 'undeleterevisions'            => '$1版が保存されています',
 'undeletehistory'              => 'ページの復帰を行うと、すべての特定版が履歴に復帰します。ページが削除された後に、同じ名前で新しいページが作成されていた場合、復帰した特定版は、その前の履歴として出現します。',
 'undeleterevdel'               => '復帰した結果、版指定削除されているページまたはファイルの版が最新となる場合、復帰は実行されません。
@@ -2528,6 +2539,7 @@ $1',
 # Namespace form on various pages
 'namespace'             => '名前空間：',
 'invert'                => '選択したものを除く',
+'tooltip-invert'        => '選択した名前空間（および、チェックされている場合、関連づけられた名前空間）のページの変更を非表示にするには、このチェックボックスをオンにします。',
 'namespace_association' => '関連する名前空間',
 'blanknamespace'        => '（標準）',
 
@@ -3043,6 +3055,18 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'spambot_username'    => 'MediaWikiスパム除去',
 'spam_reverting'      => '$1へのリンクを含まない最新の版に差し戻し',
 'spam_blanking'       => 'すべての版が$1へのリンクを含んでいます。白紙化します。',
+
+# Info page
+'pageinfo-title'            => '「$1」の情報',
+'pageinfo-header-edits'     => '編集',
+'pageinfo-header-watchlist' => 'ウォッチリスト',
+'pageinfo-subjectpage'      => 'ページ',
+'pageinfo-talkpage'         => 'トークページ',
+'pageinfo-watchers'         => 'ウォッチリストに入れている利用者数',
+'pageinfo-edits'            => '編集回数',
+'pageinfo-authors'          => '投稿者数',
+'pageinfo-views'            => '閲覧数',
+'pageinfo-viewsperedit'     => '閲覧回数に対する編集回数',
 
 # Skin names
 'skinname-standard'    => 'クラシック',
@@ -3562,6 +3586,12 @@ $1',
 'confirm-purge-top'    => 'ページのキャッシュを破棄します。よろしいですか？',
 'confirm-purge-bottom' => 'ページのパージは、キャッシュを破棄し、強制的に最新の版を表示します。',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'このページをウォッチリストに追加しますか?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'このページをウォッチリストから除去しますか?',
+
 # Separators for various lists, etc.
 'comma-separator' => '、',
 'word-separator'  => '',
@@ -3792,13 +3822,16 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'tags-hitcount'           => '$1回の変更',
 
 # Special:ComparePages
-'comparepages'     => 'ページの比較',
-'compare-selector' => 'ページの版を比較',
-'compare-page1'    => 'ページ1',
-'compare-page2'    => 'ページ2',
-'compare-rev1'     => '版1',
-'compare-rev2'     => '版2',
-'compare-submit'   => '比較する',
+'comparepages'                => 'ページの比較',
+'compare-selector'            => 'ページの版を比較',
+'compare-page1'               => 'ページ1',
+'compare-page2'               => 'ページ2',
+'compare-rev1'                => '版1',
+'compare-rev2'                => '版2',
+'compare-submit'              => '比較する',
+'compare-invalid-title'       => '指定したページ名は使用できません。',
+'compare-title-not-exists'    => '指定されたページは存在しません。',
+'compare-revision-not-exists' => '指定された版は存在しません。',
 
 # Database error messages
 'dberr-header'      => '問題発生中です',
@@ -3827,13 +3860,26 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'sqlite-no-fts'  => '$1（全文検索なし）',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'カテゴリー追加',
-'ajax-add-category-submit'     => '追加',
-'ajax-confirm-title'           => '操作確認',
-'ajax-confirm-save'            => '保存',
-'ajax-add-category-summary'    => 'カテゴリー「$1」を追加',
-'ajax-remove-category-summary' => 'カテゴリー「$1」を除去',
-'ajax-error-title'             => 'エラー',
-'ajax-remove-category-error'   => 'このカテゴリーを除去することができませんでした。これは通常、カテゴリーがテンプレートによってページに追加されている場合に起こります。',
+'ajax-add-category'             => 'カテゴリー追加',
+'ajax-remove-category'          => 'カテゴリを除去',
+'ajax-edit-category'            => 'カテゴリを編集',
+'ajax-add-category-submit'      => '追加',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => '操作確認',
+'ajax-confirm-save'             => '保存',
+'ajax-confirm-save-all'         => 'すべての変更を保存',
+'ajax-cancel'                   => '編集をキャンセル',
+'ajax-cancel-all'               => 'すべての変更を保存',
+'ajax-add-category-summary'     => 'カテゴリー「$1」を追加',
+'ajax-edit-category-summary'    => 'カテゴリを「$1」から「$2」に変更',
+'ajax-remove-category-summary'  => 'カテゴリー「$1」を除去',
+'ajax-error-title'              => 'エラー',
+'ajax-remove-category-error'    => 'カテゴリー「$1」を除去することができませんでした。
+このエラーは、主にカテゴリーがテンプレートによってページにつけられている場合に発生します。',
+'ajax-edit-category-error'      => 'カテゴリー「$1」を編集することができませんでした。
+このエラーは、主にカテゴリーがテンプレートによってページにつけられている場合に発生します。',
+'ajax-category-already-present' => 'このページにはすでにカテゴリ「$1」がついています',
+'ajax-api-error'                => 'APIがエラーを返しました: $1: $2',
+'ajax-api-unknown-error'        => 'APIが不明なエラーを返しました。',
 
 );

@@ -2376,7 +2376,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-cascadeon'           => 'Tato stránka je právě zamčena, protože je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
 'protect-default'             => 'Povolit všem',
-'protect-fallback'            => 'Vyžaduje povolení "$1"',
+'protect-fallback'            => 'Vyžaduje oprávnění „$1“',
 'protect-level-autoconfirmed' => 'Zakázat novým a neregistrovaným uživatelům',
 'protect-level-sysop'         => 'Pouze správci',
 'protect-summary-cascade'     => 'kaskádový',
@@ -3845,5 +3845,6 @@ To se obvykle stává v případě, že byla stránka do kategorie přidána pro
 'ajax-category-already-present' => 'Tato stránka již do kategorie $1 patří',
 'ajax-category-hook-error'      => 'Místní funkce zabránila uložení změn',
 'ajax-api-error'                => 'API vrátilo chybu: $1: $2',
+'ajax-api-unknown-error'        => 'API vrátilo neznámou chybu.',
 
 );
