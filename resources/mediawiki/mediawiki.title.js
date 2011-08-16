@@ -21,17 +21,17 @@
 	 * @return {Title} this
 	 */
 var	Title = function( title, namespace ) {
-			this._ns = 0; // integer namespace id
-			this._name = null; // name in canonical 'database' form
-			this._ext = null; // extension
+		this._ns = 0; // integer namespace id
+		this._name = null; // name in canonical 'database' form
+		this._ext = null; // extension
 
-			if ( arguments.length === 2 ) {
-				setNameAndExtension( this, title );
-				this._ns = fixNsId( namespace );
-			} else if ( arguments.length === 1 ) {
-				setAll( this, title );
-			}
-			return this;
+		if ( arguments.length === 2 ) {
+			setNameAndExtension( this, title );
+			this._ns = fixNsId( namespace );
+		} else if ( arguments.length === 1 ) {
+			setAll( this, title );
+		}
+		return this;
 	},
 
 	/**
@@ -168,12 +168,12 @@ var	Title = function( title, namespace ) {
 	/* Static space */
 
 	/**
-	 * Wether this title exists on the wiki.
+	 * Whether this title exists on the wiki.
 	 * @param title {mixed} prefixed db-key name (string) or instance of Title
 	 * @return {mixed} Boolean true/false if the information is available. Otherwise null.
 	 */
 	Title.exists = function( title ) {
-		var	type = $.type( title ), obj = Title.exist.pages, match;
+		var type = $.type( title ), obj = Title.exist.pages, match;
 		if ( type === 'string' ) {
 			match = obj[title];
 		} else if ( type === 'object' && title instanceof Title ) {
@@ -206,7 +206,7 @@ var	Title = function( title, namespace ) {
 		set: function( titles, state ) {
 			titles = $.isArray( titles ) ? titles : [titles];
 			state = state === undefined ? true : !!state;
-			var	pages = this.pages, i, len = titles.length;
+			var pages = this.pages, i, len = titles.length;
 			for ( i = 0; i < len; i++ ) {
 				pages[ titles[i] ] = state;
 			}
@@ -313,7 +313,7 @@ var	Title = function( title, namespace ) {
 		},
 
 		/**
-		 * Wether this title exists on the wiki.
+		 * Whether this title exists on the wiki.
 		 * @return {mixed} Boolean true/false if the information is available. Otherwise null.
 		 */
 		exists: function() {
