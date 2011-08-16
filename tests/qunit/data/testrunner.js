@@ -33,10 +33,6 @@ if ( QUnit.urlParams.completenesstest ) {
 			tester.methodCallTracker['Map'] = true;
 			return true;
 		}
-		if ( val instanceof mw.Title ) {
-			tester.methodCallTracker['Title'] = true;
-			return true;
-		}
 
 		// Don't record methods of the properties of a jQuery object
 		if ( val instanceof $ ) {

@@ -175,7 +175,6 @@ production.
 * (bug 28904) (bug 29773) Update jQuery version from 1.4.4 to 1.6.2 (the latest version)
 * (bug 29441) Expose CapitalLinks config in JS to allow modules to properly
   handle titles on case-sensitive wikis.
-* (bug 29397) Implement mw.Title module in core.
 * In MySQL 4.1.9+ with replication enabled, the slave lag should come from
   SHOW SLAVE STATUS instead of SHOW PROCESSLIST.
 * Language codes in $wgDummyLanguageCodes are now excluded on localization

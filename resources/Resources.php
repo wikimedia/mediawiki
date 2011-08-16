@@ -448,9 +448,6 @@ return array(
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 	),
-	'mediawiki.Title' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
-	),
 	'mediawiki.user' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.user.js',
 		'dependencies' => array(
