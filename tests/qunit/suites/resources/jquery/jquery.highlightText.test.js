@@ -6,9 +6,9 @@ test( '-- Initial check', function() {
 } );
 
 test( 'Check', function() {
-	expect(3);
+	expect(2);
 	var $fixture;
-   
+
 	$fixture = $( '<p>Blue Öyster Cult</p>' );
 	$fixture.highlightText( 'Blue' );
 	equal(
@@ -26,7 +26,7 @@ test( 'Check', function() {
 	/**
 	 * Highlighter broken on punctuation mark.
 	 */
-	/**
+	/**  dont forget to update the value in expect() at the top!
 	$fixture = $( '<p>So good. To be there</p>' );
 	$fixture.highlightText( 'good' );
 	equal(
