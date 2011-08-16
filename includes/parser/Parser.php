@@ -2694,48 +2694,50 @@ class Parser {
 			date_default_timezone_set( $oldtz );
 		}
 
+		$pageLang = $this->getFunctionLang();
+
 		switch ( $index ) {
 			case 'currentmonth':
-				$value = $wgContLang->formatNum( gmdate( 'm', $ts ) );
+				$value = $pageLang->formatNum( gmdate( 'm', $ts ) );
 				break;
 			case 'currentmonth1':
-				$value = $wgContLang->formatNum( gmdate( 'n', $ts ) );
+				$value = $pageLang->formatNum( gmdate( 'n', $ts ) );
 				break;
 			case 'currentmonthname':
-				$value = $wgContLang->getMonthName( gmdate( 'n', $ts ) );
+				$value = $pageLang->getMonthName( gmdate( 'n', $ts ) );
 				break;
 			case 'currentmonthnamegen':
-				$value = $wgContLang->getMonthNameGen( gmdate( 'n', $ts ) );
+				$value = $pageLang->getMonthNameGen( gmdate( 'n', $ts ) );
 				break;
 			case 'currentmonthabbrev':
-				$value = $wgContLang->getMonthAbbreviation( gmdate( 'n', $ts ) );
+				$value = $pageLang->getMonthAbbreviation( gmdate( 'n', $ts ) );
 				break;
 			case 'currentday':
-				$value = $wgContLang->formatNum( gmdate( 'j', $ts ) );
+				$value = $pageLang->formatNum( gmdate( 'j', $ts ) );
 				break;
 			case 'currentday2':
-				$value = $wgContLang->formatNum( gmdate( 'd', $ts ) );
+				$value = $pageLang->formatNum( gmdate( 'd', $ts ) );
 				break;
 			case 'localmonth':
-				$value = $wgContLang->formatNum( $localMonth );
+				$value = $pageLang->formatNum( $localMonth );
 				break;
 			case 'localmonth1':
-				$value = $wgContLang->formatNum( $localMonth1 );
+				$value = $pageLang->formatNum( $localMonth1 );
 				break;
 			case 'localmonthname':
-				$value = $wgContLang->getMonthName( $localMonthName );
+				$value = $pageLang->getMonthName( $localMonthName );
 				break;
 			case 'localmonthnamegen':
-				$value = $wgContLang->getMonthNameGen( $localMonthName );
+				$value = $pageLang->getMonthNameGen( $localMonthName );
 				break;
 			case 'localmonthabbrev':
-				$value = $wgContLang->getMonthAbbreviation( $localMonthName );
+				$value = $pageLang->getMonthAbbreviation( $localMonthName );
 				break;
 			case 'localday':
-				$value = $wgContLang->formatNum( $localDay );
+				$value = $pageLang->formatNum( $localDay );
 				break;
 			case 'localday2':
-				$value = $wgContLang->formatNum( $localDay2 );
+				$value = $pageLang->formatNum( $localDay2 );
 				break;
 			case 'pagename':
 				$value = wfEscapeWikiText( $this->mTitle->getText() );
@@ -2860,68 +2862,68 @@ class Parser {
 				$value = ( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
 				break;
 			case 'currentdayname':
-				$value = $wgContLang->getWeekdayName( gmdate( 'w', $ts ) + 1 );
+				$value = $pageLang->getWeekdayName( gmdate( 'w', $ts ) + 1 );
 				break;
 			case 'currentyear':
-				$value = $wgContLang->formatNum( gmdate( 'Y', $ts ), true );
+				$value = $pageLang->formatNum( gmdate( 'Y', $ts ), true );
 				break;
 			case 'currenttime':
-				$value = $wgContLang->time( wfTimestamp( TS_MW, $ts ), false, false );
+				$value = $pageLang->time( wfTimestamp( TS_MW, $ts ), false, false );
 				break;
 			case 'currenthour':
-				$value = $wgContLang->formatNum( gmdate( 'H', $ts ), true );
+				$value = $pageLang->formatNum( gmdate( 'H', $ts ), true );
 				break;
 			case 'currentweek':
 				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				# int to remove the padding
-				$value = $wgContLang->formatNum( (int)gmdate( 'W', $ts ) );
+				$value = $pageLang->formatNum( (int)gmdate( 'W', $ts ) );
 				break;
 			case 'currentdow':
-				$value = $wgContLang->formatNum( gmdate( 'w', $ts ) );
+				$value = $pageLang->formatNum( gmdate( 'w', $ts ) );
 				break;
 			case 'localdayname':
-				$value = $wgContLang->getWeekdayName( $localDayOfWeek + 1 );
+				$value = $pageLang->getWeekdayName( $localDayOfWeek + 1 );
 				break;
 			case 'localyear':
-				$value = $wgContLang->formatNum( $localYear, true );
+				$value = $pageLang->formatNum( $localYear, true );
 				break;
 			case 'localtime':
-				$value = $wgContLang->time( $localTimestamp, false, false );
+				$value = $pageLang->time( $localTimestamp, false, false );
 				break;
 			case 'localhour':
-				$value = $wgContLang->formatNum( $localHour, true );
+				$value = $pageLang->formatNum( $localHour, true );
 				break;
 			case 'localweek':
 				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				# int to remove the padding
-				$value = $wgContLang->formatNum( (int)$localWeek );
+				$value = $pageLang->formatNum( (int)$localWeek );
 				break;
 			case 'localdow':
-				$value = $wgContLang->formatNum( $localDayOfWeek );
+				$value = $pageLang->formatNum( $localDayOfWeek );
 				break;
 			case 'numberofarticles':
-				$value = $wgContLang->formatNum( SiteStats::articles() );
+				$value = $pageLang->formatNum( SiteStats::articles() );
 				break;
 			case 'numberoffiles':
-				$value = $wgContLang->formatNum( SiteStats::images() );
+				$value = $pageLang->formatNum( SiteStats::images() );
 				break;
 			case 'numberofusers':
-				$value = $wgContLang->formatNum( SiteStats::users() );
+				$value = $pageLang->formatNum( SiteStats::users() );
 				break;
 			case 'numberofactiveusers':
-				$value = $wgContLang->formatNum( SiteStats::activeUsers() );
+				$value = $pageLang->formatNum( SiteStats::activeUsers() );
 				break;
 			case 'numberofpages':
-				$value = $wgContLang->formatNum( SiteStats::pages() );
+				$value = $pageLang->formatNum( SiteStats::pages() );
 				break;
 			case 'numberofadmins':
-				$value = $wgContLang->formatNum( SiteStats::numberingroup( 'sysop' ) );
+				$value = $pageLang->formatNum( SiteStats::numberingroup( 'sysop' ) );
 				break;
 			case 'numberofedits':
-				$value = $wgContLang->formatNum( SiteStats::edits() );
+				$value = $pageLang->formatNum( SiteStats::edits() );
 				break;
 			case 'numberofviews':
-				$value = $wgContLang->formatNum( SiteStats::views() );
+				$value = $pageLang->formatNum( SiteStats::views() );
 				break;
 			case 'currenttimestamp':
 				$value = wfTimestamp( TS_MW, $ts );
@@ -2948,7 +2950,7 @@ class Parser {
 			case 'stylepath':
 				return $wgStylePath;
 			case 'directionmark':
-				return $wgContLang->getDirMark();
+				return $pageLang->getDirMark();
 			case 'contentlanguage':
 				global $wgLanguageCode;
 				return $wgLanguageCode;
