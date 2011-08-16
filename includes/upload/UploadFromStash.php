@@ -38,7 +38,7 @@ class UploadFromStash extends UploadBase {
 	
 	public static function isValidKey( $key ) {
 		// this is checked in more detail in UploadStash
-		return preg_match( UploadStash::KEY_FORMAT_REGEX, $key ) ? true : false;
+		return (bool)preg_match( UploadStash::KEY_FORMAT_REGEX, $key );
 	}
 
 	/**
