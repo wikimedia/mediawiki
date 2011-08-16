@@ -6,32 +6,34 @@ test( '-- Initial check', function() {
 } );
 
 test( 'Check', function() {
-	expect(2);
+	var cases = [
+		{
+			text: 'Blue Öyster Cult',
+			highlight: 'Blue',
+			expected: '<span class="highlight">Blue</span> Öyster Cult'
+		},
+		{
+			text: 'Österreich',
+			highlight: 'Österreich',
+			expected: '<span class="highlight">Österreich</span>'
+		},
+		{
+			desc: 'Highlighter broken on punctuation mark',
+			text: 'So good. To be there',
+			highlight: 'good',
+			expected: 'So <span class="highlight">good</span>. To be there'
+		}
+	];
+	expect(cases.length);
 	var $fixture;
 
-	$fixture = $( '<p>Blue Öyster Cult</p>' );
-	$fixture.highlightText( 'Blue' );
-	equal(
-		'<span class="highlight">Blue</span> Öyster Cult',
-		$fixture.html()
-		);
-
-	$fixture = $( '<p>Österreich</p>' );
-	$fixture.highlightText( 'Österreich' );
-	equal(
-		'<span class="highlight">Österreich</span>',
-		$fixture.html()
-		);
-
-	/**
-	 * Highlighter broken on punctuation mark.
-	 */
-	/**  dont forget to update the value in expect() at the top!
-	$fixture = $( '<p>So good. To be there</p>' );
-	$fixture.highlightText( 'good' );
-	equal(
-		'So <span class="highlight">good</span>. To be there',
-		$fixture.html()
-		);
-	*/
+	$.each(cases, function( i, item ) {
+		$fixture = $( '<p></p>' ).text( item.text );
+		$fixture.highlightText( item.highlight );
+		equals(
+			$fixture.html(),
+			$('<p>' + item.expected + '</p>').html(), // re-parse to normalize!
+			item.desc || undefined
+			);
+	} );
 } );
