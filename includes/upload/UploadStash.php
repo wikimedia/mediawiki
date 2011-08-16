@@ -96,7 +96,7 @@ class UploadStash {
 		if ( !isset( $this->fileMetadata[$key] ) ) {
 			if ( !$this->fetchFileMetadata( $key ) ) {
 				// If nothing was received, it's likely due to replication lag.  Check the master to see if the record is there.
-				$this->fetchFileMetadata( $key, true );
+				$this->fetchFileMetadata( $key, DB_MASTER );
 			}
 
 			if ( !isset( $this->fileMetadata[$key] ) ) {
@@ -155,7 +155,6 @@ class UploadStash {
 	 *
 	 * @param $path String: path to file you want stashed
 	 * @param $sourceType String: the type of upload that generated this file (currently, I believe, 'file' or null)
-	 * @param $key String: optional, unique key for this file. Used for directory hashing when storing, otherwise not important
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
 	 * @throws UploadStashNotLoggedInException
@@ -248,7 +247,6 @@ class UploadStash {
 			'us_status' => 'finished'
 		);
 
-		// if a row exists but previous checks on it passed, let the current user take over this key.
 		$dbw->insert(
 			'uploadstash',
 			$this->fileMetadata[$key],
@@ -424,10 +422,10 @@ class UploadStash {
 	 * @param $key String: key
 	 * @return boolean
 	 */
-	protected function fetchFileMetadata( $key, $readFromMaster = false ) {
+	protected function fetchFileMetadata( $key, $readFromDB = DB_SLAVE ) {
 		// populate $fileMetadata[$key]
 		$dbr = null;
-		if( $readFromMaster ) {
+		if( $readFromDB === DB_MASTER ) {
 			// sometimes reading from the master is necessary, if there's replication lag.
 			$dbr = $this->repo->getMasterDb();
 		} else {
