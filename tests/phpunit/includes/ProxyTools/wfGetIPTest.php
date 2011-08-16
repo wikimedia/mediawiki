@@ -9,14 +9,12 @@
  * TODO: need to cover the part dealing with XFF headers.
  */
 class wfGetIPTest extends MediaWikiTestCase {
-	// constant used to reset wfGetIP() internal static variable
-	const doReset = true;
 
 	/** helper */
 	public function assertIP( $expected, $msg = '' ) {
 		$this->assertEquals(
 			$expected,
-			wfGetIP( wfGetIPTest::doReset ),
+			wfGetIP( 'reset' ),
 			$msg );
 	}
 
@@ -24,13 +22,10 @@ class wfGetIPTest extends MediaWikiTestCase {
 	public function assertIPNot( $expected, $msg = '' ) {
 		$this->assertNotEquals(
 			$expected,
-			wfGetIP( wfGetIPTest::doReset ),
+			wfGetIP( 'reset' ),
 			$msg );
 	}
 
-	/**
-	 * @group Broken
-	 */
 	function testGetLoopbackAddressWhenInCommandLine() {
 		global $wgCommandLineMode;
 		$save = $wgCommandLineMode;
@@ -42,9 +37,6 @@ class wfGetIPTest extends MediaWikiTestCase {
 		$wgCommandLineMode = $save;
 	}
 
-	/**
-	 * @group Broken
-	 */
 	function testGetFromServerRemoteAddr() {
 		global $_SERVER;
 		$save = null;
@@ -70,11 +62,17 @@ class wfGetIPTest extends MediaWikiTestCase {
 		} else {
 			$_SERVER['REMOTE_ADDR'] = $save;
 		}
+		# Restore internal static altered above
+		wfGetIP( 'reset' );
 	}
 
 	/**
 	 * @expectedException MWException
 	 * @group Broken
+	 * This is broken since it alter $wgCommandLineMode which is needed
+	 * by our exception handler.  Until someone find a correct way to handle
+	 * this case, the test should stay in the Broken group.
+	 * 
 	 */
 	function testLackOfRemoteAddrThrowAnException() {
 		global $wgCommandLineMode;
@@ -83,7 +81,7 @@ class wfGetIPTest extends MediaWikiTestCase {
 		# PHPUnit runs from the command line
 		$wgCommandLineMode = false;
 		# Next call throw an exception about lacking an IP
-		wfGetIP( wfGetIPTest::doReset );
+		wfGetIP( 'reset' );
 
 		$wgCommandLineMode = $save;
 	}
