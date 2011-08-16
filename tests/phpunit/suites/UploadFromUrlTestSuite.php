@@ -52,7 +52,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgLang = $context->getLang();
 		$wgOut = $context->getOutput();
 		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
-		$wgRequest = new WebRequest;
+		$wgRequest = $context->getRequest();
 
 		if ( $wgStyleDirectory === false ) {
 			$wgStyleDirectory   = "$IP/skins";

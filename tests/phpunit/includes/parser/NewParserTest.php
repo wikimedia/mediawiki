@@ -82,7 +82,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgLang'] = $context->getLang();
 		$tmpGlobals['wgOut'] = $context->getOutput();
 		$tmpGlobals['wgParser'] = new StubObject( 'wgParser', $GLOBALS['wgParserConf']['class'], array( $GLOBALS['wgParserConf'] ) );
-		$tmpGlobals['wgRequest'] = new WebRequest;
+		$tmpGlobals['wgRequest'] = $context->getRequest();
 
 		if ( $GLOBALS['wgStyleDirectory'] === false ) {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
