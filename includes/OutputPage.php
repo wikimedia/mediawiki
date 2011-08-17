@@ -2574,7 +2574,7 @@ $templates
 				// We're on a preview of a JS subpage
 				// Exclude this page from the user module in case it's in there (bug 26283)
 				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
-					array( 'excludepage' => $this->getTitle()->getPrefixedText() )
+					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 				);
 				// Load the previewed JS
 				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
@@ -2979,10 +2979,10 @@ $templates
 				// We're on a preview of a CSS subpage
 				// Exclude this page from the user module in case it's in there (bug 26283)
 				$otherTags .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES, false,
-					array( 'excludepage' => $this->getTitle()->getPrefixedText() )
+					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 				);
 				// Load the previewed CSS
-				$otherTags .= Html::inlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );;
+				$otherTags .= Html::inlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
 			} else {
 				// Load the user styles normally
 				$moduleStyles[] = 'user';
