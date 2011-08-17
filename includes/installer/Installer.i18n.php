@@ -604,6 +604,8 @@ Parameters:
 	'config-apc' => 'Message indicates if this program is available',
 	'config-eaccel' => 'Message indicates if this program is available',
 	'config-wincache' => 'Message indicates if this program is available',
+	'config-no-cli-uri' => 'Parameters:
+* $1 is the default value for scriptpath.',
 	'config-no-cli-uploads-check' => 'CLI = Call Level Interface',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
@@ -1318,6 +1320,8 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] усталяваны',
 	'config-no-cache' => "'''Папярэджаньне:''' немагчыма знайсьці [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] ці [http://www.iis.net/download/WinCacheForPhp WinCache].
 Аб’ектнае кэшаваньне ня ўключанае.",
+	'config-mod-security' => "'''Папярэджаньне''': на Вашым ўэб-сэрверы ўключаны [http://modsecurity.org/ mod_security]. У выпадку няслушнай наладцы, ён можа стаць прычынай праблемаў для MediaWiki ці іншага праграмнага забесьпячэньня, якое дазваляе ўдзельнікам дасылаць на сэрвэр любы зьмест.
+Глядзіце [http://modsecurity.org/documentation/ дакумэнтацыю mod_security] ці зьвярніцеся ў падтрымку Вашага хосту, калі ў Вас узьнікаюць выпадковыя праблемы.",
 	'config-diff3-bad' => 'GNU diff3 ня знойдзены.',
 	'config-imagemagick' => 'Знойдзены ImageMagick: <code>$1</code>.
 Пасьля ўключэньня загрузак будзе ўключанае маштабаваньне выяваў.',
@@ -1327,9 +1331,13 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 Маштабаваньне выяваў будзе адключанае.',
 	'config-no-uri' => "'''Памылка:''' Не магчыма вызначыць цяперашні URI.
 Усталяваньне спыненае.",
+	'config-no-cli-uri' => "'''Папярэджаньне''': Не пазначаны --scriptpath, па змоўчваньні выкарыстоўваецца: <code>$1</code>.",
 	'config-using-server' => 'Выкарыстоўваецца назва сэрвэра «<nowiki>$1</nowiki>».',
+	'config-using-uri' => 'Выкарыстоўваецца URL-спасылка сэрвэра «<nowiki>$1$2</nowiki>».',
 	'config-uploads-not-safe' => "'''Папярэджаньне:''' дырэкторыя для загрузак па змоўчваньні <code>$1</code> уразьлівая да выкананьня адвольнага коду.
 Хоць MediaWiki і правярае ўсе файлы перад захаваньнем, вельмі рэкамэндуецца [http://www.mediawiki.org/wiki/Manual:Security#Upload_security закрыць гэтую ўразьлівасьць] перад уключэньнем магчымасьці загрузкі файлаў.",
+	'config-no-cli-uploads-check' => "'''Папярэджаньне:''' Вашая дырэкторыя для загрузак па змоўчваньні (<code>$1</code>), не правераная на ўразьлівасьць да выкананьня адвольных скрыптоў падчас усталяваньня CLI.
+.",
 	'config-brokenlibxml' => 'У Вашай сыстэме ўсталяваныя PHP і libxml2 зь несумяшчальнымі вэрсіямі, што можа прывесьці да пашкоджаньня зьвестак MediaWiki і іншых ўэб-дастасаваньняў.
 Абнавіце PHP да вэрсіі 5.2.9 ці болей позьняй, а libxml2 да 2.7.3 ці болей позьняй ([http://bugs.php.net/bug.php?id=45996 паведамленьне пра памылку на сайце PHP]).
 Усталяваньне перарванае.',
@@ -4703,8 +4711,8 @@ Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 »."
 	'config-install-pg-plpgsql' => 'Vérification du language PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Vous devez installer le langage PL/pgSQL dans la base de données $1',
 	'config-pg-no-create-privs' => "Le compte que vous avez spécifié pour l'installation n'a pas suffisamment de privilèges pour créer un compte.",
-	'config-pg-not-in-role' => "Le compte que vous avez spécifié pour l'utilisateur web existe déjà !
-Le compte que vous avez spécifié pour l'installation n'est pas un super-utilisateur et n'est pas membre du rôle de l'internaute, il est donc incapable de créer des objets appartenant à l'utilisateur web.!
+	'config-pg-not-in-role' => "Le compte que vous avez spécifié pour l'utilisateur web existe déjà ! 
+Le compte que vous avez spécifié pour l'installation n'est pas un super-utilisateur et n'est pas membre du rôle de l'internaute, il est donc incapable de créer des objets appartenant à l'utilisateur web.! 
 
 MediaWiki exige actuellement que les tableaux soient possédés par un utilisateur web. S'il vous plaît, spécifier un autre nom de compte web, ou cliquez sur \"retour\" et spécifier un utilisateur avec les privilèges suffisants.",
 	'config-install-user' => "Création d'un utilisateur de la base de données",
@@ -4712,7 +4720,7 @@ MediaWiki exige actuellement que les tableaux soient possédés par un utilisate
 	'config-install-user-create-failed' => "Échec lors de la création de l'utilisateur « $1 » : $2",
 	'config-install-user-grant-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
 	'config-install-user-missing' => 'L\'utilisateur "$1" n\'existe pas.',
-	'config-install-user-missing-create' => 'L\'utilisateur "$1" n\'existe pas !
+	'config-install-user-missing-create' => 'L\'utilisateur "$1" n\'existe pas ! 
 S\'il vous plaît, cocher "Compte de créer" dans la case ci-dessous si vous voulez le créer.',
 	'config-install-tables' => 'Création des tables',
 	'config-install-tables-exist' => "'''Avertissement:''' Les tables MediaWiki semblent déjà exister.
@@ -6762,6 +6770,7 @@ A bélyegképek készítése le lesz tiltva.',
 	'config-no-uri' => "'''Hiba:''' Nem sikerült megállapítani a jelenlegi URI-t.
 Telepítés megszakítva.",
 	'config-using-server' => 'A következő szervernév használata: „<nowiki>$1</nowiki>”.',
+	'config-using-uri' => 'A következő szerver URL-cím használata: „<nowiki>$1$2</nowiki>”.',
 	'config-uploads-not-safe' => "'''Figyelmeztetés:''' a feltöltésekhez használt alapértelmezett könyvtárban (<code>$1</code>) tetszőleges külső szkript futtatható.
 Habár a MediaWiki ellenőrzi a feltöltött fájlokat az efféle biztonsági veszélyek megtalálása érdekében, a feltöltés engedélyezése előtt erősen ajánlott a [http://www.mediawiki.org/wiki/Manual:Security#Upload_security a sérülékenység megszüntetése].",
 	'config-brokenlibxml' => 'A rendszereden a PHP és libxml2 verziók olyan kombinációja található meg, ami hibásan működik, és észrevehetetlen adatkárosodást okoz a MediaWikiben és más webalkalmazásokban.
@@ -7118,6 +7127,7 @@ Alapértelmezett lista kihagyása.",
 	'config-insecure-keys' => "'''Figyelmeztetés:''' A telepítés során generált $1 {{PLURAL:$2|biztonsági kulcs|biztonsági kulcsok}} nem teljesen $1 {{PLURAL:$2|biztonságos|biztonságosak}}. Érdemes {{PLURAL:$2||őket}} manuálisan megváltoztatni.",
 	'config-install-sysop' => 'Az adminisztrátor felhasználói fiókjának létrehozása',
 	'config-install-subscribe-fail' => 'Nem sikerült feliratkozni a mediawiki-announce levelezőlistára: $1',
+	'config-install-subscribe-notpossible' => 'A cURL nincs telepítve és az allow_url_fopen nem érhető el.',
 	'config-install-mainpage' => 'Kezdőlap létrehozása az alapértelmezett tartalommal',
 	'config-install-extension-tables' => 'Táblák létrehozása az engedélyezett kiterjesztésekhez',
 	'config-install-mainpage-failed' => 'Nemsikerült létrehozni a kezdőlapot: $1',
@@ -8936,7 +8946,7 @@ $messages['kaa'] = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki haqqında xat tarqatıw dizimi]",
 );
 
-/** Kabardian (Cyrillic) (Къэбэрдеибзэ / Qabardjajəbza (Cyrillic))
+/** Kabardian (Cyrillic) (Адыгэбзэ (Cyrillic))
  * @author Bogups
  */
 $messages['kbd-cyrl'] = array(
@@ -11032,6 +11042,8 @@ De installatie kan mislukken!",
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] is op dit moment geïnstalleerd',
 	'config-no-cache' => "'''Waarschuwing:''' [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC] of [http://trac.lighttpd.net/ xcache / XCache] is niet aangetroffen.
 Het cachen van objecten is niet ingeschakeld.",
+	'config-mod-security' => "'''Waarschuwing:''' uw webserver heeft de module [http://modsecurity.org/ mod_security] ingeschakeld. Als deze onjuist is ingesteld, kan dit problemen geven in combinatie met MediaWiki of andere software die gebruikers in staat stelt willekeurige inhoud te posten.
+Lees de [http://modsecurity.org/documentation/ documentatie over mod_security] of neem contact op met de helpdesk van uw provider als u tegen problemen aanloopt.",
 	'config-diff3-bad' => 'GNU diff3 niet aangetroffen.',
 	'config-imagemagick' => 'ImageMagick aangetroffen: <code>$1</code>.
 Het aanmaken van miniaturen van afbeeldingen wordt ingeschakeld als u uploaden inschakelt.',
@@ -11041,9 +11053,12 @@ Het aanmaken van miniaturen van afbeeldingen wordt ingeschakeld als u uploaden i
 Het maken van miniaturen van afbeeldingen wordt uitgeschakeld.',
 	'config-no-uri' => "'''Fout:''' de huidige URI kon niet vastgesteld worden.
 De installatie is afgebroken.",
+	'config-no-cli-uri' => "'''Waarschuwing:''' de parameter ==scriptpath is niet opgegeven. De standaardwaarde wordt gebruikt: <code>$1</code>.",
 	'config-using-server' => 'Servernaam "<nowiki>$1</nowiki>" wordt gebruikt.',
+	'config-using-uri' => 'De server-URL "<nowiki>$1$2</nowiki>" wordt gebruikt.',
 	'config-uploads-not-safe' => "'''Waarschuwing:''' uw uploadmap <code>$1</code> kan gebruikt worden voor het arbitrair uitvoeren van scripts.
 Hoewel MediaWiki alle toegevoegde bestanden  controleert op bedreigingen, is het zeer aan te bevelen het [http://www.mediawiki.org/wiki/Manual:Security#Upload_security beveiligingslek te verhelpen] alvorens uploads in te schakelen.",
+	'config-no-cli-uploads-check' => "''Waarschuwing:'' uw standaardmap voor uploads (<code>$1</code>) wordt niet gecontroleerd op kwetsbaarheden voor het uitvoeren van willekeurige scripts gedurende de CLI-installatie.",
 	'config-brokenlibxml' => 'Uw systeem heeft een combinatie van PHP- en libxml2-versies geïnstalleerd die is foutgevoelig is en kan leiden tot onzichtbare beschadiging van gegevens in MediaWiki en andere webapplicaties.
 Upgrade naar PHP 5.2.9 of hoger en libxml2 2.7.3 of hoger! De installatie wordt afgebroken ([http://bugs.php.net/bug.php?id=45996 bij PHP gerapporteerde fout]).',
 	'config-using531' => 'PHP $1 is niet compatibel met MediaWiki vanwege een fout met betrekking tot referentieparameters met <code>__call()</code>.
@@ -11415,6 +11430,7 @@ De standaardlijst wordt overgeslagen.",
 	'config-insecure-keys' => "'''Waarschuwing:''' De {{PLURAL:$2|sleutel die is aangemaakt|sleutels die zijn aangemaakt}} ($1) tijdens de installatie {{PLURAL:$2|is|zijn}} niet volledig veilig. Overweeg deze handmatig te wijzigen.",
 	'config-install-sysop' => 'Gebruiker voor beheerder aanmaken',
 	'config-install-subscribe-fail' => 'Het is niet mogelijk te abonneren op mediawiki-announce: $1',
+	'config-install-subscribe-notpossible' => 'cURL is niet geïnstalleerd en <code>allow_url_fopen</code> is niet beschikbaar.',
 	'config-install-mainpage' => 'Hoofdpagina aanmaken met standaard inhoud',
 	'config-install-extension-tables' => 'Tabellen voor ingeschakelde uitbreidingen worden aangemaakt',
 	'config-install-mainpage-failed' => 'Het was niet mogelijk de hoofdpagina in te voegen: $1',
@@ -11980,6 +11996,7 @@ $messages['pdc'] = array(
 /** Polish (Polski)
  * @author Holek
  * @author Sp5uhe
+ * @author Woytecr
  */
 $messages['pl'] = array(
 	'config-desc' => 'Instalator MediaWiki',
@@ -12071,7 +12088,7 @@ Powinieneś [http://www.mediawiki.org/wiki/Unicode_normalization_considerations 
 	'config-no-db' => 'Nie można odnaleźć właściwego sterownika bazy danych! Musisz zainstalować sterownik bazy danych dla PHP.
 Można użyć następujących typów baz danych: $1.
 
-Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych.
+Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych. 
 Jeśli skompilowałeś PHP samodzielnie, skonfiguruj je ponownie z włączonym klientem bazy danych, na przykład za pomocą polecenia <code>./configure --with-mysql</code>.
 Jeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować moduł php5-mysql.',
 	'config-no-fts3' => "'''Uwaga''' – SQLite został skompilowany bez [http://sqlite.org/fts3.html modułu FTS3] – funkcje wyszukiwania nie będą dostępne.",
@@ -12342,6 +12359,7 @@ Tworzenie domyślnej listy pominięto.",
 	'config-install-sysop' => 'Tworzenie konta administratora',
 	'config-install-subscribe-fail' => 'Nie można zapisać na listę „mediawiki-announce“ – $1',
 	'config-install-mainpage' => 'Tworzenie strony głównej z domyślną zawartością',
+	'config-install-extension-tables' => 'Tworzenie tabel dla aktywnych rozszerzeń',
 	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej – $1',
 	'config-download-localsettings' => 'Pobierz LocalSettings.php',
 	'config-help' => 'pomoc',
@@ -13711,6 +13729,8 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] установлен',
 	'config-no-cache' => "'''Внимание:''' Не найдены [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
 Кэширование объектов будет отключено.",
+	'config-mod-security' => "'''Внимание''': на вашем веб-сервере включен [http://modsecurity.org/ mod_security]. При неправильной настройке он может вызывать проблемы для MediaWiki или другого ПО, позволяющего пользователям отправлять на сервер произвольный текст.
+Обратитесь к [http://modsecurity.org/documentation/ документации mod_security] или в поддержку вашего хостера, если при работе возникают непонятные ошибки.",
 	'config-diff3-bad' => 'GNU diff3 не найден.',
 	'config-imagemagick' => 'Обнаружен ImageMagick: <code>$1</code>.
 Возможно отображение миниатюр изображений, если вы разрешите закачки файлов.',
@@ -14138,7 +14158,7 @@ $messages['sa'] = array(
 	'mainpagetext' => 'मीडियाविकि तु सफलतया अन्तःस्थापितमस्ति',
 );
 
-/** Yakut (Саха тыла) */
+/** Sakha (Саха тыла) */
 $messages['sah'] = array(
 	'mainpagetext' => "'''«MediaWiki» сөпкө туруорулунна.'''",
 	'mainpagedocfooter' => 'Биики программатын туһунан [http://meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.
