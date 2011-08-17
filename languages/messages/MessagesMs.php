@@ -608,7 +608,8 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'createaccountmail'          => 'melalui e-mel',
 'createaccountreason'        => 'Sebab:',
 'badretype'                  => 'Sila ulangi kata laluan dengan betul.',
-'userexists'                 => 'Nama pengguna yang anda masukkan telah pun digunakan. Sila pilih nama yang lain.',
+'userexists'                 => 'Nama pengguna yang diisikan telah pun digunakan.
+Sila pilih nama yang lain.',
 'loginerror'                 => 'Ralat log masuk',
 'createaccounterror'         => 'Tidak dapat mencipta akaun: $1',
 'nocookiesnew'               => 'Akaun anda telah dibuka, tetapi anda belum log masuk. {{SITENAME}} menggunakan kuki untuk mencatat status log masuk pengguna. Sila aktifkan sokongan kuki pada pelayar anda, kemudian log masuk dengan nama pengguna dan kata laluan baru anda.',
@@ -3518,7 +3519,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'specialpages-note'              => '----
 * Laman khas biasa.
 * <span class="mw-specialpagerestricted">Laman khas terhad.</span>
-* <span class="mw-specialpagecached">Laman khas cache-sahaja.</span>',
+* <span class="mw-specialpagecached">Laman khas tercache (mungkin lapuk).</span>',
 'specialpages-group-maintenance' => 'Laporan penyenggaraan',
 'specialpages-group-other'       => 'Laman khas lain',
 'specialpages-group-login'       => 'Log masuk / daftar',

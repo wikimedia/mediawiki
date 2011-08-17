@@ -2413,7 +2413,7 @@ Voici les réglages actuels de la page '''$1''' :",
 'protect-expiring'            => 'expire le $1 (UTC)',
 'protect-expiring-local'      => 'expire le $1',
 'protect-expiry-indefinite'   => 'infini',
-'protect-cascade'             => 'Protège aussi les pages incluses dans celle-ci (protection en cascade)',
+'protect-cascade'             => 'Protéger les pages incluses dans celle-ci (protection en cascade)',
 'protect-cantedit'            => 'Vous ne pouvez pas changer les niveaux de protection de cette page car vous n’avez pas la permission de la modifier.',
 'protect-othertime'           => 'Autre date d’expiration :',
 'protect-othertime-op'        => 'autre date d’expiration',
@@ -3766,7 +3766,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 'specialpages-note'              => '----
 * Pages spéciales normales.
 * <span class="mw-specialpagerestricted">Pages spéciales restreintes.</span>
-* <span class="mw-specialpagecached">Pages spéciales seulement en cache (pourrait être obsolètes).</span>',
+* <span class="mw-specialpagecached">Pages spéciales seulement en cache (pourraient être obsolètes).</span>',
 'specialpages-group-maintenance' => 'Rapports de maintenance',
 'specialpages-group-other'       => 'Autres pages spéciales',
 'specialpages-group-login'       => 'S’identifier / s’inscrire',

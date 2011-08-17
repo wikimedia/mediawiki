@@ -724,6 +724,13 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 Tydelike wagwoord: $2',
 'passwordreset-emailsent'    => "'n E-pos ter herhindering is gestuur.",
 
+# Special:ChangeEmail
+'changeemail-oldemail' => 'Huidige e-posadres:',
+'changeemail-newemail' => 'Nuwe e-posadres:',
+'changeemail-none'     => '(geen)',
+'changeemail-submit'   => 'Wysig E-posadres',
+'changeemail-cancel'   => 'Kanselleer',
+
 # Edit page toolbar
 'bold_sample'     => 'Vetgedrukte teks',
 'bold_tip'        => 'Vetdruk',
@@ -2231,6 +2238,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-level-sysop'         => 'Slegs administrateurs',
 'protect-summary-cascade'     => 'kaskade',
 'protect-expiring'            => 'verval op $2 om $3 (UTC)',
+'protect-expiring-local'      => 'verval op $1',
 'protect-expiry-indefinite'   => 'verval nie',
 'protect-cascade'             => 'Beveilig bladsye insluitend die bladsy (kaskade effek)',
 'protect-cantedit'            => 'U kan nie die veiligheidsvlak van die blad verander nie, want u het nie regte om dit te wysig nie.',
@@ -3378,6 +3386,12 @@ Bevestig dat u die bladsy wil herskep.',
 'confirm-purge-top'    => 'Verwyder die kas van hierdie blad?',
 'confirm-purge-bottom' => "Die opruiming van die kas sorg daarvoor dat die mees onlangse weergawe van 'n bladsy vertoon word.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Voeg hierdie bladsy by u dophoulys?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Verwyder hierdie bladsy van u dophoulys?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← vorige bladsy',
 'imgmultipagenext' => 'volgende bladsy →',
@@ -3504,8 +3518,8 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'specialpages'                   => 'Spesiale bladsye',
 'specialpages-note'              => '----
 * Normale spesiale bladsye.
-* <strong class="mw-specialpagerestricted">Spesiale bladsye met beperkte toegang.</strong>
-* <strong class="mw-specialpagerestricted">Spesiale bladsye met slegs gegewens uit die kas.</strong>',
+* <span class="mw-specialpagerestricted">Spesiale bladsye met beperkte toegang.</span>
+* <span class="mw-specialpagecached">Spesiale bladsye met gegewens uit die kas (kan verouderd wees).</span>',
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other'       => 'Ander spesiale bladsye',
 'specialpages-group-login'       => 'Inteken / aansluit',
@@ -3583,6 +3597,7 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 # Add categories per AJAX
 'ajax-add-category'            => 'Voeg kategorie by',
 'ajax-add-category-submit'     => 'Byvoeg',
+'ajax-confirm-ok'              => 'OK',
 'ajax-confirm-title'           => 'Bevestig aksie',
 'ajax-confirm-save'            => 'Stoor',
 'ajax-add-category-summary'    => 'Voeg kategorie "$1" by',

@@ -656,6 +656,8 @@ Palun proovi mõne minuti pärast uuesti.',
 'cascadeprotected'     => 'See lehekülg on muutmise eest kaitstud, sest see on osa {{PLURAL:$1|järgmisest leheküljest|järgmistest lehekülgedest}}, mis on kaskaadkaitse all:
 $2',
 'namespaceprotected'   => "Teil ei ole õigusi redigeerida lehekülgi '''$1''' nimeruumis.",
+'customcssprotected'   => 'Sul pole õigust seda CSS-lehekülge redigeerida, sest see sisaldab teise kasutaja isiklikke sätteid.',
+'customjsprotected'    => 'Sul pole õigust seda JavaScripti lehekülge redigeerida, sest see sisaldab teise kasutaja isiklikke sätteid.',
 'ns-specialprotected'  => 'Erilehekülgi ei saa redigeerida.',
 'titleprotected'       => "Kasutaja [[User:$1|$1]] on selle pealkirjaga lehe loomise keelanud esitades järgmise põhjenduse: ''$2''.",
 
@@ -775,16 +777,39 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'resetpass-temp-password'   => 'Ajutine parool:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Parooli lähtestamine',
-'passwordreset-text'         => 'Täida see vorm, et saada e-kiri oma konto andmetega.',
-'passwordreset-legend'       => 'Parooli lähtestamine',
-'passwordreset-disabled'     => 'Selles vikis on paroolide lähtestamine keelatud.',
-'passwordreset-username'     => 'Kasutajanimi:',
-'passwordreset-email'        => 'E-posti aadress:',
-'passwordreset-emailtitle'   => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
-'passwordreset-emailelement' => 'Kasutajanimi: $1
+'passwordreset'                => 'Parooli lähtestamine',
+'passwordreset-text'           => 'Täida see vorm, et saada e-kiri oma konto andmetega.',
+'passwordreset-legend'         => 'Parooli lähtestamine',
+'passwordreset-disabled'       => 'Selles vikis on paroolide lähtestamine keelatud.',
+'passwordreset-username'       => 'Kasutajanimi:',
+'passwordreset-email'          => 'E-posti aadress:',
+'passwordreset-emailtitle'     => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
+'passwordreset-emailtext-ip'   => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
+
+$2
+
+{{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.
+Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.',
+'passwordreset-emailtext-user' => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
+
+$2
+
+{{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.
+Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.',
+'passwordreset-emailelement'   => 'Kasutajanimi: $1
 Ajutine parool: $2',
-'passwordreset-emailsent'    => 'Meeldetuletuskiri on saadetud.',
+'passwordreset-emailsent'      => 'Meeldetuletuskiri on saadetud.',
+
+# Special:ChangeEmail
+'changeemail'          => 'E-posti aadressi muutmine',
+'changeemail-header'   => 'Konto e-posti aadressi muutmine',
+'changeemail-text'     => 'Täida see vorm, et muuta oma e-posti aadress. Et seda muudatust kinnitada, pead sisestama oma parooli.',
+'changeemail-no-info'  => 'Otselingi kaudu sellele lehele jõudmiseks pead olema sisse loginud.',
+'changeemail-oldemail' => 'Praegune e-posti aadress:',
+'changeemail-newemail' => 'Uus e-posti aadress:',
+'changeemail-none'     => '(puudub)',
+'changeemail-submit'   => 'Muuda e-posti aadress',
+'changeemail-cancel'   => 'Loobu',
 
 # Edit page toolbar
 'bold_sample'     => 'Rasvane kiri',
@@ -1293,6 +1318,8 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'prefs-watchlist-token'         => 'Jälgimisloendi tunnus:',
 'prefs-misc'                    => 'Muu',
 'prefs-resetpass'               => 'Muuda parooli',
+'prefs-changeemail'             => 'Muuda e-posti aadressi',
+'prefs-setemail'                => 'Määra e-posti aadress',
 'prefs-email'                   => 'E-posti sätted',
 'prefs-rendering'               => 'Ilme',
 'saveprefs'                     => 'Salvesta eelistused',
@@ -1645,6 +1672,7 @@ Eelistatud {{PLURAL:\$3|failitüüp on|failitüübid on}} \$2.",
 'emptyfile'                   => 'Fail, mille Te üles laadisite, paistab olevat tühi.
 See võib olla tingitud vigasest failinimest.
 Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
+'windows-nonascii-filename'   => 'Sellel vikil puudub erimärkidega failinimede tugi.',
 'fileexists'                  => "Sellise nimega fail on juba olemas. Palun vaata lehekülge '''<tt>[[:$1]]</tt>''', kui sa pole kindel, kas soovid seda muuta.
 [[$1|thumb]]",
 'filepageexists'              => "Selle faili kirjelduslehekülg '''<tt>[[:$1]]</tt>''' on juba loodud, aga selle nimega faili hetkel pole.
@@ -3329,11 +3357,12 @@ Selle kinnituskoodi aegumistähtaeg on $4.',
 'trackbackremove' => '([$1 Kustuta])',
 
 # Delete conflict
-'deletedwhileediting' => "'''Hoiatus''': Sel ajal, kui sina lehekülge redigeerisid, kustutas keegi selle ära!",
-'confirmrecreate'     => "Kasutaja [[User:$1|$1]] ([[User talk:$1|arutelu]]) kustutas lehekülje sellel ajal, kui sina seda redigeerisid. Põhjus:
+'deletedwhileediting'      => "'''Hoiatus''': Sel ajal, kui sina lehekülge redigeerisid, kustutas keegi selle ära!",
+'confirmrecreate'          => "Kasutaja [[User:$1|$1]] ([[User talk:$1|arutelu]]) kustutas lehekülje sellel ajal, kui sina seda redigeerisid. Põhjus:
 : ''$2''
 Palun kinnita, et soovid tõesti selle lehekülje taasluua.",
-'recreate'            => 'Taasta',
+'confirmrecreate-noreason' => 'Kasutaja [[User:$1|$1]] ([[User talk:$1|arutelu]]) kustutas selle lehekülje, pärast seda kui redigeerimist alustasid. Palun kinnita, et tahad tõesti selle lehekülje uuesti luua.',
+'recreate'                 => 'Taasta',
 
 # action=purge
 'confirm_purge_button' => 'Sobib',
@@ -3458,7 +3487,7 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'specialpages-note'              => '----
 * Harilikud erileheküljed
 * <span class="mw-specialpagerestricted">Piiranguga erileheküljed</span>
-* <span class="mw-specialpagecached">Uuendamata sisuga erileheküljed</span>',
+* <span class="mw-specialpagecached">Uuendamata sisuga erileheküljed (ei pruugi enam kasutuses olla)</span>',
 'specialpages-group-maintenance' => 'Hooldusaruanded',
 'specialpages-group-other'       => 'Teised erileheküljed',
 'specialpages-group-login'       => 'Sisselogimine ja registreerumine',
@@ -3537,13 +3566,16 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'ajax-confirm-ok'               => 'Sobib',
 'ajax-confirm-title'            => 'Toimingu kinnitamine',
 'ajax-confirm-save'             => 'Salvesta',
+'ajax-confirm-save-all'         => 'Salvesta kõik muudatused',
+'ajax-cancel-all'               => 'Loobu kõigist muudatustest',
 'ajax-add-category-summary'     => 'Kategooria "$1" lisamine',
 'ajax-edit-category-summary'    => 'Kategooria "$1" asendamine kategooriaga "$2"',
 'ajax-remove-category-summary'  => 'Kategooria "$1" eemaldamine',
+'ajax-category-question'        => 'Miks tahad teha järgmisi muudatusi:',
 'ajax-error-title'              => 'Tõrge',
-'ajax-remove-category-error'    => 'Seda kategooriat pole võimalik eemaldada.
+'ajax-remove-category-error'    => 'Kategooriat "$1" pole võimalik eemaldada.
 Tõrge ilmneb harilikult siis, kui kategooria on lisatud malliga.',
-'ajax-edit-category-error'      => 'Seda kategooriat polnud võimalik muuta.
+'ajax-edit-category-error'      => 'Kategooriat "$1" pole võimalik muuta.
 Harilikult juhtub nii, kui kategooria on lisatud malliga.',
 'ajax-category-already-present' => 'See lehekülg on juba kategoorias $1.',
 
