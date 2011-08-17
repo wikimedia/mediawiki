@@ -3733,8 +3733,8 @@ MediaWiki распространяется в надежде, что она бу
 'specialpages'                   => 'Спецстраницы',
 'specialpages-note'              => '----
 * Обычные служебные страницы.
-* <strong class="mw-specialpagerestricted">Служебные страницы с ограниченным доступом.</strong>
-* <span class="mw-specialpagecached">Кешированные служебные страницы.</span>',
+* <span class="mw-specialpagerestricted">Служебные страницы с ограниченным доступом.</span>
+* <span class="mw-specialpagecached">Закешированные служебные страницы (могут быть устаревшими).</span>',
 'specialpages-group-maintenance' => 'Отчёты технического обслуживания',
 'specialpages-group-other'       => 'Другие служебные страницы',
 'specialpages-group-login'       => 'Представиться / Зарегистрироваться',

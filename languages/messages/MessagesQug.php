@@ -1,5 +1,5 @@
 <?php
-/** Runa shimi (Chimborazo Highland Quichua)
+/** Runa shimi (Runa shimi)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -8,11 +8,8 @@
  * @file
  *
  * @author AlimanRuna
- * @author Ebe123
  * @author Sylvain2803
  */
-
-$fallback = 'qu';
 
 $messages = array(
 # Dates

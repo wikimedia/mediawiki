@@ -307,7 +307,7 @@ $messages = array(
 'tog-hideminor'               => 'Kleine wiezigingen verbargen in leste wiezigingen',
 'tog-hidepatrolled'           => 'Wiezigingen die emarkeerd bin verbargen in leste wiezigingen',
 'tog-newpageshidepatrolled'   => "Pagina's die emarkeerd bin, verbargen in de lieste mit nieje artikels",
-'tog-extendwatchlist'         => 'Volglieste uutbreien, zodat alle wiezigingen zichtbaor bin, en niet allenig de leste wieziging',
+'tog-extendwatchlist'         => 'Volglieste uutbreien, zodat alle wiezigingen zichtbaor bin, en niet allinnig de leste wieziging',
 'tog-usenewrc'                => "Gebruuk de pagina uutebreiden leste wiezigingen (hierveur he'j JavaScript neudig)",
 'tog-numberheadings'          => 'Koppen vanzelf nummeren',
 'tog-showtoolbar'             => 'Laot de warkbalke zien',
@@ -331,8 +331,8 @@ $messages = array(
 'tog-shownumberswatching'     => 't Antal gebrukers bekieken die disse pagina volgt',
 'tog-oldsig'                  => 'Bestaonde haandtekening naokieken:',
 'tog-fancysig'                => 'Ondertekening zien as wikitekste (zonder automatiese verwiezing)',
-'tog-externaleditor'          => 'Standard n externe tekstbewarker gebruken (allenig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
-'tog-externaldiff'            => 'Standard n extern vergeliekingsprogramma gebruken (allenig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
+'tog-externaleditor'          => 'Standard n externe tekstbewarker gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
+'tog-externaldiff'            => 'Standard n extern vergeliekingsprogramma gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
 'tog-showjumplinks'           => '"Gao naor"-verwiezingen toelaoten',
 'tog-uselivepreview'          => 'Gebruuk "rechtstreeks naokieken" (mö\'j JavaScript veur hebben - experimenteel)',
 'tog-forceeditsummary'        => 'Geef n melding bie n lege samenvatting',
@@ -422,7 +422,7 @@ $messages = array(
 'hidden-category-category'       => 'Verbörgen kategorieën',
 'category-subcat-count'          => '{{PLURAL:$2|Disse kategorie hef de volgende subkategorie.|Disse kategorie hef de volgende {{PLURAL:$1|subkategorie|$1 subkategorieën}}, van in totaal $2.}}',
 'category-subcat-count-limited'  => 'Disse kategorie hef de volgende {{PLURAL:$1|subkategorie|$1 subkategorieën}}.',
-'category-article-count'         => "{{PLURAL:$2|In disse kategorie steet allenig de volgende pagina.|De volgende {{PLURAL:$1|pagina steet|$1 pagina's staon}} in disse kategorie, van in totaal $2.}}",
+'category-article-count'         => "{{PLURAL:$2|In disse kategorie steet allinnig de volgende pagina.|De volgende {{PLURAL:$1|pagina steet|$1 pagina's staon}} in disse kategorie, van in totaal $2.}}",
 'category-article-count-limited' => "In disse kategorie {{PLURAL:$1|steet de volgende pagina|staon de volgende $1 pagina's}}.",
 'category-file-count'            => 'In disse kategorie {{PLURAL:$2|steet t volgende bestaand|staon de volgende $1 bestaanden, van in totaal $2}}.',
 'category-file-count-limited'    => 'In disse kategorie {{PLURAL:$1|steet t volgende bestaand|staon de volgende $1 bestaanden}}.',
@@ -460,7 +460,7 @@ $messages = array(
 'vector-action-protect'          => 'Beveiligen',
 'vector-action-undelete'         => 'Weerummeplaotsen',
 'vector-action-unprotect'        => 'Beveiliging wiezigen',
-'vector-simplesearch-preference' => 'Verbeterde zeuksuggesties anzetten (allenig mit Vector-vormgeving)',
+'vector-simplesearch-preference' => 'Verbeterde zeuksuggesties anzetten (allinnig mit Vector-vormgeving)',
 'vector-view-create'             => 'Anmaken',
 'vector-view-edit'               => 'Bewarken',
 'vector-view-history'            => 'Geschiedenisse bekieken',
@@ -556,7 +556,7 @@ $1",
 
 'badaccess'        => 'Gien toestemming',
 'badaccess-group0' => 'Je hebben gien toestemming um disse aksie uut te voeren.',
-'badaccess-groups' => 'Disse aksie kan allenig uutevoerd wörden deur gebrukers uut {{PLURAL:$2|de groep|één van de groepen}}: $1.',
+'badaccess-groups' => 'Disse aksie kan allinnig uutevoerd wörden deur gebrukers uut {{PLURAL:$2|de groep|één van de groepen}}: $1.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is neudig',
 'versionrequiredtext' => 'Versie $1 van MediaWiki is neudig um disse pagina te gebruken. Zie [[Special:Version|Versie]].',
@@ -672,7 +672,7 @@ Zeukopdrachte: $2',
 'actionthrottledtext'  => "As maotregel tegen t plaotsen van ongewunste verwiezingen, is t antal keren da'j disse haandeling in n korte tied uutvoeren kunnen beteund. Je hebben de limiet overschrejen. Probeer t over n antal minuten weer.",
 'protectedpagetext'    => 'Disse pagina is beveiligd um bewarkingen te veurkoemen.',
 'viewsourcetext'       => 'Je kunnen de brontekste van disse pagina bewarken en bekieken:',
-'protectedinterface'   => 'Op disse pagina steet n tekste die gebruukt wörden veur systeemteksten van de wiki. Allenig beheerders kunnen disse pagina bewarken.',
+'protectedinterface'   => 'Op disse pagina steet n tekste die gebruukt wörden veur systeemteksten van de wiki. Allinnig beheerders kunnen disse pagina bewarken.',
 'editinginterface'     => "'''Waorschuwing:''' je bewarken n pagina die gebruukt wörden deur de programmatuur. Wa'j hier wiezigen, is van invleud op de hele wiki. Overweeg veur vertalingen um [http://translatewiki.net/wiki/Main_Page?setlang=nds-nl translatewiki.net] te gebruken, t vertalingsprojekt veur MediaWiki.",
 'sqlhidden'            => '(SQL-zeukopdrachte verbörgen)',
 'cascadeprotected'     => 'Disse pagina is beveiligd umdat t veurkump in de volgende {{PLURAL:$1|pagina|pagina\'s}}, die beveiligd {{PLURAL:$1|is|bin}} mit de "kaskade"-opsie:
@@ -956,17 +956,17 @@ De leste regel uut t blokkeerlogboek steet hieronder as referensie:',
 *'''Opera:''' leeg t tussengeheugen in ''Extra → Voorkeuren\"",
 'usercssyoucanpreview'             => "'''Tip:''' gebruuk de knoppe \"{{int:showpreview}}\" um joew nieje css/js nao te kieken veurda'j t opslaon.",
 'userjsyoucanpreview'              => "'''Tip:''' gebruuk de knoppe \"{{int:showpreview}}\" um joew nieje css/js nao te kieken veurda'j t opslaon.",
-'usercsspreview'                   => "'''Dit is allenig n kontrole van joew persoonlike CSS.'''
+'usercsspreview'                   => "'''Dit is allinnig n kontrole van joew persoonlike CSS.'''
 '''t Is nog niet op-esleugen!'''",
-'userjspreview'                    => "'''Denk deran da'j joew persoonlike JavaScript allenig nog mer an t bekieken bin, t is nog niet op-esleugen!'''",
-'sitecsspreview'                   => "'''Je bin allenig mer de CSS an t naokieken.'''
+'userjspreview'                    => "'''Denk deran da'j joew persoonlike JavaScript allinnig nog mer an t bekieken bin, t is nog niet op-esleugen!'''",
+'sitecsspreview'                   => "'''Je bin allinnig mer de CSS an t naokieken.'''
 '''t Is nog niet op-esleugen!'''",
-'sitejspreview'                    => "'''Je bin allenig mer de JavaScript-kode an t naokieken.'''
+'sitejspreview'                    => "'''Je bin allinnig mer de JavaScript-kode an t naokieken.'''
 '''t Is nog niet op-esleugen!'''",
 'userinvalidcssjstitle'            => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet niet dat joew eigen .css- en .js-pagina's beginnen mit n kleine letter, bv. \"{{ns:user}}:Naam/'''v'''ector\" in plaotse van \"{{ns:user}}:Naam/'''V'''ector.css\".",
 'updated'                          => '(Bewark)',
 'note'                             => "'''Opmarking:'''",
-'previewnote'                      => "'''NB: je bin de pagina allenig nog mer an t naokieken; de tekste is nog niet op-esleugen!'''",
+'previewnote'                      => "'''NB: je bin de pagina allinnig nog mer an t naokieken; de tekste is nog niet op-esleugen!'''",
 'previewconflict'                  => "Disse versie laot zien hoe de tekste in t bovenste veld deruut kump te zien a'j de tekste opslaon.",
 'session_fail_preview'             => "'''De bewarking kan niet verwarkt wörden wegens n verlies an data.'''
 Probeer t laoter weer.
@@ -988,7 +988,7 @@ t Bovenste bewarkingsveld laot de pagina zien zo as t noen is.
 Daoronder (bie \"Wiezigingen\") staon de verschillen tussen joew versie en de op-esleugen pagina.
 Helemaole onderan (bie \"Joew tekste\") steet nog n bewarkingsveld mit joew versie.
 Je zullen je eigen wiezigingen in de nieje tekste in mutten passen.
-'''Allenig''' de tekste in t bovenste veld wörden beweerd a'j noen kiezen veur \"{{int:savearticle}}\".",
+'''Allinnig''' de tekste in t bovenste veld wörden beweerd a'j noen kiezen veur \"{{int:savearticle}}\".",
 'yourtext'                         => 'Joew tekste',
 'storedversion'                    => 'Op-esleugen versie',
 'nonunicodebrowser'                => "'''Waorschuwing: de webkieker kan niet goed overweg mit unikode, schakel over op n aandere webkieker um de wiezigingen an te brengen!'''",
@@ -1006,11 +1006,11 @@ Deur op \"Pagina opslaon\" te klikken beleuf je ons da'j disse tekste zelf eschr
 Je kunnen de tekste t beste bie joew eigen systeem opslaon en laoter opniej proberen de pagina te bewarken.'''
 
 As grund is angeven: $1",
-'protectedpagewarning'             => "'''Waorschuwing: disse pagina is beveiligd, zodat allenig beheerders t kunnen wiezigen.'''
+'protectedpagewarning'             => "'''Waorschuwing: disse pagina is beveiligd, zodat allinnig beheerders t kunnen wiezigen.'''
 De leste logboekregel steet hieronder:",
-'semiprotectedpagewarning'         => "'''Let op:''' disse pagina is beveiligd en ku'j allenig bewarken a'j n eregistreerden gebruker bin.
+'semiprotectedpagewarning'         => "'''Let op:''' disse pagina is beveiligd en ku'j allinnig bewarken a'j n eregistreerden gebruker bin.
 De leste logboekregel steet hieronder:",
-'cascadeprotectedwarning'          => "'''Waorschuwing:''' disse pagina is beveiligd, zodat allenig beheerders disse pagina kunnen bewarken, dit wörden edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|kaskade-beveiligden pagina|kaskade-beveiligden pagina's}}:",
+'cascadeprotectedwarning'          => "'''Waorschuwing:''' disse pagina is beveiligd, zodat allinnig beheerders disse pagina kunnen bewarken, dit wörden edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|kaskade-beveiligden pagina|kaskade-beveiligden pagina's}}:",
 'titleprotectedwarning'            => "'''Waorschuwing: disse pagina is beveilig. Je hebben [[Special:ListGroupRights|bepaolde rechten]] neudig um t an te kunnen maken.'''
 De leste logboekregel steet hieronder:",
 'templatesused'                    => '{{PLURAL:$1|Mal|Mallen}} die op disse pagina gebruukt wörden:',
@@ -1087,7 +1087,7 @@ De deur $3 op-egeven reden is ''$2''",
 'page_last'              => 'leste',
 'histlegend'             => 'Verklaoring aofkortingen: (noen) = verschil mit de op-esleugen versie, (veurige) = verschil mit de veurige versie, K = kleine wieziging',
 'history-fieldset-title' => 'Deur de geschiedenisse blaojen',
-'history-show-deleted'   => 'Allenig vortedaon',
+'history-show-deleted'   => 'Allinnig vortedaon',
 'histfirst'              => 'Eerste',
 'histlast'               => 'Leste',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -1146,7 +1146,7 @@ As beheerder ku'j disse verschillen bekieken. Misschien steet der over in t [{{f
 'revdelete-text'              => "'''Vortedaone bewarkingen staon nog altied in de geschiedenisse en in logboeken, mer niet iederene kan de inhoud zo mer bekieken.'''
 Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en t weerummeplaotsen deur dit scharm te gebruken, behalven as der aandere beparkingen in-esteld bin.",
 'revdelete-confirm'           => "Bevestig da'j dit doon wollen, da'j de gevolgen dervan begriepen en da'j t doon in overeenstemming mit t geldende [[{{MediaWiki:Policy-url}}|beleid]].",
-'revdelete-suppress-text'     => "Onderdrokken ma'j '''allenig''' gebruken in de volgende gevallen:
+'revdelete-suppress-text'     => "Onderdrokken ma'j '''allinnig''' gebruken in de volgende gevallen:
 * Ongepassen persoonlike informasie
 *: ''adressen en tillefoonnummers, burgerservicenummers, en gao zo mer deur.''",
 'revdelete-legend'            => 'Stel versiebeparkingen in:',
@@ -1216,7 +1216,7 @@ Kiek de logboeken nao.',
 'mergehistory-from'                => 'Bronpagina:',
 'mergehistory-into'                => 'Bestemmingspagina:',
 'mergehistory-list'                => 'Bewarkingsgeschiedenisse die bie mekaar edaon kan wörden',
-'mergehistory-merge'               => 'De volgende versies van [[:$1]] kunnen samenevoegd wörden naor [[:$2]]. Gebruuk de kolom mit keuzerondjes um allenig de versies die emaak bin op en veur de an-egeven tied samen te voegen. Let op dat t gebruken van de navigasieverwiezingen disse kolom zal herinstellen.',
+'mergehistory-merge'               => 'De volgende versies van [[:$1]] kunnen samenevoegd wörden naor [[:$2]]. Gebruuk de kolom mit keuzerondjes um allinnig de versies die emaak bin op en veur de an-egeven tied samen te voegen. Let op dat t gebruken van de navigasieverwiezingen disse kolom zal herinstellen.',
 'mergehistory-go'                  => 'Bekiek bewarkingen die bie mekaar edaon kunnen wörden',
 'mergehistory-submit'              => 'Versies bie mekaar doon',
 'mergehistory-empty'               => 'Der bin gien versies die samenevoegd kunnen wörden.',
@@ -1454,7 +1454,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'userrights-groups-help'       => 'Je kunnen de groepen wiezigen waor as de gebruker lid van is.
 * n An-evinkt vakjen betekent dat de gebruker lid is van de groep.
 * n Niet an-evinkt vakjen betekent dat de gebruker gien lid is van de groep.
-* n "*" betekent da\'j n gebruker niet uut n groep vort kunnen haolen naodat e deran toe-evoegd is, of aandersumme.',
+* n "*" betekent da\'j n gebruker niet uut n groep vort kunnen haolen naodat e derbie ezet is, of aandersumme.',
 'userrights-reason'            => 'Reden:',
 'userrights-no-interwiki'      => "Je hebben gien rechten um gebrukersrechten op aandere wiki's te wiezigen.",
 'userrights-nodatabase'        => 'Databanke $1 besteet niet of is gien plaotselike databanke.',
@@ -1582,7 +1582,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'action-block'                => 'disse gebruker blokkeren',
 'action-protect'              => 't beveiligingsnivo van disse pagina anpassen',
 'action-import'               => 'disse pagina van n aandere wiki invoeren',
-'action-importupload'         => 'disse pagina invoeren vanaof n toe-evoegd bestaand',
+'action-importupload'         => 'disse pagina invoeren vanaof n op-estuurd bestaand',
 'action-patrol'               => 'bewarkingen van aander volk as ekontroleerd markeren',
 'action-autopatrol'           => 'eigen bewarkingen as ekontroleerd markeren',
 'action-unwatchedpages'       => "bekiek de liest mit pagina's die niet evolgd wörden",
@@ -1678,8 +1678,8 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur n overzichte.',
 'illegalfilename'             => 'Der staon karakters in bestaandsnaam "$1" die niet in namen van artikels veur maggen koemen. Geef t bestaand n aandere naam, en probeer t dan opniej toe te voegen.',
 'badfilename'                 => 'De naam van t bestaand is ewiezigd naor "$1".',
 'filetype-mime-mismatch'      => 'De bestaandsextensie ".$1" heurt niet bie t MIME-type van t bestaand ($2).',
-'filetype-badmime'            => 'Bestaanden mit t MIME-type "$1" maggen hier niet toe-evoegd wörden.',
-'filetype-bad-ie-mime'        => 'Dit bestaand kan niet toe-evoegd wörden umdat Internet Explorer t zol herkennen as "$1", n niet toe-estaone bestaandstype die schao an kan richten.',
+'filetype-badmime'            => 'Bestaanden mit t MIME-type "$1" ma\'j hier niet opsturen.',
+'filetype-bad-ie-mime'        => 'Dit bestaand kan niet op-estuurd wörden umdat Internet Explorer t zol herkennen as "$1", n niet toe-estaone bestaandstype die schao an kan richten.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is n ongewunst bestaandstype. An-ewezen {{PLURAL:\$3|bestaandstype is|bestaandstypes bin}} \$2.",
 'filetype-banned-type'        => "{{PLURAL:\$4|t Bestaandstype '''\".\$1\"''' wordt|De bestandstypes '''\".\$1\"''' worden}} niet toegelaten.
 {{PLURAL:\$3|t Toe-estaone bestaandstype is|De toe-estaone bestaandstypen bin}} \$2.",
@@ -1697,7 +1697,7 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur n overzichte.',
 'tmp-write-error'             => 'Der is n fout op-etrejen bie t anmaken van n tiedelik bestaand.',
 'large-file'                  => 'Bestaanden mutten niet groter ween as $1, dit bestaand is $2.',
 'largefileserver'             => 't Bestaand is groter as dat de server toesteet.',
-'emptyfile'                   => "t Bestaand da'j toe-evoegd hebben is leeg. Dit kan koemen deur n tikfout in de bestaandsnaam. Kiek effen nao o'j dit bestaand wel bedoelden.",
+'emptyfile'                   => "t Bestaand da'j op-estuurd hebben is leeg. Dit kan koemen deur n tikfout in de bestaandsnaam. Kiek effen nao o'j dit bestaand wel bedoelden.",
 'windows-nonascii-filename'   => 'Disse wiki ondersteunt gien bestaandsnamen mit spesiale tekens.',
 'fileexists'                  => "n Bestaand mit disse naam besteet al; voeg t bestaand onder n aandere naam toe.
 '''<tt>[[:$1]]</tt>''' [[$1|thumb]]",
@@ -1709,7 +1709,7 @@ Bewark de pagina haandmaotig um joew beschrieving daor weer te geven.
 * Naam van t bestaand da'j derbie zetten wollen: '''<tt>[[:$1]]</tt>'''
 * Naam van t bestaonde bestaand: '''<tt>[[:$2]]</tt>'''
 Kies n aandere naam.",
-'fileexists-thumbnail-yes'    => "Dit bestaand is n aofbeelding waorvan de grootte verkleind is ''(aofbeeldingsoverzichte)''. [[$1|thumb]]
+'fileexists-thumbnail-yes'    => "Dit bestaand is n aofbeelding waorvan de grootte verkleind is ''(miniatuuraofbeelding)''. [[$1|thumb]]
 Kiek t bestaand nao <strong><tt>[[:$1]]</tt></strong>.
 As de aofbeelding die'j krek nao-ekeken hebben de zelfde grootte hef, dan is t niet neudig um t opniej toe te voegen.",
 'file-thumbnail-no'           => "De bestaandsnaam begint mit '''<tt>$1</tt>'''.
@@ -1727,8 +1727,8 @@ Bekiek t vortdologboek veurda'j veurdan gaon.",
 'uploadwarning'               => 'Waorschuwing',
 'uploadwarning-text'          => 'Pas de bestaandsbeschrieving hieronder an en probeer t opniej',
 'savefile'                    => 'Bestaand opslaon',
-'uploadedimage'               => 'Toe-evoegd: [[$1]]',
-'overwroteimage'              => 'Nieje versie van "[[$1]]" toe-evoegd',
+'uploadedimage'               => 'Op-estuurd: [[$1]]',
+'overwroteimage'              => 'Nieje versie van "[[$1]]" op-estuurd',
 'uploaddisabled'              => 't Opsturen van bestaanden is uuteschakeld.',
 'copyuploaddisabled'          => 't Opsturen van bestaanden via n webadres is uuteschakeld.',
 'uploadfromurl-queued'        => 'Joew bestaand is in de wachtrie ezet.',
@@ -1780,7 +1780,7 @@ De veiligheid kan niet ekontroleerd wörden.',
 
 # Special:UploadStash
 'uploadstash'          => 'Verbörgen bestaanden',
-'uploadstash-summary'  => 'Disse pagina geef toegang tot bestaanden die op-estuurd bin of nog op-estuurd wörden mer nog niet beschikbaor emaakt bin op de wiki. Disse bestaanden bin allenig zichtbaor veur de gebruker die ze opstuurt.',
+'uploadstash-summary'  => 'Disse pagina geef toegang tot bestaanden die op-estuurd bin of nog op-estuurd wörden mer nog niet beschikbaor emaakt bin op de wiki. Disse bestaanden bin allinnig zichtbaor veur de gebruker die ze opstuurt.',
 'uploadstash-clear'    => 'Verbörgen bestaanden vortdoon',
 'uploadstash-nofiles'  => 'Der bin gien verbörgen bestaanden.',
 'uploadstash-badtoken' => 't Uutvoeren van de haandeling is mislokt. Dit kump warschienlik deurdat joew bewarkingsreferensies verleupen bin. Probeer t opniej.',
@@ -1798,7 +1798,7 @@ Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization veur meer informasi
 'img-auth-nologinnWL'       => 'Je bin niet an-emeld en "$1" steet niet op de witte lieste.',
 'img-auth-nofile'           => 'Bestaand "$1" besteet niet.',
 'img-auth-isdir'            => 'Je proberen de map "$1" binnen te koemen.
-Allenig toegang tot bestaanden is toe-estaon.',
+Allinnig toegang tot bestaanden is toe-estaon.',
 'img-auth-streaming'        => 'Bezig mit t streumen van "$1".',
 'img-auth-public'           => 't Doel van img_auth.php is de uutvoer van bestaanden van n besleuten wiki.
 Disse wiki is in-esteld as publieke wiki.
@@ -1830,13 +1830,13 @@ Um beveiligingsredens is img_auth.php uuteschakeld.',
 'upload_source_file' => ' (een bestaand op de hardeschieve)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Op disse spesiale pagina ku'j alle toe-evoegden bestaanden bekieken.
-Standard wörden de lest toe-evoegden bestaanden bovenan de lieste ezet.
+'listfiles-summary'     => "Op disse spesiale pagina ku'j alle bestaanden bekieken die lestens op-estuurd bin.
+Standard wörden de lest op-estuurden bestaanden bovenan de lieste ezet.
 Klikken op n kolomkop veraandert de sortering.",
 'listfiles_search_for'  => 'Zeuk naor bestaand:',
 'imgfile'               => 'bestaand',
 'listfiles'             => 'Bestaandslieste',
-'listfiles_thumb'       => 'Aofbeeldingsoverzichte',
+'listfiles_thumb'       => 'Miniatuuraofbeelding',
 'listfiles_date'        => 'Daotum',
 'listfiles_name'        => 'Naam',
 'listfiles_user'        => 'Gebruker',
@@ -1853,9 +1853,9 @@ Klikken op n kolomkop veraandert de sortering.",
 'filehist-revert'           => 'weerummedreien',
 'filehist-current'          => 'zo as t noen is',
 'filehist-datetime'         => 'Daotum/tied',
-'filehist-thumb'            => 'Aofbeeldingsoverzichte',
-'filehist-thumbtext'        => 'Aofbeeldingsoverzichte veur versie van $1',
-'filehist-nothumb'          => 'Gien aofbeeldingsoverzichte',
+'filehist-thumb'            => 'Miniatuuraofbeelding',
+'filehist-thumbtext'        => 'Miniatuuraofbeelding veur versie van $1',
+'filehist-nothumb'          => 'Gien miniatuuraofbeelding',
 'filehist-user'             => 'Gebruker',
 'filehist-dimensions'       => 'Grootte',
 'filehist-filesize'         => 'Bestaandsgrootte',
@@ -1864,7 +1864,7 @@ Klikken op n kolomkop veraandert de sortering.",
 'imagelinks'                => 'Verwiezingen naor dit bestaand',
 'linkstoimage'              => "Dit bestaand wörden gebruukt op de volgende {{PLURAL:$1|pagina|$1 pagina's}}:",
 'linkstoimage-more'         => 'Der {{PLURAL:$2|is|bin}} meer as $1 {{PLURAL:$1|verwiezing|verwiezingen}} naor dit bestaand.
-De volgende lieste geef allenig de eerste {{PLURAL:$1|verwiezing|$1 verwiezingen}} naor dit bestaand weer.
+De volgende lieste geef allinnig de eerste {{PLURAL:$1|verwiezing|$1 verwiezingen}} naor dit bestaand weer.
 De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'nolinkstoimage'            => 'Bestaand is niet in gebruuk.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Meer verwiezingen]] naor dit bestaand bekieken.',
@@ -2017,15 +2017,15 @@ Meestentieds is leste pagina de gewunste doelpagina, waor oek de eerste pagina h
 'deadendpages'            => "Pagina's zonder verwiezingen",
 'deadendpagestext'        => "De onderstaonde pagina's verwiezen niet naor aandere pagina's in disse wiki.",
 'protectedpages'          => "Pagina's die beveiligd bin",
-'protectedpages-indef'    => 'Allenig blokkeringen zonder verloopdaotum',
-'protectedpages-cascade'  => 'Allenig beveiligingen mit de kaskadeopsie',
+'protectedpages-indef'    => 'Allinnig blokkeringen zonder verloopdaotum',
+'protectedpages-cascade'  => 'Allinnig beveiligingen mit de kaskadeopsie',
 'protectedpagestext'      => "De volgende pagina's bin beveiligd en kunnen niet herneumd of bewarkt wörden.",
 'protectedpagesempty'     => "Der bin op t moment gien beveiligden pagina's",
 'protectedtitles'         => 'Paginanamen die beveiligd bin',
 'protectedtitlestext'     => "De volgende pagina's bin beveiligd, zodat ze niet opniej an-emaakt kunnen wörden",
 'protectedtitlesempty'    => 'Der bin noen gien titels beveiligd die an disse veurweerden voldoon.',
 'listusers'               => 'Gebrukerslieste',
-'listusers-editsonly'     => 'Allenig gebrukers mit bewarkingen laoten zien',
+'listusers-editsonly'     => 'Allinnig gebrukers mit bewarkingen laoten zien',
 'listusers-creationsort'  => 'Sorteren op inschriefdaotum',
 'usereditcount'           => '$1 {{PLURAL:$1|bewarking|bewarkingen}}',
 'usercreated'             => 'An-emaakt op $1 um $2',
@@ -2105,7 +2105,7 @@ Zie oek [[Special:WantedCategories|gewunste kategorieën]].",
 'linksearch-text'  => 'Jokers zo as "*.wikipedia.org" of "*.org" bin toe-estaon.<br />
 Ondersteunde protokollen: <tt>$1</tt>',
 'linksearch-line'  => '$1 hef n verwiezing in $2',
-'linksearch-error' => 'Jokers bin allenig toe-estaon an t begin van n webadres.',
+'linksearch-error' => 'Jokers bin allinnig toe-estaon an t begin van n webadres.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Laot gebrukers zien vanaof:',
@@ -2341,7 +2341,7 @@ Hier staon de instellingen zo as ze noen bin veur de pagina '''$1''':",
 'protect-default'             => 'Veur alle gebrukers',
 'protect-fallback'            => 'Hierveur is t rech "$1" neudig',
 'protect-level-autoconfirmed' => 'Blokkeer nieje en anonieme gebrukers',
-'protect-level-sysop'         => 'Allenig beheerders',
+'protect-level-sysop'         => 'Allinnig beheerders',
 'protect-summary-cascade'     => 'kaskade',
 'protect-expiring'            => 'löp aof op $1 (UTC)',
 'protect-expiring-local'      => 'vervuilt op $1',
@@ -2391,7 +2391,7 @@ Vink de versies die weerummeplaotsen willen an en klik op '''''{{int:undeletebtn
 As der al n nieje pagina mit de zelfde naam an-emaakt is, zullen disse versies as ouwe versies weerummeplaotst wörden, mer de op-esleugen versie zal niet ewiezigd wörden.",
 'undeleterevdel'               => "Herstellen kan niet as daor de leste versie van de pagina of t bestaand gedeeltelik mee vortedaon wörden.
 In dat geval mö'j de leste versie as zichtbaor instellen.",
-'undeletehistorynoadmin'       => 'Disse pagina is vortedaon. De reden hierveur steet hieronder, samen mit de informasie van de gebrukers die dit artikel ewiezigd hebben veurdat t vortedaon is. De tekste van t artikel is allenig zichtbaor veur beheerders.',
+'undeletehistorynoadmin'       => 'Disse pagina is vortedaon. De reden hierveur steet hieronder, samen mit de informasie van de gebrukers die dit artikel ewiezigd hebben veurdat t vortedaon is. De tekste van t artikel is allinnig zichtbaor veur beheerders.',
 'undelete-revision'            => 'Vortedaone versies van $1 (per $4 um $5) deur $3:',
 'undeleterevision-missing'     => "Ongeldige of ontbrekende versie. t Is meugelik da'j n verkeerde verwiezing gebruken of dat disse pagina weerummeplaotst is of dat t uut t archief ewist is.",
 'undelete-nodiff'              => 'Gien eerdere versie evunnen.',
@@ -2444,7 +2444,7 @@ $1',
 'month'               => 'Maond:',
 'year'                => 'Jaor:',
 
-'sp-contributions-newbies'             => 'Allenig biedragen van anwas bekieken',
+'sp-contributions-newbies'             => 'Allinnig biedragen van anwas bekieken',
 'sp-contributions-newbies-sub'         => 'Veur anwas',
 'sp-contributions-newbies-title'       => 'Biedragen van anwas',
 'sp-contributions-blocklog'            => 'blokkeerlogboek',
@@ -2459,7 +2459,7 @@ De leste regel uut t blokkeerlogboek steet hieronder as referensie:',
 De leste regel uut t blokkeerlogboek steet as referensie',
 'sp-contributions-search'              => 'Zeuken naor biedragen',
 'sp-contributions-username'            => 'IP-adres of gebrukersnaam:',
-'sp-contributions-toponly'             => 'Allenig de niejste versie laoten zien',
+'sp-contributions-toponly'             => 'Allinnig de niejste versie laoten zien',
 'sp-contributions-submit'              => 'Zeuk',
 'sp-contributions-showsizediff'        => 'Verschil in paginagrootte laoten zien',
 
@@ -2550,7 +2550,7 @@ Op de [[Special:BlockList|IP-blokkeerlieste]] steet n lieste mit alle blokkering
 'ipblocklist-otherblocks'         => 'Aandere {{PLURAL:$1|blokkering|blokkeringen}}',
 'infiniteblock'                   => 'onbeparkt',
 'expiringblock'                   => 'löp aof op $1 um $2',
-'anononlyblock'                   => 'allenig anoniemen',
+'anononlyblock'                   => 'allinnig anoniemen',
 'noautoblockblock'                => 'autoblok niet aktief',
 'createaccountblock'              => 'anmaken van n gebrukersprofiel is eblokkeerd',
 'emailblock'                      => 't versturen van berichten is eblokkeerd',
@@ -2571,7 +2571,7 @@ t Logboek mit onderdrokten versies steet hieronder as referensie:',
 'reblock-logentry'                => 'hef de instellingen veur de blokkering van [[$1]] ewiezigd t Löp noen of over $2 $3',
 'blocklogtext'                    => "Hier zie'j n lieste van de leste blokkeringen en deblokkeringen. Automatiese blokkeringen en deblokkeringen koemen niet in t logboek te staon. Zie de [[Special:BlockList|IP-blokkeerlieste]] veur de lieste van adressen die noen eblokkeerd bin.",
 'unblocklogentry'                 => 'blokkering van $1 is op-eheven',
-'block-log-flags-anononly'        => 'allenig anoniemen',
+'block-log-flags-anononly'        => 'allinnig anoniemen',
 'block-log-flags-nocreate'        => 'anmaken van gebrukersprofielen uuteschakeld',
 'block-log-flags-noautoblock'     => 'autoblokkeren uuteschakeld',
 'block-log-flags-noemail'         => 't versturen van berichten is eblokkeerd',
@@ -2635,7 +2635,7 @@ Deurverwiezingen naor de ouwe naam kunnen automaties ewiezigd wörden.
 A'j derveur kiezen um dat niet te doon, kiek t dan effen nao of der [[Special:DoubleRedirects|dubbele]] en [[Special:BrokenRedirects|ebreuken deurverwiezingen]] bin ontstaon.
 t Is an joe um derveur te zörgen dat de deurverwiezingen naor de goeie naam gaon.
 
-n Pagina kan '''allenig''' herneumd wörden as de nieje naam niet besteet of t n deurverwiezing is zonder veerdere geschiedenisse.
+n Pagina kan '''allinnig''' herneumd wörden as de nieje naam niet besteet of t n deurverwiezing is zonder veerdere geschiedenisse.
 Dit betekent da'j n pagina weer naor de ouwe naam kunnen herneumen, a'j bieveurbeeld n fout emaakt hebben, zonder da'j de bestaonde pagina overschrieven.
 
 '''WAORSCHUWING!'''
@@ -2646,7 +2646,7 @@ De ouwe naam zal automaties n deurverwiezing wörden naor de nieje pagina.
 Kiek oek effen nao of der gien [[Special:DoubleRedirects|dubbele]] of [[Special:BrokenRedirects|ebreuken deurverwiezingen]] bin ontstaon.
 t Is an joe um derveur te zörgen dat de deurverwiezingen naor de goeie naam gaon.
 
-n Pagina kan '''allenig''' herneumd wörden as de nieje naam niet besteet of t n deurverwiezing is zonder veerdere geschiedenisse.
+n Pagina kan '''allinnig''' herneumd wörden as de nieje naam niet besteet of t n deurverwiezing is zonder veerdere geschiedenisse.
 Dit betekent da'j n pagina weer naor de ouwe naam kunnen herneumen, a'j bieveurbeeld n fout emaakt hebben, zonder da'j de bestaonde pagina overschrieven.
 
 '''WAORSCHUWING!'''
@@ -2657,7 +2657,7 @@ Zörg derveur da'j de gevolgen overzien veurda'j veerder gaon.",
 * As der al n niet-lege overlegpagina besteet onder de aandere naam
 * a'j t onderstaonde vinkjen vorthaolen",
 'movearticle'                  => 'Herneum',
-'moveuserpage-warning'         => "'''Waorschuwing:''' Je staon op t punt um n gebrukerspagina te herneumen. Allenig disse pagina zal herneumd wörden, '''niet''' de gebruker.",
+'moveuserpage-warning'         => "'''Waorschuwing:''' Je staon op t punt um n gebrukerspagina te herneumen. Allinnig disse pagina zal herneumd wörden, '''niet''' de gebruker.",
 'movenologin'                  => 'Niet an-emeld.',
 'movenologintext'              => 'Je mutten [[Special:UserLogin|an-emeld]] ween um de naam van n pagina te wiezigen.',
 'movenotallowed'               => "Je hebben gien rechten um pagina's te herneumen.",
@@ -2710,8 +2710,8 @@ De overige pagina's wörden niet automaties herneumd.",
 'imageinvalidfilename'         => 'De nieje bestaandsnaam is ongeldig',
 'fix-double-redirects'         => 'Alle deurverwiezingen die naor de ouwe titel verwiezen, herneumen naor de nieje titel',
 'move-leave-redirect'          => 'n Deurverwiezing achterlaoten',
-'protectedpagemovewarning'     => "'''Waorschuwing:''' disse pagina kan allenig deur beheerders herneumd wörden.",
-'semiprotectedpagemovewarning' => "'''Waorschuwing:''' disse pagina kan allenig deur eregistreerden gebrukers herneumd wörden.
+'protectedpagemovewarning'     => "'''Waorschuwing:''' disse pagina kan allinnig deur beheerders herneumd wörden.",
+'semiprotectedpagemovewarning' => "'''Waorschuwing:''' disse pagina kan allinnig deur eregistreerden gebrukers herneumd wörden.
 De leste logboekregel steet hieronder:",
 'move-over-sharedrepo'         => "== t Bestaand besteet al ==
 [[:$1]] besteet al in de edeelden mediadatabanke. A'j n bestaand naor disse titel herneumen, dan ku'j  t edeelden bestaand niet gebruken.",
@@ -2722,10 +2722,10 @@ Kies n aandere bestaandsnaam.',
 'export'            => "Pagina's uutvoeren",
 'exporttext'        => "De tekste en geschiedenisse van n pagina of n antal pagina's kunnen in XML-formaot uutevoerd wörden. Dit bestaand ku'j daornao uutvoeren naor n aandere MediaWiki deur de [[Special:Import|invoerpagina]] te gebruken.
 
-Zet in t onderstaonde veld de namen van de pagina's die'j uutvoeren willen, één pagina per regel, en geef an o'j alle versies mit de bewarkingssamenvatting uutvoeren willen of allenig de leste versies mit de bewarkingssamenvatting.
+Zet in t onderstaonde veld de namen van de pagina's die'j uutvoeren willen, één pagina per regel, en geef an o'j alle versies mit de bewarkingssamenvatting uutvoeren willen of allinnig de leste versies mit de bewarkingssamenvatting.
 
 A'j dat leste doon willen dan ku'j oek n verwiezing gebruken, bieveurbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] veur de pagina \"[[{{MediaWiki:Mainpage}}]]\".",
-'exportcuronly'     => 'Allenig de actuele versie, niet de veurgeschiedenisse',
+'exportcuronly'     => 'Allinnig de actuele versie, niet de veurgeschiedenisse',
 'exportnohistory'   => "----
 '''NB:''' t uutvoeren van de hele geschiedenisse is uuteschakeld vanwegen prestasieredens.",
 'export-submit'     => 'Uutvoeren',
@@ -2757,10 +2757,10 @@ Kiek oek effen bie [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalis
 # Thumbnails
 'thumbnail-more'           => 'vergroten',
 'filemissing'              => 'Bestaand ontbreekt',
-'thumbnail_error'          => 'Fout bie t laojen van t aofbeeldingsoverzichte: $1',
+'thumbnail_error'          => 'Fout bie t laojen van de miniatuuraofbeelding: $1',
 'djvu_page_error'          => 'DjVu-pagina buten bereik',
 'djvu_no_xml'              => 'Kon de XML-gegevens veur t DjVu-bestaand niet oproepen',
-'thumbnail_invalid_params' => 'Ongeldige parameters veur t aofbeeldingsoverzichte',
+'thumbnail_invalid_params' => 'Ongeldige parameters veur de miniatuuraofbeelding',
 'thumbnail_dest_directory' => 'De bestemmingsmap kon niet an-emaakt wörden.',
 'thumbnail_image-type'     => 'Dit bestaandstype wörden niet ondersteund',
 'thumbnail_gd-library'     => 'De instellingen veur de GD-biebeltheek bin niet compleet. De funksie $1 ontbreekt',
@@ -2793,7 +2793,7 @@ Slao t op joew eigen systeem op, en stuur t daornao hier op.',
 'importsuccess'              => 'Invoeren suksesvol!',
 'importhistoryconflict'      => 'Der bin konflikten in de geschiedenisse van de pagina (is misschien eerder al in-evoerd)',
 'importnosources'            => 'Gien transwiki-invoerbronnen vastesteld en t drek inlaojen van versies is eblokkeerd.',
-'importnofile'               => 'Der is gien invoerbestaand toe-evoegd.',
+'importnofile'               => 'Der is gien invoerbestaand op-estuurd.',
 'importuploaderrorsize'      => 't Opsturen van t invoerbestaand is mislokt.
 t Bestaand is groter as de in-estelde limiet.',
 'importuploaderrorpartial'   => 't Opsturen van t invoerbestaand is mislokt.
@@ -2969,7 +2969,7 @@ $1',
 'mediawarning'           => "'''Waorschuwing:''' in dit bestaand zit misschien kodering die slicht is veur t systeem.",
 'imagemaxsize'           => "Maximale aofmetingen van aofbeeldingen:<br />
 ''(veur op de beschrievingspagina)''",
-'thumbsize'              => 'Grootte van t aofbeeldingsoverzichte (thumbnail):',
+'thumbsize'              => 'Grootte van de miniatuuraofbeelding:',
 'widthheightpage'        => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'              => 'Bestaandsgrootte: $1, MIME-type: $2',
 'file-info-size'         => '$1 × $2 beeldpunten, bestaandsgrootte: $3, MIME-type: $4',
@@ -3001,13 +3001,13 @@ $1',
 # Bad image list
 'bad_image_list' => "De opmaak is as volgt:
 
-Allenig regels in n lieste (regels die beginnen mit *) wörden verwarkt.
+Allinnig regels in n lieste (regels die beginnen mit *) wörden verwarkt.
 De eerste verwiezing op n regel mut n verwiezing ween naor n ongewunst bestaand.
 Alle volgende verwiezingen die op de zelfde regel staon, wörden behaandeld as uutzundering, zo as pagina's waorop t bestaand in te tekste op-eneumen is.",
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'In dit bestaand zit metadata mit EXIF-informasie, die deur n fotokamera, inleesapparaot of fotobewarkingsprogramma toe-evoegd kan ween.',
+'metadata-help'     => 'In dit bestaand zit metadata mit EXIF-informasie, die deur n fotokamera, inleesapparaot of fotobewarkingsprogramma op-estuurd kan ween.',
 'metadata-expand'   => 'Bekiek uutebreiden gegevens',
 'metadata-collapse' => 'Verbarg uutebreiden gegevens',
 'metadata-fields'   => 'De aofbeeldingsmetadatavelden in dit bericht staon oek op n aofbeeldingspagina as de metadatatabel in-eklapt is.
@@ -3368,8 +3368,8 @@ Aandere velden wörden verbörgen.
 'exif-gpsdop-fair'      => 'Redelik ($1)',
 'exif-gpsdop-poor'      => 'Slicht ($1)',
 
-'exif-objectcycle-a' => 'Allenig smarnens',
-'exif-objectcycle-p' => 'Allenig savends',
+'exif-objectcycle-a' => 'Allinnig smarnens',
+'exif-objectcycle-p' => 'Allinnig savends',
 'exif-objectcycle-b' => "'s Mannen én 's avens",
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
@@ -3631,9 +3631,9 @@ Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 # Special:SpecialPages
 'specialpages'                   => "Spesiale pagina's",
 'specialpages-note'              => '----
-* Normale spesiale pagina\'s
-* <strong class="mw-specialpagerestricted">Beparkt toegankelike spesiale pagina\'s</strong>
-* <span class="mw-specialpagecached">Spesiale pagina\'s mit allenig gegevens uut t tussengeheugen</span>',
+* Normale spesiale pagina\'s.
+* <strong class="mw-specialpagerestricted">Beparkt toegankelike spesiale pagina\'s.</strong>
+* <span class="mw-specialpagecached">Spesiale pagina\'s mit allinnig gegevens uut t tussengeheugen (kunnen verouwerd ween).</span>',
 'specialpages-group-maintenance' => 'Onderhoudsliesten',
 'specialpages-group-other'       => "Overige spesiale pagina's",
 'specialpages-group-login'       => 'Anmelden / inschrieven',
@@ -3655,7 +3655,7 @@ Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 'external_image_whitelist' => ' #Laot disse regel onveraanderd<pre>
 #Hieronder kunnen delen van reguliere uutdrokkingen (t deel tussen //) an-egeven wörden.
 #t Wörden mit de webadressen van aofbeeldingen uut bronnen van butenof vergeleken
-#n Positief vergeliekingsresultaot zörgt derveur dat de aofbeelding weeregeven wörden, aanders wörden de aofbeelding allenig as verwiezing weeregeven
+#n Positief vergeliekingsresultaot zörgt derveur dat de aofbeelding weeregeven wörden, aanders wörden de aofbeelding allinnig as verwiezing weeregeven
 #Regels die mit n # beginnen, wörden as kommentaar behaandeld
 #De regels in de lieste bin niet heufdlettergeveulig
 
@@ -3734,5 +3734,6 @@ Dit gebeurt meestentieds as de kategorie via n mal op de pagina ezet is.',
 'ajax-category-already-present' => 'Disse pagina steet al in de kategorie $1',
 'ajax-category-hook-error'      => 'n Lokale funksie verhinderden t opslaon van de wiezigingen',
 'ajax-api-error'                => 'De API gaf n foutmelding: $1: $2',
+'ajax-api-unknown-error'        => 'De API gaf n onbekende foutmelding.',
 
 );

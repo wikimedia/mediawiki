@@ -482,7 +482,7 @@ $messages = array(
 'qbpageinfo'     => 'Pagina-informatie',
 'qbmyoptions'    => "Mijn pagina's",
 'qbspecialpages' => 'Speciale pagina’s',
-'faq'            => 'FAQ (veelgestelde vragen)',
+'faq'            => 'Veel gestelde vragen',
 'faqpage'        => 'Project:Veelgestelde vragen',
 
 # Vector skin

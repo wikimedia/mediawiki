@@ -747,8 +747,8 @@ $2',
 'createaccountmail'          => 'по е-пошта',
 'createaccountreason'        => 'Причина:',
 'badretype'                  => 'Внесените лозинки не се исти.',
-'userexists'                 => 'Корисничкото име што го внесовте веќе се користи.
-Ве молиме изберете друго име.',
+'userexists'                 => 'Корисничкото име што го внесовте е зафатено.
+Изберете друго име.',
 'loginerror'                 => 'Грешка при најавувањето',
 'createaccounterror'         => 'Не можам да ја создадам сметката: $1',
 'nocookiesnew'               => 'Корисничката сметка е создадена, но не сте најавени.
@@ -3929,8 +3929,8 @@ $1',
 'specialpages'                   => 'Специјални страници',
 'specialpages-note'              => '----
 * Нормални специјални страници.
-* <strong class="mw-specialpagerestricted">Специјални страници со ограничен пристап.</strong>
-* <span class="mw-specialpagecached">Само кеширани специјални страници.</span>',
+* <span class="mw-specialpagerestricted">Ограничени специјални страници.</span>
+* <span class="mw-specialpagecached">Кеширани специјални страници (може да се застарени).</span>',
 'specialpages-group-maintenance' => 'Извештаи за одржување',
 'specialpages-group-other'       => 'Други специјални страници',
 'specialpages-group-login'       => 'Најава / регистрација',
