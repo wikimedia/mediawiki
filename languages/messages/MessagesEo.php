@@ -2678,7 +2678,7 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 # Thumbnails
 'thumbnail-more'           => 'Pligrandigi',
 'filemissing'              => 'Mankanta dosiero',
-'thumbnail_error'          => 'Okazis eraro kreante antaŭvidan bildeton: $1',
+'thumbnail_error'          => 'Okazis eraro ĉe kreado de antaŭvida bildeto: $1',
 'djvu_page_error'          => 'DjVu-a paĝo el intervalo',
 'djvu_no_xml'              => 'Ne povas akiri XML por DjVu dosiero',
 'thumbnail_invalid_params' => 'Nevalidaj bildetaj parametroj',
@@ -2932,7 +2932,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 
 # Metadata
 'metadata'          => 'Metadatenoj',
-'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonita de la cifereca fotilo aŭ skanilo uzata krei aux skani ĝin. Se la dosiero estis modifita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
+'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aux skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
 'metadata-expand'   => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',
 'metadata-fields'   => 'La jenaj EXIF-metadatumaj kampoj estos inkluzivitaj en bildo-paĝoj kiam la metadatuma tabelo estas disfaldigita. Aliaj estos kaŝita defaŭlte.

@@ -183,7 +183,7 @@ $messages = array(
 'tog-watchdefault'            => 'Säiten déi ech änneren op meng Iwwerwaachungslëscht setzen',
 'tog-watchmoves'              => 'Säiten déi ech réckelen automatesch op meng Iwwerwaachungslëscht setzen',
 'tog-watchdeletion'           => 'Säiten déi ech läschen op meng Iwwerwaachungslëscht setzen',
-'tog-minordefault'            => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
+'tog-minordefault'            => "All Ännerungen automatesch als 'Kleng Ännerungen' markéieren.",
 'tog-previewontop'            => "Déi ''nach-net gespäichert Versioun'' iwwer der Ännerungsfënster weisen",
 'tog-previewonfirst'          => "Beim éischten Änneren déi  ''nach net gespäichert Versioun'' weisen.",
 'tog-nocache'                 => 'Säitecache vum Browser desaktivéieren',
@@ -230,7 +230,7 @@ $messages = array(
 'wednesday'     => 'Mëttwoch',
 'thursday'      => 'Donneschdeg',
 'friday'        => 'Freideg',
-'saturday'      => 'Samsdeg',
+'saturday'      => 'Samschdeg',
 'sun'           => 'Son',
 'mon'           => 'Méi',
 'tue'           => 'Dën',
@@ -584,7 +584,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'createaccountmail'          => 'Via E-Mail',
 'createaccountreason'        => 'Grond:',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
-'userexists'                 => 'Dëse Benotzernumm gëtt scho benotzt.
+'userexists'                 => 'De Benotzernumm deen agi gouf gëtt scho benotzt.
 Sicht Iech een anere Benotzernumm.',
 'loginerror'                 => 'Feeler beim Umellen',
 'createaccounterror'         => 'Benotzerkont konnt net opgemaach ginn: $1',
@@ -769,7 +769,11 @@ oder <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}
 'userpage-userdoesnotexist-view'   => 'De Benotzerkont "$1" ass net registréiert.',
 'blocked-notice-logextract'        => 'Dëse Benotzer ass elo gespaart.
 Déi lescht Entrée am Logbuch vun de Späre steet als Referenz hei drënner:',
-'clearyourcache'                   => "'''Opgepasst - Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn.''' '''Mozilla / Firefox / Safari: ''' dréckt op ''Shift'' während Dir ''reload'' klickt oder dréckt ''Ctrl-F5'' oder ''Ctrl-R''(''Command-R'' op engem Macintosh);'''Konqueror: ''' klickt  ''Reload'' oder dréckt ''F5'' '''Opera:''' maacht de Cache eidel an ''Tools → Preferences;'' '''Internet Explorer:''' dréckt ''Ctrl'' während Dir op ''Refresh'' klickt oder dréckt ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Opgepasst - Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn.'''
+'''Mozilla / Firefox / Safari: ''' dréckt op ''Shift'' während Dir ''Reload'' klickt oder dréckt ''Ctrl-F5'' oder ''Ctrl-R''(''Command-R'' op engem Mac);
+'''Konqueror: ''' klickt  ''Reload'' oder dréckt ''F5'' 
+'''Opera:''' maacht de Cache eidel an ''Tools → Preferences;'' 
+'''Internet Explorer:''' dréckt ''Ctrl'' während Dir op ''Refresh'' klickt oder dréckt ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tipp:''' Benotzt de \"{{int:showpreview}}\"-Knäppchen, fir Ären neien CSS virum Späicheren ze testen.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benotzt de ''{{int:showpreview}}''-Knäppchen, fir Ären neie JavaScript virum Späicheren ze testen.",
 'usercsspreview'                   => "'''Bedenkt: Dir kuckt just är Benotzer CSS.
@@ -2463,8 +2467,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-subpages'                => 'Ënnersäite (bis zu $1) réckelen',
 'move-talk-subpages'           => 'Ënnersäite vun der Diskussiounssäit (bis zu $1), matréckelen',
 'movepage-page-exists'         => "D'Säit $1 gëtt et schonn a kann net automatesch iwwerschriwwe ginn.",
-'movepage-page-moved'          => "D'Säit $1 gouf schonn op $2 geréckelt.",
-'movepage-page-unmoved'        => "D'Säit $1 konnt nett op $2 geréckelt ginn.",
+'movepage-page-moved'          => "D'Säit $1 gouf op $2 geréckelt.",
+'movepage-page-unmoved'        => "D'Säit $1 konnt net op $2 geréckelt ginn.",
 'movepage-max-pages'           => 'Déi Maximalzuel vu(n) $1 {{PLURAL:$1|Säit gouf|Säite goufe}} gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.',
 '1movedto2'                    => '[[$1]] gouf op [[$2]] geréckelt',
 '1movedto2_redir'              => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Viruleedung iwwerschriwwen.',
@@ -2600,7 +2604,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-pt-mytalk'               => 'Är Diskussiounssäit',
 'tooltip-pt-anontalk'             => "Diskussioun iwwer d'Ännerungen déi vun dëser IP-Adress aus gemaach gi sinn",
 'tooltip-pt-preferences'          => 'Meng Astellungen',
-'tooltip-pt-watchlist'            => 'Lëscht vu Säiten, bei deenen Der op Ännerungen oppasst',
+'tooltip-pt-watchlist'            => 'Lëscht vu Säiten, bei deenen Dir op Ännerungen oppasst',
 'tooltip-pt-mycontris'            => 'Lëscht vun äre Kontributiounen',
 'tooltip-pt-login'                => 'Sech umelle gëtt gäre gesinn, Dir musst et awer net maachen.',
 'tooltip-pt-anonlogin'            => 'Et wier gutt, Dir géift Iech aloggen, och wann et keng Musse-Saach ass.',
@@ -2615,7 +2619,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-ca-delete'               => 'Dës Säit läschen',
 'tooltip-ca-undelete'             => 'Dës Säit restauréieren',
 'tooltip-ca-move'                 => 'Dës Säit réckelen',
-'tooltip-ca-watch'                => 'Dës Säit op är Iwwerwaachungslëscht bäisetzen',
+'tooltip-ca-watch'                => 'Dës Säit op Är Iwwerwaachungslëscht bäisetzen',
 'tooltip-ca-unwatch'              => 'Dës Säit vun der Iwwerwaachungslëscht erofhuelen',
 'tooltip-search'                  => 'Op {{SITENAME}} sichen',
 'tooltip-search-go'               => 'Direkt op genee déi Säit goen, wann et se gëtt.',
@@ -3183,7 +3187,7 @@ $1",
 # Multipage image navigation
 'imgmultipageprev' => '← Vireg Säit',
 'imgmultipagenext' => 'nächst Säit →',
-'imgmultigo'       => 'Lass',
+'imgmultigo'       => 'Lass!',
 'imgmultigoto'     => "Géi op d'Säit $1",
 
 # Table pager

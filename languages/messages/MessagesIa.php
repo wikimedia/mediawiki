@@ -559,7 +559,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'createaccountmail'          => 'per e-mail',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Le duo contrasignos que tu scribeva non es identic.',
-'userexists'                 => 'Le nomine de usator que tu entrava es ja in uso.
+'userexists'                 => 'Iste nomine de usator es jam in uso.
 Selige un altere nomine.',
 'loginerror'                 => 'Error in le apertura del session',
 'createaccounterror'         => 'Non poteva crear le conto: $1',
@@ -758,7 +758,12 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist-view'   => 'Le conto de usator "$1" non es registrate.',
 'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
 Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
-'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Nota:''' Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.
+* '''Firefox / Safari:''' tenente ''Shift'' clicca ''Reload (Recargar)'', o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sur Mac)
+* '''Google Chrome:''' preme ''Ctrl-Shift-R'' (''Command-Shift-R'' sur Mac)
+* '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh (Refrescar)'', o preme ''Ctrl-F5'' 
+* '''Konqueror:''' clicca ''Reload (Recargar)'' o preme ''F5''
+* '''Opera:''' vacua le ''cache'' in ''Tools → Preferences (Utensiles → Preferentias)''",
 'usercssyoucanpreview'             => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove CSS ante de salveguardar lo.",
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove JavaScript ante de salveguardar lo.",
 'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.'''
@@ -2676,7 +2681,7 @@ Per favor usa le previsualisation ante de publicar.',
 'tooltip-ca-undelete'             => 'Restaurar le modificationes facite a iste pagina ante que illo esseva delite',
 'tooltip-ca-move'                 => 'Renominar iste pagina',
 'tooltip-ca-watch'                => 'Adder iste pagina a tu observatorio',
-'tooltip-ca-unwatch'              => 'Eliminar iste pagina de tu observatorio',
+'tooltip-ca-unwatch'              => 'Remover iste pagina de tu observatorio',
 'tooltip-search'                  => 'Cercar in {{SITENAME}}',
 'tooltip-search-go'               => 'Visitar un pagina con iste nomine exacte si existe',
 'tooltip-search-fulltext'         => 'Cercar iste texto in le paginas',
@@ -3310,12 +3315,12 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',
 'watchlistedit-noitems'        => 'Tu observatorio contine nulle titulos.',
 'watchlistedit-normal-title'   => 'Modificar observatorio',
-'watchlistedit-normal-legend'  => 'Eliminar titulos del observatorio',
+'watchlistedit-normal-legend'  => 'Remover titulos del observatorio',
 'watchlistedit-normal-explain' => 'Le titulos in tu observatorio es monstrate hic infra.
 Pro eliminar un titulo, marca le quadrato correspondente, e clicca "{{int:Watchlistedit-normal-submit}}".
 Tu pote etiam [[Special:Watchlist/raw|modificar le lista in forma crude]].',
-'watchlistedit-normal-submit'  => 'Eliminar titulos',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate de tu observatorio:',
+'watchlistedit-normal-submit'  => 'Remover titulos',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite de tu observatorio:',
 'watchlistedit-raw-title'      => 'Modification del observatorio in forma crude',
 'watchlistedit-raw-legend'     => 'Modification del observatorio in forma de un lista simple de titulos',
 'watchlistedit-raw-explain'    => 'Le titulos in tu observatorio es monstrate hic infra, e pote esser modificate per adder e eliminar entratas del lista;
@@ -3326,7 +3331,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'watchlistedit-raw-submit'     => 'Actualisar observatorio',
 'watchlistedit-raw-done'       => 'Tu observatorio ha essite actualisate.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite addite:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vider modificationes pertinente',

@@ -716,7 +716,7 @@ Por favor, agarde antes de probar outra vez.',
 'resetpass_submit'          => 'Poñer o contrasinal e entrar',
 'resetpass_success'         => 'O cambio do contrasinal realizouse con éxito! Agora pode entrar...',
 'resetpass_forbidden'       => 'Os contrasinais non poden ser mudados',
-'resetpass-no-info'         => 'Debe acceder ao sistema para acceder directamente a esta páxina.',
+'resetpass-no-info'         => 'Debe rexistrarse para acceder directamente a esta páxina.',
 'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
 'resetpass-submit-cancel'   => 'Cancelar',
 'resetpass-wrong-oldpass'   => 'O contrasinal temporal ou actual é incorrecto.
@@ -826,11 +826,12 @@ ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'userpage-userdoesnotexist-view'   => 'A conta de usuario "$1" non está rexistrada.',
 'blocked-notice-logextract'        => 'Este usuario está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
-'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
-'''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh);
-'''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5'';
-'''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias'';
-'''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nota:''' Despois de gardar, cómpre limpar a memoria caché do seu navegador para ver os cambios.
+* '''Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Mac)
+* '''Google Chrome:''' prema en ''Ctrl-Shift-R'' (''Command-Shift-R'' nos Mac)
+* '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
+* '''Konqueror:''' prema en ''Recargar'' ou prema en ''F5''
+* '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''",
 'usercssyoucanpreview'             => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
 'userjsyoucanpreview'              => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
@@ -2753,9 +2754,9 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-preview'                 => 'Vista previa dos seus cambios; por favor, úsea antes de gravalos!',
 'tooltip-diff'                    => 'Mostrar os cambios que fixo no texto',
 'tooltip-compareselectedversions' => 'Ver as diferenzas entre dúas versións seleccionadas desta páxina',
-'tooltip-watch'                   => 'Engadir esta páxina á súa lista de vixilancia [alt-w]',
+'tooltip-watch'                   => 'Engadir esta páxina á súa lista de vixilancia',
 'tooltip-recreate'                => 'Recrear a páxina a pesar de que foi borrada',
-'tooltip-upload'                  => 'Comezar a enviar',
+'tooltip-upload'                  => 'Iniciar o envío',
 'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último colaborador.',
 'tooltip-undo'                    => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
 'tooltip-preferences-save'        => 'Gardar as preferencias',

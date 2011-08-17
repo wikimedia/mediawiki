@@ -667,10 +667,11 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => "Esti usuariu anguaño ta bloquiáu.
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
-*'''Mozilla / Firefox / Safari:''' caltién ''Shift'' mentes calques en ''Reload'', o calca ''Ctrl-Shift-R'' (''Cmd-Shift-R'' en Apple Mac)
-*'''IE:''' caltién ''Ctrl'' mentes calques ''Refresh'', o calca ''Ctrl-F5''
-*'''Konqueror:''' calca nel botón ''Reload'', o calca ''F5''
-*'''Opera:''' los usuarios d'Opera seique necesiten esborrar dafechu'l caché en ''Tools→Preferences''",
+*'''Firefox / Safari:''' caltién ''Mayús'' mentes calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' nún Mac)
+* '''Google Chrome:''' calca ''Ctrl-Mayús-R'' (''Command-Mayús-R'' nún Mac)
+* '''Internet Explorer:''' caltién ''Ctrl'' mentes calques ''Refrescar'', o calca ''Ctrl-F5''
+* '''Konqueror:''' calca nel botón ''Recargar'', o calca ''F5''
+* '''Opera:''' desanicia la caché en ''Ferramientes→Preferencies''",
 'usercssyoucanpreview'             => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu CSS enantes de guardalu.",
 'userjsyoucanpreview'              => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu JavaScript enantes de guardalu.",
 'usercsspreview'                   => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
@@ -1025,8 +1026,8 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'showingresultsheader'             => "{{PLURAL:$5|Resultáu '''$1''' de '''$3'''|Resultaos '''$1 - $2''' de '''$3'''}} pa '''$4'''",
 'nonefound'                        => "'''Nota''': Por defeutu namái se busca en dalgunos de los espacios de nome. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
 'search-nonefound'                 => 'Nun hebo resultaos que concueyen cola consulta.',
-'powersearch'                      => 'Buscar',
-'powersearch-legend'               => 'Busca avanzada',
+'powersearch'                      => 'Gueta avanzada',
+'powersearch-legend'               => 'Gueta avanzada',
 'powersearch-ns'                   => 'Buscar nos espacios de nome:',
 'powersearch-redir'                => 'Llistar redireiciones',
 'powersearch-field'                => 'Buscar',

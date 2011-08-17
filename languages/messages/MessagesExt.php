@@ -569,7 +569,7 @@ Pueis [[Special:Search/{{PAGENAME}}|landeal el entítulu del artículu]] en otra
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta d\'usuáriu "$1" nu está rustria. Pol favol, compreba que rialmenti quieis crial/eital esta páhina.',
-'clearyourcache'                   => "'''Nota:''' Aluspués d'emburacal el archivu, ebi gorvel a cargal la página pa vel los chambus. '''Mozilla / Firefox / Safari:''' Pursa la tecra ''Shift'' mentris das a ''Recargal'', u pursa ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' en Macintosh);
+'clearyourcache'                   => "'''Nota:''' Aluspués d'emburacal el archivu, ebi gorvel a cargal la página pa vel los chambus. '''Mozilla / Firefox / Safari:''' Pursa la tecra ''Shift'' mentris das a ''Recargal'', u pursa ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' en Mac);
 '''Konqueror:''' Pursa ''F5'' u ''Recargal'';
 '''Opera:''' Esborra el caché en ''Herramientas→Preferéncias''.
 '''Internet Explorer:''' Mantén ''Ctrl'' mentris pursas ''Atualizal'', u pursa ''Ctrl-F5''.",

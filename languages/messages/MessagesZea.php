@@ -186,6 +186,12 @@ $messages = array(
 'faq'            => 'FAQ (veehestelde vraehen)',
 'faqpage'        => 'Project:Veehestelde vraehen',
 
+# Vector skin
+'vector-action-delete'   => 'Wissen',
+'vector-action-move'     => 'Verschuuf',
+'vector-action-protect'  => 'Bescherm',
+'vector-action-undelete' => 'Plaets truhhe',
+
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Trug nae $1.',
 'tagline'           => 'Uut {{SITENAME}}',
@@ -277,6 +283,7 @@ $messages = array(
 'editsection'             => 'bewerken',
 'editold'                 => 'bewerk',
 'viewsourceold'           => 'brontekst bekieken',
+'editlink'                => 'bewerken',
 'editsectionhint'         => 'Deêlpahina bewerken: $1',
 'toc'                     => "In'oud",
 'showtoc'                 => 'uutklappe',

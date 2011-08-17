@@ -879,7 +879,7 @@ Inclua todos os detalhes acima em quaisquer contactos relacionados com este bloq
 'blockedoriginalsource'            => "O código de '''$1''' é mostrado abaixo:",
 'blockededitsource'                => "O texto das '''suas edições''' em '''$1''' é mostrado abaixo:",
 'whitelistedittitle'               => 'É necessário autenticar-se para editar páginas',
-'whitelistedittext'                => 'Precisa de se $1 para poder editar páginas.',
+'whitelistedittext'                => 'Precisa de $1 para poder editar páginas.',
 'confirmedittext'                  => 'Precisa de confirmar o seu endereço de correio electrónico antes de começar a editar páginas.
 Introduza e valide o endereço através das [[Special:Preferences|preferências do utilizador]], por favor.',
 'nosuchsectiontitle'               => 'Não foi possível encontrar a secção',
@@ -912,10 +912,11 @@ Verifique se deseja realmente criar ou editar esta página, por favor.',
 'blocked-notice-logextract'        => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
 'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
-'''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' num Macintosh);
-'''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5'';
-'''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'');
-'''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5''.",
+'''Firefox / Safari:''' pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' no Mac)
+'''Google Chrome:''': pressione ''Ctrl-Shift-R'' (Command-Shift-R no Mac)
+'''Internet Explorer:''' pressione ''Ctrl'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5''
+'''Konqueror:''': clique ''Recarregar'' ou pressione ''F5''
+'''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
 'usercssyoucanpreview'             => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo CSS antes de gravar.",
 'userjsyoucanpreview'              => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo JavaScript antes de gravar.",
 'usercsspreview'                   => "'''Lembre-se de que está apenas a antever o seu CSS particular.
@@ -948,7 +949,7 @@ Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal
 'editingsection'                   => 'A editar $1 (secção)',
 'editingcomment'                   => 'A editar $1 (nova secção)',
 'editconflict'                     => 'Conflito de edição: $1',
-'explainconflict'                  => "Alguém mudou a página desde que começou a editá-la.
+'explainconflict'                  => "A página foi alterada por alguém desde que começou a editá-la.
 A caixa de texto abaixo mostra o texto existente neste momento.
 As suas mudanças são mostradas na área ao fundo da página.
 Terá de reintegrar as suas mudanças no texto da caixa abaixo.
@@ -960,12 +961,14 @@ Foi activado um sistema de edição alternativo que lhe permite editar as págin
 'editingold'                       => "'''Aviso: Está a editar uma revisão desactualizada desta página.'''
 Se gravar, todas as mudanças feitas a partir desta revisão serão perdidas.",
 'yourdiff'                         => 'Diferenças',
-'copyrightwarning'                 => "Por favor, note que todas as suas contribuições na {{SITENAME}} são consideradas publicadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto possa ser inexoravelmente editado e redistribuído desta forma, não o envie.
+'copyrightwarning'                 => "Note, por favor, que todas as suas contribuições na {{SITENAME}} são consideradas publicadas nos termos da licença $2 (consulte $1 para mais detalhes).
+Se não deseja que o seu texto possa ser inexoravelmente editado e redistribuído, não o envie.
 Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre.<br />
-'''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
-'copyrightwarning2'                => "Por favor, note que todas as suas contribuições na {{SITENAME}} podem ser editadas, alteradas ou removidas por outros utilizadores. Se não deseja que o seu texto seja inexoravelmente editado, não o envie.
-Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (veja $1 para detalhes).<br />
-'''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
+'''Não envie conteúdos cujos direitos de autor estão protegidos, sem ter a devida permissão!'''",
+'copyrightwarning2'                => "Note, por favor, que todas as suas contribuições na {{SITENAME}} podem ser editadas, alteradas ou removidas por outros utilizadores.
+Se não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
+Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (consulte $1 para mais detalhes).<br />
+'''Não envie conteúdos cujos direitos de autor estão protegidos, sem ter a devida permissão!'''",
 'longpageerror'                    => "'''Erro: O texto que submeteu ocupa $1 KB, um espaço superior ao máximo de $2 KB.
 A página não pode ser gravada.'''",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
@@ -977,8 +980,8 @@ O último registo é apresentado abaixo para referência:",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.
 A última entrada no histórico é fornecida abaixo como referência.",
 'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida de forma que apenas os administradores possam editá-la, porque se encontra incluída {{PLURAL:$1|na seguinte página protegida|nas seguintes páginas protegidas}} em cascata:",
-'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida por forma a que [[Special:ListGroupRights|privilégios específicos]] sejam necessários para criá-la.'''
-O último registo é apresentado abaixo para referência:",
+'titleprotectedwarning'            => "'''Aviso: Esta página foi protegida de forma a que [[Special:ListGroupRights|privilégios específicos]] sejam necessários para criá-la.'''
+Para referência, é apresentada abaixo a última entrada do registo:",
 'templatesused'                    => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta página:',
 'templatesusedpreview'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta antevisão:',
 'templatesusedsection'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta secção:',
@@ -987,7 +990,7 @@ O último registo é apresentado abaixo para referência:",
 'hiddencategories'                 => 'Esta página pertence a {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:',
 'edittools'                        => '<!-- O texto colocado aqui será mostrado abaixo dos formulários de edição e de envio de ficheiros. -->',
 'nocreatetitle'                    => 'A criação de páginas encontra-se limitada',
-'nocreatetext'                     => 'A {{SITENAME}} restringe a criação de novas páginas por utilizadores anónimos.
+'nocreatetext'                     => 'A {{SITENAME}} restringe a criação de páginas novas por utilizadores anónimos.
 Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|autenticar-se ou criar uma conta]].',
 'nocreate-loggedin'                => 'Não possui permissão para criar novas páginas.',
 'sectioneditnotsupported-title'    => 'Edição de secções não é suportada',
@@ -1000,19 +1003,19 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 Verifique se é apropriado continuar a editar esta página.
 Para sua conveniência, é apresentado de seguida o registo de eliminação e de movimento da página:",
 'moveddeleted-notice'              => 'Esta página foi eliminada.
-Disponibiliza-se abaixo o registo de eliminações e de movimento para esta página, para referência.',
+Para referência, é apresentado de seguida o registo de eliminações e de movimento da página.',
 'log-fulllog'                      => 'Ver registo detalhado',
-'edit-hook-aborted'                => 'Edição abortada por hook.
-Ele não deu nenhuma explicação.',
+'edit-hook-aborted'                => 'A edição foi abortada por um hook.
+Não foi dada nenhuma explicação.',
 'edit-gone-missing'                => 'Não foi possível actualizar a página.
-Ela foi, aparentemente, eliminada.',
+Ela parece ter sido eliminada.',
 'edit-conflict'                    => 'Conflito de edição.',
 'edit-no-change'                   => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
-'edit-already-exists'              => 'Não foi possível criar uma nova página.
+'edit-already-exists'              => 'Não foi possível criar uma página nova.
 Ela já existia.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Aviso: Esta página contém demasiadas chamadas a funções exigentes do analisador sintáctico.
+'expensive-parserfunction-warning'        => 'Aviso: Esta página contém demasiadas chamadas de funções exigentes do analisador sintáctico.
 
 Devia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLURAL:$1|chamada|chamadas}}.',
 'expensive-parserfunction-category'       => 'Páginas com demasiadas chamadas a funções exigentes',
@@ -1093,7 +1096,7 @@ Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Sp
 Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
 'rev-deleted-no-diff'         => "Não pode ver esta diferença entre revisões porque uma das revisões foi '''eliminada'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
-'rev-suppressed-no-diff'      => "Não pode visionar esta diferença entre versões porque uma das revisões foi '''eliminada'''.",
+'rev-suppressed-no-diff'      => "Não pode ver esta diferença entre versões porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff'     => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
 Como administrador, pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
@@ -1141,11 +1144,11 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|à revisão seleccionada|às revisões seleccionadas}}',
 'revdelete-logentry'          => 'alterou a visibilidade das revisões de "[[$1]]"',
 'logdelete-logentry'          => 'alterou a visibilidade dos eventos de "[[$1]]"',
-'revdelete-success'           => "'''A visibilidade da revisão foi actualizada com sucesso.'''",
+'revdelete-success'           => "'''A visibilidade da revisão foi actualizada.'''",
 'revdelete-failure'           => "'''A visibilidade da revisão não foi actualizada:'''
 $1",
-'logdelete-success'           => "'''Visibilidade de evento definida com sucesso.'''",
-'logdelete-failure'           => "'''Não foi possível definir a visibilidade do registo:'''
+'logdelete-success'           => "'''A visibilidade da entrada do registo foi definida.'''",
+'logdelete-failure'           => "'''Não foi possível definir a visibilidade da entrada do registo:'''
 $1",
 'revdel-restore'              => 'Alterar visibilidade',
 'revdel-restore-deleted'      => 'revisões eliminadas',
@@ -2167,7 +2170,7 @@ O endereço de correio que introduziu nas suas [[Special:Preferences|preferênci
 'mywatchlist'          => 'Páginas vigiadas',
 'watchlistfor2'        => 'Para $1 $2',
 'nowatchlist'          => 'A sua lista de páginas vigiadas está vazia.',
-'watchlistanontext'    => '$1 para ver ou editar a sua lista de páginas vigiadas, por favor.',
+'watchlistanontext'    => 'Precisa de $1 para ver ou editar a sua lista de páginas vigiadas, por favor.',
 'watchnologin'         => 'Não está autenticado',
 'watchnologintext'     => 'Precisa de estar [[Special:UserLogin|autenticado]] para modificar a sua lista de páginas vigiadas.',
 'addedwatch'           => 'Adicionado à lista',
@@ -2326,7 +2329,7 @@ Pode alterar o nível de protecção desta página, mas isso não afectará a pr
 'protect-level-autoconfirmed' => 'Bloquear utilizadores novos e não registados',
 'protect-level-sysop'         => 'Apenas administradores',
 'protect-summary-cascade'     => 'em cascata',
-'protect-expiring'            => 'expira em $1 (UTC)',
+'protect-expiring'            => 'expira a $1 (UTC)',
 'protect-expiry-indefinite'   => 'infinito',
 'protect-cascade'             => 'Proteja quaisquer páginas que estejam incluídas nesta (protecção em cascata)',
 'protect-cantedit'            => 'Não pode alterar o nível de protecção desta página, porque não tem permissão para editá-la.',
@@ -3407,7 +3410,7 @@ Confirme que deseja realmente recriar esta página, por favor.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Limpar a memória cache desta página?',
-'confirm-purge-bottom' => 'Purgar uma página limpa a cache e força a sua versão mais recente a aparecer.',
+'confirm-purge-bottom' => 'Purgar uma página, limpa a cache e força a sua versão mais recente a aparecer.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

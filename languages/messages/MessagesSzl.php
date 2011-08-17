@@ -15,6 +15,7 @@
  * @author Leinad
  * @author Ozi64
  * @author Pimke
+ * @author Przemub
  * @author Tchoř
  * @author Timpul
  */
@@ -242,6 +243,7 @@ $messages = array(
 'jumpto'            => 'Przyńdź do:',
 'jumptonavigation'  => 'nawigacyje',
 'jumptosearch'      => 'szukańo',
+'pool-errorunknown' => 'Feler ńyznany',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Uo {{GRAMMAR:MS.lp|{{SITENAME}}}}',
@@ -311,7 +313,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Ńy mo takij uoperacyji',
-'nosuchactiontext'  => 'Uoprogramowańy ńy rozpoznowo uoperacyji takij kej podano w URL',
+'nosuchactiontext'  => 'Uoprogramowańy ńy rozpoznowo uoperacyji takij kej podano w URL.',
 'nosuchspecialpage' => 'Ńy mo takij špecyjalnyj zajty',
 'nospecialpagetext' => '<strong>Uoprogramowańy ńy rozpoznowo takij špecyjalnyj zajty.</strong>
 
@@ -320,11 +322,11 @@ Lista špecyjalnych zajtůw znejdźeš na [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error'                => 'Feler',
 'databaseerror'        => 'Feler bazy danych',
-'dberrortext'          => 'Zdořiu śe feler we skuadńi zapytańo do bazy danych. Uostatńy, ńyudane zapytańy to:
+'dberrortext'          => 'Zdorziu sie feler we skuadńi zapytańo do bazy danych. Uostatńy, ńyudane zapytańy to:
 <blockquote><tt>$1</tt></blockquote>
 wysuane bez funkcja "<tt>$2</tt>".
 MySQL zguośiu feler "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Zdořiu śe feler we skuadńi zapytańo do bazy danych. Uostatńy, ńyudane zapytańy to:
+'dberrortextcl'        => 'Zdorziu śe feler we skuadńi zapytańo do bazy danych. Uostatńy, ńyudane zapytańy to:
 "$1"
 kere wywououa funkcyjo "$2".
 MySQL zguośiu feler "$3: $4"',
@@ -345,6 +347,7 @@ Jeli tak ńy je, moguo śe trefić coś znod feler we uoprůgramowańu MediaWiki
 'readonly_lag'         => 'Baza danych zostoua automatyčńy zawarto na čas potřebny na synchrońizacyjo zmjan mjyndzy serwerym guůwnym a serwerami postředńičůncymi.',
 'internalerror'        => 'Wewnyntřny feler',
 'internalerror_info'   => 'Wewnytřny feler: $1',
+'fileappenderrorread'  => 'Feler uodczytu "$1".',
 'filecopyerror'        => 'Ńy idźe skopjować plika "$1" do "$2".',
 'filerenameerror'      => 'Ńy idźe zmjyńić mjana plika "$1" na "$2".',
 'filedeleteerror'      => 'Ńy idźe wyćepać plika "$1".',
@@ -556,7 +559,7 @@ By jeich idyntyfikować, užywomy numerůw IP.
 Jeli ježeś anůnimowym užytkowńikym a wydowo Ći śe, aže zamjyščůne sam kůmyntoře ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůř proša kůnto]] abo [[Special:UserLogin|zalůguj śe]] - bez tůž uńikńeš potym podobnych ńyporozumjyń.''",
 'noarticletext'                    => 'Ńy můmy zajta uo takij titli. Mogesz [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{PAGENAME}}|sznupać {{PAGENAME}} we inkszych]].',
 'userpage-userdoesnotexist'        => 'Užytkowńik "$1" ńy je zareještrowany. Sprowdź eli na pewno chćoužeś stwořyć/pomjynić gynau ta zajta.',
-'clearyourcache'                   => "'''Dej pozůr:''' Coby uobejřeć pomjyńańo pů naškryflańu nowych štalowań poleć přeglůndorce wyčyśćić zawartość pamjyńći podrynčnyj (cache). '''Mozilla / Firefox / Safari:''' přitřimej ''Shift'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' přitřimej ''Ctrl'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Uodśwjyž'' abo wciś ''F5''; užytkowńicy '''Opery''' mogům być zmušeńi coby coukym wyčyśćić jejich pamjyńć podrynčno we menu ''Werkcojgi→Preferencyje''.; '''Internet Explorer:''' třim ''Ctrl'' a wćiś ''Uodśwjyž'', abo wćiś ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Dej pozůr:''' Coby uobejřeć pomjyńańo pů naškryflańu nowych štalowań poleć přeglůndorce wyčyśćić zawartość pamjyńći podrynčnyj (cache). '''Mozilla / Firefox / Safari:''' přitřimej ''Shift'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macu), '''IE :''' přitřimej ''Ctrl'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Uodśwjyž'' abo wciś ''F5''; užytkowńicy '''Opery''' mogům być zmušeńi coby coukym wyčyśćić jejich pamjyńć podrynčno we menu ''Werkcojgi→Preferencyje''.; '''Internet Explorer:''' třim ''Ctrl'' a wćiś ''Uodśwjyž'', abo wćiś ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Podpowjydź:''' Užyj knefla \"Podglůnd\", coby přetestować Twůj nowy arkuš stylůw CSS abo kod JavaScript před jego zašrajbowańym.",
 'userjsyoucanpreview'              => "'''Podpowjydź:''' Užyj knefla \"Podglůnd\", coby přetestować Twůj nowy arkuš stylůw CSS abo kod JavaScript před jego zašrajbowańym.",
 'usercsspreview'                   => "'''Pamjyntej, aže to je na raźe ino podglůnd Twojego arkuša stylůw CSS.'''

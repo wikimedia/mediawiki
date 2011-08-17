@@ -622,7 +622,7 @@ Muhun pariksa amun Pian handak maulah/mambabak tungkaran ini.',
 'blocked-notice-logextract'        => 'Pamuruk nangini parhatan ini diblukir.
 Log blukir pahabisannya tasadia di bawah ini gasan rujukan:',
 'clearyourcache'                   => "'''Catatan: Habis manyimpan, Pian harus malingarakan cache panjalajah web Pian hagan malihat parubahan.'''
-'''Mozilla/Firefox/Safari:''' tahan ''Shift'' parhatan klik ''Reload'', atawa picik ''Ctrl-F5'' atawa ''Ctrl-R'' (''Command-R'' pada sabuah Macintosh);
+'''Mozilla/Firefox/Safari:''' tahan ''Shift'' parhatan klik ''Reload'', atawa picik ''Ctrl-F5'' atawa ''Ctrl-R'' (''Command-R'' pada sabuah Mac);
 '''Opera:''' barasihakan cache pada ''Tools → Preferences'';
 '''Internet Explorer:''' tahan ''Ctrl'' parhatan klik ''Refresh,'' atawa picik ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Tip:''' Puruk picikan \"{{int:showpreview}}\" hagan tis CSS hanyar Pian sabalum manyimpan.",

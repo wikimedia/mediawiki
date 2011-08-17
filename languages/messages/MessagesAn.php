@@ -154,8 +154,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
 'tog-oldsig'                  => "Vista previa d'a sinyadura:",
 'tog-fancysig'                => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
-'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal confegurar o suyo ordenador).",
-'tog-externaldiff'            => 'Fer servir o visualizador de cambeos externo por defecto (nomás ta espiertos, cal confegurar o suyo ordenador)',
+'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
+'tog-externaldiff'            => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
 'tog-showjumplinks'           => 'Activar vinclos d\'accesibilidat "blincar enta"',
 'tog-uselivepreview'          => 'Activar previsualización automatica (cal JavaScript) (Esperimental)',
 'tog-forceeditsummary'        => 'Avisar-me quan o campo de resumen siga buedo.',
@@ -289,7 +289,7 @@ $messages = array(
 'vector-action-move'             => 'Tresladar',
 'vector-action-protect'          => 'Protecher',
 'vector-action-undelete'         => 'Restaurar',
-'vector-action-unprotect'        => 'Desprotecher',
+'vector-action-unprotect'        => 'Cambiar protección',
 'vector-simplesearch-preference' => "Habilitar socherencias de busca amilloradas (nomás ta l'apariencia Vector)",
 'vector-view-create'             => 'Creyar',
 'vector-view-edit'               => 'Editar',
@@ -325,8 +325,8 @@ $messages = array(
 'protect'           => 'Protecher',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Protecher ista pachina',
-'unprotect'         => 'esprotecher',
-'unprotectthispage' => 'Esprotecher ista pachina',
+'unprotect'         => 'Cambiar protección',
+'unprotectthispage' => "Cambiar a protección d'ista pachina",
 'newpage'           => 'Pachina nueva',
 'talkpage'          => "Descusión d'ista pachina",
 'talkpagelinktext'  => 'Descutir',
@@ -522,6 +522,7 @@ No xublide de presonalizar [[Special:Preferences|as suyas preferencias en {{SITE
 'yourpassword'               => 'Contrasenya:',
 'yourpasswordagain'          => 'Torne a escribir a contrasenya:',
 'remembermypassword'         => "Remerar o mío nombre d'usuario y contrasenya entre sesions en iste ordinador (como muito por $1 {{PLURAL:$1|día|días}})",
+'securelogin-stick-https'    => "Continar connectau con HTTPS dimpués d'encetar sesión",
 'yourdomainname'             => 'Dominio:',
 'externaldberror'            => "Bi habió una error d'autenticación externa d'a base de datos u bien no tiene premisos ta esviellar a suya cuenta externa.",
 'login'                      => 'Encetar sesión',
@@ -559,6 +560,7 @@ Comprebe si ha escrito bien o nombre u [[Special:UserLogin/signup|creye una nuev
 'wrongpasswordempty'         => 'No ha escrito garra contrasenya. Prebe unatra vegada.',
 'passwordtooshort'           => 'As contrasenyas han de tener a lo menos {{PLURAL:$1|1 carácter|$1 carácters}}.',
 'password-name-match'        => "A contrasenya ha d'estar diferent d'o suyo nombre d'usuario.",
+'password-login-forbidden'   => "No se permite d'emplegar iste nombre d'usuario y contrasenya.",
 'mailmypassword'             => 'Ninviar una nueva contrasenya por correu electronico',
 'passwordremindertitle'      => 'Nueva contrasenya temporal de {{SITENAME}}',
 'passwordremindertext'       => 'Bell un (probablement vusté mesmo, dende l\'adreza IP $1) demandó una nueva contrasenya ta la suya cuenta en {{SITENAME}} ($4). S\'ha creyato una nueva contrasenya temporal ta l\'usuario "$2", que ye "$3".
@@ -591,6 +593,9 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'login-throttled'            => 'Ha feito masiaus intentos ta encetar una sesión. Por favor, aspere antes de prebar de fer-lo unatra vegada.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => "S'ha denegau a suya demanda de zarrar a sesión ya que pareix que la ninvió un navegador defectuoso u bell proxy amagau.",
+
+# E-mail sending
+'php-mail-error-unknown' => 'Error desconoixito en a función mail() de PHP',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar a contrasenya',
@@ -707,17 +712,21 @@ u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'userpage-userdoesnotexist-view'   => 'A cuenta d\'usuario "$1" no ye rechistrada.',
 'blocked-notice-logextract'        => "Ista cuenta d'usuario ye actualment bloqueyata.
 A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
-'clearyourcache'                   => "'''Pare cuenta: Si quiere veyer os cambeos dimpués d'alzar o fichero, puede estar que tienga que refrescar a caché d'o suyo navegador ta veyer os cambeos.'''
-
-*'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Macintosh);
+'clearyourcache'                   => "'''Pare cuenta:''' Dimpués d'alzar, puede estar que haiga d'esviellar a caché d'o suyo navegador ta veyer os cambios.
+*'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Mac);
+*'''Google Chrome:''' prete ''Ctrl-Shift-R'' (''Command-Shift-R'' on a Mac)
+*'''Internet Explorer:''' prete ''Ctrl'' entre que puncha ''Refresh,'' u prete ''Ctrl-F5.''
 *'''Konqueror: ''' punche ''Reload'' u prete ''F5;''
-*'''Opera:''' limpiar a caché en ''Tools → Preferences;''
-*'''Internet Explorer:''' prete ''Ctrl'' mientres puncha ''Refresh,'' u prete ''Ctrl-F5.''",
+*'''Opera:''' limpiar a caché en ''Tools → Preferences;''",
 'usercssyoucanpreview'             => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo CSS antes de no grabar-lo.",
 'userjsyoucanpreview'              => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo css/js antes de no grabar-lo.",
 'usercsspreview'                   => "'''Remere que isto no ye que una previsualización d'o suyo CSS d'usuario.'''
 '''Encara no s'ha alzato!'''",
 'userjspreview'                    => "'''Remere que sólo ye previsualizando o suyo javascript d'usuario y encara no ye grabato!'''",
+'sitecsspreview'                   => "'''Remere que isto no ye soque previsualizando iste CSS.'''
+'''Encara no s'ha alzato!'''",
+'sitejspreview'                    => "'''Remere que isto no ye soque previsualizando iste codigo de JavaScript.'''
+'''Encara no s'ha alzato!'''",
 'userinvalidcssjstitle'            => "'''Pare cuenta:''' No bi ha garra aparencia clamata \"\$1\". Remere que as pachinas presonalizatas .css y .js tienen un títol en minusclas, p.e. {{ns:user}}:Foo/vector.css en cuenta de {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Esviellato)',
 'note'                             => "'''Nota:'''",
@@ -848,7 +857,7 @@ Puede que belún l'haiga borrata d'o wiki u renombrata.
 Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relevants.",
 
 # Revision deletion
-'rev-deleted-comment'         => "(s'ha sacato iste comentario)",
+'rev-deleted-comment'         => "(resumen d'edición eliminato)",
 'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'           => "(acción borrata d'o rechistro)",
 'rev-deleted-user-contribs'   => "[nombre d'usuario u adreza IP elminada - edición amagada d'as contribucions]",
@@ -1180,6 +1189,10 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'prefs-displaysearchoptions'    => 'Opcions de visualización',
 'prefs-displaywatchlist'        => 'Opcions de visualización',
 'prefs-diffs'                   => 'Diferencias',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => "L'adreza de correu electronico pareix valida",
+'email-address-validity-invalid' => 'Escriba una adreza valida de correu electronico',
 
 # User rights
 'userrights'                   => "Confeguración d'os dreitos d'os usuarios",
@@ -2149,6 +2162,7 @@ $1",
 'sp-contributions-newbies-title'       => "Contrebucions d'os nuevos usuarios",
 'sp-contributions-blocklog'            => 'Rechistro de bloqueyos',
 'sp-contributions-deleted'             => "contribucions d'usuario borradas",
+'sp-contributions-uploads'             => 'cargas',
 'sp-contributions-logs'                => 'rechistros',
 'sp-contributions-talk'                => 'descusión',
 'sp-contributions-userrights'          => "administración de dreitos d'usuario",
@@ -2169,7 +2183,7 @@ Ta más información, s'amuestra contino a zaguera dentrada d'o rechistro de blo
 'nolinkshere-ns'           => "Garra pachina d'o espacio de nombres trigato tiene vinclos ta '''[[:$1]]'''.",
 'isredirect'               => 'pachina reendrezata',
 'istemplate'               => 'incluyida',
-'isimage'                  => 'vinclo ta imachen',
+'isimage'                  => 'Vinclo ta un fichero',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|anteriors $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|siguient|siguients $1}}',
 'whatlinkshere-links'      => '← vinclos',
@@ -2228,7 +2242,7 @@ as pachinas que s'han vandalizato).",
 'ipusubmit'                       => 'Debantar ista bloqueyo',
 'unblocked'                       => '[[User:$1|$1]] ha estato desbloqueyato',
 'unblocked-id'                    => "S'ha sacato o bloqueyo $1",
-'ipblocklist'                     => "Adrezas IP y nombres d'usuario bloqueyatos",
+'ipblocklist'                     => 'Usuarios bloqueyatos',
 'ipblocklist-legend'              => 'Mirar un usuario bloqueyato',
 'ipblocklist-username'            => "Nombre d'usuario u adreza IP:",
 'ipblocklist-sh-userblocks'       => '$1 bloqueyos de cuentas',

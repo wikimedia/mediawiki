@@ -25,11 +25,13 @@
  * @author PhiLiP
  * @author Philip
  * @author Shinjiman
+ * @author Shizhao
  * @author Skjackey tse
  * @author Waihorace
  * @author Wmr89502270
  * @author Wong128hk
  * @author Wrightbus
+ * @author Xiaomingyan
  * @author Yuyu
  */
 
@@ -359,7 +361,7 @@ $messages = array(
 'vector-action-move'             => '移動',
 'vector-action-protect'          => '保護',
 'vector-action-undelete'         => '恢復被刪頁面',
-'vector-action-unprotect'        => '解除保護',
+'vector-action-unprotect'        => '更改保護',
 'vector-simplesearch-preference' => '啟用加強搜尋建議（僅限 Vector 外觀）',
 'vector-view-create'             => '建立',
 'vector-view-edit'               => '編輯',
@@ -395,8 +397,8 @@ $messages = array(
 'protect'           => '保護',
 'protect_change'    => '更改',
 'protectthispage'   => '保護本頁',
-'unprotect'         => '解除保護',
-'unprotectthispage' => '解除此頁保護',
+'unprotect'         => '更改保護',
+'unprotectthispage' => '更改此頁保護',
 'newpage'           => '新頁面',
 'talkpage'          => '討論本頁',
 'talkpagelinktext'  => '對話',
@@ -784,8 +786,8 @@ $2',
 'userpage-userdoesnotexist-view'   => '未曾建立用戶名「$1」。',
 'blocked-notice-logextract'        => '這位用戶現正被封鎖。
 下面有最近的封鎖紀錄以供參考：',
-'clearyourcache'                   => "'''注意：在儲存以後，您必須清除瀏覽器的快取才能看到所作出的改變。'''
-'''Mozilla / Firefox / Safari''': 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''（在Macintosh上按下''Command-R''）；
+'clearyourcache'                   => "''注意'''：在儲存以後，您必須清除瀏覽器的快取才能看到所作出的改變。
+'''Mozilla / Firefox / Safari''': 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''（在Mac上按下''Command-R''）；
 '''Konqueror''': 只需點擊 ''重新整理''或按下''F5''；
 '''Opera''': 在 ''工具→設定'' 中完整地清除它們的快取，或按下''Alt-F5''；
 '''Internet Explorer''': 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
@@ -814,7 +816,7 @@ $2',
 '''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請[[Special:UserLogout|登出]]後再重新登入一次。'''",
 'token_suffix_mismatch'            => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。'''
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
-'editing'                          => '正在編輯$1',
+'editing'                          => '正在編輯 $1',
 'editingsection'                   => '正在編輯$1（段落）',
 'editingcomment'                   => '正在編輯$1（新段落）',
 'editconflict'                     => '編輯衝突：$1',
@@ -1822,7 +1824,7 @@ Template:消除歧義',
 'mostcategories'          => '最多分類頁面',
 'mostimages'              => '最多連結檔案',
 'mostrevisions'           => '最多修訂頁面',
-'prefixindex'             => '所有頁面之前綴',
+'prefixindex'             => '所有有前綴的頁面',
 'shortpages'              => '短頁面',
 'longpages'               => '長頁面',
 'deadendpages'            => '斷連頁面',
@@ -2264,7 +2266,7 @@ $1',
 'nolinkshere-ns'           => '在所選的名字空間內沒有頁面連結到[[:$1]]。',
 'isredirect'               => '重定向頁',
 'istemplate'               => '包含',
-'isimage'                  => '檔案連結',
+'isimage'                  => '文件連結',
 'whatlinkshere-prev'       => '前$1個',
 'whatlinkshere-next'       => '後$1個',
 'whatlinkshere-links'      => '← 連入',

@@ -3640,7 +3640,7 @@ Variants for Chinese language
 If the file has been modified from its original state, some details may not fully reflect the modified file.',
 'metadata-expand'   => 'Show extended details',
 'metadata-collapse' => 'Hide extended details',
-'metadata-fields'           => 'Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.
+'metadata-fields'   => 'Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.
 Others will be hidden by default.
 * make
 * model

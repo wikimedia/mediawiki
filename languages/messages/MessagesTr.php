@@ -465,7 +465,7 @@ $messages = array(
 'vector-action-move'             => 'Taşı',
 'vector-action-protect'          => 'Koru',
 'vector-action-undelete'         => 'Silinmeyi geri al',
-'vector-action-unprotect'        => 'Korumayı kaldır',
+'vector-action-unprotect'        => 'Korumayı değiştir',
 'vector-simplesearch-preference' => 'Gelişmiş arama önerilerini getir (Sadece Vector görünümü için)',
 'vector-view-create'             => 'Oluştur',
 'vector-view-edit'               => 'Düzenle',
@@ -501,8 +501,8 @@ $messages = array(
 'protect'           => 'Korumaya al',
 'protect_change'    => 'değiştir',
 'protectthispage'   => 'Sayfayı koruma altına al',
-'unprotect'         => 'Korumayı kaldır',
-'unprotectthispage' => 'Sayfa korumasını kaldır',
+'unprotect'         => 'Korumayı değiştir',
+'unprotectthispage' => 'Bu sayfanın korumasını değiştir',
 'newpage'           => 'Yeni sayfa',
 'talkpage'          => 'Tartışma sayfası',
 'talkpagelinktext'  => 'Mesaj',
@@ -2254,7 +2254,7 @@ Lütfen "geri" gidin ve geldiğiniz sayfayı yeniden yükleyin, sonra tekrar den
 
 # Protect
 'protectlogpage'              => 'Koruma kayıtları',
-'protectlogtext'              => 'Aşağıdaki, sayfa korumaları ve koruma kaldırmalarının bir listesidir.
+'protectlogtext'              => 'Aşağıdaki, sayfa korumalarına değişikliklerin bir listesidir.
 Şu anda uygulanan sayfa korumaları için [[Special:ProtectedPages|koruma altına alınmış sayfalar listesine]] bakabilirsiniz.',
 'protectedarticle'            => '"[[$1]]" koruma altında alındı',
 'modifiedarticleprotection'   => '"[[$1]]" için koruma düzeyi değiştirildi',
@@ -2757,7 +2757,7 @@ Geçici dosya kayıp.',
 'tooltip-ca-viewsource'           => 'Bu sayfa koruma altında. Sadece kaynağını görebilirsiniz.',
 'tooltip-ca-history'              => 'Bu sayfanın geçmiş sürümleri',
 'tooltip-ca-protect'              => 'Bu sayfayı koru',
-'tooltip-ca-unprotect'            => 'Bu sayfanın korumasını kaldır',
+'tooltip-ca-unprotect'            => 'Bu sayfanın korumasını değiştir',
 'tooltip-ca-delete'               => 'Bu sayfayı sil',
 'tooltip-ca-undelete'             => 'Sayfayı silinmeden önceki haline geri getirin',
 'tooltip-ca-move'                 => 'Bu sayfayı taşı',
@@ -3005,8 +3005,8 @@ Takip eden bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya, sa
 'exif-colorspace'                  => 'Renk aralığı',
 'exif-componentsconfiguration'     => 'Her bileşenin anlamı',
 'exif-compressedbitsperpixel'      => 'Resim sıkıştırma biçimi',
-'exif-pixelydimension'             => 'Geçerli resim genişliği',
-'exif-pixelxdimension'             => 'Geçerli resim yüksekliği',
+'exif-pixelydimension'             => 'Resim genişliği',
+'exif-pixelxdimension'             => 'Resim yüksekliği',
 'exif-makernote'                   => 'Yapımcı notları',
 'exif-usercomment'                 => 'Kullanıcı yorumu',
 'exif-relatedsoundfile'            => 'İlişkin ses dosyası',
@@ -3192,7 +3192,7 @@ Takip eden bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya, sa
 'exif-sensingmethod-7' => 'Üç çizgili algılayıcı',
 'exif-sensingmethod-8' => 'Aritmetik, renkli algılama sensörü',
 
-'exif-filesource-3' => 'DSC',
+'exif-filesource-3' => 'Dijital fotoğraf makinesi',
 
 'exif-scenetype-1' => 'Hemen fotoğraflama',
 

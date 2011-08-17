@@ -339,8 +339,8 @@ $messages = array(
 'vector-action-move'             => 'באַוועגן',
 'vector-action-protect'          => 'שיצן',
 'vector-action-undelete'         => 'מבטל זיין אויסמעקן',
-'vector-action-unprotect'        => 'אראפנעמען שיץ',
-'vector-simplesearch-preference' => 'אַקטיווירן פֿאַרברייטערטע זוך פֿארשלאָגן',
+'vector-action-unprotect'        => 'ענדערונג באַשיצונג',
+'vector-simplesearch-preference' => 'אַקטיווירן פֿאַרברייטערטע זוך פֿארשלאָגן (נאר וועקטאר)',
 'vector-view-create'             => 'שאַפֿן',
 'vector-view-edit'               => 'רעדאַקטירן',
 'vector-view-history'            => 'ווײַזן היסטאָריע',
@@ -375,8 +375,8 @@ $messages = array(
 'protect'           => 'באשיצן',
 'protect_change'    => 'טוישן',
 'protectthispage'   => 'באשיץ דעם בלאט',
-'unprotect'         => 'באַפֿרײַען',
-'unprotectthispage' => 'באפריי דעם בלאט',
+'unprotect'         => 'ענדערונג באַשיצונג',
+'unprotectthispage' => 'ענדערונג באַשיצונג פון דעם בלאַט',
 'newpage'           => 'נייער בלאַט',
 'talkpage'          => 'שמועסט איבער דעם בלאט',
 'talkpagelinktext'  => 'שמועס',
@@ -776,17 +776,19 @@ $2',
 'userpage-userdoesnotexist-view'   => 'באניצער קאנטע "$1" איז נישט איינגעשריבן.',
 'blocked-notice-logextract'        => 'דער באַניצער איז דערווייַל פֿאַרשפאַרט.
 די לעצטע בלאָקירן לאג אַקציע איז צוגעשטעלט אונטן:',
-'clearyourcache'                   => "'''אכטונג: נאכן אויפֿהיטן, ברויכט איר אפשר נאך אַריבערגיין דעם בלעטערס זאַפאַס צו זען די ענדערונגען.'''
+'clearyourcache'                   => "'''אַכטונג: נאכן אויפֿהיטן, ברויכט איר אפשר נאך אַריבערגיין דעם בלעטערערס זאַפאַס צו זען די ענדערונגען.'''
 
-'''מאזילא/סאפֿארי/פֿייערפוקס:''' האלט אראפ ''שיפֿט'' בשעתן דרוקן ''Reload'', אדער דרוקט ''Ctrl-F5'' אדער ''Ctrl-R'' (אויף א מאקינטאש ''Cmd-R'');
+* '''פֿייערפוקס/סאפֿארי:''' האלט אראפ ''שיפֿט'' בשעתן דרוקן ''Reload'', אדער דרוקט ''Ctrl-F5'' אדער ''Ctrl-R'' (אויף א מאקינטאש ''Cmd-R'')
 
-'''קאנקעראר''': קליקט ''Reload'' אדער דרוקט ''F5''
+* '''גוגל כראם''': דרוקט ''Ctrl-Shift-R'' (אויף א מאקינטאש ''Cmd-Shift-R'')
 
-'''אינטערנעט עקספלארער''': האלט ''Ctrl'' בשעתן קליקן ''Refresh'', אדער  דרוקט ''Ctrl-F5'';
+* '''אינטערנעט עקספלארער''': האלט ''Ctrl'' בשעתן קליקן ''Refresh'', אדער  דרוקט ''Ctrl-F5''
 
-'''אפערע:''' מען ליידיגט אויס דעם קאש אין ''Tools → Preferences'' (''העדפות'' > ''כלים'')",
-'usercssyoucanpreview'             => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער  CSS בעפאר אפהיטן.",
-'userjsyoucanpreview'              => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער  JavaScript בעפאר אפהיטן.",
+* '''קאנקעראר''': קליקט ''Reload'' אדער דרוקט ''F5''
+
+* '''אפערע:''' מען ליידיגט אויס דעם זאַפאַס אין ''Tools → Preferences'' (''העדפות'' > ''כלים'')",
+'usercssyoucanpreview'             => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער CSS בעפארן אויפהיטן.",
+'userjsyoucanpreview'              => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער  JavaScript בעפארן אויפהיטן.",
 'usercsspreview'                   => "'''געדענקט אז איר טוט בלויז פאראויס זען אייער באניצער CSS.'''
 '''ער איז דערווייל נאכנישט אויפֿגעהיטן!'''",
 'userjspreview'                    => "'''געדענקט אַז איר טוט בלויז אויספרואוון\\פֿאראויסזען אייער באַניצער JavaScript.'''
@@ -1008,12 +1010,19 @@ $1",
 'logdelete-log-message'       => '$1 פֿאר {{PLURAL:$2|איין פאסירונג|$2 פאסירונגען}}',
 'revdelete-hide-current'      => 'פֿעלער בײַם באַהאַלטן דעם איינהייט פֿון $2, $1: דאָס איז די לויפֿיגע ווערסיע.
 מען קען זי נישט פֿאַרבאָרגן.',
-'revdelete-modify-missing'    => 'פֿעלער בײַ מאדיפֿיצירן  דעם איינס ID $1: ער פֿעלט פֿון דער דאַטנבאַזע the database!',
+'revdelete-show-no-access'    => 'פֿעלער בײַם ווייַזן דעם איינהייט פֿון $2 , $1 : דער איינהייט איז אָנגעצייכנט געווארן "באַשרענקט".
+איר האט נישט קיין צוטריט צו אים.',
+'revdelete-modify-no-access'  => 'פֿעלער בײַם מאדיפֿיצירן דעם איינהייט פֿון $2 , $1 : דער איינהייט איז אָנגעצייכנט געווארן "באַשרענקט".
+איר האט נישט קיין צוטריט צו אים.',
+'revdelete-modify-missing'    => 'פֿעלער בײַ מאדיפֿיצירן  דעם איינס ID $1: ער פֿעלט פֿון דער דאַטנבאַזע!',
+'revdelete-no-change'         => "'''ווארענונג:''' דער איינהייט פֿון $2 , $1 האט שוין די געבעטענע זעבאַרקייט איינשטעלונגען.",
+'revdelete-concurrent-change' => 'גרײַז בײַם מאדיפֿיצירן דעם איינהייט פֿון דאַטע $2 , $1 : ווײַזט אויס אַז זייַן סטאַטוס איז געווארן געענדערט דורך א צווייטן בשעת איר האט געפרוווט צו מאָדיפיצירן אים
+ביטע זײַט בודק די לאָגביכער.',
 'revdelete-only-restricted'   => 'פֿעלער בײַם באַהאַלטן דאס איינסל פֿון  $2, $1: איר קענט נישט באהאלטן פרטים פון אַדמיניסטראטורן נאר אויב איר וויילט אויס איינע פון די אַנדערע באַהאַלטן ברירות.',
 'revdelete-reason-dropdown'   => '*אלגעמיינע אויסמעקן סיבות
 ** קאפירעכט ברעכן
-** פערזענלעכע אינפֿארמאציע
-** אינפארמאציע מעגלעך צו זיין לשון הרע',
+** פערזענלעכע אינפֿארמאַציע
+** אינפֿארמאַציע מעגלעך צו זיין לשון הרע',
 'revdelete-otherreason'       => 'אנדער/צוגעגעבענע סיבה:',
 'revdelete-reasonotherlist'   => 'אנדער סיבה',
 'revdelete-edit-reasonlist'   => 'רעדאַקטירן אויסמעקן סיבות',
@@ -1024,6 +1033,8 @@ $1",
 
 # History merging
 'mergehistory'                     => 'צונויפֿגיסן בלאט היסטאריעס',
+'mergehistory-header'              => 'דער בלאַט דערלויבט אײַך צונויפֿגיסן רעוויזיעס פֿון דער היסטאריע פֿון א מקור בלאַט אין א נײַערן בלאַט.
+שטעלט פֿעסט אַז די ענדערונג וועט האַלטן דעם סדר פֿון דער היסטאריע.',
 'mergehistory-box'                 => 'צונויפֿגיסן רעוויזיעס פֿון צוויי בלעטער:',
 'mergehistory-from'                => 'מקור בלאַט:',
 'mergehistory-into'                => 'פֿארציל בלאַט:',
@@ -1202,7 +1213,7 @@ $1",
 'prefs-custom-css'              => 'באַניצער דעפֿינירט CSS',
 'prefs-custom-js'               => 'באַניצער דעפֿינירט JS',
 'prefs-common-css-js'           => 'שותפֿותדיקער CSS/JS פֿאַר אַלע אויספֿארמירונגען:',
-'prefs-reset-intro'             => 'איר קענט ניצן דעם בלאַט צוריקצושטעלן אײַערע פרעפֿערענצן גרונטלעך פֿאַרן ארט.  to reset your preferences to the site defaults.
+'prefs-reset-intro'             => 'איר קענט ניצן דעם בלאַט צוריקצושטעלן אײַערע פרעפֿערענצן גרונטלעך פֿאַרן ארט.
 מען קען דאָס נישט אַנולירן.',
 'prefs-emailconfirm-label'      => 'ע-פאסט באַשטעטיקונג:',
 'prefs-textboxsize'             => 'גרייס פֿון רעדאַקטירונג פֿענסטער',
@@ -1233,14 +1244,14 @@ $1",
 'prefs-signature'               => 'אונטערשריפֿט',
 'prefs-dateformat'              => 'דאַטע פֿארמאַט',
 'prefs-timeoffset'              => 'צײַט אונטערשייד',
-'prefs-advancedediting'         => 'אדוואנסירטע אפציעס',
-'prefs-advancedrc'              => 'אדוואנסירטע אפציעס',
-'prefs-advancedrendering'       => 'אדוואנסירטע אפציעס',
-'prefs-advancedsearchoptions'   => 'אדוואנסירטע אפציעס',
-'prefs-advancedwatchlist'       => 'אדוואנסירטע אפציעס',
-'prefs-displayrc'               => 'ווייז אפציעס',
-'prefs-displaysearchoptions'    => 'ווײַז אפציעס',
-'prefs-displaywatchlist'        => 'ווײַז אפציעס',
+'prefs-advancedediting'         => 'פֿארגעשריטענע אפציעס',
+'prefs-advancedrc'              => 'פֿארגעשריטענע אפציעס',
+'prefs-advancedrendering'       => 'פֿארגעשריטענע אפציעס',
+'prefs-advancedsearchoptions'   => 'פֿארגעשריטענע אפציעס',
+'prefs-advancedwatchlist'       => 'פֿארגעשריטענע אפציעס',
+'prefs-displayrc'               => 'ווײַזן אפציעס',
+'prefs-displaysearchoptions'    => 'ווײַזן אפציעס',
+'prefs-displaywatchlist'        => 'ווײַזן אפציעס',
 'prefs-diffs'                   => 'צווישנשיידן',
 
 # User preference: e-mail validation using jQuery
@@ -1252,7 +1263,7 @@ $1",
 'userrights-lookup-user'       => 'פֿאַרוואַלטן באניצער גרופעס',
 'userrights-user-editname'     => 'לייגט אריין א באנוצער-נאמען:',
 'editusergroup'                => 'עדיט באנוצער גרופעס',
-'editinguser'                  => "ענדערן באניצער רעכטן פון באניצער user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "ענדערן באַניצער רעכטן פון באַניצער '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'     => 'רעדאַקטירן באַניצער גרופעס',
 'saveusergroups'               => 'אָפהיטן באַניצער גרופעס',
 'userrights-groupsmember'      => 'מיטגליד פון:',
@@ -1310,6 +1321,7 @@ $1",
 'right-reupload-own'         => "איבערשרײַבן עקזיסטירנדע טעקעס וואָס מ'האט אַליין אַרויפֿגעלאָדן",
 'right-upload_by_url'        => 'ארויפֿלאָדן טעקעס פֿון אַ URL',
 'right-autoconfirmed'        => 'רעדאקטירן האלב-געשיצטע בלעטער',
+'right-bot'                  => 'באַהאַנדלונג ווי אַן אויטאמאַטישער פראצעס',
 'right-delete'               => 'מעקן בלעטער',
 'right-bigdelete'            => 'אויסמעקן בלעטער מיט לאַנגע היסטאריעס',
 'right-deleterevision'       => 'מעקן און צוריקשטעלן ספעציפישע רעוויזיעס פון בלעטער',
@@ -1330,6 +1342,7 @@ $1",
 'right-import'               => 'אימפארטירן בלעטער פון אנדערע וויקיס',
 'right-importupload'         => 'אימפארטירן בלעטער דורך ארויפֿלאָדן טעקע',
 'right-patrol'               => 'צייכנען די רעדאַקטירונגען פֿון אַנדערע ווי פאַטראלירט',
+'right-autopatrol'           => 'אייגענע באַאַרבעטונגען אויטאמאַטיש מאַרקירט ווי קאנטראלירט',
 'right-patrolmarks'          => 'באַקוקן לעצטע ענדערונגען פּאַטראָל מאַרקירונגען',
 'right-unwatchedpages'       => 'באַקוקן די ליסטע פֿון נישט אויפֿגעפאַסטע בלעטער',
 'right-mergehistory'         => 'צונויפֿגיסן די היסטאריע פֿון בלעטער',
@@ -2002,7 +2015,7 @@ $UNWATCHURL
 'protectlogpage'              => 'באשיצונג לאָג-בוך',
 'protectedarticle'            => 'געשיצט [[$1]]',
 'modifiedarticleprotection'   => 'געענדערט באשיצונג שטאפל פון [[$1]]',
-'unprotectedarticle'          => 'אומגעשיצט "[[$1]]"',
+'unprotectedarticle'          => 'אראפגענומען שוץ פון "[[ $1 ]] "',
 'movedarticleprotection'      => 'באוועגט די שיץ באשטימונגען פֿון "[[$2]]" אויף "[[$1]]"',
 'protect-title'               => 'ענדערן שיץ ניווא פֿאַר "$1"',
 'prot_1movedto2'              => '[[$1]] אריבערגעפירט צו [[$2]]',
@@ -2142,7 +2155,7 @@ $UNWATCHURL
 'nolinkshere-ns'           => "קיין בלעטער פֿאַרבינדן נישט צו '''[[:$1]]''' אינעם אויסגעקליבענעם נאמענטייל.",
 'isredirect'               => 'ווײַטערפירן בלאט',
 'istemplate'               => 'אײַנשליסן',
-'isimage'                  => 'ווײַזן א בילד',
+'isimage'                  => '!טעקע לינק',
 'whatlinkshere-prev'       => '{{PLURAL:$1|פֿריערדיגער|$1 פֿריערדיגע}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|קומענדיגער|$1 קומענדיגע}}',
 'whatlinkshere-links'      => '→ פֿארבינדונגען',
@@ -2153,7 +2166,7 @@ $UNWATCHURL
 'whatlinkshere-filters'    => 'פֿילטערס',
 
 # Block/unblock
-'blockip'                         => 'באניצער ארויסטרייבן',
+'blockip'                         => 'בלאקירן באַניצער',
 'blockip-title'                   => 'בלאקירן באַניצער',
 'blockip-legend'                  => 'בלאקירן באַניצער',
 'blockiptext'                     => "באניצט די פארעם דא אונטן כדי צו בלאקירן שרײַבן רעכטן פֿון איינגעשריבענע באניצער אדער סתם ספעציפישע איי פי אדרעסן.
@@ -2916,6 +2929,7 @@ $5
 'livepreview-ready'   => 'לאדנדיג… גרייט!',
 
 # Watchlist editor
+'watchlistedit-numitems'      => 'אײַער אויפֿפאַסונג ליסטע אַנטהאַלט {{PLURAL:$1|1 טיטל|$1 טיטלען}}, אויסשליסנדיק שמועסבלעטער.',
 'watchlistedit-noitems'       => 'אײַער אויפֿפאַסן ליסטע איז ליידיג.',
 'watchlistedit-normal-title'  => 'רעדאַקטירן די אויפֿפאַסונג ליסטע',
 'watchlistedit-normal-legend' => 'אַראָפנעמען בלעטער פון דער אויפֿפאסן ליסטע',

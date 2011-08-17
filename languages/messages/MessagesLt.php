@@ -341,7 +341,7 @@ $messages = array(
 'vector-action-move'             => 'Perkelti',
 'vector-action-protect'          => 'Užrakinti',
 'vector-action-undelete'         => 'Atkurti',
-'vector-action-unprotect'        => 'Atrakinti',
+'vector-action-unprotect'        => 'Keisti apsaugą',
 'vector-simplesearch-preference' => 'Įjungti išplėstinius paieškos pasiūlymus (tik „Vector“ išvaizda)',
 'vector-view-create'             => 'Kurti',
 'vector-view-edit'               => 'Redaguoti',
@@ -377,8 +377,8 @@ $messages = array(
 'protect'           => 'Užrakinti',
 'protect_change'    => 'keisti',
 'protectthispage'   => 'Rakinti šį puslapį',
-'unprotect'         => 'Atrakinti',
-'unprotectthispage' => 'Atrakinti šį puslapį',
+'unprotect'         => 'Keisti apsaugą',
+'unprotectthispage' => 'Keisti šio puslapio apsaugą',
 'newpage'           => 'Naujas puslapis',
 'talkpage'          => 'Aptarti šį puslapį',
 'talkpagelinktext'  => 'Aptarimas',
@@ -676,7 +676,7 @@ Palaukite prieš bandant vėl.',
 'resetpass_submit'          => 'Nustatyti slaptažodį ir prisijungti',
 'resetpass_success'         => 'Jūsų slaptažodis pakeistas sėkmingai! Dabar prisijungiama...',
 'resetpass_forbidden'       => 'Slaptažodžiai negali būti pakeisti',
-'resetpass-no-info'         => 'Jūs turite būti prisijugęs, kad pasiektumėte puslapį tiesiogiai.',
+'resetpass-no-info'         => 'Jūs turite būti prisijungęs, kad pasiektumėte puslapį tiesiogiai.',
 'resetpass-submit-loggedin' => 'Keisti slaptažodį',
 'resetpass-submit-cancel'   => 'Atšaukti',
 'resetpass-wrong-oldpass'   => 'Klaidingas laikinas ar esamas slaptažodis.
@@ -788,7 +788,12 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'userpage-userdoesnotexist-view'   => 'Naudotojo paskyra „$1“ neužregistruota.',
 'blocked-notice-logextract'        => 'Šis naudotojas šiuo metu yra užblokuotas.
 Žemiau pateikiamas paskutinis blokavimo istorijos įrašas:',
-'clearyourcache'                   => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
+'clearyourcache'                   => "'''Dėmesio:''' Išsaugojus jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius.
+* '''Firefox / Safari:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-F5'' ar ''Ctrl-R'' (sistemoje Apple Mac ''Commandd-R'')
+* '''Google Chrome:''' spauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Command-Shift-R'')
+* '''Internet Explorer:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''
+* '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''
+* '''Opera''' pilnai išvalykite podėlį ''Priemonės→Nuostatos''.",
 'usercssyoucanpreview'             => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį CSS prieš išsaugant.",
 'userjsyoucanpreview'              => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį JS prieš išsaugant.",
 'usercsspreview'                   => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
@@ -2124,7 +2129,7 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|apsaugotų puslapių sąraše]].',
 'protectedarticle'            => 'užrakino „[[$1]]“',
 'modifiedarticleprotection'   => 'pakeistas „[[$1]]“ apsaugos lygis',
-'unprotectedarticle'          => 'atrakino „[[$1]]“',
+'unprotectedarticle'          => 'pašalino apsaugą nuo „[[$1]]“',
 'movedarticleprotection'      => 'perkelti apsaugos nustatymai iš „[[$2]]“ į „[[$1]]“',
 'protect-title'               => 'Nustatomas apsaugos lygis puslapiui „$1“',
 'prot_1movedto2'              => '[[$1]] pervadintas į [[$2]]',
@@ -2272,7 +2277,7 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'nolinkshere-ns'           => "Nurodytoje vardų srityje nei vienas puslapis nenurodo į '''[[:$1]]'''.",
 'isredirect'               => 'nukreipiamasis puslapis',
 'istemplate'               => 'įterpimas',
-'isimage'                  => 'paveikslėlio nuoroda',
+'isimage'                  => 'failo nuoroda',
 'whatlinkshere-prev'       => '$1 {{PLURAL:$1|ankstesnis|ankstesni|ankstesnių}}',
 'whatlinkshere-next'       => '$1 {{PLURAL:$1|kitas|kiti|kitų}}',
 'whatlinkshere-links'      => '← nuorodos',
@@ -2588,7 +2593,8 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'import-interwiki-namespace' => 'Paskirties vardų sritis:',
 'import-upload-filename'     => 'Failo pavadinimas:',
 'import-comment'             => 'Komentaras:',
-'importtext'                 => 'Prašome eksportuoti iš projekto-šaltinio failo, naudojant [[Specialus: Export | Export.]]! N! Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
+'importtext'                 => 'Prašome eksportuoti iš projekto-šaltinio failo, naudojant [[Special:Export|eksportavimo pagalbininką.]]
+Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 'importstart'                => 'Imporuojami puslapiai...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versija|versijos|versijų}}',
 'importnopages'              => 'Nėra puslapių importavimui.',
@@ -2638,7 +2644,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-ca-viewsource'           => 'Puslapis yra užrakintas. Galite pažiūrėti turinį.',
 'tooltip-ca-history'              => 'Ankstesnės puslapio versijos.',
 'tooltip-ca-protect'              => 'Užrakinti šį puslapį',
-'tooltip-ca-unprotect'            => 'Atrakinti šį puslapį',
+'tooltip-ca-unprotect'            => 'Keisti šio puslapio apsaugą',
 'tooltip-ca-delete'               => 'Ištrinti šį puslapį',
 'tooltip-ca-undelete'             => 'Atkurti puslapį su visais darytais keitimais',
 'tooltip-ca-move'                 => 'Pervadinti puslapį',
@@ -2755,7 +2761,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'math_unknown_function' => 'nežinoma funkcija',
 'math_lexing_error'     => 'leksikos klaida',
 'math_syntax_error'     => 'sintaksės klaida',
-'math_image_error'      => 'PNG konvertavimas nepavyko; patikrinkite, ar teisingai įdiegta latex, dvips, gs, ir convert',
+'math_image_error'      => 'PNG konvertavimas nepavyko; patikrinkite, ar teisingai įdiegta latex ir dvipng (arba dvips, gs ir convert)',
 'math_bad_tmpdir'       => 'Nepavyksta sukurti arba rašyti į matematikos laikinąjį aplanką',
 'math_bad_output'       => 'Nepavyksta sukurti arba rašyti į matematikos išvesties aplanką',
 'math_notexvc'          => 'Trūksta texvc vykdomojo failo; pažiūrėkite math/README kaip konfigūruoti.',
@@ -3049,6 +3055,8 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-sensingmethod-7' => 'Trilinijinis jutiklis',
 'exif-sensingmethod-8' => 'Spalvų nuoseklusis linijinis jutiklis',
 
+'exif-filesource-3' => 'Skaitmeninis fotoaparatas',
+
 'exif-scenetype-1' => 'Tiesiogiai fotografuotas vaizdas',
 
 'exif-customrendered-0' => 'Standartinis procesas',
@@ -3172,6 +3180,20 @@ kad atšauktumėte el. pašto adreso patvirtinimą:
 $5
 
 Patvirtinimo kodas baigs galioti $4.',
+'confirmemail_body_set'     => 'Kažkas (tikriausiai jūs) iš IP adreso $1,
+nustatė svetainės {{SITENAME}} paskyros „$2“ e-pašto adresą į jūsiškį.
+
+Kad patvirtintumėte, kad ši paskyra tikrai priklauso jums ir tokiu būdu aktyvuotumėte
+e-pašto funkcijas svetainėje {{SITENAME}}, atverkite šią nuorodą jūsų naršyklėje:
+
+$3
+
+Jei paskyra jums *nepriklauso*, spauskite šią nuorodą,
+kad atšauktumėte e-pašto adreso patvirtinimą:
+
+$5
+
+Šis patvirtinimo kodas baigs galioti $4.',
 'confirmemail_invalidated'  => 'El. pašto adreso patvirtinimas atšauktas',
 'invalidateemail'           => 'El. pašto patvirtinimo atšaukimas',
 

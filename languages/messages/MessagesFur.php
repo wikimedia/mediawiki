@@ -1304,7 +1304,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'nolinkshere-ns'           => "No son pagjine leadis a '''[[:$1]]''' intal spazi dai nons sielt.",
 'isredirect'               => 'pagjine di reindirizament',
 'istemplate'               => 'includude',
-'isimage'                  => 'leam figure',
+'isimage'                  => 'leam a figure',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedent|precedents $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sucessîf|sucessîfs $1}}',
 'whatlinkshere-links'      => '← leams',

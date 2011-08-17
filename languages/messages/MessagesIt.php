@@ -843,7 +843,12 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'userpage-userdoesnotexist-view'   => 'L\'account utente "$1" non è registrato.',
 'blocked-notice-logextract'        => "Questo utente è attualmente bloccato.
 L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
-'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nota:''' dopo aver salvato, potrebbe essere necessario pulire la cache del tuo browser per vedere i cambiamenti. 
+*'''Firefox / Safari''': tieni premuto il tasto delle maiuscole e fai clic su ''Ricarica'', oppure premi ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac)
+*'''Google Chrome''': premi ''Ctrl-Shift-R'' (''Command-Shift-R'' su un Mac)
+*'''Internet Explorer''': tieni premuto il tasto ''Ctrl'' mentre clicchi su ''Refresh'', oppure premi ''Ctrl-F5''
+*'''Konqueror''': premi il pulsante ''Ricarica'' o il tasto ''F5''; 
+*'''Opera''': svuota completamente la cache dal menu ''Strumenti → Preferenze''",
 'usercssyoucanpreview'             => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo CSS prima di salvarlo.",
 'userjsyoucanpreview'              => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo JavaScript prima di salvarlo.",
 'usercsspreview'                   => "'''Questa è solo un'anteprima del proprio CSS personale. Le modifiche non sono ancora state salvate!'''",
@@ -2642,8 +2647,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-ca-delete'               => 'Cancella questa pagina',
 'tooltip-ca-undelete'             => "Ripristina la pagina com'era prima della cancellazione",
 'tooltip-ca-move'                 => 'Sposta questa pagina (cambia titolo)',
-'tooltip-ca-watch'                => 'Aggiungi questa pagina alla tua lista di osservati speciali',
-'tooltip-ca-unwatch'              => 'Elimina questa pagina dalla tua lista di osservati speciali',
+'tooltip-ca-watch'                => 'Aggiungi questa pagina alla tua lista degli osservati speciali',
+'tooltip-ca-unwatch'              => 'Elimina questa pagina dalla tua lista degli osservati speciali',
 'tooltip-search'                  => "Cerca all'interno di {{SITENAME}}",
 'tooltip-search-go'               => 'Vai a una pagina con il titolo indicato, se esiste',
 'tooltip-search-fulltext'         => 'Cerca il testo indicato nelle pagine',
@@ -2680,7 +2685,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-preview'                 => 'Anteprima delle modifiche (consigliata prima di salvare)',
 'tooltip-diff'                    => 'Guarda le modifiche apportate al testo',
 'tooltip-compareselectedversions' => 'Guarda le differenze tra le due versioni selezionate di questa pagina.',
-'tooltip-watch'                   => 'Aggiungi questa pagina alla lista degli osservati speciali',
+'tooltip-watch'                   => 'Aggiungi questa pagina alla tua lista degli osservati speciali',
 'tooltip-recreate'                => 'Ricrea la pagina anche se è stata cancellata',
 'tooltip-upload'                  => 'Inizia il caricamento',
 'tooltip-rollback'                => '"Rollback" annulla le modifiche a questa pagina dell\'ultimo contributore con un solo clic.',

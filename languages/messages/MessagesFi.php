@@ -894,11 +894,12 @@ tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist-view'   => 'Käyttäjätunnusta ”$1” ei ole rekisteröity.',
 'blocked-notice-logextract'        => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
-'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
-'''Mozilla, Firefox ja Safari:''' napsauta Vaihto-näppäin pohjassa Päivitä tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''Command-R'' Macintoshilla);
-'''Konqueror''': napsauta Päivitä tai paina ''F5'';
-'''Opera:''' tyhjennä välimuisti: ''Tools→Preferences'';
-'''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa Päivitä tai paina ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan.
+* '''Firefox ja Safari:''' napsauta ''Shift''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''Command-R'' Macilla)
+* '''Google Chrome:''' paina ''Ctrl-Shift-R'' (''Command-Shift-R'' Macilla)
+* '''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5''
+* '''Konqueror''': napsauta ''Päivitä'' tai paina ''F5''
+* '''Opera:''' tyhjennä välimuisti: ''Tools→Preferences''",
 'usercssyoucanpreview'             => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'userjsyoucanpreview'              => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
@@ -2189,10 +2190,10 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 
 # Protect
 'protectlogpage'              => 'Suojausloki',
-'protectlogtext'              => 'Alla on loki sivujen suojauksista ja suojauksien poistoista. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:ProtectedPages|suojattujen sivujen luettelosta]].',
+'protectlogtext'              => 'Alla on loki muutoksista sivujen suojauksiin. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:ProtectedPages|suojattujen sivujen luettelosta]].',
 'protectedarticle'            => 'suojasi sivun [[$1]]',
 'modifiedarticleprotection'   => 'muutti sivun [[$1]] suojaustasoa',
-'unprotectedarticle'          => 'poisti suojauksen sivulta $1',
+'unprotectedarticle'          => 'poisti suojauksen sivulta [[$1]]',
 'movedarticleprotection'      => 'siirsi suojausasetukset sivulta [[$2]] sivulle [[$1]]',
 'protect-title'               => 'Sivun $1 suojaus',
 'prot_1movedto2'              => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
@@ -2218,7 +2219,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-cantedit'            => 'Et voi muuttaa sivun suojaustasoa, koska sinulla ei ole oikeutta muokata sivua.',
 'protect-othertime'           => 'Muu kesto',
 'protect-othertime-op'        => 'muu kesto',
-'protect-existing-expiry'     => 'Nykyinen vanhenemisaika: $3 kello $2',
+'protect-existing-expiry'     => 'Nykyinen vanhenemisaika: $2 kello $3',
 'protect-otherreason'         => 'Muu syy tai tarkennus',
 'protect-otherreason-op'      => 'Muu syy',
 'protect-dropdown'            => '*Yleiset suojaussyyt
@@ -2667,7 +2668,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'tooltip-ca-viewsource'           => 'Näytä sivun lähdekoodi',
 'tooltip-ca-history'              => 'Sivun aikaisemmat versiot',
 'tooltip-ca-protect'              => 'Suojaa tämä sivu',
-'tooltip-ca-unprotect'            => 'Poista suojaus tältä sivulta',
+'tooltip-ca-unprotect'            => 'Muuta tämän sivun suojauksia',
 'tooltip-ca-delete'               => 'Poista tämä sivu',
 'tooltip-ca-undelete'             => 'Palauta tämä sivu',
 'tooltip-ca-move'                 => 'Siirrä tämä sivu',

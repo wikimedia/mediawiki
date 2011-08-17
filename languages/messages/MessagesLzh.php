@@ -619,7 +619,7 @@ $2',
 'blocked-notice-logextract'        => '該簿現鎖也。
 下列之記鎖，以察之：',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
-'''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Macintosh為''Command-R''）。
+'''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Mac為''Command-R''）。
 '''Konqueror:'''點''Reload''，或押''F5''。
 ：''Opera:'''須至''Tools→Preferences''清謄本。
 '''Internet Explorer:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。",

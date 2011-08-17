@@ -586,7 +586,7 @@ anga [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigītun šin pāusan]</span>.'
 Izbāndais, anga tū perarwi kwaitīwuns teīktun/redigītun šin pāusan.',
 'userpage-userdoesnotexist-view'   => 'Tērpautajas rekkens "$1" ni ast registrītan.',
 'clearyourcache'                   => "'''Nōda: Kitawīdisnas pa enpeisāsnan stēisan nāunan ensadīnsenin mazzi ni būtwei widāminan. Prawerru skīstintun lasāltas rānkas minīsnan.'''
-*'''Mozilla, Firefox anga Safari - ''' zabāis \"Shift\" gnestan ne gnetteis \"Etnāunais\" anga gnetteis \"Ctrl-F5\" anga \"Ctrl-R\" (\"Command-R\" en Macintoshu);
+*'''Mozilla, Firefox anga Safari - ''' zabāis \"Shift\" gnestan ne gnetteis \"Etnāunais\" anga gnetteis \"Ctrl-F5\" anga \"Ctrl-R\" (\"Command-R\" en Macu);
 *'''Konqueror:''' gnetteis '''Etwārtai kraūneis\" anga \"F5\";
 '''Opera:''' skīstinais rānkas minīsnan en \"Ēnrankis-Pirminiskwas\";
 '''Internet Explorer:''' zabāis \"Ctrl\" gnettintei \"Etnāuninais\" anga gnetteis \"Ctrl-F5\".",

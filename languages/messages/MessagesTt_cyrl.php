@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ajdar
  * @author Bulatbulat
  * @author Don Alessandro
  * @author Haqmar
@@ -369,7 +370,7 @@ $messages = array(
 'vector-action-move'             => 'Күчерү',
 'vector-action-protect'          => 'Яклау',
 'vector-action-undelete'         => 'Кайтару',
-'vector-action-unprotect'        => 'Яклауны бетерү',
+'vector-action-unprotect'        => 'Яклауны үзгәртү',
 'vector-simplesearch-preference' => 'Эзләү өчен киңәйтелгән ярдәм хәбәрләрен күрсәтү («Векторлы» бизәлеше өчен генә кулланылыа)',
 'vector-view-create'             => 'Төзү',
 'vector-view-edit'               => 'Үзгәртү',
@@ -405,8 +406,8 @@ $messages = array(
 'protect'           => 'Яклау',
 'protect_change'    => 'үзгәртү',
 'protectthispage'   => 'Бу битне яклау',
-'unprotect'         => 'Яклауны бетерү',
-'unprotectthispage' => 'Бу битнең яклауын бетерү',
+'unprotect'         => 'Яклауны үзгәртү',
+'unprotectthispage' => 'Бу битнең яклауын үзгәртү',
 'newpage'           => 'Яңа бит',
 'talkpage'          => 'Бит турында фикер алышу',
 'talkpagelinktext'  => 'Бәхәс',
@@ -436,7 +437,7 @@ $messages = array(
 'jumptosearch'      => 'эзләү',
 'view-pool-error'   => 'Гафу итегез, хәзерге вакытта серверлар буш түгел.
 Бу битне карарга теләүчеләр артык күп.
-Бу биткә соңарак керүегез сорала.
+Бу биткә соңрак керүегез сорала.
 
 $1',
 'pool-timeout'      => 'Кысылуның  вакыты узды',
@@ -802,8 +803,12 @@ $2',
 'userpage-userdoesnotexist-view'   => '"$1" исемле хисап язмасы юк.',
 'blocked-notice-logextract'        => 'Бу кулланучы хәзергә тыелды.
 Түбәндә тыю көндәлегенең соңгы язу бирелгән:',
-'clearyourcache'                   => "'''Искәрмә:''' Битне саклаганнан соң үзгәртүләр күренсен өчен браузерыгызның кэшын чистартыгыз.
-Моны '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''Safari''': ''Cmd+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Konqueror''': ''F5'', '''Opera''': ''Tools→Preferences'' аша эшләп була.",
+'clearyourcache'                   => "'''Искәрмә:''' Сез саклаган үзгәртүләр кулланышка керсен өчен браузерыгызның кешын чистартырга туры киләчәк. 
+* '''Firefox/Safari''': Shift төймшсенә баскан килеш җиһазлар тасмасында ''Яңарту (Обновить)'' язуына басыгыз, яисә ''Ctrl-F5'' яки  ''Ctrl-R'' (Mac өчен ''Command-R'') төймәләренә басыгыз
+* '''Google Chrome.'''  ''Ctrl-Shift-R'' (Mac өчен ''Command-Shift-R'' ) төймәләренә басыгыз
+* '''Internet Explorer.''' ''Ctrl''  төймәсенә баскан килеш  ''Яңарту (Обновить)'' язуына, яисә ''Ctrl-F5'' басыгыз
+* '''Konqueror.''' ''Яңарту (Обновить)'' язуына, яисә ''F5'' басыгыз
+* '''Opera.''' Менюдан кеш чистартуны сайлагыз: ''Җиһазлар (Инструменты) → Көйләнмәләр (Настройки)''",
 'usercssyoucanpreview'             => "'''Ярдәм:''' \"{{int:showpreview}} төймәсенә басып, яңа CSS-файлны тикшереп була.",
 'userjsyoucanpreview'              => "'''Ярдәм:''' \"{{int:showpreview}}\" төймәсенә басып, яңа JS-файлны тикшереп була.",
 'usercsspreview'                   => "'''Бу бары тик CSS-файлны алдан карау гына, ул әле сакланмаган!'''",
@@ -1756,7 +1761,7 @@ $UNWATCHURL
 'protectlogpage'              => 'Яклану көндәлеге',
 'protectedarticle'            => '«[[$1]]» якланган',
 'modifiedarticleprotection'   => '"[[$1]]" бите өчен яклау дәрәҗәсе үзгәртелде',
-'unprotectedarticle'          => '«[[$1]]» инде якланмаган',
+'unprotectedarticle'          => '«[[$1]]» битеннән яклау алынды',
 'movedarticleprotection'      => 'яклау көйләнмәләрен «[[$2]]» битеннән «[[$1]]» битенә күчерде',
 'protect-title'               => '«$1» өчен яклау дәрәҗәсен билгеләү',
 'prot_1movedto2'              => '«[[$1]]» бите «[[$2]]» битенә күчерелде',
@@ -1858,7 +1863,7 @@ $1',
 'nolinkshere'              => "'''[[:$1]]''' битенә башка битләр сылтамыйлар.",
 'isredirect'               => 'юнәлтү бите',
 'istemplate'               => 'кертүләр',
-'isimage'                  => 'рәсем өчен сылтама',
+'isimage'                  => 'файл сылтамасы',
 'whatlinkshere-prev'       => '{{PLURAL:$1|алдагы|алдагы $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|чираттагы|чираттагы $1}}',
 'whatlinkshere-links'      => '← сылтамалар',
@@ -1988,11 +1993,23 @@ $1',
 'thumbnail_error' => 'Кечкенә сүрәт төзүе хатасы: $1',
 
 # Special:Import
-'import-interwiki-submit' => 'Импортлау',
-'import-upload-filename'  => 'Файл исеме:',
-'import-comment'          => 'Искәрмә:',
-'importstart'             => 'Битләрне импортлау...',
-'importnotext'            => 'Буш яки текст юк',
+'import'                     => 'Битләр кертү',
+'importinterwiki'            => 'Викиара кертү',
+'import-interwiki-text'      => 'Викины һәм кертелүче битнең исемен языгыз.
+Үзгәртүләр вакыты һәм аның авторлары сакланачак.
+Бөтен викиара күчерүләр [[Special:Log/import|махсус журналда]] сакланачак.',
+'import-interwiki-source'    => 'Вики-чыганак/бит:',
+'import-interwiki-history'   => 'Бу битнең барлык үзгәртү тарихын күчермәләү',
+'import-interwiki-templates' => 'Барлык үрнәкләрне кертү',
+'import-interwiki-submit'    => 'Импортлау',
+'import-interwiki-namespace' => 'Исемнәр тирәлеге:',
+'import-upload-filename'     => 'Файл исеме:',
+'import-comment'             => 'Искәрмә:',
+'importtext'                 => 'Зинһар өчен, битне күчерү өчен [[Special:Export|махсус корал]] кулланыгыз. Файлны дискка саклагыз, аннан соң монда йөкләгез.',
+'importstart'                => 'Битләрне импортлау...',
+'import-revision-count'      => '$1 {{PLURAL:$1|юрама|юрама|юрама}}',
+'importnopages'              => 'Импортлау өчен битләр юк.',
+'importnotext'               => 'Буш яки текст юк',
 
 # Import log
 'importlogpage'             => 'Кертү көндәлеге',

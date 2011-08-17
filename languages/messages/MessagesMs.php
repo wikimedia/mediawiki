@@ -756,10 +756,11 @@ atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}
 'blocked-notice-logextract'        => 'Pengguna ini sedang disekat.
 Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
-'''Mozilla/Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R'' (''Command+R'' dalam komputer Macintosh).
-'''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''.
-'''Opera:''' bersihkan cache melalui menu ''Tools → Preferences''.
-'''Internet Explorer:''' tahan ''Ctrl'' ketika mengklik ''Refresh'' atau tekan ''Ctrl+F5''.",
+*'''Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R''
+*'''Google Chrome:''' tekan ''Ctrl+Shift+R''  (''Command+Shift+R'' dalam komputer Mac)
+*'''Internet Explorer:''' tahan ''Ctrl'' ketika mengklik ''Refresh'' atau tekan ''Ctrl+F5''
+*'''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''
+*'''Opera:''' bersihkan cache melalui menu ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji CSS baru anda sebelum menyimpan.",
 'userjsyoucanpreview'              => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji JavaScript baru anda sebelum menyimpan.",
 'usercsspreview'                   => "'''Ingat bahawa anda hanya sedang melihat pratonton CSS peribadi anda. Laman ini belum lagi disimpan!'''",
@@ -1299,7 +1300,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-createtalk'            => 'Mencipta laman perbincangan',
 'right-createaccount'         => 'Membuka akaun pengguna baru',
 'right-minoredit'             => 'Menanda suntingan kecil',
-'right-move'                  => 'Memindah laman',
+'right-move'                  => 'Memindahkan laman',
 'right-move-subpages'         => 'Memindahkan laman berserta sublaman',
 'right-move-rootuserpages'    => 'Memindahkan laman induk pengguna',
 'right-movefile'              => 'Memindahkan fail',
@@ -1319,7 +1320,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-bigdelete'             => 'Menghapuskan laman bersejarah',
 'right-deleterevision'        => 'Menghapuskan dan memulihkan semula mana-mana semakan bagi sesebuah laman',
 'right-deletedhistory'        => 'Melihat senarai entri sejarah yang telah dihapuskan, tetapi tanpa teks yang berkaitan',
-'right-deletedtext'           => 'Lihat teks yang telah dihapuskan dan perubahan antara semakan-semakan yang telah dihapuskan',
+'right-deletedtext'           => 'Melihat teks yang telah dihapuskan dan perubahan antara semakan-semakan yang telah dihapuskan',
 'right-browsearchive'         => 'Mencari laman-laman yang telah dihapuskan',
 'right-undelete'              => 'Mengembalikan laman yang telah dihapuskan (nyahhapus)',
 'right-suppressrevision'      => 'Memeriksa dan memulihkan semakan yang terselindung daripada pentadbir',
@@ -1351,8 +1352,8 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-userrights-interwiki'  => 'Menyerahkan dan menarik balik hak pengguna di wiki lain',
 'right-siteadmin'             => 'Mengunci dan membuka kunci pangkalan data',
 'right-reset-passwords'       => 'Mengeset semula kata laluan pengguna lain',
-'right-override-export-depth' => 'Eksport laman termasuk laman dipaut sehingga kedalaman 5',
-'right-sendemail'             => 'Kirim e-mel kepada pengguna-pengguna lain',
+'right-override-export-depth' => 'Mengeksport laman termasuk laman dipaut sehingga kedalaman 5',
+'right-sendemail'             => 'Mengirim e-mel kepada pengguna-pengguna lain',
 
 # User rights log
 'rightslog'      => 'Log hak pengguna',
@@ -1910,10 +1911,10 @@ Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan
 'listgrouprights-rights'               => 'Hak',
 'listgrouprights-helppage'             => 'Help:Hak kumpulan',
 'listgrouprights-members'              => '(senarai ahli)',
-'listgrouprights-addgroup'             => 'Tambah {{PLURAL:$2|kumpulan|kumpulan}}: $1',
-'listgrouprights-removegroup'          => 'Buang {{PLURAL:$2|kumpulan|kumpulan}}: $1',
-'listgrouprights-addgroup-all'         => 'Boleh menambah semua kumpulan',
-'listgrouprights-removegroup-all'      => 'Boleh membuang semua kumpulan',
+'listgrouprights-addgroup'             => 'Menambahkan {{PLURAL:$2|kumpulan|kumpulan}}: $1',
+'listgrouprights-removegroup'          => 'Membuang {{PLURAL:$2|kumpulan|kumpulan}}: $1',
+'listgrouprights-addgroup-all'         => 'Menambahkan semua kumpulan',
+'listgrouprights-removegroup-all'      => 'Membuang semua kumpulan',
 'listgrouprights-addgroup-self'        => 'Menyertai {{PLURAL:$2|kumpulan|kumpulan-kumpulan}}: $1',
 'listgrouprights-removegroup-self'     => 'Keluar daripada {{PLURAL:$2|kumpulan|kumpulan-kumpulan}}: $1',
 'listgrouprights-addgroup-self-all'    => 'Menyertai semua kumpulan',
@@ -3170,7 +3171,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 
 # Auto-summaries
 'autosumm-blank'   => 'Mengosongkan laman',
-'autosumm-replace' => "Menggantikan laman dengan '$1'",
+'autosumm-replace' => "Mengganti laman dengan '$1'",
 'autoredircomment' => 'Melencong ke [[$1]]',
 'autosumm-new'     => "Mencipta laman baru dengan kandungan '$1'",
 

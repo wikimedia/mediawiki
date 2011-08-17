@@ -36,7 +36,7 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'suttastritgar colliaziuns:',
-'tog-highlightbroken'         => 'Formatar links betg existents <a href="" class="new">uschia</a> (alternativa: uschia<a href="" class="internal">?</a>)',
+'tog-highlightbroken'         => 'Formatar colliaziuns betg existentas <a href="" class="new">uschia</a> (alternativa: uschia<a href="" class="internal">?</a>)',
 'tog-justify'                 => "Text en furma da 'bloc'",
 'tog-hideminor'               => 'Zuppentar pitschnas midadas en las ultimas midadas',
 'tog-hidepatrolled'           => 'Zuppentar midadas controlladas en las «ultimas midadas»',
@@ -46,7 +46,7 @@ $messages = array(
 'tog-numberheadings'          => 'Numerar automaticamain ils titels',
 'tog-showtoolbar'             => "Mussa la trav d'utensils (basegna JavaScript)",
 'tog-editondblclick'          => 'Modifitgar paginas cun in clic dubel (basegna JavaScript)',
-'tog-editsection'             => 'Mussar links [modifitgar] per modifitgar singulas secziuns',
+'tog-editsection'             => 'Mussar colliaziuns [modifitgar] per modifitgar singulas secziuns',
 'tog-editsectiononrightclick' => 'Activar la pussaivladad da modifitgar secziuns cun in clic dretg (basegna JavaScript)',
 'tog-showtoc'                 => 'Mussar ina tabla da cuntegn sin paginas cun dapli che trais tetels',
 'tog-rememberpassword'        => "S'annunziar permanantamain cun quest navigatur (per maximalmain $1 {{PLURAL:$1|di|dis}})",
@@ -83,7 +83,7 @@ $messages = array(
 
 'underline-always'  => 'adina suttastritgar',
 'underline-never'   => 'mai suttastritgar',
-'underline-default' => 'surprender standard dal browser',
+'underline-default' => 'Standard dal navigatur',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Scrittira per il text en la fanestra da modifitgar:',
@@ -222,7 +222,7 @@ $messages = array(
 'updatedmarker'     => "actualisà dapi mi'ultima visita",
 'info_short'        => 'Infurmaziun',
 'printableversion'  => 'Versiun per stampar',
-'permalink'         => 'Link permanent',
+'permalink'         => 'Colliaziun permanenta',
 'print'             => 'stampar',
 'edit'              => 'Modifitgar',
 'create'            => 'Crear',
@@ -254,10 +254,10 @@ $messages = array(
 'viewhelppage'      => "Mussar pagina d'agid",
 'categorypage'      => 'Mussar la pagina da questa categoria',
 'viewtalkpage'      => 'Mussar la discussiun',
-'otherlanguages'    => 'En auteras linguas',
+'otherlanguages'    => 'En autras linguas',
 'redirectedfrom'    => '(renvià da $1)',
 'redirectpagesub'   => "questa pagina renviescha tar in'auter artitgel",
-'lastmodifiedat'    => "L'ultima modificaziun da questa pagina: ils $1 a las $2.",
+'lastmodifiedat'    => "Questa pagina è vegnida modifitgada l'ultima giada ils $1 a las $2.",
 'viewcount'         => 'Questa pagina è vegnida contemplada {{PLURAL:$1|ina giada|$1 giadas}}.',
 'protectedpage'     => 'Pagina protegida',
 'jumpto'            => 'Midar tar:',
@@ -297,7 +297,7 @@ $1',
 'badaccess-groups' => "L'acziun che vus vulais far dastgan mo utilisaders en {{PLURAL:$2|las gruppas|la gruppa}} $1 exequir.",
 
 'versionrequired'     => 'Versiun $1 da MediaWiki è necessaria',
-'versionrequiredtext' => 'Ti dovras versiun $1 da mediawiki per duvrar questa pagina. Guarda [[Special:Version| qua!]]',
+'versionrequiredtext' => 'Ti dovras versiun $1 da MediaWiki per duvrar questa pagina. Guarda [[Special:Version| qua!]]',
 
 'ok'                      => "D'accord",
 'retrievedfrom'           => 'Da "$1"',
@@ -412,7 +412,7 @@ Emprova danovamain en in per minutas.',
 'protectedpagetext'    => "Questa pagina è vegnida bloccada per evitar ch'ella vegn modifitgada.",
 'viewsourcetext'       => 'Ti pos guardar e copiar il code-fundamental da questa pagina:',
 'protectedinterface'   => "Questa pagina cuntegna text per l'interfatscha da la software ed è protegida per evitar abus.",
-'editinginterface'     => "'''Attenziun:''' Questa pagina cuntegn text che vegn duvra da software da mediawiki. Midadas influenzeschan directamain l'interface da l'utilisader. Sche ti vuls far translaziuns u correcturas: Studegia da far quai sin [http://translatewiki.net/wiki/Main_Page?setlang=rm translatewiki.net], per che las midadas pon vegnidas surprendidas da tut ils projects.",
+'editinginterface'     => "'''Attenziun:''' Questa pagina cuntegna text che vegn duvra da la software MediaWiki. Midadas influenzeschan directamain l'interfatscha da l'utilisader. Sche ti vuls far translaziuns u correcturas: Studegia da far quai sin [http://translatewiki.net/wiki/Main_Page?setlang=rm translatewiki.net], per che las midadas pon vegnidas surprendidas da tut ils projects.",
 'sqlhidden'            => '(Zuppentà la dumonda da SQL)',
 'cascadeprotected'     => "Questa pagina è protegida da modificaziuns perquai ch'ella è integrada en suandanta{{PLURAL:$1| pagina, ch'è protegida|s paginas, ch'èn protegidas}} entras l'opziun «protecziun ertada»: 
 $2",
@@ -430,7 +430,7 @@ Il motiv inditgà è "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext'                 => "'''Sortì cun success.'''
 
-Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:UserLogin|t'annunziar]] sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti eras annunzià enfin che ti has stizzà il cache da tes browser.",
+Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:UserLogin|t'annunziar]] sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti eras annunzià enfin che ti has stizzà il cache da tes navigatur.",
 'welcomecreation'            => '==Bainvegni, $1! ==
 Tes conto è vegni creà.
 Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].',
@@ -643,8 +643,8 @@ Controllescha sch ti vuls propi crear/modiftgar questa pagina.',
 'userpage-userdoesnotexist-view'   => 'Il conto d\'utilisader "$1" n\'exista betg.',
 'blocked-notice-logextract'        => "Quai utilisader è bloccà actualmain. 
 L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
-'clearyourcache'                   => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.
-'''Mozilla / Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Macintosh);
+'clearyourcache'                   => "'''Remartga''' Svida il chache da tes navigatur suenter avair memorisà, per vesair las midadas.
+'''Mozilla / Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Mac);
 '''Konqueror: '''clicca ''Reload'' u smatga ''F5'';
 '''Opera:''' stizzar il cache sut ''Tools → Preferences'';
 '''Internet Explorer:''' tegna ''Ctrl'' durant cliccar ''Refresh,'' u smatga ''Ctrl-F5''.",
@@ -686,7 +686,7 @@ Il champ d'endataziun sura cuntegna il text sco che la pagina vesa ora actualmai
 Tias midadas èn mussadas en il champ d'endataziun sut. 
 Ti stos integrar tias midadas en il text existent. 
 '''Mo''' il text en il champ d'endataziun sura vegn memorià sche ti cliccas sin \"{{int:savearticle}}\".",
-'yourtext'                         => 'Voss text',
+'yourtext'                         => 'Tes text',
 'storedversion'                    => 'Versiun memorisada',
 'nonunicodebrowser'                => "'''Attenziun: Tes navigatur na sustegna betg unicode.'''
 Per che ti pos modifitgar las paginas senza ch'i dettia problems vegnan ils caracters betg ASCII mussads en tes champ d'endataziun sco codes exadecimals.",
@@ -943,7 +943,7 @@ Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar e
 'powersearch-redir'                => 'Mussar sviaments',
 'powersearch-field'                => 'Tschertgar',
 'powersearch-togglelabel'          => 'Tscherna:',
-'powersearch-toggleall'            => 'tuts',
+'powersearch-toggleall'            => 'Tuts',
 'powersearch-togglenone'           => 'Nagins',
 'search-external'                  => 'Tschertga externa',
 'searchdisabled'                   => "La tschertga sin {{SITENAME}} è deactivada. 
@@ -1033,7 +1033,7 @@ Questa operaziun na po betg vegnir revocada.',
 'prefs-memberingroups'        => 'Commember {{PLURAL:$1|da la gruppa|da las gruppas}}:',
 'prefs-registration'          => 'Temp da registraziun:',
 'yourrealname'                => 'Num real:',
-'yourlanguage'                => 'linguatg:',
+'yourlanguage'                => 'Lingua:',
 'yourvariant'                 => 'varianta',
 'yournick'                    => 'Signatura:',
 'prefs-help-signature'        => 'Commentaris sin paginas da discussiun duessan vegnir signadas cun "<nowiki>~~~~</nowiki>". Quests segns vegnan lura convertids en tia signatura ed la data.',
@@ -1222,9 +1222,9 @@ Questa infurmaziun è publica.',
 'rc-enhanced-hide'                  => 'Zuppentar detagls',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Midadas sin paginas cun links',
-'recentchangeslinked-feed'     => 'midadas sin paginas cun links',
-'recentchangeslinked-toolbox'  => 'midadas sin paginas cun links',
+'recentchangeslinked'          => 'Midadas sin paginas cun colliaziuns',
+'recentchangeslinked-feed'     => 'midadas sin paginas colliadas',
+'recentchangeslinked-toolbox'  => 'midadas sin paginas colliadas',
 'recentchangeslinked-title'    => 'Midadas en artitgels ch\'èn colliads cun "$1"',
 'recentchangeslinked-noresult' => 'Naginas midadas sin artitgels collads durant la perioda endatada.',
 'recentchangeslinked-summary'  => "Quest è ina glista da las midadas ch'èn vegnidas fatgas da curt en artitgels ch'èn colliads cun ina pagina specifica (ni en commembers d'ina categoria specifica).
@@ -1235,7 +1235,7 @@ Paginas sin [[Special:Watchlist|tia glista d'observaziun]] èn '''grassas'''.",
 # Upload
 'upload'                      => 'Chargiar si ina datoteca',
 'uploadbtn'                   => 'Chargiar si la datoteca',
-'reuploaddesc'                => 'Anavos tar la pagina da chargiar si.',
+'reuploaddesc'                => 'Enavos tar la pagina da chargiar si.',
 'upload-tryagain'             => 'Trametter la descripziun da la datoteca midada',
 'uploadnologin'               => "Betg t'annunzià",
 'uploadnologintext'           => "Ti stos [[Special:UserLogin|t'annunziar]] per chargiar si datotecas.",
@@ -1498,7 +1498,7 @@ Betg emblida da controllar sche autras colliaziuns mainan als models avant ch'al
 'statistics-users-active-desc' => "Utilisaders che han fatg almain ina acziun {{PLURAL:$1|l'ultim di|ils ultims $1 dis}}",
 'statistics-mostpopular'       => 'Paginas visitadas il pli savens',
 
-'disambiguations'     => 'pagina per la decleraziun da noziuns',
+'disambiguations'     => 'Paginas per la decleraziun da noziuns',
 'disambiguationspage' => 'Template:disambiguiziun',
 
 'doubleredirects'            => 'Renviaments dubels',
@@ -1548,13 +1548,13 @@ I renviescha uss a [[$2]].',
 'mostlinked'              => 'Artitgels sin ils quals las pli biaras colliaziuns mussan',
 'mostlinkedcategories'    => 'Categorias utilisadas il pli savens',
 'mostlinkedtemplates'     => 'Models integrads il pli savens',
-'mostcategories'          => "Artitgels ch'èn en las pli biaras chategorias",
+'mostcategories'          => "Artitgels ch'èn en las pli bleras chategorias",
 'mostimages'              => 'Datotecas utilisadas il pli savens',
-'mostrevisions'           => 'Artitgels cun las pli biaras revisiuns',
+'mostrevisions'           => 'Artitgels cun las pli bleras revisiuns',
 'prefixindex'             => 'Tut las paginas cun prefix',
 'shortpages'              => 'Paginas curtas',
 'longpages'               => 'Artitgels lungs',
-'deadendpages'            => 'artitgels senza links interns che mainan anavant',
+'deadendpages'            => 'Artitgels senza colliaziuns internas',
 'protectedpages'          => 'Paginas protegidas',
 'protectedtitles'         => 'Titels bloccads',
 'protectedtitlestext'     => 'Suandants titels èn bloccads per vegnir creads.',
@@ -1581,7 +1581,7 @@ I renviescha uss a [[$2]].',
 'all-logs-page'        => 'Tut ils logs publics',
 
 # Special:AllPages
-'allpages'          => 'tut ils *** artitgels',
+'allpages'          => 'Tut ils artitgels',
 'alphaindexline'    => '$1 enfin $2',
 'nextpage'          => 'proxima pagina ($1)',
 'prevpage'          => 'ultima pagina ($1)',
@@ -1599,8 +1599,11 @@ I renviescha uss a [[$2]].',
 # Special:Categories
 'categories' => 'Categorias',
 
+# Special:DeletedContributions
+'deletedcontributions' => "Contribuziuns d'utilisaders stidadas",
+
 # Special:LinkSearch
-'linksearch'    => 'Links externs',
+'linksearch'    => 'Colliaziuns externas',
 'linksearch-ns' => 'Tip da pagina:',
 'linksearch-ok' => 'Tschertgar',
 
@@ -1668,7 +1671,7 @@ L'adressa dad e-mail che ti has endatà en [[Special:Preferences|tias preferenza
 'emailuserfooter'  => 'Quest e-mail è vegnì tramess da $1 a $2 cun agid da la funcziun da trametter e-mails ad utilisaders sin {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => "mia glista d'observaziun",
+'watchlist'            => "Mia glista d'observaziun",
 'mywatchlist'          => "Mia glista d'observaziun",
 'watchlistfor2'        => 'Per $1 $2',
 'nowatchlist'          => "Ti n'has nagins elements sin tia glista d'observaziun.",
@@ -1688,7 +1691,7 @@ Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan
 'notvisiblerev'        => "L'ultima versiun d'in auter utilisader è vegnida stizzada",
 'watchnochange'        => 'Nagin dals artitgels che ti observeschas è vegnì midà durant la perioda da temp inditgada.',
 'watchlist-details'    => "{{PLURAL:$1|Ina pagina|$1 paginas}} èn sin tia glista d'observaziun (senza dumbrar las paginas da discussiun).",
-'wlheader-showupdated' => "* artitgels che èn vegnids midà suenter che ti as vis els la davosa giada èn mussads '''grass'''",
+'wlheader-showupdated' => "* Artitgels ch'èn vegnids midads suenter che ti has vis els la davosa giada èn mussads '''grass'''",
 'watchmethod-recent'   => "intercurir las davosas midadas per la glista d'observaziun",
 'watchmethod-list'     => 'intercurir las paginas observadas davart novas midadas',
 'watchlistcontains'    => "Tia glista d'observaziun cuntegna $1 {{PLURAL:$1|pagina|paginas}}.",
@@ -1735,7 +1738,7 @@ L'ultima modificaziun vid questa pagina è da [[User:$3|$3]] ([[User talk:$3|tal
 'protectlogpage'              => 'Log da las protecziuns',
 'protectedarticle'            => 'bloccà "[[$1]]"',
 'modifiedarticleprotection'   => 'Midà il livel da protecziun per "[[$1]]"',
-'prot_1movedto2'              => 'Spustà [[$1]] tar [[$2]]',
+'prot_1movedto2'              => 'ha spustà [[$1]] tar [[$2]]',
 'protect-legend'              => 'Midar il status da protecziun da la pagina.',
 'protectcomment'              => 'Motiv:',
 'protectexpiry'               => 'Pretegì enfin:',
@@ -1782,7 +1785,7 @@ Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant bet
 'blanknamespace' => '(principal)',
 
 # Contributions
-'contributions'       => "contribuziuns da l'utilisader",
+'contributions'       => "Contribuziuns da l'utilisader",
 'contributions-title' => "Contribuziuns d'utilisader da $1",
 'mycontris'           => 'Mias contribuziuns',
 'contribsub2'         => 'Per $1 ($2)',
@@ -1810,7 +1813,7 @@ L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
 'sp-contributions-submit'              => 'Tschertga',
 
 # What links here
-'whatlinkshere'            => 'Links sin questa pagina',
+'whatlinkshere'            => 'Colliaziuns sin questa pagina',
 'whatlinkshere-title'      => 'Paginas ch\'èn colliadas cun "$1"',
 'whatlinkshere-page'       => 'Pagina:',
 'linkshere'                => "Suandantas paginas èn colliadas cun '''[[:$1]]''':",
@@ -2002,8 +2005,8 @@ En quests cas as ti da spustar u colliar manualmain las paginas, sche giavischà
 'movetalk'                  => "Spustar la pagina da discussiun che tutga tar l'artitgel",
 'movepage-page-moved'       => 'La pagina $1 è vegnida spustada a $2.',
 'movepage-page-unmoved'     => 'Betg pussaivel da spustar la pagina $1 a $2.',
-'1movedto2'                 => 'Spustà [[$1]] a [[$2]]',
-'1movedto2_redir'           => 'Spustà [[$1]] a [[$2]] cun in renviament',
+'1movedto2'                 => 'ha spustà [[$1]] a [[$2]]',
+'1movedto2_redir'           => 'ha spustà [[$1]] a [[$2]] cun in renviament',
 'move-redirect-suppressed'  => 'Impedì renviament',
 'movelogpage'               => 'Log dal spustar',
 'movereason'                => 'Motiv:',
@@ -2026,12 +2029,12 @@ L\'artitgel da destinaziun "[[:$1]]" exista gia. Vul ti stizzar el per far plaz 
 'export-templates' => 'Includer models',
 
 # Namespace 8 related
-'allmessages'                   => 'communicaziuns dal sistem',
+'allmessages'                   => 'Messadis dal sistem',
 'allmessagesname'               => 'num',
 'allmessagesdefault'            => 'text original',
 'allmessagescurrent'            => 'text actual',
-'allmessagestext'               => 'Quai è ina glista da tut las communicaziuns dals differents tips da paginas da MediaWiki che vegnan utilisadas da la software da MediaWiki.
-Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] sche ti vuls gidar da translatar la software da MediaWiki.',
+'allmessagestext'               => 'Quai è ina glista da tut ils messadis dals differents tips da paginas da MediaWiki che vegnan utilisadas da la software MediaWiki.
+Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] sche ti vuls gidar da translatar la software MediaWiki.',
 'allmessagesnotsupportedDB'     => "Questa pagina na po betg vegnir mussada, perquai che '''\$wgUseDatabaseMessages''' è vegnì deactivà.",
 'allmessages-filter-legend'     => 'Filtrar',
 'allmessages-filter'            => 'Filtrar tenor standi da modificaziun:',
@@ -2202,8 +2205,8 @@ Ti pos vesair il code-fundamental.',
 Probablamien è quai capità pervia dad in link ad ina pagina externa ch'è sin ina glista naira.",
 'spamprotectionmatch' => 'Suandant text ha activà noss filter da spam: $1',
 'spambot_username'    => 'Sistem da MediaWikip per nettegiar da spam',
-'spam_reverting'      => "Restituir l'ultima versiun che na cuntegna nagins links a $1",
-'spam_blanking'       => 'Nettegià tut las versiuns che han cuntegnì links a $1',
+'spam_reverting'      => "Restituir l'ultima versiun che na cuntegna naginas colliaziuns a $1",
+'spam_blanking'       => 'Tut las versiuns cuntegnivan colliaziuns a $1, nettegià',
 
 # Info page
 'infosubtitle'   => 'Infurmaziuns per la pagina',
@@ -2216,9 +2219,9 @@ Probablamien è quai capità pervia dad in link ad ina pagina externa ch'è sin 
 # Math options
 'mw_math_png'    => 'Adina mussar sco PNG',
 'mw_math_simple' => 'HTML sche fitg simpel, uschiglio PNG',
-'mw_math_html'   => 'HTML sche pussibel ed uschigio PNG',
-'mw_math_source' => 'Schar en furma da TeX (per browsers da text)',
-'mw_math_modern' => 'Recumandà per browsers moderns',
+'mw_math_html'   => 'HTML sche pussibel ed uschiglio PNG',
+'mw_math_source' => 'Laschar en furma da TeX (per navigaturs da text)',
+'mw_math_modern' => 'Recumandà per navigaturs moderns',
 'mw_math_mathml' => 'MathML sche pussibel (experimental)',
 
 # Math errors

@@ -1,5 +1,5 @@
 <?php
-/** Yakut (Саха тыла)
+/** Sakha (Саха тыла)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -645,8 +645,12 @@ IP-аадырыһа эрэ көстөр.
 'userpage-userdoesnotexist-view'   => '"$1" кыттааччы аата бэлиэтэниллибэтэх.',
 'blocked-notice-logextract'        => 'Бу кыттааччы билигин бобуллубут.
 Манна бобуу сурунаалын бүтэһик суруга көстөр:',
-'clearyourcache'                   => "'''Болҕой - Уларыппыт сирэйгин сөпкө көрөргө интэриниэт бырагыраамматын кээһин ыраастаа.''' '''Mozilla / Firefox / Safari:''' ''Shift'' кнопканы тутан туран ''Reload'' баттаа, эбэтэр ''Ctrl-F5'', ''Ctrl-R'' дуу (Macintosh-ка ''Command-R'') баттаа; '''Konqueror: ''' ''Reload'' ''F5'' эбэтэр баттаа;
-'''Opera:''' кээһин ыраастыырга манна ''Tools → Preferences'' киир; '''Internet Explorer:''' ''Ctrl'' тутан туран ''Refresh'' баттаа, эбэтэр ''Ctrl-F5'' баттаа.",
+'clearyourcache'                   => "'''Болҕой''' - Уларыппыт сирэйгин сөпкө көрөргө браузер кээһин ыраастыаххын наада буолуо.
+'''Firefox / Safari.''' ''Shift'' кунуопканы тутан туран ''Reload'' баттаа, эбэтэр ''Ctrl-F5'', ''Ctrl-R'' дуу (Mac-ка ''Command-R'') баттаа;
+'''Google Chrome.''' ''Ctrl-Shift-R'' баттаа (Mac-ка ''Command-Shift-R'')
+'''Internet Explorer.''' ''Ctrl'' тутан туран ''Refresh'' баттаа, эбэтэр ''Ctrl-F5'' баттаа.
+'''Konqueror.''' ''Reload'' эбэтэр ''F5'' баттаа;
+'''Opera.''' Манна ''Tools → Preferences'' киирэн кээһин ыраастаа;",
 'usercssyoucanpreview'             => "'''Көмө.''' CSS-билэ саҥа барылын бигэргэтиэҥ иннинэ бу тимэҕи «{{int:showpreview}}»  баттаан тургутан көр.",
 'userjsyoucanpreview'              => "'''Көмө.''' JS-билэ саҥа барылын бигэргэтиэҥ иннинэ бу тимэҕи «{{int:showpreview}}»  баттаан тургутан көр.",
 'usercsspreview'                   => "'''Умнума: бу CSS тургутуута эрэ.

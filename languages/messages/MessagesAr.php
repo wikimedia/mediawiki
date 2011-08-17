@@ -10,6 +10,7 @@
  * @author ;Hiba;1
  * @author Abanima
  * @author AhmadSherif
+ * @author Alexknight12
  * @author Alnokta
  * @author Antime
  * @author Bassem JARKAS
@@ -495,14 +496,14 @@ $messages = array(
 
 # Dates
 'sunday'        => 'الأحد',
-'monday'        => 'الإثنين',
+'monday'        => 'الاثنين',
 'tuesday'       => 'الثلاثاء',
 'wednesday'     => 'الأربعاء',
 'thursday'      => 'الخميس',
 'friday'        => 'الجمعة',
 'saturday'      => 'السبت',
 'sun'           => 'أحد',
-'mon'           => 'إثنين',
+'mon'           => 'اثنين',
 'tue'           => 'ثلاثاء',
 'wed'           => 'أربعاء',
 'thu'           => 'خميس',
@@ -600,7 +601,7 @@ $messages = array(
 'vector-action-move'             => 'انقل',
 'vector-action-protect'          => 'احم',
 'vector-action-undelete'         => 'استرجع الحذف',
-'vector-action-unprotect'        => 'أزل الحماية',
+'vector-action-unprotect'        => 'تغيير الحماية',
 'vector-simplesearch-preference' => 'مكّن مقترحات البحث المُحسّنة (لواجهة فكتور فقط)',
 'vector-view-create'             => 'أنشئ',
 'vector-view-edit'               => 'عدل',
@@ -636,8 +637,8 @@ $messages = array(
 'protect'           => 'احم',
 'protect_change'    => 'غير',
 'protectthispage'   => 'احم هذه الصفحة',
-'unprotect'         => 'أزل الحماية',
-'unprotectthispage' => 'أزل حماية هذه الصفحة',
+'unprotect'         => 'تغيير الحماية',
+'unprotectthispage' => 'غير حماية هذه الصفحة',
 'newpage'           => 'صفحة جديدة',
 'talkpage'          => 'ناقش هذه الصفحة',
 'talkpagelinktext'  => 'نقاش',
@@ -1056,7 +1057,12 @@ $2',
 'userpage-userdoesnotexist-view'   => 'حساب المستخدم "$1" غير مسجل.',
 'blocked-notice-logextract'        => 'هذا المستخدم ممنوع حاليا.
 آخر مدخلة في سجل المنع موفرة بالأسفل كمرجع:',
-'clearyourcache'                   => "'''ملاحظة - بعد الحفظ, ربما ينبغي عليك إفراغ كاش متصفحك لرؤية التغييرات.''' '''موزيللا / فايرفوكس / سافاري:''' اضغط ''Shift'' أثناء ضغط ''Reload,'' أو اضغط أيا من ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''اضغط ''Reload'' أو اضغط ''F5;'' '''أوبرا:''' أفرغ الكاش في ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' اضغط ''Ctrl'' أثناء ضغط ''Refresh,'' أو اضغط ''Ctrl-F5.''",
+'clearyourcache'                   => "'''ملاحظة:''' بعد الحفظ, أنت ربما تحتاج إلى إفراغ كاش متصفحك لرؤية التغييرات.
+* '''فيرفكس / سفاري:''' اضغط ''Shift'' أثناء ضغط ''Reload'', أو اضغط أيا من ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش)
+* '''جوجل كروم:''' اضغط ''Ctrl-Shift-R'' (''Command-Shift-R'' على ماكنتوش)
+* '''إنترنت إكسبلورر:''' اضغط ''Ctrl'' أثناء ضغط ''Refresh''، أو اضغط ''Ctrl-F5''
+* '''كنكرر:''' اضغط ''Reload'' أو اضغط ''F5''
+* '''أوبرا:''' أفرغ الكاش في ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''ملاحظة:''' استعمل زر \"{{int:showpreview}}\" لتجربة CSS الجديد قبل حفظ الصفحة.",
 'userjsyoucanpreview'              => "'''ملاحظة:''' استعمل زر \"{{int:showpreview}}\" لتجربة جافاسكربت الجديدة قبل حفظ الصفحة.",
 'usercsspreview'                   => "'''تذكر أنك تقوم بعرض الأنماط المتراصة (CSS) الخاصة بك فقط
@@ -2214,9 +2220,9 @@ $1',
 
 # Special:Categories
 'categories'                    => 'تصنيفات',
-'categoriespagetext'            => '{{PLURAL:$1||التصنيف التالي يحتوي|التصنيفان التاليان يحتويان|التصنيفات التالية تحتوي}} على صفحات أو وسائط.
+'categoriespagetext'            => '{{PLURAL:$1|التصنيف التالي يحتوي|التصنيفات التالية تحتوي}} على صفحات أو وسائط.
 [[Special:UnusedCategories|التصنيفات غير المستخدمة]] غير معروضة هنا.
-انظر أيضا [[Special:WantedCategories|التصنيفات المطلوبة]].',
+أيضا انظر [[Special:WantedCategories|التصنيفات المطلوبة]].',
 'categoriesfrom'                => 'أظهر التصنيفات بدءا من:',
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'رتب هجائيا',
@@ -2442,11 +2448,11 @@ $ أونواتشورل
 
 # Protect
 'protectlogpage'              => 'سجل الحماية',
-'protectlogtext'              => 'بالأسفل قائمة بالصفحات التي تمت حمايتها أو إزالة الحماية عنها.
+'protectlogtext'              => 'بالأسفل قائمة بالتغييرات في حماية الصفحات.
 انظر [[Special:ProtectedPages|قائمة الصفحات المحمية]] لقائمة بعمليات حماية الصفحات المفعلة حاليا.',
 'protectedarticle'            => 'حمى "[[$1]]"',
 'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
-'unprotectedarticle'          => 'أزال حماية [[$1]]',
+'unprotectedarticle'          => 'أزال الحماية من "[[$1]]"',
 'movedarticleprotection'      => 'نقل إعدادات الحماية من "[[$2]]" إلى "[[$1]]"',
 'protect-title'               => 'ضبط مستوى الحماية ل"$1"',
 'prot_1movedto2'              => '[[$1]] تم نقلها إلى [[$2]]',
@@ -2600,7 +2606,7 @@ $1',
 'nolinkshere-ns'           => "لا تصل أي صفحة إلى '''[[:$1]]''' في النطاق المختار.",
 'isredirect'               => 'صفحة تحويل',
 'istemplate'               => 'مضمن',
-'isimage'                  => 'وصلة صورة',
+'isimage'                  => 'وصلة ملف',
 'whatlinkshere-prev'       => '{{PLURAL:$1|السابق|ال$1 السابقة}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|القادمة|ال$1 القادمة}}',
 'whatlinkshere-links'      => '← وصلات',
@@ -2965,7 +2971,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 يمكنك رؤية مصدرها.',
 'tooltip-ca-history'              => 'النسخ السابقة لهذه الصفحة',
 'tooltip-ca-protect'              => 'احم هذه الصفحة',
-'tooltip-ca-unprotect'            => 'أزل حماية هذه الصفحة',
+'tooltip-ca-unprotect'            => 'غير حماية هذه الصفحة',
 'tooltip-ca-delete'               => 'احذف هذه الصفحة',
 'tooltip-ca-undelete'             => 'استرجع التعديلات التي تمت على هذه الصفحة قبل حذفها',
 'tooltip-ca-move'                 => 'انقل هذه الصفحة',

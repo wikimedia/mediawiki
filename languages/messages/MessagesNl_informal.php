@@ -180,12 +180,12 @@ Je kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
 'userpage-userdoesnotexist'        => 'Je bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1").
 Controleer of je deze pagina wel wilt aanmaken/bewerken.',
-'clearyourcache'                   => "'''Let op! Nadat je de wijzigingen hebt opgeslagen is het wellicht nodig je browsercache te legen.'''
-
-'''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl je op ''Huidige pagina vernieuwen'' klikt of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh);
-'''Konqueror: '''klik ''Reload'' of typ ''F5;''
-'''Opera:''' leeg je cache in ''Extra → Voorkeuren;''
-'''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl je op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Let op!''' Nadat je de wijzigingen hebt opgeslagen is het wellicht nodig je browsercache te legen.
+* '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl je op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Mac)
+* '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''Command-Shift-R'' op een Mac)
+* '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl je op ''Vernieuwen'' klikt of druk op ''Ctrl-F5''
+* '''Konqueror: '''klik op ''Reload'' of druk op ''F5''
+* '''Opera:''' leeg je cache in ''Extra → Voorkeuren''",
 'usercssyoucanpreview'             => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om je nieuwe CSS te testen alvorens op te slaan.",
 'userjsyoucanpreview'              => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om je nieuwe JavaScript te testen alvorens op te slaan.",
 'usercsspreview'                   => "'''Dit is alleen een voorvertoning van je persoonlijke CSS.
@@ -418,7 +418,7 @@ De ontvanger kan dus direct naar je reageren.',
 
 # Watchlist
 'nowatchlist'          => 'Je volglijst is leeg.',
-'watchlistanontext'    => '$1 is noodzakelijk om je volglijst in te zien of te wijzigen.',
+'watchlistanontext'    => 'Om je volglijst te bekijken of te bewerken moet je je $1.',
 'watchnologintext'     => 'Je dient [[Special:UserLogin|aangemeld]] te zijn om je volglijst te bewerken.',
 'addedwatchtext'       => "De pagina \"[[:\$1]]\" is toegevoegd aan je [[Special:Watchlist|volglijst]].
 Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden op [[Special:Watchlist|je volglijst]] vermeld en worden '''vet''' weergegeven in de [[Special:RecentChanges|lijst van recente wijzigingen]].",

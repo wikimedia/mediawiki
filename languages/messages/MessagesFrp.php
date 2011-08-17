@@ -927,9 +927,12 @@ Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
 'userpage-userdoesnotexist-view'   => 'Lo compto utilisator « $1 » est pas encartâ.',
 'blocked-notice-logextract'        => 'Ceti utilisator est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
-'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ voutres prèferences, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
-'''Mozilla / Firefox / Konqueror / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Actualisar'' (''Reload'') ou ben prèssâd ''Maj-Ctrl-R'' (''Maj-Cmd-R'' dessus Apple Mac) ;
-'''Internet Explorer / Opera :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Actualisar'' ou ben prèssâd ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
+* '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Actualisar'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' dessus Mac)
+* '''Google Chrome :''' prèssâd ''Ctrl-Shift-R'' (''Command-Shift-R'' dessus Mac)
+* '''Internet Explorer :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Rafrèchir'' (''Refresh'') ou ben prèssâd ''Ctrl-F5''
+* '''Konqueror :''' clicâd sur lo boton ''Actualisar'' ou ben prèssâd ''F5''
+* '''Opera :''' èfaciéd lo cache dens ''Outils → Prèferences''",
 'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye CSS novèla devant que la sôvar.",
 'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye JS novèla devant que la sôvar.",
 'usercsspreview'                   => "'''Rapelâd-vos que vos éte solament aprés prèvisualisar voutra prôpra fôlye CSS.'''
@@ -2185,8 +2188,9 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences
 'emailuserfooter'      => 'Ceti mèssâjo at étâ mandâ per « $1 » a « $2 » per la fonccion « Lui mandar un mèssâjo » de {{SITENAME}}.',
 
 # User Messenger
-'usermessage-summary' => 'At lèssiê un mèssâjo sistèmo.',
-'usermessage-editor'  => 'Mèssagiér du sistèmo',
+'usermessage-summary'  => 'At lèssiê un mèssâjo sistèmo.',
+'usermessage-editor'   => 'Mèssagiér du sistèmo',
+'usermessage-template' => 'MediaWiki:MèssâjoUtilisator',
 
 # Watchlist
 'watchlist'            => 'Lista de survelyence',
@@ -3513,7 +3517,7 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.",
 'watchlistedit-normal-explain' => 'Los titros de voutra lista de survelyence sont montrâs ce-desot.
 Por enlevar un titro (et sa pâge de discussion), pouentâd la câsa a coutâ et pués clicâd sur lo boton « {{int:Watchlistedit-normal-submit}} ».
 Vos pouede asse-ben changiér la [[Special:Watchlist/raw|lista en fôrma bruta]].',
-'watchlistedit-normal-submit'  => 'Enlevar los titros chouèsis',
+'watchlistedit-normal-submit'  => 'Enlevar los titros',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Yon titro at étâ enlevâ|$1 titros ont étâ enlevâs}} de voutra lista de survelyence :',
 'watchlistedit-raw-title'      => 'Changiér la lista de survelyence en fôrma bruta',
 'watchlistedit-raw-legend'     => 'Changement de la lista de survelyence en fôrma bruta',

@@ -976,7 +976,7 @@ Desse parameterane har vorte utelatne.',
 Grunnen som vart gjeven av $3 er ''$2''",
 
 # History pages
-'viewpagelogs'           => 'Vis loggane for denne sida',
+'viewpagelogs'           => 'Vis loggane for sida',
 'nohistory'              => 'Det finst ikkje nokon historikk for denne sida.',
 'currentrev'             => 'Versjonen no',
 'currentrev-asof'        => 'Versjonen no frå $1',
@@ -2794,7 +2794,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merk som patruljert',
-'markaspatrolledtext'                 => 'Merk denne innhaldssida som patruljert',
+'markaspatrolledtext'                 => 'Merk innhaldssida som patruljert',
 'markedaspatrolled'                   => 'Merk som patruljert',
 'markedaspatrolledtext'               => 'Den valde versjonen av [[:$1]] er vorten merkt som patruljert.',
 'rcpatroldisabled'                    => 'Siste-endringar-patruljering er deaktivert',

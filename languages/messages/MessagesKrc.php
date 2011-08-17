@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Diebuche
  * @author Don Alessandro
  * @author GerardM
  * @author Iltever
@@ -3057,7 +3058,7 @@ $1',
 'confirm-purge-bottom' => 'Бетни кеши кетерилгенден сора, андан сора келген версиясы кёргюзюллюкдю.',
 
 # Separators for various lists, etc.
-'catseparator'        => '|',
+'catseparator'        => '',
 'semicolon-separator' => ';&#32;',
 'percent'             => '$1%',
 'parentheses'         => '($1)',

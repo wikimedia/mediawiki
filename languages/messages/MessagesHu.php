@@ -25,6 +25,7 @@
  * @author Samat
  * @author Terik
  * @author Tgr
+ * @author Xbspiro
  */
 
 $namespaceNames = array(
@@ -1368,7 +1369,7 @@ A műveletet nem lehet visszavonni.',
 'gender-unknown'                => 'Nincs megadva',
 'gender-male'                   => 'Férfi',
 'gender-female'                 => 'Nő',
-'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemalapú üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
+'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemtől függő üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 'prefs-help-email'              => 'Az e-mail cím megadása nem kötelező, de így kérhetsz új jelszót, ha elfelejtenéd a meglévőt.
@@ -2247,7 +2248,8 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 
 # Protect
 'protectlogpage'              => 'Lapvédelmi_napló',
-'protectlogtext'              => 'Ez a lapok lezárásának és megnyitásának listája. A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
+'protectlogtext'              => 'Alább látható a lapvédelemmel kapcsolatos változtatások listája.
+A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
 'modifiedarticleprotection'   => 'megváltoztatta a(z) „[[$1]]” lap védelmi szintjét',
 'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[$1]]” lapról',
@@ -2758,7 +2760,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'tooltip-ca-viewsource'           => 'Ez egy védett lap. Ide kattintva megnézheted a forrását.',
 'tooltip-ca-history'              => 'A lap korábbi változatai',
 'tooltip-ca-protect'              => 'A lap levédése',
-'tooltip-ca-unprotect'            => 'Lapvédelem feloldása',
+'tooltip-ca-unprotect'            => 'Lapvédelem módosítása',
 'tooltip-ca-delete'               => 'A lap törlése',
 'tooltip-ca-undelete'             => 'A törölt lapváltozatok visszaállítása',
 'tooltip-ca-move'                 => 'A lap áthelyezése',
