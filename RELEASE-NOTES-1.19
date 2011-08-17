@@ -39,6 +39,10 @@ production.
   css style rules. These attributes were removed from html5 and so we clean
   them up when $wgHtml5 is enabled. This can be disabled using
   $wgCleanupPresentationalAttributes.
+* Magic words (time and number-formatting ones, plus DIRECTIONMARK, but not
+  NAMESPACE) now depend on the page content language instead of the site
+  language. In theory this sets the right magic words in system messages,
+  although they are not used there.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
