@@ -2660,6 +2660,15 @@ class Parser {
 		global $wgContLang, $wgSitename, $wgServer;
 		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
+		if ( is_null( $this->mTitle ) ) {
+			// If no title set, bad things are going to happen
+			// later. Title should always be set since this
+			// should only be called in the middle of a parse
+			// operation (but the unit-tests do funky stuff)
+			throw new MWException( __METHOD__ . ' Should only be '
+				. ' called while parsing (no title set)' );
+		}
+
 		/**
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
