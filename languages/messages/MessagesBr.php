@@ -269,7 +269,7 @@ $messages = array(
 'vector-action-move'         => 'Adenvel',
 'vector-action-protect'      => 'Gwareziñ',
 'vector-action-undelete'     => 'Diziverkañ',
-'vector-action-unprotect'    => 'Diwareziñ',
+'vector-action-unprotect'    => 'Cheñch gwarez',
 'vector-namespace-category'  => 'Rummad',
 'vector-namespace-help'      => 'Skoazell',
 'vector-namespace-image'     => 'Restr',
@@ -315,8 +315,8 @@ $messages = array(
 'protect'           => 'Gwareziñ',
 'protect_change'    => 'kemmañ',
 'protectthispage'   => 'Gwareziñ ar bajenn-mañ',
-'unprotect'         => 'Diwareziñ',
-'unprotectthispage' => 'Diwareziñ ar bajenn-mañ',
+'unprotect'         => 'Cheñch gwarez',
+'unprotectthispage' => 'Cheñch live gwareziñ ar bajenn-mañ',
 'newpage'           => 'Pajenn nevez',
 'talkpage'          => 'Pajenn gaozeal',
 'talkpagelinktext'  => 'Kaozeal',
@@ -704,11 +704,16 @@ Gallout a rit [[Special:Search/{{PAGENAME}}|klask an titl anezhi]] e pajennoù a
 'noarticletext-nopermission'       => 'N\'eus, evit ar mare, tamm testenn ebet war ar bajenn-mañ.
 Gallout a rit [[Special:Search/{{PAGENAME}}|klask titl ar bajenn-mañ]] war pajennoù all,
 pe <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} klask er marilhoù kar]</span>.',
-'userpage-userdoesnotexist'        => 'N\'eo ket enrollet ar gont "$1". Merkit ma fell deoc\'h krouiñ/kemmañ ar bajenn-mañ.',
+'userpage-userdoesnotexist'        => 'N\'eo ket enrollet ar gont "<nowiki>$1</nowiki>". Merkit ma fell deoc\'h krouiñ/kemmañ ar bajenn-mañ.',
 'userpage-userdoesnotexist-view'   => 'N\'eo ket enrollet ar gont implijer "$1".',
 'blocked-notice-logextract'        => "Stanket eo an implijer-mañ evit poent.
 Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
-'clearyourcache'                   => "'''Notenn :''' Goude bezañ enrollet ho pajenn e rankot freskaat krubuilh ho merdeer a-bennn gwelet ar c'hemmoù : '''Mozilla / Firefox / Safari : ''' dalc'hit ''Pennlizherenn'' en ur glikañ war ''Adkargañ'', pe pouezañ war ''Ctrl-F5'' pe ''Ctrl-R'' (''Command-R'' war ur Macintosh); '''Konqueror: '''klikañ war ''Adkargañ'' pe pouezañ war ''F5;'' '''Opera:''' riñsañ ar grubuilh e ''Ostilhoù → Penndibaboù;'' '''Internet Explorer:''' derc'hel ''Ctrl'' en ur glikañ war ''Freskaat,'' pe pouezañ war ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Notenn :''' Goude bezañ enrollet ho pajenn e rankot freskaat krubuilh ho merdeer a-benn gwelet ar c'hemmoù.
+* '''Firefox / Safari: ''' derc'hel ''Pennlizherenn'' en ur glikañ war ''Adkargañ'', pe pouezañ war ''Ctrl-F5'' pe ''Ctrl-R'' (''Command-R'' war ur Mac); 
+* '''Google Chrome:''' pouezañ war ''Ctrl-Pennlizh-R'' (''Urzhiad Pennlizh.-R war ur Mac)
+* '''Internet Explorer:''' derc'hel ''Ctrl'' en ur glikañ war ''Freskaat,'' pe pouezañ war ''Ctrl-F5''
+* '''Konqueror: '''klikañ war ''Adkargañ'' pe pouezañ war ''F5;'' 
+* '''Opera:''' riñsañ ar grubuilh e ''Ostilhoù → Penndibaboù''",
 'usercssyoucanpreview'             => "'''Tun :''' Grit gant ar bouton \"{{int:showpreview}}\" evit testiñ ho follenn CSS nevez a-raok enrollañ anezhi.",
 'userjsyoucanpreview'              => "'''Tun :''' Grit gant ar bouton \"{{int:showpreview}}\" evit testiñ ho follenn JS nevez a-raok enrollañ anezhi.",
 'usercsspreview'                   => "'''Dalc'hit soñj n'emaoc'h ken nemet o rakwelet ho follenn CSS deoc'h.'''
@@ -1377,7 +1382,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'recentchangeslinked-noresult' => 'Kemm ebet war ar pajennoù liammet e-pad an amzer spisaet.',
 'recentchangeslinked-summary'  => "Rollet eo war ar bajenn dibar-mañ ar c'hemmoù diwezhañ bet degaset war ar pajennoù liammet ouzh ur bajenn lakaet (pe ouzh izili ur rummad lakaet).
 E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
-'recentchangeslinked-page'     => 'Anv ar bajenn:',
+'recentchangeslinked-page'     => 'Anv ar bajenn :',
 'recentchangeslinked-to'       => "Diskouez ar c'hemmoù war-du ar pajennoù liammet kentoc'h eget re ar bajenn lakaet",
 
 # Upload
@@ -1900,7 +1905,7 @@ a-benn gellout kemmañ ho roll evezhiañ.",
 Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet amañ hag e teuio ar bajenn <b>e tev</b> er [[Special:RecentChanges|roll kemmoù diwezhañ]] evit bezañ gwelet aesoc\'h ganeoc\'h.
 
 Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da evezhiañ" er framm merdeiñ.',
-'removedwatch'         => 'Lamet a-ziwar ar rollad evezhiañ',
+'removedwatch'         => 'Lamet a-ziwar ar roll evezhiañ',
 'removedwatchtext'     => 'Lamet eo bet ar bajenn "[[:$1]]" a-ziwar ho [[Special:Watchlist|roll evezhiañ]].',
 'watch'                => 'Evezhiañ',
 'watchthispage'        => 'Evezhiañ ar bajenn-mañ',
@@ -2019,10 +2024,11 @@ Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro
 
 # Protect
 'protectlogpage'              => 'Log_gwareziñ',
-'protectlogtext'              => 'Kavit a-is ur roll pajennoù gwarezet ha diwarezet. Sellet ouzh ar [[Special:ProtectedPages|roll ar pajennoù gwarezet]] evit kaout roll ar pajennoù gwarezet bremañ.',
+'protectlogtext'              => "Setu aze a-is roll ar c'hemmoù degaset ouzh live gwareziñ ar pajennoù.
+Sellet ouzh ar [[Special:ProtectedPages|roll ar pajennoù gwarezet]] evit kaout roll ar pajennoù gwarezet bremañ.",
 'protectedarticle'            => '{{Gender:.|en|he}} deus gwarezet [[$1]]',
 'modifiedarticleprotection'   => 'Kemmañ live gwareziñ "[[$1]]"',
-'unprotectedarticle'          => '{{Gender:.|en|he}} deus diwarezet [[$1]]',
+'unprotectedarticle'          => "diwarezet eo bet ''[[$1]]''",
 'movedarticleprotection'      => 'en deus adkaset an arventennoù gwareziñ eus "[[$2]]" da "[[$1]]"',
 'protect-title'               => 'Kemmañ al live gwareziñ evit "$1"',
 'prot_1movedto2'              => '[[$1]] adkaset war-du [[$2]]',
@@ -2164,7 +2170,7 @@ $1',
 'nolinkshere-ns'           => "Pajenn ebet n'eo liammet ouzh '''[[:$1]]''' en esaouenn anv dibabet.",
 'isredirect'               => 'pajenn adkas',
 'istemplate'               => 'enframmet',
-'isimage'                  => 'liamm ar restr',
+'isimage'                  => 'Liamm war-zu ar restr',
 'whatlinkshere-prev'       => '{{PLURAL:$1|kent|kent $1}}',
 'whatlinkshere-next'       => "{{PLURAL:$1|war-lerc'h|war-lerc'h $1}}",
 'whatlinkshere-links'      => '← liammoù',
@@ -2497,7 +2503,7 @@ Enrollit ar bajenn war hoc'h urzhiataer ha kargit anezhi amañ.",
 'tooltip-ca-viewsource'           => 'Gwarezet eo ar bajenn-mañ. Gallout a rit gwelet an danvez anezhañ memes tra.',
 'tooltip-ca-history'              => 'Stummoù kozh ar bajenn-mañ gant an aozerien anezhi.',
 'tooltip-ca-protect'              => 'Gwareziñ ar bajenn-mañ',
-'tooltip-ca-unprotect'            => 'Diwareziñ ar bajenn',
+'tooltip-ca-unprotect'            => 'Cheñch live gwareziñ ar bajenn-mañ',
 'tooltip-ca-delete'               => 'Diverkañ ar bajenn-mañ',
 'tooltip-ca-undelete'             => 'Adsevel ar bajenn-mañ',
 'tooltip-ca-move'                 => 'Adenvel ar bajenn-mañ',
@@ -2539,7 +2545,7 @@ Enrollit ar bajenn war hoc'h urzhiataer ha kargit anezhi amañ.",
 'tooltip-preview'                 => "Rakwelet ar c'hemmoù; trugarez d'ober gantañ a-raok enrollañ!",
 'tooltip-diff'                    => "Diskouez ar c'hemmoù degaset ganeoc'h en destenn.",
 'tooltip-compareselectedversions' => "Sellet ouzh an diforc'hioù zo etre daou stumm diuzet ar bajenn-mañ.",
-'tooltip-watch'                   => 'Ouzhpennañ ar bajenn-mañ ouzh ho rollad evezhiañ',
+'tooltip-watch'                   => "Ouzhpennañ ar bajenn-mañ d'ho roll evezhiañ",
 'tooltip-recreate'                => 'Adkrouiñ ar bajenn ha pa vije bet diverket a-raok',
 'tooltip-upload'                  => 'Kregiñ da enporzhiañ',
 'tooltip-rollback'                => "\"Disteuler\" a zistaol en ur c'hlik ar c'hemm(où) bet degaset d'ar bajenn-mañ gant an implijer diwezhañ.",

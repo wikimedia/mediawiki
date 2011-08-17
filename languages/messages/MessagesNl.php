@@ -30,6 +30,7 @@
  * @author Siebrand
  * @author Slomox
  * @author Tedjuh10
+ * @author Tjcool007
  * @author Troefkaart
  * @author Tvdm
  * @author לערי ריינהארט
@@ -470,7 +471,7 @@ $messages = array(
 'qbpageinfo'     => 'Pagina-informatie',
 'qbmyoptions'    => "Mijn pagina's",
 'qbspecialpages' => 'Speciale pagina’s',
-'faq'            => 'FAQ (veelgestelde vragen)',
+'faq'            => 'Veel gestelde vragen',
 'faqpage'        => 'Project:Veelgestelde vragen',
 
 # Vector skin
@@ -479,7 +480,7 @@ $messages = array(
 'vector-action-move'         => 'Hernoemen',
 'vector-action-protect'      => 'Beveiligen',
 'vector-action-undelete'     => 'Terugplaatsen',
-'vector-action-unprotect'    => 'Beveiliging opheffen',
+'vector-action-unprotect'    => 'Beveiliging wijzigen',
 'vector-namespace-category'  => 'Categorie',
 'vector-namespace-help'      => 'Hulppagina',
 'vector-namespace-image'     => 'Bestand',
@@ -525,8 +526,8 @@ $messages = array(
 'protect'           => 'Beveiligen',
 'protect_change'    => 'wijzigen',
 'protectthispage'   => 'Deze pagina beveiligen',
-'unprotect'         => 'Beveiliging opheffen',
-'unprotectthispage' => 'Beveiliging van deze pagina opheffen',
+'unprotect'         => 'Beveiliging wijzigen',
+'unprotectthispage' => 'Beveiliging van deze pagina wijzigen',
 'newpage'           => 'Nieuwe pagina',
 'talkpage'          => 'Overlegpagina',
 'talkpagelinktext'  => 'Overleg',
@@ -943,14 +944,17 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 'noarticletext-nopermission'       => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
-'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1").
+'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "<nowiki>$1</nowiki>").
 Controleer of u deze pagina wel wilt aanmaken/bewerken.',
 'userpage-userdoesnotexist-view'   => 'De gebruiker "$1" is niet geregistreerd.',
 'blocked-notice-logextract'        => 'Deze gebruiker is op het moment geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
-'clearyourcache'                   => "'''Let op! Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.'''
-
-'''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Huidige pagina vernieuwen'' klikt of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leeg uw cache in ''Extra → Voorkeuren;'' '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Let op!''' Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.
+* '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Mac)
+* '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''Command-Shift-R'' op een Mac)
+* '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5''
+* '''Konqueror: '''klik op ''Reload'' of druk op ''F5''
+* '''Opera:''' leeg uw cache in ''Extra → Voorkeuren''",
 'usercssyoucanpreview'             => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om uw nieuwe CSS te testen alvorens op te slaan.",
 'userjsyoucanpreview'              => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om uw nieuwe JavaScript te testen alvorens op te slaan.",
 'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS.'''
@@ -1483,7 +1487,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'beheerder',
 'group-bureaucrat-member'    => 'bureaucraat',
-'group-suppress-member'      => 'Toezichthouder',
+'group-suppress-member'      => 'toezichthouder',
 
 'grouppage-user'          => '{{ns:project}}:Gebruikers',
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',
@@ -2179,7 +2183,7 @@ De ontvanger kan dus direct naar u reageren.',
 'mywatchlist'          => 'Mijn volglijst',
 'watchlistfor'         => "(voor '''$1''')",
 'nowatchlist'          => 'Uw volglijst is leeg.',
-'watchlistanontext'    => '$1 is noodzakelijk om uw volglijst in te zien of te wijzigen.',
+'watchlistanontext'    => 'Om uw volglijst te bekijken of te bewerken moet u zich $1.',
 'watchnologin'         => 'U bent niet aangemeld',
 'watchnologintext'     => 'U dient [[Special:UserLogin|aangemeld]] te zijn om uw volglijst te bewerken.',
 'addedwatch'           => 'Toegevoegd aan volglijst',
@@ -2209,7 +2213,7 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'watching'   => 'Bezig met plaatsen op volglijst…',
 'unwatching' => 'Bezig met verwijderen van volglijst…',
 
-'enotif_mailer'                => '{{SITENAME}} waarschuwingssysteem',
+'enotif_mailer'                => '{{SITENAME}}-waarschuwingssysteem',
 'enotif_reset'                 => "Alle pagina's markeren als bezocht",
 'enotif_newpagetext'           => 'Dit is een nieuwe pagina.',
 'enotif_impersonal_salutation' => 'gebruiker van {{SITENAME}}',
@@ -2305,7 +2309,7 @@ Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 
 # Protect
 'protectlogpage'              => 'Beveiligingslogboek',
-'protectlogtext'              => "Hieronder staan pagina's die recentelijk beveiligd zijn of waarvan de beveiliging is opgeheven.
+'protectlogtext'              => "Hieronder staan pagina's waarvan de beveiliging recentelijk gewijzigd is.
 Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveiligde pagina's.",
 'protectedarticle'            => 'beveiligde "[[$1]]"',
 'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[$1]]"',
@@ -2545,8 +2549,8 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 Het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'blocklog-showsuppresslog'        => 'Deze gebruiker is voorheen geblokkeerd geweest en er zijn (delen van) bewerkingen van deze gebruiker verborgen.
 Het verbergingslogboek wordt hieronder ter referentie weergegeven:',
-'blocklogentry'                   => 'blokkeerde "[[$1]]" voor de duur van $2 $3',
-'reblock-logentry'                => 'heeft de instellingen voor de blokkade voor [[$1]] gewijzigd. Deze vervalt nu op $2 om $3',
+'blocklogentry'                   => 'blokkeerde [[$1]] met als vervaltijd $2 $3',
+'reblock-logentry'                => 'heeft de blokkade voor [[$1]] gewijzigd met als vervaldatum $2 $3',
 'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen.
 Automatische blokkeringen en deblokkeringen komen niet in het logboek.
 Zie ook [[Special:IPBlockList|Geblokkeerde IP-adressen en gebruikers]].',
@@ -2659,7 +2663,7 @@ Combineer de overlegpagina's handmatig.'''",
 De overige pagina's worden niet automatisch hernoemd.",
 '1movedto2'                    => '[[$1]] hernoemd naar [[$2]]',
 '1movedto2_redir'              => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
-'move-redirect-suppressed'     => 'doorverwijzing onderdrukken',
+'move-redirect-suppressed'     => 'doorverwijzing onderdrukt',
 'movelogpage'                  => 'Hernoemingslogboek',
 'movelogpagetext'              => "Hieronder staan hernoemde pagina's.",
 'movesubpage'                  => "{{PLURAL:$1|Subpagina|Subpagina's}}",
@@ -2809,7 +2813,7 @@ De tijdelijke map is niet aanwezig.',
 'tooltip-ca-viewsource'           => 'Deze pagina is beveiligd. U kunt wel de broncode bekijken.',
 'tooltip-ca-history'              => 'Eerdere versies van deze pagina',
 'tooltip-ca-protect'              => 'Deze pagina beveiligen',
-'tooltip-ca-unprotect'            => 'De beveiliging voor deze pagina opheffen',
+'tooltip-ca-unprotect'            => 'De beveiliging voor deze pagina wijzigen',
 'tooltip-ca-delete'               => 'Deze pagina verwijderen',
 'tooltip-ca-undelete'             => 'Verwijderde bewerkingen van deze pagina terugplaatsen',
 'tooltip-ca-move'                 => 'Deze pagina hernoemen',
@@ -2891,7 +2895,7 @@ De tijdelijke map is niet aanwezig.',
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruiker $1',
-'anonuser'         => 'Anonieme {{SITENAME}}-gebruiker $1',
+'anonuser'         => 'anonieme {{SITENAME}}-gebruiker $1',
 'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $1 om $2 door $3.',
 'othercontribs'    => 'Gebaseerd op werk van $1.',
 'others'           => 'anderen',

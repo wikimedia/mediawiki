@@ -12,6 +12,7 @@
  * @author Fulup
  * @author Kal-El
  * @author Malafaya
+ * @author Palapa
  * @author Seha
  * @author Smooth O
  * @author לערי ריינהארט
@@ -434,7 +435,7 @@ $messages = array(
 'vector-action-move'         => 'Preusmjeri',
 'vector-action-protect'      => 'Zaštiti',
 'vector-action-undelete'     => 'Vrati obrisano',
-'vector-action-unprotect'    => 'Oslobodi zaštitu',
+'vector-action-unprotect'    => 'Promijeni zaštitu',
 'vector-namespace-category'  => 'Kategorija',
 'vector-namespace-help'      => 'Stranica pomoći',
 'vector-namespace-image'     => 'Datoteka',
@@ -480,8 +481,8 @@ $messages = array(
 'protect'           => 'Zaštitite',
 'protect_change'    => 'promijeni',
 'protectthispage'   => 'Zaštitite ovu stranicu',
-'unprotect'         => 'odštiti',
-'unprotectthispage' => 'Odštiti ovu stranicu',
+'unprotect'         => 'Promijeni zaštitu',
+'unprotectthispage' => 'Promijeni zaštitu za ovu stranicu',
 'newpage'           => 'Nova stranica',
 'talkpage'          => 'Razgovor o stranici',
 'talkpagelinktext'  => 'Razgovor',
@@ -877,13 +878,13 @@ Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim s
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tražiti u povezanim zapisima] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'noarticletext-nopermission'       => 'Trenutno nema teksta na ovoj stranici.
 Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane zapisnike]</span>.',
-'userpage-userdoesnotexist'        => 'Korisnički račun "$1" nije registrovan.
+'userpage-userdoesnotexist'        => 'Korisnički račun "<nowiki>$1</nowiki>" nije registrovan.
 Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'clearyourcache'                   => "'''Pažnja: Nakon što sačuvate izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
-'''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macintoshu);
+'''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macu);
 '''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
 '''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences'';
 '''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''.",
@@ -2217,10 +2218,11 @@ vraćeno na posljednju verziju koju je sačuvao $2.',
 
 # Protect
 'protectlogpage'              => 'Protokol zaključavanja',
-'protectlogtext'              => 'Ispod je spisak zaštićenja stranice.',
+'protectlogtext'              => 'Ispod je spisak promjena zaštićenja stranice.
+Pogledajte [[Special:ProtectedPages|spisak zaštićenih stranica]] za pregled trenutno operativnih zaštita stranica.',
 'protectedarticle'            => 'stranica "[[$1]]" je zaštićena',
 'modifiedarticleprotection'   => 'promijenjen stepen zaštite za "[[$1]]"',
-'unprotectedarticle'          => 'odštićena "$1"',
+'unprotectedarticle'          => 'uklonjena zaštita za "[[$1]]"',
 'movedarticleprotection'      => 'podešavanja zaštite premještena sa "[[$2]]" na "[[$1]]"',
 'protect-title'               => 'Zaštićuje se "$1"',
 'prot_1movedto2'              => 'članak [[$1]] premješten na [[$2]]',
@@ -2367,7 +2369,7 @@ $1',
 'nolinkshere-ns'           => "Nijedna stranica nije povezana sa '''[[:$1]]''' u odabranom imenskom prostoru.",
 'isredirect'               => 'preusmjerivač',
 'istemplate'               => 'kao šablon',
-'isimage'                  => 'link datoteke',
+'isimage'                  => 'veza na datoteku',
 'whatlinkshere-prev'       => '{{PLURAL:$1|prethodni|prethodna|prethodnih}} $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|sljedeći|sljedeća|sljedećih}} $1',
 'whatlinkshere-links'      => '← linkovi',
@@ -2720,7 +2722,7 @@ Nedostaje privremeni folder.',
 'tooltip-ca-viewsource'           => 'Ovaj članak je zaključan. Možete ga samo vidjeti ili kopirati kod.',
 'tooltip-ca-history'              => 'Prethodne verzije ove stranice.',
 'tooltip-ca-protect'              => 'Zaštitite stranicu od budućih izmjena',
-'tooltip-ca-unprotect'            => 'Odštiti ovu stranicu',
+'tooltip-ca-unprotect'            => 'Promijeni zaštitu za ovu stranicu',
 'tooltip-ca-delete'               => 'Izbrišite ovu stranicu',
 'tooltip-ca-undelete'             => 'Vratite izmjene koje su načinjene prije brisanja stranice',
 'tooltip-ca-move'                 => 'Pomjerite stranicu',
@@ -2925,7 +2927,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 
 # Metadata
 'metadata'          => 'Metapodaci',
-'metadata-help'     => 'Ova datoteka sadržava dodatne podatke koje je vjerojatno dodala digitalna kamera ili skener u procesu snimanja odnosno digitalizacije. Ako je datoteka mijenjana, podatci možda nisu u skladu sa stvarnim stanjem.',
+'metadata-help'     => 'Ova datoteka sadržava dodatne podatke koje je vjerovatno dodala digitalna kamera ili skener u procesu snimanja, odnosno digitalizacije. Ako je datoteka mijenjana, podaci možda nisu u skladu sa stvarnim stanjem.',
 'metadata-expand'   => 'Pokaži sve detalje',
 'metadata-collapse' => 'Sakrij dodatne podatke',
 'metadata-fields'   => "Slijedeći EXIF metapodaci će biti prikazani ispod slike u tablici s metapodacima. Ostali će biti sakriveni (možete ih vidjeti ako kliknete na link ''Pokaži sve detalje'').

@@ -618,7 +618,7 @@ ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurnê]</span>.',
 'noarticletext-nopermission'       => 'No pel nıka veng o.
 No sernuşte şıma [[Special:Search/{{PAGENAME}}|pelanê binan de eşkeni bıgeri]]
 ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} itara eşekeni bıgere].</span>',
-'userpage-userdoesnotexist'        => 'Hesabê karberi "$1" qeyd nêbiyo.
+'userpage-userdoesnotexist'        => 'Hesabê karberi "<nowiki>$1</nowiki>" qeyd nêbiyo.
 Kerem ke, tı ke wazenay na pele bafernê/bıvurnê, qontrol ke.',
 'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nêbiyo.',
 'blocked-notice-logextract'        => 'No karber/na karbere emanet blokekerdeyo/blokekediya.

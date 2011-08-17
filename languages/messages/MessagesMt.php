@@ -498,7 +498,7 @@ $messages = array(
 'viewtalkpage'      => 'Ara d-diskussjoni',
 'otherlanguages'    => "F'lingwi oħrajn",
 'redirectedfrom'    => '(Riindirizzat minn $1)',
-'redirectpagesub'   => "Paġna ta' riindirizzament",
+'redirectpagesub'   => "Paġna ta' rindirizz",
 'lastmodifiedat'    => 'L-aħħar modifika fuq il-paġna: $2, $1.',
 'viewcount'         => 'Din il-paġna ġiet aċċessata {{PLURAL:$1|darba|$1 darba}}.',
 'protectedpage'     => 'Paġna protetta',
@@ -863,12 +863,12 @@ Jekk int utent anonimu u tħoss li qiegħed tirċievi kummenti irrelevanti jew l
 'noarticletext'                    => "Bħalissa m'hemm l-ebda test f'din il-paġna.
 Inti tista' [[Special:Search/{{PAGENAME}}|tfittex it-titlu ta' din il-paġna]] f'paġni oħra, jew <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tfittex ir-reġistri relatati], jew [{{fullurl:{{FULLPAGENAME}}|action=edit}} timmodifika din il-paġna]</span>.",
 'noarticletext-nopermission'       => "Bħalissa m'hemm l-ebda test f'din il-paġna. Inti tista' [[Special:Search/{{PAGENAME}}|tfittex għal dan it-titlu tal-paġna]] f'paġni oħra, jew <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fittex ir-reġistri relatati]</span>.",
-'userpage-userdoesnotexist'        => 'Il-kont tal-utent "$1" mhux reġistrat.
+'userpage-userdoesnotexist'        => 'Il-kont tal-utent "<nowiki>$1</nowiki>" mhux reġistrat.
 Jekk jogħġbok, ara jekk verament tridx toħloq/timodifika din il-paġna.',
 'userpage-userdoesnotexist-view'   => 'Il-kont tal-utent "$1" mhuwiex reġistrat.',
 'blocked-notice-logextract'        => 'L-utent attwalment jinsab imblukkat.
 L-aħħar daħla fir-reġistru tal-imblokki hi mogħtiha hawn taħt għal referenza:',
-'clearyourcache'                   => "'''Nota - Wara li tagħmel il-modifiki, xi drabi jkollok bżonn tħassar ''il-cache'' sabiex tkun tista' tara t-tibdil li sar.'''  '''Mozilla / Firefox / Safari:''' żomm ''Shift'' waqt li tkun qiegħed tagħfas ''Reload,'' jew agħfas ''Ctrl-F5'' jew ''Ctrl-R'' (''Command-R'' fuq \"Macintosh\"); '''Konqueror: '''agħfas ''Reload'' jew agħfas ''F5;''  '''Opera:''' ħassar il-cache fl-''Għodda → Preferenzi;'' '''Internet Explorer:''' żomm ''Ctrl'' waqt li tagħfas ''Refresh,'' jew agħfas ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Nota - Wara li tagħmel il-modifiki, xi drabi jkollok bżonn tħassar ''il-cache'' sabiex tkun tista' tara t-tibdil li sar.'''  '''Mozilla / Firefox / Safari:''' żomm ''Shift'' waqt li tkun qiegħed tagħfas ''Reload,'' jew agħfas ''Ctrl-F5'' jew ''Ctrl-R'' (''Command-R'' fuq \"Mac\"); '''Konqueror: '''agħfas ''Reload'' jew agħfas ''F5;''  '''Opera:''' ħassar il-cache fl-''Għodda → Preferenzi;'' '''Internet Explorer:''' żomm ''Ctrl'' waqt li tagħfas ''Refresh,'' jew agħfas ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Suġġeriment:''' Uża l-buttuna \"{{int:showpreview}}\" sabiex tipprova s-CSS il-ġdid tiegħek qabel ma ssalvah.",
 'userjsyoucanpreview'              => "'''Suġġeriment:''' Uża l-buttuna \"{{int:showpreview}}\" sabiex tipprova l-JavaScript il-ġdid tiegħek qabel ma ssalvah.",
 'usercsspreview'                   => "'''Ftakar li inti qed turi dehra proviżorja tas-CSS personali. Il-modifiki li għamilt għadhom ma ġewx salvati!'''",
@@ -2042,7 +2042,7 @@ Modifikata lura għall-aħħar verżjoni ta' $2.",
 Ara [[Special:ProtectedPages|l-lista ta' paġni protetti]] għal lista ta' paġni bħalissa protetti.",
 'protectedarticle'            => '"[[$1]]" huwa protett',
 'modifiedarticleprotection'   => 'biddel il-livell ta\' protezzjoni għal "[[$1]]"',
-'unprotectedarticle'          => 'żblokkjajt "[[$1]]"',
+'unprotectedarticle'          => 'żblokka "[[$1]]"',
 'protect-title'               => 'Modifika livell ta\' protezzjoni ta\' "$1"',
 'prot_1movedto2'              => '[[$1]] tmexxa lejn [[$2]]',
 'protect-legend'              => 'Ikkonferma l-protezzjoni',
@@ -2050,6 +2050,7 @@ Ara [[Special:ProtectedPages|l-lista ta' paġni protetti]] għal lista ta' paġn
 'protectexpiry'               => 'Jiskadi:',
 'protect_expiry_invalid'      => 'Skadenza mhux valida.',
 'protect_expiry_old'          => 'Skadenza ġa inġarbet.',
+'protect-unchain-permissions' => "Żblokka opzjonijiet oħra ta' protezzjoni",
 'protect-text'                => "Int tista' tara jew tagħmel modifiki fil-livell ta' protezzjoni hawnhekk għal paġna '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Ma tistax tbiddel il-livell ta' protezzjoni waqt li tkun imblukkat. Il-preferenzi kurrenti għall-paġna '''$1''' huma:",
 'protect-locked-dblock'       => "Livelli ta' protezzjoni ma jistgħux jiġu modifikata minħabba li database attiv huwa magħluq. Il-Preferenzi kurrenti ta' din il-paġna huma '''$1''':",
@@ -2256,7 +2257,7 @@ Ara l-[[Special:IPBlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.
 'blocklogentry'                   => 'imblokka lil "[[$1]]" għal perjodu ta\' $2 $3',
 'reblock-logentry'                => "biddel l-impostazzjonijiet tal-blokk għal [[$1]] bi skadenza ta' $2 $3",
 'blocklogtext'                    => "Dan huwa log tal-azzjonijiet tal-blokkar u sblokkar ta' utent. Indirizzi tal-IP blokkati awtomatikament m'humiex fil-lista. Ara l-[[Special:IPBlockList|lista tal-IP blokkati]] għal lista tal-blokki attivi bħalissa.",
-'unblocklogentry'                 => 'żblokkjajt $1',
+'unblocklogentry'                 => 'żblokka lil $1',
 'block-log-flags-anononly'        => 'utenti anonimi biss',
 'block-log-flags-nocreate'        => 'ħolqien tal-kont imblukkat',
 'block-log-flags-noautoblock'     => 'blokkar awtomatiku disattivat',
@@ -3044,7 +3045,7 @@ Jekk jogħġbok konferma jekk vera trid terġa' toħloq din il-paġna.",
 # Auto-summaries
 'autosumm-blank'   => 'Paġna żvojtata',
 'autosumm-replace' => "Il-paġna ġiet mibdula ma' '$1'",
-'autoredircomment' => 'Rindirizzat għal [[$1]]',
+'autoredircomment' => 'Paġna rindirizzata lejn [[$1]]',
 'autosumm-new'     => 'Inħolqot paġna b\'"$1"',
 
 # Size units

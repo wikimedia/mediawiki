@@ -637,13 +637,13 @@ Bu ady başga sahypalarda [[Special:Search/{{PAGENAME}}|gözläp bilersiňiz]],
 'noarticletext-nopermission'       => 'Häzirki wagtda bu sahypada tekst ýok.
 Bu sahypa adyny [[Special:Search/{{PAGENAME}}|başga sahypalarda gözläp]]
 ýa-da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} degişli gündeliklerde gözleg geçirip bilersiňiz].</span>',
-'userpage-userdoesnotexist'        => '"$1" ulanyjy hasaby hasaba alynmandyr.
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" ulanyjy hasaby hasaba alynmandyr.
 Bu sahypany döretmek/redaktirlemek isleýän bolsaňyz, onda esewan boluň.',
 'userpage-userdoesnotexist-view'   => '"$1" ulanyjy hasaby hasaba alynmandyr.',
 'blocked-notice-logextract'        => 'Bu ulanyjy şu wagt blokirlengi.
 Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:',
 'clearyourcache'                   => "'''Bellik:''' Ýazdyranyňyzdan soň, üýtgeşmeleri görmek üçin brauzeriňiziň keşini arassalaň:
-'''Mozilla / Firefox / Safari:''' ''Shift''-e basyp, ''Reload''-a tyklaň ýa-da ýa ''Ctrl-F5''-e ýa-da ''Ctrl-R''-a basyň (Macintosh üçin ''Command-R'');
+'''Mozilla / Firefox / Safari:''' ''Shift''-e basyp, ''Reload''-a tyklaň ýa-da ýa ''Ctrl-F5''-e ýa-da ''Ctrl-R''-a basyň (Mac üçin ''Command-R'');
 '''Konqueror:''' ''Reload''-a tyklaň ýa-da ''F5''-e basyň;
 '''Opera:''' ''Gurallar → Ileri tutmalar''dan keşi arassalaň;
 '''Internet Explorer:''' ''Ctrl''-a basyp, ''Refresh''-i tyklaň ýa-da ''Ctrl-F5''-e basyň.",

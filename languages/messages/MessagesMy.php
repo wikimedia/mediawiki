@@ -274,6 +274,11 @@ $messages = array(
 'jumpto'            => 'ဤနေရာသို့သွားရန် -',
 'jumptonavigation'  => 'အ​ညွှန်း​',
 'jumptosearch'      => 'ရှာ​ဖွေ​ရန်​',
+'view-pool-error'   => 'ဆာဗာသည် ယခုအချိန်တွင် မမျှသောဝန်ကို ထမ်းနေရသည်။
+အသုံးပြုသူ အမြောက်အများက ဤစာမျက်နှာကို ကြည့်ရှုရန် ကြိုးပမ်းနေကြသည်။
+ဤစာမျက်နှာကို နောက်တစ်ကြိမ် ပြန်မကြည့်မီ ခဏတာမျှ စောင့်ပါ။
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} အကြောင်း',
@@ -290,8 +295,8 @@ $messages = array(
 'mainpage'             => 'ဗဟိုစာမျက်နှာ',
 'mainpage-description' => 'ဗ​ဟို​စာ​မျက်​နှာ​',
 'policy-url'           => 'Project:မူ​ဝါ​ဒ',
-'portal'               => 'စုစည်းဆွေးနွေးရာ',
-'portal-url'           => 'Project:စုစည်းဆွေးနွေးရာ',
+'portal'               => 'ပေါင်းကူးနေရာ',
+'portal-url'           => 'Project:ပေါင်းကူးနေရာ',
 'privacy'              => 'ကိုယ်ပိုင်ရေးရာ မူဝါဒ',
 'privacypage'          => 'Project: ကိုယ်ပိုင်ရေးရာ မူဝါဒ',
 
@@ -364,6 +369,7 @@ $messages = array(
 'badtitletext'         => 'တောင်းဆိုထားသော စာမျက်နှာ ခေါင်းစဉ်သည် တရားမဝင်ပါ (သို့) ဗလာဖြစ်နေသည် (သို့) အခြားဘာသာများ(inter-language or inter-wiki title)သို့ မှားယွင်းစွာ လင့်ချိတ်ထားသည်။',
 'viewsource'           => 'ရင်းမြစ်ကို ကြည့်ရန်',
 'viewsourcefor'        => '$1 အတွက်',
+'protectedpagetext'    => 'ဤစာမျက်နှာအား တည်းဖြတ်မရနိုင်ရန် ထိန်းသိမ်းထားသည်။',
 'namespaceprotected'   => "'''$1''' စာညွှန်းဖြင့် စာမျက်နှာကို တည်းဖြတ်ရန် ခွင့်ပြုချက် မရှိပါ။",
 'customcssjsprotected' => 'အခြားအသုံးပြုသူ၏ ကိုယ်ရေးအချက်အလက်များ ပါဝင်သည့်အတွက် သင်ပြင်ဆင်ခွင့်မရှိပါ။',
 'ns-specialprotected'  => 'အထူးစာမျက်နှာများကို တည်းဖြတ်မရနိုင်ပါ။',
@@ -372,6 +378,9 @@ $messages = array(
 'virus-unknownscanner' => 'အမည်မသိအန်တီဗိုင်းရပ်စ် -',
 
 # Login and logout pages
+'logouttext'              => 'သင်သည် လော့ဂ်အောက် လုပ်လိုက်ပြီဖြစ်သည်။
+သင့်အနေနှင့် ဤ {{SITENAME}} ဝက်ဘ်ဆိုက်ဒ်ကို အမည်မသိ အသုံးပြုသူ အနေနှင့် ဆက်လက် အသုံးပြုနိုင်သည်။ သို့မဟုတ် ယခင် အသုံးပြုသူ အမည် သို့ အသုံးပြုသူ အခြားအမည်တစ်ခုဖြင့် [[Special:UserLogin|နောက်တစ်ကြိမ် လော့ဂ်အင်ပြန်ဝင်]] နိုင်သည်။
+သင်၏ ဘရောက်ဆာမှ cache ကို ရှင်းလင်းသည့် အချိန် အထိ အချို့သော စာမျက်နှာ များသည် သင် လော့ဂ်အင် ဝင်ထားစဉ်က အတိုင်းပင် ဆက်လက် ပြသနေမည်ဖြစ်သည်။',
 'welcomecreation'         => '== မင်္ဂလာပါ $1! ==
 သင့်အကောင့်ကို ဖန်တီးပြီးပါပြီ။
 [[Special:Preferences|{{SITENAME}} စိတ်​ကြိုက်​ရွေးချယ်စရာတို့]]ကို ပြောင်းရန် မမေ့ပါနှင့်။',
@@ -382,6 +391,7 @@ $messages = array(
 'yourdomainname'          => 'သင့်ဒိုမိန်း -',
 'login'                   => 'Log in ဝင်ရန်',
 'nav-login-createaccount' => 'Log in ဝင်ရန်/ အကောင့် လုပ်ရန်',
+'loginprompt'             => '{{SITENAME}} သို့ လော့အင်ဝင်ရန် ကွတ်ကီးသုံးနိုင်ရန် ပြုလုပ်ပေးထားရမည်။',
 'userlogin'               => 'Log in ဝင်ရန်/ အကောင့် လုပ်ရန်',
 'userloginnocreate'       => 'Log in ဝင်ရန်',
 'logout'                  => 'Log out ထွက်ရန်',
@@ -493,6 +503,8 @@ $messages = array(
 မတော်တဆရောက်လာခြင်း ဖြစ်ပါက ဘရောက်ဆာ၏ နောက်ပြန်ပြန်သွားသော'''back''' ခလုတ်ကို နှိပ်ပါ။",
 'noarticletext'                    => 'ဤစာမျက်နှာတွင် ယခုလက်ရှိတွင် မည်သည့်စာသားမှ မရှိပါ။
 သင်သည် အခြားစာမျက်နှာများတွင် [[Special:Search/{{PAGENAME}}|ဤစာမျက်နှာ၏ ခေါင်းစဉ်ကို ရှာနိုင်သည်]]၊ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ဆက်စပ်ရာ Logs များကို ရှာနိုင်သည်]၊ သို့မဟုတ် [{{fullurl:{{FULLPAGENAME}}|action=edit}} ဤစာမျက်နှာကို တည်းဖြတ်နိုင်သည်]</span>။',
+'noarticletext-nopermission'       => 'ဤစာမျက်နှာတွင် ယခုလက်ရှိတွင် မည်သည့်စာသားမှ မရှိပါ။
+သင်သည် အခြားစာမျက်နှာများတွင် [[Special:Search/{{PAGENAME}}|ဤစာမျက်နှာ၏ ခေါင်းစဉ်ကို ရှာနိုင်သည်]]၊ သို့မဟုတ် <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ဆက်စပ်ရာ Logs များကို ရှာနိုင်သည်]</span>။',
 'note'                             => "'''မှတ်ချက် -'''",
 'previewnote'                      => "'''ဤသည်မှာ နမူနာ ကြည့်နေခြင်းသာဖြစ်ကြောင်း မမေ့ပါနှင့်။'''
 သင်ပြောင်းလဲထားသည်များကို မသိမ်းရသေးပါ။",
@@ -535,6 +547,15 @@ $messages = array(
 'edit-already-exists'              => 'စာမျက်နှာအသစ်တစ်ခု မဖန်တီးနိုင်ပါ။
 ယင်းစာမျက်နှာ တည်ရှိပြီး ဖြစ်သည်။',
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning'  => "'''သတိပေးချက် -''' တမ်းပလိတ်အရွယ်အစား ကြီးလွန်းနေသည်။
+အချို့တမ်းပလိတ်တို့ ပါဝင်မည်မဟုတ်။",
+'post-expand-template-inclusion-category' => 'ထည့်သွင်းနိုင်သော တမ်းပလိတ်အရွယ်အစားပြည့်သွားပြီဖြစ်သော စာမျက်နှာများ',
+'post-expand-template-argument-warning'   => "'''သတိပေးချက် -''' ဤစာမျက်နှာတွင် ပမာဏအားဖြင့် ကြီးမားကျယ်ပြန့်သော template argument တစ်ခုပါဝင်သည်။
+ယင်း arguments များကို ဖယ်ထုတ်လိုက်သည်။",
+'post-expand-template-argument-category'  => 'ဖယ်ထုတ်ထားသော template arguments များပါဝင်သည့် စာမျက်နှာများ',
+'parser-template-loop-warning'            => 'တမ်းပလိတ်များ လှည့်ပတ်ဆက်စပ် နေသည်ကို တွေ့ရသည်။ [[$1]]',
+
 # History pages
 'viewpagelogs'           => 'ဤစာမျက်နှာအတွက် မှတ်တမ်းများကို ကြည့်ရန်',
 'nohistory'              => 'ဤစာမျက်နှာတွင် တည်းဖြတ်မှု ရာဇဝင်မရှိပါ',
@@ -550,7 +571,7 @@ $messages = array(
 'last'                   => 'ယခုမတိုင်မီ',
 'page_first'             => 'ပထမဆုံး',
 'page_last'              => 'အနောက်ဆုံး',
-'histlegend'             => "တည်းဖြတ်မူများကို နှိုင်းယဉ်ရန် radio boxes လေးများကို မှတ်သားပြီးနောက် Enter ရိုက်ချပါ သို့ အောက်ခြေမှ ခလုတ်ကို နှိပ်ပါ။<br />
+'histlegend'             => "တည်းဖြတ်မူများကို နှိုင်းယှဉ်ရန် radio boxes လေးများကို မှတ်သားပြီးနောက် Enter ရိုက်ချပါ သို့ အောက်ခြေမှ ခလုတ်ကို နှိပ်ပါ။<br />
 Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် ကွဲပြားချက် '''({{int:last}})''' = ယင်းရှေ့မူနှင့် ကွဲပြားချက်, '''{{int:minoreditletter}}''' = အရေးမကြီးသော ပြုပြင်မှု.",
 'history-fieldset-title' => 'ရာဇဝင်ရှာကြည့်ရန်',
 'history-show-deleted'   => 'ဖျက်ထားသည်များသာ',
@@ -597,6 +618,7 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'revdelete-unrestricted'     => 'အက်ဒမင်များအတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားရန်',
 'revdelete-hid'              => '$1 ကို ဝှက်ထားသည်',
 'revdelete-unhid'            => '$1 ကို မဝှက်တော့ပါ',
+'revdelete-log-message'      => '$1 အတွက် တည်းဖြတ်မူ $2 {{PLURAL:$2|ခု|ခု}}',
 'revdelete-otherreason'      => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
 'revdelete-reasonotherlist'  => 'အခြား အကြောင်းပြချက်',
 'revdelete-edit-reasonlist'  => 'ဖျက်ပစ်လိုက်ရသော အကြောင်းရင်းများကို တည်းဖြတ်ရန်',
@@ -681,6 +703,7 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'searchall'                        => 'အားလုံး',
 'showingresults'                   => "'''$2''' နှင့်စသော ရလဒ် {{PLURAL:$1|'''1''' ခု|'''$1''' ခု}}ထိကို အောက်တွင် ပြထားသည်။",
 'showingresultsnum'                => "'''$2''' နှင့်စသော ရလဒ် {{PLURAL:$3|'''1''' ခု|'''$3''' ခု}} ကို အောက်တွင် ပြထားသည်။",
+'showingresultsheader'             => "'''$4''' အတွက် {{PLURAL:$5|ရလဒ် '''$3''' ခု အနက်မှ '''$1'''|ရလဒ် '''$3'''ခု အနက်မှ '''$1 - $2'''}}",
 'nonefound'                        => "'''Note''': Only some namespaces are searched by default.
 ပုံမှန်အားဖြင့် အမည်ညွှန်းအချို့ကိုသာ ရှာပေးမည်ဖြစ်သည်။
 Try prefixing your query with ''all:'' to search all content (including talk pages, templates, etc), or use the desired namespace as prefix.
@@ -938,13 +961,14 @@ HTML tags ကို စစ်ဆေးပါ။',
 'rc-enhanced-hide'                  => 'အသေးစိတ် မပြရန်',
 
 # Recent changes linked
-'recentchangeslinked'         => 'ဆက်​စပ်သော​ အ​ပြောင်း​အ​လဲ​များ​',
-'recentchangeslinked-feed'    => 'ဆက်စပ်သော ​အ​ပြောင်း​အ​လဲ​များ​',
-'recentchangeslinked-toolbox' => 'ဆက်​စပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
-'recentchangeslinked-title'   => '"$1" နှင့် ဆက်စပ်သော အပြောင်းအလဲများ',
-'recentchangeslinked-summary' => 'ဤသည်မှာ သီးသန့်ပြထားသော စာမျက်နှာ (သို့ သီးသန့်ကဏ္ဍများ) မှ ညွှန်းထားသော စာမျက်နှာများ၏ လတ်တလော ပြောင်းလဲမှုများ၏ စာရင်းဖြစ်သည်။ [[Special:Watchlist|စောင့်ကြည့်စာရင်း]] မှ စာမျက်နှာများကို စာလုံးမည်းဖြင့် ပြထားသည်။',
-'recentchangeslinked-page'    => 'စာမျက်နှာ အမည် -',
-'recentchangeslinked-to'      => 'ပေးထားသော စာမျက်နှာများအစား လင့်များနှင့် ဆက်စပ်နေသာ စာမျက်နှာများ၏ အပြောင်းအလဲများကို ပြရန်',
+'recentchangeslinked'          => 'ဆက်​စပ်သော​ အ​ပြောင်း​အ​လဲ​များ​',
+'recentchangeslinked-feed'     => 'ဆက်စပ်သော ​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchangeslinked-toolbox'  => 'ဆက်​စပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchangeslinked-title'    => '"$1" နှင့် ဆက်စပ်သော အပြောင်းအလဲများ',
+'recentchangeslinked-noresult' => 'ပေးထားသော အချိန်အတွင်း လင့်ချိတ်ထားသော စာမျက်နှာများတွင် အပြောင်းအလဲမရှိပါ။',
+'recentchangeslinked-summary'  => 'ဤသည်မှာ သီးသန့်ပြထားသော စာမျက်နှာ (သို့ သီးသန့်ကဏ္ဍများ) မှ ညွှန်းထားသော စာမျက်နှာများ၏ လတ်တလော ပြောင်းလဲမှုများ၏ စာရင်းဖြစ်သည်။ [[Special:Watchlist|စောင့်ကြည့်စာရင်း]] မှ စာမျက်နှာများကို စာလုံးမည်းဖြင့် ပြထားသည်။',
+'recentchangeslinked-page'     => 'စာမျက်နှာ အမည် -',
+'recentchangeslinked-to'       => 'ပေးထားသော စာမျက်နှာများအစား လင့်များနှင့် ဆက်စပ်နေသာ စာမျက်နှာများ၏ အပြောင်းအလဲများကို ပြရန်',
 
 # Upload
 'upload'              => 'ဖိုင်​တင်​ရန်​',
@@ -1045,6 +1069,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 'nolinkstoimage'            => 'ဤဖိုင်သို့လင့်ထားသော စာမျက်နှာမရှိပါ။',
 'morelinkstoimage'          => 'ဤဖိုင်သို့[[Special:WhatLinksHere/$1|နောက်ထပ်လင့်များ]] ကိုကြည့်ပါ။',
 'sharedupload'              => 'ဤဖိုင်သည် $1 မှဖြစ်ပြီး အခြားပရောဂျက်များတွင် သုံးကောင်းသုံးလိမ့်မည်။',
+'sharedupload-desc-here'    => 'ဤဖိုင်သည် $1 မှဖြစ်ပြီး အခြားပရောဂျက်များတွင် သုံးကောင်းသုံးလိမ့်မည်။
+ယင်း၏ [$2 ဖိုင်အကြောင်းစာမျက်နှာ] တွင် ဖော်ပြထားချက်ကို အောက်တွင် ပြထားသည်။',
 'filepage-nofile'           => 'ဤအမည်ဖြင့် မည်သည့်ဖိုင်မှ မရှိပါ။',
 'filepage-nofile-link'      => 'ဤအမည်ဖြင့် မည်သည့်ဖိုင်မှ မရှိပါ။ သိုရာတွင် ယင်းကို [$1 upload တင်]နိုင်သည်။',
 'uploadnewversion-linktext' => 'ဤဖိုင်၏ နောက်ဆုံး version ကို upload တင်ရန်',
@@ -1108,6 +1134,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 'statistics-users'         => 'မှတ်ပုံတင်ထားသော [[Special:ListUsers|အသုံးပြုသူများ]]',
 'statistics-users-active'  => 'လက်ရှိလုပ်ကိုင်နေသော အသုံးပြုသူများ',
 'statistics-mostpopular'   => 'အများဆုံးကြည့်သော စာမျက်နှာများ',
+
+'disambiguationspage' => 'Template:သံတူကြောင်းကွဲများ',
 
 'doubleredirects'            => 'နှစ်ဆင့်ပြန် ပြန်ညွှန်းများ',
 'double-redirect-fixed-move' => '[[$1]] ကို ရွှေ့ပြောင်းပြီးဖြစ်သည်။ ယခုအခါ [[$2]] သို့ ပြန်ညွှန်းထားသည်။',
@@ -1397,7 +1425,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'nolinkshere'              => "'''[[:$1]]''' သို့ လင့်ထားသော စာမျက်နှာ မရှိပါ။",
 'isredirect'               => 'ပြန်ညွှန်းသော စာမျက်နှာ',
 'istemplate'               => 'ထည့်သွင်းကူးယူချက်',
-'isimage'                  => 'ပုံလင့်',
+'isimage'                  => 'ဖိုင်လင့်',
 'whatlinkshere-prev'       => '{{PLURAL:$1|နောက်သို့|နောက်သို့ $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|ရှေ့သို့|ရှေ့သို့ $1}}',
 'whatlinkshere-links'      => '← လင့်များ',
@@ -1530,6 +1558,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 # Namespace 8 related
 'allmessages'                   => 'စ​နစ်​၏​သ​တင်း​များ​',
 'allmessagesname'               => 'အမည်',
+'allmessagesdefault'            => 'ပုံမှန် အသိပေးချက် စာသား',
 'allmessages-filter-legend'     => 'စစ်ထုတ်ခြင်း',
 'allmessages-filter-unmodified' => 'မပြုပြင်ထားသော',
 'allmessages-filter-all'        => 'အားလုံး',
@@ -1642,6 +1671,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'math_unknown_function' => 'အမည်မသိ ဖန်ရှင်',
 
 # Patrol log
+'patrol-log-line' => '$3 စောင့်ကြည့်နေသော $2 ၏ $1 ကို မှတ်သားလိုက်သည်',
 'patrol-log-diff' => 'မူ $1',
 
 # Image deletion
@@ -1795,8 +1825,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 'table_pager_empty'        => 'မည်သည့်ရလဒ်မှ မရှိပါ',
 
 # Auto-summaries
-'autosumm-blank' => 'စာမျက်နှာကို ဗလာလုပ်လိုက်သည်',
-'autosumm-new'   => '"$1" အစချီသော စာလုံးတို့နှင့် စာမျက်နှာကို ဖန်တီးလိုက်သည်',
+'autosumm-blank'   => 'စာမျက်နှာကို ဗလာလုပ်လိုက်သည်',
+'autoredircomment' => 'စာမျက်နှာကို [[$1]] သို့ ပြန်ညွှန်းလိုက်သည်',
+'autosumm-new'     => '"$1" အစချီသော စာလုံးတို့နှင့် စာမျက်နှာကို ဖန်တီးလိုက်သည်',
 
 # Watchlist editor
 'watchlistedit-normal-title'  => 'စောင့်ကြည့်စာရင်းကို တည်းဖြတ်ရန်',
@@ -1808,6 +1839,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 'watchlisttools-view' => 'ကိုက်ညီသော အပြောင်းအလဲများကို ကြည့်ရန်',
 'watchlisttools-edit' => 'စောင့်ကြည့်စာရင်းများကို ကြည့်ပြီး တည်းဖြတ်ပါ။',
 'watchlisttools-raw'  => 'စောင့်ကြည့်စာရင်း အကြမ်းကို တည်းဖြတ်ရန်',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'သတိပေးချက် -\'\'\' ပုံမှန် sort key "$2" oသည် ယခင်ပုံမှန်ဖြစ်သော sort key "$1" ကို override ထပ်ရေးမည်ဖြစ်သည်.',
 
 # Special:Version
 'version'                  => 'ဗားရှင်း',
@@ -1848,8 +1882,19 @@ HTML tags ကို စစ်ဆေးပါ။',
 'blankpage'              => 'ဗလာစာမျက်နှာ',
 'intentionallyblankpage' => 'ဤစာမျက်နှာသည် တမင်ရည်ရွယ်ချက်ရှိရှိ ဗလာထားခဲ့ခြင်း ဖြစ်သည်။',
 
+# External image whitelist
+'external_image_whitelist' => ' #ဤစာကြောင်းကို ဤအတိုင်းထားပါ<pre>
+#regular expression fragments ကို(// နှစ်ခုကြားရှိ အစိတ်အပိုင်းသာ) အောက်တွင်ထားပါ
+#ယင်းတို့ကို external (hotlinked) ပုံတို့၏URL များနှင့် တွဲညှိပေးမည်ဖြစ်သည်
+#ကိုက်ညီသည်များကို ပုံအဖြစ်ပြမည်ဖြစ်ပြီး မကိုက်ညီပါက ပုံထံပြန်ညွှန်းသည့် လင့်အဖြစ်သာပြမည်ဖြစ်သည်
+## နှင့်စသော စာကြောင်းများကို ကွန်းမန့်အဖြစ် ယူဆမည်ဖြစ်သည်
+#ဤသည်တွင် အက္ခရာအကြီးအသေး မှန်ကန်ရမည်ဖြစ်သည်
+
+#regex fragments အားလုံးကို စာကြောင်း၏အပေါ်တွင်ထားပါ။ ဤစာကြောင်းကို ဤအတိုင်းထားပါ</pre>',
+
 # Special:Tags
 'tags'              => 'အသုံးပြုနေသော အပြောင်းအလဲစာတွဲများ',
+'tag-filter'        => '[[Special:Tags|Tag]] သီးသန့်စစ်ထုတ်ရန် -',
 'tag-filter-submit' => 'စိစစ်မှု',
 'tags-title'        => 'အမည်တွဲ',
 'tags-tag'          => 'အမည်တွဲ အမည်',

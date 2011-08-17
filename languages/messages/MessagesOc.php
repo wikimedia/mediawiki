@@ -890,7 +890,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear aquesta pagina]</span>.',
 'noarticletext-nopermission'       => 'Actualament i a pas cap de tèxte dins aquesta pagina.
 Podètz [[Special:Search/{{PAGENAME}}|far una recèrca sul títol de la pagina]] dins las autras paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} recercar dins los jornals associats]</span>.',
-'userpage-userdoesnotexist'        => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
+'userpage-userdoesnotexist'        => "Lo compte d'utilizaire « <nowiki>$1</nowiki> » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'userpage-userdoesnotexist-view'   => "Lo compte d'utilizaire « $1 » es pas enregistrat.",
 'blocked-notice-logextract'        => 'Aqueste utilizaire es actualament blocat.
 La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',

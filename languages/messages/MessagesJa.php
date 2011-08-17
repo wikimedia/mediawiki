@@ -34,6 +34,7 @@
  * @author Ohgi
  * @author Penn Station
  * @author Suisui
+ * @author VZP10224
  * @author Vigorous action
  * @author W.CC
  * @author Web comic
@@ -339,7 +340,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'ウォッチリストにログイン利用者の編集を表示しない',
 'tog-watchlisthideanons'      => 'ウォッチリストに匿名利用者の編集を表示しない',
 'tog-watchlisthidepatrolled'  => 'ウォッチリストに巡回済みの編集を表示しない',
-'tog-nolangconversion'        => '変種言語の変換を無効にする',
+'tog-nolangconversion'        => '言語変種変換を無効にする',
 'tog-ccmeonemails'            => '他の利用者に送信したメールの控えを自分にも送る',
 'tog-diffonly'                => '差分表示の下にページの内容を表示しない',
 'tog-showhiddencats'          => '隠しカテゴリを表示する',
@@ -463,7 +464,7 @@ $messages = array(
 'vector-action-move'         => '移動',
 'vector-action-protect'      => '保護',
 'vector-action-undelete'     => '復帰',
-'vector-action-unprotect'    => '保護解除',
+'vector-action-unprotect'    => '保護の変更',
 'vector-namespace-category'  => 'カテゴリ',
 'vector-namespace-help'      => 'ヘルプページ',
 'vector-namespace-image'     => 'ファイル',
@@ -509,8 +510,8 @@ $messages = array(
 'protect'           => '保護',
 'protect_change'    => '設定変更',
 'protectthispage'   => 'このページを保護',
-'unprotect'         => '保護解除',
-'unprotectthispage' => 'このページの保護を解除',
+'unprotect'         => '保護の変更',
+'unprotectthispage' => 'このページの保護を変更',
 'newpage'           => '新規ページ',
 'talkpage'          => 'このページについて話し合う',
 'talkpagelinktext'  => 'トーク',
@@ -686,7 +687,7 @@ URLを間違って打ったか、不正なリンクを辿った可能性があ�
 このページの変更はすべての利用者のユーザーインタフェースに影響します。
 翻訳をする場合、MediaWikiの地域化プロジェクト[http://translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net]の利用を検討してください。",
 'sqlhidden'            => '（SQLクエリ非表示）',
-'cascadeprotected'     => 'このページは、「連続」選択肢が有効な状態で保護されている以下の{{PLURAL:$1|ページ}}で読み込まれているため、編集できないように保護されています：
+'cascadeprotected'     => 'このページは、「カスケード保護」が指定された状態で保護されている以下の{{PLURAL:$1|ページ}}で読み込まれているため、編集できないように保護されています。
 $2',
 'namespaceprotected'   => "'''$1'''名前空間にあるページを編集する権限がありません。",
 'customcssjsprotected' => 'このページは他の利用者の個人設定を含んでいるため、編集する権限がありません。',
@@ -913,17 +914,18 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]か、
 もしくは、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
 'noarticletext-nopermission'       => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]</span>ことができます。',
-'userpage-userdoesnotexist'        => '「$1」という名前のアカウントは登録されていません。
+'userpage-userdoesnotexist'        => '「<nowiki>$1</nowiki>」という名前のアカウントは登録されていません。
 このページを編集することが適切かどうか確認してください。',
 'userpage-userdoesnotexist-view'   => '利用者アカウント「$1」は登録されていません。',
 'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
 参考のために最新のブロック記録を以下に表示します。',
-'clearyourcache'                   => "'''注意：'''保存した後、変更を確認するには、ブラウザのキャッシュをクリアする必要があります。'''
-'''Mozilla/Firefox/Safari：'''''Shift''を押しながら''再読み込み''をクリック、または ''Ctrl-F5''か''Ctrl-R''を押してください（Macintoshでは''Command-R''）。
-'''Konqueror：'''''再読み込み''をクリック、または''F5''を押してください。
-'''Opera：'''''ツール→設定''からキャッシュをクリアしてください。
-'''Internet Explorer：'''''Ctrl''を押しながら''更新''をクリック、またはCtrl-F5を押してください。",
-'usercssyoucanpreview'             => "''ヒント：'''「{{int:showpreview}}」ボタンを使うと、保存前に新しいスタイルシートを試験できます。",
+'clearyourcache'                   => "'''注意:''' 保存後、変更を確認するにはブラウザのキャッシュをクリアする必要がある場合があります。
+* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''Command-R'' )
+* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''Command-Shift-R'' )
+* '''Internet Explorer:''' ''Ctrl'' を押しながら ''最新の情報に更新'' をクリックする、もしくは ''Ctrl-F5'' を押してください
+* '''Konqueror:''' ''再読み込み'' をクリックするか、 ''F5'' を押してください。
+* '''Opera:''' ''ツール → 設定'' からキャッシュをクリアしてください。",
+'usercssyoucanpreview'             => "'''ヒント：'''「{{int:showpreview}}」ボタンを使うと、保存前に新しいスタイルシートを試験できます。",
 'userjsyoucanpreview'              => "'''ヒント:''' 「{{int:showpreview}}」ボタンを使うと、保存前に新しいスクリプトを試験できます。",
 'usercsspreview'                   => "'''利用者CSSをプレビューしています。'''
 '''まだ保存されていません！'''",
@@ -982,7 +984,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 参考として以下に一番最後の記録を表示します：",
 'semiprotectedpagewarning'         => "'''注意：'''このページは保護されているため、登録利用者しか編集できません。
 参考として以下に一番最後の記録を表示します：",
-'cascadeprotectedwarning'          => "'''警告：'''このページは連続保護されている以下の{{PLURAL:$1|ページ}}から読み込まれているため保護されており、そのため管理者権限を持つ利用者しか編集できません。",
+'cascadeprotectedwarning'          => "'''警告：'''このページはカスケード保護されている以下の{{PLURAL:$1|ページ}}から読み込まれているため、管理者権限を持つ利用者しか編集できないように保護されています。",
 'titleprotectedwarning'            => "'''警告：このページは保護されているため、作成には[[Special:ListGroupRights|特定の権限]]が必要です。'''
 参考として以下に一番最後の記録を表示します：",
 'templatesused'                    => 'このページで使われている{{PLURAL:$1|テンプレート}}：',
@@ -1496,7 +1498,7 @@ HTMLタグを見直してください。',
 'right-ipblock-exempt'        => 'IPブロック、自動ブロック、広域ブロックを回避',
 'right-proxyunbannable'       => 'プロキシの自動ブロックを回避',
 'right-protect'               => '保護レベルの変更と保護されたページの編集',
-'right-editprotected'         => '保護ページの編集（連続保護を除く）',
+'right-editprotected'         => '保護ページの編集（カスケード保護を除く）',
 'right-editinterface'         => 'ユーザーインターフェースの編集',
 'right-editusercssjs'         => '他利用者のCSSとJavaScriptファイルの編集',
 'right-editusercss'           => '他利用者のCSSファイルの編集',
@@ -1566,7 +1568,7 @@ HTMLタグを見直してください。',
 'nchanges'                          => '$1回の変更',
 'recentchanges'                     => '最近の更新',
 'recentchanges-legend'              => '最近の更新のオプション',
-'recentchangestext'                 => '最近の更新はこのページから確認できます。',
+'recentchangestext'                 => 'このウィキにおける最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => 'このフィードでそのウィキへの最近の更新を追跡。',
 'recentchanges-label-legend'        => '凡例: $1',
 'recentchanges-legend-newpage'      => '$1 - 新しいページ',
@@ -1910,7 +1912,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'statistics-pages'             => '総ページ数',
 'statistics-pages-desc'        => 'トークページやリダイレクトなどを含んだこのウィキ内のすべてのページです。',
 'statistics-files'             => 'アップロードされたファイル数',
-'statistics-edits'             => '{{SITENAME}}が立ち上がってからの編集回数の総計',
+'statistics-edits'             => '{{SITENAME}}が開設されてからの編集回数の総計',
 'statistics-edits-average'     => '1ページあたりの編集回数',
 'statistics-views-total'       => '総閲覧回数',
 'statistics-views-peredit'     => '閲覧回数に対する編集回数の割合',
@@ -2265,7 +2267,7 @@ $2による最後の版へ変更されました。',
 
 # Protect
 'protectlogpage'              => '保護記録',
-'protectlogtext'              => '以下はページの保護の保護解除の記録です。
+'protectlogtext'              => '以下はページ保護に対する変更の記録です。
 現在、保護レベルを変更できるページについては[[Special:ProtectedPages|保護ページ一覧]]を参照してください。',
 'protectedarticle'            => '「[[$1]]」を保護しました',
 'modifiedarticleprotection'   => '「[[$1]]」の保護レベルを変更しました',
@@ -2286,8 +2288,8 @@ $2による最後の版へ変更されました。',
 ページ'''$1'''の現在の状態は以下の通りです：",
 'protect-locked-access'       => "アカウントに、ページの保護レベルを変更する権限がありません。
 ページ'''$1'''の現在の状態は以下の通りです：",
-'protect-cascadeon'           => 'このページは現在、連続保護が有効になっている以下の{{PLURAL:$1|ページ}}から読み込まれているため、保護されています。
-このページの保護制限を変更することは可能ですが、連続保護には影響しません。',
+'protect-cascadeon'           => 'このページは現在、カスケード保護が有効になっている以下の{{PLURAL:$1|ページ}}から読み込まれているため、保護されています。
+このページの保護制限を変更することは可能ですが、カスケード保護には影響しません。',
 'protect-default'             => 'すべての利用者を許可',
 'protect-fallback'            => '「$1」権限が必要',
 'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
@@ -2295,7 +2297,7 @@ $2による最後の版へ変更されました。',
 'protect-summary-cascade'     => '連続',
 'protect-expiring'            => '$1(UTC)で自動的に解除',
 'protect-expiry-indefinite'   => '無期限',
-'protect-cascade'             => 'このページに読み込まれているページを保護する（連続保護）',
+'protect-cascade'             => 'このページに読み込まれているページを保護する（カスケード保護）',
 'protect-cantedit'            => 'このページの編集権限がないため、保護レベルを変更できません。',
 'protect-othertime'           => 'その他の期間：',
 'protect-othertime-op'        => 'その他の期間',
@@ -2391,7 +2393,7 @@ $1',
 'mycontris'           => '自分の投稿記録',
 'contribsub2'         => '利用者:$1（$2）',
 'nocontribs'          => 'これらの条件に一致する変更は見つかりませんでした。',
-'uctop'               => '（最新）',
+'uctop'               => '(最新)',
 'month'               => 'これ以前の月：',
 'year'                => 'これ以前の年：',
 
@@ -2418,7 +2420,7 @@ $1',
 'nolinkshere-ns'           => "選択された名前空間中で、'''[[:$1]]'''にリンクしているページはありません。",
 'isredirect'               => '転送ページ',
 'istemplate'               => '参照読み込み',
-'isimage'                  => '画像リンク',
+'isimage'                  => 'ファイルへのリンク',
 'whatlinkshere-prev'       => '{{PLURAL:$1|前|前の$1件}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|次|次の$1件}}',
 'whatlinkshere-links'      => '← リンク',
@@ -2767,7 +2769,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 ページのソースを閲覧できます。',
 'tooltip-ca-history'              => 'このページの過去の版',
 'tooltip-ca-protect'              => 'このページを保護',
-'tooltip-ca-unprotect'            => 'このページの保護を解除',
+'tooltip-ca-unprotect'            => 'このページの保護を変更',
 'tooltip-ca-delete'               => 'このページを削除',
 'tooltip-ca-undelete'             => '削除される前になされた編集を復元',
 'tooltip-ca-move'                 => 'このページを移動',

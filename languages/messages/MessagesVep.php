@@ -662,7 +662,7 @@ vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktiruida nece lehtpol\']</span
 'noarticletext-nopermission'       => 'Necil lehtpolel ei ole nügüd\' tekstad.
 Tö voit [[Special:Search/{{PAGENAME}}|ectä necen lehtpolen nimi]] toižil lehtpolil,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ectä pojavid aigkirjoiden kirjutesid]</span>.',
-'userpage-userdoesnotexist'        => "Kävutajan nimed «$1» ei ole. Todeks-ik tahtoit säta vai toižetada nece lehtpol'?",
+'userpage-userdoesnotexist'        => "Kävutajan nimed «<nowiki>$1</nowiki>» ei ole. Todeks-ik tahtoit säta vai toižetada nece lehtpol'?",
 'userpage-userdoesnotexist-view'   => '"$1"-kävutai ei ole registriruidud.',
 'blocked-notice-logextract'        => "Nece kävutai om nügüd' blokiruidud.
 Alemba om anttud jälgmäine kirjutuz blokiruindaiglehtesespäi:",

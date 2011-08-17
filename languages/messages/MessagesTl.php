@@ -755,13 +755,13 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahinang ito]</span>.',
 'noarticletext-nopermission'       => 'Kasalukuyang walang teksto sa pahinang ito.
 Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa ibang mga pahina,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa kaugnay na mga talaan]</span>.',
-'userpage-userdoesnotexist'        => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".
+'userpage-userdoesnotexist'        => 'Hindi nakatala ang kuwenta ng tagagamit na "<nowiki>$1</nowiki>".
 Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
 'userpage-userdoesnotexist-view'   => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".',
 'blocked-notice-logextract'        => 'Kasalukuyang hinarang ang tagagamit na ito.
 Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa inyong pagsasangguni:',
 'clearyourcache'                   => "'''Tandaan: Pagkatapos magtala, dapat linisin mo ang baunan ng iyong pambasa-basa upang makita ang mga pagbabago.'''
-'''Mozilla / Firefox / Safari:''' panatilihing nakapindot ang ''Shift'' habang kiniklik ang ''Reload'', o pindutin ang ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sa isang Macintosh);
+'''Mozilla / Firefox / Safari:''' panatilihing nakapindot ang ''Shift'' habang kiniklik ang ''Reload'', o pindutin ang ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sa isang Mac);
 '''Konqueror:''' i-klik ang ''Reload'' o pindutin ang ''F5'';
 '''Opera:''' linisin ang baunan sa ''Tools → Preferences'';
 '''Internet Explorer:''' panatilihing nakapindot ang ''Ctrl'' habang kiniklik ang ''Refresh'', o pindutin ang ''Ctrl-F5''.",

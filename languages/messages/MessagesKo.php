@@ -435,7 +435,7 @@ $messages = array(
 'vector-action-move'         => '이동',
 'vector-action-protect'      => '보호',
 'vector-action-undelete'     => '되살리기',
-'vector-action-unprotect'    => '보호 해제',
+'vector-action-unprotect'    => '보호 설정 변경',
 'vector-namespace-category'  => '분류',
 'vector-namespace-help'      => '도움말',
 'vector-namespace-image'     => '파일',
@@ -481,8 +481,8 @@ $messages = array(
 'protect'           => '보호',
 'protect_change'    => '보호 수준 변경',
 'protectthispage'   => '이 문서 보호하기',
-'unprotect'         => '보호 해제',
-'unprotectthispage' => '이 문서 보호 해제하기',
+'unprotect'         => '보호 설정 변경',
+'unprotectthispage' => '이 문서의 보호 설정을 변경하기',
 'newpage'           => '새 문서',
 'talkpage'          => '토론 문서',
 'talkpagelinktext'  => '토론',
@@ -851,13 +851,17 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나, 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
 'noarticletext-nopermission'       => '‘{{FULLPAGENAME}}’ 문서가 존재하지 않습니다.
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span>',
-'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
+'userpage-userdoesnotexist'        => '‘<nowiki>$1</nowiki>’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'userpage-userdoesnotexist-view'   => '"$1" 사용자 계정은 등록되지 않았습니다.',
 'blocked-notice-logextract'        => '이 사용자는 현재 차단되어 있습니다.
 해당 사용자의 최근 차단 기록을 참고하십시오:',
-'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
+'clearyourcache'                   => "'''참고:''' 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.
 
-'''모질라 / 파이어폭스 / 사파리''': Shift 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5 또는 Ctrl-R 을 입력 (매킨토시에서는 Command-R); '''컨커러''': 새로고침을 클릭하거나 F5를 입력; '''오페라''': 도구→설정에서 캐시를 비움; '''인터넷 익스플로러''': Ctrl 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5를 입력.",
+* '''파이어폭스 / 사파리''': ''Shift'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5'' 또는 ''Ctrl-R'' 을 입력 (Mac에서는 ''Command-R'')
+* '''구글 크롬''': ''Ctrl-Shift-R''키를 입력 (Mac에서는 ''Command-Shift-R'')
+* '''인터넷 익스플로러''': ''Ctrl'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5''를 입력.
+* '''컨커러''': ''새로고침''을 클릭하거나 ''F5''를 입력
+* '''오페라''': 도구→설정에서 캐시를 비움",
 'usercssyoucanpreview'             => "'''안내''': CSS 문서를 저장하기 전에 ‘{{int:showpreview}}’ 기능을 통해 작동을 확인해주세요.",
 'userjsyoucanpreview'              => "'''안내''': JS 문서를 저장하기 전에 ‘{{int:showpreview}}’ 기능을 통해 작동을 확인해주세요.",
 'usercsspreview'                   => "'''이것은 사용자 CSS의 미리 보기이며, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
@@ -2157,7 +2161,7 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => '문서 보호 기록',
-'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.
+'protectlogtext'              => '아래의 목록은 문서 보호에 관한 변경 사항에 대한 기록입니다.
 현재 보호된 문서의 목록에 대해서는 [[Special:ProtectedPages|보호된 문서 목록]]을 참고하십시오.',
 'protectedarticle'            => '‘[[$1]]’ 문서를 보호함',
 'modifiedarticleprotection'   => '‘[[$1]]’ 문서의 보호 설정을 변경함',
@@ -2306,7 +2310,7 @@ $1',
 'nolinkshere-ns'           => "선택한 이름공간에는 '''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
 'isredirect'               => '넘겨주기 문서',
 'istemplate'               => '포함',
-'isimage'                  => '그림 포함',
+'isimage'                  => '파일 사용 중',
 'whatlinkshere-prev'       => '{{PLURAL:$1|이전|이전 $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|다음|다음 $1}}',
 'whatlinkshere-links'      => '← 가리키는 문서 목록',
@@ -2643,7 +2647,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'tooltip-ca-viewsource'           => '문서가 잠겨 있습니다. 문서의 소스만 볼 수 있습니다.',
 'tooltip-ca-history'              => '문서의 과거 버전들',
 'tooltip-ca-protect'              => '문서 보호하기',
-'tooltip-ca-unprotect'            => '이 문서 보호 헤제하기',
+'tooltip-ca-unprotect'            => '이 문서의 보호 설정을 변경하기',
 'tooltip-ca-delete'               => '문서 삭제하기',
 'tooltip-ca-undelete'             => '삭제된 문서 복구하기',
 'tooltip-ca-move'                 => '문서 이동하기',
@@ -2892,8 +2896,8 @@ Variants for Chinese language
 'exif-colorspace'                  => '색 공간',
 'exif-componentsconfiguration'     => '각 구성 요소의 의미',
 'exif-compressedbitsperpixel'      => '이미지 압축 방식',
-'exif-pixelydimension'             => '유효한 그림 너비',
-'exif-pixelxdimension'             => '유효한 그림 높이',
+'exif-pixelydimension'             => '그림 너비',
+'exif-pixelxdimension'             => '그림 높이',
 'exif-makernote'                   => '제조사 주',
 'exif-usercomment'                 => '사용자 주',
 'exif-relatedsoundfile'            => '관련된 오디오 파일',
@@ -2909,9 +2913,9 @@ Variants for Chinese language
 'exif-spectralsensitivity'         => '스펙트럼 감도',
 'exif-isospeedratings'             => 'ISO 속도',
 'exif-oecf'                        => '광전자 변환 함수',
-'exif-shutterspeedvalue'           => '셔터 속도',
-'exif-aperturevalue'               => '조리개',
-'exif-brightnessvalue'             => '밝기',
+'exif-shutterspeedvalue'           => 'APEX 셔터 속도',
+'exif-aperturevalue'               => 'APEX 조리개',
+'exif-brightnessvalue'             => 'APEX 밝기',
 'exif-exposurebiasvalue'           => '노출 보정값',
 'exif-maxaperturevalue'            => '최대 조리개 값 (최소 F 값)',
 'exif-subjectdistance'             => '대상과의 거리',

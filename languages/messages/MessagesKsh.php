@@ -367,7 +367,7 @@ Dat es och all op Änglesch:
 'vector-action-move'         => 'Ömnänne!',
 'vector-action-protect'      => 'Schöze!',
 'vector-action-undelete'     => 'Zerökholle!',
-'vector-action-unprotect'    => 'Schoz ophävve!',
+'vector-action-unprotect'    => 'Schoz ändere!',
 'vector-namespace-category'  => 'Saachjroppesigg',
 'vector-namespace-help'      => 'Hölpsigg',
 'vector-namespace-image'     => 'Datei',
@@ -413,8 +413,8 @@ Dat es och all op Änglesch:
 'protect'           => 'Schötze',
 'protect_change'    => 'der Schotz ändere',
 'protectthispage'   => 'De Sigg schötze',
-'unprotect'         => 'Schotz ophevve',
-'unprotectthispage' => 'Dä Schotz för de Sigg ophevve',
+'unprotect'         => 'Schoz ändere',
+'unprotectthispage' => 'Siggeschoz ändere',
 'newpage'           => 'Neu Sigg',
 'talkpage'          => 'Üvver die Sigg heh schwaade',
 'talkpagelinktext'  => 'Klaaf',
@@ -874,23 +874,19 @@ domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere nam
 'noarticletext-nopermission'       => 'Op dä Sigg es em Momang nix drop.
 Do kanns noh däm Tittel vun heh dä Sigg [[Special:Search/{{PAGENAME}}|em Tex op ander Sigge söhke]],
 udder en dä zopaß <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbööscher nohloore]</span>.',
-'userpage-userdoesnotexist'        => 'Enne Metmaacher „$1“ hammer nit, beß De secher, dat De die Metmaachersigg ändere oder aanläje wellss?.',
+'userpage-userdoesnotexist'        => 'Enne Metmaacher „<nowiki>$1</nowiki>“ hammer nit, beß De secher, dat De die Metmaachersigg ändere oder aanläje wellss?.',
 'userpage-userdoesnotexist-view'   => 'Ene Metmaacher mem Naame „$1“ hät sesch noch nih aanjemeldt',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dä Metmaacher|Dat|Dä Metmaacher|Die Metmaacheren|Et}} es jraad jesperrt.
 Heh kütt der neuste Enndraach drövver uss_em Logbooch övver et Metmaacher_Sperre:',
-'clearyourcache'                   => "<br clear=\"all\" style=\"clear:both\">
-'''Opjepass:'''
-Noh em Speichere, künnt et sin, datte Dingem Brauser singe Cache Speicher
-üvverlisste muss, ih datte de Änderunge och ze sinn kriss.
-Beim '''Mozilla''' un  '''Firefox''' un '''Safari''', dröck de ''Jroß Schreff Knopp'' un
-Klick op ''Refresh'' / ''Aktualisieren'', oder dröck ''Ctrl-Shift-R'' / ''Strg+Jroß Schreff+R'', oder
-dröck ''Ctrl-F5'' / ''Strg/F5'' / ''Cmd+Shift+R'' / ''Cmd+Jroß Schreff+R'', je noh Ding Tastatur
-un Dingem Kompjuter.
-Beim '''Internet Explorer''' dröck op ''Ctrl'' / ''Strg'' un Klick op ''Refresh'', oder dröck
-''Ctrl-F5'' / ''Strg+F5''.
-Beim '''Konqueror:''' klick dä ''Reload''-Knopp oder dröck dä ''F5''-Knopp.
-Beim  '''Opera''' kanns De üvver et Menue jonn un
-däm janze Cache singe Enhald üvver ''Tools?Preferences'' fottschmieße, neuerdings jeiht et och met ''Alt+F5''.",
+'clearyourcache'                   => '<br clear="all" style="clear:both">
+\'\'\'Opjepass:\'\'\'
+Noh em Speichere künnd et sin, datt De Dingem Brauser singe Cache Speicher
+övverlisste muss, ih datt De de Änderunge och ze sinn kreß.
+* Beim \'\'\'<i lang="en">Mozilla</i>\'\'\' un \'\'\'<i lang="en">Firefox</i>\'\'\' un \'\'\'<i lang="en">Safari</i>\'\'\', dröck dä Jrußschreffknopp eronger un kleck dann op <i lang="en">Reload</i> / <i lang="de">Aktualisieren</i>, udder dröck <i lang="de">Ctrl+F5</i> / <i lang="de">Strg+F5</i>, udder dröck <i lang="en">Ctrl+R</i> / <i lang="de">Strg+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">Command+R</i>.
+* Beim \'\'\'<i lang="en">Google Chrome</i>\'\'\', dröck <i lang="en">Ctrl+Jrußschreffknopp+R</i> / <i lang="de">Strg+Jrußschreffknopp+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">Command+Jrußschreffknopp+R</i>.
+* Beim \'\'\'<i lang="en">Internet Explorer</i>\'\'\', dröck dä Jrußschreffknopp eronger un kleck dann op <i lang="en">Refresh</i> / <i lang="de">Aktualisieren</i>, udder dröck <i lang="de">Ctrl+F5</i> / <i lang="de">Strg+F5</i>,
+* Beim \'\'\'<i lang="en">Konqueror</i>\'\'\' kleck op <i lang="en">Reload</i> / <i lang="de">Aktualisieren</i>, udder dröck op <i>F5</i>.
+* Beim  \'\'\'<i lang="en">Opera</i>\'\'\' kanns De övver et Menue jonn un däm janze Zwescheschpeischer singe Enhald övver <i lang="en">Tools → Preferences</i> / <i lang="de">Werkzeug → Einstellungen</i> fottschmieße, neuerdings jeiht et och met <i>Alt+F5</i>.',
 'usercssyoucanpreview'             => '<b>Tipp:</b> Dun met däm <b style="padding:2px; background-color:#ddd;
 color:black">Vör-Aansich Zeije</b>-Knopp usprobeere, wat Ding neu
 Metmaacher_CSS/Java_Skripp mäht, ih dat et avspeichere deis!',
@@ -1928,10 +1924,10 @@ All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 
 'disambiguations'      => '„(Wat es dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',
-'disambiguations-text' => 'En de Sigge hee noh sin Links dren op en „(Watt ėßß datt?)“-Sigg.
-De Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
+'disambiguations-text' => 'En de Sigge hee noh sin Links dren, di op en „(Watt ėßß datt?)“-Sigg jonn.
+Esu en Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
 
-(En Atikel jellt als en „(Watt ėßß datt?)“-Sigg un weed hee jeliss, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren is. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt)',
+Ene Atikel jelld als en „(Watt ėßß datt?)“-Sigg, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren es. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt.',
 
 'doubleredirects'            => 'Ömleitunge op Ömleitunge',
 'doubleredirectstext'        => 'Hee fings De en jede Reih ene Link op de iertste un de zweite Ömleitung, donoh ene Link op de Sigg, wo de 
@@ -2212,7 +2208,7 @@ dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'enotif_impersonal_salutation' => 'Metmaacher {{GRAMMAR:Genitiv vun|{{SITENAME}}}}',
 'changed'                      => 'jeändert',
 'created'                      => 'neu aanjelaht',
-'enotif_subject'               => 'De Sigg "$PAGETITLE" wood $CHANGEDORCREATE vum "$PAGEEDITOR" {{GRAMMAR:em|{{SITENAME}}}}',
+'enotif_subject'               => 'De Sigg "$PAGETITLE" wood $CHANGEDORCREATED vum "$PAGEEDITOR" {{GRAMMAR:em|{{SITENAME}}}}',
 'enotif_lastvisited'           => 'Luur unger „$1“ - do fings de all die Änderunge zick Dingem letzte Besoch hee.',
 'enotif_lastdiff'              => 'Loor op $1 för heh di Änderung aan_ze_loore.',
 'enotif_anon_editor'           => 'Dä namelose Metmaacher $1',
@@ -2294,10 +2290,11 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 
 # Protect
 'protectlogpage'              => 'Logboch vum Sigge Schötze',
-'protectlogtext'              => 'Hee es de Liss vun de Sigge, die jeschötz oder frei jejovve woode sin.',
+'protectlogtext'              => 'Heh kütt et Logbooch met de Veränderonge aam Schotz vun Sigge.
+En Leß met de [[Special:ProtectedPages|em Momang jeschözde Sigge]] ham_mer och.',
 'protectedarticle'            => 'hät de Sigg „[[$1]]“ jeschötz',
 'modifiedarticleprotection'   => 'hät dä Schoz för die Sigg „[[$1]]“ jeändert',
-'unprotectedarticle'          => 'hät der Schotz för die Sigg „[[$1]]“ opjehovve',
+'unprotectedarticle'          => 'hät der Schotz för di Sigg „[[$1]]“ opjehovve udder verändert.',
 'movedarticleprotection'      => 'hät de Enstellunge för der Sigge-Schotz fun „[[$2]]“ noh „[[$1]]“ övvernomme',
 'protect-title'               => 'Sigge Schotz för „$1“ ändere',
 'prot_1movedto2'              => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
@@ -2443,7 +2440,7 @@ $1',
 'nolinkshere-ns'           => 'Nix link op <strong>„[[:$1]]“</strong> en dämm Appachtemang.',
 'isredirect'               => 'Ömleidungssigg',
 'istemplate'               => 'weed enjeföch',
-'isimage'                  => 'Link obb_en Datei',
+'isimage'                  => 'weed aanjezeisch',
 'whatlinkshere-prev'       => 'de vörijje {{PLURAL:$1||$1|noll}} zeije',
 'whatlinkshere-next'       => 'de nächste {{PLURAL:$1||$1|noll}} zeije',
 'whatlinkshere-links'      => '← Links',
@@ -2791,7 +2788,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-ca-viewsource'           => "Die Sigg es jeschötz. Dä Wikitex kam'mer ävver beloore.",
 'tooltip-ca-history'              => 'Ällder Versione vun dä Sigg',
 'tooltip-ca-protect'              => 'Dun die Sigg schötze',
-'tooltip-ca-unprotect'            => 'Donn dä Schoz vun dä Sigg heh ophävve.',
+'tooltip-ca-unprotect'            => 'Donn dä Schoz vun dä Sigg heh verändere udder ophävve.',
 'tooltip-ca-delete'               => 'Dun die Sigg fottschmieße',
 'tooltip-ca-undelete'             => 'Don de Änderunge widder zerök holle, di aan dä Sigg heh jemat woode wore, ih dat se fottjeschmesse wood',
 'tooltip-ca-move'                 => 'Dun die Sigg ömbenenne',
@@ -3320,7 +3317,7 @@ Dä E-Mail-ẞööver hät jesaat: ''$1''",
 Jetz künns De och noch enlogge. Vill Spass!',
 'confirmemail_loggedin'    => 'Ding E-Mail Adress es jetz bestätich!',
 'confirmemail_error'       => 'Beim E-Mail Adress Bestätije es jet donevve jejange, de Bestätijung kunnt nit avjespeichert wääde.',
-'confirmemail_subject'     => 'Dun Ding <i lang="en">e-mail</i> Adress för {{GRAMMAR:Akkusativ|{{SITENAME}}}} bestäteje.',
+'confirmemail_subject'     => 'Dun Ding e-mail Adress för {{GRAMMAR:Akkusativ|{{SITENAME}}}} bestäteje.',
 'confirmemail_body'        => 'Künnt jod sin, Do wors et selver, vun de IP_Adress $1 hät sich
 jedenfalls einer jemeldt, un well dä Metmaacher "$2" {{GRAMMAR:vun|{{SITENAME}}}}
 sin, un hät en E-Mail Adress aanjejovve.
@@ -3488,7 +3485,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-hook-name'                => 'De Schnettstelle ier Name',
 'version-hook-subscribedby'        => 'Opjeroofe vun',
 'version-version'                  => '(Version $1)',
-'version-license'                  => 'Lizenz',
+'version-license'                  => 'Lizänz',
 'version-software'                 => 'Installeete Soffwäer',
 'version-software-product'         => 'Produk',
 'version-software-version'         => 'Version',

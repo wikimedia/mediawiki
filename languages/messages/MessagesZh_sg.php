@@ -8,6 +8,7 @@
  * @file
  *
  * @author PhiLiP
+ * @author Shizhao
  * @author Wong128hk
  */
 
@@ -20,5 +21,8 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'portal' => '社区入口',
+
+# Edit pages
+'editing' => '正在编辑 $1',
 
 );

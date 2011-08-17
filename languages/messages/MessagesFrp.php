@@ -468,7 +468,7 @@ $messages = array(
 'vector-action-move'         => 'Renomar',
 'vector-action-protect'      => 'Protègiér',
 'vector-action-undelete'     => 'Refâre',
-'vector-action-unprotect'    => 'Dèprotègiér',
+'vector-action-unprotect'    => 'Changiér la protèccion',
 'vector-namespace-category'  => 'Catègorie',
 'vector-namespace-help'      => 'Éde',
 'vector-namespace-image'     => 'Fichiér',
@@ -514,8 +514,8 @@ $messages = array(
 'protect'           => 'Protègiér',
 'protect_change'    => 'changiér',
 'protectthispage'   => 'Protègiér ceta pâge',
-'unprotect'         => 'Dèprotègiér',
-'unprotectthispage' => 'Dèprotègiér ceta pâge',
+'unprotect'         => 'Changiér la protèccion',
+'unprotectthispage' => 'Changiér la protèccion de ceta pâge',
 'newpage'           => 'Pâge novèla',
 'talkpage'          => 'Pâge de discussion',
 'talkpagelinktext'  => 'Discutar',
@@ -695,7 +695,7 @@ Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.n
 'cascadeprotected'     => 'Ora, cela pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
 'namespaceprotected'   => "Vos avéd pas la pèrmission de changiér les pâges de l’èspâço de noms '''« $1 »'''.",
-'customcssjsprotected' => 'Vos avéd pas la pèrmission de changiér ceta pâge perce que contint les prèferences a un ôtro utilisator.',
+'customcssjsprotected' => 'Vos avéd pas la pèrmission de changiér ceta pâge, perce que contint les prèferences a un ôtro utilisator.',
 'ns-specialprotected'  => 'Les pâges dens l’èspâço de noms « {{ns:special}} » pôvont pas étre changiês.',
 'titleprotected'       => "Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]].
 La rêson balyê est « ''$2'' ».",
@@ -839,7 +839,7 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'image_sample'    => 'Ègzemplo.jpg',
 'image_tip'       => 'Fichiér entrebetâ',
 'media_sample'    => 'Ègzemplo.ogg',
-'media_tip'       => 'Lim de vers un fichiér mèdia',
+'media_tip'       => 'Lim de vers un fichiér',
 'sig_tip'         => 'Voutra signatura avouéc la dâta',
 'hr_tip'          => 'Legne plana (pas nen abusar)',
 
@@ -923,14 +923,17 @@ ou ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} fâre cela pâge]</span>.',
 'noarticletext-nopermission'       => 'Ora, y at gins de tèxto dens ceta pâge.
 Vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche sur lo titro de la pâge]] dens les ôtres pâges,
 ou ben <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechèrchiér dens los jornals liyês]</span>.',
-'userpage-userdoesnotexist'        => 'Lo compto utilisator « $1 » est pas encartâ.
+'userpage-userdoesnotexist'        => 'Lo compto utilisator « <nowiki>$1</nowiki> » est pas encartâ.
 Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
 'userpage-userdoesnotexist-view'   => 'Lo compto utilisator « $1 » est pas encartâ.',
 'blocked-notice-logextract'        => 'Ceti utilisator est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
-'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ voutres prèferences, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
-'''Mozilla / Firefox / Konqueror / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Actualisar'' (''Reload'') ou ben prèssâd ''Maj-Ctrl-R'' (''Maj-Cmd-R'' dessus Apple Mac) ;
-'''Internet Explorer / Opera :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Actualisar'' ou ben prèssâd ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
+* '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Actualisar'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' dessus Mac)
+* '''Google Chrome :''' prèssâd ''Ctrl-Shift-R'' (''Command-Shift-R'' dessus Mac)
+* '''Internet Explorer :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Rafrèchir'' (''Refresh'') ou ben prèssâd ''Ctrl-F5''
+* '''Konqueror :''' clicâd sur lo boton ''Actualisar'' ou ben prèssâd ''F5''
+* '''Opera :''' èfaciéd lo cache dens ''Outils → Prèferences''",
 'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye CSS novèla devant que la sôvar.",
 'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye JS novèla devant que la sôvar.",
 'usercsspreview'                   => "'''Rapelâd-vos que vos éte solament aprés prèvisualisar voutra prôpra fôlye CSS.'''
@@ -1835,7 +1838,7 @@ Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisaci
 'filehist-filesize'         => 'Talye du fichiér',
 'filehist-comment'          => 'Comentèro',
 'filehist-missing'          => 'Fichiér manquent',
-'imagelinks'                => 'Usâjos du fichiér',
+'imagelinks'                => 'Lims de vers lo fichiér',
 'linkstoimage'              => '{{PLURAL:$1|Ceta pâge utilise|Cetes $1 pâges utilisont}} ceti fichiér :',
 'linkstoimage-more'         => 'Més de {{PLURAL:$1|yona pâge utilise|$1 pâges utilisont}} ceti fichiér.
 Ceta lista montre ren que {{PLURAL:$1|la premiére pâge qu’utilise|les $1 premiéres pâges qu’utilisont}} ceti fichiér.
@@ -2281,11 +2284,11 @@ Volyéd clicar dessus « Devant », rechargiér la pâge de yô que vos vegnéd,
 
 # Protect
 'protectlogpage'              => 'Jornal de les protèccions',
-'protectlogtext'              => 'Vê-que una lista de les protèccions et de les dèprotèccions de pâges.
-Vêde la [[Special:ProtectedPages|lista de les pâges protègiês]] por vêre les protèccions que sont ora opèracionèls.',
+'protectlogtext'              => 'Vê-que una lista des changements de protèccion de les pâges.
+Vêde la [[Special:ProtectedPages|lista de les pâges protègiês]] por la lista de les protèccions que sont ora opèracionèles.',
 'protectedarticle'            => 'at protègiê « [[$1]] »',
 'modifiedarticleprotection'   => 'at changiê lo nivél de protèccion de « [[$1]] »',
-'unprotectedarticle'          => 'at dèprotègiê « [[$1]] »',
+'unprotectedarticle'          => 'at enlevâ la protèccion de « [[$1]] »',
 'movedarticleprotection'      => 'at dèplaciê los paramètres de protèccion dês « [[$2]] » vers « [[$1]] »',
 'protect-title'               => 'Changiér lo nivél de protèccion por « $1 »',
 'prot_1movedto2'              => 'at renomâ [[$1]] en [[$2]]',
@@ -2435,7 +2438,7 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'nolinkshere-ns'           => "Niona pâge contint de lim de vers '''[[:$1]]''' dens l’èspâço de noms chouèsi.",
 'isredirect'               => 'pâge de redirèccion',
 'istemplate'               => 'encllusion',
-'isimage'                  => 'fichiér liyê',
+'isimage'                  => 'lim de vers lo fichiér',
 'whatlinkshere-prev'       => '{{PLURAL:$1|devant|$1 devant}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|aprés|$1 aprés}}',
 'whatlinkshere-links'      => '← lims',
@@ -2787,7 +2790,7 @@ Volyéd utilisar lo boton de prèvisualisacion devant que sôvar.',
 Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-ca-history'              => 'Les vèrsions passâs de ceta pâge (avouéc lors contributors)',
 'tooltip-ca-protect'              => 'Protègiér ceta pâge',
-'tooltip-ca-unprotect'            => 'Dèprotègiér ceta pâge',
+'tooltip-ca-unprotect'            => 'Changiér la protèccion de ceta pâge',
 'tooltip-ca-delete'               => 'Suprimar ceta pâge',
 'tooltip-ca-undelete'             => 'Refâre los changements fêts sur ceta pâge devant sa suprèssion',
 'tooltip-ca-move'                 => 'Renomar ceta pâge',
@@ -3414,7 +3417,7 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.",
 'watchlistedit-normal-explain' => 'Los titros de voutra lista de survelyence sont montrâs ce-desot.
 Por enlevar un titro (et sa pâge de discussion), pouentâd la câsa a coutâ et pués clicâd sur lo boton « {{int:Watchlistedit-normal-submit}} ».
 Vos pouede asse-ben changiér la [[Special:Watchlist/raw|lista en fôrma bruta]].',
-'watchlistedit-normal-submit'  => 'Enlevar los titros chouèsis',
+'watchlistedit-normal-submit'  => 'Enlevar los titros',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Yon titro at étâ enlevâ|$1 titros ont étâ enlevâs}} de voutra lista de survelyence :',
 'watchlistedit-raw-title'      => 'Changiér la lista de survelyence en fôrma bruta',
 'watchlistedit-raw-legend'     => 'Changement de la lista de survelyence en fôrma bruta',

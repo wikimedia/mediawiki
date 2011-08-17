@@ -134,14 +134,14 @@ $messages = array(
 'tog-minordefault'            => 'Imposte come opzion predeterminade ducj i cambiaments come piçui',
 'tog-previewontop'            => 'Mostre anteprime parsore dal spazi pe modifiche',
 'tog-previewonfirst'          => 'Mostre anteprime te prime modifiche',
-'tog-nocache'                 => 'No stâ tignî in memorie (caching) lis pagjinis',
+'tog-nocache'                 => 'Disative la memorie cache des pagjinis dal sgarfadôr',
 'tog-enotifwatchlistpages'    => 'Mandimi une email se la pagjine e gambie',
 'tog-enotifusertalkpages'     => 'Mandimi une email cuant che la mê pagjine di discussion e gambie',
 'tog-enotifminoredits'        => 'Mandimi une email ancje pai piçui cambiaments ae pagjine',
 'tog-enotifrevealaddr'        => 'Distapone fûr il gno recapit email tai messaçs di notifiche',
 'tog-shownumberswatching'     => 'Mostre il numar di utents che a stan tignint di voli',
 'tog-fancysig'                => 'Interprete lis firmis come test wiki (cence un leam automatic)',
-'tog-externaleditor'          => 'Dopre editôr esterni come opzion predeterminade',
+'tog-externaleditor'          => 'Dopre un editôr esterni come opzion predeterminade (dome par utents esperts, a coventin impuestazions specifichis, [http://www.mediawiki.org/wiki/Manual:External_editors cjale culì par altris informazions.])',
 'tog-externaldiff'            => 'Dopre editôr difarencis esterni come opzion predeterminade',
 'tog-watchlisthideown'        => 'Plate i miei cambiaments inte liste des pagjinis tignudis di voli',
 'tog-ccmeonemails'            => 'Mandimi une copie dai messaçs che o mandi ai altris utents',
@@ -415,11 +415,11 @@ Al podarès vê dentri caratars che no podin jessi doprâts tai titui.',
 # Login and logout pages
 'logouttext'              => "'''Tu sâs cumò lât fûr.'''
 
-Tu puedis continuâ a doprâ {{SITENAME}} come anonim, o tu puedis jentrâ cul stes o cuntun altri non utent.
-Note che cualchi pagjine e pues mostrâti ancjemò come jentrât tal sît fin cuant che no tu netis la cache dal sgarfadôr.",
+Tu puedis continuâ a doprâ {{SITENAME}} come anonim, o tu puedis [[Special:UserLogin|jentrâ di gnûf]] cul stes o cuntun altri non utent.
+Considere che cualchi pagjine e pues mostrâti ancjemò come jentrât tal sît fin cuant che no tu netis la memorie cache dal sgarfadôr.",
 'welcomecreation'         => '== Mandi e benvignût $1! ==
-
-La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis preferencis di {{SITENAME}}.',
+La tô identitât e je stade creade. 
+No stâ dismenteâti di gambiâ lis [[Special:Preferences|preferencis di {{SITENAME}}]].',
 'yourname'                => 'Non utent',
 'yourpassword'            => 'Peraule clâf',
 'yourpasswordagain'       => 'Torne a scrivile',
@@ -554,7 +554,7 @@ Tu puedis [[Special:Search/{{PAGENAME}}|cirî chest titul]] in altris pagjinis o
 o ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} cambiâ cheste pagjine]</span>.',
 'noarticletext-nopermission'       => 'Par cumò nol è nuie in cheste pagjine.
 Tu puedis [[Special:Search/{{PAGENAME}}|cirî chest titul]] in altris pagjinis o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cirî i regjistris leâts].',
-'userpage-userdoesnotexist'        => 'La identitât "$1" no je di un utent regjistrât. Controle che tu vuelis pardabon creâ o modificâ cheste pagjine.',
+'userpage-userdoesnotexist'        => 'La identitât "<nowiki>$1</nowiki>" no je di un utent regjistrât. Controle che tu vuelis pardabon creâ o modificâ cheste pagjine.',
 'clearyourcache'                   => "'''Ocjo: dopo vê salvât, tu podaressis scugnî netâ la cache dal to sgarfadôr par viodi i cambiaments.''' Par '''Mozilla / Firefox / Safari''': frache ''Torne a cjamâ'' tignint jù ancje il tast des maiusculis, o se no frache ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); par '''Konqueror''': frache ''Reload'' o il tast ''F5''; par '''Opera''' al pues jessi necessari disvuedâ dal dut la cache doprant il menù ''Tools → Preferencis''; par '''Internet Explorer:''' ten fracât il tast ''Ctrl'' cuant che tu cjalcjis su ''Aggiorna'' o frache ''Ctrl-F5''.",
 'updated'                          => '(Inzornât)',
 'note'                             => "'''Note:'''",
@@ -600,6 +600,8 @@ Il regjistri di eliminazion e di spostament pe pagjine a son mostrâts ca sot pa
 'post-expand-template-inclusion-warning'  => "'''Atenzion:''' La dimension dai modei includûts e je masse grande.
 Cualchi model nol vignarà includût.",
 'post-expand-template-inclusion-category' => 'Pagjinis dulà che la dimension pe inclusion dai modei e je stade superade',
+'post-expand-template-argument-warning'   => "'''Avîs:''' Cheste pagjine e conten almancul un argoment di model che al à une dimension di espansion masse grande. Chescj argoments no saran includûts.",
+'post-expand-template-argument-category'  => 'Pagjinis che a contegnin argoments di modei che a mancjin',
 
 # History pages
 'viewpagelogs'           => 'Cjale i regjistris relatîfs a cheste pagjine.',
@@ -909,9 +911,10 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'uploadedimage'         => 'cjamât sù "$1"',
 'overwroteimage'        => 'al à cjamât une gnove version di «[[$1]]»',
 'uploaddisabled'        => 'Nus displâs, par cumò no si pues cjamâ sù robe.',
-'uploaddisabledtext'    => 'Lis cjamadis a son disativâts su cheste wiki.',
+'uploaddisabledtext'    => 'Lis cjamadis di files a son disativadis.',
 'sourcefilename'        => 'Non dal file origjinâl:',
 'destfilename'          => 'Non dal file di destinazion:',
+'upload-description'    => 'Descrizion dal file',
 'watchthisupload'       => 'Ten di voli chest file',
 
 'upload-unknown-size' => 'Dimension no cognossude',
@@ -1302,7 +1305,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'nolinkshere-ns'           => "No son pagjine leadis a '''[[:$1]]''' intal spazi dai nons sielt.",
 'isredirect'               => 'pagjine di reindirizament',
 'istemplate'               => 'includude',
-'isimage'                  => 'leam figure',
+'isimage'                  => 'leam a figure',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedent|precedents $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sucessîf|sucessîfs $1}}',
 'whatlinkshere-links'      => '← leams',
@@ -1397,6 +1400,7 @@ Sielç par plasê un altri non.',
 'allmessagescurrent'        => 'Test curint',
 'allmessagestext'           => 'Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki.
 Par plasê va su [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se tu vuelis contribuî ae traduzion gjeneriche di MediaWiki.',
+'allmessages-filter-all'    => 'Ducj',
 'allmessages-language'      => 'Lenghe:',
 'allmessages-filter-submit' => 'Va',
 
@@ -1665,6 +1669,9 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'watchlisttools-edit' => 'Cjale e cambie la liste des pagjinis tignudis di voli',
 'watchlisttools-raw'  => 'Modifiche la liste des pagjinis tignudis di voli in formât testuâl',
 
+# Core parser functions
+'duplicate-defaultsort' => "'''Avîs:''' La clâf predeterminade par l'ordenament \"\$2\" invalide la clâf predeterminade precedente \"\$1\".",
+
 # Special:Version
 'version'                  => 'Version',
 'version-variables'        => 'Variabilis',
@@ -1699,6 +1706,16 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # Special:BlankPage
 'blankpage' => 'Pagjine vueide',
+
+# External image whitelist
+'external_image_whitelist' => ' #Lasse cheste rie cemût che a je<pre>
+#Inserìs lis espressions regolârs (dome il toc che al va tal mieç di //) ca sot
+#Chestis e saran controladis cun lis URLs des figuris esternis
+#A vignaran mostradis dome chês che a corispuindin, di chês altris si viodarà dome un leam
+#Lis riis che a scomencin cun # a son consideradis come coments
+#Si considerin diviersis lis letaris maiusculis e minusculis
+
+#Met ducj i framents regex parsore di cheste rie. Lasse cheste rie cemût che e je</pre>',
 
 # Special:Tags
 'tag-filter'        => 'Filtre par [[Special:Tags|etichetis]]:',

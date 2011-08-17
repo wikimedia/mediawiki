@@ -217,7 +217,7 @@ $messages = array(
 'vector-action-move'         => 'Treslladar',
 'vector-action-protect'      => 'Protexer',
 'vector-action-undelete'     => 'Des-desaniciar',
-'vector-action-unprotect'    => 'Desprotexer',
+'vector-action-unprotect'    => 'Camudar la proteición',
 'vector-namespace-category'  => 'Categoría',
 'vector-namespace-help'      => "Páxina d'ayuda",
 'vector-namespace-image'     => 'Ficheru',
@@ -263,8 +263,8 @@ $messages = array(
 'protect'           => 'Protexer',
 'protect_change'    => 'camudar',
 'protectthispage'   => 'Protexer esta páxina',
-'unprotect'         => 'Desprotexer',
-'unprotectthispage' => 'Desprotexer esta páxina',
+'unprotect'         => 'Camudar la proteición',
+'unprotectthispage' => 'Camudar la proteición desta páxina',
 'newpage'           => 'Páxina nueva',
 'talkpage'          => 'Aldericar sobre esta páxina',
 'talkpagelinktext'  => 'Alderique',
@@ -657,15 +657,16 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí]</span>.',
 'noarticletext-nopermission'       => 'Anguaño nun hai testu nesta páxina.
 Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar los rexistros rellacionaos]</span>.',
-'userpage-userdoesnotexist'        => 'La cuenta d\'usuariu "$1" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
+'userpage-userdoesnotexist'        => 'La cuenta d\'usuariu "<nowiki>$1</nowiki>" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
 'userpage-userdoesnotexist-view'   => 'La cuenta d\'usuariu "$1" nun ta rexistrada.',
 'blocked-notice-logextract'        => "Esti usuariu anguaño ta bloquiáu.
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
-*'''Mozilla / Firefox / Safari:''' caltién ''Shift'' mentes calques en ''Reload'', o calca ''Ctrl-Shift-R'' (''Cmd-Shift-R'' en Apple Mac)
-*'''IE:''' caltién ''Ctrl'' mentes calques ''Refresh'', o calca ''Ctrl-F5''
-*'''Konqueror:''' calca nel botón ''Reload'', o calca ''F5''
-*'''Opera:''' los usuarios d'Opera seique necesiten esborrar dafechu'l caché en ''Tools→Preferences''",
+*'''Firefox / Safari:''' caltién ''Mayús'' mentes calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' nún Mac)
+* '''Google Chrome:''' calca ''Ctrl-Mayús-R'' (''Command-Mayús-R'' nún Mac)
+* '''Internet Explorer:''' caltién ''Ctrl'' mentes calques ''Refrescar'', o calca ''Ctrl-F5''
+* '''Konqueror:''' calca nel botón ''Recargar'', o calca ''F5''
+* '''Opera:''' desanicia la caché en ''Ferramientes→Preferencies''",
 'usercssyoucanpreview'             => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu CSS enantes de guardalu.",
 'userjsyoucanpreview'              => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu JavaScript enantes de guardalu.",
 'usercsspreview'                   => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
@@ -1014,8 +1015,8 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'showingresultsheader'             => "{{PLURAL:$5|Resultáu '''$1''' de '''$3'''|Resultaos '''$1 - $2''' de '''$3'''}} pa '''$4'''",
 'nonefound'                        => "'''Nota''': Por defeutu namái se busca en dalgunos de los espacios de nome. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
 'search-nonefound'                 => 'Nun hebo resultaos que concueyen cola consulta.',
-'powersearch'                      => 'Buscar',
-'powersearch-legend'               => 'Busca avanzada',
+'powersearch'                      => 'Gueta avanzada',
+'powersearch-legend'               => 'Gueta avanzada',
 'powersearch-ns'                   => 'Buscar nos espacios de nome:',
 'powersearch-redir'                => 'Llistar redireiciones',
 'powersearch-field'                => 'Buscar',
@@ -1982,10 +1983,11 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 
 # Protect
 'protectlogpage'              => 'Rexistru de proteiciones',
-'protectlogtext'              => 'Esti ye un rexistru de les páxines candaes y descandaes. Consulta la [[Special:ProtectedPages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
+'protectlogtext'              => 'Darréu ta un rexistru de les protecciones de páxines.
+Consulta la [[Special:ProtectedPages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
 'protectedarticle'            => 'protexó $1',
 'modifiedarticleprotection'   => 'camudó\'l nivel de proteición de "[[$1]]"',
-'unprotectedarticle'          => 'desprotexó "[[$1]]"',
+'unprotectedarticle'          => 'quitó-y la protección a "[[$1]]"',
 'movedarticleprotection'      => 'treslladó los parámetros de proteición dende "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Protexendo "$1"',
 'prot_1movedto2'              => '[[$1]] treslladáu a [[$2]]',
@@ -2131,7 +2133,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'nolinkshere-ns'           => "Nenguna páxina enllaza a '''[[:$1]]''' nel espaciu de nome conseñáu.",
 'isredirect'               => 'páxina redirixida',
 'istemplate'               => 'inclusión',
-'isimage'                  => "enllaz d'imaxe",
+'isimage'                  => 'enllaz al ficheru',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|anteriores $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|siguiente|siguientes $1}}',
 'whatlinkshere-links'      => '← enllaces',
@@ -2475,7 +2477,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'tooltip-ca-viewsource'           => 'Esta páxina ta protexida. Pues ver el so códigu fonte.',
 'tooltip-ca-history'              => "Versiones antigües d'esta páxina.",
 'tooltip-ca-protect'              => 'Protexe esta páxina',
-'tooltip-ca-unprotect'            => 'Desprotexer esta páxina',
+'tooltip-ca-unprotect'            => 'Camudar la proteición desta páxina',
 'tooltip-ca-delete'               => 'Esborra esta páxina',
 'tooltip-ca-undelete'             => 'Restaura les ediciones feches nesta páxina enantes de que fuera esborrada',
 'tooltip-ca-move'                 => 'Tresllada esta páxina',

@@ -237,7 +237,7 @@ $linkTrail = '/^([a-zàéèíîìóòúù]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sottolinea i collegamenti',
+'tog-underline'               => 'Sottolinea i collegamenti:',
 'tog-highlightbroken'         => 'Evidenzia <a href="" class="new">così</a> i collegamenti a pagine inesistenti (se disattivato: così<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Allineamento dei paragrafi giustificato',
 'tog-hideminor'               => 'Nascondi le modifiche minori nelle ultime modifiche',
@@ -267,12 +267,12 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Rivela il mio indirizzo e-mail nei messaggi di avviso',
 'tog-shownumberswatching'     => 'Mostra il numero di utenti che hanno la pagina in osservazione',
 'tog-oldsig'                  => 'Anteprima della firma attuale:',
-'tog-fancysig'                => 'Interpreta i comandi wiki nella firma (senza collegamento automatico)',
+'tog-fancysig'                => 'Tratta la firma come wikitesto (senza un collegamento automatico)',
 'tog-externaleditor'          => "Usa per default un editor di testi esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer. [http://www.mediawiki.org/wiki/Manual:External_editors Ulteriori informazioni.])",
 'tog-externaldiff'            => "Usa per default un programma di diff esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer. [http://www.mediawiki.org/wiki/Manual:External_editors Ulteriori informazioni.])",
 'tog-showjumplinks'           => 'Attiva i collegamenti accessibili "vai a"',
-'tog-uselivepreview'          => "Attiva la funzione ''Live preview'' (richiede JavaScript; sperimentale)",
-'tog-forceeditsummary'        => "Chiedi conferma se l'oggetto della modifica è vuoto",
+'tog-uselivepreview'          => "Attiva la funzione ''Live preview'' (anteprima in diretta - richiede JavaScript; sperimentale)",
+'tog-forceeditsummary'        => 'Chiedi conferma se il campo oggetto è vuoto',
 'tog-watchlisthideown'        => 'Nascondi le mie modifiche negli osservati speciali',
 'tog-watchlisthidebots'       => 'Nascondi le modifiche dei bot negli osservati speciali',
 'tog-watchlisthideminor'      => 'Nascondi le modifiche minori negli osservati speciali',
@@ -291,7 +291,7 @@ $messages = array(
 'underline-default' => 'Mantieni le impostazioni del browser',
 
 # Font style option in Special:Preferences
-'editfont-style'     => "Stile font dell'area di modifica:",
+'editfont-style'     => 'Stile del carattere nella casella di modifica:',
 'editfont-default'   => 'Predefinito del browser',
 'editfont-monospace' => 'Font monospazio',
 'editfont-sansserif' => 'Font sans-serif',
@@ -354,7 +354,7 @@ $messages = array(
 'category_header'                => 'Pagine nella categoria "$1"',
 'subcategories'                  => 'Sottocategorie',
 'category-media-header'          => 'File nella categoria "$1"',
-'category-empty'                 => "''Al momento la categoria non contiene alcuna pagina né file multimediale.''",
+'category-empty'                 => "''Al momento la categoria non contiene alcuna pagina o file multimediale.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}}',
 'hidden-category-category'       => 'Categorie nascoste',
 'category-subcat-count'          => "{{PLURAL:$2|Questa categoria contiene un'unica sottocategoria, indicata di seguito.|Questa categoria contiene {{PLURAL:$1|la sottocategoria indicata|le $1 sottocategorie indicate}} di seguito, su un totale di $2.}}",
@@ -405,7 +405,7 @@ I seguenti collegamenti sono in lingua inglese:
 'vector-action-move'         => 'Sposta',
 'vector-action-protect'      => 'Proteggi',
 'vector-action-undelete'     => 'Recupera',
-'vector-action-unprotect'    => 'Sblocca',
+'vector-action-unprotect'    => 'Cambia la protezione',
 'vector-namespace-category'  => 'Categoria',
 'vector-namespace-help'      => 'Aiuto',
 'vector-namespace-image'     => 'File',
@@ -451,8 +451,8 @@ I seguenti collegamenti sono in lingua inglese:
 'protect'           => 'Proteggi',
 'protect_change'    => 'cambia',
 'protectthispage'   => 'Proteggi questa pagina',
-'unprotect'         => 'Sblocca',
-'unprotectthispage' => 'Togli la protezione a questa pagina',
+'unprotect'         => 'Rimuovi la protezione',
+'unprotectthispage' => 'Cambia la protezione a questa pagina',
 'newpage'           => 'Nuova pagina',
 'talkpage'          => 'Pagina di discussione',
 'talkpagelinktext'  => 'Discussione',
@@ -627,7 +627,7 @@ Per le traduzioni, considera la possibilità di usare [http://translatewiki.net/
 'cascadeprotected'     => 'Su questa pagina non è possibile effettuare modifiche perché è stata inclusa {{PLURAL:$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione "ricorsiva":
 $2',
 'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
-'customcssjsprotected' => 'Non si dispone dei permessi necessari alla modifica della pagina, in quanto contiene le impostazioni personali di un altro utente.',
+'customcssjsprotected' => 'Non si dispone dei permessi necessari alla modifica di questa pagina, in quanto contiene le impostazioni personali di un altro utente.',
 'ns-specialprotected'  => 'Non è possibile modificare le pagine speciali.',
 'titleprotected'       => "La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]].
 La motivazione è la seguente: ''$2''.",
@@ -830,11 +830,16 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'anontalkpagetext'                 => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea un nuovo accesso]] o [[Special:UserLogin|entra con quello che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
 'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
 'noarticletext-nopermission'       => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>.',
-'userpage-userdoesnotexist'        => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
+'userpage-userdoesnotexist'        => 'L\'account "<nowiki>$1</nowiki>" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
 'userpage-userdoesnotexist-view'   => 'L\'account utente "$1" non è registrato.',
 'blocked-notice-logextract'        => "Questo utente è attualmente bloccato.
 L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
-'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nota:''' dopo aver salvato, potrebbe essere necessario pulire la cache del tuo browser per vedere i cambiamenti. 
+*'''Firefox / Safari''': tieni premuto il tasto delle maiuscole e fai clic su ''Ricarica'', oppure premi ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac)
+*'''Google Chrome''': premi ''Ctrl-Shift-R'' (''Command-Shift-R'' su un Mac)
+*'''Internet Explorer''': tieni premuto il tasto ''Ctrl'' mentre clicchi su ''Refresh'', oppure premi ''Ctrl-F5''
+*'''Konqueror''': premi il pulsante ''Ricarica'' o il tasto ''F5''; 
+*'''Opera''': svuota completamente la cache dal menu ''Strumenti → Preferenze''",
 'usercssyoucanpreview'             => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo CSS prima di salvarlo.",
 'userjsyoucanpreview'              => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo JavaScript prima di salvarlo.",
 'usercsspreview'                   => "'''Questa è solo un'anteprima del proprio CSS personale. Le modifiche non sono ancora state salvate!'''",
@@ -2104,11 +2109,11 @@ La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[Use
 
 # Protect
 'protectlogpage'              => 'Protezioni',
-'protectlogtext'              => "Di seguito sono elencate le azioni di protezione e sblocco delle pagine.
-Consultare la [[Special:ProtectedPages|lista delle pagine protette]] per l'elenco delle protezioni di pagina attive.",
+'protectlogtext'              => "Di seguito sono elencate le modifiche alle protezioni delle pagine.
+Vedi la [[Special:ProtectedPages|lista delle pagine protette]] per l'elenco delle protezioni di pagina attualmente attive.",
 'protectedarticle'            => 'ha protetto "[[$1]]"',
 'modifiedarticleprotection'   => 'ha modificato il livello di protezione di "[[$1]]"',
-'unprotectedarticle'          => 'ha sprotetto [[$1]]',
+'unprotectedarticle'          => 'ha sprotetto "[[$1]]"',
 'movedarticleprotection'      => 'ha spostato la protezione da "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Modifica del livello di protezione per "$1"',
 'prot_1movedto2'              => 'ha spostato [[$1]] a [[$2]]',
@@ -2247,7 +2252,7 @@ $1',
 'nolinkshere-ns'           => "Non vi sono pagine che puntano a '''[[:$1]]''' nel namespace selezionato.",
 'isredirect'               => 'redirect',
 'istemplate'               => 'inclusione',
-'isimage'                  => 'link immagine',
+'isimage'                  => 'link verso file',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedente|precedenti $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|successivo|successivi $1}}',
 'whatlinkshere-links'      => '← collegamenti',
@@ -2572,12 +2577,12 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-ca-viewsource'           => 'Questa pagina è protetta, ma puoi vedere il suo codice sorgente',
 'tooltip-ca-history'              => 'Versioni precedenti di questa pagina',
 'tooltip-ca-protect'              => 'Proteggi questa pagina',
-'tooltip-ca-unprotect'            => 'Togli la protezione a questa pagina',
+'tooltip-ca-unprotect'            => 'Modifica la protezione di questa pagina',
 'tooltip-ca-delete'               => 'Cancella questa pagina',
 'tooltip-ca-undelete'             => "Ripristina la pagina com'era prima della cancellazione",
 'tooltip-ca-move'                 => 'Sposta questa pagina (cambia titolo)',
-'tooltip-ca-watch'                => 'Aggiungi questa pagina alla tua lista di osservati speciali',
-'tooltip-ca-unwatch'              => 'Elimina questa pagina dalla tua lista di osservati speciali',
+'tooltip-ca-watch'                => 'Aggiungi questa pagina alla tua lista degli osservati speciali',
+'tooltip-ca-unwatch'              => 'Elimina questa pagina dalla tua lista degli osservati speciali',
 'tooltip-search'                  => "Cerca all'interno di {{SITENAME}}",
 'tooltip-search-go'               => 'Vai a una pagina con il titolo indicato, se esiste',
 'tooltip-search-fulltext'         => 'Cerca il testo indicato nelle pagine',
@@ -2614,7 +2619,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-preview'                 => 'Anteprima delle modifiche (consigliata prima di salvare)',
 'tooltip-diff'                    => 'Guarda le modifiche apportate al testo',
 'tooltip-compareselectedversions' => 'Guarda le differenze tra le due versioni selezionate di questa pagina.',
-'tooltip-watch'                   => 'Aggiungi questa pagina alla lista degli osservati speciali',
+'tooltip-watch'                   => 'Aggiungi questa pagina alla tua lista degli osservati speciali',
 'tooltip-recreate'                => 'Ricrea la pagina anche se è stata cancellata',
 'tooltip-upload'                  => 'Inizia il caricamento',
 'tooltip-rollback'                => '"Rollback" annulla le modifiche a questa pagina dell\'ultimo contributore con un solo clic.',

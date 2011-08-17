@@ -25,6 +25,7 @@
  * @author Remember the dot
  * @author Saper
  * @author Sp5uhe
+ * @author Stlmch
  * @author Stv
  * @author Szczepan1990
  * @author Timpul
@@ -394,7 +395,7 @@ $messages = array(
 'vector-action-move'         => 'Przenieś',
 'vector-action-protect'      => 'Zabezpiecz',
 'vector-action-undelete'     => 'Odtwórz',
-'vector-action-unprotect'    => 'Odbezpiecz',
+'vector-action-unprotect'    => 'Zmień zabezpieczenie',
 'vector-namespace-category'  => 'Kategoria',
 'vector-namespace-help'      => 'Strona pomocy',
 'vector-namespace-image'     => 'Plik',
@@ -440,8 +441,8 @@ $messages = array(
 'protect'           => 'Zabezpiecz',
 'protect_change'    => 'zmień',
 'protectthispage'   => 'Zabezpiecz tę stronę',
-'unprotect'         => 'Odbezpiecz',
-'unprotectthispage' => 'Odbezpiecz tę stronę',
+'unprotect'         => 'Zmień zabezpieczenie',
+'unprotectthispage' => 'Zmień zabezpieczenie strony',
 'newpage'           => 'Nowa strona',
 'talkpage'          => 'Dyskusja',
 'talkpagelinktext'  => 'dyskusja',
@@ -842,16 +843,17 @@ Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych str
 'noarticletext-nopermission'       => 'Na tej stronie nie ma jeszcze artykułu.
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
 lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane logi].</span>',
-'userpage-userdoesnotexist'        => 'Użytkownik „$1” nie jest zarejestrowany.
+'userpage-userdoesnotexist'        => 'Użytkownik „<nowiki>$1</nowiki>” nie jest zarejestrowany.
 Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmodyfikować właśnie tę stronę.',
 'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
-'clearyourcache'                   => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
-*'''Mozilla, Firefox lub Safari –''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5'' lub ''Ctrl‐R'' (''Cmd‐Shift‐R'' na Macintoshu)
-*'''Konqueror –''' kliknij przycisk ''Odśwież'' lub wciśnij ''F5''
-*'''Opera –''' wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''
-*'''Internet Explorer –''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5''",
+'clearyourcache'                   => "'''Uwaga:''' Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej, w przeciwnym razie nie będzie można zobaczyć efektu działania nowych ustawień.
+*'''Mozilla, Firefox lub Safari''' – przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5'' lub ''Ctrl‐R'' (''Command‐R'' na Macu)
+*'''Google Chrome'''  – przytrzymaj wciśnięty ''Ctrl'', ''Shift'' i wciśnij ''R'' (''Command-Shift-R'' na Macu)
+*'''Internet Explorer''' – przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5''
+*'''Konqueror''' – naciśnij przycisk ''Odśwież'' lub wciśnij ''F5''
+*'''Opera''' – wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''",
 'usercssyoucanpreview'             => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
 'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
@@ -2168,11 +2170,11 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 
 # Protect
 'protectlogpage'              => 'Zabezpieczone',
-'protectlogtext'              => 'Poniżej znajduje się lista blokad założonych i zdjętych z pojedynczych stron.
-Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę wykazu [[Special:ProtectedPages|zabezpieczonych stron]].',
+'protectlogtext'              => 'Poniżej znajduje się lista zmian w zabezpieczeniu pojedynczych stron.
+Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages|zabezpieczonych stron]].',
 'protectedarticle'            => 'zabezpieczył [[$1]]',
 'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[$1]]',
-'unprotectedarticle'          => 'odbezpieczył [[$1]]',
+'unprotectedarticle'          => 'odbezpieczył „[[$1]]“',
 'movedarticleprotection'      => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title'               => 'Zmiana poziomu zabezpieczenia „$1”',
 'prot_1movedto2'              => 'stronę [[$1]] przeniósł do [[$2]]',
@@ -2318,7 +2320,7 @@ $1',
 'nolinkshere-ns'           => "Żadna strona nie odwołuje się do '''[[:$1]]''' w wybranej przestrzeni nazw.",
 'isredirect'               => 'strona przekierowująca',
 'istemplate'               => 'dołączony szablon',
-'isimage'                  => 'odnośnik z grafiki',
+'isimage'                  => 'link do pliku',
 'whatlinkshere-prev'       => '{{PLURAL:$1|poprzednie|poprzednie $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|następne|następne $1}}',
 'whatlinkshere-links'      => '← linkujące',
@@ -2661,7 +2663,7 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-ca-viewsource'           => 'Ta strona jest zabezpieczona. Możesz zobaczyć tekst źródłowy.',
 'tooltip-ca-history'              => 'Starsze wersje tej strony.',
 'tooltip-ca-protect'              => 'Zabezpiecz tę stronę.',
-'tooltip-ca-unprotect'            => 'Odbezpiecz tę stronę',
+'tooltip-ca-unprotect'            => 'Zmień zabezpieczenie strony',
 'tooltip-ca-delete'               => 'Usuń tę stronę',
 'tooltip-ca-undelete'             => 'Przywróć wersję tej strony sprzed usunięcia',
 'tooltip-ca-move'                 => 'Przenieś tę stronę.',
@@ -2942,7 +2944,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-fnumber-format'              => 'f&nbsp;/&nbsp;$1',
 'exif-exposureprogram'             => 'Program ekspozycji',
 'exif-spectralsensitivity'         => 'Czułość widmowa',
-'exif-isospeedratings'             => 'Szybkość aparatu zgodnie z ISO12232',
+'exif-isospeedratings'             => 'Czułość aparatu zgodnie z&nbsp;normą ISO&nbsp;12232',
 'exif-oecf'                        => 'Funkcja konwersji obrazu na dane zgodnie z ISO14524',
 'exif-shutterspeedvalue'           => 'Szybkość migawki',
 'exif-aperturevalue'               => 'Przysłona obiektywu',

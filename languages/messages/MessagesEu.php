@@ -290,7 +290,7 @@ $messages = array(
 'vector-action-move'         => 'Mugitu',
 'vector-action-protect'      => 'Babestu',
 'vector-action-undelete'     => 'Berreskuratu',
-'vector-action-unprotect'    => 'Babesgabetu',
+'vector-action-unprotect'    => 'Babesa aldatu',
 'vector-namespace-category'  => 'Kategoria',
 'vector-namespace-help'      => 'Laguntza-orria',
 'vector-namespace-image'     => 'Fitxategi',
@@ -336,8 +336,8 @@ $messages = array(
 'protect'           => 'Babestu',
 'protect_change'    => 'aldatu',
 'protectthispage'   => 'Orrialde hau babestu',
-'unprotect'         => 'Babesa kendu',
-'unprotectthispage' => 'Orrialde honi babesa kendu',
+'unprotect'         => 'Babesa aldatu',
+'unprotectthispage' => 'Orrialde honen babesa aldatu',
 'newpage'           => 'Orrialde berria',
 'talkpage'          => 'Orrialde honi buruz eztabaidatu',
 'talkpagelinktext'  => 'Eztabaida',
@@ -725,7 +725,7 @@ edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu]</s
 'noarticletext-nopermission'       => 'Une honetan ez dago texturik orri honetan.
 Beste orrietan [[Special:Search/{{PAGENAME}}|testua bilatu dezakezu]],
 edo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} erlazionatutako erregistroak ikusi]</span>.',
-'userpage-userdoesnotexist'        => '"$1" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
 'userpage-userdoesnotexist-view'   => '"$1" erabiltzaile-kontua ez dago erregistraturik.',
 'blocked-notice-logextract'        => 'Erabiltzaile hau blokeatuta dago une honetan.
 Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',

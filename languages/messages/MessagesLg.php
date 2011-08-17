@@ -173,7 +173,7 @@ $messages = array(
 'vector-action-move'       => 'Simbuliza',
 'vector-action-protect'    => 'Ssiba',
 'vector-action-undelete'   => 'Zawo',
-'vector-action-unprotect'  => 'Gyako ebikugizo',
+'vector-action-unprotect'  => 'Kyusa ebikugizo',
 'vector-namespace-main'    => 'Lupapula',
 'vector-view-create'       => 'Lukolewo',
 'vector-view-edit'         => 'Kyusa',
@@ -208,8 +208,8 @@ $messages = array(
 'protect'           => 'Ssiba',
 'protect_change'    => 'lusibe/lusumulule',
 'protectthispage'   => 'Siba olupapula luno',
-'unprotect'         => 'Gyako ebikugizo',
-'unprotectthispage' => 'Sumulula olupapula luno',
+'unprotect'         => 'Kyusa ebikugizo',
+'unprotectthispage' => 'Kyusa ebikugizo ebiri ku lupapula luno',
 'newpage'           => 'Lupapula lupya',
 'talkpage'          => "W'ebirowozo ku lupapula luno",
 'talkpagelinktext'  => 'Yogera nange',
@@ -615,7 +615,7 @@ Ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpap
 'noarticletext-nopermission'       => 'Wano tewali kyawandikidwawo.<br />
 Ky\'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula ndala oba
 oyinza <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} okukinoonyeza mu nkalala z\'ebifuddeyo ebyekuusana nakyo]</span>.',
-'userpage-userdoesnotexist'        => 'Akawunti y\'obwamemba "$1" teri mu nkalala za wiki eno.<br />
+'userpage-userdoesnotexist'        => 'Akawunti y\'obwamemba "<nowiki>$1</nowiki>" teri mu nkalala za wiki eno.<br />
 Sooka okakase oba ddala oyagala okukolawo olupapula olupya luno.',
 'userpage-userdoesnotexist-view'   => 'Tewali akawunti ey\'obwamemba "$1".',
 'blocked-notice-logextract'        => "Memba ono mu kaakano agaanidwa.<br />
@@ -624,7 +624,7 @@ Bino ebiddako bye ebikwata ku nsonga eyo mu lukalala lw'ebifuddeyo mu by'okugaan
 okukunkumula eggwanika ezzibizi erya kalambulanetti yo olyoke osobole okulaba enkyukakyuka z'okoze.<br />
 <br />
 '''Okukola kino mu ez'ekika kya Mozilla, Firefox ne Safari:''' Nyweza eppeesa erya ''Shift'' onyige ne ku kabonero<br />
-aka ''Reload'', oba nyigira okumu amapeesa aga ''Ctrl'' ne ''F5'' oba aga ''Ctrl'' ne ''R'' (''Command'' ne ''R'' ku kompyuta eya Macintosh/Apple);<br />
+aka ''Reload'', oba nyigira okumu amapeesa aga ''Ctrl'' ne ''F5'' oba aga ''Ctrl'' ne ''R'' (''Command'' ne ''R'' ku kompyuta eya Mac/Apple);<br />
 <br />
 '''Okukikolera mu ey'ekika kya Konqueror:''' Nyiga ku kabonero aka ''Reload'' oba nyiga eppeesa erya ''F5'';<br />
 <br />

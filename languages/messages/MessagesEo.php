@@ -783,7 +783,7 @@ aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
 'noarticletext-nopermission'       => 'Estas neniom da teksto en ĉi tiu paĝo.
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝan titolon]] en aliaj paĝoj,
 aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serĉi la rilatajn protokolojn]</span>.',
-'userpage-userdoesnotexist'        => 'Uzantokonto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti ĉi tiun paĝon.',
+'userpage-userdoesnotexist'        => 'Uzantokonto "<nowiki>$1</nowiki>" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti ĉi tiun paĝon.',
 'userpage-userdoesnotexist-view'   => 'Uzanto-konto "$1" ne estas registrita.',
 'blocked-notice-logextract'        => 'Ĉi tiu uzanto estas ĉi-momente forbarita.
 La lasta protokolero estas jene montrata por via referenco:',
@@ -2075,9 +2075,9 @@ La lasta redaktinto estis [[User:$3|$3]] ([[User talk:$3|diskuto]]{{int:pipe-sep
 'revertpage'        => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]',
 'revertpage-nouser' => 'Restarigita redaktoj de (salutnomo forigita) al lasta revizio de [[User:$1|$1]]',
 'rollback-success'  => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
-'sessionfailure'    => 'Ŝajnas ke estas problemo kun via ensalutado;
+'sessionfailure'    => 'Ŝajnas, ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
-Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
+Bonvolu alklaki la reirbutonon kaj reŝargi la paĝon el kiu vi venas, kaj provu denove.',
 
 # Protect
 'protectlogpage'              => 'Protokolo pri protektoj',
@@ -2499,7 +2499,7 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 # Thumbnails
 'thumbnail-more'           => 'Pligrandigi',
 'filemissing'              => 'Mankanta dosiero',
-'thumbnail_error'          => 'Okazis eraro kreante antaŭvidan bildeton: $1',
+'thumbnail_error'          => 'Okazis eraro ĉe kreado de antaŭvida bildeto: $1',
 'djvu_page_error'          => 'DjVu-a paĝo el intervalo',
 'djvu_no_xml'              => 'Ne povas akiri XML por DjVu dosiero',
 'thumbnail_invalid_params' => 'Nevalidaj bildetaj parametroj',
@@ -2748,7 +2748,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 
 # Metadata
 'metadata'          => 'Metadatenoj',
-'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonita de la cifereca fotilo aŭ skanilo uzata krei aux skani ĝin. Se la dosiero estis modifita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
+'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aux skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
 'metadata-expand'   => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',
 'metadata-fields'   => 'La jenaj EXIF-metadatumaj kampoj estos inkluzivitaj en bildo-paĝoj kiam la metadatuma tabelo estas disfaldigita. Aliaj estos kaŝita defaŭlte.
@@ -3251,7 +3251,7 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 # Database error messages
 'dberr-header'      => 'Ĉi tiu vikio havas problemon',
 'dberr-problems'    => 'Bedaŭrinde, ĉi tiu retejo suferas pro teknikaj problemoj.',
-'dberr-again'       => 'Bonvolu atendi kelkajn minutojn kaj reŝarĝi.',
+'dberr-again'       => 'Bonvolu atendi kelkajn minutojn kaj reŝargi.',
 'dberr-info'        => '(Ne povas kontakti la datenbazan servilon: $1)',
 'dberr-usegoogle'   => 'Vi povas serĉi Guglon dume.',
 'dberr-outofdate'   => 'Notu ke iliaj indeksoj de nia enhavo eble ne estas ĝisdatigaj.',

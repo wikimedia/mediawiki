@@ -13,6 +13,7 @@
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Amikeco
+ * @author Amire80
  * @author Assele
  * @author Chilin
  * @author Claymore
@@ -431,7 +432,7 @@ $messages = array(
 'vector-action-move'         => 'Переименовать',
 'vector-action-protect'      => 'Защитить',
 'vector-action-undelete'     => 'Восстановить',
-'vector-action-unprotect'    => 'Снять защиту',
+'vector-action-unprotect'    => 'Изменить защиту',
 'vector-namespace-category'  => 'Категория',
 'vector-namespace-help'      => 'Справочная страница',
 'vector-namespace-image'     => 'Файл',
@@ -477,8 +478,8 @@ $messages = array(
 'protect'           => 'Защитить',
 'protect_change'    => 'изменить',
 'protectthispage'   => 'Защитить эту страницу',
-'unprotect'         => 'Снять защиту',
-'unprotectthispage' => 'Снять защиту',
+'unprotect'         => 'Изменить защиту',
+'unprotectthispage' => 'Изменить защиту этой страницы',
 'newpage'           => 'Новая страница',
 'talkpage'          => 'Обсудить эту страницу',
 'talkpagelinktext'  => 'обсуждение',
@@ -784,7 +785,7 @@ $2',
 'extlink_tip'     => 'Внешняя ссылка (помните о префиксе http:// )',
 'headline_sample' => 'Текст заголовка',
 'headline_tip'    => 'Заголовок 2-го уровня',
-'math_sample'     => 'Вставьте сюда формулу',
+'math_sample'     => 'Введите сюда формулу',
 'math_tip'        => 'Математическая формула (формат LaTeX)',
 'nowiki_sample'   => 'Вставьте сюда текст, который не нужно форматировать',
 'nowiki_tip'      => 'Игнорировать вики-форматирование',
@@ -871,11 +872,16 @@ $2',
 'noarticletext-nopermission'       => 'В настоящее время на этой странице нет текста.
 Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] в других статьях,
 или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].</span>',
-'userpage-userdoesnotexist'        => 'Учётной записи «$1» не существует. Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
+'userpage-userdoesnotexist'        => 'Учётной записи «<nowiki>$1</nowiki>» не существует. Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
 'userpage-userdoesnotexist-view'   => 'Не зарегистрировано учётной записи участника «$1».',
 'blocked-notice-logextract'        => 'Этот участник в данный момент заблокирован.
 Ниже приведена последняя запись из журнала блокировок:',
-'clearyourcache'                   => "'''Замечание:''' Чтобы после сохранения сделанные изменения вступили в силу, очистите кеш своего браузера: '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Safari''': ''Cmd+Shift+R'', '''Konqueror''': ''F5'', '''Opera''': через меню ''Tools→Preferences''.",
+'clearyourcache'                   => "'''Замечание.''' Возможно, вам придётся очистите кеш своего браузера, чтобы увидеть изменения.
+* '''Firefox / Safari.''' Удерживая клавишу ''Shift'' нажмите на панели инструментов ''Обновить'', или нажмите ''Ctrl-F5'' или ''Ctrl-R'' (''Command-R'' на Mac)
+* '''Google Chrome.''' Нажмите ''Ctrl-Shift-R'' (''Command-Shift-R'' на Mac)
+* '''Internet Explorer.''' Удерживая ''Ctrl'' нажмите ''Обновить'', или нажмите ''Ctrl-F5''
+* '''Konqueror.''' Нажмите ''Обновить'' или ''F5''
+* '''Opera.''' Выберите очистку кеша в меню ''Инструменты → Настройки''",
 'usercssyoucanpreview'             => "'''Подсказка.''' Нажмите кнопку «{{int:showpreview}}», чтобы проверить ваш новый CSS-файл перед сохранением.",
 'userjsyoucanpreview'              => "'''Подсказка.''' Нажмите кнопку «{{int:showpreview}}», чтобы проверить ваш новый JS-файл перед сохранением.",
 'usercsspreview'                   => "'''Помните, что это только предварительный просмотр вашего CSS-файла, он ещё не сохранён!'''",
@@ -1030,7 +1036,7 @@ $3 указал следующую причину: ''$2''",
 'rev-deleted-comment'         => '(описание правки удалено)',
 'rev-deleted-user'            => '(имя автора стёрто)',
 'rev-deleted-event'           => '(запись удалена)',
-'rev-deleted-user-contribs'   => '[имя участника или IP-адрес удалёны — правка скрыта со страницы вклада]',
+'rev-deleted-user-contribs'   => '[имя участника или IP-адрес удалены — правка скрыта со страницы вклада]',
 'rev-deleted-text-permission' => "Эта версия страницы была '''удалена'''.
 Возможно, объяснения даны в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
 'rev-deleted-text-unhide'     => "Эта версия страницы была '''удалена'''.
@@ -2191,7 +2197,8 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => 'Журнал защиты',
-'protectlogtext'              => 'Ниже приведён журнал установок и снятий защиты со статей. Вы можете также просмотреть [[Special:ProtectedPages|список страниц, которые в данный момент защищены]].',
+'protectlogtext'              => 'Ниже приведён журнал изменений защиты страницы.
+Вы можете также просмотреть [[Special:ProtectedPages|список страниц, которые в данный момент защищены]].',
 'protectedarticle'            => 'защищена страница «[[$1]]»',
 'modifiedarticleprotection'   => 'изменён уровень защиты страницы «[[$1]]»',
 'unprotectedarticle'          => 'снята защита с «[[$1]]»',
@@ -2336,7 +2343,7 @@ $1',
 'nolinkshere-ns'           => "В выбранном пространстве имён нет страниц, ссылающихся на '''[[:$1]]'''.",
 'isredirect'               => 'страница-перенаправление',
 'istemplate'               => 'включение',
-'isimage'                  => 'ссылка для изображения',
+'isimage'                  => 'файловая ссылка',
 'whatlinkshere-prev'       => '{{PLURAL:$1|предыдущая|предыдущие|предыдущие}} $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|следующая|следующие|следующие}} $1',
 'whatlinkshere-links'      => '← ссылки',
@@ -2677,7 +2684,7 @@ $1',
 'tooltip-ca-viewsource'           => 'Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст',
 'tooltip-ca-history'              => 'Журнал изменений страницы',
 'tooltip-ca-protect'              => 'Защитить страницу от изменений',
-'tooltip-ca-unprotect'            => 'Снять защиту с этой страницы',
+'tooltip-ca-unprotect'            => 'Изменить защиту этой страницы',
 'tooltip-ca-delete'               => 'Удалить эту страницу',
 'tooltip-ca-undelete'             => 'Восстановить исправления страницы, сделанные до того, как она была удалена',
 'tooltip-ca-move'                 => 'Переименовать страницу',

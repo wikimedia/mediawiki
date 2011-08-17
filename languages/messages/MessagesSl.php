@@ -308,7 +308,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'vector-action-move'         => 'Prestavi',
 'vector-action-protect'      => 'Zaščiti',
 'vector-action-undelete'     => 'Vrni',
-'vector-action-unprotect'    => 'Odstrani zaščito',
+'vector-action-unprotect'    => 'Spremeni zaščito',
 'vector-namespace-category'  => 'Kategorija',
 'vector-namespace-help'      => 'Stran s pomočjo',
 'vector-namespace-image'     => 'Datoteka',
@@ -354,8 +354,8 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'protect'           => 'Zaščiti',
 'protect_change'    => 'spremeni zaščito',
 'protectthispage'   => 'Zaščiti stran',
-'unprotect'         => 'Odstrani zaščito',
-'unprotectthispage' => 'Odstrani zaščito strani',
+'unprotect'         => 'Spremeni zaščito',
+'unprotectthispage' => 'Spremeni zaščito strani',
 'newpage'           => 'Nova stran',
 'talkpage'          => 'Pogovorite se o strani',
 'talkpagelinktext'  => 'Pogovor',
@@ -753,12 +753,17 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'noarticletext'                    => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v dnevniških zapisih] ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite]</span>.',
 'noarticletext-nopermission'       => 'Na tej strani ni trenutno nobenega besedila.
 Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov te strani]] v drugih straneh, ali <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} poiskati v povezanih dnevniških zapisih]</span>.',
-'userpage-userdoesnotexist'        => 'Uporabniški račun »$1« ni registriran.
+'userpage-userdoesnotexist'        => 'Uporabniški račun »<nowiki>$1</nowiki>« ni registriran.
 Prosimo preverite, ali res želite ustvariti/urediti to stran.',
 'userpage-userdoesnotexist-view'   => 'Uporabniški račun »$1« ni registriran.',
 'blocked-notice-logextract'        => 'Ta uporabnik je trenutno blokiran.
 Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
-'clearyourcache'                   => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika: '''Mozilla/Safari:''' držite ''Shift'' in kliknite ''Reload'' (ali pritisnite ''Ctrl-Shift-R''), '''Internet Explorer:''' ''Ctrl-F5'', '''Opera/Konqueror:''' ''F5''.",
+'clearyourcache'                   => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika.
+* '''Firefox/Safari:''' držite ''Shift'' in kliknite ''Ponovno naloži'' (''Reload'') ali pritisnite ''Ctrl-Shift-R'' ali ''Ctrl-R'' (''Command-R'' na sistemu Mac)
+* '''Internet Explorer:''' držite ''Ctrl-F5'' in kliknite ''Osveži'' (''Refresh'') ali pritisnite ''Ctrl-F5''
+* '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na sistemu Mac)
+* '''Konqueror:''' kliknite ''Ponovno naloži'' (''Reload'') ali pritisnite ''F5''.
+* '''Opera:''' počistite predpomnilnik v ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Nasvet:''' Za preizkušanje svojega novega CSS pred shranjevanjem uporabite gumb »{{int:showpreview}}«.",
 'userjsyoucanpreview'              => "'''Nasvet:''' Za preizkušanje svojega novega JavaScripta pred shranjevanjem uporabite gumb »{{int:showpreview}}«.",
 'usercsspreview'                   => "'''Svoj uporabniški CSS le predogledujete.'''
@@ -883,7 +888,7 @@ Razlog, ki ga je podal $3, je ''$2''.",
 'currentrev'             => 'Trenutna redakcija',
 'currentrev-asof'        => 'Trenutna redakcija s časom $1',
 'revisionasof'           => 'Redakcija: $1',
-'revision-info'          => 'Redakcija iz $1 od $2',
+'revision-info'          => 'Redakcija dne $1 od $2',
 'previousrevision'       => '← Starejša redakcija',
 'nextrevision'           => 'Novejša redakcija →',
 'currentrevisionlink'    => 'poglejte trenutno redakcijo',
@@ -1839,7 +1844,7 @@ Prosimo, upoštevajte, da se lahko druge spletne strani povezujejo na datoteko z
 'booksources'               => 'Viri knjig',
 'booksources-search-legend' => 'Išči knjižne vire',
 'booksources-go'            => 'Pojdi',
-'booksources-text'          => 'Sledi seznam povezav do drugi spletnih strani, ki prodajajo nove in rabljene knjige, in imajo morda nadaljne informacije o knjigah, ki jih iščete:',
+'booksources-text'          => 'Sledi seznam povezav do drugi spletnih strani, ki prodajajo nove in rabljene knjige, in imajo morda nadaljnje informacije o knjigah, ki jih iščete:',
 'booksources-invalid-isbn'  => 'Za dani ISBN se ne zdi, da je veljaven; preverite za morebitne napake pri kopiranju iz prvotnega vira.',
 
 # Special:Log
@@ -2091,11 +2096,11 @@ vrnjeno na urejanje uporabnika $2.',
 
 # Protect
 'protectlogpage'              => 'Dnevnik zaščit strani',
-'protectlogtext'              => 'Prikazan je seznam zaščit in odstranitev zaščit strani.
+'protectlogtext'              => 'Prikazan je seznam sprememb zaščit strani.
 Oglejte si [[Special:ProtectedPages|seznam zaščitenih strani]] za seznam trenutno zaščitenih strani.',
 'protectedarticle'            => 'je zaščitil(-a) stran »[[$1]]«',
 'modifiedarticleprotection'   => 'spremenjena stopnja zaščite »[[$1]]«',
-'unprotectedarticle'          => 'Zaščita strani $1 je odstranjena.',
+'unprotectedarticle'          => 'odstranil(-a) zaščito »[[$1]]«',
 'movedarticleprotection'      => 'nastavitve zaščite so prestavljene iz »[[$2]]« na »[[$1]]«',
 'protect-title'               => 'Zaščita strani »$1«',
 'prot_1movedto2'              => 'je prestavil(-a) [[$1]] na [[$2]]',
@@ -2104,7 +2109,7 @@ Oglejte si [[Special:ProtectedPages|seznam zaščitenih strani]] za seznam trenu
 'protectexpiry'               => 'Poteče:',
 'protect_expiry_invalid'      => 'Čas izteka je neveljaven.',
 'protect_expiry_old'          => 'Čas izteka je v preteklosti.',
-'protect-unchain-permissions' => 'Odkleni nadaljne možnosti zaščite',
+'protect-unchain-permissions' => 'Odkleni nadaljnje možnosti zaščite',
 'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Med blokado ne morete spreminjati stopenj zaščite.
 To so trenutne nastavitve za stran '''$1''':",
@@ -2245,7 +2250,7 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'nolinkshere-ns'           => "Nobena stran se ne povezuje na '''[[:$1]]''' v izbranem imenskem prostoru.",
 'isredirect'               => 'preusmeritvena stran',
 'istemplate'               => 'vključitev',
-'isimage'                  => 'povezava na sliko',
+'isimage'                  => 'povezava na datoteko',
 'whatlinkshere-prev'       => '{{PLURAL:$1|prejšnji|prejšnja $1|prejšnji $1|prejšnjih $1|prejšnjih $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|naslednji|naslednja $1|naslednji $1|naslednjih $1|naslednjih $1}}',
 'whatlinkshere-links'      => '← povezave',
@@ -2437,7 +2442,7 @@ Prosimo, združite ju ročno.'''",
 'move-talk-subpages'           => 'Premakni podstrani pogovorne strani (do $1)',
 'movepage-page-exists'         => 'Stran $1 že obstaja in je ni mogoče samodejno prepisati.',
 'movepage-page-moved'          => 'Stran $1 je bila prestavljena na $2.',
-'movepage-page-unmoved'        => 'Strani $1 ni bilo mogoče premakniti na $2.',
+'movepage-page-unmoved'        => 'Strani $1 ni bilo mogoče prestaviti na $2.',
 'movepage-max-pages'           => '{{PLURAL:$1|Premaknjena je bila največ $1 stran|Premaknjeni sta bili največ $1 strani|Premaknjene so bile največ $1 strani|Premaknjenih je bilo največ $1 strani}} in nobena več ne bo samodejno premaknjena.',
 '1movedto2'                    => 'je prestavil(-a) [[$1]] na [[$2]]',
 '1movedto2_redir'              => 'je prestavil(-a) [[$1]] na [[$2]] čez preusmeritev',
@@ -2593,7 +2598,7 @@ Prosimo, poskusite znova.',
 'tooltip-ca-viewsource'           => 'Stran je zaščitena, ogledate si lahko njeno izvorno kodo',
 'tooltip-ca-history'              => 'Prejšnje redakcije strani',
 'tooltip-ca-protect'              => 'Zaščitite stran',
-'tooltip-ca-unprotect'            => 'Odstranite zaščito strani',
+'tooltip-ca-unprotect'            => 'Spremenite zaščito strani',
 'tooltip-ca-delete'               => 'Brišite stran',
 'tooltip-ca-undelete'             => 'Obnovite pred izbrisom napravljena urejanja strani.',
 'tooltip-ca-move'                 => 'Preimenujte stran',
@@ -2765,7 +2770,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 
 Upoštevane so le postavke seznama (vrstice, ki se začnejo z *).
 Prva povezava v vrstici mora biti povezava do neželene datoteke.
-Vse nadaljne povezave v isti vrstici se štejejo za izjeme, tj. za strani, kjer je datoteka lahko vključena.',
+Vse nadaljnje povezave v isti vrstici se štejejo za izjeme, tj. za strani, kjer je datoteka lahko vključena.',
 
 # Metadata
 'metadata'          => 'Metapodatki',

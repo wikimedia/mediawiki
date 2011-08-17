@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Diebuche
  * @author Don Alessandro
  * @author GerardM
  * @author Iltever
@@ -624,7 +625,7 @@ $2',
 'noarticletext-nopermission'       => 'Бусагъатда бу бетде текст джокъду.
 Сиз [[Special:Search/{{PAGENAME}}|бу атны таныгъан]] башха статьяланы,
 неда <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналлада джазылгъанланы]</span> табаргъа боллукъсуз.',
-'userpage-userdoesnotexist'        => '«$1» тергеу джазыу (аккаунт) джокъду. Къураргъа/тюрлендирирге излеймисиз бу бетни?',
+'userpage-userdoesnotexist'        => '«<nowiki>$1</nowiki>» тергеу джазыу (аккаунт) джокъду. Къураргъа/тюрлендирирге излеймисиз бу бетни?',
 'userpage-userdoesnotexist-view'   => '«$1» тергеу джазыу (аккаунт) джокъду.',
 'blocked-notice-logextract'        => 'Бу къошулуучу бусагъатда блокланыб турады.
 Тюбюнде блокланыуланы журналындан ахыр джазыу бериледи:',
@@ -2988,7 +2989,7 @@ $1',
 'confirm-purge-bottom' => 'Бетни кеши кетерилгенден сора, андан сора келген версиясы кёргюзюллюкдю.',
 
 # Separators for various lists, etc.
-'catseparator'        => '|',
+'catseparator'        => '',
 'semicolon-separator' => ';&#32;',
 'percent'             => '$1%',
 'parentheses'         => '($1)',

@@ -212,7 +212,7 @@ $messages = array(
 'tog-numberheadings'          => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar'             => 'Mostrar a caixa de ferramentas de edición (JavaScript)',
 'tog-editondblclick'          => 'Editar as páxinas logo de facer dobre clic (JavaScript)',
-'tog-editsection'             => 'Permitir a edición de seccións vía as ligazóns [editar]',
+'tog-editsection'             => 'Permitir a edición de seccións mediante as ligazóns "[editar]"',
 'tog-editsectiononrightclick' => 'Permitir a edición de seccións premendo co botón dereito <br /> nos títulos das seccións (JavaScript)',
 'tog-showtoc'                 => 'Mostrar o índice (para páxinas con máis de tres cabeceiras)',
 'tog-rememberpassword'        => 'Lembrar o meu contrasinal neste ordenador',
@@ -367,7 +367,7 @@ $messages = array(
 'vector-action-move'         => 'Mover',
 'vector-action-protect'      => 'Protexer',
 'vector-action-undelete'     => 'Restaurar',
-'vector-action-unprotect'    => 'Desprotexer',
+'vector-action-unprotect'    => 'Cambiar a protección',
 'vector-namespace-category'  => 'Categoría',
 'vector-namespace-help'      => 'Páxina de axuda',
 'vector-namespace-image'     => 'Ficheiro',
@@ -413,8 +413,8 @@ $messages = array(
 'protect'           => 'Protexer',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Protexer esta páxina',
-'unprotect'         => 'desprotexer',
-'unprotectthispage' => 'Desprotexer esta páxina',
+'unprotect'         => 'Cambiar a protección',
+'unprotectthispage' => 'Cambiar a protección desta páxina',
 'newpage'           => 'Páxina nova',
 'talkpage'          => 'Conversar sobre esta páxina',
 'talkpagelinktext'  => 'Conversa',
@@ -711,7 +711,7 @@ Por favor, agarde antes de probar outra vez.',
 'resetpass_submit'          => 'Poñer o contrasinal e entrar',
 'resetpass_success'         => 'O cambio do contrasinal realizouse con éxito! Agora pode entrar...',
 'resetpass_forbidden'       => 'Os contrasinais non poden ser mudados',
-'resetpass-no-info'         => 'Debe acceder ao sistema para acceder directamente a esta páxina.',
+'resetpass-no-info'         => 'Debe rexistrarse para acceder directamente a esta páxina.',
 'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
 'resetpass-submit-cancel'   => 'Cancelar',
 'resetpass-wrong-oldpass'   => 'O contrasinal temporal ou actual é incorrecto.
@@ -816,15 +816,16 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 'noarticletext-nopermission'       => 'Actualmente non hai ningún texto nesta páxina.
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>.',
-'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
+'userpage-userdoesnotexist'        => 'A conta do usuario "<nowiki>$1</nowiki>" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'userpage-userdoesnotexist-view'   => 'A conta de usuario "$1" non está rexistrada.',
 'blocked-notice-logextract'        => 'Este usuario está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
-'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
-'''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh);
-'''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5'';
-'''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias'';
-'''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nota:''' Despois de gardar, cómpre limpar a memoria caché do seu navegador para ver os cambios.
+* '''Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Mac)
+* '''Google Chrome:''' prema en ''Ctrl-Shift-R'' (''Command-Shift-R'' nos Mac)
+* '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
+* '''Konqueror:''' prema en ''Recargar'' ou prema en ''F5''
+* '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''",
 'usercssyoucanpreview'             => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
 'userjsyoucanpreview'              => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
@@ -2155,11 +2156,11 @@ Prema no botón "atrás", volva cargar a páxina da que proviña e inténteo de 
 
 # Protect
 'protectlogpage'              => 'Rexistro de proteccións',
-'protectlogtext'              => 'Embaixo móstrase unha lista dos bloqueos e desbloqueos de páxinas.
+'protectlogtext'              => 'A continuación móstrase a lista cos cambios de protección nas páxinas.
 Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a lista coas proteccións de páxinas vixentes.',
 'protectedarticle'            => 'protexeu "[[$1]]"',
 'modifiedarticleprotection'   => 'modificou o nivel de protección de "[[$1]]"',
-'unprotectedarticle'          => 'desprotexeu "[[$1]]"',
+'unprotectedarticle'          => 'eliminou a protección de "[[$1]]"',
 'movedarticleprotection'      => 'cambiou as características da protección de "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Cambiar o nivel de protección de "$1"',
 'prot_1movedto2'              => 'moveu "[[$1]]" a "[[$2]]"',
@@ -2304,7 +2305,7 @@ $1',
 'nolinkshere-ns'           => "Ningunha páxina liga con \"'''[[:\$1]]'''\" no espazo de nomes elixido.",
 'isredirect'               => 'páxina redirixida',
 'istemplate'               => 'inclusión',
-'isimage'                  => 'ligazón á imaxe',
+'isimage'                  => 'ligazón ao ficheiro',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|seguinte|$1 seguintes}}',
 'whatlinkshere-links'      => '← ligazóns',
@@ -2642,7 +2643,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-ca-viewsource'           => 'Esta páxina está protexida. Pode ver o código fonte.',
 'tooltip-ca-history'              => 'Versións anteriores desta páxina',
 'tooltip-ca-protect'              => 'Protexer esta páxina',
-'tooltip-ca-unprotect'            => 'Desprotexer esta páxina',
+'tooltip-ca-unprotect'            => 'Cambiar a protección desta páxina',
 'tooltip-ca-delete'               => 'Eliminar esta páxina',
 'tooltip-ca-undelete'             => 'Restaurar as edicións feitas nesta páxina antes de que fose eliminada',
 'tooltip-ca-move'                 => 'Mover esta páxina',
@@ -2684,9 +2685,9 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-preview'                 => 'Vista previa dos seus cambios; por favor, úsea antes de gravalos!',
 'tooltip-diff'                    => 'Mostrar os cambios que fixo no texto',
 'tooltip-compareselectedversions' => 'Ver as diferenzas entre dúas versións seleccionadas desta páxina',
-'tooltip-watch'                   => 'Engadir esta páxina á súa lista de vixilancia [alt-w]',
+'tooltip-watch'                   => 'Engadir esta páxina á súa lista de vixilancia',
 'tooltip-recreate'                => 'Recrear a páxina a pesar de que foi borrada',
-'tooltip-upload'                  => 'Comezar a enviar',
+'tooltip-upload'                  => 'Iniciar o envío',
 'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último colaborador.',
 'tooltip-undo'                    => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
 
@@ -3205,6 +3206,9 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'confirm_purge_button' => 'Si',
 'confirm-purge-top'    => 'Quere limpar a memoria caché desta páxina?',
 'confirm-purge-bottom' => 'Ao purgar unha páxina, límpase a memoria caché e isto obriga tamén a que apareza a versión máis recente da páxina.',
+
+# Separators for various lists, etc.
+'colon-separator' => ':&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',

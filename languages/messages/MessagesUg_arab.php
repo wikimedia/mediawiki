@@ -671,13 +671,13 @@ $2',
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} بۇ بەتنى تەھرىرلىيەلەيسىز]</span>',
 'noarticletext-nopermission'       => 'بۇ بەتتە ھازىرچە مەزمۇن يوق.
  سىز باشقا بەتتە [[Special:Search/{{PAGENAME}}|بۇ بەتنىڭ ماۋزۇسىنى ئىزدىيەلەيسىز]] ياكى <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}] مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،</span>',
-'userpage-userdoesnotexist'        => '"$1" ئىشلەتكۈچى خەتلەتمىگەن.
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" ئىشلەتكۈچى خەتلەتمىگەن.
 بۇ بەتنى قۇرۇش/تەھرىرلەشتىن ئىلگىرى تەكشۈرۈپ بېقىڭ.',
 'userpage-userdoesnotexist-view'   => '"$1" ئىشلەتكۈچى ھېساباتى خەتلەتمىگەن.',
 'blocked-notice-logextract'        => 'بۇ ئىشلەتكۈچى نۆۋەتتە چەكلەنگەن.
 پايدىلىنىش ئۈچۈن يېقىنقى تۆۋەندە چەكلەش خاتىرە تۈرلىرى تەمىنلەندى:',
 'clearyourcache'                   => "'''دىققەت - ساقلىغاندىن كېيىن، تور كۆرگۈنىڭ غەملىكىنى تازىلىغاندىن كېيىنلا ئاندىن ئېلىپ بارغان ئۆزگەرتىشنى كۆرەلەيسىز.'''
-'''Mozilla / Firefox / Safari:''' دا ''Shift'' كۇنۇپكىسىنى بېسىپ تۇرۇپ ''قايتا يۈكلە''نى ياكى ''Ctrl-F5'' ياكى ''Ctrl-R'' (''Macintosh تا Command-R'');
+'''Mozilla / Firefox / Safari:''' دا ''Shift'' كۇنۇپكىسىنى بېسىپ تۇرۇپ ''قايتا يۈكلە''نى ياكى ''Ctrl-F5'' ياكى ''Ctrl-R'' (''Mac تا Command-R'');
 '''Konqueror: دا ''' ''قايتا يۈكلە'' ياكى ''F5'';
 '''Opera:''' دا ''قورال → مايىللىق'';
 '''Internet Explorer:''' دا ''Ctrl'' نى بېسىپ تۇرۇپ ''يېڭىلا,'' ياكى ''Ctrl-F5'' نى بېسىڭ.",

@@ -15,6 +15,7 @@
  * @author Pbdragonwang
  * @author PhiLiP
  * @author Roc michael
+ * @author Shizhao
  * @author Urhixidur
  * @author Wong128hk
  * @author Zerng07
@@ -329,7 +330,7 @@ $messages = array(
 'noarticletext'              => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
-'userpage-userdoesnotexist'  => '使用者帳號「$1」未曾建立。請在建立／編輯這個頁面前先檢查一下。',
+'userpage-userdoesnotexist'  => '使用者帳號「<nowiki>$1</nowiki>」未曾建立。請在建立／編輯這個頁面前先檢查一下。',
 'clearyourcache'             => "'''注意:''' 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。 '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''(或按下''Ctrl-Shift-R''，在蘋果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需點擊 ''重新整理''；'''Opera:''' 使用者需要在 ''工具-設定'' 中完整地清除它們的快取。",
 'usercsspreview'             => "'''注意您只是在預覽您的個人 CSS, 還沒有儲存﹗'''",
 'userjspreview'              => "'''注意您只是在測試／預覽您的個人 JavaScript，還沒有儲存﹗'''",
@@ -340,6 +341,7 @@ $messages = array(
 'session_fail_preview_html'  => "'''很抱歉！部份資料已遺失，我們無法處理您的編輯。''''''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。'''",
 'token_suffix_mismatch'      => "'''由於您使用者端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網路為主的匿名代理服務的時候。'''",
+'editing'                    => '正在编辑 $1',
 'editingcomment'             => '正在編輯$1（新段落）',
 'storedversion'              => '已保存版本',
 'nonunicodebrowser'          => "'''警告: 您的瀏覽器不相容Unicode編碼。這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。'''",

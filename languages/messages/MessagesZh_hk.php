@@ -11,6 +11,7 @@
  * @author Kayau
  * @author Mark85296341
  * @author PhiLiP
+ * @author Shizhao
  * @author Waihorace
  * @author Wong128hk
  * @author Yukiseaside
@@ -83,10 +84,16 @@ $messages = array(
 'nav-login-createaccount' => '登入／創造帳戶',
 'userlogin'               => '登入／創造帳戶',
 
+# Edit pages
+'editing' => '正在編輯 $1',
+
 # Revision deletion
+'rev-deleted-comment'     => '（註釋已除）',
+'rev-deleted-event'       => '（日誌已除）',
 'revdelete-suppress-text' => "壓制'''只'''應用於以下的情況:
 * 不合適的個人資料
 *: ''地址、電話號碼、身份證號碼等。''",
+'revdelete-logentry'      => '已更改「[[$1]]」之修訂可見度',
 
 # Diffs
 'editundo' => '撤銷',

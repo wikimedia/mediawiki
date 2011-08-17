@@ -20,6 +20,7 @@
  * @author Ragimiri
  * @author Reaperman
  * @author Urhixidur
+ * @author Utar
  * @author לערי ריינהארט
  */
 
@@ -498,7 +499,7 @@ $messages = array(
 'vector-action-move'         => 'Přesunout',
 'vector-action-protect'      => 'Zamknout',
 'vector-action-undelete'     => 'Obnovit',
-'vector-action-unprotect'    => 'Odemknout',
+'vector-action-unprotect'    => 'Změnit zámek',
 'vector-namespace-category'  => 'Kategorie',
 'vector-namespace-help'      => 'Nápověda',
 'vector-namespace-image'     => 'Soubor',
@@ -544,8 +545,8 @@ $messages = array(
 'protect'           => 'Zamknout',
 'protect_change'    => 'změnit',
 'protectthispage'   => 'Zamknout stránku',
-'unprotect'         => 'Odemknout',
-'unprotectthispage' => 'Odemknout stránku',
+'unprotect'         => 'Změnit zámek',
+'unprotectthispage' => 'Změnit zámek této stránky',
 'newpage'           => 'Nová stránka',
 'talkpage'          => 'Diskusní stránka',
 'talkpagelinktext'  => 'diskuse',
@@ -923,11 +924,15 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'noarticletext-nopermission'       => 'Tato stránka zatím neobsahuje žádný text.
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách nebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si prohlédnout příslušné protokolovací záznamy]</span>.',
-'userpage-userdoesnotexist'        => 'Uživatelský účet „$1“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
+'userpage-userdoesnotexist'        => 'Uživatelský účet „<nowiki>$1</nowiki>“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'userpage-userdoesnotexist-view'   => 'Uživatelský účet „$1“ není zaregistrován.',
 'blocked-notice-logextract'        => 'Tento uživatel je momentálně zablokován.
 Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
-'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
+'clearyourcache'                   => "'''Poznámka: Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte.'''
+'''Mozilla / Firefox / Safari:''' při kliknutí na ''Aktualizovat'' držte ''Shift'', nebo stiskněte ''Ctrl-F5'' nebo ''Ctrl-R'' (na Macintoshi ''Command-R'');
+'''Konqueror''': klikněte na ''Aktualizovat'' nebo stiskněte ''F5'';
+'''Opera:''' smažte obsah cache v menu ''Nástroje → Nastavení'';
+'''Internet Explorer:''' při kliknutí na ''Aktualizovat'' držte ''Ctrl'', nebo stiskněte ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového CSS před uložením.",
 'userjsyoucanpreview'              => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového JavaScriptu před uložením.",
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
@@ -2216,7 +2221,8 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 
 # Protect
 'protectlogpage'              => 'Kniha zamčení',
-'protectlogtext'              => 'Níže je uveden seznam všech zamčení a odemčení stránek.',
+'protectlogtext'              => 'Níže je uveden seznam všech změn zámků stránek.
+Můžete si prohlédnout též [[Special:ProtectedPages|seznam aktuálně platných zámků]].',
 'protectedarticle'            => 'zamyká „[[$1]]“',
 'modifiedarticleprotection'   => 'mění zámek stránky „[[$1]]“',
 'unprotectedarticle'          => 'odemyká „[[$1]]“',
@@ -2237,7 +2243,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-cascadeon'           => 'Tato stránka je právě zamčena, protože je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
 'protect-default'             => 'Povolit všem',
-'protect-fallback'            => 'Vyžaduje povolení "$1"',
+'protect-fallback'            => 'Vyžaduje oprávnění „$1“',
 'protect-level-autoconfirmed' => 'Zakázat novým a neregistrovaným uživatelům',
 'protect-level-sysop'         => 'Pouze správci',
 'protect-summary-cascade'     => 'kaskádový',
@@ -2357,7 +2363,7 @@ $1',
 'nolinkshere-ns'           => "Ve zvoleném jmenném prostoru na '''[[:$1]]''' neodkazuje žádná stránka.",
 'isredirect'               => 'přesměrování',
 'istemplate'               => 'vložení',
-'isimage'                  => 'vložení souboru',
+'isimage'                  => 'odkaz na soubor',
 'whatlinkshere-prev'       => '{{PLURAL:$1|předchozí|předchozí $1|předchozích $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|následující|následující $1|následujících $1}}',
 'whatlinkshere-links'      => '← odkazy',
@@ -2684,7 +2690,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'tooltip-ca-viewsource'           => 'Tato stránka je zamčena. Můžete si prohlédnout její zdrojový kód.',
 'tooltip-ca-history'              => 'Starší verze této stránky.',
 'tooltip-ca-protect'              => 'Zamknout tuto stránku.',
-'tooltip-ca-unprotect'            => 'Odemknout tuto stránku.',
+'tooltip-ca-unprotect'            => 'Změnit zámek této stránky.',
 'tooltip-ca-delete'               => 'Smazat tuto stránku.',
 'tooltip-ca-undelete'             => 'Obnovit editace této stránky provedené před jejím smazáním.',
 'tooltip-ca-move'                 => 'Přesunout tuto stránku',
@@ -2722,9 +2728,9 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'tooltip-ca-nstab-help'           => 'Zobrazit stránku nápovědy.',
 'tooltip-ca-nstab-category'       => 'Zobrazit kategorii.',
 'tooltip-minoredit'               => 'Označit změnu jako malou editaci',
-'tooltip-save'                    => 'Kliknutím na toto tlačítko uložíte na trvalo své změny',
-'tooltip-preview'                 => 'Kliknutím na toto tlačítko zobrazíte náhled svých změn; používejte ho, prosíme, před uložením!',
-'tooltip-diff'                    => 'Zobrazit, jaké změny jste v textu provedli.',
+'tooltip-save'                    => 'Uložit vaše změny',
+'tooltip-preview'                 => 'Zobrazit náhled vašich změn; prosíme, zobrazte si ho před uložením!',
+'tooltip-diff'                    => 'Zobrazit, jaké změny jste v textu provedli',
 'tooltip-compareselectedversions' => 'Podívat se na rozdíly mezi dvěma vybranými verzemi této stránky.',
 'tooltip-watch'                   => 'Přidat stránku do seznamu sledovaných',
 'tooltip-recreate'                => 'Obnovit stánku i když byla smazána',

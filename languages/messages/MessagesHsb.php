@@ -345,8 +345,8 @@ $messages = array(
 'protect'           => 'škitać',
 'protect_change'    => 'změnić',
 'protectthispage'   => 'Stronu škitać',
-'unprotect'         => 'škit zběhnyć',
-'unprotectthispage' => 'Škit strony zběhnyć',
+'unprotect'         => 'Škit wotstronić',
+'unprotectthispage' => 'Tutu stronu hižo nješkitać',
 'newpage'           => 'Nowa strona',
 'talkpage'          => 'diskusija',
 'talkpagelinktext'  => 'diskusija',
@@ -715,10 +715,14 @@ Hesło za tute nowe konto da so na stronje ''[[Special:ChangePassword|hesło zm�
 'noarticletext'                    => 'Tuchwilu tuta strona žadyn tekst njewobsahuje, móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony na druhich stronach pytać]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wotpowědne protokole pytać] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tutu stronu wobdźěłać]</span>.',
 'noarticletext-nopermission'       => 'Tuchwilu žadyn tekst na tutej stronje njeje.
 Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>.',
-'userpage-userdoesnotexist'        => 'Wužiwarske konto „$1“ njeje zregistrowane. Prošu pruwuj, hač chceš tutu stronu woprawdźe wutworić/wobdźěłać.',
+'userpage-userdoesnotexist'        => 'Wužiwarske konto „<nowiki>$1</nowiki>“ njeje zregistrowane. Prošu pruwuj, hač chceš tutu stronu woprawdźe wutworić/wobdźěłać.',
 'userpage-userdoesnotexist-view'   => 'Wužiwarske konto "$1" njeje zregistrowane.',
 'blocked-notice-logextract'        => 'Tutón wužiwar je tuchwilu zablokowany. Najnowši protokolowy zapisk so deleka jako referenca podawa:',
-'clearyourcache'                   => '<b>Kedźbu:</b> Po składowanju dyrbiš snano pufrowak swojeho wobhladowaka wuprózdnić, <b>Mozilla/Firefox/Safari:</b> tłóč na <i>Umsch</i> kliknjo na <i>Znowa</i> abo tłóč <i>Strg-Umsch-R</i> (<i>Cmd-Shift-R</i> na Apple Mac); <b>IE:</b> tłóč <i>Strg</i> kliknjo na symbol <i>Aktualisieren</i> abo tłóč <i>Strg-F5</i>; <b>Konqueror:</b>: Klikń jenož na tłóčatko <i>Erneut laden</i> abo tłoč  <i>F5</i>; Wužiwarjo <b>Opery</b> móža swój pufrowak dospołnje  w <i>Tools→Preferences</i> wuprózdnić.',
+'clearyourcache'                   => "'''Kedźbu: Po składowanju dyrbiš snano pufrowak swojeho wobhladowaka wuprózdnić, zo by změny widźał.''' 
+* '''Mozilla/Firefox/Safari:''' tłóč na ''Umsch'' kliknjo na ''Znowa'' abo tłóč ''Strg-F5'' abo ''Strg-R'' (''Cmd-Shift-R'' na Macintosh);
+* '''Konqueror: '''klikń na ''Znowa'' abo tłoč ''F5'';
+* '''Opera:''' wuprózdń pufrowak w 'Extras → Einstellungen'';
+* '''Internet Explorer:''' dźěrź ''Strg'' tłóčeny kliknjo ''Znowa,'' abo tłóč ''Strg-F5''.",
 'usercssyoucanpreview'             => "'''Pokiw:''' Wužij tłóčku '{{int:showpreview}}', zo by swój nowy css do składowanja testował.",
 'userjsyoucanpreview'              => "'''Pokiw:''' Wužij tłóčatko \"{{int:showpreview}}\", zo by swój nowy JavaScript do składowanja testował.",
 'usercsspreview'                   => "'''Wobkedźbujće, zo sej jenož přehlad swojeho wužiwarskeho CSS wobhladuješ. Hišće njeje składowany!'''",
@@ -1508,22 +1512,23 @@ PICT # misc.
 'upload-http-error'         => 'HTTP-zmylk je wustupił: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Přistup wotpokazany',
-'img-auth-nopathinfo'   => 'PATH_INFO faluje.
+'img-auth-accessdenied'     => 'Přistup wotpokazany',
+'img-auth-nopathinfo'       => 'PATH_INFO faluje.
 Twój serwer njeje za to konfigurował, zo by tute informacije dale posrědkował.
 By móhł na CGI bazować a ani njemóže img_auth podpěrać.
 Hlej http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Požadana šćežka w konfigurowanym nahraćowym zapisu njeje.',
-'img-auth-badtitle'     => 'Njeje móžno z "$1" płaćiwy titul tworić.',
-'img-auth-nologinnWL'   => 'Njejsy přizjewjeny a "$1" w běłej lisćinje njeje.',
-'img-auth-nofile'       => 'Dataja "$1" njeeksistuje.',
-'img-auth-isdir'        => 'Popsytuješ na zapis "$1" přistup měć.
+'img-auth-notindir'         => 'Požadana šćežka w konfigurowanym nahraćowym zapisu njeje.',
+'img-auth-badtitle'         => 'Njeje móžno z "$1" płaćiwy titul tworić.',
+'img-auth-nologinnWL'       => 'Njejsy přizjewjeny a "$1" w běłej lisćinje njeje.',
+'img-auth-nofile'           => 'Dataja "$1" njeeksistuje.',
+'img-auth-isdir'            => 'Popsytuješ na zapis "$1" přistup měć.
 Jenož datajowy přistup je dowoleny.',
-'img-auth-streaming'    => '"$1" so prudźi.',
-'img-auth-public'       => 'Funkcija img_auth.php je za wudaće datjow z priwatneho wikija.
+'img-auth-streaming'        => '"$1" so prudźi.',
+'img-auth-public'           => 'Funkcija img_auth.php je za wudaće datjow z priwatneho wikija.
 Tutón wiki je jako zjawny wiki konfigurowany.
 Za optimalnu wěstotu je img_auth.php znjemóžnjeny.',
-'img-auth-noread'       => 'Wužiwar nima přistup, zo by "$1" čitał.',
+'img-auth-noread'           => 'Wužiwar nima přistup, zo by "$1" čitał.',
+'img-auth-bad-query-string' => 'URL ma njepłaćiwy naprašowanski znamješkowy rjećazk.',
 
 # HTTP errors
 'http-invalid-url'      => 'Njepłaćiwy URL: $1',
@@ -2001,11 +2006,11 @@ Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]{{
 
 # Protect
 'protectlogpage'              => 'Protokol škita',
-'protectlogtext'              => 'To je protokol škitanych stronow a zběhnjenja škita.
-Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych stron.',
+'protectlogtext'              => 'To je lisćina škitanych stronow a nješkitanych stronow.
+Hlej [[Special:ProtectedPages|lisćinu škitanych stronow]] za lisćinu tuchwilu škitanych stron.',
 'protectedarticle'            => 'je stronu [[$1]] škitał',
 'modifiedarticleprotection'   => 'je škit strony [[$1]] změnił',
-'unprotectedarticle'          => 'je škit strony [[$1]] zběhnył',
+'unprotectedarticle'          => 'je škit za [[$1]] wotstronił',
 'movedarticleprotection'      => 'škitowe nastajenja z "[[$2]]" do "[[$1]]" přesunjene',
 'protect-title'               => 'Stronu „$1” škitać',
 'prot_1movedto2'              => 'je [[$1]] pod hesło [[$2]] přesunył',
@@ -2143,7 +2148,7 @@ $1',
 'nolinkshere-ns'           => "Žane strony njewotkazuja na '''[[:$1]]''' we wubranym mjenowym rumje.",
 'isredirect'               => 'daleposrědkowanje',
 'istemplate'               => 'zapřijeće předłohi',
-'isimage'                  => 'wobrazowy wotkaz',
+'isimage'                  => 'Datajowy wotkaz',
 'whatlinkshere-prev'       => '{{PLURAL:$1|předchadny|předchadnej|předchadne|předchadne $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|přichodny|přichodnej|přichodne|přichodne $1}}',
 'whatlinkshere-links'      => '← wotkazy',
@@ -2859,6 +2864,8 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-sensingmethod-5' => 'Sekwencielny barbowy přestrjenjowy sensor',
 'exif-sensingmethod-7' => 'Třilinearny sensor',
 'exif-sensingmethod-8' => 'Barbowy sekwencielny linearny sensor',
+
+'exif-filesource-3' => 'Digitalna stejenskowobrazowa kamera',
 
 'exif-scenetype-1' => 'Direktnje fotografowany wobraz',
 

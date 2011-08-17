@@ -845,7 +845,7 @@ eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra denne sida]</span>.',
 'noarticletext-nopermission'       => 'Der er nett no ikkje noko tekst på denne sida.
 Du kan [[Special:Search/{{PAGENAME}}|søkja etter tittelen på denne sida]] på andre sider,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sjå loggføringar med tilknytting]</span>.',
-'userpage-userdoesnotexist'        => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
+'userpage-userdoesnotexist'        => 'Brukarkontoen «<nowiki>$1</nowiki>» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
 'userpage-userdoesnotexist-view'   => 'Brukarkontoen «$1» er ikkje oppretta.',
 'blocked-notice-logextract'        => 'Denne brukaren er for tida blokkert.
 Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
@@ -960,7 +960,7 @@ Desse parameterane har vorte utelatne.',
 Grunnen som vart gjeven av $3 er ''$2''",
 
 # History pages
-'viewpagelogs'           => 'Vis loggane for denne sida',
+'viewpagelogs'           => 'Vis loggane for sida',
 'nohistory'              => 'Det finst ikkje nokon historikk for denne sida.',
 'currentrev'             => 'Versjonen no',
 'currentrev-asof'        => 'Versjonen no frå $1',
@@ -1039,7 +1039,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 * Upassanda personleg informasjon
 *: ''heimeadresser og -telefonnummer,  personnummer, osb.''",
 'revdelete-legend'            => 'Vel avgrensing for synlegdom',
-'revdelete-hide-text'         => 'Gøym endringssamandraga',
+'revdelete-hide-text'         => 'Gøym versjonsteksten',
 'revdelete-hide-image'        => 'Skjul filinnhald',
 'revdelete-hide-name'         => 'Gøym handling og sidenamn',
 'revdelete-hide-comment'      => 'Gøym endringssamandraga',
@@ -2427,7 +2427,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'newtitle'                     => 'Til ny tittel:',
 'move-watch'                   => 'Overvak denne sida',
 'movepagebtn'                  => 'Flytt side',
-'pagemovedsub'                 => 'Flyttinga er gjennomført',
+'pagemovedsub'                 => 'Flyttinga er gjennomførd',
 'movepage-moved'               => "'''«$1» er flytt til «$2»'''",
 'movepage-moved-redirect'      => 'Det er oppretta ei omdirigering.',
 'movepage-moved-noredirect'    => 'Det vart ikkje oppretta ei omdirigering.',
@@ -2723,7 +2723,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merk som patruljert',
-'markaspatrolledtext'                 => 'Merk denne innhaldssida som patruljert',
+'markaspatrolledtext'                 => 'Merk innhaldssida som patruljert',
 'markedaspatrolled'                   => 'Merk som patruljert',
 'markedaspatrolledtext'               => 'Den valde versjonen av [[:$1]] er vorten merkt som patruljert.',
 'rcpatroldisabled'                    => 'Siste-endringar-patruljering er deaktivert',

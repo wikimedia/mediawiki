@@ -298,7 +298,7 @@ $messages = array(
 'vector-action-move'         => 'Renominar',
 'vector-action-protect'      => 'Proteger',
 'vector-action-undelete'     => 'Restaurar',
-'vector-action-unprotect'    => 'Disproteger',
+'vector-action-unprotect'    => 'Cambiar protection',
 'vector-namespace-category'  => 'Categoria',
 'vector-namespace-help'      => 'Pagina de adjuta',
 'vector-namespace-image'     => 'File',
@@ -344,8 +344,8 @@ $messages = array(
 'protect'           => 'Proteger',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Proteger iste pagina',
-'unprotect'         => 'Disproteger',
-'unprotectthispage' => 'Disproteger iste pagina',
+'unprotect'         => 'Cambiar protection',
+'unprotectthispage' => 'Cambiar le protection de iste pagina',
 'newpage'           => 'Nove pagina',
 'talkpage'          => 'Discuter iste pagina',
 'talkpagelinktext'  => 'Discussion',
@@ -524,7 +524,7 @@ Pro traductiones, per favor considera usar [http://translatewiki.net/wiki/Main_P
 'cascadeprotected'     => 'Iste pagina ha essite protegite contra modificationes, proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option "cascada":
 $2',
 'namespaceprotected'   => "Tu non ha le permission de modificar paginas in le spatio de nomines '''$1'''.",
-'customcssjsprotected' => 'Tu non ha le permission de modificar iste pagina, proque illo contine le configurationes personal de un altere usator.',
+'customcssjsprotected' => 'Tu non ha le permission de modificar iste pagina perque illo contine le configuration personal de un altere usator.',
 'ns-specialprotected'  => 'Le paginas special non es modificabile.',
 'titleprotected'       => "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].
 Le motivo specificate es ''$2''.",
@@ -563,7 +563,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'gotaccountlink'             => 'Aperir session',
 'createaccountmail'          => 'per e-mail',
 'badretype'                  => 'Le duo contrasignos que tu scribeva non es identic.',
-'userexists'                 => 'Le nomine de usator que tu entrava es ja in uso.
+'userexists'                 => 'Iste nomine de usator es jam in uso.
 Selige un altere nomine.',
 'loginerror'                 => 'Error in le apertura del session',
 'createaccounterror'         => 'Non poteva crear le conto: $1',
@@ -753,11 +753,16 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina]</span>.',
 'noarticletext-nopermission'       => 'Al momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].</span>',
-'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
+'userpage-userdoesnotexist'        => 'Le conto de usator "<nowiki>$1</nowiki>" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'userpage-userdoesnotexist-view'   => 'Le conto de usator "$1" non es registrate.',
 'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
 Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
-'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Nota:''' Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.
+* '''Firefox / Safari:''' tenente ''Shift'' clicca ''Reload (Recargar)'', o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sur Mac)
+* '''Google Chrome:''' preme ''Ctrl-Shift-R'' (''Command-Shift-R'' sur Mac)
+* '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh (Refrescar)'', o preme ''Ctrl-F5'' 
+* '''Konqueror:''' clicca ''Reload (Recargar)'' o preme ''F5''
+* '''Opera:''' vacua le ''cache'' in ''Tools → Preferences (Utensiles → Preferentias)''",
 'usercssyoucanpreview'             => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove CSS ante de salveguardar lo.",
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove JavaScript ante de salveguardar lo.",
 'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.'''
@@ -2104,11 +2109,11 @@ Per favor preme "retro" e recarga le pagina de ubi tu ha venite, postea reprova.
 
 # Protect
 'protectlogpage'              => 'Registro de protectiones',
-'protectlogtext'              => 'Infra es un lista de protection e disprotection de paginas.
+'protectlogtext'              => 'Ecce un lista de cambios de protection de paginas.
 Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de protectiones de paginas actualmente in operation.',
 'protectedarticle'            => 'protegeva "[[$1]]"',
 'modifiedarticleprotection'   => 'cambiava nivello de protection de "[[$1]]"',
-'unprotectedarticle'          => 'disprotegeva "[[$1]]"',
+'unprotectedarticle'          => 'removeva le protection de "[[$1]]"',
 'movedarticleprotection'      => 'displaciava le configurationes de protection ab "[[$2]]" verso "[[$1]]"',
 'protect-title'               => 'Cambiar nivello de protection de "$1"',
 'prot_1movedto2'              => 'displaciava [[$1]] verso [[$2]]',
@@ -2258,7 +2263,7 @@ $1',
 'nolinkshere-ns'           => "Nulle pagina liga a '''[[:$1]]''' in le spatio de nomines seligite.",
 'isredirect'               => 'pagina de redirection',
 'istemplate'               => 'transclusion',
-'isimage'                  => 'ligamine al imagine',
+'isimage'                  => 'ligamine al file',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedente|precedente $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sequente|sequente $1}}',
 'whatlinkshere-links'      => '← ligamines',
@@ -2608,12 +2613,12 @@ Per favor usa le previsualisation ante de publicar.',
 'tooltip-ca-viewsource'           => 'Iste pagina es protegite. Tu pote vider su codice fonte.',
 'tooltip-ca-history'              => 'Versiones anterior de iste pagina',
 'tooltip-ca-protect'              => 'Proteger iste pagina',
-'tooltip-ca-unprotect'            => 'Disproteger iste pagina',
+'tooltip-ca-unprotect'            => 'Cambiar le protection de iste pagina',
 'tooltip-ca-delete'               => 'Deler iste pagina',
 'tooltip-ca-undelete'             => 'Restaurar le modificationes facite a iste pagina ante que illo esseva delite',
 'tooltip-ca-move'                 => 'Renominar iste pagina',
 'tooltip-ca-watch'                => 'Adder iste pagina a tu observatorio',
-'tooltip-ca-unwatch'              => 'Eliminar iste pagina de tu observatorio',
+'tooltip-ca-unwatch'              => 'Remover iste pagina de tu observatorio',
 'tooltip-search'                  => 'Cercar in {{SITENAME}}',
 'tooltip-search-go'               => 'Visitar un pagina con iste nomine exacte si existe',
 'tooltip-search-fulltext'         => 'Cercar iste texto in le paginas',
@@ -3212,12 +3217,12 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',
 'watchlistedit-noitems'        => 'Tu observatorio contine nulle titulos.',
 'watchlistedit-normal-title'   => 'Modificar observatorio',
-'watchlistedit-normal-legend'  => 'Eliminar titulos del observatorio',
+'watchlistedit-normal-legend'  => 'Remover titulos del observatorio',
 'watchlistedit-normal-explain' => 'Le titulos in tu observatorio es monstrate hic infra.
 Pro eliminar un titulo, marca le quadrato correspondente, e clicca "{{int:Watchlistedit-normal-submit}}".
 Tu pote etiam [[Special:Watchlist/raw|modificar le lista in forma crude]].',
-'watchlistedit-normal-submit'  => 'Eliminar titulos',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate de tu observatorio:',
+'watchlistedit-normal-submit'  => 'Remover titulos',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite de tu observatorio:',
 'watchlistedit-raw-title'      => 'Modification del observatorio in forma crude',
 'watchlistedit-raw-legend'     => 'Modification del observatorio in forma de un lista simple de titulos',
 'watchlistedit-raw-explain'    => 'Le titulos in tu observatorio es monstrate hic infra, e pote esser modificate per adder e eliminar entratas del lista;
@@ -3228,7 +3233,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'watchlistedit-raw-submit'     => 'Actualisar observatorio',
 'watchlistedit-raw-done'       => 'Tu observatorio ha essite actualisate.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite addite:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vider modificationes pertinente',

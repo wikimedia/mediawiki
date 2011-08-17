@@ -151,8 +151,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
 'tog-oldsig'                  => "Vista previa d'a sinyadura:",
 'tog-fancysig'                => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
-'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal confegurar o suyo ordenador).",
-'tog-externaldiff'            => 'Fer servir o visualizador de cambeos externo por defecto (nomás ta espiertos, cal confegurar o suyo ordenador)',
+'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
+'tog-externaldiff'            => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
 'tog-showjumplinks'           => 'Activar vinclos d\'accesibilidat "blincar enta"',
 'tog-uselivepreview'          => 'Activar previsualización automatica (cal JavaScript) (Esperimental)',
 'tog-forceeditsummary'        => 'Avisar-me quan o campo de resumen siga buedo.',
@@ -286,7 +286,7 @@ $messages = array(
 'vector-action-move'         => 'Tresladar',
 'vector-action-protect'      => 'Protecher',
 'vector-action-undelete'     => 'Restaurar',
-'vector-action-unprotect'    => 'Desprotecher',
+'vector-action-unprotect'    => 'Cambiar protección',
 'vector-namespace-category'  => 'Categoría',
 'vector-namespace-help'      => "Pachina d'aduya",
 'vector-namespace-image'     => 'Fichero',
@@ -332,8 +332,8 @@ $messages = array(
 'protect'           => 'Protecher',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Protecher ista pachina',
-'unprotect'         => 'esprotecher',
-'unprotectthispage' => 'Esprotecher ista pachina',
+'unprotect'         => 'Cambiar protección',
+'unprotectthispage' => "Cambiar a protección d'ista pachina",
 'newpage'           => 'Pachina nueva',
 'talkpage'          => "Descusión d'ista pachina",
 'talkpagelinktext'  => 'Descutir',
@@ -705,16 +705,16 @@ Si vusté ye un usuario anonimo y creye que l'han escrito comentarios no relevan
 'noarticletext-nopermission'       => 'Por l\'inte no i hai garra texto en ista pachina.
 Puet [[Special:Search/{{PAGENAME}}|mirar iste títol]] en atras páginas,
 u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mirar en os rechistros relacionatos]</span>.',
-'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "$1" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
+'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "<nowiki>$1</nowiki>" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
 'userpage-userdoesnotexist-view'   => 'A cuenta d\'usuario "$1" no ye rechistrada.',
 'blocked-notice-logextract'        => "Ista cuenta d'usuario ye actualment bloqueyata.
 A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
-'clearyourcache'                   => "'''Pare cuenta: Si quiere veyer os cambeos dimpués d'alzar o fichero, puede estar que tienga que refrescar a caché d'o suyo navegador ta veyer os cambeos.'''
-
-*'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Macintosh);
+'clearyourcache'                   => "'''Pare cuenta:''' Dimpués d'alzar, puede estar que haiga d'esviellar a caché d'o suyo navegador ta veyer os cambios.
+*'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Mac);
+*'''Google Chrome:''' prete ''Ctrl-Shift-R'' (''Command-Shift-R'' on a Mac)
+*'''Internet Explorer:''' prete ''Ctrl'' entre que puncha ''Refresh,'' u prete ''Ctrl-F5.''
 *'''Konqueror: ''' punche ''Reload'' u prete ''F5;''
-*'''Opera:''' limpiar a caché en ''Tools → Preferences;''
-*'''Internet Explorer:''' prete ''Ctrl'' mientres puncha ''Refresh,'' u prete ''Ctrl-F5.''",
+*'''Opera:''' limpiar a caché en ''Tools → Preferences;''",
 'usercssyoucanpreview'             => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo CSS antes de no grabar-lo.",
 'userjsyoucanpreview'              => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo css/js antes de no grabar-lo.",
 'usercsspreview'                   => "'''Remere que isto no ye que una previsualización d'o suyo CSS d'usuario.'''
@@ -852,7 +852,7 @@ Puede que belún l'haiga borrata d'o wiki u renombrata.
 Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relevants.",
 
 # Revision deletion
-'rev-deleted-comment'         => "(s'ha sacato iste comentario)",
+'rev-deleted-comment'         => "(resumen d'edición eliminato)",
 'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'           => "(acción borrata d'o rechistro)",
 'rev-deleted-user-contribs'   => "[nombre d'usuario u adreza IP elminada - edición amagada d'as contribucions]",
@@ -2131,7 +2131,7 @@ $1",
 'nolinkshere-ns'           => "Garra pachina d'o espacio de nombres trigato tiene vinclos ta '''[[:$1]]'''.",
 'isredirect'               => 'pachina reendrezata',
 'istemplate'               => 'incluyida',
-'isimage'                  => 'vinclo ta imachen',
+'isimage'                  => 'Vinclo ta un fichero',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|anteriors $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|siguient|siguients $1}}',
 'whatlinkshere-links'      => '← vinclos',
@@ -2191,7 +2191,7 @@ as pachinas que s'han vandalizato).",
 'ipusubmit'                       => 'Debantar ista bloqueyo',
 'unblocked'                       => '[[User:$1|$1]] ha estato desbloqueyato',
 'unblocked-id'                    => "S'ha sacato o bloqueyo $1",
-'ipblocklist'                     => "Adrezas IP y nombres d'usuario bloqueyatos",
+'ipblocklist'                     => 'Usuarios bloqueyatos',
 'ipblocklist-legend'              => 'Mirar un usuario bloqueyato',
 'ipblocklist-username'            => "Nombre d'usuario u adreza IP:",
 'ipblocklist-sh-userblocks'       => '$1 bloqueyos de cuentas',

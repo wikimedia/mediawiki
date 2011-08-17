@@ -189,7 +189,7 @@ $messages = array(
 'vector-action-move'         => 'Spuèste',
 'vector-action-protect'      => 'Protegge',
 'vector-action-undelete'     => 'Repristine',
-'vector-action-unprotect'    => 'Sprotegge',
+'vector-action-unprotect'    => "Cange 'a protezione",
 'vector-namespace-category'  => 'Categorije',
 'vector-namespace-help'      => "Pàgene d'aijute",
 'vector-namespace-image'     => 'File',
@@ -235,8 +235,8 @@ $messages = array(
 'protect'           => 'Prutette',
 'protect_change'    => 'cange',
 'protectthispage'   => 'Prutigge sta pàgene',
-'unprotect'         => 'Sprutette',
-'unprotectthispage' => 'Sprutigge sta pàgene',
+'unprotect'         => "Cange 'a protezione",
+'unprotectthispage' => "Cange 'a protezione de sta pàgene",
 'newpage'           => 'Pàgene nova',
 'talkpage'          => "'Ngazzete pe sta pàgene",
 'talkpagelinktext'  => 'Parle',
@@ -647,16 +647,17 @@ Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre p�
 'noarticletext-nopermission'       => "Pe mò non ge stè teste jndr'à sta pàgene.
 Tu puè [[Special:Search/{{PAGENAME}}|cercà pe stu titele]]  jndr'à otre pàggene,
 o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cirche jndr'à l'archivije cullegate]</span>.",
-'userpage-userdoesnotexist'        => '\'U cunde utende "$1" non g\'è reggistrete.
+'userpage-userdoesnotexist'        => '\'U cunde utende "<nowiki>$1</nowiki>" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'userpage-userdoesnotexist-view'   => '\'U cunde utende "$1" non g\'è reggistrate.',
 'blocked-notice-logextract'        => "Stu utende jè correndemende bloccate.<br />
 L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
-'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
-*'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboranemende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sus a 'nu Macintosh);
+'clearyourcache'                   => "''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
+*'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboraneamende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sus a 'nu Mac);
+*'''Google Chrome:''' cazze ''Ctrl-Shift-R'' (''Command-Shift-R'' sus a 'nu Mac)
+*'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.
 *'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
-*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);
-*'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.",
+*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);",
 'usercssyoucanpreview'             => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u CSS nuève apprime de reggistrà.",
 'userjsyoucanpreview'              => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u JavaScript nuève apprime de reggistrà.",
 'usercsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
@@ -1990,11 +1991,11 @@ Pe piacere cazze \"rete\" e recareche 'a pàgene da addò tu è venute e pruève
 
 # Protect
 'protectlogpage'              => 'Archibie de le prutezziune',
-'protectlogtext'              => "Sotte ste 'na liste de pàggene bloccate e sbloccate.
+'protectlogtext'              => "Sotte ste 'na liste de le cangiaminde de le proteziune de le pàggene.
 Vide 'a [[Special:ProtectedPages|liste de le pàggene prutette]] pa liste de le operaziune currende sus a le prutezzione de le pàggene.",
 'protectedarticle'            => 'prutette "[[$1]]"',
 'modifiedarticleprotection'   => '\'u levèlle de protezione ha state cangete pe "[[$1]]"',
-'unprotectedarticle'          => 'sprutette "[[$1]]"',
+'unprotectedarticle'          => 'sprutette da "[[$1]]"',
 'movedarticleprotection'      => '\'mbostaziune de protezzione spustate da "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Cange levèlle de protezione pe "$1"',
 'prot_1movedto2'              => "[[$1]] spustete jndr'à [[$2]]",
@@ -2146,7 +2147,7 @@ $1",
 'nolinkshere-ns'           => "Nisciuna pàgene apponde a '''[[:$1]]''' jndr'à 'u namespace scacchiete.",
 'isredirect'               => 'pàgene de ridirezionamende',
 'istemplate'               => 'inclusione',
-'isimage'                  => "collegamende a l'immaggine",
+'isimage'                  => "collegamende a 'u file",
 'whatlinkshere-prev'       => '{{PLURAL:$1|apprime|apprime $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|apprisse|apprisse $1}}',
 'whatlinkshere-links'      => '← collegaminde',
@@ -2499,7 +2500,7 @@ Pe piacere ause 'u buttone de l'andeprime apprime de salvà.",
 Puè vedè sulamende 'u sorgende.",
 'tooltip-ca-history'              => 'Versiune passete de sta pàgene',
 'tooltip-ca-protect'              => 'Prutegge sta pàgene',
-'tooltip-ca-unprotect'            => 'Sprotegge sta pàgene',
+'tooltip-ca-unprotect'            => "Cange 'a protezione de sta pàgene",
 'tooltip-ca-delete'               => 'Scangille sta pàgene',
 'tooltip-ca-undelete'             => 'Repristine le cangiaminde fatte a sta pàgene apprime ca evenève scangellate',
 'tooltip-ca-move'                 => 'Spuèste sta pàgene',

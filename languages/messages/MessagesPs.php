@@ -709,7 +709,7 @@ $1',
 تاسې کولای شی چې په نورو مخونو کې [[Special:Search/{{PAGENAME}}|د دې مخ د سرليک پلټنه]] يا
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} د اړوندو يادښتونو پلټنه] وکړی.
 او يا [{{fullurl:{{FULLPAGENAME}}|action=edit}} همدا مخ سم کړی]</span>.',
-'userpage-userdoesnotexist'        => 'د "$1" ګڼون نه دی ثبت شوی.
+'userpage-userdoesnotexist'        => 'د "<nowiki>$1</nowiki>" ګڼون نه دی ثبت شوی.
 لطفاً ځان ډاډه کړۍ چې آيا تاسې په رښتيا همدا مخ جوړول که سمول غواړۍ.',
 'userpage-userdoesnotexist-view'   => 'د "$1" ګڼون نه دی ثبت شوی.',
 'blocked-notice-logextract'        => 'دم مهال په دې کارن بنديز لګېدلی.
@@ -925,7 +925,7 @@ $1',
 'powersearch-ns'                   => 'په نوم-تشيالونو کې پلټنه:',
 'powersearch-redir'                => 'مخ ګرځونې په لړليک کې اوډل',
 'powersearch-field'                => 'پلټنه د',
-'powersearch-togglelabel'          => 'کره کتل:',
+'powersearch-togglelabel'          => 'نښه کول:',
 'powersearch-toggleall'            => 'ټول',
 'powersearch-togglenone'           => 'هېڅ',
 'search-external'                  => 'باندنۍ پلټنه',
@@ -988,7 +988,7 @@ $1',
 'timezoneregion-australia'      => 'آسټراليا',
 'timezoneregion-europe'         => 'اروپا',
 'timezoneregion-indian'         => 'هندی سمندر',
-'timezoneregion-pacific'        => 'آرام سمندر',
+'timezoneregion-pacific'        => 'غلی سمندر',
 'allowemail'                    => 'د نورو کارنانو لخوا د برېښليک رالېږل چارن کړه',
 'prefs-searchoptions'           => 'د پلټلو خوښنې',
 'prefs-namespaces'              => 'نوم-تشيالونه',
@@ -1587,6 +1587,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'historywarning'         => "ګواښنه:''' تاسې چې د کوم مخ د ړنګېدو تکل لری، هغه د نژدې $1 {{PLURAL:$1|بڼې|بڼو}} يو پېښليک لري:",
 'confirmdeletetext'      => 'تاسې د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره د دغه توکبنسټ نه ړنګوۍ. که چېرته تاسې ددې کړنې په پايله پوه ياست او يا ستاسو همدا کړنه د دې پاڼې د [[{{MediaWiki:Policy-url}}|تګلارې]] سره سمون خوري نو لطفاً د دې تاييد وکړی.',
 'actioncomplete'         => 'بشپړه کړنه',
+'actionfailed'           => 'کړنه نابريالۍ شوه',
 'deletedtext'            => '"<nowiki>$1</nowiki>" ړنګ شوی.
 د نوو ړنګ شوو سوانحو لپاره $2 وګورۍ.',
 'deletedarticle'         => '"[[$1]]" ړنګ شو',

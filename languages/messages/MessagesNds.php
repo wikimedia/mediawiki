@@ -787,7 +787,7 @@ oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Sied ännern]</span>.',
 'noarticletext-nopermission'       => 'Disse Sied hett opstunns keen Text.
 Du kannst in annere Sieden [[Special:Search/{{PAGENAME}}|na dissen Titel söken]]
 oder <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} in de Logböker söken]</span>.',
-'userpage-userdoesnotexist'        => 'Dat Brukerkonto „$1“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
+'userpage-userdoesnotexist'        => 'Dat Brukerkonto „<nowiki>$1</nowiki>“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
 'userpage-userdoesnotexist-view'   => 'Dat Brukerkonto „$1“ gifft dat nich.',
 'blocked-notice-logextract'        => 'Disse Bruker is opstunns sperrt.
 De jüngste Indrag in dat Sperr-Logbook wart ünnen wiest:',

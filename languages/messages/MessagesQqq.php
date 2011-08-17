@@ -66,6 +66,7 @@
  * @author Nike
  * @author Node ue
  * @author Octahedron80
+ * @author Od1n
  * @author Onecountry
  * @author OsamaK
  * @author PhiLiP
@@ -374,7 +375,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 
 {{Identical|Error}}',
 'returnto'          => '{{Identical|Return to $1}}',
-'tagline'           => 'Used to idenify the source of copied information. Do not change <nowiki>{{SITENAME}}</nowiki>.',
+'tagline'           => 'Used to identify the source of copied information. Do not change <nowiki>{{SITENAME}}</nowiki>.',
 'help'              => 'General text (noun) used in the sidebar (by default).
 
 See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki:Edithelp/{{SUBPAGENAME}}|{{int:edithelp}}]].
@@ -425,7 +426,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'unprotect'         => 'Name of unprotect tab displayed for admins
 
 {{Identical|Unprotect}}',
-'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to unprotect the page in admin view.
+'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the anchor text for the link to unprotect the page in admin view.
 {{Identical|Unprotect this page}}',
 'newpage'           => '{{Identical|New page}}',
 'talkpage'          => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to discuss the page.',
@@ -532,7 +533,7 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 'editsection-brackets'    => '{{optional}}',
 'editold'                 => '{{Identical|Edit}}',
 'viewsourceold'           => '{{Identical|View source}}',
-'editlink'                => 'Text dari pranala yang terlihat disebelah setiap templat yang dapat disunting (tidak di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
+'editlink'                => 'Teks dari pranala yang terlihat di sebelah setiap templat yang dapat disunting (tidak diproteksi) pada daftar templat di bawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
 'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.
@@ -761,7 +762,7 @@ Parameters:
 
 {{Identical|Reset password}}',
 'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
-'newpassword'               => 'ନୂଆ ପାସବାର୍ଡ଼:',
+'newpassword'               => '{{Identical|New password}}',
 'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit'          => 'Submit button on [[Special:ChangePassword]]',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
@@ -875,8 +876,10 @@ Parameters:
 
 See also {{msg-mw|Noarticletext-nopermission}}.',
 'noarticletext-nopermission'       => 'See also {{msg-mw|Noarticletext}}.',
-'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki',
-'userpage-userdoesnotexist-view'   => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo].',
+'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki. Parameters:
+* $1 is a possible username that has not been registered.',
+'userpage-userdoesnotexist-view'   => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo]. Parameters:
+* $1 is a username.',
 'blocked-notice-logextract'        => 'Parameters:
 * $1 is the name of the blocked user (optional). Can be used for GENDER.',
 'clearyourcache'                   => 'Text at the top of .js/.css pages',
@@ -2533,7 +2536,9 @@ This message was something like "unlock move protection" in the past.',
 
 # Contributions
 'contributions'       => "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages. Also the page name of the target page. The target page shows an overview of the most recent contributions by a user.",
-'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.',
+'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.
+
+{{Gender}}',
 'mycontris'           => 'In the personal urls page section - right upper corner.',
 'contribsub2'         => 'Contributions for "user" (links)',
 'nocontribs'          => 'Optional parameter: $1 is the user name',
@@ -2551,7 +2556,8 @@ This message was something like "unlock move protection" in the past.',
 'sp-contributions-logs'           => "Appears as an action link in the header of the Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").",
 'sp-contributions-talk'           => "This is a link anchor used in the [[Special:Contributions]]/''usernamename'' pages.
 The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}}, e.g. like this:<br />
-( talk | block log | logs | deleted contributions | rights management )",
+( talk | block log | logs | deleted contributions | rights management )
+{{Identical|Talk}}",
 'sp-contributions-userrights'     => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
 'sp-contributions-blocked-notice' => 'Shown on top of contributions special page of currently blocked users. Parameters:
 * $1 is the blocked user. Can be used for GENDER (optional)
@@ -2701,7 +2707,7 @@ See also {{msg-mw|Blocklistline}}.',
 'reblock-logentry'             => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being reblocked
 * $2 is the expiry time of the block
-* $3 is the reason for the block',
+* $3 are extra parameters like "account creation blocked" (they are automatically between brackets)',
 'blocklogtext'                 => 'Appears on top of [[Special:Log/block]].',
 'unblocklogentry'              => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being unblocked',
@@ -2955,8 +2961,7 @@ This message appears at the very end of the list of names in the message [[Media
 Parameters:
 * $1 is a link to a user page with the user name as link text
 * $2 is a user name for use with GENDER (optional)",
-'anonuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
-
+'anonuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is enabled by default but disabled on Wikimedia wikis.
 This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user is anonymous. The variable $1 in this message is a link to the user's contributions.
 
 See also {{msg-mw|Anonusers}} and {{msg-mw|Siteuser}}.",
@@ -3643,7 +3648,7 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 # Auto-summaries
 'autosumm-blank'   => 'The auto summary when blanking the whole page. This is not the same as deleting the page.',
 'autosumm-replace' => 'The auto summary when a user removes a lot of characters in the page.',
-'autoredircomment' => 'The auto summary when making a redirect. $1 is the page where it redirects to.',
+'autoredircomment' => 'The auto summary when making a redirect. $1 is the page where it redirects to. $2 is the first X number of characters of the redirect ($2 is usually only used when end users customize the message)',
 'autosumm-new'     => 'The auto summary when creating a new page. $1 are the first X number of characters of the new page.',
 
 # Size units

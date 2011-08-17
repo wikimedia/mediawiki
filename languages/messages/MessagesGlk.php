@@ -9,6 +9,7 @@
  *
  * @author AminSanaei
  * @author Varg
+ * @author محک
  */
 
 $fallback = 'fa';
@@ -45,8 +46,8 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'        => 'تازه چیؤن',
-'mainpage'             => 'گت ولگ',
-'mainpage-description' => 'گت ولگ',
+'mainpage'             => 'گت صفحه',
+'mainpage-description' => 'گت صفحه',
 'portal'               => 'امه جیگا',
 'privacy'              => 'رازبداری',
 

@@ -701,7 +701,7 @@ Si se paske ou fè yon erè ke ou rive nan paj sa a, klike anlè bouton '''fè b
 Ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj yo, oubyen <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chache jounal modifikasyon yo ki an relasyon ak paj sa] oubyen tou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye paj sa]</span>.',
 'noarticletext-nopermission'       => 'Poko genyen tèks nan paj sa a.
 Ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj yo, oubyen <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chache jounal modifikasyon yo ki an relasyon ak paj sa].',
-'userpage-userdoesnotexist'        => 'Kont itilizatè « $1 » sa pa anrejistre. Verifye toutbon ke ou vle kreye paj sa.',
+'userpage-userdoesnotexist'        => 'Kont itilizatè « <nowiki>$1</nowiki> » sa pa anrejistre. Verifye toutbon ke ou vle kreye paj sa.',
 'userpage-userdoesnotexist-view'   => 'Itilizatè "$1" pa ekziste.',
 'blocked-notice-logextract'        => 'Itilizatè sa a bloke kounye a.
 Dènye jounal pou blokaj yo parèt anba kòm referans:',

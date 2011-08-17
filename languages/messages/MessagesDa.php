@@ -333,7 +333,7 @@ $messages = array(
 'vector-action-move'         => 'Flyt',
 'vector-action-protect'      => 'Beskyt',
 'vector-action-undelete'     => 'Gendan',
-'vector-action-unprotect'    => 'Fjern beskyttelse',
+'vector-action-unprotect'    => 'Ændr beskyttelse',
 'vector-namespace-category'  => 'Kategori',
 'vector-namespace-help'      => 'Hjælpeside',
 'vector-namespace-image'     => 'Fil',
@@ -379,8 +379,8 @@ $messages = array(
 'protect'           => 'Beskyt',
 'protect_change'    => 'ændr',
 'protectthispage'   => 'Beskyt side',
-'unprotect'         => 'Fjern beskyttelse',
-'unprotectthispage' => 'Frigiv side',
+'unprotect'         => 'Ændr beskyttelse',
+'unprotectthispage' => 'Ændr beskyttelsen af denne side',
 'newpage'           => 'Ny side',
 'talkpage'          => 'Diskussion',
 'talkpagelinktext'  => 'diskussion',
@@ -769,15 +769,16 @@ eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
 'noarticletext-nopermission'       => 'Der er i øjeblikket ikke noget tekst på denne side.
 Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} se de relaterede loglister]</span>.',
-'userpage-userdoesnotexist'        => 'Brugerkontoen "$1" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
+'userpage-userdoesnotexist'        => 'Brugerkontoen "<nowiki>$1</nowiki>" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
 'userpage-userdoesnotexist-view'   => 'Brugerkontoen "$1" er ikke oprettet.',
 'blocked-notice-logextract'        => 'Denne bruger er i øjeblikket blokeret.
 Loggen over den seneste blokering ses nedenfor:',
-'clearyourcache'                   => "'''Bemærk: Efter at have gemt er du nødt til at tømme din browsers cache for at kunne se ændringerne.'''
-'''Mozilla / Firefox / Safari''': Hold ''shifttasten'' nede og klik på ''reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-Shift-r'' (Mac: ''cmd-shift-r'');
-'''Konqueror''': Klik på ''reload'' eller tryk på ''F5'';
-'''Opera''': Tøm cachen i ''Tools → Preferences'';
-'''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''.",
+'clearyourcache'                   => "'''Bemærk:''' Efter at have gemt er du måske nødt til at tømme din browsers cache for at kunne se ændringerne.
+* '''Firefox / Safari:''' Hold ''shifttasten'' nede og klik på ''reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-Shift-r'' (''Cmd-R'' på en Mac).
+* '''Google Chrome:''' Tryk ''Ctrl-Shift-R'' (''Cmd-Shift-R'' på en Mac).
+* '''Internet Explorer:''' hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''Ctrl-F5''.
+* '''Konqueror:''' Klik på ''reload'' eller tryk på ''F5''.
+* '''Opera:''' Tøm cachen i ''Tools → Preferences''.",
 'usercssyoucanpreview'             => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye CSS inden du gemmer.",
 'userjsyoucanpreview'              => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye JavaScript inden du gemmer.",
 'usercsspreview'                   => "'''Husk at dette kun er en forhåndsvisning af dit eget css.
@@ -2055,10 +2056,11 @@ og den seneste version af $2 er gendannet.',
 
 # Protect
 'protectlogpage'              => 'Skrivebeskyttelseslog',
-'protectlogtext'              => 'Herunder er en liste med sider der er blevet beskyttet/har fået fjernet beskyttelsen.',
+'protectlogtext'              => 'Herunder er en liste over ændringer til sidebeskyttelser.
+Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sidebeskyttelser, der er i kraft i øjeblikket.',
 'protectedarticle'            => '[[$1]] beskyttet',
 'modifiedarticleprotection'   => 'ændrede beskyttelsen af "[[$1]]"',
-'unprotectedarticle'          => 'fjernet beskyttelse af [[$1]]',
+'unprotectedarticle'          => 'fjernede beskyttelse af "[[$1]]"',
 'movedarticleprotection'      => 'flyttede beskyttelsesindstillinger fra "[[$2]]" til "[[$1]]"',
 'protect-title'               => 'Ændr beskyttelse af "$1"',
 'prot_1movedto2'              => '$1 flyttet til $2',
@@ -2522,7 +2524,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 Du kan se på kildeteksten.',
 'tooltip-ca-history'              => 'Tidligere versioner af denne side',
 'tooltip-ca-protect'              => 'Beskyt denne side',
-'tooltip-ca-unprotect'            => 'Fjern beskyttelsen af siden',
+'tooltip-ca-unprotect'            => 'Ændr beskyttelsen af denne side',
 'tooltip-ca-delete'               => 'Slet denne side',
 'tooltip-ca-undelete'             => 'Gendan de redigeringer der blev lavet på denne side før den blev slettet',
 'tooltip-ca-move'                 => 'Flyt denne side',

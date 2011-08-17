@@ -335,8 +335,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
 'tog-oldsig'                  => 'Förhandsvisning av nuvarande signatur:',
 'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
-'tog-externaleditor'          => 'Använd extern editor som standard (endast för experter, speciella inställningar på din dator krävs. [Http://www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
-'tog-externaldiff'            => 'Använd externt diff-verktyg som förval(avancerat, kräver speciella inställningar i din dator.
+'tog-externaleditor'          => 'Använd extern editor som standard (endast för avancerade användare, speciella inställningar på din dator krävs. [http://www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
+'tog-externaldiff'            => 'Använd externt diff-verktyg som förval (endast för avancerade användare, kräver speciella inställningar i din dator.
 [http://www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
 'tog-showjumplinks'           => 'Aktivera "hoppa till"-tillgänglighetslänkar',
 'tog-uselivepreview'          => 'Använd direktuppdaterad förhandsgranskning (Javascript, på försöksstadiet)',
@@ -472,7 +472,7 @@ $messages = array(
 'vector-action-move'         => 'Flytta',
 'vector-action-protect'      => 'Skrivskydda',
 'vector-action-undelete'     => 'Återställ',
-'vector-action-unprotect'    => 'Ta bort skrivskydd',
+'vector-action-unprotect'    => 'Ändra skydd',
 'vector-namespace-category'  => 'Kategori',
 'vector-namespace-help'      => 'Hjälpsida',
 'vector-namespace-image'     => 'Fil',
@@ -518,8 +518,8 @@ $messages = array(
 'protect'           => 'Skrivskydda',
 'protect_change'    => 'ändra',
 'protectthispage'   => 'Skrivskydda denna sida',
-'unprotect'         => 'Ta bort skrivskydd',
-'unprotectthispage' => 'Ta bort skrivskyddet från den här sidan',
+'unprotect'         => 'Ändra skydd',
+'unprotectthispage' => 'Ändra skyddet på denna sidan',
 'newpage'           => 'Ny sida',
 'talkpage'          => 'Diskutera denna sida',
 'talkpagelinktext'  => 'Diskussion',
@@ -904,15 +904,16 @@ Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sido
 'noarticletext-nopermission'       => 'Det finns för tillfället ingen text på denna sida.
 Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] i andra sidor,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relevanta loggar]</span>.',
-'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
+'userpage-userdoesnotexist'        => '"<nowiki>$1</nowiki>" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'userpage-userdoesnotexist-view'   => 'Kontot "$1" är inte registrerat.',
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
-'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' 
-'''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh);
-'''Konqueror:''': klicka ''Reload'' eller tryck ''F5;''
-'''Opera:''' rensa cachen i ''Tools → Preferences;''
-'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
+'clearyourcache'                   => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
+*'''Firefox / Safari:''' håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
+*'''Google Chrome:''' tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
+*'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
+*'''Konqueror:''': klicka ''Reload'' eller tryck ''F5''
+*'''Opera:''' rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
 'userjsyoucanpreview'              => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
@@ -1461,7 +1462,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-purge'                 => 'Rensa cachen för sidor utan att behöva bekräfta',
 'right-autoconfirmed'         => 'Redigera halvlåsta sidor',
 'right-bot'                   => 'Behandlas som en automatisk process',
-'right-nominornewtalk'        => 'Får inte meddelanden om nya ändringar på diskussionssidan vid mindre ändringar.',
+'right-nominornewtalk'        => 'Mindre ändringar på diskussionssidor ger inte besked om nya meddelanden',
 'right-apihighlimits'         => 'Använda högre gränser i API-frågor',
 'right-writeapi'              => 'Använda skriv-API:t',
 'right-delete'                => 'Radera sidor',
@@ -2096,7 +2097,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'emailccme'        => 'Skicka en kopia av meddelandet till mig.',
 'emailccsubject'   => 'Kopia av ditt meddelande till $1: $2',
 'emailsent'        => 'E-post har nu skickats',
-'emailsenttext'    => 'Din e-post har skickats.',
+'emailsenttext'    => 'Ditt e-postmeddelande har skickats',
 'emailuserfooter'  => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
 
 # Watchlist
@@ -2225,10 +2226,11 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-
 
 # Protect
 'protectlogpage'              => 'Skrivskyddslogg',
-'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.',
+'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.
+Se [[Special:ProtectedPages|listan över skyddade sidor]] för listan över aktiva sidskydd.',
 'protectedarticle'            => 'skyddade [[$1]]',
 'modifiedarticleprotection'   => 'ändrade skyddsnivån för "[[$1]]"',
-'unprotectedarticle'          => 'tog bort skydd av "[[$1]]"',
+'unprotectedarticle'          => 'tog bort skydd från "[[$1]]"',
 'movedarticleprotection'      => 'flyttade skyddsinställningar från "[[$2]]" till "[[$1]]"',
 'protect-title'               => 'Skyddsinställningar för "$1"',
 'prot_1movedto2'              => 'flyttade [[$1]] till [[$2]]',
@@ -2713,7 +2715,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-ca-viewsource'           => 'Den här sidan är skrivskyddad. Du kan se källtexten.',
 'tooltip-ca-history'              => 'Tidigare versioner av sidan',
 'tooltip-ca-protect'              => 'Skydda den här sidan',
-'tooltip-ca-unprotect'            => 'Ta bort skrivskyddet från den här sidan',
+'tooltip-ca-unprotect'            => 'Ändra skyddet för den här sidan',
 'tooltip-ca-delete'               => 'Radera denna sida',
 'tooltip-ca-undelete'             => 'Återställ alla redigeringar som gjorts innan sidan raderades',
 'tooltip-ca-move'                 => 'Flytta den här sidan',
@@ -2896,7 +2898,7 @@ Om du kör den kan din dator skadas.",
 'file-nohires'         => '<small>Det finns ingen version med högre upplösning.</small>',
 'svg-long-desc'        => '(SVG-fil, grundstorlek: $1 × $2 pixel, filstorlek: $3)',
 'show-big-image'       => 'Högupplöst version',
-'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixel</small>',
+'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixlar</small>',
 'file-info-gif-looped' => 'upprepad',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|ram|ramar}}',
 
@@ -3380,7 +3382,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'fileduplicatesearch-legend'   => 'Sök efter en dubblettfil',
 'fileduplicatesearch-filename' => 'Filnamn:',
 'fileduplicatesearch-submit'   => 'Sök',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Filstorlek: $3<br />MIME-typ: $4',
+'fileduplicatesearch-info'     => '$1 × $2 pixlar<br />Filstorlek: $3<br />MIME-typ: $4',
 'fileduplicatesearch-result-1' => 'Filen "$1" har inga identiska dubbletter.',
 'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dubblett|$2 identiska dubbletter}}.',
 

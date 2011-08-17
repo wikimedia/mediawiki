@@ -20,6 +20,7 @@
  * @author Techlik
  * @author The Evil IP address
  * @author Urhixidur
+ * @author Vinie007
  * @author לערי ריינהארט
  */
 
@@ -197,7 +198,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Lejo redaktimin e seksioneve me djathtas-shtypje<br /> mbi emrin e seksionit (JavaScript)',
 'tog-showtoc'                 => 'Trego tabelën e përmbajtjeve<br />(për faqet me më shume se 3 tituj)',
 'tog-rememberpassword'        => 'Mbaj mënd fjalëkalimin për vizitën e ardhshme',
-'tog-editwidth'               => 'Kutija e redaktimit ka gjerësi te plotë',
+'tog-editwidth'               => 'Zgjerohet redaktoni kutinë për të mbushur ekranin gjithë',
 'tog-watchcreations'          => 'Shto faqet që krijoj tek lista mbikqyrëse',
 'tog-watchdefault'            => 'Shto faqet që redaktoj tek lista mbikqyrëse',
 'tog-watchmoves'              => 'Shto faqet që zhvendos tek lista mbikqyrëse',
@@ -772,7 +773,7 @@ apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktue këtë faqe]</span>.',
 Ju mundeni [[Special:Search/{{PAGENAME}}|me kërku këtë titull]] në faqe tjera,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërku në regjistrat tematikisht të afërm],
 apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
-'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "$1" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
+'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "<nowiki>$1</nowiki>" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
 'userpage-userdoesnotexist-view'   => 'Profili i përdoruesit "$1" nuk është i regjistruar.',
 'blocked-notice-logextract'        => 'Ky përdorues është bllokuar aktualisht.
 Regjistri i bllokuar hyrjen e fundit është më poshtë, për referencë:',
@@ -914,7 +915,7 @@ Arsyeja e dhënë nga $3 është ''$2''.",
 'history-feed-empty'          => 'Faqja që kërkuat nuk ekziston. Ajo mund të jetë grisur nga wiki ose mund të jetë zhvendosur nën një emër tjetër. Mund të provoni ta gjeni duke e [[Special:Search|kërkuar]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(kometi u largua)',
+'rev-deleted-comment'         => '(Edit përmbledhje larguar)',
 'rev-deleted-user'            => '(përdoruesi u largua)',
 'rev-deleted-event'           => '(veprimi në regjistër është hequr)',
 'rev-deleted-user-contribs'   => '[Përdoruesi ose adresa IP u hoq - redaktimet e  fshehura nga kontribuesit]',
@@ -1150,7 +1151,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'prefs-watchlist-days'          => 'Numri i ditëve të treguara tek lista mbikqyrëse:',
 'prefs-watchlist-days-max'      => 'Maksimum 7 ditë',
 'prefs-watchlist-edits'         => 'Numri i redaktimeve të treguara tek lista mbikqyrëse e zgjeruar:',
-'prefs-watchlist-edits-max'     => '(numri maksimal: 1000)',
+'prefs-watchlist-edits-max'     => 'Numri maksimal: 1000',
 'prefs-watchlist-token'         => 'Lista mbikqyrëse shenjë:',
 'prefs-misc'                    => 'Të ndryshme',
 'prefs-resetpass'               => 'Ndrysho fjalëkalimin',
@@ -1238,6 +1239,7 @@ Kjo informatë është publike.',
 'prefs-advancedrendering'       => 'Opsionet e avancuar',
 'prefs-advancedsearchoptions'   => 'Opsionet e avancuar',
 'prefs-advancedwatchlist'       => 'Opsionet e avancuar',
+'prefs-display'                 => 'Shfaq opsionet',
 'prefs-diffs'                   => 'Ndryshimet',
 
 # User rights
@@ -1345,6 +1347,7 @@ Kjo informatë është publike.',
 'right-siteadmin'             => 'Mbyll ose hap bazën e të dhënave',
 'right-reset-passwords'       => 'Rivendos fjalëkalimet e përdoruesit të tjerë',
 'right-override-export-depth' => 'Eksoprto faqet duke përfshirë e lidhura deri në një thellësi prej 5',
+'right-versiondetail'         => 'Trego versionin e zgjeruar informacionin software',
 'right-sendemail'             => 'Dërgo e-mail tek përdoruesit e tjerë',
 
 # User rights log
@@ -1395,9 +1398,14 @@ Kjo informatë është publike.',
 'recentchanges-legend'              => 'Zgjedhjet e ndryshimeve momentale',
 'recentchangestext'                 => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description'    => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',
+'recentchanges-label-legend'        => 'Legjenda: $1 .',
+'recentchanges-legend-newpage'      => '$1 - faqe të re',
 'recentchanges-label-newpage'       => 'Ky redaktim krijoi një faqe të re',
+'recentchanges-legend-minor'        => '$1 - redaktim i vogël',
 'recentchanges-label-minor'         => 'Ky është një editim i vogël',
+'recentchanges-legend-bot'          => '$1 - bot edit',
 'recentchanges-label-bot'           => 'Ky editim është kryer nga një bot',
+'recentchanges-legend-unpatrolled'  => '$1 redaktime të patrulluara',
 'recentchanges-label-unpatrolled'   => 'Ky editim ende nuk është patrolluar',
 'rcnote'                            => "Më poshtë {{PLURAL:$1|është '''1''' ndryshim| janë '''$1''' ndryshime}} së fundmi gjatë <strong>$2</strong> ditëve sipas të dhënave nga $4, $5.",
 'rcnotefrom'                        => 'Më poshtë janë ndryshime së fundmi nga <b>$2</b> (treguar deri në <b>$1</b>).',
@@ -1548,22 +1556,23 @@ Nëse problemi vazhdon atëherë kontaktoni një [[Special:ListUsers/sysop|admin
 'upload-http-error'         => 'Ndodhi një gabim HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Refuzohet hyrja',
-'img-auth-nopathinfo'   => 'Mungon PATH_INFO.
+'img-auth-accessdenied'     => 'Refuzohet hyrja',
+'img-auth-nopathinfo'       => 'Mungon PATH_INFO.
 Shërbyesi juaj nuk e kalon këtë informacion.
 Mund të jetë CGI-bazuar dhe nuk mund të mbështesë img_auth.
 Shikoni http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Kërkesa nuk është në drejtorinë e ngarkimeve të konfiguruara.',
-'img-auth-badtitle'     => 'Nuk mund të krihohej një titull i vlefshëm nga "$1".',
-'img-auth-nologinnWL'   => 'Ju nuk jeni i regjistruar dhe "$1" nuk është në listën e bardhë.',
-'img-auth-nofile'       => 'Skeda "$1" nuk ekziston.',
-'img-auth-isdir'        => 'Ju po përpiqeni të hyni në një drejtori "$1".
+'img-auth-notindir'         => 'Kërkesa nuk është në drejtorinë e ngarkimeve të konfiguruara.',
+'img-auth-badtitle'         => 'Nuk mund të krihohej një titull i vlefshëm nga "$1".',
+'img-auth-nologinnWL'       => 'Ju nuk jeni i regjistruar dhe "$1" nuk është në listën e bardhë.',
+'img-auth-nofile'           => 'Skeda "$1" nuk ekziston.',
+'img-auth-isdir'            => 'Ju po përpiqeni të hyni në një drejtori "$1".
 Vetëm  qasja e skedës është e lejuar.',
-'img-auth-streaming'    => 'Duke rrejdhur "$1"',
-'img-auth-public'       => 'Funksioni i img_auth.php është për të larguar skedat nga një wiki privat.
+'img-auth-streaming'        => 'Duke rrejdhur "$1"',
+'img-auth-public'           => 'Funksioni i img_auth.php është për të larguar skedat nga një wiki privat.
 Ky wiki është i konfiguruar si një wiki publik.
 Për siguri optimale, img_auth.php është çaktivizuar.',
-'img-auth-noread'       => 'Përdoruesi nuk ka qasje për të lexuar "$1".',
+'img-auth-noread'           => 'Përdoruesi nuk ka qasje për të lexuar "$1".',
+'img-auth-bad-query-string' => 'URL ka një varg të pavlefshme pyetje.',
 
 # HTTP errors
 'http-invalid-url'      => 'Adresë URL e pavlefshme: $1',
@@ -2255,7 +2264,7 @@ Shiko te [[Special:IPBlockList|Lista e përdoruesve dhe e IP adresave të blloku
 'ipb-edit-dropdown'               => 'Redakto arsyet e bllokimit',
 'ipb-unblock-addr'                => 'Çblloko $1',
 'ipb-unblock'                     => 'Çblloko përdorues dhe IP të bllokuara',
-'ipb-blocklist-addr'              => 'Shikoni bllokime në fuqi për $1',
+'ipb-blocklist-addr'              => 'blloqeve ekzistuese për $1',
 'ipb-blocklist'                   => 'Përdorues dhe IP adresa të bllokuara',
 'ipb-blocklist-contribs'          => 'Kontributet për $1',
 'unblockip'                       => 'Çblloko përdoruesin',
@@ -2264,7 +2273,7 @@ një përdoruesi ose IP adreseje të bllokuar.",
 'ipusubmit'                       => 'Hiqni këtë bllokim',
 'unblocked'                       => '[[User:$1|$1]] është çbllokuar',
 'unblocked-id'                    => 'Bllokimi $1 është hequr',
-'ipblocklist'                     => 'Lista e përdoruesve dhe e IP adresave të bllokuara',
+'ipblocklist'                     => 'Përdorues i Bllokuar',
 'ipblocklist-legend'              => 'Gjej një përdorues të bllokuar',
 'ipblocklist-username'            => 'Adresa IP ose nofka e përdoruesit:',
 'ipblocklist-sh-userblocks'       => '$1 bllokimet e llogarisë',
@@ -2492,7 +2501,7 @@ Të gjitha veprimet e importit transwiki janë të regjistruara tek [[Special:Lo
 'import-interwiki-namespace' => 'Hapësira e destinuar:',
 'import-upload-filename'     => 'Emri i skedës:',
 'import-comment'             => 'Arsyeja:',
-'importtext'                 => 'Ju lutem eksportoni këtë skedë nga burimi wiki duke përdorur mjetin Special:Export, ruajeni në diskun tuaj dhe ngarkojeni këtu.',
+'importtext'                 => 'Ju lutem eksportoni këtë skedë nga burimi wiki duke përdorur  [[Special:Export|export utility]].! XAU Save atë në kompjuterin tuaj dhe ngarkoni këtu.',
 'importstart'                => 'Duke importuar faqet...',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versione}}',
 'importnopages'              => "S'ka faqe për tu importuar.",
@@ -2772,8 +2781,8 @@ Të tjerat do të fshihen.
 'exif-colorspace'                  => 'Hapësira e ngjyrave',
 'exif-componentsconfiguration'     => 'Kuptimi i secilit komponent',
 'exif-compressedbitsperpixel'      => 'Lloji i ngjeshjes së figurës',
-'exif-pixelydimension'             => 'Gjerësia e vlefshme e figurës',
-'exif-pixelxdimension'             => 'Valind image height',
+'exif-pixelydimension'             => 'Gjerësia Image',
+'exif-pixelxdimension'             => 'lartësi Image',
 'exif-makernote'                   => 'Shënimet e prodhuesit',
 'exif-usercomment'                 => 'Vërejtjet e përdoruesit',
 'exif-relatedsoundfile'            => 'Skeda audio shoqëruese',
@@ -2789,9 +2798,9 @@ Të tjerat do të fshihen.
 'exif-spectralsensitivity'         => 'Ndjeshmëria spektrale',
 'exif-isospeedratings'             => 'Vlerësimi i shpejtësisë ISO',
 'exif-oecf'                        => 'Faktori i konvertimit optoelektronik',
-'exif-shutterspeedvalue'           => 'Shpejtësia e mbyllësit',
-'exif-aperturevalue'               => 'Apertura',
-'exif-brightnessvalue'             => 'Ndriçimi',
+'exif-shutterspeedvalue'           => 'shpejtësi APEX qepen',
+'exif-aperturevalue'               => 'aperture APEX',
+'exif-brightnessvalue'             => 'shkëlqim APEX',
 'exif-exposurebiasvalue'           => 'zbuloni vijat e pjerrëta',
 'exif-maxaperturevalue'            => 'Hapje maksimale e tokës',
 'exif-subjectdistance'             => 'Largësia e subjektit',
@@ -2935,6 +2944,8 @@ Të tjerat do të fshihen.
 'exif-sensingmethod-5' => 'Sensori i zones kolor sequential',
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensori linear kolor sequential',
+
+'exif-filesource-3' => 'Digital ende kamera',
 
 'exif-scenetype-1' => 'Nje fotografi e fotografuar direkt',
 

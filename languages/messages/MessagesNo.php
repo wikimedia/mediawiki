@@ -12,6 +12,7 @@
  * @author Byrial
  * @author Eirik
  * @author EivindJ
+ * @author Event
  * @author Finnrind
  * @author Guaca
  * @author H92
@@ -231,17 +232,17 @@ $messages = array(
 'tog-underline'               => 'Strek under lenker:',
 'tog-highlightbroken'         => 'Formater lenker til ikke-eksisterende sider <a href="" class="new">slik</a> (alternativt: slik<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Blokkjusterte avsnitt',
-'tog-hideminor'               => 'Skjul mindre endringer i siste endringer',
-'tog-hidepatrolled'           => 'Skjul patruljerte endringer i siste endringer',
+'tog-hideminor'               => 'Skjul mindre redigeringer i siste endringer',
+'tog-hidepatrolled'           => 'Skjul patruljerte redigeringer i siste endringer',
 'tog-newpageshidepatrolled'   => 'Skjul patruljerte sider fra listen over nye sider.',
 'tog-extendwatchlist'         => 'Utvid overvåkningslisten til å vise alle endringer, ikke bare de siste',
 'tog-usenewrc'                => 'Forbedret siste endringer (krever JavaScript)',
-'tog-numberheadings'          => 'Nummerer overskrifter',
+'tog-numberheadings'          => 'Autonummerer overskrifter',
 'tog-showtoolbar'             => 'Vis verktøylinje (JavaScript)',
 'tog-editondblclick'          => 'Rediger sider ved å dobbeltklikke (JavaScript)',
 'tog-editsection'             => 'Rediger avsnitt ved hjelp av [rediger]-lenke',
 'tog-editsectiononrightclick' => 'Rediger avsnitt ved å høyreklikke på avsnittsoverskrift (JavaScript)',
-'tog-showtoc'                 => 'Vis innholdsfortegnelse (for sider med mer enn tre seksjoner)',
+'tog-showtoc'                 => 'Vis innholdsfortegnelse (for sider med flere enn tre avsnitt)',
 'tog-rememberpassword'        => 'Husk passordet',
 'tog-editwidth'               => 'Utvid redigeringsboksen til å bruke hele skjermen',
 'tog-watchcreations'          => 'Overvåk sider jeg oppretter',
@@ -250,7 +251,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Overvåk sider jeg sletter',
 'tog-minordefault'            => 'Merk i utgangspunktet alle redigeringer som mindre',
 'tog-previewontop'            => 'Flytt forhåndsvisningen foran redigeringsboksen',
-'tog-previewonfirst'          => 'Vis forhåndsvisning ved første redigering av en side',
+'tog-previewonfirst'          => 'Bruk forhåndsvisning ved første redigering av en side',
 'tog-nocache'                 => 'Deaktiver nettlesermellomlagring av sider («caching»)',
 'tog-enotifwatchlistpages'    => 'Send meg en e-post når sider på overvåkningslisten blir endret',
 'tog-enotifusertalkpages'     => 'Send meg en e-post ved endringer av brukerdiskusjonssiden min',
@@ -353,7 +354,7 @@ $messages = array(
 'category-article-count-limited' => 'Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
 'category-file-count'            => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende filen.|Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}',
 'category-file-count-limited'    => 'Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
-'listingcontinuesabbrev'         => ' forts.',
+'listingcontinuesabbrev'         => 'forts.',
 'index-category'                 => 'Indekserte sider',
 'noindex-category'               => 'Ikke-indekserte sider',
 
@@ -393,7 +394,7 @@ $messages = array(
 'vector-action-move'         => 'Flytt',
 'vector-action-protect'      => 'Beskytt',
 'vector-action-undelete'     => 'Gjenopprett',
-'vector-action-unprotect'    => 'Opphev beskyttelse',
+'vector-action-unprotect'    => 'Endre beskyttelse',
 'vector-namespace-category'  => 'Kategori',
 'vector-namespace-help'      => 'Hjelpeside',
 'vector-namespace-image'     => 'Fil',
@@ -439,8 +440,8 @@ $messages = array(
 'protect'           => 'Beskytt',
 'protect_change'    => 'endre',
 'protectthispage'   => 'Lås siden',
-'unprotect'         => 'Åpne',
-'unprotectthispage' => 'Åpne siden',
+'unprotect'         => 'Endre beskyttelse',
+'unprotectthispage' => 'Endre beskyttelsen av denne siden',
 'newpage'           => 'Ny side',
 'talkpage'          => 'Diskuter denne siden',
 'talkpagelinktext'  => 'Diskusjon',
@@ -612,7 +613,7 @@ Spørring: $2',
 'cascadeprotected'     => 'Denne siden er låst for redigering fordi den inkluderes på følgende sider som har dypbeskyttelse slått på:<!--{{PLURAL:$1}}-->
 $2',
 'namespaceprotected'   => "Du har ikke tillatelse til å redigere sider i navnerommet '''$1'''.",
-'customcssjsprotected' => 'Du har ikke tillatelse til å redigere denne siden, fordi den inneholder en annen brukers personlige innstillinger.',
+'customcssjsprotected' => 'Du har ikke tillatelse til å redigere denne siden fordi den inneholder en annen brukers personlige innstillinger.',
 'ns-specialprotected'  => 'Sier i navnerommet {{ns:special}} kan ikke redigeres.',
 'titleprotected'       => "Denne tittelen har blitt låst for oppretting av [[User:$1|$1]].
 Den angitte grunnen er ''$2''.",
@@ -823,11 +824,16 @@ Du kan [[Special:Search/{{PAGENAME}}|søke etter denne sidetittelen]] på andre 
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette siden]</span>.',
 'noarticletext-nopermission'       => 'Det er ingen tekst på denne siden.
 Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] i andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
-'userpage-userdoesnotexist'        => 'Brukerkontoen «$1» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
+'userpage-userdoesnotexist'        => 'Brukerkontoen «<nowiki>$1</nowiki>» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
 'userpage-userdoesnotexist-view'   => 'Kontoen «$1» er ikke registrert.',
 'blocked-notice-logextract'        => 'Denne brukeren er for tiden blokkert.
 Siste blokkeringsloggelement kan sees nedenfor.',
-'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
+'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter hurtiglageret sitt for at endringene skal tre i kraft.
+* '''Firefox / Safari:''' hold ''Shift'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på en Mac)
+* '''Google Chrome:''' trykk ''Ctrl-Shift-R'' (''Command-Shift-R'' på en Mac)
+* '''Internet Explorer:''' hold ''Ctrl'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5''
+* '''Konqueror:''' klikk ''Oppdater'' eller trykk ''F5''
+* '''Opera:''' tøm hurtiglageret i ''Verktøy → Innstillinger''",
 'usercssyoucanpreview'             => "'''Tips:''' Bruk '{{int:showpreview}}'-knappen for å teste din nye CSS før du lagrer.",
 'userjsyoucanpreview'              => "'''Tips:''' Bruk '{{int:showpreview}}'-knappen for å teste ditt nye JS før du lagrer.",
 'usercsspreview'                   => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
@@ -2116,10 +2122,11 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 
 # Protect
 'protectlogpage'              => 'Beskyttelseslogg',
-'protectlogtext'              => 'Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen. Se [[Special:ProtectedPages|listen over låste sider]] for en liste over nåværende låste sider.',
+'protectlogtext'              => 'Nedenfor er en liste over endringer av sidebeskyttelser.
+Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over gjeldende sidebeskyttelser.',
 'protectedarticle'            => 'beskyttet «[[$1]]»',
 'modifiedarticleprotection'   => 'endret beskyttelsesnivå for «[[$1]]»',
-'unprotectedarticle'          => 'åpnet [[$1]]',
+'unprotectedarticle'          => 'fjernet beskyttelse av «[[$1]]»',
 'movedarticleprotection'      => 'flyttet beskyttelsesinnstillinger fra «[[$2]]» til «[[$1]]»',
 'protect-title'               => 'Låser «$1»',
 'prot_1movedto2'              => '[[$1]] flyttet til [[$2]]',
@@ -2260,7 +2267,7 @@ Siste blokkeringsloggelement kan sees nedenfor.',
 'nolinkshere-ns'           => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
 'isredirect'               => 'omdirigeringsside',
 'istemplate'               => 'transklusjon',
-'isimage'                  => 'bildelenke',
+'isimage'                  => 'fillenke',
 'whatlinkshere-prev'       => '{{PLURAL:$1|forrige|forrige $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|neste|neste $1}}',
 'whatlinkshere-links'      => '← lenker',
@@ -2596,7 +2603,7 @@ Lagre den på din egen datamaskin og last den opp her.',
 Du kan se på kildeteksten',
 'tooltip-ca-history'              => 'Tidligere revisjoner av denne siden',
 'tooltip-ca-protect'              => 'Beskytt denne siden',
-'tooltip-ca-unprotect'            => 'Fjern sidebeskyttelsen',
+'tooltip-ca-unprotect'            => 'Endre beskyttelsen av denne siden',
 'tooltip-ca-delete'               => 'Slett denne siden',
 'tooltip-ca-undelete'             => 'Gjenopprett redigerenge som ble gjort på denne siden før den ble slettet.',
 'tooltip-ca-move'                 => 'Flytt denne siden',
@@ -2760,8 +2767,8 @@ $1',
 'filedelete-archive-read-only'    => 'Arkivmappa «$1» kan ikke skrives av tjeneren.',
 
 # Browsing diffs
-'previousdiff' => '← Eldre endring',
-'nextdiff'     => 'Nyere endring →',
+'previousdiff' => '← Forrige endring',
+'nextdiff'     => 'Neste endring →',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne fila kan inneholde farlig kode.

@@ -23,6 +23,7 @@
  * @author Samat
  * @author Terik
  * @author Tgr
+ * @author Xbspiro
  */
 
 $namespaceNames = array(
@@ -460,7 +461,7 @@ $messages = array(
 'vector-action-move'         => 'Átnevezés',
 'vector-action-protect'      => 'Lapvédelem',
 'vector-action-undelete'     => 'Visszaállítás',
-'vector-action-unprotect'    => 'Védelem feloldása',
+'vector-action-unprotect'    => 'Védelem módosítása',
 'vector-namespace-category'  => 'Kategória',
 'vector-namespace-help'      => 'Segítséglap',
 'vector-namespace-image'     => 'Fájl',
@@ -506,8 +507,8 @@ $messages = array(
 'protect'           => 'Lapvédelem',
 'protect_change'    => 'módosítás',
 'protectthispage'   => 'Lapvédelem',
-'unprotect'         => 'Védelem ki',
-'unprotectthispage' => 'Lapvédelem megszüntetése',
+'unprotect'         => 'Védelem módosítása',
+'unprotectthispage' => 'A lap védelmének módosítása',
 'newpage'           => 'Új lap',
 'talkpage'          => 'Megbeszélés a lappal kapcsolatban',
 'talkpagelinktext'  => 'vitalap',
@@ -804,7 +805,7 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'italic_tip'      => 'Dőlt szöveg',
 'link_sample'     => 'Belső hivatkozás',
 'link_tip'        => 'Belső hivatkozás',
-'extlink_sample'  => 'http://www.example.com hivatkozás címe',
+'extlink_sample'  => 'http://www.példa-hivatkozás.hu hivatkozás címe',
 'extlink_tip'     => 'Külső hivatkozás (ne felejtsd el a http:// előtagot)',
 'headline_sample' => 'Alfejezet címe',
 'headline_tip'    => 'Alfejezetcím',
@@ -896,7 +897,7 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
 'noarticletext-nopermission'       => 'Ez a lap jelenleg nem tartalmaz szöveget.
 [[Special:Search/{{PAGENAME}}|Rákereshetsz a lap címére]] más lapok tartalmában, vagy <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} megtekintheted a kapcsolódó naplófájlokat]</span>.',
-'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált felhasználónk.
+'userpage-userdoesnotexist'        => 'Nincs „<nowiki>$1</nowiki>” nevű regisztrált felhasználónk.
 Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.',
 'userpage-userdoesnotexist-view'   => 'Nincs regisztrálva „$1” szerkesztői azonosító.',
 'blocked-notice-logextract'        => 'A felhasználó jelenleg blokkolva van.
@@ -1358,7 +1359,7 @@ A műveletet nem lehet visszavonni.',
 'gender-unknown'                => 'Nincs megadva',
 'gender-male'                   => 'Férfi',
 'gender-female'                 => 'Nő',
-'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemalapú üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
+'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemtől függő üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 'prefs-help-email'              => 'Az e-mail cím megadása nem kötelező, de így kérhetsz új jelszót, ha elfelejtenéd a meglévőt.
@@ -2067,7 +2068,7 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'email-legend'     => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
 'emailfrom'        => 'Feladó:',
 'emailto'          => 'Címzett:',
-'emailsubject'     => 'Téma:',
+'emailsubject'     => 'Tárgy:',
 'emailmessage'     => 'Üzenet:',
 'emailsend'        => 'Küldés',
 'emailccme'        => 'Az üzenet másolatát küldje el nekem is e-mailben.',
@@ -2201,7 +2202,8 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 
 # Protect
 'protectlogpage'              => 'Lapvédelmi_napló',
-'protectlogtext'              => 'Ez a lapok lezárásának és megnyitásának listája. A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
+'protectlogtext'              => 'Alább látható a lapvédelemmel kapcsolatos változtatások listája.
+A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
 'modifiedarticleprotection'   => 'megváltoztatta a(z) „[[$1]]” lap védelmi szintjét',
 'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[$1]]” lapról',
@@ -2353,7 +2355,7 @@ $1',
 'nolinkshere-ns'           => "A kiválasztott névtérben egyetlen oldal sem hivatkozik a(z) '''[[:$1]]''' lapra.",
 'isredirect'               => 'átirányítás',
 'istemplate'               => 'beillesztve',
-'isimage'                  => 'képhivatkozás',
+'isimage'                  => 'fájlhivatkozás',
 'whatlinkshere-prev'       => '{{PLURAL:$1|előző|előző $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|következő|következő $1}}',
 'whatlinkshere-links'      => '← erre mutató hivatkozások',
@@ -2695,7 +2697,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'tooltip-ca-viewsource'           => 'Ez egy védett lap. Ide kattintva megnézheted a forrását.',
 'tooltip-ca-history'              => 'A lap korábbi változatai',
 'tooltip-ca-protect'              => 'A lap levédése',
-'tooltip-ca-unprotect'            => 'Lapvédelem feloldása',
+'tooltip-ca-unprotect'            => 'Lapvédelem módosítása',
 'tooltip-ca-delete'               => 'A lap törlése',
 'tooltip-ca-undelete'             => 'A törölt lapváltozatok visszaállítása',
 'tooltip-ca-move'                 => 'A lap áthelyezése',
@@ -3203,7 +3205,7 @@ A levelező üzenete: $1',
 'confirmemail_error'       => 'Hiba az e-mail címed megerősítése során.',
 'confirmemail_subject'     => '{{SITENAME}} e-mail cím megerősítés',
 'confirmemail_body'        => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált
-"$2" néven a(z) {{SITENAME}} wikin, a(z) $1 IP-címről.
+„$2” néven a(z) {{SITENAME}} wikin, a(z) $1 IP-címről.
 
 Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik,
 és hogy aktiváld az e-mail címedet, nyisd meg az alábbi linket a böngésződben:
