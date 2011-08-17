@@ -705,7 +705,9 @@ class RecentChange {
 			// XXX: *HACK^2* the preg_replace() undoes much of what getInternalURL() does, but we 
 			// XXX: need to call it so that URL paths on the Wikimedia secure server can be fixed
 			// XXX: by a custom GetInternalURL hook --vyznev 2008-12-10
-			$url = preg_replace( '/title=[^&]*&/', '', $titleObj->getInternalURL( $url ) );
+			// XXX: Also, getInternalUrl() may return a protocol-relative URL.
+			// XXX: In that case, expand it to an HTTP URL, even if this is an HTTPS request --catrope 2011-08-17
+			$url = preg_replace( '/title=[^&]*&/', '', wfExpandUrl( $titleObj->getInternalURL( $url ), PROTO_HTTP ) );
 		}
 
 		if( isset( $this->mExtra['oldSize'] ) && isset( $this->mExtra['newSize'] ) ) {
