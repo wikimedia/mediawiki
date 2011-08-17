@@ -185,7 +185,7 @@ $messages = array(
 'tog-watchdefault'            => 'Säiten déi ech änneren op meng Iwwerwaachungslëscht setzen',
 'tog-watchmoves'              => 'Säiten déi ech réckelen automatesch op meng Iwwerwaachungslëscht setzen',
 'tog-watchdeletion'           => 'Säiten déi ech läschen op meng Iwwerwaachungslëscht setzen',
-'tog-minordefault'            => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
+'tog-minordefault'            => "All Ännerungen automatesch als 'Kleng Ännerungen' markéieren.",
 'tog-previewontop'            => "Déi ''nach-net gespäichert Versioun'' iwwer der Ännerungsfënster weisen",
 'tog-previewonfirst'          => "Beim éischten Änneren déi  ''nach net gespäichert Versioun'' weisen.",
 'tog-nocache'                 => 'Säitecache vum Browser desaktivéieren',
@@ -232,7 +232,7 @@ $messages = array(
 'wednesday'     => 'Mëttwoch',
 'thursday'      => 'Donneschdeg',
 'friday'        => 'Freideg',
-'saturday'      => 'Samsdeg',
+'saturday'      => 'Samschdeg',
 'sun'           => 'Son',
 'mon'           => 'Méi',
 'tue'           => 'Dën',
@@ -586,7 +586,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'createaccountmail'          => 'Via E-Mail',
 'createaccountreason'        => 'Grond:',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
-'userexists'                 => 'Dëse Benotzernumm gëtt scho benotzt.
+'userexists'                 => 'De Benotzernumm deen agi gouf gëtt scho benotzt.
 Sicht Iech een anere Benotzernumm.',
 'loginerror'                 => 'Feeler beim Umellen',
 'createaccounterror'         => 'Benotzerkont konnt net opgemaach ginn: $1',
@@ -2521,8 +2521,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-subpages'                => 'Ënnersäite (bis zu $1) réckelen',
 'move-talk-subpages'           => 'Ënnersäite vun der Diskussiounssäit (bis zu $1), matréckelen',
 'movepage-page-exists'         => "D'Säit $1 gëtt et schonn a kann net automatesch iwwerschriwwe ginn.",
-'movepage-page-moved'          => "D'Säit $1 gouf schonn op $2 geréckelt.",
-'movepage-page-unmoved'        => "D'Säit $1 konnt nett op $2 geréckelt ginn.",
+'movepage-page-moved'          => "D'Säit $1 gouf op $2 geréckelt.",
+'movepage-page-unmoved'        => "D'Säit $1 konnt net op $2 geréckelt ginn.",
 'movepage-max-pages'           => 'Déi Maximalzuel vu(n) $1 {{PLURAL:$1|Säit gouf|Säite goufe}} gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.',
 '1movedto2'                    => '[[$1]] gouf op [[$2]] geréckelt',
 '1movedto2_redir'              => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Viruleedung iwwerschriwwen.',
@@ -2658,7 +2658,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-pt-mytalk'               => 'Är Diskussiounssäit',
 'tooltip-pt-anontalk'             => "Diskussioun iwwer d'Ännerungen déi vun dëser IP-Adress aus gemaach gi sinn",
 'tooltip-pt-preferences'          => 'Meng Astellungen',
-'tooltip-pt-watchlist'            => 'Lëscht vu Säiten, bei deenen Der op Ännerungen oppasst',
+'tooltip-pt-watchlist'            => 'Lëscht vu Säiten, bei deenen Dir op Ännerungen oppasst',
 'tooltip-pt-mycontris'            => 'Lëscht vun äre Kontributiounen',
 'tooltip-pt-login'                => 'Sech umelle gëtt gäre gesinn, Dir musst et awer net maachen.',
 'tooltip-pt-anonlogin'            => 'Et wier gutt, Dir géift Iech aloggen, och wann et keng Musse-Saach ass.',
@@ -3018,6 +3018,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-iimsupplementalcategory'     => 'Zousätzlech Kategorien',
 'exif-datetimeexpires'             => 'Net benotzen nom',
 'exif-datetimereleased'            => 'Erausginn den',
+'exif-identifier'                  => 'Identifiant',
 'exif-lens'                        => 'Objektiv dat benotzt gouf',
 'exif-serialnumber'                => 'Seriennummer vun der Kamera',
 'exif-cameraownername'             => 'Besëtzer vun der Kamera',
@@ -3025,6 +3026,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-datetimemetadata'            => 'Datum vun der leschter Ännerung vun de Metadaten',
 'exif-nickname'                    => 'Informellen Numm vum Bild',
 'exif-rating'                      => 'Bewäertung (vu 5)',
+'exif-rightscertificate'           => 'Zertifikat vun der Gestioun vun de Rechter',
 'exif-copyrighted'                 => 'Copyright Status',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
 'exif-usageterms'                  => 'Benotzungsbedingungen',
@@ -3035,6 +3037,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-disclaimer'                  => 'Limitatioun vun der Responsabilitéit',
 'exif-contentwarning'              => 'Warnung iwwer den Inhalt',
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
+'exif-intellectualgenre'           => 'Typ vum Element',
 'exif-subjectnewscode'             => 'Code vum Sujet',
 'exif-organisationinimage'         => 'Organisatioun um Bild',
 'exif-personinimage'               => 'Persoun um Bild',
@@ -3044,6 +3047,7 @@ Déi aner sinn am Standard verstoppt.
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',
 
+'exif-copyrighted-true'  => 'Duerch Copyright geschützt',
 'exif-copyrighted-false' => 'Ëffentlechen Domaine',
 
 'exif-unknowndate' => 'Onbekannten Datum',
@@ -3342,7 +3346,7 @@ $1",
 # Multipage image navigation
 'imgmultipageprev' => '← Vireg Säit',
 'imgmultipagenext' => 'nächst Säit →',
-'imgmultigo'       => 'Lass',
+'imgmultigo'       => 'Lass!',
 'imgmultigoto'     => "Géi op d'Säit $1",
 
 # Table pager
@@ -3457,7 +3461,7 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 'specialpages-note'              => '----
 * Normal Spezialsäiten.
 * <span class="mw-specialpagerestricted">Spezialsäite fir Benotzer mat méi Rechter.</span>
-* <span class="mw-specialpagecached">Spezialsäite aus dem Tëschespäicher</span>',
+* <span class="mw-specialpagecached">Spezialsäiten aus dem Tëschespäicher (ka vereelst sinn).</span>',
 'specialpages-group-maintenance' => 'Maintenance-Rapporten',
 'specialpages-group-other'       => 'Aner Spezialsäiten',
 'specialpages-group-login'       => 'Aloggen / Umellen',
@@ -3531,32 +3535,5 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 # SQLite database support
 'sqlite-has-fts' => "$1 ënnerstëtzt d'Volltextsich",
 'sqlite-no-fts'  => "$1 ënnerstëtzt d'Volltextsich net",
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Kategorie derbäisetzen',
-'ajax-remove-category'          => 'Kategorie ewechhuelen',
-'ajax-edit-category'            => 'Kategorie änneren',
-'ajax-add-category-submit'      => 'Derbäisetzen',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Aktioun confirméieren',
-'ajax-confirm-prompt'           => 'Dir kënnt e Resumé vun der Ännerung ënnedrënner uginn.
-Klickt "Späicheren" fir Är Ännerung ze späicheren.',
-'ajax-confirm-save'             => 'Späicheren',
-'ajax-confirm-save-all'         => 'All Ännerunge späicheren',
-'ajax-cancel'                   => 'Ännerungen annuléieren',
-'ajax-add-category-summary'     => 'Kategorie "$1" derbäisetzen',
-'ajax-edit-category-summary'    => 'Kategorie "$1" op "$2" änneren',
-'ajax-remove-category-summary'  => 'Kategorie "$1" ewechhuelen',
-'ajax-add-category-question'    => 'Firwat wëllt Dir d\'Kategorie "$1" derbäisetzen?',
-'ajax-edit-category-question'   => 'Firwat wëllt Dir d\'Kategorie "$1" op "$2" änneren?',
-'ajax-remove-category-question' => 'Firwat wëllt Dir d\'Kategorie "$1" ewechhuelen?',
-'ajax-confirm-actionsummary'    => 'Wat soll gemaach ginn:',
-'ajax-error-title'              => 'Feeler',
-'ajax-error-dismiss'            => 'OK',
-'ajax-remove-category-error'    => "Et war net méiglech dës Kategorie ewechzehuelen.
-Dëst geschitt gewéinlech da wann eng Kategorie duerch eng Schabloun op d'Säit derbäi gesat gouf.",
-'ajax-edit-category-error'      => "Et war net méiglech dës Kategorie z'änneren.
-Dat geschitt gewéinlech wann d'Kategorie duerch eng Schabloun op d'Säit derbäigesat gouf.",
-'ajax-category-already-present' => 'Dës Säit ass schonn an der Kategorie $1',
 
 );

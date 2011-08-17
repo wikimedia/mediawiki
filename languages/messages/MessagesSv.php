@@ -870,7 +870,7 @@ Tillfälligt lösenord: $2',
 'showdiff'                         => 'Visa ändringar',
 'anoneditwarning'                  => "'''Varning:''' Du är inte inloggad.
 Din IP-adress kommer att sparas i historiken för den här sidan.",
-'anonpreviewwarning'               => "''Du är inte inloggad. Vid spara kommer att din IP-adress registreras på denna sidas redigeringshistorik.''",
+'anonpreviewwarning'               => "''Du är inte inloggad. Om du sparar kommer din IP-adress registreras på denna sidas redigeringshistorik.''",
 'missingsummary'                   => "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar.
 Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'missingcommenttext'               => 'Var god och skriv in en kommentar nedan.',
@@ -938,12 +938,12 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view'   => 'Kontot "$1" är inte registrerat.',
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
-'clearyourcache'                   => "'''Observera:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
-*'''Firefox / Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
-* '''Google Chrome:''' tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
-*'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5''
+'clearyourcache'                   => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
+*'''Firefox / Safari:''' håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
+*'''Google Chrome:''' tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
+*'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
 *'''Konqueror:''': klicka ''Reload'' eller tryck ''F5''
-*'''Opera:''' rensa cachen i ''Tools → Preferences''",
+*'''Opera:''' rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
 'userjsyoucanpreview'              => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
@@ -1318,12 +1318,13 @@ Du kan istället göra sökningar med hjälp av Google.
 Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 
 # Quickbar
-'qbsettings'               => 'Snabbmeny',
-'qbsettings-none'          => 'Ingen',
-'qbsettings-fixedleft'     => 'Fast vänster',
-'qbsettings-fixedright'    => 'Fast höger',
-'qbsettings-floatingleft'  => 'Flytande vänster',
-'qbsettings-floatingright' => 'Flytande höger',
+'qbsettings'                => 'Snabbmeny',
+'qbsettings-none'           => 'Ingen',
+'qbsettings-fixedleft'      => 'Fast vänster',
+'qbsettings-fixedright'     => 'Fast höger',
+'qbsettings-floatingleft'   => 'Flytande vänster',
+'qbsettings-floatingright'  => 'Flytande höger',
+'qbsettings-directionality' => 'Fast, beroende på riktningen av ditt skript och språk',
 
 # Preferences page
 'preferences'                   => 'Inställningar',
@@ -1507,7 +1508,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-purge'                 => 'Rensa cachen för sidor utan att behöva bekräfta',
 'right-autoconfirmed'         => 'Redigera halvlåsta sidor',
 'right-bot'                   => 'Behandlas som en automatisk process',
-'right-nominornewtalk'        => 'Får inte meddelanden om nya ändringar på diskussionssidan vid mindre ändringar.',
+'right-nominornewtalk'        => 'Mindre ändringar på diskussionssidor ger inte besked om nya meddelanden',
 'right-apihighlimits'         => 'Använda högre gränser i API-frågor',
 'right-writeapi'              => 'Använda skriv-API:t',
 'right-delete'                => 'Radera sidor',
@@ -2187,7 +2188,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'emailccme'            => 'Skicka en kopia av meddelandet till mig.',
 'emailccsubject'       => 'Kopia av ditt meddelande till $1: $2',
 'emailsent'            => 'E-post har nu skickats',
-'emailsenttext'        => 'Din e-post har skickats.',
+'emailsenttext'        => 'Ditt e-postmeddelande har skickats',
 'emailuserfooter'      => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
 
 # User Messenger
@@ -2435,10 +2436,12 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'             => 'Namnrymd:',
-'invert'                => 'Uteslut vald namnrymd',
-'namespace_association' => 'Associerade namnutrymmen',
-'blanknamespace'        => '(Huvudnamnrymden)',
+'namespace'                     => 'Namnrymd:',
+'invert'                        => 'Uteslut vald namnrymd',
+'tooltip-invert'                => 'Markera denna ruta för att dölja ändringar på sidor inom det valda namnrymden (och tillhörande namnrymden om det är markerat)',
+'namespace_association'         => 'Associerade namnutrymmen',
+'tooltip-namespace_association' => 'Markera denna ruta för att även inkludera diskussions- eller ämnesnamnrymden som är associerad med den valda namnrymden',
+'blanknamespace'                => '(Huvudnamnrymden)',
 
 # Contributions
 'contributions'       => 'Användarbidrag',
@@ -3012,7 +3015,7 @@ Om du kör den kan din dator skadas.",
 'file-info-size'         => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4',
 'file-info-size-pages'   => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4, $5 {{PLURAL:$5|sida|sidor}}',
 'file-nohires'           => '<small>Det finns ingen version med högre upplösning.</small>',
-'svg-long-desc'          => 'SVG-fil, grundstorlek: $1 × $2 pixel, filstorlek: $3',
+'svg-long-desc'          => 'SVG-fil, grundstorlek: $1 × $2 pixlar, filstorlek: $3',
 'show-big-image'         => 'Högupplöst version',
 'show-big-image-preview' => '<small>Storlek på förhandsvisningen: $1.</small>',
 'show-big-image-other'   => '<small>Andra upplösningar: $1.</small>',
@@ -3196,9 +3199,11 @@ Andra kommer att gömmas som standard
 'exif-objectname'                  => 'Kort titel',
 'exif-specialinstructions'         => 'Specialinstruktioner',
 'exif-headline'                    => 'Rubrik',
+'exif-credit'                      => 'Erkännande/leverantör',
 'exif-source'                      => 'Källa',
 'exif-editstatus'                  => 'Bildens redaktionella status',
 'exif-urgency'                     => 'Brådskande',
+'exif-fixtureidentifier'           => 'Fixturnamn',
 'exif-locationdest'                => 'Plats avbildad',
 'exif-locationdestcode'            => 'Avbildad platskod',
 'exif-objectcycle'                 => 'Tid på dagen median är avsedd för',
@@ -3210,6 +3215,7 @@ Andra kommer att gömmas som standard
 'exif-iimsupplementalcategory'     => 'Tilläggskategorier',
 'exif-datetimeexpires'             => 'Använd inte efter',
 'exif-datetimereleased'            => 'Släpptes den',
+'exif-originaltransmissionref'     => 'Ursprunglig positionskod för transmission',
 'exif-identifier'                  => 'Identifierare',
 'exif-lens'                        => 'Objektiv',
 'exif-serialnumber'                => 'Kamerans serienummer',
@@ -3414,6 +3420,7 @@ Andra kommer att gömmas som standard
 'exif-gpsdirection-m' => 'Magnetisk bäring',
 
 'exif-ycbcrpositioning-1' => 'Centrerad',
+'exif-ycbcrpositioning-2' => 'Sammanfallande',
 
 'exif-dc-contributor' => 'Bidragsgivare',
 'exif-dc-coverage'    => 'Rumslig och tidsmässig omfattning av media',
@@ -3669,7 +3676,7 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'fileduplicatesearch-legend'    => 'Sök efter en dubblettfil',
 'fileduplicatesearch-filename'  => 'Filnamn:',
 'fileduplicatesearch-submit'    => 'Sök',
-'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Filstorlek: $3<br />MIME-typ: $4',
+'fileduplicatesearch-info'      => '$1 × $2 pixlar<br />Filstorlek: $3<br />MIME-typ: $4',
 'fileduplicatesearch-result-1'  => 'Filen "$1" har inga identiska dubbletter.',
 'fileduplicatesearch-result-n'  => 'Filen "$1" har {{PLURAL:$2|1 identisk dubblett|$2 identiska dubbletter}}.',
 'fileduplicatesearch-noresults' => 'Ingen fil med namnet "$1" hittades.',
@@ -3753,32 +3760,5 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 med stöd för fulltextsökning',
 'sqlite-no-fts'  => '$1 utan stöd för fulltextsökning',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Lägg till kategori',
-'ajax-remove-category'          => 'Ta bort kategori',
-'ajax-edit-category'            => 'Redigera kategori',
-'ajax-add-category-submit'      => 'Lägg till',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Bekräfta handling',
-'ajax-confirm-prompt'           => 'Du kan skriva en redigeringssammanfattning nedanför.
-Klicka på "Spara" för att spara din redigering.',
-'ajax-confirm-save'             => 'Spara',
-'ajax-confirm-save-all'         => 'Spara alla ändringar',
-'ajax-cancel'                   => 'Avbryt redigering',
-'ajax-add-category-summary'     => 'Lägg till kategorin "$1"',
-'ajax-edit-category-summary'    => 'Ändra kategori "$1" till "$2"',
-'ajax-remove-category-summary'  => 'Tag bort kategorin "$1"',
-'ajax-add-category-question'    => 'Varför vill du lägga till kategorin "$1"?',
-'ajax-edit-category-question'   => 'Varför vill du ändra kategorin "$1" till "$2"?',
-'ajax-remove-category-question' => 'Varför vill du ta bort kategorin "$1"?',
-'ajax-confirm-actionsummary'    => 'Handling att utföra:',
-'ajax-error-title'              => 'Fel',
-'ajax-error-dismiss'            => 'OK',
-'ajax-remove-category-error'    => 'Det var inte möjligt att ta bort den här kategorin.
-Oftast beror det på att kategorin har lagts till genom användande av en mall.',
-'ajax-edit-category-error'      => 'Det gick inte att redigera denna kategori.
-Detta inträffar vanligen när kategorin har lagts till sidan i en mall.',
-'ajax-category-already-present' => 'Denna sida tillhör redan kategorin $1',
 
 );

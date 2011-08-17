@@ -2499,6 +2499,7 @@ Tafadhali jaribu tena.',
 'pageinfo-header-watchlist' => 'Maangalizi',
 'pageinfo-subjectpage'      => 'Ukurasa',
 'pageinfo-talkpage'         => 'Ukurasa wa majadiliano',
+'pageinfo-watchers'         => 'Idadi ya wanaofuatilia',
 'pageinfo-edits'            => 'Idadi ya haririo',
 
 # Patrol log
@@ -2525,6 +2526,7 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'widthheightpage'        => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
 'file-info'              => 'ukubwa wa faili: $1, aina ya MIME: $2',
 'file-info-size'         => 'piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4',
+'file-info-size-pages'   => 'Piseli $1 × $2, ukubwa wa faili: $3, aina ya MIME: $4, {{PLURAL:$5|ukurasa|kurasa}} $5',
 'file-nohires'           => '<small>Hakuna saizi kubwa zaidi.</small>',
 'svg-long-desc'          => 'faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3',
 'show-big-image'         => 'Ukubwa wa awali',
@@ -2624,6 +2626,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-copyrightowner'              => 'Mwenye hatimiliki',
 'exif-pngfilecomment'              => 'Maoni juu ya faili la PNG',
 'exif-giffilecomment'              => 'Maoni juu ya faili la GIF',
+'exif-personinimage'               => 'Mtu aliyepigwa picha',
 
 'exif-unknowndate' => 'Tarehe haijulikani',
 
@@ -3011,27 +3014,5 @@ Tovuti hii inapata matatatizo wakati huu.',
 'htmlform-submit'              => 'Wasilisha',
 'htmlform-reset'               => 'Tengua mabadiliko',
 'htmlform-selectorother-other' => 'Nyingine',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Ongeza jamii',
-'ajax-remove-category'          => 'Ondoa jamii',
-'ajax-edit-category'            => 'Hariri jamii',
-'ajax-add-category-submit'      => 'Ongeza',
-'ajax-confirm-ok'               => 'Sawa',
-'ajax-confirm-title'            => 'Uthibitishe kitendo',
-'ajax-confirm-prompt'           => 'Unaweza kuandika muhtasari wa sahihisho chini. 
-Bonyeza "Hifadhi" ili kuhifadhi sahihisho yako.',
-'ajax-confirm-save'             => 'Hifadhi',
-'ajax-confirm-save-all'         => 'Hifadhi mabadiliko yote',
-'ajax-cancel'                   => 'Futa maharirio',
-'ajax-add-category-summary'     => 'Ongeza jamii ya "$1"',
-'ajax-edit-category-summary'    => 'Jamii ya "$1" imebadilishwa iwe "$2"',
-'ajax-remove-category-summary'  => 'Ondoa jamii ya "$1"',
-'ajax-confirm-actionsummary'    => 'Chagua kitendo:',
-'ajax-error-title'              => 'Hitilafu',
-'ajax-error-dismiss'            => 'Sawa',
-'ajax-remove-category-error'    => ' Jamii hii haikuweza kuondolewa.
-Huwa jamii haiwezi kuondolewa kwenye ukurasa wakati jamii imeingizwa ndani ya kigezo fulani.',
-'ajax-category-already-present' => 'Ukarasa huu tayari uko katika jamii ya $1',
 
 );

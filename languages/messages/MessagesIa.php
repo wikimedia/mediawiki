@@ -560,7 +560,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'createaccountmail'          => 'per e-mail',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Le duo contrasignos que tu scribeva non es identic.',
-'userexists'                 => 'Le nomine de usator que tu entrava es ja in uso.
+'userexists'                 => 'Iste nomine de usator es jam in uso.
 Selige un altere nomine.',
 'loginerror'                 => 'Error in le apertura del session',
 'createaccounterror'         => 'Non poteva crear le conto: $1',
@@ -3512,12 +3512,12 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',
 'watchlistedit-noitems'        => 'Tu observatorio contine nulle titulos.',
 'watchlistedit-normal-title'   => 'Modificar observatorio',
-'watchlistedit-normal-legend'  => 'Eliminar titulos del observatorio',
+'watchlistedit-normal-legend'  => 'Remover titulos del observatorio',
 'watchlistedit-normal-explain' => 'Le titulos in tu observatorio es monstrate hic infra.
 Pro eliminar un titulo, marca le quadrato correspondente, e clicca "{{int:Watchlistedit-normal-submit}}".
 Tu pote etiam [[Special:EditWatchlist/raw|modificar le lista in forma crude]].',
-'watchlistedit-normal-submit'  => 'Eliminar titulos',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate de tu observatorio:',
+'watchlistedit-normal-submit'  => 'Remover titulos',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite de tu observatorio:',
 'watchlistedit-raw-title'      => 'Modification del observatorio in forma crude',
 'watchlistedit-raw-legend'     => 'Modification del observatorio in forma de un lista simple de titulos',
 'watchlistedit-raw-explain'    => 'Le titulos in tu observatorio es monstrate hic infra, e pote esser modificate per adder e eliminar entratas del lista;
@@ -3528,7 +3528,7 @@ Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'watchlistedit-raw-submit'     => 'Actualisar observatorio',
 'watchlistedit-raw-done'       => 'Tu observatorio ha essite actualisate.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite addite:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite removite:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vider modificationes pertinente',
@@ -3592,8 +3592,8 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 'specialpages'                   => 'Paginas special',
 'specialpages-note'              => '----
 * Paginas special normal.
-* <strong class="mw-specialpagerestricted">Paginas special restringite.</strong>
-* <span class="mw-specialpagecached">Paginas special del cache solmente.</span>',
+* <span class="mw-specialpagerestricted">Paginas special restringite.</span>
+* <span class="mw-specialpagecached">Paginas special del cache (poterea esser obsolete).</span>',
 'specialpages-group-maintenance' => 'Reportos de mantenentia',
 'specialpages-group-other'       => 'Altere paginas special',
 'specialpages-group-login'       => 'Aperir session / crear conto',
@@ -3667,32 +3667,5 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 con supporto de recerca de texto integre',
 'sqlite-no-fts'  => '$1 sin supporto de recerca de texto integre',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Adder categoria',
-'ajax-remove-category'          => 'Remover categoria',
-'ajax-edit-category'            => 'Modificar categoria',
-'ajax-add-category-submit'      => 'Adder',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Confirmar action',
-'ajax-confirm-prompt'           => 'Tu pote fornir un summario del modification ci infra.
-Clicca super "Publicar" pro confirmar le modification.',
-'ajax-confirm-save'             => 'Publicar',
-'ajax-confirm-save-all'         => 'Salveguardar tote le modificationes',
-'ajax-cancel'                   => 'Cancellar modificationes',
-'ajax-add-category-summary'     => 'Adder categoria "$1"',
-'ajax-edit-category-summary'    => 'Cambiar le categoria "$1" a "$2"',
-'ajax-remove-category-summary'  => 'Remover categoria "$1"',
-'ajax-add-category-question'    => 'Proque vole tu adder le categoria "$1"?',
-'ajax-edit-category-question'   => 'Proque vole tu cambiar le categoria "$1" a "$2"?',
-'ajax-remove-category-question' => 'Proque vole tu remover le categoria "$1"?',
-'ajax-confirm-actionsummary'    => 'Action a prender:',
-'ajax-error-title'              => 'Error',
-'ajax-error-dismiss'            => 'OK',
-'ajax-remove-category-error'    => 'Il non esseva possibile remover iste categoria.
-Isto occurre generalmente quando le categoria ha essite addite al pagina per un patrono.',
-'ajax-edit-category-error'      => 'Non esseva possibile modificar iste categoria.
-Isto normalmente occurre si le categoria ha essite addite al pagina per medio de un patrono.',
-'ajax-category-already-present' => 'Iste pagina pertine jam al categoria $1',
 
 );

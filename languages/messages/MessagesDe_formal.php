@@ -13,6 +13,7 @@
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Kghbln
  * @author Leithian
+ * @author Merlissimo
  * @author MichaelFrey
  * @author Michawiki
  * @author Pill
@@ -75,7 +76,8 @@ Vergessen Sie nicht, Ihre [[Special:Preferences|{{SITENAME}}-Einstellungen]] anz
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
 'nologin'                    => "Sie haben kein Benutzerkonto? '''$1'''.",
 'gotaccount'                 => "Haben Sie bereits ein Benutzerkonto? '''$1'''.",
-'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.',
+'userexists'                 => 'Dieser Benutzername ist schon vergeben.
+Bitte wählen Sie einen anderen.',
 'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber Sie sind nicht angemeldet.
 {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und melden sich dann mit Ihrem neuen Benutzernamen und dem zugehörigen Passwort an.',
 'nocookieslogin'             => '{{SITENAME}} benutzt Cookies zur Anmeldung der Benutzer.
@@ -222,14 +224,14 @@ Sollte das Problem bestehen bleiben, [[Special:UserLogout|melden Sie sich ab]] u
 'token_suffix_mismatch'            => "'''Ihre Bearbeitung wurde zurückgewiesen, da Ihr Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.'''",
 'edit_form_incomplete'             => "'''Der Inhalt des Bearbeitungsformulars hat den Server nicht vollständig erreicht. Bitte prüfen Sie Ihre Bearbeitungen auf Vollständigkeit und versuchen Sie es erneut.'''",
-'explainconflict'                  => "Jemand anders hat diese Seite geändert, nachdem Sie angefangen haben diese zu bearbeiten.
-Das obere Textfeld enthält den aktuellen Stand.
+'explainconflict'                  => "Jemand anders hat diese Seite geändert, nachdem Sie angefangen haben sie zu bearbeiten.
+Das obere Textfeld enthält den aktuellen Bearbeitungsstand der Seite.
 Das untere Textfeld enthält Ihre Änderungen.
 Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
-'''Nur''' der Inhalt des oberen Textfeldes wird gespeichert, wenn Sie auf „{{int:savearticle}}“ klicken!",
+'''Nur''' der Inhalt des oberen Textfeldes wird gespeichert, wenn Sie auf „{{int:savearticle}}“ klicken.",
 'yourtext'                         => 'Ihr Text',
 'nonunicodebrowser'                => "'''Achtung:''' Ihr Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwenden Sie einen anderen Browser um Seiten zu bearbeiten.",
-'editingold'                       => "'''Achtung: Sie bearbeiten eine alte Version dieser Seite. Wenn Sie speichern, werden alle neueren Versionen überschrieben.'''",
+'editingold'                       => "'''Achtung: Sie bearbeiten eine alte Version dieser Seite. Sofern Sie sie speichern, werden alle neueren Versionen überschrieben.'''",
 'copyrightwarning'                 => "'''Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!'''<br />
 Sie geben uns hiermit Ihre Zusage, dass Sie den Text '''selbst verfasst''' haben, dass der Text Allgemeingut ('''public domain''') ist, oder dass der '''Copyright-Inhaber''' seine '''Zustimmung''' gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der Diskussionsseite darauf hin.
 <i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der „$2“ stehen (siehe $1 für Details). Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf „Seite speichern“.</i>",
@@ -306,6 +308,7 @@ Stellen Sie sicher, dass die Versionsgeschichte einer Seite historisch korrekt i
 'searchsubtitle'        => 'Ihre Suchanfrage: „[[:$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid' => 'Ihre Suchanfrage: „$1“.',
 'toomanymatches'        => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuchen Sie eine andere Abfrage.',
+'searchmenu-new'        => "'''Erstellen Sie die Seite „[[:$1]]“ in diesem Wiki.'''",
 'search-suggest'        => 'Meinten Sie „$1“?',
 'nonefound'             => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setzen Sie ''all:'' vor Ihren Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
 'search-nonefound'      => 'Für Ihre Suchanfrage wurden keine Ergebnisse gefunden.',
@@ -434,10 +437,10 @@ Als Absender wird die E-Mail-Adresse aus ihren [[Special:Preferences|Einstellung
 'emailsenttext'   => 'Ihre E-Mail wurde verschickt.',
 
 # Watchlist
-'nowatchlist'       => 'Sie haben keine Einträge auf Ihrer Beobachtungsliste.',
-'watchlistanontext' => 'Sie müssen sich $1, um Ihre Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',
+'nowatchlist'       => 'Es befinden sich keine Einträge auf Ihrer Beobachtungsliste.',
+'watchlistanontext' => 'Sie müssen sich $1, um Ihre Beobachtungsliste sehen oder Einträge auf ihr bearbeiten zu können.',
 'watchnologin'      => 'Sie sind nicht angemeldet',
-'watchnologintext'  => 'Sie müssen [[Special:UserLogin|angemeldet]] sein, um Ihre Beobachtungsliste zu bearbeiten.',
+'watchnologintext'  => 'Sie müssen [[Special:UserLogin|angemeldet]] sein, um Ihre Beobachtungsliste bearbeiten zu können.',
 'addedwatchtext'    => 'Die Seite „[[:$1]]“ wurde zu Ihrer [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
@@ -665,22 +668,19 @@ Wenn Sie die Seite speichern, wird sie neu angelegt.',
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Ihre Beobachtungsliste enthält {{PLURAL:$1|1 Eintrag |$1 Einträge}}, Diskussionsseiten werden nicht gezählt.',
+'watchlistedit-numitems'       => 'Ihre Beobachtungsliste enthält {{PLURAL:$1|einen Eintrag|$1 Einträge}}. Die Diskussionsseiten wurden dabei nicht mitgezählt.',
 'watchlistedit-noitems'        => 'Ihre Beobachtungsliste ist leer.',
 'watchlistedit-normal-explain' => 'Dies sind die Einträge Ihrer Beobachtungsliste. Um Einträge zu entfernen, markieren Sie die Kästchen neben den Einträgen und klicken Sie am Ende der Seite auf „{{int:Watchlistedit-normal-submit}}“. Sie können Ihre Beobachtungsliste auch im [[Special:EditWatchlist/raw|Listenformat bearbeiten]].',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} von Ihrer Beobachtungsliste entfernt:',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Ein Eintrag wurde|$1 Einträge wurden}} von Ihrer Beobachtungsliste entfernt:',
 'watchlistedit-raw-explain'    => 'Dies sind die Einträge Ihrer Beobachtungsliste im Listenformat. Die Einträge können zeilenweise gelöscht oder hinzugefügt werden.
-Pro Zeile ist ein Eintrag erlaubt. Wenn Sie fertig sind, klicken Sie auf „{{int:Watchlistedit-raw-submit}}“.
-Sie können auch die [[Special:EditWatchlist|Standard-Bearbeitungsseite]] benutzen.',
+Pro Zeile ist ein Eintrag erlaubt.
+Sobald Sie fertig sind, klicken Sie auf „{{int:Watchlistedit-raw-submit}}“.
+Sie können auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutzen.',
 'watchlistedit-raw-done'       => 'Ihre Beobachtungsliste wurde gespeichert.',
 
 # Database error messages
 'dberr-again'     => 'Warten Sie einige Minuten und versuchen Sie dann neu zuladen.',
 'dberr-usegoogle' => 'Sie könnten in der Zwischenzeit mit Google suchen.',
 'dberr-outofdate' => 'Beachten Sie, dass der Suchindex unserer Inhalte bei Google veraltet sein kann.',
-
-# Add categories per AJAX
-'ajax-confirm-prompt' => 'Sie können unten eine Zusammenfassung eingeben.
-Klicken Sie „Speichern“ um die Bearbeitung zu speichern.',
 
 );

@@ -27,6 +27,7 @@
  * @author Remember the dot
  * @author Saper
  * @author Sp5uhe
+ * @author Stlmch
  * @author Stv
  * @author Szczepan1990
  * @author Timpul
@@ -2512,7 +2513,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'blocklist-userblocks'            => 'Ukryj blokady konta',
 'blocklist-tempblocks'            => 'Ukryj tymczasowe blokady',
 'blocklist-addressblocks'         => 'Ukryj blokady pojedynczych adresów IP',
-'blocklist-timestamp'             => 'Znacznik czasu',
+'blocklist-timestamp'             => 'Sygnatura czasowa',
 'blocklist-target'                => 'Cel',
 'blocklist-expiry'                => 'Upływa',
 'blocklist-by'                    => 'Zarządzanie blokowaniem',
@@ -3086,7 +3087,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-fnumber-format'              => 'f&nbsp;/&nbsp;$1',
 'exif-exposureprogram'             => 'Program ekspozycji',
 'exif-spectralsensitivity'         => 'Czułość widmowa',
-'exif-isospeedratings'             => 'Szybkość aparatu zgodnie z ISO12232',
+'exif-isospeedratings'             => 'Czułość aparatu zgodnie z&nbsp;normą ISO&nbsp;12232',
 'exif-shutterspeedvalue'           => 'Szybkość migawki',
 'exif-aperturevalue'               => 'Przysłona obiektywu',
 'exif-brightnessvalue'             => 'Jasność',
@@ -3783,32 +3784,5 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
 'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Dodaj kategorię',
-'ajax-remove-category'          => 'Usuń z kategorii',
-'ajax-edit-category'            => 'Edytuj kategorię',
-'ajax-add-category-submit'      => 'Dodaj',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Potwierdź',
-'ajax-confirm-prompt'           => 'Możesz podać poniżej opis edycji.
-Kliknij „Zapisz”, aby zapisać zmiany.',
-'ajax-confirm-save'             => 'Zapisz',
-'ajax-confirm-save-all'         => 'Zapisz wszystkie zmiany',
-'ajax-cancel'                   => 'Wycofaj zmiany',
-'ajax-add-category-summary'     => 'Dodaj kategorię „$1”',
-'ajax-edit-category-summary'    => 'Zmiana kategorii z „$1“ na „$2“',
-'ajax-remove-category-summary'  => 'Usuń kategorię „$1”',
-'ajax-add-category-question'    => 'Dlaczego chcesz dodać do kategorii „$1“?',
-'ajax-edit-category-question'   => 'Dlaczego chcesz zmienić kategorię z „$1“ na „$2“?',
-'ajax-remove-category-question' => 'Dlaczego chcesz usunąć z kategorii „$1“?',
-'ajax-confirm-actionsummary'    => 'Cel działania',
-'ajax-error-title'              => 'Błąd',
-'ajax-error-dismiss'            => 'OK',
-'ajax-remove-category-error'    => 'Usunięcie strony z tej kategorii nie jest możliwe.
-Problem zazwyczaj występuje, jeśli kategoria została dodana do strony przez szablon.',
-'ajax-edit-category-error'      => 'Zmiana kategorii nie była możliwa.
-Taki problem zazwyczaj występuje, gdy kategoria została dodana do strony przez szablon.',
-'ajax-category-already-present' => 'Strona już jest w kategorii $1',
 
 );

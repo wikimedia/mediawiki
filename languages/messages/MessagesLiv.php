@@ -303,6 +303,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'revdel-restore-visible' => 'nǟdõbõd redaktsijõd',
 'revdelete-content'      => 'sižāli',
 'revdelete-hid'          => '$1 jarā vaŗtõd',
+'revdelete-log-message'  => '{{PLURAL:$2| Īd|$2}} redaktsijõ $1',
 
 # Merge log
 'revertmerge' => 'Kīeld jarā kubbõ vieddimi',
@@ -313,6 +314,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'lineno'                  => 'Rīnda $1:',
 'compareselectedversions' => 'Līdzinţ vēļdõt redaktsijḑi',
 'editundo'                => 'kištānt jarā',
+'diff-multi'              => '({{PLURAL:$1|Īdtõ|$1}} vail-vȯlbizt {{PLURAL:$2|īd|$2}} kȭlbatijiz redaktsijõ äb nägţõbõd.)',
 
 # Search results
 'searchresults'                    => 'Vȯtšimiz rezultātõd',
@@ -364,10 +366,12 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'powersearch-field'                => 'Vȯtšõgid frāzõ',
 
 # Preferences page
-'preferences'   => 'Mīeldõbõd ulzõ-vēļimizt',
-'mypreferences' => 'Min mīeldõbõd ulzõ-vēļimizt',
-'youremail'     => 'E-kēra adres:',
-'yourrealname'  => 'Õigi nim:',
+'preferences'             => 'Mīeldõbõd ulzõ-vēļimizt',
+'mypreferences'           => 'Min mīeldõbõd ulzõ-vēļimizt',
+'youremail'               => 'E-kēra adres:',
+'yourrealname'            => 'Õigi nim:',
+'prefs-help-email'        => 'E-kēra adres sīezõ-panmi äb ūo käsktõd, bet se laskūb täddõn teļļõ sallisõnā määdõltõks, až tēg unūţ eņtš sallisõnā jarā.',
+'prefs-help-email-others' => 'Võigõd ka pallõ tuoiztõn sin kȭlbatijiz- agā nõvpidāmiz-līeds tädkõks kontakt võttõ, sīe azmõl, ku täddõn vȯlkõ vajāg eņtš ummidi tieutidi nägţõ',
 
 # Groups
 'group-sysop' => 'Administrātord',
@@ -391,7 +395,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'recentchanges-label-bot'         => 'Sīe mõitõks tei ikš robot',
 'recentchanges-label-unpatrolled' => 'Se mõitõks tēji vȯļ ikš robot',
 'rcnote'                          => "Allõ-pūol um andtõd {{PLURAL:$1| '''1''' mõitõks|'''$1''' mõitõks}} perīz {{PLURAL:$2|pǟva|'''$2''' pǟva}}, āigal kēratõd $5 kīela $4.",
-'rcnotefrom'                      => "Allõ-pūol um tūodõd mõitõkst  '''$2''' sōņõst: nägţõbõd amā jemīņ '''$1''' mõitõkst)",
+'rcnotefrom'                      => "Allõ-pūol um tūodõd mõitõkst  '''$2''' sōņõst: (nägţõbõd amā jemīņ '''$1''' mõitõkst)",
 'rclistfrom'                      => 'Nägţ mõitõkši sōņõst: $1',
 'rcshowhideminor'                 => '$1 piškizt parāmtimizt',
 'rcshowhidebots'                  => '$1 robōtõd',
@@ -588,7 +592,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'whatlinkshere-title'      => ' Lēḑõd, mis sidābõd lēḑ  "$1" pǟlõ',
 'whatlinkshere-page'       => 'Lēḑ:',
 'linkshere'                => "Līed  '''[[:$1]]''' pǟlõ sidābõd ne lēḑõd:",
-'nolinkshere'              => "Līed '''[[$1]]''' pǟlõ äb ūo sidtõd mittikš lēḑ.",
+'nolinkshere'              => "Līed '''[[:$1]]''' pǟlõ äb ūo sidtõd mittikš lēḑ.",
 'isredirect'               => 'jeddõpēḑõn sōtimiz lēḑ',
 'istemplate'               => 'kȭlbatõmi mallõks',
 'isimage'                  => 'Siḑīm fail jūrõ',
@@ -708,6 +712,7 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 'tooltip-summary'                 => 'Kēratigid lītõ kubbõ-võtāmi',
 
 # Patrol log
+'patrol-log-line' => 'paņ merk ku $1 līeds $2 kontroļļtõd $3',
 'patrol-log-diff' => 'versij $1',
 
 # Browsing diffs
@@ -728,7 +733,8 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 'metadata-help'     => 'Se fail sizzõl um mūdõ tieutõkst, mis um kilāb jūrõ-pand digikāmera agā skannõr pūolst. Až failõ um eņtšvīţiz programmatūraks kȭlbatõd, võib setmin tieutidi vȱlda mõitiņtõd agā tikkiž jarā kištāntõd',
 'metadata-expand'   => 'Nägţ mūḑi jo akurātidi ažḑi',
 'metadata-collapse' => 'Vaŗ jarā juo akurāt ažād',
-'metadata-fields'   => 'Täs lugdõd EXIF meta-tīetõkst vellidi nägţõbõd bīlda seļţimiz līeds meta-tīetõkst vaņtlimiz āigal. Munt tīetõkst ātõ bäz kītõmõt jarā vaŗtõd. * make
+'metadata-fields'   => 'Täs lugdõd fail meta-tīetõkst vellidi nägţõbõd bīlda seļţimiz līeds meta-tīetõkst vaņtlimiz āigal. Munt tīetõkst ātõ bäz kītõmõt jarā vaŗtõd. 
+* make
 * model
 * datetimeoriginal
 * exposuretime
@@ -756,8 +762,21 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 'watchlisttools-edit' => 'Vaņ ja redigīer iļ-vaņtlimiz nimkerrõ',
 'watchlisttools-raw'  => 'Mõitiņt ovāt-tekstõ',
 
+# Core parser functions
+'duplicate-defaultsort' => "'''Kūondõks:''' Kõõrda-jadā võţīm ''$2'' tīeb tijāks jedsõ pūol vólbiz kõõrda-jadā võţīm ''$1''.",
+
 # Special:SpecialPages
 'specialpages' => 'Eņtšvīţizt lēḑõd',
+
+# External image whitelist
+'external_image_whitelist' => '  #Jettõgid se jadā bäz mõitiņtõmõt<pre>
+#Pangid regulār-ekpressij jagūd ( set merkid // vail vȯlbi jag) mōzõpēḑõn 
+#Ne āt sidtõd vikipēdij-uļļizt bīldad internet adresõdõks
+#Sidtõd vȯlbizt nägţõbõd bīldadõks, mūn kȭrdal nägţõbõd setku bīlda siḑīm 
+#Merkõks # irgõbõd rīndad āt komentārd 
+#Se um nei-īž sūrd ja piškizt tǟdõdõks
+
+#Pangid tikkiž regulār-ekpressij jagūd sīe krīpš pāikal. Jettõgid se jadā bäz mõitiņtõmõt mūoḑ pǟlõ  </pre>',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] sõggõl:',

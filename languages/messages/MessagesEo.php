@@ -2741,7 +2741,7 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 # Thumbnails
 'thumbnail-more'           => 'Pligrandigi',
 'filemissing'              => 'Mankanta dosiero',
-'thumbnail_error'          => 'Okazis eraro kreante antaŭvidan bildeton: $1',
+'thumbnail_error'          => 'Okazis eraro ĉe kreado de antaŭvida bildeto: $1',
 'djvu_page_error'          => 'DjVu-a paĝo el intervalo',
 'djvu_no_xml'              => 'Ne povas akiri XML por DjVu dosiero',
 'thumbnail_invalid_params' => 'Nevalidaj bildetaj parametroj',
@@ -3663,20 +3663,5 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 # SQLite database support
 'sqlite-has-fts' => '$1 kun tut-teksta subteno',
 'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Aldoni kategorion',
-'ajax-add-category-submit'     => 'Aldoni',
-'ajax-confirm-title'           => 'Konfirmi agon',
-'ajax-confirm-prompt'          => 'Vi povas provizi redaktan resumon suben.
-Klaku butonon "Konservi" por konservi vian redakton.',
-'ajax-confirm-save'            => 'Konservi',
-'ajax-add-category-summary'    => 'Aldoni kategorion "$1"',
-'ajax-remove-category-summary' => 'Forigi kategorion "$1"',
-'ajax-confirm-actionsummary'   => 'Ago por fari:',
-'ajax-error-title'             => 'Eraro',
-'ajax-error-dismiss'           => 'Ek!',
-'ajax-remove-category-error'   => 'Ne eblas forigi ĉi tiun kategorion.
-Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
 
 );

@@ -111,6 +111,9 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 'createaccount'           => 'Talaga e poko',
 'gotaccountlink'          => 'Hu ki loto',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Matahigoa he tagata',
+
 # Edit pages
 'summary'            => 'Fakakatoakatoa:',
 'minoredit'          => 'Ko e fakahakohako fakatote',

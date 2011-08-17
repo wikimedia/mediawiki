@@ -678,11 +678,12 @@ Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'userpage-userdoesnotexist-view'   => '\'U cunde utende "$1" non g\'è reggistrate.',
 'blocked-notice-logextract'        => "Stu utende jè correndemende bloccate.<br />
 L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
-'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
-*'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboranemende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sus a 'nu Mac);
+'clearyourcache'                   => "''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
+*'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboraneamende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sus a 'nu Mac);
+*'''Google Chrome:''' cazze ''Ctrl-Shift-R'' (''Command-Shift-R'' sus a 'nu Mac)
+*'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.
 *'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
-*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);
-*'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.",
+*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);",
 'usercssyoucanpreview'             => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u CSS nuève apprime de reggistrà.",
 'userjsyoucanpreview'              => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u JavaScript nuève apprime de reggistrà.",
 'usercsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
@@ -1063,12 +1064,13 @@ Tu puè cercà ausanne Google.
 Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàggene ca non ge sonde aggiornate.",
 
 # Quickbar
-'qbsettings'               => 'Barra veloce',
-'qbsettings-none'          => 'Ninde',
-'qbsettings-fixedleft'     => 'Fissete a sinistre (Fixed left)',
-'qbsettings-fixedright'    => 'Fissete a destre (Fixed right)',
-'qbsettings-floatingleft'  => 'Volanne a sinistre (Floating left)',
-'qbsettings-floatingright' => 'Volanne a destre (Floating right)',
+'qbsettings'                => 'Barra veloce',
+'qbsettings-none'           => 'Ninde',
+'qbsettings-fixedleft'      => 'Fissete a sinistre (Fixed left)',
+'qbsettings-fixedright'     => 'Fissete a destre (Fixed right)',
+'qbsettings-floatingleft'   => 'Volanne a sinistre (Floating left)',
+'qbsettings-floatingright'  => 'Volanne a destre (Floating right)',
+'qbsettings-directionality' => "Corrette, depende da 'a direzionalità d'u script tune e da 'a lènga toje",
 
 # Preferences page
 'preferences'                   => 'Me piece accussì',
@@ -1954,8 +1956,10 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 'watchlistanontext'    => 'Pe piacere $1 pe vedè o cangià le vosce sus a liste de le pàggene condrollete.',
 'watchnologin'         => 'Non ge sinde colleghete',
 'watchnologintext'     => 'Tu a essere [[Special:UserLogin|colleghete]] pe cangià le pàggene condrollete tue.',
+'addwatch'             => "Mitte jndr'à le pàggene condrollate",
 'addedwatchtext'       => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
 Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le puè acchià aqquà, e 'a pàgene avène signete cu 'u '''grascette''' jndr'à [[Special:RecentChanges|liste de le cangiaminde recende]] pe facilità l'identificazione.",
+'removewatch'          => 'Live da le pàggene condrollate',
 'removedwatchtext'     => '\'A pàgene "[[:$1]]" ha state scangillete da [[Special:Watchlist|le pàggene condrollete tue]].',
 'watch'                => 'Condrolle',
 'watchthispage'        => 'Condrolle sta pàgene',
@@ -3296,6 +3300,12 @@ Pe piacere conferme ca tu vuè avveramende reccrejà sta pàgene.",
 'confirm-purge-top'    => "Pulizze 'a cache de sta pàgene?",
 'confirm-purge-bottom' => "Pulezzanne 'a cache d'a pàgene se pò vedè 'a versiona cchiù aggiornate d'a pàgene.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Vuè ccu mitte sta pàgene da chidde condrollate?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Vuè ccu live sta pàgene da chidde condrollate?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← pàgena precedende',
 'imgmultipagenext' => 'pàgena successive →',
@@ -3490,20 +3500,5 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 # SQLite database support
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
-
-# Add categories per AJAX
-'ajax-add-category'            => "Aggiunge 'a categorije",
-'ajax-add-category-submit'     => 'Aggiunge',
-'ajax-confirm-title'           => "Conferme l'azione",
-'ajax-confirm-prompt'          => 'Tu puè fà \'nu riepileghe de le cangiaminde aqquà sotte.
-Cazze "Reggistre" pe reggistrà \'u cangiamende tue.',
-'ajax-confirm-save'            => 'Reggistre',
-'ajax-add-category-summary'    => 'Aggiunge \'a categorije "$1"',
-'ajax-remove-category-summary' => 'Live \'a categorije "$1"',
-'ajax-confirm-actionsummary'   => 'Azione da fà:',
-'ajax-error-title'             => 'Errore',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "Non g'è possibbele luà sta categorije.
-Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
 
 );

@@ -974,7 +974,11 @@ Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných
 'userpage-userdoesnotexist-view'   => 'Uživatelský účet „$1“ není zaregistrován.',
 'blocked-notice-logextract'        => 'Tento uživatel je momentálně zablokován.
 Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
-'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
+'clearyourcache'                   => "'''Poznámka: Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte.'''
+'''Mozilla / Firefox / Safari:''' při kliknutí na ''Aktualizovat'' držte ''Shift'', nebo stiskněte ''Ctrl-F5'' nebo ''Ctrl-R'' (na Macintoshi ''Command-R'');
+'''Konqueror''': klikněte na ''Aktualizovat'' nebo stiskněte ''F5'';
+'''Opera:''' smažte obsah cache v menu ''Nástroje → Nastavení'';
+'''Internet Explorer:''' při kliknutí na ''Aktualizovat'' držte ''Ctrl'', nebo stiskněte ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového CSS před uložením.",
 'userjsyoucanpreview'              => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového JavaScriptu před uložením.",
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
@@ -1339,12 +1343,13 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'searchdisabled'                   => '<p>Omlouváme se. Plnotextové vyhledávání je dočasně nedostupné. Zatím můžete zkusit vyhledávání Googlem; je ale možné, že jeho výsledky nemusí být aktuální.</p>',
 
 # Quickbar
-'qbsettings'               => 'Nastavení lišty nástrojů',
-'qbsettings-none'          => 'Žádný',
-'qbsettings-fixedleft'     => 'Leží vlevo',
-'qbsettings-fixedright'    => 'Leží vpravo',
-'qbsettings-floatingleft'  => 'Plovoucí vlevo',
-'qbsettings-floatingright' => 'Plovoucí vpravo',
+'qbsettings'                => 'Nastavení lišty nástrojů',
+'qbsettings-none'           => 'Žádný',
+'qbsettings-fixedleft'      => 'Leží vlevo',
+'qbsettings-fixedright'     => 'Leží vpravo',
+'qbsettings-floatingleft'   => 'Plovoucí vlevo',
+'qbsettings-floatingright'  => 'Plovoucí vpravo',
+'qbsettings-directionality' => 'Pevný v závislosti na směrovosti vašeho jazyka a písma',
 
 # Preferences page
 'preferences'                   => 'Nastavení',
@@ -2215,7 +2220,9 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'watchlistanontext'    => 'Pro prohlížení či úpravu seznamu sledovaných stránek se musíte $1.',
 'watchnologin'         => 'Nejste přihlášen(a)',
 'watchnologintext'     => 'Pro sledování stránek se musíte [[Special:UserLogin|přihlásit]].',
+'addwatch'             => 'Přidat do sledovaných stránek',
 'addedwatchtext'       => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které [[Special:Watchlist|sledujete]]. Budoucí změny této stránky se objeví <b>tučně</b> v [[Special:RecentChanges|seznamu posledních změn]], aby bylo snadnější si jí povšimnout. Pokud budete později chtít stránku ze seznamu sledovaných smazat, klikněte na „Nesledovat tuto stránku“ v liště nástrojů.',
+'removewatch'          => 'Vyřadit ze sledovaných stránek',
 'removedwatchtext'     => 'Stránka „[[:$1]]“ byla vyřazena z vašeho [[Special:Watchlist|seznamu sledovaných stránek]].',
 'watch'                => 'Sledovat',
 'watchthispage'        => 'Sledovat tuto stránku',
@@ -2355,7 +2362,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-cascadeon'           => 'Tato stránka je právě zamčena, protože je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
 'protect-default'             => 'Povolit všem',
-'protect-fallback'            => 'Vyžaduje povolení "$1"',
+'protect-fallback'            => 'Vyžaduje oprávnění „$1“',
 'protect-level-autoconfirmed' => 'Zakázat novým a neregistrovaným uživatelům',
 'protect-level-sysop'         => 'Pouze správci',
 'protect-summary-cascade'     => 'kaskádový',
@@ -2874,9 +2881,9 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'tooltip-ca-nstab-help'           => 'Zobrazit stránku nápovědy.',
 'tooltip-ca-nstab-category'       => 'Zobrazit kategorii.',
 'tooltip-minoredit'               => 'Označit změnu jako malou editaci',
-'tooltip-save'                    => 'Kliknutím na toto tlačítko uložíte na trvalo své změny',
-'tooltip-preview'                 => 'Kliknutím na toto tlačítko zobrazíte náhled svých změn; používejte ho, prosíme, před uložením!',
-'tooltip-diff'                    => 'Zobrazit, jaké změny jste v textu provedli.',
+'tooltip-save'                    => 'Uložit vaše změny',
+'tooltip-preview'                 => 'Zobrazit náhled vašich změn; prosíme, zobrazte si ho před uložením!',
+'tooltip-diff'                    => 'Zobrazit, jaké změny jste v textu provedli',
 'tooltip-compareselectedversions' => 'Podívat se na rozdíly mezi dvěma vybranými verzemi této stránky.',
 'tooltip-watch'                   => 'Přidat stránku do seznamu sledovaných',
 'tooltip-recreate'                => 'Obnovit stánku i když byla smazána',
@@ -3537,6 +3544,12 @@ Opravdu si přejete znovu tuto stránku založit?',
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Aktualizovat cachovanou verzi této stránky?',
 'confirm-purge-bottom' => 'Aktualizace stránky vymaže cache a vynutí zobrazení nejaktuálnější verze.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Přidat tuto stránku mezi sledované?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Vyjmout tuto stránku ze sledovaných?',
 
 # Separators for various lists, etc.
 'percent' => '$1&nbsp;%',

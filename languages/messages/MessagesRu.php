@@ -1088,7 +1088,7 @@ $3 указал следующую причину: ''$2''",
 'rev-deleted-comment'         => '(описание правки удалено)',
 'rev-deleted-user'            => '(имя автора стёрто)',
 'rev-deleted-event'           => '(запись удалена)',
-'rev-deleted-user-contribs'   => '[имя участника или IP-адрес удалёны — правка скрыта со страницы вклада]',
+'rev-deleted-user-contribs'   => '[имя участника или IP-адрес удалены — правка скрыта со страницы вклада]',
 'rev-deleted-text-permission' => "Эта версия страницы была '''удалена'''.
 Возможно, объяснения даны в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
 'rev-deleted-text-unhide'     => "Эта версия страницы была '''удалена'''.
@@ -3718,8 +3718,8 @@ MediaWiki распространяется в надежде, что она бу
 'specialpages'                   => 'Спецстраницы',
 'specialpages-note'              => '----
 * Обычные служебные страницы.
-* <strong class="mw-specialpagerestricted">Служебные страницы с ограниченным доступом.</strong>
-* <span class="mw-specialpagecached">Кешированные служебные страницы.</span>',
+* <span class="mw-specialpagerestricted">Служебные страницы с ограниченным доступом.</span>
+* <span class="mw-specialpagecached">Закешированные служебные страницы (могут быть устаревшими).</span>',
 'specialpages-group-maintenance' => 'Отчёты технического обслуживания',
 'specialpages-group-other'       => 'Другие служебные страницы',
 'specialpages-group-login'       => 'Представиться / Зарегистрироваться',
@@ -3793,32 +3793,5 @@ MediaWiki распространяется в надежде, что она бу
 # SQLite database support
 'sqlite-has-fts' => '$1 с поддержкой полнотекстового поиска',
 'sqlite-no-fts'  => '$1 без поддержки полнотекстового поиска',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Добавить категорию',
-'ajax-remove-category'          => 'Удалить категорию',
-'ajax-edit-category'            => 'Изменить категорию',
-'ajax-add-category-submit'      => 'Добавить',
-'ajax-confirm-ok'               => 'ОК',
-'ajax-confirm-title'            => 'Подтвердить действие',
-'ajax-confirm-prompt'           => 'Ниже вы можете указать описание изменений.
-Нажмите «Сохранить», чтобы сохранить ваши изменения.',
-'ajax-confirm-save'             => 'Сохранить',
-'ajax-confirm-save-all'         => 'Сохранить все изменения',
-'ajax-cancel'                   => 'Отменить изменения',
-'ajax-add-category-summary'     => 'Добавлена категория «$1»',
-'ajax-edit-category-summary'    => 'Изменить категорию «$1» на «$2»',
-'ajax-remove-category-summary'  => 'Удалена категория «$1»',
-'ajax-add-category-question'    => 'Почему вы хотите добавить категорию «$1»?',
-'ajax-edit-category-question'   => 'Почему вы хотите изменить категорию «$1» на «$2»?',
-'ajax-remove-category-question' => 'Почему вы хотите удалить категорию «$1»?',
-'ajax-confirm-actionsummary'    => 'Предпринимаемые действия:',
-'ajax-error-title'              => 'Ошибка',
-'ajax-error-dismiss'            => 'OK',
-'ajax-remove-category-error'    => 'Не удалось убрать эту категорию.
-Обычно это происходит в случае, когда категория была добавлена через шаблон.',
-'ajax-edit-category-error'      => 'Не удалось изменить эту категорию.
-Это обычно происходит, когда категория была добавлена на страницу с помощью шаблона.',
-'ajax-category-already-present' => 'Эта страница уже относится к данной категории $1',
 
 );

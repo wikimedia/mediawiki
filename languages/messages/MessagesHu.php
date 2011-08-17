@@ -25,6 +25,7 @@
  * @author Samat
  * @author Terik
  * @author Tgr
+ * @author Xbspiro
  */
 
 $namespaceNames = array(
@@ -1389,7 +1390,7 @@ A műveletet nem lehet visszavonni.',
 'gender-unknown'                => 'Nincs megadva',
 'gender-male'                   => 'Férfi',
 'gender-female'                 => 'Nő',
-'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemalapú üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
+'prefs-help-gender'             => 'Nem kötelező: a szoftver használja a nemtől függő üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 'prefs-help-email'              => 'Az e-mail cím megadása nem kötelező, de szükséges új jelszó kéréséhez, ha elfelejtenéd a meglévőt.',
@@ -2293,7 +2294,8 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 
 # Protect
 'protectlogpage'              => 'Lapvédelmi_napló',
-'protectlogtext'              => 'Ez a lapok lezárásának és megnyitásának listája. A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
+'protectlogtext'              => 'Alább látható a lapvédelemmel kapcsolatos változtatások listája.
+A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
 'modifiedarticleprotection'   => 'megváltoztatta a(z) „[[$1]]” lap védelmi szintjét',
 'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[$1]]” lapról',
@@ -2408,10 +2410,12 @@ $1',
 'undelete-show-file-submit'    => 'Igen',
 
 # Namespace form on various pages
-'namespace'             => 'Névtér:',
-'invert'                => 'Kijelölés megfordítása',
-'namespace_association' => 'Kapcsolódó névtér',
-'blanknamespace'        => '(Fő)',
+'namespace'                     => 'Névtér:',
+'invert'                        => 'Kijelölés megfordítása',
+'tooltip-invert'                => 'Pipáld ki a dobozt, ha el szeretnéd rejteni a kiválasztott névterekben történt változtatásokat (és a kapcsolódó névterekben, amennyiben úgy van beállítva)',
+'namespace_association'         => 'Kapcsolódó névtér',
+'tooltip-namespace_association' => 'Pipáld ki ezt a dobozt, ha a kiválasztott névtérhez tartozó vita- vagy tárgynévteret is bele szeretnéd venni.',
+'blanknamespace'                => '(Fő)',
 
 # Contributions
 'contributions'       => 'Szerkesztő közreműködései',
@@ -2817,7 +2821,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'tooltip-ca-viewsource'           => 'Ez egy védett lap. Ide kattintva megnézheted a forrását.',
 'tooltip-ca-history'              => 'A lap korábbi változatai',
 'tooltip-ca-protect'              => 'A lap levédése',
-'tooltip-ca-unprotect'            => 'Lapvédelem feloldása',
+'tooltip-ca-unprotect'            => 'Lapvédelem módosítása',
 'tooltip-ca-delete'               => 'A lap törlése',
 'tooltip-ca-undelete'             => 'A törölt lapváltozatok visszaállítása',
 'tooltip-ca-move'                 => 'A lap áthelyezése',
@@ -2914,6 +2918,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-header-views'     => 'Megtekintések',
 'pageinfo-subjectpage'      => 'Lap',
 'pageinfo-talkpage'         => 'Vitalap',
+'pageinfo-watchers'         => 'Figyelők száma',
 'pageinfo-edits'            => 'Szerkesztések száma',
 'pageinfo-authors'          => 'Egyedi szerkesztők száma',
 'pageinfo-views'            => 'Megtekintések száma',
@@ -3684,32 +3689,5 @@ Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 # SQLite database support
 'sqlite-has-fts' => '$1 teljes szöveges keresés támogatással',
 'sqlite-no-fts'  => '$1 teljes szöveges keresés támogatása nélkül',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Kategória hozzáadása',
-'ajax-remove-category'          => 'Kategória eltávolítása',
-'ajax-edit-category'            => 'Kategória szerkesztése',
-'ajax-add-category-submit'      => 'Hozzáadás',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Művelet megerősítése',
-'ajax-confirm-prompt'           => 'Alább megadhatsz egy szerkesztési összefoglalót.
-Kattints a „Mentés” gombra a szerkesztés elmentéséhez.',
-'ajax-confirm-save'             => 'Mentés',
-'ajax-confirm-save-all'         => 'Összes változtatás mentése',
-'ajax-cancel'                   => 'Szerkesztések visszavonása',
-'ajax-add-category-summary'     => '„$1” kategória hozzáadása',
-'ajax-edit-category-summary'    => '„$1” kategória cseréje a következőre: „$2”',
-'ajax-remove-category-summary'  => '„$1” kategória eltávolítása',
-'ajax-add-category-question'    => 'Miért akarod hozzáadni a következő kategóriát: „$1”?',
-'ajax-edit-category-question'   => 'Miért akarod megváltoztatni a(z) „$1” kategóriát a következőre: „$2”?',
-'ajax-remove-category-question' => 'Miért akarod eltávolítani a következő kategóriát: „$1”?',
-'ajax-confirm-actionsummary'    => 'Elvégzendő művelet:',
-'ajax-error-title'              => 'Hiba',
-'ajax-error-dismiss'            => 'OK',
-'ajax-remove-category-error'    => 'Nem sikerült eltávolítani a kategóriát.
-Ez általában akkor fordul elő, ha a kategóriát egy sablon adja hozzá a laphoz.',
-'ajax-edit-category-error'      => 'Nem lehet szerkeszteni a kategóriát.
-Ez általában akkor fordul elő, ha a lapot egy sablon sorolja be az adott kategóriába.',
-'ajax-category-already-present' => 'Ez a lap már a(z) „$1” kategória tagja.',
 
 );

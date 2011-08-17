@@ -482,7 +482,7 @@ $messages = array(
 'qbpageinfo'     => 'Pagina-informatie',
 'qbmyoptions'    => "Mijn pagina's",
 'qbspecialpages' => 'Speciale pagina’s',
-'faq'            => 'FAQ (veelgestelde vragen)',
+'faq'            => 'Veel gestelde vragen',
 'faqpage'        => 'Project:Veelgestelde vragen',
 
 # Vector skin
@@ -2299,7 +2299,7 @@ De ontvanger kan dus direct naar u reageren.',
 'mywatchlist'          => 'Mijn volglijst',
 'watchlistfor2'        => 'Voor $1 $2',
 'nowatchlist'          => 'Uw volglijst is leeg.',
-'watchlistanontext'    => '$1 is noodzakelijk om uw volglijst in te zien of te wijzigen.',
+'watchlistanontext'    => 'Om uw volglijst te bekijken of te bewerken moet u zich $1.',
 'watchnologin'         => 'U bent niet aangemeld',
 'watchnologintext'     => 'U dient [[Special:UserLogin|aangemeld]] te zijn om uw volglijst te bewerken.',
 'addwatch'             => 'Toevoegen aan volglijst',
@@ -2686,7 +2686,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 Het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'blocklog-showsuppresslog'        => 'Deze gebruiker is voorheen geblokkeerd geweest en er zijn (delen van) bewerkingen van deze gebruiker verborgen.
 Het verbergingslogboek wordt hieronder ter referentie weergegeven:',
-'blocklogentry'                   => 'blokkeerde [[$1]] met als vervaldatum $2 $3',
+'blocklogentry'                   => 'blokkeerde [[$1]] met als vervaltijd $2 $3',
 'reblock-logentry'                => 'heeft de blokkade voor [[$1]] gewijzigd met als vervaldatum $2 $3',
 'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen.
 Automatische blokkeringen en deblokkeringen komen niet in het logboek.
@@ -3833,7 +3833,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'specialpages-note'              => '----
 * Normale speciale pagina\'s
 * <strong class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</strong>
-* <span class="mw-specialpagecached">Speciale pagina\'s met alleen gegevens uit de cache</span>',
+* <span class="mw-specialpagecached">Speciale pagina\'s met alleen gegevens uit de cache (mogelijk verouderd)</span>',
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Aanmelden / registreren',
@@ -3907,32 +3907,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Categorie toevoegen',
-'ajax-remove-category'          => 'Categorie verwijderen',
-'ajax-edit-category'            => 'Categorie bewerken',
-'ajax-add-category-submit'      => 'Toevoegen',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Handeling bevestigen',
-'ajax-confirm-prompt'           => 'U kunt hieronder een bewerkingssamenvatting opgeven.
-Klik "Opslaan" om uw bewerking op te slaan.',
-'ajax-confirm-save'             => 'Opslaan',
-'ajax-confirm-save-all'         => 'Alle wijzigingen opslaan',
-'ajax-cancel'                   => 'Bewerkingen annuleren',
-'ajax-add-category-summary'     => 'Categorie "$1" toevoegen',
-'ajax-edit-category-summary'    => 'Categorie "$1" naar "$2" wijzigen',
-'ajax-remove-category-summary'  => 'Categorie "$1" verwijderen',
-'ajax-add-category-question'    => 'Waarom wilt u categorie "$1" toevoegen?',
-'ajax-edit-category-question'   => 'Waarom wilt u categorie "$1" naar "$2" wijzigen?',
-'ajax-remove-category-question' => 'Waarom wilt u categorie "$1" verwijderen?',
-'ajax-confirm-actionsummary'    => 'Uit te voeren handeling:',
-'ajax-error-title'              => 'Fout',
-'ajax-error-dismiss'            => 'OK',
-'ajax-remove-category-error'    => 'Het was niet mogelijk deze categorie te verwijderen.
-Dit gebeurt meestal als de categorie via een sjabloon aan de pagina is toegevoegd.',
-'ajax-edit-category-error'      => 'Het was niet mogelijk om deze categorie te bewerken.
-Dit gebeurt meestal wanneer de categorie is toegevoegd aan de pagina door een sjabloon.',
-'ajax-category-already-present' => 'Deze pagina behoort al tot categorie $1',
 
 );

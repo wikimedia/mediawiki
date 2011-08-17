@@ -8,6 +8,7 @@
  * @file
  *
  * @author PhiLiP
+ * @author Shizhao
  * @author Wong128hk
  */
 
@@ -173,6 +174,9 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-norollbackdiff' => '進行回退後略過差異比較',
+
+# Edit pages
+'editing' => '正在编辑 $1',
 
 # Move page
 'move-redirect-suppressed' => '已禁止重新定向',

@@ -15,6 +15,7 @@
  * @author AlexSm
  * @author Andrijko Z.
  * @author Arturyatsko
+ * @author Dim Grits
  * @author DixonD
  * @author Dubyk
  * @author EugeneZelenko
@@ -349,7 +350,7 @@ $messages = array(
 'feb'           => 'лют',
 'mar'           => 'бер',
 'apr'           => 'квіт',
-'may'           => 'травень',
+'may'           => 'трав',
 'jun'           => 'чер',
 'jul'           => 'лип',
 'aug'           => 'сер',
@@ -407,7 +408,7 @@ $messages = array(
 'vector-action-move'             => 'Перейменувати',
 'vector-action-protect'          => 'Захистити',
 'vector-action-undelete'         => 'Відновити',
-'vector-action-unprotect'        => 'Зняти захист',
+'vector-action-unprotect'        => 'Зміна захисту',
 'vector-simplesearch-preference' => 'Увімкнути розширені пошукові підказки (лише для оформлення "Векторне")',
 'vector-view-create'             => 'Створити',
 'vector-view-edit'               => 'Редагувати',
@@ -444,8 +445,8 @@ $messages = array(
 'protect'           => 'Захистити',
 'protect_change'    => 'змінити',
 'protectthispage'   => 'Захистити цю сторінку',
-'unprotect'         => 'Зняти захист',
-'unprotectthispage' => 'Зняти захист із цієї сторінки',
+'unprotect'         => 'Зміна захисту',
+'unprotectthispage' => 'Зміна захисту цієї сторінки',
 'newpage'           => 'Нова сторінка',
 'talkpage'          => 'Обговорити цю сторінку',
 'talkpagelinktext'  => 'Обговорення',
@@ -2269,11 +2270,11 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => 'Журнал захисту',
-'protectlogtext'              => 'Нижче наведено список установлень і знять захисту зі сторінки.
+'protectlogtext'              => 'Нижче наведено список встановлень і зняття захисту зі сторінки.
 Ви також можете переглянути [[Special:ProtectedPages|список захищених сторінок]].',
 'protectedarticle'            => 'захист на [[$1]] встановлено',
 'modifiedarticleprotection'   => 'змінено рівень захисту сторінки «[[$1]]»',
-'unprotectedarticle'          => 'знято захист зі сторінки «[[$1]]»',
+'unprotectedarticle'          => 'знято захист зі сторінки "[[$1]]"',
 'movedarticleprotection'      => 'переніс налаштування захисту з «[[$2]]» на «[[$1]]»',
 'protect-title'               => 'Встановлення захисту для «$1»',
 'prot_1movedto2'              => '«[[$1]]» перейменована на «[[$2]]»',
@@ -2420,7 +2421,7 @@ $1',
 'nolinkshere-ns'           => "У вибраному просторі назв нема сторінок, що посилаються на '''[[:$1]]'''.",
 'isredirect'               => 'сторінка-перенаправлення',
 'istemplate'               => 'включення',
-'isimage'                  => 'посилання на зображення',
+'isimage'                  => 'посилання на файл',
 'whatlinkshere-prev'       => '{{PLURAL:$1|попередня|попередні|попередні}} $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|наступна|наступні|наступні}} $1',
 'whatlinkshere-links'      => '← посилання',
@@ -2874,6 +2875,10 @@ The wiki server can't provide data in a format your client can read.",
 'spam_reverting'      => 'Відкинути до останньої версії, що не містить посилання на $1',
 'spam_blanking'       => 'Всі версії містять посилання на $1, очистка',
 
+# Info page
+'pageinfo-header-edits' => 'Редагування',
+'pageinfo-subjectpage'  => 'Сторінка',
+
 # Skin names
 'skinname-standard'    => 'Стандартне',
 'skinname-nostalgia'   => 'Ностальгія',
@@ -3015,8 +3020,8 @@ $1',
 'exif-colorspace'                  => 'Колірний простір',
 'exif-componentsconfiguration'     => 'Конфігурація кольорових компонентів',
 'exif-compressedbitsperpixel'      => 'Глибина кольору після стиснення',
-'exif-pixelydimension'             => 'Повна висота зображення',
-'exif-pixelxdimension'             => 'Повна ширина зображення',
+'exif-pixelydimension'             => 'Ширина зображення',
+'exif-pixelxdimension'             => 'Висота зображення',
 'exif-usercomment'                 => 'Додатковий коментар',
 'exif-relatedsoundfile'            => 'Файл звукового коментаря',
 'exif-datetimeoriginal'            => 'Оригинальні дата й час',

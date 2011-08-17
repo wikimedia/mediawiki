@@ -3827,31 +3827,4 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'sqlite-has-fts' => '$1 với sự hỗ trợ tìm kiếm toàn văn',
 'sqlite-no-fts'  => '$1 không có hỗ trợ tìm kiếm toàn văn',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Thêm thể loại',
-'ajax-remove-category'          => 'Gỡ thể loại',
-'ajax-edit-category'            => 'Sửa thể loại',
-'ajax-add-category-submit'      => 'Thêm',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Xác nhận tác vụ',
-'ajax-confirm-prompt'           => 'Bạn có thể thêm tóm lược sửa đổi vào bên dưới.
-Nhấn “Lưu” để lưu sửa đổi của bạn.',
-'ajax-confirm-save'             => 'Lưu',
-'ajax-confirm-save-all'         => 'Lưu tất cả thay đổi',
-'ajax-cancel'                   => 'Hủy bỏ các sửa đổi',
-'ajax-add-category-summary'     => 'Thêm thể loại “$1”',
-'ajax-edit-category-summary'    => 'Thay thể loại “$1” bằng “$2”',
-'ajax-remove-category-summary'  => 'Gỡ thể loại “$1”',
-'ajax-add-category-question'    => 'Tại sao bạn muốn xếp vào thể loại “$1”?',
-'ajax-edit-category-question'   => 'Tại sao bạn muốn thay thể loại “$1” bằng “$2”?',
-'ajax-remove-category-question' => 'Tại sao bạn muốn gỡ thể loại “$1”?',
-'ajax-confirm-actionsummary'    => 'Tác vụ thực hiện:',
-'ajax-error-title'              => 'Lỗi',
-'ajax-error-dismiss'            => 'OK',
-'ajax-remove-category-error'    => 'Không thể gỡ bỏ thể loại này.
-Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
-'ajax-edit-category-error'      => 'Không thể sửa đổi thể loại này.
-Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
-'ajax-category-already-present' => 'Trang này đã nằm trong thể loại “$1”.',
-
 );

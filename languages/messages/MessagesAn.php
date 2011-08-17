@@ -158,8 +158,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
 'tog-oldsig'                  => "Vista previa d'a sinyadura:",
 'tog-fancysig'                => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
-'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador).  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
-'tog-externaldiff'            => 'Fer servir o visualizador de cambeos externo por defecto (nomás ta espiertos, cal confegurar o suyo ordenador)',
+'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
+'tog-externaldiff'            => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
 'tog-showjumplinks'           => 'Activar vinclos d\'accesibilidat "blincar enta"',
 'tog-uselivepreview'          => 'Activar previsualización automatica (cal JavaScript) (Esperimental)',
 'tog-forceeditsummary'        => 'Avisar-me quan o campo de resumen siga buedo.',
@@ -285,7 +285,7 @@ $messages = array(
 'vector-action-move'             => 'Tresladar',
 'vector-action-protect'          => 'Protecher',
 'vector-action-undelete'         => 'Restaurar',
-'vector-action-unprotect'        => 'Desprotecher',
+'vector-action-unprotect'        => 'Cambiar protección',
 'vector-simplesearch-preference' => "Habilitar socherencias de busca amilloradas (nomás ta l'apariencia Vector)",
 'vector-view-create'             => 'Creyar',
 'vector-view-edit'               => 'Editar',
@@ -310,6 +310,7 @@ $messages = array(
 'printableversion'  => 'Versión ta imprentar',
 'permalink'         => 'Vinclo permanent',
 'print'             => 'Imprentar',
+'view'              => 'Veyer',
 'edit'              => 'Editar',
 'create'            => 'Creyar',
 'editthispage'      => 'Editar ista pachina',
@@ -317,11 +318,12 @@ $messages = array(
 'delete'            => 'Borrar',
 'deletethispage'    => 'Borrar ista pachina',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|una edición|$1 edicions}}',
+'viewdeleted_short' => 'Veyer {{PLURAL:$1|una edición borrata|$1 edicions borratas}}',
 'protect'           => 'Protecher',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Protecher ista pachina',
-'unprotect'         => 'esprotecher',
-'unprotectthispage' => 'Esprotecher ista pachina',
+'unprotect'         => 'Cambiar protección',
+'unprotectthispage' => "Cambiar a protección d'ista pachina",
 'newpage'           => 'Pachina nueva',
 'talkpage'          => "Descusión d'ista pachina",
 'talkpagelinktext'  => 'Descutir',
@@ -619,14 +621,27 @@ Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya t
 'resetpass-temp-password'   => 'Contrasenya temporal:',
 
 # Special:PasswordReset
-'passwordreset'            => 'Restablir a parola de paso',
-'passwordreset-text'       => "Completar ista forma ta recibir un recordatorio por correu con os detalles d'a suya cuenta.",
-'passwordreset-legend'     => 'Restablir a parola de paso',
-'passwordreset-disabled'   => "S'ha desactivau o restablimiento de parolas de paso en ista wiki.",
-'passwordreset-pretext'    => "{{PLURAL:$1||Introduzca uno d'os siguients datos}}",
-'passwordreset-username'   => "Nombre d'usuario:",
-'passwordreset-email'      => 'Adreza de correu electronico:',
-'passwordreset-emailtitle' => "Detalles d'a cuenta en {{SITENAME}}",
+'passwordreset'                => 'Restablir a parola de paso',
+'passwordreset-text'           => "Completar ista forma ta recibir un recordatorio por correu con os detalles d'a suya cuenta.",
+'passwordreset-legend'         => 'Restablir a parola de paso',
+'passwordreset-disabled'       => "S'ha desactivau o restablimiento de parolas de paso en ista wiki.",
+'passwordreset-pretext'        => "{{PLURAL:$1||Introduzca uno d'os siguients datos}}",
+'passwordreset-username'       => "Nombre d'usuario:",
+'passwordreset-email'          => 'Adreza de correu electronico:',
+'passwordreset-emailtitle'     => "Detalles d'a cuenta en {{SITENAME}}",
+'passwordreset-emailtext-ip'   => "Belún (probablement vusté, dende l'adreza IP $1) ha demandau un recordatorio d'a información d'a suya cuenta en  {{SITENAME}} ($4). {{PLURAL:$3|A cuenta d'usuario siguient ye asociata|As cuentas d'usuario siguients son asociatas}} a ista adreza de correu-e:
+
+$2
+
+{{PLURAL:$3|Ista parola de paso temporal circumducirá|Istas parolas de paso temporals circumducirán}} en {{PLURAL:$5|un día|$5 días}}. Habría de connectar-se agora y trigar una nueva parola de paso. Si ista demanda no dimana de vusté, u ya se'n ha acordau d'a suya parolas de paso inicial y ya no deseya modificar-la, puet ignorar iste mensache y continar emplegando a suya viella parola de paso.",
+'passwordreset-emailtext-user' => "L'usuario $1 en {{SITENAME}} ha demandau un recordatorio d'a información d'a suya cuenta en {{SITENAME}} ($4). {{PLURAL:$3|A cuenta d'usuario siguient ye asociata|As cuentas d'usuario siguients son asociatas}} a ista adreza de correu-e:
+
+$2
+
+{{PLURAL:$3|Ista parola de paso temporal circumducirá|Istas parolas de paso temporals circumducirán}} en {{PLURAL:$5|un día|$5 días}}. Habría de connectar-se agora y trigar una nueva parola de paso. Si ista demanda no dimana de vusté, u ya se'n ha acordau d'a suya parolas de paso inicial y ya no deseya modificar-la, puet ignorar iste mensache y continar emplegando a suya viella parola de paso.",
+'passwordreset-emailelement'   => 'Nombre de usuario: $1
+Parola de paso temporal: $2',
+'passwordreset-emailsent'      => "S'ha ninviau un recordatorio por correu-e.",
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negreta',
@@ -723,17 +738,21 @@ u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'userpage-userdoesnotexist-view'   => 'A cuenta d\'usuario "$1" no ye rechistrada.',
 'blocked-notice-logextract'        => "Ista cuenta d'usuario ye actualment bloqueyata.
 A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
-'clearyourcache'                   => "'''Pare cuenta: Si quiere veyer os cambeos dimpués d'alzar o fichero, puede estar que tienga que refrescar a caché d'o suyo navegador ta veyer os cambeos.'''
-
+'clearyourcache'                   => "'''Pare cuenta:''' Dimpués d'alzar, puede estar que haiga d'esviellar a caché d'o suyo navegador ta veyer os cambios.
 *'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Mac);
+*'''Google Chrome:''' prete ''Ctrl-Shift-R'' (''Command-Shift-R'' on a Mac)
+*'''Internet Explorer:''' prete ''Ctrl'' entre que puncha ''Refresh,'' u prete ''Ctrl-F5.''
 *'''Konqueror: ''' punche ''Reload'' u prete ''F5;''
-*'''Opera:''' limpiar a caché en ''Tools → Preferences;''
-*'''Internet Explorer:''' prete ''Ctrl'' mientres puncha ''Refresh,'' u prete ''Ctrl-F5.''",
+*'''Opera:''' limpiar a caché en ''Tools → Preferences;''",
 'usercssyoucanpreview'             => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo CSS antes de no grabar-lo.",
 'userjsyoucanpreview'              => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo css/js antes de no grabar-lo.",
 'usercsspreview'                   => "'''Remere que isto no ye que una previsualización d'o suyo CSS d'usuario.'''
 '''Encara no s'ha alzato!'''",
 'userjspreview'                    => "'''Remere que sólo ye previsualizando o suyo javascript d'usuario y encara no ye grabato!'''",
+'sitecsspreview'                   => "'''Remere que isto no ye soque previsualizando iste CSS.'''
+'''Encara no s'ha alzato!'''",
+'sitejspreview'                    => "'''Remere que isto no ye soque previsualizando iste codigo de JavaScript.'''
+'''Encara no s'ha alzato!'''",
 'userinvalidcssjstitle'            => "'''Pare cuenta:''' No bi ha garra aparencia clamata \"\$1\". Remere que as pachinas presonalizatas .css y .js tienen un títol en minusclas, p.e. {{ns:user}}:Foo/vector.css en cuenta de {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Esviellato)',
 'note'                             => "'''Nota:'''",
@@ -746,6 +765,7 @@ A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 
 '''Si ye mirando d'editar lechitimament, por favor, prebe una atra vegada. Si encara no funcionase alavez, prebe de [[Special:UserLogout|zarrar a sesión]] y dentrar-ie identificando-se de nuevas.'''",
 'token_suffix_mismatch'            => "'''S'ha refusato a suya edición porque o suyo client ha esbarafundiato os carácters de puntuación en o editor. A edición s'ha refusata ta privar a corrompición d'a pachina de texto. Isto gosa escaixer quan se fa servir un servicio de proxy defectuoso alazetato en a web.'''",
+'edit_form_incomplete'             => "'''Bellas partes d'o formulario de modificación no han plegato en o servidor, verifique que as suyas modificacions son intactas y mire de fer-lo de nuevas.'''",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (sección)',
 'editingcomment'                   => 'Editando $1 (nueva sección)',
@@ -864,7 +884,7 @@ Puede que belún l'haiga borrata d'o wiki u renombrata.
 Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relevants.",
 
 # Revision deletion
-'rev-deleted-comment'         => "(s'ha sacato iste comentario)",
+'rev-deleted-comment'         => "(resumen d'edición eliminato)",
 'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'           => "(acción borrata d'o rechistro)",
 'rev-deleted-user-contribs'   => "[nombre d'usuario u adreza IP elminada - edición amagada d'as contribucions]",
@@ -1079,12 +1099,13 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'searchdisabled'                   => 'A busca en {{SITENAME}} ye temporalment desactivata. Entremistanto, puede mirar en {{SITENAME}} fendo servir buscadors externos, pero pare cuenta que os suyos endices de {{SITENAME}} puede no estar esviellatos.',
 
 # Quickbar
-'qbsettings'               => 'Preferencias de "Quickbar"',
-'qbsettings-none'          => 'Garra',
-'qbsettings-fixedleft'     => 'Fixa a la zurda',
-'qbsettings-fixedright'    => 'Fixa a la dreita',
-'qbsettings-floatingleft'  => 'Flotant a la zurda',
-'qbsettings-floatingright' => 'Flotant a la dreita',
+'qbsettings'                => 'Preferencias de "Quickbar"',
+'qbsettings-none'           => 'Garra',
+'qbsettings-fixedleft'      => 'Fixa a la zurda',
+'qbsettings-fixedright'     => 'Fixa a la dreita',
+'qbsettings-floatingleft'   => 'Flotant a la zurda',
+'qbsettings-floatingright'  => 'Flotant a la dreita',
+'qbsettings-directionality' => "Fixato, pendendo en a direccionalidat d'o suyo script y o suyo luengache",
 
 # Preferences page
 'preferences'                   => 'Preferencias',
@@ -1132,7 +1153,7 @@ Contino se i amuestra una calu chenerata de traza aleatoria que puede fer servir
 'savedprefs'                    => "S'han alzato as suyas preferencias.",
 'timezonelegend'                => 'Fuso horario:',
 'localtime'                     => 'Hora local:',
-'timezoneuseserverdefault'      => "Usar a zona d'o servidor",
+'timezoneuseserverdefault'      => "Usar a zona d'o servidor ($1)",
 'timezoneuseoffset'             => 'Atra (especifica a esferencia)',
 'timezoneoffset'                => 'Esferencia¹:',
 'servertime'                    => 'A hora en o servidor ye:',
@@ -1197,6 +1218,10 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'prefs-displaysearchoptions'    => 'Opcions de visualización',
 'prefs-displaywatchlist'        => 'Opcions de visualización',
 'prefs-diffs'                   => 'Diferencias',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => "L'adreza de correu electronico pareix valida",
+'email-address-validity-invalid' => 'Escriba una adreza valida de correu electronico',
 
 # User rights
 'userrights'                   => "Confeguración d'os dreitos d'os usuarios",
@@ -1307,10 +1332,11 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
 
 # User rights log
-'rightslog'      => "Rechistro de cambios en os dreitos d'os usuarios",
-'rightslogtext'  => "Iste ye un rechistro d'os cambios en os dreitos d'os usuarios",
-'rightslogentry' => "ha cambiato os dreitos d'usuario de $1: de $2 a $3",
-'rightsnone'     => '(garra)',
+'rightslog'                  => "Rechistro de cambios en os dreitos d'os usuarios",
+'rightslogtext'              => "Iste ye un rechistro d'os cambios en os dreitos d'os usuarios",
+'rightslogentry'             => "ha cambiato os dreitos d'usuario de $1: de $2 a $3",
+'rightslogentry-autopromote' => "S'ha promovito automaticament dende $2 ta $3",
+'rightsnone'                 => '(garra)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'leyer ista pachina',
@@ -1430,11 +1456,11 @@ Ta incluyir un fichero en una pachina, emplegue un vinclo d'una d'istas trazas
 'minlength1'                  => 'Os nombres de fichero han de tener a lo menos una letra.',
 'illegalfilename'             => "O nombre de fichero «$1» tiene carácters no premititos en títols de pachinas. Por favor, cambee o nombre d'o fichero y mire de tornar a cargarlo.",
 'badfilename'                 => 'O nombre d\'a imachen s\'ha cambiato por "$1".',
-'filetype-mime-mismatch'      => "A extensión d'o fichero no coincide con o suyo tipo MIME.",
+'filetype-mime-mismatch'      => 'A extensión ".$1" no coincide con o tipo MIME detectato en o fichero ($2).',
 'filetype-badmime'            => 'No se premite cargar fichers de tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'No puet cargar iste fichero porque o Internet Explorer lo consideraría como "$1", que ye un tipo de fichero no premitito y potencialment perigloso.',
 'filetype-unwanted-type'      => "Os '''\".\$1\"''' son un tipo de fichero no deseyato.  Se prefieren os fichers {{PLURAL:\$3|de tipo|d'os tipos}} \$2.",
-'filetype-banned-type'        => "No se premiten os fichers de tipo '''\".\$1\"'''. {{PLURAL:\$3|O tipo premitito ye|Os tipos premititos son}} \$2.",
+'filetype-banned-type'        => "{{PLURAL:$4|Os fichers de tipo «'''.$1'''»|Os fichers d'os tipos '''$1'''}} no se permiten. {{PLURAL:$3|Nomás s'admeten os fichers d'o tipo|Nomás s'admeten os fichers d'os tipos}} $2.",
 'filetype-missing'            => 'O fichero no tiene garra estensión (como ".jpg").',
 'empty-file'                  => 'O fichero que ninvió yera buedo.',
 'file-too-large'              => 'O fichero que ninvió ye masiau gran.',
@@ -1525,6 +1551,9 @@ $1',
 'upload-too-many-redirects' => 'A URL contien masiadas endreceras',
 'upload-unknown-size'       => 'Grandaria desconoixid',
 'upload-http-error'         => 'Ha ocorriu una error HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => "S'ha trobato una error en ubrir o ficherto ta fer-ie comprebacions ZIP.",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acceso refusau',
@@ -2312,6 +2341,7 @@ Alcuerde-se-ne d'[[Special:UnlockDB|destrancar a base de datos]] dimpués de rem
 'unlockdbsuccesstext' => "S'ha destrancato a base de datos de {{SITENAME}}.",
 'lockfilenotwritable' => "O rechistro de trancamientos d'a base de datos no tiene premiso d'escritura. Ta trancar u destrancar a base de datos, iste fichero ha de tener premisos d'escritura en o servidor web.",
 'databasenotlocked'   => 'A base de datos no ye trancata.',
+'lockedbyandtime'     => '(por $1 o $2 a las $3)',
 
 # Move page
 'move-page'                    => 'Tresladar $1',
@@ -2579,6 +2609,10 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'spam_reverting'      => "Tornando t'a zaguera versión sin de vinclos ta $1",
 'spam_blanking'       => 'Todas as versions teneban vinclos ta $1, se deixa en blanco',
 
+# Info page
+'pageinfo-subjectpage' => 'Pachina',
+'pageinfo-talkpage'    => 'Pachina de descusión',
+
 # Skin names
 'skinname-standard'    => 'Clasica (Classic)',
 'skinname-nostalgia'   => 'Recosiros (Nostalgia)',
@@ -2788,6 +2822,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'exif-gpsareainformation'          => "Nombre d'aria GPS",
 'exif-gpsdatestamp'                => 'Calendata GPS',
 'exif-gpsdifferential'             => 'Corrección diferencial de GPS',
+'exif-urgency'                     => 'Urchencia',
 
 # EXIF attributes
 'exif-compression-1' => 'Sin de compresión',
@@ -3198,19 +3233,5 @@ Escriba o nombre d'o fichero sin o prefixo \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1, con soporte de busca de texto integro',
 'sqlite-no-fts'  => '$1, sin soporte de busca de texto integro',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Adhibir categoría',
-'ajax-add-category-submit'     => 'Adhibir',
-'ajax-confirm-title'           => 'Confirmar acción',
-'ajax-confirm-prompt'          => 'Puet furnir debaixo un resumen d\'edición.
-Punche en "Grabar" ta grabar a suya edición.',
-'ajax-confirm-save'            => 'Alzar',
-'ajax-add-category-summary'    => 'Adhibir categoría "$1"',
-'ajax-remove-category-summary' => 'Sacar a categoría "$1"',
-'ajax-confirm-actionsummary'   => 'Acción a prener:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => "D'alcuerdo",
-'ajax-remove-category-error'   => "No s'ha puesto eliminar ista categoría. Isto gosa pasar, por un regular, quan a categoría ha estau adhibida por una plantilla.",
 
 );

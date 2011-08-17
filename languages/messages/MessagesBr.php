@@ -1129,7 +1129,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'searchmenu-legend'                => 'Dibarzhioù klask',
 'searchmenu-exists'                => "'''Ur bajenn anvet\"[[:\$1]]\" zo war ar wiki-mañ'''",
 'searchmenu-new'                   => "'''Krouiñ ar bajenn \"[[:\$1]]\" war ar wiki-mañ !'''",
-'searchmenu-new-nocreate'          => 'Un anv pajenn direizh eo "$1"ha n\'hall ket bezañ krouet ganeoc\'h.',
+'searchmenu-new-nocreate'          => 'Un anv pajenn direizh eo "$1" ha n\'hall ket bezañ krouet ganeoc\'h.',
 'searchhelp-url'                   => 'Help:Skoazell',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Furchal er pajennoù a grog gant ar rakger-mañ]]',
 'searchprofile-articles'           => 'Pajennoù gant boued',
@@ -3630,20 +3630,5 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 # SQLite database support
 'sqlite-has-fts' => '$1 gant enklask eus an destenn a-bezh embreget',
 'sqlite-no-fts'  => '$1 hep enklask eus an destenn a-bezh embreget',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Ouzhpennañ ur rummad',
-'ajax-add-category-submit'     => 'Ouzhpennañ',
-'ajax-confirm-title'           => 'Kadarnaat an oberiadenn',
-'ajax-confirm-prompt'          => 'Gallout a rit merkañ a-is un diverrañ eus ar c\'hemmoù degaset.
-Klikit war "Enrollañ da enrollañ ho degasadenn.',
-'ajax-confirm-save'            => 'Enrollañ',
-'ajax-add-category-summary'    => 'Ouzhpennañ ar rummad "$1"',
-'ajax-remove-category-summary' => 'Diverkañ ar rummad "$1"',
-'ajax-confirm-actionsummary'   => 'Tra da ober :',
-'ajax-error-title'             => 'Fazi',
-'ajax-error-dismiss'           => 'Mat eo',
-'ajax-remove-category-error'   => "N'eus ket bet gallet diverkañ ar rummad-mañ. 
-C'hoarvezout a ra p'eo bet ouzhpennet ar rummad er bajenn dre ur patrom",
 
 );

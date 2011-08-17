@@ -3529,29 +3529,4 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'htmlform-reset'               => 'Tühista muudatused',
 'htmlform-selectorother-other' => 'Muu',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Lisa kategooria',
-'ajax-remove-category'          => 'Eemalda kategooria',
-'ajax-edit-category'            => 'Muuda kategooriat',
-'ajax-add-category-submit'      => 'Lisa',
-'ajax-confirm-ok'               => 'Sobib',
-'ajax-confirm-title'            => 'Toimingu kinnitamine',
-'ajax-confirm-prompt'           => 'Saad allpool muudatuse resümeega varustada.
-Muudatuse salvestamiseks klõpsa nuppu "Salvesta".',
-'ajax-confirm-save'             => 'Salvesta',
-'ajax-add-category-summary'     => 'Kategooria "$1" lisamine',
-'ajax-edit-category-summary'    => 'Kategooria "$1" asendamine kategooriaga "$2"',
-'ajax-remove-category-summary'  => 'Kategooria "$1" eemaldamine',
-'ajax-add-category-question'    => 'Miks tahad lisada kategooria "$1"?',
-'ajax-edit-category-question'   => 'Miks tahad asendada kategooria "$1" kategooriaga "$2"?',
-'ajax-remove-category-question' => 'Miks tahad eemaldada kategooria "$1"?',
-'ajax-confirm-actionsummary'    => 'Sooritatav toiming:',
-'ajax-error-title'              => 'Tõrge',
-'ajax-error-dismiss'            => 'Sobib',
-'ajax-remove-category-error'    => 'Seda kategooriat pole võimalik eemaldada.
-Tõrge ilmneb harilikult siis, kui kategooria on lisatud malliga.',
-'ajax-edit-category-error'      => 'Seda kategooriat polnud võimalik muuta.
-Harilikult juhtub nii, kui kategooria on lisatud malliga.',
-'ajax-category-already-present' => 'See lehekülg on juba kategoorias $1.',
-
 );

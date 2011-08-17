@@ -413,7 +413,7 @@ De ontvanger kan dus direct naar je reageren.',
 
 # Watchlist
 'nowatchlist'          => 'Je volglijst is leeg.',
-'watchlistanontext'    => '$1 is noodzakelijk om je volglijst in te zien of te wijzigen.',
+'watchlistanontext'    => 'Om je volglijst te bekijken of te bewerken moet je je $1.',
 'watchnologintext'     => 'Je dient [[Special:UserLogin|aangemeld]] te zijn om je volglijst te bewerken.',
 'addedwatchtext'       => "De pagina \"[[:\$1]]\" is toegevoegd aan je [[Special:Watchlist|volglijst]].
 Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden op [[Special:Watchlist|je volglijst]] vermeld en worden '''vet''' weergegeven in de [[Special:RecentChanges|lijst van recente wijzigingen]].",
@@ -648,9 +648,5 @@ Samen met dit programma hoor je een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 
 # HTML forms
 'htmlform-float-invalid' => 'De waarde die je hebt opgegeven is geen getal.',
-
-# Add categories per AJAX
-'ajax-confirm-prompt' => 'Je kunt hieronder een bewerkingssamenvatting opgeven.
-Klik "Opslaan" om je bewerking op te slaan.',
 
 );

@@ -524,7 +524,7 @@ $messages = array(
 'postcomment'       => 'Ново заглавие',
 'articlepage'       => 'Преглед на содржината',
 'talk'              => 'Разговор',
-'views'             => 'Погледи',
+'views'             => 'Посети',
 'toolbox'           => 'Алатник',
 'userpage'          => 'Преглед на корисничката страница',
 'projectpage'       => 'Преглед на проектната страница',
@@ -747,8 +747,8 @@ $2',
 'createaccountmail'          => 'по е-пошта',
 'createaccountreason'        => 'Причина:',
 'badretype'                  => 'Внесените лозинки не се исти.',
-'userexists'                 => 'Корисничкото име што го внесовте веќе се користи.
-Ве молиме изберете друго име.',
+'userexists'                 => 'Корисничкото име што го внесовте е зафатено.
+Изберете друго име.',
 'loginerror'                 => 'Грешка при најавувањето',
 'createaccounterror'         => 'Не можам да ја создадам сметката: $1',
 'nocookiesnew'               => 'Корисничката сметка е создадена, но не сте најавени.
@@ -2338,7 +2338,7 @@ $UNWATCHURL
 'exblank'                => 'страницата беше празна',
 'delete-confirm'         => 'Избриши „$1“',
 'delete-backlink'        => '← $1',
-'delete-legend'          => 'Избриши',
+'delete-legend'          => 'Бришење',
 'historywarning'         => "'''Предупредување:''' Страницата којашто сакате да ја избришете има историја со околу $1 {{PLURAL:$1|ревизија|ревизии}}:",
 'confirmdeletetext'      => 'На пат сте трајно да избришете страница заедно со нејзината историја.
 Потврдете дека имате намера да го направите ова, дека ги разбирате последиците од тоа, дека го правите ова во согласност со [[{{MediaWiki:Policy-url}}|политиката]].',
@@ -3777,14 +3777,16 @@ $1',
 'watchlistedit-normal-title'   => 'Уредување на списокот на набљудувања',
 'watchlistedit-normal-legend'  => 'Бришење на наслови од список на набљудување',
 'watchlistedit-normal-explain' => 'Насловите во вашиот список на набљудувања се прикажани подолу.
-За да избришете наслов, штиклирајте го квадратчето лево од насловот, и кликнете на „{{int:Watchlistedit-normal-submit}}“.
-Исто така можете да го [[Special:EditWatchlist/raw|уредувате списокот како текст]].',
+За да избришете наслов, штиклирајте го квадратчето лево од насловот, и стиснете на „{{int:Watchlistedit-normal-submit}}“.
+Можете и да го [[Special:EditWatchlist/raw|уредувате сировиот список]].',
 'watchlistedit-normal-submit'  => 'Избриши',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 наслов беше|$1 наслови беа}} избришани од вашиот список на набљудувања:',
 'watchlistedit-raw-title'      => 'Напредно уредување на списокот на набљудувања',
 'watchlistedit-raw-legend'     => 'Уредување на списокот на набљудувања',
-'watchlistedit-raw-explain'    => 'Насловите во вашиот список на набљудувања се прикажани подолу, и можат да се уредуваат со додавање или бришење на наслови од списокот; еден наслов по ред. Кога ќе завршите, кликнете на „{{int:Watchlistedit-raw-submit}}“.
-Исто така за ова може да [[Special:EditWatchlist|користите стандарден уредувач на текст]].',
+'watchlistedit-raw-explain'    => 'Насловите во вашиот список на набљудувања се прикажани подолу, и можат да се уредуваат со додавање или бришење на ставки од списокот; 
+еден наслов по ред. 
+Кога ќе завршите, стиснете на „{{int:Watchlistedit-raw-submit}}“.
+Можете да го [[Special:EditWatchlist|употребите обичниот уредувач]].',
 'watchlistedit-raw-titles'     => 'Наслови:',
 'watchlistedit-raw-submit'     => 'Поднови го списокот',
 'watchlistedit-raw-done'       => 'Вашиот список на набљудувања е подновен.',
@@ -3912,8 +3914,8 @@ $1',
 'specialpages'                   => 'Специјални страници',
 'specialpages-note'              => '----
 * Нормални специјални страници.
-* <strong class="mw-specialpagerestricted">Специјални страници со ограничен пристап.</strong>
-* <span class="mw-specialpagecached">Само кеширани специјални страници.</span>',
+* <span class="mw-specialpagerestricted">Ограничени специјални страници.</span>
+* <span class="mw-specialpagecached">Кеширани специјални страници (може да се застарени).</span>',
 'specialpages-group-maintenance' => 'Извештаи за одржување',
 'specialpages-group-other'       => 'Други специјални страници',
 'specialpages-group-login'       => 'Најава / регистрација',
@@ -3986,32 +3988,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 со поддршка за пребарување по цели текстови',
 'sqlite-no-fts'  => '$1 без поддршка за пребарување по цели текстови',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Додај категорија',
-'ajax-remove-category'          => 'Отстрани категорија',
-'ajax-edit-category'            => 'Уреди категорија',
-'ajax-add-category-submit'      => 'Додај',
-'ajax-confirm-ok'               => 'ОК',
-'ajax-confirm-title'            => 'Потврди дејство',
-'ajax-confirm-prompt'           => 'Подолу можете да дадете краток опис на вашите уредувања.
-Кликнете на копчето „Зачувај“ за да ги зачувате вашите уредувања.',
-'ajax-confirm-save'             => 'Зачувај',
-'ajax-confirm-save-all'         => 'Зачувај ги сите промени',
-'ajax-cancel'                   => 'Откажи уредувања',
-'ajax-add-category-summary'     => 'Додај категорија "$1"',
-'ajax-edit-category-summary'    => 'Замена на категоријата „$1“ со „$2“',
-'ajax-remove-category-summary'  => 'Избриши категорија "$1"',
-'ajax-add-category-question'    => 'Зошто сакате да ја додадете категоријата „$1“?',
-'ajax-edit-category-question'   => 'Зошто сакате да ја смените категоријата „$1“ со „$2“?',
-'ajax-remove-category-question' => 'Зошто сакате да ја отстраните категоријата „$1“?',
-'ajax-confirm-actionsummary'    => 'Мерка за преземање:',
-'ajax-error-title'              => 'Грешка',
-'ajax-error-dismiss'            => 'ОК',
-'ajax-remove-category-error'    => 'Не беше можно да се избрише оваа категорија.
-Ова вообичаено се случува кога категоријата е додадена на страница преку некој шаблон.',
-'ajax-edit-category-error'      => 'Категоријава не можеше да се уреди.
-Ова претежно се случува кога на страницата ѝ е додадена категорија во шаблон.',
-'ajax-category-already-present' => 'Страницава веќе ѝ припаѓа на категоријата $1',
 
 );

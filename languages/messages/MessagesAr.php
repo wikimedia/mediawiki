@@ -10,6 +10,7 @@
  * @author ;Hiba;1
  * @author Abanima
  * @author AhmadSherif
+ * @author Alexknight12
  * @author Alnokta
  * @author Antime
  * @author Bassem JARKAS
@@ -502,14 +503,14 @@ $messages = array(
 
 # Dates
 'sunday'        => 'الأحد',
-'monday'        => 'الإثنين',
+'monday'        => 'الاثنين',
 'tuesday'       => 'الثلاثاء',
 'wednesday'     => 'الأربعاء',
 'thursday'      => 'الخميس',
 'friday'        => 'الجمعة',
 'saturday'      => 'السبت',
 'sun'           => 'أحد',
-'mon'           => 'إثنين',
+'mon'           => 'اثنين',
 'tue'           => 'ثلاثاء',
 'wed'           => 'أربعاء',
 'thu'           => 'خميس',
@@ -1365,7 +1366,7 @@ $1",
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
-'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفي من الإداريين.
+'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفيا من الإداريين.
 انظر [[Special:IPBlockList|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
 
 # History merging
@@ -4076,30 +4077,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 بدعم البحث في كامل النص',
 'sqlite-no-fts'  => '$1 بدون دعم البحث في كامل النص',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'أضف تصنيفا',
-'ajax-remove-category'          => 'إزالة الفئة',
-'ajax-edit-category'            => 'تحرير الفئة',
-'ajax-add-category-submit'      => 'أضف',
-'ajax-confirm-ok'               => 'موافق',
-'ajax-confirm-title'            => 'أكد الإجراء',
-'ajax-confirm-prompt'           => 'بإمكانك تقديم ملخص تعديل أدناه.
-انقر "احفظ" لحفظ تعديلك.',
-'ajax-confirm-save'             => 'احفظ',
-'ajax-confirm-save-all'         => 'حفظ كافة التغييرات',
-'ajax-cancel'                   => 'إلغاء عمليات التحرير',
-'ajax-add-category-summary'     => 'إضافة التصنيف "$1"',
-'ajax-edit-category-summary'    => 'تغيير الفئة "$1" إلى "$2"',
-'ajax-remove-category-summary'  => 'إزالة التصنيف "$1"',
-'ajax-add-category-question'    => 'لماذا تريد إضافة فئة "SAR4"؟',
-'ajax-edit-category-question'   => 'لماذا تريد تغيير الفئة "SAR4" إلى "SAR8"؟',
-'ajax-confirm-actionsummary'    => 'الإجراء المتخذ:',
-'ajax-error-title'              => 'خطأ',
-'ajax-error-dismiss'            => 'موافق',
-'ajax-remove-category-error'    => 'لا يمكن إزالة هذا التصنيف.
-يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
-'ajax-edit-category-error'      => 'لم يكن من الممكن لتحرير هذه الفئة.! N! يحدث هذا عادة عندما تمت إضافة فئة إلى الصفحة في قالب.',
-'ajax-category-already-present' => 'هذه الصفحة بالفعل ينتمي إلى فئة $1',
 
 );

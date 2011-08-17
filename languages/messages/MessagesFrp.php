@@ -3705,7 +3705,7 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.',
 'watchlistedit-normal-explain' => 'Los titros de voutra lista de survelyence sont montrâs ce-desot.
 Por enlevar un titro (et sa pâge de discussion), pouentâd la câsa a coutâ et pués clicâd sur lo boton « {{int:Watchlistedit-normal-submit}} ».
 Vos pouede asse-ben changiér la [[Special:EditWatchlist/raw|lista en fôrma bruta]].',
-'watchlistedit-normal-submit'  => 'Enlevar los titros chouèsis',
+'watchlistedit-normal-submit'  => 'Enlevar los titros',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Yon titro at étâ enlevâ|$1 titros ont étâ enlevâs}} de voutra lista de survelyence :',
 'watchlistedit-raw-title'      => 'Changiér la lista de survelyence en fôrma bruta',
 'watchlistedit-raw-legend'     => 'Changement de la lista de survelyence en fôrma bruta',
@@ -3915,32 +3915,5 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 # SQLite database support
 'sqlite-has-fts' => '$1 avouéc rechèrche en tèxto complèt recognua',
 'sqlite-no-fts'  => '$1 sen rechèrche en tèxto complèt recognua',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Apondre una catègorie',
-'ajax-remove-category'          => 'Enlevar la catègorie',
-'ajax-edit-category'            => 'Changiér la catègorie',
-'ajax-add-category-submit'      => 'Apondre',
-'ajax-confirm-ok'               => 'D’acôrd',
-'ajax-confirm-title'            => 'Confirmar l’accion',
-'ajax-confirm-prompt'           => 'Vos pouede balyér un rèsumâ de changement ce-desot.
-Clicâd dessus « Sôvar » por encartar voutron changement.',
-'ajax-confirm-save'             => 'Sôvar',
-'ajax-confirm-save-all'         => 'Encartar tôs los changements',
-'ajax-cancel'                   => 'Anular des changements',
-'ajax-add-category-summary'     => 'Apondre la catègorie « $1 »',
-'ajax-edit-category-summary'    => 'Changiér la catègorie « $1 » a « $2 »',
-'ajax-remove-category-summary'  => 'Enlevar la catègorie « $1 »',
-'ajax-add-category-question'    => 'Porquè voléd-vos apondre la catègorie « $1 » ?',
-'ajax-edit-category-question'   => 'Porquè voléd-vos changiér la catègorie « $1 » vers « $2 » ?',
-'ajax-remove-category-question' => 'Porquè voléd-vos enlevar la catègorie « $1 » ?',
-'ajax-confirm-actionsummary'    => 'Accion a menar :',
-'ajax-error-title'              => 'Èrror',
-'ajax-error-dismiss'            => 'D’acôrd',
-'ajax-remove-category-error'    => 'O at pas étâ possiblo d’enlevar ceta catègorie.
-En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge avouéc un modèlo.',
-'ajax-edit-category-error'      => 'O ére pas possiblo de changiér cela catègorie.
-En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge dens un modèlo.',
-'ajax-category-already-present' => 'Ceta pâge est ja a la catègorie $1',
 
 );

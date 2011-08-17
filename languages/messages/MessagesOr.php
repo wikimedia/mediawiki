@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ansumang
  * @author Jayantanth
  * @author Jose77
  * @author Odisha1
@@ -242,7 +243,15 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'ଏହି ବ୍ରାଉଜରରେ (ସବୁଠୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|day|ଦିନ}}) ପାଇଁ ମୋ ଲଗଇନ ମନେ ରଖିଥିବେ',
+'tog-justify'             => 'ପାରାଗ୍ରାଫଗୁଡ଼ିକୁ ଯଷ୍ଟିଫାଏ କରିବେ',
+'tog-numberheadings'      => 'ଅଟୋ-ନମ୍ବର ନାମଗୁଡ଼ିକ',
+'tog-showtoolbar'         => 'ସମ୍ପାଦନା ଟୁଲବାର ଦେଖାଇବେ (ଜାଭାସ୍କ୍ରିପ୍ଟ ସଚଳ କରିବେ)',
+'tog-rememberpassword'    => 'ଏହି ବ୍ରାଉଜରରେ (ସବୁଠୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|day|ଦିନ}}) ପାଇଁ ମୋ ଲଗଇନ ମନେ ରଖିଥିବେ',
+'tog-previewontop'        => 'ଏଡ଼ିଟ ବାକ୍ସ ଆଗରୁ ଦେଖଣା ଦେଖାଇବେ',
+'tog-previewonfirst'      => 'ପ୍ରଥମ ବଦଳର ଦେଖଣା ଦେଖାଇବେ',
+'tog-enotifrevealaddr'    => 'ସୂଚନା ଇ-ମେଲ ରେ ମୋର ଇ-ମେଲ ଠିକଣା ଦେଖାଇବେ',
+'tog-shownumberswatching' => 'ଦେଖୁଥିବା ବ୍ୟବାହାରକାରୀଙ୍କ ସଂଖ୍ୟା ଦେଖାଇବେ',
+'tog-oldsig'              => 'ଏବେ ଥିବା ଦସ୍ତଖତର ଦେଖଣା',
 
 'underline-always' => 'ସବୁବେଳେ',
 'underline-never'  => 'କେବେନୁହେଁ',
@@ -330,7 +339,7 @@ $messages = array(
 'qbfind'         => 'ଖୋଜିବା',
 'qbbrowse'       => 'ଖୋଜିବା',
 'qbedit'         => 'ବଦଳାଇବା',
-'qbpageoptions'  => 'ଏଇଟା ଫର୍ଦ',
+'qbpageoptions'  => 'ଏହି ଫର୍ଦଟି',
 'qbpageinfo'     => 'ଭିତର ଚିଜ',
 'qbmyoptions'    => 'ମୋର ଫର୍ଦ',
 'qbspecialpages' => 'ନିଆରା ପୃଷ୍ଠା',
@@ -374,18 +383,24 @@ $messages = array(
 'deletethispage'    => 'ଏହି ପୃଷ୍ଠାଟି ଲିଭାଇବେ',
 'protect'           => 'କିଳିବେ',
 'protect_change'    => 'ବଦଳାଇବା',
+'protectthispage'   => 'ଏହି ପୃଷ୍ଠାଟିକୁ କିଳିବେ',
 'newpage'           => 'ନୂଆ ପୃଷ୍ଠା',
+'talkpage'          => 'ପୃଷ୍ଠାକୁ ଆଲୋଚନା କରନ୍ତୁ',
 'talkpagelinktext'  => 'କଥାଭାଷା',
 'specialpage'       => 'ନିଆରା ପୃଷ୍ଠା',
 'personaltools'     => 'ନିଜର ଟୁଲ',
 'talk'              => 'ଆଲୋଚନା',
 'views'             => 'ଦେଖା',
 'toolbox'           => 'ଜନ୍ତ୍ର ପେଡ଼ି',
+'userpage'          => 'ବ୍ୟବହାରକାରୀଙ୍କ ପୃଷ୍ଠା ଦେଖନ୍ତୁ',
+'imagepage'         => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
+'categorypage'      => 'ବିଭାଗ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
+'viewtalkpage'      => 'ଆଲୋଚନାଗୁଡ଼ିକୁ ଦେଖନ୍ତୁ',
 'otherlanguages'    => 'ଅଲଗା ଭାଷା',
 'redirectedfrom'    => '($1 ରୁ ଲେଉଟି ଆସିଛି)',
-'redirectpagesub'   => 'ପୁନଃପ୍ରେରଣ ପୃଷ୍ଠା',
+'redirectpagesub'   => 'ଆଉଥରେ ଫେରିବା ପୃଷ୍ଠା',
 'lastmodifiedat'    => 'ଏହି ପୃଷ୍ଠାଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
-'protectedpage'     => 'ପ୍ରକଳ୍ପ ପୃଷ୍ଠା',
+'protectedpage'     => 'କିଳାଯାଇଥିବା ପୃଷ୍ଠା',
 'jumpto'            => 'ଡେଇଁଯିବେ',
 'jumptonavigation'  => 'ଦିଗବାରେଣିକୁ',
 'jumptosearch'      => 'ଖୋଜିବେ',
@@ -428,7 +443,7 @@ $messages = array(
 'toc'                     => 'ଭିତର ଚିଜ',
 'showtoc'                 => 'ଦେଖାଇବେ',
 'hidetoc'                 => 'ଲୁଚାଇବେ',
-'collapsible-expand'      => 'ସମ୍ପ୍ରସାରଣ',
+'collapsible-expand'      => 'ବଢ଼ାଇବେ',
 'viewdeleted'             => 'ଦେଖିବା $1?',
 'site-rss-feed'           => '$1 ଆରେସେସ ଫିଡ଼',
 'site-atom-feed'          => '$1 ଆଟମ ଫିଡ଼',
@@ -446,7 +461,7 @@ $messages = array(
 'nstab-mediawiki' => 'ଖବର',
 'nstab-template'  => 'ଟେମ୍ପଲେଟ',
 'nstab-help'      => 'ସାହାଯ୍ୟ ପୃଷ୍ଠା',
-'nstab-category'  => 'ଶ୍ରେଣୀ:',
+'nstab-category'  => 'ବିଭାଗ',
 
 # General errors
 'error'           => 'ଭୁଲ',
@@ -509,16 +524,16 @@ $messages = array(
 'bold_tip'        => 'ବୋଲ୍ଡ ଲେଖା',
 'italic_sample'   => 'ତେରେଛା ଲେଖା',
 'italic_tip'      => 'ତେରେଛା ଲେଖା',
-'link_sample'     => 'ଲିଁକ ଟାଇଟଲ',
+'link_sample'     => 'ଲିଙ୍କ ଟାଇଟଲ',
 'link_tip'        => 'ଭିତର ଲିଙ୍କ',
-'extlink_sample'  => 'http://www.example.com ଲିଁକ ଟାଇଟଲ',
-'extlink_tip'     => 'ବାହାର ଲିଁକ (http:// ଆଗରେ ଲଗାଇବାକୁ ମନେରଖିଥିବେ)',
+'extlink_sample'  => 'http://www.example.com ଲିଙ୍କ ଟାଇଟଲ',
+'extlink_tip'     => 'ବାହାର ଲିଙ୍କ (http:// ଆଗରେ ଲଗାଇବାକୁ ମନେରଖିଥିବେ)',
 'headline_sample' => 'ହେଡଲାଇନ ଲେଖା',
 'headline_tip'    => '୨କ ଆକାରର ମୂଳଧାଡ଼ି',
 'nowiki_sample'   => 'ଫର୍ମାଟ ହୋଇ ନଥିବା ଲେଖା ଏଠାରେ ପୁରାଇବେ',
 'nowiki_tip'      => 'ଉଇକି ଫରମାଟିଁଗକୁ ଛାଡିଦିଅ',
 'image_tip'       => 'ଏମବେଡ ହୋଇ ଥିବା ଫାଇଲ',
-'media_tip'       => 'ଫାଇଲର ଲିଁକ',
+'media_tip'       => 'ଫାଇଲର ଲିଙ୍କ',
 'sig_tip'         => 'ଲେଖାର ବେଳ ସହ ଆପଣଁକ ହସ୍ତାକ୍ଷର',
 'hr_tip'          => 'ସମାନ୍ତରାଳ ରେଖା (ବେଳେବେଳେ ବ୍ୟବହାର କରିବେ)',
 
@@ -585,9 +600,10 @@ $messages = array(
 
 # Revision deletion
 'rev-delundel'      => 'ଦେଖାଇବା/ଲୁଚାଇବା',
+'rev-showdeleted'   => 'ଦେଖାଇବେ',
 'revdelete-log'     => 'କାରଣ:',
 'revdel-restore'    => 'ଦେଖଣାକୁ ବଦଳାଇବେ',
-'revdelete-content' => 'ସୂଚୀପତ୍ର',
+'revdelete-content' => 'ଭିତର ଚିଜ',
 'revdelete-uname'   => 'ବ୍ୟବାହରକାରୀଙ୍କର ନାଆଁ:',
 
 # History merging
@@ -598,11 +614,13 @@ $messages = array(
 'revertmerge' => 'ମିଶାଇବା ନାହିଁ',
 
 # Diffs
-'history-title'           => '"$1" ପାଇଁ ସଙ୍କଳନ ଇତିହାସ',
-'difference'              => '(ରିଭିଜନ ଭିତରେ ଥିବା ତଫାତ)',
-'lineno'                  => '$1 କ ଧାଡ଼ି:',
-'compareselectedversions' => 'ବଛାହୋଇଥିବା ସଙ୍କଳନ ଗୁଡ଼ିକୁ ତଉଲ',
-'editundo'                => 'ପଛକୁ ଫେରିବା',
+'history-title'            => '"$1" ପାଇଁ ସଙ୍କଳନ ଇତିହାସ',
+'difference'               => '(ସଙ୍କଳନ ଭିତରେ ଥିବା ତଫାତ)',
+'lineno'                   => '$1 କ ଧାଡ଼ି:',
+'compareselectedversions'  => 'ବଛାହୋଇଥିବା ସଙ୍କଳନ ଗୁଡ଼ିକୁ ତଉଲିବେ',
+'showhideselectedversions' => 'ବଛା ହୋଇଥିବା ସଙ୍କଳନ ଗୁଡ଼ିକୁ ଦେଖାଇବେ/ଲୁଚାଇବେ',
+'editundo'                 => 'ପଛକୁ ଫେରିବା',
+'diff-multi'               => '({{PLURAL:$2|ଜଣେ ବ୍ୟବହାରକାରୀ|$2 ଜଣ ବ୍ୟବହାରକାରୀ}}ଙ୍କ ଦେଇ ହୋଇଥିବା {{PLURAL:$1|ଗୋଟିଏ ମଝି ସଙ୍କଳନ|$1ଟି ମଝି ସଙ୍କଳନ}} ଦେଖାଯାଉନାହିଁ)',
 
 # Search results
 'searchresults'                    => 'ଖୋଜିବାରୁ ମିଳିଲା',
@@ -618,6 +636,7 @@ $messages = array(
 'nextn-title'                      => 'ଆଗର $1ଟି  {{PLURAL:$1|result|ଫଳସବୁ}}',
 'shown-title'                      => '$1 ପ୍ରତି ପୃଷ୍ଠାର {{PLURAL:$1|ଫଳାଫଳ|ଫଳାଫଳ}} ଦେଖାଇବେ ।',
 'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖିବେ',
+'searchmenu-exists'                => "'''ଏହି ଉଇକିରେ \"[[:\$1]]\" ନାଆଁରେ ପୃଷ୍ଠାଟିଏ ଅଛି ।'''",
 'searchmenu-new'                   => "'''\"[[:\$1]]\"ଟି ଏହି ଉଇକିରେ ତିଆରି କରିବେ!'''",
 'searchhelp-url'                   => 'Help:ସୂଚୀପତ୍ର',
 'searchprofile-articles'           => 'ସୂଚୀ ପୃଷ୍ଠା',
@@ -660,15 +679,17 @@ $messages = array(
 # Preferences page
 'preferences'               => 'ପସନ୍ଦ',
 'mypreferences'             => 'ମୋ ପସନ୍ଦ',
+'prefsnologin'              => 'ଲଗ‌‌ଇନ କରାଯାାଇନାହ୍ିଁ',
+'prefsnologintext'          => 'ବ୍ୟବହାରକାରୀଙ୍କ ପସନ୍ଦସବୁ ବଦଳାଇବା ପାଇଁ ଆପଣଙ୍କୁ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ଲଗ ଇନ]</span> କରିବାକୁ ପଡ଼ିବ ।',
 'skin-preview'              => 'ଦେଖଣା',
-'saveprefs'                 => 'ସଂରକ୍ଷଣ',
+'saveprefs'                 => 'ସାଇତିବେ',
 'rows'                      => 'ଧାଡ଼ି:',
-'columns'                   => 'ସ୍ତମ୍ଭ:',
+'columns'                   => 'ସ୍ତମ୍ଭସବୁ:',
 'searchresultshead'         => 'ଖୋଜିବା',
-'stub-threshold-disabled'   => 'ନିଷ୍କ୍ରିୟ',
+'stub-threshold-disabled'   => 'ଅଚଳ କରିଦିଆଯାଇଛି',
 'timezoneregion-africa'     => 'ଆଫ୍ରିକା',
 'timezoneregion-america'    => 'ଆମେରିକା',
-'timezoneregion-antarctica' => 'ଆଣ୍ଟର୍କଟିକା',
+'timezoneregion-antarctica' => 'ଆଣ୍ଟାର୍କଟିକା',
 'timezoneregion-asia'       => 'ଏସିଆ',
 'timezoneregion-australia'  => 'ଅଷ୍ଟ୍ରେଲିଆ',
 'timezoneregion-europe'     => 'ଇଉରୋପ',
@@ -687,7 +708,7 @@ $messages = array(
 'userrights-reason' => 'କାରଣ:',
 
 # Groups
-'group'       => 'ସମୂହ:',
+'group'       => 'ଗୋଠ:',
 'group-user'  => 'ବ୍ୟବହାରକାରି',
 'group-sysop' => 'ପରିଛାଗଣ',
 
@@ -697,7 +718,7 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:ପରିଛା (ଆଡମିନ)',
 
 # Rights
-'right-edit'   => 'ସମ୍ପାଦନ ପୃଷ୍ଟା',
+'right-edit'   => 'ପୃଷ୍ଠାସବୁକୁ ବଦଳାଇବେ',
 'right-delete' => 'ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ',
 
 # User rights log
@@ -729,6 +750,7 @@ $messages = array(
 'minoreditletter'                 => 'ଟିକେ',
 'newpageletter'                   => 'ନୂଆ',
 'boteditletter'                   => 'ବଟ',
+'rc_categories_any'               => 'ଯେ କୌଣସି',
 'rc-enhanced-expand'              => 'ପୁରା ଦେଖାଇବେ (ଜାଭାସ୍କ୍ରିପଟ ଦରକାର)',
 'rc-enhanced-hide'                => 'ବେଶି କଥାସବୁ ଲୁଚାଇଦିଅ',
 
@@ -750,21 +772,23 @@ $messages = array(
 'fileuploadsummary' => 'ସାରକଥା:',
 'filesource'        => 'ଉତ୍ସ:',
 'uploadedimage'     => '"[[$1]]" ଅପଲୋଡ କରାଗଲା',
+'sourceurl'         => 'ଉତ୍ସ ୟୁ.ଆର୍.ଏଲ୍.:',
 
 # Special:ListFiles
-'imgfile'         => 'ଫାଇଲ',
-'listfiles_thumb' => 'କ୍ଷୁଦ୍ର ଚିତ୍ର',
-'listfiles_name'  => 'ନାମ',
-'listfiles_user'  => 'ବ୍ୟବାହାରକାରୀ',
-'listfiles_size'  => 'ଆକାର',
-'listfiles_count' => 'ସଂସ୍କରଣ',
+'imgfile'               => 'ଫାଇଲ',
+'listfiles_thumb'       => 'ଛୋଟ ଛବି',
+'listfiles_name'        => 'ନାମ',
+'listfiles_user'        => 'ବ୍ୟବାହାରକାରୀ',
+'listfiles_size'        => 'ଆକାର',
+'listfiles_description' => 'ବର୍ଣ୍ଣନା',
+'listfiles_count'       => 'ସଂସ୍କରଣ',
 
 # File description page
 'file-anchor-link'          => 'ଫାଇଲ',
 'filehist'                  => 'ଫାଇଲ ଇତିହାସ',
 'filehist-help'             => 'ଏହା ଫାଇଲଟି ସେତେବେଳେ ଯେମିତି ଦିଶୁଥିଲା ତାହା ଦେଖିବା ପାଇଁ ତାରିଖ/ବେଳା ଉପରେ କ୍ଲିକ କରନ୍ତୁ',
-'filehist-deleteone'        => 'ଲିଭାଇବା',
-'filehist-revert'           => 'ପ୍ରତ୍ୟାବୃତ କରିବା',
+'filehist-deleteone'        => 'ଲିଭେଇବେ',
+'filehist-revert'           => 'ପଛକୁ ଫେରାଇବେ',
 'filehist-current'          => 'ଏବେକାର',
 'filehist-datetime'         => 'ତାରିଖ/ବେଳ',
 'filehist-thumb'            => 'ନଖ ଦେଖଣା',
@@ -772,22 +796,22 @@ $messages = array(
 'filehist-user'             => 'ବ୍ୟବାହାରକାରୀ',
 'filehist-dimensions'       => 'ଆକାର',
 'filehist-comment'          => 'ମତାମତ',
-'imagelinks'                => 'ଫାଇଲର ଲିଁକସବୁ',
+'imagelinks'                => 'ଫାଇଲର ଲିଙ୍କସବୁ',
 'linkstoimage'              => 'ଏହି ସବୁ{{PLURAL:$1|ପୃଷ୍ଠା|$1 ପୃଷ୍ଠାସବୁ}} ଏହି ଫାଇଲଟିକୁ ଯୋଡ଼ିଥାନ୍ତି:',
 'sharedupload'              => 'ଏହି ଫାଇଲଟି $1 ରୁ ଆଉ ବାକି ପ୍ରକଳ୍ପରେ ବ୍ୟବହାର କରାଯାଇପାରିବ .',
 'uploadnewversion-linktext' => 'ଏହି ଫାଇଲର ନୂଆ ସଙ୍କଳନଟିଏ ଅପଲୋଡ଼ କରିବେ',
 
 # File reversion
-'filerevert'         => 'ପ୍ରତ୍ୟାବୃତ କରିବା $1',
+'filerevert'         => '$1କୁ ଫେରାଇଦେବା',
 'filerevert-comment' => 'କାରଣ:',
 
 # File deletion
 'filedelete-comment'          => 'କାରଣ:',
 'filedelete-submit'           => 'ଲିଭେଇବେ',
-'filedelete-reason-otherlist' => 'ଅନ୍ୟ କାରଣ',
+'filedelete-reason-otherlist' => 'ଅଲଗା କାରଣ',
 
 # MIME search
-'download' => 'ଡାଉନଲୋଡ',
+'download' => 'ଡାଉନଲୋଡ଼',
 
 # Random page
 'randompage' => 'ଯାହିତାହି ପୃଷ୍ଠା',
@@ -799,7 +823,7 @@ $messages = array(
 'brokenredirects-edit'   => 'ବଦଳାଇବେ',
 'brokenredirects-delete' => 'ଲିଭାଇବା',
 
-'withoutinterwiki-legend' => 'ଉପସର୍ଗ',
+'withoutinterwiki-legend' => 'ଆଗରେ ଯୋଡ଼ାହେବା ଶବ୍ଦ',
 'withoutinterwiki-submit' => 'ଦେଖାଇବେ',
 
 # Miscellaneous special pages
@@ -832,6 +856,9 @@ $messages = array(
 'specialloguserlabel'  => 'ବ୍ୟବାହାରକାରୀ:',
 'speciallogtitlelabel' => 'ନାଆଁ:',
 'log'                  => 'ଲଗ',
+'all-logs-page'        => 'ସାଧାରଣ ଲଗସବୁ',
+'alllogstext'          => ' {{SITENAME}} ସହିତ ଯୋଡ଼ା ମିଳୁଥିବା ଲଗସବୁ ।
+ଆପଣ ଲଗର ପ୍ରକାର ଅନୁସାରେ ବି ସେସବୁକୁ ବାଛି ପାରିବେ । ଇଉଜରନାଆଁଟି ଛୋଟ ଓ ବଡ଼ ଅକ୍ଷର ଅନୁସାରେ ଅଲଗା ହୋଇଥାଏ, ପୃଷ୍ଠାର ନାଆଁ ସବୁ ବି ଛୋଟ ଓ ବଡ଼ ଇଂରାଜି ଅକ୍ଷର ଅନୁସାରେ ଅଲଗା ହୋଇଥାଏ ।',
 'logempty'             => 'ଲଗରେ ଥିବା ଲେଖା ସହ ମେଳଖାଉ ନାହିଁ ।',
 
 # Special:AllPages
@@ -864,7 +891,7 @@ $messages = array(
 'newuserlog-create-entry' => 'ନୂଆ ବ୍ୟବହାରକାରୀଙ୍କ ଖାତା',
 
 # Special:ListGroupRights
-'listgrouprights-group' => 'ସମୂହ',
+'listgrouprights-group' => 'ଗୋଠ',
 
 # E-mail user
 'emailuser'           => 'ଏହି ଉଇଜରଁକୁ ଇମେଲ କର',
@@ -886,12 +913,12 @@ $messages = array(
 'watching'   => 'ଦେଖୁଛି...',
 'unwatching' => 'ଦେଖୁନାହିଁ...',
 
-'changed'            => 'ବଦଳାଇବା',
-'enotif_anon_editor' => 'ଅଜ୍ଞାତ ବ୍ୟବହାରକାରୀ $1',
+'changed'            => 'ବଦଳାଗଲା',
+'enotif_anon_editor' => 'ଅଜଣା ବ୍ୟବହାରକାରୀ $1',
 
 # Delete
 'deletepage'            => 'ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ',
-'confirm'               => 'ନିଶ୍ଚିତନ',
+'confirm'               => 'ଥୟ କରିବେ',
 'delete-confirm'        => 'ଲିଭେଇବେ $1',
 'delete-legend'         => 'ଲିଭେଇବେ',
 'confirmdeletetext'     => 'ଆପଣ ଗୋଟିଏ ପୃଷ୍ଠାର ଇତିହାସ ସହ ତାହାକୁ ଲିଭାଇବାକୁ ଯାଉଛନ୍ତି ।
@@ -903,7 +930,7 @@ $messages = array(
 'dellogpage'            => 'ଲିଭାଇବା ଲଗ',
 'deletecomment'         => 'କାରଣ:',
 'deleteotherreason'     => 'ବାକିି କାରଣ:',
-'deletereasonotherlist' => 'ବାକିି କାରଣ',
+'deletereasonotherlist' => 'ଅଲଗା କାରଣ',
 
 # Rollback
 'rollbacklink' => 'ପୁରାପୁରି ପଛକୁ ଫେରିଯିବେ',
@@ -925,7 +952,7 @@ $messages = array(
 'protect-cantedit'            => 'ଆପଣ ଏହି ସୁରକ୍ଷା ସ୍ତରକୁ ବଦଳାଇ ପାରିବେ ନାହିଁ, କାହିଁକି ନା ଏହାକୁ ବଦଳାଇବା ପାଇଁ ଆପଣଁକୁ ଅନୁମତି ନାହିଁ .',
 'restriction-type'            => 'ଅନୁମତି',
 'restriction-level'           => 'ପ୍ରତିରକ୍ଷା ସ୍ତର',
-'pagesize'                    => '(ବାଇଟ୍)',
+'pagesize'                    => '(ବାଇଟ)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'ବଦଳାଇବେ',
@@ -933,10 +960,10 @@ $messages = array(
 'restriction-create' => 'ତିଆରି',
 
 # Undelete
-'undeletebtn'            => 'ପୁନଃସ୍ଥାପନ',
+'undeletebtn'            => 'ଆଉଥରେ ଫେରାଇଆଣିବେ',
 'undeletelink'           => 'ଦେଖିବା/ଆଉଥରେ ଫେରାଇଆଣିବେ',
 'undeleteviewlink'       => 'ଦେଖଣା',
-'undeletereset'          => 'ପୁନଃ ସ୍ଥାପନ',
+'undeletereset'          => 'ଆଉଥରେ ଫେରାଇଆଣିବେ',
 'undeletecomment'        => 'କାରଣ:',
 'undelete-search-submit' => 'ଖୋଜିବା',
 
@@ -954,7 +981,7 @@ $messages = array(
 'year'                => 'ବର୍ଷରୁ (ଆଉ ତା ଆଗରୁ)',
 
 'sp-contributions-newbies'  => 'କେବଳ ନୂଆ ସଭ୍ୟମାନଙ୍କର ଅବଦାନ ଦେଖାଇବେ',
-'sp-contributions-logs'     => 'ଲଗ୍',
+'sp-contributions-logs'     => 'ଲଗସବୁ',
 'sp-contributions-talk'     => 'କଥାଭାଷା',
 'sp-contributions-search'   => 'ଅବଦାନ ପାଇଁ ଖୋଜନ୍ତୁ',
 'sp-contributions-username' => 'ବ୍ୟବାହରକାରୀଙ୍କର ଆଇ.ପି. ଠିକଣା',
@@ -966,22 +993,23 @@ $messages = array(
 'whatlinkshere-title'      => '"$1" କୁ ପୃଷ୍ଠା ଲିଙ୍କ',
 'whatlinkshere-page'       => 'ପୃଷ୍ଠା:',
 'linkshere'                => "ଏହି ପୃଷ୍ଠା ସବୁ  '''[[:$1]]''' ସହ ଯୋଡା ଯାଇଅଛି:",
-'isredirect'               => 'ପୁନଃପ୍ରେରଣ ପୃଷ୍ଠା',
-'istemplate'               => 'ବାହାର',
-'isimage'                  => 'ଫାଇଲର ଲିଁକ',
+'nolinkshere-ns'           => "ବଛା ଯାଇଥିବା ନେମସ୍ପେସରେ '''[[:$1]]''' ନାଆଁ ସହ କୌଣସି ବି ପୃଷ୍ଠା ଯୋଡ଼ାଯାଇନାହିଁ ।",
+'isredirect'               => 'ଆଉଥରେ ଫେରିବା ପୃଷ୍ଠା',
+'istemplate'               => 'ଆଧାର ସହ ଭିତରେ ରଖିବା',
+'isimage'                  => 'ଫାଇଲର ଲିଙ୍କ',
 'whatlinkshere-prev'       => '{{PLURAL:$1|ଆଗ|ଆଗ $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|ପର|ପର $1}}',
-'whatlinkshere-links'      => '← ଲିଁକ',
+'whatlinkshere-links'      => '← ଲିଙ୍କ',
 'whatlinkshere-hideredirs' => '$1 କୁ ଲେଉଟାଣି',
-'whatlinkshere-hidetrans'  => '$1 ରେଫେରେଁସ ସହ ଭିତରେ ପୁରାଇବା',
-'whatlinkshere-hidelinks'  => '$1 ଟି ଲିଁକ',
+'whatlinkshere-hidetrans'  => '$1 ଆଧାର ସହ ଭିତରେ ରଖିବା',
+'whatlinkshere-hidelinks'  => '$1 ଟି ଲିଙ୍କ',
 'whatlinkshere-filters'    => 'ଛଣା',
 
 # Block/unblock
 'blockip'                  => 'ସଭ୍ୟଙ୍କୁ ଅଟକାଇବେ',
 'ipbreason'                => 'କାରଣ:',
 'ipboptions'               => '୨ ଘଣ୍ଟା:2 hours,୧ ଦିନ:1 day,୩ ଦିନ:3 days,୧ ସପ୍ତାହ:1 week,୨ ସପ୍ତାହ:2 weeks,୧ ମାସ:1 month,୩ ମାସ:3 months,୬ ମାସ:6 months,୧ ବର୍ଷ:1 year,ଅସରନ୍ତି:infinite',
-'ipbotheroption'           => 'ଅନ୍ୟାନ୍ୟ',
+'ipbotheroption'           => 'ବାକି',
 'blocklist-target'         => 'ଲକ୍ଷ',
 'blocklist-reason'         => 'କାରଣ',
 'ipblocklist-submit'       => 'ଖୋଜିବା',
@@ -992,10 +1020,11 @@ $messages = array(
 'blocklogpage'             => 'ଲଗଟିକୁ ଅଟକାଇଦିଅ',
 'unblocklogentry'          => 'କିଳାଯାଇନଥିବା $1',
 'block-log-flags-nocreate' => 'ନୂଆ ଖାତା ଖୋଲିବାକୁ ଅଚଳ କରାଯାଇଅଛି',
-'proxyblocksuccess'        => 'ସମାପ୍ତ।',
+'proxyblocksuccess'        => 'ଶେଷ ହେଲା ।',
 
 # Move page
 'move-page'               => '$1କୁ ଘୁଞ୍ଚାଇବେ',
+'move-page-legend'        => 'ପୃଷ୍ଠା ଘୁଞ୍ଚାଇବେ',
 'movepagetext'            => "ଏହି ଫର୍ମଟି ବ୍ୟବହାର କରି ଆପଣ ତଳ ପୃଷ୍ଠାଟିକୁ ବଦଳାଇ ପାରିବେ, ଏହାର ସବୁ ଇତିହାସ ଏକ ନୂଆ ନାଆଁକୁ ବଦଳିଯିବ ।
 ପୁରୁଣା ନାଆଁଟି ଏକ ପୁରୁଣା ନାଆଁ ଭାବରେ ଏହି ପୃଷ୍ଠା ଭାବରେ ବାଟ କଢ଼ାଇବ ।
 ଆପଣ ମୂଳ ଲେଖାକୁ ସେହି ପୁରୁଣା ନାଆଁ ଦେଇ ଆପେଆପେ ପଢ଼ିପାରିବେ ।
@@ -1016,23 +1045,26 @@ $messages = array(
 'movearticle'             => 'ପୃଷ୍ଠା ଘୁଞ୍ଚେଇବା:',
 'cant-move-user-page'     => 'ଆପଣଙ୍କୁ ଏହି ସଭ୍ୟ ପୃଷ୍ଠାଟିକୁ ଘୁଞ୍ଚାଇବା ଲାଗି ଅନୁମତି ମିଳିନାହିଁ, କିନ୍ତୁ ନିଜର ଉପପୃଷ୍ଠା ସବୁ ଘୁଞ୍ଚାଇ ପାରିବେ ।',
 'newtitle'                => 'ନୂଆ ନାଆଁକୁ:',
-'movepagebtn'             => 'ପୃଷ୍ଠା ଘୁଞ୍ଚେଇବା',
+'move-watch'              => 'ମୂଳ ପୃଷ୍ଠା ଓ ବଦଳାଇବାକୁ ଚାହୁଁଥିବା ପୃଷ୍ଠା ଦେଖାଇବେ',
+'movepagebtn'             => 'ପୃଷ୍ଠା ଘୁଞ୍ଚେଇବେ',
 'pagemovedsub'            => 'ଘୁଞ୍ଚାଇବା ସଫଳ ହେଲା',
 'movepage-moved'          => '\'\'\'"$1"ରୁ "$2"\'\'\'କୁ ଘୁଞ୍ଚାଇ ଦିଆଗଲା ।',
 'movepage-moved-redirect' => 'ପୃଷ୍ଠାଟିର ନାଆଁକୁ ଘୁଞ୍ଚାଇଦିଆଗଲା ।',
 'move-subpages'           => 'ଉପପୃଷ୍ଠା ଗୁଡ଼ିକୁ ଘୁଞ୍ଚାଇବେ ($1 ଯାଏଁ)',
+'movepage-page-moved'     => '$1 ପୃଷ୍ଠାଟିକୁ $2କୁ ଘୁଞ୍ଚାଇ ଦିଆଗଲା ।',
 '1movedto2'               => '[[$1]]ରୁ [[$2]]କୁ ଘୁଞ୍ଚାଗଲା',
 '1movedto2_redir'         => '[[$1]]ରୁ [[$2]]କୁ ଲେଉଟାଇଦିଆଗଲା',
 'movelogpage'             => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଇବେ',
 'movenosubpage'           => 'ଏହି ପୃଷ୍ଠାର ଉପପୃଷ୍ଠା ନାହିଁ ।',
 'movereason'              => 'କାରଣ:',
-'revertmove'              => 'ପଛକୁ ଫେରାଇନେବେ',
+'revertmove'              => 'ପଛକୁ ଫେରାଇବେ',
+'move-leave-redirect'     => 'ପଛକୁ ଫେରିବା ପୃଷ୍ଠାଟିଏ ଛାଡ଼ିଯାନ୍ତୁ',
 
 # Export
 'export'        => 'ଫରଦସବୁ ରପ୍ତାନି କର',
-'export-submit' => 'ରପ୍ତାନୀ',
-'export-addcat' => 'ଯୋଗ',
-'export-addns'  => 'ଯୋଗ',
+'export-submit' => 'ପଠେଇବେ',
+'export-addcat' => 'ଯୋଡ଼ିବେ',
+'export-addns'  => 'ଯୋଡ଼ିବେ',
 
 # Namespace 8 related
 'allmessagesname'           => 'ନାମ',
@@ -1106,13 +1138,16 @@ $messages = array(
 'tooltip-undo'                    => '"କରନାହିଁ" ଆଗରୁ କରାଯାଇଥିବା ବଦଳଟିକୁ ପଛକୁ ଲେଉଟାଇଦିଏ ଆଉ ବଦଳ ଫରମଟିକୁ ଦେଖଣା ଭାବରେ ଖୋଲେ । ଏହା ଆପଣଙ୍କୁ ସାରକଥାରେ ଗୋଟିଏ କାରଣ ଲେଖିବାକୁ ଅନୁମତି ଦିଏ ।',
 
 # Attribution
-'others' => 'ଅନ୍ୟାନ୍ୟ',
+'others' => 'ବାକିସବୁ',
 
 # Info page
-'pageinfo-header-edits' => 'ସମ୍ପାଦନ',
-'pageinfo-header-views' => 'ଦେଖିବା',
+'pageinfo-header-edits' => 'ବଦଳସବୁ',
+'pageinfo-header-views' => 'ଦେଖଣା',
 'pageinfo-subjectpage'  => 'ପୃଷ୍ଠା',
-'pageinfo-talkpage'     => 'କଥା ପୃଷ୍ଠା',
+'pageinfo-talkpage'     => 'ଆଲୋଚନା ପୃଷ୍ଠା',
+
+# Patrol log
+'patrol-log-auto' => '(ଆପେ ଆପେ)',
 
 # Browsing diffs
 'previousdiff' => '← ପୁରୁଣା ବଦଳ',
@@ -1122,9 +1157,9 @@ $messages = array(
 'file-info-size'       => '$1 × $2 ପିକସେଲ, ଫାଇଲ ଆକାର: $3, ଏମ.ଆଇ.ଏମ.ଇର ପ୍ରକାର: $4',
 'file-nohires'         => '<small>ବଡ଼ ରେଜୋଲୁସନ ନାହିଁ ।</small>',
 'show-big-image'       => 'ପୁରା ବଡ଼ ଆକାରରେ',
-'show-big-image-size'  => '$1 × $2 ପିକ୍ସେଲ୍',
-'file-info-gif-looped' => 'ଫାଶ',
-'file-info-png-looped' => 'ଫାଶ',
+'show-big-image-size'  => '$1 × $2 ପିକ୍ସେଲ',
+'file-info-gif-looped' => 'ଲୁପ',
+'file-info-png-looped' => 'ଲୁପ ଥିବା',
 
 # Special:NewFiles
 'newimages-legend' => 'ଛାଣିବା',
@@ -1146,30 +1181,31 @@ $messages = array(
 # EXIF tags
 'exif-imagewidth'   => 'ଓସାର',
 'exif-imagelength'  => 'ଉଚ୍ଚତା',
+'exif-orientation'  => 'ଅନୁସ୍ଥାପନ',
 'exif-artist'       => 'ଲେଖକ',
-'exif-flash'        => 'ଫ୍ଲାଶ୍',
+'exif-flash'        => 'ଫ୍ଲାସ',
 'exif-saturation'   => 'ପରିପୃକ୍ତ',
 'exif-keywords'     => 'ସୂଚକ ଶବ୍ଦ',
 'exif-source'       => 'ଉତ୍ସ',
 'exif-languagecode' => 'ଭାଷା',
 'exif-iimcategory'  => 'ବିଭାଗ',
-'exif-identifier'   => 'ପରିଚାୟକ',
-'exif-label'        => 'ଚିହ୍ନକ',
+'exif-identifier'   => 'ସୂଚକ',
+'exif-label'        => 'ଛାପ',
 
 'exif-orientation-1' => 'ସାଧାରଣ',
 
-'exif-exposureprogram-1' => 'ହାତରେ କରିବା',
+'exif-exposureprogram-1' => 'ସହାୟକ ବହି',
 
 'exif-subjectdistance-value' => '$1 ମିଟର',
 
 'exif-meteringmode-0'   => 'ଅଜଣା',
 'exif-meteringmode-1'   => 'ହାରାହାରି',
 'exif-meteringmode-5'   => 'ନମୁନା',
-'exif-meteringmode-6'   => 'ଆଂଶିକ',
-'exif-meteringmode-255' => 'ଅନ୍ୟାନ୍ୟ',
+'exif-meteringmode-6'   => 'କିଛି',
+'exif-meteringmode-255' => 'ବାକି',
 
 'exif-lightsource-0' => 'ଅଜଣା',
-'exif-lightsource-4' => 'ଫ୍ଲାଶ୍',
+'exif-lightsource-4' => 'ଫ୍ଲାସ',
 
 'exif-scenecapturetype-0' => 'ମାନକ',
 'exif-scenecapturetype-2' => 'ସିଧା',
@@ -1224,21 +1260,21 @@ $5
 'confirm-unwatch-button' => 'ଠିକ ଅଛି',
 
 # Multipage image navigation
-'imgmultipageprev' => '← ପୂର୍ବବର୍ତ୍ତୀ ପୃଷ୍ଠା',
-'imgmultipagenext' => 'ପରବର୍ତ୍ତୀ ପୃଷ୍ଠା →',
+'imgmultipageprev' => 'ଆଗ ପୃଷ୍ଠା',
+'imgmultipagenext' => 'ପର ପୃଷ୍ଠା →',
 'imgmultigo'       => 'ଯିବା!',
 
 # Table pager
 'table_pager_next'         => 'ନୂଆ ପୃଷ୍ଠା',
-'table_pager_prev'         => 'ପୂର୍ବବର୍ତ୍ତୀ ପୃଷ୍ଠା',
+'table_pager_prev'         => 'ଆଗ ପୃଷ୍ଠା',
 'table_pager_limit_submit' => 'ଯିବା',
 
 # Auto-summaries
 'autosumm-new' => '"$1" ନାଆଁରେ ପୃଷ୍ଠାଟିଏ ତିଆରିକଲେ',
 
 # Live preview
-'livepreview-loading' => 'ଧାରଣ ହେଉଛି।।।',
-'livepreview-ready'   => 'ଧାରଣ ହେଉଛି।।। ପ୍ରସ୍ତୁତ!',
+'livepreview-loading' => 'ଧାରଣ ହେଉଛି...',
+'livepreview-ready'   => 'ଧାରଣ ହେଉଛି...ଏବେ ସଜିଲ!',
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'ନାଆଁ:',
@@ -1250,10 +1286,10 @@ $5
 
 # Special:Version
 'version'                  => 'ସଂସ୍କରଣ',
-'version-other'            => 'ଅନ୍ୟାନ୍ୟ',
-'version-version'          => '(ସଂସ୍କରଣ $1)',
+'version-other'            => 'ବାକି',
+'version-version'          => '(ଭାଗ $1)',
 'version-license'          => 'ଲାଇସେନ୍ସ',
-'version-poweredby-others' => 'ଅନ୍ୟାନ୍ୟ',
+'version-poweredby-others' => 'ବାକିସବୁ',
 'version-software-product' => 'ଉତ୍ପାଦ',
 'version-software-version' => 'ସଂସ୍କରଣ',
 
@@ -1270,6 +1306,7 @@ $5
 
 # Special:Tags
 'tag-filter-submit' => 'ଛାଣିବା',
+'tags-title'        => 'ସୂଚକ',
 'tags-edit'         => 'ବଦଳାଇବେ',
 
 # Special:ComparePages
@@ -1279,13 +1316,6 @@ $5
 
 # HTML forms
 'htmlform-submit'              => 'ଦାଖଲକରିବା',
-'htmlform-selectorother-other' => 'ଅନ୍ୟାନ୍ୟ',
-
-# Add categories per AJAX
-'ajax-add-category-submit' => 'ଯୋଗ',
-'ajax-confirm-ok'          => 'ଠିକ ଅଛି',
-'ajax-confirm-save'        => 'ସଂରକ୍ଷଣ',
-'ajax-error-title'         => 'ତ୍ରୁଟି',
-'ajax-error-dismiss'       => 'ଠିକ ଅଛି',
+'htmlform-selectorother-other' => 'ବାକି',
 
 );

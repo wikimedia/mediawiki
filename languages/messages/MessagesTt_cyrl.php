@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ajdar
  * @author Bulatbulat
  * @author Don Alessandro
  * @author Haqmar
@@ -433,7 +434,7 @@ $messages = array(
 'jumptosearch'      => 'эзләү',
 'view-pool-error'   => 'Гафу итегез, хәзерге вакытта серверлар буш түгел.
 Бу битне карарга теләүчеләр артык күп.
-Бу биткә соңарак керүегез сорала.
+Бу биткә соңрак керүегез сорала.
 
 $1',
 'pool-timeout'      => 'Кысылуның  вакыты узды',
@@ -588,6 +589,8 @@ $1',
 'cascadeprotected'     => 'Бу бит үзгәртүләрдән сакланган, чөнки ул каскадлы саклау кабул ителгән {{PLURAL:$1|биткә|битләргә}} өстәлгән:
 $2',
 'namespaceprotected'   => "'''$1''' исем киңлегендәге битләрне үзгәртү өчен сезнең рөхсәтегез юк.",
+'customcssprotected'   => 'Сез бу CSS-сәхифәне үзгәртә алмыйсыз, чөнки монда башка кулланучының шәхси көйләнмәләре саклана',
+'customjsprotected'    => 'Сез бу JavaScript-сәхифәне үзгәртә алмыйсыз, чөнк монда башка кулланучының шәхси көйләнмәләре саклана',
 'ns-specialprotected'  => 'Махсус битләрне үзгәртеп булмый.',
 'titleprotected'       => "Бу исем белән бит ясау [[User:$1|$1]] тарафыннан тыелган.
 Ул күрсәткән сәбәп: ''$2''.",
@@ -625,6 +628,7 @@ $2',
 'createaccount'              => 'Яңа кулланучы теркәү',
 'gotaccount'                 => "Сез инде теркәлдегезме? '''$1'''.",
 'gotaccountlink'             => 'Керү',
+'userlogin-resetlink'        => 'Серсүзегезне оныттыгызмы?',
 'createaccountmail'          => 'электрон почта аша',
 'createaccountreason'        => 'Сәбәп:',
 'badretype'                  => 'Кертелгән серсүзләр бер үк түгел.',
@@ -700,6 +704,12 @@ $2',
 'resetpass-wrong-oldpass'   => 'Ялгыш серсүз.
 Сез серсүзегезне үзгәрткән яисә яңа вакытлы серсүз сораткан булырга мөмкинсез.',
 'resetpass-temp-password'   => 'Вакытлы серсүз:',
+
+# Special:PasswordReset
+'passwordreset-username'     => 'Кулланучы исеме:',
+'passwordreset-email'        => 'E-mail адресы',
+'passwordreset-emailelement' => 'Кулланучы исеме: $1
+Вакытлыча серсүз: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Калын язылыш',
@@ -2426,14 +2436,5 @@ $1',
 'htmlform-submit'              => 'Җибәрү',
 'htmlform-reset'               => 'Үзгәртүләрне кире кайтару',
 'htmlform-selectorother-other' => 'Башка',
-
-# Add categories per AJAX
-'ajax-add-category'          => 'Бүлек өстәргә',
-'ajax-add-category-submit'   => 'Өстәргә',
-'ajax-confirm-save'          => 'Саклау',
-'ajax-error-title'           => 'Хата',
-'ajax-error-dismiss'         => 'ОК',
-'ajax-remove-category-error' => 'Бу бүлекне алып ташлап булмады.
-Гадәттә шаблон аша өстәлгән бүлекләрдә шушындый хаталар чыга.',
 
 );

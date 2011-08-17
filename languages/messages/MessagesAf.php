@@ -3378,6 +3378,12 @@ Bevestig dat u die bladsy wil herskep.',
 'confirm-purge-top'    => 'Verwyder die kas van hierdie blad?',
 'confirm-purge-bottom' => "Die opruiming van die kas sorg daarvoor dat die mees onlangse weergawe van 'n bladsy vertoon word.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Voeg hierdie bladsy by u dophoulys?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Verwyder hierdie bladsy van u dophoulys?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← vorige bladsy',
 'imgmultipagenext' => 'volgende bladsy →',
@@ -3504,8 +3510,8 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'specialpages'                   => 'Spesiale bladsye',
 'specialpages-note'              => '----
 * Normale spesiale bladsye.
-* <strong class="mw-specialpagerestricted">Spesiale bladsye met beperkte toegang.</strong>
-* <strong class="mw-specialpagerestricted">Spesiale bladsye met slegs gegewens uit die kas.</strong>',
+* <span class="mw-specialpagerestricted">Spesiale bladsye met beperkte toegang.</span>
+* <span class="mw-specialpagecached">Spesiale bladsye met gegewens uit die kas (kan verouderd wees).</span>',
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other'       => 'Ander spesiale bladsye',
 'specialpages-group-login'       => 'Inteken / aansluit',

@@ -11,6 +11,7 @@
  * @author Kayau
  * @author Mark85296341
  * @author PhiLiP
+ * @author Shizhao
  * @author Waihorace
  * @author Wong128hk
  * @author Yukiseaside
@@ -69,6 +70,9 @@ $messages = array(
 # Login and logout pages
 'nav-login-createaccount' => '登入／創造帳戶',
 'userlogin'               => '登入／創造帳戶',
+
+# Edit pages
+'editing' => '正在編輯 $1',
 
 # Revision deletion
 'rev-deleted-comment'     => '（註釋已除）',

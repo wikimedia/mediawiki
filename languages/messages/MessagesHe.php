@@ -1363,7 +1363,7 @@ $1",
 'qbsettings-fixedright'     => 'קבוע מימין',
 'qbsettings-floatingleft'   => 'צף משמאל',
 'qbsettings-floatingright'  => 'צף מימין',
-'qbsettings-directionality' => 'קבוע, תלוי בכיווניות של השפה',
+'qbsettings-directionality' => 'קבוע, תלוי בכיווניות של הכתב ושל השפה',
 
 # Preferences page
 'preferences'                   => 'העדפות',
@@ -2252,9 +2252,11 @@ $1',
 'watchlistanontext'    => 'עליכם $1 כדי לצפות או לערוך פריטים ברשימת המעקב.',
 'watchnologin'         => 'לא נכנסתם לחשבון',
 'watchnologintext'     => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] כדי לערוך את רשימת המעקב.',
+'addwatch'             => 'הוספה לרשימת המעקב',
 'addedwatchtext'       => 'הדף [[:$1]] נוסף ל[[Special:Watchlist|רשימת המעקב]]. שינויים שייערכו בעתיד, בדף זה ובדף השיחה שלו, יוצגו ברשימת המעקב.
 
 בנוסף, הדף יופיע בכתב מודגש ב[[Special:RecentChanges|רשימת השינויים האחרונים]], כדי להקל עליכם את המעקב אחריו.',
+'removewatch'          => 'הסרה מרשימת המעקב',
 'removedwatchtext'     => 'הדף [[:$1]] הוסר מ[[Special:Watchlist|רשימת המעקב]].',
 'watch'                => 'מעקב',
 'watchthispage'        => 'מעקב אחרי דף זה',
@@ -2404,7 +2406,7 @@ $UNWATCHURL
 'protect-level-sysop'         => 'מפעילי מערכת בלבד',
 'protect-summary-cascade'     => 'מדורג',
 'protect-expiring'            => 'פוקעת $1 (UTC)',
-'protect-expiry-indefinite'   => 'בלתי מוגבל בזמן',
+'protect-expiry-indefinite'   => 'בלתי מוגבלת בזמן',
 'protect-cascade'             => 'הגנה על כל הדפים המוכללים בדף זה (הגנה מדורגת)',
 'protect-cantedit'            => 'אינכם יכולים לשנות את רמת ההגנה על דף זה, כיוון שאין לכם הרשאה לערוך אותו.',
 'protect-othertime'           => 'זמן אחר:',
@@ -3607,6 +3609,12 @@ $1',
 'confirm-purge-top'    => 'לנקות את המטמון של דף זה?',
 'confirm-purge-bottom' => 'ניקוי המטמון של דף גורם לגרסה החדשה ביותר להופיע.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'אישור',
+'confirm-watch-top'      => 'להוסיף דף זה לרשימת המעקב שלך?',
+'confirm-unwatch-button' => 'אישור',
+'confirm-unwatch-top'    => 'להסיר דף זה מרשימת המעקב שלך?',
+
 # Multipage image navigation
 'imgmultipageprev' => '→ לדף הקודם',
 'imgmultipagenext' => 'לדף הבא ←',
@@ -3864,20 +3872,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 עם תמיכה בחיפוש בטקסט מלא',
 'sqlite-no-fts'  => '$1 ללא תמיכה בחיפוש בטקסט מלא',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'הוספת קטגוריה',
-'ajax-add-category-submit'     => 'הוספה',
-'ajax-confirm-title'           => 'אישור הפעולה',
-'ajax-confirm-prompt'          => 'באפשרותכם לכתוב תקציר עריכה למטה.
-לחצו על "{{int:ajax-confirm-save}}" כדי לשמור את העריכה.',
-'ajax-confirm-save'            => 'שמירה',
-'ajax-add-category-summary'    => 'הוספת הקטגוריה "$1"',
-'ajax-remove-category-summary' => 'הסרת הקטגוריה "$1"',
-'ajax-confirm-actionsummary'   => 'הפעולה לביצוע:',
-'ajax-error-title'             => 'שגיאה',
-'ajax-error-dismiss'           => 'אישור',
-'ajax-remove-category-error'   => 'לא ניתן היה להסיר קטגוריה זו.
-הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
 
 );

@@ -728,7 +728,7 @@ URLを間違って打ったか、不正なリンクを辿った可能性があ�
 このページの変更はすべての利用者のユーザーインタフェースに影響します。
 翻訳をする場合、MediaWikiの地域化プロジェクト[http://translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net]の利用を検討してください。",
 'sqlhidden'            => '（SQLクエリ非表示）',
-'cascadeprotected'     => 'このページは、「連続」選択肢が有効な状態で保護されている以下の{{PLURAL:$1|ページ}}で読み込まれているため、編集できないように保護されています：
+'cascadeprotected'     => 'このページは、「カスケード保護」が指定された状態で保護されている以下の{{PLURAL:$1|ページ}}で読み込まれているため、編集できないように保護されています。
 $2',
 'namespaceprotected'   => "'''$1'''名前空間にあるページを編集する権限がありません。",
 'customcssprotected'   => 'このCSSページはほかのユーザーの個人設定が含まれているため、編集することができません。',
@@ -990,7 +990,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 * '''Internet Explorer:''' ''Ctrl'' を押しながら ''最新の情報に更新'' をクリックする、もしくは ''Ctrl-F5'' を押してください
 * '''Konqueror:''' ''再読み込み'' をクリックするか、 ''F5'' を押してください。
 * '''Opera:''' ''ツール → 設定'' からキャッシュをクリアしてください。",
-'usercssyoucanpreview'             => "''ヒント：'''「{{int:showpreview}}」ボタンを使うと、保存前に新しいスタイルシートを試験できます。",
+'usercssyoucanpreview'             => "'''ヒント：'''「{{int:showpreview}}」ボタンを使うと、保存前に新しいスタイルシートを試験できます。",
 'userjsyoucanpreview'              => "'''ヒント:''' 「{{int:showpreview}}」ボタンを使うと、保存前に新しいスクリプトを試験できます。",
 'usercsspreview'                   => "'''利用者CSSをプレビューしています。'''
 '''まだ保存されていません！'''",
@@ -1054,7 +1054,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 参考として以下に一番最後の記録を表示します：",
 'semiprotectedpagewarning'         => "'''注意：'''このページは保護されているため、登録利用者しか編集できません。
 参考として以下に一番最後の記録を表示します：",
-'cascadeprotectedwarning'          => "'''警告：'''このページは連続保護されている以下の{{PLURAL:$1|ページ}}から読み込まれているため保護されており、そのため管理者権限を持つ利用者しか編集できません。",
+'cascadeprotectedwarning'          => "'''警告：'''このページはカスケード保護されている以下の{{PLURAL:$1|ページ}}から読み込まれているため、管理者権限を持つ利用者しか編集できないように保護されています。",
 'titleprotectedwarning'            => "'''警告：このページは保護されているため、作成には[[Special:ListGroupRights|特定の権限]]が必要です。'''
 参考として以下に一番最後の記録を表示します：",
 'templatesused'                    => 'このページで使われている{{PLURAL:$1|テンプレート}}：',
@@ -1606,10 +1606,11 @@ HTMLタグを見直してください。',
 'right-sendemail'             => '他の利用者へ電子メールを送る',
 
 # User rights log
-'rightslog'      => '利用者権限変更記録',
-'rightslogtext'  => '以下は利用者権限の変更記録です。',
-'rightslogentry' => '$1の所属グループを$2から$3へ変更しました',
-'rightsnone'     => '（なし）',
+'rightslog'                  => '利用者権限変更記録',
+'rightslogtext'              => '以下は利用者権限の変更記録です。',
+'rightslogentry'             => '$1の所属グループを$2から$3へ変更しました',
+'rightslogentry-autopromote' => '$2 から $3 に自動的に昇格',
+'rightsnone'                 => '（なし）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'このページの閲覧',
@@ -1651,7 +1652,7 @@ HTMLタグを見直してください。',
 'nchanges'                          => '$1回の変更',
 'recentchanges'                     => '最近の更新',
 'recentchanges-legend'              => '最近の更新のオプション',
-'recentchangestext'                 => '最近の更新はこのページから確認できます。',
+'recentchangestext'                 => 'このウィキにおける最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => 'このフィードでそのウィキへの最近の更新を追跡。',
 'recentchanges-label-newpage'       => 'この編集で新しいページが作成されました',
 'recentchanges-label-minor'         => 'これは細部の編集です',
@@ -2277,8 +2278,10 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchlistanontext'    => 'ウォッチリストに入っている項目を表示または編集するには、$1してください。',
 'watchnologin'         => 'ログインしていません',
 'watchnologintext'     => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
+'addwatch'             => 'ウォッチリストに追加',
 'addedwatchtext'       => "ページ 「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]に追加しました。
 このページと付属のトークページに変更があった際には、ウォッチリストに表示されます。また、ウォッチリストに登録されているページは[[Special:RecentChanges|最近の更新の一覧]]に'''太字'''で表示され、見つけやすくなります。",
+'removewatch'          => 'ウォッチリストから除去',
 'removedwatchtext'     => 'ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]から除去しました。',
 'watch'                => 'ウォッチ',
 'watchthispage'        => 'このページをウォッチする',
@@ -2299,8 +2302,9 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchlist-options'    => 'ウォッチリストのオプション',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'ウォッチリストに追加しています・・・',
-'unwatching' => 'ウォッチリストから除去しています・・・',
+'watching'       => 'ウォッチリストに追加しています・・・',
+'unwatching'     => 'ウォッチリストから除去しています・・・',
+'watcherrortext' => 'ウォッチリストの「$1」の設定を変更中にエラーが発生しました。',
 
 'enotif_mailer'                => '{{SITENAME}} 通知メール',
 'enotif_reset'                 => 'すべてのページを訪問済みにする',
@@ -2473,8 +2477,7 @@ $2による最後の版へ変更されました。',
 保存版は定期的に消去される可能性があります。',
 'undelete-fieldset-title'      => '削除された版の復元',
 'undeleteextrahelp'            => "すべての版を復元する場合は、チェックボックスをどれも選択していない状態で'''''{{int:undeletebtn}}'''''をクリックしてください。
-特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で'''''{{int:undeletebtn}}'''''をクリックしてください。
-'''''{{int:undeletereset}}'''''をクリックすると、コメント欄と全てのチェックボックスが消去されます。",
+特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で'''''{{int:undeletebtn}}'''''をクリックしてください。",
 'undeleterevisions'            => '$1版が保存されています',
 'undeletehistory'              => 'ページの復帰を行うと、すべての特定版が履歴に復帰します。ページが削除された後に、同じ名前で新しいページが作成されていた場合、復帰した特定版は、その前の履歴として出現します。',
 'undeleterevdel'               => '復帰した結果、版指定削除されているページまたはファイルの版が最新となる場合、復帰は実行されません。
@@ -2521,6 +2524,7 @@ $1',
 # Namespace form on various pages
 'namespace'             => '名前空間：',
 'invert'                => '選択したものを除く',
+'tooltip-invert'        => '選択した名前空間（および、チェックされている場合、関連づけられた名前空間）のページの変更を非表示にするには、このチェックボックスをオンにします。',
 'namespace_association' => '関連する名前空間',
 'blanknamespace'        => '（標準）',
 
@@ -3036,6 +3040,18 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'spambot_username'    => 'MediaWikiスパム除去',
 'spam_reverting'      => '$1へのリンクを含まない最新の版に差し戻し',
 'spam_blanking'       => 'すべての版が$1へのリンクを含んでいます。白紙化します。',
+
+# Info page
+'pageinfo-title'            => '「$1」の情報',
+'pageinfo-header-edits'     => '編集',
+'pageinfo-header-watchlist' => 'ウォッチリスト',
+'pageinfo-subjectpage'      => 'ページ',
+'pageinfo-talkpage'         => 'トークページ',
+'pageinfo-watchers'         => 'ウォッチリストに入れている利用者数',
+'pageinfo-edits'            => '編集回数',
+'pageinfo-authors'          => '投稿者数',
+'pageinfo-views'            => '閲覧数',
+'pageinfo-viewsperedit'     => '閲覧回数に対する編集回数',
 
 # Skin names
 'skinname-standard'    => 'クラシック',
@@ -3555,6 +3571,12 @@ $1',
 'confirm-purge-top'    => 'ページのキャッシュを破棄します。よろしいですか？',
 'confirm-purge-bottom' => 'ページのパージは、キャッシュを破棄し、強制的に最新の版を表示します。',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'このページをウォッチリストに追加しますか?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'このページをウォッチリストから除去しますか?',
+
 # Separators for various lists, etc.
 'comma-separator' => '、',
 'word-separator'  => '',
@@ -3818,18 +3840,5 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # SQLite database support
 'sqlite-has-fts' => '$1（全文検索あり）',
 'sqlite-no-fts'  => '$1（全文検索なし）',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'カテゴリー追加',
-'ajax-add-category-submit'     => '追加',
-'ajax-confirm-title'           => '操作確認',
-'ajax-confirm-prompt'          => '編集内容の要約を以下に述べることができます。「保存」をクリックすると編集が保存されます。',
-'ajax-confirm-save'            => '保存',
-'ajax-add-category-summary'    => 'カテゴリー「$1」を追加',
-'ajax-remove-category-summary' => 'カテゴリー「$1」を除去',
-'ajax-confirm-actionsummary'   => '実行する操作:',
-'ajax-error-title'             => 'エラー',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'このカテゴリーを除去することができませんでした。これは通常、カテゴリーがテンプレートによってページに追加されている場合に起こります。',
 
 );

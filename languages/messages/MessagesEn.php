@@ -4585,4 +4585,5 @@ This site is experiencing technical difficulties.',
 # SQLite database support
 'sqlite-has-fts' => '$1 with full-text search support',
 'sqlite-no-fts'  => '$1 without full-text search support',
+
 );

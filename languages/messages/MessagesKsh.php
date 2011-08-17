@@ -2021,10 +2021,10 @@ All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 
 'disambiguations'      => '„(Wat es dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',
-'disambiguations-text' => 'En de Sigge hee noh sin Links dren op en „(Watt ėßß datt?)“-Sigg.
-De Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
+'disambiguations-text' => 'En de Sigge hee noh sin Links dren, di op en „(Watt ėßß datt?)“-Sigg jonn.
+Esu en Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
 
-(En Atikel jellt als en „(Watt ėßß datt?)“-Sigg un weed hee jeliss, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren is. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt)',
+Ene Atikel jelld als en „(Watt ėßß datt?)“-Sigg, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren es. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt.',
 
 'doubleredirects'                   => 'Ömleitunge op Ömleitunge',
 'doubleredirectstext'               => 'Hee fings De en jede Reih ene Link op de iertste un de zweite Ömleitung, donoh ene Link op de Sigg, wo de
@@ -3927,32 +3927,5 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 (un kann en janze Täxte söhke)',
 'sqlite-no-fts'  => 'Version $1 (kann ävver nit en janze Täxte söhke)',
-
-# Add categories per AJAX
-'ajax-add-category'             => 'Saachjropp dobei donn',
-'ajax-remove-category'          => 'Donn heh di Saachjrupp fottnämme',
-'ajax-edit-category'            => 'Donn heh di Saachjropp tuusche',
-'ajax-add-category-submit'      => 'Lohß jonn!',
-'ajax-confirm-ok'               => 'Lohß Jonn!',
-'ajax-confirm-title'            => 'Akßjuhn beschtähtejje',
-'ajax-confirm-prompt'           => 'Do kanns ene Enndraach för „{{int:summary}}“ maache, onge.
-Donn op „{{int:savearticle}}“ kleke, öm Ding Ändernug faßzehallde.',
-'ajax-confirm-save'             => 'Avshpeishere',
-'ajax-confirm-save-all'         => 'All di Änderunge faßhallde',
-'ajax-cancel'                   => 'Nix Ändere!',
-'ajax-add-category-summary'     => 'Donn de Saachjropp „$1“ derbei.',
-'ajax-edit-category-summary'    => 'Uß dä Saachjropp „$1“ eruß un en de Saachjropp „$2“ erin jedonn',
-'ajax-remove-category-summary'  => 'Saachjropp „$1“ eruß nämme',
-'ajax-add-category-question'    => 'Woröm wells De di Saachjropp „$1“ dobei han?',
-'ajax-edit-category-question'   => 'Woröm wells De di Saachjropp „$1“ nit mieh han un doför di Saachjropp „$2“ entuusche?',
-'ajax-remove-category-question' => 'Woröm wells De di Saachjropp „$1“ nit mieh han?',
-'ajax-confirm-actionsummary'    => 'Wat jedonn wääde sull:',
-'ajax-error-title'              => 'Fähler',
-'ajax-error-dismiss'            => 'Han esch jelässe',
-'ajax-remove-category-error'    => 'Et wohr nit müjjelesch, di Saachjropp eruß ze nämme.
-Dat es fö jewöhnlej_esu, wann di Saachjropp övver en Schabloon en di Sigg jekumme es.',
-'ajax-edit-category-error'      => 'Mer kunnte di Saachjropp nit tuusche.
-Dat kütt öff dovun, dat se övver en Schabloon enjedraare weed.',
-'ajax-category-already-present' => 'Heh di Sigg es ald en dä Saachjropp „$1“dren.',
 
 );

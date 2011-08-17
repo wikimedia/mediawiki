@@ -418,6 +418,8 @@ Arcesta: $2',
 'sqlhidden'            => "(l'anterogassion SQL a l'é stërmà)",
 'cascadeprotected'     => 'Ant sta pàgina-sì as peulo pa fé ëd modìfiche, përché a-i intra ant {{PLURAL:$1|la pàgina|le pàgine}} butà sot a protession con la fonsion "a tombé" viscà ansima a: $2',
 'namespaceprotected'   => "A l'ha nen ël përmess dë feje dle modìfiche a le pàgine dlë spassi nominal '''$1'''.",
+'customcssprotected'   => "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina ëd CSS, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",
+'customjsprotected'    => "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina ëd JavaScript, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",
 'ns-specialprotected'  => 'As peulo nen modifichesse le pàgine dlë spassi nominal {{ns:special}}.',
 'titleprotected'       => "La creassion ëd pàgine con ës tìtol-sì a l'é stàita proibìa da [[User:$1|$1]].
 Coma rason a l'ha butà: ''$2''.",
@@ -1891,13 +1893,13 @@ A peulo ess-ie d'[[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissiona
 # E-mail user
 'mailnologin'          => "A-i é pa l'adrëssa për mandé ël mëssagi",
 'mailnologintext'      => "A dev [[Special:UserLogin|rintré ant ël sistema]]
-e avej registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podej mandé dij messagi ëd pòsta eletrònica a j'àutri Utent.",
-'emailuser'            => "Mand-je un messagi eletrònich a st'Utent-sì",
-'emailpage'            => "Mand-je un messagi ëd pòsta eletrònica a st'utent-sì",
-'emailpagetext'        => "It peule dovré la forma ambelessì për mandé un messagi e-mail a st'utent-sì.
-L'adrëssa e-mail ch'it l'has butà an [[Special:Preferences|Ij sò gust]] a sarà butò ant l'adrëssa \"From\" ëd toa e-mail, parèj ël ricevent a podrà arsponde diretament a ti.",
-'usermailererror'      => "L'oget che a goèrna la pòsta eletrònica a l'ha dait eror:",
-'defemailsubject'      => 'Messagi da {{SITENAME}}',
+e avèj registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podèj mandé dij mëssagi ëd pòsta eletrònica a j'àutri Utent.",
+'emailuser'            => "Mandeje un mëssagi eletrònich a st'utent-sì",
+'emailpage'            => "Mandeje un mëssagi ëd pòsta eletrònica a st'utent-sì",
+'emailpagetext'        => "A peule dovré ël formolari sì-sota për mandé un mëssagi ëd pòsta eletrònica a st'utent-sì.
+L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|Ij sò gust]] a sarà butà ant l'adrëssa «Da» ëd sò mëssagi, parèj chi ch'a l'arsèiv a podrà rësponde diretament a chiel.",
+'usermailererror'      => "L'oget che a goèrna la pòsta eletrònica a l'ha dàit eror:",
+'defemailsubject'      => 'Mëssagi da {{SITENAME}}',
 'usermaildisabled'     => "Pòsta eletrònica dl'utent disabilità",
 'usermaildisabledtext' => "A peul pa mandé ëd mësagi ëd pòsta eletrònica a d'àutri utent dzora a sta wiki-sì",
 'noemailtitle'         => 'Pa gnun-a adrëssa ëd pòsta eletrònica',
@@ -3466,20 +3468,5 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 con arserca an test pien mantnùa',
 'sqlite-no-fts'  => '$1 sensa arserca an test pien mantnùa',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Gionta categorìa',
-'ajax-add-category-submit'     => 'Gionta',
-'ajax-confirm-title'           => 'Conferma assion',
-'ajax-confirm-prompt'          => 'It peule dé sì sota un resumé dla modìfica.
-Sgnaca "Salva" për salvé la modìfica.',
-'ajax-confirm-save'            => 'Salva',
-'ajax-add-category-summary'    => 'Gionta la categorìa "$1"',
-'ajax-remove-category-summary' => 'Gava la categorìa "$1"',
-'ajax-confirm-actionsummary'   => 'Assion da fé:',
-'ajax-error-title'             => 'Eror',
-'ajax-error-dismiss'           => 'Va bin',
-'ajax-remove-category-error'   => "A l'era pa possìbil gavé sta categorìa-sì.
-Sòn-sì a càpita normalment quand la categorìa a l'é stàita giontà a la pàgina ant në stamp.",
 
 );

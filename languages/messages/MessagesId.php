@@ -12,6 +12,7 @@
  * @author Bennylin
  * @author Borgx
  * @author Farras
+ * @author Gombang
  * @author Irwangatot
  * @author IvanLanin
  * @author Iwan Novirion
@@ -520,7 +521,7 @@ $messages = array(
 'protect_change'    => 'ubah',
 'protectthispage'   => 'Lindungi halaman ini',
 'unprotect'         => 'Pelindungan',
-'unprotectthispage' => 'Buka pelindungan halaman ini',
+'unprotectthispage' => 'Buka perlindungan halaman ini',
 'newpage'           => 'Halaman baru',
 'talkpage'          => 'Bicarakan halaman ini',
 'talkpagelinktext'  => 'Bicara',
@@ -3733,20 +3734,5 @@ Keterangan tampilan:
 # SQLite database support
 'sqlite-has-fts' => '$1 dengan dukungan pencarian teks lengkap',
 'sqlite-no-fts'  => '$1 tanpa dukungan pencarian teks lengkap',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Tambah kategori',
-'ajax-add-category-submit'     => 'Tambah',
-'ajax-confirm-title'           => 'Konfirmasi aksi',
-'ajax-confirm-prompt'          => 'Anda dapat menambahkan ringkasan suntingan di bawah.
-Tekan "Simpan" untuk menyimpan suntingan Anda.',
-'ajax-confirm-save'            => 'Simpan',
-'ajax-add-category-summary'    => 'Tambah kategori "$1"',
-'ajax-remove-category-summary' => 'Hapus kategori "$1"',
-'ajax-confirm-actionsummary'   => 'Aksi yang dilakukan:',
-'ajax-error-title'             => 'Kesalahan',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Tidak mungkin menghapus kategori ini.
-Biasanya karena kategori di tambahkan kehalaman melalui templat.',
 
 );

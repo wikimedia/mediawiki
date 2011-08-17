@@ -765,7 +765,7 @@ Parameters:
 
 {{Identical|Reset password}}',
 'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
-'newpassword'               => 'ନୂଆ ପାସବାର୍ଡ଼:',
+'newpassword'               => '{{Identical|New password}}',
 'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit'          => 'Submit button on [[Special:ChangePassword]]',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
@@ -2612,7 +2612,9 @@ This message was something like "unlock move protection" in the past.',
 
 # Contributions
 'contributions'       => "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages. Also the page name of the target page. The target page shows an overview of the most recent contributions by a user.",
-'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.',
+'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.
+
+{{Gender}}',
 'mycontris'           => 'In the personal urls page section - right upper corner.',
 'contribsub2'         => 'Contributions for "user" (links)',
 'nocontribs'          => 'Optional parameter: $1 is the user name',
@@ -2631,7 +2633,8 @@ This message was something like "unlock move protection" in the past.',
 'sp-contributions-logs'                => "Appears as an action link in the header of the Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").",
 'sp-contributions-talk'                => "This is a link anchor used in the [[Special:Contributions]]/''usernamename'' pages.
 The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}}, e.g. like this:<br />
-( talk | block log | logs | deleted contributions | rights management )",
+( talk | block log | logs | deleted contributions | rights management )
+{{Identical|Talk}}",
 'sp-contributions-userrights'          => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
 'sp-contributions-blocked-notice'      => 'Shown on top of contributions special page of currently blocked users. Parameters:
 * $1 is the blocked user. Can be used for GENDER (optional)
@@ -4236,19 +4239,5 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on Special:Version, $1 is version',
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
-
-# Add categories per AJAX
-'ajax-remove-category'          => 'Tooltip for link to remove a category from the page, displayed after each category at the foot of a page. Refers to the specific category. "Remove this category" is also correct.',
-'ajax-edit-category'            => 'Tooltip for the edit link displayed after each category at the foot of a page. Refers to the specific category. "Edit this category" is also correct.',
-'ajax-add-category-submit'      => '{{Identical|Add}}',
-'ajax-confirm-ok'               => '{{Identical|OK}}',
-'ajax-confirm-save'             => 'Submit button
-
-{{Identical|Save}}',
-'ajax-edit-category-summary'    => 'Automatic edit summary that can be copied to the summary box. $1 and $2 are both category names.',
-'ajax-confirm-actionsummary'    => 'This message is followed by one of the following messages; {{msg-mw|ajax-add-category-summary}}, {{msg-mw|ajax-remove-category-summary}}, {{msg-mw|ajax-edit-category-summary}}.',
-'ajax-error-title'              => '{{Identical|Error}}',
-'ajax-error-dismiss'            => '{{Identical|OK}}',
-'ajax-category-already-present' => 'Error message. $1 is the category name',
 
 );

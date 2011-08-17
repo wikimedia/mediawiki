@@ -2887,14 +2887,4 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'sqlite-has-fts' => '$1 ar pilnteksta meklēšanas atbalstu',
 'sqlite-no-fts'  => '$1 bez pilnteksta meklēšanas atbalsta',
 
-# Add categories per AJAX
-'ajax-add-category'         => 'Pievienot kategoriju',
-'ajax-add-category-submit'  => 'Pievienot',
-'ajax-confirm-prompt'       => 'Te apakšā var norādīt izmaiņu kopsavilkumu.
-Uzspied uz "Saglabāt" lai saglabātu izmaiņas.',
-'ajax-confirm-save'         => 'Saglabāt',
-'ajax-add-category-summary' => 'Pievienot kategoriju "$1"',
-'ajax-error-title'          => 'Kļūda (Error)',
-'ajax-error-dismiss'        => 'OK',
-
 );
