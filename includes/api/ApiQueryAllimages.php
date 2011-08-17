@@ -249,7 +249,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Simple Use',
 			' Show a list of images starting at the letter "B"',

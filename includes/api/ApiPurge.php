@@ -136,7 +136,7 @@ class ApiPurge extends ApiBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=purge&titles=Main_Page|API'
 		);

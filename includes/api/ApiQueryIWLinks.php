@@ -166,7 +166,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Get interwiki links from the [[Main Page]]:',
 			'  api.php?action=query&prop=iwlinks&titles=Main%20Page',

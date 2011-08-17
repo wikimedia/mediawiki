@@ -385,7 +385,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'List the last deleted revisions of Main Page and Talk:Main Page, with content (mode 1):',
 			'  api.php?action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&drprop=user|comment|content',

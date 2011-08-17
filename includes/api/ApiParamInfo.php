@@ -244,7 +244,7 @@ class ApiParamInfo extends ApiBase {
 		return 'Obtain information about certain API parameters and errors';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=paraminfo&modules=parse&querymodules=allpages|siteinfo'
 		);

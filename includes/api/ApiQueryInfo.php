@@ -721,7 +721,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&prop=info&titles=Main%20Page',
 			'api.php?action=query&prop=info&inprop=protection&titles=Main%20Page'

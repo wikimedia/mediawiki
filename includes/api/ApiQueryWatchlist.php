@@ -439,7 +439,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=watchlist',
 			'api.php?action=query&list=watchlist&wlprop=ids|title|timestamp|user|comment',

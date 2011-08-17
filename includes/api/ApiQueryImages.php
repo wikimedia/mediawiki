@@ -176,7 +176,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Get a list of images used in the [[Main Page]]:',
 			'  api.php?action=query&prop=images&titles=Main%20Page',

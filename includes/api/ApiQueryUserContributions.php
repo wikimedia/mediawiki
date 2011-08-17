@@ -463,7 +463,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=usercontribs&ucuser=YurikBot',
 			'api.php?action=query&list=usercontribs&ucuserprefix=217.121.114.',

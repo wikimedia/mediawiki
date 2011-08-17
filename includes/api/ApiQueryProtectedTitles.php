@@ -224,7 +224,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		return 'List all titles protected from creation';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=protectedtitles',
 		);

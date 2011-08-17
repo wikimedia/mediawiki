@@ -214,7 +214,7 @@ class ApiFeedWatchlist extends ApiBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=feedwatchlist',
 			'api.php?action=feedwatchlist&allrev=&linktodiffs=&hours=6'

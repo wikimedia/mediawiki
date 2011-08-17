@@ -119,7 +119,7 @@ class ApiOpenSearch extends ApiBase {
 		return 'Search the wiki using the OpenSearch protocol';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=opensearch&search=Te'
 		);

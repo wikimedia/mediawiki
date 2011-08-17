@@ -379,7 +379,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Get first 10 pages in [[Category:Physics]]:',
 			'  api.php?action=query&list=categorymembers&cmtitle=Category:Physics',

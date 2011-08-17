@@ -97,7 +97,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			}
 		}
 		$result->addValue( array( 'query' ), $this->getModuleName(), $r );
-		
+
 		if ( $qp->isCached() && !$qp->isCacheable() ) {
 			// Disabled query page, don't run the query
 			return;
@@ -186,7 +186,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=querypage&qppage=Ancientpages'
 		);

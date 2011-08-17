@@ -176,7 +176,7 @@ class ApiFileRevert extends ApiBase {
 		return '';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Revert Wiki.png to the version of 20110305152740:',
 			'    api.php?action=filerevert&filename=Wiki.png&comment=Revert&archivename=20110305152740!Wiki.png&token=+\\',

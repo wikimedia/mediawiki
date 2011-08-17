@@ -175,7 +175,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return 'api.php?action=query&list=random&rnnamespace=0&rnlimit=2';
 	}
 

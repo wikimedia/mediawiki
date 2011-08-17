@@ -133,7 +133,7 @@ class ApiUserrights extends ApiBase {
 		return $this->getUser()->getName();
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
 		);

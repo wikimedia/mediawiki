@@ -206,7 +206,7 @@ class ApiLogin extends ApiBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=login&lgname=user&lgpassword=password'
 		);

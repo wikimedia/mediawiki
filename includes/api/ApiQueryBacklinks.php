@@ -511,7 +511,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		static $examples = array(
 			'backlinks' => array(
 				'api.php?action=query&list=backlinks&bltitle=Main%20Page',

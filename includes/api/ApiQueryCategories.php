@@ -241,7 +241,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Get a list of categories [[Albert Einstein]] belongs to:',
 			'  api.php?action=query&prop=categories&titles=Albert%20Einstein',

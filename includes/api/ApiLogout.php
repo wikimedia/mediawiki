@@ -67,7 +67,7 @@ class ApiLogout extends ApiBase {
 		return 'Log out and clear session data';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=logout'
 		);

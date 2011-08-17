@@ -178,7 +178,7 @@ class ApiQueryTags extends ApiQueryBase {
 		return 'List change tags';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=tags&tgprop=displayname|description|hitcount'
 		);
