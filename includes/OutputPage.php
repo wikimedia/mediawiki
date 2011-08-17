@@ -1,3 +1,4 @@
+
 <?php
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
@@ -226,10 +227,6 @@ class OutputPage {
 	 * a OutputPage tied to that context.
 	 */
 	function __construct( RequestContext $context = null ) {
-		if ( !isset($context) ) {
-			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
-			wfDeprecated( __METHOD__ );
-		}
 		$this->mContext = $context;
 	}
 
