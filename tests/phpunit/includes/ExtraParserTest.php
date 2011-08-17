@@ -63,10 +63,32 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 * cleanSig() makes all templates substs and removes tildes
 	 */
 	function testCleanSig() {
+		global $wgCleanSignatures;
+		$oldCleanSignature = $wgCleanSignatures;
+		$wgCleanSignatures = true;
+
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
+
+		$wgCleanSignatures = $oldCleanSignature;
 		
 		$this->assertEquals( "{{SUBST:Foo}} ", $outputText );
+	}
+
+	/**
+	 * cleanSig() should do nothing if disabled
+	 */
+	function testCleanSigDisabled() {
+		global $wgCleanSignatures;
+		$oldCleanSignature = $wgCleanSignatures;
+		$wgCleanSignatures = false;
+
+		$title = Title::newFromText( __FUNCTION__ );
+		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
+
+		$wgCleanSignatures = $oldCleanSignature;
+		
+		$this->assertEquals( "{{Foo}} ~~~~", $outputText );
 	}
 	
 	/**
