@@ -6,7 +6,7 @@ class FormatMetadataTest extends MediaWikiTestCase {
 		}
 		
 		$file = UnregisteredLocalFile::newFromPath( dirname( __FILE__ ) . 
-			'/broken_exif_date.jpg', 'image/jpeg' );
+			'/../../data/media/broken_exif_date.jpg', 'image/jpeg' );
 		
 		// Throws an error if bug hit
 		$meta = $file->formatMetadata();

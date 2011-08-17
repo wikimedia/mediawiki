@@ -1,3 +1,8 @@
+This directory contains media files for use with the
+tests in includes/media directory.
+
+Image credits:
+
 QA_icon.svg:
 http://es.wikipedia.org/wiki/Archivo:QA_icon.svg
 GNU Lesser General Public License
@@ -13,7 +18,6 @@ US_states_by_total_state_tax_revenue.svg
 http://commons.wikimedia.org/wiki/File:US_states_by_total_state_tax_revenue.svg
 CC-BY 3.0
 TastyCakes on English Wikipedia
-
 
 greyscale-na-png.png, rgb-png.png, Xmp-exif-multilingual_test.jpg
 greyscale-png.png, 1bit-png.png, Png-native-test.png, rgb-na-png.png,
