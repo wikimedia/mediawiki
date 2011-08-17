@@ -38,6 +38,8 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 		# initialize parser output
 		$this->testParser->clearState();
+		# Needs a title to do magic word stuff
+		$this->testParser->setTitle( Title::newFromText( 'Tests' ) );
 	}
 
 	/** destroy parser (TODO: is it really neded?)*/
