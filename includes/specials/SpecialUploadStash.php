@@ -340,7 +340,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			array( 'href' => $this->getTitle()->getLocalURL() ),
 			wfMsg( 'uploadstash-refresh' ) );
 		$files = $this->stash->listFiles();
-		if ( count( $files ) ) {
+		if ( $files && count( $files ) ) {
 			sort( $files );
 			$fileListItemsHtml = '';
 			foreach ( $files as $file ) {
