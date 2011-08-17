@@ -28,7 +28,14 @@
  * @ingroup SpecialPage
  */
 class SpecialSearch extends SpecialPage {
-	/// Current search profile
+	/**
+	 * Current search profile. Search profile is just a name that identifies
+	 * the active search tab on the search page (content, help, discussions...)
+	 * For users tt replaces the set of enabled namespaces from the query
+	 * string when applicable. Extensions can add new profiles with hooks
+	 * with custom search options just for that profile.
+	 * null|string
+	 */ 
 	protected $profile;
 
 	/// Search engine
