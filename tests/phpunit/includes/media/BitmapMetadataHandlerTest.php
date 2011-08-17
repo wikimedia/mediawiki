@@ -1,5 +1,10 @@
 <?php
 class BitmapMetadataHandlerTest extends MediaWikiTestCase {
+
+	public function setUp() {
+		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
+	}
+
 	/**
 	 * Test if having conflicting metadata values from different
 	 * types of metadata, that the right one takes precedence.
@@ -13,7 +18,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
 
-		$meta = BitmapMetadataHandler::Jpeg( dirname( __FILE__ ) .
+		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
 			'/Xmp-exif-multilingual_test.jpg' );
 
 		$expected = array(

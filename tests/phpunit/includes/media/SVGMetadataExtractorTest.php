@@ -39,7 +39,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 	}
 
 	function providerSvgFiles() {
-		$base = dirname( __FILE__ );
+		$base = dirname( __FILE__ ) . '/../../data/media';
 		return array(
 			array(
 				"$base/Wikimedia-logo.svg",
@@ -66,7 +66,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 	}
 
 	function providerSvgFilesWithXMLMetadata() {
-		$base = dirname( __FILE__ );
+		$base = dirname( __FILE__ ) . '/../../data/media';
 		return array(
 			array(
 				"$base/US_states_by_total_state_tax_revenue.svg",
