@@ -272,7 +272,7 @@
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
 	'qu' => 'Runa Simi',	# Southern Quechua
-	'qug' => 'Runa shimi',	# Chimborazo Highland Quichua
+	'qug' => 'Runa shimi',	# Kichwa/Northern Quechua (one of the codes it covers; temporarily used until Kichwa has its own)
 	'rgn' => 'Rumagnôl',	# Romagnol
 	'rif' => 'Tarifit',	# Tarifit
 	'rm' => 'Rumantsch',	# Raeto-Romance
