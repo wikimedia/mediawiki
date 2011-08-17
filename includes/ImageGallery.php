@@ -28,9 +28,9 @@ class ImageGallery {
 	 * Contextual title, used when images are being screened
 	 * against the bad image list
 	 */
-	private $contextTitle = false;
+	protected $contextTitle = false;
 
-	private $mAttribs = array();
+	protected $mAttribs = array();
 
 	/**
 	 * Fixed margins
