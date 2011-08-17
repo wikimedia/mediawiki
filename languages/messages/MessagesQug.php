@@ -11,6 +11,8 @@
  * @author Sylvain2803
  */
 
+$fallback = 'qu';
+
 $messages = array(
 # Dates
 'sunday'        => 'Hawkay',
