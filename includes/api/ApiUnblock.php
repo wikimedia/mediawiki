@@ -141,7 +141,7 @@ class ApiUnblock extends ApiBase {
 		return '';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=unblock&id=105',
 			'api.php?action=unblock&user=Bob&reason=Sorry%20Bob'

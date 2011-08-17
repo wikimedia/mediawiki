@@ -246,7 +246,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		return 'Return messages from this site';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&meta=allmessages&amprefix=ipb-',
 			'api.php?action=query&meta=allmessages&ammessages=august|mainpage&amlang=de',

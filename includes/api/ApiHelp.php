@@ -139,7 +139,7 @@ class ApiHelp extends ApiBase {
 		return 'Display this help screen. Or the help screen for the specified module';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Whole help page:',
 			'  api.php?action=help',

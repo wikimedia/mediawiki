@@ -229,7 +229,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		return "Returns all {$this->description}s from the given page(s)";
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			"Get {$this->description}s from the [[Main Page]]:",
 			"  api.php?action=query&prop={$this->getModuleName()}&titles=Main%20Page",

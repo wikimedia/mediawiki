@@ -142,7 +142,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		return 'Get various properties defined in the page content';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&prop=pageprops&titles=Category:Foo',
 		);

@@ -118,7 +118,7 @@ class ApiComparePages extends ApiBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=compare&fromrev=1&torev=2',
 		);

@@ -152,7 +152,7 @@ class ApiUndelete extends ApiBase {
 		return '';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=undelete&title=Main%20Page&token=123ABC&reason=Restoring%20main%20page',
 			'api.php?action=undelete&title=Main%20Page&token=123ABC&timestamps=20070703220045|20070702194856'

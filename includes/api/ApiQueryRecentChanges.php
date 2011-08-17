@@ -633,7 +633,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=recentchanges'
 		);

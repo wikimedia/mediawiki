@@ -196,7 +196,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		return 'Enumerate all categories';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=allcategories&acprop=size',
 			'api.php?action=query&generator=allcategories&gacprefix=List&prop=info',

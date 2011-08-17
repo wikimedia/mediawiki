@@ -195,7 +195,7 @@ class ApiFeedContributions extends ApiBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=feedcontributions&user=Reedy',
 		);

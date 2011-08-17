@@ -115,7 +115,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		return 'Returns information about the given categories';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return 'api.php?action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar';
 	}
 

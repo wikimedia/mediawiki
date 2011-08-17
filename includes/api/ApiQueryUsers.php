@@ -318,7 +318,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		return 'Get information about a list of users';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return 'api.php?action=query&list=users&ususers=brion|TimStarling&usprop=groups|editcount|gender';
 	}
 

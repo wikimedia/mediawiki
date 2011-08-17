@@ -104,7 +104,7 @@ class ApiPatrol extends ApiBase {
 		return 'patrol';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=patrol&token=123abc&rcid=230672766'
 		);

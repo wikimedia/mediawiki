@@ -633,7 +633,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics',
 			'api.php?action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local',

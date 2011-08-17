@@ -445,7 +445,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=logevents'
 		);

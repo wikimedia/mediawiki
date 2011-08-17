@@ -138,7 +138,7 @@ class ApiEmailUser extends ApiBase {
 		return '';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=emailuser&target=WikiSysop&text=Content'
 		);

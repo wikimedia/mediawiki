@@ -158,7 +158,7 @@ class ApiImport extends ApiBase {
 		return '';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Import [[meta:Help:Parserfunctions]] to namespace 100 with full history:',
 			'  api.php?action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&namespace=100&fullhistory=&token=123ABC',

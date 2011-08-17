@@ -695,7 +695,7 @@ class ApiQuery extends ApiBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment',
 			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions',

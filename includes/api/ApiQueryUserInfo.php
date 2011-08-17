@@ -231,7 +231,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return 'Get information about the current user';
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&meta=userinfo',
 			'api.php?action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg',

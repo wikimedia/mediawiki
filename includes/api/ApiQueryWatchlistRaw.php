@@ -197,7 +197,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'api.php?action=query&list=watchlistraw',
 			'api.php?action=query&generator=watchlistraw&gwrshow=changed&prop=revisions',

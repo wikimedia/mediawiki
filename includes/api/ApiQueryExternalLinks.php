@@ -143,7 +143,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		) );
 	}
 
-	protected function getExamples() {
+	public function getExamples() {
 		return array(
 			'Get a list of external links on the [[Main Page]]:',
 			'  api.php?action=query&prop=extlinks&titles=Main%20Page',

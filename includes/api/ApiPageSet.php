@@ -464,7 +464,7 @@ class ApiPageSet extends ApiQueryBase {
 						__METHOD__ );
 			$this->profileDBOut();
 		}
-		
+
 		$this->initFromQueryResult( $res, $remaining, false );	// process PageIDs
 
 		// Resolve any found redirects
@@ -743,7 +743,7 @@ class ApiPageSet extends ApiQueryBase {
 		return $array;
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array(
 			'titles' => array(
 				ApiBase::PARAM_ISMULTI => true
@@ -759,7 +759,7 @@ class ApiPageSet extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array(
 			'titles' => 'A list of titles to work on',
 			'pageids' => 'A list of page IDs to work on',
