@@ -6,7 +6,7 @@ class XmlTypeCheck {
 	 * well-formed XML. Note that this doesn't check schema validity.
 	 */
 	public $wellFormed = false;
-	
+
 	/**
 	 * Will be set to true if the optional element filter returned
 	 * a match at some point.
@@ -31,7 +31,7 @@ class XmlTypeCheck {
 		$this->filterCallback = $filterCallback;
 		$this->run( $file );
 	}
-	
+
 	/**
 	 * Get the root element. Simple accessor to $rootElement
 	 *
@@ -52,21 +52,26 @@ class XmlTypeCheck {
 
 		xml_set_element_handler( $parser, array( $this, 'rootElementOpen' ), false );
 
-		$file = fopen( $fname, "rb" );
-		do {
-			$chunk = fread( $file, 32768 );
-			$ret = xml_parse( $parser, $chunk, feof( $file ) );
-			if( $ret == 0 ) {
-				// XML isn't well-formed!
+		if ( file_exists( $fname ) ) {
+			$file = fopen( $fname, "rb" );
+			if ( $file ) {
+				do {
+					$chunk = fread( $file, 32768 );
+					$ret = xml_parse( $parser, $chunk, feof( $file ) );
+					if( $ret == 0 ) {
+						// XML isn't well-formed!
+						fclose( $file );
+						xml_parser_free( $parser );
+						return;
+					}
+				} while( !feof( $file ) );
+
 				fclose( $file );
-				xml_parser_free( $parser );
-				return;
 			}
-		} while( !feof( $file ) );
+		}
 
 		$this->wellFormed = true;
 
-		fclose( $file );
 		xml_parser_free( $parser );
 	}
 
@@ -77,7 +82,7 @@ class XmlTypeCheck {
 	 */
 	private function rootElementOpen( $parser, $name, $attribs ) {
 		$this->rootElement = $name;
-		
+
 		if( is_callable( $this->filterCallback ) ) {
 			xml_set_element_handler( $parser, array( $this, 'elementOpen' ), false );
 			$this->elementOpen( $parser, $name, $attribs );
