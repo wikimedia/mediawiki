@@ -166,9 +166,9 @@ class Autopromote {
 				$groups = array_slice( $cond, 1 );
 				return count( array_intersect( $groups, $user->getGroups() ) ) == count( $groups );
 			case APCOND_ISIP:
-				return $cond[1] == wfGetIP();
+				return $cond[1] == $user->getRequest()->getIP();
 			case APCOND_IPINRANGE:
-				return IP::isInRange( wfGetIP(), $cond[1] );
+				return IP::isInRange( $user->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
 				return $user->isBlocked();
 			case APCOND_ISBOT:

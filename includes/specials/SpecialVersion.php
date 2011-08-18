@@ -502,7 +502,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	private function IPInfo() {
-		$ip =  str_replace( '--', ' - ', htmlspecialchars( wfGetIP() ) );
+		$ip =  str_replace( '--', ' - ', htmlspecialchars( $this->getRequest()->getIP() ) );
 		return "<!-- visited from $ip -->\n" .
 			"<span style='display:none'>visited from $ip</span>";
 	}

@@ -162,7 +162,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		// We need to have a valid IP address for the hook, but per bug 18347, we should
 		// send the user's name if they're logged in.
-		$ip = wfGetIP();
+		$ip = $this->getRequest()->getIP();
 		if ( !$ip ) {
 			return array( 'badipaddress' );
 		}

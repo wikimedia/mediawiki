@@ -352,7 +352,7 @@ class ThrottledError extends ErrorPageError {
  */
 class UserBlockedError extends ErrorPageError {
 	public function __construct( Block $block ){
-		global $wgLang;
+		global $wgLang, $wgRequest;
 
 		$blockerUserpage = $block->getBlocker()->getUserPage();
 		$link = "[[{$blockerUserpage->getPrefixedText()}|{$blockerUserpage->getText()}]]";
@@ -372,7 +372,7 @@ class UserBlockedError extends ErrorPageError {
 			array(
 				$link,
 				$reason,
-				wfGetIP(),
+				$wgRequest->getIP(),
 				$block->getBlocker()->getName(),
 				$block->getId(),
 				$wgLang->formatExpiry( $block->mExpiry ),

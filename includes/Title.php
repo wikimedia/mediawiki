@@ -1562,7 +1562,7 @@ class Title {
 			if ( $reason == '' ) {
 				$reason = wfMsg( 'blockednoreason' );
 			}
-			$ip = wfGetIP();
+			$ip = $user->getRequest()->getIP();
 
 			if ( is_numeric( $id ) ) {
 				$name = User::whoIs( $id );

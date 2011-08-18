@@ -251,7 +251,7 @@ class LoginForm extends SpecialPage {
 	 * @private
 	 */
 	function addNewAccountInternal() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgRequest;
 		global $wgMemc, $wgAccountCreationThrottle;
 		global $wgAuth, $wgMinimalPasswordLength;
 		global $wgEmailConfirmToEdit;
@@ -308,7 +308,7 @@ class LoginForm extends SpecialPage {
 			return false;
 		}
 
-		$ip = wfGetIP();
+		$ip = $wgRequest->getIP();
 		if ( $wgUser->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
 			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $ip ) . ')' );
 			return false;
@@ -588,12 +588,12 @@ class LoginForm extends SpecialPage {
 	 * @return Bool|Integer The integer hit count or True if it is already at the limit
 	 */
 	public static function incLoginThrottle( $username ) {
-		global $wgPasswordAttemptThrottle, $wgMemc;
+		global $wgPasswordAttemptThrottle, $wgMemc, $wgRequest;
 		$username = trim( $username ); // sanity
 
 		$throttleCount = 0;
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
-			$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $username ) );
+			$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 
@@ -616,10 +616,10 @@ class LoginForm extends SpecialPage {
 	 * @return void
 	 */
 	public static function clearLoginThrottle( $username ) {
-		global $wgMemc;
+		global $wgMemc, $wgRequest;
 		$username = trim( $username ); // sanity
 
-		$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $username ) );
+		$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
 		$wgMemc->delete( $throttleKey );
 	}
 
@@ -682,7 +682,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgUser;
+		global $wgUser, $wgRequest, $wgLang;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -697,7 +697,7 @@ class LoginForm extends SpecialPage {
 				self::clearLoginToken();
 
 				// Reset the throttle
-				$key = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mUsername ) );
+				$key = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $this->mUsername ) );
 				global $wgMemc;
 				$wgMemc->delete( $key );
 
@@ -705,7 +705,6 @@ class LoginForm extends SpecialPage {
 					/* Replace the language object to provide user interface in
 					 * correct language immediately on this first page load.
 					 */
-					global $wgLang, $wgRequest;
 					$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
 					$wgLang = Language::factory( $code );
 					return $this->successfulLogin();
@@ -779,12 +778,12 @@ class LoginForm extends SpecialPage {
 	 * @private
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
-		global $wgServer, $wgScript, $wgUser, $wgNewPasswordExpiry;
+		global $wgServer, $wgScript, $wgUser, $wgNewPasswordExpiry, $wgRequest;
 
 		if ( $u->getEmail() == '' ) {
 			return Status::newFatal( 'noemail', $u->getName() );
 		}
-		$ip = wfGetIP();
+		$ip = $wgRequest->getIP();
 		if( !$ip ) {
 			return Status::newFatal( 'badipaddress' );
 		}
