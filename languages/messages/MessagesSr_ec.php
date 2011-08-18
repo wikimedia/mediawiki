@@ -2492,6 +2492,7 @@ $UNWATCHURL
 'protect-level-sysop'         => 'Само администратори',
 'protect-summary-cascade'     => 'преносива заштита',
 'protect-expiring'            => 'истиче $1 (UTC)',
+'protect-expiring-local'      => 'истиче $1',
 'protect-expiry-indefinite'   => 'никада',
 'protect-cascade'             => 'Заштити све странице које су укључене у ову (преносива заштита)',
 'protect-cantedit'            => 'Не можете мењати степене заштите ове странице јер немате овлашћења за уређивање.',
@@ -3805,7 +3806,8 @@ $1',
 'specialpages'                   => 'Посебне странице',
 'specialpages-note'              => '----
 * обичне посебне странице
-* <strong class="mw-specialpagerestricted">привремено меморисане посебне странице</strong>',
+* <span class="mw-specialpagerestricted">ограничене посебне странице</span>
+* <span class="mw-specialpagecached">привремено меморисане посебне странице</span>',
 'specialpages-group-maintenance' => 'Извештаји одржавања',
 'specialpages-group-other'       => 'Остале посебне странице',
 'specialpages-group-login'       => 'Отварање налога и пријављивање',
@@ -3847,13 +3849,16 @@ $1',
 'tags-hitcount'           => '$1 {{PLURAL:$1|измена|измене|измена}}',
 
 # Special:ComparePages
-'comparepages'     => 'Упоређивање страница',
-'compare-selector' => 'Упоређивање измена странице',
-'compare-page1'    => 'Страница 1',
-'compare-page2'    => 'Страница 2',
-'compare-rev1'     => 'Измена 1',
-'compare-rev2'     => 'Измена 2',
-'compare-submit'   => 'Упореди',
+'comparepages'                => 'Упоређивање страница',
+'compare-selector'            => 'Упоређивање измена странице',
+'compare-page1'               => 'Страница 1',
+'compare-page2'               => 'Страница 2',
+'compare-rev1'                => 'Измена 1',
+'compare-rev2'                => 'Измена 2',
+'compare-submit'              => 'Упореди',
+'compare-invalid-title'       => 'Наведени наслов је неисправан.',
+'compare-title-not-exists'    => 'Тражени наслов не постоји.',
+'compare-revision-not-exists' => 'Тражена измена не постоји.',
 
 # Database error messages
 'dberr-header'      => 'Овај вики има проблем',
@@ -3901,5 +3906,8 @@ $1',
 'ajax-edit-category-error'      => 'Не могу да променим категорију „$1“.
 Ово се обично дешава када је категорија додата на страницу преко шаблона.',
 'ajax-category-already-present' => 'Ова страница већ припада категорији $1',
+'ajax-category-hook-error'      => 'Локална функција је спречила да се измене сачувају.',
+'ajax-api-error'                => 'АПИ је пријавио грешку: $1: $2.',
+'ajax-api-unknown-error'        => 'АПИ је пријавио непознату грешку.',
 
 );
