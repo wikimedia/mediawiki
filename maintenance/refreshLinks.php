@@ -255,6 +255,7 @@ class RefreshLinks extends Maintenance {
 			'iwlinks' => 'iwl_from',
 			'langlinks' => 'll_from',
 			'redirect' => 'rd_from',
+			'page_props' => 'pp_page',
 		);
 
 		foreach ( $linksTables as $table => $field ) {
