@@ -1695,18 +1695,20 @@ class WikiPage extends Page {
 		if ( !$dbw->cascadingDeletes() ) {
 			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
 
-			if ( $wgUseTrackbacks )
+			if ( $wgUseTrackbacks ) {
 				$dbw->delete( 'trackbacks', array( 'tb_page' => $id ), __METHOD__ );
+			}
 
 			# Delete outgoing links
-			$dbw->delete( 'pagelinks', array( 'pl_from' => $id ) );
-			$dbw->delete( 'imagelinks', array( 'il_from' => $id ) );
-			$dbw->delete( 'categorylinks', array( 'cl_from' => $id ) );
-			$dbw->delete( 'templatelinks', array( 'tl_from' => $id ) );
-			$dbw->delete( 'externallinks', array( 'el_from' => $id ) );
-			$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
-			$dbw->delete( 'iwlinks', array( 'iwl_from' => $id ) );
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ) );
+			$dbw->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
+			$dbw->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
+			$dbw->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
+			$dbw->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
+			$dbw->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
+			$dbw->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
+			$dbw->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
+			$dbw->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
+			$dbw->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
 		}
 
 		# If using cleanup triggers, we can skip some manual deletes

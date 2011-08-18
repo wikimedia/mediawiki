@@ -44,6 +44,7 @@ production.
   language. In theory this sets the right magic words in system messages,
   although they are not used there.
 * (bug 30451) Add page_props to RefreshLinks::deleteLinksFromNonexistent
+* (bug 30450) Clear page_props table on page deletion
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
