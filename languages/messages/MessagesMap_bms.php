@@ -10,7 +10,7 @@
  * @author לערי ריינהארט
  */
 
-$fallback = 'jv';
+$fallback = 'jv, id';
 
 $messages = array(
 'article'    => 'Isi tulisan',

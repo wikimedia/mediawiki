@@ -148,9 +148,6 @@ class Language {
 	 * @return Language
 	 */
 	protected static function newFromCode( $code ) {
-		global $IP;
-		static $recursionLevel = 0;
-
 		// Protect against path traversal below
 		if ( !Language::isValidCode( $code )
 			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
@@ -166,35 +163,31 @@ class Language {
 			return $lang;
 		}
 
-		if ( $code == 'en' ) {
-			$class = 'Language';
-		} else {
-			$class = 'Language' . str_replace( '-', '_', ucfirst( $code ) );
-			if ( !defined( 'MW_COMPILED' ) ) {
-				// Preload base classes to work around APC/PHP5 bug
-				if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
-					include_once( "$IP/languages/classes/$class.deps.php" );
-				}
-				if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
-					include_once( "$IP/languages/classes/$class.php" );
-				}
+		// Check if there is a language class for the code
+		$class = self::classFromCode( $code );
+		self::preloadLanguageClass( $class );
+		if ( MWInit::classExists( $class ) ) {
+			$lang = new $class;
+			return $lang;
+		}
+
+		// Keep trying the fallback list until we find an existing class
+		$fallbacks = Language::getFallbacksFor( $code );
+		foreach ( $fallbacks as $fallbackCode ) {
+			if ( !Language::isValidBuiltInCode( $fallbackCode ) ) {
+				throw new MWException( "Invalid fallback '$fallbackCode' in fallback sequence for '$code'" );
+			}
+
+			$class = self::classFromCode( $fallbackCode );
+			self::preloadLanguageClass( $class );
+			if ( MWInit::classExists( $class ) ) {
+				$lang = Language::newFromCode( $fallbackCode );
+				$lang->setCode( $code );
+				return $lang;
 			}
 		}
 
-		if ( $recursionLevel > 5 ) {
-			throw new MWException( "Language fallback loop detected when creating class $class\n" );
-		}
-
-		if ( !MWInit::classExists( $class ) ) {
-			$fallback = Language::getFallbackFor( $code );
-			++$recursionLevel;
-			$lang = Language::newFromCode( $fallback );
-			--$recursionLevel;
-			$lang->setCode( $code );
-		} else {
-			$lang = new $class;
-		}
-		return $lang;
+		throw new MWException( "Invalid fallback sequence for language '$code'" );
 	}
 
 	/**
@@ -223,6 +216,32 @@ class Language {
 	 */
 	public static function isValidBuiltInCode( $code ) {
 		return preg_match( '/^[a-z0-9-]*$/i', $code );
+	}
+
+	public static function classFromCode( $code ) {
+		if ( $code == 'en' ) {
+			return 'Language';
+		} else {
+			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
+		}
+	}
+
+	public static function preloadLanguageClass( $class ) {
+		global $IP;
+
+		if ( $class === 'Language' ) {
+			return;
+		}
+
+		if ( !defined( 'MW_COMPILED' ) ) {
+			// Preload base classes to work around APC/PHP5 bug
+			if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
+				include_once( "$IP/languages/classes/$class.deps.php" );
+			}
+			if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
+				include_once( "$IP/languages/classes/$class.php" );
+			}
+		}
 	}
 
 	/**
@@ -266,14 +285,21 @@ class Language {
 	function initContLang() { }
 
 	/**
+	 * Same as getFallbacksFor for current language.
 	 * @return array|bool
+	 * @deprecated in 1.19
 	 */
 	function getFallbackLanguageCode() {
-		if ( $this->mCode === 'en' ) {
-			return false;
-		} else {
-			return self::$dataCache->getItem( $this->mCode, 'fallback' );
-		}
+		wfDeprecated( __METHOD__ );
+		return self::getFallbackFor( $this->mCode );
+	}
+
+	/**
+	 * @return array
+	 * @since 1.19
+	 */
+	function getFallbackLanguages() {
+		return self::getFallbacksFor( $this->mCode );
 	}
 
 	/**
@@ -2437,15 +2463,7 @@ class Language {
 	 * @param $newWords array
 	 */
 	function addMagicWordsByLang( $newWords ) {
-		$code = $this->getCode();
-		$fallbackChain = array();
-		while ( $code && !in_array( $code, $fallbackChain ) ) {
-			$fallbackChain[] = $code;
-			$code = self::getFallbackFor( $code );
-		}
-		if ( !in_array( 'en', $fallbackChain ) ) {
-			$fallbackChain[] = 'en';
-		}
+		$fallbackChain = $this->getFallbackLanguages();
 		$fallbackChain = array_reverse( $fallbackChain );
 		foreach ( $fallbackChain as $code ) {
 			if ( isset( $newWords[$code] ) ) {
@@ -3294,7 +3312,7 @@ class Language {
 	}
 
 	/**
-	 * Get the fallback for a given language
+	 * Get the first fallback for a given language
 	 *
 	 * @param $code string
 	 *
@@ -3302,10 +3320,31 @@ class Language {
 	 */
 	static function getFallbackFor( $code ) {
 		if ( $code === 'en' ) {
-			// Shortcut
 			return false;
 		} else {
-			return self::getLocalisationCache()->getItem( $code, 'fallback' );
+			$fallbacks = self::getFallbacksFor( $code );
+			$first = array_shift( $fallbacks );
+			return $first;
+		}
+	}
+
+	/**
+	 * Get the ordered list of fallback languages.
+	 *
+	 * @since 1.19
+	 * @param $code string Language code
+	 * @return array
+	 */
+	static function getFallbacksFor( $code ) {
+		if ( $code === 'en' ) {
+			return array();
+		} else {
+			$v = self::getLocalisationCache()->getItem( $code, 'fallback' );
+			$v = array_map( 'trim', explode( ',', $v ) );
+			if ( $v[count( $v ) - 1] !== 'en' ) {
+				$v[] = 'en';
+			}
+			return $v;
 		}
 	}
 

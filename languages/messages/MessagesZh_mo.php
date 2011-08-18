@@ -10,4 +10,4 @@
  */
 
 # Inherit everything for now
-$fallback = 'zh-hk';
+$fallback = 'zh-hk, zh-hant, zh-hans';

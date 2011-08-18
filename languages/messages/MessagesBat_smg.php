@@ -12,4 +12,4 @@
  *
  */
 
-$fallback = 'sgs';
+$fallback = 'sgs, lt';

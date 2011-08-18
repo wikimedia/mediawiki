@@ -22,6 +22,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'zh-hant, zh-hans';
+
 $specialPageAliases = array(
 	'Ancientpages'              => array( '最舊頁面' ),
 	'Block'                     => array( '查封用戶' ),
@@ -42,8 +44,6 @@ $specialPageAliases = array(
 	'Userrights'                => array( '用戶權限' ),
 	'Withoutinterwiki'          => array( '沒有跨語言鏈接的頁面' ),
 );
-
-$fallback = 'zh-hant';
 
 $namespaceNames = array(
 	NS_USER             => '使用者',

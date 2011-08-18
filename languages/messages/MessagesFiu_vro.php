@@ -9,4 +9,4 @@
  * @comment Deprecated language code. Falls back to 'vro'.
  */
 
-$fallback = 'vro';
+$fallback = 'vro, et';

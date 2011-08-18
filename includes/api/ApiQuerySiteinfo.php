@@ -140,13 +140,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['rights'] = $GLOBALS['wgRightsText'];
 		$data['lang'] = $GLOBALS['wgLanguageCode'];
 
-		$fallbackLang = $wgContLang->getFallbackLanguageCode();
-		$fallbackLangArray = array();
-		while( $fallbackLang ) {
-			$fallbackLangArray[] = array( 'code' => $fallbackLang );
-			$fallbackLang = Language::getFallbackFor( $fallbackLang );
+		$fallbacks = array();
+		foreach( $wgContLang->getFallbackLanguages() as $code ) {
+			$fallbacks[] = array( 'code' => $code );
 		}
-		$data['fallback'] = $fallbackLangArray;
+		$data['fallback'] = $fallbacks;
 		$this->getResult()->setIndexedTagName( $data['fallback'], 'lang' );
 
 		if ( $wgContLang->isRTL() ) {

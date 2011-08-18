@@ -13,7 +13,7 @@
  * @author Tkalyn
  */
 
-$fallback = 'uk';
+$fallback = 'uk, ru';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медіа',
