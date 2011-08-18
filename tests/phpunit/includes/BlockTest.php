@@ -75,8 +75,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * per bug 26425
 	 */
 	function testBug26425BlockTimestampDefaultsToTime() {
-
-		$this->assertEquals( $this->madeAt, $this->block->mTimestamp, "If no timestamp is specified, the block is recorded as time()");
+		// delta to stop one-off errors when things happen to go over a second mark.
+		$delta = abs( $this->madeAt - $this->block->mTimestamp );
+		$this->assertLessThan( 2, $delta, "If no timestamp is specified, the block is recorded as time()");
 
 	}
 
