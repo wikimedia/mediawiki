@@ -569,13 +569,44 @@ class MWHttpRequest {
 	/**
 	 * Returns the final URL after all redirections.
 	 *
-	 * @return String
+	 * Relative values of the "Location" header are incorrect as stated in RFC, however they do happen and modern browsers support them.
+	 * This function loops backwards through all locations in order to build the proper absolute URI - Marooned at wikia-inc.com
+	 *
+	 * @returns string
 	 */
 	public function getFinalUrl() {
-		$location = $this->getResponseHeader( "Location" );
+		$headers = $this->getResponseHeaders();
 
-		if ( $location ) {
-			return $location;
+		//return full url (fix for incorrect but handled relative location)
+		if ( isset( $headers[ 'location' ] ) ) {
+			$locations = $headers[ 'location' ];
+			$domain = '';
+			$foundRelativeURI = false;
+			$countLocations = count($locations);
+
+			for ( $i = $countLocations - 1; $i >= 0; $i-- ) {
+				$url = parse_url( $locations[ $i ] );
+
+				if ( isset($url[ 'host' ]) ) {
+					$domain = $url[ 'scheme' ] . '://' . $url[ 'host' ];
+					break;	//found correct URI (with host)
+				} else {
+					$foundRelativeURI = true;
+				}
+			}
+
+			if ( $foundRelativeURI ) {
+				if ( $domain ) {
+					return $domain . $locations[ $countLocations - 1 ];
+				} else {
+					$url = parse_url( $this->url );
+					if ( isset($url[ 'host' ]) ) {
+						return $url[ 'scheme' ] . '://' . $url[ 'host' ] . $locations[ $countLocations - 1 ];
+					}
+				}
+			} else {
+				return $locations[ $countLocations - 1 ];
+			}
 		}
 
 		return $this->url;
