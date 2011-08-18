@@ -178,7 +178,6 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @expectedException MWException
 	 */
 	function testGetIpLackOfRemoteAddrThrowAnException() {
-		var_dump( $_SERVER );
 		$request = new WebRequest();
 		# Next call throw an exception about lacking an IP
 		$request->getIP();
