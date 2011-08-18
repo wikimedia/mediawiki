@@ -1259,7 +1259,7 @@ class User {
 		# user is not immune to autoblocks/hardblocks, and they are the current user so we
 		# know which IP address they're actually coming from
 		if ( !$this->isAllowed( 'ipblock-exempt' ) && $this->getID() == $wgUser->getID() ) {
-			$ip = wfGetIP();
+			$ip = $this->getRequest()->getIP();
 		} else {
 			$ip = null;
 		}
@@ -1409,7 +1409,7 @@ class User {
 	 */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedIPs;
-		if( in_array( wfGetIP(), $wgRateLimitsExcludedIPs ) ) {
+		if( in_array( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
@@ -1450,7 +1450,7 @@ class User {
 		$limits = $wgRateLimits[$action];
 		$keys = array();
 		$id = $this->getId();
-		$ip = wfGetIP();
+		$ip = $this->getRequet()->getIP();
 		$userLimit = false;
 
 		if( isset( $limits['anon'] ) && $id == 0 ) {
@@ -1607,7 +1607,7 @@ class User {
 		if( IP::isIPAddress( $this->getName() ) ) {
 			$ip = $this->getName();
 		} elseif( !$ip ) {
-			$ip = wfGetIP();
+			$ip = $this->getRequest()->getIP();
 		}
 		$blocked = false;
 		wfRunHooks( 'UserIsBlockedGlobally', array( &$this, $ip, &$blocked ) );
@@ -1685,7 +1685,7 @@ class User {
 			$this->load();
 			if ( $this->mName === false ) {
 				# Clean up IPs
-				$this->mName = IP::sanitizeIP( wfGetIP() );
+				$this->mName = IP::sanitizeIP( $this->getRequest()->getIP() );
 			}
 			return $this->mName;
 		}
@@ -2943,7 +2943,7 @@ class User {
 			return;
 		}
 
-		$userblock->doAutoblock( wfGetIP() );
+		$userblock->doAutoblock( $this->getRequest()->getIP() );
 	}
 
 	/**
@@ -3012,7 +3012,7 @@ class User {
 		# blocked with createaccount disabled, prevent new account creation there even
 		# when the user is logged in
 		if( $this->mBlockedFromCreateAccount === false ){
-			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, wfGetIP() );
+			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, $this->getRequest()->getIP() );
 		}
 		return $this->mBlockedFromCreateAccount instanceof Block && $this->mBlockedFromCreateAccount->prevents( 'createaccount' )
 			? $this->mBlockedFromCreateAccount
@@ -3228,7 +3228,7 @@ class User {
 
 		return $this->sendMail( wfMsg( 'confirmemail_subject' ),
 			wfMsg( $message,
-				wfGetIP(),
+				$this->getRequest()->getIP(),
 				$this->getName(),
 				$url,
 				$wgLang->timeanddate( $expiration, false ),

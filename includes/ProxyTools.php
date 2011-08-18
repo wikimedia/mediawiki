@@ -8,29 +8,13 @@
 /**
  * Extracts the XFF string from the request header
  * Note: headers are spoofable
+ *
+ * @deprecated in 1.19; use $wgRequest->getHeader( 'X-Forwarded-For' ) instead.
  * @return string
  */
 function wfGetForwardedFor() {
-	$apacheHeaders = function_exists( 'apache_request_headers' ) ? apache_request_headers() : null;
-	if( is_array( $apacheHeaders ) ) {
-		// More reliable than $_SERVER due to case and -/_ folding
-		$set = array();
-		foreach ( $apacheHeaders as $tempName => $tempValue ) {
-			$set[ strtoupper( $tempName ) ] = $tempValue;
-		}
-		$index = strtoupper ( 'X-Forwarded-For' );
-	} else {
-		// Subject to spoofing with headers like X_Forwarded_For
-		$set = $_SERVER;
-		$index = 'HTTP_X_FORWARDED_FOR';
-	}
-
-	#Try to see if XFF is set
-	if( isset( $set[$index] ) ) {
-		return $set[$index];
-	} else {
-		return null;
-	}
+	global $wgRequest;
+	return $wgRequest->getHeader( 'X-Forwarded-For' );
 }
 
 /**
@@ -42,88 +26,20 @@ function wfGetForwardedFor() {
  */
 function wfGetAgent() {
 	wfDeprecated( __FUNCTION__ );
-	if( function_exists( 'apache_request_headers' ) ) {
-		// More reliable than $_SERVER due to case and -/_ folding
-		$set = array();
-		foreach ( apache_request_headers() as $tempName => $tempValue ) {
-			$set[ strtoupper( $tempName ) ] = $tempValue;
-		}
-		$index = strtoupper ( 'User-Agent' );
-	} else {
-		// Subject to spoofing with headers like X_Forwarded_For
-		$set = $_SERVER;
-		$index = 'HTTP_USER_AGENT';
-	}
-	if( isset( $set[$index] ) ) {
-		return $set[$index];
-	} else {
-		return '';
-	}
+	global $wgRequest;
+	return $wgRequest->getHeader( 'User-Agent' );
 }
 
 /**
  * Work out the IP address based on various globals
  * For trusted proxies, use the XFF client IP (first of the chain)
- * @param $reset boolean Used to reset the internal static variable
- * tracking the IP address. Set to anything non empty to reset it, for
- * example: wfGetIP( 'reset' ); (default: false).
+ *
+ * @deprecated in 1.19; call $wgRequest->getIP() directly.
  * @return string
  */
-function wfGetIP( $reset = false ) {
-	global $wgUsePrivateIPs, $wgCommandLineMode;
-	static $ip = false;
-
-	if( $reset ) {
-		$ip = false;
-	}
-
-	# Return cached result
-	if ( !empty( $ip ) ) {
-		return $ip;
-	}
-
-	/* collect the originating ips */
-	# Client connecting to this webserver
-	if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
-		$ip = IP::canonicalize( $_SERVER['REMOTE_ADDR'] );
-	} elseif( $wgCommandLineMode ) {
-		$ip = '127.0.0.1';
-	}
-
-	# Append XFF
-	$forwardedFor = wfGetForwardedFor();
-	if ( $forwardedFor !== null ) {
-		$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
-		$ipchain = array_reverse( $ipchain );
-		if ( $ip ) {
-			array_unshift( $ipchain, $ip );
-		}
-
-		# Step through XFF list and find the last address in the list which is a trusted server
-		# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
-		foreach ( $ipchain as $i => $curIP ) {
-			$curIP = IP::canonicalize( $curIP );
-			if ( wfIsTrustedProxy( $curIP ) ) {
-				if ( isset( $ipchain[$i + 1] ) ) {
-					if( $wgUsePrivateIPs || IP::isPublic( $ipchain[$i + 1 ] ) ) {
-						$ip = $ipchain[$i + 1];
-					}
-				}
-			} else {
-				break;
-			}
-		}
-	}
-
-	# Allow extensions to improve our guess
-	wfRunHooks( 'GetIP', array( &$ip ) );
-
-	if( !$ip ) {
-		throw new MWException( "Unable to determine IP" );
-	}
-
-	wfDebug( "IP: $ip\n" );
-	return $ip;
+function wfGetIP() {
+	global $wgRequest;
+	return $wgRequest->getIP();
 }
 
 /**
@@ -148,14 +64,14 @@ function wfIsTrustedProxy( $ip ) {
  */
 function wfProxyCheck() {
 	global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
-	global $wgMemc, $wgProxyMemcExpiry;
+	global $wgMemc, $wgProxyMemcExpiry, $wgRequest;
 	global $wgProxyKey;
 
 	if ( !$wgBlockOpenProxies ) {
 		return;
 	}
 
-	$ip = wfGetIP();
+	$ip = $wgRequest->getIP();
 
 	# Get MemCached key
 	$mcKey = wfMemcKey( 'proxy', 'ip', $ip );

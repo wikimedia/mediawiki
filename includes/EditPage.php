@@ -856,7 +856,7 @@ class EditPage {
 	 * @return int one of the constants describing the result
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgFilterCallback, $wgUser, $wgParser;
+		global $wgFilterCallback, $wgUser, $wgRequest, $wgParser;
 		global $wgMaxArticleSize;
 
 		wfProfileIn( __METHOD__  );
@@ -888,7 +888,7 @@ class EditPage {
 		}
 		if ( $match !== false ) {
 			$result['spam'] = $match;
-			$ip = wfGetIP();
+			$ip = $wgRequest->getIP();
 			$pdbk = $this->mTitle->getPrefixedDBkey();
 			$match = str_replace( "\n", '', $match );
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );

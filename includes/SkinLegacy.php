@@ -889,7 +889,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function nameAndLogin() {
-		global $wgUser, $wgLang, $wgContLang;
+		global $wgUser, $wgLang, $wgRequest, $wgContLang;
 
 		$logoutPage = $wgContLang->specialPage( 'Userlogout' );
 
@@ -897,7 +897,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $wgUser->isAnon() ) {
 			if ( $this->getSkin()->showIPinHeader() ) {
-				$name = wfGetIP();
+				$name = $wgRequest->getIP();
 
 				$talkLink = Linker::link( $wgUser->getTalkPage(),
 					$wgLang->getNsText( NS_TALK ) );

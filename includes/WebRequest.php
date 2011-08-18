@@ -44,6 +44,12 @@ class WebRequest {
 	 */
 	private $response;
 
+	/**
+	 * Cached client IP address
+	 * @var String
+	 */
+	private $ip;
+
 	public function __construct() {
 		/// @todo FIXME: This preemptive de-quoting can interfere with other web libraries
 		///        and increases our memory footprint. It would be cleaner to do on
@@ -962,6 +968,72 @@ HTML;
 		arsort( $langs, SORT_NUMERIC );
 		return $langs;
 	}
+
+	/**
+	 * Fetch the raw IP from the request
+	 *
+	 * @return String
+	 */
+	protected function getRawIP() {
+		if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+			return IP::canonicalize( $_SERVER['REMOTE_ADDR'] );
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Work out the IP address based on various globals
+	 * For trusted proxies, use the XFF client IP (first of the chain)
+	 * @return string
+	 */
+	public function getIP() {
+		global $wgUsePrivateIPs;
+
+		# Return cached result
+		if ( $this->ip !== null ) {
+			return $this->ip;
+		}
+
+		# collect the originating ips
+		$ip = $this->getRawIP();
+
+		# Append XFF
+		$forwardedFor = $this->getHeader( 'X-Forwarded-For' );
+		if ( $forwardedFor !== false ) {
+			$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
+			$ipchain = array_reverse( $ipchain );
+			if ( $ip ) {
+				array_unshift( $ipchain, $ip );
+			}
+
+			# Step through XFF list and find the last address in the list which is a trusted server
+			# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
+			foreach ( $ipchain as $i => $curIP ) {
+				$curIP = IP::canonicalize( $curIP );
+				if ( wfIsTrustedProxy( $curIP ) ) {
+					if ( isset( $ipchain[$i + 1] ) ) {
+						if ( $wgUsePrivateIPs || IP::isPublic( $ipchain[$i + 1 ] ) ) {
+							$ip = $ipchain[$i + 1];
+						}
+					}
+				} else {
+					break;
+				}
+			}
+		}
+
+		# Allow extensions to improve our guess
+		wfRunHooks( 'GetIP', array( &$ip ) );
+
+		if ( !$ip ) {
+			throw new MWException( "Unable to determine IP" );
+		}
+
+		wfDebug( "IP: $ip\n" );
+		$this->ip = $ip;
+		return $ip;
+	}
 }
 
 /**
@@ -1164,5 +1236,9 @@ class FauxRequest extends WebRequest {
 
 	public function checkUrlExtension( $extWhitelist = array() ) {
 		return true;
+	}
+
+	protected function getRawIP() {
+		return '127.0.0.1';
 	}
 }

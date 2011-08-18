@@ -361,8 +361,9 @@ class RecentChange {
 	 */
 	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, $oldId,
 		$lastTimestamp, $bot, $ip='', $oldSize=0, $newSize=0, $newId=0, $patrol=0 ) {
+		global $wgRequest;
 		if( !$ip ) {
-			$ip = wfGetIP();
+			$ip = $wgRequest->getIP();
 			if( !$ip ) $ip = '';
 		}
 
@@ -424,8 +425,9 @@ class RecentChange {
 	 */
 	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot,
 		$ip='', $size=0, $newId=0, $patrol=0 ) {
+		global $wgRequest;
 		if( !$ip ) {
-			$ip = wfGetIP();
+			$ip = $wgRequest->getIP();
 			if( !$ip ) $ip = '';
 		}
 
@@ -484,7 +486,7 @@ class RecentChange {
 		$overRedir = false ) {
 		global $wgRequest;
 		if( !$ip ) {
-			$ip = wfGetIP();
+			$ip = $wgRequest->getIP();
 			if( !$ip ) $ip = '';
 		}
 
@@ -565,7 +567,7 @@ class RecentChange {
 		$type, $action, $target, $logComment, $params, $newId=0 ) {
 		global $wgRequest;
 		if( !$ip ) {
-			$ip = wfGetIP();
+			$ip = $wgRequest->getIP();
 			if( !$ip ) {
 				$ip = '';
 			}

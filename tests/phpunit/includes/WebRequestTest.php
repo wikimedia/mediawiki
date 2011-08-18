@@ -85,4 +85,102 @@ class WebRequestTest extends MediaWikiTestCase {
 			),
 		);
 	}
+
+	/**
+	 * @dataProvider provideGetIP
+	 */
+	function testGetIP( $expected, $input, $squid, $private, $description ) {
+		global $wgSquidServersNoPurge, $wgUsePrivateIPs;
+		$oldServer = $_SERVER;
+		$_SERVER = $input;
+		$wgSquidServersNoPurge = $squid;
+		$wgUsePrivateIPs = $private;
+		$request = new WebRequest();
+		$result = $request->getIP();
+		$_SERVER = $oldServer;
+		$this->assertEquals( $expected, $result, $description );
+	}
+
+	function provideGetIP() {
+		return array(
+			array(
+				'127.0.0.1',
+				array(
+					'REMOTE_ADDR' => '127.0.0.1'
+				),
+				array(),
+				false,
+				'Simple IPv4'
+			),
+			array(
+				'::1',
+				array(
+					'REMOTE_ADDR' => '::1'
+				),
+				array(),
+				false,
+				'Simple IPv6'
+			),
+			array(
+				'12.0.0.3',
+				array(
+					'REMOTE_ADDR' => '12.0.0.1',
+					'HTTP_X_FORWARDED_FOR' => '12.0.0.3, 12.0.0.2'
+				),
+				array( '12.0.0.1', '12.0.0.2' ),
+				false,
+				'With X-Forwaded-For'
+			),
+			array(
+				'12.0.0.1',
+				array(
+					'REMOTE_ADDR' => '12.0.0.1',
+					'HTTP_X_FORWARDED_FOR' => '12.0.0.3, 12.0.0.2'
+				),
+				array(),
+				false,
+				'With X-Forwaded-For and disallowed server'
+			),
+			array(
+				'12.0.0.2',
+				array(
+					'REMOTE_ADDR' => '12.0.0.1',
+					'HTTP_X_FORWARDED_FOR' => '12.0.0.3, 12.0.0.2'
+				),
+				array( '12.0.0.1' ),
+				false,
+				'With multiple X-Forwaded-For and only one allowed server'
+			),
+			array(
+				'12.0.0.2',
+				array(
+					'REMOTE_ADDR' => '12.0.0.2',
+					'HTTP_X_FORWARDED_FOR' => '10.0.0.3, 12.0.0.2'
+				),
+				array( '12.0.0.1', '12.0.0.2' ),
+				false,
+				'With X-Forwaded-For and private IP'
+			),
+			array(
+				'10.0.0.3',
+				array(
+					'REMOTE_ADDR' => '12.0.0.2',
+					'HTTP_X_FORWARDED_FOR' => '10.0.0.3, 12.0.0.2'
+				),
+				array( '12.0.0.1', '12.0.0.2' ),
+				true,
+				'With X-Forwaded-For and private IP (allowed)'
+			),
+		);
+	}
+
+	/**
+	 * @expectedException MWException
+	 */
+	function testGetIpLackOfRemoteAddrThrowAnException() {
+		var_dump( $_SERVER );
+		$request = new WebRequest();
+		# Next call throw an exception about lacking an IP
+		$request->getIP();
+	}
 }
