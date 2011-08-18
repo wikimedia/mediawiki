@@ -160,11 +160,11 @@ class WebRequest {
 
 		return $proto . '://' . IP::combineHostAndPort( $host, $port, $stdPort );
 	}
-	
+
 	public static function detectProtocolAndStdPort() {
 		return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ? array( 'https', 443 ) : array( 'http', 80 );
 	}
-	
+
 	public static function detectProtocol() {
 		list( $proto, $stdPort ) = self::detectProtocolAndStdPort();
 		return $proto;
@@ -520,7 +520,7 @@ class WebRequest {
 	 * @return Boolean
 	 */
 	public function wasPosted() {
-		return $_SERVER['REQUEST_METHOD'] == 'POST';
+		return isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] == 'POST';
 	}
 
 	/**
@@ -597,7 +597,7 @@ class WebRequest {
 	 * Return the request URI with the canonical service and hostname, path,
 	 * and query string. This will be suitable for use as an absolute link
 	 * in HTML or other output.
-	 * 
+	 *
 	 * NOTE: This will output a protocol-relative URL if $wgServer is protocol-relative
 	 *
 	 * @return String
