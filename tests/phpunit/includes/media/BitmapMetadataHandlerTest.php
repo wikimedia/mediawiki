@@ -32,4 +32,19 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expected, $meta['ImageDescription'] );
 	}
+
+	/**
+	 * Test for jpeg comments are being handled by
+	 * BitmapMetadataHandler correctly.
+	 *
+	 * There's more extensive tests of comment extraction in
+	 * JpegMetadataExtractorTests.php
+	 */
+	public function testJpegComment() {
+		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
+			'jpeg-comment-utf.jpg' );
+
+		$this->assertEquals( 'UTF-8 JPEG Comment — ¼',
+			$meta['JPEGFileComment'][0] );
+	}
 }
