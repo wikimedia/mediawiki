@@ -722,8 +722,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccountmail'          => 'por e-mail',
 'createaccountreason'        => 'Razão:',
 'badretype'                  => 'As senhas que você digitou não são iguais.',
-'userexists'                 => 'O nome de usuário que você digitou já existe.
-Escolha um nome diferente.',
+'userexists'                 => 'O nome de usuário fornecido já está em uso.
+Escolha um nome diferente, por favor.',
 'loginerror'                 => 'Erro de autenticação',
 'createaccounterror'         => 'Não foi possível criar a conta: $1',
 'nocookiesnew'               => "A conta do usuário foi criada, mas você não foi autenticado.
@@ -3666,7 +3666,7 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 'specialpages-note'              => '----
 * Páginas especiais normais.
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>
-* <span class="mw-specialpagecached">Páginas especiais com cache.</span>',
+* <span class="mw-specialpagecached">Páginas especiais com cache (podem estar obsoletas).</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registrar-se',

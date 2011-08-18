@@ -456,7 +456,7 @@ $messages = array(
 'protect_change'    => 'ផ្លាស់ប្តូរការការពារ',
 'protectthispage'   => 'ការពារទំព័រនេះ',
 'unprotect'         => 'ប្ដូរការការពារ',
-'unprotectthispage' => 'ឈប់ការពារទំព័រនេះ',
+'unprotectthispage' => 'ផ្លាស់ប្ដូរការការពារទំព័រនេះ',
 'newpage'           => 'ទំព័រថ្មី',
 'talkpage'          => 'ពិភាក្សាទំព័រនេះ',
 'talkpagelinktext'  => 'ការពិភាក្សា',
@@ -796,6 +796,17 @@ $2',
 លេខសម្ងាត់បណ្ដោះអាសន្ន៖ $2',
 'passwordreset-emailsent'    => 'អីុមែលរំលឹកមួយបានផ្ញើទៅហើយ។',
 
+# Special:ChangeEmail
+'changeemail'          => 'ផ្លាស់ប្ដូរអាសយដ្ឋានអ៊ីមែល',
+'changeemail-header'   => 'ផ្លាស់ប្ដូរអាសយដ្ឋានអ៊ីមែលសំរាប់គណនីនេះ',
+'changeemail-text'     => 'សូមបំពេញសំនុំបែបបទនេះដើម្បីផ្លាស់ប្ដូរអាសយដ្ឋានអ៊ីមែលរបស់អ្នក។ អ្នកនឹងត្រូវបញ្ចូលពាក្យសំងាត់ដើម្បីអះអាងលើការផ្លាស់ប្ដូរនេះ។',
+'changeemail-no-info'  => 'អ្នក​ចាំបាច់​ត្រូវតែ​កត់ឈ្មោះចូល ដើម្បី​ចូលទៅកាន់​ទំព័រ​នេះ​ដោយផ្ទាល់​។',
+'changeemail-oldemail' => 'អាសយដ្ឋានអ៊ីមែលបច្ចុប្បន្ន៖',
+'changeemail-newemail' => 'អាសយដ្ឋានអ៊ីមែលថ្មី៖',
+'changeemail-none'     => '(គ្មាន​)',
+'changeemail-submit'   => 'ផ្លាស់ប្ដូរអ៊ីមែល',
+'changeemail-cancel'   => 'បោះបង់',
+
 # Edit page toolbar
 'bold_sample'     => 'អក្សរដិត',
 'bold_tip'        => 'អក្សរដិត',
@@ -910,8 +921,9 @@ $2',
 'userpage-userdoesnotexist-view'   => 'គណនីអ្នកប្រើប្រាស់ដែលមានឈ្មោះ "$1"មិនទាន់បានចុះឈ្មោះទេ។',
 'blocked-notice-logextract'        => 'អ្នកប្រើប្រាស់នេះត្រូវបានហាមឃាត់ហើយនាពេលនេះ។
 កំណត់ត្រាស្ដីពីការហាមឃាត់ចុងក្រោយមានបង្ហាញដូចខាងក្រោមនេះ៖',
-'clearyourcache'                   => "'''សម្គាល់:''' បន្ទាប់ពីបានរក្សាទុករួចហើយ លោកអ្នកគួរតែសំអាត browser's cache របស់លោកអ្នកដើម្បីមើលការផ្លាស់ប្តូរ។ ខាងក្រោមនេះជាវិធីសំអាត browser's cache ចំពោះកម្មវិធីរុករក(Browser)មួយចំនួន។
-* '''Mozilla / Firefox / Safari:''' សង្កត់ [Shift] ឱ្យជាប់រួចចុចប៊ូតុង ''Reload'' ឬក៏ចុច  ''Ctrl-F5'' ឬ ''Ctrl-R'' (ចំពោះApple Mac វិញ​ចុច ''Command-R'')។
+'clearyourcache'                   => "!'''សម្គាល់:''' បន្ទាប់ពីបានរក្សាទុករួចហើយ លោកអ្នកគួរតែសំអាត browser's cache របស់លោកអ្នកដើម្បីមើលការផ្លាស់ប្តូរ។ ខាងក្រោមនេះជាវិធីសំអាត browser's cache ចំពោះកម្មវិធីរុករក(Browser)មួយចំនួន។
+* ''' Firefox / Safari:''' សង្កត់ [Shift] ឱ្យជាប់រួចចុចប៊ូតុង ''Reload'' ឬក៏ចុច  ''Ctrl-F5'' ឬ ''Ctrl-R'' (ចំពោះApple Mac វិញ​ចុច ''Command-R'')
+* '''Google Chrome:''' ចុច ''Ctrl-Shift-R'' (''Command-Shift-R'' សំរាប់ Mac)
 * '''IE(Internet Explorer):''' សង្កត់ [Ctrl] ឱ្យជាប់ រួចចុច ''Refresh''ប៊ូតុង ឬក៏ចុច ''Ctrl-F5''​។
 * '''Konqueror:''' ចុចប៊ូតុង  ''Reload'' ឬក៏ចុច ''F5''
 * '''Opera:''' សូមចុច  ''[Tools]→[Preferences]''​។",
@@ -1302,6 +1314,7 @@ $1",
 'prefs-watchlist-edits-max'     => 'ចំនួនអតិបរមា៖ ១០០០',
 'prefs-misc'                    => 'ផ្សេងៗ',
 'prefs-resetpass'               => 'ប្តូរពាក្យសំងាត់',
+'prefs-changeemail'             => 'ផ្លាស់ប្ដូរអ៊ីមែល',
 'prefs-email'                   => '
 ជំរើសទាក់ទិននឹងអ៊ីមែល',
 'prefs-rendering'               => 'ការរចនា',
@@ -1323,7 +1336,7 @@ $1",
 'savedprefs'                    => 'ចំណង់ចំណូលចិត្តនានារបស់អ្នកត្រូវបានរក្សាទុកហើយ។',
 'timezonelegend'                => 'ល្វែង​ម៉ោង:',
 'localtime'                     => 'ម៉ោងក្នុងស្រុក​៖',
-'timezoneuseserverdefault'      => 'តាមការកំនត់របស់ម៉ាស៊ីនបំរើការ',
+'timezoneuseserverdefault'      => 'តាមការកំនត់ដើមរបស់វិគី ($1)',
 'timezoneuseoffset'             => 'ផ្សេងទៀត (បញ្ចូលម៉ោងដោយខ្លួនឯង)',
 'timezoneoffset'                => 'ទូទាត់¹​៖',
 'servertime'                    => 'ម៉ោងម៉ាស៊ីនបម្រើ​៖',
@@ -2280,10 +2293,10 @@ $UNWATCHURL
 'protectlogpage'              => 'កំណត់ហេតុនៃការការពារ',
 'protectlogtext'              => 'ខាងក្រោមនេះជាបញ្ជីនៃទំព័រដែលត្រូវបានចាក់សោនិងដោះសោ។
 
-សូមមើល [[Special:ProtectedPages|បញ្ជីទំព័រត្រូវបានការពារ]]។',
+សូមមើល [[Special:ProtectedPages|បញ្ជីទំព័រត្រូវបានការពារ]] សំរាប់បញ្ជីការការពារទំព័រដែលកំពុងនៅមានសុពលភាពនៅពេលនេះ។',
 'protectedarticle'            => 'បានការពារ"[[$1]]"',
 'modifiedarticleprotection'   => 'បានផ្លាស់ប្តូរកម្រិតការពារនៃ"[[$1]]"',
-'unprotectedarticle'          => 'បានឈប់ការពារ៖ "[[$1]]"',
+'unprotectedarticle'          => 'ដកការការពារពី "[[$1]]"',
 'movedarticleprotection'      => 'បាន​ផ្លាស់​ប្ដូរ​ទី​តាំង​ការ​កំណត់​ការ​ការពារ​ពី"[[$2]]" ទៅ​ "[[$1]]"',
 'protect-title'               => 'ការពារ "$1"',
 'prot_1movedto2'              => 'បានប្តូរទីតាំង [[$1]] ទៅ [[$2]]',
@@ -2308,6 +2321,7 @@ $UNWATCHURL
 'protect-level-sysop'         => 'សម្រាប់តែអ្នកថែទាំប្រព័ន្ធ',
 'protect-summary-cascade'     => 'ការពារជា​ថ្នាក់',
 'protect-expiring'            => 'ផុតកំណត់ $1 (UTC)',
+'protect-expiring-local'      => 'ផុតកំណត់ $1',
 'protect-expiry-indefinite'   => 'គ្មានកំណត់',
 'protect-cascade'             => 'ការពារគ្រប់ទំព័រដែលឋិតក្នុងទំព័រនេះ (ការពារជាថ្នាក់)',
 'protect-cantedit'            => 'អ្នកមិនអាចផ្លាស់ប្ដូរកម្រិតការពារនៃទំព័រនេះទេ ព្រោះអ្នកគ្មានការអនុញ្ញាតក្នុងការកែប្រែវា។',
@@ -2349,11 +2363,9 @@ $UNWATCHURL
 
 ឃ្លាំងសំងាត់អាចនឹងត្រូវបានបោសសម្អាតជាប្រចាំ។',
 'undelete-fieldset-title'      => 'ស្តារកំណែឡើងវិញ',
-'undeleteextrahelp'            => "ដើម្បីស្ដារប្រវត្តិទាំងមូលរបស់ទំព័រនេះឡើងវិញ សូមទុកប្រអប់គូសទាំងអោយនៅទំនេររួចចុចលើប៊ូតុង
+'undeleteextrahelp'            => "ដើម្បីស្ដារប្រវត្តិទាំងមូលរបស់ទំព័រនេះឡើងវិញ សូមទុកប្រអប់គូសទាំងអោយនៅទំនេររួចចុចលើប៊ូតុង '''''{{int:undeletebtn}}'''''។
 
-ដើម្បីស្ដារទៅកំណែដែលអ្នកចង់ សូមគូសពីមុខកំណែនោះរួចចុចលើប៊ូតុង '''''ស្ដារឡើងវិញ''''។
-
-ចុចលើប៊ូតុង '''''ធ្វើឱ្យដូចដើមវិញ''''' ដើម្បីលុបយោបល់និងប្រអប់គូសយក។",
+ដើម្បីស្ដារប្រវត្តិដោយផ្នែក សូមគូសក្នុងប្រអប់ខាងមុខកំណែដែលចង់ស្ដារ រួចចុចលើប៊ូតុង '''''{{int:undeletebtn}}'''''។",
 'undeleterevisions'            => '$1 {{PLURAL:$1|កំណែ​​}} បាន​ដាក់​ចូលក្នុងឃ្លាំងសំងាត់',
 'undeletehistory'              => 'ប្រសិនបើអ្នកស្ដារទំព័រនេះឡើងវិញ រាល់កំណែទាំងអស់នឹងត្រូវបានស្ដារឡើងវិញក្នុងប្រវត្តិ។
 
@@ -2759,7 +2771,7 @@ $1',
 'tooltip-ca-viewsource'           => 'ទំព័រ​នេះ​បានត្រូវការពារ ។ អ្នកអាច​មើល​អក្សរកូដ​របស់វា ។',
 'tooltip-ca-history'              => 'កំណែកន្លងមករបស់ទំព័រនេះ ។',
 'tooltip-ca-protect'              => 'ការពារ​ទំព័រនេះ',
-'tooltip-ca-unprotect'            => 'លែង​ការ​ពារ​ទំព័រ​នេះ​',
+'tooltip-ca-unprotect'            => 'ផ្លាស់ប្ដូរការការពារទំព័រនេះ',
 'tooltip-ca-delete'               => 'លុបទំព័រនេះចេញ',
 'tooltip-ca-undelete'             => 'ស្ដារការកែប្រែនានាដែលត្រូវបានធ្វើចំពោះទំព័រនេះ មុនពេលដែលវាត្រូវបានគេលុបចោល',
 'tooltip-ca-move'                 => 'ប្ដូរទីតាំង​ទំព័រនេះ',
@@ -3117,7 +3129,7 @@ $1',
 'exif-gpsdestdistance-k' => 'គីឡូម៉ែត្រ',
 'exif-gpsdestdistance-m' => 'ម៉ាយល៍',
 
-'exif-gpsdop-excellent' => 'ល្អណាស់',
+'exif-gpsdop-excellent' => 'ល្អណាស់ ($1)',
 'exif-gpsdop-good'      => 'ល្អ ($1)',
 'exif-gpsdop-moderate'  => 'ល្អបង្គួរ ($1)',
 'exif-gpsdop-fair'      => 'មធ្យម ($1)',
@@ -3236,6 +3248,9 @@ $1',
 # action=purge
 'confirm_purge_button' => 'យល់ព្រម',
 'confirm-purge-top'    => 'សំអាតឃ្លាំងសំងាត់(cache)នៃទំព័រនេះ?',
+
+# action=watch/unwatch
+'confirm-watch-button' => 'យល់ព្រម',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ទំព័រមុន',

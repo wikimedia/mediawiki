@@ -2963,7 +2963,8 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'specialpages'                   => 'Kurasa maalum',
 'specialpages-note'              => '----
 * Kurasa maalum ya kawaida.
-* <strong class="mw-specialpagerestricted">Kurasa maalum zisizoonekana na wote.</strong>',
+* <span class="mw-specialpagerestricted">Kurasa maalum zisizoonekana na wote.</span>
+* <span class="mw-specialpagecached">Kurasa maalum zinazotoka "cache" (might be obsolete).</span>',
 'specialpages-group-maintenance' => 'Ripoti za kurekebisha na kutunza kurasa',
 'specialpages-group-other'       => 'Kurasa maalum zingine',
 'specialpages-group-login'       => 'Ingia / sajili akaunti',
