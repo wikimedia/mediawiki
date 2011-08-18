@@ -44,6 +44,8 @@
  * @author 555
  */
 
+$fallback = 'pt-br';
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Multimédia',
 	NS_SPECIAL          => 'Especial',
