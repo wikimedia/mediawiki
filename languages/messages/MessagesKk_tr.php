@@ -10,4 +10,4 @@
  */
 
 # Inherit everything for now
-$fallback = 'kk-latn';
+$fallback = 'kk-latn, kk-cyrl';

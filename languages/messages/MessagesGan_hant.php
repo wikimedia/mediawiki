@@ -14,7 +14,7 @@
  * @author Vipuser
  */
 
-$fallback = 'zh-hant';
+$fallback = 'zh-hant, zh-hans';
 
 $namespaceNames = array(
 	NS_TALK             => '談詑',

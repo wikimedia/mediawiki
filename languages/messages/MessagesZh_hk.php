@@ -17,7 +17,7 @@
  * @author Yuyu
  */
 
-$fallback = 'zh-hant';
+$fallback = 'zh-hant, zh-hans';
 
 $fallback8bitEncoding = 'Big5-HKSCS';
 

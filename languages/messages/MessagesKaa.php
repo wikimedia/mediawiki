@@ -14,7 +14,7 @@
  * @author Urhixidur
  */
 
-$fallback = 'kk-latn';
+$fallback = 'kk-latn, kk-cyrl';
 
 $separatorTransformTable = array(
 	',' => "\xc2\xa0",

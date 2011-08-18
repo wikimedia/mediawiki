@@ -10,4 +10,4 @@
  *
  */
 
-$fallback = 'ruq-latn';
+$fallback = 'ruq-latn, ro';

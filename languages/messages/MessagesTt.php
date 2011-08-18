@@ -10,4 +10,4 @@
  * @comment Placeholder for Tatar. Falls back to Tatar in Latin script.
  */
 
-$fallback = 'tt-cyrl';
+$fallback = 'tt-cyrl, ru';

@@ -11,7 +11,7 @@
  * @author Sylvain2803
  */
 
-$fallback = 'qu';
+$fallback = 'qu, es';
 
 $messages = array(
 # Dates
