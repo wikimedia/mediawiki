@@ -839,12 +839,12 @@ class Title {
 
 		# Hand off all the decisions on urls to getLocalURL
 		$url = $this->getLocalURL( $query, $variant );
-		
+
 		# Expand the url to make it a full url. Note that getLocalURL has the
 		# potential to output full urls for a variety of reasons, so we use
 		# wfExpandUrl instead of simply prepending $wgServer
 		$url = wfExpandUrl( $url, PROTO_RELATIVE );
-		
+
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
 
@@ -923,7 +923,7 @@ class Title {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
-			
+
 			wfRunHooks( 'GetLocalURL::Internal', array( &$this, &$url, $query, $variant ) );
 
 			// @todo FIXME: This causes breakage in various places when we
@@ -1930,7 +1930,7 @@ class Title {
 
 	/**
 	 * Does that page contain wikitext, or it is JS, CSS or whatever?
-	 * 
+	 *
 	 * @return Bool
 	 */
 	public function isWikitextPage() {
@@ -3306,6 +3306,7 @@ class Title {
 				$dbw->delete( 'externallinks', array( 'el_from' => $newid ), __METHOD__ );
 				$dbw->delete( 'langlinks', array( 'll_from' => $newid ), __METHOD__ );
 				$dbw->delete( 'redirect', array( 'rd_from' => $newid ), __METHOD__ );
+				$dbw->delete( 'page_props', array( 'pp_page' => $newid ), __METHOD__ );
 			}
 			// If the target page was recently created, it may have an entry in recentchanges still
 			$dbw->delete( 'recentchanges',
