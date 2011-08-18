@@ -1450,7 +1450,7 @@ class User {
 		$limits = $wgRateLimits[$action];
 		$keys = array();
 		$id = $this->getId();
-		$ip = $this->getRequet()->getIP();
+		$ip = $this->getRequest()->getIP();
 		$userLimit = false;
 
 		if( isset( $limits['anon'] ) && $id == 0 ) {
