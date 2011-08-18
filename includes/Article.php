@@ -2106,7 +2106,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	}
 
 	/**
-	 * @param  $status Status
+	 * @param $status Status
 	 */
 	function error( $status ) {
 		global $wgOut;

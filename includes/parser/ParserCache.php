@@ -194,7 +194,6 @@ class ParserCache {
 	 * @param $parserOutput ParserOutput
 	 * @param $article Article
 	 * @param $popts ParserOptions
-	 * @return void
 	 */
 	public function save( $parserOutput, $article, $popts ) {
 		$expire = $parserOutput->getCacheExpiry();
