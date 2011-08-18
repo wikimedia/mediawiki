@@ -13,7 +13,7 @@ class JpegTest extends MediaWikiTestCase {
 		$res = $jpeg->getMetadata( null, $this->filePath . 'README' );
 		$this->assertEquals( ExifBitmapHandler::BROKEN_FILE, $res );
 	}
-	public function testTiffFile() {
+	public function testJpegMetadataExtraction() {
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestIncomplete( "This test needs the exif extension." );
 		}
