@@ -29,7 +29,12 @@ class UploadFromStash extends UploadBase {
 		if( $stash ) {
 			$this->stash = $stash;
 		} else {
-			wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() . "\n" );
+			if( $user ) {
+				wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() . "\n" );
+			} else {
+				wfDebug( __METHOD__ . " creating new UploadStash instance with no user\n" );
+			}
+
 			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
 
@@ -100,13 +105,13 @@ class UploadFromStash extends UploadBase {
 	}
 
 	/**
-	 * There is no need to stash the image twice
+	 * Stash the file.
 	 */
 	public function stashFile() {
-		if ( $this->mLocalFile ) {
-			return $this->mLocalFile;
-		}
-		return parent::stashFile();
+		// replace mLocalFile with an instance of UploadStashFile, which adds some methods
+		// that are useful for stashed files.
+		$this->mLocalFile = parent::stashFile();
+		return $this->mLocalFile;
 	}
 
 	/**
