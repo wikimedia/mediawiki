@@ -83,7 +83,7 @@ function wfProxyCheck() {
 	if ( !$skip ) {
 		$title = SpecialPage::getTitleFor( 'Blockme' );
 		$iphash = md5( $ip . $wgProxyKey );
-		$url = $title->getFullURL( 'ip='.$iphash );
+		$url = wfExpandUrl( $title->getFullURL( 'ip='.$iphash ), PROTO_HTTP );
 
 		foreach ( $wgProxyPorts as $port ) {
 			$params = implode( ' ', array(
