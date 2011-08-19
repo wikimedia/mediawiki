@@ -3315,14 +3315,14 @@ class User {
 	 * @return String Formatted URL
 	 */
 	protected function getTokenUrl( $page, $token ) {
-		global $wgArticlePath;
-		return wfExpandUrl(
+		global $wgCanonicalServer, $wgArticlePath;
+		
+		return $wgCanonicalServer .
 			str_replace(
 				'$1',
 				"Special:$page/$token",
-				$wgArticlePath ),
-			PROTO_HTTP
-		);
+				$wgArticlePath
+			);
 	}
 
 	/**
