@@ -891,6 +891,11 @@ $out: OutputPage object
 &$cookies: array of cookies name, add a value to it if you want to add a cookie
 	that have to vary cache options
 
+'GetCanonicalURL': modify fully-qualified URLs used for IRC and e-mail notifications
+$title: Title object of page
+$url: string value as output (out parameter, can modify)
+$query: query options passed to Title::getCanonicalURL()
+
 'GetDefaultSortkey': Override the default sortkey for a page.
 $title: Title object that we need to get a sortkey for
 &$sortkey: Sortkey to use.
@@ -1058,6 +1063,11 @@ but after noinclude/includeonly/onlyinclude and other processing.
 
 'InvalidateEmailComplete': Called after a user's email has been invalidated successfully
 $user: user (object) whose email is being invalidated
+
+'IRCLineURL': When constructing the URL to use in an IRC notification.
+Callee may modify $url and $query, URL will be constructed as $url . $query
+&$url: URL to index.php
+&$query: Query string
 
 'IsFileCacheable': Override the result of Article::isFileCacheable() (if true)
 $article: article (object) being checked
