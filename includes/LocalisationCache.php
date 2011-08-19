@@ -1,6 +1,6 @@
 <?php
 
-define( 'MW_LC_VERSION', 1 );
+define( 'MW_LC_VERSION', 2 );
 
 /**
  * Class for caching the contents of localisation files, Messages*.php
@@ -485,7 +485,6 @@ class LocalisationCache {
 	 * and save it to the persistent cache store and the process cache
 	 */
 	public function recache( $code ) {
-		static $recursionGuard = array();
 		global $wgExtensionMessagesFiles, $wgExtensionAliasesFiles;
 		wfProfileIn( __METHOD__ );
 
@@ -522,27 +521,27 @@ class LocalisationCache {
 			$coreData['fallback'] = $code === 'en' ? false : 'en';
 		}
 
-		if ( $coreData['fallback'] !== false ) {
-			# Guard against circular references
-			if ( isset( $recursionGuard[$code] ) ) {
-				throw new MWException( "Error: Circular fallback reference in language code $code" );
+		if ( $coreData['fallback'] === false ) {
+			$coreData['fallbackSequence'] = array();
+		} else {
+			$coreData['fallbackSequence'] = array_map( 'trim', explode( ',', $coreData['fallback'] ) );
+			$len = count( $coreData['fallbackSequence'] );
+			# Ensure that the sequence ends at en
+			if ( $coreData['fallbackSequence'][$len - 1] !== 'en' ) {
+				$coreData['fallbackSequence'][] = 'en';
 			}
-			$recursionGuard[$code] = true;
 
 			# Load the fallback localisation item by item and merge it
-			$deps = array_merge( $deps, $this->getItem( $coreData['fallback'], 'deps' ) );
-			foreach ( self::$allKeys as $key ) {
-				if ( is_null( $coreData[$key] ) || $this->isMergeableKey( $key ) ) {
-					$fallbackValue = $this->getItem( $coreData['fallback'], $key );
-					$this->mergeItem( $key, $coreData[$key], $fallbackValue );
+			foreach ( $coreData['fallbackSequence'] as $fallback ) {
+				$deps = array_merge( $deps, $this->getItem( $fallback, 'deps' ) );
+				foreach ( self::$allKeys as $key ) {
+					if ( is_null( $coreData[$key] ) || $this->isMergeableKey( $key ) ) {
+						$fallbackValue = $this->getItem( $fallback, $key );
+						$this->mergeItem( $key, $coreData[$key], $fallbackValue );
+					}
 				}
 			}
-			$fallbackSequence = $this->getItem( $coreData['fallback'], 'fallbackSequence' );
-			array_unshift( $fallbackSequence, $coreData['fallback'] );
-			$coreData['fallbackSequence'] = $fallbackSequence;
-			unset( $recursionGuard[$code] );
-		} else {
-			$coreData['fallbackSequence'] = array();
+			
 		}
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
 
