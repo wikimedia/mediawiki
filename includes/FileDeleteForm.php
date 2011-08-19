@@ -37,7 +37,7 @@ class FileDeleteForm {
 			return;
 		}
 		$permission_errors = $this->title->getUserPermissionsErrors('delete', $wgUser);
-		if (count($permission_errors)>0) {
+		if ( count( $permission_errors ) > 0 ) {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
 		}
@@ -74,8 +74,12 @@ class FileDeleteForm {
 
 			$status = self::doDelete( $this->title, $this->file, $this->oldimage, $reason, $suppress );
 
-			if( !$status->isGood() )
+			if( !$status->isGood() ) {
+				$wgOut->addHTML( '<h2>' . $this->prepareMessage( 'filedeleteerror-short' ) . "</h2>\n" );
+				$wgOut->addHTML( '<span class="error">' );
 				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
+				$wgOut->addHTML( '</span>' );
+			}
 			if( $status->ok ) {
 				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 				$wgOut->addHTML( $this->prepareMessage( 'filedelete-success' ) );
@@ -141,7 +145,7 @@ class FileDeleteForm {
 				throw $e;
 			}
 		}
-		if( $status->isGood() ) 
+		if( $status->isGood() )
 			wfRunHooks('FileDeleteComplete', array( &$file, &$oldimage, &$article, &$wgUser, &$reason));
 
 		return $status;
@@ -193,7 +197,7 @@ class FileDeleteForm {
 				"</td>
 			</tr>
 			{$suppress}";
-		if( $wgUser->isLoggedIn() ) {	
+		if( $wgUser->isLoggedIn() ) {
 			$form .= "
 			<tr>
 				<td></td>
