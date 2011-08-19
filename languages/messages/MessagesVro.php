@@ -1367,9 +1367,9 @@ Inämb seo lehe kotsilõ teedäqandmiisi saadõta-i. Võit ka kõik su perräkae
 
 {{SITENAME}} teedäqandmiskõrraldus
 
-Perräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{fullurl:Special:Watchlist/edit}}
+Perräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{canonicalurl:Special:Watchlist/edit}}
 
-As\'a kotsilõ mano kaiaq ja küssü saat lehe päält: {{fullurl:{{MediaWiki:Helppage}}}}',
+As\'a kotsilõ mano kaiaq ja küssü saat lehe päält: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Kistudaq lehekülg ärq',

@@ -2158,16 +2158,16 @@ Como alternativa tu pote reinitialisar le optiones de notification pro tote le p
 
 -- 
 Pro configurar le notification per e-mail, visita
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Pro configurar le observatorio, visita
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pro retirar le pagina de tu observatorio, visita
 $UNWATCHURL
 
 Feedback e ulterior assistentia:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Deler pagina',

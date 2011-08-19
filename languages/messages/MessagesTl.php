@@ -2090,7 +2090,7 @@ Para baguhin ang mga pagtatakda ng iyong talaan ng mga binabantayan, puntahan an
 $UNWATCHURL
 
 Balik-tugon at karagdagang tulong:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Burahin ang pahina',

@@ -1838,16 +1838,16 @@ $NEWPAGE
              तपाईंको मित्र {{SITENAME}} सूचना प्रणाली
 --
 इमेल सूचना व्यवस्था परिवर्तन गर्न, जानुहोस्
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 निगरानी सूची व्यवस्थित गर्न, जानुहोस्
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 निगरानी सूची मेट्न, जानुहोस्
 $UNWATCHURL
 
 प्रतिक्रिया र अन्य सहयोगको निम्ति:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'पृष्ठ मेट्नुहोस्',

@@ -671,6 +671,12 @@ $2
 తాత్కాలిక సంకేతపదం: $2',
 'passwordreset-emailsent'      => 'జ్ఞాపకం ఈమెయిలు పంపించాం.',
 
+# Special:ChangeEmail
+'changeemail-oldemail' => 'ప్రస్తుత ఈ-మెయిలు చిరునామా:',
+'changeemail-newemail' => 'కొత్త ఈ-మెయిలు చిరునామా:',
+'changeemail-none'     => '(ఏమీలేదు)',
+'changeemail-cancel'   => 'రద్దుచేయి',
+
 # Edit page toolbar
 'bold_sample'     => 'బొద్దు అక్షరాలు',
 'bold_tip'        => 'బొద్దు అక్షరాలు',
@@ -2041,13 +2047,13 @@ $NEWPAGE
 
 --
 మీ వీక్షణజాబితా అమరికలను మార్చుకునేందుకు,
-{{fullurl:{{#special:EditWatchlist}}}} ని చూడండి.
+{{canonicalurl:{{#special:EditWatchlist}}}} ని చూడండి.
 
 ఈ పేజీని మీ వీక్షణజాబితా నుండి తొలగించుకునేందుకు,
 $UNWATCHURL కి వెళ్ళండి.
 
 మీ అభిప్రాయాలు చెప్పేందుకు మరియు మరింత సహాయానికై:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{canonicalurl:{{MediaWiki:helppage}}}}',
 
 # Delete
 'deletepage'             => 'పేజీని తొలగించు',
@@ -2692,6 +2698,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'pageinfo-header-views'     => 'వీక్షణలు',
 'pageinfo-subjectpage'      => 'పుట',
 'pageinfo-talkpage'         => 'చర్చా పేజీ',
+'pageinfo-watchers'         => 'వీక్షకుల సంఖ్య',
 'pageinfo-edits'            => 'మార్పుల సంఖ్య',
 'pageinfo-views'            => 'వీక్షణల సంఖ్య',
 
@@ -2935,16 +2942,19 @@ $1',
 'exif-contact'                     => 'సంప్రదింపు సమాచారం',
 'exif-languagecode'                => 'భాష',
 'exif-iimcategory'                 => 'వర్గం',
+'exif-iimsupplementalcategory'     => 'అనుషంగిక వర్గాలు',
 'exif-datetimeexpires'             => 'దీని తరువాత వాడవద్దు',
 'exif-cameraownername'             => 'కేమెరా యజమాని',
 'exif-copyrighted'                 => 'కాపీహక్కుల స్థితి',
 'exif-copyrightowner'              => 'కాపీ హక్కుదారు',
 'exif-usageterms'                  => 'వాడుక నియమాలు',
+'exif-morepermissionsurl'          => 'ప్రత్యామ్నాయ లైసెన్సు సమాచారం',
 'exif-pngfilecomment'              => 'PNG ఫైలు వ్యాఖ్య',
 'exif-disclaimer'                  => 'నిష్పూచీ',
 'exif-contentwarning'              => 'విషయపు హెచ్చరిక',
 'exif-giffilecomment'              => 'GIF ఫైలు వ్యాఖ్య',
 'exif-intellectualgenre'           => 'అంశము యొక్క రకము',
+'exif-personinimage'               => 'చిత్రంలో ఉన్న వ్యక్తి',
 
 # EXIF attributes
 'exif-compression-1' => 'కుదించని',
@@ -3119,6 +3129,7 @@ $1',
 'exif-iimcategory-pol' => 'రాజకీయాలు',
 'exif-iimcategory-rel' => 'మతం మరియు విశ్వాసం',
 'exif-iimcategory-sci' => 'వైజ్ఞానికం మరియు సాంకేతికం',
+'exif-iimcategory-soi' => 'సాంఘిక సమస్యలు',
 'exif-iimcategory-spo' => 'క్రీడలు',
 'exif-iimcategory-wea' => 'వాతావరణం',
 
@@ -3205,6 +3216,12 @@ $1',
 'confirm_purge_button' => 'సరే',
 'confirm-purge-top'    => 'ఈ పేజీ యొక్క పాత కాపీని తొలగించమంటారా?',
 'confirm-purge-bottom' => 'పేజీ తాడనతో కోశం ఖాళీ అయి, ఇట్టీవలి కూర్పును కనబడేలా చేస్తుంది.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'సరే',
+'confirm-watch-top'      => 'ఈ పుటను మీ వీక్షణ జాబితాలో చేర్చాలా?',
+'confirm-unwatch-button' => 'సరే',
+'confirm-unwatch-top'    => 'ఈ పుటను మీ వీక్షణ జాబితా నుండి తొలగించాలా?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← మునుపటి పేజీ',
@@ -3322,7 +3339,7 @@ $1',
 'specialpages-note'              => '----
 * మామూలు ప్రత్యేక పుటలు.
 * <strong class="mw-specialpagerestricted">నియంత్రిత ప్రత్యేక పుటలు.</strong>
-* <span class="mw-specialpagecached">Cached-only ప్రత్యేక పుటలు.</span>',
+* <span class="mw-specialpagecached">Cached ప్రత్యేక పుటలు (పాతబడి ఉండొచ్చు).</span>',
 'specialpages-group-maintenance' => 'నిర్వహణా నివేదికలు',
 'specialpages-group-other'       => 'ఇతర ప్రత్యేక పేజీలు',
 'specialpages-group-login'       => 'ప్రవేశించండి / నమోదుచేసుకోండి',
@@ -3399,11 +3416,14 @@ $1',
 
 # Add categories per AJAX
 'ajax-add-category'            => 'వర్గాన్ని చేర్చండి',
+'ajax-remove-category'         => 'వర్గాన్ని తొలగించు',
 'ajax-add-category-submit'     => 'చేర్చు',
+'ajax-confirm-ok'              => 'సరే',
 'ajax-confirm-title'           => 'చర్యని నిర్ధారించండి',
 'ajax-confirm-save'            => 'భద్రపరచు',
 'ajax-add-category-summary'    => '"$1" వర్గాన్ని చేర్చండి',
 'ajax-remove-category-summary' => '"$1" వర్గాన్ని తొలగించండి',
+'ajax-category-question'       => 'మీరు ఈ క్రింది మార్పులను ఎందుకు చేయాలనుకుంటున్నారు:',
 'ajax-error-title'             => 'పొరపాటు',
 'ajax-remove-category-error'   => 'ఈ వర్గాన్ని తొలగించడం సాధ్యం కాలేదు.
 పేజీకి ఆ వర్గం ఒక మూస ద్వారా చేరినప్పుడు సాధారణంగా ఇలా జరుగుతుంది.',

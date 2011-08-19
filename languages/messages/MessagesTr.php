@@ -10,6 +10,7 @@
  * @author 82-145
  * @author Bekiroflaz
  * @author Bombola
+ * @author Cekli829
  * @author Dbl2010
  * @author Don Alessandro
  * @author Emperyan
@@ -2218,13 +2219,13 @@ Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka değişiklik
 
 --
 İzleme listesi ayarlarınızı değiştirmek için:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Sayfayı izleme listenizden silmek için:
 $UNWATCHURL
 
 Geri bildirim ve daha fazla yardım için:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Sayfayı sil',
@@ -3426,7 +3427,7 @@ Bu onay kodu $4 tarihine kadar geçerlidir.',
 'scarytranscludetoolong'  => '[URL çok uzun]',
 
 # Trackbacks
-'trackbackbox'      => 'Bu sayfa için geri izlemeler:<br />
+'trackbackbox'      => 'Bu sayfa için geri izlemeler:<br/>
 $1',
 'trackbackremove'   => '([$1 Sil])',
 'trackbacklink'     => 'Geri izleme',

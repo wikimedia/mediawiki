@@ -2324,16 +2324,16 @@ $NEWPAGE
 
 --
 כדי לשנות את ההגדרות של הודעות הדוא"ל הנשלחות אליכם, בקרו בדף
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 כדי לשנות את הגדרות רשימת המעקב, בקרו בדף
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 כדי למחוק את הדף מרשימת המעקב שלכם, בקרו בדף
 $UNWATCHURL
 
 למשוב ולעזרה נוספת:
-{{fullurl::{{MediaWiki:Helppage}}}}',
+{{canonicalurl::{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'מחיקה',

@@ -1943,13 +1943,13 @@ $NEWPAGE
              بە سوپاسەوە، سیستەمی ڕاگەیاندنی {{SITENAME}}
 --
 بۆ گۆڕینی ڕێکخستنەکانی لیستی چاودێرییەکەت، سەربدە لە
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 بۆ سڕینەوەی پەڕەکە لە لیستی چاودێرییەکەت، سەربدە لە
 $UNWATCHURL
 
 رێنوێنیی زۆرتر و دەربڕینی بیروڕا:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'پەڕە بسڕەوە',

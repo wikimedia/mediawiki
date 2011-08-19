@@ -1841,10 +1841,10 @@ $NEWPAGE
 
 --
 په عوض کتن تنظیمات وتی لیست چارگ،به چار
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 نظرات و گیشترین کمک:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'حذف صفحه',

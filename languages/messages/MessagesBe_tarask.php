@@ -2208,16 +2208,16 @@ $NEWPAGE
 
 --
 Каб зьмяніць налады абвяшчэньня праз электронную пошту, наведайце:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Каб зьмяніць налады сьпісу назіраньня, наведайце:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Каб выдаліць старонку з Вашага сьпісу назіраньня, наведайце:
 $UNWATCHURL
 
 Зваротная сувязь і дапамога:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Выдаліць старонку',

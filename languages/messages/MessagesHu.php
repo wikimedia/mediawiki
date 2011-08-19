@@ -2242,13 +2242,13 @@ Amíg nem keresed fel az oldalt, addig nem érkeznek újabb értesítések az ol
 
 --
 A figyelőlistád módosításához keresd fel a
-{{fullurl:{{#special:EditWatchlist}}}} címet
+{{canonicalurl:{{#special:EditWatchlist}}}} címet
 
 A lap figyelőlistádról való törléséhez keresd fel a
 $UNWATCHURL címet
 
 Visszajelzés és további segítség:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Lap törlése',

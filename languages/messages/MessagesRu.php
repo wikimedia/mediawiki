@@ -2260,16 +2260,16 @@ $NEWPAGE
 
 --
 Изменение настройки уведомлений
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Изменение настройки вашего списка наблюдения
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Удалить страницы из вашего списка наблюдения
 $UNWATCHURL
 
 Обратная связь и помощь
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Удалить страницу',

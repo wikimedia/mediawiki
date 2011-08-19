@@ -2092,12 +2092,12 @@ wiki: $PAGEEDITOR_WIKI
             {{SITENAME}}通知系統
 
 --
-要修改你嘅監視清單設定，請睇{{fullurl:{{#special:EditWatchlist}}}}
+要修改你嘅監視清單設定，請睇{{canonicalurl:{{#special:EditWatchlist}}}}
 
 要刪除你嘅監視清單度嘅呢一版，請睇$UNWATCHURL
 
 回饋及更多幫助：
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => '刪除頁面',

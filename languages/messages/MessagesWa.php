@@ -1041,10 +1041,10 @@ I n\' årè nén d\' ôtes notifiaedjes po ds ôtes candjmints di ç\' minme på
 
 --
 Po candjî l\' apontiaedje di vosse djivêye a shuve, loukîz
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Po pus d\' aidance:
-{{fullurl:{{ns:help}}:Aidance}}',
+{{canonicalurl:{{ns:help}}:Aidance}}',
 
 # Delete
 'deletepage'        => "Disfacer l' pådje",

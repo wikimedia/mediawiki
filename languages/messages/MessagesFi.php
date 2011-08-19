@@ -2153,13 +2153,13 @@ Uusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla. Voit myös n
 
 --
 Tarkkailulistan asetuksia voit muuttaa osoitteessa:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Voit poistaa sivun tarkkailulistalta osoitteessa:
 $UNWATCHURL
 
 Palaute ja lisäapu osoitteessa:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Poista sivu',

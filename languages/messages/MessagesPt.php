@@ -10,6 +10,7 @@
  * @author Capmo
  * @author Crazymadlover
  * @author Daemorris
+ * @author Francisco Leandro
  * @author Giro720
  * @author GoEThe
  * @author Hamilton Abreu
@@ -2301,22 +2302,22 @@ Pode também reactivar as notificações para todas páginas na sua lista de pá
 
 --
 Para alterar as suas preferências das notificações por correio electrónico, visite
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Para alterar as suas preferências das páginas vigiadas, visite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Para retirar a página da lista de páginas vigiadas, visite
 $UNWATCHURL
 
 Para comentários e pedidos de ajuda:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Eliminar página',
 'confirm'                => 'Confirmar',
 'excontent'              => 'o conteúdo era: "$1"',
-'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[Special:Contributions/$2|$2]]")',
+'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[{{#Special:Contributions}}/$2|$2]]")',
 'exbeforeblank'          => 'o conteúdo antes de esvaziar era: "$1"',
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',

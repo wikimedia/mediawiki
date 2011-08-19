@@ -483,7 +483,7 @@ $messages = array(
 'vector-action-move'             => 'Pindahkan',
 'vector-action-protect'          => 'Lindungi',
 'vector-action-undelete'         => 'Pembatalan penghapusan',
-'vector-action-unprotect'        => 'Pelindungan',
+'vector-action-unprotect'        => 'Ubah perlindungan',
 'vector-simplesearch-preference' => 'Aktifkan pencarian saran yang disempurnakan (hanya kulit Vector)',
 'vector-view-create'             => 'Buat',
 'vector-view-edit'               => 'Sunting',
@@ -520,8 +520,8 @@ $messages = array(
 'protect'           => 'Lindungi',
 'protect_change'    => 'ubah',
 'protectthispage'   => 'Lindungi halaman ini',
-'unprotect'         => 'Pelindungan',
-'unprotectthispage' => 'Buka perlindungan halaman ini',
+'unprotect'         => 'Ubah perlindungan',
+'unprotectthispage' => 'Ubah perlindungan halaman ini',
 'newpage'           => 'Halaman baru',
 'talkpage'          => 'Bicarakan halaman ini',
 'talkpagelinktext'  => 'Bicara',
@@ -698,6 +698,8 @@ Untuk terjemahan, harap gunakan [http://translatewiki.net/wiki/Main_Page?setlang
 'cascadeprotected'     => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":
 $2',
 'namespaceprotected'   => "Anda tak memiliki hak akses untuk menyunting halaman di ruang nama '''$1'''.",
+'customcssprotected'   => 'Anda tidak memiliki izin untuk menyunting halaman CSS ini, karena berisi pengaturan pribadi pengguna lain.',
+'customjsprotected'    => 'Anda tidak memiliki izin untuk menyunting halaman JavaScript ini, karena berisi pengaturan pribadi pengguna lain.',
 'ns-specialprotected'  => 'Halaman pada ruang nama {{ns:special}} tidak dapat disunting.',
 'titleprotected'       => "Judul ini dilindungi dari pembuatan oleh [[User:$1|$1]].
 Alasan yang diberikan adalah ''$2''.",
@@ -739,8 +741,8 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|p
 'createaccountmail'          => 'melalui surel',
 'createaccountreason'        => 'Alasan:',
 'badretype'                  => 'Kata sandi yang Anda masukkan salah.',
-'userexists'                 => 'Nama pengguna yang Anda pilih sudah dipakai oleh orang lain.
-Silakan pilih nama yang lain.',
+'userexists'                 => 'Nama pengguna yang dimasukkan telah digunakan.
+Silakan tentukan nama yang lain.',
 'loginerror'                 => 'Kesalahan masuk log',
 'createaccounterror'         => 'Tidak dapat membuat akun: $1',
 'nocookiesnew'               => "Akun pengguna telah dibuat, tetapi Anda belum masuk log. {{SITENAME}} menggunakan ''cookies'' untuk log pengguna. ''Cookies'' pada penjelajah web Anda dimatikan. Silakan aktifkan dan masuk log kembali dengan nama pengguna dan kata sandi Anda.",
@@ -800,6 +802,7 @@ Silakan menunggu sebelum mencoba lagi.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Kesalahan yang tidak dikenal dalam fungsi mail() PHP',
+'user-mail-no-addy'      => 'Mencoba mengirimkan surel tanpa alamat surel.',
 
 # Change password dialog
 'resetpass'                 => 'Ganti kata sandi',
@@ -850,6 +853,17 @@ ingin mengubahnya, Anda dapat mengabaikan pesan ini dan terus menggunakan sandi 
 'passwordreset-emailelement'   => 'Nama pengguna: $1
 Sandi sementara: $2',
 'passwordreset-emailsent'      => 'Surel pengingat telah dikirimkan.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Ubah alamat surel',
+'changeemail-header'   => 'Ubah alamat surel akun',
+'changeemail-text'     => 'Selesaikan formulir ini untuk mengubah alamat surel Anda. Anda perlu memasukkan sandi untuk mengkonfirmasi perubahan ini.',
+'changeemail-no-info'  => 'Anda harus masuk log untuk mengakses halaman ini secara langsung.',
+'changeemail-oldemail' => 'Alamat surel saat ini:',
+'changeemail-newemail' => 'Alamat surel baru:',
+'changeemail-none'     => '(tidak ada)',
+'changeemail-submit'   => 'Ubah surel',
+'changeemail-cancel'   => 'Batalkan',
 
 # Edit page toolbar
 'bold_sample'     => 'Teks ini akan dicetak tebal',
@@ -949,10 +963,12 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman
 'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
-'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda mungkin perlu membersihkan singgahan penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-R'' (''Cmd-R'' pada Mac);
-'''Konqueror:''': tekan ''F5'';
-'''Opera''' bersihkan singgahan melalui menu ''Tools → Preferences'';
-'''Internet Explorer:''' tekan ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong singgahan peramban Anda untuk melihat perubahan.
+* '''Firefox / Safari:''' tahan ''Shift'' sambil mengklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''Command-R'' di Mac)
+* '''Google Chrome:''' tekan ''Ctrl-Shift-R'' (''Command-Shift-R'' di Mac)
+* '''Internet Explorer:''' tahan ''Ctrl'' sambl mengklik ''Refresh'', atau tekan ''Ctrl-F5''
+* '''Konqueror:''' klik ''Reload'' atau tekan ''F5''
+* '''Opera:''' bersihkan singgahan di ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji CSS baru Anda sebelum menyimpannya.",
 'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji JS baru Anda sebelum menyimpannya.",
 'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
@@ -1319,12 +1335,13 @@ Anda dapat mencari melalui Google untuk sementara waktu.
 Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencakup perubahan-perubahan terakhir.',
 
 # Quickbar
-'qbsettings'               => 'Pengaturan bar pintas',
-'qbsettings-none'          => 'Tidak ada',
-'qbsettings-fixedleft'     => 'Tetap sebelah kiri',
-'qbsettings-fixedright'    => 'Tetap sebelah kanan',
-'qbsettings-floatingleft'  => 'Mengambang sebelah kiri',
-'qbsettings-floatingright' => 'Mengambang sebelah kanan',
+'qbsettings'                => 'Pengaturan bar pintas',
+'qbsettings-none'           => 'Tidak ada',
+'qbsettings-fixedleft'      => 'Tetap sebelah kiri',
+'qbsettings-fixedright'     => 'Tetap sebelah kanan',
+'qbsettings-floatingleft'   => 'Mengambang sebelah kiri',
+'qbsettings-floatingright'  => 'Mengambang sebelah kanan',
+'qbsettings-directionality' => 'Tetap, tergantung pada bentuk skrip dan bahasa Anda',
 
 # Preferences page
 'preferences'                   => 'Preferensi',
@@ -1349,6 +1366,8 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-watchlist-token'         => 'Token pantauan:',
 'prefs-misc'                    => 'Lain-lain',
 'prefs-resetpass'               => 'Ganti kata sandi',
+'prefs-changeemail'             => 'Ubah surel',
+'prefs-setemail'                => 'Atur alamat surel',
 'prefs-email'                   => 'Opsi surel',
 'prefs-rendering'               => 'Tampilan',
 'saveprefs'                     => 'Simpan',
@@ -1551,10 +1570,11 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
 
 # User rights log
-'rightslog'      => 'Log perubahan hak akses',
-'rightslogtext'  => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
-'rightslogentry' => 'mengganti keanggotaan kelompok untuk $1 dari $2 menjadi $3',
-'rightsnone'     => '(tidak ada)',
+'rightslog'                  => 'Log perubahan hak akses',
+'rightslogtext'              => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
+'rightslogentry'             => 'mengganti keanggotaan kelompok untuk $1 dari $2 menjadi $3',
+'rightslogentry-autopromote' => 'secara otomatis dipromosikan dari $2 ke $3',
+'rightsnone'                 => '(tidak ada)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'membaca halaman ini',
@@ -2183,8 +2203,10 @@ Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] 
 'watchlistanontext'    => 'Silakan $1 untuk melihat atau menyunting daftar pantauan Anda.',
 'watchnologin'         => 'Belum masuk log',
 'watchnologintext'     => 'Anda harus [[Special:UserLogin|masuk log]] untuk mengubah daftar pantauan Anda.',
+'addwatch'             => 'Tambahkan ke daftar pantauan',
 'addedwatchtext'       => "Halaman \"[[:\$1]]\" telah ditambahkan ke [[Special:Watchlist|daftar pantauan]] Anda.
 Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan terkaitnya akan tercantum di sini, dan halaman itu akan ditampilkan '''tebal''' pada [[Special:RecentChanges|daftar perubahan terbaru]] agar lebih mudah terlihat.",
+'removewatch'          => 'Hapus dari daftar pantauan',
 'removedwatchtext'     => 'Halaman "[[:$1]]" telah dihapus dari [[Special:Watchlist|daftar pantauan]] Anda.',
 'watch'                => 'Pantau',
 'watchthispage'        => 'Pantau halaman ini',
@@ -2239,16 +2261,16 @@ Anda juga dapat menyetel ulang tanda pemberitahuan untuk semua halaman pantauan 
 
 --
 Untuk mengubah setelan pemberitahuan surel, kunjungi
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Untuk mengubah setelan daftar pantauan, kunjungi
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Untuk menghapus halaman dari daftar pantauan, kunjungi
 $UNWATCHURL
 
 Umpan balik dan bantuan lebih lanjut:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Hapus halaman',
@@ -2305,11 +2327,11 @@ Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:p
 
 # Protect
 'protectlogpage'              => 'Log pelindungan',
-'protectlogtext'              => 'Di bawah ini adalah log pelindungan halaman dan pembatalannya.
-Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar terkini.',
+'protectlogtext'              => 'Di bawah ini adalah daftar perubahan terhadap perlindungan halaman.
+Lihat [[Special:ProtectedPages|daftar halaman terlindungi]] untuk daftar perlindungan halaman terkini.',
 'protectedarticle'            => 'melindungi "[[$1]]"',
 'modifiedarticleprotection'   => 'mengubah tingkat pelindungan "[[$1]]"',
-'unprotectedarticle'          => 'menghilangkan pelindungan "[[$1]]"',
+'unprotectedarticle'          => 'menghilangkan perlindungan dari "[[$1]]"',
 'movedarticleprotection'      => 'memindahkan pengaturan proteksi dari "[[$2]]" ke "[[$1]]"',
 'protect-title'               => 'Melindungi "$1"',
 'prot_1movedto2'              => '[[$1]] dipindahkan ke [[$2]]',
@@ -2330,6 +2352,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-level-sysop'         => 'Hanya pengurus',
 'protect-summary-cascade'     => 'runtun',
 'protect-expiring'            => 'kedaluwarsa $1 (UTC)',
+'protect-expiring-local'      => 'kedaluwarsa $1',
 'protect-expiry-indefinite'   => 'selamanya',
 'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (pelindungan runtun)',
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan pelindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
@@ -2411,10 +2434,12 @@ $1',
 'undelete-show-file-submit'    => 'Ya',
 
 # Namespace form on various pages
-'namespace'             => 'Ruang nama:',
-'invert'                => 'Balikkan pilihan',
-'namespace_association' => 'Ruang nama terkait',
-'blanknamespace'        => '(Utama)',
+'namespace'                     => 'Ruang nama:',
+'invert'                        => 'Balikkan pilihan',
+'tooltip-invert'                => 'Centang kotak ini untuk menyembunyikan perubahan halaman dalam ruang nama yang dipilih (dan ruang nama terkait jika dicentang)',
+'namespace_association'         => 'Ruang nama terkait',
+'tooltip-namespace_association' => 'Centang halaman ini untuk menyertakan ruang nama pembicaraan atau subjek yang terkait dengan ruang nama terpilih',
+'blanknamespace'                => '(Utama)',
 
 # Contributions
 'contributions'       => 'Kontribusi pengguna',
@@ -2807,7 +2832,7 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'tooltip-ca-viewsource'           => 'Halaman ini dilindungi. Anda hanya dapat melihat sumbernya.',
 'tooltip-ca-history'              => 'Versi-versi sebelumnya dari halaman ini.',
 'tooltip-ca-protect'              => 'Lindungi halaman ini',
-'tooltip-ca-unprotect'            => 'Buka pelindungan halaman ini',
+'tooltip-ca-unprotect'            => 'Ubah perlindungan halaman ini',
 'tooltip-ca-delete'               => 'Hapus halaman ini',
 'tooltip-ca-undelete'             => 'Kembalikan suntingan ke halaman ini sebelum halaman ini dihapus',
 'tooltip-ca-move'                 => 'Pindahkan halaman ini',
@@ -2906,6 +2931,19 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'spambot_username'    => 'Pembersihan span MediaWiki',
 'spam_reverting'      => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
 'spam_blanking'       => 'Semua revisi yang memiliki pranala ke $1, pengosongan',
+
+# Info page
+'pageinfo-title'            => 'Informasi untuk "$1"',
+'pageinfo-header-edits'     => 'Suntingan',
+'pageinfo-header-watchlist' => 'Daftar pantauan',
+'pageinfo-header-views'     => 'Tampilan',
+'pageinfo-subjectpage'      => 'Halaman',
+'pageinfo-talkpage'         => 'Halaman pembicaraan',
+'pageinfo-watchers'         => 'Jumlah pemantau',
+'pageinfo-edits'            => 'Jumlah suntingan',
+'pageinfo-authors'          => 'Jumlah penulis yang berbeda',
+'pageinfo-views'            => 'Jumlah penampilan',
+'pageinfo-viewsperedit'     => 'Jumlah penampilan per suntingan',
 
 # Skin names
 'skinname-standard' => 'Klasik',
@@ -3499,6 +3537,12 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'confirm-purge-top'    => 'Hapus singgahan halaman ini?',
 'confirm-purge-bottom' => 'Membersihkan halaman akan sekaligus menghapus singgahan dan menampilkan versi halaman terkini.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Tambahkan halaman ini ke daftar pantauan Anda?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Hapus halaman ini dari daftar pantauan Anda?',
+
 # Multipage image navigation
 'imgmultipageprev' => '&larr; halaman sebelumnya',
 'imgmultipagenext' => 'halaman selanjutnya &rarr;',
@@ -3658,10 +3702,9 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
 # Special:SpecialPages
 'specialpages'                   => 'Halaman istimewa',
 'specialpages-note'              => '----
-Keterangan tampilan:
-* Halaman istimewa normal
-* <strong class="mw-specialpagerestricted">Halaman istimewa terbatas</strong>
-* <strong class="mw-specialpagecached">Halaman istimewa singgahan</strong>',
+* Halaman istimewa normal.
+* <span class="mw-specialpagerestricted">Halaman istimewa terlarang.</span>
+* <span class="mw-specialpagecached">Halaman istimewa tersinggah (mungkin usang).</span>',
 'specialpages-group-maintenance' => 'Laporan pemeliharaan',
 'specialpages-group-other'       => 'Lain-lain',
 'specialpages-group-login'       => 'Masuk log / mendaftar',
@@ -3702,13 +3745,16 @@ Keterangan tampilan:
 'tags-hitcount'           => '$1 {{PLURAL:$1|perubahan|perubahan}}',
 
 # Special:ComparePages
-'comparepages'     => 'Bandingkan halaman',
-'compare-selector' => 'Bandingkan revisi halaman',
-'compare-page1'    => 'Halaman 1',
-'compare-page2'    => 'Halaman 2',
-'compare-rev1'     => 'Revisi 1',
-'compare-rev2'     => 'Revisi 2',
-'compare-submit'   => 'Bandingkan',
+'comparepages'                => 'Bandingkan halaman',
+'compare-selector'            => 'Bandingkan revisi halaman',
+'compare-page1'               => 'Halaman 1',
+'compare-page2'               => 'Halaman 2',
+'compare-rev1'                => 'Revisi 1',
+'compare-rev2'                => 'Revisi 2',
+'compare-submit'              => 'Bandingkan',
+'compare-invalid-title'       => 'Judul yang Anda berikan tidak sah.',
+'compare-title-not-exists'    => 'Judul yang Anda minta tidak ada.',
+'compare-revision-not-exists' => 'Revisi yang Anda minta tidak ada.',
 
 # Database error messages
 'dberr-header'      => 'Wiki ini bermasalah',
@@ -3736,14 +3782,28 @@ Keterangan tampilan:
 'sqlite-no-fts'  => '$1 tanpa dukungan pencarian teks lengkap',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Tambah kategori',
-'ajax-add-category-submit'     => 'Tambah',
-'ajax-confirm-title'           => 'Konfirmasi aksi',
-'ajax-confirm-save'            => 'Simpan',
-'ajax-add-category-summary'    => 'Tambah kategori "$1"',
-'ajax-remove-category-summary' => 'Hapus kategori "$1"',
-'ajax-error-title'             => 'Kesalahan',
-'ajax-remove-category-error'   => 'Tidak mungkin menghapus kategori ini.
-Biasanya karena kategori di tambahkan kehalaman melalui templat.',
+'ajax-add-category'             => 'Tambah kategori',
+'ajax-remove-category'          => 'Hapus kategori',
+'ajax-edit-category'            => 'Sunting kategori',
+'ajax-add-category-submit'      => 'Tambah',
+'ajax-confirm-ok'               => 'OK',
+'ajax-confirm-title'            => 'Konfirmasi aksi',
+'ajax-confirm-save'             => 'Simpan',
+'ajax-confirm-save-all'         => 'Simpan semua perubahan',
+'ajax-cancel'                   => 'Batalkan suntingan',
+'ajax-cancel-all'               => 'Batalkan semua perubahan',
+'ajax-add-category-summary'     => 'Tambah kategori "$1"',
+'ajax-edit-category-summary'    => 'Ubah kategori "$1" menjadi "$2"',
+'ajax-remove-category-summary'  => 'Hapus kategori "$1"',
+'ajax-category-question'        => 'Sebab Anda melakukan perubahan berikut:',
+'ajax-error-title'              => 'Kesalahan',
+'ajax-remove-category-error'    => 'Tidak mungkin menghapus kategori "$1".
+Ini biasanya terjadi ketika kategori ditambahkan ke halaman melalui templat.',
+'ajax-edit-category-error'      => 'Tidak mungkin menyunting kategori "$1".
+Ini biasanya terjadi ketika kategori ditambahkan ke halaman melalui templat.',
+'ajax-category-already-present' => 'Halaman ini sudah masuk dalam kategori "$1"',
+'ajax-category-hook-error'      => 'Fungsi setempat mencegah perubahan disimpan.',
+'ajax-api-error'                => 'API mengembalikan kesalahan : $1: $2.',
+'ajax-api-unknown-error'        => 'API mengembalikan kesalahan tak dikenal.',
 
 );

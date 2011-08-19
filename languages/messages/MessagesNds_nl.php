@@ -2250,16 +2250,16 @@ Groeten van t {{SITENAME}}-waorschuwingssysteem.
 
 --
 Je kunnen joew netpostinstellingen wiezigen op:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Je kunnen de volgliestinstellingen wiezigen op:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Je kunnen de pagina van joew volglieste aofhaolen deur op de volgende verwiezing te klikken:
 $UNWATCHURL
 
 Opmarkingen en veerdere hulpe:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Vortdoon',

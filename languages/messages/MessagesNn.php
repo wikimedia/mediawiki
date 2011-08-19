@@ -2151,13 +2151,13 @@ Du kan også tilbakestille endringsmeldingsstatus for alle sidene på overvaking
 
 --
 For å endre innstillingane for overvakingslista di, gå til
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 For hjelp og meir informasjon:
 $UNWATCHURL
 
 Tilbakemeldingar og anna hjelp:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Slett sida',

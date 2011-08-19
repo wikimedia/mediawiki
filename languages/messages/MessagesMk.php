@@ -2332,16 +2332,16 @@ $NEWPAGE
 
 --
 Ако сакате да ги измените нагодувањата за известување по е-пошта, посетете ја страницата
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Доколку сакате да ги измените нагодувањата на списокот на набљудувања, посетете ја страницата
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 За да ја избришете страницата од списокот на набљудувања, посетете ја страницата
 $UNWATCHURL
 
 Повратни информации и помош:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Избриши страница',

@@ -1680,10 +1680,10 @@ $NEWPAGE
 
 --
 Ձեր հսկացանկի նախընտրությունները փոխելու համար այցելեք՝
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Հետադարձ կապ և օգնություն՝
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Ջնջել էջը',

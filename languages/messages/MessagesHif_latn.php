@@ -1942,10 +1942,10 @@ Aap ke  dayalu {{SITENAME}} notification system
 
 --
 Aapan Email notofication setting ke badle ke khatir, jaao
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Aapan dhyan ke settings ke badle ke khatir, jaao
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 
 Aapan dhyan suchi se panna ke mitae ke khatir, jaao
@@ -1953,7 +1953,7 @@ $UNWATCHURL
 
 
 Aapan bichar de ke khatir aur aage ke sahaeta:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Pana ke delete karo',

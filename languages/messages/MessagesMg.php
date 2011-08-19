@@ -2126,10 +2126,10 @@ Azonao atao koa ny manajanona ny fampahafantarana anao aloha na misy manova aza 
 
 --
 Raha hanova ny fandehan\'ny momba ny lisitry ny pejy arahi-maso, jereo
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Hevitrao sy fanampiana:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Hamafa ny pejy',

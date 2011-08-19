@@ -2116,17 +2116,17 @@ $NEWPAGE
 
 --
 要改變您的電郵設定，請參閱
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 
 要改變您的監視列表設定，請參閱
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 要刪除您監視清單中的該頁面，請參閱
 $UNWATCHURL
 
 回饋和進一步的幫助:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => '刪除頁面',

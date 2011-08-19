@@ -1908,13 +1908,13 @@ Bu sahypany baryp görýänçäňiz onuň bilen baglanyşykly üýtgeşmeler siz
 
 --
 Gözegçilik sanawy sazlamalaryňyzy üýtgetmek üçin:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Sahypany gözegçilik sanawyňyzdan öçürmek üçin:
 $UNWATCHURL
 
 Seslenme we goşmaça kömek:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Sahypany öçür',

@@ -2220,13 +2220,13 @@ Nedostanete ďalšie upozornenia, aj ak bude stránka znovu upravovaná, kým ne
 
 --
 Zmeniť nastavenia vašich sledovaných stránok môžete na
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Zmazať stránku z vášho zoznamu sledovaných môžete na
 $UNWATCHURL
 
 Návrhy a ďalšia pomoc:
-{{fullurl:{{int:Helppage}}}}',
+{{canonicalurl:{{int:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Zmazať stránku',

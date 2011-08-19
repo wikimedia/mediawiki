@@ -2067,16 +2067,16 @@ Your friendly {{SITENAME}} notification system
 
 --
 To change your email notification settings, visit
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 To change your watchlist settings, visit
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 To delete the page from your watchlist, visit
 $UNWATCHURL
 
 Feedback and further assistance:
-{{fullurl:{{MediaWiki:Helppage}}}}
+{{canonicalurl:{{MediaWiki:Helppage}}}}
 
 Faqja $PAGETITLE tek {{SITENAME}} është $CHANGEDORCREATED më $PAGEEDITDATE nga $PAGEEDITOR, shikoni $PAGETITLE_URL për versionin e tanishëm.
 
@@ -2093,13 +2093,13 @@ Nuk do të ketë njoftime të tjera për ndryshimet e ardhshme përveç nëse e 
              Miku juaj njoftues nga {{SITENAME}}
 
 --
-Për të ndryshuar parapëlqimet e mbikqyrjes shikoni {{fullurl:Special:Watchlist/edit}}
+Për të ndryshuar parapëlqimet e mbikqyrjes shikoni {{canonicalurl:Special:Watchlist/edit}}
 
 Për të larguar faqen nga lista juaj mbikqyrëse, shikoni 
 $UNWATCHURL
 
 Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
-{{fullurl:{{MediaWiki:Helpage}}}}',
+{{canonicalurl:{{MediaWiki:Helpage}}}}',
 
 # Delete
 'deletepage'             => 'Grise faqen',

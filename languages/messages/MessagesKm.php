@@ -2220,18 +2220,18 @@ $NEWPAGE
 
 --
 ដើម្បីផ្លាស់ប្តូរការកំណត់ការផ្ដល់ដំណឹងតាមអ៊ីមែលរបស់អ្នក, សូមទៅកាន់
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 
 ដើម្បីផ្លាស់ប្តូរការកំណត់បញ្ជីតាមដានរបស់អ្នក, សូមទៅកាន់
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 
 ដើម្បីដកទំព័រចេញពីបញ្ជីតាមដានរបស់អ្នក, សូមទៅកាន់
 $UNWATCHURL
 
 មតិ​យោបល់​និងជំនួយបន្ថែម ៖
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'លុបទំព័រចោល',

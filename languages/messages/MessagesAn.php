@@ -2003,13 +2003,13 @@ O sistema de notificación de {{SITENAME}}.
 
 --
 Ta cambiar as opcions d\'a suya lista de seguimiento, punche:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Ta borrar ista pachina d\'a suya lista de seguimiento, punche:
 $UNWATCHURL
 
 Ta obtenir más información y aduya:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Borrar ista pachina',

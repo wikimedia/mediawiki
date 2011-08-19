@@ -1053,13 +1053,13 @@ Es wern da sólång koane weidern Benoochrichtigungsmails gsendt, bis du dé Sei
              Deih freindlichs {{SITENAME}}-Benoochrichtigungssystém
 
 --
-Um d\' Eihstöungen voh da E-Mail-Benoochrichtigung åzpassen, bsuachst {{fullurl:{{#special:Preferences}}}}
+Um d\' Eihstöungen voh da E-Mail-Benoochrichtigung åzpassen, bsuachst {{canonicalurl:{{#special:Preferences}}}}
 
-Um d\' Eihstöungen voh deine Beówochtungslisten åzpassen, bsuachst {{fullurl:{{#special:EditWatchlist}}}}
+Um d\' Eihstöungen voh deine Beówochtungslisten åzpassen, bsuachst {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Um d\' Seiten voh deiner Beówochtungslisten ower z\' doah, bsuachst $UNWATCHURL
 
-Ryckmödungen und a weidre Hüf: {{fullurl:{{MediaWiki:Helppage}}}}',
+Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Seiten leschen',

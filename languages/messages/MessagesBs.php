@@ -2264,16 +2264,16 @@ Također možete poništiti oznake obavijesti za sve praćene stranice koje imat
 
 --
 Za promjenu vaših postavki e-mail obavijesti, posjetite
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Za promjenu postavki vašeg praćenja, posjetite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Da obrišete stranicu sa vašeg spiska praćenja, posjetite
 $UNWATCHURL
 
 Povratne informacije i daljnja pomoć:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Obrišite stranicu',

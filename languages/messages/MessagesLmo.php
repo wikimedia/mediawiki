@@ -1003,10 +1003,10 @@ De surapü, te pö mudifegà l\'impustazion de l\'avis de nutifega per quij pagi
 
 --
 Per mudifegà l\'impustazión de la lista di paginn che te tegn d\'ögg, varda
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Per fà di cumünicazion de servizzi e per cercà jüt:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Scancela la pagina',

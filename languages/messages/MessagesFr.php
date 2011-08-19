@@ -2312,16 +2312,16 @@ Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pa
 
 --
 Pour modifier les paramètres de notification par courriel, visitez
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Pour modifier les paramètres de votre liste de suivi, visitez
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pour supprimer la page de votre liste de suivi, visitez
 $UNWATCHURL
 
 Retour et assistance :
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Supprimer la page',

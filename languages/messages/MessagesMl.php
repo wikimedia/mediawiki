@@ -2249,16 +2249,16 @@ $NEWPAGE
 
 --
 ഇമെയിൽ അറിയിപ്പ് സജ്ജീകരണങ്ങളിൽ മാറ്റംവരുത്താൻ, സന്ദർശിക്കുക
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 ശ്രദ്ധിക്കുന്ന പട്ടികയിലെ ക്രമീകരണങ്ങളിൽ മാറ്റം വരുത്താൻ, സന്ദർശിക്കുക
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 താൾ താങ്കൾ ശ്രദ്ധിക്കുന്നവയുടെ പട്ടികയിൽ നിന്ന് നീക്കംചെയ്യാൻ, സന്ദർശിക്കുക
 $UNWATCHURL
 
 അഭിപ്രായം അറിയിക്കാനും മറ്റു സഹായങ്ങൾക്കും:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'താൾ മായ്ക്കുക',

@@ -2269,16 +2269,16 @@ wiki: $PAGEEDITOR_WIKI
 
 --
 Για να αλλάξετε τις προτιμήσεις της ειδοποιήσεων email, ακολουθήστε το σύνδεσμο:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Για να αλλάξετε τις προτιμήσεις της λίστας παρακολούθησής σας, ακολουθήστε το σύνδεσμο:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Για να διαγράψετε την σελίδα από την λίστα παρακολούθησής σας:
 $UNWATCHURL
 
 Ερωτήσεις και περισσότερες πληροφορίες:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Διαγραφή σελίδας',

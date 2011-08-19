@@ -2261,16 +2261,16 @@ Puteți de asemenea reseta notificările pentru toate pagini pe care le urmări�
 
 --
 Pentru a modifica setările notificării prin e-mail, vizitați
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Pentru a modifica setările listei de pagini urmărite, vizitați
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pentru a nu mai urmări pagina, vizitați
 $UNWATCHURL
 
 Asistență și suport:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Șterge pagina',

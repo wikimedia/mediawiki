@@ -2204,13 +2204,13 @@ $NEWPAGE
 
 --
 Змінити налаштування вашого списку спостереження можна на
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Для вилучення сторінки з вашого списку спостереження відвідайте
 $UNWATCHURL
 
 Зворотний зв\'язок та допомога:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Вилучити сторінку',

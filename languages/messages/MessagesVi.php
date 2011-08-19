@@ -2251,16 +2251,16 @@ Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả cá
 
 --
 Để thay đổi các thiết lập thư điện tử thông báo, mời xem:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Để thay đổi các thiết lập danh sách theo dõi, mời xem:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem:
 $UNWATCHURL
 
 Phản hồi và cần sự hỗ trợ:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Xóa trang',

@@ -2079,13 +2079,13 @@ No rebreu més notificacions de futurs canvis si no visiteu la pàgina. També p
 
 --
 Per a canviar les opcions de la vostra llista de seguiment aneu a
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Per eliminar la pàgina de la vostra llista de seguiment aneu a
 $UNWATCHURL
 
 Suggeriments i ajuda:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Elimina la pàgina',

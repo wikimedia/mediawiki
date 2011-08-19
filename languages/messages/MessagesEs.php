@@ -2280,13 +2280,13 @@ También puedes reestablecer las notificaciones para todas tus páginas vigilada
 
 --
 Para cambiar las opciones de tu lista de seguimiento, visita:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Para borrar la página de tu lista de seguimiento visita:
 $UNWATCHURL
 
 Retroalimentación y asistencia adicional:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Borrar esta página',

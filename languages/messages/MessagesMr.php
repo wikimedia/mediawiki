@@ -2114,10 +2114,10 @@ $NEWPAGE
 
 --
 
-तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता,{{fullurl:{{#special:EditWatchlist}}}}ला भेट द्या
+तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता,{{canonicalurl:{{#special:EditWatchlist}}}}ला भेट द्या
 
 पुढील सहाय्य आणि प्रतिक्रीया:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'पान वगळा',

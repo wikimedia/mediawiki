@@ -657,9 +657,9 @@ Neno la siri la muda: $2',
 'passwordreset-emailsent'      => 'Barua pepe ya ukumbusho imetumwa.',
 
 # Special:ChangeEmail
-'changeemail'          => 'Kubadilisha anwani ya barua pepe',
+'changeemail'          => 'Badilisha anwani ya barua pepe',
 'changeemail-header'   => 'Badilisha anwani ya barua pepe ya akaunti yako',
-'changeemail-text'     => 'Jaza fomu hii ili kubadilisha anwani yako ya barua pepe. Itabidi uingize neno lako la siri ili kukamilisha badiliko hilo.',
+'changeemail-text'     => 'Jaza fomu hii ili kubadilisha anwani yako ya barua pepe. Itabidi uingize neno lako la siri ili kukamilisha badiliko hili.',
 'changeemail-no-info'  => 'Lazima uwe umeingia ili kuweza kutumia kurasa hii moja kwa moja.',
 'changeemail-oldemail' => 'Anwani ya barua pepe iliyopo sasa:',
 'changeemail-newemail' => 'Anwani mpya ya barua pepe:',
@@ -1995,13 +1995,13 @@ Au unaweza kuweka upya maombi ya kupewa taarifa kwa ajili ya kurasa zote zilizop
 
 --
 Ukitaka kubadilisha mapendekezo yako yanayohusika orodha ya maangalizi yako, nenda
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Ukitaka kutoa ukurasa huu kwenye orodha ya maangalizi yako, nenda
 $UNWATCHURL
 
 Kutoa maoni yako au kupata msaada mwingine:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Futa ukurasa',

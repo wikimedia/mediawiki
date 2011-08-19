@@ -2085,16 +2085,16 @@ $NEWPAGE
 
 --
 আপোনাৰ ই-মেইল জাননী ছেটিং সলনি কৰিবলৈ এইখন চাওক
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 আপোনাৰ লক্ষ্য-তালিকাৰ ছেটিং সলনি কৰিবলৈ এইখন চাওক
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 আপোনাৰ লক্ষ্য-তালিকাৰ পৰা পৃষ্ঠা বিলোপ কৰিবলৈ এইখন চাওক
 $UNWATCHURL
 
 প্ৰতিক্ৰিয়া আৰু অধিক সহযোগিতাৰ বাবে:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'পৃষ্ঠা বিলোপ কৰক',

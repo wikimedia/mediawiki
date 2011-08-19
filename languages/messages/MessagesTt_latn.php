@@ -1557,13 +1557,13 @@ Bu bitkä kermäsägez, anıñ başqa üzgärtüläre turında xat cibärelmäy�
 
 --
 Küzätü isemlege köyläwlären üzgärtü:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Bitne sezneñ küzätü isemlegezdän beterü:
 $UNWATCHURL
 
 Elemtä häm yärdäm:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Bitne beterü',

@@ -1764,11 +1764,11 @@ Fierdere meldings wurde jo net tastjoerd, oant jo de side lêzen hawwe. Op jo fo
                  Jo freonlike {{SITENAME}}-meldingssysteem.
 
 --
-Gean nei {{fullurl:{{#special:EditWatchlist}}}}
+Gean nei {{canonicalurl:{{#special:EditWatchlist}}}}
 om jo folchlistynstellings te feroarjen.
 
 Reaksjes en fierdere help:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Wisk side',

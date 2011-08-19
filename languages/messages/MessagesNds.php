@@ -11,6 +11,7 @@
  * @author Slomox
  * @author The Evil IP address
  * @author Urhixidur
+ * @author Zylbath
  * @author לערי ריינהארט
  */
 
@@ -522,7 +523,7 @@ De letzte Datenbankaffraag weer:
 
 <blockquote><tt>$1</tt></blockquote>
 
-ut de Funktschoon <tt>$2</tt>.
+ut de Funkschoon <tt>$2</tt>.
 MySQL mell den Fehler <tt>$3: $4</tt>.',
 'dberrortextcl'        => 'Dor weer en Syntaxfehler in de Datenbankaffraag.
 De letzte Datenbankaffraag weer: $1 ut de Funktschoon <tt>$2</tt>.
@@ -1907,7 +1908,7 @@ Du kriggst solang keen Bescheedgeev-E-Mails mehr, bet dat du de Siet wedder bes�
              Dien fründlich {{SITENAME}}-Bescheedgeevsystem
 
 --
-De Instellungen vun dien Oppasslist to ännern, gah na: {{fullurl:Special:Watchlist/edit}}',
+De Instellungen vun dien Oppasslist to ännern, gah na: {{canonicalurl:Special:Watchlist/edit}}',
 
 # Delete
 'deletepage'             => 'Siet wegsmieten',

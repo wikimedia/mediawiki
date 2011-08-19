@@ -1975,13 +1975,13 @@ Te podi anca reinpostar l\'avixo de notifica par tuti i osservati speciałi de �
 
 --
 Par canbiar łe inpostassion de i to osservati speciałi, visita
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Par cavar la pagina da i to osservati speciałi, visita
 $UNWATCHURL
 
 Par riscontri e ulteriore assistensa:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Scancela pagina',

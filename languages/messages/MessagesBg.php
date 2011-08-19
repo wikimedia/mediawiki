@@ -2166,16 +2166,16 @@ $NEWPAGE
 
 --
 За да промените настройките си за известявания чрез електронна поща, посетете
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 За да промените настройките на списъка си за наблюдение, посетете
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 За да изтриете страницата от списъка си за наблюдение, посетете
 $UNWATCHURL
 
 За обратна връзка и помощ:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Изтриване',

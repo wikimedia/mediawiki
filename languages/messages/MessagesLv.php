@@ -1753,13 +1753,13 @@ Tu arī vari atstatīt visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu
 
 --
 Lai izmainītu uzraugāmo lapu saraksta uzstādījumus:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Lai dzēstu lapu no uzraugāmo lapu saraksta:
 $UNWATCHURL
 
 Papildinformācija:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Dzēst lapu',

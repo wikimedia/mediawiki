@@ -870,7 +870,7 @@ $2',
 'createaccountreason'        => 'السبب:',
 'badretype'                  => 'كلمات السر التي أدخلتها لا تتطابق.',
 'userexists'                 => 'اسم المستخدم الذي تم إدخاله مستعمل بالفعل.
-اختر اسما مختلفا.',
+الرجاء اختيار اسم مختلف.',
 'loginerror'                 => 'خطأ في الدخول',
 'createaccounterror'         => 'تعذر إنشاء حساب المستخدم: $1',
 'nocookiesnew'               => 'تم إنشاء حساب المستخدم، ولكنك لست مسجل الدخول بعد.
@@ -1378,8 +1378,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
-'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفيا من الإداريين.
-انظر [[Special:IPBlockList|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
+'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفيا عن الإداريين.
+انظر [[Special:BlockList|قائمة منع الآيبي]] لترى عمليات المنع القائمة الآن.',
 
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',
@@ -2450,16 +2450,16 @@ $1',
 
 --
 لتغيير إعدادات إعلام البريد الإلكتروني الخاص بك، قم بزيارة
-{{fullurl: {{# الخاص: تفضيلات}}}}
+{{canonicalurl: {{# الخاص: تفضيلات}}}}
 
 لتغيير إعدادات الرصد الخاصة بك، قم بزيارة
-{{fullurl: {{# الخاص: الرصد}}/تحرير}}
+{{canonicalurl: {{# الخاص: الرصد}}/تحرير}}
 
 لحذف الصفحة من هيئة الرصد الخاصة بك، قم بزيارة
 $ أونواتشورل
 
 التغذية المرتدة، والحصول على مساعدة إضافية:
-{{fullurl: {{MediaWiki:Helppage}}}}',
+{{canonicalurl: {{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'حذف الصفحة',
@@ -4015,9 +4015,9 @@ $1',
 # Special:SpecialPages
 'specialpages'                   => 'الصفحات الخاصة',
 'specialpages-note'              => '----
-* Normal special pages.
+* صفحات خاصة عادية.
 * <span class="mw-specialpagerestricted">صفحات خاصة للمخولين.</span>
-* <span class="mw-specialpagecached">صفحات خاصة لبيانات مخزنة فقط.</span>',
+* <span class="mw-specialpagecached">صفحات خاصة لبيانات مخزنة فقط (قد تكون مهجورة).</span>',
 'specialpages-group-maintenance' => 'تقارير الصيانة',
 'specialpages-group-other'       => 'صفحات خاصة أخرى',
 'specialpages-group-login'       => 'دخول / تسجيل',

@@ -1824,10 +1824,10 @@ Nun vèninu mannati àutri canciamenti \'n caso di ultiriuri canciamenti, a menu
 
 --
 Pi mudificari li mpustazzioni dâ lista di l\'ussirvati spiciali, vìsita
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pi dari lu tò feedback e arricèviri ultiriuri assistenza:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Elìmina la pàggina',

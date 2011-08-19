@@ -1470,13 +1470,13 @@ e-mail адреси: $PAGEEDITOR_EMAIL
 
 --
 Сазламаларны денъиштирмек ичюн:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Саифени козетюв джедвелинден ёкъ этмек ичюн:
 $UNWATCHURL
 
 Ярдым ве теклифлер ичюн:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Саифени ёкъ эт',

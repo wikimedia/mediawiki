@@ -2011,13 +2011,13 @@ $NEWPAGE
 
 --
 Кэтиир сирэйдэриҥ тиһигин уларытарга маны көр:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Бу сирэйи кэтэбил тиһигиттэн соторго манна киир:
 $UNWATCHURL
 
 Көмөлөһүннэрэр уонна быһаартарар сир:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Сирэйи сот',

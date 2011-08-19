@@ -2136,13 +2136,13 @@ Također možete da resetujete zastavice za obaviještenja za sve Vaše praćene
 
 --
 Da promjenite podešavanja vezana za spisak praćenih članaka posjetite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Da obrišete stranicu iz Vašeg spiska praćenja posjetite
 $UNWATCHURL
 
 Fidbek i dalja pomoć:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Izbrišite stranicu',

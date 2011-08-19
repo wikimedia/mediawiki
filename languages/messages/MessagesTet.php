@@ -198,8 +198,8 @@ $messages = array(
 'protect'           => 'Proteje',
 'protect_change'    => 'muda',
 'protectthispage'   => "Proteje pájina ne'e",
-'unprotect'         => 'La proteje',
-'unprotectthispage' => "La proteje pájina ne'e",
+'unprotect'         => 'Muda protesaun',
+'unprotectthispage' => "Muda protesaun pájina ne'e nian",
 'newpage'           => 'Pájina foun',
 'talkpage'          => "Diskusaun kona-ba pájina ne'e",
 'talkpagelinktext'  => 'Diskusaun',
@@ -308,7 +308,8 @@ La haluha muda Ita-nia [[Special:Preferences|preferénsia]].",
 'createaccount'           => "Registrar uza-na'in",
 'gotaccount'              => "Ó iha konta ona? '''$1'''.",
 'gotaccountlink'          => 'Log in',
-'userexists'              => "Uza-na'in ne'e ona iha wiki. Favór ida lori naran seluk.",
+'userexists'              => "Naran uza-na'in ne'e ona iha wiki.
+Favór ida lori naran seluk.",
 'nosuchuser'              => 'Konta uza-na\'in (naran "$1") la iha.
 User names are case sensitive.
 Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',

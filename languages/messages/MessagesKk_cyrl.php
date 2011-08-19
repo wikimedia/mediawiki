@@ -1796,10 +1796,10 @@ $NEWPAGE
 
 ----
 Бақылау тізіміңіздің баптаулырын өзгерту үшін, мында келіп-кетіңіз:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Сын-пікір беру және былайғы жәрдем алу үшін:
-{{fullurl:{{{{ns:mediawiki}}:Helppage}}}}',
+{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Бетті жою',

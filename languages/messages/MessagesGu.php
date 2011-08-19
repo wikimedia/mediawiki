@@ -2083,13 +2083,13 @@ wiki: $PAGEEDITOR_WIKI
              તમારો મિત્ર {{SITENAME}} સૂચના પ્રક્રિયા   
  
 --
-તમારી ધ્યાનસૂચિ ના  વિક્લ્પ ગોઠવણ માટે  આ જુઓ {{fullurl:{{#special:EditWatchlist}}}}
+તમારી ધ્યાનસૂચિ ના  વિક્લ્પ ગોઠવણ માટે  આ જુઓ {{canonicalurl:{{#special:EditWatchlist}}}}
 
 ધ્યાનસૂચિમાંથી વિષ્ય હટાવવા , આ જુઓ  
 $UNWATCHURL
 
 મંતવ્યો અને આગળની મદદ માટે 
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'પાનું હટાવો',

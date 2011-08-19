@@ -1958,16 +1958,16 @@ Horrez gain, orrialdeen oharpen konfigurazioa leheneratu dezakezu jarraipen zerr
 
 --
 Zure epostaren jakinarazpenen konfigurazioa aldatzeko, ikus
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Zure jarraipen zerrendako konfigurazioa aldatzeko, ikus
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Orrialdea zure jarraipen zerrendatik ezabatzeko, ikus
 $UNWATCHURL
 
 Laguntza:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Orrialdea ezabatu',

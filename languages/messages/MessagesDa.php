@@ -602,7 +602,8 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'createaccountmail'          => 'via e-mail',
 'createaccountreason'        => 'Begrundelse:',
 'badretype'                  => 'De indtastede adgangskoder er ikke ens.',
-'userexists'                 => 'Det brugernavn du har valgt er allerede i brug. Vælg venligst et andet brugernavn.',
+'userexists'                 => 'Det brugernavn, du har valgt, er allerede i brug.
+Vælg venligst et andet brugernavn.',
 'loginerror'                 => 'Logon mislykket',
 'createaccounterror'         => 'Kunne ikke oprette konto: $1',
 'nocookiesnew'               => 'Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.',
@@ -2116,16 +2117,16 @@ På din overvågningsliste kan du også nulstille alle markeringer på de sider,
 
 --
 For at ændre dine indstillinger for e-mail-notifikationer, besøg
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 For at ændre indstillingerne for din overvågningsliste, besøg
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 For at slette siden fra din overvågningsliste, besøg
 $UNWATCHURL
 
 Tilbagemelding og yderligere hjælp:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Slet side',
@@ -3494,7 +3495,7 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 'specialpages-note'              => '----
 * Normale specialsider.
 * <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>
-* <span class="mw-specialpagecached">Specialsider der opdateres med jævne mellemrum.</span>',
+* <span class="mw-specialpagecached">Specialsider der opdateres med jævne mellemrum (kan være forældede).</span>',
 'specialpages-group-maintenance' => 'Vedligeholdelsesside',
 'specialpages-group-other'       => 'Andre specialsider',
 'specialpages-group-login'       => 'Opret bruger / logon',

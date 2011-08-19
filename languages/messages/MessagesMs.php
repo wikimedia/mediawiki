@@ -2121,16 +2121,16 @@ Anda juga boleh menetapkan semula penanda pemberitahuan bagi semua laman dalam s
 
 --
 Untuk mengubah tetapan pemberitahuan e-mel anda, lawati
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Untuk mengubah tetapan senarai pantau anda, lawati
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Untuk menghapuskan laman ini dari senarai pantau anda, lawati
 $UNWATCHURL
 
 Maklum balas dan bantuan:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Hapus laman',
