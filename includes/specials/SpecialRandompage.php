@@ -33,8 +33,7 @@ class RandomPage extends SpecialPage {
 	protected $extra = array(); // Extra SQL statements
 
 	public function __construct( $name = 'Randompage' ){
-		global $wgContentNamespaces;
-		$this->namespaces = $wgContentNamespaces;
+		$this->namespaces = MWNamespace::getContentNamespaces();
 		parent::__construct( $name );
 	}
 
