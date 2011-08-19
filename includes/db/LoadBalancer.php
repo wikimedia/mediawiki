@@ -140,10 +140,10 @@ class LoadBalancer {
 		foreach ( $lags as $i => $lag ) {
 			if ( $i != 0 ) {
 				if ( $lag === false ) {
-					wfDebug( "Server #$i is not replicating\n" );
+					wfDebugLog( 'replication', "Server #$i is not replicating\n" );
 					unset( $loads[$i] );
 				} elseif ( isset( $this->mServers[$i]['max lag'] ) && $lag > $this->mServers[$i]['max lag'] ) {
-					wfDebug( "Server #$i is excessively lagged ($lag seconds)\n" );
+					wfDebugLog( 'replication', "Server #$i is excessively lagged ($lag seconds)\n" );
 					unset( $loads[$i] );
 				}
 			}
@@ -241,6 +241,7 @@ class LoadBalancer {
 					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
 					if ( $i === false && count( $currentLoads ) != 0 )  {
 						# All slaves lagged. Switch to read-only mode
+						wfDebugLog( 'replication', 'All slaves lagged. Switch to read-only mode' );
 						$wgReadOnly = wfMessage( 'readonly_lag' )->useDatabase( false )->plain();
 						$i = $this->pickRandom( $currentLoads );
 						$laggedSlaveMode = true;
