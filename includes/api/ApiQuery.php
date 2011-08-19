@@ -374,7 +374,7 @@ class ApiQuery extends ApiBase {
 			);
 			if ( $this->iwUrl ) {
 				$title = Title::newFromText( $rawTitleStr );
-				$item['url'] = wfExpandUrl( $title->getFullURL() );
+				$item['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 			}
 			$intrwValues[] = $item;
 		}

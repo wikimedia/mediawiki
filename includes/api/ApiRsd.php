@@ -48,7 +48,7 @@ class ApiRsd extends ApiBase {
 		$service = array( 'apis' => $this->formatRsdApiList() );
 		ApiResult::setContent( $service, 'MediaWiki', 'engineName' );
 		ApiResult::setContent( $service, 'http://www.mediawiki.org/', 'engineLink' );
-		ApiResult::setContent( $service, wfExpandUrl( Title::newMainPage()->getFullURL() ), 'homePageLink' );
+		ApiResult::setContent( $service, Title::newMainPage()->getCanonicalUrl(), 'homePageLink' );
 
 		$result->setIndexedTagName( $service['apis'], 'api' );
 
@@ -98,7 +98,7 @@ class ApiRsd extends ApiBase {
 		$apis = array(
 			'MediaWiki' => array(
 				// The API link is required for all RSD API entries.
-				'apiLink' => wfExpandUrl( wfScript( 'api' ) ),
+				'apiLink' => wfExpandUrl( wfScript( 'api' ), PROTO_CURRENT ),
 
 				// Docs link is optional, but recommended.
 				'docs' => 'http://www.mediawiki.org/wiki/API',
