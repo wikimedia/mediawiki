@@ -239,12 +239,15 @@ class ChannelFeed extends FeedItem {
 	 * but can also be called separately.
 	 */
 	public function httpHeaders() {
-		global $wgOut;
+		global $wgOut, $wgVaryOnXFPForAPI;
 
 		# We take over from $wgOut, excepting its cache header info
 		$wgOut->disable();
 		$mimetype = $this->contentType();
 		header( "Content-type: $mimetype; charset=UTF-8" );
+		if ( $wgVaryOnXFPForAPI ) {
+			$wgOut->addVaryHeader( 'X-Forwarded-Proto' );
+		}
 		$wgOut->sendCacheControl();
 
 	}
@@ -273,7 +276,7 @@ class ChannelFeed extends FeedItem {
 		$this->httpHeaders();
 		echo '<?xml version="1.0"?>' . "\n";
 		echo '<?xml-stylesheet type="text/css" href="' .
-			htmlspecialchars( wfExpandUrl( "$wgStylePath/common/feed.css?$wgStyleVersion" ) ) .
+			htmlspecialchars( wfExpandUrl( "$wgStylePath/common/feed.css?$wgStyleVersion", PROTO_CURRENT ) ) .
 			'"?' . ">\n";
 	}
 }

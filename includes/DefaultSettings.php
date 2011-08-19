@@ -1753,9 +1753,9 @@ $wgUseESI = false;
 $wgUseXVO = false;
 
 /** Add X-Forwarded-Proto to the Vary and X-Vary-Options headers for API
- * requests. Use this if you have an SSL termination setup and want to split
- * the cache between HTTP and HTTPS for API requests. This does not affect
- * 'regular' requests.
+ * requests and RSS/Atom feeds. Use this if you have an SSL termination setup
+ * and need to split the cache between HTTP and HTTPS for API and feed requests
+ * in order to prevent cache pollution. This does not affect 'normal' requests.
  */
 $wgVaryOnXFPForAPI = false;
 
