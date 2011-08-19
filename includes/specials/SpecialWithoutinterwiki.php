@@ -84,7 +84,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 					'page_title AS title',
 					'page_title AS value' ),
 			'conds' => array ( 'll_title IS NULL',
-					'page_namespace' => NS_MAIN,
+					'page_namespace' => MWNamespace::getContentNamespaces(),
 					'page_is_redirect' => 0 ),
 			'join_conds' => array ( 'langlinks' => array (
 					'LEFT JOIN', 'll_from = page_id' ) )
