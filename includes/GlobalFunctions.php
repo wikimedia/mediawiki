@@ -437,6 +437,7 @@ function wfAppendQuery( $url, $query ) {
  * PROTO_HTTPS: Output a URL starting with https://
  * PROTO_RELATIVE: Output a URL starting with // (protocol-relative URL)
  * PROTO_CURRENT: Output a URL starting with either http:// or https:// , depending on which protocol was used for the current incoming request
+ * PROTO_CANONICAL: For URLs without a domain, like /w/index.php , use $wgCanonicalServer. For protocol-relative URLs, use the protocol of $wgCanonicalServer
  *
  * @todo this won't work with current-path-relative URLs
  * like "subdir/foo.html", etc.
@@ -446,21 +447,34 @@ function wfAppendQuery( $url, $query ) {
  * @return string Fully-qualified URL
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
-	global $wgServer;
+	global $wgServer, $wgCanonicalServer;
+	$serverUrl = $defaultProto === PROTO_CANONICAL ? $wgCanonicalServer : $wgServer;
+	
 	if ( $defaultProto === PROTO_CURRENT ) {
 		$defaultProto = WebRequest::detectProtocol() . '://';
 	}
 	
-	// Analyze $wgServer to obtain its protocol
-	$bits = wfParseUrl( $wgServer );
+	// Analyze $serverUrl to obtain its protocol
+	$bits = wfParseUrl( $serverUrl );
 	$serverHasProto = $bits && $bits['scheme'] != '';
+	
+	if ( $defaultProto === PROTO_CANONICAL ) {
+		if ( $serverHasProto ) {
+			$defaultProto = $bits['scheme'] . '://';
+		} else {
+			// $wgCanonicalServer doesn't have a protocol. This really isn't supposed to happen
+			// Fall back to HTTP in this ridiculous case
+			$defaultProto = PROTO_HTTP;
+		}
+	}
+	
 	$defaultProtoWithoutSlashes = substr( $defaultProto, 0, -2 );
 	
 	if( substr( $url, 0, 2 ) == '//' ) {
 		return $defaultProtoWithoutSlashes . $url;
 	} elseif( substr( $url, 0, 1 ) == '/' ) {
-		// If $wgServer is protocol-relative, prepend $defaultProtoWithoutSlashes, otherwise leave it alone
-		return ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $wgServer . $url;
+		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes, otherwise leave it alone
+		return ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $serverUrl . $url;
 	} else {
 		return $url;
 	}
