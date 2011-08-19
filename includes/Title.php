@@ -992,6 +992,10 @@ class Title {
 	 * Get the URL form for an internal link.
 	 * - Used in various Squid-related code, in case we have a different
 	 * internal hostname for the server from the exposed one.
+	 * 
+	 * This uses $wgInternalServer to qualify the path, or $wgServer
+	 * if $wgInternalServer is not set. If the server variable used is
+	 * protocol-relative, the URL will be expanded to http://
 	 *
 	 * @param $query String an optional query string
 	 * @param $variant String language variant of url (for sr, zh..)
@@ -1000,7 +1004,7 @@ class Title {
 	public function getInternalURL( $query = '', $variant = false ) {
 		global $wgInternalServer, $wgServer;
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
-		$url = $server . $this->getLocalURL( $query, $variant );
+		$url = wfExpandUrl( $server . $this->getLocalURL( $query, $variant ), PROTO_HTTP );
 		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
