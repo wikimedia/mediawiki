@@ -603,14 +603,14 @@ class WebRequest {
 	 * Return the request URI with the canonical service and hostname, path,
 	 * and query string. This will be suitable for use as an absolute link
 	 * in HTML or other output.
-	 *
-	 * NOTE: This will output a protocol-relative URL if $wgServer is protocol-relative
+	 * 
+	 * If $wgServer is protocol-relative, this will return a fully
+	 * qualified URL with the protocol that was used for this request.
 	 *
 	 * @return String
 	 */
 	public function getFullRequestURL() {
-		global $wgServer;
-		return $wgServer . $this->getRequestURL();
+		return wfExpandUrl( $this->getRequestURL(), PROTO_CURRENT );
 	}
 
 	/**

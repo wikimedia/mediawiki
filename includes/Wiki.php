@@ -187,7 +187,7 @@ class MediaWiki {
 					$title = SpecialPage::getTitleFor( $name, $subpage );
 				}
 			}
-			$targetUrl = $title->getFullURL();
+			$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 			// Redirect to canonical url, make it a 301 to allow caching
 			if ( $targetUrl == $request->getFullRequestURL() ) {
 				$message = "Redirect loop detected!\n\n" .
