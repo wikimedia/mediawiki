@@ -190,14 +190,14 @@ class DifferenceEngine {
 		# we'll use the application/x-external-editor interface to call
 		# an external diff tool like kompare, kdiff3, etc.
 		if ( $wgUseExternalEditor && $wgUser->getOption( 'externaldiff' ) ) {
-			global $wgServer, $wgScript, $wgLang;
+			global $wgCanonicalServer, $wgScript, $wgLang;
 			$wgOut->disable();
 			header ( "Content-type: application/x-external-editor; charset=UTF-8" );
-			$url1 = $this->mTitle->getFullURL( array(
+			$url1 = $this->mTitle->getCanonical( array(
 				'action' => 'raw',
 				'oldid' => $this->mOldid
 			) );
-			$url2 = $this->mTitle->getFullURL( array(
+			$url2 = $this->mTitle->getCanonical( array(
 				'action' => 'raw',
 				'oldid' => $this->mNewid
 			) );
@@ -206,7 +206,7 @@ class DifferenceEngine {
 			[Process]
 			Type=Diff text
 			Engine=MediaWiki
-			Script={$wgServer}{$wgScript}
+			Script={$wgCanonicalServer}{$wgScript}
 			Special namespace={$special}
 
 			[File]

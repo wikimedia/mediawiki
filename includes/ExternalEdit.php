@@ -45,7 +45,7 @@ class ExternalEdit {
 	 * Output the information for the external editor
 	 */
 	public function edit() {
-		global $wgOut, $wgScript, $wgScriptPath, $wgServer, $wgLang;
+		global $wgOut, $wgScript, $wgScriptPath, $wgCanonicalServer, $wgLang;
 		$wgOut->disable();
 		header( 'Content-type: application/x-external-editor; charset=utf-8' );
 		header( 'Cache-control: no-cache' );
@@ -56,11 +56,11 @@ class ExternalEdit {
 		if( $this->mode == "file" ) {
 			$type = "Edit file";
 			$image = wfLocalFile( $this->title );
-			$url = $image->getFullURL();
+			$url = $image->getCanonicalURL();
 			$extension = $image->getExtension();
 		} else {
 			$type = "Edit text";
-			$url = $this->title->getFullURL(
+			$url = $this->title->getCanonicalURL(
 				array( 'action' => 'edit', 'internaledit' => 'true' ) );
 			# *.wiki file extension is used by some editors for syntax
 			# highlighting, so we follow that convention
@@ -76,8 +76,8 @@ class ExternalEdit {
 [Process]
 Type=$type
 Engine=MediaWiki
-Script={$wgServer}{$wgScript}
-Server={$wgServer}
+Script={$wgCanonicalServer}{$wgScript}
+Server={$wgCanonicalServer}
 Path={$wgScriptPath}
 Special namespace=$special
 
