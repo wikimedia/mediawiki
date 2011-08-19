@@ -665,7 +665,7 @@ $user: user (object) whose email is being confirmed
 
 'ContribsPager::getQueryInfo': Before the contributions query is about to run
 &$pager: Pager object for contributions
-&queryInfo: The query for the contribs Pager
+&$queryInfo: The query for the contribs Pager
 
 'ContributionsLineEnding': Called before a contributions HTML line is finished
 $page: SpecialPage object for contributions
