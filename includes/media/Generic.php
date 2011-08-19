@@ -494,10 +494,10 @@ abstract class MediaHandler {
 		if( file_exists( $dstPath ) ) {
 			$thumbstat = stat( $dstPath );
 			if( $thumbstat['size'] == 0 || $retval != 0 ) {
+				$result = unlink( $dstPath );
 				wfDebugLog( 'thumbnail',
-					sprintf( 'Removing bad %d-byte thumbnail "%s"',
-						$thumbstat['size'], $dstPath ) );
-				unlink( $dstPath );
+					sprintf( 'Removing bad %d-byte thumbnail "%s". unlink() result: %d',
+						$thumbstat['size'], $dstPath, $result ) );
 				return true;
 			}
 		}
@@ -588,43 +588,43 @@ abstract class ImageHandler extends MediaHandler {
 
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
-		
+
 		if ( isset( $params['height'] ) && $params['height'] != -1 ) {
 			# Height & width were both set
 			if ( $params['width'] * $srcHeight > $params['height'] * $srcWidth ) {
 				# Height is the relative smaller dimension, so scale width accordingly
 				$params['width'] = self::fitBoxWidth( $srcWidth, $srcHeight, $params['height'] );
-				
+
 				if ( $params['width'] == 0 ) {
 					# Very small image, so we need to rely on client side scaling :(
 					$params['width'] = 1;
 				}
-				
+
 				$params['physicalWidth'] = $params['width'];
 			} else {
 				# Height was crap, unset it so that it will be calculated later
 				unset( $params['height'] );
 			}
 		}
-		
+
 		if ( !isset( $params['physicalWidth'] ) ) {
 			# Passed all validations, so set the physicalWidth
 			$params['physicalWidth'] = $params['width'];
 		}
-		
+
 		# Because thumbs are only referred to by width, the height always needs
 		# to be scaled by the width to keep the thumbnail sizes consistent,
 		# even if it was set inside the if block above
-		$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, 
+		$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight,
 			$params['physicalWidth'] );
 
-		# Set the height if it was not validated in the if block higher up 
+		# Set the height if it was not validated in the if block higher up
 		if ( !isset( $params['height'] ) || $params['height'] == -1 ) {
 			$params['height'] = $params['physicalHeight'];
 		}
 
-		
-		if ( !$this->validateThumbParams( $params['physicalWidth'], 
+
+		if ( !$this->validateThumbParams( $params['physicalWidth'],
 				$params['physicalHeight'], $srcWidth, $srcHeight, $mimeType ) ) {
 			return false;
 		}
