@@ -987,6 +987,13 @@ class Title {
 	public function escapeFullURL( $query = '' ) {
 		return htmlspecialchars( $this->getFullURL( $query ) );
 	}
+	
+	/**
+	 * HTML-escaped version of getCanonicalURL()
+	 */
+	public function escapeCanonicalURL( $query = '', $variant = false ) {
+		return htmlspecialchars( $this->getCanonicalURL( $query, $variant ) );
+	}
 
 	/**
 	 * Get the URL form for an internal link.
@@ -1006,6 +1013,22 @@ class Title {
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
 		$url = wfExpandUrl( $server . $this->getLocalURL( $query, $variant ), PROTO_HTTP );
 		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query ) );
+		return $url;
+	}
+
+	/**
+	 * Get the URL for a canonical link, for use in things like IRC and
+	 * e-mail notifications. Uses $wgCanonicalServer and the
+	 * GetCanonicalURL hook.
+	 * 
+	 * @param $query string An optional query string
+	 * @param $variant string Language variant of URL (for sr, zh, ...)
+	 * @return string The URL
+	 */
+	public function getCanonicalURL( $query = '', $variant = false ) {
+		global $wgCanonicalServer;
+		$url = $wgCanonicalServer . $this->getLocalURL( $query, $variant );
+		wfRunHooks( 'GetCanonicalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
