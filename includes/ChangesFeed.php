@@ -34,6 +34,11 @@ class ChangesFeed {
 			return false;
 		}
 
+		if( !array_key_exists( $this->format, $wgFeedClasses ) ) {
+			// falling back to atom
+			$this->format = 'atom';
+		}
+
 		$feedTitle = "$wgSitename  - {$title} [$wgLanguageCode]";
 		return new $wgFeedClasses[$this->format](
 			$feedTitle, htmlspecialchars( $description ), $url );
