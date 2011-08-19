@@ -310,6 +310,8 @@ $magicWords = array(
 	'plural'                 => array( 0,    'PLURAL:'                ),
 	'fullurl'                => array( 0,    'FULLURL:'               ),
 	'fullurle'               => array( 0,    'FULLURLE:'              ),
+	'canonicalurl'           => array( 0,    'CANONICALURL:'          ),
+	'canonicalurle'          => array( 0,    'CANONICALURLE:'         ),
 	'lcfirst'                => array( 0,    'LCFIRST:'               ),
 	'ucfirst'                => array( 0,    'UCFIRST:'               ),
 	'lc'                     => array( 0,    'LC:'                    ),
@@ -2772,16 +2774,16 @@ You could also reset the notification flags for all your watched pages on your w
 
 --
 To change your email notification settings, visit
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 To change your watchlist settings, visit
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 To delete the page from your watchlist, visit
 $UNWATCHURL
 
 Feedback and further assistance:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Delete page',

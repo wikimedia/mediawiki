@@ -39,18 +39,30 @@ $wgVersion = '1.19alpha';
 $wgSitename         = 'MediaWiki';
 
 /**
- * URL of the server. It will be automatically built including https mode.
+ * URL of the server.
  *
  * Example:
  * <code>
- * $wgServer = http://example.com
+ * $wgServer = 'http://example.com';
  * </code>
  *
  * This is usually detected correctly by MediaWiki. If MediaWiki detects the
  * wrong server, it will redirect incorrectly after you save a page. In that
  * case, set this variable to fix it.
+ * 
+ * If you want to use protocol-relative URLs on your wiki, set this to a
+ * protocol-relative URL like '//example.com' and set $wgCanonicalServer
+ * to a fully qualified URL.
  */
 $wgServer = WebRequest::detectServer();
+
+/**
+ * Canonical URL of the server, to use in IRC feeds and notification e-mails. 
+ * Must be fully qualified, even if $wgServer is protocol-relative.
+ * 
+ * Defaults to $wgServer, expanded to a fully qualified http:// URL if needed.
+ */
+$wgCanonicalServer = false;
 
 /************************************************************************//**
  * @name   Script path settings
@@ -119,6 +131,7 @@ $wgRedirectScript   = false;
  * Defaults to "{$wgScriptPath}/load{$wgScriptExtension}".
  */
 $wgLoadScript           = false;
+
 
 /**@}*/
 

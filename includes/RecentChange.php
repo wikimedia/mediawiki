@@ -682,7 +682,8 @@ class RecentChange {
 	}
 
 	public function getIRCLine() {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki,
+			$wgCanonicalServer, $wgScript;
 
 		if( $this->mAttribs['rc_type'] == RC_LOG ) {
 			$titleObj = Title::newFromText( 'Log/' . $this->mAttribs['rc_log_type'], NS_SPECIAL );
@@ -695,19 +696,18 @@ class RecentChange {
 		if( $this->mAttribs['rc_type'] == RC_LOG ) {
 			$url = '';
 		} else {
+			$url = $wgCanonicalServer . $wgScript;
 			if( $this->mAttribs['rc_type'] == RC_NEW ) {
-				$url = 'oldid=' . $this->mAttribs['rc_this_oldid'];
+				$query = '?oldid=' . $this->mAttribs['rc_this_oldid'];
 			} else {
-				$url = 'diff=' . $this->mAttribs['rc_this_oldid'] . '&oldid=' . $this->mAttribs['rc_last_oldid'];
+				$query = '?diff=' . $this->mAttribs['rc_this_oldid'] . '&oldid=' . $this->mAttribs['rc_last_oldid'];
 			}
 			if ( $wgUseRCPatrol || ( $this->mAttribs['rc_type'] == RC_NEW && $wgUseNPPatrol ) ) {
-				$url .= '&rcid=' . $this->mAttribs['rc_id'];
+				$query .= '&rcid=' . $this->mAttribs['rc_id'];
 			}
-			// XXX: *HACK* this should use getFullURL(), hacked for SSL madness --brion 2005-12-26
-			// XXX: *HACK^2* the preg_replace() undoes much of what getInternalURL() does, but we 
-			// XXX: need to call it so that URL paths on the Wikimedia secure server can be fixed
-			// XXX: by a custom GetInternalURL hook --vyznev 2008-12-10
-			$url = preg_replace( '/title=[^&]*&/', '', $titleObj->getInternalURL( $url ) );
+			// HACK: We need this hook for WMF's secure server setup
+			wfRunHooks( 'IRCLineURL', array( &$url, &$query ) );
+			$url .= $query;
 		}
 
 		if( isset( $this->mExtra['oldSize'] ) && isset( $this->mExtra['newSize'] ) ) {
