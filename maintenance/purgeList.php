@@ -52,7 +52,7 @@ class PurgeList extends Maintenance {
 			} elseif ( $page !== '' ) {
 				$title = Title::newFromText( $page );
 				if ( $title ) {
-					$url = $title->getFullUrl();
+					$url = $title->getInternalUrl();
 					$this->output( "$url\n" );
 					$urls[] = $url;
 					if ( $this->getOption( 'purge' ) ) {
@@ -105,7 +105,7 @@ class PurgeList extends Maintenance {
 			$urls = array();
 			foreach( $result as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$url = $title->getFullUrl();
+				$url = $title->getInternalUrl();
 				$urls[] = $url;
 			}
 
