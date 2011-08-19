@@ -2394,16 +2394,16 @@ $NEWPAGE
 
 --
 Да бисте променили поставке у вези с е-обавештењима, посетите
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Да бисте променили поставке у вези са списком надгледања, посетите
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Да бисте уклонили ову страницу са списка надгледања, посетите
 $UNWATCHURL
 
 Подршка и даља помоћ:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Обриши страницу',

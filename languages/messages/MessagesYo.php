@@ -1637,16 +1637,16 @@ Kò ní sí ìfitọ́nilétí míràn mọ́ fún àyípadà ọjọ́ọwájú
 ---
 
 Láti ṣàyípadà ìtò ìṣeàkíyèsí e-mail yín, ẹ lọ sí
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Láti ṣèyípadà ìtò ìmójútó yín, ẹ lọ sí
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Láti ṣèparẹ́ ojúewé náà kúrò nínú ìmjútó yín, ẹ lọ sí
 $UNWATCHURL
 
 Fún ìrànwọ́:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Ìparẹ́ ojúewé',

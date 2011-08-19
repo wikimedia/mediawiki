@@ -1918,12 +1918,12 @@ Dien früntelk {{SITENAME}} Becheedtälsystem
 --
 
 Uum do Ienstaalengen fon dien Beooboachtengslieste antoupaasjen, besäik
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Uum ju Siede fon dien Kontrollieste tou läskjen, besäik
 $UNWATCHURL
 
-Touräächmäldengen un wiedere Hälpe: {{fullurl:{{MediaWiki:Helppage}}}}',
+Touräächmäldengen un wiedere Hälpe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Siede läskje',

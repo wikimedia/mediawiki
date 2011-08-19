@@ -1372,9 +1372,9 @@ Is waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seyt
              Dei freindliches {{SITENAME}}-Benoachrichtigungssystem
 
 --
-Im de Einstellunga denner Beobachtungsliste oazupoaßa, besiche: {{fullurl:{{#special:EditWatchlist}}}}
+Im de Einstellunga denner Beobachtungsliste oazupoaßa, besiche: {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Rickmeldungen und wettere Helfe: {{fullurl:{{MediaWiki:Helppage}}}}',
+Rickmeldungen und wettere Helfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Seyte läscha',

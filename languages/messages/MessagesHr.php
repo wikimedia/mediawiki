@@ -2209,13 +2209,13 @@ Postavke za izvješćivanje možete resetirati za sve praćene stranice svog pop
 
 --
 Za promjene svog popisa praćenja, posjetite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Za brisanje stranica iz svog popisa praćenja, posjetite
 $UNWATCHURL
 
 Za povratne informacije i pomoć posjetite:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Izbriši stranicu',

@@ -1053,8 +1053,8 @@ $NEWPAGE
 In tlapatlaliztli īxtlamatiliztli cah: $PAGESUMMARY $PAGEMINOREDIT
  
 Xicnotzāz in tlapatlani:
-Correo electrónico: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
-Huiqui: {{fullurl:User:$PAGEEDITOR}}
+Correo electrónico: {{canonicalurl:Special:Emailuser|target=$PAGEEDITOR}}
+Huiqui: {{canonicalurl:User:$PAGEEDITOR}}
 
 Ahmo onyez occē tēmachitīliztli ītech occē tlapatlaliztli, zan mā tiquihitta inīn āmoxtli yancuīcān.
 Nō tihuelīti quitlahtlālīz, in tēmachitīliztli in mochi tlachixqui mozāzanilhuīc in motlachiyaliz āmatl.
@@ -1063,13 +1063,13 @@ Nō tihuelīti quitlahtlālīz, in tēmachitīliztli in mochi tlachixqui mozāza
 
 --
 Ic ticpatlaz in tlachiyaliztli motlapōhualāma, xiquihitta:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Ic ticpolōz in āmatl in tlachiyaliztli motlapōhualāma, xiquihitta:
 $UNWATCHURL
 
 Tētlamachītīliztli īhuān oc yeh tēpalehuiliztli:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Ticpolōz inīn zāzanilli',

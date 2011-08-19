@@ -1404,10 +1404,10 @@ Heta tu vê guherandinê senekê, mêsajên din ji ber ku guherandinê wê rûpe
 
 --
 Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
-{{fullurl:{{#special:EditWatchlist}}}} seke.
+{{canonicalurl:{{#special:EditWatchlist}}}} seke.
 
 "Feedback" û alîkarîyê din:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Rûpelê jê bibe',

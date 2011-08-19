@@ -1978,13 +1978,13 @@ $NEWPAGE
 
 --
 צו ענדערן אייער אויפֿפאסונג ליסטע, באזוכט
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 כדי אויסמעקן דעם בלאט פון אײַער אויפֿפאַסונג ליסטע, באַזוכט
 $UNWATCHURL
 
 פאר מער הילף:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'מעק אויס בלאט',

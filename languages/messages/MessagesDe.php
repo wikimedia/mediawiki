@@ -2324,13 +2324,13 @@ Es werden dir solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du 
              Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
-Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{fullurl:{{#special:Preferences}}}}
+Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{canonicalurl:{{#special:Preferences}}}}
 
-Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{fullurl:{{#special:EditWatchlist}}}}
+Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL
 
-Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
+Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Seite löschen',

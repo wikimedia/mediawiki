@@ -1700,13 +1700,13 @@ $NEWPAGE
 
 --
 Тонь мельгеваномацень латцемасна полафтоманкса сашентт
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Лопать тонь мельгеваномастот нардаманди сашентт
 $UNWATCHURL
 
 Азома мекпяли ди иля лезкс:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Нардамс лопать',

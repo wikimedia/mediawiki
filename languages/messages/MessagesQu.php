@@ -2143,16 +2143,16 @@ Kay p\'anqata mana musuqmanta watukamuptiykiqa, manam huk hukchasqakunamanta wil
 
 --
 E-chaski willaykuy allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
-{{fullurl:{{#special:Preferences}}}} 
+{{canonicalurl:{{#special:Preferences}}}} 
 
 Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 P\'anqata watiqana sutisuyuykimanta qichunaykipaqqa kay p\'anqatam qhaway:
 $UNWATCHURL
 
 Yanapasunaykipaq:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => "Kay p'anqata qulluy",

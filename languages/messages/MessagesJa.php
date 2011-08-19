@@ -2349,16 +2349,16 @@ $NEWPAGE
 
 --
 メール通知の設定は、次のページから変更してください。
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 ウォッチリストの設定は、次のページから変更して下さい。
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 このページは、次のページでウォッチリストから除去することが出来ます。
 $UNWATCHURL
 
 ご意見、お問い合わせ：
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'ページを削除',

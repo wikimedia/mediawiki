@@ -1836,11 +1836,11 @@ $NEWPAGE
              Сістэма апавяшчэнняў {{SITENAME}}
 
 --
-Настаўленні спісу назіранага: {{fullurl:{{#special:EditWatchlist}}}}
+Настаўленні спісу назіранага: {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Выняцце старонкі з ліку назіраных: $UNWATCHURL
 
-Зваротная сувязь і далейшая дапамога: {{fullurl:{{MediaWiki:Helppage}}}}',
+Зваротная сувязь і далейшая дапамога: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Сцерці старонку',

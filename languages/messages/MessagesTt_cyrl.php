@@ -1721,16 +1721,16 @@ $NEWPAGE
 
 --
 Хәбәр итүләр көйләүләрен үзгәртү:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Күзәтү исемлеге көйләүләрен үзгәртү:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Битне сезнең күзәтү исемлегездән бетерү:
 $UNWATCHURL
 
 Элемтә һәм ярдәм:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Битне бетерү',

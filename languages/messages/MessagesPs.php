@@ -1581,13 +1581,13 @@ Contact the editor:
 
 --
 د خپل کتنلړ د امستنو د بدلون لپاره،
-{{fullurl:{{#special:EditWatchlist}}}} نه ليدنه وکړۍ
+{{canonicalurl:{{#special:EditWatchlist}}}} نه ليدنه وکړۍ
 
 د خپل کتنلړ د مخونو د ړنګولو لپاره،
 $UNWATCHURL  نه ليدنه وکړۍ
 
 انګېرنې او نورې مرستې:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'پاڼه ړنګول',

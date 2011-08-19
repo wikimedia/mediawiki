@@ -2147,16 +2147,16 @@ Srdačan pozdrav, {{SITENAME}}
 
 --
 Da biste promenili postavke u vezi s e-obaveštenjima, posetite
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Da biste promenili postavke u vezi sa spiskom nadgledanja, posetite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Da biste uklonili ovu stranicu sa spiska nadgledanja, posetite
 $UNWATCHURL
 
 Podrška i dalja pomoć:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Obriši stranicu',

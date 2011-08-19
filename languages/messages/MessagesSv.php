@@ -731,7 +731,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'createaccountreason'        => 'Orsak:',
 'badretype'                  => 'De lösenord du uppgett överenstämmer inte med varandra.',
 'userexists'                 => 'Det valda användarnamnet används redan.
-Välj ett annat namn.',
+Var god välj ett annat namn.',
 'loginerror'                 => 'Inloggningsproblem',
 'createaccounterror'         => 'Kunde inte skapa konto: $1',
 'nocookiesnew'               => 'Användarkontot skapades, men du är inte inloggad.
@@ -2274,16 +2274,16 @@ Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i di
 
 --
 För att ändra inställningarna för dina uppdateringar via e-post, besök
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 För att ändra inställningarna i din bevakningslista, besök
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 För att radera sidan från din bevakningslista, besök
 $UNWATCHURL
 
 Feedback och ytterligare hjälp:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Ta bort sida',
@@ -3700,8 +3700,8 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'specialpages'                   => 'Specialsidor',
 'specialpages-note'              => '----
 * Normala specialsidor.
-* <strong class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</strong>
-* <span class="mw-specialpagecached">Endast cachade specialsidor.</span>',
+* <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>
+* <span class="mw-specialpagecached">Cachade specialsidor (kan vara föråldrade).</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other'       => 'Övriga specialsidor',
 'specialpages-group-login'       => 'Inloggning/registrering',

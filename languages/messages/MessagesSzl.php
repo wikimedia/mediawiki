@@ -1525,10 +1525,10 @@ Možeš tyž zresetować wšyjstke flagi powjadůmjyń na swojej liśće zajtůw
 
 --
 Kejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš pozůr, uodwjydź
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pomoc:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Wyćep artikel',

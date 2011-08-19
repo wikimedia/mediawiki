@@ -1618,10 +1618,10 @@ $NEWPAGE
 
 --
 Διὰ τὸ ἀλλάξειν τὰς ῥυθμίσεις τὴς ἐφοροδιαλογῆς σου, ἐπίσκεψαι τὸ
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Ἀνάδρασις καὶ περαιτέρω βοήθεια:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Διαγράφειν τὴν δέλτον',

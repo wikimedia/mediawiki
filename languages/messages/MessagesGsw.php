@@ -2006,13 +2006,13 @@ Uf Dyyre Beobachtigssyte chasch d Beobachtigsmarker fir alli Syte zrucksetze, wu
              Dyy fryndli {{SITENAME}}-Nochrichtesyschtem
 
 ---
-Go d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{fullurl:Special:Watchlist/edit}}
+Go d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{canonicalurl:Special:Watchlist/edit}}
 
 Go d Syte us Dyyre Beobachtigslischte uuseneh, gang uf
 $UNWATCHURL
 
 Ruckmäldig un wyteri Hilf:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Syte lösche',

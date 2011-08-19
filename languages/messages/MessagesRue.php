@@ -1973,16 +1973,16 @@ $NEWPAGE
 
 --
 Змінити наставлїня імейловых повідомлїнь можете на
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Наставлїня слїдованых сторінок можете змінити на
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Сторінку можете із своїх слїдованых вылучіти на
 $UNWATCHURL
 
 Порада і контакт:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Змазати сторінку',

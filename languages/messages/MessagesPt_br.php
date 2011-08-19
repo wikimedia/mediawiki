@@ -1121,7 +1121,7 @@ Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullu
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-no-diff'      => "Você não pode ver esta comparação porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de supressão].
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de supressão].
 Por ser um administrador, você ainda pode [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-suppressed-unhide-diff'  => "Uma das revisões deste diferencial foi '''suprimido'''.
 Podem haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
@@ -2261,22 +2261,22 @@ O seu sistema de notificação amigável da {{SITENAME}}
 
 --
 Para alterar as suas preferências das notificações por correio electrónico, visite
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Para alterar as suas preferências das páginas vigiadas, visite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Para retirar a página da lista de páginas vigiadas, visite
 $UNWATCHURL
 
 Para comentários e pedidos de ajuda:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Eliminar página',
 'confirm'                => 'Confirmar',
 'excontent'              => "o conteúdo era: '$1'",
-'excontentauthor'        => "o conteúdo era: '$1' (e o único editor era '[[Special:Contributions/$2|$2]]')",
+'excontentauthor'        => "o conteúdo era: '$1' (e o único editor era '[[{{#Special:Contributions}}/$2|$2]]')",
 'exbeforeblank'          => "o conteúdo antes de esvaziar era: '$1'",
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',

@@ -721,7 +721,8 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'createaccountmail'          => 'per e-post',
 'createaccountreason'        => 'Årsak:',
 'badretype'                  => 'Passordene samsvarte ikke.',
-'userexists'                 => 'Brukernavnet er allerede i bruk. Velg et nytt.',
+'userexists'                 => 'Brukernavnet er allerede i bruk.
+Velg et annet brukernavn.',
 'loginerror'                 => 'Innloggingsfeil',
 'createaccounterror'         => 'Kunne ikke opprette konto: $1',
 'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem p åfor å kunne logge på med ditt nye brukernavn og passord.',
@@ -2255,16 +2256,16 @@ Du kan også fjerne varslingsflagg for alle overvåkede sider i overvåkningslis
 
 --
 For å endre innstillingene for e-postvarsler, se
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 For å endre innstillingene for overvåkningslisten, se
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 For å slette en side fra overvåkningssiden, se
 $UNWATCHURL
 
 Tilbakemelding og videre assistanse:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Slett side',
@@ -3683,10 +3684,10 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 
 # Special:SpecialPages
 'specialpages'                   => 'Spesialsider',
-'specialpages-note'              => '---
-Normale spesialsider.
+'specialpages-note'              => '----
+* Normale spesialsider.
 * <span class="mw-specialpagerestricted">Spesialsider med begrenset tilgang.</span>
-* <span class="mw-specialpagecached">Spesialsider som oppdateres periodisk.</span>',
+* <span class="mw-specialpagecached">Spesialsider som oppdateres periodisk (kan være foreldede).</span>',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Innlogging / registrering',
@@ -3787,5 +3788,6 @@ Dette skjer vanligvis når kategorien har blitt lagt til siden gjennom en mal.',
 'ajax-category-already-present' => 'Denne siden tilhører allerede kategorien $1',
 'ajax-category-hook-error'      => 'En lokal funksjon hindret endringene fra å bli lagret',
 'ajax-api-error'                => 'API-en returnerte en feilmelding: $1: $2',
+'ajax-api-unknown-error'        => 'API-et returnerte en ukjent feil.',
 
 );

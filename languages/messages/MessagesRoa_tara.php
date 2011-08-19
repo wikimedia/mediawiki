@@ -2028,16 +2028,16 @@ Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollate
 
 --
 Pe cangià le \'mbostaziune de notifeche de l\'email toje, vè vide
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Pe cangià le \'mbostaziune de l\'elenghe de le pàggene condrollate tune, vè vide
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pe scangellà \'a pàgene da \'a liste de le pàggene condrollate, vè vide
 $UNWATCHURL
 
 Segnalaziune e otre assistenze:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => "Scangille 'a pàgene",

@@ -1501,10 +1501,10 @@ $NEWPAGE
 
 --
 Барои танзимоти феҳристи пайгириҳоятон биравед ба
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Пешниҳодот ва кӯмаки бештар:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Ҳазфи саҳифа',

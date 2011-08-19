@@ -2361,16 +2361,16 @@ Ene schöne Jroß {{GRAMMAR:vun|{{SITENAME}}}}.
 
 -- 
 Öm de Enshtällonge för Nohreeschet aan Desch ze ändere, jangk op:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Do kanns hee Ding Oppassliss ändere:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Öm di Sigg vun Dinger Oppassliss ze schmieße:
 $UNWATCHURL
 
 Do kanns hee noh Hölp luure:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Schmieß die Sigg jetz fott',

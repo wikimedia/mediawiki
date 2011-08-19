@@ -2060,16 +2060,16 @@ Os digwydd mwy o olygiadau i\'r dudalen cyn i chi ymweld â hi, ni chewch ragor 
 
 --
 I newid eich gosodiadau negeseuon hysbysu, ewch i 
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 I newid eich gosodiadau gwylio, ewch i
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 I dynnu\'r dudalen oddi ar eich rhestr wylio, ewch i
 $UNWATCHURL
 
 Am fwy o gymorth ac adborth:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Dilëer y dudalen',

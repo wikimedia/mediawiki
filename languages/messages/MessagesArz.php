@@ -2147,13 +2147,13 @@ $NEWPAGE
 
 --
 علشان تغيّر ليستة المراقبه بتاعتك, زور
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 علشان تمسح الصفحه من على ليستة مراقبتك, زور
 $UNWATCHURL
 
 الfeedback و مساعده اكتر:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'امسح الصفحه',

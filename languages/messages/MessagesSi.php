@@ -2157,16 +2157,16 @@ You could also reset the notification flags for all your watched pages on your w
 
 --
 To change your email notification settings, visit
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 To change your watchlist settings, visit
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 To delete the page from your watchlist, visit
 $UNWATCHURL
 
 Feedback and further assistance:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'පිටුව මකා දමන්න',

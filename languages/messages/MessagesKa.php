@@ -2033,13 +2033,13 @@ $NEWPAGE
 
 --
 თქვენი კონტროლის სიის შესასწორებლად იხილეთ
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 თქვენი კონტროლის სიიდან გვერდის ამოშლა
 $UNWATCHURL
 
 დამატებითი ინფორმაცია
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'გვერდის წაშლა',

@@ -2232,13 +2232,13 @@ Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron 
 
 --
 W celu zmiany ustawień swojej listy obserwowanych odwiedź
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Usunięcie strony z listy obserwowanych możliwe jest na stronie
 $UNWATCHURL
 
 Pomoc
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Usuń stronę',

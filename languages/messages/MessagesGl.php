@@ -2214,17 +2214,17 @@ Pode borrar os indicadores de aviso de notificación para o conxunto das páxina
 
 --
 Para cambiar as notificacións por correo electrónico, visite
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 
 Para cambiar a súa lista de vixilancia, visite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Para borrar a páxina da súa lista de vixilancia, visite
 $UNWATCHURL
 
 Axuda:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Borrar a páxina',

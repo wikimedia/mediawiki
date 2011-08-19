@@ -2015,13 +2015,13 @@ Móźoś teke chórgojcki powěźeńkow za wšykne twóje wobglědowane boki.
              Twój pśijaśelny powěsćowy system {{SITENAME}}
 --
 Aby nastajenja twójeje wobglědowańki změnił, woglědaj:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Aby se bok z twójeje wobglědowańki wulašował, woglědaj se
 $UNWATCHURL
 
 Pšašanja a dalšna pomoc:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Bok wulašowaś',

@@ -2429,14 +2429,14 @@ $NEWPAGE
 دوستدار شما، سامانهٔ آگاهی‌رسانی {{SITENAME}}
 
 --
-برای تغییر تنظیمات فهرست آگاهی‌رسانی رایانامه‌ای به {{fullurl:{{#special:EditWatchlist}}}} بروید.
+برای تغییر تنظیمات فهرست آگاهی‌رسانی رایانامه‌ای به {{canonicalurl:{{#special:EditWatchlist}}}} بروید.
 
-برای تغییر تنظیمات فهرست پی‌گیری‌هایتان به {{fullurl:{{#special:EditWatchlist}}}} بروید.
+برای تغییر تنظیمات فهرست پی‌گیری‌هایتان به {{canonicalurl:{{#special:EditWatchlist}}}} بروید.
 
 برای حذف صفحه از فهرست پی‌گیری‌هایتان به $UNWATCHURL بروید.
 
 بازخورد و کمک بیشتر:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'حذف صفحه',

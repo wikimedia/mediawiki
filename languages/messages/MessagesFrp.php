@@ -2325,16 +2325,16 @@ Vos pouede asse-ben tornar inicialisar los drapéls de notificacion por totes le
 
 --
 Por changiér los paramètres de notificacion per mèssageria èlèctronica, visitâd
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Por changiér los paramètres de voutra lista de survelyence, visitâd
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Por suprimar la pâge de voutra lista de survelyence, visitâd
 $UNWATCHURL
 
 Retôrn et assistance :
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Suprimar la pâge',

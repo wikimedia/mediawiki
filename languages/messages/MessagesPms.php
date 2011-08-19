@@ -1994,13 +1994,13 @@ Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che
 
 --
 Për cangé la configurassion ëd lòn che as ten sot euj che a vada ansima a
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Për scancelé la pàgina da lòn ch\'a ten sot euj, ch\'a vìsita
 $UNWATCHURL
 
 Për fé dle comunicassion ëd servissi e avèj pì d\'agiut:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Scancela pàgina',

@@ -1988,15 +1988,15 @@ $NEWPAGE
 
 --
 अपन ई-पत्र सूचना प्रकार बदलबाक लेल देखू
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 अपन साकांक्ष-सूची सूचना प्रकार बदलबाक लेल देखू
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 अपन साकांक्ष-सूचीसँ कोनो पन्ना मेटेबाक लेल देखू
 $UNWATCHURL
 
 अपन अनुभव बतेबा वा कोनो सहायता लेल:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'पन्ना मेटाउ',

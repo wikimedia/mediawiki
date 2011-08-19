@@ -2130,15 +2130,15 @@ $NEWPAGE
 
 --
 要更改您的邮件通知设置，请访问
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 要改变您的监视列表设置，请访问
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 要删除您监视列表中的该页面，请访问
 $UNWATCHURL
 
 反馈和进一步的帮助:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => '删除页面',

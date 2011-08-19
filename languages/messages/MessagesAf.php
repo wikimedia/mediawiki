@@ -2143,13 +2143,13 @@ U kan ook die waarskuwingsvlag op u dophoulys verstel.
 
 --
 U kan u dophoulys wysig by:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Om die bladsy vanaf u dophoulys te verwyder, besoek:
 $UNWATCHURL
 
 Terugvoer en verdere bystand:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Skrap bladsy',

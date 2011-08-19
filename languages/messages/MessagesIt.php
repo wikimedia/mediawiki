@@ -2172,16 +2172,16 @@ Non verranno inviate altre notifiche in caso di ulteriori cambiamenti, a meno ch
 
 --
 Per modificare le impostazioni delle notifiche via e-mail, visita 
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Per modificare la lista degli osservati speciali, visita 
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Per rimuovere la pagina dalla lista degli osservati speciali, visita
 $UNWATCHURL
 
 Per commentare e ricevere aiuto:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Cancella pagina',

@@ -1335,13 +1335,13 @@ Is féidir freisin na bratacha fógartha a athrú do gach leathanach ar do liost
 
 --
 Chun socruithe do liosta faire a athrú, tabhair cuairt ar
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Chun an leathanach a bhaint de do liosta faire, tabhair cuairt ar
 $UNWATCHURL
 
 Aiseolas agus a thuilleadh cabhrach:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Scrios an leathanach',

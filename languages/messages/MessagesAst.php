@@ -2040,16 +2040,16 @@ El to abertable sistema de notificación de {{SITENAME}}
 
 --
 Pa camudar les preferencies d\'avisos per corréu, visita
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Pa camudar la configuración de la to llista de vixilancia, visita
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pa desaniciar la páxina de la to llista de vixilancia, visita
 $UNWATCHURL
 
 Más ayuda y sofitu:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Esborrar páxina',

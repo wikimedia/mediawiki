@@ -2372,16 +2372,16 @@ Tenzij u deze pagina bezoekt, komen er geen verdere berichten. Op uw volglijst k
 
 --
 U kunt uw e-mailinstellingen wijzigen op:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 U kunt uw volglijstinstellingen wijzigen op:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 U kunt de pagina van uw volglijst verwijderen via de volgende verwijzing:
 $UNWATCHURL
 
 Feedback en andere assistentie:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Deze pagina verwijderen',

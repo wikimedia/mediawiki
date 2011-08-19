@@ -1790,7 +1790,7 @@ Mun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun.
 Pikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:Husus:Watchlist|edit=yes}}
 
 Asupan jeung bantuan salajengna:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Hapus kaca',

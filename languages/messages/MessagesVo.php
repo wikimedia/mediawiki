@@ -1738,10 +1738,10 @@ Kanol i geükön nunamastänis padas valik galädaliseda olik.
 
 --
 Ad votükön parametami galädaliseda olik, loglös
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Küpets e yuf pluik:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Moükolöd padi',

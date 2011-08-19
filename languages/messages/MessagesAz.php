@@ -454,9 +454,9 @@ Sorğu: $2',
 'protectedpagetext'    => 'Bu səhifə redaktə üçün bağlıdır.',
 'viewsourcetext'       => 'Siz bu səhifənin məzmununu görə və köçürə bilərsiniz:',
 'protectedinterface'   => 'Bu səhifədə proqram təminatı üçün sistem məlumatları var və sui-istifadənin qarşısını almaq üçün mühafizə olunmalıdır.',
-'editinginterface'     => "'''Diqqət.''' Siz proqram təminatı interfeysinin mətn olan səhifəni redaktə edirsiniz.
+'editinginterface'     => "'''Diqqət!''' Siz proqram təminatı interfeysinin mətn olan səhifəsini redaktə edirsiniz.
 Onun dəyişdirilməsi digər istifadəçilərin interfeysinin xarici görünüşünə təsir göstərir.
-Tərcümə üçün daha yaxşı olar ki, MediaWiki-nin lokallaşması üçün olan [http://translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net]  layihəsindən istifadə edəsiniz.",
+Tərcümə üçün daha yaxşı olar ki, MediaWiki-nin lokallaşması üçün olan [http://translatewiki.net/wiki/Main_Page?setlang=az translatewiki.net]  layihəsindən istifadə edəsiniz.",
 'sqlhidden'            => '(SQL gizli sorğu)',
 'cascadeprotected'     => 'Səhifə mühafizə olunub, çünki o kaskad mühafizə olunan {{PLURAL:$1|növbəti səhifəyə|növbəti səhifələrə}} qoşulub:
 $2',
@@ -1747,10 +1747,10 @@ Siz haqqında söhbət gedən səhifəyə baxanadək səhifədəki digər dəyi�
 
 --
 İzləmə siyahısının tənzimləmələrini dəyişmək üçün:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Yardım və təklifləriniz üçün:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Səhifəni sil',
@@ -2294,7 +2294,10 @@ Zəhmət olmasa başqa ad seçin.',
 # Info page
 'pageinfo-header-edits' => 'Redaktələr',
 'pageinfo-subjectpage'  => 'Səhifə',
+'pageinfo-talkpage'     => 'Müzakirə səhifəsi',
 'pageinfo-edits'        => 'Redaktələrin sayı',
+'pageinfo-views'        => 'Göstərmə səhifəsi',
+'pageinfo-viewsperedit' => 'Redaktə başına göstərmə',
 
 # Skin names
 'skinname-standard'    => 'Classic',
@@ -2308,15 +2311,19 @@ Zəhmət olmasa başqa ad seçin.',
 'skinname-vector'      => 'Vector',
 
 # Patrolling
-'markaspatrolleddiff'    => 'Yoxlannıldı',
-'markaspatrolledtext'    => 'Səhifəni patrullanmış kimi işarələ',
-'markedaspatrolled'      => 'Yoxlannıldı',
-'rcpatroldisabled'       => 'Son dəyişikliklərin patrullanması qadağandır',
-'markedaspatrollederror' => 'Yoxlanmadı',
+'markaspatrolleddiff'                 => 'Yoxlanıldı',
+'markaspatrolledtext'                 => 'Səhifəni patrullanmış kimi işarələ',
+'markedaspatrolled'                   => 'Yoxlanıldı',
+'markedaspatrolledtext'               => '[[:$1]] üçün seçilmiş versiya gözdən keçirilərək işarələndi.',
+'rcpatroldisabled'                    => 'Son dəyişikliklərin patrullanması qadağandır',
+'rcpatroldisabledtext'                => 'Son dəyişikliklərin Yoxlanılması hal-hazırda mümkün deyil.',
+'markedaspatrollederror'              => 'Yoxlanmadı',
+'markedaspatrollederror-noautopatrol' => 'Öz dəyişikliklərinizi yoxlayıb işarələyə bilməzsiniz.',
 
 # Patrol log
 'patrol-log-page'      => 'Patrul gündəliyi',
 'patrol-log-header'    => 'Bu yoxlanmış dəyişikliklərin gündəliyidir.',
+'patrol-log-line'      => '$3 yoxlanılaraq $2 $1 versiyası işarələndi',
 'patrol-log-auto'      => '(avtomatik)',
 'patrol-log-diff'      => 'təftiş $1',
 'log-show-hide-patrol' => '$1 patrul gündəliyi',
@@ -2585,9 +2592,10 @@ Variants for Chinese language
 'exif-lightsource-255' => 'Digər işıq mənbəyi',
 
 # Flash modes
-'exif-flash-fired-0' => 'Flaş yandırılmadı',
-'exif-flash-fired-1' => 'Flaş yandırıldı',
-'exif-flash-mode-3'  => 'avtomatik rejim',
+'exif-flash-fired-0'    => 'Flaş yandırılmadı',
+'exif-flash-fired-1'    => 'Flaş yandırıldı',
+'exif-flash-mode-3'     => 'avtomatik rejim',
+'exif-flash-function-1' => 'Fləş bağlıdır',
 
 'exif-focalplaneresolutionunit-2' => 'düymlər',
 
@@ -2737,7 +2745,7 @@ Variants for Chinese language
 'confirmemail_send'        => 'Təsdiq kodu göndər',
 'confirmemail_sent'        => 'Təsdiq e-məktubu göndərildi.',
 'confirmemail_invalid'     => 'Səhv təsdiqləmə kodu. Kodun vaxtı keçmiş ola bilər.',
-'confirmemail_needlogin'   => 'E-məktub ünvanınızın təsdiqlənməsi üçün $1 lazımdır.',
+'confirmemail_needlogin'   => 'E-poçt ünvanınızın təsdiqlənməsi üçün $1 lazımdır.',
 'confirmemail_success'     => 'E-poçt ünvanınız indi təsdiq edildi. Siz indi [[Special:UserLogin|hesab açaraq]] vikidən həzz ala bilərsiz.',
 'confirmemail_loggedin'    => 'E-məktubunuz indi təsdiq edildi.',
 'confirmemail_subject'     => '{{SITENAME}} e-məktub təsdiq etmə',
@@ -2749,6 +2757,8 @@ Variants for Chinese language
 'scarytranscludetoolong'  => '[URL uzundur]',
 
 # Trackbacks
+'trackbackbox'      => 'Bu səhifə üçün geri izləmələr:<br />
+$1',
 'trackbackremove'   => '([$1 Sil])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Geri izləmə uğurla silindi.',
@@ -2825,6 +2835,7 @@ Variants for Chinese language
 'version-hooks'               => 'Çəngəllər',
 'version-extension-functions' => 'Əlavə fubksiyalar',
 'version-hook-name'           => 'Çəngəlin adı',
+'version-hook-subscribedby'   => 'Abunə olan',
 'version-version'             => '(Versiya $1)',
 'version-license'             => 'Lisenziya',
 'version-poweredby-credits'   => "Bu wiki '''[http://www.mediawiki.org/ MediaWiki]''' proqramı istifadə edilərək yaradılmışdır, müəlliflik © 2001-$1 $2.",
@@ -2864,6 +2875,7 @@ Variants for Chinese language
 'intentionallyblankpage' => 'Bu səhifə xüsusilə boşdur.',
 
 # Special:Tags
+'tags'                    => 'Mümkün dəyişiklik etiketləri',
 'tag-filter'              => '[[Special:Tags|Etiket]] süzgəci:',
 'tag-filter-submit'       => 'Filtrlər',
 'tags-title'              => 'Etiketlər',

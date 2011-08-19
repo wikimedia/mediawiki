@@ -1852,13 +1852,13 @@ no pel o ke behs beno heta ziyaret kerdışê yewna heli, mesajê vuriyayişi n�
 
 --
 qey vurnayişê eyari:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 qey wedarayişê ena pele liste xo ra seyr kerdişi, şo
 $UNWATCHURL
 
 qey hemkari u pêşniyazi:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Pele bıestere',

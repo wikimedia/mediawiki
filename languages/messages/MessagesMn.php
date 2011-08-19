@@ -1906,10 +1906,10 @@ $NEWPAGE
 
 --
 Хянаж буй хуудсуудынхаа тохиргоог өөрчлөхийн тулд дараах хуудаст зочилно уу:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Дэлгэрэнгүй мэдээлэл:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Хуудсыг устга',

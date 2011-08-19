@@ -1916,13 +1916,13 @@ $NEWPAGE
 --
 
 Джарашдырыуланы тюрлендирир ючюн:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Кёзде тургъан тизмеден кетерир ючюн:
 $UNWATCHURL
 
 Болушлукъ эм теджеуле ючюн:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Бетни кетер',

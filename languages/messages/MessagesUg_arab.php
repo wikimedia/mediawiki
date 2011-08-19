@@ -1943,13 +1943,13 @@ $NEWPAGE
 
 --
 كۆزەت تىزىملىك تەڭشىكىڭىزنى ئۆزگەرتسىڭىز،
-{{fullurl:{{#special:EditWatchlist}}}} زىيارەت قىلىڭ
+{{canonicalurl:{{#special:EditWatchlist}}}} زىيارەت قىلىڭ
 
 كۆزەت تىزىملىكىڭىزدىكى شۇ بەتنى ئۆچۈرمەكچى بولسىڭىز،
 $UNWATCHURL زىيارەت قىلىڭ
 
 قايتما ئىنكاس ياكى تېخىمۇ كۆپ ياردەمگە ئېرىشمەكچى بولسىڭىز:
-{{fullurl:{{MediaWiki:Helppage}}}} زىيارەت قىلىڭ',
+{{canonicalurl:{{MediaWiki:Helppage}}}} زىيارەت قىلىڭ',
 
 # Delete
 'deletepage'             => 'بەت ئۆچۈر',

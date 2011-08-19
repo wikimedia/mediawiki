@@ -1414,10 +1414,10 @@ Maliari mo muring isubli king sadia (reset) deng markang pamipabalu (notificatio
              Ing talabie kapabaluan ning {{SITENAME}} a magmalasakit keka
 --
 Ba mong ayalilan deng pakatuldu king kekang tala ring babanten (watchlist settings), munta ka king
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Keni ka magparalang puna/komentu at maniad karagdagang saup:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Buran ya ing bulung',

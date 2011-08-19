@@ -766,7 +766,8 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createaccountmail'          => 'pomocí e-mailu',
 'createaccountreason'        => 'Důvod:',
 'badretype'                  => 'Vámi napsaná hesla nesouhlasí.',
-'userexists'                 => 'Uživatel se stejným jménem je už registrován. Zvolte jiné jméno.',
+'userexists'                 => 'Zadané uživatelské jméno se již používá.
+Zvolte si prosím jiné jméno.',
 'loginerror'                 => 'Chyba při přihlašování',
 'createaccounterror'         => 'Nepodařilo se vytvořit uživatelský účet: $1',
 'nocookiesnew'               => 'Uživatelský účet byl vytvořen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a přihlaste se znovu s vaším novým uživatelským jménem a heslem.',
@@ -2290,16 +2291,16 @@ Případně si můžete vynulovat příznaky ve svém seznamu sledovaných strá
 
 --
 Změnit nastavení e-mailových oznámení můžete na
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Nastavení sledovaných stránek může změnit na
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Stránku můžete ze svých sledovaných vyřadit na
 $UNWATCHURL
 
 Rady a kontakt:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Smazat stránku',
@@ -3743,8 +3744,8 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 'specialpages'                   => 'Speciální stránky',
 'specialpages-note'              => '----
 * Normální speciální stránky
-* <strong class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</strong>
-* <strong class="mw-specialpagecached">Speciální stránky z&nbsp;cache</strong>',
+* <span class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</span>
+* <span class="mw-specialpagecached">Speciální stránky z&nbsp;cache (mohou být zastaralé)</span>',
 'specialpages-group-maintenance' => 'Údržba',
 'specialpages-group-other'       => 'Ostatní',
 'specialpages-group-login'       => 'Přihlašování / registrace',
