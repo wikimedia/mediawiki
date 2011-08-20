@@ -1648,23 +1648,12 @@ class Parser {
 	 */
 	function getExternalLinkAttribs( $url = false ) {
 		$attribs = array();
-		global $wgNoFollowLinks, $wgNoFollowNsExceptions;
+		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
 		$ns = $this->mTitle->getNamespace();
-		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions ) ) {
+		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions ) &&
+				!wfMatchesDomainList( $url, $wgNoFollowDomainExceptions ) )
+		{
 			$attribs['rel'] = 'nofollow';
-
-			global $wgNoFollowDomainExceptions;
-			if ( $wgNoFollowDomainExceptions ) {
-				$bits = wfParseUrl( $url );
-				if ( is_array( $bits ) && isset( $bits['host'] ) ) {
-					foreach ( $wgNoFollowDomainExceptions as $domain ) {
-						if ( substr( $bits['host'], -strlen( $domain ) ) == $domain ) {
-							unset( $attribs['rel'] );
-							break;
-						}
-					}
-				}
-			}
 		}
 		if ( $this->mOptions->getExternalLinkTarget() ) {
 			$attribs['target'] = $this->mOptions->getExternalLinkTarget();
