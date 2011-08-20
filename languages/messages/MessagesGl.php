@@ -636,7 +636,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'createaccountmail'          => 'Por correo electrónico',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Os contrasinais que inseriu non coinciden entre si.',
-'userexists'                 => 'O nome de usuario que pretende usar xa está en uso.
+'userexists'                 => 'O nome de usuario que inseriu xa está en uso.
 Escolla un nome diferente.',
 'loginerror'                 => 'Erro ao acceder ao sistema',
 'createaccounterror'         => 'Non se puido crear a conta: $1',
@@ -3660,7 +3660,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 'specialpages-note'              => '----
 * Páxinas especiais normais.
 * <span class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</span>
-* <span class="mw-specialpagecached">Páxinas especiais só con caché.</span>',
+* <span class="mw-specialpagecached">Páxinas especiais só con caché (poden estar desactualizadas).</span>',
 'specialpages-group-maintenance' => 'Informes de mantemento',
 'specialpages-group-other'       => 'Outras páxinas especiais',
 'specialpages-group-login'       => 'Rexistro',
@@ -3761,5 +3761,6 @@ Isto ocorre xeralmente cando a páxina está incluída na categoría a través d
 'ajax-category-already-present' => 'Esta páxina xa pertence á categoría "$1"',
 'ajax-category-hook-error'      => 'Unha función local impediu que se gardasen os cambios.',
 'ajax-api-error'                => 'O API devolveu un erro: $1: $2.',
+'ajax-api-unknown-error'        => 'O API devolveu un erro descoñecido.',
 
 );

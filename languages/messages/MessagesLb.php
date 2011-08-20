@@ -778,7 +778,7 @@ Gitt w.e.g. eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benot
 'nosuchsectiontext'                => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt.
 Et ka sinn datt e geännert oder geläscht gouf iwwerdm wou Dir d'Säit gekuckt hutt.",
 'loginreqtitle'                    => 'Umeldung néideg',
-'loginreqlink'                     => 'umellen',
+'loginreqlink'                     => 'aloggen',
 'loginreqpagetext'                 => 'Dir musst Iech $1, fir aner Säite liesen zu kënnen.',
 'accmailtitle'                     => 'Passwuert gouf geschéckt.',
 'accmailtext'                      => "En zoufällegt Passwuert fir [[User talk:$1|$1]] gouf op $2 geschéckt.

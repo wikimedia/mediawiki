@@ -367,8 +367,8 @@ $messages = array(
 'createaccountmail'       => 'ܒܝܕ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
 'createaccountreason'     => 'ܥܠܬܐ',
 'badretype'               => 'ܡܠܬܐ ܕܥܠܠܐ ܟܬܒܬ ܐܢܬ ܠܐ ܐܘܝܢܬܐ.',
-'userexists'              => 'ܫܡܐ ܕܡܦܠܚܢܐ ܫܩܝܠܐ.
-ܓܒܝ ܫܡܐ ܐܚܪܢܐ.',
+'userexists'              => 'ܫܡܐ ܕܡܦܠܚܢܐ ܕܐܥܠܬ ܫܩܝܠܐ ܐܝܬܘܗܝ.
+ܫܦܝܪܐܝܬ ܓܒܝ ܫܡܐ ܐܚܪܢܐ.',
 'loginerror'              => 'ܦܘܕܐ ܒܥܠܠܐ',
 'noname'                  => 'ܠܐ ܦܪܫ ܐܢܬ ܫܡܐ ܕܡܦܠܚܢܐ ܬܪܝܨܐ',
 'loginsuccesstitle'       => 'ܥܠܠܐ ܓܡܪ',
