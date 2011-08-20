@@ -377,9 +377,6 @@ class LoginForm extends SpecialPage {
 			return false;
 		}
 
-		// Hook point to change $wgAccountCreationThrottle
-		wfRunHooks( 'ChangeAccountCreationThrottle', array( $ip, &$wgAccountCreationThrottle ) );
-
 		if ( $wgAccountCreationThrottle && $wgUser->isPingLimitable() ) {
 			$key = wfMemcKey( 'acctcreate', 'ip', $ip );
 			$value = $wgMemc->get( $key );

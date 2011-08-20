@@ -643,10 +643,6 @@ $output: OutputPage object in use
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
-'ChangeAccountCreationThrottle': Called to change $wgAccountCreationThrottle
-$ip: The ip address of the user
-&$wgAccountCreationThrottle: The global variable $wgAccountCreationThrottle to be changed
-
 'ChangesListInsertArticleLink': Override or augment link to article in RC list.
 &$changesList: ChangesList instance.
 &$articlelink: HTML of link to article (already filled-in).
