@@ -54,9 +54,9 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgOut, $wgContLang, $wgRequest;
+		global $wgContLang;
 
-		if ($par) {
+		if ( $par ) {
 			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
 		}
 
@@ -64,15 +64,15 @@ class RandomPage extends SpecialPage {
 
 		if( is_null( $title ) ) {
 			$this->setHeaders();
-			$wgOut->addWikiMsg( strtolower( $this->getName() ) . '-nopages',
+			$this->getOutput()->addWikiMsg( strtolower( $this->getName() ) . '-nopages',
 				$this->getNsList(), count( $this->namespaces ) );
 			return;
 		}
 
 		$redirectParam = $this->isRedirect() ? array( 'redirect' => 'no' ) : array();
-		$query = array_merge( $wgRequest->getValues(), $redirectParam );
+		$query = array_merge( $this->getRequest()->getValues(), $redirectParam );
 		unset( $query['title'] );
-		$wgOut->redirect( $title->getFullUrl( $query ) );
+		$this->getOutput()->redirect( $title->getFullUrl( $query ) );
 	}
 
 	/**
