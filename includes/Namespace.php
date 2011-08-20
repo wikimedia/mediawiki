@@ -27,7 +27,7 @@ class MWNamespace {
 	/**
 	 * Throw an exception when trying to get the subject or talk page
 	 * for a given namespace where it does not make sense.
-	 * Special namespaces are defined in includes/define.php and have
+	 * Special namespaces are defined in includes/Defines.php and have
 	 * a value below 0 (ex: NS_SPECIAL = -1 , NS_MEDIA = -2)
 	 *
 	 * @param $index
