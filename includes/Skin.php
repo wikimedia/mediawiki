@@ -1156,7 +1156,7 @@ abstract class Skin extends ContextSource {
 						
 						// Parser::getExternalLinkAttribs won't work here because of the Namespace things
 						global $wgNoFollowLinks, $wgNoFollowDomainExceptions;
-						if ( $wgNoFollowLinks && !wfMatchesDomainList( $url, $wgNoFollowDomainExceptions ) ) {
+						if ( $wgNoFollowLinks && !wfMatchesDomainList( $href, $wgNoFollowDomainExceptions ) ) {
 							$extraAttribs['rel'] = 'nofollow';
 						}
 						
