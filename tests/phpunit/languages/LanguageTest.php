@@ -96,7 +96,7 @@ class LanguageTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			"3d 0h 0m",
 			$this->lang->formatTimePeriod( 259199.55, 'avoidseconds' ),
-			'formatTimePeriod() rounding (>48h), avoidminutes'
+			'formatTimePeriod() rounding (>48h), avoidseconds'
 		);
 
 		$this->assertEquals(
