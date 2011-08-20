@@ -646,6 +646,26 @@ function wfMakeUrlIndex( $url ) {
 }
 
 /**
+ * Check whether a given URL has a domain that occurs in a given set of domains
+ * @param $url string URL
+ * @param $domains array Array of domains (strings)
+ * @return bool True if the host part of $url ends in one of the strings in $domains
+ */
+function wfMatchesDomainList( $url, $domains ) {
+	$bits = wfParseUrl( $url );
+	if ( is_array( $bits ) && isset( $bits['host'] ) ) {
+		foreach ( (array)$domains as $domain ) {
+			// FIXME: This gives false positives. http://nds-nl.wikipedia.org will match nl.wikipedia.org
+			// We should use something that interprets dots instead
+			if ( substr( $bits['host'], -strlen( $domain ) ) === $domain ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+/**
  * Sends a line to the debug log if enabled or, optionally, to a comment in output.
  * In normal operation this is a NOP.
  *
