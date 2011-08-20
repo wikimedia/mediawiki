@@ -877,6 +877,33 @@ class GlobalTest extends MediaWikiTestCase {
 			// are less consistent.
 		);
 	}
+	
+	/**
+	 * @dataProvider provideWfMatchesDomainList
+	 */
+	function testWfMatchesDomainList( $url, $domains, $expected, $description ) {
+		$actual = wfMatchesDomainList( $url, $domains );
+		$this->assertEquals( $expected, $actual, $description );
+	}
+	
+	function provideWfMatchesDomainList() {
+		$a = array();
+		$protocols = array( 'HTTP' => 'http:', 'HTTPS' => 'https:', 'protocol-relative' => '' );
+		foreach ( $protocols as $pDesc => $p ) {
+			$a = array_merge( $a, array(
+				array( "$p//www.example.com", array(), false, "No matches for empty domains array, $pDesc URL" ),
+				array( "$p//www.example.com", array( 'www.example.com' ), true, "Exact match in domains array, $pDesc URL" ),
+				array( "$p//www.example.com", array( 'example.com' ), true, "Match without subdomain in domains array, $pDesc URL" ),
+				array( "$p//www.example2.com", array( 'www.example.com', 'www.example2.com', 'www.example3.com' ), true, "Exact match with other domains in array, $pDesc URL" ),
+				array( "$p//www.example2.com", array( 'example.com', 'example2.com', 'example3,com' ), true, "Match without subdomain with other domains in array, $pDesc URL" ),
+				array( "$p//www.example4.com", array( 'example.com', 'example2.com', 'example3,com' ), false, "Domain not in array, $pDesc URL" ),
+				
+				// FIXME: This is a bug in wfMatchesDomainList(). If and when this is fixed, update this test case
+				array( "$p//nds-nl.wikipedia.org", array( 'nl.wikipedia.org' ), true, "Substrings of domains match while they shouldn't, $pDesc URL" ),
+			) );
+		}
+		return $a;
+	}
 
 	/* TODO: many more! */
 }
