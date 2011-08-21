@@ -1497,7 +1497,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'editusergroup'                => 'Modification des groupes d’utilisateurs',
 'editinguser'                  => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'     => 'Modifier les groupes de l’utilisateur',
-'saveusergroups'               => 'Sauvegarder les groupes d’utilisateurs',
+'saveusergroups'               => 'Enregistrer les groupes de l’utilisateur',
 'userrights-groupsmember'      => 'Membre de :',
 'userrights-groupsmember-auto' => 'Membre implicite de :',
 'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur.

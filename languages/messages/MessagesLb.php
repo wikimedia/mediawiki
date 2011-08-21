@@ -3234,6 +3234,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-dc-date'        => 'Datum(en)',
 'exif-dc-publisher'   => 'Editeur',
 'exif-dc-rights'      => 'Rechter',
+'exif-dc-source'      => 'Ursprong vum Fichier',
 'exif-dc-type'        => 'Medientyp',
 
 'exif-rating-rejected' => 'Refuséiert',

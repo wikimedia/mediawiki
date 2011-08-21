@@ -3427,7 +3427,7 @@ Bu onay kodu $4 tarihine kadar geçerlidir.',
 'scarytranscludetoolong'  => '[URL çok uzun]',
 
 # Trackbacks
-'trackbackbox'      => 'Bu sayfa için geri izlemeler:<br/>
+'trackbackbox'      => 'Bu sayfa için geri izlemeler:<br />
 $1',
 'trackbackremove'   => '([$1 Sil])',
 'trackbacklink'     => 'Geri izleme',

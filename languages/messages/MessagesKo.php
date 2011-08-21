@@ -714,7 +714,7 @@ $2',
 'createaccountreason'        => '이유:',
 'badretype'                  => '암호가 서로 다릅니다.',
 'userexists'                 => '입력하신 사용자 이름이 이미 등록되어 있습니다.
-다른 이름으로 만들어주십시오.',
+다른 이름을 선택해주십시오.',
 'loginerror'                 => '로그인 오류',
 'createaccounterror'         => '계정을 생성하지 못했습니다: $1',
 'nocookiesnew'               => '사용자 계정을 만들었지만, 아직 로그인하지 않았습니다. {{SITENAME}}에서는 로그인 정보를 저장하기 위해 쿠키를 사용합니다. 지금 사용하는 웹 브라우저는 쿠키를 사용하지 않도록 설정되어 있습니다. 로그인하기 전에 웹 브라우저에서 쿠키를 사용하도록 설정해주세요.',
@@ -773,6 +773,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'PHP의 mail() 함수에서 알 수 없는 오류가 발생했습니다.',
+'user-mail-no-addy'      => '이메일 주소 없이 이메일을 보낼 수 없습니다.',
 
 # Change password dialog
 'resetpass'                 => '비밀번호 바꾸기',
