@@ -134,4 +134,20 @@ class ExtraParserTest extends MediaWikiTestCase {
 			'finalTitle' => $title,
 			'deps' => $deps );
 	}
+	function testTrackingCategory() {
+		$title = Title::newFromText( __FUNCTION__ );
+		$catName =  wfMsgForContent( 'broken-file-category' );
+		$cat = Title::makeTitleSafe( NS_CATEGORY, $catName );
+		$expected = array( $cat->getDBkey() );
+		$parserOutput = $this->parser->parse( "[[file:nonexistent]]" , $title, $this->options );
+		$result = $parserOutput->getCategoryLinks();
+		$this->assertEquals( $expected, $result );
+	}
+	function testTrackingCategorySpecial() {
+		// Special pages shouldn't have tracking cats.
+		$title = SpecialPage::getTitleFor( 'Contributions' );
+		$parserOutput = $this->parser->parse( "[[file:nonexistent]]" , $title, $this->options );
+		$result = $parserOutput->getCategoryLinks();
+		$this->assertEmpty( $result );
+	}
  }
