@@ -81,7 +81,6 @@ class DeleteBatch extends Maintenance {
 				continue;
 			}
 
-
 			$this->output( $page->getPrefixedText() );
 			$dbw->begin();
 			if ( $page->getNamespace() == NS_FILE ) {

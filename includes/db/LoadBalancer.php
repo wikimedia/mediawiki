@@ -241,7 +241,7 @@ class LoadBalancer {
 					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
 					if ( $i === false && count( $currentLoads ) != 0 )  {
 						# All slaves lagged. Switch to read-only mode
-						wfDebugLog( 'replication', 'All slaves lagged. Switch to read-only mode' );
+						wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode\n" );
 						$wgReadOnly = wfMessage( 'readonly_lag' )->useDatabase( false )->plain();
 						$i = $this->pickRandom( $currentLoads );
 						$laggedSlaveMode = true;
