@@ -495,9 +495,16 @@ abstract class MediaHandler {
 			$thumbstat = stat( $dstPath );
 			if( $thumbstat['size'] == 0 || $retval != 0 ) {
 				$result = unlink( $dstPath );
-				wfDebugLog( 'thumbnail',
-					sprintf( 'Removing bad %d-byte thumbnail "%s". unlink() result: %d',
-						$thumbstat['size'], $dstPath, $result ) );
+
+				if ( $result ) {
+					wfDebugLog( 'thumbnail',
+						sprintf( 'Removing bad %d-byte thumbnail "%s". unlink() succeeded',
+							$thumbstat['size'], $dstPath ) );
+				} else {
+					wfDebugLog( 'thumbnail',
+						sprintf( 'Removing bad %d-byte thumbnail "%s". unlink() failed',
+							$thumbstat['size'], $dstPath ) );
+				}
 				return true;
 			}
 		}
