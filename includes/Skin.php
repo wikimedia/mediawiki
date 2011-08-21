@@ -1111,7 +1111,6 @@ abstract class Skin extends ContextSource {
 	 */
 	function addToSidebarPlain( &$bar, $text ) {
 		$lines = explode( "\n", $text );
-		$wikiBar = array(); # We need to handle the wikitext on a different variable, to avoid trying to do an array operation on text, which would be a fatal error.
 
 		$heading = '';
 
@@ -1181,23 +1180,10 @@ abstract class Skin extends ContextSource {
 						'id' => 'n-' . Sanitizer::escapeId( strtr( $line[1], ' ', '-' ), 'noninitial' ),
 						'active' => false
 					), $extraAttribs );
-				} elseif ( ( substr( $line, 0, 2 ) == '{{' ) && ( substr( $line, -2 ) == '}}' ) ) {
-					global $wgParser;
-
-					$line = substr( $line, 2, strlen( $line ) - 4 );
-
-					$options = new ParserOptions();
-					$options->setEditSection( false );
-					$options->setInterfaceMessage( true );
-					$wikiBar[$heading] = $wgParser->parse( wfMsgForContentNoTrans( $line ) , $this->getTitle(), $options )->getText();
 				} else {
 					continue;
 				}
 			}
-		}
-
-		if ( count( $wikiBar ) > 0 ) {
-			$bar = array_merge( $bar, $wikiBar );
 		}
 
 		return $bar;
