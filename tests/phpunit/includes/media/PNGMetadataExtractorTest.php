@@ -138,5 +138,4 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 		$this->assertEquals( 'greyscale', $meta['colorType'] );
 	}
 
-
 }
