@@ -5848,6 +5848,8 @@ $1
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] מותקן',
 	'config-no-cache' => "'''אזהרה:''' אחת מהתוכנות הבאות לא נמצאה: [http://eaccelerator.sourceforge.net eAccelerator]&rlm;, [http://www.php.net/apc APC]&rlm;, [http://trac.lighttpd.net/xcache/ XCache] או [http://www.iis.net/download/WinCacheForPhp WinCache].
 מטמון עצמים לא מופעל.",
+	'config-mod-security' => "'''אזהרה''': בשרת הווב שלכם מופעל [http://modsecurity.org/ mod_security]. אם זה לא מוגדר טוב, זה יכול לגרום לבעיות במדיה־ויקי ובתכנה אחרת שמאפשרת למשתמשים לשלוח תוכן שרירותי.
+קראו את [http://modsecurity.org/documentation/ התיעוד של mod_security] או צרו קשר עם אנשי התמיכה של שירותי האירוח שלכם אם אתם נתקלים בשגיאות אקראיות.",
 	'config-diff3-bad' => 'GNU diff3 לא נמצא.',
 	'config-imagemagick' => 'נמצא ImageMagick&rlm;: <code>$1</code>.
 מזעור תמונות יופעל, אם תפעילו את האפשרות להעלות קבצים.',
@@ -5857,9 +5859,12 @@ $1
 מזעור תמונות לא יופעל.',
 	'config-no-uri' => "'''שגיאה:''' אי־אפשר לזהות את הכתובת הנוכחית.
 ההתקנה בוטלה.",
+	'config-no-cli-uri' => 'אזהרה: לא הוגדר ‎--scriptpath, משתמש בבררת המחדל: <code>$1</code>.',
 	'config-using-server' => 'שם השרת בשימוש: "<nowiki>$1</nowiki>".',
+	'config-using-uri' => 'נעשה שימוש בכתובת השרת "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe' => "'''אזהרה:''' התיקייה ההתחלתית להעלות <code>$1</code> חשופה להרצת סקריפטים.
 מדיה־ויקי בודקת את כל הקבצים המוּעלים לאיומי אבטחה, מומלץ מאוד למנוע את [http://www.mediawiki.org/wiki/Manual:Security#Upload_security פרצת האבטחה] הזאת לפני שאתם מפעילים את ההעלאות.",
+	'config-no-cli-uploads-check' => "'''אזהרה:''' תיקיית בררת המחדל להעלאות (<code>$1</code>) לא נבדקת לפגיעוּת להרצת תסריטים אקראיים בזמן התקנה דרך CLI.",
 	'config-brokenlibxml' => 'במערכת שלכם יש שילוב של גרסאות של PHP ושל libxml2 שחשוף לבאגים ויכול לגרום לעיוות נתונים נסתר במדיה־ויקי וביישומי רשת אחרים.
 שדרגו ל־PHP 5.2.9 או לגרסה חדשה יותר ול־libxml2 2.7.3 או גרסה חדשה יותר ([http://bugs.php.net/bug.php?id=45996 באג מתויק ב־PHP]).
 ההתקנה בוטלה.',

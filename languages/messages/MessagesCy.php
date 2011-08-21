@@ -3547,6 +3547,7 @@ Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mew
 'ajax-edit-category-error'      => 'Nid oedd modd golygu\'r categori "$1".
 Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.',
 'ajax-category-already-present' => "Mae'r dudalen hon yn perthyn i'r categori $1 yn barod",
+'ajax-category-hook-error'      => 'Rhwystrodd ffwythiant lleol y newidiadau rhag cael eu rhoi ar gadw.',
 'ajax-api-error'                => 'Dychwelodd yr API wall: $1: $2.',
 'ajax-api-unknown-error'        => 'Dychwelodd yr API wall anhysbys.',
 

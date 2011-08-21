@@ -457,7 +457,7 @@ $messages = array(
 'vector-action-move'             => 'Alinomigi',
 'vector-action-protect'          => 'Protekti',
 'vector-action-undelete'         => 'Malforigi',
-'vector-action-unprotect'        => 'Malprotekti',
+'vector-action-unprotect'        => 'Ŝanĝi protekadon',
 'vector-simplesearch-preference' => 'Ebligi plibonigitajn serĉajn sugestojn (nur Vektora etoso)',
 'vector-view-create'             => 'Krei',
 'vector-view-edit'               => 'Redakti',
@@ -494,8 +494,8 @@ $messages = array(
 'protect'           => 'Protekti',
 'protect_change'    => 'ŝanĝi',
 'protectthispage'   => 'Protekti la paĝon',
-'unprotect'         => 'Malprotekti',
-'unprotectthispage' => 'Malprotekti la paĝon',
+'unprotect'         => 'Ŝanĝi protekadon',
+'unprotectthispage' => 'Ŝanĝi protektadon de ĉi tiu paĝo',
 'newpage'           => 'Nova paĝo',
 'talkpage'          => 'Diskuti la paĝon',
 'talkpagelinktext'  => 'Diskuto',
@@ -837,6 +837,15 @@ aŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas ŝanĝi
 'passwordreset-emailelement'   => 'Salutnomo: $1
 Provizora pasvorto: $2',
 'passwordreset-emailsent'      => 'Rememoriga retpoŝto estis sendita.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Ŝanĝi retpoŝtadreson',
+'changeemail-header'   => 'Ŝanĝi retpoŝtadreso por konto',
+'changeemail-oldemail' => 'Aktuala retpoŝtadreso:',
+'changeemail-newemail' => 'Nova retpoŝtadreso:',
+'changeemail-none'     => '(nenio)',
+'changeemail-submit'   => 'Ŝanĝi retpoŝtadreson',
+'changeemail-cancel'   => 'Nuligi',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasa teksto',
@@ -1339,6 +1348,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-watchlist-token'         => 'Atentara ĵetono:',
 'prefs-misc'                    => 'Miksitaĵoj',
 'prefs-resetpass'               => 'Ŝanĝi pasvorton',
+'prefs-changeemail'             => 'Ŝanĝi retpoŝtadreson',
 'prefs-email'                   => 'Retpoŝtaj opcioj',
 'prefs-rendering'               => 'Aspekto',
 'saveprefs'                     => 'Konservi preferojn',
@@ -2179,6 +2189,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'watchlistanontext'    => 'Bonvolu $1 por vidi aŭ redakti erojn en via atentaro.',
 'watchnologin'         => 'Ne ensalutinta',
 'watchnologintext'     => 'Nepras [[Special:UserLogin|ensaluti]] por ŝanĝi vian atentaron.',
+'addwatch'             => 'Aldoniĝi al atentaro',
 'addedwatchtext'       => "La paĝo \"[[:\$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu ĉi paĝo aperos en '''grasa tiparo''' en la [[Special:RecentChanges|listo de Lastaj Ŝanĝoj]], kaj estos listigitaj en via atentaro. Se vi poste volos forigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
 'removedwatchtext'     => 'La paĝo "[[:$1]]" estas forigita el via [[Special:Watchlist|atentaro]].',
 'watch'                => 'Atenti',
@@ -2227,16 +2238,19 @@ vikie: $PAGEEDITOR_WIKI
 
 Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus la paĝon. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
 
-             Sincere via, la avertsistemo de {{SITENAME}}
+            Sincere via, la avertsistemo de {{SITENAME}}
 
 --
-Por ŝanĝi la elektojn de via atentaro, bonvolu viziti
+Por ŝanĝi vian retpoŝtan notigadan preferon, klaku
+{{canonicalurl:{{#special:Preferences}}}}
+
+Por ŝanĝi vian preferon de la atentaro, klaku
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Por forigi la paĝon el via atentaro, bonvolu viziti
+Por forigi la paĝon de via atentaro, klaku
 $UNWATCHURL
 
-Por viaj reagoj kaj por obteni plian helpon:
+Komentoj kaj plia helpo:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2294,11 +2308,11 @@ Bonvolu alklaki la reirbutonon kaj reŝargi la paĝon el kiu vi venas, kaj provu
 
 # Protect
 'protectlogpage'              => 'Protokolo pri protektoj',
-'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
-Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por pli da informoj.',
+'protectlogtext'              => 'Sube estas listo de ŝanĝoj al paĝ-protektado.
+Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por listo de aktuale aktivaj paĝo-protektadoj.',
 'protectedarticle'            => 'protektis "[[$1]]"',
 'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[$1]]"',
-'unprotectedarticle'          => 'malprotektis "[[$1]]"',
+'unprotectedarticle'          => 'forigis protektadon de "[[$1]]"',
 'movedarticleprotection'      => 'movis protektadajn preferojn de "[[$2]]" al "[[$1]]"',
 'protect-title'               => 'Protektante "$1"',
 'prot_1movedto2'              => '[[$1]] movita al [[$2]]',
@@ -2322,6 +2336,7 @@ Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.
 'protect-level-sysop'         => 'Nur administrantoj',
 'protect-summary-cascade'     => 'kaskada',
 'protect-expiring'            => 'finiĝas je $1 (UTC)',
+'protect-expiring-local'      => 'eksdatiĝas $1',
 'protect-expiry-indefinite'   => 'sendifina',
 'protect-cascade'             => 'Protekti ĉiujn paĝojn inkluzivitajn en ĉi paĝo (kaskada protekto)',
 'protect-cantedit'            => 'Vi ne povas ŝanĝi la protekt-nivelojn de ĉi tiu paĝo, ĉar vi ne rajtas redakti ĝin.',
@@ -2447,7 +2462,7 @@ Jen la lasta ero de la forbara protokolo:',
 'nolinkshere-ns'           => "Neniuj paĝoj ligas al '''[[:$1]]''' en la elektita nomspaco.",
 'isredirect'               => 'alidirektilo',
 'istemplate'               => 'inkludo',
-'isimage'                  => 'ligilo al bildo',
+'isimage'                  => 'ligilo al dosiero',
 'whatlinkshere-prev'       => '{{PLURAL:$1|antaŭa|antaŭaj $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|posta|postaj $1}}',
 'whatlinkshere-links'      => '← ligiloj',
@@ -2813,7 +2828,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-ca-viewsource'           => 'Tiu paĝo estas protektita. Vi povas nur rigardi ties fonton.',
 'tooltip-ca-history'              => 'Antaŭaj versioj de tiu ĉi paĝo.',
 'tooltip-ca-protect'              => 'Protekti tiun ĉi paĝon',
-'tooltip-ca-unprotect'            => 'Malprotekti ĉi tiun paĝon',
+'tooltip-ca-unprotect'            => 'Ŝanĝi protektadon de ĉi tiu paĝo',
 'tooltip-ca-delete'               => 'Forigi tiun ĉi paĝon',
 'tooltip-ca-undelete'             => 'Restarigu la redaktojn faritajn al tiu ĉi paĝo antaŭ ties forigo',
 'tooltip-ca-move'                 => 'Alinomigi tiun ĉi paĝon',
@@ -2886,6 +2901,13 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'spambot_username'    => 'Trudmesaĝa forigo de MediaWiki',
 'spam_reverting'      => 'Restarigo de lasta versio ne entenante ligilojn al $1',
 'spam_blanking'       => 'Forviŝo de ĉiuj versioj entenantaj ligilojn al $1',
+
+# Info page
+'pageinfo-header-edits'     => 'Redaktoj',
+'pageinfo-header-watchlist' => 'Atentaro',
+'pageinfo-subjectpage'      => 'Paĝo',
+'pageinfo-talkpage'         => 'Diskuto-paĝo',
+'pageinfo-edits'            => 'Nombro de redaktoj',
 
 # Skin names
 'skinname-standard'    => 'Klasika',
@@ -3473,6 +3495,11 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.',
 'confirm-purge-top'    => 'Ĉu forviŝigi la kaŝmemoron de tiu ĉi paĝo?',
 'confirm-purge-bottom' => 'Refreŝigante paĝon forviŝas la memorkaŝejon kaj devigas la plej lastan version aperi.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'Ek!',
+'confirm-watch-top'      => 'Ĉu aldoni tiun ĉi paĝon al via atentaro?',
+'confirm-unwatch-button' => 'Ek!',
+
 # Multipage image navigation
 'imgmultipageprev' => '← antaŭa paĝo',
 'imgmultipagenext' => 'sekva paĝo →',
@@ -3589,7 +3616,8 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 'specialpages'                   => 'Specialaj paĝoj',
 'specialpages-note'              => '----
 * Normaj specialaj paĝoj.
-* <strong class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</strong>',
+* <strong class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</strong>
+* <span class="mw-specialpagecached">Memorkaŝitaj specialaj paĝoj (eble malaktualaj).</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other'       => 'Aliaj specialaj paĝoj',
 'specialpages-group-login'       => 'Ensaluti / Krei novan konton',
@@ -3666,9 +3694,15 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 
 # Add categories per AJAX
 'ajax-add-category'            => 'Aldoni kategorion',
+'ajax-remove-category'         => 'Forigi kategorion',
+'ajax-edit-category'           => 'Redakti kategorion',
 'ajax-add-category-submit'     => 'Aldoni',
+'ajax-confirm-ok'              => 'Ek!',
 'ajax-confirm-title'           => 'Konfirmi agon',
 'ajax-confirm-save'            => 'Konservi',
+'ajax-confirm-save-all'        => 'Konservi ĉiujn ŝanĝojn',
+'ajax-cancel'                  => 'Nuligi redakton',
+'ajax-cancel-all'              => 'Nuligi ĉiujn ŝanĝojn',
 'ajax-add-category-summary'    => 'Aldoni kategorion "$1"',
 'ajax-remove-category-summary' => 'Forigi kategorion "$1"',
 'ajax-error-title'             => 'Eraro',
