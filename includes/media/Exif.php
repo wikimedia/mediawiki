@@ -90,6 +90,11 @@ class Exif {
 	 */
 	var $log = false;
 
+	/**
+	 * The byte order of the file. Needed because php's
+	 * extension doesn't fully process some obscure props.
+	 */
+	private $byteOrder;
 	//@}
 
 	/**
@@ -102,7 +107,7 @@ class Exif {
 	 * DigitalZoomRatio = 0/0 is rejected. need to determine if that's valid.
 	 * possibly should treat 0/0 = 0. need to read exif spec on that.
 	 */
-	function __construct( $file ) {
+	function __construct( $file, $byteOrder = '' ) {
 		/**
 		 * Page numbers here refer to pages in the EXIF 2.2 standard
 		 *
@@ -275,6 +280,16 @@ class Exif {
 
 		$this->file = $file;
 		$this->basename = wfBaseName( $this->file );
+		if ( $byteOrder === 'BE' || $byteOrder === 'LE' ) {
+			$this->byteOrder = $byteOrder;
+		} else {
+			// Only give a warning for b/c, since originally we didn't
+			// require this. The number of things affected by this is
+			// rather small.
+			wfWarn( 'Exif class did not have byte order specified. '
+			 . 'Some properties may be decoded incorrectly.' );
+			$this->byteOrder = 'BE'; // BE seems about twice as popular as LE in jpg's.
+		}
 
 		$this->debugFile( $this->basename, __FUNCTION__, true );
 		if( function_exists( 'exif_read_data' ) ) {
@@ -394,7 +409,16 @@ class Exif {
 				}
 				$newVal .= ord( substr($val, $i, 1) );
 			}
-			$this->mFilteredExifData['GPSVersionID'] = $newVal;
+			if ( $this->byteOrder === 'LE' ) {
+				// Need to reverse the string
+				$newVal2 = '';
+				for ( $i = strlen( $newVal ) - 1; $i >= 0; $i-- ) {
+					$newVal2 .= substr( $newVal, $i, 1 );
+				}
+				$this->mFilteredExifData['GPSVersionID'] = $newVal2;
+			} else {
+				$this->mFilteredExifData['GPSVersionID'] = $newVal;
+			}
 			unset( $this->mFilteredExifData['GPSVersion'] );
 		}
 
@@ -415,7 +439,6 @@ class Exif {
 				unset($this->mFilteredExifData[$prop]);
 				return;
 			}
-
 			$charCode = substr( $this->mFilteredExifData[$prop], 0, 8);
 			$val = substr( $this->mFilteredExifData[$prop], 8);
 			
@@ -426,7 +449,7 @@ class Exif {
 					$charset = "Shift-JIS";
 					break;
 				case "UNICODE\x00":
-					$charset = "UTF-16";
+					$charset = "UTF-16" . $this->byteOrder;
 					break;
 				default: //ascii or undefined.
 					$charset = "";

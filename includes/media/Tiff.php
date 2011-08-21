@@ -56,13 +56,20 @@ class TiffHandler extends ExifBitmapHandler {
 	 */
 	function getMetadata( $image, $filename ) {
 		global $wgShowEXIF;
-		if ( $wgShowEXIF && file_exists( $filename ) ) {
-			$exif = new Exif( $filename );
-			$data = $exif->getFilteredData();
-			if ( $data ) {
-				$data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
-				return serialize( $data );
-			} else {
+		if ( $wgShowEXIF ) {
+			try {
+				$meta = BitmapMetadataHandler::Tiff( $filename );
+				if ( !is_array( $meta ) ) {
+					// This should never happen, but doesn't hurt to be paranoid.
+					throw new MWException('Metadata array is not an array');
+				}
+				$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
+				return serialize( $meta );
+			}
+			catch ( MWException $e ) {
+				// BitmapMetadataHandler throws an exception in certain exceptional
+				// cases like if file does not exist.
+				wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
 				return ExifBitmapHandler::BROKEN_FILE;
 			}
 		} else {
