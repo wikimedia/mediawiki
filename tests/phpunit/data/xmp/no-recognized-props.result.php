@@ -1,0 +1,2 @@
+<?php
+$result = array();
