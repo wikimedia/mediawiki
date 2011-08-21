@@ -45,6 +45,7 @@ production.
   although they are not used there.
 * (bug 30451) Add page_props to RefreshLinks::deleteLinksFromNonexistent
 * (bug 30450) Clear page_props table on page deletion
+* Hook added to check for exempt from account creation throttle
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if

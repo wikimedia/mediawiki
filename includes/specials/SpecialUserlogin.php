@@ -377,17 +377,23 @@ class LoginForm extends SpecialPage {
 			return false;
 		}
 
-		if ( $wgAccountCreationThrottle && $wgUser->isPingLimitable() ) {
-			$key = wfMemcKey( 'acctcreate', 'ip', $ip );
-			$value = $wgMemc->get( $key );
-			if ( !$value ) {
-				$wgMemc->set( $key, 0, 86400 );
+		// Hook point to check for exempt from account creation throttle	
+		if ( !wfRunHooks( 'exemptFromAccountCreationThrottle', array( $ip ) ) ) {
+			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook allowed account creation w/o throttle\n" );
+		} else {
+			if ( ( $wgAccountCreationThrottle && $wgUser->isPingLimitable() ) ) {
+				wfDebugLog( 'CACT', "IN der core Throttle Abfrage\n" );
+				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
+				$value = $wgMemc->get( $key );
+				if ( !$value ) {
+					$wgMemc->set( $key, 0, 86400 );
+				}
+				if ( $value >= $wgAccountCreationThrottle ) {
+					$this->throttleHit( $wgAccountCreationThrottle );
+					return false;
+				}
+				$wgMemc->incr( $key );
 			}
-			if ( $value >= $wgAccountCreationThrottle ) {
-				$this->throttleHit( $wgAccountCreationThrottle );
-				return false;
-			}
-			$wgMemc->incr( $key );
 		}
 
 		if( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
