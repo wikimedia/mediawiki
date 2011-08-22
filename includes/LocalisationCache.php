@@ -514,6 +514,7 @@ class LocalisationCache {
 			foreach ( $data as $key => $value ) {
 				$this->mergeItem( $key, $coreData[$key], $value );
 			}
+
 		}
 
 		# Fill in the fallback if it's not there already
@@ -532,17 +533,24 @@ class LocalisationCache {
 			}
 
 			# Load the fallback localisation item by item and merge it
-			foreach ( $coreData['fallbackSequence'] as $fallback ) {
-				$deps = array_merge( $deps, $this->getItem( $fallback, 'deps' ) );
+			foreach ( $coreData['fallbackSequence'] as $fbCode ) {
+
+				# Load the secondary localisation from the source file to
+				# avoid infinite cycles on cyclic fallbacks
+				$fbFilename = Language::getMessagesFileName( $fbCode );
+				if ( !file_exists( $fbFilename ) ) continue;
+
+				$deps[] = new FileDependency( $fbFilename );
+				$fbData = $this->readPHPFile( $fbFilename, 'core' );
 				foreach ( self::$allKeys as $key ) {
+					if ( !isset( $fbData[$key] ) ) continue;
 					if ( is_null( $coreData[$key] ) || $this->isMergeableKey( $key ) ) {
-						$fallbackValue = $this->getItem( $fallback, $key );
-						$this->mergeItem( $key, $coreData[$key], $fallbackValue );
+						$this->mergeItem( $key, $coreData[$key], $fbData[$key] );
 					}
 				}
 			}
-			
 		}
+
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
 
 		# Load the extension localisations
