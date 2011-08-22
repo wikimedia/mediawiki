@@ -602,7 +602,8 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'allpagesprefix'    => 'Hatudu pájina sira ho prefiksu:',
 
 # Special:Categories
-'categories' => 'Kategoria sira',
+'categories'                  => 'Kategoria sira',
+'special-categories-sort-abc' => 'tau tuir alfabetu',
 
 # Special:LinkSearch
 'linksearch-ns' => 'Espasu pájina nian:',
@@ -610,6 +611,10 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 
 # Special:ListUsers
 'listusers-submit' => 'Hatudu',
+
+# Special:ActiveUsers
+'activeusers-hidebots'   => 'Subar bot sira',
+'activeusers-hidesysops' => 'Subar administradór sira',
 
 # Special:Log/newusers
 'newuserlogpage'           => "Lista kria uza-na'in",
